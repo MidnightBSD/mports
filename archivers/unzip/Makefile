@@ -2,6 +2,7 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
+# $MidnightBSD$
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
@@ -13,7 +14,7 @@ MASTER_SITES=	ftp://ftp.info-zip.org/pub/infozip/src/ ${MASTER_SITE_TEX_CTAN}
 MASTER_SITE_SUBDIR=	tools/zip/info-zip/src
 DISTNAME=	${PORTNAME}552
 
-MAINTAINER?=	ache@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	List, test and extract compressed files in a ZIP archive
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
