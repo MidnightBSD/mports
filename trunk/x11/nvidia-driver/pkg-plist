@@ -1,0 +1,120 @@
+@comment I can't add the below files to the package because pkg_delete
+@comment will complain when removing this package:
+@comment     lib/modules/extensions/XXX-libglx.so.%%XLIBVERSION%%
+@comment     lib/modules/extensions/XXX-libGLcore.so.%%XLIBVERSION%%
+@comment     lib/XXX-libGL.a.%%XLIBVERSION%%
+@comment     lib/XXX-libGL.so.1.%%XLIBVERSION%%
+@comment They are however restored when this package is removed:
+@unexec mv -f %D/lib/modules/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%% %D/lib/modules/extensions/libglx.so
+@unexec mv -f %D/lib/modules/extensions/XXX-libGLcore.so.%%%%.%%XSERVVERSION%% %D/lib/modules/extensions/libGLcore.so
+@unexec mv -f %D/lib/XXX-libGL.a.%%%%.%%XLIBVERSION%% %D/lib/libGL.a
+lib/libGL.so.1
+@unexec mv -f %D/lib/XXX-libGL.so.1.%%%%.%%XLIBVERSION%% %D/lib/libGL.so.1
+@exec ln -sf %D/lib/libGL.so.1 %D/lib/libGL.so
+@comment no rm -f %D/lib/libGL.so because default XFree needs this also
+lib/libGLcore.so.1
+@exec ln -sf %D/lib/libGLcore.so.1 %D/lib/libGLcore.so
+@unexec rm -f %D/lib/libGLcore.so
+lib/libXvMCNVIDIA.so.1
+@exec ln -sf %D/lib/libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA.so
+@unexec rm -f %D/lib/libXvMCNVIDIA.so
+@exec ln -sf %D/lib/libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA_dynamic.so.1
+@unexec rm -f %D/lib/libXvMCNVIDIA_dynamic.so.1
+lib/libnvidia-cfg.so.1
+@exec ln -sf %D/lib/libnvidia-cfg.so.1 %D/lib/libnvidia-cfg.so
+@unexec rm -f %D/lib/libnvidia-cfg.so
+lib/libnvidia-tls.so.1
+@exec ln -sf %D/lib/libnvidia-tls.so.1 %D/lib/libnvidia-tls.so
+@unexec rm -f %D/lib/libnvidia-tls.so
+lib/libXvMCNVIDIA.a
+lib/modules/drivers/nvidia_drv.o
+%%DRVSO%%lib/modules/drivers/nvidia_drv.so
+lib/modules/extensions/libglx.so.1
+@exec ln -sf %D/lib/modules/extensions/libglx.so.1 %D/lib/modules/extensions/libglx.so
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-a.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-b.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-c.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-d.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-e.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-f.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-g.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-h.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-i.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-j.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-k.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-l.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-m.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-n.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-o.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-p.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-q.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-r.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-s.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-t.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-u.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-v.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-w.html
+%%PORTDOCS%%%%DOCSDIR%%/html/appendix-x.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-01.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-02.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-03-section-02.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-03.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-04.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-05.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-06.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-07.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-08.html
+%%PORTDOCS%%%%DOCSDIR%%/html/chapter-09.html
+%%PORTDOCS%%%%DOCSDIR%%/html/index.html
+%%PORTDOCS%%%%DOCSDIR%%/html/part-01.html
+%%PORTDOCS%%%%DOCSDIR%%/html/part-02.html
+%%PORTDOCS%%%%DOCSDIR%%/html/part-03.html
+%%PORTDOCS%%%%DOCSDIR%%/html/preface-01.html
+%%PORTDOCS%%%%DOCSDIR%%/html/preface-02.html
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README.Linux
+%%PORTDOCS%%%%DOCSDIR%%/XF86Config.sample
+%%PORTDOCS%%%%DOCSDIR%%/license.txt
+%%PORTDOCS%%%%DOCSDIR%%/gl.h
+%%PORTDOCS%%%%DOCSDIR%%/glx.h
+%%PORTDOCS%%%%DOCSDIR%%/glext.h
+%%PORTDOCS%%%%DOCSDIR%%/glxtokens.h
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/agp.ko-hints.diff
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/machdep.c.diff
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/vm_map.c_4.10.diff
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/device_pager.c_4.10.diff
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/vm_object.c_5.2.diff
+%%DIFFS%%%%PORTDOCS%%%%DOCSDIR%%/device_pager.c_5.2.diff
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%FREEBSD4%%@cwd /modules
+%%FREEBSD5%%@cwd /boot/modules
+nvidia.ko
+%%FREEBSD5%%@unexec kldxref %D
+%%FREEBSD4%%@cwd /dev
+%%FREEBSD4%%MAKEDEV.nvidia
+%%FREEBSD4%%@exec mknod /dev/nvidia0 c 180 0
+%%FREEBSD4%%@exec chmod 0666 /dev/nvidia0
+%%FREEBSD4%%@exec mknod /dev/nvidia1 c 180 1
+%%FREEBSD4%%@exec chmod 0666 /dev/nvidia1
+%%FREEBSD4%%@exec mknod /dev/nvidia2 c 180 2
+%%FREEBSD4%%@exec chmod 0666 /dev/nvidia2
+%%FREEBSD4%%@exec mknod /dev/nvidia3 c 180 3
+%%FREEBSD4%%@exec chmod 0666 /dev/nvidia3
+%%FREEBSD4%%@exec mknod /dev/nvidiactl c 180 255
+%%FREEBSD4%%@exec chmod 0666 /dev/nvidiactl
+%%FREEBSD4%%@unexec rm -f /dev/nvidia0
+%%FREEBSD4%%@unexec rm -f /dev/nvidia1
+%%FREEBSD4%%@unexec rm -f /dev/nvidia2
+%%FREEBSD4%%@unexec rm -f /dev/nvidia3
+%%FREEBSD4%%@unexec rm -f /dev/nvidiactl
+%%LINUX%%@cwd %%LINUXBASE%%
+%%LINUX%%usr/lib/libGL.so.1.0.%%NVVERSION%%
+%%LINUX%%usr/lib/libGLcore.so.1.0.%%NVVERSION%%
+%%LINUX%%usr/lib/libnvidia-tls.so.1.0.%%NVVERSION%%
+%%LINUX%%@exec ln -sf %D/usr/lib/libGL.so.1.0.%%NVVERSION%% %D/usr/lib/libGL.so.1
+%%LINUX%%@exec ln -sf %D/usr/lib/libGLcore.so.1.0.%%NVVERSION%% %D/usr/lib/libGLcore.so.1
+%%LINUX%%@exec ln -sf %D/usr/lib/libnvidia-tls.so.1.0.%%NVVERSION%% %D/usr/lib/libnvidia-tls.so.1
+%%LINUX%%@unexec rm -f %D/usr/lib/libGL.so.1
+%%LINUX%%@unexec rm -f %D/usr/lib/libGLcore.so.1
+%%LINUX%%@unexec rm -f %D/usr/lib/libnvidia-tls.so.1

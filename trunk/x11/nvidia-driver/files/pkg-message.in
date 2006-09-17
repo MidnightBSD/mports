@@ -1,0 +1,33 @@
+
+To use these drivers, make sure that you have loaded the nvidia kernel
+module, by doing
+
+	# kldload nvidia
+
+or adding
+
+	nvidia_load="YES"
+
+to your /boot/loader.conf (normally done automatically when installing
+the port).
+
+If you build this port with WITH_FREEBSD_AGP=yes, make sure you have
+agp.ko kernel module compiled and installed, since nvidia.ko will
+depend on it, or have your kernel compiled with "device agp".  Other-
+wise the nvidia kernel module will not load.  Also, care to specify
+correct ``Option "NvAGP"'' in ``Device'' section of your X11 configu-
+ration file.
+
+When building with Linux compatibility (WITH_LINUX=yes), make sure
+linux.ko is available as well (or have it compiled in kernel).
+
+Note that this driver does not support PAE-enabled kernels.
+
+If X.org cannot start and reports
+
+	(EE) NVIDIA(0): Failed to obtain a shared memory identifier.
+
+in /var/log/Xorg.0.log while actually you have ``options SYSVSHM''
+enabled in kernel, the sysctl ``kern.ipc.shmall'' should be increased.
+
+See %%PREFIX%%/share/doc/NVIDIA_GLX-1.0/README for more information.
