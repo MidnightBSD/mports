@@ -1,0 +1,63 @@
+--- scripts/makefile.freebsd.orig	Sat Feb 25 15:37:11 2006
++++ scripts/makefile.freebsd	Thu Jul 27 22:03:50 2006
+@@ -8,27 +8,26 @@
+ LIB=		png
+ SHLIB_MAJOR=	${SHLIB_VER}
+ SHLIB_MINOR=	0
++.if (${OSVERSION} > 600007)
++NO_PROFILE=	YES
++NO_OBJ=		YES
++.else
+ NOPROFILE=	YES
+-NOOBJ=          YES
++NOOBJ=		YES
++.endif
+ 
+ # where make install puts libpng.a and png.h
+-DESTDIR=	${PREFIX}
+-LIBDIR=		/lib
++LIBDIR=		${PREFIX}/lib
+ INCS=		png.h pngconf.h
+-INCSDIR=	/include/libpng
++INCSDIR=	${PREFIX}/include/libpng
+ INCDIR=		${INCSDIR}		# for 4.x bsd.lib.mk
+ MAN=		libpng.3 libpngpf.3 png.5
+-MANDIR=		/man/man
++MANDIR=		${PREFIX}/man/man
+ SYMLINKS=       libpng/png.h ${INCSDIR}/../png.h \
+ 		libpng/pngconf.h ${INCSDIR}/../pngconf.h
+ LDADD+=         -lm -lz
+ DPADD+=         ${LIBM} ${LIBZ}
+ 
+-CFLAGS+= -I. -DPNG_USE_PNGGCCRD
+-.if (${MACHINE_ARCH} != "i386")
+-CFLAGS+= -DPNG_NO_ASSEMBLER_CODE
+-.endif
+-
+ SRCS=	png.c pngset.c pngget.c pngrutil.c pngtrans.c pngwutil.c \
+ 	pngread.c pngrio.c pngwio.c pngwrite.c pngrtran.c \
+ 	pngwtran.c pngmem.c pngerror.c pngpread.c pnggccrd.c
+@@ -44,5 +43,23 @@
+ DOCS = ANNOUNCE CHANGES INSTALL KNOWNBUG LICENSE README TODO Y2KINFO
+ writelock:
+ 	chmod a-w *.[ch35] $(DOCS) scripts/*
++
++libpng-config:
++	( cat scripts/libpng-config-head.in; \
++	echo prefix=\"${PREFIX}\"; \
++	echo libdir=\"${LIBDIR}\"; \
++	echo ccopts=\"${ccopts}\"; \
++	echo cppflags=\"${cppflags}\"; \
++	echo I_opts=\"-I${INCSDIR}\"; \
++	echo L_opts=\"-L${LIBDIR}\"; \
++	echo libs=\"-lpng -lz -lm\"; \
++	echo ldopts=\"${ldopts}\"; \
++	cat scripts/libpng-config-body.in ) > libpng-config
++	chmod +x libpng-config
++
++beforeinstall: libpng-config
++	${INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
++		libpng-config ${PREFIX}/bin
++	ln -sf libpng-config ${PREFIX}/bin/libpng12-config
+ 
+ .include <bsd.lib.mk>
