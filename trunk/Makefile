@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/Makefile,v 1.1.1.1 2006/09/17 03:33:42 archite Exp $
 # $FreeBSD: ports/Makefile,v 1.96 2006/02/11 02:26:30 kris Exp $
 #
 
@@ -12,6 +12,7 @@ SUBDIR += print
 SUBDIR += textproc
 SUBDIR += www
 SUBDIR += x11
+SUBDIR += x11-wm
 
 PORTSTOP=	yes
 
