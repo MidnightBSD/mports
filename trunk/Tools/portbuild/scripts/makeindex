@@ -1,0 +1,77 @@
+#!/bin/sh
+# usage: $0 arch branch
+
+# Don't want to pick up bento customizations
+INDEX_PRISTINE=1
+
+# Don't give luser advice if it fails
+INDEX_QUIET=1
+
+# Concurrency of index build
+INDEX_JOBS=2
+
+pb=/var/portbuild
+arch=$1
+shift
+. ${pb}/${arch}/portbuild.conf
+. ${pb}/scripts/buildenv
+
+usage () {
+  echo "usage: makeindex arch branch"
+  exit 1
+}
+
+if [ $# != 1 ]; then
+  usage
+fi
+
+case "x$1" in
+  x4)
+    branch=4
+    INDEXFILE=INDEX
+    ;;
+  x4-exp)
+    branch=4-exp
+    INDEXFILE=INDEX
+    ;;
+  x5)
+    branch=5
+    INDEXFILE=INDEX-5
+    ;;
+  x5-exp)
+    branch=5-exp
+    INDEXFILE=INDEX-5
+    ;;
+  x6)
+    branch=6
+    INDEXFILE=INDEX-6
+    ;;
+  x6-exp)
+    branch=6-exp
+    INDEXFILE=INDEX-6
+    ;;
+  x7)
+    branch=7
+    INDEXFILE=INDEX-7
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+# Set up the build env variables
+buildenv ${pb} ${arch} ${branch}
+
+unset DISPLAY
+
+# Don't pick up installed packages from the host
+export LOCALBASE=/nonexistentlocal
+export X11BASE=/nonexistentx
+
+cd ${PORTSDIR}
+make index
+# remove extra spaces in dependency list -- this causes problems
+# Also transform the dummy paths to their canonical locations
+sed -e 's/  */ /g' -e 's/|  */|/g' -e 's/  *|/|/g' -e "s,${LOCALBASE},/usr/local," -e "s,${X11BASE},/usr/X11R6," ${INDEXFILE} > ${INDEXFILE}.tmp
+
+mv -f ${INDEXFILE}.tmp ${INDEXFILE}

@@ -1,0 +1,31 @@
+--- glib/libcharset/Makefile.in.orig	Fri Apr 30 12:10:27 2004
++++ glib/libcharset/Makefile.in	Fri Apr 30 12:12:01 2004
+@@ -225,7 +225,7 @@
+ target_alias = @target_alias@
+ 
+ INCLUDES = \
+-	-DLIBDIR=\"$(libdir)\" -I$(top_srcdir)
++	-DLIBDIR=\"$(prefix)/libdata\" -I$(top_srcdir)
+ 
+ 
+ noinst_LTLIBRARIES = libcharset.la
+@@ -246,8 +246,8 @@
+ 	make-patch.sh
+ 
+ 
+-charset_alias = $(DESTDIR)$(libdir)/charset.alias
+-charset_tmp = $(DESTDIR)$(libdir)/charset.tmp
++charset_alias = $(DESTDIR)$(prefix)/libdata/charset.alias
++charset_tmp = $(DESTDIR)$(prefix)/libdata/charset.tmp
+ 
+ SUFFIXES = .sed .sin
+ 
+@@ -487,7 +487,7 @@
+ 
+ install-data-am:
+ 
+-install-exec-am: install-exec-local
++install-exec-am: # install-exec-local
+ 
+ install-info: install-info-am
+ 
