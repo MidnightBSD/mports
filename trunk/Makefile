@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/Makefile,v 1.4 2006/09/17 06:49:06 archite Exp $
+# $MidnightBSD: mports/Makefile,v 1.5 2006/09/17 07:14:45 archite Exp $
 # $FreeBSD: ports/Makefile,v 1.96 2006/02/11 02:26:30 kris Exp $
 #
 
+SUBDIR += archivers
 SUBDIR += converters
 SUBDIR += devel
 SUBDIR += graphics
