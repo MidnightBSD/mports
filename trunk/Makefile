@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.2 2006/09/17 04:48:51 archite Exp $
+# $MidnightBSD: mports/Makefile,v 1.3 2006/09/17 06:43:25 archite Exp $
 # $FreeBSD: ports/Makefile,v 1.96 2006/02/11 02:26:30 kris Exp $
 #
 
@@ -9,6 +9,7 @@ SUBDIR += irc
 SUBDIR += lang
 SUBDIR += net-im
 SUBDIR += print
+SUBDIR += security
 SUBDIR += sysutils
 SUBDIR += textproc
 SUBDIR += www
