@@ -1,6 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #	$NetBSD: $
 #
@@ -2833,7 +2834,7 @@ MAN3PREFIX?=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
 .endif
 
 CONFIGURE_SCRIPT?=	configure
-CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd6.0
 CONFIGURE_LOG?=		config.log
 
 # A default message to print if do-configure fails.
