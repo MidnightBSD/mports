@@ -1,0 +1,11 @@
+--- configure.orig	Sun Jan 29 13:06:22 2006
++++ configure	Sun Jan 29 13:06:48 2006
+@@ -34462,6 +34461,8 @@
+          ;;
+     esac
+   fi
++  G_THREAD_CFLAGS="${PTHREAD_CFLAGS}"
++  G_THREAD_LIBS="${PTHREAD_LIBS}"
+ 
+   if test x"$G_THREAD_CFLAGS" = x; then
+ 
