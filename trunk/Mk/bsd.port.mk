@@ -1,9 +1,8 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.2 2006/09/17 15:10:33 archite Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
-#	$NetBSD: $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
 #	This file is in the public domain.
@@ -23,7 +22,7 @@
 # A RESPONSE FROM THE MAINTAINER(S) WITHIN A REASONABLE TIMEFRAME! ALL
 # UNAUTHORISED CHANGES WILL BE UNCONDITIONALLY REVERTED!
 
-FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
+FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 
 # For each port, the MAINTAINER variable is what you should consult for
 # contact information on the person(s) to contact if you have questions/
@@ -32,7 +31,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # mailing list, and any correspondence should be directed there.
 #
 # MAINTAINER	- The e-mail address of the contact person for this port.
-#				  Default: ports@FreeBSD.org
+#				  Default: ports@midnightbsd.org
 #
 # These are meta-variables that are automatically set to the system
 # you are running on.  These are provided in case you need to take
@@ -1119,7 +1118,7 @@ ECHO_CMD?=	echo				# Shell builtin
 ECHO_MSG?=		${ECHO_CMD}
 
 # Get the default maintainer
-MAINTAINER?=	ports@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 
 # Get the architecture
 .if !defined(ARCH)
@@ -2558,7 +2557,7 @@ PATCH_SITES_TMP=
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
-	ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
+	ftp://ftp.freeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
 
 # If the user has MASTER_SITE_FREEBSD set, go to the FreeBSD repository
