@@ -1,13 +1,14 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.3 2006/05/01 19:49:57 sem Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Tcl_Pre_Include)
 
 Tcl_Pre_Include=		bsd.tcl.mk
-Tcl_Include_MAINTAINER=	ports@FreeBSD.org
+Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 
 # USE_TCL:		Depend on tcl to run. In case of incompatible APIs of different 
 #				TCL versions the version can be specified directly. If version
