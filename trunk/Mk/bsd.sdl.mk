@@ -5,7 +5,7 @@
 #
 # Created by: Edwin Groothuis <edwin@freebsd.org>
 #
-# For FreeBSD committers:
+# For MidnightBSD committers:
 # - Changes in the version number of the shared libraries are encouraged.
 # - For the rest, please try to run them via the maintainer but feel free
 #   to commit themselves if nothing breaks.
@@ -27,12 +27,11 @@
 #	.include <bsd.port.post.mk>
 # Run "make -V USE_SDL" to see which libs are asked for at the end.
 #
-
-#
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 
-SDL_Include_MAINTAINER=		edwin@FreeBSD.org
+SDL_Include_MAINTAINER=		ports@MidnightBSD.org
 
 #
 # These are the current supported SDL modules

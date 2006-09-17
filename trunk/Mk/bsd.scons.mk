@@ -1,6 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.scons.mk,v 1.6 2006/08/04 12:34:41 erwin Exp $
 #
 # bsd.scons.mk - Python-based SCons build system interface.
@@ -9,7 +10,7 @@
 # Please view me with 4 column tabs!
 
 # Please make sure all changes to this file are passed through the maintainer.
-SCONS_MAINTAINER=	alex@foxybanana.com
+SCONS_MAINTAINER=	ports@MidnightBSD.org
 
 #
 # SCONS_BIN is the location where the scons port installs the scons

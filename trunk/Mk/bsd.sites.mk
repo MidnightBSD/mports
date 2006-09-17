@@ -1,6 +1,6 @@
 # bsd.sites.mk - Popular master sites.
 #
-# Sites_MAINTAINER=		ports@FreeBSD.org
+# Sites_MAINTAINER=		ports@MidnightBSD.org
 #
 # This file does not have any designated maintainer, so feel free to
 # commit to it yourself.  However, it is generally a good idea to
@@ -20,6 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 

@@ -1,6 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.wx.mk,v 1.1 2006/07/05 02:13:12 linimon Exp $
 #
 # bsd.wx.mk - Support for WxWidgets based ports.
@@ -114,7 +115,7 @@
 #	After determining the version and Unicode, WX_CONFIG will be defined.
 #
 
-WX_Include_MAINTAINER=	alepulver@FreeBSD.org
+WX_Include_MAINTAINER=	ports@MidnightBSD.org
 
 #
 # Global definitions.
