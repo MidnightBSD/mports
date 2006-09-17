@@ -1,13 +1,14 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
+# $MidnightBSD$ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
 .if defined(_POSTMKINCLUDED) && !defined(Database_Post_Include)
 
 Database_Post_Include=			bsd.database.mk
-Database_Include_MAINTAINER=	ports@FreeBSD.org
+Database_Include_MAINTAINER=	ports@MidnightBSD.org
 
 # This file contains some routines to interact with different databases, such
 # as mysql, postgresql and berkley DB. For including this file define macro

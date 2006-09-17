@@ -3,10 +3,11 @@
 #
 # Created by: Alex Dupre <ale@FreeBSD.org>
 #
-# For FreeBSD committers:
+# For MidnightBSD committers:
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -31,7 +32,7 @@
 # Don't specify any WANT_PHP_* knob if your port will work with every PHP SAPI.
 #
 
-PHP_Include_MAINTAINER=	ale@FreeBSD.org
+PHP_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .if exists(${LOCALBASE}/etc/php.conf)
 .include "${LOCALBASE}/etc/php.conf"

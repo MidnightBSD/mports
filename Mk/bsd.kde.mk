@@ -1,13 +1,14 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
 
 # Please make sure all changes to this file are past through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
-KDE_MAINTAINER=		kde@FreeBSD.org
+KDE_MAINTAINER=		ports@MidnightBSD.org
 
 # This section contains the USE_ definitions.
 # XXX: Write HAVE_ definitions sometime.

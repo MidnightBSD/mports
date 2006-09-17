@@ -2,6 +2,7 @@
 # Date created:		31 May 2002
 # Whom:			dinoex
 #
+# $MidnightBSD$ 
 # $FreeBSD: ports/Mk/bsd.openssl.mk,v 1.31 2006/08/04 12:34:41 erwin Exp $
 #
 # Use of 'USE_OPENSSL=yes' includes this Makefile after bsd.ports.pre.mk
@@ -33,7 +34,7 @@
 # BUILD_DEPENDS		- are added if needed
 # RUN_DEPENDS		- are added if needed
 
-OpenSSL_Include_MAINTAINER=	dinoex@FreeBSD.org
+OpenSSL_Include_MAINTAINER=	ports@MidnightBSD.org
 
 # honor obsolete options for a bit
 .if defined(USE_OPENSSL_BASE) && !defined(WITH_OPENSSL_BASE)

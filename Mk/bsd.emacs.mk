@@ -1,11 +1,12 @@
 #
+# 	$MidnightBSD$
 #	$FreeBSD: ports/Mk/bsd.emacs.mk,v 1.59 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.emacs.mk - 19990829 Shigeyuki Fukushima.
 #
 
 Emacs_Include=			bsd.emacs.mk
-Emacs_Include_MAINTAINER=	ports@FreeBSD.org
+Emacs_Include_MAINTAINER=	ports@MidnightBSD.org
 
 #
 # This file for ports which depend on emacs family.

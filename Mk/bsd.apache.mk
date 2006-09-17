@@ -1,6 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # bsd.apache.mk - Apache related macros.
