@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -9,6 +9,7 @@
     SUBDIR += gmake
     SUBDIR += imake-6
     SUBDIR += libtool15
+    SUBDIR += pcre
     SUBDIR += pkg-config
 
 .include <bsd.port.subdir.mk>
