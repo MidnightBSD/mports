@@ -1,6 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -30,7 +31,7 @@
 
 .if !defined(_POSTMKINCLUDED) && !defined(Linux_RPM_Pre_Include)
 
-Linux_RPM_Include_MAINTAINER=	emulation@FreeBSD.org
+Linux_RPM_Include_MAINTAINER=	ports@MidnightBSD.org
 Linux_RPM_Pre_Include=			bsd.linux-rpm.mk
 
 RPM2CPIO?=			${LOCALBASE}/bin/rpm2cpio

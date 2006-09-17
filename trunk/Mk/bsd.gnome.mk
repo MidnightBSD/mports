@@ -1,6 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #	$NetBSD: $
 #     $MCom: ports/Mk/bsd.gnome.mk,v 1.370 2006/04/27 01:40:22 ahze Exp $
@@ -11,7 +12,7 @@
 
 # Please make sure all changes to this file are passed through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
-Gnome_Include_MAINTAINER=	gnome@FreeBSD.org
+Gnome_Include_MAINTAINER=	ports@MidnightBSD.org
 Gnome_Pre_Include=			bsd.gnome.mk
 
 # This section defines possible names of GNOME components and all information
@@ -713,7 +714,7 @@ PLIST_SUB+=	GNOMEDESKTOP:="@comment " NOGNOMEDESKTOP:=""
 .  endif
 .endif
 
-.if ${MAINTAINER}=="gnome@FreeBSD.org"
+.if ${MAINTAINER}=="gnome@MidnightBSD.org"
 CONFIGURE_FAIL_MESSAGE= "Please run the gnomelogalyzer, available from \"http://www.freebsd.org/gnome/gnomelogalyzer.sh\", which will diagnose the problem and suggest a solution. If - and only if - the gnomelogalyzer cannot solve the problem, report the build failure to the FreeBSD GNOME team at ${MAINTAINER}, and attach (a) \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\", (b) the output of the failed make command, and (c) the gnomelogalyzer output. Also, it might be a good idea to provide an overview of all packages installed on your system (i.e. an \`ls ${PKG_DBDIR}\`). Put your attachment up on any website, copy-and-paste into http://freebsd-gnome.pastebin.com, or use send-pr(1) with the attachment. Try to avoid sending any attachments to the mailing list (${MAINTAINER}), because attachments sent to FreeBSD mailing lists are usually discarded by the mailing list software."
 .endif
 

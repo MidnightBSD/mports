@@ -6,12 +6,13 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
 # Date:		4 Oct 2004
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.gstreamer.mk,v 1.22 2006/08/01 04:52:35 ahze Exp $
 #    $MCom: ports/Mk/bsd.gstreamer.mk,v 1.24 2006/04/25 14:45:31 ahze Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 
-Gstreamer_Include_MAINTAINER=	multimedia@FreeBSD.org
+Gstreamer_Include_MAINTAINER=	ports@MidnightBSD.org
 Gstreamer_Pre_Include=		bsd.gstreamer.mk
 
 .endif

@@ -1,4 +1,5 @@
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.29 2006/09/10 16:41:27 dinoex Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -73,7 +74,7 @@
 # ---------------------------------------------------------------------------
 .if !defined(_POSTMKINCLUDED)
 
-GNUstep_Include_MAINTAINER=	dinoex@FreeBSD.org
+GNUstep_Include_MAINTAINER=	ports@MidnightBSD.org
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libcallback.a:${PORTSDIR}/devel/ffcall
 .if !defined(GNUSTEP_WITHOUT_LIBOBJC)
