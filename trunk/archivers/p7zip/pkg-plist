@@ -1,0 +1,41 @@
+@unexec /bin/rm -f %D/bin/7za
+@unexec /bin/rm -f %D/bin/7zr
+bin/7z
+bin/p7zip
+@exec /bin/ln -sf 7z %D/bin/7za
+@exec /bin/ln -sf 7z %D/bin/7zr
+%%MODULES%%libexec/p7zip/7z
+libexec/p7zip/7za
+libexec/p7zip/7zr
+libexec/p7zip/7zCon.sfx
+%%MODULES%%libexec/p7zip/Codecs/7zAES.so
+%%MODULES%%libexec/p7zip/Codecs/AES.so
+%%MODULES%%libexec/p7zip/Codecs/BZip2.so
+%%MODULES%%libexec/p7zip/Codecs/Branch.so
+%%MODULES%%libexec/p7zip/Codecs/Copy.so
+%%MODULES%%libexec/p7zip/Codecs/Deflate.so
+%%MODULES%%libexec/p7zip/Codecs/Implode.so
+%%MODULES%%libexec/p7zip/Codecs/LZMA.so
+%%MODULES%%libexec/p7zip/Codecs/PPMD.so
+%%MODULES%%libexec/p7zip/Codecs/Rar29.so
+%%MODULES%%libexec/p7zip/Codecs/Swap.so
+%%MODULES%%libexec/p7zip/Formats/7z.so
+%%MODULES%%libexec/p7zip/Formats/chm.so
+%%MODULES%%libexec/p7zip/Formats/Rar.so
+%%MODULES%%libexec/p7zip/Formats/Tar.so
+%%MODULES%%libexec/p7zip/Formats/Zip.so
+%%MODULES%%libexec/p7zip/Formats/arj.so
+%%MODULES%%libexec/p7zip/Formats/bz2.so
+%%MODULES%%libexec/p7zip/Formats/cab.so
+%%MODULES%%libexec/p7zip/Formats/cpio.so
+%%MODULES%%libexec/p7zip/Formats/deb.so
+%%MODULES%%libexec/p7zip/Formats/gz.so
+%%MODULES%%libexec/p7zip/Formats/nsis.so
+%%MODULES%%libexec/p7zip/Formats/rpm.so
+%%MODULES%%libexec/p7zip/Formats/split.so
+%%MODULES%%libexec/p7zip/Formats/lzh.so
+%%MODULES%%libexec/p7zip/Formats/z.so
+%%MODULES%%libexec/p7zip/Formats/iso.so
+%%MODULES%%@dirrm libexec/p7zip/Formats
+%%MODULES%%@dirrm libexec/p7zip/Codecs
+@dirrm libexec/p7zip
