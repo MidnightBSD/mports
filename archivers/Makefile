@@ -1,8 +1,10 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.5 2006/09/18 00:32:43 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.6 2006/09/18 00:37:29 laffer1 Exp $
 
     COMMENT = Archivers
 
     SUBDIR += arc
+    SUBDIR += bzip
+    SUBDIR += bzip2
     SUBDIR += gtar
     SUBDIR += gzip
     SUBDIR += gzrecover
