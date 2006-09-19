@@ -1,0 +1,11 @@
+--- doc/m4.texinfo.orig	Thu Mar 31 15:17:00 2005
++++ doc/m4.texinfo	Tue Apr  5 11:36:34 2005
+@@ -18,7 +18,7 @@
+ 
+ @dircategory GNU programming tools
+ @direntry
+-* m4: (m4).			A powerful macro processor.
++* Gm4: (m4).			A powerful macro processor.
+ @end direntry
+ 
+ @ifnottex
