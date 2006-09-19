@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.3 2006/09/18 06:22:46 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.4 2006/09/18 21:00:20 wintellect Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -13,5 +13,6 @@
     SUBDIR += pcre
     SUBDIR += pkg-config
     SUBDIR += pmk
+    SUBDIR += popt
 
 .include <bsd.port.subdir.mk>
