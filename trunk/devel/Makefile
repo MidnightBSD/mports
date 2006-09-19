@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.4 2006/09/18 21:00:20 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.5 2006/09/19 20:28:58 wintellect Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
     COMMENT = Development utilities
 
+    SUBDIR += desktop-file-utils
     SUBDIR += gettext
     SUBDIR += glib20
     SUBDIR += gmake
