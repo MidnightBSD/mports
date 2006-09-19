@@ -2,6 +2,7 @@
 # Date created:			11 Jun 2004
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 #
 

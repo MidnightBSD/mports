@@ -2,6 +2,7 @@
 # Date Created:				14 May 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/accessibility/atk/Makefile,v 1.47 2006/05/31 22:18:41 mezz Exp $
 #   $MCom: ports/accessibility/atk/Makefile,v 1.68 2006/04/13 07:52:28 bland Exp $
 #
