@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.1 2006/09/17 07:14:45 archite Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.2 2006/09/19 22:28:44 wintellect Exp $
 # $FreeBSD: ports/misc/Makefile,v 1.819 2006/08/20 21:16:16 anray Exp $
 #
 
@@ -8,5 +8,6 @@
     SUBDIR += hicolor-icon-theme
     SUBDIR += ldconfig_compat
     SUBDIR += localedata
+    SUBDIR += shared-mime-info
 
 .include <bsd.port.subdir.mk>
