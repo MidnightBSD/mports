@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.9 2006/09/19 21:58:03 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.10 2006/09/20 02:13:36 archite Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -8,6 +8,7 @@
     SUBDIR += automake14
     SUBDIR += bison
     SUBDIR += desktop-file-utils
+    SUBDIR += ffcall
     SUBDIR += gettext
     SUBDIR += glib20
     SUBDIR += gmake
