@@ -1,9 +1,11 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.8 2006/09/19 21:50:57 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.9 2006/09/19 21:58:03 wintellect Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
     COMMENT = Development utilities
 
+    SUBDIR += autoconf213
+    SUBDIR += automake14
     SUBDIR += bison
     SUBDIR += desktop-file-utils
     SUBDIR += gettext
