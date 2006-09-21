@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.2 2006/09/20 14:38:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.3 2006/09/21 15:18:26 laffer1 Exp $
 # $FreeBSD: ports/lang/Makefile,v 1.512 2006/09/04 16:28:30 bsam Exp $
 #
 
@@ -12,6 +12,7 @@
     SUBDIR += gcc42
     SUBDIR += gcc42-withgcjawt
     SUBDIR += gnustep-base
+    SUBDIR += gnustep-objc
     SUBDIR += perl5.8
 
 .include <bsd.port.subdir.mk>
