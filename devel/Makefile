@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.11 2006/09/20 16:42:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.12 2006/09/21 13:43:19 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -6,6 +6,8 @@
 
     SUBDIR += autoconf213
     SUBDIR += automake14
+    SUBDIR += automake15
+    SUBDIR += automake19
     SUBDIR += bison
     SUBDIR += desktop-file-utils
     SUBDIR += ffcall
