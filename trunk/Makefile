@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.8 2006/09/19 22:23:59 wintellect Exp $
+# $MidnightBSD: mports/Makefile,v 1.9 2006/09/21 13:29:35 laffer1 Exp $
 # $FreeBSD: ports/Makefile,v 1.96 2006/02/11 02:26:30 kris Exp $
 #
 
@@ -9,6 +9,7 @@ SUBDIR += devel
 SUBDIR += graphics
 SUBDIR += irc
 SUBDIR += lang
+SUBDIR += math
 SUBDIR += misc
 SUBDIR += net-im
 SUBDIR += print
