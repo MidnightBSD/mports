@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/Makefile,v 1.9 2006/09/21 13:29:35 laffer1 Exp $
-# $FreeBSD: ports/Makefile,v 1.96 2006/02/11 02:26:30 kris Exp $
+# $MidnightBSD: mports/Makefile,v 1.10 2006/09/21 14:07:15 laffer1 Exp $
 #
 
 SUBDIR += accessibility
 SUBDIR += archivers
+SUBDIR += audio
 SUBDIR += converters
 SUBDIR += devel
 SUBDIR += graphics
@@ -19,6 +19,9 @@ SUBDIR += sysutils
 SUBDIR += textproc
 SUBDIR += www
 SUBDIR += x11
+SUBDIR += x11-fonts
+SUBDIR += x11-fm
+SUBDIR += x11-servers
 SUBDIR += x11-toolkits
 SUBDIR += x11-wm
 
