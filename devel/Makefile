@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.13 2006/09/21 13:53:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.14 2006/09/21 13:57:43 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -18,6 +18,8 @@
     SUBDIR += gmake
     SUBDIR += gnu-autoconf
     SUBDIR += gnu-automake
+    SUBDIR += gnustep
+    SUBDIR += gnustep-make
     SUBDIR += imake-6
     SUBDIR += libIDL
     SUBDIR += libtool15
