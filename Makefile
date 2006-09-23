@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.10 2006/09/21 14:07:15 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.11 2006/09/23 18:09:57 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -6,6 +6,7 @@ SUBDIR += archivers
 SUBDIR += audio
 SUBDIR += converters
 SUBDIR += devel
+SUBDIR += german
 SUBDIR += graphics
 SUBDIR += irc
 SUBDIR += lang
