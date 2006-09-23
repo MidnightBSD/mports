@@ -1,0 +1,78 @@
+# New ports collection makefile for:    gnustep-gui
+# Date created:         19 April 2001
+# Whom:                 Thomas Gellekum <tg@FreeBSD.org>
+#
+# $MidnightBSD$
+# $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
+#
+
+PORTNAME=	gnustep-gui
+PORTVERSION=	0.11.0
+CATEGORIES=	x11-toolkits
+MASTER_SITES=	${MASTER_SITE_GNUSTEP}
+MASTER_SITE_SUBDIR=	core
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNUstep GUI library
+
+LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
+LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	audiofile.0:${PORTSDIR}/audio/libaudiofile
+LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
+
+NOT_FOR_ARCHS=	ia64
+GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=
+CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--with-tiff-include=${LOCALBASE}/include
+CONFIGURE_ARGS+=	--with-jpeg-library=${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
+CONFIGURE_ARGS+=	--with-x
+CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/include
+CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/lib
+USE_XLIB=	yes
+EXTRA_PATCHES+=		${FILESDIR}/GNUmakefile.patch
+USE_GMAKE=	yes
+USE_GNUSTEP=	yes
+USE_GNUSTEP_PREFIX=	yes
+USE_GNUSTEP_CONFIGURE=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+USE_GNUSTEP_BASE=	yes
+MAKEFILE=
+MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
+BREAKS_IF_PEDANTIC=	yes
+NO_FILTER_SHLIBS=	yes
+
+PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
+
+.if defined(WITHOUT_GNUSTEP_FAKEMAIN)
+.if !exists(/proc/curproc)
+IGNORE=		requires procfs mounted to build or run, for details see procfs(5)
+.endif
+.endif
+
+.if !defined(WITHOUT_CUPS)
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+PLIST_SUB+=	WITH_CUPS=""
+.else
+PLIST_SUB+=	WITH_CUPS="@comment "
+.endif
+
+ASPELL_PORT?=	german/aspell
+.if !defined(WITHOUT_ASPELL)
+LIB_DEPENDS+=	aspell:${PORTSDIR}/${ASPELL_PORT}
+PLIST_SUB+=	WITH_ASPELL=""
+.else
+PLIST_SUB+=	WITH_ASPELL="@comment "
+.endif
+
+pre-configure:
+.for file in config.guess config.sub install-sh
+	@${CP} ${PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
+.endfor
+.if !defined(NOPORTDOCS)
+	${REINPLACE_CMD} -e "s|doc=no|doc=yes|" ${WRKSRC}/GNUmakefile
+.endif
+
+.include <bsd.port.mk>
