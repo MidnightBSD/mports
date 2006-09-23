@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.5 2006/09/21 14:15:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.6 2006/09/22 23:56:45 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -9,6 +9,7 @@
     SUBDIR += intltool
     SUBDIR += libxml2
     SUBDIR += libxslt
+    SUBDIR += linux-expat
     SUBDIR += p5-XML-Parser
 
 .include <bsd.port.subdir.mk>
