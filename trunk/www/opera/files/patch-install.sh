@@ -1,5 +1,14 @@
---- install.sh.orig	Fri Jun 16 12:03:46 2006
-+++ install.sh	Tue Jun 20 15:24:11 2006
+--- install.sh.orig	Sat Sep 23 10:50:13 2006
++++ install.sh	Sat Sep 23 10:50:30 2006
+@@ -81,7 +81,7 @@
+ 
+     os=`uname -s` || error 'uname'
+     case $os in
+-	FreeBSD|NetBSD|DragonFly) os=AnyBSD;;
++	FreeBSD|NetBSD|DragonFly|MidnightBSD) os=AnyBSD;;
+ 	SunOS*) os=SunOS;;
+     esac
+     case $os in AnyBSD|OpenBSD) str_defaultprefix="/usr/local";; esac
 @@ -924,69 +924,14 @@
  
  if test ! \"\${OPERA_JAVA_DIR}\"; then
@@ -10,7 +19,7 @@
 -	/usr/lib
 -	/usr/local
 -	/opt\"
-+    PREFIXES=\"%%LOCALBASE%%\"
++    PREFIXES=\"/usr/local\"
  
      for SUNJAVA in \\
 -	java-1.5.0-sun-1.5.0.06 \\
@@ -85,8 +94,8 @@
 -    /usr/X11R6/lib/Acrobat[45]/bin \\
 -    /opt/Acrobat[45]/bin \\
 -    /usr/Acrobat[45]/bin \\
-+    %%LOCALBASE%%/Acrobat4/bin \\
-+    %%LOCALBASE%%/Acrobat5/bin \\
++    /usr/local/Acrobat4/bin \\
++    /usr/local/Acrobat5/bin \\
      ; do
      if test -d \${BINDIR} ; then PATH=\${PATH}:\${BINDIR}; fi
  done
@@ -97,8 +106,8 @@
 -# Spellchecker needs to find libaspell.so.15
 +# Spellchecker needs to find libaspell.so.16
  for LIBASPELL_DIR in \\
-+    %%LOCALBASE%%/lib \\
      /usr/local/lib \\
++    /usr/local/lib \\
      /opkg/lib \\
  ; do
 -    if test -f \"\${LIBASPELL_DIR}/libaspell.so.15\"; then
@@ -115,7 +124,7 @@
  
      # Executable
      debug_msg 1 "Executable"
-@@ -1328,41 +1271,9 @@
+@@ -1336,41 +1279,9 @@
  
      if test -z "${OPERADESTDIR}"
      then
@@ -157,122 +166,122 @@
  	if test "${bool_icons}" -ne 0
  	then xdg
  	fi
-@@ -1573,48 +1484,43 @@
+@@ -1581,48 +1492,43 @@
      # This function searches for common gnome icon paths.
      debug_msg 1 "in gnome()"
  
 -    if test -d /opt/gnome/
-+    if test -d %%X11BASE%%/share/gnome/;
++    if test -d /usr/X11R6/share/gnome/;
      then
 -	# /opt/gnome share
 -	if test -d /opt/gnome/share
 -	then
 -	    # /opt/gnome icon
 -	    if test ! -d /opt/gnome/share/pixmaps/
-+	    # %%X11BASE%%/share/gnome icon
-+	    if test ! -d %%X11BASE%%/share/gnome/pixmaps/;
++	    # /usr/X11R6/share/gnome icon
++	    if test ! -d /usr/X11R6/share/gnome/pixmaps/;
  	    then
 -		if test -w /opt/gnome/share
-+		if test -w %%X11BASE%%/share/gnome;
++		if test -w /usr/X11R6/share/gnome;
  		then
 -		    mkdir $mkdirv $mkdirp /opt/gnome/share/pixmaps/
 -		    chmod $chmodv 755 /opt/gnome/share/pixmaps
 -		    cp $cpv $share_dir/images/opera.xpm /opt/gnome/share/pixmaps/opera.xpm
-+		    mkdir $mkdirv $mkdirp %%X11BASE%%/share/gnome/pixmaps/
-+		    chmod $chmodv 755 %%X11BASE%%/share/gnome/pixmaps
-+		    cp $cpv $share_dir/images/opera.xpm %%X11BASE%%/share/gnome/pixmaps/opera.xpm
++		    mkdir $mkdirv $mkdirp /usr/X11R6/share/gnome/pixmaps/
++		    chmod $chmodv 755 /usr/X11R6/share/gnome/pixmaps
++		    cp $cpv $share_dir/images/opera.xpm /usr/X11R6/share/gnome/pixmaps/opera.xpm
  		fi
 -	    elif test -w /opt/gnome/share/pixmaps
 -	    then cp $cpv $share_dir/images/opera.xpm /opt/gnome/share/pixmaps/opera.xpm
-+	    elif test -w %%X11BASE%%/share/gnome/pixmaps
-+	    then cp $cpv $share_dir/images/opera.xpm %%X11BASE%%/share/gnome/pixmaps/opera.xpm
++	    elif test -w /usr/X11R6/share/gnome/pixmaps
++	    then cp $cpv $share_dir/images/opera.xpm /usr/X11R6/share/gnome/pixmaps/opera.xpm
  	    fi
 -	    # end /opt/gnome icon
-+	    # end %%X11BASE%%/share/gnome icon
++	    # end /usr/X11R6/share/gnome icon
  
 -	    # /opt/gnome link
 -	    if test -d /opt/gnome/share/gnome/apps/
-+	    # %%X11BASE%%/share/gnome link
-+	    if test -d %%X11BASE%%/share/gnome/apps/
++	    # /usr/X11R6/share/gnome link
++	    if test -d /usr/X11R6/share/gnome/apps/
  	    then
 -		if test -d /opt/gnome/share/gnome/apps/Internet/
-+		if test -d %%X11BASE%%/share/gnome/apps/Internet/
++		if test -d /usr/X11R6/share/gnome/apps/Internet/
  		then
 -		    if test -w /opt/gnome/share/gnome/apps/Internet
 -		    then generate_desktop /opt/gnome/share/gnome/apps/Internet
-+		    if test -w %%X11BASE%%/share/gnome/apps/Internet
-+		    then generate_desktop %%X11BASE%%/share/gnome/apps/Internet
++		    if test -w /usr/X11R6/share/gnome/apps/Internet
++		    then generate_desktop /usr/X11R6/share/gnome/apps/Internet
  		    fi
 -		elif test -d /opt/gnome/share/gnome/apps/Networking/WWW/
-+		elif test -d %%X11BASE%%/share/gnome/apps/Networking/WWW/
++		elif test -d /usr/X11R6/share/gnome/apps/Networking/WWW/
  		then
 -		    if test -w /opt/gnome/share/gnome/apps/Networking/WWW
 -		    then generate_desktop /opt/gnome/share/gnome/apps/Networking/WWW
-+		    if test -w %%X11BASE%%/share/gnome/apps/Networking/WWW
-+		    then generate_desktop %%X11BASE%%/share/gnome/apps/Networking/WWW
++		    if test -w /usr/X11R6/share/gnome/apps/Networking/WWW
++		    then generate_desktop /usr/X11R6/share/gnome/apps/Networking/WWW
  		    fi
 -		elif test -w /opt/gnome/share/gnome/apps
-+		elif test -w %%X11BASE%%/share/gnome/apps
++		elif test -w /usr/X11R6/share/gnome/apps
  		then
 -		    mkdir $mkdirv $mkdirp /opt/gnome/share/gnome/apps/Internet/
 -		    chmod $chmodv 755 /opt/gnome/share/gnome/apps/Internet
 -		    generate_desktop /opt/gnome/share/gnome/apps/Internet
-+		    mkdir $mkdirv $mkdirp %%X11BASE%%/share/gnome/apps/Internet/
-+		    chmod $chmodv 755 %%X11BASE%%/share/gnome/apps/Internet
-+		    generate_desktop %%X11BASE%%/share/gnome/apps/Internet
++		    mkdir $mkdirv $mkdirp /usr/X11R6/share/gnome/apps/Internet/
++		    chmod $chmodv 755 /usr/X11R6/share/gnome/apps/Internet
++		    generate_desktop /usr/X11R6/share/gnome/apps/Internet
  		fi
  	    fi
 -	    # end /opt/gnome link
 -	fi
 -	# end /opt/gnome share
-+	    # end %%X11BASE%%/share/gnome link
++	    # end /usr/X11R6/share/gnome link
  
      elif test -d /usr/share/gnome/
      then
-@@ -1662,9 +1568,9 @@
+@@ -1670,9 +1576,9 @@
      # This function searches for common kde2 and kde 3 icon paths.
      debug_msg 1 "in kde()"
  
 -    if test -d /opt/kde$1/share
-+    if test -d %%LOCALBASE%%/share;
++    if test -d /usr/local/share;
      then
 -	DIR_HI=/opt/kde$1/share/icons/hicolor
-+	DIR_HI=%%LOCALBASE%%/share/icons/hicolor
++	DIR_HI=/usr/local/share/icons/hicolor
  	if test -d "$DIR_HI" -a -w "$DIR_HI"
  	then
  	    if test -d "$DIR_HI"/48x48/apps -a -w "$DIR_HI"/48x48/apps
-@@ -1678,7 +1584,7 @@
+@@ -1686,7 +1592,7 @@
  	    fi
  	fi
  
 -	DIR_LO=/opt/kde$1/share/icons/locolor
-+	DIR_LO=%%LOCALBASE%%/share/icons/locolor
++	DIR_LO=/usr/local/share/icons/locolor
  	if test -d $DIR_LO -a -w $DIR_LO
  	then
  	    if test -d $DIR_LO/32x32/apps -a -w $DIR_LO/32x32/apps
-@@ -1692,15 +1598,15 @@
+@@ -1700,15 +1606,15 @@
  	    fi
  	fi
  
 -	if test -d /opt/kde$1/share/applnk/
-+	if test -d %%LOCALBASE%%/share/applnk/
++	if test -d /usr/local/share/applnk/
  	then
 -	    if test ! -d /opt/kde$1/share/applnk/Internet/ -a -w /opt/kde$1/share/applnk
-+	    if test ! -d %%LOCALBASE%%/share/applnk/Internet/ -a -w %%LOCALBASE%%/share/applnk
++	    if test ! -d /usr/local/share/applnk/Internet/ -a -w /usr/local/share/applnk
  	    then
 -		mkdir $mkdirv $mkdirp /opt/kde$1/share/applnk/Internet/
 -		chmod $chmodv 755 /opt/kde$1/share/applnk/Internet
-+		mkdir $mkdirv $mkdirp %%LOCALBASE%%/share/applnk/Internet/
-+		chmod $chmodv 755 %%LOCALBASE%%/share/applnk/Internet
++		mkdir $mkdirv $mkdirp /usr/local/share/applnk/Internet/
++		chmod $chmodv 755 /usr/local/share/applnk/Internet
  	    fi
 -	    if test -w /opt/kde$1/share/applnk/Internet
 -	    then generate_desktop /opt/kde$1/share/applnk/Internet $1
-+	    if test -w %%LOCALBASE%%/share/applnk/Internet
-+	    then generate_desktop %%LOCALBASE%%/share/applnk/Internet $1
++	    if test -w /usr/local/share/applnk/Internet
++	    then generate_desktop /usr/local/share/applnk/Internet $1
  	    fi
  	fi
      fi
-@@ -1784,45 +1690,9 @@
+@@ -1792,45 +1698,9 @@
  }
  
  xdg()
