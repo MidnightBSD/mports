@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/opera/Makefile,v 1.1 2006/09/23 01:13:45 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -66,7 +66,7 @@ OPERA_TYPE=	4
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 .endif
 
-.if defined(WITH_SHARED) && ${OPERA_TYPE} > 1
+.if defined(WITH_SHARED) 
 OPERA_LIB=	shared
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
 .else
@@ -74,7 +74,9 @@ OPERA_LIB=	static
 OPERA_TYPE=	1
 .endif
 
+# The static version requires both compat4x and compat5x
 LIB_DEPENDS+=	z.2:${PORTSDIR}/misc/compat5x
+LIB_DEPENDS+=	m.2:${PORTSDIR}/misc/compat4x
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
 PLIST_SUB+=	GNOME=""
@@ -100,7 +102,7 @@ post-patch:
 do-install:
 	@(cd ${WRKSRC} && ./install.sh --prefix=${PREFIX})
 
-.if defined(WITHOUT_SHARED) && ${OSVERSION} >= 500000
+.if defined(WITHOUT_SHARED)
 post-install:
 	@${CAT} ${PKGMESSAGE}
 .endif
