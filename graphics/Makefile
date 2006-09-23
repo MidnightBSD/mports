@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.7 2006/09/20 16:14:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.8 2006/09/20 16:18:10 laffer1 Exp $
 # $FreeBSD: ports/graphics/Makefile,v 1.983 2006/09/12 18:28:05 dinoex Exp $
 #
 
@@ -13,6 +13,18 @@
     SUBDIR += libdrm
     SUBDIR += libglut
     SUBDIR += libungif
+    SUBDIR += linux-ac3d
+    SUBDIR += linux-adobesvg
+    SUBDIR += linux-gdk-pixbuf
+    SUBDIR += linux-imlib
+    SUBDIR += linux-jpeg
+    SUBDIR += linux-libmng
+    SUBDIR += linux-panorama-tools
+    SUBDIR += linux-png
+    SUBDIR += linux-png10
+    SUBDIR += linux-sdl_image
+    SUBDIR += linux-tiff
+    SUBDIR += linux-ungif
     SUBDIR += png
     SUBDIR += tiff
     SUBDIR += wmicons
