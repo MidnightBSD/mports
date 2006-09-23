@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.6 2006/09/23 18:07:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.7 2006/09/23 21:55:27 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/Makefile,v 1.422 2006/09/13 18:37:25 miwi Exp $
 #
 
@@ -11,6 +11,7 @@
     SUBDIR += gnustep-xdps
     SUBDIR += gtk12
     SUBDIR += gtk20
+    SUBDIR += linux-gtk
     SUBDIR += linux-gtk2
     SUBDIR += linux-pango
     SUBDIR += pango

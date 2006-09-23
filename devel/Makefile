@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.15 2006/09/23 00:28:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.16 2006/09/23 00:30:19 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -24,6 +24,7 @@
     SUBDIR += imake-6
     SUBDIR += libIDL
     SUBDIR += libtool15
+    SUBDIR += linux-glib2
     SUBDIR += m4
     SUBDIR += nspr
     SUBIDR += p5-Locale-gettext
