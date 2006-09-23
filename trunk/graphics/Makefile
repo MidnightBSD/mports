@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.8 2006/09/20 16:18:10 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.9 2006/09/23 22:21:44 laffer1 Exp $
 # $FreeBSD: ports/graphics/Makefile,v 1.983 2006/09/12 18:28:05 dinoex Exp $
 #
 
@@ -25,6 +25,7 @@
     SUBDIR += linux-sdl_image
     SUBDIR += linux-tiff
     SUBDIR += linux-ungif
+    SUBDIR += linux_dri
     SUBDIR += png
     SUBDIR += tiff
     SUBDIR += wmicons
