@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.6 2006/09/22 23:56:45 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.7 2006/09/23 21:55:27 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -7,6 +7,7 @@
     SUBDIR += aspell
     SUBDIR += expat2
     SUBDIR += intltool
+    SUBDIR += ispell
     SUBDIR += libxml2
     SUBDIR += libxslt
     SUBDIR += linux-expat
