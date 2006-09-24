@@ -56,8 +56,10 @@ lib/%%APP_NAME%%/defaults/autoconfig/platform.js
 lib/%%APP_NAME%%/defaults/autoconfig/prefcalls.js
 lib/%%APP_NAME%%/defaults/pref/browser-prefs.js
 lib/%%APP_NAME%%/defaults/pref/channel-prefs.js
+lib/%%APP_NAME%%/defaults/pref/firefox-branding.js
 lib/%%APP_NAME%%/defaults/pref/firefox-l10n.js
 lib/%%APP_NAME%%/defaults/pref/firefox.js
+lib/%%APP_NAME%%/defaults/pref/reporter.js
 lib/%%APP_NAME%%/defaults/profile/bookmarks.html
 lib/%%APP_NAME%%/defaults/profile/chrome/userChrome-example.css
 lib/%%APP_NAME%%/defaults/profile/chrome/userContent-example.css
