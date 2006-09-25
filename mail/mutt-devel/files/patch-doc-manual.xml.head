@@ -1,0 +1,10 @@
+--- doc/manual.xml.head.orig	Mon Jul 17 15:23:46 2006
++++ doc/manual.xml.head	Mon Jul 17 15:30:23 2006
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" standalone="no"?>
+ <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+-  "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
++  "/usr/local/share/xml/docbook/4.2/docbookx.dtd">
+ <book>
+ 
+ <bookinfo>
