@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.11 2006/09/24 03:18:34 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.12 2006/09/24 12:49:13 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -27,6 +27,7 @@
     SUBDIR += linux-expat
     SUBDIR += linuxdoc
     SUBDIR += p5-XML-Parser
+    SUBDIR += sdocbook-xml
     SUBDIR += sgmlformat
     SUBDIR += xmlcatmgr
 
