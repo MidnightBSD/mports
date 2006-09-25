@@ -2,7 +2,7 @@
 # Date created:		July 16, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.1 2006/09/25 04:30:59 archite Exp $
 # $FreeBSD: ports/textproc/sgmlformat/Makefile,v 1.33 2006/06/22 19:01:36 linimon Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
 #MASTER_SITES=	http://fallout.campusview.indiana.edu/ports/distfiles/
 
-MAINTAINER=	kuriyama@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates groff and HTML from linuxdoc and docbook SGML documents
 
 # There are two ports that satisfy the nsgmls requirement.
