@@ -2,7 +2,7 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
 # $FreeBSD: ports/print/freetype2/Makefile,v 1.74 2006/08/23 04:11:44 marcus Exp $
 #
 
@@ -19,7 +19,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
 MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	${PORTNAME:S/2//}-${PORTVERSION}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free and portable TrueType font rendering engine
 
 USE_BZIP2=	yes

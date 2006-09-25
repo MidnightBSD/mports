@@ -2,7 +2,7 @@
 # Date created:		06 October 2002
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.1.1.1 2006/09/17 03:33:59 archite Exp $
 # $FreeBSD: ports/x11-fonts/fontconfig/Makefile,v 1.57 2006/06/12 04:58:42 mezz Exp $
 #   $MCom: ports/x11-fonts/fontconfig/Makefile,v 1.3 2005/08/26 04:03:55 marcus Exp $
 #
@@ -14,7 +14,7 @@ PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://fontconfig.org/release/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An XML-based font configuration API for X Windows
 
 .if !defined(REFERENCE_PORT)

@@ -2,7 +2,7 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@ahze.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/glitz/Makefile,v 1.1 2006/09/19 22:11:22 wintellect Exp $
 # $FreeBSD: ports/graphics/glitz/Makefile,v 1.10 2006/05/07 23:46:04 edwin Exp $
 #   $MCom: ports/graphics/glitz/Makefile,v 1.4 2005/08/09 22:54:54 ahze Exp $
 #
@@ -13,7 +13,7 @@ PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL image compositing library
 
 USE_GL=		yes

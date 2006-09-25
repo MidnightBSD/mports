@@ -2,7 +2,7 @@
 # Date created:		06 October 2002
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.1.1.1 2006/09/17 03:33:58 archite Exp $
 # $FreeBSD: ports/x11-fonts/libXft/Makefile,v 1.39 2006/05/16 05:35:53 mezz Exp $
 #
 
@@ -12,7 +12,7 @@ PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://xlibs.freedesktop.org/release/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A client-sided font API for X applications
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig

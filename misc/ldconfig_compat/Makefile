@@ -2,7 +2,7 @@
 # Date created:				30 Dec 2005
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/ldconfig_compat/Makefile,v 1.1 2006/09/17 07:14:46 archite Exp $
 # $FreeBSD: ports/misc/ldconfig_compat/Makefile,v 1.13 2006/06/26 14:38:56 flz Exp $
 #
 
@@ -13,7 +13,7 @@ CATEGORIES=	misc
 MASTER_SITES=	# none
 DISTFILES=	# none
 
-MAINTAINER=	flz@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ldconfig compatibility script
 
 NO_BUILD=	yes

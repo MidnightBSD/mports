@@ -2,7 +2,7 @@
 # Date created:		23 July 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xorg-documents/Makefile,v 1.1.1.1 2006/09/17 03:33:48 archite Exp $
 # $FreeBSD: ports/x11/xorg-documents/Makefile,v 1.7 2006/01/21 18:55:04 lesi Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src6.tar.gz
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Documentation of X11 protocol and libraries from X.Org
 
 EXTRA_PATCHES=	${CF_PATCHES}

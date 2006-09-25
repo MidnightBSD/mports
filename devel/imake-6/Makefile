@@ -2,7 +2,7 @@
 # Date created:         18 Jun 2004
 # Whom:                 anholt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/imake-6/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
 # $FreeBSD: ports/devel/imake-6/Makefile,v 1.12 2006/05/09 17:12:28 lesi Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src3.tar.gz
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Imake and other utilities from X.Org
 
 CONFLICTS=	imake-4*

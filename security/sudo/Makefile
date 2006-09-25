@@ -2,7 +2,7 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.1 2006/09/17 06:49:06 archite Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.78 2006/07/28 06:54:29 mharo Exp $
 #
 
@@ -22,7 +22,7 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://ftp.stikman.com/pub/sudo/
 DISTNAME=	${PORTNAME}-1.6.8p12
 
-MAINTAINER=	mharo@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
 
 GNU_CONFIGURE=	yes

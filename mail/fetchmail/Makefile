@@ -2,7 +2,7 @@
 # Date created:		25 Feb 2000
 # Whom:			Ville Eerola <ve@sci.fi>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.1 2006/09/25 04:45:40 archite Exp $
 # $FreeBSD: ports/mail/fetchmail/Makefile,v 1.176 2006/08/30 11:56:13 barner Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
@@ -19,7 +19,7 @@ MASTER_SITES=	http://download.berlios.de/%SUBDIR%/ \
 		http://home.leo.org/~barner/freebsd/distfiles/
 MASTER_SITE_SUBDIR=	fetchmail
 
-MAINTAINER=	barner@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP2/POP3/ETRN/ODMR
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root.crt:${PORTSDIR}/security/ca-roots

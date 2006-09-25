@@ -2,7 +2,7 @@
 # Date created:		10 June 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xorg-fontserver/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
 # $FreeBSD: ports/x11-servers/xorg-fontserver/Makefile,v 1.11 2006/01/21 18:55:06 lesi Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src2.tar.gz
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X font server from X.Org
 
 CONFLICTS=	XFree86-FontServer-*

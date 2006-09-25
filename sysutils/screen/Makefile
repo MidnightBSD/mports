@@ -2,7 +2,7 @@
 # Date created:         25 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.1 2006/09/17 06:43:25 archite Exp $
 # $FreeBSD: ports/sysutils/screen/Makefile,v 1.62 2006/08/05 16:40:17 rafan Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	ftp://ftp.uni-erlangen.de/pub/utilities/screen/ \
 		${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	screen
 
-MAINTAINER=	cy@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A multi-screen window manager
 
 GNU_CONFIGURE=	yes

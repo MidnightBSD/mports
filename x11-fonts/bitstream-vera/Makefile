@@ -2,7 +2,7 @@
 # Date created:		February 18 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/bitstream-vera/Makefile,v 1.1.1.1 2006/09/17 03:33:59 archite Exp $
 # $FreeBSD: ports/x11-fonts/bitstream-vera/Makefile,v 1.13 2006/06/12 04:58:42 mezz Exp $
 #   $MCom: ports/x11-fonts/bitstream-vera/Makefile,v 1.2 2005/10/14 20:39:59 adamw Exp $
 #
@@ -16,7 +16,7 @@ MASTER_SITE_SUBDIR=	sources/ttf-${PORTNAME}/1.10
 DISTNAME=	ttf-${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera TrueType font collection
 
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig

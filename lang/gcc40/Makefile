@@ -3,7 +3,7 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc40/Makefile,v 1.1 2006/09/18 21:38:15 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc40/Makefile,v 1.270 2006/09/10 00:25:47 gerald Exp $
 #
 
@@ -19,7 +19,7 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-objc-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-testsuite-${VERSIONSTRING}${EXTRACT_SUFX}
 
-MAINTAINER?=	gerald@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	GNU Compiler Collection 4.0
 
 SUFFIX=		40

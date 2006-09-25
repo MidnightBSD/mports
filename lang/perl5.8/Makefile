@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.1.1.1 2006/09/17 03:33:48 archite Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -21,7 +21,7 @@ PATCH_SITES=	${MASTER_SITE_LOCAL:S/$/tobez\//} \
 		http://www.tobez.org/download/port-mirrors/lang/perl58/
 PATCHFILES=	defined-or-5.8.8.bz2
 
-MAINTAINER=	tobez@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 
 PERL_VER=	5.8.8

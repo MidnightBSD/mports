@@ -2,7 +2,7 @@
 # Date created:				19th January 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.1 2006/09/18 20:48:03 wintellect Exp $
 # $FreeBSD: ports/textproc/intltool/Makefile,v 1.50 2006/05/16 05:27:30 mezz Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.35
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to internationalize various kinds of data files
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser

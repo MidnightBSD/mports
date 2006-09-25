@@ -2,7 +2,7 @@
 # Date created:				4 December 2002
 # Whom:					Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.1 2006/09/17 04:33:50 archite Exp $
 # $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.47 2006/09/05 10:38:22 danfe Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITES=	http://download.nvidia.com/freebsd/1.0-${NVVERSION}/ \
 		ftp://download1.nvidia.com/freebsd/1.0-${NVVERSION}/
 DISTNAME=	NVIDIA-FreeBSD-x86-${PORTVERSION:S/0./0-/}
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 
 ONLY_FOR_ARCHS=	i386

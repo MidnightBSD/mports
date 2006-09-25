@@ -2,7 +2,7 @@
 # Date created:		11 September 1994
 # Whom:			jkh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
 # $FreeBSD: ports/devel/gmake/Makefile,v 1.62 2006/06/29 22:39:05 ade Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	make
 DISTNAME=	make-${PORTVERSION}
 
-MAINTAINER=	ade@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of 'make' utility
 
 USE_BZIP2=	yes
