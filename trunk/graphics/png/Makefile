@@ -2,7 +2,7 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
@@ -19,7 +19,7 @@ PATCH_SITES=	${MASTER_SITES}
 #PATCHFILES=
 #PATCH_DIST_STRIP= -p1
 
-MAINTAINER=	ache@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating PNG images
 
 MAKEFILE=	${WRKSRC}/scripts/makefile.freebsd

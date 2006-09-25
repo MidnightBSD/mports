@@ -2,7 +2,7 @@
 # Date created:			11 Jun 2004
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.2 2006/09/19 21:25:32 wintellect Exp $
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=		0.11
 CATEGORIES=		devel
 MASTER_SITES=		http://freedesktop.org/software/${PORTNAME}/releases/
 
-MAINTAINER=		gnome@FreeBSD.org
+MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		A couple of command line utilities for working with desktop entries
 
 LIB_DEPENDS=		popt:${PORTSDIR}/devel/popt

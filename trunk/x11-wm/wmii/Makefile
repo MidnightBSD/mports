@@ -2,7 +2,7 @@
 # Date created:				02 Jun 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.1 2006/09/21 20:10:46 wintellect Exp $
 # $FreeBSD: ports/x11-wm/wmii/Makefile,v 1.8 2006/06/28 13:17:16 danfe Exp $
 #
 
@@ -11,7 +11,7 @@ DISTVERSION=	3.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://wmii.de/download/
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A dynamic, minimalist window manager for X11
 
 USE_X_PREFIX=	yes

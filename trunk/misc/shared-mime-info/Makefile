@@ -2,7 +2,7 @@
 # Date created:        31 May 2002
 # Whom:                olgeni@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.1 2006/09/20 03:56:35 archite Exp $
 # $FreeBSD: ports/misc/shared-mime-info/Makefile,v 1.40 2006/09/04 00:24:54 marcus Exp $
 
 PORTNAME=	shared-mime-info
@@ -12,7 +12,7 @@ MASTER_SITES=	http://www.marcuscom.com/downloads/ \
 		http://people.freedesktop.org/~hadess/
 DISTNAME=	shared-mime-info-${PORTVERSION}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MIME type database from the FreeDesktop project
 
 GNU_CONFIGURE=	yes

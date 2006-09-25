@@ -2,7 +2,7 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.1 2006/09/17 22:56:58 archite Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.37 2006/07/07 07:58:19 krion Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.tin.org/pub/libs/%SUBDIR%/
 MASTER_SITE_SUBDIR=${PORTNAME}
 
-MAINTAINER=	krion@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Compatible Regular Expressions library
 
 CONFLICTS?=	pcre-utf8-[0-9]*

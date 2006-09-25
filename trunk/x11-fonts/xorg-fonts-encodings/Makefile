@@ -2,7 +2,7 @@
 # Date created:		30 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-encodings/Makefile,v 1.1.1.1 2006/09/17 03:33:57 archite Exp $
 # $FreeBSD: ports/x11-fonts/xorg-fonts-encodings/Makefile,v 1.9 2006/02/06 03:52:37 lesi Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTNAME=	X11R${PORTVERSION}-src1
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org font encoding files
 
 BUILD_DEPENDS=	ucs2any:${PORTSDIR}/x11/xorg-clients

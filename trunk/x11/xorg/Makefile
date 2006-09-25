@@ -2,7 +2,7 @@
 # Date created:		18 Jun 2004
 # Whom:			anholt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.1.1.1 2006/09/17 03:33:48 archite Exp $
 # $FreeBSD: ports/x11/xorg/Makefile,v 1.15 2006/01/21 18:55:03 lesi Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	# none
 DISTFILES=	# none
 EXTRACT_ONLY=	# none
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org distribution metaport
 
 LIB_DEPENDS=	X11.6:${PORTSDIR}/x11/xorg-libraries

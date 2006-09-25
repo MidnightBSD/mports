@@ -2,7 +2,7 @@
 # Date created:				17 July 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
 # $FreeBSD: ports/converters/libiconv/Makefile,v 1.37 2006/05/03 23:38:40 edwin Exp $
 #
 
@@ -13,7 +13,7 @@ CATEGORIES=	converters devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A character set conversion library
 
 GNU_CONFIGURE=	yes

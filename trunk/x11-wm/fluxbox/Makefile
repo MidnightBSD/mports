@@ -2,7 +2,7 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.1 2006/09/17 04:48:51 archite Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.37 2006/03/31 22:26:33 mezz Exp $
 #
 
@@ -13,7 +13,7 @@ CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	mezz@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and fast window manager based on BlackBox
 
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft

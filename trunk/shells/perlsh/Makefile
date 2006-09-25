@@ -11,7 +11,7 @@ CATEGORIES=	shells perl5
 MASTER_SITES=	http://www.cpan.org/authors/id/G/GR/GREGOR/
 DISTNAME=	psh-${PORTVERSION}
 
-MAINTAINER=	garga@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New shell made entirely out of a Perl script
 
 PERL_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 # Date created:		21 July 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
 # $FreeBSD: ports/x11-servers/xorg-nestserver/Makefile,v 1.7 2006/08/25 21:52:48 lesi Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src3.tar.gz
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nesting X server from X.Org
 
 CONFLICTS=	XFree86-NestServer-*

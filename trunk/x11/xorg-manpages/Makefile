@@ -2,7 +2,7 @@
 # Date created:		10 Oct 1999
 # Whom:			taguchi@tohoku.iij.ad.jp
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xorg-manpages/Makefile,v 1.1.1.1 2006/09/17 03:33:47 archite Exp $
 # $FreeBSD: ports/x11/xorg-manpages/Makefile,v 1.8 2006/01/21 18:55:04 lesi Exp $
 #
 
@@ -16,7 +16,7 @@ DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src3.tar.gz
 EXTRACT_ONLY=	X11R${PORTVERSION}-src1.tar.gz
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org library manual pages
 
 CONFLICTS=	XFree86-manuals-*

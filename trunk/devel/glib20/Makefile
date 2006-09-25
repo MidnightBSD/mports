@@ -2,7 +2,7 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.126 2006/09/07 18:47:07 jylefort Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.75 2006/04/13 07:57:40 bland Exp $
 #
@@ -20,7 +20,7 @@ MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/2.10,} \
 MASTER_SITE_SUBDIR=	gtk/v${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (current stable version)
 
 LATEST_LINK=	glib20

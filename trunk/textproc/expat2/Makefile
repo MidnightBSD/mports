@@ -12,7 +12,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	expat
 
-MAINTAINER=	kuriyama@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C
 
 GNU_CONFIGURE=	yes

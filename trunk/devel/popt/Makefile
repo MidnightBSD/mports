@@ -2,7 +2,7 @@
 # Date Created:				29 Dec 1999
 # Whom:					Yuan-Chen Cheng <ycheng@sinica.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/popt/Makefile,v 1.1 2006/09/19 20:28:58 wintellect Exp $
 # $FreeBSD: ports/devel/popt/Makefile,v 1.35 2006/08/14 22:55:15 clsung Exp $
 #
 
@@ -18,7 +18,7 @@ MASTER_SITES=	ftp://ftp.rpm.org/pub/rpm/dist/%SUBDIR%/ \
 		ftp://ftp.sunfreeware.com/pub/freeware/SOURCES/
 MASTER_SITE_SUBDIR=	rpm-4.1.x
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A getopt(3) like library with a number of enhancements, from Redhat
 
 BUILD_DEPENDS=	xgettext:${PORTSDIR}/devel/gettext

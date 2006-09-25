@@ -2,7 +2,7 @@
 # Date created:        16 March 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.74 2006/02/23 10:35:39 ade Exp $
 #
 
@@ -13,7 +13,7 @@ CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
 
-MAINTAINER=	ade@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU gettext package
 
 USE_ICONV=	yes

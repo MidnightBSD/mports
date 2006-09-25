@@ -2,7 +2,7 @@
 # Date created:		8 Nov 2003
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/dri/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
 # $FreeBSD: ports/graphics/dri/Makefile,v 1.17 2006/09/01 04:17:44 anholt Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=mesa3d
 DISTNAME=	MesaLib-${PORTVERSION}
 
-MAINTAINER=	anholt@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL hardware acceleration drivers for the DRI
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm

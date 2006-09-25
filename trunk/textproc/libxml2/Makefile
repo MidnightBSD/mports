@@ -2,7 +2,7 @@
 # Date created:				28 September 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.1 2006/09/20 03:56:35 archite Exp $
 # $FreeBSD: ports/textproc/libxml2/Makefile,v 1.142 2006/06/07 19:20:30 marcus Exp $
 #
 # WITH_THREADS enable pthread support (WILL BREAK OTHER PORTS!)
@@ -20,7 +20,7 @@ MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/2.6
 DIST_SUBDIR=	gnome2
 
-MAINTAINER?=	gnome@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	XML parser library for GNOME
 
 USE_BZIP2=	yes

@@ -3,7 +3,7 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.1 2006/09/18 00:56:07 laffer1 Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
@@ -26,7 +26,7 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 			${PORTNAME}${PORTVERSION:R:S/.//g}-%03d \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 
-MAINTAINER=		obrien@FreeBSD.org
+MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
 
 IGNOREFILES=		FAQ

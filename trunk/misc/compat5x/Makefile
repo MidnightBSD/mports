@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.1 2006/09/17 07:14:45 archite Exp $
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 
@@ -19,7 +19,7 @@ MASTER_SITE_SUBDIR=lesi/compat5x
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A convenience package to install the compat5x libraries
 
 WRKSRC=		${WRKDIR}/${PORTNAME}

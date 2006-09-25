@@ -2,7 +2,7 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
@@ -12,7 +12,7 @@ PORTREVISION?=	2
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
-MAINTAINER?=	vanilla@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A modular IRC client with many features
 
 CONFLICTS=	irssi-devel-[0-9]*
