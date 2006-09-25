@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.16 2006/09/23 00:30:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.17 2006/09/23 22:41:48 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -32,5 +32,6 @@
     SUBDIR += pkg-config
     SUBDIR += pmk
     SUBDIR += popt
+    SUBDIR += t1lib
 
 .include <bsd.port.subdir.mk>
