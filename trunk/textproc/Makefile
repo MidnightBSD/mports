@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.19 2006/09/25 16:22:04 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.20 2006/09/25 16:28:00 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -24,6 +24,7 @@
     SUBDIR += docbookide.el
     SUBDIR += dsssl-docbook-modular
     SUBDIR += expat2
+    SUBDIR += gtkspell
     SUBDIR += intltool
     SUBDIR += iso8879
     SUBDIR += ispell
