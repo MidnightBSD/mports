@@ -3,7 +3,7 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.1 2006/09/18 00:56:07 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
@@ -84,7 +84,7 @@ USE_GETTEXT=		yes
 PLIST_SUB+=		NLS=""
 .endif
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 CPPFLAGS+=		${PTHREAD_CFLAGS} \
 			-I${LOCALBASE}/include
