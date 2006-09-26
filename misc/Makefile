@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.5 2006/09/23 14:56:39 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.6 2006/09/24 12:53:14 laffer1 Exp $
 # $FreeBSD: ports/misc/Makefile,v 1.819 2006/08/20 21:16:16 anray Exp $
 #
 
@@ -6,6 +6,7 @@
 
     SUBDIR += compat4x
     SUBDIR += compat5x
+    SUBIDR += gnomehier
     SUBIDR += help2man
     SUBDIR += hicolor-icon-theme
     SUBDIR += ldconfig_compat
