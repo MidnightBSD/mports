@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.10 2006/09/23 22:25:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.11 2006/09/25 02:38:11 laffer1 Exp $
 # $FreeBSD: ports/graphics/Makefile,v 1.983 2006/09/12 18:28:05 dinoex Exp $
 #
 
@@ -6,9 +6,12 @@
 
     SUBDIR += cairo
     SUBDIR += dri
+    SUBDIR += feh
     SUBDIR += gd
+    SUBDIR += giblib
     SUBDIR += gle
     SUBDIR += glitz
+    SUBDIR += imlib
     SUBDIR += jpeg
     SUBDIR += libart_lgpl
     SUBDIR += libdrm
