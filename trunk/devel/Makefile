@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.20 2006/09/26 15:45:33 archite Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.21 2006/09/26 16:39:44 archite Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -28,6 +28,7 @@
     SUBDIR += libtool15
     SUBDIR += linux-glib2
     SUBDIR += m4
+    SUBDIR += ncurses
     SUBDIR += nspr
     SUBIDR += p5-Locale-gettext
     SUBDIR += pcre
