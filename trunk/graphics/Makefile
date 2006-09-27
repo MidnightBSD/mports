@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.11 2006/09/25 02:38:11 laffer1 Exp $
-# $FreeBSD: ports/graphics/Makefile,v 1.983 2006/09/12 18:28:05 dinoex Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.12 2006/09/26 15:45:34 archite Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -12,6 +11,7 @@
     SUBDIR += gle
     SUBDIR += glitz
     SUBDIR += imlib
+    SUBDIR += jbigkit
     SUBDIR += jpeg
     SUBDIR += libart_lgpl
     SUBDIR += libdrm
@@ -30,7 +30,9 @@
     SUBDIR += linux-tiff
     SUBDIR += linux-ungif
     SUBDIR += linux_dri
+    SUBDIR += netpbm
     SUBDIR += png
+    SUBDIR += scr2png
     SUBDIR += tiff
     SUBDIR += wmicons
 
