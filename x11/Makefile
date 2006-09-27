@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.6 2006/09/26 15:59:44 archite Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.7 2006/09/27 02:35:42 archite Exp $
 # $FreeBSD: ports/x11/Makefile,v 1.622 2006/09/06 19:22:27 ehaupt Exp $
 #
 
@@ -7,6 +7,7 @@
     SUBDIR += dgs
     SUBDIR += linux-xorg-libs
     SUBDIR += nvidia-driver
+    SUBDIR += slim
     SUBDIR += nvidia-xconfig
     SUBDIR += startup-notification
     SUBDIR += terminal.app
