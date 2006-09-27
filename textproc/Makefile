@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.21 2006/09/26 16:23:14 archite Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.22 2006/09/27 14:18:46 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -24,12 +24,9 @@
     SUBDIR += docbookide.el
     SUBDIR += dsssl-docbook-modular
     SUBDIR += expat2
-<<<<<<< Makefile
     SUBDIR += html
     SUBDIR += html2text
-=======
     SUBDIR += gtkspell
->>>>>>> 1.21
     SUBDIR += intltool
     SUBDIR += iso8879
     SUBDIR += ispell
