@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.21 2006/09/26 16:39:44 archite Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.22 2006/09/26 22:56:04 archite Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -24,6 +24,7 @@
     SUBDIR += imake-6
     SUBDIR += libIDL
     SUBDIR += libltdl15
+    SUBDIR += libsigc++
     SUBDIR += libslang
     SUBDIR += libtool15
     SUBDIR += linux-glib2
