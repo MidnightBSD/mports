@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.12 2006/09/26 15:45:34 archite Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.13 2006/09/27 16:00:04 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -13,9 +13,11 @@
     SUBDIR += imlib
     SUBDIR += jbigkit
     SUBDIR += jpeg
+    SUBDIR += lcms
     SUBDIR += libart_lgpl
     SUBDIR += libdrm
     SUBDIR += libglut
+    SUBDIR += libmng
     SUBDIR += libungif
     SUBDIR += linux-ac3d
     SUBDIR += linux-adobesvg
