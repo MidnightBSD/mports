@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.23 2006/09/27 16:36:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.24 2006/09/27 17:08:24 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -16,6 +16,7 @@
     SUBDIR += gettext
     SUBDIR += glib12
     SUBDIR += glib20
+    SUBDIR += glibmm
     SUBDIR += gmake
     SUBDIR += gnu-autoconf
     SUBDIR += gnu-automake
@@ -26,6 +27,7 @@
     SUBDIR += libltdl15
     SUBDIR += libsigc++
     SUBDIR += libsigc++12
+    SUBDIR += libsigc++20
     SUBDIR += libslang
     SUBDIR += libtool15
     SUBDIR += linux-glib2
