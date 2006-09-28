@@ -1,6 +1,7 @@
 # New ports collection makefile for:    fusefs-libs
 # Date created:         01 October 2005
 # Whom:                 Anish Mistry
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/fusefs-libs/Makefile,v 1.9 2006/09/05 17:25:01 pav Exp $
 #
 
@@ -13,7 +14,7 @@ MASTER_SITE_SUBDIR=	fuse
 PKGNAMESUFFIX=	-libs
 DISTNAME=	fuse-${PORTVERSION}
 
-MAINTAINER=	amistry@am-productions.biz
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE allows filesystem implementation in userspace
 
 GNU_CONFIGURE=	yes
