@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.14 2006/09/23 22:41:47 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.15 2006/09/24 01:26:03 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -23,6 +23,7 @@ SUBDIR += sysutils
 SUBDIR += textproc
 SUBDIR += www
 SUBDIR += x11
+SUBDIR += x11-clocks
 SUBDIR += x11-fonts
 SUBDIR += x11-fm
 SUBDIR += x11-servers
