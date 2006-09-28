@@ -1,6 +1,7 @@
 # New ports collection makefile for:	fusefs-sshfs
 # Date created: 			01 October 2005
 # Whom:					Anish Mistry
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/fusefs-sshfs/Makefile,v 1.7 2006/03/20 16:05:41 leeym Exp $
 #
 
@@ -12,7 +13,7 @@ MASTER_SITE_SUBDIR=	fuse
 PKGNAMEPREFIX=	fusefs-
 DISTNAME=	${PORTNAME}-fuse-${PORTVERSION}
 
-MAINTAINER=	amistry@am-productions.biz
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount remote directories over ssh
 
 LIB_DEPENDS=	fuse.2:${PORTSDIR}/sysutils/fusefs-libs

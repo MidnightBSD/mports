@@ -2,6 +2,7 @@
 # Date created:				08 October 2005
 # Whom:					Anish Mistry <amistry@am-productions.biz>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/fusefs-kmod/Makefile,v 1.8 2006/08/12 21:11:12 pav Exp $
 #
 
@@ -14,7 +15,7 @@ MASTER_SITES=	http://fuse4bsd.creo.hu/downloads/ \
 PKGNAMESUFFIX=	-kmod
 DISTNAME=	fuse4bsd-${PORTVERSION}
 
-MAINTAINER=	amistry@am-productions.biz
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel module for fuse
 
 BUILD_DEPENDS=	fusefs-libs>2.4.1:${PORTSDIR}/sysutils/fusefs-libs
