@@ -1,5 +1,5 @@
 # Creator:  Jordan Hubbard
-# $MidnightBSD$
+# $MidnightBSD: mports/LEGAL,v 1.1 2006/09/26 19:26:12 archite Exp $
 # $FreeBSD: ports/LEGAL,v 1.496 2006/09/11 18:06:11 vd Exp $
 
    **********************************************************************
@@ -688,3 +688,10 @@ xGate/*			japanese/xgate		Requested by Orangesoft Inc
 tw_cli-*		sysutils/tw_cli		Redistribution forbidden by
 						license.
 lha-1.14i-ac*		archivers/lha-ac	No Redistribution
+firefox-*		www/firefox		Restrictive trademark
+linux-firefox*		www/linux-firefox	Restrictive trademark
+mozilla-*		www/mozilla		Restrictive trademark
+thunderbird-*		mail/thunderbird	Restrictive trademark
+linux-thunderbird-*	mail/linux-thunderbird	Restrictive trademark
+seamonkey-*		www/seamonkey		Restrictive trademark
+linux-seamonkey-*	www/linux-seamonkey	Restrictive trademark
