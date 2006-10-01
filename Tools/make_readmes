@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# $MidnightBSD$
 # $FreeBSD: ports/Tools/make_readmes,v 1.5 2005/03/13 08:49:38 krion Exp $
 
 $PORTSDIR="/usr/mports";
