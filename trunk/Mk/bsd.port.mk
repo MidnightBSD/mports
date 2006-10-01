@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.2 2006/09/17 15:10:33 archite Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.3 2006/09/17 18:21:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -539,7 +539,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  files.
 #				  Default: ${.CURDIR}
 # PORTSDIR		- The root of the ports tree.
-#				  Default: /usr/ports
+#				  Default: /usr/mports
 # DISTDIR		- Where to search for and store copies of original sources
 #				  Default: ${PORTSDIR}/distfiles
 # PACKAGES		- A top level directory where all packages go (rather than
@@ -2573,8 +2573,8 @@ _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 # Search CDROM first if mounted, symlink instead of copy if
 # FETCH_SYMLINK_DISTFILES is set
 .for MOUNTPT in ${CD_MOUNTPTS}
-.if exists(${MOUNTPT}/ports/distfiles)
-_MASTER_SITE_OVERRIDE:=	file:${MOUNTPT}/ports/distfiles/${DIST_SUBDIR}/ ${_MASTER_SITE_OVERRIDE}
+.if exists(${MOUNTPT}/mports/distfiles)
+_MASTER_SITE_OVERRIDE:=	file:${MOUNTPT}/mports/distfiles/${DIST_SUBDIR}/ ${_MASTER_SITE_OVERRIDE}
 .if defined(FETCH_SYMLINK_DISTFILES)
 FETCH_BEFORE_ARGS+=	-l
 .endif
