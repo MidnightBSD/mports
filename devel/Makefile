@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.25 2006/09/27 18:36:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.26 2006/10/01 16:33:52 laffer1 Exp $
 # $FreeBSD: ports/devel/Makefile,v 1.2449 2006/09/11 18:06:11 vd Exp $
 #
 
@@ -30,8 +30,11 @@
     SUBDIR += libsigc++20
     SUBDIR += libslang
     SUBDIR += libtool15
+    SUBDIR += linux-allegro
     SUBDIR += linux-glib2
+    SUBDIR += linux-libglade
     SUBDIR += linux-sdl12
+    SUBDIR += linuxthreads
     SUBDIR += m4
     SUBDIR += ncurses
     SUBDIR += nspr
