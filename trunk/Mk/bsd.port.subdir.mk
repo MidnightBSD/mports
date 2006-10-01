@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -256,7 +256,7 @@ readme:
 .if (${OPSYS} == "NetBSD")
 PORTSDIR ?= /usr/opt
 .else
-PORTSDIR ?= /usr/ports
+PORTSDIR ?= /usr/mports
 .endif
 TEMPLATES ?= ${PORTSDIR}/Templates
 .if defined(PORTSTOP)
