@@ -3,7 +3,7 @@
 # Date created:			  Sat June 29, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/vim5/Makefile,v 1.1 2006/09/24 02:23:47 laffer1 Exp $
 # $FreeBSD: ports/editors/vim5/Makefile,v 1.133 2006/03/07 08:26:12 ade Exp $
 #
 
@@ -51,12 +51,13 @@ WITHOUT_X11=	yes
 .if defined(WITH_ATHENA)
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=athena" ${I18N}
 #MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=yes" ${I18N}
-.elif defined(WITH_GTK)
+#.elif defined(WITH_GTK)
+.else
 USE_GNOME+=	gtk12
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk --with-gtk-prefix=${X11BASE}" ${I18N}
-.else
-USE_MOTIF=	yes
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=motif --with-motif-lib=\"${MOTIFLIB}\"" MOTIFHOME=${X11BASE} ${I18N}
+#.else
+#USE_MOTIF=	yes
+#MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=motif --with-motif-lib=\"${MOTIFLIB}\"" MOTIFHOME=${X11BASE} ${I18N}
 .endif
 .else  # WITHOUT_X11
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x --enable-multibyte"
