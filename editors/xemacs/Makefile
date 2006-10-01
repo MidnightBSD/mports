@@ -2,7 +2,7 @@
 # Date created:		25 Oct 2001
 # Whom:			Gary Jennejohn (gj@FreeBSD.org)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.1 2006/09/24 03:11:55 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
 #
 
@@ -74,12 +74,12 @@ LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
 USE_XLIB=	yes
 USE_XPM=	yes
-.if !defined(WITHOUT_MOTIF) && !defined(MOTIF_STATIC)
-USE_MOTIF=	yes
-WITH_SCROLLBARS=	--with-scrollbars=motif
-WITH_DIALOGS=	--with-dialogs=motif
-WITH_WIDGETS=	--with-widgets=motif
-.else
+#.if !defined(WITHOUT_MOTIF) && !defined(MOTIF_STATIC)
+#USE_MOTIF=	yes
+#WITH_SCROLLBARS=	--with-scrollbars=motif
+#WITH_DIALOGS=	--with-dialogs=motif
+#WITH_WIDGETS=	--with-widgets=motif
+#.else
 WITH_SCROLLBARS=	--with-scrollbars=athena
 WITH_DIALOGS=	--with-dialogs=athena
 WITH_WIDGETS=	--with-widgets=athena
@@ -87,7 +87,7 @@ WITH_WIDGETS=	--with-widgets=athena
 LIB_DEPENDS+=	Xaw3d.${XAWVER}:${PORTSDIR}/x11-toolkits/Xaw3d
 CONFIGURE_ARGS+=	--with-athena=3d
 .endif
-.endif
+#.endif
 .else
 CONFIGURE_ARGS+=	--without-x11
 .endif
