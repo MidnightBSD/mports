@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.1 2006/09/27 16:07:08 laffer1 Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
@@ -12,6 +12,8 @@ CATEGORIES=	textproc
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
+
+BROKEN=		ghostscript-gnu is not available.
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the FreeBSD Documentation Project
