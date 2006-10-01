@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.16 2006/09/28 20:54:23 wintellect Exp $
+# $MidnightBSD: mports/Makefile,v 1.17 2006/09/30 11:33:55 wintellect Exp $
 #
 
 SUBDIR += accessibility
@@ -47,7 +47,7 @@ fetchindex: ${INDEXDIR}/{INDEXFILE}.bz2
 ${INDEXDIR}/{INDEXFILE}.bz2: .PHONY
 	@${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.bz2 ${MASTER_SITE_INDEX}${INDEXFILE}.bz2
 
-MASTER_SITE_INDEX?=	http://www.FreeBSD.org/ports/
+MASTER_SITE_INDEX?=	http://www.MidnightBSD.org/ports/
 SETENV?=	/usr/bin/env
 FETCHINDEX?=	${SETENV} ${FETCH_ENV} fetch -am -o
 INDEX_JOBS?=	2
@@ -75,13 +75,13 @@ ${INDEXDIR}/${INDEXFILE}:
 			echo; \
 			echo "********************************************************************"; \
 			echo "Before reporting this error, verify that you are running a supported"; \
-			echo "version of FreeBSD (see http://www.FreeBSD.org/ports/) and that you"; \
+			echo "version of MidnightBSD (see http://www.MidnightBSD.org/ports/) and that you"; \
 			echo "have a complete and up-to-date ports collection.  (INDEX builds are"; \
 			echo "not supported with partial or out-of-date ports collections -- in"; \
 			echo "particular, if you are using cvsup, you must cvsup the \"ports-all\""; \
 			echo "collection, and have no \"refuse\" files.)  If that is the case, then"; \
-			echo "report the failure to ports@FreeBSD.org together with relevant"; \
-			echo "details of your ports configuration (including FreeBSD version,"; \
+			echo "report the failure to ports@MidnightBSD.org together with relevant"; \
+			echo "details of your ports configuration (including MidnightBSD version,"; \
 			echo "your architecture, your environment, and your /etc/make.conf"; \
 			echo "settings, especially compiler flags and WITH/WITHOUT settings)."; \
 			echo; \
