@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.8 2006/09/25 21:59:49 archite Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.9 2006/10/02 15:22:18 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
@@ -6,6 +6,8 @@
 
     SUBDIR += ca-roots
     SUBDIR += cyrus-sasl
+    SUBDIR += cyrus-sasl2
+    SUBDIR += cyrus-sasl2-saslauthd
     SUBDIR += gnupg
     SUBDIR += gnutls
     SUBDIR += libgcrypt
