@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.1 2006/09/23 01:13:45 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.2 2006/09/23 15:03:59 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -26,14 +26,14 @@ MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER
 		ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/
 DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_DATE}.${OPERA_TYPE}-${OPERA_LIB}-qt.i386.freebsd-en
 
-MAINTAINER=	avleeuwen@piwebs.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 
-OPERA_VER=	9.01
+OPERA_VER=	9.02
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20060728
-OPERA_BUILD=	400
+OPERA_DATE=	20060919
+OPERA_BUILD=	434
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
