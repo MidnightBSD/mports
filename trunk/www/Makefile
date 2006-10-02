@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.8 2006/09/27 12:44:17 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.9 2006/09/27 13:08:54 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -14,6 +14,7 @@
     SUBDIR += linux-seamonkey
     SUBDIR += lynx
     SUBDIR += opera
+    SUBDIR += thttpd
     SUBDIR += tidy
 
 .include <bsd.port.subdir.mk>
