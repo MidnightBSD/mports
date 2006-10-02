@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.8 2006/09/27 16:17:16 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.9 2006/09/27 18:28:05 laffer1 Exp $
 # $FreeBSD: ports/x11/Makefile,v 1.622 2006/09/06 19:22:27 ehaupt Exp $
 #
 
     COMMENT = Ports to support the X window system
 
     SUBDIR += dgs
+    SUBDIR += docker
     SUBDIR += linux-xorg-libs
     SUBDIR += nvidia-driver
     SUBDIR += slim
