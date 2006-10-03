@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.32 2006/10/03 20:38:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.33 2006/10/03 20:50:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -40,6 +40,7 @@
     SUBDIR += ncurses
     SUBDIR += nspr
     SUBIDR += p5-Locale-gettext
+    SUBDIR += p5-Storable
     SUBDIR += pcre
     SUBDIR += pcre-utf8
     SUBDIR += pkg-config
