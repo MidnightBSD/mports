@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.8 2006/10/03 15:54:53 wintellect Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.9 2006/10/03 16:00:04 wintellect Exp $
 #
 
     COMMENT = Audio tools
@@ -9,6 +9,7 @@
     SUBDIR += libmad
     SUBDIR += libmikmod
     SUBDIR += libogg
+    SUBDIR += libvorbis
     SUBDIR += madplay
     SUBDIR += mpg123
     SUBDIR += wmmp3
