@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/audio/libvorbis/files/patch-doc_Makefile.in,v 1.2 2004/10/12 14:55:16 naddy Exp $
+
+--- doc/Makefile.in.orig	Fri Sep 24 02:11:04 2004
++++ doc/Makefile.in	Fri Sep 24 02:11:14 2004
+@@ -184,7 +184,7 @@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+ SUBDIRS = vorbisfile vorbisenc
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
++docdir = $(datadir)/doc/$(PACKAGE)
+ 
+ ### all of the static docs, commited to SVN and included as is
+ static_docs = \
