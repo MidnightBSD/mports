@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.27 2006/10/01 17:01:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.28 2006/10/03 20:05:45 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -43,7 +43,9 @@
     SUBDIR += pmk
     SUBDIR += popt
     SUBDIR += silc-toolkit
+    SUBDIR += splint
     SUBDIR += t1lib
+    SUBDIR += zthread
     SUBDIR += zziplib
 
 .include <bsd.port.subdir.mk>
