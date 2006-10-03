@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.9 2006/09/27 16:48:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.10 2006/09/27 19:41:38 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/Makefile,v 1.422 2006/09/13 18:37:25 miwi Exp $
 #
 
@@ -20,5 +20,6 @@
     SUBDIR += linux-pango
     SUBDIR += pango
     SUBDIR += renaissance
+    SUBDIR += vte
 
 .include <bsd.port.subdir.mk>
