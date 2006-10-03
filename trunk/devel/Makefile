@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.31 2006/10/03 20:35:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.32 2006/10/03 20:38:45 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -36,6 +36,7 @@
     SUBDIR += linux-sdl12
     SUBDIR += linuxthreads
     SUBDIR += m4
+    SUBDIR += nasm
     SUBDIR += ncurses
     SUBDIR += nspr
     SUBIDR += p5-Locale-gettext
