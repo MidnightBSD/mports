@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.33 2006/10/03 20:50:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.34 2006/10/03 22:39:26 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -47,6 +47,7 @@
     SUBDIR += pmk
     SUBDIR += popt
     SUBDIR += projectcenter.app
+    SUBDIR += sdl12
     SUBDIR += silc-toolkit
     SUBDIR += splint
     SUBDIR += t1lib
