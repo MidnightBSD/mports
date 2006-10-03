@@ -2,6 +2,7 @@
 # Date created:			  27 Mar 1999
 # Whom:				  Jerry Hicks
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/bison/Makefile,v 1.54 2005/09/04 18:33:15 ade Exp $
 #
 
