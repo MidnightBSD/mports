@@ -1,0 +1,13 @@
+--- Makefile.dynamic.in.orig	Sun Apr  9 04:24:14 2006
++++ Makefile.dynamic.in	Thu Apr 27 16:43:18 2006
+@@ -54,8 +54,8 @@
+ 	$(LIBTOOL) --mode=install $(INSTALL) -c libgunicode.la $(libdir)/libgunicode.la
+ 	#cp .libs/*.so.*.* $(libdir)
+ 	$(LIBTOOL) --mode=finish $(libdir)
+-	mkdir -p $(libdir)/pkgconfig
+-	$(INSTALL_DATA) fontforge.pc $(libdir)/pkgconfig
++	mkdir -p ${PREFIX}/libdata/pkgconfig
++	$(INSTALL_DATA) fontforge.pc ${PREFIX}/libdata/pkgconfig
+ 
+ install_docs:
+ 	mkdir -p $(docdir)
