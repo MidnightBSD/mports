@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.25 2006/09/27 16:07:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.26 2006/09/27 19:15:28 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -34,6 +34,7 @@
     SUBDIR += iso8879
     SUBDIR += ispell
     SUBDIR += jade
+    SUBDIR += libuninameslist
     SUBDIR += libxml2
     SUBDIR += libxslt
     SUBDIR += linux-expat
