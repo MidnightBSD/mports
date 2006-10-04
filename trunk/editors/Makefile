@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.3 2006/10/04 20:45:15 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.4 2006/10/04 23:52:07 laffer1 Exp $
 #
 
     COMMENT = Editors
 
     SUBDIR += emacs
     SUBDIR += jedit
+    SUBDIR += manedit
     SUBDIR += pico
     SUBDIR += staroffice70
     SUBDIR += textedit.app

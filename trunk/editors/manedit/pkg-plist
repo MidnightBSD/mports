@@ -1,0 +1,15 @@
+bin/manedit
+bin/manview
+bin/manwrap
+%%DATADIR%%/help/manpage_writing_procedures
+%%DATADIR%%/help/manpage_xml_reference
+%%DATADIR%%/icons/manedit.xpm
+%%DATADIR%%/icons/manview.xpm
+%%DATADIR%%/templates/api.mpt
+%%DATADIR%%/templates/config.mpt
+%%DATADIR%%/templates/intro.mpt
+%%DATADIR%%/templates/program.mpt
+@dirrm %%DATADIR%%/templates
+@dirrm %%DATADIR%%/icons
+@dirrm %%DATADIR%%/help
+@dirrm %%DATADIR%%
