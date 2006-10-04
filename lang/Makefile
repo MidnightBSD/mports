@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.4 2006/09/21 16:01:57 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.5 2006/10/02 23:46:19 laffer1 Exp $
 # $FreeBSD: ports/lang/Makefile,v 1.512 2006/09/04 16:28:30 bsam Exp $
 #
 
@@ -6,6 +6,7 @@
 
     SUBDIR += gcc-objc
     SUBDIR += gcc32
+    SUBDIR += gcc33
     SUBDIR += gcc40
     SUBDIR += gcc41
     SUBDIR += gcc41-withgcjawt
