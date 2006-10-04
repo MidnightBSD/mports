@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.35 2006/10/03 23:06:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.36 2006/10/04 16:13:30 laffer1 Exp $
 #
 
     COMMENT = Development utilities
 
+    SUBDIR += ORBit
     SUBDIR += apache-ant
     SUBDIR += autoconf213
     SUBDIR += autoconf253
