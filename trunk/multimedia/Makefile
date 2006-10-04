@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.1 2006/10/03 18:58:29 wintellect Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.2 2006/10/03 20:29:58 wintellect Exp $
 #
 
     COMMENT = Multimedia software
 
+    SUBDIR += linux-realplayer
     SUBDIR += xmms
     SUBDIR += xmms-skins
 
