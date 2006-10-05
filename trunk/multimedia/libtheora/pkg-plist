@@ -1,0 +1,7 @@
+include/theora/theora.h
+lib/libtheora.a
+lib/libtheora.la
+lib/libtheora.so
+lib/libtheora.so.2
+libdata/pkgconfig/theora.pc
+@dirrm include/theora
