@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.10 2006/10/03 16:07:36 wintellect Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.11 2006/10/05 00:25:06 laffer1 Exp $
 #
 
     COMMENT = Audio tools
 
+    SUBDIR += flac
     SUBDIR += libao
     SUBDIR += libaudiofile
     SUBDIR += libcddb
@@ -13,6 +14,7 @@
     SUBDIR += libvorbis
     SUBDIR += madplay
     SUBDIR += mpg123
+    SUBDIR += speex
     SUBDIR += wmmp3
     SUBDIR += wmsmixer
 
