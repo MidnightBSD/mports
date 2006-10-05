@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.4 2006/09/28 02:07:25 archite Exp $
-# $FreeBSD: ports/sysutils/Makefile,v 1.836 2006/09/12 19:58:25 miwi Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.5 2006/10/04 20:52:54 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -9,6 +8,7 @@
     SUBDIR += fusefs-kmod 
     SUBDIR += fusefs-libs 
     SUBDIR += fusefs-sshfs
+    SUBDIR += libcdio
     SUBDIR += screen
     SUBDIR += timemon
 
