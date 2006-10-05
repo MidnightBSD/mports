@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.20 2006/10/03 18:58:29 wintellect Exp $
+# $MidnightBSD: mports/Makefile,v 1.21 2006/10/04 02:30:13 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -10,10 +10,12 @@ SUBDIR += devel
 SUBDIR += dns
 SUBDIR += editors
 SUBDIR += emulators
+SUBDIR += ftp
 SUBDIR += games
 SUBDIR += german
 SUBDIR += graphics
 SUBDIR += irc
+SUBDIR += java
 SUBDIR += lang
 SUBDIR += mail
 SUBDIR += math
