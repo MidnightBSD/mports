@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.9 2006/10/03 16:00:04 wintellect Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.10 2006/10/03 16:07:36 wintellect Exp $
 #
 
     COMMENT = Audio tools
 
     SUBDIR += libao
     SUBDIR += libaudiofile
+    SUBDIR += libcddb
     SUBDIR += libid3tag
     SUBDIR += libmad
     SUBDIR += libmikmod
