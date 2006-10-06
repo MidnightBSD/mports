@@ -92,7 +92,7 @@ done
 # Check for $Id and similar bugs in all those patch files.
 for i in $accounted
 do
-    if sed -e '/1,^---/ d' $i|egrep '$(Id|FreeBSD)'
+    if sed -e '/1,^---/ d' $i|egrep '$(Id|FreeBSD|MidnightBSD)'
     then
 	    echo 1>&2 "Problem with $i: CVS tag found in patch"
     fi
