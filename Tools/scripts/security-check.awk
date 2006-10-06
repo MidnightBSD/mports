@@ -122,7 +122,7 @@ END {
 		print "";
 	if (header_printed) {
 		print "      If there are vulnerabilities in these programs there may be a security";
-		print "      risk to the system. FreeBSD makes no guarantee about the security of";
+		print "      risk to the system. MidnightBSD makes no guarantee about the security of";
 		print "      ports included in the Ports Collection. Please type 'make deinstall'";
 		print "      to deinstall the port if this is a concern.";
 	}
