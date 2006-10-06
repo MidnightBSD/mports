@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.13 2006/10/05 00:40:18 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.14 2006/10/05 01:33:44 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -16,6 +16,7 @@
     SUBDIR += libvorbis
     SUBDIR += madplay
     SUBDIR += mpg123
+    SUBDIR += sdl_mixer
     SUBDIR += speex
     SUBDIR += wmmp3
     SUBDIR += wmsmixer
