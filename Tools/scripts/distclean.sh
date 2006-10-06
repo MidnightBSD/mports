@@ -28,7 +28,7 @@ cleanup() {
 
 echo "Distfiles clean utility by Maxim Sobolev <sobomax@FreeBSD.org>."
 
-PORTSDIR=${PORTSDIR:-/usr/ports}
+PORTSDIR=${PORTSDIR:-/usr/mports}
 if [ ! -d ${PORTSDIR} ]; then
 	echo "Ports directory ${PORTSDIR} does not exist."
 	exit 1
