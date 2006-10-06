@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.5 2006/09/25 16:48:23 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.6 2006/10/03 23:25:23 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -10,5 +10,6 @@
     SUBDIR += freetype2
     SUBDIR += gsfonts
     SUBDIR += pdflib
+    SUBDIR += wmlpq
 
 .include <bsd.port.subdir.mk>
