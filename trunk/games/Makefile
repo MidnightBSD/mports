@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/games/Makefile,v 1.1 2006/10/05 01:29:17 laffer1 Exp $
 #
 
     COMMENT = Games
 
+    SUBDIR += goonies
     SUBDIR += linux-enemyterritory
     SUBDIR += linux-enemyterritory-etpro
     SUBDIR += linux-enemyterritory-etpub
