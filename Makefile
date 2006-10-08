@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.21 2006/10/04 02:30:13 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.22 2006/10/05 00:08:59 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -22,6 +22,7 @@ SUBDIR += math
 SUBDIR += misc
 SUBDIR += multimedia
 SUBDIR += net-im
+SUBDIR += net-p2p
 SUBDIR += print
 SUBDIR += security
 SUBDIR += shells
