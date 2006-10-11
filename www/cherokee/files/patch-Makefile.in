@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Wed Oct 11 11:26:56 2006
++++ Makefile.in	Wed Oct 11 11:28:46 2006
+@@ -332,7 +332,7 @@
+ 
+ 
+ # pkg-config
+-pkgconfigdir = $(libdir)/pkgconfig
++pkgconfigdir = $(prefix)/libdata/pkgconfig
+ pkgconfig_DATA = cherokee.pc
+ cherokee_replace_SOURCES = cherokee_replace.c
+ 
