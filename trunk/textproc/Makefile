@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.26 2006/09/27 19:15:28 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.27 2006/10/03 23:15:34 laffer1 Exp $
 # $FreeBSD: ports/textproc/Makefile,v 1.1058 2006/09/12 21:11:30 miwi Exp $
 #
 
@@ -14,7 +14,6 @@
     SUBDIR += docbook-420
     SUBDIR += docbook-430
     SUBDIR += docbook-sk
-    SUBDIR += docbook-tdg
     SUBDIR += docbook-to-man
     SUBDIR += docbook-xml
     SUBDIR += docbook-xml-430
