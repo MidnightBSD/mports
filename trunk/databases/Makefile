@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.6 2006/10/16 23:10:13 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.7 2006/10/19 14:39:20 wintellect Exp $
 #
 
     COMMENT = Databases
@@ -13,6 +13,7 @@
     SUBDIR += p5-DBD-mysql50
     SUBDIR += p5-DBI
     SUBDIR += postgresql-docs
+    SUBDIR += postgresql-plruby
     SUBDIR += postgresql81-client
     SUBDIR += postgresql81-server
 
