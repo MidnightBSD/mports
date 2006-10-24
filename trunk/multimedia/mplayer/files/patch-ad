@@ -1,0 +1,168 @@
+--- configure.orig	Sun Jun 11 20:35:47 2006
++++ configure	Tue Jul 11 23:56:05 2006
+@@ -61,9 +61,9 @@
+   echo >> "$TMPLOG"
+   cat "$1" >> "$TMPLOG"
+   echo >> "$TMPLOG"
+-  echo "$_cc $CFLAGS $_inc_extra $_ld_static $_ld_extra -o $TMPO $@" >> "$TMPLOG"
++  echo "$_cc $CFLAGS -fno-fast-math $_inc_extra $_ld_static $_ld_extra -o $TMPO $@" >> "$TMPLOG"
+   rm -f "$TMPO"
+-  $_cc $CFLAGS $_inc_extra $_ld_static $_ld_extra -o "$TMPO" "$@" >> "$TMPLOG" 2>&1
++  $_cc $CFLAGS -fno-fast-math $_inc_extra $_ld_static $_ld_extra -o "$TMPO" "$@" >> "$TMPLOG" 2>&1
+   TMP="$?"
+   echo >> "$TMPLOG"
+   echo "ldd $TMPO" >> "$TMPLOG"
+@@ -453,7 +453,7 @@
+ _sse=auto
+ _sse2=auto
+ _mtrr=auto
+-_install=install
++_install=@${BSD_INSTALL_PROGRAM}
+ _ranlib=ranlib
+ _cc=cc
+ test "$CC" && _cc="$CC"
+@@ -574,14 +574,7 @@
+       case "`uname -m 2>&1`" in
+       i[3-9]86*|x86|x86pc|k5|k6|k6_2|k6_3|k6-2|k6-3|pentium*|athlon*|i586_i686|i586-i686|BePC) host_arch=i386 ;;
+       ia64) host_arch=ia64 ;;
+-      x86_64|amd64)
+-        if [ -n "`$_cc -dumpmachine | sed -n '/^x86_64-/p;/^amd64-/p'`" -a \
+-             -z "`echo $CFLAGS | grep -- -m32`"  ]; then
+-          host_arch=x86_64
+-        else
+-          host_arch=i386
+-        fi
+-      ;;
++      x86_64|amd64) host_arch=x86_64 ;;
+       macppc|ppc|ppc64) host_arch=ppc ;;
+       alpha) host_arch=alpha ;;
+       sparc) host_arch=sparc ;;
+@@ -806,25 +799,10 @@
+ _cpuinfo="echo"
+ # Cygwin has /proc/cpuinfo, but only supports Intel CPUs
+ # FIXME: Remove the cygwin check once AMD CPUs are supported
+-if test -r /proc/cpuinfo && not cygwin; then
+-  # Linux with /proc mounted, extract CPU information from it
+-  _cpuinfo="cat /proc/cpuinfo"
+-elif test -r /compat/linux/proc/cpuinfo && not x86 ; then
+-  # FreeBSD with Linux emulation /proc mounted,
+-  # extract CPU information from it
+-  _cpuinfo="cat /compat/linux/proc/cpuinfo"
+-elif darwin && not x86 ; then
+-  # use hostinfo on Darwin
+-  _cpuinfo="hostinfo"
+-elif aix; then
+-  # use 'lsattr' on AIX
+-  _cpuinfo="lsattr -E -l proc0 -a type"
+-elif x86; then
+   # all other OSes try to extract CPU information from a small helper
+   # program TOOLS/cpuinfo instead
+   $_cc -o TOOLS/cpuinfo TOOLS/cpuinfo.c
+   _cpuinfo="TOOLS/cpuinfo"
+-fi
+ 
+ if x86 || x86_64 ; then
+   # gather more CPU information
+@@ -1526,7 +1504,7 @@
+   fi
+   _stripbinaries=no
+ elif test -z "$CFLAGS" ; then
+-    CFLAGS="-O4 $_march $_mcpu $_pipe -ffast-math -fomit-frame-pointer"
++    CFLAGS="-O $_pipe"
+ else
+   _warn_CFLAGS=yes
+ fi
+@@ -2177,8 +2155,7 @@
+     ;;
+ 
+   *)
+-    echo "Unknown parameter: $ac_option"
+-    exit 1
++    echo "Unknown parameter: $ac_option (ignoring)..."
+     ;;
+ 
+   esac
+@@ -2826,13 +2803,7 @@
+ 
+ 
+ echocheck "memalign()"
+-# XXX restrict to x86 ? extend to other CPUs/cacheline sizes ?
+-cat > $TMPC << EOF
+-#include <malloc.h>
+-int main (void) { (void) memalign(64, sizeof(char)); return 0; }
+-EOF
+ _memalign=no
+-cc_check && _memalign=yes
+ if test "$_memalign" = yes ; then
+  _def_memalign='#define HAVE_MEMALIGN 1'
+ else
+@@ -2931,20 +2902,8 @@
+ _def_threads='#undef HAVE_THREADS'
+ 
+ echocheck "pthread"
+-if test "$_pthreads" != no ; then
+-cat > $TMPC << EOF
+-#include <pthread.h>
+-void* func(void *arg) { return arg; }
+-int main(void) { pthread_t tid; return pthread_create (&tid, 0, func, 0) == 0 ? 0 : 1; }
+-EOF
+-_pthreads=no
+-if not hpux ; then
+-  for _ld_tmp in "-lpthreadGC2" "" "-lpthread" "-pthread" ; do
+-    # for crosscompilation, we cannot execute the program, be happy if we can link statically
+-    cc_check $_ld_tmp && (tmp_run || test "$_ld_static") && _ld_pthread="$_ld_tmp" && _pthreads=yes && break
+-  done
+-fi
+-fi
++_pthreads=yes
++_ld_pthread="${PTHREAD_LIBS}"
+ if test "$_pthreads" = yes ; then
+   _res_comment="using $_ld_pthread"
+   _def_pthreads='#define HAVE_PTHREADS 1'
+@@ -6529,7 +6488,8 @@
+ #endif
+ int main(void) { x264_encoder_open((void*)0); return 0; }
+ EOF
+-_ld_x264="$_ld_x264 -lx264 $_ld_pthread"
++_ld_x264pc=`pkg-config x264 --libs 2>/dev/null`
++_ld_x264="$_ld_x264 $_ld_x264pc $_ld_pthread"
+ if test "$_x264" != no ; then 
+   _x264=no
+   if cc_check $_inc_x264 $_ld_x264 $_ld_lm ; then 
+@@ -6723,8 +6683,11 @@
+  if test "$_tv" = yes ; then
+     cat > $TMPC <<EOF
+ #include <sys/types.h>
++#include <sys/param.h>
+ #if defined(__NetBSD__)
+ #include <dev/ic/bt8xx.h>
++#elif(__FreeBSD_version >= 502100)
++#include <dev/bktr/ioctl_bt848.h>
+ #else
+ #include <machine/ioctl_bt848.h>
+ #endif
+@@ -7166,7 +7129,7 @@
+   CFLAGS="$CFLAGS -D_REENTRANT"
+ elif bsd ; then
+   # FIXME bsd needs this so maybe other OS'es
+-  CFLAGS="$CFLAGS -D_THREAD_SAFE"
++  CFLAGS="$CFLAGS ${PTHREAD_CFLAGS}"
+ fi
+ # 64 bit file offsets?
+ if test "$_largefiles" = yes || freebsd ; then
+@@ -7318,13 +7281,11 @@
+ echocheck "lirc"
+ if test "$_lirc" = auto ; then
+   _lirc=no
+-  if test -c /dev/lirc -o -c /dev/lirc/0 ; then
+-      cat > $TMPC <<EOF
++  cat > $TMPC <<EOF
+ #include <lirc/lirc_client.h>
+ int main(void) { return 0; }
+ EOF
+-      cc_check -llirc_client && _lirc=yes
+-  fi
++  cc_check -llirc_client && _lirc=yes
+ fi
+ if test "$_lirc" = yes ; then
+   _def_lirc='#define HAVE_LIRC 1'
