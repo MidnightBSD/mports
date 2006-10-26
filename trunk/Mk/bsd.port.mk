@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.4 2006/10/01 18:51:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.5 2006/10/26 03:51:06 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -288,6 +288,14 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # WITH_* and WITHOUT_* variables, are that the former are restricted to
 # usage inside the ports framework, and the latter are reserved for user-
 # settable options.  (Setting USE_* in /etc/make.conf is always wrong).
+#
+# WITH_DEBUG            - If set, debugging flags are added to CFLAGS and the
+#                         binaries don't get stripped by INSTALL_PROGRAM.
+#                         Besides, individual ports might add their specific
+#                         to produce binaries for debugging purposes.
+#                         You can override the debug flags that are passed to
+#                         the compiler by setting DEBUG_FLAGS. It is set to
+#                         "-g" at default.
 #
 # USE_BZIP2		- If set, this port tarballs use bzip2, not gzip, for
 #				  compression.
@@ -1604,6 +1612,11 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .endif
 .endif
 
+.if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
+.undef STRIP
+DEBUG_FLAGS?=	-g
+CFLAGS+=	${DEBUG_FLAGS}
+.endif
 .if defined(NOPORTDOCS)
 PLIST_SUB+=	        PORTDOCS="@comment "
 .else
