@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.3 2006/09/17 18:21:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.4 2006/10/01 18:51:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1034,7 +1034,7 @@ makepatch:
 
 .if defined(_PREMKINCLUDED)
 check-makefile::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: you cannot include bsd.port[.pre].mk twice"
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.pre].mk twice"
 	@${FALSE}
 .endif
 
@@ -1268,9 +1268,9 @@ WITHOUT_${W}:=	true
 # check for old, crufty, makefile types, part 1:
 .if !defined(PORTNAME) || !( defined(PORTVERSION) || defined (DISTVERSION) ) || defined(PKGNAME)
 check-makefile::
-	@${ECHO_CMD} "Makefile error: you need to define PORTNAME and PORTVERSION instead of PKGNAME."
-	@${ECHO_CMD} "(This port is too old for your bsd.port.mk, please update it to match"
-	@${ECHO_CMD} " your bsd.port.mk.)"
+	@${ECHO_MSG} "Makefile error: you need to define PORTNAME and PORTVERSION instead of PKGNAME."
+	@${ECHO_MSG} "(This port is too old for your bsd.port.mk, please update it to match"
+	@${ECHO_MSG} " your bsd.port.mk.)"
 	@${FALSE}
 .endif
 
@@ -1341,7 +1341,7 @@ TEMPLATES?=		${PORTSDIR}/Templates
 .if (!defined(PKGDIR) && exists(${MASTERDIR}/pkg/DESCR)) || \
 	(!defined(MD5_FILE) && exists(${MASTERDIR}/files/md5))
 check-makefile::
-	@${ECHO_CMD} "Makefile error: your port uses an old layout.  Please update it to match this bsd.port.mk.  If you have updated your ports collection via cvsup and are still getting this error, see Q12 and Q13 in the cvsup FAQ on http://www.polstra.com for further information."
+	@${ECHO_MSG} "Makefile error: your port uses an old layout.  Please update it to match this bsd.port.mk.  If you have updated your ports collection via cvsup and are still getting this error, see Q12 and Q13 in the cvsup FAQ on http://www.polstra.com for further information."
 	@${FALSE}
 .endif
 PATCHDIR?=		${MASTERDIR}/files
@@ -1569,7 +1569,7 @@ WWWGRP?=	www
 
 .if defined(_POSTMKINCLUDED)
 check-makefile::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.post].mk twice"
 	@${FALSE}
 .endif
 
@@ -1622,7 +1622,7 @@ PLIST_SUB+=		PORTOBJFORMAT=${PORTOBJFORMAT}
 .if ${MANCOMPRESSED} != yes && ${MANCOMPRESSED} != no && \
 	${MANCOMPRESSED} != maybe
 check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: value of MANCOMPRESSED (is \"${MANCOMPRESSED}\") can only be \"yes\", \"no\" or \"maybe\"".
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: value of MANCOMPRESSED (is \"${MANCOMPRESSED}\") can only be \"yes\", \"no\" or \"maybe\"".
 	@${FALSE}
 .endif
 .endif
@@ -2343,16 +2343,16 @@ INSTALL_TARGET?=	install
 # The final simpler patch will come afterwards
 .if !defined(COMMENT)
 check-makevars::
-		@${ECHO_CMD} 'Makefile error: there is no COMMENT variable defined'
-		@${ECHO_CMD} 'for this port. Please, rectify this.'
+		@${ECHO_MSG} 'Makefile error: there is no COMMENT variable defined'
+		@${ECHO_MSG} 'for this port. Please, rectify this.'
 		@${FALSE}
 .else
 .if exists(${COMMENTFILE})
 check-makevars::
-		@${ECHO_CMD} 'Makefile error: There is a COMMENTFILE in this port.'
-		@${ECHO_CMD} 'COMMENTFILEs have been deprecated in'
-		@${ECHO_CMD} 'favor of COMMENT variables.'
-		@${ECHO_CMD} 'Please, rectify this.'
+		@${ECHO_MSG} 'Makefile error: There is a COMMENTFILE in this port.'
+		@${ECHO_MSG} 'COMMENTFILEs have been deprecated in'
+		@${ECHO_MSG} 'favor of COMMENT variables.'
+		@${ECHO_MSG} 'Please, rectify this.'
 		@${FALSE}
 .endif
 .endif
@@ -2377,8 +2377,8 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 _G_TEMP=	${_group}
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
-				@${ECHO_CMD} "Makefile error: the words all, ALL and default are reserved and cannot be"
-				@${ECHO_CMD} "used in group definitions. Please fix your MASTER_SITES"
+				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
+				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITES"
 				@${FALSE}
 .			endif
 _MASTER_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
@@ -2394,8 +2394,8 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 _G_TEMP=	${_group}
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
-				@${ECHO_CMD} "The words all, ALL and default are reserved and cannot be"
-				@${ECHO_CMD} "used in group definitions. Please fix your PATCH_SITES"
+				@${ECHO_MSG} "The words all, ALL and default are reserved and cannot be"
+				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITES"
 				@${FALSE}
 .			endif
 _PATCH_SITES_${_group}+=	${_S:C@^(.*/):[^/:]+$@\1@}
@@ -2416,8 +2416,8 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 _G_TEMP=	${_group}
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
-				@${ECHO_CMD} "Makefile error: the words all, ALL and default are reserved and cannot be"
-				@${ECHO_CMD} "used in group definitions. Please fix your MASTER_SITE_SUBDIR"
+				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
+				@${ECHO_MSG} "used in group definitions. Please fix your MASTER_SITE_SUBDIR"
 				@${FALSE}
 .			endif
 .			if defined(_MASTER_SITES_${_group})
@@ -2437,8 +2437,8 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 _G_TEMP=	${_group}
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
-				@${ECHO_CMD} "Makefile error: the words all, ALL and default are reserved and cannot be"
-				@${ECHO_CMD} "used in group definitions. Please fix your PATCH_SITE_SUBDIR"
+				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
+				@${ECHO_MSG} "used in group definitions. Please fix your PATCH_SITE_SUBDIR"
 				@${FALSE}
 .			endif
 .			if defined(_PATCH_SITES_${_group})
@@ -2770,7 +2770,7 @@ check-makefile::
 
 .if !defined(CATEGORIES)
 check-categories:
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: CATEGORIES is mandatory."
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: CATEGORIES is mandatory."
 	@${FALSE}
 .else
 
@@ -2794,7 +2794,7 @@ check-categories:
 	@if ${ECHO_CMD} ${VALID_CATEGORIES} | ${GREP} -wq ${cat}; then \
 		${TRUE}; \
 	else \
-		${ECHO_CMD} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
+		${ECHO_MSG} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
 		${FALSE}; \
 	fi
 .endfor
@@ -2893,7 +2893,7 @@ __pmlinks!=	${ECHO_CMD} '${MLINKS:S/	/ /}' | ${AWK} \
   }' | ${SED} -e 's \([^/ ][^ ]*\.\(.\)[^. ]*\) $${MAN\2PREFIX}/$$$$$$$${__lang}/man\2/\1${MANEXT}g' -e 's/ //g' -e 's/MANlPREFIX/MANLPREFIX/g' -e 's/MANnPREFIX/MANNPREFIX/g'
 .if ${__pmlinks:Mbroken} == "broken"
 check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: unable to parse MLINKS."
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: unable to parse MLINKS."
 	@${FALSE}
 .endif
 _MLINKS=	${_MLINKS_PREPEND}
@@ -3556,8 +3556,8 @@ do-configure:
 	    INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 	    INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 	    ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}; then \
-			 ${ECHO_CMD} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-			 (${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
+			 ${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
+			 (${ECHO_MSG} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
 			 ${FALSE}; \
 		fi)
 .endif
@@ -3777,11 +3777,11 @@ check-already-installed:
 						${ECHO_MSG} "===>   An older version of ${PKGORIGIN} is already installed in ${DESTDIR} ($${found_package})"; \
 					fi; \
 				fi; \
-				${ECHO_CMD} "      You may wish to \`\`make deinstall'' and install this port again"; \
-				${ECHO_CMD} "      by \`\`make reinstall'' to upgrade it properly."; \
-				${ECHO_CMD} "      If you really wish to overwrite the old port of ${PKGORIGIN}"; \
-				${ECHO_CMD} "      without deleting it first, set the variable \"FORCE_PKG_REGISTER\""; \
-				${ECHO_CMD} "      in your environment or the \"make install\" command line."; \
+				${ECHO_MSG} "      You may wish to \`\`make deinstall'' and install this port again"; \
+				${ECHO_MSG} "      by \`\`make reinstall'' to upgrade it properly."; \
+				${ECHO_MSG} "      If you really wish to overwrite the old port of ${PKGORIGIN}"; \
+				${ECHO_MSG} "      without deleting it first, set the variable \"FORCE_PKG_REGISTER\""; \
+				${ECHO_MSG} "      in your environment or the \"make install\" command line."; \
 				exit 1; \
 		fi
 .else
@@ -3812,8 +3812,8 @@ install-mtree:
 .if !defined(NO_MTREE)
 	@if [ `${ID} -u` = 0 ]; then \
 		if [ ! -f ${MTREE_FILE} ]; then \
-			${ECHO_CMD} "Error: mtree file \"${MTREE_FILE}\" is missing."; \
-			${ECHO_CMD} "Copy it from a suitable location (e.g., /usr/src/etc/mtree) and try again."; \
+			${ECHO_MSG} "Error: mtree file \"${MTREE_FILE}\" is missing."; \
+			${ECHO_MSG} "Copy it from a suitable location (e.g., /usr/src/etc/mtree) and try again."; \
 			exit 1; \
 		else \
 			${MTREE_CMD} ${MTREE_ARGS} ${TARGETDIR}/ >/dev/null; \
@@ -3982,7 +3982,7 @@ security-check:
 					> ${WRKDIR}/.PLIST.stupid; \
 				if [ -n "`${EGREP} ' (accept|recvfrom)$$' ${WRKDIR}/.PLIST.objdump`" ] ; then \
 					if [ -s ${WRKDIR}/.PLIST.stupid ]; then \
-						${ECHO_CMD} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.network; \
+						${ECHO_MSG} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.network; \
 						${CAT} ${WRKDIR}/.PLIST.stupid >> ${WRKDIR}/.PLIST.network; \
 						${ECHO_CMD} ")" >> ${WRKDIR}/.PLIST.network; \
 					else \
@@ -3992,7 +3992,7 @@ security-check:
 			fi; \
 			if [ -n "`${FIND} ${PREFIX}/$$i -prune \( -perm -4000 -o -perm -2000 \) \( -perm -0010 -o -perm -0001 \) 2>/dev/null`" ]; then \
 				if [ -s ${WRKDIR}/.PLIST.stupid ]; then \
-					${ECHO_CMD} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.setuid; \
+					${ECHO_MSG} -n "${PREFIX}/$$i (USES POSSIBLY INSECURE FUNCTIONS:" >> ${WRKDIR}/.PLIST.setuid; \
 					${CAT} ${WRKDIR}/.PLIST.stupid >> ${WRKDIR}/.PLIST.setuid; \
 					${ECHO_CMD} ")" >> ${WRKDIR}/.PLIST.setuid; \
 				else \
@@ -4246,9 +4246,9 @@ pre-su-install-script:
 pretty-print-www-site:
 	@www_site=$$(cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} www-site); \
 	if [ -n "$${www_site}" ]; then \
-		${ECHO_CMD} -n " and/or visit the "; \
-		${ECHO_CMD} -n "<a href=\"$${www_site}\">web site</a>"; \
-		${ECHO_CMD} " for futher informations"; \
+		${ECHO_MSG} -n " and/or visit the "; \
+		${ECHO_MSG} -n "<a href=\"$${www_site}\">web site</a>"; \
+		${ECHO_MSG} " for futher informations"; \
 	fi
 .endif
 
@@ -5319,13 +5319,13 @@ ${.CURDIR}/README.html:
 
 _PRETTY_PRINT_DEPENDS_LIST=\
 	if [ ! -r ${INDEXDIR}/${INDEXFILE} ] ; then \
-		${ECHO_CMD} "${.TARGET} requires an INDEX file (${INDEXFILE}). Please run make index or make fetchindex."; \
+		${ECHO_MSG} "${.TARGET} requires an INDEX file (${INDEXFILE}). Please run make index or make fetchindex."; \
 	else \
 		target=${.TARGET:C/pretty-print-(.*)-depends-list/\1/} ; \
 		if [ "$$target" = "build" ] ; then fldnum=8 ; else fldnum=9 ; fi ; \
-		${ECHO_CMD} -n 'This port requires package(s) "' ; \
-		${ECHO_CMD} -n `${AWK} -F\| "\\$$1 ~ /^${PKGNAME}/ {print \\$$$${fldnum};}" ${INDEXDIR}/${INDEXFILE}` ; \
-		${ECHO_CMD} "\" to $$target."; \
+		${ECHO_MSG} -n 'This port requires package(s) "' ; \
+		${ECHO_MSG} -n `${AWK} -F\| "\\$$1 ~ /^${PKGNAME}/ {print \\$$$${fldnum};}" ${INDEXDIR}/${INDEXFILE}` ; \
+		${ECHO_MSG} "\" to $$target."; \
 	fi;
 
 
@@ -5352,7 +5352,7 @@ apply-slist:
 .if defined(SUB_FILES)
 .for file in ${SUB_FILES}
 .if !exists(${FILESDIR}/${file}.in)
-	@${ECHO_CMD} "** Missing ${FILESDIR}/${file}.in for ${PKGNAME}."; exit 1
+	@${ECHO_MSG} "** Missing ${FILESDIR}/${file}.in for ${PKGNAME}."; exit 1
 .else
 	@${SED} ${_SUB_LIST_TEMP} -e '/^@comment /d' ${FILESDIR}/${file}.in > ${WRKDIR}/${file}
 .endif
@@ -5372,7 +5372,7 @@ ${i:S/-//:U}=	${WRKDIR}/${SUB_FILES:M${i}*}
 generate-plist:
 	@${ECHO_MSG} "===>   Generating temporary packing list"
 	@${MKDIR} `${DIRNAME} ${TMPPLIST}`
-	@if [ ! -f ${DESCR} ]; then ${ECHO_CMD} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
+	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@>${TMPPLIST}
 	@for file in ${PLIST_FILES}; do \
 		${ECHO_CMD} $${file} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} >> ${TMPPLIST}; \
@@ -5511,7 +5511,7 @@ add-plist-post:
 install-rc-script:
 .if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
 .if defined(USE_RCORDER)
-	@${ECHO_CMD} "===> Installing early rc.d startup script(s)"
+	@${ECHO_MSG} "===> Installing early rc.d startup script(s)"
 	@${ECHO_CMD} "@cwd /" >> ${TMPPLIST}
 	@for i in ${USE_RCORDER}; do \
 		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${DESTDIR}/etc/rc.d/$${i%.sh}; \
@@ -5520,7 +5520,7 @@ install-rc-script:
 	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .endif
 .if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
-	@${ECHO_CMD} "===> Installing rc.d startup script(s)"
+	@${ECHO_MSG} "===> Installing rc.d startup script(s)"
 	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .if (${OSVERSION} >= 700007 || ( ${OSVERSION} < 700000 && ${OSVERSION} >= 600101 ))
 	@for i in ${USE_RC_SUBR}; do \
@@ -5908,36 +5908,36 @@ check-desktop-entries:
 			entry="$$entry ($$1)"; \
 		fi; \
 		if [ -z "$$1" ]; then \
-			${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 1 (Name) is empty"; \
+			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 1 (Name) is empty"; \
 			exit 1; \
 		fi; \
 		if [ -z "$$4" ]; then \
-			${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 4 (Exec) is empty"; \
+			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 4 (Exec) is empty"; \
 			exit 1; \
 		fi; \
 		if [ -n "$$5" ]; then \
 			for c in `${ECHO_CMD} "$$5" | ${TR} ';' ' '`; do \
 				if ! ${ECHO_CMD} ${VALID_DESKTOP_CATEGORIES} | ${GREP} -wq $$c; then \
-					${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: category $$c is not a valid desktop category"; \
+					${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: category $$c is not a valid desktop category"; \
 					exit 1; \
 				fi; \
 			done; \
 			if ! ${ECHO_CMD} "$$5" | ${GREP} -q ';$$'; then \
-				${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) does not end with a semicolon"; \
+				${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) does not end with a semicolon"; \
 				exit 1; \
 			fi; \
 		else \
 			if [ -z "`cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} desktop-categories`" ]; then \
-				${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) is empty and could not be deduced from the CATEGORIES variable"; \
+				${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 5 (Categories) is empty and could not be deduced from the CATEGORIES variable"; \
 				exit 1; \
 			fi; \
 		fi; \
 		if [ -z "$$6" ]; then \
-			${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is empty"; \
+			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is empty"; \
 			exit 1; \
 		fi; \
 		if [ "x$$6" != "xtrue" ] && [ "x$$6" != "xfalse" ]; then \
-			${ECHO_CMD} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is not \"true\" or \"false\""; \
+			${ECHO_MSG} "${PKGNAME}: Makefile error: in desktop entry $$entry: field 6 (StartupNotify) is not \"true\" or \"false\""; \
 			exit 1; \
 		fi; \
 		shift 6; \
