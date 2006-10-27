@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/security/Makefile,v 1.12 2006/10/02 16:52:30 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.13 2006/10/02 23:22:38 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
     COMMENT = Security tools
 
+    SUBDIR += aide
     SUBDIR += ca-roots
     SUBDIR += clamav
     SUBDIR += cyrus-sasl
@@ -14,8 +15,9 @@
     SUBDIR += gnutls
     SUBDIR += libgcrypt
     SUBDIR += libgpg-error
-    SUBDIR += openvpn
+    SUBDIR += mhash
     SUBDIR += nss
+    SUBDIR += openvpn
     SUBDIR += sudo
     SUBDIR += wpa_supplicant
 
