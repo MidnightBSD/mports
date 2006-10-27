@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.5 2006/10/02 23:46:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.6 2006/10/04 23:23:02 laffer1 Exp $
 # $FreeBSD: ports/lang/Makefile,v 1.512 2006/09/04 16:28:30 bsam Exp $
 #
 
@@ -15,6 +15,7 @@
     SUBDIR += gnustep-base
     SUBDIR += gnustep-objc
     SUBDIR += perl5.8
+    SUBDIR += php5
     SUBDIR += ruby18
 
 .include <bsd.port.subdir.mk>
