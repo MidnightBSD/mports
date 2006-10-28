@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.11 2006/10/04 16:18:19 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.12 2006/10/04 16:41:52 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -21,6 +21,7 @@
     SUBDIR += wdm
     SUBDIR += xextentions
     SUBDIR += xf86ext
+    SUBDIR += xloadimage
     SUBDIR += xorg
     SUBDIR += xorg-clients
     SUBDIR += xorg-documents
