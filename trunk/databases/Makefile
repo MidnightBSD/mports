@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.9 2006/10/27 10:35:22 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.10 2006/10/27 10:39:34 wintellect Exp $
 #
 
     COMMENT = Databases
@@ -18,6 +18,7 @@
     SUBDIR += postgresql-plruby
     SUBDIR += postgresql81-client
     SUBDIR += postgresql81-server
+    SUBDIR += ruby-bdb
 
 
 .include <bsd.port.subdir.mk>
