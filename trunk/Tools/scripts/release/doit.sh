@@ -16,14 +16,14 @@ fi
 # $scripts directory.
 #
 
-  ports="$dir/ports"
+  ports="$dir/mports"
   dists="$ports/distfiles"
    logs="$dir/gen"
    pkgs="$ports/packages/All"
 scripts="$dir"
    xdep_re="^XFree86-3.3.6_1[0-9]$"
 #indexfile="INDEX-5"
-indexfile="INDEX"
+indexfile="INDEX-6"
 #
 ##############################################################################
 
