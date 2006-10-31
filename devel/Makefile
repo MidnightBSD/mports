@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.36 2006/10/04 16:13:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.37 2006/10/04 21:00:12 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -24,6 +24,7 @@
     SUBDIR += gnustep
     SUBDIR += gnustep-make
     SUBDIR += gorm
+    SUBDIR += icu
     SUBDIR += imake-6
     SUBDIR += libIDL
     SUBDIR += libltdl15
