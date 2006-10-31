@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.14 2006/10/27 14:49:52 wintellect Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.15 2006/10/28 17:49:38 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
@@ -19,6 +19,7 @@
     SUBDIR += nss
     SUBDIR += openssh-portable
     SUBDIR += openvpn
+    SUBDIR += p5-IO-Socket-SSL
     SUBDIR += sudo
     SUBDIR += wpa_supplicant
 
