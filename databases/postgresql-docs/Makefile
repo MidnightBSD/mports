@@ -2,7 +2,7 @@
 # Date created:		August 26, 2002
 # Whom:			Palle Girgensohn <girgen@pingpong.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql-docs/Makefile,v 1.1 2006/10/19 14:39:20 wintellect Exp $
 # $FreeBSD: ports/databases/postgresql-docs/Makefile,v 1.13 2006/01/23 07:04:09 linimon Exp $
 #
 
@@ -15,7 +15,7 @@ COMMENT=	The PostgreSQL documentation set
 
 MASTERDIR=	${.CURDIR}/../postgresql${PGSQL_VER}-server
 
-DEFAULT_PGSQL_VER?=74
+DEFAULT_PGSQL_VER?=81
 
 # can't include <bsd.port.pre.mk> in a slave port
 # so set these instead:
