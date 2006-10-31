@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.6 2006/10/04 23:23:02 laffer1 Exp $
-# $FreeBSD: ports/lang/Makefile,v 1.512 2006/09/04 16:28:30 bsam Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.7 2006/10/27 09:53:24 wintellect Exp $
 #
 
     COMMENT = Programming languages
@@ -14,6 +13,9 @@
     SUBDIR += gcc42-withgcjawt
     SUBDIR += gnustep-base
     SUBDIR += gnustep-objc
+    SUBDIR += p5-Data-JavaScript
+    SUBDIR += p5-Error
+    SUBDIR += p5-F77
     SUBDIR += perl5.8
     SUBDIR += php5
     SUBDIR += ruby18
