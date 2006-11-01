@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/german/Makefile,v 1.3 2006/11/01 13:13:02 laffer1 Exp $
+# $MidnightBSD: mports/german/Makefile,v 1.4 2006/11/01 14:01:26 laffer1 Exp $
 #
 
     COMMENT = German support
@@ -16,5 +16,6 @@
     SUBDIR += staroffice5
     SUBDIR += staroffice52
     SUBDIR += staroffice70
+    SUBDIR += tvbrowser
 
 .include <bsd.port.subdir.mk>
