@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.12 2006/11/01 03:02:12 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.13 2006/11/01 03:08:39 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -12,6 +12,7 @@
     SUBDIR += libchk
     SUBDIR += memtest
     SUBDIR += memtest86
+    SUBDIR += mixer
     SUBDIR += portsearch
     SUBDIR += portupgrade
     SUBDIR += pwgen
