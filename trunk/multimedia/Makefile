@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.11 2006/10/24 16:16:03 wintellect Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.12 2006/10/24 17:24:23 wintellect Exp $
 #
 
     COMMENT = Multimedia software
@@ -12,6 +12,7 @@
     SUBDIR += linux-realplayer
     SUBDIR += mplayer
     SUBDIR += mplayer-skins
+    SUBDIR += ogle
     SUBDIR += smpeg
     SUBDIR += vcdimager
     SUBDIR += win32-codecs
