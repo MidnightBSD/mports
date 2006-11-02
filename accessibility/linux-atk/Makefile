@@ -2,8 +2,7 @@
 # Date created:				2003-07-05
 # Whom:					trevor
 #
-# $MidnightBSD$ 
-# $FreeBSD: ports/accessibility/linux-atk/Makefile,v 1.17 2006/07/09 21:01:43 bsam Exp $
+# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.1 2006/09/23 22:41:47 laffer1 Exp $
 #
 
 PORTNAME=	atk
