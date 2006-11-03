@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.38 2006/10/31 20:27:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.39 2006/11/02 19:01:35 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -13,6 +13,7 @@
     SUBDIR += automake19
     SUBDIR += bison
     SUBDIR += desktop-file-utils
+    SUBDIR += devtodo
     SUBDIR += ffcall
     SUBDIR += gettext
     SUBDIR += glib12
