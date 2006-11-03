@@ -5,8 +5,8 @@
  AC_CONFIG_HEADER(config.h)
  
 +
-+LINKFORSHARED=	-shared -pthread
-+CFLAGSFORSHARED=	-fno-strict-aliasing -DNDEBUG -D__wchar_t=wchar_t -DTHREAD_STACK_SIZE=0x100000 -fPIC
++LINKFORSHARED=	-Wl, --export-dynamic
++#CFLAGSFORSHARED=	-fno-strict-aliasing -DNDEBUG -D__wchar_t=wchar_t -DTHREAD_STACK_SIZE=0x100000 -fPIC
 +
 +
  # Set VERSION so we only need to edit in one place (i.e., here)
@@ -21,7 +21,7 @@
  		if [[ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]]
  		then
 -			LDSHARED="cc -shared ${LDFLAGS}"
-+			LDSHARED="cc -shared -pthread -fno-strict-aliasing -D__wchar_t=wchar_t -DTHREAD_STACK_SIZE=0x100000 -fPIC ${LDFLAGS}"
++			LDSHARED="cc -shared ${LDFLAGS}"
  		else
  			LDSHARED="ld -Bshareable ${LDFLAGS}"
  		fi;;
