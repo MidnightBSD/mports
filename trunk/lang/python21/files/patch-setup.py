@@ -14,10 +14,10 @@
          if compiler is not None:
              (ccshared,) = sysconfig.get_config_vars('CCSHARED')
 -            args['compiler_so'] = compiler + ' ' + ccshared
-+            args['compiler_so'] = compiler + ' ' + ccshared + ' -shared -fno-strict-aliasing -DNDEBUG -D__wchar_t=wchar_t -DTHREAD_STACK_SIZE=0x100000 -fPic'
++            args['compiler_so'] = compiler + ' ' + ccshared 
          if linker_so is not None:
 -            args['linker_so'] = linker_so + ' -shared'
-+            args['linker_so'] = linker_so + ' -shared -pthread '
++            args['linker_so'] = linker_so + ' -shared'
          self.compiler.set_executables(**args)
  
          build_ext.build_extensions(self)
