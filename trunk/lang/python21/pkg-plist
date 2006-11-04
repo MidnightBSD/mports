@@ -1,4 +1,5 @@
 bin/%%PYTHON_VERSION%%
+bin/python
 bin/pydoc2.1
 include/%%PYTHON_VERSION%%/Python.h
 include/%%PYTHON_VERSION%%/abstract.h
@@ -2364,7 +2365,7 @@ lib/%%PYTHON_VERSION%%/zipfile.pyo
 @dirrm lib/%%PYTHON_VERSION%%/test
 @dirrm lib/%%PYTHON_VERSION%%/site-packages
 @dirrm lib/%%PYTHON_VERSION%%/plat-freebsd7
-@dirrm lib/%%PYTHON_VERSION%%/plat-freebsd6
+@dirrm lib/%%PYTHON_VERSION%%/plat-midnightbsd0
 @dirrm lib/%%PYTHON_VERSION%%/plat-freebsd5
 @dirrm lib/%%PYTHON_VERSION%%/plat-freebsd4
 @dirrm lib/%%PYTHON_VERSION%%/lib-tk
