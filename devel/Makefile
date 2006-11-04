@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.39 2006/11/02 19:01:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.40 2006/11/03 12:41:20 wintellect Exp $
 #
 
     COMMENT = Development utilities
 
     SUBDIR += ORBit
     SUBDIR += apache-ant
+    SUBDIR += apr
+    SUBDIR += apr-svn
     SUBDIR += autoconf213
     SUBDIR += autoconf253
     SUBDIR += autoconf259
@@ -55,6 +57,7 @@
     SUBDIR += sdl12
     SUBDIR += silc-toolkit
     SUBDIR += splint
+    SUBDIR += subversion
     SUBDIR += t1lib
     SUBDIR += zthread
     SUBDIR += zziplib
