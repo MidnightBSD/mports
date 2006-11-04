@@ -3,11 +3,11 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python21/Makefile,v 1.109 2006/05/09 20:52:19 edwin Exp $
-# $MidnightBSD: mports/lang/python21/Makefile,v 1.3 2006/11/02 22:27:23 wintellect Exp $
+# $MidnightBSD: mports/lang/python21/Makefile,v 1.4 2006/11/03 23:49:28 laffer1 Exp $
 
 PORTNAME=	python
 PORTVERSION=	2.1.3
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	lang python
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -89,6 +89,7 @@ post-install:
 	@cd ${WRKSRC}/Demo; tar -c --exclude='*CVS*' -f - * | \
 		(cd ${DEMODIR}; tar xf -)
 .endif
+	${LN} -f ${PREFIX}/bin/${PYTHON_VERSION} ${PREFIX}/bin/python
 
 .if ${ARCH} == i386
 PLIST_SUB+=	X86_ONLY=""
