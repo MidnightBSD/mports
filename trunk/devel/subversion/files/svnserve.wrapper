@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/devel/subversion/files/svnserve.wrapper,v 1.2 2005/02/03 20:21:54 lev Exp $
+
+SVNSERVE=$(dirname $(realpath $0))/svnserve.bin
+
+umask 002
+$SVNSERVE "$@"
+
