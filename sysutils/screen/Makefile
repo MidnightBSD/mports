@@ -2,13 +2,13 @@
 # Date created:         25 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.1 2006/09/17 06:43:25 archite Exp $
+# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
 # $FreeBSD: ports/sysutils/screen/Makefile,v 1.62 2006/08/05 16:40:17 rafan Exp $
 #
 
 PORTNAME=	screen
 PORTVERSION=	4.0.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.uni-erlangen.de/pub/utilities/screen/ \
 		${MASTER_SITE_GNU}
