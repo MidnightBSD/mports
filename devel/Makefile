@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.40 2006/11/03 12:41:20 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.41 2006/11/04 15:16:57 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -49,6 +49,7 @@
     SUBDIR += p5-Storable
     SUBDIR += pcre
     SUBDIR += pcre-utf8
+    SUBDIR += php5-pcre
     SUBDIR += pkg-config
     SUBDIR += pmk
     SUBDIR += popt
