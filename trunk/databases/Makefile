@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.10 2006/10/27 10:39:34 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.11 2006/10/30 23:52:55 wintellect Exp $
 #
 
     COMMENT = Databases
 
+    SUBDIR += db42
     SUBDIR += db43
     SUBDIR += gnats4
     SUBDIR += mysql50-client
