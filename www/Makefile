@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.15 2006/10/31 22:54:17 wintellect Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.16 2006/11/05 15:23:56 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -21,6 +21,8 @@
     SUBDIR += privoxy
     SUBDIR += thttpd
     SUBDIR += tidy
+    SUBDIR += tidy-devel
+    SUBDIR += tidy-lib
     SUBDIR += tomcat55
 
 .include <bsd.port.subdir.mk>
