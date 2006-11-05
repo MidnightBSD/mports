@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.12 2006/11/05 14:15:10 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.13 2006/11/05 14:24:31 laffer1 Exp $
 #
 
     COMMENT = Databases
 
+    SUBDIR += db
     SUBDIR += db3
     SUBDIR += db41
     SUBDIR += db42
