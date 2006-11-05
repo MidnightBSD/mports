@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.9 2006/10/02 16:46:01 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.10 2006/10/02 16:47:30 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -12,6 +12,8 @@
     SUBDIR += lha
     SUBDIR += lzo2
     SUBDIR += p7zip
+    SUBDIR += php5-bz2
+    SUBDIR += php5-zlib
     SUBDIR += rar
     SUBDIR += rpm
     SUBDIR += rpm2cpio
