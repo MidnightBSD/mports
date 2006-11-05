@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.19 2006/11/05 15:02:55 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.20 2006/11/05 15:44:11 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -25,6 +25,7 @@
     SUBDIR += mysql51-server
     SUBDIR += p5-DBD-Pg
     SUBDIR += p5-DBD-mysql
+    SUBDIR += p5-DBD-mysql41
     SUBDIR += p5-DBD-mysql50
     SUBDIR += p5-DBI
     SUBDIR += php5-mysql
