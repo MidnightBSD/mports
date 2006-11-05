@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.16 2006/11/05 15:23:56 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.17 2006/11/05 15:33:04 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -18,6 +18,7 @@
     SUBDIR += neon
     SUBDIR += opera
     SUBDIR += php5-session
+    SUBDIR += php5-tidy
     SUBDIR += privoxy
     SUBDIR += thttpd
     SUBDIR += tidy
