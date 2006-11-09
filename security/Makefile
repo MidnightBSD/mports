@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.17 2006/10/31 23:28:44 wintellect Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.18 2006/11/05 16:04:37 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
@@ -24,6 +24,7 @@
     SUBDIR += p5-IO-Socket-SSL
     SUBDIR += p5-Net-SSLeay
     SUBDIR += sudo
+    SUBDIR += wipe
     SUBDIR += wpa_supplicant
 
 .include <bsd.port.subdir.mk>
