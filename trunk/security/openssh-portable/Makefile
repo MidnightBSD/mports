@@ -2,12 +2,12 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.1 2006/10/28 17:49:09 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
 #
 
 PORTNAME=	openssh
-DISTVERSION=	4.4p1
+DISTVERSION=	4.5p1
 PORTEPOCH=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
