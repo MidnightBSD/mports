@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.26 2006/11/09 14:43:05 laffer1 Exp $
-# $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.27 2006/11/09 14:50:51 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -24,6 +23,7 @@
     SUBDIR += p5-IO-Socket-SSL
     SUBDIR += p5-Net-SSLeay
     SUBDIR += sudo
+    SUBDIR += vnccrack
     SUBDIR += webfwlog
     SUBDIR += wipe
     SUBDIR += wpa_supplicant
