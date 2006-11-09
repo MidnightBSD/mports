@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.19 2006/11/09 13:56:44 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.20 2006/11/09 14:04:17 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
@@ -26,6 +26,7 @@
     SUBDIR += sudo
     SUBDIR += wipe
     SUBDIR += wpa_supplicant
+    SUBDIR += xinetd
     SUBDIR += zombiezapper
 
 .include <bsd.port.subdir.mk>
