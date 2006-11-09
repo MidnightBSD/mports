@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/net/Makefile,v 1.7 2006/10/02 23:20:41 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.8 2006/11/05 15:54:23 laffer1 Exp $
 #
 
     COMMENT = Networking tools
 
     SUBDIR += 44bsd-rdist
     SUBDIR += libdnet
+    SUBDIR += libnet10
     SUBDIR += netcat
     SUBDIR += netclasses
     SUBDIR += openldap23-client
