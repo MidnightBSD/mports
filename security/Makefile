@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.24 2006/11/09 14:34:32 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.25 2006/11/09 14:40:38 laffer1 Exp $
 # $FreeBSD: ports/security/Makefile,v 1.816 2006/09/07 21:40:37 acm Exp $
 #
 
@@ -27,6 +27,7 @@
     SUBDIR += wipe
     SUBDIR += wpa_supplicant
     SUBDIR += xinetd
+    SUBDIR += xmlsec
     SUBDIR += xmlsec1
     SUBDIR += xspy
     SUBDIR += yafic
