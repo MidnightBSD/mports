@@ -2,14 +2,14 @@
 # Date created:			01 Jun 2002
 # Whom:				silence <oksala@videotron.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.1 2006/10/11 10:56:09 wintellect Exp $
 # $FreeBSD: ports/www/cherokee/Makefile,v 1.26 2006/08/15 01:11:31 clsung Exp $
 #
 
 PORTNAME=	cherokee
 PORTVERSION=	0.5.5
 CATEGORIES=	www
-MASTER_SITES=	http://www.0x50.org/download/%SUBDIR%/
+MASTER_SITES=	http://www.cherokee-project.com/download/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTVERSION:R}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
