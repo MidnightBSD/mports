@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.17 2006/10/06 20:17:05 wintellect Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.18 2006/10/09 20:41:51 wintellect Exp $
 #
 
     COMMENT = Graphics tools and libraries
 
+    SUBDIR += OpenEXR
     SUBDIR += aalib
     SUBDIR += cairo
     SUBDIR += dri
