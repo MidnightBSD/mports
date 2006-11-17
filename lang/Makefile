@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.11 2006/11/09 15:37:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.12 2006/11/17 22:10:07 laffer1 Exp $
 #
 
     COMMENT = Programming languages
@@ -19,6 +19,7 @@
     SUBDIR += p5-List-MoreUtils
     SUBDIR += p5-Scalar-List-Utils
     SUBDIR += p5-ePerl
+    SUBDIR += python
     SUBDIR += python21
     SUBDIR += python22
     SUBDIR += python23
