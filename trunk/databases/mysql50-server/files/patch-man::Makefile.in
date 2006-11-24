@@ -1,11 +1,11 @@
---- man/Makefile.in.orig	Sun Nov 27 00:09:54 2005
-+++ man/Makefile.in	Sun Nov 27 00:09:03 2005
-@@ -338,7 +338,7 @@
- yassl_libs = @yassl_libs@
- yassl_libs_with_path = @yassl_libs_with_path@
- zlib_dir = @zlib_dir@
--man1_MANS = @man1_files@
-+man1_MANS =
- EXTRA_DIST = $(man1_MANS)
- all: all-am
- 
+--- man/Makefile.in.orig	Fri Oct 20 20:23:52 2006
++++ man/Makefile.in	Thu Nov 23 21:35:20 2006
+@@ -296,7 +296,7 @@
+ linked_libmysqld_targets = @linked_libmysqld_targets@
+ linked_netware_sources = @linked_netware_sources@
+ localstatedir = @localstatedir@
+-man1_files = @man1_files@
++man1_files = 
+ man8_files = @man8_files@
+ man_dirs = @man_dirs@
+ mandir = @mandir@
