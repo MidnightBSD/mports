@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.19 2006/11/05 16:05:02 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.20 2006/11/24 23:50:08 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -29,5 +29,6 @@
     SUBDIR += tidy-devel
     SUBDIR += tidy-lib
     SUBDIR += tomcat55
+    SUBDIR += youtube_dl
 
 .include <bsd.port.subdir.mk>
