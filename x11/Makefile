@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.12 2006/10/04 16:41:52 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.13 2006/10/28 05:44:40 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -14,8 +14,9 @@
     SUBDIR += libXxf86
     SUBDIR += linux-xorg-libs
     SUBDIR += nvidia-driver
-    SUBDIR += slim
+    SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
+    SUBDIR += slim
     SUBDIR += startup-notification
     SUBDIR += terminal.app
     SUBDIR += wdm
