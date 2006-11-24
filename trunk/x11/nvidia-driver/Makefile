@@ -2,7 +2,7 @@
 # Date created:				4 December 2002
 # Whom:					Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.1 2006/09/17 04:33:50 archite Exp $
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
 # $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.47 2006/09/05 10:38:22 danfe Exp $
 #
 
@@ -21,12 +21,12 @@ COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 ONLY_FOR_ARCHS=	i386
 
 USE_X_PREFIX=	yes
-NO_PACKAGE=	should be recompiled for a particular FreeBSD kernel
+NO_PACKAGE=	should be recompiled for a particular BSD kernel
 INSTALLS_SHLIB=	yes
 SUB_FILES+=	pkg-message
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
 
-OPTIONS=	FREEBSD_AGP	"Use FreeBSD AGP GART driver" off \
+OPTIONS=	FREEBSD_AGP	"Use BSD AGP GART driver" off \
 		VM86_INT10CALL	"Use VM86 interface for video BIOS calls" off \
 		ACPI		"Enable support for ACPI Power Management" off \
 		LINUX		"Build with support for Linux compatibility" on
@@ -71,25 +71,18 @@ OSVERSION!=	/usr/sbin/sysctl -n kern.osreldate
 # _before_ including of <bsd.port.pre.mk>.  On the other hand, it is really
 # an UNSUPPORTED option anyway, so this is for good to hide it here XXX
 #
-.if ${OSVERSION} < 503000
-NVVERSION=	6113
-PORTREVISION=	4
-PLIST_SUB+=	DIFFS="" DRVSO="@comment "
-EXTRA_PATCHES+=	${FILESDIR}/${NVVERSION}-*
-.else
 .if defined(WITH_LEGACY_GPU_SUPPORT)
-NVVERSION=	7174
+NVVERSION=	7184
 PORTREVISION=	3
 EXTRA_PATCHES+=	${FILESDIR}/6113-patch-lib::Makefile
 .else
-NVVERSION=	8774
+NVVERSION=	8776
 EXTRA_PATCHES+=	${FILESDIR}/7667-*
 .endif
 .if ${OSVERSION} >= 600033
 LIB_DEPENDS+=	m.3:${PORTSDIR}/misc/compat5x
 .endif
 PLIST_SUB+=	DIFFS="@comment " DRVSO=""
-.endif
 
 .include <bsd.port.pre.mk>
 
