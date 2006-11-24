@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.44 2006/11/05 15:56:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.45 2006/11/17 19:19:28 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -36,6 +36,7 @@
     SUBDIR += libsigc++20
     SUBDIR += libslang
     SUBDIR += libtool15
+    SUBDIR += libusb
     SUBDIR += linux-allegro
     SUBDIR += linux-glib2
     SUBDIR += linux-libglade
