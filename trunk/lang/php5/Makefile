@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.1 2006/10/27 09:53:24 wintellect Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.1.6
-PORTREVISION?=	2
+PORTVERSION=	5.2.0
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
 		http://downloads.php.net/ilia/:rc \
@@ -59,7 +59,7 @@ MAN1=		php-config.1 phpize.1
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES=	suhosin-patch-${PORTVERSION}-0.9.5.patch.gz
+PATCHFILES=	suhosin-patch-${PORTVERSION}-0.9.6.2.patch.gz
 PATCH_SITES=	http://www.hardened-php.net/suhosin/_media/
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
