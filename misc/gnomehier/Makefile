@@ -2,9 +2,8 @@
 # Date created:				2 July 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.1 2006/09/26 16:02:50 archite Exp $
 # $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
-#    $MCom: ports/misc/gnomehier/Makefile,v 1.11 2006/03/14 03:05:32 marcus Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
 
