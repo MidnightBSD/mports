@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.10 2006/10/02 16:47:30 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.11 2006/11/05 15:46:59 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -23,6 +23,7 @@
     SUBDIR += unzip
     SUBDIR += unzoo
     SUBDIR += zip
+    SUBDIR += zipios++
     SUBDIR += zoo
 
 .include <bsd.port.subdir.mk>
