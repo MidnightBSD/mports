@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.12 2006/11/17 22:10:07 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.13 2006/11/17 22:29:46 laffer1 Exp $
 #
 
     COMMENT = Programming languages
@@ -26,5 +26,6 @@
     SUBDIR += perl5.8
     SUBDIR += php5
     SUBDIR += ruby18
+    SUBDIR += tcl83
 
 .include <bsd.port.subdir.mk>
