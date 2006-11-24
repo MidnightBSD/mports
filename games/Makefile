@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.2 2006/10/06 20:56:21 wintellect Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.3 2006/10/28 19:35:56 wintellect Exp $
 #
 
     COMMENT = Games
@@ -13,5 +13,6 @@
     SUBDIR += linux-enemyterritory-omni-bot
     SUBDIR += linux-enemyterritory-shrub
     SUBDIR += linux-enemyterritory-tce
+    SUBDIR += tuxracer
 
 .include <bsd.port.subdir.mk>
