@@ -4,12 +4,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.1 2006/11/17 22:05:12 laffer1 Exp $
 #
 
 PORTNAME=	qt
-PORTVERSION=	3.3.6
-PORTREVISION=	2
+PORTVERSION=	3.3.7
+PORTREVISION=	0
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
