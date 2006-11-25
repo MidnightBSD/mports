@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.6 2006/10/03 23:25:23 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.7 2006/10/06 15:33:47 wintellect Exp $
 #
 
     COMMENT = Desktop publishing
@@ -6,6 +6,7 @@
     SUBDIR += acroread7
     SUBDIR += acroreadwrapper
     SUBDIR += cups-base
+    SUBDIR += enscript-letter
     SUBDIR += fontforge
     SUBDIR += freetype2
     SUBDIR += gsfonts
