@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.48 2006/11/24 18:51:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.49 2006/11/25 00:24:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -14,6 +14,9 @@
     SUBDIR += automake15
     SUBDIR += automake19
     SUBDIR += bison
+    SUBDIR += cvsgraph
+    SUBDIR += cvsweb
+    SUBDIR += cvsweb3
     SUBDIR += desktop-file-utils
     SUBDIR += devtodo
     SUBDIR += ffcall
@@ -48,9 +51,12 @@
     SUBDIR += nasm
     SUBDIR += ncurses
     SUBDIR += nspr
+    SUBDIR += p5-IO-Tty
+    SUBDIR += p5-IPC-Run
     SUBIDR += p5-Locale-gettext
     SUBDIR += p5-PathTools
     SUBDIR += p5-Storable
+    SUBDIR += p5-String-Ediff
     SUBDIR += p5-Test-Harness
     SUBDIR += p5-Test-Simple
     SUBDIR += pcre
