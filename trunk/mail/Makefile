@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.6 2006/09/30 11:44:52 wintellect Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.7 2006/10/24 16:00:33 wintellect Exp $
 # $FreeBSD: ports/mail/Makefile,v 1.793 2006/08/25 12:54:08 sat Exp $
 #
 
@@ -10,6 +10,7 @@
     SUBDIR += msmtp
     SUBDIR += mutt
     SUBDIR += mutt-devel
+    SUBDIR += p5-MIME-Types
     SUBDIR += pine-pgp-filters
     SUBDIR += pine4
     SUBDIR += spamd
