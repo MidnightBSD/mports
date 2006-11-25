@@ -1,0 +1,48 @@
+--- Makefile.in.orig	Sun Nov 13 06:33:15 2005
++++ Makefile.in	Sat Dec  3 22:10:42 2005
+@@ -31,9 +31,11 @@
+ install-conf:
+ 	@echo Installing configuration files
+ 	@$(MKINSTALLDIRS) $(DESTDIR)$(sysconfdir) $(DESTDIR)$(sysconfdir)/extra
+-	@$(MKINSTALLDIRS) $(DESTDIR)$(sysconfdir)/original/extra
++	@$(MKINSTALLDIRS) $(DESTDIR)$(EXAMPLESDIR) $(DESTDIR)$(EXAMPLESDIR)/extra
++
+ 	@cd $(top_srcdir)/docs/conf; \
+ 	for i in mime.types magic; do \
++	    $(INSTALL_DATA) $$i $(DESTDIR)$(EXAMPLESDIR); \
+ 	    if test ! -f $(DESTDIR)$(sysconfdir)/$$i; then \
+ 	        $(INSTALL_DATA) $$i $(DESTDIR)$(sysconfdir); \
+ 	    fi; \
+@@ -66,14 +68,14 @@
+ 	    				-e 's#@@Port@@#$(PORT)#g' \
+ 	    				< $$i; \
+ 	    		fi \
+-	    	) > $(DESTDIR)$(sysconfdir)/original/$$i; \
+-	    	chmod 0644 $(DESTDIR)$(sysconfdir)/original/$$i; \
++	    	) > $(DESTDIR)$(EXAMPLESDIR)/$$i; \
++	    	chmod 0644 $(DESTDIR)$(EXAMPLESDIR)/$$i; \
+ 	    	file=$$i; \
+ 	    	if [ "$$i" = "httpd.conf" ]; then \
+ 	    		file=`echo $$i|sed s/.*.conf/$(PROGRAM_NAME).conf/`; \
+ 	    	fi; \
+ 	    	if test ! -f $(DESTDIR)$(sysconfdir)/$$file; then \
+-	    		$(INSTALL_DATA) $(DESTDIR)$(sysconfdir)/original/$$i $(DESTDIR)$(sysconfdir)/$$file; \
++	    		$(INSTALL_DATA) $(DESTDIR)$(EXAMPLESDIR)/$$i $(DESTDIR)$(sysconfdir)/$$file; \
+ 	    	fi; \
+ 	    	fi; \
+ 	    done ; \
+@@ -206,12 +208,14 @@
+ 	@test -d $(DESTDIR)$(manualdir)   || $(MKINSTALLDIRS) $(DESTDIR)$(manualdir)
+ 	@cp -p $(top_srcdir)/docs/man/*.1 $(DESTDIR)$(mandir)/man1
+ 	@cp -p $(top_srcdir)/docs/man/*.8 $(DESTDIR)$(mandir)/man8
++.if !defined(NOPORTDOCS)
+ 	@if test "x$(RSYNC)" != "x" && test -x $(RSYNC) ; then \
+ 	  $(RSYNC) --exclude .svn -rlpt --numeric-ids $(top_srcdir)/docs/manual/ $(DESTDIR)$(manualdir)/; \
+ 	else \
+ 	  cd $(top_srcdir)/docs/manual && cp -rp * $(DESTDIR)$(manualdir); \
+ 	  cd $(DESTDIR)$(manualdir) && find . -name ".svn" -type d -print | xargs rm -rf 2>/dev/null; \
+ 	fi
++.endif
+ 
+ install-suexec:
+ 	@if test -f $(builddir)/support/suexec; then \
