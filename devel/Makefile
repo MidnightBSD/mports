@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.47 2006/11/24 18:40:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.48 2006/11/24 18:51:09 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -67,6 +67,7 @@
     SUBDIR += splint
     SUBDIR += subversion
     SUBDIR += t1lib
+    SUBDIR += viewvc
     SUBDIR += zthread
     SUBDIR += zziplib
 
