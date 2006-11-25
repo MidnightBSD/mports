@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.31 2006/11/25 01:09:42 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.32 2006/11/25 03:51:03 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -24,6 +24,7 @@
     SUBDIR += p5-Digest-MD5
     SUBDIR += p5-IO-Socket-SSL
     SUBDIR += p5-Net-SSLeay
+    SUBDIR += php5-mcrypt
     SUBDIR += php5-openssl
     SUBDIR += sudo
     SUBDIR += vlock
