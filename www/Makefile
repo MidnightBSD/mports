@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/www/Makefile,v 1.20 2006/11/24 23:50:08 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.21 2006/11/24 23:57:07 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
 
     SUBDIR += apache20
+    SUBDIR += apache22
     SUBDIR += analog
     SUBDIR += cherokee
     SUBDIR += libwww
