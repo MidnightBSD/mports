@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.19 2006/11/17 23:42:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.20 2006/11/24 18:56:21 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -36,6 +36,7 @@
     SUBDIR += linux-ungif
     SUBDIR += linux_dri
     SUBDIR += netpbm
+    SUBDIR += php5-gd
     SUBDIR += png
     SUBDIR += scr2png
     SUBDIR += sdl_image
