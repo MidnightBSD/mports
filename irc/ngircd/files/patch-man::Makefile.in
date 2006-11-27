@@ -1,0 +1,10 @@
+--- man/Makefile.in.orig	Sun Jul 20 10:41:21 2003
++++ man/Makefile.in	Sun Jul 20 10:41:43 2003
+@@ -42,7 +42,6 @@
+ install_sh_PROGRAM = $(install_sh) -c
+ install_sh_SCRIPT = $(install_sh) -c
+ INSTALL_HEADER = $(INSTALL_DATA)
+-transform = $(program_transform_name)
+ NORMAL_INSTALL = :
+ PRE_INSTALL = :
+ POST_INSTALL = :
