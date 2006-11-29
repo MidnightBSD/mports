@@ -2,12 +2,12 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.1 2006/10/02 06:17:56 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
 PORTNAME=		openldap
-DISTVERSION=		2.3.27
+DISTVERSION=		2.3.30
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -152,7 +152,7 @@ CONFIGURE_ARGS+=	--disable-slapd \
 			--disable-glue \
 			--disable-syncprov
 
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 SUB_FILES+=		pkg-message.client
 PKGMESSAGE=		${WRKSRC}/pkg-message.client
 
@@ -335,7 +335,7 @@ PLIST_SUB+=		BACK_SQL="@comment "
 .if defined(WITH_SLAPI)
 CONFIGURE_ARGS+=	--enable-slapi
 PLIST_SUB+=		SLAPI=""
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 .else
 PLIST_SUB+=		SLAPI="@comment "
 .endif
