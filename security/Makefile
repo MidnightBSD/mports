@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.34 2006/11/25 04:40:45 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.35 2006/11/25 17:10:18 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -26,6 +26,7 @@
     SUBDIR += p5-IO-Socket-SSL
     SUBDIR += p5-Net-SSLeay
     SUBDIR += php5-mcrypt
+    SUBDIR += php5-mhash
     SUBDIR += php5-openssl
     SUBDIR += sudo
     SUBDIR += tripwire
