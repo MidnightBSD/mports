@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.29 2006/11/01 13:56:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.30 2006/11/02 19:05:27 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -41,6 +41,7 @@
     SUBDIR += linuxdoc
     SUBDIR += p5-SGMLSpm
     SUBDIR += p5-XML-Parser
+    SUBDIR += php5-xml
     SUBDIR += scr2txt
     SUBDIR += sdocbook-xml
     SUBDIR += sgmlformat
