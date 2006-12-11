@@ -3,16 +3,16 @@
 # Whom: 				Simon Dick <simond@irrelevant.org>
 #
 # $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.1 2006/12/04 05:13:55 laffer1 Exp $
 #
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.8
+PORTVERSION=	1.4.9a
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		all_locales-1.4.7-20060702${EXTRACT_SUFX}
+		all_locales-1.4.8-20060903${EXTRACT_SUFX}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,6 +22,7 @@ USE_PHP=	session mhash gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
 USE_BZIP2=	yes
+USE_GETTEXT=	yes
 
 .ifdef WITH_DATABASE
 RUN_DEPENDS+=	${PREFIX}/share/pear/DB.php:${PORTSDIR}/databases/pear-DB
