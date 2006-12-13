@@ -2,19 +2,19 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $FreeBSD: ports/multimedia/libxine/Makefile,v 1.97 2006/08/27 12:47:12 nobutaka Exp $
+# $FreeBSD: ports/multimedia/libxine/Makefile,v 1.102 2006/12/07 17:13:41 nobutaka Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xine
-PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTVERSION=	1.1.3
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 PKGNAMEPREFIX=	lib
 DISTNAME=	${PORTNAME}-lib-${PORTVERSION}
 
-MAINTAINER=	nobutaka@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for xine multimedia player
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdts.a:${PORTSDIR}/multimedia/libdts
@@ -32,7 +32,7 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		theora.2:${PORTSDIR}/multimedia/libtheora \
 		mad.2:${PORTSDIR}/audio/libmad
 
-USE_BZIP2=	yes
+USE_GCC=	3.4+
 USE_GETTEXT=	yes
 USE_ICONV=	yes
 USE_X_PREFIX=	yes
@@ -43,6 +43,7 @@ USE_GMAKE=	yes
 USE_GL=		yes
 USE_SDL=	sdl
 USE_AUTOTOOLS=	libtool:15
+USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fno-force-addr -I${LOCALBASE}/include -I${LOCALBASE}/include/dvdread -I${X11BASE}/include" \
 		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib" \
@@ -52,7 +53,6 @@ CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fno-force-addr -I${LOCALBASE}/include -I${LOCA
 CONFIGURE_ARGS=	--with-w32-path=${LOCALBASE}/lib/win32 --enable-ipv6 \
 		--mandir=${PREFIX}/man --with-external-libmad \
 		--with-external-libdts
-INSTALLS_SHLIB=	yes
 
 MAN1=	xine-config.1
 MAN5=	xine.5
@@ -94,15 +94,15 @@ USE_GNOME+=	gnomevfs2
 PLIST_SUB+=	WITH_GNOMEVFS2=""
 .else
 PLIST_SUB+=	WITH_GNOMEVFS2="@comment "
-CONFIGURE_ARGS+=	--disable-gnome
+CONFIGURE_ARGS+=	--disable-gnomevfs
 .endif
 
-.if !defined(WITHOUT_POLYPAUDIO) && (exists(${LOCALBASE}/lib/libpolyp-0.7.so.0) || defined(WITH_POLYPAUDIO))
-LIB_DEPENDS+=	polyp-0.7.0:${PORTSDIR}/audio/polypaudio
-PLIST_SUB+=	WITH_POLYPAUDIO=""
+.if !defined(WITHOUT_PULSEAUDIO) && (exists(${LOCALBASE}/lib/libpulse.so.0) || defined(WITH_PULSEAUDIO))
+LIB_DEPENDS+=	pulse.0:${PORTSDIR}/audio/pulseaudio
+PLIST_SUB+=	WITH_PULSEAUDIO=""
 .else
-PLIST_SUB+=	WITH_POLYPAUDIO="@comment "
-CONFIGURE_ARGS+=	--disable-polypaudio
+PLIST_SUB+=	WITH_PULSEAUDIO="@comment "
+CONFIGURE_ARGS+=	--disable-pulseaudio
 .endif
 
 .if !defined(WITHOUT_XVMC) && (exists(${X11BASE}/lib/libXvMCNVIDIA.so.1) || defined(WITH_XVMC))
@@ -126,7 +126,7 @@ LIB_DEPENDS+=	aa.1:${PORTSDIR}/graphics/aalib
 PLIST_SUB+=	WITH_AALIB=""
 .else
 PLIST_SUB+=	WITH_AALIB="@comment "
-CONFIGURE_ARGS+=	--disable-aalib
+CONFIGURE_ARGS+=	--disable-aalib --disable-aalibtest
 .endif
 
 .if !defined(WITHOUT_IMAGEMAGICK) && (exists(${LOCALBASE}/lib/libWand.so.10) || defined (WITH_IMAGEMAGICK))
@@ -137,12 +137,18 @@ PLIST_SUB+=	WITH_IMAGEMAGICK="@comment "
 CONFIGURE_ARGS+=	--disable-imagemagick
 .endif
 
-.if !defined(WITHOUT_GTK2) && (exists(${X11BASE}/lib/libgtk-x11-2.0.so.0) || defined (WITH_GTK2))
+.if !defined(WITHOUT_GTK2) && (${HAVE_GNOME:Mgtk20} != "" || defined(WITH_GTK2))
 USE_GNOME+=	gtk20
 PLIST_SUB+=	WITH_GTK2=""
 .else
 PLIST_SUB+=	WITH_GTK2="@comment "
 CONFIGURE_ARGS+=	--disable-gdkpixbuf
+.endif
+
+.if ${CONFIGURE_ARGS:M*--disable-imagemagick*} == "" || ${CONFIGURE_ARGS:M*-disable-gdkpixbuf*} == ""
+PLIST_SUB+=	WITH_DMX_IMAGE=""
+.else
+PLIST_SUB+=	WITH_DMX_IMAGE="@comment "
 .endif
 
 .if ${ARCH} == "i386"
@@ -156,51 +162,52 @@ pre-everything::
 	@${ECHO_MSG} "===>"
 	@${ECHO_MSG} "===> You can enable some features by defining following variables."
 	@${ECHO_MSG} "===>"
-.if !exists(${LOCALBASE}/bin/artsc-config) && !defined(WITH_ARTS)
+.if !exists(${LOCALBASE}/bin/artsc-config) && !defined(WITH_ARTS) || defined(WITHOUT_ARTS)
 	@${ECHO_MSG} "===> WITH_ARTS   (arts support)"
 .else
 	@${ECHO_MSG} "===> WITH_ARTS   (arts support, enabled)"
 .endif
-.if !exists(${LOCALBASE}/lib/libcaca.a) && !defined(WITH_CACA)
+.if !exists(${LOCALBASE}/lib/libcaca.a) && !defined(WITH_CACA) || defined(WITHOUT_CACA)
 	@${ECHO_MSG} "===> WITH_CACA (libcaca support)"
 .else
 	@${ECHO_MSG} "===> WITH_CACA (libcaca support, enabled)"
 .endif
-.if !(${HAVE_GNOME:Mgnomevfs2} != "") && !defined(WITH_GNOMEVFS2)
+.if !(${HAVE_GNOME:Mgnomevfs2} != "") && !defined(WITH_GNOMEVFS2) || defined(WITHOUT_GNOMEVFS2)
 	@${ECHO_MSG} "===> WITH_GNOMEVFS2 (gnomevfs2 support)"
 .else
 	@${ECHO_MSG} "===> WITH_GNOMEVFS2 (gnomevfs2 support, enabled)"
 .endif
-.if !(${HAVE_GNOME:Mesound} != "") && !defined(WITH_ESOUND)
+.if !(${HAVE_GNOME:Mesound} != "") && !defined(WITH_ESOUND) || defined(WITHOUT_ESOUND)
 	@${ECHO_MSG} "===> WITH_ESOUND (esound support)"
 .else
 	@${ECHO_MSG} "===> WITH_ESOUND (esound support, enabled)"
 .endif
-.if !exists(${LOCALBASE}/lib/libpolyp-0.7.so.0) && !defined(WITH_POLYPAUDIO)
-	@${ECHO_MSG} "===> WITH_POLYPAUDIO (polypaudio support)"
+.if !exists(${LOCALBASE}/lib/libpulse.so.0) && !defined(WITH_PULSEAUDIO) || defined(WITHOUT_PULSEAUDIO)
+	@${ECHO_MSG} "===> WITH_PULSEAUDIO (pulseaudio support)"
 .else
-	@${ECHO_MSG} "===> WITH_POLYPAUDIO (polypaudio support, enabled)"
+	@${ECHO_MSG} "===> WITH_PULSEAUDIO (pulseaudio support, enabled)"
 .endif
-.if !exists(${LOCALBASE}/lib/libsmbclient.so.0) && !defined (WITH_SMB)
+.if !exists(${LOCALBASE}/lib/libsmbclient.so.0) && !defined (WITH_SMB) || defined(WITHOUT_SMB)
 	@${ECHO_MSG} "===> WITH_SMB (SMB support)"
 .else
 	@${ECHO_MSG} "===> WITH_SMB (SMB support, enabled)"
 .endif
-.if !exists(${X11BASE}/lib/libXvMCNVIDIA.so.1) && !defined(WITH_XVMC)
+.if !exists(${X11BASE}/lib/libXvMCNVIDIA.so.1) && !defined(WITH_XVMC) || defined(WITHOUT_XVMC)
 	@${ECHO_MSG} "===> WITH_XVMC (XvMC support)"
 .else
 	@${ECHO_MSG} "===> WITH_XVMC (XvMC support, enabled)"
 .endif
 	@${ECHO_MSG} "===>"
 
-post-patch:
+pre-configure:
 	@${REINPLACE_CMD} -e \
 		's|THREAD_LIBS=.*$$|THREAD_LIBS="\$$THREAD_LIBS"|g ; \
 		 s|THREAD_CFLAGS=.*$$|THREAD_CFLAGS="\$$THREAD_CFLAGS"|g ; \
 		 s|-L/usr/local/lib||g ; \
 		 s|-I/usr/local/include||g ; \
 		 s|-lgiconv|-liconv|g ; \
-		 s|-funroll-loops||g' ${WRKSRC}/configure
+		 s|-funroll-loops||g ; \
+		 s|LIBFFMPEG_CFLAGS|LIBFFMPEG_CPPFLAGS|g' ${WRKSRC}/configure
 .if ${OSVERSION} >= 500035
 	@${REINPLACE_CMD} -e \
 		 's|-malign-loops|-falign-loops|g ; \
