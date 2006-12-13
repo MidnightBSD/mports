@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.13 2006/11/02 21:05:24 wintellect Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.14 2006/12/13 20:12:24 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -17,6 +17,7 @@
     SUBDIR += smpeg
     SUBDIR += vcdimager
     SUBDIR += win32-codecs
+    SUBDIR += xine
     SUBDIR += xmms
     SUBDIR += xmms-skins
     SUBDIR += xvid
