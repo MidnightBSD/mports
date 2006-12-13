@@ -3,11 +3,11 @@
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.217 2006/09/10 16:03:51 ale Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.1 2006/11/05 15:44:11 laffer1 Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.11
+PORTVERSION=	5.1.12
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -29,7 +29,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-mysqlfs \
 		--with-low-memory \
-		--with-comment='FreeBSD port: ${PKGNAME}' \
+		--with-comment='MidnightBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
@@ -79,13 +79,6 @@ CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
 CFLAGS+=	${PTHREAD_CFLAGS}
 .endif
 
-.if ${OSVERSION} < 500000
-LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CXX=		${CC}
-.endif
 .if defined(BUILD_OPTIMIZED)
 CFLAGS+=	-O3 -fno-omit-frame-pointer
 .if ${OSVERSION} > 500000 || (defined(USE_GCC) && (${USE_GCC} == 3.0 || ${USE_GCC} == 3.1 || ${USE_GCC} == 3.2 || ${USE_GCC} == 3.3))
@@ -166,6 +159,8 @@ CONFLICTS=	mysql-client-3.* mysql-client-4.* mysql-client-5.0.*
 MAN1=		mysql_config.1 mysql.1 mysqladmin.1 mysqlbinlog.1 \
 		mysqlcheck.1 mysqldump.1 mysqlimport.1 mysqlshow.1
 
+MAN8=		mysqlmanager.8
+
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 
 CONFIGURE_ARGS+=--without-server
@@ -207,18 +202,18 @@ MAN1=		msql2mysql.1 mysql_zap.1 mysqlaccess.1 mysqlhotcopy.1 \
 SCRIPTS=	msql2mysql mysql_fix_extensions mysql_setpermission \
 		mysql_secure_installation mysql_zap mysqlaccess \
 		mysql_convert_table_format mysql_find_rows mysqlhotcopy \
-		mysqldumpslow mysql_explain_log mysqld_multi
+		mysqldumpslow mysqld_multi
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = scripts @man_dirs@|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = ${SCRIPTS}|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am install-data-am|install-exec-am|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
 .endif
 .endif
 # Common part
 post-extract:
-	@${CP} /usr/include/tcpd.h ${WRKSRC}/sql/mytcpd.h
+	@${CP} /usr/include/tcpd.h ${WRKSRC}/include/my_tcpd.h
 
 .if defined(WITH_OPENSSL) && defined(BUILD_STATIC)
 pre-configure:
