@@ -13,7 +13,7 @@
   Compatible
   
   # IconPath の指定。Style の指定の前に必要
-! IconPath %%PREFIX%%/lib/X11/mlvwm/pixmaps
+! IconPath %%PREFIX%%/lib/X11/mlvwm/pixmap
   IconMenuIcon label2.xpm
   
   # Balloon help Settings
