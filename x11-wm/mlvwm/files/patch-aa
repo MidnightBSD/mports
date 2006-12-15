@@ -13,7 +13,7 @@
   Compatible
   
   # Set icon search path. It needs before "Style".
-! IconPath %%PREFIX%%/lib/X11/pixmaps
+! IconPath %%PREFIX%%/lib/X11/mlvwm/pixmap
   IconMenuIcon label2.xpm
   
   # Balloon help Settings
