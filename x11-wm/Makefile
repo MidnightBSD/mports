@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.8 2006/10/08 15:57:25 wintellect Exp $
-# $FreeBSD: ports/x11-wm/Makefile,v 1.186 2006/09/10 15:15:38 vanilla Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.9 2006/11/24 22:28:28 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -10,6 +9,7 @@
     SUBDIR += fluxbox-devel
     SUBDIR += kompmgr
     SUBDIR += libdockapp
+    SUBDIR += mlvwm
     SUBDIR += openbox
     SUBDIR += pekwm
     SUBDIR += windowmaker
