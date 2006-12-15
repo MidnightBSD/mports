@@ -2,14 +2,14 @@
 # Date created:		6 May 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.1 2006/10/02 23:46:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.2 2006/11/24 23:52:05 laffer1 Exp $
 # $FreeBSD: ports/lang/ruby18/Makefile,v 1.113 2006/08/27 09:53:27 sem Exp $
 #
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang ruby ipv6
 MASTER_SITES=		${MASTER_SITE_RUBY}
 MASTER_SITE_SUBDIR=	${MASTER_SITE_SUBDIR_RUBY}
