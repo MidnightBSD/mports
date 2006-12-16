@@ -2,12 +2,12 @@
 # Date created:		15 July 2002
 # Whom:			markun@onohara.to
 #
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.1 2006/10/02 16:52:30 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.2 2006/12/16 17:41:57 laffer1 Exp $
 # $FreeBSD: ports/security/clamav/Makefile,v 1.81 2006/08/08 19:33:04 garga Exp $
 #
 
 PORTNAME=	clamav
-PORTVERSION=	0.88.5
+PORTVERSION=	0.88.7
 CATEGORIES=	security
 MASTER_SITES=	SF
 
