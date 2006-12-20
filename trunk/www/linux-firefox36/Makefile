@@ -2,7 +2,7 @@
 # Date created:		8 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.4 2006/10/30 13:46:59 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.5 2006/11/05 15:31:11 laffer1 Exp $
 # $FreeBSD: ports/www/linux-firefox-devel/Makefile,v 1.9 2006/08/23 11:08:58 sat Exp $
 #
 
@@ -23,7 +23,7 @@ DIST_SUBDIR=		${PORTNAME}-${SNAPDATE}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-SNAPDATE=	2006-11-04
+SNAPDATE=	2006-12-13
 USE_BZIP2=	yes
 
 .include "${.CURDIR}/../linux-seamonkey/Makefile.common"
