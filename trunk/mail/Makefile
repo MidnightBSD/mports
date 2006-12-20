@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.9 2006/12/04 05:13:55 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.10 2006/12/11 05:42:36 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
 
+    SUBDIR += abook
     SUBDIR += addresses
     SUBDIR += dovecot
     SUBDIR += fetchmail
