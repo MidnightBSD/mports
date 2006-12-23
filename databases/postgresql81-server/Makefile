@@ -2,14 +2,14 @@
 # Date created:		November 13, 1998
 # Whom:			Marc G. Fournier <scrappy@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.1 2006/10/19 14:39:20 wintellect Exp $
 # $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.159 2006/09/27 12:58:53 girgen Exp $
 #
 
 PORTNAME?=	postgresql
 PKGNAMESUFFIX?=	-server
-PORTVERSION?=	8.1.4
-PORTREVISION?=	1
+PORTVERSION?=	8.1.5
+PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${PORTVERSION}
@@ -21,8 +21,8 @@ COMMENT?=	The most advanced open-source database available anywhere
 
 CONFLICTS?=	${PORTNAME}-client-7.[0-9]* \
 		${PORTNAME}${PKGNAMESUFFIX}-7.[0-9]* \
-		${PORTNAME}-client-8.0.* \
-		${PORTNAME}${PKGNAMESUFFIX}-8.0.*
+		${PORTNAME}-client-8.*.* \
+		${PORTNAME}${PKGNAMESUFFIX}-8.*.*
 
 WRKSRC=		${WRKDIR}/postgresql-${PORTVERSION}
 DIST_SUBDIR=	postgresql
@@ -298,8 +298,9 @@ do-install:
 	${CHOWN} root:pgsql ${RCSCRIPT} ;\
 	${CHOWN} -R pgsql:pgsql ~pgsql/. ;\
 	${MKDIR} ${PREFIX}/etc/periodic/daily ;\
-	${INSTALL_SCRIPT} ${FILESDIR}/502.pgsql \
-			${PREFIX}/etc/periodic/daily
+#	${INSTALL_SCRIPT} ${FILESDIR}/502.pgsql \
+#			${PREFIX}/etc/periodic/daily
+
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
 	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${GMAKE} install-local
