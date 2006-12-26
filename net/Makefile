@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.16 2006/12/26 01:05:30 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.17 2006/12/26 01:08:40 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -10,6 +10,7 @@
     SUBDIR += libdnet
     SUBDIR += libnet
     SUBDIR += libnet10
+    SUBDIR += libpcap
     SUBDIR += mDNSResponder
     SUBDIR += netcat
     SUBDIR += netclasses
