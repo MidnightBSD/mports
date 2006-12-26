@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/ftp/Makefile,v 1.2 2006/10/31 22:00:09 wintellect Exp $
+# $MidnightBSD: mports/ftp/Makefile,v 1.3 2006/12/26 02:50:19 laffer1 Exp $
 #
 
     COMMENT = File Transfer Protocol 
 
     SUBDIR += curl
+    SUBDIR += linux-curl 
     SUBDIR += ncftp
     SUBDIR += wget
 
