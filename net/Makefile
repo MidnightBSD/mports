@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/net/Makefile,v 1.15 2006/12/15 04:39:33 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.16 2006/12/26 01:05:30 laffer1 Exp $
 #
 
     COMMENT = Networking tools
 
     SUBDIR += 44bsd-rdist
     SUBDIR += cvsup
+    SUBDIR += cvsup-without-gui
     SUBDIR += fping
     SUBDIR += libdnet
     SUBDIR += libnet
