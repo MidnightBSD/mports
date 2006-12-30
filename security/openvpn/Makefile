@@ -2,7 +2,7 @@
 # Date created:		2002-06-23
 # Whom:			Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/openvpn/Makefile,v 1.1 2006/09/21 17:13:41 wintellect Exp $
 # $FreeBSD: ports/security/openvpn/Makefile,v 1.28 2006/09/14 01:22:01 rafan Exp $
 #
 
@@ -13,8 +13,8 @@ PORTNAME=	openvpn
 # DOES NOT WARRANT A PORT UPGRADE! AND UPGRADE REQUESTS
 # WILL BE DROPPED.       -- Matthias Andree, 2006-09-13
 # -----------------------------------------------------
-PORTVERSION=	2.0.6
-PORTREVISION=	2
+PORTVERSION=	2.0.9
+PORTREVISION=	0
 CATEGORIES=	security net
 # MASTER_SITES points to hosts in distinct data centers,
 # so just one MASTER_SITES entry should be OK.
