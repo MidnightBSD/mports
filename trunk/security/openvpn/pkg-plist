@@ -9,6 +9,7 @@ lib/openvpn-down-root.so
 %%PORTDOCS%%%%DOCSDIR%%/PORTS
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%%%DOCSDIR%%/README.openvpn-down-root
+%%PORTDOCS%%%%DOCSDIR%%/easy-rsa/.externals
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/README
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/build-ca
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/build-dh
@@ -28,6 +29,7 @@ lib/openvpn-down-root.so
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/sign-req
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/vars
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/README
+%%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/Makefile
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/build-ca
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/build-dh
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/build-inter
@@ -41,10 +43,12 @@ lib/openvpn-down-root.so
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/inherit-inter
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/list-crl
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/openssl.cnf
+%%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/openssl-0.9.6.cnf
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/pkitool
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/revoke-full
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/sign-req
 %%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/vars
+%%PORTDOCS%%%%DOCSDIR%%/easy-rsa/2.0/whichopensslcnf
 %%PORTDOCS%%%%DOCSDIR%%/sample-config-files/README
 %%PORTDOCS%%%%DOCSDIR%%/sample-config-files/client.conf
 %%PORTDOCS%%%%DOCSDIR%%/sample-config-files/firewall.sh
