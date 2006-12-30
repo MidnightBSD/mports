@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/games/Makefile,v 1.4 2006/11/24 17:15:42 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.5 2006/11/24 23:02:24 wintellect Exp $
 #
 
     COMMENT = Games
 
     SUBDIR += battalion
     SUBDIR += goonies
+    SUBDIR += gtypist
     SUBDIR += linux-enemyterritory
     SUBDIR += linux-enemyterritory-etpro
     SUBDIR += linux-enemyterritory-etpub
