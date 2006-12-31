@@ -2,36 +2,39 @@
 # Date created:				02 Jun 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.1 2006/09/21 20:10:46 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.2 2006/09/25 16:34:16 archite Exp $
 # $FreeBSD: ports/x11-wm/wmii/Makefile,v 1.8 2006/06/28 13:17:16 danfe Exp $
 #
 
 PORTNAME=	wmii
-DISTVERSION=	3.1
+DISTVERSION=	3.5.1
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://wmii.de/download/
+MASTER_SITES=	http://suckless.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A dynamic, minimalist window manager for X11
 
 USE_X_PREFIX=	yes
 
+BUILD_DEPENDS=	dmenu:${PORTSDIR}/x11/dmenu
+DEPENDS=	${PORTSDIR}/devel/libixp
+
 MAKE_ARGS=	PREFIX="${PREFIX}" X11LIB="${X11BASE}/lib" \
 		X11INC="${X11BASE}/include" CC="${CC}" \
 		MANPREFIX="${MANPREFIX}/man"
 
-MAN1=		wmii.1 wmiimenu.1 wmiir.1 wmiiwm.1
+MAN1=		wmii.1 wmiir.1 wmiiwm.1
 
-post-patch:
-	@${REINPLACE_CMD} -E 's|-O3|${CFLAGS}|; \
-		s|(-[LI])\$${PREFIX}|\1${LOCALBASE}|' \
-		${WRKSRC}/config.mk
-	@${REINPLACE_CMD} -e 's|cp -f $${M|${INSTALL_MAN} $${M|' \
-		${WRKSRC}/Makefile
+#post-patch:
+#	@${REINPLACE_CMD} -E 's|-O3|${CFLAGS}|; \
+#		s|(-[LI])\$${PREFIX}|\1${LOCALBASE}|' \
+#		${WRKSRC}/config.mk
+#	@${REINPLACE_CMD} -e 's|cp -f $${M|${INSTALL_MAN} $${M|' \
+#		${WRKSRC}/Makefile
 
-pre-install:
-.for b in wm/wmiiwm wmiimenu wmiipsel wmiir wmiisetsid wmiiwarp
-	@${STRIP_CMD} ${WRKSRC}/cmd/${b}
-.endfor
+#pre-install:
+#.for b in wm/wmiiwm wmiimenu wmiipsel wmiir wmiisetsid wmiiwarp
+#	@${STRIP_CMD} ${WRKSRC}/cmd/${b}
+#.endfor
 
 .include <bsd.port.mk>

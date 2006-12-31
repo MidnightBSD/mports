@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.13 2006/10/28 05:44:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.14 2006/11/24 18:21:28 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
 
     SUBDIR += dgs
+    SUBDIR += dmenu
     SUBDIR += docker
     SUBDIR += libGL
     SUBDIR += libX11
