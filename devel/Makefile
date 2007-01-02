@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.54 2006/12/30 21:15:15 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.55 2006/12/31 20:30:40 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -76,6 +76,7 @@
     SUBDIR += sdl12
     SUBDIR += silc-toolkit
     SUBDIR += splint
+    SUBDIR += stlport
     SUBDIR += subversion
     SUBDIR += t1lib
     SUBDIR += viewvc
