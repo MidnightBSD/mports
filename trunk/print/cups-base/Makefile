@@ -4,7 +4,7 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.1 2006/09/22 23:55:08 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.2 2007/01/02 21:47:27 wintellect Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
@@ -13,9 +13,7 @@ PORTVERSION=	1.2.7
 DISTVERSIONSUFFIX=	-source
 PORTREVISION=	1
 CATEGORIES=	print
-#MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
-MASTER_SITES=	ftp://ftp3.easysw.com/pub/cups/1.2.7/ \
-		ftp://ftp.rz.tu-bs.de/pub/mirror/ftp.easysw.com/ftp/pub/cups/1.2.7
+MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
 PKGNAMESUFFIX=	-base${PKGNAMESUFFIX2}
 
 MAINTAINER=	dinoex@FreeBSD.org
