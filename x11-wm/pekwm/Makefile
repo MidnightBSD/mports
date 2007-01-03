@@ -2,12 +2,13 @@
 # Date created:			Nov 1, 2002
 # Whom:				anders@hack.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/pekwm/Makefile,v 1.1 2006/09/17 19:33:50 archite Exp $
 # $FreeBSD: ports/x11-wm/pekwm/Makefile,v 1.23 2006/04/28 21:30:24 pav Exp $
 #
 
 PORTNAME=	pekwm
-PORTVERSION=	20060417
+PORTVERSION=	0.1.5
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://bsd-unix.org/downloads/ \
 		http://pekwm.org/files/
@@ -23,7 +24,6 @@ LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft \
 USE_BZIP2=	yes
 USE_GCC=	3.4
 USE_GMAKE=	yes
-USE_X_PREFIX=	yes
 USE_XPM=	yes
 
 GNU_CONFIGURE=	yes
