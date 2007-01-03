@@ -2,12 +2,13 @@
 # Date created:				02 Jun 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.3 2006/12/31 20:30:40 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.4 2007/01/03 20:58:53 wintellect Exp $
 # $FreeBSD: ports/x11-wm/wmii/Makefile,v 1.8 2006/06/28 13:17:16 danfe Exp $
 #
 
 PORTNAME=	wmii
 DISTVERSION=	3.5.1
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://suckless.org/download/
 
