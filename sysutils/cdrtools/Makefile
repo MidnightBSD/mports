@@ -1,8 +1,8 @@
-# New ports collection makefile for:	cdrtools
+
 # Date created:		Wed Jul 25 23:30:19 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.1 2006/09/28 02:07:25 archite Exp $
 # $FreeBSD: ports/sysutils/cdrtools/Makefile,v 1.69 2006/08/03 09:29:49 marius Exp $
 #
 
