@@ -2,7 +2,7 @@
 # Date created:				02 Jun 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.2 2006/09/25 16:34:16 archite Exp $
+# $MidnightBSD: mports/x11-wm/wmii/Makefile,v 1.3 2006/12/31 20:30:40 wintellect Exp $
 # $FreeBSD: ports/x11-wm/wmii/Makefile,v 1.8 2006/06/28 13:17:16 danfe Exp $
 #
 
@@ -13,8 +13,6 @@ MASTER_SITES=	http://suckless.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A dynamic, minimalist window manager for X11
-
-USE_X_PREFIX=	yes
 
 BUILD_DEPENDS=	dmenu:${PORTSDIR}/x11/dmenu
 DEPENDS=	${PORTSDIR}/devel/libixp
