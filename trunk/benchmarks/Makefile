@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.3 2007/01/07 18:14:02 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.4 2007/01/07 18:55:24 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
 
+    SUBDIR += httperf
     SUBDIR += netperf
     SUBDIR += netpipe
     SUBDIR += postmark
