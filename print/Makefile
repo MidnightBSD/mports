@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.10 2006/12/20 16:58:17 wintellect Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.11 2007/01/03 22:14:13 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -11,6 +11,7 @@
     SUBDIR += fontforge
     SUBDIR += freetype2
     SUBDIR += ghostscript-gpl
+    SUBDIR += ghostscript-gpl-nox11
     SUBDIR += gsfonts
     SUBDIR += pdflib
     SUBDIR += pecl-pdflib
