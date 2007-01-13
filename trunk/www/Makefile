@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.26 2007/01/12 13:15:31 wintellect Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.27 2007/01/12 13:44:24 wintellect Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -29,6 +29,7 @@
     SUBDIR += php5-session
     SUBDIR += php5-tidy
     SUBDIR += privoxy
+    SUBDIR += retsina
     SUBDIR += squid
     SUBDIR += thttpd
     SUBDIR += tidy
