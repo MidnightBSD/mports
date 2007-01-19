@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.11 2006/11/24 18:35:29 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.12 2007/01/19 15:57:30 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -6,7 +6,7 @@
     SUBDIR += brs
     SUBDIR += compat4x
     SUBDIR += compat5x
-    SUBIDR += gnomehier
+    SUBDIR += gnomehier
     SUBDIR += gnustep-examples
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
