@@ -2,7 +2,7 @@
 # Date created:        22 April 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.1 2006/09/23 00:27:16 laffer1 Exp $
 # $FreeBSD: ports/x11/dgs/Makefile,v 1.44 2006/07/26 15:30:48 dinoex Exp $
 #
 
@@ -32,15 +32,9 @@ MAN1=		dgs.1 dpsnx.agent.1
 MANN=		dpsexec.man xepsf.man
 INSTALLDIRS=	gs DPS/demos/dpsexec DPS/demos/xepsf
 
-.include <bsd.port.pre.mk>
+WITH_GHOSTSCRIPT_AFPL=	yes
 
-pre-fetch:
-.if !defined(WITH_GHOSTSCRIPT_AFPL) || ${WITH_GHOSTSCRIPT_AFPL} != yes
-	@${ECHO} ""
-	@${ECHO} "      Define WITH_GHOSTSCRIPT_AFPL=yes to use"
-	@${ECHO} "      AFPL Postscript interpreter instead of GNU one"
-	@${ECHO} ""
-.endif
+.include <bsd.port.pre.mk>
 
 pre-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} \
