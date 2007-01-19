@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.12 2007/01/11 14:39:36 wintellect Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.13 2007/01/11 21:11:34 wintellect Exp $
 #
 
     COMMENT = Desktop publishing
@@ -12,6 +12,7 @@
     SUBDIR += enscript-letter
     SUBDIR += fontforge
     SUBDIR += freetype2
+    SUBDIR += ghostscript-afpl
     SUBDIR += ghostscript-gpl
     SUBDIR += ghostscript-gpl-nox11
     SUBDIR += gsfonts
