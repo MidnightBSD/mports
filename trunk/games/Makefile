@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/games/Makefile,v 1.6 2006/12/30 21:28:30 wintellect Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.7 2007/01/19 18:07:47 wintellect Exp $
 #
 
     COMMENT = Games
 
     SUBDIR += bass
     SUBDIR += battalion
+    SUBDIR += fotaq
     SUBDIR += goonies
     SUBDIR += gtypist
     SUBDIR += linux-enemyterritory
