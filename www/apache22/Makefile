@@ -3,19 +3,19 @@
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
 # $FreeBSD: ports/www/apache22/Makefile,v 1.198 2006/09/24 16:16:39 clement Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.1 2006/11/25 00:02:31 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.3
+PORTVERSION=	2.2.4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
 DISTNAME=	httpd-${PORTVERSION}
 DISTFILES=	${DISTNAME}.tar.bz2 \
-		apr_dbd_mysql.rev-50.c:aprmysql
+		apr_dbd_mysql.rev-57.c:aprmysql
 DIST_SUBDIR=	apache22
 EXTRACT_ONLY=	${DISTNAME}.tar.bz2
 
@@ -74,7 +74,7 @@ PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
 
 MAKE_ENV+=	DESTDIR=${DESTDIR} EXPR_COMPAT=yes
 
-WITH_MPM?=	prefork # or worker, perchild, threadpool, event
+WITH_MPM?=	prefork # or worker, perchild, event, itk
 
 WITH_HTTP_PORT?=	80
 
@@ -141,11 +141,9 @@ CONFIGURE_ENV+=	USE_BUNDLED_APR=YES
 
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
-.   if ${OSVERSION} > 500023
 .     if ${ARCH} == i386
 CONFIGURE_ARGS+=	--enable-nonportable-atomics
 .     endif
-.   endif
 .endif
 
 CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM:L} ${CONFIGURE_TARGET}
@@ -169,7 +167,7 @@ show-options:
 	@${SED} -ne 's/^##//p' ${APACHEDIR}/Makefile.doc
 
 post-extract:
-	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/apr_dbd_mysql.rev-50.c \
+	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/apr_dbd_mysql.rev-57.c \
 		${WRKSRC}/srclib/apr-util/dbd/apr_dbd_mysql.c
 
 post-patch:
