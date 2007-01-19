@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.6 2006/10/26 03:58:00 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.7 2007/01/11 20:52:14 wintellect Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -2055,7 +2055,7 @@ GHOSTSCRIPT_PORT?=	print/ghostscript-gpl
 .else
 .if defined(WITH_GHOSTSCRIPT_AFPL)
 GHOSTSCRIPT_PORT?=	print/ghostscript-afpl-nox11
-.elif defined(WITH_GHOSTSCRIPT_GPL)
+.else
 GHOSTSCRIPT_PORT?=	print/ghostscript-gpl-nox11
 .endif
 .endif
