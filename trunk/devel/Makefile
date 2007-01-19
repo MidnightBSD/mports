@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.57 2007/01/07 03:41:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.58 2007/01/11 16:58:45 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -56,7 +56,7 @@
     SUBDIR += p5-IO-String
     SUBDIR += p5-IO-Tty
     SUBDIR += p5-IPC-Run
-    SUBIDR += p5-Locale-gettext
+    SUBDIR += p5-Locale-gettext
     SUBDIR += p5-PathTools
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Ediff
