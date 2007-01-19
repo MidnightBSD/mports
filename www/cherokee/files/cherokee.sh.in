@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 # $FreeBSD: ports/www/cherokee/files/cherokee.sh.in,v 1.2 2006/07/19 18:55:37 rafan Exp $
 #
 # PROVIDE: cherokee
