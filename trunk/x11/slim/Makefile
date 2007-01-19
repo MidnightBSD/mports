@@ -2,17 +2,17 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.1 2006/09/27 16:16:32 laffer1 Exp $
-# $FreeBSD: ports/x11/slim/Makefile,v 1.3 2006/03/23 15:23:31 arved Exp $
+# $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
 PORTNAME=	slim
-PORTVERSION=	1.2.5
+PORTVERSION=	1.2.6
 CATEGORIES=	x11
-MASTER_SITES=	http://download.berlios.de/slim/ \
+MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
+MASTER_SITE_SUBDIR=slim
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@fsck.ch
 COMMENT=	Graphical login manager for X11, derived from Login.app
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -21,7 +21,6 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 RUN_DEPENDS=	${X11BASE}/bin/X:${X_SERVER_PORT}
 BUILD_DEPENDS=	${X11BASE}/include/X11/Xft/Xft.h:${PORTSDIR}/x11-fonts/libXft
 
-USE_X_PREFIX=	yes
 USE_XLIB=	yes
 USE_RC_SUBR=	slim.sh
 
@@ -29,23 +28,31 @@ MAN1=		slim.1
 
 MAKEFILE=	Makefile.freebsd
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 500000
+BROKEN=		does not compile on FreeBSD 4.x
+.endif
+
 pre-build:
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${X11BASE}|g' \
+	@${REINPLACE_CMD} \
+			-e 's|%%X11BASE%%|${X11BASE}|g' \
+			-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 			${WRKSRC}/Makefile.freebsd \
 			${WRKSRC}/slim.conf
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${X11BASE}/bin
-	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${X11BASE}/etc/${PORTNAME}.conf.sample
-	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${X11BASE}/man/man1
+	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${LOCALBASE}/bin
+	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${LOCALBASE}/etc/${PORTNAME}.conf.sample
+	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${LOCALBASE}/man/man1
 	@${MKDIR} ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/${PORTNAME}.theme ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/panel.png ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/background.jpg ${DATADIR}/themes/default
 
 post-install:
-	@if [ ! -f ${X11BASE}/etc/slim.conf ]; then \
-		${CP} -p ${X11BASE}/etc/slim.conf.sample ${X11BASE}/etc/slim.conf ; \
+	@if [ ! -f ${LOCALBASE}/etc/slim.conf ]; then \
+		${CP} -p ${LOCALBASE}/etc/slim.conf.sample ${LOCALBASE}/etc/slim.conf ; \
 	fi
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
