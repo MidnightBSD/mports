@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/games/Makefile,v 1.5 2006/11/24 23:02:24 wintellect Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.6 2006/12/30 21:28:30 wintellect Exp $
 #
 
     COMMENT = Games
 
+    SUBDIR += bass
     SUBDIR += battalion
     SUBDIR += goonies
     SUBDIR += gtypist
@@ -14,6 +15,7 @@
     SUBDIR += linux-enemyterritory-omni-bot
     SUBDIR += linux-enemyterritory-shrub
     SUBDIR += linux-enemyterritory-tce
+    SUBDIR += scummvm
     SUBDIR += tuxracer
     SUBDIR += wesnoth
 
