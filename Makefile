@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/Makefile,v 1.26 2007/01/03 20:52:49 wintellect Exp $
+# $MidnightBSD: mports/Makefile,v 1.27 2007/01/19 16:08:28 laffer1 Exp $
 #
 
 SUBDIR += accessibility
 SUBDIR += archivers
 SUBDIR += audio
 SUBDIR += benchmarks
+SUBDIR += comms
 SUBDIR += converters
 SUBDIR += databases
 SUBDIR += devel
