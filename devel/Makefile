@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.59 2007/01/19 16:16:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.60 2007/01/20 14:10:43 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -21,6 +21,7 @@
     SUBDIR += devtodo
     SUBDIR += ffcall
     SUBDIR += gamin
+    SUBDIR += gconf2
     SUBDIR += gettext
     SUBDIR += glib12
     SUBDIR += glib20
