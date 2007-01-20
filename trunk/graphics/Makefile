@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.23 2007/01/20 15:17:26 wintellect Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.24 2007/01/20 15:54:51 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -21,6 +21,7 @@
     SUBDIR += libart_lgpl
     SUBDIR += libdrm
     SUBDIR += libexif
+    SUBDIR += libfpx
     SUBDIR += libglut
     SUBDIR += libmng
     SUBDIR += libungif
