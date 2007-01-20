@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.28 2007/01/20 14:15:04 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.29 2007/01/20 14:57:44 wintellect Exp $
 #
 
     COMMENT = Databases
@@ -13,6 +13,7 @@
     SUBDIR += db42-nocrypto
     SUBDIR += db43
     SUBDIR += db44
+    SUBDIR += gdbm
     SUBDIR += gnats4
     SUBDIR += mysql41-client
     SUBDIR += mysql41-scripts
@@ -32,6 +33,7 @@
     SUBDIR += pear-DB
     SUBDIR += pear-DBA
     SUBDIR += pecl-PDO
+    SUBDIR += php5-dba
     SUBDIR += php5-dbase
     SUBDIR += php5-mysql
     SUBDIR += php5-mysqli
@@ -42,6 +44,7 @@
     SUBDIR += postgresql-plruby
     SUBDIR += postgresql81-client
     SUBDIR += postgresql81-server
+    SUBDIR += qdbm
     SUBDIR += ruby-bdb
     SUBDIR += unixODBC
 
