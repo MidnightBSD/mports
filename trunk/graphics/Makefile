@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.24 2007/01/20 15:54:51 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.25 2007/01/20 16:08:21 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
 
+    SUBDIR += ImageMagick
     SUBDIR += OpenEXR
     SUBDIR += aalib
     SUBDIR += cairo
