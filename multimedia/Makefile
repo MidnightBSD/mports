@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.15 2006/12/13 22:22:49 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.16 2007/01/19 18:52:51 wintellect Exp $
 #
 
     COMMENT = Multimedia software
@@ -12,6 +12,7 @@
     SUBDIR += libtheora
     SUBDIR += libxine
     SUBDIR += linux-realplayer
+    SUBDIR += mpeg2codec
     SUBDIR += mplayer
     SUBDIR += mplayer-skins
     SUBDIR += ogle
