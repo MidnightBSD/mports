@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.61 2007/01/20 17:39:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.62 2007/01/20 17:43:07 laffer1 Exp $
 #
 
     COMMENT = Development utilities
 
     SUBDIR += ORBit
+    SUBDIR += ORBit2
     SUBDIR += apache-ant
     SUBDIR += apr
     SUBDIR += apr-svn
