@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Mon Jul 24 11:15:32 2006
++++ Makefile.in	Mon Jul 24 11:15:49 2006
+@@ -127,7 +127,7 @@
+ 
+ DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
+ 
+-SUBDIRS = linc2 src include test docs
++SUBDIRS = linc2 src include docs
+ 
+ bin_SCRIPTS = orbit2-config
+ 
