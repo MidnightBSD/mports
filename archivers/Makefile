@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.12 2006/11/24 22:02:38 wintellect Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.13 2006/12/11 02:37:47 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -13,6 +13,7 @@
     SUBDIR += lha
     SUBDIR += lzo2
     SUBDIR += p7zip
+    SUBDIR += pecl-zip
     SUBDIR += php5-bz2
     SUBDIR += php5-zlib
     SUBDIR += rar
