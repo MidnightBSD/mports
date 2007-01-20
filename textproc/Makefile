@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.32 2007/01/20 13:41:22 wintellect Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.33 2007/01/20 13:49:49 wintellect Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -51,6 +51,7 @@
     SUBDIR += sdocbook-xml
     SUBDIR += sgmlformat
     SUBDIR += texi2html
+    SUBDIR += wv2
     SUBDIR += xhtml
     SUBDIR += xmlcatmgr
     SUBDIR += xmlcharent
