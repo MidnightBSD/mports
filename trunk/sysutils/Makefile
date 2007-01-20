@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.16 2007/01/03 11:45:18 wintellect Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.17 2007/01/20 14:06:32 wintellect Exp $
 #
 
     COMMENT = System utilities
@@ -15,6 +15,7 @@
     SUBDIR += mixer
     SUBDIR += nodebrain
     SUBDIR += obliterate
+    SUBDIR += pecl-fileinfo
     SUBDIR += php5-posix
     SUBDIR += portsearch
     SUBDIR += portupgrade
