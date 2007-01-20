@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.22 2006/11/24 18:57:51 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.23 2007/01/11 16:49:06 wintellect Exp $
 #
 
     COMMENT = Audio tools
 
     SUBDIR += arts
     SUBDIR += artswrapper
+    SUBDIR += cdparanoia
     SUBDIR += flac
     SUBDIR += jack
     SUBDIR += lame
