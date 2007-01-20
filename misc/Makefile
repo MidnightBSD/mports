@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.13 2007/01/19 15:58:11 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.14 2007/01/20 14:48:27 wintellect Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -12,6 +12,7 @@
     SUBDIR += hicolor-icon-theme
     SUBDIR += kde-xdg-env
     SUBDIR += kdehier
+    SUBDIR += kdeutils3
     SUBDIR += ldconfig_compat
     SUBDIR += localedata
     SUBDIR += mime-support
