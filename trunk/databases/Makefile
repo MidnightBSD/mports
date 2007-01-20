@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.27 2007/01/20 14:04:22 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.28 2007/01/20 14:15:04 wintellect Exp $
 #
 
     COMMENT = Databases
@@ -32,6 +32,7 @@
     SUBDIR += pear-DB
     SUBDIR += pear-DBA
     SUBDIR += pecl-PDO
+    SUBDIR += php5-dbase
     SUBDIR += php5-mysql
     SUBDIR += php5-mysqli
     SUBDIR += php5-pgsql
