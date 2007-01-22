@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.65 2007/01/21 00:29:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.66 2007/01/22 09:43:23 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -72,6 +72,7 @@
     SUBDIR += pcre-utf8
     SUBDIR += pear
     SUBDIR += php5-gettext
+    SUBDIR += php5-ncurses
     SUBDIR += php5-pcre
     SUBDIR += php5-tokenizer
     SUBDIR += physfs
