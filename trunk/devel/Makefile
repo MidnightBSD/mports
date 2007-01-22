@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.64 2007/01/20 19:18:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.65 2007/01/21 00:29:07 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -15,6 +15,7 @@
     SUBDIR += automake15
     SUBDIR += automake19
     SUBDIR += bison
+    SUBDIR += cscope
     SUBDIR += cvsgraph
     SUBDIR += cvsweb
     SUBDIR += cvsweb3
