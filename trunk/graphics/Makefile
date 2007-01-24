@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.27 2007/01/22 10:52:39 wintellect Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.28 2007/01/24 16:39:16 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -46,6 +46,7 @@
     SUBDIR += php5-ming
     SUBDIR += png
     SUBDIR += poppler
+    SUBDIR += poppler-qt
     SUBDIR += scr2png
     SUBDIR += sdl_image
     SUBDIR += svgalib
