@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.28 2007/01/24 16:39:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.29 2007/01/24 16:44:30 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -18,12 +18,14 @@
     SUBDIR += jasper
     SUBDIR += jbigkit
     SUBDIR += jpeg
+    SUBDIR += kdegraphics3
     SUBDIR += lcms
     SUBDIR += libart_lgpl
     SUBDIR += libdrm
     SUBDIR += libexif
     SUBDIR += libfpx
     SUBDIR += libglut
+    SUBDIR += libgphoto2
     SUBDIR += libmng
     SUBDIR += libungif
     SUBDIR += linux-ac3d
