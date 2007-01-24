@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.16 2007/01/24 16:48:33 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.17 2007/01/24 17:07:24 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -21,6 +21,7 @@
     SUBDIR += libpaper
     SUBDIR += pdflib
     SUBDIR += pecl-pdflib
+    SUBDIR += teTeX-base
     SUBDIR += teTeX-texmf
     SUBDIR += tex-texmflocal
     SUBDIR += wmlpq
