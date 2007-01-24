@@ -2,7 +2,7 @@
 # Date created:		Jul 13 2002
 # Whom:			ports@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.1 2007/01/11 21:11:34 wintellect Exp $
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
 #
 
@@ -32,7 +32,7 @@ USE_GMAKE=	yes
 # We just need the ghostscript fonts, nothing more
 USE_GHOSTSCRIPT_RUN=	yes
 GNU_CONFIGURE=		yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include" \
 			LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--without-x --with-gs=espgs
