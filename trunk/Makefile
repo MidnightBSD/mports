@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.27 2007/01/19 16:08:28 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.28 2007/01/20 11:18:16 wintellect Exp $
 #
 
 SUBDIR += accessibility
@@ -8,6 +8,7 @@ SUBDIR += benchmarks
 SUBDIR += comms
 SUBDIR += converters
 SUBDIR += databases
+SUBDIR += deskutils
 SUBDIR += devel
 SUBDIR += dns
 SUBDIR += editors
@@ -28,6 +29,7 @@ SUBDIR += net-im
 SUBDIR += net-mgmt
 SUBDIR += net-p2p
 SUBDIR += news
+SUBDIR += palm
 SUBDIR += print
 SUBDIR += security
 SUBDIR += shells
