@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.67 2007/01/22 12:51:39 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.68 2007/01/22 16:58:26 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -82,6 +82,7 @@
     SUBDIR += popt
     SUBDIR += portlint
     SUBDIR += projectcenter.app
+    SUBDIR += pth
     SUBDIR += py-fileutils
     SUBDIR += qmake
     SUBDIR += sdl12
