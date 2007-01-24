@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.36 2006/12/04 05:09:57 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.37 2007/01/20 17:22:48 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -12,7 +12,9 @@
     SUBDIR += cyrus-sasl2-ldapdb
     SUBDIR += cyrus-sasl2-saslauthd
     SUBDIR += gnupg
+    SUBDIR += gnupg1
     SUBDIR += gnutls
+    SUBDIR += gpgme
     SUBDIR += libgcrypt
     SUBDIR += libgpg-error
     SUBDIR += libmcrypt
