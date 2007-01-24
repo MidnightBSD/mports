@@ -2,12 +2,12 @@
 # Date created:		2003-10-12
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
+# $FreeBSD: ports/security/libgpg-error/Makefile,v 1.17 2006/09/22 06:57:06 sergei Exp $
 # $MidnightBSD$
-# $FreeBSD: ports/security/libgpg-error/Makefile,v 1.16 2006/05/03 12:53:47 sergei Exp $
 #
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.3
+PORTVERSION=	1.4
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,7 +17,7 @@ COMMENT=	Common error values for all GnuPG components
 
 USE_GPG=		yes
 SIG_SUFFIX=		.sig
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
