@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.18 2007/01/24 17:18:18 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.19 2007/01/24 20:34:41 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -11,6 +11,7 @@
     SUBDIR += cups
     SUBDIR += cups-base
     SUBDIR += cups-pstoraster
+    SUBDIR += dvipsk-tetex
     SUBDIR += enscript-a4
     SUBDIR += enscript-letter
     SUBDIR += fontforge
