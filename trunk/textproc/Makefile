@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.34 2007/01/20 17:55:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.35 2007/01/20 19:20:33 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -44,6 +44,7 @@
     SUBDIR += p5-XML-Parser
     SUBDIR += php5-ctype
     SUBDIR += php5-dom
+    SUBDIR += php5-pspell
     SUBDIR += php5-simplexml
     SUBDIR += php5-xml
     SUBDIR += php5-xmlreader
