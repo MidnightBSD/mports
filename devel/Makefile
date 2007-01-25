@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.70 2007/01/25 10:44:51 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.71 2007/01/25 10:59:13 wintellect Exp $
 #
 
     COMMENT = Development utilities
@@ -15,6 +15,8 @@
     SUBDIR += automake15
     SUBDIR += automake19
     SUBDIR += bison
+    SUBDIR += boost
+    SUBDIR += boost-python
     SUBDIR += cscope
     SUBDIR += cvsgraph
     SUBDIR += cvsweb
