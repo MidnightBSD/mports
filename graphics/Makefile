@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.30 2007/01/24 20:39:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.31 2007/01/24 20:42:44 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -22,6 +22,7 @@
     SUBDIR += kdegraphics3
     SUBDIR += lcms
     SUBDIR += libart_lgpl
+    SUBDIR += libcaca
     SUBDIR += libdrm
     SUBDIR += libexif
     SUBDIR += libfpx
