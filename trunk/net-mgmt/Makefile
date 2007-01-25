@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.3 2007/01/25 21:39:33 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.4 2007/01/25 22:28:58 laffer1 Exp $
 #
 
     COMMENT = Network management tools
 
+    SUBDIR += docsis
     SUBDIR += p5-Altoids
     SUBDIR += p5-Cflow
     SUBDIR += p5-Cisco-Reconfig
