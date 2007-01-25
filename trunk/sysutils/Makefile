@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.17 2007/01/20 14:06:32 wintellect Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.18 2007/01/20 15:21:52 wintellect Exp $
 #
 
     COMMENT = System utilities
@@ -8,6 +8,7 @@
     SUBDIR += fusefs-kmod 
     SUBDIR += fusefs-libs 
     SUBDIR += fusefs-sshfs
+    SUBDIR += kdeadmin3
     SUBDIR += libcdio
     SUBDIR += libchk
     SUBDIR += memtest
