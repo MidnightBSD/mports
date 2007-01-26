@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.1 2006/09/27 16:07:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.2 2006/10/01 16:51:30 laffer1 Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
@@ -13,10 +13,8 @@ MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
-BROKEN=		ghostscript-gnu is not available.
-
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The "meta-port" for the FreeBSD Documentation Project
+COMMENT=	The "meta-port" for the Documentation Project
 
 # This dependency list should be kept in sync with the list of
 # required ports in src/release/Makefile.inc.docports.
