@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.31 2007/01/24 20:42:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.32 2007/01/25 15:40:09 wintellect Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -20,6 +20,7 @@
     SUBDIR += jpeg
     SUBDIR += kamera
     SUBDIR += kdegraphics3
+    SUBDIR += kooka
     SUBDIR += lcms
     SUBDIR += libart_lgpl
     SUBDIR += libcaca
