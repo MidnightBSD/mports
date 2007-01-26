@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.23 2007/01/26 01:49:59 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.24 2007/01/26 02:16:38 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -23,9 +23,11 @@
     SUBDIR += openslp
     SUBDIR += p5-URI
     SUBDIR += php5-ldap
+    SUBDIR += php5-rrdtool
     SUBDIR += php5-soap
     SUBDIR += php5-sockets
     SUBDIR += php5-xmlrpc
+    SUBDIR += rrdtool
     SUBDIR += rsync
     SUBDIR += samba-libsmbclient
     SUBDIR += samba3
