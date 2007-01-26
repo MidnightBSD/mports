@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.12 2006/11/17 22:05:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.13 2007/01/24 20:53:20 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -21,6 +21,7 @@
     SUBDIR += pango
     SUBDIR += qt33
     SUBDIR += renaissance
+    SUBDIR += tk84
     SUBDIR += vte
 
 .include <bsd.port.subdir.mk>
