@@ -2,7 +2,7 @@
 # Date created:		10 June 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.1 2006/09/27 13:15:02 laffer1 Exp $
 # $FreeBSD: ports/graphics/imlib/Makefile,v 1.97 2006/05/07 23:46:09 edwin Exp $
 #
 
@@ -27,7 +27,8 @@ USE_X_PREFIX=	yes
 USE_GNOME=	gtk12 gnomehack
 GNU_CONFIGURE=	yes
 INSTALLS_SHLIB=	yes
-CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules
+CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules \
+		--build=${MACHINE_ARCH}-portbld-freebsd6.0 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
 
