@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/kde3/Makefile,v 1.1 2007/01/20 00:37:14 laffer1 Exp $
 #
 
 PORTNAME?=	kde
@@ -35,8 +35,10 @@ CONFIG_FILE=	${LOCALBASE}/etc/kde-meta.conf
 ## arts, kdebase and kdelibs
 
 ALL_MODULES=	KDEACCESSIBILITY KDEADMIN KDEARTWORK KDEVELOP KDEEDU\
-		KDEGAMES KDEGRAPHICS KDEMULTIMEDIA KDENETWORK KOFFICE KDEPIM\
+		KDEGAMES KDEGRAPHICS KDENETWORK KOFFICE\
 		KDESDK KDETOYS KDEUTILS KDEWEBDEV
+
+# we have to avoid a few for now  KDEPIM KDEMULTIMEDIA
 
 ## Forwards parts of the environment to scripts/configure.kde3
 
@@ -124,11 +126,11 @@ RUN_DEPENDS+=	kppp:${PORTSDIR}/net/kdenetwork3
 RUN_DEPENDS+=	kview:${PORTSDIR}/graphics/kdegraphics3
 .endif
 .if !defined(WITHOUT_KDEMULTIMEDIA)
-RUN_DEPENDS+=	kmix:${PORTSDIR}/multimedia/kdemultimedia3
+#RUN_DEPENDS+=	kmix:${PORTSDIR}/multimedia/kdemultimedia3
 .endif
-.if !defined(WITHOUT_KDEPIM)
-RUN_DEPENDS+=	korganizer:${PORTSDIR}/deskutils/kdepim3
-.endif
+#.if !defined(WITHOUT_KDEPIM)
+#RUN_DEPENDS+=	korganizer:${PORTSDIR}/deskutils/kdepim3
+#.endif
 .if !defined(WITHOUT_KDESDK)
 RUN_DEPENDS+=	cervisia:${PORTSDIR}/devel/kdesdk3
 .endif
