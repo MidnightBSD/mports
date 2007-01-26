@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.13 2006/12/11 02:37:47 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.14 2007/01/20 15:56:39 wintellect Exp $
 
     COMMENT = Archivers
 
@@ -11,6 +11,7 @@
     SUBDIR += gzip
     SUBDIR += gzrecover
     SUBDIR += lha
+    SUBDIR += libunrar
     SUBDIR += lzo2
     SUBDIR += p7zip
     SUBDIR += pecl-zip
