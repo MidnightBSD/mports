@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl84/Makefile,v 1.98 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.1 2007/01/25 23:05:19 laffer1 Exp $
 #
 
 PORTNAME=	tcl
@@ -20,10 +20,12 @@ COMMENT=	Tool Command Language
 
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
-ALL_TARGET=	all test
-USE_LDCONFIG=	yes
+ALL_TARGET=	all #test
+#USE_LDCONFIG=	yes
+INSTALLS_SHLIB=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tcl${TCL_VER}
+CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tcl${TCL_VER} \
+		--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
 MAKE_ENV=	SHORT_TCL_VER=84 LANG=C LC_ALL=C	# LANG=C is required for some of UTF-using tests
 PKGINSTALL=	${PKGDIR}/pkg-install.tclsh
