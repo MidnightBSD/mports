@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.3 2006/10/01 18:06:50 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -55,11 +55,7 @@ ARCH!=	${DESTDIR}/usr/bin/uname -p
 OSREL!=	${DESTDIR}/usr/bin/uname -r | sed -e 's/[-(].*//'
 .endif
 .if !defined(OSVERSION)
-.if exists(/sbin/sysctl)
 OSVERSION!= /sbin/sysctl -n kern.osreldate
-.else
-OSVERSION!= /usr/sbin/sysctl -n kern.osreldate
-.endif
 .endif
 .if !defined(PORTOBJFORMAT)
 PORTOBJFORMAT!= test -x ${DESTDIR}/usr/bin/objformat && ${DESTDIR}/usr/bin/objformat || echo aout
@@ -267,11 +263,7 @@ README=	${TEMPLATES}/README.category
 COMMENTFILE?=	${.CURDIR}/pkg/COMMENT
 DESCR?=		${.CURDIR}/pkg/DESCR
 INDEXDIR?=	${PORTSDIR}
-.if ${OSVERSION} >= 500036
 INDEXFILE?=	INDEX-${OSVERSION:C/([0-9]).*/\1/}
-.else
-INDEXFILE?=	INDEX
-.endif
 
 HTMLIFY=	sed -e 's/&/\&amp;/g' -e 's/>/\&gt;/g' -e 's/</\&lt;/g'
 
