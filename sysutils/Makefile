@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.18 2007/01/20 15:21:52 wintellect Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.19 2007/01/25 21:17:26 laffer1 Exp $
 #
 
     COMMENT = System utilities
 
+    SUBDIR += bsdstats
     SUBDIR += cdrtools
     SUBDIR += coreutils
     SUBDIR += fusefs-kmod 
