@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.71 2007/01/25 10:59:13 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.72 2007/01/25 16:15:16 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -23,6 +23,7 @@
     SUBDIR += cvsweb3
     SUBDIR += desktop-file-utils
     SUBDIR += devtodo
+    SUBDIR += dmalloc
     SUBDIR += ffcall
     SUBDIR += gamin
     SUBDIR += gconf2
