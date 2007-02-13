@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.26 2007/01/31 04:47:03 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.27 2007/02/13 22:10:40 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -31,6 +31,7 @@
     SUBDIR += rrdtool
     SUBDIR += rsync
     SUBDIR += samba-libsmbclient
+    SUBDIR += samba-nmblookup
     SUBDIR += samba3
     SUBDIR += sdl_net
     SUBDIR += zillion
