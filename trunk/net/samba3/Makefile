@@ -2,14 +2,12 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.1 2006/10/02 06:36:05 laffer1 Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.152 2006/09/04 19:00:17 garga Exp $
 #
 
 PORTNAME=		samba
-PORTVERSION?=		3.0.23c
-PORTREVISION?=		0
-PORTEPOCH?=		1
+PORTVERSION?=		3.0.24
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	. old-versions rc pre
@@ -37,7 +35,7 @@ SAMBA_SWATDIR=		${PREFIX}/share/swat
 # DEPRECATED: This is an old location of the private dir
 SAMBA_PRIVATE?=		${PREFIX}/private
 SAMBA_CONFDIR?=		${PREFIX}/etc
-SAMBA_PRIVATEDIR=	${SAMBA_CONFDIR}/samba
+SAMBA_PRIVATEDIR?=	${SAMBA_CONFDIR}/samba
 SAMBA_CONFIG=		smb.conf
 SAMBA_LIB=		lib
 SAMBA_LIBDIR=		${PREFIX}/${SAMBA_LIB}
@@ -65,23 +63,24 @@ OPTIONS=	LDAP		"With LDAP support" on \
 		CUPS		"With CUPS printing support" on \
 		WINBIND		"With WinBIND support" on \
 		ACL_SUPPORT	"With ACL support" off \
-		AIO_SUPPORT	"With experimental AIO support" off \
 		FAM_SUPPORT	"With File Alteration Monitor" off \
 		SYSLOG		"With Syslog support" off \
 		QUOTAS		"With Disk quota support" off \
 		UTMP		"With UTMP accounting support" on \
 		MSDFS		"With MSDFS support" off \
-		SMBSH		"With SMBSH wrapper for UNIX commands" off \
-		PAM_SMBPASS	"With PAM authentication against passdb backend(s)" off \
-		EXP_MODULES	"With experimental module(s)" off \
-		POPT		"With system-wide POPT library" on
+		PAM_SMBPASS	"With PAM authentication vs passdb backends" off \
+		CLUSTER		"With experimental cluster support" off \
+		EXP_MODULES	"With experimental modules" off \
+		POPT		"With system-wide POPT library" on \
+		MAX_DEBUG	"With maximum debugging" off
 .endif
 
 .include <bsd.port.pre.mk>
 
 .if defined(SAMBA_SUBPORT)
 # Switch off all extra functionality
-CONFIGURE_ARGS+=	--disable-cups --without-winbind --without-syslog \
+CONFIGURE_ARGS+=	--disable-cups --disable-fam --without-winbind \
+			--without-syslog \
 			--without-quotas --without-utmp --without-pam \
 			--without-pam_smbpass --without-aio-support
 
@@ -92,7 +91,7 @@ CONFIGURE_ARGS+=	--disable-cups --without-winbind --without-syslog \
 .else
 # Samba server itself
 USE_RC_SUBR=		samba
-SUB_FILES=		pkg-install pkg-message pkg-deinstall smb.conf.sample
+SUB_FILES=		pkg-install pkg-message pkg-deinstall 
 
 PLIST=			${WRKDIR}/.PLIST
 
@@ -112,6 +111,17 @@ SUB_LIST+=		CUPSD=""
 .else
 CONFIGURE_ARGS+=	--disable-cups
 SUB_LIST+=		CUPSD="@comment "
+.endif
+
+.if defined(WITH_MAX_DEBUG)
+LIB_DEPENDS+=	dmalloc.1:${PORTSDIR}/devel/dmalloc
+CPPFLAGS+=	"-I${LOCALBASE}/include"
+LDFLAGS+=	"-L${LOCALBASE}/lib"
+CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}"
+LDFLAGS="${LDFLAGS}"
+CONFIGURE_ARGS+=	--enable-debug --enable-developer --enable-krb5developer --enable-dmalloc --with-profiling-data
+.else
+CONFIGURE_ARGS+=	--disable-debug --disable-developer --disable-krb5developer --disable-dmalloc --without-profiling-data
 .endif
 
 .if defined(WITH_SYSLOG)
@@ -154,24 +164,19 @@ PLIST_SUB+=		WINBIND="@comment "
 SUB_LIST+=		WINBIND="@comment "
 .endif
 
-# Taken from bsd.port.mk
-.if exists(${LOCALBASE}/libexec/gam_server)
-WANT_FAM_SYSTEM=	gamin
-WITH_FAM_SUPPORT=	on
-.	undef		WITHOUT_FAM_SUPPORT
-.elif exists(${LOCALBASE}/bin/fam)
-WANT_FAM_SYSTEM=	fam
-WITH_FAM_SUPPORT=	on
-.	undef		WITHOUT_FAM_SUPPORT
-.endif
-
-.if defined(WITH_FAM_SUPPORT) || defined(WANT_FAM_SYSTEM)
+.if defined(WITH_FAM_SUPPORT) 
 USE_FAM=		yes
+CONFIGURE_ARGS+=	--enable-fam
+.else
+CONFIGURE_ARGS+=	--disable-fam
 .endif
 
 .if defined(WITH_EXP_MODULES)
 .if !defined(WANT_EXP_MODULES) || empty(WANT_EXP_MODULES)
-WANT_EXP_MODULES=	rpc_echo idmap_ad idmap_rid charset_weird
+WANT_EXP_MODULES=	idmap_ad idmap_rid charset_weird
+.if !defined(WITH_MAX_DEBUG)
+WANT_EXP_MODULES+=	rpc_echo
+.endif
 .endif
 WANT_EXP_MODULES!=	${ECHO_CMD} ${WANT_EXP_MODULES} | ${SED} -E 's/ +/,/g'
 CONFIGURE_ARGS+=	--with-shared-modules=${WANT_EXP_MODULES}
@@ -225,11 +230,11 @@ CONFIGURE_ARGS+=	--without-ads
 .endif
 # Kerberos5 is necessary for ADS
 .if defined(SAMBA_WANT_KRB5)
-.if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.a)
+.if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
 CONFIGURE_ARGS+=	--with-krb5=${KRB5_HOME}
-.elif defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
+.elif defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.so)
 CONFIGURE_ARGS+=	--with-krb5=${HEIMDAL_HOME}
-.elif exists(${DESTDIR}/usr/lib/libkrb5.a) && exists(${DESTDIR}/usr/bin/krb5-config)
+.elif exists(${DESTDIR}/usr/lib/libkrb5.so) && exists(${DESTDIR}/usr/bin/krb5-config)
 CONFIGURE_ARGS+=	--with-krb5=${DESTDIR}/usr
 .else
 LIB_DEPENDS+=		krb5:${PORTSDIR}/security/heimdal
@@ -357,16 +362,6 @@ post-install:
 	@for d in `${FIND} ${SAMBA_MODULEDIR} -type d | ${SORT} -r`; do \
 	    ${ECHO_CMD} "@unexec ${RMDIR} $$d 2>/dev/null || true" >> ${TMPPLIST}; \
 	done
-# Taken from bsd.port.mk
-.if (${OSVERSION} >= 700007 || ( ${OSVERSION} < 700000 && ${OSVERSION} >= 600101 ))
-	@for i in ${USE_RC_SUBR}; do \
-	    ${ECHO_CMD} "@unexec %D/etc/rc.d/$${i%.sh} forcestop 2>/dev/null || true" >> ${TMPPLIST}; \
-	done
-.else
-	@for i in ${USE_RC_SUBR}; do \
-	    ${ECHO_CMD} "@unexec %D/etc/rc.d/$${i%.sh}.sh forcestop 2>/dev/null || true" >> ${TMPPLIST}; \
-	done
-.endif
 # Documentation
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
