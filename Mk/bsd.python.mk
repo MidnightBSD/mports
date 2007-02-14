@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.3 2006/11/04 15:57:04 wintellect Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.4 2006/11/17 22:31:54 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -308,7 +308,7 @@ PYTHON_SUFFIX=		25
 
 # Python-2.4
 .elif ${PYTHON_VERSION} == "python2.4"
-PYTHON_PORTVERSION?=2.4.3
+PYTHON_PORTVERSION?=2.4.4
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python
 PYTHON_REL=			243
 PYTHON_SUFFIX=		24
