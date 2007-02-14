@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.13 2007/01/24 20:53:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.14 2007/01/26 00:23:59 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -14,6 +14,7 @@
     SUBDIR += gtkmm12
     SUBDIR += gtkmm20
     SUBDIR += gtkmm24
+    SUBDIR += gtoolkit
     SUBDIR += linux-gtk
     SUBDIR += linux-gtk2
     SUBDIR += linux-pango
