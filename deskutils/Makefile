@@ -4,6 +4,7 @@
     COMMENT = Things that used to be on the desktop before computers were invented
 
     SUBDIR += linux-sunbird
+    SUBDIR += preferencepanes
     SUBDIR += preferences.app
 
 .include <bsd.port.subdir.mk>
