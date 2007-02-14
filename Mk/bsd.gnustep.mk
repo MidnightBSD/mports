@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.29 2006/09/10 16:41:27 dinoex Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -64,6 +64,9 @@
 # USE_GNUSTEP_INSTALL=yes
 #	call install target with GNUstep.sh sourced in the current shell
 #
+# USE_GNUSTEP_MAKE=yes
+#	require GNUstep.sh for build and install
+#
 # USE_GNUSTEP_SYSTEM_LIBS=	Renaissance:x11-toolkits/renaissance
 #	depends on a shared lib in System directrory
 #
@@ -87,10 +90,10 @@ RUN_DEPENDS+=	${COMBOLIBDIR}/libobjc.so:${PORTSDIR}/${GNUSTEP_OBJC_PORT}
 .endif
 .endif
 
-.if defined(USE_GNUSTEP_BUILD)
+.if defined(USE_GNUSTEP_BUILD) || defined(USE_GNUSTEP_MAKE)
 BUILD_DEPENDS+=	${SYSMAKEDIR}/GNUstep.sh:${PORTSDIR}/${GNUSTEP_MAKE_PORT}
 .endif
-.if defined(USE_GNUSTEP_INSTALL)
+.if defined(USE_GNUSTEP_INSTALL) || defined(USE_GNUSTEP_MAKE)
 RUN_DEPENDS+=	${SYSMAKEDIR}/GNUstep.sh:${PORTSDIR}/${GNUSTEP_MAKE_PORT}
 .endif
 
