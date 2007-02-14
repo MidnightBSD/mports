@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.17 2007/01/20 14:40:05 wintellect Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.18 2007/01/25 23:05:19 laffer1 Exp $
 #
 
     COMMENT = Programming languages
@@ -14,7 +14,9 @@
     SUBDIR += gcc42
     SUBDIR += gcc42-withgcjawt
     SUBDIR += gnustep-base
+    SUBDIR += gnustep-guile
     SUBDIR += gnustep-objc
+    SUBDIR += guile
     SUBDIR += p5-Data-JavaScript
     SUBDIR += p5-Error
     SUBDIR += p5-F77
