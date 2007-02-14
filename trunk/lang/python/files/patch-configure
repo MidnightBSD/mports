@@ -1,6 +1,6 @@
---- configure.orig	Fri Nov 17 17:12:25 2006
-+++ configure	Fri Nov 17 17:13:21 2006
-@@ -3413,12 +3413,12 @@
+--- configure.old	Tue Oct 17 12:03:36 2006
++++ configure	Wed Feb 14 14:47:34 2007
+@@ -3483,12 +3483,12 @@
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
  	  INSTSONAME="$LDLIBRARY".$SOVERSION
            ;;
@@ -15,16 +15,16 @@
  		SOVERSION=`echo $SOVERSION|cut -d "." -f 1`
  		;;
  	  esac
-@@ -10380,7 +10380,7 @@
+@@ -10479,7 +10479,7 @@
  		;;
  	Linux*|GNU*) LDSHARED='$(CC) -shared';;
  	BSD/OS*/4*) LDSHARED="gcc -shared";;
--	OpenBSD*|FreeBSD*)
-+	OpenBSD*|FreeBSD*|MidnightBSD*)
+-	FreeBSD*)
++	FreeBSD*|MidnightBSD*)
  		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
  		then
  			LDSHARED="$CC -shared ${LDFLAGS}"
-@@ -10420,7 +10420,7 @@
+@@ -10533,7 +10533,7 @@
  		 fi;;
  	Linux*|GNU*) CCSHARED="-fPIC";;
  	BSD/OS*/4*) CCSHARED="-fpic";;
@@ -33,7 +33,7 @@
  	OpenUNIX*|UnixWare*)
  		if test "$GCC" = "yes"
  		then CCSHARED="-fPIC"
-@@ -10473,7 +10473,7 @@
+@@ -10586,7 +10586,7 @@
  	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
  	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
  	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;

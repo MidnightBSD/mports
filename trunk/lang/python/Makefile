@@ -3,11 +3,11 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python/Makefile,v 1.152 2006/05/14 01:17:03 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/python/Makefile,v 1.1 2006/11/17 22:29:46 laffer1 Exp $
 #
 
 PORTNAME=	python
-PORTVERSION=	2.4.3
+PORTVERSION=	2.4.4
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
