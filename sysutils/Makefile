@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.19 2007/01/25 21:17:26 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.20 2007/02/09 01:06:53 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -19,8 +19,6 @@
     SUBDIR += obliterate
     SUBDIR += pecl-fileinfo
     SUBDIR += php5-posix
-    SUBDIR += portsearch
-    SUBDIR += portupgrade
     SUBDIR += pwgen
     SUBDIR += screen
     SUBDIR += timemon
