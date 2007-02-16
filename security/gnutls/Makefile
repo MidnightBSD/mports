@@ -2,7 +2,7 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.1 2006/09/23 00:05:34 laffer1 Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
@@ -20,7 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 
 LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
-		gpg-error.2:${PORTSDIR}/security/libgpg-error
+		gpg-error.3:${PORTSDIR}/security/libgpg-error
 
 CONFLICTS=	gnutls-devel-[0-9]*
 
