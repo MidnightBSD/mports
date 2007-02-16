@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.28 2007/01/20 11:18:16 wintellect Exp $
+# $MidnightBSD: mports/Makefile,v 1.29 2007/01/24 19:50:00 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -30,6 +30,7 @@ SUBDIR += net-mgmt
 SUBDIR += net-p2p
 SUBDIR += news
 SUBDIR += palm
+SUBDIR += ports-mgmt
 SUBDIR += print
 SUBDIR += security
 SUBDIR += shells
@@ -121,7 +122,7 @@ print-index:	${INDEXDIR}/${INDEXFILE}
 	@awk -F\| '{ printf("Port:\t%s\nPath:\t%s\nInfo:\t%s\nMaint:\t%s\nIndex:\t%s\nB-deps:\t%s\nR-deps:\t%s\nE-deps:\t%s\nP-deps:\t%s\nF-deps:\t%s\nWWW:\t%s\n\n", $$1, $$2, $$4, $$6, $$7, $$8, $$9, $$11, $$12, $$13, $$10); }' < ${INDEXDIR}/${INDEXFILE}
 
 CVS?= cvs
-SUP?= cvsup
+SUP?= csup
 PORTSNAP?= portsnap
 PORTSNAP_FLAGS?= -p ${.CURDIR}
 .if defined(SUPHOST)
