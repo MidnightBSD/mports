@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.32 2007/01/22 10:44:58 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.33 2007/01/22 13:02:58 wintellect Exp $
 #
 
     COMMENT = Databases
@@ -51,6 +51,8 @@
     SUBDIR += postgresql81-server
     SUBDIR += qdbm
     SUBDIR += ruby-bdb
+    SUBDIR += sqlclient
+    SUBDIR += sqlite3
     SUBDIR += unixODBC
 
 
