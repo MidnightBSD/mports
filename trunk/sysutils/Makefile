@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.20 2007/02/09 01:06:53 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.21 2007/02/16 22:30:43 laffer1 Exp $
 #
 
     COMMENT = System utilities
 
+    SUBDIR += 915resolution
     SUBDIR += bsdstats
     SUBDIR += cdrtools
     SUBDIR += coreutils
