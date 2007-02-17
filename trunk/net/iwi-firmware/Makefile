@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/iwi-firmware/Makefile,v 1.8 2006/05/08 09:37:17 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/iwi-firmware/Makefile,v 1.1 2007/02/17 06:04:08 archite Exp $
 
 PORTNAME=	iwi-firmware
 RELNAME=	ipw2200
@@ -11,7 +11,7 @@ PORTVERSION=	2.4
 PORTREVISION=	7
 CATEGORIES=	net sysutils
 
-MAINTAINER=	flz@FreeBSD.org
+MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Intel PRO/Wireless 2200 Driver Firmware
 
 MASTERDIR=	${.CURDIR}/../ipw-firmware
