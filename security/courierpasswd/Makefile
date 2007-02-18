@@ -3,13 +3,15 @@
 # Whom:					Andrew St. Jean <andrew@arda.homeunix.net>
 #
 # $FreeBSD: ports/security/courierpasswd/Makefile,v 1.3 2006/07/27 07:03:34 clsung Exp $
+# $MidnightBSD$
+#
 
 PORTNAME=	courierpasswd
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
 MASTER_SITES=	http://www.arda.homeunix.net/store/
 
-MAINTAINER=	andrew@arda.homeunix.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User authentication and password changing utility
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
