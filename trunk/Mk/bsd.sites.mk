@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.3 2007/01/02 21:53:52 wintellect Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.4 2007/01/03 22:51:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1221,7 +1221,6 @@ MASTER_SITE_XCONTRIB+=	\
 
 .if !defined(IGNORE_MASTER_SITE_XEMACS)
 MASTER_SITE_XEMACS+= \
-	ftp://ftp.xemacs.org/pub/xemacs/%SUBDIR%/ \
 	ftp://ftp.at.xemacs.org/editors/xemacs/%SUBDIR%/ \
 	ftp://ftp.be.xemacs.org/xemacs/%SUBDIR%/ \
 	ftp://ftp.br.xemacs.org/pub/xemacs/%SUBDIR%/ \
