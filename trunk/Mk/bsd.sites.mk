@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.6 2007/02/18 03:13:03 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.7 2007/02/18 03:15:28 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -467,7 +467,7 @@ MASTER_SITE_GNUPG+= 	\
 .if !defined(IGNORE_MASTER_SITE_GNUSTEP)
 MASTER_SITE_GNUSTEP+= \
 	http://downloads.planetmirror.com/pub/gnustep/gnustep/%SUBDIR%/ \
-	http://public.planetmirror.com/pub/gnustep/gnustep/%SUBDIR%/ \
+	ftp://ftp.planetmirror.com/pub/gnustep/gnustep/%SUBDIR%/ \
 	ftp://ftp.gnustep.org/pub/gnustep/%SUBDIR%/ \
 	ftp://ftp.easynet.nl/mirror/GNUstep/pub/gnustep/%SUBDIR%/
 .endif
