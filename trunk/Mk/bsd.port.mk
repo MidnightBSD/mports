@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.9 2007/02/18 02:31:09 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.10 2007/02/18 02:37:56 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -2134,7 +2134,7 @@ PTHREAD_LIBS?=		-pthread
 .endif
 
 .if exists(/usr/bin/fetch)
-FETCH_CMD?=		/usr/bin/fetch -ARr
+FETCH_CMD?=		/usr/bin/fetch -ApRr
 FETCH_REGET?=	1
 .if ${OSVERSION} >= 480000 && !defined(DISABLE_SIZE)
 # Avoid -S for 4.7 and earlier since it causes fetch errors
