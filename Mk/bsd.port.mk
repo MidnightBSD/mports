@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.10 2007/02/18 02:37:56 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.11 2007/02/18 02:40:17 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3868,7 +3868,7 @@ install-ldconfig-file:
 	${CHROOT} ${DESTDIR} -${LDCONFIG} -m ${USE_LDCONFIG}
 .endif
 .endif
-.if ${USE_LDCONFIG:L} != "${PREFIX}/lib"
+.if ${USE_LDCONFIG} != "${PREFIX}/lib"
 	@${ECHO_MSG} "===>   Installing ldconfig configuration file"
 .if defined(NO_LDCONFIG_MTREE)
 	@${MKDIR} ${PREFIX}/${LDCONFIG_DIR}
@@ -3877,7 +3877,7 @@ install-ldconfig-file:
 		> ${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
 	@${ECHO_CMD} ${LDCONFIG_DIR}/${UNIQUENAME} >> ${TMPPLIST}
 .if defined(NO_LDCONFIG_MTREE)
-	@${ECHO_CMD} "@unexec rmdir ${LDCONFIG_DIR} >/dev/null 2>&1" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir ${LDCONFIG_DIR} >/dev/null 2>&1 || true" >> ${TMPPLIST}
 .endif
 .endif
 .endif
@@ -3910,7 +3910,7 @@ install-ldconfig-file:
 	@${ECHO_CMD} "@unexec rmdir ${LDCONFIG32_DIR} >/dev/null 2>&1" >> ${TMPPLIST}
 .endif
 .endif
-# This can be removed once, all ports have been converted to USE_LDCONFIG.
+# This can be removed once all ports have been converted to USE_LDCONFIG.
 .if defined(INSTALLS_SHLIB)
 .if !defined(INSTALL_AS_USER)
 .if !defined(DESTDIR)
@@ -5568,7 +5568,7 @@ compress-man:
 	@_manpages='${_MANPAGES:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
 .endif
 .if defined(_MLINKS)
-	@set ${_MLINKS}; \
+	@set -- ${_MLINKS}; \
 	while :; do \
 		[ $$# -eq 0 ] && break || ${TRUE}; \
 		${RM} -f $${2%.gz}; ${RM} -f $$2.gz; \
@@ -5698,7 +5698,7 @@ config:
 	-@if [ -e ${_OPTIONSFILE} ]; then \
 		. ${_OPTIONSFILE}; \
 	fi; \
-	set ${OPTIONS} XXX; \
+	set -- ${OPTIONS} XXX; \
 	while [ $$# -gt 3 ]; do \
 		OPTIONSLIST="$${OPTIONSLIST} $$1"; \
 		defaultval=$$3; \
@@ -5778,7 +5778,7 @@ showconfig:
 	-@if [ -e ${_OPTIONSFILE} ]; then \
 		. ${_OPTIONSFILE}; \
 	fi; \
-	set ${OPTIONS} XXX; \
+	set -- ${OPTIONS} XXX; \
 	while [ $$# -gt 3 ]; do \
 		defaultval=$$3; \
 		withvar=WITH_$$1; \
@@ -5911,7 +5911,7 @@ VALID_DESKTOP_CATEGORIES+= Application Core Development Building Debugger IDE \
 
 check-desktop-entries:
 .if defined(DESKTOP_ENTRIES)
-	@set ${DESKTOP_ENTRIES} XXX; \
+	@set -- ${DESKTOP_ENTRIES} XXX; \
 	if [ `${EXPR} \( $$# - 1 \) % 6` -ne 0 ]; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: the DESKTOP_ENTRIES list must contain one or more groups of 6 elements"; \
 		exit 1; \
@@ -5969,7 +5969,7 @@ install-desktop-entries:
 .if defined(DESKTOP_ENTRIES)
 	@(${MKDIR} "${DESKTOPDIR}" 2> /dev/null) || \
 		(${ECHO_MSG} "===> Cannot create ${DESKTOPDIR}, check permissions"; exit 1)
-	@set ${DESKTOP_ENTRIES} XXX; \
+	@set -- ${DESKTOP_ENTRIES} XXX; \
 	if [ -z "${_DESKTOPDIR_REL}" ]; then \
 		${ECHO_CMD} "@cwd ${DESKTOPDIR}" >> ${TMPPLIST}; \
 	fi; \
