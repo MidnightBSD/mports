@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.41 2007/02/18 05:00:12 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.42 2007/02/18 05:03:56 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -11,6 +11,7 @@
     SUBDIR += courer-authlib-base
     SUBDIR += courierpassd
     SUBDIR += courierpasswd
+    SUBDIR += courieruserinfo
     SUBDIR += cyrus-sasl
     SUBDIR += cyrus-sasl2
     SUBDIR += cyrus-sasl2-ldapdb
