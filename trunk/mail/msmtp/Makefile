@@ -2,12 +2,12 @@
 # Date created:                   22 Aug 2003
 # Whom:                           R.I.Pienaar <rip@devco.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.1 2006/09/30 11:44:52 wintellect Exp $
 # $FreeBSD: ports/mail/msmtp/Makefile,v 1.25 2006/08/21 07:35:52 novel Exp $
 #
 
 PORTNAME=	msmtp
-PORTVERSION=	1.4.7
+PORTVERSION=	1.4.9
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	msmtp
@@ -21,7 +21,7 @@ USE_GETOPT_LONG=yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--infodir="${PREFIX}/info" --mandir="${PREFIX}/man"
 MAN1=	msmtp.1
 INFO=	msmtp
