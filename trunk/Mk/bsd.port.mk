@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.8 2007/01/19 17:05:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.9 2007/02/18 02:31:09 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -72,6 +72,9 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # PKGNAMEPREFIX	- Prefix to specify that port is language-specific, etc.
 #				  Optional.
 # PKGNAMESUFFIX	- Suffix to specify compilation options.  Optional.
+# PKGVERSION	- Always defined as
+#		  ${PORTVERSION},
+#		  Do not define this in your Makefile.
 # UNIQUENAME	- A name for your port that is globally unique.  By default,
 #				  this is set to ${LATEST_LINK} when LATEST_LINK is set,
 #				  and to ${PKGNAMEPREFIX}${PORTNAME} otherwise.
@@ -434,6 +437,8 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  or http://www.FreeBSD.org/gnome/docs/porting.html
 #				  for more details.
 ##
+# USE_WX			- If set, this port uses the WxWidgets library and related
+#				  components.  See bsd.wx.mk for more details.
 # USE_KDEBASE_VER
 #				- Set to 3 to use the KDE windowing system.
 #				  Implies inclusion of bsd.kde.mk.
@@ -1303,8 +1308,11 @@ _SUF2=	,${PORTEPOCH}
 
 # check for old, crufty, makefile types, part 2.  The "else" case
 # should have been handled in part 1, above.
+.if !defined(PKGVERSION)
+PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
+.endif
 .if !defined(PKGNAME)
-PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
+PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}
 .endif
 DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
