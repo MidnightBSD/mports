@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.11 2007/02/18 02:40:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.12 2007/02/18 02:45:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3084,7 +3084,7 @@ IGNORE=	is marked as broken: ${BROKEN}
 IGNORE=	is forbidden: ${FORBIDDEN}
 .endif
 
-.if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING) && !defined(PARALLEL_PACKAGE_BUILD))
+.if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
 IGNORE=	has to be built manually: ${MANUAL_PACKAGE_BUILD}
 clean:
 	@${IGNORECMD}
