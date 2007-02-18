@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.3 2007/02/14 20:22:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.29 2006/09/10 16:41:27 dinoex Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -67,10 +67,10 @@
 # USE_GNUSTEP_MAKE=yes
 #	require GNUstep.sh for build and install
 #
-# USE_GNUSTEP_SYSTEM_LIBS=	Renaissance:x11-toolkits/renaissance
+# USE_GNUSTEP_SYSTEM_LIBS+=	Renaissance:x11-toolkits/renaissance
 #	depends on a shared lib in System directrory
 #
-# USE_GNUSTEP_LOCAL_LIBS=	pantomime:mail/pantomime
+# USE_GNUSTEP_LOCAL_LIBS+=	pantomime:mail/pantomime
 #	depends on a shared lib in Local directrory
 #
 
