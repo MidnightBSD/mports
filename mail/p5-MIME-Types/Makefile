@@ -3,7 +3,7 @@
 # Whom:                                 -
 #
 # $FreeBSD: ports/mail/p5-MIME-Types/Makefile,v 1.11 2006/09/03 20:34:02 skv Exp $
-# MidnightBSD$
+# $MidnightBSD$
 #
 
 PORTNAME=		MIME-Types
