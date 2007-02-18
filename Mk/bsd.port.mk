@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.7 2007/01/11 20:52:14 wintellect Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.8 2007/01/19 17:05:15 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -5199,7 +5199,7 @@ missing:
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		THISORIGIN=$$(${ECHO_CMD} $$dir | ${SED} 's,${PORTSDIR}/,,'); \
 		installed=$$(${PKG_INFO} -qO $${THISORIGIN}); \
-		if [ -z $$installed ]; then \
+		if [ -z "$$installed" ]; then \
 			${ECHO_CMD} $$THISORIGIN; \
 		fi \
 	done
