@@ -2,12 +2,12 @@
 # Date created:                   22 Aug 2003
 # Whom:                           R.I.Pienaar <rip@devco.net>
 #
-# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.1 2006/09/30 11:44:52 wintellect Exp $
+# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.2 2007/02/18 01:45:35 laffer1 Exp $
 # $FreeBSD: ports/mail/msmtp/Makefile,v 1.25 2006/08/21 07:35:52 novel Exp $
 #
 
 PORTNAME=	msmtp
-PORTVERSION=	1.4.9
+PORTVERSION=	1.4.10
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	msmtp
