@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.4 2007/01/03 22:51:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.5 2007/02/18 03:11:32 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -581,8 +581,6 @@ MASTER_SITE_KDE+=	\
 	ftp://kde.paralax.org/kde/%SUBDIR%/ \
 	ftp://ftp.cronyx.ru/pub/mirror/kde/%SUBDIR%/ \
 	ftp://ftp.fu-berlin.de/pub/unix/X11/gui/kde/%SUBDIR%/ \
-	ftp://sunsite.sut.ac.jp/pub/archives/linux/kde/%SUBDIR%/ \
-	http://sunsite.tus.ac.jp/pub/archives/linux/kde/%SUBDIR%/ \
 	ftp://linux.cis.nctu.edu.tw/X/wm/kde/%SUBDIR%/ \
 	ftp://ftp.na.kde.org/pub/kde/%SUBDIR%/ \
 	http://ftp.sun.ac.za/sites/ftp.kde.org/pub/kde/%SUBDIR%/ \
@@ -1212,7 +1210,6 @@ MASTER_SITE_XCONTRIB+=	\
 	ftp://ftp.dti.ad.jp/pub/X/XFree86/mirror/X.Org/contrib/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/X11/ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://ftp2.x.org/contrib/%SUBDIR%/ \
-	ftp://sunsite.tus.ac.jp/pub/archives/X11/contrib/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/opengroup/contrib/&,} \
 	ftp://ftp.mirrorservice.org/sites/ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://sunsite.org.uk/sites/ftp.x.org/contrib/%SUBDIR%/ \
@@ -1274,7 +1271,6 @@ MASTER_SITE_XORG+= \
 	ftp://ftp.gwdg.de/pub/x11/x.org/pub/%SUBDIR%/ \
 	ftp://ftp.cica.es/pub/X/pub/%SUBDIR%/ \
 	ftp://ftp.cs.cuhk.edu.hk/pub/X11/%SUBDIR%/ \
-	ftp://sunsite.sut.ac.jp/pub/archives/X11/%SUBDIR%/ \
 	ftp://ftp.unicamp.br/pub/X11/releases/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/X11/X.org/%SUBDIR%/ \
 	ftp://ftp.task.gda.pl/mirror/ftp.x.org/pub/%SUBDIR%/ \
