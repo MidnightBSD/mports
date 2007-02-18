@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.11 2006/12/20 22:04:50 wintellect Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.12 2007/01/20 16:09:40 wintellect Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -16,6 +16,7 @@
     SUBDIR += php5-imap
     SUBDIR += pine-pgp-filters
     SUBDIR += pine4
+    SUBDIR += procmail
     SUBDIR += spamd
     SUBDIR += squirrelmail
     SUBDIR += wmymail
