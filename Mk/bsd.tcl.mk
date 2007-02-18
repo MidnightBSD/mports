@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.tcl.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.3 2006/05/01 19:49:57 sem Exp $
 #
 
@@ -91,6 +91,7 @@ USE_TK=		84
 .endif
 
 TK_VER:=	${USE_TK:S/8/8./}
+TCL_VER?=	${TK_VER}
 
 .if defined(USE_TCL) && ${TCL_VER} != ${TK_VER}
 IGNORE=		TCL and TK versions must be equal (${TCL_VER} vs ${TK_VER})
