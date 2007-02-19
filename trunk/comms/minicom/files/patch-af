@@ -1,0 +1,11 @@
+--- src/window.c.orig	Sun Jan 27 18:57:13 2002
++++ src/window.c	Sun Jan 27 18:57:25 2002
+@@ -110,7 +110,7 @@
+ 
+ int useattr = 1;
+ int dirflush = 1;
+-extern int LINES, COLS;
++int LINES, COLS;
+ int usecolor = 0;
+ WIN *stdwin;
+ char *_tptr = CNULL;
