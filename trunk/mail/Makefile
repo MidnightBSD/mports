@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.16 2007/02/19 19:21:25 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.17 2007/02/19 19:31:58 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -21,6 +21,7 @@
     SUBDIR += pine-pgp-filters
     SUBDIR += pine4
     SUBDIR += procmail
+    SUBDIR += qmail
     SUBDIR += spamd
     SUBDIR += squirrelmail
     SUBDIR += wmymail
