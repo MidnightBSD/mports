@@ -2,13 +2,12 @@
 # Date created:		7 March 2003
 # Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.1 2006/09/24 12:53:14 laffer1 Exp $
 # $FreeBSD: ports/misc/mime-support/Makefile,v 1.12 2006/07/20 15:03:43 oliver Exp $
 #
 
 PORTNAME=	mime-support
-PORTVERSION=	3.37.1
-PORTREVISION=	0
+PORTVERSION=	3.39.1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION:C/(.*)\.([^.])/\1-\2/}
