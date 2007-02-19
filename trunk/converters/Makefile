@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.7 2007/01/20 15:25:58 wintellect Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.8 2007/01/25 10:54:08 wintellect Exp $
 #
 
     COMMENT = Character code converters
@@ -12,5 +12,6 @@
     SUBDIR += php5-recode
     SUBDIR += recode
     SUBDIR += unix2dos
+    SUBDIR += uulib
 
 .include <bsd.port.subdir.mk>
