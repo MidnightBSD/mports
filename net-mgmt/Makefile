@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.4 2007/01/25 22:28:58 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.5 2007/01/25 22:49:01 laffer1 Exp $
 #
 
     COMMENT = Network management tools
@@ -8,6 +8,7 @@
     SUBDIR += p5-Cflow
     SUBDIR += p5-Cisco-Reconfig
     SUBDIR += p5-Mon
+    SUBDIR += p5-Net-CIDR
     SUBDIR += p5-NSNMP
     SUBDIR += p5-SNMP_Session
     SUBDIR += net-snmp
