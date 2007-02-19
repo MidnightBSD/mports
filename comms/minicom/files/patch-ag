@@ -1,0 +1,26 @@
+--- src/windiv.c.orig	Mon Jan 31 21:12:08 2000
++++ src/windiv.c	Sun Jan 27 19:05:05 2002
+@@ -19,6 +19,7 @@
+ #include "rcsid.h"
+ RCSID("$Id: patch-ag,v 1.1 2007-02-19 23:46:59 laffer1 Exp $")
+ 
++#include <sys/types.h>
+ #include <dirent.h>
+ #include <sys/stat.h>
+ #include "port.h"
+@@ -251,8 +252,14 @@
+ 
+       /* get regular files */
+       dirlist[nCnt].d_ino    = dirent->d_ino;
+-      dirlist[nCnt].d_off    = dirent->d_off;
+       dirlist[nCnt].d_reclen = dirent->d_reclen;
++#if (defined(BSD) && (BSD >= 199306))
++      dirlist[nCnt].d_type   = dirent->d_type;
++      dirlist[nCnt].d_namlen = dirent->d_namlen;
++#else
++      dirlist[nCnt].d_off    = dirent->d_off;
++#endif
++
+       strcpy(dirlist[nCnt].d_name, dirent->d_name );
+       nMaxWidth = max(nMaxWidth, strlen(dirent->d_name));
+       nCnt++;
