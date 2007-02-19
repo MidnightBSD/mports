@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.18 2007/02/19 19:37:55 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.19 2007/02/19 19:47:16 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -7,6 +7,7 @@
     SUBDIR += addresses
     SUBDIR += cclient
     SUBDIR += courier
+    SUBDIR += courier-authlib-vchkpw
     SUBDIR += courier-imap
     SUBDIR += courier-pythonfilter
     SUBDIR += couriergraph
