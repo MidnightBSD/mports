@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.78 2007/02/18 03:30:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.79 2007/02/19 19:24:29 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -21,6 +21,7 @@
     SUBDIR += cvsgraph
     SUBDIR += cvsweb
     SUBDIR += cvsweb3
+    SUBDIR += dbus
     SUBDIR += desktop-file-utils
     SUBDIR += devtodo
     SUBDIR += dmalloc
