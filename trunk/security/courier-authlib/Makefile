@@ -2,6 +2,7 @@
 # Date created:				19 Dec 2004
 # Whom:					Oliver Lehmann
 #
+# $MidnightBSD$
 # $FreeBSD: ports/security/courier-authlib/Makefile,v 1.28 2007/01/17 05:25:27 oliver Exp $
 #
 
@@ -18,7 +19,7 @@ DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 .endif
 
-MAINTAINER=	oliver@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Meta-port for the courier authentication library
 
 CONFLICTS=	courier-0.45*
