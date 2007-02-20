@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.33 2007/01/22 13:02:58 wintellect Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.34 2007/02/16 21:11:23 laffer1 Exp $
 #
 
     COMMENT = Databases
 
+    SUBDIR += courier-authlib-userdb
     SUBDIR += db
     SUBDIR += db2
     SUBDIR += db3
