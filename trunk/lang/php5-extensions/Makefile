@@ -3,6 +3,7 @@
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/php5-extensions/Makefile,v 1.15 2006/11/22 07:00:06 ale Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	php5
@@ -13,7 +14,7 @@ PKGNAMESUFFIX=	-extensions
 DISTFILES=	# none
 EXTRACT_ONLY=	# none
 
-MAINTAINER=	ale@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A "meta-port" to install PHP extensions
 
 DEFAULT_PHP_VER=5
@@ -99,7 +100,7 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		ZIP             "ZIP support" off \
 		ZLIB            "ZLIB support" off
 
-PORT_DBDIR?=	/var/db/ports
+PORT_DBDIR?=	/var/db/mports
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
 OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 
