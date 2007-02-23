@@ -2,12 +2,12 @@
 # Date created:				24.07.2004
 # Whom:					krion
 #
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.1.1.1 2006/09/17 03:33:47 archite Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.2 2006/09/25 16:34:14 archite Exp $
 # $FreeBSD: ports/x11/xterm/Makefile,v 1.39 2006/09/06 08:18:50 krion Exp $
 #
 
 PORTNAME=	xterm
-PORTVERSION=	219
+PORTVERSION=	223
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
@@ -20,7 +20,7 @@ LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
 USE_X_PREFIX=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include" \
 		LIBS="-L${X11BASE}/lib"
 CONFIGURE_ARGS+=--enable-wide-chars --enable-luit --with-utempter \
