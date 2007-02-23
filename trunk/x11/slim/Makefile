@@ -2,12 +2,13 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.4 2007/02/23 01:43:59 laffer1 Exp $
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
 PORTNAME=	slim
 PORTVERSION=	1.2.6
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
