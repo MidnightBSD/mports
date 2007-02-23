@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.30 2007/01/24 17:16:41 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.31 2007/02/12 05:38:27 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -28,6 +28,7 @@
     SUBDIR += p5-HTML-Table
     SUBDIR += p5-HTML-Tagset
     SUBDIR += p5-HTML-Template
+    SUBDIR += p5-libwww
     SUBDIR += php5-session
     SUBDIR += php5-tidy
     SUBDIR += privoxy
