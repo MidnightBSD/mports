@@ -3,24 +3,24 @@
 # Whom:			Alex Dupre <sysadmin@alexdupre.com>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/print/pdflib/Makefile,v 1.47 2006/05/13 01:03:15 edwin Exp $
+# $FreeBSD: ports/print/pdflib/Makefile,v 1.52 2006/11/01 12:35:35 ale Exp $
 #
 
 PORTNAME=	pdflib
-PORTVERSION=	6.0.3
+PORTVERSION=	7.0.0p3
 CATEGORIES=	print
-MASTER_SITES=	http://pdflib.com/products/pdflib/download/${PORTVERSION:S/.//g}src/
+MASTER_SITES=	http://www.pdflib.com/binaries/PDFlib/${PORTVERSION:S/.//g:S/p3//}/
 DISTNAME=	PDFlib-Lite-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for dynamically generating PDF
 
-RESTRICTED=	"many odd restrictions on usage and distribution"
+RESTRICTED=	many odd restrictions on usage and distribution
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
-CONFIGURE_ARGS=	--with-java=no --with-py=no --with-tcl=no
+CONFIGURE_ARGS=	--with-java=no --with-py=no --with-ruby=no --with-tcl=no
 
 .if defined(WITH_PERL)
 USE_PERL5=	yes
@@ -40,7 +40,7 @@ PORTDOCS=	*
 CONFIGURE_ARGS+=--enable-64bit
 .endif
 post-patch:
-	@${REINPLACE_CMD} -e "s|\(PDFLIB_LTCURRENT\)=5|\1=7|g" ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e "s|\(PDFLIB_LTCURRENT\)=6|\1=8|g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's^\$$(top_builddir)/libtool^${LIBTOOL}^' ${WRKSRC}/config/mkcommon.inc.in
 
 post-install:
