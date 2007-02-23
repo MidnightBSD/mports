@@ -2,6 +2,7 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
@@ -12,7 +13,7 @@ MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
 MASTER_SITE_SUBDIR=slim
 
-MAINTAINER=	ports@fsck.ch
+MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -30,10 +31,6 @@ MAKEFILE=	Makefile.freebsd
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 500000
-BROKEN=		does not compile on FreeBSD 4.x
-.endif
-
 pre-build:
 	@${REINPLACE_CMD} \
 			-e 's|%%X11BASE%%|${X11BASE}|g' \
@@ -48,7 +45,7 @@ do-install:
 	@${MKDIR} ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/${PORTNAME}.theme ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/panel.png ${DATADIR}/themes/default
-	@${INSTALL_DATA} ${WRKSRC}/themes/default/background.jpg ${DATADIR}/themes/default
+	@${INSTALL_DATA} ${FILESDIR}/background.jpg ${DATADIR}/themes/default
 
 post-install:
 	@if [ ! -f ${LOCALBASE}/etc/slim.conf ]; then \
