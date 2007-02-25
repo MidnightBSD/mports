@@ -4,17 +4,18 @@
 # Whom:					John Polstra <jdp@polstra.com>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/lang/gcc42/Makefile,v 1.283 2006/09/11 08:54:58 gerald Exp $
+# $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
 PORTNAME=	gcc
 PORTVERSION=	4.2.0
-PORTREVISION=	20060909
+PORTREVISION=	20070207
 CATEGORIES=	lang java
 VERSIONSTRING=	4.2-${PORTREVISION}
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
 DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
+		gcc-fortran-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-g++-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-objc-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-testsuite-${VERSIONSTRING}${EXTRACT_SUFX}
@@ -22,17 +23,17 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	GNU Compiler Collection 4.2
 
-.if defined(WITH_FORTRAN)
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
 		mpfr.1:${PORTSDIR}/math/mpfr
-.endif
 .if defined(WITH_JAVA_AWT)
 LIB_DEPENDS+=	cairo.2:${PORTSDIR}/graphics/cairo
 .endif
 
+CONFLICTS?=	gcc-withfortran-4.2.*
+
 SUFFIX=		42
 LATEST_LINK?=	gcc${SUFFIX}${PKGNAMESUFFIX}
-NOT_FOR_ARCHS=	alpha
+NOT_FOR_ARCHS=	ia64
 USE_BISON=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -48,18 +49,14 @@ NOMANCOMPRESS=	yes	# too hard to deal with differences on 5-cur and releng4
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 502102
-CONFIGURE_ARGS+=	--disable-libgomp
-.endif
-
 .if ${ARCH} != i386
 WITHOUT_JAVA=	yes
 .endif
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd6.1
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.1
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
@@ -69,13 +66,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--disable-nls \
 		--with-system-zlib \
 		--with-libiconv-prefix=${LOCALBASE} \
+		--with-gmp=${LOCALBASE} \
 		--program-suffix=${SUFFIX} \
 		--libdir=${TARGLIB} \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--infodir=${PREFIX}/${INFO_PATH}/gcc${SUFFIX}
 .if defined(WITH_JAVA_AWT)
-CONFIGURE_ARGS+=	--with-java-home=${PREFIX}/lib/jvm/java-1.4.2-gcj${SUFFIX}-1.4.2.0/jre	\
-			--enable-java-awt=gtk,xlib \
+CONFIGURE_ARGS+=	--enable-java-awt=gtk,xlib \
 			--enable-gtk-cairo
 .endif
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
@@ -86,31 +83,26 @@ PLIST_SUB=	GCC_VER=${PORTVERSION} GNU_HOST=${CONFIGURE_TARGET} \
 MAN1=		cpp${SUFFIX}.1 \
 		g++${SUFFIX}.1 \
 		gcc${SUFFIX}.1 \
-		gcov${SUFFIX}.1
+		gcov${SUFFIX}.1 \
+		gfortran${SUFFIX}.1
 INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/cppinternals \
 		gcc${SUFFIX}/gcc \
 		gcc${SUFFIX}/gccinstall \
-		gcc${SUFFIX}/gccint
-
-.if defined(WITH_FORTRAN)
-DISTFILES+=	gcc-fortran-${VERSIONSTRING}${EXTRACT_SUFX}
-CONFIGURE_ARGS+=--with-gmp=${LOCALBASE}
-MAN1+=		gfortran${SUFFIX}.1
-INFO+=		gcc${SUFFIX}/gfortran
-PLIST_SUB+=	FORTRAN=""
-.else
-PLIST_SUB+=	FORTRAN="@comment "
+		gcc${SUFFIX}/gccint \
+		gcc${SUFFIX}/gfortran
+.if ${OSVERSION} >= 502102
+INFO+=		gcc${SUFFIX}/libgomp
 .endif
 
 .if ! defined(WITHOUT_JAVA)
-CONFLICTS+=	gcc-4.1.*
 DISTFILES+=	gcc-java-${VERSIONSTRING}${EXTRACT_SUFX}
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip
 EXTRA_PATCHES+=	${FILESDIR}/java-patch-hier
 # FIXME: we are currently getting weird build failures with libjava on
 # some 4.x and 5.x systems, which the following works around. PR 81788.
 CONFIGURE_ARGS+=--disable-rpath
+MAKE_ENV+=	JAR=no
 MAN1+=		gcj${SUFFIX}.1 \
 		gcj-dbtool${SUFFIX}.1 \
 		gcjh${SUFFIX}.1 \
@@ -156,16 +148,9 @@ post-install:
 	for mp in ${_MANPAGES}; do \
 	  ${TEST} -e $${mp} || ${TOUCH} ${TOUCH_FLAGS} $${mp}; \
 	done
-.for f in c++ gcc g++ cpp gcov ${CONFIGURE_TARGET}-gcc ${CONFIGURE_TARGET}-g++ gcj gcjh gij jv-scan jcf-dump jv-convert jar grepjar rmic rmiregistry
-	# gij and jv-convert, for example, are not built on all platforms.
-	if [ -e ${PREFIX}/man/man1/${f}.1 ]; then \
-	  ${MV} -f ${PREFIX}/man/man1/${f}.1 \
-	           ${PREFIX}/man/man1/${f}${SUFFIX}.1; \
-	fi
-.endfor
-	${RM} -f ${TARGLIB}/*.la
 	${RM} -f ${PREFIX}/man/man7/fsf-funding.7 \
 	         ${PREFIX}/man/man7/gfdl.7 ${PREFIX}/man/man7/gpl.7
+	${RM} -f ${TARGLIB}/*.la
 	# Add target libraries and include files to packaging list.
 	${RM} -f ${WRKDIR}/PLIST.lib
 .for d in ${TARGLIB:S/^${PREFIX}\///} libexec/gcc/${CONFIGURE_TARGET}/${PORTVERSION} include/gcj include/gnu include/java include/javax
@@ -178,10 +163,5 @@ post-install:
 	${ECHO_CMD} "@unexec ${RMDIR} %D/libexec/gcc/${CONFIGURE_TARGET} 2>&1 || true" >> ${WRKDIR}/PLIST.lib
 	${ECHO_CMD} "@unexec ${RMDIR} %D/libexec/gcc 2>&1 || true" >> ${WRKDIR}/PLIST.lib
 	cd ${WRKDIR} ; ${SED} -i -e "/PLIST.lib/ r PLIST.lib" ${TMPPLIST}
-
-cklatest:
-.for SITE in ftp://gcc.gnu.org/pub/gcc/snapshots/
-	@-ncftpls -l ${SITE} | ${GREP} "LATEST.*${PORTVERSION:C/.[0-9]+$//}"
-.endfor
 
 .include <bsd.port.post.mk>
