@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.83 2007/02/25 17:15:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.84 2007/02/25 22:15:49 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -88,6 +88,7 @@
     SUBDIR += php5-pcre
     SUBDIR += php5-readline
     SUBDIR += php5-shmop
+    SUBDIR += php5-sysvmsg
     SUBDIR += php5-tokenizer
     SUBDIR += physfs
     SUBDIR += pkg-config
