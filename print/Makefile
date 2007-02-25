@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.21 2007/01/24 20:59:27 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.22 2007/01/26 03:35:54 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -15,6 +15,7 @@
     SUBDIR += enscript-a4
     SUBDIR += enscript-letter
     SUBDIR += fontforge
+    SUBDIR += freetype
     SUBDIR += freetype2
     SUBDIR += ghostscript-afpl
     SUBDIR += ghostscript-gpl
@@ -24,6 +25,7 @@
     SUBDIR += libpaper
     SUBDIR += pdflib
     SUBDIR += pecl-pdflib
+    SUBDIR += t1utils
     SUBDIR += teTeX
     SUBDIR += teTeX-base
     SUBDIR += teTeX-texmf
