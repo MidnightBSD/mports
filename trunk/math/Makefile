@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.7 2007/01/25 21:41:17 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.8 2007/02/25 00:22:52 laffer1 Exp $
 #
 
     COMMENT = Mathematics
@@ -7,6 +7,7 @@
     SUBDIR += fftw3
     SUBDIR += gnuplot
     SUBDIR += libgmp4
+    SUBDIR += mpfr
     SUBDIR += p5-Math-BigInt
     SUBDIR += php5-bcmath
     SUBDIR += php5-gmp
