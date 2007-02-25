@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.82 2007/02/25 03:13:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.83 2007/02/25 17:15:19 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -45,6 +45,7 @@
     SUBDIR += imake-6
     SUBDIR += kdesdk3
     SUBDIR += kdevelop
+    SUBDIR += libglade2
     SUBDIR += libgsf
     SUBDIR += libIDL
     SUBDIR += libixp
