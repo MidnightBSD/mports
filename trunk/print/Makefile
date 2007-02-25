@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.22 2007/01/26 03:35:54 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.23 2007/02/25 19:57:01 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -16,6 +16,7 @@
     SUBDIR += enscript-letter
     SUBDIR += fontforge
     SUBDIR += freetype
+    SUBDIR += freetype-tools
     SUBDIR += freetype2
     SUBDIR += ghostscript-afpl
     SUBDIR += ghostscript-gpl
