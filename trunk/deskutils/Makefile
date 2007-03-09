@@ -3,6 +3,7 @@
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
+    SUBDIR += gworkspace
     SUBDIR += linux-sunbird
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
