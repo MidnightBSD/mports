@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.15 2007/01/20 15:37:18 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.16 2007/01/25 20:24:13 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -19,5 +19,6 @@
     SUBDIR += mime-support
     SUBDIR += php5-calendar
     SUBDIR += shared-mime-info
+    SUBDIR += wmweather
 
 .include <bsd.port.subdir.mk>
