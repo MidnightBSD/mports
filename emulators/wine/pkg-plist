@@ -5,7 +5,6 @@ bin/progman
 bin/regedit
 bin/regsvr32
 bin/uninstaller
-bin/wcmd
 bin/widl
 bin/wine
 bin/wine-kthread
@@ -76,6 +75,7 @@ include/wine/windows/accctrl.h
 include/wine/windows/aclapi.h
 include/wine/windows/activscp.h
 include/wine/windows/activscp.idl
+include/wine/windows/adshlp.h
 include/wine/windows/advpub.h
 include/wine/windows/amstream.h
 include/wine/windows/amstream.idl
@@ -93,6 +93,8 @@ include/wine/windows/basetyps.h
 include/wine/windows/cderr.h
 include/wine/windows/cguid.h
 include/wine/windows/cierror.h
+include/wine/windows/cfgmgr32.h
+include/wine/windows/clusapi.h
 include/wine/windows/comcat.h
 include/wine/windows/comcat.idl
 include/wine/windows/commctrl.h
@@ -284,6 +286,8 @@ include/wine/windows/objsafe.idl
 include/wine/windows/objsel.h
 include/wine/windows/ocidl.h
 include/wine/windows/ocidl.idl
+include/wine/windows/ocmm.h
+include/wine/windows/ocmm.idl
 include/wine/windows/odbcinst.h
 include/wine/windows/ole2.h
 include/wine/windows/ole2ver.h
@@ -357,6 +361,7 @@ include/wine/windows/stdole2.tlb
 include/wine/windows/storage.h
 include/wine/windows/strmif.h
 include/wine/windows/strmif.idl
+include/wine/windows/svrapi.h
 include/wine/windows/tapi.h
 include/wine/windows/tchar.h
 include/wine/windows/textserv.h
@@ -367,6 +372,8 @@ include/wine/windows/tom.idl
 include/wine/windows/twain.h
 include/wine/windows/unknwn.h
 include/wine/windows/unknwn.idl
+include/wine/windows/urlhist.h
+include/wine/windows/urlhist.idl
 include/wine/windows/urlmon.h
 include/wine/windows/urlmon.idl
 include/wine/windows/usp10.h
@@ -377,6 +384,7 @@ include/wine/windows/vfw.h
 include/wine/windows/vfwmsgs.h
 include/wine/windows/winbase.h
 include/wine/windows/wincon.h
+include/wine/windows/wincred.h
 include/wine/windows/wincrypt.h
 include/wine/windows/windef.h
 include/wine/windows/windns.h
@@ -423,7 +431,6 @@ include/wine/windows/xmldso.h
 include/wine/windows/xmldso.idl
 include/wine/windows/xmldsodid.h
 include/wine/windows/zmouse.h
-include/wine/windows/ddk/cfgmgr32.h
 include/wine/windows/ddk/compstui.h
 include/wine/windows/ddk/ntddcdvd.h
 include/wine/windows/ddk/ntddser.h
@@ -446,6 +453,8 @@ lib/wine/capi2032.dll.so
 lib/wine/cards.dll.so
 lib/wine/cfgmgr32.dll.so
 lib/wine/clock.exe.so
+lib/wine/clusapi.dll.so
+lib/wine/cmd.exe.so
 lib/wine/comcat.dll.so
 lib/wine/comctl32.dll.so
 lib/wine/comdlg32.dll.so
@@ -532,6 +541,7 @@ lib/wine/libcabinet.def
 lib/wine/libcapi2032.def
 lib/wine/libcards.def
 lib/wine/libcfgmgr32.def
+lib/wine/libclusapi.def
 lib/wine/libcomctl32.def
 lib/wine/libcomdlg32.def
 lib/wine/libcompstui.def
@@ -587,6 +597,7 @@ lib/wine/libmsvcrt40.def
 lib/wine/libmsvcrtd.def
 lib/wine/libmsvfw32.def
 lib/wine/libmswsock.def
+lib/wine/libnddeapi.def
 lib/wine/libnetapi32.def
 lib/wine/libnewdev.def
 lib/wine/libntdll.def
@@ -605,6 +616,7 @@ lib/wine/libpowrprof.def
 lib/wine/libpsapi.def
 lib/wine/libquartz.def
 lib/wine/librasapi32.def
+lib/wine/libresutils.def
 lib/wine/librsaenh.def
 lib/wine/libriched20.def
 lib/wine/librpcrt4.def
@@ -645,6 +657,7 @@ lib/wine/libwow32.def
 lib/wine/libws2_32.def
 lib/wine/libwsock32.def
 lib/wine/libwtsapi32.def
+lib/wine/localspl.dll.so
 lib/wine/lz32.dll.so
 lib/wine/lzexpand.dll16
 lib/wine/mapi32.dll.so
@@ -665,6 +678,7 @@ lib/wine/msacm32.dll.so
 lib/wine/msacm32.drv.so
 lib/wine/msadp32.acm.so
 lib/wine/mscms.dll.so
+lib/wine/mscoree.dll.so
 lib/wine/msdmo.dll.so
 lib/wine/msftedit.dll.so
 lib/wine/msg711.acm.so
@@ -684,6 +698,7 @@ lib/wine/msvidc32.dll.so
 lib/wine/msvideo.dll16
 lib/wine/mswsock.dll.so
 lib/wine/msxml3.dll.so
+lib/wine/nddeapi.dll.so
 lib/wine/netapi32.dll.so
 lib/wine/newdev.dll.so
 lib/wine/notepad.exe.so
@@ -720,6 +735,7 @@ lib/wine/rasapi16.dll16
 lib/wine/rasapi32.dll.so
 lib/wine/regedit.exe.so
 lib/wine/regsvr32.exe.so
+lib/wine/resutils.dll.so
 lib/wine/riched20.dll.so
 lib/wine/riched32.dll.so
 lib/wine/rpcrt4.dll.so
@@ -738,6 +754,7 @@ lib/wine/sfc.dll.so
 lib/wine/shdocvw.dll.so
 lib/wine/shell.dll16
 lib/wine/shell32.dll.so
+lib/wine/shdoclc.dll.so
 lib/wine/shfolder.dll.so
 lib/wine/shlwapi.dll.so
 lib/wine/snmpapi.dll.so
@@ -749,6 +766,7 @@ lib/wine/stdole32.tlb.so
 lib/wine/sti.dll.so
 lib/wine/storage.dll16
 lib/wine/stress.dll16
+lib/wine/svrapi.dll.so
 lib/wine/system.drv16
 lib/wine/tapi32.dll.so
 lib/wine/taskmgr.exe.so
@@ -776,7 +794,6 @@ lib/wine/vtdapi.vxd.so
 lib/wine/vwin32.vxd.so
 lib/wine/w32skrnl.dll.so
 lib/wine/w32sys.dll16
-lib/wine/wcmd.exe.so
 lib/wine/win32s16.dll16
 lib/wine/win87em.dll16
 lib/wine/winaspi.dll16
@@ -875,7 +892,6 @@ share/wine/fonts/vgasyst.fon
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%%%DOCSDIR%%/README.progman
 %%PORTDOCS%%%%DOCSDIR%%/README.uninstaller
-%%PORTDOCS%%%%DOCSDIR%%/README.wcmd
 %%PORTDOCS%%%%DOCSDIR%%/README.winedbg
 %%PORTDOCS%%%%DOCSDIR%%/README.winedump
 %%PORTDOCS%%%%DOCSDIR%%/README.winemine
