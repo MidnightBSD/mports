@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.19 2007/03/09 05:05:40 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.20 2007/03/09 05:22:05 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -29,5 +29,6 @@
     SUBDIR += wmweather
     SUBDIR += wmweather+
     SUBDIR += wmx10
+    SUBDIR += xtail
 
 .include <bsd.port.subdir.mk>
