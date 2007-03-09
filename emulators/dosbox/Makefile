@@ -2,13 +2,12 @@
 # Date created:        28 July 2002
 # Whom:                Tom Carrick <knyghtmare@knyghtmare.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.1 2007/03/09 16:22:31 laffer1 Exp $
 # $FreeBSD: ports/emulators/dosbox/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
 #
 
 PORTNAME=	dosbox
-PORTVERSION=	0.65
-PORTREVISION=	1
+PORTVERSION=	0.70
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
