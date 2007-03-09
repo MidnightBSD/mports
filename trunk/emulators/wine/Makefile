@@ -3,18 +3,19 @@
 # Date created:         Sa   9 Nov 1996 00:52:22 MET
 # Whom:			se
 #
-# $FreeBSD: ports/emulators/wine/Makefile,v 1.217 2006/09/13 00:18:35 gerald Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
 #
 
 PORTNAME=	wine
-PORTVERSION=	0.9.20
+PORTVERSION=	0.9.26
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED} \
 		http://ibiblio.org/pub/linux/system/emulators/wine/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	gerald@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
 
 # wine/dlls/glut32/ depends on the presence of libglut.
@@ -44,10 +45,6 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 503000
-IGNORE=		fails to work on versions of FreeBSD before 5.3 (due to problems with threading support)
-.endif
-
 pre-build:
 	cd ${WRKSRC} && make depend
 
@@ -60,7 +57,7 @@ post-install:
 .for i in README ANNOUNCE AUTHORS LICENSE
 	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-.for i in progman uninstaller wcmd winedbg winemine
+.for i in progman uninstaller winedbg winemine
 	${INSTALL_DATA} ${WRKSRC}/programs/${i}/README ${DOCSDIR}/README.${i}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${DOCSDIR}/README.winedump
