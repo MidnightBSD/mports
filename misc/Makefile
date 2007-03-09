@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.18 2007/03/09 04:38:40 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.19 2007/03/09 05:05:40 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -19,6 +19,9 @@
     SUBDIR += mime-support
     SUBDIR += php5-calendar
     SUBDIR += shared-mime-info
+    SUBDIR += wmScoreBoard
+    SUBDIR += wmcalendar
+    SUBDIR += wmfirew
     SUBDIR += wminfo
     SUBDIR += wmjulia
     SUBDIR += wmpal
