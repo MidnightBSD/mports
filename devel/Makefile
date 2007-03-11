@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.92 2007/03/11 04:14:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.93 2007/03/11 04:17:14 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -71,6 +71,7 @@
     SUBDIR += objcunit
     SUBDIR += p5-AppConfig
     SUBDIR += p5-Carp-Clan
+    SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-File-HomeDir
     SUBDIR += p5-File-Tail
@@ -79,6 +80,7 @@
     SUBDIR += p5-IO-Tty
     SUBDIR += p5-IPC-Run
     SUBDIR += p5-Locale-gettext
+    SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Ediff
