@@ -2,6 +2,7 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net-im/gaim/Makefile,v 1.190 2006/08/26 19:15:08 garga Exp $
 #
 
@@ -12,7 +13,7 @@ CATEGORIES?=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER?=	marcus@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Multi-protocol instant messaging client
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
