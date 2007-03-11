@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.96 2007/03/11 05:15:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.97 2007/03/11 05:19:08 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -17,6 +17,7 @@
     SUBDIR += bison
     SUBDIR += boost
     SUBDIR += boost-python
+    SUBDIR += bugzilla
     SUBDIR += cscope
     SUBDIR += cvsgraph
     SUBDIR += cvsweb
