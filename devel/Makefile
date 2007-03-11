@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.94 2007/03/11 04:21:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.95 2007/03/11 05:06:28 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -83,8 +83,10 @@
     SUBDIR += p5-Module-Build
     SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
+    SUBDIR += p5-Spiffy
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Ediff
+    SUBDIR += p5-Test-Base
     SUBDIR += p5-Test-Harness
     SUBDIR += p5-Test-Simple
     SUBDIR += p5-TimeDate
