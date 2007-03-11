@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.31 2007/02/12 05:38:27 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.32 2007/02/23 21:23:59 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -22,6 +22,7 @@
     SUBDIR += lynx
     SUBDIR += neon
     SUBDIR += opera
+    SUBDIR += p5-CGI.pm
     SUBDIR += p5-HTML-Breadcrumbs
     SUBDIR += p5-HTML-Pager
     SUBDIR += p5-HTML-Parser
