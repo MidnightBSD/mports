@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.23 2007/02/19 19:42:48 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.24 2007/02/23 20:55:02 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -25,6 +25,7 @@
     SUBDIR += screen
     SUBDIR += timemon
     SUBDIR += ucspi-tcp
+    SUBDIR += wmbsdbatt
     SUBDIR += yawho
 
 .include <bsd.port.subdir.mk>
