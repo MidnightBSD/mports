@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.97 2007/03/11 05:19:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.98 2007/03/11 05:21:55 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -70,6 +70,7 @@
     SUBDIR += ncurses
     SUBDIR += nspr
     SUBDIR += objcunit
+    SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-AppConfig
     SUBDIR += p5-Carp-Clan
     SUBDIR += p5-Data-Dumper
