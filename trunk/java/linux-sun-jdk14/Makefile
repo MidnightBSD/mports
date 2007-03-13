@@ -3,7 +3,7 @@
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/java/linux-sun-jdk14/Makefile,v 1.58 2006/06/13 19:12:41 glewis Exp $
+# $FreeBSD: ports/java/linux-sun-jdk14/Makefile,v 1.59 2007/01/22 17:27:25 glewis Exp $
 #
 
 PORTNAME=	jdk
@@ -32,7 +32,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_XLIB=	yes
 JDK_VERSION=	1.4.2
-JDK_REVISION=	12
+JDK_REVISION=	13
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 INSTALL_JDK_VERSION=	${DL_JDK_VERSION:S/_/./g}
 ONLY_FOR_ARCHS=	i386 amd64
@@ -54,7 +54,7 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +515 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +541 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
 	&& ${WRKDIR}/install.sfx > /dev/null
 
