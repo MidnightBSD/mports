@@ -1,5 +1,3 @@
-@exec mkdir -p %D/System/Library/Makefiles
-@exec ln -s Library/Makefiles %D/System
 GNUstep.conf
 System/Library/Makefiles/GNUstep-reset.sh
 System/Library/Makefiles/GNUstep.csh
@@ -117,6 +115,7 @@ System/Tools/debugapp
 System/Tools/openapp
 System/Tools/opentool
 System/share/config.site
+@exec ln -s Library/Makefiles %D/System
 @dirrm System/share
 @dirrm System/Tools/Resources
 @dirrm System/Tools/Java
@@ -154,9 +153,30 @@ System/share/config.site
 @dirrm System/Library
 @dirrm System/Applications
 @dirrm System
+@dirrm Local/Tools/Resources
+@dirrm Local/Tools
+@dirrm Local/Library/Services
+@dirrm Local/Library/Preferences
+@dirrm Local/Library/Libraries
+@dirrm Local/Library/Headers
+@dirrm Local/Library/Frameworks
+@dirrm Local/Library/Documentation
+@dirrm Local/Library/Bundles
+@dirrm Local/Library/ApplicationSupport
+@dirrm Local/Library
+@dirrm Local/Applications
 @dirrm Local
 @unexec rmdir %D
-@exec mkdir -p %D/Local
+@exec mkdir -p %D/Local/Applications
+@exec mkdir -p %D/Local/Library/ApplicationSupport
+@exec mkdir -p %D/Local/Library/Bundles
+@exec mkdir -p %D/Local/Library/Documentation
+@exec mkdir -p %D/Local/Library/Frameworks
+@exec mkdir -p %D/Local/Library/Headers
+@exec mkdir -p %D/Local/Library/Libraries
+@exec mkdir -p %D/Local/Library/Preferences
+@exec mkdir -p %D/Local/Library/Services
+@exec mkdir -p %D/Local/Tools/Resources
 @exec mkdir -p %D/System/Applications
 @exec mkdir -p %D/System/Library/ApplicationSupport
 @exec mkdir -p %D/System/Library/Bundles
