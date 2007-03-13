@@ -2,13 +2,13 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
-# $FreeBSD: ports/print/freetype2/Makefile,v 1.74 2006/08/23 04:11:44 marcus Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/print/freetype2/Makefile,v 1.77 2007/01/28 09:07:43 kris Exp $
 #
 
 PORTNAME=	freetype2
-PORTVERSION=	2.1.10
-PORTREVISION=	5
+PORTVERSION=	2.2.1
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/%SUBDIR%/ \
@@ -22,10 +22,11 @@ DISTNAME=	${PORTNAME:S/2//}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free and portable TrueType font rendering engine
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 MAKE_ENV=	TOP=""
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget pkgconfig
 LIBTOOLFILES=	builds/unix/configure
@@ -37,11 +38,11 @@ CFLAGS+=	-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
 .endif
 
 .if defined(WITH_CJK)
-PATCH_SITES+=	http://lwj-hinet.myweb.hinet.net/ \
-		ftp://local-distfiles.freebsd.org.cn/pub/china-ports/hamigua/ \
-		http://bsdchat.com/dist/firefly-cjk-patchset/
-PATCHFILES+=	cjk-freetype-2.1.10-20051219.patch.gz
-PATCH_DIST_STRIP+=	-p1
+#PATCH_SITES+=	http://lwj-hinet.myweb.hinet.net/ \
+#		ftp://local-distfiles.freebsd.org.cn/pub/china-ports/hamigua/ \
+#		http://bsdchat.com/dist/firefly-cjk-patchset/
+#PATCHFILES+=	cjk-freetype-2.1.10-20051219.patch.gz
+#PATCH_DIST_STRIP+=	-p1
 .endif
 
 pre-everything::
@@ -61,6 +62,10 @@ pre-everything::
 pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/builds/unix/install.mk
+.if !defined(WITHOUT_TTF_BYTECODE_ENABLED)
+	@${REINPLACE_CMD} -e '/#define TT_CONFIG_OPTION_BYTECODE_INTERPRETER/s,/\* \(.*\) \*/,\1,; /#define TT_CONFIG_OPTION_UNPATENTED_HINTING/s,^\(.*\),/* \1 \*/,' \
+		${WRKSRC}/include/freetype/config/ftoption.h
+.endif
 
 post-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
