@@ -3,7 +3,11 @@
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
+    SUBDIR += etoile-panekit
+    SUBDIR += etoile-servicesbarkit
+    SUBDIR += etoile-systemconfig
     SUBDIR += etoile-trackerkit
+    SUBDIR += etoile-ui
     SUBDIR += ljclive
     SUBDIR += gworkspace
     SUBDIR += linux-sunbird
