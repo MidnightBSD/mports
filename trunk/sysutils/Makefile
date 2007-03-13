@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.25 2007/03/11 19:38:08 archite Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.26 2007/03/13 05:30:09 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -7,6 +7,7 @@
     SUBDIR += bsdstats
     SUBDIR += cdrtools
     SUBDIR += coreutils
+    SUBDIR += etoile-behavior
     SUBDIR += etoile-system
     SUBDIR += fusefs-kmod 
     SUBDIR += fusefs-libs 
