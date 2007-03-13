@@ -2,6 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
@@ -18,7 +19,7 @@ MASTER_SITE_SUBDIR=	mozilla/releases/${PORTNAME}${PORTVERSION}/source \
 DISTFILES=	${PORTNAME}-${PORTVERSION}-source${EXTRACT_SUFX} \
 		libart_lgpl-1${EXTRACT_SUFX}:local
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
 
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
