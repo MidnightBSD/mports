@@ -2,13 +2,14 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.1 2006/09/23 00:19:46 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.11.0
-CATEGORIES=	x11-toolkits
+PORTREVISION=	1
+CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
 
@@ -32,6 +33,7 @@ CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/include
 CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/lib
 USE_XLIB=	yes
 EXTRA_PATCHES+=		${FILESDIR}/GNUmakefile.patch
+CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -50,6 +52,13 @@ PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
 .if !exists(/proc/curproc)
 IGNORE=		requires procfs mounted to build or run, for details see procfs(5)
 .endif
+.endif
+
+.if defined(WITH_PORTAUDIO2)
+LIB_DEPENDS+=   portaudio:${PORTSDIR}/audio/portaudio2
+CPPFLAGS+=      -I${LOCALBASE}/include/portaudio2 ${PTHREAD_CFLAGS}
+CFLAGS+=        ${PTHREAD_CFLAGS}
+LDFLAGS+=       -L${LOCALBASE}/lib/portaudio2 ${PTHREAD_LIBS}
 .endif
 
 .if !defined(WITHOUT_CUPS)
