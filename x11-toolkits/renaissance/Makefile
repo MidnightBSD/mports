@@ -2,14 +2,14 @@
 # Date created:         007 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/renaissance/Makefile,v 1.1 2006/09/27 19:41:38 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/renaissance/Makefile,v 1.1 2006/09/10 12:12:28 dinoex Exp $
 #
 
 PORTNAME=	renaissance
 PORTVERSION=	0.8.0
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	http://www.gnustep.it/Renaissance/ \
+MASTER_SITES=	http://www.gnustep.it/Renaissance/Download/ \
 		http://florida.ethz.ch/ports/distfiles/
 DISTNAME=	Renaissance-${PORTVERSION}
 
