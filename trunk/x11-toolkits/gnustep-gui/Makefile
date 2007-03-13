@@ -2,13 +2,13 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.1 2006/09/23 00:19:46 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.2 2007/03/13 20:17:06 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.11.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -68,7 +68,7 @@ PLIST_SUB+=	WITH_CUPS=""
 PLIST_SUB+=	WITH_CUPS="@comment "
 .endif
 
-ASPELL_PORT?=	german/aspell
+ASPELL_PORT?=	textproc/aspell
 .if !defined(WITHOUT_ASPELL)
 LIB_DEPENDS+=	aspell:${PORTSDIR}/${ASPELL_PORT}
 PLIST_SUB+=	WITH_ASPELL=""
