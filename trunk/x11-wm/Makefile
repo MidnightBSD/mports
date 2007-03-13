@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.10 2006/12/15 05:22:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.11 2006/12/19 11:12:40 wintellect Exp $
 #
 
     COMMENT = X11 window managers
 
     SUBDIR += blackbox
     SUBDIR += boxtools
+    SUBDIR += etoile-azalea
+    SUBDIR += etoile-azdock
     SUBDIR += fluxbox
     SUBDIR += fluxbox-devel
     SUBDIR += kompmgr
