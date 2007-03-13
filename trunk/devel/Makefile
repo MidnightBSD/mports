@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.98 2007/03/11 05:21:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.99 2007/03/11 05:41:47 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -28,6 +28,7 @@
     SUBDIR += devtodo
     SUBDIR += dmalloc
     SUBDIR += doxygen
+    SUBDIR += etoile-unitkit
     SUBDIR += ffcall
     SUBDIR += gamin
     SUBDIR += gconf2
