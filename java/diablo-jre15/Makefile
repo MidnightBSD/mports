@@ -3,11 +3,12 @@
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.3 2006/09/11 15:49:08 glewis Exp $
+# $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -26,7 +27,7 @@ USE_XLIB=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 JRE_VERSION=	1.5.0
 RELEASE_VERSION=07
-BUILD_VERSION=	00
+BUILD_VERSION=	01
 PLIST_SUB+=	JRE_VERSION=${JRE_VERSION}
 PLIST_SUB+=	ARCH=${ARCH}
 DOWNLOAD_URL=	http://www.FreeBSDFoundation.org/cgi-bin/download?download=${DISTNAME}${EXTRACT_SUFX}
@@ -34,6 +35,8 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}15
 
 WRKSRC=		${WRKDIR}/${PKGNAMEPREFIX}jre${JRE_VERSION}_${RELEASE_VERSION}
 NO_BUILD=	yes
+
+OPTIONS=	TZUPDATE	"Update the time zone data"	on
 
 SUB_FILES+=	pkg-install \
 		pkg-deinstall
@@ -51,6 +54,20 @@ JRE_OSREL=freebsd5
 IGNORE=		Only available for FreeBSD 5.x/i386 and FreeBSD 6.x/amd64 and later
 .endif
 
+.if defined(WITH_TZUPDATE)
+EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
+TZUPDATE_VERSION=	1.1.0
+TZUPDATE_TZVERSION=	2007c
+TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
+DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
+EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
+PLIST_SUB+=		TZORIGINAL="@comment "
+PLIST_SUB+=		TZUPDATE=""
+.else
+PLIST_SUB+=		TZORIGINAL=""
+PLIST_SUB+=		TZUPDATE="@comment "
+.endif
+
 .if ${ARCH} == "i386"
 PLIST_SUB+=	WEB=""
 PLIST_SUB+=	CLIENTVM=""
@@ -59,17 +76,35 @@ PLIST_SUB+=	WEB="@comment "
 PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
-.if !exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
+.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
 ECHO_MSG=/usr/bin/printf
 IGNORE=	:\n\
 Because of licensing restrictions, you must fetch the distribution\n\
-manually.  Please access\n\
+manually.\n
+.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}))
+IGNORE += Please access\n\
 \n\
   ${DOWNLOAD_URL}\n\
 \n\
 with a web browser and \"Accept\" the End User License Agreement for\n\
 \"Latte Diablo ${JRE_VERSION}\".  Please place the downloaded\n\
-${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n
+${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
+.endif
+.if defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
+IGNORE += Please open http://java.sun.com/javase/downloads/index.jsp\n\
+in a web browser and follow the \"Download\" link for\n\
+\"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
+time zone update file, ${TZUPDATEFILE}.\n\n
+.endif
+.endif
+
+.if defined(WITH_TZUPDATE)
+post-extract:
+	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
+	@# Update time zones
+	@-${WRKSRC}/bin/java -jar \
+		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u
+	@${RM} -rf ${WRKSRC}/lib/zi.tzdata*
 .endif
 
 do-install:

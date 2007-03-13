@@ -1,5 +1,5 @@
 #!/bin/sh
-# $FreeBSD: ports/java/diablo-jre15/files/pkg-install.in,v 1.2 2006/07/05 20:24:47 glewis Exp $
+# $FreeBSD: ports/java/diablo-jre15/files/pkg-install.in,v 1.3 2006/11/06 19:47:17 glewis Exp $
 
 # Set up a standard path
 PATH=/usr/bin:/bin
@@ -12,7 +12,7 @@ fi
 # Attempt to install a link for the browser plugin during post-install
 if [ "$2" = "POST-INSTALL" ]; then
 	# Plugin location variables
-	BROWSERPLUGINDIR=%%X11BASE%%/lib/browser_plugins
+	BROWSERPLUGINDIR=%%LOCALBASE%%/lib/browser_plugins
 	if [ `echo "$1" | grep jdk` ]; then
 		DIABLOPLUGINDIR=${PKG_PREFIX}/diablo-jdk1.5.0/jre/plugin/`uname -p`/ns7
 	else
