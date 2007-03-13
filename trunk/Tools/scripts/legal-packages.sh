@@ -35,7 +35,7 @@
 # found to be violating any laws, please email archite@midnightbsd.org and
 # we will add it to our LEGAL file.
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Tools/scripts/legal-packages.sh,v 1.1 2006/09/26 20:50:35 archite Exp $
 #
 
 PORTS_DIR=/usr/mports
@@ -47,6 +47,6 @@ for PKG in *; do
 	ILLEGAL=`grep ^$STRIP_PKG ${PORTS_DIR}/LEGAL`
 	if [ -n "${ILLEGAL}" ]; then
 		echo "Removing ${STRIP_PKG}"
-		find ${PKGS_DIR} -iname "*${STRIP_PKG}*" -execdir rm {} \;
+		find ${PKGS_DIR} -iname "*${STRIP_PKG}*" -execdir rm -rf {} \;
 	fi
 done
