@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.14 2007/02/18 02:53:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.15 2007/02/18 02:59:07 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -2788,7 +2788,7 @@ check-categories:
 .else
 
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
-	benchmarks biology cad chinese comms converters databases \
+	benchmarks biology cad comms converters databases \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	ipv6 irc japanese java kde korean lang linux lisp \
