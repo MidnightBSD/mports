@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.11 2006/12/19 11:12:40 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.12 2007/03/13 06:21:17 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -12,6 +12,7 @@
     SUBDIR += kompmgr
     SUBDIR += libdockapp
     SUBDIR += mlvwm
+    SUBDIR += obconf
     SUBDIR += openbox
     SUBDIR += pekwm
     SUBDIR += skippy-xd
