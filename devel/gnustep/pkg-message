@@ -4,6 +4,9 @@ for sh/bash:
 . /usr/local/GNUstep/System/Library/Makefiles/GNUstep.sh
 
 for csh:
-. /usr/local/GNUstep/System/Library/Makefiles/GNUstep.csh
+source /usr/local/GNUstep/System/Library/Makefiles/GNUstep.csh
 
 then start your applications with "openapp <name>".
+
+You can add this to your shell config file to automate the process. For
+csh, add it to ~/.cshrc
