@@ -1,5 +1,5 @@
 #!/bin/sh
-# $FreeBSD: ports/java/diablo-jdk15/files/pkg-deinstall.in,v 1.1 2006/04/06 15:20:45 glewis Exp $
+# $FreeBSD: ports/java/diablo-jdk15/files/pkg-deinstall.in,v 1.2 2006/11/06 19:47:17 glewis Exp $
 
 # Set up a standard path
 PATH=/usr/bin:/bin
@@ -12,7 +12,7 @@ fi
 # Remove the plugin
 
 # Plugin location variables
-BROWSERPLUGINDIR=%%X11BASE%%/lib/browser_plugins
+BROWSERPLUGINDIR=%%LOCALBASE%%/lib/browser_plugins
 if [ `echo "$1" | grep jdk` ]; then
 	DIABLOPLUGINDIR=${PKG_PREFIX}/diablo-jdk1.5.0/jre/plugin/i386/ns7
 else
