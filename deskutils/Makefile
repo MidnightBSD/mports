@@ -3,6 +3,7 @@
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
+    SUBDIR += etoile-trackerkit
     SUBDIR += ljclive
     SUBDIR += gworkspace
     SUBDIR += linux-sunbird
