@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.16 2007/01/19 18:52:51 wintellect Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.17 2007/01/20 16:04:57 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
 
+    SUBDIR += etoile-multimediakit
     SUBDIR += libdts
     SUBDIR += libdv
     SUBDIR += libdvdcss
