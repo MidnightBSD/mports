@@ -2,25 +2,24 @@
 # Date created:				27 July 2002
 # Whom:					cyrille.lefevre@laposte.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/gzip/Makefile,v 1.1 2006/09/17 23:54:56 laffer1 Exp $
 # $FreeBSD: ports/archivers/gzip/Makefile,v 1.16 2006/05/03 05:14:01 edwin Exp $
 #
 
 PORTNAME=	gzip
-PORTVERSION=	1.3.5
+PORTVERSION=	1.3.9
 PORTREVISION=	2
 CATEGORIES=	archivers
-MASTER_SITES=	ftp://sunfreeware.risq.qc.ca/SOURCES/ \
-		ftp://sunsite.cnlab-switch.ch/mirror/solaris-freeware/SOURCES/ \
-		ftp://ftp.ibiblio.org/pub/packages/solaris/freeware/SOURCES/ \
-		ftp://sunsite.belnet.be/mirror/ftp.sunfreeware.com/pub/freeware/SOURCES/
-EXTRACT_SUFX=	.tar.Z
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A compression utility designed to be a replacement for compress
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_ARGS+=	--infodir=${LOCALBASE}/info \
+		--mandir=${MANPREFIX}/man
 
 MAN1=	gunzip.1 gzexe.1 gzip.1 zcat.1 zcmp.1 zdiff.1 zforce.1 \
 	zgrep.1 zless.1 zmore.1 znew.1
