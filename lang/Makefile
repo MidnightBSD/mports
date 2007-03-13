@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.18 2007/01/25 23:05:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.19 2007/02/14 20:53:00 laffer1 Exp $
 #
 
     COMMENT = Programming languages
 
+    SUBDIR += etoile-io
     SUBDIR += ezm3
     SUBDIR += gawk
     SUBDIR += gcc-objc
