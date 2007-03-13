@@ -2,13 +2,13 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.2 2007/03/13 20:17:06 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.3 2007/03/13 20:18:38 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.11.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -21,7 +21,6 @@ LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
 
-NOT_FOR_ARCHS=	ia64
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
@@ -31,17 +30,17 @@ CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-x
 CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/include
 CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/lib
-USE_XLIB=	yes
-EXTRA_PATCHES+=		${FILESDIR}/GNUmakefile.patch
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_BASE=	yes
-MAKEFILE=
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+USE_XLIB=	yes
+
+EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.patch
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
 BREAKS_IF_PEDANTIC=	yes
 NO_FILTER_SHLIBS=	yes
