@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.36 2007/03/13 03:12:26 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.37 2007/03/13 03:22:10 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -10,6 +10,9 @@
     SUBDIR += bookmarkbridge
     SUBDIR += cherokee
     SUBDIR += dillo
+    SUBDIR += etoile-bookmarkkit
+    SUBDIR += etoile-mollusk
+    SUBDIR += etoile-rsskit
     SUBDIR += furl
     SUBDIR += gnustep-ticker
     SUBDIR += kdewebdev
