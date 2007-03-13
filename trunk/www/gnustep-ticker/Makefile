@@ -2,7 +2,7 @@
 # Date created:         29 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/gnustep-ticker/Makefile,v 1.1 2007/03/13 03:21:23 laffer1 Exp $
 # $FreeBSD: ports/www/gnustep-ticker/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 #
 
@@ -16,6 +16,8 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RSS monitor for RSS and Atom feeds
+
+RUN_DEPENDS+=	lynx:${PORTSDIR}/www/lynx
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
