@@ -1,7 +1,12 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.3 2007/01/19 16:11:15 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.4 2007/01/20 16:09:59 laffer1 Exp $
 #
     COMMENT = X11 themes
 
+    SUBDIR += etoile-azbackground
+    SUBDIR += etoile-camaelon
+    SUBDIR += etoile-etoilemenus
+    SUBDIR += etoile-iconkit
+    SUBDIR += etoile-wildmenus
     SUBDIR += kdeartwork3
     SUBDIR += linux-hicolor-icon-theme
 
