@@ -2,17 +2,16 @@
 # Date created:				15 Aug 2004
 # Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $FreeBSD: ports/x11/nvidia-settings/Makefile,v 1.16 2006/08/29 01:56:08 bland Exp $
 # $MidnightBSD$
+# $FreeBSD: ports/x11/nvidia-settings/Makefile,v 1.17 2006/12/06 15:06:13 acm Exp $
 #
 
 PORTNAME=	nvidia-settings
 PORTVERSION=	1.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	x11
-MASTER_SITES=	http://download.nvidia.com/XFree86/nvidia-settings/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	bland
+MASTER_SITES=	${MASTER_SITE_NVIDIA:S,$,XFree86/${PORTNAME}/,} \
+		${MASTER_SITE_LOCAL:S,$,bland/,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display Control Panel for X NVidia driver
