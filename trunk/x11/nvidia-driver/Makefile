@@ -2,7 +2,7 @@
 # Date created:				4 December 2002
 # Whom:					Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.4 2007/03/14 21:09:35 laffer1 Exp $
 # $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.56 2007/02/26 11:29:34 danfe Exp $
 #
 
@@ -20,7 +20,7 @@ ONLY_FOR_ARCHS=	i386
 
 USE_X_PREFIX=	yes
 NO_PACKAGE=	should be recompiled for a particular BSD kernel
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 SUB_FILES+=	pkg-message
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
 
