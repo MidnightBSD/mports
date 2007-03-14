@@ -2,20 +2,27 @@
 # Date created:		29 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.1.1.1 2006/09/17 03:33:47 archite Exp $
+# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.2 2006/09/25 16:34:14 archite Exp $
 # $FreeBSD: ports/x11/xorg-libraries/Makefile,v 1.15 2006/01/21 18:55:04 lesi Exp $
 #
 
 PORTNAME=	xorg-libraries
 PORTVERSION=	6.9.0
+PORTREVISION=   2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
 DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 		X11R${PORTVERSION}-src3.tar.gz
 
+PATCHFILES=     x11r6.9.0-cidfonts.diff
+PATCH_SITES=    ${MASTER_SITE_XORG}
+PATCH_SITE_SUBDIR=      X11R${PORTVERSION}/patches
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 libraries and headers from X.Org
+
+CFLAGS+= -I/usr/local/include/freetype2
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm \
 		freetype.9:${PORTSDIR}/print/freetype2 \
