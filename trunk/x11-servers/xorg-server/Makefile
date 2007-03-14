@@ -2,13 +2,13 @@
 # Date created:		7 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.1.1.1 2006/09/17 03:33:59 archite Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.2 2006/09/23 02:33:50 laffer1 Exp $
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.39 2006/08/25 21:52:48 lesi Exp $
 #
 
 PORTNAME=	xorg-server
 PORTVERSION=	6.9.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-servers
 MASTER_SITES=	${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
