@@ -3,15 +3,15 @@
 # Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/x11/nvidia-xconfig/Makefile,v 1.4 2006/01/16 13:34:16 bland Exp $
+# $FreeBSD: ports/x11/nvidia-xconfig/Makefile,v 1.5 2006/12/06 15:06:13 acm Exp $
 #
 
 PORTNAME=	nvidia-xconfig
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	http://download.nvidia.com/XFree86/nvidia-xconfig/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	bland
+MASTER_SITES=	${MASTER_SITE_NVIDIA:S,$,XFree86/${PORTNAME}/,} \
+		${MASTER_SITE_LOCAL:S,$,bland/,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to manipulate X configuration files for the NVidia driver
