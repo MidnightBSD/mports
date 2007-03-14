@@ -2,13 +2,13 @@
 # Date created:		29 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.2 2006/09/25 16:34:14 archite Exp $
+# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.3 2007/03/14 18:20:36 ctriv Exp $
 # $FreeBSD: ports/x11/xorg-libraries/Makefile,v 1.15 2006/01/21 18:55:04 lesi Exp $
 #
 
 PORTNAME=	xorg-libraries
 PORTVERSION=	6.9.0
-PORTREVISION=   2
+PORTREVISION=   3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
