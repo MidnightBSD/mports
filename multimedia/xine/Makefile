@@ -3,12 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.69 2006/12/07 17:17:44 nobutaka Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.1 2006/12/13 22:22:34 laffer1 Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	0.99.4
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -43,27 +43,6 @@ RUN_DEPENDS=	${CODEC_DETECTION_FILE}:${CODEC_PORT}
 CODEC_PORT=	${PORTSDIR}/multimedia/win32-codecs
 CODEC_DETECTION_FILE!=	${MAKE} -f ${CODEC_PORT}/Makefile -V CODEC_DETECTION_FILE
 .endif
-.endif
-
-.if ${OSVERSION} == 500043
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src:xitk:common.h
-.endif
-
-# PRIi64 macro is not defined
-.if ${OSVERSION} < 500040
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-src:xitk:common.h-1
-.endif
-
-# mbrtowc() is not implemented
-.if ${OSVERSION} < 500039
-CONFIGURE_ARGS+=	--disable-mbs
-# Xft support requires --enable-mbs configure option
-WITHOUT_XFT=	yes
-.endif
-
-.if ${OSVERSION} < 502000
-LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
-CONFIGURE_ARGS+=	--with-readline=${LOCALBASE}
 .endif
 
 .if !defined(WITHOUT_XFT)
