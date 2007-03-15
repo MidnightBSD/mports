@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.25 2007/03/13 05:55:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.26 2007/03/13 07:05:54 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -41,6 +41,7 @@
     SUBDIR += xorg-manpages
     SUBDIR += xproto
     SUBDIR += xscreensaver
+    SUBDIR += xscreensaver-kde
     SUBDIR += xscreensaver.app
     SUBDIR += xterm
 
