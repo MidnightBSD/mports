@@ -2,14 +2,14 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/sysutils/portupgrade/Makefile,v 1.3 2006/10/31 10:59:16 wintellect Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.1 2007/02/16 22:22:30 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 # find ./ -type f -print
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.1.3.3
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
@@ -30,7 +30,6 @@ USE_RUBY=	yes
 USE_RUBY_FEATURES=	optparse ruby18
 USE_PERL5_RUN=	yes
 
-INSTALLS_SHLIB=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat/pkg
 USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 
