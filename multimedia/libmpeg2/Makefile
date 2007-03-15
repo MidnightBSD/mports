@@ -3,7 +3,7 @@
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/libmpeg2/Makefile,v 1.32 2006/09/21 08:07:58 stas Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.1 2006/12/13 20:12:24 laffer1 Exp $
 #
 
 PORTNAME=	libmpeg2
@@ -48,12 +48,6 @@ CONFIGURE_ARGS+=	--disable-warnings
 .endif
 
 .include <bsd.port.pre.mk>
-
-# We must be able to build EV6 code; actual CPU-type optimizations
-# are chosen at runtime.
-.if ${ARCH} == "alpha"
-CFLAGS:=	${CFLAGS:N-mcpu=*}
-.endif
 
 pre-everything::
 	@${ECHO_MSG} "====>"
