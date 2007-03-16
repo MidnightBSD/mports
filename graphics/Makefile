@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.44 2007/03/15 02:27:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.45 2007/03/16 19:16:00 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -17,6 +17,7 @@
     SUBDIR += gnash
     SUBDIR += gocr
     SUBDIR += goom
+    SUBDIR += gozer
     SUBDIR += graphviz
     SUBDIR += imlib
     SUBDIR += imlib2
