@@ -2,7 +2,7 @@
 # Date created:				July 08 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.1 2007/03/15 14:24:17 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver-kde/Makefile,v 1.22 2006/12/19 21:19:53 lofi Exp $
 #
 
@@ -28,7 +28,7 @@ USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdeartwork-${PORTVERSION}
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
