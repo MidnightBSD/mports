@@ -1,0 +1,10 @@
+@comment $FreeBSD: ports/graphics/gozer/pkg-plist,v 1.5 2006/03/08 11:14:15 garga Exp $
+bin/gozer
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/TODO
+%%DATADIR%%/fonts/helmetr.ttf
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%/fonts
+@dirrm %%DATADIR%%
