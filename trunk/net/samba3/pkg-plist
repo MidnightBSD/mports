@@ -110,6 +110,7 @@ sbin/swat
 %%EXAMPLESDIR%%/scripts/shares/python/smbparm.py
 %%EXAMPLESDIR%%/scripts/wins_hook/README
 %%EXAMPLESDIR%%/scripts/wins_hook/dns_update
+%%EXAMPLESDIR%%/%%SAMBA_CONFIG%%.sample
 %%EXAMPLESDIR%%/smb.conf.default
 %%EXAMPLESDIR%%/tridge/README
 %%EXAMPLESDIR%%/tridge/smb.conf
