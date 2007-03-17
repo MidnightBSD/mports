@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.35 2007/02/20 00:10:00 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.36 2007/02/25 22:42:00 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -18,6 +18,7 @@
     SUBDIR += freetds-msdblib
     SUBDIR += gdbm
     SUBDIR += gnats4
+    SUBDIR += mysql-connector-java
     SUBDIR += mysql41-client
     SUBDIR += mysql41-scripts
     SUBDIR += mysql41-server
