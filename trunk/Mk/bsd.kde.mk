@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -54,7 +54,7 @@ CONFIGURE_ENV+= PTHREAD_LIBS="${PTHREAD_LIBS}"
 ##  XXX - This really belongs into bsd.port.mk
 .if !defined(_NO_KDE_CONFTARGET_HACK)
 CONFIGURE_TARGET=
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL} \
+CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
 		--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include \
 		--disable-as-needed
 .endif
