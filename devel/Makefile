@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.101 2007/03/13 06:16:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.102 2007/03/13 06:41:11 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -67,6 +67,7 @@
     SUBDIR += linux-libglade
     SUBDIR += linux-sdl12
     SUBDIR += linuxthreads
+    SUBDIR += log4j
     SUBDIR += m4
     SUBDIR += motor
     SUBDIR += nasm
