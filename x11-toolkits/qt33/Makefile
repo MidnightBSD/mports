@@ -4,12 +4,11 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.1 2006/11/17 22:05:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.2 2006/11/24 23:45:31 laffer1 Exp $
 #
 
 PORTNAME=	qt
 PORTVERSION=	3.3.7
-PORTREVISION=	0
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -32,8 +31,7 @@ USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
 USE_X_PREFIX=	yes
 HAS_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
-NO_FILTER_SHLIBS=yes
+USE_LDCONFIG=	yes
 
 .if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
