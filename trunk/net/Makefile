@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.32 2007/02/25 21:58:09 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.33 2007/02/25 21:59:42 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -17,6 +17,7 @@
     SUBDIR += ipw-firmware
     SUBDIR += iwi-firmware
     SUBDIR += mDNSResponder
+    SUBDIR += netatalk
     SUBDIR += netcat
     SUBDIR += netclasses
     SUBDIR += openldap23-client
