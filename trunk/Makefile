@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.30 2007/02/16 22:20:45 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.31 2007/02/19 20:56:23 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -124,19 +124,11 @@ print-index:	${INDEXDIR}/${INDEXFILE}
 
 CVS?= cvs
 SUP?= csup
-PORTSNAP?= portsnap
-PORTSNAP_FLAGS?= -p ${.CURDIR}
 .if defined(SUPHOST)
 SUPFLAGS+=	-h ${SUPHOST}
 .endif
 update:
-.if defined(PORTSNAP_UPDATE)
-	@echo "--------------------------------------------------------------"
-	@echo ">>> Running ${PORTSNAP}"
-	@echo "--------------------------------------------------------------"
-	@${PORTSNAP} ${PORTSNAP_FLAGS} fetch
-	@${PORTSNAP} ${PORTSNAP_FLAGS} update
-.elif defined(SUP_UPDATE) && defined(PORTSSUPFILE)
+.if defined(SUP_UPDATE) && defined(PORTSSUPFILE)
 	@echo "--------------------------------------------------------------"
 	@echo ">>> Running ${SUP}"
 	@echo "--------------------------------------------------------------"
