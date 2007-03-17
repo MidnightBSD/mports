@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.1 2006/09/18 13:26:32 laffer1 Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -31,8 +31,6 @@ PORTNAME=	zsh
 PORTVERSION=	4.3.2
 CATEGORIES=	shells
 MASTER_SITES=	\
-		http://archive.progeny.com/zsh/ \
-		ftp://archive.progeny.com/zsh/ \
 		http://www.zsh.org/pub/ \
 		ftp://ftp.zsh.org/pub/ \
 		ftp://sunsite.dk/pub/unix/shells/zsh/ \
