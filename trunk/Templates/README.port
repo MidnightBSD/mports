@@ -1,20 +1,20 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
-
-<html>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
   <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <title>The MidnightBSD Ports Collection (%%PORT%%)</title>
   </head>
 
   <body>
     <h1>The MidnightBSD Ports Collection (%%PORT%%)</h1>
-    <hr>
 
     <p>You are now in the directory for the port "%%PORT%%".</p>
 
     <p>The package name of this port is "%%PKG%%".</p>
 
     <p>This is the one-line description for this port:</p>
-    <hr>
 
     <p>
 %%COMMENT%%
