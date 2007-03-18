@@ -2,6 +2,7 @@
 # Date created:		25 July 1996
 # Whom:			obrien@cs.ucdavis.edu
 #
+# $MidnightBSD$
 # $FreeBSD: ports/news/tin/Makefile,v 1.137 2006/11/12 11:49:16 ache Exp $
 #
 
@@ -13,7 +14,7 @@ MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/ \
 		ftp://ftp.stikman.com/pub/tin/stable/ \
 		ftp://ftp.sunet.se/pub/news/readers/tin/stable/
 
-MAINTAINER?=	ache@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use threaded newsreader with NOV/NNTP support
 
 LIB_DEPENDS=	uu.3:${PORTSDIR}/converters/uulib \
@@ -83,12 +84,6 @@ CONFIGURE_ARGS+=	--with-ispell=${PREFIX}/bin/ispell
     (exists(${LOCALBASE}/bin/metamail) && !defined(WITHOUT_TIN_METAMAIL))
 RUN_DEPENDS+=	metamail:${PORTSDIR}/mail/metamail
 CONFIGURE_ARGS+=	--with-metamail=${PREFIX}/bin/metamail
-.endif
-
-.if ${OSVERSION} >= 400014
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 post-patch:
