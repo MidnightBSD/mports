@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.2 2006/10/01 16:51:30 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.3 2007/01/26 03:39:02 laffer1 Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
@@ -59,9 +59,6 @@ IGNORE=		user must set WITH_JADETEX variable to 'yes' or 'no'
 .if defined(WITH_JADETEX) && ${WITH_JADETEX} == yes
 RUN_DEPENDS+=	${LOCALBASE}/share/texmf/web2c/jadetex.fmt:${PORTSDIR}/print/jadetex
 RUN_DEPENDS+=	dvips:${PORTSDIR}/print/dvipsk-tetex
-.if !defined(WITHOUT_CJK)
-RUN_DEPENDS+=	cjktexsty:${PORTSDIR}/chinese/docproj
-.endif
 .endif
 
 .if !defined(WITHOUT_CJK)
