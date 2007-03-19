@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.8 2007/01/25 10:54:08 wintellect Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.9 2007/02/19 23:25:48 laffer1 Exp $
 #
 
     COMMENT = Character code converters
@@ -6,6 +6,7 @@
     SUBDIR += fribidi
     SUBDIR += libiconv
     SUBDIR += p5-MIME-Base64
+    SUBDIR += p5-Text-Iconv
     SUBDIR += pecl-fribidi
     SUBDIR += php5-iconv
     SUBDIR += php5-mbstring
