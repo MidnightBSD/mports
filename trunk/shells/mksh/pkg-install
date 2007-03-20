@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/shells/mksh/pkg-install,v 1.1 2006/07/22 10:55:20 miwi Exp $
 #
 
