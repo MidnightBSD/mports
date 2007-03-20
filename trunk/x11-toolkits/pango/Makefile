@@ -2,14 +2,14 @@
 # Date Created:			18 July 2000
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.1 2006/09/19 22:23:59 wintellect Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.2 2006/09/25 16:34:16 archite Exp $
 # $FreeBSD: ports/x11-toolkits/pango/Makefile,v 1.85 2006/09/16 05:24:31 ahze Exp $
 #   $MCom: ports/x11-toolkits/pango/Makefile,v 1.60 2006/04/27 11:12:49 ahze Exp $
 #
 
 PORTNAME=	pango
 PORTVERSION=	1.12.4
-PORTREVISION?=	0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/pango/1.12,} \
 		ftp://ftp.gtk.org/pub/gtk/v2.10/
@@ -29,7 +29,6 @@ RUN_DEPENDS=	${FONTSCALE}:${X_FONTS_TTF_PORT} \
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-PREFIX?=	${X11BASE}
 INSTALLS_SHLIB=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack glib20 ltverhack referencehack

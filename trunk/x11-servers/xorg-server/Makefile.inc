@@ -14,10 +14,15 @@
 
 DIST_SUBDIR?=	xorg
 WRKSRC?=	${WRKDIR}/xc
-USE_X_PREFIX?=	no
+USE_X_PREFIX?=	YES
 PREFIX?=	${X11BASE}
 MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf - --exclude */CVS/*
+
+# Don't create a circular dependacy.
+.if ${PORTNAME} != "xorg-libraries"
+USE_XLIB=	YES
+.endif
 
 USE_IMAKE=	YES
 .if defined(XMAN_DIRS)
