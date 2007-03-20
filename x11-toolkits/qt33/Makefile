@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.2 2006/11/24 23:45:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.3 2007/03/17 06:42:56 laffer1 Exp $
 #
 
 PORTNAME=	qt
@@ -29,7 +29,7 @@ CONFLICTS=	linguist-0.* qt-2.* qt-3.0.* \
 
 USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
