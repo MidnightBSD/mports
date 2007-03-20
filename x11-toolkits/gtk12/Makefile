@@ -2,13 +2,13 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.1 2006/09/23 18:07:17 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk12/Makefile,v 1.104 2006/02/23 10:40:17 ade Exp $
 #
 
 PORTNAME=	gtk
 PORTVERSION=	1.2.10
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gtk+/1.2
@@ -17,7 +17,6 @@ DISTNAME=	gtk+-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 
-USE_X_PREFIX=	yes
 USE_PERL5=	yes
 USE_GNOME=	glib12
 INSTALLS_SHLIB=	yes

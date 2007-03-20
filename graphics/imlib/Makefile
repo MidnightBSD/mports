@@ -2,13 +2,13 @@
 # Date created:		10 June 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.1 2006/09/27 13:15:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.2 2007/01/26 04:01:47 laffer1 Exp $
 # $FreeBSD: ports/graphics/imlib/Makefile,v 1.97 2006/05/07 23:46:09 edwin Exp $
 #
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/imlib/1.9
@@ -23,7 +23,6 @@ LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_X_PREFIX=	yes
 USE_GNOME=	gtk12 gnomehack
 GNU_CONFIGURE=	yes
 INSTALLS_SHLIB=	yes
