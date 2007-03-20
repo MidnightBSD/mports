@@ -2,12 +2,13 @@
 # Date created:         26 Japnuary 1999
 # Whom:                 KIRIYAMA Kazuhiko
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/wmicons/Makefile,v 1.1 2006/09/20 16:14:09 laffer1 Exp $
 # $FreeBSD: ports/graphics/wmicons/Makefile,v 1.11 2005/09/11 19:30:34 linimon Exp $
 #
 
 PORTNAME=	wmicons
 PORTVERSION=	1.0
+PORTREVISION=   1
 CATEGORIES=	graphics windowmaker
 MASTER_SITES=	${MASTER_SITE_LOCAL:S|%SUBDIR%|kiri/wmicons|} \
 		${MASTER_SITE_WINDOWMAKER} \
@@ -24,7 +25,6 @@ EXTRACT_ONLY=	DWiconpack1.tar.gz DWiconpack2.tar.gz IconFest-1.2.tgz \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Icons mainly for use in Window Maker
 
-USE_X_PREFIX=	yes
 GNU_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}/WindowMaker-extra-0.1
