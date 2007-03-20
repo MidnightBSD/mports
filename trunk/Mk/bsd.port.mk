@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.15 2007/02/18 02:59:07 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.16 2007/03/13 03:53:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -370,10 +370,10 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 ##
 # USE_BISON		- If set, this port uses bison for building.
 ##
-# USE_IMAKE		- If set, this port uses imake.  Implies USE_X_PREFIX.
+# USE_IMAKE		- If set, this port uses imake. 
 # XMKMF			- Set to path of `xmkmf' if not in $PATH
 #				  Default: xmkmf -a
-# USE_X_PREFIX	- If set, this port installs in ${X11BASE}.  Implies USE_XLIB.
+# USE_X_PREFIX	- If set, this port installs in ${X11BASE}.  
 # USE_XLIB		- If set, this port uses the X libraries. In the USE_LINUX
 #				  case the linux X libraries are referenced.
 #
@@ -1365,14 +1365,8 @@ FILESDIR?=		${MASTERDIR}/files
 SCRIPTDIR?=		${MASTERDIR}/scripts
 PKGDIR?=		${MASTERDIR}
 
-.if defined(USE_IMAKE) && !defined(USE_X_PREFIX)
-USE_X_PREFIX=	yes
-.endif
 .if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
 .undef USE_X_PREFIX
-.endif
-.if defined(USE_X_PREFIX)
-USE_XLIB=		yes
 .endif
 .if defined(USE_X_PREFIX)
 PREFIX?=		${X11BASE_REL}
@@ -1559,14 +1553,8 @@ PERL=		${LOCALBASE}/bin/perl
 .endif
 .endif
 
-.if ${OSVERSION} >= 502123
+# We only support xorg.
 X_WINDOW_SYSTEM ?= xorg
-.elif (${OSVERSION} >= 450005 && !defined(XFREE86_VERSION)) || \
-	(defined(XFREE86_VERSION) && ${XFREE86_VERSION} == 4)
-X_WINDOW_SYSTEM ?= xfree86-4
-.else
-X_WINDOW_SYSTEM ?= xfree86-3
-.endif
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -1858,42 +1846,8 @@ X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-cyrillic
 X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-truetype
 X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
 X_MANUALS_PORT=		${PORTSDIR}/x11/xorg-manpages
-.elif defined(X_WINDOW_SYSTEM) && ${X_WINDOW_SYSTEM:L} == xfree86-4
-X_IMAKE_PORT=		${PORTSDIR}/devel/imake-4
-X_LIBRARIES_PORT=	${PORTSDIR}/x11/XFree86-4-libraries
-X_CLIENTS_PORT=		${PORTSDIR}/x11/XFree86-4-clients
-X_SERVER_PORT=		${PORTSDIR}/x11-servers/XFree86-4-Server
-X_FONTSERVER_PORT=	${PORTSDIR}/x11-servers/XFree86-4-FontServer
-X_PRINTSERVER_PORT=	${PORTSDIR}/x11-servers/XFree86-4-PrintServer
-X_VFBSERVER_PORT=	${PORTSDIR}/x11-servers/XFree86-4-VirtualFramebufferServer
-X_NESTSERVER_PORT=	${PORTSDIR}/x11-servers/XFree86-4-NestServer
-X_FONTS_ENCODINGS_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-fontEncodings
-X_FONTS_MISC_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-fontDefaultBitmaps
-X_FONTS_100DPI_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-font100dpi
-X_FONTS_75DPI_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-font75dpi
-X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-fontCyrillic
-X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-fontScalable
-X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/XFree86-4-fontScalable
-X_MANUALS_PORT=		${PORTSDIR}/x11/XFree86-4-manuals
-.elif defined(X_WINDOW_SYSTEM) && ${X_WINDOW_SYSTEM:L} == xfree86-3
-X_IMAKE_PORT=		${PORTSDIR}/x11/XFree86
-X_LIBRARIES_PORT=	${PORTSDIR}/x11/XFree86
-X_CLIENTS_PORT=		${PORTSDIR}/x11/XFree86
-X_SERVER_PORT=		${PORTSDIR}/x11/XFree86
-X_FONTSERVER_PORT=	${PORTSDIR}/x11/XFree86
-X_PRINTSERVER_PORT=	${PORTSDIR}/x11/XFree86
-X_VFBSERVER_PORT=	${PORTSDIR}/x11/XFree86
-X_NESTSERVER_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_ENCODINGS_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_MISC_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_100DPI_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_75DPI_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_TTF_PORT=	${PORTSDIR}/x11/XFree86
-X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11/XFree86
-X_MANUALS_PORT=		${PORTSDIR}/x11/XFree86
 .else
-IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xfree86-3', 'xfree86-4', 'xorg'
+IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
 .endif
 
 .if defined(USE_IMAKE)
@@ -2042,10 +1996,12 @@ RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-x
 .	else
 LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
 .	endif
-# Add explicit X options to avoid problems with false positives in configure
-.if defined(GNU_CONFIGURE)
+# 	Add explicit X options to avoid problems with false positives in configure
+.	if defined(GNU_CONFIGURE)
 CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
-.endif
+.	else
+CFLAGS+= -I${X11BASE}/include -L${X11BASE}/lib
+.	endif
 .endif
 
 # Set the default for the installation of Postscript(TM)-
