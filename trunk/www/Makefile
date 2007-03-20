@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.37 2007/03/13 03:22:10 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.38 2007/03/13 06:10:18 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -35,6 +35,7 @@
     SUBDIR += p5-HTML-Table
     SUBDIR += p5-HTML-Tagset
     SUBDIR += p5-HTML-Template
+    SUBDIR += p5-HTML-Tree
     SUBDIR += p5-Template-Toolkit
     SUBDIR += p5-libwww
     SUBDIR += php5-session
