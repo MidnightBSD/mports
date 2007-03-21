@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.27 2007/03/13 05:32:43 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.28 2007/03/13 06:36:35 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -23,6 +23,7 @@
     SUBDIR += nodebrain
     SUBDIR += obliterate
     SUBDIR += pecl-fileinfo
+    SUBDIR += p5-Sys-Hostname-Long
     SUBDIR += php5-posix
     SUBDIR += pwgen
     SUBDIR += screen
