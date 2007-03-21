@@ -1,7 +1,8 @@
-@comment $FreeBSD: ports/mail/dovecot/pkg-plist,v 1.23 2007/01/26 13:18:59 vanilla Exp $
+@comment $FreeBSD: ports/mail/dovecot/pkg-plist,v 1.24 2007/03/06 17:42:35 delphij Exp $
 @unexec if cmp -s %D/etc/dovecot-example.conf %D/etc/dovecot.conf; then rm -f %D/etc/dovecot.conf; fi
 etc/dovecot-example.conf
 @exec if [ ! -f %D/etc/dovecot.conf ] ; then cp -p %D/%F %B/dovecot.conf; fi
+@dirrmtry include/dovecot
 lib/dovecot/imap/lib01_acl_plugin.so
 lib/dovecot/imap/lib02_lazy_expunge_plugin.so
 lib/dovecot/imap/lib10_quota_plugin.so
@@ -46,19 +47,21 @@ lib/dovecot/lib20_mail_log_plugin.la
 lib/dovecot/lib20_mail_log_plugin.so
 @dirrm lib/dovecot
 libexec/dovecot/checkpassword-reply
-libexec/dovecot/deliver
+%%LDA%%libexec/dovecot/deliver
 libexec/dovecot/dict
 libexec/dovecot/dovecot-auth
 libexec/dovecot/gdbhelper
 libexec/dovecot/imap
 libexec/dovecot/imap-login
-libexec/dovecot/pop3
-libexec/dovecot/pop3-login
+%%POP3%%libexec/dovecot/pop3
+%%POP3%%libexec/dovecot/pop3-login
 libexec/dovecot/rawlog
 libexec/dovecot/ssl-build-param
 @dirrm libexec/dovecot
 sbin/dovecot
 sbin/dovecotpw
-share/dovecot/dovecot-openssl.cnf
-share/dovecot/mkcert.sh
-@dirrm share/dovecot
+%%DATADIR%%/dovecot-openssl.cnf
+%%DATADIR%%/mkcert.sh
+%%DATADIR%%/dovecot-ldap.conf
+%%DATADIR%%/dovecot-sql.conf
+@dirrm %%DATADIR%%
