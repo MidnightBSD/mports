@@ -2,13 +2,13 @@
 # New ports collection makefile for:	dovecot
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
-# 
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.3 2007/02/17 23:52:41 laffer1 Exp $
-# $FreeBSD: ports/mail/dovecot/Makefile,v 1.51 2006/09/12 02:33:53 vs Exp $
+#
+# $MidnightBSD$
+# $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
 PORTNAME=	dovecot
-DISTVERSION=	1.0.rc24
+DISTVERSION=	1.0.rc27
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/
 
@@ -30,21 +30,27 @@ USE_LDCONFIG=	${PREFIX}/lib/dovecot \
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	USE-WIKI-INSTEAD \
-		auth-protocol.txt auth.txt configuration.txt design.txt \
-		index.txt mail-storages.txt multiaccess.txt nfs.txt \
-		securecoding.txt variables.txt
+		auth-protocol.txt securecoding.txt variables.txt
 .else
 CONFIGURE_ARGS+=	--without-docs
 .endif
 
+DOVECOT_UID?=	143
+DOVECOT_GID?=	143
+SCRIPT_ENV+=	DOVECOT_UID=${DOVECOT_UID} \
+		DOVECOT_GID=${DOVECOT_GID}
+
 OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
+		SSL		"SSL support"		on  \
+		IPV6		"IPv6 support"		on  \
+		POP3		"POP3 support"		on  \
+		LDA		"LDA support"		on  \
 		GSSAPI		"GSSAPI support"	off \
 		VPOPMAIL	"VPopMail support"	off \
 		LDAP		"OpenLDAP support"	off \
 		PGSQL		"PostgreSQL support"	off \
 		MYSQL		"MySQL support"		off \
-		SQLITE		"SQLite support"	off \
-		IPV6		"IPv6 support"		on
+		SQLITE		"SQLite support"	off
 
 .include <bsd.port.pre.mk>
 
@@ -52,6 +58,38 @@ OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
 #
 .if !defined(WITHOUT_KQUEUE)
 CONFIGURE_ARGS+=	--with-ioloop=kqueue
+.endif
+
+## SSL support
+#
+.if defined(WITHOUT_SSL)
+CONFIGURE_ARGS+=	--without-ssl
+.endif
+
+## IPv6 support
+#
+.if defined(WITHOUT_IPV6)
+CONFIGURE_ARGS+=	--disable-ipv6
+.endif
+
+## POP3 support
+#
+.if defined(WITHOUT_POP3)
+CONFIGURE_ARGS+=	--without-pop3d
+PROTOCOLS=		imap
+PLIST_SUB+=		POP3="@comment "
+.else
+PROTOCOLS=		imap pop3
+PLIST_SUB+=		POP3=""
+.endif
+
+## LDA support
+#
+.if defined(WITHOUT_LDA)
+CONFIGURE_ARGS+=	--without-deliver
+PLIST_SUB+=		LDA="@comment "
+.else
+PLIST_SUB+=		LDA=""
 .endif
 
 ## GSSAPI support
@@ -100,14 +138,17 @@ USE_SQLITE=		3
 CONFIGURE_ARGS+=	--with-sqlite
 .endif
 
-## IPv6 support
-#
-.if defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--disable-ipv6
+post-patch:
+.if defined(WITH_GSSAPI)
+	@${REINPLACE_CMD} -e 's,<gssapi/gssapi\.h>,<gssapi.h>,' \
+		${WRKSRC}/src/auth/mech-gssapi.c \
+		${WRKSRC}/configure
 .endif
 
 post-build:
-	@${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},g' \
+	@${REINPLACE_CMD} \
+		-e 's,%%PREFIX%%,${PREFIX},g' \
+		-e 's,%%PROTOCOLS%%,${PROTOCOLS},g' \
 		${WRKSRC}/dovecot-example.conf
 
 pre-install:
@@ -117,6 +158,8 @@ post-install:
 	@${MKDIR} ${DATADIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/doc/mkcert.sh ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-openssl.cnf ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-ldap.conf ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-sql.conf ${DATADIR}
 	@${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 	@${CAT} ${PKGMESSAGE}
 
