@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.16 2007/03/13 03:53:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.17 2007/03/20 16:09:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -378,8 +378,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  case the linux X libraries are referenced.
 #
 # USE_FREETYPE	- If set, this port uses the freetype print libraries.
-# USE_GL		- If set, this port uses libGL (not needed with XFree86 4.x
-#				  which already includes this functionality).
+# USE_GL               - If set, this port uses libGL
 # USE_MOTIF		- If set, this port uses a Motif toolkit.  Implies USE_XPM.
 # NO_OPENMOTIF	- If set, this port uses a custom Motif toolkit
 #				  instead of Openmotif.
@@ -1854,32 +1853,18 @@ IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
 BUILD_DEPENDS+=			imake:${X_IMAKE_PORT}
 .endif
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-
-.if defined(USE_XPM)
-LIB_DEPENDS+=			Xpm.4:${PORTSDIR}/graphics/xpm
-.endif
-.if defined(USE_GL)
-LIB_DEPENDS+=			GL.14:${PORTSDIR}/graphics/mesagl
-.endif
-
-XAWVER=				6
-PKG_IGNORE_DEPENDS?=		'^XFree86-3\.'
-
-.else
 
 .if defined(USE_XPM) || defined(USE_GL)
 USE_XLIB=			yes
 .endif
 
+# This will always be xorg right now, but we might add xorg7 soon.
 .if ${X_WINDOW_SYSTEM:L} == xorg
 XAWVER=				8
-.else
-XAWVER=				7
 .endif
-PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
-.endif
+
+PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
 PLIST_SUB+=			XAWVER=${XAWVER}
 
