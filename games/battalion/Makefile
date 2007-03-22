@@ -2,13 +2,13 @@
 # Date created:				17 May 1998
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/battalion/Makefile,v 1.1 2006/10/28 19:35:56 wintellect Exp $
 # $FreeBSD: ports/games/battalion/Makefile,v 1.19 2005/02/20 19:42:57 fjoe Exp $
 #
 
 PORTNAME=	battalion
 PORTVERSION=	1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://www.evl.uic.edu/aej/BATTALION/
 DISTFILES=	battalionSource1.4.tar.Z battalionSUN4.tar.gz
@@ -19,7 +19,7 @@ COMMENT=	Monsters, explosions, destruction game for X Window System
 WRKSRC=		${WRKDIR}/battalionSource
 
 ALL_TARGET=	# empty
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GL=		yes
 MAKE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
