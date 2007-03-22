@@ -2,7 +2,7 @@
 # Date created:				31 December 2006
 # Whom:					Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libixp/Makefile,v 1.1 2006/12/31 20:30:40 wintellect Exp $
 #
 
 PORTNAME=	libixp
@@ -12,8 +12,6 @@ MASTER_SITES=	http://libs.suckless.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A stand-alone client/server 9P library including ixpc client
-
-#USE_X_PREFIX=	yes
 
 MAKE_ARGS=	PREFIX="${PREFIX}" X11LIB="${X11BASE}/lib" \
 		X11INC="${X11BASE}/include" CC="${CC}" \
