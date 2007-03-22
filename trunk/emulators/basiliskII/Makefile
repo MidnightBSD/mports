@@ -2,13 +2,13 @@
 # Date created:				17 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.1 2007/03/09 18:01:54 laffer1 Exp $
 # $FreeBSD: ports/emulators/basiliskII/Makefile,v 1.30 2007/01/23 19:08:20 miwi Exp $
 #
 
 PORTNAME=	basiliskII
 PORTVERSION=	1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	emulators
 MASTER_SITES=	http://gwenole.beauchesne.info/projects/basilisk2/files/
 MASTER_SITE_SUBDIR=	basilisk
@@ -19,7 +19,7 @@ COMMENT=	A free, portable, Open Source 68k Mac emulator
 
 WRKSRC=		${WRKDIR}/BasiliskII-${PORTVERSION}/src/Unix
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_GNOME=	esound gtk20
 GNU_CONFIGURE=	yes
