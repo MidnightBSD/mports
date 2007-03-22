@@ -7,6 +7,7 @@
 
 PORTNAME=	tvbrowser
 PORTVERSION=	2.2.1
+PORTREVISION=   1
 CATEGORIES=	german java
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	tvbrowser
@@ -14,7 +15,6 @@ MASTER_SITE_SUBDIR=	tvbrowser
 MAINTAINER=	lars.engels@0x20.net
 COMMENT=	A digital tv guide
 
-USE_X_PREFIX=	yes
 USE_LDCONFIG=	yes
 NO_BUILD=	yes
 USE_JAVA=	yes
