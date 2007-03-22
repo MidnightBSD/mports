@@ -2,13 +2,13 @@
 # Date created:			22 December 2003
 # Whom:				Mezz <mezz7@cox.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.1 2006/11/24 23:02:24 wintellect Exp $
 # $FreeBSD: ports/games/wesnoth/Makefile,v 1.38 2006/10/14 08:54:15 marcus Exp $
 #
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.0.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.wesnoth.org/files/
@@ -25,7 +25,7 @@ USE_GNOME=	gnometarget
 USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_GETTEXT=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-libiconv-prefix=${LOCALBASE} \
