@@ -2,12 +2,13 @@
 # Date created:				16 Oct 2000
 # Whom:					Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/feh/Makefile,v 1.1 2006/09/26 15:45:34 archite Exp $
 # $FreeBSD: ports/graphics/feh/Makefile,v 1.22 2006/03/08 17:45:20 novel Exp $
 #
 
 PORTNAME=	feh
 PORTVERSION=	1.3.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://linuxbrit.co.uk/downloads/
 
@@ -17,7 +18,7 @@ COMMENT=	An image viewer that utilizes Imlib2
 LIB_DEPENDS=	giblib.1:${PORTSDIR}/graphics/giblib
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_PERL5=	yes
 USE_GETOPT_LONG=	yes
 GNU_CONFIGURE=	yes
