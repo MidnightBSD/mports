@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/Makefile,v 1.3 2006/11/27 15:44:25 wintellect Exp $
+# $MidnightBSD: mports/irc/Makefile,v 1.4 2007/02/19 23:05:50 laffer1 Exp $
 # $FreeBSD: ports/irc/Makefile,v 1.139 2006/09/10 09:11:48 dinoex Exp $
 #
 
@@ -6,6 +6,7 @@
 
     SUBDIR += bitlbee
     SUBDIR += irssi
+    SUBDIR += irssi-scripts
     SUBDIR += ngircd
     SUBDIR += xchat
 
