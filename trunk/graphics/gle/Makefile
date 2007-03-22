@@ -2,12 +2,13 @@
 # Date created:				29 August 2000
 # Whom:					David Gilbert <dgilbert@velocet.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gle/Makefile,v 1.1 2006/09/20 03:56:34 archite Exp $
 # $FreeBSD: ports/graphics/gle/Makefile,v 1.14 2006/08/14 23:06:33 clsung Exp $
 #
 
 PORTNAME=	gle
 PORTVERSION=	3.1.0
+PORTREVISION=   1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://linas.org/gle/pub/ \
@@ -20,10 +21,11 @@ COMMENT=	A GL Tubing and Extrusion Library
 
 LIB_DEPENDS=	glut.4:${PORTSDIR}/graphics/libglut
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	"LIBS=-L${X11BASE}/lib -lXext ${PTHREAD_LIBS}"
+CONFIGURE_ENV=	"CFLAGS=-I${LOCALBASE}/include -L${LOCALBASE}/lib -L${X11BASE}/lib -lXext ${PTHREAD_LIBS}"
+
 
 MAN3=		gle.3gle gleExtrusion.3gle gleHelicoid.3gle gleLathe.3gle \
 		glePolyCone.3gle glePolyCylinder.3gle gleScrew.3gle \
