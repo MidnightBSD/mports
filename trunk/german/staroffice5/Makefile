@@ -3,11 +3,11 @@
 # Whom:                 Martin Blapp
 #
 # $FreeBSD: ports/german/staroffice5/Makefile,v 1.17 2005/06/17 22:59:13 netchild Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/staroffice5/Makefile,v 1.1 2006/11/01 13:13:02 laffer1 Exp $
 
 PORTNAME=	staroffice
 PORTVERSION=	5.1a
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	german editors linux
 MASTER_SITES=	ftp://ftp.hagenhomes.com/pub/  \
 		ftp://ftp.stat.duke.edu/pub/Users/sto/StarOffice51a/  \
@@ -25,7 +25,7 @@ BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 NO_LATEST_LINK=	yes
 ONLY_FOR_ARCHS=	i386
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 NO_CDROM=	'Sie muessen StarOffice manuell via WWW-Interface herunterladen.'
 IS_INTERACTIVE=	yes
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
