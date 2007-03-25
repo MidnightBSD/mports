@@ -3,11 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.102 2006/12/07 17:13:41 nobutaka Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.2 2006/12/13 22:19:52 laffer1 Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.3
+PORTREVISION=   1
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -35,7 +36,7 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 USE_GCC=	3.4+
 USE_GETTEXT=	yes
 USE_ICONV=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack gnometarget

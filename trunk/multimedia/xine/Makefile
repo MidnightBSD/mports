@@ -3,12 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.69 2006/12/07 17:17:44 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.1 2006/12/13 22:22:34 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.2 2007/03/15 01:26:21 laffer1 Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	0.99.4
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -22,7 +22,7 @@ LIB_DEPENDS=	xine.16:${PORTSDIR}/multimedia/libxine \
 		curl.3:${PORTSDIR}/ftp/curl
 
 USE_GETTEXT=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
