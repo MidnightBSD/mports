@@ -2,13 +2,13 @@
 # Date created:				7 March 1998
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fm/workplace/Makefile,v 1.1 2006/09/23 18:10:46 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/workplace/Makefile,v 1.28 2006/03/07 08:27:56 ade Exp $
 #
 
 PORTNAME=	workplace
 PORTVERSION=	1.0.a3
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11-fm
 MASTER_SITES=	${MASTER_SITE_LOCAL}
@@ -22,9 +22,9 @@ COMMENT=	File manager and launcher
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk12
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/glib12 \
-		-I${X11BASE}/include/gtk12" \
+		-I${LOCALBASE}/include/gtk12" \
 		LIBS="-L${LOCALBASE}/lib"
 
 pre-configure:
