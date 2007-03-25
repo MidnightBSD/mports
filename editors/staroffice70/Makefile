@@ -2,13 +2,13 @@
 # Date created:		08 Januar 2004
 # Whom:                 Martin Blapp
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/staroffice70/Makefile,v 1.1 2006/10/04 23:52:07 laffer1 Exp $
 # $FreeBSD: ports/editors/staroffice70/Makefile,v 1.65 2006/06/12 15:46:43 erwin Exp $
 #
 
 PORTNAME=	staroffice
 PORTVERSION=	7.0
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	editors linux
 MASTER_SITES=	ftp://patches.sun.com/patchroot/all_unsigned/:patch \
 		ftp://ftp.sun.co.uk/pub/patches/:patch \
@@ -35,7 +35,7 @@ ONLY_FOR_ARCHS=	i386
 NO_CDROM=	'Must be bought and downloaded direct from Sun via www interface'
 
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 IS_INTERACTIVE=	yes
 NO_BUILD=	yes
 SOVERSION=	${PORTNAME}${PORTVERSION}
