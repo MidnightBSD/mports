@@ -2,12 +2,12 @@
 # Date created:		26 January 1998
 # Whom:			Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.1 2007/03/09 04:19:33 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.2 2007/03/25 01:05:35 ctriv Exp $
 # $FreeBSD: ports/misc/wmweather/Makefile,v 1.18 2006/12/13 12:41:30 roam Exp $
 
 PORTNAME=	wmweather
 PORTVERSION=	2.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.godisch.de/debian/wmweather/
 
