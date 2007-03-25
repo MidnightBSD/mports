@@ -3,12 +3,12 @@
 # Whom:                 Martin Blapp
 #
 # $FreeBSD: ports/german/staroffice52/Makefile,v 1.41 2006/04/15 06:26:47 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/staroffice52/Makefile,v 1.1 2006/11/01 13:13:02 laffer1 Exp $
 #
 
 PORTNAME=	staroffice
 PORTVERSION=	5.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	german editors linux
 MASTER_SITES=	ftp://ftp.hu-berlin.de/pub/linux/staroffice/german/ \
 		ftp://sunsite.cnlab-switch.ch/mirror/staroffice/deutsch/ \
@@ -35,7 +35,7 @@ FETCH_DEPENDS=	${LINUX_BASE_PORT}
 NO_LATEST_LINK=	yes
 ONLY_FOR_ARCHS=	i386
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 NO_CDROM=	'Sie muessen StarOffice manuell via WWW-Interface herunterladen.'
 CD_MOUNTPT=	'/cdrom'
 IS_INTERACTIVE=	yes
