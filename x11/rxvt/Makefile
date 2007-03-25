@@ -2,7 +2,7 @@
 # Date created:         5th December 1994
 # Whom:                 gpalmer@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.1 2007/02/19 23:56:29 laffer1 Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -11,7 +11,7 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES+=	x11
 MASTER_SITES=	\
 		http://public.planetmirror.com/pub/rxvt/%SUBDIR%/ \
@@ -24,7 +24,7 @@ COMMENT=	A low memory usage xterm replacement that supports color
 
 FETCH_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-utmp --enable-wtmp \

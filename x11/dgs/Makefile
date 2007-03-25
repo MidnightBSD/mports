@@ -2,13 +2,13 @@
 # Date created:        22 April 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.2 2007/01/19 16:50:20 laffer1 Exp $
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.3 2007/01/19 17:10:24 laffer1 Exp $
 # $FreeBSD: ports/x11/dgs/Makefile,v 1.44 2006/07/26 15:30:48 dinoex Exp $
 #
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	dgs
@@ -21,7 +21,7 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_GHOSTSCRIPT_RUN=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib12
 INSTALLS_SHLIB=	yes
@@ -38,23 +38,10 @@ pre-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} \
 		${REINPLACE_CMD} -e 's|manm|mann|g'
 
-.if ${X_WINDOW_SYSTEM:L} != xfree86-4
-INSTALLDIRS+=	DPS/clients/makepsres DPS/demos/texteroids
-MANN+=		makepsres.man
-.endif
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-PLIST_SUB+=	WITH_XORG=""
-PLIST_SUB+=	WITH_XFREE4=""
-.else
 PLIST_SUB+=	WITH_XORG="@comment "
-
-.if ${X_WINDOW_SYSTEM:L} == xorg
 INSTALLDIRS+=	DPS/lib/dpstk DPS/lib/psres
 PLIST_SUB+=	WITH_XFREE4=""
-.else
-PLIST_SUB+=	WITH_XFREE4="@comment "
-.endif
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/dgs-config ${PREFIX}/bin/
@@ -66,6 +53,5 @@ do-install:
 		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
 .endfor
 
-.endif
 
 .include <bsd.port.post.mk>
