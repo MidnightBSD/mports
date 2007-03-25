@@ -5,13 +5,14 @@
 #
 # By Chris Reinhardt ctriv@MidnightBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Tools/scripts/chkxprefix.pl,v 1.1 2007/03/20 16:02:01 ctriv Exp $
 
 use strict;
 use warnings;
 
 my $portbase  = '/usr/mports';
 my $badprefix = qr:^/usr/X11:;
+
 
 # These are the ports that are allowed in /usr/X11R?
 my @allowed   = qw(
@@ -49,6 +50,11 @@ $|++;
 
 my %allowed = map { + "$portbase/$_", 1 } @allowed;
 
+if (@ARGV && $ARGV[0] eq '-a') {
+  check_all();
+  exit 0;
+}
+
 my $port = shift || die "Usage: check_prefix.pl <port>";
 
 chdir("$portbase/$port") || die "Error: couldn't chdir to '$portbase/$port\n";
@@ -59,6 +65,12 @@ unshift(@deps, "$portbase/$port");
 for (@deps) {
   chomp($_);
 
+  check_port($_) 
+}
+
+sub check_port {
+  local $_ = shift;
+  
   chdir($_) || die "Error: couldn't chdir to '$_'\n";
   
   chomp(my $prefix = `make -V PREFIX`);
@@ -69,3 +81,19 @@ for (@deps) {
 }
 
 
+sub check_all {
+  open(my $index, '<', "$portbase/INDEX-6") || die "Couldn't open index file.\n";
+  
+  while (<$index>) {
+    my ($port, $path, $prefix) = split(m/\|/, $_);
+    
+    if ($prefix =~ $badprefix && !$allowed{$path}) {
+      print "$path has prefix $prefix\n";
+    }
+  }
+  
+  close($index);
+}
+          
+    
+    
