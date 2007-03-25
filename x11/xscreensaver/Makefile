@@ -2,12 +2,13 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.1 2007/03/09 02:14:03 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.01
+PORTREVISION=   1
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 		http://dougbarton.us/Downloads/
@@ -20,7 +21,7 @@ LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		glade-2.0.0:${PORTSDIR}/devel/libglade2
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 USE_GL=		yes
 USE_GMAKE=	yes
