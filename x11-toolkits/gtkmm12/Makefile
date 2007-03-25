@@ -2,13 +2,13 @@
 # Date created:        11 May 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/gtkmm12/Makefile,v 1.1 2006/09/27 16:47:52 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtkmm12/Makefile,v 1.49 2006/02/23 10:40:15 ade Exp $
 #
 
 PORTNAME=	gtkmm
 PORTVERSION=	1.2.8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gtkmm/1.2
@@ -21,7 +21,7 @@ LIB_DEPENDS=	sigc.1:${PORTSDIR}/devel/libsigc++
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_BZIP2=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gtk12
 GNU_CONFIGURE=	yes

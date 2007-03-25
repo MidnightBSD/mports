@@ -2,12 +2,13 @@
 # Date created:		June 15, 1998
 # Whom:			Brian Handy <handy@physics.montana.edu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.2 2006/09/26 14:47:38 archite Exp $
 # $FreeBSD: ports/x11-wm/blackbox/Makefile,v 1.46 2006/05/13 05:00:41 edwin Exp $
 #
 
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1
+PORTREVISION=   1
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	blackboxwm
@@ -22,7 +23,7 @@ CONFLICTS=	boxtools-*
 PORTDOCS=	AUTHORS COMPLIANCE ChangeLog LICENSE README RELNOTES TODO
 MAN1=		blackbox.1
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
