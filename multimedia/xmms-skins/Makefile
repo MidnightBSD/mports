@@ -2,13 +2,13 @@
 # Date created:                19 Aug 2004
 # Whom:                        Filippo Natali <filippo@widestore.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xmms-skins/Makefile,v 1.1 2006/10/03 20:29:58 wintellect Exp $
 # $FreeBSD: ports/multimedia/xmms-skins/Makefile,v 1.3 2006/03/07 08:27:01 ade Exp $
 #
 
 PORTNAME=	xmms-skins
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.xmms.org/files/Skins/
 DISTFILES=	AbsoluteE_Xmms.zip \
@@ -100,7 +100,6 @@ COMMENT=	Skins for X Multimedia System (XMMS)
 
 BUILD_DEPENDS=	xmms-config:${PORTSDIR}/multimedia/xmms
 
-USE_X_PREFIX=	yes
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 

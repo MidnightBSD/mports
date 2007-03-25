@@ -2,13 +2,13 @@
 # Date created:			3 July 1999
 # Whom:				Espen Skoglund <esk@ira.uka.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.1 2006/10/03 18:58:29 wintellect Exp $
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
 #
 
 PORTNAME=	xmms
 PORTVERSION=	1.2.10
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES+=	multimedia audio ipv6
 MASTER_SITES=	http://www.xmms.org/files/1.2.x/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -17,7 +17,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	X Multimedia System --- An audio player with a Winamp GUI
 
 USE_BZIP2=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GNOME=	gtk12 gnomehack
 WANT_GNOME=	yes
 USE_GMAKE=	yes
