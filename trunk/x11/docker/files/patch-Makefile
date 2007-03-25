@@ -8,8 +8,8 @@
 -PREFIX=/usr/local
  # Change this XLIBPATH to point to your X11 development package's installation
 -XLIBPATH=/usr/X11R6/lib
-+XLIBPATH=${PREFIX}/lib
-+XINC=${PREFIX}/include
++XLIBPATH=${X11BASE}/lib
++XINC=${X11BASE}/include
  
  # Sets some flags for stricter compiling
 -CFLAGS=-pedantic -Wall -W -O

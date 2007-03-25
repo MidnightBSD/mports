@@ -2,12 +2,13 @@
 # Date created:		9 November 1994
 # Whom:			smace
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.1 2007/03/08 19:10:10 laffer1 Exp $
 # $FreeBSD: ports/x11/xlockmore/Makefile,v 1.104 2007/02/02 17:06:22 pav Exp $
 #
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.23
+PORTREVISION=	1
 CATEGORIES?=	x11
 MASTER_SITES=	ftp://ftp.tux.org/pub/tux/bagleyd/xlockmore/ \
 		http://www.tux.org/~bagleyd/latest/
@@ -30,7 +31,7 @@ CONFIGURE_ARGS+=--enable-kerberos5
 CFLAGS+=	-I${KRB5_HOME}/include
 KRB5LIB=	-L${KRB5_HOME}/lib
 .endif
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 MAN1=		xlock.1
 
