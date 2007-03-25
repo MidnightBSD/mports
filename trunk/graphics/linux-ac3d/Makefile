@@ -2,12 +2,15 @@
 # Date created:		12 July 2002
 # Whom:			Igor Pokrovsky <tiamat@comset.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/linux-ac3d/Makefile,v 1.1 2006/09/23 22:21:44 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-ac3d/Makefile,v 1.17 2006/09/01 17:44:14 pav Exp $
 #
 
+BROKEN=fetch fails
+
 PORTNAME=	ac3d
 PORTVERSION=	6.030
+PORTREVISION=	1
 CATEGORIES=	graphics linux
 MASTER_SITES=	http://www.ac3d.org/ac3d/download/release6/
 PKGNAMEPREFIX=	linux-
@@ -30,7 +33,7 @@ RESTRICTED=	no distribution permitted
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}lx
 
