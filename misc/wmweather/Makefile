@@ -2,7 +2,7 @@
 # Date created:		26 January 1998
 # Whom:			Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.1 2007/03/09 04:19:33 laffer1 Exp $
 # $FreeBSD: ports/misc/wmweather/Makefile,v 1.18 2006/12/13 12:41:30 roam Exp $
 
 PORTNAME=	wmweather
@@ -24,7 +24,7 @@ CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
 USE_GMAKE=	yes
 USE_GETOPT_LONG=yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 
 MAN1=		wmweather.1
