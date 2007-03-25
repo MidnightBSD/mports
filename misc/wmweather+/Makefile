@@ -2,12 +2,12 @@
 # Date created:				11 April 2003
 # Whom:				Harald Wille <harald.wille@students.jku.at>
 #
-# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.1 2007/03/09 04:38:40 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.2 2007/03/25 01:04:34 ctriv Exp $
 # $FreeBSD: ports/misc/wmweather+/Makefile,v 1.7 2007/01/12 09:12:56 rafan Exp $
 
 PORTNAME=	wmweather+
 PORTVERSION=	2.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	wmweatherplus
