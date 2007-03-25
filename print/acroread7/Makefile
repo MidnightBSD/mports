@@ -2,13 +2,13 @@
 # Date created:		16 March 2005
 # Whom:			Trevor Johnson <trevor@freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/acroread7/Makefile,v 1.1 2006/09/25 02:50:43 laffer1 Exp $
 # $FreeBSD: ports/print/acroread7/Makefile,v 1.21 2006/09/02 23:18:10 kris Exp $
 #
 
 PORTNAME=	acroread7
 PORTVERSION?=	7.0.8
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/7x/${VERSIONDIR}/${ADOBE_LANG:L}/ \
@@ -26,7 +26,7 @@ RUN_DEPENDS=	acroread:${PORTSDIR}/print/acroreadwrapper \
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 #USE_GNOME=	desktopfileutils
 NO_BUILD=	yes
 PLIST=		${PKGDIR}/pkg-plist.${PORTVERSION}
