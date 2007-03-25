@@ -2,9 +2,11 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.1 2006/10/04 20:13:14 laffer1 Exp $
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
+
+BROKEN=		fetch fails
 
 PORTNAME=	linux-realplayer
 DISTVERSION=	10.0.7.785-20060201
@@ -23,7 +25,7 @@ RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/l
 WRKSRC=		${WRKDIR}/usr/local/RealPlayer
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 RESTRICTED=	Redistribution not allowed
 NO_BUILD=	yes
 
