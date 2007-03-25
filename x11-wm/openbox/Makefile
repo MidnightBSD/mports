@@ -3,12 +3,13 @@
 # Whom:					trevor
 # based on the blackbox port
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.1 2006/10/08 15:57:25 wintellect Exp $
 # $FreeBSD: ports/x11-wm/openbox/Makefile,v 1.74 2006/09/02 10:04:56 novel Exp $
 #
 
 PORTNAME=	openbox
 PORTVERSION=	3.3.1
+PORTREVISION=   1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://offload1.icculus.org/openbox/releases/
 
@@ -20,7 +21,7 @@ LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_LDCONFIG=	yes
 
 .if !defined(WITHOUT_PANGO)
@@ -34,6 +35,6 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 pre-install:
-	@${MKDIR} ${X11BASE}/libdata/ldconfig
+	@${MKDIR} ${PREFIX}/libdata/ldconfig
 
 .include <bsd.port.mk>

@@ -2,13 +2,13 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.1 2006/09/17 04:48:51 archite Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.2 2006/09/25 16:34:16 archite Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.37 2006/03/31 22:26:33 mezz Exp $
 #
 
 PORTNAME=	fluxbox
 PORTVERSION=	0.1.14
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -20,7 +20,7 @@ LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 RUN_DEPENDS=	bsetbg:${PORTSDIR}/x11-wm/boxtools
 
 WANT_GNOME=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-newwmspec
 
