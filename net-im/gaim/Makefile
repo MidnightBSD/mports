@@ -2,13 +2,13 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.2 2007/03/11 09:01:30 archite Exp $
 # $FreeBSD: ports/net-im/gaim/Makefile,v 1.190 2006/08/26 19:15:08 garga Exp $
 #
 
 PORTNAME=	gaim
 PORTVERSION=	1.5.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES?=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -20,7 +20,7 @@ LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 CONFLICTS?=	ja-gaim-[0-9]*
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20

@@ -2,13 +2,13 @@
 # Date created:				Thu Jul  5 14:43:55 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/wmlpq/Makefile,v 1.1 2006/10/06 15:33:47 wintellect Exp $
 # $FreeBSD: ports/print/wmlpq/Makefile,v 1.6 2006/04/14 22:53:08 linimon Exp $
 #
 
 PORTNAME=	wmlpq
 PORTVERSION=	0.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print windowmaker
 MASTER_SITES=	http://www.ur.uklinux.net/wmlpq/dl/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -19,7 +19,7 @@ COMMENT=	Print queue monitoring dockapp for Window Maker
 LIB_DEPENDS=	dockapp.2:${PORTSDIR}/x11-wm/libdockapp
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 
 MAN1=		${PORTNAME}.1x

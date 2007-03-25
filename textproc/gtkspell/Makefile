@@ -2,13 +2,13 @@
 # Date created:				19 Aug 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.1 2006/09/26 16:23:14 archite Exp $
 # $FreeBSD: ports/textproc/gtkspell/Makefile,v 1.28 2006/05/31 22:18:46 mezz Exp $
 #
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.11
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://gtkspell.sourceforge.net/download/
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
@@ -25,7 +25,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 INSTALLS_SHLIB=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

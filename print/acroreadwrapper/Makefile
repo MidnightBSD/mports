@@ -2,12 +2,13 @@
 # Date created:		20 February 2006
 # Whom:			hrs
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.1 2006/09/25 02:50:43 laffer1 Exp $
 # $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.3 2006/02/22 06:58:02 hrs Exp $
 #
 
 PORTNAME=	acroreadwrapper
 PORTVERSION=	0.0.20060221
+PORTREVISION=   1
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -16,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for Adobe Reader
 
 ONLY_FOR_ARCHS=	amd64 i386
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 NO_BUILD=	yes
 PLIST_SUB=	ACRODIR=${ACRODIR} \
 		ADOBEDIR=${ADOBEDIR}
