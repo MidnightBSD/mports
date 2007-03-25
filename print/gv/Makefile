@@ -3,12 +3,13 @@
 # Date created:			  16 Apr 1996
 # Whom:				  tg@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/gv/Makefile,v 1.1 2007/03/18 17:29:10 laffer1 Exp $
 # $FreeBSD: ports/print/gv/Makefile,v 1.49 2006/11/15 21:48:46 miwi Exp $
 #
 
 PORTNAME=	gv
 PORTVERSION=	3.6.2
+PORTREVISION=   1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -18,7 +19,7 @@ COMMENT=	A PostScript and PDF previewer
 
 LIB_DEPENDS=	Xaw3d:${PORTSDIR}/x11-toolkits/Xaw3d
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 USE_GHOSTSCRIPT=	yes
 USE_GETOPT_LONG=	yes
