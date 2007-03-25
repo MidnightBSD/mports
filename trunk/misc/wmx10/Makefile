@@ -2,13 +2,13 @@
 # Date created:                                16 September 2000
 # Whom:                                        eric
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/wmx10/Makefile,v 1.1 2007/03/09 05:05:41 laffer1 Exp $
 # $FreeBSD: ports/misc/wmx10/Makefile,v 1.10 2004/08/08 17:13:17 krion Exp $
 #
 
 PORTNAME=	wmx10
 PORTVERSION=	0.03
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.cs.uml.edu/~jhawkins/wmx10/
 
@@ -17,7 +17,7 @@ COMMENT=	Remote control for X10 devices
 
 WRKSRC=		${WRKDIR}/wmx10.app/wmx10
 
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 USE_GMAKE=	yes
 

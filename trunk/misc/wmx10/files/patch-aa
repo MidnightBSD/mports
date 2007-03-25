@@ -26,4 +26,4 @@
 -	strip wmx10
 -	mv wmx10 /usr/local/bin
 +install:	wmx10
-+	${BSD_INSTALL_PROGRAM} wmx10 ${X11BASE}/bin
++	${BSD_INSTALL_PROGRAM} wmx10 ${PREFIX}/bin
