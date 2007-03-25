@@ -2,7 +2,7 @@
 # Date created:				11 April 2003
 # Whom:				Harald Wille <harald.wille@students.jku.at>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.1 2007/03/09 04:38:40 laffer1 Exp $
 # $FreeBSD: ports/misc/wmweather+/Makefile,v 1.7 2007/01/12 09:12:56 rafan Exp $
 
 PORTNAME=	wmweather+
@@ -26,7 +26,7 @@ LIB_DEPENDS=	xmlparse:${PORTSDIR}/www/libwww \
 
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_XPM=	yes
 
 CONFIGURE_ARGS+=	--with-libwraster=${X11BASE}
