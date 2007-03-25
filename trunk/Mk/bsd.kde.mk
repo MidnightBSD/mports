@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.3 2007/03/17 04:09:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -79,7 +79,7 @@ IGNORE=			cannot install: unsupported value in USE_KDELIBS_VER
 .if ${USE_QT_VER} == CVS
 
 KDE_CVS_PREFIX?=	${LOCALBASE}/kde-cvs
-QT_CVS_PREFIX?=		${X11BASE}/qt-cvs
+QT_CVS_PREFIX?=		${LOCALBASE}/qt-cvs
 QTCPPFLAGS?=
 QTCFGLIBS?=
 
@@ -106,12 +106,12 @@ QTCPPFLAGS?=
 QTCGFLIBS?=
 
 # Qt 3.x common stuff
-QT_PREFIX?=		${X11BASE}
+QT_PREFIX?=		${LOCALBASE}
 MOC?=			${QT_PREFIX}/bin/moc
 #LIB_DEPENDS+=	qt-mt.3:${PORTSDIR}/x11-toolkits/qt33
 BUILD_DEPENDS+=	${QT_PREFIX}/bin/moc:${PORTSDIR}/x11-toolkits/qt33
 RUN_DEPENDS+=	${QT_PREFIX}/bin/moc:${PORTSDIR}/x11-toolkits/qt33
-QTCPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include \
+QTCPPFLAGS+=	-I${LOCALBASE}/include -I${X11BASE}/include \
 				-I${QT_PREFIX}/include -D_GETOPT_H
 QTCFGLIBS+=		-Wl,-export-dynamic -L${LOCALBASE}/lib -L${X11BASE}/lib -ljpeg \
 				-L${QT_PREFIX}/lib
