@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/security/qca-tls/Makefile,v 1.9 2006/08/21 10:08:24 demon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/qca-tls/Makefile,v 1.1 2007/01/20 17:22:48 laffer1 Exp $
 #
 
 PORTNAME=	qca-tls
@@ -19,15 +19,15 @@ COMMENT=	SSL/TLS plugin for Qt
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
 HAS_CONFIGURE=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_OPENSSL=	yes
 USE_QT_VER=	3
 QT_NONSTANDARD=	yes
 CONFIGURE_ENV=	QMAKESPEC=${LOCALBASE}/share/qt/mkspecs/freebsd-g++
-CONFIGURE_ARGS=	--qtdir=${X11BASE} \
+CONFIGURE_ARGS=	--qtdir=${LOCALBASE} \
 		--with-openssl-inc=${OPENSSLINC} --with-openssl-lib=${OPENSSLLIB}
-MAKE_ARGS+=	QTDIR=${X11BASE} \
+MAKE_ARGS+=	QTDIR=${LOCALBASE} \
 		QMAKESPEC=${LOCALBASE}/share/qt/mkspecs/freebsd-g++
 
 PLIST_DIRS=	lib/plugins/crypto

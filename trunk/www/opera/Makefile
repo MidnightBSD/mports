@@ -2,12 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.3 2006/10/02 04:25:45 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.4 2006/12/20 20:38:11 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
+PORTREVISION=   1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -40,7 +41,7 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
 
 USE_BZIP2=	yes
 WANT_GNOME=	yes
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 ONLY_FOR_ARCHS=	i386
 WRKSRC=		${WRKDIR}/${DISTNAME}-${OPERA_BUILD}
 
