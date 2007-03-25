@@ -2,13 +2,13 @@
 # Date created:				12 Jan 2006
 # Whom:					Dmitry Marakasov <amdmi3@amdmi3.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.1 2007/03/15 02:27:09 laffer1 Exp $
 # $FreeBSD: ports/graphics/gnash/Makefile,v 1.13 2007/02/10 06:05:01 kris Exp $
 #
 
 PORTNAME=	gnash
 PORTVERSION=	0.7.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
@@ -27,7 +27,6 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehier glib20 pkgconfig libxml2
 USE_SDL=	sdl mixer
-USE_X_PREFIX=	yes
 USE_GCC=	3.4+
 
 PLUGIN_DIR=	${PREFIX}/lib/browser_plugins
