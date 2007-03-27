@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.13 2007/03/13 07:17:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.14 2007/03/16 15:29:01 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -16,6 +16,7 @@
     SUBDIR += obconf
     SUBDIR += openbox
     SUBDIR += pekwm
+    SUBDIR += ratpoison
     SUBDIR += skippy-xd
     SUBDIR += windowmaker
     SUBDIR += wmii
