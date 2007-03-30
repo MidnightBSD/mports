@@ -4,12 +4,12 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.2 2007/01/20 17:43:44 laffer1 Exp $
 #
 
 PORTNAME=	libgsf
 PORTVERSION=	1.14.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -22,7 +22,6 @@ COMMENT?=	An extensible i/o abstraction for dealing with structured file formats
 LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
 .endif
 
-USE_X_PREFIX=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
