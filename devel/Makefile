@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.108 2007/03/21 17:07:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.109 2007/03/29 13:18:46 wintellect Exp $
 #
 
     COMMENT = Development utilities
 
     SUBDIR += ORBit
     SUBDIR += ORBit2
+    SUBDIR += activitymail
     SUBDIR += apache-ant
     SUBDIR += apr
     SUBDIR += apr-svn
