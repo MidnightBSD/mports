@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.1 2006/09/18 13:26:32 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.2 2007/03/17 20:04:14 laffer1 Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -91,9 +91,9 @@ ZSH_ETCDIR?=	/etc
 ZSH_FNDIR?=	${DATADIR}/${ZSH_VER}/functions
 ZSH_SITEFNDIR?=	${DATADIR}/site-functions
 
-PLIST_SUB+=	ZSH_VER="${ZSH_VER}" ZSHETCDIR="${ZSH_ETCDIR}" \
+PLIST_SUB+=	ZSH_VER="${ZSH_VER}" ZSH_ETCDIR="${ZSH_ETCDIR}" \
 		ZSH_FNDIR="${ZSH_FNDIR:S!${PREFIX}/!!}" \
-		ZSH_SITEFNDIR="${ZSH_SITEFNDIR}"
+		ZSH_SITEFNDIR="${ZSH_SITEFNDIR:S!${PREFIX}/!!}"
 
 MAN1=		zsh.1 zshbuiltins.1 zshcompctl.1 zshcompwid.1 zshcompsys.1 \
 		zshcontrib.1 zshexpn.1 zshmisc.1 zshmodules.1 zshoptions.1 \
