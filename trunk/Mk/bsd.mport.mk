@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.18 2007/03/22 03:08:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.1 2007/03/30 05:29:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -576,6 +576,9 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  Default: ${MASTERDIR}/files
 # PKGDIR		- A directory containing any package creation files.
 #				  Default: ${MASTERDIR}
+#
+# TMP_INSTALLDIR	- A directory used to creating packages.  
+#				  Default: "inst"
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -1364,17 +1367,22 @@ FILESDIR?=		${MASTERDIR}/files
 SCRIPTDIR?=		${MASTERDIR}/scripts
 PKGDIR?=		${MASTERDIR}
 
+# Set up PREFIX.
 .if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
 .undef USE_X_PREFIX
 .endif
+
 .if defined(USE_X_PREFIX)
-PREFIX?=		${X11BASE_REL}
+_DEFAULT_PREFIX=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
-PREFIX?=		${LINUXBASE_REL}
+_DEFAULT_PREFIX=	${LINUXBASE_REL}
 NO_MTREE=		yes
 .else
-PREFIX?=		${LOCALBASE_REL}
+_DEFAULT_PREFIX=	${LOCALBASE_REL}
 .endif
+
+PREFIX?=		${_DEFAULT_PREFIX}
+
 
 .if defined(USE_LINUX_PREFIX)
 .if !defined(DESTDIR)
@@ -1554,6 +1562,10 @@ PERL=		${LOCALBASE}/bin/perl
 
 # We only support xorg.
 X_WINDOW_SYSTEM ?= xorg
+
+
+# Tmp dir used for building a package.
+TMP_INSTALLDIR?=	"inst"
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -2224,7 +2236,7 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
 .if !defined(DESTDIR)
-PKG_CMD?=		/usr/sbin/mport
+PKG_CMD?=		/usr/sbin/pkg_create
 PKG_ADD?=		/usr/sbin/pkg_add
 PKG_DELETE?=	/usr/sbin/pkg_delete
 PKG_INFO?=		/usr/sbin/pkg_info
@@ -2246,7 +2258,7 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
+PKG_ARGS=		-v -c -${COMMENT:Q} -s ${.CURDIR}/${TMP_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${_DEFAULT_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
 .if !defined(NO_MTREE)
 PKG_ARGS+=		-m ${MTREE_FILE}
 .endif
@@ -3566,19 +3578,18 @@ check-conflicts:
 
 # Install
 
-TMP_INSTALLDIR="inst"
 
 .if !target(tmpdir-install)
 tmpdir-install:
 .if exists(${CONFIGURE_COOKIE})
 	@${ECHO_MSG} "" 
-	@${ECHO_MSG} "        You must run make packages from a clean port."
+	@${ECHO_MSG} "        You must run 'make ${.TARGET}' from a clean port."
 	@${ECHO_MSG} "        Run 'make clean' and try again."
 	@exit 1
 .endif
 	
 	@cd ${.CURDIR} && ${MKDIR} ${TMP_INSTALLDIR} 
-	${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${.CURDIR}/${TMP_INSTALLDIR}" install
+	@${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${.CURDIR}/${TMP_INSTALLDIR}" install
 .endif
 
 .if !target(do-install)
