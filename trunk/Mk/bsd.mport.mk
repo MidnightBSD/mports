@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.1 2007/03/30 05:29:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.2 2007/03/30 17:27:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1565,7 +1565,8 @@ X_WINDOW_SYSTEM ?= xorg
 
 
 # Tmp dir used for building a package.
-TMP_INSTALLDIR?=	"inst"
+TMP_INSTALLDIR?=	inst
+_ABS_TMP_INSTALLDIR=	${.CURDIR}/${TMP_INSTALLDIR}
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -2258,7 +2259,7 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -s ${.CURDIR}/${TMP_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${_DEFAULT_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
+PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_TMP_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${_DEFAULT_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
 .if !defined(NO_MTREE)
 PKG_ARGS+=		-m ${MTREE_FILE}
 .endif
@@ -3589,7 +3590,7 @@ tmpdir-install:
 .endif
 	
 	@cd ${.CURDIR} && ${MKDIR} ${TMP_INSTALLDIR} 
-	@${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${.CURDIR}/${TMP_INSTALLDIR}" install
+	@${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${_ABS_TMP_INSTALLDIR}" install
 .endif
 
 .if !target(do-install)
@@ -5458,7 +5459,7 @@ add-plist-info:
 .endfor
 .if (${PREFIX} != "/usr")
 	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != ${_ABS_TMP_INSTALLDIR})
 	@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
 .endif
 .endif
@@ -5469,7 +5470,7 @@ add-plist-info:
 # deinstall-time
 .if !target(add-plist-post)
 add-plist-post:
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr" && ${PREFIX} != ${_ABS_TMP_INSTALLDIR})
 	@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
 .else
 	@${DO_NADA}
