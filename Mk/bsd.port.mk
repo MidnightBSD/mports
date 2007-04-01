@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.17 2007/03/20 16:09:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.18 2007/03/22 03:08:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -847,6 +847,10 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # MAKE_ARGS		- Any extra arguments to sub-make in build and install stages.
 #				  Default: none
 #
+# NO_STACK_PROTECTOR	- If set, Propolice stack protection will be disabled.  Only set
+# 			  this if there is no way for the port to work with propolice.
+#
+#
 # For install:
 #
 # INSTALL_TARGET
@@ -1598,6 +1602,10 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
 
 PLIST_REINPLACE+=	dirrmtry
 PLIST_REINPLACE_DIRRMTRY=s!^@dirrmtry \(.*\)!@unexec rmdir %D/\1 2>/dev/null || true!
+
+.if defined(NO_STACK_PROTECTOR)
+CFLAGS+=	-fno-stack-protector
+.endif
 
 .if defined(WITHOUT_CPU_CFLAGS)
 .if defined(_CPUCFLAGS)
