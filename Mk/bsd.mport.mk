@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.2 2007/03/30 17:27:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.3 2007/03/30 19:11:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -577,8 +577,9 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # PKGDIR		- A directory containing any package creation files.
 #				  Default: ${MASTERDIR}
 #
-# TMP_INSTALLDIR	- A directory used to creating packages.  
-#				  Default: "inst"
+# FAKE_INSTALLDIR	- A directory used to creating packages. An install is "faked" into
+#			  this dir. 
+#				  Default: "fake-inst"
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -849,6 +850,10 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  Default: see below
 # MAKE_ARGS		- Any extra arguments to sub-make in build and install stages.
 #				  Default: none
+#
+# NO_STACK_PROTECTOR	- If set, Propolice stack protection will be disabled.  Only set
+# 			  this if there is no way for the port to work with propolice.
+#
 #
 # For install:
 #
@@ -1373,15 +1378,15 @@ PKGDIR?=		${MASTERDIR}
 .endif
 
 .if defined(USE_X_PREFIX)
-_DEFAULT_PREFIX=	${X11BASE_REL}
+TRUE_PREFIX=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
-_DEFAULT_PREFIX=	${LINUXBASE_REL}
+TRUE_PREFIX=	${LINUXBASE_REL}
 NO_MTREE=		yes
 .else
-_DEFAULT_PREFIX=	${LOCALBASE_REL}
+TRUE_PREFIX=	${LOCALBASE_REL}
 .endif
 
-PREFIX?=		${_DEFAULT_PREFIX}
+PREFIX?=		${TRUE_PREFIX}
 
 
 .if defined(USE_LINUX_PREFIX)
@@ -1565,8 +1570,8 @@ X_WINDOW_SYSTEM ?= xorg
 
 
 # Tmp dir used for building a package.
-TMP_INSTALLDIR?=	inst
-_ABS_TMP_INSTALLDIR=	${.CURDIR}/${TMP_INSTALLDIR}
+FAKE_INSTALLDIR?=	inst
+_ABS_FAKE_INSTALLDIR=	${.CURDIR}/${FAKE_INSTALLDIR}
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -1618,6 +1623,10 @@ PLIST_REINPLACE_DIRRMTRY=s!^@dirrmtry \(.*\)!@unexec rmdir %D/\1 2>/dev/null || 
 CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .endif
 .endif
+.endif
+
+.if defined(NO_STACK_PROTECTOR)
+CFLAGS+=	-fno-stack-protector
 .endif
 
 .if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
@@ -2259,7 +2268,7 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_TMP_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${_DEFAULT_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
+PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_FAKE_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${TRUE_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
 .if !defined(NO_MTREE)
 PKG_ARGS+=		-m ${MTREE_FILE}
 .endif
@@ -3580,8 +3589,8 @@ check-conflicts:
 # Install
 
 
-.if !target(tmpdir-install)
-tmpdir-install:
+.if !target(fake-install)
+fake-install:
 .if exists(${CONFIGURE_COOKIE})
 	@${ECHO_MSG} "" 
 	@${ECHO_MSG} "        You must run 'make ${.TARGET}' from a clean port."
@@ -3589,8 +3598,8 @@ tmpdir-install:
 	@exit 1
 .endif
 	
-	@cd ${.CURDIR} && ${MKDIR} ${TMP_INSTALLDIR} 
-	@${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${_ABS_TMP_INSTALLDIR}" install
+	@cd ${.CURDIR} && ${MKDIR} ${FAKE_INSTALLDIR} 
+	${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${_ABS_FAKE_INSTALLDIR}" install
 .endif
 
 .if !target(do-install)
@@ -4083,7 +4092,7 @@ _INSTALL_SUSEQ= check-umask install-mtree pre-su-install \
 				post-install post-install-script add-plist-info \
 				add-plist-docs add-plist-post install-rc-script compress-man \
 				install-ldconfig-file fake-pkg security-check
-_PACKAGE_DEP=	tmpdir-install
+_PACKAGE_DEP=	fake-install
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
 				do-package post-package-script
 
@@ -4332,11 +4341,11 @@ do-clean:
 			${ECHO_MSG} "===>   ${WRKDIR} not writable, skipping"; \
 		fi; \
 	fi
-	@if [ -d ${TMP_INSTALLDIR} ]; then \
-		if [ -w ${TMP_INSTALLDIR} ]; then \
-			${RM} -rf ${TMP_INSTALLDIR}; \
+	@if [ -d ${FAKE_INSTALLDIR} ]; then \
+		if [ -w ${FALE_INSTALLDIR} ]; then \
+			${RM} -rf ${FAKE_INSTALLDIR}; \
 		else \
-			${ECHO_MSG} "===>   ${TMP_INSTALLDIR} not writable, skipping"; \
+			${ECHO_MSG} "===>   ${FAKE_INSTALLDIR} not writable, skipping"; \
 		fi; \
 	fi
 .endif
@@ -5459,7 +5468,7 @@ add-plist-info:
 .endfor
 .if (${PREFIX} != "/usr")
 	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != ${_ABS_TMP_INSTALLDIR})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != ${_ABS_FAKE_INSTALLDIR})
 	@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
 .endif
 .endif
@@ -5470,7 +5479,7 @@ add-plist-info:
 # deinstall-time
 .if !target(add-plist-post)
 add-plist-post:
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr" && ${PREFIX} != ${_ABS_TMP_INSTALLDIR})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr" && ${PREFIX} != ${_ABS_FAKE_INSTALLDIR})
 	@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
 .else
 	@${DO_NADA}
