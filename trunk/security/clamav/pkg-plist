@@ -1,5 +1,6 @@
-@comment $FreeBSD: ports/security/clamav/pkg-plist,v 1.27 2006/04/06 15:20:18 garga Exp $
+@comment $FreeBSD: ports/security/clamav/pkg-plist,v 1.31 2007/03/13 20:11:16 garga Exp $
 bin/clamav-config
+bin/clamconf
 bin/clamscan
 bin/clamdscan
 bin/freshclam
@@ -7,7 +8,7 @@ bin/sigtool
 %%CLAMAV-MILTER%%sbin/clamav-milter
 sbin/clamd
 include/clamav.h
-lib/libclamav.so.1
+lib/libclamav.so.2
 lib/libclamav.so
 lib/libclamav.a
 lib/libclamav.la
@@ -20,6 +21,6 @@ etc/freshclam.conf.default
 @exec [ -f %B/freshclam.conf ] || cp %B/%f %B/freshclam.conf
 @unexec [ -s %%DBDIR%%/daily.cvd ] || rm -f %%DBDIR%%/daily.cvd || true
 @unexec [ -s %%DBDIR%%/main.cvd ] || rm -f %%DBDIR%%/main.cvd || true
-@unexec rmdir %%DBDIR%% 2>/dev/null || true
-@unexec rmdir %%LOGDIR%% 2>/dev/null || true
-@unexec rmdir %%RUNDIR%% 2>/dev/null || true
+@dirrmtry %%DBDIR%%
+@dirrmtry %%LOGDIR%%
+@dirrmtry %%RUNDIR%%
