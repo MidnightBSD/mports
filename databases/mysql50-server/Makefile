@@ -2,12 +2,12 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.1 2006/10/03 20:52:30 laffer1 Exp $
-# $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.218 2006/09/07 07:40:00 ale Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.224 2007/03/14 16:13:27 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.0.27
+PORTVERSION=	5.0.37
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -30,7 +30,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-mysqlfs \
 		--with-low-memory \
-		--with-comment='MidnightBSD port: ${PKGNAME}' \
+		--with-comment='FreeBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
@@ -88,12 +88,14 @@ CFLAGS+=	${PTHREAD_CFLAGS}
 
 .if defined(BUILD_OPTIMIZED)
 CFLAGS+=	-O3 -fno-omit-frame-pointer
-.if (defined(USE_GCC) && (${USE_GCC} == 3.0 || ${USE_GCC} == 3.1 || ${USE_GCC} == 3.2 || ${USE_GCC} == 3.3))
+.if ${OSVERSION} > 500000 || (defined(USE_GCC) && (${USE_GCC} == 3.0 || ${USE_GCC} == 3.1 || ${USE_GCC} == 3.2 || ${USE_GCC} == 3.3))
 CFLAGS+=	-fno-gcse
 .endif
 .endif
 CXXFLAGS+=	${CFLAGS} -felide-constructors -fno-rtti
+.if ${OSVERSION} >= 400002
 CXXFLAGS+=	-fno-exceptions
+.endif
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY) && !defined(SCRIPTS_ONLY)
@@ -112,7 +114,8 @@ PLIST_SUB+=	NDB=""
 PLIST_SUB+=	NDB="@comment "
 .endif
 
-MAN1=		myisamchk.1 myisamlog.1 myisampack.1 mysqld.1 \
+MAN1=		myisamchk.1 myisamlog.1 myisampack.1 \
+		my_print_defaults.1 mysql_tzinfo_to_sql.1 \
 		mysqld_safe.1 mysql.server.1 perror.1 replace.1
 
 INFO=		mysql
@@ -168,11 +171,13 @@ CONFLICTS=	mysql-client-3.* mysql-client-4.* mysql-client-5.1.*
 MAN1=		mysql_config.1 mysql.1 mysqladmin.1 mysqlbinlog.1 \
 		mysqlcheck.1 mysqldump.1 mysqlimport.1 mysqlshow.1
 
+MAN8=		mysqlmanager.8
+
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 
 CONFIGURE_ARGS+=--without-server
 
-PLIST_SUB+=     ZLIB="@comment "
+PLIST_SUB+=	ZLIB="@comment "
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @zlib_dir@ strings mysys dbug extra regex libmysql_r libmysql client scripts @man_dirs@|g" ${WRKSRC}/Makefile.in
@@ -180,7 +185,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|all: config.h|all: config.h all-local|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = mysql_config mysql_fix_privilege_tables mysqlbug|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = mysql_fix_privilege_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-binPROGRAMS|install-exec-am:|g" ${WRKSRC}/extra/Makefile.in
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/mysys/default.c
 .if defined(WITH_PROC_SCOPE_PTH)
@@ -193,7 +198,7 @@ USE_MYSQL=	yes
 WANT_MYSQL_VER=	50
 USE_PERL5=	yes
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql50
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql50
 .if ${PERL_LEVEL} <= 500800
 RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
 .endif
