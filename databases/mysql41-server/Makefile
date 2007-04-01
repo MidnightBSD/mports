@@ -2,12 +2,12 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.222 2006/08/06 18:53:11 pav Exp $
 # $MidnightBSD$
+# $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.224 2007/01/20 09:22:57 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	4.1.21
+PORTVERSION=	4.1.22
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -31,7 +31,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-mysqlfs \
 		--with-vio \
 		--with-low-memory \
-		--with-comment='FreeBSD port: ${PKGNAME}' \
+		--with-comment='MidnightBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
@@ -83,23 +83,12 @@ CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
 CFLAGS+=	${PTHREAD_CFLAGS}
 .endif
 
-.if ${OSVERSION} < 500000
-LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CXX=		${CC}
-.endif
 .if defined(BUILD_OPTIMIZED)
 CFLAGS+=	-O3 -fno-omit-frame-pointer
-.if ${OSVERSION} > 500000 || (defined(USE_GCC) && (${USE_GCC} == 3.0 || ${USE_GCC} == 3.1 || ${USE_GCC} == 3.2 || ${USE_GCC} == 3.3))
 CFLAGS+=	-fno-gcse
 .endif
-.endif
 CXXFLAGS+=	${CFLAGS} -felide-constructors -fno-rtti
-.if ${OSVERSION} >= 400002
 CXXFLAGS+=	-fno-exceptions
-.endif
 
 # MySQL-Server part
 .if !defined(CLIENT_ONLY) && !defined(SCRIPTS_ONLY)
@@ -120,6 +109,8 @@ PLIST_SUB+=	NDB="@comment "
 
 MAN1=		myisamchk.1 myisamlog.1 myisampack.1 mysqld.1 \
 		mysqld_safe.1 mysql.server.1 perror.1 replace.1
+
+MAN8=		mysqld.8
 
 INFO=		mysql
 
@@ -147,7 +138,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|all: config.h|all: config.h all-local|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = @server_scripts@ mysql_create_system_tables|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = fill_help_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-pkgincludeHEADERS|install-data-am:|g" ${WRKSRC}/include/Makefile.in
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/mysys/default.c
 .if defined(WITH_PROC_SCOPE_PTH)
@@ -191,7 +182,7 @@ USE_MYSQL=	yes
 WANT_MYSQL_VER=	41
 USE_PERL5=	yes
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql41
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql41
 .if ${PERL_LEVEL} <= 500800
 RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
 .endif
