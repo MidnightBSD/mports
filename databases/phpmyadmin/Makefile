@@ -2,23 +2,25 @@
 # Date created:		19 Jan 2001
 # Whom:			nbm
 #
-# $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.57 2006/10/01 19:55:53 mnag Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.1 2006/11/25 04:10:11 laffer1 Exp $
+# $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	2.9.0.2
+DISTVERSION=	2.10.0.2
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	phpmyadmin
-DISTNAME=	${PORTNAME}-${PORTVERSION}
+DISTNAME=	${PORTNAME}-${PORTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to manage MySQL over the web
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-USE_PHP=	mysql pcre session
+.if !defined(WITHOUT_PHP_DEPENDS)
+USE_PHP=	ctype mysql pcre session
+.endif
 
 SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
 		"PKGNAME=${PKGNAME}"
@@ -65,6 +67,7 @@ OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 .include "${OPTIONSFILE}"
 .endif
 
+.if !defined(WITHOUT_PHP_DEPENDS)
 # Options that default to on:
 .for opt in BZ2 GD OPENSSL PDF ZLIB MCRYPT MBSTRING
 .    if !defined(WITHOUT_${opt}) || defined(WITH_${opt})
@@ -78,6 +81,7 @@ USE_PHP+=	${opt:L}
 USE_PHP+=	${opt:L}
 .    endif
 .endfor
+.endif
 
 # MYADMUSR is only used WITH_SUPHP
 MYADMDIR?=	www/phpMyAdmin
@@ -107,7 +111,14 @@ pre-everything::
 	${ECHO_MSG} "databases/phpmyadmin"
 	${ECHO_MSG} ""
 
+# When creating a package, empty directories will not be generated
+# from the pkg tarball.  Therefore make sure no directories are empty.
+
 post-patch:
+	cd ${WRKSRC} ; \
+	for emptydir in $$( ${FIND} . -type d -empty -print ) ; do \
+	    ${TOUCH} $${emptydir}/.keep-me ; \
+	done
 	${CP} ${FILESDIR}/${CFGFILE}.sample ${WRKSRC}/${CFGFILE}.sample
 	cd ${WRKSRC} ; \
 	${FIND} . ! -type d ! -name ${CFGFILE}.sample | ${SORT} | \
