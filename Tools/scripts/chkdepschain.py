@@ -19,7 +19,7 @@ import os, os.path, popen2, types, sys, getopt, pickle
 
 # Global constants and semi-constants
 PKG_DBDIR = '/var/db/pkg'
-PORTSDIR = '/usr/ports'
+PORTSDIR = '/usr/mports'
 ROOT_PORTMK = '/usr/share/mk/bsd.port.mk'
 PLIST_FILE = '+CONTENTS'
 ORIGIN_PREF = '@comment ORIGIN:'
