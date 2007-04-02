@@ -2,12 +2,11 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.1 2007/02/01 22:10:35 laffer1 Exp $
 #
 
 PORTNAME=	joe
-PORTVERSION=	3.3
-PORTEPOCH=	1
+PORTVERSION=	3.5
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}-editor
