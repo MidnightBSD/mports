@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.4 2007/04/01 19:41:21 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.5 2007/04/03 20:59:13 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3655,8 +3655,8 @@ do-install:
 
 .if !target(do-package)
 do-package: ${TMPPLIST}
-	@if ! ${MKDIR} -p ${PACKAGES}/${PKGREPOSITORYSUBDIR}; then \
-		${ECHO_MSG} "=> Can't create directory ${PACKAGES}/${PKGREPOSITORYSUBDIR}."; \
+	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
+		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
 		exit 1; \
 	fi; 
 	@__softMAKEFLAGS='${__softMAKEFLAGS:S/'/'\''/g}'; \
@@ -3693,7 +3693,7 @@ package-links: delete-package-links
 			fi; \
 		fi; \
 		${ECHO_MSG} "Link to ${PACKAGES}/$$cat/${PKGNAME}${PKG_SUFX}"; \
-		${LN} -sf `${ECHO_CMD} $$cat | ${SED} -e 'sa[^/]*a..ag'`/${PKGREPOSITORYSUBDIR}/${PKGNAME}${PKG_SUFX} ${PACKAGES}/$$cat; \
+		${LN} -sf ${PKGFILE} ${PACKAGES}/$$cat; \
 	done
 .if !defined(NO_LATEST_LINK)
 	@if [ ! -d ${PKGLATESTREPOSITORY} ]; then \
@@ -3703,7 +3703,7 @@ package-links: delete-package-links
 		fi; \
 	fi
 	@${ECHO_MSG} "Link to ${PKGLATESTREPOSITORY}/${PKGNAME}${PKG_SUFX}"
-	@${LN} -s ../${PKGREPOSITORYSUBDIR}/${PKGNAME}${PKG_SUFX} ${PKGLATESTFILE}
+	@${LN} -s ${PKGFILE} ${PKGLATESTFILE}
 .endif
 .endif
 
@@ -4208,7 +4208,7 @@ configure-message:
 build-message:
 	@${ECHO_MSG} "===>  Building for ${PKGNAME}"
 fake-message:
-	@${ECHO_MSG} "===> Faking install for ${PKGNAME}"
+	@${ECHO_MSG} "===>  Faking install for ${PKGNAME}"
 install-message:
 .if !defined(DESTDIR)
 	@${ECHO_MSG} "===>  Installing for ${PKGNAME}"
