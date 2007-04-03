@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.1.1.1 2006/09/17 03:33:48 archite Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -43,14 +43,27 @@ CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
 	-Ui_malloc -Ui_iconv -Uinstallusrbinperl \
 	-Dcc="${CC}" -Duseshrplib \
 	-Dccflags=-DAPPLLIB_EXP=\"${BSDPAN_DEST}\"
+# "
+	
 LOCALE_CLEANUP=	LANG="" LC_ALL="" LC_COLLATE="" LC_CTYPE="" \
 		LC_MESSAGES="" LC_MONETARY="" LC_NUMERIC="" \
 		LC_TIME=""
 CONFIGURE_ENV+=	${LOCALE_CLEANUP}
 MAKE_ENV+=	${LOCALE_CLEANUP}
 
+
+OPTIONS = DEBUGGING "Enable debugging support" Off \
+	  GDBM "Build GDBM_File extension" Off \
+	  PERL_MALLOC "Use Perl's malloc" On \
+	  PERL_64BITINT "Use 64 bit integers" On \
+	  THREADS "Enable thread support" Off \
+	  SUIDPERL "Also build set-user-id suidperl binary" Off
+
+
 .include "Makefile.man"
 .include <bsd.port.pre.mk>
+
+PLIST_SUB+=PERL_ARCH=${PERL_ARCH}
 
 .if defined(WITH_DEBUGGING)
 CONFIGURE_ARGS+=	-Doptimize="-g" -DDEBUGGING
@@ -60,7 +73,7 @@ STRIP_CMD=	${TRUE}
 CONFIGURE_ARGS+=	-Doptimize="${CFLAGS}"
 .endif
 
-.if defined(ENABLE_SUIDPERL)
+.if defined(WITH_SUIDPERL)
 CONFIGURE_ARGS+=	-Dd_dosuid=define
 PLIST_SUB+=		ENABLE_SUIDPERL=""
 .else
@@ -77,11 +90,6 @@ CONFIGURE_ARGS+=	-Ui_gdbm
 PLIST_SUB+=		GDBM="@comment "
 .endif
 
-.if defined(WITHOUT_PERL_MALLOC)
-.undef WITH_PERL_MALLOC
-.else
-WITH_PERL_MALLOC=	yes
-.endif
 
 .if defined(WITH_THREADS)
 #XXX .if ${ARCH} == "amd64"
@@ -110,16 +118,10 @@ CONFIGURE_ARGS+=	-Duse64bitint
 
 LATEST_LINK=	perl
 
-.if ${OSVERSION} < 500036
-PLIST_SUB+=		NEED_USE_PERL=""
-.else
-PKGMESSAGE=	${PKGDIR}/.not-here
-PLIST_SUB+=		NEED_USE_PERL="@comment "
-.endif
-
 .if defined(WITH_GDBM)
 MAN3+=	GDBM_File.3
 .endif
+
 MAN3PREFIX=	${TARGETDIR}/lib/perl5/${PERL_VER}/perl
 
 test:
@@ -132,36 +134,18 @@ BSDPAN_FILES=	BSDPAN.pm BSDPAN/Override.pm Config.pm \
 		ExtUtils/Packlist.pm
 BSDPAN_WRKSRC=	${WRKDIR}/BSDPAN-${PORTVERSION}
 
-PKGINSTALL=	${WRKDIR}/pkg-install
-PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
-
-pre-fetch:
-	@${ECHO} ""
-	@${ECHO} "You may use the following build options:"
-	@${ECHO} ""
-	@${ECHO} "	WITH_DEBUGGING=yes	  Build perl with debugging support."
-	@${ECHO} "	WITH_GDBM=yes		  Build GDBM_File extension."
-	@${ECHO} "	WITHOUT_PERL_MALLOC=yes	  Use FreeBSD system malloc"
-	@${ECHO} "				  (uses less memory, but slower)."
-	@${ECHO} "	WITHOUT_PERL_64BITINT=yes Disable 64 bit integers"
-	@${ECHO} "				  (affects only 32-bit platforms)."
-	@${ECHO} "	WITH_THREADS=yes	  Build threaded perl."
-	@${ECHO} "	ENABLE_SUIDPERL=yes	  Also build set-user-id suidperl binary."
-	@${ECHO} ""
 
 post-patch:
 	${SED} -e 's|%%PREFIX%%|${PREFIX}|g;' \
-		-e 's|%%PERL_VER%%|${PERL_VER}|g;' \
-		-e 's|%%PERL_VERSION%%|${PERL_VERSION}|g;' \
-		-e 's|%%PERL_ARCH%%|${PERL_ARCH}|g;' \
-		-e 's|%%MAKE_CONF%%|${__MAKE_CONF}|g;' \
-		${FILESDIR}/use.perl \
-		> ${WRKDIR}/use.perl
+	-e 's|%%PERL_VER%%|${PERL_VER}|g;' \
+	-e 's|%%PERL_VERSION%%|${PERL_VERSION}|g;' \
+	-e 's|%%PERL_ARCH%%|${PERL_ARCH}|g;' \
+	-e 's|%%MAKE_CONF%%|${__MAKE_CONF}|g;' \
+	${FILESDIR}/pkg-glue > ${WRKDIR}/pkg-glue
 	${SED} -e 's|%%PERL%%|${PERL}|g;' \
 		${FILESDIR}/perl-after-upgrade \
 		> ${WRKDIR}/perl-after-upgrade
-	${CP} ${WRKDIR}/use.perl ${PKGINSTALL}
-	${CP} ${WRKDIR}/use.perl ${PKGDEINSTALL}
+
 .if defined(WITH_THREADS)
 	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g;' \
 		-e 's|%%PTHREAD_CFLAGS%%|${PTHREAD_CFLAGS}|g;' \
@@ -171,6 +155,9 @@ post-patch:
 		-e 's|%%PTHREAD_CFLAGS%%||g;' \
 		${WRKSRC}/hints/freebsd.sh
 .endif
+
+PKGINSTALL=${WRKDIR}/pkg-glue
+PKGDEINSTALL=${WRKDIR}/pkg-glue
 
 pre-install:
 	@${RM} -f ${PREFIX}/bin/perl${PERL_VER}
@@ -189,12 +176,11 @@ post-install:
 	${INSTALL} ${COPY} -o ${BINOWN} -g ${BINGRP} -m ${NOBINMODE} \
 		${BSDPAN_WRKSRC}/${files} ${BSDPAN_DEST}/${files}
 .endfor
-	PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.if ${OSVERSION} < 500036
-	${INSTALL_SCRIPT} ${WRKDIR}/use.perl ${PREFIX}/bin/use.perl
-	@fmt ${PKGMESSAGE}
-.endif
-
+# XXX - this isn't need for mport, because all ports are installed from a package.
+.if !defined(PORT_SYSTEM) && ${PORT_SYSTEM:L} != mport
+	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.endif	
+	
 rebuild-xs:
 	${LOCALBASE}/sbin/portupgrade -f `(${FIND} ${PKG_DBDIR}/p5*/+CONTENTS | \
 		${XARGS} ${GREP} -El 'site_perl.*\.so' | \
