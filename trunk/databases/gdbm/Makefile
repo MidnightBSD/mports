@@ -2,7 +2,7 @@
 # Date created:		8 Apr 1996
 # Whom:			Brent J. Nordquist <bjn@visi.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.1 2007/01/20 15:11:20 wintellect Exp $
 # $FreeBSD: ports/databases/gdbm/Makefile,v 1.35 2006/12/08 13:46:26 gabor Exp $
 #
 
@@ -18,7 +18,7 @@ COMMENT=	The GNU database manager
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 INSTALLS_SHLIB=	yes
 
 .if defined(WITH_COMPAT)
