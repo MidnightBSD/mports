@@ -1,5 +1,5 @@
---- urlview.c.orig	Wed Nov  9 15:34:39 2005
-+++ urlview.c	Wed Nov  9 15:35:06 2005
+--- ./urlview.c.orig	Tue Apr  3 15:01:31 2007
++++ ./urlview.c	Tue Apr  3 15:01:31 2007
 @@ -46,6 +46,8 @@
  #include <rx/rxposix.h>
  #endif

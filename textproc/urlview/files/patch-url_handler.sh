@@ -1,5 +1,5 @@
---- url_handler.sh.orig	Tue Jul  4 03:14:30 2000
-+++ url_handler.sh	Wed Aug 22 10:42:49 2001
+--- ./url_handler.sh.orig	Tue Apr  3 15:01:31 2007
++++ ./url_handler.sh	Tue Apr  3 15:01:31 2007
 @@ -1,4 +1,4 @@
 -#! /bin/bash
 +#! /bin/sh
@@ -15,11 +15,11 @@
 -mailto_prgs="/usr/bin/mutt:VT /usr/bin/elm:VT /usr/bin/pine:VT /usr/bin/mail:VT"
 -gopher_prgs="/usr/bin/lynx:XT /usr/bin/gopher:XT"
 -ftp_prgs="/usr/bin/lynx:XT /usr/bin/ncftp:XT"
-+https_prgs="!!PREFIX!!/bin/netscape:XW !!PREFIX!!/bin/lynx:XT !!PREFIX!!/bin/w3m:XT"
-+http_prgs="!!PREFIX!!/bin/netscape:XW !!PREFIX!!/bin/lynx:XT !!PREFIX!!/bin/w3m:XT !!PREFIX!!/bin/links:XT"
-+mailto_prgs="!!PREFIX!!/bin/mutt:VT !!PREFIX!!/bin/elm:VT !!PREFIX!!/bin/pine:VT /usr/bin/mail:VT"
-+gopher_prgs="!!PREFIX!!/bin/lynx:XT !!PREFIX!!/bin/gopher:XT"
-+ftp_prgs="!!PREFIX!!/bin/lynx:XT !!PREFIX!!/bin/ncftp2:XT !!PREFIX!!/bin/ncftp3:XT !!PREFIX!!/bin/ncftp:XT"
++https_prgs="/usr/local/bin/netscape:XW /usr/local/bin/lynx:XT /usr/local/bin/w3m:XT"
++http_prgs="/usr/local/bin/netscape:XW /usr/local/bin/lynx:XT /usr/local/bin/w3m:XT /usr/local/bin/links:XT"
++mailto_prgs="/usr/local/bin/mutt:VT /usr/local/bin/elm:VT /usr/local/bin/pine:VT /usr/bin/mail:VT"
++gopher_prgs="/usr/local/bin/lynx:XT /usr/local/bin/gopher:XT"
++ftp_prgs="/usr/local/bin/lynx:XT /usr/local/bin/ncftp2:XT /usr/local/bin/ncftp3:XT /usr/local/bin/ncftp:XT"
  
  # Program used as an xterm (if it doesn't support -T you'll need to change
  # the command line in getprg)
