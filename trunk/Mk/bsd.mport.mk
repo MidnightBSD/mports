@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.3 2007/03/30 19:11:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.4 2007/04/01 19:41:21 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -556,7 +556,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  Default: ${PORTSDIR}/distfiles
 # PACKAGES		- A top level directory where all packages go (rather than
 #				  going locally to each port).
-#				  Default: ${PORTSDIR}/packages
+#				  Default: ${PORTSDIR}/Packages
 # WRKDIRPREFIX	- The place to root the temporary working directory
 #				  hierarchy.
 #				  Default: none
@@ -1066,6 +1066,8 @@ NOPRECIOUSSOFTMAKEVARS= yes
 .endif
 .endif
 
+_MAKE_CMD=	/usr/bin/make
+
 AWK?=		/usr/bin/awk
 BASENAME?=	/usr/bin/basename
 BRANDELF?=	/usr/bin/brandelf
@@ -1358,7 +1360,7 @@ EXTRACT_SUFX?=			.zip
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
-PACKAGES?=		${PORTSDIR}/packages
+PACKAGES?=		${PORTSDIR}/Packages
 TEMPLATES?=		${PORTSDIR}/Templates
 
 .if (!defined(PKGDIR) && exists(${MASTERDIR}/pkg/DESCR)) || \
@@ -1378,12 +1380,12 @@ PKGDIR?=		${MASTERDIR}
 .endif
 
 .if defined(USE_X_PREFIX)
-TRUE_PREFIX=	${X11BASE_REL}
+TRUE_PREFIX?=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
-TRUE_PREFIX=	${LINUXBASE_REL}
+TRUE_PREFIX?=	${LINUXBASE_REL}
 NO_MTREE=		yes
 .else
-TRUE_PREFIX=	${LOCALBASE_REL}
+TRUE_PREFIX?=	${LOCALBASE_REL}
 .endif
 
 PREFIX?=		${TRUE_PREFIX}
@@ -1568,10 +1570,19 @@ PERL=		${LOCALBASE}/bin/perl
 # We only support xorg.
 X_WINDOW_SYSTEM ?= xorg
 
-
+################
+#
+# Fake Setup 
+#
 # Tmp dir used for building a package.
-FAKE_INSTALLDIR?=	inst
-_ABS_FAKE_INSTALLDIR=	${.CURDIR}/${FAKE_INSTALLDIR}
+FAKE_INSTALLDIR?=	fake-inst
+FAKE_TARGET?=		install
+DESTDIRNAME?=   	DESTDIR
+
+_ABS_FAKE_INSTALLDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
+_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${_ABS_FAKE_INSTALLDIR}${PREFIX}
+_FAKE_MAKEARGS=		${DESTDIRNAME}=${_ABS_FAKE_INSTALLDIR}
+
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -1674,7 +1685,8 @@ EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
 .endif
 .if defined(USE_GMAKE)
 BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
-CONFIGURE_ENV+=	MAKE=${GMAKE}
+CONFIGURE_ENV+=		MAKE=${GMAKE}
+_MAKE_CMD=		${GMAKE}
 .endif
 
 .if defined(USE_GCC)
@@ -1873,6 +1885,7 @@ IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
 
 .if defined(USE_IMAKE)
 BUILD_DEPENDS+=			imake:${X_IMAKE_PORT}
+_MAKE_CMD=			imake
 .endif
 
 
@@ -2046,6 +2059,7 @@ INSTALL_COOKIE?=	${WRKDIR}/.install_done.${PORTNAME}.${PREFIX:S/\//_/g}
 BUILD_COOKIE?=		${WRKDIR}/.build_done.${PORTNAME}.${PREFIX:S/\//_/g}
 PATCH_COOKIE?=		${WRKDIR}/.patch_done.${PORTNAME}.${PREFIX:S/\//_/g}
 PACKAGE_COOKIE?=	${WRKDIR}/.package_done.${PORTNAME}.${PREFIX:S/\//_/g}
+FAKE_COOKIE?=		${WRKDIR}/.fake_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 # How to do nothing.  Override if you, for some strange reason, would rather
 # do something.
@@ -2268,7 +2282,9 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_FAKE_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${TRUE_PREFIX} -P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" ${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS}
+PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_FAKE_INSTALLDIR}${PREFIX} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
+			-P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
+			${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS} 
 .if !defined(NO_MTREE)
 PKG_ARGS+=		-m ${MTREE_FILE}
 .endif
@@ -2279,15 +2295,13 @@ PKG_ARGS+=		-o ${PKGORIGIN}
 PKG_ARGS+=		-C "${CONFLICTS}"
 .endif
 .endif
+
 .if defined(PKG_NOCOMPRESS)
 PKG_SUFX?=		.tar
 .else
-.if ${OSVERSION} >= 500039
 PKG_SUFX?=		.tbz
-.else
-PKG_SUFX?=		.tgz
 .endif
-.endif
+
 # where pkg_add records its dirty deeds.
 PKG_DBDIR?=		${DESTDIR}/var/db/pkg
 
@@ -2770,11 +2784,9 @@ check-depends:
 
 PKGREPOSITORYSUBDIR?=	All
 PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
-.if exists(${PACKAGES})
+
 PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
-.else
-PKGFILE?=		${.CURDIR}/${PKGNAME}${PKG_SUFX}
-.endif
+
 
 # The "latest version" link -- ${PKGNAME} minus everthing after the last '-'
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
@@ -2898,6 +2910,10 @@ _TMLINKS=
 .endif
 
 .if defined(_MANPAGES)
+
+.for m in ${_MANPAGES}
+_FAKEMAN += ${_ABS_FAKE_INSTALLDIR}${m}         
+.endfor
 
 .if defined(NOMANCOMPRESS)
 __MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%}
@@ -3586,23 +3602,37 @@ check-conflicts:
 .endif  # CONFLICTS
 .endif
 
-# Install
+# 
+# Fake
+#
+
+.if !target(fake-dir) 
+fake-dir:
+	@${INSTALL} -d -m 755 -o root -g wheel ${_ABS_FAKE_INSTALLDIR}${PREFIX}  
+	@${MTREE_CMD} ${MTREE_ARGS} ${_ABS_FAKE_INSTALLDIR}${PREFIX} >/dev/null
+.endif
 
 
 .if !target(fake-install)
 fake-install:
-.if exists(${CONFIGURE_COOKIE})
-	@${ECHO_MSG} "" 
-	@${ECHO_MSG} "        You must run 'make ${.TARGET}' from a clean port."
-	@${ECHO_MSG} "        Run 'make clean' and try again."
-	@exit 1
-.endif
-	
-	@cd ${.CURDIR} && ${MKDIR} ${FAKE_INSTALLDIR} 
-	${MAKE} $${__softMAKEFLAGS} NO_PKG_REGISTER=1 PREFIX="${_ABS_FAKE_INSTALLDIR}" install
+.	if target(pre-install)
+        	@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
+.	endif
+.	if target(do-install)
+		@cd ${.CURDIR} && exec ${MAKE} do-install ${_FAKE_SETUP}
+.	else
+#       Default branch:
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+		 ${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET}
+.	endif
+.	if target(post-install)
+		@cd ${.CURDIR} && exec ${MAKE} post-install ${_FAKE_SETUP}
+.	endif
 .endif
 
-.if !target(do-install)
+
+
+.if 0  # this is only here for documentation. It goes away once fake-install is tested and working.
 do-install:
 .if defined(USE_GMAKE)
 	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
@@ -3625,14 +3655,10 @@ do-install:
 
 .if !target(do-package)
 do-package: ${TMPPLIST}
-	@if [ -d ${PACKAGES} ]; then \
-		if [ ! -d ${PKGREPOSITORY} ]; then \
-			if ! ${MKDIR} ${PKGREPOSITORY}; then \
-				${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
-				exit 1; \
-			fi; \
-		fi; \
-	fi
+	@if ! ${MKDIR} -p ${PACKAGES}/${PKGREPOSITORYSUBDIR}; then \
+		${ECHO_MSG} "=> Can't create directory ${PACKAGES}/${PKGREPOSITORYSUBDIR}."; \
+		exit 1; \
+	fi; 
 	@__softMAKEFLAGS='${__softMAKEFLAGS:S/'/'\''/g}'; \
 	_LATE_PKG_ARGS=""; \
 	if [ -f ${PKGINSTALL} ]; then \
@@ -3647,10 +3673,8 @@ do-package: ${TMPPLIST}
 	if [ -f ${PKGMESSAGE} ]; then \
 		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
 	fi; \
-	if ${PKG_CMD} ${PKG_ARGS} ${PKGFILE}; then \
-		if [ -d ${PACKAGES} ]; then \
-			cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
-		fi; \
+	if ${PKG_CMD} ${PKG_ARGS} ${PKGFILE} >/dev/null; then \
+		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
 	else \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
 		exit 1; \
@@ -3668,6 +3692,7 @@ package-links: delete-package-links
 				exit 1; \
 			fi; \
 		fi; \
+		${ECHO_MSG} "Link to ${PACKAGES}/$$cat/${PKGNAME}${PKG_SUFX}"; \
 		${LN} -sf `${ECHO_CMD} $$cat | ${SED} -e 'sa[^/]*a..ag'`/${PKGREPOSITORYSUBDIR}/${PKGNAME}${PKG_SUFX} ${PACKAGES}/$$cat; \
 	done
 .if !defined(NO_LATEST_LINK)
@@ -3677,6 +3702,7 @@ package-links: delete-package-links
 			exit 1; \
 		fi; \
 	fi
+	@${ECHO_MSG} "Link to ${PKGLATESTREPOSITORY}/${PKGNAME}${PKG_SUFX}"
 	@${LN} -s ../${PKGREPOSITORYSUBDIR}/${PKGNAME}${PKG_SUFX} ${PKGLATESTFILE}
 .endif
 .endif
@@ -3710,6 +3736,7 @@ delete-package-links-list:
 delete-package-list: delete-package-links-list
 	@${ECHO_CMD} "[ -f ${PKGFILE} ] && (${ECHO_CMD} deleting ${PKGFILE}; ${RM} -f ${PKGFILE})"
 .endif
+
 
 # Utility targets follow
 
@@ -4083,18 +4110,25 @@ _CONFIGURE_SEQ=	build-depends lib-depends misc-depends configure-message \
 _BUILD_DEP=		configure
 _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
-_INSTALL_DEP=	build
-_INSTALL_SEQ=	install-message check-conflicts \
-				run-depends lib-depends apply-slist pre-install \
-				pre-install-script generate-plist check-already-installed
+
+_FAKE_DEP=	build
+_FAKE_SEQ=	fake-message fake-dir pre-fake fake-install post-fake compress-man 
+
+_PACKAGE_DEP=	fake
+_PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-plist-info\
+		add-plist-docs add-plist-post do-package post-package-script 
+
+_INSTALL_DEP=	package
+# Not sure how we want to handle sudo/su.  Will figure out later - triv.
+_INSTALL_SEQ=	rub-depends lib-depends check-already-installed
+
+#				run-depends lib-depends apply-slist pre-install \
+#				pre-install-script generate-plist check-already-installed
 _INSTALL_SUSEQ= check-umask install-mtree pre-su-install \
 				pre-su-install-script do-install install-desktop-entries \
 				post-install post-install-script add-plist-info \
 				add-plist-docs add-plist-post install-rc-script compress-man \
 				install-ldconfig-file fake-pkg security-check
-_PACKAGE_DEP=	fake-install
-_PACKAGE_SEQ=	package-message pre-package pre-package-script \
-				do-package post-package-script
 
 .if !target(check-sanity)
 check-sanity: ${_SANITY_SEQ}
@@ -4108,7 +4142,7 @@ fetch: ${_FETCH_DEP} ${_FETCH_SEQ}
 # Main logic. The loop generates 6 main targets and using cookies
 # ensures that those already completed are skipped.
 
-.for target in extract patch configure build install package
+.for target in extract patch configure build fake package install
 
 .if !target(${target}) && defined(_OPTIONS_OK)
 ${target}: ${${target:U}_COOKIE}
@@ -4161,6 +4195,7 @@ ${${target:U}_COOKIE}::
 .ORDER: ${_PATCH_DEP} ${_PATCH_SEQ}
 .ORDER: ${_CONFIGURE_DEP} ${_CONFIGURE_SEQ}
 .ORDER: ${_BUILD_DEP} ${_BUILD_SEQ}
+.ORDER: ${_FAKE_DEP} ${_FAKE_SEQ}
 .ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
 .ORDER: ${_PACKAGE_DEP} ${_PACKAGE_SEQ}
 
@@ -4172,6 +4207,8 @@ configure-message:
 	@${ECHO_MSG} "===>  Configuring for ${PKGNAME}"
 build-message:
 	@${ECHO_MSG} "===>  Building for ${PKGNAME}"
+fake-message:
+	@${ECHO_MSG} "===> Faking install for ${PKGNAME}"
 install-message:
 .if !defined(DESTDIR)
 	@${ECHO_MSG} "===>  Installing for ${PKGNAME}"
@@ -4184,7 +4221,7 @@ package-message:
 # Empty pre-* and post-* targets
 
 .for stage in pre post
-.for name in check-sanity fetch extract patch configure build install package
+.for name in check-sanity fetch extract patch configure build fake package install 
 
 .if !target(${stage}-${name})
 ${stage}-${name}:
@@ -5346,7 +5383,10 @@ ${i:S/-//:U}=	${WRKDIR}/${SUB_FILES:M${i}*}
 
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
-
+#
+# TODO
+# I want to refactor this and add-plist-* into one target that builds the tmplist.
+#
 .if !target(generate-plist)
 generate-plist:
 	@${ECHO_MSG} "===>   Generating temporary packing list"
@@ -5468,7 +5508,7 @@ add-plist-info:
 .endfor
 .if (${PREFIX} != "/usr")
 	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != ${_ABS_FAKE_INSTALLDIR})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
 	@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
 .endif
 .endif
@@ -5479,13 +5519,15 @@ add-plist-info:
 # deinstall-time
 .if !target(add-plist-post)
 add-plist-post:
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr" && ${PREFIX} != ${_ABS_FAKE_INSTALLDIR})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
 	@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
 .else
 	@${DO_NADA}
 .endif
 .endif
 
+
+# TODO -- this does not work with fake correctly.
 .if !target(install-rc-script)
 install-rc-script:
 .if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
@@ -5521,15 +5563,15 @@ install-rc-script:
 # Compress (or uncompress) and symlink manpages.
 .if !target(compress-man)
 compress-man:
-.if defined(_MANPAGES) || defined(_MLINKS)
-.if ${MANCOMPRESSED} == yes && defined(NOMANCOMPRESS)
+.  if defined(_FAKEMAN) || defined(_MLINKS)
+.    if ${MANCOMPRESSED} == yes && defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Uncompressing manual pages for ${PKGNAME}"
-	@_manpages='${_MANPAGES:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
-.elif ${MANCOMPRESSED} == no && !defined(NOMANCOMPRESS)
+	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
+.    elif ${MANCOMPRESSED} == no && !defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Compressing manual pages for ${PKGNAME}"
-	@_manpages='${_MANPAGES:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
-.endif
-.if defined(_MLINKS)
+	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
+.    endif
+.    if defined(_MLINKS)
 	@set -- ${_MLINKS}; \
 	while :; do \
 		[ $$# -eq 0 ] && break || ${TRUE}; \
@@ -5541,68 +5583,8 @@ compress-man:
 					for (; i<z; i++) printf a[i] "/"; printf a[z]; }'` $$2; \
 		shift; shift; \
 	done
-.endif
-.else
-	@${DO_NADA}
-.endif
-.endif
-
-# Fake installation of package so that user can pkg_delete it later.
-# Also, make sure that an installed port is recognized correctly in
-# accordance to the @pkgdep directive in the packing lists
-
-.if !target(fake-pkg)
-fake-pkg:
-.if !defined(NO_PKG_REGISTER)
-	@if [ ! -d ${PKG_DBDIR} ]; then ${RM} -f ${PKG_DBDIR}; ${MKDIR} ${PKG_DBDIR}; fi
-	@${RM} -f /tmp/${PKGNAME}-required-by
-.if defined(FORCE_PKG_REGISTER)
-	@if [ -e ${PKG_DBDIR}/${PKGNAME}/+REQUIRED_BY ]; then \
-		${CP} ${PKG_DBDIR}/${PKGNAME}/+REQUIRED_BY /tmp/${PKGNAME}-required-by; \
-	fi
-	@${RM} -rf ${PKG_DBDIR}/${PKGNAME}
-.endif
-	@if [ ! -d ${PKG_DBDIR}/${PKGNAME} ]; then \
-		if [ -z "${DESTDIR}" ] ; then \
-			${ECHO_MSG} "===>   Registering installation for ${PKGNAME}"; \
-		else \
-			${ECHO_MSG} "===>   Registering installation for ${PKGNAME} in ${DESTDIR}"; \
-		fi; \
-		${MKDIR} ${PKG_DBDIR}/${PKGNAME}; \
-		${PKG_CMD} ${PKG_ARGS} -O ${PKGFILE} > ${PKG_DBDIR}/${PKGNAME}/+CONTENTS; \
-		${CP} ${DESCR} ${PKG_DBDIR}/${PKGNAME}/+DESC; \
-		${ECHO_CMD} ${COMMENT:Q} > ${PKG_DBDIR}/${PKGNAME}/+COMMENT; \
-		if [ -f ${PKGINSTALL} ]; then \
-			${CP} ${PKGINSTALL} ${PKG_DBDIR}/${PKGNAME}/+INSTALL; \
-		fi; \
-		if [ -f ${PKGDEINSTALL} ]; then \
-			${CP} ${PKGDEINSTALL} ${PKG_DBDIR}/${PKGNAME}/+DEINSTALL; \
-		fi; \
-		if [ -f ${PKGREQ} ]; then \
-			${CP} ${PKGREQ} ${PKG_DBDIR}/${PKGNAME}/+REQUIRE; \
-		fi; \
-		if [ -f ${PKGMESSAGE} ]; then \
-			${CP} ${PKGMESSAGE} ${PKG_DBDIR}/${PKGNAME}/+DISPLAY; \
-		fi; \
-		for dep in `${PKG_INFO} -qf ${PKGNAME} | ${GREP} -w ^@pkgdep | ${AWK} '{print $$2}' | ${SORT} -u`; do \
-			if [ -d ${PKG_DBDIR}/$$dep -a -z `${ECHO_CMD} $$dep | ${GREP} -E ${PKG_IGNORE_DEPENDS}` ]; then \
-				if ! ${GREP} ^${PKGNAME}$$ ${PKG_DBDIR}/$$dep/+REQUIRED_BY \
-					>/dev/null 2>&1; then \
-					${ECHO_CMD} ${PKGNAME} >> ${PKG_DBDIR}/$$dep/+REQUIRED_BY; \
-				fi; \
-			fi; \
-		done; \
-	fi
-.if !defined(NO_MTREE)
-	@if [ -f ${MTREE_FILE} ]; then \
-		${CP} ${MTREE_FILE} ${PKG_DBDIR}/${PKGNAME}/+MTREE_DIRS; \
-	fi
-.endif
-	@if [ -e /tmp/${PKGNAME}-required-by ]; then \
-		${CAT} /tmp/${PKGNAME}-required-by >> ${PKG_DBDIR}/${PKGNAME}/+REQUIRED_BY; \
-		${RM} -f /tmp/${PKGNAME}-required-by; \
-	fi
-.else
+.    endif
+.  else
 	@${DO_NADA}
 .endif
 .endif
