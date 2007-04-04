@@ -2,12 +2,12 @@
 # Date created:        11 January 1998
 # Whom:                yoshiaki Uchikawa
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.1 2006/10/05 01:33:44 laffer1 Exp $
 # $FreeBSD: ports/audio/lame/Makefile,v 1.42 2006/09/02 23:47:19 kris Exp $
 #
 
 PORTNAME=	lame
-PORTVERSION=	3.96.1
+PORTVERSION=	3.97
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.fu-berlin.de/unix/sound/%SUBDIR%/
@@ -16,7 +16,8 @@ MASTER_SITE_SUBDIR=	lame
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
 
-INSTALLS_SHLIB=	yes
+USE_AUTOTOOLS=	libtool:15
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
@@ -29,7 +30,7 @@ DOC_FILES=	API LICENSE README TODO USAGE
 
 .include <bsd.port.pre.mk>
 
-.if ${MACHINE_ARCH} == "i386"
+.if ${ARCH} == "i386"
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 .endif
 
