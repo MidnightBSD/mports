@@ -2,7 +2,7 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl80/Makefile,v 1.1 2007/03/21 22:43:48 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl80/Makefile,v 1.43 2007/03/13 10:31:46 miwi Exp $
 #
 
@@ -21,7 +21,8 @@ NO_LATEST_LINK=	yes
 WRKSRC=		${WRKDIR}/tcl8.0.5/unix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared
+CONFIGURE_ARGS=	--enable-shared --build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET= ${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
 
 SHLIB_MAJOR=	1
