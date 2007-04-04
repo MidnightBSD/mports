@@ -3,12 +3,12 @@
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.42 2006/10/06 19:44:54 miwi Exp $
+# $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.44 2007/01/30 01:42:14 rafan Exp $
 #
 
 PORTNAME=	mplayer-skins
 PORTVERSION=	1.1.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.mplayerhq.hu/MPlayer/Skin/ \
 		http://ftp5.mplayerhq.hu/mplayer/Skin/ \
@@ -50,8 +50,8 @@ CORNERMP_AQUA_FILE=	CornerMP-aqua-1.4.tar.bz2
 CORNERMP_FILE=		CornerMP-1.2.tar.bz2
 CUBICPLAYER_FILE=	CubicPlayer-1.1.tar.bz2
 CYRUS_FILE=		Cyrus-1.2.tar.bz2
-DEFAULT_FILE=		Blue-1.6.tar.bz2
-DEFAULT_SMALL_FILE=	Blue-small-1.3.tar.bz2
+DEFAULT_FILE=		Blue-1.7.tar.bz2
+DEFAULT_SMALL_FILE=	Blue-small-1.4.tar.bz2
 DISAPPEARER_FILE=	disappearer-1.1.tar.bz2
 DIVXPLAYER_FILE=	divxplayer-1.3.tar.bz2
 DUSHKU_FILE=		Dushku-1.2.tar.bz2
@@ -90,7 +90,7 @@ TERMINATOR3_FILE=	Terminator3-1.1.tar.bz2
 TRIUM_FILE=		trium-1.3.tar.bz2
 TVISOR_FILE=		tvisor-1.1.tar.bz2
 ULTRAFINA_FILE=		ultrafina-1.1.tar.bz2
-WEBBY_FILE=		webby-1.2.tar.bz2
+WEBBY_FILE=		webby-1.3.tar.bz2
 WINDOWSMEDIAPLAYER6_FILE=	WMP6-2.2.tar.bz2
 XANIM_FILE=		xanim-1.6.tar.bz2
 XFCE4_FILE=		XFce4-1.0.tar.bz2
