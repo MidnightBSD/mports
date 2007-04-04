@@ -2,13 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.5 2007/03/25 01:53:46 ctriv Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.6 2007/04/04 00:36:34 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -70,8 +70,8 @@ OPERA_LIB=	shared
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
 
 # The static version requires both compat4x and compat5x
-LIB_DEPENDS+=	z.2:${PORTSDIR}/misc/compat5x
-LIB_DEPENDS+=	m.2:${PORTSDIR}/misc/compat4x
+#LIB_DEPENDS+=	z.2:${PORTSDIR}/misc/compat5x
+#LIB_DEPENDS+=	m.2:${PORTSDIR}/misc/compat4x
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
 PLIST_SUB+=	GNOME=""
