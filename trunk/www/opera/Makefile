@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.4 2006/12/20 20:38:11 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.5 2007/03/25 01:53:46 ctriv Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -42,7 +42,7 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 USE_XLIB=	yes
-ONLY_FOR_ARCHS=	i386
+ONLY_FOR_ARCHS=	i386 amd64
 WRKSRC=		${WRKDIR}/${DISTNAME}-${OPERA_BUILD}
 
 MAN1=		opera.1
@@ -50,8 +50,7 @@ MAN1=		opera.1
 NO_BUILD=	yes
 NO_FILTER_SHLIBS=yes
 
-OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on \
-		SHARED	"Use a shared Qt library (instead of static)"	${QT_PRESENT}
+OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on
 
 .if exists(${X11BASE}/lib/libqt-mt.prl)
 QT_PRESENT=	on
@@ -67,13 +66,8 @@ OPERA_TYPE=	4
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 .endif
 
-.if defined(WITH_SHARED) 
 OPERA_LIB=	shared
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
-.else
-OPERA_LIB=	static
-OPERA_TYPE=	1
-.endif
 
 # The static version requires both compat4x and compat5x
 LIB_DEPENDS+=	z.2:${PORTSDIR}/misc/compat5x
