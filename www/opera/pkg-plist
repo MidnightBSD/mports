@@ -78,7 +78,6 @@ bin/opera
 %%DATADIR%%/svg-sa.dat
 %%DATADIR%%/svg-mobd.dat
 %%DATADIR%%/svg-mo.dat
-%%SYMHACK%%%%DATADIR%%/symhack.so
 
 %%GNOME%%share/gnome/apps/Internet/opera.desktop
 %%GNOME%%share/gnome/pixmaps/opera.xpm
