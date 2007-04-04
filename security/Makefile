@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.47 2007/02/23 21:18:55 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.48 2007/03/21 01:35:11 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -26,6 +26,7 @@
     SUBDIR += libgpg-error
     SUBDIR += libksba
     SUBDIR += libmcrypt
+    SUBDIR += linux-openssl
     SUBDIR += mcrypt
     SUBDIR += mhash
     SUBDIR += nss
