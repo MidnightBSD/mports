@@ -3,11 +3,11 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.1 2006/11/17 19:19:28 laffer1 Exp $
 #
 
 PORTNAME=	qmake
-PORTVERSION=	3.3.6
+PORTVERSION=	3.3.7
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
