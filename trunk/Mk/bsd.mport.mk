@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.5 2007/04/03 20:59:13 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.6 2007/04/03 21:10:44 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3616,14 +3616,24 @@ fake-dir:
 .if !target(fake-install)
 fake-install:
 .	if target(pre-install)
-        	@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
+		@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
 .	endif
 .	if target(do-install)
 		@cd ${.CURDIR} && exec ${MAKE} do-install ${_FAKE_SETUP}
 .	else
-#       Default branch:
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
-		 ${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET}
+	# Handle Module::Build
+.	    if defined(PERL_MODBUILD) 
+		 @cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
+		     ${PL_BUILD} ${MAKE_ARGS} --destdir ${_ABS_FAKE_INSTALLDIR} ${FAKE_TARGET}
+.	    else 
+		# Normal builds.
+		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET};
+.		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
+        		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+				${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} install.man
+.		endif
+.	    endif
 .	endif
 .	if target(post-install)
 		@cd ${.CURDIR} && exec ${MAKE} post-install ${_FAKE_SETUP}
@@ -3631,27 +3641,9 @@ fake-install:
 .endif
 
 
-
-.if 0  # this is only here for documentation. It goes away once fake-install is tested and working.
-do-install:
-.if defined(USE_GMAKE)
-	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
-.if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install.man)
-.endif
-.else # !defined(USE_GMAKE)
-.if defined(PERL_MODBUILD)
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} ${INSTALL_TARGET})
-.else
-	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
-.if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install.man)
-.endif
-.endif
-.endif
-.endif
-
+#
 # Package
+#
 
 .if !target(do-package)
 do-package: ${TMPPLIST}
@@ -3738,15 +3730,29 @@ delete-package-list: delete-package-links-list
 .endif
 
 
+#
+# This is the "real" install.  Really.  Not kidding.
+#
+
+.if !target(install-package)
+install-package:
+.	if defined(DESTDIR) 
+		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
+.	endif
+# $PKG_ADD calls chroot if DESTDIR is set.
+	@${SETENV} PKG_PATH=${PKGREPOSITORY} ${PKG_ADD} ${PKGNAME}
+.endif
+
+
 # Utility targets follow
 
 .if !target(check-already-installed)
 check-already-installed:
 .if !defined(NO_PKG_REGISTER) && !defined(FORCE_PKG_REGISTER)
 .if !defined(DESTDIR)
-		@${ECHO_MSG} "===>  Checking if ${PKGORIGIN} already installed"
+		@${ECHO_MSG} "===>   Checking if ${PKGORIGIN} already installed"
 .else
-		@${ECHO_MSG} "===>  Checking if ${PKGORIGIN} already installed in ${DESTDIR}"
+		@${ECHO_MSG} "===>   Checking if ${PKGORIGIN} already installed in ${DESTDIR}"
 .endif
 		@${MKDIR} ${PKG_DBDIR}; \
 		already_installed=`${PKG_INFO} -q -O ${PKGORIGIN}`; \
@@ -4120,15 +4126,9 @@ _PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-
 
 _INSTALL_DEP=	package
 # Not sure how we want to handle sudo/su.  Will figure out later - triv.
-_INSTALL_SEQ=	rub-depends lib-depends check-already-installed
+_INSTALL_SEQ=	install-message check-conflicts run-depends lib-depends\
+		check-already-installed install-package done-message
 
-#				run-depends lib-depends apply-slist pre-install \
-#				pre-install-script generate-plist check-already-installed
-_INSTALL_SUSEQ= check-umask install-mtree pre-su-install \
-				pre-su-install-script do-install install-desktop-entries \
-				post-install post-install-script add-plist-info \
-				add-plist-docs add-plist-post install-rc-script compress-man \
-				install-ldconfig-file fake-pkg security-check
 
 .if !target(check-sanity)
 check-sanity: ${_SANITY_SEQ}
@@ -4211,12 +4211,15 @@ fake-message:
 	@${ECHO_MSG} "===>  Faking install for ${PKGNAME}"
 install-message:
 .if !defined(DESTDIR)
-	@${ECHO_MSG} "===>  Installing for ${PKGNAME}"
+	@${ECHO_MSG} "===>  Installing ${PKGFILE}"
 .else
-	@${ECHO_MSG} "===>  Installing for ${PKGNAME} into ${DESTDIR}"
+	@${ECHO_MSG} "===>  Installing ${PKGFILE} into ${DESTDIR}"
 .endif
 package-message:
 	@${ECHO_MSG} "===>  Building package for ${PKGNAME}"
+done-message:
+	@${ECHO_MSG} "===>  Done."
+
 
 # Empty pre-* and post-* targets
 
