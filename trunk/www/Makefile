@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.41 2007/04/04 16:01:35 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.42 2007/04/04 16:22:06 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -23,7 +23,9 @@
     SUBDIR += links1
     SUBDIR += linux-firefox
     SUBDIR += linux-firefox-devel
+    SUBDIR += linux-flashplugin9
     SUBDIR += linux-mozilla
+    SUBDIR += linux-mplayer-plugin
     SUBDIR += linux-opera
     SUBDIR += linux-seamonkey
     SUBDIR += linuxpluginwrapper
