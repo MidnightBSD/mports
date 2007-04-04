@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.18 2007/04/04 19:03:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.19 2007/04/04 19:22:36 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -27,6 +27,8 @@
     SUBDIR += tk83
     SUBDIR += tk84
     SUBDIR += tk84-thread
+    SUBDIR += tk85
+    SUBDIR += tk85-thread
     SUBDIR += vte
 
 .include <bsd.port.subdir.mk>
