@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.6 2007/04/03 21:10:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.7 2007/04/04 03:56:11 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3621,13 +3621,13 @@ fake-install:
 .	if target(do-install)
 		@cd ${.CURDIR} && exec ${MAKE} do-install ${_FAKE_SETUP}
 .	else
-	# Handle Module::Build
+# 	Handle Module::Build
 .	    if defined(PERL_MODBUILD) 
 		 @cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
 		     ${PL_BUILD} ${MAKE_ARGS} --destdir ${_ABS_FAKE_INSTALLDIR} ${FAKE_TARGET}
 .	    else 
-		# Normal builds.
-		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+# 		Normal builds.
+		cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
 		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET};
 .		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
         		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
