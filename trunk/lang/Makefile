@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.20 2007/03/13 07:00:49 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.21 2007/03/21 22:43:48 laffer1 Exp $
 #
 
     COMMENT = Programming languages
@@ -37,5 +37,6 @@
     SUBDIR += tcl82
     SUBDIR += tcl83
     SUBDIR += tcl84
+    SUBDIR += tcl84-thread
 
 .include <bsd.port.subdir.mk>
