@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/www/opera/pkg-plist,v 1.25 2006/06/20 15:46:20 erwin Exp $
+@comment $FreeBSD: ports/www/opera/pkg-plist,v 1.28 2007/01/26 16:21:30 pav Exp $
 bin/opera
 %%DOCSDIR%%/LICENSE
 %%DATADIR%%/bin/missingsyms.so
@@ -52,6 +52,9 @@ bin/opera
 %%DATADIR%%/styles/images/bar.png
 %%DATADIR%%/styles/images/center.png
 %%DATADIR%%/styles/images/opera.png
+%%DATADIR%%/styles/images/red_center.png
+%%DATADIR%%/styles/images/red_left.png
+%%DATADIR%%/styles/images/red_right.png
 %%DATADIR%%/styles/images/root.png
 %%DATADIR%%/styles/images/top.png
 %%DATADIR%%/styles/info.css
@@ -67,6 +70,7 @@ bin/opera
 %%DATADIR%%/styles/user/nostalgia.css
 %%DATADIR%%/styles/user/showstructure.css
 %%DATADIR%%/styles/user/textonly.css
+%%DATADIR%%/styles/warning.css
 %%DATADIR%%/styles/wml.css
 %%DATADIR%%/svg-sebd.dat
 %%DATADIR%%/svg-se.dat
@@ -74,6 +78,7 @@ bin/opera
 %%DATADIR%%/svg-sa.dat
 %%DATADIR%%/svg-mobd.dat
 %%DATADIR%%/svg-mo.dat
+%%SYMHACK%%%%DATADIR%%/symhack.so
 
 %%GNOME%%share/gnome/apps/Internet/opera.desktop
 %%GNOME%%share/gnome/pixmaps/opera.xpm
@@ -92,11 +97,22 @@ bin/opera
 @dirrm %%DATADIR%%
 @dirrm %%DOCSDIR%%
 
-%%KDE%%@cwd %%LOCALBASE%%
+@cwd %%LOCALBASE%%
 %%KDE%%share/applnk/Internet/opera.desktop
-%%KDE%%share/icons/hicolor/22x22/apps/opera.png
-%%KDE%%share/icons/hicolor/32x32/apps/opera.png
-%%KDE%%share/icons/hicolor/48x48/apps/opera.png
-%%KDE%%share/icons/locolor/16x16/apps/opera.png
-%%KDE%%share/icons/locolor/22x22/apps/opera.png
-%%KDE%%share/icons/locolor/32x32/apps/opera.png
+share/icons/hicolor/22x22/apps/opera.png
+share/icons/hicolor/32x32/apps/opera.png
+share/icons/hicolor/48x48/apps/opera.png
+share/icons/locolor/16x16/apps/opera.png
+share/icons/locolor/22x22/apps/opera.png
+share/icons/locolor/32x32/apps/opera.png
+@dirrmtry share/icons/hicolor/22x22/apps
+@dirrmtry share/icons/hicolor/22x22
+@dirrmtry share/icons/hicolor/48x48/apps
+@dirrmtry share/icons/hicolor/48x48
+@dirrmtry share/icons/locolor/32x32/apps
+@dirrmtry share/icons/locolor/32x32
+@dirrmtry share/icons/locolor/22x22/apps
+@dirrmtry share/icons/locolor/22x22
+@dirrmtry share/icons/locolor/16x16/apps
+@dirrmtry share/icons/locolor/16x16
+@dirrmtry share/icons/locolor
