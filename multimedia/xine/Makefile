@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.69 2006/12/07 17:17:44 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.2 2007/03/15 01:26:21 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.3 2007/03/25 01:32:35 ctriv Exp $
 #
 
 PORTNAME=	xine
@@ -19,7 +19,7 @@ COMMENT=	An X11 multimedia player
 
 LIB_DEPENDS=	xine.16:${PORTSDIR}/multimedia/libxine \
 		png.5:${PORTSDIR}/graphics/png \
-		curl.3:${PORTSDIR}/ftp/curl
+		curl.4:${PORTSDIR}/ftp/curl
 
 USE_GETTEXT=	yes
 USE_XLIB=	yes
