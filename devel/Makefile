@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.109 2007/03/29 13:18:46 wintellect Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.110 2007/03/30 18:00:12 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -139,6 +139,7 @@
     SUBDIR += uclmmbase
     SUBDIR += viewvc
     SUBDIR += wizardkit
+    SUBDIR += yasm
     SUBDIR += zthread
     SUBDIR += zziplib
 
