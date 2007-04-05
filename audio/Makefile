@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.34 2007/04/04 22:45:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.35 2007/04/04 23:36:49 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -17,6 +17,7 @@
     SUBDIR += esound
     SUBDIR += faac
     SUBDIR += flac
+    SUBDIR += gsm
     SUBDIR += jack
     SUBDIR += ladspa
     SUBDIR += lame
