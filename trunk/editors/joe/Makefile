@@ -2,7 +2,7 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.1 2007/02/01 22:10:35 laffer1 Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.2 2007/04/02 04:25:13 laffer1 Exp $
 #
 
 PORTNAME=	joe
@@ -34,7 +34,7 @@ MAN1=		${PORTNAME}.1
 
 post-install:
 .for file in jmacsrc jpicorc jstarrc rjoerc joerc
-.if !exists(${PREFIX}/etc/${PORTNAME}/${file})
+.if !exists(${PREFIX}/etc/${PORTNAME}/${file}.dist)
 	@${CP} ${PREFIX}/etc/${PORTNAME}/${file} ${PREFIX}/etc/${PORTNAME}/${file}.dist
 .endif
 .endfor
