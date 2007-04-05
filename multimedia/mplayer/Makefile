@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.2 2007/04/04 21:02:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -547,21 +547,13 @@ CONFIGURE_ARGS+=	--disable-liblzo
 .if defined(WITH_DVD_DEVICE)
 DEFAULT_DVD_DEVICE=${WITH_DVD_DEVICE}
 .else
-.if ${OSVERSION} < 500000
-DEFAULT_DVD_DEVICE=/dev/acd0c
-.else
 DEFAULT_DVD_DEVICE=/dev/acd0
-.endif
 .endif
 
 .if defined(WITH_CDROM_DEVICE)
 DEFAULT_CDROM_DEVICE=${WITH_CDROM_DEVICE}
 .else
-.if ${OSVERSION} < 500000
-DEFAULT_CDROM_DEVICE=/dev/acd0c
-.else
 DEFAULT_CDROM_DEVICE=/dev/acd0
-.endif
 .endif
 
 .if defined(WITH_KERN_HZ)
