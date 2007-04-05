@@ -2,7 +2,7 @@
 # Date created:				7 December 1998
 # Whom:					Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.1 2006/09/22 23:56:45 laffer1 Exp $
 # $FreeBSD: ports/textproc/aspell/Makefile,v 1.81 2006/08/06 21:05:14 thierry Exp $
 #
 
@@ -20,6 +20,8 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better suggestion logic than ispell
+
+FAKE_OPTS=	libs bin
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
@@ -54,8 +56,9 @@ MASTER_SITES+=		${MASTER_SITE_GNU:S|%SUBDIR%/|%SUBDIR%/dict/en/:dicten|}
 DISTFILES+=		aspell${VERDICT_EN}${DICT_SUFFIX}:dicten
 CONFLICTS=		aspell-without-dicten-0.*
 DICT_TARGET=		inst-dicten
-CONF_DICT_ENV=		ASPELL="${PREFIX}/bin/aspell"	\
-			WORD_LIST_COMPRESS="${PREFIX}/bin/word-list-compress"
+CONF_DICT_ENV=		ASPELL="${PREFIX}/bin/aspell"\
+			PREZIP="${PREFIX}/bin/prezip"   \
+			WORD_LIST_COMPRESS="${PREFIX}/bin/word-list-compress"  
 .endif
 
 .if defined(WITH_ISPELL)
@@ -117,7 +120,7 @@ inst-dicten:
 .if !exists(${LOCALBASE}/lib/aspell-${VERINST}/en.dat) && !defined(WITHOUT_DICTEN)
 	@${ECHO_MSG} "===>   Installing for en dictionaries"
 	cd ${WRKDIR}/aspell${VERDICT_EN} &&		\
-	 ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} &&	\
+	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/lib/aspell-0.60" && \
 	 ${GMAKE} ${INSTALL_TARGET}
 	${SED} -e "s|%%VER%%|${VERINST}|" ${MASTERDIR}/pkg-plist.en	\
 		>> ${TMPPLIST}
