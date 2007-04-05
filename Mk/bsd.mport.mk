@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.8 2007/04/04 16:00:22 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.9 2007/04/05 00:57:01 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -580,6 +580,9 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # FAKE_INSTALLDIR	- A directory used to creating packages. An install is "faked" into
 #			  this dir. 
 #				  Default: "fake-inst"
+# FAKE_OPTS		- Set options for fake. Current options:
+#				libs -- fake targets need access to the port's shared libs.
+#				bin  -- fake targets need the port's binaries in $PATH
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -1338,7 +1341,7 @@ LINUXBASE_REL:=		${LINUXBASE}
 LOCALBASE:=		${DESTDIR}${LOCALBASE_REL}
 X11BASE:=		${DESTDIR}${X11BASE_REL}
 LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
-DISTDIR?=		${PORTSDIR}/distfiles
+DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 INDEXDIR?=		${PORTSDIR}
 .if ${OSVERSION} >= 500036
@@ -1360,7 +1363,7 @@ EXTRACT_SUFX?=			.zip
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
-PACKAGES?=		${PORTSDIR}/Packages
+PACKAGES?=		${PORTSDIR}/Packages/${ARCH}
 TEMPLATES?=		${PORTSDIR}/Templates
 
 .if (!defined(PKGDIR) && exists(${MASTERDIR}/pkg/DESCR)) || \
@@ -1579,10 +1582,18 @@ FAKE_INSTALLDIR?=	fake-inst
 FAKE_TARGET?=		install
 DESTDIRNAME?=   	DESTDIR
 
-_ABS_FAKE_INSTALLDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
-_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${_ABS_FAKE_INSTALLDIR}${PREFIX} LINUXBASE=${_ABS_FAKE_INSTALLDIR}${LINUXBASE}
-_FAKE_MAKEARGS=		${DESTDIRNAME}=${_ABS_FAKE_INSTALLDIR}
+FAKE_DESTDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
+_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} 
+_FAKE_MAKEARGS=		${DESTDIRNAME}=${FAKE_DESTDIR}
 
+.if defined(FAKE_OPTS)
+.if ${FAKE_OPTS:Mlibs}x != "x"
+_FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
+.endif
+.if ${FAKE_OPTS:Mbin}x != "x"
+_FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
+.endif
+.endif
 
 # Location of mounted CDROM(s) to search for files
 CD_MOUNTPTS?=	/cdrom ${CD_MOUNTPT}
@@ -2197,7 +2208,7 @@ MTREE_FILE=	/etc/mtree/BSD.local.dist
 .endif
 .endif
 MTREE_CMD?=		/usr/sbin/mtree
-MTREE_LINUX_FILE?=	/usr/mports/Templates/linux.fc4.mtree 
+MTREE_LINUX_FILE?=	${TEMPLATES}/linux.fc4.mtree 
 MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
@@ -2279,7 +2290,7 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -S ${_ABS_FAKE_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
+PKG_ARGS=		-v -c -${COMMENT:Q} -S ${FAKE_DESTDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
 			-P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 			${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS} 
 .if !defined(NO_MTREE)
@@ -2909,7 +2920,7 @@ _TMLINKS=
 .if defined(_MANPAGES)
 
 .for m in ${_MANPAGES}
-_FAKEMAN += ${_ABS_FAKE_INSTALLDIR}${m}         
+_FAKEMAN += ${FAKE_DESTDIR}${m}         
 .endfor
 
 .if defined(NOMANCOMPRESS)
@@ -3605,10 +3616,10 @@ check-conflicts:
 
 .if !target(fake-dir) 
 fake-dir:
-	@${INSTALL} -d -m 755 -o root -g wheel ${_ABS_FAKE_INSTALLDIR}${PREFIX}  
-	@${MTREE_CMD} ${MTREE_ARGS} ${_ABS_FAKE_INSTALLDIR}${PREFIX} >/dev/null
+	@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${PREFIX}  
+	@${MTREE_CMD} ${MTREE_ARGS} ${FAKE_DESTDIR}${PREFIX} >/dev/null
 .	if defined(USE_LINUX) 
-		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${_ABS_FAKE_INSTALLDIR}
+		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${FAKE_DESTDIR}
 .	endif
 .endif
 
@@ -3624,7 +3635,7 @@ fake-install:
 # 	Handle Module::Build
 .	    if defined(PERL_MODBUILD) 
 		 @cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
-		     ${PL_BUILD} ${MAKE_ARGS} --destdir ${_ABS_FAKE_INSTALLDIR} ${FAKE_TARGET}
+		     ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .	    else 
 # 		Normal builds.
 		cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
@@ -4118,7 +4129,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
 _FAKE_DEP=	build
-_FAKE_SEQ=	fake-message fake-dir pre-fake fake-install post-fake compress-man 
+_FAKE_SEQ=	fake-message fake-dir apply-slist pre-fake fake-install post-fake compress-man 
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-plist-info\
@@ -5499,10 +5510,9 @@ add-plist-info:
 # Process GNU INFO files at package install/deinstall time
 .if defined(INFO)
 .for i in ${INFO}
-	install-info --quiet ${TARGETDIR}/${INFO_PATH}/$i.info ${TARGETDIR}/${INFO_PATH}/dir
 	@${ECHO_CMD} "@unexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 		>> ${TMPPLIST}
-	@${LS} ${TARGETDIR}/${INFO_PATH}/$i.info* | ${SED} -e s:${TARGETDIR}/::g >> ${TMPPLIST}
+	@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
 	@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 		>> ${TMPPLIST}
 	@if [ "`${DIRNAME} $i`" != "." ]; then \
