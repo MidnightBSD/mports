@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.31 2007/02/19 20:56:23 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.32 2007/03/17 20:06:38 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -23,6 +23,7 @@ SUBDIR += java
 SUBDIR += lang
 SUBDIR += mail
 SUBDIR += math
+SUBDIR += mbone
 SUBDIR += misc
 SUBDIR += multimedia
 SUBDIR += net
