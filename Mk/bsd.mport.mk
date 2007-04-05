@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.7 2007/04/04 03:56:11 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.8 2007/04/04 16:00:22 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1580,7 +1580,7 @@ FAKE_TARGET?=		install
 DESTDIRNAME?=   	DESTDIR
 
 _ABS_FAKE_INSTALLDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
-_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${_ABS_FAKE_INSTALLDIR}${PREFIX}
+_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${_ABS_FAKE_INSTALLDIR}${PREFIX} LINUXBASE=${_ABS_FAKE_INSTALLDIR}${LINUXBASE}
 _FAKE_MAKEARGS=		${DESTDIRNAME}=${_ABS_FAKE_INSTALLDIR}
 
 
@@ -1885,7 +1885,6 @@ IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
 
 .if defined(USE_IMAKE)
 BUILD_DEPENDS+=			imake:${X_IMAKE_PORT}
-_MAKE_CMD=			imake
 .endif
 
 
@@ -2186,23 +2185,21 @@ EXTRACT_CMD?=			${GZIP_CMD}
 .endif
 
 # Figure out where the local mtree file is
-.if !defined(MTREE_FILE) && !defined(NO_MTREE)
+.if !defined(MTREE_FILE) 
 .if ${PREFIX} == ${X11BASE_REL} || defined(USE_X_PREFIX)
 # User may have specified non-standard PREFIX for installing a port that
 # uses X
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-MTREE_FILE=	/etc/mtree/BSD.x11.dist
-.else
 MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
-.endif
 .elif ${PREFIX} == /usr
 MTREE_FILE=	/etc/mtree/BSD.usr.dist
 .else
 MTREE_FILE=	/etc/mtree/BSD.local.dist
 .endif
 .endif
-MTREE_CMD?=	/usr/sbin/mtree
-MTREE_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
+MTREE_CMD?=		/usr/sbin/mtree
+MTREE_LINUX_FILE?=	/usr/mports/Templates/linux.fc4.mtree 
+MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
+MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
 # Determine whether or not we can use rootly owner/group functions.
 .if !defined(UID)
@@ -2282,7 +2279,7 @@ PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.
 DISABLE_CONFLICTS=	YES
 .endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -s ${_ABS_FAKE_INSTALLDIR}${PREFIX} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
+PKG_ARGS=		-v -c -${COMMENT:Q} -S ${_ABS_FAKE_INSTALLDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
 			-P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 			${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS} 
 .if !defined(NO_MTREE)
@@ -3610,6 +3607,9 @@ check-conflicts:
 fake-dir:
 	@${INSTALL} -d -m 755 -o root -g wheel ${_ABS_FAKE_INSTALLDIR}${PREFIX}  
 	@${MTREE_CMD} ${MTREE_ARGS} ${_ABS_FAKE_INSTALLDIR}${PREFIX} >/dev/null
+.	if defined(USE_LINUX) 
+		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${_ABS_FAKE_INSTALLDIR}
+.	endif
 .endif
 
 
@@ -3630,7 +3630,7 @@ fake-install:
 		cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
 		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET};
 .		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-        		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
 				${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} install.man
 .		endif
 .	    endif
@@ -3665,7 +3665,7 @@ do-package: ${TMPPLIST}
 	if [ -f ${PKGMESSAGE} ]; then \
 		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
 	fi; \
-	if ${PKG_CMD} ${PKG_ARGS} ${PKGFILE} >/dev/null; then \
+	if ${PKG_CMD} -v ${PKG_ARGS} ${PKGFILE} >/dev/null; then \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
 	else \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
@@ -4374,18 +4374,18 @@ deinstall-all:
 
 .if !target(do-clean)
 do-clean:
+	@if [ -d ${WRKDIR}/${FAKE_INSTALLDIR} ]; then \
+		if [ -w ${WRKDIR}/${FALE_INSTALLDIR} ]; then \
+			${RM} -rf ${WRKDIR}/${FAKE_INSTALLDIR}; \
+		else \
+			${ECHO_MSG} "===>   ${WRKDIR}/${FAKE_INSTALLDIR} not writable, skipping"; \
+		fi; \
+	fi
 	@if [ -d ${WRKDIR} ]; then \
 		if [ -w ${WRKDIR} ]; then \
 			${RM} -rf ${WRKDIR}; \
 		else \
 			${ECHO_MSG} "===>   ${WRKDIR} not writable, skipping"; \
-		fi; \
-	fi
-	@if [ -d ${FAKE_INSTALLDIR} ]; then \
-		if [ -w ${FALE_INSTALLDIR} ]; then \
-			${RM} -rf ${FAKE_INSTALLDIR}; \
-		else \
-			${ECHO_MSG} "===>   ${FAKE_INSTALLDIR} not writable, skipping"; \
 		fi; \
 	fi
 .endif
