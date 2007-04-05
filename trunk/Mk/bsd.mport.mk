@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.9 2007/04/05 00:57:01 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.10 2007/04/05 05:24:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1579,7 +1579,7 @@ X_WINDOW_SYSTEM ?= xorg
 #
 # Tmp dir used for building a package.
 FAKE_INSTALLDIR?=	fake-inst
-FAKE_TARGET?=		install
+FAKE_TARGET?=		${INSTALL_TARGET}
 DESTDIRNAME?=   	DESTDIR
 
 FAKE_DESTDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
