@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.3 2007/04/03 23:03:55 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -177,7 +177,7 @@ post-install:
 		${BSDPAN_WRKSRC}/${files} ${BSDPAN_DEST}/${files}
 .endfor
 # XXX - this isn't need for mport, because all ports are installed from a package.
-.if !defined(PORT_SYSTEM) && ${PORT_SYSTEM:L} != mport
+.if !defined(PORT_SYSTEM) || ${PORT_SYSTEM:L} != mport
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .endif	
 	
