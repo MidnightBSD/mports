@@ -1,5 +1,5 @@
---- configure.orig	Wed Oct 19 10:36:26 2005
-+++ configure	Wed Oct 19 18:13:12 2005
+--- ./configure.orig	Wed Oct 19 04:36:26 2005
++++ ./configure	Thu Apr  5 00:40:43 2007
 @@ -2916,7 +2916,7 @@
  fi
  
