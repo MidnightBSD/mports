@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.2 2007/04/04 21:02:36 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.3 2007/04/05 00:43:35 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -300,12 +300,6 @@ CONFIGURE_ARGS+=	--disable-mencoder
 PLIST_SUB+=	MENCODER="@comment "
 .endif
 
-.if defined(WITH_NVIDIA) && ${OSVERSION} < 600033
-LIB_DEPENDS+=	XvMCNVIDIA.1:${PORTSDIR}/x11/nvidia-driver
-CONFIGURE_ARGS+=	--enable-xvmc \
-			--enable-xvmclib=XvMCNVIDIA
-.endif
-
 .if defined(WITH_ARTS)
 LIB_DEPENDS+=	artsc.0:${PORTSDIR}/audio/arts
 CONFIGURE_ARGS+=	--enable-arts
@@ -570,7 +564,7 @@ CONFIGURE_ARGS+=--enable-runtime-cpudetection
 .if defined(WITHOUT_MMX) || defined(WITHOUT_SIMD)
 CONFIGURE_ARGS+=--disable-mmx
 .endif
-.if defined(WITHOUT_3DNOW) || defined(WITHOUT_SIMD) || ${OSVERSION} < 400021
+.if defined(WITHOUT_3DNOW) || defined(WITHOUT_SIMD)
 CONFIGURE_ARGS+=--disable-3dnow --disable-3dnowext
 .endif
 .if defined(WITHOUT_SSE) || defined(WITHOUT_SIMD)
