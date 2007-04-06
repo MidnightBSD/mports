@@ -2,7 +2,7 @@
 # Date created:				7 December 1998
 # Whom:					Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.1 2006/09/22 23:56:45 laffer1 Exp $
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.2 2007/04/05 05:28:55 ctriv Exp $
 # $FreeBSD: ports/textproc/aspell/Makefile,v 1.81 2006/08/06 21:05:14 thierry Exp $
 #
 
@@ -114,6 +114,9 @@ post-install:	${DICT_TARGET}
 .endif
 	@${ECHO_CMD} "@dirrm share/aspell" >> ${TMPPLIST}
 	@${ECHO_CMD} "@dirrm lib/aspell-${VERINST}" >> ${TMPPLIST}
+
+# work with bsd.port.mk
+FAKE_DESTDIR?=/
 
 inst-dicten:
 # Install en-aspell by default
