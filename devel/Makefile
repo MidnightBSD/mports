@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.113 2007/04/07 03:59:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.114 2007/04/07 04:01:59 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -129,6 +129,7 @@
     SUBDIR += pth
     SUBDIR += py-fileutils
     SUBDIR += qmake
+    SUBDIR += qmake4
     SUBDIR += sdl12
     SUBDIR += silc-toolkit
     SUBDIR += splint
