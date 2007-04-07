@@ -3,13 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# Created by: Ernst de Haan <znerd@FreeBSD.org>
-#
-# For FreeBSD committers:
-# Please send all suggested changes to the maintainer instead of committing
-# them to CVS yourself.
-#
-# $MidnightBSD$ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
