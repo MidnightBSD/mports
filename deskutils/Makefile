@@ -18,5 +18,7 @@
     SUBDIR += linux-sunbird
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
+    SUBDIR += toolbox
+    SUBDIR += toolboxkit
 
 .include <bsd.port.subdir.mk>
