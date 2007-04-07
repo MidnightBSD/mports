@@ -4,11 +4,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.3 2007/03/17 06:42:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.4 2007/03/20 17:23:23 ctriv Exp $
 #
 
 PORTNAME=	qt
 PORTVERSION=	3.3.7
+PORTREVISION=	1
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -147,13 +148,9 @@ CONFLICTS+=	qt-3.3.*
 CONFLICTS+=	qt-copy-[0-9]*
 .endif
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-IGNORE=	"The QT ${PORTVERSION} port does not support any XFree86 < 4.x"
-.endif
-
 .if exists(${X11BASE}/include/qt2/qapp.h)
-BROKEN=	"You have QT2 headers installed!  Installing this port"
-BROKEN+="will result in conflicts between QT3 and QT2!"
+BROKEN=	You have QT2 headers installed!  Installing this port
+BROKEN+= will result in conflicts between QT3 and QT2!
 .endif
 
 post-patch:
@@ -188,6 +185,7 @@ post-build:
 	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} ${GREP} --mmap -F -l -- \
 		"${PLATFORM}" | ${XARGS} ${REINPLACE_CMD} -e "s,${PLATFORM}/qmake.conf,," \
 		-e "s,${PLATFORM},,"
+	@${RM} -f ${WRKSRC}/doc/html/qmake*
 
 # Work around qmake generated dependencies
 pre-su-install:
