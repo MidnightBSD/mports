@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.51 2007/03/21 01:00:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.52 2007/03/21 01:41:15 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -80,5 +80,6 @@
     SUBDIR += wmicons
     SUBDIR += xli
     SUBDIR += xv
+    SUBDIR += yap
 
 .include <bsd.port.subdir.mk>
