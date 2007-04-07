@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.10 2007/02/23 20:37:54 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.11 2007/04/07 18:44:17 laffer1 Exp $
 #
 
     COMMENT = Games
@@ -18,6 +18,7 @@
     SUBDIR += linux-enemyterritory-omni-bot
     SUBDIR += linux-enemyterritory-shrub
     SUBDIR += linux-enemyterritory-tce
+    SUBDIR += nextgo
     SUBDIR += qstat
     SUBDIR += scummvm
     SUBDIR += tuxracer
