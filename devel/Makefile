@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.112 2007/04/07 03:33:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.113 2007/04/07 03:59:15 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -16,6 +16,7 @@
     SUBDIR += automake14
     SUBDIR += automake15
     SUBDIR += automake19
+    SUBDIR += automake110
     SUBDIR += bison
     SUBDIR += boost
     SUBDIR += boost-python
