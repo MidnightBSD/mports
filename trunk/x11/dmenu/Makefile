@@ -2,12 +2,12 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.1 2006/12/31 20:30:40 wintellect Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.2 2007/04/04 15:52:08 ctriv Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
 PORTNAME=	dmenu
-PORTVERSION=	1.8
+PORTVERSION=	2.8
 CATEGORIES=	x11
 MASTER_SITES=	http://www.suckless.org/download/
 
@@ -19,6 +19,6 @@ USE_XLIB=	yes
 FAKE_FLAGS+=	PREFIX=${TRUE_PREFIX}
 
 MAN1=		dmenu.1
-PLIST_FILES=	bin/dmenu
+PLIST_FILES=	bin/dmenu bin/dmenu_path
 
 .include <bsd.port.mk>
