@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.110 2007/03/30 18:00:12 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.111 2007/04/04 21:57:42 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -123,7 +123,6 @@
     SUBDIR += pkg-config
     SUBDIR += pmk
     SUBDIR += popt
-    SUBDIR += portlint
     SUBDIR += projectcenter.app
     SUBDIR += pth
     SUBDIR += py-fileutils
