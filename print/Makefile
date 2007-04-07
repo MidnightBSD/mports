@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/print/Makefile,v 1.27 2007/02/25 20:11:18 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.28 2007/03/18 17:29:10 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
 
+    SUBDIR += a2ps-letter
     SUBDIR += acroread7
     SUBDIR += acroreadwrapper
     SUBDIR += adobe-cmaps
