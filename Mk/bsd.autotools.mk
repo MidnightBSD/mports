@@ -2,14 +2,14 @@
 # ex:ts=4
 #
 # $MidnightBSD$
-# $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.24 2006/07/05 02:18:08 linimon Exp $
+# $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
 #
 # Please make sure all changes to this file are passed either through
 # the maintainer, or portmgr@MidnightBSD.org
 
-Autotools_Include_MAINTAINER=	ports@MidnightBSD.org
+Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 
 #---------------------------------------------------------------------------
 # IMPORTANT!  READ ME!  YES, THAT MEANS YOU!
@@ -52,7 +52,7 @@ Autotools_Include_MAINTAINER=	ports@MidnightBSD.org
 #	- Extra arguments passed to automake during configure step
 #
 # ACLOCAL_ARGS=...
-#   - Arguments passed to aclocal during configure step
+#	- Arguments passed to aclocal during configure step
 #
 # AUTOCONF_ARGS=...
 #	- Extra arguments passed to autoconf during configure step
@@ -65,7 +65,8 @@ Autotools_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # LIBTOOLFILES=<list-of-files>
 #	- A list of files to patch during libtool pre-configuration
-#	  Defaults to "aclocal.m4" if autoconf is in use, otherwise "configure"
+#	  Defaults to "aclocal.m4" if autoconf is in use, otherwise
+#	  ${CONFIGURE_SCRIPT} (usually "configure")
 #
 #---------------------------------------------------------------------------
 
@@ -211,7 +212,7 @@ LIBTOOLFLAGS?=		# default to empty
 . if defined(AUTOTOOL_autoconf)
 LIBTOOLFILES?=		aclocal.m4
 . else
-LIBTOOLFILES?=		configure
+LIBTOOLFILES?=		${CONFIGURE_SCRIPT}
 . endif
 
 .endif
