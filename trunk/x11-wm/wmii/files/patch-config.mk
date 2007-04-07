@@ -1,24 +1,32 @@
---- config.mk.orig	Wed Dec 27 15:52:20 2006
-+++ config.mk	Sun Dec 31 19:33:03 2006
-@@ -4,16 +4,16 @@
+--- config.mk.orig	Thu Mar 29 18:51:44 2007
++++ config.mk	Sat Apr  7 11:39:56 2007
+@@ -1,15 +1,15 @@
  # Customize below to fit your system
  
  # paths
 -PREFIX = /usr/local
-+PREFIX = ${LOCALBASE}
- CONFPREFIX = ${PREFIX}/etc
- MANPREFIX = ${PREFIX}/share/man
++#PREFIX = /usr/local
+ BIN = ${PREFIX}/bin
+-MAN = ${PREFIX}/share/man
++MAN = ${PREFIX}/man
+ ETC = ${PREFIX}/etc
+ LIBDIR = ${PREFIX}/lib
+ INCLUDE = ${PREFIX}/include
  
--X11INC = /usr/X11R6/include
--X11LIB = /usr/X11R6/lib
-+X11INC = ${X11BASE}/include
-+X11LIB = ${X11BASE}/lib
+ # Includes and libs
+-INCS = -I. -I${ROOT}/include -I${INCLUDE} -I/usr/include
++INCS = -I. -I${ROOT}/include -I${INCLUDE} -I/usr/include -I${LOCALBASE}/include
+ LIBS = -L/usr/lib -lc
  
- # includes and libs
--INCS = -I. -I${PREFIX}/include -I/usr/include -I${X11INC}
--LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 -L${PREFIX}/lib -lixp -lm
-+INCS = -I. -I/usr/local/include -I/usr/include -I${X11INC}
-+LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 -L/usr/local/lib -lixp -lm
+ # Flags
+@@ -28,8 +28,8 @@
+ AWKPATH = /usr/bin/awk
+ P9PATHS = /usr/local/plan9 /usr/local/9 /opt/plan9 /opt/9 /usr/plan9 /usr/9
  
- # flags
- CFLAGS = -Os ${INCS} -DVERSION=\"${VERSION}\"
+-INCX11 = -I/usr/X11R6/include
+-LIBX11 = -L/usr/X11R6/lib -lX11
++INCX11 = -I${X11BASE}/include
++LIBX11 = -L${X11BASE}/lib -lX11
+ LIBIXP = ${ROOT}/libixp/libixp.a
+ 
+ # Solaris
