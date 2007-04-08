@@ -2,12 +2,12 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/nss/Makefile,v 1.1 2006/09/20 03:10:17 archite Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
 # $FreeBSD: ports/security/nss/Makefile,v 1.33 2006/09/03 00:20:58 ahze Exp $
 #
 
 PORTNAME=	nss
-PORTVERSION=	3.11.2
+PORTVERSION=	3.11.3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
@@ -31,10 +31,6 @@ CFLAGS+=	-I${LOCALBASE}/include/nspr
 DIST=		${WRKSRC:H:H}/dist
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "alpha" && ${OSVERSION} < 500035
-IGNORE=	core dumps on alpha during build
-.endif
 
 EXTERNALS=	CVS dbm security/nss/cmd/zlib nsprpub security/dbm
 EXTRACT_AFTER_ARGS=| ${TAR} -xf -	\
