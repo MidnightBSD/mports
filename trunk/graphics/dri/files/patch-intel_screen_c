@@ -1,0 +1,10 @@
+--- src/mesa/drivers/dri/i915/intel_screen.c.orig	Sun Apr  8 02:27:32 2007
++++ src/mesa/drivers/dri/i915/intel_screen.c	Sun Apr  8 02:27:46 2007
+@@ -340,6 +340,7 @@
+    case PCI_CHIP_I915_G:
+    case PCI_CHIP_I915_GM:
+    case PCI_CHIP_I945_G:
++   case PCI_CHIP_I945_GM:
+       return i915CreateContext( mesaVis, driContextPriv, 
+ 			       sharedContextPrivate );
+  
