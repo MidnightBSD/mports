@@ -2,18 +2,17 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.1 2006/09/19 22:11:22 wintellect Exp $
-# $FreeBSD: ports/graphics/cairo/Makefile,v 1.18 2006/05/31 22:18:45 mezz Exp $
-#   $MCom: ports/graphics/cairo/Makefile,v 1.30 2005/10/04 04:35:57 ahze Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/graphics/cairo/Makefile,v 1.23 2007/03/20 11:01:14 ahze Exp $
+#   $MCom: ports/graphics/cairo/Makefile,v 1.56 2007/03/06 13:39:18 ahze Exp $
 #
 
 PORTNAME=	cairo
-PORTVERSION=	1.0.4
-PORTREVISION?=	1
+PORTVERSION=	1.4.2
+PORTREVISION?=	0
 CATEGORIES=	graphics
-MASTER_SITES=	http://cairographics.org/releases/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	ahze
+MASTER_SITES=	http://cairographics.org/releases/
+#MASTER_SITES=	http://cairographics.org/snapshots/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
@@ -29,7 +28,7 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--enable-ps
 USE_GNOME=	gnometarget gnomehack ltverhack referencehack
 USE_AUTOTOOLS=	libtool:15
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${X11BASE}/include" \
 		LDFLAGS="${PTHREAD_LIBS}"
@@ -56,13 +55,13 @@ PLIST_SUB+=	X11=""
 .endif
 
 post-patch:
-.if ${OSVERSION} < 500000
-	@${REINPLACE_CMD} -e 's|stdint.h|inttypes.h|' \
-		${WRKSRC}/src/*.* \
-		${WRKSRC}/pixman/src/*.*
-.endif
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|' \
 		${WRKSRC}/test/Makefile.in
+	@${REINPLACE_CMD} -e 's|-lcairo|-lcairo ${PTHREAD_LIBS}|' \
+		${WRKSRC}/src/*.pc.in
+	@${REINPLACE_CMD} -e 's|src test doc|src doc|; \
+		s|@CAIRO_HAS_PNG_FUNCTIONS_TRUE@am__append_1 = test||' \
+		${WRKSRC}/Makefile.in
 
 .include <bsd.port.post.mk>
 

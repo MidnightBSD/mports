@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.52 2007/03/21 01:41:15 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.53 2007/04/07 18:45:52 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -71,6 +71,7 @@
     SUBDIR += poppler
     SUBDIR += poppler-qt
     SUBDIR += popplerkit
+    SUBDIR += py-cairo
     SUBDIR += sane-backends
     SUBDIR += scr2png
     SUBDIR += sdl_image
