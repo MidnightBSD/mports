@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.29 2007/03/21 01:37:18 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.30 2007/03/21 14:31:26 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -28,6 +28,7 @@
     SUBDIR += php5-posix
     SUBDIR += pwgen
     SUBDIR += screen
+    SUBDIR += searchmonkey
     SUBDIR += timemon
     SUBDIR += ucspi-tcp
     SUBDIR += wmbsdbatt
