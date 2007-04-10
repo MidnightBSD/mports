@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.3 2007/04/05 00:43:35 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.4 2007/04/05 00:57:08 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -165,7 +165,6 @@ OPTIONS+=	TREMOR "Use built-in tremor instead of libvorbis" off
 OPTIONS+=	XMMS "Enable XMMS plugin support" off
 OPTIONS+=	THEORA "Enable ogg theora video support" off
 OPTIONS+=	WIN32 "Enable win32 codec set on the IA32 arch" on
-OPTIONS+=	X264 "Enable x264 (H.264) video codec support" off
 OPTIONS+=	XANIM "Enable xanim DLL support" off
 OPTIONS+=	XVID "Enable XVID video codec support" on
 OPTIONS+=	REALPLAYER "Enable real player plugin" off
@@ -394,11 +393,8 @@ LIB_DEPENDS+=	theora.2:${PORTSDIR}/multimedia/libtheora
 CONFIGURE_ARGS+=	--disable-theora
 .endif
 
-.if defined(WITH_X264)
-LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
-.else
+# until we get x264 working
 CONFIGURE_ARGS+=	--disable-x264
-.endif
 
 .if defined(WITH_ESOUND)
 USE_GNOME+=	esound
