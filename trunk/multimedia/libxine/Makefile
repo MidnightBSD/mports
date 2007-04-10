@@ -2,7 +2,7 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.4 2007/04/10 17:19:59 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
@@ -36,6 +36,7 @@ USE_GCC=	3.4+
 USE_GETTEXT=	yes
 USE_ICONV=	yes
 USE_XLIB=	yes
+USE_X_PREFIX=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack gnometarget
