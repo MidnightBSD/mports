@@ -2,13 +2,12 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $FreeBSD: ports/multimedia/libxine/Makefile,v 1.102 2006/12/07 17:13:41 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.2 2006/12/13 22:19:52 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
 PORTNAME=	xine
-PORTVERSION=	1.1.3
-PORTREVISION=   1
+PORTVERSION=	1.1.4
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -21,7 +20,7 @@ COMMENT=	Libraries for xine multimedia player
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdts.a:${PORTSDIR}/multimedia/libdts
 LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		vorbis.3:${PORTSDIR}/audio/libvorbis \
-		speex.3:${PORTSDIR}/audio/speex \
+		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
 		png.5:${PORTSDIR}/graphics/png \
 		dvdread.3:${PORTSDIR}/multimedia/libdvdread \
@@ -43,7 +42,6 @@ USE_GNOME=	gnomehack gnometarget
 USE_GMAKE=	yes
 USE_GL=		yes
 USE_SDL=	sdl
-USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fno-force-addr -I${LOCALBASE}/include -I${LOCALBASE}/include/dvdread -I${X11BASE}/include" \
 		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
@@ -53,17 +51,18 @@ CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fno-force-addr -I${LOCALBASE}/include -I${LOCA
 		EXTRA_X_LIBS="-lGL -lGLU -lXext -lX11 -lm"
 CONFIGURE_ARGS=	--with-w32-path=${LOCALBASE}/lib/win32 --enable-ipv6 \
 		--mandir=${PREFIX}/man --with-external-libmad \
-		--with-external-libdts
+		--with-external-libdts --with-libflac --disable-v4l \
+		--build=${ARCH}-portbld-freebsd6.0
 
 MAN1=	xine-config.1
 MAN5=	xine.5
 
+DOCSDIR=	${TARGETDIR}/share/doc/xine-lib
+
 .include <bsd.port.pre.mk>
 
-.if ${X_WINDOW_SYSTEM:L} != xfree86-3
-PLIST_SUB+=	WITH_LIBXV=""
-.else
-PLIST_SUB+=	WITH_LIBXV="@comment "
+.if ${ARCH} == amd64
+USE_GCC=	4.1+
 .endif
 
 .if !defined(WITHOUT_ARTS) && (exists(${LOCALBASE}/bin/artsc-config) || defined(WITH_ARTS))
@@ -87,7 +86,15 @@ USE_GNOME+=	esound
 PLIST_SUB+=	WITH_ESOUND=""
 .else
 PLIST_SUB+=	WITH_ESOUND="@comment "
-CONFIGURE_ARGS+=	--disable-esd --disable-esdtest
+CONFIGURE_ARGS+=	--without-esound
+.endif
+
+.if !defined(WITHOUT_JACK) && (exists(${LOCALBASE}/lib/libjack.so) || defined(WITH_JACK))
+LIB_DEPENDS+=	jack:${PORTSDIR}/audio/jack
+PLIST_SUB+=	WITH_JACK=""
+.else
+PLIST_SUB+=	WITH_JACK="@comment "
+CONFIGURE_ARGS+=	--disable-jack
 .endif
 
 .if !defined(WITHOUT_GNOMEVFS2) && (${HAVE_GNOME:Mgnomevfs2} != "" || defined(WITH_GNOMEVFS2))
@@ -183,6 +190,11 @@ pre-everything::
 .else
 	@${ECHO_MSG} "===> WITH_ESOUND (esound support, enabled)"
 .endif
+.if !exists(${LOCALBASE}/lib/libjack.so) && !defined(WITH_JACK) || defined(WITHOUT_JACK)
+	@${ECHO_MSG} "===> WITH_JACK (JACK support)"
+.else
+	@${ECHO_MSG} "===> WITH_JACK (JACK support, enabled)"
+.endif
 .if !exists(${LOCALBASE}/lib/libpulse.so.0) && !defined(WITH_PULSEAUDIO) || defined(WITHOUT_PULSEAUDIO)
 	@${ECHO_MSG} "===> WITH_PULSEAUDIO (pulseaudio support)"
 .else
@@ -200,6 +212,14 @@ pre-everything::
 .endif
 	@${ECHO_MSG} "===>"
 
+post-patch:
+.for f in libtool ltmain.sh
+	@${REINPLACE_CMD} -e \
+		'/freebsd-elf)/,/;;/ s|major="\.$$current"|major=.`expr $$current - $$age`|; \
+		/freebsd-elf)/,/;;/ s|versuffix="\.$$current"|versuffix="$$major"|' \
+		${WRKSRC}/${f}
+.endfor
+
 pre-configure:
 	@${REINPLACE_CMD} -e \
 		's|THREAD_LIBS=.*$$|THREAD_LIBS="\$$THREAD_LIBS"|g ; \
@@ -208,15 +228,13 @@ pre-configure:
 		 s|-I/usr/local/include||g ; \
 		 s|-lgiconv|-liconv|g ; \
 		 s|-funroll-loops||g ; \
-		 s|LIBFFMPEG_CFLAGS|LIBFFMPEG_CPPFLAGS|g' ${WRKSRC}/configure
+		 s|LIBFFMPEG_CFLAGS|LIBFFMPEG_CPPFLAGS|g ; \
+		 s|echo aout|echo elf|g' ${WRKSRC}/configure
 .if ${OSVERSION} >= 500035
 	@${REINPLACE_CMD} -e \
 		 's|-malign-loops|-falign-loops|g ; \
 		  s|-malign-jumps|-falign-jumps|g ; \
 		  s|-malign-functions|-falign-functions|g' ${WRKSRC}/configure
 .endif
-
-pre-build:
-	${CP} ${LTMAIN} ${WRKSRC}/ltmain.sh
 
 .include <bsd.port.post.mk>
