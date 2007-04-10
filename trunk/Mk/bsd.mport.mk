@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.11 2007/04/05 05:44:21 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.12 2007/04/10 00:07:29 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1063,6 +1063,67 @@ makepatch:
 .endif
 
 
+GENPLIST?=	${.CURDIR}/gen-plist
+
+# Try to make a plist.  This will probably need to be edited.
+.if !target(makeplist)
+makeplist: fake
+	@${ECHO_MSG} "===>   Generating packing list"
+	@${MKDIR} `${DIRNAME} ${GENPLIST}`
+	@> ${GENPLIST}
+	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
+	@cd ${FAKE_DESTDIR}${PREFIX}; directors=""; files=""; \
+	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//'`; \
+	for file in $$new; do \
+		if [ -d $$file ]; then \
+			tree=`${FIND} -d $$file -type f -or -type d`; \
+			for f in $$tree; do \
+				if [ -d $$f ]; then \
+					directories="$$directories $$f"; \
+				else \
+					files="$$files $$f"; \
+				fi; \
+			done; \
+		else \
+			files="$$files $$file"; \
+		fi; \
+	done; \
+	for file in $$files; do \
+		echo $$file >> ${GENPLIST}; \
+	done; \
+	for dir in $$directories; do \
+		echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+	done;
+
+.	if defined(USE_LINUX)
+		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
+		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directors=""; files=""; \
+		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
+		for file in $$new; do \
+			if [ -d $$file ]; then \
+				tree=`${FIND} -d $$file -type f -or -type d`; \
+				for f in $$tree; do \
+					if [ -d $$f ]; then \
+						directories="$$directories $$f"; \
+					else \
+						files="$$files $$f"; \
+					fi; \
+				done; \
+			else \
+				files="$$files $$file"; \
+			fi; \
+		done; \
+		for file in $$files; do \
+			echo $$file >> ${GENPLIST}; \
+		done; \
+		for dir in $$directories; do \
+			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+		done;
+		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
+.	endif
+.endif
+
+
 # Start of pre-makefile section.
 .if !defined(AFTERPORTMK)
 
@@ -1648,8 +1709,6 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
-PLIST_REINPLACE+=	dirrmtry
-PLIST_REINPLACE_DIRRMTRY=s!^@dirrmtry \(.*\)!@unexec rmdir %D/\1 2>/dev/null || true!
 
 .if defined(WITHOUT_CPU_CFLAGS)
 .if defined(_CPUCFLAGS)
@@ -3630,6 +3689,11 @@ check-conflicts:
 fake-dir:
 	@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${PREFIX}  
 	@${MTREE_CMD} ${MTREE_ARGS} ${FAKE_DESTDIR}${PREFIX} >/dev/null
+.	if ${MTREE_FILE} == "/etc/mtree/BSD.local.dist" 
+		@cd ${FAKE_DESTDIR}${PREFIX}/share/nls; \
+		${LN} -shf C POSIX; \
+		${LN} -shf C en_US.US-ASCII; 
+.	endif
 .	if defined(USE_LINUX) 
 		@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${LINUXBASE_REL}
 		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${FAKE_DESTDIR}${LINUXBASE_REL} > /dev/null
@@ -3827,123 +3891,6 @@ check-umask:
 	fi
 .endif
 
-.if !target(install-mtree)
-install-mtree:
-	@${MKDIR} ${TARGETDIR}
-	@if [ `${ID} -u` != 0 ]; then \
-		if [ -w ${TARGETDIR}/ ]; then \
-			${ECHO_MSG} "Warning: not superuser, you may get some errors during installation."; \
-		else \
-			${ECHO_MSG} "Error: ${TARGETDIR}/ not writable."; \
-			${FALSE}; \
-		fi; \
-	fi
-.if !defined(NO_MTREE)
-	@if [ `${ID} -u` = 0 ]; then \
-		if [ ! -f ${MTREE_FILE} ]; then \
-			${ECHO_MSG} "Error: mtree file \"${MTREE_FILE}\" is missing."; \
-			${ECHO_MSG} "Copy it from a suitable location (e.g., /usr/src/etc/mtree) and try again."; \
-			exit 1; \
-		else \
-			${MTREE_CMD} ${MTREE_ARGS} ${TARGETDIR}/ >/dev/null; \
-			if [ ${MTREE_FILE} = "/etc/mtree/BSD.local.dist" ]; then \
-				cd ${TARGETDIR}/share/nls; \
-				${LN} -shf C POSIX; \
-				${LN} -shf C en_US.US-ASCII; \
-			fi; \
-		fi; \
-	else \
-		${ECHO_MSG} "Warning: not superuser, can't run mtree."; \
-		${ECHO_MSG} "You may want to become root and try again to ensure correct permissions."; \
-	fi
-.endif
-.endif
-
-.if !target(install-ldconfig-file)
-install-ldconfig-file:
-.if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32) || defined(INSTALLS_SHLIB)
-.if defined(USE_LDCONFIG)
-.if !defined(INSTALL_AS_USER)
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig"
-	${LDCONFIG} -m ${USE_LDCONFIG}
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR}"
-	${CHROOT} ${DESTDIR} ${LDCONFIG} -m ${USE_LDCONFIG}
-.endif
-.else
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig (errors are ignored)"
-	-${LDCONFIG} -m ${USE_LDCONFIG}
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR} (errors are ignored)"
-	${CHROOT} ${DESTDIR} -${LDCONFIG} -m ${USE_LDCONFIG}
-.endif
-.endif
-.if ${USE_LDCONFIG} != "${PREFIX}/lib"
-	@${ECHO_MSG} "===>   Installing ldconfig configuration file"
-.if defined(NO_LDCONFIG_MTREE)
-	@${MKDIR} ${PREFIX}/${LDCONFIG_DIR}
-.endif
-	@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
-		> ${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
-	@${ECHO_CMD} ${LDCONFIG_DIR}/${UNIQUENAME} >> ${TMPPLIST}
-.if defined(NO_LDCONFIG_MTREE)
-	@${ECHO_CMD} "@unexec rmdir ${LDCONFIG_DIR} >/dev/null 2>&1 || true" >> ${TMPPLIST}
-.endif
-.endif
-.endif
-.if defined(USE_LDCONFIG32)
-.if !defined(INSTALL_AS_USER)
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig"
-	${LDCONFIG} -32 -m ${USE_LDCONFIG32}
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR}"
-	${CHROOT} ${DESTDIR} ${LDCONFIG} -32 -m ${USE_LDCONFIG32}
-.endif
-.else
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig (errors are ignored)"
-	-${LDCONFIG} -32 -m ${USE_LDCONFIG32}
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR} (errors are ignored)"
-	${CHROOT} ${DESTDIR} -${LDCONFIG} -32 -m ${USE_LDCONFIG32}
-.endif
-.endif
-	@${ECHO_MSG} "===>   Installing 32-bit ldconfig configuration file"
-.if defined(NO_LDCONFIG_MTREE)
-	@${MKDIR} ${PREFIX}/${LDCONFIG_32DIR}
-.endif
-	@${ECHO_CMD} ${USE_LDCONFIG32} | ${TR} ' ' '\n' \
-		> ${PREFIX}/${LDCONFIG32_DIR}/${UNIQUENAME}
-	@${ECHO_CMD} ${LDCONFIG32_DIR}/${UNIQUENAME} >> ${TMPPLIST}
-.if defined(NO_LDCONFIG_MTREE)
-	@${ECHO_CMD} "@unexec rmdir ${LDCONFIG32_DIR} >/dev/null 2>&1" >> ${TMPPLIST}
-.endif
-.endif
-# This can be removed once all ports have been converted to USE_LDCONFIG.
-.if defined(INSTALLS_SHLIB)
-.if !defined(INSTALL_AS_USER)
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig"
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR}"
-.endif
-	${LDCONFIG_CMD}
-.else
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>   Running ldconfig (errors are ignored)"
-.else
-	@${ECHO_MSG} "===>   Running ldconfig in ${DESTDIR} (errors are ignored)"
-.endif
-	-${LDCONFIG_CMD}
-.endif
-.endif
-.else
-	@${DO_NADA}
-.endif
-.endif
 
 .if !target(security-check)
 .if !defined(OLD_SECURITY_CHECK)
@@ -5431,131 +5378,136 @@ generate-plist:
 	@for man in ${__MANPAGES}; do \
 		${ECHO_CMD} $${man} >> ${TMPPLIST}; \
 	done
-.for _PREFIX in ${PREFIX}
-.if ${_TMLINKS:M${_PREFIX}*}x != x
-	@for i in ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||}; do \
-		${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
-	done
-.endif
-.if ${_TMLINKS:N${_PREFIX}*}x != x
-	@${ECHO_CMD} @cwd / >> ${TMPPLIST}
-	@for i in ${_TMLINKS:N${_PREFIX}*:S|^/||}; do \
-		${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
-	done
-	@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
-.endif
-	@for i in $$(${ECHO_CMD} ${__MANPAGES} ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||} ' ' | ${SED} -E -e 's|man([1-9ln])/([^/ ]+) |cat\1/\2 |g'); do \
-		${ECHO_CMD} "@unexec rm -f %D/$${i%.gz} %D/$${i%.gz}.gz" >> ${TMPPLIST}; \
-	done
-.endfor
+.	for _PREFIX in ${PREFIX}
+.		if ${_TMLINKS:M${_PREFIX}*}x != x
+			@for i in ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||}; do \
+				${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
+			done
+.		endif
+.		if ${_TMLINKS:N${_PREFIX}*}x != x
+			@${ECHO_CMD} @cwd / >> ${TMPPLIST}
+			@for i in ${_TMLINKS:N${_PREFIX}*:S|^/||}; do \
+				${ECHO_CMD} "$$i" >> ${TMPPLIST}; \
+			done
+			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
+.		endif
+		@for i in $$(${ECHO_CMD} ${__MANPAGES} ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||} ' ' | ${SED} -E -e 's|man([1-9ln])/([^/ ]+) |cat\1/\2 |g'); do \
+			${ECHO_CMD} "@unexec rm -f %D/$${i%.gz} %D/$${i%.gz}.gz" >> ${TMPPLIST}; \
+		done
+.	endfor
 	@if [ -f ${PLIST} ]; then \
 		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
 	fi
-.for reinplace in ${PLIST_REINPLACE}
-.if defined(PLIST_REINPLACE_${reinplace:U})
-	@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:U}}' ${TMPPLIST}
-.endif
-.endfor
+.	for reinplace in ${PLIST_REINPLACE}
+.		if defined(PLIST_REINPLACE_${reinplace:U})
+			@${SED} -i "" -e '${PLIST_REINPLACE_${reinplace:U}}' ${TMPPLIST}
+.		endif
+.	endfor
  
-.for dir in ${PLIST_DIRS}
-	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dirrm ,' >> ${TMPPLIST}
-.endfor
+.	for dir in ${PLIST_DIRS}
+		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dirrm ,' >> ${TMPPLIST}
+.	endfor
+
 # To be removed once INSTALLS_SHLIB has been eradicated.
-.if defined(INSTALLS_SHLIB) && !defined(INSTALL_AS_USER)
-	@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" >> ${TMPPLIST}
-.elif defined(INSTALLS_SHLIB)
-	@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
-.endif
-.if defined(USE_LDCONFIG)
-.if !defined(INSTALL_AS_USER)
-	@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG} -R" >> ${TMPPLIST}
-.else
-	@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG} || ${TRUE}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG} -R || ${TRUE}" >> ${TMPPLIST}
-.endif
-.endif
-.if defined(USE_LDCONFIG32)
-.if !defined(INSTALL_AS_USER)
-	@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R" >> ${TMPPLIST}
-.else
-	@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32} || ${TRUE}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R || ${TRUE}" >> ${TMPPLIST}
-.endif
-.endif
-.if !defined(NO_FILTER_SHLIBS)
-.if (${PORTOBJFORMAT} == "aout")
-	@${SED} -e 's,\(/lib.*\.so\.[0-9]*\)$$,\1.0,' ${TMPPLIST} > ${TMPPLIST}.tmp
-.else
-	@${SED} -e 's,\(/lib.*\.so\.[0-9]*\)\.[0-9]*$$,\1,' ${TMPPLIST} > ${TMPPLIST}.tmp
-.endif
-	@${MV} -f ${TMPPLIST}.tmp ${TMPPLIST}
-.endif
-.endif
+.	if defined(INSTALLS_SHLIB) && !defined(INSTALL_AS_USER)
+		@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}" >> ${TMPPLIST}
+		@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" >> ${TMPPLIST}
+.	elif defined(INSTALLS_SHLIB)
+		@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
+		@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
+.	endif
+
+.	if defined(USE_LDCONFIG)
+.		if !defined(INSTALL_AS_USER)
+			@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG}" >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG} -R" >> ${TMPPLIST}
+.		else
+			@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG} || ${TRUE}" >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG} -R || ${TRUE}" >> ${TMPPLIST}
+.		endif
+.	endif
+.	if defined(USE_LDCONFIG32)
+.		if !defined(INSTALL_AS_USER)
+			@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32}" >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R" >> ${TMPPLIST}
+.		else
+			@${ECHO_CMD} "@exec ${LDCONFIG} -32 -m ${USE_LDCONFIG32} || ${TRUE}" >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R || ${TRUE}" >> ${TMPPLIST}
+.		endif
+.	endif
+.	if !defined(NO_FILTER_SHLIBS)
+		@${SED} -e 's,\(/lib.*\.so\.[0-9]*\)\.[0-9]*$$,\1,' ${TMPPLIST} > ${TMPPLIST}.tmp
+		@${MV} -f ${TMPPLIST}.tmp ${TMPPLIST}
+.	endif
+# End of generate-plist
+.endif 
 
 ${TMPPLIST}:
 	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} generate-plist
 
 .if !target(add-plist-docs)
 add-plist-docs:
-.if defined(PORTDOCS) && !defined(NOPORTDOCS)
-	@if ${EGREP} -qe '^@cw?d' ${TMPPLIST} && \
-		[ "`${SED} -En -e '/^@cw?d[ 	]*/s,,,p' ${TMPPLIST} | ${TAIL} -n 1`" != "${PREFIX}" ]; then \
-		${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}; \
-	fi
-.for x in ${PORTDOCS}
-	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-		if [ ! -e ${DOCSDIR}/${x} ]; then \
-		${ECHO_CMD} ${DOCSDIR}/${x} | \
-			${SED} -e 's,^${TARGETDIR}/,,' >> ${TMPPLIST}; \
-	fi;fi
-.endfor
-	@${FIND} -P ${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
-		${SED} -ne 's,^${TARGETDIR}/,,p' >> ${TMPPLIST}
-	@${FIND} -P -d ${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
-		${SED} -ne 's,^${TARGETDIR}/,@dirrm ,p' >> ${TMPPLIST}
-	@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${TARGETDIR}/,,}" >> ${TMPPLIST}
-.else
-	@${DO_NADA}
-.endif
+.	if defined(PORTDOCS) && !defined(NOPORTDOCS)
+		@if ${EGREP} -qe '^@cw?d' ${TMPPLIST} && \
+			[ "`${SED} -En -e '/^@cw?d[ 	]*/s,,,p' ${TMPPLIST} | ${TAIL} -n 1`" != "${PREFIX}" ]; then \
+			${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}; \
+		fi
+.		for x in ${PORTDOCS}
+			@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
+				if [ ! -e ${DOCSDIR}/${x} ]; then \
+					${ECHO_CMD} ${DOCSDIR}/${x} | \
+					${SED} -e 's,^${TARGETDIR}/,,' >> ${TMPPLIST}; \
+				fi; \
+			fi
+.		endfor
+		@${FIND} -P ${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
+			${SED} -ne 's,^${TARGETDIR}/,,p' >> ${TMPPLIST}
+		@${FIND} -P -d ${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
+			${SED} -ne 's,^${TARGETDIR}/,@dirrm ,p' >> ${TMPPLIST}
+		@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${TARGETDIR}/,,}" >> ${TMPPLIST}
+.	else
+		@${DO_NADA}
+.	endif
 .endif
 
 .if !target(add-plist-info)
 add-plist-info:
 # Process GNU INFO files at package install/deinstall time
-.if defined(INFO)
-.for i in ${INFO}
-	@${ECHO_CMD} "@unexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-		>> ${TMPPLIST}
-	@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
-	@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-		>> ${TMPPLIST}
-	@if [ "`${DIRNAME} $i`" != "." ]; then \
-		${ECHO_CMD} "@unexec ${RMDIR} %D/info/`${DIRNAME} $i` 2> /dev/null || true" >> ${TMPPLIST}; \
-	fi
-.endfor
-.if (${PREFIX} != "/usr")
-	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
-	@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
-.endif
-.endif
-.endif
+.	if defined(INFO)
+.		for i in ${INFO}
+			@${ECHO_CMD} "@unexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
+				>> ${TMPPLIST}
+			@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
+			@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
+				>> ${TMPPLIST}
+			@if [ "`${DIRNAME} $i`" != "." ]; then \
+				${ECHO_CMD} "@unexec ${RMDIR} %D/info/`${DIRNAME} $i` 2> /dev/null || true" >> ${TMPPLIST}; \
+			fi
+.		endfor
+
+.		if (${PREFIX} != "/usr")
+			@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir \
+				 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
+
+.			if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
+				@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
+.			endif
+
+.		endif
+.	endif
 .endif
 
 # If we're installing into a non-standard PREFIX, we need to remove that directory at
 # deinstall-time
 .if !target(add-plist-post)
 add-plist-post:
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
-	@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
-.else
-	@${DO_NADA}
+.	if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
+		@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
+.	else
+		@${DO_NADA}
+.	endif
 .endif
-.endif
+
 
 
 # TODO -- this does not work with fake correctly.
