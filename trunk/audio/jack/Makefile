@@ -3,7 +3,7 @@
 # Whom:				arved
 #
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.1 2006/11/17 22:55:15 laffer1 Exp $
 #
 
 PORTNAME=	jackit
@@ -46,10 +46,6 @@ PLIST_SUB+=	DOCS=""
 .else
 CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
 PLIST_SUB+=	DOCS="@comment "
-.endif
-
-.if (${OSVERSION} > 500000 ) && (${OSVERSION} < 502102 )
-BROKEN=		Does not compile
 .endif
 
 pre-everything::
