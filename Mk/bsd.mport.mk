@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.10 2007/04/05 05:24:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.11 2007/04/05 05:44:21 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -567,7 +567,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  Default: ${WRKDIR}/${DISTNAME} unless NO_WRKSUBDIR is set,
 #				  in which case simply ${WRKDIR}
 # NO_WRKSUBDIR	- Assume port unpacks directly into ${WRKDIR}.
-# PATCHDIR		- A directory containing any additional patches you made
+# PATCHDIRu		- A directory containing any additional patches you made
 #				  to port this software to FreeBSD.
 #				  Default: ${MASTERDIR}/files
 # SCRIPTDIR		- A directory containing any auxiliary scripts
@@ -577,12 +577,23 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # PKGDIR		- A directory containing any package creation files.
 #				  Default: ${MASTERDIR}
 #
-# FAKE_INSTALLDIR	- A directory used to creating packages. An install is "faked" into
-#			  this dir. 
-#				  Default: "fake-inst"
-# FAKE_OPTS		- Set options for fake. Current options:
-#				libs -- fake targets need access to the port's shared libs.
-#				bin  -- fake targets need the port's binaries in $PATH
+#
+# The following are used by the fake system.  The fake system installs a dist's files into
+# a temporary directory before 
+#
+# FAKE_OPTS			- Set options for fake.  Available options:
+#						libs -- fake targets need access to the port's shared libs.
+# 						bin  -- fake targets need the port's binaries in $PATH
+# FAKE_INSTALLDIR	- A relative directory used to by fake. An install is "faked" into
+#					  this dir. 
+#					  Default: "fake-inst-${ARCH}"
+# FAKE_DESTDIR		- The absolute fake directory.  You almost never want to set this,
+#					  but it can be useful for target like do-install or post-install
+#					  Default: ${WRKDIR}/${FAKE_INSTALLDIR}
+# FAKE_MAKEARGS		- Arguments passed to the dist's makefile by the default fake target.
+#					  Default: ${DESTDIRNAME}=${FAKE_DESTDIR}                               
+# FAKE_TARGET		- When fake runs the dist's makefile, this is the target used.
+#					  Default: ${INSTALL_TARGET}
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -1578,13 +1589,14 @@ X_WINDOW_SYSTEM ?= xorg
 # Fake Setup 
 #
 # Tmp dir used for building a package.
-FAKE_INSTALLDIR?=	fake-inst
+FAKE_INSTALLDIR?=	fake-inst-${ARCH}
 FAKE_TARGET?=		${INSTALL_TARGET}
 DESTDIRNAME?=   	DESTDIR
+FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
+FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR}
 
-FAKE_DESTDIR=	${WRKDIR}/${FAKE_INSTALLDIR}
-_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} 
-_FAKE_MAKEARGS=		${DESTDIRNAME}=${FAKE_DESTDIR}
+_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
+					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home
 
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mlibs}x != "x"
@@ -3619,7 +3631,8 @@ fake-dir:
 	@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${PREFIX}  
 	@${MTREE_CMD} ${MTREE_ARGS} ${FAKE_DESTDIR}${PREFIX} >/dev/null
 .	if defined(USE_LINUX) 
-		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${FAKE_DESTDIR}
+		@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${LINUXBASE_REL}
+		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${FAKE_DESTDIR}${LINUXBASE_REL} > /dev/null
 .	endif
 .endif
 
@@ -3639,10 +3652,10 @@ fake-install:
 .	    else 
 # 		Normal builds.
 		cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
-		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} ${FAKE_TARGET};
+		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
 .		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
 			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
-				${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${_FAKE_MAKEARGS} install.man
+				${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
 .		endif
 .	    endif
 .	endif
@@ -4110,35 +4123,40 @@ _SANITY_SEQ=	pre-everything check-makefile check-categories \
 				check-makevars check-desktop-entries check-depends \
 				check-deprecated check-vulnerable buildanyway-message \
 				options-message
+
 _FETCH_DEP=		check-sanity
 _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 				do-fetch post-fetch post-fetch-script
+
 _EXTRACT_DEP=	fetch
 _EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
 				pre-extract-script do-extract \
 				post-extract post-extract-script
+
 _PATCH_DEP=		extract
 _PATCH_SEQ=		patch-message patch-depends patch-dos2unix pre-patch \
 				pre-patch-script do-patch post-patch post-patch-script
+
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	build-depends lib-depends misc-depends configure-message \
 				pre-configure pre-configure-script \
 				run-autotools do-configure post-configure post-configure-script
+
 _BUILD_DEP=		configure
 _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
-_FAKE_DEP=	build
-_FAKE_SEQ=	fake-message fake-dir apply-slist pre-fake fake-install post-fake compress-man 
+_FAKE_DEP=		build
+_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install post-fake compress-man 
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-plist-info\
-		add-plist-docs add-plist-post do-package post-package-script 
+				add-plist-docs add-plist-post do-package post-package-script 
 
 _INSTALL_DEP=	package
 # Not sure how we want to handle sudo/su.  Will figure out later - triv.
 _INSTALL_SEQ=	install-message check-conflicts run-depends lib-depends\
-		check-already-installed install-package done-message
+				check-already-installed install-package done-message
 
 
 .if !target(check-sanity)
