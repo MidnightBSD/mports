@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.12 2007/04/10 00:07:29 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.13 2007/04/10 00:56:13 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1072,11 +1072,11 @@ makeplist: fake
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
 	@> ${GENPLIST}
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
-	@cd ${FAKE_DESTDIR}${PREFIX}; directors=""; files=""; \
-	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//'`; \
+	@cd ${FAKE_DESTDIR}${PREFIX}; directors=""; files=""; slinks=""\
+	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
 	for file in $$new; do \
-		if [ -d $$file ]; then \
-			tree=`${FIND} -d $$file -type f -or -type d`; \
+		if [ ! -L $$file ] && [ -d $$file ]; then \
+			tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
 			for f in $$tree; do \
 				if [ -d $$f ]; then \
 					directories="$$directories $$f"; \
@@ -3711,16 +3711,16 @@ fake-install:
 .	else
 # 	Handle Module::Build
 .	    if defined(PERL_MODBUILD) 
-		 @cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
-		     ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
+		 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
+		    	 ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .	    else 
-# 		Normal builds.
-		cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
-		 	${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
-.		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
+# 			Normal builds.
 			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
-				${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
-.		endif
+		 		${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
+.			if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
+				@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+					${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
+.			endif
 .	    endif
 .	endif
 .	if target(post-install)
