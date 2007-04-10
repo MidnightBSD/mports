@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.69 2006/12/07 17:17:44 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.3 2007/03/25 01:32:35 ctriv Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.4 2007/04/04 19:01:27 laffer1 Exp $
 #
 
 PORTNAME=	xine
@@ -17,24 +17,29 @@ DISTNAME=	${PORTNAME}-ui-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 multimedia player
 
-LIB_DEPENDS=	xine.16:${PORTSDIR}/multimedia/libxine \
+LIB_DEPENDS=	xine.1:${PORTSDIR}/multimedia/libxine \
 		png.5:${PORTSDIR}/graphics/png \
 		curl.4:${PORTSDIR}/ftp/curl
 
 USE_GETTEXT=	yes
 USE_XLIB=	yes
+USE_X_PREFIX=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		THREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		THREAD_LIBS="${PTHREAD_LIBS}"
-CONFIGURE_ARGS=	--program-transform-name=""
+CONFIGURE_ARGS=	--program-transform-name="" --build=${ARCH}-portbld-freebsd6.0
 
 MANLANG=	"" de es fr pl
 MAN1=		aaxine.1 xine-bugreport.1 xine-check.1 xine-remote.1 xine.1
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+USE_GCC= 4.1+
+.endif
 
 .if ${ARCH} == "i386"
 .if !defined(WITHOUT_WIN32_CODECS)
