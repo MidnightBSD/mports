@@ -28,20 +28,19 @@ share/applications/geany.desktop
 %%PORTDOCS%%%%DOCSDIR%%/html/ch03s07.html
 %%PORTDOCS%%%%DOCSDIR%%/html/ch03s08.html
 %%PORTDOCS%%%%DOCSDIR%%/html/ch03s09.html
-%%PORTDOCS%%%%DOCSDIR%%/html/ch03s10.html
 %%PORTDOCS%%%%DOCSDIR%%/html/ch04.html
 %%PORTDOCS%%%%DOCSDIR%%/html/ch04s02.html
 %%PORTDOCS%%%%DOCSDIR%%/html/ch04s03.html
 %%PORTDOCS%%%%DOCSDIR%%/html/geany.css
-%%PORTDOCS%%%%DOCSDIR%%/html/images/find_dialog.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_edit.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_gen.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_interface.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_keys.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_templ.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_toolbar.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_tools.jpg
-%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_vte.jpg
+%%PORTDOCS%%%%DOCSDIR%%/html/images/find_dialog.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_edit.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_gen.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_interface.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_keys.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_templ.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_toolbar.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_tools.png
+%%PORTDOCS%%%%DOCSDIR%%/html/images/pref_dialog_vte.png
 %%PORTDOCS%%%%DOCSDIR%%/html/index.html
 %%PORTDOCS%%%%DOCSDIR%%/manual.txt
 %%DATADIR%%/GPL-2
@@ -95,3 +94,4 @@ share/pixmaps/geany.png
 @dirrm %%DOCSDIR%%
 @dirrmtry share/pixmaps
 @dirrmtry share/applications
+
