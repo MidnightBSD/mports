@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.49 2007/04/04 17:10:42 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.50 2007/04/04 17:13:00 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -49,6 +49,7 @@
     SUBDIR += php5-mhash
     SUBDIR += php5-openssl
     SUBDIR += qca-tls
+    SUBDIR += secpwgen
     SUBDIR += sudo
     SUBDIR += tripwire
     SUBDIR += vlock
