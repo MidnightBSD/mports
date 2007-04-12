@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.13 2007/04/10 00:56:13 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.14 2007/04/10 06:25:41 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -2924,7 +2924,7 @@ MANNPREFIX?=	${MANPREFIX}
 
 MANLANG?=	""	# english only by default
 
-.if !defined(NOMANCOMPRESS)
+.if !(defined(NOMANCOMPRESS) || ${MANCOMPRESSED:L} == "no")
 MANEXT=	.gz
 .endif
 
@@ -2990,18 +2990,18 @@ _TMLINKS=
 
 .if defined(_MANPAGES)
 
+.if ${MANCOMPRESSED:L} == "yes"
+_MANPAGES:= ${_MANPAGES:S%$%.gz%}
+.endif
+
 .for m in ${_MANPAGES}
 _FAKEMAN += ${FAKE_DESTDIR}${m}         
 .endfor
 
-.if defined(NOMANCOMPRESS)
+.if defined(NOMANCOMPRESS) || ${MANCOMPRESSED:L} == "no"
 __MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%}
 .else
 __MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%:S%$%.gz%}
-.endif
-
-.if ${MANCOMPRESSED} == "yes"
-_MANPAGES:=	${_MANPAGES:S%$%.gz%}
 .endif
 
 .endif
@@ -5547,10 +5547,10 @@ install-rc-script:
 .if !target(compress-man)
 compress-man:
 .  if defined(_FAKEMAN) || defined(_MLINKS)
-.    if ${MANCOMPRESSED} == yes && defined(NOMANCOMPRESS)
+.    if ${MANCOMPRESSED:L} == no || defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Uncompressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
-.    elif ${MANCOMPRESSED} == no && !defined(NOMANCOMPRESS)
+.    else
 	@${ECHO_MSG} "===>   Compressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
 .    endif
