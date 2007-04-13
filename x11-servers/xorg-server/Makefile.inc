@@ -88,10 +88,10 @@ do-build:
 .if !target(do-install)
 do-install:
 	@for dir in ${XINSTALL_DIRS}; do \
-		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE} install; \
+		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE} install ${FAKE_MAKEARGS}; \
 	done
 	@for dir in ${XMAN_DIRS}; do \
-		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE} install.man; \
+		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE} install.man ${FAKE_MAKEARGS}; \
 	done
 .endif
 
