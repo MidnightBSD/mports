@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.8 2007/02/25 22:48:31 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.9 2007/04/13 21:34:54 laffer1 Exp $
 #
 
     COMMENT = Network management tools
 
     SUBDIR += aircrack
+    SUBDIR += aircrack-ng
     SUBDIR += docsis
     SUBDIR += p5-Altoids
     SUBDIR += p5-Cflow
