@@ -1,0 +1,31 @@
+--- configure.orig	Thu Oct 26 14:03:58 2006
++++ configure	Tue Nov  7 17:13:30 2006
+@@ -20360,8 +20360,6 @@
+ # This can be used to rebuild libtool when needed
+ LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
+ 
+-# Always use our own libtool.
+-LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+ 
+ # Prevent multiple expansion
+ 
+@@ -26478,8 +26476,8 @@
+ # Some system specific hacks
+ #
+ 
+-MAX_C_OPTIMIZE="-O3"
+-MAX_CXX_OPTIMIZE="-O3"
++MAX_C_OPTIMIZE=""
++MAX_CXX_OPTIMIZE=""
+ 
+ case $SYSTEM_TYPE in
+   *solaris2.7*)
+@@ -46147,7 +46145,7 @@
+ 
+   MAKE_BINARY_DISTRIBUTION_OPTIONS="$MAKE_BINARY_DISTRIBUTION_OPTIONS --with-ndbcluster"
+ 
+-  CXXFLAGS="$CXXFLAGS \$(NDB_CXXFLAGS)"
++  # CXXFLAGS="$CXXFLAGS \$(NDB_CXXFLAGS)"
+   if test "$have_ndb_debug" = "default"
+   then
+     have_ndb_debug=$with_debug

@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/security/clamav/files/clamav-milter.in,v 1.2 2007/02/28 18:23:12 garga Exp $
+#
+
+# PROVIDE: clamav-milter
+# REQUIRE: LOGIN clamd
+# BEFORE: mail
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf to enable clamav-milter:
+#
+#clamav_milter_enable="YES"
+#
+# See clamav-milter(1) for flags
+#
+
+. %%RC_SUBR%%
+
+name=clamav_milter
+rcvar=`set_rcvar`
+
+command=%%PREFIX%%/sbin/clamav-milter
+pidfile=%%RUNDIR%%/clamav-milter.pid
+required_dirs=%%DBDIR%%
+required_files=%%PREFIX%%/etc/clamd.conf
+
+start_precmd=start_precmd
+
+start_precmd()
+{
+	if [ -S "$clamav_milter_socket" ]; then
+		warn "Stale socket $clamav_milter_socket removed."
+		rm "$clamav_milter_socket"
+	fi
+	rc_flags="--pidfile ${pidfile} ${flags:-$clamav_milter_flags} $clamav_milter_socket"
+	for a in 1 2 3 4 5 6 7 8 9 10
+	do
+		[ -S "$clamav_clamd_socket" ] && break
+		sleep 1
+	done
+}
+
+# read settings, set default values
+load_rc_config $name
+: ${clamav_milter_enable="NO"}
+: ${clamav_milter_socket="%%CLAMAV_MILTER_SOCKET%%"}
+: ${clamav_clamd_socket="%%CLAMAV_CLAMD_SOCKET%%"}
+: ${clamav_milter_flags="--postmaster-only --local --outgoing --timeout=0 --max-children=50"}
+
+run_rc_command "$1"

@@ -1,0 +1,5 @@
+libexec/spamd
+libexec/spamlogd
+sbin/spamd-setup
+sbin/spamdb
+etc/spamd.conf.sample

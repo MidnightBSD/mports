@@ -1,0 +1,4 @@
+etc/ngircd.conf.sample
+sbin/ngircd
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

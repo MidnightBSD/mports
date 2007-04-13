@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>The MidnightBSD Ports Collection (%%CATEGORY%%)</title>
+  </head>
+
+  <body>
+    <h1>The MidnightBSD Ports Collection ("%%CATEGORY%%")</h1>
+
+    <p>You are now in the directory "%%CATEGORY%%".</p>
+
+    <p>This is the one-line description for this category:</p>
+
+    <p>
+%%COMMENT%%
+    </p>
+
+    <p>
+%%DESCR%%
+    </p>
+
+    <p>Here are the one-line descriptions for each items in this
+    directory:</p>
+<pre>
+%%SUBDIR%%
+</pre>
+    <a href="../README.html">Go to parent directory</a>
+  </body>
+</html>

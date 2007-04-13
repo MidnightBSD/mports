@@ -1,0 +1,47 @@
+--- Makefile.in.orig	Mon Jan 17 20:35:00 2005
++++ Makefile.in	Mon Jan 17 20:36:53 2005
+@@ -417,13 +417,13 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-SUBDIRS = include . doc example xstc @PYTHON_SUBDIR@
++SUBDIRS = include . doc example xstc @WITH_PYTHON_TRUE@ @PYTHON_SUBDIR@
+ DIST_SUBDIRS = include . doc example python xstc
+ INCLUDES = -I$(top_builddir)/include -I@srcdir@/include @THREAD_CFLAGS@ @Z_CFLAGS@ 
+ bin_SCRIPTS = xml2-config
+ lib_LTLIBRARIES = libxml2.la
+ libxml2_la_LIBADD = @THREAD_LIBS@ @Z_LIBS@ $(ICONV_LIBS) @M_LIBS@ @WIN32_EXTRA_LIBADD@
+-libxml2_la_LDFLAGS = @CYGWIN_EXTRA_LDFLAGS@ @WIN32_EXTRA_LDFLAGS@ -version-info @LIBXML_VERSION_INFO@ @MODULE_PLATFORM_LIBS@
++libxml2_la_LDFLAGS = @CYGWIN_EXTRA_LDFLAGS@ @WIN32_EXTRA_LDFLAGS@ -version-info 5:0:0 @MODULE_PLATFORM_LIBS@
+ @WITH_TRIO_SOURCES_FALSE@libxml2_la_SOURCES = SAX.c entities.c encoding.c error.c parserInternals.c  \
+ @WITH_TRIO_SOURCES_FALSE@		parser.c tree.c hash.c list.c xmlIO.c xmlmemory.c uri.c  \
+ @WITH_TRIO_SOURCES_FALSE@		valid.c xlink.c HTMLparser.c HTMLtree.c debugXML.c xpath.c  \
+@@ -512,7 +512,7 @@
+ testapi_DEPENDENCIES = $(DEPS)
+ testapi_LDADD = $(LDADDS)
+ CLEANFILES = xml2Conf.sh
+-confexecdir = $(libdir)
++confexecdir = $(sysconfdir)
+ confexec_DATA = xml2Conf.sh
+ CVS_EXTRA_DIST = 
+ EXTRA_DIST = xml2-config.in xml2Conf.sh.in libxml.spec.in libxml2.spec \
+@@ -534,8 +534,8 @@
+ # Install the tests program sources as examples 
+ #
+ BASE_DIR = $(datadir)/doc
+-DOC_MODULE = libxml2-$(VERSION)
+-EXAMPLES_DIR = $(BASE_DIR)/$(DOC_MODULE)/examples
++DOC_MODULE = libxml2
++EXAMPLES_DIR = $(datadir)/examples/libxml2
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+ 
+@@ -1246,7 +1246,7 @@
+ check-am: all-am
+ 	$(MAKE) $(AM_MAKEFLAGS) check-local
+ check: check-recursive
+-all-am: Makefile $(LTLIBRARIES) $(PROGRAMS) $(SCRIPTS) $(MANS) $(DATA) \
++all-am: Makefile $(LTLIBRARIES) $(SCRIPTS) $(MANS) $(DATA) \
+ 		config.h
+ install-binPROGRAMS: install-libLTLIBRARIES
+ 

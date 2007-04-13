@@ -1,0 +1,6 @@
+%%SITE_PERL%%/Date/Manip.pm
+%%SITE_PERL%%/Date/Manip.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Manip/.packlist
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Manip
+@dirrmtry %%SITE_PERL%%/Date
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Date

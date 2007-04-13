@@ -1,0 +1,12 @@
+Local/Library/Headers/BookmarkKit/BKBookmark.h
+Local/Library/Headers/BookmarkKit/BKBookmarkQuery.h
+Local/Library/Headers/BookmarkKit/BKBookmarkSearchResult.h
+Local/Library/Headers/BookmarkKit/BKBookmarkStore.h
+Local/Library/Headers/BookmarkKit/BKBookmarkView.h
+Local/Library/Headers/BookmarkKit/BKGlobals.h
+Local/Library/Headers/BookmarkKit/BKGroup.h
+Local/Library/Headers/BookmarkKit/BookmarkKit.h
+Local/Library/Libraries/libBookmarkKit.so
+Local/Library/Libraries/libBookmarkKit.so.%%MAJORLIBVERSION%%
+Local/Library/Libraries/libBookmarkKit.so.%%LIBVERSION%%
+@dirrm Local/Library/Headers/BookmarkKit

@@ -1,0 +1,13 @@
+--- configure.orig	Thu Jun  8 09:12:53 2006
++++ configure	Wed Jul 12 16:44:43 2006
+@@ -26690,8 +26690,10 @@
+         PKGTEST="no"
+     PREFIX_OPENSSL=$OPT_SSL
+     LIB_OPENSSL="$PREFIX_OPENSSL/lib$libsuff"
++    if ! [ "$PREFIX_OPENSSL" = "/usr" ]; then
+     LDFLAGS="$LDFLAGS -L$LIB_OPENSSL"
+     CPPFLAGS="$CPPFLAGS -I$PREFIX_OPENSSL/include/openssl -I$PREFIX_OPENSSL/include"
++    fi
+     ;;
+   esac
+ 

@@ -1,0 +1,51 @@
+Index: qemu/configure
+@@ -115,6 +115,13 @@
+     kqemu="yes"
+ fi
+ ;;
++MidnightBSD)
++bsd="yes"
++oss="yes"
++if [ "$cpu" = "i386" -o "$cpu" = "x86_64" ] ; then
++    kqemu="yes"
++fi
++;;
+ NetBSD)
+ bsd="yes"
+ oss="yes"
+@@ -134,6 +141,7 @@
+ oss="yes"
+ linux="yes"
+ user="yes"
++usb="linux"
+ if [ "$cpu" = "i386" -o "$cpu" = "x86_64" ] ; then
+     kqemu="yes"
+ fi
+@@ -143,6 +151,7 @@
+ if [ "$bsd" = "yes" ] ; then
+   if [ "$darwin" != "yes" ] ; then
+     make="gmake"
++    usb="bsd"
+   fi
+ fi
+ 
+@@ -724,6 +733,19 @@
+ fi
+ 
+ echo "#define CONFIG_UNAME_RELEASE \"$uname_release\"" >> $config_h
++
++# USB host support
++case "$usb" in
++linux)
++  echo "HOST_USB=linux" >> $conig_mak
++;;
++bsd)
++  echo "HOST_USB=bsd" >> $config_mak
++;;
++*)
++  echo "HOST_USB=stub" >> $config_mak
++;;
++esac
+ 
+ for target in $target_list; do
+ target_dir="$target"

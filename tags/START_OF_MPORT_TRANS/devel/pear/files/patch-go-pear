@@ -1,0 +1,126 @@
+--- go-pear.orig	Fri Aug 18 21:14:19 2006
++++ go-pear	Mon Aug 21 09:31:30 2006
+@@ -308,6 +308,7 @@
+     $install_pfc = $_SESSION['go-pear']['install_pfc'];
+ }
+ 
++/*
+ if (!WEBINSTALLER) {
+     $tty = WINDOWS ? @fopen('\con', 'r') : @fopen('/dev/tty', 'r');
+ 
+@@ -351,6 +352,7 @@
+         $http_proxy = $tmp;
+     }
+ }
++*/
+ 
+ $origpwd = getcwd();
+ 
+@@ -423,6 +425,7 @@
+     }
+ }
+ 
++/*
+ while (!WEBINSTALLER) {
+     print "
+ Below is a suggested file layout for your new PEAR installation.  To
+@@ -505,6 +508,7 @@
+         }
+     }
+ }
++*/
+ 
+ foreach ($config_vars as $n => $var) {
+     for ($m = 1; $m <= count($config_vars); $m++) {
+@@ -573,6 +577,7 @@
+     }
+ }
+ 
++/*
+ if (!WEBINSTALLER) {
+     $msg = "The following PEAR packages are bundled with PHP: " .
+         implode(', ', $pfc_packages);
+@@ -581,6 +586,7 @@
+     $install_pfc = !stristr(fgets($tty, 1024), "n");
+     print "\n";
+ }
++*/
+ 
+ ####
+ # Download
+@@ -592,6 +598,7 @@
+    ini_set('include_path', $ptmp);
+ }
+ 
++/*
+ if (!extension_loaded('zlib') && !WEBINSTALLER) { // In Web context we could be in multithread env which makes dl() end up with a fatal error.
+     if (WINDOWS) {
+         @dl('php_zlib.dll');
+@@ -616,6 +623,7 @@
+ if (!$have_gzip) {
+     print "Downloading uncompressed packages\n";
+ };
++*/
+ 
+ if ($install_pfc) {
+     $to_install = array_merge($installer_packages, $pfc_packages);
+@@ -765,7 +773,7 @@
+ if (WEBINSTALLER || isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] == 'local') {
+     $config = &PEAR_Config::singleton($prefix."/pear.conf", '');
+ } else {
+-    $config = &PEAR_Config::singleton();
++    $config = &PEAR_Config::singleton($prefix."/etc/pear.conf", '');
+ }
+ 
+ 
+@@ -801,6 +809,7 @@
+ 
+ // Base installation finished
+ 
++/*
+ ini_restore("include_path");
+ 
+ if (!WEBINSTALLER) {
+@@ -958,6 +967,7 @@
+ if (WINDOWS && !WEBINSTALLER) {
+     win32CreateRegEnv();
+ }
++*/
+ // Set of functions following
+ 
+ // {{{ download_url()
+@@ -1354,17 +1364,17 @@
+         }
+     } else {
+         if ($_prefix === null) {
+-            $prefix    = dirname(PHP_BINDIR);
++            $prefix    = "%%PREFIX%%";
+         } else {
+             $prefix = $_prefix;
+         }
+         $bin_dir   = '$prefix/bin';
+         $php_dir   = '$prefix/share/pear';
+-        $doc_dir   = '$php_dir/docs';
++        $doc_dir   = '$prefix/share/doc/pear';
+         $data_dir  = '$php_dir/data';
+         $test_dir  = '$php_dir/tests';
+-        $temp_dir   = '$prefix/temp';
+-
++        $temp_dir   = '/tmp';
++/*
+         // check if the user has installed PHP with PHP or GNU layout
+         if (@is_dir("$prefix/lib/php/.registry")) {
+             $php_dir = '$prefix/lib/php';
+@@ -1376,6 +1386,7 @@
+         } elseif (@is_dir("$prefix/share/php/.registry")) {
+             $php_dir = '$prefix/share/php';
+         }
++*/
+     }
+ }
+ 
+@@ -2481,3 +2492,4 @@
+     }
+     return true;
+ }
++?>

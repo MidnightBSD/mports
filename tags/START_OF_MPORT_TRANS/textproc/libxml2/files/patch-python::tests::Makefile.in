@@ -1,0 +1,11 @@
+--- python/tests/Makefile.in.orig	Tue Mar 23 09:22:07 2004
++++ python/tests/Makefile.in	Tue Mar 23 09:22:39 2004
+@@ -241,7 +241,7 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-EXAMPLE_DIR = $(datadir)/doc/libxml2-python-$(LIBXML_VERSION)/examples
++EXAMPLE_DIR = $(datadir)/examples/py-libxml2
+ PYTESTS = \
+     build.py	\
+     attribs.py	\

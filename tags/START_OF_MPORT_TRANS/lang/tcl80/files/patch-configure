@@ -1,0 +1,37 @@
+--- configure.orig	Tue Mar  9 01:51:26 1999
++++ configure	Wed Apr  4 19:19:53 2007
+@@ -4068,7 +4068,7 @@
+ 	LD_FLAGS="-Wl,-Bexport"
+ 	LD_SEARCH_FLAGS=""
+ 	;;
+-    NetBSD-*|FreeBSD-*|OpenBSD-*)
++    NetBSD-*|FreeBSD-*|OpenBSD-*|MidnightBSD-*)
+ 	# Not available on all versions:  check for include file.
+ 	ac_safe=`echo "dlfcn.h" | tr './\055' '___'`
+ echo $ac_n "checking for dlfcn.h""... $ac_c" 1>&6
+@@ -4097,14 +4097,14 @@
+   echo "$ac_t""yes" 1>&6
+   
+ 	    SHLIB_CFLAGS="-fpic"
+-	    SHLIB_LD="ld -Bshareable -x"
++	    SHLIB_LD="ld -shared -x -soname \$@"
+ 	    SHLIB_LD_LIBS=""
+ 	    SHLIB_SUFFIX=".so"
+ 	    DL_OBJS="tclLoadDl.o"
+ 	    DL_LIBS=""
+ 	    LD_FLAGS=""
+ 	    LD_SEARCH_FLAGS=""
+-	    TCL_SHARED_LIB_SUFFIX='${TCL_TRIM_DOTS}\$\{DBGX\}.so.1.0'
++	    TCL_SHARED_LIB_SUFFIX='`echo ${VERSION} | tr -d .`.so.1'
+ 	
+ else
+   echo "$ac_t""no" 1>&6
+@@ -4467,7 +4467,7 @@
+ 		;;
+ 	    IRIX*)
+ 		;;
+-	    NetBSD-*|FreeBSD-*|OpenBSD-*)
++	    NetBSD-*|FreeBSD-*|OpenBSD-*|MidnightBSD-*)
+ 		;;
+ 	    RISCos-*)
+ 		;;

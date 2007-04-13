@@ -1,0 +1,11 @@
+--- doc/Makefile.in.orig2	Mon Jul 17 15:50:28 2006
++++ doc/Makefile.in	Mon Jul 17 15:50:57 2006
+@@ -71,7 +71,7 @@
+ all: ../makedoc$(EXEEXT)
+ 	$(MAKE) makedoc-all
+ 
+-makedoc-all: mutt.1 muttrc.man
++makedoc-all: mutt.1 muttrc.man manual.html stamp-doc-chunked manual.txt
+ 
+ install: makedoc-all instdoc
+ 	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(mandir)/man1

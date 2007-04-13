@@ -1,0 +1,7 @@
+bin/uufilter
+bin/xloadimage
+bin/xsetbg
+bin/xview
+etc/xloadimagerc
+%%EXAMPLESDIR%%/xloadimagerc
+@dirrm %%EXAMPLESDIR%%
