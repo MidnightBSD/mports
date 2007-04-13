@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.1 2006/11/17 21:19:38 laffer1 Exp $
 #
 
 PORTNAME=	nas
@@ -17,6 +17,7 @@ COMMENT=	Network Audio System
 
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_IMAKE=	yes
+USE_X_PREFIX= 	yes
 INSTALLS_SHLIB=	yes
 MAKE_ENV+=	COMPRESS_CMD="${COMPRESS_CMD:S/c//}"
 PKGMESSAGE=	${WRKDIR}/pkg-message
