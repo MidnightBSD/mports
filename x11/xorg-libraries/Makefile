@@ -2,7 +2,7 @@
 # Date created:		29 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.3 2007/03/14 18:20:36 ctriv Exp $
+# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.4 2007/03/14 23:31:56 ctriv Exp $
 # $FreeBSD: ports/x11/xorg-libraries/Makefile,v 1.15 2006/01/21 18:55:04 lesi Exp $
 #
 
@@ -64,17 +64,8 @@ IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
 	of FAQ for more information
 .endif
 
-# BuildXF86DRI is false for FreeBSD < 4.1
-.if ${OSVERSION} < 410000
-PLIST_SUB+=	OSMESA:="@comment "
-.else
-PLIST_SUB+=	OSMESA:=""
-.endif
 
-.if ${OSVERSION} >= 500043
+PLIST_SUB+=	OSMESA:=""
 PLIST_SUB+=	XTHRSTUB:="@comment "
-.else
-PLIST_SUB+=	XTHRSTUB:=""
-.endif
 
 .include <bsd.port.post.mk>
