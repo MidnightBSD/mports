@@ -3,7 +3,7 @@
 # Whom:			Palle Girgensohn <girgen@pingpong.net>
 #
 # $FreeBSD: ports/databases/postgresql-libpqxx/Makefile,v 1.22 2006/08/09 10:36:43 girgen Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql-libpqxx/Makefile,v 1.1 2007/01/20 15:50:31 laffer1 Exp $
 #
 
 PORTNAME=	libpqxx
@@ -27,14 +27,4 @@ CONFIGURE_ARGS=	--with-postgres=${LOCALBASE} \
 		--enable-shared \
 		--with-postgres-include=${LOCALBASE}/include/postgresql
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 500035
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libstlport_gcc.so:${PORTSDIR}/devel/stlport
-RUN_DEPENDS+=	${LOCALBASE}/lib/libstlport_gcc.so:${PORTSDIR}/devel/stlport
-CPPFLAGS+=	-I${LOCALBASE}/include/stlport
-LDFLAGS+=	-L${LOCALBASE}/lib -lstlport_gcc ${PTHREAD_LIBS}
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}"
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
