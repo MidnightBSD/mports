@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.14 2007/04/10 06:25:41 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.15 2007/04/12 15:32:18 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -2924,8 +2924,8 @@ MANNPREFIX?=	${MANPREFIX}
 
 MANLANG?=	""	# english only by default
 
-.if !(defined(NOMANCOMPRESS) || ${MANCOMPRESSED:L} == "no")
-MANEXT=	.gz
+.if !defined(NOMANCOMPRESS)
+MANEXT?=	.gz
 .endif
 
 .if (defined(MLINKS) || defined(_MLINKS_PREPEND)) && !defined(_MLINKS)
@@ -2969,6 +2969,11 @@ _COUNT=1
 .endif
 .endfor
 
+
+.for ___link in ${_MLINKS}
+_FAKE_MLINKS += ${FAKE_DESTDIR}${___link}
+.endfor
+
 # XXX 20040119 This next line should read:
 # .for manlang in ${MANLANG:S%^%man/%:S%^man/""$%man%}
 # but there is currently a bug in make(1) that prevents the double-quote
@@ -2990,19 +2995,15 @@ _TMLINKS=
 
 .if defined(_MANPAGES)
 
-.if ${MANCOMPRESSED:L} == "yes"
-_MANPAGES:= ${_MANPAGES:S%$%.gz%}
+.if defined(NOMANCOMPRESS)
+__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%}
+.else
+__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%:S%$%.gz%}
 .endif
 
 .for m in ${_MANPAGES}
 _FAKEMAN += ${FAKE_DESTDIR}${m}         
 .endfor
-
-.if defined(NOMANCOMPRESS) || ${MANCOMPRESSED:L} == "no"
-__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%}
-.else
-__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%:S%$%.gz%}
-.endif
 
 .endif
 
@@ -5547,15 +5548,15 @@ install-rc-script:
 .if !target(compress-man)
 compress-man:
 .  if defined(_FAKEMAN) || defined(_MLINKS)
-.    if ${MANCOMPRESSED:L} == no || defined(NOMANCOMPRESS)
+.    if ${MANCOMPRESSED:L} == yes && defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Uncompressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GUNZIP_CMD} $${_manpages} ) || ${TRUE}
-.    else
+.    elif ${MANCOMPRESSED:L} == no && !defined(NOMANCOMPRESS)
 	@${ECHO_MSG} "===>   Compressing manual pages for ${PKGNAME}"
 	@_manpages='${_FAKEMAN:S/'/'\''/g}' && [ "$${_manpages}" != "" ] && ( eval ${GZIP_CMD} $${_manpages} ) || ${TRUE}
 .    endif
 .    if defined(_MLINKS)
-	@set -- ${_MLINKS}; \
+	@set -- ${_FAKE_MLINKS}; \
 	while :; do \
 		[ $$# -eq 0 ] && break || ${TRUE}; \
 		${RM} -f $${2%.gz}; ${RM} -f $$2.gz; \
