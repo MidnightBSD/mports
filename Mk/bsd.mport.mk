@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.15 2007/04/12 15:32:18 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.16 2007/04/13 03:19:36 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1654,7 +1654,7 @@ FAKE_INSTALLDIR?=	fake-inst-${ARCH}
 FAKE_TARGET?=		${INSTALL_TARGET}
 DESTDIRNAME?=   	DESTDIR
 FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
-FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR}
+FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR} ${MAKE_ARGS}
 
 _FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
 					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home
@@ -4095,7 +4095,8 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
 _FAKE_DEP=		build
-_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install post-fake compress-man 
+_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install post-fake\
+				compress-man install-rc-script
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-plist-info\
@@ -5511,37 +5512,30 @@ add-plist-post:
 
 
 
-# TODO -- this does not work with fake correctly.
 .if !target(install-rc-script)
 install-rc-script:
-.if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
-.if defined(USE_RCORDER)
-	@${ECHO_MSG} "===> Installing early rc.d startup script(s)"
-	@${ECHO_CMD} "@cwd /" >> ${TMPPLIST}
-	@for i in ${USE_RCORDER}; do \
-		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${DESTDIR}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
-	done
-	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
-.endif
-.if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
-	@${ECHO_MSG} "===> Installing rc.d startup script(s)"
-	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
-.if (${OSVERSION} >= 700007 || ( ${OSVERSION} < 700000 && ${OSVERSION} >= 600101 ))
-	@for i in ${USE_RC_SUBR}; do \
-		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${TARGETDIR}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
-	done
-.else
-	@for i in ${USE_RC_SUBR}; do \
-		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${TARGETDIR}/etc/rc.d/$${i%.sh}.sh; \
-		${ECHO_CMD} "etc/rc.d/$${i%.sh}.sh" >> ${TMPPLIST}; \
-	done
-.endif
-.endif
-.else
-	@${DO_NADA}
-.endif
+.	if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
+.		if defined(USE_RCORDER)
+			@${ECHO_MSG} "===> Installing early rc.d startup script(s)"
+			@${ECHO_CMD} "@cwd /" >> ${TMPPLIST}
+			@${INSTALL} -d ${FAKE_DESTDIR}/etc/rc.d
+			@for i in ${USE_RCORDER}; do \
+				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}/etc/rc.d/$${i%.sh}; \
+				${ECHO_CMD} "etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+			done
+			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
+.		endif
+.		if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
+			@${ECHO_MSG} "===> Installing rc.d startup script(s)"
+			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
+			@for i in ${USE_RC_SUBR}; do \
+				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${TARGETDIR}/etc/rc.d/$${i%.sh}.sh; \
+				${ECHO_CMD} "etc/rc.d/$${i%.sh}.sh" >> ${TMPPLIST}; \
+			done
+.		endif
+.	else
+		@${DO_NADA}
+.	endif
 .endif
 
 # Compress (or uncompress) and symlink manpages.
