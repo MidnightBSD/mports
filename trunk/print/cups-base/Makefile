@@ -4,7 +4,7 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.2 2007/01/02 21:47:27 wintellect Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.3 2007/01/02 22:00:46 wintellect Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
@@ -18,6 +18,8 @@ PKGNAMESUFFIX=	-base${PKGNAMESUFFIX2}
 
 MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	Common UNIX Printing System
+
+DESTDIRNAME=	BUILDROOT
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
