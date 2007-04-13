@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.9 2007/04/13 21:34:54 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.10 2007/04/13 21:38:38 laffer1 Exp $
 #
 
     COMMENT = Network management tools
@@ -6,6 +6,7 @@
     SUBDIR += aircrack
     SUBDIR += aircrack-ng
     SUBDIR += docsis
+    SUBDIR += kismet
     SUBDIR += p5-Altoids
     SUBDIR += p5-Cflow
     SUBDIR += p5-Cisco-Reconfig
