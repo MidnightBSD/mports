@@ -1,5 +1,0 @@
-A utility for generating secure passphrases. Implements several
-methods for passphrase generation, including the Diceware method
-with 8192 word dictionary compiled in the executable.
-
-WWW: http://www.core-dump.com.hr/?q=node/28
