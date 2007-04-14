@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.16 2007/04/13 03:19:36 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.17 2007/04/13 06:25:20 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -4095,12 +4095,12 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
 _FAKE_DEP=		build
-_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install post-fake\
-				compress-man install-rc-script
+_FAKE_SEQ=		fake-message fake-dir apply-slist make-tmpplist pre-fake \
+				fake-install post-fake compress-man install-rc-script
 
 _PACKAGE_DEP=	fake
-_PACKAGE_SEQ=	package-message pre-package pre-package-script generate-plist add-plist-info\
-				add-plist-docs add-plist-post do-package post-package-script 
+_PACKAGE_SEQ=	package-message pre-package pre-package-script \
+				do-package post-package-script 
 
 _INSTALL_DEP=	package
 # Not sure how we want to handle sudo/su.  Will figure out later - triv.
@@ -5362,11 +5362,11 @@ ${i:S/-//:U}=	${WRKDIR}/${SUB_FILES:M${i}*}
 .endif
 .endif
 
+# Make tmp packaing list.  This is the top level target for the entire file.
+make-tmpplist:  generate-plist add-plist-info add-plist-docs add-plist-post
+
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
-#
-# TODO
-# I want to refactor this and add-plist-* into one target that builds the tmplist.
 #
 .if !target(generate-plist)
 generate-plist:
