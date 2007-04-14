@@ -2,7 +2,7 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.1 2006/09/21 13:13:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.2 2007/03/13 20:45:31 laffer1 Exp $
 # $FreeBSD: ports/devel/gnustep-make/Makefile,v 1.69 2006/08/31 05:35:31 dinoex Exp $
 #
 
@@ -26,6 +26,7 @@ CONFIGURE_ENV+= INSTALL_PROGRAM="${INSTALL} -c" INSTALL_DATA="${INSTALL} -c" \
   	 CFLAGS="${CFLAGS}"
 CONFIGURE_ARGS+=	--with-thread-lib="${PTHREAD_LIBS}"
 CONFIGURE_ARGS+=	--with-config-file=${PREFIX}/GNUstep.conf
+DESTDIRNAME=	special_prefix
 
 .if defined(GNUSTEP_WITH_BASE_GCC)
 GNUSTEP_WITHOUT_LIBOBJC=	yes
