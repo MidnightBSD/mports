@@ -2,7 +2,7 @@
 # Date created:		13 October 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/neon/Makefile,v 1.1 2006/10/24 15:47:09 wintellect Exp $
 # $FreeBSD: ports/www/neon/Makefile,v 1.35 2006/04/20 10:27:08 lev Exp $
 #
 
@@ -66,7 +66,7 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 ${MANPREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.3 ${MANPREFIX}/man/man3
 .ifndef NOPORTDOCS
-	(cd ${WRKSRC} ; ${MAKE} install-html)
+	(cd ${WRKSRC} ; ${MAKE} install-html ${FAKE_MAKEARGS})
 	${INSTALL_DATA} ${WRKSRC}/doc/using-neon.txt ${DOCSDIR}
 .endif
 
