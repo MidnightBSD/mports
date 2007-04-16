@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.17 2007/04/13 06:25:20 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.18 2007/04/14 01:31:23 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -582,8 +582,9 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # a temporary directory before 
 #
 # FAKE_OPTS			- Set options for fake.  Available options:
-#						libs -- fake targets need access to the port's shared libs.
-# 						bin  -- fake targets need the port's binaries in $PATH
+#						libs 		-- fake targets need access to the port's shared libs.
+# 						bin  		-- fake targets need the port's binaries in $PATH
+#						trueprefix 	-- the dist's makefile correctly honors PREFIX and DESTDIR.
 # FAKE_INSTALLDIR	- A relative directory used to by fake. An install is "faked" into
 #					  this dir. 
 #					  Default: "fake-inst-${ARCH}"
@@ -1660,6 +1661,9 @@ _FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
 					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home
 
 .if defined(FAKE_OPTS)
+.if ${FAKE_OPTS:Mtrueprefix}x != "x" 
+_FAKE_SETUP+=	PREFIX=${TRUE_PREFIX}
+.endif
 .if ${FAKE_OPTS:Mlibs}x != "x"
 _FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
 .endif
