@@ -2,7 +2,7 @@
 # Date created:        16 March 1999
 # Whom:                Kris Kennaway <kris@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-clocks/wmcalclock/Makefile,v 1.1 2006/10/03 19:36:09 wintellect Exp $
+# $MidnightBSD: mports/x11-clocks/wmcalclock/Makefile,v 1.2 2007/03/25 01:53:13 ctriv Exp $
 # $FreeBSD: ports/x11-clocks/wmcalclock/Makefile,v 1.15 2005/07/09 02:32:00 kris Exp $
 #
 
@@ -12,6 +12,8 @@ PORTREVISION=	2
 CATEGORIES=	x11-clocks windowmaker
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=kris
+
+FAKE_OPTS=	trueprefix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Another Window Maker calendar/clock dockapp
