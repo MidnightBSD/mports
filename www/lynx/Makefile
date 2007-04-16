@@ -2,40 +2,37 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.1.1.1 2006/09/17 03:33:50 archite Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
 PORTNAME=	lynx
-PORTVERSION=	2.8.5
-PORTREVISION=	2
+PORTVERSION=	2.8.6
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/ \
-		ftp://lynx.isc.org/lynx2.8.5/patches/:patches
-DISTNAME=	${PORTNAME}2.8.5rel.1
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+		ftp://lynx.isc.org/lynx2.8.6/patches/:patches
+DISTNAME=	${PORTNAME}2.8.6rel.1
 
-PATCH_SITES=	ftp://lynx.isc.org/lynx2.8.5/patches/
+PATCH_SITES=	ftp://lynx.isc.org/lynx2.8.6/patches/
 .for i in 2 3 4
-PATCHFILES+=	2.8.5rel.${i}.patch.gz
-DISTFILES+=	2.8.5rel.${i}.patch.gz.asc:patches
+PATCHFILES+=	2.8.6rel.${i}.patch.gz
 .endfor
 PATCH_DIST_STRIP=	-p1
 
-MAINTAINER?=	jharris@widomaker.com
-COMMENT?=	A non-graphical, text-based World-Wide Web client
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A non-graphical, text-based World-Wide Web client
 
 CONFLICTS?=	lynx-ssl* lynx-current*
 
-USE_GPG?=	yes
-SIG_FILES=	${DISTFILES:M*.asc} ${PATCHFILES:M*.asc}
 USE_BZIP2=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}2-8-5
+WRKSRC=		${WRKDIR}/${PORTNAME}2-8-6
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-screen=ncurses --with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies \
 		--enable-ipv6
+
+_FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
+TARGET_DIR=	${DESTDIR}${PREFIX}
 
 .if defined(ENABLE_DEFAULT_COLORS)
 CONFIGURE_ARGS+=--enable-default-colors
