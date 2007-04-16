@@ -2,16 +2,16 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.1 2006/09/17 22:56:58 archite Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
 PORTNAME=	links
-PORTVERSION=	2.1.p21
+PORTVERSION=	2.1.p28
 PORTEPOCH=	1
 CATEGORIES?=	www
 MASTER_SITES=	http://links.twibright.com/download/
-DISTNAME=	${PORTNAME}-2.1pre21
+DISTNAME=	${PORTNAME}-2.1pre28
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
