@@ -9,7 +9,7 @@
 +CC     ?= gcc
 +CFLAGS ?= -O2
 +INCDIR = -I${X11BASE}/include
-+DESTDIR= ${PREFIX}
++DESTDIR?= 
 +LIBDIR = -L${X11BASE}/lib
  
  # for Linux
@@ -37,6 +37,6 @@
  install:: wmCalClock
 -	install -c -s -m 0755 wmCalClock $(DESTDIR)/bin
 -	install -c -m 0644 wmCalClock.1 $(DESTDIR)/man/man1 
-+	${BSD_INSTALL_PROGRAM} wmCalClock $(DESTDIR)/bin
-+	${BSD_INSTALL_MAN} wmCalClock.1 $(DESTDIR)/man/man1 
++	${BSD_INSTALL_PROGRAM} wmCalClock $(DESTDIR)${PREFIX}/bin
++	${BSD_INSTALL_MAN} wmCalClock.1 $(DESTDIR)${PREFIX}/man/man1 
  
