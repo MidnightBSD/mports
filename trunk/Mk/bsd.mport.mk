@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.18 2007/04/14 01:31:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.19 2007/04/16 00:58:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -370,7 +370,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 ##
 # USE_BISON		- If set, this port uses bison for building.
 ##
-# USE_IMAKE		- If set, this port uses imake. 
+# USE_IMAKE		- If set, this port uses imake.  Implies USE_X_PREFIX 
 # XMKMF			- Set to path of `xmkmf' if not in $PATH
 #				  Default: xmkmf -a
 # USE_X_PREFIX	- If set, this port installs in ${X11BASE}.  
@@ -567,7 +567,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 #				  Default: ${WRKDIR}/${DISTNAME} unless NO_WRKSUBDIR is set,
 #				  in which case simply ${WRKDIR}
 # NO_WRKSUBDIR	- Assume port unpacks directly into ${WRKDIR}.
-# PATCHDIRu		- A directory containing any additional patches you made
+# PATCHDIR		- A directory containing any additional patches you made
 #				  to port this software to FreeBSD.
 #				  Default: ${MASTERDIR}/files
 # SCRIPTDIR		- A directory containing any auxiliary scripts
@@ -1455,7 +1455,7 @@ PKGDIR?=		${MASTERDIR}
 .undef USE_X_PREFIX
 .endif
 
-.if defined(USE_X_PREFIX)
+.if defined(USE_X_PREFIX) || defined(USE_IMAKE)
 TRUE_PREFIX?=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
 TRUE_PREFIX?=	${LINUXBASE_REL}
@@ -3138,7 +3138,7 @@ IGNORECMD=	${DO_NADA}
 IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 .endif
 
-.for target in check-sanity fetch checksum extract patch configure all build install reinstall package
+.for target in check-sanity fetch checksum extract patch configure all build fake install reinstall package
 .if !target(${target})
 ${target}:
 	@${IGNORECMD}
@@ -4265,7 +4265,7 @@ checkpatch:
 
 .if !target(reinstall)
 reinstall:
-	@${RM} -f ${INSTALL_COOKIE} ${PACKAGE_COOKIE}
+	@${RM} -f ${INSTALL_COOKIE} 
 	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} install
 .endif
 
