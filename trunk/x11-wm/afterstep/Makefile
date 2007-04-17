@@ -2,7 +2,7 @@
 # Date created:		October 29th 1996
 # Whom:			jfitz@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.1 2007/04/17 18:45:52 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 #
 
@@ -21,7 +21,6 @@ RUN_DEPENDS=	asclock:${PORTSDIR}/x11-clocks/asclock
 
 NO_LATEST_LINK=	yes
 USE_XPM=	yes
-USE_X_PREFIX=	yes
 USE_IMAKE=	yes
 INSTALL_TARGET=	install install.man
 MANCOMPRESSED=	yes
@@ -33,9 +32,6 @@ SRCDIRS=	afterstep \
 		modules/Animate modules/Audio modules/Auto \
 		modules/Banner modules/Pager modules/Wharf \
 		modules/Wharf/ASSound
-
-_FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
-TARGET_DIR=     ${DESTDIR}${PREFIX}
 
 post-patch:
 		${REINPLACE_CMD} \
