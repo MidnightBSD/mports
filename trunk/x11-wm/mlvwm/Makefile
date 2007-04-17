@@ -3,7 +3,7 @@
 # Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
 # $FreeBSD: ports/x11-wm/mlvwm/Makefile,v 1.26 2006/09/17 02:11:02 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/mlvwm/Makefile,v 1.1 2006/12/15 05:22:55 laffer1 Exp $
 #
 
 PORTNAME=	mlvwm
@@ -18,6 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Macintosh like window manager for X11
 
 USE_IMAKE=	yes
+USE_X_PREFIX=	yes
 USE_PERL5_BUILD=yes
 USE_XPM=	yes
 MAN1=		mlvwm.1
