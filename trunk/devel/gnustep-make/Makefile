@@ -2,13 +2,12 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.2 2007/03/13 20:45:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.3 2007/04/14 01:39:29 ctriv Exp $
 # $FreeBSD: ports/devel/gnustep-make/Makefile,v 1.69 2006/08/31 05:35:31 dinoex Exp $
 #
 
 PORTNAME=	gnustep-make
-PORTVERSION=	1.13.0
-PORTREVISION=	1
+PORTVERSION=	2.0.0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -26,7 +25,6 @@ CONFIGURE_ENV+= INSTALL_PROGRAM="${INSTALL} -c" INSTALL_DATA="${INSTALL} -c" \
   	 CFLAGS="${CFLAGS}"
 CONFIGURE_ARGS+=	--with-thread-lib="${PTHREAD_LIBS}"
 CONFIGURE_ARGS+=	--with-config-file=${PREFIX}/GNUstep.conf
-DESTDIRNAME=	special_prefix
 
 .if defined(GNUSTEP_WITH_BASE_GCC)
 GNUSTEP_WITHOUT_LIBOBJC=	yes
