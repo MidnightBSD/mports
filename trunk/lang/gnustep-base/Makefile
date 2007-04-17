@@ -2,12 +2,12 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.1 2006/09/21 15:18:26 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep-base
-PORTVERSION=	1.13.0
+PORTVERSION=	1.14.0
 CATEGORIES=	lang devel
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -22,7 +22,7 @@ LIB_DEPENDS+=	gmp.7:${PORTSDIR}/math/libgmp4
 ETCDIR=		${LOCALBASE}/etc
 USE_AUTOTOOLS=	autoconf:259
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-procfs
+CONFIGURE_ARGS=	--disable-procfs --with-config-file=${PREFIX}/GNUstep.conf
 CONFIGURE_TARGET=
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
@@ -53,7 +53,6 @@ CONFIGURE_ARGS+=	--enable-fake-main
 .endif
 
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
-EXTRA_PATCHES+=	${FILESDIR}/NSFileManager.m.patch
 
 .include <bsd.port.pre.mk>
 
@@ -72,17 +71,16 @@ post-extract:
 		> ${WRKSRC}/GNUstep.sh
 
 post-install:
-	-@${MKDIR} ${ETCDIR}/rc.d
-	${INSTALL_SCRIPT} ${WRKSRC}/GNUstep.sh ${ETCDIR}/rc.d/GNUstep.sh
-	${INSTALL_DATA} ${FILESDIR}/gdomap_if ${ETCDIR}
+	-@${MKDIR} ${FAKE_DESTDIR}${ETCDIR}/rc.d
+	${INSTALL_SCRIPT} ${WRKSRC}/GNUstep.sh ${FAKE_DESTDIR}${ETCDIR}/rc.d/GNUstep.sh
+	${INSTALL_DATA} ${FILESDIR}/gdomap_if ${FAKE_DESTDIR}${ETCDIR}
 .for i in ${INSTALL_APPS}
 	(cd ${WRKSRC}/${i}; . ${SYSMAKEDIR}/GNUstep.sh; \
-		${SETENV} ${MAKE_ENV} ${GMAKE} -d ${MAKE_FLAGS} ${MAKEFILE} ${INSTALL_TARGET})
+		${SETENV} ${MAKE_ENV} ${GMAKE} -d ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endfor
 	${RM} ${PREFIX}/System/Library/Libraries/libgnustep-base.so
 	${LN} -s libgnustep-base.so.${PORTVERSION} \
 	 ${PREFIX}/System/Library/Libraries/libgnustep-base.so
-	${RM} ${PREFIX}/System/Library/Libraries/Resources/gnustep-base/NSTimeZones/.README.swp
 
 test:
 	@(cd ${WRKSRC}/Testing && . ${SYSTEMDIR}/Makefiles/GNUstep.sh; ${GMAKE})
