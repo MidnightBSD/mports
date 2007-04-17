@@ -2,7 +2,7 @@
 # Date created:			  Sat May 24, 2003
 # Whom:				  Hiroki Sato <hrs@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.1 2006/09/24 02:58:19 laffer1 Exp $
 # $FreeBSD: ports/textproc/xmlcatmgr/Makefile,v 1.11 2005/01/01 00:49:22 hrs Exp $
 #
 
@@ -45,8 +45,5 @@ post-build:
 	${CAT} ${COMMONVARS} ${FILESDIR}/pkg-deinstall.in > ${PKGDEINSTALL}
 	${CHMOD} 0555 ${PKGINSTALL} ${PKGDEINSTALL}
 
-post-install:
-	@${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
