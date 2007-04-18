@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.6 2007/04/04 00:36:34 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.7 2007/04/04 15:50:43 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -46,7 +46,6 @@ ONLY_FOR_ARCHS=	i386 amd64
 WRKSRC=		${WRKDIR}/${DISTNAME}-${OPERA_BUILD}
 
 MAN1=		opera.1
-
 NO_BUILD=	yes
 NO_FILTER_SHLIBS=yes
 
@@ -95,11 +94,20 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 do-install:
-	@(cd ${WRKSRC} && ./install.sh --prefix=${PREFIX})
+	@(cd ${WRKSRC} && ./install.sh --prefix=${TRUE_PREFIX} --DESTDIR=${FAKE_DESTDIR})
 
-.if defined(WITHOUT_SHARED)
 post-install:
-	@${CAT} ${PKGMESSAGE}
-.endif
+	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/22x22/apps
+	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/32x32/apps
+	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/48x48/apps
+	@${MKDIR} -p ${PREFIX}/share/icons/locolor/16x16/apps
+	@${MKDIR} -p ${PREFIX}/share/icons/locolor/22x22/apps
+	@${MKDIR} -p ${PREFIX}/share/icons/locolor/32x32/apps
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_16x16.png ${PREFIX}/share/icons/locolor/16x16/apps/opera.png
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_22x22.png ${PREFIX}/share/icons/locolor/22x22/apps/opera.png
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_22x22.png ${PREFIX}/share/icons/hicolor/22x22/apps/opera.png
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_32x32.png ${PREFIX}/share/icons/locolor/32x32/apps/opera.png
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_32x32.png ${PREFIX}/share/icons/hicolor/32x32/apps/opera.png
+	@${INSTALL_DATA} ${WRKSRC}/images/opera_48x48.png ${PREFIX}/share/icons/hicolor/48x48/apps/opera.png
 
 .include <bsd.port.post.mk>
