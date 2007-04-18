@@ -47,7 +47,6 @@ include/php/Zend/zend_language_parser.h
 include/php/Zend/zend_language_scanner.h
 include/php/Zend/zend_list.h
 include/php/Zend/zend_llist.h
-include/php/Zend/zend_mm.h
 include/php/Zend/zend_modules.h
 include/php/Zend/zend_multibyte.h
 include/php/Zend/zend_multiply.h
