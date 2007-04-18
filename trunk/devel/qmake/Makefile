@@ -3,11 +3,11 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.2 2007/04/04 00:33:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.3 2007/04/18 16:29:11 laffer1 Exp $
 #
 
 PORTNAME=	qmake
-PORTVERSION=	3.3.7
+PORTVERSION=	3.3.8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -16,6 +16,7 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
 
+USE_REINPLACE=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
