@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.4 2007/03/20 17:23:23 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.5 2007/04/07 03:45:57 laffer1 Exp $
 #
 
 PORTNAME=	qt
@@ -33,7 +33,7 @@ REINPLACE_ARGS=	-i ""
 USE_XLIB=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
+DESTDIRNAME=	INSTALL_ROOT
 .if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
 .endif
@@ -188,7 +188,7 @@ post-build:
 	@${RM} -f ${WRKSRC}/doc/html/qmake*
 
 # Work around qmake generated dependencies
-pre-su-install:
+pre-install:
 	${MKDIR} ${PREFIX}/lib ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/lib/*.prl ${PREFIX}/lib
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/findtr ${PREFIX}/bin
@@ -198,6 +198,5 @@ pre-su-install:
 
 post-install:
 	${RM} -f ${PREFIX}/lib/libqt-mt.la
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
