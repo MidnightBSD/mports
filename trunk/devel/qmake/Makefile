@@ -3,7 +3,7 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.1 2006/11/17 19:19:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.2 2007/04/04 00:33:11 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -60,10 +60,4 @@ do-configure:
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/qmodules.h
 	${LN} -s . ${WRKDIR}/${DISTNAME}/src/tools/private
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "alpha"
-CXXFLAGS+=	-mieee
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
