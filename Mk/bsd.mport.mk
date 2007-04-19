@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.21 2007/04/19 03:21:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.22 2007/04/19 19:23:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1658,7 +1658,8 @@ FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
 FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR} ${MAKE_ARGS}
 
 _FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
-					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home
+					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home \
+					KMODDIR=${FAKE_DESTDIR}${KMODDIR}
 
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
