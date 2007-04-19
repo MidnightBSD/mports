@@ -2,7 +2,7 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
@@ -13,6 +13,8 @@ CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	lib${PORTNAME}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
+
+FAKE_OPTS=	trueprefix
 
 PATCH_SITES=	${MASTER_SITES}
 #PATCH_SITE_SUBDIR=	${MASTER_SITE_SUBDIR}
@@ -42,7 +44,7 @@ post-extract:
 # Please don't delete the following line - this link used by ghostscript* ports
 	@${LN} -sf ${WRKSRC} ${WRKDIR}/libpng
 
-pre-su-install:
+pre-install:
 	@${MKDIR} ${PREFIX}/include/libpng
 	@${MKDIR} ${PREFIX}/libdata/pkgconfig
 
