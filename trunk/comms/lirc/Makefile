@@ -2,7 +2,7 @@
 # Date created:		4 January 2003
 # Whom:			Mike Heffner <mikeh@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.1 2007/01/20 11:22:35 wintellect Exp $
 # $FreeBSD: ports/comms/lirc/Makefile,v 1.22 2006/08/23 00:41:37 grog Exp $
 #
 
@@ -45,8 +45,5 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 MAN1=		ircat.1 irexec.1 irpty.1 irrecord.1 irsend.1 irw.1 \
 		irxevent.1 mode2.1 smode2.1 xmode2.1
 MAN8=		lircd.8 lircmd.8
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
