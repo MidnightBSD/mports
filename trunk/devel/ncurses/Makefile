@@ -2,7 +2,7 @@
 # Date created:				23 September 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.1 2006/09/26 22:56:04 archite Exp $
 # $FreeBSD: ports/devel/ncurses/Makefile,v 1.39 2006/08/14 04:16:20 rafan Exp $
 #
 
@@ -222,17 +222,10 @@ EXAMPLES_CPP=	Makefile NEWS PROBLEMS README-first cursesapp.cc \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 400000
 MANUAL_PACKAGE_BUILD=	conflicts with system ncurses
-.endif
 
-.if ${OSVERSION} < 503000
-WITHOUT_WIDEC=	yes
-PLIST_SUB+=	WIDEC="@comment "
-.else
 PLIST_SUB+=	WIDEC=""
 EXAMPLES_TARGETS+=	WIDEC
-.endif
 
 post-extract:
 	@${MKDIR} ${WIDEC_WRKSRC}
