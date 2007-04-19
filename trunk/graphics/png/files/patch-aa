@@ -57,7 +57,7 @@
 +
 +beforeinstall: libpng-config
 +	${INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
-+		libpng-config ${PREFIX}/bin
-+	ln -sf libpng-config ${PREFIX}/bin/libpng12-config
++		libpng-config ${DESTDIR}${PREFIX}/bin
++	ln -sf libpng-config ${DESTDIR}${PREFIX}/bin/libpng12-config
  
  .include <bsd.lib.mk>
