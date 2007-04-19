@@ -2,6 +2,7 @@
 # Date created:		1 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/linux-seamonkey/Makefile.common,v 1.7 2006/08/03 13:33:43 sat Exp $
 #
 
