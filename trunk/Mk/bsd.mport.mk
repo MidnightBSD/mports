@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.19 2007/04/16 00:58:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.20 2007/04/17 19:11:06 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1662,7 +1662,8 @@ _FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
 
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
-_FAKE_SETUP+=	PREFIX=${TRUE_PREFIX}
+# do this to FAKE_MAKEARGS so that post-install,pre-install still get a twiddled ${PREFIX}
+FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX}
 .endif
 .if ${FAKE_OPTS:Mlibs}x != "x"
 _FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
@@ -4310,7 +4311,7 @@ deinstall:
 					${ECHO_MSG} "===>   ${PKGBASE} not installed in ${DESTDIR}, skipping"; \
 			fi; \
 	fi
-	@${RM} -f ${INSTALL_COOKIE} ${PACKAGE_COOKIE}
+	@${RM} -f ${INSTALL_COOKIE}
 .endif
 .endif
 
