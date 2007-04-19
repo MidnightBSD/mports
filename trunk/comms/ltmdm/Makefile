@@ -3,7 +3,7 @@
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.1 2007/02/19 23:46:59 laffer1 Exp $
 #
 
 PORTNAME=	ltmdm
@@ -16,7 +16,6 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for the Lucent LT Winmodem chipset
 
-DEVDIR=		${DESTDIR}/dev
 MODULES_WITH_WORLD?=	yes
 ONLY_FOR_ARCHS=	i386
 BUILD_WRKSRC=	${WRKSRC}/sys/modules/ltmdm
@@ -42,13 +41,7 @@ SYSDIR?=	${SRC_BASE}/sys
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 500000
-MAJOR=		${LTMDM_DEV_MAJOR}
-PLIST_SUB+=	FREEBSD5="@comment " FREEBSD4=""
-PLIST_SUB+=	MAJOR=${MAJOR}
-.else
 PLIST_SUB+=	FREEBSD5="" FREEBSD4="@comment "
-.endif
 PLIST_SUB+=	KMODDIR=${KMODDIR}
 
 pre-fetch:
@@ -67,6 +60,7 @@ pre-fetch:
 .endif
 
 do-install:
+	@${MKDIR} -p ${KMODDIR}
 	@${INSTALL_PROGRAM} ${BUILD_WRKSRC}/ltmdm.ko ${KMODDIR}
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
@@ -74,19 +68,5 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}/
 .endfor
 .endif
-
-.if ${OSVERSION} < 500000
-	@${RM} -f ${DEVDIR}/cual0 ${DEVDIR}/cuail0 ${DEVDIR}/cuall0
-	@umask 7
-	@mknod ${DEVDIR}/cual0 c ${MAJOR} 128 uucp:dialer
-	@mknod ${DEVDIR}/cuail0 c ${MAJOR} 160 uucp:dialer
-	@mknod ${DEVDIR}/cuall0 c ${MAJOR} 192 uucp:dialer
-	@${RM} -f ${DEVDIR}/ttyl0 ${DEVDIR}/ttyil0 ${DEVDIR}/ttyll0
-	@umask 77
-	@mknod ${DEVDIR}/ttyl0 c ${MAJOR} 0 uucp:dialer
-	@mknod ${DEVDIR}/ttyil0 c ${MAJOR} 32 uucp:dialer
-	@mknod ${DEVDIR}/ttyll0 c ${MAJOR} 64 uucp:dialer
-.endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
