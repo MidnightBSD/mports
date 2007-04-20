@@ -2,7 +2,7 @@
 # Date created:		6 May 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.2 2006/11/24 23:52:05 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.3 2006/12/15 04:35:58 laffer1 Exp $
 # $FreeBSD: ports/lang/ruby18/Makefile,v 1.113 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -154,6 +154,7 @@ pre-configure:
 .endif
 	${TOUCH} ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
+
 post-install:
 .if defined(STRIP) && ${STRIP} == -s
 	${STRIP_CMD} ${RUBY}
@@ -165,7 +166,6 @@ post-install:
 		${LN} -f $${f}${RUBY_SUFFIX} $${f}; \
 	done
 .endif
-	${LDCONFIG} -m ${PREFIX}/lib
 	${MKDIR} ${RUBY_ELISPDIR}
 	${TOUCH} ${RUBY_ELISPDIR}/.keep_me.${RUBY_NAME}
 	${MKDIR} ${RUBY_EXAMPLESDIR}
@@ -203,20 +203,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/ext/zlib/doc/zlib.rd ${RUBY_DOCDIR}
 	${CP} -R ${WRKSRC}/doc/* ${RUBY_DOCDIR}/
 	cd ${INSTALL_WRKSRC}; \
-	${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} install-doc
+	${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} install-doc 
 .endif
-	@${ECHO} "Deinstalling obsoleted packages that are now part of ruby..."
-	@cd ${PKG_DBDIR}; for portname in ${OBSOLETED_MODULES}; do \
-		for pkg in ${RUBY_PKGNAMEPREFIX}$$portname-*; do \
-			if [ -d $$pkg ]; then \
-				${ECHO} "---> $$pkg"; \
-				${PKG_DELETE} -f $$pkg; \
-			fi; \
-		done; \
-	done
 	@${ECHO_CMD} "@exec ${ECHO_CMD} \"Deinstalling obsoleted packages that are now part of ruby...\"" >> ${TMPPLIST}
 	@${ECHO_CMD} "@exec cd ${PKG_DBDIR} && for portname in ${OBSOLETED_MODULES}; do for pkg in ${RUBY_PKGNAMEPREFIX}\$$portname-*; do if [ -d \$$pkg ]; then ${ECHO_CMD} \"---> \$$pkg\"; ${PKG_DELETE} -f \$$pkg; fi; done; done" >> ${TMPPLIST}
-	@${CAT} ${PKGMESSAGE}
 
 test:
 	@(cd ${WRKSRC}; ${MAKE} test)
