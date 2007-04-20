@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -71,7 +71,7 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # RUBY_SHLIBVER		- Major version of libruby (see below for current value).
 # RUBY_ARCH		- Set to target architecture name. (e.g. i386-freebsdelf4.3)
 # RUBY_SUFFIX		- Suffix for ruby binaries and directories (${RUBY_VER:S/.//}).
-# RUBY_WITHOUT_SUFFIX	- Always ${LOCALBASE}/bin/ruby.
+# RUBY_WITHOUT_SUFFIX	- Always ${PREFIX}/bin/ruby.
 # RUBY_WITH_SUFFIX	- Always ${RUBY_WITHOUT_SUFFIX}${RUBY_SUFFIX}.
 # RUBY_NAME		- Ruby's name with trailing suffix.
 #
@@ -134,7 +134,7 @@ RUBY_NAME!=		${_RUBY_CONFIG} 'puts C["ruby_install_name"]'
 _RUBY_SYSLIBDIR!=	${_RUBY_CONFIG} 'puts C["libdir"]'
 _RUBY_SITEDIR!=		${_RUBY_CONFIG} 'puts C["sitedir"]'
 .else
-RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
+RUBY?=			${PREFIX}/bin/${RUBY_NAME}
 
 .if defined(RUBY_VER) && ${RUBY_VER} == 1.8
 RUBY_VERSION?=		1.8.5
@@ -168,7 +168,7 @@ CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd${OSREL:C/\..*//}
 RUBY_ARCH?=		${ARCH}-freebsd${OSREL:C/\..*//}
 RUBY_NAME?=		ruby${RUBY_SUFFIX}
 
-_RUBY_SYSLIBDIR?=	${LOCALBASE}/lib
+_RUBY_SYSLIBDIR?=	${PREFIX}/lib
 _RUBY_SITEDIR?=		${_RUBY_SYSLIBDIR}/ruby/site_ruby
 .endif
 #      defined(RUBY)
@@ -186,7 +186,7 @@ RUBY_VERSION_CODE?=	${RUBY_VERSION:S/.//g}
 RUBY_VER=		${RUBY_VERSION:R}
 RUBY_SUFFIX=		${RUBY_VER:S/.//}
 
-RUBY_WITHOUT_SUFFIX?=	${LOCALBASE}/bin/ruby
+RUBY_WITHOUT_SUFFIX?=	${PREFIX}/bin/ruby
 RUBY_WITH_SUFFIX?=	${RUBY_WITHOUT_SUFFIX}${RUBY_SUFFIX}
 
 RUBY_PKGNAMEPREFIX?=	ruby${RUBY_SUFFIX}-
@@ -201,8 +201,8 @@ RUBY_CONFIGURE_ARGS+=	--program-suffix="${RUBY_SUFFIX}"
 RUBY_MODNAME?=		${PORTNAME}
 
 # Commands
-RUBY_RD2?=		${LOCALBASE}/bin/rd2
-RUBY_RDOC?=		${LOCALBASE}/bin/rdoc
+RUBY_RD2?=		${PREFIX}/bin/rd2
+RUBY_RDOC?=		${PREFIX}/bin/rdoc
 
 # Ports
 RUBY_BASE_PORT?=	lang/ruby${RUBY_VER:S/.//}
@@ -230,10 +230,10 @@ RUBY_LIBDIR?=		${_RUBY_SYSLIBDIR}/ruby/${RUBY_VER}
 RUBY_ARCHLIBDIR?=	${RUBY_LIBDIR}/${RUBY_ARCH}
 RUBY_SITELIBDIR?=	${_RUBY_SITEDIR}/${RUBY_VER}
 RUBY_SITEARCHLIBDIR?=	${RUBY_SITELIBDIR}/${RUBY_ARCH}
-RUBY_DOCDIR?=		${LOCALBASE}/share/doc/${RUBY_NAME}
-RUBY_EXAMPLESDIR?=	${LOCALBASE}/share/examples/${RUBY_NAME}
-RUBY_RIDIR?=		${LOCALBASE}/share/ri/${RUBY_VER}/system
-RUBY_SITERIDIR?=	${LOCALBASE}/share/ri/${RUBY_VER}/site
+RUBY_DOCDIR?=		${PREFIX}/share/doc/${RUBY_NAME}
+RUBY_EXAMPLESDIR?=	${PREFIX}/share/examples/${RUBY_NAME}
+RUBY_RIDIR?=		${PREFIX}/share/ri/${RUBY_VER}/system
+RUBY_SITERIDIR?=	${PREFIX}/share/ri/${RUBY_VER}/site
 RUBY_MODDOCDIR?=	${RUBY_DOCDIR}/${RUBY_MODNAME}
 RUBY_MODEXAMPLESDIR?=	${RUBY_EXAMPLESDIR}/${RUBY_MODNAME}
 RUBY_ELISPDIR?=		${_RUBY_SYSLIBDIR}/ruby/elisp
@@ -258,7 +258,7 @@ PLIST_SUB+=		RUBY_VERSION="${RUBY_VERSION}" \
 			RUBY_SUFFIX="${RUBY_SUFFIX}" \
 			RUBY_NAME="${RUBY_NAME}" \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
-			${PLIST_RUBY_DIRS:S,DIR="${LOCALBASE}/,DIR=",}
+			${PLIST_RUBY_DIRS:S,DIR="${PREFIX}/,DIR=",}
 
 .if ${RUBY_VER} >= 1.7
 RUBY18_ONLY=		""
@@ -319,7 +319,7 @@ RUBY_FLAGS+=	-d
 USE_RUBY=		yes
 
 RUBY_EXTCONF?=		extconf.rb
-CONFIGURE_ARGS+=	--with-opt-dir="${LOCALBASE}"
+CONFIGURE_ARGS+=	--with-opt-dir="${PREFIX}"
 
 do-configure:	ruby-extconf-configure
 
