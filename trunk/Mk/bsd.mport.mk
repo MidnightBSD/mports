@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.22 2007/04/19 19:23:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.23 2007/04/19 22:12:16 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3710,12 +3710,12 @@ fake-dir:
 
 .if !target(fake-install)
 fake-install:
+.	if target(pre-install)
+		@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
+.	endif
 .	if target(pre-su-install)
 		@${ECHO_MSG} "===>   WARNING: pre-su-install is deprecated. Use pre-install instead."
 		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${_FAKE_SETUP}
-.	endif
-.	if target(pre-install)
-		@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
 .	endif
 .	if target(do-install)
 		@cd ${.CURDIR} && exec ${MAKE} do-install ${_FAKE_SETUP}
@@ -4354,7 +4354,7 @@ deinstall-all:
 			${ECHO_MSG} "===>   ${PKGORIGIN} not installed in ${DESTDIR}, skipping"; \
 		fi; \
 	fi; \
-	${RM} -f ${INSTALL_COOKIE} ${PACKAGE_COOKIE}
+	${RM} -f ${INSTALL_COOKIE}
 .endif
 .endif
 
