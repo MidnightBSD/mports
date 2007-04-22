@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.3 2007/04/20 03:55:31 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -201,8 +201,8 @@ RUBY_CONFIGURE_ARGS+=	--program-suffix="${RUBY_SUFFIX}"
 RUBY_MODNAME?=		${PORTNAME}
 
 # Commands
-RUBY_RD2?=		${PREFIX}/bin/rd2
-RUBY_RDOC?=		${PREFIX}/bin/rdoc
+RUBY_RD2?=		${LOCALBASE}/bin/rd2
+RUBY_RDOC?=		${LOCALBASE}/bin/rdoc
 
 # Ports
 RUBY_BASE_PORT?=	lang/ruby${RUBY_VER:S/.//}
