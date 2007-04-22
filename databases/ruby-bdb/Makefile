@@ -2,7 +2,7 @@
 # Date created:		8 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/ruby-bdb/Makefile,v 1.1 2006/10/30 23:52:55 wintellect Exp $
 # $FreeBSD: ports/databases/ruby-bdb/Makefile,v 1.52 2006/07/15 19:31:45 sem Exp $
 #
 
@@ -17,6 +17,8 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Sleepycat's Berkeley DB revision 2 or later
+
+#'
 
 USE_BDB=	YES
 WITH_BDB_VER=	43
@@ -59,7 +61,7 @@ post-install:
 	${CP} -R ${WRKSRC}/${f} ${RUBY_MODDOCDIR}/
 .endfor
 .if ${RUBY_VER} >= 1.8
-	cd ${INSTALL_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ri-site
+	cd ${INSTALL_WRKSRC}; ${RUBY_RDOC} -R --op "${RUBY_SITERIDIR}" 
 .endif
 .endif
 
