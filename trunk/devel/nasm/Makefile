@@ -2,7 +2,7 @@
 # Date created:        7 April 1998
 # Whom:                Murray Stokely <murray@cdrom.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.1 2006/10/03 20:50:13 laffer1 Exp $
 # $FreeBSD: ports/devel/nasm/Makefile,v 1.28 2006/05/04 21:40:56 edwin Exp $
 #
 
@@ -19,6 +19,7 @@ COMMENT=	General-purpose multi-platform x86 assembler
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+DESTDIRNAME=	INSTALLROOT
 PLIST_SUB=	VERSION=${PORTVERSION}
 
 PLIST_FILES=	bin/nasm bin/nasm-%%VERSION%% bin/ndisasm
