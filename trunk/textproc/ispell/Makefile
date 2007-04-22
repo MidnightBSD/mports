@@ -3,7 +3,7 @@
 # Whom:					jmz
 #
 # $FreeBSD: ports/textproc/ispell/Makefile,v 1.104 2006/12/04 11:38:15 jmz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.4 2007/02/19 06:56:59 archite Exp $
 #
 
 PORTNAME?=	ispell
@@ -232,7 +232,9 @@ post-configure:
 .if defined(MASKBITS)
 	@${ECHO_CMD} "#define MASKBITS ${MASKBITS}" >> ${WRKSRC}/local.h
 .endif
-
+	@cd ${WRKSRC} && ${MAKE} config.sh
+	@${REINPLACE_CMD} -e 's/DIR=/DIR=\$$DESTDIR/' ${WRKSRC}/config.sh
+	
 post-build:
 .if defined(ISPELL_IT)
 	@cd ${WRKDIR}/ispell-it && ${MAKE} all
