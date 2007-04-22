@@ -2,7 +2,7 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.1 2006/09/24 00:56:53 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.66 2005/12/18 13:39:42 nobutaka Exp $
 #
 
@@ -35,6 +35,8 @@ PATCH_SITES=		http://www.nijino.com/ari/emacs/
 PATCHFILES=		emacs-21.1-fontset.patch emacs-21.2-menu-encode.patch
 PATCH_DIST_STRIP=	-p1
 .endif
+
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
 USE_AUTOTOOLS=	autoconf:213
 USE_GMAKE=	yes
@@ -89,8 +91,5 @@ post-build:
 	 ${RM} ${WRKSRC}/src/emacs ${WRKSRC}/src/emacs-${PORTVERSION}.1 ; \
 	 cd ${WRKSRC}/src ; \
 	 ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
