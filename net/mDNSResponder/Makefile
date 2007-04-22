@@ -4,7 +4,7 @@
 # Whom:				  Alfred Perlstein <alfred@freebsd.org>
 #
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.1 2006/11/17 23:32:28 laffer1 Exp $
 #
 
 PORTNAME=	mDNSResponder
@@ -16,11 +16,13 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apple's mDNSResponder
 
+#' 
+
 USE_LDCONFIG=	YES
 
 USE_GMAKE=	YES
 USE_RC_SUBR=	mdnsd.sh
-MAKE_ARGS+=	os=freebsd LOCALBASE=${PREFIX} MANPATH=${MANPREFIX}/man
+MAKE_ARGS+=	os=freebsd LOCALBASE=${FAKE_DESTDIR}${PREFIX} MANPATH=${FAKE_DESTDIR}${MANPREFIX}/man
 BUILD_WRKSRC=	${WRKSRC}/mDNSPosix
 INSTALL_WRKSRC=	${WRKSRC}/mDNSPosix
 EXTRA_PROGS_BIN=mDNSClientPosix \
