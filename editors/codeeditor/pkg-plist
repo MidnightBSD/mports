@@ -21,7 +21,6 @@ Local/Applications/CodeEditor.app/Resources/Scripts/welcome.st
 Local/Applications/CodeEditor.app/Resources/Scripts/welcome.st.stinfo
 Local/Applications/CodeEditor.app/Resources/Window.gorm/data.classes
 Local/Applications/CodeEditor.app/Resources/Window.gorm/objects.gorm
-Local/Applications/CodeEditor.app/library_paths.openapp
 Local/Applications/CodeEditor.app/stamp.make
 Local/Library/ApplicationSupport/CodeEditorView/ObjCHandler.bundle/ObjCHandler
 Local/Library/ApplicationSupport/CodeEditorView/ObjCHandler.bundle/Resources/Info-gnustep.plist
