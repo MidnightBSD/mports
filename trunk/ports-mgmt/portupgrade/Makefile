@@ -2,7 +2,7 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.1 2007/02/16 22:22:30 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.2 2007/03/15 01:08:48 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 # find ./ -type f -print
@@ -93,7 +93,11 @@ post-patch:
 	${MV} convert.txt $i
 .endfor
 
-post-install: install-ldconfig-file
+pre-install: 
+	${MKDIR} -p ${RUBY_SITELIBDIR}
+	
+
+post-install: 
 	if [ ! -f ${PREFIX}/etc/pkgtools.conf ]; then \
 		${CP} -p ${PREFIX}/etc/pkgtools.conf.sample ${PREFIX}/etc/pkgtools.conf; \
 	fi
