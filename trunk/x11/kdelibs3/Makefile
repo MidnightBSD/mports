@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11/kdelibs3/Makefile,v 1.202 2006/09/27 11:56:59 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.1 2007/01/20 00:37:14 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
@@ -94,6 +94,9 @@ post-configure:
 	${TOUCH} ${WRKSRC}/kdecore/kdemacros.h.in
 	${TOUCH} ${WRKSRC}/kio/kssl/ksslconfig.h.in
 	${TOUCH} ${WRKSRC}/kjs/global.h.in
+
+pre-install:
+	${MKDIR} -p ${PREFIX}/share/cups/model
 
 post-install:
 	${MKDIR} ${PREFIX}/etc/rc.d
