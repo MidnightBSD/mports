@@ -3,7 +3,7 @@
 # Date created:			  Sat June 29, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/vim6/Makefile,v 1.1 2006/09/24 02:31:29 laffer1 Exp $
 # $FreeBSD: ports/editors/vim6/Makefile,v 1.146 2006/06/26 18:24:05 obrien Exp $
 #
 
@@ -174,9 +174,6 @@ post-install:
 	${ECHO_CMD} "x!"				>> ${WRKDIR}/ex.script
 	${CP} -p ${TMPPLIST} ${TMPPLIST}.pre-share-vim
 	cd ${WRKDIR} ; ex < ex.script
-	@${ECHO_CMD}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_CMD}
 
 cklatest:
 	@-ncftpls \
