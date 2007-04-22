@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.1 2006/11/24 22:28:28 laffer1 Exp $
 #
 
 PORTNAME=	kompmgr
@@ -44,7 +44,7 @@ do-build:
 	cd ${WRKSRC}/kwin/kompmgr && ${GMAKE}
 
 do-install:
-	cd ${WRKSRC}/kwin/kompmgr && ${GMAKE} install
+	cd ${WRKSRC}/kwin/kompmgr && ${GMAKE} ${FAKE_MAKEARGS} install
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.post.mk>
