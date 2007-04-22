@@ -1,5 +1,14 @@
---- Makefile.in.orig	Sun Feb 27 11:18:10 2000
-+++ Makefile.in	Sat Oct 12 19:40:56 2002
+--- ./Makefile.in.orig	Sun Feb 27 11:18:10 2000
++++ ./Makefile.in	Sun Apr 22 17:32:30 2007
+@@ -41,7 +41,7 @@
+ 
+ transform=@program_transform_name@
+ 
+-prefix = @prefix@
++prefix = ${DESTDIR}@prefix@
+ exec_prefix = @exec_prefix@
+ 
+ # Directory in which to install scripts.
 @@ -49,7 +49,7 @@
  
  # Directory in which to install library files.
