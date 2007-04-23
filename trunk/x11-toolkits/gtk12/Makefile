@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.1 2006/09/23 18:07:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.2 2007/03/20 18:42:45 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gtk12/Makefile,v 1.104 2006/02/23 10:40:17 ade Exp $
 #
 
@@ -42,7 +42,7 @@ pre-build:
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/gtk/themes/engines
-	@${LN} -sf ${PREFIX}/bin/gtk-config ${PREFIX}/bin/gtk12-config
+	@cd ${PREFIX}/bin && ${LN} -sf gtk-config gtk12-config
 .for lib in gdk gtk
 	@${RM} ${PREFIX}/lib/lib${lib}.la ${PREFIX}/lib/lib${lib}.so
 	@${MV} ${PREFIX}/lib/lib${lib}.a ${PREFIX}/lib/lib${lib}-12.a

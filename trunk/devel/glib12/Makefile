@@ -2,7 +2,7 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/glib12/Makefile,v 1.1 2006/09/23 00:30:19 laffer1 Exp $
 # $FreeBSD: ports/devel/glib12/Makefile,v 1.61 2006/05/04 21:40:40 edwin Exp $
 #
 
@@ -32,7 +32,7 @@ post-patch:
 		 s|-lc_r|${PTHREAD_LIBS}|g'
 
 post-install:
-	${LN} -sf ${PREFIX}/bin/glib-config ${PREFIX}/bin/glib12-config
+	cd ${PREFIX}/bin && ${LN} -sf glib-config glib12-config
 .for lib in glib gmodule gthread
 	@${RM} ${PREFIX}/lib/lib${lib}.la ${PREFIX}/lib/lib${lib}.so
 	@${MV} ${PREFIX}/lib/lib${lib}.a ${PREFIX}/lib/lib${lib}-12.a
