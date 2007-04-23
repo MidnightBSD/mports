@@ -2,7 +2,7 @@
 # Date created:		25 Oct 2001
 # Whom:			Gary Jennejohn (gj@FreeBSD.org)
 #
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.1 2006/09/24 03:11:55 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.2 2006/10/01 16:17:13 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
 #
 
@@ -43,6 +43,8 @@ MAKE_ARGS=	prefix=${PREFIX}
 MAN1=		ctags.1 etags.1 gnuattach.1 gnuclient.1 gnudoit.1 \
 		gnuserv.1 xemacs.1
 ALL_TARGET=	all dist
+
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
 PLIST_SUB=	XEMACS_VER=${XEMACS_VER} XEMACS_ARCH=${XEMACS_ARCH} \
 		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
@@ -138,7 +140,7 @@ post-install::
 .endfor
 .if !defined(WITHOUT_X11) && ${HAVE_GNOME:Mgnomehier}!=""
 	${INSTALL_DATA} ${WRKDIR}/xemacs.desktop \
-		${X11BASE}/share/gnome/applications
+		${PREFIX}/share/gnome/applications
 .endif
 # For some reason install no longer makes ${PREFIX}/lib/xemacs/site-lisp.
 # Do what PLIST does for pkg_add.
