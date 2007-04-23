@@ -2,7 +2,7 @@
 # Date created:		19 June 2001
 # Whom:			Justin Stanford <jus@security.za.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.1 2007/04/02 00:52:57 laffer1 Exp $
 # $FreeBSD: ports/ftp/ncftpd/Makefile,v 1.17 2006/11/12 11:57:27 itetcu Exp $
 #
 
@@ -19,6 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A well known commercial FTP daemon with a 30-day evaluation license
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+PKGMESSAGE=	${WRKDIR}/pkg-message
 
 ONLY_FOR_ARCHS=	i386
 NO_BUILD=	YES
@@ -48,6 +49,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/README.freebsd ${PREFIX}/share/doc/ncftpd
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${PREFIX}/share/doc/ncftpd
 .endif
-	@${SED} -e 's,%%PREFIX%%,${PREFIX},' ${PKGMESSAGE}
+	@${SED} -e 's,%%PREFIX%%,${TRUE_PREFIX},' pkg-message > ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
