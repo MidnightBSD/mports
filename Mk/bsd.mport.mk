@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.23 2007/04/19 22:12:16 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.24 2007/04/22 18:37:58 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1868,19 +1868,8 @@ SUB_FILES+=	${USE_RCORDER}
 .endif
 .endif
 
-.if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
-.if ( ${OSVERSION} < 504105 ) || \
-		( ${OSVERSION} >= 700000 && ${OSVERSION} < 700012 ) || \
-		( ${OSVERSION} >= 600000 && ${OSVERSION} < 600104 )
-RUN_DEPENDS+=	${LOCALBASE}/${LDCONFIG_DIR}:${PORTSDIR}/misc/ldconfig_compat
-NO_LDCONFIG_MTREE=	yes
-.endif
-.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:L} == "yes"
-USE_LDCONFIG=	${PREFIX}/lib
-.endif
 .if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
-IGNORE=			has USE_LDCONFIG set to yes, which is not correct
-.endif
+IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .endif
 
 .if defined(USE_ICONV)
@@ -4106,7 +4095,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist make-tmpplist pre-fake \
-				fake-install post-fake compress-man install-rc-script
+				fake-install post-fake compress-man install-rc-script install-ldconfig-file
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
@@ -4274,6 +4263,16 @@ reinstall:
 	@${RM} -f ${INSTALL_COOKIE} 
 	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} install
 .endif
+
+# refake
+#
+# Clear the fake dir and cookie, and do it again.
+.if !target(refake)
+refake:
+	@${RM} -r ${FAKE_DESTDIR} ${FAKE_COOKIE}
+	@cd ${.CURDIR} && ${MAKE} fake	
+.endif
+
 
 # Deinstall
 #
@@ -5521,7 +5520,6 @@ add-plist-post:
 .endif
 
 
-
 .if !target(install-rc-script)
 install-rc-script:
 .	if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
@@ -5547,6 +5545,29 @@ install-rc-script:
 		@${DO_NADA}
 .	endif
 .endif
+
+#
+# Install the ldconfig file if needed. 
+#
+.if !target(install-ldconfig-file)
+install-ldconfig-file:
+.	if defined(USE_LDCONFIG) 
+.		if ${USE_LDCONFIG:L} != "yes" 
+			@${ECHO_MSG} "===>   Installing ldconfig configuration file."
+			@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
+				> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
+			@${ECHO_CMD} ${LDCONFIG_DIR}/${UNIQUENAME} >> ${TMPPLIST}
+.		endif
+.	elif defined(USE_LDCONFIG32)
+		@${ECHO_CMD} ${USE_LDCONFIG32} | ${TR} ' ' '\n' \
+			> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG32_DIR}/${UNIQUENAME}
+		@${ECHO_CMD} ${LDCONFIG32_DIR}/${UNIQUENAME} >> ${TMPPLIST}
+.	else
+		@${DO_NADA}
+.	endif
+.endif
+
+
 
 # Compress (or uncompress) and symlink manpages.
 .if !target(compress-man)
