@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.25 2007/04/24 02:12:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.26 2007/04/24 17:40:17 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1064,65 +1064,6 @@ makepatch:
 .endif
 
 
-GENPLIST?=	${.CURDIR}/gen-plist
-
-# Try to make a plist.  This will probably need to be edited.
-.if !target(makeplist)
-makeplist: fake
-	@${ECHO_MSG} "===>   Generating packing list"
-	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@> ${GENPLIST}
-	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
-	@cd ${FAKE_DESTDIR}${PREFIX}; directors=""; files=""; slinks=""\
-	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
-	for file in $$new; do \
-		if [ ! -L $$file ] && [ -d $$file ]; then \
-			tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
-			for f in $$tree; do \
-				if [ -d $$f ]; then \
-					directories="$$directories $$f"; \
-				else \
-					files="$$files $$f"; \
-				fi; \
-			done; \
-		else \
-			files="$$files $$file"; \
-		fi; \
-	done; \
-	for file in $$files; do \
-		echo $$file >> ${GENPLIST}; \
-	done; \
-	for dir in $$directories; do \
-		echo "@dirrmtry $$dir" >> ${GENPLIST}; \
-	done;
-
-.	if defined(USE_LINUX)
-		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
-		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directors=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
-		for file in $$new; do \
-			if [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d`; \
-				for f in $$tree; do \
-					if [ -d $$f ]; then \
-						directories="$$directories $$f"; \
-					else \
-						files="$$files $$f"; \
-					fi; \
-				done; \
-			else \
-				files="$$files $$file"; \
-			fi; \
-		done; \
-		for file in $$files; do \
-			echo $$file >> ${GENPLIST}; \
-		done; \
-		for dir in $$directories; do \
-			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
-		done;
-		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
-.	endif
-.endif
 
 
 # Start of pre-makefile section.
@@ -1456,7 +1397,6 @@ PKGDIR?=		${MASTERDIR}
 TRUE_PREFIX?=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
 TRUE_PREFIX?=	${LINUXBASE_REL}
-NO_MTREE=		yes
 .else
 TRUE_PREFIX?=	${LOCALBASE_REL}
 .endif
@@ -2223,12 +2163,15 @@ EXTRACT_CMD?=			${GZIP_CMD}
 MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
 .elif ${PREFIX} == /usr
 MTREE_FILE=	/etc/mtree/BSD.usr.dist
+.elif ${PREFIX} == ${LINUXBASE_REL}
+MTREE_FILE=	${MTREE_LINUX_FILE}
 .else
 MTREE_FILE=	/etc/mtree/BSD.local.dist
 .endif
 .endif
-MTREE_CMD?=		/usr/sbin/mtree
-MTREE_LINUX_FILE?=	${TEMPLATES}/linux.fc4.mtree 
+
+MTREE_CMD?=			/usr/sbin/mtree
+MTREE_LINUX_FILE?=	${LOCALBASE}/etc/mtree/bsd.linux-compat.mtree 
 MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
@@ -3638,16 +3581,18 @@ check-conflicts:
 .if !target(fake-dir) 
 fake-dir:
 	@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${PREFIX}  
+.if !defined(NO_MTREE)
 	@${MTREE_CMD} ${MTREE_ARGS} ${FAKE_DESTDIR}${PREFIX} >/dev/null
 .	if ${MTREE_FILE} == "/etc/mtree/BSD.local.dist" 
 		@cd ${FAKE_DESTDIR}${PREFIX}/share/nls; \
 		${LN} -shf C POSIX; \
 		${LN} -shf C en_US.US-ASCII; 
 .	endif
-.	if defined(USE_LINUX) 
+.	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL} 
 		@${INSTALL} -d -m 755 -o root -g wheel ${FAKE_DESTDIR}${LINUXBASE_REL}
 		@${MTREE_CMD} ${MTREE_LINUX_ARGS} ${FAKE_DESTDIR}${LINUXBASE_REL} > /dev/null
 .	endif
+.endif
 .endif
 
 
@@ -5551,6 +5496,70 @@ compress-man:
 	@${DO_NADA}
 .endif
 .endif
+
+
+GENPLIST?=	${.CURDIR}/gen-plist
+
+# Try to make a plist.  This will probably need to be edited.
+.if !target(makeplist)
+makeplist: fake
+	@${ECHO_MSG} "===>   Generating packing list"
+	@${MKDIR} `${DIRNAME} ${GENPLIST}`
+	@> ${GENPLIST}
+
+	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
+	@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; slinks=""\
+	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
+	for file in $$new; do \
+		if [ ! -L $$file ] && [ -d $$file ]; then \
+			tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
+			for f in $$tree; do \
+				if [ -d $$f ]; then \
+					directories="$$directories $$f"; \
+				else \
+					files="$$files $$f"; \
+				fi; \
+			done; \
+		else \
+			files="$$files $$file"; \
+		fi; \
+	done; \
+	for file in $$files; do \
+		echo $$file >> ${GENPLIST}; \
+	done; \
+	for dir in $$directories; do \
+		echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+	done;
+
+.	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
+		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
+		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directoriess=""; files=""; \
+		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
+		for file in $$new; do \
+			if [ -d $$file ]; then \
+				tree=`${FIND} -d $$file -type f -or -type d`; \
+				for f in $$tree; do \
+					if [ -d $$f ]; then \
+						directories="$$directories $$f"; \
+					else \
+						files="$$files $$f"; \
+					fi; \
+				done; \
+			else \
+				files="$$files $$file"; \
+			fi; \
+		done; \
+		for file in $$files; do \
+			echo $$file >> ${GENPLIST}; \
+		done; \
+		for dir in $$directories; do \
+			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+		done;
+		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
+.	endif
+.endif
+
+
 
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
