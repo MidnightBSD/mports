@@ -3,7 +3,7 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.2 2007/03/09 15:04:52 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.3 2007/04/04 23:55:44 ctriv Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
@@ -21,7 +21,6 @@ DISTFILES=		${BIN_DISTFILES} ${SRC_DISTFILES}
 DIST_SUBDIR=		rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
 EXTRACT_ONLY=		${BIN_DISTFILES}
 
-FAKE_INSTALLDIR=	../fake-inst
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of packages needed in Linux mode (for i386/amd64)
@@ -107,7 +106,6 @@ ONLY_FOR_ARCHS=		i386 amd64
 LINUX_RPM_ARCH=		i386
 USE_LINUX_PREFIX=	yes
 NO_FILTER_SHLIBS=	yes
-NO_WRKSUBDIR=		yes
 MD5_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 PLIST_SUB=		GLIBCVER="2.3.6"
 
@@ -148,6 +146,22 @@ FALLBACK_ELF_MIB=	kern.fallback_elf_brand
 LATEST_LINK:=		${LATEST_LINK:C/linux/linux32/}
 ARCH=			i386
 .endif
+
+pre-extract:
+	@${MKDIR} ${WRKSRC}
+
+do-extract:
+	@for file in ${EXTRACT_ONLY}; do \
+		if !(cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${DIST_SUBDIR}/$$file ${EXTRACT_AFTER_ARGS});\
+		then \
+			exit 1; \
+		fi \
+	done 
+	@if [ `${ID} -u` = 0 ]; then \
+		${CHMOD} -R ug-s ${WRKDIR}; \
+		${CHOWN} -R 0:0 ${WRKDIR}; \
+	fi
+	
 
 do-build:
 	@for D in ${REMOVE_DIRS}; do \
@@ -194,12 +208,9 @@ do-build:
 
 do-install:
 #
-# Handle the loading of the linux loadable kernel module if required.
-#
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-#
 # Do install without using linux rpm system
 #
+	@cd ${WRKSRC}/usr/lib && ln -s libstdc++-2-libc6.1-1-2.9.0.so libstdc++-libc6.1-1.so.2
 	@cd ${WRKSRC} && ${FIND} * -type d -exec ${MKDIR} "${PREFIX}/{}" \;
 	@cd ${WRKSRC} && ${FIND} * ! -type d \
 		| ${CPIO} -pm -R root:wheel ${PREFIX}
@@ -207,18 +218,5 @@ do-install:
 	@${LN} -sf /var/tmp ${PREFIX}/usr/tmp
 	@${CHOWN} root:wheel ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
 	@${CHMOD} 755 ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
-
-post-install:
-#
-# Handle mounting linux procfs if exists at /etc/fstab and
-# installing etc/nsswitch.conf, etc/yp.conf if so far they don't exist
-#
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-#
-# And finally show the pkg-message
-#
-	@${ECHO} ''
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO} ''
 
 .include <bsd.port.post.mk>
