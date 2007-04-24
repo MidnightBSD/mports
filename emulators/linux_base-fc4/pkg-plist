@@ -8978,6 +8978,9 @@ var/lib/rpm/providesindex.rpm
 var/lib/rpm/requiredby.rpm
 var/lib/rpm/triggerindex.rpm
 var/mail
+@cwd %%LOCALBASE%%
+etc/mtree/bsd.linux-compat.mtree
+@cwd %%TARGETDIR%%
 @comment directory listing in revers order
 @dirrm var/yp
 @dirrm var/spool/repackage
