@@ -2,7 +2,7 @@
 # Date created:		06 October 2002
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.3 2007/03/14 04:27:20 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.4 2007/03/14 04:37:40 ctriv Exp $
 # $FreeBSD: ports/x11-fonts/fontconfig/Makefile,v 1.57 2006/06/12 04:58:42 mezz Exp $
 #   $MCom: ports/x11-fonts/fontconfig/Makefile,v 1.3 2005/08/26 04:03:55 marcus Exp $
 #
@@ -56,11 +56,7 @@ PATCHFILES+=	cjk-fontconfig-2.3.2-20051217.patch.gz
 PATCH_DIST_STRIP+=	-p1
 .endif
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-MTREE_FILE=	/etc/mtree/BSD.x11.dist
-.else
 MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
-.endif
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -74,13 +70,9 @@ post-install:
 	else \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.default; \
 	fi
-	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
+	@${SED} -e 's|%%PREFIX%%|${TRUE_PREFIX}| ; \
 		s|%%X11BASE%%|${X11BASE}|' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-.if !defined(PACKAGE_BUILDING)
-	@${LDCONFIG} -m ${PREFIX}/lib
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .include <bsd.port.post.mk>
 
