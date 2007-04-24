@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -42,7 +42,6 @@ SRC_SUFX?=		.src.rpm
 USE_LINUX?=			yes
 USE_LINUX_PREFIX=	yes
 
-NO_WRKSUBDIR=		yes
 NO_BUILD=			yes
 
 .  if ${ARCH} == "amd64"
@@ -106,32 +105,31 @@ MD5_FILE?=				${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 BRANDELF_DIRS?=
 BRANDELF_FILES?=
 
-.  if defined(AUTOMATIC_PLIST)
+do-extract:
+	@${MKDIR} -p ${WRKSRC}
+	@for file in ${EXTRACT_ONLY}; do \
+		if !(cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTDIR}/${DIST_SUBDIR}/$$file ${EXTRACT_AFTER_ARGS});\
+		then \
+			exit 1; \
+		fi \
+	done
+	@if [ `${ID} -u` = 0 ]; then \
+		${CHMOD} -R ug-s ${WRKDIR}; \
+		${CHOWN} -R 0:0 ${WRKDIR}; \
+	fi
 
-.    if ${USE_LINUX} == "fc4" || ${USE_LINUX:L} == "yes"
-_LINUX_BASE_SUFFIX=		fc4
-.    elif ${USE_LINUX} == "debian"
-_LINUX_BASE_SUFFIX=		debian
-.    elif ${USE_LINUX} == "fc3"
-_LINUX_BASE_SUFFIX=		fc3
-.    elif ${USE_LINUX} == "8"
-_LINUX_BASE_SUFFIX=		8
-.    else
-# other linux_base ports do not provide a pkg-plist file
-IGNORE=					uses AUTOMATIC_PLIST with an unsupported USE_LINUX, \"${USE_LINUX}\". Supported values are \"yes\", \"8\", \"debian\", \"fc3\" and \"fc4\"
-.    endif
+
+.  if defined(AUTOMATIC_PLIST)
 
 PLIST?=					${WRKDIR}/.PLIST.linux-rpm
 
-pre-install: linux-rpm-generate-plist
+pre-package: linux-rpm-generate-plist
 
 .    if !target(linux-rpm-generate-plist)
 linux-rpm-generate-plist:
-	@cd ${WRKSRC} && \
-	${FIND} * ! -type d | ${SORT} > ${PLIST} && \
-	${FIND} * -type d | ${SORT} | ${SED} -e 's|^|@dirrm |' > ${PLIST}.dirs
-	@${GREP} '^@dirrm' ${PORTSDIR}/emulators/linux_base-${_LINUX_BASE_SUFFIX}/pkg-plist | ${SED} 's:^@dirrmtry:@dirrm:g' | ${SORT} > ${PLIST}.shared-dirs
-	@${COMM} -1 -3 ${PLIST}.shared-dirs ${PLIST}.dirs | ${SORT} -r >> ${PLIST}
+	@cd ${.CURDIR} && ${MAKE} makeplist GENPLIST=${PLIST}
+# 	Run generate-plist again, because the it didn't have ${PLIST} that time.
+	@cd ${.CURDIR} && ${MAKE} generate-plist
 .    endif
 .  endif
 
@@ -145,17 +143,9 @@ do-install:
 .	if ${BRANDELF_FILES}
 		@cd ${WRKSRC} && ${BRANDELF} -t Linux ${BRANDELF_FILES}
 .	endif
-	cd ${WRKSRC} && ${FIND} * -type d -exec ${MKDIR} "${PREFIX}/{}" \;
-	cd ${WRKSRC} && ${FIND} * ! -type d | ${CPIO} -pm -R root:wheel ${PREFIX}
+	@cd ${WRKSRC} && ${FIND} * -type d -exec ${MKDIR} "${PREFIX}/{}" \;
+	@cd ${WRKSRC} && ${FIND} * ! -type d | ${CPIO} -pm -R root:wheel ${PREFIX}
 .  endif
 
-.  if !target(new-plist)
-new-plist: build
-	@${RM} -f ${PLIST}.new
-	@cd ${WRKSRC} && \
-		${FIND} * ! -type d | ${SORT} > ${PLIST}.new; \
-		${FIND} -d * -type d | ${SED} -e 's|^|@dirrm |' >> ${PLIST}.new; \
-	done
-.  endif
 
 .endif
