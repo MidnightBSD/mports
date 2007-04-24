@@ -3,7 +3,7 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.3 2007/04/04 23:55:44 ctriv Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.4 2007/04/24 03:09:20 ctriv Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
@@ -20,7 +20,6 @@ PKGNAMEPREFIX=		linux_base-
 DISTFILES=		${BIN_DISTFILES} ${SRC_DISTFILES}
 DIST_SUBDIR=		rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
 EXTRACT_ONLY=		${BIN_DISTFILES}
-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of packages needed in Linux mode (for i386/amd64)
@@ -218,5 +217,13 @@ do-install:
 	@${LN} -sf /var/tmp ${PREFIX}/usr/tmp
 	@${CHOWN} root:wheel ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
 	@${CHMOD} 755 ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
+
+
+
+post-install:
+	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
+	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
+
+
 
 .include <bsd.port.post.mk>
