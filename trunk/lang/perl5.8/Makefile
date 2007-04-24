@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.3 2007/04/03 23:03:55 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.4 2007/04/05 19:24:33 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -99,9 +99,6 @@ CONFIGURE_ARGS+=	-Dusethreads=y
 PKGNAMESUFFIX=		-threaded
 # it seems perl malloc has problems with threaded perl on FreeBSD
 .undef WITH_PERL_MALLOC
-.if ${OSVERSION} < 492000
-CONFIGURE_ARGS+=	-Ud_gethostbyaddr_r
-.endif
 .else
 CONFIGURE_ARGS+=	-Dusethreads=n
 .endif
@@ -176,10 +173,6 @@ post-install:
 	${INSTALL} ${COPY} -o ${BINOWN} -g ${BINGRP} -m ${NOBINMODE} \
 		${BSDPAN_WRKSRC}/${files} ${BSDPAN_DEST}/${files}
 .endfor
-# XXX - this isn't need for mport, because all ports are installed from a package.
-.if !defined(PORT_SYSTEM) || ${PORT_SYSTEM:L} != mport
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif	
 	
 rebuild-xs:
 	${LOCALBASE}/sbin/portupgrade -f `(${FIND} ${PKG_DBDIR}/p5*/+CONTENTS | \
