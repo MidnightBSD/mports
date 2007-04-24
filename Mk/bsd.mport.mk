@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.24 2007/04/22 18:37:58 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.25 2007/04/24 02:12:44 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1417,11 +1417,8 @@ LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
 DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 INDEXDIR?=		${PORTSDIR}
-.if ${OSVERSION} >= 500036
+# XXX Can we just call it 'INDEX' ?
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
-.else
-INDEXFILE?=		INDEX
-.endif
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
@@ -1490,23 +1487,8 @@ LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG} -R
 
 PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
-.if ${OSVERSION} >= 500036
 PERL_VERSION?=	5.8.8
 PERL_VER?=	5.8.8
-.else
-.if ${OSVERSION} >= 500032
-PERL_VERSION?=	5.6.1
-PERL_VER?=		5.6.1
-.else
-.if ${OSVERSION} >= 500007
-PERL_VERSION?=	5.6.0
-PERL_VER?=		5.6.0
-.else
-PERL_VERSION?=	5.00503
-PERL_VER?=		5.005
-.endif
-.endif
-.endif
 
 .if !defined(PERL_LEVEL) && defined(PERL_VERSION)
 perl_major=		${PERL_VERSION:C|^([1-9]+).*|\1|}
@@ -1843,22 +1825,9 @@ IGNORE=			unknown FAM system: ${FAM_SYSTEM}
 .endif
 .endif # USE_FAM
 
-.if defined(USE_GETOPT_LONG)
-.if ${OSVERSION} < 500041
-LIB_DEPENDS+=	gnugetopt.1:${PORTSDIR}/devel/libgnugetopt
-CPPFLAGS+=		-I${LOCALBASE}/include
-LDFLAGS+=		-L${LOCALBASE}/lib -lgnugetopt
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-.endif
-.endif
 
 .if defined(USE_RC_SUBR) || defined(USE_RCORDER)
-.if ${OSVERSION} < 500037
-RUN_DEPENDS+=	${LOCALBASE}/etc/rc.subr:${PORTSDIR}/sysutils/rc_subr
-RC_SUBR=	${LOCALBASE}/etc/rc.subr
-.else
 RC_SUBR=	/etc/rc.subr
-.endif
 SUB_LIST+=	RC_SUBR=${RC_SUBR}
 .if defined(USE_RC_SUBR) && ${USE_RC_SUBR:U} != "YES"
 SUB_FILES+=	${USE_RC_SUBR}
@@ -2171,22 +2140,13 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" CFLAGS="${CFLAGS}" \
 			CXXFLAGS="${CXXFLAGS}" MANPREFIX="${MANPREFIX}"
 
-.if ${OSVERSION} < 500016
-PTHREAD_CFLAGS?=	-D_THREAD_SAFE
-PTHREAD_LIBS?=		-pthread
-.elif ${OSVERSION} < 502102
-PTHREAD_CFLAGS?=	-D_THREAD_SAFE
-PTHREAD_LIBS?=		-lc_r
-.else
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
-.endif
 
 .if exists(/usr/bin/fetch)
 FETCH_CMD?=		/usr/bin/fetch -ApRr
 FETCH_REGET?=	1
-.if ${OSVERSION} >= 480000 && !defined(DISABLE_SIZE)
-# Avoid -S for 4.7 and earlier since it causes fetch errors
+.if !defined(DISABLE_SIZE)
 FETCH_BEFORE_ARGS+=	$${CKSIZE:+-S $$CKSIZE}
 .endif
 .else
@@ -2194,16 +2154,10 @@ FETCH_CMD?=		/usr/bin/ftp
 FETCH_REGET?=	0
 .endif
 
-.if defined(RANDOMIZE_MASTER_SITES)
-.if exists(/usr/games/random)
+.if defined(RANDOMIZE_MASTER_SITES) && exists(/usr/games/random)
 RANDOM_CMD?=	/usr/games/random
 RANDOM_ARGS?=	"-w -f -"
-.if ( ${OSVERSION} > 480000 && ${OSVERSION} < 500000 ) || ${OSVERSION} > 500100
 _RANDOMIZE_SITES=	" |${RANDOM_CMD} ${RANDOM_ARGS}"
-.else
-_RANDOMIZE_SITES=	''
-.endif
-.endif
 .endif
 
 TOUCH?=			/usr/bin/touch
