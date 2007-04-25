@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.27 2007/04/24 20:05:39 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.28 2007/04/25 04:29:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1836,7 +1836,7 @@ IGNORE=	There is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_
 .		endif
 .	endif
 
-RUN_DEPENDS+=	${LINUX_BASE_PORT}
+BUILD_DEPENDS+=	${LINUX_BASE_PORT}
 .endif
 
 .if defined(USE_MOTIF)
@@ -4078,8 +4078,8 @@ ${${target:U}_COOKIE}::
 .ORDER: ${_CONFIGURE_DEP} ${_CONFIGURE_SEQ}
 .ORDER: ${_BUILD_DEP} ${_BUILD_SEQ}
 .ORDER: ${_FAKE_DEP} ${_FAKE_SEQ}
-.ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
 .ORDER: ${_PACKAGE_DEP} ${_PACKAGE_SEQ}
+.ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
 
 extract-message:
 	@${ECHO_MSG} "===>  Extracting for ${PKGNAME}"
