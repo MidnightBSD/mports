@@ -2,7 +2,7 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.1 2007/03/09 15:50:28 laffer1 Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
@@ -84,21 +84,15 @@ pre-everything::
 post-extract:
 	@${REINPLACE_CMD} -e 's|-g -O2||;s|-O2||' ${WRKSRC}/configure
 
-pre-configure:
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/src/Makefile
-.if ${OSVERSION} < 500000
-	@${CP} ${FILESDIR}/wcrtomb.c ${FILESDIR}/mbrtowc.c \
-		${WRKSRC}/
-.endif
 
 post-install:
 	@${MKDIR} ${DATADIR}
 	@${INSTALL_DATA} ${WRKSRC}/video.x ${DATADIR}/video.x
 	@${SED} -e 's,PREFIX,${PREFIX},g' ${FILESDIR}/pkg-message.in > ${PKGMESSAGE}
-	@${CAT} ${PKGMESSAGE}
 	@${INSTALL_DATA} ${WRKSRC}/ppccfg.example ${PREFIX}/etc/ppccfg.example
 
 .include <bsd.port.post.mk>
