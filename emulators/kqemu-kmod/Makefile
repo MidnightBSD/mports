@@ -2,7 +2,7 @@
 # Date created:				2005/10/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.1 2007/04/02 03:09:12 laffer1 Exp $
 # $FreeBSD: ports/emulators/kqemu-kmod/Makefile,v 1.15 2007/02/07 21:13:06 nox Exp $
 #
 
@@ -25,6 +25,7 @@ HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GCC=	3.4
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
+
 
 USE_RC_SUBR=	kqemu
 
@@ -56,14 +57,16 @@ do-build:
 	@(cd ${BUILD_WRKSRC}/common; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} ${ALL_TARGET})
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 
+pre-install:
+	${MKDIR} ${KMODDIR}
+
 do-install:
 	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${INSTALL_TARGET})
 	${MKDIR} ${PREFIX}/include/kqemu
 	${INSTALL_DATA} ${WRKSRC}/kqemu.h ${PREFIX}/include/kqemu
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/kqemu-doc.html ${WRKSRC}/kqemu-tech.html \
-		${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/kqemu-doc.html ${WRKSRC}/kqemu-tech.html ${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>
