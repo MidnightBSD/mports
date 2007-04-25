@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.26 2007/04/24 17:40:17 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.27 2007/04/24 20:05:39 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -1261,6 +1261,8 @@ PORT_DBDIR?=	${DESTDIR}/var/db/ports
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
+
+
 .if defined(LATEST_LINK)
 UNIQUENAME?=	${LATEST_LINK}
 .else
@@ -1775,6 +1777,10 @@ SUB_FILES+=	${USE_RC_SUBR}
 .if defined(USE_RCORDER)
 SUB_FILES+=	${USE_RCORDER}
 .endif
+.endif
+
+.if defined(USE_LDCONFIG) && ${USE_LDCONFIG:L} == "yes"
+USE_LDCONFIG=	${PREFIX}/lib
 .endif
 
 .if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
@@ -5451,7 +5457,7 @@ install-rc-script:
 .if !target(install-ldconfig-file)
 install-ldconfig-file:
 .	if defined(USE_LDCONFIG) 
-.		if ${USE_LDCONFIG:L} != "yes" 
+.		if ${USE_LDCONFIG} != ${PREFIX}/lib 
 			@${ECHO_MSG} "===>   Installing ldconfig configuration file."
 			@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
 				> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
