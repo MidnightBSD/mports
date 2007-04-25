@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.2 2007/03/17 02:05:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.3 2007/03/20 16:13:31 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
@@ -35,7 +35,7 @@ LIB_DEPENDS=	pango:${PORTSDIR}/x11-toolkits/pango \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.9:${PORTSDIR}/graphics/jpeg
 RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
-		${X11BASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
 USE_XPM=	yes
 USE_PERL5=	yes
@@ -56,6 +56,8 @@ gdk_pixbuf_MAN=	gdk-pixbuf-query-loaders.1
 gtk_MAN=	gtk-query-immodules-2.0.1 gtk-update-icon-cache.1
 
 MAN1=		${gdk_pixbuf_MAN} ${gtk_MAN}
+
+PKGINSTALL= ${WRKDIR}/pkg-install
 
 # Setting WITH_DEBUG=yes effectively adds -g to $CFLAGS
 # unless doing so would clobber a preexisting $CFLAGS.
@@ -116,14 +118,16 @@ pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
-	-@${FIND} ${X11BASE}/share/icons -type d -depth 1 -exec \
-		${PREFIX}/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/modules
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK_VERSION}/engines
 	${INSTALL_MAN} ${gdk_pixbuf_MAN:S|^|${WRKSRC}/docs/reference/gdk-pixbuf/|} \
 		${PREFIX}/man/man1
 	${INSTALL_MAN} ${gtk_MAN:S|^|${WRKSRC}/docs/reference/gtk/|} \
 		${PREFIX}/man/man1
+
+post-fake:
+	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' < ${FILESDIR}/pkg-install.in \
+	    > ${PKGINSTALL}
 
 .include <bsd.port.post.mk>
 
