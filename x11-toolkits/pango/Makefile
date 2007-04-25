@@ -2,7 +2,7 @@
 # Date Created:			18 July 2000
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.2 2006/09/25 16:34:16 archite Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.3 2007/03/20 16:13:31 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/pango/Makefile,v 1.85 2006/09/16 05:24:31 ahze Exp $
 #   $MCom: ports/x11-toolkits/pango/Makefile,v 1.60 2006/04/27 11:12:49 ahze Exp $
 #
@@ -66,18 +66,10 @@ PLIST_SUB+=		X11=""
 
 .include <bsd.port.pre.mk>
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-MTREE_FILE=	/etc/mtree/BSD.x11.dist
-.else
-MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
-.endif
 
-post-install:
-	@${SED} -e 's|%%X11BASE%%|${X11BASE}|' < ${FILESDIR}/pkg-install.in \
+post-fake:
+	@${SED} -e 's|%%X11BASE%%|${X11BASE}|' -e 's|%%PREFIX%%|${PREFIX}|g' < ${FILESDIR}/pkg-install.in \
 		> ${PKGINSTALL}
-.if !defined(PACKAGE_BUILDING)
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .include <bsd.port.post.mk>
 
