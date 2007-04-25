@@ -145,6 +145,5 @@ post-install:
 	@${MKDIR} ${DOCSDIR}/html
 	@${INSTALL_DATA} ${WRKSRC}/docs-html/*.html ${DOCSDIR}/html
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
