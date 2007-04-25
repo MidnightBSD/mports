@@ -3,7 +3,7 @@
 # Whom:                 jmz
 #
 # $FreeBSD: ports/emulators/mtools/Makefile,v 1.56 2006/05/29 10:02:22 jmz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.1 2007/02/19 21:07:14 laffer1 Exp $
 #
 
 PORTNAME=	mtools
@@ -18,6 +18,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of tools for manipulating MSDOS files
+PKGMESSAGE= ${WRKDIR}/pkg-message
 
 GNU_CONFIGURE=	yes
 .if !defined(WITHOUT_X11)
@@ -56,6 +57,8 @@ post-install:
 	@cd ${PREFIX}/bin && ${LN} -sf mtools mwrite
 	@${LN} -sf ${PREFIX}/man/man1/mcopy.1.gz ${PREFIX}/man/man1/mwrite.1.gz
 	@${INSTALL_DATA} ${WRKSRC}/mtools.conf ${PREFIX}/etc/mtools.conf.sample
-	@${ECHO} "Please verify ${PREFIX}/etc/mtools.conf for your machine."
+
+post-fake:
+	@${SED}	-e 's|%%PREFIX%%|${PREFIX}|g' < ${FILESDIR}/pkg-message.in > ${PKGMESSAGE}
 
 .include <bsd.port.mk>
