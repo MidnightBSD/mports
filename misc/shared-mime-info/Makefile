@@ -2,7 +2,7 @@
 # Date created:        31 May 2002
 # Whom:                olgeni@FreeBSD.org
 #
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.1 2006/09/20 03:56:35 archite Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
 # $FreeBSD: ports/misc/shared-mime-info/Makefile,v 1.40 2006/09/04 00:24:54 marcus Exp $
 
 PORTNAME=	shared-mime-info
@@ -21,7 +21,7 @@ USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 intltool gnomehack intlhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-
+CONFIGURE_ARGS= --disable-update-mimedb
 MAN1=		update-mime-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
@@ -42,12 +42,12 @@ post-patch:
 		s|%%X11BASE%%|${X11BASE}|g' \
 		${WRKSRC}/update-mime-database.c
 
-pre-su-install:
+pre-install:
 .for subdir in ${MIMESUBDIRS}
-	${MKDIR} ${X11BASE}/share/mime/${subdir}
+	${MKDIR} ${PREFIX}/share/mime/${subdir}
 .endfor
 
-post-install:
+post-fake:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
 		s|%%MIMEDIRS%%|${MIMEDIRS}|' \
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
