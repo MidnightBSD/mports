@@ -2,7 +2,7 @@
 # Date created:				17 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.1 2007/03/09 18:01:54 laffer1 Exp $
+# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.2 2007/03/22 03:24:38 ctriv Exp $
 # $FreeBSD: ports/emulators/basiliskII/Makefile,v 1.30 2007/01/23 19:08:20 miwi Exp $
 #
 
@@ -36,7 +36,5 @@ MAN1=		BasiliskII.1
 BROKEN=	does not compile on AMD64 architectures
 .endif
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
