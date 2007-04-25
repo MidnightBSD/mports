@@ -2,7 +2,7 @@
 # Date created:			2004/05/31
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.1 2006/10/04 02:21:57 archite Exp $
 # $FreeBSD: ports/emulators/qemu/Makefile,v 1.56 2006/08/25 21:16:20 miwi Exp $
 #
 
@@ -110,8 +110,6 @@ post-patch:
 		-e "s,^(CFLAGS=).*,\1${CFLAGS} -fno-strict-aliasing -I.," \
 		-e "s,^(LDFLAGS=).*,\1${LDFLAGS}," \
 		${WRKSRC}/Makefile
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
+	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${LOCALBASE_REL}/bin/perl|' ${WRKSRC}/texi2pod.pl
 
 .include <bsd.port.post.mk>
