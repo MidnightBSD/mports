@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.3 2007/03/20 16:13:31 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.4 2007/04/25 04:07:50 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
@@ -57,7 +57,7 @@ gtk_MAN=	gtk-query-immodules-2.0.1 gtk-update-icon-cache.1
 
 MAN1=		${gdk_pixbuf_MAN} ${gtk_MAN}
 
-PKGINSTALL= ${WRKDIR}/pkg-install
+SUB_FILES= 	pkg-install
 
 # Setting WITH_DEBUG=yes effectively adds -g to $CFLAGS
 # unless doing so would clobber a preexisting $CFLAGS.
@@ -125,9 +125,6 @@ post-install:
 	${INSTALL_MAN} ${gtk_MAN:S|^|${WRKSRC}/docs/reference/gtk/|} \
 		${PREFIX}/man/man1
 
-post-fake:
-	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' < ${FILESDIR}/pkg-install.in \
-	    > ${PKGINSTALL}
 
 .include <bsd.port.post.mk>
 
