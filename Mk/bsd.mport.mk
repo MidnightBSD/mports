@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.28 2007/04/25 04:29:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.29 2007/04/25 16:49:08 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -279,7 +279,7 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # DEPENDS_TARGET
 #				- The default target to execute when a port is calling a
 #				  dependency.
-#				  Default: install
+#				  Default: cached-install
 #
 # These variables control options about how a port gets built and/or
 # are shorthand notations for common sets of dependencies.
@@ -1837,6 +1837,7 @@ IGNORE=	There is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_
 .	endif
 
 BUILD_DEPENDS+=	${LINUX_BASE_PORT}
+RUN_DEPENDS+=	${LINUX_BASE_PORT}
 .endif
 
 .if defined(USE_MOTIF)
@@ -3095,7 +3096,7 @@ all: build
 .if make(reinstall)
 DEPENDS_TARGET=	reinstall
 .else
-DEPENDS_TARGET=	install
+DEPENDS_TARGET=	cached-install
 .endif
 .if defined(DEPENDS_CLEAN)
 DEPENDS_TARGET+=	clean
@@ -3634,6 +3635,20 @@ fake-install:
 .endif
 
 
+.if !target(fix-fake-symlinks) 
+fix-fake-symlinks:
+	@cd ${FAKE_DESTDIR}${PREFIX}; \
+	links=`${FIND} . -type l | ${GREP} -v -e 'share/nls/POSIX\|share/nls/en_US.US-ASCII`; \
+	for link in $$links; do \
+		if [ "x`readlink $$link | grep ${FAKE_DESTDIR}`" = "x" ]; then \
+			continue; \
+		fi; \
+		source=`readlink $$link | ${SED} -e 's|${FAKE_DESTDIR}||'`; \
+		${RM} $$link; \
+		${LN} -s $$source $$link; \
+	done 
+.endif
+
 #
 # Package
 #
@@ -3726,7 +3741,6 @@ delete-package-list: delete-package-links-list
 #
 # This is the "real" install.  Really.  Not kidding.
 #
-
 .if !target(install-package)
 install-package:
 .	if defined(DESTDIR) 
@@ -3736,6 +3750,19 @@ install-package:
 	@${SETENV} PKG_PATH=${PKGREPOSITORY} ${PKG_ADD} ${PKGNAME}
 .endif
 
+
+#
+# This is used by dependcies to install.  If ${PKGFILE} exists, we can just 
+# install that.  Otherwise, we need to build and install like normal.
+#
+.if !target(cached-install)
+cached-install:
+.	if exists(${PKGFILE})
+		@cd ${.CURDIR} && ${MAKE} ${_INSTALL_SEQ}
+.	else
+		@cd ${.CURDIR} && ${MAKE} install
+.	endif		
+.endif
 
 # Utility targets follow
 
@@ -4000,7 +4027,8 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist make-tmpplist pre-fake \
-				fake-install post-fake compress-man install-rc-script install-ldconfig-file
+				fake-install post-fake compress-man install-rc-script \
+				install-ldconfig-file fix-fake-symlinks
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
@@ -4008,8 +4036,7 @@ _PACKAGE_SEQ=	package-message pre-package pre-package-script \
 
 _INSTALL_DEP=	package
 # Not sure how we want to handle sudo/su.  Will figure out later - triv.
-_INSTALL_SEQ=	install-message check-conflicts run-depends lib-depends\
-				check-already-installed install-package done-message
+_INSTALL_SEQ=	install-message run-depends lib-depends install-package done-message
 
 
 .if !target(check-sanity)
@@ -4029,7 +4056,7 @@ fetch: ${_FETCH_DEP} ${_FETCH_SEQ}
 .if !target(${target}) && defined(_OPTIONS_OK)
 ${target}: ${${target:U}_COOKIE}
 .elif !target(${target})
-${target}: config
+${target}: config 
 	@cd ${.CURDIR} && ${MAKE} CONFIG_DONE=1 ${__softMAKEFLAGS} ${${target:U}_COOKIE}
 .elif target(${target}) && defined(IGNORE)
 .endif
@@ -4042,7 +4069,7 @@ ${${target:U}_COOKIE}: ${_${target:U}_DEP}
 	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} ${_${target:U}_SEQ}
 .else
 ${${target:U}_COOKIE}: ${_${target:U}_DEP} ${_${target:U}_SEQ}
-.endif
+.endif 
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
 		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${_${target:U}_SUSEQ}"
@@ -4106,7 +4133,7 @@ done-message:
 # Empty pre-* and post-* targets
 
 .for stage in pre post
-.for name in check-sanity fetch extract patch configure build fake package install 
+.for name in check-sanity fetch extract patch configure build fake package 
 
 .if !target(${stage}-${name})
 ${stage}-${name}:
@@ -4124,11 +4151,6 @@ ${stage}-${name}-script:
 .endfor
 .endfor
 
-# Special cases for su
-.if !target(pre-su-install)
-pre-su-install:
-	@${DO_NADA}
-.endif
 
 .if !target(pre-su-install-script)
 pre-su-install-script:
@@ -4174,7 +4196,7 @@ reinstall:
 # Clear the fake dir and cookie, and do it again.
 .if !target(refake)
 refake:
-	@${RM} -r ${FAKE_DESTDIR} ${FAKE_COOKIE}
+	@${RM} -r ${FAKE_DESTDIR} ${FAKE_COOKIE} || true
 	@cd ${.CURDIR} && ${MAKE} fake	
 .endif
 
