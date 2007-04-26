@@ -2,7 +2,7 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.1 2007/03/09 15:50:28 laffer1 Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.2 2007/04/25 16:03:25 ctriv Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	PowerPC emulator
 USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-PKGMESSAGE=	${WRKDIR}/pkg-message
+SUB_FILES=	pkg-message
 
 MAN1=		ppc.1
 
@@ -92,7 +92,6 @@ post-configure:
 post-install:
 	@${MKDIR} ${DATADIR}
 	@${INSTALL_DATA} ${WRKSRC}/video.x ${DATADIR}/video.x
-	@${SED} -e 's,PREFIX,${PREFIX},g' ${FILESDIR}/pkg-message.in > ${PKGMESSAGE}
 	@${INSTALL_DATA} ${WRKSRC}/ppccfg.example ${PREFIX}/etc/ppccfg.example
 
 .include <bsd.port.post.mk>
