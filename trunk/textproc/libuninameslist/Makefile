@@ -2,7 +2,7 @@
 # Date created:				3 November 2003
 # Whom:					KANOU Hiroki <kanou@khdd.net>
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.1 2006/10/03 23:15:34 laffer1 Exp $ 
 # $FreeBSD: ports/textproc/libuninameslist/Makefile,v 1.4 2006/04/08 17:18:35 mnag Exp $
 #
 
@@ -21,7 +21,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 ALL_TARGET=	both
 
 .include <bsd.port.mk>
