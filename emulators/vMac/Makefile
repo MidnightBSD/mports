@@ -2,7 +2,7 @@
 # Date created:				Jul 11th 1999
 # Whom:					troll
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/vMac/Makefile,v 1.1 2007/03/09 18:34:51 laffer1 Exp $
 # $FreeBSD: ports/emulators/vMac/Makefile,v 1.9 2006/12/06 13:50:42 rafan Exp $
 #
 
@@ -18,6 +18,7 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=	Emulates a MacPlus machine!  Runs MacOS versions up to 7.5.5
 
 WRKSRC=			${WRKDIR}/${PORTNAME}-${PORTVERSION}
+SUB_FILES=		pkg-message
 USE_GMAKE=	 	yes
 GNU_CONFIGURE=		yes
 USE_XLIB=		yes
@@ -42,6 +43,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/README.rom \
 	    ${DOCSDIR}
 .endif
-	@${CAT} ${PKGMESSAGE} | ${SED} -e s:/usr/local:${PREFIX}:
+
 
 .include <bsd.port.mk>
