@@ -2,7 +2,7 @@
 # Date created:        Tue Sep  2 23:34:32 BST 2003
 # Whom:                Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/bass/Makefile,v 1.1 2007/01/19 18:07:47 wintellect Exp $
 # $FreeBSD: ports/games/bass/Makefile,v 1.8 2005/11/22 20:16:09 pav Exp $
 #
 
@@ -23,7 +23,7 @@ USE_ZIP=	yes
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
-PKGMESSAGE=	${WRKDIR}/pkg-message
+SUB_FILES=	pkg-message
 
 do-install:
 	${MKDIR} ${DATADIR}
@@ -38,8 +38,5 @@ do-install:
 .endfor
 .endif
 
-post-install:
-	@${SED} -e "s:%%DATADIR%%:${DATADIR}:g" pkg-message >${PKGMESSAGE}
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
