@@ -3,7 +3,7 @@
 # Date created:         Sa   9 Nov 1996 00:52:22 MET
 # Whom:			se
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.2 2007/03/09 20:29:15 laffer1 Exp $
 # $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
 #
 
@@ -41,7 +41,6 @@ USE_GL=		yes
 USE_XPM=	yes
 
 SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 .include <bsd.port.pre.mk>
 
@@ -63,7 +62,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${DOCSDIR}/README.winedump
 .endif
 	@${INSTALL_SCRIPT} ${WRKSRC}/tools/bug_report.pl ${PREFIX}/lib/wine
-	@${ECHO}
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
