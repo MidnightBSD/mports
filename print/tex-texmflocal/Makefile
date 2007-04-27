@@ -3,7 +3,7 @@
 # Whom:			hrs@FreeBSD.org
 #
 # $FreeBSD: ports/print/tex-texmflocal/Makefile,v 1.12 2005/02/10 17:54:28 hrs Exp $
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.1 2007/01/24 16:48:33 laffer1 Exp $
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.2 2007/04/27 20:38:19 ctriv Exp $
 #
 
 PORTNAME=	tex-texmflocal
@@ -40,7 +40,7 @@ LSRMAGIC=( ${ECHO_CMD} "% ls-R -- filename database for kpathsea; do not change 
 	${ECHO_CMD} "ls-R"; \
 	${ECHO_CMD} ""; )
 
-pre-install:
+pre-fake:
 	(${ECHO_CMD} "bin/tetex-modesw"; \
 	for dir in ${DIRS}; do \
 		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFDIR}/$${dir} > /dev/null 2>&1 || true"; \
