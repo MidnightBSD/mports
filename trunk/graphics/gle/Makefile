@@ -2,7 +2,7 @@
 # Date created:				29 August 2000
 # Whom:					David Gilbert <dgilbert@velocet.ca>
 #
-# $MidnightBSD: mports/graphics/gle/Makefile,v 1.1 2006/09/20 03:56:34 archite Exp $
+# $MidnightBSD: mports/graphics/gle/Makefile,v 1.2 2007/03/22 04:19:17 ctriv Exp $
 # $FreeBSD: ports/graphics/gle/Makefile,v 1.14 2006/08/14 23:06:33 clsung Exp $
 #
 
@@ -37,8 +37,5 @@ post-patch:
 .for file in ex_angle.c ex_cut_round.c ex_raw.c extrude.c round_cap.c segment.c texgen.c
 	@${REINPLACE_CMD} -e "s/malloc.h/stdlib.h/g" ${WRKSRC}/src/${file}
 .endfor
-
-pre-install:
-	@${MKDIR} ${X11BASE}/libdata/ldconfig
 
 .include <bsd.port.mk>
