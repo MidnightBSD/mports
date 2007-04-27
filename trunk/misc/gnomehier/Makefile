@@ -2,7 +2,7 @@
 # Date created:				2 July 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.2 2006/11/24 18:29:58 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.3 2007/03/20 16:13:31 ctriv Exp $
 # $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
@@ -42,8 +42,6 @@ pre-install:
 	done
 	@${SED} -e 's|%%MTREE_ARGS%%|${GNOME_MTREE_ARGS}|' \
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-
-pre-su-install:
 	${CHGRP} games ${WRKSRC}/share/gnome/games
 	${CHMOD} g=rwXs ${WRKSRC}/share/gnome/games
 	cd ${WRKSRC} && \
@@ -54,7 +52,7 @@ do-install:
 	${MKDIR} ${PREFIX}/etc/mtree
 	${INSTALL_DATA} ${WRKDIR}/${GNOME_MTREE} ${PREFIX}/etc/mtree
 
-post-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+# make the TMPPLIST a second time, because $PLIST now exists.
+post-install: make-tmpplist
 
 .include <bsd.port.mk>
