@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl83/Makefile,v 1.70 2006/08/15 00:29:09 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl83/Makefile,v 1.1 2006/11/24 17:01:23 laffer1 Exp $
 #
 
 PORTNAME=	tcl
@@ -30,6 +30,7 @@ PKGDEINSTALL=	${PKGDIR}/pkg-deinstall.tclsh
 TCL_VER=	8.3
 NOPRECIOUSMAKEVARS=	yes # Otherwise 'make readmes' is broken
 PLIST_SUB=	TCL_VER=${TCL_VER} SHORT_TCL_VER=83
+DESTDIRNAME=	INSTALL_ROOT
 
 .include <bsd.port.pre.mk>
 
