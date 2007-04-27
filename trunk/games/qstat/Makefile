@@ -2,7 +2,7 @@
 # Date created:				28 May 1998
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
-# $MidnightBSD: mports/games/qstat/Makefile,v 1.1 2007/02/23 20:37:31 laffer1 Exp $
+# $MidnightBSD: mports/games/qstat/Makefile,v 1.2 2007/02/23 20:43:18 laffer1 Exp $
 # $FreeBSD: ports/games/qstat/Makefile,v 1.23 2006/04/17 08:13:21 danfe Exp $
 #
 
@@ -32,7 +32,5 @@ post-install:
 		${DOCSDIR}/template
 	${INSTALL_DATA} ${WRKSRC}/info/*.txt ${DOCSDIR}/info
 .endif
-	@[ -f ${PREFIX}/etc/qstat.cfg ] || \
-		${CP} ${PREFIX}/etc/qstat.cfg.default ${PREFIX}/etc/qstat.cfg
 
 .include <bsd.port.mk>
