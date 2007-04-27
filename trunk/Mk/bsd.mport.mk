@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.29 2007/04/25 16:49:08 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.30 2007/04/26 23:38:48 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -553,10 +553,10 @@ FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
 # PORTSDIR		- The root of the ports tree.
 #				  Default: /usr/mports
 # DISTDIR		- Where to search for and store copies of original sources
-#				  Default: ${PORTSDIR}/distfiles
+#				  Default: ${PORTSDIR}/Distfiles
 # PACKAGES		- A top level directory where all packages go (rather than
 #				  going locally to each port).
-#				  Default: ${PORTSDIR}/Packages
+#				  Default: ${PORTSDIR}/Packages/${ARCH}
 # WRKDIRPREFIX	- The place to root the temporary working directory
 #				  hierarchy.
 #				  Default: none
@@ -3637,10 +3637,10 @@ fake-install:
 
 .if !target(fix-fake-symlinks) 
 fix-fake-symlinks:
-	@cd ${FAKE_DESTDIR}${PREFIX}; \
+	-@cd ${FAKE_DESTDIR}${PREFIX}; \
 	links=`${FIND} . -type l | ${GREP} -v -e 'share/nls/POSIX\|share/nls/en_US.US-ASCII`; \
 	for link in $$links; do \
-		if [ "x`readlink $$link | grep ${FAKE_DESTDIR}`" = "x" ]; then \
+		if ! readlink $$link | grep ${FAKE_DESTDIR}; then \
 			continue; \
 		fi; \
 		source=`readlink $$link | ${SED} -e 's|${FAKE_DESTDIR}||'`; \
@@ -4196,7 +4196,7 @@ reinstall:
 # Clear the fake dir and cookie, and do it again.
 .if !target(refake)
 refake:
-	@${RM} -r ${FAKE_DESTDIR} ${FAKE_COOKIE} || true
+	@${RM} -rf ${FAKE_DESTDIR} ${FAKE_COOKIE}
 	@cd ${.CURDIR} && ${MAKE} fake	
 .endif
 
