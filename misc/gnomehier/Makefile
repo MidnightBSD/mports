@@ -2,7 +2,7 @@
 # Date created:				2 July 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.3 2007/03/20 16:13:31 ctriv Exp $
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.4 2007/04/27 19:24:33 ctriv Exp $
 # $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
@@ -22,7 +22,7 @@ PLIST?=		${WRKDIR}/pkg-plist
 PKGINSTALL=	${WRKDIR}/pkg-install
 
 GNOME_MTREE=	BSD.gnome-x11.dist
-GNOME_MTREE_ARGS=${MTREE_ARGS:S|${MTREE_FILE}|${PREFIX}/etc/mtree/${GNOME_MTREE}|}
+GNOME_MTREE_ARGS=${MTREE_ARGS:S|${MTREE_FILE}|${TRUE_PREFIX}/etc/mtree/${GNOME_MTREE}|}
 
 do-fetch:
 	@${DO_NADA}
