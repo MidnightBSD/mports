@@ -3,7 +3,7 @@
 # Whom:			hrs@FreeBSD.org
 #
 # $FreeBSD: ports/print/tex-texmflocal/Makefile,v 1.12 2005/02/10 17:54:28 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.1 2007/01/24 16:48:33 laffer1 Exp $
 #
 
 PORTNAME=	tex-texmflocal
@@ -76,7 +76,7 @@ do-install:
 	${CHMOD} 0644 ${${D}_LSR}
 .endfor
 
-post-install:
+post-install: make-tmpplist
 	@if [ -x ${MKTEXLSR} ]; then ${MKTEXLSR}; fi
 
 .include <bsd.port.post.mk>
