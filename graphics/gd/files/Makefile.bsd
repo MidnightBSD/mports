@@ -41,13 +41,13 @@ ${PROGS} ${TESTS}: ${SHLIB_NAME} lib${LIB}.a
 		CFLAGS="${CFLAGS}" -ECFLAGS -f ${MAKEDIR}/bsd.prog.mk
 
 install:
-	mkdir -p ${PREFIX}/include
-	${MAKE} LIB=${LIB} LIBDIR=${PREFIX}/lib NOPROFILE=true \
+	mkdir -p ${DESTDIR}${PREFIX}/include
+	${MAKE} LIB=${LIB} LIBDIR=${PREFIX}/lib NO_PROFILE=true DESTDIR=${DESTDIR} \
 		SHLIB_MAJOR=${SHLIB_MAJOR} SHLIB_MINOR=${SHLIB_MINOR} \
 		-f ${MAKEDIR}/bsd.lib.mk install
-	cd ${.CURDIR} && ${BSD_INSTALL_DATA} ${INCS} ${PREFIX}/include
-	cd ${.CURDIR} && ${BSD_INSTALL_PROGRAM} ${PROGS} ${PREFIX}/bin/
-	${BSD_INSTALL_SCRIPT} ${.CURDIR}/bdftogd ${PREFIX}/bin/
+	cd ${.CURDIR} && ${BSD_INSTALL_DATA} ${INCS} ${DESTDIR}${PREFIX}/include
+	cd ${.CURDIR} && ${BSD_INSTALL_PROGRAM} ${PROGS} ${DESTDIR}${PREFIX}/bin/
+	${BSD_INSTALL_SCRIPT} ${.CURDIR}/bdftogd ${DESTDIR}${PREFIX}/bin/
 
 .if exists(${.CURDIR}/Makefile.fonts)
 .include "Makefile.fonts"

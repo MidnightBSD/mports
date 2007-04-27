@@ -2,7 +2,7 @@
 # Date created:				27 Mar 1998
 # Whom:					jeff@cetlink.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.1 2006/09/25 02:38:12 laffer1 Exp $
 # $FreeBSD: ports/graphics/gd/Makefile,v 1.78 2005/12/18 10:30:10 dinoex Exp $
 #
 
@@ -25,9 +25,10 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 
 MAKE_ENV=	WRKSRC="${WRKSRC}" CC="${CC}" CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 SCRIPTDIR=	${FILESDIR}
 CPPFLAGS+=	-DHAVE_FT2BUILD_H
+FAKE_OPTS=	trueprefix
 
 .include <bsd.port.pre.mk>
 
@@ -44,7 +45,7 @@ FEATURES=	GD_JPEG GD_FONTCONFIG GD_FREETYPE GD_GIF GD_PNG
 
 .if defined(GD_FONTS)
 USE_PERL5_BUILD=	yes
-SCRIPTS_ENV+=	GD_FONTS="${GD_FONTS}"
+SCRIPTS_ENV+=		GD_FONTS="${GD_FONTS}"
 .endif
 
 pre-everything::
