@@ -2,7 +2,7 @@
 # Date created:		7 February 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.1 2006/09/23 22:29:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.2 2007/04/19 15:53:42 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.4 2006/05/08 21:41:11 sat Exp $
 #
 
@@ -26,6 +26,6 @@ PLIST_DIRS=	usr/share/icons
 
 do-install:
 	${INSTALL} -d ${PREFIX}/usr/share/icons
-	${LN} -fs ${X11BASE}/share/icons/hicolor ${PREFIX}/usr/share/icons
+	${LN} -fs ${LOCALBASE}/share/icons/hicolor ${PREFIX}/usr/share/icons
 
 .include <bsd.port.mk>
