@@ -3,7 +3,7 @@
 # Whom:			Bernd Rosauer <br@netland.inka.de>
 #
 # $FreeBSD: ports/print/teTeX-base/Makefile,v 1.93 2006/09/09 15:11:50 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.1 2007/01/24 17:18:18 laffer1 Exp $
 #
 
 PORTNAME=	teTeX-base
@@ -18,6 +18,7 @@ DIST_SUBDIR=	teTeX
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thomas Esser's distribution of TeX & friends (binaries)
+# '
 
 BUILD_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal
@@ -52,9 +53,9 @@ CONFIGURE_ENV=	INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 		INSTALL_DATA="${INSTALL_DATA}" \
 		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 		CFLAGS="${CFLAGS} -I${LOCALBASE}/include"
-PKGMESSAGE=	${WRKDIR}/pkg-message
 CONFLICTS=	ja-ptex-base-[0-9]* latex2e-[0-9]* \
 		tex-[0-9]* dvips-[0-9]* xdvi-[0-9]*
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX}
 
 MAN1=	tie.1 kpseaccess.1 kpsereadlink.1 mpost.1 \
 	dmp.1 dvicopy.1 dvilj.1 dvipdfm.1 \
@@ -142,40 +143,21 @@ PLIST_SUB+=	TEXMFDIR=${TEXMFDIR} \
 		UPDMAP_SYS=${UPDMAP_SYS} \
 		UPDMAPDIR=${UPDMAPDIR} \
 		SETENV=${SETENV}
-SUB_FILES=	pkg-message texdoctk.wrapper updmap.wrapper
+SUB_FILES=	pkg-install pkg-message texdoctk.wrapper updmap.wrapper
 SUB_LIST=	TEXMFDIR=${TEXMFDIR} \
 		TEXMFDISTDIR=${TEXMFDISTDIR} \
 		UPDMAPDIR=${UPDMAPDIR} \
-		PREFIX=${PREFIX}
-OLDCONFIG=	web2c/texmf.cnf web2c/mktex.cnf web2c/fmtutil.cnf \
-		web2c/updmap.cfg \
-		xdvi/XDvi \
-		dvipdfm/config/config \
-		dvips/config/config.ps \
-		etex/plain/config/language.def \
-		tex/generic/config/language.dat \
-		tex/context/config/cont-usr.tex \
-		pdftex/config/pdftex.cfg
+		PREFIX=${PREFIX} \
+		TEXMFCONFIGDIR=${TEXMFCONFIGDIR} \
+		TEXMFVARDIR=${TEXMFVARDIR} \
+		
 
 # override several user-defined variables because the wrong
 # configurations may break the build.
 MAKE_ENV=	TEXINPUTS= TEXMF= TEXMFCNF=
 
-pre-su-install:
-.for F in ${OLDCONFIG}
-	if [ -f ${PREFIX}/${TEXMFVARDIR}/${F} ]; then \
-		${RM} -f ${PREFIX}/${TEXMFVARDIR}/${F}; \
-		${ECHO_CMD} "NOTICE: old config file ${F} has been removed.";\
-	fi
-.endfor
-	${INSTALL_DATA} \
-		${PREFIX}/${TEXMFDISTDIR}/web2c/updmap.cfg \
-		${PREFIX}/${TEXMFCONFIGDIR}/web2c/updmap.cfg
-
 post-install:
-	${MKDIR} ${PREFIX}/${TEXMFCONFIGDIR}/texconfig
-	${INSTALL_DATA} ${PREFIX}/${TEXMFDIR}/texconfig/tcfmgr.map \
-		${PREFIX}/${TEXMFCONFIGDIR}/texconfig/tcfmgr.map
+	@cd ${WRKSRC}/texk/web2c/omegafonts && ${GMAKE} ${FAKE_MAKEARGS} install-links
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/texinfo/util/texi2dvi ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/texinfo/util/texi2pdf ${PREFIX}/bin
 	${MV} -f ${PREFIX}/bin/texdoctk ${PREFIX}/bin/texdoctk.real
@@ -185,8 +167,5 @@ post-install:
 	${MV} -f ${PREFIX}/bin/updmap ${PREFIX}/${UPDMAPDIR}/updmap.dist
 	${INSTALL_SCRIPT} ${WRKDIR}/updmap.wrapper ${PREFIX}/bin/updmap-sys
 	${INSTALL_SCRIPT} ${WRKDIR}/updmap.wrapper ${PREFIX}/bin/updmap
-	${MKTEXLSR}
-	@${ECHO_MSG}
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
