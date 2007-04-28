@@ -3,7 +3,7 @@
 # Date created:			  Sat June 29, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.1 2006/09/24 00:51:42 laffer1 Exp $
 # $FreeBSD: ports/editors/vim/Makefile,v 1.284 2006/09/10 02:44:18 obrien Exp $
 #
 
@@ -24,8 +24,8 @@ BADPATCHES=	005 027 028 032 045 057 065 074
 PATCHFILES:=	${PATCHFILES:N7.0.${p}}
 .endfor
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Vi "workalike", with many additional features
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Vi "workalike", with many additional features
 
 SLAVEDIRS=	editors/vim-lite
 
