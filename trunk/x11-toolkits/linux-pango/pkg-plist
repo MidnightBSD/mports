@@ -1,5 +1,3 @@
-etc/pango/i386-redhat-linux-gnu/pango.modules
-etc/pango/pangox.aliases
 usr/bin/pango-querymodules-32
 usr/lib/libpango-1.0.so.0
 usr/lib/libpango-1.0.so.0.%%LIBVERSION%%
