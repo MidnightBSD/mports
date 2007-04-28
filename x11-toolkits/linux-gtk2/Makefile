@@ -2,7 +2,7 @@
 # Date created:				2003-11-19
 # Whom:					trevor
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/linux-gtk2/Makefile,v 1.1 2006/09/23 21:55:27 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-gtk2/Makefile,v 1.22 2006/07/09 21:01:45 bsam Exp $
 #
 
@@ -34,8 +34,10 @@ PLIST_SUB=	LIBVERSION="600.10" PORTVERSION="${PORTVERSION}"
 SRC_DISTFILES=	${PORTNAME}-${PORTVERSION}-2.fc4.4.src.rpm \
 		${PORTNAME}-engines-2.6.3-2.src.rpm
 
+SUB_FILES=	pkg-install
+
 post-install:
-	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
-	@chroot ${PREFIX} /usr/bin/gdk-pixbuf-query-loaders-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+#	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+#	@chroot ${PREFIX} /usr/bin/gdk-pixbuf-query-loaders-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
 
 .include <bsd.port.mk>
