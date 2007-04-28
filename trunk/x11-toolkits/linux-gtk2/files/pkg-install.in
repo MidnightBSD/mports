@@ -1,0 +1,17 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating pixbuf loaders list... "
+    @chroot %%PREFIX%%/bin/gdk-pixbuf-query-loaders > %%PREFIX%%/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+    echo "done."
+    
+    echo -n "Creating module list... "
+    @chroot %%PREFIX%%/bin/gtk-query-immodules-2.0 > %%PREFIX%%/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+    echo "done."
+    
+    ;;
+esac
