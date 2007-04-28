@@ -3,7 +3,7 @@
 # Whom:			Marc G. Fournier <scrappy@freebsd.org>
 #
 # $FreeBSD: ports/sysutils/bsdstats/Makefile,v 1.47 2006/12/09 06:06:13 scrappy Exp $
-# $MidnightBSD$ 
+# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.1 2007/02/09 01:06:53 laffer1 Exp $ 
 #
 
 PORTNAME=	bsdstats
@@ -22,18 +22,7 @@ PLIST_DIRS=	etc/periodic/monthly \
 		etc/periodic
 
 do-install:
-	${MKDIR} ${LOCALBASE}/etc/periodic/monthly
-	${CP} ${FILESDIR}/300.statistics ${LOCALBASE}/etc/periodic/monthly
-post-install:
-	${CAT} ${PKGMESSAGE}
-.if defined(BATCH) || defined(PACKAGE_BUILDING)
-	@${ECHO_MSG} "	To activate monthly statistics reporting in /etc/periodic.conf,"
-	@${ECHO_MSG} "	execute the following as root user:"
-	@${ECHO_MSG}
-	@${ECHO_MSG} "PKG_PREFIX=\"${PREFIX}\" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL"
-	@${ECHO_MSG}
-.else
-	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
+	${MKDIR} ${PREFIX}/etc/periodic/monthly
+	${CP} ${FILESDIR}/300.statistics ${PREFIX}/etc/periodic/monthly
 
 .include <bsd.port.post.mk>
