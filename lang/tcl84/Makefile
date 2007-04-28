@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl84/Makefile,v 1.98 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.1 2007/01/25 23:05:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.2 2007/01/26 00:18:23 laffer1 Exp $
 #
 
 PORTNAME=	tcl
@@ -21,8 +21,7 @@ COMMENT=	Tool Command Language
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
 ALL_TARGET=	all #test
-#USE_LDCONFIG=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tcl${TCL_VER} \
 		--build=${MACHINE_ARCH}-portbld-freebsd6.0
@@ -642,9 +641,6 @@ post-configure:
 .endif
 
 post-install:
-.if exists(${PKGINSTALL})
-	${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL}
-.endif
 .if !defined(WITHOUT_TCL84_MAN)
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/../doc/man.macros ${DATADIR}
