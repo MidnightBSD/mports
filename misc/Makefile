@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.22 2007/03/09 05:33:44 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.23 2007/03/21 00:49:06 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -7,6 +7,7 @@
     SUBDIR += compat4x
     SUBDIR += compat5x
     SUBDIR += cpuid
+    SUBDIR += gnome-mime-data
     SUBDIR += gnomehier
     SUBDIR += gnustep-examples
     SUBDIR += help2man
