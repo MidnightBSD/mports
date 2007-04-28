@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/x11-toolkits/tk84/Makefile,v 1.93 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.1 2007/01/26 00:23:38 laffer1 Exp $
 #
 
 PORTNAME=	tk
@@ -377,9 +377,6 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/pkgIndex.tcl ${PREFIX}/lib/tk${TK_VER}/
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/../doc/man.macros ${DATADIR}
-.if exists(${PKGINSTALL})
-	${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL}
-.endif
 
 regression-test:	build
 	cd ${WRKSRC}; ${MAKE} test
