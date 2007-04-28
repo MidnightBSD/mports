@@ -372,5 +372,6 @@ usr/share/themes/ThinIce/gtk-2.0/gtkrc
 @dirrm usr/lib/gtk-2.0/2.4.0/engines
 @dirrm usr/lib/gtk-2.0/2.4.0
 @dirrm usr/lib/gtk-2.0
+@exec mkdir -p %D/etc/gtk-2.0/i386-redhat-linux-gnu
 @dirrm etc/gtk-2.0/i386-redhat-linux-gnu
 @dirrm etc/gtk-2.0
