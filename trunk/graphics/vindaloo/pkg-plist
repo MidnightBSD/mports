@@ -19,7 +19,6 @@ Local/Applications/Vindaloo.app/Resources/Vindaloo.desktop
 Local/Applications/Vindaloo.app/Resources/ZoomIn.png
 Local/Applications/Vindaloo.app/Resources/ZoomOut.png
 Local/Applications/Vindaloo.app/Vindaloo
-Local/Applications/Vindaloo.app/library_paths.openapp
 Local/Applications/Vindaloo.app/stamp.make
 @dirrm Local/Applications/Vindaloo.app/Resources/English.lproj/Main.gorm
 @dirrm Local/Applications/Vindaloo.app/Resources/English.lproj/Document.gorm
