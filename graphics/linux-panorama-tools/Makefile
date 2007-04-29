@@ -2,7 +2,7 @@
 # Date created:        26 august 2004
 # Whom:                cartola (Carlos E. G. Carvalho)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/linux-panorama-tools/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-panorama-tools/Makefile,v 1.8 2005/11/20 18:11:48 netchild Exp $
 #
 # This port has been made as a running dependence for the hugin port.
@@ -29,9 +29,11 @@ RUN_DEPENDS=	${LINUXBASE}/usr/bin/jpegtran:${PORTSDIR}/graphics/linux-jpeg \
 
 NO_BUILD=	yes
 USE_LINUX=	yes
-
 WRKSRC=	${WRKDIR}/PTLinux
 PROGRAM=	Helpers/PTStitcher
+
+SUB_FILES=	pkg-install
+SUB_LIST=	PORTNAME=${PORTNAME} LINUXBASE=${LINUXBASE}
 
 do-install:
 	${MKDIR} ${PREFIX}/${PORTNAME}/lib
@@ -41,6 +43,5 @@ do-install:
 	${CP} ${WRKSRC}/libpano12.so ${PREFIX}/${PORTNAME}/lib
 	${CHMOD} 555 ${PREFIX}/${PORTNAME}/lib/libpano12.so
 	${LN} -s ${PREFIX}/${PORTNAME}/bin/PTStitcher ${PREFIX}/bin/PTStitcher
-	${LINUXBASE}/sbin/ldconfig ${PREFIX}/${PORTNAME}/lib/
 
 .include <bsd.port.mk>
