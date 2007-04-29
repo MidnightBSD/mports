@@ -130,7 +130,6 @@ lib/graphviz/lua/gv.so
 lib/graphviz/perl/gv.so
 lib/graphviz/python/_gv.so
 lib/graphviz/ruby/gv.so
-lib/graphviz/config
 lib/graphviz/pkgIndex.tcl
 libdata/pkgconfig/libcdt.pc
 libdata/pkgconfig/libgraph.pc
@@ -385,6 +384,7 @@ libdata/pkgconfig/libgvc.pc
 @exec mkdir -p %D/lib/graphviz/ocaml
 @exec mkdir -p %D/lib/graphviz/php
 @exec mkdir -p %D/lib/graphviz/sharp
+@unexec rm -f %D/lib/graphviz/config
 @dirrm %%DATADIR%%/graphs/directed
 @dirrm %%DATADIR%%/graphs/undirected
 @dirrm %%DATADIR%%/graphs

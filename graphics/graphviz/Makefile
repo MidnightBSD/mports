@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.1 2007/02/25 16:32:09 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.71 2007/02/01 02:41:39 kris Exp $
 #
 
@@ -50,6 +50,7 @@ CONFIGURE_ARGS=	--program-transform-name="s/x/x/"		\
 #		--build=${arch}-portbld-freebsd6.0 \
 #		--target=${arch}-portbld-freebsd6.0
 MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE}
+SUB_FILES=	pkg-install
 
 MAN1=		acyclic.1 bcomps.1 ccomps.1 dijkstra.1 dot.1		 \
 		dotty.1 gc.1 gvcolor.1 gvpack.1 gvpr.1 gxl2dot.1 lefty.1 \
@@ -70,8 +71,6 @@ PDOCS_TXT=	AUTHORS NEWS ChangeLog cpl1.0.txt doc/Dot.ref doc/latex_suggestions.t
 PDOCS_PDF=	doc/*.pdf */*/*.pdf
 PDOCS_HTML=	doc/*.html doc/info/*.html doc/info/*.gif
 
-INSTALLS_SHLIB=	yes
-LDCONFIG_DIRS=	%%PREFIX%%/lib/${PORTNAME}
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
 
 .include <bsd.port.pre.mk>
@@ -92,16 +91,12 @@ pre-patch:
 	                  ${WRKSRC}/cmd/tools/Makefile.in			\
 	                  ${WRKSRC}/cmd/gvpr/Makefile.in
 
-.if ${OSVERSION} < 500000
-	@${REINPLACE_CMD} 's|-Wno-unused-parameter||g' ${WRKSRC}/configure
-.endif
 
-post-install-script:
+post-install:
 	${INSTALL_MAN} ${WRKSRC}/tclpkg/gdtclft/gdtclft.n   ${MANNPREFIX}/man/mann
 	${INSTALL_MAN} ${WRKSRC}/tclpkg/tcldot/tcldot.n     ${MANNPREFIX}/man/mann
 	${INSTALL_MAN} ${WRKSRC}/tclpkg/tkspline/tkspline.n ${MANNPREFIX}/man/mann
 
-post-install: install-ldconfig-file
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/html
 	@${MKDIR} ${DOCSDIR}/pdf
