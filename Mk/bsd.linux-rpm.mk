@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.3 2007/04/24 20:03:30 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -128,8 +128,8 @@ pre-package: linux-rpm-generate-plist
 .    if !target(linux-rpm-generate-plist)
 linux-rpm-generate-plist:
 	@cd ${.CURDIR} && ${MAKE} makeplist GENPLIST=${PLIST}
-# 	Run generate-plist again, because the it didn't have ${PLIST} that time.
-	@cd ${.CURDIR} && ${MAKE} generate-plist
+# 	Run make-tmpplist again, because the it didn't have ${PLIST} that time.
+	@cd ${.CURDIR} && ${MAKE} make-tmpplist
 .    endif
 .  endif
 
