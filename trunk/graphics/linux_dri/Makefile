@@ -2,7 +2,7 @@
 # Date created:				Thu Oct 25 18:51:06 PDT 2001
 # Whom:					Eric Anholt <eta@lclark.edu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.1 2006/09/23 22:25:29 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux_dri/Makefile,v 1.20 2006/08/08 19:19:35 bsam Exp $
 #
 
@@ -32,14 +32,8 @@ ONLY_FOR_ARCHS=	i386
 MODULELIST=	i810_dri.so i915_dri.so mach64_dri.so mga_dri.so r128_dri.so \
 		r200_dri.so r300_dri.so radeon_dri.so sis_dri.so savage_dri.so \
 		sis_dri.so tdfx_dri.so
-LDCONFIG_LINUX=	${LINUXBASE}/sbin/ldconfig
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 502111
-EXTRACT_DEPENDS+=	bsdtar:${PORTSDIR}/archivers/libarchive
-TAR=		bsdtar
-.endif
 
 do-install:
 	${MKDIR} ${PREFIX}/usr/X11R6/lib/modules/dri
@@ -67,8 +61,5 @@ do-install:
 	${BRANDELF} -t Linux ${PREFIX}/usr/X11R6/bin/gears
 	${INSTALL_PROGRAM} ${WRKDIR}/linux-dri-tools/glxinfo ${PREFIX}/usr/X11R6/bin
 	${BRANDELF} -t Linux ${PREFIX}/usr/X11R6/bin/glxinfo
-
-post-install:
-	@${LDCONFIG_LINUX} ${PREFIX}/usr/X11R6/lib
 
 .include <bsd.port.post.mk>
