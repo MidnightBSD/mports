@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.4 2006/11/17 22:31:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.5 2007/02/14 20:07:24 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -381,7 +381,7 @@ PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${PREFIX};}
 PYSETUP?=				setup.py
 PYDISTUTILS_CONFIGUREARGS?=
 PYDISTUTILS_BUILDARGS?=
-PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${PREFIX}
+PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${TRUE_PREFIX} --root=${FAKE_DESTDIR}
 
 # Zope-related variables
 .if defined(USE_ZOPE)
