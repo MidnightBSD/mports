@@ -3,7 +3,7 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.1 2007/01/26 04:03:52 laffer1 Exp $
 #
 
 PORTNAME=	gocr
@@ -32,6 +32,8 @@ MAN1=		gocr.1
 
 PORTDOCS=	examples.txt gocr.html unicode.txt
 PLIST_FILES+=	bin/gocr include/gocr.h lib/libPgm2asc.a
+# This port doesn't understand what DESTDIR is supposed to do.
+FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} ${MAKE_ARGS}
 
 post-patch:
 .if defined(WITHOUT_X11)
