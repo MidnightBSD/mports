@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python/Makefile,v 1.152 2006/05/14 01:17:03 edwin Exp $
-# $MidnightBSD: mports/lang/python/Makefile,v 1.1 2006/11/17 22:29:46 laffer1 Exp $
+# $MidnightBSD: mports/lang/python/Makefile,v 1.2 2007/02/14 20:07:09 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -23,7 +23,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	OPT="${CFLAGS}"
 MAKE_ENV=	VPATH="${WRKSRC}"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 INSTALL_TARGET=	install
 MAN1=		python.1
 
@@ -200,7 +200,6 @@ post-install:
 		(cd ${DEMODIR}; tar xf -)
 .endif
 
-	@${CAT} ${PKGMESSAGE}
 
 PORTUPGRADE?=	${LOCALBASE}/sbin/portupgrade
 PKG_WHICH?=	${LOCALBASE}/sbin/pkg_which
