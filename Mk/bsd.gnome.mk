@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.3 2007/03/20 16:10:13 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.4 2007/03/22 03:08:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #	$NetBSD: $
 #     $MCom: ports/Mk/bsd.gnome.mk,v 1.370 2006/04/27 01:40:22 ahze Exp $
@@ -103,6 +103,7 @@ lthack_PRE_PATCH=	${FIND} ${WRKSRC} -name "configure" -type f | ${XARGS} ${REINP
 GNOME_MTREE_FILE?=		${LOCALBASE}/etc/mtree/BSD.gnome-x11.dist
 gnomehier_DETECT=	${GNOME_MTREE_FILE}
 gnomehier_RUN_DEPENDS=	${gnomehier_DETECT}:${PORTSDIR}/misc/gnomehier
+gnomehier_BUILD_DEPENDS=  ${gnomehier_DETECT}:${PORTSDIR}/misc/gnomehier
 
 GNOME_HTML_DIR?=	${PREFIX}/share/doc
 GCONF_CONFIG_OPTIONS?=	merged
