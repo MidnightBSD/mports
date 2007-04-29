@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.1 2006/11/04 15:16:57 wintellect Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -25,18 +25,18 @@ DISTFILES=	apr-${PORTVERSION}.tar.gz apr-util-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Apache Group's Portability Library
+# '
 
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_ICONV=		yes
-USE_AUTOTOOLS=	automake:19 autoconf:259 libtool:15:env
+USE_AUTOTOOLS=		automake:19 autoconf:259 libtool:15:env
 USE_PERL5=		yes
 USE_GMAKE=		yes
 USE_PYTHON_BUILD=	yes
-PYTHON_VERSION=		python2.1
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
-WRKSRC=	${WRKDIR}
+WRKSRC=			${WRKDIR}
 
 APR_UTIL_CONF_ARGS=	--with-apr=../apr-${PORTVERSION} \
 			--with-expat=${PREFIX} \
@@ -168,8 +168,8 @@ do-build:
 	cd ${WRKDIR}/apr-util-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE}
 
 do-install:
-	cd ${WRKDIR}/apr-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET}
-	cd ${WRKDIR}/apr-util-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET}
+	cd ${WRKDIR}/apr-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	cd ${WRKDIR}/apr-util-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE}  ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
 debug_autoconf:
 	@echo "LIBTOOL: ${LIBTOOL_VERSION}"
