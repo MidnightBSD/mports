@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.1 2007/01/20 17:48:56 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
@@ -41,9 +41,6 @@ post-patch:
 post-install:
 	@${ECHO_CMD} "ORBIIOPIPv4=0" > ${PREFIX}/etc/orbit2rc.default
 	@${ECHO_CMD} "ORBIIOPIPv6=0" >> ${PREFIX}/etc/orbit2rc.default
-	@if [ ! -f ${PREFIX}/etc/orbit2rc ]; then \
-		${CP} -p ${PREFIX}/etc/orbit2rc.default ${PREFIX}/etc/orbit2rc ; \
-	fi
 	@${MKDIR} ${PREFIX}/lib/orbit-2.0/idl-backends
 
 .include <bsd.port.mk>
