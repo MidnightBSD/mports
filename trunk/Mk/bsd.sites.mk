@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.11 2007/04/29 16:55:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.12 2007/04/29 16:57:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1312,7 +1312,7 @@ MASTER_SITES_SUBDIRS=	\
 .if defined(MASTER_SITES) && ${MASTER_SITES:N*\:/*}
 
 .for _site__ in ${MASTER_SITES}
-_site_=${_site__}
+_site_:=${_site__}
 .	if ${_site_:M*\:/*}
 MASTER_SITES_EXP+=	${_site_}
 MASTER_SITES_EXP:=	${MASTER_SITES_EXP}
