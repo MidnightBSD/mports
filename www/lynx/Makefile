@@ -2,7 +2,7 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.1.1.1 2006/09/17 03:33:50 archite Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.2 2007/04/16 15:50:58 laffer1 Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
@@ -50,8 +50,9 @@ post-patch:
 	@${RM} -f ${WRKSRC}/CHANGES.orig
 
 post-install:
+	${INSTALL_DATA} ${WRKSRC}/samples/lynx.lss ${L_LIB}
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${L_HELP}
-	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${L_LIB}/lynx.cfg
+	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${L_LIB}/lynx.cfg ${L_LIB}/lynx.lss
 
 .include <bsd.port.mk>
