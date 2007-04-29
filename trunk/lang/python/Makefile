@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python/Makefile,v 1.152 2006/05/14 01:17:03 edwin Exp $
-# $MidnightBSD: mports/lang/python/Makefile,v 1.2 2007/02/14 20:07:09 laffer1 Exp $
+# $MidnightBSD: mports/lang/python/Makefile,v 1.3 2007/04/29 04:22:43 ctriv Exp $
 #
 
 PORTNAME=	python
@@ -172,7 +172,8 @@ pre-install:
 	/LIBDIR.*\.py$$/ && !/\/bad/ { print $$0 "o"; print $$0 "c"; }'	\
 	> ${PLIST}
 
-post-install:
+# Run make-tmpplist again, because pre-install set up PLIST.
+post-install: make-tmpplist
 	@# shared version of executable and library
 	${INSTALL_PROGRAM} ${SHARED_WRKSRC}/lib${PYTHON_VERSION}.so.1 \
 		${PREFIX}/lib
