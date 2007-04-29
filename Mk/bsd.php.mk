@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -148,6 +148,9 @@ GNU_CONFIGURE=	YES
 USE_AUTOTOOLS+=	autoconf:259:env
 CONFIGURE_ARGS+=--with-php-config=${LOCALBASE}/bin/php-config
 
+# PECL uses INSTALL_ROOT
+DESTDIRNAME=	INSTALL_ROOT
+
 configure-message: phpize-message do-phpize
 
 phpize-message:
@@ -173,11 +176,6 @@ do-install:
 	@${RM} -f ${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
 	@${GREP} "#define \(COMPILE\|HAVE\|USE\)_" ${WRKSRC}/config.h \
 		> ${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
-	@${ECHO_CMD} \#include \"ext/${PHP_MODNAME}/config.h\" \
-		>> ${PREFIX}/include/php/ext/php_config.h
-	@${MKDIR} ${PREFIX}/etc/php
-	@${ECHO_CMD} extension=${PHP_MODNAME}.so \
-		>> ${PREFIX}/etc/php/extensions.ini
 
 add-plist-info: add-plist-phpext
 add-plist-phpext:
