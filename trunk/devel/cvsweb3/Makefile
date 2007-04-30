@@ -119,9 +119,6 @@ do-install:
 .endif
 
 post-install:
-.if defined(PACKAGE_BUILDING)
 	${ECHO_CMD} "@unexec rmdir -p %D/${CGIDIR} %D/${ICONSDIR} %D/${CSSDIR} 2>/dev/null || true" >> ${TMPPLIST}
-.endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
