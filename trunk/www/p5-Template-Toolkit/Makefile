@@ -2,12 +2,12 @@
 # Date Created:				3 Mar, 2001
 # Whom:					clive
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.1 2007/03/11 05:44:06 laffer1 Exp $
 # $FreeBSD: ports/www/p5-Template-Toolkit/Makefile,v 1.24 2007/02/08 14:38:13 clsung Exp $
 #
 
 PORTNAME=	Template-Toolkit
-PORTVERSION=	2.17
+PORTVERSION=	2.18
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Template
