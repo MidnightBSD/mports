@@ -2,7 +2,7 @@
 # Date created:				28 September 2001
 # Whom:					Alexey Zelkin <phantom@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.1 2007/03/11 05:21:55 laffer1 Exp $
 # $FreeBSD: ports/devel/bugzilla/Makefile,v 1.47 2006/11/15 14:47:20 skv Exp $
 #
 
@@ -44,6 +44,7 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 .ifndef BUGZILLADIR
 .ifdef APACHE_DATADIR
 BUGZILLADIR=	${APACHE_DATADIR}/data/bugzilla
+FAKE_MAKEARGS+=	BUGZILLADIR=${FAKE_DESTDIR}/${BUGZILLADIR}
 .else
 BUGZILLADIR=	${PREFIX}/www/data/bugzilla
 .endif
@@ -134,11 +135,6 @@ do-install:
 	${MKDIR} ${DOCSDIR}/contrib
 	${INSTALL_DATA} ${CONTRIB_DOCS:S!^!${WRKSRC}/contrib/!} ${DOCSDIR}/contrib
 .endif
-.endif
-.if !defined(BATCH)
-	@${ECHO_MSG}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG}
 .endif
 
 .include <bsd.port.post.mk>
