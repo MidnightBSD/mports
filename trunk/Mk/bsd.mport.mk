@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.30 2007/04/26 23:38:48 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.31 2007/04/27 05:06:31 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.port.mk - 940820 Jordan K. Hubbard.
@@ -3547,39 +3547,6 @@ do-build:
 .endif
 .endif
 
-# Check conflicts
-
-.if !target(check-conflicts)
-check-conflicts:
-.if defined(CONFLICTS) && !defined(DISABLE_CONFLICTS)
-	@found=`${PKG_INFO} -I ${CONFLICTS:C/.+/'&'/} 2>/dev/null | ${AWK} '{print $$1}'`; \
-	conflicts_with=; \
-	for entry in $${found}; do \
-		if ${PKG_INFO} -e $${entry} ; then \
-			prfx=`${PKG_INFO} -q -p "$${entry}" 2> /dev/null | ${SED} -ne '1s/^@cwd //p'`; \
-			orgn=`${PKG_INFO} -q -o "$${entry}" 2> /dev/null`; \
-			if [ "/${PREFIX}" = "/$${prfx}" -a "/${PKGORIGIN}" != "/$${orgn}" ]; then \
-				conflicts_with="$${conflicts_with} $${entry}"; \
-			fi; \
-		fi; \
-	done; \
-	if [ -n "$${conflicts_with}" ]; then \
-		${ECHO_MSG}; \
-		if [ -z "${DESTDIR}" ] ; then \
-			${ECHO_MSG} "===>  ${PKGNAME} conflicts with installed package(s): "; \
-		else \
-			${ECHO_MSG} "===>  ${PKGNAME} conflicts with installed package(s) in ${DESTDIR}: "; \
-		fi; \
-		for entry in $${conflicts_with}; do \
-			${ECHO_MSG} "      $${entry}"; \
-		done; \
-		${ECHO_MSG}; \
-		${ECHO_MSG} "      They install files into the same place."; \
-		${ECHO_MSG} "      Please remove them first with pkg_delete(1)."; \
-		exit 1; \
-	fi
-.endif  # CONFLICTS
-.endif
 
 # 
 # Fake
@@ -3608,6 +3575,9 @@ fake-install:
 .	if target(pre-install)
 		@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
 .	endif
+# 	This is where the old FreeBSD bsd.port.mk made the tmpplist, we'll do it
+# 	here as well so that everyone is happy.
+	@cd ${.CURDIR} && exec ${MAKE} make-tmpplist
 .	if target(pre-su-install)
 		@${ECHO_MSG} "===>   WARNING: pre-su-install is deprecated. Use pre-install instead."
 		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${_FAKE_SETUP}
@@ -3640,13 +3610,16 @@ fix-fake-symlinks:
 	-@cd ${FAKE_DESTDIR}${PREFIX}; \
 	links=`${FIND} . -type l | ${GREP} -v -e 'share/nls/POSIX\|share/nls/en_US.US-ASCII`; \
 	for link in $$links; do \
-		if ! readlink $$link | grep ${FAKE_DESTDIR}; then \
+		if ! readlink $$link | grep ${FAKE_DESTDIR} >/dev/null; then \
 			continue; \
 		fi; \
 		source=`readlink $$link | ${SED} -e 's|${FAKE_DESTDIR}||'`; \
 		${RM} $$link; \
 		${LN} -s $$source $$link; \
 	done 
+.	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
+		@cd ${.CURDIR} && ${MAKE} PREFIX=${LINUXBASE_REL} ${.TARGET}
+.	endif
 .endif
 
 #
@@ -3764,56 +3737,9 @@ cached-install:
 .	endif		
 .endif
 
+#
 # Utility targets follow
-
-.if !target(check-already-installed)
-check-already-installed:
-.if !defined(NO_PKG_REGISTER) && !defined(FORCE_PKG_REGISTER)
-.if !defined(DESTDIR)
-		@${ECHO_MSG} "===>   Checking if ${PKGORIGIN} already installed"
-.else
-		@${ECHO_MSG} "===>   Checking if ${PKGORIGIN} already installed in ${DESTDIR}"
-.endif
-		@${MKDIR} ${PKG_DBDIR}; \
-		already_installed=`${PKG_INFO} -q -O ${PKGORIGIN}`; \
-		if [ -n "$${already_installed}" ]; then \
-				for p in $${already_installed}; do \
-						prfx=`${PKG_INFO} -q -p $${p} 2> /dev/null | ${SED} -ne '1s|^@cwd ||p'`; \
-						if [ "x${PREFIX}" = "x$${prfx}" ]; then \
-								df=`${PKG_INFO} -q -f $${p} 2> /dev/null | ${GREP} -v "^@" | ${COMM} -12 - ${TMPPLIST}`; \
-								if [ -n "$${df}" ]; then \
-										found_package=$${p}; \
-										break; \
-								fi; \
-						fi; \
-				done; \
-		fi
-		@if [ -d ${PKG_DBDIR}/${PKGNAME} -o -n "$${found_package}" ]; then \
-				if [ -d ${PKG_DBDIR}/${PKGNAME} ]; then \
-					if [ -z "${DESTDIR}" ] ; then \
-						${ECHO_CMD} "===>   ${PKGNAME} is already installed"; \
-					else \
-						${ECHO_MSG} "===>   ${PKGNAME} is already installed in ${DESTDIR}"; \
-					fi; \
-				else \
-					if [ -z "${DESTDIR}" ] ; then \
-						${ECHO_CMD} "===>   An older version of ${PKGORIGIN} is already installed ($${found_package})"; \
-					else \
-						${ECHO_MSG} "===>   An older version of ${PKGORIGIN} is already installed in ${DESTDIR} ($${found_package})"; \
-					fi; \
-				fi; \
-				${ECHO_MSG} "      You may wish to \`\`make deinstall'' and install this port again"; \
-				${ECHO_MSG} "      by \`\`make reinstall'' to upgrade it properly."; \
-				${ECHO_MSG} "      If you really wish to overwrite the old port of ${PKGORIGIN}"; \
-				${ECHO_MSG} "      without deleting it first, set the variable \"FORCE_PKG_REGISTER\""; \
-				${ECHO_MSG} "      in your environment or the \"make install\" command line."; \
-				exit 1; \
-		fi
-.else
-	@${DO_NADA}
-.endif
-.endif
-
+#
 .if !target(check-umask)
 check-umask:
 	@if [ `${SH} -c umask` != 0022 ]; then \
@@ -4026,9 +3952,9 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
 _FAKE_DEP=		build
-_FAKE_SEQ=		fake-message fake-dir apply-slist make-tmpplist pre-fake \
-				fake-install post-fake compress-man install-rc-script \
-				install-ldconfig-file fix-fake-symlinks
+_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
+				post-fake compress-man install-rc-script install-ldconfig-file \
+				fix-fake-symlinks
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
@@ -4152,12 +4078,6 @@ ${stage}-${name}-script:
 .endfor
 
 
-.if !target(pre-su-install-script)
-pre-su-install-script:
-	@${DO_NADA}
-.endif
-
-
 .if !target(pretty-print-www-site)
 pretty-print-www-site:
 	@www_site=$$(cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} www-site); \
@@ -4196,7 +4116,7 @@ reinstall:
 # Clear the fake dir and cookie, and do it again.
 .if !target(refake)
 refake:
-	@${RM} -rf ${FAKE_DESTDIR} ${FAKE_COOKIE}
+	@${RM} -rf ${FAKE_DESTDIR} ${FAKE_COOKIE} ${PACKAGE_COOKIE}
 	@cd ${.CURDIR} && ${MAKE} fake	
 .endif
 
