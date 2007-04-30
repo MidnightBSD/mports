@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11/kdelibs3/Makefile,v 1.202 2006/09/27 11:56:59 lofi Exp $
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.2 2007/04/22 20:33:29 ctriv Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.3 2007/04/22 20:38:12 ctriv Exp $
 #
 
 PORTNAME=	kdelibs
@@ -104,7 +104,7 @@ pre-install:
 
 post-install:
 	${MKDIR} ${PREFIX}/etc/rc.d
-	${SED} -e 's,%%PREFIX%%,${PREFIX},g' ${FILESDIR}/kdelibs.sh \
+	${SED} -e 's,%%PREFIX%%,${TRUE_PREFIX},g' ${FILESDIR}/kdelibs.sh \
 		> ${PREFIX}/etc/rc.d/kdelibs.sh
 	${CHMOD} ${BINMODE} ${PREFIX}/etc/rc.d/kdelibs.sh
 	${CHOWN} ${BINOWN}:${BINGRP} ${PREFIX}/etc/rc.d/kdelibs.sh
