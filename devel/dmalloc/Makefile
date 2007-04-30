@@ -3,7 +3,7 @@
 # Whom:				Jeremy Shaffner <jeremy@external.org>
 #
 # $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.1 2007/02/13 22:46:47 laffer1 Exp $
 #
 
 PORTNAME=	dmalloc
@@ -24,6 +24,7 @@ USE_LDCONFIG=	yes
 
 ALL_TARGET=	all heavy
 INSTALL_TARGET=	install
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
 INFO=	dmalloc
 
