@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/www/opera/pkg-plist,v 1.28 2007/01/26 16:21:30 pav Exp $
+@comment $MidnightBSD$
 bin/opera
 %%DOCSDIR%%/LICENSE
 %%DATADIR%%/bin/missingsyms.so
@@ -79,8 +79,8 @@ bin/opera
 %%DATADIR%%/svg-mobd.dat
 %%DATADIR%%/svg-mo.dat
 
-%%GNOME%%share/gnome/apps/Internet/opera.desktop
-%%GNOME%%share/gnome/pixmaps/opera.xpm
+@comment %%GNOME%%share/gnome/apps/Internet/opera.desktop
+@comment %%GNOME%%share/gnome/pixmaps/opera.xpm
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
 @dirrm %%DATADIR%%/styles
