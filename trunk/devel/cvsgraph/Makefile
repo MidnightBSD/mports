@@ -3,7 +3,7 @@
 # Whom:					trevor
 #
 # $FreeBSD: ports/devel/cvsgraph/Makefile,v 1.25 2006/07/10 01:15:03 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.1 2006/11/25 00:45:04 laffer1 Exp $
 #
 
 PORTNAME=	cvsgraph
@@ -74,8 +74,5 @@ do-install:
 .endfor
 .endif
 
-post-install:
-	@${ECHO_CMD} " "
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
