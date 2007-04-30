@@ -3,7 +3,7 @@
 # Whom:			SADA Kenji <sada@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/cvsweb/Makefile,v 1.78 2006/01/23 07:04:09 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cvsweb/Makefile,v 1.1 2006/11/25 00:45:04 laffer1 Exp $
 #
 
 PORTNAME=	cvsweb
@@ -81,9 +81,6 @@ do-install:
 .endif
 
 post-install:
-.if defined(PACKAGE_BUILDING)
 	${ECHO_CMD} "@unexec rmdir %D/${CGIDIR} %D/${ICONSDIR} 2>/dev/null || true" >> ${TMPPLIST}
-.endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
