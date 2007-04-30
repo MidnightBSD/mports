@@ -6,11 +6,11 @@ export PATH
 case $2 in
 POST-INSTALL)
     echo -n "Creating pixbuf loaders list... "
-    chroot %%PREFIX%% usr/bin/gdk-pixbuf-query-loaders > %%PREFIX%%/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+    chroot /compat/linux usr/bin/gdk-pixbuf-query-loaders-32 > /compat/linux/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
     echo "done."
     
     echo -n "Creating module list... "
-    chroot %%PREFIX%% usr/bin/gtk-query-immodules-2.0 > %%PREFIX%%/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+    chroot /compat/linux usr/bin/gtk-query-immodules-2.0-32 > /compat/linux/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
     echo "done."
     
     ;;
