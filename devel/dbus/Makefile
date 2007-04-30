@@ -3,7 +3,7 @@
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/dbus/Makefile,v 1.65 2006/12/14 20:33:12 marcus Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.1 2007/02/19 22:29:09 laffer1 Exp $
 #
 
 PORTNAME=	dbus
@@ -57,14 +57,5 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
 		${WRKSRC}/dbus/Makefile.in \
 		${WRKSRC}/tools/Makefile.in
-
-.if !defined(DBUS_SLAVE)
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
-	${MKDIR} ${X11BASE}/etc/dbus-1/system.d
-	${MKDIR} ${X11BASE}/share/dbus-1/services
-.endif
 
 .include <bsd.port.post.mk>
