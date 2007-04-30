@@ -4,7 +4,7 @@
 # Whom:				  Paul Marquis <pmarquis@pobox.com>
 #
 # $FreeBSD: ports/devel/boost/Makefile,v 1.35 2006/09/22 22:22:19 mi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boost/Makefile,v 1.1 2007/01/25 16:14:07 laffer1 Exp $
 #
 
 PORTNAME=	boost
@@ -394,13 +394,5 @@ post-install:
 		-e "s|%%PYTHON_LIBDIR%%|${PYTHON_LIBDIR}|g" \
 		-e "s|%%PYTHON_VERSION%%|${PYTHON_VERSION}|g" ${PKGMESSAGE}
 
-	@if [ -s ${PKGMESSAGE} ]; then \
-	${ECHO_CMD} ; \
-	${ECHO_CMD} "===============================================================================" ; \
-	${ECHO_CMD} ; \
-	${CAT} ${PKGMESSAGE}; \
-	${ECHO_CMD} "===============================================================================" ; \
-	${ECHO_CMD} ; \
-	fi
 
 .include <bsd.port.post.mk>
