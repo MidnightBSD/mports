@@ -32,6 +32,8 @@ usr/share/doc/pango-%%PORTVERSION%%/HELLO.utf8
 usr/share/doc/pango-%%PORTVERSION%%/README
 usr/share/doc/pango-%%PORTVERSION%%/TODO
 usr/share/man/man1/pango-querymodules.1.gz
+@unexec rm %D/etc/pango/i386-redhat-linux-gnu/pango.modules
+@exec  mkdir -p %D/etc/pango/i386-redhat-linux-gnu
 @dirrm etc/pango/i386-redhat-linux-gnu
 @dirrm etc/pango
 @dirrm usr/lib/pango/1.4.0/modules
