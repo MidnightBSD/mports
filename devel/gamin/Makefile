@@ -3,7 +3,7 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/gamin/Makefile,v 1.25 2006/02/23 15:33:39 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.1 2006/11/24 18:40:22 laffer1 Exp $
 #
 
 PORTNAME=	gamin
@@ -49,8 +49,6 @@ regression-test: build
 	@(cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
 		Makefile ${MAKE_ARGS} tests)
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 .endif
 
 .include <bsd.port.post.mk>
