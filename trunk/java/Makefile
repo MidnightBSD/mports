@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.7 2007/03/16 20:28:12 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.8 2007/04/07 04:47:43 laffer1 Exp $
 #
 
     COMMENT = Java 
@@ -34,6 +34,7 @@
     SUBDIR += netbeans
     SUBDIR += netbeans3
     SUBDIR += netbeans4
+    SUBDIR += netbeans55
     SUBDIR += xdoclet
 
 .include <bsd.port.subdir.mk>
