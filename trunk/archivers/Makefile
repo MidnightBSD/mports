@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.20 2007/04/05 00:27:06 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.21 2007/04/28 03:29:47 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -23,6 +23,7 @@
     SUBDIR += p5-IO-Compress-Zlib
     SUBDIR += p5-IO-Zlib
     SUBDIR += p7zip
+    SUBDIR += pbzip2
     SUBDIR += pecl-zip
     SUBDIR += php5-bz2
     SUBDIR += php5-zlib
