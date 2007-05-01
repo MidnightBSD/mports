@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating module list... "
+    $PKG_PREFIX/usr/bin/pango-querymodules-32 > $PKG_PREFIX/etc/pango/i386-redhat-linux-gnu/pango.modules
+    chroot $PKG_PREFIX /usr/bin/gtk-query-immodules-2.0-32 \
+    	> $PKG_PREFIX/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+    echo "done."
+    echo -n "Creating pixbuf loaders list... "
+    chroot $PKG_PREFIX /usr/bin/gdk-pixbuf-query-loaders-32 \
+    	> $PKG_PREFIX/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+    echo "done."
+    ;;
+esac
