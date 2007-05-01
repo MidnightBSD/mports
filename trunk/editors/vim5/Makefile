@@ -3,7 +3,7 @@
 # Date created:			  Sat June 29, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD: mports/editors/vim5/Makefile,v 1.1 2006/09/24 02:23:47 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim5/Makefile,v 1.2 2006/10/01 15:57:13 laffer1 Exp $
 # $FreeBSD: ports/editors/vim5/Makefile,v 1.133 2006/03/07 08:26:12 ade Exp $
 #
 
@@ -35,6 +35,7 @@ PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} --forward --quiet -E ${PATCH_DIST_STRI
 MAKE_ARGS+=	CONF_ARGS="--prefix=${PREFIX} --with-tlib=termlib --disable-pythoninterp"
 ALL_TARGET=	#
 PLIST_SUB=	VIM_VER=${DISTNAME:S/-//:S/.//}
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 MAN1=		vim.1 vimtutor.1 xxd.1
 MLINKS=		vim.1 rvim.1  vim.1 rview.1  ectags.1 etags.1
 MLINKS+=	vim.1 gvim.1  vim.1 gview.1  vim.1 rgvim.1  vim.1 rgview.1
