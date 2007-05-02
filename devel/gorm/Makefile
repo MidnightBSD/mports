@@ -2,12 +2,12 @@
 # Date created:         15 Mar 2002
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/gorm/Makefile,v 1.1 2006/10/03 20:31:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/gorm/Makefile,v 1.2 2007/03/13 20:28:42 laffer1 Exp $
 # $FreeBSD: ports/devel/gorm/Makefile,v 1.27 2006/08/31 05:40:32 dinoex Exp $
 #
 
 PORTNAME=	gorm
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	dev-apps
