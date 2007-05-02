@@ -2,7 +2,7 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.4 2007/02/23 01:43:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.5 2007/02/23 02:01:12 laffer1 Exp $
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
@@ -40,17 +40,13 @@ pre-build:
 			${WRKSRC}/slim.conf
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${LOCALBASE}/bin
-	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${LOCALBASE}/etc/${PORTNAME}.conf.sample
-	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${LOCALBASE}/man/man1
+	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.conf ${PREFIX}/etc/${PORTNAME}.conf.sample
+	@${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${PREFIX}/man/man1
 	@${MKDIR} ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/${PORTNAME}.theme ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${WRKSRC}/themes/default/panel.png ${DATADIR}/themes/default
 	@${INSTALL_DATA} ${FILESDIR}/background.jpg ${DATADIR}/themes/default
 
-post-install:
-	@if [ ! -f ${LOCALBASE}/etc/slim.conf ]; then \
-		${CP} -p ${LOCALBASE}/etc/slim.conf.sample ${LOCALBASE}/etc/slim.conf ; \
-	fi
 
 .include <bsd.port.post.mk>
