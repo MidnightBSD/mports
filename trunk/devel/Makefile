@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.119 2007/04/13 22:11:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.120 2007/04/28 03:21:49 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -130,6 +130,7 @@
     SUBDIR += popt
     SUBDIR += projectcenter.app
     SUBDIR += pth
+    SUBDIR += pth-hard
     SUBDIR += py-fileutils
     SUBDIR += py-gobject
     SUBDIR += qmake
