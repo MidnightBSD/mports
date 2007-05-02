@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/highlighterkit/Makefile,v 1.1 2006/10/31 05:56:00 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.1 2007/02/14 21:32:31 laffer1 Exp $
 #
 
 PORTNAME=	highliterkit
@@ -24,6 +24,6 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=
 LDCONFIG_DIRS=	${LOCALLIBDIR}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
