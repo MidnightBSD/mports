@@ -1,10 +1,12 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.31 2007/04/27 05:06:31 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.32 2007/04/30 16:24:29 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
-#	bsd.port.mk - 940820 Jordan K. Hubbard.
+#   bsd.mport.mk - 2007/04/01 Chris Reinhardt
+#   Based on:
+#		bsd.port.mk - 940820 Jordan K. Hubbard.
 #	This file is in the public domain.
 #
 # Please view me with 4 column tabs!
@@ -15,14 +17,14 @@
 
 # There are two different types of "maintainers" in the ports framework.
 # The maintainer alias of the bsd.port.mk file is listed below in the
-# FreeBSD_MAINTAINER entry.  You should consult them if you have any
+# MidnightBSD_MAINTAINER entry.  You should consult them if you have any
 # questions/suggestions regarding this file.
 #
 # DO NOT COMMIT CHANGES TO THIS FILE BY YOURSELF, EVEN IF YOU DID NOT GET
 # A RESPONSE FROM THE MAINTAINER(S) WITHIN A REASONABLE TIMEFRAME! ALL
 # UNAUTHORISED CHANGES WILL BE UNCONDITIONALLY REVERTED!
 
-FreeBSD_MAINTAINER=	portmgr@MidnightBSD.org
+MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 
 # For each port, the MAINTAINER variable is what you should consult for
 # contact information on the person(s) to contact if you have questions/
@@ -2246,21 +2248,13 @@ PKG_VERSION?=		/usr/sbin/pkg_version
 .else
 PKG_CMD?=		/usr/sbin/mport
 PKG_ADD?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_add
-PKG_DELETE?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_delete
+PKG_DELETE?=	${CHROOT} ${DESTDIR} /usr/sbin/pkg_delete
 PKG_INFO?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_info
-PKG_VERSION?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_version
+PKG_VERSION?=	${CHROOT} ${DESTDIR} /usr/sbin/pkg_version
 .endif
 
-# Does the pkg_create tool support conflict checking?
-# XXX Slow?
-.if !defined(PKGINSTALLVER)
-PKGINSTALLVER!= ${CHROOT} ${DESTDIR} ${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.*: //'
-.endif
-.if ${PKGINSTALLVER} < 20030417
-DISABLE_CONFLICTS=	YES
-.endif
 .if !defined(PKG_ARGS)
-PKG_ARGS=		-v -c -${COMMENT:Q} -S ${FAKE_DESTDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
+PKG_ARGS=	-v -c -${COMMENT:Q} -S ${FAKE_DESTDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
 			-P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
 			${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS} 
 .if !defined(NO_MTREE)
@@ -4208,13 +4202,6 @@ deinstall-all:
 
 .if !target(do-clean)
 do-clean:
-	@if [ -d ${WRKDIR}/${FAKE_INSTALLDIR} ]; then \
-		if [ -w ${WRKDIR}/${FALE_INSTALLDIR} ]; then \
-			${RM} -rf ${WRKDIR}/${FAKE_INSTALLDIR}; \
-		else \
-			${ECHO_MSG} "===>   ${WRKDIR}/${FAKE_INSTALLDIR} not writable, skipping"; \
-		fi; \
-	fi
 	@if [ -d ${WRKDIR} ]; then \
 		if [ -w ${WRKDIR} ]; then \
 			${RM} -rf ${WRKDIR}; \
@@ -5452,32 +5439,39 @@ GENPLIST?=	${.CURDIR}/gen-plist
 .if !target(makeplist)
 makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
+	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
 	@> ${GENPLIST}
 
-	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
-	@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; slinks=""\
-	new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
-	for file in $$new; do \
-		if [ ! -L $$file ] && [ -d $$file ]; then \
-			tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
-			for f in $$tree; do \
-				if [ -d $$f ]; then \
-					directories="$$directories $$f"; \
-				else \
-					files="$$files $$f"; \
-				fi; \
-			done; \
-		else \
-			files="$$files $$file"; \
-		fi; \
-	done; \
-	for file in $$files; do \
-		echo $$file >> ${GENPLIST}; \
-	done; \
-	for dir in $$directories; do \
-		echo "@dirrmtry $$dir" >> ${GENPLIST}; \
-	done;
+.	if !defined(NO_MTREE)
+		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
+		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
+		for file in $$new; do \
+			if [ ! -L $$file ] && [ -d $$file ]; then \
+				tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
+				for f in $$tree; do \
+					if [ -d $$f ]; then \
+						directories="$$directories $$f"; \
+					else \
+						files="$$files $$f"; \
+					fi; \
+				done; \
+			else \
+				files="$$files $$file"; \
+			fi; \
+		done; \
+		for file in $$files; do \
+			echo $$file >> ${GENPLIST}; \
+		done; \
+		for dir in $$directories; do \
+			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+		done;
+.	else 
+		@cd ${FAKE_DESTDIR}${PREFIX}; \
+		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST}; \
+		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dirrmtry :' >> ${GENPLIST};
+.	endif
+
 
 .	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
 		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
