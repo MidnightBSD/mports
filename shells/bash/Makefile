@@ -3,7 +3,7 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.3 2006/09/26 19:24:02 archite Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
@@ -106,9 +106,6 @@ post-configure:
 pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
 
-pre-install:
-	@${SETENV} PKG_PREFIX="${PREFIX}" PKG_DESTDIR="${DESTDIR}" \
-		${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -124,7 +121,5 @@ post-install:
 		${INSTALL_DATA} ${WRKSRC}/$${d} ${DESTDIR}${DOCSDIR}; \
 	done
 .endif
-	@${SETENV} PKG_PREFIX="${PREFIX}" PKG_DESTDIR="${DESTDIR}" \
-		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
