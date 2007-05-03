@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.32 2007/04/30 16:24:29 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.33 2007/05/02 00:51:46 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1521,6 +1521,10 @@ PERL=		${LOCALBASE}/bin/perl
 .include "${PORTSDIR}/Mk/bsd.gnome.mk"
 .endif
 
+.if defined(WANT_LUA) || defined(USE_LUA) || defined(USE_LUA_NOT)
+.include "${PORTSDIR}/Mk/bsd.lua.mk"
+.endif
+
 .if defined(WANT_WX) || defined(USE_WX) || defined(USE_WX_NOT)
 .include "${PORTSDIR}/Mk/bsd.wx.mk"
 .endif
@@ -1980,6 +1984,10 @@ RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 
 .if defined(USE_TCL) || defined(USE_TCL_BUILD) || defined(USE_TK)
 .include "${PORTSDIR}/Mk/bsd.tcl.mk"
+.endif
+
+.if defined(USE_LUA) || defined(USE_LUA_NOT)
+.include "${PORTSDIR}/Mk/bsd.lua.mk"
 .endif
 
 .if defined(USE_WX) || defined(USE_WX_NOT)
@@ -3609,6 +3617,7 @@ fix-fake-symlinks:
 		fi; \
 		source=`readlink $$link | ${SED} -e 's|${FAKE_DESTDIR}||'`; \
 		${RM} $$link; \
+		echo "${LN} -s $$source $$link"; \
 		${LN} -s $$source $$link; \
 	done 
 .	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
