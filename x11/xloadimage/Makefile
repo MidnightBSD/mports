@@ -2,7 +2,7 @@
 # Date created:         9 January 1994
 # Whom:                 jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.1 2006/10/28 05:44:40 laffer1 Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
 #
 
@@ -57,7 +57,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/xloadimagerc \
 		${PREFIX}/share/examples/xloadimage/xloadimagerc
 
-post-install:
-	@PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
