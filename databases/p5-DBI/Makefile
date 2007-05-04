@@ -2,12 +2,12 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.1 2006/10/03 21:03:20 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
-PORTVERSION=	1.52
+PORTVERSION=	1.55
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	DBI
@@ -15,6 +15,8 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
+
+OPTIONS=	PROXY "Enable DBI::Proxy" Off
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -53,15 +55,9 @@ MAN3=		Bundle::DBI.3 \
 		Roadmap.3 \
 		Win32::DBIODBC.3
 
-.if !defined(WITH_PROXY)
-pre-everything::
-	@${ECHO_CMD} "If you need DBI::Proxy, try to set WITH_PROXY."
-	@${ECHO_CMD} ""
-	@sleep 1
-.endif
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	Changes README ToDo
+PORTDOCS=	Changes README 
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
@@ -69,10 +65,6 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.mk>
 
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires newer Perl, but you can use databases/p5-DBI-137 instead
-.endif
 
-.include <bsd.port.post.mk>
