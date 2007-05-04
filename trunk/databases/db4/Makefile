@@ -3,7 +3,7 @@
 # Whom:					Sergey Osokin aka oZZ <ozz@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db4/Makefile,v 1.56 2006/05/04 21:39:54 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db4/Makefile,v 1.1 2006/11/05 14:37:14 laffer1 Exp $
 #
 
 PORTNAME=	db4
@@ -26,7 +26,8 @@ CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 \
 		--enable-cxx --enable-dynamic \
 		--includedir=${PREFIX}/include/db4
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
+
 
 .if !defined(NOPORTDOCS)
 INSTALL_TARGET=	install install_docs
