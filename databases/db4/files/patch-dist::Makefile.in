@@ -142,3 +142,101 @@
  
  uninstall: uninstall_include uninstall_lib uninstall_utilities uninstall_docs
  
+@@ -390,30 +390,30 @@
+ uninstall: uninstall_include uninstall_lib uninstall_utilities uninstall_docs
+ 
+ install_setup:
+-	@test -d $(prefix) || \
+-	    ($(mkdir) -p $(prefix) && $(chmod) $(dmode) $(prefix))
++	@test -d $(DESTDIR)$(prefix) || \
++	    ($(mkdir) -p $(DESTDIR)$(prefix) && $(chmod) $(dmode) $(DESTDIR)$(prefix))
+ 
+ INCDOT=	db.h db_cxx.h @ADDITIONAL_INCS@
+ INCINC=	cxx_common.h cxx_except.h
+ install_include:
+-	@echo "Installing DB include files: $(includedir) ..."
+-	@test -d $(includedir) || \
+-	    ($(mkdir) -p $(includedir) && $(chmod) $(dmode) $(includedir))
+-	@cd $(includedir) && $(rm) -f $(INCDOT) $(INCINC)
+-	@$(cp) -p $(INCDOT) $(includedir)
+-	@cd $(srcdir)/include/ && $(cp) -p $(INCINC) $(includedir)
+-	@cd $(includedir) && $(chmod) $(fmode) $(INCDOT) $(INCINC)
++	@echo "Installing DB include files: $(DESTDIR)$(includedir) ..."
++	@test -d $(DESTDIR)$(includedir) || \
++	    ($(mkdir) -p $(DESTDIR)$(includedir) && $(chmod) $(dmode) $(DESTDIR)$(includedir))
++	@cd $(DESTDIR)$(includedir) && $(rm) -f $(INCDOT) $(INCINC)
++	@$(cp) -p $(INCDOT) $(DESTDIR)$(includedir)
++	@cd $(srcdir)/include/ && $(cp) -p $(INCINC) $(DESTDIR)$(includedir)
++	@cd $(DESTDIR)$(includedir) && $(chmod) $(fmode) $(INCDOT) $(INCINC)
+ 
+ uninstall_include:
+ 	@cd $(includedir) && $(rm) -f $(INCDOT) $(INCINC)
+ 
+ install_lib:
+-	@echo "Installing DB library: $(libdir) ..."
+-	@test -d $(libdir) || \
+-	    ($(mkdir) -p $(libdir) && $(chmod) $(dmode) $(libdir))
+-	@cd $(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
+-	@$(INSTALLER) @INSTALL_LIBS@ $(libdir)
+-	@(cd $(libdir) && \
++	@echo "Installing DB library: $(DESTDIR)$(libdir) ..."
++	@test -d $(DESTDIR)$(libdir) || \
++	    ($(mkdir) -p $(DESTDIR)$(libdir) && $(chmod) $(dmode) $(DESTDIR)$(libdir))
++	@cd $(DESTDIR)$(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
++	@$(INSTALLER) @INSTALL_LIBS@ $(DESTDIR)$(libdir)
++	@(cd $(DESTDIR)$(libdir) && \
+ 	    test -f $(libso) && $(ln) -s $(libso) $(libso_default); \
+ 	    test -f $(libso) && $(ln) -s $(libso) $(libso_major); \
+ 	    test -f $(libso_static) && $(ln) -s $(libso_static) $(libdb); \
+@@ -426,8 +426,8 @@
+ 	    test -f $(libjso) && $(ln) -s $(libjso) $(libjso_major); \
+ 	    test -f $(libjso) && $(ln) -s $(libjso) $(libjso_g)) || true
+ 	@(test -f $(libj_jarfile) && \
+-	    $(cp) $(libj_jarfile) $(libdir)) || true
+-	@(cd $(libdir); for i in $(LIB_INSTALL_FILE_LIST); do \
++	    $(cp) $(libj_jarfile) $(DESTDIR)$(libdir)) || true
++	@(cd $(DESTDIR)$(libdir); for i in $(LIB_INSTALL_FILE_LIST); do \
+ 		test -f $$i && $(chmod) $(fmode) $$i || true; \
+ 	done)
+ 
+@@ -435,17 +435,17 @@
+ 	@cd $(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
+ 
+ install_utilities:
+-	echo "Installing DB utilities: $(bindir) ..."
+-	@test -d $(bindir) || \
+-	    ($(mkdir) -p $(bindir) && $(chmod) $(dmode) $(bindir))
+-	@(cd $(bindir); for i in $(UTIL_PROGS); do \
++	echo "Installing DB utilities: $(DESTDIR)$(bindir) ..."
++	@test -d $(DESTDIR)$(bindir) || \
++	    ($(mkdir) -p $(DESTDIR)$(bindir) && $(chmod) $(dmode) $(DESTDIR)$(bindir))
++	@(cd $(DESTDIR)$(bindir); for i in $(UTIL_PROGS); do \
+ 		$(rm) -f $$i $$i.exe; \
+ 	done)
+ 	@for i in $(UTIL_PROGS); do \
+ 		test -f $$i.exe && i=$$i.exe; \
+-		$(INSTALLER) -fp $$i $(bindir); \
++		$(INSTALLER) -fp $$i $(DESTDIR)$(bindir); \
+ 	done
+-	@(cd $(bindir); for i in $(UTIL_PROGS); do \
++	@(cd $(DESTDIR)$(bindir); for i in $(UTIL_PROGS); do \
+ 		test -f $$i.exe && i=$$i.exe; \
+ 		test -f $(strip) && $(strip) $$i || true; \
+ 		$(chmod) $(emode) $$i; \
+@@ -460,11 +460,11 @@
+ 	api_c api_cxx api_java api_tcl images index.html ref reftoc.html \
+ 	sleepycat utility
+ install_docs:
+-	@echo "Installing documentation: $(docdir) ..."
+-	@test -d $(docdir) || \
+-	    ($(mkdir) -p $(docdir) && $(chmod) $(dmode) $(docdir))
+-	@cd $(docdir) && $(rm) -rf $(DOCLIST)
+-	@cd $(srcdir)/docs && $(cp) -pr $(DOCLIST) $(docdir)/
++	@echo "Installing documentation: $(DESTDIR)$(docdir) ..."
++	@test -d $(DESTDIR)$(docdir) || \
++	    ($(mkdir) -p $(DESTDIR)$(docdir) && $(chmod) $(dmode) $(DESTDIR)$(docdir))
++	@cd $(DESTDIR)$(docdir) && $(rm) -rf $(DOCLIST)
++	@cd $(srcdir)/docs && $(cp) -pr $(DOCLIST) $(DESTDIR)$(docdir)/
+ 
+ uninstall_docs:
+ 	@cd $(docdir) && $(rm) -rf $(DOCLIST)
