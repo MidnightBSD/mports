@@ -2,7 +2,7 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.2 2007/04/04 15:52:08 ctriv Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.3 2007/04/07 10:51:50 wintellect Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
@@ -16,7 +16,7 @@ COMMENT=	X11 menu application (not only) for the dwm window manager
 
 USE_XLIB=	yes
 
-FAKE_FLAGS+=	PREFIX=${TRUE_PREFIX}
+FAKE_OPTS=	trueprefix
 
 MAN1=		dmenu.1
 PLIST_FILES=	bin/dmenu bin/dmenu_path
