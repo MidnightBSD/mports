@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.33 2007/05/02 00:51:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.34 2007/05/03 08:44:55 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -597,6 +597,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #					  Default: ${DESTDIRNAME}=${FAKE_DESTDIR}                               
 # FAKE_TARGET		- When fake runs the dist's makefile, this is the target used.
 #					  Default: ${INSTALL_TARGET}
+# FAKE_SETUP		- A list of environment variables used to create the fake environment,
+#					  suitable for use with env.  This variable should be considered read-
+#                     only. It is documented because often it is useful for calling make
+#                     in {pre,post}-install.
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -1587,9 +1591,10 @@ DESTDIRNAME?=   	DESTDIR
 FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
 FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR} ${MAKE_ARGS}
 
-_FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
-					LINUXBASE=${FAKE_DESTDIR}${LINUXBASE} HOME=/${PORTNAME}_installs_to_home \
-					KMODDIR=${FAKE_DESTDIR}${KMODDIR}
+FAKE_SETUP=		TRUE_PREFIX=${TRUE_PREFIX} PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} \
+				LINUXBASE=${FAKE_DESTDIR}${LINUXBASE:S/^${FAKE_DESTDIR}//} \
+				HOME=/${PORTNAME}_installs_to_home \
+				KMODDIR=${FAKE_DESTDIR}${KMODDIR:S/^${FAKE_DESTDIR}//}
 
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
@@ -1597,10 +1602,10 @@ _FAKE_SETUP=		TRUE_PREFIX=${PREFIX} PREFIX=${FAKE_DESTDIR}${PREFIX} \
 FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX}
 .endif
 .if ${FAKE_OPTS:Mlibs}x != "x"
-_FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
+FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
 .endif
 .if ${FAKE_OPTS:Mbin}x != "x"
-_FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
+FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
 .endif
 .endif
 
@@ -3575,17 +3580,17 @@ fake-dir:
 .if !target(fake-install)
 fake-install:
 .	if target(pre-install)
-		@cd ${.CURDIR} && exec ${MAKE} pre-install ${_FAKE_SETUP}
+		@cd ${.CURDIR} && exec ${MAKE} pre-install ${FAKE_SETUP}
 .	endif
 # 	This is where the old FreeBSD bsd.port.mk made the tmpplist, we'll do it
 # 	here as well so that everyone is happy.
 	@cd ${.CURDIR} && exec ${MAKE} make-tmpplist
 .	if target(pre-su-install)
 		@${ECHO_MSG} "===>   WARNING: pre-su-install is deprecated. Use pre-install instead."
-		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${_FAKE_SETUP}
+		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${FAKE_SETUP}
 .	endif
 .	if target(do-install)
-		@cd ${.CURDIR} && exec ${MAKE} do-install ${_FAKE_SETUP}
+		@cd ${.CURDIR} && exec ${MAKE} do-install ${FAKE_SETUP}
 .	else
 # 	Handle Module::Build
 .	    if defined(PERL_MODBUILD) 
@@ -3593,16 +3598,16 @@ fake-install:
 		    	 ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
 .	    else 
 # 			Normal builds.
-			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
 		 		${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
 .			if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-				@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${_FAKE_SETUP}\
+				@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
 					${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
 .			endif
 .	    endif
 .	endif
 .	if target(post-install)
-		@cd ${.CURDIR} && exec ${MAKE} post-install ${_FAKE_SETUP}
+		@cd ${.CURDIR} && exec ${MAKE} post-install ${FAKE_SETUP}
 .	endif
 .endif
 
