@@ -2,7 +2,7 @@
 # Date created:         5th December 1994
 # Whom:                 gpalmer@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.1 2007/02/19 23:56:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.2 2007/03/25 02:47:06 ctriv Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -21,6 +21,18 @@ MASTER_SITE_SUBDIR=	. old devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low memory usage xterm replacement that supports color
+
+OPTIONS=	XIM "XIM (X Input Method) protocol support" On \
+		XGETDEFAULT "Enable XGetDefault() resource checking" Off \
+		BIG5 "BIG5 Chinese characters support" Off \
+		GB "GB Chinese characters support" Off \
+		KANJI "Kanji characters support" Off \
+		GREEK_KEYBOARD "Greek keyboard support" Off \
+		HALF_SHADOW "Use half width/height shadows" Off \
+		MENUBAR "Enable menu bar system" Off \
+		NEXT_SCROLLBAR "Enable NeXT'ish scrollbars" Off \
+		XTERM_SCROLLBAR "Enable Xterm'ish scrollbars" Off \
+		CLEARTEXTPASSWD "Use cleartext passwords" Off
 
 FETCH_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 
@@ -92,22 +104,6 @@ CONFIGURE_ARGS+=	--enable-xim
 CONFIGURE_ARGS+=	--enable-xterm-scroll
 .endif # WITH_XTERM_SCROLLBAR
 #
-
-pre-fetch:
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "You may use the following build options:"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "WITHOUT_XIM=yes		disable support for XIM (X Input Method) protocol"
-	@${ECHO_MSG} "WITH_XGETDEFAULT=yes	make resources checking via XGetDefault()"
-	@${ECHO_MSG} "WITH_BIG5=yes		add support for Chinese characters (BIG5)"
-	@${ECHO_MSG} "WITH_GB=yes		add support for Chinese characters (GB)"
-	@${ECHO_MSG} "WITH_GREEK_KEYBOARD=yes	add support for greek keyboard"
-	@${ECHO_MSG} "WITH_HALF_SHADOW=yes	use half width/height shadows on non-Xterm scrollbar"
-	@${ECHO_MSG} "WITH_KANJI=yes		add support for Kanji characters"
-	@${ECHO_MSG} "WITH_MENUBAR=yes	add support for rxvt menu bar system"
-	@${ECHO_MSG} "WITH_NEXT_SCROLLBAR=yes	add support for a NeXT-like scrollbar"
-	@${ECHO_MSG} "WITH_XTERM_SCROLLBAR=yes	make the scrollbar look like an Xterm scrollbar"
-	@${ECHO_MSG} "WITH_CLEARTEXTPASSWD=yes 	use cleartext passwords"
 
 post-install:
 	@${CHMOD} 4711 ${PREFIX}/bin/rxvt
