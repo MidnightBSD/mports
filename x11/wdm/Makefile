@@ -2,7 +2,7 @@
 # Date created:		August 31, 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.1 2006/09/27 18:28:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/wdm/Makefile,v 1.2 2007/03/25 02:50:10 ctriv Exp $
 # $FreeBSD: ports/x11/wdm/Makefile,v 1.73 2006/07/16 16:17:04 pav Exp $
 #
 
@@ -110,12 +110,7 @@ post-install:
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/${file} ${WDMDIR}/pixmaps
 .endfor
 .if defined(WITH_PAM)
-.if ( ${OSVERSION} >= 500028 )
-	${INSTALL_DATA} ${FILESDIR}/wdm.pam ${LOCALBASE}/etc/pam.d/wdm
-.else
-	@${ECHO_MSG} "To finish installing this port, append the contents of"
-	@${ECHO_MSG} "${FILESDIR}/wdm.pam to your /etc/pam.conf file"
-.endif
+	${INSTALL_DATA} ${FILESDIR}/wdm.pam ${PREFIX}/etc/pam.d/wdm
 .endif
 
 .include <bsd.port.post.mk>
