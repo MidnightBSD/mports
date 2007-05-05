@@ -2,7 +2,7 @@
 # Date created:				23 May 2001
 # Whom:					pvh@egenetics.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/zthread/Makefile,v 1.1 2006/10/03 20:18:15 laffer1 Exp $
 # $FreeBSD: ports/devel/zthread/Makefile,v 1.21 2006/06/19 20:06:51 shaun Exp $
 #
 
@@ -21,7 +21,7 @@ CONFIGURE_ARGS=	--without-ftime --disable-static
 USE_GMAKE=	yes
 MAKE_ARGS+=	INSTALL_PROGRAM="${INSTALL_SCRIPT}"
 MAKE_ENV+=	SED=sed # req'd for LIBTOOL?!
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README TODO
 
