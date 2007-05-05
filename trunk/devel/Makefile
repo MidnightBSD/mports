@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.121 2007/05/02 16:03:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.122 2007/05/03 08:17:35 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -66,6 +66,7 @@
     SUBDIR += libsigc++20
     SUBDIR += libslang
     SUBDIR += libthai
+    SUBDIR += libtifiles
     SUBDIR += libtool15
     SUBDIR += libusb
     SUBDIR += linux-allegro
