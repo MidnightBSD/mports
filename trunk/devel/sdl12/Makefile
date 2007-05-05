@@ -2,7 +2,7 @@
 # Date created:				1 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.1 2006/10/03 23:06:20 laffer1 Exp $
 # $FreeBSD: ports/devel/sdl12/Makefile,v 1.101 2006/09/01 21:34:13 shaun Exp $
 #
 
@@ -48,7 +48,7 @@ OPTIONS=	NAS	"Include support for the Network Audio System" Off \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 500000 && exists(/usr/lib/libvgl.so)
+.if exists(/usr/lib/libvgl.so)
 CONFIGURE_ARGS+=--enable-video-vgl
 DISPLAY_MSG=	${CAT} ${PKGMESSAGE}
 .else
@@ -135,6 +135,5 @@ post-install:
 	@cd ${WRKSRC}/docs; ${TAR} cf - `${ECHO_CMD} [^Mm]*` | \
 		(cd ${DOCSDIR}/docs; ${TAR} --unlink -xf - )
 .endif
-	@${DISPLAY_MSG}
 
 .include <bsd.port.post.mk>
