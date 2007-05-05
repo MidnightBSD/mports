@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/kdesdk3/Makefile,v 1.57 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.1 2007/01/20 19:18:45 laffer1 Exp $
 #
 
 PORTNAME=	kdesdk
@@ -30,8 +30,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=  libtool:15
 
-INSTALLS_SHLIB=	yes
-LDCONFIG_DIRS=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
+USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/kde3
 
 CONFIGURE_ARGS+=--with-db-include-dir=${LOCALBASE}/include/db4 \
 		--with-db-lib-dir=${LOCALBASE}/lib --with-db-name=db4 \
