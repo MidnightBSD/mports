@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.18 2007/05/05 05:25:56 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.19 2007/05/05 05:31:23 laffer1 Exp $
 #
 
     COMMENT = Emulators for other operating systems
 
+    SUBDIR += adamem
     SUBDIR += aftp
     SUBDIR += basiliskII
     SUBDIR += bochs
