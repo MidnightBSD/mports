@@ -2,7 +2,7 @@
 # Date created:		9 November 1994
 # Whom:			smace
 #
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.1 2007/03/08 19:10:10 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.2 2007/03/25 02:53:11 ctriv Exp $
 # $FreeBSD: ports/x11/xlockmore/Makefile,v 1.104 2007/02/02 17:06:22 pav Exp $
 #
 
@@ -45,6 +45,9 @@ OPTIONS=MESAGL			"Enable Mesa 3D (for GL modes)"		off \
 	BAD_PAM			"Xlock will ask PAM with root rights"	off
 
 .include <bsd.port.pre.mk>
+
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} \
+		xapploaddir=${FAKE_DESTDIR}${X11BASE_REL}/lib/X11/app-defaults
 
 .if ${ARCH} == amd64
 WITH_MESAGL=	no
@@ -108,7 +111,6 @@ pre-extract:
 
 post-configure:
 	${REINPLACE_CMD} -e 's/-lXdpms//g' ${WRKSRC}/modes/Makefile
-
-PLIST_FILES=	bin/xlock lib/X11/app-defaults/XLock
+	
 
 .include <bsd.port.post.mk>
