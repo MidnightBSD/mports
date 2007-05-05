@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.15 2007/05/05 05:08:50 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.16 2007/05/05 05:14:13 laffer1 Exp $
 #
 
     COMMENT = Emulators for other operating systems
@@ -23,6 +23,7 @@
     SUBDIR += tiemu2
     SUBDIR += vMac
     SUBDIR += wine
+    SUBDIR += yabause
     SUBDIR += yape
 
 .include <bsd.port.subdir.mk>
