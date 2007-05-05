@@ -2,7 +2,7 @@
 # Date created:				8 March 2000
 # Whom:					jesse@cs.uni-magdeburg.de
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/tmake/Makefile,v 1.1 2007/02/25 03:12:41 laffer1 Exp $
 # $FreeBSD: ports/devel/tmake/Makefile,v 1.16 2006/12/06 17:54:34 rafan Exp $
 #
 
@@ -34,7 +34,7 @@ do-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${PREFIX}/bin
 .endfor
 
-post-install:
+post-fake:
 	@${ECHO}
 	@${ECHO} "Make sure to set your TMAKEPATH environment variable"
 	@${ECHO} "to ${PREFIX}/share/tmake/freebsd-g++."
