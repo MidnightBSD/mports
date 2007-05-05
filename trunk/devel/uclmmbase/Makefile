@@ -2,7 +2,7 @@
 # Date created:				Thanksgiving Day, 1999
 # Whom:	      				Garrett Wollman <wollman@lcs.mit.edu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.1 2007/03/21 17:07:09 laffer1 Exp $
 # $FreeBSD: ports/devel/uclmmbase/Makefile,v 1.12 2005/04/12 17:16:21 mi Exp $
 #
 
@@ -18,6 +18,7 @@ COMMENT=	Common subroutines for UCL mbone applications
 WRKSRC=		${WRKDIR}/common
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
+FAKE_OPTS=	trueprefix
 
 post-configure:
 	@for f in ${FILESDIR}/*.bsd ; do \
@@ -33,7 +34,8 @@ post-build test:
 		{ print } END { exit code }'
 
 do-install:
-	cd ${WRKSRC}/src && ${MAKE_ENV} ${MAKE} install
+	cd ${WRKSRC}/src && \
+		${SET_ENV} ${MAKE_ENV} ${FAKE_SETUP} ${MAKE} ${FAKE_MAKEARGS} install
 
 .include <bsd.port.pre.mk>
 
