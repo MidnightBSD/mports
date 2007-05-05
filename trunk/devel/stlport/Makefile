@@ -3,7 +3,7 @@
 # Date Created:			  2 December 1998
 # Whom:				  Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.1 2007/01/02 00:38:33 laffer1 Exp $
 
 PORTNAME=	stlport
 PORTVERSION=	4.6.2
@@ -33,7 +33,8 @@ MAKE_ARGS+=	INSTALLDIR=${PREFIX} PTHREAD_CFLAGS=${PTHREAD_CFLAGS} \
 PLIST_SUB+=	COMPILER=${COMPILER}
 
 INSTALL_TARGET=	install_unix
-INSTALLS_SHLIB=	yes
+FAKE_MAKEARGS+=	INSTALLDIR=${FAKE_DESTDIR}${PREFIX}
+USE_LDCONFIG=	yes
 
 .if ${COMPILER} == icc
 CC=		icc
