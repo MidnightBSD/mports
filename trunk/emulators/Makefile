@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.13 2007/05/05 04:31:31 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.14 2007/05/05 04:43:27 laffer1 Exp $
 #
 
     COMMENT = Emulators for other operating systems
@@ -22,5 +22,6 @@
     SUBDIR += rtc
     SUBDIR += vMac
     SUBDIR += wine
+    SUBDIR += yape
 
 .include <bsd.port.subdir.mk>
