@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.11 2007/04/02 04:04:38 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.12 2007/04/04 21:15:20 laffer1 Exp $
 #
 
     COMMENT = Emulators for other operating systems
@@ -6,6 +6,7 @@
     SUBDIR += basiliskII
     SUBDIR += bochs
     SUBDIR += dosbox
+    SUBDIR += extract-xiso
     SUBDIR += kqemu-kmod
     SUBDIR += linux_base-fc4
     SUBDIR += linux_base-gentoo-stage1
