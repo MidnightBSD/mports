@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.19 2007/05/05 05:31:23 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.20 2007/05/05 05:39:27 laffer1 Exp $
 #
 
     COMMENT = Emulators for other operating systems
@@ -24,6 +24,7 @@
     SUBDIR += rtc
     SUBDIR += tiemu2
     SUBDIR += vMac
+    SUBDIR += vxtools
     SUBDIR += wine
     SUBDIR += xhomer
     SUBDIR += yabause
