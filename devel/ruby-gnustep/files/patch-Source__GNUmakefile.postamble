@@ -1,6 +1,6 @@
---- ./Source/GNUmakefile.postamble.orig	Thu May  3 23:20:55 2007
-+++ ./Source/GNUmakefile.postamble	Thu May  3 23:22:14 2007
-@@ -41,17 +41,17 @@
+--- ./Source/GNUmakefile.postamble.orig	Thu May  3 23:24:18 2007
++++ ./Source/GNUmakefile.postamble	Thu May  3 23:24:57 2007
+@@ -41,17 +41,18 @@
  # Things to do after installing
  # install the librigs.so in Ruby dir. Name it librigs.so even if it is
  # a debug version (omit the _d suffix)
@@ -11,6 +11,7 @@
 -	@cp -f $(GNUSTEP_OBJ_DIR)/$(LIBRARY_NAME).so $(RUBY_SITE_ARCH_DIR)
 -
 -else
++	@mkdir -p $(DESTDIR)$(RUBY_SITE_ARCH_DIR)
 +	@cp -f $(GNUSTEP_OBJ_DIR)/$(LIBRARY_NAME).so $(DESTDIR)$(RUBY_SITE_ARCH_DIR)
  
 -after-install::
