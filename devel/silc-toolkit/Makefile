@@ -2,7 +2,7 @@
 # Date created:				2003.12.15
 # Whom:					Evgueni V. Gavrilov <aquatique@rusunix.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.1 2006/09/26 16:39:44 archite Exp $
 # $FreeBSD: ports/devel/silc-toolkit/Makefile,v 1.22 2006/08/14 22:55:16 clsung Exp $
 #
 
@@ -29,6 +29,11 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure Internet Live Conferencing (SILC) network toolkit
 
+OPTIONS=	IPV6 "Enable IPv6 support" on \
+		OPTIMIZED_ASM "Enable assembler optimizations" on \
+		PTHREADS "Enable pthreads support." off \
+		OPTIMIZED_CFLAGS "Enable compilation optimizations" off
+
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
@@ -45,29 +50,12 @@ CONFIGURE_ENV=	CFLAGS+="${CFLAGS}" \
 		CPPFLAGS+="${CPPFLAGS}"
 USE_LDCONFIG=	yes
 PLIST_SUB=	INSTALL_DIR="${INSTALL_DIR}"
-
 INSTALL_DIR?=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m 755
 
 .ifndef(WITH_PTHREADS)
 CONFIGURE_ARGS+=	--without-pthreads
 .else
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS} ${PTHREAD_LIBS}"
-.endif
-
-pre-everything::
-.ifndef(WITHOUT_IPV6)
-	@${ECHO_MSG} '===> Define WITHOUT_IPV6 to disable IPv6 support'
-.endif
-.ifndef(WITHOUT_OPTIMIZED_ASM)
-	@${ECHO_MSG} '===> Define WITHOUT_OPTIMIZED_ASM to disable assembler optimizations'
-.endif
-.ifndef(WITH_PTHREADS)
-	@${ECHO_MSG} '===> Define WITH_PTHREADS to enable pthreads support'
-.endif
-	@${ECHO_MSG}
-.ifndef(WITH_OPTIMIZED_CFLAGS)
-	@${ECHO_MSG} '===> Define WITH_OPTIMIZED_CFLAGS to enable compilation optimizations'
-	@${ECHO_MSG} '===> which is known to break some platforms (e.g., alpha)'
 .endif
 
 post-patch:
@@ -79,9 +67,9 @@ post-patch:
 			s/^(SILC_DIST_SUBDIRS.+?)doc/\1/' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${PERL} -pi -e 's/ etc-install-server//; \
-			s|-cp -R \$$\(srcdir\)/tutorial \$$\(prefix\)|-mkdir -p ${EXAMPLESDIR}/mybot\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/[M-R]* ${EXAMPLESDIR}\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/mybot/[M-m]* ${EXAMPLESDIR}/mybot|; \
-			s|\$$\(distdir\)/tutorial|${EXAMPLESDIR}|; \
-			s|sim-install:$$|sim-install:\n\t-mkdir -p ${PREFIX}/lib/silcsim|; \
+			s|-cp -R \$$\(srcdir\)/tutorial \$$\(prefix\)|-mkdir -p \$$\(DESTDIR\)${EXAMPLESDIR}/mybot\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/[M-R]* \$$\(DESTDIR\)${EXAMPLESDIR}\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/mybot/[M-m]* \$$\(DESTDIR\)${EXAMPLESDIR}/mybot|; \
+			s|\$$\(distdir\)/tutorial|\$$\(DESTDIR\)${EXAMPLESDIR}|; \
+			s|sim-install:$$|sim-install:\n\t-mkdir -p \$$\(DESTDIR\)${PREFIX}/lib/silcsim|; \
 			s,doc-install-(client|server) ,,g; \
 			s, install-dirs-(client|server),,g; \
 			s, etc-install-client,,g; \
@@ -100,7 +88,7 @@ post-patch:
 WITHOUT_OPTIMIZED_ASM=	yes
 .endif
 
-.if ${OSVERSION} >= 400014 && !defined(WITHOUT_IPV6)
+.if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
