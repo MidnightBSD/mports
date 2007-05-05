@@ -3,7 +3,7 @@
 # Whom:					will
 #
 # $FreeBSD: ports/devel/viewvc/Makefile,v 1.22 2006/07/26 19:01:22 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.1 2006/11/25 00:24:13 laffer1 Exp $
 #
 
 PORTNAME=	viewvc
@@ -29,9 +29,7 @@ INSTDIR?=	${PORTNAME}
 PLIST_SUB=	INSTDIR=${INSTDIR}
 
 do-install:
-	(cd ${WRKSRC} && ${PYTHON_CMD} viewvc-install --prefix=${PREFIX}/${INSTDIR} --destdir="")
+	(cd ${WRKSRC} && ${PYTHON_CMD} viewvc-install --prefix=${TRUE_PREFIX}/${INSTDIR} --destdir=${FAKE_DESTDIR})
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
