@@ -1,9 +1,10 @@
 ====
 FreeBSD host notes:
-- needs to run as root in order to use /dev/tap* networking (why?)
-(actually RELENG_6 and above now has a sysctl net.link.tap.user_open
+- needs to run as root in order to use /dev/tap* networking 
+or use sysctl net.link.tap.user_open 
 to allow users to use it too.  don't forget to adjust device node
 permissions in /etc/devfs.rules.)
+
 - slirp (usermode networking) is fixed now in cvs, on FreeSBIE 1.0 guests
 you still have to manually do:
 	echo nameserver 10.0.2.3 >/etc/resolv.conf
@@ -57,3 +58,8 @@ rtl8139 timer by building the port with WITH_RTL8139_TIMER defined.
 default ne2k nic which is driven by ed(4), it has not been made default
 only because it may not work with all guests yet.)
 ====
+
+IMPORTANT: (MidnightBSD)
+If you receive an error message stating an invalid system call, you must have aio loaded.  
+kldload aio will do this, although you should put the network stack under GIANT lock
+using sysctl debug.mpsafenet=0
