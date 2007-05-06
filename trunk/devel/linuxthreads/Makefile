@@ -2,7 +2,7 @@
 # Date created:		14 Jan 1999
 # Whom:			Richard Seaman, Jr. <dick@tar.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/linuxthreads/Makefile,v 1.1 2006/10/01 17:01:50 laffer1 Exp $
 # $FreeBSD: ports/devel/linuxthreads/Makefile,v 1.46 2006/05/28 17:47:01 tegge Exp $
 #
 
@@ -211,20 +211,14 @@ pre-build:
 pre-su-install:
 	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m 0755 ${PREFIX}/lib
 	@cd ${WRKSRC}/libgcc_r ; \
-		${SETENV} ${MAKE_ENV} ${MAKE} install
+		${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} install
 .if defined(USING_GCC3)
 	@cd ${WRKSRC}/libstdc++ ; \
-		${SETENV} ${MAKE_ENV} ${MAKE} install
+		${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} install
 	@cd ${WRKSRC}/libsupc++ ; \
-		${SETENV} ${MAKE_ENV} ${MAKE} install
+		${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} install
 .endif
 
-post-install:
-	${SETENV} OBJFORMAT=${PORTOBJFORMAT} ${LDCONFIG} -m ${PREFIX}/lib
-	${SETENV} OBJFORMAT=${PORTOBJFORMAT} ${LDCONFIG} -m /usr/lib
-	${CAT} ${PKGMESSAGE}
-
-#	@sh ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 PLIST_SUB=	PROFILE:="@comment "
 
