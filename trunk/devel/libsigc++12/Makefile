@@ -2,7 +2,7 @@
 # Date created:        30 September 2002
 # Whom:                Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsigc++12/Makefile,v 1.1 2006/09/27 17:08:24 laffer1 Exp $
 # $FreeBSD: ports/devel/libsigc++12/Makefile,v 1.32 2006/05/16 04:27:42 mezz Exp $
 #
 
@@ -24,7 +24,7 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_GMAKE=	yes
 LATEST_LINK=	libsigc++12
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes
 
