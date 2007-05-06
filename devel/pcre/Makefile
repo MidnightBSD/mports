@@ -2,7 +2,7 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.1 2006/09/17 22:56:58 archite Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.2 2006/09/25 16:34:09 archite Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.37 2006/07/07 07:58:19 krion Exp $
 #
 
@@ -21,7 +21,7 @@ CONFLICTS?=	pcre-utf8-[0-9]*
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	*
