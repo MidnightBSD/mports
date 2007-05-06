@@ -2,7 +2,7 @@
 # Date created:			11 Jun 2004
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
-# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.2 2006/09/19 21:25:32 wintellect Exp $
+# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.3 2006/09/25 16:34:08 archite Exp $
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 #
 
@@ -46,10 +46,5 @@ post-patch:
 		< ${FILESDIR}/pkg-deinstall.in > ${PKGDEINSTALL}
 	@${SED} -e 's|%%PORT_MIMEDIRS%%|${PORT_MIMEDIRS}|' \
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .include <bsd.port.mk>
