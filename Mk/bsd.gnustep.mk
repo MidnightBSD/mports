@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.6 2007/04/17 21:07:19 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.7 2007/04/19 19:39:36 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -45,6 +45,9 @@
 #
 # Options for a port before include this file:
 # ============================================
+#
+# USE_GNUSTEP_PREFIX=yes
+#   your port installs into the GNUStep prefix
 #
 # USE_GNUSTEP_BASE=yes
 #	your port depends on the gnustep-base port.
