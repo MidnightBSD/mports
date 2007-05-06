@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.34 2007/05/03 08:44:55 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.35 2007/05/04 20:29:34 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3584,7 +3584,7 @@ fake-install:
 .	endif
 # 	This is where the old FreeBSD bsd.port.mk made the tmpplist, we'll do it
 # 	here as well so that everyone is happy.
-	@cd ${.CURDIR} && exec ${MAKE} make-tmpplist
+	@cd ${.CURDIR} && exec ${MAKE} generate-plist
 .	if target(pre-su-install)
 		@${ECHO_MSG} "===>   WARNING: pre-su-install is deprecated. Use pre-install instead."
 		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${FAKE_SETUP}
@@ -3962,7 +3962,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
 				post-fake compress-man install-rc-script install-ldconfig-file \
-				fix-fake-symlinks
+				fix-fake-symlinks finish-tmpplist
 
 _PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
@@ -5220,7 +5220,8 @@ ${i:S/-//:U}=	${WRKDIR}/${SUB_FILES:M${i}*}
 .endif
 
 # Make tmp packaing list.  This is the top level target for the entire file.
-make-tmpplist:  generate-plist add-plist-info add-plist-docs add-plist-post
+make-tmpplist:  generate-plist finish-tmpplist
+finish-tmpplist: add-plist-info add-plist-docs add-plist-post
 
 # Generate packing list.  Also tests to make sure all required package
 # files exist.
