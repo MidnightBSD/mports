@@ -2,7 +2,7 @@
 # Date created:        27 January 2000
 # Whom:                Joe Lu <JoeLu@JoeLu.m8.ntu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.1 2006/09/27 16:36:15 laffer1 Exp $
 # $FreeBSD: ports/devel/libsigc++/Makefile,v 1.25 2006/05/04 21:40:52 edwin Exp $
 #
 
@@ -20,7 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
 
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack
 
 pre-configure:
