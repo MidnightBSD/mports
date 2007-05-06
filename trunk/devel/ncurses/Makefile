@@ -2,7 +2,7 @@
 # Date created:				23 September 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.1 2006/09/26 22:56:04 archite Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.2 2007/04/19 04:47:53 laffer1 Exp $
 # $FreeBSD: ports/devel/ncurses/Makefile,v 1.39 2006/08/14 04:16:20 rafan Exp $
 #
 
@@ -251,7 +251,7 @@ post-build:
 
 post-install:
 .if !defined(WITHOUT_WIDEC)
-	${MAKE} INSTALL_WRKSRC=${WIDEC_WRKSRC} do-install
+	@cd ${WIDEC_WRKSRC} && ${MAKE} ${FAKE_MAKEARGS} install
 .endif
 
 	${INSTALL_DATA} ${WRKSRC}/misc/terminfo.src \
