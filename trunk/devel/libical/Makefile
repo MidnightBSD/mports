@@ -2,7 +2,7 @@
 # Date created:        8 November 2002
 # Whom:                Joe Kelsey
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libical/Makefile,v 1.1 2007/03/09 05:18:07 laffer1 Exp $
 # $FreeBSD: ports/devel/libical/Makefile,v 1.14 2007/02/01 02:41:28 kris Exp $
 #
 
@@ -21,7 +21,7 @@ USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .if !defined(WITHOUT_PYTHON)
 CONFIGURE_ARGS=	--enable-python=yes
