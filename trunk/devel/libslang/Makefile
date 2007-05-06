@@ -2,7 +2,7 @@
 # Date created:         11 July 1996
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libslang/Makefile,v 1.1 2006/09/25 13:38:09 laffer1 Exp $
 # $FreeBSD: ports/devel/libslang/Makefile,v 1.41 2006/08/29 15:41:00 garga Exp $
 #
 
@@ -38,9 +38,6 @@ PORTDOCS=	*
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_UTF8)
-. if ${OSVERSION} < 500000
-IGNORE=	UTF8 support doesn't work on FreeBSD < 5.x
-. endif
 
 PATCH_SITES+=	http://www.emaillab.org/mutt/tools/
 PATCHFILES+=	slang-1.4.8-utf8.diff.gz
@@ -52,7 +49,7 @@ post-patch:
 
 post-install:
 .if !defined(NOPORTDOCS)
-	@cd ${WRKSRC}/src && ${MAKE} install_docs
+	@cd ${WRKSRC}/src && ${MAKE} ${FAKE_MAKEARGS} install_docs
 .endif
 
 .include <bsd.port.post.mk>
