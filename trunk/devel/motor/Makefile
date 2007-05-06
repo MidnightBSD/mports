@@ -2,9 +2,11 @@
 # Date created:				20 February 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/motor/Makefile,v 1.1 2006/12/30 21:15:15 wintellect Exp $
 # $FreeBSD: ports/devel/motor/Makefile,v 1.24 2006/08/18 17:16:36 delphij Exp $
 #
+
+BROKEN= strndup() conflict causes build to fail.
 
 PORTNAME=	motor
 PORTVERSION=	3.4.0
