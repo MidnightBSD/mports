@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/objcunit/Makefile,v 1.1 2006/11/05 12:21:16 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.1 2007/02/14 21:23:38 laffer1 Exp $
 #
 
 PORTNAME=	objcunit
@@ -16,15 +16,13 @@ DISTNAME=	ObjcUnit-${PORTVERSION}-GNUstep
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ObjcUnit frammework for GNUstep
 
-GNUSTEP_PREFIX?=	${LOCALBASE}/GNUstep
-PREFIX=		${GNUSTEP_PREFIX}
-NO_MTREE=	yes
 WRKSRC=		${WRKDIR}/ObjcUnit-${PORTVERSION}/ObjcUnit
-USE_GMAKE=	yes
-USE_GNUSTEP=	yes
+USE_GNUSTEP=		yes
+USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=
+
+BROKEN=does not build with gnustep-make 2
 
 .include <bsd.port.mk>
