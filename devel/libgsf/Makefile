@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.2 2007/01/20 17:43:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.3 2007/03/30 17:59:27 ctriv Exp $
 #
 
 PORTNAME=	libgsf
@@ -25,7 +25,7 @@ LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME?=	gnomehack glib20 libxml2 gconf2 ltverhack intlhack
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
