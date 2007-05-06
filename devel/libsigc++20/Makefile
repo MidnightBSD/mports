@@ -2,7 +2,7 @@
 # Date created:        14 Feb 2004
 # Whom:                Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsigc++20/Makefile,v 1.1 2006/09/27 18:36:13 laffer1 Exp $
 # $FreeBSD: ports/devel/libsigc++20/Makefile,v 1.41 2006/05/04 21:40:52 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ USE_BZIP2=	yes
 USE_GCC=	3.4
 USE_GMAKE=	yes
 LATEST_LINK=	libsigc++20
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes
 
