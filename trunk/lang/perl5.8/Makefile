@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.5 2007/04/24 01:48:44 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.6 2007/05/01 01:48:53 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -24,10 +24,7 @@ PATCHFILES=	defined-or-5.8.8.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 
-PERL_VER=	5.8.8
-PERL_ARCH=	mach
-PERL_VERSION=	${PERL_VER}
-
+USE_PERL5=	yes
 USE_BZIP2=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=Configure
@@ -50,7 +47,7 @@ LOCALE_CLEANUP=	LANG="" LC_ALL="" LC_COLLATE="" LC_CTYPE="" \
 		LC_TIME=""
 CONFIGURE_ENV+=	${LOCALE_CLEANUP}
 MAKE_ENV+=	${LOCALE_CLEANUP}
-
+USE_LDCONFIG=	yes
 
 OPTIONS = DEBUGGING "Enable debugging support" Off \
 	  GDBM "Build GDBM_File extension" Off \
@@ -62,8 +59,6 @@ OPTIONS = DEBUGGING "Enable debugging support" Off \
 
 .include "Makefile.man"
 .include <bsd.port.pre.mk>
-
-PLIST_SUB+=PERL_ARCH=${PERL_ARCH}
 
 .if defined(WITH_DEBUGGING)
 CONFIGURE_ARGS+=	-Doptimize="-g" -DDEBUGGING
@@ -120,9 +115,6 @@ MAN3+=	GDBM_File.3
 .endif
 
 MAN3PREFIX=	${TARGETDIR}/lib/perl5/${PERL_VER}/perl
-
-test:
-	@(cd ${WRKSRC}; make test)
 
 BSDPAN_DEST=	${PREFIX}/lib/perl5/${PERL_VER}/BSDPAN
 BSDPAN_FILES=	BSDPAN.pm BSDPAN/Override.pm Config.pm \
