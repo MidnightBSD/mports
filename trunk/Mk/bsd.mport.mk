@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.36 2007/05/06 07:50:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.37 2007/05/07 00:55:34 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1409,7 +1409,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
 
-.if defined(USE_PERL) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 .include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
@@ -1858,7 +1858,7 @@ BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 .include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
 .endif
 
-.if defined(USE_PERL) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 .include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
