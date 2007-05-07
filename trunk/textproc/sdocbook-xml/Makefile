@@ -2,7 +2,7 @@
 # Date created:		25 December 2000
 # Whom:			KIRIYAMA Kazuhiko <kiri@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.1 2006/09/25 14:54:32 laffer1 Exp $
 # $FreeBSD: ports/textproc/sdocbook-xml/Makefile,v 1.7 2004/02/13 10:31:54 des Exp $
 #
 
@@ -51,8 +51,5 @@ do-install:
 	${INSTALL_DATA} ${FILESDIR}/catalog ${SDOCBOOKDIR}
 	${INSTALL_DATA} ${WRKDIR}/catalog.xml ${SDOCBOOKDIR}
 
-post-install:
-	${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${SDOCBOOKDIR}/catalog
-	${XMLCATMGR} -c ${CATALOG_PORTS_XML} add nextCatalog ${SDOCBOOKDIR}/catalog.xml
 
 .include <bsd.port.mk>
