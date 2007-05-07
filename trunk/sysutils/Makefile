@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.34 2007/05/07 19:45:16 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.35 2007/05/07 19:59:52 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -16,6 +16,7 @@
     SUBDIR += fusefs-kmod 
     SUBDIR += fusefs-libs 
     SUBDIR += fusefs-sshfs
+    SUBDIR += hal
     SUBDIR += kdeadmin3
     SUBDIR += libcdio
     SUBDIR += libchk
