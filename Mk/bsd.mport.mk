@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.35 2007/05/04 20:29:34 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.36 2007/05/06 07:50:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -323,34 +323,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 ##
 # USE_ICONV		- If set, this port uses libiconv.
 # USE_GETTEXT	- If set, this port uses GNU gettext (libintl).
-##
-# USE_PERL5		- If set, this port uses perl5 in one or more of the extract,
-#				  patch, build, install or run phases.
-# USE_PERL5_BUILD
-#				- If set, this port uses perl5 in one or more of the extract,
-#				  patch, build or install phases.
-# USE_PERL5_RUN	- If set, this port uses perl5 for running.
-# PERL5			- Set to full path of perl5, either in the system or
-#				  installed from a port.
-# PERL			- Set to full path of perl5, either in the system or
-#				  installed from a port, but without the version number.
-#				  Use this if you need to replace "#!" lines in scripts.
-# PERL_VERSION	- Full version of perl5 (see below for current value).
-# PERL_VER		- Short version of perl5 (see below for current value).
-# PERL_LEVEL	- Perl version as an integer of the form MNNNPP, where
-#				  M is major version, N is minor version, and P is
-#				  the patch level. E.g., PERL_VERSION=5.6.1 would give
-#				  a PERL_LEVEL of 500601. This can be used in comparisons
-#				  to determine if the version of perl is high enough,
-#				  whether a particular dependency is needed, etc.
-# PERL_ARCH		- Directory name of architecture dependent libraries
-#				  (value: ${ARCH}-freebsd).
-# PERL_PORT		- Name of the perl port that is installed
-#				  (value: perl5)
-# SITE_PERL		- Directory name where site specific perl packages go.
-#				  This value is added to PLIST_SUB.
-# PERL_MODBUILD	- Use Module::Build to configure, build and install port.
-##
+#
 # USE_GHOSTSCRIPT
 #				- If set, this port needs ghostscript to both
 #				  build and run.
@@ -834,8 +807,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: ${WRKSRC}
 # CONFIGURE_SCRIPT
 #				- Name of configure script, relative to ${CONFIGURE_WRKSRC}.
-#				  Default: "Makefile.PL" if PERL_CONFIGURE is set,
-#				  "configure" otherwise.
+#				  Default: configure
 # CONFIGURE_TARGET
 #				- The name of target to call when GNU_CONFIGURE is
 #				  defined.
@@ -843,10 +815,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # CONFIGURE_ARGS
 #				- Pass these args to configure if ${HAS_CONFIGURE} is set.
 #				  Default: "--prefix=${PREFIX} ${CONFIGURE_TARGET}" if
-#				  GNU_CONFIGURE is set, "CC=${CC} CCFLAGS=${CFLAGS}
-#				  PREFIX=${PREFIX} INSTALLPRIVLIB=${PREFIX}/lib
-#				  INSTALLARCHLIB=${PREFIX}/lib" if PERL_CONFIGURE is set,
-#				  empty otherwise.
+#				  GNU_CONFIGURE is set, empty otherwise.
 # CONFIGURE_ENV	- Pass these env (shell-like) to configure if
 #				  ${HAS_CONFIGURE} is set.
 # CONFIGURE_LOG	- The name of configure log file. It will be printed to
@@ -1435,50 +1404,13 @@ LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG} -R
 
 PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
-PERL_VERSION?=	5.8.8
-PERL_VER?=	5.8.8
-
-.if !defined(PERL_LEVEL) && defined(PERL_VERSION)
-perl_major=		${PERL_VERSION:C|^([1-9]+).*|\1|}
-_perl_minor=	00${PERL_VERSION:C|^([1-9]+)\.([0-9]+).*|\2|}
-perl_minor=		${_perl_minor:C|^.*(...)|\1|}
-.if ${perl_minor} >= 100
-perl_minor=		${PERL_VERSION:C|^([1-9]+)\.([0-9][0-9][0-9]).*|\2|}
-perl_patch=		${PERL_VERSION:C|^.*(..)|\1|}
-.else # ${perl_minor} < 100
-_perl_patch=	0${PERL_VERSION:C|^([1-9]+)\.([0-9]+)\.*|0|}
-perl_patch=		${_perl_patch:C|^.*(..)|\1|}
-.endif # ${perl_minor} < 100
-PERL_LEVEL=	${perl_major}${perl_minor}${perl_patch}
-.else
-PERL_LEVEL=0
-.endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
-
-.if ${PERL_LEVEL} >= 500600
-PERL_ARCH?=		mach
-.else
-PERL_ARCH?=		${ARCH}-freebsd
-.endif
-
-.if ${PERL_LEVEL} >= 500800
-PERL_PORT?=	perl5.8
-.else
-PERL_PORT?=	perl5
-.endif
-
-SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=	${LOCALBASE}/${SITE_PERL_REL}
-
-.if ${PERL_LEVEL} < 500600
-PERL5=		${DESTDIR}/usr/bin/perl${PERL_VERSION}
-PERL=		${DESTDIR}/usr/bin/perl
-.else
-PERL5=		${LOCALBASE}/bin/perl${PERL_VERSION}
-PERL=		${LOCALBASE}/bin/perl
-.endif
 
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
+.endif
+
+.if defined(USE_PERL) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
 .if defined(USE_OPENSSL)
@@ -1910,48 +1842,7 @@ PLIST_SUB+=			XAWVER=${XAWVER}
 BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 .endif
 
-PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
-				PERL_VER=${PERL_VER} \
-				PERL_ARCH=${PERL_ARCH} \
-				SITE_PERL=${SITE_PERL_REL}
 
-.if defined(PERL_MODBUILD)
-PERL_CONFIGURE=		yes
-CONFIGURE_SCRIPT?=	Build.PL
-.if ${PORTNAME} != Module-Build
-BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:${PORTSDIR}/devel/p5-Module-Build
-.endif
-ALL_TARGET?=
-PL_BUILD?=		Build
-CONFIGURE_ARGS+= \
-	create_packlist=0 \
-	install_path=lib="${TARGETDIR}/${SITE_PERL_REL}" \
-	install_path=arch="${TARGETDIR}/${SITE_PERL_REL}/${PERL_ARCH}" \
-	install_path=script="${TARGETDIR}/bin" \
-	install_path=bin="${TARGETDIR}/bin" \
-	install_path=libdoc="${MAN3PREFIX}/man/man3" \
-	install_path=bindoc="${MAN1PREFIX}/man/man1"
-.elif defined(PERL_CONFIGURE)
-CONFIGURE_ARGS+=	INSTALLDIRS="site"
-.endif
-
-.if defined(PERL_CONFIGURE)
-USE_PERL5=	yes
-.if (defined(BATCH) && !defined(IS_INTERACTIVE))
-CONFIGURE_ENV+=	PERL_MM_USE_DEFAULT="YES"
-.endif
-.endif
-
-.if ${PERL_LEVEL} >= 500600
-.if defined(USE_PERL5) || defined(USE_PERL5_BUILD)
-EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-BUILD_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-.endif
-.if defined(USE_PERL5) || defined(USE_PERL5_RUN)
-RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
-.endif
-.endif
 
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
@@ -1965,6 +1856,10 @@ RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 
 .if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER80)
 .include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
+.endif
+
+.if defined(USE_PERL) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
 .if defined(USE_JAVA)
@@ -2779,13 +2674,6 @@ PKGBASE?=			${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 LATEST_LINK?=		${PKGBASE}
 PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
-.if defined(PERL_CONFIGURE)
-CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" PREFIX="${TARGETDIR}" \
-			INSTALLPRIVLIB="${TARGETDIR}/lib" INSTALLARCHLIB="${TARGETDIR}/lib"
-CONFIGURE_SCRIPT?=	Makefile.PL
-MAN3PREFIX?=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
-.undef HAS_CONFIGURE
-.endif
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd6.0
@@ -3521,19 +3409,6 @@ do-configure:
 			 ${FALSE}; \
 		fi)
 .endif
-.if defined(PERL_CONFIGURE)
-	@cd ${CONFIGURE_WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} \
-		${PERL5} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}
-.if !defined(PERL_MODBUILD)
-	@cd ${CONFIGURE_WRKSRC} && \
-		${PERL5} -pi -e 's/ doc_(perl|site|\$$\(INSTALLDIRS\))_install$$//' Makefile
-.if ${PERL_LEVEL} <= 500503
-	@cd ${CONFIGURE_WRKSRC} && \
-		${PERL5} -pi -e 's/^(INSTALLSITELIB|INSTALLSITEARCH|SITELIBEXP|SITEARCHEXP|INSTALLMAN1DIR|INSTALLMAN3DIR) = \/usr\/local/$$1 = \$$(PREFIX)/' Makefile
-.endif
-.endif
-.endif
 .if defined(USE_IMAKE)
 	@(cd ${CONFIGURE_WRKSRC}; ${SETENV} ${MAKE_ENV} ${XMKMF})
 .endif
@@ -3546,11 +3421,7 @@ do-build:
 .if defined(USE_GMAKE)
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .else
-.if defined(PERL_MODBUILD)
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${MAKE_ARGS} ${ALL_TARGET})
-.else
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
-.endif
 .endif
 .endif
 
@@ -3592,19 +3463,13 @@ fake-install:
 .	if target(do-install)
 		@cd ${.CURDIR} && exec ${MAKE} do-install ${FAKE_SETUP}
 .	else
-# 	Handle Module::Build
-.	    if defined(PERL_MODBUILD) 
-		 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5}\
-		    	 ${PL_BUILD} ${MAKE_ARGS} --destdir ${FAKE_DESTDIR} ${FAKE_TARGET}
-.	    else 
-# 			Normal builds.
+#	Normal builds.
+		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
+			${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
+.		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
 			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-		 		${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
-.			if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-				@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-					${_MAKE_CMD} ${FAKE_FLAGS} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
-.			endif
-.	    endif
+				${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
+.		endif
 .	endif
 .	if target(post-install)
 		@cd ${.CURDIR} && exec ${MAKE} post-install ${FAKE_SETUP}
@@ -3622,7 +3487,6 @@ fix-fake-symlinks:
 		fi; \
 		source=`readlink $$link | ${SED} -e 's|${FAKE_DESTDIR}||'`; \
 		${RM} $$link; \
-		echo "${LN} -s $$source $$link"; \
 		${LN} -s $$source $$link; \
 	done 
 .	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
@@ -5314,16 +5178,16 @@ add-plist-docs:
 		fi
 .		for x in ${PORTDOCS}
 			@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-				if [ ! -e ${DOCSDIR}/${x} ]; then \
-					${ECHO_CMD} ${DOCSDIR}/${x} | \
+				if [ ! -e ${FAKE_DESTDIR}${DOCSDIR}/${x} ]; then \
+					${ECHO_CMD} ${FAKE_DESTDIR}${DOCSDIR}/${x} | \
 					${SED} -e 's,^${TARGETDIR}/,,' >> ${TMPPLIST}; \
 				fi; \
 			fi
 .		endfor
-		@${FIND} -P ${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
-			${SED} -ne 's,^${TARGETDIR}/,,p' >> ${TMPPLIST}
-		@${FIND} -P -d ${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
-			${SED} -ne 's,^${TARGETDIR}/,@dirrm ,p' >> ${TMPPLIST}
+		@${FIND} -P ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
+			${SED} -ne 's,^${FAKE_DESTDIR}${TARGETDIR}/,,p' >> ${TMPPLIST}
+		@${FIND} -P -d ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
+			${SED} -ne 's,^${FAKE_DESTDIR}${TARGETDIR}/,@dirrm ,p' >> ${TMPPLIST}
 		@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${TARGETDIR}/,,}" >> ${TMPPLIST}
 .	else
 		@${DO_NADA}
@@ -5341,7 +5205,7 @@ add-plist-info:
 			@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
 				>> ${TMPPLIST}
 			@if [ "`${DIRNAME} $i`" != "." ]; then \
-				${ECHO_CMD} "@unexec ${RMDIR} %D/info/`${DIRNAME} $i` 2> /dev/null || true" >> ${TMPPLIST}; \
+				${ECHO_CMD} "@dirrmtry info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
 			fi
 .		endfor
 
@@ -5350,7 +5214,7 @@ add-plist-info:
 				 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
 
 .			if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
-				@${ECHO_CMD} "@unexec rmdir %D/info 2> /dev/null || true" >> ${TMPPLIST}
+				@${ECHO_CMD} "@dirrmtry rmdir info/" >> ${TMPPLIST}
 .			endif
 
 .		endif
