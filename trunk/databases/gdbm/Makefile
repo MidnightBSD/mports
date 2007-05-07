@@ -2,13 +2,13 @@
 # Date created:		8 Apr 1996
 # Whom:			Brent J. Nordquist <bjn@visi.com>
 #
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.1 2007/01/20 15:11:20 wintellect Exp $
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.2 2007/04/03 18:35:20 laffer1 Exp $
 # $FreeBSD: ports/databases/gdbm/Makefile,v 1.35 2006/12/08 13:46:26 gabor Exp $
 #
 
 PORTNAME=	gdbm
 PORTVERSION=	1.8.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
