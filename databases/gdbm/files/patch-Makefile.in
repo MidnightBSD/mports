@@ -1,0 +1,88 @@
+--- Makefile.in.bak	Sun May  6 22:19:11 2007
++++ Makefile.in	Sun May  6 22:31:08 2007
+@@ -15,8 +15,8 @@
+ INSTALL_DATA = @INSTALL_DATA@
+ 
+ # File ownership and group
+-BINOWN = bin
+-BINGRP = bin
++BINOWN = root
++BINGRP = wheel
+ 
+ MAKEINFO = makeinfo
+ TEXI2DVI = texi2dvi
+@@ -24,7 +24,7 @@
+ DEFS =
+ 
+ # Where the system [n]dbm routines are...
+-LIBS = @LIBS@ -lc
++LIBS = @LIBS@
+ 
+ CFLAGS = @CFLAGS@
+ LDFLAGS = @LDFLAGS@
+@@ -122,31 +122,31 @@
+ 
+ DISTFILES = $(SRCS) $(HDRS) $(MSCFILES)
+ 
+-all: libgdbm.la libgdbm_compat.la
++all: libgdbm.la libgdbm_compat.la gdbm.info
+ 
+ progs: $(PROGS)
+ 
+ install: libgdbm.la gdbm.h gdbm.info
+-	$(srcdir)/mkinstalldirs $(INSTALL_ROOT)$(libdir) \
+-		$(INSTALL_ROOT)$(includedir) $(INSTALL_ROOT)$(man3dir) \
++	$(srcdir)/mkinstalldirs ${DESTDIR)$(INSTALL_ROOT)$(libdir) \
++		${DESTDIR}$(INSTALL_ROOT)$(includedir) ${DESTDIR}$(INSTALL_ROOT)$(man3dir) \
+ 		$(INSTALL_ROOT)$(infodir)
+-	$(LIBTOOL) $(INSTALL) -c libgdbm.la $(INSTALL_ROOT)$(libdir)/libgdbm.la
++	$(LIBTOOL) $(INSTALL) -c libgdbm.la ${DESTDIR}$(INSTALL_ROOT)$(libdir)/libgdbm.la
+ 	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) gdbm.h \
+-		$(INSTALL_ROOT)$(includedir)/gdbm.h
++		${DESTDIR}$(INSTALL_ROOT)$(includedir)/gdbm.h
+ 	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/gdbm.3 \
+-		$(INSTALL_ROOT)$(man3dir)/gdbm.3
++		${DESTDIR}$(INSTALL_ROOT)$(man3dir)/gdbm.3
+ 	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/gdbm.info \
+-		$(INSTALL_ROOT)$(infodir)/gdbm.info
++		${DESTDIR}$(INSTALL_ROOT)$(infodir)/gdbm.info
+ 
+ install-compat:
+-	$(srcdir)/mkinstalldirs $(INSTALL_ROOT)$(libdir) \
+-		$(INSTALL_ROOT)$(includedir)
++	$(srcdir)/mkinstalldirs ${DESTDIR}$(INSTALL_ROOT)$(libdir) \
++		${DESTDIR}$(INSTALL_ROOT)$(includedir)
+ 	$(LIBTOOL) $(INSTALL) -c libgdbm_compat.la \
+-		$(INSTALL_ROOT)$(libdir)/libgdbm_compat.la
++		${DESTDIR}$(INSTALL_ROOT)$(libdir)/libgdbm_compat.la
+ 	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/dbm.h \
+-		$(INSTALL_ROOT)$(includedir)/dbm.h
++		${DESTDIR}$(INSTALL_ROOT)$(includedir)/dbm.h
+ 	$(INSTALL_DATA) -o $(BINOWN) -g $(BINGRP) $(srcdir)/ndbm.h \
+-		$(INSTALL_ROOT)$(includedir)/ndbm.h
++		${DESTDIR}$(INSTALL_ROOT)$(includedir)/ndbm.h
+ 
+ #libgdbm.a: $(OBJS) gdbm.h
+ #	rm -f libgdbm.a
+@@ -174,8 +174,8 @@
+ testgdbm: testgdbm.o libgdbm.la @LIBOBJS@
+ 	$(LIBTOOL) $(CC) $(LDFLAGS) -o testgdbm testgdbm.o libgdbm.la @LIBOBJS@
+ 
+-testdbm: testdbm.o libgdbm.la libgdbm_compat.la
+-	$(LIBTOOL) $(CC) $(LDFLAGS) -o testdbm testdbm.o libgdbm.la libgdbm_compat.la
++testdbm: testdbm.o libgdbm.la libgdbm_compat.la gdbm.info
++	$(LIBTOOL) $(CC) $(LDFLAGS) -o testdbm testdbm.o libgdbm.la libgdbm_compat.la gdbm.info
+ 
+ tdbm: testdbm.o
+ 	$(CC) $(LDFLAGS) -o tdbm testdbm.o $(LIBS)
+@@ -183,8 +183,8 @@
+ testndbm.o: testndbm.c
+ 	$(CC) -c -I. -I$(srcdir) $(CFLAGS) $(DEFS) -DGNU $(srcdir)/testndbm.c
+ 
+-testndbm: testndbm.o libgdbm.la libgdbm_compat.la
+-	$(LIBTOOL) $(CC) $(LDFLAGS) -o testndbm testndbm.o libgdbm.la libgdbm_compat.la
++testndbm: testndbm.o libgdbm.la libgdbm_compat.la gdbm.info
++	$(LIBTOOL) $(CC) $(LDFLAGS) -o testndbm testndbm.o libgdbm.la libgdbm_compat.la gdbm.info
+ 
+ tndbm.o: testndbm.c
+ 	cp $(srcdir)/testndbm.c ./tndbm.c
