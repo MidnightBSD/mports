@@ -50,26 +50,9 @@ OPTIONS=	IPV6 "Enable functionality over IPv6 transport" on
 RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
 .endif
 
-.if ${PERL_LEVEL} < 500600
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/IO/Socket/INET.pm:${PORTSDIR}/devel/p5-IO
-post-patch:
-	${PERL} -pi -e 's/=(.*);/\($$1\);/ if m{errorstring}' ${WRKSRC}/lib/Net/DNS/Resolver/Recurse.pm
-.endif
-
-.if ${PERL_LEVEL} < 500800
-PLIST_SUB+=	BYTES_INSTALL=""
-.else
-PLIST_SUB+=	BYTES_INSTALL="@comment "
-.endif
-
 DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS
 
 post-install:
-.if ${PERL_LEVEL} < 500800
-.for file in bytes.pm bytes_heavy.pl
-	${INSTALL_DATA} ${FILESDIR}/${file} ${SITE_PERL}
-.endfor
-.endif
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for doc in Changes README TODO
