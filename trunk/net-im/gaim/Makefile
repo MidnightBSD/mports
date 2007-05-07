@@ -2,13 +2,13 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.2 2007/03/11 09:01:30 archite Exp $
+# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.3 2007/03/25 01:29:07 ctriv Exp $
 # $FreeBSD: ports/net-im/gaim/Makefile,v 1.190 2006/08/26 19:15:08 garga Exp $
 #
 
 PORTNAME=	gaim
 PORTVERSION=	1.5.0
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES?=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -18,15 +18,16 @@ COMMENT=	Multi-protocol instant messaging client
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
-CONFLICTS?=	ja-gaim-[0-9]*
+CONFLICTS?=	ja-gaim-[0-9]* pidgin-[0-9]* libpurple-[0-9]*
 
+USE_AUTOTOOLS=  libtool:15
 USE_XLIB=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20
 WANT_GNOME=	yes
 USE_BZIP2=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static=yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include ${PTHREAD_CFLAGS}" \
