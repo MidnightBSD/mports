@@ -2,7 +2,7 @@
 # Date created:		11 September 1994
 # Whom:			jkh
 #
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
 # $FreeBSD: ports/devel/gmake/Makefile,v 1.62 2006/06/29 22:39:05 ade Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	GNU version of 'make' utility
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=--program-prefix=g
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
