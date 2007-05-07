@@ -2,7 +2,7 @@
 # Date created:		26 Jan 1998
 # Whom:			griffin
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/bitchx/Makefile,v 1.1 2007/03/22 18:49:01 laffer1 Exp $
 # $FreeBSD: ports/irc/bitchx/Makefile,v 1.82 2007/03/05 00:15:24 linimon Exp $
 #
 
@@ -18,10 +18,19 @@ EXTRACT_ONLY=	ircii-pana-${PORTVERSION}-final${EXTRACT_SUFX}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	An alternative ircII color client with optional GTK/GNOME support
 
+OPTIONS=	XMMS "Build BitchX with XMMS-Plugin" off \
+		PLUGINS "Build BitchX with addition plugins" off \
+		LATIN "Improved ISO-8859-1 display support" off \
+		TCL "Build BitchX with TCL scripting" off \
+		SOCKS5 "Enable SOCKS5 support" off \
+		SSL "Enable SSL support" off \
+		IPV6 "Enable IPv6 support" off \
+		GNOME "Build BitchX with Gtk-Frontend" off \
+		
+
 WRKSRC=		${WRKDIR}/BitchX
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-#WANT_GNOME=	yes
 USE_GMAKE=	yes
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=--exec-prefix="${PREFIX}/share" \
@@ -34,15 +43,10 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 MAN1=		BitchX.1
 
-#OPTIONS=	ESOND "With ESOUND support" off \
-#		GNOME "With GTK/GNOME1 Frontend" off \
-#		IPV6 "With IPV6 support" off \
-#		LATIN "Recommended if you are using an ISO-8859-1 display" off \
-#		PLUGINS "With BitchX Plugins" off \
-#		SOCKS5 "With SOCKS5 support" off \
-#		SSL "With SSL" off \
-#		TCL "With TCL support" off \
-#		XMMS "With XMMS plugin" off
+# This is an awful hack, but so is the rest of bitchx.
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} exec_prefix=${FAKE_DESTDIR}${PREFIX}/share \
+		datadir=${FAKE_DESTDIR}${PREFIX}/share libdir=${FAKE_DESTDIR}${PREFIX}/share \
+		bindir=${FAKE_DESTDIR}${PREFIX}/bin
 
 .if defined(WITH_GNOME)
 BROKEN=	"Gnome is not current supported."
@@ -121,7 +125,7 @@ PLUGINS=	abot,acro,aim,arcfour,autocycle,blowfish,cavlink,encrypt,fserv,hint,ide
 .endif
 
 .if (defined(WITH_PLUGINS) || defined(WITH_XMMS))
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 CONFIGURE_ARGS+=	--with-plugins=${PLUGINS}
 .endif
 CONFIGURE_ENV+=		CFLAGS="${CFLAGS}"
@@ -136,35 +140,6 @@ pre-fetch:
 .endif # BATCH
 
 .endif # WITH_TCL
-
-pre-extract:
-	@${ECHO_CMD} "Available switches:"
-	@${ECHO_CMD} "-------------------"
-.if !defined (WITH_XMMS)
-	@${ECHO_CMD} "WITH_XMMS    - Building BitchX with XMMS-Plugin"
-.endif
-.if !defined(WITH_PLUGINS)
-	@${ECHO_CMD} "WITH_PLUGINS - Building BitchX with some other plugins"
-.endif
-.if !defined(WITH_LATIN)
-	@${ECHO_CMD} "WITH_LATIN   - Recommended if you are using an ISO-8859-1 display"
-.endif
-.if !defined(WITH_TCL)
-	@${ECHO_CMD} "WITH_TCL     - Build BitchX with TCL scripting"
-.endif
-.if !defined(WITH_SOCKS5)
-	@${ECHO_CMD} "WITH_SOCKS5  - Build BitchX with SOCKS5 support"
-.endif
-.if !defined(WITH_SSL)
-	@${ECHO_CMD} "WITH_SSL	   - Build BitchX with SSL support"
-.endif
-.if !defined(WITH_IPV6)
-	@${ECHO_CMD} "WITH_IPV6    - Build BitchX with IPV6 support"
-	@${ECHO_CMD} "               (Please Note: /detach crashes BitchX with IPv6)"
-.endif
-.if !defined(WITH_GNOME)
-	@${ECHO_CMD} "WITH_GNOME   - Build BitchX with Gtk-Frontend"
-.endif
 
 .if defined(WITH_TCL)
 
