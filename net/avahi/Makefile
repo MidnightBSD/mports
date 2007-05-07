@@ -2,7 +2,7 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/avahi/Makefile,v 1.1 2007/05/07 02:50:46 laffer1 Exp $
 # $FreeBSD: ports/net/avahi/Makefile,v 1.45 2007/02/10 23:34:58 marcus Exp $
 #    $MCom: ports/net/avahi/Makefile,v 1.19 2006/10/12 16:44:41 marcus Exp $
 
@@ -89,10 +89,6 @@ post-patch:
 		${WRKSRC}/initscript/freebsd/avahi-dnsconfd.sh.in \
 		${WRKSRC}/initscript/freebsd/avahi-daemon.sh.in
 
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .endif
 
