@@ -2,7 +2,7 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.1 2007/05/07 04:38:51 laffer1 Exp $
 # $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
 #   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
 #
@@ -176,18 +176,18 @@ CONFIGURE_ARGS+=	--disable-dbus
 PLIST_SUB+=		DBUS="@comment not installed: "
 .endif
 
-#.if defined(WITH_PERL) && ${PERL_LEVEL} >= 500800
-#USE_PERL5=		yes
-#CONFIGURE_ARGS+=	--with-perl-lib=site
-#PLIST_SUB+=		PERL:=""
-#.if !defined(PIDGIN_SLAVE)
-#MAN3PREFIX=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
-#MAN3+=			Purple.3
-#.endif
-#.else
+.if defined(WITH_PERL)
+USE_PERL5=		yes
+CONFIGURE_ARGS+=	--with-perl-lib=site
+PLIST_SUB+=		PERL:=""
+.if !defined(PIDGIN_SLAVE)
+MAN3PREFIX=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
+MAN3+=			Purple.3
+.endif
+.else
 CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=		PERL:="@comment not installed: "
-#.endif
+.endif
 
 .if defined(WITH_GTKUI) && !defined(WITHOUT_GTKSPELL)
 LIB_DEPENDS+=		gtkspell.0:${PORTSDIR}/textproc/gtkspell
@@ -196,9 +196,6 @@ CONFIGURE_ARGS+=	--disable-gtkspell
 .endif
 
 pre-everything::
-#.if defined(WITH_PERL) && ${PERL_LEVEL} < 500800
-#	@${ECHO_MSG} "WARNING: Perl scripting disabled (Perl 5.8 requirement not met)."
-#.endif
 .if defined(WITHOUT_GNUTLS) && defined(WITHOUT_NSS)
 	@${ECHO_MSG} "WARNING: In order to use MSN, you must enable the GNUTLS and/or NSS options."
 .endif
