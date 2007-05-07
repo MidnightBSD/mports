@@ -2,7 +2,7 @@
 # Date created:		1 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile.common,v 1.2 2007/04/19 15:48:42 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-seamonkey/Makefile.common,v 1.3 2007/04/28 06:10:46 laffer1 Exp $
 # $FreeBSD: ports/www/linux-seamonkey/Makefile.common,v 1.7 2006/08/03 13:33:43 sat Exp $
 #
 
@@ -52,7 +52,7 @@ do-install:
 	@${CP} -pR ${WRKSRC}/ ${FDIR}/
 	@${CHOWN} -R ${BINOWN}:${BINGRP} ${FDIR}/
 	@${ECHO_CMD} '#!/bin/sh' > ${WRKDIR}/${APP_NAME}-run
-	@${ECHO_CMD} 'exec ${PREFIX}/lib/${PORTNAME} "$$@"' >> ${WRKDIR}/${APP_NAME}-run
+	@${ECHO_CMD} 'exec ${LOCALBASE}/lib/${PKGNAMEPREFIX}${PORTNAME}/${PORTNAME} "$$@"' >> ${WRKDIR}/${APP_NAME}-run
 	@${INSTALL_SCRIPT} ${WRKDIR}/${APP_NAME}-run ${PREFIX}/bin/${APP_NAME}
 	@${CP} -R ${LOCALBASE}/lib/npapi/symlinks/${APP_NAME}/ \
 		${FDIR}/plugins/ ${_Q}
