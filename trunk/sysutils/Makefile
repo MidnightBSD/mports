@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.33 2007/04/28 03:31:19 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.34 2007/05/07 19:45:16 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -7,6 +7,7 @@
     SUBDIR += bsdstats
     SUBDIR += cdrtools
     SUBDIR += coreutils
+    SUBDIR += dmidecode
     SUBDIR += dvdbackup
     SUBDIR += etoile-behavior
     SUBDIR += etoile-installer
