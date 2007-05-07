@@ -2,7 +2,7 @@
 # Date created:                        	10 June 2003
 # Whom:                                 Peter van Dijk <peter@dataloss.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.1 2006/10/22 19:39:57 wintellect Exp $
 # $FreeBSD: ports/irc/bitlbee/Makefile,v 1.26 2006/08/12 09:52:53 miwi Exp $
 #
 
@@ -55,6 +55,5 @@ pre-install:
 post-install:
 	@${CP} ${WRKSRC}/bitlbee.conf ${PREFIX}/etc/bitlbee/bitlbee.conf.orig
 	@${CP} ${WRKSRC}/motd.txt ${PREFIX}/etc/bitlbee/motd.txt.orig
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
