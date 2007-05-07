@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.1 2007/05/07 21:21:59 laffer1 Exp $
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #
@@ -100,9 +100,6 @@ pre-configure:
 		${ECHO_CMD} "${PKGNAME}: bind installed with PORT_REPLACES_BASE_BIND causes build problems."; \
 		${FALSE}; \
 	fi
-
-post-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
 
