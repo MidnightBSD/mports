@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/mozilla/Makefile,v 1.2 2007/03/13 19:57:08 archite Exp $
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
@@ -31,7 +31,14 @@ MAKE_ENV=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
 ALL_TARGET=	default
 
 CONFIGURE_ENV=	LOCALBASE=${LOCALBASE}
-CONFIGURE_ARGS+= i386-freebsd6.1
+
+.include <bsd.port.pre.mk>
+
+.if (${ARCH} == "amd64")
+CONFIGURE_ARGS+= x86_64-midnightbsd-freebsd
+.else
+CONFIGURE_ARGS+= ${ARCH}-midnightbsd-freebsd
+.endif
 
 MOZ_EXTENSIONS=	default
 MOZ_EXPORT+=	MOZ_INTERNAL_LIBART_LGPL=1
@@ -56,8 +63,6 @@ GECKO_PLIST_PRE_FILES=	lib/${MOZILLA}/defaults/isp/US/movemail.rdf \
 GECKO_PLIST_PRE_DIRS=	lib/${MOZILLA}/defaults/isp/US/ \
 			lib/${MOZILLA}/defaults/isp
 .endif
-
-.include <bsd.port.pre.mk>
 
 # libart patches
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch2-nsSVGLibartGlyphMetricsFT.cpp
