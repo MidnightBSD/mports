@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.128 2007/05/07 18:50:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.129 2007/05/07 20:04:50 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -45,6 +45,7 @@
     SUBDIR += glib20
     SUBDIR += glibmm
     SUBDIR += gmake
+    SUBDIR += gnome-vfs
     SUBDIR += gnu-autoconf
     SUBDIR += gnu-automake
     SUBDIR += gnustep

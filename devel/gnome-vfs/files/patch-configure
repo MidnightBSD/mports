@@ -1,0 +1,54 @@
+--- configure.orig	Mon Feb 12 14:15:37 2007
++++ configure	Mon Feb 12 14:15:37 2007
+@@ -5708,7 +5708,7 @@ fi
+ 
+ 
+ for ac_header in sys/types.h sys/stat.h stdlib.h string.h memory.h strings.h \
+-		  inttypes.h stdint.h unistd.h
++		  inttypes.h stdint.h unistd.h sys/sysmacros.h
+ do
+ as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
+ echo "$as_me:$LINENO: checking for $ac_header" >&5
+@@ -22101,6 +22101,8 @@ echo $ECHO_N "checking for LC_MESSAGES..
+ if test "${am_cv_val_LC_MESSAGES+set}" = set; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
++  ac_check_lib_save_LIBS=$LIBS
++  LIBS="-lintl  $LIBS"
+   cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+@@ -22147,6 +22149,7 @@ am_cv_val_LC_MESSAGES=no
+ fi
+ rm -f conftest.err conftest.$ac_objext \
+       conftest$ac_exeext conftest.$ac_ext
++LIBS=$ac_check_lib_save_LIBS
+ fi
+ echo "$as_me:$LINENO: result: $am_cv_val_LC_MESSAGES" >&5
+ echo "${ECHO_T}$am_cv_val_LC_MESSAGES" >&6
+@@ -23612,6 +23615,7 @@ if test `eval echo '${'$as_ac_var'}'` = 
+   cat >>confdefs.h <<_ACEOF
+ #define `echo "HAVE_$ac_func" | $as_tr_cpp` 1
+ _ACEOF
++ LIBS="-lintl $LIBS"
+  have_ngettext=yes
+ else
+   echo "$as_me:$LINENO: checking for ngettext in -lintl" >&5
+@@ -33364,7 +33368,7 @@ if test "${openssl_libs+set}" = set; the
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+ 
+-		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto -ldl"
++		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto"
+ 		cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+@@ -33662,7 +33666,7 @@ if test "${openssl_libs+set}" = set; the
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+ 
+-		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto -ldl"
++		LDFLAGS="$LDFLAGS -L$with_openssl_libs -lssl -lcrypto"
+ 		cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
