@@ -1,6 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/mozilla/bsd.gecko.mk,v 1.18 2006/11/01 13:20:10 ahze Exp $
 #    $MCom: ports-stable/www/mozilla/bsd.gecko.mk,v 1.3 2006/10/24 17:48:39 ahze Exp $
 #
@@ -16,8 +17,7 @@
 #.if defined(_POSTMKINCLUDED) && !defined(Gecko_Pre_Include)
 
 # Please make sure all changes to this file are passed through the maintainer.
-# Do not commit them yourself (unless of course you're the Port's Wraith ;).
-Gecko_Include_MAINTAINER=		gnome@FreeBSD.org
+Gecko_Include_MAINTAINER=		ports@MidnightBSD.org
 Gecko_Pre_Include=			bsd.gecko.mk
 
 
