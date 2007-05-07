@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.28 2007/03/21 01:29:10 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.29 2007/05/07 18:35:00 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -15,6 +15,7 @@
     SUBDIR += dovecot
     SUBDIR += fetchmail
     SUBDIR += gnumail
+    SUBDIR += hashcash
     SUBDIR += linux-thunderbird
     SUBDIR += msmtp
     SUBDIR += mutt
