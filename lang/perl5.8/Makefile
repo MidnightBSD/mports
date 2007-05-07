@@ -2,12 +2,12 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.6 2007/05/01 01:48:53 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.7 2007/05/07 04:51:18 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
 PORTNAME=	perl
-PORTVERSION=	${PERL_VER}
+PORTVERSION=	5.8.8
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN} \
 		${MASTER_SITE_LOCAL:S/$/:local/} \
@@ -24,7 +24,26 @@ PATCHFILES=	defined-or-5.8.8.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 
-USE_PERL5=	yes
+#
+# We have to define these vars ourselves, if we use bsd.perl.mk, we create a cirular
+# dependancy.
+#
+PERL_VER=	${PORTVERSION}
+PERL_VERSION=	${PERL_VER}
+PERL_ARCH?=	mach
+SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
+SITE_PERL?=	${PREFIX}/${SITE_PERL_REL}
+PERL5=		${PREFIX}/bin/perl${PERL_VERSION}
+PERL=		${PREFIX}/bin/perl
+
+
+PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
+		PERL_VER=${PERL_VER} \
+		PERL_ARCH=${PERL_ARCH} \
+		SITE_PERL=${SITE_PERL_REL}
+
+
+
 USE_BZIP2=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=Configure
@@ -166,6 +185,9 @@ post-install:
 	${INSTALL} ${COPY} -o ${BINOWN} -g ${BINGRP} -m ${NOBINMODE} \
 		${BSDPAN_WRKSRC}/${files} ${BSDPAN_DEST}/${files}
 .endfor
+
+test:
+	@cd ${WRKSRC} && ${MAKE} test
 	
 rebuild-xs:
 	${LOCALBASE}/sbin/portupgrade -f `(${FIND} ${PKG_DBDIR}/p5*/+CONTENTS | \
