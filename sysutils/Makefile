@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.32 2007/04/27 21:15:15 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.33 2007/04/28 03:31:19 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -28,6 +28,7 @@
     SUBDIR += p5-File-Which
     SUBDIR += p5-Sys-Hostname-Long
     SUBDIR += php5-posix
+    SUBDIR += policykit
     SUBDIR += pwgen
     SUBDIR += screen
     SUBDIR += searchmonkey
