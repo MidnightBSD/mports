@@ -34,6 +34,7 @@ bin/s2p
 bin/splain
 %%ENABLE_SUIDPERL%%bin/suidperl
 bin/xsubpp
+lib/libperl.so
 lib/perl5/%%PERL_VER%%/AnyDBM_File.pm
 lib/perl5/%%PERL_VER%%/Attribute/Handlers.pm
 lib/perl5/%%PERL_VER%%/AutoLoader.pm
