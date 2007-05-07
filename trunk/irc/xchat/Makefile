@@ -2,7 +2,7 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.1 2007/02/19 23:05:09 laffer1 Exp $
 # $FreeBSD: ports/irc/xchat/Makefile,v 1.122 2006/11/28 14:44:41 pav Exp $
 #    $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
@@ -18,6 +18,13 @@ DISTNAME=	xchat-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
+
+OPTIONS=	PYTHON "Enable Python support" Off \
+		SOCKS "Enable SOCKS5 proxy support" Off \
+		TCL "Enable TCL suppoer" Off \
+		PERL "Enable perl support" On \
+		DBUS "Enable dbus support" On \
+		GTKSPELL "Enable spell-checking" On \
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -80,7 +87,7 @@ CONFIGURE_ARGS+=--disable-spell
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 500600 || defined(WITHOUT_PERL)
+.if defined(WITHOUT_PERL)
 CONFIGURE_ARGS+=--disable-perl
 PLIST_SUB+=	PERL="@comment "
 .else
@@ -89,36 +96,8 @@ CONFIGURE_ARGS+=--enable-perl
 PLIST_SUB+=	PERL=""
 .endif
 
-pre-everything::
-.if !defined(WITH_PYTHON) || !defined(WITH_SOCKS) || !defined(WITH_TCL) || !defined(WITHOUT_PERL) || !defined(WITHOUT_DBUS) || !defined(WITHOUT_GTKSPELL)
-	@${ECHO_MSG} "You may specify the following on the command line:"
-	@${ECHO_MSG} ""
-.endif
-.if !defined(WITH_PYTHON)
-	@${ECHO_MSG} "WITH_PYTHON=yes for Python support"
-.endif
-.if !defined(WITH_SOCKS)
-	@${ECHO_MSG} "WITH_SOCKS=yes for SOCKS5 proxy support"
-.endif
-.if !defined(WITH_TCL)
-	@${ECHO_MSG} "WITH_TCL=yes for tcl support"
-.endif
-.if !defined(WITHOUT_PERL)
-	@${ECHO_MSG} "WITHOUT_PERL=yes to disable Perl support"
-.endif
-.if !defined(WITHOUT_DBUS)
-	@${ECHO_MSG} "WITHOUT_DBUS=yes to disable dbus support"
-.endif
-.if !defined(WITHOUT_GTKSPELL)
-	@${ECHO_MSG} "WITHOUT_GTKSPELL=yes to disable spell check support"
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|PY_LIBS=.*|PY_LIBS="-L\$$PY_EXEC_PREFIX/lib/python\$$PY_VER/config -lpython\$$PY_VER ${PTHREAD_LIBS} -lutil"|' \
 		${WRKSRC}/configure
-
-# Create plugins directory even when no plugins are installed
-post-install:
-	@${MKDIR} ${PREFIX}/lib/xchat/plugins
 
 .include <bsd.port.post.mk>
