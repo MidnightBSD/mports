@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/mozilla/Makefile,v 1.3 2007/05/07 16:04:59 laffer1 Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile,v 1.4 2007/05/08 00:11:32 ctriv Exp $
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
@@ -51,7 +51,7 @@ NOT_FOR_ARCHS=	ia64
 OPTIONS=CALENDAR "Enable the Calendar module" off \
 	MAILNEWS "Enable Mail and News modules" on \
 	COMPOSER "Enable the HTML Composer module" on \
-	LDAP "Enable LDAP support for Mailnews" on \
+	LDAP "Enable LDAP for Mailnews (broken)" off \
 	CHATZILLA "Enable the Chatzilla IRC module" on \
 	XMLTERM "Enable the XMLTerm module" on \
 	JAVASCRIPT_DEBUGGER "Enable DTD and JavaScript debuggers" off \
