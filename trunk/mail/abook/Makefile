@@ -2,7 +2,7 @@
 # Date created:				June 6th 2000
 # Whom:	      				Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/abook/Makefile,v 1.1 2006/12/20 22:04:50 wintellect Exp $
 # $FreeBSD: ports/mail/abook/Makefile,v 1.21 2006/08/10 01:30:07 clsung Exp $
 #
 
@@ -36,7 +36,10 @@ PORTDOCS=	ANNOUNCE AUTHORS BUGS ChangeLog FAQ INSTALL NEWS README \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 500000 || exists(${LOCALBASE}/lib/libreadline.so.5)
+
+# Add readline as dependency when it is already installed. The program
+#  will link against it if installed.
+.if exists(${LOCALBASE}/lib/libreadline.so.5)
 LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
 .endif
 
