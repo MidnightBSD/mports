@@ -2,12 +2,12 @@
 # Date created:         04 Feb 2003
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/gworkspace/Makefile,v 1.1 2007/03/09 06:12:47 laffer1 Exp $
 # $FreeBSD: ports/deskutils/gworkspace/Makefile,v 1.27 2006/09/01 17:12:26 dinoex Exp $
 #
 
 PORTNAME=	gworkspace
-PORTVERSION=	0.8.3
+PORTVERSION=	0.8.5
 CATEGORIES=	deskutils
 MASTER_SITES=	http://www.gnustep.it/enrico/gworkspace/
 
