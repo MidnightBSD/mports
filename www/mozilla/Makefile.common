@@ -3,7 +3,7 @@
 # Date created:		12 Nov 2005
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.2 2007/03/13 19:57:08 archite Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.3 2007/05/07 18:18:05 ctriv Exp $
 # $FreeBSD: ports/www/mozilla/Makefile.common,v 1.23 2007/02/04 22:37:34 marcus Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile.common,v 1.1 2006/10/18 17:29:07 ahze Exp $
 
@@ -68,12 +68,13 @@ MOZILLA_BIN?=	${PORTNAME}-bin
 MOZ_RPATH?=	${MOZILLA}
 USE_GNOME+=	gtk20 libidl desktopfileutils
 USE_ICONV=	yes
+USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XLIB=	yes
 
 MOZILLA_SUFX?=	none
 WRKSRC?=	${WRKDIR}/mozilla
-FAKEDIR?=	${WRKDIR}/fake
+FAKEDIR?=	${FAKE_DESTDIR}${TRUE_PREFIX}
 PLIST?=		${WRKDIR}/plist
 MASTER_DIR?=	${.CURDIR}/../../www/mozilla
 
@@ -236,11 +237,12 @@ MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|@LIBS@|${LIBS}|g'			\
 		-e 's|@X11BASE@|${X11BASE}|g'		\
 		-e 's|@LOCALBASE@|${LOCALBASE}|g'	\
+		-e 's|@PREFIX@|${TRUE_PREFIX}|g'	\
 		-e 's|@FAKEDIR@|${FAKEDIR}|g'		\
-		-e 's|@PERL@|${PERL5}|g'			\
+		-e 's|@PERL@|${PERL5}|g'		\
 		-e 's|@KRB5_HOME@|${KRB5_HOME}|g'	\
 		-e 's|@MOZDIR@|${PREFIX}/lib/${MOZILLA}|g'	\
-		-e 's|%%PREFIX%%|${PREFIX}|g'		\
+		-e 's|%%PREFIX%%|${TRUE_PREFIX}|g'	\
 		-e 's|%%CFLAGS%%|${CFLAGS}|g'		\
 		-e 's|%%LDFLAGS%%|${LDFLAGS}|g'		\
 		-e 's|%%LIBS%%|${LIBS}|g'		\
@@ -345,26 +347,26 @@ port-pre-install:
 
 gecko-pre-install:
 .if !defined(NOGECKO_PLIST)
-	@${RM} -rf ${FAKEDIR} ${PLIST}
+	@${RM} -f ${PLIST}
 	@${TOUCH} -f ${PLIST}
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
-		${MAKEFILE} ${MAKE_ARGS} prefix=${FAKEDIR} ${INSTALL_TARGET}
+		${MAKEFILE} ${MAKE_ARGS} DESTDIR=${FAKE_DESTDIR} ${INSTALL_TARGET}
 .if defined(MOZILLA_SUFX) && ${MOZILLA_SUFX}!="none"
-	${MV} ${FAKEDIR}/bin/${MOZILLA:S/${MOZILLA_SUFX}//} ${FAKEDIR}/bin/${MOZILLA}
-	${MV} ${FAKEDIR}/bin/${MOZILLA:S/${MOZILLA_SUFX}//}-config ${FAKEDIR}/bin/${MOZILLA}-config
+	${MV} ${PREFIX}/bin/${MOZILLA:S/${MOZILLA_SUFX}//} ${PREFIX}/bin/${MOZILLA}
+	${MV} ${PREFIX}/bin/${MOZILLA:S/${MOZILLA_SUFX}//}-config ${PREFIX}/bin/${MOZILLA}-config
 .for pc in ${PKGCONFIG_FILES:S|${MOZILLA_SUFX}||}
 	${SED} -e 's|Requires: ${MOZILLA:S/${MOZILLA_SUFX}//}|Requires: ${MOZILLA}|' \
-	${FAKEDIR}/lib/pkgconfig/${pc}.pc > ${FAKEDIR}/lib/pkgconfig/${pc:S/${MOZILLA:S,${MOZILLA_SUFX},,}/${MOZILLA}/}.pc
+	${PREFIX}/lib/pkgconfig/${pc}.pc > ${PREFIX}/lib/pkgconfig/${pc:S/${MOZILLA:S,${MOZILLA_SUFX},,}/${MOZILLA}/}.pc
 .endfor
 	@${REINPLACE_CMD} -e 's|${MOZILLA}-bin|${MOZILLA:S/${MOZILLA_SUFX}//}|; \
 		s|$${progbase}-bin|${MOZILLA:S/${MOZILLA_SUFX}//}-bin|' \
-		${FAKEDIR}/bin/${MOZILLA} \
-		${FAKEDIR}/bin/${MOZILLA}-config
+		${PREFIX}/bin/${MOZILLA} \
+		${PREFIX}/bin/${MOZILLA}-config
 .endif
-	@${REINPLACE_CMD} -e 's|${FAKEDIR}|${PREFIX}|g' \
-		${FAKEDIR}/bin/${MOZILLA}	\
-		${FAKEDIR}/bin/${MOZILLA}-config
-	${RM} -f ${FAKEDIR}/bin/*.bak
+	@${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g' \
+		${PREFIX}/bin/${MOZILLA}	\
+		${PREFIX}/bin/${MOZILLA}-config
+	${RM} -f ${PREFIX}/bin/*.bak
 .endif
 
 gecko-create-plist:
@@ -378,20 +380,20 @@ gecko-create-plist:
 .endfor
 	${ECHO_CMD} "${BROWSER_PLUGINS_DIR}/.${MOZILLA}.keep" >> ${PLIST}
 	${ECHO_CMD} "@unexec ${RMDIR} %D/${BROWSER_PLUGINS_DIR} 2>/dev/null || ${TRUE}" >> ${PLIST}
-	${MKDIR} ${FAKEDIR}/libdata
-	${MV} -f ${FAKEDIR}/lib/pkgconfig ${FAKEDIR}/libdata/
-	${RM} -f ${FAKEDIR}/lib/pkgconfig
+	${MKDIR} ${PREFIX}/libdata
+	${MV} -f ${PREFIX}/lib/pkgconfig ${PREFIX}/libdata/
+	${RM} -f ${PREFIX}/lib/pkgconfig
 .for dir in ${MOZILLA_PLIST_DIRS}
-	@cd ${FAKEDIR}/${dir} && ${FIND} -s * -type f -o -type l | \
+	@cd ${PREFIX}/${dir} && ${FIND} -s * -type f -o -type l | \
 		${SED} -e 's|^|${dir}/|' >> ${PLIST} && \
 		${FIND} -d * -type d | \
 		${SED} -e 's|^|@dirrm ${dir}/|' >> ${PLIST}
 .endfor
 .for pcfile in ${PKGCONFIG_FILES}
 	${ECHO_CMD} "libdata/pkgconfig/${pcfile}.pc" >> ${PLIST}
-	@${REINPLACE_CMD} -e 's|${FAKEDIR}|${PREFIX}|g' \
+	@${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g' \
 		-e 's|${MOZILLA}-nspr = ${PORTVERSION}|nspr|' \
-		${FAKEDIR}/libdata/pkgconfig/${pcfile}.pc
+		${PREFIX}/libdata/pkgconfig/${pcfile}.pc
 .endfor
 	${ECHO_CMD} "@exec ${LOCALBASE}/bin/update-desktop-database > /dev/null || ${TRUE}" >> ${PLIST}
 	${ECHO_CMD} "@unexec ${LOCALBASE}/bin/update-desktop-database > /dev/null || ${TRUE}" >> ${PLIST}
@@ -402,27 +404,15 @@ do-install: gecko-do-install
 
 gecko-do-install:
 .if !defined(NOGECKO_INSTALL)
-.for dir in ${MOZILLA_PLIST_DIRS}
-.if !exists(${PREFIX}/${dir})
-	${MKDIR} ${PREFIX}/${dir}
-	${CHMOD} 755 ${PREFIX}/${dir}
-.endif
-	cd ${FAKEDIR}/${dir} && ${FIND} . | \
-		${CPIO} -pdm -L -R ${LIBOWN}:${LIBGRP} ${PREFIX}/${dir}
-.endfor
-.for pcfile in ${PKGCONFIG_FILES}
-	${INSTALL_DATA} ${FAKEDIR}/libdata/pkgconfig/${pcfile}.pc \
-		${PREFIX}/libdata/pkgconfig/${pcfile}.pc
-.endfor
 	${MKDIR} ${PREFIX}/${BROWSER_PLUGINS_DIR}
 	${TOUCH} -f ${PREFIX}/${BROWSER_PLUGINS_DIR}/.${MOZILLA}.keep
 .endif # !defined(NOGECKO_INSTALL)
 
 gecko-moz-pis-pre-install:
 .if defined(MOZ_PIS_SCRIPTS)
-	${MKDIR} ${FAKEDIR}/${MOZ_PIS_DIR}
+	${MKDIR} ${PREFIX}/${MOZ_PIS_DIR}
 .for moz in ${MOZ_PIS_SCRIPTS}
-	${INSTALL_SCRIPT} ${WRKDIR}/${moz} ${FAKEDIR}/${MOZ_PIS_DIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/${moz} ${PREFIX}/${MOZ_PIS_DIR}
 .endfor
 .endif
 
