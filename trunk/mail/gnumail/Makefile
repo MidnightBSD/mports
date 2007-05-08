@@ -2,7 +2,7 @@
 # Date created:         11 Jun 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.1 2007/03/09 06:18:15 laffer1 Exp $
 # $FreeBSD: ports/mail/gnumail/Makefile,v 1.30 2006/09/10 20:08:45 dinoex Exp $
 #
 
@@ -28,5 +28,11 @@ MAKEFILE=
 ALL_TARGET=
 PANTOMIME_PORT?=	mail/pantomime
 ADDRESSES_PORT?=	mail/addresses
+
+post-patch:
+	for file in ${WRKSRC}/Bundles/*/GNUmakefile; do \
+		${REINPLACE_CMD} -e 's|\$$(GNUSTEP_INSTALLATION_DIR)/Library|\$$(GNUSTEP_LIBRARY)|' $$file; \
+	done
+	
 
 .include <bsd.port.mk>
