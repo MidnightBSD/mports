@@ -2,7 +2,7 @@
 # Date created:		16 January 2003
 # Whom:			marcus@FreeBSD.org
 #
-# $MidnightBSD: mports/textproc/docbook-sk/Makefile,v 1.1 2006/09/25 16:02:12 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-sk/Makefile,v 1.2 2007/05/08 00:00:34 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-sk/Makefile,v 1.27 2005/02/14 08:43:48 pav Exp $
 #
 
@@ -33,11 +33,12 @@ CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 
 pre-install:
-	[ -d ${DOCBOOKDIR}/ent ] || ${MKDIR} ${DOCBOOKDIR}/ent
+	@[ -d ${DOCBOOKDIR}/ent ] || ${MKDIR} ${DOCBOOKDIR}/ent
 
 do-install:
-	for file in `${FIND} ${WRKSRC} -type f | ${SED} -e 's|^${WRKSRC}/||' | ${GREP} -v '^\.' | ${SORT}`; do \
-		${INSTALL_DATA} ${WRKSRC}/$$file ${DOCBOOKDIR}/; \
+	@for file in `${FIND} ${WRKSRC} -type f | ${SED} -e 's|^${WRKSRC}/||' | ${GREP} -v '^\.' | ${SORT}`; do \
+		${ECHO_MSG} "${INSTALL_DATA} ${WRKSRC}/$$file ${DOCBOOKDIR}/"; \
+		${INSTALL_DATA} ${WRKSRC}/$$file ${DOCBOOKDIR}/$$file; \
 	done
 
 .include <bsd.port.mk>
