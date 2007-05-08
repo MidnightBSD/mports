@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.44 2007/04/04 17:16:22 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.45 2007/04/08 05:57:04 laffer1 Exp $
 # $FreeBSD: ports/www/Makefile,v 1.1564 2006/09/12 08:28:30 miwi Exp $
 #
 
@@ -16,6 +16,7 @@
     SUBDIR += etoile-rsskit
     SUBDIR += furl
     SUBDIR += gnustep-ticker
+    SUBDIR += google-sitemapgen
     SUBDIR += kdewebdev
     SUBDIR += libwww
     SUBDIR += lighttpd
