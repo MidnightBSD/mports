@@ -2,7 +2,7 @@
 # Date created:				2 July 2000
 # Whom:					Kelly Yancey <kbyanc@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/cclient/Makefile,v 1.1 2007/01/20 16:09:40 wintellect Exp $
 # $FreeBSD: ports/mail/cclient/Makefile,v 1.35 2006/05/10 22:36:47 edwin Exp $
 #
 
@@ -20,8 +20,9 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mark Crispin's C-client mail access routines
+# '
 
-INSTALLS_SHLIB=	yes
+USE_LDONFIG=	yes
 ALL_TARGET=	bsf
 .if defined(WITHOUT_SSL)
 MAKE_ARGS+=	SSLTYPE=none
@@ -32,6 +33,10 @@ MAKE_ARGS+=	SSLTYPE=unix
 .else
 MAKE_ARGS+=	SSLTYPE=unix.nopwd
 .endif
+.endif
+
+.if !defined(WITHOUT_SSL)
+PKGMESSAGE=	${FILESDIR}/pkg-message
 .endif
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
@@ -89,12 +94,5 @@ do-install:
 
 post-install:
 	${INSTALL_DATA} ${PORTREV_H} ${PREFIX}/include/c-client
-.if !defined(WITHOUT_SSL)
-	@${ECHO} "================================================================================"
-	@${ECHO} "Warning: You have chosen to include SSL support. Applications/ports that use"
-	@${ECHO} "the cclient library but do not support SSL may stop working or have problems"
-	@${ECHO} "linking. Linking them explicitly with ssl (-lssl -lcrypto) may or may not help."
-	@${ECHO} "================================================================================"
-.endif
 
 .include <bsd.port.post.mk>
