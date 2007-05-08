@@ -1,10 +1,14 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.1 2007/05/07 00:55:34 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.2 2007/05/07 04:06:27 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
+
+.if !defined(_POSTMKINCLUDED) || !defined(Perl_Pre_Include)
+
+Perl_Pre_Include=			bsd.perl.mk
 Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 
 # This file contains the glue that is supposed to make your life easier when
@@ -125,7 +129,16 @@ CONFIGURE_ARGS+= \
 CONFIGURE_SCRIPT?=	Makefile.PL
 CONFIGURE_ARGS+=	INSTALLDIRS="site"
 .endif 
+.endif # defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 
+
+.endif      # !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
+.if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
+
+Perl_Post_Include=	bsd.perl.mk
+
+
+.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 .if !target(do-configure)
 do-configure:	
 	@cd ${CONFIGURE_WRKSRC} && \
@@ -169,4 +182,4 @@ test:
 .endif
 .endif
 
-
+.endif      # defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)

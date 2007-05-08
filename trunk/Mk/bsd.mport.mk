@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.37 2007/05/07 00:55:34 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.38 2007/05/07 03:32:33 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1409,7 +1409,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
 
-.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) || defined(USE_PERL5_BUILD) || defined(USE_PERL5_RUN)
 .include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
@@ -1858,7 +1858,7 @@ BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 .include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
 .endif
 
-.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) || defined(USE_PERL5_BUILD) || defined(USE_PERL5_RUN) 
 .include "${PORTSDIR}/Mk/bsd.perl.mk"
 .endif
 
@@ -3519,6 +3519,7 @@ do-package: ${TMPPLIST}
 		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
 	fi; \
 	if ${PKG_CMD} -v ${PKG_ARGS} ${PKGFILE} >/dev/null; then \
+		${ECHO_MSG} "Created ${PKGFILE}"; \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
 	else \
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
@@ -3605,6 +3606,9 @@ cached-install:
 .	if exists(${PKGFILE})
 		@cd ${.CURDIR} && ${MAKE} ${_INSTALL_SEQ}
 .	else
+#		If the package was deleted, and clean wasn't run, we need to make sure
+#		that the port doesn't think the package is there.
+		@cd ${.CURDIR} && rm -f ${PACKAGE_COOKIE} ${INSTALL_COOKIE}
 		@cd ${.CURDIR} && ${MAKE} install
 .	endif		
 .endif
