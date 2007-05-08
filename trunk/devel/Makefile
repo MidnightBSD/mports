@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.129 2007/05/07 20:04:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.130 2007/05/07 21:21:59 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -91,6 +91,7 @@
     SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-AppConfig
     SUBDIR += p5-Carp-Clan
+    SUBDIR += p5-Config-General
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-Date-Manip
