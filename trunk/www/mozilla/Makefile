@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/mozilla/Makefile,v 1.2 2007/03/13 19:57:08 archite Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile,v 1.3 2007/05/07 16:04:59 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
@@ -131,7 +131,7 @@ pre-install:
 		done; \
 	fi
 .if !defined(WITHOUT_MAILNEWS)
-	@${CP} -RL ${WRKSRC}/dist/bin/defaults/isp ${FAKEDIR}/lib/${MOZILLA}/defaults
+	@${CP} -RL ${WRKSRC}/dist/bin/defaults/isp ${PREFIX}/lib/${MOZILLA}/defaults
 .endif
 	${ECHO_CMD} share/applications/mozilla.desktop >> ${PLIST}
 	${ECHO_CMD} "@unexec ${RMDIR} %D/share/applications 2>/dev/null || ${TRUE}" >> ${PLIST}
