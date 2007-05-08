@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.62 2007/04/07 18:51:45 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.63 2007/05/02 23:27:11 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -45,6 +45,7 @@
     SUBDIR += linux-aspell
     SUBDIR += linux-expat
     SUBDIR += linuxdoc
+    SUBDIR += opensp
     SUBDIR += p5-libxml
     SUBDIR += p5-Parse-Syslog
     SUBDIR += p5-Pod-POM
