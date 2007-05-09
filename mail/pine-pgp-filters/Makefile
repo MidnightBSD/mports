@@ -2,7 +2,7 @@
 # Date created:				22 January 2003
 # Whom:					dougb
 # 
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.1 2006/09/24 01:40:49 laffer1 Exp $
+# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.2 2007/02/18 02:19:12 laffer1 Exp $
 # $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.8 2006/06/27 17:21:19 dougb Exp $
 #
 
@@ -24,7 +24,7 @@ verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
 do-build:
-	cd ${WRKSRC} && ./configure --prefix=${PREFIX}
+	cd ${WRKSRC} && ./configure --prefix=${FAKE_DESTDIR}${PREFIX}
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -33,6 +33,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
 .endfor
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
