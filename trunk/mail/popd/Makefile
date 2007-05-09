@@ -3,7 +3,7 @@
 # Whom:					ianf@za.uu.net
 #
 # $FreeBSD: ports/mail/popd/Makefile,v 1.19 2005/06/16 16:35:10 ume Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/popd/Makefile,v 1.1 2007/02/19 23:19:18 laffer1 Exp $
 #
 
 PORTNAME=	popd
@@ -18,7 +18,8 @@ COMMENT=	Very fast, highly configurable POP3 server (fully RFC1939 compliant)
 MAN5=	popd.conf.5
 MAN8=	popd.8
 
-INSTALLS_SHLIB=	yes
+FAKE_OPTS=	trueprefix
+USE_LDCONFIG=	yes
 MANCOMPRESSED=	maybe
 .if defined(NOPROFILE)
 PLIST_SUB=	NOPROFILE="@comment "
