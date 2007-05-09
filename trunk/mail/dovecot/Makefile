@@ -3,7 +3,7 @@
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.5 2007/03/21 02:21:16 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
@@ -151,16 +151,11 @@ post-build:
 		-e 's,%%PROTOCOLS%%,${PROTOCOLS},g' \
 		${WRKSRC}/dovecot-example.conf
 
-pre-install:
-	@${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 post-install:
 	@${MKDIR} ${DATADIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/doc/mkcert.sh ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-openssl.cnf ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-ldap.conf ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/dovecot-sql.conf ${DATADIR}
-	@${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
