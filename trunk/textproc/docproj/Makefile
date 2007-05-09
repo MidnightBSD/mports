@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.3 2007/01/26 03:39:02 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.4 2007/03/18 18:30:07 laffer1 Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
@@ -15,6 +15,11 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the Documentation Project
+
+NO_BUILD=		yes
+USE_GHOSTSCRIPT_RUN=	yes
+USE_PERL5_RUN=		yes
+
 
 # This dependency list should be kept in sync with the list of
 # required ports in src/release/Makefile.inc.docports.
@@ -35,6 +40,8 @@ RUN_DEPENDS=	fixrtf:${PORTSDIR}/textproc/fixrtf \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
 		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xml/xmlcharent/catalog:${PORTSDIR}/textproc/xmlcharent
+
+
 
 .include <bsd.port.pre.mk>
 
@@ -65,14 +72,13 @@ RUN_DEPENDS+=	dvips:${PORTSDIR}/print/dvipsk-tetex
 RUN_DEPENDS+=	html2text:${PORTSDIR}/textproc/html2text
 .endif
 
+
+PLIST_FILES=		#empty
+
 .if ${PERL_LEVEL} < 500804
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Digest/MD5.pm:${PORTSDIR}/security/p5-Digest-MD5
 .endif
 
-NO_BUILD=		yes
-USE_GHOSTSCRIPT_RUN=	yes
-USE_PERL5_RUN=		yes
-PLIST_FILES=		#empty
 
 DEPENDS_ARGS+=	BATCH=yes WITHOUT_X11=${WITHOUT_X11}
 
