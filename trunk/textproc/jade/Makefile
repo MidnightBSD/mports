@@ -2,7 +2,7 @@
 # Date created:		June 19, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/jade/Makefile,v 1.1 2006/09/24 03:17:59 laffer1 Exp $
 # $FreeBSD: ports/textproc/jade/Makefile,v 1.50 2006/02/23 10:39:21 ade Exp $
 #
 
@@ -27,10 +27,11 @@ RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
@@ -54,7 +55,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/dsssl/* ${PREFIX}/share/sgml/jade
 	${MKDIR} ${PREFIX}/share/xml/jade
 	${INSTALL_DATA} ${WRKSRC}/pubtext/xml* ${PREFIX}/share/xml/jade
-	@${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${PORTNAME}/catalog
 
 .include <bsd.port.pre.mk>
 
