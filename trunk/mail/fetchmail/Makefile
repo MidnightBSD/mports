@@ -2,7 +2,7 @@
 # Date created:		25 Feb 2000
 # Whom:			Ville Eerola <ve@sci.fi>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.3 2007/02/18 01:36:25 laffer1 Exp $
 # $FreeBSD: ports/mail/fetchmail/Makefile,v 1.178 2007/01/06 14:38:42 barner Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
@@ -132,21 +132,14 @@ pre-configure:
 
 	@${ECHO_CMD} ""
 
-pre-install:
-	@${SETENV} ${SCRIPTS_ENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 post-install:
 .if !defined(NOPORTDOCS)
 	${INSTALL} -d -m 555 -o ${DOCOWN} -g ${DOCGRP} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
-
 	${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/fetchmailconf.py ${PREFIX}/libexec
-
-	${INSTALL} -m 644 -o fetchmail -g fetchmail ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
-	if [ ! -f ${PREFIX}/etc/fetchmailrc ]; then \
-		${CP} -p ${PREFIX}/etc/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc ; \
-	fi
+#	the group and owner of this file get changed by the plist.
+	${INSTALL} -m 644 -o root -g wheel ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
 
 .include <bsd.port.post.mk>
