@@ -2,7 +2,7 @@
 # Date created:		July 16, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.1 2006/09/25 04:30:59 archite Exp $
+# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.2 2006/09/25 16:03:34 laffer1 Exp $
 # $FreeBSD: ports/textproc/sgmlformat/Makefile,v 1.33 2006/06/22 19:01:36 linimon Exp $
 #
 
@@ -46,7 +46,5 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,nsgmls,onsgmls,g' ${WRKSRC}/instant/traninit.c
 .endif
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>

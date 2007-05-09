@@ -4,7 +4,7 @@
 #
 # Based heavily on work by jfieber
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/textproc/docbook/Makefile,v 1.1 2006/09/24 03:04:16 laffer1 Exp $ 
 # $FreeBSD: ports/textproc/docbook/Makefile,v 1.18 2006/04/15 06:46:10 linimon Exp $
 #
 
@@ -30,6 +30,7 @@ NO_BUILD=	yes
 PLIST_FILES=	share/sgml/docbook/catalog
 
 do-install:
-	@${INSTALL_DATA} ${FILESDIR}/catalog ${PREFIX}/share/sgml/docbook/catalog
+	${MKDIR} ${PREFIX}/share/sgml/docbook/catalog
+	${INSTALL_DATA} ${FILESDIR}/catalog ${PREFIX}/share/sgml/docbook/catalog
 
 .include <bsd.port.mk>

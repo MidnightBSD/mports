@@ -2,7 +2,7 @@
 # Date created:		28 March 1999
 # Whom:			kuriyama
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xml/Makefile,v 1.1 2006/09/24 02:58:19 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml/Makefile,v 1.24 2004/04/19 09:13:36 kris Exp $
 #
 
@@ -33,7 +33,7 @@ XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 
-pre-su-install:
+pre-install:
 	@[ -d ${DOCBOOKDIR}/ent ] || ${MKDIR} ${DOCBOOKDIR}/ent
 
 do-install:
@@ -41,8 +41,5 @@ do-install:
 		${INSTALL_DATA} ${WRKSRC}/$$file ${DOCBOOKDIR}/$$file; \
 	done
 
-post-install:
-	@-${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${DOCBOOKDIR}/docbook.cat
-	@-${XMLCATMGR} -c ${CATALOG_PORTS_XML} add nextCatalog ${DOCBOOKDIR}/catalog.xml
 
 .include <bsd.port.mk>
