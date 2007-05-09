@@ -2,7 +2,7 @@
 # Date created:		23 June 2003
 # Whom:			Max Laier <max@love2party.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/spamd/Makefile,v 1.1 2006/10/24 16:00:33 wintellect Exp $
 # $FreeBSD: ports/mail/spamd/Makefile,v 1.10 2006/05/10 17:55:07 delphij Exp $
 #
 
@@ -45,10 +45,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/spamd.conf|${PREFIX}/etc/spamd.conf|' \
 	    ${WRKSRC}/spamd/spamd.8 ${WRKSRC}/spamd-setup/spamd-setup.8
 
-pre-su-install:
-.if !defined(BATCH) && !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec
