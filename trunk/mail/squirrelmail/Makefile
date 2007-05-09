@@ -3,7 +3,7 @@
 # Whom: 				Simon Dick <simond@irrelevant.org>
 #
 # $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.1 2006/12/04 05:13:55 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.2 2006/12/11 06:19:05 laffer1 Exp $
 #
 
 PORTNAME=	squirrelmail
@@ -87,10 +87,6 @@ do-build:
 	@${CP} -r ${WRKSRC}/../images ${WRKSRC}
 	@${CP} -r ${WRKSRC}/../help ${WRKSRC}
 
-pre-install:
-	@${ECHO} "Your umask should be lax while installing this. Like, 022 or something."
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
@@ -106,8 +102,5 @@ do-install:
 	@${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
 .endif
 
-post-install:
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
