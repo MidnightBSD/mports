@@ -3,7 +3,7 @@
 # Whom:					Milan Obuch
 #
 # $FreeBSD: ports/mail/courier-pythonfilter/Makefile,v 1.2 2007/01/16 10:28:15 itetcu Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/courier-pythonfilter/Makefile,v 1.1 2007/02/19 19:20:52 laffer1 Exp $
 #
 
 PORTNAME=	courier-pythonfilter
@@ -24,8 +24,11 @@ MAILGRP=	courier
 MAILUID=	465
 MAILGID=	465
 
+PLIST_SUB+=	MAILOWN=${MAILOWN} MAILGRP=${MAILGRP} \
+		LOCALSTATEDIR=${LOCALSTATEDIR}
+
 LOCALSTATEDIR=	/var/spool/courier
-SCRIPTSDIR=	${PREFIX}/libexec/filters
+SCRIPTSDIR=	${TRUE_PREFIX}/libexec/filters
 
 OPTIONS=	DEBUG		"debug module"			on \
 		NODUPLICATES	"noduplicates module"		off \
@@ -98,9 +101,5 @@ post-configure:
 	@${ECHO_MSG} attachments >> ${WRKSRC}/pythonfilter.conf.sample
 .endif
 
-post-install:
-	${MKDIR} ${LOCALSTATEDIR}/pythonfilter
-	${CHOWN} ${MAILOWN}:${MAILGRP} ${LOCALSTATEDIR}/pythonfilter
-	if [ -e ${PREFIX}/etc/pythonfilter.conf ]; then ${CP} -p ${PREFIX}/etc/pythonfilter.conf.sample ${PREFIX}/etc/pythonfilter.conf; fi
 
 .include <bsd.port.post.mk>
