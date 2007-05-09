@@ -2,7 +2,7 @@
 # Date created:		09 July 1998
 # Whom:			Adrian Penisoara <ady@freebsd.ady.ro>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/pine4/Makefile,v 1.1 2006/09/24 01:38:42 laffer1 Exp $
 # $FreeBSD: ports/mail/pine4/Makefile,v 1.86 2006/08/28 06:03:13 dougb Exp $
 #
 
@@ -125,10 +125,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/tech-notes/*.html ${DOCSDIR}/tech-notes
 .endif
 
-post-install:
-	${PREFIX}/bin/pine -P ${PREFIX}/etc/pine.conf -conf >${WRKSRC}/pine.conf
-	${INSTALL_DATA} ${WRKSRC}/pine.conf ${PREFIX}/etc/pine.conf
-
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
