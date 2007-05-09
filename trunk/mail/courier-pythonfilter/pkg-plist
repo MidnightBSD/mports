@@ -1,5 +1,9 @@
+@exec mkdir -p %%LOCALSTATEDIR%%/pythonfilter
+@exec chown %%MAILOWN%%:%%MAILGRP%% %%LOCALSTATEDIR%%/pythonfilter
+@unexec rm -rf %%LOCALSTATEDIR%%/pythonfilter
 @unexec if cmp -s %D/etc/pythonfilter.conf %D/etc/pythonfilter.conf.sample; then rm -f %D/etc/pythonfilter.conf; fi
 etc/pythonfilter.conf.sample
+@exec if [ ! -e %D/etc/pythonfilter.conf ]; then cp -p %D/etc/pythonfilter.conf.sample %D/etc/pythonfilter.conf; fi
 libexec/filters/pythonfilter
 %%PYTHON_SITELIBDIR%%/courier/__init__.py
 %%PYTHON_SITELIBDIR%%/courier/__init__.pyc
