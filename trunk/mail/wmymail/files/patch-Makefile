@@ -17,19 +17,19 @@
 -DISTFILES = Makefile README README.old ChangeLog wmymail.c raw-envelope.jpg
 +SRCS=	wmymail.c
 +
-+CFLAGS+=	-I${X11BASE}/include -O2 -Wall
++CFLAGS+=	-I${TRUE_PREFIX}/include -O2 -Wall
 +LDADD+=	-lXpm -lX11 -lXext -ldockapp
-+LDADD+= -L${X11BASE}/lib
++LDADD+= -L${TRUE_PREFIX}/lib
  
 -default all target: wmymail
-+NOMAN=
++NO_MAN=
 +
 +XPMS= xpm/main.xpm xpm/mbox_1.xpm xpm/mbox_2.xpm xpm/mbox_3.xpm \
 +  xpm/numbers.xpm xpm/unumbers.xpm
  
 -wmymail: wmymail.o
 -	$(CC) $< $(CFLAGS) $(LIBS) -o $@
-+BINDIR?=	${X11BASE}/bin
++BINDIR?=	${TRUE_PREFIX}/bin
  
 -wmymail.o: wmymail.c $(XPMS)
 -	$(CC) $(CFLAGS) $(MY_INCS) -o $@ -c $<
