@@ -2,7 +2,7 @@
 # Date created:				Nov 26 2001
 # Whom:					Anthony Kim
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.105 2007/02/24 09:01:03 rafan Exp $
 #
 
@@ -32,6 +32,7 @@ CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
 
 # You can override it if you like
 CONTACT_ADDRESS?=	The administrator of that system
+SUB_FILES=		pkg-message
 
 OPTIONS=	AS_ROOT "Run spamd as root (recommended)" on \
 		DOMAINKEYS "DomainKeys support" off \
@@ -206,8 +207,6 @@ post-patch:
 	${REINPLACE_CMD} -e '/DCC/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v310.pre
 .endif
 
-pre-install:
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/spamc
@@ -234,7 +233,6 @@ post-install:
 	@${INSTALL_DATA} ${DOCSLDAP:S|^|${WRKSRC}/ldap/|} ${DOCSDIR}/ldap
 
 .endif
-	@${SED} -e 's#PREFIX#${PREFIX}#' ${PKGMESSAGE}
 
 .if ${PERL_LEVEL} < 500600
 IGNORE=	needs perl 5.6.1 or higher, install lang/perl5.8 and try again
