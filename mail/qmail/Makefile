@@ -3,8 +3,10 @@
 # Whom:			Mario S F Ferreira <lioux@linf.unb.br> et al.
 #
 # $FreeBSD: ports/mail/qmail/Makefile,v 1.118 2007/02/05 23:32:02 garga Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/qmail/Makefile,v 1.1 2007/02/19 19:37:55 laffer1 Exp $
 #
+
+BROKEN=		Requires non-standard users/accounts to build
 
 PORTNAME=	qmail
 PORTVERSION?=	${QMAIL_VERSION}
@@ -634,10 +636,10 @@ post-patch:
 		${WRKSRC}/hier.c
 
 do-configure:
-	@${SED} -e 's,%%RCDLINK%%,${RCDLINK},g; s,%%LOCALBASE%%,${LOCALBASE},g' \
+	${SED} -e 's,%%RCDLINK%%,${RCDLINK},g; s,%%LOCALBASE%%,${LOCALBASE},g' \
 		${FILESDIR}/pkg-install.in > ${WRKDIR}/pkg-install
-	@${SETENV} PKG_PREFIX="${PREFIX}" ${CSH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-	@${ECHO_CMD} "${CC} ${CFLAGS}" > ${WRKSRC}/conf-cc
+	#${SETENV} PKG_PREFIX="${PREFIX}" ${CSH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+	${ECHO_CMD} "${CC} ${CFLAGS}" > ${WRKSRC}/conf-cc
 	@${ECHO_CMD} ${PREFIX} > ${WRKSRC}/conf-qmail
 .if defined(WITH_BIG_CONCURRENCY_PATCH) \
 	&& !defined(BARRIER_BIG_CONCURRENCY_PATCH) \
@@ -697,21 +699,6 @@ do-install:
 .for script in ${SCRIPTS}
 	${INSTALL_SCRIPT} ${WRKDIR}/scripts/${script} ${PREFIX}/scripts
 .endfor
-	@${SETENV} PKG_PREFIX="${PREFIX}" ${CSH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${ECHO_CMD}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_CMD}
-.if defined(SLAVEPORT_LINE)
-	@${ECHO_CMD} "============================================="
-	@${ECHO_CMD}
-	@${ECHO_CMD} "ATTENTION"
-	@${ECHO_CMD}
-	@${ECHO_CMD} "Add the following line to your /etc/make.conf"
-	@${ECHO_CMD} "QMAIL_SLAVEPORT=${SLAVEPORT_LINE}"
-	@${ECHO_CMD}
-	@${ECHO_CMD} "============================================="
-	@${ECHO_CMD}
-.endif
 
 certificate:
 .if defined(SLAVE_TLS) || defined(SLAVE_LDAP)
