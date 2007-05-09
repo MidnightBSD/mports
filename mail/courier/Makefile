@@ -3,7 +3,7 @@
 # Whom:			Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/mail/courier/Makefile,v 1.44 2007/01/01 00:00:21 miwi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.1 2007/02/19 17:32:04 laffer1 Exp $
 #
 
 PORTNAME=	courier
@@ -329,10 +329,6 @@ post-install:
 .for file in ${OWNER0}
 	@-${CHOWN} -Rh ${BINOWN}:${BINGRP} ${PREFIX}/${file}
 .endfor
-	@${GREP} '^@exec ' ${TMPPLIST} \
-		| ${SED} -e 's:^@exec ::' -e 's:%D:${PREFIX}:g' \
-		> ${WRKDIR}/.PLIST.exec \
-		&& ${SH} ${WRKDIR}/.PLIST.exec
 .if !defined(NOPORTDOCS)
 	@${INSTALL} ${_DOCOWNGRP} -d ${DOCSDIR}/html
 .for f in ${DOCS}
@@ -348,18 +344,5 @@ post-install:
 	@${CHMOD} -R a+r ${DATADIR}/courierwebadmin
 	@${CHMOD} -R a-w ${DATADIR} ${LIBEXECDIR}/courier
 	@${CHMOD} 550 ${LIBEXECDIR}/courier/modules/esmtp/courieresmtp*
-	@${ECHO_MSG}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG}
-.if defined(BATCH) || defined(PACKAGE_BUILDING)
-	@${ECHO_MSG} "	To activate Courier in /etc/mail/mailer.conf or to"
-	@${ECHO_MSG} "	replace {sendmail,mailq,newaliases} with Courier"
-	@${ECHO_MSG} "	versions execute the following as root user:"
-	@${ECHO_MSG}
-	@${ECHO_MSG} "PKG_PREFIX=\"${PREFIX}\" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL"
-	@${ECHO_MSG}
-.else
-	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .include <bsd.port.post.mk>
