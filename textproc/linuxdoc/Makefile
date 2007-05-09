@@ -2,7 +2,7 @@
 # Date created:		July 8, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/linuxdoc/Makefile,v 1.1 2006/09/24 03:04:16 laffer1 Exp $
 # $FreeBSD: ports/textproc/linuxdoc/Makefile,v 1.19 2005/07/13 02:38:23 kuriyama Exp $
 #
 
@@ -31,7 +31,7 @@ ISOCAT=		${PREFIX}/share/sgml/iso8879/catalog
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 
-pre-su-install:
+pre-install:
 	@[ -d ${INSTDIR} ] || ${MKDIR} ${INSTDIR}
 
 do-install:
@@ -39,7 +39,5 @@ do-install:
 	@${CHMOD} ${SHAREMODE} ${INSTDIR}/*
 	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
 
-post-install:
-	@${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${PORTNAME}/catalog
 
 .include <bsd.port.mk>
