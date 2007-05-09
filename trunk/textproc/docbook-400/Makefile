@@ -4,7 +4,7 @@
 #
 # Based on nik's docbook-310 port
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-400/Makefile,v 1.1 2006/09/24 02:58:17 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-400/Makefile,v 1.16 2005/04/27 23:35:54 glewis Exp $
 #
 
@@ -39,7 +39,7 @@ CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 
 LATEST_LINK=	docbook-400
 
-pre-su-install:
+pre-install:
 	@[ -d ${INSTDIR}/${PORTVERSION} ] || ${MKDIR} ${INSTDIR}/${PORTVERSION}
 
 do-install:
@@ -49,7 +49,5 @@ do-install:
 	@${CHMOD} ${SHAREMODE} ${INSTDIR}/${PORTVERSION}/*
 	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
 
-post-install:
-	@${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${PORTNAME}/${PORTVERSION}/catalog
 
 .include <bsd.port.mk>

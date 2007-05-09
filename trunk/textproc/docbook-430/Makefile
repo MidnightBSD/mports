@@ -2,7 +2,7 @@
 # Date created:		02 Apr 2004
 # Whom:			hrs
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-430/Makefile,v 1.1 2006/09/24 02:58:18 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-430/Makefile,v 1.3 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook
@@ -28,7 +28,7 @@ DTD_VERSION=	${PORTVERSION}
 ISOCAT=		${SGMLCATBASE}/iso8879/catalog
 
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
-CATALOG_PORTS_SGML=	${PREFIX}/${SGMLCATBASE}/catalog.ports
+CATALOG_PORTS_SGML=	${TRUE_PREFIX}/${SGMLCATBASE}/catalog.ports
 REGIST_CAT_FLAGS_SGML=	-sc ${CATALOG_PORTS_SGML} \
 			add CATALOG ${DTD_NAME}/${DTD_VERSION}/catalog
 UNREGIST_CAT_FLAGS_SGML=	-sc ${CATALOG_PORTS_SGML} \
@@ -69,7 +69,5 @@ do-install:
 	${INSTALL_DATA} ${DOC_FILES:S,^,${WRKSRC}/,} ${DOCSDIR}
 .endif
 
-post-install:
-	-${XMLCATMGR} ${REGIST_CAT_FLAGS_SGML}
 
 .include <bsd.port.mk>

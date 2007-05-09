@@ -5,7 +5,7 @@
 # Based on murray's docbook-410 port
 #     which is based on niks' docbook-310 port
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-420/Makefile,v 1.1 2006/09/24 02:58:17 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-420/Makefile,v 1.2 2004/04/19 09:16:07 kris Exp $
 #
 
@@ -48,7 +48,5 @@ do-install:
 	@${CHMOD} ${SHAREMODE} ${INSTDIR}/${PORTVERSION}/*
 	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
 
-post-install:
-	@${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${PORTNAME}/${PORTVERSION}/catalog
 
 .include <bsd.port.mk>

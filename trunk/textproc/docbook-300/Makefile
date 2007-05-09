@@ -4,7 +4,7 @@
 #
 # Based heavily on work by jfieber
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-300/Makefile,v 1.1 2006/09/24 02:58:16 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-300/Makefile,v 1.19 2006/04/15 06:46:10 linimon Exp $
 #
 
@@ -37,7 +37,7 @@ CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 
 LATEST_LINK=	docbook-${PORTVERSION}
 
-pre-su-install:
+pre-install:
 	@[ -d ${INSTDIR}/${PORTVERSION} ] || ${MKDIR} ${INSTDIR}/${PORTVERSION}
 
 do-install:
@@ -48,7 +48,5 @@ do-install:
 	@${CHMOD} ${SHAREMODE} ${INSTDIR}/${PORTVERSION}/*
 	@${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INSTDIR}
 
-post-install:
-	@${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${PORTNAME}/${PORTVERSION}/catalog
 
 .include <bsd.port.mk>
