@@ -3,7 +3,7 @@
 # Whom:			Neil Blakey-Milner
 #
 # $FreeBSD: ports/mail/courier-imap/Makefile,v 1.115 2007/01/02 05:47:47 oliver Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/courier-imap/Makefile,v 1.1 2007/02/19 19:11:03 laffer1 Exp $
 #
 
 PORTNAME=	courier-imap
@@ -33,6 +33,9 @@ CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash \
 		CXXFLAGS='${CPPFLAGS}' \
 		LDFLAGS='${LDFLAGS}'
 MAKE_ENV:=	${CONFIGURE_ENV}
+
+SUB_FILES=	pkg-message
+SUB_LIST+=	CONFDIR=${CONFDIR}
 
 #
 # options available:
@@ -162,26 +165,6 @@ post-install:
 .endfor
 .endif
 
-	cd ${WRKSRC} && ( ${GMAKE} install-configure ; cd - )
 
-	@${ECHO_MSG} "In case you use authpam, you should put the following lines"
-.if ${OSVERSION} >= 500000
-	@${ECHO_MSG} "in your /etc/pam.d/imap"
-	@${ECHO_MSG} "auth    required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "account required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "session required    pam_permit.so"
-.else
-	@${ECHO_MSG} "in your /etc/pam.conf"
-	@${ECHO_MSG} "imap    auth    required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "imap    account required    pam_unix.so         try_first_pass"
-	@${ECHO_MSG} "imap    session required    pam_permit.so"
-.endif
-
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "You will have to run ${DATADIR}/mkimapdcert to create"
-	@${ECHO_MSG} "a self-signed certificate if you want to use imapd-ssl."
-	@${ECHO_MSG} "And you will have to copy and edit the *.dist files to *"
-	@${ECHO_MSG} "in ${CONFDIR}."
-	@${ECHO_MSG} ""
 
 .include <bsd.port.post.mk>
