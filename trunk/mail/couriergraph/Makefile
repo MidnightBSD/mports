@@ -3,7 +3,7 @@
 # Whom:				Xavier Beaudouin (kiwi@oav.net)
 #
 # $FreeBSD: ports/mail/couriergraph/Makefile,v 1.3 2006/08/08 15:11:44 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.1 2007/02/19 19:31:32 laffer1 Exp $
 #
 
 PORTNAME=	couriergraph
@@ -26,12 +26,13 @@ COURIERGRAPH_USER?=	${WWWOWN}
 COURIERGRAPH_GROUP?=	${WWWGRP}
 
 USE_RC_SUBR=	${PORTNAME}.sh
-SUB_LIST+=	COURIERGRAPH_USER=${COURIERGRAPH_USER} COURIERGRAPH_GROUP=${COURIERGRAPH_GROUP}
+EXTRA_SUBS=	COURIERGRAPH_USER=${COURIERGRAPH_USER} COURIERGRAPH_GROUP=${COURIERGRAPH_GROUP}
+SUB_LIST+=	${EXTRA_SUBS}
+PLIST_SUB+=	${EXTRA_SUBS}
+SUB_FILES+=	pkg-message
 
 STARTUP_FILE=	${PREFIX}/etc/rc.d/couriergraph.sh
 
-MSG_FILE=	${PKGDIR}/pkg-message
-PKGMESSAGE=	${WRKSRC}/pkg-message
 
 pre-everything::
 	@${ECHO_MSG}
@@ -45,18 +46,11 @@ pre-everything::
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%DATADIR%%,${DATADIR}," ${WRKSRC}/couriergraph.cgi
 	@${REINPLACE_CMD} -e "s,%%DATADIR%%,${DATADIR}," ${WRKSRC}/couriergraph.pl
-	@${SED} 's|%%DATADIR%%|${DATADIR}|g' ${MSG_FILE} > ${PKGMESSAGE}
 
 do-install:
-	${MKDIR} ${PREFIX}/www/cgi-bin
-	${MKDIR} ${DATADIR}
-	@${CHOWN} -R ${COURIERGRAPH_USER}:${COURIERGRAPH_GROUP} ${DATADIR}
-	@${INSTALL_SCRIPT} ${WRKSRC}/couriergraph.pl ${PREFIX}/sbin
-	@${INSTALL_SCRIPT} ${WRKSRC}/couriergraph.cgi ${PREFIX}/www/cgi-bin
+	@${MKDIR} ${PREFIX}/www/cgi-bin
+	${INSTALL_SCRIPT} ${WRKSRC}/couriergraph.pl ${PREFIX}/sbin
+	${INSTALL_SCRIPT} ${WRKSRC}/couriergraph.cgi ${PREFIX}/www/cgi-bin
 
-post-install:
-	@${ECHO}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO}
 
 .include <bsd.port.mk>
