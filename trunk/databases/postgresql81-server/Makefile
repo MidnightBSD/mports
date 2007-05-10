@@ -2,7 +2,7 @@
 # Date created:		November 13, 1998
 # Whom:			Marc G. Fournier <scrappy@FreeBSD.org>
 # 
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.3 2007/02/16 16:07:08 laffer1 Exp $
 # $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.163 2007/02/07 09:51:47 girgen Exp $
 #
 
@@ -288,7 +288,7 @@ pre-su-install:
 do-install:
 	@for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${INSTALL_TARGET}; \
+		${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
 	@ ${MKDIR} ${PREFIX}/share/postgresql
@@ -305,14 +305,11 @@ do-install:
 			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${GMAKE} install-local
+	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} install-local
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${DOCSDIR} ;\
 		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${PKGNAMESUFFIX} ;\
-		${ECHO} "======================================================================" ;\
-		${CAT} ${PKGMESSAGE} ;\
-		${ECHO} "======================================================================" ;\
 	fi
 .endif # !NO_BUILD
 
