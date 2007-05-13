@@ -2,7 +2,7 @@
 # Date created:				Tue Jan  4 11:45:29 PST 2000
 # Whom:					Cy Schubert (Cy.Schubert@uumail.gov.bc.ca)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/aide/Makefile,v 1.1 2006/10/27 14:49:52 wintellect Exp $
 # $FreeBSD: ports/security/aide/Makefile,v 1.21 2006/02/23 05:05:38 cy Exp $
 #
 
@@ -36,19 +36,6 @@ SUB_FILES=	pkg-message
 
 post-install:
 	@${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${PREFIX}/etc/aide.conf.sample
-	@if [ ! -f ${PREFIX}/etc/aide.conf ]; then \
-		${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${PREFIX}/etc/aide.conf ; \
-	fi
-	@if [ ! -d /var/db/aide/databases ]; then \
-		${MKDIR} /var/db/aide/databases; \
-		${CHOWN} root:wheel /var/db/aide ; \
-		${CHOWN} root:wheel /var/db/aide/databases ; \
-		${CHMOD} 0700 /var/db/aide ; \
-		${CHMOD} 0700 /var/db/aide/databases ; \
-	fi
-	@${ECHO}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO}
 .if defined(AIDE_FLOPPY)
 	@disklabel -w -B /dev/rfd0c fd1440
 	@newfs -u 0 -t 0 -i 196608 -m 0 -T minimum -o space /dev/rfd0c
