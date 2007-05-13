@@ -2,7 +2,7 @@
 # Date created:		15 July 2002
 # Whom:			markun@onohara.to
 #
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.4 2007/04/01 18:36:55 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.5 2007/04/13 21:24:01 laffer1 Exp $
 # $FreeBSD: ports/security/clamav/Makefile,v 1.95 2007/03/16 19:16:32 garga Exp $
 #
 
@@ -146,19 +146,12 @@ post-patch:
 		${WRKSRC}/etc/clamd.conf \
 		${WRKSRC}/etc/freshclam.conf
 
-pre-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
-.for c in clamd freshclam
-	@[ -f ${PREFIX}/etc/${c}.conf ] || \
-		${CP} ${PREFIX}/etc/${c}.conf.default ${PREFIX}/etc/${c}.conf
-.endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/html
 	@${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 .endif
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
