@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					kirk@strauser.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.1 2006/09/18 00:57:47 laffer1 Exp $
 # $FreeBSD: ports/shells/bash-completion/Makefile,v 1.14 2006/03/15 14:31:33 mnag Exp $
 #
 
@@ -49,7 +49,5 @@ post-patch:
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/bash_completion ${PREFIX}/etc
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
