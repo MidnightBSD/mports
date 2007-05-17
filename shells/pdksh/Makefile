@@ -2,7 +2,7 @@
 # Date created:		23 May 1995
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/pdksh/Makefile,v 1.1 2006/09/18 15:24:30 laffer1 Exp $
 # $FreeBSD: ports/shells/pdksh/Makefile,v 1.30 2005/11/02 12:24:30 tg Exp $
 #
 
@@ -31,11 +31,5 @@ post-patch:
 	@(${ECHO_CMD} ",s/v${PORTVERSION:C/p.*//}/v${PORTVERSION:S/p/./}/"; \
 		${ECHO_CMD} "wq") | ed -s ${WRKSRC}/version.c
 
-post-install:
-	@${ECHO} "Updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/ksh /etc/shells.bak; \
-		${ECHO_CMD} ${PREFIX}/bin/ksh) > /etc/shells
-	@${RM} /etc/shells.bak
 
 .include <bsd.port.mk>
