@@ -2,7 +2,7 @@
 # Date created:                2000-12-26
 # Whom:                        Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.1 2006/09/18 13:24:12 laffer1 Exp $
 # $FreeBSD: ports/shells/ksh93/Makefile,v 1.47 2006/04/22 22:21:28 kris Exp $
 
 PORTNAME=	ksh93
@@ -18,7 +18,7 @@ COMMENT=	Official AT&T release of KornShell 93
 
 MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
 
-VERSION=	2006-02-14
+VERSION=	2007-03-28
 RESTRICTED=	Source recipient must acknowledge license
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
@@ -33,7 +33,7 @@ MAN1=		ksh93.1
 
 .include <bsd.port.pre.mk>
 
-INSTALLROOT=	${WRKSRC}/arch/freebsd${OSREL:R}.${ARCH}
+INSTALLROOT=	${WRKSRC}/arch/midnightbsd.${ARCH}
 
 .if ${ARCH} == "sparc64"
 BROKEN=	Does not compile on sparc64
@@ -51,13 +51,6 @@ do-install:
 	${INSTALL_SCRIPT} ${INSTALLROOT}/fun/${fun} \
 	    ${PREFIX}/share/examples/ksh93/
 .endfor
-
-post-install:
-	@${ECHO} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/ksh93 /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/ksh93) >/etc/shells
-	@${RM} -f /etc/shells.bak
 
 test: build
 	@cd ${WRKSRC}/src/cmd/ksh93/tests && \
