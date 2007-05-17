@@ -2,7 +2,7 @@
 # Date created:				2002/07/23
 # Whom:					mcglk@artlogix.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/scponly/Makefile,v 1.1 2006/09/18 16:02:23 laffer1 Exp $
 # $FreeBSD: ports/shells/scponly/Makefile,v 1.25 2006/08/06 17:38:15 arved Exp $
 #
 
@@ -154,16 +154,7 @@ pre-everything::
 	@${ECHO_MSG} ""
 
 post-install:
-	@${ECHO_MSG} "Updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/scponly /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/scponly) > /etc/shells
-	@${RM} /etc/shells.bak
 .if defined(WITH_SCPONLY_CHROOT)
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/sbin/scponlyc /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/sbin/scponlyc) > /etc/shells
-	@${RM} /etc/shells.bak
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_SCRIPT} ${WRKSRC}/setup_chroot.sh ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/config.h ${EXAMPLESDIR}
