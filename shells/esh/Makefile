@@ -2,7 +2,7 @@
 # Date created:				05/20/1999
 # Whom:					nectar@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/esh/Makefile,v 1.1 2006/09/18 01:40:03 laffer1 Exp $
 # $FreeBSD: ports/shells/esh/Makefile,v 1.18 2005/04/25 17:08:32 vs Exp $
 #
 
@@ -24,11 +24,6 @@ pre-build:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/esh ${PREFIX}/bin/esh
-	@${ECHO_MSG} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/esh /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/esh) > /etc/shells
-	@${RM} /etc/shells.bak
 .if !defined(NOPORTDOCS)
 	${INSTALL_DATA} ${WRKSRC}/doc/esh.info ${PREFIX}/info/esh.info
 .endif
