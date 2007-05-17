@@ -2,7 +2,7 @@
 # Date created:		2003-09-09
 # Whom:			Sean Chittenden <seanc@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/tcshrc/Makefile,v 1.1 2006/09/18 19:00:09 laffer1 Exp $
 # $FreeBSD: ports/shells/tcshrc/Makefile,v 1.4 2006/05/13 04:15:22 edwin Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of configuration scripts for the TCSH shell
 
 INSTALL_TARGET=	systeminstall
-MAKE_ARGS=	BIN=${LOCALBASE}/bin SHARETCSHRC=${DATADIR}
+MAKE_ARGS=	BIN=${FAKE_DESTDIR}${PREFIX}/bin SHARETCSHRC=${FAKE_DESTDIR}${DATADIR}
 
 WRKSRC=	${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
