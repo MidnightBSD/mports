@@ -29,7 +29,4 @@ MAN3=	Psh::Completion.3 \
 	Psh::Strategy.3 \
 	Psh::StrategyBunch.3
 
-post-install:
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-
 .include <bsd.port.mk>
