@@ -2,7 +2,7 @@
 # Date created:         20 Feb 1996
 # Whom:                 Nobuhiro Yasutomi <nobu@psrc.isac.co.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/fd/Makefile,v 1.1 2006/09/18 02:09:49 laffer1 Exp $
 # $FreeBSD: ports/shells/fd/Makefile,v 1.80 2006/07/24 09:44:11 knu Exp $
 #
 
@@ -38,11 +38,6 @@ post-patch:
 	${REINPLACE_CMD} -E -e 's|^(#define[[:space:]]+EXTENDCCOPT[[:space:]]+)"-O"$$|\1 "${CFLAGS}"|' ${WRKSRC}/machine.h
 
 post-install:
-	@${ECHO} "Updating /etc/shells"
-	@-${CP} /etc/shells /etc/shells.bak; \
-		(${GREP} -v ${PREFIX}/bin/fdsh /etc/shells.bak; \
-		${ECHO_CMD} ${PREFIX}/bin/fdsh) > /etc/shells; \
-		${RM} -f /etc/shells.bak
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
@@ -52,12 +47,8 @@ post-install:
 	@for i in ${DOCS_JA}; do \
 		${INSTALL_DATA} ${WRKSRC}/$$i ${PREFIX}/share/doc/ja/${PORTNAME}; \
 	done
+.endif
 	@${INSTALL_DATA} ${WRKSRC}/_fdrc.orig ${PREFIX}/etc/fd2rc.dist
 	@${INSTALL_DATA} ${WRKSRC}/_fdrc ${PREFIX}/etc/fd2rc.sample
-	if [ ! -f ${PREFIX}/etc/fd2rc ]; then \
-		${CP} -p ${PREFIX}/etc/fd2rc.sample ${PREFIX}/etc/fd2rc; \
-	fi
-	@${CAT} ${PKGMESSAGE}
-.endif
 
 .include <bsd.port.mk>
