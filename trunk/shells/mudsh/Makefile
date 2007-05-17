@@ -2,7 +2,7 @@
 # Date created:        28 February 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/mudsh/Makefile,v 1.1 2006/09/18 13:33:11 laffer1 Exp $
 # $FreeBSD: ports/shells/mudsh/Makefile,v 1.7 2003/11/05 12:06:21 linimon Exp $
 #
 
@@ -31,11 +31,5 @@ do-patch:
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${DISTNAME} ${PREFIX}/bin
 
-post-install:
-	@${ECHO} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/mudsh /etc/shells.bak; \
-	 ${ECHO_CMD} ${PREFIX}/bin/mudsh) > /etc/shells
-	@${RM} /etc/shells.bak
 
 .include <bsd.port.mk>
