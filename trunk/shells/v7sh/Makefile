@@ -29,6 +29,7 @@ EXTRACT_AFTER_ARGS=	${WRKDIR}
 
 NO_WRKSUBDIR=	yes
 MAN1=		${PORTNAME}.1
+MANCOMPRESSED=	yes
 
 OPTIONS=	V7SH_SYSIII	"System III enhancements"	on \
 		V7SH_RENO	"4.3BSD-Reno enhancements"	on \
@@ -55,11 +56,5 @@ post-extract:
 	@${CP} ${FILESDIR}/ulimit.[ch] ${WRKSRC}	# fbsd52
 .endif
 
-post-install:
-	@${ECHO_MSG} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/${PORTNAME} /etc/shells.bak; \
-	 ${ECHO_CMD} ${PREFIX}/bin/${PORTNAME}) > /etc/shells
-	@${RM} /etc/shells.bak
 
 .include <bsd.port.post.mk>

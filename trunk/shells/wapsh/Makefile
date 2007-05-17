@@ -2,7 +2,7 @@
 # Date created:        13 January 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/wapsh/Makefile,v 1.1 2006/09/18 19:45:29 laffer1 Exp $
 # $FreeBSD: ports/shells/wapsh/Makefile,v 1.16 2006/06/19 20:06:57 shaun Exp $
 #
 
@@ -106,10 +106,5 @@ do-install:
 .endfor
 .endif #if !defined(NOPORTDOCS)
 
-post-install:
-	@${ECHO} "updating /etc/services"
-	@${CP} /etc/services /etc/services.bak
-	@(${GREP} -v ^htsh /etc/services.bak; ${ECHO_CMD} "htsh		3001/tcp    # htsh/wapsh server") > /etc/services
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
