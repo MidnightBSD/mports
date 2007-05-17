@@ -2,7 +2,7 @@
 # Date created:				1 Oct 2005
 # Whom:					Vaida Bogdan
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/ibsh/Makefile,v 1.1 2006/09/18 02:14:27 laffer1 Exp $
 # $FreeBSD: ports/shells/ibsh/Makefile,v 1.2 2006/05/13 04:15:21 edwin Exp $
 #
 
@@ -34,8 +34,5 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 .endif
-	@${ECHO}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO}
 
 .include <bsd.port.post.mk>
