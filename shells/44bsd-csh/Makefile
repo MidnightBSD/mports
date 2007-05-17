@@ -3,7 +3,7 @@
 # Date created:			  23 January 2000
 # Whom:				  David O'Brien <obrien@NUXI.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.1 2006/09/18 19:53:28 laffer1 Exp $
 # $FreeBSD: ports/shells/44bsd-csh/Makefile,v 1.17 2004/04/07 13:26:20 clement Exp $
 #
 PORTNAME=	44bsd-csh
@@ -34,11 +34,6 @@ do-install:
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/USD.doc/paper.ascii.gz ${DOCSDIR}
 .endif
-	@${ECHO_MSG} "Updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/44bsd-csh /etc/shells.bak; \
-		${ECHO_CMD} ${PREFIX}/bin/44bsd-csh) > /etc/shells
-	@${RM} /etc/shells.bak
 
 tarup:
 	cd ${WRKSRC} ; rm * USD.doc/*

@@ -3,7 +3,7 @@
 # Date created:		21 August 1994
 # Whom:			jkh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/bash2/Makefile,v 1.1 2006/09/18 01:24:22 laffer1 Exp $
 # $FreeBSD: ports/shells/bash2/Makefile,v 1.82 2006/09/09 01:36:29 obrien Exp $
 #
 
@@ -53,14 +53,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s,.FN /bin/bash,.FN ${PREFIX}/bin/bash," \
 		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}/doc/bash.1
 
-update-etc-shells:
-	@${ECHO_MSG} "updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@( ${GREP} -v ${PREFIX}/bin/bash /etc/shells.bak; \
-		${ECHO_CMD} ${PREFIX}/bin/bash) >/etc/shells
-	@${RM} /etc/shells.bak
-
-post-install: update-etc-shells
+post-install: 
 	${LN} -f ${PREFIX}/bin/bash ${PREFIX}/bin/bash2
 	@${MKDIR} ${EXAMPLESDIR}
 	@cd ${WRKSRC}/examples ; ${PAX} -rw . ${EXAMPLESDIR}

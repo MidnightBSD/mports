@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.2 2007/03/17 20:04:14 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.3 2007/03/30 21:29:57 ctriv Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -148,10 +148,5 @@ post-install:
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/Doc/zsh.info ${PREFIX}/info/zsh.info
 .endif
-	@${ECHO_MSG} "Updating /etc/shells"
-	@${CP} /etc/shells /etc/shells.bak
-	@(${GREP} -v ${PREFIX}/bin/zsh /etc/shells.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/zsh) > /etc/shells
-	@${RM} /etc/shells.bak
 
 .include <bsd.port.post.mk>
