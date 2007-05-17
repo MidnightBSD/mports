@@ -2,7 +2,7 @@
 # Date created:				2006-06-24
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.1 2006/09/18 13:30:33 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.2 2007/03/20 17:37:51 laffer1 Exp $
 # $FreeBSD: ports/shells/mksh/Makefile,v 1.3 2006/09/04 07:02:54 miwi Exp $
 #
 
@@ -46,12 +46,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/dot.mkshrc ${EXAMPLESDIR}
 	${INSTALL_MAN} ${WRKSRC}/mksh.1 ${MANPREFIX}/man/man1
 
-pre-install:
-	@${SETENV} PKG_PREFIX="${PREFIX}" PKG_DESTDIR="${DESTDIR}" \
-		${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
-post-install:
-	@${SETENV} PKG_PREFIX="${PREFIX}" PKG_DESTDIR="${DESTDIR}" \
-		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
