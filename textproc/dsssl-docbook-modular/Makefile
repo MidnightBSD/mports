@@ -2,7 +2,7 @@
 # Date created:		16 March 1998
 # Whom:			Jun Kuriyama <kuriyama@opt.phys.waseda.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/dsssl-docbook-modular/Makefile,v 1.1 2006/09/25 16:28:00 laffer1 Exp $
 # $FreeBSD: ports/textproc/dsssl-docbook-modular/Makefile,v 1.58 2005/06/13 20:54:18 glewis Exp $
 #
 
@@ -42,8 +42,5 @@ pre-su-install:
 do-install:
 	@cd ${WRKSRC} && ${TAR} cpf - . | (cd ${INSTDIR} && ${TAR} xpf -)
 
-post-install:
-	-${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${RELDIR}/catalog
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
