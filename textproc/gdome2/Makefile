@@ -2,7 +2,7 @@
 # Date created:		7 July 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.1 2007/04/04 23:50:17 laffer1 Exp $
 # $FreeBSD: ports/textproc/gdome2/Makefile,v 1.28 2007/01/28 09:07:44 kris Exp $
 #
 
@@ -28,9 +28,6 @@ USE_LDCONFIG=	yes
 MAN1=	gdome-config.1
 
 post-patch:
-	@${REINPLACE_CMD} -E -e \
-		's,^(HTML_DIR *= *).*,\1\$$(prefix)/share/doc,' \
-		${WRKSRC}/gtk-doc/Makefile.in
 	@${FIND} ${WRKSRC} -type f -and \
 		'(' -name '*.[ch]' -or -name '*.xml' ')' | \
 		${XARGS} ${REINPLACE_CMD} -e ' \
