@@ -3,7 +3,7 @@
 # Whom:                 reed@pugetsoundtechnology.com
 #
 # $FreeBSD: ports/textproc/libwpd/Makefile,v 1.18 2006/02/23 10:39:24 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.1 2007/01/20 19:20:33 laffer1 Exp $
 #
 
 PORTNAME=	libwpd
@@ -19,6 +19,6 @@ COMMENT=	Tools for importing and exporting WordPerfect(tm) documents
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack libgsf
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
