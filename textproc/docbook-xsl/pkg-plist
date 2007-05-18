@@ -923,7 +923,7 @@
 %%PORTDOCS%%%%DOCSDIR%%/wordml/preface.html
 %%PORTDOCS%%%%DOCSDIR%%/wordml/wordml.template.html
 share/xsl/docbook/VERSION
-share/xsl/docbook/catalog
+@unexec rm %D/share/xsl/docbook/catalog
 share/xsl/docbook/common/af.xml
 share/xsl/docbook/common/am.xml
 share/xsl/docbook/common/ar.xml

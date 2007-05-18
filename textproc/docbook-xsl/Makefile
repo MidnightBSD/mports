@@ -2,7 +2,7 @@
 # Date created:        17 January 2002
 # Whom:                des
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.1 2006/09/25 15:59:30 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xsl/Makefile,v 1.39 2006/07/06 17:28:16 linimon Exp $
 #
 
@@ -61,7 +61,5 @@ do-install:
 post-install:
 	${RMDIR} ${PREFIX}/share/xsl/docbook/extensions/build
 	${RMDIR} ${PREFIX}/share/xsl/docbook/extensions/build2
-	@${SETENV} PKG_PREFIX=${PREFIX} \
-		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
