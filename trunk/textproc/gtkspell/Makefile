@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.1 2006/09/26 16:23:14 archite Exp $
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.2 2007/03/25 01:39:11 ctriv Exp $
 # $FreeBSD: ports/textproc/gtkspell/Makefile,v 1.28 2006/05/31 22:18:46 mezz Exp $
 #
 
@@ -26,7 +26,7 @@ USE_GNOME=	gnomeprefix gnomehack gtk20
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 USE_XLIB=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
