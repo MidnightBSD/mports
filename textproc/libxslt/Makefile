@@ -2,7 +2,7 @@
 # Date created:				9th February 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.1 2006/09/21 14:15:08 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 #
 
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME?=	gnomehack gnometarget libxml2
 CONFIGURE_ARGS?= --with-html-dir=${PREFIX}/share/doc \
 		--without-python
