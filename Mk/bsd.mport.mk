@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.38 2007/05/07 03:32:33 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.39 2007/05/08 00:13:20 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -904,7 +904,9 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # 				  ${PREFIX}/libdata/ldconfig/${UNIQUENAME}. Note that this
 # 				  directory is used by ldconfig startup script, it is meant to
 # 				  replace ldconfig scripts installed by some ports as (sometimes)
-# 				  000.${UNQUENAME}.sh.
+# 				  000.${UNQUENAME}.sh.  If USE_LINUX_PREFIX is defined, then the
+#				  Linux version of ldconfig will be used instead (and LDCONFIG_DIRS
+#				  is ignored).				
 # USE_LDCONFIG32
 # 				- Same as USE_LDCONFIG but the target file is
 # 				  ${PREFIX}/libdata/ldconfig32/${UNIQUENAME} instead.
@@ -1382,23 +1384,11 @@ PREFIX?=		${TRUE_PREFIX}
 
 
 .if defined(USE_LINUX_PREFIX)
-.if !defined(DESTDIR)
-LDCONFIG_CMD?=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
-LDCONFIG_PLIST_EXEC_CMD?=	${LDCONFIG_CMD}
-LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG_CMD}
+_LINUX_LDCONFIG=			${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
+LDCONFIG_PLIST_EXEC_CMD?=	${_LINUX_LDCONFIG}
+LDCONFIG_PLIST_UNEXEC_CMD?=	${_LINUX_LDCONFIG}
 .else
-LDCONFIG_CMD?=			${CHROOT} ${DESTDIR} ${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
-LDCONFIG_PLIST_EXEC_CMD?=	${LDCONFIG_CMD}
-LDCONFIG_PLIST_UNEXEC_CMD?=	${LINUXBASE_REL}/sbin/ldconfig -r ${LINUXBASE_REL}
-.endif
-.else
-.if !defined(DESTDIR)
-LDCONFIG_CMD?=			${LDCONFIG} -m ${LDCONFIG_RUNLIST}
-LDCONFIG_PLIST_EXEC_CMD?=	${LDCONFIG} -m ${LDCONFIG_PLIST}
-.else
-LDCONFIG_CMD?=			${CHROOT} ${DESTDIR} ${LDCONFIG} -m ${LDCONFIG_RUNLIST}
-LDCONFIG_PLIST_EXEC_CMD?=	${CHROOT} ${DESTDIR} ${LDCONFIG} -m ${LDCONFIG_PLIST}
-.endif
+LDCONFIG_PLIST_EXEC_CMD?=	${LDCONFIG} -m ${USE_LDCONFIG:S|${PREFIX}|%D|g}
 LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG} -R
 .endif
 
@@ -2827,8 +2817,7 @@ _DESKTOPDIR_REL=
 
 .if defined(INSTALLS_SHLIB)
 LDCONFIG_DIRS?=	%%PREFIX%%/lib
-LDCONFIG_PLIST!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
-LDCONFIG_RUNLIST!=	${ECHO_CMD} ${LDCONFIG_PLIST} | ${SED} -e "s!%D!${PREFIX}!g"
+USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
 .endif
 
 .MAIN: all
@@ -5136,22 +5125,13 @@ generate-plist:
 		@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} | ${SED} -e 's,^,@dirrm ,' >> ${TMPPLIST}
 .	endfor
 
-# To be removed once INSTALLS_SHLIB has been eradicated.
-.	if defined(INSTALLS_SHLIB) && !defined(INSTALL_AS_USER)
-		@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}" >> ${TMPPLIST}
-		@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" >> ${TMPPLIST}
-.	elif defined(INSTALLS_SHLIB)
-		@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
-		@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD} || ${TRUE}" >> ${TMPPLIST}
-.	endif
-
 .	if defined(USE_LDCONFIG)
 .		if !defined(INSTALL_AS_USER)
-			@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG}" >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG} -R" >> ${TMPPLIST}
+			@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}"     >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" >> ${TMPPLIST}
 .		else
-			@${ECHO_CMD} "@exec ${LDCONFIG} -m ${USE_LDCONFIG} || ${TRUE}" >> ${TMPPLIST}
-			@${ECHO_CMD} "@unexec ${LDCONFIG} -R || ${TRUE}" >> ${TMPPLIST}
+			@${ECHO_CMD} "@exec ${LDCONFIG_PLIST_EXEC_CMD}" || ${TRUE}     >> ${TMPPLIST}
+			@${ECHO_CMD} "@unexec ${LDCONFIG_PLIST_UNEXEC_CMD}" || ${TRUE} >> ${TMPPLIST}
 .		endif
 .	endif
 .	if defined(USE_LDCONFIG32)
@@ -5271,7 +5251,7 @@ install-ldconfig-file:
 .	if defined(USE_LDCONFIG) 
 .		if ${USE_LDCONFIG} != ${PREFIX}/lib 
 			@${ECHO_MSG} "===>   Installing ldconfig configuration file."
-			@${ECHO_CMD} ${USE_LDCONFIG} | ${TR} ' ' '\n' \
+			@${ECHO_CMD} ${USE_LDCONFIG:S/%D/${PREFIX}/g} | ${TR} ' ' '\n' \
 				> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
 			@${ECHO_CMD} ${LDCONFIG_DIR}/${UNIQUENAME} >> ${TMPPLIST}
 .		endif
