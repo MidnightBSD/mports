@@ -2,7 +2,7 @@
 # Date created:		16 April 2005
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.1 2006/09/25 16:17:22 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml-440/Makefile,v 1.2 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook-xml
@@ -44,7 +44,7 @@ ENT_FILES=	isoamsa.ent isoamsb.ent isoamsc.ent isoamsn.ent \
 		isogrk3.ent isogrk4.ent isolat1.ent isolat2.ent \
 		isonum.ent isopub.ent isotech.ent
 
-pre-install:
+pre-fake:
 	@${RM} -f ${PLIST}
 .for F in ${ENT_FILES}
 	@${ECHO_CMD} "${ENTDIR}/${F}" >> ${PLIST}

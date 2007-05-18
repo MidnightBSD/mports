@@ -2,7 +2,7 @@
 # Date created:		5 Oct 2001
 # Whom:			Cyrille Lefevre <clefevre@citeweb.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.1 2006/09/24 12:48:23 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-to-man/Makefile,v 1.11 2006/06/22 19:01:35 linimon Exp $
 #
 
@@ -14,6 +14,8 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A DocBook SGML DTD into nroff/troff -man macros converter
+
+FAKE_OPTS=	trueprefix
 
 .include <bsd.port.pre.mk>
 

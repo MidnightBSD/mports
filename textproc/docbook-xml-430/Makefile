@@ -2,7 +2,7 @@
 # Date created:		02 Apr 2004
 # Whom:			hrs
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xml-430/Makefile,v 1.1 2006/09/25 16:06:38 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml-430/Makefile,v 1.3 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook-xml
@@ -44,7 +44,7 @@ ENT_FILES=	iso-amsa.ent iso-amsb.ent iso-amsc.ent iso-amsn.ent \
 		iso-grk3.ent iso-grk4.ent iso-lat1.ent iso-lat2.ent \
 		iso-num.ent iso-pub.ent iso-tech.ent
 
-pre-install:
+pre-fake:
 	(for F in ${ENT_FILES}; do \
 			${ECHO_CMD} "${ENTDIR}/$${F}"; \
 		done;\
@@ -72,8 +72,5 @@ do-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${DOC_FILES:S,^,${WRKSRC}/,} ${DOCSDIR}
 .endif
-
-post-install:
-	-${XMLCATMGR} ${REGIST_CAT_FLAGS_XML}
 
 .include <bsd.port.mk>
