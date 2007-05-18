@@ -2,7 +2,7 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.1 2007/04/04 16:07:36 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
@@ -36,8 +36,11 @@ DBPATH=		/var/lib/rpm
 RPMFLAGS=	--ignoreos --root ${PREFIX} --dbpath ${DBPATH} \
 		--nodeps --replacepkgs
 
+FAKE_LIB_ENV= 	LD_LIBRARY_PATH="${PREFIX}/usr/lib"
 CONF_DICT_ENV=	ASPELL="${PREFIX}/usr/bin/aspell" \
-		WORD_LIST_COMPRESS="${PREFIX}/usr/bin/word-list-compress"
+		WORD_LIST_COMPRESS="${PREFIX}/usr/bin/word-list-compress" \
+		${FAKE_LIB_ENV}
+		
 AVAIL_DICT=	af bg br ca cs cy da de el en eo es fo fr hr ia id it ga gd gl \
 		gv is mi ms mt nb nl nn pl pt ro ru sk sl sv sw tn tr uk wa zu
 SPECDICTS=	af bg cs cy da el en fo fr ga gd gl gv hr ia id is it mi ms mt \
@@ -206,19 +209,18 @@ do-install:
 		${DISTDIR}/${PORTNAME}-${PORTVERSION}-0.ximian.5.1.i386.rpm
 	@${FIND} ${LINUXBASE} -name lib -type d | ${SED} 's|${LINUXBASE}||g' \
 		> ${LINUXBASE}/etc/ld.so.conf
-	@${LDCONFIG_LINUX}
 
 post-install:
 .for DICO in ${DICTS}
 	@${ECHO_MSG} "===>   Installing for ${DICO} dictionaries"
 . if (${SPECDICTS:M${DICO}*} != "")
-	@cd ${WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}} &&	\
-	 ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} &&		\
-	 ${GMAKE} install
+	cd ${WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}} && \
+	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/usr/share/aspell" && \
+	 ${SETENV} ${FAKE_LIB_ENV} ${GMAKE} install
 . else
-	@cd ${WRKDIR}/aspell-${DICO}-${DICTVERSION} &&		\
-	 ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT}  &&		\
-	 ${GMAKE} install
+	cd ${WRKDIR}/aspell-${DICO}-${DICTVERSION} && \
+	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/usr/share/aspell" && \
+	 ${SETENV} ${FAKE_LIB_ENV} ${GMAKE} install
 . endif
 	@${CAT} ${MASTERDIR}/pkg-plist.${DICO} >> ${TMPPLIST}
 .endfor
