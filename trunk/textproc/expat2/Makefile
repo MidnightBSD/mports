@@ -18,7 +18,7 @@ COMMENT=	XML 1.0 parser written in C
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
 ALL_TARGET=	default
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 MAN1=		xmlwf.1
 
 SHLIB_MAJOR=	6
