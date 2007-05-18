@@ -2,7 +2,7 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.2 2007/04/02 04:25:13 laffer1 Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.3 2007/04/05 05:37:27 ctriv Exp $
 #
 
 PORTNAME=	joe
@@ -14,6 +14,8 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
+
+# '
 
 BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
@@ -33,6 +35,7 @@ MAN1=		${PORTNAME}.1
 .include <bsd.port.pre.mk>
 
 post-install:
+	@${CAT} ${FILESDIR}/ftyperc.mbsd >> ${PREFIX}/etc/${PORTNAME}/ftyperc
 .for file in jmacsrc jpicorc jstarrc rjoerc joerc
 .if !exists(${PREFIX}/etc/${PORTNAME}/${file}.dist)
 	@${CP} ${PREFIX}/etc/${PORTNAME}/${file} ${PREFIX}/etc/${PORTNAME}/${file}.dist
