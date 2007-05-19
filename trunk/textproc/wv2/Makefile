@@ -3,7 +3,7 @@
 # Whom:                 lofi@freebsd.org
 #
 # $FreeBSD: ports/textproc/wv2/Makefile,v 1.17 2006/05/27 10:26:18 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.1 2007/01/20 17:55:49 laffer1 Exp $
 #
 
 PORTNAME=	wv2
@@ -24,7 +24,7 @@ USE_GNOME=	gnometarget libgsf
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 pre-configure:
 	@${REINPLACE_CMD} "s,-pedantic ,," ${WRKSRC}/configure
