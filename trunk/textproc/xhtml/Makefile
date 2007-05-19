@@ -2,7 +2,7 @@
 # Date created:		10 May 2000
 # Whom:			kuriyama
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xhtml/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
 # $FreeBSD: ports/textproc/xhtml/Makefile,v 1.11 2005/06/13 20:54:18 glewis Exp $
 #
 
@@ -41,15 +41,12 @@ CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 post-patch:
 	${SED} -e 's#@@DTDDIR@@#${DTDDIR}#' < ${FILESDIR}/catalog.xml > ${WRKSRC}/catalog.xml
 
-pre-su-install:
+pre-install:
 	@[ -d ${DTDDIR}	 ] || ${MKDIR} ${DTDDIR}
 
 do-install:
 	@(cd ${WRKSRC}/DTD; ${INSTALL_DATA} ${DTDFILES} ${DTDDIR})
 	${SED} -e 's|SGMLDECL.*||' ${WRKSRC}/DTD/xhtml.soc > ${DTDDIR}/xhtml-dcl.soc
 
-post-install:
-	${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${DTDDIR}/xhtml-dcl.soc
-	${XMLCATMGR} -c ${CATALOG_PORTS_XML} add nextCatalog ${DTDDIR}/catalog.xml
 
 .include <bsd.port.mk>
