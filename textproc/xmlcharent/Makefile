@@ -1,7 +1,7 @@
 # New ports collection makefile for:   xmlcharent # Date created:                31 January 2002
 # Whom:                        Kimura Fuyuki <fuyuki@mj.0038.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xmlcharent/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
 # $FreeBSD: ports/textproc/xmlcharent/Makefile,v 1.7 2006/07/14 16:32:39 hrs Exp $
 #
 
@@ -33,7 +33,5 @@ do-install:
 	${MKDIR} ${XMLDIR}
 	${INSTALL_DATA} ${WRKSRC}/*.ent\
 		${FILESDIR}/catalog ${FILESDIR}/catalog.xml ${XMLDIR}
-	${XMLCATMGR} -sc ${CATALOG_PORTS_SGML} add CATALOG ${XMLDIR}/catalog
-	${XMLCATMGR} -c ${CATALOG_PORTS_XML} add nextCatalog ${XMLDIR}/catalog.xml
 
 .include <bsd.port.mk>
