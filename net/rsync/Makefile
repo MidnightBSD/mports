@@ -2,7 +2,7 @@
 # Date created:			  Sat Aug 3, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.1 2006/10/01 16:30:58 laffer1 Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.115 2006/09/02 08:00:16 pav Exp $
 #
 
@@ -62,10 +62,8 @@ EXTRA_PATCHES+=	${WRKSRC}/patches/flags.diff
 .endif
 
 .if !defined(WITHOUT_ACLS)
-.if ${OSVERSION} >= 500000
 EXTRA_PATCHES+=	${WRKSRC}/patches/acls.diff
 CONFIGURE_ARGS+=--enable-acl-support
-.endif
 .endif
 
 .if defined(WITHOUT_SSH)
@@ -83,14 +81,11 @@ pre-configure:
 		${WRKSRC}/rsync.h ${WRKSRC}/zlib/zutil.h
 
 post-install:
-	@${STRIP_CMD} ${DESTDIR}${PREFIX}/bin/rsync
-	@${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${DESTDIR}${PREFIX}/etc/
-	@[ -f ${DESTDIR}${PREFIX}/etc/rsyncd.conf ] || \
-		${CP} ${DESTDIR}${PREFIX}/etc/rsyncd.conf.sample \
-		${DESTDIR}${PREFIX}/etc/rsyncd.conf
+	@${STRIP_CMD} ${PREFIX}/bin/rsync
+	@${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${PREFIX}/etc/
 .if !defined(NOPORTDOCS)
-	@${MKDIR} ${DESTDIR}${DOCSDIR}
-	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DESTDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 .endif
 
 test: build
