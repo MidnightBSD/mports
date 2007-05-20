@@ -2,12 +2,12 @@
 # Date created:			Jun 2, 2001
 # Whom:				Mark Pulford <mark@kyne.com.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.1 2007/01/03 20:52:49 wintellect Exp $
 # $FreeBSD: ports/benchmarks/siege/Makefile,v 1.25 2006/08/25 18:08:09 jmelo Exp $
 #
 
 PORTNAME=	siege
-PORTVERSION=	2.65
+PORTVERSION=	2.66
 CATEGORIES=	benchmarks
 MASTER_SITES=	ftp://sid.joedog.org/pub/siege/
 
