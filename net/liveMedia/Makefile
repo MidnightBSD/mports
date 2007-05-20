@@ -2,7 +2,7 @@
 # Date created:				2002/09/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.1 2007/01/25 15:30:56 wintellect Exp $
 # $FreeBSD: ports/net/liveMedia/Makefile,v 1.250 2007/01/01 17:16:34 nork Exp $
 #
 
@@ -198,7 +198,7 @@ post-build:
 .endfor
 	@${CAT} ${.CURDIR}/pkg-plist >> ${PLIST}
 
-pre-su-install:
+pre-install:
 	@${INSTALL_DATADIR} ${PREFIX}/live
 	@${INSTALL_DATADIR} ${PREFIX}/live/groupsock
 	@${INSTALL_DATADIR} ${PREFIX}/live/liveMedia
@@ -230,7 +230,5 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/live/liveMedia/include/
 .endfor
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
