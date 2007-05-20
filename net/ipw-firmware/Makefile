@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/ipw-firmware/Makefile,v 1.20 2006/09/17 01:11:23 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.1 2007/02/17 06:04:33 archite Exp $
 
 PORTNAME?=	ipw-firmware
 RELNAME?=	ipw2100
@@ -25,6 +25,10 @@ FIRMWARES?=	${RELNAME}-${PORTVERSION}-i.fw:${DRIVERNAME}-i.fw \
 		${RELNAME}-${PORTVERSION}-p.fw:${DRIVERNAME}-p.fw \
 		${RELNAME}-${PORTVERSION}.fw:${DRIVERNAME}.fw
 
+# Override PREFIX to install ${DRIVERNAME}control(8) somewhere we hope it'll
+# be available soon enough.
+PREFIX=		/usr
+
 .include <bsd.port.pre.mk>
  
 # Dummy OSVERSION for ipw.
@@ -39,9 +43,6 @@ OPTIONS+=	CONTROL	"Install ${DRIVERNAME}control(8) utility" on
 
 OPTIONS+=	MODULE	"Install ${DRIVERNAME}(4) kernel module (very old snapshot)" off
 
-# Override PREFIX to install ${DRIVERNAME}control(8) somewhere we hope it'll
-# be available soon enough.
-PREFIX=		/usr
 
 WRKSRC=		${WRKDIR}
 KERNDIR=	/boot/kernel
@@ -56,6 +57,7 @@ PLIST_SUB:=	${SUB_LIST}
 MAKE_ENV=	BINDIR="${PREFIX}/sbin" \
 		MANDIR="${PREFIX}/share/man/man" \
 		KMODDIR="${KMODDIR}"
+FAKE_SETUP+=	FWDIR=${FAKE_DESTDIR}${FWDIR}
 
 MANCOMPRESSED=	yes
 
@@ -114,18 +116,13 @@ do-build:
 .endif
 
 do-install:
-.if !defined(PACKAGE_BUILDING)
-# Let pointyhat build the package, anyway the user will have to agree with license
-# terms to install the port/package.
-	${SH} ${PKGREQ} ${PORTNAME} INSTALL
-.endif
 .if defined(WITH_MODULE)
 . for i in share sys
-	cd ${WRKSRC}/${DRIVERDISTNAME}/src/${i}; make install ${MAKE_ENV}
+	cd ${WRKSRC}/${DRIVERDISTNAME}/src/${i}; make install ${FAKE_MAKEARGS} ${MAKE_ENV}
 . endfor
 .endif
 .if !defined(WITHOUT_CONTROL)
-	cd ${WRKSRC}/${DRIVERDISTNAME}/src/usr.sbin/${DRIVERNAME}control/; make install ${MAKE_ENV}
+	cd ${WRKSRC}/${DRIVERDISTNAME}/src/usr.sbin/${DRIVERNAME}control/; make install ${FAKE_MAKEARGS} ${MAKE_ENV}
 .endif
 	${MKDIR} ${FWDIR}
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${FWDIR}/LICENSE.${DRIVERNAME}
@@ -134,7 +131,6 @@ do-install:
 .endfor
 
 post-install:
-	@${CAT} ${PKGMESSAGE}
 .if defined(WITH_MODULE)
 	@${ECHO_CMD} "You asked for ${DRIVERNAME}(4) module to be installed but"
 	@${ECHO_CMD} "be aware that this is a *very* *old* snapshot of the code"
