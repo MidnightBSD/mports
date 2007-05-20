@@ -3,7 +3,7 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/net/cvsup/Makefile,v 1.64 2005/12/17 06:17:29 lawrance Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.1 2006/12/15 04:39:33 laffer1 Exp $
 #
 
 PORTNAME=	cvsup
@@ -47,6 +47,7 @@ BUILD_DEPENDS=	${PREFIX}/lib/m3/pkg/formsvbt/${TARGET}/libm3formsvbt.a:${PORTSDI
 .endif
 
 MAKE_ARGS+=	PREFIX=${PREFIX} M3FLAGS="${M3FLAGS}"
+FAKE_MAKEARGS+= PREFIX=${FAKE_DESTDIR}${PREFIX}
 MAN1=		cvpasswd.1 cvsup.1
 MAN8=		cvsupd.8
 
