@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.6 2007/05/19 23:41:16 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.7 2007/05/19 23:45:34 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
 
+    SUBDIR += blogbench
     SUBDIR += flops
     SUBDIR += httperf
     SUBDIR += iozone
