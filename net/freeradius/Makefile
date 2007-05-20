@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.1 2007/04/13 21:27:05 laffer1 Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.54 2007/01/23 12:35:52 sem Exp $
 #
 
@@ -30,6 +30,7 @@ USE_RC_SUBR=	radiusd.sh
 USE_AUTOTOOLS=	libltdl:15 libtool:15
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
+DESTDIRNAME=	R
 MAKE_ARGS+=	LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 
