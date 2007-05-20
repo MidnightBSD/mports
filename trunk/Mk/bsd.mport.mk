@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.39 2007/05/08 00:13:20 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.40 2007/05/18 18:28:32 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1511,7 +1511,7 @@ FAKE_INSTALLDIR?=	fake-inst-${ARCH}
 FAKE_TARGET?=		${INSTALL_TARGET}
 DESTDIRNAME?=   	DESTDIR
 FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
-FAKE_MAKEARGS?=		${DESTDIRNAME}=${FAKE_DESTDIR} ${MAKE_ARGS}
+FAKE_MAKEARGS?=		${MAKE_ARGS} ${DESTDIRNAME}=${FAKE_DESTDIR}
 
 FAKE_SETUP=		TRUE_PREFIX=${TRUE_PREFIX} PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} \
 				LINUXBASE=${FAKE_DESTDIR}${LINUXBASE:S/^${FAKE_DESTDIR}//} \
