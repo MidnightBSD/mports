@@ -2,12 +2,12 @@
 # Date created:         26 September 1994
 # Whom:                 jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/iozone/Makefile,v 1.1 2007/05/19 23:45:34 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/iozone/Makefile,v 1.48 2007/01/11 21:37:25 erwin Exp $
 #
 
 PORTNAME=	iozone
-PORTVERSION=	3.267
+PORTVERSION=	3.283
 PORTREVISION=	0
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.iozone.org/src/current/
