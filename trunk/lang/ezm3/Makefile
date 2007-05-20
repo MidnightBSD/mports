@@ -3,7 +3,7 @@
 # Whom:			John Polstra <jdp@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.1 2006/12/15 04:35:58 laffer1 Exp $
 #
 
 PORTNAME=	ezm3
@@ -30,6 +30,10 @@ COMMENT=	Easier, more portable Modula-3 distribution for building CVSup
 
 DIST_SUBDIR=	ezm3
 INSTALL_TARGET=	all
+
+# This port fails if files are moved from their installed location.
+FAKE_DESTDIR=	/
+
 MAKE_ARGS+=	M3OPTIONS="-DBUILD_ALL -DSHIP_ALL"
 MAN1=		m3bundle.1
 PLIST_SUB+=	ARCH=${ARCH} TARGET=${TARGET} WORDSIZE=${WORDSIZE} \
