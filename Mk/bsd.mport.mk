@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.40 2007/05/18 18:28:32 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.41 2007/05/20 18:05:21 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1367,9 +1367,16 @@ FILESDIR?=		${MASTERDIR}/files
 SCRIPTDIR?=		${MASTERDIR}/scripts
 PKGDIR?=		${MASTERDIR}
 
+
 # Set up PREFIX.
 .if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
 .undef USE_X_PREFIX
+.endif
+
+# If PREFIX is set, and TRUE_PREFIX is not, then PREFIX has been overridden,
+# if TRUE_PREFIX had been set, we would be in a fake envirement.
+.if defined(PREFIX) && !defined(TRUE_PREFIX)
+TRUE_PREFIX:=	${PREFIX}
 .endif
 
 .if defined(USE_X_PREFIX) || defined(USE_IMAKE)
