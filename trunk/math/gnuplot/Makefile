@@ -2,7 +2,7 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.1 2006/09/25 17:10:00 laffer1 Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
@@ -71,7 +71,7 @@ CONFIGURE_ARGS+=	--with-gd=${LOCALBASE}
 .if defined(WITHOUT_PDF)
 CONFIGURE_ARGS+=	--without-pdf
 .else
-LIB_DEPENDS+=		pdf.7:${PORTSDIR}/print/pdflib
+LIB_DEPENDS+=		pdf.8:${PORTSDIR}/print/pdflib
 CONFIGURE_ARGS+=	--with-pdf=${LOCALBASE}
 .endif
 
