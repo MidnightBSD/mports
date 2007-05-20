@@ -2,7 +2,7 @@
 # Date created:		Wed Jan 9 12:27:54 CET 2002
 # Whom:			Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.2 2007/02/23 18:37:28 laffer1 Exp $
 # $FreeBSD: ports/print/pdflib/Makefile,v 1.52 2006/11/01 12:35:35 ale Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	PDFlib-Lite-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for dynamically generating PDF
 
+BROKEN=		Does not fake/package properly
 RESTRICTED=	many odd restrictions on usage and distribution
 
 USE_LDCONFIG=	yes
