@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/objcunit/Makefile,v 1.1 2006/11/05 12:21:16 dinoex Exp $
-# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.1 2007/02/14 21:23:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.2 2007/05/06 18:35:09 ctriv Exp $
 #
 
 PORTNAME=	objcunit
@@ -23,6 +23,8 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
-BROKEN=does not build with gnustep-make 2
+
+post-patch:
+	@${LN} -s ${WRKSRC}/Classes ${WRKSRC}/ObjcUnit
 
 .include <bsd.port.mk>
