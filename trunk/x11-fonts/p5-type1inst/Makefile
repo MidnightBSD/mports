@@ -3,12 +3,12 @@
 # Whom:			giffunip@asme.org
 #
 # $FreeBSD: ports/x11-fonts/p5-type1inst/Makefile,v 1.17 2004/07/25 15:10:24 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/p5-type1inst/Makefile,v 1.1 2007/01/24 16:51:54 laffer1 Exp $
 #
 
 PORTNAME=	type1inst
 PORTVERSION=	0.6.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-fonts perl5
 MASTER_SITES=	${MASTER_SITE_SUNSITE}
 MASTER_SITE_SUBDIR=X11/xutils
@@ -24,6 +24,9 @@ USE_XLIB=	yes
 NO_BUILD=	yes
 
 MAN1=	type1inst.1
+
+post-patch:
+	@${REINPLACE_CMD} -e 's:#!/usr/bin/perl:#!${PERL}:' ${WRKSRC}/type1inst ${WRKSRC}/t1embed
 
 do-install:
 	@${INSTALL_SCRIPT} ${WRKSRC}/type1inst ${PREFIX}/bin
