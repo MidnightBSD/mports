@@ -2,7 +2,7 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.3 2007/03/16 18:53:19 laffer1 Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
@@ -28,7 +28,7 @@ LATEST_LINK?=		${PKGNAMEPREFIX}${PORTNAME}3${PKGNAMESUFFIX}
 EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 WRKSRC=			${WRKDIR}/${DISTNAME}/source
 # directories
-VARDIR?=		${DESTDIR}/var
+VARDIR?=		${FAKE_DESTDIR}/var
 SAMBA_SPOOL=		${VARDIR}/spool/samba
 SAMBA_LOGDIR=		${VARDIR}/log/samba
 SAMBA_RUNDIR=		${VARDIR}/run
@@ -396,9 +396,10 @@ post-install:
 .	endfor
 # !NOPORTDOCS
 .endif
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 # !SAMBA_SUBPORT
 .endif
+
+post-fake:
+	@${REINPLACE_CMD} -e 's:${FAKE_DESTDIR}::g' ${TMPPLIST}
 
 .include <bsd.port.post.mk>
