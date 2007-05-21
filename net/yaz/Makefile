@@ -2,7 +2,7 @@
 # Date created:				16 Sep 2000
 # Whom:					Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/yaz/Makefile,v 1.1 2007/02/25 21:58:09 laffer1 Exp $
 # $FreeBSD: ports/net/yaz/Makefile,v 1.42 2007/02/01 13:40:08 demon Exp $
 #
 
@@ -30,7 +30,7 @@ MAN1=		yaz-asncomp.1 yaz-client.1 yaz-iconv.1 yaz-marcdump.1 \
 MAN7=		yaz-log.7 yaz.7
 MAN8=		yaz-config.8 yaz-ztest.8
 
-pre-install:
+pre-fake:
 	cd ${WRKSRC}/doc && \
 		${REINPLACE_CMD} -e 's,[$$]{datarootdir}/man,${TARGETDIR}/man,' \
 		Makefile
