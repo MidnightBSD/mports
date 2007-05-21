@@ -2,7 +2,7 @@
 # Date created:         23 Jul 1997
 # Whom:                 stb
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.1 2007/03/17 01:43:32 ctriv Exp $
 # $FreeBSD: ports/net/netatalk/Makefile,v 1.74 2007/01/29 23:51:52 kris Exp $
 #
 
@@ -15,21 +15,29 @@ MASTER_SITE_SUBDIR=	netatalk
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and print server for AppleTalk networks
 
-.if defined(WITH_SRVLOC)
-LIB_DEPENDS+=	slp.1:${PORTSDIR}/net/openslp
-.endif
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_ICONV=	yes
-USE_BDB=	41+
+USE_BDB=	41
 USE_RC_SUBR=	netatalk
 CONFIGURE_ARGS+=	--with-tcp-wrappers \
 			--with-pkgconfdir=${PREFIX}/etc \
 			--with-libiconv=${LOCALBASE}
+			
+OPTIONS=	SRVLOC  "Enable Service Location Protocol support" off \
+		PAM "Enable PAM Support" off \
+		TIMELORD "Enable Timelord network time service" off
+
+.include <bsd.port.pre.mk>
+			
+.if defined(WITH_SRVLOC)
+LIB_DEPENDS+=	slp.1:${PORTSDIR}/net/openslp
+.endif			
 .if defined(WITH_PAM)
 CONFIGURE_ARGS+=	--with-pam=/etc/pam.d
 PLIST_SUB+=		NETATALKPAM=""
+PKGMESSAGE=		${FILESDIR}/pkg-message
 .else
 CONFIGURE_ARGS+=	--without-pam
 PLIST_SUB+=		NETATALKPAM="@comment "
@@ -75,16 +83,6 @@ SUB_LIST+=	SRVLOC="slpd"
 SUB_LIST+=	SRVLOC=""
 .endif
 
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "Netatalk has the following tunable options:"
-	@${ECHO_MSG} "		WITH_SRVLOC=yes		Enable Service Location Protocol support"
-	@${ECHO_MSG} "		WITH_PAM=yes		Enable PAM support"
-	@${ECHO_MSG} "		WITH_TIMELORD=yes	Enable Timelord network time service"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "See Netatalk's Makefile for more details on some of these options."
-	@${ECHO_MSG} ""
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%DB_NAME%%|${BDB_INCLUDE_DIR:T}| ; \
 	    	s|%%DB_LIB%%|-l${BDB_LIB_NAME}|g' \
@@ -96,13 +94,5 @@ post-install:
 		${PREFIX}/bin/afpd-mtab.pl ${PREFIX}/etc/netatalk.conf.dist
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/macusers/macusers \
 		${PREFIX}/bin/macusers
-.for i in ${FILES}
-	[ -f ${PREFIX}/etc/${i} ] || \
-		${INSTALL_DATA} -c ${PREFIX}/etc/${i}.dist ${PREFIX}/etc/${i}
-.endfor
-.for i in ${LINKS}
-	( cd ${PREFIX}/bin && ${LN} -sf megatron ${i} )
-.endfor
-	@${CAT} ${PKGMESSAGE}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
