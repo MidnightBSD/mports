@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <dima@Chg.RU>
 #
 # $FreeBSD: ports/net/rrdtool/Makefile,v 1.59 2006/08/16 08:38:14 demon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.1 2007/01/26 02:57:58 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
@@ -27,7 +27,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libart-2.0 -I${LOCALBAS
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS:=	${CFLAGS:N-ffast-math}
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 MAN1=		bin_dec_hex.1 cdeftutorial.1 rpntutorial.1 rrd-beginners.1 \
 		rrdbuild.1 rrdcgi.1 rrdcreate.1 rrddump.1 rrdfetch.1 rrdfirst.1 \
@@ -44,7 +44,9 @@ post-extract:
 		${WRKSRC}/doc/Makefile.in
 .endif
 
-post-install:
+done-message: example-message
+
+example-message:
 .if !defined(BATCH)
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "############################################################################"
