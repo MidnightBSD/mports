@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@web.de>
 #
 # $FreeBSD: ports/databases/db41/Makefile,v 1.60 2006/04/14 03:44:07 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db41/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
 #
 
 PORTNAME=	db41
@@ -24,13 +24,16 @@ COMMENT=	The Berkeley DB package, revision 4.1
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
+INCLUDEDIR=	${PREFIX}/include/${PORTNAME}
+
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 \
 		--enable-cxx --enable-dynamic \
-		--includedir=${PREFIX}/include/db41
-INSTALLS_SHLIB=	yes
+		--includedir=${INCLUDEDIR}
+FAKE_MAKEARGS=	prefix=${FAKE_DESTDIR}${PREFIX} includedir=${FAKE_DESTDIR}${INCLUDEDIR}
+USE_LDCONFIG=	yes
 
 .if !defined(NOPORTDOCS)
 INSTALL_TARGET=	install install_docs
