@@ -2,7 +2,7 @@
 # Date created:         007 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/netclasses/Makefile,v 1.1 2006/09/27 19:46:40 laffer1 Exp $
 # $FreeBSD: ports/net/netclasses/Makefile,v 1.1 2006/09/10 08:15:09 dinoex Exp $
 #
 
@@ -17,15 +17,10 @@ COMMENT=	Objective-C framework for socket programming with GNUstep
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-# broken
-#USE_LDCONFIG=	yes
-INSTALLS_SHLIB=	yes
-MAKEFILE=	GNUmakefile
 
 .include <bsd.port.mk>
