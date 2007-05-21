@@ -2,7 +2,7 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.3 2007/04/19 03:23:28 ctriv Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.4 2007/05/03 01:37:44 laffer1 Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
@@ -48,7 +48,7 @@ pre-install:
 	@${MKDIR} ${PREFIX}/libdata/pkgconfig
 
 post-install:
-	${SED} -e 's|@PREFIX@|${PREFIX}|' ${WRKSRC}/scripts/libpng.pc.in \
+	${SED} -e 's|@PREFIX@|${TRUE_PREFIX}|' ${WRKSRC}/scripts/libpng.pc.in \
 		> ${WRKSRC}/scripts/libpng.pc
 	${INSTALL_DATA} ${WRKSRC}/scripts/libpng.pc \
 		${PREFIX}/libdata/pkgconfig/libpng12.pc
