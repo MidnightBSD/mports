@@ -2,7 +2,7 @@
 # Date created:		Wed Jul 25 23:30:19 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.1 2006/09/28 02:07:25 archite Exp $
+# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.2 2007/01/03 11:45:18 wintellect Exp $
 # $FreeBSD: ports/sysutils/cdrtools/Makefile,v 1.69 2006/08/03 09:29:49 marius Exp $
 #
 
@@ -156,9 +156,5 @@ do-install:
 .endfor
 .endif
 
-post-install:
-	-@if [ -f ${PKGINSTALL} ]; then ${SETENV} PKG_PREFIX=${PREFIX} \
-		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL; fi
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
