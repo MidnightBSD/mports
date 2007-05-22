@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: ports/Tools/scripts/chkversion.pl,v 1.13 2004/06/04 22:23:03 eik Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.1 2007/05/22 15:47:52 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -38,7 +38,7 @@ use warnings;
 my ($plist, $destdir, $prefix) = @ARGV;
 
 
-open(my $fh, '<', $plist) || die "Couldn't open $plist: $!";
+open(my $fh, '<', $plist) || die "Couldn't open $plist: $!\n";
 
 print "Checking $destdir";
 
@@ -52,7 +52,14 @@ while (<$fh>) {
 
   next if m/^\@/;
   
-  next if -e "$destdir$cwd/$_";
+  if (-e "$destdir$cwd/$_") {
+    if (grep_file($destdir, "$destdir$cwd/$_")) {
+      $ok = 0;
+      print "    $_ contains the fake destdir.";
+    }
+    next;
+  }
+  
   
   $ok = 0;
   
@@ -69,5 +76,16 @@ if ($ok) {
   print "Fake failed."
 }
 
-close($fh) || die "Couldn't close $plist: $!";
+close($fh) || die "Couldn't close $plist: $!\n";
 
+exit !$ok;
+
+sub grep_file {
+  my ($destdir, $file) = @_;
+  local $/;
+  open(my $fd, '<', $file) || die "Couldn't open $file: $!\n";
+  my $contents = <$fd>;
+  close($fd) || die "Couldn't close $file: $!\n";
+  
+  return $contents =~ m:$destdir: ? 1 : 0;
+}
