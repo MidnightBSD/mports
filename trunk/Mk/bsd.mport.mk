@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.42 2007/05/20 20:26:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.43 2007/05/22 15:47:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -552,6 +552,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # PKGDIR		- A directory containing any package creation files.
 #				  Default: ${MASTERDIR}
 #
+#
+# MPORT_MAINTAINER_MODE - 	If set, the mports system will perform checks to see if several
+#							steps are successfully completed.  Use must install perl with
+#							this variable unset before setting it.
 #
 # The following are used by the fake system.  The fake system installs a dist's files into
 # a temporary directory before 
@@ -3828,7 +3832,12 @@ _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
 				post-fake compress-man install-rc-script install-ldconfig-file \
 				fix-fake-symlinks finish-tmpplist
 
+.if defined(MPORT_MAINTAINER_MODE)
+_PACKAGE_DEP=	check_fake
+.else 
 _PACKAGE_DEP=	fake
+.endif
+
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
 				do-package post-package-script 
 
