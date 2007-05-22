@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.41 2007/05/20 18:05:21 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.42 2007/05/20 20:26:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -5372,6 +5372,14 @@ makeplist: fake
 .endif
 
 
+#
+# check to see how things went with a fake.
+#
+.if !target(check_fake)
+check_fake: fake
+	@${PORTSDIR}/Tools/scripts/chkfake.pl ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+.endif
+	
 
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
