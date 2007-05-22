@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.7 2007/05/07 04:51:18 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.8 2007/05/07 05:47:52 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -23,6 +23,12 @@ PATCHFILES=	defined-or-5.8.8.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
+
+#
+# MPORT_MAINTAINER_MODE depends on perl scripts.  Make sure it is unset for this port.
+#
+.undef MPORT_MAINTAINER_MODE
+
 
 #
 # We have to define these vars ourselves, if we use bsd.perl.mk, we create a cirular
