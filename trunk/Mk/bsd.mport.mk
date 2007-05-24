@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.44 2007/05/22 21:42:38 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.45 2007/05/24 16:50:06 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2845,7 +2845,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	gpl gpl2 gpl3 lgpl bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 			bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
-			restricted perl
+			restricted perl modula3
 
 
 
@@ -3330,7 +3330,7 @@ check-license:
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
 	@${FALSE}
 .else
-	@if ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE}; then \
+	@if ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
 		${FALSE}; \
 	else \
