@@ -2,7 +2,7 @@
 # Date created:		16 March 2005
 # Whom:			Trevor Johnson <trevor@freebsd.org>
 #
-# $MidnightBSD: mports/print/acroread7/Makefile,v 1.1 2006/09/25 02:50:43 laffer1 Exp $
+# $MidnightBSD: mports/print/acroread7/Makefile,v 1.2 2007/03/25 01:51:12 ctriv Exp $
 # $FreeBSD: ports/print/acroread7/Makefile,v 1.21 2006/09/02 23:18:10 kris Exp $
 #
 
@@ -18,6 +18,7 @@ DIST_SUBDIR=	acroread
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Reader for view, print, and search PDF documents (${ADOBE_LANG})
+LICENSE=	restricted
 
 RUN_DEPENDS=	acroread:${PORTSDIR}/print/acroreadwrapper \
 		${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/linux-gtk2 \
@@ -86,9 +87,5 @@ do-install:
 	${CHMOD} 0 ${INSTALLDIR}/Reader/intellinux/plug_ins/PPKLite.api
 	${BRANDELF} -t Linux ${INSTALLDIR}/Reader/intellinux/bin/acroread
 
-.if ${ADOBE_LANG:U} != ENU
-post-install:
-	@${CAT} ${PKGMESSAGE}
-.endif
 
 .include <bsd.port.mk>
