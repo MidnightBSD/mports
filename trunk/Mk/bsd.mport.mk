@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.43 2007/05/22 15:47:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.44 2007/05/22 21:42:38 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -152,9 +152,14 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  This variable supercedes CD_MOUNTPT, which is
 #				  obsolete.
 #
+# 
 # Set these if your port should not be built under certain circumstances.
 # These are string variables; you should set them to the reason why
-# they are necessary.
+# they are necessary.  Over time, many of the variables will be replaced
+# by the LICENSE variable.
+#
+# LICENSE		- The license of the port.  This variable is required. 
+#				  Run 'make license-list' to see the list of valid licenses.
 #
 # RESTRICTED	- Prevent the distribution of distfiles and packages to
 #				  the FTP sites or on CDROM (e.g. forbidden by license
@@ -1615,6 +1620,8 @@ SCRIPTS_ENV+=	PORTOBJFORMAT=${PORTOBJFORMAT}
 MAKE_ENV+=		SHELL=${SH} PORTOBJFORMAT=${PORTOBJFORMAT} NO_LINT=YES
 PLIST_SUB+=		PORTOBJFORMAT=${PORTOBJFORMAT}
 
+
+
 .if defined(MANCOMPRESSED)
 .if ${MANCOMPRESSED} != yes && ${MANCOMPRESSED} != no && \
 	${MANCOMPRESSED} != maybe
@@ -2833,6 +2840,16 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 
 .MAIN: all
 
+#
+# LICENSE Setup
+#
+_LICENSES= 	gpl gpl2 gpl3 lgpl bsd3 bsd2 python ruby x11 guile artistic artistic2 \
+			bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
+			restricted perl
+
+
+
+
 ################################################################
 # Many ways to disable a port.
 #
@@ -3098,6 +3115,15 @@ options-message:
 .endif
 
 
+#
+# List of valid licenses
+#
+.if !target(license-list)
+license-list:
+	@${ECHO_MSG} ${_LICENSES} 
+.endif
+
+
 # Warn user about deprecated packages.  Advisory only.
 
 .if !target(check-deprecated)
@@ -3275,8 +3301,9 @@ do-fetch:
 .endif
 .endif
 
+#
 # Extract
-
+#
 .if !target(do-extract)
 do-extract:
 	@${RM} -rf ${WRKDIR}
@@ -3295,8 +3322,32 @@ do-extract:
 .endif
 .endif
 
-# Patch
 
+.if !target(check-license) 
+.if defined(MPORT_MAINTAINER_MODE)
+check-license:
+.if !defined(LICENSE) 
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
+	@${FALSE}
+.else
+	@if ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE}; then \
+		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
+		${FALSE}; \
+	else \
+		${DO_NADA}; \
+	fi
+.endif
+.else 
+check-license:
+	@${DO_NADA}
+.endif
+.endif
+	
+
+
+#
+# Patch
+#
 .if !target(patch-dos2unix)
 patch-dos2unix:
 .if defined(USE_DOS2UNIX)
@@ -3812,7 +3863,7 @@ _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 _EXTRACT_DEP=	fetch
 _EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
 				pre-extract-script do-extract \
-				post-extract post-extract-script
+				post-extract post-extract-script check-license
 
 _PATCH_DEP=		extract
 _PATCH_SEQ=		patch-message patch-depends patch-dos2unix pre-patch \
@@ -3833,7 +3884,7 @@ _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
 				fix-fake-symlinks finish-tmpplist
 
 .if defined(MPORT_MAINTAINER_MODE)
-_PACKAGE_DEP=	check_fake
+_PACKAGE_DEP=	check-fake
 .else 
 _PACKAGE_DEP=	fake
 .endif
@@ -5384,8 +5435,8 @@ makeplist: fake
 #
 # check to see how things went with a fake.
 #
-.if !target(check_fake)
-check_fake: fake
+.if !target(check-fake)
+check-fake: fake
 	@${PORTSDIR}/Tools/scripts/chkfake.pl ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
 .endif
 	
