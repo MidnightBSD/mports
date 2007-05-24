@@ -3,7 +3,7 @@
 # Whom:			John Polstra <jdp@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.1 2006/12/15 04:35:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.2 2007/05/20 17:54:46 ctriv Exp $
 #
 
 PORTNAME=	ezm3
@@ -27,6 +27,7 @@ DISTFILES+=	ezm3-${PORTVERSION}-${TARGET}-boot.tar.bz2:src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easier, more portable Modula-3 distribution for building CVSup
+LICENSE=	modula3
 
 DIST_SUBDIR=	ezm3
 INSTALL_TARGET=	all
