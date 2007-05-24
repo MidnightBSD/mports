@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/lang/gawk/Makefile,v 1.19 2004/07/11 10:30:37 krion Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gawk/Makefile,v 1.1 2007/01/07 03:30:27 laffer1 Exp $
 
 PORTNAME=	gawk
 PORTVERSION=	3.1.1
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	gawk
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU version of Awk
-
+LICENSE=	gpl2
 INFO=		gawk gawkinet
 
 .include <bsd.port.pre.mk>
