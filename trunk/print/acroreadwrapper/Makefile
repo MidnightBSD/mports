@@ -2,7 +2,7 @@
 # Date created:		20 February 2006
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.1 2006/09/25 02:50:43 laffer1 Exp $
+# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.2 2007/03/25 01:32:04 ctriv Exp $
 # $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.3 2006/02/22 06:58:02 hrs Exp $
 #
 
@@ -15,6 +15,7 @@ DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for Adobe Reader
+LICENSE=	bsd2
 
 ONLY_FOR_ARCHS=	amd64 i386
 USE_XLIB=	yes
@@ -38,8 +39,5 @@ do-fetch:
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/acroread ${PREFIX}/bin/acroread
 	${MKDIR} ${PREFIX}/${ACRODIR}
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
