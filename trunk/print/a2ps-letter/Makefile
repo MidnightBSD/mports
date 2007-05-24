@@ -2,7 +2,7 @@
 # Date created:         15 July 1998
 # Whom:                 Chuck Robey (chuckr@freebsd.org)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/a2ps-letter/Makefile,v 1.1 2007/04/07 18:35:53 laffer1 Exp $
 # $FreeBSD: ports/print/a2ps-letter/Makefile,v 1.63 2006/12/29 18:17:54 dinoex Exp $
 #
 
@@ -20,10 +20,11 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${I18N_PACKAGE}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Formats an ascii file for printing on a postscript printer
+LICENSE=	gpl2
 
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 MAN1=		a2ps.1 ogonkify.1 card.1 psmandup.1 fixps.1 pdiff.1 psset.1 texi2dvi4a2ps.1
 INFO=		a2ps ogonkify regex
 WRKSRC=		${WRKDIR}/${PORTNAME}-4.13
