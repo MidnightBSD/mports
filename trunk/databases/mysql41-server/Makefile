@@ -2,7 +2,7 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.2 2007/04/01 18:08:50 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.224 2007/01/20 09:22:57 ale Exp $
 #
 
@@ -59,6 +59,10 @@ CONFIGURE_ARGS+=--with-ndbcluster
 .endif
 .if defined(WITH_COLLATION) && ${WITH_COLLATION} != ""
 CONFIGURE_ARGS+=--with-collation=${WITH_COLLATION}
+.endif
+
+.if defined(SCRIPTS_ONLY)
+USE_PERL5=	yes
 .endif
 
 .include <bsd.port.pre.mk>
@@ -180,7 +184,6 @@ post-patch:
 # MySQL-Scripts part
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	41
-USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql41
 .if ${PERL_LEVEL} <= 500800
