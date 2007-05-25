@@ -3,7 +3,7 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.5 2007/04/24 19:41:15 ctriv Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.6 2007/04/24 20:06:35 ctriv Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
@@ -212,7 +212,7 @@ do-install:
 #
 # Do install without using linux rpm system
 #
-	@cd ${WRKSRC}/usr/lib && ln -s libstdc++-2-libc6.1-1-2.9.0.so libstdc++-libc6.1-1.so.2
+	@cd ${WRKSRC}/usr/lib && ln -fs libstdc++-2-libc6.1-1-2.9.0.so libstdc++-libc6.1-1.so.2
 	@cd ${WRKSRC} && ${FIND} * -type d -exec ${MKDIR} "${PREFIX}/{}" \;
 	@cd ${WRKSRC} && ${FIND} * ! -type d \
 		| ${CPIO} -pm -R root:wheel ${PREFIX}
