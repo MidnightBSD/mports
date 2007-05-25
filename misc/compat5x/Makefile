@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
+# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.3 2007/04/22 18:19:59 ctriv Exp $
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 
@@ -26,7 +26,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	alpha amd64 i386 sparc64
+ONLY_FOR_ARCHS=	amd64 i386 sparc64
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat
 TARGET_DIR=	${PREFIX}/lib/compat
@@ -35,14 +35,9 @@ USE_LDCONFIG=	${TARGET_DIR}
 
 .include <bsd.port.pre.mk>
 
-
 RUN_DEPENDS+=	${LOCALBASE}/share/compat/locale/UTF-8/LC_CTYPE:${PORTSDIR}/misc/localedata
 
-.if ${ARCH} == alpha
-PLIST_SUB+=	ALPHA=""
-.else
 PLIST_SUB+=	ALPHA="@comment "
-.endif
 
 .if ${ARCH} == amd64
 PLIST_SUB+=	AMD64=""
