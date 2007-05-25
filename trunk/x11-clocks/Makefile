@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/x11-clocks/Makefile,v 1.2 2006/10/03 19:36:09 wintellect Exp $
+# $MidnightBSD: mports/x11-clocks/Makefile,v 1.3 2007/01/20 17:30:20 laffer1 Exp $
 #
 
     COMMENT = X11 clocks
 
+    SUBDIR += asclock
     SUBDIR += kdetoys3
     SUBDIR += wmbinclock
     SUBDIR += wmcalclock
