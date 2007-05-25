@@ -2,7 +2,7 @@
 # Date Created:			01 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.1 2007/05/07 19:45:16 laffer1 Exp $
 # $FreeBSD: ports/sysutils/policykit/Makefile,v 1.3 2006/11/04 19:13:32 marcus Exp $
 #   $MCom: ports/sysutils/policykit/Makefile,v 1.12 2006/10/07 19:45:38 marcus Exp $
 #
@@ -16,6 +16,7 @@ DISTNAME=	PolicyKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
+LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
@@ -34,11 +35,5 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 USE_RC_SUBR=	polkitd
 USE_GNOME_SUBR=	yes
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.mk>
 
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
-
-.include <bsd.port.post.mk>
