@@ -2,7 +2,7 @@
 # Date created:        16 March 1999
 # Whom:                Kris Kennaway <kris@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-clocks/wmcalclock/Makefile,v 1.2 2007/03/25 01:53:13 ctriv Exp $
+# $MidnightBSD: mports/x11-clocks/wmcalclock/Makefile,v 1.3 2007/04/16 00:56:38 ctriv Exp $
 # $FreeBSD: ports/x11-clocks/wmcalclock/Makefile,v 1.15 2005/07/09 02:32:00 kris Exp $
 #
 
@@ -25,6 +25,5 @@ USE_XPM=	yes
 ALL_TARGET=	clean all
 
 MAN1=		wmCalClock.1
-PLIST_FILES=	bin/wmCalClock
 
 .include <bsd.port.mk>
