@@ -2,7 +2,7 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.3 2007/04/01 00:03:39 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.224 2007/03/14 16:13:27 ale Exp $
 #
 
@@ -30,11 +30,11 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-mysqlfs \
 		--with-low-memory \
-		--with-comment='FreeBSD port: ${PKGNAME}' \
+		--with-comment='MidnightBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
-.error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
+.error You have 'USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 
 .if defined(WITH_CHARSET) && ${WITH_CHARSET} != ""
@@ -67,6 +67,10 @@ CONFIGURE_ARGS+=--with-ndbcluster
 .endif
 .if defined(WITH_COLLATION) && ${WITH_COLLATION} != ""
 CONFIGURE_ARGS+=--with-collation=${WITH_COLLATION}
+.endif
+
+.if defined(SCRIPTS_ONLY)
+USE_PERL5=	yes
 .endif
 
 .include <bsd.port.pre.mk>
@@ -155,11 +159,6 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|PTHREAD_SCOPE_SYSTEM|PTHREAD_SCOPE_PROCESS|g" ${WRKSRC}/sql/mysqld.cc
 .endif
 
-post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
-.endif
 
 .else
 # MySQL-Client part
@@ -196,7 +195,6 @@ post-patch:
 # MySQL-Scripts part
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	50
-USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql50
 .if ${PERL_LEVEL} <= 500800
