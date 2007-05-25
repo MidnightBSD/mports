@@ -3,7 +3,7 @@
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.222 2007/03/14 16:30:56 ale Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.3 2007/04/01 16:21:00 laffer1 Exp $
 #
 
 PORTNAME?=	mysql
@@ -33,7 +33,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
-.error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
+.error You have 'USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 
 .if defined(WITH_CHARSET) && ${WITH_CHARSET} != ""
@@ -55,6 +55,11 @@ CONFIGURE_ARGS+=--with-plugins=max-no-ndb
 .endif
 .if defined(WITH_COLLATION) && ${WITH_COLLATION} != ""
 CONFIGURE_ARGS+=--with-collation=${WITH_COLLATION}
+.endif
+
+
+.if defined(SCRIPTS_ONLY)
+USE_PERL5=	yes
 .endif
 
 .include <bsd.port.pre.mk>
@@ -173,7 +178,6 @@ post-patch:
 # MySQL-Scripts part
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	51
-USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql51
 .if ${PERL_LEVEL} <= 500800
