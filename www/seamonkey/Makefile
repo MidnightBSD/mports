@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.1 2007/05/09 19:48:59 laffer1 Exp $
 # $FreeBSD: ports/www/seamonkey/Makefile,v 1.262 2007/03/19 16:54:15 mezz Exp $
 #    $MCom: ports/www/seamonkey/Makefile,v 1.46 2007/02/06 00:05:55 ahze Exp $
 #
@@ -42,7 +42,7 @@ NOT_FOR_ARCHS=	ia64
 
 OPTIONS=MAILNEWS "Enable Mail and News modules" on \
 	COMPOSER "Enable the HTML Composer module" on \
-	LDAP "Enable LDAP support for Mailnews" on \
+	LDAP "Enable LDAP for Mailnews (broken)" off \
 	CHATZILLA "Enable the Chatzilla IRC module" on \
 	JAVASCRIPT_DEBUGGER "Enable DTD and JavaScript debuggers" off \
 	SMB "Enable smb:// URI support using gnomevfs" off
