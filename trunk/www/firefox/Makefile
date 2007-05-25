@@ -2,6 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/firefox/Makefile,v 1.174 2007/03/22 11:40:32 pav Exp $
 #   $MCom: ports-stable/www/firefox/Makefile,v 1.21 2006/10/25 01:20:12 ahze Exp $
 #
@@ -13,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${DISTVERSION}/source
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
 BUILD_DEPENDS=	nss>=3.11.2:${PORTSDIR}/security/nss
@@ -58,9 +59,6 @@ CONFIGURE_ARGS+= ${ARCH}-midnightbsd-freebsd
 CONFIGURE_ENV+=	CXXFLAGS=-lc
 
 GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{\!pg: %{pthread:|| ; s|}.*$$||' || ${TRUE}
-
-
-
 
 post-extract::
 	@${SED} -e 's|@FIREFOX_ICON@|${FIREFOX_ICON}|' -e 's|@MOZILLA@|${MOZILLA}|' \
