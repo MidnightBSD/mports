@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.45 2007/05/24 16:50:06 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.46 2007/05/24 17:08:15 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -319,12 +319,6 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # USE_GMAKE		- If set, this port uses gmake.
 # GMAKE			- Set to path of GNU make if not in $PATH.
 #				  Default: gmake
-##
-# USE_GETOPT_LONG
-#				- If set, this port uses getopt_long. If OSVERSION
-#				  less than 500041, automatically adds devel/libgnugeopt
-#				  to LIB_DEPENDS, and pass adjusted values of
-#				  CPPFLAGS and LDFLAGS in CONFIGURE_ENV.
 ##
 # USE_ICONV		- If set, this port uses libiconv.
 # USE_GETTEXT	- If set, this port uses GNU gettext (libintl).
@@ -2845,7 +2839,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	gpl gpl2 gpl3 lgpl bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 			bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
-			restricted perl modula3
+			restricted perl modula3 unknown
 
 
 
@@ -3863,11 +3857,11 @@ _FETCH_SEQ=		fetch-depends pre-fetch pre-fetch-script \
 _EXTRACT_DEP=	fetch
 _EXTRACT_SEQ=	extract-message checksum extract-depends pre-extract \
 				pre-extract-script do-extract \
-				post-extract post-extract-script check-license
+				post-extract post-extract-script 
 
 _PATCH_DEP=		extract
-_PATCH_SEQ=		patch-message patch-depends patch-dos2unix pre-patch \
-				pre-patch-script do-patch post-patch post-patch-script
+_PATCH_SEQ=		patch-message check-license patch-depends patch-dos2unix \
+				pre-patch pre-patch-script do-patch post-patch post-patch-script
 
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	build-depends lib-depends misc-depends configure-message \
@@ -3884,13 +3878,11 @@ _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
 				fix-fake-symlinks finish-tmpplist
 
 .if defined(MPORT_MAINTAINER_MODE)
-_PACKAGE_DEP=	check-fake
-.else 
-_PACKAGE_DEP=	fake
+_FAKE_SEQ+=		check-fake
 .endif
 
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
-				do-package post-package-script 
+				do-package post-package post-package-script 
 
 _INSTALL_DEP=	package
 # Not sure how we want to handle sudo/su.  Will figure out later - triv.
@@ -5230,7 +5222,7 @@ add-plist-docs:
 .		for x in ${PORTDOCS}
 			@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 				if [ ! -e ${FAKE_DESTDIR}${DOCSDIR}/${x} ]; then \
-					${ECHO_CMD} ${FAKE_DESTDIR}${DOCSDIR}/${x} | \
+					${ECHO_CMD} ${DOCSDIR}/${x} | \
 					${SED} -e 's,^${TARGETDIR}/,,' >> ${TMPPLIST}; \
 				fi; \
 			fi
@@ -5436,7 +5428,7 @@ makeplist: fake
 # check to see how things went with a fake.
 #
 .if !target(check-fake)
-check-fake: fake
+check-fake: 
 	@${PORTSDIR}/Tools/scripts/chkfake.pl ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
 .endif
 	
