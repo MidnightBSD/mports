@@ -2,7 +2,7 @@
 # Date created:				10th September 2000
 # Whom:					Ilia Chipitsine <ilia@jane.cgu.chel.su>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-Unicode-String/Makefile,v 1.1 2007/05/02 23:28:56 laffer1 Exp $
 # $FreeBSD: ports/converters/p5-Unicode-String/Makefile,v 1.10 2005/11/15 08:33:28 tobez Exp $
 #
 
@@ -15,14 +15,15 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	These are experimental Perl5 modules to handle various Unicode issues
+LICENSE=	perl
+
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 500804
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
 .endif
-
-PERL_CONFIGURE=	yes
 
 MAN3=		Unicode::CharName.3 Unicode::String.3
 
