@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.46 2007/05/24 17:08:15 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.47 2007/05/25 18:16:31 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3881,6 +3881,7 @@ _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
 _FAKE_SEQ+=		check-fake
 .endif
 
+_PACKAGE_DEP=	fake
 _PACKAGE_SEQ=	package-message pre-package pre-package-script \
 				do-package post-package post-package-script 
 
