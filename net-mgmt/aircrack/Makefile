@@ -2,7 +2,7 @@
 # Date created:				25 Nov 2005
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/aircrack/Makefile,v 1.1 2007/04/13 21:34:31 laffer1 Exp $
 # $FreeBSD: ports/net-mgmt/aircrack/Makefile,v 1.3 2006/03/18 22:06:35 pav Exp $
 #
 
@@ -19,14 +19,12 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Aircrack is a set of tools for auditing wireless networks
+LICENSE=	gpl2
 
 ALL_TARGET=	aircrack airdecap arpforge mergeivs pcap2ivs
 
 PLIST_FILES=	bin/aircrack bin/airdecap bin/arpforge bin/mergeivs bin/pcap2ivs
 PORTDOCS=	*
-
-pre-fetch:
-	@${CAT} ${PKGMESSAGE}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Makefile
@@ -44,6 +42,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/README.html ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/README.txt ${DOCSDIR}/
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>

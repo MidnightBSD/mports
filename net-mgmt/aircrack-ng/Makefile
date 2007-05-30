@@ -2,7 +2,7 @@
 # Date created:				2006-05-25
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/aircrack-ng/Makefile,v 1.1 2007/04/13 21:38:38 laffer1 Exp $
 # $FreeBSD: ports/net-mgmt/aircrack-ng/Makefile,v 1.7 2007/01/24 22:39:54 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://download.aircrack-ng.org/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Aircrack-ng is the next generation of aircrack
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 ALL_TARGET=	aircrack-ng airdecap-ng packetforge-ng ivstools kstats
@@ -40,7 +41,5 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/manpages/${manpage} ${PREFIX}/man/man1
 .endfor
 
-post-install:
-	${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
