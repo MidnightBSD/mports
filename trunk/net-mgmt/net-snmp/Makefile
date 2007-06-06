@@ -3,7 +3,7 @@
 # Whom:					gpalmer
 #
 # $FreeBSD: ports/net-mgmt/net-snmp/Makefile,v 1.136 2006/09/23 15:03:36 nork Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.1 2007/01/25 21:39:21 laffer1 Exp $
 #
 
 PORTNAME=	snmp
@@ -17,6 +17,15 @@ DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extendable SNMP implementation
+LICENSE=	bsd3
+
+OPTIONS=	INETADDRESS_HACK "Build with inetaddres hack" Off \
+		TKMIB "Install graphical Perl/Tk/SNMP browser" Off \
+		DUMMY_VALUES "Use 'placeholder' dummy values as needed" On \
+		PERL "Install perl modules" On \
+		IPV6 "Enable IPv6 Suppoer" On 
+
+.include <bsd.port.pre.mk>
 
 .if !defined(WITH_TKMIB)
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-local:Makefile.in
@@ -30,7 +39,7 @@ PATCH_DEPENDS=	${LIBTOOL_DEPENDS}
 USE_AUTOTOOLS=	autoconf:259 libtool:15
 USE_RC_SUBR=	snmpd.sh snmptrapd.sh
 USE_OPENSSL=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 .if !defined(WITHOUT_PERL)
 USE_PERL5=	yes
 .endif
@@ -53,7 +62,6 @@ CONFIGURE_ARGS+=--with-defaults
 CONFIGURE_ARGS+=--with-dummy-values
 .endif
 
-.include <bsd.port.pre.mk>
 
 .if defined(WITHOUT_PERL)
 PLIST_SUB+=	WITH_PERL="@comment "
@@ -74,7 +82,7 @@ LIB_DEPEND+=	dmalloc:${PORTSDIR}/devel/dmalloc
 CONFIGURE_ARGS+=--with-dmalloc=${LOCALBASE}
 .endif
 
-.if ${OSVERSION} >= 400014 && !defined(WITHOUT_IPV6)
+.if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=--enable-ipv6
 # --with-transport="UDPIPv6 TCPIPv6" --with-modules=mibII/ipv6"
 PLIST_SUB+=	WITH_IPV6=""
@@ -183,14 +191,6 @@ pre-everything::
 	@${ECHO_MSG}
 	@${ECHO_MSG} "You may use the following build options:"
 	@${ECHO_MSG}
-	@${ECHO_MSG} "WITH_INETADDRESS_HACK=yes	builds with the inetaddress hack"
-	@${ECHO_MSG} "WITH_TKMIB=yes		Install a graphical Perl/Tk/SNMP based mib browser"
-	@${ECHO_MSG} "WITHOUT_DUMMY_VALUES=yes	Provide 'placeholder' dummy values where"
-	@${ECHO_MSG} "				the necessary information is not available."
-	@${ECHO_MSG} "WITHOUT_PERL=yes		Do not install the perl modules along with the rest"
-	@${ECHO_MSG} "				of the net-snmp toolkit."
-	@${ECHO_MSG} "WITHOUT_IPV6=yes		Disable IPv6."
-	@${ECHO_MSG}
 	@${ECHO_MSG} "DEFAULT_SNMP_VERSION=\"3\"	Default version of SNMP to use."
 	@${ECHO_MSG} "NET_SNMP_SYS_CONTACT=\"${NET_SNMP_SYS_CONTACT}\""
 	@${ECHO_MSG} "				Default system contact."
@@ -236,7 +236,7 @@ post-build:
 	${REINPLACE_CMD} -e 's| perlinstall||' ${WRKSRC}/Makefile
 .endif
 
-post-install: strip-files install-config-files install-doc-files display-message
+post-install: strip-files install-config-files install-doc-files 
 
 strip-files:
 	@cd ${PREFIX}/bin; ${STRIP_CMD} ${BIN_FILES}
@@ -252,10 +252,6 @@ install-doc-files:
 	@${INSTALL_DATA} ${WRKSRC}/${filename} ${DOCSDIR}
 . endfor
 .endif
-
-display-message:
-	@${ECHO_MSG}
-	@${CAT} ${PKGMESSAGE}
 
 # Maintainer's note:
 #   Don't forget to bump library version in these ports.
