@@ -2,7 +2,7 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.4 2007/04/18 05:26:29 ctriv Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.5 2007/05/05 02:54:52 ctriv Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
@@ -19,6 +19,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:release
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	PHP Scripting Language (Apache Module and CLI)
+LICENSE?=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
