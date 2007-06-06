@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #
-# $MidnightBSD: mports/lang/perl5.8/files/pkg-glue,v 1.1 2007/04/03 23:03:55 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/files/pkg-glue,v 1.2 2007/04/05 03:02:27 ctriv Exp $
 
 
 PERL_VERSION='%%PERL_VERSION%%'
@@ -26,10 +26,12 @@ else
 	exit 0;
 fi
 
+links="perl perl$PERL_VERSION"
+
 do_remove_links()
 {
 	echo "Removing stale symlinks from /usr/bin..."
-	for binary in $link_list $special_link_list
+	for binary in $links
 	do
 		if [ -L "/usr/bin/$binary" ] ; then
 			echo "    Removing /usr/bin/$binary"
@@ -52,37 +54,10 @@ do_remove_links()
 
 do_create_links()
 {
-	echo "Creating various symlinks in /usr/bin..."
-	for binary in $link_list
-	do
-		if [ -f "/usr/bin/$binary" ] ; then
-			echo "    Backing up /usr/bin/$binary as /usr/bin/$binary.freebsd"
-			/bin/mv -f "/usr/bin/$binary" "/usr/bin/$binary.freebsd"
-		fi
-		if [ -e "/usr/bin/$binary" ] ; then
-			echo "    *** /usr/bin/$binary is still there, which should not happen"
-		elif [ -e "$PKG_PREFIX/bin/$binary" ] ; then
-			echo "    Symlinking $PKG_PREFIX/bin/$binary to /usr/bin/$binary"
-			/bin/ln -sf "$PKG_PREFIX/bin/$binary" "/usr/bin/$binary"
-		else
-			echo "    *** $PKG_PREFIX/bin/$binary is not there, a symlink won't do any good"
-		fi
-	done
-	for binary in $special_link_list
-	do
-		if [ -f "/usr/bin/$binary" ] ; then
-			echo "    Backing up /usr/bin/$binary as /usr/bin/$binary.freebsd"
-			/bin/mv -f "/usr/bin/$binary" "/usr/bin/$binary.freebsd"
-		fi
-		bin=`echo $binary | /usr/bin/sed -e 's!perl5!perl!'`
-		if [ -e "/usr/bin/$binary" ] ; then
-			echo "    *** /usr/bin/$binary is still there, which should not happen"
-		elif [ -e "$PKG_PREFIX/bin/${bin}$PERL_VERSION" ] ; then
-			echo "    Symlinking $PKG_PREFIX/bin/${bin}$PERL_VERSION to /usr/bin/$binary"
-			/bin/ln -sf "$PKG_PREFIX/bin/${bin}$PERL_VERSION" "/usr/bin/$binary"
-		else
-			echo "    *** $PKG_PREFIX/bin/${bin}$PERL_VERSION is not there, a symlink won't do any good"
-		fi
+	echo "Creating symlnks to /usr/bin"
+	for bin in $links; do
+		echo "	Linking $PKG_PREFIX/bin/$bin to /usr/bin/$bin"
+		/bin/ln -sf $PKG_PREFIX/bin/$bin /usr/bin/$bin
 	done
 	echo "Done."
 }
@@ -101,7 +76,7 @@ do_cleanup_make_conf()
 	echo -n "Cleaning up ${MAKE_CONF}..."
 	if [ -f ${MAKE_CONF} ] ; then
 		/usr/bin/awk 's=0;
-			/^#.*use.perl/ { s=1; mode=1 }
+			/^#.*by perl/ { s=1; mode=1 }
 			/^#/ { s=1; if (mode != 1) { mode=0 } }
 			/.*PERL.*=/ { s=1; if (mode == 1) { mode=2 } }
 			/^$/ { s=1; if (mode != 2) { mode = 0 } }
@@ -117,7 +92,7 @@ do_cleanup_manpath()
 	echo -n "Cleaning up /etc/manpath.config..."
 	if [ -f /etc/manpath.config ] ; then
 		/usr/bin/awk 's=0;
-			/^#.*use.perl/ { s=1; mode=1 }
+			/^#.*by perl/ { s=1; mode=1 }
 			/^#/ { s=1; if (mode != 1) { mode=0 } }
 			/^OPTIONAL_MANPATH.*perl5/ { s=1; if (mode == 1) { mode=2 } }
 			/^$/ { s=1; if (mode != 2) { mode = 0 } }
