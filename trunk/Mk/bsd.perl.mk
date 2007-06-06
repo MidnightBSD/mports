@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.2 2007/05/07 04:06:27 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.3 2007/05/08 00:13:20 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -84,6 +84,11 @@ SITE_PERL?=			${LOCALBASE}/${SITE_PERL_REL}
 PERL5=				${LOCALBASE}/bin/perl${PERL_VERSION}
 PERL=				${LOCALBASE}/bin/perl
 PERL_TEST_TARGET?=	test
+
+# PERL_CONFIGURE implies USE_PERL5
+.if defined(PERL_CONFIGURE)
+USE_PERL5=	yes
+.endif
 
 #
 # dependancies
