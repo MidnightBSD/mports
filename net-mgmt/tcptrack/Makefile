@@ -3,7 +3,7 @@
 # Whom:			Tor Halvard "Squat" Furulund <squat@squat.no>
 #
 # $FreeBSD: ports/net-mgmt/tcptrack/Makefile,v 1.4 2005/04/12 03:26:20 obrien Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/tcptrack/Makefile,v 1.1 2006/12/26 02:20:56 laffer1 Exp $
 #
 
 PORTNAME=		tcptrack
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	release/${PORTVERSION}/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Packet sniffer which displays TCP information like top(1)
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
