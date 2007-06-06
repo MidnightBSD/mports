@@ -3,7 +3,7 @@
 # Whom:	      			Nicholas Esborn <nick@netdot.net>
 #
 # $FreeBSD: ports/net-mgmt/p5-Mon/Makefile,v 1.6 2004/02/23 04:42:07 wollman Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-Mon/Makefile,v 1.1 2006/12/26 00:59:17 laffer1 Exp $
 #
 
 PORTNAME=	Mon
@@ -16,6 +16,7 @@ DISTNAME=	Mon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl module that supports mon, a network and system monitoring daemon
+LICENSE=	gpl2
 
 PERL_CONFIGURE=	YES
 
