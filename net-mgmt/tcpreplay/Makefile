@@ -3,7 +3,7 @@
 # Whom:                cnh@ivmg.net
 #
 # $FreeBSD: ports/net-mgmt/tcpreplay/Makefile,v 1.21 2005/12/21 06:02:47 az Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.1 2006/12/26 02:20:56 laffer1 Exp $
 #
 
 PORTNAME=	tcpreplay
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to replay saved packet capture files
+LICENSE=	bsd3
 
 BUILD_DEPENDS=	libnet*>=1.1.2,1:${PORTSDIR}/net/libnet \
 		${LOCALBASE}/lib/libpcap.a:${PORTSDIR}/net/libpcap
@@ -23,6 +24,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
 CONFIGURE_ARGS=	--with-libpcap=${LOCALBASE} \
 		--without-pcapnav-config
+
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 
 MAN1=		capinfo.1 tcpprep.1 pcapmerge.1 flowreplay.1
 MAN8=		tcpreplay.8
