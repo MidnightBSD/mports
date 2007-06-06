@@ -3,7 +3,7 @@
 # Whom:					Manuel Kreutz <mk@nomtec.net>
 #
 # $FreeBSD: ports/net-mgmt/sysmon/Makefile,v 1.5 2005/11/08 13:40:53 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/sysmon/Makefile,v 1.1 2006/12/27 02:48:19 laffer1 Exp $
 #
 
 PORTNAME=	sysmon
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://puck.nether.net/pub/jared/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A network tool designed for high performance and accurate monitoring
+LICENSE=	gpl2
 
 DOCS=		Changes.html binaries.html config.html docs.html index.html \
 		jclient.jpg net-example.png sysmon.conf.man.html sysmon.jpg \

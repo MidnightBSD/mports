@@ -3,7 +3,7 @@
 # Whom:                 Chris S.J. Peron <maneo@bsdpro.com>
 #
 # $FreeBSD: ports/net-mgmt/subcalc/Makefile,v 1.6 2004/12/10 05:50:16 csjp Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/subcalc/Makefile,v 1.1 2006/12/27 02:48:19 laffer1 Exp $
 #
 
 PORTNAME=	subcalc
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	subcalc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Advanced IP/IPv6 subnet calculation and discovery
+LICENSE=	bsd3
 
 MAN1=	subcalc.1
 MANCOMPRESSED=	yes
