@@ -3,8 +3,10 @@
 # Whom:					gpalmer
 #
 # $FreeBSD: ports/net-mgmt/net-snmp4/Makefile,v 1.103 2006/09/10 23:47:36 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/net-snmp4/Makefile,v 1.1 2007/01/25 22:28:37 laffer1 Exp $
 #
+
+BROKEN=	build fails.
 
 PORTNAME=	ucd-snmp
 PORTVERSION=	4.2.6
@@ -15,6 +17,9 @@ MASTER_SITE_SUBDIR=	net-snmp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extendable SNMP implementation
+LICENSE=	bsd3
+
+OPTIONS=	SSL "Enable OpenSSL support" On
 
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
@@ -61,6 +66,8 @@ STARTUP_FILE=	${PREFIX}/etc/rc.d/snmpd.sh
 
 CONFLICTS=	net-snmp-5.*
 
+.include <bsd.port.pre.mk>
+
 .if defined(WITHOUT_SSL)
 CONFIGURE_ARGS+=	--without-openssl
 .else
@@ -72,16 +79,7 @@ CFLAGS+=	-DOPENSSL_DES_LIBDES_COMPATIBILITY
 SHLIB_VERSION=	4
 PLIST_SUB+=	shlib=${SHLIB_VERSION}
 
-.include <bsd.port.pre.mk>
-
 CONFIGURE_ARGS+=	--enable-ipv6
-
-pre-everything::
-	@${ECHO} ""
-	@${ECHO} "You may use the following build option(s):"
-	@${ECHO} ""
-	@${ECHO} "	WITHOUT_SSL=yes   Disable the OpenSSL support."
-	@${ECHO} ""
 
 post-patch:
 	@${REINPLACE_CMD} \
