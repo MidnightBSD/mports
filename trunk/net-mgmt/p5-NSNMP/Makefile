@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/net-mgmt/p5-NSNMP/Makefile,v 1.1 2005/12/14 09:03:19 tobez Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-NSNMP/Makefile,v 1.1 2006/12/26 01:00:44 laffer1 Exp $
 #
 
 PORTNAME=	NSNMP
@@ -15,16 +15,12 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NSNMP - fast, flexible, low-level, pure-Perl SNMP library
+LICENSE=	bsd3
 
 PERL_CONFIGURE=	yes
 
 MAN3=	NSNMP.3 \
 	NSNMP::Simple.3
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.mk>
 
-.if ${PERL_LEVEL} < 500800
-IGNORE=		requires perl 5.8.0 or later. Install lang/perl5.8 and try again
-.endif
-
-.include <bsd.port.post.mk>
