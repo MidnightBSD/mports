@@ -3,7 +3,7 @@
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/net-mgmt/p5-Cflow/Makefile,v 1.13 2006/02/15 09:58:12 ehaupt Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.1 2006/12/26 00:54:50 laffer1 Exp $
 #
 
 PORTNAME=	Cflow
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analyze raw flow files written by cflowd (Cisco NetFlow data)
+LICENSE=	gpl2
 
 .if defined(WITH_FLOW_TOOLS)
 RUN_DEPENDS+=	${LOCALBASE}/lib/libft.a:${PORTSDIR}/net-mgmt/flow-tools
