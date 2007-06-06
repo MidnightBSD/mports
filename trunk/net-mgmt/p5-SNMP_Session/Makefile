@@ -3,7 +3,7 @@
 # Whom:					Stephen J. Roznowski <sjr@home.net>
 #
 # $FreeBSD: ports/net-mgmt/p5-SNMP_Session/Makefile,v 1.30 2005/12/12 11:09:57 demon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-SNMP_Session/Makefile,v 1.1 2006/12/26 00:51:47 laffer1 Exp $
 #
 
 PORTNAME=	SNMP_Session
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl5 module providing rudimentary access to SNMPv1 and v2 agents
+LICENSE=	artistic
 
 PERL_CONFIGURE=	yes
 
