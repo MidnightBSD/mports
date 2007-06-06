@@ -24,13 +24,13 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.1 2007/05/22 15:47:52 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.2 2007/05/22 16:13:43 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 # Check a fake install for errors.
 #
-# usage:  cd $port && make check_fake
+# usage:  cd $port && make MPORT_MAINTAINER_MODE=yes fake
 #
 use strict;
 use warnings;
@@ -53,6 +53,11 @@ while (<$fh>) {
   next if m/^\@/;
   
   if (-e "$destdir$cwd/$_") {
+    # There is a bug in perl's MakeMaker which causes the packlist to contain
+    # the DESTDIR.  This bug is harmless, so we'll ignore it.  See rt.cpan.org
+    # bug 3003 for details.
+    next if m/.packlist$/;
+    
     if (grep_file($destdir, "$destdir$cwd/$_")) {
       $ok = 0;
       print "    $_ contains the fake destdir.";
