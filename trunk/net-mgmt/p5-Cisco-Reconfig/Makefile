@@ -3,7 +3,7 @@
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
 # $FreeBSD: ports/net-mgmt/p5-Cisco-Reconfig/Makefile,v 1.1 2006/09/28 07:05:59 clsung Exp $
-# $MidnightBSD$ 
+# $MidnightBSD: mports/net-mgmt/p5-Cisco-Reconfig/Makefile,v 1.1 2006/12/26 00:58:13 laffer1 Exp $ 
 #
 
 PORTNAME=	Cisco-Reconfig
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parse and generate Cisco configuration files
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/IO/String.pm:${PORTSDIR}/devel/p5-IO-String
 BUILD_DEPENDS=	${RUN_DEPENDS}
