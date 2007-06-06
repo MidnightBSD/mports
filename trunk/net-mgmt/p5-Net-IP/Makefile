@@ -2,7 +2,7 @@
 # Date created:                30 May 2002
 # Whom:                        Kimura Fuyuki <fuyuki@hadaly.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-Net-IP/Makefile,v 1.1 2007/02/25 00:25:30 laffer1 Exp $
 # $FreeBSD: ports/net-mgmt/p5-Net-IP/Makefile,v 1.15 2006/05/29 08:41:07 lth Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for manipulating IPv4/IPv6 addresses
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/Math/BigInt.pm:${PORTSDIR}/math/p5-Math-BigInt
 BUILD_DEPENDS=	${RUN_DEPENDS}
