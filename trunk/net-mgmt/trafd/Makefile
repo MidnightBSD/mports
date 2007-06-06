@@ -3,7 +3,7 @@
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
 # $FreeBSD: ports/net-mgmt/trafd/Makefile,v 1.14 2006/05/11 22:49:44 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.1 2006/12/26 01:31:48 laffer1 Exp $
 #
 
 PORTNAME=	trafd
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The BPF Traffic Collector
+LICENSE=	bsd3
 
 CONFLICTS=	bpft-4.*
 
