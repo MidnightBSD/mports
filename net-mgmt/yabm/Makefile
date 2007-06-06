@@ -3,7 +3,7 @@
 # Whom: 				Fredrik Lindberg <fli@shapeshifter.se>
 #
 # $FreeBSD: ports/net-mgmt/yabm/Makefile,v 1.3 2005/07/03 01:45:54 dannyboy Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.1 2006/12/26 01:27:23 laffer1 Exp $
 #
 
 PORTNAME=	yabm
@@ -14,6 +14,7 @@ MASTER_SITES=	http://shapeshifter.se/code/yabm/release/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another Bandwidth Meter, somewhat resembles the Linux bwbar
+LICENSE=	bsd2
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
@@ -28,6 +29,5 @@ post-extract:
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/yabm.sh ${PREFIX}/etc/rc.d/yabm.sh
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
