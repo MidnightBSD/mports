@@ -3,7 +3,7 @@
 # Whom:					Andy Sparrow
 #
 # $FreeBSD: ports/net-mgmt/p5-Net-CIDR/Makefile,v 1.9 2005/09/20 14:52:12 leeym Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/p5-Net-CIDR/Makefile,v 1.1 2007/02/19 17:27:28 laffer1 Exp $
 #
 
 PORTNAME=	Net-CIDR
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightSD.org
 COMMENT=	Perl module to manipulate IPv4/IPv6 netblocks in CIDR notation
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
