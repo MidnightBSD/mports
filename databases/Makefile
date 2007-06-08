@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.39 2007/03/26 03:05:01 ctriv Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.40 2007/04/13 21:54:33 laffer1 Exp $
 #
 
     COMMENT = Databases
 
+    SUBDIR += adodb
     SUBDIR += courier-authlib-userdb
     SUBDIR += db
     SUBDIR += db2
