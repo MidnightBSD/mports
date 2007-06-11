@@ -2,7 +2,7 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.4 2007/04/10 17:19:59 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.5 2007/04/10 17:51:33 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
 		png.5:${PORTSDIR}/graphics/png \
-		dvdread.3:${PORTSDIR}/multimedia/libdvdread \
+		dvdread.5:${PORTSDIR}/multimedia/libdvdread \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fame-0.9.1:${PORTSDIR}/multimedia/libfame \
 		cdio.7:${PORTSDIR}/sysutils/libcdio \
