@@ -2,12 +2,12 @@
 # Date created:				24 Jun 2001
 # Whom:					Marc van Woerkom <3d@freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.1 2006/10/05 00:56:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdread/Makefile,v 1.20 2006/05/10 22:37:31 edwin Exp $
 #
 
 PORTNAME=	libdvdread
-PORTVERSION=	0.9.4
+PORTVERSION=	0.9.7
 PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
