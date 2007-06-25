@@ -2,13 +2,12 @@
 # Date created:         25 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
+# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.3 2006/11/04 15:38:55 laffer1 Exp $
 # $FreeBSD: ports/sysutils/screen/Makefile,v 1.62 2006/08/05 16:40:17 rafan Exp $
 #
 
 PORTNAME=	screen
-PORTVERSION=	4.0.2
-PORTREVISION=	5
+PORTVERSION=	4.0.3
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.uni-erlangen.de/pub/utilities/screen/ \
 		${MASTER_SITE_GNU}
@@ -21,13 +20,9 @@ GNU_CONFIGURE=	yes
 MAN1=		screen.1
 INFO=		screen
 
-NO_PACKAGE=	Tends to loop using 100% CPU when used from package - perhaps it hard-codes information about the build host
+#NO_PACKAGE=	Tends to loop using 100% CPU when used from package - perhaps it hard-codes information about the build host
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "alpha"
-CFLAGS+=	-O0
-.endif
 
 # Enables support for 256 colour xterm.  Note that you may need to
 # set up a custom termcap entry or .screenrc which modifies termcap
