@@ -2,7 +2,7 @@
 # Date created:         25 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.3 2006/11/04 15:38:55 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.4 2007/06/25 06:37:47 laffer1 Exp $
 # $FreeBSD: ports/sysutils/screen/Makefile,v 1.62 2006/08/05 16:40:17 rafan Exp $
 #
 
@@ -19,8 +19,6 @@ COMMENT=	A multi-screen window manager
 GNU_CONFIGURE=	yes
 MAN1=		screen.1
 INFO=		screen
-
-#NO_PACKAGE=	Tends to loop using 100% CPU when used from package - perhaps it hard-codes information about the build host
 
 .include <bsd.port.pre.mk>
 
