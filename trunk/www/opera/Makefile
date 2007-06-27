@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.7 2007/04/04 15:50:43 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.8 2007/04/18 04:59:11 ctriv Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -30,11 +30,11 @@ DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_DATE}.${OPERA_TYPE}-${OPERA_LIB}-qt.i
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 
-OPERA_VER=	9.10
+OPERA_VER=	9.21
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20061214
-OPERA_BUILD=	521
+OPERA_DATE=	20070510
+OPERA_BUILD=	641
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
