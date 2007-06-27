@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/www/opera/pkg-plist,v 1.4 2007/04/30 01:10:38 laffer1 Exp $
 bin/opera
 %%DOCSDIR%%/LICENSE
 %%DATADIR%%/bin/missingsyms.so
@@ -97,7 +97,6 @@ bin/opera
 @dirrm %%DOCSDIR%%
 
 @cwd %%LOCALBASE%%
-%%KDE%%share/applnk/Internet/opera.desktop
 share/icons/hicolor/22x22/apps/opera.png
 share/icons/hicolor/32x32/apps/opera.png
 share/icons/hicolor/48x48/apps/opera.png
