@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.47 2007/05/25 18:16:31 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.48 2007/05/25 19:14:15 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1376,21 +1376,16 @@ PKGDIR?=		${MASTERDIR}
 .undef USE_X_PREFIX
 .endif
 
-# If PREFIX is set, and TRUE_PREFIX is not, then PREFIX has been overridden,
-# if TRUE_PREFIX had been set, we would be in a fake envirement.
-.if defined(PREFIX) && !defined(TRUE_PREFIX)
-TRUE_PREFIX:=	${PREFIX}
-.endif
-
 .if defined(USE_X_PREFIX) || defined(USE_IMAKE)
-TRUE_PREFIX?=	${X11BASE_REL}
+PREFIX?=	${X11BASE_REL}
 .elif defined(USE_LINUX_PREFIX)
-TRUE_PREFIX?=	${LINUXBASE_REL}
+PREFIX?=	${LINUXBASE_REL}
 .else
-TRUE_PREFIX?=	${LOCALBASE_REL}
+PREFIX?=	${LOCALBASE_REL}
 .endif
 
-PREFIX?=		${TRUE_PREFIX}
+# Fake targets override this when they submake.
+TRUE_PREFIX?=		${PREFIX} 
 
 
 .if defined(USE_LINUX_PREFIX)
