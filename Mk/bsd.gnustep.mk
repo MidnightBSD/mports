@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.7 2007/04/19 19:39:36 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.8 2007/05/06 21:09:08 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -515,13 +515,10 @@ TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_GCC_PORT} && make -V TARGLIB)
 .endif
 
 # ---------------------------------------------------------------------------
-# run ldconfig for installed shlibs
+# We don't do anything for ldconfig.  We try to set up the environment 
+# properly (sourcing the gnustep shell includes).  This should do any of the hijinks
+# that used to be done via USE_LDCONFIG for us.
 #
-.if defined(USE_GNUSTEP_LDCONFIG)
-.for i in ${USE_GNUSTEP_LDCONFIG}
-LDCONFIG_DIRS+=	${i}
-.endfor
-INSTALLS_SHLIB=		yes
-.endif
+
 
 # eof
