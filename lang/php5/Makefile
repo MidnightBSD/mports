@@ -2,12 +2,12 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.5 2007/05/05 02:54:52 ctriv Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.6 2007/06/06 19:23:34 ctriv Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.2.2
+PORTVERSION=	5.2.3
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
