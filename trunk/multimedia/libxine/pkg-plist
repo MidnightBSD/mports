@@ -140,7 +140,7 @@ lib/xine/plugins/1.1.4/xineplug_inp_vcdo.so
 %%WITH_CACA%%lib/xine/plugins/1.1.4/xineplug_vo_out_caca.so
 lib/xine/plugins/1.1.4/xineplug_vo_out_none.so
 lib/xine/plugins/1.1.4/xineplug_vo_out_opengl.so
-lib/xine/plugins/1.1.4/xineplug_vo_out_sdl.so
+@comment lib/xine/plugins/1.1.4/xineplug_vo_out_sdl.so
 %%WITH_VIDIX%%lib/xine/plugins/1.1.4/xineplug_vo_out_vidix.so
 lib/xine/plugins/1.1.4/xineplug_vo_out_xshm.so
 lib/xine/plugins/1.1.4/xineplug_vo_out_xv.so
