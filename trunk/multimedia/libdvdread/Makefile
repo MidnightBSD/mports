@@ -2,13 +2,13 @@
 # Date created:				24 Jun 2001
 # Whom:					Marc van Woerkom <3d@freebsd.org>
 #
-# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.1 2006/10/05 00:56:36 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.2 2007/06/11 02:13:42 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdread/Makefile,v 1.20 2006/05/10 22:37:31 edwin Exp $
 #
 
 PORTNAME=	libdvdread
 PORTVERSION=	0.9.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
 
@@ -49,25 +49,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.pre.mk>
-
-# FreeBSD byteswap optimized routines
-.if ${ARCH} == "i386"
-. if (defined(MACHINE_CPU) && ${MACHINE_CPU:Mi486} == "i486")
-WITH_OPTIMIZED_BYTESWAP=yes
-. endif
-
-. if defined(WITH_OPTIMIZED_BYTESWAP)
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-dvdread::bswap.h
-. endif
-.endif
-
-pre-everything::
-.ifndef(WITH_OPTIMIZED_BYTESWAP)
-	@${ECHO_MSG} '===>'
-	@${ECHO_MSG} '===> Define WITH_OPTIMIZED_BYTESWAP to use optimized byteswap'
-	@${ECHO_MSG} '===> routines. This works only in the i386 architecture, and'
-	@${ECHO_MSG} '===> only with 486 processors and above.'
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
