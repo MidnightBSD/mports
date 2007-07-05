@@ -1,7 +1,9 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/mail/dovecot/pkg-plist,v 1.4 2007/06/15 19:52:38 laffer1 Exp $
 @unexec if cmp -s %D/etc/dovecot-example.conf %D/etc/dovecot.conf; then rm -f %D/etc/dovecot.conf; fi
 etc/dovecot-example.conf
 @exec if [ ! -f %D/etc/dovecot.conf ] ; then cp -p %D/%F %B/dovecot.conf; fi
+%%PORTDOCS%%etc/dovecot-ldap-example.conf
+%%PORTDOCS%%etc/dovecot-sql-example.conf
 @dirrmtry include/dovecot
 lib/dovecot/imap/lib01_acl_plugin.so
 lib/dovecot/imap/lib02_lazy_expunge_plugin.so
@@ -62,6 +64,4 @@ sbin/dovecot
 sbin/dovecotpw
 %%DATADIR%%/dovecot-openssl.cnf
 %%DATADIR%%/mkcert.sh
-%%DATADIR%%/dovecot-ldap-example.conf
-%%DATADIR%%/dovecot-sql.conf
 @dirrm %%DATADIR%%

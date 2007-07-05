@@ -3,7 +3,7 @@
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.6 2007/05/09 14:24:59 ctriv Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.7 2007/06/15 19:52:38 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
@@ -29,8 +29,7 @@ USE_LDCONFIG=	${PREFIX}/lib/dovecot \
 		${PREFIX}/lib/dovecot/lda
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	USE-WIKI-INSTEAD \
-		auth-protocol.txt securecoding.txt variables.txt
+PORTDOCS=	*.txt wiki
 .else
 CONFIGURE_ARGS+=	--without-docs
 .endif
