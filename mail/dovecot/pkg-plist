@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/mail/dovecot/pkg-plist,v 1.4 2007/06/15 19:52:38 laffer1 Exp $
+@comment $MidnightBSD: mports/mail/dovecot/pkg-plist,v 1.5 2007/07/05 20:01:49 laffer1 Exp $
 @unexec if cmp -s %D/etc/dovecot-example.conf %D/etc/dovecot.conf; then rm -f %D/etc/dovecot.conf; fi
 etc/dovecot-example.conf
 @exec if [ ! -f %D/etc/dovecot.conf ] ; then cp -p %D/%F %B/dovecot.conf; fi
@@ -53,8 +53,10 @@ libexec/dovecot/checkpassword-reply
 libexec/dovecot/dict
 libexec/dovecot/dovecot-auth
 libexec/dovecot/gdbhelper
+libexec/dovecot/idxview
 libexec/dovecot/imap
 libexec/dovecot/imap-login
+libexec/dovecot/logview
 %%POP3%%libexec/dovecot/pop3
 %%POP3%%libexec/dovecot/pop3-login
 libexec/dovecot/rawlog
