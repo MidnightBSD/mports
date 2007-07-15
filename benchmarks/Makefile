@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.21 2007/07/15 07:44:56 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.22 2007/07/15 08:03:47 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
@@ -17,6 +17,7 @@
     SUBDIR += netio
     SUBDIR += netperf
     SUBDIR += netpipe
+    SUBDIR += nttcp
     SUBDIR += pathrate
     SUBDIR += pybench
     SUBDIR += raidtest
