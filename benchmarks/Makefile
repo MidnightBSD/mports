@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.12 2007/05/20 19:36:42 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.13 2007/07/15 06:33:57 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
@@ -12,6 +12,7 @@
     SUBDIR += iozone21
     SUBDIR += netperf
     SUBDIR += netpipe
+    SUBDIR += rawio
     SUBDIR += scimark2c
     SUBDIR += siege
 
