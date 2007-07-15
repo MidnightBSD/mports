@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.19 2007/07/15 07:36:22 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.20 2007/07/15 07:40:17 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
@@ -7,6 +7,7 @@
     SUBDIR += bonnie
     SUBDIR += dbs
     SUBDIR += dkftpbench
+    SUBDIR += fhourstones
     SUBDIR += flops
     SUBDIR += gtkperf
     SUBDIR += httperf
