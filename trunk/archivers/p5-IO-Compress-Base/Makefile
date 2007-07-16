@@ -2,12 +2,12 @@
 # Date created:		2006-11-07
 # Whom:			Thomas Abthorpe <thomas@goodking.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/p5-IO-Compress-Base/Makefile,v 1.1 2007/02/23 20:59:41 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-IO-Compress-Base/Makefile,v 1.3 2007/01/03 17:58:55 erwin Exp $
 #
 
 PORTNAME=	IO-Compress-Base
-PORTVERSION=	2.003
+PORTVERSION=	2.004
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	IO
