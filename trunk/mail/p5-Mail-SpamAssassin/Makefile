@@ -2,13 +2,12 @@
 # Date created:				Nov 26 2001
 # Whom:					Anthony Kim
 #
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
-# $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.105 2007/02/24 09:01:03 rafan Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
 PORTNAME=	Mail-SpamAssassin
-PORTVERSION=	3.1.8
-PORTREVISION=	1
+PORTVERSION=	3.2.1
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
@@ -18,38 +17,53 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:apache,cpan
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A highly efficient mail filter for identifying spam
 
-BUILD_DEPENDS=	p5-Net-DNS>=0.53:${PORTSDIR}/dns/p5-Net-DNS \
-		${SITE_PERL}/${PERL_ARCH}/HTML/Parser.pm:${PORTSDIR}/www/p5-HTML-Parser \
+BUILD_DEPENDS=	p5-Net-DNS>=0.58:${PORTSDIR}/dns/p5-Net-DNS \
+		p5-IO-Zlib>=1.04:${PORTSDIR}/archivers/p5-IO-Zlib \
+		p5-HTML-Parser>=3.43:${PORTSDIR}/www/p5-HTML-Parser \
+		p5-IO-Compress-Zlib>=2.04:${PORTSDIR}/archivers/p5-IO-Compress-Zlib \
+		p5-Compress-Zlib>=2.04:${PORTSDIR}/archivers/p5-Compress-Zlib \
 		${SITE_PERL}/Mail/Internet.pm:${PORTSDIR}/mail/p5-Mail-Tools
+
 RUN_DEPENDS=	${BUILD_DEPENDS} \
 		${SITE_PERL}/Bundle/LWP.pm:${PORTSDIR}/www/p5-libwww \
-		${SITE_PERL}/Archive/Tar.pm:${PORTSDIR}/archivers/p5-Archive-Tar
+		p5-Archive-Tar>=1.23:${PORTSDIR}/archivers/p5-Archive-Tar \
+		${SITE_PERL}/mach/Encode/Detect.pm:${PORTSDIR}/converters/p5-Encode-Detect
 
 PERL_CONFIGURE=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
 	       	CONTACT_ADDRESS="${CONTACT_ADDRESS}" \
-		BUILD_SPAMC=yes
+		LOCALSTATEDIR="/var/db/spamassassin"
 
 # You can override it if you like
 CONTACT_ADDRESS?=	The administrator of that system
-SUB_FILES=		pkg-message
 
 OPTIONS=	AS_ROOT "Run spamd as root (recommended)" on \
-		DOMAINKEYS "DomainKeys support" off \
-		DKIM "DomainKeys Identified Mail" off \
+		SPAMC "Build spamd/spamc (not for amavisd)" on \
+		SACOMPILE "sa-compile" off \
+		DKIM "DKIM/DomainKeys Identified Mail" off \
 		SSL "Build with SSL support for spamd/spamc" on \
 		GNUPG "Install GnuPG (for sa-update)" on \
 		MYSQL "Add MySQL support" off \
 		PGSQL "Add PostreSQL support" off \
 		RAZOR "Add Vipul's Razor support" on \
 		SPF_QUERY "Add SPF query support" off \
-		RELAY_COUNTRY "Relay country support" off \
-		TOOLS "Install SpamAssassin tools" off
+		RELAY_COUNTRY "Relay country support" off
 
 .include <bsd.port.pre.mk>
 
+.if defined (WITH_SPAMC)
+CONFIGURE_ARGS+=	BUILD_SPAMC=yes
+.else
+CONFIGURE_ARGS+=	BUILD_SPAMC=no
+WITH_AS_ROOT=
+WITHOUT_SSL=1
+.endif
+
 .if defined(WITH_SPF_QUERY)
-RUN_DEPENDS+=	${SITE_PERL}/Mail/SPF/Query.pm:${PORTSDIR}/mail/p5-Mail-SPF-Query
+RUN_DEPENDS+=	p5-NetAddr-IP>=4.00.7:${PORTSDIR}/net-mgmt/p5-NetAddr-IP
+# see http://www.freebsd.org/cgi/query-pr.cgi?pr=113638
+RUN_DEPENDS+=	${SITE_PERL}/Mail/SPF.pm:${PORTSDIR}/mail/p5-Mail-SPF
 .endif
 
 .if !defined(WITHOUT_SSL)
@@ -59,12 +73,14 @@ USE_OPENSSL=	yes
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 CONFIGURE_ARGS+=	ENABLE_SSL=yes
+PLIST_SUB+=	SSL=""
 .else
 CONFIGURE_ARGS+=	ENABLE_SSL=no
+PLIST_SUB+=	SSL="@comment "
 .endif
 
 .if !defined(WITHOUT_GNUPG)
-RUN_DEPENDS+=	gnupg>=1.4.1:${PORTSDIR}/security/gnupg
+RUN_DEPENDS+=	gnupg>=1.4.7:${PORTSDIR}/security/gnupg
 .endif
 
 .if defined(WITH_MYSQL)
@@ -76,33 +92,26 @@ RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/Pg.pm:${PORTSDIR}/databases/p5-DBD-P
 .endif
 
 .if defined(WITH_RAZOR)
-RUN_DEPENDS+=	razor-agents>=2.81:${PORTSDIR}/mail/razor-agents
+RUN_DEPENDS+=	razor-agents>=2.84:${PORTSDIR}/mail/razor-agents
 .endif
 
 .if defined(WITH_DKIM)
-RUN_DEPENDS+=	${SITE_PERL}/Mail/DKIM.pm:${PORTSDIR}/mail/p5-Mail-DKIM
+RUN_DEPENDS+=	p5-Mail-DKIM>=.20:${PORTSDIR}/mail/p5-Mail-DKIM
+RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/SSL.pm:${PORTSDIR}/security/p5-IO-Socket-SSL
 .endif
 
-.if defined(WITH_DOMAINKEYS)
-RUN_DEPENDS+=	p5-Mail-DomainKeys>=0.80:${PORTSDIR}/mail/p5-Mail-DomainKeys
+.if defined(WITH_SACOMPILE)
+RUN_DEPENDS+=	re2c>=.12.0:${PORTSDIR}/devel/re2c
 .endif
 
 .if defined(WITH_RELAY_COUNTRY)
 RUN_DEPENDS+=	${SITE_PERL}/IP/Country/Fast.pm:${PORTSDIR}/net/p5-IP-Country
 .endif
 
-.if defined(WITH_TOOLS)
-RUN_DEPENDS+=	${SITE_PERL}/Parse/Syslog.pm:${PORTSDIR}/textproc/p5-Parse-Syslog \
-		${SITE_PERL}/Date/Manip.pm:${PORTSDIR}/devel/p5-Date-Manip \
-		${SITE_PERL}/Net/CIDR/Lite.pm:${PORTSDIR}/net/p5-Net-CIDR-Lite
-TOOLS=		""
-.else
-TOOLS=		"@comment "
-.endif
-
 MAN3=		Mail::SpamAssassin.3 \
 		Mail::SpamAssassin::AICache.3 \
 		Mail::SpamAssassin::ArchiveIterator.3 \
+		Mail::SpamAssassin::AsyncLoop.3 \
 		Mail::SpamAssassin::AutoWhitelist.3 \
 		Mail::SpamAssassin::Bayes.3 \
 		Mail::SpamAssassin::BayesStore.3 \
@@ -126,24 +135,32 @@ MAN3=		Mail::SpamAssassin.3 \
 		Mail::SpamAssassin::PerMsgStatus.3 \
 		Mail::SpamAssassin::PersistentAddrList.3 \
 		Mail::SpamAssassin::Plugin.3 \
+		Mail::SpamAssassin::Plugin::ASN.3 \
 		Mail::SpamAssassin::Plugin::AWL.3 \
 		Mail::SpamAssassin::Plugin::AccessDB.3 \
 		Mail::SpamAssassin::Plugin::AntiVirus.3 \
 		Mail::SpamAssassin::Plugin::AutoLearnThreshold.3 \
+		Mail::SpamAssassin::Plugin::BodyRuleBaseExtractor.3 \
+		Mail::SpamAssassin::Plugin::Check.3 \
 		Mail::SpamAssassin::Plugin::DCC.3 \
 		Mail::SpamAssassin::Plugin::DKIM.3 \
 		Mail::SpamAssassin::Plugin::DomainKeys.3 \
 		Mail::SpamAssassin::Plugin::Hashcash.3 \
 		Mail::SpamAssassin::Plugin::MIMEHeader.3 \
+		Mail::SpamAssassin::Plugin::OneLineBodyRuleType.3 \
 		Mail::SpamAssassin::Plugin::Pyzor.3 \
 		Mail::SpamAssassin::Plugin::Razor2.3 \
 		Mail::SpamAssassin::Plugin::RelayCountry.3 \
 		Mail::SpamAssassin::Plugin::ReplaceTags.3 \
+		Mail::SpamAssassin::Plugin::Rule2XSBody.3 \
 		Mail::SpamAssassin::Plugin::SPF.3 \
+		Mail::SpamAssassin::Plugin::Shortcircuit.3 \
 		Mail::SpamAssassin::Plugin::SpamCop.3 \
 		Mail::SpamAssassin::Plugin::Test.3 \
 		Mail::SpamAssassin::Plugin::TextCat.3 \
 		Mail::SpamAssassin::Plugin::URIDNSBL.3 \
+		Mail::SpamAssassin::Plugin::URIDetail.3 \
+		Mail::SpamAssassin::Plugin::VBounce.3 \
 		Mail::SpamAssassin::Plugin::WhiteListSubject.3 \
 		Mail::SpamAssassin::PluginHandler.3 \
 		Mail::SpamAssassin::SQLBasedAddrList.3 \
@@ -154,17 +171,15 @@ MAN3=		Mail::SpamAssassin.3 \
 		spamassassin-run.3
 
 MAN1=		spamd.1 spamassassin.1 spamc.1 sa-learn.1 sa-update.1 \
-		spamassassin-run.1
-
-PLIST_SUB+=	TOOLS=${TOOLS}
+		spamassassin-run.1 sa-compile.1
 
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
 DATADIR=	${PREFIX}/share/spamassassin
 DOCS=		BUGS CREDITS Changes INSTALL LICENSE NOTICE PACKAGING README STATUS TRADEMARK UPGRADE USAGE procmailrc.example
+DOCS=		CREDITS Changes INSTALL LICENSE NOTICE PACKAGING README TRADEMARK UPGRADE USAGE procmailrc.example
 DOCSSQL=	README README.awl README.bayes awl_mysql.sql awl_pg.sql bayes_mysql.sql bayes_pg.sql userpref_mysql.sql userpref_pg.sql
-DOCSCONTRIB=	mbox-to-check run-corpora run-masses
 DOCSLDAP=	README README.testing sa_test.ldif
-PORTDOCS=	${DOCS} sql contrib ldap
+PORTDOCS=	${DOCS} sql ldap
 
 USE_RC_SUBR=	sa-spamd.sh
 
@@ -185,14 +200,12 @@ post-patch:
 		-e 's#B_CONFDIR)/init.pre#B_CONFDIR)/init.pre.sample#g' \
 		-e 's#B_CONFDIR)/v310.pre#B_CONFDIR)/v310.pre.sample#g' \
 		-e 's#B_CONFDIR)/v312.pre#B_CONFDIR)/v312.pre.sample#g' \
+		-e 's#B_CONFDIR)/v320.pre#B_CONFDIR)/v320.pre.sample#g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
-# I cant' seem to get these to work, patches or suggestions welcome
+
 .if defined(WITH_RAZOR)
 	${REINPLACE_CMD} -e '/Razor2/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v312.pre
-.endif
-.if defined(WITH_DOMAINKEYS)
-	${REINPLACE_CMD} -e '/DomainKeys/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v310.pre
 .endif
 .if defined(WITH_RELAY_COUNTRY)
 	${REINPLACE_CMD} -e '/RelayCountry/s/^# ?loadplugin/loadplugin/' ${WRKSRC}/rules/init.pre
@@ -206,7 +219,25 @@ post-patch:
 .if defined(WITH_DCC)
 	${REINPLACE_CMD} -e '/DCC/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v310.pre
 .endif
+.if defined(WITH_SACOMPILE)
+	${REINPLACE_CMD} -e '/Rule2XSBody/s/^# loadplugin/loadplugin/' ${WRKSRC}/rules/v320.pre
+.endif
 
+post-build:
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} spamc/libspamc.so)
+.if !defined(WITHOUT_SSL)
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} spamc/libsslspamc.so)
+.endif
+
+pre-install:
+	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamc/libspamc.so ${PREFIX}/lib/libspamc.so.0
+	@${LN} -sf libspamc.so.0 ${PREFIX}/lib/libspamc.so
+.if !defined(WITHOUT_SSL)
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamc/libsslspamc.so ${PREFIX}/lib/libsslspamc.so.0
+	@${LN} -sf libsslspamc.so.0 ${PREFIX}/lib/libsslspamc.so
+.endif
+	@${INSTALL_DATA} ${WRKSRC}/spamc/libspamc.h ${PREFIX}/include
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/spamc
@@ -219,28 +250,16 @@ post-install:
 	@[ -f ${PREFIX}/etc/mail/spamassassin/v312.pre ] || \
 		${CP} ${PREFIX}/etc/mail/spamassassin/v312.pre.sample \
 			${PREFIX}/etc/mail/spamassassin/v312.pre
-.if defined(WITH_TOOLS)
-	@${MKDIR} ${DATADIR}/tools
-	@for f in ${WRKSRC}/tools/*; do \
-		${INSTALL} $${f} ${DATADIR}/tools; \
-	done
-.endif
+	@[ -f ${PREFIX}/etc/mail/spamassassin/v320.pre ] || \
+		${CP} ${PREFIX}/etc/mail/spamassassin/v320.pre.sample \
+			${PREFIX}/etc/mail/spamassassin/v320.pre
+
 .if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR} ${DOCSDIR}/sql ${DOCSDIR}/contrib ${DOCSDIR}/ldap
+	@${MKDIR} ${DOCSDIR} ${DOCSDIR}/sql ${DOCSDIR}/ldap
 	@${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 	@${INSTALL_DATA} ${DOCSSQL:S|^|${WRKSRC}/sql/|} ${DOCSDIR}/sql
-	@${INSTALL_DATA} ${DOCSCONTRIB:S|^|${WRKSRC}/contrib/|} ${DOCSDIR}/contrib
 	@${INSTALL_DATA} ${DOCSLDAP:S|^|${WRKSRC}/ldap/|} ${DOCSDIR}/ldap
 
-.endif
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=	needs perl 5.6.1 or higher, install lang/perl5.8 and try again
-.endif
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64 \
-		${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
 .endif
 
 .include <bsd.port.post.mk>

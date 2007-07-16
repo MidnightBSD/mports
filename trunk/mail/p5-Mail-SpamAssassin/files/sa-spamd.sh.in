@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/mail/p5-Mail-SpamAssassin/files/sa-spamd.sh.in,v 1.1 2006/03/20 13:03:33 garga Exp $
+# $MidnightBSD$
 #
 
 # PROVIDE: spamd
