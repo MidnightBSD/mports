@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.23 2007/05/01 23:38:55 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.24 2007/05/01 23:43:40 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -10,6 +10,7 @@
     SUBDIR += gtar
     SUBDIR += gzip
     SUBDIR += gzrecover
+    SUBDIR += lcab
     SUBDIR += lha
     SUBDIR += lha-ac
     SUBDIR += libmspack
