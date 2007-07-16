@@ -2,12 +2,12 @@
 # Date created:				12 October 2001
 # Whom:					tobez
 #
-# $MidnightBSD: mports/math/p5-Math-BigInt/Makefile,v 1.1 2007/02/25 00:22:52 laffer1 Exp $
+# $MidnightBSD: mports/math/p5-Math-BigInt/Makefile,v 1.2 2007/05/07 00:12:09 ctriv Exp $
 # $FreeBSD: ports/math/p5-Math-BigInt/Makefile,v 1.16 2007/02/07 14:52:57 tobez Exp $
 #
 
 PORTNAME=	Math-BigInt
-PORTVERSION=	1.85
+PORTVERSION=	1.86
 CATEGORIES=	math perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Math
