@@ -2,7 +2,7 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.2 2007/04/16 15:50:58 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.3 2007/04/29 18:18:52 ctriv Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	http://lynx.isc.org/current/ \
 DISTNAME=	${PORTNAME}2.8.6rel.1
 
 PATCH_SITES=	ftp://lynx.isc.org/lynx2.8.6/patches/
-.for i in 2 3 4
+.for i in 2 3 4 5
 PATCHFILES+=	2.8.6rel.${i}.patch.gz
 .endfor
 PATCH_DIST_STRIP=	-p1
