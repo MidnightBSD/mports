@@ -2,12 +2,12 @@
 # Date created:		Wed Jul 25 23:30:19 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.2 2007/01/03 11:45:18 wintellect Exp $
+# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.3 2007/05/21 23:04:18 ctriv Exp $
 # $FreeBSD: ports/sysutils/cdrtools/Makefile,v 1.69 2006/08/03 09:29:49 marius Exp $
 #
 
 PORTNAME=	cdrtools
-PORTVERSION?=	2.01
+PORTVERSION?=	2.01.01a31
 PORTREVISION?=	5
 CATEGORIES?=	sysutils audio
 MASTER_SITES=	ftp://ftp.berlios.de/pub/cdrecord/ \
