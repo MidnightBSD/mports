@@ -2,12 +2,12 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.3 2007/04/16 16:10:22 laffer1 Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
 PORTNAME=	links
-PORTVERSION=	2.1.p28
+PORTVERSION=	2.1.p29
 PORTEPOCH=	1
 CATEGORIES?=	www
 MASTER_SITES=	http://links.twibright.com/download/
