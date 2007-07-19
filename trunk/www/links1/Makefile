@@ -2,12 +2,12 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links1/Makefile,v 1.2 2007/07/19 04:20:14 laffer1 Exp $
+# $MidnightBSD: mports/www/links1/Makefile,v 1.3 2007/07/19 04:23:18 laffer1 Exp $
 # $FreeBSD: ports/www/links1/Makefile,v 1.5 2006/05/14 02:04:43 edwin Exp $
 #
 
 PORTNAME=	links
-PORTVERSION=	1.00pre1
+PORTVERSION=	1.00pre8
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://artax.karlin.mff.cuni.cz/~mikulas/vyplody/links/download/ \
