@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.37 2007/06/25 06:06:00 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.38 2007/07/19 07:14:34 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -22,6 +22,7 @@
     SUBDIR += libcdio
     SUBDIR += libchk
     SUBDIR += mbmon
+    SUBDIR += mdf2iso
     SUBDIR += memtest
     SUBDIR += memtest86
     SUBDIR += mixer
