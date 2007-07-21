@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.136 2007/07/19 07:01:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.137 2007/07/19 09:48:39 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -156,6 +156,7 @@
     SUBDIR += sdl12
     SUBDIR += silc-toolkit
     SUBDIR += splint
+    SUBDIR += st
     SUBDIR += stlport
     SUBDIR += subversion
     SUBDIR += sysconftool
