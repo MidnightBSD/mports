@@ -2,7 +2,7 @@
 # Date created:		24 May 1999
 # Whom:			Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/thttpd/Makefile,v 1.1 2006/10/02 23:32:50 laffer1 Exp $
 # $FreeBSD: ports/www/thttpd/Makefile,v 1.39 2006/02/26 01:12:54 mnag Exp $
 #
 
@@ -58,8 +58,5 @@ do-install:
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/notes.html ${DOCSDIR}/
 .endif
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
