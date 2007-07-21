@@ -2,12 +2,12 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.1 2006/12/23 22:47:52 wintellect Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.2 2007/04/28 02:57:40 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.13
+PORTVERSION=	1.4.15
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
@@ -17,11 +17,11 @@ COMMENT=	A secure, fast, compliant, and very flexible Web Server
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
-USE_AUTOTOOLS=	autoconf:259 libtool:15
+USE_AUTOTOOLS=	autoconf:261 libtool:15
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack
 USE_RC_SUBR=	lighttpd.sh
-CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd
+CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd --mandir=${PREFIX}/man
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
