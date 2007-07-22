@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.10 2007/04/13 21:38:38 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.11 2007/04/13 21:57:46 laffer1 Exp $
 #
 
     COMMENT = Network management tools
@@ -13,6 +13,7 @@
     SUBDIR += p5-Mon
     SUBDIR += p5-Net-CIDR
     SUBDIR += p5-Net-IP
+    SUBDIR += p5-NetAddr-IP
     SUBDIR += p5-NSNMP
     SUBDIR += p5-SNMP_Session
     SUBDIR += php5-snmp
