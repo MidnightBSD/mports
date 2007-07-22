@@ -2,12 +2,12 @@
 # Date created:				01 May 2003
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/p5-YAML/Makefile,v 1.1 2007/03/11 05:16:15 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-YAML/Makefile,v 1.12 2006/11/28 10:45:22 tobez Exp $
 #
 
 PORTNAME=	YAML
-PORTVERSION=	0.62
+PORTVERSION=	0.65
 CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	YAML
