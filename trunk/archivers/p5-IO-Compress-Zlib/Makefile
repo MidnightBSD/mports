@@ -2,12 +2,12 @@
 # Date created:				3 December 2006
 # Whom:	      				Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.1 2007/02/23 21:05:32 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.2 2007/07/16 02:09:45 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.4 2007/02/01 11:28:45 demon Exp $
 #
 
 PORTNAME=	IO-Compress-Zlib
-PORTVERSION=	2.004
+PORTVERSION=	2.005
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	IO
