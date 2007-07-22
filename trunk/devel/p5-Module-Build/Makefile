@@ -2,12 +2,12 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.1 2007/03/11 05:06:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.2 2007/03/30 17:54:27 ctriv Exp $
 # $FreeBSD: ports/devel/p5-Module-Build/Makefile,v 1.43 2006/12/26 02:22:21 clsung Exp $
 #
 
 PORTNAME=	Module-Build
-PORTVERSION=	0.28.07
+PORTVERSION=	0.28.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Module/KWILLIAMS
