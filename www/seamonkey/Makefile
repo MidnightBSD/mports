@@ -2,13 +2,13 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.1 2007/05/09 19:48:59 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.2 2007/05/25 16:44:28 laffer1 Exp $
 # $FreeBSD: ports/www/seamonkey/Makefile,v 1.262 2007/03/19 16:54:15 mezz Exp $
 #    $MCom: ports/www/seamonkey/Makefile,v 1.46 2007/02/06 00:05:55 ahze Exp $
 #
 
 PORTNAME=	seamonkey
-DISTVERSION=	1.1.1
+DISTVERSION=	1.1.2
 CATEGORIES?=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	seamonkey/releases/${DISTVERSION}
