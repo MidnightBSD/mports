@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.138 2007/07/21 11:21:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.139 2007/07/22 07:38:28 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -153,6 +153,7 @@
     SUBDIR += py-gobject
     SUBDIR += qmake
     SUBDIR += qmake4
+    SUBDIR += re2c
     SUBDIR += ruby-gnustep
     SUBDIR += sdl12
     SUBDIR += silc-toolkit
