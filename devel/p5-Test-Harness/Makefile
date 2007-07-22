@@ -3,11 +3,11 @@
 # Whom:					Shell Hung <shell@shellhung.org>
 #
 # $FreeBSD: ports/devel/p5-Test-Harness/Makefile,v 1.25 2006/06/10 19:11:14 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Test-Harness/Makefile,v 1.1 2006/11/05 15:52:55 laffer1 Exp $
 #
 
 PORTNAME=	Test-Harness
-PORTVERSION=	2.62
+PORTVERSION=	2.64
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Test
