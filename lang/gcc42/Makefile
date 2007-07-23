@@ -3,15 +3,15 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.2 2007/02/25 23:32:56 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.3 2007/07/23 13:24:42 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
 PORTNAME=	gcc
-PORTVERSION=	4.2.0
-PORTREVISION=	20070207
+PORTVERSION=	4.2.1
+PORTREVISION=	20070712
 CATEGORIES=	lang java
-VERSIONSTRING=	4.2-${PORTREVISION}
+VERSIONSTRING=	4.2.1-RC-${PORTREVISION}
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
 DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
