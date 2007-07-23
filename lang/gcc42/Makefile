@@ -3,7 +3,7 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.2 2007/02/25 23:32:56 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
@@ -90,10 +90,8 @@ INFO=		gcc${SUFFIX}/cpp \
 		gcc${SUFFIX}/gcc \
 		gcc${SUFFIX}/gccinstall \
 		gcc${SUFFIX}/gccint \
-		gcc${SUFFIX}/gfortran
-.if ${OSVERSION} >= 502102
-INFO+=		gcc${SUFFIX}/libgomp
-.endif
+		gcc${SUFFIX}/gfortran \
+		gcc${SUFFIX}/libgomp
 
 .if ! defined(WITHOUT_JAVA)
 DISTFILES+=	gcc-java-${VERSIONSTRING}${EXTRACT_SUFX}
@@ -126,7 +124,7 @@ pre-everything::
 	@${ECHO_MSG} "Making GCC ${DISTNAME:S/^gcc-//} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|\(const char version_string.*\)";|\1 [FreeBSD]";|' \
+	@${REINPLACE_CMD} -e 's|\(const char version_string.*\)";|\1 [MidnightBSD]";|' \
 	    ${SRCDIR}/gcc/version.c
 
 pre-configure:
