@@ -2,7 +2,7 @@
 # Date created:				6 October 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.3 2007/02/01 14:57:21 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.4 2007/07/25 14:38:57 laffer1 Exp $
 # $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
 #
 
@@ -122,7 +122,5 @@ post-install:
 	${CP} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
 		${WRKSRC}/README ${DOCSDIR}/
 .endif
-
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
