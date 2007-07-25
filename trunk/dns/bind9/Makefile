@@ -2,7 +2,7 @@
 # Date created:				6 October 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.2 2007/01/03 23:04:33 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.3 2007/02/01 14:57:21 laffer1 Exp $
 # $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
 #
 
@@ -20,7 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Completely new version of the BIND DNS suite with updated DNSSEC
 
 # ISC releases things like 9.3.0rc1, which our versioning doesn't like
-ISCVERSION=	9.3.4
+ISCVERSION=	9.3.4-P1
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
