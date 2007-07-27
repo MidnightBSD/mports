@@ -2,7 +2,7 @@
 # Date created:				2006-06-24
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.5 2007/07/26 22:23:09 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.6 2007/07/26 22:29:59 laffer1 Exp $
 # $FreeBSD: ports/shells/mksh/Makefile,v 1.3 2006/09/04 07:02:54 miwi Exp $
 #
 
@@ -33,7 +33,7 @@ do-extract:
 		${GZCAT} ${DISTDIR}/${DISTFILES} | ${CPIO} -id
 
 do-build:
-	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -r
+	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mksh ${PREFIX}/bin
