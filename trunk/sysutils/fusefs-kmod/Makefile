@@ -2,7 +2,7 @@
 # Date created:				08 October 2005
 # Whom:					Anish Mistry <amistry@am-productions.biz>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
 # $FreeBSD: ports/sysutils/fusefs-kmod/Makefile,v 1.8 2006/08/12 21:11:12 pav Exp $
 #
 
@@ -50,10 +50,6 @@ HTML_DOCS=	Faq.html \
 OPTIONS=	AUTOSETUP "Automatic global config file setup" off
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 600000
-IGNORE=		requires FreeBSD 6 or above. Please consider porting it to 5.x or even 4.x
-.endif
 
 .if !exists(${SRC_BASE}/sys/Makefile)
 IGNORE=		requires the Kernel source to be installed. Set SRC_BASE if it is not in /usr/src
