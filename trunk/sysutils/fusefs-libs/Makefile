@@ -2,12 +2,12 @@
 # Date created:         01 October 2005
 # Whom:                 Anish Mistry
 #
-# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
+# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.3 2007/07/29 21:57:54 laffer1 Exp $
 # $FreeBSD: ports/sysutils/fusefs-libs/Makefile,v 1.9 2006/09/05 17:25:01 pav Exp $
 #
 
 PORTNAME=	fusefs
-PORTVERSION=	2.5.3
+PORTVERSION=	2.7.0
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
