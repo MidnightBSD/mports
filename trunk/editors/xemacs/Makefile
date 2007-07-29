@@ -2,7 +2,7 @@
 # Date created:		25 Oct 2001
 # Whom:			Gary Jennejohn (gj@FreeBSD.org)
 #
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.2 2006/10/01 16:17:13 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.3 2007/04/23 02:02:40 ctriv Exp $
 # $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
 #
 
@@ -22,7 +22,7 @@ CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]*
 
 XEMACS_REL=	21.4
-XEMACS_VER=	21.4.19
+XEMACS_VER=	21.4.20
 XEMACS_ARCH=	${CONFIGURE_TARGET}
 
 USE_BZIP2=	yes
@@ -101,9 +101,9 @@ PLIST_SUB+=	DESKTOP=""
 PLIST_SUB+=	DESKTOP="@comment "
 .endif
 
-post-extract::
-	@${SED} -e 's|@XEMACS_ICON@|${LOCALBASE}/lib/xemacs-${XEMACS_VER}/etc/xemacs-icon.xpm|' \
-		<${FILESDIR}/xemacs.desktop.in >${WRKDIR}/xemacs.desktop
+#post-extract::
+#	@${SED} -e 's|@XEMACS_ICON@|${LOCALBASE}/lib/xemacs-${XEMACS_VER}/etc/xemacs-icon.xpm|' \
+#		<${FILESDIR}/xemacs.desktop.in >${WRKDIR}/xemacs.desktop
 
 pre-patch:
 .if !defined(WITHOUT_X11)
@@ -138,10 +138,10 @@ post-install::
 .for f in b2m ctags ellcc etags gnuclient xemacs-${XEMACS_VER}
 	${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
-.if !defined(WITHOUT_X11) && ${HAVE_GNOME:Mgnomehier}!=""
-	${INSTALL_DATA} ${WRKDIR}/xemacs.desktop \
-		${PREFIX}/share/gnome/applications
-.endif
+#.if !defined(WITHOUT_X11) && ${HAVE_GNOME:Mgnomehier}!=""
+#	${INSTALL_DATA} ${WRKDIR}/xemacs.desktop \
+#		${PREFIX}/share/gnome/applications
+#.endif
 # For some reason install no longer makes ${PREFIX}/lib/xemacs/site-lisp.
 # Do what PLIST does for pkg_add.
 	${MKDIR} ${PREFIX}/lib/xemacs/site-lisp
