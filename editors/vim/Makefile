@@ -3,13 +3,13 @@
 # Date created:			  Sat June 29, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.1 2006/09/24 00:51:42 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.2 2007/04/28 02:10:45 laffer1 Exp $
 # $FreeBSD: ports/editors/vim/Makefile,v 1.284 2006/09/10 02:44:18 obrien Exp $
 #
 
 PORTNAME?=	vim
-PATCHLEVEL=	94
-PORTVERSION=	7.0.${PATCHLEVEL}
+PATCHLEVEL=	44
+PORTVERSION=	7.1.${PATCHLEVEL}
 PORTREVISION?=	0
 CATEGORIES?=	editors
 MASTER_SITES=	${MASTER_SITE_VIM}
@@ -19,9 +19,9 @@ PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}
 PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=	005 027 028 032 045 057 065 074
+BADPATCHES=	003 007 034 041
 .for p in ${BADPATCHES}
-PATCHFILES:=	${PATCHFILES:N7.0.${p}}
+PATCHFILES:=	${PATCHFILES:N7.1.${p}}
 .endfor
 
 MAINTAINER=	ports@MidnightBSD.org
