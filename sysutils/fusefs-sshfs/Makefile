@@ -1,7 +1,8 @@
 # New ports collection makefile for:	fusefs-sshfs
 # Date created: 			01 October 2005
 # Whom:					Anish Mistry
-# $MidnightBSD$
+#
+# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
 # $FreeBSD: ports/sysutils/fusefs-sshfs/Makefile,v 1.7 2006/03/20 16:05:41 leeym Exp $
 #
 
@@ -25,10 +26,6 @@ CONFIGURE_ENV+=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
 USE_GNOME=	glib20
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 600000
-IGNORE=		depends on kernel module that requires FreeBSD 6 or later
-.endif
 
 post-install:
 	@${SED} -e "s|%%PREFIX%%|${PREFIX}|" ${PKGMESSAGE}
