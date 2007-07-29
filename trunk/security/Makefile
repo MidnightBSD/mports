@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.51 2007/04/12 14:06:16 wintellect Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.52 2007/07/29 21:41:39 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -31,6 +31,7 @@
     SUBDIR += linux-pam-docs
     SUBDIR += mcrypt
     SUBDIR += mhash
+    SUBDIR += nmap
     SUBDIR += nss
     SUBDIR += openssh-portable
     SUBDIR += openvpn
