@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # Automatically setup the loading of the module without polluting /boot/modules
 SYSCTL_CONFIG=/etc/sysctl.conf
 LOADER_CONFIG=/etc/rc.conf
