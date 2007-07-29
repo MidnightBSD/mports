@@ -2,12 +2,12 @@
 # Date created: 			01 October 2005
 # Whom:					Anish Mistry
 #
-# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
+# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.3 2007/07/29 21:58:58 laffer1 Exp $
 # $FreeBSD: ports/sysutils/fusefs-sshfs/Makefile,v 1.7 2006/03/20 16:05:41 leeym Exp $
 #
 
 PORTNAME=	sshfs
-PORTVERSION=	1.6
+PORTVERSION=	1.8
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	fuse
