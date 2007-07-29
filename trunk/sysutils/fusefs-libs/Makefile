@@ -1,7 +1,8 @@
 # New ports collection makefile for:    fusefs-libs
 # Date created:         01 October 2005
 # Whom:                 Anish Mistry
-# $MidnightBSD$
+#
+# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
 # $FreeBSD: ports/sysutils/fusefs-libs/Makefile,v 1.9 2006/09/05 17:25:01 pav Exp $
 #
 
@@ -28,10 +29,6 @@ TXT_DOCS=	how-fuse-works \
 		kernel.txt
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 600000
-IGNORE=		depends on kernel module that requires FreeBSD 6 or later
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},' \
