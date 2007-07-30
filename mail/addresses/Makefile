@@ -3,7 +3,7 @@
 # Whom:                 Miguel Mendez <flynn@energyhq.es.eu.org>
 #
 # $FreeBSD: ports/mail/addresses/Makefile,v 1.4 2006/09/05 06:07:54 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/addresses/Makefile,v 1.1 2006/12/11 05:42:36 laffer1 Exp $
 #
 
 PORTNAME=	addresses
@@ -26,7 +26,5 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=	GNUmakefile
-LDCONFIG_DIRS=	${LOCALLIBDIR}
-INSTALLS_SHLIB=	yes
 
 .include <bsd.port.mk>
