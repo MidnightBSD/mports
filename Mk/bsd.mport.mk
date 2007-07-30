@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.48 2007/05/25 19:14:15 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.49 2007/06/28 16:08:12 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3317,11 +3317,11 @@ do-extract:
 check-license:
 .if !defined(LICENSE) 
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
-	@${FALSE}
+	@sleep 5
 .else
 	@if ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
-		${FALSE}; \
+		sleep 5; \
 	else \
 		${DO_NADA}; \
 	fi
@@ -4486,12 +4486,10 @@ pre-repackage:
 # install package cookie
 
 .if !target(package-noinstall)
-package-noinstall:
-	@${MKDIR} ${WRKDIR}
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} pre-package \
-		pre-package-script do-package post-package-script
-	@${RM} -f ${TMPPLIST}
-	-@${RMDIR} ${WRKDIR}
+package-noinstall: 
+	@${ECHO_MSG} "==> The 'package-noinstall' target is deprecated.  Use 'package' instead."
+	@sleep 5
+	@${MAKE} package
 .endif
 
 ################################################################
@@ -4948,7 +4946,7 @@ package-depends:
 
 package-recursive: package
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} package-noinstall); \
+		(cd $$dir; ${MAKE} package); \
 	done
 
 # Show missing dependiencies
