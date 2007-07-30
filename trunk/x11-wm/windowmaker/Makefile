@@ -2,13 +2,13 @@
 # Date created:		August 13, 1997
 # Whom:			handy@physics.montana.edu
 #
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.3 2007/04/02 05:19:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.4 2007/04/07 19:26:46 ctriv Exp $
 # $FreeBSD: ports/x11-wm/windowmaker/Makefile,v 1.133 2006/05/21 20:11:57 dougb Exp $
 #
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
 		http://dougbarton.us/Downloads/
@@ -80,7 +80,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/WPrefs.app/Paths.c
 	@${REINPLACE_CMD} -e "s|%%PERL%%|${PERL}|g" ${WRKSRC}/util/wm-oldmenu2new
 	@${REINPLACE_CMD} -e "s|Trebuchet MS,Luxi Sans|sans|g" ${WRKSRC}/WindowMaker/Defaults/WMGLOBAL
-	@${REINPLACE_CMD} -e "s|/usr/local/GNUstep|${PREFIX}/GNUstep|g" \
+	@${REINPLACE_CMD} -e "s|/usr/local/GNUstep|${PREFIX}/GNUstep/Local|g" \
 		${WRKSRC}/WindowMaker/*menu*
 
 post-install:
