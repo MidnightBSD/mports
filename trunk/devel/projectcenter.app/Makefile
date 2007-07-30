@@ -2,7 +2,7 @@
 # Date created:         22 Sep 2000
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.1 2006/10/03 20:35:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.2 2007/03/13 20:31:20 laffer1 Exp $
 # $FreeBSD: ports/devel/projectcenter.app/Makefile,v 1.33 2006/03/19 04:35:44 dinoex Exp $
 #
 
@@ -24,5 +24,6 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 PLIST_SUB+=	FRAMEVERSION=${PORTVERSION}
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 .include <bsd.port.mk>
