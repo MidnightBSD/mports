@@ -2,14 +2,13 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.2 2007/03/15 01:08:48 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.3 2007/04/22 18:06:36 ctriv Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
-# find ./ -type f -print
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.1.3.3
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
@@ -18,12 +17,10 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	pkgtools-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	FreeBSD ports/packages administration and management tool suite
+COMMENT=	BSD ports/packages administration and management tool suite
 
 ##OPTIONS=	BDB4 "Use Berkeley DB >=2 as backend" on \
 ##		BDB1 "Use Berkeley DB 1.85 as backend" off
-
-CONFLICTS=	portupgrade-devel-*
 
 USE_BZIP2=	yes
 USE_RUBY=	yes
