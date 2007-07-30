@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.2 2007/05/22 16:13:43 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.3 2007/06/06 18:23:11 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -51,6 +51,9 @@ while (<$fh>) {
   }
 
   next if m/^\@/;
+  
+  # skip symlinks.
+  next if -l "$destdir$cwd/$_";
   
   if (-e "$destdir$cwd/$_") {
     # There is a bug in perl's MakeMaker which causes the packlist to contain
