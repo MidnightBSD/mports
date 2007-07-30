@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.8 2007/05/06 21:09:08 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.9 2007/06/29 06:45:06 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -502,7 +502,7 @@ do-install:
 	@(cd ${WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endif
-.if defined(PARALLEL_PACKAGE_BUILD) || defined(BATCH) || defined(CLEAN_ROOT)
+.if defined(PACKAGE_BUILDING) || defined(BATCH) || defined(CLEAN_ROOT)
 	rm -rf /root/GNUstep
 .endif
 
