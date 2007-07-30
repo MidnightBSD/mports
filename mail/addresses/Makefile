@@ -3,14 +3,14 @@
 # Whom:                 Miguel Mendez <flynn@energyhq.es.eu.org>
 #
 # $FreeBSD: ports/mail/addresses/Makefile,v 1.4 2006/09/05 06:07:54 dinoex Exp $
-# $MidnightBSD: mports/mail/addresses/Makefile,v 1.1 2006/12/11 05:42:36 laffer1 Exp $
+# $MidnightBSD: mports/mail/addresses/Makefile,v 1.2 2007/07/30 19:52:08 ctriv Exp $
 #
 
 PORTNAME=	addresses
-PORTVERSION=	0.4.6
+PORTVERSION=	0.4.7
 CATEGORIES=	mail
-MASTER_SITES=	http://giesler.biz/bjoern/downloads/ \
-		http://www.energyhq.es.eu.org/files/
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
 DISTNAME=	Addresses-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,7 +19,7 @@ COMMENT=	A versatile addressbook for GNUstep
 GNUSTEP_PREFIX?=	${LOCALBASE}/GNUstep
 PREFIX=		${GNUSTEP_PREFIX}
 NO_MTREE=	yes
-WRKSRC=		${WRKDIR}/Addresses-${PORTVERSION}
+WRKSRC=		${WRKDIR}/Addresses
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_BACK=	yes
