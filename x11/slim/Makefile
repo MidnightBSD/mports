@@ -2,12 +2,12 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.5 2007/02/23 02:01:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.6 2007/05/02 16:53:27 ctriv Exp $
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
 PORTNAME=	slim
-PORTVERSION=	1.2.6
+PORTVERSION=	1.3.0
 PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
