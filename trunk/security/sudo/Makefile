@@ -2,12 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.1 2006/09/17 06:49:06 archite Exp $
-# $FreeBSD: ports/security/sudo/Makefile,v 1.78 2006/07/28 06:54:29 mharo Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.6.8.12
+PORTVERSION=	1.6.9.2
 PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
@@ -20,7 +20,7 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		http://pluto.cdpa.nsysu.edu.tw/sudo/ \
 		ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/ \
 		ftp://ftp.stikman.com/pub/sudo/
-DISTNAME=	${PORTNAME}-1.6.8p12
+DISTNAME=	${PORTNAME}-1.6.9p2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
@@ -37,21 +37,23 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-pam
 
 OPTIONS=	LDAP	"With LDAP support" off \
-		OPIE	"With OPIE support" off \
+		INSULTS "With all insults" off \
 		SHELL_SETS_HOME "Set HOME env to target user in shell mode" off
 
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_INSULTS)
+CONFIGURE_ARGS+=--with-insults
+CONFIGURE_ARGS+=--with-all-insults
+.endif
 
 .if defined(WITH_LDAP)
 USE_OPENLDAP=yes
 CONFIGURE_ARGS+=--with-ldap=${PREFIX}
 CONFIGURE_ARGS+=--with-ldap-conf-file=${PREFIX}/etc/ldap.conf
-.endif
-
-.if defined(WITH_OPIE) || ${OSVERSION} > 500021
-CONFIGURE_ARGS+=--with-opie
+PLIST_SUB+=	LDAP=""
 .else
-CONFIGURE_ARGS+=--with-skey
+PLIST_SUB=	LDAP="@comment "
 .endif
 
 .if defined(WITH_SHELL_SETS_HOME)
@@ -62,13 +64,28 @@ MAN5=		sudoers.5
 MAN8=		sudo.8 visudo.8
 MLINKS=		sudo.8 sudoedit.8
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|^|#|g' ${WRKSRC}/sample.sudoers
-
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/sample.sudoers ${PREFIX}/etc/sudoers.sample
-	${INSTALL_DATA} ${WRKSRC}/sudoers ${PREFIX}/etc/sudoers.default
 	${RM} ${PREFIX}/libexec/sudo_noexec.la
-	${CAT} ${PKGMESSAGE}
+	${INSTALL_DATA} ${WRKSRC}/sudoers ${PREFIX}/etc/sudoers.default
+	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
+
+	if [ ! -e ${PREFIX}/etc/pam.d/sudo ]; then \
+		cp -p ${PREFIX}/etc/pam.d/sudo.default \
+		${PREFIX}/etc/pam.d/sudo ;\
+	fi
+
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/BUGS ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/TROUBLESHOOTING ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/UPGRADE ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/sample.sudoers ${DOCSDIR}
+.if defined(WITH_LDAP)
+	${INSTALL_DATA} ${WRKSRC}/README.LDAP ${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/sudoers2ldif ${DOCSDIR}
+.endif
+.endif
 
 .include <bsd.port.post.mk>
