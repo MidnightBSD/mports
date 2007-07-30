@@ -2,13 +2,13 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.3 2007/04/22 18:06:36 ctriv Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.4 2007/07/30 06:42:48 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 
 PORTNAME=	portupgrade
-PORTVERSION=	2.1.3.3
-PORTREVISION=	3
+PORTVERSION=	2.1.4
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
