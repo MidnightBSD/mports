@@ -2,13 +2,13 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.6 2007/05/02 16:53:27 ctriv Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.7 2007/07/30 04:39:43 laffer1 Exp $
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
 PORTNAME=	slim
 PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
@@ -35,7 +35,7 @@ MAKEFILE=	Makefile.freebsd
 pre-build:
 	@${REINPLACE_CMD} \
 			-e 's|%%X11BASE%%|${X11BASE}|g' \
-			-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+			-e 's|%%LOCALBASE%%|${PREFIX}|g' \
 			${WRKSRC}/Makefile.freebsd \
 			${WRKSRC}/slim.conf
 
