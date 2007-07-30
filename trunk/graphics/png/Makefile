@@ -2,12 +2,12 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.4 2007/05/03 01:37:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.5 2007/05/21 20:44:33 ctriv Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
 PORTNAME=	png
-PORTVERSION=	1.2.14
+PORTVERSION=	1.2.18
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	lib${PORTNAME}
@@ -26,7 +26,7 @@ COMMENT=	Library for manipulating PNG images
 MAKEFILE=	${WRKSRC}/scripts/makefile.freebsd
 ALL_TARGET=	all libpng-config test
 MAKE_FLAGS=	ccopts="${CFLAGS}" ldopts="${LDFLAGS}" -f
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 SHLIB_VER=	5
 USE_BZIP2=	yes
 
