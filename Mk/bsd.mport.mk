@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.49 2007/06/28 16:08:12 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.50 2007/07/30 00:31:37 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -316,6 +316,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  files under ${WRKSRC} with one of these names the ^Ms.
 # USE_GCC		- If set, this port requires this version of gcc, either in
 #				  the system or installed from a port.
+# USE_GCPIO		- if set, uses GNU cpio.  Required for ${CPIO} usage.
 # USE_GMAKE		- If set, this port uses gmake.
 # GMAKE			- Set to path of GNU make if not in $PATH.
 #				  Default: gmake
@@ -1077,7 +1078,7 @@ CHOWN?=		/usr/sbin/chown
 CHROOT?=	/usr/sbin/chroot
 COMM?=		/usr/bin/comm
 CP?=		/bin/cp
-CPIO?=		/usr/bin/cpio
+CPIO?=		${LOCALBASE}/bin/gcpio
 CUT?=		/usr/bin/cut
 DC?=		/usr/bin/dc
 DIALOG?=	/usr/bin/dialog
@@ -1347,6 +1348,10 @@ TARGETDIR:=		${DESTDIR}${PREFIX}
 
 .if defined(USE_LINUX_RPM)
 .include "${PORTSDIR}/Mk/bsd.linux-rpm.mk"
+.endif
+
+.if defined(USE_GCPIO)
+EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
 .endif
 
 .if defined(USE_BZIP2)
