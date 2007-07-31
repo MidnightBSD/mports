@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.3 2007/04/24 20:03:30 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.4 2007/04/29 04:39:28 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -35,6 +35,7 @@ Linux_RPM_Include_MAINTAINER=	ports@MidnightBSD.org
 Linux_RPM_Pre_Include=			bsd.linux-rpm.mk
 
 RPM2CPIO?=			${LOCALBASE}/bin/rpm2cpio
+USE_GCPIO?=		yes
 
 EXTRACT_SUFX?=		.${LINUX_RPM_ARCH}.rpm
 SRC_SUFX?=		.src.rpm
