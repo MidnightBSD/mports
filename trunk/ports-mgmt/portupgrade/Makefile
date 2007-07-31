@@ -2,12 +2,12 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.4 2007/07/30 06:42:48 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.5 2007/07/30 06:48:15 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 
 PORTNAME=	portupgrade
-PORTVERSION=	2.1.4
+PORTVERSION=	2.1.5
 PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	sysutils
@@ -87,7 +87,9 @@ post-patch:
 .for i in bin/pkg_fetch bin/pkg_fetch.1 bin/pkgdb bin/pkgdb.1 bin/portsclean bin/portsdb bin/portsdb.1 bin/portupgrade bin/portupgrade.1 bin/portversion bin/portversion.1 etc/pkgtools.conf Makefile lib/portsdb.rb misc/bash/complete.sample misc/zsh/_pkgtools tests/test_portinfo.rb tests/test_portsdb.rb
 	@cd ${WRKSRC}; \
 	${SED} 's/\/usr\/ports/\/usr\/mports/' < $i > convert.txt; \
-	${MV} convert.txt $i
+	${MV} convert.txt $i ; \
+	${SED} 's/sysutils\/portupgrade/\/ports-mgmt\/portupgrade/' < $i > convert2.txt; \
+	${MV} convert2.txt $i
 .endfor
 
 pre-install: 
