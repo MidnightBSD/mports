@@ -2,7 +2,7 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.1 2007/04/04 16:07:36 laffer1 Exp $
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.2 2007/05/18 17:25:33 ctriv Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
@@ -82,10 +82,6 @@ DICTVER_ZU=	0.50-0
 DICT_SUFFIX=	.tar.bz2
 
 .include <bsd.port.pre.mk>
-
-.if (${OSVERSION} < 500021) && (${OSVERSION} >= 500000 || ${OSVERSION} < 440000)
-BUILD_DEPENDS+=	bzip2:${PORTSDIR}/archivers/bzip2
-.endif
 
 .if defined(LANG)
 . for i in ${AVAIL_DICT} no

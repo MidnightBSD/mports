@@ -2,7 +2,7 @@
 # Date created:		November 13, 1998
 # Whom:			Marc G. Fournier <scrappy@FreeBSD.org>
 # 
-# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.3 2007/02/16 16:07:08 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.4 2007/05/10 19:32:34 ctriv Exp $
 # $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.163 2007/02/07 09:51:47 girgen Exp $
 #
 
@@ -77,10 +77,6 @@ CONFIGURE_ARGS+=--with-openssl
 .include <bsd.port.pre.mk>
 
 .if !defined(SLAVE_ONLY)
-# gnugetopt will always be used if already installed
-.  if ( ${OSVERSION} < 500041 ) && !exists(${LOCALBASE}/include/getopt.h)
-OPTIONS+=	GNUGETOPT "Use GNU getopt" on
-.  endif
 OPTIONS+=	PAM "Build with PAM support (server only)" off
 OPTIONS+=	MIT_KRB5 "Build with MIT's kerberos support" off
 OPTIONS+=	HEIMDAL_KRB5 "Builds with Heimdal kerberos support" off

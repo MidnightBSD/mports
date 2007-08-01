@@ -2,7 +2,7 @@
 # Date created:         15 May 1996
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/rar/Makefile,v 1.1 2006/09/18 00:19:26 laffer1 Exp $
 # $FreeBSD: ports/archivers/rar/Makefile,v 1.58 2006/09/03 01:35:39 kris Exp $
 #
 
@@ -27,9 +27,7 @@ PORTDOCS=	technote.txt license.txt whatsnew.txt order.htm \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 600000
 LIB_DEPENDS+=	c.5:${PORTSDIR}/misc/compat5x
-.endif
 
 .if ${PORTOBJFORMAT} == "elf"
 STRIP=
