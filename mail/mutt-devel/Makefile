@@ -3,7 +3,7 @@
 # Date created:			  6 Jun 2001
 # Whom:				  Udo Schweigert
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/mutt-devel/Makefile,v 1.1 2006/09/25 15:53:50 laffer1 Exp $
 # $FreeBSD: ports/mail/mutt-devel/Makefile,v 1.272 2006/09/01 13:46:21 garga Exp $
 #
 # There are several knobs which are used to define additions to the core
@@ -284,7 +284,7 @@ USE_ICONV=	yes
 XML_USED=	no
 .endif
 .if defined(MUTT_USES_NCURSES)
-.if ${OSVERSION} < 400000 || defined(WITH_MUTT_NCURSES_PORT)
+.if defined(WITH_MUTT_NCURSES_PORT)
 MUTT_USES_NCURSES_PORT=	yes
 .endif
 .endif

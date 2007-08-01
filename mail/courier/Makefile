@@ -3,7 +3,7 @@
 # Whom:			Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/mail/courier/Makefile,v 1.44 2007/01/01 00:00:21 miwi Exp $
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.1 2007/02/19 17:32:04 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.2 2007/05/09 05:22:55 ctriv Exp $
 #
 
 PORTNAME=	courier
@@ -256,12 +256,6 @@ PLIST_SUB+=	WITHUUCP="@comment "
 CONFIGURE_ARGS+=--with-ipv6
 .else
 CONFIGURE_ARGS+=--without-ipv6
-.endif
-
-.if ${OSVERSION} < 500000
-EXTRA_PATCHES+=	${FILESDIR}/extrapatch-maildir__maildirfilter.c \
-		${FILESDIR}/extrapatch-webmail__folder.c \
-		${FILESDIR}/extrapatch-webmail__newmsg.c
 .endif
 
 pre-everything::
