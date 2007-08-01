@@ -3,7 +3,7 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.1 2007/01/24 17:51:33 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
@@ -97,15 +97,6 @@ post-install:
 .endif
 .if defined(WITH_SUID_GPG)
 	${CHMOD} u+s ${PREFIX}/bin/gpg
-.endif
-.if ${OSVERSION} < 500019
-	@${CAT} ${PKGMESSAGE}
-.else
-PKGMESSAGE=	/nonexistent
-.endif
-
-.if ${OSVERSION} < 500000
-CONFIGURE_ARGS+=	--without-readline
 .endif
 
 check:
