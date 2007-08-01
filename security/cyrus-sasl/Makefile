@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.1 2006/10/02 15:22:18 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl/Makefile,v 1.65 2006/08/15 01:04:48 clsung Exp $
 #
 
@@ -123,18 +123,7 @@ GSSAPI=	"@comment "
 
 .include <bsd.port.pre.mk>
 
-# KERBEROS 4 was removed in FreeBSD 5.0-CURRENT
-.if ${OSVERSION} > 500105
 .if defined(WITH_KERBEROS4)
-LIB_DEPENDS+=	krb.2:${PORTSDIR}/security/krb4
-CONFIGURE_ARGS+=	--enable-krb4=${LOCALBASE}/krb4
-.else
-CONFIGURE_ARGS+=	--disable-krb4
-EBONES=	"@comment "
-.endif
-.elif exists(/usr/lib/libkrb.a) && defined(MAKE_KERBEROS4) && !defined(WITHOUT_KERBEROS4)
-CONFIGURE_ARGS+=	--enable-krb4
-.elif !exists(/usr/lib/libkrb.a) && defined(WITH_KERBEROS4)
 LIB_DEPENDS+=	krb.2:${PORTSDIR}/security/krb4
 CONFIGURE_ARGS+=	--enable-krb4=${LOCALBASE}/krb4
 .else
@@ -169,11 +158,7 @@ PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-.if ${OSVERSION} < 450000
-FMT=	/usr/bin/fmt
-.else
 FMT=	/usr/bin/fmt -w 67
-.endif
 
 pre-fetch:
 	@${SETENV} ${SCRIPTS_ENV} ${SH} ${SCRIPTDIR}/configure.sasl

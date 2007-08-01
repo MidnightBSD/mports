@@ -2,7 +2,7 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.2 2006/11/09 15:10:50 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.3 2007/03/09 18:58:30 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
 #
 
@@ -80,14 +80,7 @@ CONFIGURE_ARGS+=	--with-tcp-wrappers
 .endif
 
 .if !defined(WITHOUT_LIBEDIT)
-.if ${OSVERSION} > 500000
 CONFIGURE_ARGS+=	--with-libedit
-.else
-.if !defined(WITH_OVERWRITE_BASE)
-LIB_DEPENDS+=		edit.6:${PORTSDIR}/devel/libedit
-CONFIGURE_ARGS+=	--with-libedit=${LOCALBASE}
-.endif
-.endif
 .endif
 
 .if !defined(WITH_SUID_SSH)
@@ -169,11 +162,7 @@ PLIST_SUB+=		EMPTYDIR="${EMPTYDIR}"
 CONFIGURE_ARGS+=	--sysconfdir=${ETCSSH} --with-privsep-path=${EMPTYDIR}
 
 # Sync this with bsd.port.mk
-.if (${OSVERSION} >= 700007 || ( ${OSVERSION} < 700000 && ${OSVERSION} >= 600101 ))
 RC_SCRIPT_NAME=		openssh
-.else
-RC_SCRIPT_NAME=		openssh.sh
-.endif
 
 post-extract:
 .if defined(OPENSSH_SNAPSHOT)

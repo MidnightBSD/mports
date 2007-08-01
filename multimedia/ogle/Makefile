@@ -2,7 +2,7 @@
 # Date created:				Tue Oct 16 18:35:39 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.1 2006/11/02 21:05:24 wintellect Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.31 2006/05/10 22:37:34 edwin Exp $
 #
 
@@ -63,9 +63,7 @@ pre-configure:
 
 # XXX due to gcc-3.4 (20040706) bug in preprocessing of inline functions,
 # this needs at least -O2 to compile. Fails with -O
-.if ${OSVERSION} >= 502126
 CFLAGS+=	-O2
-.endif
 
 # hack to make ogle work with liba52 + djbfft
 .if exists(${LOCALBASE}/lib/liba52-devel.so)

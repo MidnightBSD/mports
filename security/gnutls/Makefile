@@ -2,7 +2,7 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.1 2006/09/23 00:05:34 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.2 2007/02/16 00:04:44 laffer1 Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
@@ -45,10 +45,6 @@ LIB_DEPENDS+=	opencdk.8:${PORTSDIR}/security/opencdk
 
 .if defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.3)
 LIB_DEPENDS+=	tasn1.3:${PORTSDIR}/security/libtasn1
-.endif
-
-.if ${OSVERSION} < 600000
-BUILD_DEPENDS+=	${LOCALBASE}/bin/makeinfo:${PORTSDIR}/print/texinfo
 .endif
 
 .if defined(WITHOUT_NLS)
