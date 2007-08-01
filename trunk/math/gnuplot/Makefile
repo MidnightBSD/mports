@@ -2,7 +2,7 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.1 2006/09/25 17:10:00 laffer1 Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.2 2007/05/20 15:29:51 laffer1 Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
@@ -45,12 +45,7 @@ CONFIGURE_ARGS+=	--without-lisp-files
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_READLINE)
-.if ${OSVERSION} < 500018
-LIB_DEPENDS+=		readline.5:${PORTSDIR}/devel/readline
-CONFIGURE_ARGS+=	--with-readline="${LOCALBASE}"
-.else
 CONFIGURE_ARGS+=	--with-readline=gnu
-.endif
 .endif
 
 .if !defined(WITHOUT_X11)
