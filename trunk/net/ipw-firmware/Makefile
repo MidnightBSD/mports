@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/ipw-firmware/Makefile,v 1.20 2006/09/17 01:11:23 kris Exp $
-# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.1 2007/02/17 06:04:33 archite Exp $
+# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.2 2007/05/20 20:26:25 ctriv Exp $
 
 PORTNAME?=	ipw-firmware
 RELNAME?=	ipw2100
@@ -77,14 +77,6 @@ SUB_LIST+=	DONT_NEED_CONTROL=""
 MTREE_DIRRM=	""
 MAN8+=		${DRIVERNAME}control.8
 USE_RCORDER=	${DRIVERNAME}.sh
-.endif
-
-# Hack because ipw(4) and iwi(4) behavior are not in sync: as of 20/01/2006,
-# iwi(4) loads firmware from /boot/firmware, but ipw(4) does not). Hopefully,
-# sam or mlaier will commit generic firmware loading support and new firmware
-# ports will be created once ipw(4) and iwi(4) have been patched to use it.
-.if ${DRIVERNAME} == "ipw" && ${OSVERSION} > 700006
-MTREE_DIRRM=	"@comment "
 .endif
 
 PLIST_SUB+=	MTREE_DIRRM=${MTREE_DIRRM}

@@ -3,7 +3,7 @@
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
 # $FreeBSD: ports/net-mgmt/trafd/Makefile,v 1.14 2006/05/11 22:49:44 edwin Exp $
-# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.1 2006/12/26 01:31:48 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.2 2007/06/06 21:11:33 ctriv Exp $
 #
 
 PORTNAME=	trafd
@@ -21,12 +21,7 @@ CONFLICTS=	bpft-4.*
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 500000
-RUN_DEPENDS=	${LOCALBASE}/etc/rc.subr:${PORTSDIR}/sysutils/rc_subr
-RCSUBRBASE=	${LOCALBASE}/etc
-.else
 RCSUBRBASE=	/etc
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/trafd/trafd ${PREFIX}/bin

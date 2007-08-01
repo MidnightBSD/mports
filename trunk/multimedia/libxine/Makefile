@@ -2,7 +2,7 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.5 2007/04/10 17:51:33 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.6 2007/06/11 02:38:21 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
@@ -231,11 +231,9 @@ pre-configure:
 		 s|-funroll-loops||g ; \
 		 s|LIBFFMPEG_CFLAGS|LIBFFMPEG_CPPFLAGS|g ; \
 		 s|echo aout|echo elf|g' ${WRKSRC}/configure
-.if ${OSVERSION} >= 500035
 	@${REINPLACE_CMD} -e \
 		 's|-malign-loops|-falign-loops|g ; \
 		  s|-malign-jumps|-falign-jumps|g ; \
 		  s|-malign-functions|-falign-functions|g' ${WRKSRC}/configure
-.endif
 
 .include <bsd.port.post.mk>

@@ -3,7 +3,7 @@
 # Whom:			teramoto@comm.eng.osaka-u.ac.jp
 #
 # $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.1 2007/01/24 17:51:34 laffer1 Exp $
 #
 
 PORTNAME=	gpgme
@@ -49,7 +49,7 @@ post-patch:
 					${WRKSRC}/gpgme/Makefile.in \
 					${WRKSRC}/gpgme/gpgme-config.in
 .if defined(WITH_PTH)
-.if ${OSVERSION} < 503100 || defined(PTHREAD_LIBS) && ${PTHREAD_LIBS} != "-pthread"
+.if defined(PTHREAD_LIBS) && ${PTHREAD_LIBS} != "-pthread"
 	@${REINPLACE_CMD} -e 's|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la -lpthread|g' \
 					${WRKSRC}/tests/gpg/Makefile.in
 .endif

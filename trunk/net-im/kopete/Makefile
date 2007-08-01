@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/net-im/kopete/Makefile,v 1.2 2006/09/12 23:26:44 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.1 2007/01/20 19:10:20 laffer1 Exp $
 
 PORTNAME=	kopete
 PORTVERSION=	0.11
@@ -42,12 +42,4 @@ INSTALLS_SHLIB=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
-.include <bsd.port.pre.mk>
-
-post-configure:
-.if ${OSVERSION} < 500028
-	@${REINPLACE_CMD} -e 's|$$(depcomp)||g' \
-		${WRKSRC}/kopete/protocols/jabber/libiris/iris/xmpp-core/Makefile
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

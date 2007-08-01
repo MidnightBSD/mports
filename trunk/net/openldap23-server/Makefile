@@ -2,7 +2,7 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.2 2006/11/29 16:55:08 laffer1 Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.3 2007/05/21 18:34:35 ctriv Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
@@ -378,11 +378,7 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" \
 .if defined(CLIENT_ONLY)
 .include "${FILESDIR}/manpages"
 .else
-.if (${OSVERSION} >= 700007 || (${OSVERSION} < 700000 && ${OSVERSION} >= 600101))
 RC_SUFX=
-.else
-RC_SUFX=		.sh
-.endif
 SUB_LIST+=		RC_DIR=${PREFIX} \
 			RC_SUFX=${RC_SUFX} \
 			LDAP_RUN_DIR=${LDAP_RUN_DIR} \

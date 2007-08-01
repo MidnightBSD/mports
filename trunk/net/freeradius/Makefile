@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.1 2007/04/13 21:27:05 laffer1 Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.2 2007/05/20 18:21:47 ctriv Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.54 2007/01/23 12:35:52 sem Exp $
 #
 
@@ -141,7 +141,7 @@ USE_PERL5=	yes
 .endif
 
 # rlm_perl does not build on 4.x
-.if ${OSVERSION} < 500000 || defined(WITH_NOPERL)
+.if defined(WITH_NOPERL)
 CONFIGURE_ARGS+=--without-rlm_perl
 PLIST_SUB+=	RLMPERL="@comment "
 .else
@@ -203,9 +203,6 @@ post-patch:
 # even though the port implicitly issues --without-rlm_sql_firebird. Delete the module
 # until it is fixed
 	@${RM} -r ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_firebird
-.if ${OSVERSION} < 500000
-	@${REINPLACE_CMD} -e 's/-DNO_OPENSSL//' ${WRKSRC}/configure
-.endif
 
 post-install:
 	@${MKDIR} ${PREFIX}/etc/raddb ${DATADIR}

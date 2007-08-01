@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.69 2006/12/07 17:17:44 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.4 2007/04/04 19:01:27 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.5 2007/04/10 17:51:07 laffer1 Exp $
 #
 
 PORTNAME=	xine
@@ -77,12 +77,10 @@ post-patch:
 		 s|THREAD_CFLAGS=.*$$|THREAD_CFLAGS="\$$THREAD_CFLAGS"|g ; \
 		 s|-L/usr/local/lib||g ; \
 		 s|-I/usr/local/include||g' ${WRKSRC}/configure
-.if ${OSVERSION} >= 500035
 	@${REINPLACE_CMD} -e \
 		 's|-malign-loops|-falign-loops|g ; \
 		  s|-malign-jumps|-falign-jumps|g ; \
 		  s|-malign-functions|-falign-functions|g' ${WRKSRC}/configure
-.endif
 	@${RM} ${WRKSRC}/src/xitk/xine-remote.c
 
 post-install:
