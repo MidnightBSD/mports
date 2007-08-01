@@ -2,7 +2,7 @@
 # Date created:		August 31, 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.2 2007/03/25 02:50:10 ctriv Exp $
+# $MidnightBSD: mports/x11/wdm/Makefile,v 1.3 2007/05/04 07:14:30 ctriv Exp $
 # $FreeBSD: ports/x11/wdm/Makefile,v 1.73 2006/07/16 16:17:04 pav Exp $
 #
 
@@ -57,7 +57,7 @@ WDMDIR=		${PREFIX}/lib/X11/wdm
 
 .include <bsd.port.pre.mk>
 
-.if ( ${OSVERSION} >= 500028 ) && !defined(WITHOUT_PAM)
+.if !defined(WITHOUT_PAM)
 WITH_PAM=	yes
 CONFIGURE_ARGS+=	--with-pamdir=${LOCALBASE}/etc/pam.d/
 PLIST_SUB+=	PAM=""

@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.2 2007/05/25 16:44:28 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.3 2007/07/22 09:34:40 laffer1 Exp $
 # $FreeBSD: ports/www/seamonkey/Makefile,v 1.262 2007/03/19 16:54:15 mezz Exp $
 #    $MCom: ports/www/seamonkey/Makefile,v 1.46 2007/02/06 00:05:55 ahze Exp $
 #
@@ -63,7 +63,7 @@ MOZ_OPTIONS+=	--enable-glitz
 LIB_DEPENDS+=	glitz.1:${PORTSDIR}/graphics/glitz
 .endif
 
-.if ${ARCH}=="sparc64" && ${OSVERSION} < 601101
+.if ${ARCH}=="sparc64"
 IGNORE=		core dumps on ${ARCH}, need kern.osreldate>=601101
 .endif
 
