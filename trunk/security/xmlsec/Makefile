@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/security/xmlsec/Makefile,v 1.20 2006/09/10 23:52:18 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/xmlsec/Makefile,v 1.1 2006/11/09 14:43:05 laffer1 Exp $
 #
 
 PORTNAME=	xmlsec
@@ -25,16 +25,12 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 USE_OPENSSL=	yes
 USE_GNOME=	gnomehack libxslt
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 INSTALLS_SHLIB=	yes
 
 MAN1=	xmlsec.1 xmlsec-config.1
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 700019
-BROKEN=		Does not compile on FreeBSD >= 7.0
-.endif
 
 post-install:
 .if !defined(NOPORTDOCS)

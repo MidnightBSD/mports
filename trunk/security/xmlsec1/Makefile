@@ -3,7 +3,7 @@
 # Whom:				Jim Geovedi <jim@corebsd.or.id>
 #
 # $FreeBSD: ports/security/xmlsec1/Makefile,v 1.16 2006/09/10 23:53:06 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.1 2006/11/09 14:40:38 laffer1 Exp $
 #
 
 PORTNAME=	xmlsec1
@@ -55,10 +55,6 @@ post-install:
 		${SED} 's,${PREFIX}/,, ; s,^,@dirrm ,' >> ${TMPPLIST}
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 700019
-BROKEN=		Does not compile on FreeBSD >= 7.0
-.endif
 
 .if defined(WITH_GNUTLS)
 CONFIGURE_ARGS+=	--with-gnutls="${LOCALBASE}"

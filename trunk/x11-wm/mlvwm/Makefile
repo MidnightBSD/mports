@@ -3,7 +3,7 @@
 # Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
 # $FreeBSD: ports/x11-wm/mlvwm/Makefile,v 1.26 2006/09/17 02:11:02 kris Exp $
-# $MidnightBSD: mports/x11-wm/mlvwm/Makefile,v 1.1 2006/12/15 05:22:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/mlvwm/Makefile,v 1.2 2007/04/17 19:45:19 laffer1 Exp $
 #
 
 PORTNAME=	mlvwm
@@ -26,10 +26,6 @@ MAN1=		mlvwm.1
 MLVWMLIBDIR=	${PREFIX}/lib/X11/mlvwm
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 601104
-BROKEN=		Does not build on FreeBSD >= 6.x
-.endif
 
 post-extract:
 	@${TAR} -C ${WRKSRC}/pixmap -xzf ${DISTDIR}/mini-icons.tar.gz

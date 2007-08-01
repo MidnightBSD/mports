@@ -2,7 +2,7 @@
 # Date created:				28 March 2006
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/p5-GSSAPI/Makefile,v 1.1 2007/02/23 21:13:36 laffer1 Exp $
 # $FreeBSD: ports/security/p5-GSSAPI/Makefile,v 1.8 2006/10/03 15:34:35 chinsan Exp $
 #
 
@@ -23,15 +23,4 @@ MAN3=	GSSAPI.3 \
 	GSSAPI::OID::Set.3 \
 	GSSAPI::Status.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
-
-.if ${OSVERSION} < 500000
-BUILD_DEPENDS+=		krb5-config:${PORTSDIR}/security/krb5
-LIB_DEPENDS+=		krb5:${PORTSDIR}/security/krb5
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
