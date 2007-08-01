@@ -3,7 +3,7 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.1 2006/11/24 23:50:08 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -145,13 +145,10 @@ IGNORE=	: apr from ports (WITH_APR_FROM_PORTS) is no longer supported
 
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
-.   if ${OSVERSION} > 500023
 .     if ${ARCH} == i386
 CONFIGURE_ARGS+=	--enable-nonportable-atomics
 .     endif
-.  else
-CFLAGS+=		-DFREEBSD_THREAD_HACK
-.   endif
+#CFLAGS+=		-DFREEBSD_THREAD_HACK
 .endif
 
 CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM:L} ${CONFIGURE_TARGET}

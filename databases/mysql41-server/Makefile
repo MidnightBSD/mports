@@ -2,7 +2,7 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.2 2007/04/01 18:08:50 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.3 2007/05/25 19:37:04 ctriv Exp $
 # $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.224 2007/01/20 09:22:57 ale Exp $
 #
 
@@ -75,13 +75,8 @@ CONFIGURE_ARGS+=--with-named-thread-libs='-DHAVE_GLIBC2_STYLE_GETHOSTBYNAME_R
 CONFIGURE_ARGS+=-D_THREAD_SAFE -I${LOCALBASE}/include/pthread/linuxthreads
 CFLAGS+=	-D__USE_UNIX98 -D_REENTRANT -D_THREAD_SAFE
 CFLAGS+=	-I${LOCALBASE}/include/pthread/linuxthreads
-.if ${OSVERSION} > 500000
 LIB_DEPENDS+=	lthread.[35]:${PORTSDIR}/devel/linuxthreads
 CONFIGURE_ARGS+=-L${LOCALBASE}/lib -llthread -llgcc_r -llstdc++ -llsupc++'
-.else
-LIB_DEPENDS+=	lthread.[24]:${PORTSDIR}/devel/linuxthreads
-CONFIGURE_ARGS+=-L${LOCALBASE}/lib -llthread -llgcc_r'
-.endif
 .else
 CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
 CFLAGS+=	${PTHREAD_CFLAGS}
