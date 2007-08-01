@@ -2,7 +2,7 @@
 # Date created:			01 Jun 2002
 # Whom:				silence <oksala@videotron.ca>
 #
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.3 2006/12/29 15:14:31 wintellect Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.4 2007/01/19 15:22:11 wintellect Exp $
 # $FreeBSD: ports/www/cherokee/Makefile,v 1.26 2006/08/15 01:11:31 clsung Exp $
 #
 
@@ -62,11 +62,7 @@ CONFIGURE_ARGS+=--disable-tls
 CONFIGURE_ARGS+=--disable-ipv6
 .endif
 
-.if ${OSVERSION} < 500000
-PLIST_SUB+=	PAM=""
-.else
 PLIST_SUB+=	PAM="@comment "
-.endif
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
