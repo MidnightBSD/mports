@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.3 2007/03/30 21:29:57 ctriv Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.4 2007/05/17 17:17:11 ctriv Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -63,7 +63,7 @@ CONFLICTS=	zsh-devel-[0-9]* zsh-4.1.*
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-curses-terminfo --with-tcsetpgrp \
 		--enable-etcdir=${ZSH_ETCDIR} \
 		--enable-fndir=${ZSH_FNDIR} --enable-function-subdirs \
@@ -105,13 +105,11 @@ EXAMPLES=	zlogin zshenv zshrc
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 500000 && !defined(WITHOUT_ZSH_MULTIBYTE)
+.if !defined(WITHOUT_ZSH_MULTIBYTE)
 CONFIGURE_ARGS+=	--enable-multibyte
 .endif
 
-.if ${OSVERSION} >= 503000
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-bsdtar
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e "s,link=dynamic,link=either," \
