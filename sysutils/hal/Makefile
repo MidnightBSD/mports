@@ -2,7 +2,7 @@
 # Date Created:			02 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.1 2007/05/07 21:12:36 laffer1 Exp $
 # $FreeBSD: ports/sysutils/hal/Makefile,v 1.22 2007/04/07 11:53:22 jylefort Exp $
 #   $MCom: ports/sysutils/hal/Makefile,v 1.26 2006/10/13 10:00:57 ahze Exp $
 #
@@ -89,12 +89,8 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 RUN_DEPENDS+=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 .endif
 
-.if ${OSVERSION} <= 601100
 NEEDS_MEDIA=	yes
 PLIST_SUB+=	MEDIA=""
-.else
-PLIST_SUB+=	MEDIA="@comment "
-.endif
 
 .if defined(WITH_FIXED_MOUNTPOINTS)
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-tools_hal-storage-mount.c

@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/squid/Makefile,v 1.1 2007/01/04 21:01:33 wintellect Exp $
 # $FreeBSD: ports/www/squid/Makefile,v 1.192 2006/11/17 12:51:29 jmelo Exp $
 #
 # Tunables not (yet) configurable via 'make config':
@@ -299,12 +299,6 @@ CONFIGURE_ARGS+=	--enable-arp-acl
 .if defined(WITH_SQUID_PF)
 CONFIGURE_ARGS+=	--enable-pf-transparent
 .endif
-# IPFilter-headers are not installed on FreeBSD 4 since 4.7-RELEASE,
-# they were not installed on FreeBSD 5 from 2002-03-26 (OSVERSION > 500032) to
-# 2003-06-27 (OSVERSION < 501101).
-#
-# Please see PR misc/44148 and the CVS log of src/include/Makefile for further
-# information.
 .if defined(WITH_SQUID_IPFILTER)
 CONFIGURE_ARGS+=	--enable-ipf-transparent
 .endif

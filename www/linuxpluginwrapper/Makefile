@@ -2,7 +2,7 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.1 2006/10/04 20:09:14 laffer1 Exp $
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 
@@ -32,12 +32,6 @@ RUN_DEPENDS+=	${X11BASE}/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so:${PORT
 WITH_PLUGINS=	1
 .endif
 
-.if		defined(WITH_PLUGINS)
-.if		${OSVERSION} < 500000
-USE_MOTIF=	yes
-.endif
-.endif
-
 ONLY_FOR_ARCHS=	i386
 MAKE_ENV=	EXAMPLESDIR=${EXAMPLESDIR} INSTALL_DATA="${INSTALL_DATA}" INSTALL_PROGRAM="${INSTALL_PROGRAM}"
 
@@ -45,48 +39,16 @@ CONFLICTS=	flashpluginwrapper-*
 USE_XLIB=	yes
 PLIST_SUB=	LINUXBASE=${LINUXBASE}
 PKGMESSAGE=	${WRKDIR}/pkg-message
-.if		!defined(WITH_PLUGINS) || ${OSVERSION} < 500000
+.if		!defined(WITH_PLUGINS)
 PLIST=		${WRKDIR}/pkg-plist
 .endif
 
-.if		${OSVERSION} >= 700001
 LIBMAPCONF=	${EXAMPLESDIR}/libmap.conf-FreeBSD6
-.elif		${OSVERSION} >= 600033 && ${OSVERSION} < 700000
-LIBMAPCONF=	${EXAMPLESDIR}/libmap.conf-FreeBSD6
-.elif		${OSVERSION} >= 503001
-LIBMAPCONF=	${EXAMPLESDIR}/libmap.conf-FreeBSD5-stable
-.elif		${OSVERSION} >= 500000
-LIBMAPCONF=	${EXAMPLESDIR}/libmap.conf-FreeBSD5-current
-.else
-LIBMAPCONF=	${EXAMPLESDIR}/libmap.conf-FreeBSD4.x
-.endif
 
-.if		${OSVERSION} < 501105
-RTLD=		/usr/libexec/ld-elf.so.1
-.else
 RTLD=		/libexec/ld-elf.so.1
-.endif
 
 .if		defined(WITH_DEBUG)
 CFLAGS+=	-DDEBUG=1
-.endif
-
-.if		!defined(PACKAGE_BUILDING)
-.if		${OSVERSION} < 490102 || ${OSVERSION} >= 500000 && ${OSVERSION} < 501107
-pre-everything::
-	@if ! strings ${RTLD} | ${GREP} libmap.conf > /dev/null 2>&1; then \
-		${ECHO_MSG} 'Please enable libmap.conf(5) feature for rtld(1).'; \
-		${ECHO_MSG} '4-stable user:'; \
-		${ECHO_MSG} '	You can get a following patch.'; \
-		${ECHO_MSG} '	http://people.FreeBSD.org/~nork/libmap_4stable.diff'; \
-		${ECHO_MSG} '   Please apply on /usr/src and make install on /usr/src/libexec/rtld-elf:'; \
-		${ECHO_MSG} '   # cd /usr/src ; patch -p0 < /tmp/libmap_4stable.diff'; \
-		${ECHO_MSG} '   # cd libexec/rtld-elf ; make clean all install'; \
-		${ECHO_MSG} '5.1-RELEASE user:'; \
-		${ECHO_MSG} '	Please see /usr/src/libexec/rtld-elf/Makefile.'; \
-		${FALSE}; \
-	fi
-.endif
 .endif
 
 post-build:
