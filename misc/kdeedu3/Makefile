@@ -3,7 +3,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeedu3/Makefile,v 1.34 2006/09/12 23:26:32 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.1 2007/01/25 20:23:46 laffer1 Exp $
 #
 
 PORTNAME=	kdeedu
@@ -36,13 +36,8 @@ LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} > 500035
 LIB_DEPENDS+=	boost_python:${PORTSDIR}/devel/boost-python
 PLIST_SUB+=	BOOST_PYTHON=""
-.else
-CONFIGURE_ARGS+=--disable-kig-python-scripting
-PLIST_SUB+=	BOOST_PYTHON="@comment "
-.endif
 
 pre-configure:
 	${REINPLACE_CMD} \
