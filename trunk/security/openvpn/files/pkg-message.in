@@ -1,5 +1,5 @@
 ### ------------------------------------------------------------------------
-###  The OpenVPN FreeBSD port, since v2.0.1, uses rcNG to start OpenVPN.
+###  The OpenVPN port uses rcNG to start OpenVPN.
 ###  Edit /etc/rc.conf to start OpenVPN automatically at system startup.
 ###  See %%PREFIX%%/etc/rc.d/openvpn%%RCSFX%% for details.
 ### ------------------------------------------------------------------------
