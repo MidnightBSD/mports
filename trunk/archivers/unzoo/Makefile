@@ -2,7 +2,7 @@
 # Date created:				20 Jun 2005
 # Whom:					Emanuel Haupt <ehaupt@critical.ch>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.1 2006/09/18 00:30:15 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzoo/Makefile,v 1.7 2006/08/11 11:02:17 ehaupt Exp $
 #
 
@@ -25,9 +25,7 @@ MAN1=		unzoo.1
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 503000
 CFLAGS+=	-trigraphs
-.endif
 
 do-build:
 	${CC} ${CFLAGS} ${EXTRA_DEFINES} -o ${WRKSRC}/${PORTNAME} \
