@@ -7,6 +7,7 @@
 #
 # Made in Northrhine-Westphalia, Germany
 #
+# $MidnightBSD$
 # $FreeBSD: ports/security/openvpn/files/openvpn.sh.in,v 1.4 2006/02/20 20:47:39 dougb Exp $
 # 
 # This program is free software; you can redistribute it and/or modify it under
@@ -59,7 +60,6 @@ prefix="%%PREFIX%%"
 openvpn_precmd()
 {
 	for i in $openvpn_if ; do
-		# FreeBSD <= 5.4 does not know kldstat's -m option
 		# FreeBSD >= 6.0 does not add debug.* sysctl information
 		# in the default build - we check both to keep things simple
 		if ! sysctl debug.if_${i}_debug >/dev/null 2>&1 \

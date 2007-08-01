@@ -2,7 +2,7 @@
 # Date created:		2002-06-23
 # Whom:			Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD: mports/security/openvpn/Makefile,v 1.1 2006/09/21 17:13:41 wintellect Exp $
+# $MidnightBSD: mports/security/openvpn/Makefile,v 1.2 2006/12/30 22:30:45 wintellect Exp $
 # $FreeBSD: ports/security/openvpn/Makefile,v 1.28 2006/09/14 01:22:01 rafan Exp $
 #
 
@@ -38,7 +38,7 @@ OPTIONS=	PW_SAVE "Interactive passwords may be read from a file" off
 USE_RC_SUBR=	openvpn.sh
 USE_LDCONFIG=	${PREFIX}/lib
 
-SUB_FILES=	pkg-message pkg-req
+SUB_FILES=	pkg-message
 SUB_LIST+=	OSVERSION=${OSVERSION}
 
 .include <bsd.port.pre.mk>
@@ -67,9 +67,6 @@ post-build:
 	cd ${WRKSRC} && ${MAKE} check
 .endif
 
-pre-install:
-	PKG_PREFIX=${PREFIX} ${SH} ${PKGREQ} ${PKGNAME} INSTALL
-
 post-install:
 	${MKDIR} ${PREFIX}/lib
 	${INSTALL_PROGRAM} ${WRKSRC}/plugin/down-root/openvpn-down-root.so \
@@ -87,6 +84,5 @@ post-install:
 	| ${GREP} -v easy-rsa/Windows \
 	| ${CPIO} -pdmu ${DOCSDIR} )
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
