@@ -1,3 +1,4 @@
+# $MidnightBSD$
 # $FreeBSD: ports/shells/v7sh/files/Makefile,v 1.1 2004/06/22 08:24:18 pav Exp $
 
 PREFIX?=	/usr/local
@@ -8,9 +9,6 @@ PROG=	v7sh
 SRCS=   args.c blok.c builtin.c cmd.c ctype.c error.c expand.c \
 	fault.c io.c macro.c main.c msg.c name.c print.c service.c \
 	setbrk.c stak.c string.c test.c word.c xec.c
-.if ${OSVERSION} < 500005
-SRCS+=	ulimit.c
-.endif
 
 #CFLAGS+=	-DSYSIII
 #CFLAGS+=	-DRENO
