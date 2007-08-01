@@ -2,7 +2,7 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.3 2007/03/16 18:53:19 laffer1 Exp $
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.4 2007/05/21 22:57:54 ctriv Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
@@ -152,12 +152,8 @@ CONFIGURE_ARGS+=	--without-msdfs
 CONFIGURE_ARGS+=	--with-winbind
 PLIST_SUB+=		WINBIND=""
 SUB_LIST+=		WINBIND=""
-.	if ${OSVERSION} >= 500112
 WITH_WINBIND_NSS=	yes
 PLIST_SUB+=		WINBIND_NSS=""
-.	else
-PLIST_SUB+=		WINBIND_NSS="@comment "
-.	endif
 .else
 CONFIGURE_ARGS+=	--without-winbind
 PLIST_SUB+=		WINBIND="@comment "
@@ -191,9 +187,6 @@ PLIST_SUB+=		SMBPASS="@comment "
 .endif
 
 .if defined(WITH_ACL_SUPPORT)
-.if ${OSVERSION} < 500018
-BROKEN=			ACL support requires FreeBSD 5.x at least after 20010326. Disable ACL support
-.endif
 CONFIGURE_ARGS+=	--with-acl-support
 .else
 CONFIGURE_ARGS+=	--without-acl-support
@@ -233,16 +226,6 @@ CONFIGURE_ARGS+=	--with-included-popt
 ###
 ### Common part for port and it's subports
 ###
-# For 4.8 - 4.11 combination of Kerberos and OpenLDAP is broken
-# due the conflict between system and OpenSSL port libcrypto libraries
-.if ${OSVERSION} > 470103 && ${OSVERSION} < 500000
-.	if defined(WITH_ADS)
-IGNORE=			broken dependency between OpenSSL, OpenLDAP and Heimdal for FreeBSD 4.x. Disable ADS support
-.	endif
-.	undef		WITH_ADS
-WITHOUT_ADS=		on
-.endif
-
 .if defined(WITH_ADS)
 SAMBA_WANT_LDAP=	yes
 SAMBA_WANT_KRB5=	yes
