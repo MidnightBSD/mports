@@ -2,7 +2,7 @@
 # Date created:		30 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/xorg-clients/Makefile,v 1.1.1.1 2006/09/17 03:33:48 archite Exp $
+# $MidnightBSD: mports/x11/xorg-clients/Makefile,v 1.2 2006/09/25 16:34:14 archite Exp $
 # $FreeBSD: ports/x11/xorg-clients/Makefile,v 1.24 2006/05/09 15:53:39 lesi Exp $
 #
 
@@ -85,10 +85,6 @@ post-install:
 
 .include "${.CURDIR}/../../x11-servers/xorg-server/Makefile.inc"
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 502123
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-4x
-.endif
 
 .if ${X_WINDOW_SYSTEM:L} != xorg
 IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
