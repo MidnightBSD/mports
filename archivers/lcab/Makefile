@@ -2,12 +2,12 @@
 # Date created:				27 May 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/lcab/Makefile,v 1.1 2007/07/16 01:25:38 laffer1 Exp $
 # $FreeBSD: ports/archivers/lcab/Makefile,v 1.2 2006/10/17 10:07:04 danfe Exp $
 #
 
 PORTNAME=	lcab
-DISTVERSION=	1.0b11
+DISTVERSION=	1.0b12
 CATEGORIES=	archivers
 MASTER_SITES=	http://coding.wooyayhoopla.be/lcab/sources/
 
