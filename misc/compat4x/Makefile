@@ -2,7 +2,7 @@
 # Date created:		01 Aug 2001
 # Whom:			Scot W. Hetzel
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.1 2006/09/23 14:55:51 laffer1 Exp $
 # $FreeBSD: ports/misc/compat4x/Makefile,v 1.33 2006/08/15 00:56:13 clsung Exp $
 #
 
@@ -20,6 +20,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A convenience package to install the compat4x libraries
 
 WRKSRC=		${WRKDIR}/usr/lib/compat
+
+BROKEN=		Does not make it past fake.
 
 NO_BUILD=	yes
 USE_LDCONFIG=	yes
