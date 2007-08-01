@@ -2,7 +2,7 @@
 # Date created:		7 December 2004
 # Whom:			sam
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/wpa_supplicant/Makefile,v 1.1 2006/10/02 23:22:38 laffer1 Exp $
 # $FreeBSD: ports/security/wpa_supplicant/Makefile,v 1.11 2006/09/10 23:32:56 kris Exp $
 #
 
@@ -60,14 +60,4 @@ post-install:
 .endif
 	@${INSTALL_DATA} ${WRKSRC}/wpa_supplicant.conf ${PREFIX}/etc/wpa_supplicant.conf.sample
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 600007
-IGNORE=is not supported on FreeBSD < 6.0
-.endif
-
-.if ${OSVERSION} >= 700019
-BROKEN=		does not compile on FreeBSD >= 7.0
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

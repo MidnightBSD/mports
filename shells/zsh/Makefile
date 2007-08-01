@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.4 2007/05/17 17:17:11 ctriv Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.5 2007/08/01 19:44:36 laffer1 Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -117,9 +117,7 @@ post-patch:
 	${REINPLACE_CMD} -e "s,/etc/,${LOCALBASE}/etc/," \
 		${WRKSRC}/Functions/MIME/zsh-mime-setup
 	${RM} -f ${WRKSRC}/Functions/MIME/zsh-mime-setup.bak
-.if ${OSVERSION} >= 503000
 	${RM} -f ${WRKSRC}/Completion/Unix/Type/_tar_archive.orig
-.endif
 
 post-build:
 	# Fix ".so" macro problem by using "soelim" command.

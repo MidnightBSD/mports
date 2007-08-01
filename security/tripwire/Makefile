@@ -3,7 +3,7 @@
 # Whom:			Cy Schubert <Cy.Schubert@uumail.gov.bc.ca>
 #
 # $FreeBSD: ports/security/tripwire/Makefile,v 1.36 2006/06/20 01:47:23 cy Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/tripwire/Makefile,v 1.1 2006/11/25 04:40:45 laffer1 Exp $
 #
 
 PORTNAME=	tripwire
@@ -52,11 +52,6 @@ TRIPWIRE_CLOBBER?=	NO
 CONFIGURE_ARGS=	--prefix=${PREFIX} --program-transform-name='' --sysconfdir=${TWCFG}
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 500000
-BUILD_DEPENDS=	${LOCALBASE}/lib/libstlport_gcc.so:${PORTSDIR}/devel/stlport
-RUN_DEPENDS=	${LOCALBASE}/lib/libstlport_gcc.so:${PORTSDIR}/devel/stlport
-.endif
 
 PLIST_SUB+=	TWCFG=${TWCFG} TWDB=${TWDB}
 

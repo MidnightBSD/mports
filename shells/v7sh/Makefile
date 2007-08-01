@@ -52,9 +52,5 @@ post-extract:
 	@${CP} ${FILESDIR}/Makefile ${WRKSRC}
 	@${CP} ${FILESDIR}/test.c ${WRKSRC}		# sysIII
 	@${CP} ${FILESDIR}/pathnames.h ${WRKSRC}	# 43reno
-.if ${OSVERSION} < 500005
-	@${CP} ${FILESDIR}/ulimit.[ch] ${WRKSRC}	# fbsd52
-.endif
-
 
 .include <bsd.port.post.mk>
