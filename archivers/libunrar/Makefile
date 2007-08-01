@@ -3,11 +3,11 @@
 # Whom:					samm@os2.kiev.ua
 #
 # $FreeBSD: ports/archivers/libunrar/Makefile,v 1.8 2006/09/28 12:18:55 barner Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.1 2007/01/26 03:27:38 laffer1 Exp $
 #
 
 PORTNAME=	libunrar
-PORTVERSION=	3.6.8
+PORTVERSION=	3.7.4
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://files2.rarlab.com/rar/ \
