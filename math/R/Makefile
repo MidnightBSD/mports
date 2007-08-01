@@ -3,7 +3,7 @@
 # Date created:		Fri Feb  9 10:50:25 EST 2001
 # Whom:			Maurice Castro <maurice@serc.rmit.edu.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/R/Makefile,v 1.1 2007/03/09 14:31:27 laffer1 Exp $
 # $FreeBSD: ports/math/R/Makefile,v 1.57 2007/01/25 17:56:40 rafan Exp $
 #
 
@@ -150,16 +150,6 @@ INFO=		R-FAQ R-admin R-data R-exts R-intro R-lang
 
 .if defined(WITH_LETTER_PAPER)
 CONFIGURE_ENV+=	R_PAPERSIZE=letter
-.endif
-
-.if ${OSVERSION} < 500000
-CONFIGURE_ARGS+=	--disable-mbcs
-BROKEN=		does not compile
-.endif
-
-.if ${OSVERSION} < 600000
-CONFIGURE_ENV+=	MAKEINFO_CMD=${LOCALBASE}/bin/makeinfo
-BUILD_DEPENDS+=	${LOCALBASE}/bin/makeinfo:${PORTSDIR}/print/texinfo
 .endif
 
 post-install:
