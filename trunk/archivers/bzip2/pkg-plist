@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/archivers/bzip2/pkg-plist,v 1.16 2005/07/20 07:50:43 pav Exp $
+@comment $MidnightBSD$
 bin/bzip2
 bin/bunzip2
 bin/bzcat
