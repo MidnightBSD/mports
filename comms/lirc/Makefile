@@ -2,7 +2,7 @@
 # Date created:		4 January 2003
 # Whom:			Mike Heffner <mikeh@FreeBSD.org>
 #
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.1 2007/01/20 11:22:35 wintellect Exp $
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.2 2007/04/19 21:55:49 ctriv Exp $
 # $FreeBSD: ports/comms/lirc/Makefile,v 1.22 2006/08/23 00:41:37 grog Exp $
 #
 
@@ -35,12 +35,9 @@ PLIST_SUB+=	SMODE2="@comment "
 
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libirman.a:${PORTSDIR}/comms/libirman
 CONFIGURE_ARGS+=	--with-driver=irman
-#.if ${OSVERSION} >= 500041
-# These are already included in the getopt_long case on < 50041
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-#.endif
 
 MAN1=		ircat.1 irexec.1 irpty.1 irrecord.1 irsend.1 irw.1 \
 		irxevent.1 mode2.1 smode2.1 xmode2.1

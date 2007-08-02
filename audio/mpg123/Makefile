@@ -2,7 +2,7 @@
 # Date created:			25 June 1997
 # Whom:				Carey Jones <mcj@acquiesce.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.1 2006/09/29 20:54:01 wintellect Exp $
 # $FreeBSD: ports/audio/mpg123/Makefile,v 1.66 2005/11/28 19:03:07 fenner Exp $
 #
 
@@ -48,9 +48,7 @@ PLIST_FILES=	bin/mpg123
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 400014
 MAKE_ENV+=	USE_INET6=yes
-.endif
 
 .if ${HAVE_GNOME:Mesound}!=""
 USE_GNOME+=	esound
@@ -80,24 +78,12 @@ pre-fetch:
 	@${ECHO_MSG}
 .endif
 .if ${ARCH} == "i386"
-.if ${OSVERSION} >= 430000
 .if ${MACHINE_CPU:M3dnow}
 OPT_ARCH=	3dnow
 .elif ${MACHINE_CPU:Mi586}
 OPT_ARCH=	i586
 .elif ${MACHINE_CPU:Mi486}
 OPT_ARCH=	i486
-.endif
-.else
-.if !defined(OPT_ARCH) || ((${OPT_ARCH} != "i486") && (${OPT_ARCH} != "i586") \
-    && (${OPT_ARCH} != "3dnow"))
-	@${ECHO_MSG} "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@${ECHO_MSG} "Note: you can set OPT_ARCH to optimize for your hardware."
-	@${ECHO_MSG} "(e.g. make OPT_ARCH=i486)."
-	@${ECHO_MSG} "Valid values are: i486, i586, 3dnow"
-	@${ECHO_MSG} "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-OPT_ARCH?=	i586
-.endif
 .endif
 .endif
 
