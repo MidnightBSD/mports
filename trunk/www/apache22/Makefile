@@ -3,7 +3,7 @@
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
 # $FreeBSD: ports/www/apache22/Makefile,v 1.198 2006/09/24 16:16:39 clement Exp $
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.1 2006/11/25 00:02:31 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.2 2007/01/19 20:44:09 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -32,13 +32,7 @@ SCRIPTS_ENV+=	FULLBUILD=on
 
 LATEST_LINK=	apache22
 
-CONFLICTS=	apache+mod_ssl-1.* apache+mod_ssl+ipv6-1.* apache+mod_ssl+modsnmp-1.* \
-		apache+mod_ssl+mod_snmp+ipv6-1.* apache+mod_ssl+mod_accel-1.* \
-		apache+mod_ssl+mod_snmp+mod_accel-1.* \
-		apache+ipv6-1.* apache+ssl-1.* apache-1.* apache_fp-1.* \
-		caudium-devel-1.* caudium10-1.* caudium12-* \
-		ru-apache+mod_ssl-1.* ru-apache-1.* thttpd-2.* \
-		apache-2.0.* apache-*-2.0.* apache-2.1.* apache-*-2.1.*
+CONFLICTS=	thttpd-2.* apache-2.0.* apache-*-2.0.*
 
 SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_VERSION=${LIBTOOL_VERSION} AUTOCONF=${AUTOCONF} \
