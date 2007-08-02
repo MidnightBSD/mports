@@ -2,7 +2,7 @@
 # Date created:         24.Jan.2002
 # Whom:                 netchild@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/icc/Makefile,v 1.1 2007/04/28 05:30:33 laffer1 Exp $
 # $FreeBSD: ports/lang/icc/Makefile,v 1.94 2006/12/17 15:14:27 netchild Exp $
 #
 
@@ -128,50 +128,19 @@ post-patch:
 # Provide a more MidnightBSD'ish compile environment
 .for i in icc.cfg icpc.cfg
 	@${ECHO_CMD} -e "-Qlocation,ld,${PREFIX}/${COMPILERDIR}/bin/ldwrapper\n\n-wr1125\n-we140\n\n-Ulinux\n-U__linux__\n-U__linux\n-U__gnu_linux__\n\n-D__FreeBSD__=${ICCCFGVAL}\n\n" >>${WRKSRC}/opt/${COMPILERDIR}/bin/${i}
-.if ( ${OSVERSION} >= 500039 )
 	@${ECHO_CMD} -e "-D__wchar_t=__ct_rune_t\n" >>${WRKSRC}/opt/${COMPILERDIR}/bin/${i}
-.endif
-.if ( ${OSVERSION} >= 502108 )
 	@${ECHO_CMD} -e "-restrict\n" >>${WRKSRC}/opt/${COMPILERDIR}/bin/${i}
-.else
-	@${ECHO_CMD} -e "-no-gcc\n" >>${WRKSRC}/opt/${COMPILERDIR}/bin/${i}
-.endif
 	@${CHMOD} a-x,g-w ${WRKSRC}/opt/${COMPILERDIR}/bin/${i}
 .endfor
 # C++ hack for icpc
-.if ( ${OSVERSION} >= 502108 )
 	@${ECHO_CMD} -e "-gcc-version=${GCCCOMPATVER}\n-cxxlib-gcc\n" \
 		>>${WRKSRC}/opt/${COMPILERDIR}/bin/icpc.cfg
-.else
-	@${ECHO_CMD} -e "\n-I${PREFIX}/include/stlport\n-Qoption,ld,-CPLUSPLUS\n" \
-		>>${WRKSRC}/opt/${COMPILERDIR}/bin/icpc.cfg
-.endif
 	@cd ${WRKSRC}/opt/${COMPILERDIR}/bin/ && ${LN} -s icc.cfg iccbin.cfg \
 		&& ${LN} -s icpc.cfg icpcbin.cfg
-.if ( ${OSVERSION} < 502108 )
-# Hack while there's no support for ICC in the stdarg.h and sys/cdefs.h.
-	@${CP} ${FILESDIR}/stdarg.h ${WRKSRC}/opt/${COMPILERDIR}/include
-	@${MKDIR} ${WRKSRC}/opt/${COMPILERDIR}/include/sys
-	@${CP} ${FILESDIR}/cdefs.h ${WRKSRC}/opt/${COMPILERDIR}/include/sys
-.endif
-.if ( ( ${OSVERSION} >= 502108 && ${OSVERSION} < 503103 ) || ( ${OSVERSION} >= 600000 && ${OSVERSION} < 600013 ) )
-# Work around bug for ICC support in src/sys/i386/include/_types.h.
-	@${MKDIR} ${WRKSRC}/opt/${COMPILERDIR}/include/machine
-	@${CP} ${FILESDIR}/_types.h ${WRKSRC}/opt/${COMPILERDIR}/include/machine
-.endif
-.if ( ${OSVERSION} < 503103 || ( ${OSVERSION} >= 600000 && ${OSVERSION} < 600013 ) )
-# Work around a bug in stdbool.h
-	@${SED} -e 's:__STDC_VERSION__ < 199901L.*:__STDC_VERSION__ < 199901L \&\& defined(__GNUC__) \&\& __GNUC__ < 3 \&\& !defined(__INTEL_COMPILER):g' \
-		</usr/include/stdbool.h \
-		>${WRKSRC}/opt/${COMPILERDIR}/include/stdbool.h
-.endif
 
-.if ( ${OSVERSION} >= 470101 && ${OSVERSION} < 500000 ) || \
-	( ${OSVERSION} >= 500042 )
 OBJCOPY_OPS=	--redefine-sym stdin=__stdinp \
 		--redefine-sym stdout=__stdoutp \
 		--redefine-sym stderr=__stderrp
-.endif
 
 do-build:
 # Use the Linux ABI for the binaries
@@ -182,15 +151,6 @@ do-build:
 # Fix unresolved references
 	@cd ${WRKSRC} && ${CC} ${CFLAGS} -c ${FILESDIR}/assert_fail.c \
 		${FILESDIR}/errno_location.c ${FILESDIR}/mcount.S
-.if ( ${OSVERSION} < 502101 )
-	@cd ${WRKSRC} && ${CC} ${CFLAGS} -c ${FILESDIR}/cxa_atexit.c
-.endif
-.if ( ${OSVERSION} < 470101 ) || \
-	( ${OSVERSION} >= 500000 && ${OSVERSION} < 500042 )
-	@${CC} ${CFLAGS} -c -o ${WRKSRC}/stdin.o ${FILESDIR}/stdin.c
-	@${CC} ${CFLAGS} -c -o ${WRKSRC}/stdout.o ${FILESDIR}/stdout.c
-	@${CC} ${CFLAGS} -c -o ${WRKSRC}/stderr.o ${FILESDIR}/stderr.c
-.endif
 .for i in libcxa.a libcxaguard.a libimf.a libirc.a libirc_s.a libsvml.a \
 	libunwind.a
 	@${OBJCOPY} --redefine-sym __sigsetjmp=sigsetjmp \
