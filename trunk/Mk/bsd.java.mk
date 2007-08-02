@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.3 2007/04/07 04:34:01 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -213,10 +213,8 @@ _JAVA_OS_linux=		Linux
 # Enforce preferred Java ports according to OS
 .		if ${ARCH} == "amd64"
 _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
-.		elif ${OSVERSION} >= 500000
-_JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5
 .		else
-_JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
+_JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5
 .		endif
 
 # List all JDK ports

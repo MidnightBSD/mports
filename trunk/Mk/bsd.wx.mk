@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.wx.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.wx.mk,v 1.1 2006/07/05 02:13:12 linimon Exp $
 #
 # bsd.wx.mk - Support for WxWidgets based ports.
@@ -199,7 +199,7 @@ _WX_FILE_${comp}_${ver}=	${X11BASE}/lib/lib${_WX_LIB_${comp}_${ver}}.so.${_WX_SH
 # Check if Unicode will be used.
 
 .	for __WANT_WX in ${WANT_WX}
-.		if defined(WITH_UNICODE) && ${OSVERSION} >= 500000 && \
+.		if defined(WITH_UNICODE) && \
 		   (${_WX_VERS_UC_ALL:M${__WANT_WX}} != "" || ${WANT_WX:L} == "yes")
 _WX_WANT_UNICODE=		yes
 .		endif
@@ -368,7 +368,7 @@ _WX_VER_UC+=			${ver}
 
 # Requested by the user (optional).
 
-.if defined(WITH_UNICODE) && ${OSVERSION} >= 500000
+.if defined(WITH_UNICODE)
 .	for ver in ${_WX_VER_UC}
 .		if ${_WX_VERS_UC_ALL:M${ver}} != ""
 WX_UNICODE=				yes
@@ -379,9 +379,7 @@ WX_UNICODE=				yes
 # Requested by the port (mandatory).
 
 .if defined(WX_UNICODE)
-.	if ${OSVERSION} < 500000
-_WX_IGNORE?=			requires FreeBSD versions >= 5.X (because of Unicode)
-.	elif empty(_WX_VER_UC)
+.	if empty(_WX_VER_UC)
 _WX_IGNORE?=			selected a WxWidgets version which does not support Unicode: ${_WX_VER_MERGED}
 .	endif
 .endif

@@ -2,7 +2,7 @@
 # Date created:		31 May 2002
 # Whom:			dinoex
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/Mk/bsd.openssl.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.openssl.mk,v 1.31 2006/08/04 12:34:41 erwin Exp $
 #
 # Use of 'USE_OPENSSL=yes' includes this Makefile after bsd.ports.pre.mk
@@ -106,27 +106,14 @@ OPENSSLRPATH=		${DESTDIR}/usr/lib:${LOCALBASE}/lib
 OPENSSLBASE=		${LOCALBASE}
 .if defined(WITH_OPENSSL_BETA)
 OPENSSL_PORT?=		security/openssl-beta
-.if ( ${OSVERSION} >= 600100 )
 OPENSSL_SHLIBVER?=	5
-.else
-OPENSSL_SHLIBVER?=	4
-.endif
 .elif defined(WITH_OPENSSL_STABLE)
 OPENSSL_PORT?=		security/openssl-stable
-.if ( ${OSVERSION} >= 600100 )
 OPENSSL_SHLIBVER?=	4
-.else
-OPENSSL_SHLIBVER?=	3
-.endif
 .else
 OPENSSL_PORT?=		security/openssl
-.if ( ${OSVERSION} >= 600100 )
 OPENSSL_SHLIBVER?=	5
-.else
-OPENSSL_SHLIBVER?=	4
 .endif
-.endif
-
 
 OPENSSLDIR=		${OPENSSLBASE}/openssl
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${PORTSDIR}/${OPENSSL_PORT}
