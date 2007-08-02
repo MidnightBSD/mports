@@ -2,7 +2,7 @@
 # Date created:				May 27 2003
 # Whom:					ume@FreeBSD.org
 #
-# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.1 2006/10/02 16:27:34 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.2 2007/08/01 20:37:32 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl2-saslauthd/Makefile,v 1.46 2006/05/19 20:45:37 ume Exp $
 #
 
@@ -82,7 +82,7 @@ CONFIGURE_ARGS+=--enable-httpform
 CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
 .elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
 CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
-.elif !defined(WITHOUT_GSSAPI) && ( defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a)
+.elif !defined(WITHOUT_GSSAPI) && (defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a))
 CONFIGURE_ARGS+=--enable-gssapi
 .else
 CONFIGURE_ARGS+=--disable-gssapi
