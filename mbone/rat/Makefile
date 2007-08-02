@@ -2,7 +2,7 @@
 # Date created:			      3 July 1999
 # Whom:				      O.Hodson@cs.ucl.ac.uk (Orion Hodson)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mbone/rat/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
 # $FreeBSD: ports/mbone/rat/Makefile,v 1.37 2007/03/03 18:32:58 kris Exp $
 #
 
@@ -34,13 +34,7 @@ PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 400014
 ENABLE_IPv6=	--enable-ipv6
-.endif
-
-.if ${OSVERSION} >= 700011
-EXTRA_PATCHES=	${FILESDIR}/timet.patch
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e "s,-Werror,," ${WRKSRC}/common/configure.in \
