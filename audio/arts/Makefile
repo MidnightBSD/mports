@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.1 2006/11/17 23:09:15 laffer1 Exp $
 #
 
 PORTNAME=	arts
@@ -48,9 +48,7 @@ OPTIONS=	ESD "Enable esound support" off \
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386" || ${ARCH} == "amd64"
-.if (${OSVERSION} < 500000 ) || (${OSVERSION} > 502102 )
 LIB_DEPENDS+=	jack:${PORTSDIR}/audio/jack
-.endif
 .endif
 
 .if defined(WITH_ESD)
