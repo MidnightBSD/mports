@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.1 2006/10/02 16:27:33 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.2 2007/08/01 20:36:47 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl2/Makefile,v 1.127 2006/08/15 16:47:37 ume Exp $
 #
 
@@ -160,7 +160,7 @@ CONFIGURE_ARGS+=--enable-ntlm
 CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
 .elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
 CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
-.elif !defined(WITHOUT_GSSAPI) && ( defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a)
+.elif !defined(WITHOUT_GSSAPI) && ( defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a) )
 CONFIGURE_ARGS+=--enable-gssapi
 .else
 CONFIGURE_ARGS+=--disable-gssapi
