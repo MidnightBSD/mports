@@ -2,7 +2,7 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.126 2006/09/07 18:47:07 jylefort Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.75 2006/04/13 07:57:40 bland Exp $
 #
@@ -46,10 +46,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 OPTIONS=	COLLATION_FIX "fix string collation" off
 
 .include <bsd.port.pre.mk>
-
-.if ( ( ${OSVERSION} < 504101 ) || ( ${OSVERSION} >= 600000 && ${OSVERSION} < 600012 ) )
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gthread_gthread-posix.c
-.endif
 
 .if defined(WITH_COLLATION_FIX)
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu

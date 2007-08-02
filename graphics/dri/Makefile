@@ -2,7 +2,7 @@
 # Date created:		8 Nov 2003
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/graphics/dri/Makefile,v 1.1.1.1 2006/09/17 03:34:00 archite Exp $
+# $MidnightBSD: mports/graphics/dri/Makefile,v 1.2 2006/09/25 16:34:10 archite Exp $
 # $FreeBSD: ports/graphics/dri/Makefile,v 1.17 2006/09/01 04:17:44 anholt Exp $
 #
 
@@ -60,13 +60,6 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lib/radeon_dri.so ${DRIMODDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/lib/savage_dri.so ${DRIMODDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/lib/sis_dri.so ${DRIMODDIR}
-
-.if ${OSVERSION} < 500000
-pre-patch:
-	${REINPLACE_CMD} -e 's|stdint.h|sys/types.h|g' \
-		${WRKSRC}/src/mesa/drivers/dri/mga/mga_xmesa.c \
-		${WRKSRC}/src/mesa/drivers/dri/mga/mgacontext.h
-.endif
 
 .if ${ARCH} == i386
 PLIST_SUB+=	I386=""

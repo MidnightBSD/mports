@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.2 2007/03/13 04:29:31 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -46,13 +46,7 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 600000
 JDK_OSREL=freebsd6
-.elif ${OSVERSION} >= 500000 && ${ARCH} == "i386"
-JDK_OSREL=freebsd5
-.else
-IGNORE=		Only available for FreeBSD 5.x/i386 and FreeBSD 6.x/amd64 and later
-.endif
 
 .if defined(WITH_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip

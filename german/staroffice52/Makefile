@@ -3,7 +3,7 @@
 # Whom:                 Martin Blapp
 #
 # $FreeBSD: ports/german/staroffice52/Makefile,v 1.41 2006/04/15 06:26:47 linimon Exp $
-# $MidnightBSD: mports/german/staroffice52/Makefile,v 1.1 2006/11/01 13:13:02 laffer1 Exp $
+# $MidnightBSD: mports/german/staroffice52/Makefile,v 1.2 2007/03/25 03:02:07 ctriv Exp $
 #
 
 PORTNAME=	staroffice
@@ -69,16 +69,6 @@ pre-fetch:
 	@${ECHO} linproc /compat/linux/proc linprocfs rw 0 0
 	@${ECHO}
 	@${ECHO} -----------------------------------------------------------
-	@${FALSE}
-.endif
-.if ${OSVERSION} < 410000
-	@${ECHO}
-	@${ECHO} OS-VERSION ${OSVERSION}
-	@${ECHO}
-	@${ECHO} Staroffice benoetigt einen System-Patch der erst
-	@${ECHO} seit FreeBSD 4.1 verfuegbar ist. Bitte bringen Sie ihr
-	@${ECHO} System auf den neuesten Stand.
-	@${ECHO}
 	@${FALSE}
 .endif
 .if ${SIZE} < 250000
