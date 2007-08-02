@@ -473,11 +473,6 @@ post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
 
-.if ${PHP_MODNAME} == "oci8"
-. if ${OSVERSION} < 500000
-BROKEN=	Doesn't work on FreeBSD 4.x
-. endif
-
 pre-configure:
 	@cd ${WRKSRC}; \
 	for lib in ${LOCALBASE}/oracle8-client/lib/libclntsh /usr/lib/libpthread; do \

@@ -4,7 +4,7 @@
 # Whom:				  Paul Marquis <pmarquis@pobox.com>
 #
 # $FreeBSD: ports/devel/boost/Makefile,v 1.35 2006/09/22 22:22:19 mi Exp $
-# $MidnightBSD: mports/devel/boost/Makefile,v 1.1 2007/01/25 16:14:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/boost/Makefile,v 1.2 2007/04/30 00:05:01 ctriv Exp $
 #
 
 PORTNAME=	boost
@@ -49,11 +49,6 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 
 .include <bsd.port.pre.mk>
 
-# Check if our origin is devel/boost-gcc3 and stop for FreeBSD >= 5
-.if defined (BOOST_GCC3_PORT) && (${OSVERSION} >= 500000)
-IGNORE=		from devel/boost-gcc3 is intended for FreeBSD 4.x only. Please use devel/boost instead
-.endif
-
 .if !defined(WITH_PYTHON) && defined(WITH_PYSTE)
 WITH_PYTHON=	IMPLIED_BY_PYSTE
 .endif
@@ -96,56 +91,10 @@ PLIST_SUB+=	BOOST_PYSTE="@comment "
 
 SPIRIT_VERSION=	1.6.2
 
-# FreeBSD 4:
-# WITHOUT_GCC34:
-# - no wchar support
-# - needs stlport
-# - spirit 1.6.x
-# - don't build wave
-# - don't build libbgl-wiz (needs spirit 1.8)
-# WITH_GCC34:
-# - no wchar support
-.if ${OSVERSION} < 500000
-EXTRA_PATCHES=	${FILESDIR}/FBSD4-patch-boost_detail_utf8_codecvt_facet.hpp \
-		${FILESDIR}/FBSD4-patch-libs_serialization_src_stl_port.cpp \
-		${FILESDIR}/FBSD4-patch-libs::serialization::build::Jamfile \
-		${FILESDIR}/FBSD4-patch-boost_test_impl_test_tools.ipp \
-		${FILESDIR}/FBSD4-patch-boost_archive_detail_oserializer.hpp
-
-.if !defined(WITH_GCC34)
-USE_ZIP=	yes
-DISTFILES+=	spirit-only-${SPIRIT_VERSION}.zip:spirit_site
-MASTER_SITE_SUBDIR+=spirit/:spirit_site
-BJAM_BUILD+=	<stlport-iostream>on
-BOOST_TOOLS=	gcc-stlport
-
-PLIST_SUB+=	BOOST_WCHAR="@comment "\
-		BOOST_SPIRIT_1.6=""\
-		BOOST_SPIRIT_1.8="@comment "\
-		BOOST_WAVE="@comment "
-
-BOOST_STL_OPTS=	"-sSTLPORT_INCLUDE_DIRECTORY=${LOCALBASE}/include/stlport"\
-		"-sSTLPORT_LIB_DIRECTORY=${LOCALBASE}/lib"
-
-RUN_DEPENDS+=	${LOCALBASE}/lib/libstlport_gcc.so:${PORTSDIR}/devel/stlport
-.else
-USE_GCC=3.4+
-BOOST_TOOLS=	gcc
-
-PLIST_SUB+=	BOOST_WCHAR="@comment "\
-		BOOST_SPIRIT_1.6="@comment "\
-		BOOST_SPIRIT_1.8=""\
-		BOOST_WAVE=""
-.endif
-
-BUILD_DEPENDS+=	${RUN_DEPENDS}
-
-# FreeBSD 5 and above
 # - wchar support
 # - spirit 1.8.x
 # - wave 1.2
 # - build libbgl-wiz
-.else
 BOOST_TOOLS=	gcc
 EXTRA_PATCHES=	${FILESDIR}/FBSD5-patch-boost::python::detail::config.hpp
 
@@ -155,7 +104,6 @@ PLIST_SUB+=	BOOST_WCHAR=""\
 		BOOST_WAVE=""
 
 BOOST_LIBS+=	wserialization
-.endif
 
 .if defined (WITH_VERBOSE_BUILD)
 BJAM_OPTIONS=	-d2
@@ -237,24 +185,6 @@ do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} && ${TAR} -xjpof ${DISTDIR}/${DISTNAME}.tar.bz2
 
-# boost 1.33.0's spirit 1.8.x cannot be built with GCC 2.95.4,
-# so we use spirit 1.6.x
-.if ${OSVERSION} < 500000 && !defined(WITH_GCC34)
-	@cd ${WRKDIR} && ${UNZIP_CMD} ${DISTDIR}/spirit-only-${SPIRIT_VERSION}.zip > /dev/null
-
-# remove CRLF
-	@${FIND} ${WRKDIR}/spirit_${SPIRIT_VERSION:S/./_/g} -type f -exec \
-		${REINPLACE_CMD} -i '' -e "s|"`printf '\015'`"||g" {} \;
-
-# replace spirit v1.8 with v1.6
-	@${RM} -rf ${WRKSRC}/boost/spirit* ${WRKSRC}/libs/spirit
-	@${MV} ${WRKDIR}/spirit_${SPIRIT_VERSION:S/./_/g}/boost/* ${WRKSRC}/boost
-	@${MV} ${WRKDIR}/spirit_${SPIRIT_VERSION:S/./_/g}/libs/spirit ${WRKSRC}/libs
-
-# remove wave
-	@${RM} -rf ${WRKSRC}/boost/wave* ${WRKSRC}/libs/wave
-.endif
-
 post-patch:
 # If necessary, remove Boost.Python
 .if !defined(WITH_PYTHON)
@@ -287,13 +217,11 @@ do-build:
 		"-sTOOLS=${BOOST_TOOLS}" "-sBUILD=${BJAM_BUILD}"\
 		${BOOST_STL_OPTS} ${BOOST_ICU_OPTS}
 
-.if ${OSVERSION} >= 500000 || defined(WITH_GCC34)
 # build bgl-viz library
 	cd ${WRKSRC}/libs/graph/build && \
 		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_OPTIONS} --prefix=${PREFIX}\
                 "-sTOOLS=${BOOST_TOOLS}" "-sBUILD=${BJAM_BUILD}"\
                 ${BOOST_STL_OPTS} ${BOOST_ICU_OPTS}
-.endif
 
 # build random device code
 	cd ${WRKSRC}/libs/random && \
@@ -371,11 +299,6 @@ do-install:
 # display pkg-message
 post-install:
 	@${TOUCH} ${PKGMESSAGE}
-
-.if ${OSVERSION} < 500000 && !defined(WITH_GCC34)
-	@${CAT} ${.CURDIR}/../boost/pkg-message.stlport >> ${PKGMESSAGE}
-	@${ECHO_CMD} >> ${PKGMESSAGE}
-.endif
 
 .if defined (WITH_THREADS)
 	@${CAT} ${.CURDIR}/../boost/pkg-message.threads >> ${PKGMESSAGE}
