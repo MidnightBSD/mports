@@ -3,7 +3,7 @@
 # Date created:			  Fri Dec 01, 1995
 # Whom:				  obrien@cs.ucdavis.edu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.1 2007/02/19 23:46:59 laffer1 Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
 #
 
@@ -36,11 +36,7 @@ CONFIGURE_ARGS+=	--enable-dfl-baud=57600 \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 600000
 MINICOM_DEFAULT_PORT?=	/dev/cuad0
-.else
-MINICOM_DEFAULT_PORT?=	/dev/cuaa0
-.endif
 CONFIGURE_ARGS+=	--enable-dfl-port=${MINICOM_DEFAULT_PORT}
 
 MAN1=		minicom.1 runscript.1 ascii-xfr.1 xminicom.1
