@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.1 2007/01/21 00:32:06 laffer1 Exp $
 #
 
 PORTNAME=	koffice
@@ -48,22 +48,5 @@ USE_PGSQL=	yes
 
 CONFIGURE_ARGS+=--with-pgsqlincdir=${LOCALBASE}/include \
 		--with-pgsqllibdir=${LOCALBASE}/lib
-
-.if ${OSVERSION} < 500035
-EXTRA_PATCHES=	${PATCHDIR}/extrapatch-kexi-main-keximainwindowimpl.cpp
-CONFIGURE_ARGS+= --disable-final
-.endif
-
-post-configure:
-.if ${OSVERSION} < 500035
-	${REINPLACE_CMD} -e 's|\(^CPPFLAGS =.*\)|\1 -I${LOCALBASE}/include/stlport|g' \
-	-e 's|\(^LDFLAGS =.*\)|\1 -L${LOCALBASE}/lib -lstlport_gcc ${PTHREAD_LIBS}|g' \
-		${WRKSRC}/filters/krita/tiff/Makefile \
-		${WRKSRC}/filters/kspread/excel/sidewinder/Makefile \
-		${WRKSRC}/kchart/Makefile \
-		${WRKSRC}/kchart/kdchart/Makefile \
-		${WRKSRC}/kexi/kexidb/drivers/pqxx/Makefile \
-		${WRKSRC}/kexi/migration/pqxx/Makefile
-.endif
 
 .include <bsd.port.post.mk>

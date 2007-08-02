@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.2 2006/11/14 17:19:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.3 2007/05/04 20:32:21 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -155,10 +155,6 @@ CONFIGURE_ARGS+=	--enable-javahl --with-jdk=${JAVA_HOME}
 PLIST_SUB+=		WITH_JAVA=""
 .else
 PLIST_SUB+=		WITH_JAVA="@comment "
-.endif
-
-.if defined(WITH_JAVA) && ${OSVERSION} < 503000
-BROKEN="Java bindings are supported only on FreeBSD 5.3 or newer"
 .endif
 
 .if !defined(SWIG_BINDINGS)

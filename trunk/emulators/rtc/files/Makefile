@@ -22,18 +22,14 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN	IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/rtc/files/Makefile,v 1.1 2007/04/04 21:15:20 laffer1 Exp $
 # $FreeBSD: ports/emulators/rtc/files/Makefile,v 1.5 2003/04/04 22:09:04 nork Exp $
 #
 
 SYS?=		/sys
 NOMAN=		YES
 KMOD=		rtc
-.if ${OSVERSION} < 500002
-KMODDEPS=	linux
-.else
 MODULE_DEPEND=	linux
-.endif
 CDEV_MAJOR?=	202
 DEVNAME= 	${KMOD}
 SRCS=		rtc.c rtc_linux.c vnode_if.h

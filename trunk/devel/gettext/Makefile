@@ -2,7 +2,7 @@
 # Date created:        16 March 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.74 2006/02/23 10:35:39 ade Exp $
 #
 
@@ -20,7 +20,7 @@ USE_ICONV=	yes
 LIBTOOLFILES=	autoconf-lib-link/configure gettext-runtime/configure \
 		gettext-runtime/libasprintf/configure gettext-tools/configure
 USE_AUTOTOOLS=	libtool:15
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
 		AUTOCONF="${TRUE}" \
 		AUTOMAKE="${TRUE}" \
@@ -60,11 +60,6 @@ INFO=		autosprintf gettext
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 500000
-CONFIGURE_ARGS+=	--with-libexpat-prefix=${LOCALBASE}/lib
-LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
-.endif
 
 pre-extract:
 .if exists(${PREFIX}/bin/kaffe)

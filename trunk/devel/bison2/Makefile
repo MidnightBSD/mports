@@ -2,7 +2,7 @@
 # Date created:			  27 Mar 1999
 # Whom:				  Jerry Hicks
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/bison2/Makefile,v 1.1 2007/04/10 06:39:36 laffer1 Exp $
 # $FreeBSD: ports/devel/bison2/Makefile,v 1.59 2006/12/04 01:29:10 ade Exp $
 #
 
@@ -48,13 +48,6 @@ PLIST_SUB+=	NLS=""
 
 post-extract:
 	@${RM} -f ${WRKSRC}/doc/bison.info*
-
-#
-# Requires texinfo 4.8 or above
-#
-.if ${OSVERSION} < 601000
-	@${REINPLACE_CMD} "/^@headitem/d" ${WRKSRC}/doc/bison.texinfo
-.endif
 
 post-install:
 	${LN} -sf ${PREFIX}/bin/bison ${PREFIX}/bin/bison2

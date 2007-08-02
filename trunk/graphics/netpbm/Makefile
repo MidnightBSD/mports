@@ -2,7 +2,7 @@
 # Date created:		?
 # Whom:			jmz (original)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.1 2006/09/27 16:00:05 laffer1 Exp $
 # $FreeBSD: ports/graphics/netpbm/Makefile,v 1.130 2006/08/05 06:01:42 dinoex Exp $
 #
 
@@ -43,11 +43,6 @@ MAN1=		netpbm.1
 .if ${ARCH} == "sparc64"
 # -O causes an ICE in converter/other/exif.c with gcc 3.3.3 on sparc64.
 CFLAGS+=	-O0
-.endif
-.if ${ARCH} == "alpha"
-.if ${OSVERSION} < 500000
-CFLAGS+=	-O0
-.endif
 .endif
 
 .if defined(WITH_NETPBM_DEVEL)
