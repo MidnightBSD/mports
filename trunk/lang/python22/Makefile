@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python22/Makefile,v 1.115 2006/08/12 04:24:41 perky Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/python22/Makefile,v 1.1 2006/11/09 15:37:27 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -57,21 +57,9 @@ DEMODIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 400014
 CONFIGURE_ARGS+= --enable-ipv6
-.else
-CONFIGURE_ARGS+= --disable-ipv6
-.endif
 
-.if ${OSVERSION} >= 700000
-PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd6
-.elif ${OSVERSION} >= 600000
 PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
-.elif ${OSVERSION} >= 500000
-PLATFORMS=plat-freebsd4 plat-freebsd6 plat-freebsd7
-.else
-PLATFORMS=plat-freebsd5 plat-freebsd6 plat-freebsd7
-.endif
 
 pre-patch:
 	${REINPLACE_CMD} -e \

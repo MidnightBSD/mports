@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.1 2006/11/17 22:10:07 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -91,15 +91,7 @@ CONFIGURE_ARGS+= --enable-ipv6
 CONFIGURE_ARGS+= --disable-ipv6
 .endif
 
-.if ${OSVERSION} >= 700000
-PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd6
-.elif ${OSVERSION} >= 600000
 PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
-.elif ${OSVERSION} >= 500000
-PLATFORMS=plat-freebsd4 plat-freebsd6 plat-freebsd7
-.else
-PLATFORMS=plat-freebsd5 plat-freebsd6 plat-freebsd7
-.endif
 
 post-extract:
 	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
