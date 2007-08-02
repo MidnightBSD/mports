@@ -2,7 +2,7 @@
 # Date created:         17 Sep 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.1 2007/03/11 05:26:16 laffer1 Exp $
 # $FreeBSD: ports/mail/pantomime/Makefile,v 1.26 2006/03/19 04:35:46 dinoex Exp $
 #
 
@@ -24,7 +24,5 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=	GNUmakefile
-LDCONFIG_DIRS=	${LOCALLIBDIR}
-USE_LDCONFIG=yes
 
 .include <bsd.port.mk>
