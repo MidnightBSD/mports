@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.3 2006/10/01 18:06:50 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.4 2007/02/03 18:11:07 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -166,7 +166,7 @@ afterinstall: realinstall
 realinstall: beforeinstall ${SUBDIR:S/^/_/:S/$/.realinstall/}
 .endif
 
-IGNOREDIR=	CVS Mk Templates Tools distfiles packages pkg
+IGNOREDIR=	CVS Mk Packages Templates Tools distfiles packages pkg
 
 .if !target(checksubdirs)
 .if defined(PORTSTOP)
