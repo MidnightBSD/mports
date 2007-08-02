@@ -473,6 +473,8 @@ post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
 
+.if ${PHP_MODNAME} == "oci8"
+
 pre-configure:
 	@cd ${WRKSRC}; \
 	for lib in ${LOCALBASE}/oracle8-client/lib/libclntsh /usr/lib/libpthread; do \
