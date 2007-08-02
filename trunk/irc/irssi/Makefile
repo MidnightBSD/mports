@@ -2,7 +2,7 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.1.1.1 2006/09/17 03:33:51 archite Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
@@ -63,12 +63,8 @@ CONFIGURE_ARGS+=	--with-socks
 .endif
 
 .if defined(WITH_IPV6)
-.if ${OSVERSION} >= 400014
 CONFIGURE_ARGS+=	--enable-ipv6
 CATEGORIES+=	ipv6
-.else
-BROKEN=	"This version of FreeBSD does not support IPv6. Please use WITH_IPV6=no"
-.endif
 .endif
 
 .if defined(WITH_BOT)

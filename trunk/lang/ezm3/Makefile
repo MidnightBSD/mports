@@ -3,7 +3,7 @@
 # Whom:			John Polstra <jdp@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.2 2007/05/20 17:54:46 ctriv Exp $
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.3 2007/05/24 17:07:50 ctriv Exp $
 #
 
 PORTNAME=	ezm3
@@ -86,12 +86,6 @@ pre-patch:
 .for f in ${AMD64_PATCHES}
 	@cd ${WRKSRC} && ${PATCH} ${PATCH_ARGS} < ${WRKDIR}/${f}
 .endfor
-.endif
-
-post-patch:
-.if ${ARCH} == "sparc64" && ${OSVERSION} < 502107
-	@${REINPLACE_CMD} -E -e 's|(^.*time_t.*=.*)int64_t;|\1int32_t;|' \
-		${WRKSRC}/libs/m3core/src/unix/freebsd-4.sparc64/Utypes.i3
 .endif
 
 do-build:

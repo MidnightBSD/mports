@@ -2,7 +2,7 @@
 # Date Created:				2 Jun 2003
 # Whom:				 	olgeni@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/netbeans3/Makefile,v 1.1 2006/10/04 19:53:20 laffer1 Exp $
 # $FreeBSD: ports/java/netbeans3/Makefile,v 1.17 2006/09/03 06:06:09 kris Exp $
 #
 
@@ -31,11 +31,9 @@ DOWNLOAD_URL?=	http://www.netbeans.org/download/release36/promoted/FCS/release36
 IGNORE=		you must manually fetch the source distribution (${DISTFILES}) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
 .endif
 
-.if ${OSVERSION} >= 500000
 post-patch:
 	@${CAT} ${FILESDIR}/bin_runide.sh.diff | ${PATCH} ${WRKSRC}/bin/runide.sh
 	@${RM} ${WRKSRC}/bin/runide.sh.orig
-.endif
 
 do-install:
 	@${MKDIR} ${PREFIX}/netbeans3
