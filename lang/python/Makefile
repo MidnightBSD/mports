@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python/Makefile,v 1.152 2006/05/14 01:17:03 edwin Exp $
-# $MidnightBSD: mports/lang/python/Makefile,v 1.3 2007/04/29 04:22:43 ctriv Exp $
+# $MidnightBSD: mports/lang/python/Makefile,v 1.4 2007/04/29 04:41:25 ctriv Exp $
 #
 
 PORTNAME=	python
@@ -93,7 +93,7 @@ PLIST_SUB+=	32BIT_ONLY=""
 CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
 .endif
 
-.if !defined(WITHOUT_IPV6) && ${OSVERSION} >= 400014
+.if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--enable-ipv6
 .else
 CONFIGURE_ARGS+=	--disable-ipv6
@@ -103,15 +103,7 @@ CONFIGURE_ARGS+=	--disable-ipv6
 CONFIGURE_ARGS+=	--with-fpectl
 .endif
 
-.if ${OSVERSION} >= 700000
-PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd6
-.elif ${OSVERSION} >= 600000
 PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
-.elif ${OSVERSION} >= 500000
-PLATFORMS=plat-freebsd4 plat-freebsd6 plat-freebsd7
-.else
-PLATFORMS=plat-freebsd5 plat-freebsd6 plat-freebsd7
-.endif
 
 post-extract:
 	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
