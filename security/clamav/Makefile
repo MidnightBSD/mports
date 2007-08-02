@@ -2,12 +2,12 @@
 # Date created:		15 July 2002
 # Whom:			markun@onohara.to
 #
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.5 2007/04/13 21:24:01 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.6 2007/05/13 14:33:45 ctriv Exp $
 # $FreeBSD: ports/security/clamav/Makefile,v 1.95 2007/03/16 19:16:32 garga Exp $
 #
 
 PORTNAME=	clamav
-PORTVERSION=	0.90.2
+PORTVERSION=	0.91.1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -17,12 +17,10 @@ COMMENT=	Command line virus scanner written entirely in C
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 RUN_DEPENDS=	lha:${PORTSDIR}/archivers/lha \
 		arj:${PORTSDIR}/archivers/arj \
-		unzoo:${PORTSDIR}/archivers/unzoo \
 		arc:${PORTSDIR}/archivers/arc
 
 OPTIONS=	MILTER "Compile the milter interface" Off \
 		LDAP "libmilter was built with LDAP" Off \
-		CURL "Support URL downloading" Off \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
 
@@ -64,8 +62,6 @@ MAN5=		clamd.conf.5 \
 		freshclam.conf.5
 MAN8=		clamd.8 \
 		clamav-milter.8
-
-CONFLICTS=	clamav-devel-[0-9]*
 
 CLAMAVUSER?=	clamav
 CLAMAVGROUP?=	clamav
@@ -118,13 +114,6 @@ CONFIGURE_ARGS+=	--enable-milter
 PLIST_SUB+=	CLAMAV-MILTER=""
 .else
 PLIST_SUB+=	CLAMAV-MILTER="@comment "
-.endif
-
-.if defined(WITH_CURL)
-LIB_DEPENDS+=		curl.4:${PORTSDIR}/ftp/curl
-CONFIGURE_ARGS+=	--with-libcurl
-.else
-CONFIGURE_ARGS+=	--without-libcurl
 .endif
 
 .if defined(WITH_STDERR)
