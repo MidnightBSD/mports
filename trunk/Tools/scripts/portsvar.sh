@@ -27,9 +27,10 @@
 #   % portsvar.sh -a -w kde
 #   list all variables through bsd.port.mk including kde
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Tools/scripts/portsvar.sh,v 1.1 2006/01/11 07:06:51 daichi Exp $
 #
-# MAINTAINER= daichi@freebsd.org
+# MAINTAINER= luke@MidnightBSD.org
 
 usage_msg="usage:
     portsvar.sh [-a] [-e] [-w target] [-h] [var=val ...] var1 [var2 ...]
@@ -98,7 +99,7 @@ done
 # all list
 case $alllistmode in
 on)
-    make -f bsd.port.mk $setvar -dv 2>&1 | grep Global: | 
+    make -f bsd.mport.mk $setvar -dv 2>&1 | grep Global: | 
     sed 's/Global://' | sort -u | uniq
     exit 0
     ;;
@@ -120,14 +121,14 @@ on)
     do
         regex="$regex|^[^=]*${target}.*=.*"
     done
-    make -f bsd.port.mk $setvar -dv 2>&1 | grep Global: | 
+    make -f bsd.mport.mk $setvar -dv 2>&1 | grep Global: | 
     sed 's/Global://' | sort -u | uniq | egrep "($regex)"
     ;;
 off)
     for target in $var
     do
         echo -n "$target = "
-        make -f bsd.port.mk $setvar -V $target
+        make -f bsd.mport.mk $setvar -V $target
     done
     ;;
 esac
