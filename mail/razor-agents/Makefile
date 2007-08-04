@@ -2,12 +2,12 @@
 # Date created:				29 November 2001
 # Whom:	      				Yen-Ming Lee <leeym@leeym.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.1 2007/03/11 05:28:20 laffer1 Exp $
 # $FreeBSD: ports/mail/razor-agents/Makefile,v 1.43 2006/06/03 02:09:59 mnag Exp $
 #
 
 PORTNAME=	razor-agents
-PORTVERSION=	2.82
+PORTVERSION=	2.84
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	razor
