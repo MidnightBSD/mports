@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.11 2007/07/31 16:36:00 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.12 2007/08/02 19:56:23 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -472,7 +472,7 @@ do-configure:
 .endif
 
 # Make sure that MAKE_FLAGS ends with -f
-MAKE_FLAGS+= 	-f
+#MAKE_FLAGS+= 	-f
 
 # ---------------------------------------------------------------------------
 # source GNUstep.sh
