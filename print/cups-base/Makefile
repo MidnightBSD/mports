@@ -1,22 +1,20 @@
-# ex:ts=8	-*-mode: makefile-*-
-#
 # New ports collection makefile for:	cups
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.5 2007/05/20 02:25:54 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.6 2007/08/04 19:08:19 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
-PORTVERSION=	1.2.8
+PORTVERSION=	1.2.9
 DISTVERSIONSUFFIX=	-source
 PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
 PKGNAMESUFFIX=	-base${PKGNAMESUFFIX2}
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System
 
 DESTDIRNAME=	BUILDROOT
