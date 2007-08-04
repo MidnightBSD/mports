@@ -1,8 +1,15 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/print/cups-base/pkg-plist,v 1.3 2007/08/04 23:12:55 laffer1 Exp $
+@exec if ! pw groupshow cups 2>/dev/null; then pw groupadd cups -g 193; fi
+@exec if ! pw usershow cups 2>/dev/null; then pw useradd cups -g cups -u 193 -h - -d /nonexistent -s /usr/sbin/nologin -c "CUPS Owner"; fi
+@unexec if pw usershow cups; then pw userdel cups; fi
 @exec mkdir -p /var/spool/cups/tmp || true
 @exec chown -R root:daemon /var/spool/cups
-@exec mkdir %D/etc/cups/ppd || true
-@exec mkdir %D/etc/cups/interfaces || true
+@exec mkdir -p /var/cache/cups || true
+@exec chown root:cups /var/cache/cups
+@exec mkdir -p /var/log/cups || true
+@exec chown cups:daemon /var/log/cups
+@exec mkdir -p %D/etc/cups/ppd || true
+@exec mkdir -p %D/etc/cups/interfaces || true
 @unexec rm -rf /var/spool/cups 2>/dev/null || true
 @unexec rm -rf /var/cache/cups 2>/dev/null || true
 @unexec rmdir /var/cache 2>/dev/null || true
@@ -18,6 +25,7 @@ etc/cups/mime.convs.N
 @unexec if cmp -s %D/etc/cups/mime.types.N %D/etc/cups/mime.types; then rm -f %D/etc/cups/mime.types; fi
 etc/cups/mime.types.N
 @exec if test ! -f %D/etc/cups/mime.types; then cp -p %D/etc/cups/mime.types.N %D/etc/cups/mime.types; fi
+@exec chgrp cups %D/etc/cups
 bin/cupstestdsc
 bin/lp
 bin/cancel
@@ -1353,7 +1361,7 @@ sbin/lpmove
 @dirrm %%DATADIR%%/templates/pl
 @dirrm %%DATADIR%%/templates/sv
 @dirrm %%DATADIR%%/templates
-@exec  mkdir -p %%DATADIR%%/profiles
+@exec  mkdir -p %D/%%DATADIR%%/profiles
 @dirrm %%DATADIR%%/profiles
 @dirrmtry %%DATADIR%%/model
 @dirrm %%DATADIR%%/fonts
@@ -1365,7 +1373,7 @@ sbin/lpmove
 @dirrm libexec/cups/notifier
 @dirrm libexec/cups/monitor
 @dirrmtry libexec/cups/filter
-@exec mkdir -p libexec/cups/driver
+@exec mkdir -p %D/libexec/cups/driver
 @dirrm libexec/cups/driver
 @dirrm libexec/cups/daemon
 @dirrm libexec/cups/cgi-bin

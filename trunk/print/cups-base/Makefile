@@ -2,14 +2,13 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.6 2007/08/04 19:08:19 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.7 2007/08/04 22:57:05 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
-PORTVERSION=	1.2.9
+PORTVERSION=	1.2.10
 DISTVERSIONSUFFIX=	-source
-PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
 PKGNAMESUFFIX=	-base${PKGNAMESUFFIX2}
@@ -68,6 +67,7 @@ CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
 LIB_DEPENDS+=		gnutls-openssl.13:${PORTSDIR}/security/gnutls
 .else
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
+.include "${PORTSDIR}/Mk/bsd.openssl.mk"
 .endif
 
 .if defined(WITH_PHP)
@@ -145,9 +145,10 @@ post-patch:
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 
 pre-install:
-	@${ECHO_MSG} "===>" Stopping cupsd ...
-	-killall cupsd || ${TRUE}
 	@${INSTALL} -d ${DESKTOPDIR}/
+	if ! pw groupshow ${CUPSGRP}; then pw groupadd ${CUPSGRP} -g 193; fi
+	if ! pw usershow ${CUPSOWN}; then pw useradd ${CUPSOWN} -g ${CUPSGRP} -u 193 \
+		-h - -d ${NONEXISTENT} -s /usr/sbin/nologin -c "CUPS Owner"; fi
 
 post-install:
 	${INSTALL} -d ${CUPS_ETCDIR}/
@@ -163,5 +164,7 @@ post-install:
 	${INSTALL} -d ${CUPS_SPOOLDIR}/tmp/
 	${CHOWN} -R ${CUPSOWN}:${CUPSGRP} ${CUPS_SPOOLDIR}/
 	${CHMOD} -R g+w ${CUPS_SPOOLDIR}/
+	${INSTALL} -d /var/cache/cups/
+	${CHOWN} root:${CUPSGRP} /var/cache/cups/
 
 .include <bsd.port.post.mk>
