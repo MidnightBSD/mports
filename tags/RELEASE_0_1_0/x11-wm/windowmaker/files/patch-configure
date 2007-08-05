@@ -1,0 +1,11 @@
+--- configure.orig	Sun Aug  5 00:59:03 2007
++++ configure	Sun Aug  5 00:59:19 2007
+@@ -26281,7 +26281,7 @@
+ 	gnustepdir=`echo $gnustepdir | sed -e 's|^prefix|${prefix}|'`
+     fi
+ 
+-    wprefs_base_dir=$gnustepdir/Applications
++    wprefs_base_dir=${prefix}/GNUstep/Local/Applications
+     wprefs_datadir=$wprefs_base_dir/WPrefs.app
+     wprefs_bindir=$wprefs_base_dir/WPrefs.app
+ fi

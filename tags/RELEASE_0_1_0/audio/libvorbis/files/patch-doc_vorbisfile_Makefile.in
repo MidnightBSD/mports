@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/audio/libvorbis/files/patch-doc_vorbisfile_Makefile.in,v 1.2 2004/10/12 14:55:16 naddy Exp $
+
+--- doc/vorbisfile/Makefile.in.orig	Fri Sep 24 02:11:56 2004
++++ doc/vorbisfile/Makefile.in	Fri Sep 24 02:12:12 2004
+@@ -174,7 +174,7 @@
+ target_cpu = @target_cpu@
+ target_os = @target_os@
+ target_vendor = @target_vendor@
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)/vorbisfile
++docdir = $(datadir)/doc/$(PACKAGE)/vorbisfile
+ doc_DATA = OggVorbis_File.html callbacks.html chaining_example_c.html\
+ 	chainingexample.html crosslap.html datastructures.html decoding.html\
+ 	example.html exampleindex.html fileinfo.html index.html\

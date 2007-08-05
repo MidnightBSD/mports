@@ -1,0 +1,69 @@
+@exec mkdir -p %%LOCALSTATEDIR%%/pythonfilter
+@exec chown %%MAILOWN%%:%%MAILGRP%% %%LOCALSTATEDIR%%/pythonfilter
+@unexec rm -rf %%LOCALSTATEDIR%%/pythonfilter
+@unexec if cmp -s %D/etc/pythonfilter.conf %D/etc/pythonfilter.conf.sample; then rm -f %D/etc/pythonfilter.conf; fi
+etc/pythonfilter.conf.sample
+@exec if [ ! -e %D/etc/pythonfilter.conf ]; then cp -p %D/etc/pythonfilter.conf.sample %D/etc/pythonfilter.conf; fi
+libexec/filters/pythonfilter
+%%PYTHON_SITELIBDIR%%/courier/__init__.py
+%%PYTHON_SITELIBDIR%%/courier/__init__.pyc
+%%PYTHON_SITELIBDIR%%/courier/__init__.pyo
+%%PYTHON_SITELIBDIR%%/courier/config.py
+%%PYTHON_SITELIBDIR%%/courier/config.pyc
+%%PYTHON_SITELIBDIR%%/courier/config.pyo
+%%PYTHON_SITELIBDIR%%/courier/control.py
+%%PYTHON_SITELIBDIR%%/courier/control.pyc
+%%PYTHON_SITELIBDIR%%/courier/control.pyo
+%%PYTHON_SITELIBDIR%%/courier/xfilter.py
+%%PYTHON_SITELIBDIR%%/courier/xfilter.pyc
+%%PYTHON_SITELIBDIR%%/courier/xfilter.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/__init__.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/__init__.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/__init__.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/TtlDb.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/TtlDb.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/TtlDb.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/attachments.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/attachments.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/attachments.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/auto_whitelist.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/auto_whitelist.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/auto_whitelist.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/clamav.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/clamav.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/clamav.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/comeagain.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/comeagain.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/comeagain.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/debug.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/debug.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/debug.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/dialback.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/dialback.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/dialback.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/greylist.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/greylist.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/greylist.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/noduplicates.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/noduplicates.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/noduplicates.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/nosuccessdsn.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/nosuccessdsn.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/nosuccessdsn.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/privateaddr.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/privateaddr.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/privateaddr.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/ratelimit.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/ratelimit.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/ratelimit.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/spfcheck.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/spfcheck.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/spfcheck.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist_auth.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist_auth.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist_auth.pyo
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist.py
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist.pyc
+%%PYTHON_SITELIBDIR%%/pythonfilter/whitelist.pyo
+@dirrm %%PYTHON_SITELIBDIR%%/courier
+@dirrm %%PYTHON_SITELIBDIR%%/pythonfilter

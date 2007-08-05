@@ -1,0 +1,13 @@
+--- ./Makefile.in.orig	Thu May 10 02:17:59 2007
++++ ./Makefile.in	Thu May 10 02:18:37 2007
+@@ -672,8 +672,8 @@
+ 	$(INSTALL) -d $(DESTDIR)$(prefix)/include
+ 	$(INSTALL) -m 0644 sqlite3.h $(DESTDIR)$(prefix)/include
+ 	$(INSTALL) -m 0644 $(TOP)/src/sqlite3ext.h $(DESTDIR)$(prefix)/include
+-	$(INSTALL) -d $(DESTDIR)$(libdir)/pkgconfig; 
+-	$(INSTALL) -m 0644 sqlite3.pc $(DESTDIR)$(libdir)/pkgconfig; 
++	$(INSTALL) -d $(DESTDIR)$(prefix)/libdata/pkgconfig; 
++	$(INSTALL) -m 0644 sqlite3.pc $(DESTDIR)$(prefix)/libdata/pkgconfig; 
+ 
+ tcl_install:	libtclsqlite3.la
+ 	$(TCLSH) $(TOP)/tclinstaller.tcl $(VERSION)

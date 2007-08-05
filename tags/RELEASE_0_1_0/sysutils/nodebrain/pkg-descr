@@ -1,0 +1,9 @@
+NodeBrain is an interpreter of a declarative rule-based language designed
+for construction of state and event monitoring applications. It is an event
+correlation engine that can interface with other monitoring components to make
+rule-based decisions. For the purpose of generating event streams and
+performing rule administration, it supports authenticated and encrypted
+peer-to-peer communication over TCP/IP, including encrypted file transfers,
+store-and-forward message queues, and remote command execution.
+
+WWW: http://www.nodebrain.org/

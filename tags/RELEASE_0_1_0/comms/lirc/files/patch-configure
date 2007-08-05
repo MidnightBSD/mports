@@ -1,0 +1,10 @@
+--- configure.orig	Sun Oct 16 21:23:22 2005
++++ configure	Sun Oct 16 21:23:37 2005
+@@ -7815,6 +7815,7 @@
+ 
+ # use fifo instead of devnode (required on mac os x)
+ 
++use_fifos="yes"
+ 
+ if test "$use_fifos" = "yes"; then
+   USE_FIFOS_TRUE=

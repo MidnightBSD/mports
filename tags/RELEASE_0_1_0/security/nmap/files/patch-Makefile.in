@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Mon Oct  6 12:57:49 2003
++++ Makefile.in	Mon Oct  6 12:58:00 2003
+@@ -9,7 +9,7 @@
+ mandir = @mandir@
+ srcdir = @srcdir@
+ nmapdatadir = @datadir@/nmap
+-deskdir = $(prefix)/share/applications
++deskdir = $(X11BASE)/share/applications
+ 
+ NBASEDIR=@NBASEDIR@
+ NSOCKDIR=@NSOCKDIR@

@@ -1,0 +1,6 @@
+MD5 (php-5.2.3.tar.bz2) = eb50b751c8e1ced05bd012d5a0e4dec3
+SHA256 (php-5.2.3.tar.bz2) = eedffda5069caa801a7fec217c77619657416a5fcaefb79ba4620432f0befe29
+SIZE (php-5.2.3.tar.bz2) = 7417635
+MD5 (suhosin-patch-5.2.3-0.9.6.2.patch.gz) = f217d04f9513222e48cea6588ac65b89
+SHA256 (suhosin-patch-5.2.3-0.9.6.2.patch.gz) = 214c43e4808483f0700f36ffa57aba909a669cb335c179d46c1e8f765d70bd1f
+SIZE (suhosin-patch-5.2.3-0.9.6.2.patch.gz) = 22789

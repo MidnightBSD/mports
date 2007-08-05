@@ -1,0 +1,13 @@
+
+$FreeBSD: ports/converters/libiconv/files/patch-configure,v 1.3 2004/07/09 19:14:39 bland Exp $
+
+--- configure.orig	Fri May 23 05:19:20 2003
++++ configure	Fri May 30 11:22:14 2003
+@@ -1905,7 +1905,6 @@
+ 
+ 
+ 
+-test "$mandir" != '${prefix}/man' || mandir='${datadir}/man'
+ 
+ 
+ ac_ext=c

@@ -1,0 +1,10 @@
+bin/wmii9menu
+bin/wmii9rc
+bin/wmiiloop
+bin/wmiir
+bin/wmiistartrc
+bin/wmii
+etc/wmii-3.5/rc.wmii
+etc/wmii-3.5/wmiirc
+etc/wmii-3.5/welcome
+@dirrm etc/wmii-3.5
