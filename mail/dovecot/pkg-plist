@@ -1,10 +1,9 @@
-@comment $MidnightBSD: mports/mail/dovecot/pkg-plist,v 1.5 2007/07/05 20:01:49 laffer1 Exp $
+@comment $MidnightBSD: mports/mail/dovecot/pkg-plist,v 1.6 2007/07/05 20:11:08 laffer1 Exp $
 @unexec if cmp -s %D/etc/dovecot-example.conf %D/etc/dovecot.conf; then rm -f %D/etc/dovecot.conf; fi
 etc/dovecot-example.conf
 @exec if [ ! -f %D/etc/dovecot.conf ] ; then cp -p %D/%F %B/dovecot.conf; fi
 %%PORTDOCS%%etc/dovecot-ldap-example.conf
 %%PORTDOCS%%etc/dovecot-sql-example.conf
-@dirrmtry include/dovecot
 lib/dovecot/imap/lib01_acl_plugin.so
 lib/dovecot/imap/lib02_lazy_expunge_plugin.so
 lib/dovecot/imap/lib10_quota_plugin.so
