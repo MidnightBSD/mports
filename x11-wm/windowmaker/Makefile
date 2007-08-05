@@ -2,13 +2,13 @@
 # Date created:		August 13, 1997
 # Whom:			handy@physics.montana.edu
 #
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.5 2007/07/30 21:17:41 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.6 2007/08/05 05:06:26 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/windowmaker/Makefile,v 1.133 2006/05/21 20:11:57 dougb Exp $
 #
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
 		http://dougbarton.us/Downloads/
