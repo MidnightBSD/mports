@@ -3,14 +3,14 @@
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.8 2007/07/05 20:01:49 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.9 2007/08/05 17:14:21 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
 PORTNAME=	dovecot
-DISTVERSION=	1.0.2
+DISTVERSION=	1.0.3
 CATEGORIES=	mail ipv6
-MASTER_SITES=	http://www.dovecot.org/releases/
+MASTER_SITES=	http://www.dovecot.org/releases/1.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
