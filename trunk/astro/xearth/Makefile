@@ -3,7 +3,7 @@
 # Whom:                 piero
 #
 # $FreeBSD: ports/astro/xearth/Makefile,v 1.33 2005/10/03 22:45:42 simon Exp $
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.1 2007/02/19 20:57:00 laffer1 Exp $
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.2 2007/08/05 00:12:56 laffer1 Exp $
 #
 
 PORTNAME=	xearth
@@ -22,13 +22,10 @@ USE_IMAKE=	yes
 
 MAN1=		xearth.1
 
-BROKEN=		prefix/manpage error
+.include <bsd.port.pre.mk>
 
-# Copy the list of FreeBSD sites & committers locations
-post-install:
-	@${MKDIR} ${PREFIX}/lib/X11/xearth
-.for marker in freebsd.committers.markers freebsd.submitters.markers freebsd.ftp.markers
-	@${INSTALL_DATA} ${FILESDIR}/${marker} ${PREFIX}/lib/X11/xearth
-.endfor
+.if ${OSREL} == "0.1"
+BROKEN=	man page does not install on 0.1-RELEASE
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
