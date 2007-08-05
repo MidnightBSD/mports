@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.1 2007/04/04 16:01:35 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -35,9 +35,9 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-OPERA_VER=	9.10
-OPERA_DATE=	20061214
-OPERA_BUILD=	521
+OPERA_VER=	9.22
+OPERA_DATE=	20070716
+OPERA_BUILD=	655
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
@@ -57,8 +57,5 @@ do-install:
 			--sharedir=${DATADIR} \
 			--exec_prefix=${DATADIR}/bin \
 			--plugindir=${DATADIR}/plugins)
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
