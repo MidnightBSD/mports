@@ -3,7 +3,7 @@
 # Whom:                 piero
 #
 # $FreeBSD: ports/astro/xearth/Makefile,v 1.33 2005/10/03 22:45:42 simon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.1 2007/02/19 20:57:00 laffer1 Exp $
 #
 
 PORTNAME=	xearth
@@ -21,6 +21,8 @@ COMMENT=	Set the root window to the image of earth
 USE_IMAKE=	yes
 
 MAN1=		xearth.1
+
+BROKEN=		prefix/manpage error
 
 # Copy the list of FreeBSD sites & committers locations
 post-install:
