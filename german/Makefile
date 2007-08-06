@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/german/Makefile,v 1.4 2006/11/01 14:01:26 laffer1 Exp $
+# $MidnightBSD: mports/german/Makefile,v 1.5 2006/11/01 14:27:57 laffer1 Exp $
 #
 
     COMMENT = German support
@@ -10,6 +10,7 @@
     SUBDIR += ispell
     SUBDIR += ispell-alt
     SUBDIR += ispell-neu
+    SUBDIR += kde-i18n-de
     SUBDIR += manpages
     SUBDIR += phone
     SUBDIR += selfhtml
