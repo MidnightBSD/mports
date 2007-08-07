@@ -2,12 +2,13 @@
 # Date created:			Feb 14, 2005
 # Whom:				janos.mohacsi@bsd.hu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.1 2007/05/20 01:44:44 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/blogbench/Makefile,v 1.1 2005/02/14 21:04:04 pav Exp $
 #
 
 PORTNAME=	blogbench
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	ftp://ftp.blogbench.pureftpd.org/blogbench/
 
@@ -18,7 +19,6 @@ GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 
 MAN8=		blogbench.8
-PLIST_FILES=	bin/blogbench
 PORTDOCS=	README
 
 post-install:
