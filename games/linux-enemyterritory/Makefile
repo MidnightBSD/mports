@@ -2,7 +2,7 @@
 # Date created:                         Sun Jan 18 18:54:00 CET 2004
 # Whom:                                 benlutz@datacomm.ch
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-enemyterritory/Makefile,v 1.1 2006/10/04 02:33:44 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory/Makefile,v 1.11 2006/06/14 14:29:54 miwi Exp $
 #
 
@@ -17,6 +17,8 @@ DISTFILES=	et-linux-2.60.x86.run:full ET-2.60b.zip:patch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wolfenstein: Enemy Territory (Linux version)
+
+LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	i386
 USE_LINUX=	yes
