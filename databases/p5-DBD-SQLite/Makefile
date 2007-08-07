@@ -3,7 +3,7 @@
 # Whom:					nork@cityfujisawa.ne.jp
 #
 # $FreeBSD: ports/databases/p5-DBD-SQLite/Makefile,v 1.32 2006/09/12 13:29:00 mat Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.1 2007/03/26 03:05:01 ctriv Exp $
 #
 
 PORTNAME=	DBD-SQLite
@@ -15,29 +15,27 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	Provides access to SQLite3 databases through the DBI
+LICENSE=	perl
 
-# We use sqlite3's own library & headers since it is more recent
-# than the bundled version and has an incompatible DB file format.
-# In this way we can be sure DBD::SQLite can interoperate with
-# databases/sqlite3.
-BUILD_DEPENDS=	sqlite>=3.3.3:${PORTSDIR}/databases/sqlite3
-RUN_DEPENDS=	${BUILD_DEPENDS}
+.if exists(/usr/lib/libsqlite3.a)
+SQLITE_LOCATION=	/usr
+CONFIGURE_ARGS+=	LIBS="-lpthread -lsqlite3"
+.else
+BUILD_DEPENDS=		sqlite>=3.3.3:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=		${BUILD_DEPENDS}
+SQLITE_LOCATION= 	${LOCALBASE}
+.endif
 
 PERL_CONFIGURE=	yes
-CONFIGURE_ARGS+=	USE_LOCAL_SQLITE=0
-CONFIGURE_ARGS+=	SQLITE_LOCATION=${LOCALBASE}
+CONFIGURE_ARGS+=	USE_LOCAL_SQLITE=0 
+CONFIGURE_ARGS+=	SQLITE_LOCATION=${SQLITE_LOCATION}
 
 MAN3=		DBD::SQLite.3
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 500600
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI-137
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI-137
-.else
 BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
-.endif
 
 post-patch:
 	${RM} -f ${WRKSRC}/getsqlite.pl
