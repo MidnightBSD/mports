@@ -1,4 +1,5 @@
 # $FreeBSD: ports/audio/liba52-devel/files/Makefile,v 1.1 2005/12/12 18:47:49 lioux Exp $
+# $MidnightBSD$
 
 LIB=		a52-devel
 SHLIB_MAJOR=	${LIB_VERSION}
@@ -11,13 +12,8 @@ INCS=	a52.h a52_internal.h a52_util.h mm_accel.h
 
 # idea taken from port security/libparanoia
 # hacks around <bsd.lib.mk>, which ignores PREFIX
-.if defined(PREFIX)
 DESTDIR=	${PREFIX}/
-.else
-DESTDIR=	/usr/local/
-.endif
 INCSDIR=	include/a52dec-devel/
-INCDIR=		${INCSDIR}		# for pre-bsd.incs.mk API
 LIBDIR=		lib/
 
 .include <bsd.lib.mk>
