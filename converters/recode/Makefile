@@ -2,11 +2,9 @@
 # Date created:		14 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.1 2007/01/25 10:54:08 wintellect Exp $
+# $MidnightBSD: mports/converters/recode/Makefile,v 1.2 2007/08/07 17:57:29 ctriv Exp $
 # $FreeBSD: ports/converters/recode/Makefile,v 1.36 2006/02/23 10:35:00 ade Exp $
 #
-
-BROKEN=	ru.po is missing from the files directory
 
 PORTNAME=	recode
 PORTVERSION=	3.6
