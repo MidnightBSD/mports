@@ -2,7 +2,7 @@
 # Date created:				15 March 2004
 # Whom:					johans
 #
-# $MidnightBSD: mports/deskutils/ljclive/Makefile,v 1.1 2007/03/11 16:32:03 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/ljclive/Makefile,v 1.2 2007/08/07 17:46:09 laffer1 Exp $
 # $FreeBSD: ports/deskutils/ljclive/Makefile,v 1.6 2004/11/12 18:36:16 pav Exp $
 #
 
@@ -17,6 +17,7 @@ DISTFILES=	clive-${PORTVERSION}.tar.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A command line client for posting LiveJournal entries
 
+LICENSE=	bsd3
 CONFLICTS=      py*-clive-[0-9]*
 
 WRKSRC=		work/clive-${PORTVERSION}
