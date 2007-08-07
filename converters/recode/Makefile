@@ -2,19 +2,21 @@
 # Date created:		14 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.2 2007/08/07 17:57:29 ctriv Exp $
+# $MidnightBSD: mports/converters/recode/Makefile,v 1.3 2007/08/07 18:17:37 laffer1 Exp $
 # $FreeBSD: ports/converters/recode/Makefile,v 1.36 2006/02/23 10:35:00 ade Exp $
 #
 
 PORTNAME=	recode
 PORTVERSION=	3.6
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	converters
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	recode
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts files between character sets and usages
+
+LICENSE=	gpl2
 
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:15
