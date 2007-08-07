@@ -2,7 +2,7 @@
 # Date created:				Mon Oct 17 02:22:44 UTC 2005
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/liba52-devel/Makefile,v 1.1 2006/11/02 20:52:57 wintellect Exp $
 # $FreeBSD: ports/audio/liba52-devel/Makefile,v 1.20 2006/06/24 05:37:54 linimon Exp $
 #
 
@@ -22,7 +22,11 @@ OPTIONS=	DJBFFT "Adds support for fast djbfft fft library" ON \
 
 USE_BZIP2=	yes
 MAKE_ARGS=	LIB_VERSION="${LIB_VERSION}" PREFIX="${PREFIX}"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
+
+# We want DESTDIR=$FAKE_DESTDIR$PREFIX/ when it is all said and done.
+DESTDIRNAME=	NOTUSED
+FAKE_MAKEARGS+=	DESTDIR=${FAKE_DESTDIR}${PREFIX}/ ${MAKE_ARGS}
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/libavcodec/liba52
 
