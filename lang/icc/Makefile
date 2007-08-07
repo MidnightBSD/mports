@@ -2,7 +2,7 @@
 # Date created:         24.Jan.2002
 # Whom:                 netchild@FreeBSD.org
 #
-# $MidnightBSD: mports/lang/icc/Makefile,v 1.1 2007/04/28 05:30:33 laffer1 Exp $
+# $MidnightBSD: mports/lang/icc/Makefile,v 1.2 2007/08/02 06:02:31 laffer1 Exp $
 # $FreeBSD: ports/lang/icc/Makefile,v 1.94 2006/12/17 15:14:27 netchild Exp $
 #
 
@@ -25,12 +25,14 @@ PATCH_DEPENDS=		${LINUX_BASE_PORT}
 
 EXTRACT_DEPENDS=	rpm2cpio.pl:${PORTSDIR}/archivers/rpm2cpio
 
+LICENSE=	restricted
 RESTRICTED=	Intel forbids any redistribution
 
 ONLY_FOR_ARCHS=		i386
 CONFLICTS=		linux_devtools*
 
-USE_LINUX=		yes
+USE_GCPIO=	yes
+USE_LINUX=	yes
 
 COMPILERDIR=	intel_cc_80
 PLIST_SUB=	COMPILERDIR=${COMPILERDIR}
