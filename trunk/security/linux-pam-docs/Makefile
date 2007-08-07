@@ -2,7 +2,7 @@
 # Date created:		19 Jun 2003
 # Whom:			Hideyuki KURASHINA <rushani@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/linux-pam-docs/Makefile,v 1.1 2007/04/04 17:13:00 laffer1 Exp $
 # $FreeBSD: ports/security/linux-pam-docs/Makefile,v 1.1 2003/10/10 06:06:13 edwin Exp $
 #
 
@@ -15,9 +15,10 @@ DISTNAME=	Linux-PAM-${PORTVERSION}-docs
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux-PAM offline documentation
 
+USE_GCPIO=	yes
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
-CPIO=		cpio --quiet -pdum -R
+CPIO=		gcpio --quiet -pdum -R
 
 do-install:
 	@ ${MKDIR} ${DOCSDIR}
