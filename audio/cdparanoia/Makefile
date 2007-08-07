@@ -3,7 +3,7 @@
 # Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
 #
 # $FreeBSD: ports/audio/cdparanoia/Makefile,v 1.12 2006/05/03 05:14:12 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.1 2007/01/20 18:01:08 laffer1 Exp $
 #
 
 PORTNAME=	cdparanoia
@@ -18,10 +18,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A CDDA extraction tool (also known as ripper)
 
 USE_GETOPT_LONG=yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
 MAN1=		cdparanoia.1
 
 post-patch:

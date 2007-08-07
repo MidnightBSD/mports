@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode-plugins-polypaudio/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/akode-plugins-polypaudio/Makefile,v 1.1 2007/01/25 22:33:31 laffer1 Exp $
 #
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
@@ -30,7 +30,7 @@ USE_AUTOTOOLS=  libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 CONFIGURE_ENV+=	LDFLAGS=-L${WRKSRC}/akode/lib/.libs
 CONFIGURE_ARGS+=--with-extra-libs=${LOCALBASE}/lib \
@@ -47,6 +47,6 @@ do-build:
 	cd ${WRKSRC}/akode && ${GMAKE}
 
 do-install:
-	cd ${WRKSRC}/akode/plugins/${PLUGIN} && ${GMAKE} install
+	cd ${WRKSRC}/akode/plugins/${PLUGIN} && ${GMAKE} ${FAKE_MAKEARGS} install
 
 .include <bsd.port.mk>

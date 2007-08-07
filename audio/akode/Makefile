@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.1 2007/01/25 22:33:31 laffer1 Exp $
 #
 
 PORTNAME=	akode
@@ -33,7 +33,7 @@ USE_AUTOTOOLS=  libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 PLIST_SUB+=	MACHINE_ARCH=${MACHINE_ARCH}
 
 CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL} \
@@ -82,6 +82,6 @@ do-build:
 	cd ${WRKSRC}/akode && ${GMAKE}
 
 do-install:
-	cd ${WRKSRC}/akode && ${GMAKE} install
+	cd ${WRKSRC}/akode && ${GMAKE} ${FAKE_MAKEARGS} install
 
 .include <bsd.port.post.mk>
