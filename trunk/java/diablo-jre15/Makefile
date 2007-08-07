@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.2 2007/03/13 04:30:01 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.3 2007/08/02 08:46:18 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -18,11 +18,13 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Runtime Environment ${JRE_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
 
-RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
+BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
+LICENSE=	restricted
 RESTRICTED=	"License doesn't allow distribution with fee"
 
 USE_BZIP2=	yes
+USE_GCPIO=	yes
 USE_XLIB=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 JRE_VERSION=	1.5.0
