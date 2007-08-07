@@ -2,7 +2,7 @@
 # Date created:				11 May 2006
 # Whom:					Gabor Kovesdan
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage3/Makefile,v 1.1 2007/04/02 04:04:38 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_dist-gentoo-stage3/Makefile,v 1.10 2007/01/30 04:23:55 kris Exp $
 
 PORTNAME=	gentoo-stage3
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	releases/x86/${PORTVERSION}/stages
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Files from Gentoo distribution, for Linux compatibility
 
+LICENSE=	gpl2
 RESTRICTED=	binaries licensed under GNU GPL without accompanying source
 
 # Does not build when jailed
@@ -35,8 +36,7 @@ PKGDEINSTALL=		${WRKDIR}/pkg-deinstall
 
 .if defined(WITH_LINUXBASE)
 PKGNAMEPREFIX=	linux_base-
-CONFLICTS=	linux_base-7* linux_base-8* linux_base-debian* \
-		linux_base-rh* linux_base-suse* linux_base-fc* \
+CONFLICTS=	linux_base-fc* \
 		linux_base-gentoo-stage[12]-*
 USE_LINUX_PREFIX=	YES
 PREFIX_SUBDIR=
@@ -95,6 +95,5 @@ do-install:
 		-type f -print0 | ${XARGS} -0 ${FILE} \
 		| ${GREP} ELF | ${CUT} -d : -f 1 | ${XARGS} ${BRANDELF} -t Linux
 	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
