@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.12 2007/08/02 19:56:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.13 2007/08/04 22:16:44 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -517,11 +517,20 @@ TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_GCC_PORT} && make -V TARGLIB)
 
 .endif
 
+ 
 # ---------------------------------------------------------------------------
 # We don't do anything for ldconfig.  We try to set up the environment 
 # properly (sourcing the gnustep shell includes).  This should do any of the hijinks
 # that used to be done via USE_LDCONFIG for us.
 #
+ 
+.ifdef _POSTMKINCLUDED
 
+# Make sure that MAKE_FLAGS ends with -f.  This is done in port.post.mk,
+# so that any changes made by the port's makefile are included.
+MAKE_FLAGS!=	${ECHO_CMD} '${MAKE_FLAGS}' | ${SED} -e 's/\s+-f\s+//'
+MAKE_FLAGS+=	-f
+
+.endif
 
 # eof
