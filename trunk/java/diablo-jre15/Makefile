@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.3 2007/08/02 08:46:18 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.4 2007/08/07 18:52:33 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -50,7 +50,7 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}
 
 JRE_OSREL=freebsd6
 
-.if defined(WITH_TZUPDATE)
+.if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
 TZUPDATE_VERSION=	1.1.0
 TZUPDATE_TZVERSION=	2007c
@@ -72,7 +72,7 @@ PLIST_SUB+=	WEB="@comment "
 PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
-.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
+.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (!defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
 ECHO_MSG=/usr/bin/printf
 IGNORE=	:\n\
 Because of licensing restrictions, you must fetch the distribution\n\
@@ -86,7 +86,7 @@ with a web browser and \"Accept\" the End User License Agreement for\n\
 \"Latte Diablo ${JRE_VERSION}\".  Please place the downloaded\n\
 ${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
 .endif
-.if defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
+.if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
 IGNORE += Please open http://java.sun.com/javase/downloads/index.jsp\n\
 in a web browser and follow the \"Download\" link for\n\
 \"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
@@ -94,7 +94,7 @@ time zone update file, ${TZUPDATEFILE}.\n\n
 .endif
 .endif
 
-.if defined(WITH_TZUPDATE)
+.if !defined(WITHOUT_TZUPDATE)
 post-extract:
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
 	@# Update time zones
