@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-afpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/ghostscript-afpl/Makefile,v 1.1 2007/01/19 16:43:32 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -50,6 +50,8 @@ EXTRACT_ONLY=	${GS_SRCS}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AFPL Postscript interpreter
+
+LICENSE=	restricted
 
 LIB_DEPENDS=	jasper.4:${PORTSDIR}/graphics/jasper \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
