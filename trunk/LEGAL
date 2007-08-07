@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/LEGAL,v 1.2 2006/09/29 13:57:20 archite Exp $
+# $MidnightBSD: mports/LEGAL,v 1.3 2007/08/07 17:07:17 laffer1 Exp $
 # $FreeBSD: ports/LEGAL,v 1.496 2006/09/11 18:06:11 vd Exp $
 
    **********************************************************************
@@ -372,7 +372,6 @@ libdvdcss-*.tar.bz2	multimedia/libdvdcss	CSS code may violate the DMCA
 libidea-*		security/libidea	Crypto; export-controlled
 libots-*.alpha.rpm	lang/compaq-cc		Distribution not allowed
 libSDLx11.so.tar.gz	multimedia/mtv		No redistribution
-LimeWireLinux.tgz	net-p2p/limewire	No redistribution allowed
 linunace*		archivers/linux-unace	Distribution is permitted within the
 						original package only
 Linux-ACU-Driver-v*	sysutils/linux-acu	Redistribution not allowed
@@ -428,7 +427,8 @@ mypaedia-*		japanese/mypaedia-fpw	The original dictionary is not free
 mysqlman.tar.gz		databases/mysqlman	Not redistributable, license
 						agreement required
 ncftpd-*		ftp/ncftpd		30 day evaluation license
-netbeans-*		java/netbeans		Restrictive copyright
+netbeans3-*		java/netbeans3		Restrictive copyright
+netbeans4-*		java/netbeans4		Restrictive copyright
 netcomponents-*		java/netcomponents	No redistribution except as part
 						of a substantially different product
 netscape-*-us-*		www/netscape*		Crypto; export-controlled
