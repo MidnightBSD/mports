@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferencepanes/Makefile,v 1.1 2006/10/31 06:17:17 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/preferencepanes/Makefile,v 1.1 2007/02/14 21:08:53 laffer1 Exp $
 #
 
 PORTNAME=	preferencepanes
@@ -14,6 +14,7 @@ DISTNAME=	systempreferences-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PreferencePanes framework for GNUstep
+LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/PreferencePanes
 USE_GMAKE=	yes
@@ -22,7 +23,6 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=	GNUmakefile
 DEFAULT_LIBVERSION=	1.0.0
 
 .include <bsd.port.mk>
