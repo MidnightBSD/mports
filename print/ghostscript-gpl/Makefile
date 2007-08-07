@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-gpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.1 2007/01/03 22:14:13 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.2 2007/01/19 16:44:08 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -53,6 +53,8 @@ EXTRACT_ONLY=	${GS_SRCS}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GPL Postscript interpreter
+
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png
