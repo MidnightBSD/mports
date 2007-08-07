@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.50 2007/07/30 00:31:37 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.51 2007/07/31 01:20:27 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -5044,6 +5044,33 @@ describe:
 		print qq{\n};'
 .endif
 
+
+#
+# describe-yaml
+#
+# Prints the port's description in YAML markup.  YAML is very human readable, and 
+# there are libraries in many languages for conversion to native data structures.
+#
+# This target requires perl.
+.if !target(describe-yaml)
+describe-yaml:
+	@perl -MYAML -e ' \
+		my %port = ( \
+			name       => q(${UNIQUENAME}), \
+			origin     => q(${PKGORIGIN}), \
+			version    => q(${PKGVERSION}), \
+			desciption => q(${COMMENT}), \
+		); \
+		$$port{extract_depends} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS}}) ]; \
+		$$port{patch_depends}   = [ map((split /:/)[1], qw{${PATCH_DEPENDS}})   ]; \
+		$$port{fetch_depends}   = [ map((split /:/)[1], qw{${FETCH_DEPENDS}})   ]; \
+		$$port{build_depends}   = [ map((split /:/)[1], qw{${BUILD_DEPENDS}})   ]; \
+		$$port{run_depends}     = [ map((split /:/)[1], qw{${RUN_DEPENDS}})     ]; \
+		$$port{depends}         = [ map((split /:/)[0], qw{${DEPENDS}})         ]; \
+		$$port{lib_depends}     = [ map((split /:/)[1], qw{${LIB_DEPENDS}})     ]; \
+		print Dump(\%port); '
+.endif
+
 www-site:
 .if exists(${DESCR})
 	@${AWK} '$$1 ~ /^WWW:/ {print $$2}' ${DESCR} | ${HEAD} -1
@@ -5307,7 +5334,7 @@ install-rc-script:
 .if !target(install-ldconfig-file)
 install-ldconfig-file:
 .	if defined(USE_LDCONFIG) 
-.		if ${USE_LDCONFIG} != ${PREFIX}/lib 
+.		if (${USE_LDCONFIG} != ${PREFIX}/lib && ${USE_LDCONFIG} != %D/lib)
 			@${ECHO_MSG} "===>   Installing ldconfig configuration file."
 			@${ECHO_CMD} ${USE_LDCONFIG:S/%D/${PREFIX}/g} | ${TR} ' ' '\n' \
 				> ${FAKE_DESTDIR}${PREFIX}/${LDCONFIG_DIR}/${UNIQUENAME}
