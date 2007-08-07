@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferences.app/Makefile,v 1.10 2006/03/19 04:35:43 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/preferences.app/Makefile,v 1.1 2007/01/24 21:23:43 laffer1 Exp $
 #
 
 PORTNAME=	preferences.app
@@ -16,6 +16,7 @@ DISTNAME=	Preferences-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep workspace manager
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -25,8 +26,6 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=	GNUmakefile
-LDCONFIG_DIRS=	${LOCALLIBDIR}
-INSTALLS_SHLIB=	yes
 
 MODIFY=		GNUmakefile.preamble PrefsModule/GNUmakefile.preamble \
 		Modules/Keyboard/GNUmakefile.preamble \
@@ -35,7 +34,8 @@ MODIFY=		GNUmakefile.preamble PrefsModule/GNUmakefile.preamble \
 post-patch:
 .for i in ${MODIFY}
 	@${MV} ${WRKSRC}/${i} ${WRKSRC}/${i}.sed
-	${SED} -e "s= -Werror==" ${WRKSRC}/${i}.sed > ${WRKSRC}/${i}
+	@${SED} -e "s= -Werror==" ${WRKSRC}/${i}.sed > ${WRKSRC}/${i}
+	@${REINPLACE_CMD} -e 's/GNUSTEP_INSTALLATION_DIR=.*/GNUSTEP_INSTALLATION_DOMAIN=SYSTEM/' ${WRKSRC}/${i}
 .endfor
 
 .include <bsd.port.mk>
