@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.2 2007/03/13 04:29:31 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.3 2007/08/02 07:39:13 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -18,11 +18,13 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Development Kit ${JDK_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
 
-RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
+BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
+LICENSE=	restricted
 RESTRICTED=	"License doesn't allow distribution with fee"
 
 USE_BZIP2=	yes
+USE_GCPIO=	yes
 USE_XLIB=	yes
 ONLY_FOR_ARCHS=	amd64 i386
 JDK_VERSION=	1.5.0
@@ -48,11 +50,11 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}
 
 JDK_OSREL=freebsd6
 
-.if defined(WITH_TZUPDATE)
+.if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1.1.0
-TZUPDATE_TZVERSION=	2007c
-TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
+TZUPDATE_VERSION=	1.2.1
+TZUPDATE_TZVERSION=	2007f
+TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION:S/./_/g}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
 PLIST_SUB+=		TZORIGINAL="@comment "
@@ -70,7 +72,7 @@ PLIST_SUB+=	WEB="@comment "
 PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
-.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JDK_OSREL)
+.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (!defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JDK_OSREL)
 ECHO_MSG=/usr/bin/printf
 IGNORE=	:\n\
 Because of licensing restrictions, you must fetch the distribution\n\
@@ -84,7 +86,7 @@ with a web browser and \"Accept\" the End User License Agreement for\n\
 \"Caffe Diablo ${JDK_VERSION}\".  Please place the downloaded\n\
 ${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
 .endif
-.if defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
+.if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
 IGNORE += Please open http://java.sun.com/javase/downloads/index.jsp\n\
 in a web browser and follow the \"Download\" link for\n\
 \"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
@@ -92,13 +94,12 @@ time zone update file, ${TZUPDATEFILE}.\n\n
 .endif
 .endif
 
-
-.if defined(WITH_TZUPDATE)
+.if !defined(WITHOUT_TZUPDATE)
 post-extract:
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
 	@# Update time zones
 	@-${WRKSRC}/bin/java -jar \
-		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u
+		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u -bc
 	@-${RM} -rf ${WRKSRC}/jre/lib/zi.tzdata*
 .endif
 
