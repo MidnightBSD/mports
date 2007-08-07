@@ -2,7 +2,7 @@
 # Date created:				21 Feb 1998
 # Whom:					giffunip@asme.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/lzo/Makefile,v 1.1 2007/04/05 00:27:06 laffer1 Exp $
 # $FreeBSD: ports/archivers/lzo/Makefile,v 1.35 2007/02/01 02:41:15 kris Exp $
 #
 
@@ -16,11 +16,13 @@ MASTER_SITE_SUBDIR=	libs/compression
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
 
+LICENSE=	gpl2
+
 USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-shared
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 post-install:
 .if !defined(NOPORTDOCS)
