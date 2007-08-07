@@ -30,7 +30,7 @@ System/Library/Frameworks/PrefsModule.framework/Versions/0/libPrefsModule.so.%%M
 System/Library/Frameworks/PrefsModule.framework/Versions/0/libPrefsModule.so.%%LIBVERSION%%
 @exec ln -fs Versions/Current/Headers %D/System/Library/Frameworks/PrefsModule.framework/Headers
 @exec ln -fs Versions/Current/Resources %D/System/Library/Frameworks/PrefsModule.framework/Resources
-@exec ln -fs A %D/System/Library/Frameworks/PrefsModule.framework/Versions/Current
+@exec ln -fs 0 %D/System/Library/Frameworks/PrefsModule.framework/Versions/Current
 @unexec rm -f %D/System/Library/Frameworks/PrefsModule.framework/Headers
 @unexec rm -f %D/System/Library/Frameworks/PrefsModule.framework/Resources
 @unexec rm -f %D/System/Library/Frameworks/PrefsModule.framework/Versions/Current
@@ -46,7 +46,7 @@ System/Library/Preferences/Keyboard.prefs/stamp.make
 @dirrm System/Applications/Preferences.app
 @dirrm System/Library/Frameworks/PrefsModule.framework/Versions/0/Headers
 @dirrm System/Library/Frameworks/PrefsModule.framework/Versions/0/Resources
-@dirrm System/Library/Frameworks/PrefsModule.framework/Versions/A
+@dirrm System/Library/Frameworks/PrefsModule.framework/Versions/0
 @dirrm System/Library/Frameworks/PrefsModule.framework/Versions
 @dirrm System/Library/Frameworks/PrefsModule.framework
 @dirrm System/Library/Preferences/Keyboard.prefs/Resources
