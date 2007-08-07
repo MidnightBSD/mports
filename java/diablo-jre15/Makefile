@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.4 2007/08/07 18:52:33 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.5 2007/08/07 18:54:07 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -52,9 +52,9 @@ JRE_OSREL=freebsd6
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1.1.0
-TZUPDATE_TZVERSION=	2007c
-TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
+TZUPDATE_VERSION=	1.2.1
+TZUPDATE_TZVERSION=	2007f
+TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION:S/./_/g}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
 PLIST_SUB+=		TZORIGINAL="@comment "
@@ -99,7 +99,7 @@ post-extract:
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
 	@# Update time zones
 	@-${WRKSRC}/bin/java -jar \
-		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u
+		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u -bc
 	@${RM} -rf ${WRKSRC}/lib/zi.tzdata*
 .endif
 
