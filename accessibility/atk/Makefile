@@ -2,7 +2,7 @@
 # Date Created:				14 May 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.2 2006/09/19 21:24:04 wintellect Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.3 2006/09/25 16:34:07 archite Exp $
 # $FreeBSD: ports/accessibility/atk/Makefile,v 1.47 2006/05/31 22:18:41 mezz Exp $
 #   $MCom: ports/accessibility/atk/Makefile,v 1.68 2006/04/13 07:52:28 bland Exp $
 #
@@ -17,6 +17,8 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNOME accessibility toolkit (ATK)
+
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
