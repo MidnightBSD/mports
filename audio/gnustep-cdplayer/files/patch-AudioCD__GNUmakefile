@@ -1,0 +1,11 @@
+--- ./AudioCD/GNUmakefile.orig	Fri Aug  3 15:02:33 2007
++++ ./AudioCD/GNUmakefile	Fri Aug  3 15:02:44 2007
+@@ -3,7 +3,7 @@
+ BUNDLE_NAME = AudioCD
+ BUNDLE_EXTENSION = .bundle
+ 
+-BUNDLE_INSTALL_DIR = $(GNUSTEP_INSTALLATION_DIR)/Library/Bundles
++BUNDLE_INSTALL_DIR = $(GNUSTEP_LIBRARY)/Bundles
+ 
+ AudioCD_RESOURCE_FILES =
+ 
