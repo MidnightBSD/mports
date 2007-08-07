@@ -2,28 +2,30 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.1 2006/10/04 20:13:14 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.2 2007/03/25 03:09:40 ctriv Exp $
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
 
-BROKEN=		fetch fails
-
 PORTNAME=	linux-realplayer
-DISTVERSION=	10.0.7.785-20060201
+DISTVERSION=	10.0.8.805-20060718
 CATEGORIES=	multimedia audio linux
-MASTER_SITES=	https://helixcommunity.org/download.php/1917/:player \
-		ftp://rpmfind.net/linux/sourceforge/m/mp/mplayer-tru/:codecs
-DISTFILES=	RealPlayer-${DISTVERSION}.i586.rpm:player \
+MASTER_SITES=	https://helixcommunity.org/download.php/2152/:player \
+		http://ftp.nluug.nl/ftp/pub/os/Linux/distr/pardusrepo/sources/:playeralt \
+		ftp://fr2.rpmfind.net/linux/sourceforge/m/mp/mplayer-tru/:codecs
+DISTFILES=	RealPlayer-${DISTVERSION}.i586.rpm:player,playeralt \
 		mplayer-codecs-linux-real-20040626-1.i386.rpm:codecs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux RealPlayer 10 from RealNetworks
+
+LICENSE=	restricted
 
 EXTRACT_DEPENDS=	rpm2cpio.pl:${PORTSDIR}/archivers/rpm2cpio
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/linux-gtk2
 
 WRKSRC=		${WRKDIR}/usr/local/RealPlayer
 ONLY_FOR_ARCHS=	i386 amd64
+USE_GCPIO=	yes
 USE_LINUX=	yes
 USE_XLIB=	yes
 RESTRICTED=	Redistribution not allowed
@@ -42,18 +44,22 @@ PLIST_SUB+=	NLS=""
 .include <bsd.port.pre.mk>
 
 .if exists(${X11BASE}/share/icons)
-WITH_ICONS=	yes
+#WITH_ICONS=	yes
 PLIST_SUB+=	ICONS=""
 .else
 PLIST_SUB+=	ICONS="@comment "
 .endif
 
 .if exists(${X11BASE}/share/gnome)
-WITH_GNOME=	yes
+#WITH_GNOME=	yes
 PLIST_SUB+=	GNOME=""
 .else
 PLIST_SUB+=	GNOME="@comment "
 .endif
+
+ICONS="@comment "
+GNOME="@comment "
+X11="@comment "
 
 .if defined(WITH_ICONS) || defined(WITH_GNOME)
 PLIST_SUB+=	X11=""
@@ -65,7 +71,7 @@ do-extract:
 	@${MKDIR} ${WRKDIR}
 	@set -x; for f in ${_DISTFILES}; do\
 		cd ${WRKDIR}; rpm2cpio.pl ${DISTDIR}/$$f | \
-		    ${CPIO} -id --quiet; \
+		    ${CPIO} -idm --quiet; \
 	done
 
 post-patch:
