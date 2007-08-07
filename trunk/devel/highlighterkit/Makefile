@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/highlighterkit/Makefile,v 1.1 2006/10/31 05:56:00 dinoex Exp $
-# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.1 2007/02/14 21:32:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.2 2007/05/02 00:35:11 ctriv Exp $
 #
 
 PORTNAME=	highliterkit
@@ -14,6 +14,7 @@ DISTNAME=	HighlighterKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework needed by Project Manager
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -22,8 +23,5 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=
-LDCONFIG_DIRS=	${LOCALLIBDIR}
-USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
