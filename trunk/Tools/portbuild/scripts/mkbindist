@@ -59,7 +59,7 @@ mtree -deU -f ${here}/src/etc/mtree/BSD.local.dist -p ${tmpdir}/usr/local
 # files.
 if [ "${ftp}" = 0 ]; then
     (cd ${worlddir}; find -dx . | \
-	grep -v -E '^./usr/(X11R6|local|obj|opt|ports|src)' | \
+	grep -v -E '^./usr/(X11R6|local|obj|opt|mports|src)' | \
 	grep -v '^./home' | \
 	grep -v '^./var/db/pkg' | \
 	cpio -dump ${tmpdir})
