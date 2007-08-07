@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.1 2007/04/07 03:32:05 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -105,7 +105,7 @@ usage: $prog [-AabCcghvtN] [-M ENV] [-B#] [port_directory]
 	-t	nit pick about use of spaces
 	-N	writing a new port
 	-V	print the version and exit
-	-M ENV	set make variables to ENV (ex. PORTSDIR=/usr/ports.work)
+	-M ENV	set make variables to ENV (ex. PORTSDIR=/usr/mports.work)
 	-B#	allow # contiguous blank lines (default: $contblank line)
 EOF
 		exit 0;
@@ -188,6 +188,7 @@ my @varlist =  qw(
 	INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
 	PLIST_FILES OPTIONS INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
 	DIST_SUBDIR ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS
+	LICENSE
 );
 
 my $cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", @varlist);
@@ -1303,7 +1304,7 @@ sub checkmakefile {
 	# whole file: BROKEN et al.
 	#
 	my ($var);
-	foreach $var (qw(IGNORE BROKEN COMMENT FORBIDDEN MANUAL_PACKAGE_BUILD NO_CDROM NO_PACKAGE RESTRICTED)) {
+	foreach $var (qw(IGNORE BROKEN COMMENT FORBIDDEN MANUAL_PACKAGE_BUILD NO_CDROM NO_PACKAGE RESTRICTED LICENSE)) {
 		print "OK: checking ${var}.\n" if ($verbose);
 		if ($whole =~ /\n${var}[+?]?=[ \t]+"/) {
 			my $lineno = &linenumber($`);
@@ -1471,6 +1472,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $curline !~ /^IGNORE(.)?=[^\n]+$i/m
 				&& $curline !~ /^BROKEN(.)?=[^\n]+$i/m
 				&& $curline !~ /^RESTRICTED(.)?=[^\n]+$i/m
+				&& $curline !~ /^LICENSE(.)?=[^\n]+$i/m
 				&& $curline !~ /^NO_PACKAGE(.)?=[^\n]+$i/m
 				&& $curline !~ /^NO_CDROM(.)?=[^\n]+$i/m
 				&& $curline !~ /^MAINTAINER(.)?=[^\n]+$i/m
@@ -1496,6 +1498,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $lm !~ /^IGNORE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^BROKEN(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^RESTRICTED(.)?=[^\n]+($i\d*)/m
+				&& $lm !~ /^LICENSE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^NO_PACKAGE(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^NO_CDROM(.)?=[^\n]+($i\d*)/m
 				&& $lm !~ /^MAINTAINER(.)?=[^\n]+($i\d*)/m
@@ -2479,11 +2482,11 @@ FETCH_DEPENDS DEPENDS DEPENDS_TARGET
 		}
 	}
 
-	# check RESTRICTED/NO_CDROM/NO_PACKAGE
+	# check RESTRICTED/NO_CDROM/NO_PACKAGE/LICENSE
 	print "OK: checking RESTRICTED/NO_CDROM/NO_PACKAGE.\n" if ($verbose);
-	if ($committer && $tmp =~ /\n(RESTRICTED|NO_CDROM|NO_PACKAGE)[+?]?=/) {
+	if ($committer && $tmp =~ /\n(RESTRICTED|NO_CDROM|NO_PACKAGE|LICENSE)[+?]?=/) {
 		&perror("WARN", $file, -1, "\"$1\" found. do not forget to update ".
-			"ports/LEGAL.");
+			"mports/LEGAL if needed.");
 	}
 
 	# check NO_CONFIGURE/NO_PATCH
