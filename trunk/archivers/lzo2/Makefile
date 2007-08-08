@@ -2,13 +2,13 @@
 # Date created:				21 Feb 1998
 # Whom:					giffunip@asme.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.1 2006/09/21 16:05:53 wintellect Exp $
 # $FreeBSD: ports/archivers/lzo2/Makefile,v 1.38 2006/02/23 10:34:20 ade Exp $
 #
 
 PORTNAME=	lzo2
 PORTVERSION=	2.02
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		http://fresh.t-systems-sfr.com/unix/src/misc/ \
@@ -16,13 +16,15 @@ MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 MASTER_SITE_SUBDIR=	libs/compression
 DISTNAME=	lzo-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
-MAINTAINER=	matthias.andree@gmx.de
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
 
+LICENSE=	gpl2
+
 GNU_CONFIGURE=  yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-shared
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 post-install:
 .if !defined(NOPORTDOCS)
