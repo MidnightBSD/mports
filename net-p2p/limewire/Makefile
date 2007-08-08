@@ -2,12 +2,12 @@
 # Date created:				Fri Feb 22 00:28:41 CST 2002
 # Whom:					Kyle Martin <mkm@ieee.org> et al
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.1 2007/06/25 07:02:02 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/limewire/Makefile,v 1.30 2007/05/19 20:20:07 flz Exp $
 #
 
 PORTNAME=	limewire
-PORTVERSION=	4.12.11
+PORTVERSION=	4.14.3
 PORTEPOCH=	1
 CATEGORIES=	net-p2p java
 MASTER_SITES=	http://www10.limewire.com/download/
@@ -15,6 +15,7 @@ DISTNAME=	LimeWireOther
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Java based Gnutella client
+LICENSE=	gpl2
 
 RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
