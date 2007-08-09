@@ -3,7 +3,7 @@
 # Whom:					Josh Tiefenbach <josh@ican.net>
 #
 # $FreeBSD: ports/databases/db2/Makefile,v 1.39 2006/08/14 22:55:03 clsung Exp $
-# $MidnightBSD: mports/databases/db2/Makefile,v 1.1 2006/11/05 14:30:42 laffer1 Exp $
+# $MidnightBSD: mports/databases/db2/Makefile,v 1.2 2007/08/09 19:35:43 laffer1 Exp $
 #
 
 PORTNAME=	db2
@@ -17,6 +17,8 @@ DISTNAME=	db-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 2
+
+LICENSE=	restricted
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
