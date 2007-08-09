@@ -165,11 +165,11 @@
 -includedir=$(prefix)/BerkeleyDB/include
 -libdir=	$(prefix)/BerkeleyDB/lib
 -mandir=	$(prefix)/BerkeleyDB/docs
-+bindir= $(prefix)/bin
-+datadir=$(prefix)/share/db2
-+includedir=$(prefix)/include/db2
-+libdir= $(prefix)/lib
-+mandir= $(prefix)/share/doc/db2
++bindir= ${DESTDIR}$(prefix)/bin
++datadir=${DESTDIR}$(prefix)/share/db2
++includedir=${DESTDIR}$(prefix)/include/db2
++libdir= ${DESTDIR}$(prefix)/lib
++mandir= ${DESTDIR}$(prefix)/share/doc/db2
  
  dmode=	755
  emode=	555
