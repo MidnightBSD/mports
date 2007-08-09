@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.53 2007/08/07 17:54:18 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.54 2007/08/09 19:42:26 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -5098,6 +5098,7 @@ ${.CURDIR}/README.html:
 	${SED} -e 's|%%PORT%%|'$$(${ECHO_CMD} ${.CURDIR} | \
 							  ${SED} -e 's|.*/\([^/]*/[^/]*\)$$|\1|')'|g' \
 			-e 's|%%PKG%%|${PKGNAME}|g' \
+			-e 's|%%LICENSE%%|${LICENSE}|g' \
 			-e 's|%%COMMENT%%|'"$$(${ECHO_CMD} ${COMMENT:Q})"'|' \
 			-e '/%%COMMENT%%/d' \
 			-e 's|%%DESCR%%|'"$$(${ECHO_CMD} ${DESCR} | \
