@@ -3,7 +3,7 @@
 # Whom:					nork@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/synaptics/Makefile,v 1.6 2006/08/13 01:49:25 nork Exp $
-# $MidnightBSD$ 
+# $MidnightBSD: mports/x11-servers/synaptics/Makefile,v 1.1 2006/12/11 02:44:10 laffer1 Exp $ 
 
 PORTNAME=	synaptics
 PORTVERSION=	0.14.6
@@ -16,9 +16,12 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Synaptics touchpad X driver
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${X11BASE}/bin/X:${X_SERVER_PORT}
 RUN_DEPENDS=	${BUILD_DEPENDS}
+
+FAKE_OPTS=	trueprefix
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -36,16 +39,9 @@ MASTER_SITE_SUBDIR=	X11R${X11VERSION}/src/:x11
 DIST_SUBDIR=	xorg
 X_DISTFILES=	X11R${X11VERSION}-src3.tar.gz
 
-.elif	${X_WINDOW_SYSTEM:L} == xfree86-4
-
-MASTER_SITES+=	${MASTER_SITE_XFREE:C/$/:x11/}
-MASTER_SITE_SUBDIR=	${X11VERSION}/:x11
-DIST_SUBDIR=	xc
-X_DISTFILES=	XFree86-${X11VERSION}-src-3.tgz
-
 .else
 
-BROKEN=		no support yet
+BROKEN=		${X_WINDOW_SYSTEM:L} not supported.
 
 .endif
 
@@ -62,6 +58,9 @@ post-extract:
 		${GZIP_CMD} -dc ${_DISTDIR}/${FILE} | ${TAR} -xf -
 .endfor
 
+pre-install:
+	mkdir ${PREFIX}/lib/modules/input
+
 post-install:
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
@@ -69,6 +68,5 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
 .endfor
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
