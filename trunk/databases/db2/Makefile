@@ -3,12 +3,12 @@
 # Whom:					Josh Tiefenbach <josh@ican.net>
 #
 # $FreeBSD: ports/databases/db2/Makefile,v 1.39 2006/08/14 22:55:03 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db2/Makefile,v 1.1 2006/11/05 14:30:42 laffer1 Exp $
 #
 
 PORTNAME=	db2
 PORTVERSION=	2.7.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 #MASTER_SITES=	http://www.sleepycat.com/update/snapshot/
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
