@@ -2,13 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.3 2007/07/30 03:47:31 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.6.9.2
-PORTREVISION=	1
+PORTVERSION=	1.6.9.3
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		http://probsd.org/sudoftp/ \
@@ -20,7 +19,7 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		http://pluto.cdpa.nsysu.edu.tw/sudo/ \
 		ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/ \
 		ftp://ftp.stikman.com/pub/sudo/
-DISTNAME=	${PORTNAME}-1.6.9p2
+DISTNAME=	${PORTNAME}-1.6.9p3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
