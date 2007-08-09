@@ -3,7 +3,7 @@
 # Whom:                Edwin Groothuis (edwin@mavetju.org)
 #
 # $FreeBSD: ports/databases/db/Makefile,v 1.30 2004/02/06 13:10:59 trevor Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db/Makefile,v 1.1 2006/11/05 14:29:34 laffer1 Exp $
 #
 
 PORTNAME=	db
@@ -14,6 +14,8 @@ MASTER_SITES=	http://www.mavetju.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manipulate db(3)'s btree(3) and hash(3) databases - NetBSD port
+
+LICENSE=	bsd4	
 
 MAN1=		db.1
 MANCOMPRESSED=	yes
