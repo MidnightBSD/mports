@@ -3,8 +3,10 @@
 # Whom:					Sergey Osokin aka oZZ <osa@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db3/Makefile,v 1.64 2006/06/17 11:15:43 itetcu Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db3/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
 #
+
+BROKEN=		fails to fake properly.
 
 PORTNAME=	db3
 PORTVERSION=	3.3.11
@@ -22,17 +24,20 @@ PATCH_DIST_STRIP=	-d ${WRKDIR}/${DISTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 3.3
 
+LICENSE=	bdb
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
 CONFIGURE_ARGS=		--enable-compat185 \
 			--enable-dump185 --enable-cxx \
 			--enable-dynamic \
-			--prefix=${PREFIX} \
-			--includedir=${PREFIX}/include/db3
+			--prefix=${DESTDIR}${PREFIX} \
+			--exec-prefix=${DESTDIR}${PREFIX} \
+			--includedir=${DESTDIR}${PREFIX}/include/db3
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 INSTALL_TARGET=		install_include install_lib install_utilities
 .if !defined(NOPORTDOCS)
@@ -57,11 +62,11 @@ pre-patch:
 
 post-patch:
 	@${CHMOD} 755 ${WRKSRC}/${CONFIGURE_SCRIPT}
-	@${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${LOCALBASE}|g" ${WRKSRC}/../dist/configure
+	@${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${DESTDIR}${PREFIX}|g" ${WRKSRC}/../dist/configure
 
 post-configure:
 .if defined(WITH_TCL_VER)
-	@${REINPLACE_CMD} -e "s|TCFLAGS=.*|TCFLAGS=-I${LOCALBASE}/include/tcl${WITH_TCL_VER} -L${LOCALBASE}/lib/tcl${WITH_TCL_VER}|g" ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e "s|TCFLAGS=.*|TCFLAGS=-I${LOCALBASE}/include/tcl${WITH_TCL_VER} -L${PREFIX}/lib/tcl${WITH_TCL_VER}|g" ${WRKSRC}/Makefile
 .endif
 
 post-install:
