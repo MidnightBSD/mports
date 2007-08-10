@@ -3,7 +3,7 @@
 # Whom:			nbm
 #
 # $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.4 2007/08/10 18:30:02 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.5 2007/08/10 18:35:40 laffer1 Exp $
 #
 
 PORTNAME=	phpMyAdmin
@@ -27,26 +27,7 @@ SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
 		"PKGNAME=${PKGNAME}"
 SUB_FILES=	pkg-message
 
-# Unfortunately can't make WITH_SUPHP part of the OPTIONS selection,
-# since it has to be processed before just about anything else.
-
-.if defined(WITH_SUPHP) && !defined(WITHOUT_SUPHP)
-
-PKGNAMESUFFIX=	-suphp
-RUN_DEPENDS+=	${LOCALBASE}/sbin/suphp:${PORTSDIR}/www/suphp
-WANT_PHP_CGI=	yes
-
-MYADMUSR?=	phpmyadm
-
-SUB_LIST+=	"MYADMUSR=${MYADMUSR}" \
-		"MYADMGRP=${MYADMGRP}"
-SUB_FILES+=	pkg-install pkg-deinstall
-
-.else
-
 WANT_PHP_WEB=	yes
-
-.endif
 
 # Copy the way lang/php5-extensions deals with its OPTIONS -- avoids
 # problems with include of bsd.port.pre.mk
