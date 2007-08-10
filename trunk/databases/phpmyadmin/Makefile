@@ -3,7 +3,7 @@
 # Whom:			nbm
 #
 # $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.5 2007/08/10 18:35:40 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.6 2007/08/10 18:39:28 laffer1 Exp $
 #
 
 PORTNAME=	phpMyAdmin
@@ -65,7 +65,6 @@ USE_PHP+=	${opt:L}
 .endfor
 .endif
 
-# MYADMUSR is only used WITH_SUPHP
 MYADMDIR?=	www/phpMyAdmin
 MYADMGRP?=	${WWWGRP}
 CFGFILE=	config.inc.php
@@ -77,14 +76,6 @@ PLIST_SUB+=	MYADMDIR=${MYADMDIR} MYADMGRP=${MYADMGRP}
 
 do-build:
 	@${DO_NADA}
-
-pre-everything::
-	${ECHO_MSG} ""
-	${ECHO_MSG} "You may use the following additional build option:"
-	${ECHO_MSG} ""
-	${ECHO_MSG} "    WITH_SUPHP=yes   Install appropriately for use with"
-	${ECHO_MSG} "                     the www/suphp port [default: no]"
-	${ECHO_MSG} ""
 
 # When creating a package, empty directories will not be generated
 # from the pkg tarball.  Therefore make sure no directories are empty.
@@ -102,11 +93,6 @@ post-patch:
 	${FIND} . -type d | ${SORT} -r | ${SED} \
 	     -e "s,^\.$$,@dirrmtry %%MYADMDIR%%," \
 	     -e "s,^\.,@dirrm %%MYADMDIR%%,"         >>${PLIST}
-
-pre-install:
-.if defined(WITH_SUPHP)
-	${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-.endif
 
 do-install: install-app install-conf
 
@@ -128,10 +114,5 @@ install-conf: install-app
 	if ${TEST} ! -f ${CFGFILE} ; then \
 	    ${CP} -p ${CFGFILE}.sample ${CFGFILE} ; \
 	fi
-
-post-install:
-.if defined(WITH_SUPHP)
-	${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 
 .include <bsd.port.mk>
