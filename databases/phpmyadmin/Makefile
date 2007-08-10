@@ -3,7 +3,7 @@
 # Whom:			nbm
 #
 # $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.6 2007/08/10 18:39:28 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.7 2007/08/10 18:44:47 laffer1 Exp $
 #
 
 PORTNAME=	phpMyAdmin
@@ -16,6 +16,8 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to manage MySQL over the web
+
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
