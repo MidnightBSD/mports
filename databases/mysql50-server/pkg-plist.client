@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 bin/mysql
 bin/mysql_config
 bin/mysql_fix_privilege_tables
@@ -18,6 +19,7 @@ include/mysql/keycache.h
 include/mysql/m_ctype.h
 include/mysql/m_string.h
 include/mysql/my_alloc.h
+include/mysql/my_attribute.h
 include/mysql/my_config.h
 include/mysql/my_dbug.h
 include/mysql/my_dir.h
