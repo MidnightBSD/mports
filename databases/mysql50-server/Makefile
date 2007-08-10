@@ -2,7 +2,7 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.5 2007/06/08 14:06:44 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.6 2007/08/10 06:14:11 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.224 2007/03/14 16:13:27 ale Exp $
 #
 
@@ -16,6 +16,8 @@ PKGNAMESUFFIX?=	-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+
+LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql50-client databases/mysql50-scripts
 USE_AUTOTOOLS=	libtool:15

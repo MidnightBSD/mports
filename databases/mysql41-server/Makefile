@@ -2,7 +2,7 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.3 2007/05/25 19:37:04 ctriv Exp $
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.4 2007/08/01 19:47:42 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.224 2007/01/20 09:22:57 ale Exp $
 #
 
@@ -16,6 +16,8 @@ PKGNAMESUFFIX?=	-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+
+LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql41-client
 USE_AUTOTOOLS=	libtool:15

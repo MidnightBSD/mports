@@ -2,7 +2,7 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.5 2007/08/10 15:36:55 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.226 2007/07/05 13:32:09 ale Exp $
 #
 
@@ -16,6 +16,8 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-beta
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
+
+LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
 USE_AUTOTOOLS=	libtool:15
