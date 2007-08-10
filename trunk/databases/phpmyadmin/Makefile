@@ -3,11 +3,12 @@
 # Whom:			nbm
 #
 # $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.3 2007/04/01 18:18:22 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.4 2007/08/10 18:30:02 laffer1 Exp $
 #
 
 PORTNAME=	phpMyAdmin
 DISTVERSION=	2.10.3
+PORTREVISION=	1
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	phpmyadmin
@@ -47,7 +48,7 @@ WANT_PHP_WEB=	yes
 
 .endif
 
-# Copy the way lang/php{4,5}-extensions deals with its OPTIONS -- avoids
+# Copy the way lang/php5-extensions deals with its OPTIONS -- avoids
 # problems with include of bsd.port.pre.mk
 
 OPTIONS=	BZ2	 "bzip2 library support" on \
@@ -103,13 +104,6 @@ pre-everything::
 	${ECHO_MSG} "    WITH_SUPHP=yes   Install appropriately for use with"
 	${ECHO_MSG} "                     the www/suphp port [default: no]"
 	${ECHO_MSG} ""
-	${ECHO_MSG} "Note that selecting the MYSQLI option will only work"
-	${ECHO_MSG} "with PHP5 and MySQL 4.1.x"
-	${ECHO_MSG} ""
-	${ECHO_MSG} "If you want to use PHP4, for best results, please"
-	${ECHO_MSG} "install lang/php4 before attempting to install"
-	${ECHO_MSG} "databases/phpmyadmin"
-	${ECHO_MSG} ""
 
 # When creating a package, empty directories will not be generated
 # from the pkg tarball.  Therefore make sure no directories are empty.
@@ -158,6 +152,5 @@ post-install:
 .if defined(WITH_SUPHP)
 	${SETENV} ${SCRIPTS_ENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .endif
-	${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
