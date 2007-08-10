@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/databases/phpmyadmin/files/pkg-deinstall.in,v 1.1 2005/03/06 10:48:47 thierry Exp $
 #
 
