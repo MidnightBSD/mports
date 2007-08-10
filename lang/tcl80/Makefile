@@ -2,7 +2,7 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/lang/tcl80/Makefile,v 1.2 2007/04/04 22:53:16 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl80/Makefile,v 1.3 2007/04/04 23:23:37 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl80/Makefile,v 1.43 2007/03/13 10:31:46 miwi Exp $
 #
 
@@ -29,6 +29,8 @@ SHLIB_MAJOR=	1
 SHLIB_MINOR=	5
 MAKEFILE=	makefile
 TCL_LIB=	libtcl80.so
+
+DESTDIRNAME=	INSTALL_ROOT
 
 OPTIONS=	TCL80_MAN "Install tcl 8.0 manpages" off \
 		TCLSH_WRAPPER "Require tclsh wrapper from ports" off
