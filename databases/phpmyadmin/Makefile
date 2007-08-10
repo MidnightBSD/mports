@@ -3,11 +3,11 @@
 # Whom:			nbm
 #
 # $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.3 2007/04/01 18:18:22 laffer1 Exp $
 #
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	2.10.0.2
+DISTVERSION=	2.10.3
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	phpmyadmin
