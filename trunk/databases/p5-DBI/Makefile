@@ -2,12 +2,12 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.1 2006/10/03 21:03:20 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.2 2007/05/04 20:28:34 ctriv Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
-PORTVERSION=	1.55
+PORTVERSION=	1.58
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	DBI
