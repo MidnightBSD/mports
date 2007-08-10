@@ -3,10 +3,8 @@
 # Whom:					Sergey Osokin aka oZZ <osa@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db3/Makefile,v 1.64 2006/06/17 11:15:43 itetcu Exp $
-# $MidnightBSD: mports/databases/db3/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/db3/Makefile,v 1.2 2007/08/09 21:10:22 laffer1 Exp $
 #
-
-BROKEN=		fails to fake properly.
 
 PORTNAME=	db3
 PORTVERSION=	3.3.11
@@ -23,27 +21,29 @@ PATCH_DIST_STRIP=	-d ${WRKDIR}/${DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 3.3
-
 LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
 USE_LDCONFIG=		yes
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
+
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
 CONFIGURE_ARGS=		--enable-compat185 \
 			--enable-dump185 --enable-cxx \
 			--enable-dynamic \
-			--prefix=${DESTDIR}${PREFIX} \
-			--exec-prefix=${DESTDIR}${PREFIX} \
-			--includedir=${DESTDIR}${PREFIX}/include/db3
+			--prefix=${PREFIX} \
+			--includedir=${INCLUDEDIR}
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 INSTALL_TARGET=		install_include install_lib install_utilities
 .if !defined(NOPORTDOCS)
-INSTALL_TARGET+=	install_docs docdir=${DOCSDIR}
+INSTALL_TARGET+=	install_docs docdir=${FAKE_DESTDIR}${DOCSDIR}
 PORTDOCS=		*
 .endif
+
+INCLUDEDIR= 	${PREFIX}/include/db3
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} includedir=${FAKE_DESTDIR}${INCLUDEDIR}
 
 .if defined(WITH_TCL_VER)
 .if ${WITH_TCL_VER} == 8.4 || ${WITH_TCL_VER} == 8.3
