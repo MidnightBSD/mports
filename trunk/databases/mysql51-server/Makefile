@@ -2,13 +2,12 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.222 2007/03/14 16:30:56 ale Exp $
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.3 2007/04/01 16:21:00 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.226 2007/07/05 13:32:09 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.16
-PORTREVISION?=	0
+PORTVERSION=	5.1.20
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
@@ -29,11 +28,11 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-mysqlfs \
 		--with-low-memory \
-		--with-comment='MidnightBSD port: ${PKGNAME}' \
+		--with-comment='FreeBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
-.error You have 'USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
+.error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 
 .if defined(WITH_CHARSET) && ${WITH_CHARSET} != ""
@@ -55,11 +54,6 @@ CONFIGURE_ARGS+=--with-plugins=max-no-ndb
 .endif
 .if defined(WITH_COLLATION) && ${WITH_COLLATION} != ""
 CONFIGURE_ARGS+=--with-collation=${WITH_COLLATION}
-.endif
-
-
-.if defined(SCRIPTS_ONLY)
-USE_PERL5=	yes
 .endif
 
 .include <bsd.port.pre.mk>
@@ -93,7 +87,7 @@ WANT_MYSQL_VER=	51
 
 LATEST_LINK=	mysql51-server
 
-CONFLICTS=	mysql-server-3.* mysql-server-4.* mysql-server-5.0.*
+CONFLICTS=	mysql-server-4.* mysql-server-5.0.*
 
 USE_RC_SUBR=	mysql-server.sh
 
@@ -128,14 +122,14 @@ pre-fetch:
 	@${ECHO} ""
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ @zlib_dir@ @sql_server_dirs@ storage @sql_server@ scripts @man_dirs@ support-files|g" ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e "s|all: config.h|all: config.h all-local|g" ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = @server_scripts@ mysql_create_system_tables|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = fill_help_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
+	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ sql-common @sql_server_dirs@ storage scripts @sql_server@ @man_dirs@ support-files|g" ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = @server_scripts@|g" ${WRKSRC}/scripts/Makefile.in
+	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = fill_help_tables.sql mysql_system_tables.sql mysql_system_tables_data.sql|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-pkgincludeHEADERS|install-data-am:|g" ${WRKSRC}/extra/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-pkgincludeHEADERS|install-data-am:|g" ${WRKSRC}/include/Makefile.in
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/mysys/default.c
+	@${REINPLACE_CMD} -e "/^AM_CXXFLAGS/s|=.*|+= \$$(NDB_CXXFLAGS)|" `${FIND} ${WRKSRC}/storage/ndb -name Makefile.in`
 .if defined(WITH_PROC_SCOPE_PTH)
 	@${REINPLACE_CMD} -e "s|PTHREAD_SCOPE_SYSTEM|PTHREAD_SCOPE_PROCESS|g" ${WRKSRC}/sql/mysqld.cc
 .endif
@@ -143,7 +137,6 @@ post-patch:
 post-install:
 .if !defined(PACKAGE_BUILDING)
 	@${SETENV} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 .endif
 
 .else
@@ -162,31 +155,29 @@ USE_LDCONFIG=	${PREFIX}/lib/mysql
 
 CONFIGURE_ARGS+=--without-server
 
-PLIST_SUB+=	ZLIB="@comment "
-
 post-patch:
-	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @zlib_dir@ strings mysys dbug extra regex libmysql_r libmysql client scripts @man_dirs@|g" ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include sql-common scripts strings regex mysys dbug extra libmysql libmysql_r client @man_dirs@|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-pkglibLIBRARIES|install-exec-am:|g" ${WRKSRC}/strings/Makefile.in ${WRKSRC}/mysys/Makefile.in ${WRKSRC}/dbug/Makefile.in
-	@${REINPLACE_CMD} -e "s|all: config.h|all: config.h all-local|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = mysql_config mysql_fix_privilege_tables mysqlbug|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = mysql_fix_privilege_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-binPROGRAMS|install-exec-am:|g" ${WRKSRC}/extra/Makefile.in
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/mysys/default.c
 
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/support-files/mysql.m4 ${PREFIX}/share/aclocal/
+
 .else
 # MySQL-Scripts part
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	51
+USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql51
-.if ${PERL_LEVEL} <= 500800
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
-.endif
 
 LATEST_LINK=	mysql51-scripts
 
-CONFLICTS=	mysql-scripts-3.* mysql-scripts-4.* mysql-scripts-5.0.*
+CONFLICTS=	mysql-scripts-4.* mysql-scripts-5.0.*
 
 MAN1=		msql2mysql.1 mysql_zap.1 mysqlaccess.1 mysqlhotcopy.1 \
 		mysqld_multi.1 mysql_fix_privilege_tables.1

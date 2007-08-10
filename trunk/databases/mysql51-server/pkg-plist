@@ -1,11 +1,10 @@
-@unexec %D/etc/rc.d/mysql-server.sh stop > /dev/null 2>&1 || true
+@comment @stopdaemon mysql-server
 bin/innochecksum
 bin/my_print_defaults
 bin/myisam_ftdump
 bin/myisamchk
 bin/myisamlog
 bin/myisampack
-bin/mysql_create_system_tables
 bin/mysql_install_db
 bin/mysql_tzinfo_to_sql
 bin/mysql_waitpid
@@ -35,6 +34,7 @@ bin/resolveip
 %%NDB%%include/mysql/storage/ndb/mgmapi/mgmapi_config_parameters.h
 %%NDB%%include/mysql/storage/ndb/mgmapi/mgmapi_config_parameters_debug.h
 %%NDB%%include/mysql/storage/ndb/mgmapi/mgmapi_debug.h
+%%NDB%%include/mysql/storage/ndb/mgmapi/mgmapi_error.h
 %%NDB%%include/mysql/storage/ndb/mgmapi/ndb_logevent.h
 %%NDB%%include/mysql/storage/ndb/mgmapi/ndbd_exit_codes.h
 %%NDB%%include/mysql/storage/ndb/ndb_constants.h
@@ -128,10 +128,11 @@ libexec/mysqld
 %%DATADIR%%/my-large.cnf
 %%DATADIR%%/my-medium.cnf
 %%DATADIR%%/my-small.cnf
+%%DATADIR%%/mysql_system_tables.sql
+%%DATADIR%%/mysql_system_tables_data.sql
 %%DATADIR%%/mysql-log-rotate
 %%DATADIR%%/mysql.server
 %%DATADIR%%/ndb-config-2-node.ini
-%%NDB%%%%DATADIR%%/ndb_size.tmpl
 %%DATADIR%%/norwegian-ny/errmsg.sys
 %%DATADIR%%/norwegian/errmsg.sys
 %%DATADIR%%/polish/errmsg.sys
