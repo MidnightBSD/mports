@@ -2,7 +2,7 @@
 # Date created:				June 17th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD
+# $MidnightBSD$
 # $FreeBSD: ports/databases/p5-DBD-Pg/Makefile,v 1.69 2006/05/14 17:19:16 leeym Exp $
 #
 
@@ -37,10 +37,6 @@ post-install:
 .endif
 
 .include <bsd.port.pre.mk>
-
-#.if ${PERL_LEVEL} < 500600
-#IGNORE=		needs DBI 1.38 which needs perl 5.6, install lang/perl5.8 and try again
-#.endif
 
 PG_CONFIG=	${LOCALBASE}/bin/pg_config
 CONFIGURE_ENV+=	POSTGRES_INCLUDE=`${PG_CONFIG} --includedir` \
