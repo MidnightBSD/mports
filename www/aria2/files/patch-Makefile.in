@@ -1,0 +1,16 @@
+--- Makefile.in.orig	Fri Aug 10 18:01:03 2007
++++ Makefile.in	Fri Aug 10 18:03:02 2007
+@@ -233,11 +233,11 @@
+ libexecdir = @libexecdir@
+ localedir = @localedir@
+ localstatedir = @localstatedir@
+-mandir = @mandir@
++mandir = ${DESTDIR}@mandir@
+ mkdir_p = @mkdir_p@
+ oldincludedir = @oldincludedir@
+ pdfdir = @pdfdir@
+-prefix = @prefix@
++prefix = ${PREFIX}
+ program_transform_name = @program_transform_name@
+ psdir = @psdir@
+ sbindir = @sbindir@
