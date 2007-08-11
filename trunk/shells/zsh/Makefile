@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.6 2007/08/01 20:09:28 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.7 2007/08/05 16:49:22 laffer1 Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -11,7 +11,6 @@
 #			(default: use dynamically loadable modules)
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
 #			zshenv, zlogin, zprofile, zshrc, zlogout.
-#			e.g. use this to put config files inside ${PREFIX}
 #			(default: /etc)
 #			NOTE: does NOT have to be inside ${PREFIX} tree
 # ZSH_FNDIR=<dir>	directory for zsh functions (part of distribution)
@@ -74,7 +73,7 @@ ZSH_ETCDIR?=	/etc
 ZSH_FNDIR?=	${DATADIR}/${ZSH_VER}/functions
 ZSH_SITEFNDIR?=	${DATADIR}/site-functions
 
-PLIST_SUB+=	ZSH_VER="${ZSH_VER}" ZSHETCDIR="${ZSH_ETCDIR}" \
+PLIST_SUB+=	ZSH_VER="${ZSH_VER}" ZSH_ETCDIR="${ZSH_ETCDIR}" \
 		ZSH_FNDIR="${ZSH_FNDIR:S!${PREFIX}/!!}" \
 		ZSH_SITEFNDIR="${ZSH_SITEFNDIR}"
 
@@ -85,7 +84,6 @@ MAN1=		zsh.1 zshbuiltins.1 zshcompctl.1 zshcompwid.1 zshcompsys.1 \
 DOCS=		LICENCE META-FAQ README Etc/BUGS Etc/CONTRIBUTORS Etc/FAQ \
 		Etc/completion-style-guide Doc/zsh*.html Doc/zsh.dvi
 EXAMPLES=	zlogin zshenv zshrc
-SHELLS= 	/etc/shells
 
 .include <bsd.port.pre.mk>
 
@@ -152,10 +150,5 @@ post-install:
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/Doc/zsh.info ${PREFIX}/info/zsh.info
 .endif
-	@${ECHO_MSG} "Updating ${SHELLS}"
-	@${CP} ${SHELLS} ${SHELLS}.bak
-	@(${GREP} -v ${PREFIX}/bin/zsh ${SHELLS}.bak; \
-	  ${ECHO_CMD} ${PREFIX}/bin/zsh) > ${SHELLS}
-	@${RM} ${SHELLS}.bak
 
 .include <bsd.port.post.mk>
