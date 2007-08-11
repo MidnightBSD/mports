@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.51 2007/07/19 13:49:35 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.52 2007/07/21 11:26:30 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -6,6 +6,7 @@
     SUBDIR += apache20
     SUBDIR += apache22
     SUBDIR += analog
+    SUBDIR += aria2
     SUBDIR += awstats
     SUBDIR += bookmarkbridge
     SUBDIR += bozohttpd
