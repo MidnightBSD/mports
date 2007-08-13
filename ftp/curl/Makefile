@@ -2,12 +2,12 @@
 # Date created:		12 December 1998
 # Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.2 2007/04/02 00:28:44 laffer1 Exp $
 # $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
 #
 
 PORTNAME=	curl
-PORTVERSION=	7.16.1
+PORTVERSION=	7.16.4
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		${MASTER_SITE_SOURCEFORGE} \
