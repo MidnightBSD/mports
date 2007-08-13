@@ -2,13 +2,12 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.8 2007/04/18 04:59:11 ctriv Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.9 2007/06/27 03:34:55 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=   2
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -30,11 +29,11 @@ DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_DATE}.${OPERA_TYPE}-${OPERA_LIB}-qt.i
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 
-OPERA_VER=	9.21
+OPERA_VER=	9.22
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20070510
-OPERA_BUILD=	641
+OPERA_DATE=	20070716
+OPERA_BUILD=	655
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
@@ -67,10 +66,6 @@ LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 
 OPERA_LIB=	shared
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
-
-# The static version requires both compat4x and compat5x
-#LIB_DEPENDS+=	z.2:${PORTSDIR}/misc/compat5x
-#LIB_DEPENDS+=	m.2:${PORTSDIR}/misc/compat4x
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
 PLIST_SUB+=	GNOME=""
