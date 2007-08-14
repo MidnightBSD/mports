@@ -2,7 +2,7 @@
 # Date created:		13 August 2001
 # Whom:	      		Johann Visagie <wjv@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.1 2007/03/19 16:38:36 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-XML-Twig/Makefile,v 1.19 2007/01/23 13:22:33 miwi Exp $
 #
 
@@ -16,8 +16,6 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Process huge XML documents by chunks via a tree interface
 
-# On Perl < 5.8.0, XML::Twig has a further optional dependency on WeakRef.
-# However, WeakRef needs Perl 5.005_55.
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Text/Iconv.pm:${PORTSDIR}/converters/p5-Text-Iconv \
 		${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
 		${SITE_PERL}/Tie/IxHash.pm:${PORTSDIR}/devel/p5-Tie-IxHash \
@@ -35,10 +33,4 @@ CONFIGURE_ARGS+=	-y
 MAN1=		xml_grep.1 xml_merge.1 xml_pp.1 xml_spellcheck.1 xml_split.1
 MAN3=		XML::Twig.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500601
-IGNORE=		requires Perl 5.6.1 or newer, install lang/perl5.8 and try again
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
