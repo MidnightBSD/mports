@@ -2,13 +2,12 @@
 # Date created:			  Sat Aug 3, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD: mports/net/rsync/Makefile,v 1.1 2006/10/01 16:30:58 laffer1 Exp $
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.2 2007/05/20 04:04:13 ctriv Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.115 2006/09/02 08:00:16 pav Exp $
 #
 
 PORTNAME=	rsync
-PORTVERSION=	2.6.8
-PORTREVISION=	2
+PORTVERSION=	2.6.9
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
@@ -26,7 +25,8 @@ SUB_LIST=	NAME=rsyncd
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
-		--with-rsyncd-conf=${PREFIX}/etc/rsyncd.conf
+		--with-rsyncd-conf=${PREFIX}/etc/rsyncd.conf \
+		--mandir=${PREFIX}/man
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 PATCH_STRIP=	-p1
 
@@ -39,31 +39,35 @@ MAN5=		rsyncd.conf.5
 
 OPTIONS=	POPT_PORT "Use popt from devel/popt instead of bundled one" off \
 		TIMELIMIT "Time limit patch" on \
-		FLAGS "File system flags support patch, adds --flags" on \
-		ACLS "ACL support patch, adds --acls" on \
+		FLAGS "File system flags support patch, adds --flags" off \
+		ACLS "ACL support patch, adds --acls" off \
 		SSH "Use SSH instead of RSH" on
 
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_POPT_PORT)
 LIB_DEPENDS+=	popt.0:${PORTSDIR}/devel/popt
-CONFIGURE_ENV=	CFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
 .else
 CONFIGURE_ARGS+=	--with-included-popt
 .endif
 
-.if !defined(WITHOUT_TIMELIMIT)
+.if defined(WITH_TIMELIMIT)
 EXTRA_PATCHES+=	${WRKSRC}/patches/time-limit.diff
 .endif
 
-.if !defined(WITHOUT_FLAGS)
+.if defined(WITH_FLAGS)
 EXTRA_PATCHES+=	${WRKSRC}/patches/flags.diff
 .endif
 
-.if !defined(WITHOUT_ACLS)
-EXTRA_PATCHES+=	${WRKSRC}/patches/acls.diff
+.if defined(WITH_ACLS)
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patches-acls.diff ${WRKSRC}/patches/acls.diff
 CONFIGURE_ARGS+=--enable-acl-support
+
+.if defined(WITH_FLAGS)
+IGNORE=	can't be buld: Flags and ACL patches can not be enabled at the same time.
+.endif
 .endif
 
 .if defined(WITHOUT_SSH)
