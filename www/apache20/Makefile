@@ -3,7 +3,7 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.2 2007/08/01 19:52:24 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.3 2007/08/14 02:40:13 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -25,7 +25,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 LATEST_LINK=	apache20
 
 CONFLICTS=	caudium-devel-1.* caudium10-1.* caudium12-* \
-		thttpd-2.*
+		apache-2.2.* apache-*-2.2.*
 
 # patch files
 EXTRA_PATCHES+=		${FILESDIR}/build-fix-openssl_beta
