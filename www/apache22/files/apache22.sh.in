@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/apache22/files/apache22.sh.in,v 1.2 2007/01/13 12:13:12 clement Exp $
 #
 

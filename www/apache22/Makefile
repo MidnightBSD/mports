@@ -3,13 +3,14 @@
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
 # $FreeBSD: ports/www/apache22/Makefile,v 1.198 2006/09/24 16:16:39 clement Exp $
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.2 2007/01/19 20:44:09 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.3 2007/08/02 07:24:33 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.4
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
@@ -32,7 +33,7 @@ SCRIPTS_ENV+=	FULLBUILD=on
 
 LATEST_LINK=	apache22
 
-CONFLICTS=	thttpd-2.* apache-2.0.* apache-*-2.0.*
+CONFLICTS=	apache-2.0.* apache-*-2.0.*
 
 SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_VERSION=${LIBTOOL_VERSION} AUTOCONF=${AUTOCONF} \
@@ -166,7 +167,7 @@ post-extract:
 
 post-patch:
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
-	@${REINPLACE_CMD} -e 's," PLATFORM ",FreeBSD,' \
+	@${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' \
 			${WRKSRC}/server/core.c
 	@${REINPLACE_CMD} -e "s,%%OSVERSION%%,${OSVERSION}," \
 			${WRKSRC}/srclib/apr/build/apr_hints.m4
@@ -195,6 +196,5 @@ post-install:
 .if !defined(NOPORTDOCS)
 	@[ -d ${DOCSDIR}/style/lang/ ] && ${TOUCH} ${DOCSDIR}/style/lang/.keepme
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
