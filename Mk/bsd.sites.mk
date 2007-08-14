@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.16 2007/04/29 19:39:22 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.17 2007/07/31 01:55:16 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -716,6 +716,17 @@ MASTER_SITE_NETBSD+=	\
 	ftp://ftp.dti.ad.jp/pub/NetBSD/packages/distfiles/%SUBDIR%/ \
 	ftp://ftp.iij.ad.jp/pub/NetBSD/packages/distfiles/%SUBDIR%/ \
 	ftp://melanoma.cs.rmit.edu.au/pub/NetBSD/packages/distfiles/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_NVIDIA)
+MASTER_SITE_NVIDIA+=    \
+        http://jp.download.nvidia.com/%SUBDIR%/ \
+        http://us.download.nvidia.com/%SUBDIR%/ \
+        http://tw.download.nvidia.com/%SUBDIR%/ \
+        http://download.nvidia.com/%SUBDIR%/ \
+        http://download1.nvidia.com/%SUBDIR%/ \
+        ftp://download.nvidia.com/%SUBDIR%/ \
+        ftp://download1.nvidia.com/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
