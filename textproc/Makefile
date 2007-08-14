@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.65 2007/06/11 02:03:59 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.66 2007/08/14 06:02:14 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -54,6 +54,7 @@
     SUBDIR += p5-Text-Diff
     SUBDIR += p5-Text-Reform
     SUBDIR += p5-Text-Tabs+Wrap
+    SUBDIR += p5-XML-DOM
     SUBDIR += p5-XML-Filter-BufferText
     SUBDIR += p5-XML-Handler-YAWriter
     SUBDIR += p5-XML-NamespaceSupport
