@@ -35,9 +35,9 @@ BINDIR=	${PREFIX}/bin
 SHAREDIR=${PREFIX}/share/qt
 
 ${SHAREDIR}:
-	mkdir -p "$@"
+	mkdir -p ${DESTDIR}"$@"/mkspecs
 
 beforeinstall: ${SHAREDIR}
-	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}
+	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}/
 
 .include <bsd.prog.mk>
