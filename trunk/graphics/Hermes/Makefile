@@ -2,15 +2,16 @@
 # Date created:				29 April 1999
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.1 2007/03/09 04:34:46 laffer1 Exp $
 # $FreeBSD: ports/graphics/Hermes/Makefile,v 1.39 2007/02/01 02:41:37 kris Exp $
 #
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.su.se/pub/lunar/source-archive/ \
+		http://www.clanlib.org/download/legacy/ \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
 
