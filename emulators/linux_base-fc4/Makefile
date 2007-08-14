@@ -3,7 +3,7 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.6 2007/04/24 20:06:35 ctriv Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.7 2007/05/25 18:53:38 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
@@ -23,6 +23,8 @@ EXTRACT_ONLY=		${BIN_DISTFILES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of packages needed in Linux mode (for i386/amd64)
+
+USE_GCPIO=	yes
 
 # We supply the mtree, so we can't use it.
 NO_MTREE=	yes
