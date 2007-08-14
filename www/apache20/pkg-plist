@@ -354,7 +354,6 @@ share/apache2/build/special.mk
 %%ICONS%%www/icons-dist/folder.sec.png
 %%ICONS%%www/icons-dist/forward.gif
 %%ICONS%%www/icons-dist/forward.png
-%%ICONS%%www/icons-dist/freebsd.gif
 %%ICONS%%www/icons-dist/generic.gif
 %%ICONS%%www/icons-dist/generic.png
 %%ICONS%%www/icons-dist/generic.red.gif

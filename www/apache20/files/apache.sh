@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/apache20/files/apache.sh,v 1.17 2006/02/20 20:47:47 dougb Exp $
 #
 
