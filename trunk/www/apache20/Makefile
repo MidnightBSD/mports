@@ -3,21 +3,19 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.1 2006/11/24 23:50:08 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.2 2007/08/01 19:52:24 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.0.59
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
-		${MASTER_SITE_LOCAL:S/$/:powerlogo/}
-MASTER_SITE_SUBDIR=	clement/:powerlogo
+MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
-DISTFILES=	${DISTNAME}.tar.bz2 powerlogo.gif:powerlogo
+DISTFILES=	${DISTNAME}.tar.bz2
 DIST_SUBDIR=	apache2
-EXTRACT_ONLY=	${DISTNAME}.tar.bz2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Version 2 of Apache web server with ${WITH_MPM:L} MPM.
@@ -26,12 +24,8 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 LATEST_LINK=	apache20
 
-CONFLICTS=	apache+mod_ssl-1.* apache+mod_ssl+ipv6-1.* apache+mod_ssl+modsnmp-1.* \
-		apache+mod_ssl+mod_snmp+ipv6-1.* apache+mod_ssl+mod_accel-1.* \
-		apache+mod_ssl+mod_snmp+mod_accel-1.* \
-		apache+ipv6-1.* apache+ssl-1.* apache-1.* apache_fp-1.* \
-		caudium-devel-1.* caudium10-1.* caudium12-* \
-		ru-apache+mod_ssl-1.* ru-apache-1.* thttpd-2.*
+CONFLICTS=	caudium-devel-1.* caudium10-1.* caudium12-* \
+		thttpd-2.*
 
 # patch files
 EXTRA_PATCHES+=		${FILESDIR}/build-fix-openssl_beta
@@ -176,15 +170,7 @@ pre-everything::
 	@${ECHO_MSG}	"make print-closest-mirrors >> /etc/make.conf"
 	@${ECHO_MSG}	""
 
-post-extract:
-	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/powerlogo.gif ${WRKSRC}/docs/icons/freebsd.gif
-
 post-patch:
-	@cd ${WRKSRC}/docs/docroot && \
-	 for f in index.html.*; do (\
-	  ${REINPLACE_CMD} -e 's,apache_pb,icons/freebsd.gif"\
-		ALT="[Powered by FreeBSD]"><IMG SRC="apache_pb2_ani,g' $$f \
-	 ); done
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${FILESDIR}/apache.sh > ${WRKDIR}/apache2.sh
@@ -192,7 +178,7 @@ post-patch:
 		${FILESDIR}/apache2libs.sh > ${WRKDIR}/apache2libs.sh
 	@${RM} -f ${WRKSRC}/docs/manual/index.html.ko.euc-kr
 	@${RM} -f ${WRKSRC}/docs/conf/highperformance-std.conf
-	@${REINPLACE_CMD} -e 's," PLATFORM ",FreeBSD,' \
+	@${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' \
 			${WRKSRC}/server/core.c
 	@${REINPLACE_CMD} -e 's,freebsd\[2345\],freebsd\[23456\],' \
 			${WRKSRC}/srclib/apr/build/apr_hints.m4
@@ -231,7 +217,6 @@ post-install: install-startup-script
 	@${MKDIR} ${PREFIX}/etc/apache2/envvars.d
 	@${MKDIR} ${PREFIX}/etc/apache2/Includes
 	@${ECHO_CMD} ""
-	@${CAT} ${PKGMESSAGE}
 .if !defined(NOPORTDOCS)
 	@[ -d ${DOCSDIR}/style/lang/ ] && ${TOUCH} ${DOCSDIR}/style/lang/.keepme
 .endif
