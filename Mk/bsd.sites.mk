@@ -20,21 +20,22 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.17 2007/07/31 01:55:16 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.18 2007/08/14 00:38:22 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
 # Where to put distfiles that don't have any other master site
 .if !defined(IGNORE_MASTER_SITE_LOCAL)
 MASTER_SITE_LOCAL+= \
+	ftp://mirrors.isc.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
+	http://cs.emich.edu/mbsd/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.se.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.uk.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.ru.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.jp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.tw.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://mirrors.isc.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
-	http://cs.emich.edu/mbsd/mports/distfiles/%SUBDIR%/ \
+	ftp://ftp.cn.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR% \
 	ftp://ftp.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
 
 MASTER_SITE_PORTS_JP+=	\
@@ -112,18 +113,25 @@ MASTER_SITE_BERLIOS+=	\
 	http://download2.berlios.de/%SUBDIR%/
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_CENKES)
+MASTER_SITE_CENKES+=	\
+	http://bsd.cenkes.org/%SUBDIR%/ \
+	http://bsd2.cenkes.org/%SUBDIR%/ \
+	http://bsd3.cenkes.org/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
+MASTER_SITE_CHEESESHOP+=	\
+	http://cheeseshop.python.org/packages/%SUBDIR%/
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_COMP_SOURCES)
 MASTER_SITE_COMP_SOURCES+=	\
 	ftp://gatekeeper.dec.com/pub/usenet/comp.sources.%SUBDIR%/ \
 	ftp://ftp.uu.net/usenet/comp.sources.%SUBDIR%/
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_CSME)
-MASTER_SITE_CSME+=	\
-	http://bsd1.csme.ru/%SUBDIR%/ \
-	http://bsd2.csme.ru/%SUBDIR%/ \
-	http://bsd3.csme.ru/%SUBDIR%/
-.endif
+MASTER_SITE_CSME+=	${MASTER_SITE_CENKES}
 
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
 MASTER_SITE_DEBIAN+=	\
@@ -169,7 +177,7 @@ MASTER_SITE_DEBIAN_POOL+=	\
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EASYSW)
-MASTER_SITE_EASYSW+=    \
+MASTER_SITE_EASYSW+=	\
 	http://ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp2.easysw.com/pub/%SUBDIR%/ \
@@ -524,7 +532,7 @@ MASTER_SITE_ISC+=	\
 
 .if !defined(IGNORE_MASTER_SITE_KDE)
 MASTER_SITE_KDE+=	\
-	ftp://ftp.scarlet.be/pub/kde/%SUBDIR%/ \
+	ftp://ftp.kde.org/pub/kde/%SUBDIR%/ \
 	http://ftp.scarlet.be/pub/kde/%SUBDIR%/ \
 	http://mirrors.isc.org/pub/kde/%SUBDIR%/ \
 	ftp://ftp.gtlib.cc.gatech.edu/pub/kde/%SUBDIR%/ \
