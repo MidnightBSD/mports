@@ -2,12 +2,13 @@
 # Date created:		15 November 1994
 # Whom:			torstenb
 #
-# $FreeBSD: ports/graphics/ImageMagick/Makefile,v 1.224 2006/09/04 18:36:59 pav Exp $
 # $MidnightBSD$
+# $FreeBSD: ports/graphics/ImageMagick/Makefile,v 1.240 2007/08/07 16:38:36 dinoex Exp $
 #
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.2.9-3
+DISTVERSION=	6.3.3-5
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/ \
@@ -35,7 +36,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15 libltdl:15
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CONFIGURE_ARGS=	--enable-shared
+CONFIGURE_ARGS=	--enable-shared --without-dps --prefix=${PREFIX} 
 USE_LDCONFIG=	yes
 
 MAN1=		ImageMagick.1 Magick++-config.1 Magick-config.1 Wand-config.1 \
@@ -47,11 +48,38 @@ LDFLAGS=	-L${LOCALBASE}/lib
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION:R}
 
+OPTIONS=	X11				"X11 support" on \
+		IMAGEMAGICK_PERL		"Perl support" on \
+		IMAGEMAGICK_MODULES		"Modules support" off \
+		IMAGEMAGICK_BZLIB		"Bzlib support" on \
+		IMAGEMAGICK_16BIT_PIXEL		"16bit pixel support" on \
+		IMAGEMAGICK_LCMS		"LCMS support" on \
+		IMAGEMAGICK_TTF			"Freetype support" on \
+		IMAGEMAGICK_FONTCONFIG		"Fontconfig support" on \
+		IMAGEMAGICK_JPEG		"JPG format support" on \
+		IMAGEMAGICK_PNG			"PNG format support" on \
+		IMAGEMAGICK_TIFF		"TIFF format support" on \
+		IMAGEMAGICK_FPX			"FPX format support" on \
+		IMAGEMAGICK_JBIG		"JBIG format support" on \
+		IMAGEMAGICK_JPEG2000		"JPEG2000 format support" on \
+		IMAGEMAGICK_DOT		"GraphViz dot graphs support" off \
+		IMAGEMAGICK_WMF			"WMF format support" off \
+		IMAGEMAGICK_SVG			"SVG format support" off \
+		IMAGEMAGICK_PDF			"PDF format support" on \
+		IMAGEMAGICK_MPEG2		"MPEG2 format support" on \
+		IMAGEMAGICK_GSLIB	"libgs (Postscript SHLIB) support" off
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_GHOSTSCRIPT_GNU)
+IGNORE=		requires newer version of ghostscript
+.endif
+
 .if !defined(WITHOUT_IMAGEMAGICK_PERL)
 CONFIGURE_ARGS+=	--with-perl=${PERL5}
 PLIST_SUB+=		WITH_PERL=''
-MAN3=			Image::Magick.3
-MAN3PREFIX=		${TARGETDIR}/lib/perl5/${PERL_VER}
+#MAN3=			Image::Magick.3
+#MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
 .else
 CONFIGURE_ARGS+=	--without-perl
 PLIST_SUB+=		WITH_PERL='@comment '
@@ -61,7 +89,9 @@ PLIST_SUB+=		WITH_PERL='@comment '
 .if defined(WITH_IMAGEMAGICK_THREADS) || \
     (!defined(WITHOUT_IMAGEMAGICK_PERL) && \
      defined(PERL_THREADED) && ${PERL_THREADED} == "true")
-CONFIGURE_ARGS+=	--with-threads
+CONFIGURE_ARGS+=	--with-threads --build=${ARCH}-portbld-freebsd6.0 \
+			--host=${ARCH}-portbld-freebsd6.0 --prefix=${PREFIX} \
+			--mandir=${PREFIX}/man
 CONFIGURE_ENV+=		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" PTHREAD_LIBS="${PTHREAD_LIBS}"
 LDFLAGS+=		${PTHREAD_LIBS}
 WITH_IMAGEMAGICK_THREADS=yes
@@ -116,6 +146,13 @@ CONFIGURE_ARGS+=	--without-tiff
 PLIST_SUB+=		TIFF="@comment "
 .endif
 
+.if defined(WITH_IMAGEMAGICK_GSLIB)
+CONFIGURE_ARGS+=	--with-gslib
+USE_GHOSTSCRIPT=	yes
+.else
+CONFIGURE_ARGS+=	--without-gslib
+.endif
+
 # Produce BZip compressed MIFF images
 .if defined(WITHOUT_IMAGEMAGICK_BZLIB)
 CONFIGURE_ARGS+=	--without-bzlib
@@ -150,8 +187,9 @@ PLIST_SUB+=		JPEG2000="@comment "
 
 # GraphViz dot graphs
 .if defined(WITH_IMAGEMAGICK_DOT)
-BUILD_DEPENDS+=		dot:${PORTSDIR}/graphics/graphviz
-RUN_DEPENDS+=		dot:${PORTSDIR}/graphics/graphviz
+LIB_DEPENDS+=		gvc:${PORTSDIR}/graphics/graphviz
+CFLAGS+=		-I${LOCALBASE}/include/graphviz
+LDFLAGS+=		-L${LOCALBASE}/lib/graphviz
 .else
 CONFIGURE_ARGS+=	--without-dot --without-gvc
 .endif
@@ -208,6 +246,9 @@ CONFIGURE_ARGS+=	--with-xml
 CONFIGURE_ARGS+=	--without-xml
 .endif
 .if defined(WITH_IMAGEMAGICK_SVG)
+.if defined(WITHOUT_X11)
+IGNORE=			SVG support requires X11 libraries, please unset WITHOUT_X11
+.endif
 LIB_DEPENDS+=		rsvg-2.2:${PORTSDIR}/graphics/librsvg2
 CONFIGURE_ARGS+=	--with-rsvg
 CONFIGURE_ENV+=		RSVG_CFLAGS="-I${X11BASE}/include/librsvg-2" \
@@ -216,19 +257,9 @@ CONFIGURE_ENV+=		RSVG_CFLAGS="-I${X11BASE}/include/librsvg-2" \
 CONFIGURE_ARGS+=	--without-rsvg
 .endif
 
-# DPS (Display PostScript) support
-.if !defined(WITHOUT_IMAGEMAGICK_DPS)
-CONFIGURE_ARGS+=	--with-dps
-.else
-CONFIGURE_ARGS+=	--without-dps
-.endif
-
 # PDF (Adobe Portable Document Format) support
 .if !defined(WITHOUT_IMAGEMAGICK_PDF)
-CONFIGURE_ARGS+=	--with-gslib
 USE_GHOSTSCRIPT=	yes
-.else
-CONFIGURE_ARGS+=	--without-gslib
 .endif
 
 .if defined(WITHOUT_X11)
@@ -295,4 +326,4 @@ post-install:
 	@${TOUCH} ${PREFIX}/lib/ImageMagick/modules-Q16/filters/.keep
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
