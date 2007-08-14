@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.18 2007/08/14 00:38:22 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.19 2007/08/14 00:49:48 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -131,7 +131,9 @@ MASTER_SITE_COMP_SOURCES+=	\
 	ftp://ftp.uu.net/usenet/comp.sources.%SUBDIR%/
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_CSME)
 MASTER_SITE_CSME+=	${MASTER_SITE_CENKES}
+.endif
 
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
 MASTER_SITE_DEBIAN+=	\
