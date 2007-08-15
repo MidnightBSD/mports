@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.3 2006/10/31 11:58:41 wintellect Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -83,8 +83,6 @@ Database_Include_MAINTAINER=	ports@MidnightBSD.org
 .if defined(USE_MYSQL)
 DEFAULT_MYSQL_VER?=	50
 # MySQL client version currently supported.
-MYSQL323_LIBVER=	10
-MYSQL40_LIBVER=		12
 MYSQL41_LIBVER=		14
 MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		15
@@ -180,7 +178,7 @@ CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
 .if defined(USE_BDB)
 
-_DB_PORTS=	2 3 40 41 42 43 44 3+ 40+ 41+ 42+ 43+ 44+
+_DB_PORTS=	2 3 40 41 42 43 44 45 3+ 40+ 41+ 42+ 43+ 44+ 45+
 # Dependence lines for different db versions
 db2_DEPENDS=	db2.0:${PORTSDIR}/databases/db2
 db3_DEPENDS=	db3.3:${PORTSDIR}/databases/db3
@@ -189,6 +187,7 @@ db41_DEPENDS=	db41.1:${PORTSDIR}/databases/db41
 db42_DEPENDS=	db-4.2.2:${PORTSDIR}/databases/db42
 db43_DEPENDS=	db-4.3.0:${PORTSDIR}/databases/db43
 db44_DEPENDS=	db-4.4.0:${PORTSDIR}/databases/db44
+db45_DEPENDS=	db-4.5.0:${PORTSDIR}/databases/db45
 # Detect db versions by finding some files
 db3_FIND=	${LOCALBASE}/include/db3/db.h
 db40_FIND=	${LOCALBASE}/include/db4/db.h
@@ -196,13 +195,15 @@ db41_FIND=	${LOCALBASE}/include/db41/db.h
 db42_FIND=	${LOCALBASE}/include/db42/db.h
 db43_FIND=	${LOCALBASE}/include/db43/db.h
 db44_FIND=	${LOCALBASE}/include/db44/db.h
+db45_FIND=	${LOCALBASE}/include/db45/db.h
 
 # For specifying [3, 40, 41, ..]+
-_DB_3P=		3 40 41 42 43 44
-_DB_40P=	40 41 42 43 44
-_DB_41P=	41 42 43 44
-_DB_42P=	42 43 44
-_DB_43P=	43 44
+_DB_3P=		3 40 41 42 43 44 45
+_DB_40P=	40 41 42 43 44 45
+_DB_41P=	41 42 43 44 45
+_DB_42P=	42 43 44 45
+_DB_43P=	43 44 45
+_DB_44P=	44 45
 
 # Override the global WITH_BDB_VER with the
 # port specific <UNIQUENAME>_WITH_BDB_VER
@@ -326,6 +327,10 @@ BDB_LIB_DIR=		${LOCALBASE}/lib/db43
 BDB_LIB_NAME=		db-4.4
 BDB_LIB_CXX_NAME=	db_cxx-4.4
 BDB_LIB_DIR=		${LOCALBASE}/lib/db44
+.  elif ${_BDB_VER} == 45
+BDB_LIB_NAME=		db-4.5
+BDB_LIB_CXX_NAME=	db_cxx-4.5
+BDB_LIB_DIR=		${LOCALBASE}/lib/db45
 .  endif
 BDB_LIB_NAME?=		db${_BDB_VER}
 BDB_LIB_CXX_NAME?=	db${_BDB_VER}_cxx
