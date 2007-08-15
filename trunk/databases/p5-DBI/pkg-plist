@@ -7,11 +7,13 @@ bin/dbilogstrip
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/dbi_sql.h
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/dbivport.h
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/dbd_xsh.h
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/dbixs_rev.h
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/dbipport.h
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/DBI.so
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/DBI.bs
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/Roadmap.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/dbixs_rev.pl
 %%SITE_PERL%%/%%PERL_ARCH%%/goferperf.pl
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/TASKS.pod
@@ -60,7 +62,6 @@ bin/dbilogstrip
 %%PORTDOCS%%%%DOCSDIR%%/Changes
 %%PORTDOCS%%%%DOCSDIR%%/README
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Transport
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Util
