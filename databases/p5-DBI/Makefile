@@ -2,12 +2,13 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.2 2007/05/04 20:28:34 ctriv Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.3 2007/08/10 15:54:06 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
 PORTVERSION=	1.58
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	DBI
@@ -15,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
+LICENSE=	perl
 
 OPTIONS=	PROXY "Enable DBI::Proxy" Off
 
