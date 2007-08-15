@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.54 2007/08/09 19:42:26 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.55 2007/08/09 21:09:12 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2431,8 +2431,8 @@ _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 # Search CDROM first if mounted, symlink instead of copy if
 # FETCH_SYMLINK_DISTFILES is set
 .for MOUNTPT in ${CD_MOUNTPTS}
-.if exists(${MOUNTPT}/mports/distfiles)
-_MASTER_SITE_OVERRIDE:=	file:${MOUNTPT}/mports/distfiles/${DIST_SUBDIR}/ ${_MASTER_SITE_OVERRIDE}
+.if exists(${MOUNTPT}/mports/Distfiles)
+_MASTER_SITE_OVERRIDE:=	file:${MOUNTPT}/mports/Distfiles/${DIST_SUBDIR}/ ${_MASTER_SITE_OVERRIDE}
 .if defined(FETCH_SYMLINK_DISTFILES)
 FETCH_BEFORE_ARGS+=	-l
 .endif
@@ -5060,11 +5060,12 @@ describe:
 describe-yaml:
 	@perl -MYAML -e ' \
 		my %port = ( \
-			name       => q(${UNIQUENAME}), \
+			name       => q(${PKGNAME}), \
 			origin     => q(${PKGORIGIN}), \
 			version    => q(${PKGVERSION}), \
-			desciption => q(${COMMENT}), \
+			description => qq(${COMMENT:S/'/\x27/g}), \
 		); \
+		$$port{name} =~ s/^(.*)-.*/$$1/; \
 		$$port{extract_depends} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS}}) ]; \
 		$$port{patch_depends}   = [ map((split /:/)[1], qw{${PATCH_DEPENDS}})   ]; \
 		$$port{fetch_depends}   = [ map((split /:/)[1], qw{${FETCH_DEPENDS}})   ]; \
@@ -5072,7 +5073,7 @@ describe-yaml:
 		$$port{run_depends}     = [ map((split /:/)[1], qw{${RUN_DEPENDS}})     ]; \
 		$$port{depends}         = [ map((split /:/)[0], qw{${DEPENDS}})         ]; \
 		$$port{lib_depends}     = [ map((split /:/)[1], qw{${LIB_DEPENDS}})     ]; \
-		print Dump(\%port); '
+		print Dump(\%port);  '
 .endif
 
 www-site:
