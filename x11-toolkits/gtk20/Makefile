@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.5 2007/04/26 03:45:11 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.6 2007/04/28 02:34:52 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
@@ -39,7 +39,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 
 USE_XPM=	yes
 USE_PERL5=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack atk pango ltverhack
 USE_GETTEXT=	yes
@@ -84,8 +84,7 @@ STRIP=
 
 # There is a SSE2 bug in either GCC or in our libc, when use p4, p-m or else
 # is being use in CPUTYPE that enable SSE2 will causing Java with GTK2 and
-# Mono/gtk-sharp crash. Disable SSE2 to solve the crash and see ports/72014
-# for detail.
+# Mono/gtk-sharp crash. Disable SSE2 to solve the crash 
 .if ( ${ARCH} == "i386" || ${ARCH} == "amd64" ) \
 	&& ${CC} != "icc"
 CFLAGS+=	-mno-sse2
