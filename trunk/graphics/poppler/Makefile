@@ -4,17 +4,18 @@
 #
 # $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
 #   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.2 2007/03/20 16:13:31 ctriv Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.3 2007/08/16 02:38:18 laffer1 Exp $
 #
 
 PORTNAME=	poppler
 PORTVERSION=	0.5.3
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	graphics print
 MASTER_SITES=	http://poppler.freedesktop.org/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A PDF rendering library
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_XLIB=	yes
