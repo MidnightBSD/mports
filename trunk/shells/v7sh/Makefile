@@ -22,10 +22,13 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of the UNIX 7th Edition shell
+LICENSE=	unknown
 
 EXTRACT_CMD=	${CP}
 EXTRACT_BEFORE_ARGS=
 EXTRACT_AFTER_ARGS=	${WRKDIR}
+
+FAKE_OPTS=	trueprefix
 
 NO_WRKSUBDIR=	yes
 MAN1=		${PORTNAME}.1
