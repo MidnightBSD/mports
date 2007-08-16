@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.2 2007/04/29 22:55:27 ctriv Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.3 2007/08/16 18:00:03 laffer1 Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -17,7 +17,7 @@
 
 PORTNAME=	apr
 PORTVERSION=	1.2.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	apr
