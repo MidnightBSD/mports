@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.1 2006/11/04 15:16:57 wintellect Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.2 2007/04/29 22:55:27 ctriv Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -77,7 +77,7 @@ APR_UTIL_WITH_BERKELEY_DB=	yes
 .if defined(APR_UTIL_WITHOUT_BERKELEY_DB)
 APR_UTIL_CONF_ARGS+=	--without-berkeley-db
 .elif defined(APR_UTIL_WITH_BERKELEY_DB) || exists(${LOCALBASE}/lib/libdb-4.2.so.2)
-USE_BDB=	42+
+USE_BDB=	42
 APR_UTIL_CONF_ARGS+=	--with-berkeley-db=${BDB_INCLUDE_DIR}:${BDB_LIB_DIR}
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
