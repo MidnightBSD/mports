@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.1 2006/11/17 21:19:38 laffer1 Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.2 2007/04/13 06:32:02 ctriv Exp $
 #
 
 PORTNAME=	nas
@@ -17,8 +17,9 @@ COMMENT=	Network Audio System
 
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_IMAKE=	yes
+USE_XLIB=	yes
 USE_X_PREFIX= 	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 MAKE_ENV+=	COMPRESS_CMD="${COMPRESS_CMD:S/c//}"
 PKGMESSAGE=	${WRKDIR}/pkg-message
 SUB_FILES=	pkg-message
@@ -34,9 +35,6 @@ post-configure:
 	    -e 's,-c \$$(CCOPTIONS),-c $$(CFLAGS),' \
 	    -e 's,\(\$$(AR) \$$@ \$$\)(OBJS),\1(OBJS:S|^|unshared/|),' \
 		${WRKSRC}/lib/audio/Makefile
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include "Makefile.man"
 
