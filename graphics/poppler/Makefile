@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
 #   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.1 2007/01/24 16:39:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.2 2007/03/20 16:13:31 ctriv Exp $
 #
 
 PORTNAME=	poppler
@@ -67,10 +67,10 @@ LIB_DEPENDS+=		cairo.2:${PORTSDIR}/graphics/cairo
 
 post-patch:
 .if defined(SLAVEPORT) && ${SLAVEPORT}=="qt"
-	@${REINPLACE_CMD} -e 's|/usr/local/qt/include|${X11BASE}/include|; \
-		s|/usr/local/qt/lib|${X11BASE}/lib|' \
+	@${REINPLACE_CMD} -e 's|/usr/local/qt/include|${PREFIX}/include|; \
+		s|/usr/local/qt/lib|${PREFIX}/lib|' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|$$QTDIR|${X11BASE}|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|$$QTDIR|${PREFIX}|' ${WRKSRC}/configure
 .endif
 
 post-install:
