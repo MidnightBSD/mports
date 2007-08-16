@@ -2,12 +2,12 @@
 # Date created:		8 September 2003
 # Whom:			roam@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.2 2007/04/02 00:40:00 laffer1 Exp $
 # $FreeBSD: ports/dns/c-ares/Makefile,v 1.5 2006/12/06 09:58:55 roam Exp $
 #
 
 PORTNAME=	c-ares
-PORTVERSION=	1.3.2
+PORTVERSION=	1.4.0
 CATEGORIES=	dns
 MASTER_SITES=	http://daniel.haxx.se/projects/c-ares/
 
@@ -15,8 +15,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An asynchronous DNS resolver library
 
 OPTIONS=	CONFIG_INFO	"Add the ares_config_info patch" ON
-
-CONFLICTS=	ares-1.*
 
 .include <bsd.port.pre.mk>
 
@@ -51,6 +49,9 @@ MAN3=	ares_cancel.3 \
 	ares_send.3 \
 	ares_strerror.3 \
 	ares_timeout.3 \
-	ares_version.3
+	ares_version.3 \
+	ares_parse_ns_reply.3 \
+	ares_destroy_options.3 \
+	ares_save_options.3
 
 .include <bsd.port.post.mk>
