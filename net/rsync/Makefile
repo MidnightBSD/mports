@@ -2,7 +2,7 @@
 # Date created:			  Sat Aug 3, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD: mports/net/rsync/Makefile,v 1.2 2007/05/20 04:04:13 ctriv Exp $
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.3 2007/08/14 22:01:55 laffer1 Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.115 2006/09/02 08:00:16 pav Exp $
 #
 
@@ -66,7 +66,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patches-acls.diff ${WRKSRC}/patches/acls.diff
 CONFIGURE_ARGS+=--enable-acl-support
 
 .if defined(WITH_FLAGS)
-IGNORE=	can't be buld: Flags and ACL patches can not be enabled at the same time.
+IGNORE=	can't be built: Flags and ACL patches can not be enabled at the same time.
 .endif
 .endif
 
