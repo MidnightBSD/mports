@@ -2,12 +2,12 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.3 2007/05/04 20:32:21 ctriv Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.4 2007/08/02 07:32:59 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.4.2
-PORTREVISION?=	1
+PORTVERSION=	1.4.3
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.2/:bookhtml \
@@ -40,7 +40,7 @@ USE_LDCONFIG=	yes
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool:15
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=		--with-ssl
 
 USE_RC_SUBR=	svnserve.sh
@@ -177,7 +177,7 @@ SVNGROUP?=	svn
 .if defined(WITH_APACHE2_APR)
 USE_APACHE=	2.0+
 .include "${PORTSDIR}/Mk/bsd.apache.mk"
-.if ${APACHE_VERSION} >= 21
+.if ${APACHE_VERSION} >= 22
 APR_APU_DIR=	${LOCALBASE}/bin
 APR_CONFIG=	apr-1-config
 APU_CONFIG=	apu-1-config
