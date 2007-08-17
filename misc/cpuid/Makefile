@@ -3,13 +3,13 @@
 # Date created:			May 22, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/cpuid/Makefile,v 1.1 2007/03/09 05:33:44 laffer1 Exp $
 # $FreeBSD: ports/misc/cpuid/Makefile,v 1.14 2006/11/14 20:49:38 edwin Exp $
 #
 
 PORTNAME=	cpuid
 PORTVERSION=	3.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc
 MASTER_SITES=	http://www.ka9q.net/code/cpuid/
 
