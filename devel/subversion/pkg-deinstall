@@ -3,6 +3,7 @@
 # Try to de-activate mod_dav_svn in the installed httpd.conf and warn
 # if this fails.
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/subversion/pkg-deinstall,v 1.2 2003/06/19 16:40:42 bmah Exp $
 #
 
