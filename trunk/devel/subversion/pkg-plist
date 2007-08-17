@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/devel/subversion/pkg-plist,v 1.36 2006/09/12 12:46:30 lev Exp $
+@comment $MidnightBSD$
 bin/svn
 bin/svnadmin
 bin/svndumpfilter
@@ -380,4 +380,3 @@ lib/libsvn_wc-1.so.0
 @dirrm %%DATADIR%%/test-scripts
 @dirrm %%DATADIR%%/xslt
 @dirrm share/subversion
-
