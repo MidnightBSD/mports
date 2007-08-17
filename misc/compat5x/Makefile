@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.3 2007/04/22 18:19:59 ctriv Exp $
+# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.4 2007/05/25 16:45:48 laffer1 Exp $
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 
@@ -37,8 +37,6 @@ USE_LDCONFIG=	${TARGET_DIR}
 
 RUN_DEPENDS+=	${LOCALBASE}/share/compat/locale/UTF-8/LC_CTYPE:${PORTSDIR}/misc/localedata
 
-PLIST_SUB+=	ALPHA="@comment "
-
 .if ${ARCH} == amd64
 PLIST_SUB+=	AMD64=""
 PLIST_SUB+=	LDCONFIG_LIB32="${LDCONFIG} -32"
@@ -69,6 +67,5 @@ do-install:
 
 # Include to automatic install file in libdata/ldconfig{,32}
 .include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
-
 
 .include <bsd.port.post.mk>
