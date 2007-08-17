@@ -2,12 +2,12 @@
 # Date created:		Wed Jan 9 12:27:54 CET 2002
 # Whom:			Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.3 2007/05/20 02:35:19 laffer1 Exp $
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.4 2007/05/20 03:55:33 ctriv Exp $
 # $FreeBSD: ports/print/pdflib/Makefile,v 1.52 2006/11/01 12:35:35 ale Exp $
 #
 
 PORTNAME=	pdflib
-PORTVERSION=	7.0.0p3
+PORTVERSION=	7.0.2
 CATEGORIES=	print
 MASTER_SITES=	http://www.pdflib.com/binaries/PDFlib/${PORTVERSION:S/.//g:S/p3//}/
 DISTNAME=	PDFlib-Lite-${PORTVERSION}
