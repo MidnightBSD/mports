@@ -2,7 +2,7 @@
 # Date created:				7 December 1998
 # Whom:					Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.3 2007/04/06 20:39:29 ctriv Exp $
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.4 2007/08/14 20:24:01 ctriv Exp $
 # $FreeBSD: ports/textproc/aspell/Makefile,v 1.81 2006/08/06 21:05:14 thierry Exp $
 #
 
@@ -10,8 +10,8 @@ PORTNAME=	aspell
 PORTVERSION=	0.60.4
 PORTREVISION=	5
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	aspell
+MASTER_SITES+=		${MASTER_SITE_GNU:S|$|:dicten|}
+MASTER_SITE_SUBDIR+=	aspell/dict/en/:dicten
 .if defined(WITHOUT_DICTEN)
 PKGNAMESUFFIX=	-without-dicten
 .endif
@@ -52,7 +52,7 @@ DICT_TARGET=
 .else
 VERDICT_EN=		6-en-6.0-0
 DICT_SUFFIX=		.tar.bz2
-MASTER_SITES+=		${MASTER_SITE_GNU:S|%SUBDIR%/|%SUBDIR%/dict/en/:dicten|}
+MASTER_SITES+=		${MASTER_SITE_GNU:S|$|:dicten|}
 DISTFILES+=		aspell${VERDICT_EN}${DICT_SUFFIX}:dicten
 CONFLICTS=		aspell-without-dicten-0.*
 DICT_TARGET=		inst-dicten
