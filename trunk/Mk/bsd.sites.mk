@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.20 2007/08/14 00:51:21 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.21 2007/08/14 01:16:04 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -334,6 +334,17 @@ MASTER_SITE_FESTIVAL+= \
 MASTER_SITE_FESTIVAL_OGI+= \
 	ftp://ftp.tuwien.ac.at/opsys/linux/blinux/festival/mirror.ogi-synth_home/ \
 	http://www.cslu.ogi.edu/tts/download/data/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_FREEBSD_LOCAL)
+MASTER_SITE_FREEBSD_LOCAL+=	\
+	ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.se.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.uk.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.ru.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.jp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.tw.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
+	ftp://ftp.cn.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%
 .endif
 
 #
