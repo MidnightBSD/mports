@@ -1,6 +1,6 @@
---- ./configure.orig	Wed Oct 19 04:36:26 2005
-+++ ./configure	Thu Apr  5 00:40:43 2007
-@@ -2916,7 +2916,7 @@
+--- ./configure.orig	Tue Dec 19 06:03:38 2006
++++ ./configure	Sat Aug 18 17:59:39 2007
+@@ -3509,7 +3509,7 @@
  fi
  
  
@@ -9,7 +9,7 @@
  then
    CXXFLAGS="$CXXFLAGS -fno-exceptions"
  fi
-@@ -9975,13 +9975,6 @@
+@@ -10857,13 +10857,6 @@
  	;;
      esac
  
@@ -23,7 +23,7 @@
      # Update the list of available tags.
      if test -n "$tagname"; then
        echo appending configuration tag \"$tagname\" to $ofile
-@@ -19872,6 +19865,10 @@
+@@ -19503,6 +19496,10 @@
  
  # This can be used to rebuild libtool when needed
  LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
@@ -34,7 +34,7 @@
  
  # Always use our own libtool.
  LIBTOOL='$(SHELL) $(top_builddir)/libtool'
-@@ -23160,7 +23157,7 @@
+@@ -22764,7 +22761,7 @@
    CURSES_LIB=-lncurses
  
  cat >>confdefs.h <<\_ACEOF
@@ -43,7 +43,7 @@
  _ACEOF
  
  else
-@@ -23341,7 +23338,7 @@
+@@ -22938,7 +22935,7 @@
  
  
  cat >>confdefs.h <<\_ACEOF

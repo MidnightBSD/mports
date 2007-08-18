@@ -2,13 +2,12 @@
 # Date created:				7 December 1998
 # Whom:					Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.4 2007/08/14 20:24:01 ctriv Exp $
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.5 2007/08/17 01:34:08 laffer1 Exp $
 # $FreeBSD: ports/textproc/aspell/Makefile,v 1.81 2006/08/06 21:05:14 thierry Exp $
 #
 
 PORTNAME=	aspell
-PORTVERSION=	0.60.4
-PORTREVISION=	5
+PORTVERSION=	0.60.5
 CATEGORIES=	textproc
 MASTER_SITES+=		${MASTER_SITE_GNU:S|$|:dicten|}
 MASTER_SITE_SUBDIR+=	aspell/dict/en/:dicten
@@ -20,6 +19,7 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better suggestion logic than ispell
+LICENSE=	lgpl
 
 FAKE_OPTS=	libs bin
 
@@ -27,7 +27,9 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=		--enable-dict-dir=${DATADIR}	\
 			--enable-docdir=${DOCSDIR}	\
-			--enable-static
+			--enable-static 		\
+			--mandir=${PREFIX}/man		\
+			--infodir=${PREFIX}/info	
 PTHREAD_CFLAGS=		# Disable threading
 PTHREAD_LIBS=		# libaspell may be used by unthreaded apps.
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}"	\
@@ -121,7 +123,7 @@ inst-dicten:
 .if !exists(${LOCALBASE}/lib/aspell-${VERINST}/en.dat) && !defined(WITHOUT_DICTEN)
 	@${ECHO_MSG} "===>   Installing for en dictionaries"
 	cd ${WRKDIR}/aspell${VERDICT_EN} &&		\
-	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/lib/aspell-0.60" && \
+	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--prefix=${PREFIX}" && \
 	 ${GMAKE} ${INSTALL_TARGET}
 	${SED} -e "s|%%VER%%|${VERINST}|" ${MASTERDIR}/pkg-plist.en	\
 		>> ${TMPPLIST}
