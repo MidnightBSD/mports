@@ -3,7 +3,7 @@
 # Whom:					Sergey Osokin aka oZZ <osa@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db3/Makefile,v 1.64 2006/06/17 11:15:43 itetcu Exp $
-# $MidnightBSD: mports/databases/db3/Makefile,v 1.2 2007/08/09 21:10:22 laffer1 Exp $
+# $MidnightBSD: mports/databases/db3/Makefile,v 1.3 2007/08/10 00:29:52 ctriv Exp $
 #
 
 PORTNAME=	db3
@@ -43,7 +43,8 @@ PORTDOCS=		*
 .endif
 
 INCLUDEDIR= 	${PREFIX}/include/db3
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} includedir=${FAKE_DESTDIR}${INCLUDEDIR}
+FAKE_OPTS=	prefixhack
+FAKE_MAKEARGS+=	includedir=${FAKE_DESTDIR}${INCLUDEDIR}
 
 .if defined(WITH_TCL_VER)
 .if ${WITH_TCL_VER} == 8.4 || ${WITH_TCL_VER} == 8.3

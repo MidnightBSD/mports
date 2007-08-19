@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@web.de>
 #
 # $FreeBSD: ports/databases/db41/Makefile,v 1.60 2006/04/14 03:44:07 mnag Exp $
-# $MidnightBSD: mports/databases/db41/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/db41/Makefile,v 1.2 2007/05/21 17:52:43 ctriv Exp $
 #
 
 PORTNAME=	db41
@@ -32,7 +32,8 @@ CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 \
 		--enable-cxx --enable-dynamic \
 		--includedir=${INCLUDEDIR}
-FAKE_MAKEARGS=	prefix=${FAKE_DESTDIR}${PREFIX} includedir=${FAKE_DESTDIR}${INCLUDEDIR}
+FAKE_OPTS=	prefixhack
+FAKE_MAKEARGS+=	includedir=${FAKE_DESTDIR}${INCLUDEDIR}
 USE_LDCONFIG=	yes
 
 .if !defined(NOPORTDOCS)

@@ -3,7 +3,7 @@
 # Whom:                cnh@ivmg.net
 #
 # $FreeBSD: ports/net-mgmt/tcpreplay/Makefile,v 1.21 2005/12/21 06:02:47 az Exp $
-# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.1 2006/12/26 02:20:56 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.2 2007/06/06 20:58:12 ctriv Exp $
 #
 
 PORTNAME=	tcpreplay
@@ -25,8 +25,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
 CONFIGURE_ARGS=	--with-libpcap=${LOCALBASE} \
 		--without-pcapnav-config
 
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
-
+FAKE_OPTS=	prefixhack
+FAKE_MAKEARGS=	MAN1DIR=${FAKE_DESTDIR}${PREFIX}/man/man1 MAN8DIR=${FAKE_DESTDIR}${PREFIX}/man/man8
 MAN1=		capinfo.1 tcpprep.1 pcapmerge.1 flowreplay.1
 MAN8=		tcpreplay.8
 

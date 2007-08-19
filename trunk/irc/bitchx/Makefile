@@ -2,7 +2,7 @@
 # Date created:		26 Jan 1998
 # Whom:			griffin
 #
-# $MidnightBSD: mports/irc/bitchx/Makefile,v 1.1 2007/03/22 18:49:01 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitchx/Makefile,v 1.2 2007/05/07 03:22:29 ctriv Exp $
 # $FreeBSD: ports/irc/bitchx/Makefile,v 1.82 2007/03/05 00:15:24 linimon Exp $
 #
 
@@ -44,7 +44,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 MAN1=		BitchX.1
 
 # This is an awful hack, but so is the rest of bitchx.
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} exec_prefix=${FAKE_DESTDIR}${PREFIX}/share \
+FAKE_OPTS=	prefixhack
+FAKE_MAKEARGS+=	exec_prefix=${FAKE_DESTDIR}${PREFIX}/share \
 		datadir=${FAKE_DESTDIR}${PREFIX}/share libdir=${FAKE_DESTDIR}${PREFIX}/share \
 		bindir=${FAKE_DESTDIR}${PREFIX}/bin
 
