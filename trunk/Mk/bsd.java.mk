@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.3 2007/04/07 04:34:01 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.4 2007/08/02 09:25:18 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -163,7 +163,7 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .		endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	1.1 1.2 1.3 1.4 1.5
+__JAVA_VERSION_LIST=	1.1 1.2 1.3 1.4 1.5 1.6
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown ibm
@@ -198,6 +198,10 @@ _JAVA_PORT_LINUX_SUN_JDK_1_3_INFO=			PORT=java/linux-sun-jdk13		HOME=${LOCALBASE
 											VERSION=1.3.1	OS=linux	VENDOR=sun
 _JAVA_PORT_LINUX_SUN_JDK_1_4_INFO=			PORT=java/linux-sun-jdk14		HOME=${LOCALBASE}/linux-sun-jdk1.4.2 \
 											VERSION=1.4.2	OS=linux	VENDOR=sun
+_JAVA_PORT_LINUX_SUN_JDK_1_5_INFO=			PORT=java/linux-sun-jdk15		HOME=${LOCALBASE}/linux-sun-jdk1.5.0 \
+											VERSION=1.5.0	OS=linux	VENDOR=sun
+_JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
+											VERSION=1.6.0	OS=linux	VENDOR=sun
 
 # Verbose description for each VENDOR
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
@@ -224,12 +228,12 @@ __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_3 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_2 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_1 \
-					JAVA_PORT_LINUX_SUN_JDK_1_4	\
+					JAVA_PORT_LINUX_SUN_JDK_1_6 \
+					JAVA_PORT_LINUX_SUN_JDK_1_5 \
+					JAVA_PORT_LINUX_SUN_JDK_1_4 \
 					JAVA_PORT_LINUX_SUN_JDK_1_3 \
 					JAVA_PORT_LINUX_SUN_JDK_1_2 \
 					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4 \
-					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_3 \
-					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_2 \
 					JAVA_PORT_LINUX_IBM_JDK_1_4 \
 					JAVA_PORT_LINUX_IBM_JDK_1_3
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
@@ -351,7 +355,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.1+/1.1 1.2 1.3 1.4 1.5/:S/1.2+/1.2 1.3 1.4 1.5/:S/1.3+/1.3 1.4 1.5/:S/1.4+/1.4 1.5/:S/1.5+/1.5/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.1+/1.1 1.2 1.3 1.4 1.5/:S/1.2+/1.2 1.3 1.4 1.5/:S/1.3+/1.3 1.4 1.5/:S/1.4+/1.4 1.5/:S/1.5+/1.5 1.6/:S/1.6+/1.6/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif
@@ -437,9 +441,10 @@ JAVA_PORT_OS_DESCRIPTION:=		${JAVA_PORT_OS:S/^/\${_JAVA_OS_/:S/$/}/}
 
 .		undef HAVE_JIKES
 
-# Enforce USE_JIKES=NO if not defined and using Java 1.5
-# XXX: This is a temporary fix to be removed when Jikes supports Java 1.5
-.		if ${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.5"
+# Enforce USE_JIKES=NO if not defined and using Java 1.5 or 1.6
+# XXX: This is a temporary fix to be removed when Jikes supports Java 1.5 or 1.6
+.		if (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.5") || \
+			(${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.6")
 USE_JIKES?=		NO
 .		endif
 # First test if USE_JIKES has a valid value
