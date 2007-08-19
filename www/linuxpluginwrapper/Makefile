@@ -2,13 +2,13 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.3 2007/08/19 02:30:31 laffer1 Exp $
+# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.4 2007/08/19 20:22:42 laffer1 Exp $
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 
 PORTNAME=	linuxpluginwrapper
 PORTVERSION=	20051113
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://people.FreeBSD.org/~nork/distfiles/ \
 		${MASTER_SITE_LOCAL}

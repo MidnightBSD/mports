@@ -1,5 +1,14 @@
 --- misc/libmap.conf-FreeBSD6.orig	Sat Nov 12 20:46:14 2005
-+++ misc/libmap.conf-FreeBSD6	Sun Aug 19 16:16:02 2007
++++ misc/libmap.conf-FreeBSD6	Sun Aug 19 16:35:01 2007
+@@ -3,7 +3,7 @@
+ 
+ #######################################################
+ # [ALPHA SUPPORT] Flash7 with Mozilla
+-[/usr/X11R6/lib/linux-flashplugin7/libflashplayer.so]
++[/usr/local/lib/npapi/linux-flashplugin/libflashplayer.so]
+ libpthread.so.0			libpthread.so.2
+ libdl.so.2			pluginwrapper/flash7.so
+ libz.so.1			libz.so.3
 @@ -12,41 +12,22 @@
  
  
