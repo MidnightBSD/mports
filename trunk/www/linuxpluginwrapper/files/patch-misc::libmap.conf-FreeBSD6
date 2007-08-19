@@ -5,7 +5,7 @@
  
  # Acrobat7 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
 -[/usr/compat/linux/usr/local/Adobe/Acrobat7.0/Browser/intellinux/nppdf.so]
-+[/usr/X11R6/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so]
++[/usr/local/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so]
  libc.so.6			pluginwrapper/acrobat.so
  
  # Japanese Acrobat7 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
