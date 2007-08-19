@@ -2,7 +2,7 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.1 2006/10/04 20:09:14 laffer1 Exp $
+# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.2 2007/08/01 20:03:21 laffer1 Exp $
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 
@@ -24,16 +24,16 @@ OPTIONS=	REALPLAYER	"install linux-realplayer"	off \
 
 # I will remove WITH_PLUGINS knob.
 .if		defined(WITH_REALPLAYER)
-RUN_DEPENDS+=	${X11BASE}/lib/linux-mozilla/plugins/nphelix.so:${PORTSDIR}/multimedia/linux-realplayer
+RUN_DEPENDS+=	${LOCALBASE}/lib/linux-mozilla/plugins/nphelix.so:${PORTSDIR}/multimedia/linux-realplayer
 WITH_PLUGINS=	1
 .endif
 .if		defined(WITH_ACROREAD)
-RUN_DEPENDS+=	${X11BASE}/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so:${PORTSDIR}/print/acroread7
+RUN_DEPENDS+=	${LOCALBASE}/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so:${PORTSDIR}/print/acroread7
 WITH_PLUGINS=	1
 .endif
 
 ONLY_FOR_ARCHS=	i386
-MAKE_ENV=	EXAMPLESDIR=${EXAMPLESDIR} INSTALL_DATA="${INSTALL_DATA}" INSTALL_PROGRAM="${INSTALL_PROGRAM}"
+MAKE_ENV=	EXAMPLESDIR=${FAKE_DESTDIR}${EXAMPLESDIR} INSTALL_DATA="${INSTALL_DATA}" INSTALL_PROGRAM="${INSTALL_PROGRAM}"
 
 CONFLICTS=	flashpluginwrapper-*
 USE_XLIB=	yes
@@ -52,7 +52,7 @@ CFLAGS+=	-DDEBUG=1
 .endif
 
 post-build:
-	@${SED} -e 's,%%PREFIX%%,${PREFIX},' \
+	@${SED} -e 's,%%PREFIX%%,${FAKE_DESTDIR}${PREFIX},' \
 		-e 's,%%LOCALBASE%%,${LOCALBASE},' \
 		-e 's,%%X11BASE%%,${X11BASE},' \
 		-e 's,%%LTHREADSHMAJOR%%,${LTHREADSHMAJOR},' \
@@ -64,20 +64,17 @@ post-build:
 
 .if		defined(WITH_PLUGINS)
 pre-install:
-	@${MKDIR} ${X11BASE}/lib/browser_linux_plugins
+	@${MKDIR} ${FAKE_DESTDIR}${X11BASE}/lib/browser_linux_plugins
 .if		defined(WITH_ACROREAD)
-	@${LN} -sf ${X11BASE}/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so \
-		${X11BASE}/lib/browser_linux_plugins/
+	@${LN} -sf ${FAKE_DESTDIR}${X11BASE}/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so \
+		${FAKE_DESTDIR}${X11BASE}/lib/browser_linux_plugins/
 .endif
 .if		defined(WITH_REALPLAYER)
-	@${LN} -sf ${X11BASE}/lib/linux-mozilla/plugins/nphelix.so \
-		${X11BASE}/lib/browser_linux_plugins/
-	@${LN} -sf ${X11BASE}/lib/linux-mozilla/plugins/nphelix.xpt \
-		${X11BASE}/lib/browser_linux_plugins/
+	@${LN} -sf ${FAKE_DESTDIR}${X11BASE}/lib/linux-mozilla/plugins/nphelix.so \
+		${FAKE_DESTDIR}${X11BASE}/lib/browser_linux_plugins/
+	@${LN} -sf ${FAKE_DESTDIR}${X11BASE}/lib/linux-mozilla/plugins/nphelix.xpt \
+		${FAKE_DESTDIR}${X11BASE}/lib/browser_linux_plugins/
 .endif
 .endif
-
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
