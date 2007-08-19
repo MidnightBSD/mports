@@ -2,7 +2,7 @@
 # Date created:		June 19, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/jade/Makefile,v 1.1 2006/09/24 03:17:59 laffer1 Exp $
+# $MidnightBSD: mports/textproc/jade/Makefile,v 1.2 2007/05/09 15:14:43 ctriv Exp $
 # $FreeBSD: ports/textproc/jade/Makefile,v 1.50 2006/02/23 10:39:21 ade Exp $
 #
 
@@ -31,7 +31,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
+FAKE_OPTS=	prefixhack
 
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr

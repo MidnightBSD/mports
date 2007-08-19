@@ -3,7 +3,7 @@
 # Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
 #
 # $FreeBSD: ports/audio/cdparanoia/Makefile,v 1.12 2006/05/03 05:14:12 edwin Exp $
-# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.1 2007/01/20 18:01:08 laffer1 Exp $
+# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.2 2007/08/07 03:46:48 ctriv Exp $
 #
 
 PORTNAME=	cdparanoia
@@ -22,7 +22,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
+FAKE_OPTS=	prefixhack
 MAN1=		cdparanoia.1
 
 post-patch:

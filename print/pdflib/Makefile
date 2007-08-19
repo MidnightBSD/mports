@@ -2,7 +2,7 @@
 # Date created:		Wed Jan 9 12:27:54 CET 2002
 # Whom:			Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.4 2007/05/20 03:55:33 ctriv Exp $
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.5 2007/08/17 20:05:42 laffer1 Exp $
 # $FreeBSD: ports/print/pdflib/Makefile,v 1.52 2006/11/01 12:35:35 ale Exp $
 #
 
@@ -22,7 +22,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ARGS=	--with-java=no --with-py=no --with-ruby=no --with-tcl=no
 
-FAKE_MAKEARGS=	prefix=${FAKE_DESTDIR}${PREFIX}
+FAKE_OPTS=	prefixhack
 
 .if defined(WITH_PERL)
 USE_PERL5=	yes

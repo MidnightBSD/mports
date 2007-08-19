@@ -62,7 +62,7 @@ GNU_CONFIGURE=	yes
 USE_GCC=	3.2+
 
 MAN1=		fontforge.1 sfddiff.1
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX}
+FAKE_OPTS=	prefixhack
 
 pre-everything::
 .if defined(WITHOUT_EXTRA_ENCODINGS)
