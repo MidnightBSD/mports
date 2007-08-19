@@ -9,9 +9,6 @@ lib/pluginwrapper/pips.so
 lib/pluginwrapper/oci8.so
 lib/pluginwrapper/realplayer.so
 %%EXAMPLESDIR%%/libmap.conf-FreeBSD6
-%%EXAMPLESDIR%%/libmap.conf-FreeBSD5-stable
-%%EXAMPLESDIR%%/libmap.conf-FreeBSD5-current
-%%EXAMPLESDIR%%/libmap.conf-FreeBSD4.x
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nppdf.so
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nphelix.so
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nphelix.xpt
