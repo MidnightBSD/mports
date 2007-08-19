@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/www/linuxpluginwrapper/pkg-plist,v 1.3 2007/08/19 20:04:26 laffer1 Exp $
 sbin/is_enabled_lpw
 lib/pluginwrapper/flash6.so
 lib/pluginwrapper/flash7.so
@@ -10,6 +10,9 @@ lib/pluginwrapper/pips.so
 lib/pluginwrapper/oci8.so
 lib/pluginwrapper/realplayer.so
 %%EXAMPLESDIR%%/libmap.conf-FreeBSD6
+%%EXAMPLESDIR%%/libmap.conf-FreeBSD4.x
+%%EXAMPLESDIR%%/libmap.conf-FreeBSD5-current
+%%EXAMPLESDIR%%/libmap.conf-FreeBSD5-stable
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nppdf.so
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nphelix.so
 @unexec	/bin/rm -f    %%X11BASE%%/lib/browser_linux_plugins/nphelix.xpt
