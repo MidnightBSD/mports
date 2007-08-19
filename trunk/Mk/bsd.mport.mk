@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.56 2007/08/15 21:03:47 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.57 2007/08/17 01:56:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -564,6 +564,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #						libs 		-- fake targets need access to the port's shared libs.
 # 						bin  		-- fake targets need the port's binaries in $PATH
 #						trueprefix 	-- the dist's makefile correctly honors PREFIX and DESTDIR.
+#						prefixhack	-- overide prefix, mandir and infodir at fake time.
 # FAKE_INSTALLDIR	- A relative directory used to by fake. An install is "faked" into
 #					  this dir. 
 #					  Default: "fake-inst-${ARCH}"
@@ -818,8 +819,13 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: ${ARCH}-portbld-freebsd${OSREL}
 # CONFIGURE_ARGS
 #				- Pass these args to configure if ${HAS_CONFIGURE} is set.
-#				  Default: "--prefix=${PREFIX} ${CONFIGURE_TARGET}" if
-#				  GNU_CONFIGURE is set, empty otherwise.
+#				  Default if GNU_CONFIGURE is set:
+#				  "--prefix=${PREFIX} ${CONFIGURE_TARGET}"
+#				  If supported by the configure script, the following will
+#				  also be in the default:
+#				  "--mandir=${MANPREFIX}/man"
+#				  "--infodir=${PREFIX}/${INFO_PATH}"
+#				  If GNU_CONFIGURE is not set, CONFIGURE_ARGS defaults to empty.
 # CONFIGURE_ENV	- Pass these env (shell-like) to configure if
 #				  ${HAS_CONFIGURE} is set.
 # CONFIGURE_LOG	- The name of configure log file. It will be printed to
@@ -1538,6 +1544,10 @@ FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
 .endif
 .if ${FAKE_OPTS:Mbin}x != "x"
 FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
+.endif
+.if ${FAKE_OPTS:Mprefixhack}x != "x"
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} infodir=${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}
+FAKE_MAKEARGS+=	mandir=${FAKE_DESTDIR}${MANPREFIX}/man MANDIR=${FAKE_DESTDIR}${MANPREFIX}/man
 .endif
 .endif
 
@@ -2695,9 +2705,19 @@ CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer
 .if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 .endif
-CONFIGURE_ARGS+=	--prefix=${PREFIX} ${CONFIGURE_TARGET}
+CONFIGURE_ARGS+=	--prefix=${PREFIX} $${_LATE_CONFIGURE_ARGS} ${CONFIGURE_TARGET}
 CONFIGURE_ENV+=		lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
+
+INTUIT_LATE_CONFIGURE_ARGS= \
+	_LATE_CONFIGURE_ARGS=""; \
+	_configure_help="`./${CONFIGURE_SCRIPT} --help 2>&1`"; \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null; then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
+	fi ;\
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null; then \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}"; \
+	fi ;
 .endif
 
 # Passed to most of script invocations
@@ -3447,7 +3467,7 @@ do-configure:
 	done
 .endif
 .if defined(HAS_CONFIGURE)
-	@(cd ${CONFIGURE_WRKSRC} && \
+	@(cd ${CONFIGURE_WRKSRC} && ${INTUIT_LATE_CONFIGURE_ARGS} \
 		if ! ${SETENV} CC="${CC}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
 	    INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
@@ -5062,19 +5082,23 @@ describe:
 describe-yaml:
 	@perl -MYAML -e ' \
 		my %port = ( \
-			name       => q(${PKGNAME}), \
-			origin     => q(${PKGORIGIN}), \
-			version    => q(${PKGVERSION}), \
+			name        => q(${PKGNAME}), \
+			origin      => q(${PKGORIGIN}), \
+			version     => q(${PKGVERSION}), \
 			description => qq(${COMMENT:S/'/\x27/g}), \
+			license     => q(${LICENSE}), \
 		); \
-		$$port{name} =~ s/^(.*)-.*/$$1/; \
-		$$port{extract_depends} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS}}) ]; \
-		$$port{patch_depends}   = [ map((split /:/)[1], qw{${PATCH_DEPENDS}})   ]; \
-		$$port{fetch_depends}   = [ map((split /:/)[1], qw{${FETCH_DEPENDS}})   ]; \
-		$$port{build_depends}   = [ map((split /:/)[1], qw{${BUILD_DEPENDS}})   ]; \
-		$$port{run_depends}     = [ map((split /:/)[1], qw{${RUN_DEPENDS}})     ]; \
-		$$port{depends}         = [ map((split /:/)[0], qw{${DEPENDS}})         ]; \
-		$$port{lib_depends}     = [ map((split /:/)[1], qw{${LIB_DEPENDS}})     ]; \
+		$$port{name}      =~ s/^(.*)-.*/$$1/; \
+		$$port{license} ||= undef; \
+		my %depends; \
+		$$depends{extract} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS:S|${PORTSDIR}/||g}}) ]; \
+		$$depends{patch}   = [ map((split /:/)[1], qw{${PATCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{fetch}   = [ map((split /:/)[1], qw{${FETCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{build}   = [ map((split /:/)[1], qw{${BUILD_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{run}     = [ map((split /:/)[1], qw{${RUN_DEPENDS:S|${PORTSDIR}/||}})     ]; \
+		$$depends{misc}	   = [ map((split /:/)[0], qw{${DEPENDS:S|${PORTSDIR}/||}})         ]; \
+		$$depends{lib}     = [ map((split /:/)[1], qw{${LIB_DEPENDS:S|${PORTSDIR}/||}})     ]; \
+		$$port{depends}  = \%depends; \
 		print Dump(\%port);  '
 .endif
 
@@ -5420,12 +5444,12 @@ makeplist: fake
 			echo $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+			echo "@dirrm $$dir" >> ${GENPLIST}; \
 		done;
 .	else 
 		@cd ${FAKE_DESTDIR}${PREFIX}; \
 		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST}; \
-		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dirrmtry :' >> ${GENPLIST};
+		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dirrm :' >> ${GENPLIST};
 .	endif
 
 
@@ -5451,7 +5475,7 @@ makeplist: fake
 			echo $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			echo "@dirrmtry $$dir" >> ${GENPLIST}; \
+			echo "@dirrmtry " >> ${GENPLIST}; \
 		done;
 		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
 .	endif
