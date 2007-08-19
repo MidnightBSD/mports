@@ -2,7 +2,7 @@
 # Date created:				28 May 2004
 # Whom:					Jamie Jones <jamie@bishopston.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/linux-flashplugin7/Makefile,v 1.1 2007/04/04 17:16:22 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flashplugin7/Makefile,v 1.21 2007/01/17 22:50:00 pav Exp $
 #
 
@@ -17,6 +17,7 @@ DIST_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Flash Player NPAPI Plugin
+LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
