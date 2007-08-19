@@ -3,11 +3,11 @@
 # Whom:					Shell Hung <shell@shellhung.org>
 #
 # $FreeBSD: ports/devel/p5-Test-Simple/Makefile,v 1.26 2006/07/16 14:14:32 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Test-Simple/Makefile,v 1.1 2006/11/05 15:52:55 laffer1 Exp $
 #
 
 PORTNAME=	Test-Simple
-PORTVERSION=	0.64
+PORTVERSION=	0.70
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Test
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic utilities for writing tests in perl
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/Test/Harness.pm:${PORTSDIR}/devel/p5-Test-Harness
 BUILD_DEPENDS=	${RUN_DEPENDS}
