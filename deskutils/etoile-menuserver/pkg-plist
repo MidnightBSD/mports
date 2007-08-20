@@ -33,7 +33,6 @@ Local/Applications/EtoileMenuServer.app/Resources/MenuBarRightEdge.tiff
 Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/Resources/Info-gnustep.plist
 Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/SystemPreferencesEntry
 Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/stamp.make
-Local/Applications/EtoileMenuServer.app/library_paths.openapp
 Local/Applications/EtoileMenuServer.app/stamp.make
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/Resources
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry
