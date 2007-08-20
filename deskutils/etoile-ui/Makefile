@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/etoile-ui/Makefile,v 1.1 2007/03/13 04:53:12 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-ui/Makefile,v 1.4 2007/01/31 18:17:53 dinoex Exp $
 #
 
@@ -25,6 +25,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
