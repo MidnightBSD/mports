@@ -13,7 +13,6 @@ Local/Applications/Installer.app/Resources/Package.gorm/data.classes
 Local/Applications/Installer.app/Resources/Package.gorm/data.info
 Local/Applications/Installer.app/Resources/Package.gorm/objects.gorm
 Local/Applications/Installer.app/Resources/Pkg.tiff
-Local/Applications/Installer.app/library_paths.openapp
 Local/Applications/Installer.app/stamp.make
 Local/Library/Headers/Gpkg/Gpkg.h
 Local/Tools/lsgbom
