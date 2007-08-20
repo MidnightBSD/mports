@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/accessibility/kdeaccessibility/Makefile,v 1.19 2006/09/12 23:26:11 lofi Exp $
-# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.1 2007/01/20 19:58:29 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.2 2007/08/07 22:48:54 laffer1 Exp $
 #
 
 PORTNAME=	kdeaccessibility
@@ -15,7 +15,6 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accessibility applications for KDE
-
 LICENSE=	gpl2
 
 USE_KDELIBS_VER=3
@@ -24,6 +23,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 
