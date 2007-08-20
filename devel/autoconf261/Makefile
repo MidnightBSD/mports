@@ -2,7 +2,7 @@
 # Date created:		7th December 2006
 # Whom:			ade@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/autoconf261/Makefile,v 1.1 2007/04/07 03:59:15 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf261/Makefile,v 1.66 2006/12/07 10:52:38 ade Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	autoconf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically configure source code on many Un*x platforms (2.61)
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
 		help2man:${PORTSDIR}/misc/help2man
