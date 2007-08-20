@@ -2,13 +2,13 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.2 2006/09/25 16:34:07 archite Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.3 2007/08/20 00:49:01 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.61 2005/06/17 02:56:07 ade Exp $
 #
 
 PORTNAME=	autoconf
 PORTVERSION=	2.13.000227
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	ade/gnu
@@ -20,7 +20,7 @@ COMMENT=	Automatically configure source code on many Un*x platforms (2.13)
 FAKE_OPTS=	prefixhack
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
-RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 BUILD_VERSION=	213
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
