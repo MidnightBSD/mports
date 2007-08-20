@@ -2,7 +2,7 @@
 # Date created:				Jul 14 2005
 # Whom:					Alexey Mikhailov <karma@ez.pereslavl.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/irssi-scripts/Makefile,v 1.1 2007/03/22 18:29:25 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi-scripts/Makefile,v 1.4 2007/02/27 00:04:45 linimon Exp $
 #
 
@@ -19,6 +19,7 @@ RUN_DEPENDS=	irssi:${PORTSDIR}/irc/irssi
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
+USE_GCPIO=	yes
 NO_BUILD=	yes
 
 do-install:
