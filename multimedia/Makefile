@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.25 2007/05/07 16:34:09 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.26 2007/06/11 02:40:50 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
 
     SUBDIR += etoile-babbler
     SUBDIR += etoile-multimediakit
+    SUBDIR += gnustep-mplayer
     SUBDIR += gpac-libgpac
     SUBDIR += gstreamer
     SUBDIR += gstreamer-plugins
