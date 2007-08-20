@@ -2,13 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.1 2007/03/13 04:51:10 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.2 2007/08/20 06:42:12 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-trackerkit/Makefile,v 1.7 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	trackerkit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
@@ -26,6 +26,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+MAKE_ENV+=      GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 NO_FILTER_SHLIBS=	yes
 
 SNAPSHOT=	20061221
@@ -36,10 +37,10 @@ HEADERS=	TKCollection.h TKKeyValuePredicate.h TKObject.h \
 		TKQuery.h TKTracker.h
 
 post-install:
-	${MKDIR} ${GNUSTEP_PREFIX}/System/Library/Headers/TrackerKit
+	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/System/Library/Headers/TrackerKit
 .for i in ${HEADERS}
 	${INSTALL_DATA} ${WRKSRC}/Frameworks/TrackerKit/Headers/${i} \
-		 ${GNUSTEP_PREFIX}/System/Library/Headers/TrackerKit/
+		 ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/System/Library/Headers/TrackerKit/
 .endfor
 
 .include <bsd.port.mk>
