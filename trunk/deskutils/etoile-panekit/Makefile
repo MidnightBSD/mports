@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.1 2007/03/13 05:27:29 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.2 2007/08/20 06:26:43 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-panekit/Makefile,v 1.4 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	panekit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
