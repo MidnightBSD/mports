@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.1 2007/03/13 06:50:44 laffer1 Exp $
 # $FreeBSD: ports/multimedia/etoile-multimediakit/Makefile,v 1.6 2007/03/04 21:22:27 dinoex Exp $
 #
 
@@ -23,10 +23,11 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LCOAL_APPS+=	Mplayer:${GNUSTEP_MPLAYER_PORT}
+USE_GNUSTEP_LOCAL_APPS+=	Mplayer:${GNUSTEP_MPLAYER_PORT}
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 USE_XLIB=	yes
+NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
