@@ -10,5 +10,6 @@ Local/Library/Headers/PaneKit/PKPresentationBuilder.h
 Local/Library/Headers/PaneKit/PaneKit.h
 Local/Library/Libraries/libPaneKit.so
 Local/Library/Libraries/libPaneKit.so.%%MAJORLIBVERSION%%
-Local/Library/Libraries/libPaneKit.so.%%LIBVERSION%%
+@comment Local/Library/Libraries/libPaneKit.so.%%LIBVERSION%%
+Local/Library/Libraries/libPaneKit.so.0.1
 @dirrm Local/Library/Headers/PaneKit
