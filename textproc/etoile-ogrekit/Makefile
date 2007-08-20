@@ -2,24 +2,23 @@
 # Date created:         14 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.1 2007/03/13 06:48:15 laffer1 Exp $
 # $FreeBSD: ports/textproc/etoile-ogrekit/Makefile,v 1.5 2007/01/31 18:18:09 dinoex Exp $
 #
 
 PORTNAME=	ogrekit
-PORTVERSION=	0.1.${SNAPSHOT}
+PORTVERSION=	0.2.0
 CATEGORIES=	textproc gnustep
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
+LICENSE=        bsd2
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=       etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project OgreKit framework
 
 LIB_DEPENDS=	onig:${PORTSDIR}/${ONIGURUMA4_PORT}
 
-USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
@@ -27,8 +26,8 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-0.2/
+MAKE_ENV+= old=yes
 USE_GNUSTEP_MAKE_DIRS+=	Frameworks/OgreKit
 
 UNITKIT_PORT?=	devel/etoile-unitkit
