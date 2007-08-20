@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/etoile-system/Makefile,v 1.1 2007/03/13 05:30:09 laffer1 Exp $
 # $FreeBSD: ports/sysutils/etoile-system/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	system
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
@@ -24,6 +25,8 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+MAKE_ENV+=      GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
