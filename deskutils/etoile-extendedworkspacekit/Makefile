@@ -2,12 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.1 2007/03/13 05:46:12 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	extendedworkspacekit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
@@ -26,6 +27,7 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	TrackerKit:${TRACKERKIT_PORT}
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
+NO_FILTER_SHLIBS=	yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
