@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/etoile-rsskit/Makefile,v 1.1 2007/03/13 06:10:18 laffer1 Exp $
 # $FreeBSD: ports/www/etoile-rsskit/Makefile,v 1.6 2007/01/31 18:18:10 dinoex Exp $
 #
 
@@ -24,6 +24,7 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
