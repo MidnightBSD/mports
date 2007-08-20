@@ -2,7 +2,7 @@
 # Date created:         14 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.1 2007/03/13 06:48:15 laffer1 Exp $
+# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.2 2007/08/20 00:40:21 seirei Exp $
 # $FreeBSD: ports/textproc/etoile-ogrekit/Makefile,v 1.5 2007/01/31 18:18:09 dinoex Exp $
 #
 
@@ -25,6 +25,7 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+NO_FILTER_SHLIBS=	yes
 
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 MAKE_ENV+= old=yes
