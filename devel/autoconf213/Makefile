@@ -2,7 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.1 2006/09/20 02:13:36 archite Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.2 2006/09/25 16:34:07 archite Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.61 2005/06/17 02:56:07 ade Exp $
 #
 
@@ -17,6 +17,8 @@ DISTNAME=	autoconf-000227
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically configure source code on many Un*x platforms (2.13)
 
+FAKE_OPTS=	prefixhack
+
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
@@ -28,7 +30,7 @@ USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4
 CONFIGURE_ARGS=	--program-suffix=${BUILD_VERSION}
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 WRKSRC=		${WRKDIR}/autoconf
 INFO=		autoconf${BUILD_VERSION}
 
