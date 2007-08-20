@@ -22,7 +22,6 @@ Local/Applications/DictionaryReader.app/Resources/Info-gnustep.plist
 Local/Applications/DictionaryReader.app/Resources/dict.png
 Local/Applications/DictionaryReader.app/Resources/jargon.dict
 Local/Applications/DictionaryReader.app/Resources/jargon.index
-Local/Applications/DictionaryReader.app/library_paths.openapp
 Local/Applications/DictionaryReader.app/stamp.make
 @dirrm Local/Applications/DictionaryReader.app/Resources/English.lproj/Preferences.nib/Preferences.nib
 @dirrm Local/Applications/DictionaryReader.app/Resources/English.lproj/Preferences.nib
