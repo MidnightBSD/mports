@@ -2,12 +2,12 @@
 # Date created:			9 Jul 2004
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/pecl-zip/Makefile,v 1.1 2007/01/20 15:56:39 wintellect Exp $
 # $FreeBSD: ports/archivers/pecl-zip/Makefile,v 1.9 2006/12/31 11:05:09 ale Exp $
 #
 
 PORTNAME=	zip
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.10
 CATEGORIES=	archivers pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
