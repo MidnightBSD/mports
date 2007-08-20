@@ -28,7 +28,6 @@ Local/Applications/Mollusk.app/Resources/rssreader-working.png
 Local/Applications/Mollusk.app/Resources/rssreader.icns
 Local/Applications/Mollusk.app/Resources/rssreader.png
 Local/Applications/Mollusk.app/Resources/xml.tiff
-Local/Applications/Mollusk.app/library_paths.openapp
 Local/Applications/Mollusk.app/stamp.make
 @dirrm Local/Applications/Mollusk.app/Resources/English.lproj/PreferencePane.gorm
 @dirrm Local/Applications/Mollusk.app/Resources/English.lproj/MainMenu.gorm
