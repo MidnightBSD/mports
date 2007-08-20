@@ -2,7 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.3 2007/08/20 00:49:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.4 2007/08/20 00:50:42 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.61 2005/06/17 02:56:07 ade Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	autoconf-000227
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically configure source code on many Un*x platforms (2.13)
+LICENSE=	gpl2
 
 FAKE_OPTS=	prefixhack
 
