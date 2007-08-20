@@ -2,7 +2,7 @@
 # Date created:		15 March 1997
 # Whom:			FUJIMOTO Kensaku <fujimoto@oscar.elec.waseda.ac.jp>
 #
-# $MidnightBSD: mports/devel/automake14/Makefile,v 1.1 2006/09/20 02:13:36 archite Exp $
+# $MidnightBSD: mports/devel/automake14/Makefile,v 1.2 2006/09/25 16:34:07 archite Exp $
 # $FreeBSD: ports/devel/automake14/Makefile,v 1.60 2006/05/04 21:40:24 edwin Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	automake-1.4-p6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Standards-compliant Makefile generator (1.4)
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${AUTOCONF_DEPENDS}
 
