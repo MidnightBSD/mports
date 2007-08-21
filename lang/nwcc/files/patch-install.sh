@@ -5,7 +5,7 @@
  
 -INSTALLDIR=`grep INSTALLDIR config.h | awk -F\" '{ print $2 }'`
 +#INSTALLDIR=`grep INSTALLDIR config.h | awk -F\" '{ print $2 }'`
-+INSTALLDIR=${FAKE_DESTDIR}/${PREFIX}
++INSTALLDIR=${PREFIX}
  if test "$INSTALLDIR" = ""; then
  	INSTALLDIR="/usr/local"
  fi
