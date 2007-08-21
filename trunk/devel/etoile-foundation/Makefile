@@ -2,22 +2,21 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/etoile-foundation/Makefile,v 1.1 2007/03/13 06:16:27 laffer1 Exp $
 # $FreeBSD: ports/devel/etoile-foundation/Makefile,v 1.4 2007/01/31 18:17:55 dinoex Exp $
 #
 
 PORTNAME=	foundation
-PORTVERSION=	0.1.${SNAPSHOT}
+PORTVERSION=	0.2.0
 CATEGORIES=	devel gnustep
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
+LICENSE=        bsd3
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project EtoileFoundation framework
 
-USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
@@ -26,8 +25,7 @@ USE_GNUSTEP_INSTALL=	yes
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Frameworks/EtoileFoundation
 
 .include <bsd.port.mk>
