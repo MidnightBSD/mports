@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.28 2007/05/03 08:03:26 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.29 2007/07/21 18:06:06 laffer1 Exp $
 #
 
     COMMENT = Programming languages
@@ -22,6 +22,7 @@
     SUBDIR += icc
     SUBDIR += mawk
     SUBDIR += nawk
+    SUBDIR += nwcc
     SUBDIR += open-cobol
     SUBDIR += p5-Data-JavaScript
     SUBDIR += p5-Error
