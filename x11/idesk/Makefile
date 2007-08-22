@@ -2,13 +2,13 @@
 # Date created:		16 February 2003
 # Whom:			Sascha Holzleiter <sascha@root-login.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.1 2007/08/22 20:33:46 laffer1 Exp $
 # $FreeBSD: ports/x11/idesk/Makefile,v 1.20 2007/05/19 20:26:40 flz Exp $
 #
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}/
@@ -55,6 +55,11 @@ CONFIGURE_ARGS+=	--enable-libsn
 
 do-install:
 		${INSTALL_PROGRAM} ${WRKSRC}/src/idesk ${PREFIX}/bin
+		${MKDIR} ${PREFIX}/share/idesk
+		${CP} ${WRKSRC}/examples/default.lnk ${PREFIX}/share/idesk/default.lnk.example
+		${CP} ${WRKSRC}/examples/dot.ideskrc ${PREFIX}/share/idesk/dot.ideskrc.example
+		${CP} ${WRKSRC}/examples/dot.xsession ${PREFIX}/share/idesk/dot.xsession.example
+		${CP} ${WRKSRC}/examples/folder_home.xpm ${PREFIX}/share/idesk/folder_home.xpm.example
 .if !defined(NOPORTDOCS)
 		${MKDIR} ${DOCSDIR}
 		${INSTALL_MAN} ${WRKSRC}/README ${DOCSDIR}
