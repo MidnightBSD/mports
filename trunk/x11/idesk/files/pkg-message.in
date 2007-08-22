@@ -6,5 +6,5 @@ be found in the README file which resides in:
 
 %%PREFIX%%/share/doc/idesk
 
-Unless you have chosen not to install it ;)
-
+There are example default config files in
+%%PREFIX%%/share/idesk
