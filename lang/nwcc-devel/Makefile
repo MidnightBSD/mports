@@ -5,18 +5,17 @@
 # $MidnightBSD: mports/lang/nwcc/Makefile,v 1.4 2007/08/21 20:12:15 laffer1 Exp $
 #
 
-PORTNAME=	nwcc
+PORTNAME=	nwcc-devel
 PORTVERSION=	0.7.3
-PORTREVISION=	3
 CATEGORIES=	lang
-DISTFILES=	nwcc_0.7.3.tar.gz
+DISTFILES=	nwcc_unstable-082107.tar.gz
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	nwcc
 
 MAINTAINER=	stevan_tiefert_midnight@yahoo.de
 COMMENT=	A BSD-licensed C-compiler.
 
-CONFLICTS=	nwcc-devel-*
+CONFLICTS=	nwcc-*
 
 WRKSRC=		work/nwcc_0.7.3
 HAS_CONFIGURE=	yes
