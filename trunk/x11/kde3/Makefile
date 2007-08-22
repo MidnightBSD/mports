@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD: mports/x11/kde3/Makefile,v 1.1 2007/01/20 00:37:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/kde3/Makefile,v 1.2 2007/01/26 04:09:05 laffer1 Exp $
 #
 
 PORTNAME?=	kde
@@ -170,7 +170,7 @@ NO_BUILD=	yes
 
 do-install:
 .if exists(${WRKDIRPREFIX}${.CURDIR}/Makefile.inc)
-	@${INSTALL_DATA} ${WRKDIRPREFIX}${.CURDIR}/Makefile.inc ${CONFIG_FILE}
+	@${INSTALL_DATA} ${WRKDIRPREFIX}${.CURDIR}/Makefile.inc ${FAKE_DESTDIR}${CONFIG_FILE}
 .endif
 
 .include <bsd.port.mk>
