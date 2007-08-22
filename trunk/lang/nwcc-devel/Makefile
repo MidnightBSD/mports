@@ -2,7 +2,7 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.4 2007/08/21 20:12:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/nwcc-devel/Makefile,v 1.1 2007/08/22 04:03:45 laffer1 Exp $
 #
 
 PORTNAME=	nwcc-devel
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	nwcc
 
 MAINTAINER=	stevan_tiefert_midnight@yahoo.de
 COMMENT=	A BSD-licensed C-compiler.
+LICENSE=	bsd2
 
 CONFLICTS=	nwcc-*
 
