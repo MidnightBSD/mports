@@ -2,21 +2,20 @@
 # Date created:				20 February 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/motor/Makefile,v 1.1 2006/12/30 21:15:15 wintellect Exp $
+# $MidnightBSD: mports/devel/motor/Makefile,v 1.2 2007/05/06 19:16:16 ctriv Exp $
 # $FreeBSD: ports/devel/motor/Makefile,v 1.24 2006/08/18 17:16:36 delphij Exp $
 #
 
-BROKEN= strndup() conflict causes build to fail.
-
 PORTNAME=	motor
 PORTVERSION=	3.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
-MASTER_SITES=	http://konst.org.ua/download/
+MASTER_SITES=	http://thekonst.net/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A powerful text mode based programming IDE
 
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
