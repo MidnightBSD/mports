@@ -2,17 +2,17 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
-# $FreeBSD: ports/devel/glib20/Makefile,v 1.126 2006/09/07 18:47:07 jylefort Exp $
-#   $MCom: ports/devel/glib20/Makefile,v 1.75 2006/04/13 07:57:40 bland Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/devel/glib20/Makefile,v 1.142 2007/07/17 02:35:58 marcus Exp $
+#   $MCom: ports/devel/glib20/Makefile,v 1.91 2006/10/05 06:55:34 mezz Exp $
 #
 
 PORTNAME=	glib
-PORTVERSION=	2.10.3
+PORTVERSION=	2.12.13
 PORTREVISION?=	0
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/2.10,} \
-		ftp://ftp.gtk.org/pub/gtk/v${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
+MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
+		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
 		ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		ftp://ftp.cs.umn.edu/pub/gimp/%SUBDIR%/ \
 		http://www.ameth.org/gimp/%SUBDIR%/ \
@@ -31,7 +31,7 @@ USE_BZIP2=	yes
 
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:15
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
 USE_GMAKE=	yes
 USE_PERL5=	yes
@@ -47,6 +47,16 @@ OPTIONS=	COLLATION_FIX "fix string collation" off
 
 .include <bsd.port.pre.mk>
 
+# Let glib use asm code for implementing atomic ops on i386 and amd64.
+.if ${ARCH} == "i386"
+GLIB_ARCH=	i486
+.elif ${ARCH} == "amd64"
+GLIB_ARCH=	x86_64
+.else
+GLIB_ARCH=	${ARCH}
+.endif
+CONFIGURE_TARGET=	--build=${GLIB_ARCH}-portbld-freebsd6.0
+
 .if defined(WITH_COLLATION_FIX)
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
@@ -54,8 +64,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-		s|%%X11BASE%%|${X11BASE}|g' \
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/glib/gutils.c
 
 .include <bsd.port.post.mk>
