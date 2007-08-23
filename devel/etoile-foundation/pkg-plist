@@ -21,5 +21,8 @@ Local/Library/Headers/EtoileFoundation
 Local/Library/Libraries/libEtoileFoundation.so
 Local/Library/Libraries/libEtoileFoundation.so.%%MAJORLIBVERSION%%
 Local/Library/Libraries/libEtoileFoundation.so.%%LIBVERSION%%
-@dirrm Local/Library/Headers/EtoileFoundation
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions
 @dirrm Local/Library/Frameworks/EtoileFoundation.framework
