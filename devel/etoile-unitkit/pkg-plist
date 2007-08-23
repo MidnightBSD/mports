@@ -20,5 +20,9 @@ Local/Library/Libraries/libUnitKit.so
 Local/Library/Libraries/libUnitKit.so.%%MAJORLIBVERSION%% 
 Local/Library/Libraries/libUnitKit.so.%%LIBVERSION%%
 Local/Tools/ukrun
+@dirrm Local/Library/Frameworks/UnitKit.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/UnitKit.framework/Versions/0/Resources/English.lproj
+@dirrm Local/Library/Frameworks/UnitKit.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/UnitKit.framework/Versions/0
+@dirrm Local/Library/Frameworks/UnitKit.framework/Versions
 @dirrm Local/Library/Frameworks/UnitKit.framework
-@dirrm Local/Library/Headers/UnitKit
