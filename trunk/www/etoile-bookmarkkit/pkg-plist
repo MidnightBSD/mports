@@ -20,5 +20,8 @@ Local/Library/Headers/BookmarkKit
 Local/Library/Libraries/libBookmarkKit.so
 Local/Library/Libraries/libBookmarkKit.so.%%MAJORLIBVERSION%%
 Local/Library/Libraries/libBookmarkKit.so.%%LIBVERSION%%
+@dirrm Local/Library/Frameworks/BookmarkKit.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/BookmarkKit.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/BookmarkKit.framework/Versions/0
+@dirrm Local/Library/Frameworks/BookmarkKit.framework/Versions
 @dirrm Local/Library/Frameworks/BookmarkKit.framework
-@dirrm Local/Library/Headers/BookmarkKit
