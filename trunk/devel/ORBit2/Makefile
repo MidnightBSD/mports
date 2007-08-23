@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.2 2007/04/29 18:09:19 ctriv Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.3 2007/08/23 07:46:52 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance CORBA ORB with support for the C language
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
