@@ -1,5 +1,5 @@
---- glib/gunicollate.c.orig	Sun Nov 27 21:15:41 2005
-+++ glib/gunicollate.c	Wed Jul 19 01:06:32 2006
+--- glib/gunicollate.c.orig	Thu Jun  8 17:24:10 2006
++++ glib/gunicollate.c	Thu Oct 19 20:12:50 2006
 @@ -26,10 +26,57 @@
  #include <wchar.h>
  #endif
@@ -55,10 +55,10 @@
 +  return result;
 +}
 +
- /**
-  * g_utf8_collate:
-  * @str1: a UTF-8 encoded string
-@@ -76,6 +123,28 @@
+ #ifdef _MSC_VER
+ /* Workaround for bug in MSVCR80.DLL */
+ static size_t
+@@ -94,6 +141,28 @@
    g_return_val_if_fail (str1 != NULL, 0);
    g_return_val_if_fail (str2 != NULL, 0);
  
@@ -87,7 +87,7 @@
    str1_norm = g_utf8_normalize (str1, -1, G_NORMALIZE_ALL_COMPOSE);
    str2_norm = g_utf8_normalize (str2, -1, G_NORMALIZE_ALL_COMPOSE);
  
-@@ -217,6 +286,26 @@
+@@ -235,6 +304,26 @@
    gchar *str_norm;
  
    g_return_val_if_fail (str != NULL, NULL);
@@ -99,14 +99,14 @@
 +      UChar *wstr = utf8_to_uchar(str, len, &wstr_len);
 +      if (wstr != NULL)
 +	{
-+	  uint8_t dummy;
 +	  int32_t result_len;
 +
 +	  /* get size of result */
-+	  result_len = ucol_getSortKey(icu_collator, wstr, wstr_len, &dummy, 1);
++	  result_len = ucol_getSortKey(icu_collator, wstr, wstr_len, NULL, 0);
 +
 +	  result = g_new(char, result_len);
 +	  ucol_getSortKey(icu_collator, wstr, wstr_len, result, result_len);
++	  g_free(wstr);
 +
 +	  return result;
 +	}
