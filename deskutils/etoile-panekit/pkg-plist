@@ -27,5 +27,8 @@ Local/Library/Headers/PaneKit
 Local/Library/Libraries/libPaneKit.so
 Local/Library/Libraries/libPaneKit.so.%%MAJORLIBVERSION%%
 Local/Library/Libraries/libPaneKit.so.%%LIBVERSION%%
-@dirrm Local/Library/Headers/PaneKit
+@dirrm Local/Library/Frameworks/PaneKit.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/PaneKit.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/PaneKit.framework/Versions/0
+@dirrm Local/Library/Frameworks/PaneKit.framework/Versions
 @dirrm Local/Library/Frameworks/PaneKit.framework
