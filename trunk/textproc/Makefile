@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.68 2007/08/22 08:45:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.69 2007/08/22 08:53:27 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -39,6 +39,7 @@
     SUBDIR += ispell
     SUBDIR += jade
     SUBDIR += latex-service
+    SUBDIR += libcroco
     SUBDIR += libuninameslist
     SUBDIR += libwpd
     SUBDIR += libxml2
