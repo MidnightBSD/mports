@@ -2,17 +2,15 @@
 # Date Created:			18 July 2000
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.4 2007/04/25 02:54:08 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.5 2007/04/26 03:48:36 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/pango/Makefile,v 1.85 2006/09/16 05:24:31 ahze Exp $
 #   $MCom: ports/x11-toolkits/pango/Makefile,v 1.60 2006/04/27 11:12:49 ahze Exp $
 #
 
 PORTNAME=	pango
-PORTVERSION=	1.12.4
-PORTREVISION=	1
+PORTVERSION=	1.16.5
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/pango/1.12,} \
-		ftp://ftp.gtk.org/pub/gtk/v2.10/
+MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/pango/1.16,}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -29,7 +27,7 @@ RUN_DEPENDS=	${FONTSCALE}:${X_FONTS_TTF_PORT} \
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack glib20 ltverhack referencehack
 CONFIGURE_ARGS=	--with-qt=no \
@@ -41,7 +39,7 @@ SUB_FILES=	pkg-install
 # stuff, with Bad Results[tm]
 #
 GLIB2_CFLAGS=	`pkg-config glib-2.0 --cflags`
-PLIST_SUB=	VERSION="1.5.0"
+PLIST_SUB=	VERSION="1.6.0"
 
 FONTSCALE=	${X11BASE}/lib/X11/fonts/TTF/luximb.ttf
 FONTENCOD=	${X11BASE}/lib/X11/fonts/encodings/encodings.dir
