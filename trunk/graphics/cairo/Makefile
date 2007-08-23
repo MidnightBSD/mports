@@ -2,13 +2,13 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.3 2007/04/08 04:52:10 laffer1 Exp $
 # $FreeBSD: ports/graphics/cairo/Makefile,v 1.23 2007/03/20 11:01:14 ahze Exp $
 #   $MCom: ports/graphics/cairo/Makefile,v 1.56 2007/03/06 13:39:18 ahze Exp $
 #
 
 PORTNAME=	cairo
-PORTVERSION=	1.4.2
+PORTVERSION=	1.4.10
 PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
