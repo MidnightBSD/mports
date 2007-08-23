@@ -1,9 +1,6 @@
 Local/Library/Frameworks/OgreKit.framework/Headers
 Local/Library/Frameworks/OgreKit.framework/OgreKit
 Local/Library/Frameworks/OgreKit.framework/Resources
-Local/Library/Frameworks/OgreKit.framework/Versions
-Local/Library/Frameworks/OgreKit.framework/Versions/0
-Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/NSString_OgreKitAdditions.h
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/OGAttributedString.h
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/OGMutableAttributedString.h
@@ -53,7 +50,6 @@ Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/OgreTextViewUndoer
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/OgreUnhighlightThread.h
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers/OgreView.h
 Local/Library/Frameworks/OgreKit.framework/Versions/0/OgreKit
-Local/Library/Frameworks/OgreKit.framework/Versions/0/Resources 
 Local/Library/Frameworks/OgreKit.framework/Versions/0/Resources/Info-gnustep.plist 
 Local/Library/Frameworks/OgreKit.framework/Versions/0/libOgreKit.so
 Local/Library/Frameworks/OgreKit.framework/Versions/0/libOgreKit.so.%%MAJORLIBVERSION%%
@@ -61,9 +57,11 @@ Local/Library/Frameworks/OgreKit.framework/Versions/0/libOgreKit.so.%%LIBVERSION
 Local/Library/Frameworks/OgreKit.framework/Versions/Current
 Local/Library/Frameworks/OgreKit.framework/libOgreKit.so
 Local/Library/Headers/OgreKit
-Local/Library/Libraries
 Local/Library/Libraries/libOgreKit.so
 Local/Library/Libraries/libOgreKit.so.%%MAJORLIBVERSION%%
 Local/Library/Libraries/libOgreKit.so.%%LIBVERSION%%
+@dirrm Local/Library/Frameworks/OgreKit.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/OgreKit.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/OgreKit.framework/Versions/0
+@dirrm Local/Library/Frameworks/OgreKit.framework/Versions
 @dirrm Local/Library/Frameworks/OgreKit.framework
-@dirrm Local/Library/Headers/OgreKit
