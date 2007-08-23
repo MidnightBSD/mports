@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.1 2007/01/20 17:48:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.2 2007/04/29 18:09:19 ctriv Exp $
 #
 
 PORTNAME=	ORBit2
-PORTVERSION=	2.14.3
+PORTVERSION=	2.14.8
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack libidl ltverhack referencehack
 CONFIGURE_ARGS=	--disable-indent \
