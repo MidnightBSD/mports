@@ -20,13 +20,7 @@ Local/Applications/EtoileMenuServer.app/Resources/Etoile.tiff
 Local/Applications/EtoileMenuServer.app/Resources/EtoileLogo.tiff
 Local/Applications/EtoileMenuServer.app/Resources/EtoileLogoH.tiff
 Local/Applications/EtoileMenuServer.app/Resources/EtoileMenuServer.desktop
-Local/Applications/EtoileMenuServer.app/Resources/HardwareEntry.sysbarentry/HardwareEntry
-Local/Applications/EtoileMenuServer.app/Resources/HardwareEntry.sysbarentry/Resources/Info-gnustep.plist
-Local/Applications/EtoileMenuServer.app/Resources/HardwareEntry.sysbarentry/stamp.make
 Local/Applications/EtoileMenuServer.app/Resources/Info-gnustep.plist
-Local/Applications/EtoileMenuServer.app/Resources/LookAndBehaviorEntry.sysbarentry/LookAndBehaviorEntry
-Local/Applications/EtoileMenuServer.app/Resources/LookAndBehaviorEntry.sysbarentry/Resources/Info-gnustep.plist
-Local/Applications/EtoileMenuServer.app/Resources/LookAndBehaviorEntry.sysbarentry/stamp.make
 Local/Applications/EtoileMenuServer.app/Resources/MenuBarFiller.tiff
 Local/Applications/EtoileMenuServer.app/Resources/MenuBarLeftEdge.tiff
 Local/Applications/EtoileMenuServer.app/Resources/MenuBarRightEdge.tiff
@@ -34,21 +28,18 @@ Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbare
 Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/SystemPreferencesEntry
 Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/stamp.make
 Local/Applications/EtoileMenuServer.app/stamp.make
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/Resources
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/LookAndBehaviorEntry.sysbarentry/Resources
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/LookAndBehaviorEntry.sysbarentry
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/HardwareEntry.sysbarentry/Resources
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/HardwareEntry.sysbarentry
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ClockMenulet.menulet/Resources
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ClockMenulet.menulet
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources/English.lproj/ApplicationsPanel.gorm
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources/English.lproj
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources
-@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry
+Local/Tools/EtoileMenuServer
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/AboutEtoileEntry.sysbarentry/Resources/English.lproj/AboutEtoileEntry.gorm
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/AboutEtoileEntry.sysbarentry/Resources/English.lproj
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/AboutEtoileEntry.sysbarentry/Resources
 @dirrm Local/Applications/EtoileMenuServer.app/Resources/AboutEtoileEntry.sysbarentry
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources/English.lproj/ApplicationsPanel.gorm
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources/English.lproj
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry/Resources
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ApplicationsEntry.sysbarentry
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ClockMenulet.menulet/Resources
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/ClockMenulet.menulet
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry/Resources
+@dirrm Local/Applications/EtoileMenuServer.app/Resources/SystemPreferencesEntry.sysbarentry
 @dirrm Local/Applications/EtoileMenuServer.app/Resources
 @dirrm Local/Applications/EtoileMenuServer.app
