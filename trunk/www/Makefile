@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.53 2007/08/11 23:30:01 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.54 2007/08/14 06:09:10 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -36,6 +36,7 @@
     SUBDIR += linux-seamonkey-devel
     SUBDIR += linuxpluginwrapper
     SUBDIR += lynx
+    SUBDIR += man2web
     SUBDIR += neon
     SUBDIR += opera
     SUBDIR += p5-CGI.pm
