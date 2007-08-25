@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/wizardkit/Makefile,v 1.1 2006/10/31 05:53:29 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.1 2007/02/14 21:26:11 laffer1 Exp $
 #
 
 PORTNAME=	wizardkit
@@ -16,14 +16,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework needed by Project Manager
 
 USE_BZIP2=	yes
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=
-LDCONFIG_DIRS=	${LOCALLIBDIR}
-INSTALLS_SHLIB=	yes
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 .include <bsd.port.mk>
