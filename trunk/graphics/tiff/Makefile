@@ -4,7 +4,7 @@
 #			Mikhail Teterin <mi@aldan.algebra.com>
 #			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.1 2006/09/17 22:56:58 archite Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
 # $FreeBSD: ports/graphics/tiff/Makefile,v 1.61 2006/04/08 20:22:41 dinoex Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	Tools and library routines for working with TIFF images
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
