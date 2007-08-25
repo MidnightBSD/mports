@@ -2,13 +2,12 @@
 # Date created:				20 September 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.1 2006/10/06 20:17:05 wintellect Exp $
 # $FreeBSD: ports/graphics/sdl_image/Makefile,v 1.28 2006/09/01 21:34:14 shaun Exp $
 #
 
 PORTNAME=	sdl_image
-PORTVERSION=	1.2.4
-PORTREVISION=	1
+PORTVERSION=	1.2.5
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.libsdl.org/projects/SDL_image/release/
 DISTNAME=	SDL_image-${PORTVERSION}
@@ -23,11 +22,11 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 USE_SDL=	sdl
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib -lm"
 CONFIGURE_ARGS=	--enable-tif --enable-xcf
-MAKE_ARGS=	LT_CURRENT=10 LT_REVISION=0 LT_AGE=0
+#MAKE_ARGS=	LT_CURRENT=10 LT_REVISION=0 LT_AGE=0
 USE_LDCONFIG=	yes
 
 post-install:
