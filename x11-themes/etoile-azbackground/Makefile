@@ -2,22 +2,21 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-themes/etoile-azbackground/Makefile,v 1.1 2007/03/13 05:51:18 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/etoile-azbackground/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	azbackground
-PORTVERSION=	0.1.${SNAPSHOT}
+PORTVERSION=	0.2.0
 CATEGORIES=	x11-themes gnustep
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
+LICENSE=        bsd2
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small GNUstep application to set xwindow background
 
-USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
@@ -25,11 +24,10 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Services/Private/AZBackground
-ADDITIONAL_OBJCFLAGS+=	-I${X11BASE}/include
-ADDITIONAL_LDFLAGS+=	-L${X11BASE}/lib
+#ADDITIONAL_OBJCFLAGS+=	-I${X11BASE}/include
+#ADDITIONAL_LDFLAGS+=	-L${X11BASE}/lib
 
 XWINDOWSERVERKIT_PORT?=	x11/etoile-xwindowserverkit
 
