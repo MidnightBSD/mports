@@ -27,7 +27,7 @@
 #	.include <bsd.port.post.mk>
 # Run "make -V USE_SDL" to see which libs are asked for at the end.
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.sdl.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 
@@ -55,7 +55,7 @@ _VERSION_gui=	0
 _SUBDIR_gui=	x11-toolkits
 _REQUIRES_gui=	sdl image ttf
 
-_VERSION_image=	10
+_VERSION_image=	1
 _SUBDIR_image=	graphics
 _REQUIRES_image=sdl
 
@@ -73,17 +73,16 @@ _VERSION_net=	0
 _SUBDIR_net=	net
 _REQUIRES_net=	sdl
 
-_VERSION_sdl=	7
+_VERSION_sdl=	11
 _SUBDIR_sdl=	devel
-_LIB_sdl=		SDL-1.1
+_LIB_sdl=		SDL
 _PORTDIR_sdl=	sdl12
 
 _VERSION_sound=	1
 _SUBDIR_sound=	audio
-_LIB_sound=		SDL_sound-1.0
 _REQUIRES_sound=sdl
 
-_VERSION_ttf=	3
+_VERSION_ttf=	6
 _SUBDIR_ttf=	graphics
 _REQUIRES_ttf=	sdl
 
@@ -170,7 +169,7 @@ LIB_DEPENDS+=	${_LIB_${component}}.${_VERSION_${component}}:${PORTSDIR}/${_SUBDI
 # "Normal" dependencies and variables
 #
 BUILD_DEPENDS+=	${SDL_CONFIG}:${PORTSDIR}/${_SUBDIR_sdl}/${_PORTDIR_sdl}
-SDL_CONFIG?=	${LOCALBASE}/bin/sdl11-config
+SDL_CONFIG?=	${LOCALBASE}/bin/sdl-config
 CONFIGURE_ENV+=	SDL_CONFIG=${SDL_CONFIG}
 MAKE_ENV+=		SDL_CONFIG=${SDL_CONFIG}
 
