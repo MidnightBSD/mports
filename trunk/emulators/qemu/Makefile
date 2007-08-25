@@ -2,12 +2,13 @@
 # Date created:			2004/05/31
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.2 2007/04/25 16:23:18 ctriv Exp $
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.3 2007/05/05 04:17:47 laffer1 Exp $
 # $FreeBSD: ports/emulators/qemu/Makefile,v 1.56 2006/08/25 21:16:20 miwi Exp $
 #
 
 PORTNAME=	qemu
 PORTVERSION=	0.9.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.qemu.org/:release \
 		http://people.fruitsalad.org/nox/qemu/:snapshot \
