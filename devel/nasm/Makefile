@@ -2,13 +2,13 @@
 # Date created:        7 April 1998
 # Whom:                Murray Stokely <murray@cdrom.com>
 #
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.2 2007/04/22 18:58:30 ctriv Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.4 2007/08/25 06:20:59 laffer1 Exp $
 # $FreeBSD: ports/devel/nasm/Makefile,v 1.28 2006/05/04 21:40:56 edwin Exp $
 #
 
 PORTNAME=	nasm
 PORTVERSION=	0.98.39
-PORTVERSION=	2
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
