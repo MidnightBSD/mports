@@ -2,22 +2,21 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/etoile-typewriter/Makefile,v 1.1 2007/03/13 06:55:46 laffer1 Exp $
 # $FreeBSD: ports/editors/etoile-typewriter/Makefile,v 1.5 2007/01/31 18:17:58 dinoex Exp $
 #
 
 PORTNAME=	typewriter
-PORTVERSION=	0.1.${SNAPSHOT}
+PORTVERSION=	0.2.0
 CATEGORIES=	editors gnustep
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
+LICENSE=        bsd3
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General text editor for plain and rich format text
 
-USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
@@ -26,8 +25,7 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LOCAL_LIBS+=	OgreKit:${OGREKIT_PORT}
 USE_GNUSTEP_MAKE_DIRS+=	Services/User/Typewriter
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-0.2/
 OGREKIT_PORT?=	textproc/etoile-ogrekit
 
 .include <bsd.port.mk>
