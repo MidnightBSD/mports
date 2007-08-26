@@ -1,5 +1,9 @@
-Local/Library/Bundles/WildMenus.themeEngine/Resources/Info-gnustep.plist
-Local/Library/Bundles/WildMenus.themeEngine/WildMenus
-Local/Library/Bundles/WildMenus.themeEngine/stamp.make
-@dirrm Local/Library/Bundles/WildMenus.themeEngine/Resources
-@dirrm Local/Library/Bundles/WildMenus.themeEngine
+System/Library/Bundles/EtoileMenus.bundle/EtoileMenus
+System/Library/Bundles/EtoileMenus.bundle/Resources/Info-gnustep.plist
+System/Library/Bundles/EtoileMenus.bundle/Resources/EtoileMenuClose.tiff
+System/Library/Bundles/EtoileMenus.bundle/Resources/EtoileMenuCloseH.tiff
+System/Library/Bundles/EtoileMenus.bundle/Resources/MenuBarFiller.tiff
+System/Library/Bundles/EtoileMenus.bundle/Resources/MenuTitleFiller.tiff
+System/Library/Bundles/EtoileMenus.bundle/stamp.make
+@dirrm System/Library/Bundles/EtoileMenus.bundle/Resources
+@dirrm System/Library/Bundles/EtoileMenus.bundle
