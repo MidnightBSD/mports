@@ -2,30 +2,28 @@
 # Date created:         4 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.1 2007/03/13 05:48:27 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-dictionaryreader/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	dictionaryreader
-PORTVERSION=	0.1.${SNAPSHOT}
+PORTVERSION=	0.2.0
 CATEGORIES=	deskutils gnustep
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
+LICENSE=        unknown
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dict client for GNUstep
 
-USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Services/User/DictionaryReader
 
 .include <bsd.port.mk>
