@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.69 2007/08/22 08:53:27 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.70 2007/08/23 05:57:20 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -6,6 +6,7 @@
     SUBDIR += agrep
     SUBDIR += aspell
     SUBDIR += cdiff
+    SUBDIR += diffutils
     SUBDIR += docbook
     SUBDIR += docbook-241
     SUBDIR += docbook-300
