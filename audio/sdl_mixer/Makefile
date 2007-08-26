@@ -2,27 +2,27 @@
 # Date created:				24 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/sdl_mixer/Makefile,v 1.1 2006/10/06 20:35:56 wintellect Exp $
 # $FreeBSD: ports/audio/sdl_mixer/Makefile,v 1.38 2006/09/01 21:34:13 shaun Exp $
 #
 
 PORTNAME=	sdl_mixer
-PORTVERSION=	1.2.6
-PORTREVISION=	2
+PORTVERSION=	1.2.7
 CATEGORIES=	audio
 MASTER_SITES=	http://www.libsdl.org/projects/SDL_mixer/release/
 DISTNAME=	SDL_mixer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sample multi-channel audio mixer library
+LICENSE=	lgpl
 
 USE_SDL=	sdl
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 OPTIONS=	MIKMOD "Enable MOD music via libMikMod" on \
 		VORBIS "Enable Ogg Vorbis music" on \
