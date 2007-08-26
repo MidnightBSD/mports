@@ -2,7 +2,7 @@
 # Date created:		5th December 2006
 # Whom:			Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/automake110/Makefile,v 1.1 2007/04/07 04:01:59 laffer1 Exp $
 # $FreeBSD: ports/devel/automake110/Makefile,v 1.70 2007/02/07 10:04:31 ade Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	automake-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Standards-compliant Makefile generator (1.10)
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${AUTOCONF_DEPENDS}
 
