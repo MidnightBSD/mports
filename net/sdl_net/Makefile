@@ -2,7 +2,7 @@
 # Date created:				20 September 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/sdl_net/Makefile,v 1.1 2006/11/24 21:55:31 wintellect Exp $
 # $FreeBSD: ports/net/sdl_net/Makefile,v 1.24 2006/09/20 11:21:56 stas Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	SDL_net-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small sample cross-platform networking library
+LICENSE=	lgpl
 
 USE_SDL=	sdl
 USE_GMAKE=	yes
