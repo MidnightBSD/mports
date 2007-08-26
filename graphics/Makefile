@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.55 2007/05/08 00:55:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.56 2007/08/25 05:25:32 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -77,6 +77,7 @@
     SUBDIR += sane-backends
     SUBDIR += scr2png
     SUBDIR += sdl_image
+    SUBDIR += sdl_ttf
     SUBDIR += svgalib
     SUBDIR += tiff
     SUBDIR += vindaloo
