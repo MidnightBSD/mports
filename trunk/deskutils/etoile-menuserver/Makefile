@@ -2,12 +2,12 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-menuserver/Makefile,v 1.1 2007/03/13 05:34:47 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-menuserver/Makefile,v 1.2 2007/08/24 00:08:54 seirei Exp $
 # $FreeBSD: ports/deskutils/etoile-menuserver/Makefile,v 1.5 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	menuserver
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        gpl2
@@ -25,6 +25,7 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
 USE_GNUSTEP_SYSTEM_LIBS+=	WorkspaceCommKit:${ETOILE_SYSTEM_PORT}
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Services/Private/MenuServer
 #ADDITIONAL_OBJCFLAGS+=	-I${X11BASE}/include

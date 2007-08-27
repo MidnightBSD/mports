@@ -2,12 +2,12 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-azbackground/Makefile,v 1.1 2007/03/13 05:51:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-azbackground/Makefile,v 1.2 2007/08/25 03:38:00 seirei Exp $
 # $FreeBSD: ports/x11-themes/etoile-azbackground/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	azbackground
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd2
@@ -24,6 +24,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Services/Private/AZBackground
 #ADDITIONAL_OBJCFLAGS+=	-I${X11BASE}/include
