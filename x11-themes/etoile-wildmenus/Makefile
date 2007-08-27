@@ -2,12 +2,12 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-wildmenus/Makefile,v 1.1 2007/03/13 05:51:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-wildmenus/Makefile,v 1.2 2007/08/26 02:06:55 seirei Exp $
 # $FreeBSD: ports/x11-themes/etoile-wildmenus/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 #
 
 PORTNAME=	wildmenus
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        unknown
@@ -23,6 +23,7 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Bundles/EtoileWildMenus
 

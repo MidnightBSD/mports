@@ -2,12 +2,12 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-iconkit/Makefile,v 1.1 2007/03/13 05:51:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-iconkit/Makefile,v 1.2 2007/08/23 19:26:14 seirei Exp $
 # $FreeBSD: ports/x11-themes/etoile-iconkit/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 #
 
 PORTNAME=	iconkit
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -26,6 +26,7 @@ USE_GNUSTEP_LOCAL_LIBS+=	UnitKit:${UNITKIT_PORT}
 #DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Frameworks/IconKit
 

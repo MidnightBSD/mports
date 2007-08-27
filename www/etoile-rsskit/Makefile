@@ -2,12 +2,12 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-rsskit/Makefile,v 1.2 2007/08/20 07:20:45 laffer1 Exp $
+# $MidnightBSD: mports/www/etoile-rsskit/Makefile,v 1.3 2007/08/23 00:22:36 seirei Exp $
 # $FreeBSD: ports/www/etoile-rsskit/Makefile,v 1.6 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	rsskit
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	www gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -25,6 +25,7 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 NO_FILTER_SHLIBS=       yes
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Frameworks/RSSKit
 

@@ -2,12 +2,12 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/etoile-behavior/Makefile,v 1.1 2007/03/13 05:32:43 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/etoile-behavior/Makefile,v 1.2 2007/08/26 02:13:45 seirei Exp $
 # $FreeBSD: ports/sysutils/etoile-behavior/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	behavior
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3
@@ -23,6 +23,7 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Bundles/EtoileBehavior
 #MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR="${GNUSTEP_SYSTEM_ROOT}"
