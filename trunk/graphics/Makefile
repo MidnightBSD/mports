@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.56 2007/08/25 05:25:32 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.57 2007/08/26 21:49:15 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -10,6 +10,7 @@
     SUBDIR += aalib
     SUBDIR += cairo
     SUBDIR += dri
+    SUBDIR += etoile-distributedview
     SUBDIR += feh
     SUBDIR += gd
     SUBDIR += giblib
