@@ -2,12 +2,12 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-wm/etoile-azalea/Makefile,v 1.1 2007/03/13 06:21:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/etoile-azalea/Makefile,v 1.2 2007/08/23 15:47:36 seirei Exp $
 # $FreeBSD: ports/x11-wm/etoile-azalea/Makefile,v 1.6 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	azalea
-PORTVERSION=	0.2.0
+PORTVERSION=	0.1.${SNAPSHOT}
 CATEGORIES=	x11-wm gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        gpl2
@@ -24,10 +24,9 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
 
+SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
 USE_GNUSTEP_MAKE_DIRS+=	Services/Private/Azalea
-#ADDITIONAL_INCLUDE_DIRS+=	-I${X11BASE}/include
-#ADDITIONAL_LIB_DIRS+=	-L${X11BASE}/lib
 
 XWINDOWSERVERKIT_PORT?=		x11/etoile-xwindowserverkit
 
