@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.57 2007/08/17 01:56:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.58 2007/08/19 02:13:21 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2712,10 +2712,10 @@ HAS_CONFIGURE=		yes
 INTUIT_LATE_CONFIGURE_ARGS= \
 	_LATE_CONFIGURE_ARGS=""; \
 	_configure_help="`./${CONFIGURE_SCRIPT} --help 2>&1`"; \
-	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null; then \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--mandir' >/dev/null  && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--mandir' >/dev/null); then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
 	fi ;\
-	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null; then \
+	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--infodir' >/dev/null); then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}"; \
 	fi ;
 .endif
