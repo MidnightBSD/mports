@@ -2,14 +2,13 @@
 # Date created:				2 July 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.4 2007/04/27 19:24:33 ctriv Exp $
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.5 2007/04/27 20:20:18 ctriv Exp $
 # $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
 
 PORTNAME=	gnomehier
-PORTVERSION=	2.1
-PORTREVISION=	3
+PORTVERSION=	2.2
 CATEGORIES=	misc gnome
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -21,7 +20,7 @@ NO_BUILD=	yes
 PLIST?=		${WRKDIR}/pkg-plist
 PKGINSTALL=	${WRKDIR}/pkg-install
 
-GNOME_MTREE=	BSD.gnome-x11.dist
+GNOME_MTREE=	BSD.gnome.dist
 GNOME_MTREE_ARGS=${MTREE_ARGS:S|${MTREE_FILE}|${TRUE_PREFIX}/etc/mtree/${GNOME_MTREE}|}
 
 do-fetch:
