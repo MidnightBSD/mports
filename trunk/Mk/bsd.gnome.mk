@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.4 2007/03/22 03:08:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.5 2007/04/29 04:38:19 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #	$NetBSD: $
 #     $MCom: ports/Mk/bsd.gnome.mk,v 1.370 2006/04/27 01:40:22 ahze Exp $
@@ -57,18 +57,20 @@ _USE_GNOME_ALL+= bonobo gal gconf gdkpixbuf glib12 glibwww \
 		oaf orbit pygnome pygtk
 
 # GNOME 2 components
-_USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver \
-		gail gal2 gconf2 glib20 gnomecontrolcenter2 gnomedesktop \
-		gnomedocutils gnomemenus gnomepanel gnomespeech gnomevfs2 \
-		gtk20 gtkhtml3 gtksourceview libartlgpl2 libbonobo \
+_USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver gail \
+		gal2 gconf2 glib20 gnomecontrolcenter2 gnomedesktop gnomedocutils \
+		gnomemenus gnomepanel gnomesharp20 gnomespeech gnomevfs2 gtk20 \
+		gtkhtml3 gtksharp10 gtksharp20 gtksourceview libartlgpl2 libbonobo \
 		libbonoboui libgailgnome libgda2 libgda3 libglade2 libgnome \
 		libgnomecanvas libgnomedb libgnomeprint libgnomeprintui \
 		libgnomeui libgsf libgsf_gnome libgtkhtml libidl librsvg2 libwnck \
 		libxml2 libxslt libzvt linc metacity nautilus2 nautiluscdburner \
-		orbit2 pango pygnome2 pygnomeextras pygtk2 vte pygnomedesktop
+		orbit2 pango pygnome2 pygnomeextras pygtk2 vte pygnomedesktop \
+		libgnomekbd
 
+GNOME_MAKEFILEIN?=	Makefile.in
 SCROLLKEEPER_DIR=	/var/db/scrollkeeper
-gnomehack_PRE_PATCH=	${FIND} ${WRKSRC} -name "Makefile.in*" -type f | ${XARGS} ${REINPLACE_CMD} -e \
+gnomehack_PRE_PATCH=	${FIND} ${WRKSRC} -name "${GNOME_MAKEFILEIN}*" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 				's|[(]GNOME_datadir[)]/gnome/|(datadir)/|g ; \
 				 s|[(]GNOME_datadir[)]/locale|(prefix)/share/locale|g ; \
 				 s|[(]datadir[)]/locale|(prefix)/share/locale|g ; \
@@ -100,7 +102,7 @@ referencehack_PRE_PATCH=	${FIND} ${WRKSRC} -name "Makefile.in" -type f | ${XARGS
 lthack_PRE_PATCH=	${FIND} ${WRKSRC} -name "configure" -type f | ${XARGS} ${REINPLACE_CMD} -e \
 				'/^LIBTOOL_DEPS="$$ac_aux_dir\/ltmain.sh"$$/s|$$|; $$ac_aux_dir/ltconfig $$LIBTOOL_DEPS;|'
 
-GNOME_MTREE_FILE?=		${LOCALBASE}/etc/mtree/BSD.gnome-x11.dist
+GNOME_MTREE_FILE?=		${LOCALBASE}/etc/mtree/BSD.gnome.dist
 gnomehier_DETECT=	${GNOME_MTREE_FILE}
 gnomehier_RUN_DEPENDS=	${gnomehier_DETECT}:${PORTSDIR}/misc/gnomehier
 gnomehier_BUILD_DEPENDS=  ${gnomehier_DETECT}:${PORTSDIR}/misc/gnomehier
@@ -279,7 +281,7 @@ pango_USE_GNOME_IMPL=	glib20
 gtk20_LIB_DEPENDS=	gtk-x11-2.0.0:${PORTSDIR}/x11-toolkits/gtk20
 gtk20_DETECT=		${LOCALBASE}/libdata/pkgconfig/gtk+-x11-2.0.pc
 gtk20_USE_GNOME_IMPL=	intltool atk pango
-GTK2_VERSION=		2.4.0
+GTK2_VERSION=		2.10.0
 
 linc_LIB_DEPENDS=	linc.1:${PORTSDIR}/net/linc
 linc_DETECT=		${LOCALBASE}/libdata/pkgconfig/linc.pc
@@ -317,7 +319,7 @@ gnomevfs2_LIB_DEPENDS=	gnomevfs-2.0:${PORTSDIR}/devel/gnome-vfs
 gnomevfs2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gnome-vfs-2.0.pc
 gnomevfs2_USE_GNOME_IMPL=gconf2 libbonobo gnomemimedata
 
-gail_LIB_DEPENDS=	gailutil.17:${PORTSDIR}/accessibility/gail
+gail_LIB_DEPENDS=	gailutil.18:${PORTSDIR}/accessibility/gail
 gail_DETECT=		${LOCALBASE}/libdata/pkgconfig/gail.pc
 gail_USE_GNOME_IMPL=	libgnomecanvas
 
@@ -370,7 +372,7 @@ libwnck_LIB_DEPENDS=	wnck-1.18:${PORTSDIR}/x11-toolkits/libwnck
 libwnck_DETECT=		${LOCALBASE}/libdata/pkgconfig/libwnck-1.0.pc
 libwnck_USE_GNOME_IMPL=	gtk20
 
-vte_LIB_DEPENDS=	vte.4:${PORTSDIR}/x11-toolkits/vte
+vte_LIB_DEPENDS=	vte.9:${PORTSDIR}/x11-toolkits/vte
 vte_DETECT=		${LOCALBASE}/libdata/pkgconfig/vte.pc
 vte_USE_GNOME_IMPL=	gtk20
 
@@ -406,7 +408,7 @@ gal2_USE_GNOME_IMPL=gnomeui libgnomeprintui
 
 gnomecontrolcenter2_LIB_DEPENDS=gnome-window-settings.1:${PORTSDIR}/sysutils/gnome-control-center
 gnomecontrolcenter2_DETECT=${LOCALBASE}/libdata/pkgconfig/gnome-window-settings-2.0.pc
-gnomecontrolcenter2_USE_GNOME_IMPL=desktopfileutils gnomedesktop gnomemenus metacity nautilus2 desktopfileutils
+gnomecontrolcenter2_USE_GNOME_IMPL=metacity nautilus2 gnomemenus desktopfileutils libgnomekbd gnomepanel
 
 libgda2_LIB_DEPENDS=	gda-2.3:${PORTSDIR}/databases/libgda2
 libgda2_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgda.pc
@@ -456,25 +458,26 @@ intlhack_PRE_PATCH=		${FIND} ${WRKSRC} -name "intltool-merge.in" | ${XARGS} ${RE
 				 s|unpack *[(]'"'"'U\*'"'"'|unpack ('"'"'C*'"'"'|'
 intlhack_USE_GNOME_IMPL=intltool
 
-gtkhtml3_LIB_DEPENDS=	gtkhtml-3.8.15:${PORTSDIR}/www/gtkhtml3
-gtkhtml3_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-3.8.pc
-gtkhtml3_USE_GNOME_IMPL=gail libgnomeui libgnomeprintui
+gtkhtml3_LIB_DEPENDS=	gtkhtml-3.14.19:${PORTSDIR}/www/gtkhtml3
+gtkhtml3_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-3.14.pc
+gtkhtml3_USE_GNOME_IMPL=gail libgnomeui
 
 gnomespeech_LIB_DEPENDS=gnomespeech.7:${PORTSDIR}/accessibility/gnome-speech
 gnomespeech_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-speech-1.0.pc
 gnomespeech_USE_GNOME_IMPL=libbonobo
 
-evolutiondataserver_LIB_DEPENDS=edataserver-1.2.7:${PORTSDIR}/databases/evolution-data-server
+evolutiondataserver_LIB_DEPENDS=edataserver-1.2.9:${PORTSDIR}/databases/evolution-data-server
 evolutiondataserver_DETECT=		${LOCALBASE}/libdata/pkgconfig/evolution-data-server-1.2.pc
 evolutiondataserver_USE_GNOME_IMPL=libgnomeui
 
+desktopfileutils_BUILD_DEPENDS=update-desktop-database:${PORTSDIR}/devel/desktop-file-utils
 desktopfileutils_RUN_DEPENDS=update-desktop-database:${PORTSDIR}/devel/desktop-file-utils
 desktopfileutils_DETECT=	${LOCALBASE}/bin/update-desktop-database
 desktopfileutils_USE_GNOME_IMPL=glib20
 
-nautiluscdburner_LIB_DEPENDS=nautilus-burn.3:${PORTSDIR}/sysutils/nautilus-cd-burner
+nautiluscdburner_LIB_DEPENDS=nautilus-burn.4:${PORTSDIR}/sysutils/nautilus-cd-burner
 nautiluscdburner_DETECT=	${LOCALBASE}/libdata/pkgconfig/libnautilus-burn.pc
-nautiluscdburner_USE_GNOME_IMPL=nautilus2
+nautiluscdburner_USE_GNOME_IMPL=nautilus2 desktopfileutils
 
 gnomemenus_LIB_DEPENDS=		gnome-menu.2:${PORTSDIR}/x11/gnome-menus
 gnomemenus_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgnome-menu.pc
@@ -494,6 +497,25 @@ pygnomedesktop_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-python-desktop-2.0.
 pygnomedesktop_BUILD_DEPENDS=	${pygnomedesktop_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome-desktop
 pygnomedesktop_RUN_DEPENDS=	${pygnomedesktop_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome-desktop
 pygnomedesktop_USE_GNOME_IMPL=pygnome2 libgnomeprintui gtksourceview gnomepanel libwnck nautiluscdburner metacity
+
+gtksharp10_DETECT=			${LOCALBASE}/libdata/pkgconfig/gtk-sharp.pc
+gtksharp10_BUILD_DEPENDS=	${gtksharp10_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp10
+gtksharp10_RUN_DEPENDS=		${gtksharp10_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp10
+gtksharp10_USE_GNOME_IMPL=	gtk20
+
+gtksharp20_DETECT=			${LOCALBASE}/libdata/pkgconfig/gtk-sharp-2.0.pc
+gtksharp20_BUILD_DEPENDS=	${gtksharp20_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp20
+gtksharp20_RUN_DEPENDS=		${gtksharp20_DETECT}:${PORTSDIR}/x11-toolkits/gtk-sharp20
+gtksharp20_USE_GNOME_IMPL=	gtk20
+
+gnomesharp20_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-sharp-2.0.pc
+gnomesharp20_BUILD_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnome-sharp20
+gnomesharp20_RUN_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnome-sharp20
+gnomesharp20_USE_GNOME_IMPL=	gnomepanel gtkhtml3 gtksharp20 librsvg2 vte
+
+libgnomekbd_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgnomekbd.pc
+libgnomekbd_LIB_DEPENDS=	gnomekbd.1:${PORTSDIR}/x11/libgnomekbd
+libgnomekbd_USE_GNOME_IMPL=	libgnomeui
 
 # End component definition section
 
@@ -626,7 +648,7 @@ IGNORE+=the GNOME ${GNOME_DESKTOP_VERSION} desktop
 .         endif
 .      endif
 .  if ${_USE_GNOME_ALL:M${component}}==""
-IGNORE=	cannot install: unknown component ${component}
+IGNORE=	cannot install: Unknown component ${component}
 .  endif
 _USE_GNOME+=	${${component}_USE_GNOME_IMPL} ${component}
 . endfor
@@ -665,15 +687,27 @@ ltverhack_PRE_PATCH+=	for file in gnome-ltmain.sh gnome-libtool; do \
 
 # Then traverse through all components, check which of them
 # exist in ${_USE_GNOME} and set variables accordingly
+.ifdef _USE_GNOME
 . for component in ${_USE_GNOME_ALL}
-_COMP_TEST=	${_USE_GNOME:M${component}}
-.  if ${_COMP_TEST:S/${component}//}!=${_COMP_TEST:S/  / /g}
+.  if ${_USE_GNOME:M${component}}!=""
 PATCH_DEPENDS+=	${${component}_PATCH_DEPENDS}
 FETCH_DEPENDS+=	${${component}_FETCH_DEPENDS}
 EXTRACT_DEPENDS+=${${component}_EXTRACT_DEPENDS}
 BUILD_DEPENDS+=	${${component}_BUILD_DEPENDS}
 LIB_DEPENDS+=	${${component}_LIB_DEPENDS}
 RUN_DEPENDS+=	${${component}_RUN_DEPENDS}
+
+.if !defined(WITHOUT_HACK)
+.if defined(${component}_PREFIX)
+.if ${.MAKEFLAGS:MPREFIX=*}==""
+PREFIX=	${${component}_PREFIX}
+.endif
+.if defined(USE_X_PREFIX)
+.undef USE_X_PREFIX
+USE_XLIB=	yes
+.endif
+.endif
+.endif
 
 CONFIGURE_ARGS+=${${component}_CONFIGURE_ARGS}
 CONFIGURE_ENV+=	${${component}_CONFIGURE_ENV}
@@ -689,6 +723,7 @@ GNOME_PRE_PATCH+=	; ${${component}_PRE_PATCH}
 
 .  endif
 . endfor
+.endif
 .endif
 
 .if defined(GNOME_PRE_PATCH)
@@ -715,10 +750,15 @@ PLIST_SUB+=	GNOMEDESKTOP:="@comment " NOGNOMEDESKTOP:=""
 .  endif
 .endif
 
-.if ${MAINTAINER}=="gnome@MidnightBSD.org"
-CONFIGURE_FAIL_MESSAGE= "Please run the gnomelogalyzer, available from \"http://www.freebsd.org/gnome/gnomelogalyzer.sh\", which will diagnose the problem and suggest a solution. If - and only if - the gnomelogalyzer cannot solve the problem, report the build failure to the FreeBSD GNOME team at ${MAINTAINER}, and attach (a) \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\", (b) the output of the failed make command, and (c) the gnomelogalyzer output. Also, it might be a good idea to provide an overview of all packages installed on your system (i.e. an \`ls ${PKG_DBDIR}\`). Put your attachment up on any website, copy-and-paste into http://freebsd-gnome.pastebin.com, or use send-pr(1) with the attachment. Try to avoid sending any attachments to the mailing list (${MAINTAINER}), because attachments sent to FreeBSD mailing lists are usually discarded by the mailing list software."
+.if defined(USE_GNOME_SUBR)
+GNOME_SUBR=		${LOCALBASE}/etc/gnome.subr
+RUN_DEPENDS+=	${GNOME_SUBR}:${PORTSDIR}/sysutils/gnome_subr
+SUB_LIST+=		GNOME_SUBR=${GNOME_SUBR}
 .endif
 
+.if ${MAINTAINER}=="gnome@MidnightBSD.org"
+CONFIGURE_FAIL_MESSAGE= "Report the build failure to the GNOME team at ${MAINTAINER}, and attach (a) \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\", and (b) the output of the failed make command. Also, it might be a good idea to provide an overview of all packages installed on your system (i.e. an \`ls ${PKG_DBDIR}\`)."
+.endif
 
 .if defined(GCONF_SCHEMAS) || defined(INSTALLS_OMF) || defined(INSTALLS_ICONS) \
 	|| (defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="")
