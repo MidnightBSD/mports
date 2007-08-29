@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.5 2007/02/14 20:07:24 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.6 2007/04/29 04:37:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -301,16 +301,16 @@ PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 
 # Python-2.5
 .if ${PYTHON_VERSION} == "python2.5"
-PYTHON_PORTVERSION?=2.5.b3
+PYTHON_PORTVERSION?=2.5.1
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python-devel
-PYTHON_REL=			250
+PYTHON_REL=			251
 PYTHON_SUFFIX=		25
 
 # Python-2.4
 .elif ${PYTHON_VERSION} == "python2.4"
 PYTHON_PORTVERSION?=2.4.4
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python
-PYTHON_REL=			243
+PYTHON_REL=			244
 PYTHON_SUFFIX=		24
 
 # Python-2.3
