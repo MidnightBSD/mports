@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.3 2007/08/02 07:39:13 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.4 2007/08/07 18:46:33 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -110,9 +110,9 @@ do-install:
 
 post-install:
 	# Register the VM
-	"${LOCALBASE}/bin/registervm" \
-	  "${INSTALL_DIR}/bin/java # DiabloCaffe${JDK_VERSION}"
+#	"${LOCALBASE}/bin/registervm" \
+#	  "${INSTALL_DIR}/bin/java # DiabloCaffe${JDK_VERSION}"
 	# Install the plugin
-	${SETENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+#	${SETENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
