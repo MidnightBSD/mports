@@ -2,7 +2,7 @@
 # $FreeBSD: ports/java/diablo-jdk15/files/pkg-install.in,v 1.3 2006/11/06 19:47:17 glewis Exp $
 
 # Set up a standard path
-PATH=/usr/bin:/bin
+PATH=/usr/bin:/bin:/usr/local/bin
 
 # Hack to prevent licensing from breaking bento.
 if [ "x${PACKAGE_BUILDING}" != "x" ]; then
@@ -11,6 +11,9 @@ fi
 
 # Attempt to install a link for the browser plugin during post-install
 if [ "$2" = "POST-INSTALL" ]; then
+	# register
+	registervm \
+		"${PKG_PREFIX}/diablo-jdk1.5.0/bin/java # DiabloCaffe${JDK_VERSION}"	
 	# Plugin location variables
 	BROWSERPLUGINDIR=%%LOCALBASE%%/lib/browser_plugins
 	if [ `echo "$1" | grep jdk` ]; then
