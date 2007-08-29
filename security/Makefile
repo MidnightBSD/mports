@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.55 2007/07/30 03:33:55 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.56 2007/07/30 04:04:33 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -18,6 +18,7 @@
     SUBDIR += cyrus-sasl2-saslauthd
     SUBDIR += dirmngr
     SUBDIR += firewalk
+    SUBDIR += gnome-keyring
     SUBDIR += gnupg
     SUBDIR += gnupg1
     SUBDIR += gnutls
