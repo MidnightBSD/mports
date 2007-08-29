@@ -13,6 +13,7 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	python@FreeBSD.org
 COMMENT?=	An interpreted object-oriented programming language
+LICENSE=	python
 
 DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}/portbld.static
