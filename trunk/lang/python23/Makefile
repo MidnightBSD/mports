@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD: mports/lang/python23/Makefile,v 1.1 2006/11/17 22:10:07 laffer1 Exp $
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.2 2007/08/02 09:16:22 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -16,6 +16,7 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An interpreted object-oriented programming language
+LICENSE=	python
 
 CONFLICTS=	stackless_python-*
 DIST_SUBDIR=	python
@@ -76,7 +77,7 @@ PLIST_SUB+=	X86_ONLY=""
 .else
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
-.if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64 || ${ARCH} == alpha
+.if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64
 PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
