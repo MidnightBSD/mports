@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.4 2007/08/02 09:25:18 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.5 2007/08/19 01:02:17 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -26,7 +26,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #					for the port. (allowed values: native linux)
 #
 # JAVA_VENDOR		List of space-separated suitable JDK port vendors for the
-#					port. (allowed values: freebsd bsdjava sun ibm blackdown)
+#					port. (allowed values: freebsd bsdjava sun blackdown)
 #
 # JAVA_BUILD		When set, it means that the selected JDK port should be
 #					added to build dependencies for the port.
@@ -166,7 +166,7 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 __JAVA_VERSION_LIST=	1.1 1.2 1.3 1.4 1.5 1.6
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
 _JAVA_OS_LIST=			native linux
-_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown ibm
+_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
@@ -188,10 +188,6 @@ _JAVA_PORT_LINUX_BLACKDOWN_JDK_1_3_INFO=	PORT=java/linux-blackdown-jdk13	HOME=${
 											VERSION=1.3.1	OS=linux	VENDOR=blackdown
 _JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4_INFO=	PORT=java/linux-blackdown-jdk14	HOME=${LOCALBASE}/linux-blackdown-jdk1.4.2 \
 											VERSION=1.4.2	OS=linux	VENDOR=blackdown
-_JAVA_PORT_LINUX_IBM_JDK_1_3_INFO=			PORT=java/linux-ibm-jdk13		HOME=${LOCALBASE}/linux-ibm-jdk1.3.1 \
-											VERSION=1.3.1	OS=linux	VENDOR=ibm
-_JAVA_PORT_LINUX_IBM_JDK_1_4_INFO=			PORT=java/linux-ibm-jdk14		HOME=${LOCALBASE}/linux-ibm-jdk1.4.2 \
-											VERSION=1.4.1	OS=linux	VENDOR=ibm
 _JAVA_PORT_LINUX_SUN_JDK_1_2_INFO=			PORT=java/linux-sun-jdk12		HOME=${LOCALBASE}/linux-sun-jdk1.2.2 \
 											VERSION=1.2.2	OS=linux	VENDOR=sun
 _JAVA_PORT_LINUX_SUN_JDK_1_3_INFO=			PORT=java/linux-sun-jdk13		HOME=${LOCALBASE}/linux-sun-jdk1.3.1 \
@@ -207,7 +203,6 @@ _JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
 _JAVA_VENDOR_blackdown=		Blackdown
-_JAVA_VENDOR_ibm=			IBM
 _JAVA_VENDOR_sun=			Sun
 
 # Verbose description for each OS
@@ -233,9 +228,7 @@ __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
 					JAVA_PORT_LINUX_SUN_JDK_1_4 \
 					JAVA_PORT_LINUX_SUN_JDK_1_3 \
 					JAVA_PORT_LINUX_SUN_JDK_1_2 \
-					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4 \
-					JAVA_PORT_LINUX_IBM_JDK_1_4 \
-					JAVA_PORT_LINUX_IBM_JDK_1_3
+					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
 					${__JAVA_PORTS_ALL}
