@@ -3,7 +3,7 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.3 2007/08/14 02:40:13 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.4 2007/08/14 02:43:58 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -67,7 +67,7 @@ CONFIGURE_ENV=	CC="${CC}" CPPFLAGS="${CPPFLAGS}" \
 		LOCALBASE="${LOCALBASE}"
 
 PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
-RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
+RC_SCRIPTS_SUB=	PREFIX=${TRUE_PREFIX} RC_SUBR=${RC_SUBR}
 
 MAKE_ENV+=	DESTDIR=${DESTDIR} EXPR_COMPAT=yes
 
