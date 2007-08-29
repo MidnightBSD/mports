@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.5 2007/08/19 01:02:17 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.6 2007/08/29 06:21:40 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -176,8 +176,6 @@ _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_1_INFO=		PORT=java/jdk11					HOME=${LOCALBASE}/j
 											VERSION=1.1.8	OS=native	VENDOR=bsdjava
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_2_INFO=		PORT=java/jdk12					HOME=${LOCALBASE}/jdk1.2.2 \
 											VERSION=1.2.2	OS=native	VENDOR=bsdjava
-_JAVA_PORT_NATIVE_BSDJAVA_JDK_1_3_INFO=		PORT=java/jdk13					HOME=${LOCALBASE}/jdk1.3.1 \
-											VERSION=1.3.1	OS=native	VENDOR=bsdjava
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4_INFO=		PORT=java/jdk14					HOME=${LOCALBASE}/jdk1.4.2 \
 											VERSION=1.4.2	OS=native	VENDOR=bsdjava
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5_INFO=		PORT=java/jdk15					HOME=${LOCALBASE}/jdk1.5.0 \
@@ -220,7 +218,6 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5
 __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4 \
-					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_3 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_2 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_1 \
 					JAVA_PORT_LINUX_SUN_JDK_1_6 \
