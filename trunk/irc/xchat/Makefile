@@ -2,70 +2,43 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.1 2007/02/19 23:05:09 laffer1 Exp $
-# $FreeBSD: ports/irc/xchat/Makefile,v 1.122 2006/11/28 14:44:41 pav Exp $
-#    $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
+#   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
 
 PORTNAME=	xchat
-PORTVERSION=	2.6.8
-PORTREVISION=	1
+PORTVERSION=	2.8.4
 CATEGORIES=	irc gnome ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
-		http://xchat.org/files/source/2.6/
-MASTER_SITE_SUBDIR=	${PORTNAME:S|2||}
-DISTNAME=	xchat-${PORTVERSION}
+		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
+LICENSE=	gpl2
 
-OPTIONS=	PYTHON "Enable Python support" Off \
-		SOCKS "Enable SOCKS5 proxy support" Off \
-		TCL "Enable TCL suppoer" Off \
-		PERL "Enable perl support" On \
-		DBUS "Enable dbus support" On \
-		GTKSPELL "Enable spell-checking" On \
+CONFLICTS=	xchat-1* xchat-systray-plugin-[0-9]*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gtk20
 USE_GETTEXT=	yes
+USE_GNOME=	gnomehack gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-CONFIGURE_ARGS=	--enable-nls \
-		--enable-ipv6
+CONFIGURE_ARGS=	--enable-ipv6
 
-CONFLICTS=	xchat-1*
+OPTIONS=	DBUS "Enable DBUS support" on \
+		GTKSPELL "Enable spell check support using gtkspell" on \
+		LIBSEXY "Enable spell check support using libsexy" off \
+		NOTIFY "Depend on libnotify for notifications" off \
+		PERL "Enable Perl support" on \
+		PYTHON "Enable Python support" off \
+		TCL "Enable TCL support" off \
+		SOCKS "Build with socks5 support" off
 
-.if defined(WITH_SOCKS)
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libsocks5.a:${PORTSDIR}/net/socks5
-CONFIGURE_ARGS+=	--enable-socks
-.endif
-
-# openssl in now default in configure
-
-.if defined(WITH_PYTHON)
-USE_PYTHON=		yes
-CONFIGURE_ARGS+=	--enable-python
-PLIST_SUB+=		PYTHON=""
-.else
-CONFIGURE_ARGS+=	--disable-python
-PLIST_SUB+=		PYTHON="@comment "
-.endif
-
-.if defined(WITH_TCL)
-LIB_DEPENDS+=	tcl83.1:${PORTSDIR}/lang/tcl83
-CONFIGURE_ARGS+=--enable-tcl=${LOCALBASE}/lib/tcl8.3
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
-		-I${LOCALBASE}/include/tcl8.3" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} \
-		-L${LOCALBASE}/lib/tcl8.3"
-PLIST_SUB+=	TCL=""
-.else
-CONFIGURE_ARGS+=--enable-tcl=no
-PLIST_SUB+=	TCL="@comment "
-.endif
+.include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_DBUS)
 LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
@@ -78,14 +51,30 @@ CONFIGURE_ARGS+=--disable-dbus
 PLIST_SUB+=	DBUS="@comment "
 .endif
 
-.if !defined(WITHOUT_GTKSPELL)
+.if defined(WITH_GTKSPELL)
+.if defined(WITH_LIBSEXY)
+BROKEN=		You can select only one of GTKSPELL and LIBSEXY for spell check support
+.endif
 LIB_DEPENDS+=	gtkspell.0:${PORTSDIR}/textproc/gtkspell
 CONFIGURE_ARGS+=--enable-spell=gtkspell
-.else
-CONFIGURE_ARGS+=--disable-spell
 .endif
 
-.include <bsd.port.pre.mk>
+.if defined(WITH_LIBSEXY)
+.if defined(WITH_GTKSPELL)
+BROKEN=		You can select only one of GTKSPELL and LIBSEXY for spell check support
+.endif
+LIB_DEPENDS+=	sexy.2:${PORTSDIR}/x11-toolkits/libsexy
+CONFIGURE_ARGS+=--enable-spell=libsexy
+.endif
+
+.if !defined(WITH_GTKSPELL) && !defined(WITH_LIBSEXY)
+CONFIGURE_ARGS+=--enable-spell=none
+.endif
+
+.if defined(WITH_NOTIFY)
+RUN_DEPENDS+=	notify-send:${PORTSDIR}/devel/libnotify \
+		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
+.endif
 
 .if defined(WITHOUT_PERL)
 CONFIGURE_ARGS+=--disable-perl
@@ -96,8 +85,40 @@ CONFIGURE_ARGS+=--enable-perl
 PLIST_SUB+=	PERL=""
 .endif
 
+.if defined(WITH_PYTHON)
+USE_PYTHON=	yes
+.include "${PORTSDIR}/Mk/bsd.python.mk"
+CONFIGURE_ARGS+=--enable-python
+PLIST_SUB+=	PYTHON=""
+.else
+CONFIGURE_ARGS+=--disable-python
+PLIST_SUB+=	PYTHON="@comment "
+.endif
+
+.if defined(WITH_TCL)
+LIB_DEPENDS+=	tcl84.1:${PORTSDIR}/lang/tcl84
+CONFIGURE_ARGS+=--enable-tcl=${LOCALBASE}/lib/tcl8.4
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
+		-I${LOCALBASE}/include/tcl8.4" \
+		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS} \
+		-L${LOCALBASE}/lib/tcl8.4"
+PLIST_SUB+=	TCL=""
+.else
+CONFIGURE_ARGS+=--enable-tcl=no
+PLIST_SUB+=	TCL="@comment "
+.endif
+
+.if defined(WITH_SOCKS)
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libsocks5.a:${PORTSDIR}/net/socks5
+CONFIGURE_ARGS+=--enable-socks
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|PY_LIBS=.*|PY_LIBS="-L\$$PY_EXEC_PREFIX/lib/python\$$PY_VER/config -lpython\$$PY_VER ${PTHREAD_LIBS} -lutil"|' \
 		${WRKSRC}/configure
+
+# Create plugins directory even when no plugins are installed
+post-install:
+	@${MKDIR} ${PREFIX}/lib/xchat/plugins
 
 .include <bsd.port.post.mk>
