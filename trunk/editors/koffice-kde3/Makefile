@@ -3,11 +3,11 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.1 2007/01/21 00:32:06 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.2 2007/08/02 07:34:40 laffer1 Exp $
 #
 
 PORTNAME=	koffice
-PORTVERSION=	1.5.2
+PORTVERSION=	1.6.3
 PORTEPOCH=	2
 CATEGORIES=	editors kde
 MASTER_SITES=	${MASTER_SITE_KDE}
@@ -17,9 +17,9 @@ DIST_SUBDIR=	KDE/koffice
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Office Suite for KDE3
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx \
-		Magick-config:${PORTSDIR}/graphics/ImageMagick
-LIB_DEPENDS=	art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
+BUILD_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
+LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
+		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
 		aspell:${PORTSDIR}/textproc/aspell \
 		exif.12:${PORTSDIR}/graphics/libexif \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
@@ -47,6 +47,8 @@ USE_PGSQL=	yes
 .include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=--with-pgsqlincdir=${LOCALBASE}/include \
-		--with-pgsqllibdir=${LOCALBASE}/lib
+		--with-pgsqllibdir=${LOCALBASE}/lib \
+		--with-pqxx-includes=${LOCALBASE}/include \
+		--with-pqxx-libraries=${LOCALBASE}/lib
 
 .include <bsd.port.post.mk>
