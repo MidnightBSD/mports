@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python22/Makefile,v 1.115 2006/08/12 04:24:41 perky Exp $
-# $MidnightBSD: mports/lang/python22/Makefile,v 1.1 2006/11/09 15:37:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/python22/Makefile,v 1.2 2007/08/02 09:15:46 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -19,6 +19,7 @@ PATCHFILES=	patch-2.2.txt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interpreted object-oriented programming language
+LICENSE=	python
 
 DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}

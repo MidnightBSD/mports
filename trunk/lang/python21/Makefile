@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python21/Makefile,v 1.109 2006/05/09 20:52:19 edwin Exp $
-# $MidnightBSD: mports/lang/python21/Makefile,v 1.5 2006/11/04 14:48:50 wintellect Exp $
+# $MidnightBSD: mports/lang/python21/Makefile,v 1.6 2006/11/17 22:30:46 laffer1 Exp $
 
 PORTNAME=	python
 PORTVERSION=	2.1.3
@@ -15,7 +15,7 @@ DISTFILES=	${PYTHON_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interpreted object-oriented programming language
-
+LICENSE=	python
 
 DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}
