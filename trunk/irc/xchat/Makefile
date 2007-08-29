@@ -2,7 +2,7 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.3 2007/08/29 02:26:21 ctriv Exp $
 # $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
 #   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
@@ -14,7 +14,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
 LICENSE=	gpl2
 
