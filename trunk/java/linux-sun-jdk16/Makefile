@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.1 2007/08/19 00:37:32 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.2 2007/08/19 02:46:36 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -76,7 +76,7 @@ do-install:
 	done
 
 post-install:
-	${LOCALBASE}/bin/registervm "${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Sun-JDK${PORTVERSION}"
+	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Sun-JDK${PORTVERSION}"
 	${SED} -e "s:%%JRE_HOME%%:${APP_HOME}/jre:g" \
 	  < ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
 	${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
