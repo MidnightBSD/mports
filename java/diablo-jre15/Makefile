@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.5 2007/08/07 18:54:07 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.6 2007/08/07 19:53:06 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -109,9 +109,8 @@ do-install:
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} "${INSTALL_DIR}"
 
 post-install:
-	# Register the VM
-	"${LOCALBASE}/bin/registervm" \
-	  "${INSTALL_DIR}/bin/java # DiabloLatte${JRE_VERSION}"
+	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # DiabloLatte${JRE_VERSION}"
+
 	# Install the plugin
 	${SETENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
