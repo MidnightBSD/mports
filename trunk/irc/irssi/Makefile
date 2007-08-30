@@ -2,12 +2,13 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.3 2007/08/02 08:45:33 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.4 2007/08/30 16:39:07 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.11
+PORTREVISION=	1
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
@@ -21,7 +22,7 @@ CONFIGURE_ARGS=	--with-module
 
 MAN1=		irssi.1
 
-OPTIONS=	PERL "Enable perl support (broken)" off \
+OPTIONS=	PERL "Enable perl support" on \
 		PROXY "Enable proxy support" off \
 		SOCKS "Enable socks proxy support" off \
 		IPV6 "Enable IPv6" on \
@@ -40,7 +41,6 @@ USE_OPENSSL=	yes
 # Process options.
 
 .if defined(WITH_PERL)
-BROKEN=	"libperl.so is missing"
 USE_PERL5=	yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=	WITH_PERL=""
