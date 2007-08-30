@@ -2,12 +2,13 @@
 # Date created:				06 December 2000
 # Whom:					Kevin Lo <kevlo@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/linux-sun-jdk13/Makefile,v 1.1 2007/03/13 04:22:53 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jdk13/Makefile,v 1.48 2006/03/30 17:53:11 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${JDK_REVISION}
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	linux-sun-
@@ -71,6 +72,8 @@ do-install:
 	${MKDIR} ${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}
 	cd ${WRKSRC} && ${FIND} . -print \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} ${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}
-	${LOCALBASE}/bin/registervm "${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}/bin/java # Linux-Sun-JDK${JDK_VERSION}"
+
+post-install:
+	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}jdk${JDK_VERSION}/bin/java # Linux-Sun-JDK${JDK_VERSION}"
 
 .include <bsd.port.post.mk>
