@@ -2,16 +2,15 @@
 # Date created:        1 May CEST 2003
 # Whom:                Kirill Ponomarew <ponomarew@oberon.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.1 2006/11/27 15:44:25 wintellect Exp $
 # $FreeBSD: ports/irc/ngircd/Makefile,v 1.23 2006/02/13 16:56:11 mnag Exp $
 #
 
 PORTNAME=	ngircd
-PORTVERSION=	0.9.2
-PORTREVISION=	1
+PORTVERSION=	0.10.1
 CATEGORIES=	irc
-MASTER_SITES=	http://download.berlios.de/ngircd/ \
-		ftp://ftp.berlios.de/pub/ngircd/
+MASTER_SITES=	${MASTER_SITE_BERLIOS}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
