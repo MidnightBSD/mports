@@ -2,12 +2,12 @@
 # Date created:                        	10 June 2003
 # Whom:                                 Peter van Dijk <peter@dataloss.nl>
 #
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.1 2006/10/22 19:39:57 wintellect Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.2 2007/05/07 03:46:10 ctriv Exp $
 # $FreeBSD: ports/irc/bitlbee/Makefile,v 1.26 2006/08/12 09:52:53 miwi Exp $
 #
 
 PORTNAME=	bitlbee
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/
 
@@ -27,7 +27,9 @@ USE_GETOPT_LONG=yes
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 OPTIONS=	MSN "Enable MSN protocol support" On \
-		LDAP "Enable LDAP authentication support" Off
+		LDAP "Enable LDAP authentication support" Off \
+		RECODE "Enable oscar_recode_charset" Off \
+		IPV6 "Enable IPV6 support" On
 
 CONFIGURE_ARGS=	--mandir=${PREFIX}/man --config=${PREFIX}/etc/bitlbee
 
@@ -44,9 +46,19 @@ CONFIGURE_ARGS+=--msn=1
 CONFIGURE_ARGS+=--msn=0 --ssl=bogus
 .endif
 
+.if defined(WITH_RECODE)
+post-patch:
+	@cd ${WRKSRC} && \
+		${PATCH} ${PATCH_ARGS} < ${FILESDIR}/oscar-recode-patch
+.endif
+
 .if defined(WITH_LDAP)
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--ldap=${LOCALBASE}
+.endif
+
+.if defined(WITHOUT_IPV6)
+CONFIGURE_ARGS+=--ipv6=0
 .endif
 
 pre-install:
