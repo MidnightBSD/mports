@@ -2,20 +2,17 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.2 2006/09/25 16:34:11 archite Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.3 2007/08/02 08:45:33 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
 PORTNAME=	irssi
-PORTVERSION=	0.8.10
-PORTREVISION?=	2
+PORTVERSION=	0.8.11
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A modular IRC client with many features
-
-CONFLICTS=	irssi-devel-[0-9]*
 
 USE_BZIP2=	yes
 USE_GNOME=	glib20
@@ -24,7 +21,7 @@ CONFIGURE_ARGS=	--with-module
 
 MAN1=		irssi.1
 
-OPTIONS=	PERL "Enable perl support" on \
+OPTIONS=	PERL "Enable perl support (broken)" off \
 		PROXY "Enable proxy support" off \
 		SOCKS "Enable socks proxy support" off \
 		IPV6 "Enable IPv6" on \
@@ -43,6 +40,7 @@ USE_OPENSSL=	yes
 # Process options.
 
 .if defined(WITH_PERL)
+BROKEN=	"libperl.so is missing"
 USE_PERL5=	yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=	WITH_PERL=""
@@ -69,6 +67,10 @@ CATEGORIES+=	ipv6
 
 .if defined(WITH_BOT)
 CONFIGURE_ARGS+=	--with-bot
+PLIST_SUB+=	WITH_BOT=""
+.else
+CONFIGURE_ARGS+=	--without-bot
+PLIST_SUB+=	WITH_BOT="@comment "
 .endif
 
 post-patch:
