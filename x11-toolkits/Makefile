@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.25 2007/08/22 08:37:22 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.26 2007/08/30 03:42:00 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -15,6 +15,7 @@
     SUBDIR += gtkmm12
     SUBDIR += gtkmm20
     SUBDIR += gtkmm24
+    SUBDIR += gtksourceview
     SUBDIR += gtoolkit
     SUBDIR += libbonoboui
     SUBDIR += libgnomeui
