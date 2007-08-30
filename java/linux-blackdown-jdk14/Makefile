@@ -2,13 +2,13 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.1 2007/04/07 04:47:43 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java
 MASTER_SITES=	ftp://metalab.unc.edu/pub/linux/devel/lang/java/blackdown.org/${DOWNLOAD_DIR}/ \
 		ftp://ftp.tux.org/pub/java/${DOWNLOAD_DIR}/
@@ -18,6 +18,7 @@ EXTRACT_SUFX=	.bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blackdown Java Development Kit 1.4 for Linux
+LICENSE=	restricted
 
 RUN_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper
 
@@ -76,8 +77,7 @@ do-install:
 	done
 	@${ECHO} " [ DONE ]"
 
-	@${ECHO} -n ">> Registering with javavm..."
-	@${LOCALBASE}/bin/registervm "${APP_HOME}/bin/java # Linux-Blackdown-JDK${PORTVERSION}"
-	@${ECHO} " [ DONE ]"
+post-install:
+	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Blackdown-JDK${PORTVERSION}"
 
 .include <bsd.port.post.mk>
