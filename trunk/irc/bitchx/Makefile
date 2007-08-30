@@ -2,26 +2,24 @@
 # Date created:		26 Jan 1998
 # Whom:			griffin
 #
-# $MidnightBSD: mports/irc/bitchx/Makefile,v 1.2 2007/05/07 03:22:29 ctriv Exp $
+# $MidnightBSD: mports/irc/bitchx/Makefile,v 1.3 2007/08/19 02:23:13 ctriv Exp $
 # $FreeBSD: ports/irc/bitchx/Makefile,v 1.82 2007/03/05 00:15:24 linimon Exp $
 #
 
 PORTNAME=	BitchX
-PORTVERSION=	1.1
+PORTVERSION=	1.1.0.1
 CATEGORIES+=	irc
 MASTER_SITES=	ftp://ftp.bitchx.org/pub/BitchX/source/ \
-		ftp://ftp.cyberpunkz.org/pub/BitchX/source/ \
-		ftp://ftp.cyberpunkz.org/pub/BitchX/tcl-o/:tcl
-DISTFILES=	ircii-pana-${PORTVERSION}-final${EXTRACT_SUFX}
-EXTRACT_ONLY=	ircii-pana-${PORTVERSION}-final${EXTRACT_SUFX}
+		CENKES
+DISTFILES=	ircii-pana-1.1a-final${EXTRACT_SUFX}
+EXTRACT_ONLY=	ircii-pana-1.1a-final${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	An alternative ircII color client with optional GTK/GNOME support
+COMMENT?=	ircII color client with optional GTK/GNOME support
 
 OPTIONS=	XMMS "Build BitchX with XMMS-Plugin" off \
 		PLUGINS "Build BitchX with addition plugins" off \
 		LATIN "Improved ISO-8859-1 display support" off \
-		TCL "Build BitchX with TCL scripting" off \
 		SOCKS5 "Enable SOCKS5 support" off \
 		SSL "Enable SSL support" off \
 		IPV6 "Enable IPv6 support" off \
@@ -37,9 +35,10 @@ CONFIGURE_ARGS+=--exec-prefix="${PREFIX}/share" \
 		--bindir="${PREFIX}/bin" \
 		--datadir="${PREFIX}/share" \
 		--libdir="${PREFIX}/share" \
-		--build=${MACHINE_ARCH}-portbld-freebsd$6.0
+		--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+		LIBS="-L${LOCALBASE}/lib" \
+		CFLAGS="${CFLAGS}"
 
 MAN1=		BitchX.1
 
@@ -71,9 +70,8 @@ USE_OPENSSL=		yes
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_TCL)
-BROKEN=	"Binary TCL files are missing"
-DISTFILES+=	freebsd4-tcl83-bx1.0c19-tcl.o:tcl
+.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+CFLAGS+=	-fPIC
 .endif
 
 .if defined(WITH_XMMS)
@@ -86,15 +84,6 @@ USE_AUTOTOOLS=	autoconf:253
 
 .if defined(WITH_IPV6)
 CONFIGURE_ARGS+=--enable-ipv6
-.endif
-
-.if defined(WITH_TCL)
-BUILD_DEPENDS+=	${LOCALBASE}/include/tcl8.3/tcl.h:${PORTSDIR}/lang/tcl83
-CONFIGURE_ARGS+=--with-tcl \
-		--with-tcl-libs=${LOCALBASE}/lib
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/tcl8.3"
-CFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/tcl8.3
-ONLY_FOR_ARCHS=	i386
 .endif
 
 .if defined(WITH_SOCKS5)
@@ -131,24 +120,6 @@ CONFIGURE_ARGS+=	--with-plugins=${PLUGINS}
 .endif
 CONFIGURE_ENV+=		CFLAGS="${CFLAGS}"
 
-.if defined(WITH_TCL)
-
-pre-fetch:
-.if !defined(BATCH) && !defined(PACKAGE_BUILDING)
-	${DIALOG} --yesno "SECURITY NOTICE: TCL support is only \
-	available by linking a precompiled binary object into the Application. \
-	Do you really want to proceed building BitchX with TCL support?" 7 70 || ${FALSE}
-.endif # BATCH
-
-.endif # WITH_TCL
-
-.if defined(WITH_TCL)
-
-post-extract:
-	@${CP} ${DISTDIR}/freebsd4-tcl83-bx1.0c19-tcl.o ${WRKSRC}/source/tcl.o
-
-.endif
-
 pre-patch:
 .if defined(WITH_LATIN)
 	${REINPLACE_CMD} -e 's|#undef LATIN1|#define LATIN1|g' ${WRKSRC}/include/config.h
@@ -158,16 +129,15 @@ pre-patch:
 post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${PREFIX}/share/bx/help
-	${MKDIR} ${PREFIX}/share/doc/bitchx
-	${TAR} --directory ${WRKSRC}/bitchx-docs -cf - . --exclude CVS | \
+	${TAR} --directory ${WRKSRC}/bitchx-docs -cf - . | \
 	${TAR} --directory ${PREFIX}/share/bx/help -xf -
 .else
 	${RMDIR} ${PREFIX}/share/bx/help
 .endif
 .if defined(WITH_GNOME)
-	${STRIP_CMD} ${PREFIX}/bin/gtkBitchX-${PORTVERSION}-final
+	${STRIP_CMD} ${PREFIX}/bin/gtkBitchX-1.1-final
 .else
-	${STRIP_CMD} ${PREFIX}/bin/BitchX-${PORTVERSION}-final
+	${STRIP_CMD} ${PREFIX}/bin/BitchX-1.1-final
 	${STRIP_CMD} ${PREFIX}/bin/scr-bx
 .endif
 
