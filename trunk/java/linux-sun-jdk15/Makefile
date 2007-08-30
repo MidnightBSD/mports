@@ -2,12 +2,13 @@
 # Date created:				24 December 2001
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/linux-sun-jdk15/Makefile,v 1.2 2007/03/13 04:11:39 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jdk15/Makefile,v 1.23 2007/02/25 17:15:02 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${DL_JDK_VERSION:S/_/./g}
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	java devel
 MASTER_SITES=	#
@@ -75,7 +76,7 @@ do-install:
 	done
 
 post-install:
-	${LOCALBASE}/bin/registervm "${APP_HOME}/bin/java # Linux-Sun-JDK${PORTVERSION}"
+	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Sun-JDK${PORTVERSION}"
 	${SED} -e "s:%%JRE_HOME%%:${APP_HOME}/jre:g" \
 	  < ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
 	${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
