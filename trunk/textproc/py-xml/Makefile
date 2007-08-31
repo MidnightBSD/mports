@@ -2,7 +2,7 @@
 # Date created:				04/17/1999
 # Whom:					nectar@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/py-xml/Makefile,v 1.1 2007/08/31 00:56:27 laffer1 Exp $
 # $FreeBSD: ports/textproc/py-xml/Makefile,v 1.29 2007/07/30 09:42:04 alexbl Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=		PyXML-${PORTVERSION}
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		PyXML: Python XML library enhancements
 
+USE_GCPIO=		yes
 USE_PYTHON=		2.1+
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGNAME=	PyXML
