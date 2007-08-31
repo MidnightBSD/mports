@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.26 2007/08/30 03:42:00 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.27 2007/08/30 21:53:54 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
     
     SUBDIR += Xaw3d
+    SUBDIR += gdl
     SUBDIR += gnustep-art
     SUBDIR += gnustep-back
     SUBDIR += gnustep-cairo
