@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.26 2007/08/15 05:35:45 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.27 2007/08/16 20:14:37 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -14,6 +14,7 @@
     SUBDIR += gnustep-examples
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
+    SUBDIR += iso-codes
     SUBDIR += kde-xdg-env
     SUBDIR += kdeedu3
     SUBDIR += kdehier
