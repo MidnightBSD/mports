@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.144 2007/08/30 01:47:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.145 2007/08/31 00:43:33 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -95,9 +95,17 @@
     SUBDIR += objcunit
     SUBDIR += oniguruma4
     SUBDIR += p5-Algorithm-Diff
+    SUBDIR += p5-Algorithm-C3
     SUBDIR += p5-AppConfig
     SUBDIR += p5-Carp-Clan
     SUBDIR += p5-Config-General
+    SUBDIR += p5-Class-Accessor
+    SUBDIR += p5-Class-Accessor-Chained
+    SUBDIR += p5-Class-Accessor-Grouped
+    SUBDIR += p5-Class-C3
+    SUBDIR += p5-Class-C3-Componentised
+    SUBDIR += p5-Class-C3-XS
+    SUBDIR += p5-Class-Inspector
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-Date-Manip
@@ -113,9 +121,12 @@
     SUBDIR += p5-IPC-Run
     SUBDIR += p5-Locale-gettext
     SUBDIR += p5-Module-Build
+    SUBDIR += p5-Module-Find
+    SUBDIR += p5-MRO-Compat
     SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
     SUBDIR += p5-ReadLine-Perl
+    SUBDIR += p5-Scope-Guard
     SUBDIR += p5-Spiffy
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Ediff
