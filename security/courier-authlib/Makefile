@@ -2,7 +2,7 @@
 # Date created:				19 Dec 2004
 # Whom:					Oliver Lehmann
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.2 2007/02/20 00:11:23 laffer1 Exp $
 # $FreeBSD: ports/security/courier-authlib/Makefile,v 1.28 2007/01/17 05:25:27 oliver Exp $
 #
 
@@ -206,10 +206,8 @@ pre-configure:
 		${RM} -f "${WRKDIR}/courier-authlib.cache" ; \
 	fi
 
-.if ${PKGNAMESUFFIX} == "-base"
 pre-install:
-	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-.endif	# ${PKGNAMESUFFIX} == "-base"
+	@${MKDIR} ${PREFIX}/libexec/courier-authlib
 
 post-install:
 .if !defined(NOPORTDOCS)
