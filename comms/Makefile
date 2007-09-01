@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.5 2007/05/21 01:35:00 laffer1 Exp $
+# $MidnightBSD: mports/comms/Makefile,v 1.6 2007/06/27 01:14:31 laffer1 Exp $
 #
 
     COMMENT = Communication utilities
@@ -10,5 +10,6 @@
     SUBDIR += ltmdm
     SUBDIR += minicom
     SUBDIR += pr
+    SUBDIR += tits
 
 .include <bsd.port.subdir.mk>
