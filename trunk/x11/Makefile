@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.30 2007/08/22 20:33:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.31 2007/09/01 05:51:54 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -9,6 +9,7 @@
     SUBDIR += etoile
     SUBDIR += etoile-iterm
     SUBDIR += etoile-xwindowserverkit
+    SUBDIR += gnome-desktop
     SUBDIR += gnome-menus
     SUBDIR += idesk
     SUBDIR += kde3
