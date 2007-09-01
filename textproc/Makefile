@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.76 2007/08/31 06:08:01 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.77 2007/09/01 04:06:37 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -31,10 +31,11 @@
     SUBDIR += etoile-ogrekit
     SUBDIR += expat2
     SUBDIR += fixrtf
+    SUBDIR += gdome2
+    SUBDIR += gnome-doc-utils
+    SUBDIR += gtkspell
     SUBDIR += html
     SUBDIR += html2text
-    SUBDIR += gdome2
-    SUBDIR += gtkspell
     SUBDIR += intltool
     SUBDIR += iso8879
     SUBDIR += ispell
