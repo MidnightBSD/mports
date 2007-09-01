@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.31 2007/08/22 08:27:30 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.32 2007/09/01 08:16:19 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -24,6 +24,7 @@
     SUBDIR += ghostscript-afpl
     SUBDIR += ghostscript-gpl
     SUBDIR += ghostscript-gpl-nox11
+    SUBDIR += gimp-print
     SUBDIR += gsfonts
     SUBDIR += gv
     SUBDIR += jadetex
