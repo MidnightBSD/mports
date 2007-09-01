@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.58 2007/08/19 02:13:21 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.59 2007/08/28 22:46:11 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -316,7 +316,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  files under ${WRKSRC} with one of these names the ^Ms.
 # USE_GCC		- If set, this port requires this version of gcc, either in
 #				  the system or installed from a port.
-# USE_GCPIO		- if set, uses GNU cpio.  Required for ${CPIO} usage.
+# USE_GCPIO		- if set, uses GNU cpio.  Changes the value of ${CPIO}.
 # USE_GMAKE		- If set, this port uses gmake.
 # GMAKE			- Set to path of GNU make if not in $PATH.
 #				  Default: gmake
@@ -1084,7 +1084,11 @@ CHOWN?=		/usr/sbin/chown
 CHROOT?=	/usr/sbin/chroot
 COMM?=		/usr/bin/comm
 CP?=		/bin/cp
+.if defined(USE_GCPIO)
 CPIO?=		${LOCALBASE}/bin/gcpio
+.else
+CPIO?=		/usr/bin/cpio
+.endif
 CUT?=		/usr/bin/cut
 DC?=		/usr/bin/dc
 DIALOG?=	/usr/bin/dialog
@@ -2138,6 +2142,32 @@ INSTALL_MACROS=	BSD_INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 			BSD_INSTALL_MAN="${INSTALL_MAN}"
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
+
+
+
+# Macro for coping entire directory tree with correct permissions
+.if ${UID} == 0
+COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
+					2>&1) && \
+					${CHOWN} -R ${BINOWN}:${BINGRP} $$1 && \
+					${FIND} $$1 -type d -exec chmod 755 {} \; && \
+					${FIND} $$1 -type f -exec chmod ${BINMODE} {} \;' --
+COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
+					2>&1) && \
+					${CHOWN} -R ${SHAREOWN}:${SHAREGRP} $$1 && \
+					${FIND} $$1/ -type d -exec chmod 755 {} \; && \
+					${FIND} $$1/ -type f -exec chmod ${SHAREMODE} {} \;' --
+.else
+COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
+					2>&1) && \
+					${FIND} $$1 -type d -exec chmod 755 {} \; && \
+					${FIND} $$1 -type f -exec chmod ${BINMODE} {} \;' --
+COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
+					2>&1) && \
+					${FIND} $$1/ -type d -exec chmod 755 {} \; && \
+					${FIND} $$1/ -type f -exec chmod ${SHAREMODE} {} \;' --
+.endif
+
 
 # The user can override the NO_PACKAGE by specifying this from
 # the make command line
