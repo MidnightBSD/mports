@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.54 2007/08/14 06:09:10 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.55 2007/08/24 04:59:08 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -20,6 +20,7 @@
     SUBDIR += gnustep-ticker
     SUBDIR += google-sitemapgen
     SUBDIR += kdewebdev
+    SUBDIR += libgtkhtml
     SUBDIR += libwww
     SUBDIR += lighttpd
     SUBDIR += links
