@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.39 2007/04/07 19:10:41 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.40 2007/05/03 06:10:56 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -17,6 +17,7 @@
     SUBDIR += cdparanoia
     SUBDIR += esound
     SUBDIR += faac
+    SUBDIR += faad
     SUBDIR += flac
     SUBDIR += gnustep-cdplayer
     SUBDIR += gsm
