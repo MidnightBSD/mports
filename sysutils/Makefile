@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.44 2007/08/27 19:39:21 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.45 2007/08/29 06:51:07 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -34,6 +34,7 @@
     SUBDIR += nodebrain
     SUBDIR += nvclock
     SUBDIR += obliterate
+    SUBDIR += openupsd
     SUBDIR += pecl-fileinfo
     SUBDIR += p5-File-Which
     SUBDIR += p5-Sys-Hostname-Long
