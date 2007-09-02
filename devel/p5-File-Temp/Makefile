@@ -2,7 +2,7 @@
 # Date created:		13 March 2001
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-File-Temp/Makefile,v 1.1 2007/03/11 03:45:20 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-File-Temp/Makefile,v 1.20 2007/02/01 07:02:02 leeym Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module to generate temporary files or directories safely
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
