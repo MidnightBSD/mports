@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.59
+PORTVERSION=	0.61
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
@@ -14,6 +14,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	DougB@FreeBSD.org
 COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
+LICENSE=	perl
 
 # Warnings during build are harmless, the port does not need these to build
 RUN_DEPENDS=	ipcount:${PORTSDIR}/net-mgmt/p5-Net-IP \
