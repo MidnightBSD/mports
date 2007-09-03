@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.40 2007/05/03 06:10:56 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.41 2007/09/01 07:58:59 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -34,6 +34,7 @@
     SUBDIR += libmikmod
     SUBDIR += libmodplug
     SUBDIR += libmpcdec
+    SUBDIR += libmusicbrainz
     SUBDIR += libogg
     SUBDIR += libsamplerate
     SUBDIR += libsndfile
