@@ -3,11 +3,11 @@
 # Whom:			Lars Balker Rasmussen <lbr@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/p5-DBIx-Class/Makefile,v 1.28 2007/08/12 22:14:17 lbr Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-DBIx-Class/Makefile,v 1.1 2007/09/01 17:51:43 ctriv Exp $
 #
 
 PORTNAME=	DBIx-Class
-PORTVERSION=	0.08006
+PORTVERSION=	0.08007
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
