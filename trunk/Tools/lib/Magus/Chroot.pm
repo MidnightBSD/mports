@@ -24,14 +24,14 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.2 2007/09/05 22:45:36 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
 use strict;
 use warnings;
-use File::Path qw(mkpath);
+use File::Path qw(mkpath rmtree);
 
 =head1 NAME 
 
@@ -125,6 +125,7 @@ sub _init {
   $self->_mtree('BSD.x11-4.dist', $self->{x11base});
   
   system("/sbin/mount -t devfs devfs $self->{root}/dev");
+  $self->_touchfile('/.clean');
 }
 
 
@@ -135,7 +136,7 @@ sub _clean {
   my ($self) = @_;
   
   for (qw(workdir x11base localbase packages)) {
-    rmpath("$self->{root}/$self->{$_}");
+    rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
   }
   
@@ -143,9 +144,7 @@ sub _clean {
   $self->_mtree('BSD.x11-4.dist', $self->{x11base});
   
   unlink("$self->{root}/.dirty");
-  my $tmp;
-  open($tmp, '>', "$self->{root}/.clean") && close($tmp) 
-    || die "Couldn'touch $self->{root}/.clean\n";
+  $self->_touchfile('/.clean');
 }
 
 
@@ -157,9 +156,17 @@ sub _mtree {
 
 sub _mkdir {
   my ($self, $dir) = @_;
-  
+  use Carp;
   mkpath("$self->{root}/$dir") ||
-    die "Couldn't mkdir $self->{root}/$dir: $!\n";
+    croak "Couldn't mkdir $self->{root}/$dir: $!\n";
+}
+
+
+sub _touchfile {
+  my ($self, $file) = @_; 
+  my $tmp;
+  open($tmp, '>>', "$self->{root}$file") && close($tmp) 
+    || die "Couldn'touch $self->{root}$file\n";
 }
 
 
@@ -221,10 +228,10 @@ sub delete {
       or die "umount returned non-zero: $?\n";
   }
   
-  system("/sbin/chflags 0 $self->{root}/var/empty") == 0 
+  system("/bin/chflags 0 $self->{root}/var/empty") == 0 
     or die "chflags returned non-zero: $?\n";
   
-  rmpath($self->root);
+  rmtree($self->root) || die "Couldn't rmtree $self->{root}\n";
 }
 
 1;
