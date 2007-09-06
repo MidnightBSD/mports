@@ -4,13 +4,13 @@
 #
 # Based on nik's docbook-310 port
 #
-# $MidnightBSD: mports/textproc/docbook-410/Makefile,v 1.1 2006/09/24 02:58:17 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-410/Makefile,v 1.2 2007/05/09 15:25:23 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-410/Makefile,v 1.11 2005/06/01 19:54:03 glewis Exp $
 #
 
 PORTNAME=	docbook
 PORTVERSION=	4.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.docbook.org/sgml/4.1/
 DISTNAME=	docbk41
@@ -18,6 +18,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V4.1 of the DocBook DTD, designed for technical documentation
+LICENSE=	unknown
 
 RUN_DEPENDS=	${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
 		${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
@@ -33,7 +34,7 @@ PLIST_SUB+=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
 
 INSTDIR=	${PREFIX}/share/sgml/docbook
-ISOCAT=		${PREFIX}/share/sgml/iso8879/catalog
+ISOCAT=		${TRUE_PREFIX}/share/sgml/iso8879/catalog
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 
