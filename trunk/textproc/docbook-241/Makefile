@@ -4,13 +4,13 @@
 #
 # Based heavily on work by jfieber.
 #
-# $MidnightBSD: mports/textproc/docbook-241/Makefile,v 1.1 2006/09/24 02:58:16 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-241/Makefile,v 1.2 2007/05/09 15:22:04 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-241/Makefile,v 1.18 2006/04/15 06:46:10 linimon Exp $
 #
 
 PORTNAME=	docbook
 PORTVERSION=	241
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.ora.com/pub/davenport/
 DISTFILES=	docbk241.tar.Z
@@ -18,6 +18,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V2.4.1 of the DocBook DTD, designed for technical documentation
+LICENSE=	unknown
 
 RUN_DEPENDS=	${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
 		${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
@@ -31,7 +32,7 @@ PLIST_SUB+=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
 
 INSTDIR=	${PREFIX}/share/sgml/docbook
-ISOCAT=		${PREFIX}/share/sgml/iso8879/catalog
+ISOCAT=		${TRUE_PREFIX}/share/sgml/iso8879/catalog
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
 DTD_VERSION=	2.4.1
