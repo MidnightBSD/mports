@@ -2,7 +2,7 @@
 # Date created:		11 September 1994
 # Whom:			jkh
 #
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.3 2007/05/07 02:10:35 laffer1 Exp $
 # $FreeBSD: ports/devel/gmake/Makefile,v 1.62 2006/06/29 22:39:05 ade Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	make-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of 'make' utility
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
