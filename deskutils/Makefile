@@ -3,6 +3,7 @@
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
+    SUBDIR += etoile-addresseskit
     SUBDIR += etoile-dictionaryreader
     SUBDIR += etoile-extendedworkspacekit
     SUBDIR += etoile-hardware
