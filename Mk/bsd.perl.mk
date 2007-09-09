@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.3 2007/05/08 00:13:20 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.4 2007/06/06 19:19:16 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -179,10 +179,10 @@ do-install:
 #
 .if !target(test)
 .if (PERL_MODBUILD)
-test:
+test: build
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PERL5} ${PL_BUILD} ${PERL_TEST_TARGET}
 .else
-test:
+test: build
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} make ${PERL_TEST_TARGET}
 .endif
 .endif
