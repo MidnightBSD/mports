@@ -10,6 +10,7 @@
     SUBDIR += etoile-inspectorkit
     SUBDIR += etoile-lookandbehavior
     SUBDIR += etoile-menuserver
+    SUBDIR += etoile-outerspace
     SUBDIR += etoile-panekit
     SUBDIR += etoile-servicesbarkit
     SUBDIR += etoile-systemconfig
