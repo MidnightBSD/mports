@@ -7,6 +7,7 @@
     SUBDIR += etoile-dictionaryreader
     SUBDIR += etoile-extendedworkspacekit
     SUBDIR += etoile-hardware
+    SUBDIR += etoile-inspectorkit
     SUBDIR += etoile-lookandbehavior
     SUBDIR += etoile-menuserver
     SUBDIR += etoile-panekit
