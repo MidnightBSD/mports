@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.59 2007/08/28 22:46:11 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.60 2007/09/01 05:14:05 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2191,7 +2191,6 @@ PKGCATEGORY?=	${_CATEGORY}
 _PORTDIRNAME=	${.CURDIR:T}
 PORTDIRNAME?=	${_PORTDIRNAME}
 PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
-
 
 .if !defined(DESTDIR)
 PKG_CMD?=		/usr/sbin/pkg_create
@@ -5112,13 +5111,14 @@ describe:
 describe-yaml:
 	@perl -MYAML -e ' \
 		my %port = ( \
-			name        => q(${PKGNAME}), \
-			origin      => q(${PKGORIGIN}), \
+			pkgname     => q(${PKGNAME}), \
+			name        => q(${PKGORIGIN}), \
 			version     => q(${PKGVERSION}), \
 			description => qq(${COMMENT:S/'/\x27/g}), \
 			license     => q(${LICENSE}), \
+			categories  => [qw(${CATEGORIES})], \
 		); \
-		$$port{name}      =~ s/^(.*)-.*/$$1/; \
+		$$port{pkgname}      =~ s/^(.*)-.*/$$1/; \
 		$$port{license} ||= undef; \
 		my %depends; \
 		$$depends{extract} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS:S|${PORTSDIR}/||g}}) ]; \
@@ -5129,6 +5129,14 @@ describe-yaml:
 		$$depends{misc}	   = [ map((split /:/)[0], qw{${DEPENDS:S|${PORTSDIR}/||}})         ]; \
 		$$depends{lib}     = [ map((split /:/)[1], qw{${LIB_DEPENDS:S|${PORTSDIR}/||}})     ]; \
 		$$port{depends}  = \%depends; \
+		open(my $$desc, q(<), q(${DESCR})) || die qq(Could not open ${DESCR}: $$!\n); \
+		while (<$$desc>) { \
+			if (m/^WWW:\s+(\S+)/) { \
+				$$port{www} = $$1; \
+				last; \
+			} \
+		} \
+		$$port{www} ||= undef; \
 		print Dump(\%port);  '
 .endif
 
@@ -5517,7 +5525,7 @@ makeplist: fake
 #
 .if !target(check-fake)
 check-fake: 
-	@${PORTSDIR}/Tools/scripts/chkfake.pl ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+	@${PORTSDIR}/Tools/scripts/chkfake ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
 .endif
 	
 
