@@ -1,6 +1,6 @@
 package Mport::Utils;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.1 2007/08/15 20:55:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.2 2007/09/05 19:25:36 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -39,15 +39,33 @@ sub _do_recurse {
   
   chdir($cwd);
   
-  my @dirs = make_var('SUBDIR');
-  
-  if (@dirs) {
-    foreach my $dir (@dirs) {
-      _do_recurse($code, "$cwd/$dir");
-    }
-  } else {
-    $code->($cwd);
+  # Calling make is expensive.  Only do so if we need to.
+  if (-e 'pkg-descr' || -e 'pkg-plist') {
+    return $code->($cwd);
   }
+  
+  # it is actually much faster to check if it is a dir makefile than to call
+  # make and ask.
+  open(my $make, '<', "Makefile") || die "Couldn't open $cwd/Makefile: $!\n";
+  while (<$make>) {
+    if (m/bsd.port.subdir.mk/) {
+      my @dirs = make_var('SUBDIR');
+      # close the filehandle before we recurse.
+      close($make);
+      if (@dirs) {
+        foreach my $dir (@dirs) {
+          _do_recurse($code, "$cwd/$dir");
+        }
+      }   
+     
+      # we're done with this makefile.
+      return; 
+    }
+  }
+  
+  # must be a real port!  
+  close($make);
+  $code->($cwd);
 }      
 
 1;
