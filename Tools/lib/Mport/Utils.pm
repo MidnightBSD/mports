@@ -1,6 +1,6 @@
 package Mport::Utils;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.2 2007/09/05 19:25:36 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.3 2007/09/09 02:20:48 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -37,7 +37,7 @@ sub recurse_ports (&) {
 sub _do_recurse {
   my ($code, $cwd) = @_;
   
-  chdir($cwd);
+  chdir($cwd) || die "Couldn't chdir to $cwd: $!\n";
   
   # Calling make is expensive.  Only do so if we need to.
   if (-e 'pkg-descr' || -e 'pkg-plist') {
