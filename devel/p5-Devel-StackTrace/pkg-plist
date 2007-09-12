@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Devel/StackTrace.pm
+@dirrmtry %%SITE_PERL%%/Devel
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Devel
