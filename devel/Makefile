@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.148 2007/09/12 02:04:43 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.149 2007/09/12 02:09:45 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -112,6 +112,7 @@
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-Date-Manip
     SUBDIR += p5-Devel-StackTrace
+    SUBDIR += p5-Exception-Class
     SUBDIR += p5-ExtUtils-CBuilder
     SUBDIR += p5-ExtUtils-ParseXS
     SUBDIR += p5-File-HomeDir
