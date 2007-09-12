@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.146 2007/09/01 17:42:34 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.147 2007/09/02 02:56:42 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -125,6 +125,7 @@
     SUBDIR += p5-Module-Build
     SUBDIR += p5-Module-Find
     SUBDIR += p5-MRO-Compat
+    SUBDIR =+ p5-Params-Validate
     SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
     SUBDIR += p5-ReadLine-Perl
