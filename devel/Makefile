@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.150 2007/09/12 02:20:23 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.151 2007/09/12 02:33:38 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -124,6 +124,7 @@
     SUBDIR += p5-IO-Tty
     SUBDIR += p5-IO-stringy
     SUBDIR += p5-IPC-Run
+    SUBDIR += p5-IPC-ShareLite
     SUBDIR += p5-Locale-gettext
     SUBDIR += p5-Module-Build
     SUBDIR += p5-Module-Find
