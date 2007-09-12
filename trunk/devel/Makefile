@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.151 2007/09/12 02:33:38 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.152 2007/09/12 02:40:40 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -97,6 +97,7 @@
     SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-Algorithm-C3
     SUBDIR += p5-AppConfig
+    SUBDIR += p5-Cache-Cache
     SUBDIR += p5-Carp-Clan
     SUBDIR += p5-Config-General
     SUBDIR += p5-Class-Accessor
