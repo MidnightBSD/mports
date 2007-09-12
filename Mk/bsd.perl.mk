@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.4 2007/06/06 19:19:16 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.5 2007/09/09 03:25:47 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -69,10 +69,6 @@ PERL_LEVEL=0
 .endif # !defined(PERL_LEVEL) && defined(PERL_VERSION)
 
 
-PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
-				PERL_VER=${PERL_VER} \
-				PERL_ARCH=${PERL_ARCH} \
-				SITE_PERL=${SITE_PERL_REL}
 
 #
 # Common Vars.
@@ -141,6 +137,12 @@ CONFIGURE_ARGS+=	INSTALLDIRS="site"
 .if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
 Perl_Post_Include=	bsd.perl.mk
+
+
+PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
+				PERL_VER=${PERL_VER} \
+				PERL_ARCH=${PERL_ARCH} \
+				SITE_PERL=${SITE_PERL_REL}
 
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
