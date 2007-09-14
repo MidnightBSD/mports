@@ -2,7 +2,7 @@
 # Date created:				2003-07-05
 # Whom:					trevor
 #
-# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.2 2006/11/02 19:12:31 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.3 2007/08/07 22:34:06 laffer1 Exp $
 #
 
 PORTNAME=	atk
@@ -18,6 +18,7 @@ LICENSE=	lgpl
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libglib-2.0.so.0:${PORTSDIR}/devel/linux-glib2
 
 ONLY_FOR_ARCHS=	i386 amd64
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 USE_LDCONFIG=	yes
