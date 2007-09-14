@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.2 2007/09/05 22:45:36 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.3 2007/09/06 04:22:38 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -76,6 +76,7 @@ sub new {
     packages  => '/magus/packages',
     distfiles => '/magus/distfiles',
     workdir   => '/magus/work',    
+    logs      => '/magus/logs',
     loopbacks => [qw(/usr/mports /usr/src)],
     %args,
   }, $class;
@@ -117,7 +118,7 @@ sub _init {
   $self->_mtree('BSD.var.dist', '/var');
   $self->_mtree('BSD.usr.dist', '/usr');
   
-  for (qw(workdir x11base packages distfiles)) {  
+  for (qw(workdir x11base packages distfiles logs)) {  
     $self->_mkdir($self->{$_});
   }
   
@@ -135,7 +136,7 @@ sub _init {
 sub _clean {
   my ($self) = @_;
   
-  for (qw(workdir x11base localbase packages)) {
+  for (qw(workdir x11base localbase packages logs)) {
     rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
   }
@@ -233,6 +234,38 @@ sub delete {
   
   rmtree($self->root) || die "Couldn't rmtree $self->{root}\n";
 }
+
+=head2 $chroot->mark_dirty
+
+Mark that the chroot needs cleanup before reuse.
+
+=cut
+
+sub mark_dirty {
+  my ($self) = @_;
+  
+  unlink("$self->{root}/.clean");
+  unlink("$self->{root}/.dead");
+  $self->_touchfile("/.dirty");
+}
+
+=head2 $chroot->mark_dead
+
+Make a chroot dead.  It cannot be reused.
+
+=cut
+
+sub mark_dead {
+  my ($self) = @_;
+  
+  unlink("$self->{root}/.clean");
+  unlink("$self->{root}/.dirty");
+  $self->_touchfile("/.dead");
+}
+
+
+
+  
 
 1;
 __END__
