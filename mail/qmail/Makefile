@@ -3,10 +3,14 @@
 # Whom:			Mario S F Ferreira <lioux@linf.unb.br> et al.
 #
 # $FreeBSD: ports/mail/qmail/Makefile,v 1.118 2007/02/05 23:32:02 garga Exp $
-# $MidnightBSD: mports/mail/qmail/Makefile,v 1.1 2007/02/19 19:37:55 laffer1 Exp $
+# $MidnightBSD: mports/mail/qmail/Makefile,v 1.2 2007/05/09 18:02:41 ctriv Exp $
 #
 
-BROKEN=		Requires non-standard users/accounts to build
+DEPRECATED=		DJB's packaging license requires files to be installed in /var
+EXPIRATION_DATE=	2007-10-13
+
+IGNORE=${DEPRECATED}
+
 
 PORTNAME=	qmail
 PORTVERSION?=	${QMAIL_VERSION}
