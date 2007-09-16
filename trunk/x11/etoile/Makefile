@@ -2,13 +2,12 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.1 2007/03/13 07:05:36 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	etoile
-PORTVERSION=	0.1.0
-PORTREVISION=	4
+PORTVERSION=	0.2.0
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -31,34 +30,37 @@ USE_GNUSTEP_CAIRO=	yes
 .endif
 
 USE_GNUSTEP_SYSTEM_LIBS+=	\
-	TrackerKit:deskutils/etoile-trackerkit \
-	ServicesBarKit:deskutils/etoile-servicesbarkit \
-	IconKit:x11-themes/etoile-iconkit \
-	ExtendedWorkspace:deskutils/etoile-extendedworkspacekit \
 	XWindowServerKit:x11/etoile-xwindowserverkit \
 	WorkspaceCommKit:sysutils/etoile-system \
 
+# TrackerKit:deskutils/etoile-trackerkit \
+#	ServicesBarKit:deskutils/etoile-servicesbarkit \
+#	ExtendedWorkspace:deskutils/etoile-extendedworkspacekit \
+
 USE_GNUSTEP_LOCAL_LIBS+=	\
-	Addresses:mail/addresses \
-	SQLClient:databases/sqlclient \
-	UnitKit:devel/etoile-unitkit \
+	EtoileFoundation:devel/etoile-foundation \
+	EtoileUI:deskutils/etoile-ui \
+	IconKit:x11-themes/etoile-iconkit \
 	BookmarkKit:www/etoile-bookmarkkit \
+	CollectionKit:devel/etoile-collectionkit \
+	UnitKit:devel/etoile-unitkit \
+	PaneKit:deskutils/etoile-panekit \
 	RSSKit:www/etoile-rsskit \
 	PopplerKit:graphics/popplerkit \
 	OgreKit:textproc/etoile-ogrekit \
 	LuceneKit:textproc/etoile-lucenekit \
-	CollectionKit:devel/etoile-collectionkit \
-	EtoileFoundation:devel/etoile-foundation \
-	PaneKit:deskutils/etoile-panekit \
-	SystemConfig:deskutils/etoile-systemconfig \
-	MultimediaKit:multimedia/etoile-multimediakit \
-	EtoileUI:deskutils/etoile-ui \
+	DistributedView:graphics/etoile-distributedview \
+	Addessses:deskutils/etoile-addresseskit \
+	InspectorKit:deskutils/etoile-inspectorkit \
 
-#	DistributedView:deskutils/etoile-distributedview \
+#	SQLClient:databases/sqlclient \
+#	SystemConfig:deskutils/etoile-systemconfig \
+#	MultimediaKit:multimedia/etoile-multimediakit \
+
 
 USE_GNUSTEP_SYSTEM_BUNDLES+=	\
-	EtoileMenus:x11-themes/etoile-etoilemenus \
 	EtoileBehavior:sysutils/etoile-behavior \
+
 
 USE_GNUSTEP_LOCAL_BUNDLES+=	\
 
@@ -71,19 +73,22 @@ USE_GNUSTEP_LOCAL_THEMES+=	\
 USE_GNUSTEP_SYSTEM_APPS+=	\
 	AZDock:x11-wm/etoile-azdock \
 	AZBackground:x11-themes/etoile-azbackground \
+	Azalea:x11-wm/etoile-azalea \
+	OuterSpace:deskutils/etoile-outerspace \
 
 USE_GNUSTEP_LOCAL_APPS+=	\
-	DictionaryReader:deskutils/etoile-dictionaryreader \
-	iTerm:x11/etoile-iterm \
-	Installer:sysutils/etoile-installer \
-	Hardware:deskutils/etoile-hardware \
-	LookAndBehavior:deskutils/etoile-lookandbehavior \
-	Azalea:x11-wm/etoile-azalea \
 	EtoileMenuServer:deskutils/etoile-menuserver \
-	Vindaloo:graphics/vindaloo \
 	Typewriter:editors/etoile-typewriter \
-	Babbler:multimedia/etoile-babbler \
-	Mollusk:www/etoile-mollusk \
+	StepChat:net-im/etoile-stepchat \
+	DictionaryReader:deskutils/etoile-dictionaryreader \
+
+#	iTerm:x11/etoile-iterm \
+#	Installer:sysutils/etoile-installer \
+#	Hardware:deskutils/etoile-hardware \
+#	LookAndBehavior:deskutils/etoile-lookandbehavior \
+#	Vindaloo:graphics/vindaloo \
+#	Babbler:multimedia/etoile-babbler \
+#	Mollusk:www/etoile-mollusk \
 
 #	Mantella:www/etoile-mantella \
 
