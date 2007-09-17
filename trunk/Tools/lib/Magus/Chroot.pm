@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.3 2007/09/06 04:22:38 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.4 2007/09/14 03:00:53 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -140,6 +140,9 @@ sub _clean {
     rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
   }
+
+  rmtree("$self->{root}/var/db/pkg");
+  rmtree("$self->{root}/var/db/ports");
   
   $self->_mtree('BSD.local.dist', $self->{localbase});
   $self->_mtree('BSD.x11-4.dist', $self->{x11base});
@@ -166,10 +169,24 @@ sub _mkdir {
 sub _touchfile {
   my ($self, $file) = @_; 
   my $tmp;
-  open($tmp, '>>', "$self->{root}$file") && close($tmp) 
-    || die "Couldn'touch $self->{root}$file\n";
+  open($tmp, '>>', "$self->{root}$file") || die "Couldn't open $self->{root}$file: $!\n";
+  close($tmp)                            || die "Couldn't close $self->{root}$file: $!\n";  
 }
 
+
+=head2 $chroot->do_chroot
+
+Calls the chroot syscall; making the chroot dir the root dir.  Use this
+as it will keep the $chroot object usable.
+
+=cut
+
+sub do_chroot {
+  my ($self) = @_;
+  
+  chroot($self->{root}) || die "Couldn't chroot to $self->{root}: $!\n";
+  $self->{root} = '';
+}
 
 =head2 $chroot->root
 
@@ -215,6 +232,18 @@ sub packages {
 }
 
 
+=head2 $chroot->logs
+
+Returns the log file directory.
+
+=cut
+
+sub logs {
+  return $_[0]->{'logs'};
+}
+
+
+
 =head2 $chroot->delete
 
 Deletes the chroot dir.
@@ -232,7 +261,7 @@ sub delete {
   system("/bin/chflags 0 $self->{root}/var/empty") == 0 
     or die "chflags returned non-zero: $?\n";
   
-  rmtree($self->root) || die "Couldn't rmtree $self->{root}\n";
+  rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
 }
 
 =head2 $chroot->mark_dirty

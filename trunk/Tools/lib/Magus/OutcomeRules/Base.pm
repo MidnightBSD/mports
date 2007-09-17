@@ -24,7 +24,7 @@ package Magus::OutcomeRules::Base;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.3 2007/09/06 04:22:38 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.1 2007/09/14 03:01:10 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -33,6 +33,7 @@ use strict;
 use warnings;
 use Attribute::Handlers;
 
+use Fcntl qw(:seek);
 use base qw(Class::Data::Inheritable);
 
 
@@ -52,6 +53,8 @@ This module contains the individual rules used to analyze the output of a port.
 
 __PACKAGE__->mk_classdata('error_rules');
 __PACKAGE__->mk_classdata('warning_rules');
+
+
 
 #
 # __PACKAGE__->fail($msg, $code)
@@ -93,26 +96,39 @@ sub warning :ATTR(CODE) {
 }
 
 sub test {
-  my ($class, $text) = @_;
-  
-  local $_ = $text;
+  my ($class, $file) = @_;
   
   my %result = (
     summary => 'pass'   
   );
   
-  foreach my $rule (@{$class->error_rules}) {
-    if (my $msg = $rule->()) {
-      $result{summary} = 'fail';
-      push(@{$result{errors}}, $msg);
-    }
-  }
+  open(my $log, '<', $file) || die "Couldn't open $file: $!\n";
   
-  foreach my $rule (@{$class->warning_rules}) {
-    if (my $msg = $rule->()) {
-      push(@{$result{warnings}}, $msg);
+  # This kinda sucks (O(n^2)), but it's abstract enough that it can optimized later.
+  while (<$log>) {
+    foreach my $rule (@{$class->error_rules || []}) {
+      if (my $msg = $rule->{code}->()) {
+        $result{summary} = 'fail';
+        push(@{$result{errors}}, {
+          phase => $rule->{phase},
+          msg   => $msg,
+          name  => $rule->{name},
+        });
+      }
+    }
+  
+    foreach my $rule (@{$class->warning_rules || []}) {
+      if (my $msg = $rule->()) {
+        push(@{$result{warnings}}, {
+          phase => $rule->{phase},
+          msg   => $msg,
+          name  => $rule->{name},
+        });
+      }
     }
   }
+
+  close($log) || die "Couldn't close $file: $!\n";
 
   return \%result;
 }

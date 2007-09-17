@@ -24,26 +24,130 @@ package Magus::OutcomeRules;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.3 2007/09/06 04:22:38 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.1 2007/09/14 03:01:10 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
+
+
+=head1 fetch rules
+
+=cut
+
+package Magus::OutcomeRules::fetch;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+
+=head1 extract rules
+
+=cut
+
+package Magus::OutcomeRules::extract;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 patch rules
+
+=cut
+
+package Magus::OutcomeRules::patch;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 configure rules
+
+=cut
+
+package Magus::OutcomeRules::configure;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 build rules
+
+=cut
+
+package Magus::OutcomeRules::build;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 fake rules
+
+=cut
 
 package Magus::OutcomeRules::fake;
 
 use base qw(Magus::OutcomeRules::Base);
 
 sub IncompleteInstall :error {
-  m/^\t	.* not installed.\n$/m 
-    && return "Some file in the plist wasn't installed in the fake dir or the final dir.";
+  m/^\t.* not installed.\n$/m 
+    && return "A file in the plist wasn't installed in the fake dir or the final dir.";
 }
 
 sub FakeDestdirInFile :error {
   m/contains the fake destdir./s 
-    && return "Some file contained the fake destdir.";
+    && return "A file contained the fake destdir.";
 }
 
-1;
+sub FakedOutsideDestdir :error {
+  m:^\t.* installed in /:m
+    && return "A file was installed in the final dir instead of the fake dir.";
+}
+
+
+
+=head1 package rules
+
+=cut
+
+package Magus::OutcomeRules::package;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 install rules
+
+=cut
+
+package Magus::OutcomeRules::install;
+
+use base qw(Magus::OutcomeRules::Base);
+
+sub AlreadyInstalled :error {
+  m:package .*? or its older version already installed: &&
+    return "The package was already installed.  This is an error in magus, not the port.";
+}
+
+=head1 deinstall rules
+
+=cut
+
+package Magus::OutcomeRules::deinstall;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
+
+=head1 reinstall rules
+
+=cut
+
+package Magus::OutcomeRules::reinstall;
+
+use base qw(Magus::OutcomeRules::Base);
+
+
 
     
 
