@@ -1,3 +1,0 @@
-include/ixp.h
-lib/libixp.a
-bin/ixpc

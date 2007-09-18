@@ -1,7 +1,0 @@
-bin/checkvms
-bin/classpath
-bin/javavm
-bin/manvm
-bin/registervm
-bin/unregistervm
-etc/javavm_opts.conf.dist

@@ -1,9 +1,0 @@
-bin/sysconftoolize
-bin/sysconftoolcheck
-share/aclocal19/sysconftool.m4
-%%DATADIR%%/sysconftool
-%%DATADIR%%/sysconftoolize.pl
-%%DATADIR%%/sysconftoolcheck
-%%DATADIR%%/sysconftoolize.am
-@dirrm %%DATADIR%%
-@dirrmtry share/aclocal19

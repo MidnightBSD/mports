@@ -1,4 +1,0 @@
-bin/xlock
-@cwd %%X11BASE%%
-lib/X11/app-defaults/XLock
-@cwd

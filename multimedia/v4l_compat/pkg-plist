@@ -1,2 +1,0 @@
-include/linux/videodev.h
-@dirrmtry include/linux

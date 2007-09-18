@@ -1,8 +1,0 @@
-#!/bin/sh
-# $FreeBSD: ports/print/acroread7/files/rm.in,v 1.1 2006/02/21 18:49:08 hrs Exp $
-#
-# remove harmless files only
-#
-case $2 in
-*/AcroWriteTest|*/*.tmp)	/bin/rm "$@" ;;
-esac

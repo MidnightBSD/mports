@@ -1,9 +1,0 @@
-@dirrm live/BasicUsageEnvironment/include
-@dirrm live/UsageEnvironment/include
-@dirrm live/groupsock/include
-@dirrm live/liveMedia/include
-@dirrm live/BasicUsageEnvironment
-@dirrm live/UsageEnvironment
-@dirrm live/groupsock
-@dirrm live/liveMedia
-@dirrm live

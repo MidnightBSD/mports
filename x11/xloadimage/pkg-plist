@@ -1,6 +1,0 @@
-bin/uufilter
-bin/xloadimage
-bin/xsetbg
-bin/xview
-%%EXAMPLESDIR%%/xloadimagerc
-@dirrm %%EXAMPLESDIR%%

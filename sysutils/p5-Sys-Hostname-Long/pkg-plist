@@ -1,8 +1,0 @@
-%%SITE_PERL%%/Sys/Hostname/Long.pm
-%%SITE_PERL%%/Sys/Hostname/testall.pl
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Hostname/Long/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Hostname/Long
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Hostname
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys
-@dirrmtry %%SITE_PERL%%/Sys/Hostname
-@dirrmtry %%SITE_PERL%%/Sys

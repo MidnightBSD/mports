@@ -1,4 +1,0 @@
-bin/workmanir
-etc/irman.conf.sample
-include/irman.h
-lib/libirman.a

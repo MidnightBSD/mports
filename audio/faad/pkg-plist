@@ -1,7 +1,0 @@
-bin/faad
-include/faad.h
-include/neaacdec.h
-lib/libfaad.a
-lib/libfaad.la
-lib/libfaad.so
-lib/libfaad.so.0
