@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/lha/Makefile,v 1.2 2006/11/29 16:10:32 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lha/Makefile,v 1.3 2006/11/29 16:12:44 laffer1 Exp $
 # $FreeBSD: ports/archivers/lha/Makefile,v 1.32 2004/09/22 06:16:54 dinoex Exp $
 #
 
@@ -11,7 +11,10 @@ PORTVERSION=	1.14i.ac20050924
 PORTREVISION=	7
 CATEGORIES=	archivers
 MASTER_SITES=	http://osdn.dl.sourceforge.jp/lha/22231/ \
-		http://keihanna.dl.sourceforge.jp/lha/22231
+		http://iij.dl.sourceforge.jp/lha/22231/ \
+		http://jaist.dl.sourceforge.jp/lha/22231/ \
+		http://globalbase.dl.sourceforge.jp/lha/22231/ \
+		http://keihanna.dl.sourceforge.jp/lha/22231/
 DISTNAME=	${PORTNAME}-1.14i-ac20050924p1
 
 MAINTAINER=	ports@MidnightBSD.org
