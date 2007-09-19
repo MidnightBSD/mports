@@ -1,8 +1,0 @@
-include/php/ext/zip/config.h
-include/php/ext/zip/php_zip.h
-lib/php/20060613/zip.so
-@dirrm include/php/ext/zip
-@dirrm include/php/ext
-@dirrm include/php
-@dirrm lib/php/20060613
-@dirrm lib/php
