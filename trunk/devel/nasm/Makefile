@@ -2,7 +2,7 @@
 # Date created:        7 April 1998
 # Whom:                Murray Stokely <murray@cdrom.com>
 #
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.4 2007/08/25 06:20:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.5 2007/08/25 06:23:43 laffer1 Exp $
 # $FreeBSD: ports/devel/nasm/Makefile,v 1.28 2006/05/04 21:40:56 edwin Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	nasm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General-purpose multi-platform x86 assembler
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
