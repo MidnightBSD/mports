@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.3 2007/04/29 03:43:04 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.4 2007/05/06 07:50:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -41,10 +41,11 @@ PHP_EXT_DIR!=	${LOCALBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${LOC
 DEFAULT_PHP_VER?=	5
 
 PHP_VER?=	${DEFAULT_PHP_VER}
+
 .if ${PHP_VER} == 4
 PHP_EXT_DIR=	20020429
 .else
-PHP_EXT_DIR=	20050922
+PHP_EXT_DIR=	20060613
 .endif
 
 HTTPD?=		${LOCALBASE}/sbin/httpd
