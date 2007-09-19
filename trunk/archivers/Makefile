@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.28 2007/08/23 02:17:35 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.29 2007/09/03 23:19:41 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -38,6 +38,7 @@
     SUBDIR += rpm2cpio
     SUBDIR += unace
     SUBDIR += unarj
+    SUBDIR += unmakeself
     SUBDIR += unrar
     SUBDIR += unzip
     SUBDIR += unzoo
