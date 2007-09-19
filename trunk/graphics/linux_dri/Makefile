@@ -2,7 +2,7 @@
 # Date created:				Thu Oct 25 18:51:06 PDT 2001
 # Whom:					Eric Anholt <eta@lclark.edu>
 #
-# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.2 2007/04/29 03:27:25 ctriv Exp $
+# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.3 2007/09/19 19:47:53 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux_dri/Makefile,v 1.20 2006/08/08 19:19:35 bsam Exp $
 #
 
@@ -25,6 +25,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_PREFIX=	yes
 USE_XLIB=	yes
+USE_LDCONFIG=	yes
 
 # don't package this for amd64 until we come up with 32-bit ioctl wrappers for
 # the drm.
