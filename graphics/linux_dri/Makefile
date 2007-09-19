@@ -2,7 +2,7 @@
 # Date created:				Thu Oct 25 18:51:06 PDT 2001
 # Whom:					Eric Anholt <eta@lclark.edu>
 #
-# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.1 2006/09/23 22:25:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.2 2007/04/29 03:27:25 ctriv Exp $
 # $FreeBSD: ports/graphics/linux_dri/Makefile,v 1.20 2006/08/08 19:19:35 bsam Exp $
 #
 
@@ -16,6 +16,7 @@ DISTFILES=	Mesa-linux-bin-${PORTVERSION}.tar.bz2 \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Binary Linux DRI libraries for 3D hardware acceleration of linux apps
+LICENSE=	restricted
 
 CONFLICTS=	linux_dri-6.5.2006*
 
@@ -39,6 +40,7 @@ do-install:
 	${MKDIR} ${PREFIX}/usr/X11R6/lib/modules/dri
 	${INSTALL_PROGRAM} ${WRKSRC}/linux_dri/libGL.so.1.2 \
 		${PREFIX}/usr/X11R6/lib
+	${LN} -sf libGL.so.1.2 ${PREFIX}/usr/X11R6/lib/libGL.so.1
 #	${BRANDELF} -t Linux ${PREFIX}/usr/X11R6/lib/libGL.so.1.2
 	${INSTALL_PROGRAM} ${WRKSRC}/linux_dri/libGLU.so.1.3.060500 \
 		${PREFIX}/usr/X11R6/lib
