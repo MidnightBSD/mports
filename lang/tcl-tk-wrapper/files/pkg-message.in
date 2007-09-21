@@ -1,4 +1,3 @@
-*******************************************************************
 Tcl is required to use the "tclsh" wrapper.
 Recommended ports: lang/tcl84 lang/tcl85
 
@@ -10,4 +9,3 @@ You may wish to create or modify the configuration file:
 
 Sample configuration file is located at:
 %%PREFIX%%/etc/tcltk.conf.sample
-*******************************************************************
