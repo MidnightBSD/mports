@@ -2,7 +2,7 @@
 # Date created:			4 March 2007
 # Whom:	      			martin@matuska.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl-tk-wrapper/Makefile,v 1.1 2007/03/21 22:44:03 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl-tk-wrapper/Makefile,v 1.1 2007/03/06 19:38:10 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shell wrapper for tclsh and wish (Tcl/Tk)
+LICENSE=	unknown
 
 NO_BUILD=	yes
 
@@ -31,7 +32,5 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/wish ${PREFIX}/bin/wish
 	${INSTALL_DATA} ${WRKDIR}/tcltk.conf.sample ${PREFIX}/etc/tcltk.conf.sample
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
