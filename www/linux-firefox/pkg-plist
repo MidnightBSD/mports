@@ -193,9 +193,9 @@ lib/%%APP_NAME%%/updater
 lib/%%APP_NAME%%/updater.ini
 lib/%%APP_NAME%%/xpicleanup
 share/applications/%%APP_NAME%%.desktop
-@dirrm share/nls/en_US.US-ASCII
-@dirrm share/nls/POSIX
-@dirrm share/applications
+@dirrmtry share/nls/en_US.US-ASCII
+@dirrmtry share/nls/POSIX
+@dirrmtry share/applications
 @dirrm lib/%%APP_NAME%%/searchplugins
 @dirrm lib/%%APP_NAME%%/res/html
 @dirrm lib/%%APP_NAME%%/res/fonts
