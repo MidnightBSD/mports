@@ -2,12 +2,12 @@
 # Date created:		26 Dec 2000
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-Text-Iconv/Makefile,v 1.1 2007/03/19 01:27:06 laffer1 Exp $
 # $FreeBSD: ports/converters/p5-Text-Iconv/Makefile,v 1.12 2004/07/19 06:51:03 skv Exp $
 #
 
 PORTNAME=	Text-Iconv
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	converters perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Text
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl interface to iconv() codeset conversion function
+LICENSE=	perl
 
 USE_ICONV=	yes
 
