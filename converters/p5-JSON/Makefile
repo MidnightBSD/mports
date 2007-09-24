@@ -3,11 +3,11 @@
 # Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
 #
 # $FreeBSD: ports/converters/p5-JSON/Makefile,v 1.8 2007/04/21 10:16:51 kuriyama Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-JSON/Makefile,v 1.1 2007/09/01 17:48:57 ctriv Exp $
 #
 
 PORTNAME=	JSON
-PORTVERSION=	1.10
+PORTVERSION=	1.14
 CATEGORIES=	converters perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../authors/id/M/MA/MAKAMAKA
