@@ -1,13 +1,14 @@
---- Makefile.in.orig	Wed Jul 27 14:02:36 2005
-+++ Makefile.in	Wed Jul 27 14:04:08 2005
-@@ -483,8 +483,8 @@
- 		$(LIBTOOL) --mode=install $(INSTALL) pcregrep@EXEEXT@ $(DESTDIR)$(BINDIR)/pcregrep@EXEEXT@
- 		$(LIBTOOL) --mode=install $(INSTALL) pcretest@EXEEXT@ $(DESTDIR)$(BINDIR)/pcretest@EXEEXT@
- 		$(INSTALL) pcre-config $(DESTDIR)$(BINDIR)/pcre-config
--		$(mkinstalldirs) $(DESTDIR)$(LIBDIR)/pkgconfig
--		$(INSTALL_DATA) libpcre.pc $(DESTDIR)$(LIBDIR)/pkgconfig/libpcre.pc
-+		$(mkinstalldirs) $(DESTDIR)$(prefix)/libdata/pkgconfig
-+		$(INSTALL_DATA) libpcre.pc $(DESTDIR)$(prefix)/libdata/pkgconfig/libpcre.pc
+
+$FreeBSD: ports/devel/pcre/files/patch-Makefile.in,v 1.4 2007/05/28 12:45:17 krion Exp $
+
+--- Makefile.in.orig
++++ Makefile.in
+@@ -502,7 +502,7 @@
+ pcredemo_LDADD = libpcre.la
  
- # The uninstall target removes all the files that were installed.
- 
+ # We have .pc files for pkg-config users.
+-pkgconfigdir = $(libdir)/pkgconfig
++pkgconfigdir = $(prefix)/libdata/pkgconfig
+ pkgconfig_DATA = libpcre.pc $(am__append_7)
+ dist_man_MANS = \
+   doc/pcre.3 \
