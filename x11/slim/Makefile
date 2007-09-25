@@ -2,7 +2,7 @@
 # Date created:				8 Jan 2006
 # Whom:					Tobias Roth <ports@fsck.ch>
 #
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.7 2007/07/30 04:39:43 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.8 2007/07/30 06:24:50 laffer1 Exp $
 # $FreeBSD: ports/x11/slim/Makefile,v 1.6 2007/01/17 04:41:48 clsung Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=slim
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
