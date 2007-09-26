@@ -420,7 +420,6 @@ share/apache2/build/special.mk
 %%ICONS%%www/icons-dist/screw2.png
 %%ICONS%%www/icons-dist/script.gif
 %%ICONS%%www/icons-dist/script.png
-%%ICONS%%www/icons-dist/small/README.txt
 %%ICONS%%www/icons-dist/small/back.gif
 %%ICONS%%www/icons-dist/small/back.png
 %%ICONS%%www/icons-dist/small/binary.gif
