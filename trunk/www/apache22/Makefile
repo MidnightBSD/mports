@@ -3,25 +3,23 @@
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
 # $FreeBSD: ports/www/apache22/Makefile,v 1.198 2006/09/24 16:16:39 clement Exp $
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.3 2007/08/02 07:24:33 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.4 2007/08/14 02:57:02 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.4
-PORTREVISION=	1
+PORTVERSION=	2.2.6
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
 DISTNAME=	httpd-${PORTVERSION}
-DISTFILES=	${DISTNAME}.tar.bz2 \
-		apr_dbd_mysql.rev-57.c:aprmysql
+DISTFILES=	${DISTNAME}.tar.bz2 
 DIST_SUBDIR=	apache22
-EXTRACT_ONLY=	${DISTNAME}.tar.bz2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
+LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
@@ -160,10 +158,6 @@ pre-everything::
 
 show-options:
 	@${SED} -ne 's/^##//p' ${APACHEDIR}/Makefile.doc
-
-post-extract:
-	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/apr_dbd_mysql.rev-57.c \
-		${WRKSRC}/srclib/apr-util/dbd/apr_dbd_mysql.c
 
 post-patch:
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
