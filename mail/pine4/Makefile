@@ -2,7 +2,7 @@
 # Date created:		09 July 1998
 # Whom:			Adrian Penisoara <ady@freebsd.ady.ro>
 #
-# $MidnightBSD: mports/mail/pine4/Makefile,v 1.1 2006/09/24 01:38:42 laffer1 Exp $
+# $MidnightBSD: mports/mail/pine4/Makefile,v 1.2 2007/05/09 16:37:06 ctriv Exp $
 # $FreeBSD: ports/mail/pine4/Makefile,v 1.86 2006/08/28 06:03:13 dougb Exp $
 #
 
@@ -23,8 +23,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PINE(tm) -- a Program for Internet News & Email
 
 OPTIONS=	PICO "Build and install pico, the default editor" on \
+		PASSFILE "Support for a stored Password File (DANGEROUS)" off \
+		MAILDIR "Add a patch that provides maildir support"  off \
 		LDAP "Add support for LDAP" off \
-		IPV6 "Add support for IPv6" off
+		IPV6 "Add support for IPv6" off \
 
 USE_OPENSSL=	yes
 
@@ -57,6 +59,11 @@ EXTRA_OPTS+=	SSLTYPE=unix.nopwd
 
 .if defined(WITH_IPV6)
 EXTRA_OPTS+=	IP=6
+.endif
+
+.if defined(WITH_PASSFILE)
+PASSFILE?=      .pine.pwd
+EXTRA_OPTS+= EXTRACFLAGS="-DWITH_PASSFILE"
 .endif
 
 MAN1=		pine.1 pilot.1 rpdump.1 rpload.1
@@ -96,6 +103,7 @@ post-patch:
 		${SED}	-e "s:/usr/local/etc/:${PREFIX}/etc/:g" \
 			-e "s:/usr/local/lib/:${PREFIX}/etc/:g" \
 			-e "s:@@PREFIX@@:${PREFIX}:g" \
+			-e "s:@@PASSFILE@@:${PASSFILE}:g" \
 			-e "s:/usr/local/pine.conf:${PREFIX}/etc/pine.conf:g" \
 			$$i.presed > $$i ; \
 	done
