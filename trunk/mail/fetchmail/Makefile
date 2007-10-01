@@ -2,7 +2,7 @@
 # Date created:		25 Feb 2000
 # Whom:			Ville Eerola <ve@sci.fi>
 #
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.3 2007/02/18 01:36:25 laffer1 Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.4 2007/05/09 14:41:34 ctriv Exp $
 # $FreeBSD: ports/mail/fetchmail/Makefile,v 1.178 2007/01/06 14:38:42 barner Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
@@ -11,12 +11,13 @@
 # want fetchmailconf to work, define WITH_X11
 
 PORTNAME=	fetchmail
-PORTVERSION=	6.3.6
+PORTVERSION=	6.3.8
 CATEGORIES=	mail ipv6
-MASTER_SITES=	${MASTER_SITE_BERLIOS}/%SUBDIR%/ \
-		http://home.pages.de/~mandree/%SUBDIR%/ \
-		http://home.leo.org/~barner/freebsd/distfiles/
+MASTER_SITES=	${MASTER_SITE_BERLIOS} \
+		${MASTER_SITE_SUNSITE:S/$/:sunsite/
 MASTER_SITE_SUBDIR=	fetchmail
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:DEFAULT,leo,sunsite
+SUB_FILES=	pkg-message
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
@@ -44,7 +45,7 @@ MLINKS=		fetchmail.1 fetchmailconf.1
 
 OPTIONS=	X11	"Python/Tkinter dependencies for fetchmailconf" off \
 		NLS	"National language support (NLS)."		on \
-		NTLM	"Building in support for NTLM/MSN authentication." off \
+		NTLM	"Build in support for NTLM/MSN authentication." off \
 		POP2	"Build pop2 support (obsolete)." off \
 		GSSAPI	"Build GSSAPI support (requires KRB5_HOME to be set)" off
 
@@ -140,6 +141,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/fetchmailconf.py ${PREFIX}/libexec
 #	the group and owner of this file get changed by the plist.
-	${INSTALL} -m 644 -o root -g wheel ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
+	${INSTALL} -m 640 -o root -g wheel ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
 
 .include <bsd.port.post.mk>
