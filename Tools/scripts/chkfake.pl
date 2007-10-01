@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.4 2007/07/30 19:50:20 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -46,12 +46,14 @@ my $cwd = $prefix;
 my $ok  = 1;
 while (<$fh>) {
   chomp;
+  s/\s*$//;
+  
   if (m/^@(?:cwd|cd)\s*(.*)/) {
     $cwd = $1 || $prefix;
   }
 
   next if m/^\@/;
-  
+ 
   # skip symlinks.
   next if -l "$destdir$cwd/$_";
   
