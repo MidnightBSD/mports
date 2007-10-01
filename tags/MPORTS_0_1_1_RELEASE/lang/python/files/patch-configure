@@ -1,0 +1,44 @@
+--- configure.old	Tue Oct 17 12:03:36 2006
++++ configure	Wed Feb 14 14:47:34 2007
+@@ -3483,12 +3483,12 @@
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
+ 	  INSTSONAME="$LDLIBRARY".$SOVERSION
+           ;;
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*)
++    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|MidnightBSD*)
+ 	  LDLIBRARY='libpython$(VERSION).so'
+ 	  BLDLIBRARY='-L. -lpython$(VERSION)'
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
+ 	  case $ac_sys_system in
+-	      FreeBSD*)
++	      FreeBSD*|MidnightBSD*)
+ 		SOVERSION=`echo $SOVERSION|cut -d "." -f 1`
+ 		;;
+ 	  esac
+@@ -10479,7 +10479,7 @@
+ 		;;
+ 	Linux*|GNU*) LDSHARED='$(CC) -shared';;
+ 	BSD/OS*/4*) LDSHARED="gcc -shared";;
+-	FreeBSD*)
++	FreeBSD*|MidnightBSD*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LDSHARED="$CC -shared ${LDFLAGS}"
+@@ -10533,7 +10533,7 @@
+ 		 fi;;
+ 	Linux*|GNU*) CCSHARED="-fPIC";;
+ 	BSD/OS*/4*) CCSHARED="-fpic";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*) CCSHARED="-fPIC";;
++	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*|MidnightBSD*) CCSHARED="-fPIC";;
+ 	OpenUNIX*|UnixWare*)
+ 		if test "$GCC" = "yes"
+ 		then CCSHARED="-fPIC"
+@@ -10586,7 +10586,7 @@
+ 	OpenUNIX*|UnixWare*) LINKFORSHARED="-Wl,-Bexport";;
+ 	SCO_SV*) LINKFORSHARED="-Wl,-Bexport";;
+ 	ReliantUNIX*) LINKFORSHARED="-W1 -Blargedynsym";;
+-	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*)
++	FreeBSD*|NetBSD*|OpenBSD*|DragonFly*|MidnightBSD*)
+ 		if [ "`$CC -dM -E - </dev/null | grep __ELF__`" != "" ]
+ 		then
+ 			LINKFORSHARED="-Wl,--export-dynamic"

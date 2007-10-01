@@ -1,0 +1,37 @@
+%%WITH_X11%%bin/floppyd
+%%WITH_X11%%bin/floppyd_installtest
+bin/amuFormat.sh
+bin/mattrib
+bin/mbadblocks
+bin/mcat
+bin/mcd
+bin/mcheck
+bin/mclasserase
+bin/mcomp
+bin/mcopy
+bin/mdel
+bin/mdeltree
+bin/mdir
+bin/mdu
+bin/mformat
+bin/minfo
+bin/mkmanifest
+bin/mlabel
+bin/mmd
+bin/mmount
+bin/mmove
+bin/mpartition
+bin/mrd
+bin/mren
+bin/mshowfat
+bin/mtools
+bin/mtoolstest
+bin/mtype
+bin/mwrite
+bin/mxtar
+bin/mzip
+@unexec if cmp -s %D/etc/mtools.conf %D/etc/mtools.conf.sample; then rm -f %D/etc/mtools.conf; fi
+etc/mtools.conf.sample
+@exec if [ ! -f %D/etc/mtools.conf ]; then cp %B/%f %D/etc/mtools.conf; fi
+@exec ln -fs %D/man/man1/mcopy.1.gz %D/man/man1/mwrite.1.gz
+@unexec rm %D/man/man1/mwrite.1.gz

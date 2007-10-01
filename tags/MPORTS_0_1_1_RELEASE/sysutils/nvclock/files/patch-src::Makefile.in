@@ -1,0 +1,13 @@
+--- src/Makefile.in.orig	Mon Aug 13 20:07:03 2007
++++ src/Makefile.in	Mon Aug 13 20:08:06 2007
+@@ -7,8 +7,8 @@
+ libbackend=./backend/libbackend.a
+ libnvcontrol=./nvcontrol/libnvcontrol.a
+ 
+-prefix=@prefix@
+-exec_prefix=@exec_prefix@
++prefix=${PREFIX}
++exec_prefix=${PREFIX}
+ bindir=@bindir@
+ 
+ ifeq ($(HAVE_NVCONTROL), yes)

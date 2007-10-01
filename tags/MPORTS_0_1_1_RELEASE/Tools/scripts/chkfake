@@ -1,0 +1,88 @@
+#!/bin/sh
+#
+# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#
+# 1. Redistributions of source code must retain the above copyright notice
+#    this list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+# INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+# AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
+#
+# MAINTAINER=   ctriv@MidnightBSD.org
+#
+# Check a fake install for errors.
+#
+# usage:  cd $port && make MPORT_MAINTAINER_MODE=yes fake
+#
+
+IFS="
+"
+
+PLIST=$1
+DESTDIR=$2
+PREFIX=$3
+CWD=$PREFIX
+
+EXIT=0
+
+echo "Checking $DESTDIR"
+
+for ENTRY in `cat $PLIST | grep -e '^[^@]\|^@cw\?d'`; do
+	if echo $ENTRY | grep -e '^@cw\?d' > /dev/null; then
+		CWD=`echo $ENTRY | sed -E 's/^@cw?d[ \t]*([^\n]*)/\1/'`;
+		if [ ! -n "$CWD" ]; then
+			CWD=$PREFIX;
+		fi
+		continue;
+	fi	
+	if [ -L $DESTDIR$CWD/$ENTRY ]; then
+		continue;
+	fi
+	if [ -e $DESTDIR$CWD/$ENTRY ]; then
+		# There is a bug in perl's MakeMaker which causes the packlist to contain
+		# the DESTDIR.  This bug is harmless, so we'll ignore it.  See rt.cpan.org
+		# bug 3003 for details.
+		if echo $ENTRY | grep -e '.packlist$' > /dev/null; then
+			continue;
+		fi
+
+		if grep $DESTDIR $DESTDIR$CWD/$ENTRY >/dev/null; then
+			EXIT=1
+			echo "	$ENTRY contains the fake distdir."
+		fi
+		continue;
+	fi
+	EXIT=1
+	if [ -e $CWD/$ENTRY ]; then
+		echo "	$ENTRY installed in $CWD"
+	else
+		echo "	$ENTRY not installed."
+	fi			
+done
+
+if [ $EXIT -eq 0 ]; then
+	echo "Fake succeeded."
+else
+	echo "Fake failed."
+fi
+
+exit $EXIT
+

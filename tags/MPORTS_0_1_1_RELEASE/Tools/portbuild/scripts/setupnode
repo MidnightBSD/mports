@@ -1,0 +1,56 @@
+#!/bin/sh
+#
+# Script run on the clients, to set them up in preparation for building
+# packages.  This includes setting up parts of the /var/portbuild
+# directory hierarchy, the portbuild script and the bindist.tar file
+# for populating the build chroots.
+
+nocopy=0
+if [ "x$1" = "x-nocopy" ]; then
+  nocopy=1
+  shift
+fi
+
+if [ $# != 7 ]; then
+  echo "usage: $0 [-nocopy] master portbuilddir arch branch tmpdir md5 disconnected"
+  exit 1
+fi
+
+master=$1
+pb=$2
+arch=$3
+branch=$4
+tmpdir=$5
+md5master=$6
+disconnected=$7
+
+mkdir -p ${tmpdir}/${branch}/chroot
+mkdir -p ${tmpdir}/${branch}/tarballs
+cd ${tmpdir}
+if [ "$nocopy" = 0 ]; then
+  if [ -f ${tmpdir}/${branch}/tarballs/bindist.tar ]; then
+    md5=$(/sbin/md5 ${tmpdir}/${branch}/tarballs/bindist.tar | awk '{print $4}')
+  fi
+  if [ "${md5}" = "${md5master}" ]; then
+    echo "not copying bindist to $(hostname) since it is already up to date"
+  else
+    echo "copying bindist to $(hostname)"
+    if [ ${disconnected} = 0 ]; then
+      cp -p ${pb}/${arch}/${branch}/tarballs/bindist.tar ${tmpdir}/${branch}/tarballs
+    fi
+  fi
+  cp -p ${pb}/${arch}/${branch}/tarballs/bindist-$(hostname).tar ${tmpdir}/${branch}/tarballs
+  if [ ${disconnected} = 1 ]; then
+    # Prepare all directories, they will be populated by a rsync push from the master
+    mkdir -p ${pb}/scripts ${pb}/${arch}/${branch}/ports ${pb}/${arch}/${branch}/src ${pb}/${arch}/${branch}/src ${pb}/${arch}/${branch}/tarballs
+    # bindist is a local file, so we don't have to worry about whether nfs caches it
+    # This symlink will dangle until the rsync comes along and fills in the destination.
+    ln -sf ${pb}/${arch}/${branch}/tarballs/bindist.tar ${tmpdir}/${branch}/tarballs
+    ln -sf ${pb}/${arch}/${branch}/tarballs/bindist-$(hostname).tar ${tmpdir}/${branch}/tarballs
+  fi
+fi
+
+# Clean up the tmpdir
+for i in ${tmpdir}/${branch}/chroot/*; do
+    ${pb}/scripts/clean-chroot ${arch} ${branch} ${i} 2
+done

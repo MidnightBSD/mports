@@ -1,0 +1,11 @@
+--- doc/Makefile.in.orig	Mon May 16 20:28:05 2005
++++ doc/Makefile.in	Fri Jun 17 21:24:36 2005
+@@ -30,7 +30,7 @@
+ srcdir = @srcdir@
+ top_srcdir = @top_srcdir@
+ VPATH = @srcdir@
+-pkgdatadir = $(datadir)/@PACKAGE@
++pkgdatadir = $(datadir)/doc/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
+ pkgincludedir = $(includedir)/@PACKAGE@
+ top_builddir = ..

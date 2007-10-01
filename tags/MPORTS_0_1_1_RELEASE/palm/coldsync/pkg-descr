@@ -1,0 +1,14 @@
+	ColdSync is a robust, extensible, portable tool for
+synchronizing PalmOS devices (PalmPilot et al.) with a Unix
+workstation. It also supports USB connections, under FreeBSD 4.0
+and higher.
+	It runs without a GUI, and therefore allows you to sync
+without running X.
+	ColdSync is extensible through the use of conduits, which
+allow it to share information with other applications.
+
+	For more information, see
+WWW: http://www.coldsync.org/
+
+- Andrew Arensburger
+arensb@ooblick.com

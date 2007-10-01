@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# MAINTAINER= mharo@FreeBSD.org
+#
+# $FreeBSD: ports/Tools/scripts/prpatch,v 1.1 2000/05/01 19:53:53 mharo Exp $
+#
+
+patch $@ < pr-patch
+find . -name '*.orig' -print -delete
+find . -name '*.rej'  -print

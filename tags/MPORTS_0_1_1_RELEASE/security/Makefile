@@ -1,0 +1,76 @@
+# $MidnightBSD: mports/security/Makefile,v 1.57 2007/08/29 20:31:51 laffer1 Exp $
+#
+
+    COMMENT = Security tools
+
+    SUBDIR += aide
+    SUBDIR += ca-roots
+    SUBDIR += ca_roots_nss
+    SUBDIR += chroot_safe
+    SUBDIR += clamav 
+    SUBDIR += courier-authlib
+    SUBDIR += courier-authlib-base
+    SUBDIR += courierpassd
+    SUBDIR += courierpasswd
+    SUBDIR += courieruserinfo
+    SUBDIR += cyrus-sasl
+    SUBDIR += cyrus-sasl2
+    SUBDIR += cyrus-sasl2-ldapdb
+    SUBDIR += cyrus-sasl2-saslauthd
+    SUBDIR += dirmngr
+    SUBDIR += firewalk
+    SUBDIR += gnome-keyring
+    SUBDIR += gnupg
+    SUBDIR += gnupg1
+    SUBDIR += gnutls
+    SUBDIR += gpgme
+    SUBDIR += l0phtcrack
+    SUBDIR += libassuan
+    SUBDIR += libgcrypt
+    SUBDIR += libgpg-error
+    SUBDIR += libksba
+    SUBDIR += libmcrypt
+    SUBDIR += linux-openssl
+    SUBDIR += linux-pam-docs
+    SUBDIR += mcrypt
+    SUBDIR += mhash
+    SUBDIR += nmap
+    SUBDIR += nmapfe
+    SUBDIR += nss
+    SUBDIR += openssh-portable
+    SUBDIR += openvpn
+    SUBDIR += p5-Authen-SASL
+    SUBDIR += p5-Crypt-OpenSSL-Bignum
+    SUBDIR += p5-Crypt-OpenSSL-RSA
+    SUBDIR += p5-Crypt-OpenSSL-Random
+    SUBDIR += p5-Digest
+    SUBDIR += p5-Digest-HMAC
+    SUBDIR += p5-Digest-MD5
+    SUBDIR += p5-Digest-SHA
+    SUBDIR += p5-Digest-SHA1
+    SUBDIR += p5-GSSAPI
+    SUBDIR += p5-IO-Socket-SSL
+    SUBDIR += p5-Net-SSLeay
+    SUBDIR += php5-mcrypt
+    SUBDIR += php5-mhash
+    SUBDIR += php5-openssl
+    SUBDIR += qca-tls
+    SUBDIR += saint
+    SUBDIR += secpwgen
+    SUBDIR += sudo
+    SUBDIR += tripwire
+    SUBDIR += vlock
+    SUBDIR += vlog
+    SUBDIR += vnccrack
+    SUBDIR += webfwlog
+    SUBDIR += wipe
+    SUBDIR += wpa_supplicant
+    SUBDIR += xinetd
+    SUBDIR += xmlsec
+    SUBDIR += xmlsec1
+    SUBDIR += xspy
+    SUBDIR += yafic
+    SUBDIR += zebedee
+    SUBDIR += zombiezapper
+
+.include <bsd.port.subdir.mk>

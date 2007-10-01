@@ -1,0 +1,64 @@
+Index: saslauthd/configure
+diff -u saslauthd/configure.orig saslauthd/configure
+--- saslauthd/configure.orig	Sun May 15 14:59:04 2005
++++ saslauthd/configure	Tue May 17 14:57:49 2005
+@@ -1525,6 +1525,7 @@
+ fi
+ echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
++program_prefix=NONE
+ test "$program_prefix" != NONE &&
+   program_transform_name="s,^,$program_prefix,;$program_transform_name"
+ # Use a double $ so make ignores it.
+@@ -6782,7 +6783,7 @@
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lgssapi ${GSSAPIBASE_LIBS} -lgssapi -lkrb5 -lasn1 -lroken ${LIB_CRYPT} ${LIB_DES} -lcom_err ${LIB_SOCKET} $LIBS"
++LIBS="${GSSAPIBASE_LIBS} `krb5-config --libs gssapi` $LIBS"
+ cat >conftest.$ac_ext <<_ACEOF
+ #line $LINENO "configure"
+ /* confdefs.h.  */
+@@ -7132,7 +7133,7 @@
+     GSSAPIBASE_STATIC_LIBS="$GSSAPIBASE_LIBS $gssapi_dir/libgssapi_krb5.a $gssapi_dir/libkrb5.a $gssapi_dir/libk5crypto.a $gssapi_dir/libcom_err.a"
+   elif test "$gss_impl" = "heimdal"; then
+     CPPFLAGS="$CPPFLAGS -DKRB5_HEIMDAL"
+-    GSSAPIBASE_LIBS="$GSSAPIBASE_LIBS -lgssapi -lkrb5 -lasn1 -lroken ${LIB_CRYPT} ${LIB_DES} -lcom_err"
++    GSSAPIBASE_LIBS="$GSSAPIBASE_LIBS `krb5-config --libs gssapi`"
+     GSSAPIBASE_STATIC_LIBS="$GSSAPIBASE_STATIC_LIBS $gssapi_dir/libgssapi.a $gssapi_dir/libkrb5.a $gssapi_dir/libasn1.a $gssapi_dir/libroken.a $gssapi_dir/libcom_err.a ${LIB_CRYPT}"
+   elif test "$gss_impl" = "cybersafe03"; then
+ # Version of CyberSafe with two libraries
+@@ -7889,7 +7890,7 @@
+ 	fi
+ 
+ 	saved_LIBS=$LIBS
+-        for dbname in db-4.4 db4.4 db44 db-4.3 db4.3 db43 db-4.2 db4.2 db42 db-4.1 db4.1 db41 db-4.0 db4.0 db-4 db40 db4 db-3.3 db3.3 db33 db-3.2 db3.2 db32 db-3.1 db3.1 db31 db-3 db30 db3 db
++        for dbname in ${with_bdb} db-4.4 db4.4 db44 db-4.3 db4.3 db43 db-4.2 db4.2 db42 db-4.1 db4.1 db41 db-4.0 db4.0 db-4 db40 db4 db-3.3 db3.3 db33 db-3.2 db3.2 db32 db-3.1 db3.1 db31 db-3 db30 db3 db
+           do
+ 	    LIBS="$saved_LIBS -l$dbname"
+ 	    cat >conftest.$ac_ext <<_ACEOF
+@@ -7899,6 +7900,7 @@
+ cat confdefs.h >>conftest.$ac_ext
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
++#include <stdio.h>
+ #include <db.h>
+ int
+ main ()
+@@ -8646,7 +8648,7 @@
+ 	fi
+ 
+ 	saved_LIBS=$LIBS
+-        for dbname in db-4.4 db4.4 db44 db-4.3 db4.3 db43 db-4.2 db4.2 db42 db-4.1 db4.1 db41 db-4.0 db4.0 db-4 db40 db4 db-3.3 db3.3 db33 db-3.2 db3.2 db32 db-3.1 db3.1 db31 db-3 db30 db3 db
++        for dbname in ${with_bdb} db-4.4 db4.4 db44 db-4.3 db4.3 db43 db-4.2 db4.2 db42 db-4.1 db4.1 db41 db-4.0 db4.0 db-4 db40 db4 db-3.3 db3.3 db33 db-3.2 db3.2 db32 db-3.1 db3.1 db31 db-3 db30 db3 db
+           do
+ 	    LIBS="$saved_LIBS -l$dbname"
+ 	    cat >conftest.$ac_ext <<_ACEOF
+@@ -8656,6 +8658,7 @@
+ cat confdefs.h >>conftest.$ac_ext
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
++#include <stdio.h>
+ #include <db.h>
+ int
+ main ()

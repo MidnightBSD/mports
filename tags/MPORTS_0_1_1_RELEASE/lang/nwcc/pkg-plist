@@ -1,0 +1,11 @@
+bin/nwcc
+bin/nwcc1
+etc/nwcc.conf.sample
+lib/libnwcc.o
+nwcc/bin/nwcc1
+nwcc/bin/nwcc
+nwcc/bin/snake
+nwcc/lib/libnwcc.o
+@dirrmtry nwcc/bin
+@dirrmtry nwcc/lib
+@dirrmtry nwcc

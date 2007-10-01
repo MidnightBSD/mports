@@ -1,0 +1,58 @@
+--- misc/libmap.conf-FreeBSD6.orig	Sat Nov 12 20:46:14 2005
++++ misc/libmap.conf-FreeBSD6	Sun Aug 19 16:35:01 2007
+@@ -3,7 +3,7 @@
+ 
+ #######################################################
+ # [ALPHA SUPPORT] Flash7 with Mozilla
+-[/usr/X11R6/lib/linux-flashplugin7/libflashplayer.so]
++[/usr/local/lib/npapi/linux-flashplugin/libflashplayer.so]
+ libpthread.so.0			libpthread.so.2
+ libdl.so.2			pluginwrapper/flash7.so
+ libz.so.1			libz.so.3
+@@ -12,41 +12,22 @@
+ 
+ 
+ #######################################################
+-# Flash6 with Opera is not avilable.
+-
+-# Flash6 with Konqueror
+-# SEE ALSO: http://freebsd.kde.org/howtos/konqueror-flash.php
+-# This configuration was integrated to following one.
+-
+-# Flash6 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
+-[/usr/X11R6/lib/linux-flashplugin6/libflashplayer.so]
+-libpthread.so.0			pluginwrapper/flash6.so
+-libdl.so.2			pluginwrapper/flash6.so
+-libz.so.1			libz.so.3
+-libstdc++-libc6.2-2.so.3	libstdc++.so.5
+-libm.so.6			libm.so.4
+-libc.so.6			pluginwrapper/flash6.so
+-
+-
+-#######################################################
+-# Acrobat5 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
+-[/usr/X11R6/Acrobat5/Browsers/intellinux/nppdf.so]
+-libc.so.6			pluginwrapper/acrobat.so
+-
+ # Acrobat7 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
+-[/usr/compat/linux/usr/local/Adobe/Acrobat7.0/Browser/intellinux/nppdf.so]
++[/usr/local/Adobe/Acrobat7.0/ENU/Browser/intellinux/nppdf.so]
+ libc.so.6			pluginwrapper/acrobat.so
+ 
+ # Japanese Acrobat7 with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
+-[/usr/X11R6/Acrobat7/Browser/intellinux/nppdf.so]
++[/usr/local/lib/Acrobat7/Browser/intellinux/nppdf.so]
+ libc.so.6			pluginwrapper/acrobat.so
+ 
+ 
+ #######################################################
+ # Helix RealPlayer with Mozilla/Firebird/Galeon/Epiphany/Konqueror/Kazehakase
+-[/usr/X11R6/lib/linux-mozilla/plugins/nphelix.so]
++[/usr/local/lib/linux-mozilla/plugins/nphelix.so]
+ libstdc++.so.5			libstdc++.so.5
+ libc.so.6			pluginwrapper/realplayer.so
++libm.so.6			libm.so.4
++libgcc_s.so.1			pluginwrapper/realplayer.so
+ 
+ 
+ #######################################################

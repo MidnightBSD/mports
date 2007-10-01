@@ -1,0 +1,73 @@
+# $MidnightBSD: mports/www/Makefile,v 1.57 2007/09/12 02:55:06 ctriv Exp $
+#
+
+    COMMENT = Ports related to the World Wide Web
+
+    SUBDIR += apache20
+    SUBDIR += apache22
+    SUBDIR += analog
+    SUBDIR += aria2
+    SUBDIR += awstats
+    SUBDIR += bookmarkbridge
+    SUBDIR += bozohttpd
+    SUBDIR += cherokee
+    SUBDIR += dillo
+    SUBDIR += dummyflash
+    SUBDIR += etoile-bookmarkkit
+    SUBDIR += etoile-mollusk
+    SUBDIR += etoile-rsskit
+    SUBDIR += furl
+    SUBDIR += gnustep-ticker
+    SUBDIR += google-sitemapgen
+    SUBDIR += kdewebdev
+    SUBDIR += libgtkhtml
+    SUBDIR += libwww
+    SUBDIR += lighttpd
+    SUBDIR += links
+    SUBDIR += links1
+    SUBDIR += linux-firefox
+    SUBDIR += linux-firefox-devel
+    SUBDIR += linux-flashplugin7
+    SUBDIR += linux-flashplugin9
+    SUBDIR += linux-flock
+    SUBDIR += linux-mozilla
+    SUBDIR += linux-mplayer-plugin
+    SUBDIR += linux-opera
+    SUBDIR += linux-seamonkey
+    SUBDIR += linux-seamonkey-devel
+    SUBDIR += linuxpluginwrapper
+    SUBDIR += lynx
+    SUBDIR += man2web
+    SUBDIR += mod_perl2
+    SUBDIR += neon
+    SUBDIR += opera
+    SUBDIR += p5-CGI.pm
+    SUBDIR += p5-HTML-Breadcrumbs
+    SUBDIR += p5-HTML-Mason
+    SUBDIR += p5-HTML-Pager
+    SUBDIR += p5-HTML-Parser
+    SUBDIR += p5-HTML-Scrubber
+    SUBDIR += p5-HTML-Table
+    SUBDIR += p5-HTML-Tagset
+    SUBDIR += p5-HTML-Template
+    SUBDIR += p5-HTML-Tree
+    SUBDIR += p5-HTTP-DAV
+    SUBDIR += p5-Template-Toolkit
+    SUBDIR += p5-libwww
+    SUBDIR += php5-session
+    SUBDIR += php5-tidy
+    SUBDIR += privoxy
+    SUBDIR += retsina
+    SUBDIR += seamonkey
+    SUBDIR += squid
+    SUBDIR += thttpd
+    SUBDIR += thttpd-st
+    SUBDIR += tidy
+    SUBDIR += tidy-devel
+    SUBDIR += tidy-lib
+    SUBDIR += tomcat55
+    SUBDIR += youtube_dl
+    SUBDIR += validator
+    SUBDIR += webserver
+
+.include <bsd.port.subdir.mk>

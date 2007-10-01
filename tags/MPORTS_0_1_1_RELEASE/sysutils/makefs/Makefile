@@ -1,0 +1,36 @@
+# New ports collection makefile for:		NetBSD makefs
+# Date created:					17 December 2003
+# Whom:						cperciva@daemonology.net
+#
+# $MidnightBSD$
+# $FreeBSD: ports/sysutils/makefs/Makefile,v 1.5 2007/05/27 02:57:57 kris Exp $
+#
+
+PORTNAME=	makefs
+PORTVERSION=	20040704
+CATEGORIES=	sysutils
+MASTER_SITES=	http://www.daemonology.net/makefs/
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Builds FFS images
+
+MAN8=		makefs.8
+PLIST_FILES=	sbin/makefs
+
+.include <bsd.port.pre.mk>
+
+# This doesn't build with gcc 4
+USE_GCC=	3.4
+
+do-build:
+	cd ${WRKSRC} && ${SH} -xe build.sh
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/netbsdsrc/tools/makefs/makefs	\
+		${PREFIX}/sbin
+.if !defined(WITHOUT_MAN)
+	${INSTALL_MAN} ${WRKSRC}/netbsdsrc/usr.sbin/makefs/makefs.8	\
+		${PREFIX}/man/man8/
+.endif
+
+.include <bsd.port.post.mk>

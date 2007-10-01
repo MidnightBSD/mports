@@ -1,0 +1,11 @@
+--- data/Makefile.in.orig	Wed Jul 20 19:41:54 2005
++++ data/Makefile.in	Sun May 21 01:47:29 2006
+@@ -55,7 +55,7 @@
+ pkgdataDATA_INSTALL = $(INSTALL_DATA)
+ DATA = $(pkgdata_DATA)
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+-pkgdatadir = $(datadir)/texmf/dvipdfm
++pkgdatadir = $(datadir)/dvipdfm
+ ACLOCAL = @ACLOCAL@
+ AMDEP_FALSE = @AMDEP_FALSE@
+ AMDEP_TRUE = @AMDEP_TRUE@

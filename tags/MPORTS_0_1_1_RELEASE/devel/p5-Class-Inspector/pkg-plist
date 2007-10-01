@@ -1,0 +1,5 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Inspector/.packlist
+%%SITE_PERL%%/Class/Inspector.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Inspector
+@dirrmtry %%SITE_PERL%%/Class
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class

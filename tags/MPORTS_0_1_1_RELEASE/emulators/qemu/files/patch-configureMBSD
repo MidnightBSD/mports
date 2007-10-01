@@ -1,0 +1,16 @@
+--- configure.orig	Mon Feb  5 18:01:54 2007
++++ configure	Wed May  2 23:33:45 2007
+@@ -116,6 +116,13 @@
+     kqemu="yes"
+ fi
+ ;;
++MidnightBSD)
++bsd="yes"
++oss="yes"
++if [ "$cpu" = "i386" -o "$cpu" = "x86_64" ] ; then
++    kqemu="yes"
++fi
++;;
+ NetBSD)
+ bsd="yes"
+ oss="yes"

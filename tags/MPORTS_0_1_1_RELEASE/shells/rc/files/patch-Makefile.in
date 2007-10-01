@@ -1,0 +1,17 @@
+--- ./Makefile.in.orig	Thu May 10 10:35:19 2007
++++ ./Makefile.in	Thu May 10 10:36:15 2007
+@@ -716,10 +716,10 @@
+ 	./rc -p < $(srcdir)/trip.rc
+ 
+ install-exec-hook:
+-@AMC_HISTORY_TRUE@	$(INSTALL_PROGRAM) history $(bindir)/- ;\
+-@AMC_HISTORY_TRUE@	rm -f $(bindir)/--;  $(LN) $(bindir)/- $(bindir)/-- ;\
+-@AMC_HISTORY_TRUE@	rm -f $(bindir)/-p;  $(LN) $(bindir)/- $(bindir)/-p ;\
+-@AMC_HISTORY_TRUE@	rm -f $(bindir)/--p; $(LN) $(bindir)/- $(bindir)/--p
++@AMC_HISTORY_TRUE@	$(INSTALL_PROGRAM) history $(DESTDIR)$(bindir)/- ;\
++@AMC_HISTORY_TRUE@	rm -f $(DESTDIR)$(bindir)/--;  $(LN) $(DESTDIR)$(bindir)/- $(DESTDIR)$(bindir)/-- ;\
++@AMC_HISTORY_TRUE@	rm -f $(DESTDIR)$(bindir)/-p;  $(LN) $(DESTDIR)$(bindir)/- $(DESTDIR)$(bindir)/-p ;\
++@AMC_HISTORY_TRUE@	rm -f $(DESTDIR)$(bindir)/--p; $(LN) $(DESTDIR)$(bindir)/- $(DESTDIR)$(bindir)/--p
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+ .NOEXPORT:

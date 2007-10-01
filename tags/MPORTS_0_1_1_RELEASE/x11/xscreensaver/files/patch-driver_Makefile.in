@@ -1,0 +1,53 @@
+--- driver/Makefile.in.orig	Tue May 23 16:01:35 2006
++++ driver/Makefile.in	Sun Jun  4 00:01:46 2006
+@@ -121,7 +121,7 @@
+ 		  test-randr    xdpyinfo
+ 
+ MOTIF_LIBS	= @MOTIF_LIBS@ @XPM_LIBS@ $(XMU_LIBS)
+-GTK_LIBS	= @GTK_LIBS@ $(XMU_LIBS)
++GTK_LIBS	= @GTK_LIBS@ @XPM_LIBS@ $(XMU_LIBS)
+ XML_LIBS	= @XML_LIBS@
+ 
+ XDPMS_LIBS	= @XDPMS_LIBS@
+@@ -236,9 +236,8 @@
+ MEN		= $(MEN_1) @MEN_OSX@
+ 
+ EXTRAS		= README Makefile.in \
+-		  XScreenSaver.ad.in XScreenSaver-Xm.ad xscreensaver.pam \
++		  XScreenSaver.ad.in XScreenSaver-Xm.ad \
+ 		  xscreensaver-demo.glade2 xscreensaver-demo.glade2p \
+-		  screensaver-properties.desktop.in \
+ 		  .gdbinit
+ VMSFILES	= compile_axp.com compile_decc.com link_axp.com link_decc.com \
+ 		  vms-getpwnam.c vms-pwd.h vms-hpwd.c vms-validate.c \
+@@ -257,7 +256,7 @@
+ tests: $(TEST_EXES)
+ 
+ install:   install-program   install-ad    install-scripts \
+-	   install-gnome     install-man   install-xml install-pam
++	   install-gnome     install-man   install-xml
+ uninstall: uninstall-program uninstall-ad  \
+ 	   uninstall-gnome   uninstall-man uninstall-xml  
+ 
+@@ -486,21 +485,6 @@
+  $$e ""									     ;\
+ 	  fi ;								\
+ 	fi
+-
+-# screensaver-properties.desktop
+-# into /usr/share/applications/
+-install-gnome:: screensaver-properties.desktop
+-	@if [ "$(GTK_DATADIR)" != "" ]; then				      \
+-	   if [ ! -d "$(install_prefix)$(GTK_APPDIR)" ]; then		      \
+-	     echo $(INSTALL_DIRS) "$(install_prefix)$(GTK_APPDIR)"	     ;\
+-		  $(INSTALL_DIRS) "$(install_prefix)$(GTK_APPDIR)"	     ;\
+-	   fi								     ;\
+-	   name2=gnome-screensaver-properties.desktop			     ;\
+-	   echo $(INSTALL_DATA) screensaver-properties.desktop		      \
+-		  $(install_prefix)$(GTK_APPDIR)/$$name2		     ;\
+-		$(INSTALL_DATA) screensaver-properties.desktop		      \
+-		  $(install_prefix)$(GTK_APPDIR)/$$name2		     ;\
+-	 fi
+ 
+ 
+ # xscreensaver.xpm

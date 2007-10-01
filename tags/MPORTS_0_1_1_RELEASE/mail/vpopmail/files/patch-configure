@@ -1,0 +1,146 @@
+--- configure.old	Sun Nov 20 15:09:16 2005
++++ configure	Sun Nov 20 15:11:01 2005
+@@ -838,6 +838,8 @@
+   --enable-qmail-newu=PATH   Full path to qmail-newu program.
+   --enable-qmail-inject=PATH Full path to qmail-inject program.
+   --enable-qmail-newmrh=PATH Full path to qmail-newmrh program.
++  --enable-spamassassin=PATH Enable SpamAssassin. Full path to spamc program. default /usr/local/bin/spamc"
++  --enable-spam-threshold=# or n Automatically delete messages that score more than # spam hits"
+   --enable-vpopuser=USER     User name allocated to vpopmail vpopmail.
+   --enable-vpopgroup=GROUP   Group name allocated to vpopmail vchkpw.
+   --enable-roaming-users     Enable POP-before-SMTP functionality.
+@@ -4693,7 +4695,7 @@
+ 
+ #----------------------------------------------------------------------
+ 
+-if test `$idcommand` != "0"
++if false && test `$idcommand` != "0"
+ then
+   { echo "$as_me:$LINENO: WARNING: === vpopmail must be configured as root. ===" >&5
+ echo "$as_me: WARNING: === vpopmail must be configured as root. ===" >&2;}
+@@ -4823,6 +4825,46 @@
+     ;;
+ esac
+ 
++# Check whether --enable-spamassassin or --disable-spamassassin was given.
++if test "${enable_spamassassin+set}" = set; then
++  enableval="$enable_spamassassin"
++  spamc="$enableval"
++
++  case $spamc in
++  1*|y*|Y*)
++      spamc="/usr/local/bin/spamc"
++      ;;
++  esac
++
++  if test ! -f "$spamc"
++  then
++      { echo "configure: error: Unable to find your spamc file, specify --enable-spamassassin=/full/path/to/spamc" 1>&2; exit 1; }
++  fi
++
++  cat >> confdefs.h <<EOF
++#define SPAMC "$spamc"
++EOF
++
++# Check whether --enable-spam-threshold or --disable-spam-threshold was given.
++if test "${enable_spam_threshold+set}" = set; then
++  enableval="$enable_spam_threshold"
++  ENABLE_SPAM_THRESHOLD=$enableval
++else
++  ENABLE_SPAM_THRESHOLD=0
++fi
++
++case $ENABLE_SPAM_THRESHOLD in
++0*|n*|N*)
++      ;;
++*)
++          cat >> confdefs.h <<EOF
++#define SPAM_THRESHOLD $ENABLE_SPAM_THRESHOLD
++EOF
++
++          ;;
++esac
++fi
++
+ #----------------------------------------------------------------------
+ 
+ echo "$as_me:$LINENO: checking whether we can locate the qmail directory" >&5
+@@ -5201,27 +5243,6 @@
+ 
+ #----------------------------------------------------------------------
+ 
+-if test ! -d $vpopmaildir/etc
+-then
+-  if test ! -d $vpopmaildir
+-  then
+-    { echo "$as_me:$LINENO: WARNING: creating $vpopmaildir " >&5
+-echo "$as_me: WARNING: creating $vpopmaildir " >&2;}
+-    mkdir -p $vpopmaildir
+-    chown $vpopmailuid $vpopmaildir
+-    chgrp $vpopmailgid $vpopmaildir
+-    chmod 755 $vpopmaildir
+-  fi
+-  { echo "$as_me:$LINENO: WARNING: making a vpopmail etc directory " >&5
+-echo "$as_me: WARNING: making a vpopmail etc directory " >&2;}
+-  mkdir $vpopmaildir/etc
+-  chown $vpopmailuid "$vpopmaildir"/etc
+-  chgrp $vpopmailgid "$vpopmaildir"/etc
+-  chmod 755 "$vpopmaildir"/etc
+-fi
+-
+-#----------------------------------------------------------------------
+-
+ echo "$as_me:$LINENO: checking whether roaming-users has been enabled" >&5
+ echo $ECHO_N "checking whether roaming-users has been enabled... $ECHO_C" >&6
+ # Check whether --enable-roaming-users or --disable-roaming-users was given.
+@@ -5309,29 +5330,9 @@
+ if test "${enable_tcpserver_file+set}" = set; then
+   enableval="$enable_tcpserver_file"
+   tcpserver_file="$enableval"
+-else
+-
+-            if test "$tcpserver_file" = ""
+-            then
+-                { echo "$as_me:$LINENO: WARNING: Unable to find your tcpserver relay file." >&5
+-echo "$as_me: WARNING: Unable to find your tcpserver relay file." >&2;}
+-                { echo "$as_me:$LINENO: WARNING: Creating tcp.smtp in \"$vpopmaildir\"/etc/tcp.smtp." >&5
+-echo "$as_me: WARNING: Creating tcp.smtp in \"$vpopmaildir\"/etc/tcp.smtp." >&2;}
+-
+-                echo "127.:allow,RELAYCLIENT=\"\"" > "$vpopmaildir"/etc/tcp.smtp
+-                tcpserver_file="$vpopmaildir"/etc/tcp.smtp
+-            fi
+-
+-
++  echo "127.:allow,RELAYCLIENT=\"\"" > ${VCFGDIR}/tcp.smtp
+ fi;
+ 
+-    if test ! -f "$tcpserver_file"
+-    then
+-        { { echo "$as_me:$LINENO: error: Unable to find your tcp.smtp file, specify --enable-tcpserver-path=/full/path/to/tcp.smtp" >&5
+-echo "$as_me: error: Unable to find your tcp.smtp file, specify --enable-tcpserver-path=/full/path/to/tcp.smtp" >&2;}
+-   { (exit 1); exit 1; }; }
+-    fi
+-
+     echo "$as_me:$LINENO: result: yes" >&5
+ echo "${ECHO_T}yes" >&6
+ 
+@@ -5979,7 +5980,7 @@
+ #define USE_LDAP $USE_LDAP
+ _ACEOF
+ 
+-    auth_libs="-L/usr/local/lib -lldap -llber -lresolv"
++    auth_libs="-L/usr/local/lib -lldap -llber"
+ 
+     auth_inc="-I/usr/local/include"
+ 
+@@ -8296,8 +8297,8 @@
+   fi
+ fi
+ 
+-echo "${CC} -O2" > cdb/conf-cc
+-echo "${CC} -s" > cdb/conf-ld
++echo "${CC} ${CFLAGS}" > cdb/conf-cc
++echo "${CC} ${STRIP}" > cdb/conf-ld
+ 
+ echo ""
+ echo ""

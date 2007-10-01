@@ -1,0 +1,21 @@
+--- ./Makefile.in.orig	Mon May 21 06:57:07 2007
++++ ./Makefile.in	Mon May 21 06:58:30 2007
+@@ -34,12 +34,12 @@
+ 	chmod +x altwalk
+ 
+ install:	oids Altoids.pm altget altwalk
+-	test -d "$(OIDSDIR)" || mkdir -p "$(OIDSDIR)"
+-	(cd oids && ls *.oid |while read file; do $(INSTALL) -c $$file "$(OIDSDIR)/$$file"; done)
+-	$(INSTALL) -c Altoids.pm $(PERLLIBDIR)/Altoids.pm
+-	$(INSTALL) -c altoids.pl $(PERLLIBDIR)/altoids.pl
+-	$(INSTALL) -c altget $(prefix)/bin/altget
+-	$(INSTALL) -c altwalk $(prefix)/bin/altwalk
++	test -d "${DESTDIR}$(OIDSDIR)" || mkdir -p "${DESTDIR}$(OIDSDIR)"
++	(cd oids && ls *.oid |while read file; do $(INSTALL) -c $$file "${DESTDIR}$(OIDSDIR)/$$file"; done)
++	$(INSTALL) -c Altoids.pm ${DESTDIR}$(PERLLIBDIR)/Altoids.pm
++	$(INSTALL) -c altoids.pl ${DESTDIR}$(PERLLIBDIR)/altoids.pl
++	$(INSTALL) -c altget ${DESTDIR}$(prefix)/bin/altget
++	$(INSTALL) -c altwalk ${DESTDIR}$(prefix)/bin/altwalk
+ 
+ MANIFEST: $(distfiles)
+ 	rm -f MANIFEST

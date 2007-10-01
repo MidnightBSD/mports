@@ -1,0 +1,24 @@
+@comment $MidnightBSD$
+bin/gunzip
+bin/gzexe
+bin/gzip
+bin/uncompress
+bin/zcat
+bin/zcmp
+bin/zdiff
+bin/zegrep
+bin/zfgrep
+bin/zforce
+bin/zgrep
+bin/zless
+bin/zmore
+bin/znew
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README-alpha
+%%PORTDOCS%%%%DOCSDIR%%/THANKS
+%%PORTDOCS%%%%DOCSDIR%%/TODO
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

@@ -1,0 +1,41 @@
+--- doc/Makefile.in.orig	Sat Jul 16 06:19:07 2005
++++ doc/Makefile.in	Mon Aug  8 03:19:18 2005
+@@ -56,7 +56,7 @@
+ SECT7   = sane.7
+ SECT8	= saned.8
+ MANPAGES = $(SECT1) $(SECT5) $(SECT7) $(SECT8)
+-READMES = README AUTHORS COPYING ChangeLog LICENSE NEWS PROBLEMS \
++READMES = README AUTHORS ChangeLog LICENSE NEWS PROBLEMS \
+           PROJECTS README README.aix README.beos README.darwin README.freebsd \
+ 	  README.djpeg \
+           README.hp-ux README.linux README.netbsd README.openbsd README.os2 \
+@@ -78,7 +78,7 @@
+ ifeq (@USE_LATEX@,no)
+ STANDARD =
+ else
+-STANDARD = sane.ps
++STANDARD =
+ endif
+ 
+ SUBDIRS = $(BACKDIRS) icons figs descriptions descriptions-external
+@@ -139,6 +139,7 @@
+ 	  echo installing $${page} in $(mandir)/man8/$${page}...; \
+ 	  $(INSTALL_DATA) $${page} $(DESTDIR)$(mandir)/man8/$${page} || exit 1; \
+ 	done
++ifndef NOPORTDOCS
+ 	$(MKDIR) $(DESTDIR)$(docdir)
+ 	@for readme in $(READMES); do \
+ 	  echo installing $${readme} in $(docdir)/$${readme}...; \
+@@ -155,10 +156,11 @@
+ 	    fi \
+ 	  done \
+ 	done
+-	@-for doc in $(DOCS) $(HTML_PAGES); do \
++	@-for doc in $(HTML_PAGES); do \
+ 	    echo installing $${doc} in $(docdir)/$${doc}...; \
+ 	    $(INSTALL_DATA) $${doc} $(DESTDIR)$(docdir)/$${doc}; \
+ 	  done
++endif
+ 
+ uninstall:
+ 	@for page in $(SECT1); do \

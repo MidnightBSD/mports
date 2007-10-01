@@ -1,0 +1,20 @@
+bin/re2c
+%%PORTDOCS%%%%DOCSDIR%%/sample.bib
+%%PORTDOCS%%%%DOCSDIR%%/loplas.ps
+%%PORTDOCS%%%%EXAMPLESDIR%%/rexx/rexx.l
+%%PORTDOCS%%%%EXAMPLESDIR%%/rexx/README
+%%PORTDOCS%%%%EXAMPLESDIR%%/rexx/scanio.c
+%%PORTDOCS%%%%EXAMPLESDIR%%/sample.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/repeater.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/pp-c.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/push.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/modula.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/cunroll.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/cnokw.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/cmmap.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/c.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/simple.re
+%%PORTDOCS%%%%EXAMPLESDIR%%/basemmap.c
+%%PORTDOCS%%@dirrm %%PORTDOCS%%%%EXAMPLESDIR%%/rexx
+%%PORTDOCS%%@dirrm %%PORTDOCS%%%%EXAMPLESDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

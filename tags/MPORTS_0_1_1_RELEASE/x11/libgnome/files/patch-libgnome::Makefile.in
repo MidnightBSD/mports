@@ -1,0 +1,12 @@
+--- libgnome/Makefile.in.orig	Mon May 31 16:33:14 2004
++++ libgnome/Makefile.in	Mon May 31 16:33:45 2004
+@@ -211,6 +211,9 @@
+ libgnomeincludedir = $(includedir)/libgnome-2.0/libgnome
+ 
+ INCLUDES = \
++	-DPREFIX=\""$(PREFIX)"\"				\
++	-DLOCALBASE=\""$(LOCALBASE)"\"				\
++	-DX11BASE=\""$(X11BASE)"\"				\
+ 	-I..							\
+ 	-I$(srcdir)/..						\
+ 	$(WARN_CFLAGS)						\

@@ -1,0 +1,13 @@
+--- share/Makefile.in.orig	Wed Aug 22 06:08:40 2007
++++ share/Makefile.in	Wed Aug 22 06:09:12 2007
+@@ -225,8 +225,8 @@
+ 	-if test -d templates; then rm -f tmpl.tar.gz; fi
+ 
+ install-data-local: tmpl.tar.gz
+-	tar zxvf tmpl.tar.gz -C $(datadir)/motor/
+-	-find $(datadir)/motor/ -name CVS -type d -exec rm -rf {} \;
++	tar zxvf tmpl.tar.gz -C ${DESTDIR}$(datadir)/motor/
++	-find ${DESTDIR}$(datadir)/motor/ -name CVS -type d -exec rm -rf {} \;
+ 	if test -d templates; then rm -f tmpl.tar.gz; fi
+ 
+ uninstall-local:

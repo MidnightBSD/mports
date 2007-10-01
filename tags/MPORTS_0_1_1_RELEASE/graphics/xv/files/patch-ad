@@ -1,0 +1,84 @@
+--- Imakefile.orig	Mon Nov 15 10:27:12 2004
++++ Imakefile	Mon Nov 15 10:28:32 2004
+@@ -6,13 +6,15 @@
+ /* if, for whatever reason, you're unable to get the JPEG library to compile
+  * on your machine, *COMMENT OUT* the following line
+  */
+-#define HaveJpeg
++/* #define HaveJpeg */
++#define UseInstalledJpeg
+ 
+ 
+ /* if, for whatever reason, you're unable to get the TIFF library to compile
+  * on your machine, *COMMENT OUT* the following line
+  */
+-#define HaveTiff
++/* #define HaveTiff */
++#define UseInstalledTiff
+ 
+ 
+ /* if, for whatever reason, you're unable to get the PDS/VICAR support
+@@ -124,16 +126,30 @@
+ JPEG = -DDOJPEG
+ JPEGDIR = jpeg
+ LIBJPEG = $(JPEGDIR)/libjpeg.a
++DEPLIBJPEG = $(LIBJPEG)
+ JPEGINCLUDE = -I$(JPEGDIR)
+ #endif
+ 
++#ifdef UseInstalledJpeg
++JPEG = -DDOJPEG
++LIBJPEG = -L${LOCALBASE}/lib -ljpeg
++JPEGINCLUDE = -I${LOCALBASE}/include
++#endif
++
+ #ifdef HaveTiff
+ TIFF = -DDOTIFF
+ TIFFDIR = tiff
+ LIBTIFF = $(TIFFDIR)/libtiff.a
++DEPLIBTIFF = $(LIBTIFF)
+ TIFFINCLUDE = -I$(TIFFDIR)
+ #endif
+ 
++#ifdef UseInstalledTiff
++TIFF = -DDOTIFF
++LIBTIFF = -L${LOCALBASE}/lib -ltiff
++TIFFINCLUDE = -I${LOCALBASE}/include
++#endif
++
+ #ifdef HavePDS
+ PDS = -DDOPDS
+ #endif
+@@ -149,12 +165,12 @@
+ #endif
+ 
+ 
+-DEPLIBS = $(LIBJPEG) $(LIBTIFF)
+-LOCAL_LIBRARIES = $(XLIB) $(DEPLIBS)
++DEPLIBS = $(DEPLIBJPEG) $(DEPLIBTIFF)
++LOCAL_LIBRARIES = $(XLIB) $(LIBJPEG) $(LIBTIFF)
+ 
+ DEFINES= $(SCO) $(UNIX) $(NODIRENT) $(VPRINTF) $(TIMERS) \
+ 	$(HPUX7) $(JPEG) $(TIFF) $(PDS) $(DXWM) $(RAND) \
+-	$(BACKING_STORE) $(BSDTYPES) $(SGI) $(MGCSFX)
++	$(BACKING_STORE) $(BSDTYPES) $(SGI) $(MGCSFX) $(LOCALE_EXTENSION)
+ 
+ INCLUDES = $(JPEGINCLUDE) $(TIFFINCLUDE)
+ 
+@@ -271,11 +287,11 @@
+ #endif
+ 
+  
+-InstallManPageLong(docs/xv,$(MANDIR),xv)
+-InstallManPageLong(docs/bggen,$(MANDIR),bggen)
+-InstallManPageLong(docs/xcmap,$(MANDIR),xcmap)
+-InstallManPageLong(docs/xvp2p,$(MANDIR),xvpictoppm)
+-InstallManPageLong(docs/vdcomp,$(MANDIR),vdcomp)
++InstallManPage(xv,$(MANDIR))
++InstallManPage(bggen,$(MANDIR))
++InstallManPage(xcmap,$(MANDIR))
++InstallManPage(xvp2p,$(MANDIR))
++InstallManPage(vdcomp,$(MANDIR))
+ 
+ InstallNonExecFile(xv_mgcsfx.sample,$(MGCSFXDIR))
+ 

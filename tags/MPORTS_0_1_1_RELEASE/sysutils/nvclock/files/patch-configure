@@ -1,0 +1,11 @@
+--- configure.orig	Mon Aug 13 19:43:09 2007
++++ configure	Mon Aug 13 19:43:34 2007
+@@ -3156,6 +3156,8 @@
+ case $system in
+     FreeBSD)
+     ;;
++    MidnightBSD)
++    ;;
+     Linux)
+     ;;
+     CYGWIN_NT-5.*)

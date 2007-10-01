@@ -1,0 +1,6 @@
+@comment $FreeBSD: ports/shells/rssh/pkg-plist,v 1.1 2005/06/05 20:12:49 pav Exp $
+bin/rssh
+@exec echo "updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak; echo %D/%F) >/etc/shells; rm -f /etc/shells.bak
+@unexec echo "updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak) >/etc/shells; rm -f /etc/shells.bak
+etc/rssh.conf.dist
+libexec/rssh_chroot_helper

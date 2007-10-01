@@ -1,0 +1,5 @@
+@comment $FreeBSD: ports/print/acroreadwrapper/pkg-plist,v 1.1 2006/02/21 18:41:38 hrs Exp $
+bin/acroread
+@exec mkdir -p %D/%%ACRODIR%%
+@dirrm %%ACRODIR%%
+@dirrm %%ADOBEDIR%%

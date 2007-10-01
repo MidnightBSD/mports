@@ -1,0 +1,25 @@
+#!/bin/sh
+
+buildroot=/var/portbuild
+
+i=$1
+m=$2
+
+. ${buildroot}/${i}/portbuild.conf
+if [ -f ${buildroot}/${i}/portbuild.${m} ]; then
+  . ${buildroot}/${i}/portbuild.${m}
+fi
+
+q=${buildroot}/${i}/queue/$m
+if [ -f ${q} ]; then
+  num=$(cat $q)
+else
+  num=${maxjobs}
+fi
+
+if [ "$num" -gt 0 ]; then
+  echo $((${num}-1)) > $q
+fi
+
+chown ports-${i} ${q}
+exit 0

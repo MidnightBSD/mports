@@ -1,0 +1,12 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:%%PREFIX%%/bin:%%PREFIX%%/sbin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating %%PREFIX%%/lib/graphviz/config... "
+    %%PREFIX%%/bin/dot -c
+    echo "done."
+    ;;
+esac

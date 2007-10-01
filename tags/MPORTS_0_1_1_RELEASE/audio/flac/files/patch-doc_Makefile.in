@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/audio/flac/files/patch-doc_Makefile.in,v 1.3 2005/03/16 14:49:23 naddy Exp $
+
+--- doc/Makefile.in.orig
++++ doc/Makefile.in
+@@ -236,7 +236,7 @@
+ target_alias = @target_alias@
+ AUTOMAKE_OPTIONS = foreign
+ SUBDIRS = . html
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
++docdir = $(datadir)/doc/$(PACKAGE)
+ doc_DATA = \
+ 	FLAC.tag
+ 

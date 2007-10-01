@@ -1,0 +1,19 @@
+--- ./lib/Makefile.in.orig	Sun Apr 29 17:50:23 2007
++++ ./lib/Makefile.in	Sun Apr 29 17:51:10 2007
+@@ -345,12 +345,12 @@
+ all-local: enscript.cfg
+ 
+ install-data-local: enscript.cfg
+-	$(top_srcdir)/mkinstalldirs $(sysconfdir)
+-	if test -r $(sysconfdir)/enscript.cfg; then \
+-	  cp $(sysconfdir)/enscript.cfg $(sysconfdir)/enscript.cfg.old; \
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(sysconfdir)
++	if test -r $(DESTDIR)$(sysconfdir)/enscript.cfg; then \
++	  cp $(DESTDIR)$(sysconfdir)/enscript.cfg $(DESTDIR)$(sysconfdir)/enscript.cfg.old; \
+ 	else :; \
+ 	fi
+-	$(INSTALL_DATA) enscript.cfg $(sysconfdir)/enscript.cfg
++	$(INSTALL_DATA) enscript.cfg $(DESTDIR)$(sysconfdir)/enscript.cfg
+ 
+ uninstall-local:
+ 	rm -f $(sysconfdir)/enscript.cfg

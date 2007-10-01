@@ -1,0 +1,11 @@
+--- Makefile.orig	Sat Aug 18 13:24:12 2007
++++ Makefile	Sat Aug 18 13:24:49 2007
+@@ -26,7 +26,7 @@
+ 
+ PREFIX?=	/usr/local
+ X11BASE?=	/usr/X11R6
+-EXAMPLESDIR?=	${PREFIX}/share/examples/linuxpluginwrapper
++EXAMPLESDIR?=	${FAKE_DESTDIR}${PREFIX}/share/examples/linuxpluginwrapper
+ CP?=		/bin/cp
+ RM?=		/bin/rm -f
+ MV?=		/bin/mv

@@ -1,0 +1,10 @@
+--- src/mesa/drivers/dri/i915/intel_context.h.orig	Sun Apr  8 02:26:46 2007
++++ src/mesa/drivers/dri/i915/intel_context.h	Sun Apr  8 02:27:01 2007
+@@ -413,6 +413,7 @@
+ #define PCI_CHIP_I915_G			0x2582
+ #define PCI_CHIP_I915_GM		0x2592
+ #define PCI_CHIP_I945_G			0x2772
++#define PCI_CHIP_I945_GM		0x27A2
+ 
+ 
+ /* ================================================================

@@ -1,0 +1,52 @@
+#!/bin/sh
+#
+# buildfailure <arch> <branch> <pkgname>
+
+cleanup() {
+    echo "Problem writing new failure file!"
+    rm -f failure.new
+    exit 1
+}
+
+# configurable variables
+pb=/var/portbuild
+arch=$1
+shift 1
+
+. ${pb}/${arch}/portbuild.conf
+. ${pb}/scripts/buildenv
+
+branch=$1
+pkgname=$2
+shift 2
+
+buildenv ${pb} ${arch} ${branch}
+
+# Don't pick up installed packages from the host
+export LOCALBASE=/nonexistentlocal
+export X11BASE=/nonexistentx
+
+index=${PORTSDIR}/${INDEXFILE}
+
+portloc=$(grep "^$pkgname|" ${index} | cut -f 2 -d \| | sed s,/usr/ports/,,)
+pkgbase=$(cd ${pb}/${arch}/${branch}/ports/${portloc}/ && make -V PKGBASE)
+
+cd ${pb}/${arch}/${branch}
+entry=$(grep "^${portloc}|" failure)
+date=$(date +%s)
+IFS='|'
+if [ ! -z "$entry" ]; then
+    count=$(echo $entry | cut -f 6 -d \ )
+    olddate=$(echo $entry | cut -f 4 -d \ )
+    (grep -v "^${portloc}|" failure > failure.new) || cleanup
+
+    (echo "${portloc}|${pkgbase}|${pkgname}|${olddate}|${date}|$((${count}+1))" >> failure.new) || cleanup
+    mv failure.new failure
+else
+    (echo "${portloc}|${pkgbase}|${pkgname}|${date}|${date}|1" >> failure) || cleanup
+fi
+
+link=${pb}/${arch}/${branch}/latest/${portloc}
+mkdir -p $(dirname ${link})
+errorloc=$(realpath ${pb}/${arch}/${branch}/errors/${pkgname}.log)
+ln -sf ${errorloc} ${link}

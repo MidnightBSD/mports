@@ -1,0 +1,11 @@
+--- ./Calendar/GNUmakefile.orig	Fri Aug  3 15:41:53 2007
++++ ./Calendar/GNUmakefile	Fri Aug  3 15:42:16 2007
+@@ -23,7 +23,7 @@
+ BUNDLE_NAME = Calendar
+ BUNDLE_EXTENSION = .toolbox
+ 
+-BUNDLE_INSTALL_DIR = $(GNUSTEP_INSTALLATION_DIR)/Library/Toolbox
++BUNDLE_INSTALL_DIR = $(GNUSTEP_LIBRARY)/Toolbox
+ 
+ Calendar_RESOURCE_FILES = CalendarInfo.plist \
+                           CalendarHelp.rtf \

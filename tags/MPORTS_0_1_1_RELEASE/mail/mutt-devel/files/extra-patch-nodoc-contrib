@@ -1,0 +1,28 @@
+--- Makefile.am.orig	Fri Feb 11 14:54:08 2005
++++ Makefile.am	Fri Feb 11 14:55:33 2005
+@@ -10,7 +10,7 @@
+ IMAP_INCLUDES = -I$(top_srcdir)/imap
+ endif
+ 
+-SUBDIRS = m4 po intl contrib $(IMAP_SUBDIR) . doc
++SUBDIRS = m4 po intl $(IMAP_SUBDIR) . doc
+ 
+ bin_SCRIPTS = muttbug flea @SMIMEAUX_TARGET@
+ 
+--- doc/Makefile.in.orig	Sun Sep 18 16:56:56 2005
++++ doc/Makefile.in	Sun Sep 18 17:00:01 2005
+@@ -81,14 +81,6 @@
+ 	./instdoc muttrc.man $(DESTDIR)$(mandir)/man5/muttrc.5
+ 	./instdoc $(srcdir)/mbox.man $(DESTDIR)$(mandir)/man5/mbox.5
+ 	./instdoc $(srcdir)/mmdf.man $(DESTDIR)$(mandir)/man5/mmdf.5
+-	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(docdir)
+-	for f in $(topsrcdir_DOCFILES) ; do \
+-		$(INSTALL) -m 644 $(top_srcdir)/$$f $(DESTDIR)$(docdir) ; \
+-	done
+-	for f in $(srcdir_DOCFILES) ; do \
+-		$(INSTALL) -m 644 $(srcdir)/$$f $(DESTDIR)$(docdir) ; \
+-	done
+-	-$(INSTALL) -m 644 manual.txt $(DESTDIR)$(docdir)
+ 
+ uninstall:
+ 	for f in mutt.1 mutt_dotlock.1 flea.1 muttbug.1 ; do \

@@ -1,0 +1,33 @@
+--- Makefile.in.orig	Thu Dec  9 03:07:01 2004
++++ Makefile.in	Sun Jan  2 21:17:35 2005
+@@ -248,7 +248,7 @@
+ 	COPYING.GPL NEWS.html $(TEMPLFILES)\
+ sysconftool
+ sysconf_DATA = imapd.dist imapd-ssl.dist pop3d.dist pop3d-ssl.dist \
+-	imapd.cnf pop3d.cnf quotawarnmsg.example
++	quotawarnmsg.example
+ 
+ libexec_SCRIPTS = imapd.rc imapd-ssl.rc pop3d.rc pop3d-ssl.rc
+ HTML2TXT = `which lynx 2>/dev/null && echo "lynx -dump -nolist" && exit; echo "links -dump"`
+@@ -506,8 +506,8 @@
+ 	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+ 	  inst=`echo $$inst | sed -e 's/^.*\///'`; \
+ 	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+-	  echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man1dir)/$$inst'"; \
+-	  $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man1dir)/$$inst"; \
++	  echo " %%INSTALL_MAN%% '$$file' '$(DESTDIR)$(man1dir)/$$inst'"; \
++	  %%INSTALL_MAN%% "$$file" "$(DESTDIR)$(man1dir)/$$inst"; \
+ 	done
+ uninstall-man1:
+ 	@$(NORMAL_UNINSTALL)
+@@ -551,8 +551,8 @@
+ 	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+ 	  inst=`echo $$inst | sed -e 's/^.*\///'`; \
+ 	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+-	  echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man8dir)/$$inst'"; \
+-	  $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man8dir)/$$inst"; \
++	  echo " %%INSTALL_MAN%% '$$file' '$(DESTDIR)$(man8dir)/$$inst'"; \
++	  %%INSTALL_MAN%% "$$file" "$(DESTDIR)$(man8dir)/$$inst"; \
+ 	done
+ uninstall-man8:
+ 	@$(NORMAL_UNINSTALL)

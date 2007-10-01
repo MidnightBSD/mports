@@ -1,0 +1,11 @@
+--- configure.orig	Mon Jul 16 08:10:12 2007
++++ configure	Mon Jul 16 08:10:48 2007
+@@ -20038,7 +20038,7 @@
+ 
+ 
+ case "$target_os" in
+-linux*|darwin*|netbsd*)
++linux*|darwin*|netbsd*|freebsd*)
+ 
+ 
+ if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then

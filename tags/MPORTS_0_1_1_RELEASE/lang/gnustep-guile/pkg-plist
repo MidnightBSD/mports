@@ -1,0 +1,66 @@
+%%USEX11%%System/Applications/guile-gui.app/library_paths.openapp
+%%USEX11%%System/Applications/guile-gui.app/Resources/Info-gnustep.plist
+%%USEX11%%System/Applications/guile-gui.app/Resources/guile-gui.desktop
+%%USEX11%%System/Applications/guile-gui.app/guile-gui
+%%USEX11%%System/Applications/guile-gui.app/stamp.make
+%%USEX11%%System/Applications/gui.app/library_paths.openapp
+%%USEX11%%System/Applications/gui.app/Resources/Info-gnustep.plist
+%%USEX11%%System/Applications/gui.app/Resources/gui.desktop
+%%USEX11%%System/Applications/gui.app/gui
+%%USEX11%%System/Applications/gui.app/stamp.make
+System/Library/Headers/GNUstepGuile/gstep_guile.h
+System/Library/Headers/GNUstepGuile/gg_Object.h
+System/Library/Headers/ScriptKit/Guile.h
+System/Library/Headers/ScriptKit/GuileInterpreter.h
+System/Library/Headers/ScriptKit/GuileInvocation.h
+System/Library/Headers/ScriptKit/GuileProcedure.h
+System/Library/Headers/ScriptKit/GuileSCM.h
+System/Library/Headers/ScriptKit/GuileScript.h
+System/Library/Headers/ScriptKit/SKInterpreter.h
+System/Library/Headers/ScriptKit/SKScript.h
+System/Library/Headers/ScriptKit/ScriptKit.h
+System/Library/Headers/gnustep/guile/gstep_guile.h
+System/Library/Headers/gnustep/guile/gg_Object.h
+System/Library/Libraries/Guile/languages/gstep-guile.scm
+System/Library/Libraries/libScriptKit.so
+System/Library/Libraries/libScriptKit.so.%%MAJORLIBVERSION%%
+System/Library/Libraries/libScriptKit.so.%%LIBVERSION%%
+System/Library/Libraries/libgg_base.so
+System/Library/Libraries/libgg_base.so.%%VERSION%%
+System/Library/Libraries/libgg_base.so.1
+%%USEX11%%System/Library/Libraries/libgg_gui.so
+%%USEX11%%System/Library/Libraries/libgg_gui.so.%%VERSION%%
+%%USEX11%%System/Library/Libraries/libgg_gui.so.1
+System/Library/Libraries/libgstep_guile.so
+System/Library/Libraries/libgstep_guile.so.%%VERSION%%
+System/Library/Libraries/libgstep_guile.so.1
+System/Library/Makefiles/Additional/guile.make
+System/Tools/go
+System/Tools/guile-base
+bin/greg
+info/dir
+@comment @unexec install-info --delete %D/info/greg.info %D/info/dir
+info/greg.info
+@exec install-info %D/info/greg.info %D/info/dir
+lib/libgreg.a
+lib/libgreg.la
+lib/libgreg.so
+lib/libgreg.so.1
+%%USEX11%%@dirrm System/Applications/guile-gui.app/Resources
+%%USEX11%%@dirrm System/Applications/guile-gui.app
+%%USEX11%%@dirrm System/Applications/gui.app/Resources
+%%USEX11%%@dirrm System/Applications/gui.app
+@dirrm System/Library/Libraries/Guile/languages/gstep-guile
+@dirrm System/Library/Libraries/Guile/languages
+@dirrm System/Library/Libraries/Guile
+@dirrm System/Library/Headers/gnustep/guile
+@dirrm System/Library/Headers/ScriptKit
+@dirrm System/Library/Headers/GNUstepGuile
+@dirrm man/man1
+@dirrm man
+@dirrm lib
+@dirrm info
+@dirrm bin
+@exec mkdir -p %D/System/Library/Libraries/Guile/languages/gstep-guile
+@cwd %%LOCALBASE%%
+share/guile/%%GUILE_VER%%/ice-9/greg.scm

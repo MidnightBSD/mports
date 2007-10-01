@@ -1,0 +1,7 @@
+include/uninameslist.h
+lib/libuninameslist.la
+lib/libuninameslist.so
+lib/libuninameslist.so.0
+lib/libuninameslist-fr.la
+lib/libuninameslist-fr.so
+lib/libuninameslist-fr.so.0

@@ -1,0 +1,17 @@
+bin/pom2
+bin/podlint
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod/POM/.packlist
+%%SITE_PERL%%/Pod/POM.pm
+%%SITE_PERL%%/Pod/POM/Constants.pm
+%%SITE_PERL%%/Pod/POM/Node.pm
+%%SITE_PERL%%/Pod/POM/Nodes.pm
+%%SITE_PERL%%/Pod/POM/Test.pm
+%%SITE_PERL%%/Pod/POM/View.pm
+%%SITE_PERL%%/Pod/POM/View/HTML.pm
+%%SITE_PERL%%/Pod/POM/View/Pod.pm
+%%SITE_PERL%%/Pod/POM/View/Text.pm
+@dirrm %%SITE_PERL%%/Pod/POM/View
+@dirrm %%SITE_PERL%%/Pod/POM
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod/POM
+@dirrmtry %%SITE_PERL%%/Pod
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod

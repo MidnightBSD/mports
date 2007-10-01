@@ -1,0 +1,9 @@
+#
+# Activate mod_dav.so
+#
+if [ "$2" = "POST-INSTALL" ]; then
+	apxs=$PKG_PREFIX/sbin/apxs
+
+	$apxs -e -S LIBEXECDIR=$PKG_PREFIX/%%APACHEMODDIR%% -a -n dav $PKG_PREFIX/%%APACHEMODDIR%%/mod_dav.so
+	$apxs -e -S LIBEXECDIR=$PKG_PREFIX/%%APACHEMODDIR%% -a -n dav_svn $PKG_PREFIX/%%APACHEMODDIR%%/mod_dav_svn.so
+fi

@@ -1,0 +1,11 @@
+--- config/Imakefile.orig	Fri Nov 17 14:36:43 2006
++++ config/Imakefile	Fri Nov 17 14:37:15 2006
+@@ -13,7 +13,7 @@
+ HEADERS = NasConfig.h config.h
+ 
+ config.h: 
+-	sh -c "unset CFLAGS; ./configure"
++	sh -c "unset CFLAGS; ./configure --build=i386-portbld-freebsd6.0"
+ 
+ includes:: config.h
+ 

@@ -1,0 +1,228 @@
+--- configure.orig	Sat Dec 30 06:27:58 2006
++++ configure	Mon Jan  1 22:27:57 2007
+@@ -20585,8 +20585,12 @@
+ 
+ if test "$doauthuserdb" = "no"
+ then
++	HAVE_USERDB_TRUE='#'
++	HAVE_USERDB_FALSE=''
+ 	AUTHUSERDB=""
+ else
++	HAVE_USERDB_TRUE=''
++	HAVE_USERDB_FALSE='#'
+ 	AUTHUSERDB="authuserdb"
+ 	LIBAUTHUSERDB="libauthuserdb.la"
+ 
+@@ -22351,7 +22355,21 @@
+ fi
+ 
+ 
++if test "${with_base+set}" = set; then
++  withval="$with_base"
++  dobase="$withval"
++else
++  dobase="yes"
++fi;
+ 
++if test "$dobase" = "no"; then
++  HAVE_BASE_TRUE='#'
++  HAVE_BASE_FALSE=''
++else
++  HAVE_BASE_TRUE=''
++  HAVE_BASE_FALSE='#'
++fi
++  
+ 
+ 
+ if test "$HAVE_LDAP" = 1; then
+@@ -23711,9 +23729,9 @@
+ if test "$doauthmysql" = ""
+ then
+ 	LIBS="$MYSQL_LIBS $LIBS"
+-	echo "$as_me:$LINENO: checking for mysql_connect" >&5
+-echo $ECHO_N "checking for mysql_connect... $ECHO_C" >&6
+-if test "${ac_cv_func_mysql_connect+set}" = set; then
++	echo "$as_me:$LINENO: checking for mysql_real_connect" >&5
++echo $ECHO_N "checking for mysql_real_connect... $ECHO_C" >&6
++if test "${ac_cv_func_mysql_real_connect+set}" = set; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   cat >conftest.$ac_ext <<_ACEOF
+@@ -23722,12 +23740,12 @@
+ cat confdefs.h >>conftest.$ac_ext
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+-/* Define mysql_connect to an innocuous variant, in case <limits.h> declares mysql_connect.
++/* Define mysql_real_connect to an innocuous variant, in case <limits.h> declares mysql_real_connect.
+    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+-#define mysql_connect innocuous_mysql_connect
++#define mysql_real_connect innocuous_mysql_real_connect
+ 
+ /* System header to define __stub macros and hopefully few prototypes,
+-    which can conflict with char mysql_connect (); below.
++    which can conflict with char mysql_real_connect (); below.
+     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+     <limits.h> exists even on freestanding compilers.  */
+ 
+@@ -23737,7 +23755,7 @@
+ # include <assert.h>
+ #endif
+ 
+-#undef mysql_connect
++#undef mysql_real_connect
+ 
+ /* Override any gcc2 internal prototype to avoid an error.  */
+ #ifdef __cplusplus
+@@ -23746,14 +23764,14 @@
+ #endif
+ /* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+-char mysql_connect ();
++char mysql_real_connect ();
+ /* The GNU C library defines this for functions which it implements
+     to always fail with ENOSYS.  Some functions are actually named
+     something starting with __ and the normal name is an alias.  */
+-#if defined (__stub_mysql_connect) || defined (__stub___mysql_connect)
++#if defined (__stub_mysql_real_connect) || defined (__stub___mysql_real_connect)
+ choke me
+ #else
+-char (*f) () = mysql_connect;
++char (*f) () = mysql_real_connect;
+ #endif
+ #ifdef __cplusplus
+ }
+@@ -23762,7 +23780,7 @@
+ int
+ main ()
+ {
+-return f != mysql_connect;
++return f != mysql_real_connect;
+   ;
+   return 0;
+ }
+@@ -23789,19 +23807,19 @@
+   ac_status=$?
+   echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; }; then
+-  ac_cv_func_mysql_connect=yes
++  ac_cv_func_mysql_real_connect=yes
+ else
+   echo "$as_me: failed program was:" >&5
+ sed 's/^/| /' conftest.$ac_ext >&5
+ 
+-ac_cv_func_mysql_connect=no
++ac_cv_func_mysql_real_connect=no
+ fi
+ rm -f conftest.err conftest.$ac_objext \
+       conftest$ac_exeext conftest.$ac_ext
+ fi
+-echo "$as_me:$LINENO: result: $ac_cv_func_mysql_connect" >&5
+-echo "${ECHO_T}$ac_cv_func_mysql_connect" >&6
+-if test $ac_cv_func_mysql_connect = yes; then
++echo "$as_me:$LINENO: result: $ac_cv_func_mysql_real_connect" >&5
++echo "${ECHO_T}$ac_cv_func_mysql_real_connect" >&6
++if test $ac_cv_func_mysql_real_connect = yes; then
+   doauthmysql="yes"
+ 
+ fi
+@@ -23911,9 +23929,9 @@
+ else
+ 	saveLIBS="$LIBS"
+ 	LIBS="$MYSQL_LIBS $LIBS"
+-	echo "$as_me:$LINENO: checking for mysql_connect" >&5
+-echo $ECHO_N "checking for mysql_connect... $ECHO_C" >&6
+-if test "${ac_cv_func_mysql_connect+set}" = set; then
++	echo "$as_me:$LINENO: checking for mysql_real_connect" >&5
++echo $ECHO_N "checking for mysql_real_connect... $ECHO_C" >&6
++if test "${ac_cv_func_mysql_real_connect+set}" = set; then
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+   cat >conftest.$ac_ext <<_ACEOF
+@@ -23922,12 +23940,12 @@
+ cat confdefs.h >>conftest.$ac_ext
+ cat >>conftest.$ac_ext <<_ACEOF
+ /* end confdefs.h.  */
+-/* Define mysql_connect to an innocuous variant, in case <limits.h> declares mysql_connect.
++/* Define mysql_real_connect to an innocuous variant, in case <limits.h> declares mysql_real_connect.
+    For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+-#define mysql_connect innocuous_mysql_connect
++#define mysql_real_connect innocuous_mysql_real_connect
+ 
+ /* System header to define __stub macros and hopefully few prototypes,
+-    which can conflict with char mysql_connect (); below.
++    which can conflict with char mysql_real_connect (); below.
+     Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+     <limits.h> exists even on freestanding compilers.  */
+ 
+@@ -23937,7 +23955,7 @@
+ # include <assert.h>
+ #endif
+ 
+-#undef mysql_connect
++#undef mysql_real_connect
+ 
+ /* Override any gcc2 internal prototype to avoid an error.  */
+ #ifdef __cplusplus
+@@ -23946,14 +23964,14 @@
+ #endif
+ /* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+-char mysql_connect ();
++char mysql_real_connect ();
+ /* The GNU C library defines this for functions which it implements
+     to always fail with ENOSYS.  Some functions are actually named
+     something starting with __ and the normal name is an alias.  */
+-#if defined (__stub_mysql_connect) || defined (__stub___mysql_connect)
++#if defined (__stub_mysql_real_connect) || defined (__stub___mysql_real_connect)
+ choke me
+ #else
+-char (*f) () = mysql_connect;
++char (*f) () = mysql_real_connect;
+ #endif
+ #ifdef __cplusplus
+ }
+@@ -23962,7 +23980,7 @@
+ int
+ main ()
+ {
+-return f != mysql_connect;
++return f != mysql_real_connect;
+   ;
+   return 0;
+ }
+@@ -23989,19 +24007,19 @@
+   ac_status=$?
+   echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; }; then
+-  ac_cv_func_mysql_connect=yes
++  ac_cv_func_mysql_real_connect=yes
+ else
+   echo "$as_me: failed program was:" >&5
+ sed 's/^/| /' conftest.$ac_ext >&5
+ 
+-ac_cv_func_mysql_connect=no
++ac_cv_func_mysql_real_connect=no
+ fi
+ rm -f conftest.err conftest.$ac_objext \
+       conftest$ac_exeext conftest.$ac_ext
+ fi
+-echo "$as_me:$LINENO: result: $ac_cv_func_mysql_connect" >&5
+-echo "${ECHO_T}$ac_cv_func_mysql_connect" >&6
+-if test $ac_cv_func_mysql_connect = yes; then
++echo "$as_me:$LINENO: result: $ac_cv_func_mysql_real_connect" >&5
++echo "${ECHO_T}$ac_cv_func_mysql_real_connect" >&6
++if test $ac_cv_func_mysql_real_connect = yes; then
+   LIBAUTHMYSQL="libauthmysql.la"
+ 		HAVE_AUTHMYSQL=1
+ else
+@@ -26433,6 +26451,10 @@
+ s,@subdirs@,$subdirs,;t t
+ s,@LIBOBJS@,$LIBOBJS,;t t
+ s,@LTLIBOBJS@,$LTLIBOBJS,;t t
++s,@HAVE_BASE_TRUE@,$HAVE_BASE_TRUE,;t t
++s,@HAVE_BASE_FALSE@,$HAVE_BASE_FALSE,;t t
++s,@HAVE_USERDB_TRUE@,$HAVE_USERDB_TRUE,;t t
++s,@HAVE_USERDB_FALSE@,$HAVE_USERDB_FALSE,;t t
+ CEOF
+ 
+ _ACEOF

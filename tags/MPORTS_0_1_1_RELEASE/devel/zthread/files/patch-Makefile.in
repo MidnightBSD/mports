@@ -1,0 +1,21 @@
+--- ./Makefile.in.orig	Sat May  5 01:22:01 2007
++++ ./Makefile.in	Sat May  5 01:23:22 2007
+@@ -565,13 +565,13 @@
+ 
+ 
+ install-exec-hook:
+-	$(mkinstalldirs) $(bindir)
+-	$(INSTALL_PROGRAM) $(top_srcdir)/share/zthread-config $(bindir)
++	$(mkinstalldirs) $(DESTDIR)$(bindir)
++	$(INSTALL_PROGRAM) $(top_srcdir)/share/zthread-config $(DESTDIR)$(bindir)
+ 
+ install-data-hook:
+-	$(mkinstalldirs) $(datadir)/aclocal
+-	$(INSTALL_DATA) $(top_srcdir)/share/zthread.m4 $(datadir)/aclocal
+-	$(INSTALL_DATA) $(top_srcdir)/share/pthread.m4 $(datadir)/aclocal
++	$(mkinstalldirs) $(DESTDIR)$(datadir)/aclocal
++	$(INSTALL_DATA) $(top_srcdir)/share/zthread.m4 $(DESTDIR)$(datadir)/aclocal
++	$(INSTALL_DATA) $(top_srcdir)/share/pthread.m4 $(DESTDIR)$(datadir)/aclocal
+ 	mkdir -p $(DESTDIR)$(includedir)/zthread
+ 	cp -pR $(top_srcdir)/include/zthread $(DESTDIR)$(includedir)/
+ 

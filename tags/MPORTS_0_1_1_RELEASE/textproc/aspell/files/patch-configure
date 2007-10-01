@@ -1,0 +1,54 @@
+--- ./configure.orig	Tue Dec 19 06:03:38 2006
++++ ./configure	Sat Aug 18 17:59:39 2007
+@@ -3509,7 +3509,7 @@
+ fi
+ 
+ 
+-if test "$GXX" = "yes" && expr "$CXXFLAGS" : '.*-O' > /dev/null
++if test "$GXX" = "yes" && expr -- "$CXXFLAGS" : '.*-O' > /dev/null
+ then
+   CXXFLAGS="$CXXFLAGS -fno-exceptions"
+ fi
+@@ -10857,13 +10857,6 @@
+ 	;;
+     esac
+ 
+-    if grep "^# ### BEGIN LIBTOOL TAG CONFIG: $tagname$" < "${ofile}" > /dev/null
+-    then
+-      { { echo "$as_me:$LINENO: error: tag name \"$tagname\" already exists" >&5
+-echo "$as_me: error: tag name \"$tagname\" already exists" >&2;}
+-   { (exit 1); exit 1; }; }
+-    fi
+-
+     # Update the list of available tags.
+     if test -n "$tagname"; then
+       echo appending configuration tag \"$tagname\" to $ofile
+@@ -19503,6 +19496,10 @@
+ 
+ # This can be used to rebuild libtool when needed
+ LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
++save_CC="$CC"
++CC="$CXX"
++$ac_aux_dir/ltconfig $LIBTOOL_DEPS
++CC="$save_CC"
+ 
+ # Always use our own libtool.
+ LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+@@ -22764,7 +22761,7 @@
+   CURSES_LIB=-lncurses
+ 
+ cat >>confdefs.h <<\_ACEOF
+-#define CURSES_HEADER <ncurses/curses.h>
++#define CURSES_HEADER <ncurses/ncurses.h>
+ _ACEOF
+ 
+ else
+@@ -22938,7 +22935,7 @@
+ 
+ 
+ cat >>confdefs.h <<\_ACEOF
+-#define CURSES_HEADER <curses.h>
++#define CURSES_HEADER <ncurses/ncurses.h>
+ _ACEOF
+ 
+ 

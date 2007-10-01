@@ -1,0 +1,34 @@
+--- ../configure.orig	Thu Aug  4 21:32:00 2005
++++ ../configure	Thu Aug  4 21:35:41 2005
+@@ -3379,16 +3379,21 @@
+ #define HAVE_SOCKLEN_T 1
+ EOF
+ 
+-    CFLAGS="$CFLAGS $(DSO_CFLAGS) -ansi -Wall"
++    cat >> confdefs.h <<\EOF
++#define HAVE_SOCKLEN_T 1
++EOF
++
++    CFLAFS="$CFLAGS $DSO_CFLAGS -ansi -Wall -pipe -DXP_UNIX"
+     MOZ_OBJFORMAT=`test -x /usr/bin/objformat && /usr/bin/objformat || echo aout`
+     if test "$MOZ_OBJFORMAT" = "elf"; then
+-        DLL_SUFFIX=so
++        DLL_SUFFIX=so.1
+     else
+         DLL_SUFFIX=so.1.0
+     fi
+     MKSHLIB='$(CC) $(DSO_LDOPTS) -o $@'
+     DSO_CFLAGS=-fPIC
+     DSO_LDOPTS='-shared -Wl,-soname -Wl,$(notdir $@)'
++    DSO_LDOPTS="$DSO_LDOPTS $BSD_PTHREAD_LIBS"
+     MDCPUCFG_H=_freebsd.cfg
+     PR_MD_CSRCS=freebsd.c
+     ;;
+@@ -5729,6 +5734,7 @@
+ config/nsprincl.mk
+ config/nsprincl.sh
+ config/nspr-config
++config/nspr.pc
+ lib/Makefile 
+ lib/ds/Makefile 
+ lib/libc/Makefile 

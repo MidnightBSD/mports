@@ -1,0 +1,15 @@
+bin/nmap
+%%DATADIR%%/nmap-mac-prefixes
+%%DATADIR%%/nmap-os-db
+%%DATADIR%%/nmap-os-fingerprints
+%%DATADIR%%/nmap-protocols
+%%DATADIR%%/nmap-rpc
+%%DATADIR%%/nmap-service-probes
+%%DATADIR%%/nmap-services
+%%DATADIR%%/nmap.dtd
+%%DATADIR%%/nmap.xsl
+@dirrm %%DATADIR%%
+%%PORTDOCS%%%%DOCSDIR%%/CHANGELOG
+%%PORTDOCS%%%%DOCSDIR%%/HACKING
+%%PORTDOCS%%%%DOCSDIR%%/nmap.dtd
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

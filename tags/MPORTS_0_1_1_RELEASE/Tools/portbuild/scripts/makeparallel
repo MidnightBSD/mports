@@ -1,0 +1,64 @@
+#!/bin/sh
+
+pb=/var/portbuild
+
+if [ $# -ne 2 ]; then
+	echo "usage: makeparallel arch branch"
+	exit 1
+fi
+
+arch=$1
+branch=$2
+
+. ${pb}/${arch}/portbuild.conf
+. ${pb}/scripts/buildenv
+
+buildenv ${pb} ${arch} ${branch}
+
+# packages that take a long time to build or have very deep dependency
+# trees and tend to stall the rest of the cluster waiting for them.
+# We try to start these as early as possible.
+
+quickports="lang/ghc x11/XFree86-4 x11/xorg x11/gnome2 x11/kde3 java/jdk15 java/jdk14 editors/openoffice.org-1.0 editors/openoffice.org-1.1-devel editors/openoffice.org-2.0-devel editors/openoffice.org-1.1 editors/openoffice.org-2.0"
+
+cd ${PORTSDIR}
+subdir=$(make -V SUBDIR)
+makefile=${pb}/${arch}/${branch}/Makefile
+rm ${makefile}
+
+SUBDIR=$(make -V SUBDIR)
+(for dir in ${SUBDIR}; do
+	[ -r ${dir}/Makefile ] && echo "all: ${dir}-all" || true
+done
+env arch=${arch} branch=${branch} awk -F '|' '{me=$1; here=$2; bdep=$8; rdep=$9
+	edep=$11; pdep=$12; fdep=$13
+	sufx=ENVIRON["PKGSUFFIX"]
+	arch=ENVIRON["arch"]
+	branch=ENVIRON["branch"]
+	split(here, tmp, "/")
+	if (edep != "") { gsub("$", sufx, edep); gsub(" ", sufx " ", edep) }
+	if (pdep != "") { gsub("$", sufx, pdep); gsub(" ", sufx " ", pdep) }
+	if (fdep != "") { gsub("$", sufx, fdep); gsub(" ", sufx " ", fdep) }
+	if (bdep != "") { gsub("$", sufx, bdep); gsub(" ", sufx " ", bdep) }
+	if (rdep != "") { gsub("$", sufx, rdep); gsub(" ", sufx " ", rdep) }
+	print tmp[4] "-all: " me sufx
+	print me ": " me sufx
+	print me sufx ": " edep " " pdep " " fdep " "  bdep " " rdep
+	printf("\t@/usr/bin/env XXX=\"\" ")
+	if (edep != "") printf(" ED=\"%s\"", edep)
+	if (pdep != "") printf(" PD=\"%s\"", pdep)
+	if (fdep != "") printf(" FD=\"%s\"", fdep)
+	if (bdep != "") printf(" BD=\"%s\"", bdep)
+	if (rdep != "") printf(" RD=\"%s\"", rdep)
+	printf(" /var/portbuild/scripts/pdispatch %s %s /var/portbuild/scripts/portbuild %s%s %s\n",
+	    arch, branch, me, sufx, here)
+	}' < ${INDEXFILE}) > ${makefile}
+
+for i in ${quickports}; do
+  if [ -d $i ]; then
+    quickpkg="$(cd $i; make package-name)${PKGSUFFIX}"
+    echo "quickports: $quickpkg" >> ${makefile}
+  else
+    echo "quick port directory \"$i\" does not exist -- skipping"
+  fi
+done

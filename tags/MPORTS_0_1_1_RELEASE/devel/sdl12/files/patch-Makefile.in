@@ -1,0 +1,26 @@
+--- Makefile.in.orig	Sat Aug 25 00:31:09 2007
++++ Makefile.in	Sat Aug 25 00:35:53 2007
+@@ -44,7 +44,7 @@
+ LT_CURRENT  = @LT_CURRENT@
+ LT_RELEASE  = @LT_RELEASE@
+ LT_REVISION = @LT_REVISION@
+-LT_LDFLAGS  = -no-undefined -rpath $(libdir) -release $(LT_RELEASE) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
++LT_LDFLAGS  = -no-undefined -rpath $(libdir) -version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)
+ 
+ all: $(srcdir)/configure Makefile $(objects) $(objects)/$(TARGET) $(objects)/$(SDLMAIN_TARGET)
+ 
+@@ -95,10 +95,10 @@
+ 	$(INSTALL) -m 644 $(objects)/$(SDLMAIN_TARGET) $(libdir)/$(SDLMAIN_TARGET)
+ 	$(RANLIB) $(libdir)/$(SDLMAIN_TARGET)
+ install-data:
+-	$(SHELL) $(auxdir)/mkinstalldirs $(prefix)/share/aclocal
+-	$(INSTALL) -m 644 $(srcdir)/sdl.m4 $(prefix)/share/aclocal/sdl.m4
+-	$(SHELL) $(auxdir)/mkinstalldirs $(prefix)/libdata/pkgconfig
+-	$(INSTALL) -m 644 $(srcdir)/sdl.pc $(prefix)/libdata/pkgconfig
++	$(SHELL) $(auxdir)/mkinstalldirs ${DESTDIR}$(prefix)/share/aclocal
++	$(INSTALL) -m 644 $(srcdir)/sdl.m4 ${DESTDIR}$(prefix)/share/aclocal/sdl.m4
++	$(SHELL) $(auxdir)/mkinstalldirs ${DESTDIR}$(prefix)/libdata/pkgconfig
++	$(INSTALL) -m 644 $(srcdir)/sdl.pc ${DESTDIR}$(prefix)/libdata/pkgconfig
+ install-man:
+ 	$(SHELL) $(auxdir)/mkinstalldirs $(mandir)/man3
+ 	for src in $(srcdir)/docs/man3/*.3; do \
