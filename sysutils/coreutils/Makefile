@@ -2,7 +2,7 @@
 # Date created:				18 November 2003
 # Whom:					Jason Harris <jharris@widomaker.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.1 2006/10/04 20:52:54 laffer1 Exp $
 # $FreeBSD: ports/sysutils/coreutils/Makefile,v 1.9 2006/05/13 04:15:27 edwin Exp $
 #
 
@@ -16,6 +16,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Free Software Foundation's core utilities
+
+#'
 
 CONFLICTS=	fileutils-[0-9]* id-utils-[0-9]* linux-gid-[0-9]* \
 		sh-utils-[0-9]*  textutils-[0-9]*
@@ -61,6 +63,5 @@ post-patch:
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile
 
-post-install:
 
 .include <bsd.port.mk>
