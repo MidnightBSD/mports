@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.154 2007/09/12 15:27:47 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.155 2007/09/19 22:23:47 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -108,6 +108,7 @@
     SUBDIR += p5-Class-C3-Componentised
     SUBDIR += p5-Class-C3-XS
     SUBDIR += p5-Class-Container
+    SUBDIR += p5-Class-Data-Inheritable
     SUBDIR += p5-Class-Inspector
     SUBDIR += p5-Class-Trigger
     SUBDIR += p5-Clone
