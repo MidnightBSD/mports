@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.78 2007/09/01 05:46:53 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.79 2007/09/03 23:31:17 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -87,6 +87,7 @@
     SUBDIR += php5-xmlreader
     SUBDIR += php5-xmlwriter
     SUBDIR += php5-xsl
+    SUBDIR += py-libxml2
     SUBDIR += py-xml
     SUBDIR += popup
     SUBDIR += py-docutils
