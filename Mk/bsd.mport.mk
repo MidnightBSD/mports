@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.60 2007/09/01 05:14:05 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.61 2007/09/09 23:00:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -439,6 +439,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # USE_LINUX_RPM	- Set to yes to pull in variables and targets useful to Linux
 #				  RPM ports.
 #				  Implies inclusion of bsd.linux-rpm.mk.
+#
+# USE_XORG 		- Set to a list of xorg module dependancies.  Implies includsion
+#				  of bsd.xorg.mk
+#
 # AUTOMATIC_PLIST
 #				- Set to yes to enable automatic packing list generation.
 #				  Currently has no effect unless USE_LINUX_RPM is set.
@@ -493,9 +497,9 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: not set (means /)
 #
 # X11BASE		- Where X11 ports install things.
-#				  Default: ${DESTDIR}/usr/X11R6
+#				  Default: ${LOCALBASE}
 # X11BASE_REL		- Same as X11BASE, but relative to DESTDIR
-#				  Default: /usr/X11R6
+#				  Default: ${LOCALBASE_REL}
 # LOCALBASE		- Where non-X11 ports install things.
 #				  Default: ${DESTDIR}/usr/local
 # LOCALBASE_REL		- Same as LOCALBASE, but relative to DESTDIR
@@ -1327,20 +1331,17 @@ _SUF2=	,${PORTEPOCH}
 
 # check for old, crufty, makefile types, part 2.  The "else" case
 # should have been handled in part 1, above.
-.if !defined(PKGVERSION)
-PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
-.endif
-.if !defined(PKGNAME)
-PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}
-.endif
-DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
+PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
+PKGSUBNAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+PKGNAME?=		${PKGSUBNAME}-${PKGVERSION}
+DISTNAME?=		${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
 PORTSDIR?=		/usr/mports
 LOCALBASE?=		/usr/local
-X11BASE?=		/usr/X11R6
+X11BASE?=		${LOCALBASE}
 LINUXBASE?=		/compat/linux
 LOCALBASE_REL:=		${LOCALBASE}
 X11BASE_REL:=		${X11BASE}
@@ -1358,6 +1359,10 @@ TARGETDIR:=		${DESTDIR}${PREFIX}
 
 .if defined(USE_LINUX_RPM)
 .include "${PORTSDIR}/Mk/bsd.linux-rpm.mk"
+.endif
+
+.if defined(USE_XORG) || defined(XORG_CAT)
+.include "${PORTSDIR}/Mk/bsd.xorg.mk"
 .endif
 
 .if defined(USE_GCPIO)
@@ -1815,21 +1820,22 @@ LIB_DEPENDS+=			ttf.4:${PORTSDIR}/print/freetype
 .endif
 
 .if defined(X_WINDOW_SYSTEM) && ${X_WINDOW_SYSTEM:L} == xorg
-X_IMAKE_PORT=		${PORTSDIR}/devel/imake-6
+X_IMAKE_PORT=		${PORTSDIR}/devel/imake
 X_LIBRARIES_PORT=	${PORTSDIR}/x11/xorg-libraries
-X_CLIENTS_PORT=		${PORTSDIR}/x11/xorg-clients
+X_CLIENTS_PORT=		${PORTSDIR}/x11/xorg-apps
 X_SERVER_PORT=		${PORTSDIR}/x11-servers/xorg-server
-X_FONTSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-fontserver
+X_FONTSERVER_PORT=	${PORTSDIR}/x11-fonts/xfs
 X_PRINTSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-printserver
 X_VFBSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-vfbserver
 X_NESTSERVER_PORT=	${PORTSDIR}/x11-servers/xorg-nestserver
-X_FONTS_ENCODINGS_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-encodings
+X_FONTS_ENCODINGS_PORT=	${PORTSDIR}/x11-fonts/encodings
 X_FONTS_MISC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-miscbitmaps
 X_FONTS_100DPI_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-100dpi
 X_FONTS_75DPI_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-75dpi
 X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-cyrillic
 X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-truetype
 X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
+X_FONTS_ALIAS_PORT=	${PORTSDIR}/x11-fonts/font-alias
 X_MANUALS_PORT=		${PORTSDIR}/x11/xorg-manpages
 .else
 IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
@@ -1840,19 +1846,59 @@ BUILD_DEPENDS+=			imake:${X_IMAKE_PORT}
 .endif
 
 
+.if defined(USE_XLIB)
+.	if defined(USE_LINUX)
+RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-xorg-libs
+.	else
+.      if ${X_WINDOW_SYSTEM:L} == xorg
+BUILD_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+RUN_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+.      else
+LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
+.      endif
+.	endif
+.endif
+
+.if defined(USE_XLIB) || defined(USE_XORG)
+# Add explicit X options to avoid problems with false positives in configure
+.if defined(GNU_CONFIGURE)
+CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
+.endif
+.endif
+
+
+
 .if defined(USE_XPM) || defined(USE_GL)
 USE_XLIB=			yes
 .endif
 
-# This will always be xorg right now, but we might add xorg7 soon.
-.if ${X_WINDOW_SYSTEM:L} == xorg
 XAWVER=				8
+PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
+PLIST_SUB+=			XAWVER=${XAWVER}
+
+
+_GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
+_GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
+_GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
+_GL_glut_LIB_DEPENDS=		glut.4:${PORTSDIR}/graphics/libglut
+_GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
+
+.if defined(USE_GL)
+.  if ${USE_GL:L} == "yes"
+USE_GL=		glu
+.  endif
+.  for _component in ${USE_GL}
+.   if !defined(_GL_${_component}_LIB_DEPENDS) && \
+		!defined(_GL_${_component}_RUN_DEPENDS)
+IGNORE=		uses unknown GL component
+.   else
+LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
+RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
+.   endif
+.  endfor
 .endif
 
 
-PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
-
-PLIST_SUB+=			XAWVER=${XAWVER}
 
 .if defined(USE_BISON)
 BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
@@ -1939,9 +1985,7 @@ RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-x
 LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
 .	endif
 # 	Add explicit X options to avoid problems with false positives in configure
-.	if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
-.	else
+.	if !defined(GNU_CONFIGURE)
 CFLAGS+= -I${X11BASE}/include -L${X11BASE}/lib
 .	endif
 .endif
@@ -2094,11 +2138,7 @@ EXTRACT_CMD?=			${GZIP_CMD}
 
 # Figure out where the local mtree file is
 .if !defined(MTREE_FILE) 
-.if ${PREFIX} == ${X11BASE_REL} || defined(USE_X_PREFIX)
-# User may have specified non-standard PREFIX for installing a port that
-# uses X
-MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
-.elif ${PREFIX} == /usr
+.if ${PREFIX} == /usr
 MTREE_FILE=	/etc/mtree/BSD.usr.dist
 .elif ${PREFIX} == ${LINUXBASE_REL}
 MTREE_FILE=	${MTREE_LINUX_FILE}
@@ -3627,6 +3667,13 @@ do-package: ${TMPPLIST}
 	fi
 .endif
 
+
+test-mport:
+	/usr/libexec/mport.create -o ${PKGFILE:S/tbz$/mport/} -c "${COMMENT:Q}" -s ${FAKE_DESTDIR} \
+	-d ${DESCR} -p ${TMPPLIST} -P ${PREFIX} -M ${MTREE_FILE} -O ${PKGORIGIN} -C "${CONFLICTS}" \
+	-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
+	-v ${PKGVERSION} -n ${PKGSUBNAME} -l en
+
 # Some support rules for do-package
 
 .if !target(package-links)
@@ -5111,14 +5158,13 @@ describe:
 describe-yaml:
 	@perl -MYAML -e ' \
 		my %port = ( \
-			pkgname     => q(${PKGNAME}), \
+			pkgname     => q(${PKGSUBNAME}), \
 			name        => q(${PKGORIGIN}), \
 			version     => q(${PKGVERSION}), \
 			description => qq(${COMMENT:S/'/\x27/g}), \
 			license     => q(${LICENSE}), \
 			categories  => [qw(${CATEGORIES})], \
 		); \
-		$$port{pkgname}      =~ s/^(.*)-.*/$$1/; \
 		$$port{license} ||= undef; \
 		my %depends; \
 		$$depends{extract} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS:S|${PORTSDIR}/||g}}) ]; \
