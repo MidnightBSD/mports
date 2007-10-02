@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.61 2007/09/09 23:00:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.62 2007/10/02 19:14:01 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2934,7 +2934,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	gpl gpl2 gpl3 lgpl bsd4 bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 			bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
-			restricted perl modula3 unknown
+			restricted perl modula3 unknown sgi
 
 
 
