@@ -3,12 +3,11 @@
 # Whom:					Ashish Shukla <wahjava@gmail.com>
 #
 # $FreeBSD: ports/x11/libxcb/Makefile,v 1.7 2007/09/05 14:45:07 beech Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.1 2007/10/02 21:55:54 ctriv Exp $
 #
 
 PORTNAME=	libxcb
 PORTVERSION=	1.0
-PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	XORG/current/src/extras
 
