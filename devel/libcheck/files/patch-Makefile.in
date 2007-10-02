@@ -1,0 +1,24 @@
+--- Makefile.in.orig	Tue Nov 21 18:19:11 2006
++++ Makefile.in	Fri Dec  1 21:41:18 2006
+@@ -38,8 +38,8 @@
+ host_triplet = @host@
+ DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
+ 	$(srcdir)/Makefile.in $(srcdir)/check.pc.in \
+-	$(srcdir)/config.h.in $(top_srcdir)/configure AUTHORS COPYING \
+-	COPYING.LESSER ChangeLog INSTALL NEWS THANKS TODO \
++	$(srcdir)/config.h.in $(top_srcdir)/configure AUTHORS \
++	ChangeLog INSTALL NEWS THANKS TODO \
+ 	build-aux/compile build-aux/config.guess build-aux/config.sub \
+ 	build-aux/depcomp build-aux/install-sh build-aux/ltmain.sh \
+ 	build-aux/mdate-sh build-aux/missing build-aux/texinfo.tex
+@@ -203,8 +203,8 @@
+ 	ChangeLog.bak
+ 
+ EXTRA_DIST = SVNChangeLog ChangeLogOld check.pc.in $(m4data_DATA)
+-docdir = $(datadir)/doc/$(PACKAGE)
+-doc_DATA = SVNChangeLog ChangeLog ChangeLogOld NEWS README COPYING.LESSER
++docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
++doc_DATA = SVNChangeLog ChangeLog ChangeLogOld NEWS README
+ m4datadir = $(datadir)/aclocal
+ m4data_DATA = check.m4
+ pcdatadir = $(libdir)/pkgconfig
