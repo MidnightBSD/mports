@@ -2,26 +2,18 @@
 # Date Created:			29 Oct, 2003
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
+# $FreeBSD: ports/x11/xproto/Makefile,v 1.13 2007/05/19 20:28:10 flz Exp $
 # $MidnightBSD$
-# $FreeBSD: ports/x11/xproto/Makefile,v 1.12 2005/07/11 17:34:26 lesi Exp $
 #
 
 PORTNAME=	xproto
-PORTVERSION=	6.6.2
+PORTVERSION=	7.0.11
 CATEGORIES=	x11
-MASTER_SITES=	http://xlibs.freedesktop.org/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 protocol headers
+LICENSE=	x11
 
-CONFLICTS=	XFree86-libraries-* xorg-libraries-*
-
-USE_BZIP2=	yes
-PREFIX?=	${X11BASE}
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-USE_GMAKE=	yes
-NO_BUILD=	yes
-USE_GNOME=	gnomehack
+XORG_CAT=	proto
 
 .include <bsd.port.mk>
