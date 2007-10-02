@@ -2,36 +2,34 @@
 # Date Created:			28 Oct, 2003
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
+# $FreeBSD: ports/x11/libX11/Makefile,v 1.18 2007/09/13 19:44:58 flz Exp $
 # $MidnightBSD$
-# $FreeBSD: ports/x11/libX11/Makefile,v 1.12 2005/04/12 03:26:46 obrien Exp $
 #
 
 PORTNAME=	libX11
-PORTVERSION=	6.2.1
-PORTREVISION=	3
+PORTVERSION=	1.1.3
+PORTEPOCH=	1
 CATEGORIES=	x11
-MASTER_SITES=	http://freedesktop.org/~ajax/xlibs-release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 library
+LICENSE=	x11
 
-LIB_PC_DEPENDS=	${X11BASE}/libdata/pkgconfig/xau.pc:${PORTSDIR}/x11/libXau \
-		${X11BASE}/libdata/pkgconfig/xdmcp.pc:${PORTSDIR}/x11/libXdmcp
-BUILD_DEPENDS=	${X11BASE}/libdata/pkgconfig/xextensions.pc:${PORTSDIR}/x11/xextensions \
-		${X11BASE}/libdata/pkgconfig/xtrans.pc:${PORTSDIR}/x11/libXtrans \
-		${LIB_PC_DEPENDS}
-RUN_DEPENDS=	${LIB_PC_DEPENDS}
+.if defined(WITH_XCB)
+BUILD_DEPENDS=	${X11BASE}/libdata/pkgconfig/xcb-xlib.pc:${PORTSDIR}/x11/libxcb
+RUN_DEPENDS=	${BUILD_DEPENDS}
+CONFIGURE_ARGS=	--with-xcb=yes
+PLIST_SUB+=	XCB=""
+.else
+CONFIGURE_ARGS=	--with-xcb=no
+PLIST_SUB+=	XCB="@comment "
+.endif
 
-CONFLICTS=	XFree86-libraries-* xorg-libraries-*
+XORG_CAT=	lib
+USE_XORG=	bigreqsproto xau xdmcp xextproto xtrans xcmiscproto kbproto:both \
+		inputproto:both xf86bigfontproto xproto:both
+USE_AUTOTOOLS=	libtool:15
+CONFIGURE_ARGS+=	--enable-xdmauth --datadir=${PREFIX}/lib
 
-USE_BZIP2=	yes
-PREFIX?=	${X11BASE}
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-USE_GMAKE=	yes
-CONFIGURE_ARGS+= --enable-xdmauth
-CFLAGS+=	-DMALLOC_0_RETURNS_NULL
-INSTALLS_SHLIB=	yes
-USE_GNOME=	gnomehack pkgconfig
-
+.include "${.CURDIR}/manpages"
 .include <bsd.port.mk>
