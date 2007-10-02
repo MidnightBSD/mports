@@ -2,30 +2,26 @@
 # Date Created:			29 Oct, 2003
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
+# $FreeBSD: ports/x11/libXau/Makefile,v 1.15 2007/05/19 20:26:48 flz Exp $
 # $MidnightBSD$
-# $FreeBSD: ports/x11/libXau/Makefile,v 1.13 2006/02/23 10:39:52 ade Exp $
 #
 
 PORTNAME=	libXau
-PORTVERSION=	0.1.1
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
-MASTER_SITES=	http://freedesktop.org/~ajax/xlibs-release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentication Protocol library for X11
+LICENSE=	x11
 
-BUILD_DEPENDS=	${X11BASE}/libdata/pkgconfig/xproto.pc:${PORTSDIR}/x11/xproto
+XORG_CAT=	lib
+USE_XORG=	xproto:both
 
-CONFLICTS=	XFree86-libraries-* xorg-libraries-*
+MAN3=		Xau.3 XauDisposeAuth.3 XauFileName.3 XauGetAuthByAddr.3 \
+		XauGetBestAuthByAddr.3 XauLockAuth.3 XauReadAuth.3 \
+		XauUnlockAuth.3 XauWriteAuth.3
 
-USE_BZIP2=	yes
-PREFIX?=	${X11BASE}
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-USE_GMAKE=	yes
-USE_GNOME=	gnomehack pkgconfig
-
-INSTALLS_SHLIB=	yes
+post-install:
+	${LN} -sf ${PREFIX}/lib/libXau.so.6 ${PREFIX}/lib/libXau.so.0
 
 .include <bsd.port.mk>
