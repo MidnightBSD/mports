@@ -3,12 +3,11 @@
 # Whom:                 lofi@freebsd.org
 #
 # $FreeBSD: ports/textproc/wv2/Makefile,v 1.17 2006/05/27 10:26:18 lofi Exp $
-# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.1 2007/01/20 17:55:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.2 2007/05/19 03:45:32 ctriv Exp $
 #
 
 PORTNAME=	wv2
-PORTVERSION=	0.2.2
-PORTREVISION=	3
+PORTVERSION=	0.2.3
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	wvware
@@ -21,6 +20,7 @@ LIB_DEPENDS=	iconv:${PORTSDIR}/converters/libiconv
 CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} --disable-debug
 
 USE_GNOME=	gnometarget libgsf
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
