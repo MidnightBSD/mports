@@ -3,11 +3,11 @@
 # Whom:                 reed@pugetsoundtechnology.com
 #
 # $FreeBSD: ports/textproc/libwpd/Makefile,v 1.18 2006/02/23 10:39:24 ade Exp $
-# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.2 2007/05/18 04:59:07 ctriv Exp $
+# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.3 2007/10/03 18:25:22 laffer1 Exp $
 #
 
 PORTNAME=	libwpd
-PORTVERSION=	0.8.9
+PORTVERSION=	0.8.11
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	libwpd
