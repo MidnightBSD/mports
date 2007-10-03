@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake,v 1.1 2007/09/09 22:26:07 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -45,7 +45,8 @@ EXIT=0
 
 echo "Checking $DESTDIR"
 
-for ENTRY in `cat $PLIST | grep -e '^[^@]\|^@cw\?d'`; do
+for _ENTRY in `cat $PLIST | grep -e '^[^@]\|^@cw\?d'`; do
+	ENTRY=`echo $_ENTRY | awk '{print $1}'`
 	if echo $ENTRY | grep -e '^@cw\?d' > /dev/null; then
 		CWD=`echo $ENTRY | sed -E 's/^@cw?d[ \t]*([^\n]*)/\1/'`;
 		if [ ! -n "$CWD" ]; then
