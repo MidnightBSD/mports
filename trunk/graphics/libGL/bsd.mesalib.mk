@@ -13,7 +13,7 @@
 #    - graphics/dri
 #
 # $FreeBSD: ports/graphics/libGL/bsd.mesalib.mk,v 1.1 2007/08/29 10:33:09 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.1 2007/10/02 22:48:48 ctriv Exp $
 #
 
 MESAVERSION=	7.0.1
@@ -22,6 +22,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 MASTER_SITE_SUBDIR=	mesa3d
 DISTFILES=	MesaLib-${PORTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
+LICENSE?=	x11
 CONFLICTS?=	XFree86-libraries-* xorg-libraries-6.*
 
 USE_BZIP2=	yes
