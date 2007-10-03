@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 bin/wv2-config
 include/wv2/associatedstrings.h
 include/wv2/convert.h
