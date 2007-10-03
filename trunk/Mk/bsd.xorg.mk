@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.3 2007/09/13 19:44:45 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.xorg.mk,v 1.1 2007/10/02 19:14:01 ctriv Exp $
 #
 
 XORG_Include_MAINTAINER=		ports@MidnightBSD.org
@@ -253,7 +253,7 @@ BUILD_DEPENDS+=			${LIB_PC_DEPENDS}
 .if !target(check-latest)
 check-latest:
 	@AVAIL_VER=`fetch -qo - http://xorg.freedesktop.org/releases/individual/${XORG_CAT}/ | sed -ne 's/.*${PORTNAME}-\(.*\).tar.bz2\".*/\1/p'` && \
-		${ECHO_CMD} "Available versions for ${PORTNAME} are: $${AVAIL_VER}." && \
+		${ECHO_CMD} "Available versions for ${PORTNAME} are: " && ${ECHO_CMD} "$${AVAIL_VER}" && \
 		for ver in $${AVAIL_VER}; do \
 			if [ `pkg_version -t $$ver ${PORTVERSION}` = ">" ]; then \
 				${ECHO_CMD} "${PORTNAME} $$ver is newer than current version."; \
