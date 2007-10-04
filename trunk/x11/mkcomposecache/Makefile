@@ -3,12 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/mkcomposecache/Makefile,v 1.1 2007/05/19 20:27:05 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/mkcomposecache/Makefile,v 1.1 2007/10/04 05:32:09 ctriv Exp $
 #
 
 PORTNAME=	mkcomposecache
 PORTVERSION=	1.2
-PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
