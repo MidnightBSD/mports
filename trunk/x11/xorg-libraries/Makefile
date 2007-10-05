@@ -2,70 +2,69 @@
 # Date created:		29 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.4 2007/03/14 23:31:56 ctriv Exp $
-# $FreeBSD: ports/x11/xorg-libraries/Makefile,v 1.15 2006/01/21 18:55:04 lesi Exp $
+# $FreeBSD: ports/x11/xorg-libraries/Makefile,v 1.23 2007/09/16 12:42:25 flz Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xorg-libraries
-PORTVERSION=	6.9.0
-PORTREVISION=   3
+PORTVERSION=	7.3
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
-DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
-		X11R${PORTVERSION}-src3.tar.gz
-
-PATCHFILES=     x11r6.9.0-cidfonts.diff
-PATCH_SITES=    ${MASTER_SITE_XORG}
-PATCH_SITE_SUBDIR=      X11R${PORTVERSION}/patches
+MASTER_SITES=	# none
+DISTFILES=	# none
+EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	X11 libraries and headers from X.Org
+COMMENT=	X.org libraries meta-port
+LICENSE=	x11
 
-CFLAGS+= -I/usr/local/include/freetype2
+NO_BUILD=	yes
 
-LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm \
-		freetype.9:${PORTSDIR}/print/freetype2 \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+RUN_DEPENDS=	${X11BASE}/libdata/pkgconfig/x11.pc:${PORTSDIR}/x11/libX11 \
+		${X11BASE}/libdata/pkgconfig/xfont.pc:${PORTSDIR}/x11-fonts/libXfont \
+		${X11BASE}/libdata/pkgconfig/xfontcache.pc:${PORTSDIR}/x11-fonts/libXfontcache \
+		${X11BASE}/libdata/pkgconfig/ice.pc:${PORTSDIR}/x11/libICE \
+		${X11BASE}/libdata/pkgconfig/sm.pc:${PORTSDIR}/x11/libSM \
+		${X11BASE}/libdata/pkgconfig/xres.pc:${PORTSDIR}/x11/libXres \
+		${X11BASE}/libdata/pkgconfig/xtrap.pc:${PORTSDIR}/x11/libXTrap \
+		${X11BASE}/libdata/pkgconfig/xau.pc:${PORTSDIR}/x11/libXau \
+		${X11BASE}/libdata/pkgconfig/xaw8.pc:${PORTSDIR}/x11-toolkits/libXaw \
+		${X11BASE}/libdata/pkgconfig/xcomposite.pc:${PORTSDIR}/x11/libXcomposite \
+		${X11BASE}/libdata/pkgconfig/xcursor.pc:${PORTSDIR}/x11/libXcursor \
+		${X11BASE}/libdata/pkgconfig/xdamage.pc:${PORTSDIR}/x11/libXdamage \
+		${X11BASE}/libdata/pkgconfig/xdmcp.pc:${PORTSDIR}/x11/libXdmcp \
+		${X11BASE}/libdata/pkgconfig/xevie.pc:${PORTSDIR}/x11/libXevie \
+		${X11BASE}/libdata/pkgconfig/xext.pc:${PORTSDIR}/x11/libXext \
+		${X11BASE}/libdata/pkgconfig/xfixes.pc:${PORTSDIR}/x11/libXfixes \
+		${X11BASE}/libdata/pkgconfig/xfont.pc:${PORTSDIR}/x11-fonts/libXfont \
+		${X11BASE}/libdata/pkgconfig/xi.pc:${PORTSDIR}/x11/libXi \
+		${X11BASE}/libdata/pkgconfig/xinerama.pc:${PORTSDIR}/x11/libXinerama \
+		${X11BASE}/libdata/pkgconfig/xmu.pc:${PORTSDIR}/x11-toolkits/libXmu \
+		${X11BASE}/libdata/pkgconfig/xp.pc:${PORTSDIR}/x11/libXp \
+		${X11BASE}/libdata/pkgconfig/xpm.pc:${PORTSDIR}/x11/libXpm \
+		${X11BASE}/libdata/pkgconfig/xrandr.pc:${PORTSDIR}/x11/libXrandr \
+		${X11BASE}/libdata/pkgconfig/xrender.pc:${PORTSDIR}/x11/libXrender \
+		${X11BASE}/libdata/pkgconfig/xscrnsaver.pc:${PORTSDIR}/x11/libXScrnSaver \
+		${X11BASE}/libdata/pkgconfig/xt.pc:${PORTSDIR}/x11-toolkits/libXt \
+		${X11BASE}/libdata/pkgconfig/xtst.pc:${PORTSDIR}/x11/libXtst \
+		${X11BASE}/libdata/pkgconfig/xv.pc:${PORTSDIR}/x11/libXv \
+		${X11BASE}/libdata/pkgconfig/xvmc.pc:${PORTSDIR}/x11/libXvMC \
+		${X11BASE}/libdata/pkgconfig/xxf86dga.pc:${PORTSDIR}/x11/libXxf86dga \
+		${X11BASE}/libdata/pkgconfig/xxf86misc.pc:${PORTSDIR}/x11/libXxf86misc \
+		${X11BASE}/libdata/pkgconfig/xxf86vm.pc:${PORTSDIR}/x11/libXxf86vm \
+		${X11BASE}/libdata/pkgconfig/xkbfile.pc:${PORTSDIR}/x11/libxkbfile \
+		${X11BASE}/libdata/pkgconfig/xkbui.pc:${PORTSDIR}/x11/libxkbui \
+		${X11BASE}/libdata/pkgconfig/xft.pc:${PORTSDIR}/x11-fonts/libXft \
+		${X11BASE}/libdata/pkgconfig/xprintutil.pc:${PORTSDIR}/x11/libXprintUtil \
+		${X11BASE}/libdata/pkgconfig/xprintapputil.pc:${PORTSDIR}/x11/libXprintAppUtil \
+		${X11BASE}/libdata/pkgconfig/fontenc.pc:${PORTSDIR}/x11-fonts/libfontenc \
+		${X11BASE}/libdata/pkgconfig/dmx.pc:${PORTSDIR}/x11/libdmx \
+		${X11BASE}/libdata/pkgconfig/xtrans.pc:${PORTSDIR}/x11/xtrans \
+		${X11BASE}/libdata/pkgconfig/libfs.pc:${PORTSDIR}/x11-fonts/libFS \
+		${X11BASE}/libdata/pkgconfig/oldx.pc:${PORTSDIR}/x11/liboldX \
+		${X11BASE}/libdata/pkgconfig/pixman-1.pc:${PORTSDIR}/x11/pixman
 
-CONFLICTS=	Mesa-* XFree86-libraries-* \
-		libX11-* libGL-* libGLU-* libICE-* libSM-* libXau-* libXaw-* \
-		libXcursor-* libXdmcp-* libXext-* libXfont-* libXi-* \
-		libXinerama-* libXmu-* libXp-* libXpm-* libXrandr-* \
-		libXrender-* libXres-* libXt-* libXv-* libXxf86-* libxkbfile-* \
-		panoramixext-* printext-* randrext-* renderext-* resourceext-* \
-		xextensions-* xf86ext-* xlibs-* xpm-* xproto-*
+do-install:
+		${MKDIR} ${PREFIX}/libdata/xorg
+		${TOUCH} ${PREFIX}/libdata/xorg/libraries
 
-EXTRA_PATCHES=	${CF_PATCHES}
-
-XBUILD_DIRS=	lib nls programs/Xserver/include \
-		programs/Xserver/hw/xfree86/parser
-XINSTALL_DIRS=	include lib nls programs/Xserver/include \
-		programs/Xserver/hw/xfree86/parser
-
-INSTALLS_SHLIB=	yes
-
-post-patch:
-	${CP} ${FILESDIR}/nls-Compose-microsoft-cp1251 ${WRKSRC}/nls/Compose/microsoft-cp1251
-	${MKDIR} ${WRKSRC}/lib/XThrStub
-	${CP} ${FILESDIR}/XThrStub-Imakefile ${WRKSRC}/lib/XThrStub/Imakefile
-
-post-install:
-	${MKDIR} ${PREFIX}/libdata/pkgconfig
-	${INSTALL_DATA} ${WRKSRC}/lib/Xcursor/xcursor.pc \
-		${PREFIX}/libdata/pkgconfig
-
-.include "${.CURDIR}/../../x11-servers/xorg-server/Makefile.inc"
-.include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
-	distribution. See The X Window System and Virtual Consoles chapter\
-	of FAQ for more information
-.endif
-
-
-PLIST_SUB+=	OSMESA:=""
-PLIST_SUB+=	XTHRSTUB:="@comment "
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
