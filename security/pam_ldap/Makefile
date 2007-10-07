@@ -2,7 +2,7 @@
 # Date created:				26 May 2001
 # Whom:	      				Joe Clarke <marcus@marcuscom.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.1 2007/10/07 14:51:17 laffer1 Exp $
 # $FreeBSD: ports/security/pam_ldap/Makefile,v 1.38 2006/07/09 06:51:06 marcus Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	pam_ldap-${PORTVERSION:S/.//g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A pam module for authenticating with LDAP
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
