@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.40 2007/08/11 02:30:22 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.41 2007/08/12 02:20:41 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -22,6 +22,7 @@
     SUBDIR += netatalk
     SUBDIR += netcat
     SUBDIR += netclasses
+    SUBDIR += nss_ldap
     SUBDIR += ntp
     SUBDIR += openldap23-client
     SUBDIR += openldap23-sasl-client
