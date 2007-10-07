@@ -1,0 +1,5 @@
+The nss_ldap module expects to find its configuration files at the
+following paths:
+
+LDAP configuration:     /usr/local/etc/nss_ldap.conf
+LDAP secret (optional): /usr/local/etc/nss_ldap.secret
