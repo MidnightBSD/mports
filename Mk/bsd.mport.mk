@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.63 2007/10/02 19:43:05 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.64 2007/10/03 18:29:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2934,7 +2934,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	gpl gpl2 gpl3 lgpl bsd4 bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 			bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
-			restricted perl modula3 unknown sgi
+			restricted perl modula3 unknown sgi agg
 
 
 
@@ -3419,7 +3419,10 @@ check-license:
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
 	@sleep 5
 .else
-	@if ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
+	@if test -z '${LICENSE}'; then \
+		${ECHO_MSG} "${PKGNAME}: Makefile error: empty license."; \
+		sleep 5; \
+	elif ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
 		sleep 5; \
 	else \
@@ -5505,7 +5508,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@echo '@comment $$MidnightBSD$$' > ${GENPLIST}
+	@echo '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.64 2007/10/03 18:29:54 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
