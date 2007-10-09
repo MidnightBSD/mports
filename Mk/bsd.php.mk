@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.4 2007/05/06 07:50:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.5 2007/09/19 18:34:18 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -32,7 +32,10 @@
 # Don't specify any WANT_PHP_* knob if your port will work with every PHP SAPI.
 #
 
+.if !defined(_PHPMKINCLUDED)
 PHP_Include_MAINTAINER=	ports@MidnightBSD.org
+
+_PHPMKINCLUDED=	yes
 
 .if exists(${LOCALBASE}/etc/php.conf)
 .include "${LOCALBASE}/etc/php.conf"
@@ -41,12 +44,7 @@ PHP_EXT_DIR!=	${LOCALBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${LOC
 DEFAULT_PHP_VER?=	5
 
 PHP_VER?=	${DEFAULT_PHP_VER}
-
-.if ${PHP_VER} == 4
-PHP_EXT_DIR=	20020429
-.else
 PHP_EXT_DIR=	20060613
-.endif
 
 HTTPD?=		${LOCALBASE}/sbin/httpd
 .if exists(${HTTPD})
@@ -146,7 +144,7 @@ SUB_LIST+=	PHP_EXT_DIR=${PHP_EXT_DIR}
 .if defined(USE_PHPIZE) || defined(USE_PHPEXT)
 BUILD_DEPENDS+=	phpize:${PHP_PORT}
 GNU_CONFIGURE=	YES
-USE_AUTOTOOLS+=	autoconf:259:env
+USE_AUTOTOOLS+=	autoconf:261:env
 CONFIGURE_ARGS+=--with-php-config=${LOCALBASE}/bin/php-config
 
 # PECL uses INSTALL_ROOT
@@ -224,24 +222,26 @@ php-ini:
 	@${ECHO_CMD} "****************************************************************************"
 .endif
 
+.endif
+
 # Extensions
-.if ${USE_PHP:L} != "yes"
+.if defined(_POSTMKINCLUDED) && ${USE_PHP:L} != "yes"
 # non-version specific components
-_USE_PHP_ALL=	bcmath bz2 calendar ctype curl dba dbase \
+_USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
 		exif fileinfo filepro fribidi ftp gd gettext gmp \
-		hash iconv imap interbase ldap mbstring mcrypt \
-		mhash ming mssql mysql ncurses odbc \
-		openssl panda pcntl pcre pdf pgsql posix \
+		hash iconv imap interbase json ldap mbstring mcrypt \
+		memcache mhash ming mssql mysql ncurses odbc \
+		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
 		sockets sybase_ct sysvmsg sysvsem sysvshm \
 		tokenizer wddx xml xmlrpc yaz zip zlib
 # version specific components
-_USE_PHP_VER4=	${_USE_PHP_ALL} crack dbx dio domxml mcal mcve \
-		mnogosearch oracle overload pfpro xslt yp
-_USE_PHP_VER5=	${_USE_PHP_ALL} dom mysqli pdo simplexml soap sqlite \
+_USE_PHP_VER5=	${_USE_PHP_ALL} dom filter ming mysqli oci8 pdo pdo_sqlite \
+		simplexml soap sqlite \
 		tidy xmlreader xmlwriter xsl
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
+bitset_DEPENDS=	math/pecl-bitset
 bz2_DEPENDS=	archivers/php${PHP_VER}-bz2
 calendar_DEPENDS=	misc/php${PHP_VER}-calendar
 crack_DEPENDS=	security/php${PHP_VER}-crack
@@ -256,6 +256,7 @@ domxml_DEPENDS=	textproc/php${PHP_VER}-domxml
 exif_DEPENDS=	graphics/php${PHP_VER}-exif
 fileinfo_DEPENDS=	sysutils/pecl-fileinfo
 filepro_DEPENDS=databases/php${PHP_VER}-filepro
+filter_DEPENDS=	security/pecl-filter
 fribidi_DEPENDS=converters/pecl-fribidi
 ftp_DEPENDS=	ftp/php${PHP_VER}-ftp
 gd_DEPENDS=	graphics/php${PHP_VER}-gd
@@ -265,11 +266,13 @@ hash_DEPENDS=	security/pecl-hash
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
+json_DEPENDS=	devel/pecl-json
 ldap_DEPENDS=	net/php${PHP_VER}-ldap
 mbstring_DEPENDS=	converters/php${PHP_VER}-mbstring
 mcal_DEPENDS=	misc/php${PHP_VER}-mcal
 mcrypt_DEPENDS=	security/php${PHP_VER}-mcrypt
 mcve_DEPENDS=	devel/php${PHP_VER}-mcve
+memcache_DEPENDS=	databases/pecl-memcache
 mhash_DEPENDS=	security/php${PHP_VER}-mhash
 ming_DEPENDS=	graphics/php${PHP_VER}-ming
 mnogosearch_DEPENDS=	www/php${PHP_VER}-mnogosearch
@@ -277,15 +280,16 @@ mssql_DEPENDS=	databases/php${PHP_VER}-mssql
 mysql_DEPENDS=	databases/php${PHP_VER}-mysql
 mysqli_DEPENDS=	databases/php${PHP_VER}-mysqli
 ncurses_DEPENDS=devel/php${PHP_VER}-ncurses
+oci8_DEPENDS=	databases/php${PHP_VER}-oci8
 odbc_DEPENDS=	databases/php${PHP_VER}-odbc
 openssl_DEPENDS=security/php${PHP_VER}-openssl
 oracle_DEPENDS=	databases/php${PHP_VER}-oracle
 overload_DEPENDS=lang/php${PHP_VER}-overload
-panda_DEPENDS=	print/pecl-panda
 pcntl_DEPENDS=	devel/php${PHP_VER}-pcntl
 pcre_DEPENDS=	devel/php${PHP_VER}-pcre
 pdf_DEPENDS=	print/pecl-pdflib
-pdo_DEPENDS=	databases/pecl-PDO
+pdo_DEPENDS=	databases/php${PHP_VER}-pdo
+pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pfpro_DEPENDS=	finance/php${PHP_VER}-pfpro
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
 posix_DEPENDS=	sysutils/php${PHP_VER}-posix
@@ -299,6 +303,7 @@ simplexml_DEPENDS=	textproc/php${PHP_VER}-simplexml
 snmp_DEPENDS=	net-mgmt/php${PHP_VER}-snmp
 soap_DEPENDS=	net/php${PHP_VER}-soap
 sockets_DEPENDS=net/php${PHP_VER}-sockets
+spl_DEPENDS=	devel/php${PHP_VER}-spl
 sqlite_DEPENDS=	databases/php${PHP_VER}-sqlite
 sybase_ct_DEPENDS=	databases/php${PHP_VER}-sybase_ct
 sysvmsg_DEPENDS=devel/php${PHP_VER}-sysvmsg
