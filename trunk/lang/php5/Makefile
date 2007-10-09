@@ -2,7 +2,7 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.7 2007/06/30 06:12:06 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.8 2007/10/09 16:29:00 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
@@ -35,8 +35,8 @@ CONFIGURE_ARGS=	--enable-versioning \
 		--disable-all \
 		--enable-libxml \
 		--with-libxml-dir=${LOCALBASE} \
-		--enable-reflection \
 		--enable-spl \
+		--enable-reflection \
 		--program-prefix=""
 
 DESTDIRNAME=	INSTALL_ROOT
