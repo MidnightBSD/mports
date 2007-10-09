@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.21 2007/08/14 01:16:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.22 2007/08/17 01:06:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1267,7 +1267,6 @@ MASTER_SITE_WINDOWMAKER+= \
 MASTER_SITE_XCONTRIB+=	\
 	ftp://ftp.net.ohio-state.edu/pub/X11/contrib/%SUBDIR%/ \
 	ftp://ftp.gwdg.de/pub/x11/x.org/contrib/%SUBDIR%/ \
-	ftp://ftp.duke.edu/pub/X11/contrib/%SUBDIR%/ \
 	ftp://ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://ftp.sunet.se/pub/X11/ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/X/XFree86/mirror/X.Org/contrib/%SUBDIR%/ \
@@ -1275,7 +1274,6 @@ MASTER_SITE_XCONTRIB+=	\
 	ftp://ftp2.x.org/contrib/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/opengroup/contrib/&,} \
 	ftp://ftp.mirrorservice.org/sites/ftp.x.org/contrib/%SUBDIR%/ \
-	ftp://sunsite.org.uk/sites/ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://ftp.chg.ru/pub/X11/x.org/contrib/%SUBDIR%/
 .endif
 
