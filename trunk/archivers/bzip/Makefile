@@ -2,18 +2,19 @@
 # Date created:         Fr  27 Sep 1996 11:47:35 MET DST
 # Whom:                 Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/bzip/Makefile,v 1.1 2006/09/18 00:43:38 laffer1 Exp $
 # $FreeBSD: ports/archivers/bzip/Makefile,v 1.29 2006/08/14 12:33:28 jmelo Exp $
 #
 
 PORTNAME=	bzip
 PORTVERSION=	0.21
 CATEGORIES=	archivers
-MASTER_SITES=	http://custom.lab.unb.br/pub/compression/bzip/ \
-		http://www.freebsdbrasil.com.br/~jmelo/
+MASTER_SITES=	http://www.freebsdbrasil.com.br/~jmelo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A block-sorting file compressor
+LICENSE=	restricted
+# its gpl2 but patent issues
 
 DEPRECATED=	see full description
 RESTRICTED=	may be covered by patents
