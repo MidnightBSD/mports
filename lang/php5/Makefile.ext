@@ -9,7 +9,7 @@ BROKEN_WITH_PHP=4
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
 PATCHDIR=	${.CURDIR}/files
-PLIST=		${WRKDIR}/PLIST
+PLIST=		${NONEXISTENT}
 
 EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - ${EXTSUBDIR}
 
@@ -65,6 +65,9 @@ CONFIGURE_ARGS+=--enable-dom \
 		--with-libxml-dir=${LOCALBASE}
 
 USE_GNOME=	libxml2
+
+USE_PHP=	spl
+USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "exif"
@@ -84,7 +87,7 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		png.5:${PORTSDIR}/graphics/png \
 		jpeg.9:${PORTSDIR}/graphics/jpeg
 .	if !defined(WITHOUT_X11)
-USE_XPM=	yes
+USE_XORG=	xpm
 .	endif
 
 CONFIGURE_ARGS+=--with-gd \
@@ -123,7 +126,7 @@ USE_ICONV=	yes
 .endif
 
 .if ${PHP_MODNAME} == "imap"
-LIB_DEPENDS+=	c-client4.8:${PORTSDIR}/mail/cclient
+LIB_DEPENDS+=	c-client4.9:${PORTSDIR}/mail/cclient
 
 CONFIGURE_ARGS+=--with-imap=${LOCALBASE}
 .if !defined(WITHOUT_SSL)
@@ -135,11 +138,10 @@ USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "interbase"
-LIB_DEPENDS+=	gds.1:${PORTSDIR}/databases/firebird-client
-
 CONFIGURE_ARGS+=--with-interbase=${LOCALBASE}
 
 USE_GCC=	3.4+
+USE_FIREBIRD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "ldap"
@@ -199,6 +201,9 @@ CONFIGURE_ARGS+=--with-mysqli=${LOCALBASE}/bin/mysql_config
 USE_MYSQL=	yes
 DEFAULT_MYSQL_VER=	41
 BROKEN_WITH_MYSQL=	323 40
+
+USE_PHP=	spl
+USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "ncurses"
@@ -237,8 +242,79 @@ CONFIGURE_ARGS+=--with-pcre-regex=yes
 PHP_HEADER_DIRS=pcrelib
 .endif
 
+.if ${PHP_MODNAME} == "pdo"
+CONFIGURE_ARGS+=--enable-pdo
+.endif
+
+.if ${PHP_MODNAME} == "pdo_dblib"
+CONFIGURE_ARGS+=--with-pdo-dblib=${LOCALBASE}
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+
+OPTIONS=	MSSQL	"Enable Microsoft SQL Server support" off
+.endif
+
+.if ${PHP_MODNAME} == "pdo_firebird"
+CONFIGURE_ARGS+=--with-pdo-firebird=${LOCALBASE}
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+
+USE_GCC=	3.4+
+USE_FIREBIRD=	yes
+.endif
+
+.if ${PHP_MODNAME} == "pdo_mysql"
+CONFIGURE_ARGS+=--with-pdo-mysql=${LOCALBASE} \
+		--with-zlib-dir=/usr
+
+USE_MYSQL=	yes
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+.endif
+
+.if ${PHP_MODNAME} == "pdo_oci"
+BUILD_DEPENDS+=	${LOCALBASE}/oracle8-client/lib/libclntsh.a:${PORTSDIR}/databases/oracle8-client
+
+RUN_DEPENDS+=	${BUILD_DEPENDS}
+
+CONFIGURE_ARGS+=--with-pdo-oci=${LOCALBASE}/oracle8-client
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+.endif
+
+.if ${PHP_MODNAME} == "pdo_odbc"
+LIB_DEPENDS+=	odbc.1:${PORTSDIR}/databases/unixODBC
+
+CONFIGURE_ARGS+=--with-pdo-odbc=unixODBC,${LOCALBASE}
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+.endif
+
+.if ${PHP_MODNAME} == "pdo_pgsql"
+USE_PGSQL=	yes
+
+CONFIGURE_ARGS+=--with-pdo-pgsql=${LOCALBASE}
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+.endif
+
+.if ${PHP_MODNAME} == "pdo_sqlite"
+CONFIGURE_ARGS+=--with-pdo-sqlite
+
+USE_PHP=	pdo
+USE_PHP_BUILD=	yes
+PHP_HEADER_DIRS=sqlite/src
+.endif
+
+
 .if ${PHP_MODNAME} == "pgsql"
-USE_PGSQL=	YES
+USE_PGSQL=	yes
 
 CONFIGURE_ARGS+=--with-pgsql=${LOCALBASE}
 .endif
@@ -251,6 +327,10 @@ CONFIGURE_ARGS+=--enable-posix
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 
 CONFIGURE_ARGS+=--with-pspell=${LOCALBASE}
+
+# Ugly hack to load session before psell to avoid crashes
+USE_PHP=	session
+USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "readline"
@@ -300,6 +380,16 @@ USE_PHP=	session
 USE_PHP_BUILD=	yes
 .endif
 
+.if ${PHP_MODNAME} == "spl"
+CONFIGURE_ARGS+=--enable-spl \
+		--with-libxml-dir=${LOCALBASE}
+
+USE_GNOME=	libxml2
+
+USE_PHP=	pcre simplexml
+USE_PHP_BUILD=	yes
+.endif
+
 .if ${PHP_MODNAME} == "sockets"
 CONFIGURE_ARGS+=--enable-sockets
 .endif
@@ -311,11 +401,14 @@ USE_PHP=	session
 USE_PHP_BUILD=	yes
 PHP_HEADER_DIRS=libsqlite/src
 
+USE_PHP=	spl
+USE_PHP_BUILD=	yes
+
 OPTIONS=	UTF8 "Enable UTF-8 support" off
 .endif
 
 .if ${PHP_MODNAME} == "sybase_ct"
-LIB_DEPENDS+=	ct.3:${PORTSDIR}/databases/freetds
+LIB_DEPENDS+=	ct.4:${PORTSDIR}/databases/freetds
 
 CONFIGURE_ARGS+=--with-sybase-ct=${LOCALBASE}
 .endif
@@ -409,7 +502,16 @@ CONFIGURE_ARGS+=--with-zlib=/usr
 CONFIGURE_ARGS+=--without-cdb
 .	endif
 .	if defined(WITH_DB4)
-WITH_DB4_VER?=	43
+WITH_DB4_VER?=	46
+.		if ${WITH_DB4_VER} == 45
+LIB_DEPENDS+=	db-4.5.0:${PORTSDIR}/databases/db45
+.		else
+.		if ${WITH_DB4_VER} == 44
+LIB_DEPENDS+=	db-4.4.0:${PORTSDIR}/databases/db44
+.		else
+.		if ${WITH_DB4_VER} == 43
+LIB_DEPENDS+=	db-4.3.0:${PORTSDIR}/databases/db43
+.		else
 .		if ${WITH_DB4_VER} == 42
 LIB_DEPENDS+=	db-4.2.2:${PORTSDIR}/databases/db42
 .		else
@@ -419,7 +521,10 @@ LIB_DEPENDS+=	db41.1:${PORTSDIR}/databases/db41
 .		if ${WITH_DB4_VER} == 4
 LIB_DEPENDS+=	db4.0:${PORTSDIR}/databases/db4
 .		else
-LIB_DEPENDS+=	db-4.3.0:${PORTSDIR}/databases/db43
+LIB_DEPENDS+=	db-4.6.0:${PORTSDIR}/databases/db46
+.		endif
+.		endif
+.		endif
 .		endif
 .		endif
 .		endif
@@ -458,6 +563,10 @@ CONFIGURE_ARGS+=--enable-gd-jis-conv
 .endif
 
 .if ${PHP_MODNAME} == "mbstring"
+.	if ${OSVERSION} < 600000 && ${ARCH} == "amd64"
+BROKEN=	Doesn't build on AMD64 with FreeBSD 5.x (varargs issue)
+.	endif
+
 .	if defined(WITHOUT_REGEX)
 CONFIGURE_ARGS+=--disable-mbregex
 .	endif
@@ -473,8 +582,7 @@ post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
 
-.if ${PHP_MODNAME} == "oci8"
-
+.if ${PHP_MODNAME} == "oci8" || ${PHP_MODNAME} == "pdo_oci"
 pre-configure:
 	@cd ${WRKSRC}; \
 	for lib in ${LOCALBASE}/oracle8-client/lib/libclntsh /usr/lib/libpthread; do \
@@ -483,11 +591,19 @@ pre-configure:
 	/usr/bin/ar rcs liboci8.a *.o
 .endif
 
+.if ${PHP_MODNAME} == "pdo_dblib"
+.if defined(WITH_MSSQL)
+LIB_DEPENDS+=	sybdb.5:${PORTSDIR}/databases/freetds-msdblib
+.else
+LIB_DEPENDS+=	ct.4:${PORTSDIR}/databases/freetds
+.endif
+.endif
+
 .if ${PHP_MODNAME} == "snmp"
 .	if defined(WITH_SNMP4) || exists(${LOCALBASE}/lib/libsnmp.so.4)
 LIB_DEPENDS+=   snmp.4:${PORTSDIR}/net-mgmt/net-snmp4
 .	else
-LIB_DEPENDS+=   netsnmp.9:${PORTSDIR}/net-mgmt/net-snmp
+LIB_DEPENDS+=   netsnmp.10:${PORTSDIR}/net-mgmt/net-snmp
 .	endif
 .endif
 
@@ -507,4 +623,3 @@ post-extract:
 post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
-
