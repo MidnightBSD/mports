@@ -2,20 +2,21 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.2 2006/09/17 19:02:41 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
 PORTNAME=	unzip
 PORTVERSION=	5.52
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES?=	archivers
-MASTER_SITES=	ftp://ftp.info-zip.org/pub/infozip/src/ ${MASTER_SITE_TEX_CTAN}
+MASTER_SITES=	ftp://ftp.info-zip.org/pub/infozip/src/
 MASTER_SITE_SUBDIR=	tools/zip/info-zip/src
 DISTNAME=	${PORTNAME}552
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	List, test and extract compressed files in a ZIP archive
+LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 MAKEFILE=	unix/Makefile
@@ -23,10 +24,11 @@ MAKE_ENV=	LOCAL_UNZIP="${CFLAGS} -DUSE_UNSHRINK"
 PLIST_FILES=	bin/unzip bin/funzip bin/unzipsfx bin/zipgrep bin/zipinfo
 PORTDOCS=	README WHERE
 MAN1=		funzip.1 unzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
+EXTRACT_SUFX=	.tgz
 
 .if defined(WITH_UNZIP_UNREDUCE)
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} unreduce_full.zip
-EXTRACT_ONLY=	${PORTNAME}552.tar.gz
+EXTRACT_ONLY=	${PORTNAME}552${EXTRACT_SUFX}
 MAKE_ENV=	LOCAL_UNZIP="${CFLAGS} -DUSE_UNSHRINK -DUSE_SMITH_CODE"
 .endif
 
