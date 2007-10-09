@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.6 2007/10/09 16:21:27 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.7 2007/10/09 16:35:59 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -228,7 +228,7 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
 		memcache mhash ming mssql mysql ncurses odbc \
 		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
-		spl sockets sybase_ct sysvmsg sysvsem sysvshm \
+		sockets sybase_ct sysvmsg sysvsem sysvshm \
 		tokenizer wddx xml xmlrpc yaz zip zlib
 # version specific components
 _USE_PHP_VER5=	${_USE_PHP_ALL} dom filter ming mysqli oci8 pdo pdo_sqlite \
