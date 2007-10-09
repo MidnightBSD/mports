@@ -2,12 +2,12 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.6 2007/06/06 19:23:34 ctriv Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.7 2007/06/30 06:12:06 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.2.3
+PORTVERSION=	5.2.4
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
@@ -25,7 +25,7 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USE_BZIP2=	yes
 .if !defined(PKGNAMESUFFIX)
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 USE_GETOPT_LONG=yes
 
 CONFIGURE_ARGS=	--enable-versioning \
@@ -53,8 +53,6 @@ OPTIONS=	CLI "Build CLI version" on \
 		DISCARD "Enable discard-path support (CGI only)" off \
 		FASTCGI "Enable fastcgi support (CGI only)" on \
 		PATHINFO "Enable path-info-check support (CGI only)" on
-
-CONFLICTS=	php4-4*
 
 MAN1=		php-config.1 phpize.1
 
@@ -100,13 +98,9 @@ CONFIGURE_ARGS+=--disable-cgi
 
 .if defined(WITH_APACHE)
 PHP_SAPI+=	mod
-USE_APACHE=	1.3+
+USE_APACHE=	2.0+
 .include "${PORTSDIR}/Mk/bsd.apache.mk"
-.if ${APACHE_VERSION} > 13
 CONFIGURE_ARGS+=--with-apxs2=${APXS}
-.else
-CONFIGURE_ARGS+=--with-apxs=${APXS}
-.endif
 PKGMESSAGE=	${PKGDIR}/pkg-message.mod
 MODULENAME=	lib${PORTNAME}
 SHORTMODNAME=	${PORTNAME}
@@ -166,9 +160,6 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/php.ini-recommended ${PREFIX}/etc
 	@${INSTALL_DATA} ${WRKDIR}/php.conf ${PREFIX}/etc
 	@${TOUCH} ${PREFIX}/include/php/ext/php_config.h
-.if defined(WITH_APACHE)
-	@${CAT} ${PKGMESSAGE}
-.endif
 
 .else
 .include "${MASTERDIR}/Makefile.ext"
