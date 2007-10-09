@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.5 2007/09/19 18:34:18 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.php.mk,v 1.6 2007/10/09 16:21:27 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -32,10 +32,7 @@
 # Don't specify any WANT_PHP_* knob if your port will work with every PHP SAPI.
 #
 
-.if !defined(_PHPMKINCLUDED)
 PHP_Include_MAINTAINER=	ports@MidnightBSD.org
-
-_PHPMKINCLUDED=	yes
 
 .if exists(${LOCALBASE}/etc/php.conf)
 .include "${LOCALBASE}/etc/php.conf"
@@ -222,10 +219,8 @@ php-ini:
 	@${ECHO_CMD} "****************************************************************************"
 .endif
 
-.endif
-
 # Extensions
-.if defined(_POSTMKINCLUDED) && ${USE_PHP:L} != "yes"
+.if ${USE_PHP:L} != "yes"
 # non-version specific components
 _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
 		exif fileinfo filepro fribidi ftp gd gettext gmp \
@@ -233,7 +228,7 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
 		memcache mhash ming mssql mysql ncurses odbc \
 		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
-		sockets sybase_ct sysvmsg sysvsem sysvshm \
+		spl sockets sybase_ct sysvmsg sysvsem sysvshm \
 		tokenizer wddx xml xmlrpc yaz zip zlib
 # version specific components
 _USE_PHP_VER5=	${_USE_PHP_ALL} dom filter ming mysqli oci8 pdo pdo_sqlite \
