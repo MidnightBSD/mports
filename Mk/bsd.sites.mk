@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.24 2007/10/09 14:54:28 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.25 2007/10/09 14:56:43 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -458,12 +458,10 @@ MASTER_SITE_GNOME+=	\
 	ftp://ftp.no.gnome.org/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.dit.upm.es/linux/gnome/%SUBDIR%/ \
 	http://rpmfind.net/linux/gnome.org/%SUBDIR%/ \
-	ftp://ftp.dataplus.se/pub/linux/gnome/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
 	http://ftp.unina.it/pub/linux/GNOME/%SUBDIR%/ \
 	http://www.gtlib.cc.gatech.edu/pub/gnome/%SUBDIR%/ \
 	http://archive.progeny.com/GNOME/%SUBDIR%/ \
-	http://www.zentek-international.com/mirrors/gnome/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/X/gnome/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/gnome/&,} \
 	ftp://ftp.kddlabs.co.jp/pub/GNOME/%SUBDIR%/ \
@@ -603,7 +601,6 @@ MASTER_SITE_KDE+=	\
 	ftp://ftp.sunet.se/pub/kde/%SUBDIR%/ \
 	http://ftp.sunet.se/pub/kde/%SUBDIR%/ \
 	ftp://ftp.rz.uni-wuerzburg.de/pub/unix/kde/%SUBDIR%/ \
-	ftp://ftp.dataplus.se/pub/linux/kde/%SUBDIR%/ \
 	ftp://ftp.duth.gr/pub/kde/%SUBDIR%/ \
 	http://ftp.duth.gr/pub/kde/%SUBDIR%/ \
 	ftp://ftp.unina.it/pub/Linux/kde/%SUBDIR%/ \
