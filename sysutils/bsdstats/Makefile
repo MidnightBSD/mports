@@ -3,7 +3,7 @@
 # Whom:			Marc G. Fournier <scrappy@freebsd.org>
 #
 # $FreeBSD: ports/sysutils/bsdstats/Makefile,v 1.47 2006/12/09 06:06:13 scrappy Exp $
-# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.1 2007/02/09 01:06:53 laffer1 Exp $ 
+# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.2 2007/04/28 05:53:51 ctriv Exp $ 
 #
 
 PORTNAME=	bsdstats
@@ -13,6 +13,7 @@ DISTFILES=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monthly script for reporting anonymous statistics about your machine
+LICENSE=	unknown
 
 .include <bsd.port.pre.mk>
 
