@@ -1,5 +1,5 @@
---- programs/Xserver/hw/xfree86/os-support/bsd/bsdResource.c.orig	Fri Apr 23 21:54:07 2004
-+++ programs/Xserver/hw/xfree86/os-support/bsd/bsdResource.c	Tue May 17 00:48:36 2005
+--- hw/xfree86/os-support/bsd/bsdResource.c.orig	Fri Apr 23 21:54:07 2004
++++ hw/xfree86/os-support/bsd/bsdResource.c	Tue May 17 00:48:36 2005
 @@ -18,7 +18,7 @@
  
  #ifdef INCLUDE_XF86_NO_DOMAIN
