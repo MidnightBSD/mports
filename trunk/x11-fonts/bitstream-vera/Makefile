@@ -2,14 +2,14 @@
 # Date created:		February 18 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fonts/bitstream-vera/Makefile,v 1.1.1.1 2006/09/17 03:33:59 archite Exp $
-# $FreeBSD: ports/x11-fonts/bitstream-vera/Makefile,v 1.13 2006/06/12 04:58:42 mezz Exp $
+# $FreeBSD: ports/x11-fonts/bitstream-vera/Makefile,v 1.16 2007/05/19 20:29:08 flz Exp $
+# $MidnightBSD$
 #   $MCom: ports/x11-fonts/bitstream-vera/Makefile,v 1.2 2005/10/14 20:39:59 adamw Exp $
 #
 
 PORTNAME=	bitstream-vera
 PORTVERSION=	1.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-fonts
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/ttf-${PORTNAME}/1.10
@@ -18,6 +18,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera TrueType font collection
+LICENSE=	unknown
 
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
@@ -40,12 +41,6 @@ FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
 
 .include <bsd.port.pre.mk>
 
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-MTREE_FILE=	/etc/mtree/BSD.x11.dist
-.else
-MTREE_FILE=	/etc/mtree/BSD.x11-4.dist
-.endif
-
 .SILENT:
 
 post-patch:
@@ -55,18 +50,13 @@ post-patch:
 # Install
 #
 
-do-install: install-fonts install-conf install-docs
+do-install: install-fonts install-docs
 
 install-fonts:
 	${MKDIR} ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
 	${INSTALL_DATA} ${FILESDIR}/fonts.dir ${FONTSDIR}
 	${INSTALL_DATA} ${WRKSRC}/COPYRIGHT.TXT ${FONTSDIR}
-
-install-conf:
-	${MKDIR} ${PREFIX}/etc/fonts/conf.d
-	${INSTALL_DATA} ${WRKSRC}/local.conf \
-		${PREFIX}/etc/fonts/conf.d/0.vera.conf
 
 install-docs:
 .if !defined(NOPORTDOCS)
@@ -75,11 +65,5 @@ install-docs:
 	${INSTALL_DATA} ${WRKSRC}/RELEASENOTES.TXT ${DOCSDIR}
 .endif
 
-post-install:
-	${ECHO_MSG} "===> Running fc-cache"
-	-${X11BASE}/bin/fc-cache -f -v ${FONTSDIR}
-	${ECHO_MSG}
-	${CAT} ${PKGMESSAGE}
-	${ECHO_MSG}
 
 .include <bsd.port.post.mk>
