@@ -2,39 +2,47 @@
 # Date created:		30 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.1.1.1 2006/09/17 03:33:59 archite Exp $
-# $FreeBSD: ports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.9 2006/02/06 03:38:29 lesi Exp $
+# $FreeBSD: ports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.11 2007/09/13 19:44:52 flz Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xorg-fonts-miscbitmaps
-PORTVERSION=	6.9.0
-PORTREVISION=	1
+PORTVERSION=	7.3
 CATEGORIES=	x11-fonts
-MASTER_SITES=	${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
-DISTNAME=	X11R${PORTVERSION}-src1
+MASTER_SITES=	# none
+DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org miscellaneous bitmap fonts
+LICENSE=	agg
 
-BUILD_DEPENDS=	ucs2any:${PORTSDIR}/x11/xorg-clients
-RUN_DEPENDS=	${X11BASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/xorg-fonts-encodings
+RUN_DEPENDS=	${FONTDIR}/misc/arabic24.pcf.gz:${PORTSDIR}/x11-fonts/font-arabic-misc \
+		${FONTDIR}/misc/cursor.pcf.gz:${PORTSDIR}/x11-fonts/font-cursor-misc \
+		${FONTDIR}/misc/hanglg16.pcf.gz:${PORTSDIR}/x11-fonts/font-daewoo-misc \
+		${FONTDIR}/misc/deccurs.pcf.gz:${PORTSDIR}/x11-fonts/font-dec-misc \
+		${FONTDIR}/misc/gb16fs.pcf.gz:${PORTSDIR}/x11-fonts/font-isas-misc \
+		${FONTDIR}/misc/jiskan16.pcf.gz:${PORTSDIR}/x11-fonts/font-jis-misc \
+		${FONTDIR}/misc/micro.pcf.gz:${PORTSDIR}/x11-fonts/font-micro-misc \
+		${FONTDIR}/misc/10x20-ISO8859-1.pcf.gz:${PORTSDIR}/x11-fonts/font-misc-misc \
+		${FONTDIR}/misc/cu-alt12.pcf.gz:${PORTSDIR}/x11-fonts/font-mutt-misc \
+		${FONTDIR}/misc/clB6x10.pcf.gz:${PORTSDIR}/x11-fonts/font-schumacher-misc \
+		${FONTDIR}/misc/12x24.pcf.gz:${PORTSDIR}/x11-fonts/font-sony-misc \
+		${FONTDIR}/misc/olcursor.pcf.gz:${PORTSDIR}/x11-fonts/font-sun-misc \
+		${FONTDIR}/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings
 
 CONFLICTS=	XFree86-fontDefaultBitmaps-*
 
-EXTRA_PATCHES=	${CF_PATCHES}
+NO_BUILD=	# none
+FONTDIR=	${X11BASE}/lib/X11/fonts
 
-XBUILD_DIRS=	fonts/encodings fonts/bdf/misc
-XINSTALL_DIRS=	fonts/bdf/misc
+do-install:	# empty
 
-post-install:
-	@command fc-cache -v ${PREFIX}/lib/X11/fonts/misc
-
-.include "${.CURDIR}/../../x11-servers/xorg-server/Makefile.inc"
 .include <bsd.port.pre.mk>
+
 .if ${X_WINDOW_SYSTEM:L} != xorg
 IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
 	distribution. See The X Window System and Virtual Consoles chapter\
 	of FAQ for more information
 .endif
+
 .include <bsd.port.post.mk>
