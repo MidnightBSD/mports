@@ -2,41 +2,38 @@
 # Date created:		30 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.1.1.1 2006/09/17 03:33:57 archite Exp $
-# $FreeBSD: ports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.9 2006/02/06 03:38:29 lesi Exp $
+# $FreeBSD: ports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.11 2007/09/13 19:44:53 flz Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xorg-fonts-truetype
-PORTVERSION=	6.9.0
+PORTVERSION=	7.3
 CATEGORIES=	x11-fonts
-MASTER_SITES=	${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR=	X11R${PORTVERSION}/src
-DISTNAME=	X11R${PORTVERSION}-src1
+MASTER_SITES=	# none
+DISTFILES=	# none
+EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org TrueType fonts
+LICENSE=	agg
 
-BUILD_DEPENDS=	ucs2any:${PORTSDIR}/x11/xorg-clients \
-		fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	${X11BASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/xorg-fonts-encodings \
+RUN_DEPENDS=	${FONTDIR}/TTF/luximb.ttf:${PORTSDIR}/x11-fonts/font-bh-ttf \
+		${FONTDIR}/OTF/SyrCOMAdiabene.otf:${PORTSDIR}/x11-fonts/font-misc-meltho \
+		${FONTDIR}/TTF/GohaTibebZemen.ttf:${PORTSDIR}/x11-fonts/font-misc-ethiopic \
+		${X11BASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
 		${X11BASE}/lib/X11/fonts/bitstream-vera/VeraIt.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
-		fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-CONFLICTS=	XFree86-fontScalable-*
+do-install:	# empty
 
-EXTRA_PATCHES=	${CF_PATCHES}
+NO_BUILD=	# none
+FONTDIR=	${X11BASE}/lib/X11/fonts
 
-XBUILD_DIRS=	fonts/encodings fonts/scaled/TTF
-XINSTALL_DIRS=	fonts/scaled/TTF
-
-post-install:
-	@command fc-cache -v ${PREFIX}/lib/X11/fonts/TTF || true
-
-.include "${.CURDIR}/../../x11-servers/xorg-server/Makefile.inc"
 .include <bsd.port.pre.mk>
+
 .if ${X_WINDOW_SYSTEM:L} != xorg
 IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
 	distribution. See The X Window System and Virtual Consoles chapter\
 	of FAQ for more information
 .endif
+
 .include <bsd.port.post.mk>
