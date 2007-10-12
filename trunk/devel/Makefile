@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.156 2007/10/01 10:19:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.157 2007/10/09 18:57:53 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -41,6 +41,7 @@
     SUBDIR += etoile-unitkit
     SUBDIR += ffcall
     SUBDIR += gamin
+    SUBDIR += gccmakedep
     SUBDIR += gconf2
     SUBDIR += geany
     SUBDIR += gettext
@@ -57,11 +58,13 @@
     SUBDIR += gorm
     SUBDIR += highlighterkit
     SUBDIR += icu
+    SUBDIR += imake
     SUBDIR += imake-6
     SUBDIR += kdesdk3
     SUBDIR += kdevelop
     SUBDIR += libIDL
     SUBDIR += libbonobo
+    SUBDIR += libcheck
     SUBDIR += libdaemon
     SUBDIR += libgii
     SUBDIR += libglade2
@@ -70,6 +73,7 @@
     SUBDIR += libixp
     SUBDIR += libltdl15
     SUBDIR += liboil
+    SUBDIR += libpthread-stubs
     SUBDIR += libsigc++
     SUBDIR += libsigc++12
     SUBDIR += libsigc++20
@@ -87,6 +91,7 @@
     SUBDIR += linuxthreads
     SUBDIR += log4j
     SUBDIR += m4
+    SUBDIR += makedepend
     SUBDIR += monodoc
     SUBDIR += motor
     SUBDIR += nasm
@@ -94,6 +99,7 @@
     SUBDIR += nspr
     SUBDIR += objcunit
     SUBDIR += oniguruma4
+    SUBDIR += oniguruma5
     SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-Algorithm-C3
     SUBDIR += p5-AppConfig
