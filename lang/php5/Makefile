@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.8 2007/10/09 16:29:00 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.9 2007/10/09 17:10:43 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
 PORTVERSION=	5.2.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
 		http://downloads.php.net/ilia/:rc \
@@ -35,7 +35,6 @@ CONFIGURE_ARGS=	--enable-versioning \
 		--disable-all \
 		--enable-libxml \
 		--with-libxml-dir=${LOCALBASE} \
-		--enable-spl \
 		--enable-reflection \
 		--program-prefix=""
 
