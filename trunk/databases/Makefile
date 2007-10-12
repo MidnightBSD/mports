@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.48 2007/09/01 17:53:15 ctriv Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.49 2007/09/02 02:55:39 ctriv Exp $
 #
 
     COMMENT = Databases
@@ -58,6 +58,8 @@
     SUBDIR += php5-mysql
     SUBDIR += php5-mysqli
     SUBDIR += php5-odbc
+    SUBDIR += php5-pdo
+    SUBDIR += php5-pdo_sqlite
     SUBDIR += php5-pgsql
     SUBDIR += php5-sqlite
     SUBDIR += php5-sybase_ct
