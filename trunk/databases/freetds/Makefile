@@ -2,12 +2,11 @@
 # Date created:		02 Nov 1999
 # Whom:			Domas Mituzas <midom@dammit.lt>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/freetds/Makefile,v 1.1 2007/01/22 10:44:58 wintellect Exp $
 # $FreeBSD: ports/databases/freetds/Makefile,v 1.45 2006/05/04 21:39:57 edwin Exp $
 
 PORTNAME=	freetds
-PORTVERSION=	0.63
-PORTREVISION=	1
+PORTVERSION=	0.64
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_SUNSITE}
 MASTER_SITE_SUBDIR=	ALPHA/freetds/stable
@@ -20,14 +19,19 @@ TDS_VER?=	5.0
 USE_ICONV=	yes
 USE_GMAKE=	yes
 GNU_GONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:259:env libtool:15
+USE_AUTOTOOLS=	autoconf:261:env libtool:15
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-tdsver=${TDS_VER}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-0.63
-MAN1=		freebcp.1 tsql.1 bsqldb.1 defncopy.1
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
+MAN1=		datacopy.1 freebcp.1 tsql.1 bsqldb.1 defncopy.1
+
+.if defined(WITH_OPENSSL)
+USE_OPENSSL=	yes
+CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
+.endif
 
 .if defined(WITH_IODBC)
 LIB_DEPENDS+=	iodbc:${PORTSDIR}/databases/libiodbc
