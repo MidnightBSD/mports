@@ -3,11 +3,11 @@
 # Whom:			Michael Nottebrock <lofi@freebsd.org>
 #
 # $FreeBSD: ports/security/libassuan/Makefile,v 1.7 2006/12/05 12:20:11 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libassuan/Makefile,v 1.1 2007/01/24 19:33:44 laffer1 Exp $
 #
 
 PORTNAME=	libassuan
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.3
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=${PORTNAME}
@@ -25,4 +25,10 @@ CONFIGURE_ARGS+=--infodir=${PREFIX}/info
 
 CFLAGS+=	-I${LOCALBASE}/include/pth
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+CFLAGS+=	-fPIC
+.endif
+
+.include <bsd.port.post.mk>
