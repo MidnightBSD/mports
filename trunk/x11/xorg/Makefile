@@ -3,7 +3,7 @@
 # Whom:			anholt
 #
 # $FreeBSD: ports/x11/xorg/Makefile,v 1.19 2007/09/16 12:42:25 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.3 2007/10/12 03:54:03 ctriv Exp $
 #
 
 PORTNAME=	xorg
@@ -52,12 +52,6 @@ pre-everything::
 	@${ECHO_MSG} "all of the subports.  You can install the ports singly if you are low on space."
 
 .include <bsd.port.pre.mk>
-
-.if make(package)
-.if !defined(DEPENDS_TARGET:Mpackage) || empty(DEPENDS_TARGET:Mpackage)
-DEPENDS_TARGET="package"
-.endif
-.endif
 
 .if ${X_WINDOW_SYSTEM:L} != xorg
 IGNORE= is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
