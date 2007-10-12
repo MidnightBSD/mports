@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/security/Makefile,v 1.58 2007/10/01 09:42:15 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.59 2007/10/07 14:51:45 laffer1 Exp $
 #
 
     COMMENT = Security tools
 
     SUBDIR += aide
     SUBDIR += ca-roots
-    SUBDIR += ca_roots_nss
+    SUBDIR += ca_root_nss   
     SUBDIR += chroot_safe
     SUBDIR += clamav 
     SUBDIR += courier-authlib
