@@ -2,7 +2,7 @@
 # Date created:				14 November 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.1 2006/09/26 15:59:44 archite Exp $
+# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.2 2007/03/25 02:47:14 ctriv Exp $
 # $FreeBSD: ports/x11/startup-notification/Makefile,v 1.20 2006/02/23 10:39:59 ade Exp $
 #
 
@@ -22,7 +22,7 @@ USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
