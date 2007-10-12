@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.27 2007/08/16 20:14:37 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.28 2007/08/31 01:24:22 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -23,9 +23,11 @@
     SUBDIR += localedata
     SUBDIR += mime-support
     SUBDIR += p5-Geography-Countries
+    SUBDIR += p5-List-Compare
     SUBDIR += pciids
     SUBDIR += php5-calendar
     SUBDIR += shared-mime-info
+    SUBDIR += unclutter
     SUBDIR += wmScoreBoard
     SUBDIR += wmcalendar
     SUBDIR += wmfirew
