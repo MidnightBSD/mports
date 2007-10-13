@@ -2,13 +2,13 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.3 2007/03/13 18:48:43 archite Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.4 2007/03/14 04:08:55 laffer1 Exp $
 # $FreeBSD: ports/print/freetype2/Makefile,v 1.77 2007/01/28 09:07:43 kris Exp $
 #
 
 PORTNAME=	freetype2
 PORTVERSION=	2.2.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/%SUBDIR%/ \
