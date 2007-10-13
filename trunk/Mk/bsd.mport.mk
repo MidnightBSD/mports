@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.65 2007/10/08 16:52:01 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.66 2007/10/12 23:08:46 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2725,8 +2725,8 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	tcl80 tcl81 tcl82 tcl83 tcl84 textproc \
 	tk80 tk82 tk83 tk84 tkstep80 \
 	ukrainian vietnamese windowmaker www \
-	x11 x11-clocks x11-fm x11-fonts x11-servers x11-themes x11-toolkits \
-	x11-wm xfce zope
+	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
+	x11-toolkits x11-wm xfce zope
 
 check-categories:
 .for cat in ${CATEGORIES}
@@ -5508,7 +5508,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@echo '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.65 2007/10/08 16:52:01 ctriv Exp $$' > ${GENPLIST}
+	@echo '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.66 2007/10/12 23:08:46 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
