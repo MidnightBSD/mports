@@ -2,13 +2,14 @@
 # Date Created:			18 July 2000
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.5 2007/04/26 03:48:36 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.6 2007/08/23 07:36:59 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/pango/Makefile,v 1.85 2006/09/16 05:24:31 ahze Exp $
 #   $MCom: ports/x11-toolkits/pango/Makefile,v 1.60 2006/04/27 11:12:49 ahze Exp $
 #
 
 PORTNAME=	pango
 PORTVERSION=	1.16.5
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/pango/1.16,}
 DIST_SUBDIR=	gnome2
@@ -56,9 +57,8 @@ PLIST_SUB+=		X11="@comment "
 USE_XLIB+=		yes
 LIB_DEPENDS+=		Xft.2:${PORTSDIR}/x11-fonts/libXft
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
-				${GLIB2_CFLAGS} -I${LOCALBASE}/include \
-				-I${X11BASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+				${GLIB2_CFLAGS} -I${LOCALBASE}/include" \
+			LDFLAGS="-L${LOCALBASE}/lib"
 PLIST_SUB+=		X11=""
 .endif
 
