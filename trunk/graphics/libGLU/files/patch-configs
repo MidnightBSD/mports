@@ -1,0 +1,116 @@
+diff -urN configs.orig/midnightbsd configs/midnightbsd
+--- configs.orig/midnightbsd	Wed Dec 31 19:00:00 1969
++++ configs/midnightbsd	Mon Oct 15 00:02:01 2007
+@@ -0,0 +1,27 @@
++# Configuration for MidnightBSD
++
++include $(TOP)/configs/default
++
++CONFIG_NAME = MidnightBSD
++
++# Compiler and flags
++CC = cc
++CXX = c++
++MAKE = gmake
++
++OPT_FLAGS  = -O2
++PIC_FLAGS  = -fPIC
++
++DEFINES = -D_POSIX_SOURCE -D_POSIX_C_SOURCE=199309L -D_BSD_SOURCE -DUSE_XSHM \
++	-DHZ=100 -DHAVE_POSIX_MEMALIGN
++
++X11_INCLUDES = -I/usr/local/include
++
++CFLAGS += $(WARN_FLAGS) $(OPT_FLAGS) $(PIC_FLAGS) $(DEFINES) $(X11_INCLUDES) -ffast-math -pedantic
++
++CXXFLAGS += $(WARN_FLAGS) $(OPT_FLAGS) $(PIC_FLAGS) $(DEFINES) $(X11_INCLUDES)
++
++GLUT_CFLAGS = -fexceptions
++
++EXTRA_LIB_PATH = -L/usr/local/lib
++APP_LIB_DEPS = -L$(TOP)/$(LIB_DIR) $(EXTRA_LIB_PATH) -l$(GLUT_LIB) -l$(GLU_LIB) -l$(GL_LIB) -lXext -lXmu -lXi -lX11 -lm
+diff -urN configs.orig/midnightbsd-dri configs/midnightbsd-dri
+--- configs.orig/midnightbsd-dri	Wed Dec 31 19:00:00 1969
++++ configs/midnightbsd-dri	Mon Oct 15 00:03:41 2007
+@@ -0,0 +1,50 @@
++# -*-makefile-*-
++# Configuration for midnight-dri: MidnightBSD DRI hardware drivers
++
++include $(TOP)/configs/midnightbsd
++
++CONFIG_NAME = midnightbsd-dri
++
++# Compiler and flags
++CC = gcc
++CXX = g++
++WARN_FLAGS = -Wall
++OPT_FLAGS = -O
++
++EXPAT_INCLUDES = -I/usr/local/include
++X11_INCLUDES = -I/usr/local/include
++DEFINES = -DPTHREADS -DUSE_EXTERNAL_DXTN_LIB=1 -DIN_DRI_DRIVER \
++	-DGLX_DIRECT_RENDERING -DGLX_INDIRECT_RENDERING \
++	-DHAVE_ALIAS -DHAVE_POSIX_MEMALIGN
++
++CFLAGS = $(WARN_FLAGS) $(OPT_FLAGS) $(PIC_FLAGS) -Wmissing-prototypes -std=c99 -Wundef -ffast-math \
++	$(ASM_FLAGS) $(X11_INCLUDES) $(DEFINES)
++
++CXXFLAGS = $(WARN_FLAGS) $(OPT_FLAGS) $(PIC_FLAGS) $(DEFINES) -Wall -ansi -pedantic $(ASM_FLAGS) $(X11_INCLUDES) 
++
++ASM_SOURCES = 
++
++# Library/program dependencies
++LIBDRM_CFLAGS = `pkg-config --cflags libdrm`
++LIBDRM_LIB = `pkg-config --libs libdrm`
++DRI_LIB_DEPS = -L/usr/local/lib -lm -pthread -lexpat $(LIBDRM_LIB)
++GL_LIB_DEPS = -L/usr/local/lib -lX11 -lXext -lXxf86vm -lXdamage -lXfixes \
++	-lm -pthread $(LIBDRM_LIB)
++
++GLUT_LIB_DEPS = -L$(TOP)/$(LIB_DIR) -L/usr/local/lib -lGLU -lGL -lX11 -lXmu -lXt -lXi -lm
++GLW_LIB_DEPS = -L$(TOP)/$(LIB_DIR) -L/usr/local/lib -lGL -lXt -lX11
++
++
++# Directories
++SRC_DIRS = glx/x11 mesa glu glut/glx glw
++DRIVER_DIRS = dri
++PROGRAM_DIRS = 
++WINDOW_SYSTEM=dri
++
++DRM_SOURCE_PATH=$(TOP)/../drm
++
++# ffb and gamma are missing because they have not been converted to use the new
++# interface.
++DRI_DIRS = i810 i915 i965 mach64 mga r128 r200 r300 radeon tdfx \
++	   unichrome savage sis
++
+diff -urN configs.orig/midnightbsd-dri-amd64 configs/midnightbsd-dri-amd64
+--- configs.orig/midnightbsd-dri-amd64	Wed Dec 31 19:00:00 1969
++++ configs/midnightbsd-dri-amd64	Mon Oct 15 00:04:40 2007
+@@ -0,0 +1,10 @@
++# -*-makefile-*-
++# Configuration for midnightbsd-dri-amd64: MidnightBSD DRI hardware drivers
++
++include $(TOP)/configs/midnightbsd-dri
++
++CONFIG_NAME = midnightbsd-dri-x86-64
++
++ASM_FLAGS = -DUSE_X86_64_ASM
++ASM_SOURCES = $(X86-64_SOURCES)
++ASM_API = $(X86-64_API)
+diff -urN configs.orig/midnightbsd-dri-x86 configs/midnightbsd-dri-x86
+--- configs.orig/midnightbsd-dri-x86	Wed Dec 31 19:00:00 1969
++++ configs/midnightbsd-dri-x86	Mon Oct 15 00:05:25 2007
+@@ -0,0 +1,13 @@
++# -*-makefile-*-
++# Configuration for midnightbsd-dri: MidnightBSD DRI hardware drivers
++
++include $(TOP)/configs/midnightbsd-dri
++
++CONFIG_NAME = midnightbsd-dri-x86
++
++# Unnecessary on x86, generally.
++PIC_FLAGS = 
++
++ASM_FLAGS = -DUSE_X86_ASM -DUSE_MMX_ASM -DUSE_3DNOW_ASM -DUSE_SSE_ASM
++ASM_SOURCES = $(X86_SOURCES)
++ASM_API = $(X86_API)
