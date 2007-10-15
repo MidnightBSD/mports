@@ -2,7 +2,7 @@
 # Date created:			7 Jul 2004
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.4 2007/10/09 16:28:35 laffer1 Exp $
 # $FreeBSD: ports/lang/php5-extensions/Makefile,v 1.17 2007/02/10 19:09:33 ale Exp $
 #
 
@@ -62,7 +62,6 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		HASH            "HASH Message Digest Framework" on \
 		ICONV           "iconv support" on \
 		IMAP            "IMAP support" off \
-		INTERBASE       "Interbase 6 database support (Firebird)" off \
 		JSON            "JavaScript Object Serialization support" on \
 		LDAP            "OpenLDAP support" off \
 		MBSTRING        "multibyte string support" off \
@@ -119,7 +118,7 @@ OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 
 ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA DBASE \
 		DOM EXIF FILEINFO FILTER FRIBIDI FTP GD GETTEXT \
-		GMP HASH ICONV IMAP INTERBASE JSON LDAP MBSTRING MCRYPT \
+		GMP HASH ICONV IMAP JSON LDAP MBSTRING MCRYPT \
 		MHASH MING MSSQL MYSQL MYSQLI NCURSES \
 		ODBC OPENSSL PCNTL PCRE PDF PDO PDO_SQLITE PGSQL POSIX \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
