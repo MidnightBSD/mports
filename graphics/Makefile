@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.62 2007/09/03 19:45:38 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.63 2007/10/12 14:22:56 ctriv Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -41,6 +41,7 @@
     SUBDIR += libfpx
     SUBDIR += libggi
     SUBDIR += libGL
+    SUBDIR += libGLU
     SUBDIR += libglut
     SUBDIR += libgnomecanvas
     SUBDIR += libgphoto2
