@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.53 2007/10/12 20:28:52 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.54 2007/10/12 21:35:48 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -74,6 +74,8 @@
     SUBDIR += postgresql-plruby
     SUBDIR += postgresql81-client
     SUBDIR += postgresql81-server
+    SUBDIR += postgresql82-client
+    SUBDIR += postgresql82-server
     SUBDIR += qdbm
     SUBDIR += ruby-bdb
     SUBDIR += ruby-bdb1
