@@ -2,23 +2,24 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.3 2007/03/25 01:29:07 ctriv Exp $
+# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.4 2007/05/07 06:01:30 laffer1 Exp $
 # $FreeBSD: ports/net-im/gaim/Makefile,v 1.190 2006/08/26 19:15:08 garga Exp $
 #
 
 PORTNAME=	gaim
 PORTVERSION=	1.5.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES?=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Multi-protocol instant messaging client
+LICENSE=	gpl2
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
-CONFLICTS?=	ja-gaim-[0-9]* pidgin-[0-9]* libpurple-[0-9]*
+CONFLICTS?=	pidgin-[0-9]* libpurple-[0-9]*
 
 USE_AUTOTOOLS=  libtool:15
 USE_XLIB=	yes
@@ -79,7 +80,7 @@ CONFIGURE_ARGS+=	--with-nspr-includes=${LOCALBASE}/include/nspr \
 CONFIGURE_ARGS+=	--disable-nss
 .endif
 
-.if defined(WITH_PERL) && ${PERL_LEVEL} >= 500800
+.if defined(WITH_PERL)
 USE_PERL5=		yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=		PERL:=""
@@ -117,9 +118,6 @@ CONFIGURE_ARGS+=	--disable-audio
 .endif
 
 pre-everything::
-.if defined(WITH_PERL) && ${PERL_LEVEL} < 500800
-	@${ECHO_MSG} "WARNING: Perl scripting disabled (Perl 5.8 requirement not met)."
-.endif
 .if defined(WITHOUT_GNUTLS) && defined(WITHOUT_NSS)
 	@${ECHO_MSG} "WARNING: In order to use MSN, you must enable the GNUTLS and/or NSS options."
 .endif
