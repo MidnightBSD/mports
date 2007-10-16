@@ -1,0 +1,108 @@
+--- pib.tcl.orig	Sat Oct 28 05:01:12 2000
++++ pib.tcl	Tue Oct 16 17:19:47 2007
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ # Tcl magic \
+-exec wish8.2 -f $0 $*
++exec wish8.4 -f $0 $*
+ ################################################################################
+ #
+ # Copyright (C) 1996, 1997
+@@ -70,7 +70,7 @@
+ ################################################################################
+ #
+ # If an alternate filename is given on the commandline, open it instead of
+-# /usr/ports/INDEX
++# /usr/mports/INDEX-6
+ #
+ proc main {} {
+ 
+@@ -102,7 +102,7 @@
+     h_init;
+ 
+     # find our INDEX
+-    set ipath "[op_elookup PORTSDIR]/INDEX";
++    set ipath "[op_elookup PORTSDIR]/INDEX-6";
+     if {$argc == 1} {
+ 	set ipath [lindex $argv 0];
+     }
+@@ -309,22 +309,11 @@
+ #
+ proc init_options {} {
+ 
+-    # listboxes
+-    option add *Listbox.background white;
+-    option add *Listbox.selectForeground white;
+-    option add *Listbox.selectBackground darkblue;
+-
+     # scrollbars
+     option add *Scrollbar.width 11;
+ 
+     # textboxes
+-    option add *Text.background white;
+-    option add *Text.selectForeground white;
+-    option add *Text.selectBackground darkblue;
+     option add *Text.font fixed;
+-
+-    # entries
+-    option add *Entry.background white;
+     
+ }
+ 
+@@ -772,8 +761,8 @@
+     #
+     #       Tag		Name			Allowed states		Default state	Default value
+     op_edef usa		"USA_RESIDENT"		{yesno}			no;
+-    op_edef dir		"PORTSDIR"		{unset value}		value		"/usr/ports";
+-    op_edef ddir	"DISTDIR"		{unset value}		value		"/usr/ports/distfiles";
++    op_edef dir		"PORTSDIR"		{unset value}		value		"/usr/mports";
++    op_edef ddir	"DISTDIR"		{unset value}		value		"/usr/mports/Distfiles";
+     op_edef msb		"MASTER_SITE_BACKUP"	{unset value} 		unset;
+     op_edef msf		"MASTER_SITE_FREEBSD"	{set unset}		unset;
+     op_edef fcmd	"FETCH_CMD"		{unset value}		unset;
+@@ -1931,36 +1920,19 @@
+ 	update_pwin df_getdinfo [format "%d/%d ports, %dK/sec" $pports $Status(nports) $rate];
+ 
+ 	# Find the md5 file.
+-	if {[catch {set fh [open "$path/files/md5" "r"]}]} {
++	if {[catch {set fh [open "$path/distinfo" "r"]}]} {
+ 
+-	    # Nope.  Perhaps we're dealing with US ITAR braindamage
+-	    if {[op_elookup USA_RESIDENT]} {
+-		set aname "$path/files.usa/md5";
++	    # Can't find an distinfo file; give up
++	    if {[file isdirectory "$path"]} {
++		if {$Options(warn_no_md5)} {
++		    lappend errs "$pname: '$path/distinfo' not found";
++		}
+ 	    } else {
+-		set aname "$path/files.non_usa/md5";
+-	    }
+-
+-	    # try again with a new name
+-	    if {[catch {set fh [open $aname "r"]}]} {
+-
+-		# Can't find an md5 file; give up
+-		if {[file isdirectory "$path/files"]} {
+-		    if {$Options(warn_no_md5)} {
+-			lappend errs "$pname: '$path/files/md5' not found";
+-		    }
+-		} else {
+-		    if {[file isdirectory $path]} {
+-			if {$Options(warn_no_fdir)} {
+-			    lappend errs "$pname: '$path/files' not found";
+-			}
+-		    } else {
+-			if {$Options(warn_no_port)} {
+-			    lappend errs "$pname: directory missing.";
+-			}
+-		    }
++		if {$Options(warn_no_port)} {
++		    lappend errs "$pname: directory missing.";
+ 		}
+-		continue ;			# if no port info, assume it's not wanted
+ 	    }
++	    continue ;				# if no port info, assume it's not wanted
+ 	}
+ 
+ 	# initialise state for this port
