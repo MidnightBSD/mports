@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.158 2007/10/12 14:21:57 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.159 2007/10/12 14:48:27 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -89,6 +89,7 @@
     SUBDIR += linux-libglade
     SUBDIR += linux-sdl12
     SUBDIR += linuxthreads
+    SUBDIR += lndir
     SUBDIR += log4j
     SUBDIR += m4
     SUBDIR += makedepend
