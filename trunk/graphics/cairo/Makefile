@@ -2,14 +2,14 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.3 2007/04/08 04:52:10 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.4 2007/08/23 07:57:06 laffer1 Exp $
 # $FreeBSD: ports/graphics/cairo/Makefile,v 1.23 2007/03/20 11:01:14 ahze Exp $
 #   $MCom: ports/graphics/cairo/Makefile,v 1.56 2007/03/06 13:39:18 ahze Exp $
 #
 
 PORTNAME=	cairo
 PORTVERSION=	1.4.10
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
 #MASTER_SITES=	http://cairographics.org/snapshots/
@@ -30,7 +30,7 @@ USE_GNOME=	gnometarget gnomehack ltverhack referencehack
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 
-CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${X11BASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS}" \
 		LDFLAGS="${PTHREAD_LIBS}"
 
 OPTIONS+=	GLITZ "Enable Glitz OpenGL Support" Off
