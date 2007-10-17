@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.66 2007/10/12 23:08:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.67 2007/10/13 00:04:57 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1088,11 +1088,8 @@ CHOWN?=		/usr/sbin/chown
 CHROOT?=	/usr/sbin/chroot
 COMM?=		/usr/bin/comm
 CP?=		/bin/cp
-.if defined(USE_GCPIO)
-CPIO?=		${LOCALBASE}/bin/gcpio
-.else
+GCPIO?=		${LOCALBASE}/bin/gcpio
 CPIO?=		/usr/bin/cpio
-.endif
 CUT?=		/usr/bin/cut
 DC?=		/usr/bin/dc
 DIALOG?=	/usr/bin/dialog
@@ -1526,6 +1523,14 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
 # We only support xorg.
 X_WINDOW_SYSTEM ?= xorg
+
+
+#
+# One of the includes may have changed CPIO
+#
+.if defined(USE_GCPIO)
+CPIO=	${GCPIO}
+.endif
 
 ################
 #
@@ -5508,7 +5513,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@echo '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.66 2007/10/12 23:08:46 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.67 2007/10/13 00:04:57 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5528,10 +5533,10 @@ makeplist: fake
 			fi; \
 		done; \
 		for file in $$files; do \
-			echo $$file >> ${GENPLIST}; \
+			${ECHO_CMD} $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			echo "@dirrm $$dir" >> ${GENPLIST}; \
+			${ECHO_CMD} "@dirrm $$dir" >> ${GENPLIST}; \
 		done;
 .	else 
 		@cd ${FAKE_DESTDIR}${PREFIX}; \
@@ -5559,10 +5564,10 @@ makeplist: fake
 			fi; \
 		done; \
 		for file in $$files; do \
-			echo $$file >> ${GENPLIST}; \
+			${ECHO_CMD} $$file >> ${GENPLIST}; \
 		done; \
 		for dir in $$directories; do \
-			echo "@dirrmtry " >> ${GENPLIST}; \
+			${ECHO_CMD} "@dirrm " >> ${GENPLIST}; \
 		done;
 		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
 .	endif
@@ -5572,9 +5577,15 @@ makeplist: fake
 #
 # check to see how things went with a fake.
 #
+.if exists(${LOCALBASE}/bin/perl)
+_CHKFAKE=chkfake.pl
+.else
+_CHKFAKE=chkfake
+.endif
+
 .if !target(check-fake)
 check-fake: 
-	@${PORTSDIR}/Tools/scripts/chkfake ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+	@${PORTSDIR}/Tools/scripts/${_CHKFAKE} ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
 .endif
 	
 
