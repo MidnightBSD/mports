@@ -3,13 +3,13 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.7 2007/05/25 18:53:38 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.8 2007/08/14 20:17:30 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
 PORTNAME=		fc
 PORTVERSION=		4
-PORTREVISION=		9
+PORTREVISION=		10
 CATEGORIES=		emulators linux
 MASTER_SITES=		${MASTER_SITE_FEDORA_LINUX}
 MASTER_SITE_SUBDIR=	${PORTVERSION}/${LINUX_RPM_ARCH}/os/Fedora/RPMS \
@@ -226,8 +226,8 @@ do-install:
 
 
 post-install:
-	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
-	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
+	${MKDIR} ${WRKSRC}/../fake-inst-i386${LOCALBASE}/etc/mtree
+	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${WRKSRC}/../fake-inst-i386${LOCALBASE}/etc/mtree
 
 
 
