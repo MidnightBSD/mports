@@ -1,8 +1,8 @@
 # New ports collection makefile for:	linux-xorg-libs
-# Date created:				$Date: 2006-09-23 21:55:27 $
+# Date created:				$Date: 2007-10-17 14:01:14 $
 # Whom:					bsam@ipt.ru
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/linux-xorg-libs/Makefile,v 1.1 2006/09/23 21:55:27 laffer1 Exp $
 # $FreeBSD: ports/x11/linux-xorg-libs/Makefile,v 1.6 2006/06/28 19:25:49 netchild Exp $
 #
 
@@ -20,6 +20,7 @@ RUN_DEPENDS=		${LINUXBASE}/usr/lib/libfontconfig.so.1:${PORTSDIR}/x11-fonts/linu
 
 CONFLICTS=		linux-XFree86-libs
 
+USE_GCPIO=		yes
 USE_LINUX_RPM=		yes
 LINUX_DIST_VER=		4
 INSTALLS_SHLIB=		yes

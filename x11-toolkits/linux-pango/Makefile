@@ -2,7 +2,7 @@
 # Date created:				2003-07-05
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-toolkits/linux-pango/Makefile,v 1.2 2007/04/28 16:24:23 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/linux-pango/Makefile,v 1.3 2007/05/01 18:26:13 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/linux-pango/Makefile,v 1.13 2006/07/09 21:01:45 bsam Exp $
 #
 
@@ -21,6 +21,7 @@ RUN_DEPENDS=	${LINUXBASE}/usr/lib/libglib-2.0.so.0:${PORTSDIR}/devel/linux-glib2
 
 SUBFILES=	pkg-install
 
+USE_GCPIO=	yes
 USE_XLIB=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes

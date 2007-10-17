@@ -2,7 +2,7 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.2 2007/05/18 17:25:33 ctriv Exp $
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.3 2007/08/01 19:50:22 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
@@ -24,6 +24,7 @@ COMMENT=	Spelling checker with better logic than ispell (linux version)
 
 BUILD_DEPENDS=	rpm:${PORTSDIR}/archivers/rpm
 
+USE_GCPIO=		yes	
 NO_BUILD=		yes
 ONLY_FOR_ARCHS=		i386 amd64
 USE_LINUX=		yes
