@@ -3,7 +3,7 @@
 # Whom:			anholt
 #
 # $FreeBSD: ports/x11/xorg/Makefile,v 1.19 2007/09/16 12:42:25 flz Exp $
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.3 2007/10/12 03:54:03 ctriv Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.4 2007/10/12 23:12:17 ctriv Exp $
 #
 
 PORTNAME=	xorg
@@ -19,17 +19,17 @@ LICENSE=	agg
 
 NO_BUILD=	yes
 
-RUN_DEPENDS+=	${LOCALBASE}/lib/dri/r128_dri.so:${PORTSDIR}/graphics/dri
+BUILD_DEPENDS+=	${LOCALBASE}/lib/dri/r128_dri.so:${PORTSDIR}/graphics/dri
 
 # data
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \
 		${LOCALBASE}/lib/X11/icons/handhelds/cursors/X_cursor:${PORTSDIR}/x11-themes/xcursor-themes
 
 # doc
-RUN_DEPENDS+=	${LOCALBASE}/share/X11/doc/hardcopy/BDF/bdf.PS.gz:${PORTSDIR}/x11/xorg-docs
+BUILD_DEPENDS+=	${LOCALBASE}/share/X11/doc/hardcopy/BDF/bdf.PS.gz:${PORTSDIR}/x11/xorg-docs
 
 # app, lib, font, driver, proto
-RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
 		${LOCALBASE}/libdata/xorg/libraries:${PORTSDIR}/x11/xorg-libraries \
 		${LOCALBASE}/libdata/xorg/fonts:${PORTSDIR}/x11-fonts/xorg-fonts \
 		${LOCALBASE}/libdata/xorg/drivers:${PORTSDIR}/x11-drivers/xorg-drivers \
@@ -37,7 +37,7 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/apps:${PORTSDIR}/x11/xorg-apps \
 		${LOCALBASE}/bin/Xorg:${PORTSDIR}/x11-servers/xorg-server
 
 .if defined(XORG_COMPLETE)
-RUN_DEPENDS+=	Xnest:${PORTSDIR}/x11-servers/xorg-nestserver \
+BUILD_DEPENDS+=	Xnest:${PORTSDIR}/x11-servers/xorg-nestserver \
 		Xdmx:${PORTSDIR}/x11-servers/xorg-dmx \
 		Xvfb:${PORTSDIR}/x11-servers/xorg-vfbserver
 .endif
