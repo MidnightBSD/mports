@@ -2,7 +2,7 @@
 # Date created:		28 September 2000
 # Whom:                 sanpei@FreeBSD.org
 #
-# $MidnightBSD$ 
+# $MidnightBSD: mports/graphics/linux-png/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $ 
 # $FreeBSD: ports/graphics/linux-png/Makefile,v 1.23 2006/07/09 21:01:44 bsam Exp $
 #
 
@@ -15,8 +15,8 @@ DISTNAME=	libpng-${PORTVERSION}-2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of the PNG lib
 
-# no alpha rpm is available
 ONLY_FOR_ARCHS=	i386 amd64
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes
