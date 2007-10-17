@@ -2,12 +2,12 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.2 2007/02/16 00:04:44 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.3 2007/08/01 20:30:36 laffer1 Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
 PORTNAME=	gnutls
-PORTVERSION=	1.4.3
+PORTVERSION=	1.4.5
 CATEGORIES=	security net
 MASTER_SITES=	http://josefsson.org/gnutls/releases/ \
 	ftp://ftp.gnutls.org/pub/gnutls/ \
