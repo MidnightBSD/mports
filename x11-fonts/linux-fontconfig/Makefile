@@ -2,7 +2,7 @@
 # Date created:				2003-11-19
 # Whom:					trevor
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/linux-fontconfig/Makefile,v 1.1 2006/09/23 21:55:27 laffer1 Exp $
 # $FreeBSD: ports/x11-fonts/linux-fontconfig/Makefile,v 1.17 2006/07/09 21:01:45 bsam Exp $
 #
 
@@ -18,6 +18,7 @@ COMMENT=	Linux/i386 binary of Fontconfig
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libexpat.so.0:${PORTSDIR}/textproc/linux-expat
 
 ONLY_FOR_ARCHS=	i386 amd64
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes

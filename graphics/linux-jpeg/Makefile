@@ -2,7 +2,7 @@
 # Date created:         9 April 2000
 # Whom:                 sada@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/linux-jpeg/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-jpeg/Makefile,v 1.16 2006/07/09 21:01:44 bsam Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	libjpeg-6b-34
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of the JPEG lib
 
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes
