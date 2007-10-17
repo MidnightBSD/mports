@@ -3,6 +3,7 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-nestserver/Makefile,v 1.9 2007/09/13 19:44:55 flz Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	xorg-nestserver
@@ -10,10 +11,9 @@ PORTVERSION=	1.4
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nesting X server from X.Org
-
-CONFLICTS=	XFree86-NestServer-*
+LICENSE=	x11
 
 XORG_CAT=	xserver
 
