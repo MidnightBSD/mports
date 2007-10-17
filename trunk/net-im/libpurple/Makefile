@@ -2,23 +2,22 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.2 2007/05/07 06:01:24 ctriv Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.3 2007/05/07 06:03:17 laffer1 Exp $
 # $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
 #   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
 #
 
 PORTNAME=	libpurple
-PORTVERSION=	2.0.0.b7
-PORTREVISION?=	2
+PORTVERSION=	2.2.1
 CATEGORIES=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
-DISTNAME=	pidgin-2.0.0beta7
+DISTNAME=	pidgin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backend library for the Pidgin multi-protocol messaging client
 
-CONFLICTS?=	ja-gaim-[0-9]* gaim-1*
+CONFLICTS?=	gaim-1* pidgin-2*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -27,8 +26,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES}
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib -L${X11BASE}/lib ${PTHREAD_LIBS}" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
+		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
 
 .if !defined(PIDGIN_SLAVE)
@@ -52,8 +51,8 @@ WITH_GNOME=	yes
 PRPL_MODULES=	gg,irc,jabber,msn,novell,oscar,qq,simple,yahoo,zephyr
 
 OPTIONS=	SILC "Secure Internet Live Conferencing support" off \
-		GNUTLS "GNUTLS encryption support" off \
-		NSS "Mozilla NSS encryption support" on \
+		GNUTLS "GNUTLS encryption support" on \
+		NSS "Mozilla NSS encryption support" off \
 		SASL "Cyrus SASL support (for jabberd)" off \
 		DBUS "Enable DBUS bindings" on \
 		PERL "Perl scripting" off \
@@ -100,14 +99,14 @@ CONFIGURE_ARGS+=--disable-cap
 PLIST_SUB+=	CAP="@comment not installed: "
 .endif
 
-.if defined(WITH_GNUTLS)
+.if !defined(WITHOUT_GNUTLS)
 LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--enable-gnutls=yes
 .else
 CONFIGURE_ARGS+=	--enable-gnutls=no
 .endif
 
-.if !defined(WITHOUT_NSS)
+.if defined(WITH_NSS)
 LIB_DEPENDS+=		nss3:${PORTSDIR}/security/nss
 CONFIGURE_ARGS+=	--enable-nss=yes \
 			--with-nspr-includes=${LOCALBASE}/include/nspr \
