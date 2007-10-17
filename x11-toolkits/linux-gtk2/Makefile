@@ -2,7 +2,7 @@
 # Date created:				2003-11-19
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-toolkits/linux-gtk2/Makefile,v 1.2 2007/04/28 06:23:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/linux-gtk2/Makefile,v 1.3 2007/05/01 18:43:17 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/linux-gtk2/Makefile,v 1.22 2006/07/09 21:01:45 bsam Exp $
 #
 
@@ -26,6 +26,7 @@ RUN_DEPENDS+=	${LINUXBASE}/usr/lib/libglib-2.0.so.0:${PORTSDIR}/devel/linux-glib
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_XLIB=	yes
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes
