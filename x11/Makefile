@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.32 2007/09/01 06:02:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.33 2007/10/12 14:34:49 ctriv Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -193,5 +193,6 @@
     SUBDIR += xwd
     SUBDIR += xwininfo
     SUBDIR += xwud
+    SUBDIR += zenity
 
 .include <bsd.port.subdir.mk>
