@@ -4,7 +4,7 @@
 # Based on:		emulators/linux_base by marcel@FreeBSD.org
 #			& multimedia/xmovie by sanpei@sanpei.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/linux-gtk/Makefile,v 1.1 2006/09/23 22:41:49 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-gtk/Makefile,v 1.38 2006/07/14 22:08:21 bsam Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of the Gtk lib
 
 ONLY_FOR_ARCHS=	i386 amd64
-
+USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes
