@@ -4,12 +4,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.6 2007/04/18 04:24:31 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.7 2007/10/17 02:38:24 laffer1 Exp $
 #
 
 PORTNAME=	qt
 PORTVERSION=	3.3.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -23,10 +23,6 @@ BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 LIB_DEPENDS+=	mng:${PORTSDIR}/graphics/libmng \
 		png:${PORTSDIR}/graphics/png \
 		jpeg:${PORTSDIR}/graphics/jpeg
-
-CONFLICTS=	linguist-0.* qt-2.* qt-3.0.* \
-		qt-3.1.* qt-3.2.* qt-designer-2.* xfmail-1.5.[0-5] \
-		xfmail-1.5.5_[1-2]
 
 USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
@@ -74,10 +70,7 @@ PACKAGE_COOKIE=	${WRKDIR}/.package_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 .include <bsd.port.pre.mk>
 
-# The previous Qt port versions installed qmake and qmake's specs under X11BASE
-# The new devel/qmake port installs them under LOCALBASE. We can use
-# either one here, but we prefer the newer:
-.for d in ${X11BASE} ${LOCALBASE} ${PREFIX}
+.for d in ${LOCALBASE} ${PREFIX}
 .	if exists($d/share/qt/mkspecs/freebsd-g++/qplatformdefs.h)
 QTBASE=$d
 PLATFORM=${QTBASE}/share/qt/mkspecs/freebsd-g++
