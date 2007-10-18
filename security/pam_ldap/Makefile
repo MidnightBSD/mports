@@ -2,7 +2,7 @@
 # Date created:				26 May 2001
 # Whom:	      				Joe Clarke <marcus@marcuscom.com>
 #
-# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.1 2007/10/07 14:51:17 laffer1 Exp $
+# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.2 2007/10/07 14:53:35 laffer1 Exp $
 # $FreeBSD: ports/security/pam_ldap/Makefile,v 1.38 2006/07/09 06:51:06 marcus Exp $
 #
 
@@ -35,7 +35,7 @@ post-extract:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
 
 post-install:
-	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' < ${PKGDIR}/pkg-message \
+	@${SED} -e 's|%%PREFIX%%|${TRUE_PREFIX}|g' < ${PKGDIR}/pkg-message \
 		| /usr/bin/fmt 75 79 > ${PKGMESSAGE}
 
 .include <bsd.port.mk>
