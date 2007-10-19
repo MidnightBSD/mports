@@ -2,13 +2,12 @@
 # Date created:				2004-09-17
 # Whom:					voisine
 #
-# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.11 2007/09/22 15:41:57 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.12 2007/09/22 15:45:46 laffer1 Exp $
 # $FreeBSD: ports/www/linux-firefox/Makefile,v 1.30 2006/08/02 14:47:45 sat Exp $
 #
 
 PORTNAME=	firefox
-PORTVERSION=	2.0.0.7
-PORTREVISION=	1
+PORTVERSION=	2.0.0.8
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	firefox/releases/${PORTVERSION}/linux-i686/en-US
 
