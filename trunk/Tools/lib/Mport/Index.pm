@@ -1,6 +1,6 @@
 package Mport::Index;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Index.pm,v 1.1 2007/08/15 20:55:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Index.pm,v 1.2 2007/09/11 02:29:26 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -16,7 +16,7 @@ use DBI;
 sub build {
   my ($class) = @_;
   
-  my $dbh = create_db();
+  my $dbh = $class->create_db();
   
   my $categories_inserted;
   
@@ -78,9 +78,18 @@ sub insert_categories {
 }
       
 
+sub connect_db {
+  my ($class) = @_;
+
+  return DBI->connect("dbi:SQLite:dbname=$INDEX", "", "", { RaiseError => 1, PrintError => 0 });
+}
+  
+
 sub create_db {
+  my ($class) = @_;
   unlink($INDEX);
-  my $dbh = DBI->connect("dbi:SQLite:dbname=$INDEX", "", "", { RaiseError => 1, PrintError => 0 });
+
+  my $dbh = $class->connect_db();
   $dbh->do(<<END_O_SQL);
 CREATE TABLE ports (
   name text primary key,
