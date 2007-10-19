@@ -193,8 +193,6 @@ lib/%%APP_NAME%%/updater
 lib/%%APP_NAME%%/updater.ini
 lib/%%APP_NAME%%/xpicleanup
 share/applications/%%APP_NAME%%.desktop
-@dirrmtry share/nls/en_US.US-ASCII
-@dirrmtry share/nls/POSIX
 @dirrmtry share/applications
 @dirrm lib/%%APP_NAME%%/searchplugins
 @dirrm lib/%%APP_NAME%%/res/html
