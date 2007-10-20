@@ -2,12 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.11 2007/08/15 18:26:15 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.12 2007/10/19 23:58:45 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -48,9 +49,10 @@ MAN1=		opera.1
 NO_BUILD=	yes
 NO_FILTER_SHLIBS=yes
 
-OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on
+OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on \
+		SHARED	"Use a shared QT library (instead of static)" 	on
 
-.if exists(${X11BASE}/lib/libqt-mt.prl)
+.if exists(${LOCALBASE}/lib/libqt-mt.prl)
 QT_PRESENT=	on
 .else
 QT_PRESENT=	off
@@ -64,8 +66,16 @@ OPERA_TYPE=	4
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 .endif
 
+.if defined(WITH_SHARED)
 OPERA_LIB=	shared
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
+.else
+OPERA_LIB=	static
+OPERA_TYPE=	1
+# The static version requires both compat4x and compat5x
+ LIB_DEPENDS+=   z.2:${PORTSDIR}/misc/compat5x
+ LIB_DEPENDS+=   m.2:${PORTSDIR}/misc/compat4x
+.endif
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
 PLIST_SUB+=	GNOME=""
