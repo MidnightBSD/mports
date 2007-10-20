@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.1 2007/09/02 03:02:31 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -36,29 +36,6 @@ use strict;
 use warnings;
 
 my $ballname = shift || die "Usage: $0 <tarball name>\n";
-
-# list of dirs we don't want to recuse into
-my @dirs = qw(
-  /dev
-  /mnt
-  /proc
-  /sys
-  /tmp
-  /usr/local
-  /usr/obj
-  /usr/mports
-  /usr/src
-  /usr/X11R6
-  /var/db/pkg
-  /var/db/ports
-  /var/db/portsnap
-  /var/log
-  /var/cron/tabs
-  /var/mail
-  /var/msgs
-  /var/rwho
-  /var/spool
-);
 
 # list of files and dirs that are passed to tar normally.
 my @files = qw(
@@ -89,6 +66,7 @@ my @files = qw(
   /COPYRIGHT
   /etc
   /lib
+  /libexec
   /mnt
   /proc
   /rescue
@@ -146,6 +124,5 @@ sub run {
 }
 
 run(qq(/usr/bin/tar -c -f $ballname @files));
-run(qq(/usr/bin/tar -n -r -f $ballname @dirs));
 run(qq(/bin/ls -hl $ballname));
 

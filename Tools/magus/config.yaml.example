@@ -1,0 +1,8 @@
+---
+DBHost: localhost
+DBName: magus
+DBUser: magus
+DBPass: biteme
+
+Machine: vm-current
+DoneWaitPeriod: 600
