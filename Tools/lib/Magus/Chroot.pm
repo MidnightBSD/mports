@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.4 2007/09/14 03:00:53 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.5 2007/09/17 18:09:48 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -111,7 +111,7 @@ sub _init {
   foreach my $dir (@{$self->{loopbacks}}) {
     $self->_mkdir($dir);
     system("/sbin/mount -t nullfs -o ro $dir $self->{root}/$dir") == 0
-      or die "mount returned non-zer	o: $?\n";
+      or die "mount returned non-zero: $?\n";
   }
   
   $self->_mtree('BSD.root.dist', '/');  
@@ -123,7 +123,7 @@ sub _init {
   }
   
   $self->_mtree('BSD.local.dist', $self->{localbase});
-  $self->_mtree('BSD.x11-4.dist', $self->{x11base});
+  $self->_mtree('BSD.x11-4.dist', $self->{x11base}) if $self->{x11base};
   
   system("/sbin/mount -t devfs devfs $self->{root}/dev");
   $self->_touchfile('/.clean');

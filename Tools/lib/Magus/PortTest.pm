@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.3 2007/09/06 04:22:38 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.1 2007/09/17 18:09:48 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -75,7 +75,7 @@ sub new {
   return $self;
 }
 
-=head2 my @results = $test->run
+=head2 my $results = $test->run
 
 Runs the test and returns a data structure representing the results.
 
