@@ -3,11 +3,12 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.2 2007/08/02 07:34:40 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.3 2007/08/29 07:36:27 laffer1 Exp $
 #
 
 PORTNAME=	koffice
 PORTVERSION=	1.6.3
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	editors kde
 MASTER_SITES=	${MASTER_SITE_KDE}
