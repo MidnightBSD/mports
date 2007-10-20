@@ -1,0 +1,12 @@
+--- build/autoconf/config.guess.orig	Fri Oct 19 01:01:44 2007
++++ build/autoconf/config.guess	Fri Oct 19 01:04:40 2007
+@@ -744,6 +744,9 @@
+     *:BSD/OS:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-bsdi${UNAME_RELEASE}
+ 	exit 0 ;;
++    *:MidnightBSD:*:*)
++	echo ${UNAME_MACHINE}-unknown-midnightbsd${UNAME_RELEASE}
++	exit 0 ;;
+     *:FreeBSD:*:*)
+ 	# Determine whether the default compiler uses glibc.
+ 	eval $set_cc_for_build

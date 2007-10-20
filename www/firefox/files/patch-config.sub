@@ -1,0 +1,11 @@
+--- build/autoconf/config.sub.orig	Fri Oct 19 01:01:52 2007
++++ build/autoconf/config.sub	Fri Oct 19 01:05:46 2007
+@@ -1131,7 +1131,7 @@
+ 	      | -aos* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+-	      | -hiux* | -386bsd* | -netbsd* | -openbsd* | -freebsd* | -riscix* \
++	      | -hiux* | -386bsd* | -netbsd* | -openbsd* | -freebsd* | -midnightbsd* | -riscix* \
+ 	      | -lynxos* | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
+ 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \
+ 	      | -udi* | -eabi* | -lites* | -ieee* | -go32* | -aux* \
