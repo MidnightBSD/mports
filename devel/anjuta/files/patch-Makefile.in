@@ -1,0 +1,25 @@
+--- Makefile.in.orig	Sat Jul  7 20:39:34 2007
++++ Makefile.in	Sat Jul  7 20:40:39 2007
+@@ -493,14 +493,14 @@ uninstall-anjuta_dataDATA:
+ 	  rm -f "$(DESTDIR)$(anjuta_datadir)/$$f"; \
+ 	done
+ install-anjutadocDATA: $(anjutadoc_DATA)
+-	@$(NORMAL_INSTALL)
+-	test -z "$(anjutadocdir)" || $(MKDIR_P) "$(DESTDIR)$(anjutadocdir)"
+-	@list='$(anjutadoc_DATA)'; for p in $$list; do \
+-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+-	  f=$(am__strip_dir) \
+-	  echo " $(anjutadocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(anjutadocdir)/$$f'"; \
+-	  $(anjutadocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(anjutadocdir)/$$f"; \
+-	done
++#	@$(NORMAL_INSTALL)
++#	test -z "$(anjutadocdir)" || $(MKDIR_P) "$(DESTDIR)$(anjutadocdir)"
++#	@list='$(anjutadoc_DATA)'; for p in $$list; do \
++#	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
++#	  f=$(am__strip_dir) \
++#	  echo " $(anjutadocDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(anjutadocdir)/$$f'"; \
++#	  $(anjutadocDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(anjutadocdir)/$$f"; \
++#	done
+ 
+ uninstall-anjutadocDATA:
+ 	@$(NORMAL_UNINSTALL)
