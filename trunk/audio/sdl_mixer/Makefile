@@ -2,7 +2,7 @@
 # Date created:				24 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/sdl_mixer/Makefile,v 1.1 2006/10/06 20:35:56 wintellect Exp $
+# $MidnightBSD: mports/audio/sdl_mixer/Makefile,v 1.2 2007/08/26 21:41:19 laffer1 Exp $
 # $FreeBSD: ports/audio/sdl_mixer/Makefile,v 1.38 2006/09/01 21:34:13 shaun Exp $
 #
 
@@ -39,7 +39,7 @@ LIB_DEPENDS=	mikmod.2:${PORTSDIR}/audio/libmikmod
 .if defined(WITHOUT_VORBIS)
 CONFIGURE_ARGS+=	--disable-music-ogg
 .else
-LIB_DEPENDS+=	vorbis.3:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
 .endif
 
 .if defined(WITHOUT_SMPEG)
