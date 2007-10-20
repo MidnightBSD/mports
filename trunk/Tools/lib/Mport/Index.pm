@@ -1,6 +1,6 @@
 package Mport::Index;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Index.pm,v 1.2 2007/09/11 02:29:26 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Index.pm,v 1.3 2007/10/19 04:35:58 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -41,13 +41,8 @@ sub build {
       $sth->execute(@port{qw(name version description pkgname license)});
       $sth->finish;
   
-      $sth = $dbh->prepare("INSERT INTO depends (port, type, dependency) VALUES (?,?,?)");
-      while (my ($type, $deps) = each %{$port{'depends'}}) {
-        foreach my $dep (@$deps) {
-          $sth->execute($port{'name'}, $type, $dep);
-        }
-      }
-      $sth->finish;
+      $class->insert_depends(\%port, $dbh);
+  
       
       $sth = $dbh->prepare("INSERT INTO port_categories (port, category_id) VALUES (?, (SELECT id FROM categories WHERE category=?))");      
       foreach my $cat (@{$port{'categories'}}) {      
@@ -64,6 +59,20 @@ sub build {
     }    
   };
 }
+
+
+sub insert_depends {
+  my ($class, $port, $dbh) = @_;
+  
+  my $sth = $dbh->prepare("INSERT INTO depends (port, type, dependency) VALUES (?,?,?)");
+  while (my ($type, $deps) = each %{$port->{'depends'}}) {
+    foreach my $dep (@$deps) {
+      $sth->execute($port->{'name'}, $type, $dep);
+      }
+  }
+  $sth->finish;
+}
+
 
 sub insert_categories {
   my ($dbh) = @_;
