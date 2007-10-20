@@ -3,12 +3,12 @@
 # Whom:			Bernd Rosauer <br@netland.inka.de>
 #
 # $FreeBSD: ports/print/teTeX-base/Makefile,v 1.93 2006/09/09 15:11:50 hrs Exp $
-# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.1 2007/01/24 17:18:18 laffer1 Exp $
+# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.2 2007/04/28 17:35:20 ctriv Exp $
 #
 
 PORTNAME=	teTeX-base
 PORTVERSION=	3.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -18,7 +18,7 @@ DIST_SUBDIR=	teTeX
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thomas Esser's distribution of TeX & friends (binaries)
-# '
+LICENSE=	unknown
 
 BUILD_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal
@@ -55,7 +55,8 @@ CONFIGURE_ENV=	INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 		CFLAGS="${CFLAGS} -I${LOCALBASE}/include"
 CONFLICTS=	ja-ptex-base-[0-9]* latex2e-[0-9]* \
 		tex-[0-9]* dvips-[0-9]* xdvi-[0-9]*
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX}
+
+FAKE_OPTS=	prefixhack
 
 MAN1=	tie.1 kpseaccess.1 kpsereadlink.1 mpost.1 \
 	dmp.1 dvicopy.1 dvilj.1 dvipdfm.1 \
@@ -157,7 +158,8 @@ SUB_LIST=	TEXMFDIR=${TEXMFDIR} \
 MAKE_ENV=	TEXINPUTS= TEXMF= TEXMFCNF=
 
 post-install:
-	@cd ${WRKSRC}/texk/web2c/omegafonts && ${GMAKE} ${FAKE_MAKEARGS} install-links
+	@cd ${WRKSRC}/texk/web2c/omegafonts && \
+		${GMAKE} prefix=${PREFIX} install-programs install-links 
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/texinfo/util/texi2dvi ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/utils/texinfo/util/texi2pdf ${PREFIX}/bin
 	${MV} -f ${PREFIX}/bin/texdoctk ${PREFIX}/bin/texdoctk.real
