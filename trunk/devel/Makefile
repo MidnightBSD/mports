@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.160 2007/10/16 20:17:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.161 2007/10/19 06:12:02 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -33,6 +33,7 @@
     SUBDIR += dbus
     SUBDIR += dbus-glib
     SUBDIR += desktop-file-utils
+    SUBDIR += devhelp
     SUBDIR += devtodo
     SUBDIR += dmalloc
     SUBDIR += doxygen
