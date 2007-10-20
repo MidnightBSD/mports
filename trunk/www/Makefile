@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.57 2007/09/12 02:55:06 ctriv Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.58 2007/09/13 18:57:23 ctriv Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -34,7 +34,6 @@
     SUBDIR += linux-mplayer-plugin
     SUBDIR += linux-opera
     SUBDIR += linux-seamonkey
-    SUBDIR += linux-seamonkey-devel
     SUBDIR += linuxpluginwrapper
     SUBDIR += lynx
     SUBDIR += man2web
