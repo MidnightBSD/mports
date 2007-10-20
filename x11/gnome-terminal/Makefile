@@ -2,7 +2,7 @@
 # Date created:				1 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.1 2007/10/20 05:29:11 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-terminal/Makefile,v 1.43 2007/06/23 16:44:57 mezz Exp $
 #   $MCom: ports/x11/gnome-terminal/Makefile,v 1.86 2007/03/13 00:46:19 mezz Exp $
 #
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal component for the GNOME 2 Desktop
+LICENSE=	gpl2
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
