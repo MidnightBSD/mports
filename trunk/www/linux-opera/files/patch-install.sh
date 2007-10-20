@@ -1,5 +1,14 @@
---- install.sh.orig	Thu Sep 21 22:27:04 2006
-+++ install.sh	Thu Sep 21 22:38:24 2006
+--- install.sh.luke	Sat Oct 20 11:07:59 2007
++++ install.sh	Sat Oct 20 11:09:39 2007
+@@ -81,7 +81,7 @@
+ 
+     os=`uname -s` || error 'uname'
+     case $os in
+-	FreeBSD|NetBSD|DragonFly) os=AnyBSD;;
++	FreeBSD|NetBSD|DragonFly|MidnightBSD) os=AnyBSD;;
+ 	SunOS*) os=SunOS;;
+     esac
+     case $os in AnyBSD|OpenBSD) str_defaultprefix="/usr/local";; esac
 @@ -805,10 +805,9 @@
      case "${machine}:${os}" in
  	x86:Linux|x86_64:Linux|x86:AnyBSD|x86_64:AnyBSD|x86:OpenBSD)
@@ -14,7 +23,7 @@
  	    wrapper_sunjava_machine="i386"
  	;;
  
-@@ -838,7 +837,7 @@
+@@ -838,16 +837,16 @@
  		error 'os'
  	;;
      esac
@@ -23,6 +32,31 @@
  
      wrapper_contain="#!/bin/sh
  
+ # Required for Session Management
+-case \$0 in /*) OPERA_SCRIPT_PATH=\$0;; *) OPERA_SCRIPT_PATH=`/bin/pwd`/\$0;; esac
++case \$0 in /*) OPERA_SCRIPT_PATH=\$0;; *) OPERA_SCRIPT_PATH=/usr/local/bin/$0;; esac
+ export OPERA_SCRIPT_PATH
+ 
+ # Location of the Opera binaries
+-OPERA_BINARYDIR=${str_localdirexec}
++OPERA_BINARYDIR=/usr/local/share/linux-opera/bin
+ export OPERA_BINARYDIR
+ 
+ # Parse commandline parameters
+@@ -890,10 +889,10 @@
+ 
+ # Opera enviroment
+ if test \"\${OPERA_DIR}\" = '' ; then
+-  if test -d ${str_localdirshare} ; then
+-    OPERA_DIR=${str_localdirshare}
++  if test -d /usr/local/share/linux-opera ; then
++    OPERA_DIR=/usr/local/share/linux-opera
+   else
+-    echo \"OPERA_DIR unset and not found at expected location (${str_localdirshare})\"
++    echo \"OPERA_DIR unset and not found at expected location (/usr/local/share/linux-opera)\"
+     exit 1
+   fi
+ fi
 @@ -901,6 +900,10 @@
  OPERA_LD_PRELOAD=\"\${LD_PRELOAD}\"
  export OPERA_LD_PRELOAD
@@ -55,7 +89,7 @@
 -	/usr/lib
 -	/usr/local
 -	/opt\"
-+    PREFIXES=\"%%LOCALBASE%%\"
++    PREFIXES=\"/usr/local\"
  
      for SUNJAVA in \\
 -	java-1.5.0-sun-1.5.0.06 \\
@@ -132,8 +166,8 @@
 -    /usr/X11R6/lib/Acrobat[45]/bin \\
 -    /opt/Acrobat[45]/bin \\
 -    /usr/Acrobat[45]/bin \\
-+    %%LOCALBASE%%/Acrobat5/bin \\
-+    %%X11BASE%%/Acrobat5/bin \\
++    /usr/local/Acrobat5/bin \\
++    /usr/local/Acrobat5/bin \\
      ; do
      if test -d \${BINDIR} ; then PATH=\${PATH}:\${BINDIR}; fi
  done
@@ -328,42 +362,42 @@
 -    fi
 -
 -    if test ! -d /usr/share/pixmaps
-+    if test ! -d %%LOCALBASE%%/share/pixmaps/
-     then
+-    then
 -	if test -w /usr/share
-+	if test -w %%LOCALBASE%%/share
- 	then
+-	then
 -	    mkdir $mkdirv $mkdirp /usr/share/pixmaps/
 -	    chmod $chmodv 755 /usr/share/pixmaps
 -	    cp $cpv $share_dir/images/opera.xpm /usr/share/pixmaps/opera.xpm
-+	    mkdir $mkdirv $mkdirp %%LOCALBASE%%/share/pixmaps/
-+	    chmod $chmodv 755 %%LOCALBASE%%/share/pixmaps
-+	    cp $cpv $share_dir/images/opera_48x48.png %%LOCALBASE%%/share/pixmaps/linux-opera.png
- 	fi
+-	fi
 -    elif test -w /usr/share/pixmaps/
 -    then cp $cpv $share_dir/images/opera.xpm /usr/share/pixmaps/opera.xpm
-+    elif test -w %%LOCALBASE%%/share/pixmaps/
-+    then cp $cpv $share_dir/images/opera_48x48.png %%LOCALBASE%%/share/pixmaps/linux-opera.png
-     fi
- 
+-    fi
+-
 -    if test ! -d /etc/X11/wmconfig/
-+    if test ! -d %%LOCALBASE%%/share/applications/
++    if test ! -d /usr/local/share/pixmaps/
      then
 -	if test -w /etc/X11
-+	if test -w %%LOCALBASE%%/share
++	if test -w /usr/local/share
  	then
 -	    mkdir $mkdirv $mkdirp /etc/X11/wmconfig/
 -	    chmod $chmodv 755 /etc/X11/wmconfig
 -	    generate_wmconfig /etc/X11/wmconfig
--	fi
++	    mkdir $mkdirv $mkdirp /usr/local/share/pixmaps/
++	    chmod $chmodv 755 /usr/local/share/pixmaps
++	    cp $cpv $share_dir/images/opera_48x48.png /usr/local/share/pixmaps/linux-opera.png
+ 	fi
 -    elif test -w /etc/X11/wmconfig/
 -    then generate_wmconfig /etc/X11/wmconfig
--    fi
--
++    elif test -w /usr/local/share/pixmaps/
++    then cp $cpv $share_dir/images/opera_48x48.png /usr/local/share/pixmaps/linux-opera.png
+     fi
+ 
 -    if test -d /etc/X11/applnk/
--    then
++    if test ! -d /usr/local/share/applications/
+     then
 -	if test ! -d /etc/X11/applnk/Internet/
--	then
++	if test -w /usr/local/share
+ 	then
 -	    if test -w /etc/X11/applnk
 -	    then
 -		mkdir $mkdirv $mkdirp /etc/X11/applnk/Internet/
@@ -372,12 +406,12 @@
 -	    fi
 -	elif test -w /etc/X11/applnk/Internet
 -	then generate_desktop /etc/X11/applnk/Internet
-+	    mkdir $mkdirv $mkdirp %%LOCALBASE%%/share/applications/
-+	    chmod $chmodv 755 %%LOCALBASE%%/share/applications
-+	    generate_desktop %%LOCALBASE%%/share/applications
++	    mkdir $mkdirv $mkdirp /usr/local/share/applications/
++	    chmod $chmodv 755 /usr/local/share/applications
++	    generate_desktop /usr/local/share/applications
  	fi
-+    elif test -w %%LOCALBASE%%/share/applications
-+    then generate_desktop %%LOCALBASE%%/share/applications
++    elif test -w /usr/local/share/applications
++    then generate_desktop /usr/local/share/applications
      fi
  }
  
