@@ -2,12 +2,12 @@
 # Date created:				24 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gnome-build/Makefile,v 1.1 2007/08/31 00:43:33 laffer1 Exp $
 # $FreeBSD: ports/devel/gnome-build/Makefile,v 1.35 2007/06/23 05:53:03 marcus Exp $
 #
 
 PORTNAME=	gnome-build
-PORTVERSION=	0.1.7
+PORTVERSION=	0.2.0
 PORTEPOCH=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
