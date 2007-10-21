@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.47 2007/09/01 05:20:40 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.48 2007/10/17 03:22:40 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -22,6 +22,7 @@
     SUBDIR += fusefs-ntfs
     SUBDIR += fusefs-sshfs
     SUBDIR += gag
+    SUBDIR += gconf-editor
     SUBDIR += gnome_subr
     SUBDIR += hal
     SUBDIR += kdeadmin3
