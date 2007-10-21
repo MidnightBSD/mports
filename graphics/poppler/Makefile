@@ -4,12 +4,11 @@
 #
 # $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
 #   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.3 2007/08/16 02:38:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.4 2007/08/16 02:40:03 laffer1 Exp $
 #
 
 PORTNAME=	poppler
-PORTVERSION=	0.5.3
-PORTREVISION?=	3
+PORTVERSION=	0.6
 CATEGORIES=	graphics print
 MASTER_SITES=	http://poppler.freedesktop.org/
 
@@ -20,13 +19,13 @@ LICENSE=	gpl2
 USE_GMAKE=	yes
 USE_XLIB=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack gnometarget
-INSTALLS_SHLIB=	yes
+USE_GNOME=	gnomehack gnometarget libxml2
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-zlib \
 		--enable-xpdf-headers \
 		--with-html-dir=${DOCSDIR}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2 -I${X11BASE}/include ${PTHREAD_CFLAGS}" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib ${PTHREAD_LIBS}"
+		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
 .if !defined(SLAVEPORT)
 OPTIONS=	CAIRO "Enable cairo output backend" on
@@ -35,27 +34,48 @@ OPTIONS=	CAIRO "Enable cairo output backend" on
 .include <bsd.port.pre.mk>
 
 .if defined(SLAVEPORT)
-LIB_DEPENDS+=	poppler.1:${PORTSDIR}/graphics/poppler
+LIB_DEPENDS+=	poppler.2:${PORTSDIR}/graphics/poppler
 .if ${SLAVEPORT}=="gtk"
 CONFIGURE_ARGS+=--enable-poppler-glib
 USE_GNOME+=	gtk20
 BUILD_WRKSRC=	${WRKSRC}/glib
 INSTALL_WRKSRC=	${WRKSRC}/glib
-.elif ${SLAVEPORT}=="qt"
+.else
+CONFIGURE_ARGS+=--disable-poppler-glib
+.endif 
+
+.if ${SLAVEPORT}=="qt"
 CONFIGURE_ARGS+=--enable-poppler-qt
 USE_QT_VER+=	3
 BUILD_WRKSRC=	${WRKSRC}/qt
 INSTALL_WRKSRC=	${WRKSRC}/qt
 # blah.. USE_QT_VER can't be defined after bsd.port.pre.mk
 .include "${PORTSDIR}/Mk/bsd.kde.mk"
-.elif ${SLAVEPORT}=="utils"
+.else
+CONFIGURE_ARGS+=--disable-poppler-qt
+.endif
+
+.if ${SLAVEPORT}=="qt4"
+CONFIGURE_ARGS+=--enable-poppler-qt4
+USE_QT_VER+=	4
+QT_COMPONENTS=	gui corelib xml qtestlib
+#BUILD_WRKSRC=	${WRKSRC}/qt4
+INSTALL_WRKSRC=	${WRKSRC}/qt4
+.else
+CONFIGURE_ARGS+=--disable-poppler-qt4
+.endif
+
+.if ${SLAVEPORT}=="utils"
 CONFIGURE_ARGS+=--enable-utils
 CONFLICTS=	xpdf-[0-9]*
 BUILD_WRKSRC=	${WRKSRC}/utils
 INSTALL_WRKSRC=	${WRKSRC}/utils
 MAN1=	pdffonts.1 pdfimages.1 pdfinfo.1 \
 	pdftohtml.1  pdftops.1 pdftotext.1 pdftoppm.1
+.else 
+CONFIGURE_ARGS+=--disable-utils
 .endif
+
 .else
 CONFIGURE_ARGS+=--disable-poppler-glib --disable-poppler-qt \
 		--disable-poppler-qt4 --disable-utils
@@ -80,6 +100,8 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/poppler-glib.pc ${PREFIX}/libdata/pkgconfig
 .elif ${SLAVEPORT}=="qt"
 	${INSTALL_DATA} ${WRKSRC}/poppler-qt.pc ${PREFIX}/libdata/pkgconfig
+.elif ${SLAVEPORT}=="qt4"
+	${INSTALL_DATA} ${WRKSRC}/poppler-qt4.pc ${PREFIX}/libdata/pkgconfig
 .endif
 .endif
 
