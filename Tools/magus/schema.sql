@@ -112,7 +112,7 @@ CREATE TABLE `results` (
 
 DROP TABLE IF EXISTS `subresults`;
 CREATE TABLE `subresults` (
-  `result_id` int(11) NOT NULL,
+  `result` int(11) NOT NULL,
   `phase` varchar(16) NOT NULL,
   `type` varchar(32) NOT NULL,
   `name` varchar(128) NOT NULL,
