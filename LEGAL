@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/LEGAL,v 1.3 2007/08/07 17:07:17 laffer1 Exp $
+# $MidnightBSD: mports/LEGAL,v 1.4 2007/08/07 17:23:24 laffer1 Exp $
 # $FreeBSD: ports/LEGAL,v 1.496 2006/09/11 18:06:11 vd Exp $
 
    **********************************************************************
@@ -93,7 +93,6 @@ clibpdf*.tar.gz		print/clibpdf		Needs a license to bundle with
 						other products
 CODE2000.ZIP		x11-fonts/code2000	Only unmodified original
 						package can be distributed
-collections*.zip	java/collections	See the license
 clibpdf*		print/clibpdf		License required for bundling
 						with other products.  Only
 						free for non-profit personal
@@ -302,8 +301,6 @@ iperf-*-source.tar.gz	benchmarks/iperf	Cannot charge a fee for the
 IPv6socket_scrub.tar	net/ipv6socket_scrub	Not redistributable,
 						license agreement required
 j2me_wireless_toolkit*	java/sun-wtk		No redistribution allowed
-j2sdk-*-02b-FCS-linux-*	java/linux-blackdown-jdk13 License does not allow
-						distribution with fee
 j2sdk-*-doc.zip		java/jdk13-doc		This documentation is under
 						license and export control
 j2sdk-*-doc.zip		java/jdk14-doc		This documentation is under
@@ -355,8 +352,6 @@ john-*			security/john		Crypto; export-controlled
 jpgraph-*		graphics/jpgraph	Not for commercial use
 jre*i_ELF.*.tar.gz	java/jre		License does not allow distribution
 						with fee
-jre118_v3-glibc-*	java/linux-blackdown-jre11 License does not allow
-						distribution with fee
 jsdk20-solaris2-sparc*	java/jsdk		No commercial use
 jude-comunity-*.zip	devel/jude-community	License restrictions
 kaffe-*		java/kaffe		Restrictive copyright
@@ -370,7 +365,6 @@ lgrind/*		print/lgrind		Contains non-free code written by
 						Van Jacobson
 libdvdcss-*.tar.bz2	multimedia/libdvdcss	CSS code may violate the DMCA
 libidea-*		security/libidea	Crypto; export-controlled
-libots-*.alpha.rpm	lang/compaq-cc		Distribution not allowed
 libSDLx11.so.tar.gz	multimedia/mtv		No redistribution
 linunace*		archivers/linux-unace	Distribution is permitted within the
 						original package only
@@ -431,7 +425,6 @@ netbeans3-*		java/netbeans3		Restrictive copyright
 netbeans4-*		java/netbeans4		Restrictive copyright
 netcomponents-*		java/netcomponents	No redistribution except as part
 						of a substantially different product
-netscape-*-us-*		www/netscape*		Crypto; export-controlled
 netshow_linux.gz	multimedia/netshow	Commercial software
 nfbtr758.zip		textproc/nfbtrans	Unclear copyright status
 nntpcache-*		news/nntpcache		Commercial or government use
