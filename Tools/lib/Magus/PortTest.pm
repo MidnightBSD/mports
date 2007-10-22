@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.2 2007/10/20 22:32:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.3 2007/10/22 05:59:32 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -128,7 +128,7 @@ sub run {
     my $presults = $testclass->test("$self->{logdir}/$target");
     
     # update the summary if the phase results is worse than what we had.
-    if ($results{summary} eq 'pass' || ($results{summary} eq 'warn' && $presults->{'summary'} ne 'pass') {
+    if ($results{summary} eq 'pass' || ($results{summary} eq 'warn' && $presults->{'summary'} ne 'pass')) {
       $results{summary} = $presults->{summary};
     } 
         
