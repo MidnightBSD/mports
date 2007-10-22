@@ -2,7 +2,7 @@
 # Date created:		Wed Jul 10 23:38:01 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.1 2007/05/07 16:34:09 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile,v 1.110 2007/03/08 12:50:40 ahze Exp $
 #   $MCom: ports/multimedia/gstreamer-plugins/Makefile,v 1.100 2006/09/14 21:02:22 ahze Exp $
 #
@@ -30,16 +30,18 @@ LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
 		popt.0:${PORTSDIR}/devel/popt \
 		oil-0.3.1:${PORTSDIR}/devel/liboil
 
-BASE_PORTVERSION=	0.10.12
+CFLAGS:=	${CFLAGS} -O2
+
+BASE_PORTVERSION=	0.10.14
 BASE_DISTNAME=		gst-plugins-base-${BASE_PORTVERSION}
 BASE_DISTFILE=		${BASE_DISTNAME}${EXTRACT_SUFX}
-BAD_PORTVERSION=	0.10.4
+BAD_PORTVERSION=	0.10.5
 BAD_DISTNAME=		gst-plugins-bad-${BAD_PORTVERSION}
 BAD_DISTFILE=		${BAD_DISTNAME}${EXTRACT_SUFX}
-GOOD_PORTVERSION=	0.10.5
+GOOD_PORTVERSION=	0.10.6
 GOOD_DISTNAME=		gst-plugins-good-${GOOD_PORTVERSION}
 GOOD_DISTFILE=		${GOOD_DISTNAME}${EXTRACT_SUFX}
-UGLY_PORTVERSION=	0.10.5
+UGLY_PORTVERSION=	0.10.6
 UGLY_DISTNAME=		gst-plugins-ugly-${UGLY_PORTVERSION}
 UGLY_DISTFILE=		${UGLY_DISTNAME}${EXTRACT_SUFX}
 DIST?=		good
@@ -63,6 +65,12 @@ DEFAULT_AUDIOSINK?=	osssink
 DEFAULT_AUDIOSRC?=	osssrc
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH}=="i386"
+PLIST_SUB+=	I386=""
+.else
+PLIST_SUB+=	I386="@comment "
+.endif
 
 .if ${GST_PLUGIN} == "base"
 gst_base_DIST=	base
@@ -103,6 +111,7 @@ EXTRACT_ONLY=${GOOD_DISTFILE}
 WRKSRC=${WRKDIR}/${GOOD_DISTNAME}
 PORTVERSION=	${GOOD_PORTVERSION}
 DISTFILES+=	${GOOD_DISTFILE}:good
+PATCHDIR=	${.CURDIR}/../../multimedia/gstreamer-plugins-good/files
 .endif
 
 # cdrom default device

@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile.common,v 1.51 2007/03/21 10:11:39 pav Exp $
+# $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile.common,v 1.62 2007/10/09 18:20:05 ahze Exp $
 #    $MCom: ports/multimedia/gstreamer-plugins/Makefile.common,v 1.63 2006/09/29 23:22:28 ahze Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
@@ -29,14 +28,19 @@ BAD_GST_ALL_PLUGINS+= \
 		mpeg2enc \
 		musepack \
 		musicbrainz \
+		mythtv \
+		nas \
 		neon \
 		sdl \
+		sndfile \
 		soundtouch \
 		spc \
 		swfdec \
-		wavpack \
+		timidity \
+		x264 \
 		xvid
-#		throra
+#		ladspa \
+#		theora
 
 # good
 GOOD_GST_ALL_PLUGINS+= \
@@ -57,8 +61,10 @@ GOOD_GST_ALL_PLUGINS+= \
 		raw1394 \
 		shout2 \
 		speex \
-		taglib
-# Ugly
+		taglib \
+		wavpack
+
+# ugly
 UGLY_GST_ALL_PLUGINS+= \
 		a52dec \
 		amrnb \
@@ -145,10 +151,11 @@ gst_cdparanoia_EXTRA_LIBS+=	-lgstcdda-${VERSION}
 gst_cdparanoia_DIST=	base
 
 # dts
-gst_dts_BUILD_DEPENDS+=	${LOCALBASE}/lib/libdts.a:${PORTSDIR}/multimedia/libdts
+gst_dts_LIB_DEPENDS+=	dca.0:${PORTSDIR}/multimedia/libdca
 gst_dts_PLIST_FILES=	${GST_LIB_DIR}/libgstdtsdec.a \
 		${GST_LIB_DIR}/libgstdtsdec.la \
 		${GST_LIB_DIR}/libgstdtsdec.so
+gst_dts_EXTRA_LIBS+=	-ldca
 gst_dts_DIST=	bad
 
 # dv
@@ -232,7 +239,7 @@ gst_lame_LIB_DEPENDS+=	mp3lame.0:${PORTSDIR}/audio/lame
 gst_lame_DIST=	ugly
 
 # libcaca
-gst_libcaca_BUILD_DEPENDS+=	${LOCALBASE}/lib/libcaca.a:${PORTSDIR}/graphics/libcaca
+gst_libcaca_LIB_DEPENDS+=	caca.0:${PORTSDIR}/graphics/libcaca
 gst_libcaca_PLIST_FILES=	${GST_LIB_DIR}/libgstcacasink.so \
 		${GST_LIB_DIR}/libgstcacasink.a \
 		${GST_LIB_DIR}/libgstcacasink.la
@@ -261,7 +268,7 @@ gst_mad_LIB_DEPENDS+=	mad.2:${PORTSDIR}/audio/libmad \
 gst_mad_DIST=	ugly
 
 # mpeg2enc
-gst_mpeg2enc_LIB_DEPENDS+=	mjpegutils-1.8.0:${PORTSDIR}/multimedia/mjpegtools
+gst_mpeg2enc_LIB_DEPENDS+=	mjpegutils-1.9.1:${PORTSDIR}/multimedia/mjpegtools
 gst_mpeg2enc_DIST=	bad
 
 # mpeg2dec
@@ -278,6 +285,13 @@ gst_musicbrainz_PLIST_FILES=	${GST_LIB_DIR}/libgsttrm.so \
 		${GST_LIB_DIR}/libgsttrm.a \
 		${GST_LIB_DIR}/libgsttrm.la
 gst_musicbrainz_DIST=	bad
+
+# nas
+gst_nas_LIB_DEPENDS+=	audio.2:${PORTSDIR}/audio/nas
+gst_nas_DIST=	bad
+gst_nas_PLIST_FILES=	${GST_LIB_DIR}/libgstnassink.a \
+		${GST_LIB_DIR}/libgstnassink.la \
+		${GST_LIB_DIR}/libgstnassink.so
 
 # neon
 gst_neon_LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon
@@ -298,10 +312,6 @@ gst_pango_DIST=	base
 
 # sdl
 gst_sdl_USE_SDL+=	sdl
-gst_sdl_PLIST_FILES=	${GST_LIB_DIR}/libgstsdlvideosink.a \
-			${GST_LIB_DIR}/libgstsdlvideosink.la \
-			${GST_LIB_DIR}/libgstsdlvideosink.so
-gst_sdl_GST_PLIST_SUFFIX=	videosink
 gst_sdl_DIST=	bad
 
 # shout2
@@ -314,6 +324,10 @@ gst_sidplay_PLIST_FILES=	${GST_LIB_DIR}/libgstsid.so \
 		${GST_LIB_DIR}/libgstsid.la
 gst_sidplay_DIST=	ugly
 
+# sndfile
+gst_sndfile_LIB_DEPENDS+=	sndfile.1:${PORTSDIR}/audio/libsndfile
+gst_sndfile_DIST=	bad
+
 # spc
 gst_spc_LIB_DEPENDS+=	OpenSPC.3:${PORTSDIR}/audio/openspc
 gst_spc_DIST=		bad
@@ -325,14 +339,18 @@ gst_speex_LIB_DEPENDS+=	speex.1:${PORTSDIR}/audio/speex
 gst_swfdec_LIB_DEPENDS+=swfdec-0.4.1:${PORTSDIR}/graphics/swfdec
 gst_swfdec_DIST=	bad
 # theora
-gst_theora_LIB_DEPENDS+=	theora.2:${PORTSDIR}/multimedia/libtheora
+gst_theora_LIB_DEPENDS+=	theora.0:${PORTSDIR}/multimedia/libtheora
 gst_theora_DIST=	base
 
 # vorbis
 gst_vorbis_USE_GSTREAMER+=	ogg
-gst_vorbis_LIB_DEPENDS+=	vorbis.3:${PORTSDIR}/audio/libvorbis
+gst_vorbis_LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
 gst_vorbis_EXTRA_LIBS+=	-lgsttag-${VERSION} -lgstaudio-${VERSION}
 gst_vorbis_DIST=	base
+
+# x264
+gst_x264_LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
+gst_x264_DIST=	bad
 
 # xvid
 gst_xvid_LIB_DEPENDS+=	xvidcore.4:${PORTSDIR}/multimedia/xvid
@@ -340,7 +358,6 @@ gst_xvid_DIST=	bad
 
 # wavpack
 gst_wavpack_LIB_DEPENDS+=	wavpack.1:${PORTSDIR}/audio/wavpack
-gst_wavpack_DIST=	bad
 
 .endif # NO_GSTREAMER_COMMON
 
