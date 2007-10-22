@@ -24,7 +24,7 @@ package Magus::OutcomeRules::Base;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.1 2007/09/14 03:01:10 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.2 2007/09/17 18:09:48 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -106,6 +106,17 @@ sub test {
   
   # This kinda sucks (O(n^2)), but it's abstract enough that it can optimized later.
   while (<$log>) {
+    foreach my $rule (@{$class->warning_rules || []}) {
+      if (my $msg = $rule->()) {
+        $result{summary} = 'warn' if $result{summary} eq 'pass';
+        push(@{$result{warnings}}, {
+          phase => $rule->{phase},
+          msg   => $msg,
+          name  => $rule->{name},
+        });
+      }
+    }
+
     foreach my $rule (@{$class->error_rules || []}) {
       if (my $msg = $rule->{code}->()) {
         $result{summary} = 'fail';
@@ -117,15 +128,6 @@ sub test {
       }
     }
   
-    foreach my $rule (@{$class->warning_rules || []}) {
-      if (my $msg = $rule->()) {
-        push(@{$result{warnings}}, {
-          phase => $rule->{phase},
-          msg   => $msg,
-          name  => $rule->{name},
-        });
-      }
-    }
   }
 
   close($log) || die "Couldn't close $file: $!\n";

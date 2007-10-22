@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.1 2007/09/17 18:09:48 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.2 2007/10/20 22:32:39 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -79,6 +79,29 @@ sub new {
 
 Runs the test and returns a data structure representing the results.
 
+$results = {
+  summary => 'fail',
+  errors  => [
+    {
+      phase => 'fake',
+      msg   => 'make fake returned non-zero: 1',
+      name  => 'MakeExitNonZero',
+    },
+    {
+      phase => 'fake',
+      msg   => 'A file was installed in the final dir instead of the fake dir.',
+      name  => 'FakedOutsideDestdir',
+    }
+  ],
+  warnings => [
+    {
+      phase => 'patch',
+      msg   => 'LICENSE is not set.',
+      name  => 'NoLicense',
+    }
+  ],
+};     
+
 =cut
 
 sub run {
@@ -87,7 +110,7 @@ sub run {
   $self->_set_env;
   $self->{chroot}->mark_dirty;
 
-  my %results;
+  my %results = (summary => 'pass');
   
   foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall)) {
     if (!$self->_run_make($target)) {
@@ -103,8 +126,11 @@ sub run {
     my $testclass = "Magus::OutcomeRules::$target";
     
     my $presults = $testclass->test("$self->{logdir}/$target");
-
-    $results{summary} = $presults->{summary} if $presults->{summary} eq 'fail';
+    
+    # update the summary if the phase results is worse than what we had.
+    if ($results{summary} eq 'pass' || ($results{summary} eq 'warn' && $presults->{'summary'} ne 'pass') {
+      $results{summary} = $presults->{summary};
+    } 
         
     if ($presults->{errors}) {
       push(@{$results{errors}}, @{$presults->{errors}});
@@ -114,12 +140,10 @@ sub run {
       push(@{$results{warnings}}, @{$presults->{warnings}});
     }
     
-    if ($presults->{summary} eq 'fail') {
+    if ($results{summary} eq 'fail') {
       last;
     }
   }
-  
-  $results{summary} ||= 'pass';
   
   return \%results;
 }
@@ -127,9 +151,8 @@ sub run {
 
 sub _run_make {
   my ($self, $target) = @_;
-  
-  chdir($self->{port}->origin);
 
+  chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   return system("$MAKE $target >$self->{logdir}/$target 2>&1") == 0;
 }  
 
@@ -139,7 +162,7 @@ sub _set_env {
   
   $ENV{PACKAGES}       		= $self->{chroot}->packages;
   $ENV{WRKDIRPREFIX}  		= $self->{chroot}->workdir;
-  $ENV{DEPENDS_TARGET} 		= 'magus-broken-depend';
+  $ENV{DEPENDS_TARGET} 		= 'magus-install-depend';
   $ENV{DISTDIR}        		= $self->{chroot}->distfiles;
   $ENV{MAGUS}          		= 1;
   $ENV{BATCH}	       		= 1;
