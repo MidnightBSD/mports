@@ -2,13 +2,13 @@
 # Date created:		Tue Jul 9 20:24:02 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.1 2007/05/07 07:07:49 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer/Makefile,v 1.57 2007/03/08 12:32:45 ahze Exp $
 #    $MCom: ports/multimedia/gstreamer/Makefile,v 1.52 2006/09/14 20:51:42 ahze Exp $
 #
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.12
+PORTVERSION=	0.10.14
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/ \
 		${MASTER_SITE_LOCAL}
@@ -19,6 +19,7 @@ COMMENT=	Development framework for creating media applications
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
+CFLAGS:=	${CFLAGS} -O2
 USE_XLIB=	yes
 USE_BISON=	yes
 USE_BZIP2=	yes
