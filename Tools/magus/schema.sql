@@ -1,8 +1,8 @@
--- MySQL dump 10.12
+-- MySQL dump 10.11
 --
 -- Host: localhost    Database: magus
 -- ------------------------------------------------------
--- Server version	5.1.20-beta
+-- Server version	5.0.45
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,9 +21,9 @@
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` varchar(64) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int(11) NOT NULL auto_increment,
+  `category` varchar(64) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=577 DEFAULT CHARSET=latin1;
 
 --
@@ -44,13 +44,25 @@ CREATE TABLE `depends` (
 
 DROP TABLE IF EXISTS `locks`;
 CREATE TABLE `locks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `port` varchar(128) NOT NULL,
   `arch` varchar(8) NOT NULL,
   `machine` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   UNIQUE KEY `port` (`port`,`arch`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3547 DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `result` int(11) NOT NULL,
+  `phase` varchar(32) NOT NULL,
+  `data` text,
+  UNIQUE KEY `result` (`result`,`phase`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `machines`
@@ -58,11 +70,11 @@ CREATE TABLE `locks` (
 
 DROP TABLE IF EXISTS `machines`;
 CREATE TABLE `machines` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `arch` varchar(128) NOT NULL,
   `name` varchar(128) NOT NULL,
   `maintainer` varchar(128) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -82,11 +94,11 @@ CREATE TABLE `port_categories` (
 DROP TABLE IF EXISTS `ports`;
 CREATE TABLE `ports` (
   `name` varchar(128) NOT NULL,
-  `version` varchar(32) DEFAULT NULL,
+  `version` varchar(32) default NULL,
   `description` text,
-  `license` varchar(16) DEFAULT NULL,
+  `license` varchar(16) default NULL,
   `pkgname` varchar(128) NOT NULL,
-  PRIMARY KEY (`name`)
+  PRIMARY KEY  (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -95,13 +107,13 @@ CREATE TABLE `ports` (
 
 DROP TABLE IF EXISTS `results`;
 CREATE TABLE `results` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `port` varchar(128) NOT NULL,
   `version` varchar(32) NOT NULL,
   `summary` varchar(32) NOT NULL,
   `machine` int(11) NOT NULL,
   `arch` varchar(8) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `port` (`port`,`version`),
   KEY `port_2` (`port`,`version`,`arch`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3522 DEFAULT CHARSET=latin1;
@@ -128,4 +140,4 @@ CREATE TABLE `subresults` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2007-10-20 15:15:35
+-- Dump completed on 2007-10-22 16:05:40
