@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.67 2007/10/13 00:04:57 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.68 2007/10/17 15:30:28 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3417,19 +3417,25 @@ do-extract:
 .endif
 
 
+.if defined(MAGUS)
+_SLEEP=${TRUE}
+.else
+_SLEEP=sleep
+.endif
+
 .if !target(check-license) 
 .if defined(MPORT_MAINTAINER_MODE)
 check-license:
 .if !defined(LICENSE) 
 	@${ECHO_MSG} "${PKGNAME}: Makefile error: LICENSE not set."
-	@sleep 5
+	@${_SLEEP} 5
 .else
 	@if test -z '${LICENSE}'; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: empty license."; \
-		sleep 5; \
+		${_SLEEP} 5; \
 	elif ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
-		sleep 5; \
+		${_SLEEP} 5; \
 	else \
 		${DO_NADA}; \
 	fi
@@ -3767,6 +3773,23 @@ cached-install:
 		@cd ${.CURDIR} && ${MAKE} install
 .	endif		
 .endif
+
+
+#
+# This is the depends target used by our build cluster, magus. It is 
+# much like cached-install, but a missing depends file in this case is 
+# a fatal error.
+#
+.if !target(magus-install-depend)
+magus-install-depend:
+.   if exists(${PKGFILE})
+		@cd ${.CURDIR} && ${MAKE} ${_INSTALL_SEQ}
+.   else
+		@echo "Missing dependency package file: ${PKGFILE}"
+		@exit 1
+.   endif
+.endif
+
 
 #
 # Utility targets follow
@@ -5165,6 +5188,7 @@ describe:
 .if !target(describe-yaml)
 describe-yaml:
 	@perl -MYAML -e ' \
+		sub uniq (@) {  my %saw;  return grep(!$$saw{$$_}++, @_); } \
 		my %port = ( \
 			pkgname     => q(${PKGSUBNAME}), \
 			name        => q(${PKGORIGIN}), \
@@ -5175,13 +5199,13 @@ describe-yaml:
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
-		$$depends{extract} = [ map((split /:/)[1], qw{${EXTRACT_DEPENDS:S|${PORTSDIR}/||g}}) ]; \
-		$$depends{patch}   = [ map((split /:/)[1], qw{${PATCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
-		$$depends{fetch}   = [ map((split /:/)[1], qw{${FETCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
-		$$depends{build}   = [ map((split /:/)[1], qw{${BUILD_DEPENDS:S|${PORTSDIR}/||}})   ]; \
-		$$depends{run}     = [ map((split /:/)[1], qw{${RUN_DEPENDS:S|${PORTSDIR}/||}})     ]; \
-		$$depends{misc}	   = [ map((split /:/)[0], qw{${DEPENDS:S|${PORTSDIR}/||}})         ]; \
-		$$depends{lib}     = [ map((split /:/)[1], qw{${LIB_DEPENDS:S|${PORTSDIR}/||}})     ]; \
+		$$depends{extract} = [ uniq map((split /:/)[1], qw{${EXTRACT_DEPENDS:S|${PORTSDIR}/||g}}) ]; \
+		$$depends{patch}   = [ uniq map((split /:/)[1], qw{${PATCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{fetch}   = [ uniq map((split /:/)[1], qw{${FETCH_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{build}   = [ uniq map((split /:/)[1], qw{${BUILD_DEPENDS:S|${PORTSDIR}/||}})   ]; \
+		$$depends{run}     = [ uniq map((split /:/)[1], qw{${RUN_DEPENDS:S|${PORTSDIR}/||}})     ]; \
+		$$depends{misc}	   = [ uniq map((split /:/)[0], qw{${DEPENDS:S|${PORTSDIR}/||}})         ]; \
+		$$depends{lib}     = [ uniq map((split /:/)[1], qw{${LIB_DEPENDS:S|${PORTSDIR}/||}})     ]; \
 		$$port{depends}  = \%depends; \
 		open(my $$desc, q(<), q(${DESCR})) || die qq(Could not open ${DESCR}: $$!\n); \
 		while (<$$desc>) { \
@@ -5513,7 +5537,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.67 2007/10/13 00:04:57 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.68 2007/10/17 15:30:28 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
