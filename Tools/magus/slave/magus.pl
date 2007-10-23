@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.2 2007/10/20 22:32:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.2 2007/10/22 05:59:11 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -32,10 +32,7 @@
 
 
 #
-# todo: wrap run_test in eval: make an exception an internal error result.
-#	docs
-#	logging
-#	setproctitle
+# todo:	setproctitle
 #	
 
 use strict;
@@ -43,88 +40,102 @@ use warnings;
 use lib qw(/usr/mports/Tools/lib);
 
 use Magus;
+use Sys::Syslog;
 
 $SIG{INT} = sub { die "Caught SIGINT\n" };
 
 main(@ARGV);
 
+=head1 magus.pl
+
+This script is the script that is run on each node.  It sets up the chroot
+dir, selects the next port to be built from the master db, copies dependecy
+packages to the chroot dir, chroot's to the chroot dir, builds the port,
+uploads the resulting package, and reports the results to the master database.
+
+=head2 main()
+
+Top level function.  Sets up logging and starts the main loop.  The general
+logic is to keep looping building ports, and if there are no more ports to
+build sleep for a while.
+
+=cut
+
 sub main {
   my $lock;
     
+  openlog("magus", "ndelay,pid", "local0");
+  
+  syslog('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
+  
   while (1) {
     $lock = Magus::Lock->get_ready_lock();
     
     if (!$lock) {
       # there's no more ports to test, sleep for a while and check again.
-      sleep($Magus::Config{'DoneWaitPeriod'});
+      syslog('debug', "No ports to build, sleeping $Magus::Config{DoneWaitPeriod}");
+      sleep($Magus::Config{DoneWaitPeriod});
       next;
     }
     
-    run_test($lock);
+    syslog('info', "Starting test run for: %s", $lock->port);
+    
+    eval { run_test($lock) };
+    
+    # An exception ($@) was thrown.  Note the internal error and move on.
+    if ($@) {
+      if ($@ =~ m/Caught SIGINT/) {
+        exit 0;
+      }
+      
+      my $error = $@;
+      
+      syslog('err', "Exception throw building %s: %s", $lock->port, $error);
+      
+      my $result = $lock->port->current_result;
+      
+      $result->delete if $result;
+      
+      $result = $lock->port->add_to_results({
+        version => $lock->port->version,
+        arch    => $Magus::Machine->arch,
+        machine => $Magus::Machine,
+        summary => 'internal',
+      });
+      
+      $result->add_to_subresults({
+        type => 'internal',
+        name => 'ExceptionThrown',
+        msg  => "Internal exception thrown: $error"
+      });
+    }
+      
     $lock->delete;
   }
 }
 
 
+
+=head3 Exiting
+
+Note that all the locks associated with this machine will be deleted at
+script exit. If you are running to copies of this script on one machine,
+make sure to assign them different machine IDs in the master database.
+
+=cut
+
 END {
   Magus::Lock->search(machine => $Magus::Machine)->delete_all;
 }
+  
 
+=head2 run_test($lock)
 
-sub install_depends {
-  my ($lock, $chroot) = @_;
-  
-  foreach my $depend ($lock->port->depends) {
-    print "\tDep $depend\n";
-    if (!$depend->current_result || $depend->current_result->summary eq 'pass' || $depend->current_result->summary eq 'warn') {
-      # There should be a package that we can use to install the port.
-      install_package($depend, $chroot) || last;
-      next;
-    }
-    
-    # We got a port that was scheduled ready, but wasn't!
-    my $result = $lock->port->add_to_results({
-      version => $lock->port->version,
-      machine => $Magus::Machine,
-      summary => 'fail',
-      arch    => $Magus::Machine->arch,
-    });
-    
-    $result->add_to_subresults({
-      type   => 'prebuild',
-      name   => 'SchedulerFailure',
-      msg    => 'Port was scheduled as ready to build, but a dependancy had not been built successfuly.'
-    });
-    
-    return 0;
-  }
-  
-  return 1;
-}
-    
-    
-      
-sub install_package {
-  my ($port, $chroot) = @_;
-  
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $arch = $Magus::Machine->arch;
-  my $dest = join('/', $chroot->root, $chroot->packages, 'All');
-  
-  system("/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$arch/$file $dest"); 
-}  
-  
-sub upload_package {
-  my ($port, $chroot) = @_;
+Run the entire test process on the given port (well, the given lock, but the
+port is at C<< $lock->port >>).  
 
-  my $arch = $Magus::Machine->arch;
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
-          
-  system("/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$arch/$file");
-}  
+=cut
 
-  
 sub run_test {
   my ($lock) = @_;
   
@@ -132,7 +143,7 @@ sub run_test {
   
   my $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
 
-  install_depends($lock, $chroot);
+  copy_dep_pkgfiles($lock, $chroot);
   
   # we fork so just the child chroots, then we can get out of the chroot.
   my $pid = fork();
@@ -141,6 +152,7 @@ sub run_test {
     waitpid($pid, 0);
   } elsif (defined $pid) {
     # Child, chroot and go.
+    $SIG{INT} = 'DEFAULT';
     $chroot->do_chroot();
     chdir($port->origin);
     
@@ -159,8 +171,10 @@ sub run_test {
     my $result = $port->current_result;
 
     if ($result->summary eq 'pass' || $result->summary eq 'warn') {
-      upload_package($port, $chroot);
+      upload_pkgfile($port, $chroot);
     }
+
+    syslog('info', "Test run complete for $port; summary: %s", $result->summary);
 
     return 1;
   } else {
@@ -168,6 +182,79 @@ sub run_test {
   }
 }
 
+
+=head2 copy_dep_pkgfiles($lock, $chroot)
+
+Copies the package files for all the dependancies of the current port into
+the package dir in the chroot dir.
+
+=cut
+
+sub copy_dep_pkgfiles {
+  my ($lock, $chroot) = @_;
+  
+  foreach my $depend ($lock->port->depends) {
+    
+    syslog('debug', "coping $depend package to chroot dir.");
+    
+    if ($depend->current_result && ($depend->current_result->summary eq 'pass' || $depend->current_result->summary eq 'warn')) {
+      # There should be a package that we can use to install the port.
+      copy_pkgfile($depend, $chroot);
+      next;
+    }
+    
+    
+    die "Port was scheduled as ready to build, but a dependancy had not been built successfuly.\n";
+    }
+  
+  return 1;
+}
+    
+
+=head2 copy_pkgfile($port, $chroot)
+
+Copy a single package file from the master dir to the chroot package dir.
+
+=cut
+      
+sub copy_pkgfile {
+  my ($port, $chroot) = @_;
+  
+  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
+  my $arch = $Magus::Machine->arch;
+  my $dest = join('/', $chroot->root, $chroot->packages, 'All');
+  
+  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$arch/$file $dest";
+  
+  system($cmd) == 0 || die "$cmd failed. (exit $?)\n";
+}  
+  
+
+=head2 upload_pkgfile($port, $chroot)  
+  
+Upload the built package of the current port to the master dir.
+
+=cut
+
+sub upload_pkgfile {
+  my ($port, $chroot) = @_;
+
+  my $arch = $Magus::Machine->arch;
+  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
+  my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
+          
+  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$arch/$file";
+  
+  system($cmd) == 0 || die "$cmd failed (exit $?)\n";
+}  
+
+
+=head2 insert_results($port, $results)
+
+Takes a port and a the data structure from Magus::PortTester, and then
+inserts the results into the database, referencing the current port.
+
+=cut  
 
 sub insert_results {
   my ($port, $results) = @_;
@@ -191,6 +278,10 @@ sub insert_results {
       type => 'error',
       %$sr
     });
+  }
+  
+  if ($results->{log}) {
+    $res->add_to_logs($results->{log});
   }
 }
       
