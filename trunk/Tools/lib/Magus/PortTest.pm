@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.3 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.4 2007/10/22 16:07:53 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -123,9 +123,17 @@ sub run {
       $results{summary} = 'fail';
     }
     
+    my $log;
+    {
+      local $/;
+      open(my $fh, '<', "$self->{logdir}/$target") || die "Couldn't open $self->{logdir}/$target: $!\n";
+      $log = <$fh>;
+      close($fh) || die "Couldn't close $self->{logdir}/$target: $!\n";
+    }
+    
     my $testclass = "Magus::OutcomeRules::$target";
     
-    my $presults = $testclass->test("$self->{logdir}/$target");
+    my $presults = $testclass->test(\$log);
     
     # update the summary if the phase results is worse than what we had.
     if ($results{summary} eq 'pass' || ($results{summary} eq 'warn' && $presults->{'summary'} ne 'pass')) {
@@ -141,6 +149,10 @@ sub run {
     }
     
     if ($results{summary} eq 'fail') {
+      $results{log} = {
+        phase => $target,
+        data  => $log,
+      };
       last;
     }
   }
