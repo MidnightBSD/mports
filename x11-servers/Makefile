@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/x11-servers/Makefile,v 1.4 2006/12/11 03:00:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/Makefile,v 1.5 2006/12/11 05:29:43 laffer1 Exp $
 #
 
     COMMENT = X11 servers
 
     SUBDIR += mga_hal
-    SUBDIR += synaptics
     SUBDIR += x2vnc
     SUBDIR += x2x
     SUBDIR += xorg-dmx
