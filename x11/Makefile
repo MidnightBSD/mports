@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.39 2007/10/20 07:01:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.40 2007/10/20 16:57:30 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -25,6 +25,7 @@
     SUBDIR += gnome-desktop
     SUBDIR += gnome-menus
     SUBDIR += gnome-panel
+    SUBDIR += gnome-session
     SUBDIR += gnome-terminal
     SUBDIR += iceauth
     SUBDIR += ico
