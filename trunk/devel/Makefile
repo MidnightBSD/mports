@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.163 2007/10/20 06:03:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.164 2007/10/20 15:58:51 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -73,6 +73,7 @@
     SUBDIR += libgii
     SUBDIR += libglade2
     SUBDIR += libgsf
+    SUBDIR += libgtop
     SUBDIR += libical
     SUBDIR += libixp
     SUBDIR += libltdl15
