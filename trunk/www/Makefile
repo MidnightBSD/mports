@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.59 2007/10/20 00:14:41 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.60 2007/10/20 05:12:16 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -17,6 +17,7 @@
     SUBDIR += etoile-bookmarkkit
     SUBDIR += etoile-mollusk
     SUBDIR += etoile-rsskit
+    SUBDIR += firefox
     SUBDIR += furl
     SUBDIR += gnustep-ticker
     SUBDIR += google-sitemapgen
