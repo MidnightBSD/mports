@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.6 2007/10/20 22:32:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.7 2007/10/22 05:59:32 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -116,6 +116,8 @@ sub _init {
     system("/sbin/mount -t nullfs -o ro $dir $self->{root}/$dir") == 0
       or die "mount returned non-zero: $?\n";
   }
+  
+  symlink("usr/src/sys", "$self->{root}/sys") || die "Couldn't symlink /sys to /usr/src/sys: $!\n";
   
   $self->_mtree('BSD.root.dist', '/');  
   $self->_mtree('BSD.var.dist', '/var');
