@@ -16,9 +16,10 @@
     SUBDIR += etoile-systemconfig
     SUBDIR += etoile-trackerkit
     SUBDIR += etoile-ui
-    SUBDIR += ljclive
+    SUBDIR += gnome-utils
     SUBDIR += gworkspace
     SUBDIR += linux-sunbird
+    SUBDIR += ljclive
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
     SUBDIR += toolbox
