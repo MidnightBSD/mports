@@ -24,7 +24,7 @@ package Magus::OutcomeRules::Base;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.2 2007/09/17 18:09:48 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.3 2007/10/22 05:59:32 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -96,42 +96,36 @@ sub warning :ATTR(CODE) {
 }
 
 sub test {
-  my ($class, $file) = @_;
+  my ($class, $output) = @_;
   
   my %result = (
     summary => 'pass'   
   );
   
-  open(my $log, '<', $file) || die "Couldn't open $file: $!\n";
+  local $_ = $$output;
   
-  # This kinda sucks (O(n^2)), but it's abstract enough that it can optimized later.
-  while (<$log>) {
-    foreach my $rule (@{$class->warning_rules || []}) {
-      if (my $msg = $rule->()) {
-        $result{summary} = 'warn' if $result{summary} eq 'pass';
-        push(@{$result{warnings}}, {
-          phase => $rule->{phase},
-          msg   => $msg,
-          name  => $rule->{name},
-        });
-      }
+  foreach my $rule (@{$class->warning_rules || []}) {
+    if (my $msg = $rule->()) {
+      $result{summary} = 'warn' if $result{summary} eq 'pass';
+      push(@{$result{warnings}}, {
+        phase => $rule->{phase},
+        msg   => $msg,
+        name  => $rule->{name},
+      });
     }
-
-    foreach my $rule (@{$class->error_rules || []}) {
-      if (my $msg = $rule->{code}->()) {
-        $result{summary} = 'fail';
-        push(@{$result{errors}}, {
-          phase => $rule->{phase},
-          msg   => $msg,
-          name  => $rule->{name},
-        });
-      }
-    }
-  
   }
 
-  close($log) || die "Couldn't close $file: $!\n";
-
+  foreach my $rule (@{$class->error_rules || []}) {
+    if (my $msg = $rule->{code}->()) {
+      $result{summary} = 'fail';
+      push(@{$result{errors}}, {
+        phase => $rule->{phase},
+        msg   => $msg,
+        name  => $rule->{name},
+      });
+    }
+  }
+  
   return \%result;
 }
 

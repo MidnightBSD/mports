@@ -1,4 +1,4 @@
-package Magus::Result;
+package Magus::Log;
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,25 +24,19 @@ package Magus::Result;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Machine.pm,v 1.2 2007/10/22 16:08:04 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
-
-
-use base qw(Magus::DBI);
 use strict;
 use warnings;
+use base qw(Magus::DBI);
 
 
-__PACKAGE__->table('results');
-__PACKAGE__->columns(All => qw/id port version summary machine arch/);
-
-__PACKAGE__->has_a(port => 'Magus::Port');
-__PACKAGE__->has_a(machine => 'Magus::Machine');
-__PACKAGE__->has_many(subresults => 'Magus::SubResult');
-__PACKAGE__->has_many(logs       => 'Magus::Log');
+__PACKAGE__->table('logs');
+__PACKAGE__->columns(Essential => qw/result phase data/);
+__PACKAGE__->has_a(result => 'Mport::Result');
 
 
 1;
