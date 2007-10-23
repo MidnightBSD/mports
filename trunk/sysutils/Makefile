@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.51 2007/10/22 04:34:57 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.52 2007/10/23 18:58:47 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -25,6 +25,7 @@
     SUBDIR += gag
     SUBDIR += gconf-editor
     SUBDIR += gnome-control-center
+    SUBDIR += gnome-mount
     SUBDIR += gnome-system-monitor
     SUBDIR += gnome_subr
     SUBDIR += hal
