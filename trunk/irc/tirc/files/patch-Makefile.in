@@ -13,7 +13,7 @@
 +exec_prefix=${PREFIX}
 +bindir	=@bindir@
 +datadir=@datadir@
-+mandir	=@mandir@
++mandir	=${DESTDIR}@mandir@
  INSTALL	=@INSTALL@
  MKDEP	=@MKDEP@
  BINST	=$(INSTALL) -m755
