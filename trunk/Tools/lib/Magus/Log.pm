@@ -24,7 +24,7 @@ package Magus::Log;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Machine.pm,v 1.2 2007/10/22 16:08:04 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.1 2007/10/23 03:58:51 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -36,7 +36,7 @@ use base qw(Magus::DBI);
 
 __PACKAGE__->table('logs');
 __PACKAGE__->columns(Essential => qw/result phase data/);
-__PACKAGE__->has_a(result => 'Mport::Result');
+__PACKAGE__->has_a(result => 'Magus::Result');
 
 
 1;
