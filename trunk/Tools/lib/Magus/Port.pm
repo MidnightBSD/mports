@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.2 2007/10/20 22:32:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -71,6 +71,28 @@ sub current_result {
   my ($self) = @_;
   return $self->results(arch => $Magus::Machine->arch, version => $self->version)->next;
 }
+
+sub all_depends {
+  my ($self) = @_;
+ 
+  my %depends;   
+  _walk($self, \%depends);
+  delete $depends{$self};
+  return sort values %depends;
+}    
+
+sub _walk {
+  my ($port, $depends) = @_;
+  
+  foreach my $dep ($port->depends) {
+    if (!$depends->{$dep}) {
+      $depends->{$dep} = $dep;
+      _walk($dep, $depends);
+    }
+  }
+  
+}
+
 
 
 1;
