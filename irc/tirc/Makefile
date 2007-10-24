@@ -2,12 +2,13 @@
 # Date created:		14 August 1999
 # Whom:			Dominik Rothert <dr@domix.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/tirc/Makefile,v 1.1 2007/08/10 21:59:20 laffer1 Exp $
 # $FreeBSD: ports/irc/tirc/Makefile,v 1.16 2007/06/14 22:31:00 beech Exp $
 #
 
 PORTNAME=	tirc
 PORTVERSION=	1.2
+PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
