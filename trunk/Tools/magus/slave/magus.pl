@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.2 2007/10/22 05:59:11 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.3 2007/10/23 03:57:20 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -40,11 +40,15 @@ use warnings;
 use lib qw(/usr/mports/Tools/lib);
 
 use Magus;
+
 use Sys::Syslog;
+use POSIX qw(setsid);
+use Getopt::Std qw(getopts);
 
-$SIG{INT} = sub { die "Caught SIGINT\n" };
 
-main(@ARGV);
+$SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
+
+main();
 
 =head1 magus.pl
 
@@ -52,6 +56,20 @@ This script is the script that is run on each node.  It sets up the chroot
 dir, selects the next port to be built from the master db, copies dependecy
 packages to the chroot dir, chroot's to the chroot dir, builds the port,
 uploads the resulting package, and reports the results to the master database.
+
+=head1 OPTIONS
+
+=over 4
+
+=item -f
+
+Stay in the forground (don't daemonize).
+
+=item -v 
+
+Verbose mode, print lots of status information to stdout.
+
+=back
 
 =head2 main()
 
@@ -61,54 +79,34 @@ build sleep for a while.
 
 =cut
 
+my %opts;
+
+
 sub main {
   my $lock;
-    
-  openlog("magus", "ndelay,pid", "local0");
   
-  syslog('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
+  getopts('fv', \%opts);
+  
+  deamonize() unless $opts{f};
+      
+  report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
   
   while (1) {
     $lock = Magus::Lock->get_ready_lock();
     
     if (!$lock) {
       # there's no more ports to test, sleep for a while and check again.
-      syslog('debug', "No ports to build, sleeping $Magus::Config{DoneWaitPeriod}");
+      report('debug', "No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
       sleep($Magus::Config{DoneWaitPeriod});
       next;
     }
     
-    syslog('info', "Starting test run for: %s", $lock->port);
+    report('info', "Starting test run for: %s", $lock->port);
     
-    eval { run_test($lock) };
+    run_test($lock);
     
-    # An exception ($@) was thrown.  Note the internal error and move on.
-    if ($@) {
-      if ($@ =~ m/Caught SIGINT/) {
-        exit 0;
-      }
-      
-      my $error = $@;
-      
-      syslog('err', "Exception throw building %s: %s", $lock->port, $error);
-      
-      my $result = $lock->port->current_result;
-      
-      $result->delete if $result;
-      
-      $result = $lock->port->add_to_results({
-        version => $lock->port->version,
-        arch    => $Magus::Machine->arch,
-        machine => $Magus::Machine,
-        summary => 'internal',
-      });
-      
-      $result->add_to_subresults({
-        type => 'internal',
-        name => 'ExceptionThrown',
-        msg  => "Internal exception thrown: $error"
-      });
-    }
+    report('info', 'Run completed for:     %s', $lock->port);
+    
       
     $lock->delete;
   }
@@ -138,28 +136,49 @@ port is at C<< $lock->port >>).
 
 sub run_test {
   my ($lock) = @_;
+  #
+  # we have a few eval blocks here, because we want to be sure that the 
+  # exception will not allow the child to go to the main program logic.
+  #
+  my ($port, $chroot);
   
-  my $port = $lock->port;
-  
-  my $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
+  eval {
+    $port = $lock->port;
+    $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
 
-  copy_dep_pkgfiles($lock, $chroot);
+    copy_dep_pkgfiles($lock, $chroot);
+  };
+  
+  if ($@) {
+    handle_exception($@, $lock);
+    return;
+  }
   
   # we fork so just the child chroots, then we can get out of the chroot.
   my $pid = fork();
   if ($pid) {
     # Parent, we wait for the child to finish.
+    local $SIG{INT} = sub { 
+      waitpid($pid, 0);
+      handle_exception("Caught SIGINT", $lock);
+      exit(1);
+    };
+    
     waitpid($pid, 0);
   } elsif (defined $pid) {
-    # Child, chroot and go.
-    $SIG{INT} = 'DEFAULT';
-    $chroot->do_chroot();
-    chdir($port->origin);
+    eval {
+      $chroot->do_chroot();
+      chdir($port->origin);
     
-    my $test    = Magus::PortTest->new(port => $port, chroot => $chroot);
-    my $results = $test->run;
+      my $test    = Magus::PortTest->new(port => $port, chroot => $chroot);
+      my $results = $test->run;
   
-    insert_results($port, $results);
+      insert_results($port, $results);
+    };
+    
+    if ($@) {
+      handle_exception($@, $lock);
+    }
     
     exit(0);
   } else {
@@ -168,15 +187,17 @@ sub run_test {
 
   # Back to the parent here. 
   if ($? == 0) {
-    my $result = $port->current_result;
+    eval {
+      my $result = $port->current_result;
 
-    if ($result->summary eq 'pass' || $result->summary eq 'warn') {
-      upload_pkgfile($port, $chroot);
+      if ($result->summary eq 'pass' || $result->summary eq 'warn') {
+        upload_pkgfile($port, $chroot);
+      }
+    };
+    
+    if ($@) {
+      handle_exception($@, $lock);
     }
-
-    syslog('info', "Test run complete for $port; summary: %s", $result->summary);
-
-    return 1;
   } else {
     die "Child exited unexpectantly: $?\n";
   }
@@ -193,9 +214,8 @@ the package dir in the chroot dir.
 sub copy_dep_pkgfiles {
   my ($lock, $chroot) = @_;
   
-  foreach my $depend ($lock->port->depends) {
-    
-    syslog('debug', "coping $depend package to chroot dir.");
+  foreach my $depend ($lock->port->all_depends) {
+    report('debug', "coping $depend package to chroot dir.");
     
     if ($depend->current_result && ($depend->current_result->summary eq 'pass' || $depend->current_result->summary eq 'warn')) {
       # There should be a package that we can use to install the port.
@@ -203,9 +223,8 @@ sub copy_dep_pkgfiles {
       next;
     }
     
-    
     die "Port was scheduled as ready to build, but a dependancy had not been built successfuly.\n";
-    }
+  }
   
   return 1;
 }
@@ -225,8 +244,13 @@ sub copy_pkgfile {
   my $dest = join('/', $chroot->root, $chroot->packages, 'All');
   
   my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$arch/$file $dest";
+  report('debug', "downloading: $cmd");
   
-  system($cmd) == 0 || die "$cmd failed. (exit $?)\n";
+  my $out = `$cmd 2>&1`;
+  
+  if ($? != 0) {
+    die "$cmd returned non-zero: $out\n";
+  }
 }  
   
 
@@ -244,8 +268,13 @@ sub upload_pkgfile {
   my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
           
   my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$arch/$file";
+  report('debug', "uploading: $cmd");
   
-  system($cmd) == 0 || die "$cmd failed (exit $?)\n";
+  my $out = `$cmd 2>&1`;
+
+  if ($? != 0) {
+    die "$cmd returned non-zero: $out\n";
+  }
 }  
 
 
@@ -258,6 +287,8 @@ inserts the results into the database, referencing the current port.
 
 sub insert_results {
   my ($port, $results) = @_;
+
+  report('info', "Inserting results for $port; summary: $results->{summary}");
   
   my $res = $port->add_to_results({
     version => $port->version,
@@ -284,7 +315,89 @@ sub insert_results {
     $res->add_to_logs($results->{log});
   }
 }
+
+=head2 daemonize()
+
+Disassociate with our parent process group and run as a daemon.
+
+=cut
+
+sub daemonize {
+  report('debug', 'daemonizing');
+  
+  my $pid = fork;
+  
+  if (!defined $pid) {
+    die "Unable to fork self: $!\n";
+  }
+  
+  # if $pid is non-zero, we're the parent.  Time to die.
+  exit 0 if $pid;
+  
+  # create our own process group
+  setsid();
+}
+
+=head2 report($level, $format, ...)
+
+Logs the current      
+
+=cut
+
+{
+  my $is_open = 0;
+
+  sub report {
+    my ($level, @msg) = @_;
+    
+    openlog("magus", "ndelay,pid", "local0") unless $is_open++;
+    
+    syslog($level, @msg);
+
+    if ($opts{v}) {
+      my ($format, @args) = @msg;
+      my $time = localtime;
       
+      printf "[$time] ($$): $format\n", @args;
+    }    
+  }
+}
+
+
+=head2 handle_exception($error, $lock)
+
+Report an exception for the given lock.
+
+=cut
+
+sub handle_exception {
+  my ($error, $lock) = @_;
+  
+  # Any result for the current port is no good.      
+  my $result = $lock->port->current_result;
+  $result->delete if $result;
+        
+  if ($error =~ m/SIGINT/) {
+    report('debug', 'Exiting 0 from SIGINT (prior result for %s deleted).', $lock->port);
+    exit 0;
+  }
+      
+  report('err', "Exception throw building %s: %s", $lock->port, $error);
+  
+  $result = $lock->port->add_to_results({
+    version => $lock->port->version,
+    arch    => $Magus::Machine->arch,
+    machine => $Magus::Machine,
+    summary => 'internal',
+  });
+  
+  $result->add_to_subresults({
+    type => 'internal',
+    name => 'ExceptionThrown',
+    msg  => "Internal exception thrown: $error"
+  });
+}
+
 
 1;
 __END__
