@@ -2,11 +2,11 @@
 # Date created:		24 Oct 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/ports-mgmt/magus-utils/Makefile,v 1.2 2007/10/24 19:44:44 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/magus-utils/Makefile,v 1.3 2007/10/24 19:54:24 laffer1 Exp $
 #
 
 PORTNAME=	magus-utils
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
