@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/ports-mgmt/Makefile,v 1.3 2007/09/20 01:41:01 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/Makefile,v 1.4 2007/10/16 21:25:47 laffer1 Exp $
 #
 
    COMMENT = Ports for managing, installing and developing MidnightBSD ports and packages
 
+   SUBDIR += magus-utils
    SUBDIR += pib
    SUBDIR += portlint
    SUBDIR += portsearch
