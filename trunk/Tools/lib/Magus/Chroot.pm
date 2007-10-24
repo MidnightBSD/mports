@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.8 2007/10/23 05:17:56 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.9 2007/10/24 00:26:36 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -149,6 +149,9 @@ sub _clean {
     $self->_mkdir($self->{$_});
   }
 
+  # Make sure that packages/All exists.  
+  $self->_mkdir("$self->{packages}/All");
+    
   rmtree("$self->{root}/var/db/pkg");
   rmtree("$self->{root}/var/db/ports");
   
