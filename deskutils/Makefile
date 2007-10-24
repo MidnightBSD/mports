@@ -17,6 +17,7 @@
     SUBDIR += etoile-trackerkit
     SUBDIR += etoile-ui
     SUBDIR += gnome-utils
+    SUBDIR += gucharmap
     SUBDIR += gworkspace
     SUBDIR += linux-sunbird
     SUBDIR += ljclive
