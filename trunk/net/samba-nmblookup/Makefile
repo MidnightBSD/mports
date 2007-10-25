@@ -3,7 +3,7 @@
 # Whom:					Hirohisa Yamaguchi <umq@ueo.co.jp>
 #
 # $FreeBSD: ports/net/samba-nmblookup/Makefile,v 1.2 2006/12/07 13:55:51 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba-nmblookup/Makefile,v 1.1 2007/02/13 23:10:28 laffer1 Exp $
 #
 
 PORTREVISION=		0
@@ -12,14 +12,10 @@ PKGNAMESUFFIX=		-nmblookup
 
 COMMENT=		NetBIOS Name lookup tool
 
-CONFLICTS=		ja-samba-2.* ja-samba-3.* samba-2.* samba-3.*
+CONFLICTS=		samba-3.*
 
 SAMBA_PORT=		samba3
 SAMBA_SUBPORT=		yes
-
-.if ${SAMBA_PORT} != "samba3"
-BROKEN=			"Does not build with samba-2 port"
-.endif
 
 MASTERDIR=		${.CURDIR}/../../net/${SAMBA_PORT}
 PKGDIR=			${.CURDIR}
