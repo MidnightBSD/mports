@@ -13,7 +13,7 @@ Local/Library/Headers/Performance/GSSkipMutableArray.h
 Local/Library/Headers/Performance/GSThroughput.h
 Local/Library/Headers/Performance/GSTicker.h
 Local/Library/Libraries/libPerformance.so
-Local/Library/Libraries/libPerformance.so.%%LIBVERSION%%
-Local/Library/Libraries/libPerformance.so.%%LIBVERSION%%.0
+Local/Library/Libraries/libPerformance.so.0.2
+Local/Library/Libraries/libPerformance.so.0.2.0
 @dirrm Local/Library/Headers/Performance
 @dirrm Local/Library/Documentation/Performance
