@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
   `result` int(11) NOT NULL,
   `phase` varchar(32) NOT NULL,
-  `data` text,
+  `data` longtext,
   UNIQUE KEY `result` (`result`,`phase`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
