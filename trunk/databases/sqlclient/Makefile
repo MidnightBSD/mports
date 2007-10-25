@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/databases/sqlclient/Makefile,v 1.1 2006/10/31 06:10:09 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/sqlclient/Makefile,v 1.1 2007/02/16 21:11:23 laffer1 Exp $
 #
 
 PORTNAME=	sqlclient
@@ -23,11 +23,9 @@ USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=	GNUmakefile
 ALL_TARGET=
 LDCONFIG_DIRS=	${LOCALLIBDIR}
-INSTALLS_SHLIB=	yes
-NO_FILTER_SHLIBS=	yes
+USE_LDCONFIG=	yes
 
 USE_GNUSTEP_LOCAL_LIBS+=	Performance:${PERFORMANCE_PORT}
 PERFORMANCE_PORT?=	devel/performance
