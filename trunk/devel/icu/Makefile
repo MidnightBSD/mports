@@ -3,11 +3,12 @@
 # Whom:					dwm
 #
 # $FreeBSD: ports/devel/icu/Makefile,v 1.22 2006/09/27 13:33:14 mi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/icu/Makefile,v 1.1 2006/10/31 20:27:40 laffer1 Exp $
 #
 
 PORTNAME=	icu
 PORTVERSION=	3.6
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}	\
 		ftp://ftp.software.ibm.com/software/globalization/icu/${PORTVERSION}/
@@ -21,8 +22,7 @@ COMMENT=	International Components for Unicode (from IBM)
 OPTIONS=	THREADS "Build multi-threaded version of the library" off
 CONFLICTS=	icu2-[0-9]*
 
-INSTALLS_SHLIB=		yes
-NO_FILTER_SHLIBS=	yes
+USE_LDCONFIG=		yes
 
 WRKSRC=			${WRKDIR}/icu/source
 

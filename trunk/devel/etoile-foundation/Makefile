@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/etoile-foundation/Makefile,v 1.3 2007/08/23 03:12:59 seirei Exp $
+# $MidnightBSD: mports/devel/etoile-foundation/Makefile,v 1.4 2007/08/27 20:27:17 seirei Exp $
 # $FreeBSD: ports/devel/etoile-foundation/Makefile,v 1.4 2007/01/31 18:17:55 dinoex Exp $
 #
 
 PORTNAME=	foundation
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3
@@ -24,7 +25,6 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
-NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
