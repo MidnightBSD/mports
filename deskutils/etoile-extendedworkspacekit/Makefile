@@ -2,13 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.3 2007/08/20 06:53:17 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.4 2007/10/25 22:49:42 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-extendedworkspacekit/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	extendedworkspacekit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
