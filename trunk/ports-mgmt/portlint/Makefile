@@ -2,7 +2,7 @@
 # Date created:		13 Jun 1997
 # Whom:			Jun-ichiro itojun Hagino <itojun@itojun.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/Makefile,v 1.2 2007/08/07 22:25:05 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/Makefile,v 1.3 2007/08/07 22:26:12 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/Makefile,v 1.112 2006/08/11 15:52:23 marcus Exp $
 #
 # This port is self contained in the src directory.
@@ -11,7 +11,7 @@
 PORTNAME=	portlint
 PORTVERSION=	2.9.1
 PORTREVISION=	3
-CATEGORIES=	devel
+CATEGORIES=	ports-mgmt
 MASTER_SITES=	# none
 DISTFILES=	# none
 
