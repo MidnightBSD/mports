@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.68 2007/10/17 15:30:28 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.69 2007/10/23 04:56:46 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -425,8 +425,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # USE_LINUX		- Set to yes to say the port needs the default linux base port.
 #				  Set to value <X>, if the port needs emulators/linux_base-<X>.
 #				  If set to "7", a dependency is registered to emulators/linux_base.
-#				  Implies appropriate settings for NO_FILTER_SHLIBS,
-#				  STRIP and STRIP_CMD.
+#				  Implies appropriate settings for STRIP and STRIP_CMD.
 # USE_LINUX_PREFIX
 #				- controls the action of PREFIX (see above). Only use this
 #				  if the port is a linux infrastructure port (e.g. contains libs
@@ -1182,7 +1181,7 @@ OSVERSION!=	${SYSCTL} -n kern.osreldate
 
 # Get the object format.
 .if !defined(PORTOBJFORMAT)
-PORTOBJFORMAT!=		${TEST} -x /usr/bin/objformat && /usr/bin/objformat || ${ECHO_CMD} aout
+PORTOBJFORMAT?=	elf
 .endif
 
 MASTERDIR?=	${.CURDIR}
@@ -1782,8 +1781,6 @@ STRIP_CMD=	${LINUXBASE}/usr/bin/strip
 .	else
 STRIP_CMD=	${TRUE}
 .	endif
-
-NO_FILTER_SHLIBS=	yes
 
 # Allow the user to specify another linux_base version.
 .	if defined(OVERRIDE_LINUX_BASE_PORT)
@@ -5376,10 +5373,6 @@ generate-plist:
 			@${ECHO_CMD} "@unexec ${LDCONFIG} -32 -R || ${TRUE}" >> ${TMPPLIST}
 .		endif
 .	endif
-.	if !defined(NO_FILTER_SHLIBS)
-		@${SED} -e 's,\(/lib.*\.so\.[0-9]*\)\.[0-9]*$$,\1,' ${TMPPLIST} > ${TMPPLIST}.tmp
-		@${MV} -f ${TMPPLIST}.tmp ${TMPPLIST}
-.	endif
 # End of generate-plist
 .endif 
 
@@ -5537,7 +5530,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.68 2007/10/17 15:30:28 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.69 2007/10/23 04:56:46 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
