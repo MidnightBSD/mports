@@ -2,17 +2,19 @@
 # Date created:			Jun 2, 2001
 # Whom:				Mark Pulford <mark@kyne.com.au>
 #
-# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.1 2007/01/03 20:52:49 wintellect Exp $
+# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.2 2007/05/20 19:39:10 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/siege/Makefile,v 1.25 2006/08/25 18:08:09 jmelo Exp $
 #
 
 PORTNAME=	siege
 PORTVERSION=	2.66
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	ftp://sid.joedog.org/pub/siege/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A http regression testing and benchmarking utility
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
@@ -36,7 +38,9 @@ do-install:
 	@${INSTALL_MAN} ${WRKSRC}/doc/${MAN7} ${MAN1PREFIX}/man/man7
 	@${MKDIR} ${DATADIR}
 	@${INSTALL_DATA} ${WRKSRC}/doc/siegerc ${DATADIR}
-	@${SED} -e "s,%%DATADIR%%,${DATADIR}," ${FILESDIR}/siege.config.in > ${PREFIX}/bin/siege.config
-	@${CHMOD} 555 ${PREFIX}/bin/siege.config
+
+post-fake:
+	@${SED} -e "s,%%DATADIR%%,${DATADIR}," ${FILESDIR}/siege.config.in > ${FAKE_DESTDIR}${PREFIX}/bin/siege.config
+	@${CHMOD} 555 ${FAKE_DESTDIR}${PREFIX}/bin/siege.config
 
 .include <bsd.port.post.mk>
