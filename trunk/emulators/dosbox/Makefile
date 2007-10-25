@@ -2,7 +2,7 @@
 # Date created:        28 July 2002
 # Whom:                Tom Carrick <knyghtmare@knyghtmare.com>
 #
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.3 2007/04/25 04:33:44 ctriv Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.4 2007/10/25 17:23:15 laffer1 Exp $
 # $FreeBSD: ports/emulators/dosbox/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An emulator of a PC with DOS
+LICENSE=	gpl2
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
