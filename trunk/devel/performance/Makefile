@@ -2,7 +2,7 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/performance/Makefile,v 1.2 2007/10/25 22:17:41 laffer1 Exp $
 # $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
 #
 
@@ -23,5 +23,8 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 DEFAULT_LIBVERSION=	0.2
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+
+USE_LDCONFIG=	yes
+NO_FILTER_SHLIBS=	yes
 
 .include <bsd.port.mk>
