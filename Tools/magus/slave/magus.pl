@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.3 2007/10/23 03:57:20 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.4 2007/10/24 16:57:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -87,7 +87,7 @@ sub main {
   
   getopts('fv', \%opts);
   
-  deamonize() unless $opts{f};
+  daemonize() unless $opts{f};
       
   report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
   
@@ -223,7 +223,7 @@ sub copy_dep_pkgfiles {
       next;
     }
     
-    die "Port was scheduled as ready to build, but a dependancy had not been built successfuly.\n";
+    die "Port was scheduled as ready to build, but $depend had not been built successfuly.\n";
   }
   
   return 1;
