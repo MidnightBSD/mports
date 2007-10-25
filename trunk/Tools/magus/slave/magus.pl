@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.4 2007/10/24 16:57:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.5 2007/10/25 17:50:05 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -171,6 +171,7 @@ sub run_test {
       chdir($port->origin);
     
       my $test    = Magus::PortTest->new(port => $port, chroot => $chroot);
+      report('info', "Building $port");
       my $results = $test->run;
   
       insert_results($port, $results);
@@ -215,8 +216,6 @@ sub copy_dep_pkgfiles {
   my ($lock, $chroot) = @_;
   
   foreach my $depend ($lock->port->all_depends) {
-    report('debug', "coping $depend package to chroot dir.");
-    
     if ($depend->current_result && ($depend->current_result->summary eq 'pass' || $depend->current_result->summary eq 'warn')) {
       # There should be a package that we can use to install the port.
       copy_pkgfile($depend, $chroot);
@@ -244,7 +243,7 @@ sub copy_pkgfile {
   my $dest = join('/', $chroot->root, $chroot->packages, 'All');
   
   my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$arch/$file $dest";
-  report('debug', "downloading: $cmd");
+  report('debug', "downloading: $file");
   
   my $out = `$cmd 2>&1`;
   
@@ -268,7 +267,7 @@ sub upload_pkgfile {
   my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
           
   my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$arch/$file";
-  report('debug', "uploading: $cmd");
+  report('debug', "uploading: $arch/$file");
   
   my $out = `$cmd 2>&1`;
 
