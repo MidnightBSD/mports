@@ -3,31 +3,28 @@
 # Whom:                 ljo
 #
 # $MidnightBSD$
-# $FreeBSD: ports/math/blas/Makefile,v 1.41 2007/01/23 08:09:59 maho Exp $
+# $FreeBSD: ports/math/blas/Makefile,v 1.44 2007/09/10 03:04:20 maho Exp $
 #
 
 PORTNAME=	blas
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
-MASTER_SITES=	ftp://netlib.bell-labs.com/netlib/blas/ \
+MASTER_SITES=	http://www.netlib.org/blas/ \
 		ftp://ftp.mirrorservice.org/sites/netlib.bell-labs.com/netlib/blas/ \
-		http://www.netlib.org/blas/
+		ftp://netlib.bell-labs.com/netlib/blas/
 DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic Linear Algebra, level 1, 2, and 3
+LICENSE=	unknown
+
+FAKE_OPTS=	trueprefix
 
 USE_LDCONFIG=	yes
-
-NO_WRKSUBDIR=	yes
-WANT_FORTRAN=	yes
-WANT_FORTRAN=	yes #dummy but future use
-BUILD_DEPENDS+= gfortran42:${PORTSDIR}/lang/gcc42
-FC=             gfortran42
-F77=            gfortran42
-MAKE_ENV+=      FC="${FC}" F77="${F77}" FFLAGS="${FFLAGS}"
+USE_FORTRAN=	yes
+WRKSRC=		${WRKDIR}/BLAS
 
 PLIST_FILES=	lib/libblas.a lib/libblas.so lib/libblas.so.2
 
