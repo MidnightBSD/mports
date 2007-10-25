@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.4 2007/08/21 10:35:36 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.5 2007/08/27 20:32:56 seirei Exp $
 # $FreeBSD: ports/deskutils/etoile-panekit/Makefile,v 1.4 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	panekit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -23,7 +24,6 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
-NO_FILTER_SHLIBS=	yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
