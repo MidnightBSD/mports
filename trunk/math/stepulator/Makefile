@@ -2,15 +2,16 @@
 # Date created:         30 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/stepulator/Makefile,v 1.1 2006/09/27 19:53:25 laffer1 Exp $
 # $FreeBSD: ports/math/stepulator/Makefile,v 1.1 2006/09/07 17:18:40 dinoex Exp $
 #
 
 PORTNAME=	stepulator
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.linuks.mine.nu/stepulator/ \
-		http://florida.ethz.ch/ports/distfiles/
+		${MASTER_SITE_GNUSTEP_CH}
 DISTNAME=	${PORTNAME}-gs-${PORTVERSION}
 EXTRACT_SUFX=	.tar.Z
 
@@ -24,6 +25,5 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKEFILE=	GNUmakefile
 
 .include <bsd.port.mk>
