@@ -3,7 +3,7 @@
 # Whom:			michaelnottebrock@gmx.net and lioux@FreeBSD.org
 #
 # $FreeBSD: ports/audio/portaudio/Makefile,v 1.10 2006/05/03 05:14:25 edwin Exp $
-# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.1 2006/11/17 22:53:06 laffer1 Exp $
+# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.2 2007/10/25 22:45:54 laffer1 Exp $
 #
 
 PORTNAME=	portaudio
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable cross-platform Audio API
+LICENSE=	unknown
 
 USE_ZIP=	yes
 USE_GMAKE=	yes
