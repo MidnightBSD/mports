@@ -3,12 +3,12 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/ipw-firmware/Makefile,v 1.20 2006/09/17 01:11:23 kris Exp $
-# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.2 2007/05/20 20:26:25 ctriv Exp $
+# $MidnightBSD: mports/net/ipw-firmware/Makefile,v 1.3 2007/08/01 20:46:41 laffer1 Exp $
 
 PORTNAME?=	ipw-firmware
 RELNAME?=	ipw2100
 PORTVERSION?=	1.3
-PORTREVISION?=	8
+PORTREVISION?=	9
 CATEGORIES=	net sysutils
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	flz/ipw
@@ -60,10 +60,7 @@ MAKE_ENV=	BINDIR="${PREFIX}/sbin" \
 FAKE_SETUP+=	FWDIR=${FAKE_DESTDIR}${FWDIR}
 
 MANCOMPRESSED=	yes
-
-.if !defined(PACKAGE_BUILDING)
 IS_INTERACTIVE=	yes
-.endif
 
 
 .if ${OSVERSION} > ${MIN7OSVERSION}
