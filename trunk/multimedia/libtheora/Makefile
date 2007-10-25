@@ -2,7 +2,7 @@
 # Date created:				09 februari 2003
 # Whom:					Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.1 2006/10/05 00:20:21 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.2 2007/10/25 05:09:58 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libtheora/Makefile,v 1.12 2006/06/29 19:27:59 stefan Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora video codec for the Ogg multimedia streaming system
+LICENSE=	bsd3
 
 LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
