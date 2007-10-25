@@ -2,7 +2,7 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.5 2007/07/30 06:48:15 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.6 2007/07/31 00:37:49 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	portupgrade
 PORTVERSION=	2.1.5
 PORTREVISION=	1
 PORTEPOCH=	2
-CATEGORIES=	sysutils
+CATEGORIES=	ports-mgmt
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://sunner.elcomnet.ru/~sem/
 MASTER_SITE_SUBDIR=	${PORTNAME}
