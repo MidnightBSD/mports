@@ -2,13 +2,13 @@
 # Date created:				20 September 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/dgen-sdl/Makefile,v 1.1 2007/05/05 04:43:27 laffer1 Exp $
 # $FreeBSD: ports/emulators/dgen-sdl/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
 #
 
 PORTNAME=	dgen-sdl
 PORTVERSION=	1.23
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	http://pknet.com/~joe/
 
