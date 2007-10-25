@@ -2,13 +2,13 @@
 # Date created:		Fri Nov 16 02:47:45 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.1 2007/06/10 23:59:40 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift/Makefile,v 1.25 2007/01/27 08:16:35 kris Exp $
 #
 
 PORTNAME=	giFT
 PORTVERSION=	0.11.8.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-p2p
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME:L}
@@ -17,7 +17,7 @@ DISTNAME=	${PORTNAME:L}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An OpenFT, Gnutella and FastTrack p2p network client
 
-LIB_DEPENDS=	vorbis.3:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
 USE_AUTOTOOLS=	libltdl:15 libtool:15
 USE_BZIP2=	yes
