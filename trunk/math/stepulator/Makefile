@@ -2,7 +2,7 @@
 # Date created:         30 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/math/stepulator/Makefile,v 1.1 2006/09/27 19:53:25 laffer1 Exp $
+# $MidnightBSD: mports/math/stepulator/Makefile,v 1.2 2007/10/25 21:49:08 laffer1 Exp $
 # $FreeBSD: ports/math/stepulator/Makefile,v 1.1 2006/09/07 17:18:40 dinoex Exp $
 #
 
@@ -17,13 +17,14 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scientific calculator implementing RPN notation for GNUstep
+LICENSE=	bsd2
 
-WRKSRC=		${WRKDIR}/Stepulator-gs
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
+
+WRKSRC=		${WRKDIR}/Stepulator-gs
 
 .include <bsd.port.mk>
