@@ -2,11 +2,12 @@
 # Date created:         9 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/deskutils/etoile-inspectorkit/Makefile,v 1.1 2007/09/09 00:12:41 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-inspectorkit/Makefile,v 1.2 2007/09/09 08:13:07 seirei Exp $
 #
 
 PORTNAME=	inspectorkit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3
@@ -24,7 +25,6 @@ USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 USE_GNUSTEP_LOCAL_LIBS+= PaneKit:${PANEKIT_PORT}
 USE_GNUSTEP_LOCAL_LIBS+= IconKit:${ICONKIT_PORT}
-#NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
