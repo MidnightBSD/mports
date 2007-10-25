@@ -2,12 +2,12 @@
 # Date created:        28 July 2002
 # Whom:                Tom Carrick <knyghtmare@knyghtmare.com>
 #
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.2 2007/03/09 18:33:12 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.3 2007/04/25 04:33:44 ctriv Exp $
 # $FreeBSD: ports/emulators/dosbox/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
 #
 
 PORTNAME=	dosbox
-PORTVERSION=	0.70
+PORTVERSION=	0.72
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -28,8 +28,6 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}"
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--enable-core-inline
 
-USE_GCC=	3.2+
-
 post-patch:
 	@${REINPLACE_CMD} -e 's#\/usr\/share\/doc\/dosbox#${DOCSDIR}#g' \
 		${WRKSRC}/docs/dosbox.1
@@ -43,6 +41,7 @@ do-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}
 .endif
 
 
