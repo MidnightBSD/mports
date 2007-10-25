@@ -3,12 +3,12 @@
 # Whom:			michaelnottebrock@gmx.net and lioux@FreeBSD.org
 #
 # $FreeBSD: ports/audio/portaudio/Makefile,v 1.10 2006/05/03 05:14:25 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.1 2006/11/17 22:53:06 laffer1 Exp $
 #
 
 PORTNAME=	portaudio
 PORTVERSION=	18.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
 DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/}
@@ -19,8 +19,7 @@ COMMENT=	Portable cross-platform Audio API
 USE_ZIP=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
-NO_FILTER_SHLIBS=yes
+USE_LDCONFIG=	yes
 
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION}
 SHLIB_VERSION=	0
