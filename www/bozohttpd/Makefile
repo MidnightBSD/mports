@@ -2,12 +2,13 @@
 # Date created:         21.03.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/bozohttpd/Makefile,v 1.1 2007/05/08 22:59:16 laffer1 Exp $
 # $FreeBSD: ports/www/bozohttpd/Makefile,v 1.12 2006/07/08 05:16:35 clsung Exp $
 #
 
 PORTNAME=	bozohttpd
 PORTVERSION=	20060517
+PORTREVISON=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.eterna.com.au/bozohttpd/ \
 		${MASTER_SITE_NETBSD}
@@ -15,6 +16,7 @@ MASTER_SITES=	http://www.eterna.com.au/bozohttpd/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The bozotic HTTP server
 
+FAKE_OPTS=	trueprefix
 USE_BZIP2=	YES
 
 .if defined(WITH_HTPASSWD_SUPPORT)
