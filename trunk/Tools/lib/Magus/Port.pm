@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.3 2007/10/24 01:02:44 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -52,25 +52,76 @@ WHERE
     (
       (name NOT IN (SELECT port FROM depends)) 
       OR 
-      (name NOT IN (SELECT port FROM depends WHERE dependency NOT IN (SELECT port FROM results WHERE arch=? AND (summary="pass" OR summary="warn"))))
+      (name NOT IN (
+        SELECT port FROM depends 
+        WHERE 
+          dependency NOT IN (SELECT port FROM results WHERE arch=? AND (summary="pass" OR summary="warn"))
+          AND
+          dependency NOT IN (SELECT port FROM locks WHERE arch=?)
+        )
+      )
     )
 END_OF_SQL
+
+=head2 Magus::Port->get_ready_port;
+
+Return a port that is ready to be tested for the current arch.
+Ready is defined as:
+
+=over 4
+
+=item 1
+
+The port is unlocked
+
+=item 2
+
+The port has not been tested.
+
+=item 3
+
+The port's depends are all tested and unlocked.
+
+=back
+
+=cut
 
 sub get_ready_port {
   my $arch = $Magus::Machine->arch;
   
-  return shift->search_ready_ports(($Magus::Machine->arch) x 3)->next;
+  return shift->search_ready_ports(($Magus::Machine->arch) x 4)->next;
 }
   
+
+=head2 $port->origin
+
+Return the absolute directory where this port lives, such as:
+  
+  /usr/mports/foo/bar
+  
+=cut  
 
 sub origin {
   return join('/', $Mport::Globals::ROOT, $_[0]->name);
 }
 
+
+=head2 $port->current_result
+
+Returns the result for the current version and arch, if any.
+
+=cut
+
 sub current_result {
   my ($self) = @_;
   return $self->results(arch => $Magus::Machine->arch, version => $self->version)->next;
 }
+
+=head2 $port->all_depends
+
+Returns a list of every port in this port's depends tree.
+
+=cut 
 
 sub all_depends {
   my ($self) = @_;
