@@ -1,24 +1,25 @@
-# New ports collection makefile for: nwcc
+# New ports collection makefile for: nwcc-devel
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc-devel/Makefile,v 1.1 2007/08/22 04:03:45 laffer1 Exp $
+# $MidnightBSD: mports/lang/nwcc-devel/Makefile,v 1.2 2007/08/22 04:05:58 laffer1 Exp $
 #
 
 PORTNAME=	nwcc-devel
 PORTVERSION=	0.7.3
+PORTREVISION=	1
 CATEGORIES=	lang
 DISTFILES=	nwcc_unstable-082107.tar.gz
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	nwcc
 
-MAINTAINER=	stevan_tiefert_midnight@yahoo.de
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A BSD-licensed C-compiler.
 LICENSE=	bsd2
 
 CONFLICTS=	nwcc-*
 
-WRKSRC=		work/nwcc_0.7.3
+WRKSRC=		${WRKDIR}/nwcc_0.7.3
 HAS_CONFIGURE=	yes
 ALL_TARGET=	nwcc
 
