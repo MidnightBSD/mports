@@ -2,7 +2,7 @@
 # Date created:		18 November 1994
 # Whom:			asami
 #
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.1 2006/09/24 01:00:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.2 2007/10/25 04:33:40 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/Xaw3d/Makefile,v 1.47 2006/08/15 01:13:35 clsung Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ftp.visi.com/users/hawkeyd/X/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3-D Athena Widget set that looks like Motif
+LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
