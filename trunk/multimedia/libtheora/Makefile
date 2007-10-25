@@ -2,12 +2,13 @@
 # Date created:				09 februari 2003
 # Whom:					Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.1 2006/10/05 00:20:21 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libtheora/Makefile,v 1.12 2006/06/29 19:27:59 stefan Exp $
 #
 
 PORTNAME=	libtheora
 DISTVERSION=	1.0alpha6
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 		http://distfiles.master.finkmirrors.net/
@@ -15,11 +16,10 @@ MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Theora video codec for the Ogg multimedia streaming system
 
-LIB_DEPENDS=	vorbis.3:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
 USE_BZIP2=	yes
-USE_GCC=	3.4+
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
 		LDFLAGS="-L${LOCALBASE}/lib" \
