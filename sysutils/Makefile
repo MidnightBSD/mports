@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.54 2007/10/24 03:03:10 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.55 2007/10/27 03:49:51 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -39,6 +39,7 @@
     SUBDIR += memtest
     SUBDIR += memtest86
     SUBDIR += mixer
+    SUBDIR += nautilus-cd-burner
     SUBDIR += nodebrain
     SUBDIR += nvclock
     SUBDIR += obliterate
