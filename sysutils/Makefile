@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.53 2007/10/23 21:06:50 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.54 2007/10/24 03:03:10 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -6,6 +6,7 @@
     SUBDIR += 915resolution
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdstats
+    SUBDIR += cdrdao
     SUBDIR += cdrtools
     SUBDIR += consolekit
     SUBDIR += coreutils
