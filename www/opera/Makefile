@@ -2,13 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.12 2007/10/19 23:58:45 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.13 2007/10/20 15:44:17 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -47,7 +47,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}-${OPERA_BUILD}
 
 MAN1=		opera.1
 NO_BUILD=	yes
-NO_FILTER_SHLIBS=yes
 
 OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on \
 		SHARED	"Use a shared QT library (instead of static)" 	on

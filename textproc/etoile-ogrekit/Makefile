@@ -2,12 +2,13 @@
 # Date created:         14 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.3 2007/08/20 21:08:42 laffer1 Exp $
+# $MidnightBSD: mports/textproc/etoile-ogrekit/Makefile,v 1.4 2007/08/27 20:03:01 seirei Exp $
 # $FreeBSD: ports/textproc/etoile-ogrekit/Makefile,v 1.5 2007/01/31 18:18:09 dinoex Exp $
 #
 
 PORTNAME=	ogrekit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd2
@@ -25,7 +26,6 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
-NO_FILTER_SHLIBS=	yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/

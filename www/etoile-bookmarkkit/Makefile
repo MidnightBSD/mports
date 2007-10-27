@@ -2,12 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-bookmarkkit/Makefile,v 1.4 2007/08/22 23:46:51 seirei Exp $
+# $MidnightBSD: mports/www/etoile-bookmarkkit/Makefile,v 1.5 2007/08/27 20:24:49 seirei Exp $
 # $FreeBSD: ports/www/etoile-bookmarkkit/Makefile,v 1.6 2007/01/31 18:18:09 dinoex Exp $
 #
 
 PORTNAME=	bookmarkkit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	www gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -24,7 +25,6 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LOCAL_LIBS+=	CollectionKit:${COLLECTIONKIT_PORT}
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
-NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/

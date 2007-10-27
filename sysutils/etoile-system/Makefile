@@ -2,13 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/etoile-system/Makefile,v 1.4 2007/08/27 20:53:02 seirei Exp $
+# $MidnightBSD: mports/sysutils/etoile-system/Makefile,v 1.5 2007/09/16 15:46:59 seirei Exp $
 # $FreeBSD: ports/sysutils/etoile-system/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	system
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl
@@ -27,7 +27,6 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 #MAKE_ENV+=      GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
