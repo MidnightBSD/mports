@@ -2,11 +2,12 @@
 # Date created:         25 Aug 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/graphics/etoile-distributedview/Makefile,v 1.1 2007/08/27 18:54:20 seirei Exp $
+# $MidnightBSD: mports/graphics/etoile-distributedview/Makefile,v 1.2 2007/08/27 20:46:55 seirei Exp $
 #
 
 PORTNAME=	distributedview
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        gpl2
@@ -24,7 +25,6 @@ USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
-#NO_FILTER_SHLIBS=	yes
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
