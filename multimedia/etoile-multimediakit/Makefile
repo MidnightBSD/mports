@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.1 2007/03/13 06:50:44 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.2 2007/08/20 07:24:54 laffer1 Exp $
 # $FreeBSD: ports/multimedia/etoile-multimediakit/Makefile,v 1.6 2007/03/04 21:22:27 dinoex Exp $
 #
 
 PORTNAME=	multimediakit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
@@ -27,7 +28,6 @@ USE_GNUSTEP_LOCAL_APPS+=	Mplayer:${GNUSTEP_MPLAYER_PORT}
 DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 USE_XLIB=	yes
-NO_FILTER_SHLIBS=       yes
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
