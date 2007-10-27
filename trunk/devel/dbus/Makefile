@@ -2,13 +2,13 @@
 # Date Created:			22 June 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $FreeBSD: ports/devel/dbus/Makefile,v 1.65 2006/12/14 20:33:12 marcus Exp $
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.1 2007/02/19 22:29:09 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/devel/dbus/Makefile,v 1.67 2007/05/19 20:02:19 flz Exp $
 #
 
 PORTNAME=	dbus
 PORTVERSION?=	1.0.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -57,5 +57,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
 		${WRKSRC}/dbus/Makefile.in \
 		${WRKSRC}/tools/Makefile.in
+
+.if !defined(DBUS_SLAVE)
+post-install:
+.if !defined(PACKAGE_BUILDING)
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.endif
+	${MKDIR} ${X11BASE}/etc/dbus-1/system.d
+	${MKDIR} ${X11BASE}/share/dbus-1/services
+.endif
 
 .include <bsd.port.post.mk>
