@@ -2,12 +2,13 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.4 2007/03/13 20:23:23 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.5 2007/04/19 00:04:44 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.12.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -42,7 +43,6 @@ USE_XLIB=	yes
 EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.patch
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
 BREAKS_IF_PEDANTIC=	yes
-NO_FILTER_SHLIBS=	yes
 
 PLIST_SUB+=	BASEVERSION=${PORTVERSION:C/[.][0-9]*$//1}
 
