@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.166 2007/10/23 21:01:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.167 2007/10/24 02:55:48 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -104,6 +104,7 @@
     SUBDIR += nasm
     SUBDIR += ncurses
     SUBDIR += nspr
+    SUBDIR += oaf
     SUBDIR += objcunit
     SUBDIR += oniguruma4
     SUBDIR += oniguruma5
