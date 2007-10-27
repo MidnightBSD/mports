@@ -3,13 +3,13 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.8 2007/08/14 20:17:30 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.9 2007/10/17 13:49:14 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
 PORTNAME=		fc
 PORTVERSION=		4
-PORTREVISION=		10
+PORTREVISION=		11
 CATEGORIES=		emulators linux
 MASTER_SITES=		${MASTER_SITE_FEDORA_LINUX}
 MASTER_SITE_SUBDIR=	${PORTVERSION}/${LINUX_RPM_ARCH}/os/Fedora/RPMS \
@@ -109,7 +109,6 @@ CONFLICTS=		linux_base-7* linux_base-deb* linux_base-gentoo* \
 ONLY_FOR_ARCHS=		i386 amd64
 LINUX_RPM_ARCH=		i386
 USE_LINUX_PREFIX=	yes
-NO_FILTER_SHLIBS=	yes
 MD5_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 PLIST_SUB=		GLIBCVER="2.3.6"
 
@@ -226,8 +225,8 @@ do-install:
 
 
 post-install:
-	${MKDIR} ${WRKSRC}/../fake-inst-i386${LOCALBASE}/etc/mtree
-	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${WRKSRC}/../fake-inst-i386${LOCALBASE}/etc/mtree
+	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
+	${INSTALL_DATA} ${FILESDIR}/bsd.linux-compat.mtree ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
 
 
 
