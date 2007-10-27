@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/dbus/files/dbus.in,v 1.11 2006/10/31 09:35:00 jylefort Exp $
 #
 # PROVIDE: dbus
@@ -11,7 +12,7 @@
 #
 
 . %%RC_SUBR%%
-#. %%GNOME_SUBR%%
+. %%GNOME_SUBR%%
 
 dbus_enable=${dbus_enable-${gnome_enable}}
 dbus_flags=${dbus_flags-"--system"}
