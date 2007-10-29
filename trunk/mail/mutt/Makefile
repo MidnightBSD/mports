@@ -3,19 +3,21 @@
 # Date created:			  Thur July 25, 1996
 # Whom:				  David O'Brien (obrien@NUXI.com)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/mutt/Makefile,v 1.1 2006/09/24 12:56:34 laffer1 Exp $
 # $FreeBSD: ports/mail/mutt/Makefile,v 1.172 2006/07/18 14:44:03 erwin Exp $
 #
 
 PORTNAME=	mutt
-PORTVERSION=	1.4.2.2
+PORTVERSION=	1.4.2.3
 PORTREVISION=	0
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
 		ftp://ftp.demon.co.uk/pub/mirrors/mutt/ \
 		ftp://ftp.parodius.com/pub/mutt/
-DISTFILES=	${DISTNAME}i${EXTRACT_SUFX}
+
+PATCHVERSION?=	${PORTVERSION}
+PATCHVERSION=	1.4.2.2
 
 PATCH_SITES=	http://www.mutt.org.ua/download/mutt-${PORTVERSION}/:vvv \
 		http://www2.mutt.org.ua/download/mutt-${PORTVERSION}/:vvv \
@@ -41,9 +43,6 @@ RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell \
 .if defined (MUTT_LITE)
 PKGNAMESUFFIX=	-lite
 WITH_SGML_DOCS:=no
-.elif ${MACHINE_ARCH} != "alpha"
-#  coredump in sgmls
-WITH_SGML_DOCS?=yes
 .endif
 
 .if !defined(WITHOUT_NLS)
@@ -79,7 +78,7 @@ DIST_SUBDIR=	mutt
 WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	automake:19 autoconf:259
+USE_AUTOTOOLS=	automake:19 autoconf:261
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd6.0
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CC="${CC} -I${LOCALBASE}/include" LDFLAGS="${LDFLAGS}"
@@ -188,12 +187,10 @@ post-install:
 
 .if defined(WITH_MUTT_XFACE)
 	@${ECHO} ""
-	@${ECHO} "************************************************************"
 	@${ECHO} "  To enable the XFACE support in mutt you also have to add"
 	@${ECHO} "        set xface=yes"
 	@${ECHO} "  to your ~/.muttrc"
 	@${ECHO} "  Additional information is provided by news/slrnface"
-	@${ECHO} "************************************************************"
 	@${ECHO} ""
 .endif
 
