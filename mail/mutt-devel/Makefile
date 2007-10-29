@@ -3,8 +3,8 @@
 # Date created:			  6 Jun 2001
 # Whom:				  Udo Schweigert
 #
-# $MidnightBSD: mports/mail/mutt-devel/Makefile,v 1.1 2006/09/25 15:53:50 laffer1 Exp $
-# $FreeBSD: ports/mail/mutt-devel/Makefile,v 1.272 2006/09/01 13:46:21 garga Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/mail/mutt-devel/Makefile,v 1.289 2007/10/03 23:34:15 edwin Exp $
 #
 # There are several knobs which are used to define additions to the core
 # mutt functionality.
@@ -21,9 +21,9 @@
 # The two most important knobs are:
 #
 # In general you can choose between using ncurses (WITH_MUTT_NCURSES)
-# and SLANG (WITH_MUTT_SLANG) which is the default. Note that you may
-# have to set the variables COLORTERM=yes and COLORFGBG="color1;color2" in your
-# environment to get slang function properly.
+# and SLANG (WITH_MUTT_SLANG). Note that you may have to set the variables
+# COLORTERM=yes and COLORFGBG="color1;color2" in your environment to get slang
+# function properly.
 # The default version for slang is 1.x. Define WITH_MUTT_SLANG2 if you want
 # to use the slang version 2.x
 # The default version for ncurses is that which comes with the operating
@@ -102,13 +102,15 @@
 # If you want to enable the reverse_reply option define:
 #  WITH_MUTT_REVERSE_REPLY_PATCH
 #
-# If you want to enable the assumed_charset option define:
-#  WITH_MUTT_ASSUMED_CHARSET_PATCH
+# If you want to enable the `greeting' option define:
+#  WITH_MUTT_GREETING_PATCH
+#
+# If you want to enable the internal SMTP relay support define:
+#  WITH_MUTT_SMTP
 #
 
 PORTNAME=	mutt-devel
-PORTVERSION=	1.5.13
-PORTREVISION?=	0
+PORTVERSION=	1.5.16
 CATEGORIES+=	mail ipv6
 .if defined(WITH_MUTT_NNTP)
 CATEGORIES+=	news
@@ -137,7 +139,9 @@ PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 		http://cedricduval.free.fr/mutt/patches/download/:cd \
 		http://home.woolridge.ca/mutt/patches/:dw \
 		http://www.spinnaker.de/mutt/compressed/:rr \
-		http://www.emaillab.org/mutt/${AC_PATCH_VERSION}/:jp
+		http://www.emaillab.org/mutt/${AC_PATCH_VERSION}/:jp \
+		http://vc.org.ua/mutt/:vc \
+		http://yz.kiev.ua/mutt/:vc
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The Mongrel of Mail User Agents (development version)
@@ -157,7 +161,7 @@ CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
 .endif
 
-USE_AUTOTOOLS=	automake:19 autoconf:259
+USE_AUTOTOOLS=	automake:19 autoconf:261
 USE_OPENSSL=	yes
 
 PLIST=		${WRKDIR}/PLIST
@@ -191,6 +195,9 @@ DW_MBOX_PATCH_VERSION=	${DW_PATCH_VERSION}
 .if !defined(AC_PATCH_VERSION)
 AC_PATCH_VERSION=	${PORTVERSION}
 .endif
+.if !defined(VC_PATCH_VERSION)
+VC_PATCH_VERSION=	${PORTVERSION}
+.endif
 .if defined(WITH_MUTT_MAILDIR_HEADER_CACHE)
 WITH_MUTT_IMAP_HEADER_CACHE=	yes
 .endif
@@ -199,11 +206,7 @@ WITH_MUTT_IMAP_HEADER_CACHE=	yes
 IGNORE=	cannot install: the WITH_MUTT_SIDEBAR_PATCH and WITH_MUTT_NNTP are not compatible
 .endif
 .endif
-.if defined(WITH_MUTT_ASSUMED_CHARSET_PATCH)
-.if defined(WITH_MUTT_NNTP)
-IGNORE=	cannot install: the WITH_MUTT_ASSUMED_CHARSET_PATCH and WITH_MUTT_NNTP are not compatible
-.endif
-.endif
+SLANG_IS_DEFAULT=	yes
 
 .if defined (MUTT_LITE)
 WITHOUT_MUTT_XML=			yes
@@ -250,7 +253,7 @@ RUN_DEPENDS+=	urlview:${PORTSDIR}/textproc/urlview
 .if defined(WITH_MUTT_NCURSES_PORT)
 WITH_MUTT_NCURSES=	yes
 .endif
-.if defined(WITH_MUTT_SLANG)
+.if defined(WITH_MUTT_SLANG) || defined(WITH_SLANG)
 MUTT_USES_SLANG=	yes
 MUTT_USES_SLANG1=	yes
 .endif
@@ -262,8 +265,12 @@ MUTT_USES_SLANG2=	yes
 MUTT_USES_NCURSES=	yes
 .endif
 .if !defined(MUTT_USES_SLANG) && !defined(WITHOUT_MUTT_SLANG) && !defined(MUTT_USES_NCURSES)
+.if defined(SLANG_IS_DEFAULT)
 MUTT_USES_SLANG=	yes
 MUTT_USES_SLANG1=	yes
+.elif defined(NCURSES_IS_DEFAULT)
+MUTT_USES_NCURSES=	yes
+.endif
 .endif
 .if defined(WITHOUT_MUTT_SGMLFORMAT)
 XML_USED=	no
@@ -300,8 +307,7 @@ LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
 LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 .endif
 .if defined(WITH_MUTT_IMAP_HEADER_CACHE)
-LIB_DEPENDS+=	db-4.2.2:${PORTSDIR}/databases/db42
-CFLAGS+=	-I${LOCALBASE}/include/db42
+USE_BDB=	42+
 .endif
 .if exists(${LOCALBASE}/lib/libidn.so)
 WITH_MUTT_IDN=	yes
@@ -317,6 +323,7 @@ post-patch::
 	@${PATCH} ${PATCH_ARGS} < ${PATCHDIR}/extra-patch-smime-outlook
 .endif
 .if defined(WITH_MUTT_SIGNATURE_MENU)
+IGNORE=	The WITH_MUTT_SIGNATURE_MENU does not work at the moment.
 XML_NEEDED=	yes
 post-patch::
 	@${PATCH} ${PATCH_ARGS} -p1 < ${PATCHDIR}/extra-patch-signature-menu
@@ -374,25 +381,39 @@ CONFIGURE_ARGS+=	--enable-gpgme
 .else
 CONFIGURE_ARGS+=	--disable-gpgme
 .endif
+.if !defined(WITHOUT_GSSAPI)
+.if exists(${LOCALBASE}/bin/krb5-config)
+LIB_DEPENDS+=		gssapi_krb5:${PORTSDIR}/security/krb5
+CONFIGURE_ARGS+=	--with-gss=${LOCALBASE}
+.elif (defined(MAKE_KERBEROS5)) || exists(/usr/lib/libkrb5.a)
+CONFIGURE_ARGS+=	--with-gss
+USE_KRB5_SYS=YES
+.endif
+.endif
+.if defined(WITH_MUTT_SMTP)
+CONFIGURE_ARGS+=	--enable-smtp
+.else
+CONFIGURE_ARGS+=	--disable-smtp
+.endif
 
 PATCH_DIST_STRIP=	-p1
 
 .if ! defined (WITHOUT_MUTT_COMPRESSED_FOLDERS)
-DISTFILES+=	patch-${RR_PATCH_VERSION}.rr.compressed.gz:vvv
+DISTFILES+=	patch-${RR_PATCH_VERSION}.rr.compressed.2.gz:vvv
 CONFIGURE_ARGS+=	--enable-compressed
 XML_NEEDED=	yes
 pre-patch::
-	@${GUNZIP_CMD} -c ${DISTDIR}/${DIST_SUBDIR}/patch-${RR_PATCH_VERSION}.rr.compressed.gz > ${WRKDIR}/patch-compressed
+	@${GUNZIP_CMD} -c ${DISTDIR}/${DIST_SUBDIR}/patch-${RR_PATCH_VERSION}.rr.compressed.2.gz > ${WRKDIR}/patch-compressed
 	@${REINPLACE_CMD} -E '/^diff.*\/doc\/manual.txt$$/,/^diff/d' \
 		 ${WRKDIR}/patch-compressed
 	@${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/patch-compressed
 .endif
 .if defined(WITH_MUTT_NNTP)
-DISTFILES+=	patch-${VVV_PATCH_VERSION}.vvv.nntp.gz:vvv
+DISTFILES+=	patch-${VVV_PATCH_VERSION}.vvv.nntp.3.gz:vvv
 CONFIGURE_ARGS+=	--enable-nntp
 XML_NEEDED=	yes
 pre-patch::
-	@${GUNZIP_CMD} -c ${DISTDIR}/${DIST_SUBDIR}/patch-${VVV_PATCH_VERSION}.vvv.nntp.gz > ${WRKDIR}/patch-nntp
+	@${GUNZIP_CMD} -c ${DISTDIR}/${DIST_SUBDIR}/patch-${VVV_PATCH_VERSION}.vvv.nntp.3.gz > ${WRKDIR}/patch-nntp
 	@${REINPLACE_CMD} -E '/^diff.*\/doc\/manual.txt$$/,/^diff/d' \
 		${WRKDIR}/patch-nntp
 	@${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/patch-nntp
@@ -415,7 +436,7 @@ pre-patch::
 PATCHFILES+=	p0-patch-${DW_MBOX_PATCH_VERSION}.dw.mbox-hook.1:dw
 .endif
 .if defined(WITH_MUTT_SIDEBAR_PATCH)
-SIDEBAR_PATCH=	patch-1.5.13.sidebar.20060828.txt
+SIDEBAR_PATCH=	patch-1.5.16.sidebar.20070704.txt
 DISTFILES+=	${SIDEBAR_PATCH}:tchan
 XML_NEEDED=	yes
 pre-patch::
@@ -424,8 +445,8 @@ pre-patch::
 		 ${WRKDIR}/patch-sidebar
 	@${PATCH} ${PATCH_ARGS} -p1 < ${WRKDIR}/patch-sidebar
 .endif
-.if defined(WITH_MUTT_ASSUMED_CHARSET_PATCH)
-PATCHFILES+=	patch-${AC_PATCH_VERSION}.tt.assumed_charset.2.gz:jp
+.if defined(WITH_MUTT_GREETING_PATCH)
+PATCHFILES+=	mutt-${VC_PATCH_VERSION}.vc.greeting:vc
 .endif
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
@@ -442,6 +463,11 @@ post-patch::
 
 pre-configure::
 	@(cd ${WRKSRC}; ${SETENV} ${AUTOMAKE_ENV} ${ACLOCAL} -I m4)
+.if defined(USE_KRB5_SYS)
+	@${ECHO_CMD} "#define HAVE_HEIMDAL" >> ${WRKSRC}/config.h.in
+	@${REINPLACE_CMD} -e 's|<gssapi/gssapi\.h>|<gssapi.h>|' \
+		${WRKSRC}/imap/auth_gss.c
+.endif
 
 .if defined(MUTT_SLAVE_HTML_PAGES)
 SCRIPTS_ENV+=	MUTT_SLAVE_HTML_PAGES="${MUTT_SLAVE_HTML_PAGES}"
@@ -513,8 +539,8 @@ post-patch::
 	@${PATCH} ${PATCH_ARGS} < ${PATCHDIR}/extra-patch-doc-xml
 .endif
 
-pre-install:
-	@${SETENV} ${SCRIPTS_ENV} ${SH} ${SCRIPTDIR}/generate-plist > ${PLIST}
+#pre-install:
+#	@${SETENV} ${SCRIPTS_ENV} ${SH} ${SCRIPTDIR}/generate-plist > ${PLIST}
 
 post-install:
 	@${ECHO} > ${PKGMESSAGE}

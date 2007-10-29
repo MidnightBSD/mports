@@ -1,7 +1,7 @@
 --- contrib/Makefile.am.orig	Tue Jul 18 20:04:14 2006
 +++ contrib/Makefile.am	Wed Aug 30 16:05:33 2006
 @@ -1,6 +1,7 @@
- # $Id: patch-examples,v 1.1 2006-09-25 15:53:50 laffer1 Exp $
+ # $Id: patch-examples,v 1.2 2007-10-29 18:38:03 laffer1 Exp $
  
  subdir = contrib
 +samplesdir = @samplesdir@
@@ -48,14 +48,14 @@
    ** (S/MIME only)
    */
    { "smime_verify_command", 	DT_STR, R_NONE, UL &SmimeVerifyCommand, 0},
---- Makefile.am.orig	Wed Aug 30 14:30:28 2006
-+++ Makefile.am	Wed Aug 30 14:31:49 2006
+--- Makefile.am.orig	Mon Apr  9 15:21:50 2007
++++ Makefile.am	Mon Apr  9 15:24:06 2007
 @@ -13,7 +13,7 @@
  
  bin_SCRIPTS = muttbug flea @SMIMEAUX_TARGET@
  
--BUILT_SOURCES = keymap_defs.h patchlist.c
-+BUILT_SOURCES = keymap_defs.h patchlist.c Muttrc
+-BUILT_SOURCES = keymap_defs.h patchlist.c reldate.h hcversion.h
++BUILT_SOURCES = keymap_defs.h patchlist.c reldate.h hcversion.h Muttrc
  
  bin_PROGRAMS = mutt @DOTLOCK_TARGET@ @PGPAUX_TARGET@
  mutt_SOURCES = $(BUILT_SOURCES) \
@@ -77,27 +77,27 @@
  
  into your system's global Muttrc, which normally resides in /etc or
  /usr/local/etc.
---- doc/manual.txt.orig	Mon Aug 14 16:10:04 2006
-+++ doc/manual.txt	Wed Aug 30 14:34:46 2006
-@@ -5971,8 +5971,8 @@
+--- doc/manual.txt.orig	Fri Feb 23 18:15:51 2007
++++ doc/manual.txt	Wed Feb 28 14:30:48 2007
+@@ -6219,8 +6219,8 @@
  
-    For examples on how to configure these formats for the various versions of
-    PGP which are floating around, see the pgp*.rc and gpg.rc files in the
--   samples/ subdirectory which has been installed on your system alongside the
--   documentation. (PGP only)
-+   share/examples/mutt/ subdirectory which has been installed on your system
-+   alongside the documentation. (PGP only)
+    For examples on how to configure these formats for the various
+    versions of PGP which are floating around, see the pgp*.rc and gpg.rc
+-   files in the samples/ subdirectory which has been installed on your
+-   system alongside the documentation. (PGP only)
++   files in the share/examples/mutt/ subdirectory which has been installed
++   on your system alongside the documentation. (PGP only)
  
  3.163. pgp_getkeys_command
  
-@@ -6164,8 +6164,8 @@
-           "-CAfile $smime_ca_location".
+@@ -6418,8 +6418,8 @@
+           $$ssmmiimmee__ccaa__llooccaattiioonn" or "-CAfile $$ssmmiimmee__ccaa__llooccaattiioonn".
  
-    For examples on how to configure these formats, see the smime.rc in the
--   samples/ subdirectory which has been installed on your system alongside the
--   documentation. (S/MIME only)
-+   share/examples/mutt/ subdirectory which has been installed on your system
-+   alongside the documentation. (S/MIME only)
+    For examples on how to configure these formats, see the smime.rc in
+-   the samples/ subdirectory which has been installed on your system
+-   alongside the documentation. (S/MIME only)
++   the share/examples/mutt/ subdirectory which has been installed on your
++   system alongside the documentation. (S/MIME only)
  
  3.182. smime_verify_command
  
