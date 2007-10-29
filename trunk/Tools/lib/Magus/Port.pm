@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.5 2007/10/25 18:14:27 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.6 2007/10/29 06:56:29 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -144,6 +144,89 @@ sub _walk {
   }
   
 }
+
+
+=head2 $port->set_result_pass($phase => $name => $message);
+
+A convience method for setting a port as passed.  Creates one subresult of
+type C<$name>, with message C<$message> in phase C<$phase>.
+
+=cut
+
+sub set_result_pass {
+  my ($self, $phase, $name, $msg) = @_;
+  
+  $self->_set_result('pass', $phase, $name, $msg);
+}
+
+
+=head2 $port->set_result_skip($phase => $name => $message);
+
+A convience method for setting a port as skipped.  Creates one subresult of
+type C<$name>, with message C<$message> in phase C<$phase>.
+
+=cut
+
+sub set_result_skip {
+  my ($self, $phase, $name, $msg) = @_;
+  
+  $self->_set_result('skip', $phase, $name, $msg);
+}
+
+
+=head2 $port->set_result_internal($phase => $name => $message);
+
+A convience method for setting a port as internalled.  Creates one subresult of
+type C<$name>, with message C<$message> in phase C<$phase>.
+
+=cut
+
+sub set_result_internal {
+  my ($self, $phase, $name, $msg) = @_;
+  
+  $self->_set_result('internal', $phase, $name, $msg);
+}
+
+
+=head2 $port->set_result_fail($phase, $name => $message);
+
+A convience method for setting a port as failed.  Creates one subresult of
+type C<$name>, with message C<$message> in phase C<$phase>.
+
+=cut
+
+sub set_result_fail {
+  my ($self, $phase, $name, $msg) = @_;
+  
+  $self->_set_result('fail', $phase, $name, $msg);
+}
+
+
+
+sub _set_result {
+  my ($self, $summary, $phase, $name, $msg) = @_;
+  
+  my $result;
+  
+  if ($result = $self->current_result) {
+    $result->delete;
+  }
+  
+  $result = $self->add_to_results({
+    version => $self->version,
+    arch    => $Magus::Machine->arch,
+    machine => $Magus::Machine,
+    summary => $summary,
+  });
+  
+  $result->add_to_subresults({
+    type  => $summary,
+    name  => $name,
+    msg   => $msg,
+    phase => $phase,
+  });
+}
+
 
 
 
