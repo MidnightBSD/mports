@@ -24,7 +24,7 @@ package Magus::Cluster;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.3 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Cluster.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -40,7 +40,10 @@ sub halt {
 }
 
 sub resume {
-  $_->complete(1) for Magus::Tasks->search(type => wait);
+  foreach my $task (Magus::Task->search(type => 'Wait', started => 1)) {
+    $task->completed(1);
+    $task->update;
+  }
 }
 
 
@@ -53,20 +56,28 @@ sub run_task {
   
   while ($running_count > 0) {
     $running_count = Magus::Task->search(type => $type, complete => 0)->count;  
+    sleep(5);
   }
 }
   
    
-sub _send_task {
+sub _send_tasks {
   my ($type) = @_;
+
+  my $count = 0;  
+  foreach my $machine (Magus::Machine->retrieve_all) {
+    next if $machine->id == $Magus::Machine->id;
   
-  foreach my $machine (Magus::Machine->retrive_all) {
-    next if $machine eq $Magus::Machine;
-    
     Magus::Task->insert({
       machine => $machine,
       type    => $type
     });
+    
+    $count++;
+  }
+  
+  while (Magus::Task->search(type => $type, started => 1)->count != $count) {
+    sleep(1);
   }
 }
 
