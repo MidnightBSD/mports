@@ -2,12 +2,12 @@
 # Date created:				2 July 2000
 # Whom:					Kelly Yancey <kbyanc@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/cclient/Makefile,v 1.1 2007/01/20 16:09:40 wintellect Exp $
-# $FreeBSD: ports/mail/cclient/Makefile,v 1.35 2006/05/10 22:36:47 edwin Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/mail/cclient/Makefile,v 1.41 2007/10/01 04:03:01 marcus Exp $
 #
 
 PORTNAME=	cclient
-PORTVERSION=	2004g
+PORTVERSION=	2006j
 PORTEPOCH=	1
 CATEGORIES=	mail devel ipv6
 MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
@@ -17,15 +17,23 @@ MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	. old
 DISTNAME=	imap-${PORTVERSION}
 EXTRACT_SUFX=	.tar.Z
+DISTVERSIONSUFFIX=	2
+DISTFILES=	${DISTNAME}${DISTVERSIONSUFFIX}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mark Crispin's C-client mail access routines
-# '
 
-USE_LDONFIG=	yes
+OPTIONS=	SSL "Compile with SSL support" on \
+		SSL_AND_PLAINTEXT "Allow plain text passwords and SSL" off \
+		IPV6 "Support IPv6" on \
+		MBX_DEFAULT "Use MBX as default mailbox format" off
+
+.include <bsd.port.pre.mk>
+
+USE_LDCONFIG=	yes
 ALL_TARGET=	bsf
 .if defined(WITHOUT_SSL)
-MAKE_ARGS+=	SSLTYPE=none
+MAKE_ARGS+=	SSLTYPE=none SSLDIR=${OPENSSLBASE}
 .else
 USE_OPENSSL=	yes
 .if defined(WITH_SSL_AND_PLAINTEXT)
@@ -35,23 +43,13 @@ MAKE_ARGS+=	SSLTYPE=unix.nopwd
 .endif
 .endif
 
-.if !defined(WITHOUT_SSL)
-PKGMESSAGE=	${FILESDIR}/pkg-message
-.endif
-
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
 SHLIBBASE=	c-client4
-SHLIBMAJ=	8
+SHLIBMAJ=	9
 SHLIBNAME=	lib${SHLIBBASE}.so.${SHLIBMAJ}
 MAKE_ENV=	SHLIBNAME=${SHLIBNAME} SHLIBBASE=${SHLIBBASE}
 PLIST_SUB=	SHLIBNAME=${SHLIBNAME} SHLIBBASE=${SHLIBBASE}
-
-.include <bsd.port.pre.mk>
-
-.if ${PORTOBJFORMAT} == "aout"
-SHLIBNAME=	lib${SHLIBBASE}.so.${SHLIBMAJ}.0
-.endif
 
 post-patch:
 .for file in Makefile src/osdep/unix/Makefile src/osdep/unix/Makefile.gss
@@ -63,14 +61,19 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|^IP=4|IP=6|" ${WRKSRC}/Makefile \
 		${WRKSRC}/src/osdep/unix/Makefile
 .endif
+.if defined(WITH_MBX_DEFAULT)
+	@${REINPLACE_CMD} -e "s|^CREATEPROTO=unixproto|CREATEPROTO=mbxproto|" \
+		${WRKSRC}/src/osdep/unix/Makefile
+.endif
 
 post-configure:
 	@${ECHO_MSG} ">> The c-client shared library will be named ${SHLIBNAME}"
 
-HEADERS=	c-client.h dummy.h env.h env_unix.h fdstring.h flstring.h \
-		fs.h ftl.h imap4r1.h linkage.c linkage.h mail.h mbx.h mh.h \
-		misc.h mx.h netmsg.h newsrc.h nl.h nntp.h osdep.h pseudo.h \
-		rfc822.h smtp.h sslio.h tcp.h tcp_unix.h unix.h utf8.h
+HEADERS=	c-client.h dummy.h env.h env_unix.h fdstring.h flockcyg.h \
+		flocksim.h flstring.h fs.h ftl.h imap4r1.h linkage.c linkage.h \
+		mail.h misc.h netmsg.h newsrc.h nl.h nntp.h osdep.h pseudo.h \
+		rfc822.h smtp.h sslio.h tcp.h tcp_unix.h unix.h utf8.h \
+		utf8aux.h
 PORTREV_H=	${WRKDIR}/portrevision.h
 
 post-build:
@@ -91,8 +94,18 @@ do-install:
 	${LN} -sf ${SHLIBNAME} ${PREFIX}/lib/lib${SHLIBBASE}.so
 	${INSTALL_DATA} ${WRKSRC}/c-client/c-client.a \
 		${PREFIX}/lib/lib${SHLIBBASE}.a
+	${INSTALL_DATA} ${WRKSRC}/c-client/CFLAGS ${PREFIX}/include/c-client
+	${INSTALL_DATA} ${WRKSRC}/c-client/LDFLAGS ${PREFIX}/include/c-client
+	${INSTALL_DATA} ${WRKSRC}/c-client/OSCFLAGS ${PREFIX}/include/c-client
 
 post-install:
 	${INSTALL_DATA} ${PORTREV_H} ${PREFIX}/include/c-client
+.if !defined(WITHOUT_SSL)
+	@${ECHO} "================================================================================"
+	@${ECHO} "Warning: You have chosen to include SSL support. Applications/ports that use"
+	@${ECHO} "the cclient library but do not support SSL may stop working or have problems"
+	@${ECHO} "linking. Linking them explicitly with ssl (-lssl -lcrypto) may or may not help."
+	@${ECHO} "================================================================================"
+.endif
 
 .include <bsd.port.post.mk>
