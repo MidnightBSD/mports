@@ -9,14 +9,18 @@ BEGIN {
 
 
 use Magus::Config;
-use Magus::Port      ();
-use Magus::Lock      ();
-use Magus::Result    ();
-use Magus::SubResult ();
-use Magus::Machine   ();
-use Magus::PortTest  ();
-use Magus::Chroot    ();
-use Magus::Index     ();
+use Magus::Port      	();
+use Magus::Lock      	();
+use Magus::Result    	();
+use Magus::Category  	();
+use Magus::PortCategory ();
+use Magus::SubResult 	();
+use Magus::Machine   	();
+use Magus::PortTest  	();
+use Magus::Chroot    	();
+use Magus::Index     	();
+use Magus::Cluster	();
+use Magus::Task		();
 
 use Mport::Globals   ();
 our $Machine;

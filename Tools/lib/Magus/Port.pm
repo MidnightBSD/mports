@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.4 2007/10/25 17:48:45 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.5 2007/10/25 18:14:27 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -41,6 +41,7 @@ __PACKAGE__->columns(Essential => qw(name version license pkgname));
 __PACKAGE__->columns(All       => qw(description));
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(results => 'Magus::Result');
+__PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 
 __PACKAGE__->set_sql(ready_ports => <<END_OF_SQL);
 SELECT ports.* FROM ports 
