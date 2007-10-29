@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.32 2007/07/22 07:51:26 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.33 2007/09/03 23:03:35 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -37,7 +37,6 @@
     SUBDIR += pine4
     SUBDIR += popd
     SUBDIR += procmail
-    SUBDIR += qmail
     SUBDIR += razor-agents
     SUBDIR += sendmail
     SUBDIR += spamd
