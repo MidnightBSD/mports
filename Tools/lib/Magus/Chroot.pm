@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.9 2007/10/24 00:26:36 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.10 2007/10/24 18:42:28 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -96,6 +96,12 @@ sub _init {
   my ($self) = @_;
   
   $self->{root} = "$self->{prefix}/$self->{branch}";
+
+  # check to make sure that things are working properly in the chroot, a restart
+  # or deleting /usr/mports can break the loopback.
+  if (!-e "$self->{root}/usr/mports/Makefile") {
+    $self->delete;
+  }
   
   # if the chroot dir exists and is clean, then we're done.
   return if -e "$self->{root}/.clean";
@@ -265,8 +271,9 @@ sub delete {
   my ($self) = @_;
   
   for (qw(/dev /usr/src /usr/mports)) {
-    system("/sbin/umount $self->{root}$_") == 0 
-      or die "umount returned non-zero: $?\n";
+    # if umount failed it is probably because nothing was mounted.
+    # therefore we ignore the error code here 
+    system("/sbin/umount $self->{root}$_") 
   }
   
   system("/bin/chflags 0 $self->{root}/var/empty") == 0 
