@@ -24,7 +24,7 @@ package Magus::Task;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.3 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Task.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,8 +39,8 @@ use Magus::Task::Wait         ();
 use Magus::Task::UpdateMports ();
 
 
-__PACKAGE__->table('results');
-__PACKAGE__->columns(All => qw/machine type completed/);
+__PACKAGE__->table('tasks');
+__PACKAGE__->columns(All => qw/id type machine started completed/);
 
 __PACKAGE__->has_a(machine => 'Magus::Machine');
 
@@ -49,7 +49,9 @@ sub construct {
   
   my $self = $class->SUPER::construct(@args);
   
-  bless $self, ref $self . "::" . $self->type;
+  my $subclass = join('::', ref $self, $self->type);
+  
+  bless $self, $subclass;
   
   return $self;
 }
@@ -59,7 +61,7 @@ __PACKAGE__->mk_classdata('callbacks');
 sub set_callbacks {
   my ($class, %cbs) = @_;
   
-  $class->callbacks = \%cbs;
+  $class->callbacks(\%cbs);
 }
 
 sub is_complete {

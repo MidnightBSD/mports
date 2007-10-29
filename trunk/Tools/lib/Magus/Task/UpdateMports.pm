@@ -24,7 +24,7 @@ package Magus::Task::UpdateMports;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.3 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Task/UpdateMports.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -47,6 +47,8 @@ This task updates /usr/mports, using C<MasterMportsTarBall>.
 
 sub exec {  
   my ($self) = @_;
+
+  $self->started(1); $self->update;
   
   $self->callbacks->{'log'}->('Updating mports tree');
   

@@ -24,7 +24,7 @@ package Magus::Task::Wait;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.3 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Task/Wait.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -46,17 +46,29 @@ way the master can halt the cluster as needed.
 =cut
 
 
-
 sub exec {
   my ($self) = @_;
   
+  $self->started(1); $self->update;
+
+  $self->callbacks->{'log'}->("Halted");
+  
   while (1) {
-    sleep(60);
+    sleep(1);
+    
+    #
+    # Run other tasks
+    #
+    if (my @torun = Magus::Task->retrieve_from_sql('machine=? AND id!=? AND started=0 AND completed=0', $Magus::Machine, $self->id)) {
+      $_->exec for @torun;
+    }
     
     if ($self->is_complete) {
       last;
     }
   }
+  
+  $self->delete;
 }
 
 
