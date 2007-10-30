@@ -2,13 +2,13 @@
 # Date created:				Tue Oct 16 18:35:39 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.1 2006/11/02 21:05:24 wintellect Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.2 2007/08/01 20:42:30 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.31 2006/05/10 22:37:34 edwin Exp $
 #
 
 PORTNAME=	ogle
 PORTVERSION=	0.9.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open DVD player that supports DVD menus
 
 LIB_DEPENDS=	a52-devel.0:${PORTSDIR}/audio/liba52-devel \
-		dvdread.3:${PORTSDIR}/multimedia/libdvdread \
+		dvdread.5:${PORTSDIR}/multimedia/libdvdread \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
 		mad.2:${PORTSDIR}/audio/libmad \
 		xml2.5:${PORTSDIR}/textproc/libxml2
