@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.10 2007/10/24 18:42:28 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.11 2007/10/29 21:17:11 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -99,7 +99,7 @@ sub _init {
 
   # check to make sure that things are working properly in the chroot, a restart
   # or deleting /usr/mports can break the loopback.
-  if (!-e "$self->{root}/usr/mports/Makefile") {
+  if (-d $self->{root} && !-e "$self->{root}/usr/mports/Makefile") {
     $self->delete;
   }
   
