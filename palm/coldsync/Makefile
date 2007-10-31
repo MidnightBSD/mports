@@ -3,18 +3,21 @@
 # Whom:			Andrew Arensburger <arensb+freebsd-ports@ooblick.com>
 #
 # $FreeBSD: ports/palm/coldsync/Makefile,v 1.35 2006/08/15 00:56:21 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/palm/coldsync/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 #
 
 PORTNAME=	coldsync
 PORTVERSION=	2.2.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	palm comms
 MASTER_SITES=	http://www.coldsync.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronize a PalmPilot with a Unix workstation
+LICENSE=	artistic
 
+FAKE_OPTS=	prefixhack
+FAKE_MAKEARGS+=	PREFIX=${FAKE_DESTDIR}${PREFIX} INFODIR=${FAKE_DESTDIR}${PREFIX}/info
 USE_GETTEXT=	yes
 REINPLACE_ARGS=	-i "" -E
 
