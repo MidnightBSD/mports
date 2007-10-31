@@ -3,12 +3,12 @@
 # Whom:			smace
 #
 # $FreeBSD: ports/graphics/xv/Makefile,v 1.67 2006/09/05 06:06:53 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.1 2007/02/19 22:23:17 laffer1 Exp $
 #
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES+=	graphics
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	../distfiles/xv
@@ -35,6 +35,7 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		png.5:${PORTSDIR}/graphics/png
 
+USE_XLIB=	yes
 USE_IMAKE=	yes
 USE_PERL5_BUILD=yes
 .if !defined(NOMAN)
