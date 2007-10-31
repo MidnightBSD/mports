@@ -8,7 +8,7 @@ body {
 h1 {
 	font-size: 1.7em;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
-	color: navy;
+	color: yellow;
 }
 
 h2 {
@@ -78,4 +78,12 @@ ul.depends li {
 
 ul.depends {
 	padding: 0px;
+}
+
+#tophead {
+	background: navy;
+	color: white;
+	width: 100%;
+	margin: 0;
+	padding: 0;
 }	
