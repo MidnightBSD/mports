@@ -1,0 +1,50 @@
+
+table {
+	border: solid 1px #555;
+	border-spacing: 0px;
+}
+
+table td {
+	border: solid 1px #eee;
+	padding: 4px 10px;
+}
+
+table th {
+	border-bottom: solid 1px #888;
+}
+
+*.fail {
+	color: #C0000B;
+}
+
+*.warn {
+	color: orange;
+}
+
+*.internal {
+	color: blue;
+}
+
+*.pass {
+	color: green;
+}
+
+*.skip {
+	color: #666;
+}
+
+
+div.right {
+	float: right;
+	position: relative;
+	bottom: 60px;
+	right: 20px
+}
+
+ul.depends li {
+	list-style: none;
+}
+
+ul.depends {
+	padding: 0px;
+}	

@@ -1,0 +1,13 @@
+<table class="result-list">
+	<tr><th>Port</th><th>Version</th><th>Summary</th><th>Machine</th><th>Arch</th></tr>
+	<TMPL_LOOP NAME=results>
+	<tr class="<TMPL_VAR NAME=summary>">
+		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
+		<td><TMPL_VAR NAME=version></td>
+		<td><TMPL_VAR NAME=summary></td>
+		<td><TMPL_VAR NAME=machine></td>
+		<td><TMPL_VAR NAME=arch></td>
+	</tr>
+	</TMPL_LOOP>
+</table>
+
