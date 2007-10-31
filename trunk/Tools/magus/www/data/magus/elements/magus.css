@@ -1,3 +1,15 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	background: white;
+	color: black;
+}
+
+h1 {
+	font-size: 1.3em;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	color: navy;
+}
 
 table {
 	border: solid 1px #555;
@@ -33,6 +45,13 @@ table th {
 	color: #666;
 }
 
+.stats {
+	font-size: .8em;
+}
+
+.locks {
+	font-size: .8em;
+}
 
 div.right {
 	float: right;
