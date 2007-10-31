@@ -1,31 +1,28 @@
 # New ports collection makefile for:	tcl8.5
 # Date created:		17 January 2007
-# Whom:			martin@matuska.org
+# Whom:			Martin Matuska <mm@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/lang/tcl85/Makefile,v 1.7 2007/03/27 11:54:32 miwi Exp $
+# $FreeBSD: ports/lang/tcl85/Makefile,v 1.12 2007/09/28 05:14:14 mm Exp $
 #
 
 PORTNAME=	tcl
-PORTVERSION=	8.5.a.5
-PORTREVISION=	5
+PORTVERSION=	8.5.b.1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.a./a/}-src
+DISTNAME=	${PORTNAME}${PORTVERSION:S/.b./b/}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language (development version)
 
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
-WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION:S/.a./a/}/unix
-ALL_TARGET=	all test
+WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}/unix
+ALL_TARGET=	all
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tcl${TCL_VER} \
-		--build=${ARCH}-portbld-freebsd6.0
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd6.0
+CONFIGURE_ARGS=	--enable-shared --without-tzdata --includedir=${PREFIX}/include/tcl${TCL_VER}
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
 TCL_VER=	8.5
 SHORT_TCL_VER=	${TCL_VER:S/8./8/}
@@ -35,7 +32,8 @@ PLIST_SUB=	TCL_VER=${TCL_VER} SHORT_TCL_VER=${SHORT_TCL_VER}
 EXTRACT_AFTER_ARGS=|${TAR} -xpf - --exclude compat/
 
 .if !defined(BUILDING_TCL_THREADS)
-OPTIONS=	TCL85_MAN "Install tcl 8.5 manpages" off
+OPTIONS=	TCL85_MAN "Install tcl 8.5 manpages" off \
+		TZDATA "Install tcl timezone data" off
 .else
 USE_TCL=	${SHORT_TCL_VER}
 PLIST=		${PKGDIR}/pkg-plist.threads
@@ -44,14 +42,20 @@ THREADS_SUFFIX=		-threads
 
 .include <bsd.port.pre.mk>
 
+.if defined(WITH_TZDATA)
+PLIST_SUB+=		TZDATA=""
+.else
+PLIST_SUB+=		TZDATA="@comment "
+.endif
+
 .if defined(BUILDING_TCL_THREADS)
 . if (${ARCH} == "ia64")
 BROKEN=	does not compile on ia64
 . endif
 . if exists(${TCLSH})
 TCL_PATCHLEVEL!=	${ECHO_CMD} "puts \$$tcl_patchLevel" | ${TCLSH}
-.  if ${TCL_PATCHLEVEL} != ${PORTVERSION:S/.a./a/}
-IGNORE=	version mismatch - installing ${PORTVERSION:S/.a./a/} over installed ${TCL_PATCHLEVEL}
+.  if ${TCL_PATCHLEVEL} != ${PORTVERSION:S/.b./b/}
+IGNORE=	version mismatch - installing ${PORTVERSION:S/.b./b/} over installed ${TCL_PATCHLEVEL}
 .  endif
 .endif
 
@@ -99,9 +103,10 @@ MANN=	Tcl.n after.n append.n apply.n array.n bgerror.n binary.n break.n \
 	foreach.n format.n gets.n glob.n global.n history.n http.n if.n incr.n \
 	info.n interp.n join.n lappend.n lassign.n library.n lindex.n \
 	linsert.n list.n llength.n load.n lrange.n lrepeat.n lreplace.n \
-	lsearch.n lset.n lsort.n mathfunc.n memory.n  msgcat.n namespace.n \
-	open.n package.n packagens.n pid.n pkgMkIndex.n proc.n puts.n pwd.n \
-	re_syntax.n read.n refchan.n regexp.n registry.n regsub.n rename.n \
+	lreverse.n lsearch.n lset.n lsort.n mathfunc.n mathop.n memory.n \
+	msgcat.n namespace.n open.n package.n packagens.n pid.n pkgMkIndex.n \
+	platform.n platform_shell.n proc.n puts.n pwd.n re_syntax.n read.n \
+	refchan.n regexp.n registry.n regsub.n rename.n \
 	return.n safe.n scan.n seek.n set.n socket.n source.n split.n string.n \
 	subst.n switch.n tcltest.n tclvars.n tell.n time.n tm.n trace.n \
 	unknown.n unload.n unset.n update.n uplevel.n upvar.n variable.n vwait.n \
@@ -738,6 +743,9 @@ do-install:
 	@${LN} -s ${PREFIX}/lib/tcl${TCL_VER}/tclConfig${THREADS_SUFFIX}.sh ${PREFIX}/lib/tcl${TCL_VER}${THREADS_SUFFIX}/tclConfig.sh
 .else
 post-install:
+.if defined(WITH_TZDATA)
+	@cd ${WRKSRC} && ${MAKE} -f Makefile install-tzdata ${MAKE_ENV}
+.endif
 .if !defined(NO_INSTALL_MANPAGES) && defined(WITH_TCL85_MAN)
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/../doc/man.macros ${DATADIR}
