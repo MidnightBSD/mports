@@ -59,22 +59,6 @@ sub summary_page {
     results   => \@results
   );
   
-  my $dbh = Magus::Result->db_Main();
-  my $sth = $dbh->prepare("SELECT summary,COUNT(*) as count FROM results JOIN ports ON results.port=ports.name AND results.version=ports.version GROUP BY summary ORDER BY count DESC");
-  $sth->execute;
-  my $stats = $sth->fetchall_arrayref({});
-  $sth->finish;
-
-  $sth = $dbh->prepare("SELECT COUNT(DISTINCT port) FROM results");
-  $sth->execute;
-  my ($count) = $sth->fetchrow_array;
-  $sth->finish;
-
-  $sth = $dbh->prepare("SELECT COUNT(*) FROM ports WHERE name NOT IN (SELECT port FROM results)");
-  $sth->execute;
-  my ($untested) = $sth->fetchrow_array;
-  $sth->finish;
-  
   my @locks = map {{
     port    => $_->port->name,
     machine => $_->machine->name,
@@ -82,9 +66,6 @@ sub summary_page {
   }} Magus::Lock->retrieve_all;
   
   $tmpl->param(
-    ports_tested => $count,
-    ports_untested => $untested,
-    stats => $stats, 
     locks => \@locks
   ); 
   print $tmpl->output;
@@ -227,7 +208,26 @@ sub template {
     die_on_bad_params => 0
   );
   
+  my $dbh = Magus::Result->db_Main();
+  my $sth = $dbh->prepare("SELECT summary,COUNT(*) as count FROM results JOIN ports ON results.port=ports.name AND results.version=ports.version GROUP BY summary ORDER BY count DESC");
+  $sth->execute;
+  my $stats = $sth->fetchall_arrayref({});
+  $sth->finish;
+
+  $sth = $dbh->prepare("SELECT COUNT(DISTINCT port) FROM results");
+  $sth->execute;
+  my ($count) = $sth->fetchrow_array;
+  $sth->finish;
+  
+  $sth = $dbh->prepare("SELECT COUNT(*) FROM ports WHERE name NOT IN (SELECT port FROM results)");
+  $sth->execute;
+  my ($untested) = $sth->fetchrow_array;
+  $sth->finish;
+  
   $tmpl->param(
+    ports_tested => $count,
+    ports_untested => $untested,
+    stats     => $stats,
     title     => 'Magus',
 #    breadcrumbs => breadcrumbs(path => $p->path_info or '/'),
     root      => $p->script_name(),
