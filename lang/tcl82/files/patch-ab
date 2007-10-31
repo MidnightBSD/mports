@@ -14,7 +14,7 @@
  	    LD_SEARCH_FLAGS=""
  	    ;;
 -	NetBSD-*|FreeBSD-[1-2].*|OpenBSD-*)
-+	NetBSD-*|FreeBSD-*|OpenBSD-*)
++	NetBSD-*|FreeBSD-*|MidnightBSD-*|OpenBSD-*)
  	    # Not available on all versions:  check for include file.
  	    ac_safe=`echo "dlfcn.h" | sed 'y%./+-%__p_%'`
  echo $ac_n "checking for dlfcn.h""... $ac_c" 1>&6
