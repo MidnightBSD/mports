@@ -25,6 +25,14 @@ table td {
 	padding: 4px 10px;
 }
 
+table tr {
+	background: transparent;
+}
+
+table tr:hover {
+	background: #F8F8F8;
+}
+
 table th {
 	border-bottom: solid 1px #888;
 }
