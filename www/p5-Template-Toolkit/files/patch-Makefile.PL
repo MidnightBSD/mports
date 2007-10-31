@@ -24,13 +24,13 @@
      $amble .=<<EOF if $main::TT_BUILD_DOCS;
  tt2_html_docs ::
 -	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(TT_PREFIX)/$TT_DOCS_CFG"
-+	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(DESTDIR)\$(TT_PREFIX)/$TT_DOCS_CFG" -d \$(DESTDIR)\$(TT_PREFIX)/docs/html 
++	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(DESTDIR)\$(TT_PREFIX)/$TT_DOCS_CFG" -s \$(DESTDIR)\$(TT_PREFIX)/docs/src -d \$(DESTDIR)\$(TT_PREFIX)/docs/html -l \$(DESTDIR)\$(TT_PREFIX)/docs/style/splash -l \$(DESTDIR)\$(TT_PREFIX)/docs/lib -l \$(DESTDIR)\$(TT_PREFIX)/templates
  
  EOF
      $amble .=<<EOF if $main::TT_EXAMPLES;
  tt2_examples ::
 -	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(TT_PREFIX)/$TT_EXAMPLE_CFG"
-+	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(DESTDIR)\$(TT_PREFIX)/$TT_EXAMPLE_CFG" -d \$(DESTDIR)\$(TT_PREFIX)/examples/html 
++	\@\$(PERL) -I\$(INST_LIB) -I\$(INST_ARCHLIB) bin/ttree -v -f "\$(DESTDIR)\$(TT_PREFIX)/$TT_EXAMPLE_CFG" -s \$(DESTDIR)\$(TT_PREFIX)/examples/src -d \$(DESTDIR)\$(TT_PREFIX)/examples/html -l \$(DESTDIR)\$(TT_PREFIX)/examples/lib -l \$(DESTDIR)\$(TT_PREFIX)/templates
  
  EOF
      return $amble;
