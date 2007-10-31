@@ -3,7 +3,7 @@
 # Date created:			  21 April 1998
 # Whom:				  Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/urlview/Makefile,v 1.1 2007/02/25 17:20:47 laffer1 Exp $
 # $FreeBSD: ports/textproc/urlview/Makefile,v 1.21 2006/05/13 04:24:50 edwin Exp $
 #
 
@@ -20,6 +20,7 @@ MASTER_SITES=	ftp://ftp.mutt.org/mutt/contrib/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	URL extractor/launcher
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 MAN1=		urlview.1
