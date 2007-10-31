@@ -24,7 +24,7 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL auto_increment,
   `category` varchar(64) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=577 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `depends`
@@ -50,7 +50,7 @@ CREATE TABLE `locks` (
   `machine` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `port` (`port`,`arch`)
-) ENGINE=MyISAM AUTO_INCREMENT=3547 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `logs`
@@ -75,7 +75,7 @@ CREATE TABLE `machines` (
   `name` varchar(128) NOT NULL,
   `maintainer` varchar(128) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `port_categories`
@@ -84,7 +84,7 @@ CREATE TABLE `machines` (
 DROP TABLE IF EXISTS `port_categories`;
 CREATE TABLE `port_categories` (
   `port` varchar(128) NOT NULL,
-  `category_id` int(11) NOT NULL
+  `category` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `results` (
   PRIMARY KEY  (`id`),
   KEY `port` (`port`,`version`),
   KEY `port_2` (`port`,`version`,`arch`)
-) ENGINE=MyISAM AUTO_INCREMENT=3522 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `subresults`
@@ -131,6 +131,24 @@ CREATE TABLE `subresults` (
   `msg` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+
+--
+-- Table structure for table `tasks`
+--
+
+DROP TABLE IF EXISTS `tasks`;
+CREATE TABLE `tasks` (
+  `id` int(11) NOT NULL auto_increment,
+  `type` varchar(64) NOT NULL,
+  `machine` int(11) NOT NULL,
+  `started` tinyint(1) NOT NULL default '0',
+  `completed` tinyint(1) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
