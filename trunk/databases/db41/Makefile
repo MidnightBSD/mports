@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@web.de>
 #
 # $FreeBSD: ports/databases/db41/Makefile,v 1.60 2006/04/14 03:44:07 mnag Exp $
-# $MidnightBSD: mports/databases/db41/Makefile,v 1.3 2007/08/19 02:23:12 ctriv Exp $
+# $MidnightBSD: mports/databases/db41/Makefile,v 1.4 2007/10/31 19:31:51 laffer1 Exp $
 #
 
 PORTNAME=	db41
@@ -24,6 +24,7 @@ PATCH_DIST_STRIP=	-d ${WRKDIR}/${DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.1
+LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
