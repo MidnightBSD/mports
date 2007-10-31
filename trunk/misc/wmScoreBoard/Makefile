@@ -2,7 +2,7 @@
 # Date created:				Sun Jun 24 17:08:15 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.1 2007/03/09 05:22:05 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.2 2007/03/22 04:36:49 ctriv Exp $
 # $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	pat
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window Maker dockapp that display game scores from excite
+LICENSE=	gpl2
 
 RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 
