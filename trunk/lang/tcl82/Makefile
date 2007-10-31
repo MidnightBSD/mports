@@ -2,14 +2,13 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/lang/tcl82/Makefile,v 1.1 2007/03/21 22:43:48 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl82/Makefile,v 1.2 2007/05/20 21:10:37 ctriv Exp $
 # $FreeBSD: ports/lang/tcl82/Makefile,v 1.57 2007/03/13 10:01:24 miwi Exp $
 #
 
-BROKEN=		shared library is not being built.
-
 PORTNAME=	tcl
 PORTVERSION=	8.2.3
+PORTREVISION=	1
 CATEGORIES=	lang tcl82
 MASTER_SITES=	${MASTER_SITE_TCLTK}
 MASTER_SITE_SUBDIR=	tcl8_2
@@ -17,18 +16,18 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language
+LICENSE=	unknown
 
 LATEST_LINK=	tcl82
 WRKSRC=		${WRKDIR}/${DISTNAME}/unix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-TCL_VER=	8.2
 CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tcl${TCL_VER} \
 		--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
 MAKE_ENV=	SHORT_TCL_VER=82
 NOPRECIOUSMAKEVARS=	yes # Otherwise 'make readmes' is broken
-PLIST_SUB=	TCL_VER=${TCL_VER} SHORT_TCL_VER=82
+PLIST_SUB=	TCL_VER=8.2 SHORT_TCL_VER=82
 DESTDIRNAME=	INSTALL_ROOT
 
 OPTIONS=	TCL82_MAN "Install tcl 8.2 manpages" off \
