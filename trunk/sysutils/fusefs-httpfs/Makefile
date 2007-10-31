@@ -2,12 +2,13 @@
 # Date created:		2006-07-16
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/fusefs-httpfs/Makefile,v 1.1 2007/07/29 22:55:53 laffer1 Exp $
 # $FreeBSD: ports/sysutils/fusefs-httpfs/Makefile,v 1.3 2006/12/14 08:52:21 clsung Exp $
 #
 
 PORTNAME=	httpfs
 PORTVERSION=	2.06.08.26
+PORTREVISION=	1
 CATEGORIES=	sysutils www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,6 +17,8 @@ DISTNAME=	${PORTNAME}_with_static_binaries_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fuse-based http filesystem
+
+USE_ICONV=	yes
 
 RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
 BUILD_DEPENDS=	${LOCALBASE}/include/fuse.h:${PORTSDIR}/sysutils/fusefs-libs
