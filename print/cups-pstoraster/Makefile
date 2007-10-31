@@ -2,13 +2,12 @@
 # Date created:		Jul 13 2002
 # Whom:			ports@FreeBSD.org
 #
-# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.1 2007/01/11 21:11:34 wintellect Exp $
+# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.2 2007/01/24 21:00:05 laffer1 Exp $
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
 #
 
 PORTNAME=	cups-pstoraster
-PORTVERSION=	8.15.3
-PORTREVISION=	1
+PORTVERSION=	8.15.4
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_EASYSW}
 MASTER_SITE_SUBDIR=	ghostscript/${PORTVERSION}
@@ -23,9 +22,12 @@ LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
 ESPGS_VER=	${PORTVERSION}
 GS_VERSION=	8.15
 
+BROKEN=		installs to /usr/local... doesn't fake right.
+#FAKE_OPTS=	prefixhack
+#FAKE_MAKEARGS=	DESTDIR=${FAKE_DESTDIR}${PREFIX}
 WRKSRC=		${WRKDIR}/espgs-${PORTVERSION}
 
-DATADIR=	${TARGETDIR}/share/espgs
+DATADIR=	${PREFIX}/share/espgs
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -48,9 +50,9 @@ post-patch:
 	${LN} -sf ${WRKSRC}/pstoraster/gdevcups.c ${WRKSRC}/src
 	${CAT} ${FILESDIR}/cups.contrib.mak >> ${WRKSRC}/src/contrib.mak
 .for file in pstopxl pstoraster
-	${REINPLACE_CMD} -e 's:@prefix@:${PREFIX}:g ; \
-		 s:@exec_prefix@:${PREFIX}:g ; \
-		 s:@bindir@:${PREFIX}/bin:g ; \
+	${REINPLACE_CMD} -e 's:@prefix@:${FAKE_DESTDIR}${PREFIX}:g ; \
+		 s:@exec_prefix@:${FAKE_DESTDIR}${PREFIX}:g ; \
+		 s:@bindir@:${FAKE_DESTDIR}${PREFIX}/bin:g ; \
 		 s:@GS@:espgs:g ; \
 		 s|^GS_LIB="|GS_LIB="${PREFIX}/share/ghostscript/fonts:|' \
 		 ${WRKSRC}/pstoraster/${file}.in
