@@ -2,12 +2,13 @@
 # Date created:         Sat Nov 5 11:43:03 PST 1994
 # Whom:                 piero
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xanim/Makefile,v 1.1 2007/04/05 00:04:39 laffer1 Exp $
 # $FreeBSD: ports/multimedia/xanim/Makefile,v 1.41 2005/10/02 05:59:11 dinoex Exp $
 #
 
 PORTNAME=	xanim
 PORTVERSION=	2.92.0
+PORTREVISION=	1
 CATEGORIES=	multimedia graphics
 MASTER_SITES=	ftp://ftp.informatik.uni-hamburg.de/pub/soft/graphics/xanim/:main \
 		${MASTER_SITE_LOCAL} \
