@@ -3,20 +3,23 @@
 # Whom:					Matthias Andree <matthias.andree@web.de>
 #
 # $FreeBSD: ports/databases/db41/Makefile,v 1.60 2006/04/14 03:44:07 mnag Exp $
-# $MidnightBSD: mports/databases/db41/Makefile,v 1.2 2007/05/21 17:52:43 ctriv Exp $
+# $MidnightBSD: mports/databases/db41/Makefile,v 1.3 2007/08/19 02:23:12 ctriv Exp $
 #
 
 PORTNAME=	db41
 PORTVERSION=	4.1.25
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases
-MASTER_SITES=	http://downloads.sleepycat.com/
+MASTER_SITES=	http://download-east.oracle.com/berkeley-db/ \
+		http://download-west.oracle.com/berkeley-db/ \
+		http://download-uk.oracle.com/berkeley-db/
+
 PKGNAMESUFFIX?=
 DISTNAME?=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
-PATCH_SITES=	http://www.sleepycat.com/update/${PORTVERSION}/
-PATCHFILES=	patch.${PORTVERSION}.1 patch.${PORTVERSION}.2
+PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION}/
+PATCHFILES=	patch.${PORTVERSION}.1 patch.${PORTVERSION}.2 patch.${PORTVERSION}.3
 PATCH_DIST_STRIP=	-d ${WRKDIR}/${DISTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
