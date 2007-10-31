@@ -3,12 +3,12 @@
 # Whom:                        hannes sowa <satbran@web.de>
 #
 # $FreeBSD: ports/security/vlog/Makefile,v 1.13 2006/05/13 04:15:18 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/vlog/Makefile,v 1.1 2006/11/09 14:58:36 laffer1 Exp $
 #
 
 PORTNAME=	vlog
 PORTVERSION=	1.1f
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://inc2.com/download/
 DISTNAME=	vlog-${PORTVERSION}
@@ -28,6 +28,6 @@ MANCOMPRESSED=	no
 PLIST_FILES=	bin/vlog
 
 post-patch:
-	${REINPLACE_CMD} -e "s@/usr/local@${PREFIX}@g" ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e "s@/usr/local@${DESTDIR}${PREFIX}@g" ${WRKSRC}/Makefile
 
 .include <bsd.port.mk>

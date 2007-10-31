@@ -1,0 +1,13 @@
+--- Makefile.bak	Thu Dec  6 16:44:36 2001
++++ Makefile	Tue Oct 30 23:29:34 2007
+@@ -7,8 +7,8 @@
+ # are overrided by their equivalents in isba's Makefile
+ 
+ CC	= gcc
+-BINDEST	= /usr/local/bin
+-MANDEST	= /usr/local/man/man1
++BINDEST	= ${DESTDIR}/usr/local/bin
++MANDEST	= ${DESTDIR}/usr/local/man/man1
+ 
+ # => if you have to modify this Makefile for vlog to compile,
+ # => please drop me a line at vlog@inc2.com so I can include
