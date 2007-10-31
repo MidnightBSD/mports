@@ -30,7 +30,7 @@ table tr {
 }
 
 table tr:hover {
-	background: #F8F8F8;
+	background: silver;
 }
 
 table th {
