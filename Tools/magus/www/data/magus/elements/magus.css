@@ -3,6 +3,12 @@ body {
 	font-size: 14px;
 	background: white;
 	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+#content {
+	margin: 12px;
 }
 
 h1 {
@@ -81,9 +87,36 @@ ul.depends {
 }
 
 #tophead {
-	background: navy;
+	background: #405491;
 	color: white;
 	width: 100%;
 	margin: 0;
 	padding: 0;
 }	
+
+#tophead h1 {
+	color: white;
+}
+
+ul.stats {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.stats li {
+	display: inline;
+	padding-right: 12px;
+}
+
+ul.stats a.pass {
+	color: #91E588;
+}
+
+ul.stats a.fail {
+	color: #F27D86;
+}
+
+ul.stats a.skip {
+	color: #bbb;
+}

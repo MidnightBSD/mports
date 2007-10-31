@@ -15,20 +15,17 @@
 
 <h1>Magus</h1>
 
-<h2>Stats</h2>
-<table class="stats">
-<tr>
-        <td>Tested</td>
-	<td><TMPL_VAR NAME="ports_tested"></td>
-        <td>Untested</td>
-	<td><TMPL_VAR NAME="ports_untested"></td>
+<ul class="stats">
+        <li>Tested: <TMPL_VAR NAME="ports_tested"></li>
+        <li>Untested: <TMPL_VAR NAME="ports_untested"></li>
 <TMPL_LOOP NAME="stats">
-        <td class="<TMPL_VAR name=summary>"><TMPL_VAR NAME="summary"></td>
-        <td><a href="<TMPL_VAR NAME=list_root>/<TMPL_VAR NAME=summary>"><TMPL_VAR NAME=count></td>
+        <li><TMPL_VAR NAME="summary">: <a class="<TMPL_VAR NAME=summary>" href="<TMPL_VAR NAME=list_root>/<TMPL_VAR NAME=summary>"><TMPL_VAR NAME=count></a></li>
 </TMPL_LOOP>
-</tr>
-</table>
+</ul>
 
 </div>
 <!-- header: end -->
+
+
+<div id="content">
 
