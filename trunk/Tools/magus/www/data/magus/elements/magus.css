@@ -6,9 +6,13 @@ body {
 }
 
 h1 {
-	font-size: 1.3em;
+	font-size: 1.7em;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
 	color: navy;
+}
+
+h2 {
+	font-size: 1.5em;
 }
 
 table {
@@ -55,7 +59,7 @@ table th {
 
 div.right {
 	float: right;
-	position: relative;
+/*	position: relative; */
 	bottom: 60px;
 	right: 20px
 }
