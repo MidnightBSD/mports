@@ -16,7 +16,7 @@
 
 <tbody>
 <TMPL_LOOP NAME="locks">
-<tr>
+<tr <TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
 	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
 	<td><TMPL_VAR name="machine"></td>
 	<td><TMPL_VAR name="arch"></td>
@@ -43,7 +43,7 @@
 	</thead>
 	<tbody>
 	<TMPL_LOOP NAME=results>
-	<tr class="<TMPL_VAR NAME=summary>">
+	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
 		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
 		<td><TMPL_VAR NAME=version></td>
 		<td><TMPL_VAR NAME=summary></td>
