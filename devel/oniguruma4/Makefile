@@ -2,12 +2,12 @@
 # Date created:		31 January 2003
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/oniguruma4/Makefile,v 1.1 2007/03/13 06:41:11 laffer1 Exp $
 # $FreeBSD: ports/devel/oniguruma4/Makefile,v 1.37 2007/02/11 21:02:15 dinoex Exp $
 #
 
 PORTNAME=	oniguruma
-PORTVERSION=	4.6.0
+PORTVERSION=	4.7.0
 CATEGORIES=	devel textproc
 MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/
 DISTNAME=	onig-${PORTVERSION}
