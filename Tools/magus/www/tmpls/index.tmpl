@@ -1,24 +1,8 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h1>Magus Summary</h1>
+<h1>Summary</h1>
 
 <div class="right">
-<h2>Stats</h2>
-<table class="stats">
-<tr>
-	<td>Tested</td><td><TMPL_VAR NAME="ports_tested"></td>
-</tr>
-<tr>
-	<td>Untested</td><td><TMPL_VAR NAME="ports_untested"></td>
-</tr>
-<TMPL_LOOP NAME="stats">
-<tr class="<TMPL_VAR name=summary>">
-	<td><TMPL_VAR NAME="summary"></td>
-	<td><a href="<TMPL_VAR NAME=list_root>/<TMPL_VAR NAME=summary>"><TMPL_VAR NAME=count></td>
-</tr>
-</TMPL_LOOP>
-</table>
-
 <TMPL_IF NAME="locks">
 <h2>Currently Building</h2>
 <table class="locks">
