@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.69 2007/10/23 04:56:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.70 2007/10/25 22:41:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -5187,12 +5187,13 @@ describe-yaml:
 	@perl -MYAML -e ' \
 		sub uniq (@) {  my %saw;  return grep(!$$saw{$$_}++, @_); } \
 		my %port = ( \
-			pkgname     => q(${PKGSUBNAME}), \
-			name        => q(${PKGORIGIN}), \
-			version     => q(${PKGVERSION}), \
-			description => qq(${COMMENT:S/'/\x27/g}), \
-			license     => q(${LICENSE}), \
-			categories  => [qw(${CATEGORIES})], \
+			pkgname        => q(${PKGSUBNAME}), \
+			name           => q(${PKGORIGIN}), \
+			version        => q(${PKGVERSION}), \
+			description    => qq(${COMMENT:S/'/\x27/g}), \
+			license        => q(${LICENSE}), \
+			categories     => [qw(${CATEGORIES})], \
+			is_interactive => q(${IS_INTERACTIVE}) ? 1 : 0, \
 		); \
 		$$port{license} ||= undef; \
 		my %depends; \
@@ -5530,7 +5531,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.69 2007/10/23 04:56:46 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.70 2007/10/25 22:41:10 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
