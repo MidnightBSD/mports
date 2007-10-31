@@ -24,12 +24,10 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.5 2007/10/25 17:50:05 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.6 2007/10/25 20:23:44 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
-
-
 
 #
 # todo:	setproctitle
@@ -47,6 +45,14 @@ use Getopt::Std qw(getopts);
 
 
 $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
+
+my @origARGV = @ARGV;
+my $self     = '/usr/mports/Tools/magus/slave/magus.pl';
+
+Magus::Task->set_callbacks(
+  restart => sub { exec($self, @origARGV); },
+  log     => sub { report('info', @_);     }
+);
 
 main();
 
@@ -92,6 +98,10 @@ sub main {
   report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
   
   while (1) {
+    if (my @tasks = Magus::Task->search(machine => $Magus::Machine, completed => 0, started => 0)) {
+      $_->exec for @tasks;
+    }
+  
     $lock = Magus::Lock->get_ready_lock();
     
     if (!$lock) {
