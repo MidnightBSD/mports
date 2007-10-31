@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.6 2007/10/25 20:23:44 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.1 2007/10/29 06:53:31 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -48,15 +48,17 @@ use Mport::Utils qw(recurse_ports);
 # 6) Resume the cluster.
 #
 
+main();
+
 sub main {
   update_cvs_dir();
   make_tarball();
 
-  Magus::Cluster::run_task('UpdateMports');
-
   Magus::Cluster::halt();
 
-  sync_index();
+  Magus::Cluster::run_task('UpdateMports');
+
+  Magus::Index->sync();
   
   Magus::Cluster::resume();
 }
@@ -70,7 +72,8 @@ sub update_cvs_dir {
 
 
 sub make_tarball {
-  unlink($Magus::Config{'MportsTarBall'}) || die "Couldn't unlink $Magus::Config{'MportsTarBall'}: $!\n";
+  unlink($Magus::Config{'MportsTarBall'}) 
+    || ($! !~ m/no such/i && die "Couldn't unlink $Magus::Config{'MportsTarBall'}: $!\n");
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
   
   my $tar = "/usr/bin/tar cfj $Magus::Config{MportsTarBall} $Magus::Config{MportsCvsDir}";
@@ -79,5 +82,3 @@ sub make_tarball {
 }
 
 
-sub sync_index {
-}  
