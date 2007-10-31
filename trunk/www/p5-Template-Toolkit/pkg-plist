@@ -121,7 +121,6 @@ share/tt2/docs/html/Modules/Template/Plugin/Table.html
 share/tt2/docs/html/Modules/Template/Plugin/URL.html
 share/tt2/docs/html/Modules/Template/Plugin/View.html
 share/tt2/docs/html/Modules/Template/Plugin/Wrap.html
-share/tt2/docs/html/Modules/Template/Plugin/XML/Style.html
 share/tt2/docs/html/Modules/Template/Plugins.html
 share/tt2/docs/html/Modules/Template/Provider.html
 share/tt2/docs/html/Modules/Template/Service.html
@@ -1399,7 +1398,6 @@ share/tt2/templates/splash/ttpower
 @dirrmtry share/tt2/docs/src/Tools
 @dirrmtry share/tt2/docs/src/Release
 @dirrmtry share/tt2/docs/src/Modules/Template/Stash
-@dirrmtry share/tt2/docs/src/Modules/Template/Plugin/XML
 @dirrmtry share/tt2/docs/src/Modules/Template/Plugin
 @dirrmtry share/tt2/docs/src/Modules/Template/Namespace
 @dirrmtry share/tt2/docs/src/Modules/Template
@@ -1414,7 +1412,6 @@ share/tt2/templates/splash/ttpower
 @dirrmtry share/tt2/docs/html/Tools
 @dirrmtry share/tt2/docs/html/Release
 @dirrmtry share/tt2/docs/html/Modules/Template/Stash
-@dirrmtry share/tt2/docs/html/Modules/Template/Plugin/XML
 @dirrmtry share/tt2/docs/html/Modules/Template/Plugin
 @dirrmtry share/tt2/docs/html/Modules/Template/Namespace
 @dirrmtry share/tt2/docs/html/Modules/Template

@@ -2,12 +2,13 @@
 # Date Created:				3 Mar, 2001
 # Whom:					clive
 #
-# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.1 2007/03/11 05:44:06 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.2 2007/04/30 02:20:17 ctriv Exp $
 # $FreeBSD: ports/www/p5-Template-Toolkit/Makefile,v 1.24 2007/02/08 14:38:13 clsung Exp $
 #
 
 PORTNAME=	Template-Toolkit
 PORTVERSION=	2.18
+PORTREVISION=	1
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Template
@@ -15,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensive Toolkit for template processing
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
 		${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp \
@@ -59,9 +61,5 @@ CONFIGURE_ENV=	|
 post-patch:
 	${PERL} -pi -e 's,/usr/local/tt2,${TARGETDIR}/share/tt2,g' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
 
 .include <bsd.port.post.mk>
