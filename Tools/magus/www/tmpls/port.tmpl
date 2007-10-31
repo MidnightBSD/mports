@@ -1,0 +1,66 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<h1><a href="/magus/">Magus</a> :: <TMPL_VAR name="port"></h1>
+
+<div class="right">
+<a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>">CVSWeb</a>
+
+<h3>Depends On</h3>
+
+<TMPL_IF NAME="depends">
+<ul class="depends">
+    <TMPL_LOOP NAME="depends">
+	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></li>
+    </TMPL_LOOP>
+</ul>
+<TMPL_ELSE>
+<i>Nothing</i>
+</TMPL_IF>	
+
+<h3>Depend Of</h3>
+
+<TMPL_IF NAME="depends_of">
+<ul class="depends">
+    <TMPL_LOOP NAME="depends_of">
+	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></li>
+    </TMPL_LOOP>
+</ul>
+<TMPL_ELSE>
+<i>Nothing</i>
+</TMPL_IF>	
+
+</div>
+
+<p><TMPL_VAR NAME="desc"></p>
+
+<TMPL_IF name="results">
+
+<table class="port-results">
+<tr>
+	<th>Version</th>
+	<th>Machine</th>
+	<th>Arch</th>
+	<th>Summary</th>
+	<td></td>
+</tr>
+<TMPL_LOOP name="results">
+<tr class="<TMPL_VAR NAME=summary>">
+	<td><TMPL_VAR NAME="version"></td>
+	<td><TMPL_VAR NAME="machine"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_VAR NAME="summary"></td>
+	<td>
+		<a href="<TMPL_VAR NAME=result_root>/<TMPL_VAR NAME=id>/details">Details</a>
+		--
+		<a href="<TMPL_VAR NAME=result_root>/<TMPL_VAR NAME=id>/log">Log</a> 
+	</td>
+</tr>
+</TMPL_LOOP>
+</table>
+<TMPL_ELSE>
+<p><TMPL_VAR name=port> has not been tested.</p>
+</TMPL_IF>
+
+
+
+<TMPL_INCLUDE NAME="footer.tmpl">

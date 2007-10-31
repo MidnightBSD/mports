@@ -1,0 +1,58 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<h1>Magus Summary</h1>
+
+<div class="right">
+<h2>Stats</h2>
+<table class="stats">
+<tr>
+	<td>Tested</td><td><TMPL_VAR NAME="ports_tested"></td>
+</tr>
+<tr>
+	<td>Untested</td><td><TMPL_VAR NAME="ports_untested"></td>
+</tr>
+<TMPL_LOOP NAME="stats">
+<tr class="<TMPL_VAR name=summary>">
+	<td><TMPL_VAR NAME="summary"></td>
+	<td><a href="<TMPL_VAR NAME=list_root>/<TMPL_VAR NAME=summary>"><TMPL_VAR NAME=count></td>
+</tr>
+</TMPL_LOOP>
+</table>
+
+<TMPL_IF NAME="locks">
+<h2>Currently Building</h2>
+<table class="locks">
+<tr>
+	<th>Port</th>
+	<th>Machine</th>
+	<th>Arch</th>
+</tr>
+<TMPL_LOOP NAME="locks">
+<tr>
+	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
+	<td><TMPL_VAR name="machine"></td>
+	<td><TMPL_VAR name="arch"></td>
+</tr>
+</TMPL_LOOP>
+</table>
+</TMPL_IF>
+
+</div>
+
+
+
+<h2>Latest Results</h2>
+<table class="result-list">
+	<tr><th>Port</th><th>Version</th><th>Summary</th><th>Machine</th><th>Arch</th></tr>
+	<TMPL_LOOP NAME=results>
+	<tr class="<TMPL_VAR NAME=summary>">
+		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
+		<td><TMPL_VAR NAME=version></td>
+		<td><TMPL_VAR NAME=summary></td>
+		<td><TMPL_VAR NAME=machine></td>
+		<td><TMPL_VAR NAME=arch></td>
+	</tr>
+	</TMPL_LOOP>
+</table>
+
+<TMPL_INCLUDE NAME="footer.tmpl">
