@@ -14,11 +14,16 @@ body {
 h1 {
 	font-size: 1.7em;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
-	color: yellow;
+	color: white;
+	margin: 0;
 }
 
 h2 {
 	font-size: 1.5em;
+}
+
+a {
+	color: #405491;
 }
 
 table {
@@ -89,16 +94,15 @@ ul.depends {
 #tophead {
 	background: #405491;
 	color: white;
-	width: 100%;
+	// width: 100%;
 	margin: 0;
-	padding: 0;
+	padding: 4px;
 }	
 
-#tophead h1 {
-	color: white;
-}
-
 ul.stats {
+	position: absolute;
+	top: 6px;
+	right: 4px; 
 	list-style: none;
 	margin: 0;
 	padding: 0;
