@@ -2,12 +2,13 @@
 # Date created:         03 October 1998
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.1 2006/09/23 00:28:45 laffer1 Exp $ 
+# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.2 2007/03/13 20:34:32 laffer1 Exp $ 
 # $FreeBSD: ports/devel/gnustep/Makefile,v 1.62 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep
 PORTVERSION=	1.13.0
+PORTREVISION=	1
 CATEGORIES=	devel lang gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -28,5 +29,7 @@ USE_GNUSTEP_XLIB=	yes
 USE_GNUSTEP_LIBART=	yes
 USE_GNUSTEP_CAIRO=	yes
 .endif
+
+do-install: #nothing, fixes magus
 
 .include <bsd.port.mk>
