@@ -3,17 +3,20 @@
 # Whom:					markm
 #
 # $FreeBSD: ports/security/xinetd/Makefile,v 1.53 2006/07/12 05:50:42 sem Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/xinetd/Makefile,v 1.1 2006/11/09 14:07:47 laffer1 Exp $
 #
 
 PORTNAME=	xinetd
 PORTVERSION=	2.3.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://www.xinetd.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for inetd with better control and logging
+LICENSE=	unknown
+
+FAKE_OPTS=	prefixhack
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
