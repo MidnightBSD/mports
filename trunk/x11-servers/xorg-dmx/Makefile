@@ -3,12 +3,13 @@
 # Whom:			lesi@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-dmx/Makefile,v 1.7 2007/09/13 19:44:55 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.2 2007/10/17 04:47:03 ctriv Exp $
 #
 
 PORTNAME=	xorg-dmx
 PORTVERSION=	1.4
 PORTEPOCH=	1
+PORTREVISION=	1
 CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
