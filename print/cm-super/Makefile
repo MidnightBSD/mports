@@ -3,11 +3,12 @@
 # Whom:			hrs
 #
 # $FreeBSD: ports/print/cm-super/Makefile,v 1.1 2006/06/29 18:42:45 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/cm-super/Makefile,v 1.1 2007/01/24 20:34:41 laffer1 Exp $
 #
 
 PORTNAME=	cm-super
 PORTVERSION=	0.3.3
+PORTREVISION=	1
 CATEGORIES=	print x11-fonts
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN}
 MASTER_SITE_SUBDIR=	fonts/ps-type1
@@ -15,6 +16,7 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Computer Modern Font Families in Type 1 Fonts
+LICENSE=	gpl2
 
 .if !defined(WITHOUT_X11)
 BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
@@ -64,10 +66,12 @@ post-extract:
 
 do-install:
 	${MKDIR} ${PREFIX}/${FONTSDIR}/afm
+	${MKDIR} ${PREFIX}/${AFMDIR}
 	${INSTALL_DATA} ${WRKSRC}/afm/* ${PREFIX}/${FONTSDIR}/afm
 	${LN} -s -f ${PREFIX}/${FONTSDIR}/afm \
 		${PREFIX}/${AFMDIR}
 	${MKDIR} ${PREFIX}/${FONTSDIR}/type1
+	${MKDIR} ${PREFIX}/${TYPE1DIR}
 	${INSTALL_DATA} ${WRKSRC}/pfb/* ${PREFIX}/${FONTSDIR}/type1
 	${LN} -s -f ${PREFIX}/${FONTSDIR}/type1 \
 		${PREFIX}/${TYPE1DIR}
@@ -88,12 +92,5 @@ do-install:
 		${WRKSRC}/type1ec.sty \
 		${PREFIX}/${MACRODIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/${FONTSDIR}/
-	${MKTEXLSR} ${PREFIX}/${TEXMFDIR}
-.for F in ${MAPFILES}
-	@${ECHO_CMD} "Adding $F..."
-	@${UPDMAP_SYS} --nohash --nomkmap --enable Map=${F}
-.endfor
-	@${ECHO_CMD} "Regenerating mapfiles..."
-	@${UPDMAP_SYS}
 
 .include <bsd.port.mk>
