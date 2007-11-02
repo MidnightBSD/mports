@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/print/xdvik/pkg-plist,v 1.9 2005/09/13 18:04:35 hrs Exp $
+@comment $MidnightBSD: ports/print/xdvik/pkg-plist,v 1.9 2005/09/13 18:04:35 hrs Exp $
 bin/oxdvi
 bin/xdvi
 bin/xdvi-motif.bin
@@ -8,7 +8,7 @@ bin/xdvizilla
 %%TEXMFDIR%%/xdvi/pixmaps/toolbar.xpm
 %%TEXMFDIR%%/xdvi/pixmaps/toolbar2.xpm
 @dirrm %%TEXMFDIR%%/xdvi/pixmaps
-%%TEXMFCONFIGDIR%%/xdvi/XDvi
+%%TEXMFDIR%%/xdvi/XDvi
 %%PORTDOCS%%%%DOCSDIR%%/BUGS
 %%PORTDOCS%%%%DOCSDIR%%/CHANGES
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL
