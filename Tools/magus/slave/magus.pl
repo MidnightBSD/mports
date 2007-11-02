@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.6 2007/10/25 20:23:44 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.7 2007/10/31 18:04:26 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -306,19 +306,12 @@ sub insert_results {
     arch    => $Magus::Machine->arch,
   });
   
-  foreach my $sr (@{$results->{'warnings'}}) {
-    $res->add_to_subresults({
-      type => 'warning',
-      %$sr
-    });
-  }
-  
-  foreach my $sr (@{$results->{'errors'}}) {
-    $res->add_to_subresults({
-      type => 'error',
-      %$sr
-    });
-  }
+  foreach my $type (qw(skip warning error)) {
+    foreach my $sr (@{$results->{$type . 's'}}) {
+      $sr->{type} = $type;
+      $res->add_to_subresults($sr);
+    }
+  }  
   
   if ($results->{log}) {
     $res->add_to_logs($results->{log});
