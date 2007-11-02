@@ -3,12 +3,12 @@
 # Whom:                 hrs
 #
 # $FreeBSD: ports/print/dvipsk-tetex/Makefile,v 1.7 2005/04/19 13:32:02 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.1 2007/01/24 20:41:41 laffer1 Exp $
 #
 
 PORTNAME=	dvipsk-tetex
 PORTVERSION=	5.95a
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -18,6 +18,7 @@ DIST_SUBDIR=	teTeX
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert a TeX DVI file to PostScript
+LICENSE=	agg
 
 BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
@@ -33,6 +34,8 @@ PLIST_SUB=	TEXMFDIR=${TEXMFDIR} \
 		TEXMFDISTDIR=${TEXMFDISTDIR} \
 		TEXMFCONFIGDIR=${TEXMFCONFIGDIR} \
 		MKTEXLSR=${MKTEXLSR}
+
+FAKE_OPTS=	prefixhack
 
 PATCH_WRKSRC=	${WRKDIR}/${TETEX_SRC}
 BUILD_WRKSRC=	${WRKDIR}/${DISTNAME}/texk/dvipsk
@@ -102,7 +105,5 @@ pre-build:
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
 	${CHMOD} 0755 ${PKGINSTALL}
 
-post-install:
-	@${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
