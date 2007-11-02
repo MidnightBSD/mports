@@ -3,12 +3,12 @@
 # Whom:                Kentaro Inagaki <JBD01226@niftyserve.ne.jp>
 #
 # $FreeBSD: ports/print/xdvik/Makefile,v 1.24 2005/09/13 18:04:35 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/xdvik/Makefile,v 1.1 2007/01/24 20:59:27 laffer1 Exp $
 #
 
 PORTNAME=	xdvik
 PORTVERSION=	22.84.10
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	xdvi
@@ -16,6 +16,7 @@ PKGNAMESUFFIX=	-tetex
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DVI Previewer(kpathsearch) for X
+LICENSE=	agg
 
 BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
@@ -24,6 +25,8 @@ RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		mktexlsr:${PORTSDIR}/print/teTeX-base
 LIB_DEPENDS=	t1.5:${PORTSDIR}/devel/t1lib
+
+FAKE_OPTS=	prefixhack
 
 USE_XLIB=	yes
 USE_GMAKE=	yes
@@ -83,6 +86,5 @@ post-install:
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${DOC_FILES:S@^@${WRKSRC}/@} ${DOCSDIR}
 .endif
-	@${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
