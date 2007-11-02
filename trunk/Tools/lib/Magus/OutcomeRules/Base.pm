@@ -24,7 +24,7 @@ package Magus::OutcomeRules::Base;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.3 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules/Base.pm,v 1.4 2007/10/23 03:58:51 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -89,8 +89,8 @@ sub warning :ATTR(CODE) {
     phase => $phase,
     code  => $code,
   };
-   
-  push(@$rules, $code);
+  
+  push(@$rules, $entry);
   
   $class->warning_rules($rules);
 }
@@ -105,7 +105,7 @@ sub test {
   local $_ = $$output;
   
   foreach my $rule (@{$class->warning_rules || []}) {
-    if (my $msg = $rule->()) {
+    if (my $msg = $rule->{code}->()) {
       $result{summary} = 'warn' if $result{summary} eq 'pass';
       push(@{$result{warnings}}, {
         phase => $rule->{phase},
