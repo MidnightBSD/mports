@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.4 2007/10/22 16:07:53 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.5 2007/10/23 03:58:51 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,6 +35,8 @@ use warnings;
 use File::Path qw(mkpath);
 
 use Mport::Globals qw($MAKE);
+use Mport::Utils   qw(make_var);
+
 use Magus::OutcomeRules ();
 
 =head1 NAME 
@@ -109,8 +111,11 @@ sub run {
   
   $self->_set_env;
   $self->{chroot}->mark_dirty;
-
+ 
   my %results = (summary => 'pass');
+  
+  $self->check_for_skip(\%results) && return \%results;
+
   
   foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall)) {
     if (!$self->_run_make($target)) {
@@ -141,7 +146,9 @@ sub run {
     } 
         
     if ($presults->{errors}) {
-      push(@{$results{errors}}, @{$presults->{errors}});
+      # these will be the first errors we see.  If we parsed them, we just
+      # report the results of parsing.  
+      $results{errors} = $presults->{errors};
     }
     
     if ($presults->{warnings}) {
@@ -161,12 +168,37 @@ sub run {
 }
 
 
+sub check_for_skip {
+  my ($self, $results) = @_;
+  
+  chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
+  
+  my $ignore = make_var('IGNORE');
+  
+  if ($ignore) {
+    $results->{skips} = {
+      phase => 'prerun',
+      msg   => "$self->{port} $ignore",
+      name  => 'PortIgnored',
+    };
+    
+    $results->{'summary'} = 'skip';
+    
+    return 1;
+  }
+  
+  return;
+}    
+
+
 sub _run_make {
   my ($self, $target) = @_;
 
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   return system("$MAKE $target >$self->{logdir}/$target 2>&1") == 0;
 }  
+
+
 
 
 sub _set_env {
