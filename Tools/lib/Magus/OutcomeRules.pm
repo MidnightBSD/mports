@@ -24,7 +24,7 @@ package Magus::OutcomeRules;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.1 2007/09/14 03:01:10 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.2 2007/09/17 18:09:48 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -38,7 +38,9 @@ package Magus::OutcomeRules::fetch;
 
 use base qw(Magus::OutcomeRules::Base);
 
-
+sub FetchFailed :error {
+  m/Couldn't fetch it/ && return "Fetch failed.";
+}
 
 
 =head1 extract rules
@@ -59,7 +61,17 @@ package Magus::OutcomeRules::patch;
 
 use base qw(Magus::OutcomeRules::Base);
 
+sub NoLicense :warning {
+  m/LICENSE not set/ && return "LICENSE is not set.";
+}
 
+sub EmptyLicense :warning {
+  m/empty license/ && return "LICENSE is empty.";
+}
+
+sub InvalidLicense :warning {
+  m/Invalid LICENSE: (\S+)/ && return "Invalid license set: $1";
+}
 
 =head1 configure rules
 
@@ -78,7 +90,6 @@ use base qw(Magus::OutcomeRules::Base);
 package Magus::OutcomeRules::build;
 
 use base qw(Magus::OutcomeRules::Base);
-
 
 
 =head1 fake rules

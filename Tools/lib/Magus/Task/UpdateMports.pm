@@ -24,7 +24,7 @@ package Magus::Task::UpdateMports;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Task/UpdateMports.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Task/UpdateMports.pm,v 1.2 2007/10/29 17:07:45 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -62,6 +62,7 @@ sub exec {
   my $tar = "/usr/bin/tar xf $Magus::Config{MportsTarBall}";
   system($tar) == 0 || die "$tar returned non-zero: $?";
   
+  $self->callbacks->{'log'}->("Restarting process.");
   $self->callbacks->{'restart'}->();
 }
 
