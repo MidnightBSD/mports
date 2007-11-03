@@ -16,7 +16,7 @@
 
 <tbody>
 <TMPL_LOOP NAME="locks">
-<tr <TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
 	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
 	<td><TMPL_VAR name="machine"></td>
 	<td><TMPL_VAR name="arch"></td>
@@ -28,7 +28,7 @@
 
 </div>
 
-
+<div class="left">
 
 <h3>Latest Results</h3>
 <table class="result-list">
@@ -53,5 +53,6 @@
 	</TMPL_LOOP>
 	</tbody>
 </table>
+</div>
 
 <TMPL_INCLUDE NAME="footer.tmpl">

@@ -1,6 +1,6 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
-<h1><a href="/magus/">Magus</a> :: <TMPL_VAR name="port"></h1>
+<h2><TMPL_VAR name="port"></h2>
 
 <div class="right">
 <a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>">CVSWeb</a>
@@ -31,6 +31,7 @@
 
 </div>
 
+<div class="left">
 <p><TMPL_VAR NAME="desc"></p>
 
 <TMPL_IF name="results">
@@ -41,19 +42,22 @@
 	<th>Machine</th>
 	<th>Arch</th>
 	<th>Summary</th>
-	<td></td>
+	<th></th>
 </tr>
 <TMPL_LOOP name="results">
-<tr class="<TMPL_VAR NAME=summary>">
+<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
 	<td><TMPL_VAR NAME="version"></td>
 	<td><TMPL_VAR NAME="machine"></td>
 	<td><TMPL_VAR NAME="arch"></td>
 	<td><TMPL_VAR NAME="summary"></td>
 	<td>
-		<a href="<TMPL_VAR NAME=result_root>/<TMPL_VAR NAME=id>/details">Details</a>
-		--
-		<a href="<TMPL_VAR NAME=result_root>/<TMPL_VAR NAME=id>/log">Log</a> 
-	</td>
+	    <TMPL_IF NAME="has_details">
+		(<a href="#" id="result_<TMPL_VAR NAME=id>_link" onclick="return details_link(<TMPL_VAR NAME=id>);">Show Details</a>)
+	    </TMPL_IF>
+	</td> 
+</tr>
+<tr class="details<TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>" id="result_<TMPL_VAR NAME=id>_row">
+	<td colspan="5" id="result_<TMPL_VAR NAME=id>_details"></td>
 </tr>
 </TMPL_LOOP>
 </table>
@@ -61,6 +65,6 @@
 <p><TMPL_VAR name=port> has not been tested.</p>
 </TMPL_IF>
 
-
+</div>
 
 <TMPL_INCLUDE NAME="footer.tmpl">

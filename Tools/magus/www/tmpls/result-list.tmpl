@@ -1,13 +1,22 @@
 <table class="result-list">
-	<tr><th>Port</th><th>Version</th><th>Summary</th><th>Machine</th><th>Arch</th></tr>
+	<tr><th>Port</th><th>Version</th><th>Summary</th><th>Machine</th><th>Arch</th><th></th></tr>
 	<TMPL_LOOP NAME=results>
-	<tr class="<TMPL_VAR NAME=summary>">
+	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
 		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
 		<td><TMPL_VAR NAME=version></td>
 		<td><TMPL_VAR NAME=summary></td>
 		<td><TMPL_VAR NAME=machine></td>
 		<td><TMPL_VAR NAME=arch></td>
-	</tr>
+		<td>
+		    <TMPL_IF NAME="has_details">
+	                (<a href="#" id="result_<TMPL_VAR NAME=id>_link" onclick="return details_link(<TMPL_VAR NAME=id>);">Show Details</a>)
+	            </TMPL_IF>
+        	</td>
+        </tr>
+        <tr class="details<TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>" id="result_<TMPL_VAR NAME=id>_row">
+        	<td colspan="6" id="result_<TMPL_VAR NAME=id>_details"></td>
+        </tr>
+                
 	</TMPL_LOOP>
 </table>
 
