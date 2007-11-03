@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.13 2007/08/04 22:16:44 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.14 2007/08/07 17:54:18 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -220,7 +220,7 @@ PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 .if !defined(GNUSTEP_WITH_BASE_GCC)
 .if !defined(GNUSTEP_WITH_GCC32) && !defined(GNUSTEP_WITH_GCC33) && !defined(GNUSTEP_WITH_GCC34)
 .if !defined(GNUSTEP_WITH_GCC40) && !defined(GNUSTEP_WITH_GCC41) && !defined(GNUSTEP_WITH_GCC42)
-GNUSTEP_WITH_GCC42=	yes
+GNUSTEP_WITH_GCC41=	yes
 .endif
 .endif
 
