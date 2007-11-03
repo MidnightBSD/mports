@@ -15,12 +15,22 @@ h1 {
 	letter-spacing: .1em;
 	font-size: 2em;
 	font-family: Verdana, Helvetica, Arial, sans-serif;
-	color: white;
 	margin: 0;
+}
+
+h1 a {
+	color: white;
+	text-decoration: none;
+}
+
+h1 a:visited {
+	color: white;
 }
 
 h2 {
 	font-size: 1.5em;
+	letter-spacing: .05em;
+	color: #555;
 }
 
 a {
@@ -41,7 +51,7 @@ table tr {
 }
 
 table tr:hover {
-	background: #DBDCE9;
+	background: #FCFCFF;
 }
 
 table th {
@@ -51,6 +61,11 @@ table th {
 tr.even {
 	background: #eaeaea;
 }
+
+tr.details {
+	display: none;
+}
+
 
 *.fail {
 	color: #C0000B;
@@ -81,11 +96,32 @@ tr.even {
 }
 
 div.right {
-	float: right;
-/*	position: relative; */
-	bottom: 60px;
-	right: 20px
+	position: absolute;
+	top: 60px;
+	right: 0px;
+	width: 20%;
 }
+
+div.full {
+	width: 100%;
+	max-width: 100%;
+}
+
+div.left {
+	width: 75%;
+	max-width: 75%;	
+}
+
+table.result-list, table.port-results {
+	max-width: 100%;
+	width: 100%;
+}
+
+pre.log {
+	overflow: auto;
+}
+
+
 
 ul.depends li {
 	list-style: none;

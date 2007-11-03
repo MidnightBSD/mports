@@ -7,6 +7,7 @@ use lib qw(/usr/mports/Tools/lib);
 use Magus;
 use CGI;
 use HTML::Template;
+use JSON::XS;
 
 eval {
   main();
@@ -16,6 +17,7 @@ error($@) if $@;
 
 sub main {
   my $p = CGI->new;
+  
   my $path = $p->path_info;
 
   if ($path eq '' || $path eq '/') {
@@ -24,10 +26,8 @@ sub main {
     list_page($p, $1);
   } elsif ($path =~ m:/ports/(.*):) {
     port_page($p, $1);
-  } elsif ($path =~ m:/results/(\d+)/log:) {
-    log_page($p, $1);
-  } elsif ($path =~ m:/results/(\d+)/details:) {
-    subresults_page($p, $1);
+  } elsif ($path =~ m:/results/async/(\d+):) {
+    result_details_async($p, $1);
   } else {
     die "Unknown path: $path\n";
   }
@@ -90,8 +90,7 @@ sub port_page {
     machine => $_->machine->name,
     arch    => $_->arch,
     summary => $_->summary,
-    has_log => defined $_->logs->next,
-    has_subresults => defined $_->subresults->next,
+    has_details => ($_->summary eq 'pass') ? 0 : 1,
   }} $port->results;
   
   if (@results) {
@@ -119,43 +118,31 @@ sub port_page {
   print $p->header, $tmpl->output;
 }
 
-sub subresults_page {
+sub result_details_async {
   my ($p, $id) = @_;
-
-  my $tmpl = template($p, "subresults.tmpl");
-
+  
+  my %details = (id => $id);
+  
   my $result = Magus::Result->retrieve($id) || die "No such results: $id";
-
+  
   my @subresults = map { {
 	phase => $_->phase,
 	type  => $_->type,
 	name  => $_->name,
-	msg   => $_->msg
+	msg   => $_->msg,
   }} $result->subresults;
 
   if (@subresults) {
-    $tmpl->param(
-      subresults => \@subresults,
-    );
+    $details{subresults} = \@subresults;
   }
-
-  print $p->header, $tmpl->output;
-}
-
-
-
-sub log_page {
-  my ($p, $id) = @_;
-  
-  my $result = Magus::Result->retrieve($id) || die "No such result.";
   
   my $log = $result->logs->next;
   
-  my $tmpl = template($p, 'log.tmpl');
-  
-  $tmpl->param(port => $result->port, log => $log->data);
-  
-  print $p->header, $tmpl->output;
+  if ($log) {
+    $details{log} = $log->data;
+  }
+#  use Data::Dumper
+  print $p->header(-type => 'text/plain'), to_json(\%details);
 }
 
 sub list_page {
@@ -166,7 +153,9 @@ sub list_page {
     port    => $_->port,
     version => $_->version,
     machine => $_->machine->name,
-    arch    => $_->arch 
+    arch    => $_->arch, 
+    id      => $_->id,
+    has_details => ($_->summary eq 'pass') ? 0 : 1,
   }} sort { $b->id <=> $a->id } Magus::Result->search(summary => $summary);
   
   my $tmpl = template($p, 'list.tmpl');
