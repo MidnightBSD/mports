@@ -3,12 +3,11 @@
 # Whom:					gpalmer
 #
 # $FreeBSD: ports/net-mgmt/net-snmp/Makefile,v 1.136 2006/09/23 15:03:36 nork Exp $
-# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.1 2007/01/25 21:39:21 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.2 2007/06/06 18:22:36 ctriv Exp $
 #
 
 PORTNAME=	snmp
-PORTVERSION=	5.2.3
-PORTREVISION=	3
+PORTVERSION=	5.3.1
 CATEGORIES=	net-mgmt ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	net-snmp
