@@ -2,7 +2,7 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/gedit/Makefile,v 1.1 2007/09/01 07:40:10 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.64 2007/07/04 02:01:15 mezz Exp $
 #   $MCom: ports/editors/gedit/Makefile,v 1.58 2007/03/11 17:00:31 marcus Exp $
 #
@@ -18,7 +18,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small but powerful text editor for GNOME 2 Desktop Environment
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant
+LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant \
+		gnomecups-1.0.1:${PORTSDIR}/print/libgnomecups
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
 USE_BZIP2=	yes
