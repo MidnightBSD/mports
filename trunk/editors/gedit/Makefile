@@ -2,13 +2,14 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/gedit/Makefile,v 1.1 2007/09/01 07:40:10 laffer1 Exp $
+# $MidnightBSD: mports/editors/gedit/Makefile,v 1.2 2007/11/04 13:00:52 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.64 2007/07/04 02:01:15 mezz Exp $
 #   $MCom: ports/editors/gedit/Makefile,v 1.58 2007/03/11 17:00:31 marcus Exp $
 #
 
 PORTNAME=	gedit
 PORTVERSION=	2.18.2
+PORTREVISION=	1
 CATEGORIES=	editors gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
