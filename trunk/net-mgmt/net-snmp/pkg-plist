@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/net-mgmt/net-snmp/pkg-plist,v 1.2 2007/11/04 12:54:45 laffer1 Exp $
 bin/encode_keychange
 bin/fixproc
 bin/ipf-mod.pl
@@ -151,7 +151,6 @@ include/net-snmp/system/freebsd3.h
 include/net-snmp/system/freebsd4.h
 include/net-snmp/system/freebsd5.h
 include/net-snmp/system/freebsd6.h
-include/net-snmp/system/freebsd7.h
 include/net-snmp/system/generic.h
 include/net-snmp/system/hpux.h
 include/net-snmp/system/irix.h
