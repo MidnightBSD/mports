@@ -3,11 +3,12 @@
 # Whom:					gpalmer
 #
 # $FreeBSD: ports/net-mgmt/net-snmp/Makefile,v 1.136 2006/09/23 15:03:36 nork Exp $
-# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.2 2007/06/06 18:22:36 ctriv Exp $
+# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.3 2007/11/04 12:34:13 laffer1 Exp $
 #
 
 PORTNAME=	snmp
 PORTVERSION=	5.3.1
+PORTREVISION=	1
 CATEGORIES=	net-mgmt ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	net-snmp
@@ -89,7 +90,7 @@ PLIST_SUB+=	WITH_IPV6=""
 PLIST_SUB+=	WITH_IPV6="@comment "
 .endif
 
-SHLIB_VERSION=	9
+SHLIB_VERSION=	10
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION}
 SCRIPTS_SUB=	PREFIX=${PREFIX} PERL=${PERL}
 
@@ -168,10 +169,11 @@ _MANPAGES+=	${MAN3PERL:S%^%${MAN3PERLPREFIX}/man/man3/%}
 .endif
 
 MAN5=		mib2c.conf.5 snmp.conf.5 snmp_config.5 snmpd.conf.5 \
+		snmpd.examples.5 snmpd.internal.5 \
 		snmptrapd.conf.5 variables.5
 MAN8=		snmpd.8 snmptrapd.8
 
-BIN_FILES=	snmpbulkwalk snmpget snmpgetnext snmpnetstat53 snmpset \
+BIN_FILES=	snmpbulkwalk snmpget snmpgetnext snmpset \
 		snmpstatus snmptest snmptranslate snmptrap snmpwalk
 SBIN_FILES=	snmpd snmptrapd
 STARTUP_DIR=	${PREFIX}/etc/rc.d
@@ -185,6 +187,8 @@ DOC_FILES=	AGENT.txt COPYING FAQ NEWS README \
 		agent/mibgroup/README.smux
 
 PS_CMD?=	/bin/ps
+
+CONFLICTS=	net-snmp-4.*
 
 pre-everything::
 	@${ECHO_MSG}
