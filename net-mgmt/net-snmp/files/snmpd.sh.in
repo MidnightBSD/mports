@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net-mgmt/net-snmp/files/snmpd.sh.in,v 1.6 2007/03/25 12:35:45 kuriyama Exp $
 #
 # PROVIDE: snmpd
