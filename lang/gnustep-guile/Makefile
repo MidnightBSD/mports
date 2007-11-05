@@ -3,11 +3,12 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.1 2007/02/14 20:53:00 laffer1 Exp $
 #
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -15,6 +16,7 @@ PKGNAMESUFFIX?=	${NOX11_SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep interface to the GUILE scheme interpreter
+LICENSE=	gpl2
 
 LIB_DEPENDS+=	guile.15:${PORTSDIR}/lang/guile
 
