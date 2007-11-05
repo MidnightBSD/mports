@@ -2,12 +2,13 @@
 # Date created:        25 july 2005
 # Whom:                Ron van Daal
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.1 2007/03/21 01:00:36 laffer1 Exp $
 # $FreeBSD: ports/graphics/GraphicsMagick/Makefile,v 1.11 2007/02/10 06:05:00 kris Exp $
 #
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.7
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/
@@ -15,6 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME:L}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast image processing tools based on ImageMagick
+LICENSE=	bsd2
 
 LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2	\
 		jbig:${PORTSDIR}/graphics/jbigkit	\
