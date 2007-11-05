@@ -2,13 +2,13 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.5 2007/04/19 00:04:44 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.6 2007/10/27 05:03:37 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.12.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -22,6 +22,8 @@ LIB_DEPENDS+=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
 
 GNU_CONFIGURE=	yes
+CPPFLAGS+=	"-I/usr/local/include"
+LDFLAGS+=	"-L/usr/local/lib"
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-tiff-include=${LOCALBASE}/include
