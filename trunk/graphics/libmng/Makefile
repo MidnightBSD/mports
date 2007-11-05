@@ -2,7 +2,7 @@
 # Date created:		Nov 2, 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.1 2006/09/27 19:24:45 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.2 2007/10/31 20:27:07 laffer1 Exp $
 # $FreeBSD: ports/graphics/libmng/Makefile,v 1.23 2006/05/07 23:46:15 edwin Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
+LICENSE=	bsd3
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		lcms:${PORTSDIR}/graphics/lcms
