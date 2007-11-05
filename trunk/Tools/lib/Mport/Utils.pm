@@ -1,6 +1,6 @@
 package Mport::Utils;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.3 2007/09/09 02:20:48 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.4 2007/09/11 02:30:15 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -25,19 +25,22 @@ sub make_var {
   }
 }
 
-sub recurse_ports (&) {
-  my ($code) = @_;
+sub recurse_ports (&;@) {
+  my ($code, %args) = @_;
   my $orig = Cwd::getcwd();
   
-  _do_recurse($code, $ROOT);
+  my $root    = $args{root} || $ROOT;
+  my $nochdir = $args{nochdir} || sub { die "Couldn't chdir to @_: $!" };
+  
+  _do_recurse($code, $root, $nochdir);
   
   chdir($orig);
 }
 
 sub _do_recurse {
-  my ($code, $cwd) = @_;
+  my ($code, $cwd, $nochdir) = @_;
   
-  chdir($cwd) || die "Couldn't chdir to $cwd: $!\n";
+  chdir($cwd) || do { $nochdir->($cwd); return };
   
   # Calling make is expensive.  Only do so if we need to.
   if (-e 'pkg-descr' || -e 'pkg-plist') {
@@ -54,7 +57,7 @@ sub _do_recurse {
       close($make);
       if (@dirs) {
         foreach my $dir (@dirs) {
-          _do_recurse($code, "$cwd/$dir");
+          _do_recurse($code, "$cwd/$dir", $nochdir);
         }
       }   
      
