@@ -2,12 +2,13 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.6 2007/06/11 02:38:21 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.7 2007/08/01 20:43:30 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -19,7 +20,7 @@ COMMENT=	Libraries for xine multimedia player
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdts.a:${PORTSDIR}/multimedia/libdts
 LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
-		vorbis.3:${PORTSDIR}/audio/libvorbis \
+		vorbis.4:${PORTSDIR}/audio/libvorbis \
 		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
 		png.5:${PORTSDIR}/graphics/png \
