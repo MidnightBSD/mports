@@ -1,12 +1,17 @@
+var loader = new Image(220, 19);
+loader.src = '/magus/elements/ajax-loader.gif';
+
 function details_link(id) {
 	var row = document.getElementById("result_" + id + "_row");
 	var div = document.getElementById("result_" + id + "_details");
 
 	if (!row.style.display || row.style.display == 'none') {
+		row.style.display = 'table-row';
 		if (!div.innerHTML) {
+			var td = document.getElementById("result_" + id + "_details");
+			td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
 			sendAsycQuery(id);
 		} else {
-			row.style.display = 'table-row';
 			twiddle_link(id, 'hide');
 		}
 	} else {
@@ -50,7 +55,6 @@ function processDetailResults() {
         if (req.status == 200) {
             var result = eval( "(" + req.responseText + ")" );
 
-	    var row = document.getElementById("result_" + result.id + "_row");
             var td = document.getElementById("result_" + result.id + "_details");
 
 	    var html = '';

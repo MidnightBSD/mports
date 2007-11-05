@@ -91,7 +91,7 @@ sub port_page {
     arch    => $_->arch,
     summary => $_->summary,
     has_details => ($_->summary eq 'pass') ? 0 : 1,
-  }} $port->results;
+  }} sort { $b->id <=> $a->id } $port->results;
   
   if (@results) {
     $tmpl->param(
@@ -148,6 +148,8 @@ sub result_details_async {
 sub list_page {
   my ($p, $summary) = @_;
   
+  Magus::Result->set_sql(current_results => "SELECT results.* FROM results JOIN ports ON results.port=ports.name AND results.version=ports.version WHERE summary=? ORDER BY id DESC");  
+
   my @results = map {{
     summary => $_->summary,
     port    => $_->port,
@@ -156,7 +158,7 @@ sub list_page {
     arch    => $_->arch, 
     id      => $_->id,
     has_details => ($_->summary eq 'pass') ? 0 : 1,
-  }} sort { $b->id <=> $a->id } Magus::Result->search(summary => $summary);
+  }} Magus::Result->search_current_results($summary);
   
   my $tmpl = template($p, 'list.tmpl');
   
