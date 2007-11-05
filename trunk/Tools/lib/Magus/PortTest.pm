@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.5 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.6 2007/11/02 18:15:50 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -173,14 +173,14 @@ sub check_for_skip {
   
   chdir($self->{port}->origin) || die "Couldn't chdir to " . $self->{port}->origin . ": $!\n";
   
-  my $ignore = make_var('IGNORE');
+  chomp(my $ignore = make_var('IGNORE'));
   
   if ($ignore) {
-    $results->{skips} = {
+    $results->{skips} = [{
       phase => 'prerun',
       msg   => "$self->{port} $ignore",
       name  => 'PortIgnored',
-    };
+    }];
     
     $results->{'summary'} = 'skip';
     
