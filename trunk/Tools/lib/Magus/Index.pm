@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.4 2007/10/29 21:17:11 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.5 2007/11/05 16:54:49 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,13 +39,14 @@ use YAML qw(Load);
 sub sync {
   my ($class) = @_;
   my %visited;
-  
+  my $root = "$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}";
   local $| = 1;
+
   
   recurse_ports {
     print @_, "...";
     
-    my $yaml = `BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
+    my $yaml = `PORTSDIR=$root BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
     my %dump;
     
     eval {
@@ -75,7 +76,7 @@ sub sync {
   
     print " done\n";
     $visited{$port->name}++;
-  } root    => "$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}",
+  } root    => $root,
     nochdir => sub { 
       (my $name = $_[0]) =~ s:.*/(.*?/.*?)$:$1:;
       my $port = Magus::Port->find_or_create({name => $name});
