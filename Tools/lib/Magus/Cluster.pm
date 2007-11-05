@@ -24,7 +24,7 @@ package Magus::Cluster;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Cluster.pm,v 1.1 2007/10/29 06:56:29 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Cluster.pm,v 1.2 2007/10/29 17:07:45 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -55,7 +55,7 @@ sub run_task {
   my $running_count = 1;
   
   while ($running_count > 0) {
-    $running_count = Magus::Task->search(type => $type, complete => 0)->count;  
+    $running_count = Magus::Task->search(type => $type, completed => 0)->count;  
     sleep(5);
   }
 }

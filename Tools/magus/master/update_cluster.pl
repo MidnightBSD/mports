@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.1 2007/10/29 06:53:31 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.2 2007/10/31 18:02:28 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -36,6 +36,7 @@ use lib qw(/usr/mports/Tools/lib);
 
 use Magus;
 use Mport::Utils qw(recurse_ports);
+use File::Path qw(rmtree);
 
 #
 # The basic outline of the update is this:
@@ -65,16 +66,19 @@ sub main {
 
 
 sub update_cvs_dir {
-  #
-  # Hrrrm...
-  #
+  chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
+  rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
+  
+  my $cmd = "cvs -z 5 co $Magus::Config{MportsCvsDir}";
+  
+  system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
 
 
 sub make_tarball {
+  chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
   unlink($Magus::Config{'MportsTarBall'}) 
     || ($! !~ m/no such/i && die "Couldn't unlink $Magus::Config{'MportsTarBall'}: $!\n");
-  chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
   
   my $tar = "/usr/bin/tar cfj $Magus::Config{MportsTarBall} $Magus::Config{MportsCvsDir}";
   
