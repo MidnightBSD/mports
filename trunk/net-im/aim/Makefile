@@ -2,7 +2,7 @@
 # Date created:		Sat Jan 13 12:40:20 GMT 2001
 # Whom:			Roger Hardiman <roger@freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/aim/Makefile,v 1.1 2007/05/03 06:07:03 laffer1 Exp $
 # $FreeBSD: ports/net-im/aim/Makefile,v 1.13 2006/09/11 02:14:24 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AOL's Instant Messenger (AIM) client
+LICENSE=	restricted
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-1.2.so.0:${PORTSDIR}/x11-toolkits/linux-gtk
 
