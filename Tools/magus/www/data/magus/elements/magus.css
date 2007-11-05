@@ -50,9 +50,10 @@ table tr {
 	background: transparent;
 }
 
-table tr:hover {
-	background: #FCFCFF;
-}
+/* table tr:hover {
+	background: #D0D0DF;
+}*/
+
 
 table th {
 	border-bottom: solid 1px #888;
@@ -120,6 +121,9 @@ table.result-list, table.port-results {
 }
 
 pre.log {
+	border: solid 1px #ddd;
+	margin: 4px;
+	padding: 4px;
 	overflow: auto;
 }
 
