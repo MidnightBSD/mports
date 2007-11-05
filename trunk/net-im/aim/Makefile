@@ -2,12 +2,13 @@
 # Date created:		Sat Jan 13 12:40:20 GMT 2001
 # Whom:			Roger Hardiman <roger@freebsd.org>
 #
-# $MidnightBSD: mports/net-im/aim/Makefile,v 1.1 2007/05/03 06:07:03 laffer1 Exp $
+# $MidnightBSD: mports/net-im/aim/Makefile,v 1.2 2007/11/05 22:40:46 laffer1 Exp $
 # $FreeBSD: ports/net-im/aim/Makefile,v 1.13 2006/09/11 02:14:24 clsung Exp $
 #
 
 PORTNAME=	aim
 PORTVERSION=	1.5.286
+PORTREVISION=	1
 CATEGORIES=	net-im linux
 MASTER_SITES=	ftp://ftp.newaol.com/aimgen/380469/
 DISTNAME=	aim-${PORTVERSION}
