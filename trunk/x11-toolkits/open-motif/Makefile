@@ -4,12 +4,12 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.2 2007/03/25 02:06:39 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.3 2007/11/05 23:04:20 laffer1 Exp $
 #
 
 PORTNAME=	open-motif
 PORTVERSION=	2.2.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://ftp.motifzone.com/%SUBDIR%/                              
 MASTER_SITE_SUBDIR=	om${PORTVERSION}/src
@@ -25,7 +25,7 @@ RUN_DEPENDS=	imake:${X_IMAKE_PORT}
 CONFLICTS=	lesstif-*
 USE_XLIB=	yes
 USE_GMAKE=	yes
-USE_XORG=	xbitmaps
+USE_XORG=	xaw xbitmaps
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI"
 CONFIGURE_ARGS=	--build=${MACHINE_ARCH}-portbld-freebsd6.0 
