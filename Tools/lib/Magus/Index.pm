@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.3 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.4 2007/10/29 21:17:11 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -34,13 +34,17 @@ use warnings;
 
 use Mport::Utils qw(make_var recurse_ports);
   
-use Fatal qw(chdir);
 use YAML qw(Load);
  
 sub sync {
   my ($class) = @_;
+  my %visited;
+  
+  local $| = 1;
   
   recurse_ports {
+    print @_, "...";
+    
     my $yaml = `BATCH=1 PACKAGE_BUILDING=1 MAGUS=1 make describe-yaml`;
     my %dump;
     
@@ -64,18 +68,36 @@ sub sync {
     $class->sync_depends(\%dump, $port);
     $class->sync_categories(\%dump, $port);
     
-    if ($dump{is_interactive}) {
+    if ($dump{is_interactive} && !$port->current_result) {
+      print "\n\tIGNORE set.  Marking as skippped.\n";
       $port->set_result_skip(index => IsInteractive => "Port is marked as interactive.");
     }
-  };
   
+    print " done\n";
+    $visited{$port->name}++;
+  } root    => "$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}",
+    nochdir => sub { 
+      (my $name = $_[0]) =~ s:.*/(.*?/.*?)$:$1:;
+      my $port = Magus::Port->find_or_create({name => $name});
+
+      $port->set_result_fail(index => BadDirMakefile => "$port does not exist but is in the directory makefile.");
+
+      $visited{$name}++;
+      print "\n\tUnable to chdir to  $_[0].  Marking as failure.\n";
+    };      
+
   my $ports = Magus::Port->retrieve_all;
   
+  # if the port is in the database, but not in the tree, then we need to delete it
+  # from the database.
+  print "Checking for deleted ports...";
   while (my $port = $ports->next) {
-    unless (-d $port->origin) {
-      $port->set_result_fail(index => BadDirMakefile => "$port does not exist but is in the directory makefile.");
+    if (!$visited{$port->name}) {
+      print "\n\t$port";
+      $port->delete;
     }
   }
+  print "done\n";
 }
 
 
