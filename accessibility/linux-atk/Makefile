@@ -2,17 +2,17 @@
 # Date created:				2003-07-05
 # Whom:					trevor
 #
-# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.3 2007/08/07 22:34:06 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.4 2007/09/14 15:07:22 laffer1 Exp $
 #
 
 PORTNAME=	atk
 PORTVERSION=	1.9.1
+PORTREVISION=	1
 CATEGORIES=	accessibility linux
 DISTNAME=	${PORTNAME}-${PORTVERSION}-1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accessibility Toolkit, Linux/i386 binary
-
 LICENSE=	lgpl
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libglib-2.0.so.0:${PORTSDIR}/devel/linux-glib2
