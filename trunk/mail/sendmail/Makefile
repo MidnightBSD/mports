@@ -3,11 +3,12 @@
 # Whom:					dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/mail/sendmail/Makefile,v 1.126 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.1 2007/02/20 05:41:01 archite Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.2 2007/06/15 20:08:09 laffer1 Exp $
 #
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.1
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -18,8 +19,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reliable, highly configurable mail transfer agent with utilities
 
 CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.*
-CONFLICTS+=	sendmail-8.11.* sendmail-*-8.11.* sendmail+*-8.11.*
 CONFLICTS+=	sendmail-8.12.* sendmail-*-8.12.* sendmail+*-8.12.*
+
+FAKE_OPTS+=	trueprefix
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 WCONF=		${WRKSRC}/devtools/Site
@@ -244,6 +246,7 @@ post-build:
 	@(cd ${BUILD_WRKSRC}/libsharedmilter; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .endif
 .endif
+	${MKDIR} ${WRKDIR}/${FAKE_INSTALLDIR}/etc/mail
 
 pre-install:
 	@${CAT} ${PKGDIR}/pkg-plist >${PLIST}
@@ -272,8 +275,8 @@ pre-install:
 # We want mail.local and rmail for our system.
 # the build install catmans only, we have to fix this.
 post-install:
-	( cd ${WRKSRC}/mail.local && ${MAKE} force-install )
-	( cd ${WRKSRC}/rmail && ${MAKE} force-install )
+	( cd ${WRKSRC}/mail.local && ${MAKE} ${FAKE_MAKEARGS} force-install )
+	( cd ${WRKSRC}/rmail && ${MAKE} ${FAKE_MAKEARGS} force-install )
 .if !defined(SENDMAIL_WITHOUT_MILTER)
 	${MKDIR} ${PREFIX}/include/libmilter
 	${INSTALL_DATA} ${WRKSRC}/include/libmilter/mfapi.h \
@@ -291,9 +294,9 @@ post-install:
 .endif
 .if exists(${DESTDIR}/etc/mail/mailer.conf)
 	${INSTALL_SCRIPT} ${WRKSRC}/sm-client.sh \
-		${LOCALBASE}/etc/rc.d/sm-client.sh.sample
+		${FAKE_DESTDIR}${LOCALBASE}/etc/rc.d/sm-client.sh.sample
 	${INSTALL_SCRIPT} ${WRKSRC}/sendmail.sh \
-		${LOCALBASE}/etc/rc.d/sendmail.sh.sample
+		${FAKE_DESTDIR}${LOCALBASE}/etc/rc.d/sendmail.sh.sample
 .endif
 	${CHOWN} smmsp:smmsp /var/spool/clientmqueue
 	${CHMOD} 770 /var/spool/clientmqueue
