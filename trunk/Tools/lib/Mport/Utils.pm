@@ -1,6 +1,6 @@
 package Mport::Utils;
 #
-# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.4 2007/09/11 02:30:15 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Mport/Utils.pm,v 1.5 2007/11/05 16:52:38 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -21,6 +21,7 @@ sub make_var {
   if (wantarray) {
     return shellwords($ret);
   } else {
+    chomp($ret);
     return $ret;
   }
 }
