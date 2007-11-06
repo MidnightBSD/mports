@@ -2,7 +2,7 @@
 # Date created:         03 October 1998
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.4 2007/11/02 03:41:20 ctriv Exp $ 
+# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.5 2007/11/05 22:54:02 laffer1 Exp $ 
 # $FreeBSD: ports/devel/gnustep/Makefile,v 1.62 2006/08/31 05:35:32 dinoex Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Objective-C libraries based on the OpenStep standard
+LICENSE=	agg
 
 NO_BUILD=	yes
 NO_INSTALL=	yes
