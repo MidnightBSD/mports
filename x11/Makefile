@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.44 2007/11/04 16:41:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.45 2007/11/05 19:26:26 ctriv Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -170,9 +170,7 @@
     SUBDIR += xorg-apps
     SUBDIR += xorg-cf-files
     SUBDIR += xorg-docs
-    SUBDIR += xorg-documents
     SUBDIR += xorg-libraries
-    SUBDIR += xorg-manpages
     SUBDIR += xorg-protos
     SUBDIR += xphelloworld
     SUBDIR += xplsprinters
