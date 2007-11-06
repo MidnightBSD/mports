@@ -1,0 +1,11 @@
+--- qcextra.orig	Sat Dec 20 19:11:51 2003
++++ qcextra	Mon Nov  5 18:56:20 2007
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+ cat >extra.pri <<EOT
+-target.path=\$\$QT_PATH_PLUGINS/crypto
++target.path=lib/plugins/crypto/
+ INSTALLS += target
+ 
+ INSTALL_ROOT = $PREFIX
