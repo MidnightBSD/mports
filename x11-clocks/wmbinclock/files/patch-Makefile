@@ -1,0 +1,15 @@
+--- Makefile.orig	Mon Nov  5 19:15:43 2007
++++ Makefile	Mon Nov  5 19:16:16 2007
+@@ -20,9 +20,9 @@
+ #
+ CC     = gcc
+ CFLAGS = -O2 -Wall
+-INCDIR = -I/usr/X11R6/include/X11 -I/usr/X11R6/include
+-DESTDIR= /usr/X11R6
+-LIBDIR = -L/usr/X11R6/lib
++INCDIR = -I/usr/X11R6/include/X11 -I/usr/X11R6/include -I/usr/local/include
++DESTDIR= /usr/local
++LIBDIR = -L/usr/local/lib
+ # for linux
+ LIBS   = -lXpm -lX11 -lXext -lm
+ # for Solaris
