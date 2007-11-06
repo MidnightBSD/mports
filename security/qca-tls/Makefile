@@ -3,19 +3,21 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/security/qca-tls/Makefile,v 1.9 2006/08/21 10:08:24 demon Exp $
-# $MidnightBSD: mports/security/qca-tls/Makefile,v 1.1 2007/01/20 17:22:48 laffer1 Exp $
+# $MidnightBSD: mports/security/qca-tls/Makefile,v 1.2 2007/03/25 01:45:31 ctriv Exp $
 #
 
 PORTNAME=	qca-tls
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://delta.affinix.com/download/qca/ \
 		http://psi.affinix.com/beta/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL/TLS plugin for Qt
+LICENSE=	lgpl
 
+FAKE_MAKEARGS+= INSTALL_ROOT=${FAKE_DESTDIR}${PREFIX}/
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
 HAS_CONFIGURE=	yes
