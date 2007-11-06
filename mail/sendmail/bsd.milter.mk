@@ -3,7 +3,7 @@
 # Whom:			dinoex
 #
 # $FreeBSD: ports/mail/sendmail/bsd.milter.mk,v 1.2 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/sendmail/bsd.milter.mk,v 1.1 2007/02/20 05:41:01 archite Exp $
 #
 # a port shall includes this file after bsd.ports.pre.mk
 # .include "${PORTSDIR}/${PKGCATEGORY}/sendmail/bsd.milter.mk"
@@ -40,7 +40,7 @@
 # BUILD_DEPENDS		- are added if needed
 # RUN_DEPENDS		- are added if needed
 
-Milter_Include_MAINTAINER=	dinoex@FreeBSD.org
+Milter_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .if	!defined(WITH_SENDMAIL_BASE) && \
 	!defined(WITH_SENDMAIL_PORT)
