@@ -2,13 +2,13 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk82/Makefile,v 1.1 2007/04/04 17:57:28 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk82/Makefile,v 1.58 2007/03/13 10:31:53 miwi Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.2.3
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-toolkits tk82
 MASTER_SITES=	${MASTER_SITE_TCLTK}
 MASTER_SITE_SUBDIR=	tcl8_2
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL
+LICENSE=	unknown
 
 USE_TCL=	82
 USE_TCL_BUILD=	82
@@ -38,6 +39,8 @@ MANCOMPRESSED=	no
 
 OPTIONS=	TK82_MAN "Install tk 8.2 manpages" off \
 		WISH_WRAPPER "Require wish wrapper from ports" off
+
+FAKE_MAKEARGS+=	INSTALL_ROOT=${FAKE_DESTDIR}
 
 .include <bsd.port.pre.mk>
 
@@ -321,6 +324,9 @@ post-configure:
 	${REINPLACE_CMD} \
 		-e 's|${WRKDIRPREFIX}${.CURDIR}|$${WRKDIRPREFIX}${TKBASE}|' \
 		${WRKSRC}/tkConfig.sh
+
+pre-install:
+	${MKDIR} ${WRKDIR}/${FAKE_INSTALLDIR}/usr/local/lib/tk8.2
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/pkgIndex.tcl ${PREFIX}/lib/tk${TK_VER}/
