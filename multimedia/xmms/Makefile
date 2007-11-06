@@ -2,13 +2,13 @@
 # Date created:			3 July 1999
 # Whom:				Espen Skoglund <esk@ira.uka.de>
 #
-# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.2 2007/03/25 01:19:45 ctriv Exp $
+# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.3 2007/08/01 20:41:14 laffer1 Exp $
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
 #
 
 PORTNAME=	xmms
 PORTVERSION=	1.2.10
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES+=	multimedia audio ipv6
 MASTER_SITES=	http://www.xmms.org/files/1.2.x/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -71,7 +71,7 @@ PLIST_SUB+=	MIKMODPLUGIN:="@comment "
 .endif
 
 .if !defined(WITHOUT_VORBIS)
-LIB_DEPENDS+=	vorbis.3:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
 INPUT_PLUGINS+=	vorbis
 PLIST_SUB+=	VORBISPLUGIN:=""
 .else
