@@ -2,13 +2,13 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk83/Makefile,v 1.1 2007/04/04 19:03:17 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk83/Makefile,v 1.70 2007/03/13 10:07:55 miwi Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.3.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-toolkits tk83
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL
+LICENSE=	unknown
 
 USE_TCL=	83
 USE_TCL_BUILD=	83
@@ -40,6 +41,8 @@ MANCOMPRESSED=	no
 
 OPTIONS=	TK83_MAN "Install tk 8.3 manpages" off \
 		WISH_WRAPPER "Require wish wrapper from ports" off
+
+FAKE_MAKEARGS+= INSTALL_ROOT=${FAKE_DESTDIR}
 
 .include <bsd.port.pre.mk>
 
