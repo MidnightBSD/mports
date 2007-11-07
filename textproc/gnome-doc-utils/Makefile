@@ -2,14 +2,14 @@
 # Date created:				11 November 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.1 2007/09/01 05:46:54 laffer1 Exp $
 # $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
 #   $MCom: ports/textproc/gnome-doc-utils/Makefile,v 1.44 2007/03/13 00:37:32 mezz Exp $
 #
 
 PORTNAME=	gnome-doc-utils
 PORTVERSION=	0.10.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -17,6 +17,7 @@ DISTNAME=	gnome-doc-utils-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME doc utils
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper \
     		gawk:${PORTSDIR}/lang/gawk
@@ -39,6 +40,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 MAN1=		xml2po.1
 
 post-install:
-	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -l ${PREFIX}/share/xml2po
+	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d ${TRUE_PREFIX} -l ${PREFIX}/share/xml2po 
 
 .include <bsd.port.mk>
