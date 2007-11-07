@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.66 2007/10/22 00:03:58 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.67 2007/10/24 17:08:41 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -63,6 +63,7 @@
     SUBDIR += linux-tiff
     SUBDIR += linux-ungif
     SUBDIR += linux_dri
+    SUBDIR += mesa-demos
     SUBDIR += ming
     SUBDIR += netpbm
     SUBDIR += p5-GD
