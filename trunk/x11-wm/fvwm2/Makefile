@@ -2,7 +2,7 @@
 # Date created:		20 Jan 1996
 # Whom:			peter
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.1 2007/03/16 15:29:01 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/fvwm2/Makefile,v 1.72 2007/01/09 19:34:55 cy Exp $
 #
 
@@ -16,6 +16,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Popular virtual window manager for X
+LICENSE=	agg
+#it's gpl2 + x11 and other licenses.
 
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
