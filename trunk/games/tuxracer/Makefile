@@ -3,12 +3,12 @@
 # Whom:					Eric Anholt
 #
 # $FreeBSD: ports/games/tuxracer/Makefile,v 1.23 2006/09/20 11:21:32 stas Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.1 2006/11/24 17:15:42 laffer1 Exp $
 #
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=tuxracer
@@ -23,7 +23,7 @@ LIB_DEPENDS=	tcl83.1:${PORTSDIR}/lang/tcl83
 USE_SDL=	mixer sdl
 USE_GL=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	automake:14 autoconf:213
+USE_AUTOTOOLS=	automake:14 autoconf:261
 AUTOMAKE_ARGS=	-a
 CONFIGURE_ENV=	THREAD_LIB="${PTHREAD_LIBS}"
 MAKE_ENV=	${CONFIGURE_ENV}
