@@ -3,12 +3,12 @@
 # Whom:					dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/mail/sendmail/Makefile,v 1.126 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.3 2007/11/06 04:16:12 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.4 2007/11/06 04:27:51 laffer1 Exp $
 #
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -299,8 +299,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/sendmail.sh \
 		${FAKE_DESTDIR}${LOCALBASE}/etc/rc.d/sendmail.sh.sample
 .endif
-	${CHOWN} smmsp:smmsp /var/spool/clientmqueue
-	${CHMOD} 770 /var/spool/clientmqueue
 .for i in ${MAN8}
 	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz
 	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man8
