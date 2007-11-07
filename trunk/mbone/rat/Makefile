@@ -2,13 +2,13 @@
 # Date created:			      3 July 1999
 # Whom:				      O.Hodson@cs.ucl.ac.uk (Orion Hodson)
 #
-# $MidnightBSD: mports/mbone/rat/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
+# $MidnightBSD: mports/mbone/rat/Makefile,v 1.2 2007/08/02 06:05:41 laffer1 Exp $
 # $FreeBSD: ports/mbone/rat/Makefile,v 1.37 2007/03/03 18:32:58 kris Exp $
 #
 
 PORTNAME=	rat
 PORTVERSION=	4.2.25
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mbone audio ipv6 tk83
 MASTER_SITES=								      \
 	http://www-mice.cs.ucl.ac.uk/multimedia/software/rat/releases/${PORTVERSION}/ \
@@ -16,6 +16,7 @@ MASTER_SITES=								      \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPv4/v6 Multicast and unicast audio conferencing tool
+LICENSE=	bsd4
 
 TCLTK_VERSION=	8.3
 LIB_DEPENDS=	tk83.1:${PORTSDIR}/x11-toolkits/tk83
@@ -46,8 +47,8 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rat/${RAT}-media ${PREFIX}/bin/${RAT}-media
 	${INSTALL_SCRIPT} ${WRKSRC}/rat/${RAT_SCRIPT} ${PREFIX}/bin/${RAT_SCRIPT}
 	${INSTALL_MAN}  ${WRKSRC}/rat/man/man1/rat.1 ${PREFIX}/man/man1
-	${MKDIR} ${LOCALBASE}/etc/sdr/plugins
-	${INSTALL_DATA} ${WRKSRC}/rat/sdr2.plugin.S02.audio.rtp.*.${RAT} ${LOCALBASE}/etc/sdr/plugins
+	${MKDIR} ${PREFIX}/etc/sdr/plugins
+	${INSTALL_DATA} ${WRKSRC}/rat/sdr2.plugin.S02.audio.rtp.*.${RAT} ${PREFIX}/etc/sdr/plugins
 
 do-build:
 	cd ${WRKSRC}/common/src && ${GMAKE}
