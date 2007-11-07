@@ -15,7 +15,7 @@ my ($wanted) = @ARGV;
 
 recurse_ports {
   if (make_var($wanted)) {
-    print "Bumping $_[0]... "
+    print "Bumping $_[0]... ";
     bump_portrevision(shift);
     print "done.\n";
   }
@@ -34,7 +34,7 @@ sub bump_portrevision {
     local $_;
     while (<$in>) {
       if (m/^(PORTREVISION\s*\??=\s*)(\d+)/) {
-        $_ = $1 . ($2 + 1);
+        $_ = $1 . ($2 + 1) . "\n";
       }
       print $tmp $_;
     }
@@ -52,6 +52,7 @@ sub bump_portrevision {
     
     close($in) || die "Couldn't close $makefile: $!\n";
   }
+  close($tmp) || die "Couldn't close $tmpname: $!\n";
   
   move($tmpname, $makefile) || die "Couldn't move $tmpname to $makefile: $!\n";
 }
