@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.1 2006/11/24 22:28:28 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.2 2007/04/22 20:47:06 ctriv Exp $
 #
 
 PORTNAME=	kompmgr
@@ -17,6 +17,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility needed to enable XComposite support in KDE
+LICENSE=	gpl2
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
@@ -25,7 +26,7 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdebase-${PORTVERSION}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS+=--without-java
 
