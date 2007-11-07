@@ -3,12 +3,12 @@
 # Whom:			Neil Blakey-Milner
 #
 # $FreeBSD: ports/mail/courier-imap/Makefile,v 1.115 2007/01/02 05:47:47 oliver Exp $
-# $MidnightBSD: mports/mail/courier-imap/Makefile,v 1.1 2007/02/19 19:11:03 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier-imap/Makefile,v 1.2 2007/05/09 05:42:13 ctriv Exp $
 #
 
 PORTNAME=	courier-imap
 PORTVERSION=	4.1.2
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	courier
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IMAP (and POP3) server that provides access to Maildir mailboxes
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -149,13 +150,17 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@LIBS@|@LIBS@ -rpath=:${LOCALBASE}/lib/courier-authlib|' \
 		${WRKSRC}/imap/Makefile.in
 
+pre-fake:
+.for i in imapd imapd-ssl pop3d pop3d-ssl
+	${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
+		${FILESDIR}/courier-imap-${i}.sh > ${WRKDIR}/courier-imap-${i}.sh
+.endfor
+
 post-install:
 .for i in imapd pop3d
 	${INSTALL_DATA} ${WRKSRC}/imap/${i}.cnf ${CONFDIR}/${i}.cnf.dist
 .endfor
 .for i in imapd imapd-ssl pop3d pop3d-ssl
-	${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/courier-imap-${i}.sh > ${WRKDIR}/courier-imap-${i}.sh
 	${INSTALL_SCRIPT} ${WRKDIR}/courier-imap-${i}.sh ${RCDIR}/courier-imap-${i}.sh
 .endfor
 .if !defined(NOPORTDOCS)
