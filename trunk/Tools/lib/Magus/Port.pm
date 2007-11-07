@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.7 2007/10/29 21:17:11 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.8 2007/11/05 16:54:49 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -56,7 +56,7 @@ WHERE
       (name NOT IN (
         SELECT port FROM depends 
         WHERE 
-          (dependency NOT IN (SELECT port FROM results WHERE arch=? AND (summary="pass" OR summary="warn")))
+          (dependency NOT IN (SELECT port FROM results JOIN ports ON ports.name=results.port AND ports.version=results.version WHERE arch=? AND (summary="pass" OR summary="warn")))
           OR
           (dependency IN (SELECT port FROM locks WHERE arch=?))
         )
