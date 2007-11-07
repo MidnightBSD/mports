@@ -2,12 +2,13 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gnustep-objc/Makefile,v 1.1 2006/09/21 16:01:57 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-objc/Makefile,v 1.47 2006/03/19 04:35:46 dinoex Exp $
 #
 
 PORTNAME=	gnustep-objc
 PORTVERSION=	1.4.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	lang devel
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}

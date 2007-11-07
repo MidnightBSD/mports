@@ -2,12 +2,13 @@
 # Date created:         29 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/webserver/Makefile,v 1.2 2007/10/25 22:15:56 laffer1 Exp $
 # $FreeBSD: ports/www/webserver/Makefile,v 1.4 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	webserver
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	www 
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs

@@ -2,13 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/etoile-iterm/Makefile,v 1.1 2007/03/13 05:55:21 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile-iterm/Makefile,v 1.6 2007/01/31 18:18:13 dinoex Exp $
 #
 
 PORTNAME=	iterm
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

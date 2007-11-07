@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/net/zillion/Makefile,v 1.1 2006/11/09 20:08:01 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/zillion/Makefile,v 1.1 2007/02/13 22:10:40 laffer1 Exp $
 #
 
 PORTNAME=	zillion
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}

@@ -2,13 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.2 2007/08/20 07:24:54 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/etoile-multimediakit/Makefile,v 1.3 2007/10/27 04:07:31 laffer1 Exp $
 # $FreeBSD: ports/multimedia/etoile-multimediakit/Makefile,v 1.6 2007/03/04 21:22:27 dinoex Exp $
 #
 
 PORTNAME=	multimediakit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

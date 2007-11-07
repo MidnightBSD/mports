@@ -2,12 +2,13 @@
 # Date created:         14 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/etoile-lucenekit/Makefile,v 1.1 2007/03/13 06:46:13 laffer1 Exp $
 # $FreeBSD: ports/textproc/etoile-lucenekit/Makefile,v 1.5 2007/01/31 18:18:09 dinoex Exp $
 #
 
 PORTNAME=	lucenekit
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

@@ -2,12 +2,13 @@
 # Date created:         05 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/gnustep-ftp/Makefile,v 1.1 2007/04/02 00:59:53 laffer1 Exp $
 # $FreeBSD: ports/ftp/gnustep-ftp/Makefile,v 1.3 2007/01/31 18:17:58 dinoex Exp $
 #
 
 PORTNAME=	ftp
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	ftp gnustep
 MASTER_SITES=	http://download.savannah.gnu.org/releases/gap/
 PKGNAMEPREFIX=	gnustep-

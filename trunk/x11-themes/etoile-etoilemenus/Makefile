@@ -2,12 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-etoilemenus/Makefile,v 1.1 2007/03/13 05:51:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-etoilemenus/Makefile,v 1.2 2007/08/20 07:17:04 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/etoile-etoilemenus/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 #
 
 PORTNAME=	etoilemenus
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

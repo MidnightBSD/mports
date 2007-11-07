@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/highlighterkit/Makefile,v 1.1 2006/10/31 05:56:00 dinoex Exp $
-# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.2 2007/05/02 00:35:11 ctriv Exp $
+# $MidnightBSD: mports/devel/highlighterkit/Makefile,v 1.3 2007/08/07 17:47:08 ctriv Exp $
 #
 
 PORTNAME=	highliterkit
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://download.gna.org/pmanager/0.2/
 DISTNAME=	HighlighterKit-${PORTVERSION}

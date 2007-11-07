@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/etoile-behavior/Makefile,v 1.2 2007/08/26 02:13:45 seirei Exp $
+# $MidnightBSD: mports/sysutils/etoile-behavior/Makefile,v 1.3 2007/08/27 20:42:46 seirei Exp $
 # $FreeBSD: ports/sysutils/etoile-behavior/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	behavior
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3

@@ -2,7 +2,7 @@
 # Date created:         15 Mar 2003
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/misc/gnustep-examples/Makefile,v 1.1 2006/09/27 19:51:07 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnustep-examples/Makefile,v 1.2 2007/08/15 06:11:20 laffer1 Exp $
 # $FreeBSD: ports/misc/gnustep-examples/Makefile,v 1.15 2006/09/12 17:26:16 dinoex Exp $
 #
 
@@ -10,6 +10,7 @@ BROKEN=		Does not create a package properly
 
 PORTNAME=	gnustep-examples
 PORTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	misc gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core

@@ -2,11 +2,12 @@
 # Date created:         8 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/etoile-stepchat/Makefile,v 1.1 2007/09/08 01:30:46 seirei Exp $
 #
 
 PORTNAME=	stepchat
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	net-im gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3

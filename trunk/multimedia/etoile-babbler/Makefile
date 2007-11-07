@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/etoile-babbler/Makefile,v 1.1 2007/03/13 06:58:38 laffer1 Exp $
 # $FreeBSD: ports/multimedia/etoile-babbler/Makefile,v 1.2 2007/01/31 18:18:05 dinoex Exp $
 #
 
 PORTNAME=	babbler
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

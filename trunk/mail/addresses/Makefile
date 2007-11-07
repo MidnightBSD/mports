@@ -3,11 +3,12 @@
 # Whom:                 Miguel Mendez <flynn@energyhq.es.eu.org>
 #
 # $FreeBSD: ports/mail/addresses/Makefile,v 1.4 2006/09/05 06:07:54 dinoex Exp $
-# $MidnightBSD: mports/mail/addresses/Makefile,v 1.2 2007/07/30 19:52:08 ctriv Exp $
+# $MidnightBSD: mports/mail/addresses/Makefile,v 1.3 2007/07/30 23:52:42 laffer1 Exp $
 #
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.7
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap

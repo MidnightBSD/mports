@@ -2,13 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/etoile-system/Makefile,v 1.5 2007/09/16 15:46:59 seirei Exp $
+# $MidnightBSD: mports/sysutils/etoile-system/Makefile,v 1.6 2007/10/27 04:19:41 laffer1 Exp $
 # $FreeBSD: ports/sysutils/etoile-system/Makefile,v 1.4 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	system
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=   2
+PORTREVISION=   3
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl

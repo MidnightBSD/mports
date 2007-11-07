@@ -2,12 +2,13 @@
 # Date created:         4 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.2 2007/08/26 02:29:21 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.3 2007/08/27 20:49:20 seirei Exp $
 # $FreeBSD: ports/deskutils/etoile-dictionaryreader/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	dictionaryreader
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        unknown

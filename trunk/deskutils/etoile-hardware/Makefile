@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/etoile-hardware/Makefile,v 1.1 2007/03/13 05:46:12 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-hardware/Makefile,v 1.5 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	hardware
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

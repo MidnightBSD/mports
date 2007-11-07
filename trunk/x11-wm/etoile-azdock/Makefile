@@ -2,13 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-wm/etoile-azdock/Makefile,v 1.2 2007/08/27 21:19:32 seirei Exp $
+# $MidnightBSD: mports/x11-wm/etoile-azdock/Makefile,v 1.3 2007/09/06 18:02:30 seirei Exp $
 # $FreeBSD: ports/x11-wm/etoile-azdock/Makefile,v 1.5 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	azdock
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	x11-wm gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3

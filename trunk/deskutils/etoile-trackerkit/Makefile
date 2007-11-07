@@ -2,13 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.3 2007/08/20 06:50:34 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.4 2007/10/25 22:52:08 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-trackerkit/Makefile,v 1.7 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	trackerkit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

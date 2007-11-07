@@ -2,13 +2,13 @@
 # Date created:         30 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/yap/Makefile,v 1.1 2007/04/07 18:45:52 laffer1 Exp $
 # $FreeBSD: ports/graphics/yap/Makefile,v 1.3 2007/02/18 18:51:41 dinoex Exp $
 #
 
 PORTNAME=	yap
 PORTVERSION=	0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://www.gnustep.it/marko/GPSText/
 DISTNAME=	Yap

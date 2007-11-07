@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/lang/etoile-io/Makefile,v 1.3 2007/01/31 18:18:03 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/etoile-io/Makefile,v 1.2 2007/08/27 21:30:45 seirei Exp $
 #
 
 PORTNAME=	io
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	lang gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd2

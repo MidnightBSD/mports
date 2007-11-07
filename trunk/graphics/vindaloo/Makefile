@@ -2,12 +2,13 @@
 # Date created:         15 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/vindaloo/Makefile,v 1.1 2007/03/13 06:53:12 laffer1 Exp $
 # $FreeBSD: ports/graphics/vindaloo/Makefile,v 1.2 2007/01/31 18:18:03 dinoex Exp $
 #
 
 PORTNAME=	vindaloo
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/gsimageapps/Vindaloo/
 DISTNAME=	Vindaloo-${PORTVERSION}

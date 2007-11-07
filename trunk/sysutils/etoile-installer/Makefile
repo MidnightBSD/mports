@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/etoile-installer/Makefile,v 1.1 2007/03/13 06:36:35 laffer1 Exp $
 # $FreeBSD: ports/sysutils/etoile-installer/Makefile,v 1.5 2007/01/31 18:18:08 dinoex Exp $
 #
 
 PORTNAME=	installer
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

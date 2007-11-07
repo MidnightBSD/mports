@@ -2,13 +2,13 @@
 # Date created:         29 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/addresses-goodies/Makefile,v 1.1 2007/03/14 21:57:51 laffer1 Exp $
 # $FreeBSD: ports/mail/addresses-goodies/Makefile,v 1.4 2007/01/31 18:18:04 dinoex Exp $
 #
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail gnustep
 MASTER_SITES=	http://giesler.biz/bjoern/downloads/ \
 		http://www.energyhq.es.eu.org/files/
