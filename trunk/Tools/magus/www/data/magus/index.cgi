@@ -28,6 +28,8 @@ sub main {
     port_page($p, $1);
   } elsif ($path =~ m:/results/async/(\d+):) {
     result_details_async($p, $1);
+  } elsif ($path =~ m:/search:) {
+    return search($p);
   } else {
     die "Unknown path: $path\n";
   }
@@ -130,7 +132,7 @@ sub result_details_async {
 	type  => $_->type,
 	name  => $_->name,
 	msg   => $_->msg,
-  }} $result->subresults;
+  } } $result->subresults;
 
   if (@subresults) {
     $details{subresults} = \@subresults;
@@ -141,7 +143,7 @@ sub result_details_async {
   if ($log) {
     $details{log} = $log->data;
   }
-#  use Data::Dumper
+
   print $p->header(-type => 'text/plain'), to_json(\%details);
 }
 
@@ -174,6 +176,37 @@ sub list_page {
 
   print $p->header, $tmpl->output;
 }
+
+
+sub search {
+  my ($p) = @_;
+  
+  my $query = $p->param('q');
+  
+  my @ports = Magus::Port->retrieve_from_sql("name LIKE ?", "%$query%");
+  
+  if (@ports == 1) {
+    print $p->redirect("http://cs.emich.edu/magus/index.cgi/ports/$ports[0]");
+    return;
+  } 
+  
+  my @results = map {{
+    summary => $_->summary,
+    port    => $_->port,
+    version => $_->version,
+    machine => $_->machine->name,
+    arch    => $_->arch,
+    id      => $_->id,
+    has_details => ($_->summary eq 'pass') ? 0 : 1,
+  }} map { $_->current_result } @ports;
+
+  my $tmpl = template($p, 'list.tmpl');
+
+  $tmpl->param(results => \@results, title => "Search Results for &quot;$query&quot;", count => scalar @results);
+  
+  print $p->header, $tmpl->output;
+}
+
   
 
 sub error {
@@ -214,8 +247,12 @@ sub template {
   $sth->execute;
   my ($untested) = $sth->fetchrow_array;
   $sth->finish;
+
+  my $query = $p->param('q');
+  $query ||= '';
   
   $tmpl->param(
+    query     => $query,
     ports_tested => $count,
     ports_untested => $untested,
     stats     => $stats,
