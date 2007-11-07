@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: /repoman/r/pcvs/ports/archivers/freetar/Makefile,v 1.1 2006/12/03 16:18:44 dinoex Exp $
-# $MidnightBSD: mports/archivers/freetar/Makefile,v 1.1 2006/12/11 02:37:19 laffer1 Exp $
+# $MidnightBSD: mports/archivers/freetar/Makefile,v 1.2 2007/08/01 01:34:47 laffer1 Exp $
 #
 
 PORTNAME=	freetar
 PORTVERSION=	0.9
+PORTREVISION=	1
 CATEGORIES=	archivers gnustep
 MASTER_SITES=	http://download.gna.org/freetar/
 DISTNAME=	FreeTar-${PORTVERSION}

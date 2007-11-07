@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-menuserver/Makefile,v 1.2 2007/08/24 00:08:54 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-menuserver/Makefile,v 1.3 2007/08/27 20:55:16 seirei Exp $
 # $FreeBSD: ports/deskutils/etoile-menuserver/Makefile,v 1.5 2007/01/31 18:17:52 dinoex Exp $
 #
 
 PORTNAME=	menuserver
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        gpl2

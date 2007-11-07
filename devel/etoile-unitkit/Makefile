@@ -2,12 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/etoile-unitkit/Makefile,v 1.1 2007/03/13 04:58:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/etoile-unitkit/Makefile,v 1.2 2007/08/21 12:02:37 seirei Exp $
 # $FreeBSD: ports/devel/etoile-unitkit/Makefile,v 1.7 2007/01/31 18:17:56 dinoex Exp $
 #
 
 PORTNAME=	unitkit
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        apache2

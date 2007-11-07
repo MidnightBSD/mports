@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/wizardkit/Makefile,v 1.1 2006/10/31 05:53:29 dinoex Exp $
-# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.1 2007/02/14 21:26:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.2 2007/08/25 00:43:22 laffer1 Exp $
 #
 
 PORTNAME=	wizardkit
 PORTVERSION=	0.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://download.gna.org/pmanager/0.2/
 DISTNAME=	WizardKit-${PORTVERSION}

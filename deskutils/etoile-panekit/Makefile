@@ -2,13 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.5 2007/08/27 20:32:56 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-panekit/Makefile,v 1.6 2007/10/25 22:50:43 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-panekit/Makefile,v 1.4 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	panekit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        lgpl

@@ -2,12 +2,13 @@
 # Date created:         28 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.1 2006/09/23 16:41:31 laffer1 Exp $
 # $FreeBSD: ports/x11/terminal.app/Makefile,v 1.1 2006/09/06 19:22:27 ehaupt Exp $
 #
 
 PORTNAME=	terminal.app
 PORTVERSION=	0.9.4
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	+cvs20051125.orig
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}

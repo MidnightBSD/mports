@@ -2,13 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gnustep-mplayer/Makefile,v 1.1 2007/08/20 07:29:07 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gnustep-mplayer/Makefile,v 1.4 2007/05/19 20:17:15 flz Exp $
 #
 
 PORTNAME=	mplayer
 PORTVERSION=	0.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	http://www.sonappart.net/gnustep/mplayer/
 PKGNAMEPREFIX=	gnustep-

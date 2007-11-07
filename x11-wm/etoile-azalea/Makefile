@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-wm/etoile-azalea/Makefile,v 1.2 2007/08/23 15:47:36 seirei Exp $
+# $MidnightBSD: mports/x11-wm/etoile-azalea/Makefile,v 1.3 2007/08/27 21:12:19 seirei Exp $
 # $FreeBSD: ports/x11-wm/etoile-azalea/Makefile,v 1.6 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	azalea
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	x11-wm gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        gpl2

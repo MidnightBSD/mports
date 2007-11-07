@@ -2,13 +2,13 @@
 # Date created:         29 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/gnustep-ticker/Makefile,v 1.3 2007/03/13 03:57:52 laffer1 Exp $
+# $MidnightBSD: mports/www/gnustep-ticker/Makefile,v 1.4 2007/10/25 22:07:43 laffer1 Exp $
 # $FreeBSD: ports/www/gnustep-ticker/Makefile,v 1.3 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	ticker
 PORTVERSION=	0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www gnustep
 MASTER_SITES=	http://www.gnustep.it/marko/Ticker/
 PKGNAMEPREFIX=	gnustep-

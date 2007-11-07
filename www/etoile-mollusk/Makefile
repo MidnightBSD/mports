@@ -2,12 +2,13 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/etoile-mollusk/Makefile,v 1.1 2007/03/13 06:10:18 laffer1 Exp $
 # $FreeBSD: ports/www/etoile-mollusk/Makefile,v 1.2 2007/01/31 18:18:10 dinoex Exp $
 #
 
 PORTNAME=	mollusk
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	www gnustep
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex

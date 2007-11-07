@@ -2,12 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-camaelon/Makefile,v 1.2 2007/08/20 07:16:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-camaelon/Makefile,v 1.3 2007/09/06 15:35:00 seirei Exp $
 # $FreeBSD: ports/x11-themes/etoile-camaelon/Makefile,v 1.4 2007/01/31 18:37:27 dinoex Exp $
 #
 
 PORTNAME=	camaelon
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	x11-themes gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-

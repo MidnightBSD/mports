@@ -3,12 +3,12 @@
 # Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
 #
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.1 2007/02/14 21:17:36 laffer1 Exp $
 #
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	ftp://ftp.inf.uos.de/pub/elmar/gtk/objc-gtoolkit/
 

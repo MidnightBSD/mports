@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferencepanes/Makefile,v 1.1 2006/10/31 06:17:17 dinoex Exp $
-# $MidnightBSD: mports/deskutils/preferencepanes/Makefile,v 1.1 2007/02/14 21:08:53 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/preferencepanes/Makefile,v 1.2 2007/08/07 18:22:49 ctriv Exp $
 #
 
 PORTNAME=	preferencepanes
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	http://www.gnustep.it/enrico/system-preferences/
 DISTNAME=	systempreferences-${PORTVERSION}

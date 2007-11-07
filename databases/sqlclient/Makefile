@@ -3,11 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/databases/sqlclient/Makefile,v 1.1 2006/10/31 06:10:09 dinoex Exp $
-# $MidnightBSD: mports/databases/sqlclient/Makefile,v 1.1 2007/02/16 21:11:23 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlclient/Makefile,v 1.2 2007/10/25 22:49:04 laffer1 Exp $
 #
 
 PORTNAME=	sqlclient
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs

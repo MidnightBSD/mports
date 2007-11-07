@@ -2,13 +2,13 @@
 # Date created:         28 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.1 2006/09/27 19:36:51 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.2 2007/10/25 22:11:06 laffer1 Exp $
 # $FreeBSD: ports/sysutils/timemon/Makefile,v 1.1 2006/09/07 05:38:19 dinoex Exp $
 #
 
 PORTNAME=	timemon
 PORTVERSION=	4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap

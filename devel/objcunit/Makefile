@@ -3,12 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/objcunit/Makefile,v 1.1 2006/11/05 12:21:16 dinoex Exp $
-# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.3 2007/05/20 21:49:24 ctriv Exp $
+# $MidnightBSD: mports/devel/objcunit/Makefile,v 1.4 2007/10/25 21:59:42 laffer1 Exp $
 #
 
 PORTNAME=	objcunit
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://xanthippe.dyndns.org/Zipper/
 PKGNAMEPREFIX=	gnustep-

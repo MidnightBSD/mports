@@ -2,12 +2,13 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.1 2007/03/13 07:05:36 laffer1 Exp $
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.2 2007/09/16 19:38:54 seirei Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	etoile
 PORTVERSION=	0.2.0
+PORTREVISION=	1
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty

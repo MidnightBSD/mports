@@ -2,12 +2,13 @@
 # Date created:         007 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/net/netclasses/Makefile,v 1.1 2006/09/27 19:46:40 laffer1 Exp $
+# $MidnightBSD: mports/net/netclasses/Makefile,v 1.2 2007/05/21 18:21:43 ctriv Exp $
 # $FreeBSD: ports/net/netclasses/Makefile,v 1.1 2006/09/10 08:15:09 dinoex Exp $
 #
 
 PORTNAME=	netclasses
 PORTVERSION=	1.06
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}

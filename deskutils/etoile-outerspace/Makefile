@@ -2,12 +2,12 @@
 # Date created:         9 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/deskutils/etoile-outerspace/Makefile,v 1.1 2007/09/09 14:32:28 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-outerspace/Makefile,v 1.2 2007/10/25 22:54:14 laffer1 Exp $
 #
 
 PORTNAME=	outerspace
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3

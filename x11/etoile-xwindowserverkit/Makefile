@@ -2,13 +2,13 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile-xwindowserverkit/Makefile,v 1.4 2007/08/27 20:38:00 seirei Exp $
+# $MidnightBSD: mports/x11/etoile-xwindowserverkit/Makefile,v 1.5 2007/10/27 04:23:56 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile-xwindowserverkit/Makefile,v 1.7 2007/01/31 18:18:13 dinoex Exp $
 #
 
 PORTNAME=	xwindowserverkit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-

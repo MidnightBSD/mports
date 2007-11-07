@@ -2,13 +2,13 @@
 # Date created:         17 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.1 2007/04/07 19:10:41 laffer1 Exp $
+# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.2 2007/08/07 17:17:59 ctriv Exp $
 # $FreeBSD: ports/audio/gnustep-cdplayer/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 #
 
 PORTNAME=	cdplayer
 PORTVERSION=	0.4.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio gnustep
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	gsburn

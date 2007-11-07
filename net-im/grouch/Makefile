@@ -7,6 +7,7 @@
 
 PORTNAME=	grouch
 PORTVERSION=	20060713
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	http://mail.rochester.edu/~asveikau/grouch/ \
 		http://florida.ethz.ch/ports/distfiles/

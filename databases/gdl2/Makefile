@@ -2,12 +2,13 @@
 # Date created:         12 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.1 2007/04/13 21:54:33 laffer1 Exp $
 # $FreeBSD: ports/databases/gdl2/Makefile,v 1.4 2007/01/31 18:17:51 dinoex Exp $
 #
 
 PORTNAME=	gdl2
 PORTVERSION=	0.10.1
+PORTREVISION=	1
 CATEGORIES=	databases gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs

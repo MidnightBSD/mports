@@ -2,12 +2,13 @@
 # Date created:         19 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/editors/etoile-typewriter/Makefile,v 1.2 2007/08/26 02:39:02 seirei Exp $
+# $MidnightBSD: mports/editors/etoile-typewriter/Makefile,v 1.3 2007/08/27 21:00:19 seirei Exp $
 # $FreeBSD: ports/editors/etoile-typewriter/Makefile,v 1.5 2007/01/31 18:17:58 dinoex Exp $
 #
 
 PORTNAME=	typewriter
 PORTVERSION=	0.1.${SNAPSHOT}
+PORTREVISION=	1
 CATEGORIES=	editors gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd3

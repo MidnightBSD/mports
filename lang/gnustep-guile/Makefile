@@ -3,12 +3,12 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.1 2007/02/14 20:53:00 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.2 2007/11/05 22:58:23 laffer1 Exp $
 #
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs

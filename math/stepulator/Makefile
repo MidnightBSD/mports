@@ -2,13 +2,13 @@
 # Date created:         30 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/math/stepulator/Makefile,v 1.2 2007/10/25 21:49:08 laffer1 Exp $
+# $MidnightBSD: mports/math/stepulator/Makefile,v 1.3 2007/10/25 22:03:07 laffer1 Exp $
 # $FreeBSD: ports/math/stepulator/Makefile,v 1.1 2006/09/07 17:18:40 dinoex Exp $
 #
 
 PORTNAME=	stepulator
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	http://www.linuks.mine.nu/stepulator/ \
 		${MASTER_SITE_GNUSTEP_CH}
