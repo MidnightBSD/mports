@@ -3,18 +3,19 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.1 2007/01/26 04:03:52 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.2 2007/04/29 02:29:57 ctriv Exp $
 #
 
 PORTNAME=	gocr
 PORTVERSION=	0.40
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	jocr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GOCR/JOCR is an OCR (Optical Character Recognition) program
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	latex:${PORTSDIR}/print/teTeX
 LIB_DEPENDS=	netpbm.1:${PORTSDIR}/graphics/netpbm
@@ -32,8 +33,9 @@ MAN1=		gocr.1
 
 PORTDOCS=	examples.txt gocr.html unicode.txt
 PLIST_FILES+=	bin/gocr include/gocr.h lib/libPgm2asc.a
+
 # This port doesn't understand what DESTDIR is supposed to do.
-FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} ${MAKE_ARGS}
+FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} mandir=/man ${MAKE_ARGS}
 
 post-patch:
 .if defined(WITHOUT_X11)
