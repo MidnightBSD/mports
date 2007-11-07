@@ -2,7 +2,7 @@
 # Date created:	8 March 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.2 2007/10/25 13:44:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.3 2007/11/07 21:20:15 laffer1 Exp $
 #
 
 PORTNAME=	windowmaker-desktop
@@ -13,6 +13,7 @@ DISTFILES=	# none
 
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        WindowMaker based desktop environment
+LICENSE=	agg
 
 RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		wdm:${PORTSDIR}/x11/wdm \
