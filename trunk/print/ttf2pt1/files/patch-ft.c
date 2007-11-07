@@ -1,5 +1,5 @@
---- ft.c.orig	Sun Mar 21 18:24:06 2004
-+++ ft.c	Sun Mar 21 18:24:31 2004
+--- ./ft.c.orig	Wed Dec 31 16:30:50 2003
++++ ./ft.c	Thu Nov  1 01:02:09 2007
 @@ -12,7 +12,8 @@
  #include <stdlib.h>
  #include <ctype.h>
