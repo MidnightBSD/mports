@@ -2,7 +2,7 @@
 # Date created:			Nov 1, 2002
 # Whom:				anders@hack.org
 #
-# $MidnightBSD: mports/x11-wm/pekwm/Makefile,v 1.3 2007/07/27 21:54:35 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/pekwm/Makefile,v 1.4 2007/11/06 05:18:56 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/pekwm/Makefile,v 1.23 2006/04/28 21:30:24 pav Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}-0.1.6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A windowmanager based on aewm++
+LICENSE=	gpl2
 
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
