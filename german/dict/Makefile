@@ -3,12 +3,12 @@
 # Whom:                 wosch
 #
 # $FreeBSD: ports/german/dict/Makefile,v 1.15 2003/10/29 07:46:48 linimon Exp $
-# $MidnightBSD: mports/german/dict/Makefile,v 1.2 2007/10/25 02:50:39 laffer1 Exp $
+# $MidnightBSD: mports/german/dict/Makefile,v 1.3 2007/11/06 04:58:33 laffer1 Exp $
 #
 
 PORTNAME=	dict
 PORTVERSION=	1.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	german
 MASTER_SITES=	http://wolfram.schneider.org/src/
 DISTNAME=	dict-${PORTVERSION}
@@ -21,6 +21,8 @@ LICENSE=	unknown
 
 BUILD_DEPENDS=	agrep:${PORTSDIR}/textproc/agrep
 RUN_DEPENDS=	agrep:${PORTSDIR}/textproc/agrep
+
+FAKE_OPTS=	trueprefix
 
 dict=		ger-eng.txt
 
