@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.3 2007/11/05 18:56:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.4 2007/11/05 19:24:54 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -55,21 +55,18 @@ sub main {
   update_cvs_dir();
   make_tarball();
 
-  Magus::Cluster::halt();
-
-  Magus::Cluster::run_task('UpdateMports');
-
-  Magus::Index->sync();
-  
-  Magus::Cluster::resume();
+  Magus::Index->sync();  
 }
 
 
 sub update_cvs_dir {
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
-  rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
   
-  my $cmd = "cvs -d anoncvs\@stargazer.midnightbsd.org:/home/cvs -P -z 5 co $Magus::Config{MportsCvsDir}";
+  if (-d $Magus::Config{MportsCvsDir}) {
+    rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
+  }
+  
+  my $cmd = "cvs -d anoncvs\@stargazer.midnightbsd.org:/home/cvs -z 7 co -P $Magus::Config{MportsCvsDir}";
   
   system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
