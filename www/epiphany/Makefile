@@ -2,13 +2,14 @@
 # Date created:				24 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.1 2007/10/20 05:12:16 laffer1 Exp $
 # $FreeBSD: ports/www/epiphany/Makefile,v 1.110 2007/07/23 09:36:43 rafan Exp $
 #   $MCom: ports/www/epiphany/Makefile,v 1.141 2007/03/11 20:12:27 mezz Exp $
 #
 
 PORTNAME=	epiphany
 PORTVERSION=	2.18.3
+PORTREVISION=	1
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
