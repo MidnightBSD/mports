@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.1 2007/11/08 00:09:16 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.53 2007/07/01 08:56:12 novel Exp $
 #   $MCom: ports/devel/libsoup/Makefile,v 1.36 2006/04/13 07:52:33 bland Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A SOAP (Simple Object Access Protocol) implementation in C
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
