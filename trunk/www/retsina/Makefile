@@ -2,14 +2,14 @@
 # Date created:                         6 January 2007
 # Whom:                                 Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/retsina/Makefile,v 1.1 2007/01/13 20:25:03 wintellect Exp $
+# $MidnightBSD: mports/www/retsina/Makefile,v 1.2 2007/11/08 02:54:04 laffer1 Exp $
 #
 
 PORTNAME=	retsina
 PORTVERSION=	1.0.1
 PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITES_LOCAL}
+MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast redirector and access controller for squid
