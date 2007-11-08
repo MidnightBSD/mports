@@ -3,10 +3,10 @@
 # Whom:					Koop Mast <einekoai@chello.nl>
 #
 # $FreeBSD: ports/net/samba-libsmbclient/Makefile,v 1.25 2006/09/04 19:00:16 garga Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba-libsmbclient/Makefile,v 1.1 2006/11/17 22:41:27 laffer1 Exp $
 #
 
-PORTREVISION=		0
+PORTREVISION=		1
 PORTEPOCH=		0
 PKGNAMESUFFIX=		-libsmbclient
 

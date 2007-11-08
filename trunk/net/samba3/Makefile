@@ -2,13 +2,13 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.4 2007/05/21 22:57:54 ctriv Exp $
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.5 2007/08/01 20:48:44 laffer1 Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
 PORTNAME=		samba
 PORTVERSION?=		3.0.24
-PORTREVISION?=		0
+PORTREVISION?=		1
 PORTEPOCH?=		1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -28,7 +28,7 @@ LATEST_LINK?=		${PKGNAMEPREFIX}${PORTNAME}3${PKGNAMESUFFIX}
 EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 WRKSRC=			${WRKDIR}/${DISTNAME}/source
 # directories
-VARDIR?=		${FAKE_DESTDIR}/var
+VARDIR?=		/var
 SAMBA_SPOOL=		${VARDIR}/spool/samba
 SAMBA_LOGDIR=		${VARDIR}/log/samba
 SAMBA_RUNDIR=		${VARDIR}/run
@@ -292,6 +292,9 @@ SUB_LIST+=	SAMBA_LOGDIR="${SAMBA_LOGDIR}" \
 		SAMBA_SPOOL="${SAMBA_SPOOL}" \
 		SAMBA_PRIVATEDIR="${SAMBA_PRIVATEDIR}" \
 		SAMBA_PRIVATE="${SAMBA_PRIVATE}"
+
+FAKE_SETUP+=	VARDIR=${FAKE_DESTDIR}/var
+
 
 pre-everything::
 	@${ECHO_CMD} "===>  NOTICE: This version of port has changed location of Samba password"
