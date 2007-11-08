@@ -1,7 +1,8 @@
-@comment $FreeBSD: ports/audio/libao/pkg-plist,v 1.17 2006/03/12 06:12:37 nork Exp $
+@comment $MidnightBSD$
 include/ao/ao.h
 include/ao/os_types.h
 include/ao/plugin.h
+lib/libao.a
 lib/libao.la
 lib/libao.so
 lib/libao.so.3
@@ -13,6 +14,8 @@ lib/ao/plugins-2/liboss.so
 %%ESOUND%%lib/ao/plugins-2/libesd.so
 %%NAS%%lib/ao/plugins-2/libnas.la
 %%NAS%%lib/ao/plugins-2/libnas.so
+%%PULSEAUDIO%%lib/ao/plugins-2/libpulse.la
+%%PULSEAUDIO%%lib/ao/plugins-2/libpulse.so
 libdata/pkgconfig/ao.pc
 share/aclocal/ao.m4
 %%PORTDOCS%%%%DOCSDIR%%/ao_append_option.html
