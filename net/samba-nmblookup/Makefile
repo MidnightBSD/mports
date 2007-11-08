@@ -3,10 +3,10 @@
 # Whom:					Hirohisa Yamaguchi <umq@ueo.co.jp>
 #
 # $FreeBSD: ports/net/samba-nmblookup/Makefile,v 1.2 2006/12/07 13:55:51 mnag Exp $
-# $MidnightBSD: mports/net/samba-nmblookup/Makefile,v 1.1 2007/02/13 23:10:28 laffer1 Exp $
+# $MidnightBSD: mports/net/samba-nmblookup/Makefile,v 1.2 2007/10/25 00:33:20 laffer1 Exp $
 #
 
-PORTREVISION=		0
+PORTREVISION=		1
 PORTEPOCH=		0
 PKGNAMESUFFIX=		-nmblookup
 
