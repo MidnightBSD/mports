@@ -90,3 +90,8 @@ function twiddle_link(id, mode) {
 		link.innerHTML = 'Hide Details';
 	}
 }
+
+
+function confirm_delete() {
+	return confirm('Delete this result?')
+}

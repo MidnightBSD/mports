@@ -54,7 +54,7 @@
 	    <TMPL_IF NAME="has_details">
 		(<a href="#" id="result_<TMPL_VAR NAME=id>_link" onclick="return details_link(<TMPL_VAR NAME=id>);">Show Details</a>)
 	    </TMPL_IF>
-	    (<a href="/magus/auth/delete-result.cgi?id=<TMPL_VAR NAME=id>">Delete</a>)
+	    (<a onclick="return confirm_delete()" href="/magus/auth/delete-result.cgi?id=<TMPL_VAR NAME=id>">Delete</a>)
 	</td> 
 </tr>
 <tr class="details<TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>" id="result_<TMPL_VAR NAME=id>_row">
