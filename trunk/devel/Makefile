@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.169 2007/10/27 17:31:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.170 2007/11/08 00:09:16 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -156,6 +156,7 @@
     SUBDIR += p5-Scope-Guard
     SUBDIR += p5-Spiffy
     SUBDIR += p5-Storable
+    SUBDIR += p5-String-Approx
     SUBDIR += p5-String-Ediff
     SUBDIR += p5-Test-Base
     SUBDIR += p5-Test-Harness
