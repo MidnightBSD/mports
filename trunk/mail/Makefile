@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.35 2007/10/31 18:20:26 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.36 2007/10/31 18:26:17 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -22,6 +22,7 @@
     SUBDIR += mutt
     SUBDIR += mutt-devel
     SUBDIR += p5-Email-Address
+    SUBDIR += p5-FuzzyOcr
     SUBDIR += p5-MIME-Tools
     SUBDIR += p5-MIME-Types
     SUBDIR += p5-Mail-DKIM
