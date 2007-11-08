@@ -1,0 +1,3 @@
+XML::LibXML and XML::GDOME share some of the same functionality.  This
+package should bundle some shared constansts and functions, so both
+modules may coexist within the same scripts.
