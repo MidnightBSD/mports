@@ -3,12 +3,12 @@
 # Whom:                 Sean Kelly <kelly@ad1440.net>
 #
 # $FreeBSD: ports/print/jadetex/Makefile,v 1.30 2006/04/15 06:46:10 linimon Exp $
-# $MidnightBSD: mports/print/jadetex/Makefile,v 1.1 2007/01/26 03:35:54 laffer1 Exp $
+# $MidnightBSD: mports/print/jadetex/Makefile,v 1.2 2007/11/07 02:19:44 ctriv Exp $
 #
 
 PORTNAME=		jadetex
 PORTVERSION=		3.13
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		print
 MASTER_SITES=		${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	jadetex
@@ -17,14 +17,13 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		A TeX backend for Jade, for typesetting SGML documents
 LICENSE=		unknown
 
-BUILD_DEPENDS=		etex:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS=		png.5:${PORTSDIR}/graphics/png
-RUN_DEPENDS=		etex:${PORTSDIR}/print/teTeX-base
-
+BUILD_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
+LIB_DEPENDS+=		png.5:${PORTSDIR}/graphics/png
+RUN_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
 
 TEXMFMAIN=              ${PREFIX}/share/texmf
 
-MAKE_ENV=		TEXMFCNF=${FILESDIR}:${TETMFMAIN}/web2c
+#MAKE_ENV=		TEXMFCNF=${FILESDIR}:${TETMFMAIN}/web2c
 
 MESSAGE=		${PKGDIR}/pkg-message
 PKGMESSAGE=		${WRKDIR}/pkg-message
