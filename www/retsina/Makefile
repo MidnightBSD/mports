@@ -2,12 +2,12 @@
 # Date created:                         6 January 2007
 # Whom:                                 Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/retsina/Makefile,v 1.2 2007/11/08 02:54:04 laffer1 Exp $
+# $MidnightBSD: mports/www/retsina/Makefile,v 1.3 2007/11/08 02:58:29 laffer1 Exp $
 #
 
 PORTNAME=	retsina
 PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 
@@ -17,8 +17,9 @@ COMMENT=	A fast redirector and access controller for squid
 RUN_DEPENDS=	${LOCALBASE}/sbin/squid:${PORTSDIR}/www/squid
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
+FAKE_OPTS+=	prefixhack
+
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--exec-prefix=${PREFIX}
 CONFIGURE_ENV=  CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CPPFLAGS=	-I/usr/include -I${LOCALBASE}/include
 LDFLAGS=	-L/usr/lib -L${LOCALBASE}/lib
