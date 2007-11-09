@@ -2,13 +2,13 @@
 # Date created:                19 Aug 2004
 # Whom:                        Filippo Natali <filippo@widestore.net>
 #
-# $MidnightBSD: mports/multimedia/xmms-skins/Makefile,v 1.1 2006/10/03 20:29:58 wintellect Exp $
+# $MidnightBSD: mports/multimedia/xmms-skins/Makefile,v 1.2 2007/03/25 01:23:35 ctriv Exp $
 # $FreeBSD: ports/multimedia/xmms-skins/Makefile,v 1.3 2006/03/07 08:27:01 ade Exp $
 #
 
 PORTNAME=	xmms-skins
 PORTVERSION=	0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.xmms.org/files/Skins/
 DISTFILES=	AbsoluteE_Xmms.zip \
@@ -95,15 +95,17 @@ DISTFILES=	AbsoluteE_Xmms.zip \
 		xmms-256.zip
 EXTRACT_ONLY=
 
-MAINTAINER=	filippo.natali@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Skins for X Multimedia System (XMMS)
+LICENSE=	unknown
 
-BUILD_DEPENDS=	xmms-config:${PORTSDIR}/multimedia/xmms
+BUILD_DEPENDS+=	xmms-config:${PORTSDIR}/multimedia/xmms
 
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 do-install:
+	${MKDIR} ${PREFIX}/share/xmms/Skins
 	@for skin in ${DISTFILES}; do \
 		${CP} ${DISTDIR}/$$skin ${PREFIX}/share/xmms/Skins; \
 	done
