@@ -3,12 +3,12 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/lang/etoile-io/Makefile,v 1.3 2007/01/31 18:18:03 dinoex Exp $
-# $MidnightBSD: mports/lang/etoile-io/Makefile,v 1.2 2007/08/27 21:30:45 seirei Exp $
+# $MidnightBSD: mports/lang/etoile-io/Makefile,v 1.3 2007/11/07 20:20:14 ctriv Exp $
 #
 
 PORTNAME=	io
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 LICENSE=        bsd2
@@ -23,7 +23,8 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-#USE_GNUSTEP_SYSTEM_LIBS+=       XWindowServerKit:${XWINDOWSERVERKIT_PORT}
+#USE_GNUSTEP_SYSTEM_LIBS+=      XWindowServerKit:${XWINDOWSERVERKIT_PORT}
+USE_GNUSTEP_LOCAL_LIBS+=	DistributedView.so:graphics/etoile-distributedview
 
 SNAPSHOT=       20070728
 WRKSRC=	${WRKDIR}/Etoile-0.2/
