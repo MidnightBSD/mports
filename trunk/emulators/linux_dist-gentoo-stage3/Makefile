@@ -2,12 +2,12 @@
 # Date created:				11 May 2006
 # Whom:					Gabor Kovesdan
 #
-# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage3/Makefile,v 1.1 2007/04/02 04:04:38 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage3/Makefile,v 1.2 2007/08/07 21:20:46 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_dist-gentoo-stage3/Makefile,v 1.10 2007/01/30 04:23:55 kris Exp $
 
 PORTNAME=	gentoo-stage3
 PORTVERSION=	2006.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators linux
 MASTER_SITES=	${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	releases/x86/${PORTVERSION}/stages
@@ -17,9 +17,6 @@ COMMENT=	Files from Gentoo distribution, for Linux compatibility
 
 LICENSE=	gpl2
 RESTRICTED=	binaries licensed under GNU GPL without accompanying source
-
-# Does not build when jailed
-MANUAL_PACKAGE_BUILD=	YES
 
 USE_BZIP2=		YES
 DIST_SUBDIR=		gentoo-linux
@@ -55,6 +52,9 @@ DISTNAME=	stage3-${GENTOO_OPTIMIZED}-${PORTVERSION}
 MASTER_SITE_SUBDIR=	releases/x86/${PORTVERSION}/stages
 DISTNAME=	stage3-x86-${PORTVERSION}
 .endif
+
+pre-extract:
+	${MKDIR} ${WRKDIR}
 
 pre-fetch:
 .if defined(WITH_LINUXBASE)
