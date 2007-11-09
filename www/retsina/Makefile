@@ -2,7 +2,7 @@
 # Date created:                         6 January 2007
 # Whom:                                 Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/www/retsina/Makefile,v 1.3 2007/11/08 02:58:29 laffer1 Exp $
+# $MidnightBSD: mports/www/retsina/Makefile,v 1.4 2007/11/09 16:26:23 laffer1 Exp $
 #
 
 PORTNAME=	retsina
@@ -13,6 +13,7 @@ MASTER_SITES=	${MASTER_SITE_LOCAL}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast redirector and access controller for squid
+LICENSE=	bsd3
 
 RUN_DEPENDS=	${LOCALBASE}/sbin/squid:${PORTSDIR}/www/squid
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
