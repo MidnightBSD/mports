@@ -2,12 +2,13 @@
 # Date created:		25 Oct 2001
 # Whom:			Gary Jennejohn (gj@FreeBSD.org)
 #
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.4 2007/07/29 17:26:23 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.5 2007/11/09 16:41:28 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
 #
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
+PORTREVISION=	1
 CATEGORIES+=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS}
 MASTER_SITE_SUBDIR=	xemacs-${XEMACS_REL}
