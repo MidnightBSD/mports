@@ -2,7 +2,7 @@
 # Date created:		25 Oct 2001
 # Whom:			Gary Jennejohn (gj@FreeBSD.org)
 #
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.3 2007/04/23 02:02:40 ctriv Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.4 2007/07/29 17:26:23 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
 #
 
@@ -18,8 +18,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	This port tracks the stable version of the XEmacs text editor
 
 CONFLICTS=	emacs-19.* emacs-21.* \
-		xemacs-devel-[0-9]* \
-		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]*
+		xemacs-devel-[0-9]* 
 
 XEMACS_REL=	21.4
 XEMACS_VER=	21.4.20
@@ -74,8 +73,11 @@ LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
+USE_XORG=	xbitmaps xlib xpm
 USE_XLIB=	yes
 USE_XPM=	yes
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps
+
 #.if !defined(WITHOUT_MOTIF) && !defined(MOTIF_STATIC)
 #USE_MOTIF=	yes
 #WITH_SCROLLBARS=	--with-scrollbars=motif
