@@ -2,7 +2,7 @@
 # Date created:				2003-10-12
 # Whom:					trevor
 #
-# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.2 2007/08/07 21:18:11 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.3 2007/11/09 20:36:08 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.39 2007/01/30 04:23:55 kris Exp $
 #
 
@@ -48,6 +48,9 @@ PREFIX_SUBDIR=	${PORTNAME}/
 .if (${ARCH} == "amd64")
 LATEST_LINK=	${PORTNAME:C/linux_base/linux32_base/}
 .endif
+
+do-extract:
+	${MKDIR} ${WRKDIR}
 
 pre-fetch:
 .if defined(WITH_LINUXBASE)
