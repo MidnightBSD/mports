@@ -80,3 +80,4 @@ share/xmms/Skins/maXMMS.tar.gz
 share/xmms/Skins/nixamp2.tar.gz
 share/xmms/Skins/sword.tar.gz
 share/xmms/Skins/xmmearth.tar.gz
+@dirrmtry share/xmms/Skins
