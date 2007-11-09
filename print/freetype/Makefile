@@ -2,13 +2,13 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype/Makefile,v 1.1 2007/02/25 19:57:12 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype/Makefile,v 1.2 2007/10/13 16:41:47 laffer1 Exp $
 # $FreeBSD: ports/print/freetype/Makefile,v 1.40 2007/01/26 15:46:46 shaun Exp $
 #
 
 PORTNAME=	freetype
 PORTVERSION=	1.3.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/%SUBDIR%/ \
@@ -20,6 +20,10 @@ MASTER_SITE_SUBDIR=	freetype1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free and portable TrueType font rendering engine
+LICENSE=	restricted
+#apple patent whore
+
+FAKE_OPTS+=	prefixhack
 
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
