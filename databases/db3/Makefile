@@ -3,19 +3,21 @@
 # Whom:					Sergey Osokin aka oZZ <osa@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db3/Makefile,v 1.64 2006/06/17 11:15:43 itetcu Exp $
-# $MidnightBSD: mports/databases/db3/Makefile,v 1.3 2007/08/10 00:29:52 ctriv Exp $
+# $MidnightBSD: mports/databases/db3/Makefile,v 1.4 2007/08/19 02:23:12 ctriv Exp $
 #
 
 PORTNAME=	db3
 PORTVERSION=	3.3.11
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH?=	1
 CATEGORIES=	databases
-MASTER_SITES=	http://downloads.sleepycat.com/
+MASTER_SITES=	http://download-uk.oracle.com/berkeley-db/ \
+		http://download-west.oracle.com/berkeley-db/ \
+		http://download-east.oracle.com/berkeley-db/
 DISTNAME=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
-PATCH_SITES=	http://www.sleepycat.com/update/${PORTVERSION}/
+PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION}/
 PATCHFILES=	patch.${PORTVERSION}.1 patch.${PORTVERSION}.2
 PATCH_DIST_STRIP=	-d ${WRKDIR}/${DISTNAME}
 
