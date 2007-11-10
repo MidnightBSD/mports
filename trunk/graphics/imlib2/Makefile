@@ -2,7 +2,7 @@
 # Date created:		16 Oct 2000
 # Whom:			Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.2 2007/11/10 02:32:13 laffer1 Exp $
 #
 
 PORTNAME=	imlib2
@@ -13,6 +13,7 @@ MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The next generation graphic library for enlightenment package
+LICENSE=	unknown
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
