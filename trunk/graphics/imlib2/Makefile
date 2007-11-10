@@ -3,30 +3,32 @@
 # Whom:			Jeremy Norris <ishmael27@home.com>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/graphics/imlib2/Makefile,v 1.121 2006/09/05 13:20:09 vanilla Exp $
 #
 
 PORTNAME=	imlib2
-PORTVERSION=	1.2.2.001
-PORTREVISION=	1
+PORTVERSION=	20070223
+PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	http://enlightenment.freedesktop.org/files/
+MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The next generation graphic library for enlightenment package
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
-		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.5:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		id3tag.0:${PORTSDIR}/audio/libid3tag \
-		freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
-USE_AUTOTOOLS=	autoconf:259 libltdl:15 libtool:15
-USE_GNOME=	gnomehack pkgconfig gnometarget
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${PREFIX}/include" LDFLAGS="-L${PREFIX}/lib"
+USE_BZIP2=	yes
+USE_GNOME=	gnomehack pkgconfig gnometarget
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
 USE_LDCONFIG=	yes
+
+OPTIONS=	JPEG	"Enable jpeg image support"	on \
+		PNG	"Enable png image support"	on \
+		TIFF	"Enable tiff image support"	on \
+		GIF	"Enable GIF image support"	on \
+		ID3	"Enable IDv3 tags support"	on \
+		X11	"Enable X11 support"		on
 
 .include <bsd.port.pre.mk>
 
@@ -47,12 +49,44 @@ USE_XLIB=	yes
 PLIST_SUB=	X11=""
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's|round|rint|g' ${WRKSRC}/src/lib/color_helpers.c
+.if !defined(WITHOUT_JPEG)
+LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+PLIST_SUB+=	JPEG=""
+.else
+CONFIGURE_ARGS+=	--without-jpeg
+PLIST_SUB+=	JPEG="@comment "
+.endif
 
-# Kludge to keep it from touching Makefile.in files (configure.in is newer)
-post-configure:
-	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${TOUCH}
+.if !defined(WITHOUT_PNG)
+LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+PLIST_SUB+=	PNG=""
+.else
+CONFIGURE_ARGS+=	--without-png
+PLIST_SUB+=	PNG="@comment "
+.endif
+
+.if !defined(WITHOUT_TIFF)
+LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
+PLIST_SUB+=	TIFF=""
+.else
+CONFIGURE_ARGS+=	--without-tiff
+PLIST_SUB+=	TIFF="@comment "
+.endif
+
+.if !defined(WITHOUT_GIF)
+LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
+PLIST_SUB+=	GIF=""
+.else
+CONFIGURE_ARGS+=	--without-gif
+PLIST_SUB+=	GIF="@comment "
+.endif
+
+.if !defined(WITHOUT_ID3)
+LIB_DEPENDS+=	id3tag.0:${PORTSDIR}/audio/libid3tag
+PLIST_SUB+=	ID3=""
+.else
+CONFIGURE_ARGS+=	--without-id3
+PLIST_SUB+=	ID3="@comment "
+.endif
 
 .include <bsd.port.post.mk>
