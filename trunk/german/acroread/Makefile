@@ -3,10 +3,10 @@
 # Whom:				trevor
 #
 # $FreeBSD: ports/german/acroread/Makefile,v 1.6 2006/08/02 05:05:36 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/acroread/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
 #
 
-PORTVERSION=	7.0.8
+PORTVERSION=	7.0.9
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	german print linux
