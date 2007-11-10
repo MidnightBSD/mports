@@ -2,7 +2,7 @@
 # Date created:		4 May 2001
 # Whom:			abgoeree@uwnet.nl
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/adodb/Makefile,v 1.1 2007/06/08 14:42:25 laffer1 Exp $
 # $FreeBSD: ports/databases/adodb/Makefile,v 1.46 2007/04/05 13:19:01 mm Exp $
 #
 
@@ -16,6 +16,8 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database library for PHP
+LICENSE=	bsd4
+#dual bsd4 / gpl2.. we choose the better of the two
 
 USE_PHP=	pcre
 
