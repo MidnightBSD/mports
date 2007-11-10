@@ -43,7 +43,7 @@
 -	cp /dev/null $(SYSPATHFILE)
 -	echo "path=$(INCDIR)/bitmaps $(INCDIR)/images" \
 -		>> $(SYSPATHFILE)
-+	cp /dev/null $(DESTDIR)$(SYSPATHFILE)
++	mkdir -p $(DESTDIR)/usr/local/lib/X11/app-defaults; cp /dev/null $(DESTDIR)$(SYSPATHFILE)
 +	echo "path=$(INCDIR)/X11/bitmaps $(INCDIR)/X11/pixmaps" \
 +		>> $(DESTDIR)$(SYSPATHFILE)
  	echo "extension=.gif .jpg .rle .csun .msun .sun .face .xbm .bm" \
