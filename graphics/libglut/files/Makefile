@@ -1,6 +1,7 @@
 # Makefile for building libglut
 #
-# $FreeBSD: ports/graphics/libglut/files/Makefile,v 1.3 2006/01/12 12:54:04 sem Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/graphics/libglut/files/Makefile,v 1.4 2007/07/02 16:46:12 jkim Exp $
 
 LIB=		glut
 SHLIB_MAJOR=	4
