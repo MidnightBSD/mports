@@ -3,7 +3,7 @@
 # Whom:                                 Thierry Thomas <thierry@pompo.net>
 #
 # $FreeBSD: ports/german/alt-aspell/Makefile,v 1.1 2006/07/15 14:28:44 thierry Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/alt-aspell/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
 #
 
 PORTNAME=	alt-aspell
@@ -12,8 +12,9 @@ CATEGORIES=	german textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Aspell German Old Spelling (Deutsch - Alter Spelling) dictionary
+LICENSE=	gpl2
 
-DICT=	 	de-alt
+DICT=	 	de
 
 .include "${.CURDIR}/../../textproc/aspell/Makefile.inc"
 .include <bsd.port.post.mk>
