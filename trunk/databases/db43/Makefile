@@ -2,7 +2,7 @@
 # Date created:				2004-11-10
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db43/Makefile,v 1.1 2006/10/02 06:02:38 laffer1 Exp $
 # $FreeBSD: ports/databases/db43/Makefile,v 1.73 2006/04/14 03:44:08 mnag Exp $
 #
 
@@ -19,6 +19,7 @@ PATCH_DIST_STRIP=	-d ..
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.3
+LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
