@@ -1,0 +1,8 @@
+bin/tsocks
+etc/tsocks.conf.sample
+lib/libtsocks.so.1
+lib/libtsocks.so
+%%EXAMPLESDIR%%/tsocks.conf.complex.example
+%%EXAMPLESDIR%%/tsocks.conf.simple.example
+%%EXAMPLESDIR%%/README
+@dirrm %%EXAMPLESDIR%%
