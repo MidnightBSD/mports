@@ -3,14 +3,15 @@
 # Whom:				Frerich Raabe <frerich.raabe@gmx.de>
 #
 # $FreeBSD: ports/german/selfhtml/Makefile,v 1.6 2006/06/09 21:07:11 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/selfhtml/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
 #
 
 PORTNAME=	selfhtml
-PORTVERSION=	8.1.1
+PORTVERSION=	8.1.2
 PORTEPOCH=	1
 CATEGORIES=	german www
-MASTER_SITES=	http://ftp.join.uni-muenster.de/pub/documents/selfhtml/ \
+MASTER_SITES=	http://aktuell.de.selfhtml.org/extras/ \
+		http://ftp.join.uni-muenster.de/pub/documents/selfhtml/ \
 		ftp://ftp.uni-ulm.de/mirrors/selfhtml/ \
 		http://free.w3research.com/ \
 		http://selfhtml.hegglin.net/ \
