@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.71 2007/10/31 19:24:28 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.72 2007/11/02 03:40:45 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1559,7 +1559,7 @@ FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
 FAKE_SETUP+=	PATH=${PATH}:${FAKE_DESTDIR}${PREFIX}/bin:${FAKE_DESTDIR}${PREFIX}/sbin
 .endif
 .if ${FAKE_OPTS:Mprefixhack}x != "x"
-FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${PREFIX} infodir=${FAKE_DESTDIR}${PREFIX}/${INFO_PATH}
+FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX} infodir=${FAKE_DESTDIR}${TRUE_PREFIX}/${INFO_PATH}
 FAKE_MAKEARGS+=	mandir=${FAKE_DESTDIR}${MANPREFIX}/man MANDIR=${FAKE_DESTDIR}${MANPREFIX}/man
 .endif
 .endif
@@ -3531,7 +3531,10 @@ run-autotools:
 # Configure
 
 .if !target(do-configure)
-do-configure:
+do-configure: run-configure
+.endif
+
+run-configure:
 	@if [ -f ${SCRIPTDIR}/configure ]; then \
 		cd ${.CURDIR} && ${SETENV} ${SCRIPTS_ENV} ${SH} \
 		  ${SCRIPTDIR}/configure; \
@@ -3563,18 +3566,24 @@ do-configure:
 .if defined(USE_IMAKE)
 	@(cd ${CONFIGURE_WRKSRC}; ${SETENV} ${MAKE_ENV} ${XMKMF})
 .endif
-.endif
 
+#
 # Build
+#
 
 .if !target(do-build)
-do-build:
+do-build: run-build
+.endif
+
+run-build:
 .if defined(USE_GMAKE)
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .else
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 .endif
-.endif
+
+
+
 
 
 # 
@@ -3599,33 +3608,48 @@ fake-dir:
 .endif
 
 
-.if !target(fake-install)
-fake-install:
-.	if target(pre-install)
+.if !target(fake-pre-install) 
+fake-pre-install:
+.   if target(pre-install)
 		@cd ${.CURDIR} && exec ${MAKE} pre-install ${FAKE_SETUP}
-.	endif
-# 	This is where the old FreeBSD bsd.port.mk made the tmpplist, we'll do it
-# 	here as well so that everyone is happy.
-	@cd ${.CURDIR} && exec ${MAKE} generate-plist
-.	if target(pre-su-install)
+.   endif
+.endif
+
+	
+.if !target(fake-pre-su-install)
+fake-pre-su-install:
+.   if target(pre-su-install)
 		@${ECHO_MSG} "===>   WARNING: pre-su-install is deprecated. Use pre-install instead."
 		@cd ${.CURDIR} && exec ${MAKE} pre-su-install ${FAKE_SETUP}
-.	endif
+.   endif
+.endif
+
+
+.if !target(do-fake) 
+do-fake:
 .	if target(do-install)
 		@cd ${.CURDIR} && exec ${MAKE} do-install ${FAKE_SETUP}
 .	else
-#	Normal builds.
-		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-			${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
-.		if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
-			@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
-				${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
-.		endif
+		@cd ${.CURDIR} && exec ${MAKE} run-fake
 .	endif
+.endif
+
+
+.if !target(fake-post-install)
+fake-post-install:
 .	if target(post-install)
 		@cd ${.CURDIR} && exec ${MAKE} post-install ${FAKE_SETUP}
 .	endif
 .endif
+
+
+run-fake:
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
+		${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} ${FAKE_TARGET};
+.	if defined(USE_IMAKE) && !defined(NO_INSTALL_MANPAGES)
+		@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKE_SETUP}\
+			${_MAKE_CMD} -f ${MAKEFILE} ${FAKE_MAKEARGS} install.man
+.	endif
 
 
 .if !target(fix-fake-symlinks) 
@@ -4003,7 +4027,8 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 				post-build post-build-script
 
 _FAKE_DEP=		build
-_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-install \
+_FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
+				generate-plist fake-pre-su-install do-fake fake-post-install \
 				post-fake compress-man install-rc-script install-ldconfig-file \
 				fix-fake-symlinks finish-tmpplist
 
@@ -5531,7 +5556,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.71 2007/10/31 19:24:28 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.72 2007/11/02 03:40:45 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
