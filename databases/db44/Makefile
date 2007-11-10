@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db44/Makefile,v 1.77 2006/04/14 03:44:08 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db44/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
 #
 
 PORTNAME=	db44
@@ -26,6 +26,7 @@ PATCH_DIST_STRIP=	-d ..
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.4
+LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 

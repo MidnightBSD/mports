@@ -2,7 +2,7 @@
 # Date created:		2007-07-26
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db46/Makefile,v 1.1 2007/08/10 17:31:18 laffer1 Exp $
 # $FreeBSD: ports/databases/db46/Makefile,v 1.83 2007/08/06 09:17:54 delphij Exp $
 #
 
@@ -18,6 +18,7 @@ DIST_SUBDIR=	bdb
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.6
+LICENSE=	bdb
 
 BDBVER=		${PORTVERSION:R:R}
 CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 --enable-cxx \

@@ -3,7 +3,7 @@
 # Whom:					Sergey Osokin aka oZZ <ozz@FreeBSD.org.ru>
 #
 # $FreeBSD: ports/databases/db4/Makefile,v 1.56 2006/05/04 21:39:54 edwin Exp $
-# $MidnightBSD: mports/databases/db4/Makefile,v 1.1 2006/11/05 14:37:14 laffer1 Exp $
+# $MidnightBSD: mports/databases/db4/Makefile,v 1.2 2007/05/04 20:20:15 ctriv Exp $
 #
 
 PORTNAME=	db4
@@ -17,6 +17,7 @@ DIST_SUBDIR=	bdb
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4
+LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
