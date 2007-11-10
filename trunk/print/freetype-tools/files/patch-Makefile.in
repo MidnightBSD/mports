@@ -1,5 +1,5 @@
---- Makefile.in.orig	Wed Nov  8 18:01:07 2000
-+++ Makefile.in	Wed Nov  8 18:01:38 2000
+--- ./Makefile.in.orig	Wed Aug 19 21:59:56 1998
++++ ./Makefile.in	Sat Nov 10 12:30:11 2007
 @@ -8,7 +8,7 @@
  FTTESTDIR = test
  FTPODIR = po
