@@ -2,28 +2,29 @@
 # Date created:		8 March 2001
 # Whom:			Shen Chuan-Hsing <statue@freebsd.sinica.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.1 2007/02/25 20:10:36 laffer1 Exp $
 # $FreeBSD: ports/print/dvipdfmx/Makefile,v 1.24 2006/07/02 11:29:21 matusita Exp $
 #
 
 PORTNAME=	dvipdfmx
 PORTVERSION=	20050831
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	print
 MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/current/
 DIST_SUBDIR=	dvipdfmx
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dvipdfm with Asian languages by CID-keyed font technology support
+LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libkpathsea.a:${PORTSDIR}/print/teTeX-base
+BUILD_DEPENDS=	${PREFIX}/lib/libkpathsea.a:${PORTSDIR}/print/teTeX-base
 LIB_DEPENDS=	png:${PORTSDIR}/graphics/png \
 		paper:${PORTSDIR}/print/libpaper
 RUN_DEPENDS=	${ADOBECMAPDIR}/ai0/CMap/Identity-H:${PORTSDIR}/print/adobe-cmaps \
 		kpsepath:${PORTSDIR}/print/teTeX-base
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--datadir=${LOCALBASE}/${TEXMFDIR}
+CONFIGURE_ARGS=	--datadir=${PREFIX}/${TEXMFDIR}
 PLIST_SUB=	DVIPDFMDIR=${DVIPDFMDIR} \
 		FONTMAPDIR=${FONTMAPDIR} \
 		FONTCMAPDIR=${FONTCMAPDIR} \
@@ -42,15 +43,15 @@ pre-install:
 		${WRKSRC}/data/config/cid-x.map
 
 post-install:
+	${MKDIR} ${PREFIX}/${FONTMAPDIR}
 	${MV} ${PREFIX}/${TEXMFDIR}/dvipdfm/config/glyphlist.txt \
-		${LOCALBASE}/${FONTMAPDIR}/glyphlist.txt
-	${MKDIR} ${LOCALBASE}/${FONTCMAPDIR}
+		${PREFIX}/${FONTMAPDIR}/glyphlist.txt
+	${MKDIR} ${PREFIX}/${FONTCMAPDIR}
 	${INSTALL_DATA} ${FILESDIR}/cid-x.map.in \
-		${LOCALBASE}/${FONTMAPDIR}/cid-x.map
+		${PREFIX}/${FONTMAPDIR}/cid-x.map
 	${LN} -s -f ${ADOBECMAPDIR} \
-		${LOCALBASE}/${FONTCMAPDIR}/adobe-cmaps
+		${PREFIX}/${FONTCMAPDIR}/adobe-cmaps
 	${LN} -s -f ${PREFIX}/${DVIPDFMDIR}/CMap \
-		${LOCALBASE}/${FONTCMAPDIR}/
-	${MKTEXLSR} ${PREFIX}/${TEXMFDIR}
+		${PREFIX}/${FONTCMAPDIR}/
 
 .include <bsd.port.mk>
