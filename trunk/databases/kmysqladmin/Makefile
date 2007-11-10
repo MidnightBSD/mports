@@ -2,7 +2,7 @@
 # Date created:				Aug 12, 2005
 # Whom:					Igor Leonenko <bananaz@bk.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/kmysqladmin/Makefile,v 1.1 2007/08/11 02:43:09 laffer1 Exp $
 # $FreeBSD: ports/databases/kmysqladmin/Makefile,v 1.4 2007/06/17 06:25:04 itetcu Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://www.alwins-world.de/programs/download/kmysqladmin/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphical frontend for administration of mysql servers
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_MYSQL=	yes
