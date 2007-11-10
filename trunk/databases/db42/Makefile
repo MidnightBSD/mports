@@ -3,7 +3,7 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db42/Makefile,v 1.63 2005/04/13 07:31:27 leeym Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db42/Makefile,v 1.1 2006/11/05 14:15:10 laffer1 Exp $
 # 
 
 PORTNAME=	db42
@@ -17,6 +17,7 @@ PATCHFILES=	patch.${PORTVERSION}.1  patch.${PORTVERSION}.2 \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.2
+LICENSE=	bdb
 
 MASTERDIR?=	${.CURDIR}
 
