@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.65 2007/10/12 21:01:41 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.66 2007/11/08 00:17:07 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -65,6 +65,7 @@
     SUBDIR += saint
     SUBDIR += secpwgen
     SUBDIR += sudo
+    SUBDIR += tor
     SUBDIR += tripwire
     SUBDIR += vlock
     SUBDIR += vlog
