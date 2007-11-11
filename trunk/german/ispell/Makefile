@@ -3,7 +3,7 @@
 # Whom:                                 Alexander Langer <alex@big.endian.de>
 #
 # $FreeBSD: ports/german/ispell/Makefile,v 1.14 2005/10/01 06:08:59 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/ispell/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
 #
 
 PORTNAME=	ispell
@@ -11,6 +11,7 @@ CATEGORIES=	german
 PKGNAMESUFFIX=	-20001109
 
 MAINTAINER=	ports@MidnightBSD.org
+LICENSE=	gpl2
 
 USE_PERL5=	yes
 
