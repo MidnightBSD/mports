@@ -2,13 +2,12 @@
 # Date created:		16 March 2005
 # Whom:			Trevor Johnson <trevor@freebsd.org>
 #
-# $MidnightBSD: mports/print/acroread7/Makefile,v 1.2 2007/03/25 01:51:12 ctriv Exp $
+# $MidnightBSD: mports/print/acroread7/Makefile,v 1.3 2007/05/24 18:30:24 ctriv Exp $
 # $FreeBSD: ports/print/acroread7/Makefile,v 1.21 2006/09/02 23:18:10 kris Exp $
 #
 
 PORTNAME=	acroread7
-PORTVERSION?=	7.0.8
-PORTREVISION?=	1
+PORTVERSION?=	7.0.9
 PORTEPOCH?=	1
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/7x/${VERSIONDIR}/${ADOBE_LANG:L}/ \
@@ -31,7 +30,9 @@ USE_XLIB=	yes
 #USE_GNOME=	desktopfileutils
 NO_BUILD=	yes
 PLIST=		${PKGDIR}/pkg-plist.${PORTVERSION}
-PLIST_SUB=	ACRODIR=${ACRODIR} \
+PLIST_SUB=	ACROBASE=${ACROBASE} \
+		ADOBEBASE=${ADOBEBASE} \
+		ACRODIR=${ACRODIR} \
 		PLUGINDIR=${PLUGINDIR} \
 		ADOBE_LANG=${ADOBE_LANG:U} \
 		LOCALE_NAME=${LOCALE_NAME}
@@ -40,15 +41,9 @@ SUB_LIST=	ADOBE_LANG=${ADOBE_LANG:U}
 PKGMESSAGE=	${WRKDIR}/pkg-message
 WRKSRC=		${WRKDIR}/AdobeReader
 
-.if ${PORTVERSION} == 7.0.8
 VERSIONDIR=	${PORTVERSION}
 DISTNAME=	AdobeReader_${ADOBE_LANG:L}-${PORTVERSION}-1.i386
 POSTPROCESS=	> /dev/null
-.else
-VERSIONDIR=	7.0
-DISTNAME=	AdbeRdr701_linux_${ADOBE_LANG:L}
-IS_INTERACTIVE=	yes
-.endif
 LANGCODE=	chs:zh_CN cht:zh_TW dan:da_DK deu:de_DE enu:en_US \
 		esp:es_ES fra:fr_FR ita:it_IT jpn:ja_JP kor:ko_KR \
 		nld:nl_NL nor:nb_NO ptb:pt_BR suo:fi_FI sve:sv_SE
@@ -67,7 +62,9 @@ LANG_NONENU?=	"@comment "
 .endif
 PLIST_SUB+=	LANG_NONENU=${LANG_NONENU}
 
-ACRODIR=	Adobe/Acrobat7.0/${ADOBE_LANG:U}
+ADOBEBASE=	Adobe
+ACROBASE=	${ADOBEBASE}/Acrobat7.0
+ACRODIR=	${ACROBASE}/${ADOBE_LANG:U}
 PLUGINDIR=	lib/browser_linux_plugins
 INSTALLDIR=	${PREFIX}/${ACRODIR}
 INSTALLEXEC=	${SETENV} UNAME_s=Linux \
