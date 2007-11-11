@@ -3,7 +3,7 @@
 # Whom:                 Martin Blapp
 #
 # $FreeBSD: ports/german/staroffice52/Makefile,v 1.41 2006/04/15 06:26:47 linimon Exp $
-# $MidnightBSD: mports/german/staroffice52/Makefile,v 1.2 2007/03/25 03:02:07 ctriv Exp $
+# $MidnightBSD: mports/german/staroffice52/Makefile,v 1.3 2007/08/02 07:36:17 laffer1 Exp $
 #
 
 PORTNAME=	staroffice
@@ -29,6 +29,7 @@ EXTRACT_ONLY=	109939-03.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated wordprocessor/dbase/spreadheet/drawing/chart/browser
+LICENSE=	restricted
 
 FETCH_DEPENDS=	${LINUX_BASE_PORT}
 
