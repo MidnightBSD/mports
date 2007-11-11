@@ -3,7 +3,7 @@
 # Date created:			  Fri Dec 01, 1995
 # Whom:				  obrien@cs.ucdavis.edu
 #
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.1 2007/02/19 23:46:59 laffer1 Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.2 2007/08/02 06:56:57 laffer1 Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	ftp://ftp.nuug.no/pub/anders/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
+LICENSE=	gpl2
 
 RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz \
 		lsz:${PORTSDIR}/comms/lrzsz
