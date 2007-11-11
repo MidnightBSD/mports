@@ -3,7 +3,7 @@
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.1 2007/02/19 23:46:59 laffer1 Exp $
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.2 2007/04/19 22:11:42 ctriv Exp $
 #
 
 PORTNAME=	ltmdm
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for the Lucent LT Winmodem chipset
+LICENSE=	restricted
 
 MODULES_WITH_WORLD?=	yes
 ONLY_FOR_ARCHS=	i386
