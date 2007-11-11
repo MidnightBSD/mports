@@ -2,12 +2,12 @@
 # Date created:				6 October 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.4 2007/07/25 14:38:57 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.5 2007/07/25 14:59:20 laffer1 Exp $
 # $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
 #
 
 PORTNAME=	bind9
-PORTVERSION=	9.3.4
+PORTVERSION=	9.3.4.1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -111,6 +111,15 @@ post-patch:
 		-e 's#/etc/rndc.conf#${BIND_DESTETC}/rndc.conf#g' \
 		${WRKSRC}/bin/${FILE}.Dist > ${WRKSRC}/bin/${FILE}
 .endfor
+
+	@${MV} ${WRKSRC}/bin/nsupdate/nsupdate.8 \
+	    ${WRKSRC}/bin/nsupdate/nsupdate.8.patched
+	@${SED} -e "s@^\.HP [0-9]* @@" \
+	    ${WRKSRC}/bin/nsupdate/nsupdate.8.patched \
+	    > ${WRKSRC}/bin/nsupdate/nsupdate.8
+	@${MV} ${WRKSRC}/bin/dig/nslookup.1 ${WRKSRC}/bin/dig/nslookup.1.Dist
+	@${SED} -e "s@^host \[server\]@\\\fBhost\\\fR \\\fI[server]\\\fR@" \
+	    ${WRKSRC}/bin/dig/nslookup.1.Dist > ${WRKSRC}/bin/dig/nslookup.1
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
