@@ -3,7 +3,7 @@
 # Whom:                                 Alexander Langer <alex@big.endian.de>
 #
 # $FreeBSD: ports/german/ispell-alt/Makefile,v 1.10 2005/10/12 21:27:23 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/ispell-alt/Makefile,v 1.1 2007/01/25 22:16:22 laffer1 Exp $
 #
 
 PORTNAME=	ispell
@@ -11,6 +11,8 @@ CATEGORIES=	german
 PKGNAMESUFFIX=	-alt-19991219
 
 MAINTAINER=	ports@MidnightBSD.org
+LICENSE=	unknown
+# probably gpl2, but i dont' see a license file
 
 ISPELL_DEALT=	yes
 MASTERDIR=	${.CURDIR}/../../textproc/ispell
