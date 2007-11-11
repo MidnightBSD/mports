@@ -2,7 +2,7 @@
 # Date created:		03 July 1996
 # Whom:			ABURAYER Rewsirow <rewsirow@ff.iij4u.or.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/luna/Makefile,v 1.1 2007/05/01 23:27:30 laffer1 Exp $
 # $FreeBSD: ports/astro/luna/Makefile,v 1.15 2006/05/03 05:14:05 edwin Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.lzh
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display the moon's phase
+LICENSE=	unknown
 
 EXTRACT_DEPENDS=	lha:${PORTSDIR}/archivers/lha
 
