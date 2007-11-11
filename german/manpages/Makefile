@@ -3,7 +3,7 @@
 # Whom:                 wosch
 #
 # $FreeBSD: ports/german/manpages/Makefile,v 1.23 2005/02/16 16:21:28 wosch Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/manpages/Makefile,v 1.1 2006/11/01 13:06:53 laffer1 Exp $
 
 PORTNAME=	manpages-de
 PORTVERSION=	0.4
@@ -13,6 +13,7 @@ MASTER_SITES=	http://www.infodrom.org/projects/manpages-de/download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	German GNU and Linux manual pages
+LICENSE=	unknown
 
 LANG=		de.ISO8859-1
 NO_WRKSUBDIR=	YES

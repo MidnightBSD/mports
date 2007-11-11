@@ -2,7 +2,7 @@
 # Date created:		08 Januar 2004
 # Whom:                 Martin Blapp
 #
-# $MidnightBSD: mports/german/staroffice70/Makefile,v 1.1 2006/11/01 13:13:03 laffer1 Exp $
+# $MidnightBSD: mports/german/staroffice70/Makefile,v 1.2 2007/03/25 03:02:38 ctriv Exp $
 #
 
 PORTNAME=	staroffice
@@ -29,6 +29,7 @@ EXTRACT_ONLY=	116518-08.tar
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wordprocessor/dbase/spreadheet/drawing/chart
+LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	i386
 NO_CDROM=	'Must be bought and downloaded direct from Sun via www interface'
