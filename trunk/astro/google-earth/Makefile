@@ -2,7 +2,7 @@
 # Date created:				Jun 13 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.1 2007/09/19 20:15:55 laffer1 Exp $
 # $FreeBSD: ports/astro/google-earth/Makefile,v 1.17 2007/09/17 21:23:48 nox Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Explore, Search and Discover
+LICENSE=	restricted
 
 EXTRACT_DEPENDS=	unmakeself:${PORTSDIR}/archivers/unmakeself
 BUILD_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
