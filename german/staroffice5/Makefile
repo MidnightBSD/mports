@@ -3,7 +3,7 @@
 # Whom:                 Martin Blapp
 #
 # $FreeBSD: ports/german/staroffice5/Makefile,v 1.17 2005/06/17 22:59:13 netchild Exp $
-# $MidnightBSD: mports/german/staroffice5/Makefile,v 1.1 2006/11/01 13:13:02 laffer1 Exp $
+# $MidnightBSD: mports/german/staroffice5/Makefile,v 1.2 2007/03/25 03:01:24 ctriv Exp $
 
 PORTNAME=	staroffice
 PORTVERSION=	5.1a
@@ -19,6 +19,7 @@ DISTFILES=	applicat.rdb.gz libofa517li.so libsdb517li.so
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated wordprocessor/dbase/spreadheet/drawing/chart/browser
+LICENSE=	restricted
 
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 
