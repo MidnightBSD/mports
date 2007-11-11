@@ -2,7 +2,7 @@
 # Date created:                         1 September 2002
 # Whom:                                 Thierry Thomas <thierry@pompo.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/german/aspell/Makefile,v 1.1 2006/09/22 23:48:44 laffer1 Exp $
 # $FreeBSD: ports/german/aspell/Makefile,v 1.5 2006/07/15 14:28:27 thierry Exp $
 #
 
@@ -12,6 +12,7 @@ CATEGORIES=	german textproc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Aspell German dictionary
+LICENSE=	gpl2
 
 DICT=	 	de
 
