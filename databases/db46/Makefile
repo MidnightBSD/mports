@@ -2,12 +2,12 @@
 # Date created:		2007-07-26
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD: mports/databases/db46/Makefile,v 1.1 2007/08/10 17:31:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/db46/Makefile,v 1.2 2007/11/10 23:34:18 laffer1 Exp $
 # $FreeBSD: ports/databases/db46/Makefile,v 1.83 2007/08/06 09:17:54 delphij Exp $
 #
 
 PORTNAME=	db46
-PORTVERSION=	4.6.18.0
+PORTVERSION=	4.6.21.0
 CATEGORIES=	databases
 MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
 		http://download-east.oracle.com/berkeley-db/ \
