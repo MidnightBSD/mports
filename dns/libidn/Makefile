@@ -3,11 +3,11 @@
 # Whom:               	Kirill Ponomarew <ponomarew@oberon.net>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/dns/libidn/Makefile,v 1.58 2006/03/15 22:46:18 krion Exp $
+# $FreeBSD: ports/dns/libidn/Makefile,v 1.67 2007/10/10 12:18:15 krion Exp $
 #
 
 PORTNAME=	libidn
-PORTVERSION=	0.6.3
+PORTVERSION=	1.2
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/libidn/releases/
@@ -15,17 +15,16 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
+LICENSE=	gpl3
 
 USE_GETOPT_LONG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_ICONV=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5_BUILD=	yes
-
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
-
-INSTALLS_SHLIB=	yes
 
 INFO=	libidn
 
@@ -40,6 +39,9 @@ PLIST_SUB+=	NLS="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|@image{components}||g' \
 		${WRKSRC}/doc/libidn.texi
+	@${REINPLACE_CMD} -e 's|$$(AUTOMAKE)|${TRUE}|' \
+			-e 's|imagesdir = $$(infodir)|imagesdir = $$(docdir)|' \
+		${WRKSRC}/doc/Makefile.in
 
 post-install:
 .if !defined(NOPORTDOCS)
