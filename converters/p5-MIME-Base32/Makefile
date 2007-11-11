@@ -2,7 +2,7 @@
 # Date created:				2005-10-19
 # Whom:					nork@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-MIME-Base32/Makefile,v 1.1 2007/03/20 19:28:17 laffer1 Exp $
 # $FreeBSD: ports/converters/p5-MIME-Base32/Makefile,v 1.2 2005/10/29 06:42:43 nork Exp $
 #
 
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for Base32 encodings
+LICENSE=	unknown
 
 PERL_CONFIGURE=	YES
 
