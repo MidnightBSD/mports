@@ -3,19 +3,21 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db44/Makefile,v 1.77 2006/04/14 03:44:08 mnag Exp $
-# $MidnightBSD: mports/databases/db44/Makefile,v 1.1 2006/11/05 14:24:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/db44/Makefile,v 1.2 2007/11/10 23:33:10 laffer1 Exp $
 #
 
 PORTNAME=	db44
-PORTVERSION=	4.4.20.2
+PORTVERSION=	4.4.20.4
 CATEGORIES=	databases
-MASTER_SITES=	http://downloads.sleepycat.com/
+MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
+		http://download-east.oracle.com/berkeley-db/ \
+		http://download-uk.oracle.com/berkeley-db/
 PKGNAMESUFFIX?=
 DISTNAME=	db-4.4.20
 DIST_SUBDIR=	bdb
 
-PATCH_SITES=	http://www.sleepycat.com/update/4.4.20/
-PATCHFILES=	patch.4.4.20.1 patch.4.4.20.2
+PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/4.4.20/
+PATCHFILES=	patch.4.4.20.1 patch.4.4.20.2 patch.4.4.20.3 patch.4.4.20.4
 PATCH_DIST_STRIP=	-d ..
 # * patch.4.4.20.1: -----------------------------------------------------------
 # Fix a bug that could cause a trap during recovery if multiple operations that
@@ -30,7 +32,7 @@ LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
