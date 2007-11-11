@@ -2,7 +2,7 @@
 # Date created:		4 January 2003
 # Whom:			Mike Heffner <mikeh@FreeBSD.org>
 #
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.3 2007/08/02 06:56:04 laffer1 Exp $
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.4 2007/11/11 00:12:33 laffer1 Exp $
 # $FreeBSD: ports/comms/lirc/Makefile,v 1.22 2006/08/23 00:41:37 grog Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	lirc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux Infared Remote Control
+LICENSE=	GPL2
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
