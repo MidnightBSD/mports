@@ -2,7 +2,7 @@
 # Date created:		2006-07-10
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-Encode-Detect/Makefile,v 1.1 2007/07/16 01:55:30 laffer1 Exp $
 # $FreeBSD: ports/converters/p5-Encode-Detect/Makefile,v 1.2 2006/11/21 12:12:31 sumikawa Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Encode::Encoding subclass that detects the encoding of data
+LICENSE=	mpl
 
 PERL_MODBUILD=	yes
 
