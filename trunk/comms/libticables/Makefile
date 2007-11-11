@@ -2,7 +2,7 @@
 # Date created:		27 August 2003
 # Whom:			Tijl Coosemans <tijl@ulyssis.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/libticables/Makefile,v 1.1 2007/05/05 04:54:51 laffer1 Exp $
 # $FreeBSD: ports/comms/libticables/Makefile,v 1.18 2006/10/06 02:44:32 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	tilp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TI calculator link cables library
+LICENSE=	lgpl
 
 LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb
 
