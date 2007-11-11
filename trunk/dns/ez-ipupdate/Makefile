@@ -2,7 +2,7 @@
 # Date created:         24 July 2002
 # Whom:                 se
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/ez-ipupdate/Makefile,v 1.1 2007/05/07 02:43:53 laffer1 Exp $
 # $FreeBSD: ports/dns/ez-ipupdate/Makefile,v 1.13 2006/08/12 15:16:45 se Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITES=	http://dyn.pl/client/UNIX/ez-ipupdate/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update your host name on any dynamic DNS service
+LICENSE=	gpl2
 
 USE_RC_SUBR=	ez-ipupdate.sh
 GNU_CONFIGURE=	yes
