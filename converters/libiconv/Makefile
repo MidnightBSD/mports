@@ -2,34 +2,41 @@
 # Date created:				17 July 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
-# $FreeBSD: ports/converters/libiconv/Makefile,v 1.37 2006/05/03 23:38:40 edwin Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libiconv
-PORTVERSION=	1.9.2
-PORTREVISION=	2
+PORTVERSION=	1.11
 CATEGORIES=	converters devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A character set conversion library
+LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
 LIBTOOLFILES=	configure libcharset/configure
 CONFIGURE_ARGS=	--enable-static \
-		--without-libintl-prefix
-INSTALLS_SHLIB=	yes
+		--without-libintl-prefix \
+		--docdir=${DOCSDIR}
+USE_LDCONFIG=	yes
+CONFIGURE_ENV=	gl_cv_cc_visibility="no"
 
 MAN1=		iconv.1
-MAN3=		iconv.3 iconv_open.3 iconv_close.3
+MAN3=		iconv.3 iconv_open.3 iconv_close.3 iconvctl.3
+
+OPTIONS=	EXTRA_ENCODINGS	"Include extra character sets" on \
+		EXTRA_PATCHES	"Apply patches to fix CP932 add EUCJP-MS" off
 
 .ifdef USE_ICONV
 .error USE_ICONV is defined as an environment variable, or in the arguments \
 	to "make".  Please unset it and restart the build.
 .endif
+
+.include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_EXTRA_ENCODINGS)
 CONFIGURE_ARGS+=	--enable-extra-encodings
@@ -38,19 +45,12 @@ CONFIGURE_ARGS+=	--enable-extra-encodings
 .if defined(WITH_EXTRA_PATCHES)
 PATCH_SITES+=	http://www2d.biglobe.ne.jp/~msyk/software/libiconv/
 PATCH_SITES+=	${MASTER_SITE_LOCAL}
-PATCH_SITE_SUBDIR=     nork
+PATCH_SITE_SUBDIR=	nork
 PATCHFILES+=	${DISTNAME}-cp932.patch.gz
 PATCH_DIST_STRIP+=	-p1
 .endif
 
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "libiconv has the following tunable option(s):"
-	@${ECHO_MSG} "	WITHOUT_EXTRA_ENCODINGS=yes	Disable extra character sets"
-	@${ECHO_MSG} "	WITH_EXTRA_PATCHES=yes		Apply extra patches (fixes cp932, adds EUCJP-MS)"
-	@${ECHO_MSG} ""
-
 post-patch:
 	@${REINPLACE_CMD} -e 's:ei_ksc5601:ei_euc_kr:g' ${WRKSRC}/lib/aliases.h
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
