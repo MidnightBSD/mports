@@ -3,17 +3,18 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db42/Makefile,v 1.63 2005/04/13 07:31:27 leeym Exp $
-# $MidnightBSD: mports/databases/db42/Makefile,v 1.1 2006/11/05 14:15:10 laffer1 Exp $
+# $MidnightBSD: mports/databases/db42/Makefile,v 1.2 2007/11/10 23:32:18 laffer1 Exp $
 # 
 
 PORTNAME=	db42
 PORTVERSION=	4.2.52
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases
 PKGNAMESUFFIX?=
 
 PATCHFILES=	patch.${PORTVERSION}.1  patch.${PORTVERSION}.2 \
-		patch.${PORTVERSION}.3  patch.${PORTVERSION}.4
+		patch.${PORTVERSION}.3  patch.${PORTVERSION}.4 \
+		patch.${PORTVERSION}.5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.2
