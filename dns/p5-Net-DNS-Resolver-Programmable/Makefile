@@ -2,7 +2,7 @@
 # Date created:				February 9, 2007
 # Whom:	      				Koen Martens <gmc@sonologic.nl>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/07/22 07:43:11 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.2 2007/11/11 23:28:06 laffer1 Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}-v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable DNS resolver for off-line testing
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
