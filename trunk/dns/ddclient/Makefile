@@ -2,12 +2,12 @@
 # Date created:		Sun Aug 26 14:45:12 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.1 2006/10/31 23:35:03 wintellect Exp $
 # $FreeBSD: ports/dns/ddclient/Makefile,v 1.18 2006/06/16 13:14:30 sat Exp $
 #
 
 PORTNAME=	ddclient
-PORTVERSION=	3.7.0
+PORTVERSION=	3.7.3
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
