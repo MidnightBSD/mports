@@ -2,19 +2,22 @@
 # Date created:				2004-11-10
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD: mports/databases/db43/Makefile,v 1.1 2006/10/02 06:02:38 laffer1 Exp $
+# $MidnightBSD: mports/databases/db43/Makefile,v 1.2 2007/11/10 23:32:46 laffer1 Exp $
 # $FreeBSD: ports/databases/db43/Makefile,v 1.73 2006/04/14 03:44:08 mnag Exp $
 #
 
 PORTNAME=	db43
 PORTVERSION=	4.3.29
 CATEGORIES=	databases
-MASTER_SITES=	http://downloads.sleepycat.com/
+MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
+		http://download-east.oracle.com/berkeley-db/ \
+		http://download-uk.oracle.com/berkeley-db/
 PKGNAMESUFFIX?=
 DISTNAME?=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
 
-PATCH_SITES=	http://www.sleepycat.com/update/${PORTVERSION}/
+PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION}/
+PATCHFILES=	patch.${PORTVERSION}.1
 PATCH_DIST_STRIP=	-d ..
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,7 +26,7 @@ LICENSE=	bdb
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
 
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
