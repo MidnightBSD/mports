@@ -2,7 +2,7 @@
 # Date created:			9 Jul 2004
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/pecl-fribidi/Makefile,v 1.1 2007/01/20 15:25:58 wintellect Exp $
 # $FreeBSD: ports/converters/pecl-fribidi/Makefile,v 1.1 2004/07/19 07:26:57 ale Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A PECL extension for the unicode Bidi algorithm
+LICENSE=	php
 
 LIB_DEPENDS=	fribidi.0:${PORTSDIR}/converters/fribidi
 
