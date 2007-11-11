@@ -3,7 +3,7 @@
 # Whom:                 wosch
 #
 # $FreeBSD: ports/german/phone/Makefile,v 1.15 2005/11/10 03:48:27 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/german/phone/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
 #
 
 PORTNAME=	phone
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	German phone code / Deutsche Telefonvorwahl (AVON)
+LICENSE=	unknown
 
 PLIST_FILES=	share/misc/de.phone
 NO_WRKSUBDIR=	YES
