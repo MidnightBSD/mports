@@ -2,6 +2,7 @@
 # Date Created:				24 May 2005
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/german/tvbrowser/Makefile,v 1.5 2006/09/12 07:21:06 miwi Exp $
 #
 
@@ -12,8 +13,9 @@ CATEGORIES=	german java
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	tvbrowser
 
-MAINTAINER=	lars.engels@0x20.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A digital tv guide
+LICENSE=	gpl2
 
 USE_LDCONFIG=	yes
 NO_BUILD=	yes
