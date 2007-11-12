@@ -2,19 +2,19 @@
 # Date created:		2006-08-07
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.1 2007/05/07 20:01:58 laffer1 Exp $
 # $FreeBSD: ports/misc/pciids/Makefile,v 1.6 2007/02/26 00:56:11 ahze Exp $
-#    $MCom: ports/misc/pciids/Makefile,v 1.8 2006/10/26 16:14:10 ahze Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20070225
+PORTVERSION=	20071004
 CATEGORIES=	misc
-MASTER_SITES=	http://www.ahze.net/~ahze/distfiles/ \
+MASTER_SITES=	http://ahze.net/~ahze/distfiles/ \
 		${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known ID's used in PCI devices
+LICENSE=	unknown
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
