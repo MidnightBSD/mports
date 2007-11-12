@@ -2,7 +2,7 @@
 # Date created:				29 March 2000
 # Whom:					Robert Withrow <witr@rwwa.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/findutils/Makefile,v 1.1 2007/08/16 20:14:37 laffer1 Exp $
 # $FreeBSD: ports/misc/findutils/Makefile,v 1.30 2007/07/23 09:36:12 rafan Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU find utilities
+LICENSE=	gpl2
 
 SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
 GNU_CONFIGURE=	yes
