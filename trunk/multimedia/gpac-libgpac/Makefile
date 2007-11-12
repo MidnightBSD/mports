@@ -2,12 +2,13 @@
 # Date created:		2005-05-04
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.1 2007/04/04 22:05:05 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gpac-libgpac/Makefile,v 1.13 2006/08/14 23:36:33 ahze Exp $
 #
 
 PORTNAME=	gpac-libgpac
 DISTVERSION=	0.4.2-rc2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -19,6 +20,7 @@ COMMENT=	Gpac MPEG-4 Systems library and headers
 
 WRKSRC=		${WRKDIR}/gpac
 ALL_TARGET=	lib
+USE_GCPIO=	yes
 USE_GMAKE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
