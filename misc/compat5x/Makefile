@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.4 2007/05/25 16:45:48 laffer1 Exp $
+# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.5 2007/08/17 00:35:18 laffer1 Exp $
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 
@@ -21,6 +21,7 @@ DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A convenience package to install the compat5x libraries
+LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 

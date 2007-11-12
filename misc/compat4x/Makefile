@@ -2,7 +2,7 @@
 # Date created:		01 Aug 2001
 # Whom:			Scot W. Hetzel
 #
-# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.2 2007/08/01 21:46:29 laffer1 Exp $
+# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.3 2007/08/17 00:30:40 laffer1 Exp $
 # $FreeBSD: ports/misc/compat4x/Makefile,v 1.33 2006/08/15 00:56:13 clsung Exp $
 #
 
@@ -18,6 +18,7 @@ DIST_SUBDIR=	${COMPAT4X_ARCH}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A convenience package to install the compat4x libraries
+LICENSE=	agg
 
 WRKSRC=		${WRKDIR}/usr/lib/compat
 
