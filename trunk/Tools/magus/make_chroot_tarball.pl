@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.1 2007/09/02 03:02:31 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.2 2007/10/20 22:35:33 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -87,9 +87,7 @@ my @files = qw(
   /var/at
   /var/at/jobs
   /var/at/spool
-  /var/audit
   /var/backups
-  /var/crash/minfree
   /var/db/entropy
   /var/db/ipf
   /var/db/locate.database
@@ -123,6 +121,6 @@ sub run {
   die "Command returned non-zero ($?)\n";
 }
 
-run(qq(/usr/bin/tar -c -f $ballname @files));
+run(qq(/usr/bin/tar -cpf $ballname @files));
 run(qq(/bin/ls -hl $ballname));
 
