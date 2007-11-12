@@ -2,7 +2,7 @@
 # Date created:			02 April 2005
 # Whom:				Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.1 2007/08/31 01:24:22 laffer1 Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.2 2007/11/12 01:04:31 laffer1 Exp $
 # $FreeBSD: ports/misc/iso-codes/Makefile,v 1.21 2007/07/30 03:59:42 beech Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists of the country, language and currency iso names
+LICENSE=	lgpl
 
 BUILD_DEPENDS=	xmlproc_parse:${PORTSDIR}/textproc/py-xml
 
