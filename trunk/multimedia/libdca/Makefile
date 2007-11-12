@@ -2,7 +2,7 @@
 # Date created:				12th May 2004
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdca/Makefile,v 1.1 2007/10/22 03:03:00 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdca/Makefile,v 1.6 2007/07/23 09:36:13 rafan Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${PORTVERSIO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free DTS Coherent Acoustics decoder
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
