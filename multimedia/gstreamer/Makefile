@@ -2,7 +2,7 @@
 # Date created:		Tue Jul 9 20:24:02 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.2 2007/10/22 01:01:53 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.3 2007/11/12 01:57:09 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer/Makefile,v 1.57 2007/03/08 12:32:45 ahze Exp $
 #    $MCom: ports/multimedia/gstreamer/Makefile,v 1.52 2006/09/14 20:51:42 ahze Exp $
 #
@@ -17,6 +17,7 @@ MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development framework for creating media applications
+LICENSE=	lgpl
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
