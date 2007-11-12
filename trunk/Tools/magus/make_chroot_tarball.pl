@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.2 2007/10/20 22:35:33 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.3 2007/11/12 00:06:01 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -106,7 +106,8 @@ my @files = qw(
 
 sub run {
   my ($command) = @_;
-  
+
+  print "Warning: Be sure to have /mnt and other file systems unmounted";
   print "$command\n";
   system($command);
   
