@@ -2,7 +2,7 @@
 # Date created:				10 July 2000
 # Whom:					Kim Scarborough <user@unknown.nu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/brs/Makefile,v 1.1 2006/11/04 19:11:16 wintellect Exp $
 # $FreeBSD: ports/misc/brs/Makefile,v 1.10 2005/10/20 20:13:42 vs Exp $
 #
 
@@ -17,6 +17,8 @@ DIST_SUBDIR=	brs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interactive King James Bible
+LICENSE=	restricted
+# it's marked as do not distribute
 
 USE_BZIP2=	yes
 NO_WRKSUBDIR=	yes
