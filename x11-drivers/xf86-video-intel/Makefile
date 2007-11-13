@@ -3,11 +3,11 @@
 # Whom:					lesi@FreeBSD.org
 #
 # $FreeBSD: ports/x11-drivers/xf86-video-intel/Makefile,v 1.3 2007/09/13 19:44:49 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-video-intel/Makefile,v 1.1 2007/10/12 00:53:35 ctriv Exp $
 #
 
 PORTNAME=	xf86-video-intel
-PORTVERSION=	2.1.1
+PORTVERSION=	2.1.99
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
