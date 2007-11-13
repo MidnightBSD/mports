@@ -3,13 +3,13 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.3 2006/09/26 19:24:02 archite Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.4 2007/05/03 02:21:30 ctriv Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
 PORTNAME=		bash
-PATCHLEVEL=		17
-PORTVERSION=		3.1.${PATCHLEVEL:S/^0//g}
+PATCHLEVEL=		25
+PORTVERSION=		3.2.${PATCHLEVEL:S/^0//g}
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
 			ftp://ftp.cwru.edu/pub/%SUBDIR%/:faq
@@ -28,10 +28,21 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
+LICENSE=		gpl2
+
+# '
 
 IGNOREFILES=		FAQ
 CONFLICTS=		bash-[0-24-9].*
 
+OPTIONS=	IMPLICITCD       "Add support for implicit cd." On \
+		COLONBREAKSWORDS "Have word completion break words on ':'." On \
+		INCLUDED_FAQ	 "Install the included FAQ." Off \
+		STATIC_BASH      "Statically link bash." Off \
+		NLS		 "Enable native language support." On \
+		HELP		 "Install builtin help." On \
+		HELPFILES        "Install descrete helpfiles." On 
+		
 .if !defined(WITHOUT_IMPLICITCD)
 EXTRA_PATCHES+=		${PATCHDIR}/xpatch-implicitcd
 .endif
@@ -41,6 +52,7 @@ EXTRA_PATCHES+=		${PATCHDIR}/xpatch-colonbreakswords
 .endif
 
 MAN1=			bash.1 bashbug.1
+MLINKS=			bash.1 rbash.1
 INFO=			bash
 
 GNU_CONFIGURE=		yes
@@ -69,7 +81,7 @@ CONFIGURE_ARGS+=	--enable-static-link=no
 .if defined(WITHOUT_HELP)
 CONFIGURE_ARGS+=	--disable-help-builtin
 PLIST_SUB+=		HELP="@comment "
-.elif defined(WITH_INTEGRATED_HELPFILES)
+.elif defined(WITHOUT_HELPFILES)
 PLIST_SUB+=		HELP="@comment "
 .else
 CONFIGURE_ARGS+=	--enable-separate-helpfiles
@@ -108,17 +120,18 @@ pre-build:
 
 
 post-install:
+	ln -s ${PREFIX}/bin/bash ${PREFIX}/bin/rbash
 .if !defined(NOPORTDOCS)
-	@${MKDIR} ${DESTDIR}${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .if !defined(WITH_INCLUDED_FAQ)
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/FAQ \
-		${WRKSRC}/doc/INTRO ${DESTDIR}${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${DOCSDIR}
 .else
 	@${INSTALL_DATA} ${WRKSRC}/doc/FAQ \
-		${WRKSRC}/doc/INTRO ${DESTDIR}${DOCSDIR}
+		${WRKSRC}/doc/INTRO ${DOCSDIR}
 .endif
 	@for d in ${PORTDOCS:NFAQ:NINTRO}; do \
-		${INSTALL_DATA} ${WRKSRC}/$${d} ${DESTDIR}${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${d} ${DOCSDIR}; \
 	done
 .endif
 
