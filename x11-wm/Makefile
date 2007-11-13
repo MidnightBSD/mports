@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.20 2007/11/10 02:56:25 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.21 2007/11/10 04:00:39 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -6,6 +6,7 @@
     SUBDIR += afterstep
     SUBDIR += blackbox
     SUBDIR += boxtools
+    SUBDIR += compiz
     SUBDIR += enlightenment
     SUBDIR += enlightenment-docs
     SUBDIR += etoile-azalea
