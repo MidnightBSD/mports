@@ -12,17 +12,17 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Tools/scripts/checkcats.py,v 1.1 2001/12/11 10:49:51 sobomax Exp $
 #
-# MAINTAINER= sobomax@FreeBSD.org <- any unapproved commits to this file are
-#                                    highly discouraged!!!
+# MAINTAINER= ports@MidnightBSD.org
 #
 
 import glob, os.path
 import patchtool
 from patchtool import True, False
 
-PORTSDIR = '/usr/ports'
+PORTSDIR = '/usr/mports'
 
 if __name__ == '__main__':
     portdirs = glob.glob(os.path.join(PORTSDIR, '*/*'))
