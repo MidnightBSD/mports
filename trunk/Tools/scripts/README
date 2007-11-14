@@ -1,4 +1,4 @@
-$FreeBSD: ports/Tools/scripts/README,v 1.17 2005/04/12 10:56:08 tobez Exp $
+$MidnightBSD$
 
 addport	- replacement for easy-import
 bump_revision.pl - Small script to bump the PORTREVISION variable of ports
@@ -14,22 +14,14 @@ checknewvers - checks for availability for a newest version of distfiles on
                MASTER_SITES (ftp only).
 chkorigin.sh - checks all ports in the tree for a wrong PKGORIGIN.
                Run this tool after every repocopy.
-close-pr  - a slightly hacked version of edit-pr(1) to quickly close PR.
 de-pkg-comment - converts pkg-comment to COMMENT (will be obsoleted when
                  the mass conversion is finished)
 distclean - compare md5 sums of distfiles in ports/distfiles with currently
             installed ports collection in ports/* and prompt to remove
             unmatched entries
-getpr   - downloads a problem report from GNATS and attempts to extract
-          the patch, shar, uuencoded file from it.
-          this probably needs to be checked for potential security problems.
 gnomedepends - Analyse pkg/PLIST and give an advice as to which GNOME ports
                should be listes in {RUN,LIB}_DEPENDS for this port
 plist - automate (mostly, at least) pkg-plist generation
-prpatch - just does `patch $1 < pr-patch' (pr-patch is created by getpr)
-prdone  - checks in the port, attempting to fill out the commit message using
-          information from the problem report and then takes you into edit-pr
-          so you don't forget to close the PR.
 portsearch - A utility for searching the ports tree. It allows more detailed
              search criteria than ``make search key=<string>'' and accepts
              all perl(1) regular expressions.
@@ -62,20 +54,6 @@ Please beware that full check takes quite some time.
 
 ----------------------------------------------------------------------
 
-getpr, prpatch and prdone are used as so:
-	% cd /usr/ports/CATEGORY/PORT
-	% getpr PRNUMBER
-	<read diff presented to you>
-	<check that there are no followups to the PR as getpr wont' split
-	 them out of the PR>
-	% prpatch
-	<test port>
-	% prdone PRNUMBER ci
-	<this will attempt to fill out the cvs log message, check in the
-	 port and edit-pr the problem report so you can close it>
-
-----------------------------------------------------------------------
-
 checksum is a script that allows checking of ports to see if their checksums
 match, and if they don't, give a diff against the older version to try and
 discover why the checksum didn't match.
@@ -83,7 +61,7 @@ discover why the checksum didn't match.
 ----------------------------------------------------------------------
 
 distclean is a script that allows to compare md5 checksums of distfiles in
-ports/distfiles with list of all md5 sums listed in "md5" files in the ports
+mports/distfiles with list of all md5 sums listed in "md5" files in the ports
 collection. After comparing, utility will prompt to remove distfiles which
 doesn't have associated md5 entry (most likely outdated distfiles).
 
@@ -92,7 +70,7 @@ doesn't have associated md5 entry (most likely outdated distfiles).
 gnomedepends is a script, which analyses pkg/PLIST and gives an advice as to
 which GNOME ports should be listes in {RUN,LIB}_DEPENDS for the port to ensure
 correct removal of GNOME shared directories. Usage is simple:
-	% cd /usr/ports/CATEGORY/PORT
+	% cd /usr/mports/CATEGORY/PORT
 	% gnomedepends.py
 	According to the contents of PLIST the port depends on the following GNOME
 	port(s):
