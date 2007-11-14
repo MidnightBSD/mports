@@ -2,18 +2,19 @@
 # Date created:				16 Apr 2001
 # Whom:					Kirill Ponomarew <ponomarew@oberon.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/gmime2/Makefile,v 1.1 2007/09/03 23:03:35 laffer1 Exp $
 # $FreeBSD: ports/mail/gmime2/Makefile,v 1.53 2007/07/21 20:01:57 mnag Exp $
 #
 
 PORTNAME=	gmime
-PORTVERSION=	2.2.10
+PORTVERSION=	2.2.11
 PORTREVISION?=	0
 CATEGORIES?=	mail
 MASTER_SITES=	http://spruce.sourceforge.net/gmime/sources/v${PORTVERSION:C/([0-9]\.[0-9]).*/\1/}/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Library (written in C) for parsing and creating messages using MIME
+LICENSE=	lgpl
 
 CONFLICTS=	gmime-1.0.*
 

@@ -1,14 +1,11 @@
-
-$FreeBSD: ports/mail/gmime2/files/patch-docs_Makefile.in,v 1.4 2005/08/28 10:35:26 krion Exp $
-
---- docs/Makefile.in.orig
-+++ docs/Makefile.in
-@@ -198,7 +198,7 @@
- sharedstatedir = @sharedstatedir@
- sysconfdir = @sysconfdir@
+--- docs/Makefile.in.orig	Wed Nov 14 13:39:16 2007
++++ docs/Makefile.in	Wed Nov 14 13:40:00 2007
+@@ -193,7 +193,7 @@
  target_alias = @target_alias@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
 -SUBDIRS = reference tutorial
-+SUBDIRS =
++SUBDIRS = 
  EXTRA_DIST = \
  	gmime-config.txt	\
  	gtkdocs_fix
