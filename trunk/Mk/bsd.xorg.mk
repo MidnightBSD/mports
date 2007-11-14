@@ -3,7 +3,7 @@
 #
 # bsd.xorg.mk - Support for USE_XORG variable. (XXX - this comment sucks)
 #
-# Created by: Florent Thoumie <flz@FreeBSD.org>
+# Created by: Florent Thoumie <xxx>
 #
 # Complete list of dependencies for xorg ports can be found at :
 # http://people.freebsd.org/~flz/local/xorg/xorg-dep-list
@@ -13,11 +13,14 @@
 #
 # !!! Here be dragons !!! (yeah, here as well...)
 #
-# $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.3 2007/09/13 19:44:45 flz Exp $
-# $MidnightBSD: mports/Mk/bsd.xorg.mk,v 1.1 2007/10/02 19:14:01 ctriv Exp $
+# $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
+# $MidnightBSD$
 #
 
-XORG_Include_MAINTAINER=		ports@MidnightBSD.org
+.if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
+
+Xorg_Include_MAINTAINER=	ports@MidnightBSD.org
+Xorg_Pre_Include=		bsd.xorg.mk
 
 # Some notes:
 #
@@ -142,10 +145,11 @@ CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb
 
 .endif
 
-# Might not be useful, need to check this later.
-.if defined(USE_XORG)
-USE_GNOME+=	pkgconfig
 .endif
+
+.if defined(_POSTMKINCLUDED) && !defined(Xorg_Post_Include)
+
+Xorg_Post_Include=		bsd.xorg.mk
 
 # Register all xorg .pc files here.
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
@@ -259,4 +263,6 @@ check-latest:
 				${ECHO_CMD} "${PORTNAME} $$ver is newer than current version."; \
 			fi; \
 		done
+.endif
+
 .endif
