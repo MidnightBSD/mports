@@ -2,17 +2,11 @@
 # Date created:		2002-06-23
 # Whom:			Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD: mports/security/openvpn/Makefile,v 1.2 2006/12/30 22:30:45 wintellect Exp $
+# $MidnightBSD: mports/security/openvpn/Makefile,v 1.3 2007/08/01 21:37:03 laffer1 Exp $
 # $FreeBSD: ports/security/openvpn/Makefile,v 1.28 2006/09/14 01:22:01 rafan Exp $
 #
 
 PORTNAME=	openvpn
-# -----------------------------------------------------
-# DO NOT BOTHER TO SEND NOTICES ABOUT 2.0.8 AS IT FIXES
-# WINDOWS-ONLY BUGS THAT DON'T AFFECT *BSD AND THUS
-# DOES NOT WARRANT A PORT UPGRADE! AND UPGRADE REQUESTS
-# WILL BE DROPPED.       -- Matthias Andree, 2006-09-13
-# -----------------------------------------------------
 PORTVERSION=	2.0.9
 PORTREVISION=	0
 CATEGORIES=	security net
@@ -27,7 +21,7 @@ CONFLICTS=	openvpn-devel-[0-9]*
 
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-lzo-lib=${LOCALBASE}/lib \
 		--with-lzo-headers=${LOCALBASE}/include
 
