@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.5 2007/08/27 05:42:41 laffer1 Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.6 2007/10/01 19:28:33 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,6 +37,12 @@ use warnings;
 
 my ($plist, $destdir, $prefix) = @ARGV;
 
+my $skip = '';
+if ($ARGV[3] && $ARGV[3] eq '-s') {
+  $skip = $ARGV[4];
+  $skip =~ s/\s+/|/g;
+  $skip = qr/^(?:$skip)$/;
+}
 
 open(my $fh, '<', $plist) || die "Couldn't open $plist: $!\n";
 
@@ -58,12 +64,7 @@ while (<$fh>) {
   next if -l "$destdir$cwd/$_";
   
   if (-e "$destdir$cwd/$_") {
-    # There is a bug in perl's MakeMaker which causes the packlist to contain
-    # the DESTDIR.  This bug is harmless, so we'll ignore it.  See rt.cpan.org
-    # bug 3003 for details.
-    next if m/.packlist$/;
-    
-    if (grep_file($destdir, "$destdir$cwd/$_")) {
+    if (!m/$skip/ && grep_file($destdir, "$destdir$cwd/$_")) {
       $ok = 0;
       print "    $_ contains the fake destdir.";
     }

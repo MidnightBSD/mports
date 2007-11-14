@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake,v 1.3 2007/10/23 04:40:23 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake,v 1.4 2007/10/25 20:18:54 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -40,6 +40,10 @@ PLIST=$1
 DESTDIR=$2
 PREFIX=$3
 CWD=$PREFIX
+
+if [ ! -z "$4" -a "$4" = '-s' ]; then
+	SKIP=`echo $5 | sed -E 's/ /\\|/g'`
+fi
 
 EXIT=0
 
@@ -58,13 +62,10 @@ for _ENTRY in `cat $PLIST | grep -e '^[^@]\|^@cw\?d'`; do
 		continue;
 	fi
 	if [ -e $DESTDIR$CWD/$ENTRY ]; then
-		# There is a bug in perl's MakeMaker which causes the packlist to contain
-		# the DESTDIR.  This bug is harmless, so we'll ignore it.  See rt.cpan.org
-		# bug 3003 for details.
-		if echo $ENTRY | grep -e '.packlist$' > /dev/null; then
+		if echo $ENTRY | grep -e "^$SKIP$" > /dev/null; then
 			continue;
 		fi
-
+		
 		if grep $DESTDIR $DESTDIR$CWD/$ENTRY >/dev/null; then
 			EXIT=1
 			echo "	$ENTRY contains the fake destdir."
