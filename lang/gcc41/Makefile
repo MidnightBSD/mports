@@ -3,7 +3,7 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc41/Makefile,v 1.1 2006/09/20 14:13:12 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc41/Makefile,v 1.289 2006/09/10 13:02:38 gerald Exp $
 #
 
@@ -21,6 +21,7 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	GNU Compiler Collection 4.1
+LICENSE=	gpl2
 
 .if defined(WITH_FORTRAN)
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
