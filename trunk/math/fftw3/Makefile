@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/math/fftw3/Makefile,v 1.46 2006/07/06 06:34:17 ahze Exp $
 #    $MCom: ports-experimental/math/fftw3/Makefile,v 1.1 2006/03/28 00:08:57 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.1 2007/01/25 21:41:17 laffer1 Exp $
 #
 
 PORTNAME=	fftw3
@@ -18,6 +18,7 @@ DISTNAME=	fftw-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Fast C routines to compute the Discrete Fourier Transform
+LICENSE=	gpl2
 
 # current flavors: default, float, and long
 FFTW3_FLAVOR?=	default
