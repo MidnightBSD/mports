@@ -3,23 +3,25 @@
 # Whom:			Stephane Legrand
 #
 # $MidnightBSD$
-# $FreeBSD: ports/ftp/proftpd/Makefile,v 1.104 2007/03/06 00:54:39 clsung Exp $
+# $FreeBSD: ports/ftp/proftpd/Makefile,v 1.121 2007/10/08 19:22:45 beech Exp $
 #
 
 PORTNAME=	proftpd
-DISTVERSION=	1.3.1rc2
-PORTREVISION=	3
+DISTVERSION=	1.3.1
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		ftp://ftp.fastorama.com/mirrors/ftp.proftpd.org/distrib/source/ \
 		ftp://ftp.dataguard.no/ftp/pub/proftpd/distrib/source/ \
 		ftp://spirit.bentel.sk/mirrors/Proftpd/distrib/source/ \
 		ftp://proftpd.networkedsystems.co.uk/distrib/source/ \
-		ftp://ftp.ethereal.com/mirrors/ftp.proftpd.org/distrib/source/ \
-		ftp://mirror.cybercomm.nl/pub/proftpd/distrib/source/
+		http://mirrors.ibiblio.org/pub/mirrors/proftpd/distrib/source/ \
+		http://www.mirrorservice.org/sites/ftp.proftpd.org/distrib/source/ \
+		CENKES:clam
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Highly configurable ftp daemon
+MAINTAINER?=	ports@MidnightBSD.org
+COMMENT?=	Highly configurable ftp daemon
+LICENSE=	gpl2
 
 MAN1=	ftpcount.1 ftpwho.1 ftptop.1
 MAN5=	xferlog.5
@@ -31,38 +33,48 @@ PORTDOCScontrib=mod_ifsession.html mod_radius.html mod_rewrite.html \
 		mod_ban.html mod_quotatab_radius.html ftpasswd.html
 PORTDOCS=	${PORTDOCSdoc} ${PORTDOCScontrib}
 
+PORTEXAMPLES=	ASCII.html CreateHome.html Filters.html SQL.html Umask.html \
+		AuthFiles.html DNS.html Globbing.html SSH.html Upgrade.html \
+		Authentication.html DSO.html Limit.html Scoreboard.html Vhost.html \
+		BCP.html Debugging.html ListOptions.html ServerType.html \
+		VirtualUsers.html Chroot.html Directory.html Logging.html Stopping.html \
+		index.html Classes.html DisplayFiles.html NAT.html TLS.html ConfigFile.html \
+		FTP.html Quotas.html Timestamps.html Controls.html \
+		FXP.html Regex.html Tracing.html
+
 USE_GMAKE=	yes
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 GNU_CONFIGURE=	yes
 
 USE_RC_SUBR=	proftpd.sh
 
 CONFIGURE_ARGS=	--localstatedir=/var/run \
-		--sysconfdir=${EXAMPLESDIR}/etc \
+		--sysconfdir=${PREFIX}/etc \
+		--enable-builtin-getnameinfo \
 		--disable-sendfile
 
 OPTIONS=	IPV6 "Use IPv6" off \
 		LDAP "Use LDAP" off \
-		LDAP_TLS "Use LDAP TLS (Requires LDAP)" off\
+		LDAP_TLS "Use LDAP TLS (Requires LDAP, OPENSSL)" off\
 		MYSQL "Use MySQL" off \
-		POSTGRESQL "Use Postgres" off \
-		OPENSSL "Include mod_tls" off \
+		PGSQL "Use Postgres" off \
+		OPENSSL "Include mod_tls" on \
 		QUOTA "Include mod_quota" off \
 		IFSESSION "Include mod_ifsession" on \
 		README "Include mod_readme" on \
 		RATIO "Include mod_ratio" on \
-		CTRLS "include controls" off \
+		CTRLS "Include controls" off \
 		REWRITE "Include mod_rewrite" on \
 		WRAP "Include mod_wrap2" on \
-		WRAP_FILE "include mod_wrap2_file" off \
-		WRAP_SQL "include mod_wrap2_sql" off \
-		RADIUS "Include mod_radius" off \
+		WRAP_FILE "Include mod_wrap2_file" off \
+		WRAP_SQL "Include mod_wrap2_sql" off \
+		RADIUS "Include mod_radius" on \
 		QUOTATAB_RADIUS "include mod_quotatab_radius" off \
-		BAN "include mod_ban (Requires CTRLS)" off \
+		BAN "Include mod_ban (Requires CTRLS)" off \
 		NLS "Use nls (builds mod_lang)" off \
-		CYRFIX "Use patch for fix cyrillic encoding" off \
-		CODECONV "Use charset conversion (mod_codeconv)" off
+		CYRFIX "Patch to fix cyrillic encoding" off \
+		CLAMAV "Include mod_clamav " off
 
 MODULES?=
 LIBDIRS?=
@@ -86,6 +98,7 @@ MODULES:=${MODULES}:mod_rewrite
 MODULES:=${MODULES}:mod_wrap2
 INCLUDEDIRS:=${INCLUDEDIRS}:${WORKDIR}/include
 LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib
+PLIST_FILES+=	include/proftpd/mod_wrap2.h
 .endif
 
 .if defined(WITH_WRAP_FILE)
@@ -155,19 +168,21 @@ LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib
 
 .if defined(WITH_MYSQL)
 USE_MYSQL=	yes
-MODULES:=${MODULES}:mod_sql:mod_sql_mysql
+MODULES:=${MODULES}:mod_sql_mysql
 INCLUDEDIRS:=${INCLUDEDIRS}:${LOCALBASE}/include:${LOCALBASE}/include/mysql
 LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib/mysql
-PLIST_SUB+=	MYSQL=""
-.else
-PLIST_SUB+=	MYSQL="@comment "
 .endif
 
-.if defined(WITH_POSTGRESQL)
+.if defined(WITH_PGSQL)
 USE_PGSQL=	yes
-MODULES:=${MODULES}:mod_sql:mod_sql_postgres
+MODULES:=${MODULES}:mod_sql_postgres
 INCLUDEDIRS:=${INCLUDEDIRS}:${LOCALBASE}/include
 LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib
+.endif
+
+.if ${MODULES:M*mod_sql_*}
+MODULES:=mod_sql${MODULES}
+PLIST_FILES+=	include/proftpd/mod_sql.h
 .endif
 
 .if defined(WITH_OPENSSL)
@@ -175,9 +190,6 @@ CFLAGS+=	-DHAVE_OPENSSL
 .include <${PORTSDIR}/Mk/bsd.openssl.mk>
 PROFTPD_LIBS+=	-lssl -lcrypto -L${LOCALBASE}/lib
 MODULES:=${MODULES}:mod_tls
-.if defined(WITH_LDAP_TLS)
-EXTRA_PATCHES+=	${FILESDIR}/extra_patch-ldap-tls-mod_ldap.c
-.endif
 .endif
 
 .if defined(WITH_CTRLS)
@@ -190,20 +202,23 @@ MODULES:=${MODULES}:mod_ctrls_admin
 
 .if defined(WITH_QUOTA)
 MODULES:=${MODULES}:mod_quotatab:mod_quotatab_file
+PLIST_FILES+=	include/proftpd/mod_quotatab.h
 .if defined(WITH_LDAP)
 MODULES:=${MODULES}:mod_quotatab_ldap
 .endif
-.if defined(WITH_POSTGRESQL) || defined(WITH_MYSQL)
+.if defined(WITH_PGSQL) || defined(WITH_MYSQL)
 MODULES:=${MODULES}:mod_quotatab_sql
 .endif
 .endif
 
-.if defined(WITH_CODECONV)
-USE_ICONV=	YES
-MODULES:=${MODULES}:mod_codeconv
+.if defined(WITH_CLAMAV)
+#http://www.uglyboxindustries.com/mod_clamav_new.c
+DISTFILES+=	mod_clamav-0.5.tar.bz2:clam
+USE_CLAMAV=	yes
+MODULES:=${MODULES}:mod_clamav
+LIB_DEPENDS+=	clamav.2:${PORTSDIR}/security/clamav
 INCLUDEDIRS:=${INCLUDEDIRS}:${LOCALBASE}/include
-PROFTPD_LIBS+=	-liconv -L${LOCALBASE}/lib
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-mod-codeconv
+LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib
 .endif
 
 # mod_ifsession should be the last item in the modules list
@@ -228,16 +243,25 @@ CONFIGURE_ARGS+=	--with-libraries=${LIBDIRS}
 
 MODULES!=${ECHO} ${MODULES} | ${SED} -e 's,^:,,' -e 's,:$$,,'
 
+post-extract:
+.if defined(WITH_CLAMAV)
+	@${MV} ${WRKDIR}/mod_clamav_new.c ${WRKSRC}/modules/mod_clamav.c
+.endif
+
 post-patch:
 .if defined(WITH_NLS)
-	${REINPLACE_CMD} -e 's|-lsupp|-lsupp -lintl|g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|-lsupp|-lsupp -lintl|g' ${WRKSRC}/Makefile.in
 .endif
+.if defined(WITH_LDAP_TLS)
+	@${REINPLACE_CMD} -e 's:/\* #define USE_LDAP_TLS \*/:#define USE_LDAP_TLS:' \
+		${WRKSRC}/contrib/mod_ldap.c
+.endif
+	@${REINPLACE_CMD} -e 's|proftpd\.conf|proftpd.conf.sample|g' ${WRKSRC}/Makefile.in
 
 pre-configure:
 	@${ECHO_MSG} "==> Configuring with ${MODULES}"
 
 post-configure:
-	${REINPLACE_CMD} -e 's:${EXAMPLESDIR}:${PREFIX}:' ${WRKSRC}/config.h
 	${REINPLACE_CMD} -e 's: -lnsl::' ${WRKSRC}/Make.rules
 	${REINPLACE_CMD} -e 's:/usr/sbin:${PREFIX}/sbin:' \
 		-e 's:/usr/bin:${PREFIX}/bin:' \
@@ -245,27 +269,19 @@ post-configure:
 		${WRKSRC}/utils/ftpcount.1
 
 post-install:
-	@if [ ! -f ${PREFIX}/etc/proftpd.conf ]; then \
-	${CP} -p ${EXAMPLESDIR}/etc/proftpd.conf ${PREFIX}/etc/proftpd.conf ; \
-    fi
-
+	@cd  ${PREFIX}/etc/ && ${CP} -n proftpd.conf.sample proftpd.conf
 .if !defined(NOPORTDOCS)
-	@${MKDIR} ${PREFIX}/share/doc/proftpd
-.for f in ${PORTDOCSdoc}
-	@${INSTALL_DATA} ${WRKSRC}/doc/${f} ${PREFIX}/share/doc/proftpd
-.endfor
-.for f in ${PORTDOCScontrib}
-	@${INSTALL_DATA} ${WRKSRC}/doc/contrib/${f} ${PREFIX}/share/doc/proftpd
-.endfor
+	@${INSTALL} -d ${DOCSDIR}/
+	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} ${PORTDOCSdoc} ${DOCSDIR}/
+	@cd ${WRKSRC}/doc/contrib && ${INSTALL_DATA} ${PORTDOCScontrib} ${DOCSDIR}/
 .endif
-
-.if !defined(WITHOUT_PAM)
-	@${CAT} ${PKGMESSAGE}
+.if !defined(NOPORTEXAMPLES)
+	@${INSTALL} -d ${EXAMPLESDIR}/
+	@cd ${WRKSRC}/doc/howto/ && ${INSTALL_DATA} ${PORTEXAMPLES} ${EXAMPLESDIR}/
 .endif
-
 .if defined(WITH_CTRLS)
-	@${INSTALL_PROGRAM} ${WRKSRC}/ftpdctl ${PREFIX}/sbin/ftpdctl
-	@${INSTALL_MAN} ${WRKSRC}/src/ftpdctl.8 ${PREFIX}/man/man8/ftpdctl.8
+	@${INSTALL_PROGRAM} ${WRKSRC}/ftpdctl ${PREFIX}/sbin/
+	@${INSTALL_MAN} ${WRKSRC}/src/ftpdctl.8 ${MAN8PREFIX}/man/man8/
 .endif
 
 .include <bsd.port.post.mk>
