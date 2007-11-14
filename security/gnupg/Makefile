@@ -3,12 +3,11 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg/Makefile,v 1.98 2007/01/14 07:27:47 kuriyama Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.3 2007/01/24 19:33:44 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
-PORTVERSION=	2.0.1
-PORTREVISION=	1
+PORTVERSION=	2.0.4
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -17,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	libassuan>=1.0.1:${PORTSDIR}/security/libassuan
 LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
@@ -24,7 +24,7 @@ LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
 		ksba.17:${PORTSDIR}/security/libksba \
 		pth.20:${PORTSDIR}/devel/pth
 
-CONFLICTS=	gnupg-devel-[0-9]*
+CONFLICTS=	gnupg-devel-[0-9]* gnupg1-[0-9]*
 
 USE_BZIP2=	YES
 USE_GMAKE=	YES
@@ -38,7 +38,7 @@ CONFIGURE_ARGS+=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
 MAN1=		gpg2.1 gpgsm.1 gpgv2.1 gpg-agent.1 scdaemon.1 watchgnupg.1 \
 		gpgconf.1 gpg-preset-passphrase.1 gpg-connect-agent.1 \
 		gpgparsemail.1 symcryptrun.1 gpgsm-gencert.sh.1
-MAN8=		addgnupghome.8
+MAN8=		addgnupghome.8 applygnupgdefaults.8
 INFO=		gnupg
 
 OPTIONS=	LDAP "LDAP keyserver interface" off \
@@ -100,6 +100,5 @@ pre-configure:
 
 post-install:
 	PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
