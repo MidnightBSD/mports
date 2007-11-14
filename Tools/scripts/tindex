@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# INDEX build tinderbox script.  Build an INDEX for all supported FreeBSD branches
+# INDEX build tinderbox script.  Build an INDEX for all supported BSD branches
 # using the latest value of OSVERSION according to the src trees.  If the build
-# fails, yowl about it on ${REPORT_ADDRESS}  If not, copy the index to www.freebsd.org so
-# that 'make fetchindex' sees it.
+# fails, yowl about it on ${REPORT_ADDRESS}  If not, copy the index to 
+# www.midnightbsd.org so that 'make fetchindex' sees it.
 #
 # When INDEX is broken, assemble the list of committers who touched files
 # on the most recent 'cvs update', and put those committers "on the hook".
@@ -21,15 +21,13 @@ ERROR_ADDRESS=root@localhost
 # Where to scp the resulting indexes after build
 SCP_DEST_HOST=root@localhost
 SCP_DEST_TMP=/tmp
-SCP_DEST_DIR=/usr/local/www/ports
+SCP_DEST_DIR=/home/mbsd/docs/ports
 
 # Location of ports tree and source trees
-export BASEDIR=/local0/tmp/kris/tindex
-export PORTSDIR=${BASEDIR}/ports
-export SRCDIR4=${BASEDIR}/src.4
-export SRCDIR5=${BASEDIR}/src.5
-export SRCDIR6=${BASEDIR}/src.6
-export SRCDIR7=${BASEDIR}/src.7
+export BASEDIR=/home/tindex
+export PORTSDIR=${BASEDIR}/mports
+export SRCDIR01=${BASEDIR}/src.01
+export SRCDIR02=${BASEDIR}/src.02
 
 # SSH key to use for copying INDEXes to www host (if non-default)
 export SSHKEY="-i /home/kris/.ssh/id_dsa-index"
@@ -39,12 +37,12 @@ export SSHKEY="-i /home/kris/.ssh/id_dsa-index"
 blame() {
   # Find out who is responsible for current version of file $1
 
-  # Fastest way to extract is from the CVS "FreeBSD" tag
-  ident=$(ident $1 2>/dev/null | grep '$FreeBSD')
-  who=$(echo $ident | awk '{print $6}')
+  # Fastest way to extract is from the CVS "MidnightBSD" tag
+  ident=$(ident $1 2>/dev/null | grep '$MidnightBSD')
+  who=$(echo $ident | awk '{print $11}')
 
   if [ -z "$ident" ]; then
-    # No FreeBSD tag, fall back to slower method of parsing cvs logs.
+    # No MidnightBSD tag, fall back to slower method of parsing cvs logs.
     rev=$(cvs status $1 2>/dev/null | grep 'Working revision:' | awk '{print $3}')
     if [ "$rev" != "No" ]; then    # "No" means not under CVS control
       ident=$(cvs -Rq log -r$rev $1 | grep "^date:" | head -1 | sed 's,;,,g')
@@ -130,24 +128,16 @@ export INDEX_JOBS=4
 export INDEX_QUIET=1
 
 # First update the source trees to get current OSVERSION
-cd ${SRCDIR4}/sys/sys
-cvs -Rq update -PdA -r RELENG_4 param.h
-OSVERSION4=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR4}/sys/sys/param.h)
+cd ${SRCDIR01}/sys/sys
+cvs -Rq update -PdA -r RELENG_0_1 param.h
+OSVERSION01=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR01}/sys/sys/param.h)
 
-cd ${SRCDIR5}/sys/sys
-cvs -Rq update -PdA -r RELENG_5 param.h
-OSVERSION5=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR5}/sys/sys/param.h)
-
-cd ${SRCDIR6}/sys/sys
-cvs -Rq update -PdA -r RELENG_6 param.h
-OSVERSION6=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR6}/sys/sys/param.h)
-
-cd ${SRCDIR7}/sys/sys
+cd ${SRCDIR02}/sys/sys
 cvs -Rq update -PdA param.h
-OSVERSION7=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR7}/sys/sys/param.h)
+OSVERSION02=$(awk '/^#define __FreeBSD_version/ {print $3}' < ${SRCDIR02}/sys/sys/param.h)
 
 cd ${PORTSDIR}
-rm -f INDEX INDEX.bz2 INDEX-5 INDEX-5.bz2 INDEX-6 INDEX-6.bz2 INDEX-7 INDEX-7.bz2
+rm -f INDEX INDEX.bz2 INDEX-6 INDEX-6.bz2
 (cvs -Rq update -PdA 2>1 ) > cvs.log
 if grep -q ^C cvs.log ; then
   (echo "cvs update failed with conflicts:";
@@ -155,8 +145,8 @@ if grep -q ^C cvs.log ; then
     exit 1
 fi
   
-export OSVERSION=${OSVERSION4}
-BRANCH=4.x
+export OSVERSION=${OSVERSION01}
+BRANCH=0.1
 echo "Building INDEX for ${BRANCH} with OSVERSION=${OSVERSION}"
 cd ${PORTSDIR}
 ((make index 2> index.err) > index.out) || indexfail ${BRANCH}

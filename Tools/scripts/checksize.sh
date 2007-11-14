@@ -1,16 +1,16 @@
 #!/bin/sh
-# checksize.sh:  scan the ports collection for "size mismatch" and
+# checksize.sh:  scan the mports collection for "size mismatch" and
 # "size unknown" errors by attempting to fetch onto a full filesystem
 #
 # When called with a parameter that is the name of a category of
-# ports, the script checks that category, then checks the whole
+# mports, the script checks that category, then checks the whole
 # ports collection, redoing the named category.  When called with
 # no parameter, it checks the whole collection.
 #
 # First do something like:
 #
-#	dd if=/dev/zero of=/usr/ports/mfs.img bs=1k count=512
-#	mdconfig -a -t vnode -f /usr/ports/mfs.img -u 1
+#	dd if=/dev/zero of=/usr/mports/mfs.img bs=1k count=512
+#	mdconfig -a -t vnode -f /usr/mports/mfs.img -u 1
 #	newfs /dev/md1
 #	mount /dev/md1 /mnt
 #
@@ -30,7 +30,7 @@
 # which are intact on the main site (or vice versa).
 #
 # bugs:
-# - assumes ports tree is in /usr/ports/
+# - assumes mports tree is in /usr/mports/
 # - doesn't provide for checking only particular categories or ports
 # - support for multiple architectures is inefficient
 # - output is messy
@@ -43,11 +43,11 @@
 #
 # placed in the public domain by Trevor Johnson
 
-for category in $1 `grep ^SUBDIR /usr/ports/Makefile | cut -f3 -d\ `; do
-	cd /usr/ports/$category
+for category in $1 `grep ^SUBDIR /usr/mports/Makefile | cut -f3 -d\ `; do
+	cd /usr/mports/$category
 	for port in \
 		`grep -wc SIZE */distinfo* | grep -v :0 | cut -f1 -d\/`; do
-		cd /usr/ports/$category/$port
+		cd /usr/mports/$category/$port
 		for arc in i386; do
 			dd if=/dev/zero of=/mnt/zero
 			echo checking $arc size data for $category/$port

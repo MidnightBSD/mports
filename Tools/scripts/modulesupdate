@@ -2,15 +2,16 @@
 #
 # This code mostly stolen from easy-import written by J^vrg Wunsch
 #
-# $Id: modulesupdate,v 1.1.1.1 2006-09-17 03:33:55 archite Exp $
+# $Id: modulesupdate,v 1.2 2007-11-14 21:08:36 laffer1 Exp $
 # $FreeBSD: ports/Tools/scripts/modulesupdate,v 1.4 2006/05/16 15:44:29 garga Exp $
+# $MidnightBSD$
 
 use strict;
 
 my $tmpdir;
 
 if ($ENV{CVSROOT} eq "") {
-	$ENV{CVSROOT}="pcvs.freebsd.org:/home/pcvs";
+	$ENV{CVSROOT}="stargazer.midnightbsd.org:/home/cvs";
 }
 
 sub goodbye

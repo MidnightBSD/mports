@@ -13,9 +13,10 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Tools/scripts/gnomedepends.py,v 1.4 2005/01/09 10:21:17 krion Exp $
 #
-# MAINTAINER= sobomax@FreeBSD.org
+# MAINTAINER= ports@MidnightBSD.org
 #
 # TODO:
 #  - analyse actual {RUN,LIB}_DEPENDS and give an advice about what should be
@@ -58,7 +59,7 @@ def filter(lines, regobj):
 				results.append(result)
 	return results
 
-gnomeports = getcmdout('cd /usr/ports && make search key=gnome | grep ^Path:')
+gnomeports = getcmdout('cd /usr/mports && make search key=gnome | grep ^Path:')
 newgnomeports = []
 for i in gnomeports:
 	newgnomeports.append(string.split(i)[1])
