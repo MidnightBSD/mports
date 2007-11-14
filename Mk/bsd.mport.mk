@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.72 2007/11/02 03:40:45 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.73 2007/11/10 18:29:15 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -39,16 +39,18 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # you are running on.  These are provided in case you need to take
 # different actions for different values.
 #
-# ARCH			- The architecture of the target machine, such as would be
-#				  returned by "uname -p".  (Note: Ports should test against
-#				  ARCH, and not the host machine's architecture which is
-#				  MACHINE_ARCH, to enable ports to be cross-built.)
-# OPSYS			- Portability clause.  This is the operating system the
-#				  makefile is being used on.  Automatically set to
-#				  "FreeBSD," "NetBSD," or "OpenBSD" as appropriate.
-# OSREL			- The release version (numeric) of the operating system.
-# OSVERSION		- The value of __FreeBSD_version.
-# PORTOBJFORMAT	- The object format ("aout" or "elf").
+# ARCH			 - The architecture of the target machine, such as would be
+#				   returned by "uname -p".  (Note: Ports should test against
+#				   ARCH, and not the host machine's architecture which is
+#				   MACHINE_ARCH, to enable ports to be cross-built.)
+# OPSYS			 - Portability clause.  This is the operating system the
+#				   makefile is being used on.  Automatically set to
+#				   "MidnightBSD", "FreeBSD," "NetBSD," or "OpenBSD" as
+#				  appropriate.
+# OSREL			 - The release version (numeric) of the operating system.
+# OSVERSION		 - The value of __MidnightBSD_version.
+# FREEBSDVERSION - 
+# PORTOBJFORMAT	 - The object format ("aout" or "elf").
 #
 # This is the beginning of the list of all variables that need to be
 # defined in a port, listed in order that they should be included
@@ -462,7 +464,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  If this is set to a list of files, these files will be
 #				  automatically added to ${SUB_FILES}, some %%VAR%%'s will
 #				  automatically be expanded, they will be installed in
-#				  ${TARGETDIR}/etc/rc.d and added to the packing list.
+#				  ${PREFIX}/etc/rc.d and added to the packing list.
 # USE_RCORDER	- List of rc.d startup scripts to be called early in the boot
 #				  process. This acts exactly like USE_RC_SUBR except that
 #				  scripts are installed in /etc/rc.d.
@@ -482,35 +484,20 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # Various directory definitions and variables to control them.
 # You rarely need to redefine any of these except WRKSRC and NO_WRKSUBDIR.
 #
-# TARGETDIR		- The fully qualified path, where everything is installed.
-#				  See the other variables below.
-#				  Default: ${DESTDIR}${PREFIX}
-#
-# DESTDIR		- The path to the environment we are installing to.  Define
-#				  this if you want to install packages into a jail
-#				  or into an another FreeBSD environment mounted
-#				  elsewhere than /.  ${PREFIX} is relative to
-#				  ${DESTDIR}.  E.g. setting DESTDIR=/bla PREFIX=/opt will
-#				  result packages installed under /bla/opt and registered
-#				  under /bla/var/db/pkg.
-#				  Default: not set (means /)
+# DESTDIR		- The path to the environment we are installing to.  This is 
+#				  only used during the final package install, at which point
+#				  pkg_add is run chroot'ed into the DESTDIR.
 #
 # X11BASE		- Where X11 ports install things.
 #				  Default: ${LOCALBASE}
-# X11BASE_REL		- Same as X11BASE, but relative to DESTDIR
-#				  Default: ${LOCALBASE_REL}
 # LOCALBASE		- Where non-X11 ports install things.
-#				  Default: ${DESTDIR}/usr/local
-# LOCALBASE_REL		- Same as LOCALBASE, but relative to DESTDIR
 #				  Default: /usr/local
 # LINUXBASE		- Where Linux ports install things.
-#				  Default: ${DESTDIR}/compat/linux
-# LINUXBASE_REL		- Same as LINUXBASE, but relative to DESTDIR
 #				  Default: /compat/linux
 # PREFIX		- Where *this* port installs its files.
-#				  Default: ${X11BASE_REL} if USE_X_PREFIX is set,
-#				  ${LINUXBASE_REL} if  USE_LINUX_PREFIX is set,
-#				  otherwise ${LOCALBASE_REL}
+#				  Default: ${X11BASE} if USE_X_PREFIX is set,
+#				  ${LINUXBASE} if  USE_LINUX_PREFIX is set,
+#				  otherwise ${LOCALBASE}
 #
 # IGNORE_PATH_CHECKS	- There are some sanity checks against PREFIX and DESTDIR.
 #				  You can diasble these checks with defining
@@ -557,11 +544,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #
 #
 # MPORT_MAINTAINER_MODE - 	If set, the mports system will perform checks to see if several
-#							steps are successfully completed.  Use must install perl with
-#							this variable unset before setting it.
+#							steps are successfully completed.  
 #
 # The following are used by the fake system.  The fake system installs a dist's files into
-# a temporary directory before 
+# a temporary directory before final installatioin.
 #
 # FAKE_OPTS			- Set options for fake.  Available options:
 #						libs 		-- fake targets need access to the port's shared libs.
@@ -582,6 +568,11 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #					  suitable for use with env.  This variable should be considered read-
 #                     only. It is documented because often it is useful for calling make
 #                     in {pre,post}-install.
+# SKIP_FAKE_CHECK	- If MPORT_MAINTAINER_MODE is set, then each file in the plist will
+#					  checked to see if it contains ${FAKE_DESTDIR}.  Sometimes this 
+#					  produces false positives (a file contains the fake destdir, but 
+#					  its precense is harmless).  This variable is a list of files that 
+#					  will not be checked.
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
 # Use these like: "${INSTALL_PROGRAM} ${WRKSRC}/prog ${PREFIX}/bin".
@@ -618,7 +609,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  installs its own manpage links so they will show up
 #				  correctly in ${PLIST}.)
 # MANPREFIX		- The directory prefix for ${MAN<sect>} and ${MLINKS}.
-#				  Default: ${TARGETDIR}
+#				  Default: ${PREFIX}
 # MAN<sect>PREFIX
 #				- If manual pages of some sections install in different
 #				  locations than others, use these.
@@ -685,16 +676,18 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # configure		- Runs either GNU configure, one or more local configure
 #				  scripts or nothing, depending on what's available.
 # build			- Actually compile the sources.
-# install		- Install the results of a build.
+# fake			- Install the results of the build into a temporary directory.
+# refake		- Delete the temporary directory and run make fake again.
+# package		- Create a package from the contents of the temporary directory.
+# install		- Install the package.
 # reinstall		- Install the results of a build, ignoring "already installed"
 #				  flag.
 # deinstall		- Remove the installation.
 # deinstall-all	- Remove all installations with the same PKGORIGIN.
-# package		- Create a package from an _installed_ port.
-# package-recursive
-#				- Create a package for a port and _all_ of its dependancies.
 # describe		- Try to generate a one-line description for each port for
 #				  use in INDEX files and the like.
+# describe-yaml - Generate a description for the port in the YAML markup language.
+#
 # checkpatch	- Do a "patch -C" instead of a "patch".  Note that it may
 #				  give incorrect results if multiple patches deal with
 #				  the same file.
@@ -723,6 +716,11 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # (which are available for every stage except checksum) or
 # override the do-* targets to do pretty much anything you want.
 #
+# Many of the do-* targets are wrappers around run-* targets.
+# run-* targets cannot be overridden, they are the default action for the given
+# do-* target.  This way, you can override do-foo, twiddle some variables
+# and then call 'make run-foo'.
+#
 # NEVER override the "regular" targets unless you want to open
 # a major can of worms.
 #
@@ -733,7 +731,8 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # variable and is not to be set in a port's Makefile.  See above for NO_PACKAGE.
 #
 # NO_BUILD		- Use a dummy (do-nothing) build target.
-# NO_INSTALL	- Use a dummy (do-nothing) install target.
+# NO_INSTALL	- Use a dummy (do-nothing) fake target.  This may sound confusing, 
+#				  but typically this will do what you want.
 #
 # Here are some variables used in various stages.
 #
@@ -854,11 +853,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # MAKE_ARGS		- Any extra arguments to sub-make in build and install stages.
 #				  Default: none
 #
-# NO_STACK_PROTECTOR	- If set, Propolice stack protection will be disabled.  Only set
-# 			  this if there is no way for the port to work with propolice.
-#
-#
-# For install:
+# For install (really for fake):
 #
 # INSTALL_TARGET
 #				- Default target for sub-make in install stage.
@@ -926,14 +921,14 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # 				  Note: that should only be used on 64-bit architectures.
 #
 # DOCSDIR		- Name of the directory to install the packages docs in.
-#				  Default: ${TARGETDIR}/share/doc/${PORTNAME}
+#				  Default: ${PREFIX}/share/doc/${PORTNAME}
 # EXAMPLESDIR	- Name of the directory to install the packages examples in.
-#				  Default: ${TARGETDIR}/share/examples/${PORTNAME}
+#				  Default: ${PREFIX}/share/examples/${PORTNAME}
 # DATADIR		- Name of the directory to install the packages shared data in.
-#				  Default: ${TARGETDIR}/share/${PORTNAME}
+#				  Default: ${PREFIX}/share/${PORTNAME}
 #
 # DESKTOPDIR	- Name of the directory to install ${DESKTOP_ENTRIES} in.
-#				  Default: ${TARGETDIR}/share/applications
+#				  Default: ${PREFIX}/share/applications
 # DESKTOP_ENTRIES
 #				- List of desktop entry files to generate and install in
 #				  ${DESKTOPDIR}. The format is
@@ -1005,11 +1000,6 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: ${DESTDIR}/var/db/pkg
 # PORT_DBDIR	- Where port configuration options are recorded.
 #				  Default: ${DESTDIR}/var/db/ports
-# NO_PKG_REGISTER
-#				- Don't register a port installation as a package.
-# FORCE_PKG_REGISTER
-#				- If set, it will overwrite any existing package
-#				  registration information in ${PKG_DBDIR}/${PKGNAME}.
 # NO_DEPENDS	- Don't verify build of dependencies.
 # CHECKSUM_ALGORITHMS
 #				- Different checksum algorithms to check for verifying the
@@ -1034,6 +1024,29 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # Most port authors should not need to understand anything after this point.
 #
 
+# These need to be absolute since we don't know how deep in the ports
+# tree we are and thus can't go relative.  They can, of course, be overridden
+# by individual Makefiles or local system make configuration.
+PORTSDIR?=		/usr/mports
+LOCALBASE?=		/usr/local
+X11BASE?=		${LOCALBASE}
+LINUXBASE?=		/compat/linux
+LOCALBASE_REL:=		${LOCALBASE}
+X11BASE_REL:=		${X11BASE}
+LINUXBASE_REL:=		${LINUXBASE}
+LOCALBASE:=		${DESTDIR}${LOCALBASE_REL}
+X11BASE:=		${DESTDIR}${X11BASE_REL}
+LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
+DISTDIR?=		${PORTSDIR}/Distfiles
+_DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
+INDEXDIR?=		${PORTSDIR}
+# XXX Can we just call it 'INDEX' ?
+INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
+
+TARGETDIR:=		${DESTDIR}${PREFIX}
+
+.include "${PORTSDIR}/Mk/bsd.commands.mk"
+
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
 
@@ -1054,8 +1067,6 @@ makepatch:
 .endif
 
 
-
-
 # Start of pre-makefile section.
 .if !defined(AFTERPORTMK)
 
@@ -1067,85 +1078,7 @@ check-makefile::
 
 _PREMKINCLUDED=	yes
 
-.if defined(MAKE_VERSION)
-.if ${MAKE_VERSION} >= 5200408030 || ${MAKE_VERSION} >= 4200408030 && ${MAKE_VERSION} < 5000000000
 NOPRECIOUSSOFTMAKEVARS= yes
-.endif
-.endif
-
-_MAKE_CMD=	/usr/bin/make
-
-AWK?=		/usr/bin/awk
-BASENAME?=	/usr/bin/basename
-BRANDELF?=	/usr/bin/brandelf
-BZCAT?=		/usr/bin/bzcat
-BZIP2_CMD?=	/usr/bin/bzip2
-CAT?=		/bin/cat
-CHGRP?=		/usr/bin/chgrp
-CHMOD?=		/bin/chmod
-CHOWN?=		/usr/sbin/chown
-CHROOT?=	/usr/sbin/chroot
-COMM?=		/usr/bin/comm
-CP?=		/bin/cp
-GCPIO?=		${LOCALBASE}/bin/gcpio
-CPIO?=		/usr/bin/cpio
-CUT?=		/usr/bin/cut
-DC?=		/usr/bin/dc
-DIALOG?=	/usr/bin/dialog
-DIFF?=		/usr/bin/diff
-DIRNAME?=	/usr/bin/dirname
-EGREP?=		/usr/bin/egrep
-EXPR?=		/bin/expr
-FALSE?=		false				# Shell builtin
-FILE?=		/usr/bin/file
-FIND?=		/usr/bin/find
-FMT?=		/usr/bin/fmt
-GREP?=		/usr/bin/grep
-GUNZIP_CMD?=	/usr/bin/gunzip -f
-GZCAT?=		/usr/bin/gzcat
-GZIP?=		-9
-GZIP_CMD?=	/usr/bin/gzip -nf ${GZIP}
-HEAD?=		/usr/bin/head
-ID?=		/usr/bin/id
-IDENT?=		/usr/bin/ident
-LDCONFIG?=	/sbin/ldconfig
-LN?=		/bin/ln
-LS?=		/bin/ls
-MKDIR?=		/bin/mkdir -p
-MKTEMP?=	/usr/bin/mktemp
-MV?=		/bin/mv
-OBJCOPY?=	/usr/bin/objcopy
-OBJDUMP?=	/usr/bin/objdump
-PASTE?=		/usr/bin/paste
-PAX?=		/bin/pax
-PRINTF?=	/usr/bin/printf
-REALPATH?=	/bin/realpath
-RM?=		/bin/rm
-RMDIR?=		/bin/rmdir
-SED?=		/usr/bin/sed
-SETENV?=	/usr/bin/env
-SH?=		/bin/sh
-SORT?=		/usr/bin/sort
-STRIP_CMD?=	/usr/bin/strip
-SU_CMD?=	/usr/bin/su root -c
-SYSCTL?=	/sbin/sysctl
-TAIL?=		/usr/bin/tail
-TEST?=		test				# Shell builtin
-TR?=		LANG=C /usr/bin/tr
-TRUE?=		true				# Shell builtin
-UNAME?=		/usr/bin/uname
-UNZIP_CMD?=	${LOCALBASE}/bin/unzip
-WHICH?=		/usr/bin/which
-XARGS?=		/usr/bin/xargs
-YACC?=		/usr/bin/yacc
-
-# ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
-# or "true" if the make flag -s is given.  Use ECHO_CMD where you mean
-# the echo command.
-ECHO_CMD?=	echo				# Shell builtin
-
-# Used to print all the '===>' style prompts - override this to turn them off.
-ECHO_MSG?=		${ECHO_CMD}
 
 # Get the default maintainer
 MAINTAINER?=	ports@MidnightBSD.org
@@ -1154,9 +1087,6 @@ MAINTAINER?=	ports@MidnightBSD.org
 .if !defined(ARCH)
 ARCH!=	${UNAME} -p
 .endif
-
-# Kludge for pre-3.0 systems
-MACHINE_ARCH?=	i386
 
 # Get the operating system type
 .if !defined(OPSYS)
@@ -1332,26 +1262,6 @@ PKGSUBNAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGNAME?=		${PKGSUBNAME}-${PKGVERSION}
 DISTNAME?=		${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
-# These need to be absolute since we don't know how deep in the ports
-# tree we are and thus can't go relative.  They can, of course, be overridden
-# by individual Makefiles or local system make configuration.
-PORTSDIR?=		/usr/mports
-LOCALBASE?=		/usr/local
-X11BASE?=		${LOCALBASE}
-LINUXBASE?=		/compat/linux
-LOCALBASE_REL:=		${LOCALBASE}
-X11BASE_REL:=		${X11BASE}
-LINUXBASE_REL:=		${LINUXBASE}
-LOCALBASE:=		${DESTDIR}${LOCALBASE_REL}
-X11BASE:=		${DESTDIR}${X11BASE_REL}
-LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
-DISTDIR?=		${PORTSDIR}/Distfiles
-_DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
-INDEXDIR?=		${PORTSDIR}
-# XXX Can we just call it 'INDEX' ?
-INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
-
-TARGETDIR:=		${DESTDIR}${PREFIX}
 
 .if defined(USE_LINUX_RPM)
 .include "${PORTSDIR}/Mk/bsd.linux-rpm.mk"
@@ -1543,9 +1453,11 @@ FAKE_DESTDIR?= 		${WRKDIR}/${FAKE_INSTALLDIR}
 FAKE_MAKEARGS?=		${MAKE_ARGS} ${DESTDIRNAME}=${FAKE_DESTDIR}
 
 FAKE_SETUP=		TRUE_PREFIX=${TRUE_PREFIX} PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} \
+				MANPREFIX=${FAKE_DESTDIR}${MANPREFIX:S/^${FAKE_DESTDIR}//} \
 				LINUXBASE=${FAKE_DESTDIR}${LINUXBASE:S/^${FAKE_DESTDIR}//} \
 				HOME=/${PORTNAME}_installs_to_home \
 				KMODDIR=${FAKE_DESTDIR}${KMODDIR:S/^${FAKE_DESTDIR}//}
+		
 
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
@@ -1906,10 +1818,14 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 .endif
 
-
-
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
+.endif
+
+.if defined(USE_XORG) || defined(XORG_CAT)
+. if ${X_WINDOW_SYSTEM} == "xorg"
+.include "${PORTSDIR}/Mk/bsd.xorg.mk"
+. endif
 .endif
 
 .if defined(USE_MYSQL) || defined(WANT_MYSQL_VER) || \
@@ -2239,9 +2155,9 @@ PKG_CMD?=		/usr/sbin/pkg_create
 PKG_ADD?=		/usr/sbin/pkg_add
 PKG_DELETE?=	/usr/sbin/pkg_delete
 PKG_INFO?=		/usr/sbin/pkg_info
-PKG_VERSION?=		/usr/sbin/pkg_version
+PKG_VERSION?=	/usr/sbin/pkg_version
 .else
-PKG_CMD?=		/usr/sbin/mport
+PKG_CMD?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_create
 PKG_ADD?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_add
 PKG_DELETE?=	${CHROOT} ${DESTDIR} /usr/sbin/pkg_delete
 PKG_INFO?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_info
@@ -2270,7 +2186,7 @@ PKG_SUFX?=		.tbz
 .endif
 
 # where pkg_add records its dirty deeds.
-PKG_DBDIR?=		${DESTDIR}/var/db/pkg
+PKG_DBDIR?=		/var/db/pkg
 
 MOTIFLIB?=	-L${X11BASE}/lib -lXm -lXp
 
@@ -2804,9 +2720,9 @@ SCRIPTS_ENV+=	BATCH=yes
 .endif
 
 .if ${PREFIX} == /usr
-MANPREFIX?=	${DESTDIR}/usr/share
+MANPREFIX?=	/usr/share
 .else
-MANPREFIX?=	${TARGETDIR}
+MANPREFIX?=	${PREFIX}
 .endif
 
 .for sect in 1 2 3 4 5 6 7 8 9
@@ -2889,9 +2805,9 @@ _TMLINKS=
 .if defined(_MANPAGES)
 
 .if defined(NOMANCOMPRESS)
-__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%}
+__MANPAGES=	${_MANPAGES:S%^${PREFIX}/%%}
 .else
-__MANPAGES:=	${_MANPAGES:S%^${TARGETDIR}/%%:S%$%.gz%}
+__MANPAGES=	${_MANPAGES:S%^${PREFIX}/%%:S%$%.gz%}
 .endif
 
 .for m in ${_MANPAGES}
@@ -2906,16 +2822,16 @@ INFO_PATH?=	share/info
 INFO_PATH?=	info
 .endif
 
-DOCSDIR?=	${TARGETDIR}/share/doc/${PORTNAME}
-EXAMPLESDIR?=	${TARGETDIR}/share/examples/${PORTNAME}
-DATADIR?=	${TARGETDIR}/share/${PORTNAME}
+DOCSDIR?=	${PREFIX}/share/doc/${PORTNAME}
+EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
+DATADIR?=	${PREFIX}/share/${PORTNAME}
 
-PLIST_SUB+=	DOCSDIR="${DOCSDIR:S,^${TARGETDIR}/,,}" \
-		EXAMPLESDIR="${EXAMPLESDIR:S,^${TARGETDIR}/,,}" \
-		DATADIR="${DATADIR:S,^${TARGETDIR}/,,}"
+PLIST_SUB+=	DOCSDIR="${DOCSDIR:S,^${PREFIX}/,,}" \
+		EXAMPLESDIR="${EXAMPLESDIR:S,^${PREFIX}/,,}" \
+		DATADIR="${DATADIR:S,^${PREFIX}/,,}"
 
-DESKTOPDIR?=		${TARGETDIR}/share/applications
-_DESKTOPDIR_REL=	${DESKTOPDIR:S,^${TARGETDIR}/,,}/
+DESKTOPDIR?=		${PREFIX}/share/applications
+_DESKTOPDIR_REL=	${DESKTOPDIR:S,^${PREFIX}/,,}/
 
 .if ${_DESKTOPDIR_REL} == ${DESKTOPDIR}/
 # DESKTOPDIR is not beneath PREFIX
@@ -3096,22 +3012,17 @@ all: build
 .endif
 
 .if !defined(DEPENDS_TARGET)
-.if make(reinstall)
+.	if make(reinstall)
 DEPENDS_TARGET=	reinstall
-.else
+.	else
 DEPENDS_TARGET=	cached-install
-.endif
-.if defined(DEPENDS_CLEAN)
+.	endif
+.	if defined(DEPENDS_CLEAN)
 DEPENDS_TARGET+=	clean
 DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
+.	endif
 .endif
-.else
-DEPENDS_ARGS+=	FORCE_PKG_REGISTER=yes
-.endif
-.if defined(DEPENDS)
-# pretty much guarantees overwrite of existing installation
-.MAKEFLAGS:	FORCE_PKG_REGISTER=yes
-.endif
+
 
 ################################################################
 #
@@ -3669,10 +3580,10 @@ fix-fake-symlinks:
 .	endif
 .endif
 
+
 #
 # Package
 #
-
 .if !target(do-package)
 do-package: ${TMPPLIST}
 	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
@@ -5416,15 +5327,15 @@ add-plist-docs:
 			@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
 				if [ ! -e ${FAKE_DESTDIR}${DOCSDIR}/${x} ]; then \
 					${ECHO_CMD} ${DOCSDIR}/${x} | \
-					${SED} -e 's,^${TARGETDIR}/,,' >> ${TMPPLIST}; \
+					${SED} -e 's,^${PREFIX}/,,' >> ${TMPPLIST}; \
 				fi; \
 			fi
 .		endfor
 		@${FIND} -P ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} ! -type d 2>/dev/null | \
-			${SED} -ne 's,^${FAKE_DESTDIR}${TARGETDIR}/,,p' >> ${TMPPLIST}
+			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,,p' >> ${TMPPLIST}
 		@${FIND} -P -d ${FAKE_DESTDIR}${PORTDOCS:S/^/${DOCSDIR}\//} -type d 2>/dev/null | \
-			${SED} -ne 's,^${FAKE_DESTDIR}${TARGETDIR}/,@dirrm ,p' >> ${TMPPLIST}
-		@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${TARGETDIR}/,,}" >> ${TMPPLIST}
+			${SED} -ne 's,^${FAKE_DESTDIR}${PREFIX}/,@dirrm ,p' >> ${TMPPLIST}
+		@${ECHO_CMD} "@dirrm ${DOCSDIR:S,^${PREFIX}/,,}" >> ${TMPPLIST}
 .	else
 		@${DO_NADA}
 .	endif
@@ -5486,7 +5397,7 @@ install-rc-script:
 			@${ECHO_MSG} "===> Installing rc.d startup script(s)"
 			@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 			@for i in ${USE_RC_SUBR}; do \
-				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${TARGETDIR}/etc/rc.d/$${i%.sh}.sh; \
+				${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${FAKE_DESTDIR}${PREFIX}/etc/rc.d/$${i%.sh}.sh; \
 				${ECHO_CMD} "etc/rc.d/$${i%.sh}.sh" >> ${TMPPLIST}; \
 			done
 .		endif
@@ -5556,7 +5467,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.72 2007/11/02 03:40:45 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.73 2007/11/10 18:29:15 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5626,9 +5537,14 @@ _CHKFAKE=chkfake.pl
 _CHKFAKE=chkfake
 .endif
 
+_CHKFAKE_ARGS=	${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+.if defined(SKIP_FAKE_CHECK)
+_CHKFAKE_ARGS+=	-s "${SKIP_FAKE_CHECK}"
+.endif
+
 .if !target(check-fake)
 check-fake: 
-	@${PORTSDIR}/Tools/scripts/${_CHKFAKE} ${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+	@${PORTSDIR}/Tools/scripts/${_CHKFAKE} ${_CHKFAKE_ARGS}
 .endif
 	
 
