@@ -2,16 +2,15 @@
 # Date created:         11 Jun 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.2 2007/05/08 20:05:13 ctriv Exp $
+# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.3 2007/11/07 20:20:14 ctriv Exp $
 # $FreeBSD: ports/mail/gnumail/Makefile,v 1.30 2006/09/10 20:08:45 dinoex Exp $
 #
 
 PORTNAME=	gnumail
-PORTVERSION=	1.1.2
-PORTREVISION=	1
-CATEGORIES=	mail
+PORTVERSION=	1.2.0
+CATEGORIES=	mail gnustep
 MASTER_SITES=	http://www.collaboration-world.com/gnumail.data/releases/Stable/
-DISTNAME=	GNUMail-${PORTVERSION}
+DISTNAME=	GNUMail-${PORTVERSION}pre3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep mail client
