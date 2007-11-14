@@ -2,7 +2,7 @@
 # Date created:         14 Nov 2007
 # Whom:                 Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/objc/Makefile,v 1.1 2007/11/14 23:18:39 laffer1 Exp $
 # $FreeBSD: ports/lang/objc/Makefile,v 1.34 2007/11/14 19:39:34 stas Exp $
 #
 
@@ -27,10 +27,7 @@ USE_GCC=	3.4
 
 FAKE_MAKEARGS+=	INSTALLDIR=${FAKE_DESTDIR}${PREFIX}
 
-#
-# We need the compiler in run-time
-#
-RUN_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_BUILD_DEPENDS}
+# if we ever upgrade gcc, be sure to add a depends for gcc 3.x
 
 .include <bsd.port.pre.mk>
 
