@@ -2,12 +2,12 @@
 # Date created:         7 Nov 2003
 # Whom:                 anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/mesa-demos/Makefile,v 1.1 2007/11/07 23:22:49 laffer1 Exp $
 # $FreeBSD: ports/graphics/mesa-demos/Makefile,v 1.17 2007/07/02 16:54:01 jkim Exp $
 #
 
 PORTNAME=	demos
-PORTVERSION=	7.0
+PORTVERSION=	7.0.2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	mesa3d/
