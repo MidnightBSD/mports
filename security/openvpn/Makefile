@@ -2,7 +2,7 @@
 # Date created:		2002-06-23
 # Whom:			Matthias Andree <matthias.andree@gmx.de>
 #
-# $MidnightBSD: mports/security/openvpn/Makefile,v 1.3 2007/08/01 21:37:03 laffer1 Exp $
+# $MidnightBSD: mports/security/openvpn/Makefile,v 1.4 2007/11/14 21:31:22 laffer1 Exp $
 # $FreeBSD: ports/security/openvpn/Makefile,v 1.28 2006/09/14 01:22:01 rafan Exp $
 #
 
@@ -10,12 +10,12 @@ PORTNAME=	openvpn
 PORTVERSION=	2.0.9
 PORTREVISION=	0
 CATEGORIES=	security net
-# MASTER_SITES points to hosts in distinct data centers,
-# so just one MASTER_SITES entry should be OK.
 MASTER_SITES=	http://openvpn.net/release/
 
 MAINTAINER=	matthias.andree@gmx.de
 COMMENT=	Secure IP/Ethernet tunnel daemon
+LICENSE=	agg
+# gpl2, MSFT, BSDL, etc
 
 CONFLICTS=	openvpn-devel-[0-9]*
 
