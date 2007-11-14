@@ -2,19 +2,19 @@
 # Date created:         15 Mar 2002
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/gorm/Makefile,v 1.4 2007/07/30 17:41:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/gorm/Makefile,v 1.5 2007/11/07 20:20:12 ctriv Exp $
 # $FreeBSD: ports/devel/gorm/Makefile,v 1.27 2006/08/31 05:40:32 dinoex Exp $
 #
 
 PORTNAME=	gorm
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTVERSION=	1.2.2
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	dev-apps
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Object Relationship Modeller
+LICENSE=	gpl3
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
