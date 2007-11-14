@@ -2,7 +2,7 @@
 #
 # Created by:	Alexander Langer <alex@big.endian.de>
 # Created on:	May 22, 2000
-# MAINTAINER=	alex@FreeBSD.org
+# MAINTAINER=	ports@MidnightBSD.org
 
 if [ -z $1 ]; then
 	echo "Usage: $0 <portname> ..."
@@ -13,7 +13,7 @@ if [ -z $TMPDIR ]; then
 	TMPDIR=/tmp
 fi
 if [ -z $PORTSDIR ]; then
-	PORTSDIR=/usr/ports
+	PORTSDIR=/usr/mports
 fi
 
 while [ ! -z $1 ]; do
@@ -40,7 +40,7 @@ while [ ! -z $1 ]; do
 	mkdir $TMPDIR/checksum/new
 
 	echo Fetching $broken
-	fetch ftp://ftp.FreeBSD.ORG/pub/FreeBSD/distfiles/$broken
+	fetch ftp://ftp.MidnightBSD.ORG/pub/MidnightBSD/distfiles/$broken
 
 	if [ ! -r $broken ]; then
 		echo "File $broken not found, fetch error?"
@@ -51,30 +51,30 @@ while [ ! -z $1 ]; do
 		cd orig
 		tar -zxf ../$broken || gunzip -c ../$broken > ${broken%.gz}
 		cd ../new
-		tar -zxf $PORTSDIR/distfiles/$broken || \
-			gunzip -c $PORTSDIR/distfiles/$broken > ${broken%.gz}
+		tar -zxf $PORTSDIR/Distfiles/$broken || \
+			gunzip -c $PORTSDIR/Distfiles/$broken > ${broken%.gz}
 		cd ..
 	elif file $broken | grep "compress'd data 16 bits" >/dev/null; then
 		cd orig
 		tar -zxf ../$broken
 		cd ../new
-		tar -zxf $PORTSDIR/distfiles/$broken
+		tar -zxf $PORTSDIR/Distfiles/$broken
 		cd ..
 	elif file $broken | grep "zip archive file" >/dev/null; then
 		cd orig
 		unzip ../$broken
 		cd ../new
-		unzip $PORTSDIR/distfiles/$broken
+		unzip $PORTSDIR/Distfiles/$broken
 		cd ..
 	elif file $broken | grep "bzip compressed data" >/dev/null; then
 		cd orig
 		tar -yxf ../$broken
 		cd ../new
-		tar -yxf $PORTSDIR/distfiles/$broken
+		tar -yxf $PORTSDIR/Distfiles/$broken
 		cd ..
 	else
 		cp $broken orig/
-		cp $PORTSDIR/distfiles/$broken new/
+		cp $PORTSDIR/Distfiles/$broken new/
 	fi
 
 	echo Diff follows:

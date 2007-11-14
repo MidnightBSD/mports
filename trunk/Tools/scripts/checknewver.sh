@@ -12,9 +12,10 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
+# $MidnightBSD$
 # $FreeBSD: ports/Tools/scripts/checknewver.sh,v 1.5 2003/12/17 10:28:32 demon Exp $
 #
-# MAINTAINER= sobomax@FreeBSD.org
+# MAINTAINER= ports@MidnightBSD.org
 
 display_warn () {
   if [ x"${SILENT}" != x"yes" ]; then
@@ -45,7 +46,7 @@ done
 
 if [ x`which ftpls` = x"" ]; then
   display_err "Couldn't find ftpls program, which is part of" \
-    "ports/ftp/ftpcopy port. Please make sure that it is installed" \
+    "mports/ftp/ftpcopy port. Please make sure that it is installed" \
     "and try again."
 fi
 

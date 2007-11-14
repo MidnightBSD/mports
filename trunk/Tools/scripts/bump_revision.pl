@@ -25,7 +25,7 @@ EOF
 	exit 1;
 }
 
-my $INDEX="/usr/ports/INDEX";
+my $INDEX="/usr/mports/INDEX";
 my $USER=$ENV{USER};
 {
     $opt_i="";
