@@ -1,0 +1,11 @@
+@comment $MidnightBSD$
+bin/ftpcp
+bin/ftpcopy
+bin/ftpls
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/THANKS
+%%PORTDOCS%%%%DOCSDIR%%/ftpcopy.html
+%%PORTDOCS%%%%DOCSDIR%%/ftpls.html
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
