@@ -2,19 +2,19 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.5 2007/11/07 20:20:14 ctriv Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.6 2007/11/15 05:43:21 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep-base
-PORTVERSION=	1.14.0
-PORTREVISION=	4
+PORTVERSION=	1.14.1
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
+LICENSE=	gpl3
 
 LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
 LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
