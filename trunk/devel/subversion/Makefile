@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.6 2007/08/17 01:10:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.7 2007/11/15 00:45:20 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -19,6 +19,8 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
+LICENSE=	unknown
+# for the most part it's similar to a traditional BSD 4 clause license.
 
 OPTIONS=	NEON "Enable WebDAV/Delta-V repository access" On \
 		DBD  "Enable db4 repository backend" On \
