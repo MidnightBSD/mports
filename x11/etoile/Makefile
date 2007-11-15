@@ -2,13 +2,13 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.3 2007/11/07 20:20:17 ctriv Exp $
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.4 2007/11/15 15:24:55 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	etoile
 PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -53,7 +53,7 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 	OgreKit:textproc/etoile-ogrekit \
 	LuceneKit:textproc/etoile-lucenekit \
 	DistributedView:graphics/etoile-distributedview \
-	Addessses:deskutils/etoile-addresseskit \
+	Addressses:deskutils/etoile-addresseskit \
 	InspectorKit:deskutils/etoile-inspectorkit \
 
 #	SQLClient:databases/sqlclient \
