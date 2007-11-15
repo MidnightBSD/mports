@@ -2,13 +2,12 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.3 2007/08/10 15:54:06 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.4 2007/08/15 21:34:48 ctriv Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
-PORTVERSION=	1.58
-PORTREVISION=	1
+PORTVERSION=	1.601
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	DBI
@@ -30,11 +29,20 @@ RUN_DEPENDS+=	${SITE_PERL}/RPC/PlServer.pm:${PORTSDIR}/net/p5-PlRPC
 CONFLICTS=	p5-DBI-1.3*
 PERL_CONFIGURE=	yes
 
-MAN1=		dbiprof.1 \
-		dbiproxy.1
+MAN1=		dbiprof.1 dbiproxy.1 dbilogstrip.1
+		
 MAN3=		Bundle::DBI.3 \
 		DBD::DBM.3 \
 		DBD::File.3 \
+		DBD::Gofer.3 \
+		DBD::Gofer::Policy::Base.3 \
+		DBD::Gofer::Policy::classic.3 \
+		DBD::Gofer::Policy::pedantic.3 \
+		DBD::Gofer::Policy::rush.3 \
+		DBD::Gofer::Transport::Base.3 \
+		DBD::Gofer::Transport::null.3 \
+		DBD::Gofer::Transport::pipeone.3 \
+		DBD::Gofer::Transport::stream.3 \
 		DBD::Proxy.3 \
 		DBD::Sponge.3 \
 		DBI.3 \
@@ -45,6 +53,15 @@ MAN3=		Bundle::DBI.3 \
 		DBI::DBD.3 \
 		DBI::DBD::Metadata.3 \
 		DBI::FAQ.3 \
+		DBI::Gofer::Execute.3 \
+		DBI::Gofer::Request.3 \
+		DBI::Gofer::Response.3 \
+		DBI::Gofer::Serializer::DataDumper.3 \
+		DBI::Gofer::Serializer::Base.3 \
+		DBI::Gofer::Serializer::Storable.3 \
+		DBI::Gofer::Transport::Base.3 \
+		DBI::Gofer::Transport::pipeone.3 \
+		DBI::Gofer::Transport::stream.3 \
 		DBI::Profile.3 \
 		DBI::ProfileData.3 \
 		DBI::ProfileDumper.3 \

@@ -14,7 +14,6 @@ bin/dbilogstrip
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/Roadmap.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/dbixs_rev.pl
-%%SITE_PERL%%/%%PERL_ARCH%%/goferperf.pl
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/TASKS.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Changes.pm
@@ -31,10 +30,14 @@ bin/dbilogstrip
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Response.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Request.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Execute.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Serializer/Base.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Serializer/DataDumper.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Serializer/Storable.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Transport/Base.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Transport/stream.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Transport/pipeone.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Util/_accessor.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBI/Util/CacheMemory.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Const/GetInfoType.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Const/GetInfoReturn.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Const/GetInfo/ODBC.pm
