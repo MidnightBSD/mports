@@ -2,7 +2,7 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.4 2007/11/15 15:24:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.5 2007/11/15 17:54:32 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
@@ -53,7 +53,7 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 	OgreKit:textproc/etoile-ogrekit \
 	LuceneKit:textproc/etoile-lucenekit \
 	DistributedView:graphics/etoile-distributedview \
-	Addressses:deskutils/etoile-addresseskit \
+	Addresses:deskutils/etoile-addresseskit \
 	InspectorKit:deskutils/etoile-inspectorkit \
 
 #	SQLClient:databases/sqlclient \
