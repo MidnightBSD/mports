@@ -4,10 +4,10 @@ System/Library/Libraries/libGormObjCHeaderParser.so
 System/Library/Libraries/libGorm.so.1.1.0
 System/Library/Libraries/libGorm.so.1
 System/Library/Libraries/libGorm.so
-System/Library/Libraries/libGormCore.so.1.2.1
+System/Library/Libraries/libGormCore.so.1.2.2
 System/Library/Libraries/libGormCore.so.1
 System/Library/Libraries/libGormCore.so
-System/Library/Libraries/libGormPrefs.so.1.2.1
+System/Library/Libraries/libGormPrefs.so.1.2.2
 System/Library/Libraries/libGormPrefs.so.1
 System/Library/Libraries/libGormPrefs.so
 System/Library/Headers/GormObjCHeaderParser/NSScanner+OCHeaderParser.h
