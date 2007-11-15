@@ -2,13 +2,13 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.5 2007/11/15 17:54:32 laffer1 Exp $
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.6 2007/11/15 17:55:19 laffer1 Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
 PORTNAME=	etoile
 PORTVERSION=	0.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -63,15 +63,12 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 
 USE_GNUSTEP_SYSTEM_BUNDLES+=	\
 	EtoileBehavior:sysutils/etoile-behavior \
-
+	EtoileMenus:x11-themes/etoile-wildmenus \
 
 USE_GNUSTEP_LOCAL_BUNDLES+=	\
 
 USE_GNUSTEP_SYSTEM_THEMES+=	\
 	Camaelon:x11-themes/etoile-camaelon \
-
-USE_GNUSTEP_LOCAL_THEMES+=	\
-	WildMenus:x11-themes/etoile-wildmenus \
 
 USE_GNUSTEP_SYSTEM_APPS+=	\
 	AZDock:x11-wm/etoile-azdock \
