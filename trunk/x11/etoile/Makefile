@@ -2,7 +2,7 @@
 # Date created:         21 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile/Makefile,v 1.2 2007/09/16 19:38:54 seirei Exp $
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.3 2007/11/07 20:20:17 ctriv Exp $
 # $FreeBSD: ports/x11/etoile/Makefile,v 1.8 2007/01/31 18:18:12 dinoex Exp $
 #
 
@@ -16,6 +16,8 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metaport for Etoile desktop
+LICENSE=	agg
+# etoile is under several licenses including bsd and gpl.
 
 NO_BUILD=	yes
 NO_INSTALL=	yes
