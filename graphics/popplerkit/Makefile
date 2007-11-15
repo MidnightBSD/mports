@@ -2,7 +2,7 @@
 # Date created:         21 Jan 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/graphics/popplerkit/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
+# $MidnightBSD: mports/graphics/popplerkit/Makefile,v 1.3 2007/11/15 16:15:55 laffer1 Exp $
 # $FreeBSD: ports/graphics/popplerkit/Makefile,v 1.3 2007/01/31 18:18:02 dinoex Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	PopplerKit-${SNAPSHOT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework that supports rendering of PDF content
+LICENSE=	gpl2
 
 LIB_DEPENDS=	poppler:${PORTSDIR}/graphics/poppler
 
