@@ -3,22 +3,18 @@
 # Whom:					will
 #
 # $FreeBSD: ports/devel/viewvc/Makefile,v 1.22 2006/07/26 19:01:22 mnag Exp $
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.2 2007/05/05 05:09:48 ctriv Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.3 2007/11/15 00:35:50 laffer1 Exp $
 #
 
 PORTNAME=	viewvc
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	http://viewvc.tigris.org/files/documents/3330/37319/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
 LICENSE=	bsd2
-
-FETCH_DEPENDS=	wget:${PORTSDIR}/ftp/wget
-
-FETCH_CMD=	${LOCALBASE}/bin/wget -c
-DISABLE_SIZE=	yes	# Need because -S are not recognized by wget
 
 RUN_DEPENDS=  ${PYTHON_LIBDIR}/site-packages/svn/__init__.py:${PORTSDIR}/devel/subversion-python
 
