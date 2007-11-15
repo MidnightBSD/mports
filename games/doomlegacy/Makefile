@@ -1,8 +1,8 @@
 # New ports collection makefile for:	doomlegacy
-# Date Created:				10 April 2002
-# Whom:				Alexander G. Chetirbock <bock@bock.nnov.ru>
+# Date Created:				Oct 20 2007
+# Whom:					Lucas Holt <luke@midnightbsd.org>	
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.1 2007/10/20 05:40:00 laffer1 Exp $
 # $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
 
 PORTNAME=	doomlegacy
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DooM Legacy: popular DooM clone!
+LICENSE=	gpl2
 
 EXTRACT_DEPENDS=unzip:${PORTSDIR}/archivers/unzip
 
