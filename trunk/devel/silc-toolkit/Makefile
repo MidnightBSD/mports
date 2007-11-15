@@ -2,13 +2,13 @@
 # Date created:				2003.12.15
 # Whom:					Evgueni V. Gavrilov <aquatique@rusunix.org>
 #
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.1 2006/09/26 16:39:44 archite Exp $
-# $FreeBSD: ports/devel/silc-toolkit/Makefile,v 1.22 2006/08/14 22:55:16 clsung Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/devel/silc-toolkit/Makefile,v 1.25 2007/10/03 22:44:56 edwin Exp $
 #
 
 PORTNAME=	silc
-PORTVERSION=	0.9.12
-PORTREVISION=	1
+PORTVERSION=	1.0.2
+PORTREVISION=	2
 CATEGORIES=	devel ipv6 net security
 MASTER_SITES=	http://www.silcnet.org/download/%SUBDIR%/ \
 		http://ftp.silcnet.org/%SUBDIR%/ \
@@ -29,27 +29,24 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure Internet Live Conferencing (SILC) network toolkit
 
-OPTIONS=	IPV6 "Enable IPv6 support" on \
-		OPTIMIZED_ASM "Enable assembler optimizations" on \
-		PTHREADS "Enable pthreads support." off \
-		OPTIMIZED_CFLAGS "Enable compilation optimizations" off
-
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
-USE_GNOME=	glib12
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+USE_GNOME=    glib12
 USE_GMAKE=	yes
-CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME} \
+CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX} \
 		--with-simdir=${PREFIX}/lib/silcsim \
-		--with-helpdir=${PREFIX}/share/${PORTNAME}/help \
+		--with-helpdir=${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}/help \
 		--includedir=${PREFIX}/include/silc \
-		--with-docdir=${DOCSDIR} \
-		--without-irssi --without-silcd --enable-shared
+		--with-docdir=${DOCSDIR}${PKGNAMESUFFIX} \
+		--enable-shared --without-libtoolfix
 CONFIGURE_ENV=	CFLAGS+="${CFLAGS}" \
 		CPPFLAGS+="${CPPFLAGS}"
 USE_LDCONFIG=	yes
 PLIST_SUB=	INSTALL_DIR="${INSTALL_DIR}"
+
 INSTALL_DIR?=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m 755
 
 .ifndef(WITH_PTHREADS)
@@ -58,29 +55,23 @@ CONFIGURE_ARGS+=	--without-pthreads
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS} ${PTHREAD_LIBS}"
 .endif
 
-post-patch:
-.ifndef(WITH_OPTIMIZED_CFLAGS)
-	@${PERL} -pi -e 's/ ?(-g)? -O2//' ${WRKSRC}/${CONFIGURE_SCRIPT}
-	@${PERL} -pi -e 's/ ?(-g)? -O2//' ${WRKSRC}/lib/silcmath/mpi/${CONFIGURE_SCRIPT}
+MAN1=		silc.1
+
+pre-everything::
+.ifndef(WITHOUT_IPV6)
+	@${ECHO_MSG} '===> Define WITHOUT_IPV6 to disable IPv6 support'
 .endif
-	@${PERL} -pi -e 's/-D_THREAD_SAFE//; \
-			s/^(SILC_DIST_SUBDIRS.+?)doc/\1/' \
-		${WRKSRC}/${CONFIGURE_SCRIPT}
-	@${PERL} -pi -e 's/ etc-install-server//; \
-			s|-cp -R \$$\(srcdir\)/tutorial \$$\(prefix\)|-mkdir -p \$$\(DESTDIR\)${EXAMPLESDIR}/mybot\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/[M-R]* \$$\(DESTDIR\)${EXAMPLESDIR}\n\t-\$$\(INSTALL_DATA\) \$$\(srcdir\)/tutorial/mybot/[M-m]* \$$\(DESTDIR\)${EXAMPLESDIR}/mybot|; \
-			s|\$$\(distdir\)/tutorial|\$$\(DESTDIR\)${EXAMPLESDIR}|; \
-			s|sim-install:$$|sim-install:\n\t-mkdir -p \$$\(DESTDIR\)${PREFIX}/lib/silcsim|; \
-			s,doc-install-(client|server) ,,g; \
-			s, install-dirs-(client|server),,g; \
-			s, etc-install-client,,g; \
-			s, generate-server-key,,g; \
-			s, examples-install,,g' \
-		 ${WRKSRC}/Makefile.in
-	@${PERL} -pi -e '' ${WRKSRC}/Makefile.in
-	@${PERL} -pi -e 's/example_silcd.conf \\\n//' ${WRKSRC}/doc/Makefile.in
-	@${PERL} -pi -e 's/--libtool-enable-shared//' \
-		${WRKSRC}/lib/silccrypt/Makefile.in
-	@${RM} -f ${WRKSRC}/tutorial/mybot/mybot.c.\~1.5.\~
+.ifndef(WITHOUT_OPTIMIZED_ASM)
+	@${ECHO_MSG} '===> Define WITHOUT_OPTIMIZED_ASM to disable assembler optimizations'
+.endif
+.ifndef(WITH_PTHREADS)
+	@${ECHO_MSG} '===> Define WITH_PTHREADS to enable pthreads support'
+.endif
+	@${ECHO_MSG}
+.ifndef(WITH_OPTIMIZED_CFLAGS)
+	@${ECHO_MSG} '===> Define WITH_OPTIMIZED_CFLAGS to enable compilation optimizations'
+	@${ECHO_MSG} '===> which is known to break some platforms (e.g., alpha)'
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -95,5 +86,12 @@ CONFIGURE_ARGS+=	--enable-ipv6
 .ifdef(WITHOUT_OPTIMIZED_ASM)
 CONFIGURE_ARGS+=	--disable-asm
 .endif
+
+post-patch:
+.ifndef(WITH_OPTIMIZED_CFLAGS)
+	@${PERL} -pi -e 's/ ?(-g)? -O2//' ${WRKSRC}/${CONFIGURE_SCRIPT}
+.endif
+	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
+		${WRKSRC}/lib/Makefile.in
 
 .include <bsd.port.post.mk>
