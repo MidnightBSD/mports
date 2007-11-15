@@ -2,7 +2,7 @@
 # Date created:				2003.12.15
 # Whom:					Evgueni V. Gavrilov <aquatique@rusunix.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.3 2007/11/15 01:23:50 laffer1 Exp $
 # $FreeBSD: ports/devel/silc-toolkit/Makefile,v 1.25 2007/10/03 22:44:56 edwin Exp $
 #
 
@@ -28,6 +28,7 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure Internet Live Conferencing (SILC) network toolkit
+LICENSE=	bsd3
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
