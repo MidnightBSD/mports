@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.171 2007/11/08 03:25:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.172 2007/11/10 01:40:25 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -209,6 +209,7 @@
     SUBDIR += st
     SUBDIR += stlport
     SUBDIR += subversion
+    SUBDIR += subversion-python
     SUBDIR += sysconftool
     SUBDIR += t1lib
     SUBDIR += tmake
