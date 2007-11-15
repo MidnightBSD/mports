@@ -2,11 +2,12 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.5 2007/08/16 19:35:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.6 2007/08/17 01:10:41 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.4.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.2/:bookhtml \
@@ -41,6 +42,7 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=		--with-ssl
+WANT_PERL=    yes
 
 USE_RC_SUBR=	svnserve
 
