@@ -2,13 +2,13 @@
 # Date created:         21 Jan 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/graphics/popplerkit/Makefile,v 1.1 2007/03/13 06:34:00 laffer1 Exp $
+# $MidnightBSD: mports/graphics/popplerkit/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
 # $FreeBSD: ports/graphics/popplerkit/Makefile,v 1.3 2007/01/31 18:18:02 dinoex Exp $
 #
 
 PORTNAME=	popplerkit
 PORTVERSION=	0.0.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/gsimageapps/PopplerKit/
 DISTNAME=	PopplerKit-${SNAPSHOT}
