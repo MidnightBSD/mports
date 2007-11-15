@@ -2,14 +2,14 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.4 2007/11/05 22:57:01 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.5 2007/11/07 20:20:14 ctriv Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep-base
 PORTVERSION=	1.14.0
-PORTREVISION=	3
-CATEGORIES=	lang devel
+PORTREVISION=	4
+CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
 
@@ -21,10 +21,11 @@ LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
 LIB_DEPENDS+=	gmp.7:${PORTSDIR}/math/libgmp4
 
 ETCDIR=		${LOCALBASE}/etc
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --with-config-file=${PREFIX}/GNUstep.conf
-CONFIGURE_TARGET=
+CFLAGS+=	-rpath=/usr/local/lib:/usr/lib
+CONFIGURE_TARGET= ${ARCH}-portbld-freebsd6.0
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -38,6 +39,7 @@ CFLAGS+=	-I${LOCALBASE}/include/libxml2/libxml
 BREAKS_IF_PEDANTIC=	yes
 PLIST_SUB+=	LOCALBASE=${LOCALBASE}
 
+#WITHOUT_OPENSSL=	yes
 .if defined(WITHOUT_OPENSSL)
 CONFIGURE_ARGS+=	--disable-openssl
 PLIST_SUB+=	OPENSSL="@comment "
