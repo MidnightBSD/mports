@@ -1,0 +1,15 @@
+--- Services/Private/AZBackground/GNUmakefile.orig	Thu Nov 15 13:07:38 2007
++++ Services/Private/AZBackground/GNUmakefile	Thu Nov 15 13:07:59 2007
+@@ -11,10 +11,10 @@
+ AZBackground_RESOURCE_FILES = \
+ 	Images/*.jpg
+ 
+-ADDITIONAL_INCLUDE_DIRS += -I/usr/include -I/usr/X11R6/include 
++ADDITIONAL_INCLUDE_DIRS += -I/usr/include -I/usr/local/include 
+ 
+ ADDITIONAL_LIB_DIRS += \
+-	-L/usr/lib -L/usr/X11R6/lib -lX11 -lXWindowServerKit 
++	-L/usr/local/lib -lX11 -lXWindowServerKit 
+ 
+ ADDITIONAL_GUI_LIBS += 
+ 
