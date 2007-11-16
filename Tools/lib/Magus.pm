@@ -20,8 +20,7 @@ use Magus::Machine   	();
 use Magus::PortTest  	();
 use Magus::Chroot    	();
 use Magus::Index     	();
-use Magus::Cluster	();
-use Magus::Task		();
+use Magus::Snap         ();
 
 use Mport::Globals   ();
 our $Machine;
