@@ -3,12 +3,12 @@
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.11 2007/10/01 08:24:53 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.12 2007/10/29 17:53:06 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
 PORTNAME=	dovecot
-DISTVERSION=	1.0.6
+DISTVERSION=	1.0.7
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/1.0/
 
