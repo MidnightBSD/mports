@@ -3,12 +3,12 @@
 # Date created:         Sa   9 Nov 1996 00:52:22 MET
 # Whom:			se
 #
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.2 2007/03/09 20:29:15 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.3 2007/04/26 21:15:59 ctriv Exp $
 # $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
 #
 
 PORTNAME=	wine
-PORTVERSION=	0.9.26
+PORTVERSION=	0.9.48
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED} \
@@ -18,11 +18,11 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
 
-# wine/dlls/glut32/ depends on the presence of libglut.
-LIB_DEPENDS=	lcms.1:${PORTSDIR}/graphics/lcms \
-		freetype.9:${PORTSDIR}/print/freetype2 \
-		gdraw.1:${PORTSDIR}/print/fontforge \
-		glut.4:${PORTSDIR}/graphics/libglut
+BUILD_DEPENDS=	fontforge:${PORTSDIR}/print/fontforge
+LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
+		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		lcms.1:${PORTSDIR}/graphics/lcms \
+		xml2:${PORTSDIR}/textproc/libxml2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--mandir=${MANPREFIX}/man
@@ -37,12 +37,15 @@ ONLY_FOR_ARCHS=	i386
 USE_BISON=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GL=		yes
+USE_GL=		glut
 USE_XPM=	yes
 
 SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
+
+post-patch:
+	${REINPLACE_CMD} 's/-lpthread/-lthr/g' ${WRKSRC}/configure
 
 pre-build:
 	cd ${WRKSRC} && make depend
