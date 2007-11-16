@@ -24,7 +24,7 @@ package Magus::SubResult;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/SubResult.pm,v 1.5 2007/11/07 19:11:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/SubResult.pm,v 1.6 2007/11/07 21:09:24 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,7 +35,8 @@ use warnings;
 use base qw(Magus::DBI);
 
 __PACKAGE__->table('subresults');
-__PACKAGE__->columns(Primary => qw/result phase type name msg/);
+__PACKAGE__->columns(All => qw/id result phase type name msg/);
+__PACKAGE__->has_a(result => 'Magus::Result');
 
 
 

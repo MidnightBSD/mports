@@ -24,7 +24,7 @@ package Magus::Lock;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.2 2007/10/20 22:32:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Lock.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -36,7 +36,7 @@ use strict;
 use warnings;
 
 __PACKAGE__->table('locks');
-__PACKAGE__->columns(Essential => qw(id port arch machine));
+__PACKAGE__->columns(Essential => qw(id port machine));
 
 __PACKAGE__->has_a(machine => "Magus::Machine");
 __PACKAGE__->has_a(port    => "Magus::Port");
@@ -61,7 +61,6 @@ sub _get_lock {
     $lock = $class->insert({
       port    => $port,
       machine => $Magus::Machine,
-      arch    => $Magus::Machine->arch
     });
   };
   
@@ -93,6 +92,16 @@ sub _find_and_lock_unlocked_port {
   }
   
   return $lock;
+}
+
+#
+# depreacted method
+#
+use Carp qw(cluck);
+sub arch {
+  my ($self) = @_;
+  cluck("Use of deprecated method: " . ref $self . "->arch. Use ->machine->arch instead.");
+  return $self->machine->arch;
 }
 
 1;

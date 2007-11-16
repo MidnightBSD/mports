@@ -4,7 +4,8 @@ use strict;
 use warnings;
 
 BEGIN {
-  our $Root = '/usr/magus';
+  our $Root  = '/usr/magus';
+  our @Archs = qw(i386 amd64);
 }
 
 
@@ -28,7 +29,7 @@ our $Machine;
 BEGIN {
   $Machine = Magus::Machine->retrieve(
     name => $Magus::Config{'Machine'}
-  );
+  ) || die "Invalid machine: $Magus::Config{Machine}\n";
 }
 
 
