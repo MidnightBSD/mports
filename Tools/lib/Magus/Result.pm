@@ -24,7 +24,7 @@ package Magus::Result;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.3 2007/10/23 03:58:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.4 2007/11/07 19:11:46 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,13 +37,23 @@ use warnings;
 
 
 __PACKAGE__->table('results');
-__PACKAGE__->columns(All => qw/id port version summary machine arch/);
+__PACKAGE__->columns(All => qw/id port version summary machine/);
 
 __PACKAGE__->has_a(port => 'Magus::Port');
 __PACKAGE__->has_a(machine => 'Magus::Machine');
-__PACKAGE__->has_many(subresults => 'Magus::SubResult' => 'result');
-__PACKAGE__->has_many(logs       => 'Magus::Log');
+__PACKAGE__->has_many(subresults => 'Magus::SubResult');
+__PACKAGE__->might_have(log       => 'Magus::Log' => 'data');
 
+
+#
+# depreacted method
+#
+use Carp qw(cluck);
+sub arch {
+  my ($self) = @_;
+  cluck("Use of deprecated method: " . ref $self . "->arch. Use ->machine->arch instead.");
+  return $self->machine->arch;
+}
 
 1;
 __END__

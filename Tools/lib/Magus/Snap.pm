@@ -1,4 +1,4 @@
-package Magus::Task::UpdateMports;
+package Magus::Snap;
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,46 +24,33 @@ package Magus::Task::UpdateMports;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Task/UpdateMports.pm,v 1.2 2007/10/29 17:07:45 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.2 2007/10/24 00:27:03 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
-
-
-use base qw(Magus::Task);
 use strict;
 use warnings;
-
-use File::Path qw(rmtree);
-
-=head1 Magus::Task::UpdateMports
-
-This task updates /usr/mports, using C<MasterMportsTarBall>.
-
-=cut
+use base qw(Magus::DBI);
 
 
+__PACKAGE__->table('snaps');
+__PACKAGE__->columns(Essential => qw/id created/);
 
-sub exec {  
+__PACKAGE__->set_sql(latest_snaps => 'SELECT __ESSENTIAL__ FROM __TABLE__ ORDER BY id DESC');
+
+
+sub latest {
+  my ($class) = @_;
+  
+  return $class->search_latest_snaps->next;
+}  
+
+sub tarball {
   my ($self) = @_;
-
-  $self->started(1); $self->update;
+  my $id = $self->id;
   
-  $self->callbacks->{'log'}->('Updating mports tree');
-  
-  chdir("/usr") || die "Couldn't CD to user: $!";
-  
-  my $scp = "/usr/bin/scp $Magus::Config{MasterMportsTarBall} $Magus::Config{MportsTarBall}";
-  system($scp) == 0 || die "$scp returned non-zero: $?";  
-
-  rmtree("mports") || die "Couldn't delete /usr/mports: $!";
-  
-  my $tar = "/usr/bin/tar xf $Magus::Config{MportsTarBall}";
-  system($tar) == 0 || die "$tar returned non-zero: $?";
-  
-  $self->callbacks->{'log'}->("Restarting process.");
-  $self->callbacks->{'restart'}->();
+  return "$Magus::Config{MasterDataDir}/$Magus::Config{MportsSnapDir}/$id.tar.bz2"
 }
 
 

@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.8 2007/11/05 16:54:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.9 2007/11/07 19:28:31 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,32 +37,16 @@ use warnings;
 use base 'Magus::DBI';
 
 __PACKAGE__->table('ports');
-__PACKAGE__->columns(Essential => qw(name version license pkgname));
+
+__PACKAGE__->columns(Essential => qw(id name arch version license pkgname));
 __PACKAGE__->columns(All       => qw(description));
+__PACKAGE__->columns(Stringify => qw(name));
+
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(results => 'Magus::Result');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 
-__PACKAGE__->set_sql(ready_ports => <<END_OF_SQL);
-SELECT ports.* FROM ports 
-WHERE 
-    (name NOT IN (SELECT port FROM locks WHERE arch=?)) 
-  AND 
-    (name NOT IN (SELECT port FROM results WHERE arch=? AND version=ports.version)) 
-  AND 
-    (
-      (name NOT IN (SELECT port FROM depends)) 
-      OR 
-      (name NOT IN (
-        SELECT port FROM depends 
-        WHERE 
-          (dependency NOT IN (SELECT port FROM results JOIN ports ON ports.name=results.port AND ports.version=results.version WHERE arch=? AND (summary="pass" OR summary="warn")))
-          OR
-          (dependency IN (SELECT port FROM locks WHERE arch=?))
-        )
-      )
-    )
-END_OF_SQL
+__PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE arch=?');
 
 =head2 Magus::Port->get_ready_port;
 
@@ -90,7 +74,7 @@ The port's depends are all tested and unlocked.
 sub get_ready_port {
   my $arch = $Magus::Machine->arch;
   
-  return shift->search_ready_ports(($Magus::Machine->arch) x 4)->next;
+  return shift->search_ready_ports($arch)->next;
 }
   
 
@@ -115,7 +99,7 @@ Returns the result for the current version and arch, if any.
 
 sub current_result {
   my ($self) = @_;
-  return $self->results(arch => $Magus::Machine->arch, version => $self->version)->next;
+  return $self->results(version => $self->version)->next;
 }
 
 =head2 $port->all_depends
@@ -212,9 +196,10 @@ sub _set_result {
     $result->delete;
   }
   
+  my $version = $self->version || '???';
+  
   $result = $self->add_to_results({
-    version => $self->version || '???',
-    arch    => $Magus::Machine->arch,
+    version => $version,
     machine => $Magus::Machine,
     summary => $summary,
   });
