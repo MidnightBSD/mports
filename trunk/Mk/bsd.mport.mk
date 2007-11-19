@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.73 2007/11/10 18:29:15 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.74 2007/11/14 18:49:04 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1462,7 +1462,7 @@ FAKE_SETUP=		TRUE_PREFIX=${TRUE_PREFIX} PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} \
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
 # do this to FAKE_MAKEARGS so that post-install,pre-install still get a twiddled ${PREFIX}
-FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX}
+FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX} MANPREFIX=${MANPREFIX} DOCSDIR=${DOCSDIR}
 .endif
 .if ${FAKE_OPTS:Mlibs}x != "x"
 FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
@@ -5467,7 +5467,7 @@ makeplist: fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.73 2007/11/10 18:29:15 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.74 2007/11/14 18:49:04 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
