@@ -3,18 +3,19 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.4 2007/10/11 20:46:09 ctriv Exp $
 #
 
 PORTNAME=	xorg-server
 PORTVERSION=	1.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/:fdo \
 		${MASTER_SITE_SOURCEFORGE:S/$/:mesa/}
 MASTER_SITE_SUBDIR=mesa3d/:mesa
 DISTFILES=	xorg-server-${PORTVERSION}.tar.bz2:fdo \
-		MesaLib-7.0.1.tar.bz2:mesa
+		MesaLib-7.0.2.tar.bz2:mesa
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X server and related programs
@@ -34,7 +35,7 @@ USE_XORG=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		evieproto xfont fontenc xkbui pixman
 
 USE_PERL5_BUILD=yes
-CONFIGURE_ARGS=	--with-mesa-source=${WRKDIR}/Mesa-7.0.1 \
+CONFIGURE_ARGS=	--with-mesa-source=${WRKDIR}/Mesa-7.0.2 \
 		--disable-dmx --disable-xvfb --disable-xnest --disable-xprint \
 		--localstatedir=/var
 
@@ -50,7 +51,7 @@ CONFIGURE_ARGS+=	--enable-aiglx=yes
 .else
 CONFIGURE_ARGS+=	--disable-aiglx=yes
 .endif
-		
+
 .if !defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO
 CONFIGURE_ARGS+=--enable-install-setuid
 .else
@@ -68,7 +69,7 @@ MAN4=		exa.4 \
 MAN5=		xorg.conf.5 \
 		SecurityPolicy.5
 
-NOT_FOR_ARCHS=	ia64 alpha
+NOT_FOR_ARCHS=	ia64
 
 .include <bsd.port.pre.mk>
 
@@ -81,11 +82,11 @@ PLIST_SUB+=	SPARC64="@comment "
 PLIST_SUB+=	SPARC64_NA=""
 .endif
 
-.if ${ARCH} == amd64 || ${ARCH} == i386
-PLIST_SUB+=	AMD64_I386=""
+.if ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == sparc64
+PLIST_SUB+=	AMD64_I386_SPARC64=""
 MAN1+=		scanpci.1
 .else
-PLIST_SUB+=	AMD64_I386="@comment "
+PLIST_SUB+=	AMD64_I386_SPARC64="@comment "
 .endif
 
 

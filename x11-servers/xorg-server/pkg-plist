@@ -2,15 +2,8 @@ bin/X
 bin/Xorg
 bin/cvt
 bin/gtf
-%%SPARC64_NA%%bin/inb
-%%SPARC64_NA%%bin/inl
-%%SPARC64_NA%%bin/inw
-%%SPARC64_NA%%bin/ioport
-%%SPARC64_NA%%bin/outb
-%%SPARC64_NA%%bin/outl
-%%SPARC64_NA%%bin/outw
 bin/pcitweak
-%%AMD64_I386%%bin/scanpci
+%%AMD64_I386_SPARC64%%bin/scanpci
 bin/xorgconfig
 include/xorg/BT.h
 include/xorg/IBM.h
@@ -152,6 +145,7 @@ include/xorg/xf86RandR12.h
 include/xorg/xf86RamDac.h
 include/xorg/xf86Rename.h
 include/xorg/xf86Resources.h
+%%SPARC64%%include/xorg/xf86Sbus.h
 include/xorg/xf86Version.h
 include/xorg/xf86Xinput.h
 include/xorg/xf86_OSlib.h
@@ -193,8 +187,6 @@ lib/xorg/modules/fonts/libfreetype.la
 lib/xorg/modules/fonts/libfreetype.so
 lib/xorg/modules/fonts/libtype1.la
 lib/xorg/modules/fonts/libtype1.so
-lib/xorg/modules/libafb.la
-lib/xorg/modules/libafb.so
 lib/xorg/modules/libcfb.la
 lib/xorg/modules/libcfb.so
 lib/xorg/modules/libcfb32.la
