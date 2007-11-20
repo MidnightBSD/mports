@@ -24,7 +24,7 @@ package Magus::Snap;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.2 2007/10/24 00:27:03 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Snap.pm,v 1.1 2007/11/16 05:29:37 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -50,8 +50,14 @@ sub tarball {
   my ($self) = @_;
   my $id = $self->id;
   
-  return "$Magus::Config{MasterDataDir}/$Magus::Config{MportsSnapDir}/$id.tar.bz2"
+  return "$id.tar.bz2"
 }
+
+sub tarballpath {
+  return "$Magus::Config{MasterDataDir}/$Magus::Config{MportsSnapDir}/" . shift->tarball;
+}
+
+
 
 
 1;

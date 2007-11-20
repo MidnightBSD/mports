@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.9 2007/11/07 19:28:31 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.10 2007/11/16 05:29:37 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -46,7 +46,37 @@ __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(results => 'Magus::Result');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 
-__PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE arch=?');
+__PACKAGE__->set_sql(ready_ports => <<'END_OF_SQL');
+SELECT ports.*,(SELECT COUNT(*) FROM depends WHERE dependency=ports.id) AS priority 
+FROM ports 
+WHERE 
+    arch=?
+  AND
+    (id NOT IN (SELECT port FROM locks WHERE port=ports.id)) 
+  AND 
+    (id NOT IN (SELECT port FROM results WHERE version=ports.version AND port=ports.id AND osversion=?)) 
+  AND 
+    ((id NOT IN (SELECT port FROM depends WHERE port=ports.id)) 
+      OR 
+    (id NOT IN (
+      SELECT port FROM depends WHERE 
+          port=ports.id 
+        AND 
+        (
+          (dependency NOT IN (
+            SELECT port FROM results JOIN ports ON ports.id=results.port AND ports.version=results.version WHERE 
+                results.port=dependency 
+              AND 
+                osversion=? 
+              AND 
+                (summary='pass' OR summary='warn')
+          ))
+         OR 
+          (dependency IN (SELECT port FROM locks WHERE port=dependency))
+        )
+    )))
+ORDER BY priority DESC;
+END_OF_SQL
 
 =head2 Magus::Port->get_ready_port;
 
@@ -72,9 +102,10 @@ The port's depends are all tested and unlocked.
 =cut
 
 sub get_ready_port {
-  my $arch = $Magus::Machine->arch;
+  my $osver = $Magus::Machine->osversion;
+  my $arch  = $Magus::Machine->arch;
   
-  return shift->search_ready_ports($arch)->next;
+  return shift->search_ready_ports($arch, $osver, $osver)->next;
 }
   
 
@@ -99,7 +130,7 @@ Returns the result for the current version and arch, if any.
 
 sub current_result {
   my ($self) = @_;
-  return $self->results(version => $self->version)->next;
+  return $self->results(version => $self->version, osversion => $Magus::Machine->osversion)->next;
 }
 
 =head2 $port->all_depends
@@ -199,9 +230,10 @@ sub _set_result {
   my $version = $self->version || '???';
   
   $result = $self->add_to_results({
-    version => $version,
-    machine => $Magus::Machine,
-    summary => $summary,
+    version   => $version,
+    machine   => $Magus::Machine,
+    osversion => $Magus::Machine->osversion,
+    summary   => $summary,
   });
   
   $result->add_to_subresults({

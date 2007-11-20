@@ -24,7 +24,7 @@ package Magus::Result;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.4 2007/11/07 19:11:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.5 2007/11/16 05:29:37 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,10 +37,12 @@ use warnings;
 
 
 __PACKAGE__->table('results');
-__PACKAGE__->columns(All => qw/id port version summary machine/);
+__PACKAGE__->columns(All => qw/id port version summary machine osversion/);
 
-__PACKAGE__->has_a(port => 'Magus::Port');
-__PACKAGE__->has_a(machine => 'Magus::Machine');
+__PACKAGE__->has_a(port      => 'Magus::Port');
+__PACKAGE__->has_a(machine   => 'Magus::Machine');
+__PACKAGE__->has_a(osversion => 'Magus::OSVersion');
+
 __PACKAGE__->has_many(subresults => 'Magus::SubResult');
 __PACKAGE__->might_have(log       => 'Magus::Log' => 'data');
 
