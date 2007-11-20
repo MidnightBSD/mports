@@ -2,22 +2,26 @@
 # Date created:		Mar 18, 2001
 # Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.1 2006/10/05 00:37:47 laffer1 Exp $
 # $FreeBSD: ports/audio/flac/Makefile,v 1.38 2006/05/03 05:14:16 edwin Exp $
 #
 
 PORTNAME=	flac
 PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S/$/:sf/} \
+		${MASTER_SITE_LOCAL:S/$/:local/}
+MASTER_SITE_SUBDIR=	${PORTNAME}/:sf naddy/:local
+DISTFILES=	${EXTRACT_ONLY}:sf flac-alloc.h:local
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
 
 LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 
+USE_AUTOTOOLS=	libtool:15
 USE_ICONV=	yes
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--target=${ARCH}-unknown-freebsd6.0
@@ -33,7 +37,7 @@ MAKE_ENV=	DOC=""
 MAKE_ENV=	DOC=doc
 .endif
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 MAN1=		flac.1 metaflac.1
 
 .include <bsd.port.pre.mk>
@@ -41,6 +45,9 @@ MAN1=		flac.1 metaflac.1
 .if ${ARCH} == "i386"
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 .endif
+
+post-extract:
+	@${CP} ${DISTDIR}/flac-alloc.h ${WRKSRC}/include/share/alloc.h
 
 # "obj" is magic to our make(1)
 post-configure:
