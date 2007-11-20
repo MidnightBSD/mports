@@ -1,4 +1,4 @@
-package Magus::Log;
+package Magus::OSVersion;
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@ package Magus::Log;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.3 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Machine.pm,v 1.2 2007/10/22 16:08:04 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -34,8 +34,8 @@ use warnings;
 use base qw(Magus::DBI);
 
 
-__PACKAGE__->table('logs');
-__PACKAGE__->columns(Essential => qw/result data/);
+__PACKAGE__->table('osversions');
+__PACKAGE__->columns(Essential => qw/id name branch date/);
 
 
 1;
