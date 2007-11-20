@@ -2,7 +2,7 @@
 # Date created:		Sat Feb 26 06:16:50 CST 2005
 # Whom:				Jin-Shan Tseng <tjs@cdpa.nsysu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/pmwiki/Makefile,v 1.1 2007/11/20 19:12:36 laffer1 Exp $
 # $FreeBSD: ports/www/pmwiki/Makefile,v 1.18 2006/12/16 11:49:55 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A WikiWikiWeb clone using PHP
+LICENSE=	gpl2
 
 USE_PHP=	mbstring
 WANT_PHP_WEB=	yes
