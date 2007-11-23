@@ -2,7 +2,7 @@
 # Date created:				06 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.1 2007/11/23 23:47:41 laffer1 Exp $
 #
 
 PORTNAME=	gnome-media
@@ -14,6 +14,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multimedia applications for the GNOME 2 desktop
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
