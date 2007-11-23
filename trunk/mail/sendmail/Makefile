@@ -3,7 +3,7 @@
 # Whom:					dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/mail/sendmail/Makefile,v 1.126 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.5 2007/11/07 21:37:49 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.6 2007/11/23 22:19:08 laffer1 Exp $
 #
 
 PORTNAME=	sendmail
@@ -19,7 +19,6 @@ COMMENT=	Reliable, highly configurable mail transfer agent with utilities
 LICENSE=	agg
 
 CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.*
-CONFLICTS+=	sendmail-8.12.* sendmail-*-8.12.* sendmail+*-8.12.*
 
 FAKE_OPTS+=	trueprefix
 
