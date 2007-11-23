@@ -1,3 +1,4 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.76 2007/11/20 11:28:07 laffer1 Exp $
 bin/nwcc
 bin/nwcc1
 etc/nwcc.conf.sample
@@ -6,6 +7,6 @@ nwcc/bin/nwcc1
 nwcc/bin/nwcc
 nwcc/bin/snake
 nwcc/lib/libnwcc.o
-@dirrmtry nwcc/bin
-@dirrmtry nwcc/lib
-@dirrmtry nwcc
+@dirrm nwcc/bin
+@dirrm nwcc/lib
+@dirrm nwcc
