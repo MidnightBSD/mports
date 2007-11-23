@@ -3,12 +3,11 @@
 # Whom:					dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/mail/sendmail/Makefile,v 1.126 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.4 2007/11/06 04:27:51 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.5 2007/11/07 21:37:49 laffer1 Exp $
 #
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.1
-PORTREVISION=	2
+PORTVERSION=	8.14.2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
