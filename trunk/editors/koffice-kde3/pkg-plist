@@ -889,9 +889,9 @@ lib/kde3/libkritajpegimport.so
 lib/kde3/libkritapart.a
 lib/kde3/libkritapart.la
 lib/kde3/libkritapart.so
-@comment lib/kde3/libkritapdfimport.a
-@comment lib/kde3/libkritapdfimport.la
-@comment lib/kde3/libkritapdfimport.so
+lib/kde3/libkritapdfimport.a
+lib/kde3/libkritapdfimport.la
+lib/kde3/libkritapdfimport.so
 lib/kde3/libkritapngexport.a
 lib/kde3/libkritapngexport.la
 lib/kde3/libkritapngexport.so
@@ -1296,7 +1296,7 @@ share/applications/kde/kword.desktop
 share/applnk/.hidden/krita_jpeg.desktop
 share/applnk/.hidden/krita_magick.desktop
 share/applnk/.hidden/krita_openexr.desktop
-@comment share/applnk/.hidden/krita_pdf.desktop
+share/applnk/.hidden/krita_pdf.desktop
 share/applnk/.hidden/krita_png.desktop
 share/applnk/.hidden/krita_raw.desktop
 share/applnk/.hidden/krita_tiff.desktop
@@ -5338,7 +5338,7 @@ share/services/krita_magick_export.desktop
 share/services/krita_magick_import.desktop
 share/services/krita_openexr_export.desktop
 share/services/krita_openexr_import.desktop
-@comment share/services/krita_pdf_import.desktop
+share/services/krita_pdf_import.desktop
 share/services/krita_png_export.desktop
 share/services/krita_png_import.desktop
 share/services/krita_raw_import.desktop
