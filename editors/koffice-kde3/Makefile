@@ -3,12 +3,12 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.3 2007/08/29 07:36:27 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.4 2007/10/20 02:47:47 laffer1 Exp $
 #
 
 PORTNAME=	koffice
 PORTVERSION=	1.6.3
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	editors kde
 MASTER_SITES=	${MASTER_SITE_KDE}
@@ -27,6 +27,7 @@ LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
 		freetype:${PORTSDIR}/print/freetype2 \
 		lcms:${PORTSDIR}/graphics/lcms \
 		paper:${PORTSDIR}/print/libpaper \
+		poppler-qt:${PORTSDIR}/graphics/poppler-qt \
 		wpd-0.8:${PORTSDIR}/textproc/libwpd \
 		wv2:${PORTSDIR}/textproc/wv2 \
 		xml2:${PORTSDIR}/textproc/libxml2 \
@@ -34,7 +35,7 @@ LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
 RUN_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
 
 USE_AUTOTOOLS=  libtool:15
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_GMAKE=	yes
