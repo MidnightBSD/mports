@@ -2,17 +2,18 @@
 # Date created:				2004-09-17
 # Whom:					voisine
 #
-# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.13 2007/10/19 04:43:31 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox/Makefile,v 1.14 2007/11/03 16:37:30 laffer1 Exp $
 # $FreeBSD: ports/www/linux-firefox/Makefile,v 1.30 2006/08/02 14:47:45 sat Exp $
 #
 
 PORTNAME=	firefox
-PORTVERSION=	2.0.0.9
+PORTVERSION=	2.0.0.10
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	firefox/releases/${PORTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
+LICENSE=	mpl
 
 USE_GCPIO=	yes
 
