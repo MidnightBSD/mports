@@ -2,12 +2,12 @@
 # Date created:		30 March 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-flock/Makefile,v 1.1 2007/07/19 13:49:36 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flock/Makefile,v 1.2 2007/11/28 20:59:56 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flock/Makefile,v 1.17 2007/03/26 22:52:58 sat Exp $
 #
 
 PORTNAME=	flock
-PORTVERSION=	0.9.0.2
+PORTVERSION=	1.0
 DISTVERSIONSUFFIX=	.en-US.linux-i686
 CATEGORIES=	www
 MASTER_SITES=	http://ftp.acc.umu.se/mirror/%SUBDIR%/ \
