@@ -2,20 +2,21 @@
 # Date created:			11 January 2004
 # Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.1 2007/01/25 15:40:09 wintellect Exp $
 # $FreeBSD: ports/graphics/libcaca/Makefile,v 1.15 2006/10/05 19:17:34 mezz Exp $
 
 PORTNAME=	libcaca
 PORTVERSION=	0.9
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	http://libcaca.zoy.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics library that outputs text instead of pixels
+LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lm -lncurses"
 CONFIGURE_ARGS=	--enable-ncurses --disable-doc
@@ -30,7 +31,7 @@ USE_XLIB=	yes
 .if defined(WITHOUT_IMLIB2)
 CONFIGURE_ARGS+=	--disable-imlib2
 .else
-LIB_DEPENDS+=		Imlib2.3:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS+=		Imlib2.4:${PORTSDIR}/graphics/imlib2
 .endif
 
 .include <bsd.port.pre.mk>
