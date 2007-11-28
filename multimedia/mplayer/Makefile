@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.4 2007/04/05 00:57:08 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.5 2007/04/10 06:41:20 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -85,7 +85,7 @@
 
 PORTNAME=	mplayer
 PORTVERSION=	0.99.10
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://www1.mplayerhq.hu/MPlayer/releases/ \
 		http://www2.mplayerhq.hu/MPlayer/releases/ \
@@ -388,7 +388,7 @@ CONFIGURE_ARGS+=	--disable-aa
 .endif
 
 .if defined(WITH_THEORA)
-LIB_DEPENDS+=	theora.2:${PORTSDIR}/multimedia/libtheora
+LIB_DEPENDS+=	theora.0:${PORTSDIR}/multimedia/libtheora
 .else
 CONFIGURE_ARGS+=	--disable-theora
 .endif
