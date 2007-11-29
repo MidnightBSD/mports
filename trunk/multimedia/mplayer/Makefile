@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.5 2007/04/10 06:41:20 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.6 2007/11/28 22:38:49 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -85,7 +85,7 @@
 
 PORTNAME=	mplayer
 PORTVERSION=	0.99.10
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://www1.mplayerhq.hu/MPlayer/releases/ \
 		http://www2.mplayerhq.hu/MPlayer/releases/ \
@@ -430,7 +430,7 @@ CONFIGURE_ARGS+=	--disable-openal
 
 .if !defined(WITH_TREMOR)
 CONFIGURE_ARGS+=	--disable-tremor-internal
-LIB_DEPENDS+=	vorbis.3:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
 .endif
 
 .if defined(WITH_REALPLAYER)
