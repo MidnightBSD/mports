@@ -2,55 +2,63 @@
 # Date created:			11 January 2004
 # Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
 #
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.1 2007/01/25 15:40:09 wintellect Exp $
-# $FreeBSD: ports/graphics/libcaca/Makefile,v 1.15 2006/10/05 19:17:34 mezz Exp $
+# $MidnightBSD$
+#
 
 PORTNAME=	libcaca
-PORTVERSION=	0.9
-PORTREVISION=	6
+DISTVERSION=	0.99.beta11
 CATEGORIES=	graphics
 MASTER_SITES=	http://libcaca.zoy.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics library that outputs text instead of pixels
-LICENSE=	lgpl
+LICENSE=	unknown
+# this guy has his own license, gpl and lgpl stuff... ?
 
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+USE_GNOME=	gnomehack gnometarget ltverhack pkgconfig
+USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lm -lncurses"
-CONFIGURE_ARGS=	--enable-ncurses --disable-doc
+CONFIGURE_ARGS=	--disable-doc \
+		--enable-ncurses
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
-MAN1=		caca-config.1 cacademo.1 cacaview.1
+DOCS=		AUTHORS COPYING COPYING.GPL COPYING.LGPL ChangeLog NEWS \
+		NOTES README THANKS TODO
+MAN1=		caca-config.1 cacafire.1 cacaplay.1 cacaserver.1 cacaview.1 \
+		img2irc.1
 
 .if defined(WITHOUT_X11)
-CONFIGURE_ARGS+=	--disable-x11
+CONFIGURE_ARGS+=--disable-x11
 .else
 USE_XLIB=	yes
 .endif
+
 .if defined(WITHOUT_IMLIB2)
-CONFIGURE_ARGS+=	--disable-imlib2
+CONFIGURE_ARGS+=--disable-imlib2
 .else
-LIB_DEPENDS+=		Imlib2.4:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS+=	Imlib2.4:${PORTSDIR}/graphics/imlib2
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_SLANG) || exists(${LOCALBASE}/lib/libslang.so)
-LIB_DEPENDS+=		slang.1:${PORTSDIR}/devel/libslang
-CONFIGURE_ARGS+=	--enable-slang
+.if defined(WITH_SLANG) || exists(${LOCALBASE}/lib/libslang.so.2)
+LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
+CONFIGURE_ARGS+=--enable-slang
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,-g -O2 ,,g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's,: install-docDATA,:,g' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's,resize_term,resizeterm,g' ${WRKSRC}/src/graphics.c
+	@${REINPLACE_CMD} -e 's|-g -O2 ||g ; s| -fomit-frame-pointer||g ; \
+		s|arpa\/inet.h ||g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|: install-docDATA|:|g' \
+		${WRKSRC}/Makefile.in
 
+.ifndef (NOPORTDOCS)
 post-install:
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for file in README BUGS TODO AUTHORS NEWS NOTES THANKS
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
+.for i in ${DOCS}
+	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 
