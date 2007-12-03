@@ -2,12 +2,12 @@
 # Date created:		1 February 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.9 2007/10/20 00:01:26 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.10 2007/11/28 20:48:59 laffer1 Exp $
 # $FreeBSD: ports/www/linux-seamonkey/Makefile,v 1.16 2007/02/27 21:19:22 sat Exp $
 #
 
 PORTNAME=	seamonkey
-PORTVERSION=	1.1.6
+PORTVERSION=	1.1.7
 DISTVERSIONSUFFIX=	.en-US.linux-i686
 CATEGORIES=	www
 MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${PORTVERSION}
