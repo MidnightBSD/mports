@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.75 2007/11/19 20:10:00 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.76 2007/11/20 11:28:07 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3943,7 +3943,7 @@ _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
 				post-fake compress-man install-rc-script install-ldconfig-file \
 				fix-fake-symlinks finish-tmpplist
 
-.if defined(MPORT_MAINTAINER_MODE)
+.if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		check-fake
 .endif
 
@@ -5463,11 +5463,12 @@ GENPLIST?=	${.CURDIR}/gen-plist
 
 # Try to make a plist.  This will probably need to be edited.
 .if !target(makeplist)
-makeplist: fake
+makeplist: 
+	@cd ${.CURDIR} && ${SETENV} _MAKEPLIST=1 ${MAKE} fake
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.75 2007/11/19 20:10:00 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.76 2007/11/20 11:28:07 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
