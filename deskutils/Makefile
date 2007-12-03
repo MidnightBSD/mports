@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.17 2007/12/03 05:17:00 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.18 2007/12/03 05:23:49 laffer1 Exp $
 #
 
     COMMENT = Things that used to be on the desktop before computers were invented
@@ -27,6 +27,7 @@
     SUBDIR += preferences.app
     SUBDIR += toolbox
     SUBDIR += toolboxkit
+    SUBDIR += xpad
     SUBDIR += xpostit
 
 .include <bsd.port.subdir.mk>
