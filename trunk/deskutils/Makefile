@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/Makefile,v 1.16 2007/12/03 05:06:49 laffer1 Exp $
 #
 
     COMMENT = Things that used to be on the desktop before computers were invented
@@ -19,6 +19,7 @@
     SUBDIR += gnome-utils
     SUBDIR += gucharmap
     SUBDIR += gworkspace
+    SUBDIR += jlj
     SUBDIR += linux-sunbird
     SUBDIR += ljclive
     SUBDIR += preferencepanes
