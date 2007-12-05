@@ -4,11 +4,11 @@
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/sqlite3/Makefile,v 1.21 2006/11/21 12:25:46 mnag Exp $
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.2 2007/05/10 23:36:21 ctriv Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.3 2007/08/10 18:18:49 laffer1 Exp $
 #
 
 PORTNAME=	sqlite
-PORTVERSION=	3.4.1
+PORTVERSION=	3.5.3
 CATEGORIES=	databases
 MASTER_SITES=	http://www.sqlite.org/
 .if defined(USE_THOL)
@@ -18,6 +18,7 @@ DISTNAME=       sqlite-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An SQL database engine in a C library w/ Tcl wrapper
+LICENSE=	publicdom
 
 SLAVEDIRS=      databases/sqlite3-threads
 
@@ -35,8 +36,7 @@ EXAMPLESDIR=	${PREFIX}/share/examples/sqlite3
 
 OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
 		DOCS		"Building docs (depends on TCL)"	on \
-		FTS1            "Enable FTS1 (Full Text Search) module" off \
-		FTS2            "Enable FTS2 (Full Text Search) module" off \
+		FTS3            "Enable FTS3 (Full Text Search) module" off \
 		TCLWRAPPER	"TCL wrapper for SQLITE"		off 
 
 # Defaults, for building the docs:
@@ -66,18 +66,13 @@ ALL_TARGET+=		all doc
 PORTDOCS=		*
 .endif
 
-.if defined(WITH_FTS1) && defined(WITH_FTS2)
-CFLAGS+=		-DSQLITE_ENABLE_FTS1 -DSQLITE_ENABLE_FTS2
-EXTRA_PATCHES+=		${FILESDIR}/fts12_patch-Makefile.in
-.elif defined(WITH_FTS1) && !defined(WITH_FTS2)
-CFLAGS+=		-DSQLITE_ENABLE_FTS1
-EXTRA_PATCHES+=		${FILESDIR}/fts1_patch-Makefile.in
-.elif defined(WITH_FTS2) && !defined(WITH_FTS1)
-CFLAGS+=		-DSQLITE_ENABLE_FTS2
-EXTRA_PATCHES+=		${FILESDIR}/fts2_patch-Makefile.in
+.if defined(WITH_FTS3)
+CFLAGS+=		-DSQLITE_ENABLE_FTS3
+#EXTRA_PATCHES+=		${FILESDIR}/fts2_patch-Makefile.in
 .endif
 
 .if defined(WITH_TCLWRAPPER)
+ALL_TARGET+=		tclsqlite3
 CATEGORIES+=		lang tcl${TCL_V:S/.//}
 LIB_DEPENDS+=		tcl${TCL_V:S/.//}:${PORTSDIR}/lang/tcl${TCL_V:S/.//}
 CONFIGURE_ARGS+=	--with-tcl=${LOCALBASE}/lib/tcl${TCL_V}
@@ -90,6 +85,9 @@ PLIST_SUB+=		WITH_TCLWRAPPER="@comment "
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	--enable-threadsafe
 .endif
+
+post-extract:
+	@${FIND} ${WRKSRC} -type d -name 'CVS' | ${XARGS} rm -r
 
 post-patch:
 	@${REINPLACE_CMD} -E -e "s|^(TLIBS.*)|\1 -lm|g" \
@@ -125,7 +123,7 @@ post-install:
 .endif
 .if !defined(NOPORTDOCS) && !defined(WITHOUT_DOCS)
 	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/* ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/* ${DOCSDIR}
 .endif
 .if defined(USE_THOL)
 	@${MKDIR} ${DATADIR}
