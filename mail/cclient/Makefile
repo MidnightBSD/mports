@@ -2,7 +2,7 @@
 # Date created:				2 July 2000
 # Whom:					Kelly Yancey <kbyanc@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/cclient/Makefile,v 1.3 2007/10/29 18:53:10 laffer1 Exp $
 # $FreeBSD: ports/mail/cclient/Makefile,v 1.41 2007/10/01 04:03:01 marcus Exp $
 #
 
@@ -22,6 +22,7 @@ DISTFILES=	${DISTNAME}${DISTVERSIONSUFFIX}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mark Crispin's C-client mail access routines
+LICENSE=	apache2
 
 OPTIONS=	SSL "Compile with SSL support" on \
 		SSL_AND_PLAINTEXT "Allow plain text passwords and SSL" off \
