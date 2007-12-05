@@ -2,7 +2,7 @@
 # Date created:         04 April 2007
 # Whom:			Max Laier <max@love2party.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/spamd/Makefile,v 1.3 2007/07/16 01:44:28 laffer1 Exp $
 # $FreeBSD: ports/mail/spamd/Makefile,v 1.13 2007/06/06 16:38:52 miwi Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Traps spammers with a very slow smtp-login and return 4xx error
+LICENSE=	bsd2
 
 .include <bsd.port.pre.mk>
 
