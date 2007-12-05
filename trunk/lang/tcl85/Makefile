@@ -2,7 +2,7 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.2 2007/10/31 21:32:59 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl85/Makefile,v 1.12 2007/09/28 05:14:14 mm Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.b./b/}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language (development version)
+LICENSE=	other
 
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}/unix

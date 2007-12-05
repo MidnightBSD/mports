@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl84/Makefile,v 1.98 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.2 2007/01/26 00:18:23 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.3 2007/04/28 18:12:04 ctriv Exp $
 #
 
 PORTNAME=	tcl
@@ -17,6 +17,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language
+LICENSE=	other
 
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
