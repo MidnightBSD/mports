@@ -3,7 +3,7 @@
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.12 2007/10/29 17:53:06 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.13 2007/11/16 13:11:10 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
 #
 
@@ -14,6 +14,8 @@ MASTER_SITES=	http://www.dovecot.org/releases/1.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
+LICENSE=	lgpl
+# technically agg, but worst case is lgpl
 
 USE_ICONV=	yes
 USE_RC_SUBR=	dovecot.sh
