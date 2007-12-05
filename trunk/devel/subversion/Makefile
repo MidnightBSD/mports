@@ -2,12 +2,11 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.7 2007/11/15 00:45:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.8 2007/11/15 00:48:40 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.4.4
-PORTREVISION=	1
+PORTVERSION=	1.4.5
 CATEGORIES=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.2/:bookhtml \
