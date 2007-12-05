@@ -2,7 +2,7 @@
 # Date created:				2000/09/09
 # Whom:					kaz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.1 2007/05/07 18:35:00 laffer1 Exp $
 # $FreeBSD: ports/mail/vrfy/Makefile,v 1.7 2005/10/16 14:24:02 vs Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verify mail address
+LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" RES=""
