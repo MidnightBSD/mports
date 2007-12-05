@@ -2,7 +2,7 @@
 # Date created:				June 6th 2000
 # Whom:	      				Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
 #
-# $MidnightBSD: mports/mail/abook/Makefile,v 1.1 2006/12/20 22:04:50 wintellect Exp $
+# $MidnightBSD: mports/mail/abook/Makefile,v 1.2 2007/05/08 20:10:57 ctriv Exp $
 # $FreeBSD: ports/mail/abook/Makefile,v 1.21 2006/08/10 01:30:07 clsung Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An addressbook program with mutt mail client support
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
