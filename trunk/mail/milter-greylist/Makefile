@@ -2,7 +2,7 @@
 # Date created:				27 Apr 2004
 # Whom:					Cyril Guibourg
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.1 2007/05/07 20:22:17 laffer1 Exp $
 # $FreeBSD: ports/mail/milter-greylist/Makefile,v 1.22 2006/12/13 11:19:21 ache Exp $
 #
 
@@ -15,6 +15,8 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use greylist milter for sendmail
+LICENSE=	bsd4
+# well bsd3 but it's advertising... be conservative
 
 CONFLICTS=	milter-greylist-devel-[1-9]*.*
 PKGMESSAGE=	${WRKDIR}/pkg-message
