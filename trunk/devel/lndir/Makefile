@@ -2,7 +2,7 @@
 # Date Created:				16 Oct 2007
 # Whom:					Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/lndir/Makefile,v 1.1 2007/10/16 20:17:35 laffer1 Exp $
 #
 
 PORTNAME=	lndir
@@ -13,6 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create a shadow directory of symbolic links to another directory tree
 LICENSE=	unknown
 # The license is not cleary stated.
+
+BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 
 XORG_CAT=	util
 USE_XORG=	xproto
