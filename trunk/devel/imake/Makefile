@@ -3,7 +3,7 @@
 # Whom:                 anholt
 #
 # $FreeBSD: ports/devel/imake/Makefile,v 1.18 2007/05/19 20:02:53 flz Exp $
-# $MidnightBSD: mports/devel/imake/Makefile,v 1.2 2007/12/06 00:18:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/imake/Makefile,v 1.3 2007/12/06 00:22:30 laffer1 Exp $
 #
 
 PORTNAME=	imake
@@ -20,8 +20,6 @@ BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config \
 		gccmakedep:${PORTSDIR}/devel/gccmakedep \
 		makedepend:${PORTSDIR}/devel/makedepend \
 		${PREFIX}/lib/X11/config/xorg.cf:${PORTSDIR}/x11/xorg-cf-files
-
-CONFLICTS=	imake-4*
 
 USE_PERL5=	yes
 

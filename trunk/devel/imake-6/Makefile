@@ -2,7 +2,7 @@
 # Date created:         18 Jun 2004
 # Whom:                 anholt
 #
-# $MidnightBSD: mports/devel/imake-6/Makefile,v 1.1.1.1 2006/09/17 03:33:52 archite Exp $
+# $MidnightBSD: mports/devel/imake-6/Makefile,v 1.2 2006/09/25 16:34:09 archite Exp $
 # $FreeBSD: ports/devel/imake-6/Makefile,v 1.12 2006/05/09 17:12:28 lesi Exp $
 #
 
@@ -16,8 +16,6 @@ DISTFILES=	X11R${PORTVERSION}-src1.tar.gz \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Imake and other utilities from X.Org
-
-CONFLICTS=	imake-4*
 
 PREFIX?=	${X11BASE}
 USE_PERL5=	YES
