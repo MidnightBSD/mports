@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.6 2007/11/28 22:38:49 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.7 2007/11/29 21:51:15 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -243,6 +243,7 @@ CFLAGS+=	-fno-force-addr
 
 .if !defined(WITHOUT_X11)
 USE_XLIB=	yes
+CONFIGURE_ARGS+=--with-x11libdir="${LOCALBASE}/lib"
 .else
 WITHOUT_GUI=	yes
 CONFIGURE_ARGS+=--disable-x11 \
@@ -480,7 +481,7 @@ CONFIGURE_ARGS+=	--disable-xmms
 .if !defined(WITHOUT_DTS)
 CFLAGS+=		-I${LOCALBASE}/include
 CONFIGURE_ARGS+=	--enable-libdts
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libdts.a:${PORTSDIR}/multimedia/libdts
+BUILD_DEPENDS+=	dca.0:${PORTSDIR}/multimedia/libdca
 .else
 CONFIGURE_ARGS+=	--disable-libdts
 .endif
