@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.21 2007/12/03 05:45:45 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.22 2007/12/03 05:48:27 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -25,6 +25,7 @@
     SUBDIR += kbirthday
     SUBDIR += linux-sunbird
     SUBDIR += ljclive
+    SUBDIR += notification-daemon
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
     SUBDIR += toolbox
