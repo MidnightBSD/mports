@@ -2,7 +2,7 @@
 # Date Created:			7 May 2004
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xf86ext/Makefile,v 1.1 2006/10/04 16:18:20 laffer1 Exp $
 # $FreeBSD: ports/x11/xf86ext/Makefile,v 1.5 2005/03/06 00:15:07 lesi Exp $
 #
 
@@ -18,6 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Header files for miscellaneous XFree86 X Extensions
 
 RUN_DEPENDS=	${X11BASE}/libdata/pkgconfig/xextensions.pc:${PORTSDIR}/x11/xextensions
+BUILD_DEPENDS= ${RUN_DEPENDS}
 
 CONFLICTS=	XFree86-libraries-* xorg-libraries-*
 
