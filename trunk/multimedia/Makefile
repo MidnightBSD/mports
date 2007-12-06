@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.33 2007/11/24 00:36:38 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.34 2007/11/24 03:08:17 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -33,6 +33,7 @@
     SUBDIR += ogle
     SUBDIR += smpeg
     SUBDIR += streamdvd
+    SUBDIR += totem
     SUBDIR += v4l_compat
     SUBDIR += vcdimager
     SUBDIR += win32-codecs
