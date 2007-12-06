@@ -18,14 +18,14 @@
 -	$(INSTALL) -m 644 doc/$(MANPAGE) $(mandir)
 -	gzip -9f $(mandir)/$(MANPAGE)
 +	$(BSD_INSTALL_PROGRAM) $(NVIDIA_SETTINGS) $(bindir)/$(NVIDIA_SETTINGS)
-+	$(BSD_INSTALL_MAN) doc/$(MANPAGE) $(mandir)
++	$(BSD_INSTALL_MAN) doc/$(MANPAGE) $(prefix)/man/man1
  endef
  endif
  
  exec_prefix = $(prefix)
  bindir = $(exec_prefix)/bin
 -mandir = $(exec_prefix)/share/man/man1
-+mandir = $(MANPREFIX)/man/man1
++mandir = $(prefix)/man/man1
  
  X11R6_CFLAGS = -I $(X11R6_INC_DIR)
  

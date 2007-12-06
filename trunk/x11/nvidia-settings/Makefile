@@ -2,32 +2,31 @@
 # Date created:				15 Aug 2004
 # Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/nvidia-settings/Makefile,v 1.2 2007/03/14 21:19:09 laffer1 Exp $
 # $FreeBSD: ports/x11/nvidia-settings/Makefile,v 1.17 2006/12/06 15:06:13 acm Exp $
 #
 
 PORTNAME=	nvidia-settings
 PORTVERSION=	1.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_NVIDIA:S,$,XFree86/${PORTNAME}/,} \
 		${MASTER_SITE_LOCAL:S,$,bland/,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display Control Panel for X NVidia driver
+LICENSE=	gpl2
 
-USE_X_PREFIX=	yes
+FAKE_OPTS=	prefixhack
+
+USE_XLIB=	yes
 USE_GNOME=	gtk20
 USE_GMAKE=	yes
 
 PLIST_FILES=	bin/nvidia-settings
 MAN1=		nvidia-settings.1
 
-MAKE_ENV=	ROOT=${PREFIX} \
-		CC=${CC} \
-		X11R6_LIB_DIR=${X11BASE}/lib \
-		X11R6_INC_DIR=${X11BASE}/include \
-		LDFLAGS="${PTHREAD_LIBS}"
+LDFLAGS+=	${PTHREAD_LIBS}
 
 pre-build:
 	cd ${WRKSRC}/src/libXNVCtrl; \
