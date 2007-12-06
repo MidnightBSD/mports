@@ -3,11 +3,12 @@
 # Whom:                 anholt
 #
 # $FreeBSD: ports/devel/imake/Makefile,v 1.18 2007/05/19 20:02:53 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/imake/Makefile,v 1.1 2007/10/04 19:39:58 ctriv Exp $
 #
 
 PORTNAME=	imake
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
 
@@ -15,6 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Imake and other utilities from X.Org
 LICENSE=	x11
 
+BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 RUN_DEPENDS=	gccmakedep:${PORTSDIR}/devel/gccmakedep \
 		makedepend:${PORTSDIR}/devel/makedepend \
 		${PREFIX}/lib/X11/config/xorg.cf:${PORTSDIR}/x11/xorg-cf-files
