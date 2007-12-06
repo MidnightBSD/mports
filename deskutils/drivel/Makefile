@@ -2,7 +2,7 @@
 # Date created:			Thu Feb 26 23:13:12 CET 2004
 # Whom:				Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.1 2007/12/06 17:59:15 laffer1 Exp $
 # $FreeBSD: ports/deskutils/drivel/Makefile,v 1.33 2007/05/19 20:01:28 flz Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blog editor for GNOME
+LICENSE=	gpl2
 
 LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl
 
