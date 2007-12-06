@@ -2,13 +2,13 @@
 # Date created:         14 Oct 2000
 # Whom:                 alex
 #
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.7 2007/08/01 20:43:30 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.8 2007/11/05 23:24:42 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.107 2007/02/23 22:51:10 mezz Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -30,7 +30,7 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		cdio.7:${PORTSDIR}/sysutils/libcdio \
 		modplug.0:${PORTSDIR}/audio/libmodplug \
 		vcdinfo.2:${PORTSDIR}/multimedia/vcdimager \
-		theora.2:${PORTSDIR}/multimedia/libtheora \
+		theora.0:${PORTSDIR}/multimedia/libtheora \
 		mad.2:${PORTSDIR}/audio/libmad
 
 USE_GCC=	3.4+
