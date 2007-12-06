@@ -2,7 +2,7 @@
 # Date created:		6 May 1998
 # Whom:			Motoyuki Kasahara <m-kasahr@sra.co.jp>
 #
-# $MidnightBSD: mports/devel/libtool15/Makefile,v 1.2 2006/09/25 16:34:09 archite Exp $
+# $MidnightBSD: mports/devel/libtool15/Makefile,v 1.3 2007/10/09 18:59:16 laffer1 Exp $
 # $FreeBSD: ports/devel/libtool15/Makefile,v 1.53 2006/05/04 21:40:52 edwin Exp $
 #
 
@@ -14,13 +14,14 @@ MASTER_SITE_SUBDIR=	libtool
 DISTNAME=	libtool-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Generic shared library support script
+COMMENT=	Generic shared library support script
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	 yes
 CONFIGURE_ARGS?= --disable-ltdl-install
 CONFIGURE_ARGS+= --infodir=${PREFIX}/info
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 INFO?=		libtool
 
 .include <bsd.port.mk>
