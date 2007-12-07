@@ -1,6 +1,5 @@
 bin/pom2
 bin/podlint
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Pod/POM/.packlist
 %%SITE_PERL%%/Pod/POM.pm
 %%SITE_PERL%%/Pod/POM/Constants.pm
 %%SITE_PERL%%/Pod/POM/Node.pm

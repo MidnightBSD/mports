@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/DBI/.packlist
 %%SITE_PERL%%/Class/DBI.pm
 %%SITE_PERL%%/Class/DBI/Attribute.pm
 %%SITE_PERL%%/Class/DBI/Cascade/Delete.pm

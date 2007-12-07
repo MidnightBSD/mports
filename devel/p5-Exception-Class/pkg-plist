@@ -1,5 +1,4 @@
 @comment $FreeBSD: ports/devel/p5-Exception-Class/pkg-plist,v 1.3 2006/07/15 08:22:10 erwin Exp $
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Exception/Class/.packlist
 %%SITE_PERL%%/Exception/Class.pm
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Exception/Class
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Exception

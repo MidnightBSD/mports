@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Data/Inheritable/.packlist
 %%SITE_PERL%%/Class/Data/Inheritable.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Data/Inheritable
 @dirrmtry %%SITE_PERL%%/Class/Data

@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Text/.packlist
 %%SITE_PERL%%/Text/Wrap.pm
 %%SITE_PERL%%/Text/Tabs.pm
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Text

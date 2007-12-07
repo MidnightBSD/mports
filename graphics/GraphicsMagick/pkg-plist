@@ -92,7 +92,6 @@ libdata/pkgconfig/GraphicsMagick++.pc
 libdata/pkgconfig/GraphicsMagick.pc
 libdata/pkgconfig/GraphicsMagickWand.pc
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Graphics/Magick.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Graphics/Magick/.packlist
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Graphics/Magick/Magick.so
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Graphics/Magick/Magick.bs
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Graphics/Magick/autosplit.ix

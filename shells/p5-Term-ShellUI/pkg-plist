@@ -1,6 +1,5 @@
 %%SITE_PERL%%/Term/ShellUI.pm
 %%SITE_PERL%%/Text/Shellwords/Cursor.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Term/ShellUI/.packlist
 %%PORTDOCS%%%%EXAMPLESDIR%%/RPC/Connection.pm
 %%PORTDOCS%%%%EXAMPLESDIR%%/Term/ExprUI.pm
 %%PORTDOCS%%%%EXAMPLESDIR%%/fileman-example

@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/Breadcrumbs/.packlist
 %%SITE_PERL%%/HTML/Breadcrumbs.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/Breadcrumbs
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML

@@ -8,7 +8,6 @@
 %%SITE_PERL%%/%%PERL_ARCH%%/Date/Calendar/Profiles.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/Date/Calendar/Year.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/Date/Calendar/Year.pod
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Calc/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Calc/Calc.so
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Calc/Calc.bs
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Date/Calc

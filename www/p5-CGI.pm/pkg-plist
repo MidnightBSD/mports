@@ -7,7 +7,6 @@
 %%SITE_PERL%%/CGI/Push.pm
 %%SITE_PERL%%/CGI/Switch.pm
 %%SITE_PERL%%/CGI/Util.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/CGI/.packlist
 %%PORTDOCS%%%%EXAMPLESDIR%%/caution.xbm
 %%PORTDOCS%%%%EXAMPLESDIR%%/clickable_image.cgi
 %%PORTDOCS%%%%EXAMPLESDIR%%/cookie.cgi

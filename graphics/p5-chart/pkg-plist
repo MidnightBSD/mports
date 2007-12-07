@@ -13,6 +13,5 @@
 %%SITE_PERL%%/Chart/Points.pm
 %%SITE_PERL%%/Chart/Split.pm
 %%SITE_PERL%%/Chart/StackedBars.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Chart/.packlist
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Chart
 @dirrm %%SITE_PERL%%/Chart

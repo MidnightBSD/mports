@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/libxml-perl/.packlist
 %%SITE_PERL%%/Data/Grove.pm
 %%SITE_PERL%%/Data/Grove/Parent.pm
 %%SITE_PERL%%/Data/Grove/Visitor.pm

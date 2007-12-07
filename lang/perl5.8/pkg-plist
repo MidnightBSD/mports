@@ -385,7 +385,6 @@ lib/perl5/%%PERL_VER%%/integer.pm
 lib/perl5/%%PERL_VER%%/less.pm
 lib/perl5/%%PERL_VER%%/locale.pm
 lib/perl5/%%PERL_VER%%/look.pl
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/.packlist
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/B.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/B/Asmdata.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/B/Assembler.pm

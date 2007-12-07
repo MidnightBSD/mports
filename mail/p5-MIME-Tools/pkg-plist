@@ -20,7 +20,6 @@
 %%SITE_PERL%%/MIME/Tools.pm
 %%SITE_PERL%%/MIME/WordDecoder.pm
 %%SITE_PERL%%/MIME/Words.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/MIME-tools/.packlist
 %%PORTDOCS%%%%EXAMPLESDIR%%/README
 %%PORTDOCS%%%%EXAMPLESDIR%%/mimeabuse
 %%PORTDOCS%%%%EXAMPLESDIR%%/mimedump

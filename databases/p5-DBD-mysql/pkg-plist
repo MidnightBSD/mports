@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/mysql/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/Bundle/DBD/mysql.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/mysql.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/mysql/GetInfo.pm
