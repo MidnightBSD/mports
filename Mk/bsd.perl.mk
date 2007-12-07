@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.6 2007/09/12 15:54:26 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.7 2007/11/14 18:49:04 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -139,11 +139,6 @@ CONFIGURE_ARGS+=	INSTALLDIRS="site"
 .if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
 Perl_Post_Include=	bsd.perl.mk
-
-# There is a bug in perl's MakeMaker which causes the packlist to contain
-# the DESTDIR.  This bug is harmless, so we'll ignore it.  See rt.cpan.org
-# bug 3003 for details.
-SKIP_FAKE_CHECK+=	${SITE_PERL:S%^${PREFIX}/%%}/${PERL_ARCH}/auto/${PORTNAME:S%-%/%g}/.packlist
 
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \

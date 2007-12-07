@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.77 2007/12/03 23:39:14 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.78 2007/12/05 16:23:55 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -5468,14 +5468,14 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.77 2007/12/03 23:39:14 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.78 2007/12/05 16:23:55 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
 		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
 		for file in $$new; do \
 			if [ ! -L $$file ] && [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d -or -type l`; \
+				tree=`${FIND} -d $$file -type f -or -type d -or -type l | ${EGREP} -v "man/man[123456789]`; \
 				for f in $$tree; do \
 					if [ -d $$f ]; then \
 						directories="$$directories $$f"; \
@@ -5506,7 +5506,7 @@ makeplist:
 		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
 		for file in $$new; do \
 			if [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d`; \
+				tree=`${FIND} -d $$file -type f -or -type d | ${EGREP} -v "man/man[123456789]"`; \
 				for f in $$tree; do \
 					if [ -d $$f ]; then \
 						directories="$$directories $$f"; \
