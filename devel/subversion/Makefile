@@ -2,11 +2,12 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.8 2007/11/15 00:48:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.9 2007/12/05 16:19:25 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.4.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.2/:bookhtml \
@@ -18,11 +19,11 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
-LICENSE=	unknown
+LICENSE=	other
 # for the most part it's similar to a traditional BSD 4 clause license.
 
 OPTIONS=	NEON "Enable WebDAV/Delta-V repository access" On \
-		DBD  "Enable db4 repository backend" On \
+		BDB  "Enable db4 repository backend" On \
 		MAINTAINER_DEBUG "Build debug version" Off \
 		PERL "Build perl bindings" Off \
 		PYTHON "Build python bindings" Off \
@@ -273,7 +274,7 @@ pre-configure:
 		${ECHO_MSG} "" ; \
 		${FALSE} ; \
 	fi
-.if !defined(WITHOUT_BDB)
+.if defined(WITH_BDB)
 	@if [ `${APR_APU_DIR}/${APU_CONFIG} --db-version` != "4" ] ; then \
 		${ECHO_MSG} "" ; \
 		${ECHO_MSG} 'You should build `'"${APR_PORT}' with db4 support to use subversion with it." ; \
