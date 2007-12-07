@@ -117,7 +117,6 @@ etc/mail/spamassassin/v320.pre.sample
 %%SITE_PERL%%/Mail/SpamAssassin/Util/Progress.pm
 %%SITE_PERL%%/Mail/SpamAssassin/Util/RegistrarBoundaries.pm
 %%SITE_PERL%%/Mail/SpamAssassin/Util/TieOneStringHash.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail/SpamAssassin/.packlist
 %%SITE_PERL%%/spamassassin-run.pod
 %%DATADIR%%/10_default_prefs.cf
 %%DATADIR%%/20_advance_fee.cf

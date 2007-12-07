@@ -495,6 +495,5 @@ share/locale/zh_TW/LC_MESSAGES/gaim.mo
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Gaim/autosplit.ix
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Gaim/Gaim.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Gaim/Gaim.bs
-%%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Gaim/.packlist
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/Gaim.pm
 %%PERL:%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Gaim

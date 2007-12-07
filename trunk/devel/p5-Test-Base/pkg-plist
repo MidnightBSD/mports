@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/Base/.packlist
 %%SITE_PERL%%/Module/Install/TestBase.pm
 %%SITE_PERL%%/Test/Base.pm
 %%SITE_PERL%%/Test/Base/Filter.pm

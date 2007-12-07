@@ -9,7 +9,6 @@ bin/ip2cc
 %%SITE_PERL%%/IP/Country/Slow.pm
 %%SITE_PERL%%/IP/Country/Fast/cc.gif
 %%SITE_PERL%%/IP/Country/Fast/ip.gif
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/IP/Country/.packlist
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IP/Country
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IP
 @dirrm %%SITE_PERL%%/IP/Country/Fast

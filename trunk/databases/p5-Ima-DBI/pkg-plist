@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Ima/DBI/.packlist
 %%SITE_PERL%%/Ima/DBI.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Ima/DBI
 @dirrmtry %%SITE_PERL%%/Ima

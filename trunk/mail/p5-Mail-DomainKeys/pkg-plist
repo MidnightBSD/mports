@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail/DomainKeys/.packlist
 %%SITE_PERL%%/Mail/DomainKeys.pm
 %%SITE_PERL%%/Mail/DomainKeys/Header.pm
 %%SITE_PERL%%/Mail/DomainKeys/Key.pm

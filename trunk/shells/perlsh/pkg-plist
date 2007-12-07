@@ -112,7 +112,6 @@ share/psh/themes/vms
 %%SITE_PERL%%/Psh/Support/Functions.pm
 %%SITE_PERL%%/Psh/Support/TiedOption.pm
 %%SITE_PERL%%/Psh/Util.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/psh/.packlist
 @dirrm share/psh/complete
 @dirrm share/psh/themes
 @dirrm share/psh

@@ -1,5 +1,4 @@
 %%SITE_PERL%%/%%PERL_ARCH%%/Storable.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Storable/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Storable/CAN_FLOCK.al
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Storable/Storable.bs
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/Storable/Storable.so

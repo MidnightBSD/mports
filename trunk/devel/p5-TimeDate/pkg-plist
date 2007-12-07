@@ -25,7 +25,6 @@
 %%SITE_PERL%%/Date/Language/TigrinyaEthiopian.pm
 %%SITE_PERL%%/Date/Parse.pm
 %%SITE_PERL%%/Time/Zone.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/TimeDate/.packlist
 @dirrm %%SITE_PERL%%/Date/Language
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/TimeDate
 @dirrmtry %%SITE_PERL%%/Time

@@ -442,7 +442,6 @@ libdata/pkgconfig/ImageMagick++.pc
 libdata/pkgconfig/ImageMagick.pc
 libdata/pkgconfig/Wand.pc
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/Image/Magick.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/.packlist
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/Magick.bs
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/Magick.so
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Magick/autosplit.ix

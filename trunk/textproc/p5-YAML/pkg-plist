@@ -1,5 +1,4 @@
 bin/ysh
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/YAML/.packlist
 %%SITE_PERL%%/Test/YAML.pm
 %%SITE_PERL%%/YAML.pm
 %%SITE_PERL%%/YAML/Base.pm

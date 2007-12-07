@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/ContextualFetch/.packlist
 %%SITE_PERL%%/DBIx/ContextualFetch.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/ContextualFetch
 @dirrmtry %%SITE_PERL%%/DBIx

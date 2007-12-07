@@ -99,7 +99,6 @@ bin/dbicadmin
 %%SITE_PERL%%/DBIx/Class/UTF8Columns.pm
 %%SITE_PERL%%/SQL/Translator/Parser/DBIx/Class.pm
 %%SITE_PERL%%/SQL/Translator/Producer/DBIx/Class/File.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/Class/.packlist
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/Class
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx
 @dirrmtry %%SITE_PERL%%/SQL/Translator/Producer/DBIx/Class

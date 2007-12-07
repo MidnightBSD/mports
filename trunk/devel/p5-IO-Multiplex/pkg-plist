@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Multiplex/.packlist
 %%SITE_PERL%%/IO/Multiplex.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Multiplex
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO

@@ -23,7 +23,6 @@ lib/perl5/site_perl/5.8.8/Mail/DKIM/Signature.pm
 lib/perl5/site_perl/5.8.8/Mail/DKIM/Signer.pm
 lib/perl5/site_perl/5.8.8/Mail/DKIM/SignerPolicy.pm
 lib/perl5/site_perl/5.8.8/Mail/DKIM/Verifier.pm
-lib/perl5/site_perl/5.8.8/mach/auto/Mail/DKIM/.packlist
 @dirrm lib/perl5/site_perl/5.8.8/mach/auto/Mail/DKIM
 @dirrm lib/perl5/site_perl/5.8.8/Mail/DKIM/Canonicalization
 @dirrm lib/perl5/site_perl/5.8.8/Mail/DKIM/Algorithm

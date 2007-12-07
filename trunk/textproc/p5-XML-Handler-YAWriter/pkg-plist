@@ -1,4 +1,3 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Handler/YAWriter/.packlist
 bin/xmlpretty
 %%SITE_PERL%%/XML/Handler/YAWriter.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Handler/YAWriter

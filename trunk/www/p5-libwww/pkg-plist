@@ -5,7 +5,6 @@ bin/lwp-download
 bin/lwp-mirror
 bin/lwp-request
 bin/lwp-rget
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/LWP/.packlist
 %%SITE_PERL%%/Bundle/LWP.pm
 %%SITE_PERL%%/File/Listing.pm
 %%SITE_PERL%%/HTML/Form.pm

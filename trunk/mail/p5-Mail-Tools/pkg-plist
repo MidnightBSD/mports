@@ -28,7 +28,6 @@
 %%SITE_PERL%%/auto/Mail/Util/mailaddress.al
 %%SITE_PERL%%/auto/Mail/Util/maildomain.al
 %%SITE_PERL%%/auto/Mail/Util/read_mbox.al
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail/.packlist
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail
 @dirrm %%SITE_PERL%%/auto/Mail/Util
 @dirrm %%SITE_PERL%%/auto/Mail/Internet

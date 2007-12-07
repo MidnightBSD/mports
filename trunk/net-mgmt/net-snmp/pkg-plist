@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/net-mgmt/net-snmp/pkg-plist,v 1.2 2007/11/04 12:54:45 laffer1 Exp $
+@comment $MidnightBSD: mports/net-mgmt/net-snmp/pkg-plist,v 1.3 2007/11/04 13:20:45 laffer1 Exp $
 bin/encode_keychange
 bin/fixproc
 bin/ipf-mod.pl
@@ -208,7 +208,6 @@ lib/libnetsnmptrapd.so.%%SHLIB_VERSION%%
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/agent/netsnmp_request_infoPtr.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/default_store.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/SNMP.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Bundle/NetSNMP/.packlist
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.bs
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.so
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/autosplit.ix
