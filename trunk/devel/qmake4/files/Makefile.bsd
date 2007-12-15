@@ -1,19 +1,24 @@
-# $FreeBSD: ports/devel/qmake4/files/Makefile.bsd,v 1.2 2007/02/06 12:49:16 lofi Exp $
+# $FreeBSD: ports/devel/qmake4/files/Makefile.bsd,v 1.6 2007/08/11 10:27:36 lofi Exp $
+# $MidnightBSD$
 
 _OBJS!=	${MAKE} -f Makefile.unix -V OBJS -V QOBJS
 # We'd like to avoid using qconfig.cpp, but can't -- see the comment
 # next to -DHAVE_CONFIG_CPP below: 
 #_OBJS:=	${_OBJS:S/qconfig.o//}
 SRCS:=	${_OBJS:.o=.cpp}
-NOMAN=	true	# qmake.1 anyone?
+NO_MAN=	true	# qmake.1 anyone?
 
 .PATH:	${.CURDIR} ${.CURDIR:H}/src/corelib/tools ${.CURDIR:H}/src/corelib/io \
 	${.CURDIR:H}/src/corelib/global ${.CURDIR:H}/src/corelib/plugin \
-	${.CURDIR:H}/src/corelib/kernel ${.CURDIR:H}/src/3rdparty/md5
+	${.CURDIR:H}/src/corelib/kernel ${.CURDIR:H}/src/3rdparty/md5 \
+	${.CURDIR:H}/src/3rdparty/md4 ${.CURDIR:H}/src/3rdparty/sha1 \
+	${.CURDIR:H}/src/script
+
 CXXFLAGS+=-I${.CURDIR:H}/mkspecs/freebsd-g++
 
 .for s in src/corelib/arch/generic src/global src/tools src/kernel src/codecs \
-		src/3rdparty/md5 include/QtCore include
+		src/3rdparty/md5 src/3rdparty/md4 src/3rdparty/sha1 \
+		src/script include/QtCore include
 CXXFLAGS+=-I${.CURDIR:H}/$s
 .endfor
 
@@ -35,13 +40,13 @@ CXXFLAGS+=-DQT_NO_TEXTCODEC -DQT_NO_UNICODETABLES -DQT_NO_COMPONENT \
 # -DHAVE_QCONFIG_CPP
 
 PROG_CXX=	qmake-qt4
-BINDIR=	${PREFIX}/bin
-SHAREDIR=${PREFIX}/share/qt4
+BINDIR=		${PREFIX}/bin
+SHAREDIR= 	${PREFIX}/share/qt4
 
 ${SHAREDIR}:
-	mkdir -p "$@"
+	mkdir -p "$@/mkspecs"
 
 beforeinstall: ${SHAREDIR}
-	cp -Rp ${.CURDIR:H}/mkspecs ${SHAREDIR}
+	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}/
 
 .include <bsd.prog.mk>

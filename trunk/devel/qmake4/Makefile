@@ -1,22 +1,20 @@
-# New ports collection makefile for:	qmake-4
-# Date created:				Tue Jul 12 16:04:29 UTC 2005
-# Whom:					lofi@freebsd.org,
-#					mi@aldan.algebra.com
 #
-# $MidnightBSD$
-# $FreeBSD: ports/devel/qmake4/Makefile,v 1.3 2007/02/06 12:49:16 lofi Exp $
+# $MidnightBSD: ports/devel/qmake4/Makefile,v 1.11 2007/09/02 06:23:21 lofi Exp $
+#
 
 PORTNAME=	qmake
-PORTVERSION=	4.2.2
+PORTVERSION=	${QT4_VERSION}
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
+PKGNAMEPREFIX=	qt4-
 DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
 DIST_SUBDIR=	KDE
-LATEST_LINK=	qmake4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
+LICENSE=	gpl2
 
+QT_NONSTANDARD=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
@@ -33,7 +31,10 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	'${DISTNAME}/src/corelib/global' \
 	'${DISTNAME}/src/corelib/plugin' \
 	'${DISTNAME}/src/corelib/kernel' \
-	'${DISTNAME}/src/3rdparty/md5'
+	'${DISTNAME}/src/script' \
+	'${DISTNAME}/src/3rdparty/md4' \
+	'${DISTNAME}/src/3rdparty/md5' \
+	'${DISTNAME}/src/3rdparty/sha1'
 
 .if !defined(NOPORTDOCS)
 EXTRACT_AFTER_ARGS+='${DISTNAME}/doc/html/qmake*'
@@ -53,8 +54,8 @@ post-patch:
 		-e 's|release|release thread|' \
 		-e 's|-pthread -D_THREAD_SAFE|${PTHREAD_CFLAGS}|' \
 		-e 's|-pthread|${PTHREAD_LIBS}|' \
-		-e 's|uic|uic4|' \
-		-e 's|moc|moc4|' \
+		-e 's|uic|uic-qt4|' \
+		-e 's|moc|moc-qt4|' \
 		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf \
 		${WRKSRC}/../mkspecs/freebsd-g++34/qmake.conf
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
@@ -66,4 +67,12 @@ do-configure:
 	${ECHO} '/* empty */' > ${WRKSRC}/qconfig.h
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/../include/QtCore/qconfig.h
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+.include "${.CURDIR}/../../Mk/bsd.qt.mk"
+
+
+.if ${ARCH} == "amd64"
+CXXFLAGS+=	-fno-gcse
+.endif
+
+.include <bsd.port.post.mk>
