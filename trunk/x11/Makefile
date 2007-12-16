@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.45 2007/11/05 19:26:26 ctriv Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.46 2007/11/06 04:41:38 ctriv Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -24,6 +24,7 @@
     SUBDIR += glproto
     SUBDIR += gnome-applets
     SUBDIR += gnome-desktop
+    SUBDIR += gnome-desktop-reference
     SUBDIR += gnome-menus
     SUBDIR += gnome-panel
     SUBDIR += gnome-session
