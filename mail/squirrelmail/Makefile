@@ -3,11 +3,11 @@
 # Whom: 				Simon Dick <simond@irrelevant.org>
 #
 # $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.4 2007/08/14 05:50:22 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.5 2007/11/16 13:17:39 laffer1 Exp $
 #
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.11
+PORTVERSION=	1.4.13
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
