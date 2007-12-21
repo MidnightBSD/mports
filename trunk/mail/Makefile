@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.36 2007/10/31 18:26:17 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.37 2007/11/08 16:33:38 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -6,6 +6,7 @@
     SUBDIR += abook
     SUBDIR += addresses
     SUBDIR += addresses-goodies
+    SUBDIR += alpine
     SUBDIR += cclient
     SUBDIR += courier
     SUBDIR += courier-imap
