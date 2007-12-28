@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # $FreeBSD: ports/security/clamav/files/clamav-milter.in,v 1.4 2007/06/05 14:22:46 garga Exp $
+# $MidnightBSD$
 #
 
 # PROVIDE: clamav-milter
@@ -36,7 +37,7 @@ start_precmd()
 	fi
 	rc_flags="--pidfile ${pidfile} ${flags:-$clamav_milter_flags} $clamav_milter_socket"
 	
-	if checkyesno clamav_clamd_enable; then
+	if checkyesno clamav_clamd_enable && [ "x$clamav_clamd_socket" != "x" ]; then
 		echo -n "Waiting for clamd socket.. "
 		i=${clamav_milter_socktimeout}
 		while [ $i -ne 0 ]
