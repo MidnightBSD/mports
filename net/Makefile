@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.45 2007/11/08 02:40:56 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.46 2007/11/10 01:48:53 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -10,6 +10,7 @@
     SUBDIR += fping
     SUBDIR += freeradius
     SUBDIR += gnet2
+    SUBDIR += ilbc
     SUBDIR += kdenetwork3
     SUBDIR += libdnet
     SUBDIR += libnet
