@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.18 2007/12/21 15:07:53 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.19 2007/12/28 02:25:59 laffer1 Exp $
 #
 
     COMMENT = Editors
@@ -9,6 +9,7 @@
     SUBDIR += emacs
     SUBDIR += etoile-typewriter
     SUBDIR += gedit
+    SUBDIR += gedit-plugins
     SUBDIR += impress
     SUBDIR += jedit
     SUBDIR += joe
