@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.33 2007/12/06 02:59:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.34 2007/12/28 04:14:41 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -33,6 +33,7 @@
     SUBDIR += linux-pango
     SUBDIR += open-motif
     SUBDIR += pango
+    SUBDIR += py-gnome2
     SUBDIR += py-gtk2
     SUBDIR += qt33
     SUBDIR += renaissance
