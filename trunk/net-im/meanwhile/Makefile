@@ -2,7 +2,7 @@
 # Date created:		24 June 2004
 # Whom:		 	Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.1 2007/05/07 03:01:42 laffer1 Exp $
 # $FreeBSD: ports/net-im/meanwhile/Makefile,v 1.25 2007/01/28 09:07:42 kris Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source implementation of the Lotus Sametime protocol
+LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
