@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.176 2007/12/06 03:55:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.177 2007/12/28 04:31:40 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -202,6 +202,7 @@
     SUBDIR += py-dbus
     SUBDIR += py-fileutils
     SUBDIR += py-gobject
+    SUBDIR += py-orbit
     SUBDIR += qmake
     SUBDIR += qmake4
     SUBDIR += re2c
