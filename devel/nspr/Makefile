@@ -2,13 +2,12 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/nspr/Makefile,v 1.2 2006/09/25 16:34:09 archite Exp $
+# $MidnightBSD: mports/devel/nspr/Makefile,v 1.3 2007/05/06 18:42:45 ctriv Exp $
 # $FreeBSD: ports/devel/nspr/Makefile,v 1.25 2006/07/23 17:21:54 marcus Exp $
 #
 
 PORTNAME=	nspr
-PORTVERSION=	4.6.1
-PORTREVISION=	2
+PORTVERSION=	4.6.7
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	nspr/releases/v${PORTVERSION}/src
@@ -30,6 +29,14 @@ MAKE_ENV=	DIST=${WRKSRC}/dist
 
 LIBS=		libnspr4.so.1 libplc4.so.1 libplds4.so.1
 
+.include <bsd.port.pre.mk>
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},g ; s,echo aout,echo elf,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
+	@${REINPLACE_CMD} -e 's|pthread_cond_wait|_pthread_cond_wait|g' \
+		${WRKSRC}/../pr/src/md/unix/pthreads_user.c \
+		${WRKSRC}/../pr/src/pthreads/ptsynch.c
+
 do-install:
 	${MKDIR} ${PREFIX}/include/nspr
 	${TAR} -C ${WRKSRC}/dist/include --dereference -cf - . | \
@@ -44,7 +51,7 @@ do-install:
 .endfor
 
 prtests:
-	${GMAKE} -C ${WRKSRC}/pr/tests
+	env PTHREAD_LIBS="${PTHREAD_LIBS}" ${GMAKE} -C ${WRKSRC}/pr/tests
 	${LN} -sf libmy.so.1 ${WRKSRC}/pr/tests/dll/libmy.so
 	cd ${WRKSRC}/pr/tests && ../../../pr/tests/runtests.sh
 
@@ -60,7 +67,7 @@ libtests:
 
 test: libtests prtests
 
-#.if defined(PARALLEL_PACKAGE_BUILD)
+#.if defined(PACKAGE_BUILDING)
 #post-build: test
 #.else
 post-build:
@@ -70,4 +77,4 @@ post-build:
 	#
 #.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
