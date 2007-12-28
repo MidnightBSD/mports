@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.46 2007/11/10 01:48:53 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.47 2007/12/28 21:52:14 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -31,6 +31,7 @@
     SUBDIR += openldap23-server
     SUBDIR += openmpi
     SUBDIR += openslp
+    SUBDIR += ortp
     SUBDIR += p5-IO-INET6
     SUBDIR += p5-IP-Country
     SUBDIR += p5-Net
