@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.17 2007/10/12 22:49:14 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.18 2007/12/21 15:07:53 laffer1 Exp $
 #
 
     COMMENT = Editors
@@ -17,6 +17,7 @@
     SUBDIR += manedit
     SUBDIR += mg
     SUBDIR += nano
+    SUBDIR += nvi-devel
     SUBDIR += pico
     SUBDIR += pico-alpine
     SUBDIR += staroffice70
