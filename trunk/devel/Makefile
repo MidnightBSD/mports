@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.177 2007/12/28 04:31:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.178 2007/12/28 04:45:48 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -51,6 +51,7 @@
     SUBDIR += glade3
     SUBDIR += glib12
     SUBDIR += glib20
+    SUBDIR += glib20-reference
     SUBDIR += glibmm
     SUBDIR += gmake
     SUBDIR += gnome-build
