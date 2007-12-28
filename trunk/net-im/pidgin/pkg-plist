@@ -46,6 +46,7 @@ include/pidgin/gtkstatusbox.h
 include/pidgin/gtkthemes.h
 include/pidgin/gtkutils.h
 include/pidgin/gtkwhiteboard.h
+include/pidgin/minidialog.h
 include/pidgin/pidgin.h
 %%CAP%%lib/pidgin/cap.la
 %%CAP%%lib/pidgin/cap.so
@@ -121,6 +122,7 @@ share/gnome/pixmaps/pidgin/dialogs/64/mail.png
 share/gnome/pixmaps/pidgin/dialogs/64/question.png
 share/gnome/pixmaps/pidgin/dialogs/64/warning.png
 share/gnome/pixmaps/pidgin/emblems/16/aol-client.png
+share/gnome/pixmaps/pidgin/emblems/16/birthday.png
 share/gnome/pixmaps/pidgin/emblems/16/blocked.png
 share/gnome/pixmaps/pidgin/emblems/16/bot.png
 share/gnome/pixmaps/pidgin/emblems/16/external.png
@@ -132,6 +134,7 @@ share/gnome/pixmaps/pidgin/emblems/16/half-operator.png
 share/gnome/pixmaps/pidgin/emblems/16/hiptop.png
 share/gnome/pixmaps/pidgin/emblems/16/male.png
 share/gnome/pixmaps/pidgin/emblems/16/mobile.png
+share/gnome/pixmaps/pidgin/emblems/16/music.png
 share/gnome/pixmaps/pidgin/emblems/16/not-authorized.png
 share/gnome/pixmaps/pidgin/emblems/16/operator.png
 share/gnome/pixmaps/pidgin/emblems/16/qq-member.png
@@ -385,6 +388,8 @@ share/gnome/pixmaps/pidgin/status/11/busy.png
 share/gnome/pixmaps/pidgin/status/11/chat.png
 share/gnome/pixmaps/pidgin/status/11/extended-away.png
 share/gnome/pixmaps/pidgin/status/11/invisible.png
+share/gnome/pixmaps/pidgin/status/11/log-in.png
+share/gnome/pixmaps/pidgin/status/11/log-out.png
 share/gnome/pixmaps/pidgin/status/11/offline.png
 share/gnome/pixmaps/pidgin/status/11/person.png
 share/gnome/pixmaps/pidgin/status/11/rtl/extended-away.png
@@ -585,12 +590,11 @@ share/gnome/pixmaps/purple/buddy_icons/qq/qq_96.png
 share/gnome/pixmaps/purple/buddy_icons/qq/qq_97.png
 share/gnome/pixmaps/purple/buddy_icons/qq/qq_98.png
 share/gnome/pixmaps/purple/buddy_icons/qq/qq_99.png
-share/icons/hicolor/16x16/apps/pidgin.png
-share/icons/hicolor/22x22/apps/pidgin.png
-share/icons/hicolor/24x24/apps/pidgin.png
-share/icons/hicolor/32x32/apps/pidgin.png
-share/icons/hicolor/48x48/apps/pidgin.png
-share/icons/hicolor/scalable/apps/pidgin.svg
+share/gnome/icons/hicolor/16x16/apps/pidgin.png
+share/gnome/icons/hicolor/22x22/apps/pidgin.png
+share/gnome/icons/hicolor/24x24/apps/pidgin.png
+share/gnome/icons/hicolor/32x32/apps/pidgin.png
+share/gnome/icons/hicolor/48x48/apps/pidgin.png
 @dirrm share/gnome/pixmaps/purple/buddy_icons/qq
 @dirrm share/gnome/pixmaps/purple/buddy_icons
 @dirrm share/gnome/pixmaps/purple
@@ -676,6 +680,7 @@ include/libpurple/prefs.h
 include/libpurple/privacy.h
 include/libpurple/proxy.h
 include/libpurple/prpl.h
+include/libpurple/purple.h
 include/libpurple/request.h
 include/libpurple/roomlist.h
 include/libpurple/savedstatuses.h
@@ -762,15 +767,16 @@ lib/purple-2/statenotify.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/Purple.pm
 %%DBUS%%lib/libpurple-client.la
 %%DBUS%%lib/libpurple-client.so
-%%DBUS%%lib/libpurple-client.so.2
+%%DBUS%%lib/libpurple-client.so.3
 lib/libpurple.la
 lib/libpurple.so
-lib/libpurple.so.2
+lib/libpurple.so.3
 libdata/pkgconfig/purple.pc
 share/aclocal/purple.m4
 share/gnome/applications/pidgin.desktop
 share/gnome/purple/ca-certs/Equifax_Secure_CA.pem
 share/gnome/purple/ca-certs/GTE_CyberTrust_Global_Root.pem
+share/gnome/purple/ca-certs/Microsoft_Secure_Server_Authority.pem
 share/gnome/purple/ca-certs/Verisign_Class3_Primary_CA.pem
 share/gnome/purple/ca-certs/Verisign_RSA_Secure_Server_CA.pem
 share/gnome/sounds/purple/alert.wav
@@ -841,6 +847,7 @@ share/locale/te/LC_MESSAGES/pidgin.mo
 share/locale/th/LC_MESSAGES/pidgin.mo
 share/locale/tr/LC_MESSAGES/pidgin.mo
 share/locale/uk/LC_MESSAGES/pidgin.mo
+share/locale/ur/LC_MESSAGES/pidgin.mo
 share/locale/vi/LC_MESSAGES/pidgin.mo
 share/locale/xh/LC_MESSAGES/pidgin.mo
 share/locale/zh_CN/LC_MESSAGES/pidgin.mo
@@ -854,6 +861,8 @@ share/locale/zh_TW/LC_MESSAGES/pidgin.mo
 @dirrmtry share/locale/zh_CN
 @dirrmtry share/locale/xh/LC_MESSAGES
 @dirrmtry share/locale/xh
+@dirrmtry share/locale/ur/LC_MESSAGES
+@dirrmtry share/locale/ur
 @dirrmtry share/locale/uk/LC_MESSAGES
 @dirrmtry share/locale/uk
 @dirrmtry share/locale/te/LC_MESSAGES

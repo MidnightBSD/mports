@@ -2,11 +2,11 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.1 2007/05/07 05:05:53 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.2 2007/10/17 04:35:40 laffer1 Exp $
 #
 
 PORTNAME=	pidgin
-PORTVERSION=	2.2.1
+PORTVERSION=	2.3.1
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,10 +32,12 @@ DISTNAME=	pidgin-${PORTVERSION}
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME?=	gnomeprefix gnomehack intlhack glib20
+INSTALL_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
-		--with-dynamic_prpls=${PRPL_MODULES}
+		--with-dynamic_prpls=${PRPL_MODULES} \
+		--datarootdir=${FAKE_DESTDIR}${PREFIX}/share
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
