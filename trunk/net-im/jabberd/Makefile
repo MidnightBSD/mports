@@ -2,12 +2,12 @@
 # Date created:				29 December 2003
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.2 2007/12/28 20:38:44 laffer1 Exp $
 # $FreeBSD: ports/net-im/jabberd/Makefile,v 1.51 2007/10/21 20:56:17 mm Exp $
 #
 
 PORTNAME=	jabberd
-PORTVERSION=	2.1.18
+PORTVERSION=	2.1.20
 CATEGORIES=	net-im
 MASTER_SITES=	http://ftp.xiaoka.com/jabberd2/releases/
 DIST_SUBDIR=	jabber
