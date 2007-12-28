@@ -2,25 +2,28 @@
 # Date created:		15 July 2002
 # Whom:			markun@onohara.to
 #
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.8 2007/10/19 19:07:00 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.9 2007/11/06 04:51:03 laffer1 Exp $
 # $FreeBSD: ports/security/clamav/Makefile,v 1.95 2007/03/16 19:16:32 garga Exp $
 #
 
 PORTNAME=	clamav
-PORTVERSION=	0.91.2
-PORTREVISION=	1
+PORTVERSION=	0.92
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
+LICENSE=	agg
+# gpl, lgpl, a "freeware license for unrar code that is not that free..."
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
-RUN_DEPENDS=	lha:${PORTSDIR}/archivers/lha \
-		arj:${PORTSDIR}/archivers/arj \
-		arc:${PORTSDIR}/archivers/arc
 
-OPTIONS=	MILTER "Compile the milter interface" Off \
+OPTIONS=	ARC "Enable arch archives support" On \
+		ARJ "Enable arj archives support" On \
+		LHA "Enable lha archives support" On \
+		UNZOO "Enable zoo archives support" On \
+		UNRAR "Enable rar archives support" On \
+		MILTER "Compile the milter interface" Off \
 		LDAP "libmilter was built with LDAP" Off \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
@@ -99,6 +102,25 @@ PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 # Only works with -lthr
 PTHREAD_LIBS=	-lthr
 
+.if defined(WITH_ARC)
+RUN_DEPENDS+=	arc:${PORTSDIR}/archivers/arc
+.endif
+.if defined(WITH_ARJ)
+RUN_DEPENDS+=	arj:${PORTSDIR}/archivers/arj
+.endif
+.if defined(WITH_LHA)
+RUN_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
+.endif
+.if defined(WITH_UNZOO)
+RUN_DEPENDS+=	unzoo:${PORTSDIR}/archivers/unzoo
+.endif
+.if defined(WITH_UNRAR)
+PLIST_SUB+=	UNRAR=""
+.else
+PLIST_SUB+=	UNRAR="@comment "
+CONFIGURE_ARGS+=	--disable-unrar
+.endif
+
 .if defined(WITH_MILTER)
 USE_RC_SUBR+=	clamav-milter
 .if defined(WITH_LDAP) && exists(${LOCALBASE}/lib/libldap.so)
@@ -131,17 +153,25 @@ post-patch:
 	@${REINPLACE_CMD} -E 's,^(pkgconfigdir = ).*$$,\1$$(prefix)/libdata/pkgconfig,g' \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
-		${WRKSRC}/libclamav/unrar/unrar.c
+		${WRKSRC}/libclamunrar/unrar.c
 	@${REINPLACE_CMD} ${SED_CONF} \
 		${WRKSRC}/etc/clamd.conf \
 		${WRKSRC}/etc/freshclam.conf
 
+pre-install:
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
+	@${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
+.for c in clamd freshclam
+	@[ -f ${PREFIX}/etc/${c}.conf ] || \
+		${CP} ${PREFIX}/etc/${c}.conf.default ${PREFIX}/etc/${c}.conf
+.endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/html
 	@${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 .endif
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
