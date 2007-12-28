@@ -2,12 +2,12 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/nss/Makefile,v 1.3 2007/04/08 04:56:25 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.4 2007/04/08 05:00:22 laffer1 Exp $
 # $FreeBSD: ports/security/nss/Makefile,v 1.33 2006/09/03 00:20:58 ahze Exp $
 #
 
 PORTNAME=	nss
-PORTVERSION=	3.11.4
+PORTVERSION=	3.11.7
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
@@ -20,7 +20,7 @@ LIB_DEPENDS=	nspr4.1:${PORTSDIR}/devel/nspr
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/mozilla/security/nss
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 MAKE_ENV=	BSD_LDOPTS="${PTHREAD_LIBS} -L${LOCALBASE}/lib" \
