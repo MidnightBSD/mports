@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.68 2007/11/14 20:30:16 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.69 2007/12/28 20:32:33 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -25,6 +25,7 @@
     SUBDIR += gnupg1
     SUBDIR += gnutls
     SUBDIR += gpgme
+    SUBDIR += gsasl
     SUBDIR += l0phtcrack
     SUBDIR += libassuan
     SUBDIR += libgcrypt
