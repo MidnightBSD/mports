@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.24 2007/12/06 17:59:15 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.25 2007/12/28 04:10:58 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -17,6 +17,7 @@
     SUBDIR += etoile-systemconfig
     SUBDIR += etoile-trackerkit
     SUBDIR += etoile-ui
+    SUBDIR += glabels
     SUBDIR += gnome-utils
     SUBDIR += gnustep-notebook
     SUBDIR += gucharmap

@@ -1,0 +1,83 @@
+bin/glabels
+bin/glabels-batch
+include/libglabels/libglabels.h
+include/libglabels/paper.h
+include/libglabels/template.h
+include/libglabels/xml-paper.h
+include/libglabels/xml-template.h
+include/libglabels/xml.h
+lib/libglabels.a
+lib/libglabels.la
+lib/libglabels.so
+lib/libglabels.so.1
+share/gnome/application-registry/glabels.applications
+@exec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
+share/gnome/applications/glabels.desktop
+share/gnome/glabels/dtd/glabels-2.0.dtd
+share/gnome/glabels/glade/object-editor.glade
+share/gnome/glabels/glade/prefs-dialog.glade
+share/gnome/glabels/glade/template-designer.glade
+share/gnome/glabels/templates/avery-iso-templates.xml
+share/gnome/glabels/templates/avery-other-templates.xml
+share/gnome/glabels/templates/avery-us-templates.xml
+share/gnome/glabels/templates/misc-iso-templates.xml
+share/gnome/glabels/templates/misc-other-templates.xml
+share/gnome/glabels/templates/misc-us-templates.xml
+share/gnome/glabels/templates/paper-sizes.xml
+share/gnome/glabels/templates/zweckform-iso-templates.xml
+share/gnome/glabels/ui/glabels-ui.xml
+share/gnome/help/glabels/C/figures/glabels-template-cd.png
+share/gnome/help/glabels/C/figures/glabels-template-label.png
+share/gnome/help/glabels/C/figures/glabels-template-layout.png
+share/gnome/help/glabels/C/figures/main-window-empty.png
+share/gnome/help/glabels/C/figures/merge-ex1-1.png
+share/gnome/help/glabels/C/figures/merge-ex1-2.png
+share/gnome/help/glabels/C/figures/merge-ex1-3.png
+share/gnome/help/glabels/C/figures/merge-ex1-4.png
+share/gnome/help/glabels/C/figures/merge-ex2-1.png
+share/gnome/help/glabels/C/figures/merge-ex2-2.png
+share/gnome/help/glabels/C/figures/merge-ex2-3.png
+share/gnome/help/glabels/C/figures/merge-ex2-4.png
+share/gnome/help/glabels/C/figures/object-editor-sidebar.png
+share/gnome/help/glabels/C/figures/print-copies.png
+share/gnome/help/glabels/C/figures/print-merge.png
+share/gnome/help/glabels/C/glabels.xml
+share/gnome/help/glabels/C/legal.xml
+share/gnome/mime-info/glabels.keys
+share/gnome/mime-info/glabels.mime
+share/gnome/omf/glabels/glabels-C.omf
+share/gnome/pixmaps/glabels/ex-1layout.png
+share/gnome/pixmaps/glabels/ex-2layouts.png
+share/gnome/pixmaps/glabels/ex-cd-size.png
+share/gnome/pixmaps/glabels/ex-rect-size.png
+share/gnome/pixmaps/glabels/ex-round-size.png
+share/gnome/pixmaps/glabels/glabels-about-logo.png
+share/gnome/pixmaps/glabels/glabels-splash.png
+share/gnome/pixmaps/glabels-application-x-glabels.png
+share/gnome/pixmaps/glabels.png
+share/locale/cs/LC_MESSAGES/glabels.mo
+share/locale/de/LC_MESSAGES/glabels.mo
+share/locale/es/LC_MESSAGES/glabels.mo
+share/locale/fr/LC_MESSAGES/glabels.mo
+share/locale/it/LC_MESSAGES/glabels.mo
+share/locale/ja/LC_MESSAGES/glabels.mo
+share/locale/pl/LC_MESSAGES/glabels.mo
+share/locale/pt_BR/LC_MESSAGES/glabels.mo
+share/locale/ru/LC_MESSAGES/glabels.mo
+share/locale/zh_TW.Big5/LC_MESSAGES/glabels.mo
+share/mime/application/x-glabels.xml
+share/mime/packages/glabels.xml
+@dirrm share/gnome/pixmaps/glabels
+@dirrm share/gnome/omf/glabels
+@dirrm share/gnome/help/glabels/C/figures
+@dirrm share/gnome/help/glabels/C
+@dirrm share/gnome/help/glabels
+@dirrm share/gnome/glabels/ui
+@dirrm share/gnome/glabels/templates
+@dirrm share/gnome/glabels/glade
+@dirrm share/gnome/glabels/dtd
+@dirrm share/gnome/glabels
+@dirrm include/libglabels
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
