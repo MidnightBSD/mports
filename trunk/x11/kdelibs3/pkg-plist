@@ -59,7 +59,8 @@ bin/make_driver_db_lpr
 bin/makekdewidgets
 bin/meinproc
 bin/preparetips
-etc/rc.d/kdelibs.sh
+bin/start_kdeinit
+bin/start_kdeinit_wrapper
 etc/xdg/menus/kde-applications.menu
 include/arts/artskde.h
 include/arts/kartsdispatcher.h
@@ -144,7 +145,6 @@ include/kabc/resource.h
 include/kabc/resourcedir.h
 include/kabc/resourcefile.h
 include/kabc/resourceldapkio.h
-include/kabc/resourcenet.h
 include/kabc/resourceselectdialog.h
 include/kabc/secrecy.h
 include/kabc/sortmode.h
@@ -642,6 +642,7 @@ include/kstringhandler.h
 include/kstringvalidator.h
 include/kstyle.h
 include/ksvgiconengine.h
+include/kswitchlanguagedialog.h
 include/ksycoca.h
 include/ksycocaentry.h
 include/ksycocatype.h
@@ -771,9 +772,6 @@ lib/kde3/kabc_file.so
 lib/kde3/kabc_ldapkio.a
 lib/kde3/kabc_ldapkio.la
 lib/kde3/kabc_ldapkio.so
-lib/kde3/kabc_net.a
-lib/kde3/kabc_net.la
-lib/kde3/kabc_net.so
 lib/kde3/kabcformat_binary.a
 lib/kde3/kabcformat_binary.la
 lib/kde3/kabcformat_binary.so
@@ -1008,10 +1006,6 @@ lib/libkabc_ldapkio.a
 lib/libkabc_ldapkio.la
 lib/libkabc_ldapkio.so
 lib/libkabc_ldapkio.so.1
-lib/libkabc_net.a
-lib/libkabc_net.la
-lib/libkabc_net.so
-lib/libkabc_net.so.1
 lib/libkatepartinterfaces.a
 lib/libkatepartinterfaces.la
 lib/libkatepartinterfaces.so
@@ -1203,6 +1197,7 @@ share/apps/katepart/scripts/script-indent-c-char.js
 share/apps/katepart/scripts/script-indent-c-newline.js
 share/apps/katepart/scripts/sort.js
 share/apps/katepart/syntax/abc.xml
+share/apps/katepart/syntax/actionscript.xml
 share/apps/katepart/syntax/ada.xml
 share/apps/katepart/syntax/ahdl.xml
 share/apps/katepart/syntax/alert.xml
@@ -1347,6 +1342,8 @@ share/apps/kdeprint/filters/enscript.desktop
 share/apps/kdeprint/filters/enscript.xml
 share/apps/kdeprint/filters/imagetops.desktop
 share/apps/kdeprint/filters/imagetops.xml
+share/apps/kdeprint/filters/pdf2ps.desktop
+share/apps/kdeprint/filters/pdf2ps.xml
 share/apps/kdeprint/filters/pdfwrite.desktop
 share/apps/kdeprint/filters/pdfwrite.xml
 share/apps/kdeprint/filters/poster.desktop
@@ -1645,6 +1642,7 @@ share/apps/ksgmltools2/customization/de/entities/underArtisticLicense.docbook
 share/apps/ksgmltools2/customization/de/entities/underBSDLicense.docbook
 share/apps/ksgmltools2/customization/de/entities/underFDL.docbook
 share/apps/ksgmltools2/customization/de/entities/underGPL.docbook
+share/apps/ksgmltools2/customization/de/entities/underLGPL.docbook
 share/apps/ksgmltools2/customization/de/entities/underX11License.docbook
 share/apps/ksgmltools2/customization/de/entities/update-doc.docbook
 share/apps/ksgmltools2/customization/de/lang.entities
@@ -1791,6 +1789,7 @@ share/apps/ksgmltools2/customization/fr/entities/underArtisticLicense.docbook
 share/apps/ksgmltools2/customization/fr/entities/underBSDLicense.docbook
 share/apps/ksgmltools2/customization/fr/entities/underFDL.docbook
 share/apps/ksgmltools2/customization/fr/entities/underGPL.docbook
+share/apps/ksgmltools2/customization/fr/entities/underLGPL.docbook
 share/apps/ksgmltools2/customization/fr/entities/underX11License.docbook
 share/apps/ksgmltools2/customization/fr/entities/update-doc.docbook
 share/apps/ksgmltools2/customization/fr/lang.entities
@@ -5076,7 +5075,6 @@ share/icons/crystalsvg/scalable/mimetypes/widget_doc.svgz
 share/icons/crystalsvg/scalable/mimetypes/wordprocessing.svgz
 share/icons/crystalsvg/scalable/mimetypes/zip.svgz
 share/icons/default.kde
-share/icons/hicolor/index.theme
 share/locale/all_languages
 share/mimelnk/all/all.desktop
 share/mimelnk/all/allfiles.desktop
@@ -5255,6 +5253,7 @@ share/mimelnk/application/x-webarchive.desktop
 share/mimelnk/application/x-x509-ca-cert.desktop
 share/mimelnk/application/x-xliff.desktop
 share/mimelnk/application/x-zerosize.desktop
+share/mimelnk/application/x-zip-compressed.desktop
 share/mimelnk/application/x-zip.desktop
 share/mimelnk/application/x-zoo.desktop
 share/mimelnk/application/xhtml+xml.desktop
@@ -5282,6 +5281,7 @@ share/mimelnk/audio/x-mpegurl.desktop
 share/mimelnk/audio/x-ms-wma.desktop
 share/mimelnk/audio/x-musepack.desktop
 share/mimelnk/audio/x-oggflac.desktop
+share/mimelnk/audio/x-pn-realaudio-plugin.desktop
 share/mimelnk/audio/x-pn-realaudio.desktop
 share/mimelnk/audio/x-scpls.desktop
 share/mimelnk/audio/x-speex.desktop
@@ -5438,7 +5438,6 @@ share/services/knotify.desktop
 share/services/kresources/kabc/dir.desktop
 share/services/kresources/kabc/file.desktop
 share/services/kresources/kabc/ldapkio.desktop
-share/services/kresources/kabc/net.desktop
 share/services/kresources/kabc_manager.desktop
 share/services/kspell_aspell.desktop
 share/services/kspell_ispell.desktop
