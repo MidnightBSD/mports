@@ -3,12 +3,12 @@
 # Whom:					Frerich Raabe <frerich.raabe@gmx.de>
 #
 # $FreeBSD: ports/misc/kdehier/Makefile,v 1.20 2006/09/12 23:26:33 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/kdehier/Makefile,v 1.1 2006/11/24 18:29:58 laffer1 Exp $
 #
 
 PORTNAME=	kdehier
 PORTVERSION=	1.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	misc kde
 MASTER_SITES=	# none
 DISTFILES=	# none
