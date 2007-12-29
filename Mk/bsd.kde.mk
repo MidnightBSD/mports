@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.5 2007/12/29 22:10:33 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.6 2007/12/29 22:15:49 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -95,7 +95,7 @@ QTCPPFLAGS+=		-D_GETOPT_H		# added to work around broken getopt.h #inc
 CONFIGURE_ARGS+=--with-extra-libs="${LOCALBASE}/lib" \
 				--with-extra-includes="${LOCALBASE}/include"
 CONFIGURE_ENV+=	MOC="${MOC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}" \
-				QTDIR="${QT_PREFIX}" KDEDIR="${KDE_PREFIX}"
+				QTDIR="${QT_CVS_PREFIX}" KDEDIR="${KDE_CVS_PREFIX}"
 .endif
 
 .elif ${USE_QT_VER} == 3
