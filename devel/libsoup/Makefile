@@ -2,14 +2,13 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.1 2007/11/08 00:09:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.2 2007/11/08 00:09:57 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.53 2007/07/01 08:56:12 novel Exp $
 #   $MCom: ports/devel/libsoup/Makefile,v 1.36 2006/04/13 07:52:33 bland Exp $
 #
 
 PORTNAME=	libsoup
-PORTVERSION=	2.2.100
-PORTREVISION?=	1
+PORTVERSION=	2.2.104
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
