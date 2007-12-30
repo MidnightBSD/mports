@@ -2,19 +2,19 @@
 # Date created:        16 March 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.2 2006/09/25 16:34:08 archite Exp $
-# $FreeBSD: ports/devel/gettext/Makefile,v 1.74 2006/02/23 10:35:39 ade Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 #
 
 PORTNAME=	gettext
-PORTVERSION=	0.14.5
-PORTREVISION=	2
+PORTVERSION=	0.16.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU gettext package
+LICENSE=	gpl2
 
 USE_ICONV=	yes
 LIBTOOLFILES=	autoconf-lib-link/configure gettext-runtime/configure \
@@ -29,18 +29,10 @@ CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
 		CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		EMACS="no"
-CONFIGURE_ARGS=	--disable-csharp \
-		--mandir=${PREFIX}/man
-INSTALLS_SHLIB=	yes
+CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp
+USE_LDCONFIG=	yes
 
-.if !defined(WITHOUT_GETTEXT_OPTIONS)
-OPTIONS=	EXAMPLES "install example files" off \
-		HTMLMAN "install man pages in HTML format" off
-.endif
-PLIST=		${WRKDIR}/plist
-PLISTU=		${WRKDIR}/plist-unsorted
-PLIST_SUB=	LOCALBASE=${LOCALBASE} X11BASE=${X11BASE} \
-		VERSION=${PORTVERSION}
+PLIST_SUB=	VERSION=${PORTVERSION}
 
 MAN1=		autopoint.1 gettext.1 gettextize.1 msgattrib.1 msgcat.1 \
 		msgcmp.1 msgcomm.1 msgconv.1 msgen.1 msgexec.1 \
@@ -49,9 +41,6 @@ MAN1=		autopoint.1 gettext.1 gettextize.1 msgattrib.1 msgcat.1 \
 MAN3=		bind_textdomain_codeset.3 bindtextdomain.3 dcgettext.3 \
 		dcngettext.3 dgettext.3 dngettext.3 gettext.3 ngettext.3 \
 		textdomain.3
-HTML=		gettext.3 ngettext.3 textdomain.3 \
-		bindtextdomain.3 bind_textdomain_codeset.3
-
 INFO=		autosprintf gettext
 
 .ifdef USE_GETTEXT
@@ -59,7 +48,9 @@ INFO=		autosprintf gettext
 	to "make".  Please unset it and restart the build.
 .endif
 
-.include <bsd.port.pre.mk>
+.if defined (NOPORTDOCS)
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-nodocs
+.endif
 
 pre-extract:
 .if exists(${PREFIX}/bin/kaffe)
@@ -70,6 +61,16 @@ pre-extract:
 	@sleep 5
 .endif
 
+post-patch:
+	@${FIND} ${WRKSRC} -name configure -print | ${XARGS} \
+	    ${REINPLACE_CMD} -e 's|mkdir gmkdir|mkdir|'
+.if defined (NOPORTDOCS)
+.for dir in runtime tools
+	@${REINPLACE_CMD} -e 's|^SUBDIRS = doc|SUBDIRS =|' \
+		${WRKSRC}/gettext-${dir}/Makefile.in
+.endfor
+.endif
+
 post-build:
 .if exists(${PREFIX}/bin/kaffe)
 	-${MV} ${PREFIX}/bin/jar.backup ${PREFIX}/bin/jar
@@ -78,49 +79,12 @@ post-build:
 	@sleep 5
 .endif
 
-pre-install:
-	@${RM} -f ${PLISTU}
-	@${TOUCH} ${PLISTU}
-.if !defined (NOPORTDOCS)
-.for ii in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 foot toc
-	${ECHO_CMD} %%DOCSDIR%%/gettext_${ii}.html >> ${PLISTU}
-.endfor
-.endif
-.if defined (WITH_HTMLMAN)
-.for ii in ${MAN1} ${HTML}
-	${ECHO_CMD} %%DOCSDIR%%/${ii}.html >> ${PLISTU}
-.endfor
-.endif
-.if defined (WITH_EXAMPLES)
-	cd ${WRKSRC}/gettext-tools && \
-		${FIND} -s examples -type f | ${GREP} -vw examples/po | \
-		${GREP} -v ChangeLog | ${GREP} -v examples/Makefile | \
-		${GREP} -v examples/installpaths.in | \
-		${SED} 's:^:share/doc/gettext/:' >> ${PLISTU} && \
-		${FIND} -d examples -type d | ${GREP} -v examples/po | \
-		${GREP} / | ${SED} -e 's:^:@dirrm share/doc/gettext/:' \
-		>> ${PLISTU}
-.endif
-	@${CAT} ${.CURDIR}/pkg-plist ${PLISTU} | ${GREP} -v ^@ > ${PLIST}
-	@${SORT} -r ${.CURDIR}/pkg-plist ${PLISTU} | ${GREP} ^@dirrm >> ${PLIST}
-	@${GREP} -h ^@ ${.CURDIR}/pkg-plist ${PLISTU} | ${GREP} exec >> ${PLIST}
-
 post-install:
 .for f in po-compat.el po-mode.el
-	${INSTALL_DATA} ${WRKSRC}/gettext-tools/misc/${f} ${PREFIX}/share/emacs/site-lisp
+	@${INSTALL_DATA} ${WRKSRC}/gettext-tools/misc/${f} \
+			 ${PREFIX}/share/emacs/site-lisp
 .endfor
-	${MKDIR} ${X11BASE}/share/locale
-	cd ${WRKSRC}/gettext-tools/doc && make install-info-am
-.if !defined (NOPORTDOCS)
-	cd ${WRKSRC}/gettext-runtime/doc && make install-data
-	cd ${WRKSRC}/gettext-tools/doc && make install-data-local
-.endif
-.if defined (WITH_EXAMPLES)
-	cd ${WRKSRC}/gettext-tools/examples && make install
-.endif
-.if !defined (WITH_HTMLMAN)
-	cd ${WRKSRC}/gettext-runtime/man && make uninstall-html
-	cd ${WRKSRC}/gettext-tools/man && make uninstall-html
-.endif
+	@${MKDIR} ${X11BASE}/share/locale
+	@cd ${WRKSRC}/gettext-tools/doc && make install-info-am
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
