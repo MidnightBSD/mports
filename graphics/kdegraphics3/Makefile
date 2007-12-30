@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.1 2007/01/25 22:20:03 laffer1 Exp $
 #
 
 PORTNAME=	kdegraphics
@@ -38,7 +38,7 @@ USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_GHOSTSCRIPT=yes
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 DO_NOT_COMPILE+=kooka kuickshow libkscan
 
