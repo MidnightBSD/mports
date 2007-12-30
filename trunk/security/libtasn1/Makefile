@@ -2,12 +2,13 @@
 # Date created:		7 Nov 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.1 2007/11/08 00:17:07 laffer1 Exp $
 # $FreeBSD: ports/security/libtasn1/Makefile,v 1.32 2007/07/23 09:36:30 rafan Exp $
 #
 
 PORTNAME=	libtasn1
 PORTVERSION=	0.3.10
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/ \
 		http://josefsson.org/gnutls/releases/libtasn1/
@@ -18,6 +19,7 @@ COMMENT=	ASN.1 structure parser library
 LICENSE=	gpl2
 
 USE_LDCONFIG=	yes
+USE_GETOPT_LONG=      yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
