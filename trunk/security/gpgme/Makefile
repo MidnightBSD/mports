@@ -3,12 +3,11 @@
 # Whom:			teramoto@comm.eng.osaka-u.ac.jp
 #
 # $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.2 2007/08/01 20:29:32 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.3 2007/12/30 01:47:44 laffer1 Exp $
 #
 
 PORTNAME=	gpgme
-PORTVERSION=	1.1.2
-PORTREVISION=	5
+PORTVERSION=	1.1.5
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gpgme
@@ -16,7 +15,7 @@ MASTER_SITE_SUBDIR=	gpgme
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to make access to GnuPG easier
 
-BUILD_DEPENDS=	gpgv:${PORTSDIR}/security/gnupg1 \
+BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg \
 		gpgsm:${PORTSDIR}/security/gnupg
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
@@ -48,6 +47,9 @@ post-patch:
 					${WRKSRC}/${CONFIGURE_SCRIPT} \
 					${WRKSRC}/gpgme/Makefile.in \
 					${WRKSRC}/gpgme/gpgme-config.in
+	@${REINPLACE_CMD} -e 's|^clfilesdir.*|clfilesdir=$$\(libdir\)/common-lisp/gpgme|g' \
+                                        ${WRKSRC}/lang/cl/Makefile.in
+
 .if defined(WITH_PTH)
 .if defined(PTHREAD_LIBS) && ${PTHREAD_LIBS} != "-pthread"
 	@${REINPLACE_CMD} -e 's|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la -lpthread|g' \
