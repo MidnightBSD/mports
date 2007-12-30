@@ -3,12 +3,11 @@
 # Whom:			michaelnottebrock@gmx.net
 #
 # $FreeBSD: ports/security/dirmngr/Makefile,v 1.24 2006/09/22 07:10:30 sergei Exp $
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.1 2007/01/24 19:46:38 laffer1 Exp $
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.2 2007/12/30 01:46:10 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
-PORTVERSION=	0.9.6
-PORTREVISION=	1
+PORTVERSION=	0.9.7
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	alpha/dirmngr
