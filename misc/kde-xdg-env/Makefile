@@ -3,12 +3,12 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/misc/kde-xdg-env/Makefile,v 1.3 2006/06/21 03:34:00 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/kde-xdg-env/Makefile,v 1.1 2006/11/24 18:35:29 laffer1 Exp $
 #
 
 PORTNAME=	xdg
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	misc kde
 MASTER_SITES=	# none
@@ -19,6 +19,7 @@ EXTRACT_SUFX=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Script which hooks into startkde and helps KDE pick up XDG apps/menus
+LICENSE=	unknown
 
 .if defined(KDE_PREFIX)
 PREFIX=		${KDE_PREFIX}
