@@ -2,12 +2,12 @@
 # Date created:				Tue Jan  4 11:45:29 PST 2000
 # Whom:					Cy Schubert (Cy.Schubert@uumail.gov.bc.ca)
 #
-# $MidnightBSD: mports/security/aide/Makefile,v 1.1 2006/10/27 14:49:52 wintellect Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.2 2007/05/13 14:16:48 ctriv Exp $
 # $FreeBSD: ports/security/aide/Makefile,v 1.21 2006/02/23 05:05:38 cy Exp $
 #
 
 PORTNAME=	aide
-PORTVERSION=	0.11
+PORTVERSION=	0.13.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.cs.tut.fi/~rammer/
@@ -15,12 +15,13 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A replacement and extension for Tripwire
+LICENSE=	gpl2
 
 LIB_DEPENDS=	mhash.2:${PORTSDIR}/security/mhash
 
 USE_GMAKE=	yes
 USE_BISON=	yes
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
