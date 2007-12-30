@@ -4,7 +4,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-themes/kdeartwork3/Makefile,v 1.44 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.1 2007/01/20 16:09:59 laffer1 Exp $
 #
 
 PORTNAME=	kdeartwork
@@ -27,19 +27,19 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 
 USE_AUTOTOOLS=  libtool:15
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
 
-.if exists(${X11BASE}/bin/xscreensaver)
+.if exists(${LOCALBASE}/bin/xscreensaver)
 WITH_XS=	yes
-.endif # exists(${X11BASE}/bin/xscreensaver)
+.endif # exists(${LOCALBASE}/bin/xscreensaver)
 
-.if exists(${X11BASE}/share/gnome/control-center-2.0/capplets/screensaver-properties.desktop)
+.if exists(${LOCALBASE}/share/gnome/control-center-2.0/capplets/screensaver-properties.desktop)
 WITH_XSGNOME=	yes
-.endif # exists(${X11BASE}/bin/screensaver-properties-capplet)
+.endif # exists(${LOCALBASE}/bin/screensaver-properties-capplet)
 
 .if defined(WITH_XS) && !defined(WITH_XSGNOME)
 RUN_DEPENDS+=	kxsconfig:${PORTSDIR}/x11/xscreensaver-kde
