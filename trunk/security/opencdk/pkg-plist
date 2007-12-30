@@ -1,0 +1,23 @@
+@comment $FreeBSD: ports/security/opencdk/pkg-plist,v 1.9 2007/02/14 12:09:24 novel Exp $
+bin/opencdk-config
+include/opencdk.h
+lib/libopencdk.a
+lib/libopencdk.la
+lib/libopencdk.so
+lib/libopencdk.so.9
+libdata/pkgconfig/opencdk.pc
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/THANKS
+%%PORTDOCS%%%%DOCSDIR%%/opencdk-api.html
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%EXAMPLESDIR%%/basic.c
+%%EXAMPLESDIR%%/minpg.c
+%%EXAMPLESDIR%%/pub.gpg
+%%EXAMPLESDIR%%/sec-with-pwd.gpg
+%%EXAMPLESDIR%%/sec.gpg
+%%EXAMPLESDIR%%/t-stream.c
+%%EXAMPLESDIR%%/ts.gpg
+%%EXAMPLESDIR%%/wkold.gpg
+@dirrm %%EXAMPLESDIR%%
