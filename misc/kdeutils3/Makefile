@@ -3,7 +3,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeutils3/Makefile,v 1.107 2006/09/12 23:26:33 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.1 2007/01/20 15:37:18 laffer1 Exp $
 #
 
 PORTNAME=	kdeutils
@@ -35,7 +35,7 @@ DO_NOT_COMPILE+=klaptopdaemon kmilo
 CONFIGURE_ENV+=	DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 CONFIGURE_ARGS+=--with-pythondir=${LOCALBASE}
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"

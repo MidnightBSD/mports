@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/sysutils/kdeadmin3/Makefile,v 1.45 2006/09/12 23:26:46 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.1 2007/01/25 21:17:26 laffer1 Exp $
 #
 
 PORTNAME=	kdeadmin
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=  libtool:15
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3
 
 post-patch:
