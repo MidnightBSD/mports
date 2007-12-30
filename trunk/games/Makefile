@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/games/Makefile,v 1.15 2007/10/20 05:40:00 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.16 2007/11/10 01:08:44 laffer1 Exp $
 #
 
     COMMENT = Games
 
     SUBDIR += bass
     SUBDIR += battalion
+    SUBDIR += cowsay
     SUBDIR += doom-data
     SUBDIR += doomlegacy
     SUBDIR += fortunate
