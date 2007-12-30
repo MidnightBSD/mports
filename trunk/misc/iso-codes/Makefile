@@ -2,15 +2,14 @@
 # Date created:			02 April 2005
 # Whom:				Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.2 2007/11/12 01:04:31 laffer1 Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.3 2007/11/12 01:05:03 laffer1 Exp $
 # $FreeBSD: ports/misc/iso-codes/Makefile,v 1.21 2007/07/30 03:59:42 beech Exp $
 #
 
 PORTNAME=	iso-codes
-DISTVERSION=	1.5
+DISTVERSION=	1.7
 CATEGORIES=	misc
-MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/ \
-		http://freebsd.powered.net/distfiles/
+MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists of the country, language and currency iso names
