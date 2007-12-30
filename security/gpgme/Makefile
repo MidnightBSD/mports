@@ -3,12 +3,12 @@
 # Whom:			teramoto@comm.eng.osaka-u.ac.jp
 #
 # $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.1 2007/01/24 17:51:34 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.2 2007/08/01 20:29:32 laffer1 Exp $
 #
 
 PORTNAME=	gpgme
 PORTVERSION=	1.1.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gpgme
@@ -18,11 +18,11 @@ COMMENT=	A library to make access to GnuPG easier
 
 BUILD_DEPENDS=	gpgv:${PORTSDIR}/security/gnupg1 \
 		gpgsm:${PORTSDIR}/security/gnupg
-LIB_DEPENDS=	gpg-error.3:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-gpg=${LOCALBASE}/bin/gpg \
 		--with-gpgsm=${LOCALBASE}/bin/gpgsm \

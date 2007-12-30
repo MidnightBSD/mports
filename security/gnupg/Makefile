@@ -3,11 +3,12 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg/Makefile,v 1.98 2007/01/14 07:27:47 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg/Makefile,v 1.3 2007/01/24 19:33:44 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.4 2007/11/14 20:10:24 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
 PORTVERSION=	2.0.4
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -20,7 +21,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	libassuan>=1.0.1:${PORTSDIR}/security/libassuan
 LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
-		gpg-error:${PORTSDIR}/security/libgpg-error \
+		gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		ksba.17:${PORTSDIR}/security/libksba \
 		pth.20:${PORTSDIR}/devel/pth
 
