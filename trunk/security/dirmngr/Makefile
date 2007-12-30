@@ -3,7 +3,7 @@
 # Whom:			michaelnottebrock@gmx.net
 #
 # $FreeBSD: ports/security/dirmngr/Makefile,v 1.24 2006/09/22 07:10:30 sergei Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.1 2007/01/24 19:46:38 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
@@ -18,7 +18,7 @@ COMMENT=	A client for managing and downloading certificate revocation lists
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libassuan.a:${PORTSDIR}/security/libassuan
 LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
-		gpg-error.3:${PORTSDIR}/security/libgpg-error \
+		gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		ksba.17:${PORTSDIR}/security/libksba \
 		pth:${PORTSDIR}/devel/pth
 
