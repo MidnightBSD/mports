@@ -2,11 +2,11 @@
 # Date created:				July 17 2002
 # Whom:					Tilman Linneweh <arved@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.1 2006/09/21 14:19:06 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.2 2007/02/16 00:04:19 laffer1 Exp $
 # $FreeBSD: ports/security/libgcrypt/Makefile,v 1.30 2006/08/31 21:20:52 arved Exp $
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.4
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	libgcrypt
@@ -14,12 +14,13 @@ MASTER_SITE_SUBDIR=	libgcrypt
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"General purpose crypto library based on code used in GnuPG"
 
-LIB_DEPENDS=	gpg-error.3:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
+USE_AUTOTOOLS=        libtool:15
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 INFO=	gcrypt
 
