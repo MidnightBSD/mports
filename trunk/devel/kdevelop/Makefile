@@ -2,15 +2,16 @@
 # Date created:		12 Aug 1999
 # Whom:			Will Andrews <andrews@technologist.com>
 #
-# $FreeBSD: ports/devel/kdevelop/Makefile,v 1.87 2006/09/12 23:26:15 lofi Exp $
+# $FreeBSD: ports/devel/kdevelop/Makefile,v 1.96 2007/10/29 23:47:28 lofi Exp $
 # $MidnightBSD$
 #
 
 PORTNAME=	kdevelop
-PORTVERSION=	3.3.4
+PORTVERSION=	3.5.0
+PORTREVISION=	0
 CATEGORIES?=	devel kde
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/${KDE_VERSION:S/.0//}/src
+MASTER_SITE_SUBDIR=	stable/${KDE_VERSION}/src
 # DISTNAME=	${KDE_DISTNAME}
 DIST_SUBDIR=	KDE
 
@@ -18,39 +19,38 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	IDE for a wide variety of programming tasks
 
 BUILD_DEPENDS=	cervisia:${PORTSDIR}/devel/kdesdk3 \
+		dot:${PORTSDIR}/graphics/graphviz \
 		msgfmt:${PORTSDIR}/devel/gettext
-LIB_DEPENDS=	db4:${PORTSDIR}/databases/db4 \
-		svn_client-1.0:${PORTSDIR}/devel/subversion
+LIB_DEPENDS=	svn_client-1.0:${PORTSDIR}/devel/subversion
 RUN_DEPENDS=	extractrc:${PORTSDIR}/devel/kdesdk3 \
-		gmake:${PORTSDIR}/devel/gmake \
-		${LOCALBASE}/gnu-autotools/bin/automake:${PORTSDIR}/devel/gnu-automake \
-		${LOCALBASE}/gnu-autotools/bin/autoconf:${PORTSDIR}/devel/gnu-autoconf
+		gdb66:${PORTSDIR}/devel/gdb6 \
+		gmake:${PORTSDIR}/devel/gmake
 
 .if defined(WITH_OPTIONAL_DEPENDS)
-RUN_DEPENDS+=	kiconedit:${PORTSDIR}/graphics/kdegraphics3 \
-		ark:${PORTSDIR}/misc/kdeutils3 \
+RUN_DEPENDS+=	ark:${PORTSDIR}/misc/kdeutils3 \
+		a2ps:${PORTSDIR}/print/a2ps-letter \
+		dot:${PORTSDIR}/graphics/graphviz \
 		glimpse:${PORTSDIR}/textproc/glimpse \
-		a2ps:${PORTSDIR}/print/a2ps-letter
+		kiconedit:${PORTSDIR}/graphics/kdegraphics3
 .endif
 
 # KDE_DISTNAME=		${PORTNAME}-${PORTVERSION}_for_KDE_3.1
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_KDELIBS_VER=3
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_BDB=	yes
+USE_AUTOTOOLS=  libtool:15 autotools:run
+_NO_KDE_FINAL=	yes
 CONFIGURE_ARGS+=--with-qtdoc-dir=${X11BASE}/share/doc/qt/html \
-		--with-db-includedir=${LOCALBASE}/include/db4 \
-		--with-db-libdir=${LOCALBASE}/lib --with-db-lib=db4 \
+		--with-db-includedir=${BDB_INCLUDE_DIR} \
+		--with-db-libdir=${BDB_LIB_DIR} --with-db-lib=${BDB_LIB_NAME} \
 		--with-apr-config=${LOCALBASE}/bin/apr-1-config \
 		--with-apu-config=${LOCALBASE}/bin/apu-1-config \
-		--with-subversion-dir=${LOCALBASE} \
-		--with-svn-include=${LOCALBASE}/include \
+		--with-svn-include=${LOCALBASE}/include/subversion-1 \
 		--with-svn-lib=${LOCALBASE}/lib \
 		--with-neon-config=${LOCALBASE}/bin/neon-config
-
-CONFIGURE_ENV+=	PATH=${LOCALBASE}/gnu-autotools/bin:${PATH}
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
@@ -72,6 +72,13 @@ post-configure:
 		s|%%PREFIX%%|${PREFIX}|g ; \
 		s|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g' < ${FILESDIR}/kdevelop \
 		> ${WRKDIR}/kdevelop
+	${REINPLACE_CMD} -e 's|<gdbpath>.*</gdbpath>|<gdbpath></gdbpath>|g' \
+		-e 's|<dbgshell>.*</dbgshell>|<dbgshell></dbgshell>|g' \
+		${WRKSRC}/languages/cpp/app_templates/*/*.kdevelop
+	${REINPLACE_CMD} -e 's|"gdb"|"gdb66"|g' \
+		${WRKSRC}/languages/cpp/debugger/gdbcontroller.cpp
+	${REINPLACE_CMD} -E -e 's|(.*shell =.*)libtool|\1libtool --mode=execute|g' \
+		${WRKSRC}/languages/cpp/debugger/debuggerconfigwidget.cpp
 
 post-install:
 	@${MV} ${PREFIX}/bin/kdevelop ${PREFIX}/bin/kdevelop-bin
