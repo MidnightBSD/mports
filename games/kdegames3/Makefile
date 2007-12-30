@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/games/kdegames3/Makefile,v 1.96 2006/09/12 23:26:16 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.1 2007/01/20 01:43:28 laffer1 Exp $
 #
 
 PORTNAME=	kdegames
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=  libtool:15
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib
 
 CONFIGURE_ARGS=	--disable-setgid
