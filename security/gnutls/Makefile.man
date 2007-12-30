@@ -1,5 +1,5 @@
 # vi:ft=make
-# $FreeBSD: ports/security/gnutls/Makefile.man,v 1.2 2006/07/06 17:40:10 novel Exp $
+# $FreeBSD: ports/security/gnutls/Makefile.man,v 1.4 2007/07/01 08:54:40 novel Exp $
 
 INFO=	gnutls
 
@@ -285,6 +285,8 @@ MAN3=	\
 	gnutls_strerror.3 \
 	gnutls_transport_get_ptr.3 \
 	gnutls_transport_get_ptr2.3 \
+	gnutls_transport_set_errno.3 \
+	gnutls_transport_set_global_errno.3 \
 	gnutls_transport_set_lowat.3 \
 	gnutls_transport_set_ptr.3 \
 	gnutls_transport_set_ptr2.3 \
@@ -338,6 +340,8 @@ MAN3=	\
 	gnutls_x509_crt_get_activation_time.3 \
 	gnutls_x509_crt_get_authority_key_id.3 \
 	gnutls_x509_crt_get_crl_dist_points.3 \
+	gnutls_x509_crt_get_raw_issuer_dn.3 \
+	gnutls_x509_crt_get_raw_dn.3 \
 	gnutls_x509_crt_get_dn.3 \
 	gnutls_x509_crt_get_dn_by_oid.3 \
 	gnutls_x509_crt_get_dn_oid.3 \
