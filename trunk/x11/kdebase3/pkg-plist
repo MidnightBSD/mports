@@ -440,6 +440,9 @@ lib/kde3/kicker.so
 lib/kde3/kickermenu_find.a
 lib/kde3/kickermenu_find.la
 lib/kde3/kickermenu_find.so
+lib/kde3/kickermenu_kate.a
+lib/kde3/kickermenu_kate.la
+lib/kde3/kickermenu_kate.so
 lib/kde3/kickermenu_kdeprint.a
 lib/kde3/kickermenu_kdeprint.la
 lib/kde3/kickermenu_kdeprint.so
@@ -710,6 +713,9 @@ lib/kde3/lockout_panelapplet.so
 lib/kde3/media_panelapplet.a
 lib/kde3/media_panelapplet.la
 lib/kde3/media_panelapplet.so
+%%MEDIA%%lib/kde3/media_propsdlgplugin.a
+%%MEDIA%%lib/kde3/media_propsdlgplugin.la
+%%MEDIA%%lib/kde3/media_propsdlgplugin.so
 lib/kde3/menu_panelapplet.a
 lib/kde3/menu_panelapplet.la
 lib/kde3/menu_panelapplet.so
@@ -1155,6 +1161,7 @@ share/apps/kappfinder/apps/Internet/mozilla.desktop
 share/apps/kappfinder/apps/Internet/netscape.desktop
 share/apps/kappfinder/apps/Internet/netscape6.desktop
 share/apps/kappfinder/apps/Internet/opera.desktop
+share/apps/kappfinder/apps/Internet/wireshark.desktop
 share/apps/kappfinder/apps/Internet/xbiff.desktop
 share/apps/kappfinder/apps/Internet/xchat.desktop
 share/apps/kappfinder/apps/Internet/xfmail.desktop
@@ -1625,6 +1632,7 @@ share/apps/kicker/icons/locolor/16x16/actions/modified.png
 share/apps/kicker/menuext/find.desktop
 share/apps/kicker/menuext/find/kfind.desktop
 share/apps/kicker/menuext/find/websearch.desktop
+share/apps/kicker/menuext/katesessionmenu.desktop
 share/apps/kicker/menuext/konquerormenu.desktop
 share/apps/kicker/menuext/konsolemenu.desktop
 share/apps/kicker/menuext/prefmenu.desktop
@@ -1933,6 +1941,7 @@ share/apps/konsole/vim.schema
 share/apps/konsole/vt100.keytab
 share/apps/konsole/vt420pc.keytab
 share/apps/konsole/wallpapers/Blkmarble.jpg
+share/apps/konsole/wallpapers/Metric-Monospace-14.png
 share/apps/konsole/wallpapers/Paper01.jpg
 share/apps/konsole/wallpapers/gray02.jpg
 share/apps/konsole/x11r5.keytab
@@ -2009,7 +2018,7 @@ share/apps/kthememanager/themes/YellowOnBlue-big/YellowOnBlue-big.xml
 share/apps/kthememanager/themes/YellowOnBlue/YellowOnBlue.preview.png
 share/apps/kthememanager/themes/YellowOnBlue/YellowOnBlue.xml
 share/apps/kwin/b2.desktop
-share/apps/kwin/default_rules/fsp_workarounds_1
+share/apps/kwin/default_rules/fsp_workarounds_1.kwinrules
 share/apps/kwin/eventsrc
 share/apps/kwin/keramik.desktop
 share/apps/kwin/laptop.desktop
@@ -2077,7 +2086,7 @@ share/desktop-directories/kde-edutainment.directory
 share/desktop-directories/kde-games-arcade.directory
 share/desktop-directories/kde-games-board.directory
 share/desktop-directories/kde-games-card.directory
-share/desktop-directories/kde-games-kidsgames.directory
+share/desktop-directories/kde-games-kids.directory
 share/desktop-directories/kde-games-roguelikes.directory
 share/desktop-directories/kde-games-strategy.directory
 share/desktop-directories/kde-games.directory
@@ -2416,6 +2425,7 @@ share/doc/HTML/en/khelpcenter/userguide/common
 share/doc/HTML/en/khelpcenter/userguide/control-center.docbook
 share/doc/HTML/en/khelpcenter/userguide/creating-graphics.docbook
 share/doc/HTML/en/khelpcenter/userguide/credits-and-license.docbook
+share/doc/HTML/en/khelpcenter/userguide/customizing-desktop.docbook
 share/doc/HTML/en/khelpcenter/userguide/desktop.png
 share/doc/HTML/en/khelpcenter/userguide/email.docbook
 share/doc/HTML/en/khelpcenter/userguide/extragear-applications.docbook
@@ -2476,6 +2486,7 @@ share/doc/HTML/en/khelpcenter/userguide/ripsettings.png
 share/doc/HTML/en/khelpcenter/userguide/screen-captures.docbook
 share/doc/HTML/en/khelpcenter/userguide/services.png
 share/doc/HTML/en/khelpcenter/userguide/shared-sessions.docbook
+share/doc/HTML/en/khelpcenter/userguide/splash-screen.png
 share/doc/HTML/en/khelpcenter/userguide/standard-menu-entries.docbook
 share/doc/HTML/en/khelpcenter/userguide/switching-sessions.docbook
 share/doc/HTML/en/khelpcenter/userguide/the-filemanager.docbook
@@ -2488,7 +2499,6 @@ share/doc/HTML/en/khelpcenter/userguide/where-next.docbook
 share/doc/HTML/en/khelpcenter/userguide/windows-how-to.docbook
 share/doc/HTML/en/khelpcenter/userguide/your-kde-account.docbook
 share/doc/HTML/en/khelpcenter/visualdict/common
-share/doc/HTML/en/khelpcenter/visualdict/contextmenu.png
 share/doc/HTML/en/khelpcenter/visualdict/index.cache.bz2
 share/doc/HTML/en/khelpcenter/visualdict/index.docbook
 share/doc/HTML/en/khelpcenter/visualdict/pict1.png
@@ -2504,6 +2514,9 @@ share/doc/HTML/en/khelpcenter/visualdict/pict18.png
 share/doc/HTML/en/khelpcenter/visualdict/pict19.png
 share/doc/HTML/en/khelpcenter/visualdict/pict2.png
 share/doc/HTML/en/khelpcenter/visualdict/pict20.png
+share/doc/HTML/en/khelpcenter/visualdict/pict21.png
+share/doc/HTML/en/khelpcenter/visualdict/pict22.png
+share/doc/HTML/en/khelpcenter/visualdict/pict23.png
 share/doc/HTML/en/khelpcenter/visualdict/pict3.png
 share/doc/HTML/en/khelpcenter/visualdict/pict4.png
 share/doc/HTML/en/khelpcenter/visualdict/pict5.png
@@ -2645,6 +2658,7 @@ share/doc/HTML/en/knetattach/common
 share/doc/HTML/en/knetattach/index.cache.bz2
 share/doc/HTML/en/knetattach/index.docbook
 share/doc/HTML/en/knetattach/screenshot.png
+share/doc/HTML/en/knetattach/screenshot1.png
 share/doc/HTML/en/knetattach/screenshot2.png
 share/doc/HTML/en/knetattach/screenshot3.png
 share/doc/HTML/en/knetattach/screenshot4.png
@@ -2738,7 +2752,6 @@ share/icons/crystalsvg/128x128/apps/licq.png
 share/icons/crystalsvg/128x128/apps/linuxconf.png
 share/icons/crystalsvg/128x128/apps/locale.png
 share/icons/crystalsvg/128x128/apps/looknfeel.png
-share/icons/crystalsvg/128x128/apps/mozilla.png
 share/icons/crystalsvg/128x128/apps/multimedia.png
 share/icons/crystalsvg/128x128/apps/netscape.png
 share/icons/crystalsvg/128x128/apps/package.png
@@ -2804,7 +2817,6 @@ share/icons/crystalsvg/16x16/apps/enhanced_browsing.png
 share/icons/crystalsvg/16x16/apps/evolution.png
 share/icons/crystalsvg/16x16/apps/fifteenpieces.png
 share/icons/crystalsvg/16x16/apps/filetypes.png
-share/icons/crystalsvg/16x16/apps/firefox.png
 share/icons/crystalsvg/16x16/apps/fonts.png
 share/icons/crystalsvg/16x16/apps/gabber.png
 share/icons/crystalsvg/16x16/apps/gaim.png
@@ -2858,9 +2870,6 @@ share/icons/crystalsvg/16x16/apps/looknfeel.png
 share/icons/crystalsvg/16x16/apps/lyx.png
 share/icons/crystalsvg/16x16/apps/mac.png
 share/icons/crystalsvg/16x16/apps/mathematica.png
-share/icons/crystalsvg/16x16/apps/mozilla.png
-share/icons/crystalsvg/16x16/apps/mozilla_m.png
-share/icons/crystalsvg/16x16/apps/mozilla_mail.png
 share/icons/crystalsvg/16x16/apps/multimedia.png
 share/icons/crystalsvg/16x16/apps/nedit.png
 share/icons/crystalsvg/16x16/apps/netscape.png
@@ -2907,7 +2916,6 @@ share/icons/crystalsvg/16x16/apps/stylesheet.png
 share/icons/crystalsvg/16x16/apps/systemtray.png
 share/icons/crystalsvg/16x16/apps/taskbar.png
 share/icons/crystalsvg/16x16/apps/terminal.png
-share/icons/crystalsvg/16x16/apps/thunderbird.png
 share/icons/crystalsvg/16x16/apps/tux.png
 share/icons/crystalsvg/16x16/apps/usb.png
 share/icons/crystalsvg/16x16/apps/vnc.png
@@ -3012,7 +3020,6 @@ share/icons/crystalsvg/32x32/apps/error.png
 share/icons/crystalsvg/32x32/apps/evolution.png
 share/icons/crystalsvg/32x32/apps/fifteenpieces.png
 share/icons/crystalsvg/32x32/apps/filetypes.png
-share/icons/crystalsvg/32x32/apps/firefox.png
 share/icons/crystalsvg/32x32/apps/fonts.png
 share/icons/crystalsvg/32x32/apps/gabber.png
 share/icons/crystalsvg/32x32/apps/gaim.png
@@ -3067,9 +3074,6 @@ share/icons/crystalsvg/32x32/apps/looknfeel.png
 share/icons/crystalsvg/32x32/apps/lyx.png
 share/icons/crystalsvg/32x32/apps/mac.png
 share/icons/crystalsvg/32x32/apps/mathematica.png
-share/icons/crystalsvg/32x32/apps/mozilla.png
-share/icons/crystalsvg/32x32/apps/mozilla_m.png
-share/icons/crystalsvg/32x32/apps/mozilla_mail.png
 share/icons/crystalsvg/32x32/apps/multimedia.png
 share/icons/crystalsvg/32x32/apps/nedit.png
 share/icons/crystalsvg/32x32/apps/netscape.png
@@ -3114,7 +3118,6 @@ share/icons/crystalsvg/32x32/apps/stylesheet.png
 share/icons/crystalsvg/32x32/apps/systemtray.png
 share/icons/crystalsvg/32x32/apps/taskbar.png
 share/icons/crystalsvg/32x32/apps/terminal.png
-share/icons/crystalsvg/32x32/apps/thunderbird.png
 share/icons/crystalsvg/32x32/apps/tux.png
 share/icons/crystalsvg/32x32/apps/usb.png
 share/icons/crystalsvg/32x32/apps/vnc.png
@@ -3173,7 +3176,6 @@ share/icons/crystalsvg/48x48/apps/enhanced_browsing.png
 share/icons/crystalsvg/48x48/apps/evolution.png
 share/icons/crystalsvg/48x48/apps/fifteenpieces.png
 share/icons/crystalsvg/48x48/apps/filetypes.png
-share/icons/crystalsvg/48x48/apps/firefox.png
 share/icons/crystalsvg/48x48/apps/fonts.png
 share/icons/crystalsvg/48x48/apps/gabber.png
 share/icons/crystalsvg/48x48/apps/gaim.png
@@ -3222,9 +3224,6 @@ share/icons/crystalsvg/48x48/apps/licq.png
 share/icons/crystalsvg/48x48/apps/linuxconf.png
 share/icons/crystalsvg/48x48/apps/locale.png
 share/icons/crystalsvg/48x48/apps/looknfeel.png
-share/icons/crystalsvg/48x48/apps/mozilla.png
-share/icons/crystalsvg/48x48/apps/mozilla_m.png
-share/icons/crystalsvg/48x48/apps/mozilla_mail.png
 share/icons/crystalsvg/48x48/apps/multimedia.png
 share/icons/crystalsvg/48x48/apps/nedit.png
 share/icons/crystalsvg/48x48/apps/netscape.png
@@ -3326,7 +3325,6 @@ share/icons/crystalsvg/64x64/apps/licq.png
 share/icons/crystalsvg/64x64/apps/linuxconf.png
 share/icons/crystalsvg/64x64/apps/locale.png
 share/icons/crystalsvg/64x64/apps/looknfeel.png
-share/icons/crystalsvg/64x64/apps/mozilla.png
 share/icons/crystalsvg/64x64/apps/multimedia.png
 share/icons/crystalsvg/64x64/apps/nedit.png
 share/icons/crystalsvg/64x64/apps/netscape.png
@@ -3799,6 +3797,8 @@ share/locale/l10n/mc/entry.desktop
 share/locale/l10n/mc/flag.png
 share/locale/l10n/md/entry.desktop
 share/locale/l10n/md/flag.png
+share/locale/l10n/me/entry.desktop
+share/locale/l10n/me/flag.png
 share/locale/l10n/mg/entry.desktop
 share/locale/l10n/mg/flag.png
 share/locale/l10n/mh/entry.desktop
@@ -3896,6 +3896,8 @@ share/locale/l10n/qa/entry.desktop
 share/locale/l10n/qa/flag.png
 share/locale/l10n/ro/entry.desktop
 share/locale/l10n/ro/flag.png
+share/locale/l10n/rs/entry.desktop
+share/locale/l10n/rs/flag.png
 share/locale/l10n/ru/entry.desktop
 share/locale/l10n/ru/flag.png
 share/locale/l10n/rw/entry.desktop
@@ -4001,8 +4003,6 @@ share/locale/l10n/ws/entry.desktop
 share/locale/l10n/ws/flag.png
 share/locale/l10n/ye/entry.desktop
 share/locale/l10n/ye/flag.png
-share/locale/l10n/yu/entry.desktop
-share/locale/l10n/yu/flag.png
 share/locale/l10n/za/entry.desktop
 share/locale/l10n/za/flag.png
 share/locale/l10n/zm/entry.desktop
@@ -4117,6 +4117,7 @@ share/services/localdomainurifilter.desktop
 share/services/mac.protocol
 share/services/man.protocol
 share/services/media.protocol
+%%MEDIA%%share/services/media_propsdlgplugin.desktop
 share/services/nfs.protocol
 share/services/nntp.protocol
 share/services/nntps.protocol
@@ -4470,7 +4471,6 @@ share/wallpapers/triplegears.jpg.desktop
 @dirrm share/locale/l10n/zw
 @dirrm share/locale/l10n/zm
 @dirrm share/locale/l10n/za
-@dirrm share/locale/l10n/yu
 @dirrm share/locale/l10n/ye
 @dirrm share/locale/l10n/ws
 @dirrm share/locale/l10n/wf
@@ -4520,6 +4520,7 @@ share/wallpapers/triplegears.jpg.desktop
 @dirrm share/locale/l10n/sa
 @dirrm share/locale/l10n/rw
 @dirrm share/locale/l10n/ru
+@dirrm share/locale/l10n/rs
 @dirrm share/locale/l10n/ro
 @dirrm share/locale/l10n/qa
 @dirrm share/locale/l10n/py
@@ -4566,6 +4567,7 @@ share/wallpapers/triplegears.jpg.desktop
 @dirrm share/locale/l10n/mk
 @dirrm share/locale/l10n/mh
 @dirrm share/locale/l10n/mg
+@dirrm share/locale/l10n/me
 @dirrm share/locale/l10n/md
 @dirrm share/locale/l10n/mc
 @dirrm share/locale/l10n/ma
