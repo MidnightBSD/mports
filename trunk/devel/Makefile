@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.179 2007/12/28 05:39:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.180 2007/12/30 00:37:36 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -47,6 +47,7 @@
     SUBDIR += gccmakedep
     SUBDIR += gconf
     SUBDIR += gconf2
+    SUBDIR += gdb6
     SUBDIR += geany
     SUBDIR += gettext
     SUBDIR += glade3
