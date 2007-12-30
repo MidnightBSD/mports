@@ -3,7 +3,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeedu3/Makefile,v 1.34 2006/09/12 23:26:32 lofi Exp $
-# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.1 2007/01/25 20:23:46 laffer1 Exp $
+# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.2 2007/08/01 20:56:40 laffer1 Exp $
 #
 
 PORTNAME=	kdeedu
@@ -30,7 +30,7 @@ USE_AUTOTOOLS=  libtool:15
 
 CONFIGURE_ARGS+=--enable-libusb=${LOCALBASE}
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
