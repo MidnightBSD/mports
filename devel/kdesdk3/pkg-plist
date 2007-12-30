@@ -74,6 +74,7 @@ bin/svnrevertlast
 bin/svnversions
 bin/swappo
 bin/transxx
+bin/umbodoc
 bin/umbrello
 bin/xml2pot
 bin/zonetab2pot.py
@@ -554,11 +555,14 @@ share/apps/konqueror/servicemenus/subversion_toplevel.desktop
 share/apps/kstyle/themes/scheck.themerc
 share/apps/kuiviewer/kuiviewerui.rc
 share/apps/kuiviewerpart/kuiviewer_part.rc
+share/apps/umbrello/common.ent
+share/apps/umbrello/docbook2xhtml.xsl
 share/apps/umbrello/headings/heading.adb
 share/apps/umbrello/headings/heading.ads
 share/apps/umbrello/headings/heading.as
 share/apps/umbrello/headings/heading.cpp
 share/apps/umbrello/headings/heading.cs
+share/apps/umbrello/headings/heading.d
 share/apps/umbrello/headings/heading.h
 share/apps/umbrello/headings/heading.idl
 share/apps/umbrello/headings/heading.java
@@ -592,10 +596,12 @@ share/apps/umbrello/pics/CVstruct.png
 share/apps/umbrello/pics/actor.png
 share/apps/umbrello/pics/aggregation.png
 share/apps/umbrello/pics/align_bottom.png
+share/apps/umbrello/pics/align_hori_distribute.png
 share/apps/umbrello/pics/align_hori_middle.png
 share/apps/umbrello/pics/align_left.png
 share/apps/umbrello/pics/align_right.png
 share/apps/umbrello/pics/align_top.png
+share/apps/umbrello/pics/align_vert_distribute.png
 share/apps/umbrello/pics/align_vert_middle.png
 share/apps/umbrello/pics/anchor.png
 share/apps/umbrello/pics/andline.png
@@ -677,6 +683,8 @@ share/apps/umbrello/pics/uniassociation.png
 share/apps/umbrello/pics/usecase.png
 share/apps/umbrello/tips
 share/apps/umbrello/umbrelloui.rc
+share/apps/umbrello/xmi.css
+share/apps/umbrello/xmi2docbook.xsl
 share/config.kcfg/cervisiapart.kcfg
 share/config.kcfg/kbabel.kcfg
 share/config.kcfg/kbprojectsettings.kcfg
@@ -772,6 +780,12 @@ share/doc/HTML/en/kdesvn-build/index.docbook
 share/doc/HTML/en/kompare/common
 share/doc/HTML/en/kompare/index.cache.bz2
 share/doc/HTML/en/kompare/index.docbook
+share/doc/HTML/en/kompare/settings-diff1.png
+share/doc/HTML/en/kompare/settings-diff2.png
+share/doc/HTML/en/kompare/settings-diff3.png
+share/doc/HTML/en/kompare/settings-diff4.png
+share/doc/HTML/en/kompare/settings-view1.png
+share/doc/HTML/en/kompare/settings-view2.png
 share/doc/HTML/en/umbrello/activity-diagram.png
 share/doc/HTML/en/umbrello/add-remove-languages.png
 share/doc/HTML/en/umbrello/aggregation.png
