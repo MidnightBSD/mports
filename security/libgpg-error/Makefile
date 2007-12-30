@@ -3,11 +3,11 @@
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
 # $FreeBSD: ports/security/libgpg-error/Makefile,v 1.17 2006/09/22 06:57:06 sergei Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.2 2007/01/24 19:41:47 laffer1 Exp $
 #
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -15,14 +15,15 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common error values for all GnuPG components
 
-USE_GPG=		yes
-SIG_SUFFIX=		.sig
+USE_BZIP2=    yes
+USE_AUTOTOOLS=        libtool:15
+USE_GNOME=    ltverhack
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 .if defined(WITHOUT_NLS)
-CONFIGURE_ARGS=	--without-nls
+CONFIGURE_ARGS=	--disable-nls
 PLIST_SUB=	NLS="@comment "
 .else
 USE_ICONV=	yes
