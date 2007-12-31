@@ -3,7 +3,7 @@
 # Whom:					AlanE <alane@freebsd.org>
 #
 # $FreeBSD: ports/www/kdewebdev/Makefile,v 1.55 2006/09/12 23:26:48 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.1 2007/01/24 17:09:39 laffer1 Exp $
 #
 
 PORTNAME=	kdewebdev
@@ -19,7 +19,8 @@ COMMENT=	Comprehensive html/website development environment
 
 BUILD_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
 		xgettext:${PORTSDIR}/devel/gettext
-RUN_DEPENDS=	tidy:${PORTSDIR}/www/tidy
+RUN_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
+		tidy:${PORTSDIR}/www/tidy
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
