@@ -4,11 +4,11 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.1 2006/11/17 23:09:15 laffer1 Exp $
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.2 2007/08/02 05:45:05 laffer1 Exp $
 #
 
 PORTNAME=	arts
-PORTVERSION=	1.5.4
+PORTVERSION=	1.5.8
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
@@ -17,6 +17,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio system for the KDE integrated X11 desktop
+LICENSE=	gpl2
 
 LIB_DEPENDS+=	audiofile:${PORTSDIR}/audio/libaudiofile \
 		mad:${PORTSDIR}/audio/libmad \
@@ -30,7 +31,7 @@ USE_QT_VER=	3
 USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 QTCPPFLAGS+=	-L${LOCALBASE}/lib
 DO_NOT_COMPILE+=gmcop
 _NO_KDE_FINAL=	yes
