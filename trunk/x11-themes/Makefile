@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.8 2007/10/12 14:42:22 ctriv Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.9 2007/10/21 22:47:18 laffer1 Exp $
 #
     COMMENT = X11 themes
 
@@ -7,6 +7,7 @@
     SUBDIR += etoile-etoilemenus
     SUBDIR += etoile-iconkit
     SUBDIR += etoile-wildmenus
+    SUBDIR += gnome-backgrounds
     SUBDIR += gnome-themes
     SUBDIR += gtk-engines2
     SUBDIR += icon-naming-utils
