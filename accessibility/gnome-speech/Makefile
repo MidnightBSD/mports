@@ -2,7 +2,7 @@
 # Date created:			11 May 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.1 2008/01/01 20:51:03 laffer1 Exp $
 # $FreeBSD: ports/accessibility/gnome-speech/Makefile,v 1.32 2007/07/30 04:29:12 mezz Exp $
 #   $MCom: ports/accessibility/gnome-speech/Makefile,v 1.21 2006/08/22 00:55:57 ahze Exp $
 #
@@ -33,9 +33,9 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 WITH_ESPEAK=	yes
 .endif
 
-.if exists(${LOCALBASE}/bin/festival)
-WITH_FESTIVAL=	yes
-.endif
+#.if exists(${LOCALBASE}/bin/festival)
+#WITH_FESTIVAL=	yes
+#.endif
 
 .if defined(WITH_ESPEAK)
 LIB_DEPENDS+=	espeak.1:${PORTSDIR}/audio/espeak
@@ -45,9 +45,9 @@ PLIST_SUB+=	ESPEAK:=""
 PLIST_SUB+=	ESPEAK:="@comment "
 .endif
 
-.if defined(WITH_FESTIVAL)
-RUN_DEPENDS+=	festival:${PORTSDIR}/audio/festival
-.endif
+#.if defined(WITH_FESTIVAL)
+#RUN_DEPENDS+=	festival:${PORTSDIR}/audio/festival
+#.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|== x|= x|g' \
