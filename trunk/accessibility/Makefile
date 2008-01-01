@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.7 2008/01/01 17:36:45 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/Makefile,v 1.8 2008/01/01 20:15:43 laffer1 Exp $
 # $FreeBSD: ports/accessibility/Makefile,v 1.11 2006/05/28 00:57:23 mezz Exp $
 #
 
@@ -10,6 +10,7 @@
     SUBDIR += atk-reference
     SUBDIR += gail
     SUBDIR += gail-reference
+    SUBDIR += gnome-speech
     SUBDIR += kdeaccessibility
     SUBDIR += linux-atk
 
