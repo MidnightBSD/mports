@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.30 2007/10/21 23:07:58 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.31 2007/12/30 17:10:42 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -8,6 +8,7 @@
     SUBDIR += compat5x
     SUBDIR += cpuid
     SUBDIR += findutils
+    SUBDIR += getopt
     SUBDIR += gnome-icon-theme
     SUBDIR += gnome-mime-data
     SUBDIR += gnome-user-docs
