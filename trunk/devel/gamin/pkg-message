@@ -1,5 +1,3 @@
-===============================================================================
-
 Gamin will only provide realtime notification of changes for at most n files,
 where n is the minimum value between (kern.maxfiles * 0.7) and
 (kern.maxfilesperproc - 200). Beyond that limit, files will be polled.
@@ -12,5 +10,3 @@ For a typical desktop, add the following line to /boot/loader.conf, then
 reboot the system:
 
     kern.maxfiles="25000"
-
-===============================================================================
