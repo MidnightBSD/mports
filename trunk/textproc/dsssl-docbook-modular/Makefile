@@ -2,13 +2,13 @@
 # Date created:		16 March 1998
 # Whom:			Jun Kuriyama <kuriyama@opt.phys.waseda.ac.jp>
 #
-# $MidnightBSD: mports/textproc/dsssl-docbook-modular/Makefile,v 1.1 2006/09/25 16:28:00 laffer1 Exp $
+# $MidnightBSD: mports/textproc/dsssl-docbook-modular/Makefile,v 1.2 2007/05/18 04:26:39 ctriv Exp $
 # $FreeBSD: ports/textproc/dsssl-docbook-modular/Makefile,v 1.58 2005/06/13 20:54:18 glewis Exp $
 #
 
 PORTNAME=	dsssl-docbook-modular
 PORTVERSION=	1.79
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -18,6 +18,11 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} docbook-dsssl-doc-${PORTVERSION}${EXTRACT_
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DSSSL stylesheets for the DocBook DTD by Norman Walsh
+LICENSE=	other
+
+PATCH_SITES=	http://dist.bsdlab.org/
+PATCHFILES=	docbook-dsssl-mn-20070525.diff.gz
+PATCH_DIST_STRIP=	-p1
 
 BUILD_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 RUN_DEPENDS=	${BUILD_DEPENDS}
@@ -41,6 +46,5 @@ pre-su-install:
 
 do-install:
 	@cd ${WRKSRC} && ${TAR} cpf - . | (cd ${INSTDIR} && ${TAR} xpf -)
-
 
 .include <bsd.port.mk>
