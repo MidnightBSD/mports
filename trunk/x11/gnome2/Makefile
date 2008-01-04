@@ -2,12 +2,12 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.1 2007/11/04 16:41:10 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
 PORTVERSION=	2.18.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -21,16 +21,26 @@ LICENSE=	agg
 BROKEN=	Missing dependancies
 .endif
 
+# Missing RUN DEPENDS:
+# gnect:${PORTSDIR}/games/gnome-games \
+# bug-buddy:${PORTSDIR}/devel/bug-buddy \
+# evolution-2.10:${PORTSDIR}/mail/evolution \
+# ${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
+# exchange-connector-setup-2.10:${PORTSDIR}/mail/evolution-exchange
+# ino-session:${PORTSDIR}/net/vino \
+# {LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-p
+#lugins-core \
+# alacarte:${PORTSDIR}/deskutils/alacarte \
+# ${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
+
 RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applets \
 		gnome-cd:${PORTSDIR}/audio/gnome-media \
 	 	gnome-dictionary:${PORTSDIR}/deskutils/gnome-utils \
 		eog:${PORTSDIR}/graphics/eog \
 		gconf-editor:${PORTSDIR}/sysutils/gconf-editor \
-		gnect:${PORTSDIR}/games/gnome-games \
 		gedit:${PORTSDIR}/editors/gedit \
 		gnome-terminal:${PORTSDIR}/x11/gnome-terminal \
 		gnome-session:${PORTSDIR}/x11/gnome-session \
-		bug-buddy:${PORTSDIR}/devel/bug-buddy \
 		gnome-system-monitor:${PORTSDIR}/sysutils/gnome-system-monitor \
 		nautilus:${PORTSDIR}/x11-fm/nautilus \
 		${LOCALBASE}/sbin/gdm:${PORTSDIR}/x11/gdm \
@@ -47,13 +57,8 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${X11BASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
 		${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
 		dasher:${PORTSDIR}/accessibility/dasher \
-		evolution-2.10:${PORTSDIR}/mail/evolution \
-		${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 		network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 		gnome-nettool:${PORTSDIR}/net/gnome-nettool \
-		vino-session:${PORTSDIR}/net/vino \
-		exchange-connector-setup-2.10:${PORTSDIR}/mail/evolution-exchange \
-		${LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-plugins-core \
 		${LOCALBASE}/lib/gstreamer-0.10/libgstgconfelements.so:${PORTSDIR}/devel/gstreamer-plugins-gconf \
 		totem:${PORTSDIR}/multimedia/totem \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
@@ -63,7 +68,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-2.0.pc:${PORTSDIR}/www/libgtkhtml \
 		evince:${PORTSDIR}/graphics/evince \
 		${LOCALBASE}/libexec/fast-user-switch-applet:${PORTSDIR}/x11/fast-user-switch-applet \
-		${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 		alacarte:${PORTSDIR}/deskutils/alacarte \
 		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
 		gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
@@ -79,9 +83,9 @@ USE_PYTHON=	yes
 .endif
 
 #invert gnome2 lite check when fixed
-.if !defined(GNOME_SLAVE) || ${.CURDIR:T}!="gnome2-lite"
-OPTIONS=	XSCREENSAVER "Use xscreensaver as screen saver app" off
-.endif
+#.if !defined(GNOME_SLAVE) || ${.CURDIR:T}!="gnome2-lite"
+#OPTIONS=	XSCREENSAVER "Use xscreensaver as screen saver app" off
+#.endif
 
 do-install:	# empty
 
@@ -93,19 +97,19 @@ RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 		epiphany:${PORTSDIR}/www/epiphany
 .endif
 .if ${.CURDIR:T}!="gnome2-lite"
-.if ${ARCH} == "i386"
-RUN_DEPENDS+=	tomboy:${PORTSDIR}/deskutils/tomboy
-.endif
+#.if ${ARCH} == "i386"
+#RUN_DEPENDS+=	tomboy:${PORTSDIR}/deskutils/tomboy
+#.endif
 RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga
 .endif
 .endif
 
-.if ${.CURDIR}==${MASTERDIR} || ${.CURDIR:T}=="gnome2-lite"
-.if defined(WITH_XSCREENSAVER)
-RUN_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
-.else
-RUN_DEPENDS+=	gnome-screensaver:${PORTSDIR}/x11/gnome-screensaver
-.endif
-.endif
+#.if ${.CURDIR}==${MASTERDIR} || ${.CURDIR:T}=="gnome2-lite"
+#.if defined(WITH_XSCREENSAVER)
+#RUN_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
+#.else
+#RUN_DEPENDS+=	gnome-screensaver:${PORTSDIR}/x11/gnome-screensaver
+#.endif
+#.endif
 
 .include <bsd.port.post.mk>
