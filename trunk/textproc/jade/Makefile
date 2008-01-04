@@ -2,13 +2,13 @@
 # Date created:		June 19, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/jade/Makefile,v 1.2 2007/05/09 15:14:43 ctriv Exp $
+# $MidnightBSD: mports/textproc/jade/Makefile,v 1.3 2007/08/19 02:23:13 ctriv Exp $
 # $FreeBSD: ports/textproc/jade/Makefile,v 1.50 2006/02/23 10:39:21 ade Exp $
 #
 
 PORTNAME=	jade
 PORTVERSION=	1.2.1
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.jclark.com/pub/jade/ \
 		http://dist.bsdlab.org/
@@ -27,6 +27,7 @@ RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
