@@ -2,12 +2,12 @@
 # Date created:				Nov 14 2000
 # Whom:	      				Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.1 2007/03/11 05:09:49 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.2 2007/07/22 08:23:59 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-Archive-Tar/Makefile,v 1.25 2006/08/02 15:33:47 clsung Exp $
 #
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	1.32
+PORTVERSION=	1.38
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Archive
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for creation and manipulation of tar files
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/IO/Zlib.pm:${PORTSDIR}/archivers/p5-IO-Zlib \
 		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
@@ -32,10 +33,6 @@ OPTIONS=	TEXT_DIFF "Text::Diff support for ptardiff" off
 
 .if defined(WITH_TEXT_DIFF)
 RUN_DEPENDS+=	${SITE_PERL}/Text/Diff.pm:${PORTSDIR}/textproc/p5-Text-Diff
-.endif
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or above
 .endif
 
 .include <bsd.port.post.mk>
