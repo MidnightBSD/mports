@@ -2,12 +2,12 @@
 # Date created:				Mon Jan  1 09:33:13 2001
 # Whom:					will
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/p5-Archive-Zip/Makefile,v 1.1 2007/04/28 03:29:47 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-Archive-Zip/Makefile,v 1.28 2006/12/03 12:45:56 demon Exp $
 #
 
 PORTNAME=	Archive-Zip
-PORTVERSION=	1.18
+PORTVERSION=	1.23
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Archive
