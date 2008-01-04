@@ -1,7 +1,5 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.11 2008/01/01 21:59:31 laffer1 Exp $
-# $FreeBSD: ports/accessibility/Makefile,v 1.11 2006/05/28 00:57:23 mezz Exp $
+# $MidnightBSD: mports/accessibility/Makefile,v 1.12 2008/01/04 20:43:31 laffer1 Exp $
 #
-
     COMMENT = Ports to help disabled users
 
     SUBDIR += at-poke
@@ -16,5 +14,6 @@
     SUBDIR += gok
     SUBDIR += kdeaccessibility
     SUBDIR += linux-atk
+    SUBDIR += orca
 
 .include <bsd.port.subdir.mk>
