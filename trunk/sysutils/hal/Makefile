@@ -2,7 +2,7 @@
 # Date Created:			02 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.1 2007/05/07 21:12:36 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.2 2007/08/01 20:06:21 laffer1 Exp $
 # $FreeBSD: ports/sysutils/hal/Makefile,v 1.22 2007/04/07 11:53:22 jylefort Exp $
 #   $MCom: ports/sysutils/hal/Makefile,v 1.26 2006/10/13 10:00:57 ahze Exp $
 #
@@ -41,7 +41,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		GTKDOC="false"
 
 HALVERSION=	0.5.8
-SNAPVERSION=	20070403
+SNAPVERSION=	20070909
 
 .if !defined(HAL_SLAVE)
 USE_RC_SUBR=	hald
