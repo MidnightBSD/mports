@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.184 2007/12/31 05:50:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.185 2008/01/04 15:21:03 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -110,6 +110,7 @@
     SUBDIR += linuxthreads
     SUBDIR += lndir
     SUBDIR += log4j
+    SUBDIR += looks
     SUBDIR += m4
     SUBDIR += makedepend
     SUBDIR += monodoc
