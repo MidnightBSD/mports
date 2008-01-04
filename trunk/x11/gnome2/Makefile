@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.1 2007/11/04 16:41:10 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.2 2008/01/04 19:12:38 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
@@ -32,6 +32,13 @@ BROKEN=	Missing dependancies
 #lugins-core \
 # alacarte:${PORTSDIR}/deskutils/alacarte \
 # ${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
+#   dasher:${PORTSDIR}/accessibility/dasher \
+#gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
+#		gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
+#${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
+#gnome-nettool:${PORTSDIR}/net/gnome-nettool \
+# seahorse:${PORTSDIR}/security/seahorse
+# network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 
 RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applets \
 		gnome-cd:${PORTSDIR}/audio/gnome-media \
@@ -55,10 +62,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gucharmap:${PORTSDIR}/deskutils/gucharmap \
 		zenity:${PORTSDIR}/x11/zenity \
 		${X11BASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
-		${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
-		dasher:${PORTSDIR}/accessibility/dasher \
-		network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
-		gnome-nettool:${PORTSDIR}/net/gnome-nettool \
 		${LOCALBASE}/lib/gstreamer-0.10/libgstgconfelements.so:${PORTSDIR}/devel/gstreamer-plugins-gconf \
 		totem:${PORTSDIR}/multimedia/totem \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
@@ -68,13 +71,9 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-2.0.pc:${PORTSDIR}/www/libgtkhtml \
 		evince:${PORTSDIR}/graphics/evince \
 		${LOCALBASE}/libexec/fast-user-switch-applet:${PORTSDIR}/x11/fast-user-switch-applet \
-		alacarte:${PORTSDIR}/deskutils/alacarte \
-		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
-		gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
-		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon \
-		seahorse:${PORTSDIR}/security/seahorse
+		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
 
 NO_BUILD=	yes
 
@@ -96,12 +95,13 @@ do-install:	# empty
 RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 		epiphany:${PORTSDIR}/www/epiphany
 .endif
-.if ${.CURDIR:T}!="gnome2-lite"
+#.if ${.CURDIR:T}!="gnome2-lite"
 #.if ${ARCH} == "i386"
 #RUN_DEPENDS+=	tomboy:${PORTSDIR}/deskutils/tomboy
 #.endif
-RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga
-.endif
+# needs evolution..
+#RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga
+#.endif
 .endif
 
 #.if ${.CURDIR}==${MASTERDIR} || ${.CURDIR:T}=="gnome2-lite"
