@@ -2,12 +2,12 @@
 # Date created:	   1 july 2003
 # Whom:		   Mathieu Arnold <m@absolight.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.1 2007/07/01 02:04:37 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Time-Local/Makefile,v 1.12 2007/01/26 12:19:14 mat Exp $
 #
 
 PORTNAME=	Time-Local
-PORTVERSION=	1.17
+PORTVERSION=	1.18
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Time
