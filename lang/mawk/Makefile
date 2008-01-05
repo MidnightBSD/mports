@@ -3,7 +3,7 @@
 # Date created:			  24 Dec 1998
 # Whom:				  Pedro F. Giffuni <giffunip@asme.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/mawk/Makefile,v 1.1 2007/05/03 07:46:35 laffer1 Exp $
 # $FreeBSD: ports/lang/mawk/Makefile,v 1.20 2005/11/15 16:39:49 vs Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	ftp://ftp.fu-berlin.de/unix/languages/mawk/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of new/posix awk
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MATHLIB="-lm"
