@@ -2,12 +2,12 @@
 # Date created:			13 June 1999
 # Whom:				Stephen J. Roznowski <sjr@home.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.1 2007/07/01 01:36:34 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Time-HiRes/Makefile,v 1.43 2007/03/20 18:09:29 tobez Exp $
 #
 
 PORTNAME=	Time-HiRes
-PORTVERSION=	1.9707
+PORTVERSION=	1.9711
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
