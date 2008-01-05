@@ -2,12 +2,12 @@
 # Date created:		2007-03-18
 # Whom:			Ruben van Staveren
 #
-# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.1 2007/07/01 01:50:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.2 2007/07/22 08:07:25 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-threads-shared/Makefile,v 1.1 2007/04/04 08:57:26 clsung Exp $
 #
 
 PORTNAME=	threads-shared
-PORTVERSION=	1.12
+PORTVERSION=	1.15
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../authors/id/J/JD/JDHEDDEN
