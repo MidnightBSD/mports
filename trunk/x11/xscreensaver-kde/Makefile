@@ -2,12 +2,13 @@
 # Date created:				July 08 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.2 2007/03/16 18:31:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.3 2007/12/30 02:39:02 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver-kde/Makefile,v 1.22 2006/12/19 21:19:53 lofi Exp $
 #
 
 PORTNAME=	xscreensaver-kde
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -42,15 +43,15 @@ WITH_XSGNOME=	yes
 WITH_XS=	yes
 .endif
 
-.if defined(WITH_XS) && !defined(WITH_XSGNOME)
+#.if defined(WITH_XS) && !defined(WITH_XSGNOME)
 BUILD_DEPENDS+=	xscreensaver:${PORTSDIR}/x11/xscreensaver
 RUN_DEPENDS+=	xscreensaver:${PORTSDIR}/x11/xscreensaver
-.endif # defined(WITH_XS)
+#.endif # defined(WITH_XS)
 
-.if defined(WITH_XSGNOME)
-BUILD_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
-RUN_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
-.endif # defined(WITH_XSGNOME)
+#.if defined(WITH_XSGNOME)
+#BUILD_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
+#RUN_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
+#.endif # defined(WITH_XSGNOME)
 
 pre-configure:
 	@${ECHO_CMD} "kscreensaver" > ${WRKSRC}/inst-apps
