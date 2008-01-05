@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.commands.mk,v 1.1 2007/11/14 18:49:04 ctriv Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -68,6 +68,7 @@ SH?=		/bin/sh
 SORT?=		/usr/bin/sort
 STRIP_CMD?=	/usr/bin/strip
 SU_CMD?=	/usr/bin/su root -c
+SUDO?=		/usr/bin/sudo
 SYSCTL?=	/sbin/sysctl
 TAIL?=		/usr/bin/tail
 TEST?=		test				# Shell builtin
