@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.78 2007/12/05 16:23:55 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.79 2007/12/07 21:13:46 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -542,6 +542,12 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # PKGDIR		- A directory containing any package creation files.
 #				  Default: ${MASTERDIR}
 #
+#
+# The following change globals behavoirs for the mports system.
+#
+# USE_MPORT_TOOLS -			If set, the mport system will use libmport to make and
+#                           install mport archives.  The mport binary system will also
+#							be used as the package database.
 #
 # MPORT_MAINTAINER_MODE - 	If set, the mports system will perform checks to see if several
 #							steps are successfully completed.  
@@ -2150,6 +2156,36 @@ _PORTDIRNAME=	${.CURDIR:T}
 PORTDIRNAME?=	${_PORTDIRNAME}
 PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
+.if defined(USE_MPORT_TOOLS)
+
+MPORT_CREATE?=	/usr/libexec/mport.create
+MPORT_DELETE?=	/usr/libexec/mport.delete
+MPORT_INSTALL?= /usr/libexec/mport.install
+
+.if defined(DESTDIR)
+MPORT_INSTALL:=	${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
+MPORT_DELETE:=	${CHROOT} ${DESTDIR} ${MPORT_DELETE}
+.endif
+
+.if !defined(MPORT_CREATE_ARGS)
+MPORT_CREATE_ARGS=	-n ${PKGSUBNAME} -v ${PKGVERSION} -o ${PKGFILE} \
+					-s ${FAKE_DESTDIR} -p ${TMPPLIST} -P ${PREFIX} \
+					-O ${PKGORIGIN} -c "${COMMENT:Q}" -l en \
+					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
+					$$_LATE_MPORT_CREATE_ARGS
+					
+.if !defined(NO_MTREE)
+MPORT_CREATE_ARGS+=	-M ${MTREE_FILE}
+.endif
+.if defined(CONFLICTS) && !defined(DISABLE_CONFLICTS)
+MPORT_CREATE_ARGS+=	-C "${CONFLICTS}"
+.endif
+.endif
+
+PKG_SUFX?=	.mport
+
+.else # old pkg_* tools
+
 .if !defined(DESTDIR)
 PKG_CMD?=		/usr/sbin/pkg_create
 PKG_ADD?=		/usr/sbin/pkg_add
@@ -2187,6 +2223,8 @@ PKG_SUFX?=		.tbz
 
 # where pkg_add records its dirty deeds.
 PKG_DBDIR?=		/var/db/pkg
+
+.endif # defined(USE_MPORT_TOOLS)
 
 MOTIFLIB?=	-L${X11BASE}/lib -lXm -lXp
 
@@ -3585,6 +3623,31 @@ fix-fake-symlinks:
 # Package
 #
 .if !target(do-package)
+.if defined(USE_MPORT_TOOLS)
+do-package: ${TMPPLIST}
+	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
+		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
+		exit 1; \
+	fi; 
+	@__softMAKEFLAGS='${__softMAKEFLAGS:S/'/'\''/g}'; \
+	_LATE_MPORT_CREATE_ARGS=""; \
+	if [ -f ${PKGINSTALL} ]; then \
+		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -i ${PKGINSTALL}"; \
+	fi; \
+	if [ -f ${PKGDEINSTALL} ]; then \
+		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -j ${PKGDEINSTALL}"; \
+	fi; \
+	if [ -f ${PKGMESSAGE} ]; then \
+		_LATE_MPORT_CREATE_ARGS="$${_LATE_MPORT_CREATE_ARGS} -m ${PKGMESSAGE}"; \
+	fi; \
+	if ${MPORT_CREATE} ${MPORT_CREATE_ARGS} ; then \
+		${ECHO_MSG} "Created ${PKGFILE}"; \
+		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
+	else \
+		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
+		exit 1; \
+	fi
+.else
 do-package: ${TMPPLIST}
 	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
 		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
@@ -3612,13 +3675,7 @@ do-package: ${TMPPLIST}
 		exit 1; \
 	fi
 .endif
-
-
-test-mport:
-	/usr/libexec/mport.create -o ${PKGFILE:S/tbz$/mport/} -c "${COMMENT:Q}" -s ${FAKE_DESTDIR} \
-	-d ${DESCR} -p ${TMPPLIST} -P ${PREFIX} -M ${MTREE_FILE} -O ${PKGORIGIN} -C "${CONFLICTS}" \
-	-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
-	-v ${PKGVERSION} -n ${PKGSUBNAME} -l en
+.endif
 
 # Some support rules for do-package
 
@@ -3681,12 +3738,21 @@ delete-package-list: delete-package-links-list
 # This is the "real" install.  Really.  Not kidding.
 #
 .if !target(install-package)
+.if defined(USE_MPORT_TOOLS)
+install-package:
+.	if defined(DESTDIR) 
+		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
+.	endif
+# $MPORT_INSTALL calls chroot it DESTDIR is set
+	@${MPORT_INSTALL} ${PKGFILE}	
+.else
 install-package:
 .	if defined(DESTDIR) 
 		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
 .	endif
 # $PKG_ADD calls chroot if DESTDIR is set.
 	@${SETENV} PKG_PATH=${PKGREPOSITORY} ${PKG_ADD} ${PKGNAME}
+.endif
 .endif
 
 
@@ -4117,6 +4183,21 @@ refake:
 # Special target to remove installation
 
 .if !target(deinstall)
+.if defined(USE_MPORT_TOOLS)
+deinstall:
+.if !defined(DESTDIR)
+	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN}"
+.else
+	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN} from ${DESTDIR}"
+.endif
+.if ${UID} != 0 && !defined(INSTALL_AS_USER)
+	@${ECHO_MSG} "===>   Running ${SUDO} ${MPORT_DELETE} -o ${PKGORIGIN}
+	@${SUDO} ${MPORT_DELETE} -o ${PKGORIGIN}
+.else
+	@${MPORT_DELETE} -o ${PKGORIGIN}
+.endif
+	@${RM} -f ${INSTALL_COOKIE}
+.else		
 deinstall:
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
 	@${ECHO_MSG} "===>  Switching to root credentials for '${.TARGET}' target"
@@ -4154,8 +4235,9 @@ deinstall:
 			fi; \
 	fi
 	@${RM} -f ${INSTALL_COOKIE}
-.endif
-.endif
+.endif 
+.endif # USE_MPORT_TOOLS
+.endif # !target(deinstall)
 
 # Deinstall-all
 #
@@ -4974,6 +5056,20 @@ package-depends-list:
 	@${PACKAGE-DEPENDS-LIST}
 .endif
 
+.if defined(USE_MPORT_TOOLS)
+# the mport binary tools only store the the first tier of the depenancy
+# tree in a mports archive.
+PACKAGE-DEPENDS-LIST?= \
+	for dir in $$(${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${CUT} -f 2 -d ':') $$(${ECHO_CMD} ${DEPENDS} | ${SED} -e 'y/ /\n/' | ${CUT} -f 1 -d ':'); do \
+		dir=`${REALPATH} $$dir`; \
+		if [ -d $$dir ]; then \
+			meta=`cd $$dir && ${MAKE} -V PKGNAME -V PKGORIGIN | ${PASTE} - -'`; \
+			${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
+		else \
+			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
+		fi; \
+	done
+.else
 PACKAGE-DEPENDS-LIST?= \
 	if [ "${CHILD_DEPENDS}" ]; then \
 		installed=$$(${PKG_INFO} -qO ${PKGORIGIN} 2>/dev/null || \
@@ -5007,9 +5103,7 @@ PACKAGE-DEPENDS-LIST?= \
 			${ECHO_MSG} "${PKGNAME}: \"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
-
-# Print out package names.
-
+.endif
 package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{print $$1":"$$3}'
 
@@ -5468,7 +5562,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.78 2007/12/05 16:23:55 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.79 2007/12/07 21:13:46 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
