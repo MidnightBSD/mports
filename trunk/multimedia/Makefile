@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.34 2007/11/24 03:08:17 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.35 2007/12/06 04:50:08 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -12,6 +12,7 @@
     SUBDIR += gstreamer-plugins
     SUBDIR += gstreamer-plugins-bad
     SUBDIR += gstreamer-plugins-good
+    SUBDIR += gstreamer-plugins-dts
     SUBDIR += gstreamer-plugins-mpeg2dec
     SUBDIR += gstreamer-plugins-theora
     SUBDIR += gstreamer-plugins-ugly
