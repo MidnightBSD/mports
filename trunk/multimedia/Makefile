@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.35 2007/12/06 04:50:08 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.36 2008/01/05 01:03:20 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -21,6 +21,7 @@
     SUBDIR += libdts
     SUBDIR += libdv
     SUBDIR += libdvdcss
+    SUBDIR += libdvdnav
     SUBDIR += libdvdread
     SUBDIR += libfame
     SUBDIR += libmpeg2
