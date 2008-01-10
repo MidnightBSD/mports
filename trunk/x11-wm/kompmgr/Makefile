@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.2 2007/04/22 20:47:06 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.3 2007/11/07 21:26:45 laffer1 Exp $
 #
 
 PORTNAME=	kompmgr
@@ -34,18 +34,17 @@ PLIST_FILES=	bin/kompmgr
 
 .include <bsd.port.pre.mk>
 
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE=	Requires the composite extension, which is unavailable with XFree86
-.endif
-
 pre-configure:
 	${CP} ${FILESDIR}/configure ${WRKSRC}/
 
 do-build:
-	cd ${WRKSRC}/kwin/kompmgr && ${GMAKE}
+	cd ${WRKSRC}/kwin/kompmgr && \
+	${CC} ${CFLAGS} -I${LOCALBASE}/include -L${X11BASE}/lib -lX11 -lXdamage\
+	-lXfixes -lXrender -lXcomposite -lm -o kompmgr kompmgr.c
 
 do-install:
-	cd ${WRKSRC}/kwin/kompmgr && ${GMAKE} ${FAKE_MAKEARGS} install
+	cd ${WRKSRC}/kwin/kompmgr && ${INSTALL_PROGRAM} kompmgr\
+	${PREFIX}/bin/kompmgr
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.post.mk>
