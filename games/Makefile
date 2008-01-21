@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.16 2007/11/10 01:08:44 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.17 2007/12/30 00:59:09 laffer1 Exp $
 #
 
     COMMENT = Games
@@ -27,6 +27,7 @@
     SUBDIR += qstat
     SUBDIR += scummvm
     SUBDIR += tuxracer
+    SUBDIR += vitetris
     SUBDIR += wesnoth
 
 .include <bsd.port.subdir.mk>
