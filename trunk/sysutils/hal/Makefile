@@ -2,7 +2,7 @@
 # Date Created:			02 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.3 2008/01/04 19:24:36 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.4 2008/01/04 19:25:20 laffer1 Exp $
 # $FreeBSD: ports/sysutils/hal/Makefile,v 1.22 2007/04/07 11:53:22 jylefort Exp $
 #   $MCom: ports/sysutils/hal/Makefile,v 1.26 2006/10/13 10:00:57 ahze Exp $
 #
@@ -21,7 +21,6 @@ LICENSE=	gpl2
 LIB_DEPENDS=	polkit.0:${PORTSDIR}/sysutils/policykit \
 		volume_id.0:${PORTSDIR}/devel/libvolume_id
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
-USE_CDRTOOLS=	yes
 .endif
 
 USE_BZIP2=	yes
@@ -42,7 +41,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		GTKDOC="false"
 
 HALVERSION=	0.5.8
-SNAPVERSION=	20070909
+SNAPVERSION=	20071224
 
 .if !defined(HAL_SLAVE)
 USE_RC_SUBR=	hald
