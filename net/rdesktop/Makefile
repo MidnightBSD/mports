@@ -2,12 +2,13 @@
 # Date created:               13 December 2000
 # Whom:                       mwest@uct.ac.za
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.1 2007/08/11 02:30:22 laffer1 Exp $
 # $FreeBSD: ports/net/rdesktop/Makefile,v 1.41 2007/06/19 08:55:10 pav Exp $
 #
 
 PORTNAME=	rdesktop
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	net comms
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -15,7 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDP client for Windows NT/2000/2003 Terminal Server
 
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
