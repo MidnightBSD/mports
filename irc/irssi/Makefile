@@ -2,21 +2,21 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.4 2007/08/30 16:39:07 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.5 2007/08/30 18:36:15 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
 PORTNAME=	irssi
-PORTVERSION=	0.8.11
-PORTREVISION=	1
+PORTVERSION=	0.8.12
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	A modular IRC client with many features
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A modular IRC client with many features
 
 USE_BZIP2=	yes
 USE_GNOME=	glib20
+USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-module
 
@@ -42,6 +42,7 @@ USE_OPENSSL=	yes
 
 .if defined(WITH_PERL)
 USE_PERL5=	yes
+WANT_PERL=	yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=	WITH_PERL=""
 .else
