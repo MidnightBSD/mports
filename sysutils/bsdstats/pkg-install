@@ -1,7 +1,9 @@
 #!/bin/sh
 #
-# pkg-install : based off /usr/ports/mail/courier/files/pkg-install.in
+# $MidnightBSD$
+# pkg-install : based off ${PORTSDIR}/mail/courier/files/pkg-install.in
 #
+LOCALBASE=${LOCALBASE:=/usr/local}
 
 ask() {
     local question default answer
@@ -44,7 +46,7 @@ if [ ":$2" = ":POST-INSTALL" ]; then
                     echo "monthly_statistics_report_ports=\"YES\"" >> /etc/periodic.conf
                 fi
                 if yesno "Would you like to run it now" y; then
-                   /usr/local/etc/periodic/monthly/300.statistics -nodelay
+                   ${PKG_PREFIX}/etc/periodic/monthly/300.statistics -nodelay
                 fi
             fi
         fi
@@ -58,8 +60,33 @@ if [ ":$2" = ":POST-INSTALL" ]; then
                 echo "monthly_statistics_report_ports=\"YES\"" >> /etc/periodic.conf
             fi
             if yesno "Would you like to run it now" y; then
-               /usr/local/etc/periodic/monthly/300.statistics -nodelay
+               ${PKG_PREFIX}/etc/periodic/monthly/300.statistics -nodelay
             fi
+        fi
+    fi
+    if [ -f "/etc/rc.conf" ]; then
+        if [ `grep bsdstats_enable /etc/rc.conf | wc -l` = 0 ]; then
+            echo ""
+            echo "If running as a desktop, or on a laptop, it is recommended that you"
+            echo "enable bsdstats within /etc/rc.conf, so that it will run on reboot."
+            echo ""
+            echo "This will ensure that even if your computer is off when monthly runs,"
+            echo "your computer will be properly counted."
+            echo ""
+            if yesno "Would you like to activate reporting on reboot in /etc/rc.conf" n; then
+                echo "bsdstats_enable=\"YES\"" >> /etc/rc.conf
+            fi
+        fi
+    elif [ ! -f "/etc/rc.conf" ]; then
+        echo ""
+        echo "If running as a desktop, or on a laptop, it is recommended that you"
+        echo "enable bsdstats within /etc/rc.conf, so that it will run on reboot."
+        echo ""
+        echo "This will ensure that even if your computer is off when monthly runs,"
+        echo "your computer will be properly counted."
+        echo ""
+        if yesno "Would you like to activate reporting on reboot in /etc/rc.conf" n; then
+            echo "bsdstats_enable=\"YES\"" >> /etc/rc.conf
         fi
     fi
 fi
