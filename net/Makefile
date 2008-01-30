@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.47 2007/12/28 21:52:14 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.48 2007/12/28 21:56:59 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -55,6 +55,7 @@
     SUBDIR += samba3
     SUBDIR += sdl_net
     SUBDIR += tsocks
+    SUBDIR += x11vnc
     SUBDIR += yaz
     SUBDIR += zillion
 
