@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.3 2007/08/15 18:23:30 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.4 2007/10/19 20:45:20 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -35,9 +35,9 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-OPERA_VER=	9.24
-OPERA_DATE=	20071015
-OPERA_BUILD=	671
+OPERA_VER=	9.25
+OPERA_DATE=	20071214
+OPERA_BUILD=	687
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
@@ -51,11 +51,15 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 do-install:
+	${MKDIR} ${PREFIX}/share/applications
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/images/opera.xpm ${PREFIX}/share/pixmaps/linux-opera.xpm
 	@(cd ${WRKSRC} && ./install.sh \
 			--prefix=${PREFIX} \
 			--docdir=${DOCSDIR} \
 			--sharedir=${DATADIR} \
 			--exec_prefix=${DATADIR}/bin \
 			--plugindir=${DATADIR}/plugins)
+
 
 .include <bsd.port.mk>
