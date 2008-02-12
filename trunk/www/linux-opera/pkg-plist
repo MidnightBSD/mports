@@ -84,7 +84,7 @@ bin/linux-opera
 %%DATADIR%%/svg-sabd.dat
 %%DATADIR%%/svg-se.dat
 %%DATADIR%%/svg-sebd.dat
-@comment share/pixmaps/linux-opera.png
+share/pixmaps/linux-opera.xpm
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
 @dirrm %%DATADIR%%/styles
