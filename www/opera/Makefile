@@ -2,13 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.14 2007/10/27 04:23:07 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.15 2008/01/10 18:49:50 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -31,11 +31,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 LICENSE=	restricted
 
-OPERA_VER=	9.24
+OPERA_VER=	9.25
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20071015
-OPERA_BUILD=	671
+OPERA_DATE=	20071214
+OPERA_BUILD=	687
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
@@ -102,12 +102,16 @@ do-install:
 	@(cd ${WRKSRC} && ./install.sh --prefix=${TRUE_PREFIX} --DESTDIR=${FAKE_DESTDIR})
 
 post-install:
-	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/22x22/apps
-	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/32x32/apps
-	@${MKDIR} -p ${PREFIX}/share/icons/hicolor/48x48/apps
-	@${MKDIR} -p ${PREFIX}/share/icons/locolor/16x16/apps
-	@${MKDIR} -p ${PREFIX}/share/icons/locolor/22x22/apps
-	@${MKDIR} -p ${PREFIX}/share/icons/locolor/32x32/apps
+	@${MKDIR} ${PREFIX}/share/gnome/apps/Internet
+	@${MKDIR} ${PREFIX}/share/pixmaps
+	@${MKDIR} ${PREFIX}/share/applnk/Internet
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/22x22/apps
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/32x32/apps
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps
+	@${MKDIR} ${PREFIX}/share/icons/locolor/16x16/apps
+	@${MKDIR} ${PREFIX}/share/icons/locolor/22x22/apps
+	@${MKDIR} ${PREFIX}/share/icons/locolor/32x32/apps
+	@${INSTALL_DATA} ${WRKSRC}/images/opera.xpm ${PREFIX}/share/pixmaps/opera.xpm
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_16x16.png ${PREFIX}/share/icons/locolor/16x16/apps/opera.png
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_22x22.png ${PREFIX}/share/icons/locolor/22x22/apps/opera.png
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_22x22.png ${PREFIX}/share/icons/hicolor/22x22/apps/opera.png

@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/opera/pkg-plist,v 1.5 2007/06/27 01:08:38 laffer1 Exp $
+@comment $FreeBSD: ports/www/opera/pkg-plist,v 1.32 2007/10/24 23:36:51 marcus Exp $
 bin/opera
 %%DOCSDIR%%/LICENSE
 %%DATADIR%%/bin/missingsyms.so
@@ -65,6 +65,7 @@ bin/opera
 %%DATADIR%%/styles/user/classid.css
 %%DATADIR%%/styles/user/contrastbw.css
 %%DATADIR%%/styles/user/contrastwb.css
+%%DATADIR%%/styles/user/disablebreaks.css
 %%DATADIR%%/styles/user/disablefloats.css
 %%DATADIR%%/styles/user/disableforms.css
 %%DATADIR%%/styles/user/disablepositioning.css
@@ -83,10 +84,7 @@ bin/opera
 %%DATADIR%%/svg-sa.dat
 %%DATADIR%%/svg-mobd.dat
 %%DATADIR%%/svg-mo.dat
-
-@comment %%GNOME%%share/gnome/apps/Internet/opera.desktop
-@comment %%GNOME%%share/gnome/pixmaps/opera.xpm
-@comment %%KDE%%share/applnk/Internet/opera.desktop
+%%GNOME%%share/pixmaps/opera.xpm
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
 @dirrm %%DATADIR%%/styles
@@ -109,10 +107,13 @@ share/icons/hicolor/48x48/apps/opera.png
 share/icons/locolor/16x16/apps/opera.png
 share/icons/locolor/22x22/apps/opera.png
 share/icons/locolor/32x32/apps/opera.png
-@dirrmtry share/icons/hicolor/22x22/apps
-@dirrmtry share/icons/hicolor/22x22
 @dirrmtry share/icons/hicolor/48x48/apps
 @dirrmtry share/icons/hicolor/48x48
+@dirrmtry share/icons/hicolor/32x32/apps
+@dirrmtry share/icons/hicolor/32x32
+@dirrmtry share/icons/hicolor/22x22/apps
+@dirrmtry share/icons/hicolor/22x22
+@dirrmtry share/icons/hicolor
 @dirrmtry share/icons/locolor/32x32/apps
 @dirrmtry share/icons/locolor/32x32
 @dirrmtry share/icons/locolor/22x22/apps
@@ -120,3 +121,4 @@ share/icons/locolor/32x32/apps/opera.png
 @dirrmtry share/icons/locolor/16x16/apps
 @dirrmtry share/icons/locolor/16x16
 @dirrmtry share/icons/locolor
+@dirrmtry share/icons
