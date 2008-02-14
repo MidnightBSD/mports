@@ -2,13 +2,11 @@
 # Date created:			May 13, 2002
 # Whom:				Munish Chopra <mchopra@engmail.uwaterloo.ca>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/www/awstats/Makefile,v 1.37 2007/01/31 07:51:30 miwi Exp $
+# $MidnightBSD: mports/www/awstats/Makefile,v 1.1 2007/06/11 01:54:33 laffer1 Exp $
 #
 
 PORTNAME=	awstats
-PORTVERSION=	6.6
-PORTREVISION=	1
+PORTVERSION=	6.7
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -99,11 +97,6 @@ do-install:
 	@${MKDIR} ${DOCSDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/docs/images/* ${DOCSDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/docs/*.* ${DOCSDIR}
-.endif
-
-post-install:
-.if !defined(BATCH)
-	@${CAT} ${PKGMESSAGE}
 .endif
 
 .include <bsd.port.post.mk>
