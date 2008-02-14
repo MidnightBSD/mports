@@ -3,14 +3,13 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.5 2007/08/29 23:13:50 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.6 2007/09/26 22:05:32 ctriv Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.0.61
-PORTREVISION=	1
+PORTVERSION=	2.0.63
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
