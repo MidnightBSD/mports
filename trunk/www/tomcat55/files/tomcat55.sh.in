@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/www/tomcat55/files/tomcat55.sh.in,v 1.5 2006/09/08 09:31:07 pav Exp $
+# $FreeBSD: ports/www/tomcat55/files/tomcat55.sh.in,v 1.7 2007/09/30 22:04:02 alepulver Exp $
 #
 
 # PROVIDE: tomcat%%TOMCAT_VERSION%%
@@ -112,6 +112,9 @@ if [ -f $pidfile ]; then
     procname=`ps -o ucomm= -p $rc_pid`
   fi
 fi
+if [ -z "$procname" ]; then
+  procname=nonexistent
+fi
 
 required_files="${tomcat%%TOMCAT_VERSION%%_catalina_home}/conf/server.xml"
 
@@ -128,7 +131,7 @@ pid_touch ()
 }
 
 tomcat%%TOMCAT_VERSION%%_stop() {
-	rc_pid=$(check_pidfile $pidfile *$procname*)
+	rc_pid=$(check_pidfile $pidfile $procname)
 
 	if [ -z "$rc_pid" ]; then
 		[ -n "$rc_fast" ] && return 0
