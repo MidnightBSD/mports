@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.63 2007/11/08 02:49:30 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.64 2007/11/20 19:12:36 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -70,6 +70,7 @@
     SUBDIR += tidy-devel
     SUBDIR += tidy-lib
     SUBDIR += tomcat55
+    SUBDIR += tomcat6
     SUBDIR += youtube_dl
     SUBDIR += validator
     SUBDIR += webserver
