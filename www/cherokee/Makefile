@@ -2,20 +2,20 @@
 # Date created:			01 Jun 2002
 # Whom:				silence <oksala@videotron.ca>
 #
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.4 2007/01/19 15:22:11 wintellect Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.5 2007/08/01 20:03:21 laffer1 Exp $
 # $FreeBSD: ports/www/cherokee/Makefile,v 1.26 2006/08/15 01:11:31 clsung Exp $
 #
 
 PORTNAME=	cherokee
 PORTVERSION=	0.5.6
-PORTREVISION=
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.cherokee-project.com/download/%SUBDIR%/ \
-		http://www.alaskaparadise.com/freebsd/
+MASTER_SITES=	http://www.cherokee-project.com/download/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTVERSION:R}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.com
 COMMENT=	An extremely fast and flexible web server
+LICENSE=	gpl2
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
