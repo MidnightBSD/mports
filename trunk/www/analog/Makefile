@@ -2,13 +2,13 @@
 # Date created:		October 21st 1996
 # Whom:			jfitz
 #
-# $MidnightBSD: mports/www/analog/Makefile,v 1.1 2006/09/27 13:08:54 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.2 2008/02/14 22:29:59 laffer1 Exp $
 # $FreeBSD: ports/www/analog/Makefile,v 1.57 2006/01/04 23:32:10 edwin Exp $
 #
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
@@ -24,6 +24,7 @@ MASTER_SITES=	http://www.analog.cx/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extremely fast program for analysing WWW logfiles
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -64,8 +65,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/examples/css/jreeves/* ${EXAMPLESDIR}/css/jreeves
 .endif
 	${INSTALL_MAN} ${WRKSRC}/analog.man ${PREFIX}/man/man1/analog.1
-
-post-install:
-	${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
