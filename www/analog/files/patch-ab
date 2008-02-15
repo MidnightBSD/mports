@@ -1,15 +1,21 @@
---- src/tree.c.orig	Sun Mar 23 13:57:02 2003
-+++ src/tree.c	Sun May 11 10:25:45 2003
-@@ -895,8 +895,16 @@
+--- src/tree.c.orig	Sun Dec 19 08:51:31 2004
++++ src/tree.c	Fri Feb 15 10:09:16 2008
+@@ -904,8 +904,22 @@
  	*name = "Macintosh";
      else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
        *name = "Unix:Linux";
 -    else if (strstr(whole, "BSD") != NULL)
 -      *name = "Unix:BSD";
++    else if (strstr(whole, "DragonFly") != NULL || strstr(whole, "dragonfly") != NULL)
++      *name = "Unix:DragonFly";
 +    else if (strstr(whole, "FreeBSD") != NULL || strstr(whole, "freebsd") != NULL)
 +      *name = "Unix:FreeBSD";
 +    else if (strstr(whole, "OpenBSD") != NULL || strstr(whole, "openbsd") != NULL)
 +      *name = "Unix:OpenBSD";
++    else if (strstr(whole, "MidnightBSD") != NULL || strstr(whole, "midnightbsd") != NULL)
++      *name = "Unix:MidnightBSD";
++    else if (strstr(whole, "MirBSD") != NULL || strstr(whole, "mirbsd") != NULL)
++      *name = "Unix:MirBSD";
 +    else if (strstr(whole, "NetBSD") != NULL || strstr(whole, "netbsd") != NULL)
 +      *name = "Unix:NetBSD";
 +    else if (strstr(whole, "BSD/OS") != NULL || strstr(whole, "bsd/os") != NULL)
