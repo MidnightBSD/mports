@@ -2,12 +2,12 @@
 # Date created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.1 2006/10/03 20:45:22 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.2 2007/08/29 00:36:30 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/vte/Makefile,v 1.58 2006/05/31 22:18:51 mezz Exp $
 #
 
 PORTNAME=	vte
-PORTVERSION=	0.16.8
+PORTVERSION=	0.16.12
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -22,14 +22,14 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 USE_GMAKE=	yes
-USE_BISON=	yes
+USE_BISON=	build
 USE_XLIB=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GETTEXT=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 ltverhack referencehack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib" \
 		BSD_PTHREAD_LIBS="${PTHREAD_LIBS}"
 CONFIGURE_ARGS=	--disable-python \
 		--disable-freetypetest
