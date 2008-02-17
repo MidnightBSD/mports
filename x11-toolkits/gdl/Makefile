@@ -2,13 +2,12 @@
 # Date created:				24 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.1 2007/08/31 00:27:02 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gdl/Makefile,v 1.29 2007/07/10 04:38:08 marcus Exp $
 #
 
 PORTNAME=	gdl
-PORTVERSION=	0.7.6
-PORTREVISION=	1
+PORTVERSION=	0.7.8
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
