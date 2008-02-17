@@ -1,6 +1,5 @@
 bin/avahi-browse
 bin/avahi-browse-domains
-%%GTK%%bin/avahi-discover-standalone
 bin/avahi-publish
 bin/avahi-publish-address
 bin/avahi-publish-service
@@ -8,8 +7,6 @@ bin/avahi-resolve
 bin/avahi-resolve-address
 bin/avahi-resolve-host-name
 bin/avahi-set-host-name
-%%GTK%%bin/bssh
-%%GTK%%bin/bvnc
 etc/avahi/avahi-daemon.conf
 etc/avahi/avahi-dnsconfd.action
 etc/avahi/hosts
@@ -55,7 +52,6 @@ include/avahi-compat-howl/salt/salt.h
 include/avahi-compat-howl/salt/signal.h
 include/avahi-compat-howl/salt/socket.h
 include/avahi-compat-howl/salt/time.h
-%%LIBDNS%%include/avahi-compat-libdns_sd/dns_sd.h
 include/avahi-core/core.h
 include/avahi-core/log.h
 include/avahi-core/lookup.h
@@ -63,7 +59,14 @@ include/avahi-core/publish.h
 include/avahi-core/rr.h
 include/avahi-glib/glib-malloc.h
 include/avahi-glib/glib-watch.h
-%%GTK%%include/avahi-ui/avahi-ui.h
+include/avahi-gobject/ga-client.h
+include/avahi-gobject/ga-entry-group.h
+include/avahi-gobject/ga-enums.h
+include/avahi-gobject/ga-error.h
+include/avahi-gobject/ga-record-browser.h
+include/avahi-gobject/ga-service-browser.h
+include/avahi-gobject/ga-service-resolver.h
+lib/avahi/.keep
 lib/libavahi-client.a
 lib/libavahi-client.la
 lib/libavahi-client.so
@@ -80,30 +83,22 @@ lib/libavahi-glib.a
 lib/libavahi-glib.la
 lib/libavahi-glib.so
 lib/libavahi-glib.so.1
-%%GTK%%lib/libavahi-ui.a
-%%GTK%%lib/libavahi-ui.la
-%%GTK%%lib/libavahi-ui.so
-%%GTK%%lib/libavahi-ui.so.0
-%%LIBDNS%%lib/libdns_sd.a
-%%LIBDNS%%lib/libdns_sd.la
-%%LIBDNS%%lib/libdns_sd.so
-%%LIBDNS%%lib/libdns_sd.so.1
+lib/libavahi-gobject.a
+lib/libavahi-gobject.la
+lib/libavahi-gobject.so
+lib/libavahi-gobject.so.0
 lib/libhowl.a
 lib/libhowl.la
 lib/libhowl.so
 lib/libhowl.so.0
 libdata/pkgconfig/avahi-client.pc
 libdata/pkgconfig/avahi-compat-howl.pc
-%%LIBDNS%%libdata/pkgconfig/avahi-compat-libdns_sd.pc
 libdata/pkgconfig/avahi-core.pc
 libdata/pkgconfig/avahi-glib.pc
-%%GTK%%libdata/pkgconfig/avahi-ui.pc
+libdata/pkgconfig/avahi-gobject.pc
 sbin/avahi-daemon
 sbin/avahi-dnsconfd
-%%GTK%%share/applications/bssh.desktop
-%%GTK%%share/applications/bvnc.desktop
 %%DATADIR%%/avahi-service.dtd
-%%GTK%%%%DATADIR%%/interfaces/avahi-discover.glade
 %%DATADIR%%/introspection/AddressResolver.introspect
 %%DATADIR%%/introspection/DomainBrowser.introspect
 %%DATADIR%%/introspection/EntryGroup.introspect
@@ -114,14 +109,14 @@ sbin/avahi-dnsconfd
 %%DATADIR%%/introspection/ServiceResolver.introspect
 %%DATADIR%%/introspection/ServiceTypeBrowser.introspect
 %%DATADIR%%/service-types
+share/locale/de/LC_MESSAGES/avahi.mo
 @dirrm %%DATADIR%%/introspection
-%%GTK%%@dirrm %%DATADIR%%/interfaces
 @dirrm %%DATADIR%%
 @dirrmtry share/applications
-%%GTK%%@dirrm include/avahi-ui
+@dirrm lib/avahi
+@dirrm include/avahi-gobject
 @dirrm include/avahi-glib
 @dirrm include/avahi-core
-%%LIBDNS%%@dirrm include/avahi-compat-libdns_sd
 @dirrm include/avahi-compat-howl/salt
 @dirrm include/avahi-compat-howl/rendezvous
 @dirrm include/avahi-compat-howl/discovery
