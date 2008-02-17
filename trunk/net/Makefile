@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/net/Makefile,v 1.50 2008/02/02 01:54:45 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.51 2008/02/17 05:21:08 laffer1 Exp $
 #
 
     COMMENT = Networking tools
 
     SUBDIR += 44bsd-rdist
     SUBDIR += avahi
+    SUBDIR += avahi-autoipd
     SUBDIR += avahi-app
     SUBDIR += avahi-qt3
     SUBDIR += cvsup
