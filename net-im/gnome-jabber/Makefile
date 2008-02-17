@@ -2,11 +2,12 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/gnome-jabber/Makefile,v 1.1 2007/11/08 03:08:48 laffer1 Exp $
 #
 
 PORTNAME=	gnome-jabber
 PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	net-im gnome
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
