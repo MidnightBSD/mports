@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/net/Makefile,v 1.49 2008/01/30 22:20:01 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.50 2008/02/02 01:54:45 laffer1 Exp $
 #
 
     COMMENT = Networking tools
 
     SUBDIR += 44bsd-rdist
     SUBDIR += avahi
+    SUBDIR += avahi-app
+    SUBDIR += avahi-qt3
     SUBDIR += cvsup
     SUBDIR += cvsup-without-gui
     SUBDIR += fping
