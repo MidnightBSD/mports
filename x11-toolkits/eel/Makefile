@@ -2,13 +2,13 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.1 2007/09/01 06:36:18 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/eel/Makefile,v 1.33 2007/07/03 17:08:19 mezz Exp $
 #   $MCom: ports/x11-toolkits/eel/Makefile,v 1.51 2007/03/12 15:59:00 ahze Exp $
 #
 
 PORTNAME=	eel
-PORTVERSION=	2.18.3
+PORTVERSION=	2.20.0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
