@@ -2,13 +2,13 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.4 2007/08/23 06:32:31 laffer1 Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.142 2007/07/17 02:35:58 marcus Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.91 2006/10/05 06:55:34 mezz Exp $
 #
 
 PORTNAME=	glib
-PORTVERSION=	2.12.13
+PORTVERSION=	2.14.6
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
@@ -29,6 +29,8 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
+LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
@@ -37,7 +39,8 @@ USE_GMAKE=	yes
 USE_PERL5=	yes
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
-		--disable-man --without-xml-catalog
+		--disable-man --without-xml-catalog \
+		--with-pcre=system
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lintl" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
