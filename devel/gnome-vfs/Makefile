@@ -2,13 +2,13 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.1 2007/05/07 21:21:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.2 2007/05/07 23:44:24 ctriv Exp $
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #
 
 PORTNAME=	gnome-vfs
-PORTVERSION=	2.18.1
+PORTVERSION=	2.20.1
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -72,7 +72,7 @@ CONFIGURE_ARGS+=--disable-samba
 .endif
 
 .if !defined(WITHOUT_MDNS)
-LIB_DEPENDS+=	avahi-client:${PORTSDIR}/net/avahi
+LIB_DEPENDS+=	avahi-client:${PORTSDIR}/net/avahi-app
 .else
 CONFIGURE_ARGS+=--disable-avahi
 .endif
@@ -83,9 +83,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/libgnomevfs/Makefile.in
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-	    	s|/usr/X11R6|${X11BASE}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g; \
-		s|%%X11BASE%%|${X11BASE}|g' \
+		s|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/libgnomevfs/xdgmime.c \
 		${WRKSRC}/libgnomevfs/gnome-vfs-hal-mounts.c
 	@${REINPLACE_CMD} -e 's|-lacl||g' \
@@ -100,6 +98,11 @@ pre-configure:
 		${ECHO_CMD} "${PKGNAME}: bind installed with PORT_REPLACES_BASE_BIND causes build problems."; \
 		${FALSE}; \
 	fi
+
+.if defined(WITHOUT_KERBEROS)
+	@${ECHO_CMD} "${PKGNAME}: KERBEROS is required."
+	@${FALSE}
+.endif
 
 .include <bsd.port.post.mk>
 
