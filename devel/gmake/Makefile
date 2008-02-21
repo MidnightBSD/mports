@@ -2,13 +2,13 @@
 # Date created:		11 September 1994
 # Whom:			jkh
 #
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.3 2007/05/07 02:10:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.4 2007/09/07 20:06:15 ctriv Exp $
 # $FreeBSD: ports/devel/gmake/Makefile,v 1.62 2006/06/29 22:39:05 ade Exp $
 #
 
 PORTNAME=	gmake
 PORTVERSION=	3.81
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	make
@@ -31,7 +31,7 @@ PLIST_SUB=	NLS=""
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB=	NLS="@comment "
 .endif
-CONFIGURE_ENV+=	MAKEINFO="/usr/bin/makeinfo --no-split"
+CONFIGURE_ENV+=	MAKEINFO="makeinfo --no-split"
 
 MAN1=		gmake.1
 INFO=		make
