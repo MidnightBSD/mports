@@ -2,12 +2,12 @@
 # Date created:				Jun 13 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.1 2007/09/19 20:15:55 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.2 2007/11/11 00:37:23 laffer1 Exp $
 # $FreeBSD: ports/astro/google-earth/Makefile,v 1.17 2007/09/17 21:23:48 nox Exp $
 #
 
 PORTNAME=	google-earth
-PORTVERSION=	4.2.198.2451
+PORTVERSION=	4.2.205.5730
 CATEGORIES=	astro deskutils geography
 MASTER_SITES=	http://dl.google.com/earth/client/current/
 DISTFILES=	${TARGET_DISTFILE}
@@ -19,6 +19,7 @@ LICENSE=	restricted
 
 EXTRACT_DEPENDS=	unmakeself:${PORTSDIR}/archivers/unmakeself
 BUILD_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 RESTRICTED=	Not sure about redistribution rights
 LICENSE=	restricted
