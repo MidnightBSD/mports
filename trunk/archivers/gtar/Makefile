@@ -2,12 +2,12 @@
 # Date created:		Sa   6 Jun 1998 10:24:51 CEST
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.3 2007/03/13 20:54:30 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.4 2007/07/29 15:09:46 laffer1 Exp $
 # $FreeBSD: ports/archivers/gtar/Makefile,v 1.47 2006/03/04 14:59:42 naddy Exp $
 #
 
 PORTNAME=	tar
-PORTVERSION=	1.18
+PORTVERSION=	1.19
 PORTREVISION=	0
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
