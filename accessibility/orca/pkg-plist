@@ -220,7 +220,7 @@ bin/orca
 %%PYTHON_SITELIBDIR%%/orca/where_am_I.py
 %%PYTHON_SITELIBDIR%%/orca/where_am_I.pyc
 %%PYTHON_SITELIBDIR%%/orca/where_am_I.pyo
-share/gnome/applications/orca.desktop
+share/applications/orca.desktop
 share/icons/hicolor/16x16/apps/orca.png
 share/icons/hicolor/22x22/apps/orca.png
 share/icons/hicolor/24x24/apps/orca.png
@@ -282,13 +282,12 @@ share/locale/vi/LC_MESSAGES/orca.mo
 share/locale/zh_CN/LC_MESSAGES/orca.mo
 share/locale/zh_HK/LC_MESSAGES/orca.mo
 share/locale/zh_TW/LC_MESSAGES/orca.mo
-share/gnome/orca/glade/orca-find.glade
-share/gnome/orca/glade/orca-mainwin.glade
-share/gnome/orca/glade/orca-quit.glade
-share/gnome/orca/glade/orca-setup.glade
-@dirrm share/gnome/orca/glade
-@dirrm share/gnome/orca
-@dirrm share/gnome
+%%DATADIR%%/glade/orca-find.glade
+%%DATADIR%%/glade/orca-mainwin.glade
+%%DATADIR%%/glade/orca-quit.glade
+%%DATADIR%%/glade/orca-setup.glade
+@dirrm %%DATADIR%%/glade
+@dirrm %%DATADIR%%
 @dirrm %%PYTHON_SITELIBDIR%%/orca/scripts
 @dirrm %%PYTHON_SITELIBDIR%%/orca
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
