@@ -2,7 +2,7 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.3 2007/10/09 15:09:16 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.4 2007/10/31 19:22:47 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
@@ -26,6 +26,7 @@ PLIST_FILES=	bin/unzip bin/funzip bin/unzipsfx bin/zipgrep bin/zipinfo
 PORTDOCS=	README WHERE
 MAN1=		funzip.1 unzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
 #EXTRACT_SUFX=	.tgz
+CFLAGS+=      -D_FILE_OFFSET_BITS=64
 
 .if defined(WITH_UNZIP_UNREDUCE)
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} unreduce_full.zip
