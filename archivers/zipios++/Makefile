@@ -3,7 +3,7 @@
 # Date created:			Jul 23, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.1 2006/11/24 22:02:38 wintellect Exp $
 # $FreeBSD: ports/archivers/zipios++/Makefile,v 1.14 2006/08/14 09:56:58 clsung Exp $
 #
 
@@ -29,6 +29,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}+cvs.2004.02.07
 # tests need CppUnit
 post-patch:
 	@${REINPLACE_CMD} -e 's| tests||' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' ${WRKSRC}/configure
 
 pre-configure:
 .for i in install-sh missing depcomp mkinstalldirs
