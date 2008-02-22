@@ -2,14 +2,13 @@
 # Date Created:			12 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/gail/Makefile,v 1.1 2007/08/30 21:44:56 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gail/Makefile,v 1.2 2007/10/09 15:22:20 laffer1 Exp $
 # $FreeBSD: ports/accessibility/gail/Makefile,v 1.60 2007/05/19 19:57:34 flz Exp $
 #   $MCom: ports/accessibility/gail/Makefile,v 1.57 2007/03/12 13:34:38 ahze Exp $
 #
 
 PORTNAME=	gail
-PORTVERSION=	1.18.0
-PORTREVISION?=	1
+PORTVERSION=	1.20.2
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -28,7 +27,7 @@ USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_GNOME=	gnomehack ltverhack libgnomecanvas lthack referencehack
+USE_GNOME=	gnomehack ltverhack gtk20 lthack referencehack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--disable-gtk-doc \
