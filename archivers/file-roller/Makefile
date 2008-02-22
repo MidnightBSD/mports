@@ -2,13 +2,13 @@
 # Date created:				18 May 2002
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.1 2007/09/03 23:19:41 laffer1 Exp $
 # $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
 #   $MCom: ports/archivers/file-roller/Makefile,v 1.117 2007/03/12 23:23:57 marcus Exp $
 #
 
 PORTNAME=	file-roller
-PORTVERSION=	2.18.4
+PORTVERSION=	2.20.3
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
