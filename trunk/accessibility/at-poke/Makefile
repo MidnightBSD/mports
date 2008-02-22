@@ -2,12 +2,13 @@
 # Date created:				24 Oct 2006
 # Whom:					Marcus von Appen <mva@sysfault.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.1 2008/01/01 21:09:27 laffer1 Exp $
 # $FreeBSD: ports/accessibility/at-poke/Makefile,v 1.3 2007/10/24 23:34:38 marcus Exp $
 #
 
 PORTNAME=	at-poke
 PORTVERSION=	0.2.3
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
