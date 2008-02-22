@@ -3,12 +3,12 @@
 # Date created:			Dec 7, 2004
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.1 2007/05/01 23:31:43 laffer1 Exp $
 # $FreeBSD: ports/archivers/pbzip2/Makefile,v 1.10 2007/03/30 05:49:40 sat Exp $
 #
 
 PORTNAME=	pbzip2
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	archivers
 MASTER_SITES=	http://compression.ca/pbzip2/ CENKES
 
