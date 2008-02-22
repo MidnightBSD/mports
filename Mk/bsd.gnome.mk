@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.6 2007/08/28 16:54:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.7 2008/02/17 03:10:56 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -11,7 +11,7 @@
 # Please make sure all changes to this file are passed through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
 Gnome_Include_MAINTAINER=	ports@MidnightBSD.org
-Gnome_Pre_Include=			bsd.gnome.mk
+Gnome_Pre_Include=		bsd.gnome.mk
 
 # This section defines possible names of GNOME components and all information
 # necessary for ports to use those components.
