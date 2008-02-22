@@ -3,12 +3,12 @@
 # Whom:                 piero
 #
 # $FreeBSD: ports/astro/xearth/Makefile,v 1.33 2005/10/03 22:45:42 simon Exp $
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.3 2007/08/05 20:40:39 laffer1 Exp $
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.4 2007/08/20 16:40:09 laffer1 Exp $
 #
 
 PORTNAME=	xearth
 PORTVERSION=	1.1
-CATEGORIES=	astro
+CATEGORIES=	astro geography
 MASTER_SITES=	ftp://cag.lcs.mit.edu/pub/tuna/ \
 		${MASTER_SITE_XCONTRIB:S/$/:xcontrib/} \
 		${MASTER_SITE_LOCAL:S/$/:local/}
