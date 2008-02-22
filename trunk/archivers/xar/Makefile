@@ -2,25 +2,21 @@
 # Date created:		24 January 2005
 # Whom:			Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/xar/Makefile,v 1.1 2007/05/01 23:38:55 laffer1 Exp $
 # $FreeBSD: ports/archivers/xar/Makefile,v 1.3 2006/12/13 12:41:19 roam Exp $
 #
 
 PORTNAME=	xar
-DISTVERSION=	1.4
-PORTREVISION=	1
+PORTVERSION=	1.5.2
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.opendarwin.org/projects/xar/ \
-		http://distfiles-msn.opendarwin.org/ \
-		http://distfiles-od.opendarwin.org/ \
-		http://distfiles.opendarwin.org/
+MASTER_SITES=	http://xar.googlecode.com/files/ \
+		${MASTER_SITE_GENTOO}
+MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenDarwin XML eXtensible ARchiver
 
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
-
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 USE_GNOME=	libxml2
 USE_GMAKE=	yes
