@@ -2,19 +2,20 @@
 # Date created:				2 July 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.5 2007/04/27 20:20:18 ctriv Exp $
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.6 2007/08/28 19:04:49 laffer1 Exp $
 # $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
 
 PORTNAME=	gnomehier
-PORTVERSION=	2.2
+PORTVERSION=	2.3
 CATEGORIES=	misc gnome
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A utility port that creates the GNOME directory tree
+LICENSE=	unknown
 
 NO_BUILD=	yes
 PLIST?=		${WRKDIR}/pkg-plist
@@ -41,10 +42,12 @@ pre-install:
 	done
 	@${SED} -e 's|%%MTREE_ARGS%%|${GNOME_MTREE_ARGS}|' \
 		< ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-	${CHGRP} games ${WRKSRC}/share/gnome/games
-	${CHMOD} g=rwXs ${WRKSRC}/share/gnome/games
+	${CHGRP} games ${WRKSRC}/share/games
+	${CHMOD} g=rwXs ${WRKSRC}/share/games
 	cd ${WRKSRC} && \
-		${MTREE_CMD} -U -d -n -i -c -k "uname, gname, mode" \
+		${MTREE_CMD} -U -d -n -i -c -k "uname, gname, mode" | \
+		${SED} -e 's|uname=[A-Za-z0-9_]*|uname=root|' \
+		       -e 's|gname=[A-Za-z0-9_]*|gname=wheel|' \
 			> ${WRKDIR}/${GNOME_MTREE}
 
 do-install:
