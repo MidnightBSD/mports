@@ -2,13 +2,13 @@
 # Date created:				21 Feb 1998
 # Whom:					giffunip@asme.org
 #
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.1 2006/09/21 16:05:53 wintellect Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.2 2007/08/08 00:42:09 laffer1 Exp $
 # $FreeBSD: ports/archivers/lzo2/Makefile,v 1.38 2006/02/23 10:34:20 ade Exp $
 #
 
 PORTNAME=	lzo2
 PORTVERSION=	2.02
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		http://fresh.t-systems-sfr.com/unix/src/misc/ \
@@ -21,6 +21,7 @@ COMMENT=	Portable speedy, lossless data compression library
 
 LICENSE=	gpl2
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-shared
