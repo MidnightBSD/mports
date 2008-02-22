@@ -2,13 +2,14 @@
 # Date created:			12 April 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.1 2008/01/01 21:59:31 laffer1 Exp $
 # $FreeBSD: ports/accessibility/gnome-mag/Makefile,v 1.43 2007/10/24 23:34:40 marcus Exp $
 #   $MCom: ports/accessibility/gnome-mag/Makefile,v 1.37 2007/09/17 16:05:19 ahze Exp $
 #
 
 PORTNAME=	gnome-mag
 PORTVERSION=	0.14.10
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
