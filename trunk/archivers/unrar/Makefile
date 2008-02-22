@@ -2,13 +2,13 @@
 # Date created:         28 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/unrar/Makefile,v 1.1 2006/09/17 19:04:59 laffer1 Exp $
 # $FreeBSD: ports/archivers/unrar/Makefile,v 1.46 2006/08/17 01:46:32 ache Exp $
 #
 
 PORTNAME=	unrar
-PORTVERSION=	3.60
-PORTEPOCH=	4
+PORTVERSION=	3.71.b1
+PORTEPOCH=	5
 CATEGORIES+=	archivers
 MASTER_SITES=	http://files1.rarlab.com/rar/ \
 		http://files2.rarlab.com/rar/ \
@@ -16,7 +16,7 @@ MASTER_SITES=	http://files1.rarlab.com/rar/ \
 		http://files4.rarlab.com/rar/ \
 		http://files5.rarlab.com/rar/ \
 		http://files6.rarlab.com/rar/
-DISTNAME=	unrarsrc-3.6.8
+DISTNAME=	unrarsrc-3.7.8
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test RAR archives
