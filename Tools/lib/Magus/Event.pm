@@ -1,6 +1,6 @@
-package Magus::Result;
+package Magus::Event;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,38 +24,23 @@ package Magus::Result;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Result.pm,v 1.5 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/SubResult.pm,v 1.7 2007/11/16 05:29:37 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
 
 
-
-use base qw(Magus::DBI);
 use strict;
 use warnings;
+use base qw(Magus::DBI);
+
+__PACKAGE__->table('events');
+__PACKAGE__->columns(All => qw/id port phase type name msg machine/);
+__PACKAGE__->has_a(port => 'Magus::Port');
+__PACKAGE__->has_a(machine => 'Magus::Machine');
 
 
-__PACKAGE__->table('results');
-__PACKAGE__->columns(All => qw/id port version summary machine osversion/);
 
-__PACKAGE__->has_a(port      => 'Magus::Port');
-__PACKAGE__->has_a(machine   => 'Magus::Machine');
-__PACKAGE__->has_a(osversion => 'Magus::OSVersion');
-
-__PACKAGE__->has_many(subresults => 'Magus::SubResult');
-__PACKAGE__->might_have(log       => 'Magus::Log' => 'data');
-
-
-#
-# depreacted method
-#
-use Carp qw(cluck);
-sub arch {
-  my ($self) = @_;
-  cluck("Use of deprecated method: " . ref $self . "->arch. Use ->machine->arch instead.");
-  return $self->machine->arch;
-}
 
 1;
 __END__

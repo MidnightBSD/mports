@@ -1,6 +1,6 @@
 package Magus::OutcomeRules;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@ package Magus::OutcomeRules;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.3 2007/11/02 18:43:43 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.4 2007/11/16 05:29:37 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #

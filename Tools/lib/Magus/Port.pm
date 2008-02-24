@@ -1,6 +1,6 @@
 package Magus::Port;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.10 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.11 2007/11/20 17:03:45 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -38,23 +38,24 @@ use base 'Magus::DBI';
 
 __PACKAGE__->table('ports');
 
-__PACKAGE__->columns(Essential => qw(id name arch version license pkgname));
-__PACKAGE__->columns(All       => qw(description));
+__PACKAGE__->columns(Essential => qw(id run name version status));
+__PACKAGE__->columns(All       => qw(description license www created updated));
 __PACKAGE__->columns(Stringify => qw(name));
 
+__PACKAGE__->has_a(run     => 'Magus::Run');
+
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
-__PACKAGE__->has_many(results => 'Magus::Result');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
+__PACKAGE__->has_many(events => [ 'Magus::Event' => 'port' ]);
+
 
 __PACKAGE__->set_sql(ready_ports => <<'END_OF_SQL');
 SELECT ports.*,(SELECT COUNT(*) FROM depends WHERE dependency=ports.id) AS priority 
 FROM ports 
 WHERE 
-    arch=?
+    run=:a AND status='untested'
   AND
     (id NOT IN (SELECT port FROM locks WHERE port=ports.id)) 
-  AND 
-    (id NOT IN (SELECT port FROM results WHERE version=ports.version AND port=ports.id AND osversion=?)) 
   AND 
     ((id NOT IN (SELECT port FROM depends WHERE port=ports.id)) 
       OR 
@@ -64,12 +65,12 @@ WHERE
         AND 
         (
           (dependency NOT IN (
-            SELECT port FROM results JOIN ports ON ports.id=results.port AND ports.version=results.version WHERE 
-                results.port=dependency 
+            SELECT port FROM ports WHERE 
+                id=dependency 
               AND 
-                osversion=? 
+                run=:a 
               AND 
-                (summary='pass' OR summary='warn')
+                (status='pass' OR status='warn')
           ))
          OR 
           (dependency IN (SELECT port FROM locks WHERE port=dependency))
@@ -78,9 +79,11 @@ WHERE
 ORDER BY priority DESC;
 END_OF_SQL
 
-=head2 Magus::Port->get_ready_port;
+#__PACKAGE__->
 
-Return a port that is ready to be tested for the current arch.
+=head2 Magus::Port->get_ready_port($run);
+
+Return a port that is ready to be tested for the current run.
 Ready is defined as:
 
 =over 4
@@ -102,10 +105,8 @@ The port's depends are all tested and unlocked.
 =cut
 
 sub get_ready_port {
-  my $osver = $Magus::Machine->osversion;
-  my $arch  = $Magus::Machine->arch;
-  
-  return shift->search_ready_ports($arch, $osver, $osver)->next;
+  my ($class, $run) = @_;
+  return shift->search_ready_ports($run)->next;
 }
   
 
@@ -129,8 +130,8 @@ Returns the result for the current version and arch, if any.
 =cut
 
 sub current_result {
-  my ($self) = @_;
-  return $self->results(version => $self->version, osversion => $Magus::Machine->osversion)->next;
+  require Carp;
+  Carp::confess("Use of deprecated method: Magus::Port->current_result.  There is no replacement.");
 }
 
 =head2 $port->all_depends
@@ -221,22 +222,11 @@ sub set_result_fail {
 sub _set_result {
   my ($self, $summary, $phase, $name, $msg) = @_;
   
-  my $result;
-  
-  if ($result = $self->current_result) {
-    $result->delete;
-  }
-  
-  my $version = $self->version || '???';
-  
-  $result = $self->add_to_results({
-    version   => $version,
+  $self->status($summary);
+  $self->update;
+    
+  $self->add_to_events({
     machine   => $Magus::Machine,
-    osversion => $Magus::Machine->osversion,
-    summary   => $summary,
-  });
-  
-  $result->add_to_subresults({
     type  => $summary,
     name  => $name,
     msg   => $msg,

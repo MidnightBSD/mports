@@ -1,6 +1,6 @@
 package Magus::Log;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@ package Magus::Log;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.3 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.4 2007/11/20 17:03:45 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,7 +35,9 @@ use base qw(Magus::DBI);
 
 
 __PACKAGE__->table('logs');
-__PACKAGE__->columns(Essential => qw/result data/);
+__PACKAGE__->columns(Essential => qw/id port data/);
+__PACKAGE__->has_a(port => 'Magus::Port');
+
 
 
 1;
