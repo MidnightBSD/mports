@@ -1,6 +1,6 @@
 package Magus::Chroot;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.12 2007/10/31 20:52:57 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.13 2007/11/11 23:53:26 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #

@@ -1,6 +1,6 @@
 package Magus::Lock;
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@ package Magus::Lock;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Lock.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Lock.pm,v 1.3 2007/11/16 05:29:37 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
