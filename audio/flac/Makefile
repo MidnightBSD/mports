@@ -2,7 +2,7 @@
 # Date created:		Mar 18, 2001
 # Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.1 2006/10/05 00:37:47 laffer1 Exp $
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.2 2007/11/20 10:57:08 laffer1 Exp $
 # $FreeBSD: ports/audio/flac/Makefile,v 1.38 2006/05/03 05:14:16 edwin Exp $
 #
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 
 USE_AUTOTOOLS=	libtool:15
 USE_ICONV=	yes
-GNU_CONFIGURE=  yes
+GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--target=${ARCH}-unknown-freebsd6.0
 CONFIGURE_ARGS=	--enable-sse \
 		--with-libiconv-prefix="${LOCALBASE}" \
