@@ -3,11 +3,12 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.2 2007/08/07 03:50:43 ctriv Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.3 2007/08/20 16:46:41 laffer1 Exp $
 #
 
 PORTNAME=	akode
 PORTVERSION=	2.0.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_GENTOO}
@@ -24,7 +25,6 @@ OPTIONS=	JACK "Jack output plugin" off \
 		MPC "Monkey's Audio decoder plugin" on \
 		MPEG "MPEG Audio (including mp3) plugin" on \
 		OSS "OSS output plugin" on \
-		POLYPAUDIO "Polypaudio output plugin" off \
 		RESAMPLER "Resampler processing plugin" on \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
@@ -57,10 +57,6 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/libakode_mpeg_decoder.so:${PORTSDIR}/audio/akode-
 
 .if !defined(WITHOUT_OSS)
 RUN_DEPENDS+=	${LOCALBASE}/lib/libakode_oss_sink.so:${PORTSDIR}/audio/akode-plugins-oss
-.endif
-
-.if defined(WITH_POLYPAUDIO)
-RUN_DEPENDS+=	${LOCALBASE}/lib/libakode_polyp_sink.so:${PORTSDIR}/audio/akode-plugins-polypaudio
 .endif
 
 .if !defined(WITHOUT_RESAMPLER)
