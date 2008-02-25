@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.57 2008/01/01 20:55:30 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.58 2008/01/04 21:07:03 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -8,7 +8,6 @@
     SUBDIR += akode-plugins-mpc
     SUBDIR += akode-plugins-mpeg
     SUBDIR += akode-plugins-oss
-    SUBDIR += akode-plugins-polypaudio
     SUBDIR += akode-plugins-resampler
     SUBDIR += akode-plugins-xiph
     SUBDIR += arts
@@ -62,7 +61,6 @@
     SUBDIR += mpg123
     SUBDIR += nas
     SUBDIR += openal
-    SUBDIR += polypaudio
     SUBDIR += portaudio
     SUBDIR += portaudio2
     SUBDIR += rhythmbox
