@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/audio/libogg/files/patch-doc_libogg_Makefile.in,v 1.1 2005/12/03 22:13:24 naddy Exp $
+$FreeBSD: ports/audio/libogg/files/patch-doc_libogg_Makefile.in,v 1.2 2007/10/24 23:34:49 marcus Exp $
 
 --- doc/libogg/Makefile.in.orig
 +++ doc/libogg/Makefile.in
