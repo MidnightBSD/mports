@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.58 2008/01/04 21:07:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.59 2008/02/25 00:18:35 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -57,6 +57,7 @@
     SUBDIR += linux-esound
     SUBDIR += linux-libaudiofile
     SUBDIR += linux-libogg
+    SUBDIR += linux-shoutcast
     SUBDIR += madplay
     SUBDIR += mpg123
     SUBDIR += nas
