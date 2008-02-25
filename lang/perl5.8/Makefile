@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.9 2007/05/22 21:50:02 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.10 2007/06/06 20:50:21 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -22,7 +22,7 @@ PATCH_SITES=	${MASTER_SITE_LOCAL:S/$/tobez\//} \
 PATCHFILES=	defined-or-5.8.8.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
-LISENSE=	perl
+LICENSE=	perl
 COMMENT=	Practical Extraction and Report Language
 
 #
