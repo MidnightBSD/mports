@@ -2,7 +2,7 @@
 # Date created:			Wed May  5 16:38:55 EDT 2004
 # Whom:				Michael Johnson <ahze@ahze.net>
 #
-# $MidnightBSD: mports/audio/faac/Makefile,v 1.1 2007/04/04 22:45:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/faac/Makefile,v 1.2 2008/02/25 00:44:51 laffer1 Exp $
 # $FreeBSD: ports/audio/faac/Makefile,v 1.28 2006/09/02 23:41:40 kris Exp $
 #
 
@@ -14,7 +14,8 @@ MASTER_SITE_SUBDIR=	faac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG-2 and MPEG-4 AAC audio encoder
-LICENSE=	lgpl
+LICENSE=	restricted
+# part lgpl, part not.. also patent issues
 
 LIB_DEPENDS=	mp4v2.0:${PORTSDIR}/multimedia/mpeg4ip-libmp4v2
 
