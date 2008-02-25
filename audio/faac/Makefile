@@ -2,18 +2,19 @@
 # Date created:			Wed May  5 16:38:55 EDT 2004
 # Whom:				Michael Johnson <ahze@ahze.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/faac/Makefile,v 1.1 2007/04/04 22:45:46 laffer1 Exp $
 # $FreeBSD: ports/audio/faac/Makefile,v 1.28 2006/09/02 23:41:40 kris Exp $
 #
 
 PORTNAME=	faac
-PORTVERSION=	1.25
+PORTVERSION=	1.26
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	faac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG-2 and MPEG-4 AAC audio encoder
+LICENSE=	lgpl
 
 LIB_DEPENDS=	mp4v2.0:${PORTSDIR}/multimedia/mpeg4ip-libmp4v2
 
@@ -22,11 +23,11 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USE_DOS2UNIX=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	automake:15 autoheader:259 libtool:15
+USE_AUTOTOOLS=	automake:19 autoheader:261 libtool:15
 AUTOMAKE_ARGS=	--add-missing
 USE_GMAKE=	yes
 USE_DOS2UNIX=	yes
-CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		LIBS="-lmp4v2"
