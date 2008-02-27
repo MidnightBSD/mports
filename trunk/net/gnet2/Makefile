@@ -2,11 +2,12 @@
 # Date created:        7 Nov 2007
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/gnet2/Makefile,v 1.1 2007/11/08 02:40:56 laffer1 Exp $
 #
 
 PORTNAME=	gnet
 PORTVERSION=	2.0.7
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.gnetlibrary.org/src/
 PKGNAMESUFFIX=	2
