@@ -2,13 +2,12 @@
 # Date created:				15 April 2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/net/libdnet/Makefile,v 1.1 2006/10/02 23:20:41 laffer1 Exp $
+# $MidnightBSD: mports/net/libdnet/Makefile,v 1.2 2006/11/05 16:17:02 laffer1 Exp $
 # $FreeBSD: ports/net/libdnet/Makefile,v 1.21 2006/02/23 10:38:21 ade Exp $
 #
 
 PORTNAME=	libdnet
-PORTVERSION=	1.10
-PORTREVISION=	1
+PORTVERSION=	1.11
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -33,24 +32,26 @@ PLIST_FILES=	%%PYTHON_SITELIBDIR%%/dnet.so
 PLIST_SUB+=	MASTER="@comment "
 .else
 CONFIGURE_ARGS+=	--without-python
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 PLIST_SUB+=	MASTER=""
 
 MAN3=	dnet.3
 MAN8=	dnet.8
 .endif
 
-pre-everything::
-.if !defined(BUILD_PYTHON_MODULE)
-	@${ECHO_MSG} "===>"
-	@${ECHO_MSG} "===> You can add python support with the port ${SLAVE_DIRS}."
-	@${ECHO_MSG} "===>"
-	@sleep 2
+.include <bsd.port.pre.mk>
+
+.if !defined(LIBDNET_SLAVE)
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/configure
+
+post-build:
+	@cd ${WRKSRC}/src ; ${CC} ${CFLAGS} -shared -o libdnet.so .libs/addr-util.o .libs/addr.o .libs/blob.o .libs/ip-util.o .libs/ip6.o .libs/rand.o .libs/arp-bsd.o .libs/eth-bsd.o .libs/fw-pf.o .libs/intf.o .libs/ip.o .libs/route-bsd.o .libs/tun-bsd.o
+
+post-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/src/${PORTNAME}.so ${PREFIX}/lib/
+	@${LN} ${PREFIX}/lib/${PORTNAME}.so ${PREFIX}/lib/${PORTNAME}.so.1
 .endif
 
-.if defined(BUILD_PYTHON_MODULE) && defined(MAINTAINER_MODE)
-test:	install
-	${PYTHON_CMD} ${INSTALL_WRKSRC}/test.py
-.endif
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
