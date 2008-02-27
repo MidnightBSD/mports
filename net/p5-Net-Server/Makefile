@@ -1,15 +1,13 @@
 # New ports collection makefile for:	p5-Net-Server
 # Date created:				24 Apr 2001
 #
-# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.1 2007/01/31 04:47:03 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.2 2007/07/01 01:28:49 laffer1 Exp $
 #
 
 PORTNAME=	Net-Server
-PORTVERSION=	0.94
-PORTREVISION=	1
+PORTVERSION=	0.97
 CATEGORIES=	net perl5
-MASTER_SITES=	http://www.seamons.com/net_server/ \
-		${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
 PKGNAMEPREFIX=	p5-
 
