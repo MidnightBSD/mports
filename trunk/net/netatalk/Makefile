@@ -2,12 +2,13 @@
 # Date created:         23 Jul 1997
 # Whom:                 stb
 #
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.1 2007/03/17 01:43:32 ctriv Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.2 2007/05/21 18:03:19 ctriv Exp $
 # $FreeBSD: ports/net/netatalk/Makefile,v 1.74 2007/01/29 23:51:52 kris Exp $
 #
 
 PORTNAME=	netatalk
 PORTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	net print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	netatalk
@@ -15,11 +16,10 @@ MASTER_SITE_SUBDIR=	netatalk
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and print server for AppleTalk networks
 
-
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_ICONV=	yes
-USE_BDB=	41
+USE_BDB=	41+
 USE_RC_SUBR=	netatalk
 CONFIGURE_ARGS+=	--with-tcp-wrappers \
 			--with-pkgconfdir=${PREFIX}/etc \
