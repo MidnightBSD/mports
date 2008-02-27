@@ -4,13 +4,15 @@
 # Whom:				  David O'Brien (obrien@NUXI.com)
 #
 # $FreeBSD: ports/net/fping/Makefile,v 1.23 2006/05/11 22:49:06 edwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/fping/Makefile,v 1.1 2006/12/26 01:05:30 laffer1 Exp $
 #
 
 PORTNAME=	fping
 PORTVERSION=	2.4b2
+PORTREVISION=	1
 CATEGORIES=	net ipv6
-MASTER_SITES=	http://www.fping.com/download/
+MASTER_SITES=	http://www.fping.com/download/ \
+		http://keyserver.kjsl.com/~jharris/distfiles/
 DISTNAME=	${PORTNAME}-${PORTVERSION}_to-ipv6
 
 MAINTAINER=	ports@MidnightBSD.org
