@@ -3,12 +3,12 @@
 # Whom:			Joe Clarke
 #
 # $FreeBSD: ports/net/openslp/Makefile,v 1.17 2006/02/23 10:38:26 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/openslp/Makefile,v 1.1 2007/01/20 15:53:31 laffer1 Exp $
 #
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	openslp
@@ -16,9 +16,10 @@ MASTER_SITE_SUBDIR=	openslp
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openslp \
 		--localstatedir=/var
 CONFIGURE_TARGET=--target=${MACHINE_ARCH}-unknown-freebsd6.0
