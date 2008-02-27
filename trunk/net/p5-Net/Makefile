@@ -2,13 +2,12 @@
 # Date created:				September 30th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/p5-Net/Makefile,v 1.1 2007/02/23 21:21:03 laffer1 Exp $
 # $FreeBSD: ports/net/p5-Net/Makefile,v 1.45 2007/02/09 16:02:05 mat Exp $
 #
 
 PORTNAME=	p5-Net
-PORTVERSION=	1.20
-PORTREVISION=	1
+PORTVERSION=	1.22
 PORTEPOCH=	1
 CATEGORIES=	net perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
@@ -34,14 +33,8 @@ MAN3=		Net::Cmd.3 \
 		Net::Time.3 \
 		Net::libnetFAQ.3
 
-post-patch:
-	@${RM} ${WRKSRC}/Net/Cmd.pm.orig
-
 .include <bsd.port.pre.mk>
 
-# Authen-SASL is not available under perl 5.005_03
-.if ${PERL_LEVEL} >= 500600
 RUN_DEPENDS+=	${SITE_PERL}/Authen/SASL.pm:${PORTSDIR}/security/p5-Authen-SASL
-.endif
 
 .include <bsd.port.post.mk>
