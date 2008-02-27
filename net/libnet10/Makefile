@@ -3,12 +3,12 @@
 # Whom:				shipley@dis.org
 #
 # $FreeBSD: ports/net/libnet10/Makefile,v 1.17 2005/11/15 06:50:28 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/libnet10/Makefile,v 1.1 2006/11/09 14:02:39 laffer1 Exp $
 #
 
 PORTNAME=	libnet
 PORTVERSION=	1.0.2a
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.packetfactory.net/libnet/dist/
@@ -20,7 +20,8 @@ COMMENT=	A C library for creating IP packets
 CONFLICTS=	libnet-devel-1.1.*\
 		libnet-1.1.*
 
-USE_AUTOTOOLS=	autoconf:213
+CFLAGS+=	-fPIC
+USE_AUTOTOOLS=	autoconf:261
 
 WRKSRC=		${WRKDIR}/Libnet-${PORTVERSION}
 MAN3=		libnet.3
