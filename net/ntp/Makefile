@@ -3,16 +3,16 @@
 # Whom:			andreas
 #
 # $MidnightBSD$
-# $FreeBSD: ports/net/ntp/Makefile,v 1.48 2006/10/07 03:48:35 cy Exp $
+# $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 #
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.2p3
+PORTVERSION=	4.2.4p4
 CATEGORIES=	net ipv6
-MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ntp-4.2/ \
-		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
-		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ntp-4.2/ \
-		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/ntp-4.2/
+MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
+		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
+		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ \
+		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-rc/}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -40,7 +40,12 @@ PLIST_SUB+=		SSL=""
 .endif
 CONFIGURE_ARGS+=	--enable-ipv6
 
-MAN1=		sntp.1
+MAN1=		sntp.1 \
+		ntpd.1 \
+		ntpdsim.1 \
+		ntpdc.1 \
+		ntpq.1 \
+		ntp-keygen.1 \
 
 .include <bsd.port.pre.mk>
 
