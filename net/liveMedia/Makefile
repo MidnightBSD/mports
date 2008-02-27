@@ -2,12 +2,12 @@
 # Date created:				2002/09/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.1 2007/01/25 15:30:56 wintellect Exp $
-# $FreeBSD: ports/net/liveMedia/Makefile,v 1.250 2007/01/01 17:16:34 nork Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/net/liveMedia/Makefile,v 1.264 2008/01/04 14:54:13 nork Exp $
 #
 
 PORTNAME=	liveMedia
-PORTVERSION=	2006.12.31
+PORTVERSION=	2008.01.04
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	net devel
@@ -18,6 +18,7 @@ DISTNAME=	live.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LIVE.COM Streaming Media
+LICENSE=	restricted
 
 NO_CDROM=	'dated material'
 
@@ -91,6 +92,7 @@ liveMedia=		\
 		liveMedia/include/H263plusVideoRTPSink.hh \
 		liveMedia/include/H263plusVideoRTPSource.hh \
 		liveMedia/include/H263plusVideoStreamFramer.hh \
+		liveMedia/include/H264VideoFileSink.hh \
 		liveMedia/include/H264VideoRTPSink.hh \
 		liveMedia/include/H264VideoRTPSource.hh \
 		liveMedia/include/H264VideoStreamFramer.hh \
@@ -99,6 +101,7 @@ liveMedia=		\
 		liveMedia/include/JPEGVideoRTPSink.hh \
 		liveMedia/include/JPEGVideoRTPSource.hh \
 		liveMedia/include/JPEGVideoSource.hh \
+		liveMedia/include/Locale.hh \
 		liveMedia/include/MP3ADU.hh \
 		liveMedia/include/MP3ADURTPSink.hh \
 		liveMedia/include/MP3ADURTPSource.hh \
@@ -157,6 +160,7 @@ liveMedia=		\
 		liveMedia/include/RTPSource.hh \
 		liveMedia/include/RTSPClient.hh \
 		liveMedia/include/RTSPCommon.hh \
+		liveMedia/include/RTSPOverHTTPServer.hh \
 		liveMedia/include/RTSPServer.hh \
 		liveMedia/include/SIPClient.hh \
 		liveMedia/include/ServerMediaSession.hh \
@@ -170,6 +174,16 @@ liveMedia=		\
 		liveMedia/include/uLawAudioFilter.hh
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+CFLAGS+=	-fPIC
+.else
+CFLAGS+=	-fpic
+.endif
+
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not compile
+.endif
 
 post-extract:
 	@${CP} ${FILESDIR}/config.fixed-${OPSYS:L} ${WRKSRC}/
@@ -198,7 +212,7 @@ post-build:
 .endfor
 	@${CAT} ${.CURDIR}/pkg-plist >> ${PLIST}
 
-pre-install:
+pre-su-install:
 	@${INSTALL_DATADIR} ${PREFIX}/live
 	@${INSTALL_DATADIR} ${PREFIX}/live/groupsock
 	@${INSTALL_DATADIR} ${PREFIX}/live/liveMedia
@@ -229,6 +243,5 @@ do-install:
 .for file in ${liveMedia}
 	@${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/live/liveMedia/include/
 .endfor
-
 
 .include <bsd.port.post.mk>
