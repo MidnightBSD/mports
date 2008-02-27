@@ -2,12 +2,12 @@
 # Date created:		07 Oct 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/phpldapadmin/Makefile,v 1.1 2007/10/07 16:18:54 laffer1 Exp $
 # $FreeBSD: ports/net/phpldapadmin/Makefile,v 1.20 2007/03/22 16:42:26 pav Exp $
 #
 
 PORTNAME=	phpldapadmin
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.0.4
 PORTEPOCH=	1
 CATEGORIES=	net www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -34,9 +34,7 @@ SUB_LIST+=	PLAUSR=${PLAUSR} \
 SUB_FILES+=	pkg-install  pkg-deinstall
 
 .else
-
 WANT_PHP_WEB=	yes
-
 .endif
 
 # PLAUSR is only used WITH_SUPHP

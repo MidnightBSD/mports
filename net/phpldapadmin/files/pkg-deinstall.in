@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # $MidnightBSD$
+#
 
 case $2 in
     POST-DEINSTALL)
