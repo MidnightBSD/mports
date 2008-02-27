@@ -2,23 +2,21 @@
 # Date created:				10/08/2007
 # Whom:					luke@MidnightBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/nss_ldap/Makefile,v 1.1 2007/10/07 15:01:50 laffer1 Exp $
 # $FreeBSD: ports/net/nss_ldap/Makefile,v 1.22 2007/03/09 10:50:51 anray Exp $
 #
 
 PORTNAME=	nss_ldap
 PORTVERSION=	1.${NSS_LDAP_VERSION}
 CATEGORIES=	net
-MASTER_SITES=	http://www.padl.com/download/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	sem
+MASTER_SITES=	http://www.padl.com/download/ 
 DISTNAME=	${PORTNAME}-${NSS_LDAP_VERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2307 NSS module
 LICENSE=	gpl2
 
-NSS_LDAP_VERSION=255
+NSS_LDAP_VERSION=257
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
