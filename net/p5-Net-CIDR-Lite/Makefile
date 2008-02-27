@@ -2,13 +2,13 @@
 # Date created:                         Fri Jan 16 12:32:39 PST 2004
 # Whom:                                 mharo@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/p5-Net-CIDR-Lite/Makefile,v 1.1 2007/03/21 01:13:41 laffer1 Exp $
 # $FreeBSD: ports/net/p5-Net-CIDR-Lite/Makefile,v 1.4 2006/04/03 02:20:14 leeym Exp $
 #
 
 PORTNAME=	Net-CIDR-Lite
 PORTVERSION=	0.20
-CATEGORIES=	net perl5
+CATEGORIES=	net perl5 ipv6
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
 PKGNAMEPREFIX=	p5-
