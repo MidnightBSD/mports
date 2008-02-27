@@ -2,12 +2,12 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.3 2007/05/21 18:34:35 ctriv Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.4 2007/08/01 20:50:09 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
 PORTNAME=		openldap
-DISTVERSION=		2.3.30
+DISTVERSION=		2.3.40
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -78,6 +78,8 @@ OPENLDAP_PKGFILESUFX=	.client
 OPENLDAP_PORTREVISION=	${PORTREVISION_SERVER}
 OPENLDAP_PKGFILESUFX=
 .endif
+
+CONFIGURE_SED=	-e 's,-kthread,${PTHREAD_LIBS},g'
 
 .include <bsd.port.pre.mk>
 
@@ -270,8 +272,9 @@ PLIST_SUB+=		BACK_BDB="@comment " \
 			BACK_HDB="@comment "
 .else
 
-WITH_BDB_VER?=		43
+WITH_BDB_VER?=		44
 USE_BDB=		yes
+INVALID_BDB_VER=	46
 
 .if ${WITH_BDB_VER} >= 42
 CONFIGURE_ARGS+=	--enable-bdb=${BACKEND_ENABLE} \

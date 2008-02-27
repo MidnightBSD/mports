@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/openldap23-server/files/slapd.sh.in,v 1.1 2006/05/18 15:03:48 delphij Exp $
+# $FreeBSD: ports/net/openldap23-server/files/slapd.sh.in,v 1.4 2007/12/11 20:56:10 delphij Exp $
 #
 
 # PROVIDE: slapd
@@ -43,16 +43,17 @@ start_precmd()
 {
   local slapd_ownername slapd_groupname
 
-  case x"$slapd_owner" in
+  case "$slapd_owner" in
   ""|[Nn][Oo][Nn][Ee]|[Dd][Ee][Ff][Aa][Uu][Ll][Tt])
     ;;
   *)
     chown "$slapd_owner" "%%LDAP_RUN_DIR%%"
     chown -RL "$slapd_owner" "%%DATABASEDIR%%"
+    chmod 700 "%%DATABASEDIR%%"
     chown "$slapd_owner" "%%PREFIX%%/etc/openldap/slapd.conf"
 
-    slapd_ownername=`expr //"$slapd_owner" : //'\([^:]*\)'`
-    slapd_groupname=`expr //"$slapd_owner" : //'.*:\([^:]*\)'`
+    slapd_ownername="${slapd_owner%:*}"
+    slapd_groupname="${slapd_owner#*:}"
 
     if [ -n "$slapd_ownername" ]; then
       rc_flags="$rc_flags -u $slapd_ownername"
