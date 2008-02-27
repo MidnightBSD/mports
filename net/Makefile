@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.59 2008/02/27 02:06:39 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.60 2008/02/27 02:09:56 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -63,6 +63,7 @@
     SUBDIR += ulxmlrpcpp
     SUBDIR += vncreflector
     SUBDIR += x11vnc
+    SUBDIR += xferstats
     SUBDIR += xmlrpc++
     SUBDIR += xmlrpc-c
     SUBDIR += xmlrpc-epi
