@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+ #!/usr/local/bin/perl
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.8 2007/11/02 20:06:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.9 2007/11/05 20:03:59 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -42,17 +42,12 @@ use Magus;
 use Sys::Syslog;
 use POSIX qw(setsid);
 use Getopt::Std qw(getopts);
-
+use File::Path qw(rmtree);
 
 $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
 
 my @origARGV = @ARGV;
 my $self     = '/usr/mports/Tools/magus/slave/magus.pl';
-
-Magus::Task->set_callbacks(
-  restart => sub { exec($self, @origARGV); },
-  log     => sub { report('info', @_);     }
-);
 
 main();
 
@@ -80,8 +75,8 @@ Verbose mode, print lots of status information to stdout.
 =head2 main()
 
 Top level function.  Sets up logging and starts the main loop.  The general
-logic is to keep looping building ports, and if there are no more ports to
-build sleep for a while.
+logic is to keep looping.  If we have an active run, we want to work on ports
+from that run, as long as there are ports.
 
 =cut
 
@@ -98,13 +93,9 @@ sub main {
   report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
   
   while (1) {
-    if (my @tasks = Magus::Task->search(machine => $Magus::Machine, completed => 0, started => 0)) {
-      $_->exec for @tasks;
-    }
+    my $run = get_current_run($Magus::Machine);
   
-    $lock = Magus::Lock->get_ready_lock();
-    
-    if (!$lock) {
+    if (!$run || !($lock = Magus::Lock->get_ready_lock($run))) {
       # there's no more ports to test, sleep for a while and check again.
       report('debug', "No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
       sleep($Magus::Config{DoneWaitPeriod});
@@ -117,7 +108,6 @@ sub main {
     
     report('info', 'Run completed for:     %s', $lock->port);
     
-      
     $lock->delete;
   }
 }
@@ -151,7 +141,7 @@ sub run_test {
   # exception will not allow the child to go to the main program logic.
   #
   my ($port, $chroot);
-  
+
   eval {
     $port = $lock->port;
     $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
@@ -159,8 +149,8 @@ sub run_test {
     copy_dep_pkgfiles($lock, $chroot);
   };
   
-  if ($@) {
-    handle_exception($@, $lock);
+  if (my $error = $@) {
+    handle_exception($error, $lock);
     return;
   }
   
@@ -199,9 +189,7 @@ sub run_test {
   # Back to the parent here. 
   if ($? == 0) {
     eval {
-      my $result = $port->current_result;
-
-      if ($result->summary eq 'pass' || $result->summary eq 'warn') {
+      if ($port->status eq 'pass' || $port->status eq 'warn') {
         upload_pkgfile($port, $chroot);
       }
     };
@@ -226,7 +214,7 @@ sub copy_dep_pkgfiles {
   my ($lock, $chroot) = @_;
   
   foreach my $depend ($lock->port->all_depends) {
-    if ($depend->current_result && ($depend->current_result->summary eq 'pass' || $depend->current_result->summary eq 'warn')) {
+    if ($depend->status eq 'pass' || $depend->status eq 'warn') {
       # There should be a package that we can use to install the port.
       copy_pkgfile($depend, $chroot);
       next;
@@ -272,12 +260,12 @@ Upload the built package of the current port to the master dir.
 sub upload_pkgfile {
   my ($port, $chroot) = @_;
 
-  my $arch = $Magus::Machine->arch;
   my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
   my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
+  my $run  = $port->run->id;
           
-  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$arch/$file";
-  report('debug', "uploading: $arch/$file");
+  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
+  report('debug', "uploading: $run/$file");
   
   my $out = `$cmd 2>&1`;
 
@@ -299,24 +287,20 @@ sub insert_results {
 
   report('info', "Inserting results for $port; summary: $results->{summary}");
   
-  my $res = $port->add_to_results({
-    version => $port->version,
-    summary => $results->{'summary'},
-    machine => $Magus::Machine,
-    arch    => $Magus::Machine->arch,
-  });
+  $port->status($results->{'summary'});
+  $port->update;  
   
   foreach my $type (qw(skip warning error)) {
     next unless $results->{$type . 's'};
     
     foreach my $sr (@{$results->{$type . 's'}}) {
       $sr->{type} = $type;
-      $res->add_to_subresults($sr);
+      $port->add_to_events($sr);
     }
   }  
   
   if ($results->{log}) {
-    $res->add_to_logs($results->{log});
+    Magus::Logs->insert({ port => $port, data => $results->{log}});
   }
 }
 
@@ -377,31 +361,59 @@ Report an exception for the given lock.
 sub handle_exception {
   my ($error, $lock) = @_;
   
-  # Any result for the current port is no good.      
-  my $result = $lock->port->current_result;
-  $result->delete if $result;
-        
   if ($error =~ m/SIGINT/) {
+    $lock->port->events->delete_all;
+    $lock->port->status('untested');
+    $lock->port->update;
+    
     report('debug', 'Exiting 0 from SIGINT (prior result for %s deleted).', $lock->port);
     exit 0;
   }
       
   report('err', "Exception throw building %s: %s", $lock->port, $error);
   
-  $result = $lock->port->add_to_results({
-    version => $lock->port->version,
-    arch    => $Magus::Machine->arch,
-    machine => $Magus::Machine,
-    summary => 'internal',
-  });
-  
-  $result->add_to_subresults({
-    type => 'internal',
-    name => 'ExceptionThrown',
-    msg  => "Internal exception thrown: $error"
-  });
+  $lock->port->set_result_internal(internal => ExceptionThrown => "Internal exception thrown: $error");
 }
 
+
+=head3 get_current_run()
+
+Check to see if the current run is the latest, and update it if it isn't.
+
+=cut
+
+sub get_current_run {
+  my $current = Magus::Run->latest($Magus::Machine) || return;
+  my $tree_id = get_tree_id('/usr/mports') || 0;
+
+  if ($current != $Magus::Machine->run || $tree_id != $current) {
+    $Magus::Machine->run($current);
+    $Magus::Machine->update;
+    
+    my $tarball = $current->tarballpath;
+    
+    chdir('/usr');
+    
+    rmpath('/usr/mports');
+    system("/usr/bin/scp $tarball .");
+    system('/usr/bin/tar xf ' . $current->tarball);
+    exec($self, @origARGV);
+  }
+  
+  return $current;
+}
+
+
+sub get_tree_id {
+  my ($root) = @_;
+  my $file = "$root/.magus_run_id";
+
+  open(ID, '<', $file) || return;
+  chomp(my $id = <ID>);
+  close(ID) || die "Couldn't close $file: $!\n";
+  
+  return $id;
+}
 
 1;
 __END__
