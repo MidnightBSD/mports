@@ -2,12 +2,13 @@
 # Date created:        26 November 2003
 # Whom:			Sergey Akifyev <asa@gascom.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libid3tag/Makefile,v 1.1 2006/09/26 15:45:33 archite Exp $
 # $FreeBSD: ports/audio/libid3tag/Makefile,v 1.9 2006/02/23 10:34:33 ade Exp $
 #
 
 PORTNAME=	libid3tag
 PORTVERSION=	0.15.1b
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.mars.org/pub/mpeg/
@@ -15,10 +16,15 @@ MASTER_SITE_SUBDIR=	mad
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ID3 tags library (part of MAD project)
+LICENSE=	gpl2
 
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' \
+		${WRKSRC}/configure
 
 post-build:
 	cd ${WRKSRC} && CONFIG_FILES=id3tag.pc CONFIG_HEADERS= ${SH} ./config.status
