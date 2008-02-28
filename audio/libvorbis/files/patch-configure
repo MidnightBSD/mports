@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/audio/libvorbis/files/patch-configure,v 1.5 2004/12/15 14:59:18 naddy Exp $
+$FreeBSD: ports/audio/libvorbis/files/patch-configure,v 1.6 2007/10/24 23:34:49 marcus Exp $
 
 --- configure.orig	Fri Jul 19 16:12:17 2002
 +++ configure	Sat Oct  5 17:57:37 2002
