@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.7 2008/02/28 22:25:40 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.8 2008/02/28 22:33:38 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -111,7 +111,7 @@ sub update_cvs_dir {
     rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
   }
   
-  my $cmd = "cvs -d anoncvs\@stargazer.midnightbsd.org:/home/cvs -z 7 co -P $Magus::Config{MportsCvsDir}";
+  my $cmd = "cvs -d /home/cvs co -P $Magus::Config{MportsCvsDir}";
   
   system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
