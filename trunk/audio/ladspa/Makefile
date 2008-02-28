@@ -2,12 +2,11 @@
 # Date created:			11 May 2002
 # Whom:				Tilman Linneweh <arved@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/ladspa/Makefile,v 1.1 2007/04/04 23:36:49 laffer1 Exp $
 # $FreeBSD: ports/audio/ladspa/Makefile,v 1.11 2006/12/14 19:36:31 arved Exp $
 
 PORTNAME=	ladspa
-PORTVERSION=	1.12
-PORTREVISION=	1
+PORTVERSION=	1.13
 CATEGORIES=	audio
 MASTER_SITES=	http://www.ladspa.org/download/
 DISTNAME=	ladspa_sdk_${PORTVERSION}
