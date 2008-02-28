@@ -25,7 +25,7 @@ CREATE TABLE `categories` (
   `category` varchar(64) default NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `category` (`category`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `depends`
@@ -37,7 +37,24 @@ CREATE TABLE `depends` (
   `dependency` int(11) NOT NULL,
   KEY `port` (`port`),
   KEY `dependency` (`dependency`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Table structure for table `events`
+--
+
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL auto_increment,
+  `port` int(11) NOT NULL,
+  `phase` varchar(16) NOT NULL,
+  `type` varchar(32) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `msg` text,
+  `machine` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  KEY `port` (`port`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `locks`
@@ -50,7 +67,7 @@ CREATE TABLE `locks` (
   `machine` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `port` (`port`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `logs`
@@ -58,11 +75,12 @@ CREATE TABLE `locks` (
 
 DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
-  `result` int(11) NOT NULL,
-  `phase` varchar(32) NOT NULL,
-  `data` text,
-  UNIQUE KEY `result` (`result`,`phase`)
-) ENGINE=InnoDB;
+  `id` int(11) NOT NULL auto_increment,
+  `port` int(11) NOT NULL,
+  `data` longtext,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY (`port`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `machines`
@@ -74,8 +92,11 @@ CREATE TABLE `machines` (
   `arch` varchar(12) NOT NULL,
   `name` varchar(128) NOT NULL,
   `maintainer` varchar(128) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB;
+  `osversion` varchar(16) NOT NULL,
+  `run` int(11) NOT NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `port_categories`
@@ -87,7 +108,7 @@ CREATE TABLE `port_categories` (
   `category` int(11) NOT NULL,
   KEY `port` (`port`),
   KEY `category` (`category`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Table structure for table `ports`
@@ -96,16 +117,18 @@ CREATE TABLE `port_categories` (
 DROP TABLE IF EXISTS `ports`;
 CREATE TABLE `ports` (
   `id` int(11) NOT NULL auto_increment,
+  `run` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `arch` varchar(8) NOT NULL,
-  `version` varchar(32) default NULL,
+  `version` varchar(32) NOT NULL,
   `description` text,
   `license` varchar(16) default NULL,
-  `pkgname` varchar(128) NOT NULL,
+  `www` text,
+  `status` varchar(32) NOT NULL default 'untested',
+  `updated` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `archname` (`name`,`arch`),
+  KEY `run` (`run`),
   KEY `name` (`name`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Temporary table structure for view `ready_ports`
@@ -115,58 +138,30 @@ DROP TABLE IF EXISTS `ready_ports`;
 /*!50001 DROP VIEW IF EXISTS `ready_ports`*/;
 /*!50001 CREATE TABLE `ready_ports` (
   `id` int(11),
+  `run` int(11),
   `name` varchar(128),
-  `arch` varchar(8),
   `version` varchar(32),
   `description` text,
   `license` varchar(16),
-  `pkgname` varchar(128)
+  `www` text,
+  `status` varchar(32),
+  `updated` timestamp,
+  `priority` bigint(21)
 ) */;
 
 --
--- Table structure for table `results`
+-- Table structure for table `runs`
 --
 
-DROP TABLE IF EXISTS `results`;
-CREATE TABLE `results` (
+DROP TABLE IF EXISTS `runs`;
+CREATE TABLE `runs` (
   `id` int(11) NOT NULL auto_increment,
-  `port` int(11) NOT NULL,
-  `version` varchar(32) NOT NULL,
-  `summary` varchar(32) NOT NULL,
-  `machine` int(11) NOT NULL,
-  `snap` int(11) NOT NULL,
-  `osversion` varchar(64) NOT NULL,
-  `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  PRIMARY KEY  (`id`),
-  KEY `port` (`port`,`version`),
-  KEY `summary` (`summary`)
-) ENGINE=InnoDB;
-
---
--- Table structure for table `snaps`
---
-
-DROP TABLE IF EXISTS `snaps`;
-CREATE TABLE `snaps` (
-  `id` int(11) NOT NULL auto_increment,
+  `osversion` varchar(16) NOT NULL,
+  `arch` varchar(11) NOT NULL,
+  `status` varchar(40) NOT NULL default 'inactive',
   `created` timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB;
-
---
--- Table structure for table `subresults`
---
-
-DROP TABLE IF EXISTS `subresults`;
-CREATE TABLE `subresults` (
-  `id` int(11) NOT NULL auto_increment,
-  `result` int(11) NOT NULL,
-  `phase` varchar(16) NOT NULL,
-  `type` varchar(32) NOT NULL,
-  `name` varchar(128) NOT NULL,
-  `msg` text,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Final view structure for view `ready_ports`
@@ -176,7 +171,7 @@ CREATE TABLE `subresults` (
 /*!50001 DROP VIEW IF EXISTS `ready_ports`*/;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ready_ports` AS select `ports`.`id` AS `id`,`ports`.`name` AS `name`,`ports`.`arch` AS `arch`,`ports`.`version` AS `version`,`ports`.`description` AS `description`,`ports`.`license` AS `license`,`ports`.`pkgname` AS `pkgname` from `ports` where ((not(`ports`.`id` in (select `locks`.`port` AS `port` from `locks`))) and (not(`ports`.`id` in (select `results`.`port` AS `port` from `results` where (`results`.`version` = `ports`.`version`)))) and ((not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends`))) or (not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where ((not(`depends`.`dependency` in (select `results`.`port` AS `port` from (`results` join `ports` on(((`ports`.`id` = `results`.`port`) and (`ports`.`version` = `results`.`version`)))) where ((`results`.`summary` = _latin1'pass') or (`results`.`summary` = _latin1'fail'))))) or `depends`.`dependency` in (select `locks`.`port` AS `port` from `locks`))))))) */;
+/*!50001 VIEW `ready_ports` AS select `ports`.`id` AS `id`,`ports`.`run` AS `run`,`ports`.`name` AS `name`,`ports`.`version` AS `version`,`ports`.`description` AS `description`,`ports`.`license` AS `license`,`ports`.`www` AS `www`,`ports`.`status` AS `status`,`ports`.`updated` AS `updated`,(select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) AS `priority` from `ports` where ((`ports`.`status` = _latin1'untested') and (not(`ports`.`id` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `ports`.`id`)))) and ((not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (`depends`.`port` = `ports`.`id`)))) or (not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (((`depends`.`port` = `ports`.`id`) and (not(`depends`.`dependency` in (select `depends`.`port` AS `port` from `ports` where ((`ports`.`id` = `depends`.`dependency`) and ((`ports`.`status` = _latin1'pass') or (`ports`.`status` = _latin1'warn'))))))) or `depends`.`dependency` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `depends`.`dependency`)))))))) order by (select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) desc */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -187,4 +182,4 @@ CREATE TABLE `subresults` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2007-11-16  6:12:14
+-- Dump completed on 2007-12-19 23:11:23
