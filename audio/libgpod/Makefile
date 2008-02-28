@@ -2,12 +2,12 @@
 # Date created:				Wed Jan 1 00:48:58 EST 2006
 # Whom:					Devon Ryan <dpryan@dpryan.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libgpod/Makefile,v 1.1 2007/12/06 02:50:55 laffer1 Exp $
 # $FreeBSD: ports/audio/libgpod/Makefile,v 1.16 2007/08/04 11:40:39 gabor Exp $
 #
 
 PORTNAME=	libgpod
-PORTVERSION=	0.5.2
+PORTVERSION=	0.6.0
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	gtkpod
@@ -37,7 +37,10 @@ post-extract: .SILENT
 .if defined(NOPORTDOCS)
 	${REINPLACE_CMD} -e 's, docs,,' ${WRKSRC}/Makefile.in
 .endif
-	# Stop configure script want Perl and XML::Parser
-	${REINPLACE_CMD} '19568,19590d' ${WRKSRC}/configure
+# Stop configure script want Perl and XML::Parser (delete 22 lines)
+	${REINPLACE_CMD} '19785,19807d' ${WRKSRC}/configure
+# Fix bogus test(1) syntax to get rid of annoying warnings
+	${REINPLACE_CMD} -E 's,(if test [[:graph:]]+ )==,\1=,' \
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
