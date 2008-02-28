@@ -4,11 +4,12 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/audio/libsndfile/Makefile,v 1.35 2006/09/02 20:48:50 ahze Exp $
-# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.1 2006/11/17 22:50:51 laffer1 Exp $
+# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.2 2008/02/28 14:47:57 laffer1 Exp $
 #
 
 PORTNAME=	libsndfile
 PORTVERSION=	1.0.17
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/libsndfile/
 
