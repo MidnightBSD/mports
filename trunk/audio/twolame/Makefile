@@ -2,12 +2,12 @@
 # Date created:		2005-05-02
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/twolame/Makefile,v 1.1 2007/04/04 21:38:50 laffer1 Exp $
 # $FreeBSD: ports/audio/twolame/Makefile,v 1.10 2007/01/03 00:19:35 mezz Exp $
 #
 
 PORTNAME=	twolame
-PORTVERSION=	0.3.9
+PORTVERSION=	0.3.10
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.ecs.soton.ac.uk/~njh/twolame/
