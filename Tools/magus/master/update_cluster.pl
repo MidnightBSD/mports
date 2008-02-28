@@ -1,6 +1,6 @@
 #!/usr/local/bin/perl
 #
-# Copyright (c) 2007 Chris Reinhardt. All rights reserved.
+# Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.4 2007/11/05 19:24:54 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.5 2007/11/08 16:07:26 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -38,24 +38,69 @@ use Magus;
 use Mport::Utils qw(recurse_ports);
 use File::Path qw(rmtree);
 
-#
-# The basic outline of the update is this:
-# 1) Update the MportsCvs dir.
-# 2) Make a new MportsTarball from 1)
-# 3) Halt the cluster
-# 4) Have all the nodes start MportsUpdate task.  They will download the tarball and extract it
-#    They will also mark their chroot dirs as dead, because the lookback needs to be remounted.
-# 5) Build or update the index.
-# 6) Resume the cluster.
-#
+my $op = shift || die "Usage: $0 refresh | new <arch> <osversion>\n";
 
-main();
+if ($op eq 'refresh') {
+  refresh_completed_runs();
+} elsif ($op eq 'new') {
+  insert_new_run();
+} else {
+  die "Usage: $0 refresh | new <arch> <osversion>\n";
+}
 
-sub main {
+
+sub insert_new_run {
+  my ($arch, $osversion) = @ARGV;
+  
+  unless ($arch && $osversion) {
+    die "Usage: $0 new <arch> <osversion>\n";
+  }
+  
   update_cvs_dir();
-  make_tarball();
+  
+  my $run = Magus::Run->create({osversion => $osversion, arch => $arch});
+  
+  make_tarball($run);
+  Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}", $run);
+  
+  $run->status('active');
+  $run->update;
+}
 
-  Magus::Index->sync();  
+
+
+# The basic outline of the update is this:
+# 1) Check to see if any runs are finished, if they are marked them as complete.  If no runs
+#    are done we exit, because there is nothing to do.
+# 2) Update the MportsCvs dir.
+# 3) Make a new MportsTarball from 2)
+# 3) create a new run.
+# 4) index the tree and create port entries for the new runs.
+# 5) mark the new runs as active.
+sub refresh_completed_runs {
+  my @completed;
+  
+  if (@completed = find_empty_runs()) {
+    for (@completed) {
+      $_->status('complete');
+      $_->update;
+    }
+  } else {
+    return;
+  }
+    
+  #update_cvs_dir();
+  
+  foreach my $done (@completed) {
+    my $run = Magus::Run->create({osversion => $done->osversion, arch => $done->arch});
+    
+    make_tarball($run);
+
+    Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}", $run);
+    
+    $run->status('active');
+    $run->update;
+  }  
 }
 
 
@@ -73,13 +118,20 @@ sub update_cvs_dir {
 
 
 sub make_tarball {
-  chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
-  unlink($Magus::Config{'MportsTarBall'}) 
-    || ($! !~ m/no such/i && die "Couldn't unlink $Magus::Config{'MportsTarBall'}: $!\n");
+  my ($run) = @_;
   
-  my $tar = "/usr/bin/tar cfj $Magus::Config{MportsTarBall} $Magus::Config{MportsCvsDir}";
+  my $tarball = $run->tarball;
+  
+  chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
+  unlink($tarball) || ($! !~ m/no such/i && die "Couldn't unlink $tarball: $!\n");
+  
+  my $tar = "/usr/bin/tar cfj $tarball $Magus::Config{MportsCvsDir}";
   
   system($tar) == 0 || die "$tar returned non-zero: $?\n";
 }
 
+
+sub find_empty_runs {
+  my @runs = grep { $_->is_empty } Magus::Run->search(status => 'active');
+}
 
