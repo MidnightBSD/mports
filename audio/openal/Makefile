@@ -2,13 +2,13 @@
 # Date created:		25 September 2000
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.1 2007/01/11 16:49:06 wintellect Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 #
 
 PORTNAME=	openal
 PORTVERSION=	20060211
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	http://openal.org/openal_webstf/downloads/
 DISTVERSION=	0.0.8
@@ -16,6 +16,7 @@ DISTVERSION=	0.0.8
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3D positional spatialized sound library
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
@@ -60,7 +61,7 @@ CONFIGURE_ARGS+=--disable-sdl
 .endif
 
 .if defined(WITH_VORBIS)
-LIB_DEPENDS+=	vorbisfile.4:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	vorbisfile.5:${PORTSDIR}/audio/libvorbis
 CONFIGURE_ARGS+=--enable-vorbis
 .else
 CONFIGURE_ARGS+=--disable-vorbis
