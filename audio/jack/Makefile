@@ -3,12 +3,11 @@
 # Whom:				arved
 #
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.1 2006/11/17 22:55:15 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.2 2007/04/10 16:50:11 laffer1 Exp $
 #
 
 PORTNAME=	jackit
-PORTVERSION=	0.101.1
-PORTREVISION=	1
+PORTVERSION=	0.103.0
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	jackit
@@ -18,7 +17,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low-latency audio server
 
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
-		sndfile.1:${PORTSDIR}/audio/libsndfile
+		sndfile.1:${PORTSDIR}/audio/libsndfile \
+		FLAC.7:${PORTSDIR}/audio/flac
 
 OPTIONS=	DOCS "Build HTML documentation. Requires doxygen/TeX." off
 
@@ -28,7 +28,7 @@ CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}" LDFLAGS="-L${LOCALBASE}/lib" \
 		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
 GNU_CONFIGURE=	yes
 USE_GETOPT_LONG=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig gnometarget gnomehack
 
 MAN1=		jackd.1 jackstart.1
@@ -48,6 +48,10 @@ CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
 PLIST_SUB+=	DOCS="@comment "
 .endif
 
+.if exists(${LOCALBASE}/lib/libreadline.so.5)
+LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
+.endif
+
 pre-everything::
 .if defined(DOCS_OVERRIDE)
 	@${ECHO_MSG}
@@ -58,6 +62,8 @@ pre-everything::
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|define USE_MLOCK|undef USE_MLOCK|' \
+		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s,-lpthread,${PTHREAD_LIBS},"  \
 		${WRKSRC}/configure ${WRKSRC}/libjack/Makefile.in \
 		${WRKSRC}/jackd/Makefile.in \
@@ -67,6 +73,8 @@ post-patch:
 		${WRKSRC}/example-clients/Makefile.in
 	@${REINPLACE_CMD} -e "s,-ldl,," ${WRKSRC}/jackd/Makefile.in \
 		${WRKSRC}/example-clients/Makefile.in
+	@${REINPLACE_CMD} -e 's|md5sum|md5 -q|g' \
+		${WRKSRC}/jackd/Makefile.in
 
 post-build:
 	@${RM} -f ${WRKSRC}/doc/reference/html/dir__2F*
