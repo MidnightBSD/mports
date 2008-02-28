@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.5 2007/11/08 16:07:26 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.6 2008/02/28 21:57:54 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -89,7 +89,7 @@ sub refresh_completed_runs {
     return;
   }
     
-  #update_cvs_dir();
+  update_cvs_dir();
   
   foreach my $done (@completed) {
     my $run = Magus::Run->create({osversion => $done->osversion, arch => $done->arch});
@@ -121,6 +121,8 @@ sub make_tarball {
   my ($run) = @_;
   
   my $tarball = $run->tarball;
+
+  set_tree_id("$Magus::Config{'MasterDataDir'}/$Magus::Config{'MportsCvsDir'}", $run);
   
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
   unlink($tarball) || ($! !~ m/no such/i && die "Couldn't unlink $tarball: $!\n");
@@ -133,5 +135,15 @@ sub make_tarball {
 
 sub find_empty_runs {
   my @runs = grep { $_->is_empty } Magus::Run->search(status => 'active');
+}
+
+
+sub set_tree_id {
+  my ($root, $run) = @_;
+  my $file = "$root/.magus_run_id";
+
+  open(ID, '>', $file) || die "Couldn't open $file: $!\n";
+  print ID $run->id, "\n";
+  close(ID) || die "Couldn't close $file: $!\n";
 }
 
