@@ -2,32 +2,44 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.2 2007/05/20 18:21:47 ctriv Exp $
-# $FreeBSD: ports/net/freeradius/Makefile,v 1.54 2007/01/23 12:35:52 sem Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
 PORTNAME=	freeradius
-PORTVERSION=	1.1.4
-PORTREVISION=	1
+PORTVERSION=	1.1.7
 CATEGORIES=	net
-MASTER_SITES=	ftp://ftp.freeradius.org/pub/radius/ \
-		ftp://ftp.ntua.gr/pub/net/radius/freeradius/ \
-		ftp://ftp.uk.freeradius.org/pub/radius/ \
-		ftp://ftp.us.freeradius.org/pub/radius/ \
-		ftp://ftp.freeradius.org/pub/radius/old/ \
-		http://freeradius.portal-to-web.de/
+MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/%SUBDIR%/ \
+		ftp://ftp.ntua.gr/pub/net/radius/freeradius/%SUBDIR%/ \
+		ftp://ftp.uk.freeradius.org/pub/radius/%SUBDIR%/ \
+		http://ftp.cc.uoc.gr/mirrors/ftp.freeradius.org/%SUBDIR%/ \
+		http://freeradius.portal-to-web.de/%SUBDIR%/
+MASTER_SITE_SUBDIR=	. old
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free RADIUS server implementation
+LICENSE=	gpl2
+
+USE_BZIP2=	yes
+WANT_PERL=	yes
 
 LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
 
 LOGDIR?=	/var/log
 
-CONFLICTS=	gnu-radius-1.* openradius-0.* radiusd-cistron-1.*
+# If FREERADIUS_SLAVE_MYSQL is defined, we want to build the
+# freeradius-mysql slave port
+
+CONFLICTS=	gnu-radius-[0-9].* openradius-[0-9].* radiusd-cistron-[0-9].*
+.ifdef(FREERADIUS_SLAVE_MYSQL)
+CONFLICTS+=	freeradius-[0-9].* freeradius-mysql-[02-9].*
+PKGNAMESUFFIX=	-mysql
+.else
+CONFLICTS+=	freeradius-mysql-[0-9].* freeradius-[02-9].*
+.endif
 
 USE_RC_SUBR=	radiusd.sh
-USE_AUTOTOOLS=	libltdl:15 libtool:15
+USE_AUTOTOOLS=	libltdl:15 libtool:15 autoconf:261
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 DESTDIRNAME=	R
@@ -38,9 +50,11 @@ PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 OPTIONS=	KERBEROS	"With Kerberos support" off \
 		HEIMDAL		"With Heimdal Kerberos support" off \
-		LDAP		"With LDAP user database" off \
-		MYSQL		"With MySQL user database" off \
-		PGSQL		"With PostgreSQL use database" off \
+		LDAP		"With LDAP database support" off
+.ifndef(FREERADIUS_SLAVE_MYSQL)
+OPTIONS+=	MYSQL		"With MySQL database support" off
+.endif
+OPTIONS+=	PGSQL		"With PostgreSQL database support" off \
 		SNMP		"With SNMP support" off \
 		EDIR		"With Novell eDirectory support" off \
 		NOPERL		"Do not require perl (use only if necessary)" off \
@@ -48,22 +62,39 @@ OPTIONS=	KERBEROS	"With Kerberos support" off \
 
 .include <bsd.port.pre.mk>
 
+# Default requirements for rc script
+_REQUIRE=	NETWORKING SERVERS
+
+.ifdef(FREERADIUS_SLAVE_MYSQL)
+WITH_MYSQL=	yes
+.endif
+
+FAKE_OPTS=	prefixhack
 CONFIGURE_ARGS=	--quiet \
 		--prefix=${PREFIX} \
 		--localstatedir=/var \
-		--mandir=${PREFIX}/man \
-		--with-system-libtool \
-		--with-docdir=${DOCSDIR} \
-		--with-logdir=${LOGDIR} \
+		--with-system-libtool
+.ifdef(NOPORTDOCS)
+CONFIGURE_ARGS+=--without-docdir
+PLIST_SUB+=	PORTDOCS="@comment "
+.else
+CONFIGURE_ARGS+=--with-docdir=${DOCSDIR}
+PLIST_SUB+=	PORTDOCS=""
+.endif
+CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--with-large-files \
-		--with-openssl-includes=${OPENSSLINC} \
-		--with-openssl-libraries=${OPENSSLLIB} \
-		--without-rlm_sql_unixodbc \
-		--without-rlm_sql_oracle \
+		--with-openssl-includes=${OPENSSLINC}
+# This conditionality avoids -L/usr/lib in the radiusd build step when
+# building with base system OpenSSL
+.if ${OPENSSLLIB} != "/usr/lib"
+CONFIGURE_ARGS+=--with-openssl-libraries=${OPENSSLLIB}
+.endif
+CONFIGURE_ARGS+=--without-rlm_sql_db2 \
+		--without-rlm_sql_freetds \
 		--without-rlm_sql_iodbc \
-		--without-rlm_sql_db2
-
-PLIST_SUB+=	4SSL=""
+		--without-rlm_sql_oracle \
+		--without-rlm_sql_sybase \
+		--without-rlm_sql_unixodbc
 
 .if ${ARCH} == amd64
 CONFIGURE_ARGS+=	--with-pic
@@ -75,7 +106,7 @@ WITH_KERBEROS=	yes
 
 .ifdef(WITH_KERBEROS)
 .ifdef(WITH_HEIMDAL)
-LIB_DEPENDS+=	krb5.21:${PORTSDIR}/security/heimdal
+LIB_DEPENDS+=	krb5.23:${PORTSDIR}/security/heimdal
 CONFIGURE_ARGS+=--enable-heimdal-krb5
 .else
 LIB_DEPENDS+=	krb5.3:${PORTSDIR}/security/krb5
@@ -95,6 +126,7 @@ WITH_LDAP=	yes
 .ifdef(WITH_LDAP)
 USE_OPENLDAP=	YES
 PLIST_SUB+=	LDAP=""
+_REQUIRE+=	slapd
 .else
 CONFIGURE_ARGS+=--without-rlm_ldap
 PLIST_SUB+=	LDAP="@comment "
@@ -106,7 +138,9 @@ CONFIGURE_ARGS+=--with-edir
 
 .ifdef(WITH_MYSQL)
 USE_MYSQL=	YES
+CONFIGURE_ARGS+=--with-rlm_sql_mysql
 PLIST_SUB+=	MYSQL=""
+_REQUIRE+=	mysql
 .else
 CONFIGURE_ARGS+=--without-rlm_sql_mysql
 PLIST_SUB+=	MYSQL="@comment "
@@ -114,11 +148,16 @@ PLIST_SUB+=	MYSQL="@comment "
 
 .ifdef(WITH_PGSQL)
 USE_PGSQL=	YES
+CONFIGURE_ARGS+=--with-rlm_sql_postgresql
 PLIST_SUB+=	PGSQL=""
+_REQUIRE+=	postgresql
 .else
 CONFIGURE_ARGS+=--without-rlm_sql_postgresql
 PLIST_SUB+=	PGSQL="@comment "
 .endif
+
+CONFIGURE_ARGS+=--without-rlm_sql_firebird
+PLIST_SUB+=	FIREBIRD="@comment "
 
 .ifdef(WITH_SNMP)
 LIB_DEPENDS+=	snmp.4:${PORTSDIR}/net-mgmt/net-snmp4
@@ -136,21 +175,17 @@ PLIST_SUB+=	EXPM=""
 PLIST_SUB+=	EXPM="@comment "
 .endif
 
-.ifndef(WITH_NOPERL)
-USE_PERL5=	yes
+.ifdef(WITH_DEVELOPER)
+CONFIGURE_ARGS+=--enable-developer
 .endif
 
-# rlm_perl does not build on 4.x
-.if defined(WITH_NOPERL)
+.ifdef(WITH_NOPERL)
 CONFIGURE_ARGS+=--without-rlm_perl
 PLIST_SUB+=	RLMPERL="@comment "
 .else
+USE_PERL5=	yes
 CONFIGURE_ARGS+=--with-rlm_perl
 PLIST_SUB+=	RLMPERL=""
-.endif
-
-.if defined(NOPORTDOCS)
-MAKE_ENV+=	NOPORTDOCS=yes
 .endif
 
 USE_LDCONFIG=	yes
@@ -161,57 +196,52 @@ MAN5=		acct_users.5 clients.5 clients.conf.5 dictionary.5 naslist.5 \
 		radiusd.conf.5 rlm_acct_unique.5 rlm_always.5 \
 		rlm_attr_filter.5 rlm_attr_rewrite.5 rlm_chap.5 rlm_counter.5 \
 		rlm_detail.5 rlm_expr.5 rlm_files.5 rlm_mschap.5 rlm_pap.5 \
-		rlm_passwd.5 rlm_realm.5 rlm_sql.5 rlm_sql_log.5 rlm_unix.5 users.5
+		rlm_passwd.5 rlm_realm.5 rlm_sql.5 rlm_sql_log.5 rlm_unix.5 \
+		users.5
 MAN8=		radiusd.8 radrelay.8 radsqlrelay.8 radwatch.8 rlm_ippool_tool.8
 
-DICTS=		dictionary.3com dictionary.3gpp dictionary.3gpp2 dictionary.acc \
-		dictionary.airespace dictionary.alcatel dictionary.alteon \
-		dictionary.altiga dictionary.alvarion dictionary.aptis \
-		dictionary.aruba dictionary.ascend dictionary.avaya \
-		dictionary.bay dictionary.bintec dictionary.bristol \
-		dictionary.cablelabs dictionary.cabletron dictionary.cisco \
-		dictionary.cisco.bbsm dictionary.cisco.vpn3000 dictionary.cisco.vpn5000 \
-		dictionary.colubris dictionary.columbia_university dictionary.compat \
-		dictionary.cosine dictionary.digium dictionary.epygi \
-		dictionary.ericsson dictionary.erx dictionary.extreme \
-		dictionary.fortinet dictionary.foundry dictionary.freeradius \
-		dictionary.freeradius.internal dictionary.gandalf dictionary.garderos \
-		dictionary.gemtek dictionary.hp dictionary.ipunplugged dictionary.issanni \
-		dictionary.itk dictionary.juniper dictionary.karlnet \
-		dictionary.livingston dictionary.localweb dictionary.lucent \
-		dictionary.merit dictionary.microsoft dictionary.mikrotik \
-		dictionary.motorola dictionary.navini dictionary.netscreen \
-		dictionary.nokia dictionary.nomadix dictionary.nortel dictionary.ntua \
-		dictionary.packeteer dictionary.patton \
-		dictionary.propel dictionary.quintum \
-		dictionary.redback dictionary.redcreek \
-		dictionary.rfc2865 dictionary.rfc2866 dictionary.rfc2867 \
-		dictionary.rfc2868 dictionary.rfc2869 dictionary.rfc3162 \
-		dictionary.rfc3576 dictionary.rfc3580 dictionary.rfc4590 \
-		dictionary.riverstone dictionary.roaringpenguin \
-		dictionary.schulzrinne-sipping dictionary.shasta dictionary.shiva \
-		dictionary.sofaware dictionary.sonicwall \
-		dictionary.springtide dictionary.starent dictionary.t_systems_nova \
-		dictionary.telebit dictionary.trapeze dictionary.tropos \
-		dictionary.unix dictionary.usr dictionary.valemount \
-		dictionary.versanet dictionary.walabi dictionary.waverider \
-		dictionary.wispr dictionary.xedia dictionary.xylan dictionary.zyxel
+SUB_LIST+=	REQUIRE="${_REQUIRE}"
 
 post-patch:
-	@${RM} ${WRKSRC}/doc/Makefile.orig
-# rlm_sql_firebird in 1.1.4 makes configure fail with experimental modules enabled,
-# even though the port implicitly issues --without-rlm_sql_firebird. Delete the module
-# until it is fixed
-	@${RM} -r ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_firebird
+# Patch Makefile / Makefile.in throughout the source tree to install raddb
+# contents in ${EXAMPLESDIR}/raddb rather than the raddbdir from configure
+	@${FIND} -E ${WRKSRC} -regex '.*/Makefile(\.in)?$$' -exec \
+		${REINPLACE_CMD} -e "s:\$$(R)\$$(raddbdir):${FAKE_DESTDIR}${EXAMPLESDIR}/raddb:g" {} \;
+# Clean up after the last operation (so as not to get unwanted files when installing doc/)
+	@${FIND} -E ${WRKSRC} -regex '.*/Makefile(\.in)?\.(orig|bak)$$' -delete
+
+pre-configure:
+# Replace -pthread with ${PTHREAD_LIBS} in configure(.in) files
+	@${FIND} -E ${WRKSRC} -regex '.*/configure(\.in)?$$' -exec \
+		${REINPLACE_CMD} -e "s:-pthread:${PTHREAD_LIBS}:g" {} \;
+# Force the rebuild of some configures from configure.in, as we're patching
+# the configure.in
+# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf:261 is
+# added to USE_AUTOTOOLS
+	@cd ${WRKSRC}/src/modules/rlm_ldap && ${AUTOCONF} -I ${WRKSRC}
+	@cd ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_mysql \
+		&& ${AUTOCONF} -I ${WRKSRC}
+	@cd ${WRKSRC}/src/modules/rlm_python && ${AUTOCONF} -I ${WRKSRC}
 
 post-install:
-	@${MKDIR} ${PREFIX}/etc/raddb ${DATADIR}
-.for dict in ${DICTS}
-	${INSTALL_DATA} ${WRKSRC}/share/${dict} ${DATADIR}/${dict}
-.endfor
-	for i in `${FIND} ${PREFIX}/etc/raddb -maxdepth 1 -regex '.*\.sample' -print \
-	| ${SED} -e 's/\.sample//g'`; do \
-		if [ ! -f $${i} ]; then ${CP} -p $${i}.sample $${i}; fi; \
+# Create (if necessary) ${PREFIX}/etc/raddb and subdirectories using
+# ${EXAMPLESDIR}/raddb as the model layout
+	@for i in `${FIND} ${EXAMPLESDIR}/raddb/ -type d -print \
+	| ${SED} -e 's:^${EXAMPLESDIR}/raddb::g'`; do \
+		if [ ! -d ${PREFIX}/etc/raddb$${i} ]; then \
+			${MKDIR} ${PREFIX}/etc/raddb$${i}; \
+		fi; \
 	done
+# Copy all files from ${EXAMPLESDIR}/raddb to ${PREFIX}/etc/raddb if they
+# don't already exist in the destination location
+	@for i in `${FIND} ${EXAMPLESDIR}/raddb/ -type f -print \
+	| ${SED} -e 's:^${EXAMPLESDIR}/raddb/::g'`; do \
+		if [ ! -f ${PREFIX}/etc/raddb/$${i} ]; then \
+			${CP} ${EXAMPLESDIR}/raddb/$${i} ${PREFIX}/etc/raddb/$${i}; \
+		fi; \
+	done
+# Set ${PREFIX}/etc/raddb and all the files and folders in it to g-w,o-rwx
+# (FreeRADIUS will probably complain if this is not done)
+	@${CHMOD} -R g-w,o-rwx ${PREFIX}/etc/raddb
 
 .include <bsd.port.post.mk>

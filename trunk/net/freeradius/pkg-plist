@@ -1,5 +1,3 @@
-@unexec %D/etc/rc.d/radiusd.sh forcestop 2>/dev/null || true
-@unexec %D/etc/rc.d/radiusd forcestop 2>/dev/null || true
 bin/radclient
 bin/radeapclient
 bin/radlast
@@ -12,52 +10,64 @@ bin/rlm_dbm_cat
 bin/rlm_dbm_parser
 bin/rlm_ippool_tool
 bin/smbencrypt
-@unexec for i in `find %D/etc/raddb -maxdepth 1 -regex '.*\.sample' -print | sed -e 's/\.sample//g'`; do if [ -f ${i} ]; then if cmp -s ${i}.sample ${i}; then rm -f ${i}; fi; fi; done
-etc/raddb/acct_users.sample
-etc/raddb/attrs.sample
-etc/raddb/certs/README
-etc/raddb/certs/cert-clt.der
-etc/raddb/certs/cert-clt.p12
-etc/raddb/certs/cert-clt.pem
-etc/raddb/certs/cert-srv.der
-etc/raddb/certs/cert-srv.p12
-etc/raddb/certs/cert-srv.pem
-etc/raddb/certs/demoCA/cacert.pem
-etc/raddb/certs/demoCA/index.txt
-etc/raddb/certs/demoCA/index.txt.old
-etc/raddb/certs/demoCA/serial
-etc/raddb/certs/demoCA/serial.old
-etc/raddb/certs/dh
-etc/raddb/certs/newcert.pem
-etc/raddb/certs/newreq.pem
-etc/raddb/certs/random
-etc/raddb/certs/root.der
-etc/raddb/certs/root.p12
-etc/raddb/certs/root.pem
-etc/raddb/clients.conf.sample
-etc/raddb/clients.sample
-etc/raddb/dictionary.sample
-etc/raddb/eap.conf.sample
-etc/raddb/example.pl
-etc/raddb/experimental.conf.sample
-etc/raddb/hints.sample
-etc/raddb/huntgroups.sample
-etc/raddb/ldap.attrmap.sample
-etc/raddb/mssql.conf.sample
-etc/raddb/naslist.sample
-etc/raddb/naspasswd.sample
-etc/raddb/oraclesql.conf.sample
-etc/raddb/otp.conf.sample
-etc/raddb/postgresql.conf.sample
-etc/raddb/preproxy_users.sample
-etc/raddb/proxy.conf.sample
-etc/raddb/radiusd.conf.sample
-etc/raddb/realms.sample
-etc/raddb/snmp.conf.sample
-etc/raddb/sql.conf.sample
-etc/raddb/sqlippool.conf.sample
-etc/raddb/users.sample
-@exec for i in `find %D/etc/raddb -maxdepth 1 -regex '.*\.sample' -print | sed -e 's/\.sample//g'`; do if [ ! -f ${i} ]; then cp -p ${i}.sample ${i}; fi; done
+@unexec for i in `find %D/%%EXAMPLESDIR%%/raddb/ -type f -print | sed -e 's:^%D/%%EXAMPLESDIR%%/raddb/::g'`; do if [ -f %D/%%EXAMPLESDIR%%/raddb/${i} ]; then if cmp -s %D/%%EXAMPLESDIR%%/raddb/${i} %D/etc/raddb/${i}; then rm -f %D/etc/raddb/${i}; fi; fi; done
+@unexec for i in `find -d %D/%%EXAMPLESDIR%%/raddb/ -type d -mindepth 1 -print | sed -e 's:^%D/%%EXAMPLESDIR%%/raddb/::g'`; do if [ -d %D/etc/raddb/${i} ]; then rmdir %D/etc/raddb/${i} 2>/dev/null || true; fi; done
+@dirrmtry etc/raddb/certs/demoCA
+@dirrmtry etc/raddb/certs
+@dirrmtry etc/raddb
+@unexec if [ -d %D/etc/raddb ]; then echo "You should remove %D/etc/raddb if you don't need it any more."; fi
+%%EXAMPLESDIR%%/raddb/acct_users
+%%EXAMPLESDIR%%/raddb/attrs
+%%EXAMPLESDIR%%/raddb/certs/README
+%%EXAMPLESDIR%%/raddb/certs/cert-clt.der
+%%EXAMPLESDIR%%/raddb/certs/cert-clt.p12
+%%EXAMPLESDIR%%/raddb/certs/cert-clt.pem
+%%EXAMPLESDIR%%/raddb/certs/cert-srv.der
+%%EXAMPLESDIR%%/raddb/certs/cert-srv.p12
+%%EXAMPLESDIR%%/raddb/certs/cert-srv.pem
+%%EXAMPLESDIR%%/raddb/certs/demoCA/cacert.pem
+%%EXAMPLESDIR%%/raddb/certs/demoCA/index.txt
+%%EXAMPLESDIR%%/raddb/certs/demoCA/index.txt.old
+%%EXAMPLESDIR%%/raddb/certs/demoCA/serial
+%%EXAMPLESDIR%%/raddb/certs/demoCA/serial.old
+%%EXAMPLESDIR%%/raddb/certs/dh
+%%EXAMPLESDIR%%/raddb/certs/newcert.pem
+%%EXAMPLESDIR%%/raddb/certs/newreq.pem
+%%EXAMPLESDIR%%/raddb/certs/random
+%%EXAMPLESDIR%%/raddb/certs/root.der
+%%EXAMPLESDIR%%/raddb/certs/root.p12
+%%EXAMPLESDIR%%/raddb/certs/root.pem
+%%EXAMPLESDIR%%/raddb/clients
+%%EXAMPLESDIR%%/raddb/clients.conf
+%%EXAMPLESDIR%%/raddb/dictionary
+%%EXAMPLESDIR%%/raddb/eap.conf
+%%EXAMPLESDIR%%/raddb/experimental.conf
+%%EXAMPLESDIR%%/raddb/hints
+%%EXAMPLESDIR%%/raddb/huntgroups
+%%EXAMPLESDIR%%/raddb/ldap.attrmap
+%%EXAMPLESDIR%%/raddb/mssql.conf
+%%EXAMPLESDIR%%/raddb/naslist
+%%EXAMPLESDIR%%/raddb/naspasswd
+%%EXAMPLESDIR%%/raddb/oraclesql.conf
+%%EXAMPLESDIR%%/raddb/otp.conf
+%%EXAMPLESDIR%%/raddb/postgresql.conf
+%%EXAMPLESDIR%%/raddb/postgresqlippool.conf
+%%EXAMPLESDIR%%/raddb/preproxy_users
+%%EXAMPLESDIR%%/raddb/proxy.conf
+%%EXAMPLESDIR%%/raddb/radiusd.conf
+%%EXAMPLESDIR%%/raddb/realms
+%%EXAMPLESDIR%%/raddb/snmp.conf
+%%EXAMPLESDIR%%/raddb/sql.conf
+%%EXAMPLESDIR%%/raddb/sqlippool.conf
+%%EXAMPLESDIR%%/raddb/users
+%%EXAMPLESDIR%%/raddb/example.pl
+@exec for i in `find %D/%%EXAMPLESDIR%%/raddb/ -type d -mindepth 1 -print | sed -e 's:^%D/%%EXAMPLESDIR%%/raddb/::g'`; do if [ ! -d %D/etc/raddb/${i} ]; then mkdir -p %D/etc/raddb/${i}; fi; done
+@exec for i in `find %D/%%EXAMPLESDIR%%/raddb/ -type f -print | sed -e 's:^%D/%%EXAMPLESDIR%%/raddb/::g'`; do if [ ! -f %D/etc/raddb/${i} ]; then cp %D/%%EXAMPLESDIR%%/raddb/${i} %D/etc/raddb/${i}; fi; done
+@exec chmod -R g-w,o-rwx %D/etc/raddb
+@dirrm %%EXAMPLESDIR%%/raddb/certs/demoCA
+@dirrm %%EXAMPLESDIR%%/raddb/certs
+@dirrm %%EXAMPLESDIR%%/raddb
+@dirrm %%EXAMPLESDIR%%
 lib/libeap-%%PORTVERSION%%.la
 lib/libeap-%%PORTVERSION%%.so
 lib/libeap.a
@@ -148,26 +158,26 @@ lib/rlm_eap_mschapv2-%%PORTVERSION%%.so
 lib/rlm_eap_mschapv2.a
 lib/rlm_eap_mschapv2.la
 lib/rlm_eap_mschapv2.so
-%%4SSL%%lib/rlm_eap_peap-%%PORTVERSION%%.la
-%%4SSL%%lib/rlm_eap_peap-%%PORTVERSION%%.so
-%%4SSL%%lib/rlm_eap_peap.a
-%%4SSL%%lib/rlm_eap_peap.la
-%%4SSL%%lib/rlm_eap_peap.so
+lib/rlm_eap_peap-%%PORTVERSION%%.la
+lib/rlm_eap_peap-%%PORTVERSION%%.so
+lib/rlm_eap_peap.a
+lib/rlm_eap_peap.la
+lib/rlm_eap_peap.so
 lib/rlm_eap_sim-%%PORTVERSION%%.la
 lib/rlm_eap_sim-%%PORTVERSION%%.so
 lib/rlm_eap_sim.a
 lib/rlm_eap_sim.la
 lib/rlm_eap_sim.so
-%%4SSL%%lib/rlm_eap_tls-%%PORTVERSION%%.la
-%%4SSL%%lib/rlm_eap_tls-%%PORTVERSION%%.so
-%%4SSL%%lib/rlm_eap_tls.a
-%%4SSL%%lib/rlm_eap_tls.la
-%%4SSL%%lib/rlm_eap_tls.so
-%%4SSL%%lib/rlm_eap_ttls-%%PORTVERSION%%.la
-%%4SSL%%lib/rlm_eap_ttls-%%PORTVERSION%%.so
-%%4SSL%%lib/rlm_eap_ttls.a
-%%4SSL%%lib/rlm_eap_ttls.la
-%%4SSL%%lib/rlm_eap_ttls.so
+lib/rlm_eap_tls-%%PORTVERSION%%.la
+lib/rlm_eap_tls-%%PORTVERSION%%.so
+lib/rlm_eap_tls.a
+lib/rlm_eap_tls.la
+lib/rlm_eap_tls.so
+lib/rlm_eap_ttls-%%PORTVERSION%%.la
+lib/rlm_eap_ttls-%%PORTVERSION%%.so
+lib/rlm_eap_ttls.a
+lib/rlm_eap_ttls.la
+lib/rlm_eap_ttls.so
 %%EXPM%%lib/rlm_example-%%PORTVERSION%%.la
 %%EXPM%%lib/rlm_example-%%PORTVERSION%%.so
 %%EXPM%%lib/rlm_example.a
@@ -218,11 +228,11 @@ lib/rlm_ns_mta_md5-%%PORTVERSION%%.so
 lib/rlm_ns_mta_md5.a
 lib/rlm_ns_mta_md5.la
 lib/rlm_ns_mta_md5.so
-%%4SSL%%lib/rlm_otp-%%PORTVERSION%%.la
-%%4SSL%%lib/rlm_otp-%%PORTVERSION%%.so
-%%4SSL%%lib/rlm_otp.a
-%%4SSL%%lib/rlm_otp.la
-%%4SSL%%lib/rlm_otp.so
+lib/rlm_otp-%%PORTVERSION%%.la
+lib/rlm_otp-%%PORTVERSION%%.so
+lib/rlm_otp.a
+lib/rlm_otp.la
+lib/rlm_otp.so
 lib/rlm_pam-%%PORTVERSION%%.la
 lib/rlm_pam-%%PORTVERSION%%.so
 lib/rlm_pam.a
@@ -278,6 +288,10 @@ lib/rlm_sql-%%PORTVERSION%%.so
 lib/rlm_sql.a
 lib/rlm_sql.la
 lib/rlm_sql.so
+%%FIREBIRD%%lib/rlm_sql_firebird-%%PORTVERSION%%.so
+%%FIREBIRD%%lib/rlm_sql_firebird.a
+%%FIREBIRD%%lib/rlm_sql_firebird.la
+%%FIREBIRD%%lib/rlm_sql_firebird.so
 lib/rlm_sql_log-%%PORTVERSION%%.la
 lib/rlm_sql_log-%%PORTVERSION%%.so
 lib/rlm_sql_log.a
@@ -296,6 +310,16 @@ lib/rlm_sqlcounter-%%PORTVERSION%%.so
 lib/rlm_sqlcounter.a
 lib/rlm_sqlcounter.la
 lib/rlm_sqlcounter.so
+%%EXPM%%lib/rlm_sqlhpwippool-%%PORTVERSION%%.la
+%%EXPM%%lib/rlm_sqlhpwippool-%%PORTVERSION%%.so
+%%EXPM%%lib/rlm_sqlhpwippool.a
+%%EXPM%%lib/rlm_sqlhpwippool.la
+%%EXPM%%lib/rlm_sqlhpwippool.so
+lib/rlm_sqlippool-%%PORTVERSION%%.la
+lib/rlm_sqlippool-%%PORTVERSION%%.so
+lib/rlm_sqlippool.a
+lib/rlm_sqlippool.la
+lib/rlm_sqlippool.so
 lib/rlm_unix-%%PORTVERSION%%.la
 lib/rlm_unix-%%PORTVERSION%%.so
 lib/rlm_unix.a
@@ -334,6 +358,7 @@ sbin/rc.radiusd
 %%PORTDOCS%%%%DOCSDIR%%/examples/openldap.schema
 %%PORTDOCS%%%%DOCSDIR%%/examples/oracle.sql
 %%PORTDOCS%%%%DOCSDIR%%/examples/postgresql.sql
+%%PORTDOCS%%%%DOCSDIR%%/examples/postgresql.sql.extra
 %%PORTDOCS%%%%DOCSDIR%%/ldap_howto.txt
 %%PORTDOCS%%%%DOCSDIR%%/load-balance.txt
 %%PORTDOCS%%%%DOCSDIR%%/misc-nas
@@ -398,6 +423,9 @@ sbin/rc.radiusd
 %%PORTDOCS%%%%DOCSDIR%%/supervise-radiusd.txt
 %%PORTDOCS%%%%DOCSDIR%%/tuning_guide
 %%PORTDOCS%%%%DOCSDIR%%/variables.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/rfc
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/examples
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%DATADIR%%/dictionary
 %%DATADIR%%/dictionary.3com
 %%DATADIR%%/dictionary.3gpp
@@ -411,6 +439,7 @@ sbin/rc.radiusd
 %%DATADIR%%/dictionary.aptis
 %%DATADIR%%/dictionary.aruba
 %%DATADIR%%/dictionary.ascend
+%%DATADIR%%/dictionary.asn
 %%DATADIR%%/dictionary.avaya
 %%DATADIR%%/dictionary.bay
 %%DATADIR%%/dictionary.bintec
@@ -470,7 +499,10 @@ sbin/rc.radiusd
 %%DATADIR%%/dictionary.rfc3162
 %%DATADIR%%/dictionary.rfc3576
 %%DATADIR%%/dictionary.rfc3580
+%%DATADIR%%/dictionary.rfc4372
 %%DATADIR%%/dictionary.rfc4590
+%%DATADIR%%/dictionary.rfc4675
+%%DATADIR%%/dictionary.rfc4679
 %%DATADIR%%/dictionary.riverstone
 %%DATADIR%%/dictionary.roaringpenguin
 %%DATADIR%%/dictionary.schulzrinne-sipping
@@ -495,14 +527,7 @@ sbin/rc.radiusd
 %%DATADIR%%/dictionary.xylan
 %%DATADIR%%/dictionary.zyxel
 @dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/rfc
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/examples
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm etc/raddb/certs/demoCA
-@dirrm etc/raddb/certs
 @exec mkdir -p /var/log/raddb
 @exec chmod -R og= /var/log/raddb
 @exec mkdir -p /var/run/radiusd
 @unexec rm -fr /var/run/radiusd
-@dirrmtry etc/raddb
-@unexec if [ -d %D/etc/raddb ]; then echo "You should remove %D/etc/raddb if you don't need it anymore."; fi
