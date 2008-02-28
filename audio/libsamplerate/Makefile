@@ -3,7 +3,7 @@
 # Whom:			<dmagda+libsamplerate@ee.ryerson.ca>
 #
 # $FreeBSD: ports/audio/libsamplerate/Makefile,v 1.15 2006/06/09 18:00:28 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.1 2007/01/25 22:13:55 laffer1 Exp $
 #
 
 PORTNAME=	libsamplerate
@@ -19,11 +19,12 @@ LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile \
 		fftw3.4:${PORTSDIR}/math/fftw3
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--disable-gcc-pipe  --build=${MACHINE_ARCH}-portbld-freebsd6.0
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 post-install:
 .if !defined(NOPORTDOCS)
