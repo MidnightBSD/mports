@@ -2,13 +2,12 @@
 # Date created:			Jul 30, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.2 2007/04/10 16:50:11 laffer1 Exp $
 # $FreeBSD: ports/audio/speex/Makefile,v 1.48 2007/02/25 21:47:19 mezz Exp $
 #
 
 PORTNAME=	speex
-DISTVERSION=	1.2beta1
-PORTREVISION=	1
+DISTVERSION=	1.2beta2
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
