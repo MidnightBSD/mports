@@ -2,34 +2,37 @@
 # Date created:				2006-05-25
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
-# $MidnightBSD: mports/net-mgmt/aircrack-ng/Makefile,v 1.1 2007/04/13 21:38:38 laffer1 Exp $
-# $FreeBSD: ports/net-mgmt/aircrack-ng/Makefile,v 1.7 2007/01/24 22:39:54 miwi Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/net-mgmt/aircrack-ng/Makefile,v 1.14 2007/07/12 18:51:59 lme Exp $
 #
 
 PORTNAME=	aircrack-ng
-PORTVERSION=	0.7
+PORTVERSION=	0.9.1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://download.aircrack-ng.org/ \
 		http://bsd-geek.de/FreeBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Aircrack-ng is the next generation of aircrack
+COMMENT=	Aircrack-ng is the next generation of aircrack with new features
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
-ALL_TARGET=	aircrack-ng airdecap-ng packetforge-ng ivstools kstats
-
+ALL_TARGET=	aircrack-ng airdecap-ng packetforge-ng ivstools kstats makeivs \
+		airodump-ng airtun-ng
 PLIST_FILES=	bin/aircrack-ng bin/airdecap-ng bin/packetforge-ng bin/ivstools \
-		bin/kstats
-MAN1=		aircrack-ng.1 airdecap-ng.1 packetforge-ng.1 ivstools.1
+		bin/kstats bin/makeivs sbin/airodump-ng sbin/airtun-ng
 
-SUB_FILES+=	pkg-message
+SUB_FILES=	pkg-message
 
+MAN1=		aircrack-ng.1 airdecap-ng.1 packetforge-ng.1 ivstools.1 \
+		makeivs.1 airodump-ng.1 airtun-ng.1 kstats.1
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Makefile
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} \
+		-e 's|/usr/local|${PREFIX}|g' \
+		-e 's|-lpthread|${PTHREAD_LIBS}|g;' \
+		-e '/^CC/d;' \
+			${WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/aircrack-ng ${PREFIX}/bin
@@ -37,9 +40,12 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/packetforge-ng ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/ivstools ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/kstats ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/makeivs ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/airodump-ng ${PREFIX}/sbin
+	${INSTALL_PROGRAM} ${WRKSRC}/airtun-ng ${PREFIX}/sbin
+
 .for manpage in ${MAN1}
 	${INSTALL_MAN} ${WRKSRC}/manpages/${manpage} ${PREFIX}/man/man1
 .endfor
-
 
 .include <bsd.port.post.mk>
