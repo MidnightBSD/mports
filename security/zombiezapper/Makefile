@@ -3,7 +3,7 @@
 # Whom:				  Kris Kennaway <kris@FreeBSD.org>
 #
 # $FreeBSD: ports/security/zombiezapper/Makefile,v 1.8 2005/11/14 17:07:05 sem Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/zombiezapper/Makefile,v 1.1 2006/11/09 14:03:52 laffer1 Exp $
 #
 
 PORTNAME=	zombiezapper
@@ -17,7 +17,7 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Send a terminate command to Trinoo/TFN/Stacheldracht DDoS agents
 
-BUILD_DEPENDS=	libnet*<=1.1.0,1:${PORTSDIR}/net/libnet10/
+BUILD_DEPENDS=	libnet*<=1.1.0,1:${PORTSDIR}/net/libnet10
 
 LIBNETCONF=	${LOCALBASE}/bin/libnet-config
 
