@@ -2,12 +2,12 @@
 # Date created:		09 December 1999
 # Whom:			Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.1 2006/09/29 21:08:43 wintellect Exp $
+# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.2 2007/03/22 03:11:02 ctriv Exp $
 # $FreeBSD: ports/audio/wmmp3/Makefile,v 1.8 2003/12/15 01:17:26 pav Exp $
 
 PORTNAME=	wmmp3
 PORTVERSION=	0.12
-PORTREVISION=   1
+PORTREVISION=	1
 CATEGORIES=	audio windowmaker
 MASTER_SITES=	http://www.dotfiles.com/software/wmmp3/
 
