@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.13 2007/11/11 23:53:26 laffer1 Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.14 2008/02/24 23:58:47 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -33,7 +33,7 @@ use strict;
 use warnings;
 use File::Path qw(mkpath rmtree);
 
-# load Carp::Heavy so its in memory before we chroot.
+# load Carp::Heavy so it's in memory before we chroot.
 use Carp::Heavy;
 
 =head1 NAME 

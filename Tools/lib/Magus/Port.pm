@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.11 2007/11/20 17:03:45 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.12 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,51 +39,22 @@ use base 'Magus::DBI';
 __PACKAGE__->table('ports');
 
 __PACKAGE__->columns(Essential => qw(id run name version status));
-__PACKAGE__->columns(All       => qw(description license www created updated));
+__PACKAGE__->columns(All       => qw(description license www updated));
 __PACKAGE__->columns(Stringify => qw(name));
 
-__PACKAGE__->has_a(run     => 'Magus::Run');
+__PACKAGE__->has_a(run => 'Magus::Run');
 
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
-__PACKAGE__->has_many(events => [ 'Magus::Event' => 'port' ]);
+__PACKAGE__->has_many(events => 'Magus::Event');
 
 
-__PACKAGE__->set_sql(ready_ports => <<'END_OF_SQL');
-SELECT ports.*,(SELECT COUNT(*) FROM depends WHERE dependency=ports.id) AS priority 
-FROM ports 
-WHERE 
-    run=:a AND status='untested'
-  AND
-    (id NOT IN (SELECT port FROM locks WHERE port=ports.id)) 
-  AND 
-    ((id NOT IN (SELECT port FROM depends WHERE port=ports.id)) 
-      OR 
-    (id NOT IN (
-      SELECT port FROM depends WHERE 
-          port=ports.id 
-        AND 
-        (
-          (dependency NOT IN (
-            SELECT port FROM ports WHERE 
-                id=dependency 
-              AND 
-                run=:a 
-              AND 
-                (status='pass' OR status='warn')
-          ))
-         OR 
-          (dependency IN (SELECT port FROM locks WHERE port=dependency))
-        )
-    )))
-ORDER BY priority DESC;
-END_OF_SQL
+__PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 
-#__PACKAGE__->
 
 =head2 Magus::Port->get_ready_port($run);
 
-Return a port that is ready to be tested for the current run.
+Return a port that is ready to be tested for the given run.
 Ready is defined as:
 
 =over 4
@@ -98,7 +69,7 @@ The port has not been tested.
 
 =item 3
 
-The port's depends are all tested and unlocked.
+All the port's depends are tested and unlocked.
 
 =back
 
@@ -123,12 +94,7 @@ sub origin {
 }
 
 
-=head2 $port->current_result
-
-Returns the result for the current version and arch, if any.
-
-=cut
-
+# POD removed as method is deprecated.
 sub current_result {
   require Carp;
   Carp::confess("Use of deprecated method: Magus::Port->current_result.  There is no replacement.");
@@ -220,14 +186,14 @@ sub set_result_fail {
 
 
 sub _set_result {
-  my ($self, $summary, $phase, $name, $msg) = @_;
+  my ($self, $status, $phase, $name, $msg) = @_;
   
-  $self->status($summary);
+  $self->status($status);
   $self->update;
     
   $self->add_to_events({
     machine   => $Magus::Machine,
-    type  => $summary,
+    type  => $status,
     name  => $name,
     msg   => $msg,
     phase => $phase,

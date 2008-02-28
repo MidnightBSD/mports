@@ -24,7 +24,7 @@ package Magus::Run;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Log.pm,v 1.4 2007/11/20 17:03:45 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Run.pm,v 1.1 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -40,7 +40,7 @@ __PACKAGE__->columns(Essential => qw/id osversion arch status created/);
 
 =head2 Magus::Run->latest($machine)
 
-Takes a machine, and returns the latest run for that machine's osversion and arch.
+Takes a machine, and returns the latest active run for that machine's osversion and arch.
 
 =cut
 
@@ -50,6 +50,7 @@ sub latest {
   return $class->search(
     osversion => $machine->osversion,
     arch      => $machine->arch,
+    status    => 'active',
     { order_by => 'id DESC' }
   )->next;
 }
@@ -64,6 +65,9 @@ Returns true if the run has no ports left to be tested
 sub is_empty {
   my ($self) = @_;
   
+  # if there is a locked port, then there may be new ports once this one is done.
+  return 0 if Magus::Lock->search_by_run($self)->count;
+
   return Magus::Port->get_ready_port($self) ? 0 : 1;
 }
 
