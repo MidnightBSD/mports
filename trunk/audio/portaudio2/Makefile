@@ -2,14 +2,14 @@
 # Date created:		18 May 2003
 # Whom:			michaelnottebrock@gmx.net and lioux@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/portaudio2/Makefile,v 1.1 2007/03/13 20:16:15 laffer1 Exp $
 # $FreeBSD: ports/audio/portaudio2/Makefile,v 1.13 2007/02/25 13:30:18 sat Exp $
 #
 
 PORTNAME=	portaudio
 PORTVERSION=	19.b${SNAPREV}
 CATEGORIES=	audio
-MASTER_SITES=	CSME
+MASTER_SITES=	CENKES
 # svn export -rSNAPREV https://www.portaudio.com/repos/portaudio/branches/v19-devel
 LATEST_LINK=	${PORTNAME}2
 
