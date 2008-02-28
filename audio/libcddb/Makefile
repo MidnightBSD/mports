@@ -2,13 +2,12 @@
 # Date created:		Mon Mar  1 00:48:58 EST 2004
 # Whom:			Michael Johnson <ahze@ahze.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libcddb/Makefile,v 1.1 2006/10/05 00:25:06 laffer1 Exp $
 # $FreeBSD: ports/audio/libcddb/Makefile,v 1.16 2006/06/09 18:00:28 ahze Exp $
 #
 
 PORTNAME=	libcddb
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTVERSION=	1.3.0
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,12 +16,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to access data on a CDDB server
 
 USE_BZIP2=	yes
-GNU_CONFIGURE=  yes
+GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget gnomehack pkgconfig
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-cdio
 CONFIGURE_ENV=	CPPFLAGS="-DICONV_CONST=\"const\""
 
-.include <bsd.port.pre.mk>
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
