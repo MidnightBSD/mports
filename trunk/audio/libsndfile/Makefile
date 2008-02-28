@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/audio/libsndfile/Makefile,v 1.35 2006/09/02 20:48:50 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.1 2006/11/17 22:50:51 laffer1 Exp $
 #
 
 PORTNAME=	libsndfile
@@ -17,23 +17,16 @@ COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF)
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-justsrc --disable-gcc-pipe
+CONFIGURE_ARGS=	--enable-justsrc --disable-gcc-pipe --disable-sqlite
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
 
 MAN1=		sndfile-convert.1 sndfile-info.1 sndfile-play.1
 
-OPTIONS=	FLAC "Enable flac support" On \
-		SQLITE3 "Enable Sqlite3 support" Off
+OPTIONS=	FLAC "Enable flac support" On
 
 .include <bsd.port.pre.mk>
-
-.if defined(WITH_SQLITE3)
-LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
-.else
-CONFIGURE_ARGS=	--disable-sqlite
-.endif
 
 .if !defined(WITHOUT_FLAC) || exists(${LOCALBASE}/lib/libFLAC.a)
 LIB_DEPENDS+=	FLAC.7:${PORTSDIR}/audio/flac
