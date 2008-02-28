@@ -5,7 +5,7 @@
 #
 # $OpenBSD: Makefile,v 1.1.1.1 2000/11/27 15:56:03 avsm Exp $
 # $FreeBSD: ports/security/mcrypt/Makefile,v 1.35 2006/02/11 21:03:07 netchild Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.1 2006/11/25 03:51:03 laffer1 Exp $
 #
 
 PORTNAME=	mcrypt
@@ -21,8 +21,8 @@ MASTER_SITE_SUBDIR=	mcrypt
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for crypt(1)
 
-LIB_DEPENDS=	mcrypt.8:${PORTSDIR}/security/libmcrypt/ \
-		mhash.2:${PORTSDIR}/security/mhash/
+LIB_DEPENDS=	mcrypt.8:${PORTSDIR}/security/libmcrypt \
+		mhash.2:${PORTSDIR}/security/mhash
 
 USE_AUTOTOOLS=	autoconf:259:env
 USE_GETTEXT=		yes
