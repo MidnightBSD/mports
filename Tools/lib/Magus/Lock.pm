@@ -24,11 +24,10 @@ package Magus::Lock;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Lock.pm,v 1.3 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Lock.pm,v 1.4 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
-
 
 
 use base qw(Magus::DBI);
@@ -41,15 +40,27 @@ __PACKAGE__->columns(Essential => qw(id port machine));
 __PACKAGE__->has_a(machine => "Magus::Machine");
 __PACKAGE__->has_a(port    => "Magus::Port");
 
+__PACKAGE__->set_sql(by_run => <<'END_OF_SQL');
+SELECT locks.* FROM locks,ports WHERE port=ports.id AND ports.run=?
+END_OF_SQL
 
 sub get_ready_lock {
-  my ($class, $port) = @_;
+  my ($class, $run) = @_;
+
+  my $lock;
+  my $port;
   
-  if (defined $port) {
-    return $class->_get_lock($port);
-  } else {
-    return $class->_find_and_lock_unlocked_port();
+  while (!defined $lock) {
+    my $port = Magus::Port->get_ready_port($run);
+   
+    if (!$port) { # we ran thru all the ports...
+      return;
+    }
+    
+    $lock = $class->_get_lock($port);
   }
+  
+  return $lock;
 }
 
 
@@ -70,25 +81,6 @@ sub _get_lock {
     } else {
       die $@;
     }
-  }
-  
-  return $lock;
-}
-
-sub _find_and_lock_unlocked_port {
-  my ($class) = @_;
-  
-  my $lock;
-  my $port;
-  
-  while (!defined $lock) {
-    my $port = Magus::Port->get_ready_port;
-   
-    if (!$port) { # we ran thru all the ports...
-      return;
-    }
-    
-    $lock = $class->_get_lock($port);
   }
   
   return $lock;

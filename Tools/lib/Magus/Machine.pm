@@ -24,7 +24,7 @@ package Magus::Machine;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Machine.pm,v 1.3 2007/11/20 17:03:45 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Machine.pm,v 1.4 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,7 +35,7 @@ use base qw(Magus::DBI);
 
 
 __PACKAGE__->table('machines');
-__PACKAGE__->columns(Essential => qw/id arch name maintainer run/);
+__PACKAGE__->columns(Essential => qw/id arch name maintainer run osversion/);
 __PACKAGE__->has_a(run => 'Magus::Run');
 
 
