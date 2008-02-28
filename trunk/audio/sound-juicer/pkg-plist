@@ -1,5 +1,5 @@
 bin/sound-juicer
-share/gnome/applications/sound-juicer.desktop
+share/applications/sound-juicer.desktop
 share/gnome/help/sound-juicer/C/fdl-appendix.xml
 share/gnome/help/sound-juicer/C/figures/prefs.png
 share/gnome/help/sound-juicer/C/figures/startup.png
@@ -125,21 +125,21 @@ share/locale/xh/LC_MESSAGES/sound-juicer.mo
 share/locale/zh_CN/LC_MESSAGES/sound-juicer.mo
 share/locale/zh_HK/LC_MESSAGES/sound-juicer.mo
 share/locale/zh_TW/LC_MESSAGES/sound-juicer.mo
-share/gnome/omf/sound-juicer/sound-juicer-C.omf
-share/gnome/omf/sound-juicer/sound-juicer-de.omf
-share/gnome/omf/sound-juicer/sound-juicer-el.omf
-share/gnome/omf/sound-juicer/sound-juicer-en_GB.omf
-share/gnome/omf/sound-juicer/sound-juicer-es.omf
-share/gnome/omf/sound-juicer/sound-juicer-fr.omf
-share/gnome/omf/sound-juicer/sound-juicer-nl.omf
-share/gnome/omf/sound-juicer/sound-juicer-oc.omf
-share/gnome/omf/sound-juicer/sound-juicer-sv.omf
-share/gnome/omf/sound-juicer/sound-juicer-uk.omf
-share/gnome/sound-juicer/sj-play.png
-share/gnome/sound-juicer/sj-record.png
-share/gnome/sound-juicer/sound-juicer.glade
-@dirrm share/gnome/sound-juicer
-@dirrm share/gnome/omf/sound-juicer
+share/omf/sound-juicer/sound-juicer-C.omf
+share/omf/sound-juicer/sound-juicer-de.omf
+share/omf/sound-juicer/sound-juicer-el.omf
+share/omf/sound-juicer/sound-juicer-en_GB.omf
+share/omf/sound-juicer/sound-juicer-es.omf
+share/omf/sound-juicer/sound-juicer-fr.omf
+share/omf/sound-juicer/sound-juicer-nl.omf
+share/omf/sound-juicer/sound-juicer-oc.omf
+share/omf/sound-juicer/sound-juicer-sv.omf
+share/omf/sound-juicer/sound-juicer-uk.omf
+%%DATADIR%%/sj-play.png
+%%DATADIR%%/sj-record.png
+%%DATADIR%%/sound-juicer.glade
+@dirrm %%DATADIR%%
+@dirrm share/omf/sound-juicer
 @dirrm share/gnome/help/sound-juicer/uk/figures
 @dirrm share/gnome/help/sound-juicer/uk
 @dirrm share/gnome/help/sound-juicer/sv/figures

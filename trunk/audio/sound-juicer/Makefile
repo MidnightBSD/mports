@@ -2,13 +2,14 @@
 # Date created:		20 Jan 2004
 # Whom:			Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/sound-juicer/Makefile,v 1.1 2008/01/04 21:07:03 laffer1 Exp $
 # $FreeBSD: ports/audio/sound-juicer/Makefile,v 1.39 2007/10/24 23:34:51 marcus Exp $
 #   $MCom: ports/audio/sound-juicer/Makefile,v 1.71 2007/10/15 00:27:00 marcus Exp $
 #
 
 PORTNAME=	sound-juicer
 PORTVERSION=	2.20.1
+PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
