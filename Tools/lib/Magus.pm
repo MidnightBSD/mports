@@ -12,15 +12,14 @@ BEGIN {
 use Magus::Config;
 use Magus::Port      	();
 use Magus::Lock      	();
-use Magus::Result    	();
 use Magus::Category  	();
 use Magus::PortCategory ();
-use Magus::SubResult 	();
+use Magus::Event 	();
 use Magus::Machine   	();
 use Magus::PortTest  	();
 use Magus::Chroot    	();
 use Magus::Index     	();
-use Magus::Snap         ();
+use Magus::Run         ();
 
 use Mport::Globals   ();
 our $Machine;
