@@ -2,14 +2,14 @@
 # Date created:		17 August 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.1 2007/12/06 05:31:05 laffer1 Exp $
 # $FreeBSD: ports/audio/rhythmbox/Makefile,v 1.100 2007/07/23 17:35:54 danfe Exp $
 #   $MCom: ports/audio/rhythmbox/Makefile,v 1.70 2007/03/07 17:00:36 adamw Exp $
 #
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.10.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.10
@@ -20,7 +20,7 @@ COMMENT=	Audio player for GNOME
 
 LIB_DEPENDS=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 		id3tag.0:${PORTSDIR}/audio/libid3tag \
-		totem-plparser.1:${PORTSDIR}/multimedia/totem \
+		totem-plparser.7:${PORTSDIR}/multimedia/totem \
 		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		sexy.2:${PORTSDIR}/x11-toolkits/libsexy \
 		soup-2.2.8:${PORTSDIR}/devel/libsoup \
@@ -39,8 +39,8 @@ CONFIGURE_ARGS=	--enable-nautilus-menu --with-playback=gstreamer-0-10
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	LIBS="-lm" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib" \
-		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include"
+		LDFLAGS="-L${LOCALBASE}/lib" \
+		CPPFLAGS="-I${LOCALBASE}/include"
 
 GCONF_SCHEMAS=	rhythmbox.schemas
 
@@ -82,12 +82,12 @@ PLIST_SUB+=	LIRC="@comment "
 
 .if defined(WITH_DAAP)
 CONFIGURE_ARGS+=	--enable-daap  --with-mdns=avahi
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi \
+LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app \
     			gnome-keyring:${PORTSDIR}/security/gnome-keyring
 PLIST_SUB+=		DAAP=""
 .else
 .if exists(${LOCALBASE}/lib/libavahi-client.a)
-LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi
+LIB_DEPENDS+=		avahi-client:${PORTSDIR}/net/avahi-app
 .endif
 CONFIGURE_ARGS+=	--disable-daap
 PLIST_SUB+=		DAAP="@comment "
@@ -112,7 +112,7 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if !defined(WITHOUT_IPOD)
-LIB_DEPENDS+=	gpod.2:${PORTSDIR}/audio/libgpod
+LIB_DEPENDS+=	gpod.3:${PORTSDIR}/audio/libgpod
 CONFIGURE_ARGS+=--with-ipod
 PLIST_SUB+=	IPOD=""
 .else
