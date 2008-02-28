@@ -2,11 +2,11 @@
 # Date created:				20 January 2008
 # Whom:					<smultron@midnightbsd.org>
 #
-# $MidnightBSD: mports/games/vitetris/Makefile,v 1.2 2007/11/11 00:20:31 laffer1 Exp $
+# $MidnightBSD: mports/games/vitetris/Makefile,v 1.1 2008/01/21 03:28:39 smultron Exp $
 #
 
 PORTNAME=	vitetris
-PORTVERSION=	0.3.5
+PORTVERSION=	0.3.6
 CATEGORIES=	games
 MASTER_SITES=	http://victornils.net/tetris/
 
