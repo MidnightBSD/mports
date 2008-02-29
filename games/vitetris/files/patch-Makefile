@@ -1,20 +1,14 @@
---- Makefile.orig	Sun Jan 20 21:04:33 2008
-+++ Makefile	Sun Jan 20 21:04:55 2008
-@@ -1,7 +1,7 @@
- VERSION_NO = 0.3.5
- VERSION_DATE = 20080107
+--- Makefile.orig	Thu Feb 28 17:05:44 2008
++++ Makefile	Thu Feb 28 19:43:12 2008
+@@ -2,9 +2,9 @@
+ VERSION_DATE = 20080119
+ VITETRIS_VER = -D'VITETRIS_VER="vitetris $(VERSION_NO)"'
  
 -CFLAGS = -O2
-+CFLAGS = -O2 -I/usr/local/include
- INCLUDES = 
- TETRIS_2P = tetris_2p.o
- ifdef TETRIS_2P
-@@ -9,7 +9,7 @@
- else
- CCFLAGS = $(CFLAGS)
- endif
++CFLAGS = -O2 -I/usr/local/include 
+ CCFLAGS = $(CFLAGS) -DTWOPLAYER
 -LDFLAGS = -L/usr/X11R6/lib -lX11
 +LDFLAGS = -L/usr/local/lib -lX11
- 
- OBJS = main.o tetris.o $(TETRIS_2P) input.o file.o options.o \
- 	vt.o vt_draw.o vt_menu.o
+ XLIB_FLAGS = -DXLIB
+ TETRIS_2P = tetris_2p.o
+ HAS_ALLOCA_H =
