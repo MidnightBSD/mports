@@ -1,4 +1,4 @@
- #!/usr/local/bin/perl
+#!/usr/local/bin/perl
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.9 2007/11/05 20:03:59 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.10 2008/02/28 23:24:50 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -392,10 +392,13 @@ sub get_current_run {
     
     my $tarball = $current->tarballpath;
     
+    report(debug => "Downloading tree ID $run: $tarball");
+    
     chdir('/usr');
     
-    rmpath('/usr/mports');
-    system("/usr/bin/scp $tarball .");
+    system("/usr/bin/fetch $tarball");
+
+    rmtree('/usr/mports');
     system('/usr/bin/tar xf ' . $current->tarball);
     exec($self, @origARGV);
   }
