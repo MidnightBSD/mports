@@ -3,11 +3,12 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xorg-drivers/Makefile,v 1.6 2007/10/09 19:30:14 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.1 2007/10/12 03:51:27 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.2 2008/03/03 23:42:11 laffer1 Exp $
 #
 
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.3
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -43,7 +44,7 @@ VIDEO_OFF=	apm ark \
 		dummy \
 		fbdev \
 		glint \
-		i128 i740 imstt	intel \
+		i128 i740 i810 imstt \
 		mga \
 		neomagic newport nsc \
 		openchrome \
@@ -52,7 +53,7 @@ VIDEO_OFF=	apm ark \
 		tdfx tga trident tseng \
 		vmware voodoo
 
-VIDEO_EXCL=	i810:intel via:openchrome
+VIDEO_EXCL=	intel:i810 via:openchrome
 
 INPUT_ON=	mouse \
 		keyboard
