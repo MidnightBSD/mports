@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xorg-drivers/Makefile,v 1.6 2007/10/09 19:30:14 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.1 2007/10/12 03:51:27 ctriv Exp $
 #
 
 PORTNAME=	xorg-drivers
@@ -27,12 +27,15 @@ ARCH!=  /usr/bin/uname -p
 .endif
 
 VIDEO_ON=	ati \
-		i810 \
+		intel \
 		nv \
-		vesa vga via
+		radeonhd \
+		vesa vga
 
 .if ${ARCH} == "sparc64"
 VIDEO_ON+=	sunffb
+.else
+VIDEO_ON+=	via
 .endif
 
 VIDEO_OFF=	apm ark \
