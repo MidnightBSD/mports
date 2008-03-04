@@ -2,14 +2,13 @@
 # Date created:        30 September 2002
 # Whom:                Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.2 2007/03/25 02:38:10 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.3 2007/08/29 18:18:10 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtkmm24/Makefile,v 1.102 2006/05/31 22:18:49 mezz Exp $
 #   $MCom: ports/x11-toolkits/gtkmm24/Makefile,v 1.8 2005/10/20 16:16:50 marcus Exp $
 #
 
 PORTNAME=	gtkmm
-PORTVERSION=	2.10.11
-PORTREVISION?=	1
+PORTVERSION=	2.12.4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
