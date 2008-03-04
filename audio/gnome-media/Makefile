@@ -2,11 +2,12 @@
 # Date created:				06 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.1 2007/11/23 23:47:41 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/audio/gnome-media/Makefile,v 1.81 2007/10/24 23:34:46 marcus Exp $
 #
 
 PORTNAME=	gnome-media
-PORTVERSION=	2.18.0
+PORTVERSION=	2.20.1
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gnome-media/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -18,7 +19,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-INSTALLS_OMF=	yes
+INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -34,11 +35,10 @@ GCONF_SCHEMAS=	CDDB-Slave2.schemas gnome-audio-profiles.schemas \
 		gnome-cd.schemas gnome-sound-recorder.schemas \
 		gnome-volume-control.schemas
 
-.include <bsd.port.pre.mk>
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|[$$][(]CDROM_HOST[)]|freebsd|g' \
 		${WRKSRC}/gnome-cd/Makefile.in
-	@${REINPLACE_CMD} -e 's|acd0c|acd0|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|acd0c|acd0|g ; s|== "xyes|= "xyes|g' \
+		${WRKSRC}/configure
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
