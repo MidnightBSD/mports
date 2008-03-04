@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.65 2008/02/14 22:28:55 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.66 2008/02/15 02:16:27 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -36,6 +36,7 @@
     SUBDIR += linux-flock
     SUBDIR += linux-mozilla
     SUBDIR += linux-mplayer-plugin
+    SUBDIR += linux-nvu
     SUBDIR += linux-opera
     SUBDIR += linux-seamonkey
     SUBDIR += linuxpluginwrapper
