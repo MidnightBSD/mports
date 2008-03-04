@@ -2,12 +2,13 @@
 # Date created:		20 October 2007
 # Whom:			hrs
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.1 2008/03/04 19:14:17 laffer1 Exp $
 # $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
 #
 
 PORTNAME=	acroread8
 PORTVERSION?=	8.1.1
+PORTREVISION=	1
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/ \
 		ftp://ftp.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/
@@ -24,7 +25,7 @@ RUN_DEPENDS=	acroreadwrapper>=0.0.20071020:${PORTSDIR}/print/acroreadwrapper \
 		${LOCALBASE}/lib/linux-nvu/libgtkembedmoz.so:${PORTSDIR}/www/linux-nvu
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	i386
 USE_LINUX=	yes
 USE_XLIB=	yes
 #USE_GNOME=	desktopfileutils
