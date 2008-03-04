@@ -2,14 +2,13 @@
 # Date created:				11 November 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.1 2007/09/01 05:46:54 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.2 2007/11/07 23:26:18 ctriv Exp $
 # $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
 #   $MCom: ports/textproc/gnome-doc-utils/Makefile,v 1.44 2007/03/13 00:37:32 mezz Exp $
 #
 
 PORTNAME=	gnome-doc-utils
-PORTVERSION=	0.10.3
-PORTREVISION=	2
+PORTVERSION=	0.12.1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,9 +18,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME doc utils
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper \
+BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
     		gawk:${PORTSDIR}/lang/gawk
-RUN_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper \
+RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
 		${PYTHON_SITELIBDIR}/libxml2mod.so:${PORTSDIR}/textproc/py-libxml2 \
 		${LOCALBASE}/share/xml/docbook/4.3/catalog.xml:${PORTSDIR}/textproc/docbook-xml-430 \
 		${LOCALBASE}/share/xml/docbook/4.4/catalog.xml:${PORTSDIR}/textproc/docbook-xml-440
@@ -29,11 +28,11 @@ RUN_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper \
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_GNOME=	gnomehier gnometarget gnomehack libxslt
+USE_GNOME=	gnomehier gnometarget gnomehack libxslt intlhack
 USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-omf-dir=${PREFIX}/share/gnome/omf
+CONFIGURE_ARGS=	--with-omf-dir=${PREFIX}/share/omf
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
