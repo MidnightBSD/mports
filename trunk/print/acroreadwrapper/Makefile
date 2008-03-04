@@ -2,13 +2,12 @@
 # Date created:		20 February 2006
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.2 2007/03/25 01:32:04 ctriv Exp $
-# $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.3 2006/02/22 06:58:02 hrs Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.9 2008/01/04 20:20:20 hrs Exp $
 #
 
 PORTNAME=	acroreadwrapper
-PORTVERSION=	0.0.20060221
-PORTREVISION=   1
+PORTVERSION=	0.0.20071020
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -18,19 +17,20 @@ COMMENT=	Wrapper script for Adobe Reader
 LICENSE=	bsd2
 
 ONLY_FOR_ARCHS=	amd64 i386
-USE_XLIB=	yes
 NO_BUILD=	yes
-PLIST_SUB=	ACRODIR=${ACRODIR} \
-		ADOBEDIR=${ADOBEDIR}
+PLIST_FILES=	bin/acroread7 bin/acroread8 bin/acroread
 SUB_FILES=	acroread
-SUB_LIST=	ACRODIR=${ACRODIR} \
+SUB_LIST=	ACROBASE7=${ACROBASE7} \
+		ACROBASE8=${ACROBASE8} \
 		ADOBE_LANG=${ADOBE_LANG:U} \
 		INSTALLDIR=${INSTALLDIR} \
 		LINUXBASE=${LINUXBASE} \
-		PLUGINDIR=${PLUGINDIR}
+		LINUXSH=${LINUXBASE}/bin/sh \
+		PLUGINDIR=${PLUGINDIR} \
 
-ADOBEDIR=	Adobe
-ACRODIR=	${ADOBEDIR}/Acrobat7.0
+ADOBEBASE=	Adobe
+ACROBASE7=	${ADOBEBASE}/Acrobat7.0
+ACROBASE8=	${ADOBEBASE}/Reader8
 PLUGINDIR=	lib/browser_linux_plugins
 
 do-fetch:
@@ -38,6 +38,7 @@ do-fetch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/acroread ${PREFIX}/bin/acroread
-	${MKDIR} ${PREFIX}/${ACRODIR}
+	cd ${PREFIX}/bin && ${LN} -s -f acroread acroread8
+	cd ${PREFIX}/bin && ${LN} -s -f acroread acroread7
 
 .include <bsd.port.mk>
