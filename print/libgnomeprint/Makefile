@@ -2,12 +2,12 @@
 # Date created:				15 Jan 1999
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.1 2007/08/22 08:27:30 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
 #
 
 PORTNAME=	libgnomeprint
-PORTVERSION=	2.18.1
+PORTVERSION=	2.18.4
 PORTREVISION?=	0
 CATEGORIES=	print gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		popt.0:${PORTSDIR}/devel/popt
 
-USE_BISON=	yes
+USE_BISON=	build
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier glib20 pango libxml2 \
 		libartlgpl2 ltverhack
