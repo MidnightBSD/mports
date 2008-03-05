@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.66 2008/02/15 02:16:27 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.67 2008/03/04 19:04:04 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -43,6 +43,7 @@
     SUBDIR += lynx
     SUBDIR += man2web
     SUBDIR += mod_perl2
+    SUBDIR += moinmoin
     SUBDIR += neon
     SUBDIR += nspluginwrapper
     SUBDIR += opera
