@@ -1,3 +1,7 @@
-include/ixp.h
-lib/libixp.a
 bin/ixpc
+include/ixp.h
+include/ixp_fcall.h
+lib/libixp.so
+lib/libixp.so.1
+lib/libixp_pthread.so
+lib/libixp_pthread.so.1
