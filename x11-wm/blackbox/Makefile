@@ -2,13 +2,13 @@
 # Date created:		June 15, 1998
 # Whom:			Brian Handy <handy@physics.montana.edu>
 #
-# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.2 2006/09/26 14:47:38 archite Exp $
+# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.3 2007/03/25 02:09:23 ctriv Exp $
 # $FreeBSD: ports/x11-wm/blackbox/Makefile,v 1.46 2006/05/13 05:00:41 edwin Exp $
 #
 
 PORTNAME=	blackbox
 PORTVERSION=	0.70.1
-PORTREVISION=   1
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	blackboxwm
