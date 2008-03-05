@@ -2,16 +2,16 @@
 # Date created:			10 June 1997
 # Whom:				Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/enlightenment/Makefile,v 1.1 2007/11/10 02:56:25 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/enlightenment/Makefile,v 1.101 2007/10/27 18:50:51 pav Exp $
 #
 
 PORTNAME=	enlightenment
-PORTVERSION=	0.16.8.10
+PORTVERSION=	0.16.8.11
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTNAME=	e16-${PORTVERSION}
+DISTNAME=	e16-${PORTVERSION}-0.01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A very artistic X window manager
@@ -29,8 +29,8 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-fsstd --disable-esdtest --disable-dependency-tracking \
 		--disable-rpath
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 .if !defined(WITHOUT_ESOUND)
 USE_GNOME=	esound
@@ -63,7 +63,7 @@ CONFIGURE_ARGS+=--disable-nls
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${X11BASE}|g' \
+	@${REINPLACE_CMD}  \
 		-e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/scripts/e_gen_menu
 
 .include <bsd.port.mk>
