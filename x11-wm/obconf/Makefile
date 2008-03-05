@@ -2,21 +2,20 @@
 # Date created:				2002-10-13
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.1 2007/03/13 07:17:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.2 2007/03/25 02:25:23 ctriv Exp $
 # $FreeBSD: ports/x11-wm/obconf/Makefile,v 1.13 2006/09/02 10:02:10 novel Exp $
 #
 
 PORTNAME=	obconf
-PORTVERSION=	1.6
-PORTREVISION=	2
+PORTVERSION=	2.0.3
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://tr.openmonkey.com/files/obconf/
+MASTER_SITES=	http://offload1.icculus.org/openbox/obconf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preferences manager for the Openbox window manager
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
-		obparser.4:${PORTSDIR}/x11-wm/openbox
+		obparser.16:${PORTSDIR}/x11-wm/openbox
 
 USE_XLIB=	yes
 USE_GNOME=	gnomehier gnometarget libglade2
@@ -34,6 +33,14 @@ PLIST_FILES=	bin/obconf \
 		%%DATADIR%%/obconf.glade
 PLIST_DIRS=	%%DATADIR%%
 PLIST=		${WRKDIR}/pkg-plist
+
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.else
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.endif
 
 pre-install:
 	@${ECHO_CMD} "@dirrmtry share/applications" > ${PLIST}
