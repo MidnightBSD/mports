@@ -2,7 +2,7 @@
 # Date created:		17 July 1999
 # Whom:			Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.1 2006/09/29 19:42:22 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.2 2007/03/22 04:24:09 ctriv Exp $
 # $FreeBSD: ports/x11-wm/libdockapp/Makefile,v 1.26 2006/05/13 05:00:42 edwin Exp $
 #
 
@@ -17,13 +17,14 @@ COMMENT=	Standard library for Window Maker dock apps
 
 WRKSRC=		${WRKDIR}/${PORTNAME:S/^lib//}-${PORTVERSION}
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_XPM=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--without-font --without-examples
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
