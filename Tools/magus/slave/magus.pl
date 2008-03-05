@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.10 2008/02/28 23:24:50 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.11 2008/02/29 00:08:54 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -392,11 +392,13 @@ sub get_current_run {
     
     my $tarball = $current->tarballpath;
     
-    report(debug => "Downloading tree ID $run: $tarball");
+    report(debug => "Downloading tree ID $current: $tarball");
     
     chdir('/usr');
-    
-    system("/usr/bin/fetch $tarball");
+        
+    if (system("/usr/bin/fetch -p $tarball") != 0) {
+      die "Couldn't fetch $tarball";
+    }
 
     rmtree('/usr/mports');
     system('/usr/bin/tar xf ' . $current->tarball);
@@ -420,4 +422,3 @@ sub get_tree_id {
 
 1;
 __END__
-
