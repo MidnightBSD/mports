@@ -2,12 +2,13 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.4 2007/08/01 20:27:51 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.5 2007/11/14 19:47:03 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
 #
 
 PORTNAME=	openssh
 DISTVERSION=	4.7p1
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
 		ftp://carroll.cac.psu.edu/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
@@ -44,7 +45,8 @@ USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=		--prefix=${PREFIX} --mandir=${MANPREFIX}/man \
-			--with-md5-passwords --without-zlib-version-check
+			--with-md5-passwords --without-zlib-version-check \
+			--with-ssl-engine
 PRECIOUS=		ssh_config sshd_config ssh_host_key ssh_host_key.pub \
 			ssh_host_rsa_key ssh_host_rsa_key.pub ssh_host_dsa_key \
 			ssh_host_dsa_key.pub
