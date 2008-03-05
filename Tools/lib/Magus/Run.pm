@@ -24,7 +24,7 @@ package Magus::Run;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Run.pm,v 1.1 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Run.pm,v 1.2 2008/02/28 20:11:18 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -95,7 +95,7 @@ on a node).  This is implemented as:
 =cut
 
 sub tarballpath {
-  return "$Magus::Config{MasterDataDir}/$Magus::Conig{MportsSnapDir}/" . shift->tarball;
+  return "$Magus::Config{MasterDataDir}/$Magus::Config{MportsSnapDir}/" . shift->tarball;
 }
 
 
