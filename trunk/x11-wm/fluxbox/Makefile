@@ -3,12 +3,11 @@
 # Whom:					spn
 #
 # $MidnightBSD$
-# $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.44 2007/07/23 09:36:50 rafan Exp $
+# $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
 #
 
 PORTNAME=	fluxbox
-PORTVERSION=	1.0rc3
-PORTREVISION=	3
+PORTVERSION=	1.0.0
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -33,8 +32,6 @@ DOCSVERSION=	20060629
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
-CFLAGS+=		-g
-STRIP=
 .endif
 
 .if defined(WITH_DOCHTML)
@@ -58,7 +55,7 @@ PLIST_SUB+=		DOCPDF:=""
 PLIST_SUB+=		DOCPDF:="@comment "
 .endif
 
-.if defined(WITH_IMLIB2)
+.if !defined(WITHOUT_IMLIB2)
 LIB_DEPENDS+=		Imlib2.4:${PORTSDIR}/graphics/imlib2
 CONFIGURE_ARGS+=	--enable-imlib2
 .else
@@ -162,11 +159,10 @@ pre-everything::
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g ; \
-		s|%%X11BASE%%|${X11BASE}|g' \
-			${WRKSRC}/util/fluxbox-generate_menu.in
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-		s|/usr/X11R6|${X11BASE}|g' ${WRKSRC}/util/fbsetbg
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/util/fluxbox-generate_menu.in
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+		${WRKSRC}/util/fbsetbg
 .if defined(WITHOUT_NLS)
 	@${REINPLACE_CMD} -e 's|HAVE_ICONV=yes|HAVE_ICONV=no|g' \
 		${WRKSRC}/configure
