@@ -1,7 +1,8 @@
 # New ports collection makefile for:	compiz
 # Date created:				Dec 20 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
+# 
+# $MidnightBSD$
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 #
 
@@ -10,7 +11,7 @@ PORTVERSION=	0.6.2
 #PORTREVISION=	1
 CATEGORIES=	x11-wm
 
-MAINTAINER=	rnoland@2hip.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
