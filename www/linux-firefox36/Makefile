@@ -3,29 +3,18 @@
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/www/linux-firefox-devel/Makefile,v 1.21 2007/11/08 17:38:56 sat Exp $
+# $FreeBSD: ports/www/linux-firefox-devel/Makefile,v 1.23 2007/12/21 16:27:10 sat Exp $
 #
 
 PORTNAME=	firefox
-PORTVERSION=	3.0.a${SNAPDATE:S/-/./g}
-DISTVERSION=	3.0a6pre
-DISTVERSIONSUFFIX=	.en-US.linux-i686
+DISTVERSION=	3.0b2
 CATEGORIES=	www
-MASTER_SITES=   http://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-		ftp://ftp.mozilla.org/pub/mozilla.org/%SUBDIR%/ \
-		http://ftp.belnet.be/packages/mozilla/%SUBDIR%/ \
-		ftp://ftp.belnet.be/packages/mozilla/%SUBDIR%/ \
-		CENKES/myports/${DIST_SUBDIR}
-MASTER_SITE_SUBDIR=	${PORTNAME}/nightly/${SNAPDATE}-04-trunk
+MASTER_SITE_SUBDIR?=	${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 PKGNAMESUFFIX=		-devel
-DIST_SUBDIR=		${PORTNAME}-${SNAPDATE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
-LICENSE=	mpl
 
-FORBIDDEN=	multiple vulnerabilities
-SNAPDATE=	2007-06-26
 USE_BZIP2=	yes
 
 .include "${.CURDIR}/../linux-seamonkey/Makefile.common"
