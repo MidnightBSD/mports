@@ -2,22 +2,23 @@
 # Date created:				14 November 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.2 2007/03/25 02:47:14 ctriv Exp $
+# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.3 2007/10/12 14:34:50 ctriv Exp $
 # $FreeBSD: ports/x11/startup-notification/Makefile,v 1.20 2006/02/23 10:39:59 ade Exp $
 #
 
 PORTNAME=	startup-notification
-PORTVERSION=	0.8
-PORTREVISION=	3
+PORTVERSION=	0.9
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME} \
 		http://www.freedesktop.org/software/startup-notification/releases/
-MASTER_SITE_SUBDIR=	sources/startup-notification/0.8
+MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that supports startup notification spec from freedesktop.org
 
+USE_AUTOTOOLS=	libtool:15
+USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
