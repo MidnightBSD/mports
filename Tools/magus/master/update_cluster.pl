@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.9 2008/02/28 22:35:28 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.10 2008/03/07 20:05:36 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -121,7 +121,7 @@ sub update_cvs_dir {
 sub make_tarball {
   my ($run) = @_;
   
-  mkdir("$Magus::Config{PkgfilesRoot}/" . $run->id) || die "Couldn't make package dir for $run\n";
+  mkdir("$Magus::Config{PkgfilesRoot}/" . $run->id) || ($! =~ m/exist/ || die "Couldn't make package dir for $run\n");
   
   my $tarball = $run->tarball;
 
