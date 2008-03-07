@@ -24,7 +24,7 @@ package Magus::DBI;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.3 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -40,6 +40,24 @@ __PACKAGE__->connection(
   $Magus::Config{DBUser},
   $Magus::Config{DBPass}
 );
+
+
+
+=head2 $obj->refresh
+
+Get new values for the columns from the database.
+
+=cut
+
+sub refresh {
+  my ($self) = @_;
+  
+  my %pk = map { $_ => 1 } $self->primary_columns;
+  
+  $self->_attribute_delete(grep { !$pk{$_} } $self->all_columns);
+  
+  return $self;
+}
 
 
 1;
