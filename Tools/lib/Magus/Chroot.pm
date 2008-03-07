@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.14 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.15 2008/02/28 20:11:18 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -276,8 +276,8 @@ sub delete {
     system("/sbin/umount $self->{root}$_") 
   }
   
-  system("/bin/chflags 0 $self->{root}/") == 0 
-    or die "chflags returned non-zero: $?\n";
+  system("/bin/chflags -R 0 $self->{root}/") == 0 
+    or die "chflags 0 $self->{root}/ returned non-zero: $?\n";
   
   rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
 }
