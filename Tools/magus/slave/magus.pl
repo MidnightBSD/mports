@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.11 2008/02/29 00:08:54 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.12 2008/03/05 18:52:06 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -117,7 +117,7 @@ sub main {
 =head3 Exiting
 
 Note that all the locks associated with this machine will be deleted at
-script exit. If you are running to copies of this script on one machine,
+script exit. If you are running two copies of this script on one machine,
 make sure to assign them different machine IDs in the master database.
 
 =cut
@@ -157,7 +157,8 @@ sub run_test {
   # we fork so just the child chroots, then we can get out of the chroot.
   my $pid = fork();
   if ($pid) {
-    # Parent, we wait for the child to finish.
+    # Parent, we wait for the child to finish, and if we get sigint
+    # while we are waiting, we stop the child and then cleanup
     local $SIG{INT} = sub { 
       waitpid($pid, 0);
       handle_exception("Caught SIGINT", $lock);
@@ -166,11 +167,12 @@ sub run_test {
     
     waitpid($pid, 0);
   } elsif (defined $pid) {
+    # child here; chroot and test the port
     eval {
       $chroot->do_chroot();
       chdir($port->origin);
     
-      my $test    = Magus::PortTest->new(port => $port, chroot => $chroot);
+      my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
       report('info', "Building $port");
       my $results = $test->run;
   
@@ -186,8 +188,12 @@ sub run_test {
     die "Could not fork: $!\n";
   } 
 
-  # Back to the parent here. 
+  # Back to the parent here
   if ($? == 0) {
+    # update our port object with new data from the database, as the child
+    # process probably changed stuff
+    $port->refresh;
+    
     eval {
       if ($port->status eq 'pass' || $port->status eq 'warn') {
         upload_pkgfile($port, $chroot);
@@ -400,8 +406,15 @@ sub get_current_run {
       die "Couldn't fetch $tarball";
     }
 
+
+    report(debug => "Deleting old /usr/mports");
     rmtree('/usr/mports');
+    
+    
+    report(debug => "Extracting %s", $current->tarball);
     system('/usr/bin/tar xf ' . $current->tarball);
+    
+    report(debug => "Reloading self.");
     exec($self, @origARGV);
   }
   
