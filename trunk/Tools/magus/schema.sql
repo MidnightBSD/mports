@@ -119,6 +119,7 @@ CREATE TABLE `ports` (
   `id` int(11) NOT NULL auto_increment,
   `run` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
+  `pkgname` varchar(128) NOT NULL,
   `version` varchar(32) NOT NULL,
   `description` text,
   `license` varchar(16) default NULL,
@@ -140,6 +141,7 @@ DROP TABLE IF EXISTS `ready_ports`;
   `id` int(11),
   `run` int(11),
   `name` varchar(128),
+  `pkgname` varchar(128),
   `version` varchar(32),
   `description` text,
   `license` varchar(16),
@@ -171,7 +173,7 @@ CREATE TABLE `runs` (
 /*!50001 DROP VIEW IF EXISTS `ready_ports`*/;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `ready_ports` AS select `ports`.`id` AS `id`,`ports`.`run` AS `run`,`ports`.`name` AS `name`,`ports`.`version` AS `version`,`ports`.`description` AS `description`,`ports`.`license` AS `license`,`ports`.`www` AS `www`,`ports`.`status` AS `status`,`ports`.`updated` AS `updated`,(select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) AS `priority` from `ports` where ((`ports`.`status` = _latin1'untested') and (not(`ports`.`id` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `ports`.`id`)))) and ((not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (`depends`.`port` = `ports`.`id`)))) or (not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (((`depends`.`port` = `ports`.`id`) and (not(`depends`.`dependency` in (select `depends`.`port` AS `port` from `ports` where ((`ports`.`id` = `depends`.`dependency`) and ((`ports`.`status` = _latin1'pass') or (`ports`.`status` = _latin1'warn'))))))) or `depends`.`dependency` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `depends`.`dependency`)))))))) order by (select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) desc */;
+/*!50001 VIEW `ready_ports` AS select `ports`.`id` AS `id`,`ports`.`run` AS `run`,`ports`.`name` AS `name`,`ports`.`pkgname` AS `pkgname`,`ports`.`version` AS `version`,`ports`.`description` AS `description`,`ports`.`license` AS `license`,`ports`.`www` AS `www`,`ports`.`status` AS `status`,`ports`.`updated` AS `updated`,(select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) AS `priority` from `ports` where ((`ports`.`status` = _latin1'untested') and (not(`ports`.`id` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `ports`.`id`)))) and ((not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (`depends`.`port` = `ports`.`id`)))) or (not(`ports`.`id` in (select `depends`.`port` AS `port` from `depends` where (((`depends`.`port` = `ports`.`id`) and (not(`depends`.`dependency` in (select `depends`.`port` AS `port` from `ports` where ((`ports`.`id` = `depends`.`dependency`) and ((`ports`.`status` = _latin1'pass') or (`ports`.`status` = _latin1'warn'))))))) or `depends`.`dependency` in (select `locks`.`port` AS `port` from `locks` where (`locks`.`port` = `depends`.`dependency`)))))))) order by (select count(0) AS `COUNT(*)` from `depends` where (`depends`.`dependency` = `ports`.`id`)) desc */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
