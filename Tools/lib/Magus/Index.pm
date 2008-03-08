@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.9 2008/02/28 20:11:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.10 2008/03/08 03:07:38 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -62,7 +62,7 @@ sub sync {
       return;
     }
       
-    my $port = Magus::Port->create({ 
+    my $port = Magus::Port->insert({ 
       run         => $run,
       name        => $dump{name}, 
       version     => $dump{version},
