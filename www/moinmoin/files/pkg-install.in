@@ -7,8 +7,6 @@ case "x$2" in
 
 "xINSTANCE")
 
-	echo "************************************************************"
-
 	case "x$3" in
 
 	"xMOD_PYTHON")
@@ -59,13 +57,11 @@ case "x$2" in
 	echo "If you want to install additional wiki instances"
 	echo "call 'make instance' with appriopriate arguments."
 	echo "E.g.: make MOINTYPE=FCGI MOINDEST=/usr/local/www/wiki instance"
-	echo "************************************************************"
 
 	;;
 
 "xPOST-INSTALL")
 
-	echo "************************************************************"
 	echo "Important: You have currently no wiki instance installed."
 	echo ""
 	echo "If you're installing from ports, just run 'make instance'"
@@ -96,17 +92,14 @@ case "x$2" in
 	echo ""
 	echo "Note: export might not work with your shell, use"
 	echo "# setenv VAR 'value' instead"
-	echo "************************************************************"
 
 	;;
 
 "xDEINSTALL")
 
-	echo "************************************************************"
 	echo "All shared files have been removed."
 	echo "To complete deinstallation, please remove all the wiki"
 	echo "instances you have created."
-	echo "************************************************************"
 
 	;;
 
