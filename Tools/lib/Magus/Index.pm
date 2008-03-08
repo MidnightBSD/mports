@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.8 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.9 2008/02/28 20:11:18 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -68,7 +68,8 @@ sub sync {
       version     => $dump{version},
       description => $dump{description},
       license	  => $dump{license},
-      www         => $dump{www}
+      www         => $dump{www},
+      pkgname     => $dump{pkgname},
     });     
 
     # We only have one depend type, merge into a unique list
