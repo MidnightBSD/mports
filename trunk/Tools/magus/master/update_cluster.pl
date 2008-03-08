@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.10 2008/03/07 20:05:36 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.11 2008/03/07 20:43:43 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -33,6 +33,7 @@
 use strict;
 use warnings;
 use lib qw(/usr/mports/Tools/lib);
+
 
 use Magus;
 use Mport::Utils qw(recurse_ports);
@@ -58,7 +59,7 @@ sub insert_new_run {
   }
   
   update_cvs_dir();
-  
+
   my $run = Magus::Run->create({osversion => $osversion, arch => $arch});
   
   make_tarball($run);
@@ -134,6 +135,7 @@ sub make_tarball {
   
   system($tar) == 0 || die "$tar returned non-zero: $?\n";
   move($tarball, $Magus::Config{'RunTarballDir'}) || die "Couldn't mv $tarball $Magus::Config{'RunTarballDir'}: $!\n";
+  chmod(0664, "$Magus::Config{'RunTarballDir'}/$tarball") || die "Couldn't chmod Magus::Config{'RunTarballDir'}/$tarball: $!\n";
 }
 
 
