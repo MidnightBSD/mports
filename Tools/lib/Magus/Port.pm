@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.12 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.13 2008/02/28 20:11:18 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -38,7 +38,7 @@ use base 'Magus::DBI';
 
 __PACKAGE__->table('ports');
 
-__PACKAGE__->columns(Essential => qw(id run name version status));
+__PACKAGE__->columns(Essential => qw(id run name version status pkgname));
 __PACKAGE__->columns(All       => qw(description license www updated));
 __PACKAGE__->columns(Stringify => qw(name));
 
