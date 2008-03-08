@@ -19,7 +19,8 @@ use Magus::Machine   	();
 use Magus::PortTest  	();
 use Magus::Chroot    	();
 use Magus::Index     	();
-use Magus::Run         ();
+use Magus::Run          ();
+use Magus::Log		();
 
 use Mport::Globals   ();
 our $Machine;
