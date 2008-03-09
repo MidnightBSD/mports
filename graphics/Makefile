@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.71 2007/12/28 04:28:25 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.72 2008/01/05 00:58:53 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -91,6 +91,7 @@
     SUBDIR += py-cairo
     SUBDIR += sane-backends
     SUBDIR += scr2png
+    SUBDIR += sdl_gfx
     SUBDIR += sdl_image
     SUBDIR += sdl_ttf
     SUBDIR += svgalib
