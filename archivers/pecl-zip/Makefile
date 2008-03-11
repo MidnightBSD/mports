@@ -2,7 +2,7 @@
 # Date created:			9 Jul 2004
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/pecl-zip/Makefile,v 1.2 2007/08/20 05:09:15 laffer1 Exp $
+# $MidnightBSD: mports/archivers/pecl-zip/Makefile,v 1.3 2008/02/22 04:36:18 laffer1 Exp $
 # $FreeBSD: ports/archivers/pecl-zip/Makefile,v 1.9 2006/12/31 11:05:09 ale Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A PECL extension to create and read zip files
+LICENSE=	php
 
 USE_PHP=	pcre
 USE_PHP_BUILD=	yes

@@ -3,7 +3,7 @@
 # Date created:			  19 Nov 1997
 # Whom:				  Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.1 2006/09/18 00:49:00 laffer1 Exp $
+# $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.2 2007/08/01 01:20:53 laffer1 Exp $
 # $FreeBSD: ports/archivers/bzip2/Makefile,v 1.41 2005/10/20 10:01:04 edwin Exp $
 #
 
@@ -15,6 +15,8 @@ MASTER_SITES=	http://www.bzip.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A block-sorting file compressor
+LICENSE=	other
+#bsdish mostly
 
 USE_LDCONFIG=	yes
 PATCH_STRIP=	-p3
