@@ -2,7 +2,7 @@
 # Date created:				25 Jul 2006
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.1 2008/01/04 21:47:23 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.2 2008/02/22 03:44:54 laffer1 Exp $
 # $FreeBSD: ports/accessibility/orca/Makefile,v 1.9 2007/10/29 11:32:32 ahze Exp $
 #   $MCom: ports/accessibility/orca/Makefile,v 1.32 2007/10/13 21:13:14 marcus Exp $
 #
@@ -16,8 +16,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
+LICENSE=	lgpl
 
 LIB_DEPENDS=	gnome-mag.2:${PORTSDIR}/accessibility/gnome-mag
+BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 LATEST_LINK=	gnome-orca
