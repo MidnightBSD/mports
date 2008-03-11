@@ -2,7 +2,7 @@
 # Date created:			12 April 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.1 2008/01/01 21:59:31 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.2 2008/02/22 03:30:55 laffer1 Exp $
 # $FreeBSD: ports/accessibility/gnome-mag/Makefile,v 1.43 2007/10/24 23:34:40 marcus Exp $
 #   $MCom: ports/accessibility/gnome-mag/Makefile,v 1.37 2007/09/17 16:05:19 ahze Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME screen magnifier
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_XLIB=	yes

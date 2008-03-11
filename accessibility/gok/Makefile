@@ -2,7 +2,7 @@
 # Date created:			12 April 2003
 # Whom:				Adam Weinberger <adamw@freebsd.org>
 #
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.1 2008/01/04 20:43:31 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.2 2008/02/22 03:39:47 laffer1 Exp $
 # $FreeBSD: ports/accessibility/gok/Makefile,v 1.37 2007/10/24 23:34:41 marcus Exp $
 #    $MCom: ports/accessibility/gok/Makefile,v 1.83 2007/10/15 13:40:59 ahze Exp $
 #
@@ -18,6 +18,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME On-Screen Keyboard (GOK)
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
