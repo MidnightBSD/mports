@@ -3,16 +3,15 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.99 2007/07/29 19:16:38 kris Exp $
+# $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.102 2008/01/09 02:45:58 mezz Exp $
+#   $MCom: ports/sysutils/gnome-control-center/Makefile,v 1.157 2007/10/15 17:48:45 mezz Exp $
 #
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	2.18.1
-PORTREVISION=	1
+PORTVERSION=	2.20.3
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/control-center/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
-DISTNAME=	control-center-${PORTVERSION}
+MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,8 +34,8 @@ INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-gstreamer=0.10
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 GCONF_SCHEMAS=	apps_gnome_settings_daemon_default_editor.schemas \
 		apps_gnome_settings_daemon_keybindings.schemas \
@@ -62,11 +61,8 @@ PLIST_SUB+=	ABOUTME="@comment "
 .endif
 
 post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
-		's|[{]prefix[}]/share/pixmaps|{datadir}/pixmaps|g'
-	@${REINPLACE_CMD} -e 's|/bin/tar|/usr/bin/tar|g ; \
-		s|/bin/gzip|/usr/bin/gzip|g' \
-		${WRKSRC}/capplets/theme-switcher/gnome-theme-installer.c
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+	    	${WRKSRC}/capplets/common/gnome-theme-info.c
 
 post-install:
 	@-update-desktop-database

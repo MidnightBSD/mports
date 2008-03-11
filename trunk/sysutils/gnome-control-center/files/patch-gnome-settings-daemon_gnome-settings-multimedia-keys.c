@@ -1,6 +1,19 @@
---- gnome-settings-daemon/gnome-settings-multimedia-keys.c.orig	Wed Jul 27 13:52:13 2005
-+++ gnome-settings-daemon/gnome-settings-multimedia-keys.c	Wed Jul 27 13:52:32 2005
-@@ -828,7 +828,7 @@
+--- gnome-settings-daemon/gnome-settings-multimedia-keys.c.orig	2007-09-18 05:32:43.000000000 -0400
++++ gnome-settings-daemon/gnome-settings-multimedia-keys.c	2007-10-28 13:45:28.000000000 -0400
+@@ -610,8 +610,11 @@
+ 	if ((command != NULL) && (strcmp (command, "") != 0))
+ 		execute (acme, command, FALSE, FALSE);
+ 	else
++#if __FreeBSD__
++		execute (acme, "cdcontrol eject", FALSE, FALSE);
++#else
+ 		execute (acme, "eject -T", FALSE, FALSE);
+-
++#endif
+ 	g_free (command);
+ }
+ 
+@@ -708,7 +711,7 @@
  		do_mail_action (acme);
  		break;
  	case SLEEP_KEY:
