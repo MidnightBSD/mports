@@ -2,7 +2,7 @@
 # Date created:		2006-11-07
 # Whom:			Thomas Abthorpe <thomas@goodking.ca>
 #
-# $MidnightBSD: mports/archivers/p5-Compress-Raw-Zlib/Makefile,v 1.3 2007/07/22 08:37:37 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Compress-Raw-Zlib/Makefile,v 1.4 2008/01/05 05:27:39 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-Compress-Raw-Zlib/Makefile,v 1.3 2007/01/03 17:57:20 erwin Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low-Level Interface to zlib compression library
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 
