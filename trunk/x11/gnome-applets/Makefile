@@ -3,13 +3,12 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.107 2007/07/06 20:50:37 marcus Exp $
-#   $MCom: ports/x11/gnome-applets/Makefile,v 1.152 2007/03/12 17:47:04 marcus Exp $
+# $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.109 2008/01/07 21:42:46 mezz Exp $
+#   $MCom: ports/x11/gnome-applets/Makefile,v 1.165 2007/09/16 17:19:03 ahze Exp $
 #
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.18.0
-PORTREVISION=	4
+PORTVERSION=	2.20.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -46,8 +45,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		OS_SYS="/usr/include"
 
 GCONF_SCHEMAS=	charpick.schemas drivemount.schemas geyes.schemas \
-		gswitchit.schemas gweather.schemas \
-		mixer.schemas multiload.schemas \
+		gweather.schemas mixer.schemas multiload.schemas \
 		stickynotes.schemas
 
 OPTIONS=	MINI_COMMANDER "Enable mini-commander applet" off
@@ -100,8 +98,8 @@ PLIST_SUB+=	PYTHON="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g' \
 		${WRKSRC}/libgweather/weather-met.c
-	@${REINPLACE_CMD} -e 's|system-tools-backends|system-tools-backends-2.0|g' \
-	    	${WRKSRC}/configure
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
+	    	's|" == "|" = "|g'
 .if !defined(USE_PYTHON)
 	@${REINPLACE_CMD} -e 's|HAVE_PYGTK="yes"|HAVE_PYGTK="no"|' \
 		${WRKSRC}/configure
