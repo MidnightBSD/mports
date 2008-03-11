@@ -2,7 +2,7 @@
 # Date created:				18 May 2002
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.1 2007/09/03 23:19:41 laffer1 Exp $
+# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.2 2008/02/22 04:09:25 laffer1 Exp $
 # $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
 #   $MCom: ports/archivers/file-roller/Makefile,v 1.117 2007/03/12 23:23:57 marcus Exp $
 #
@@ -17,9 +17,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An archive manager for zip files, tar, etc
+LICENSE=	gpl2
 
-# XXX: We need the ports version of gtar since gtar-1.13.25 included with
-# FreeBSD is not sufficient.  If the base version of GNU tar is updated, then
+# XXX: We need the ports version of gtar since gtar-1.13.25
+# is not sufficient.  If the base version of GNU tar is updated, then
 # we can do away with this dependency.
 RUN_DEPENDS=	${LOCALBASE}/bin/gtar:${PORTSDIR}/archivers/gtar
 
