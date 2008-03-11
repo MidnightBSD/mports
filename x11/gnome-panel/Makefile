@@ -2,14 +2,14 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.1 2007/10/18 04:39:15 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.80 2007/07/29 19:16:37 kris Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.146 2007/03/14 21:00:05 marcus Exp $
 #
 
 PORTNAME=	gnome-panel
-PORTVERSION=	2.18.3
-PORTREVISION?=	0
+PORTVERSION=	2.20.3
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gnome-panel/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Panel component for the GNOME 2 Desktop
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
