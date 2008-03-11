@@ -2,7 +2,7 @@
 # Date created:				24 Oct 2006
 # Whom:					Marcus von Appen <mva@sysfault.org>
 #
-# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.1 2008/01/01 21:09:27 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.2 2008/02/22 02:29:38 laffer1 Exp $
 # $FreeBSD: ports/accessibility/at-poke/Makefile,v 1.3 2007/10/24 23:34:38 marcus Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Accessibility testing and poking tool
+LICENSE=	gpl2
 
 USE_XLIB=	yes
 USE_GMAKE=	yes
