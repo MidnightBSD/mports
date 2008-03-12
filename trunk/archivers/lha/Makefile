@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/lha/Makefile,v 1.3 2006/11/29 16:12:44 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lha/Makefile,v 1.4 2007/09/18 01:04:38 stevan Exp $
 # $FreeBSD: ports/archivers/lha/Makefile,v 1.32 2004/09/22 06:16:54 dinoex Exp $
 #
 
@@ -19,7 +19,7 @@ DISTNAME=	${PORTNAME}-1.14i-ac20050924p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Archive files using LZSS and Huffman compression (.lzh files)
-
+LICENSE=	restricted
 NO_CDROM=	requires advanced notification for cdrom distribution
 
 USE_GMAKE=	yes

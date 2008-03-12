@@ -2,7 +2,7 @@
 # Date created:				25 Nov 2004
 # Whom:					Max Khon <fjoe@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.2 2007/08/08 00:45:24 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.3 2007/08/08 01:02:56 laffer1 Exp $
 # $FreeBSD: ports/archivers/libmspack/Makefile,v 1.7 2007/02/01 02:41:15 kris Exp $
 #
 
@@ -15,7 +15,6 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for Microsoft compression formats
-
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool:15
