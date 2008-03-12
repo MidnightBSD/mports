@@ -2,7 +2,7 @@
 # Date created:		24 January 2005
 # Whom:			Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
 #
-# $MidnightBSD: mports/archivers/xar/Makefile,v 1.1 2007/05/01 23:38:55 laffer1 Exp $
+# $MidnightBSD: mports/archivers/xar/Makefile,v 1.2 2008/02/22 04:55:43 laffer1 Exp $
 # $FreeBSD: ports/archivers/xar/Makefile,v 1.3 2006/12/13 12:41:19 roam Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenDarwin XML eXtensible ARchiver
+LICENSE=	bsd3
 
 USE_LDCONFIG=	yes
 
