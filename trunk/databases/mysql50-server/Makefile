@@ -2,12 +2,12 @@
 # Date created:				Fri Apr 11 10:06:26 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.6 2007/08/10 06:14:11 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.7 2007/08/10 15:41:13 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.224 2007/03/14 16:13:27 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.0.45
+PORTVERSION=	5.0.51a
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}

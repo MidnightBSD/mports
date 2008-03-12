@@ -123,6 +123,7 @@ libexec/mysqld
 %%DATADIR%%/mysql_system_tables.sql
 %%DATADIR%%/mysql_system_tables_data.sql
 %%DATADIR%%/mysql-log-rotate
+%%DATADIR%%/mysqld_multi.server
 %%DATADIR%%/mysql.server
 %%DATADIR%%/ndb-config-2-node.ini
 %%NDB%%%%DATADIR%%/ndb_size.tmpl
