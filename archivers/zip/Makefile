@@ -2,7 +2,7 @@
 # Date created:		22 Dec 1994
 # Whom:			ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/zip/Makefile,v 1.1 2006/09/17 19:02:05 laffer1 Exp $
 # $FreeBSD: ports/archivers/zip/Makefile,v 1.33 2006/07/28 14:42:53 sat Exp $
 #
 
@@ -15,6 +15,7 @@ DISTFILES=	zip232${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create/update ZIP files compatible with pkzip
+LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 MAKEFILE=	unix/Makefile
