@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.2 2007/08/02 05:45:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.3 2007/12/31 06:01:29 laffer1 Exp $
 #
 
 PORTNAME=	arts
@@ -40,7 +40,7 @@ CFLAGS+=	-DHAVE_VASPRINTF
 CONFIGURE_ENV+=	DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 CONFIGURE_TARGET= # empty
 CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
-		--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
+		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 
 OPTIONS=	ESD "Enable esound support" off \
 		NAS "Enable NAS support" off
