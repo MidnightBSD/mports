@@ -2,7 +2,7 @@
 # Date created:		30 April 1999
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.1 2006/09/18 00:22:50 laffer1 Exp $
 # $FreeBSD: ports/archivers/rpm/Makefile,v 1.62 2006/08/14 09:56:58 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	http://ftp.tpnet.pl/vol/d4/ftp.rpm.org/rpm/dist/rpm-3.0.x/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Red Hat Package Manager
+LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 

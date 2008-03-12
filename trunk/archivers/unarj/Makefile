@@ -2,7 +2,7 @@
 # Date created:         28 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/unarj/Makefile,v 1.1 2006/09/18 00:37:03 laffer1 Exp $
 # $FreeBSD: ports/archivers/unarj/Makefile,v 1.22 2006/08/23 06:34:55 ache Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allows files to be extracted from ARJ archives
+LICENSE=	restricted
 
 PLIST_FILES=	bin/unarj
 PORTDOCS=	unarj.txt technote.txt
