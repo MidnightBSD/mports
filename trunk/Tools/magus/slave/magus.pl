@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.15 2008/03/08 06:43:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.16 2008/03/12 17:07:07 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -306,7 +306,7 @@ sub insert_results {
   }  
   
   if ($results->{log}) {
-    Magus::Log->insert({ port => $port, data => $results->{log}});
+    Magus::Log->insert({ port => $port, data => $results->{log}->{data}});
   }
 }
 
