@@ -2,7 +2,7 @@
 # Date created:				3 June 2005
 # Whom:					Emanuel Haupt <ehaupt@critical.ch>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/gzrecover/Makefile,v 1.1 2006/09/17 23:58:02 laffer1 Exp $
 # $FreeBSD: ports/archivers/gzrecover/Makefile,v 1.6 2006/09/07 15:37:57 ehaupt Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	gzrt-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A gzip recovery toolkit
+LICENSE=	gpl2
 
 CFLAGS+=	-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -lz
 
