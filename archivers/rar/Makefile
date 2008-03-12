@@ -2,7 +2,7 @@
 # Date created:         15 May 1996
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/rar/Makefile,v 1.2 2007/08/01 19:46:11 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rar/Makefile,v 1.3 2008/02/22 04:40:35 laffer1 Exp $
 # $FreeBSD: ports/archivers/rar/Makefile,v 1.58 2006/09/03 01:35:39 kris Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	rarbsd-3.7.1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver (binary port)
+LICENSE=	restricted
 
 IA32_BINARY_PORT=	YES
 RESTRICTED=	only unmodified original package can be distributed

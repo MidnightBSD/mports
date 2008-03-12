@@ -3,7 +3,7 @@
 # Date created:			Dec 7, 2004
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.1 2007/05/01 23:31:43 laffer1 Exp $
+# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.2 2008/02/22 04:34:32 laffer1 Exp $
 # $FreeBSD: ports/archivers/pbzip2/Makefile,v 1.10 2007/03/30 05:49:40 sat Exp $
 #
 
@@ -14,7 +14,8 @@ MASTER_SITES=	http://compression.ca/pbzip2/ CENKES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parallel BZIP2
-
+LICENSE=	unknown
+#bsdish...
 PLIST_FILES=	bin/pbzip2
 
 MAN1=	pbzip2.1

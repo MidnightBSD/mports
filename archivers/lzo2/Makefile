@@ -2,7 +2,7 @@
 # Date created:				21 Feb 1998
 # Whom:					giffunip@asme.org
 #
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.2 2007/08/08 00:42:09 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.3 2008/02/22 04:32:28 laffer1 Exp $
 # $FreeBSD: ports/archivers/lzo2/Makefile,v 1.38 2006/02/23 10:34:20 ade Exp $
 #
 
@@ -18,7 +18,6 @@ DISTNAME=	lzo-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
-
 LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15

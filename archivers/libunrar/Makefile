@@ -3,7 +3,7 @@
 # Whom:					samm@os2.kiev.ua
 #
 # $FreeBSD: ports/archivers/libunrar/Makefile,v 1.8 2006/09/28 12:18:55 barner Exp $
-# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.1 2007/01/26 03:27:38 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.2 2007/08/01 01:56:49 laffer1 Exp $
 #
 
 PORTNAME=	libunrar
@@ -19,6 +19,7 @@ DISTNAME=	unrarsrc-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to work with RAR archivies
+LICENSE=	publicdom
 
 WRKSRC=		${WRKDIR}/unrar
 

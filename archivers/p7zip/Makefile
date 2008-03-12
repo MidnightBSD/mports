@@ -2,7 +2,7 @@
 # Date created:			Sun Jul 18 15:07:26 CEST 2004
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.2 2007/08/01 19:19:59 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.3 2008/01/04 16:27:47 laffer1 Exp $
 # $FreeBSD: ports/archivers/p7zip/Makefile,v 1.29 2007/07/17 07:10:19 sat Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver with high compression ratio
+LICENSE=	agg
 
 USE_BZIP2=	yes
 MAKEFILE=	makefile
