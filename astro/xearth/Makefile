@@ -3,7 +3,7 @@
 # Whom:                 piero
 #
 # $FreeBSD: ports/astro/xearth/Makefile,v 1.33 2005/10/03 22:45:42 simon Exp $
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.4 2007/08/20 16:40:09 laffer1 Exp $
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.5 2008/02/22 05:10:14 laffer1 Exp $
 #
 
 PORTNAME=	xearth
@@ -17,6 +17,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:xcontrib,local
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the root window to the image of earth
+LICENSE=	restricted
+#patents?
 
 USE_XLIB=	yes
 USE_IMAKE=	yes
