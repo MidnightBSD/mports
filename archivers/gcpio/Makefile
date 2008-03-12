@@ -2,7 +2,7 @@
 # Date created:         30 Jul 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/gcpio/Makefile,v 1.1 2007/07/31 01:07:48 laffer1 Exp $
 
 PORTNAME=	cpio
 PORTVERSION=	2.9
@@ -13,6 +13,7 @@ PKGNAMEPREFIX=	g
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	GNU copy-in/out (cpio)
+LICENSE=	gpl3
 
 INFO=	cpio
 

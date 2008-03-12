@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: /repoman/r/pcvs/ports/archivers/freetar/Makefile,v 1.1 2006/12/03 16:18:44 dinoex Exp $
-# $MidnightBSD: mports/archivers/freetar/Makefile,v 1.2 2007/08/01 01:34:47 laffer1 Exp $
+# $MidnightBSD: mports/archivers/freetar/Makefile,v 1.3 2007/11/07 20:20:09 ctriv Exp $
 #
 
 PORTNAME=	freetar
@@ -15,6 +15,7 @@ DISTNAME=	FreeTar-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TAR archiver for GNUstep
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
