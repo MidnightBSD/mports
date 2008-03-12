@@ -1,5 +1,5 @@
---- configure.orig	Fri Oct 20 20:24:24 2006
-+++ configure	Thu Nov 23 21:31:14 2006
+--- configure.orig	Thu Jul 27 20:53:44 2006
++++ configure	Thu Aug 10 10:16:48 2006
 @@ -20093,8 +20093,6 @@
  # This can be used to rebuild libtool when needed
  LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
@@ -20,16 +20,3 @@
  
  ndb_cxxflags_fix=
  case $SYSTEM_TYPE-$MACHINE_TYPE-$ac_cv_c_compiler_gnu in
-@@ -39023,9 +39021,9 @@
- /usr/lib /usr/lib64 /opt/ssl/lib /opt/openssl/lib \
- /usr/freeware/lib32 /usr/local/lib/ ; do
-       # Test for libssl using all known library file endings
--      if test -f $d/libssl.a || test -f $d/libssl.so || \
--         test -f $d/libssl.sl || test -f $d/libssl.dylib ; then
--        OPENSSL_LIB=$d
-+      if test -f $libs/libssl.a || test -f $libs/libssl.so || \
-+         test -f $libs/libssl.sl || test -f $libs/libssl.dylib ; then
-+        OPENSSL_LIB=$libs
-       fi
-       done
-       ;;
