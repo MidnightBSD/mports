@@ -2,7 +2,7 @@
 # Date created:         18 October 1994
 # Whom:                 jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/zoo/Makefile,v 1.1 2006/09/18 00:32:09 laffer1 Exp $
 # $FreeBSD: ports/archivers/zoo/Makefile,v 1.13 2006/04/06 07:22:10 jmz Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	zoo-2.10pl1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manipulate archives of files in compressed form
+LICENSE=	other
 
 NO_WRKSUBDIR=	yes
 ALL_TARGET=	bsdansi
