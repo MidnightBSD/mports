@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.14 2008/03/08 02:47:15 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.15 2008/03/08 06:43:46 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -243,11 +243,11 @@ sub copy_pkgfile {
   my ($port, $chroot) = @_;
   
   my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $arch = $Magus::Machine->arch;
+  my $run  = $port->run->id;
   my $dest = join('/', $chroot->root, $chroot->packages, 'All');
   
-  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$arch/$file $dest";
-  report('debug', "downloading: $file");
+  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$run/$file $dest";
+  report('debug', "downloading: $run/$file");
   
   my $out = `$cmd 2>&1`;
   
