@@ -2,7 +2,7 @@
 # Date created:		Sun Jul 18 21:51:23 MET DST 1999
 # Whom:			Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/archivers/rpm2cpio/Makefile,v 1.2 2007/07/31 01:28:29 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rpm2cpio/Makefile,v 1.3 2007/07/31 01:31:23 laffer1 Exp $
 # $FreeBSD: ports/archivers/rpm2cpio/Makefile,v 1.15 2004/02/06 13:10:42 trevor Exp $
 #
 
@@ -15,6 +15,8 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert .rpm files for extraction with gcpio, needs just perl
+LICENSE=	other
+#bsdish
 
 NO_WRKSUBDIR=	yes
 
