@@ -2,7 +2,7 @@
 # Date created:		Sa   6 Jun 1998 10:24:51 CEST
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.4 2007/07/29 15:09:46 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.5 2008/02/22 04:17:01 laffer1 Exp $
 # $FreeBSD: ports/archivers/gtar/Makefile,v 1.47 2006/03/04 14:59:42 naddy Exp $
 #
 
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU version of the traditional tar archiver
+LICENSE=	gpl3
 
 INFO=		tar
 

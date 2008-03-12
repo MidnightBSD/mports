@@ -2,7 +2,7 @@
 # Date created:				27 July 2002
 # Whom:					cyrille.lefevre@laposte.net
 #
-# $MidnightBSD: mports/archivers/gzip/Makefile,v 1.3 2007/08/01 01:24:19 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gzip/Makefile,v 1.4 2007/08/01 01:30:35 laffer1 Exp $
 # $FreeBSD: ports/archivers/gzip/Makefile,v 1.16 2006/05/03 05:14:01 edwin Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A compression utility designed to be a replacement for compress
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
