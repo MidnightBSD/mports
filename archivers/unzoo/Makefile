@@ -2,7 +2,7 @@
 # Date created:				20 Jun 2005
 # Whom:					Emanuel Haupt <ehaupt@critical.ch>
 #
-# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.3 2008/02/22 04:51:06 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.4 2008/03/12 01:56:53 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzoo/Makefile,v 1.7 2006/08/11 11:02:17 ehaupt Exp $
 #
 
@@ -19,6 +19,7 @@ PATCH_DIST_STRIP=     -p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A zoo archive extractor
+LICENSE=	publicdom
 
 EXTRA_DEFINES=	-DSYS_IS_UNIX -DSYS_HAS_MKDIR
 

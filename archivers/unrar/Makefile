@@ -2,7 +2,7 @@
 # Date created:         28 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/unrar/Makefile,v 1.1 2006/09/17 19:04:59 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unrar/Makefile,v 1.2 2008/02/22 04:44:01 laffer1 Exp $
 # $FreeBSD: ports/archivers/unrar/Makefile,v 1.46 2006/08/17 01:46:32 ache Exp $
 #
 
@@ -20,6 +20,7 @@ DISTNAME=	unrarsrc-3.7.8
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test RAR archives
+LICENSE=	other
 
 WRKSRC=		${WRKDIR}/unrar
 
