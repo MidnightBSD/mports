@@ -2,13 +2,12 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.6 2007/07/30 02:42:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.7 2007/08/14 07:27:15 laffer1 Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
 PORTNAME=	png
-PORTVERSION=	1.2.18
-PORTREVISION=	1
+PORTVERSION=	1.2.25
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	lib${PORTNAME}
