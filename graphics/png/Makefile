@@ -2,7 +2,7 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.7 2007/08/14 07:27:15 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.8 2008/03/13 03:16:09 laffer1 Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
@@ -22,6 +22,7 @@ PATCH_SITES=	${MASTER_SITES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating PNG images
+LICENSE=	other
 
 MAKEFILE=	${WRKSRC}/scripts/makefile.freebsd
 ALL_TARGET=	all libpng-config test
