@@ -2,12 +2,12 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.2 2008/01/04 19:12:38 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.3 2008/01/04 22:11:12 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
-PORTVERSION=	2.18.3
-PORTREVISION?=	1
+PORTVERSION=	2.20.3
+PORTREVISION?=	0
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -24,9 +24,9 @@ BROKEN=	Missing dependancies
 # Missing RUN DEPENDS:
 # gnect:${PORTSDIR}/games/gnome-games \
 # bug-buddy:${PORTSDIR}/devel/bug-buddy \
-# evolution-2.10:${PORTSDIR}/mail/evolution \
+# evolution:${PORTSDIR}/mail/evolution \
 # ${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
-# exchange-connector-setup-2.10:${PORTSDIR}/mail/evolution-exchange
+# exchange-connector-setup-2.12:${PORTSDIR}/mail/evolution-exchange
 # ino-session:${PORTSDIR}/net/vino \
 # {LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-p
 #lugins-core \
@@ -52,7 +52,7 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		nautilus:${PORTSDIR}/x11-fm/nautilus \
 		${LOCALBASE}/sbin/gdm:${PORTSDIR}/x11/gdm \
 		${LOCALBASE}/share/gnome/help/user-guide/C/user-guide.xml:${PORTSDIR}/misc/gnome-user-docs \
-		${LOCALBASE}/share/gnome/sounds/question.wav:${PORTSDIR}/audio/gnome-audio \
+		${LOCALBASE}/share/sounds/question.wav:${PORTSDIR}/audio/gnome-audio \
 		${LOCALBASE}/libdata/pkgconfig/libgail-gnome.pc:${PORTSDIR}/x11-toolkits/libgail-gnome \
 		file-roller:${PORTSDIR}/archivers/file-roller \
 		${LOCALBASE}/share/themes/HighContrast/gtk-2.0/gtkrc:${PORTSDIR}/x11-themes/gnome-themes \
@@ -61,11 +61,11 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gcalctool:${PORTSDIR}/math/gcalctool \
 		gucharmap:${PORTSDIR}/deskutils/gucharmap \
 		zenity:${PORTSDIR}/x11/zenity \
-		${X11BASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
+		${LOCALBASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
 		${LOCALBASE}/lib/gstreamer-0.10/libgstgconfelements.so:${PORTSDIR}/devel/gstreamer-plugins-gconf \
 		totem:${PORTSDIR}/multimedia/totem \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
-		${LOCALBASE}/share/gnome/gnome-background-properties/gnome-branded.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
+		${LOCALBASE}/share/gnome-background-properties/gnome-branded.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		sound-juicer:${PORTSDIR}/audio/sound-juicer \
 		gnome-keyring-manager:${PORTSDIR}/security/gnome-keyring-manager \
 		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-2.0.pc:${PORTSDIR}/www/libgtkhtml \
@@ -106,7 +106,7 @@ RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 
 #.if ${.CURDIR}==${MASTERDIR} || ${.CURDIR:T}=="gnome2-lite"
 #.if defined(WITH_XSCREENSAVER)
-#RUN_DEPENDS+=	${LOCALBASE}/share/gnome/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
+#RUN_DEPENDS+=	${LOCALBASE}/share/applications/gnome-screensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
 #.else
 #RUN_DEPENDS+=	gnome-screensaver:${PORTSDIR}/x11/gnome-screensaver
 #.endif
