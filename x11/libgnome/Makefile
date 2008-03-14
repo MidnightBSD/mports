@@ -2,13 +2,13 @@
 # Date created:				17 June 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.1 2007/05/08 00:49:31 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnome/Makefile,v 1.156 2007/03/19 05:13:55 marcus Exp $
 #   $MCom: ports/x11/libgnome/Makefile,v 1.100 2007/03/12 15:49:09 ahze Exp $
 #
 
 PORTNAME=	libgnome
-PORTVERSION=	2.18.0
+PORTVERSION=	2.20.1.1
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -22,15 +22,15 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-BUILD_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper
-RUN_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper
+BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_GETTEXT=	yes
 USE_XPM=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack esound \
 		gnomevfs2 libxslt ltverhack referencehack
-USE_BISON=	yes
+USE_BISON=	build
 USE_XLIB=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
