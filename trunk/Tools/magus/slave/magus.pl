@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.16 2008/03/12 17:07:07 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.17 2008/03/12 19:21:42 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -142,6 +142,8 @@ sub run_test {
   #
   my ($port, $chroot);
 
+  $port->note_event(info => "Test started.");
+
   eval {
     $port = $lock->port;
     $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
@@ -206,6 +208,8 @@ sub run_test {
   } else {
     die "Child exited unexpectantly: $?\n";
   }
+  
+  $port->note_event($port->status => "Test complete.");
 }
 
 
@@ -288,6 +292,8 @@ inserts the results into the database, referencing the current port.
 
 =cut  
 
+
+
 sub insert_results {
   my ($port, $results) = @_;
 
@@ -296,12 +302,13 @@ sub insert_results {
   $port->status($results->{'summary'});
   $port->update;  
   
+  my %type_conversion = (skip => 'skip', warning => 'warn', error => 'fail');
+  
   foreach my $type (qw(skip warning error)) {
     next unless $results->{$type . 's'};
     
     foreach my $sr (@{$results->{$type . 's'}}) {
-      $sr->{type} = $type;
-      $port->add_to_events($sr);
+      $port->note_event($type_conversion{$type} => $sr->{msg});
     }
   }  
   
