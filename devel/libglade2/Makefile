@@ -2,13 +2,12 @@
 # Date created:				18 August 1999
 # Whom:					Ade Lovett <ade@lovett.com>
 #
-# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.1 2007/02/25 22:15:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.2 2007/03/20 18:52:53 ctriv Exp $
 # $FreeBSD: ports/devel/libglade2/Makefile,v 1.71 2006/07/12 17:58:28 ahze Exp $
 #    $MCom: ports/devel/libglade2/Makefile,v 1.20 2006/07/12 17:23:04 ahze Exp $
 
 PORTNAME=	libglade2
-PORTVERSION=	2.6.0
-PORTREVISION?=	1
+PORTVERSION=	2.6.2
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/..$//}
