@@ -10,7 +10,7 @@
 <TMPL_IF NAME="depends">
 <ul class="depends">
     <TMPL_LOOP NAME="depends">
-	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></li>
+	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
     </TMPL_LOOP>
 </ul>
 <TMPL_ELSE>
@@ -22,7 +22,7 @@
 <TMPL_IF NAME="depends_of">
 <ul class="depends">
     <TMPL_LOOP NAME="depends_of">
-	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></li>
+	<li><a href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
     </TMPL_LOOP>
 </ul>
 <TMPL_ELSE>
@@ -33,38 +33,57 @@
 
 <div class="left">
 <p><TMPL_VAR NAME="desc"></p>
-
-<TMPL_IF name="results">
-
+<p>Website: <a target="_blank" href="<TMPL_VAR NAME="www">"><TMPL_VAR NAME="www"></a></p>
+<hr />
 <table class="port-results">
 <tr>
 	<th>Version</th>
-	<th>Machine</th>
+	<th>Run</th>
+	<th>OSVersion</th>
 	<th>Arch</th>
-	<th>Summary</th>
+	<th>Status</th>
 	<th></th>
 </tr>
-<TMPL_LOOP name="results">
-<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
+<tr class="<TMPL_VAR NAME=status>">
 	<td><TMPL_VAR NAME="version"></td>
-	<td><TMPL_VAR NAME="machine"></td>
+	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
+	<td><TMPL_VAR NAME="osversion"></td>
 	<td><TMPL_VAR NAME="arch"></td>
-	<td><TMPL_VAR NAME="summary"></td>
+	<td><TMPL_VAR NAME="status"></td>
 	<td>
 	    <TMPL_IF NAME="has_details">
 		(<a href="#" id="result_<TMPL_VAR NAME=id>_link" onclick="return details_link(<TMPL_VAR NAME=id>);">Show Details</a>)
 	    </TMPL_IF>
-	    (<a onclick="return confirm_delete()" href="/magus/auth/delete-result.cgi?id=<TMPL_VAR NAME=id>">Delete</a>)
+	    (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>">Reset Port</a>)
 	</td> 
 </tr>
-<tr class="details<TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>" id="result_<TMPL_VAR NAME=id>_row">
-	<td colspan="5" id="result_<TMPL_VAR NAME=id>_details"></td>
+</table>
+
+
+<TMPL_IF name="events">
+<h3>Events</h3>
+<table class="event-list">
+<tr>
+	<th>Machine</th>
+	<th>Type</th>
+	<th>Message</th>
+</tr>
+
+<TMPL_LOOP name="events">
+<tr class="<TMPL_VAR NAME=type><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
+	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+	<td><TMPL_VAR NAME="type"></td>
+	<td><TMPL_VAR NAME="msg"></td>
 </tr>
 </TMPL_LOOP>
 </table>
-<TMPL_ELSE>
-<p><TMPL_VAR name=port> has not been tested.</p>
 </TMPL_IF>
+
+<TMPL_IF NAME="log">
+<h3>Log</h3>
+<pre class="log"><TMPL_VAR NAME="log"></pre>
+</TMPL_IF>
+
 
 </div>
 

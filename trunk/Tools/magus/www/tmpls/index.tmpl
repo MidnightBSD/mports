@@ -9,15 +9,19 @@
 	<th>Port</th>
 	<th>Machine</th>
 	<th>Arch</th>
+	<th>OSVersion</th>
+	<th>Run</th>
 </tr>
 </thead>
 
 <tbody>
 <TMPL_LOOP NAME="locks">
 <tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
-	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
+	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
 	<td><TMPL_VAR name="machine"></td>
 	<td><TMPL_VAR name="arch"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
 </tr>
 </TMPL_LOOP>
 </tbody>
@@ -35,17 +39,17 @@
 		<th>Port</th>
 		<th>Version</th>
 		<th>Summary</th>
-		<th>Machine</th>
+		<th>OSVersion</th>
 		<th>Arch</th>
 	</tr>
 	</thead>
 	<tbody>
 	<TMPL_LOOP NAME=results>
 	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
-		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port>"><TMPL_VAR NAME="port"></a></td>
+		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
 		<td><TMPL_VAR NAME=version></td>
 		<td><TMPL_VAR NAME=summary></td>
-		<td><TMPL_VAR NAME=machine></td>
+		<td><TMPL_VAR NAME=osversion></td>
 		<td><TMPL_VAR NAME=arch></td>
 	</tr>
 	</TMPL_LOOP>

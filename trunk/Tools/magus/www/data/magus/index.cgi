@@ -2,7 +2,7 @@
 
 use strict;
 use warnings;
-use lib qw(/usr/mports/Tools/lib);
+use lib qw(/home/mbsd/magus/mports/Tools/lib);
 
 use Magus;
 use CGI;
@@ -11,9 +11,21 @@ use JSON::XS;
 
 eval {
   main();
+  exit 0;
 };
 
-error($@) if $@;
+if ($@) {
+  print "Content-Type: text/html\n\n";
+  print <<END_OF_ERROR;
+      <html>
+      <head><title>Error</title></head>
+      <body>
+      <h1>Error</h1>
+      <p>The following error occured:</p>
+      <pre>$@</pre>
+END_OF_ERROR
+  exit 0;
+}
 
 sub main {
   my $p = CGI->new;
@@ -38,19 +50,20 @@ sub main {
 sub summary_page {
   my ($p) = @_;
   
-  Magus::Result->set_sql(last_twenty => qq{
+  Magus::Port->set_sql(last_twenty => qq{
       SELECT __ESSENTIAL__
       FROM __TABLE__
-      ORDER BY id DESC LIMIT 20
+      ORDER BY updated DESC LIMIT 20
   });
   
   my @results = map {{
-    summary => $_->summary,
-    port    => $_->port,
-    version => $_->version,
-    machine => $_->machine->name,
-    arch    => $_->arch 
-  }} Magus::Result->search_last_twenty;
+    summary   => $_->status,
+    port      => $_->name,
+    port_id   => $_->id,
+    version   => $_->version,
+    osversion => $_->run->osversion,
+    arch      => $_->run->arch, 
+  }} Magus::Port->search_last_twenty;
   
   print $p->header;
   
@@ -62,9 +75,12 @@ sub summary_page {
   );
   
   my @locks = map {{
-    port    => $_->port->name,
-    machine => $_->machine->name,
-    arch    => $_->arch
+    port      => $_->port->name,
+    port_id   => $_->port->id,
+    machine   => $_->machine->name,
+    arch      => $_->port->run->arch,
+    run       => $_->port->run->id,
+    osversion => $_->port->run->osversion,
   }} Magus::Lock->retrieve_all;
   
   $tmpl->param(
@@ -82,27 +98,31 @@ sub port_page {
   
   $tmpl->param(
     port => $port->name, 
+    id        => $port->id,
     title => "Magus // $port",
     desc  => $port->description,
+    www   => $port->www,
+    version => $port->version,
+    run     => $port->run->id,
+    osversion => $port->run->osversion,
+    arch      => $port->run->arch,
+    status    => $port->status,
   );
   
-  my @results = map { {
-    id	    => $_->id,
-    version => $_->version,
-    machine => $_->machine->name,
-    arch    => $_->arch,
-    summary => $_->summary,
-    has_details => ($_->summary eq 'pass') ? 0 : 1,
-  }} sort { $b->id <=> $a->id } $port->results;
+  my @events = map { { 
+    machine_id => $_->machine->id,
+    machine    => $_->machine->name,
+    type       => $_->type,
+    msg        => $_->msg
+  } } $port->events;
   
-  if (@results) {
-    $tmpl->param(
-      results => \@results,
-    );
+  if (@events) {
+    $tmpl->param(events => \@events);
   }
-  
+    
   my @depends = map { {
-    port => $_->name
+    port => $_->name,
+    id   => $_->id
   } } $port->depends;
 
   if (@depends) {
@@ -110,8 +130,13 @@ sub port_page {
   }
   
   my @depends_of = map { {
-    port => $_->port
-  } } Magus::Depend->search(dependency => $port);
+    port => $_->name,
+    id   => $_->id
+  } } map { Magus::Port->retrieve($_->port) } Magus::Depend->search(dependency => $port);
+  
+  if ($port->log) {
+    $tmpl->param(log => $port->log);
+  }
   
   if (@depends_of) {
     $tmpl->param(depends_of => \@depends_of);
@@ -186,19 +211,20 @@ sub search {
   my @ports = Magus::Port->retrieve_from_sql("name LIKE ?", "%$query%");
   
   if (@ports == 1) {
-    print $p->redirect("http://cs.emich.edu/magus/index.cgi/ports/$ports[0]");
+    my $id = $ports[0]->id;
+    print $p->redirect("http://www.midnightbsd.org/magus/ports/$id");
     return;
   } 
   
   my @results = map {{
-    summary => $_->summary,
-    port    => $_->port,
-    version => $_->version,
-    machine => $_->machine->name,
-    arch    => $_->arch,
-    id      => $_->id,
-    has_details => ($_->summary eq 'pass') ? 0 : 1,
-  }} map { $_->current_result } @ports;
+    summary   => $_->status,
+    port      => $_->name,
+    version   => $_->version,
+    arch      => $_->run->arch,
+    id        => $_->id,
+    run       => $_->run,
+    osversion => $_->run->osversion,
+  }} @ports;
 
   my $tmpl = template($p, 'list.tmpl');
 
@@ -209,59 +235,27 @@ sub search {
 
   
 
-sub error {
-  my ($msg) = @_;
-  
-  my $tmpl = template(CGI->new, 'error.tmpl');
-  
-  $tmpl->param(error => $msg, title => 'Error');
-  
-  print "Content-Type: text/html\n\n", $tmpl->output;
-}
-   
-
-
 sub template {
   my ($p, $file) = @_;
   
   my $tmpl = HTML::Template->new(
     cache    => 1,
     global_vars => 1,
-    filename => "/usr/local/www/apache22/tmpls/$file",
+    filename => "/home/mbsd/magus/mports/Tools/magus/www/tmpls/$file",
     loop_context_vars => 1,
     die_on_bad_params => 0
   );
   
-  my $dbh = Magus::Result->db_Main();
-  my $sth = $dbh->prepare("SELECT summary,COUNT(*) as count FROM results JOIN ports ON results.port=ports.name AND results.version=ports.version GROUP BY summary ORDER BY count DESC");
-  $sth->execute;
-  my $stats = $sth->fetchall_arrayref({});
-  $sth->finish;
-
-  $sth = $dbh->prepare("SELECT COUNT(DISTINCT port) FROM results");
-  $sth->execute;
-  my ($count) = $sth->fetchrow_array;
-  $sth->finish;
-  
-  $sth = $dbh->prepare("SELECT COUNT(*) FROM ports WHERE name NOT IN (SELECT port FROM results)");
-  $sth->execute;
-  my ($untested) = $sth->fetchrow_array;
-  $sth->finish;
-
   my $query = $p->param('q');
   $query ||= '';
   
   $tmpl->param(
     query     => $query,
-    ports_tested => $count,
-    ports_untested => $untested,
-    stats     => $stats,
     title     => 'Magus',
-#    breadcrumbs => breadcrumbs(path => $p->path_info or '/'),
     root      => $p->script_name(),
-    list_root => $p->script_name() . '/list',
+    run_root  => $p->script_name() . '/runs',
     port_root => $p->script_name() . '/ports',
-    result_root => $p->script_name() . '/results',
+    machine_root => $p->script_name() . '/machines',
   );
   
   return $tmpl;
