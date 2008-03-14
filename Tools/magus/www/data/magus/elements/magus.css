@@ -33,6 +33,12 @@ h2 {
 	color: #555;
 }
 
+h3 { 
+	font-size 1.1em;
+	letter-spacing: .1em;
+	color: #555;
+}
+
 a {
 	color: #405491;
 }
@@ -115,7 +121,7 @@ div.left {
 	max-width: 75%;	
 }
 
-table.result-list, table.port-results {
+table.result-list, table.port-results, table.event-list {
 	max-width: 100%;
 	width: 100%;
 }
