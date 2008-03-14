@@ -2,7 +2,7 @@
 # Date created:				01 Mar 2003
 # Whom:					Franz Klammer <klammer@webonaut.com>
 #
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.1 2007/10/17 02:09:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.2 2008/03/14 01:45:41 laffer1 Exp $
 # $FreeBSD: ports/x11/zenity/Makefile,v 1.34 2007/07/23 09:36:47 rafan Exp $
 #   $MCom: ports/x11/zenity/Makefile,v 1.77 2007/03/11 19:58:27 mezz Exp $
 #
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display GNOME dialogs from the command line
+LICENSE=	lgpl
 
 BUILD_DEPENDS=        rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=  rarian-sk-config:${PORTSDIR}/textproc/rarian
