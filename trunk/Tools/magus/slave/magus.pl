@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.17 2008/03/12 19:21:42 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.18 2008/03/14 18:48:21 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -142,7 +142,7 @@ sub run_test {
   #
   my ($port, $chroot);
 
-  $port->note_event(info => "Test started.");
+  $lock->port->note_event(info => "Test started.");
 
   eval {
     $port = $lock->port;
