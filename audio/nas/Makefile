@@ -3,12 +3,12 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.3 2007/08/16 04:27:07 laffer1 Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.4 2007/10/17 03:19:39 ctriv Exp $
 #
 
 PORTNAME=	nas
 PORTVERSION=	1.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://nas.codebrilliance.com/nas/
 EXTRACT_SUFX=	.src.tar.gz
@@ -20,6 +20,7 @@ LICENSE=	x11
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_IMAKE=	yes
 USE_XLIB=	yes
+USE_XORG=	x11
 USE_LDCONFIG=	yes
 MAKE_ENV+=	COMPRESS_CMD="${COMPRESS_CMD:S/c//}"
 PKGMESSAGE=	${WRKDIR}/pkg-message
