@@ -2,14 +2,13 @@
 # Date created:				18 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.1 2007/10/20 05:17:42 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.2 2007/10/20 05:30:37 laffer1 Exp $
 # $FreeBSD: ports/x11/yelp/Makefile,v 1.57 2007/05/19 20:28:22 flz Exp $
 #   $MCom: ports/x11/yelp/Makefile,v 1.110 2007/03/14 17:45:40 marcus Exp $
 #
 
 PORTNAME=	yelp
-PORTVERSION=	2.18.1
-PORTREVISION=	1
+PORTVERSION=	2.20.0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,7 +18,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A help browser for the GNOME 2 desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
+		rarian.0:${PORTSDIR}/textproc/rarian
 
 USE_GECKO=	firefox xulrunner firefox-devel<->firefox
 USE_GETTEXT=	yes
