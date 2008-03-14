@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.13 2008/02/28 20:11:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.14 2008/03/08 03:07:38 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -47,7 +47,6 @@ __PACKAGE__->has_a(run => 'Magus::Run');
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
-
 
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 
@@ -201,7 +200,19 @@ sub _set_result {
 }
 
 
+=head2 $port->log
 
+Returns the log data for this port, if any.  Returns undef if there is no log.
 
+=cut
+
+sub log {
+  require Magus::Log;
+  
+  my ($self) = @_;
+  return $self->{__log} if exists $self->{__log};
+  my $log = Magus::Log->retrieve(port => $self) or return;
+  return $self->{__log} = $log->data;
+}
 1;
 __END__
