@@ -2,7 +2,7 @@
 # Date created:				17 June 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.1 2007/05/08 00:49:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.2 2008/03/14 01:32:33 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnome/Makefile,v 1.156 2007/03/19 05:13:55 marcus Exp $
 #   $MCom: ports/x11/libgnome/Makefile,v 1.100 2007/03/12 15:49:09 ahze Exp $
 #
@@ -39,7 +39,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 SUB_FILES=	pkg-deinstall
 
-#MAN7=		gnome-options.7
+MAN7=		gnome-options.7
 
 GCONF_SCHEMAS=	desktop_gnome_accessibility_keyboard.schemas \
 		desktop_gnome_accessibility_startup.schemas \
