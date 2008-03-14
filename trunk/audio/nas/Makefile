@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.5 2008/03/14 04:52:11 laffer1 Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.6 2008/03/14 04:55:19 laffer1 Exp $
 #
 
 PORTNAME=	nas
@@ -20,7 +20,7 @@ LICENSE=	x11
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_IMAKE=	yes
 USE_XLIB=	yes
-USE_XORG=	x11
+USE_XORG=	x11 xaw xp
 USE_LDCONFIG=	yes
 MAKE_ENV+=	COMPRESS_CMD="${COMPRESS_CMD:S/c//}"
 PKGMESSAGE=	${WRKDIR}/pkg-message
