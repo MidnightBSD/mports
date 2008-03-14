@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.15 2008/03/14 03:30:30 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.16 2008/03/14 18:43:15 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -210,11 +210,12 @@ sub reset {
   
   $self->events->delete_all;
 
-  if (my $log = Magus::Log->retrive(port => $self)) {
+  if (my $log = Magus::Log->retrieve(port => $self)) {
     $log->delete;
   }
 
   $self->status('untested');
+  $self->update;
 }
 
 =head2 $port->log
