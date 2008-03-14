@@ -3,14 +3,14 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.4 2007/10/17 03:19:39 ctriv Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.5 2008/03/14 04:52:11 laffer1 Exp $
 #
 
 PORTNAME=	nas
 PORTVERSION=	1.8
 PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	http://nas.codebrilliance.com/nas/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=nas/}
 EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
