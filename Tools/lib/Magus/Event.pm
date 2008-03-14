@@ -24,7 +24,7 @@ package Magus::Event;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/SubResult.pm,v 1.7 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Event.pm,v 1.1 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,10 +35,20 @@ use warnings;
 use base qw(Magus::DBI);
 
 __PACKAGE__->table('events');
-__PACKAGE__->columns(All => qw/id port phase type name msg machine/);
+__PACKAGE__->columns(All => qw/id port phase type name msg machine time/);
 __PACKAGE__->has_a(port => 'Magus::Port');
 __PACKAGE__->has_a(machine => 'Magus::Machine');
 
+
+=head2 types
+
+ fail
+ warn
+ info
+ internal
+ skip
+ 
+=cut
 
 
 

@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.14 2008/03/08 03:07:38 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.15 2008/03/14 03:30:30 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -47,6 +47,7 @@ __PACKAGE__->has_a(run => 'Magus::Run');
 __PACKAGE__->has_many(depends => [ 'Magus::Depend' => 'dependency' ] => 'port');
 __PACKAGE__->has_many(categories => [ 'Magus::PortCategory' => 'category' ]);
 __PACKAGE__->has_many(events => 'Magus::Event');
+
 
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
 
@@ -193,12 +194,28 @@ sub _set_result {
   $self->add_to_events({
     machine   => $Magus::Machine,
     type  => $status,
-    name  => $name,
     msg   => $msg,
     phase => $phase,
   });
 }
 
+=head2 $port->reset();
+
+Returns the port to a pristine untested state.
+
+=cut
+
+sub reset {
+  my ($self) = @_;
+  
+  $self->events->delete_all;
+
+  if (my $log = Magus::Log->retrive(port => $self)) {
+    $log->delete;
+  }
+
+  $self->status('untested');
+}
 
 =head2 $port->log
 
@@ -214,5 +231,22 @@ sub log {
   my $log = Magus::Log->retrieve(port => $self) or return;
   return $self->{__log} = $log->data;
 }
+
+=head2 $port->note_event(type => $msg);
+
+Add an event to the port of the given type with the given message
+
+=cut
+
+sub note_event {
+  my ($self, $type, $msg) = @_;
+  
+  $self->add_to_events({
+    machine => $Magus::Machine,
+    type    => $type,
+    msg     => $msg,
+  });
+}
+  
 1;
 __END__
