@@ -2,7 +2,7 @@
 # Date created:				18 August 1999
 # Whom:					Ade Lovett <ade@lovett.com>
 #
-# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.2 2007/03/20 18:52:53 ctriv Exp $
+# $MidnightBSD: mports/devel/libglade2/Makefile,v 1.3 2008/03/14 01:23:04 laffer1 Exp $
 # $FreeBSD: ports/devel/libglade2/Makefile,v 1.71 2006/07/12 17:58:28 ahze Exp $
 #    $MCom: ports/devel/libglade2/Makefile,v 1.20 2006/07/12 17:23:04 ahze Exp $
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME glade library
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 
