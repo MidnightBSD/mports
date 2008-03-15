@@ -2,7 +2,7 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.5 2007/09/26 17:14:04 ctriv Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.6 2008/02/21 19:37:12 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 #
 
@@ -44,7 +44,8 @@ MAN3=		pcre.3 pcre_compile.3 pcre_compile2.3 pcre_config.3 \
 		pcre_study.3 pcre_version.3 pcreapi.3 \
 		pcrebuild.3 pcrecallout.3 pcrecompat.3 \
 		pcrecpp.3 pcrematching.3 pcrepattern.3 \
-		pcreperform.3 pcreposix.3 pcresample.3 pcrestack.3
+		pcreperform.3 pcreposix.3 pcresample.3 pcrestack.3 \
+		pcresyntax.3
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/pcregrep ${PREFIX}/bin/pcretest
