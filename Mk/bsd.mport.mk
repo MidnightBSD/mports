@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.79 2007/12/07 21:13:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.80 2008/01/05 22:22:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2890,7 +2890,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl bsd4 bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 		bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php \
-		restricted perl modula3 unknown other sgi agg
+		restricted perl mit modula3 unknown other sgi agg
 
 
 
@@ -5562,7 +5562,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.79 2007/12/07 21:13:46 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.80 2008/01/05 22:22:50 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
