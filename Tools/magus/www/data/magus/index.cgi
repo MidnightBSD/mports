@@ -36,10 +36,12 @@ sub main {
     summary_page($p);
   } elsif ($path =~ m:/list/(.*):) {
     list_page($p, $1);
+  } elsif ($path =~ m:runs/(.*):) {
+    run_page($p, $1);
   } elsif ($path =~ m:/ports/(.*):) {
     port_page($p, $1);
-  } elsif ($path =~ m:/results/async/(\d+):) {
-    result_details_async($p, $1);
+  } elsif ($path =~ m:/async/run-ports-list:) {
+    async_run_port_stats($p);
   } elsif ($path =~ m:/search:) {
     return search($p);
   } else {
@@ -53,6 +55,7 @@ sub summary_page {
   Magus::Port->set_sql(last_twenty => qq{
       SELECT __ESSENTIAL__
       FROM __TABLE__
+      WHERE status!='untested'
       ORDER BY updated DESC LIMIT 20
   });
   
@@ -89,6 +92,29 @@ sub summary_page {
   print $tmpl->output;
 }
 
+sub run_page {
+  my ($p, $run) = @_;
+  
+  $run = Magus::Run->retrieve($run) || die "No such run: $run\n";
+  
+  my $tmpl = template($p, "run.tmpl");
+  $tmpl->param(title => "Run $run");
+  $tmpl->param(map { $_ => $run->$_ } qw(osversion arch status created id));
+  
+  my $dbh = Magus::Run->db_Main();  
+  
+  my $sth = $dbh->prepare("SELECT COUNT(*) AS count,status FROM ports WHERE run=? GROUP BY status ORDER BY name");
+  $sth->execute($run->id);
+  my $status_stats = $sth->fetchall_arrayref({});
+  $sth->finish;
+  
+  $tmpl->param(status_stats => $status_stats);
+  
+  print $p->header;
+  print $tmpl->output;
+}
+  
+
 sub port_page {
   my ($p, $port) = @_;
   
@@ -113,7 +139,8 @@ sub port_page {
     machine_id => $_->machine->id,
     machine    => $_->machine->name,
     type       => $_->type,
-    msg        => $_->msg
+    msg        => $_->msg,
+    time       => $_->time,
   } } $port->events;
   
   if (@events) {
@@ -145,31 +172,30 @@ sub port_page {
   print $p->header, $tmpl->output;
 }
 
-sub result_details_async {
-  my ($p, $id) = @_;
+sub async_run_port_stats {
+  my ($p) = @_;
   
-  my %details = (id => $id);
+  my $run    = $p->param('run');
+  my $status = $p->param('status');
   
-  my $result = Magus::Result->retrieve($id) || die "No such results: $id";
+  my %details = (run => $run, status => $status);
   
-  my @subresults = map { {
-	phase => $_->phase,
-	type  => $_->type,
-	name  => $_->name,
-	msg   => $_->msg,
-  } } $result->subresults;
+  my @results = map {{
+    summary   => $_->status,
+    port      => $_->name,
+    version   => $_->version,
+    arch      => $_->run->arch,
+    id        => $_->id,
+    run       => $_->run,
+    osversion => $_->run->osversion,
+  }} Magus::Port->search(run => $run, status => $status);
+                                  
+  my $tmpl = template($p, 'result-list.tmpl');
+  $tmpl->param(results => \@results);
 
-  if (@subresults) {
-    $details{subresults} = \@subresults;
-  }
+  $details{html} = $tmpl->output;
   
-  my $log = $result->logs->next;
-  
-  if ($log) {
-    $details{log} = $log->data;
-  }
-
-  print $p->header(-type => 'text/plain'), to_json(\%details);
+  print $p->header(-type => 'text/plain'), encode_json(\%details);
 }
 
 sub list_page {
