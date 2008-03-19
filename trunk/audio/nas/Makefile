@@ -3,12 +3,12 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/audio/nas/Makefile,v 1.39 2006/06/09 18:59:19 ahze Exp $
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.7 2008/03/14 04:58:21 laffer1 Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.8 2008/03/14 05:02:12 laffer1 Exp $
 #
 
 PORTNAME=	nas
 PORTVERSION=	1.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=nas/}
 EXTRACT_SUFX=	.src.tar.gz
@@ -16,6 +16,8 @@ EXTRACT_SUFX=	.src.tar.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Audio System
 LICENSE=	x11
+
+BUILD_DEPENDS+=	${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep
 
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_PERL5=	yes
