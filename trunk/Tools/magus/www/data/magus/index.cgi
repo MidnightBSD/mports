@@ -78,15 +78,24 @@ sub summary_page {
   );
   
   my @locks = map {{
-    port      => $_->port->name,
-    port_id   => $_->port->id,
-    machine   => $_->machine->name,
-    arch      => $_->port->run->arch,
-    run       => $_->port->run->id,
-    osversion => $_->port->run->osversion,
+    port       => $_->port->name,
+    port_id    => $_->port->id,
+    machine    => $_->machine->name,
+    machine_id => $_->machine->id,
+    arch       => $_->port->run->arch,
+    run        => $_->port->run->id,
+    osversion  => $_->port->run->osversion,
   }} Magus::Lock->retrieve_all;
+
+  my @runs = map {{
+    run       => $_->id,
+    arch      => $_->arch,
+    osversion => $_->osversion,
+    created   => $_->created,
+  }} Magus::Run->search(status => 'active');
   
   $tmpl->param(
+    runs  => \@runs,
     locks => \@locks
   ); 
   print $tmpl->output;
@@ -107,6 +116,8 @@ sub run_page {
   $sth->execute($run->id);
   my $status_stats = $sth->fetchall_arrayref({});
   $sth->finish;
+
+  push(@$status_stats, { status => 'ready', count => Magus::Port->search_ready_ports($run)->count });
   
   $tmpl->param(status_stats => $status_stats);
   
@@ -179,6 +190,13 @@ sub async_run_port_stats {
   my $status = $p->param('status');
   
   my %details = (run => $run, status => $status);
+  my @ports;
+  
+  if ($status eq 'ready') {
+    @ports = Magus::Port->search_ready_ports($run);
+  } else {
+    @ports = Magus::Port->search(run => $run, status => $status);
+  }
   
   my @results = map {{
     summary   => $_->status,
@@ -188,7 +206,7 @@ sub async_run_port_stats {
     id        => $_->id,
     run       => $_->run,
     osversion => $_->run->osversion,
-  }} Magus::Port->search(run => $run, status => $status);
+  }} @ports;
                                   
   my $tmpl = template($p, 'result-list.tmpl');
   $tmpl->param(results => \@results);
