@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.15 2008/02/28 20:11:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.16 2008/03/07 01:21:55 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -151,6 +151,7 @@ sub _clean {
   my ($self) = @_;
   
   for (qw(workdir x11base localbase packages logs)) {
+    $self->_clear_flags($self->{$_});
     rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
   }
@@ -168,6 +169,14 @@ sub _clean {
   $self->_touchfile('/.clean');
 }
 
+
+sub _clear_flags {
+  my ($self, $dir) = @_;
+  
+  system("/bin/chflags -R 0 $self->{root}$dir") == 0
+      or die "chflags 0 $self->{root}$dir returned non-zero: $?\n";  
+}
+  
 
 sub _mtree {
   my ($self, $mtreefile, $dir) = @_;
@@ -276,8 +285,8 @@ sub delete {
     system("/sbin/umount $self->{root}$_") 
   }
   
-  system("/bin/chflags -R 0 $self->{root}/") == 0 
-    or die "chflags 0 $self->{root}/ returned non-zero: $?\n";
+ 
+  $self->_clear_flags("/");
   
   rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
 }
