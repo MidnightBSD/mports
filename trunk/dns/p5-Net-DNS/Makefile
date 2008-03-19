@@ -2,7 +2,7 @@
 # Date created:				April 5th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.4 2007/10/01 09:43:32 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.5 2008/03/19 01:33:46 laffer1 Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS/Makefile,v 1.66 2006/09/27 23:40:21 dougb Exp $
 #
 
@@ -51,7 +51,7 @@ OPTIONS=	IPV6 "Enable functionality over IPv6 transport" on
 
 .if !defined(WITHOUT_IPV6)
 BUILD_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
-RUN_DEPENDS+=	${SITE_PER}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
+RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
 .endif
 
 DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS
