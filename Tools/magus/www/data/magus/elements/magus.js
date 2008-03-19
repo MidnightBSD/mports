@@ -2,11 +2,12 @@ var loader = new Image(220, 19);
 loader.src = '/magus/elements/ajax-loader.gif';
 
 function showPorts(id, status) {
+	var td = document.getElementById("ports-display");
 	if (status.length == 0) {
+		td.style.display = 'none';
 		return false;
 	}
 
-	var td = document.getElementById("ports-display");
 	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
 	td.style.display = 'table-cell';
 
