@@ -2,7 +2,7 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.4 2007/08/23 06:32:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.5 2008/02/17 03:37:26 laffer1 Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.142 2007/07/17 02:35:58 marcus Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.91 2006/10/05 06:55:34 mezz Exp $
 #
@@ -22,6 +22,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (current stable version)
+LICENSE=	lgpl
 
 LATEST_LINK=	glib20
 
