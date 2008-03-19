@@ -26,10 +26,10 @@ lib/liboaf.la
 lib/liboaf.so
 lib/liboaf.so.0
 share/aclocal/oaf.m4
-share/gnome/idl/oaf-factory.idl
-share/gnome/idl/oaf.idl
-share/gnome/oaf/OAF_naming-service.oaf
-share/gnome/oaf/empty.oafinfo
+share/idl/oaf-factory.idl
+share/idl/oaf.idl
+share/oaf/OAF_naming-service.oaf
+share/oaf/empty.oafinfo
 share/locale/az/LC_MESSAGES/oaf.mo
 share/locale/bg/LC_MESSAGES/oaf.mo
 share/locale/da/LC_MESSAGES/oaf.mo
