@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.81 2008/03/15 21:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.82 2008/03/19 02:00:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1762,8 +1762,9 @@ IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
 .endif
 
 .if defined(USE_IMAKE)
-BUILD_DEPENDS+=			imake:${X_IMAKE_PORT}
-BUILD_DEPENDS+= ${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
+BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
+			${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files \
+			${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep
 .endif
 
 
@@ -5563,7 +5564,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.81 2008/03/15 21:32:20 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.82 2008/03/19 02:00:23 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
