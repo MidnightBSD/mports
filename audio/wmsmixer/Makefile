@@ -2,12 +2,13 @@
 # Date created:				2 April 2001
 # Whom:					Konstantinos Konstantinidis <kkonstan@daemon.gr>
 #
-# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.2 2008/02/28 00:17:49 laffer1 Exp $
+# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.3 2008/03/19 01:57:36 laffer1 Exp $
 # $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
 #
 
 PORTNAME=	wmsmixer
 PORTVERSION=	0.5.1
+PORTREVISION=	2
 CATEGORIES=	audio windowmaker
 MASTER_SITES=	http://www.hibernaculum.net/download/
 
@@ -19,6 +20,7 @@ USE_XPM=	YES
 USE_IMAKE=	YES
 MAKE_ARGS=	CC="${CXX}" CFLAGS="${CXXFLAGS}"
 
-BUILD_DEPENDS+= ${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
+BUILD_DEPENDS+= ${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep \
+	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
 
 .include <bsd.port.mk>
