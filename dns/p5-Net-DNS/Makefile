@@ -2,12 +2,12 @@
 # Date created:				April 5th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.4 2007/10/01 09:43:32 laffer1 Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS/Makefile,v 1.66 2006/09/27 23:40:21 dougb Exp $
 #
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.61
+PORTVERSION=	0.62
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
@@ -22,12 +22,13 @@ RUN_DEPENDS=	ipcount:${PORTSDIR}/net-mgmt/p5-Net-IP \
 		${SITE_PERL}/Digest/HMAC_MD5.pm:${PORTSDIR}/security/p5-Digest-HMAC
 
 PERL_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--online-tests
+CONFIGURE_ARGS+=	--no-online-tests
 
 MAN3=		Net::DNS.3 Net::DNS::Header.3 Net::DNS::Packet.3 \
 		Net::DNS::Question.3 Net::DNS::RR.3 Net::DNS::RR::A.3 \
 		Net::DNS::RR::AFSDB.3 Net::DNS::RR::CNAME.3 \
 		Net::DNS::RR::HINFO.3 Net::DNS::RR::ISDN.3 Net::DNS::RR::MG.3 \
+		Net::DNS::RR::IPSECKEY.3 \
 		Net::DNS::RR::MINFO.3 Net::DNS::RR::MR.3 Net::DNS::RR::MX.3 \
 		Net::DNS::RR::NS.3 Net::DNS::RR::PTR.3 Net::DNS::RR::RP.3 \
 		Net::DNS::RR::RT.3 Net::DNS::RR::SOA.3 Net::DNS::RR::SRV.3 \
@@ -49,7 +50,8 @@ OPTIONS=	IPV6 "Enable functionality over IPv6 transport" on
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_IPV6)
-RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
+BUILD_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
+RUN_DEPENDS+=	${SITE_PER}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
 .endif
 
 DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS
