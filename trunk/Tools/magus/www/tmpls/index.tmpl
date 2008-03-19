@@ -18,7 +18,7 @@
 <TMPL_LOOP NAME="locks">
 <tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
 	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
-	<td><TMPL_VAR name="machine"></td>
+	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
 	<td><TMPL_VAR name="arch"></td>
 	<td><TMPL_VAR NAME="osversion"></td>
 	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
@@ -27,6 +27,32 @@
 </tbody>
 </table>
 </TMPL_IF>
+
+<TMPL_IF name="runs">
+<h3>Active Runs</h3>
+<table class="locks">
+<thead> 
+<tr>
+        <th>Run</th>
+        <th>Arch</th>
+        <th>OSVersion</th>
+	<th>Created</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP NAME="runs">
+<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
+        <td><TMPL_VAR name="arch"></td>
+        <td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="created"></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+
 
 </div>
 
