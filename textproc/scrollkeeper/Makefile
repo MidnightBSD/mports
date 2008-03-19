@@ -2,13 +2,13 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.1 2007/04/01 16:18:14 laffer1 Exp $
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 
 PORTNAME=	scrollkeeper
 PORTVERSION=	0.3.14
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -27,17 +27,19 @@ RUN_DEPENDS=	intltool-extract:${PORTSDIR}/textproc/intltool \
     		${LOCALBASE}/share/xml/docbook/${DOCBOOK_VERSION}/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
     		${LOCALBASE}/share/xml/docbook/4.1.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-sk
 
+CONFLICTS=	rarian-[0-9]*
+
 DOCBOOK_VERSION=4.2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_BISON=	yes
+USE_BISON=	build
 USE_GNOME=	gnomehack gnomehier gnometarget libxslt intlhack
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--localstatedir=/var --datadir=${PREFIX}/share/gnome \
-		--with-omfdirs=${PREFIX}/share/gnome/omf \
+CONFIGURE_ARGS=	--localstatedir=/var --datadir=${PREFIX}/share \
+		--with-omfdirs=${PREFIX}/share/omf \
 		--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -lintl" \
