@@ -34,14 +34,16 @@ sub main {
 
   if ($path eq '' || $path eq '/') {
     summary_page($p);
-  } elsif ($path =~ m:/list/(.*):) {
-    list_page($p, $1);
+  } elsif ($path =~ m:/machines/(.*):) {
+    machine_page($p, $1);
   } elsif ($path =~ m:runs/(.*):) {
     run_page($p, $1);
   } elsif ($path =~ m:/ports/(.*):) {
     port_page($p, $1);
   } elsif ($path =~ m:/async/run-ports-list:) {
     async_run_port_stats($p);
+  } elsif ($path =~ m:/async/machine-events:) {
+    async_machine_events($p);
   } elsif ($path =~ m:/search:) {
     return search($p);
   } else {
@@ -85,7 +87,7 @@ sub summary_page {
     arch       => $_->port->run->arch,
     run        => $_->port->run->id,
     osversion  => $_->port->run->osversion,
-  }} Magus::Lock->retrieve_all;
+  }} sort { $a->port->run <=> $b->port->run } Magus::Lock->retrieve_all;
 
   my @runs = map {{
     run       => $_->id,
@@ -183,66 +185,33 @@ sub port_page {
   print $p->header, $tmpl->output;
 }
 
-sub async_run_port_stats {
-  my ($p) = @_;
-  
-  my $run    = $p->param('run');
-  my $status = $p->param('status');
-  
-  my %details = (run => $run, status => $status);
-  my @ports;
-  
-  if ($status eq 'ready') {
-    @ports = Magus::Port->search_ready_ports($run);
-  } else {
-    @ports = Magus::Port->search(run => $run, status => $status);
-  }
-  
-  my @results = map {{
-    summary   => $_->status,
-    port      => $_->name,
-    version   => $_->version,
-    arch      => $_->run->arch,
-    id        => $_->id,
-    run       => $_->run,
-    osversion => $_->run->osversion,
-  }} @ports;
-                                  
-  my $tmpl = template($p, 'result-list.tmpl');
-  $tmpl->param(results => \@results);
 
-  $details{html} = $tmpl->output;
+sub machine_page {
+  my ($p, $machine) = @_;
   
-  print $p->header(-type => 'text/plain'), encode_json(\%details);
-}
+  $machine = Magus::Machine->retrieve($machine) || die "No such machine: $machine\n";
+  
+  my $tmpl = template($p, 'machine.tmpl');
 
-sub list_page {
-  my ($p, $summary) = @_;
-  
-  Magus::Result->set_sql(current_results => "SELECT results.* FROM results JOIN ports ON results.port=ports.name AND results.version=ports.version WHERE summary=? ORDER BY id DESC");  
+  (my $maint = $machine->maintainer) =~ s/\@/{...}/;
 
-  my @results = map {{
-    summary => $_->summary,
-    port    => $_->port,
-    version => $_->version,
-    machine => $_->machine->name,
-    arch    => $_->arch, 
-    id      => $_->id,
-    has_details => ($_->summary eq 'pass') ? 0 : 1,
-  }} Magus::Result->search_current_results($summary);
-  
-  my $tmpl = template($p, 'list.tmpl');
-  
-  my %titles = (
-    fail => 'Failed Ports',
-    skip => 'Skipped Ports',
-    pass => 'Passed Ports',
-    internal => 'Internal failures',
-    warn     => 'Warned Ports',
+  # XXX - this isn't quite right, will improve later.
+  my @runs = map {{
+    run => $_->id
+  }} Magus::Run->search(arch => $machine->arch, osversion => $machine->osversion, { order_by => 'id DESC' });
+
+     
+  $tmpl->param(
+    title      => 'Magus // Machine // ' . $machine->name,
+    id         => $machine->id,
+    name       => $machine->name,
+    maintainer => $maint,
+    arch       => $machine->arch,
+    run        => $machine->run,
+    osversion  => $machine->osversion,
+    runs       => \@runs,
   );
-  
-  $tmpl->param(results => \@results, title => $titles{$summary}, count => scalar @results);
-
+    
   print $p->header, $tmpl->output;
 }
 
@@ -277,6 +246,63 @@ sub search {
   print $p->header, $tmpl->output;
 }
 
+sub async_machine_events {
+  my ($p) = @_;
+  
+  my $run     = $p->param('run');
+  my $machine = $p->param('machine');
+  
+  my @events = map { {
+    type       => $_->type,
+    msg        => $_->msg,
+    port       => $_->port,
+    port_id    => $_->port->id,
+    run        => $_->port->run,
+    time       => $_->time,
+  }} Magus::Event->search_by_run_and_machine($run, $machine);
+  
+  my %details = (run => $run, machine => $machine);
+  
+  my $tmpl = template($p, 'machine-events.tmpl');
+  $tmpl->param(events => \@events);
+
+  $details{html} = $tmpl->output;
+  
+  print $p->header(-type => 'text/plain'), encode_json(\%details);
+}
+
+sub async_run_port_stats {
+  my ($p) = @_;
+  
+  my $run    = $p->param('run');
+  my $status = $p->param('status');
+  
+  my %details = (run => $run, status => $status);
+  my @ports;
+  
+  if ($status eq 'ready') {
+    @ports = Magus::Port->search_ready_ports($run);
+  } else {
+    @ports = Magus::Port->search(run => $run, status => $status);
+  }
+  
+  my @results = map {{
+    summary   => $_->status,
+    port      => $_->name,
+    version   => $_->version,
+    arch      => $_->run->arch,
+    id        => $_->id,
+    run       => $_->run,
+    osversion => $_->run->osversion,
+  }} @ports;
+                                  
+  my $tmpl = template($p, 'result-list.tmpl');
+  $tmpl->param(results => \@results);
+
+  $details{html} = $tmpl->output;
+  
+  print $p->header(-type => 'text/plain'), encode_json(\%details);
+}
   
 
 sub template {
