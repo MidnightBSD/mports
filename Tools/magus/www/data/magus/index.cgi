@@ -136,16 +136,17 @@ sub port_page {
   $port = Magus::Port->retrieve($port) || die "No such port: $port";
   
   $tmpl->param(
-    port => $port->name, 
+    port      => $port->name, 
     id        => $port->id,
-    title => "Magus // $port",
-    desc  => $port->description,
-    www   => $port->www,
-    version => $port->version,
-    run     => $port->run->id,
+    title     => "Magus // $port",
+    desc      => $port->description,
+    www       => $port->www,
+    version   => $port->version,
+    run       => $port->run->id,
     osversion => $port->run->osversion,
     arch      => $port->run->arch,
     status    => $port->status,
+    can_reset => $port->run->status eq 'active' ? 1 : 0,
   );
   
   my @events = map { { 
@@ -221,7 +222,7 @@ sub search {
   
   my $query = $p->param('q');
   
-  my @ports = Magus::Port->retrieve_from_sql("name LIKE ?", "%$query%");
+  my @ports = Magus::Port->retrieve_from_sql("name LIKE ? ORDER BY name", "%$query%");
   
   if (@ports == 1) {
     my $id = $ports[0]->id;
@@ -237,6 +238,7 @@ sub search {
     id        => $_->id,
     run       => $_->run,
     osversion => $_->run->osversion,
+    can_reset => $_->run->status eq 'active' ? 1 : 0,
   }} @ports;
 
   my $tmpl = template($p, 'list.tmpl');
@@ -296,7 +298,7 @@ sub async_run_port_stats {
     osversion => $_->run->osversion,
   }} @ports;
                                   
-  my $tmpl = template($p, 'result-list.tmpl');
+  my $tmpl = template($p, 'port-list.tmpl');
   $tmpl->param(results => \@results);
 
   $details{html} = $tmpl->output;
