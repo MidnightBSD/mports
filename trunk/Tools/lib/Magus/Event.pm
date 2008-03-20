@@ -24,7 +24,7 @@ package Magus::Event;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Event.pm,v 1.1 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Event.pm,v 1.2 2008/03/14 18:43:15 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,6 +39,10 @@ __PACKAGE__->columns(All => qw/id port phase type name msg machine time/);
 __PACKAGE__->has_a(port => 'Magus::Port');
 __PACKAGE__->has_a(machine => 'Magus::Machine');
 
+__PACKAGE__->set_sql(by_run_and_machine => <<END_OF_SQL);
+SELECT events.* FROM events,ports 
+WHERE events.port=ports.id AND run=? AND machine=? ORDER BY time DESC
+END_OF_SQL
 
 =head2 types
 
