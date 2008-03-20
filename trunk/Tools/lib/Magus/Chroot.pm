@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.16 2008/03/07 01:21:55 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.17 2008/03/19 02:46:08 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -71,16 +71,17 @@ sub new {
   my ($class, %args) = @_;
   
   my $self = bless {
-    branch    => 'current',
-    prefix    => '/usr/magus',
+    branch      => 'current',
+    prefix      => '/usr/magus',
     # This are relative to $prefix/$branch
-    localbase => '/usr/local',
-    x11base   => '/usr/X11R6',
-    packages  => '/magus/packages',
-    distfiles => '/magus/distfiles',
-    workdir   => '/magus/work',    
-    logs      => '/magus/logs',
-    loopbacks => [qw(/usr/mports /usr/src)],
+    localbase   => '/usr/local',
+    x11base     => '/usr/X11R6',
+    linuxcompat => '/compat/linux',
+    packages    => '/magus/packages',
+    distfiles   => '/magus/distfiles',
+    workdir     => '/magus/work',    
+    logs        => '/magus/logs',
+    loopbacks   => [qw(/usr/mports /usr/src)],
     %args,
   }, $class;
 
@@ -150,7 +151,7 @@ sub _init {
 sub _clean {
   my ($self) = @_;
   
-  for (qw(workdir x11base localbase packages logs)) {
+  for (qw(workdir x11base localbase packages logs linuxcompat)) {
     $self->_clear_flags($self->{$_});
     rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
