@@ -30,6 +30,37 @@ function process_showPorts() {
     }
 }
 
+function showEvents(machine, run) {
+	var td = document.getElementById("events-display");
+
+	if (run.length == 0) {
+		td.style.display = 'none';
+		return false;
+	}
+
+	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
+	td.style.display = 'table-cell';
+
+	var url = 'http://www.midnightbsd.org/magus/async/machine-events?machine=' + machine + '&run=' + run;
+	sendAsycQuery(url, process_showEvents);
+	return false;
+}
+
+function process_showEvents() {
+    // only if req shows "loaded"
+    if (req.readyState == 4) {
+        // only if "OK"
+        if (req.status == 200) {
+            var result = eval( "(" + req.responseText + ")" );
+            var td = document.getElementById("events-display");
+	    td.innerHTML = result.html;	    
+        } else {
+            alert("There was a problem retrieving the data:\n" + req.statusText);
+        }
+    }
+}
+
+
 
 function sendAsycQuery(url, callback) {
     // branch for native XMLHttpRequest object	
