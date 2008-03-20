@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.82 2008/03/19 02:00:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.83 2008/03/19 16:43:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -577,7 +577,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # SKIP_FAKE_CHECK	- If MPORT_MAINTAINER_MODE is set, then each file in the plist will
 #					  checked to see if it contains ${FAKE_DESTDIR}.  Sometimes this 
 #					  produces false positives (a file contains the fake destdir, but 
-#					  its precense is harmless).  This variable is a list of files that 
+#					  its presence is harmless).  This variable is a list of files that 
 #					  will not be checked.
 #
 # Variables that serve as convenient "aliases" for your *-install targets.
@@ -1028,7 +1028,18 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #
 # End of the list of all variables that need to be defined in a port.
 # Most port authors should not need to understand anything after this point.
+############################################################################
+
+# A few variables that are useful to things like magus or mport system 
+# maintaince...
 #
+# INDEXING 		- Set when a index of the system is being built. Turns
+#				  off the inclusion of options.  Sadly by the time this 
+#				  variable exists, /etc/make.conf has already been included.
+#				  You'll need to turn this off by settting __MAKE_CONF to 
+#				  /dev/null when you invoke 'make'.
+#
+
 
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
@@ -1225,12 +1236,14 @@ WITHOUT_${W}:=	true
 .	undef RO
 .	undef REALOPTIONS
 .	endif
+.if !defined(INDEXING)
 .	if exists(${_OPTIONSFILE}) && !make(rmconfig)
 .	include "${_OPTIONSFILE}"
 .	endif
 .	if exists(${_OPTIONSFILE}.local)
 .	include "${_OPTIONSFILE}.local"
 .	endif
+.endif
 .endif
 
 # check for old, crufty, makefile types, part 1:
@@ -5564,7 +5577,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.82 2008/03/19 02:00:23 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.83 2008/03/19 16:43:42 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
