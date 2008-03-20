@@ -296,6 +296,7 @@ sub async_run_port_stats {
     id        => $_->id,
     run       => $_->run,
     osversion => $_->run->osversion,
+    can_reset => $_->run->status eq 'active' ? 1 : 0,
   }} @ports;
                                   
   my $tmpl = template($p, 'port-list.tmpl');
