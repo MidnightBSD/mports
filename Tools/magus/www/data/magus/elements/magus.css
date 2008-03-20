@@ -121,8 +121,7 @@ div.left {
 	max-width: 75%;	
 }
 
-table.run-summary, table.result-list, table.port-results, table.event-list {
-	max-width: 100%;
+table.run-summary, table.result-list, table.port-results, table.event-list, table.machine-summary {
 	width: 100%;
 }
 
