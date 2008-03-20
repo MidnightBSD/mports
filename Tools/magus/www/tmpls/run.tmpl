@@ -1,0 +1,35 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<h2>Run <TMPL_VAR name="id"></h2>
+
+<table class="run-summary">
+<tr>
+	<th>ID</th>
+	<th>OSVersion</th>
+	<th>Arch</th>
+	<th>Status</th>
+	<th>Created</th>
+	<th></th>
+</tr>
+<tr>
+	<td><TMPL_VAR NAME="id"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_VAR NAME="status"></td>
+	<td><TMPL_VAR NAME="created"></td>
+	<td>
+	<select onchange="return showPorts(<TMPL_VAR NAME="id">, this.value);">
+		<option value="">Port Statistics</option>
+	    <TMPL_LOOP NAME="status_stats">
+		<option value="<TMPL_VAR NAME="status">"><TMPL_VAR NAME="status"> -- <TMPL_VAR NAME="count"></option>
+	    </TMPL_LOOP>
+	</select>
+	</td>
+</tr>
+<tr>
+	<td colspan="6" id="ports-display" style="display: none">
+	</td>
+</tr>
+</table>
+
+<TMPL_INCLUDE NAME="footer.tmpl">
