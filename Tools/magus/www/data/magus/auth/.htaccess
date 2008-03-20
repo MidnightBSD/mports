@@ -1,4 +1,5 @@
 AuthType Basic
 AuthName "Authorization Required"
-AuthUserFile /usr/local/etc/apache22/magus-passwd
+AuthBasicProvider file
+AuthUserFile /home/mbsd/magus/magus-passwd
 Require valid-user
