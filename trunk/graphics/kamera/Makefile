@@ -2,6 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/kamera/Makefile,v 1.15 2006/09/12 23:26:17 lofi Exp $
 #
 
@@ -14,7 +15,7 @@ PKGNAMEPREFIX=	kdegraphics-
 DISTNAME=	kdegraphics-${PORTVERSION}
 DIST_SUBDIR=	KDE
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital camera support for KDE
 
 LIB_DEPENDS+=	gphoto2:${PORTSDIR}/graphics/libgphoto2
