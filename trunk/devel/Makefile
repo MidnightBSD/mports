@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.197 2008/03/21 20:31:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.198 2008/03/21 20:35:12 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -168,6 +168,7 @@
     SUBDIR += p5-Module-Pluggable
     SUBDIR += p5-MRO-Compat
     SUBDIR += p5-Net-DBus
+    SUBDIR += p5-Params-Util
     SUBDIR += p5-Params-Validate
     SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
@@ -181,11 +182,13 @@
     SUBDIR += p5-String-Ediff
     SUBDIR += p5-Sub-Uplevel
     SUBDIR += p5-Test-Base
+    SUBDIR += p5-Test-ClassAPI
     SUBDIR += p5-Test-Exception
     SUBDIR += p5-Test-Harness
     SUBDIR += p5-Test-Pod
     SUBDIR += p5-Test-Pod-Coverage
     SUBDIR += p5-Test-Simple
+    SUBDIR += p5-Test-SubCalls
     SUBDIR += p5-Tie-IxHash
     SUBDIR += p5-Time-HiRes
     SUBDIR += p5-Time-Local
