@@ -2,12 +2,13 @@
 # Date created:				7 June 2005
 # Whom:					Loren M. Lang
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.1 2008/01/30 22:20:01 laffer1 Exp $
 # $FreeBSD: ports/net/x11vnc/Makefile,v 1.10 2007/10/10 01:16:52 araujo Exp $
 #
 
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.3
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=libvncserver
@@ -18,7 +19,7 @@ COMMENT=	VNC server for use with real X displays
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg
 
 USE_GNOME=	gnometarget
-USE_X_PREFIX=	yes
+USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 USE_GCC=	3.4+
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
