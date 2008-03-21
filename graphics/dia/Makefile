@@ -2,12 +2,13 @@
 # Date created:        21 December 1999
 # Whom:                saper@system.pl
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/dia/Makefile,v 1.1 2007/12/28 04:28:25 laffer1 Exp $
 # $FreeBSD: ports/graphics/dia/Makefile,v 1.64 2007/05/19 20:08:48 flz Exp $
 #
 
 PORTNAME=	dia
 DISTVERSION=	0.96.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -50,10 +51,19 @@ PLIST_SUB=	PYTHON:="@comment "
 .if ${HAVE_GNOME:Mlibgnomeui}!=""
 USE_GNOME+=		libgnomeui
 CONFIGURE_ARGS+=	--enable-gnome --enable-bonobo
+GNOME_ENABLED=		yes
 PKGNAMESUFFIX=		-gnome
 .else
+CONFIGURE_ARGS+=      --disable-gnome --disable-bonobo
+.endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+		${WRKSRC}/lib/intl.c
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
+		's|[(]pkgdatadir[)]/help|(datadir)/gnome/help/dia|g ; \
+		s|[(]datadir[)]/help|(datadir)/gnome/help|g'
+.ifndef (GNOME_ENABLED)
 	@${FIND} ${WRKSRC} -name Makefile.in | \
 		${XARGS} ${REINPLACE_CMD} -e \
 		's,\(^GTK_LIBS.*\),\1 ${PTHREAD_LIBS}, ; \
@@ -66,7 +76,7 @@ pre-configure:
 		${WRKSRC}/configure
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/dia.xpm ${PREFIX}/share/gnome/dia/
+	@${INSTALL_DATA} ${WRKSRC}/dia.xpm ${PREFIX}/share/dia/
 	@-update-desktop-database
 
 .include <bsd.port.post.mk>
