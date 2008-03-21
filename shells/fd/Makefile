@@ -2,12 +2,12 @@
 # Date created:         20 Feb 1996
 # Whom:                 Nobuhiro Yasutomi <nobu@psrc.isac.co.jp>
 #
-# $MidnightBSD: mports/shells/fd/Makefile,v 1.1 2006/09/18 02:09:49 laffer1 Exp $
+# $MidnightBSD: mports/shells/fd/Makefile,v 1.2 2007/05/17 17:33:02 ctriv Exp $
 # $FreeBSD: ports/shells/fd/Makefile,v 1.80 2006/07/24 09:44:11 knu Exp $
 #
 
 PORTNAME=	fd
-PORTVERSION=	2.08f
+PORTVERSION=	2.09g
 CATEGORIES=	shells
 MASTER_SITES=	http://hp.vector.co.jp/authors/VA012337/soft/fd/ \
 		ftp://ftp.unixusers.net/src/fdclone/
