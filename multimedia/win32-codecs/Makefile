@@ -3,7 +3,7 @@
 # Whom: 		Holger Lamm
 #
 # $FreeBSD: ports/multimedia/win32-codecs/Makefile,v 1.40 2006/12/05 01:50:03 acm Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.2 2006/12/13 20:44:57 laffer1 Exp $
 #
 
 PORTNAME=	win32-codecs
@@ -25,6 +25,7 @@ EXTRACT_ONLY=	all-20061022.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Huge compilation of Win32 binary video codecs
+LICENSE=	restricted
 
 RESTRICTED=	Unsure of codec's license			# '
 
@@ -84,15 +85,15 @@ post-extract:
 .endfor
 
 do-install:
-	@${MKDIR} ${PREFIX}/lib/win32
-	@${CHMOD} 0755 ${PREFIX}/lib/win32
+	${MKDIR} ${PREFIX}/lib/win32
+	${CHMOD} 0755 ${PREFIX}/lib/win32
 .if !defined(WITHOUT_REALPLAYER)
-	@${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/lib/win32
+	${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/lib/win32
 .else
-	@${INSTALL_DATA} ${WRKSRC}/*[^0] ${PREFIX}/lib/win32
+	${INSTALL_DATA} ${WRKSRC}/*[^0] ${PREFIX}/lib/win32
 .endif
 # marker file
-	@${CP} /dev/null ${PREFIX}/lib/win32/${PKGNAME}
-	@${CHMOD} 0444 ${PREFIX}/lib/win32/${PKGNAME}
+	${CP} /dev/null ${PREFIX}/lib/win32/${PKGNAME}
+	${CHMOD} 0444 ${PREFIX}/lib/win32/${PKGNAME}
 
 .include <bsd.port.post.mk>
