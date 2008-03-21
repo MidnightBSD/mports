@@ -2,7 +2,7 @@
 # Date created:				2004-04-04
 # Whom:					arved
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/libcdio/Makefile,v 1.1 2006/10/05 00:43:43 laffer1 Exp $
 # $FreeBSD: ports/sysutils/libcdio/Makefile,v 1.23 2006/09/04 14:37:15 mich Exp $
 
 PORTNAME=	libcdio
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	libcdio
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compact Disc Input and Control Library
 
-LIB_DEPENDS=	cddb.3:${PORTSDIR}/audio/libcddb \
+LIB_DEPENDS=	cddb.4:${PORTSDIR}/audio/libcddb \
 		popt.0:${PORTSDIR}/devel/popt
 
 GNU_CONFIGURE=	yes
