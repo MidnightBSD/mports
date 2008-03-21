@@ -9,6 +9,16 @@ use CGI;
 use HTML::Template;
 use JSON::XS;
 
+#
+# This is a trick we do so that the abstract search stuff isn't required
+# on all the nodes, only the webapp needs this.  We'll just slip
+# the search_where() method into Magus::DBI here...
+#
+{
+  package Magus::DBI;
+  use Class::DBI::AbstractSearch;
+}
+
 eval {
   main();
   exit 0;
@@ -221,8 +231,24 @@ sub search {
   my ($p) = @_;
   
   my $query = $p->param('q');
+  my %where;
+  while ($query =~ s/(\S+):(\S+)//) {
+    push(@{$where{$1}}, $2)
+  }
+    
+  $query =~ s/^\s*//;
+  $query =~ s/\s*$//;
+  $query =~ s/\*/%/g;
+    
+  $where{name} = { like => "%$query%" } if $query;
+  if ($where{status}) {
+    delete $where{status} if grep { m/any/i } @{$where{status}};
+  } else {
+    $where{status} = { '!=', 'untested' };
+  }
+      
   
-  my @ports = Magus::Port->retrieve_from_sql("name LIKE ? ORDER BY name", "%$query%");
+  my @ports = Magus::Port->search_where(\%where, { order_by => 'name' });
   
   if (@ports == 1) {
     my $id = $ports[0]->id;
