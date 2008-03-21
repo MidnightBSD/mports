@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.3 2007/12/30 00:54:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.4 2008/03/21 01:25:03 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.53 2007/07/01 08:56:12 novel Exp $
 #   $MCom: ports/devel/libsoup/Makefile,v 1.36 2006/04/13 07:52:33 bland Exp $
 #
@@ -36,7 +36,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 PLIST_SUB=	VERSION="2.2"
 
 .if !defined(WITHOUT_SSL)
-LIB_DEPENDS+=	gnutls.13:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
 .else
 CONFIGURE_ARGS+=--disable-ssl
 .endif
