@@ -271,6 +271,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Indianapolis
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Knox
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Marengo
 %%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Petersburg
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Tell_City
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Vevay
 %%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Vincennes
 %%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Indiana/Winamac
