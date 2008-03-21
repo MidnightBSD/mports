@@ -3,11 +3,11 @@
 # Whom:				trevor
 #
 # $FreeBSD: ports/german/acroread/Makefile,v 1.6 2006/08/02 05:05:36 hrs Exp $
-# $MidnightBSD: mports/german/acroread/Makefile,v 1.1 2006/11/01 14:01:26 laffer1 Exp $
+# $MidnightBSD: mports/german/acroread/Makefile,v 1.2 2007/11/10 23:52:01 laffer1 Exp $
 #
 
 PORTVERSION=	7.0.9
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	german print linux
 MASTERDIR=	${.CURDIR}/../../print/acroread7
