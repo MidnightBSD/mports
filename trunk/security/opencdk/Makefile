@@ -2,12 +2,12 @@
 # Date created:		15 Jan 2003
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/opencdk/Makefile,v 1.1 2007/12/30 01:32:04 laffer1 Exp $
 # $FreeBSD: ports/security/opencdk/Makefile,v 1.26 2007/02/14 12:09:24 novel Exp $
 #
 
 PORTNAME=	opencdk
-PORTVERSION=	0.5.13
+PORTVERSION=	0.6.0
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	http://josefsson.org/gnutls/releases/opencdk/ \
@@ -20,10 +20,11 @@ MASTER_SITE_SUBDIR=	alpha/gnutls/opencdk
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Crypto Development Kit
 
-LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+USE_GNOME=	pkgconfig ltverhack
+USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-libgcrypt-prefix=${LOCALBASE}
