@@ -2,13 +2,13 @@
 # Date created:				15 Aug 2004
 # Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/nvidia-settings/Makefile,v 1.2 2007/03/14 21:19:09 laffer1 Exp $
+# $MidnightBSD: mports/x11/nvidia-settings/Makefile,v 1.3 2007/12/06 03:49:37 laffer1 Exp $
 # $FreeBSD: ports/x11/nvidia-settings/Makefile,v 1.17 2006/12/06 15:06:13 acm Exp $
 #
 
 PORTNAME=	nvidia-settings
 PORTVERSION=	1.0
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_NVIDIA:S,$,XFree86/${PORTNAME}/,} \
 		${MASTER_SITE_LOCAL:S,$,bland/,}
@@ -19,6 +19,7 @@ LICENSE=	gpl2
 
 FAKE_OPTS=	prefixhack
 
+USE_GL=		yes
 USE_XLIB=	yes
 USE_GNOME=	gtk20
 USE_GMAKE=	yes
