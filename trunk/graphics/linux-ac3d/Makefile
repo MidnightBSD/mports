@@ -2,31 +2,30 @@
 # Date created:		12 July 2002
 # Whom:			Igor Pokrovsky <tiamat@comset.net>
 #
-# $MidnightBSD: mports/graphics/linux-ac3d/Makefile,v 1.1 2006/09/23 22:21:44 laffer1 Exp $
-# $FreeBSD: ports/graphics/linux-ac3d/Makefile,v 1.17 2006/09/01 17:44:14 pav Exp $
+# $FreeBSD: ports/graphics/linux-ac3d/Makefile,v 1.22 2007/07/29 00:21:32 pav Exp $
 #
 
-BROKEN=fetch fails
-
 PORTNAME=	ac3d
-PORTVERSION=	6.030
-PORTREVISION=	1
+PORTVERSION=	6.205
 CATEGORIES=	graphics linux
-MASTER_SITES=	http://www.ac3d.org/ac3d/download/release6/
+MASTER_SITES=	http://www.inivis.com/ac3d/download/release6/ \
+		http://freebsd.unixfreunde.de/sources/
 PKGNAMEPREFIX=	linux-
 DISTNAME=	${PORTNAME}lx${PORTVERSION:R}${PORTVERSION:E}
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	hernan.di.pietro@gmail.com
 COMMENT=	Easy to use and powerful 3D graphics modeller (trial version)
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libjpeg.so.62:${PORTSDIR}/graphics/linux-jpeg \
 		${LINUXBASE}/usr/lib/libpng.so.2:${PORTSDIR}/graphics/linux-png10 \
-		${LINUXBASE}/usr/lib/libtiff.so.3:${PORTSDIR}/graphics/linux-tiff \
-		${LINUXBASE}/usr/X11R6/lib/libGLU.so.1:${PORTSDIR}/graphics/linux_dri
+		${LINUXBASE}/usr/lib/libtiff.so.3:${PORTSDIR}/graphics/linux-tiff
 
 .ifdef(WITH_NVIDIA_GL)
-RUN_DEPENDS+=	${LINUXBASE}/usr/lib/libGL.so.1:${PORTSDIR}/x11/nvidia-driver
+RUN_DEPENDS+=	${LINUXBASE}/usr/lib/libGL.so.1:${PORTSDIR}/x11/nvidia-driver \
+		${LINUXBASE}/usr/X11R6/lib/libGLU.so.1:${PORTSDIR}/graphics/linux-libGLU
+.else
+RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libGLU.so.1:${PORTSDIR}/graphics/linux_dri
 .endif
 
 RESTRICTED=	no distribution permitted
@@ -39,11 +38,24 @@ WRKSRC=		${WRKDIR}/${PORTNAME}lx
 
 SUB_FILES=	ac3d ac3ds
 
+PORTDOCS=	*
+
+DESKTOP_ENTRIES="AC3D" \
+		"Edit 3D models" \
+		"ac3d" \
+		"ac3d" \
+		"" \
+		false
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ac3d ${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/ac3d ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/ac3ds ${PREFIX}/libexec
 	${INSTALL_SCRIPT} ${WRKDIR}/ac3ds ${PREFIX}/bin
+
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/manual/top_files/image002.png \
+		${PREFIX}/share/pixmaps/ac3d.png
 
 # Install small Tcl/Tk distribution
 # Tcl/Tk, installed from ports tree will also make a job,
@@ -59,7 +71,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/lib/tk8.4/*.tcl ${DATADIR}/lib/tk8.4
 	${MKDIR} ${DATADIR}/tcl
 
-.for i in tcl xbm
+.for i in tcl
 	${INSTALL_DATA} ${WRKSRC}/tcl/*.${i} ${DATADIR}/tcl
 .endfor
 
@@ -85,16 +97,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/IMPORTANT ${DOCSDIR}
-	${MKDIR} ${DOCSDIR}/manual
-	${INSTALL_DATA} ${WRKSRC}/manual/*.htm[l] ${DOCSDIR}/manual
-	${MKDIR} ${DOCSDIR}/manual/man_files
-.for i in gif jpg
-	${INSTALL_DATA} ${WRKSRC}/manual/man_files/*.${i} \
-		${DOCSDIR}/manual/man_files
-.endfor
-	${MKDIR} ${DOCSDIR}/manual/top_files
-	${INSTALL_DATA} ${WRKSRC}/manual/top_files/*.gif \
-		${DOCSDIR}/manual/top_files
+	cd ${WRKSRC} && \
+		${FIND} manual -type d -exec ${MKDIR} "${DOCSDIR}/{}" \; && \
+		${FIND} manual -type f -exec ${INSTALL_DATA} "{}" "${DOCSDIR}/{}" \;
 .endif
 
 # examples
