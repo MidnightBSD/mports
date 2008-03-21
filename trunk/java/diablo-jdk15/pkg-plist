@@ -1747,6 +1747,7 @@ diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Indianapolis
 diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Knox
 diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Marengo
 %%TZUPDATE%%diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Petersburg
+%%TZUPDATE%%diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Tell_City
 diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Vevay
 %%TZUPDATE%%diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Vincennes
 %%TZUPDATE%%diablo-jdk%%JDK_VERSION%%/jre/lib/zi/America/Indiana/Winamac
