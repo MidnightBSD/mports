@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.196 2008/03/21 20:30:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.197 2008/03/21 20:31:57 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -142,6 +142,7 @@
     SUBDIR += p5-Class-Inspector
     SUBDIR += p5-Class-Trigger
     SUBDIR += p5-Clone
+    SUBDIR += p5-Config-Tiny
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-Date-Manip
