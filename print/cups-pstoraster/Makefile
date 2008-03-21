@@ -2,7 +2,7 @@
 # Date created:		Jul 13 2002
 # Whom:			ports@FreeBSD.org
 #
-# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.2 2007/01/24 21:00:05 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.3 2007/10/31 02:18:30 laffer1 Exp $
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
 #
 
@@ -22,9 +22,8 @@ LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
 ESPGS_VER=	${PORTVERSION}
 GS_VERSION=	8.15
 
-BROKEN=		installs to /usr/local... doesn't fake right.
-#FAKE_OPTS=	prefixhack
-#FAKE_MAKEARGS=	DESTDIR=${FAKE_DESTDIR}${PREFIX}
+DESTDIRNAME=	install_prefix
+
 WRKSRC=		${WRKDIR}/espgs-${PORTVERSION}
 
 DATADIR=	${PREFIX}/share/espgs
