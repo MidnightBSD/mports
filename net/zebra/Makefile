@@ -2,7 +2,7 @@
 # Date created:		27 Feb 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/zebra/Makefile,v 1.1 2008/02/27 18:55:43 laffer1 Exp $
 #
 
 PORTNAME=	zebra
@@ -16,6 +16,7 @@ MASTER_SITES=	ftp://ftp.zebra.org/pub/zebra/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free RIPv1, RIPv2, OSPFv2, BGP4 route software (server/reflector)
+LICENSE=	gpl2
 
 CONFLICTS=	openbgpd-[0-9]* quagga-[0-9]*
 
@@ -111,7 +112,7 @@ PLIST_SUB+=	VTYSH="@comment "
 .endif
 
 post-install:
-	@( cd ${WRKSRC}/doc; ${RM} -f zebra*info*; ${MAKE} zebra.info install )
+	@( cd ${WRKSRC}/doc; ${RM} -f zebra*info*; ${MAKE} ${FAKE_MAKEARGS} zebra.info install )
 	@${SED} -e "s=!!PREFIX!!=${PREFIX}=" \
 		< ${FILESDIR}/zebractl.sh  \
 		> ${PREFIX}/sbin/zebractl
