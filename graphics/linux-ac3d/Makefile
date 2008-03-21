@@ -2,6 +2,7 @@
 # Date created:		12 July 2002
 # Whom:			Igor Pokrovsky <tiamat@comset.net>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/linux-ac3d/Makefile,v 1.22 2007/07/29 00:21:32 pav Exp $
 #
 
@@ -14,7 +15,7 @@ PKGNAMEPREFIX=	linux-
 DISTNAME=	${PORTNAME}lx${PORTVERSION:R}${PORTVERSION:E}
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	hernan.di.pietro@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use and powerful 3D graphics modeller (trial version)
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libjpeg.so.62:${PORTSDIR}/graphics/linux-jpeg \
