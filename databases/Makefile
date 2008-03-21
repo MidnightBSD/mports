@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.54 2007/10/12 21:35:48 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.55 2007/10/15 06:38:23 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -17,6 +17,7 @@
     SUBDIR += db44
     SUBDIR += db45
     SUBDIR += db46
+    SUBDIR += evolution-data-server
     SUBDIR += freetds
     SUBDIR += freetds-msdblib
     SUBDIR += gdbm
