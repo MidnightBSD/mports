@@ -2,7 +2,7 @@
 # Date Created:			7 May 2004
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/xf86ext/Makefile,v 1.1 2006/10/04 16:18:20 laffer1 Exp $
+# $MidnightBSD: mports/x11/xf86ext/Makefile,v 1.2 2007/12/06 00:29:27 laffer1 Exp $
 # $FreeBSD: ports/x11/xf86ext/Makefile,v 1.5 2005/03/06 00:15:07 lesi Exp $
 #
 
@@ -31,6 +31,7 @@ NO_BUILD=	yes
 DEST=${PREFIX}/include/X11/extensions
 
 do-install:
+	${MKDIR} ${DEST}
 	${INSTALL_DATA} ${WRKSRC}/xf86mscstr.h ${DEST}
 	${INSTALL_DATA} ${WRKSRC}/xf86misc.h ${DEST}
 	${INSTALL_DATA} ${WRKSRC}/xf86vmstr.h ${DEST}
