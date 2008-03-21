@@ -1,100 +1,59 @@
 @comment I can't add the below files to the package because pkg_delete
 @comment will complain when removing this package:
-@comment     lib/modules/extensions/XXX-libglx.so.%%XLIBVERSION%%
-@comment     lib/modules/extensions/XXX-libGLcore.so.%%XLIBVERSION%%
-@comment     lib/XXX-libGL.a.%%XLIBVERSION%%
-@comment     lib/XXX-libGL.so.1.%%XLIBVERSION%%
+@comment     %%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%%
+@comment     %%MODULESDIR%%/extensions/XXX-libGLcore.so.%%%%.%%XSERVVERSION%%
+@comment     %%MODULESDIR%%/XXX-libwfb.so.%%%%.%%XSERVVERSION%%
+@comment     lib/XXX-libGL.a.%%%%.%%XLIBVERSION%%
+@comment     lib/XXX-libGL.so.1.%%%%.%%XLIBVERSION%%
 @comment They are however restored when this package is removed:
-@unexec mv -f %D/lib/modules/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%% %D/lib/modules/extensions/libglx.so
-@unexec mv -f %D/lib/modules/extensions/XXX-libGLcore.so.%%%%.%%XSERVVERSION%% %D/lib/modules/extensions/libGLcore.so
-@unexec mv -f %D/lib/XXX-libGL.a.%%%%.%%XLIBVERSION%% %D/lib/libGL.a
+%%XORG%%@exec mv -f %D/%%MODULESDIR%%/extensions/libglx.la %D/%%MODULESDIR%%/extensions/XXX-libglx.la.%%%%.%%XSERVVERSION%%
+%%XORG%%@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libglx.la.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libglx.la
+@exec mv -f %D/%%MODULESDIR%%/extensions/libglx.so %D/%%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%%
+@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libglx.so
+%%XORG%%@exec mv -f %D/%%MODULESDIR%%/extensions/libGLcore.la %D/%%MODULESDIR%%/extensions/XXX-libGLcore.la.%%%%.%%XSERVVERSION%%
+%%XORG%%@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libGLcore.la.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libGLcore.la
+@exec mv -f %D/%%MODULESDIR%%/extensions/libGLcore.so %D/%%MODULESDIR%%/extensions/XXX-libGLcore.so.%%%%.%%XSERVVERSION%%
+@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libGLcore.so.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libGLcore.so
+%%XFREE86%%@unexec mv -f %D/lib/XXX-libGL.a.%%%%.%%XLIBVERSION%% %D/lib/libGL.a
+@exec mv -f %D/lib/libGL.so.1 %D/lib/XXX-libGL.so.1.%%%%.%%XLIBVERSION%%
 lib/libGL.so.1
 @unexec mv -f %D/lib/XXX-libGL.so.1.%%%%.%%XLIBVERSION%% %D/lib/libGL.so.1
-@exec ln -sf %D/lib/libGL.so.1 %D/lib/libGL.so
-@comment no rm -f %D/lib/libGL.so because default XFree needs this also
+@exec ln -sf libGL.so.1 %D/lib/libGL.so
+@comment No rm -f %D/lib/libGL.so because default XFree needs this also
 lib/libGLcore.so.1
-@exec ln -sf %D/lib/libGLcore.so.1 %D/lib/libGLcore.so
+@exec ln -sf libGLcore.so.1 %D/lib/libGLcore.so
 @unexec rm -f %D/lib/libGLcore.so
 lib/libXvMCNVIDIA.so.1
-@exec ln -sf %D/lib/libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA.so
+@exec ln -sf libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA.so
 @unexec rm -f %D/lib/libXvMCNVIDIA.so
-@exec ln -sf %D/lib/libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA_dynamic.so.1
+@exec ln -sf libXvMCNVIDIA.so.1 %D/lib/libXvMCNVIDIA_dynamic.so.1
 @unexec rm -f %D/lib/libXvMCNVIDIA_dynamic.so.1
 lib/libnvidia-cfg.so.1
-@exec ln -sf %D/lib/libnvidia-cfg.so.1 %D/lib/libnvidia-cfg.so
+@exec ln -sf libnvidia-cfg.so.1 %D/lib/libnvidia-cfg.so
 @unexec rm -f %D/lib/libnvidia-cfg.so
 lib/libnvidia-tls.so.1
-@exec ln -sf %D/lib/libnvidia-tls.so.1 %D/lib/libnvidia-tls.so
+@exec ln -sf libnvidia-tls.so.1 %D/lib/libnvidia-tls.so
 @unexec rm -f %D/lib/libnvidia-tls.so
 lib/libXvMCNVIDIA.a
-lib/modules/libnvidia-wfb.so.1
-@exec ln -sf %D/lib/modules/libnvidia-wfb.so.1 %D/lib/modules/libwfb.so
-@unexec rm -f %D/lib/modules/libwfb.so
-lib/modules/drivers/nvidia_drv.o
-lib/modules/drivers/nvidia_drv.so
-lib/modules/extensions/libglx.so.1
-@exec ln -sf %D/lib/modules/extensions/libglx.so.1 %D/lib/modules/extensions/libglx.so
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-a.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-b.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-c.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-d.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-e.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-f.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-g.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-h.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-i.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-j.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-k.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-l.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-m.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-n.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-o.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-p.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-q.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-r.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-s.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-t.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-u.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-v.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-w.html
-%%PORTDOCS%%%%DOCSDIR%%/html/appendix-x.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-01.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-02.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-03-section-02.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-03.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-04.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-05.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-06.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-07.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-08.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-09.html
-%%PORTDOCS%%%%DOCSDIR%%/html/chapter-10.html
-%%PORTDOCS%%%%DOCSDIR%%/html/index.html
-%%PORTDOCS%%%%DOCSDIR%%/html/part-01.html
-%%PORTDOCS%%%%DOCSDIR%%/html/part-02.html
-%%PORTDOCS%%%%DOCSDIR%%/html/part-03.html
-%%PORTDOCS%%%%DOCSDIR%%/html/preface-01.html
-%%PORTDOCS%%%%DOCSDIR%%/html/preface-02.html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/README.Linux
-%%PORTDOCS%%%%DOCSDIR%%/XF86Config.sample
-%%PORTDOCS%%%%DOCSDIR%%/license.txt
-%%PORTDOCS%%%%DOCSDIR%%/gl.h
-%%PORTDOCS%%%%DOCSDIR%%/glx.h
-%%PORTDOCS%%%%DOCSDIR%%/glext.h
-%%PORTDOCS%%%%DOCSDIR%%/glxtokens.h
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%MODULESDIR%%/libnvidia-wfb.so.1
+%%XORG%%@exec mv -f %D/%%MODULESDIR%%/libwfb.so %D/%%MODULESDIR%%/XXX-libwfb.so.%%%%.%%XSERVVERSION%% && ln -sf libnvidia-wfb.so.1 %D/%%MODULESDIR%%/libwfb.so
+%%XORG%%@unexec mv -f %D/%%MODULESDIR%%/XXX-libwfb.so.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/libwfb.so
+%%MODULESDIR%%/drivers/nvidia_drv.o
+%%MODULESDIR%%/drivers/nvidia_drv.so
+%%MODULESDIR%%/extensions/libglx.so.1
+@exec ln -sf libglx.so.1 %D/%%MODULESDIR%%/extensions/libglx.so
 @cwd /boot/modules
 nvidia.ko
 @unexec kldxref %D
 %%LINUX%%@cwd %%LINUXBASE%%
-%%LINUX%%usr/lib/libGL.so.1.0.%%NVVERSION%%
-%%LINUX%%usr/lib/libGLcore.so.1.0.%%NVVERSION%%
-%%LINUX%%usr/lib/libnvidia-tls.so.1.0.%%NVVERSION%%
-%%LINUX%%@exec ln -sf %D/usr/lib/libGL.so.1.0.%%NVVERSION%% %D/usr/lib/libGL.so.1
-%%LINUX%%@exec ln -sf %D/usr/lib/libGLcore.so.1.0.%%NVVERSION%% %D/usr/lib/libGLcore.so.1
-%%LINUX%%@exec ln -sf %D/usr/lib/libnvidia-tls.so.1.0.%%NVVERSION%% %D/usr/lib/libnvidia-tls.so.1
+%%LINUX%%usr/lib/libGL.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libGLcore.so.%%SHLIB_VERSION%%
+%%LINUX%%usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
+%%LINUX%%@exec ln -sf libGL.so.%%SHLIB_VERSION%% %D/usr/lib/libGL.so.1
+%%LINUX%%@exec ln -sf libGLcore.so.%%SHLIB_VERSION%% %D/usr/lib/libGLcore.so.1
+%%LINUX%%@exec ln -sf libnvidia-tls.so.%%SHLIB_VERSION%% %D/usr/lib/libnvidia-tls.so.1
 %%LINUX%%@unexec rm -f %D/usr/lib/libGL.so.1
 %%LINUX%%@unexec rm -f %D/usr/lib/libGLcore.so.1
 %%LINUX%%@unexec rm -f %D/usr/lib/libnvidia-tls.so.1
+%%LINUX%%@exec %D/sbin/ldconfig -r %D
+%%LINUX%%@unexec %D/sbin/ldconfig -r %D
