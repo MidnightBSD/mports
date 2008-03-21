@@ -1,10 +1,10 @@
-@comment $FreeBSD: ports/security/opencdk/pkg-plist,v 1.9 2007/02/14 12:09:24 novel Exp $
+@comment $FreeBSD: ports/security/opencdk/pkg-plist,v 1.10 2007/10/31 05:40:39 novel Exp $
 bin/opencdk-config
 include/opencdk.h
 lib/libopencdk.a
 lib/libopencdk.la
 lib/libopencdk.so
-lib/libopencdk.so.9
+lib/libopencdk.so.10
 libdata/pkgconfig/opencdk.pc
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
@@ -13,11 +13,22 @@ libdata/pkgconfig/opencdk.pc
 %%PORTDOCS%%%%DOCSDIR%%/opencdk-api.html
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%EXAMPLESDIR%%/basic.c
-%%EXAMPLESDIR%%/minpg.c
+%%EXAMPLESDIR%%/newkey.gpg
+%%EXAMPLESDIR%%/photo-key.gpg
+%%EXAMPLESDIR%%/plain-test-pubenc-part.gpg
+%%EXAMPLESDIR%%/plain-test-sym.gpg
+%%EXAMPLESDIR%%/plain-test.gpg
 %%EXAMPLESDIR%%/pub.gpg
+%%EXAMPLESDIR%%/pub-asc.gpg
 %%EXAMPLESDIR%%/sec-with-pwd.gpg
 %%EXAMPLESDIR%%/sec.gpg
+%%EXAMPLESDIR%%/t-encr.c
+%%EXAMPLESDIR%%/t-key.c
+%%EXAMPLESDIR%%/t-keydb.c
+%%EXAMPLESDIR%%/t-misc.c
+%%EXAMPLESDIR%%/t-sign.c
 %%EXAMPLESDIR%%/t-stream.c
+%%EXAMPLESDIR%%/testpa.c
 %%EXAMPLESDIR%%/ts.gpg
 %%EXAMPLESDIR%%/wkold.gpg
 @dirrm %%EXAMPLESDIR%%
