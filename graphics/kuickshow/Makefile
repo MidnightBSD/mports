@@ -2,7 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/kuickshow/Makefile,v 1.1 2007/03/16 19:35:14 laffer1 Exp $
 # $FreeBSD: ports/graphics/kuickshow/Makefile,v 1.20 2006/09/12 23:26:18 lofi Exp $
 #
 
@@ -27,7 +27,7 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 USE_GNOME=	imlib
 
