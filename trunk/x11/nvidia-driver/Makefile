@@ -2,27 +2,29 @@
 # Date created:				4 December 2002
 # Whom:					Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.4 2007/03/14 21:09:35 laffer1 Exp $
-# $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.56 2007/02/26 11:29:34 danfe Exp $
+# $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.74 2008/03/07 21:47:38 flz Exp $
 #
 
 PORTNAME=	nvidia-driver
-PORTVERSION=	1.0.${NVVERSION}
-CATEGORIES=	x11
+DISTVERSION?=	169.12
+PORTREVISION?=	0			# For consistency with slave ports
+CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
-MASTER_SITE_SUBDIR=	freebsd/1.0-${NVVERSION}
-DISTNAME=	NVIDIA-FreeBSD-x86-${PORTVERSION:S/0./0-/}
+MASTER_SITE_SUBDIR=	freebsd/${DISTVERSION}
+DISTNAME=	NVIDIA-FreeBSD-x86-${DISTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
+LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	i386
 
-USE_X_PREFIX=	yes
 NO_PACKAGE=	should be recompiled for a particular BSD kernel
+USE_GL=		gl
 USE_LDCONFIG=	yes
 SUB_FILES+=	pkg-message
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
+PORTDOCS=	*
 
 OPTIONS=	FREEBSD_AGP	"Use BSD AGP GART driver" off \
 		VM86_INT10CALL	"Use VM86 interface for video BIOS calls" off \
@@ -30,32 +32,35 @@ OPTIONS=	FREEBSD_AGP	"Use BSD AGP GART driver" off \
 		LINUX		"Build with support for Linux compatibility" on
 
 # Starting with version 7667, NVidia has dropped support for numerous
-# "legacy" GPUs.  One can, however, build the port with specific NVVERSION
-# value set.  Currently supported "legacy" values are 7184 and 9631.
-# Consult NVidia README (Appendix A) to find out whether you need to use
-# legacy driver version.  Alternatively, you can install corresponding
-# `x11/nvidia-driver-XXXX' slave port, where XXXX == needed ${NVVERSION}.
+# "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
+# you need to use legacy driver version and install one of corresponding
+# `x11/nvidia-driver-71xx' or `x11/nvidia-driver-96xx' slave ports.
 #
-NVVERSION?=	9746			# The latest version to date
-
-.if ${NVVERSION} == 7184
-EXTRA_PATCHES+=	${FILESDIR}/6113-patch-lib::Makefile
-.else
-EXTRA_PATCHES+=	${FILESDIR}/7667-* \
-		${FILESDIR}/crash-patch-by-zander-1759235
-.endif
-
-LIB_DEPENDS+=	m.3:${PORTSDIR}/misc/compat5x
+# NVidia played it tricky with their versioning scheme once again.  To make
+# stable and legacy versions comparable, employ some sad ugly hackery: assign
+# NVVERSION for slave ports independently of master.  Hopefully, this is a
+# temporary measure and will go away soon.
+#
+NVVERSION?=	${DISTVERSION:S/.//g}00
 
 .include <bsd.port.pre.mk>
 
+MODULESDIR=	lib/xorg/modules
+XORG_SUB=	""
+XFREE86_SUB=	"@comment "
+
 # XXX Should use ${PKG_INFO} XXX
 #
-XSERVVERSION!=	/usr/sbin/pkg_info -O x11-servers/XFree86-4-Server 2>/dev/null | ${GREP} Server- || /usr/sbin/pkg_info -O x11-servers/xorg-server 2>/dev/null | ${GREP} server- || true
-XLIBVERSION!=	/usr/sbin/pkg_info -O x11/XFree86-4-libraries 2>/dev/null | ${GREP} libraries- || /usr/sbin/pkg_info -O x11/xorg-libraries 2>/dev/null | ${GREP} libraries- || true
+XSERVVERSION!=	/usr/sbin/pkg_info -O x11-servers/xorg-server 2>/dev/null | ${GREP} server- || /usr/sbin/pkg_info -qO x11-servers/xorg-server-snap 2>/dev/null || true
+XLIBVERSION!=	/usr/sbin/pkg_info -O graphics/libGL 2>/dev/null | ${GREP} libGL- || true
+
+.if empty(XSERVVERSION)
+IGNORE=		needs an X server implementation installed
+.endif
 
 PLIST_SUB+=	XSERVVERSION=${XSERVVERSION} XLIBVERSION=${XLIBVERSION} \
-		LINUXBASE=${LINUXBASE} NVVERSION=${NVVERSION}
+		LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
+		MODULESDIR=${MODULESDIR} XORG=${XORG_SUB} XFREE86=${XFREE86_SUB}
 
 .if !defined(WITHOUT_LINUX)
 # Add explicit X11 libraries dependency since USE_LINUX causes the port to
@@ -69,12 +74,26 @@ PLIST_SUB+=	LINUX="@comment "
 MAKE_ENV+=	WITHOUT_LINUX=yes
 .endif
 
+LIB_DEPENDS+=	m.3:${PORTSDIR}/misc/compat5x
+
 post-patch: .SILENT
 # We should support -CURRENT: kill the check
-.if ${NVVERSION} >= 7174
 	${REINPLACE_CMD} '24,26d' ${WRKSRC}/src/nv-freebsd.h
+# Fix `agpvar.h' location on recent -CURRENT
+.if ${OSVERSION} >= 800004
+	${REINPLACE_CMD} -e 's,pci/agpvar\.h,dev/agp/agpvar.h,' \
+		${WRKSRC}/src/nv-freebsd.h
 .endif
-	${REINPLACE_CMD} '/bus_memio\.h/d' ${WRKSRC}/src/nv-freebsd.h
+# Building with -Werror requires prototype for suser() which was moved
+.if ${OSVERSION} >= 700048
+	${REINPLACE_CMD} -e '15s,^,#include <sys/priv.h>,' \
+		${WRKSRC}/src/nvidia_os.c
+.endif
+# Correct prototypes to fix the build with FreeBSD AGP support
+.if ${NVVERSION} >= 1690700
+	${REINPLACE_CMD} -e '337,338s/(/(nv_stack_t *, /' \
+		${WRKSRC}/src/nv-freebsd.h
+.endif
 .if defined(WITH_FREEBSD_AGP)
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_OS_AGP)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
@@ -91,24 +110,41 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's/define (NV_SUPPORT_LINUX_COMPAT)/undef \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-.if ${NVVERSION} < 9746
+# Don't build any binaries (nvidia-settings and nvidia-xconfig)
+.if ${NVVERSION} < 974600
 	${REINPLACE_CMD} -E 's/(extension).*/\1/' ${WRKSRC}/x11/Makefile
 .else
 	${REINPLACE_CMD} -E 's/(lib).*/\1/' ${WRKSRC}/x11/Makefile
 .endif
 	${REINPLACE_CMD} '/bin/d ; /man/d' ${WRKSRC}/x11/Makefile
+# Conditionally install documentation (but you generally want it)
+.if defined(NOPORTDOCS)
+	${REINPLACE_CMD} -E 's/(x11).*/\1/ ; /doc/d' ${WRKSRC}/Makefile
+.endif
+# Do not execute afterinstall target (prevent automatic module registration)
+	${REINPLACE_CMD} -e 's/afterinstall/dontexecute/' ${WRKSRC}/Makefile
+
+pre-su-install:
+# XXX This port silently assumes PREFIX == X11BASE XXX
+	@${MKDIR} ${PREFIX}/${MODULESDIR}/drivers
+# xorg-server-1.4 installs its own ${X11BASE}/lib/xorg/modules/libwfb.so,
+# so back it up so it can be later restored similarly to what NVidia does:
+.if ${NVVERSION} >= 974600
+	@${MV} -f ${PREFIX}/${MODULESDIR}/libwfb.so \
+		${PREFIX}/${MODULESDIR}/XXX-libwfb.so.%%.${XSERVVERSION}
+.endif
 
 post-install:
 # pkg-plist is already overbloated, so use this hack instead of PLIST_SUB's
-.if ${NVVERSION} < 8174
-	@${REINPLACE_CMD} '/libnvidia-cfg/d ; /html/d' ${TMPPLIST}
+.if ${NVVERSION} < 817400
+	@${REINPLACE_CMD} '/libnvidia-cfg/d' ${TMPPLIST}
 .else
-	@${REINPLACE_CMD} '/README\.Linux/d ; /nvidia_drv\.o/d' ${TMPPLIST}
+	@${REINPLACE_CMD} '/nvidia_drv\.o/d' ${TMPPLIST}
 .endif
-.if ${NVVERSION} < 9746
-	@${REINPLACE_CMD} '/wfb/d ; /chapter-10/d' ${TMPPLIST}
+.if ${NVVERSION} < 974600
+	@${REINPLACE_CMD} '/wfb/d' ${TMPPLIST}
 .endif
-	${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
-	@${CAT} ${PKGMESSAGE}
+	@${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+	@${ECHO_MSG}
 
 .include <bsd.port.post.mk>
