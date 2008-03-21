@@ -2,27 +2,27 @@
 # Date created:			25 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-enemyterritory-fortress/Makefile,v 1.1 2006/10/04 02:40:24 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-fortress/Makefile,v 1.9 2006/05/31 01:43:26 alepulver Exp $
 #
 
 PORTNAME=	enemyterritory-fortress
 PORTVERSION=	1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games linux
-MASTER_SITES=	http://www.sonnensturm.net/download/
+MASTER_SITES=	http://www.foolishgames.net/download/
 PKGNAMEPREFIX=	linux-
 DISTNAME=	etf_${PORTVERSION}-english-2
 EXTRACT_SUFX=	.run
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A class-based teamplay modification for Enemy Territory
+LICENSE=	restricted
 
 RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386
+ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
-NO_PACKAGE=	Distfile is 263MB, set FORCE_PACKAGE if you really want to build this package
 RESTRICTED=	Redistribution is limited, see license
 NO_WRKSUBDIR=	yes
 ETDIR=		${PREFIX}/lib/enemyterritory
