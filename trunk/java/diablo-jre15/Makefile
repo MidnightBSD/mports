@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.6 2007/08/07 19:53:06 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.7 2007/08/30 01:40:01 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -26,6 +26,7 @@ RESTRICTED=	"License doesn't allow distribution with fee"
 USE_BZIP2=	yes
 USE_GCPIO=	yes
 USE_XLIB=	yes
+USE_XORG+=	xi xp xt xtst
 ONLY_FOR_ARCHS=	i386 amd64
 JRE_VERSION=	1.5.0
 RELEASE_VERSION=07
@@ -52,9 +53,9 @@ JRE_OSREL=freebsd6
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1.2.1
-TZUPDATE_TZVERSION=	2007f
-TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION:S/./_/g}-${TZUPDATE_TZVERSION}.zip
+TZUPDATE_VERSION=	1.3.3
+TZUPDATE_TZVERSION=	2007k
+TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
 PLIST_SUB+=		TZORIGINAL="@comment "
