@@ -1,0 +1,11 @@
+@comment $FreeBSD: ports/devel/p5-Pod-Coverage/pkg-plist,v 1.5 2006/08/07 12:31:49 mat Exp $
+%%PORTDOCS%%%%EXAMPLESDIR%%/check_installed
+%%PORTDOCS%%%%EXAMPLESDIR%%/script-covered
+%%SITE_PERL%%/Pod/Coverage.pm
+%%SITE_PERL%%/Pod/Coverage/CountParents.pm
+%%SITE_PERL%%/Pod/Coverage/ExportOnly.pm
+%%SITE_PERL%%/Pod/Coverage/Overloader.pm
+bin/pod_cover
+%%PORTDOCS%%@dirrmtry %%EXAMPLESDIR%%
+@dirrmtry %%SITE_PERL%%/Pod/Coverage
+@dirrmtry %%SITE_PERL%%/Pod
