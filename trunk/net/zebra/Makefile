@@ -2,11 +2,12 @@
 # Date created:		27 Feb 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/zebra/Makefile,v 1.1 2008/02/27 18:55:43 laffer1 Exp $
+# $MidnightBSD: mports/net/zebra/Makefile,v 1.2 2008/03/21 18:08:26 ctriv Exp $
 #
 
 PORTNAME=	zebra
 PORTVERSION=	0.95a
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.zebra.org/pub/zebra/ \
 		ftp://ftp.ripe.net/mirrors/sites/ftp.zebra.org/pub/zebra/ \
@@ -113,7 +114,7 @@ PLIST_SUB+=	VTYSH="@comment "
 
 post-install:
 	@( cd ${WRKSRC}/doc; ${RM} -f zebra*info*; ${MAKE} ${FAKE_MAKEARGS} zebra.info install )
-	@${SED} -e "s=!!PREFIX!!=${PREFIX}=" \
+	@${SED} -e "s=!!PREFIX!!=${TRUE_PREFIX}=" \
 		< ${FILESDIR}/zebractl.sh  \
 		> ${PREFIX}/sbin/zebractl
 	@${CHMOD} 555 ${PREFIX}/sbin/zebractl
