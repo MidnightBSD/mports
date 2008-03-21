@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.186 2008/01/04 16:25:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.187 2008/01/05 03:01:18 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -25,6 +25,7 @@
     SUBDIR += boehm-gc
     SUBDIR += boost
     SUBDIR += boost-python
+    SUBDIR += bug-buddy
     SUBDIR += bugzilla
     SUBDIR += c_c++_reference
     SUBDIR += cscope
