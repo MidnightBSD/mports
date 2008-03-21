@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/graphics/kooka/Makefile,v 1.14 2006/09/12 23:26:18 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.1 2007/01/26 03:34:00 laffer1 Exp $
 #
 
 PORTNAME=	kooka
@@ -30,7 +30,7 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 pre-configure:
 	${ECHO_CMD} libkscan ${PORTNAME} doc > ${WRKSRC}/inst-apps
