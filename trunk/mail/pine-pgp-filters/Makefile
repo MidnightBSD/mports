@@ -1,30 +1,47 @@
 # New ports collection makefile for:	pine-pgp-filters
 # Date created:				22 January 2003
 # Whom:					dougb
-# 
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.2 2007/02/18 02:19:12 laffer1 Exp $
-# $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.8 2006/06/27 17:21:19 dougb Exp $
+#
+# $MidnightBSD$
+# $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.13 2007/12/26 22:18:26 dougb Exp $
 #
 
 PORTNAME=	pine-pgp-filters
-PORTVERSION=	1.3
+PORTVERSION=	1.6
 CATEGORIES=	mail security
-MASTER_SITES=	http://dougbarton.us/Downloads/ \
+MASTER_SITES=	http://dougbarton.us/PGP/scripts/ppf/ \
 		${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	dougb
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Simple, fast, sh-based filters to integrate Pine with gnupg, or pgp6
+COMMENT=	Simple /bin/sh-based filters to use GnuPG with Pine or Alpine
+LICENSE=	bsd2
 
+.include <bsd.port.pre.mk>
+
+# We want to be version-agnostic here, but also record the right dependency
+# if the user installs the package and already has one or the other installed.
+.if exists(${LOCALBASE}/bin/gpg2)
+BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
+RUN_DEPENDS+=	gpg2:${PORTSDIR}/security/gnupg
+.else
+BUILD_DEPENDS=	gpg:${PORTSDIR}/security/gnupg1
+RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg1
+.endif
+
+.if exists(${LOCALBASE}/bin/pine)
 RUN_DEPENDS=	pine:${PORTSDIR}/mail/pine4
+.else
+RUN_DEPENDS=	alpine:${PORTSDIR}/mail/alpine
+.endif
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
-do-build:
-	cd ${WRKSRC} && ./configure --prefix=${FAKE_DESTDIR}${PREFIX}
+do-configure:
+	@(cd ${WRKSRC} && ./configure --prefix=${FAKE_DESTDIR}${PREFIX}) 
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -34,4 +51,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
