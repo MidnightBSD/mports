@@ -28,7 +28,7 @@
 -input.o: vlock.h
 +install:
 +	/usr/bin/install -c -s -o root -g wheel -m 4555 vlock ${PREFIX}/bin
-+	/usr/bin/install -c -o root -g wheel -m 444 vlock.1 ${DESTDIR}${MANPREFIX}/man/man1
++	/usr/bin/install -c -o root -g wheel -m 444 vlock.1 ${MANPREFIX}/man/man1
  
  clean:
 -	rm -f $(OBJS) vlock core core.vlock
