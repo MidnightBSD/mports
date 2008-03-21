@@ -2,12 +2,12 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.4 2007/10/17 04:28:04 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.5 2007/12/30 01:27:40 laffer1 Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
 PORTNAME=	gnutls
-PORTVERSION=	1.6.3
+PORTVERSION=	2.2.2
 CATEGORIES=	security net
 MASTER_SITES=	http://josefsson.org/gnutls/releases/ \
 	ftp://ftp.gnutls.org/pub/gnutls/ \
@@ -19,16 +19,16 @@ MASTER_SITE_SUBDIR=	alpha/gnutls
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 
-LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_GNOME=	pkgconfig ltverhack
 GNU_CONFIGURE=	yes
-USE_LDCONFIG= yes
-USE_AUTOTOOLS=        libtool:15
-USE_GCC=      3.4+
+USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	libtool:15
+USE_GCC=	3.4+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"
@@ -38,8 +38,8 @@ CONFIGURE_ARGS+=	--with-included-lzo \
 MANCOMPRESSED=	no
 
 .include <bsd.port.pre.mk>
-.if defined(WITH_OPENCDK) || exists(${LOCALBASE}/lib/libopencdk.so.9)
-LIB_DEPENDS+=	opencdk.9:${PORTSDIR}/security/opencdk
+.if defined(WITH_OPENCDK) || exists(${LOCALBASE}/lib/libopencdk.so.10)
+LIB_DEPENDS+=	opencdk.10:${PORTSDIR}/security/opencdk
 .endif
 
 .if defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.3)
