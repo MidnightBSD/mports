@@ -2,7 +2,7 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.4 2007/05/07 06:01:30 laffer1 Exp $
+# $MidnightBSD: mports/net-im/gaim/Makefile,v 1.5 2007/10/15 06:20:40 laffer1 Exp $
 # $FreeBSD: ports/net-im/gaim/Makefile,v 1.190 2006/08/26 19:15:08 garga Exp $
 #
 
@@ -16,6 +16,9 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Multi-protocol instant messaging client
 LICENSE=	gpl2
+
+DEPRECATED=	Use pidgin instead
+EXPIRES=	July 2008
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
