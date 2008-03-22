@@ -243,12 +243,14 @@ sub search {
   $query =~ s/\s*$//;
   $query =~ s/\*/%/g;
     
-  $where{name} = { like => "%$query%" } if $query;
   if ($where{status}) {
     delete $where{status} if grep { m/any/i } @{$where{status}};
-  } else {
+  } elsif (!%where) {
     $where{status} = { '!=', 'untested' };
   }
+
+  $where{name} = { like => "%$query%" } if $query;
+
 
   for (keys %where) {
     delete $where{$_} if m/\W/;
