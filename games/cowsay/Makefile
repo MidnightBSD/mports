@@ -2,7 +2,7 @@
 # Date created:		01 Sep 2000
 # Whom:			Kris Kennaway <kris@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/cowsay/Makefile,v 1.1 2007/12/30 00:59:09 laffer1 Exp $
 # $FreeBSD: ports/games/cowsay/Makefile,v 1.6 2004/12/09 03:01:44 kris Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	ftp://ftp.nog.net/pub/tony/cowsay/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable talking characters in ASCII art
+LICENSE=	artistic
 
 USE_PERL5=	yes
 
