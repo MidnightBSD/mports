@@ -2,7 +2,7 @@
 # Date created:			25 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-fortress/Makefile,v 1.1 2006/10/04 02:40:24 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-enemyterritory-fortress/Makefile,v 1.2 2008/03/21 22:20:51 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-fortress/Makefile,v 1.9 2006/05/31 01:43:26 alepulver Exp $
 #
 
@@ -19,7 +19,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A class-based teamplay modification for Enemy Territory
 LICENSE=	restricted
 
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX=	yes
