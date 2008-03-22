@@ -2,7 +2,7 @@
 # Date created:        3 Dec 2007
 # Whom:                laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/xpostit/Makefile,v 1.1 2007/12/03 05:06:49 laffer1 Exp $
 # $FreeBSD: ports/deskutils/xpostit/Makefile,v 1.15 2007/05/19 20:01:57 flz Exp $
 #
 
@@ -18,6 +18,7 @@ COMMENT=	PostIt (R) messages onto your X11 screen
 LICENSE=	unknown
 
 USE_IMAKE=	yes
+USE_XORG=	xt
 WRKSRC=		${WRKDIR}/xpostit
 MAN1=		xpostit.1
 
