@@ -2,7 +2,7 @@
 # Date created:		2 November 1996
 # Whom:			fenner
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mbone/vat/Makefile,v 1.1 2007/04/05 00:41:04 laffer1 Exp $
 # $FreeBSD: ports/mbone/vat/Makefile,v 1.26 2006/12/04 03:12:19 fenner Exp $
 #
 
@@ -16,7 +16,7 @@ DISTFILES=	vatsrc-4.0b2.tar.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Visual Audio Tool - multicast audioconferencing
 
-GSM_DIR=	${.CURDIR}/../../audio/gsm
+GSM_DIR=	${PORTSDIR}/audio/gsm
 GSM_WORK=	${WRKDIRPREFIX}${GSM_DIR}/work/gsm-1.0-pl12
 
 # If configure is changed to look for libgsm.a in ${PREFIX}/lib, then
