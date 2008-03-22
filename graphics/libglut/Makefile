@@ -2,7 +2,7 @@
 # Date created:         Tue Feb  7 12:02:49  1995
 # Whom:                 anholt
 #
-# $MidnightBSD: mports/graphics/libglut/Makefile,v 1.5 2007/11/10 00:15:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libglut/Makefile,v 1.6 2008/03/21 03:50:33 ctriv Exp $
 # $FreeBSD: ports/graphics/libglut/Makefile,v 1.7 2006/06/19 20:06:53 shaun Exp $
 #
 
@@ -22,7 +22,7 @@ LICENSE=	restricted
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 USE_GL=		glu
-USE_XORG=	xmu
+USE_XORG=	xmu xi
 
 WRKSRC=		${WRKDIR}/Mesa-${PORTVERSION}/src/glut/glx
 
