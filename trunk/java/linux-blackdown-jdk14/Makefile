@@ -2,15 +2,15 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.2 2007/08/30 01:34:43 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.3 2008/03/22 18:16:16 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	java
-MASTER_SITES=	ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/02/
+MASTER_SITES=	ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/03/
 PKGNAMEPREFIX=	linux-blackdown-
 DISTNAME=	j2sdk-${JDK_VERSION}${JDK_VER_SUFFIX}-linux-i586
 EXTRACT_SUFX=	.bin
@@ -19,6 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blackdown Java Development Kit 1.4 for Linux
 LICENSE=	restricted
 
+BUILD_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper
 RUN_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper
 
 EXTRACT_CMD=		${TAIL}
@@ -34,8 +35,8 @@ PLIST_SUB+=	T=${APP_HOME:S/^${PREFIX}\///} PORTVERSION=${PORTVERSION}
 
 NO_BUILD=	yes
 JDK_VERSION=	1.4.2
-JDK_VER_SUFFIX=	-02
-DOWNLOAD_DIR=	${PORTNAME:U}-${JDK_VERSION}/i386/02
+JDK_VER_SUFFIX=	-03
+DOWNLOAD_DIR=	${PORTNAME:U}-${JDK_VERSION}/i386/03
 ONLY_FOR_ARCHS=	i386 amd64
 
 RESTRICTED=	"License doesn\'t allow binary distribution or distribution with fee"
