@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/games/kdegames3/Makefile,v 1.96 2006/09/12 23:26:16 lofi Exp $
-# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.1 2007/01/20 01:43:28 laffer1 Exp $
+# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.2 2007/12/30 17:15:24 laffer1 Exp $
 #
 
 PORTNAME=	kdegames
@@ -15,6 +15,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Games for the KDE integrated X11 desktop
+LICENSE=	gpl2
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
