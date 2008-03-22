@@ -3,11 +3,11 @@
 # Whom:					alepulver
 #
 # $MidnightBSD$
-# $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.4 2006/07/11 17:38:49 alepulver Exp $
+# $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.12 2008/02/19 13:20:31 alepulver Exp $
 #
 
 PORTNAME=	omni-bot
-PORTVERSION=	0.52
+PORTVERSION=	0.66
 CATEGORIES=	games linux
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	alepulver
@@ -15,32 +15,21 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Omni-Bot is a bot for Enemy Territory
+LICENSE=	restricted
 
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386
 USE_ZIP=	yes
 USE_LINUX=	yes
 NO_WRKSUBDIR=	yes
 
-OPTIONS=	ETPUB "Enable ETPub support" off
-
-DATADIR=	${PREFIX}/lib/enemyterritory
+DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_ETPUB)
-RUN_DEPENDS+=	et-etpub:${PORTSDIR}/games/linux-enemyterritory-etpub
-PLIST_SUB+=	ETPUB=""
-.else
-PLIST_SUB+=	ETPUB="@comment "
-.endif
 
 do-build:
 .for f in et etded
-	@(${ECHO} "#!/bin/sh"; \
-	${ECHO} 'exec ${PREFIX}/bin/${f} +set fs_game ${PORTNAME} "$$@"') > \
+	@(${ECHO_CMD} "#!/bin/sh"; \
+	${ECHO_CMD} 'exec ${PREFIX}/bin/${f} +set fs_game ${PORTNAME} +set omnibot_path "${DATADIR}" "$$@"') > \
 		${WRKSRC}/${f}-${PORTNAME}
 .endfor
 
@@ -48,16 +37,11 @@ do-install:
 .for f in et etded
 	${INSTALL_SCRIPT} ${WRKSRC}/${f}-${PORTNAME} ${PREFIX}/bin
 .endfor
-	${MKDIR} ${DATADIR}/${PORTNAME}
-	${INSTALL_PROGRAM} ${WRKSRC}/omni-bot/omnibot_et.so ${DATADIR}/${PORTNAME}
-	${CP} -R ${WRKSRC}/omni-bot/et ${DATADIR}/${PORTNAME}
-	${INSTALL_PROGRAM} ${WRKSRC}/omnibot/qagame.mp.i386.so ${DATADIR}/${PORTNAME}
-	${INSTALL_DATA} ${WRKSRC}/omnibot/omnibot_et.pk3 ${DATADIR}/${PORTNAME}
-.if defined(WITH_ETPUB)
-	cd ${DATADIR}/etpub && ${MV} qagame.mp.i386.so qagame.mp.i386.so.old
-	${INSTALL_PROGRAM} ${WRKSRC}/etpub/qagame.mp.i386.so ${DATADIR}/etpub
-	${INSTALL_DATA} ${WRKSRC}/etpub/omnibot_etpub.pk3 ${DATADIR}/etpub
-.endif
+	${MKDIR} ${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/omni-bot/omnibot_et.so ${DATADIR}
+	cd ${WRKSRC}/omni-bot && ${CP} -R et global_scripts ${DATADIR}
+	${INSTALL_PROGRAM} ${WRKSRC}/omnibot/qagame.mp.i386.so ${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/omnibot/omnibot_et.pk3 ${DATADIR}
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .   for f in *.txt omni-bot/*.txt
@@ -66,4 +50,4 @@ do-install:
 	${CP} -R ${WRKSRC}/omni-bot/docs ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
