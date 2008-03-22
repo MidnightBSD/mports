@@ -4,7 +4,7 @@
 # Whom:					kde@freebsd.org
 #
 # $FreeBSD: ports/x11/kdebase3/Makefile,v 1.183 2006/09/18 16:31:54 lofi Exp $
-# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.1 2007/01/20 00:37:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.2 2007/12/30 01:49:56 laffer1 Exp $
 #
 
 PORTNAME=	kdebase
@@ -23,7 +23,10 @@ RUN_DEPENDS=	${KDE_PREFIX}/env/xdg-env.sh:${PORTSDIR}/misc/kde-xdg-env \
 		kompmgr:${PORTSDIR}/x11-wm/kompmgr
 BUILD_DEPENDS=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 		xmkmf:${X_IMAKE_PORT} \
-		bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf
+		bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
+		${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files \
+		${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep
+
 LIB_DEPENDS=	sasl2:${PORTSDIR}/security/cyrus-sasl2 \
 		smbclient:${PORTSDIR}/net/samba-libsmbclient \
 		usb-0.1:${PORTSDIR}/devel/libusb
@@ -51,8 +54,8 @@ LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 CONFIGURE_ENV+=	RUN_KAPPFINDER=no kde_cv_utmp_file=/var/run/utmp
 CONFIGURE_ARGS+=--without-java			\
-		--with-qt-dir=${X11BASE}	\
-		--with-xdmdir=${X11BASE}/lib/X11/xdm \
+		--with-qt-dir=${LOCALBASE}	\
+		--with-xdmdir=${LOCALBASE}/lib/X11/xdm \
 		--with-ssl-dir=${OPENSSLBASE}
 
 OPTIONS=	ARTSWRAPPER "Suid wrapper for aRts, req'd for realtime prio" on \
@@ -132,6 +135,5 @@ post-install:
 .if !defined(PACKAGE_BUILDING)
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
