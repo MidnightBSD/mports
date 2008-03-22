@@ -2,7 +2,7 @@
 # Date created:        Fri Mar 26 23:34:32 BST 2004
 # Whom:                Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/fotaq/Makefile,v 1.1 2007/01/19 18:23:35 wintellect Exp $
 # $FreeBSD: ports/games/fotaq/Makefile,v 1.5 2005/11/21 16:35:32 pav Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	FOTAQ_Talkie
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flight of the Amazon Queen: a classic graphical adventure
+LICENSE=	other
 
 RUN_DEPENDS=	scummvm:${PORTSDIR}/games/scummvm
 
