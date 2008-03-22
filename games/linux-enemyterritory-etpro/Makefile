@@ -2,13 +2,12 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.1 2006/10/04 02:40:23 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.2 2008/03/22 05:19:41 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-etpro/Makefile,v 1.2 2006/05/31 01:43:25 alepulver Exp $
 #
 
 PORTNAME=	etpro
-PORTVERSION=	3.2.5
-PORTREVISION=	1
+PORTVERSION=	3.2.6
 CATEGORIES=	games linux
 MASTER_SITES=	http://bani.anime.net/etpro/ \
 		http://dl.vpclan.de/etpro/ \
@@ -26,7 +25,7 @@ LICENSE=	restricted
 
 RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386
+ONLY_FOR_ARCHS=	i386 amd64
 USE_ZIP=	yes
 USE_LINUX=	yes
 NO_WRKSUBDIR=	yes
