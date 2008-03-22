@@ -3,7 +3,7 @@
 # Date created:			Jul 23, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.1 2006/11/24 22:02:38 wintellect Exp $
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.2 2008/02/22 04:58:31 laffer1 Exp $
 # $FreeBSD: ports/archivers/zipios++/Makefile,v 1.14 2006/08/14 09:56:58 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}+cvs.2004.02.07.orig
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A java.util.zip-like C++ library for reading and writing Zip files
+LICENSE=	gpl2
 
 USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
