@@ -2,7 +2,7 @@
 # Date created:		4 May 2004
 # Whom:			Brian Candler <B.Candler@pobox.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/p5-SGMLSpm/Makefile,v 1.1 2006/09/25 16:22:04 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-SGMLSpm/Makefile,v 1.2 2005/11/13 05:13:28 lawrance Exp $
 #
 
@@ -16,18 +16,23 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}ii
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for postprocessing the output from sgmls and nsgmls
+LICENSE=	gpl2
 
 USE_PERL5_RUN=	yes
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-pre-install:
-	${MKDIR} ${DOCSDIR} ${EXAMPLESDIR}
 
-INSTALL_TARGET=	install PERL5DIR=${SITE_PERL} SPECDIR=${EXAMPLESDIR}
+FAKE_MAKEARGS=	BINDIR=${FAKE_DESTDIR}${PREFIX}/bin PERL5DIR=${FAKE_DESTDIR}${SITE_PERL} 
+FAKE_MAKEARGS+= SPECDIR=${FAKE_DESTDIR}${EXAMPLESDIR} HTMLDIR=${FAKE_DESTDIR}${DOCSDIR}
+
+pre-install:
+	${MKDIR} ${DOCSDIR} ${EXAMPLESDIR} ${FAKE_DESTDIR}${SITE_PERL}
+
+
 .ifndef(NOPORTDOCS)
 PORTDOCS=	*
-INSTALL_TARGET+=docs install_html HTMLDIR=${DOCSDIR}
+INSTALL_TARGET= install docs install_html 
 .endif
 
 .include <bsd.port.mk>
