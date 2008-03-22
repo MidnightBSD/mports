@@ -3,12 +3,11 @@
 # Whom:					alepulver
 #
 # $MidnightBSD$
-# $FreeBSD: ports/games/linux-enemyterritory-jaymod/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
+# $FreeBSD: ports/games/linux-enemyterritory-jaymod/Makefile,v 1.12 2008/02/19 13:20:30 alepulver Exp $
 #
 
 PORTNAME=	jaymod
-PORTVERSION=	1.4
-PORTREVISION=	1
+PORTVERSION=	2.1.7
 CATEGORIES=	games linux
 MASTER_SITES=	http://jaymod.clanfu.org/lib/downloads/ \
 		http://budjb.com/lib/downloads/ \
@@ -18,22 +17,30 @@ PKGNAMEPREFIX=	linux-enemyterritory-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jaymod - An Enemy Territory Modification
+LICENSE=	restricted
 
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386
 USE_LINUX=	yes
-NO_WRKSUBDIR=	yes
+
+OPTIONS=	OMNIBOT "Install Omni-Bot for bot support" off
 
 DATADIR=	${PREFIX}/lib/enemyterritory/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/enemyterritory-${PORTNAME}
 
-PLIST_SUB=	VERSION="${PORTVERSION}"
+CLIENT_PK3=	${PORTNAME}-${PORTVERSION}.pk3
+PLIST_SUB=	CLIENT_PK3="${CLIENT_PK3}"
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_OMNIBOT)
+RUN_DEPENDS+=	et-omni-bot:${PORTSDIR}/games/linux-enemyterritory-omni-bot
+.endif
 
 do-build:
 .for f in et etded
-	@(${ECHO} "#!/bin/sh"; \
-	${ECHO} 'exec ${PREFIX}/bin/${f} +set fs_game ${PORTNAME} "$$@"') > \
+	@(${ECHO_CMD} "#!/bin/sh"; \
+	${ECHO_CMD} 'exec ${PREFIX}/bin/${f} +set fs_game ${PORTNAME} +set omnibot_path "${DATADIR}/../omni-bot" "$$@"') > \
 		${WRKSRC}/${f}-${PORTNAME}
 .endfor
 
@@ -43,14 +50,11 @@ do-install:
 .endfor
 	${MKDIR} ${DATADIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/qagame.mp.i386.so ${DATADIR}
-.for f in jaymod-${PORTVERSION}.pk3 jaymod.cfg-sample
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DATADIR}
-.endfor
+	cd ${WRKSRC} && ${INSTALL_DATA} ${CLIENT_PK3} *.cfg ${DATADIR}
+	${CP} -r ${WRKSRC}/linux ${WRKSRC}/mapscripts ${DATADIR}
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-.   for f in jaymod-${PORTVERSION}.pdf readme.txt
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
-.   endfor
+	cd ${WRKSRC} && ${INSTALL_DATA} README.txt doc/jaymod.pdf ${DOCSDIR}
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
