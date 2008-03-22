@@ -2,7 +2,7 @@
 # Date created:		July 16, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.2 2006/09/25 16:03:34 laffer1 Exp $
+# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.3 2007/05/09 15:31:35 ctriv Exp $
 # $FreeBSD: ports/textproc/sgmlformat/Makefile,v 1.33 2006/06/22 19:01:36 linimon Exp $
 #
 
@@ -16,6 +16,9 @@ MASTER_SITE_SUBDIR=	kuriyama
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates groff and HTML from linuxdoc and docbook SGML documents
+LICENSE=	bsd2
+
+FAKE_OPTS=	trueprefix
 
 # There are two ports that satisfy the nsgmls requirement.
 # Jade is preferred.
