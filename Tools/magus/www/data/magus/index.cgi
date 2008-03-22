@@ -249,7 +249,10 @@ sub search {
   } else {
     $where{status} = { '!=', 'untested' };
   }
-      
+
+  for (keys %where) {
+    delete $where{$_} if m/\W/;
+  }      
   
   my @ports = Magus::Port->search_where(\%where, { order_by => 'name' });
   
