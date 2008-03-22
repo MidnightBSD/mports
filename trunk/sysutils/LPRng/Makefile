@@ -2,7 +2,7 @@
 # Date created:		January 21, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.1 2008/01/21 21:15:54 laffer1 Exp $
 #
 
 PORTNAME=	LPRng
@@ -18,6 +18,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Enhanced Printer Spooler
+LICENSE=	perl
 
 LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
 
@@ -94,9 +95,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,$${INSTALL} $$$$i $${DATADIR}/$$$$i.sample,true &,' \
 		${WRKSRC}/Makefile.in
 
-pre-install: apply-slist
-	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/lpd.conf ${SYSCONFDIR}/lpd.conf.sample
 	@${INSTALL_DATA} ${WRKSRC}/lpd.perms ${SYSCONFDIR}/lpd.perms.sample
@@ -112,7 +110,5 @@ post-install:
 		do ${INSTALL_DATA} ${WRKSRC}/PrintingCookbook/HTML/$$i ${DOCSDIR}/PrintingCookbook; done;
 .endfor
 .endif
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
