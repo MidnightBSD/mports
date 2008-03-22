@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.3 2007/08/20 16:46:41 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.4 2008/02/25 00:18:36 laffer1 Exp $
 #
 
 PORTNAME=	akode
@@ -18,6 +18,7 @@ EXTRACT_SUFX=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Default KDE audio backend
+LICENSE=	gpl2
 
 CONFLICTS=	kdemultimedia-3.[1-3]*
 
