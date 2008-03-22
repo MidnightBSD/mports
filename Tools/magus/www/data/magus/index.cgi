@@ -172,8 +172,9 @@ sub port_page {
   }
     
   my @depends = map { {
-    port => $_->name,
-    id   => $_->id
+    port   => $_->name,
+    id     => $_->id,
+    status => $_->status,
   } } $port->depends;
 
   if (@depends) {
@@ -181,8 +182,9 @@ sub port_page {
   }
   
   my @depends_of = map { {
-    port => $_->name,
-    id   => $_->id
+    port   => $_->name,
+    id     => $_->id,
+    status => $_->status,
   } } map { Magus::Port->retrieve($_->port) } Magus::Depend->search(dependency => $port);
   
   if ($port->log) {
@@ -231,6 +233,7 @@ sub search {
   my ($p) = @_;
   
   my $query = $p->param('q');
+  my $origq = $query;
   my %where;
   while ($query =~ s/(\S+):(\S+)//) {
     push(@{$where{$1}}, $2)
@@ -269,7 +272,7 @@ sub search {
 
   my $tmpl = template($p, 'list.tmpl');
 
-  $tmpl->param(results => \@results, title => "Search Results for &quot;$query&quot;", count => scalar @results);
+  $tmpl->param(results => \@results, title => "Search Results for &quot;$origq&quot;", count => scalar @results);
   
   print $p->header, $tmpl->output;
 }
