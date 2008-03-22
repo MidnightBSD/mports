@@ -2,24 +2,25 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-enemyterritory-shrub/Makefile,v 1.1 2006/10/04 02:40:24 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
 #
 
 PORTNAME=	shrub
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games linux
-MASTER_SITES=	http://www.etstats.com/shrubet/downloads/
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=   alepulver
 PKGNAMEPREFIX=	linux-enemyterritory-
 DISTNAME=	1.2-test13-l
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shrub - An Enemy Territory Modification
+LICENSE=	restricted
 
-RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
-ONLY_FOR_ARCHS=	i386
 USE_ZIP=	yes
 USE_LINUX=	yes
 NO_WRKSUBDIR=	yes
