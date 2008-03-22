@@ -2,7 +2,7 @@
 # Date created:	2001-05-18
 # Whom:		Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/gtypist/Makefile,v 1.1 2006/12/30 21:28:30 wintellect Exp $
 # $FreeBSD: ports/games/gtypist/Makefile,v 1.17 2004/07/11 10:55:23 krion Exp $
 
 PORTNAME=	gtypist
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interactive typing tutor
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
