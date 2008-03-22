@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.5 2007/08/02 09:45:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.6 2007/08/15 21:00:24 ctriv Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -108,6 +108,7 @@ TARGETS+=	package-recursive
 TARGETS+=	realinstall
 TARGETS+=	reinstall
 TARGETS+=	tags
+TARGETS+=   check-license
 
 .for __target in ${TARGETS}
 .if !target(${__target})
