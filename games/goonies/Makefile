@@ -2,6 +2,7 @@
 # Date created:		07 Sep 2006
 # Whom:			Dmitry Marakasov <amdmi3@mail.ru>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/games/goonies/Makefile,v 1.1 2006/09/12 20:47:55 miwi Exp $
 #
 
@@ -12,8 +13,9 @@ MASTER_SITES=	http://goonies.jorito.net/download/
 DISTNAME=	${PORTNAME}_r${PORTVERSION:C/\./-/g}
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	amdmi3@mail.ru
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remake of the 8 bit classic game 'The Goonies'
+LICENSE=	unknown
 
 USE_GMAKE=	yes
 USE_SDL=	sdl mixer image
