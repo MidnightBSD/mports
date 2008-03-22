@@ -40,7 +40,7 @@ h3 {
 }
 
 a {
-	color: #405491;
+	color: #204a87;
 }
 
 table {
@@ -68,7 +68,7 @@ table th {
 }
 
 tr.even {
-	background: #eaeaea;
+	background: #eaeae9;
 }
 
 tr.details {
@@ -76,24 +76,32 @@ tr.details {
 }
 
 
-*.fail {
-	color: #C0000B;
+.fail {
+	color: #a40000;
 }
 
-*.warn {
-	color: orange;
+.warn {
+	color: #c4a000;
 }
 
-*.internal {
+.internal {
 	color: blue;
 }
 
-*.pass {
-	color: green;
+.pass {
+	color: #4e9a06;
 }
 
-*.skip {
-	color: #666;
+.skip {
+	color: #555753;
+}
+
+.untested {
+	color: #75507b;
+}
+
+.info {
+	color: #2e3436;
 }
 
 .stats {
@@ -143,7 +151,7 @@ ul.depends {
 }
 
 #tophead {
-	background: #405491;
+	background: #204a87;
 	color: white;
 	// width: 100%;
 	margin: 0;
