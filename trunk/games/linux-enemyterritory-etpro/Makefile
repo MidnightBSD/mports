@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.1 2006/10/04 02:40:23 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-etpro/Makefile,v 1.2 2006/05/31 01:43:25 alepulver Exp $
 #
 
@@ -22,6 +22,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ET Pro - The Enemy Territory Competition Mod
+LICENSE=	restricted
 
 RUN_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
 
