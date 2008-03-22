@@ -2,12 +2,13 @@
 # Date created:				28 May 1998
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
-# $MidnightBSD: mports/games/qstat/Makefile,v 1.3 2007/04/27 02:02:28 ctriv Exp $
+# $MidnightBSD: mports/games/qstat/Makefile,v 1.4 2008/03/22 16:13:29 laffer1 Exp $
 # $FreeBSD: ports/games/qstat/Makefile,v 1.23 2006/04/17 08:13:21 danfe Exp $
 #
 
 PORTNAME=	qstat
 PORTVERSION=	2.11
+PORTREVISION=	1
 CATEGORIES=	games net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
