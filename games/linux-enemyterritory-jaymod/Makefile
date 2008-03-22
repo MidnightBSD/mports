@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-enemyterritory-jaymod/Makefile,v 1.2 2008/03/22 05:29:11 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-jaymod/Makefile,v 1.12 2008/02/19 13:20:30 alepulver Exp $
 #
 
@@ -19,7 +19,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Jaymod - An Enemy Territory Modification
 LICENSE=	restricted
 
-DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+BUILD_DEPENDS=	et:${PORTSDIR}/games/linux-enemyterritory
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 USE_LINUX=	yes
 
