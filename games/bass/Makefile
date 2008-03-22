@@ -2,7 +2,7 @@
 # Date created:        Tue Sep  2 23:34:32 BST 2003
 # Whom:                Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD: mports/games/bass/Makefile,v 1.1 2007/01/19 18:07:47 wintellect Exp $
+# $MidnightBSD: mports/games/bass/Makefile,v 1.2 2007/04/26 22:00:46 ctriv Exp $
 # $FreeBSD: ports/games/bass/Makefile,v 1.8 2005/11/22 20:16:09 pav Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	bass-cd-1.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Beneath a Steel Sky: a post-apocalyptic futuristic graphical adventure
+LICENSE=	other
 
 RUN_DEPENDS=	scummvm:${PORTSDIR}/games/scummvm
 
