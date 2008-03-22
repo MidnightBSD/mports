@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.38 2008/03/21 01:54:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.39 2008/03/22 02:12:08 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -39,6 +39,7 @@
     SUBDIR += py-gnome-desktop
     SUBDIR += py-gtk2
     SUBDIR += py-gtksourceview
+    SUBDIR += py-vte
     SUBDIR += qt33
     SUBDIR += renaissance
     SUBDIR += tk82
