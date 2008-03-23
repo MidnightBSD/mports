@@ -3,11 +3,12 @@
 # Whom:			Udo Schweigert
 #
 # $MidnightBSD$
-# $FreeBSD: ports/devel/automake19/Makefile,v 1.67 2006/05/04 21:40:24 edwin Exp $
+# $FreeBSD: ports/devel/automake19/Makefile,v 1.71 2007/07/31 07:36:14 ade Exp $
 #
 
 PORTNAME=	automake
 PORTVERSION=	1.9.6
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	automake
@@ -15,41 +16,31 @@ DISTNAME=	automake-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Standards-compliant Makefile generator (1.9)
+LICENSE=	gpl2
 
-RUN_DEPENDS=	${AUTOCONF_DEPENDS}
+RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
+		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
 
-USE_AUTOTOOLS=	autoconf:259:env
-BUILD_VERSION=	19
+USE_AUTOTOOLS=	autoconf:261:env
+BUILD_VERSION=	1.9
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
-LATEST_LINK=	automake${BUILD_VERSION}
+LATEST_LINK=	automake19
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	AUTOCONF=autoconf259 AUTOHEADER=autoheader259 MAKEINFO=makeinfo
-CONFIGURE_ARGS=	--program-suffix=${BUILD_VERSION} \
-		--infodir=${PREFIX}/info
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-INFO=		automake${BUILD_VERSION}
+CONFIGURE_ENV=	MAKEINFO"=makeinfo --no-split"
+CONFIGURE_ARGS=	--program-suffix=-${BUILD_VERSION}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+INFO=		automake-${BUILD_VERSION}
 
 post-patch:
-	@(cd ${WRKSRC}/doc && \
-		${RM} -f *.info && \
-		${MV} automake.texi automake${BUILD_VERSION}.texi && \
-		${REINPLACE_CMD} -E 's,(automake)\.(info),\1${BUILD_VERSION}\.\2,g' automake${BUILD_VERSION}.texi && \
-		${REINPLACE_CMD} -E 's,(automake)\.(info|texi),\1${BUILD_VERSION}\.\2,g' Makefile.in \
-	)
-	@${REINPLACE_CMD} -e 's,%%X11BASE%%,${X11BASE},g' ${WRKSRC}/aclocal.in
+	@${RM} ${WRKSRC}/doc/*.info
+	@${MV} ${WRKSRC}/doc/automake.texi \
+	       ${WRKSRC}/doc/automake-${BUILD_VERSION}.texi
 
 pre-su-install:
-	@${RM} -fr ${PREFIX}/share/automake${BUILD_VERSION}
-	@${MKDIR} ${PREFIX}/share/automake${BUILD_VERSION}
-	@${MKDIR} ${PREFIX}/share/aclocal${BUILD_VERSION}
-	@${MKDIR} ${PREFIX}/libexec/automake${BUILD_VERSION}
-
-post-install:
-.for i in aclocal automake
-	@${LN} -sf ${PREFIX}/bin/${i}${BUILD_VERSION} \
-		${PREFIX}/libexec/automake${BUILD_VERSION}/${i}
-.endfor
+	@${RM} -fr ${PREFIX}/share/automake-${BUILD_VERSION}
+	@${MKDIR} ${PREFIX}/share/automake-${BUILD_VERSION}
+	@${MKDIR} ${PREFIX}/share/aclocal-${BUILD_VERSION}
 
 .include <bsd.port.mk>
