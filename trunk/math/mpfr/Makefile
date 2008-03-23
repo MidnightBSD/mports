@@ -2,12 +2,12 @@
 # Date created:			28 Aug 2005
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/mpfr/Makefile,v 1.1 2007/02/25 20:34:26 laffer1 Exp $
 # $FreeBSD: ports/math/mpfr/Makefile,v 1.7 2006/11/30 21:20:07 ale Exp $
 #
 
 PORTNAME=	mpfr
-PORTVERSION=	2.2.1
+PORTVERSION=	2.3.1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.mpfr.org/mpfr-current/
 DIST_SUBDIR=	mpfr
