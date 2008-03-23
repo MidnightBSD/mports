@@ -2,7 +2,7 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.3 2008/03/22 18:16:16 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.4 2008/03/22 18:34:02 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
@@ -78,6 +78,6 @@ do-install:
 	@${ECHO} " [ DONE ]"
 
 post-install:
-	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Blackdown-JDK${PORTVERSION}"
+	@${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Blackdown-JDK${PORTVERSION}"
 
 .include <bsd.port.post.mk>
