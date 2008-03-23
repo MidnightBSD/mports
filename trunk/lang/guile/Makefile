@@ -2,7 +2,7 @@
 # Date created:		2 November 1997
 # Whom:			jseger@FreeBSD.org
 # 
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.1 2007/02/14 20:53:00 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.2 2008/03/23 20:16:04 laffer1 Exp $
 # $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	guile
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
+LICENSE=	lgpl
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
