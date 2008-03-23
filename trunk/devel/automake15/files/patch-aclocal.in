@@ -1,12 +1,15 @@
---- aclocal.in.orig	Tue Jul 17 05:36:23 2001
-+++ aclocal.in	Tue Jul  6 21:30:44 2004
-@@ -35,2 +35,4 @@
- $acdir = "@datadir@/aclocal";
-+$acdir_ver = "@datadir@/aclocal%%BUILD_VERSION%%";
-+$acdir_x11 = '%%X11BASE%%/share/aclocal';
+--- aclocal.in.orig	Mon Jul 16 22:36:23 2001
++++ aclocal.in	Thu Apr  5 03:19:44 2007
+@@ -34,3 +34,3 @@
+ # Note that this isn't pkgdatadir, but a separate directory.
+-$acdir = "@datadir@/aclocal";
++$acdir = "@datadir@/aclocal-@VERSION@";
  
-@@ -210,2 +212,4 @@
-     push (@dirlist, $acdir);
-+    push (@dirlist, $acdir_ver) if (-d "$acdir_ver/.");
-+    push (@dirlist, $acdir_x11) if (-d "$acdir_x11/.");
- 
+@@ -117,2 +117,3 @@
+ local (@dirlist) = &parse_arguments (@ARGV);
++push (@dirlist, "%%LOCALBASE%%/share/aclocal") if (!grep(/^--acdir/, @ARGV));
+ &scan_m4_files (@dirlist);
+@@ -205,2 +206,3 @@
+ 	print $acdir, "\n";
++	print "%%LOCALBASE%%/share/aclocal", "\n";
+ 	exit 0;
