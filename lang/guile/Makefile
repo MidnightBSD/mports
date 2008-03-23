@@ -2,13 +2,12 @@
 # Date created:		2 November 1997
 # Whom:			jseger@FreeBSD.org
 # 
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.1 2007/02/14 20:53:00 laffer1 Exp $
 # $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
 #
 
 PORTNAME=	guile
-PORTVERSION=	1.6.7
-PORTREVISION=	1
+PORTVERSION=	1.8.4
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
@@ -16,35 +15,28 @@ MASTER_SITE_SUBDIR=	guile
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
 
-USE_AUTOTOOLS=	libltdl:15
+LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
+
+USE_AUTOTOOLS=	autoconf:261 libltdl:15
+USE_GETTEXT=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-GUILE_VER=	1.6
+GUILE_VER=	1.8
 PLIST_SUB=	GUILE_VER=${GUILE_VER}
 
-REINPLACE_FILES=	libguile/gc.c libguile/mallocs.c \
-			libguile/ports.c libguile/smob.c
+REINPLACE_FILES=	libguile/smob.c libguile/filesys.c libguile/gc.c \
+			libguile/mallocs.c libguile/eval.c libguile/gc-malloc.c \
+			libguile/ports.c libguile/gc-mark.c libguile/gc_os_dep.c
+
 
 INFO=		goops guile-tut guile r5rs
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "ia64"
-BROKEN=		Does not install on ${ARCH}
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-ia64
-.endif
-
-.if ${ARCH} != "ia64" && ${ARCH} != "amd64" && ${ARCH} != "powerpc"
-CONFIGURE_ARGS+=--with-threads
-PLIST_SUB+=	THREADS:=""
-.else
-PLIST_SUB+=	THREADS:="@comment "
-.endif
 
 post-extract:
 	cd ${WRKSRC}; ${CHMOD} u+w ${REINPLACE_FILES}
