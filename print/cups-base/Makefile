@@ -2,7 +2,7 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.8 2007/08/04 23:26:24 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.9 2007/08/05 00:20:35 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
@@ -64,7 +64,7 @@ CUPSSYSGRP=	wheel
 
 .if !defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
-LIB_DEPENDS+=		gnutls-openssl.13:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		gnutls-openssl.26:${PORTSDIR}/security/gnutls
 .else
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
 .include "${PORTSDIR}/Mk/bsd.openssl.mk"
