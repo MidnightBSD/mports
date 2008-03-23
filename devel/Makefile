@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.199 2008/03/21 20:39:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.200 2008/03/21 20:41:18 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -11,11 +11,13 @@
     SUBDIR += apache-ant
     SUBDIR += apr
     SUBDIR += apr-svn
+    SUBDIR += autoconf-wrapper
     SUBDIR += autoconf213
     SUBDIR += autoconf253
     SUBDIR += autoconf259
     SUBDIR += autoconf261
     SUBDIR += autogen
+    SUBDIR += automake-wrapper
     SUBDIR += automake14
     SUBDIR += automake15
     SUBDIR += automake19
