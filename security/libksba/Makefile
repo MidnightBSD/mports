@@ -3,7 +3,7 @@
 # Whom:					Tilman Linneweh <arved@FreeBSD.org>
 #
 # $FreeBSD: ports/security/libksba/Makefile,v 1.32 2007/01/08 10:01:15 lofi Exp $
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.2 2007/12/30 01:59:49 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.3 2007/12/30 02:06:36 laffer1 Exp $
 #
 
 PORTNAME=	libksba
@@ -14,8 +14,9 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KSBA is an X.509 Library
+LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.13:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
