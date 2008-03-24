@@ -1,14 +1,16 @@
---- snmplib/snmpUDPIPv6Domain.c.orig	Sat Oct 16 03:52:29 2004
-+++ snmplib/snmpUDPIPv6Domain.c	Mon Oct 25 09:28:10 2004
-@@ -104,13 +104,21 @@
+Index: snmplib/snmpUDPIPv6Domain.c
+diff -u -p snmplib/snmpUDPIPv6Domain.c.orig snmplib/snmpUDPIPv6Domain.c
+--- snmplib/snmpUDPIPv6Domain.c.orig	Mon Aug 20 17:06:42 2007
++++ snmplib/snmpUDPIPv6Domain.c	Fri Jan 11 13:39:36 2008
+@@ -103,13 +103,24 @@ netsnmp_udp6_fmtaddr(netsnmp_transport *
      if (to == NULL) {
          return strdup("UDP/IPv6: unknown");
      } else {
 -        char addr[INET6_ADDRSTRLEN];
--        char tmp[INET6_ADDRSTRLEN + 8];
-+        char tmp[NI_MAXHOST];
+-        char tmp[INET6_ADDRSTRLEN + 18];
++	char addr[NI_MAXHOST], tmp[NI_MAXHOST + NI_MAXSERV + 12];
  
--        sprintf(tmp, "UDP/IPv6: [%s]:%hd",
+-        sprintf(tmp, "UDP/IPv6: [%s]:%hu",
 -                inet_ntop(AF_INET6, (void *) &(to->sin6_addr), addr,
 -                          INET6_ADDRSTRLEN), ntohs(to->sin6_port));
 -        return strdup(tmp);
@@ -20,10 +22,13 @@
 +#ifndef NI_WITHSCOPEID
 +#define NI_WITHSCOPEID 0
 +#endif
-+	if (getnameinfo(to, sizeof(struct sockaddr_in6), tmp, sizeof(tmp),
-+			NULL, 0, NI_NUMERICHOST | NI_WITHSCOPEID)) {
++	if (getnameinfo((struct sockaddr *)to, sizeof(struct sockaddr_in6),
++			addr, sizeof(addr), NULL, 0,
++			NI_NUMERICHOST | NI_WITHSCOPEID)) {
 +	    return strdup("UDP/IPv6: unknown");
 +	}
++	snprintf(tmp, sizeof(tmp), "UDP/IPv6: [%s]:%hu", addr,
++		 ntohs(to->sin6_port));
 +	return strdup(tmp);
      }
  }
