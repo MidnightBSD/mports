@@ -3,7 +3,7 @@
 # Date created:			Apr 7, 2003
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.1 2007/04/04 21:57:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/yasm/Makefile,v 1.2 2007/11/15 05:39:07 laffer1 Exp $
 # $FreeBSD: ports/devel/yasm/Makefile,v 1.15 2006/12/09 03:38:17 shaun Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	agg
 # mostly bsd2 with bsd3 and lgpl
 
 USE_ICONV=	yes
-USE_AUTOTOOLS=	autoconf:259 libltdl:15
+USE_AUTOTOOLS=	autoconf:261 libltdl:15
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
