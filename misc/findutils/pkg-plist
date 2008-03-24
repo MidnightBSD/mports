@@ -1,4 +1,5 @@
 bin/gfind
+bin/goldfind
 bin/glocate
 bin/gupdatedb
 bin/gxargs
@@ -38,6 +39,7 @@ share/locale/sl/LC_MESSAGES/findutils.mo
 share/locale/sr/LC_MESSAGES/findutils.mo
 share/locale/sv/LC_MESSAGES/findutils.mo
 share/locale/tr/LC_MESSAGES/findutils.mo
+share/locale/uk/LC_MESSAGES/findutils.mo
 share/locale/vi/LC_MESSAGES/findutils.mo
 share/locale/zh_CN/LC_MESSAGES/findutils.mo
 share/locale/zh_TW/LC_MESSAGES/findutils.mo
