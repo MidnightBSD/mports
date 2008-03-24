@@ -2,7 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.3 2008/02/25 00:27:02 laffer1 Exp $
 # $FreeBSD: ports/audio/akode-plugins-xiph/Makefile,v 1.14 2006/09/17 19:59:22 lofi Exp $
 #
 
@@ -18,6 +18,7 @@ EXTRACT_SUFX=   # none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FLAC/Speex/Vorbis decoder plugin for akode
+LICENSE=	gpl2
 
 LIB_DEPENDS=	FLAC:${PORTSDIR}/audio/flac \
 		ogg:${PORTSDIR}/audio/libogg \

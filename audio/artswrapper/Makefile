@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@freebsd.org>
 #
 # $FreeBSD: ports/audio/artswrapper/Makefile,v 1.19 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/artswrapper/Makefile,v 1.1 2006/11/24 18:57:51 laffer1 Exp $
 #
 
 PORTNAME=	artswrapper
@@ -14,6 +14,7 @@ EXTRACT_SUFX=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Setuid wrapper for arts
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 PLIST_FILES=	bin/artswrapper
