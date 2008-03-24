@@ -2,7 +2,7 @@
 # Date created:		Mar 18, 2001
 # Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.2 2007/11/20 10:57:08 laffer1 Exp $
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.3 2008/02/25 00:42:17 laffer1 Exp $
 # $FreeBSD: ports/audio/flac/Makefile,v 1.38 2006/05/03 05:14:16 edwin Exp $
 #
 
@@ -18,6 +18,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
+LICENSE=	gpl2
 
 LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 
