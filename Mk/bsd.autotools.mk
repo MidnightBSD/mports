@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.autotools.mk,v 1.4 2008/03/24 17:44:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.autotools.mk,v 1.5 2008/03/24 18:35:41 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -76,12 +76,6 @@ Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 AUTOTOOL_${item:C/^([^:]+).*/\1/}${item:M*\:*\:*:C/^[^:]+:[^:]+:([^:]+)/_\1/}= ${item:C/^[^:]+:([^:]+).*/\1/}
 .endfor
 
-# XXX: temporary to highlight any missed ports in the conversion
-#
-.if defined(AUTOTOOL_libtool_inc)
-IGNORE+= error: libtool:${AUTOTOOL_libtool_inc}:inc construct no longer available
-.endif
-
 #---------------------------------------------------------------------------
 # AUTOTOOLS handling (for build, runtime, and both)
 #---------------------------------------------------------------------------
@@ -98,6 +92,8 @@ RUN_DEPENDS+=	${AUTOTOOLS_DEPENDS}
 . else
 IGNORE+=  Unknown autotools stanza: ${AUTOTOOL_autotools}
 . endif
+
+.endif
 
 #---------------------------------------------------------------------------
 # AUTOMAKE/ACLOCAL
@@ -278,6 +274,8 @@ ${item:U}_ENV+=	${AUTOTOOLS_VARS}
 # the order of autotools running.
 
 .if !target(run-autotools)
+.ORDER: run-autotools run-autotools-aclocal patch-autotools run-autotools-autoheader run-autotools-autoconf run-autotools-automake
+
 run-autotools:: run-autotools-aclocal patch-autotools run-autotools-autoheader \
 		run-autotools-autoconf run-autotools-automake
 .endif
