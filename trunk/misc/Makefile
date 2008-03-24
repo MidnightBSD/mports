@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.32 2008/01/01 21:54:42 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.33 2008/03/24 22:05:08 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -71,6 +71,7 @@
     SUBDIR += ldconfig_compat
     SUBDIR += localedata
     SUBDIR += mime-support
+    SUBDIR += nut
     SUBDIR += p5-Geography-Countries
     SUBDIR += p5-List-Compare
     SUBDIR += pciids
