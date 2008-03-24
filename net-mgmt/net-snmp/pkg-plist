@@ -1,4 +1,3 @@
-@comment $MidnightBSD: mports/net-mgmt/net-snmp/pkg-plist,v 1.3 2007/11/04 13:20:45 laffer1 Exp $
 bin/encode_keychange
 bin/fixproc
 bin/ipf-mod.pl
@@ -59,6 +58,8 @@ include/net-snmp/agent/serialize.h
 include/net-snmp/agent/set_helper.h
 include/net-snmp/agent/snmp_agent.h
 include/net-snmp/agent/snmp_vars.h
+include/net-snmp/agent/stash_cache.h
+include/net-snmp/agent/stash_to_next.h
 include/net-snmp/agent/table.h
 include/net-snmp/agent/table_array.h
 include/net-snmp/agent/table_container.h
@@ -151,6 +152,8 @@ include/net-snmp/system/freebsd3.h
 include/net-snmp/system/freebsd4.h
 include/net-snmp/system/freebsd5.h
 include/net-snmp/system/freebsd6.h
+include/net-snmp/system/freebsd7.h
+include/net-snmp/system/freebsd8.h
 include/net-snmp/system/generic.h
 include/net-snmp/system/hpux.h
 include/net-snmp/system/irix.h
@@ -208,6 +211,7 @@ lib/libnetsnmptrapd.so.%%SHLIB_VERSION%%
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/agent/netsnmp_request_infoPtr.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/default_store.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/SNMP.pm
+%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Bundle/NetSNMP/.packlist
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.bs
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.so
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/autosplit.ix
