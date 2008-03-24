@@ -2,7 +2,7 @@
 # Date created:		16 February 2003
 # Whom:			Sascha Holzleiter <sascha@root-login.org>
 #
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.1 2007/08/22 20:33:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.2 2007/08/22 21:03:30 laffer1 Exp $
 # $FreeBSD: ports/x11/idesk/Makefile,v 1.20 2007/05/19 20:26:40 flz Exp $
 #
 
@@ -22,7 +22,7 @@ USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 CXXFLAGS+=	`imlib2-config --cflags` `freetype-config --cflags`

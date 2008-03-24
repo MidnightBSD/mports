@@ -3,7 +3,7 @@
 # Whom:				Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/devel/sysconftool/Makefile,v 1.12 2005/11/15 06:49:04 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.1 2007/02/18 03:30:40 laffer1 Exp $
 #
 
 PORTNAME=	sysconftool
@@ -19,7 +19,7 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
 
-USE_AUTOTOOLS=	automake:19 aclocal:19 autoconf:259
+USE_AUTOTOOLS=	automake:19 aclocal:19 autoconf:261
 
 MAN1=	sysconftool.1 sysconftoolcheck.1
 MAN7=	sysconftool.7

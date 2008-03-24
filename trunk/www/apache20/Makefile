@@ -3,7 +3,7 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.6 2007/09/26 22:05:32 ctriv Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.7 2008/02/14 22:13:27 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -43,7 +43,7 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_M4=${LOCALBASE}/share/aclocal/libtool${LIBTOOL_VERSION}.m4 \
 			AUTOHEADER=${AUTOHEADER}
 USE_ICONV=		yes
-USE_AUTOTOOLS=	autoconf:259 libtool:15
+USE_AUTOTOOLS=	autoconf:261 libtool:15
 USE_PERL5=		yes
 USE_RC_SUBR=		yes
 USE_APACHE=		common20

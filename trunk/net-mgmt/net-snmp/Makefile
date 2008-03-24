@@ -3,7 +3,7 @@
 # Whom:					gpalmer
 #
 # $FreeBSD: ports/net-mgmt/net-snmp/Makefile,v 1.136 2006/09/23 15:03:36 nork Exp $
-# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.3 2007/11/04 12:34:13 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.4 2007/11/04 12:54:45 laffer1 Exp $
 #
 
 PORTNAME=	snmp
@@ -36,7 +36,7 @@ RUN_DEPEND=	${SITE_PERL}/${PERL_ARCH}/Tk.pm:${PORTSDIR}/x11-toolkits/p5-Tk
 .endif
 PATCH_DEPENDS=	${LIBTOOL_DEPENDS}
 
-USE_AUTOTOOLS=	autoconf:259 libtool:15
+USE_AUTOTOOLS=	autoconf:261 libtool:15
 USE_RC_SUBR=	snmpd.sh snmptrapd.sh
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
