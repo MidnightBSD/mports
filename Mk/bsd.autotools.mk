@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.autotools.mk,v 1.3 2007/04/07 04:06:26 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -83,6 +83,23 @@ IGNORE+= error: libtool:${AUTOTOOL_libtool_inc}:inc construct no longer availabl
 .endif
 
 #---------------------------------------------------------------------------
+# AUTOTOOLS handling (for build, runtime, and both)
+#---------------------------------------------------------------------------
+.if defined(AUTOTOOL_autotools)
+AUTOTOOLS_DEPENDS=	${LOCALBASE}/share/autotools:${PORTSDIR}/devel/autotools
+
+. if ${AUTOTOOL_autotools} == "build"
+BUILD_DEPENDS+=	${AUTOTOOLS_DEPENDS}
+. elif ${AUTOTOOL_autotools} == "run"
+RUN_DEPENDS+=	${AUTOTOOLS_DEPENDS}
+. elif ${AUTOTOOL_autotools} == "both"
+BUILD_DEPENDS+=	${AUTOTOOLS_DEPENDS}
+RUN_DEPENDS+=	${AUTOTOOLS_DEPENDS}
+. else
+IGNORE+=  Unknown autotools stanza: ${AUTOTOOL_autotools}
+. endif
+
+#---------------------------------------------------------------------------
 # AUTOMAKE/ACLOCAL
 #---------------------------------------------------------------------------
 
@@ -98,6 +115,7 @@ GNU_CONFIGURE?=			yes
 
 .if defined(AUTOTOOL_automake_env)
 AUTOMAKE_VERSION=	${AUTOTOOL_automake_env}
+AUTOMAKE_SUFFIX=      ${AUTOMAKE_VERSION:C/([0-9])(.*)/\1.\2/}
 
 # Make sure we specified a legal version of automake
 #
@@ -107,12 +125,11 @@ IGNORE+=	cannot install: unknown AUTOMAKE version: ${AUTOMAKE_VERSION}
 
 # Set up the automake environment
 #
-AUTOMAKE=			${LOCALBASE}/bin/automake${AUTOMAKE_VERSION}
-AUTOMAKE_DIR=		${LOCALBASE}/share/automake${AUTOMAKE_VERSION}
-ACLOCAL=			${LOCALBASE}/bin/aclocal${AUTOMAKE_VERSION}
-ACLOCAL_DIR=		${LOCALBASE}/share/aclocal${AUTOMAKE_VERSION}
-AUTOMAKE_PATH=		${LOCALBASE}/libexec/automake${AUTOMAKE_VERSION}:
-AUTOMAKE_VARS=		ACLOCAL=${ACLOCAL} AUTOMAKE=${AUTOMAKE}
+AUTOMAKE=		${LOCALBASE}/bin/automake-${AUTOMAKE_SUFFIX}
+AUTOMAKE_DIR=	${LOCALBASE}/share/automake-${AUTOMAKE_SUFFIX}
+ACLOCAL=		${LOCALBASE}/bin/aclocal-${AUTOMAKE_SUFFIX}
+ACLOCAL_DIR=	${LOCALBASE}/share/aclocal-${AUTOMAKE_SUFFIX}
+AUTOMAKE_VARS=	ACLOCAL=${ACLOCAL} AUTOMAKE=${AUTOMAKE} AUTOMAKE_VERSION=${AUTOMAKE_VERSION}
 
 AUTOMAKE_DEPENDS=	${AUTOMAKE}:${PORTSDIR}/devel/automake${AUTOMAKE_VERSION}
 BUILD_DEPENDS+=		${AUTOMAKE_DEPENDS}
@@ -143,6 +160,7 @@ GNU_CONFIGURE?=			yes
 .endif
 
 .if defined(AUTOTOOL_autoconf_env)
+AUTOCONF_SUFFIX=	 ${AUTOCONF_VERSION:C/([0-9])(.*)/\1.\2/}
 AUTOCONF_VERSION=	${AUTOTOOL_autoconf_env}
 
 # Make sure we specified a legal version of autoconf
@@ -153,16 +171,15 @@ IGNORE+=	cannot install: unknown AUTOCONF version: ${AUTOCONF_VERSION}
 
 # Set up the autoconf/autoheader environment
 #
-AUTOCONF=			${LOCALBASE}/bin/autoconf${AUTOCONF_VERSION}
-AUTOCONF_DIR=		${LOCALBASE}/share/autoconf${AUTOCONF_VERSION}
-AUTOHEADER=			${LOCALBASE}/bin/autoheader${AUTOCONF_VERSION}
-AUTOIFNAMES=		${LOCALBASE}/bin/ifnames${AUTOCONF_VERSION}
-AUTOM4TE=			${LOCALBASE}/bin/autom4te${AUTOCONF_VERSION}
-AUTORECONF=			${LOCALBASE}/bin/autoreconf${AUTOCONF_VERSION}
-AUTOSCAN=			${LOCALBASE}/bin/autoscan${AUTOCONF_VERSION}
-AUTOUPDATE=			${LOCALBASE}/bin/autoupdate${AUTOCONF_VERSION}
-AUTOCONF_PATH=		${LOCALBASE}/libexec/autoconf${AUTOCONF_VERSION}:
-AUTOCONF_VARS=		AUTOCONF=${AUTOCONF} AUTOHEADER=${AUTOHEADER} AUTOIFNAMES=${AUTOIFNAMES} AUTOM4TE=${AUTOM4TE} AUTORECONF=${AUTORECONF} AUTOSCAN=${AUTOSCAN} AUTOUPDATE=${AUTOUPDATE}
+AUTOCONF=		${LOCALBASE}/bin/autoconf-${AUTOCONF_SUFFIX}
+AUTOCONF_DIR= 	${LOCALBASE}/share/autoconf-${AUTOCONF_SUFFIX}
+AUTOHEADER=	${LOCALBASE}/bin/autoheader-${AUTOCONF_SUFFIX}
+AUTOIFNAMES=	${LOCALBASE}/bin/ifnames-${AUTOCONF_SUFFIX}
+AUTOM4TE=		${LOCALBASE}/bin/autom4te-${AUTOCONF_SUFFIX}
+AUTORECONF=	${LOCALBASE}/bin/autoreconf-${AUTOCONF_SUFFIX}
+AUTOSCAN=		${LOCALBASE}/bin/autoscan-${AUTOCONF_SUFFIX}
+AUTOUPDATE=	${LOCALBASE}/bin/autoupdate-${AUTOCONF_SUFFIX}
+AUTOCONF_VARS=	AUTOCONF=${AUTOCONF} AUTOHEADER=${AUTOHEADER} AUTOIFNAMES=${AUTOIFNAMES} AUTOM4TE=${AUTOM4TE} AUTORECONF=${AUTORECONF} AUTOSCAN=${AUTOSCAN} AUTOUPDATE=${AUTOUPDATE}
 
 AUTOCONF_DEPENDS=	${AUTOCONF}:${PORTSDIR}/devel/autoconf${AUTOCONF_VERSION}
 BUILD_DEPENDS+=		${AUTOCONF_DEPENDS}
