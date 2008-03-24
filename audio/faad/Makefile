@@ -2,7 +2,7 @@
 # Date created:			8 January 2003
 # Whom:				Sean McGovern <sean@sfarc.net>
 #
-# $MidnightBSD: mports/audio/faad/Makefile,v 1.1 2007/09/01 07:58:59 laffer1 Exp $
+# $MidnightBSD: mports/audio/faad/Makefile,v 1.2 2008/02/25 00:40:34 laffer1 Exp $
 # $FreeBSD: ports/audio/faad/Makefile,v 1.43 2006/08/31 18:14:56 mezz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	faac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG-2 and MPEG-4 AAC audio decoder
+LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
