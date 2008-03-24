@@ -2,7 +2,7 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.5 2007/08/01 20:48:44 laffer1 Exp $
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.6 2007/11/08 15:47:34 ctriv Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
@@ -22,7 +22,7 @@ CONFLICTS?=		ja-samba-2.* ja-samba-3.* samba-2.* sharity-light-1.*
 
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:259 autoheader:259
+USE_AUTOTOOLS=		autoconf:261 autoheader:261
 
 LATEST_LINK?=		${PKGNAMEPREFIX}${PORTNAME}3${PKGNAMESUFFIX}
 EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
