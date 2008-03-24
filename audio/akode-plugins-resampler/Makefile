@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode-plugins-resampler/Makefile,v 1.14 2006/09/17 19:59:22 lofi Exp $
-# $MidnightBSD: mports/audio/akode-plugins-resampler/Makefile,v 1.1 2007/01/25 22:33:31 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode-plugins-resampler/Makefile,v 1.2 2007/08/07 03:46:36 ctriv Exp $
 #
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
@@ -17,6 +17,7 @@ EXTRACT_SUFX=   # none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Resampler plugin for akode
+LICENSE=	gpl2
 
 LIB_DEPENDS=	samplerate:${PORTSDIR}/audio/libsamplerate
 
