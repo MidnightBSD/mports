@@ -3,15 +3,15 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.3 2007/07/23 13:24:42 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.4 2007/07/23 14:52:40 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
 PORTNAME=	gcc
-PORTVERSION=	4.2.1
-PORTREVISION=	20070712
+PORTVERSION=	4.2.4
+PORTREVISION=	20080305
 CATEGORIES=	lang java
-VERSIONSTRING=	4.2.1-RC-${PORTREVISION}
+VERSIONSTRING=	4.2-${PORTREVISION}
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
 DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
@@ -24,23 +24,22 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	GNU Compiler Collection 4.2
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
-		mpfr.1:${PORTSDIR}/math/mpfr
-.if defined(WITH_JAVA_AWT)
-LIB_DEPENDS+=	cairo.2:${PORTSDIR}/graphics/cairo
-.endif
+		mpfr.2:${PORTSDIR}/math/mpfr
 
 CONFLICTS?=	gcc-withfortran-4.2.*
 
 SUFFIX=		42
 LATEST_LINK?=	gcc${SUFFIX}${PKGNAMESUFFIX}
-NOT_FOR_ARCHS=	ia64
-USE_BISON=	yes
+USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_PERL5_BUILD=yes
+
 .if defined(WITH_JAVA_AWT)
+LIB_DEPENDS+=   cairo.2:${PORTSDIR}/graphics/cairo
 USE_GNOME=	gtk20 libartlgpl2
+WANT_GNOME=	yes
 .endif
 
 PATCH_WRKSRC=	${SRCDIR}
