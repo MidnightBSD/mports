@@ -3,7 +3,7 @@
 # Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
 #
 # $FreeBSD: ports/audio/cdparanoia/Makefile,v 1.12 2006/05/03 05:14:12 edwin Exp $
-# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.2 2007/08/07 03:46:48 ctriv Exp $
+# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.3 2007/08/19 02:23:12 ctriv Exp $
 #
 
 PORTNAME=	cdparanoia
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.src.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A CDDA extraction tool (also known as ripper)
+LICENSE=	gpl2
 
 USE_GETOPT_LONG=yes
 USE_LDCONFIG=	yes

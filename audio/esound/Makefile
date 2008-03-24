@@ -2,7 +2,7 @@
 # Date created:		19 July 1998
 # Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/esound/Makefile,v 1.1 2007/03/09 17:52:13 laffer1 Exp $
+# $MidnightBSD: mports/audio/esound/Makefile,v 1.2 2008/02/25 00:33:28 laffer1 Exp $
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sound library for enlightenment package
+LICENSE=	gpl2
 
 LIB_DEPENDS=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 
