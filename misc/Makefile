@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.31 2007/12/30 17:10:42 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.32 2008/01/01 21:54:42 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -76,6 +76,8 @@
     SUBDIR += pciids
     SUBDIR += php5-calendar
     SUBDIR += shared-mime-info
+    SUBDIR += susv2
+    SUBDIR += susv3
     SUBDIR += unclutter
     SUBDIR += wmScoreBoard
     SUBDIR += wmcalendar
