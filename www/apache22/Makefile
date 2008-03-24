@@ -2,7 +2,7 @@
 # Date created:				Dec 11 2004
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.5 2007/09/26 18:49:18 ctriv Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.6 2008/02/14 22:09:17 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -40,7 +40,7 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 USE_APACHE=		common22
 USE_BZIP2=		yes
 USE_ICONV=		yes
-USE_AUTOTOOLS=	autoconf:259 libtool:15
+USE_AUTOTOOLS=	autoconf:261 libtool:15
 USE_PERL5=		yes
 USE_RC_SUBR=		apache22.sh
 LIBTOOLFILES=		configure
