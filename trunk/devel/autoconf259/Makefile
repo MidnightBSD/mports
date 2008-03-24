@@ -2,7 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf259/Makefile,v 1.1 2006/09/21 13:57:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf259/Makefile,v 1.2 2007/08/20 00:55:13 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf259/Makefile,v 1.64 2006/05/04 21:40:23 edwin Exp $
 #
 
@@ -17,6 +17,9 @@ DISTNAME=	autoconf-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically configure source code on many Un*x platforms (2.59)
 LICENSE=	gpl2
+
+DEPRECATED=	Autoconf 2.61 supersedes it
+EXPIRES=	March 31, 2008
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
 		help2man:${PORTSDIR}/misc/help2man
