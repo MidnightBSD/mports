@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode-plugins-mpeg/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode-plugins-mpeg/Makefile,v 1.1 2007/01/25 22:33:31 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode-plugins-mpeg/Makefile,v 1.2 2007/08/07 03:31:43 ctriv Exp $
 #
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
@@ -18,6 +18,7 @@ EXTRACT_SUFX=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG audio decoder plugin for akode
+LICENSE=	gpl2
 
 LIB_DEPENDS=	mad:${PORTSDIR}/audio/libmad
 
