@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.201 2008/03/23 20:32:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.202 2008/03/24 18:03:29 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -20,6 +20,7 @@
     SUBDIR += automake-wrapper
     SUBDIR += automake14
     SUBDIR += automake15
+    SUBDIR += automake16
     SUBDIR += automake19
     SUBDIR += automake110
     SUBDIR += autotools
