@@ -24,7 +24,7 @@ package Magus::PortCategory;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortCategory.pm,v 1.2 2007/10/29 21:17:11 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortCategory.pm,v 1.3 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,7 +35,7 @@ use base qw(Magus::DBI);
 
 
 __PACKAGE__->table('port_categories');
-__PACKAGE__->columns(Essential => qw/port category/);
+__PACKAGE__->columns(Primary => qw/port category/);
 __PACKAGE__->has_a(port => 'Magus::Port');
 __PACKAGE__->has_a(category => 'Magus::Category');
 
