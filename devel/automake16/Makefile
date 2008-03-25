@@ -2,7 +2,7 @@
 # Date created:				14th April 2007
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/automake16/Makefile,v 1.1 2008/03/25 18:11:35 laffer1 Exp $
 # $FreeBSD: ports/devel/automake16/Makefile,v 1.38 2007/07/28 06:33:47 ade Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	automake
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Standards-compliant Makefile generator (1.6)
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
 		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
