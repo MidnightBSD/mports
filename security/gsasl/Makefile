@@ -3,7 +3,7 @@
 # Date created:			Oct 18, 2003
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.1 2007/12/28 20:35:53 laffer1 Exp $
 # $FreeBSD: ports/security/gsasl/Makefile,v 1.34 2007/09/05 13:55:04 krion Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	GNU SASL Library
 LICENSE=	gpl3
 
 LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn \
-		gcrypt.13:${PORTSDIR}/security/libgcrypt \
+		gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
