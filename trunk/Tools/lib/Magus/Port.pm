@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.16 2008/03/14 18:43:15 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.17 2008/03/14 19:30:24 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -216,6 +216,19 @@ sub reset {
 
   $self->status('untested');
   $self->update;
+}
+
+=head2 $port->can_reset
+
+Returns true is reseting this port makes sense (the port is tested
+and its run is active).  Returns false otherwise.
+
+=cut
+
+sub can_reset {
+  return if $_[0]->status eq 'untested'
+         || $_[0]->run->status ne 'active';
+  return 1;
 }
 
 =head2 $port->log
