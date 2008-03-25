@@ -268,7 +268,7 @@ sub search {
     $where{status} = { '!=', 'untested' };
   }
 
-  $where{name} = { like => "%$query%" } if $query;
+  $where{name} ||= { like => "%$query%" } if $query;
 
 
   for (keys %where) {
@@ -369,7 +369,7 @@ sub browse {
   
   if ($path =~ m:(.*?)/(.+):) {
     return search($p, 
-      "$path status:any", 
+      "name:$path status:any", 
       {title => '<a href="'.$p->script_name . qq[/browse/$1">$1</a>/$2]} 
     );
   }
