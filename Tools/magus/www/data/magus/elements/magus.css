@@ -104,19 +104,16 @@ tr.details {
 	color: #2e3436;
 }
 
-.stats {
+.stats, .locks, .cats {
 	font-size: .8em;
 }
 
-.locks {
-	font-size: .8em;
-}
 
 div.right {
 	position: absolute;
 	top: 60px;
-	right: 0px;
-	width: 20%;
+	right: 10px;
+	width: 19%;
 }
 
 div.full {

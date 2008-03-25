@@ -53,6 +53,17 @@
 </table>
 </TMPL_IF>
 
+<TMPL_IF name="cats">
+<h3>Browse</h3>
+
+<p class="cats">
+<TMPL_LOOP NAME="cats">
+	<a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="category">"><TMPL_VAR NAME="category"></a>
+	<TMPL_UNLESS NAME="__last__">&middot;</TMPL_UNLESS>
+</TMPL_LOOP>
+</p>
+</TMPL_IF>
+
 
 </div>
 

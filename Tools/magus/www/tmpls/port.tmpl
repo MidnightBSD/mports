@@ -3,7 +3,16 @@
 <h2><TMPL_VAR name="port"></h2>
 
 <div class="right">
-<a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>">CVSWeb</a>
+<h3>Links</h3>
+<ul class="depends">
+<li><a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>" target="_blank">CVSWeb</a></li>
+<TMPL_IF NAME="www">
+<li><a title="<TMPL_VAR NAME="www">" href="<TMPL_VAR NAME="www">" target="_blank">Homepage</a></li>
+<TMPL_ELSE>
+<li>Website: <em>None</em></li>
+</TMPL_IF>
+<li><a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="port">">All <TMPL_VAR NAME="port"> results</a></li>
+</ul>
 
 <h3>Depends On</h3>
 
@@ -29,18 +38,25 @@
 <i>Nothing</i>
 </TMPL_IF>	
 
+<h3>Categories</h3>
+
+<ul class="depends">
+    <TMPL_LOOP NAME="cats">
+	<li><a href="<TMPL_VAR NAME=browse_root>/<TMPL_VAR NAME=category>"><TMPL_VAR NAME="category"></a></li>
+    </TMPL_LOOP>
+</ul>
+
 </div>
 
 <div class="left">
-<p><TMPL_VAR NAME="desc"></p>
-<p>Website: <a target="_blank" href="<TMPL_VAR NAME="www">"><TMPL_VAR NAME="www"></a></p>
-<hr />
+<p style="margin-bottom: 2em"><TMPL_VAR NAME="desc"></p>
 <table class="port-results">
 <tr>
 	<th>Version</th>
 	<th>Run</th>
 	<th>OSVersion</th>
 	<th>Arch</th>
+	<th>License</th>
 	<th>Status</th>
 	<th></th>
 </tr>
@@ -49,6 +65,7 @@
 	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
 	<td><TMPL_VAR NAME="osversion"></td>
 	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
 	<td><TMPL_VAR NAME="status"></td>
 	<td>
 	  <TMPL_IF NAME="can_reset">

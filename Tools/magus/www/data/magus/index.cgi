@@ -45,17 +45,27 @@ sub main {
   if ($path eq '' || $path eq '/') {
     summary_page($p);
   } elsif ($path =~ m:/machines/(.*):) {
-    machine_page($p, $1);
-  } elsif ($path =~ m:runs/(.*):) {
-    run_page($p, $1);
-  } elsif ($path =~ m:/ports/(.*):) {
+    if ($1) {
+      machine_page($p, $1);
+    } else {
+      machine_index($p);
+    }
+  } elsif ($path =~ m:^/runs/(.*):) {
+    if ($1) {
+      run_page($p, $1);
+    } else {
+      run_index($p);
+    }
+  } elsif ($path =~ m:^/ports/(.*):) {
     port_page($p, $1);
-  } elsif ($path =~ m:/async/run-ports-list:) {
+  } elsif ($path =~ m:^/async/run-ports-list:) {
     async_run_port_stats($p);
-  } elsif ($path =~ m:/async/machine-events:) {
+  } elsif ($path =~ m:^/async/machine-events:) {
     async_machine_events($p);
-  } elsif ($path =~ m:/search:) {
-    return search($p);
+  } elsif ($path =~ m:^/search:) {
+    search($p);
+  } elsif ($path =~m:^/browse/(.*):) {
+    browse($p, $1)
   } else {
     die "Unknown path: $path\n";
   }
@@ -106,9 +116,14 @@ sub summary_page {
     created   => $_->created,
   }} Magus::Run->search(status => 'active');
   
+  my @categories = map {{
+    category => $_->category
+  }} Magus::Category->retrieve_all;
+  
   $tmpl->param(
     runs  => \@runs,
-    locks => \@locks
+    locks => \@locks,
+    cats  => \@categories,
   ); 
   print $tmpl->output;
 }
@@ -156,7 +171,8 @@ sub port_page {
     osversion => $port->run->osversion,
     arch      => $port->run->arch,
     status    => $port->status,
-    can_reset => $port->run->status eq 'active' ? 1 : 0,
+    license   => $port->license,
+    can_reset => $port->can_reset? 1 : 0,
   );
   
   my @events = map { { 
@@ -195,6 +211,9 @@ sub port_page {
     $tmpl->param(depends_of => \@depends_of);
   }
   
+  my @cats = map {{ category => $_->category }} $port->categories;
+  
+  $tmpl->param(cats => \@cats);
   print $p->header, $tmpl->output;
 }
 
@@ -230,9 +249,9 @@ sub machine_page {
 
 
 sub search {
-  my ($p) = @_;
+  my ($p, $query, $tmpl_params) = @_;
   
-  my $query = $p->param('q');
+  $query  ||= $p->param('q');
   my $origq = $query;
   my %where;
   while ($query =~ s/(\S+):(\S+)//) {
@@ -272,12 +291,16 @@ sub search {
     id        => $_->id,
     run       => $_->run,
     osversion => $_->run->osversion,
-    can_reset => $_->run->status eq 'active' ? 1 : 0,
+    can_reset => $_->can_reset ? 1 : 0,
   }} @ports;
 
   my $tmpl = template($p, 'list.tmpl');
 
   $tmpl->param(results => \@results, title => "Search Results for &quot;$origq&quot;", count => scalar @results);
+  
+  if ($tmpl_params) {
+    $tmpl->param(%$tmpl_params);
+  }
   
   print $p->header, $tmpl->output;
 }
@@ -330,7 +353,7 @@ sub async_run_port_stats {
     id        => $_->id,
     run       => $_->run,
     osversion => $_->run->osversion,
-    can_reset => $_->run->status eq 'active' ? 1 : 0,
+    can_reset => $_->can_reset eq 'active' ? 1 : 0,
   }} @ports;
                                   
   my $tmpl = template($p, 'port-list.tmpl');
@@ -340,6 +363,31 @@ sub async_run_port_stats {
   
   print $p->header(-type => 'text/plain'), encode_json(\%details);
 }
+  
+sub browse {
+  my ($p, $path) = @_;
+  
+  if ($path =~ m:(.*?)/(.+):) {
+    return search($p, 
+      "$path status:any", 
+      {title => '<a href="'.$p->script_name . qq[/browse/$1">$1</a>/$2]} 
+    );
+  }
+  
+  # $path is a category
+  my $cat = Magus::Category->retrieve(category => $path) || die "No such category: $path\n";
+  
+  my $tmpl = template($p, "category.tmpl");
+  $tmpl->param(
+    title    => "Magus // Browse // $path",
+    ports    => [map {{ port => $_ }} sort @{$cat->distinct_ports}],
+    category => $path,
+  );
+  
+  print $p->header. $tmpl->output;
+}
+
+  
   
 
 sub template {
@@ -363,6 +411,7 @@ sub template {
     run_root  => $p->script_name() . '/runs',
     port_root => $p->script_name() . '/ports',
     machine_root => $p->script_name() . '/machines',
+    browse_root  => $p->script_name() . '/browse',
   );
   
   return $tmpl;
