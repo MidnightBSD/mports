@@ -2,11 +2,12 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.4 2007/10/25 04:17:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.5 2007/10/25 04:18:47 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk12/Makefile,v 1.104 2006/02/23 10:40:17 ade Exp $
 #
 
 PORTNAME=	gtk
+PKGNAMESUFFIX=	12
 PORTVERSION=	1.2.10
 PORTREVISION=	17
 CATEGORIES=	x11-toolkits
