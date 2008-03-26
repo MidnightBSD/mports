@@ -1,20 +1,19 @@
 # New ports collection makefile for:	PostgreSQL
 # Date created:		November 13, 1998
 # Whom:			Marc G. Fournier <scrappy@FreeBSD.org>
-# 
-# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.4 2007/05/10 19:32:34 ctriv Exp $
-# $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.163 2007/02/07 09:51:47 girgen Exp $
+#
+# $MidnightBSD$
+# $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.175 2008/03/20 09:37:16 pav Exp $
 #
 
 PORTNAME?=	postgresql
-PORTVERSION?=	8.1.8
+PORTVERSION?=	8.1.11
 PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${PORTVERSION}
 PKGNAMESUFFIX?=	-server
-DISTFILES?=	postgresql-base-${PORTVERSION}${EXTRACT_SUFX} \
-		postgresql-opt-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES?=	postgresql-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
@@ -42,7 +41,9 @@ GNU_CONFIGURE=	YES
 CONFIGURE_ARGS+=--with-libraries=${LOCALBASE}/lib \
 		--with-includes=${LOCALBASE}/include \
 		--with-docdir=${DOCSDIR}
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
+CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}" \
+		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+		PTHREAD_LIBS="${PTHREAD_LIBS}"
 
 PLIST=		${PKGDIR}/pkg-plist${PKGNAMESUFFIX}
 
@@ -98,23 +99,23 @@ OPTIONS+=	HIER  "Builds with query hierarchy (server)" off
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 
 .  if (defined(SERVER_ONLY) && defined(WITH_HIER)) || make(makesum)
-PATCH_SITES+=	http://gppl.moonbone.ru/:hier812055
+PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-hier/:hier812055
 PATCHFILES+=	hier-Pg8.1.2-0.5.5.diff.gz:hier812055
-USE_BISON=	yes
+USE_BISON=	build
 .  endif
 
 .  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-USE_AUTOTOOLS=	autoconf:259
+USE_AUTOTOOLS=	autoconf:261
 CONFIGURE_ARGS+=--with-icu
 LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
 PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
-PATCHFILES+=	pg-814-icu-xx-2006-09-25.diff.gz:icu
+PATCHFILES+=	pg-8111-icu-xx-2008-02-19.diff.gz:icu
 .  endif
 
 PATCH_DIST_STRIP=-p1
 
 .  ifmake makesum
-DISTFILES+=	postgresql-docs-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES+=     postgresql-docs-${PORTVERSION}${EXTRACT_SUFX}
 .  endif
 
 .  if defined(SERVER_ONLY) && defined(WITH_PAM)
@@ -123,10 +124,6 @@ CONFIGURE_ARGS+=--with-pam
 
 .  if defined(WITH_INTDATE)
 CONFIGURE_ARGS+=--enable-integer-datetimes
-.  endif
-
-. if !defined(WITHOUT_GNUGETOPT) || exists(${LOCALBASE}/include/getopt.h)
-USE_GETOPT_LONG=yes
 .  endif
 
 .  if !(defined(WITHOUT_GETTEXT) || defined(WITHOUT_NLS))
@@ -170,13 +167,12 @@ CONFIGURE_ARGS+=--with-krb5
 # Postgresql apps will not link properly when libpq is linked with base heimdal in /usr,
 # so we always use the heimdal port. See
 # http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018809.html
-LIB_DEPENDS+=	krb5.21:${PORTSDIR}/security/heimdal
+LIB_DEPENDS+=	krb5.23:${PORTSDIR}/security/heimdal
 CONFIGURE_ARGS+=--with-krb5
 .    endif
 .  endif
 
 .  if (defined(SERVER_ONLY) && defined(WITH_TESTS)) || make(makesum)
-DISTFILES+=	postgresql-test-${PORTVERSION}${EXTRACT_SUFX}
 EXTRA_PATCHES=	${FILESDIR}/regresspatch-src-test-regress-pgregress-sh
 .  endif
 
@@ -189,6 +185,10 @@ CFLAGS+=	${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS}
 .  endif
 .endif # !SLAVE_ONLY
+
+.if ${ARCH} == sparc64
+USE_GCC=	4.2+
+.endif
 
 .if defined(CLIENT_ONLY)
 MAN1=		clusterdb.1 createdb.1 createlang.1 createuser.1   \
@@ -284,7 +284,7 @@ pre-su-install:
 do-install:
 	@for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
+		${SETENV} ${MAKE_ENV} ${GMAKE}  ${FAKE_MAKEARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
 	@ ${MKDIR} ${PREFIX}/share/postgresql
@@ -301,7 +301,7 @@ do-install:
 			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} install-local
+	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${GMAKE}  ${FAKE_MAKEARGS}  install-local
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${DOCSDIR} ;\
