@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.83 2008/03/19 16:43:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.84 2008/03/20 18:36:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -70,9 +70,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  numerically (e.g. if port-0.3 is newer than port-1998).
 #				  In this case, incrementing PORTEPOCH forces the revision.
 #				  Default: 0 (no effect).
-# PKGNAME		- Always defined as
-#				  ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}.
-#				  Do not define this in your Makefile.
+# PKGSUBNAME	- Always defined as
+#				  ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+# PKGNAME		- Defined as ${PKGSUBNAME}-${PORTVERSION}
+#				  Do not define this or PKGSUBNAME  in your Makefile.
 # PKGNAMEPREFIX	- Prefix to specify that port is language-specific, etc.
 #				  Optional.
 # PKGNAMESUFFIX	- Suffix to specify compilation options.  Optional.
@@ -5075,15 +5076,24 @@ package-depends-list:
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
 PACKAGE-DEPENDS-LIST?= \
-	for dir in $$(${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${CUT} -f 2 -d ':') $$(${ECHO_CMD} ${DEPENDS} | ${SED} -e 'y/ /\n/' | ${CUT} -f 1 -d ':'); do \
-		dir=`${REALPATH} $$dir`; \
+	for depend in `${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/'`; do \
+		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
+		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
-			meta=`cd $$dir && ${MAKE} -V PKGNAME -V PKGORIGIN | ${PASTE} - -'`; \
-			${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
+			meta=`cd $$dir && ${MAKE} -V PKGSUBNAME -V PKGORIGIN | ${PASTE} - -'`; \
+			if [ -z "$$version" ]; then \
+				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
+			else \
+				version=`${ECHO_CMD} $$version | ${SED} -E 's/^.*([<>])/\1/'`; \
+				${ECHO_CMD} "$$dir $$meta $$version" | ${AWK} '{print $$2 " " $$1 " " $$3 " " $$4}'; \
+			fi; \
 		else \
 			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
+package-depends:
+	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{ if ($$4) print $$1":"$$3":"$$4; else print $$1":"$$3 }'
+
 .else
 PACKAGE-DEPENDS-LIST?= \
 	if [ "${CHILD_DEPENDS}" ]; then \
@@ -5118,9 +5128,10 @@ PACKAGE-DEPENDS-LIST?= \
 			${ECHO_MSG} "${PKGNAME}: \"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
-.endif
+
 package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{print $$1":"$$3}'
+.endif
 
 # Build packages for port and dependencies
 
@@ -5577,7 +5588,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.83 2008/03/19 16:43:42 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.84 2008/03/20 18:36:35 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
