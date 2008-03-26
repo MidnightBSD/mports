@@ -2,7 +2,7 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.5 2007/09/25 22:27:07 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.6 2008/03/14 01:19:14 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
@@ -10,15 +10,12 @@ PORTNAME=	sudo
 PORTVERSION=	1.6.9.14
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
-		http://probsd.org/sudoftp/ \
-		http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/sudo/ \
-		http://mirrors.theonlinerecordstore.com/sudo/ \
-		http://core.ring.gr.jp/archives/misc/sudo/ \
-		http://www.ring.gr.jp/archives/misc/sudo/ \
-		http://sudo.tsuren.net/dist/ \
-		http://pluto.cdpa.nsysu.edu.tw/sudo/ \
-		ftp://ftp.cs.colorado.edu/pub/sysadmin/sudo/ \
-		ftp://ftp.stikman.com/pub/sudo/
+		ftp://obsd.isc.org/pub/sudo/ \
+		ftp://ftp.uwsg.indiana.edu/pub/security/sudo/ \
+		ftp://boulder.tele.dk/pub/sudo/ \
+		ftp://core.ring.gr.jp/pub/misc/sudo/ \
+		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/ \
+
 DISTNAME=	${PORTNAME}-1.6.9p14
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -71,7 +68,7 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
 
 	if [ ! -e ${PREFIX}/etc/pam.d/sudo ]; then \
-		cp -p ${PREFIX}/etc/pam.d/sudo.default \
+		${CP} -p ${PREFIX}/etc/pam.d/sudo.default \
 		${PREFIX}/etc/pam.d/sudo ;\
 	fi
 
@@ -85,6 +82,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/sample.sudoers ${DOCSDIR}
 .if defined(WITH_LDAP)
 	${INSTALL_DATA} ${WRKSRC}/README.LDAP ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/schema.OpenLDAP ${DOCSDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/sudoers2ldif ${DOCSDIR}
 .endif
 .endif
