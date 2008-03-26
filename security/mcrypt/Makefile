@@ -5,12 +5,11 @@
 #
 # $OpenBSD: Makefile,v 1.1.1.1 2000/11/27 15:56:03 avsm Exp $
 # $FreeBSD: ports/security/mcrypt/Makefile,v 1.35 2006/02/11 21:03:07 netchild Exp $
-# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.1 2006/11/25 03:51:03 laffer1 Exp $
+# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.2 2008/02/28 23:52:51 laffer1 Exp $
 #
 
 PORTNAME=	mcrypt
-PORTVERSION=	2.6.4
-PORTREVISION=	3
+PORTVERSION=	2.6.7
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://argeas.cs-net.gr/pub/unix/mcrypt/attic/ \
@@ -20,11 +19,12 @@ MASTER_SITE_SUBDIR=	mcrypt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for crypt(1)
+LICENSE=	gpl3
 
 LIB_DEPENDS=	mcrypt.8:${PORTSDIR}/security/libmcrypt \
 		mhash.2:${PORTSDIR}/security/mhash
 
-USE_AUTOTOOLS=	autoconf:259:env
+USE_AUTOTOOLS=	autoconf:261:env
 USE_GETTEXT=		yes
 CONFIGURE_ARGS+=	${CONFIGURE_SHARED}
 CONFIGURE_ARGS+=	--enable-static --with-catgets
