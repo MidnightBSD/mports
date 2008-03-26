@@ -2,12 +2,13 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.5 2008/02/17 03:37:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.6 2008/03/19 01:07:33 laffer1 Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.142 2007/07/17 02:35:58 marcus Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.91 2006/10/05 06:55:34 mezz Exp $
 #
 
 PORTNAME=	glib
+PKGNAMESUFFIX=	20
 PORTVERSION=	2.14.6
 PORTREVISION?=	0
 CATEGORIES=	devel
