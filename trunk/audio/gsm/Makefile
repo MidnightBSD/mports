@@ -2,7 +2,7 @@
 # Date created:		5 January 1995
 # Whom:			pst
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/gsm/Makefile,v 1.1 2007/04/05 00:13:20 laffer1 Exp $
 # $FreeBSD: ports/audio/gsm/Makefile,v 1.22 2006/08/11 20:55:54 sobomax Exp $
 #
 
@@ -18,6 +18,7 @@ MASTER_SITES=	http://kbs.cs.tu-berlin.de/~jutta/gsm/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio converter and library for converting u-law to gsm encoding
+LICENSE=	other # fairly loose, bsdish.
 
 WRKSRC=		${WRKDIR}/gsm-1.0-pl12
 
