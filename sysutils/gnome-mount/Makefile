@@ -2,13 +2,14 @@
 # Date created:			04 June 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/gnome-mount/Makefile,v 1.1 2007/10/23 21:06:50 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gnome-mount/Makefile,v 1.9 2007/05/19 20:23:17 flz Exp $
 #   $MCom: ports/sysutils/gnome-mount/Makefile,v 1.13 2007/02/11 06:03:50 marcus Exp $
 #
 
 PORTNAME=	gnome-mount
 PORTVERSION=	0.6
+PORTREVISIONN=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://people.freedesktop.org/~david/dist/
 
