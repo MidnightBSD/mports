@@ -13,5 +13,5 @@ lib/libdvdnav.a
 lib/libdvdnav.la
 lib/libdvdnav.so
 lib/libdvdnav.so.4
-share/aclocal19/dvdnav.m4
+share/aclocal/dvdnav.m4
 @dirrm include/dvdnav
