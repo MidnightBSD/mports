@@ -104,7 +104,7 @@ tr.details {
 	color: #2e3436;
 }
 
-.stats, .locks, .cats {
+.locks, .cats {
 	font-size: .8em;
 }
 
@@ -162,12 +162,9 @@ ul.depends {
 }	
 
 ul.stats {
-	position: absolute;
-	top: 6px;
-	right: 4px; 
 	list-style: none;
-	margin: 0;
-	padding: 0;
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 ul.stats li {
