@@ -2,7 +2,7 @@
 # Date created:		27 Oct 1998
 # Whom:			Abel Chow <achow@transoft.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/tidy/Makefile,v 1.1 2006/09/27 12:44:17 laffer1 Exp $
 # $FreeBSD: ports/www/tidy/Makefile,v 1.24 2006/09/05 09:06:06 linimon Exp $
 #
 
@@ -13,6 +13,8 @@ CATEGORIES=	www
 MASTER_SITES=	http://www.w3.org/People/Raggett/
 DISTNAME=	tidy4aug00
 EXTRACT_SUFX=	.tgz
+
+CONFLICTS=	tidy-devel-[0-9]* tidy-lib-[0-9]*
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fixes and tidies up HTML files
