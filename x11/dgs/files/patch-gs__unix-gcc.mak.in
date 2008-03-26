@@ -1,6 +1,6 @@
---- ./gs/unix-gcc.mak.in.orig	Thu May  3 21:33:15 2007
-+++ ./gs/unix-gcc.mak.in	Thu May  3 21:33:58 2007
-@@ -58,7 +58,7 @@
+--- ./gs/unix-gcc.mak.in.orig	Tue Jan 11 17:32:05 2000
++++ ./gs/unix-gcc.mak.in	Sat Mar 22 12:11:01 2008
+@@ -58,11 +58,11 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_DATA = @INSTALL_DATA@
  
@@ -9,3 +9,8 @@
  exec_prefix = @exec_prefix@
  bindir = @bindir@
  scriptdir = $(exec_prefix)/bin
+-mandir = @mandir@
++mandir = $(DESTDIR)@mandir@
+ man1ext = 1
+ man1dir = $(mandir)/man$(man1ext)
+ datadir = @datadir@

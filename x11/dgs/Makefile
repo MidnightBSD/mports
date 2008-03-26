@@ -2,7 +2,7 @@
 # Date created:        22 April 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.4 2007/03/25 02:39:08 ctriv Exp $
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.5 2007/05/04 06:51:54 ctriv Exp $
 # $FreeBSD: ports/x11/dgs/Makefile,v 1.44 2006/07/26 15:30:48 dinoex Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	dgs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A display ghostscript system
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
