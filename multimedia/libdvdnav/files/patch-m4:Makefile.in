@@ -6,7 +6,7 @@
  
 -@INSTALL_M4_TRUE@m4datadir = @ACLOCAL_DIR@
 -@INSTALL_M4_FALSE@m4datadir = $(datadir)/aclocal
-+m4datadir = $(datadir)/aclocal
++m4datadir = $(destdir)$(datadir)/aclocal19
  
  m4data_DATA = dvdnav.m4
  subdir = m4
