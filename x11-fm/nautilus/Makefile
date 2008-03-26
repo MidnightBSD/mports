@@ -2,13 +2,13 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.1 2007/09/03 23:09:48 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.76 2007/07/03 17:16:52 mezz Exp $
 #   $MCom: ports/x11-fm/nautilus/Makefile,v 1.127 2007/03/16 16:07:42 marcus Exp $
 #
 
 PORTNAME=	nautilus
-PORTVERSION=	2.18.3
+PORTVERSION=	2.20.0
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
