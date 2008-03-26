@@ -2,11 +2,12 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib12/Makefile,v 1.1 2006/09/23 00:30:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib12/Makefile,v 1.2 2007/04/23 02:17:19 ctriv Exp $
 # $FreeBSD: ports/devel/glib12/Makefile,v 1.61 2006/05/04 21:40:40 edwin Exp $
 #
 
 PORTNAME=	glib
+PKGNAMESUFFIX=	12
 PORTVERSION=	1.2.10
 PORTREVISION=	12
 CATEGORIES=	devel
@@ -15,10 +16,11 @@ MASTER_SITE_SUBDIR=	sources/glib/1.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful routines of C programming (previous stable version)
+LICENSE=	lgpl
 
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/glib12
 CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
