@@ -3,7 +3,7 @@
 # Whom:				arved
 #
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.2 2007/04/10 16:50:11 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.3 2008/02/28 17:52:27 laffer1 Exp $
 #
 
 PORTNAME=	jackit
@@ -15,6 +15,7 @@ DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low-latency audio server
+LICENSE=	gpl2
 
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
