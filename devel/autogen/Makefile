@@ -3,12 +3,12 @@
 # Date created:		Mar 11, 2001
 # Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/autogen/Makefile,v 1.1 2007/08/30 01:47:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/autogen/Makefile,v 1.2 2008/03/26 00:19:32 laffer1 Exp $
 # $FreeBSD: ports/devel/autogen/Makefile,v 1.59 2007/07/30 03:53:29 clsung Exp $
 #
 
 PORTNAME=	autogen
-PORTVERSION=	5.9.2
+PORTVERSION=	5.9.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		${MASTER_SITE_GNU:S/$/:gnu/}
