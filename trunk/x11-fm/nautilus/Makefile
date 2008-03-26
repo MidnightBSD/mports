@@ -2,7 +2,7 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.1 2007/09/03 23:09:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.2 2008/03/26 02:11:30 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.76 2007/07/03 17:16:52 mezz Exp $
 #   $MCom: ports/x11-fm/nautilus/Makefile,v 1.127 2007/03/16 16:07:42 marcus Exp $
 #
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
+LICENSE=	gpl2
 
 LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif
 
