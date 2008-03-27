@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.89 2008/03/21 20:12:40 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.90 2008/03/21 20:14:20 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -110,6 +110,7 @@
     SUBDIR += wv
     SUBDIR += wv2
     SUBDIR += xhtml
+    SUBDIR += xhtml-modularization
     SUBDIR += xmlcatmgr
     SUBDIR += xmlcharent
 
