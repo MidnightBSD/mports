@@ -2,13 +2,13 @@
 # Date created:		Dec 2, 2003
 # Whom:			nectar
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.1 2008/03/27 23:13:07 laffer1 Exp $
 # $FreeBSD: ports/textproc/xhtml-basic/Makefile,v 1.3 2006/03/24 05:44:38 linimon Exp $
 #
 
 PORTNAME=	xhtml-basic
 PORTVERSION=	1.0.${RECDATE}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.w3.org/TR/2000/REC-${PORTNAME}-${RECDATE}/
 DISTNAME=	${PORTNAME}
@@ -32,20 +32,20 @@ dir_DTD=	share/xml/dtd/xhtml-basic
 dir_DOC=	share/doc/xhtml-basic
 
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
-SGMLCAT=	${PREFIX}/share/sgml/catalog.ports
-XMLCAT=		${PREFIX}/share/xml/catalog.ports
+SGMLCAT=	${LOCALBASE}/share/sgml/catalog.ports
+XMLCAT=		${LOCALBASE}/share/xml/catalog.ports
 
 XMLCAT_ADD=	${XMLCATMGR} -c ${XMLCAT} add nextCatalog \
-		    ${PREFIX}/${dir_DTD}/catalog.xml
+		    ${LOCALBASE}/${dir_DTD}/catalog.xml
 XMLCAT_RM=	${XMLCATMGR} -c ${XMLCAT} remove \
-		    ${PREFIX}/${dir_DTD}/catalog.xml
+		    ${LOCALBASE}/${dir_DTD}/catalog.xml
 SGMLCAT_ADD=	${XMLCATMGR} -sc ${SGMLCAT} add CATALOG \
-		    ${PREFIX}/${dir_DTD}/xhtml-basic10.cat
+		    ${LOCALBASE}/${dir_DTD}/xhtml-basic10.cat
 SGMLCAT_RM=	${XMLCATMGR} -sc ${SGMLCAT} remove \
-		    ${PREFIX}/${dir_DTD}/xhtml-basic10.cat
+		    ${LOCALBASE}/${dir_DTD}/xhtml-basic10.cat
 
-CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
-CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
+CATALOG_PORTS_SGML=	${LOCALBASE}/share/sgml/catalog.ports
+CATALOG_PORTS_XML=	${LOCALBASE}/share/xml/catalog.ports
 
 .include "${.CURDIR}/contents.inc"
 
