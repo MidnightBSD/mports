@@ -2,13 +2,13 @@
 # Date created:				12 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.1 2007/10/21 23:12:58 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gconf-editor/Makefile,v 1.42 2007/08/27 17:33:13 marcus Exp $
 #   $MCom: ports/sysutils/gconf-editor/Makefile,v 1.59 2007/03/13 12:30:40 ahze Exp $
 #
 
 PORTNAME=	gconf-editor
-PORTVERSION=	2.18.2
+PORTVERSION=	2.20.0
 PORTEPOCH=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
