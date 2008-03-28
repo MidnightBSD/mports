@@ -2,13 +2,13 @@
 # Date created:				9th February 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.1 2006/09/21 14:15:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.2 2007/05/18 05:02:20 ctriv Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 #
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.17
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.1
@@ -51,7 +51,7 @@ WITH_GCRYPT=	yes
 .endif
 
 .if defined(WITH_GCRYPT)
-LIB_DEPENDS+=	gcrypt.13:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=	gcrypt.15:${PORTSDIR}/security/libgcrypt
 .endif
 
 pre-everything::
