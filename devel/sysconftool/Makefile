@@ -3,11 +3,12 @@
 # Whom:				Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/devel/sysconftool/Makefile,v 1.12 2005/11/15 06:49:04 ade Exp $
-# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.1 2007/02/18 03:30:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.2 2008/03/24 19:12:42 laffer1 Exp $
 #
 
 PORTNAME=	sysconftool
 PORTVERSION=	0.15
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	courier
