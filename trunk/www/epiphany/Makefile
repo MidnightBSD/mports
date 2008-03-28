@@ -2,24 +2,25 @@
 # Date created:				24 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.1 2007/10/20 05:12:16 laffer1 Exp $
-# $FreeBSD: ports/www/epiphany/Makefile,v 1.110 2007/07/23 09:36:43 rafan Exp $
-#   $MCom: ports/www/epiphany/Makefile,v 1.141 2007/03/11 20:12:27 mezz Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/www/epiphany/Makefile,v 1.113 2008/01/08 04:29:19 marcus Exp $
+#   $MCom: ports-stable/www/epiphany/Makefile,v 1.8 2007/12/01 19:54:36 marcus Exp $
 #
 
 PORTNAME=	epiphany
-PORTVERSION=	2.18.3
-PORTREVISION=	1
+PORTVERSION=	2.20.3
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidinghtBSD.org
 COMMENT=	An extremely lightweight and simple web browser for GNOME 2
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
-RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
+    		${LOCALBASE}/share/themes/LowContrast/index.theme:${PORTSDIR}/x11-themes/gnome-themes
 
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
@@ -34,7 +35,7 @@ WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
-CONFIGURE_ARGS=	--with-mozilla=${GECKO}
+CONFIGURE_ARGS=	--with-gecko=${GECKO}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
@@ -45,6 +46,8 @@ PLIST_SUB+=	EPHY_VERSION="${PORTVERSION:C/\.[0-9]+$//}" \
 		EPHY_PREFIX="${PREFIX}"
 
 MAN1=		epiphany.1
+
+OPTIONS=	SPELL_CHECKER "Enable spell checking support" off
 
 .if defined(PACKAGE_BUILDING)
 .undef WITHOUT_GNOME
@@ -72,6 +75,11 @@ CONFIGURE_ARGS+=--disable-python
 PLIST_SUB+=	PYTHON="@comment "
 .endif
 
+.if defined(WITH_SPELL_CHECKER)
+LIB_DEPENDS+=	enchant.1:${PORTSDIR}/textproc/enchant
+CONFIGURE_ARGS+=--enable-spell-checker
+.endif
+
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in*" | ${XARGS} ${REINPLACE_CMD} -e \
 		 's|-lpthread|${PTHREAD_LIBS}|g'
@@ -79,8 +87,6 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|/lib/mozilla/plugins"|/lib/browser_plugins" ":" MOZILLA_PREFIX "/lib/browser_linux_plugins"|' \
 		${WRKSRC}/embed/mozilla/mozilla-embed-single.cpp
-	@${REINPLACE_CMD} -e 's|[$$](datadir)/pygtk/2.0/defs|${LOCALBASE}/share/pygtk/2.0/defs|' \
-		${WRKSRC}/src/Makefile.in
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/data/epiphany-fonts.schemas \
