@@ -2,14 +2,13 @@
 # Date created:				02 Mar 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.1 2007/10/24 03:43:08 laffer1 Exp $
 # $FreeBSD: ports/deskutils/gucharmap/Makefile,v 1.33 2007/07/29 19:16:38 kris Exp $
 #   $MCom: ports/deskutils/gucharmap/Makefile,v 1.35 2007/03/13 00:40:44 mezz Exp $
 #
 
 PORTNAME=	gucharmap
-PORTVERSION=	1.10.0
-PORTREVISION=	1
+PORTVERSION=	1.10.2
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,8 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Unicode/ISO10646 character map and font viewer
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper
-RUN_DEPENDS=	scrollkeeper-config:${PORTSDIR}/textproc/scrollkeeper
+LIB_DEPENDS=	rarian.0:${PORTSDIR}/textproc/rarian
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
