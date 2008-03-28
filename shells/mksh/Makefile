@@ -2,12 +2,12 @@
 # Date created:				2006-06-24
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.10 2007/10/16 20:43:40 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.11 2008/03/02 18:55:07 laffer1 Exp $
 # $FreeBSD: ports/shells/mksh/Makefile,v 1.3 2006/09/04 07:02:54 miwi Exp $
 #
 
 PORTNAME=	mksh
-DISTVERSION=	R33
+DISTVERSION=	R33b
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/
 DISTFILES=	${PORTNAME}-${DISTVERSION}.cpio.gz
