@@ -2,13 +2,13 @@
 # Date Created:			29 April 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.1 2007/10/23 18:43:25 laffer1 Exp $
 # $FreeBSD: ports/devel/libgtop/Makefile,v 1.76 2007/07/23 09:35:42 rafan Exp $
 #   $MCom: ports/devel/libgtop/Makefile,v 1.5 2006/10/02 23:26:51 ahze Exp $
 #
 
 PORTNAME=	libgtop
-PORTVERSION=	2.14.9
+PORTVERSION=	2.20.1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 top library
 
+RUN_DEPENDS=	lsof:${PORTSDIR}/sysutils/lsof
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
 USE_BZIP2=	yes
