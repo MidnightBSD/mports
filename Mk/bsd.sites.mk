@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.29 2008/03/28 16:29:53 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.30 2008/03/28 16:31:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1220,7 +1220,7 @@ MASTER_SITE_VIM+= \
 	ftp://ftp9.us.vim.org/pub/vim/unix/ \
 	ftp://ftp.ca.vim.org/pub/vim/unix/ \
 	ftp://ftp.nl.vim.org/pub/vim/unix/ \
-	ftp://ftp.de.vim.org/pub/vim/unix/ \
+	ftp://ftp.de.vim.org/unix/ \
 	ftp://ftp3.de.vim.org/pub/vim/unix/ \
 	ftp://ftp.uk.vim.org/pub/vim/unix/ \
 	ftp://ftp.ie.vim.org/pub/vim/unix/ \
