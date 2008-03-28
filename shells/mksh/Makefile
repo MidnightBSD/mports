@@ -2,7 +2,7 @@
 # Date created:				2006-06-24
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.11 2008/03/02 18:55:07 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.12 2008/03/28 23:05:03 laffer1 Exp $
 # $FreeBSD: ports/shells/mksh/Makefile,v 1.3 2006/09/04 07:02:54 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.cpio.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MirBSD enhanced shell based on pdksh
+LICENSE=	bsd4
 
 USE_GCPIO=	yes
 
