@@ -6,9 +6,9 @@
  	 */
 -	{ N_("Search the web"), N_("http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8") }
 +	{ N_("Search the web"), N_("http://www.google.com/search?q=%s&ie=UTF-8&oe=UTF-8") },
-+	{ N_("The FreeBSD Project"), N_("http://www.freebsd.org/") },
-+	{ N_("Daemon News"), N_("http://daemonnews.org/") },
-+	{ N_("BSD News"), N_("http://bsdnews.com/") }
++	{ N_("The MidnightBSD Project"), N_("http://www.midnightbsd.org/") },
++	{ N_("MidnightBSD Developer Blog"), N_("http://www.justjournal.com/users/mbsd") },
++	{ N_("Magus"), N_("http://www.midnightbsd.org/magus/") }
  };
  
  static const char *default_topics [] =
