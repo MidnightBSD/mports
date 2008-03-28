@@ -3,23 +3,25 @@
 # Whom:                Peter Schmiedeskamp
 #
 # $FreeBSD: ports/graphics/libexif/Makefile,v 1.25 2006/03/29 06:54:33 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.1 2007/01/20 15:54:27 laffer1 Exp $
 #
 
 PORTNAME=	libexif
-PORTVERSION=	0.6.13
+PORTVERSION=	0.6.15
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to read digital camera file meta-data
+LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
