@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.28 2008/03/28 16:26:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.29 2008/03/28 16:29:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1298,6 +1298,16 @@ MASTER_SITE_XEMACS+= \
 	ftp://ftp.dti.ad.jp/pub/unix/editor/xemacs/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,text/xemacs/&,}
 .endif
+
+.if !defined(IGNORE_MASTER_SITE_XFCE)
+MASTER_SITE_XFCE+= \
+	http://mocha.xfce.org/archive/%SUBDIR%/src/ \
+	http://www.us.xfce.org/archive/%SUBDIR%/src/ \
+	http://www.de.xfce.org/archive/%SUBDIR%/src/ \
+	http://www.ca-us.xfce.org/archive/%SUBDIR%/src/ \
+	http://www.p0llux.be/xfce/%SUBDIR%/src/
+.endif
+
 
 .if !defined(IGNORE_MASTER_SITE_XFREE)
 MASTER_SITE_XFREE+= \
