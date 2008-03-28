@@ -3,7 +3,7 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.4 2007/10/11 20:46:09 ctriv Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.5 2007/11/19 19:10:17 laffer1 Exp $
 #
 
 PORTNAME=	xorg-server
@@ -19,7 +19,7 @@ DISTFILES=	xorg-server-${PORTVERSION}.tar.bz2:fdo \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X server and related programs
-LICENSE=	
+LICENSE=	x11
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
 RUN_DEPENDS=	${X11BASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard-config
