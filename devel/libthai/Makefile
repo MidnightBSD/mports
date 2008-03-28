@@ -3,12 +3,12 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.2 2007/05/06 21:08:00 ctriv Exp $
+# $MidnightBSD: mports/devel/libthai/Makefile,v 1.3 2008/03/24 18:19:31 laffer1 Exp $
 #
 
 PORTNAME=	libthai
 PORTVERSION=	0.1.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.usablelabs.com/download/
 
@@ -30,7 +30,7 @@ pre-configure:
 post-patch:
 	@${REINPLACE_CMD} -E 's,^(pkgconfigdir = ).*$$,\1$$(prefix)/libdata/pkgconfig,' \
 		${WRKSRC}/Makefile.am
-	@${REINPLACE_CMD} -e 's,15,-1.5,' -e 's,259,-2.61,' \
+	@${REINPLACE_CMD} -e 's,15,-1.5,' -e 's,259,-2.61,' -e 's,FreeBSD,MidnightBSD,' \
                ${WRKSRC}/autogen.sh
 
 
