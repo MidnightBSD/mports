@@ -2,11 +2,12 @@
 # Date created:		7th December 2006
 # Whom:			ade@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/autoconf261/Makefile,v 1.3 2008/03/24 17:48:40 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf261/Makefile,v 1.70 2007/07/28 20:55:46 ade Exp $
 #
 
 PORTNAME=	autoconf
+PKGNAMESUFFIX=	261
 PORTVERSION=	2.61
 PORTREVISION=	1
 CATEGORIES=	devel

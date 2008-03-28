@@ -2,11 +2,12 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf253/Makefile,v 1.1 2006/09/21 13:55:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf253/Makefile,v 1.2 2007/08/20 00:53:29 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf253/Makefile,v 1.56 2006/05/04 21:40:23 edwin Exp $
 #
 
 PORTNAME=	autoconf
+PKGNAMESUFFIX=	253
 PORTVERSION=	2.53
 PORTREVISION=	3
 CATEGORIES=	devel
