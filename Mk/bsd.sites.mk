@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.27 2008/03/28 16:24:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.28 2008/03/28 16:26:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -71,7 +71,7 @@ MASTER_SITE_APACHE+=	\
 	ftp://ftp.esat.net/mirrors/ftp.apache.org/%SUBDIR%/ \
 	ftp://ftp.heanet.ie/mirrors/www.apache.org/dist/%SUBDIR%/ \
 	ftp://ftp.rhnet.is/pub/apache/%SUBDIR%/ \
-	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/apache/dist/&,} \
+	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/apache/&,} \
 	ftp://ftp.sogang.ac.kr/www/apache/dist/%SUBDIR%/ \
 	ftp://ftp.task.gda.pl/pub/www/apache/dist/%SUBDIR%/ \
 	ftp://sunsite.icm.edu.pl/pub/www/apache/dist/%SUBDIR%/ \
@@ -1289,7 +1289,6 @@ MASTER_SITE_XEMACS+= \
 	ftp://ftp.it.xemacs.org/unix/packages/XEMACS/%SUBDIR%/ \
 	ftp://ftp.kr.xemacs.org/pub/tools/emacs/xemacs/%SUBDIR%/ \
 	ftp://ftp.no.xemacs.org/pub/xemacs/%SUBDIR%/ \
-	ftp://ftp.pl.xemacs.org/pub/unix/editors/xemacs/%SUBDIR%/ \
 	ftp://ftp.pt.xemacs.org/pub/xemacs/%SUBDIR%/ \
 	ftp://ftp.ru.xemacs.org/pub/emacs/xemacs/%SUBDIR%/ \
 	ftp://ftp.se.xemacs.org/pub/gnu/xemacs/%SUBDIR%/ \
