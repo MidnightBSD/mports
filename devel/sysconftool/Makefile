@@ -3,7 +3,7 @@
 # Whom:				Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/devel/sysconftool/Makefile,v 1.12 2005/11/15 06:49:04 ade Exp $
-# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.2 2008/03/24 19:12:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.3 2008/03/28 02:34:47 laffer1 Exp $
 #
 
 PORTNAME=	sysconftool
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	courier
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Helps to install application configuration files
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_PERL5=	yes
