@@ -2,12 +2,12 @@
 # Date created:		2005-11-05
 # Whom:			Phillip Neumann <pneumann@gmail.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.1 2007/08/15 05:03:35 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/icon-naming-utils/Makefile,v 1.8 2007/03/04 20:26:22 rafan Exp $
 #
 
 PORTNAME=	icon-naming-utils
-PORTVERSION=	0.8.2
+PORTVERSION=	0.8.6
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/
 
