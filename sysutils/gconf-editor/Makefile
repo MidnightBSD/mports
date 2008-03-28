@@ -2,7 +2,7 @@
 # Date created:				12 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.1 2007/10/21 23:12:58 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/gconf-editor/Makefile,v 1.2 2008/03/28 02:59:02 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gconf-editor/Makefile,v 1.42 2007/08/27 17:33:13 marcus Exp $
 #   $MCom: ports/sysutils/gconf-editor/Makefile,v 1.59 2007/03/13 12:30:40 ahze Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A gconf database editor for the GNOME 2 environment
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
