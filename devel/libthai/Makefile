@@ -3,7 +3,7 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.3 2008/03/24 18:19:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/libthai/Makefile,v 1.4 2008/03/28 02:32:22 laffer1 Exp $
 #
 
 PORTNAME=	libthai
@@ -14,6 +14,7 @@ MASTER_SITES=	http://www.usablelabs.com/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thai language support library
+LICENSE=	lgpl
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
