@@ -2,11 +2,12 @@
 # Date created:		15 March 1997
 # Whom:			FUJIMOTO Kensaku <fujimoto@oscar.elec.waseda.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/automake14/Makefile,v 1.4 2008/03/23 20:38:14 laffer1 Exp $
 # $FreeBSD: ports/devel/automake14/Makefile,v 1.62 2007/07/28 06:33:46 ade Exp $
 #
 
 PORTNAME=	automake
+PKGNAMESUFFIX=	14
 PORTVERSION=	1.4.6
 PORTREVISION=	3
 CATEGORIES=	devel

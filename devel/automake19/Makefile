@@ -2,11 +2,12 @@
 # Date created:		15 Feb 2003
 # Whom:			Udo Schweigert
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/automake19/Makefile,v 1.2 2008/03/23 20:41:07 laffer1 Exp $
 # $FreeBSD: ports/devel/automake19/Makefile,v 1.71 2007/07/31 07:36:14 ade Exp $
 #
 
 PORTNAME=	automake
+PKGNAMESUFFIX=	19
 PORTVERSION=	1.9.6
 PORTREVISION=	2
 CATEGORIES=	devel
