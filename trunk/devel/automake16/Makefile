@@ -2,11 +2,12 @@
 # Date created:				14th April 2007
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/automake16/Makefile,v 1.1 2008/03/25 18:11:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/automake16/Makefile,v 1.2 2008/03/25 18:12:15 laffer1 Exp $
 # $FreeBSD: ports/devel/automake16/Makefile,v 1.38 2007/07/28 06:33:47 ade Exp $
 #
 
 PORTNAME=	automake
+PKGNAMESUFFIX=	16
 PORTVERSION=	1.6.3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
