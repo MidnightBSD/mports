@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-video-ati/Makefile,v 1.5 2007/10/09 20:08:26 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.2 2007/11/13 17:12:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.3 2008/03/03 23:24:23 laffer1 Exp $
 #
 
 PORTNAME=	xf86-video-ati
-PORTVERSION=	6.7.197
+PORTVERSION=	6.8.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
