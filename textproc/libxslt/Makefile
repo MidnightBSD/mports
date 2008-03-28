@@ -2,22 +2,20 @@
 # Date created:				9th February 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.2 2007/05/18 05:02:20 ctriv Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.3 2008/03/28 03:25:32 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 #
 
 PORTNAME=	libxslt
-PORTVERSION=	1.1.17
-PORTREVISION?=	1
+PORTVERSION=	1.1.22
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.1
+MASTER_SITES=	ftp://xmlsoft.org/libxslt/ \
+		ftp://fr.rpmfind.net/pub/libxml/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The XSLT C library for GNOME
-
-USE_BZIP2=	yes
+LICENSE=	bsd3
 
 .if !defined(REFERENCE_PORT)
 
