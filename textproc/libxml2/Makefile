@@ -2,10 +2,10 @@
 # Date created:				28 September 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.1 2006/09/20 03:56:35 archite Exp $
-# $FreeBSD: ports/textproc/libxml2/Makefile,v 1.142 2006/06/07 19:20:30 marcus Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/textproc/libxml2/Makefile,v 1.148 2008/01/22 20:59:41 marcus Exp $
 #
-# WITH_THREADS enable pthread support (WILL BREAK OTHER PORTS!)
+# WITH_THREADS_BREAK enable pthread support (WILL BREAK OTHER PORTS!)
 # WITHOUT_SCHEMA disable XML schema support
 # WITH_MEM_DEBUG enable memory debugging (DEVELOPERS ONLY!)
 # WITH_XMLLINT_HIST enable history for xmllint
@@ -13,17 +13,16 @@
 #
 
 PORTNAME=	libxml2
-PORTVERSION=	2.6.26
+PORTVERSION=	2.6.31
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/2.6
+MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
+		ftp://fr.rpmfind.net/pub/libxml/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	XML parser library for GNOME
-
-USE_BZIP2=	yes
+LICENSE=	bsd3
 
 .if !defined(REFERENCE_PORT)
 
@@ -31,7 +30,7 @@ USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME?=	gnomehack gnometarget pkgconfig
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS?= --with-iconv=${LOCALBASE} \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-html-subdir=${PORTNAME} \
@@ -44,7 +43,7 @@ MAN1=		xml2-config.1 xmllint.1 xmlcatalog.1
 MAN3=		libxml.3
 .endif
 
-.if defined(WITH_THREADS)
+.if defined(WITH_THREADS_BREAK)
 CONFIGURE_ARGS+=	--with-threads
 .else
 CONFIGURE_ARGS+=	--without-threads
