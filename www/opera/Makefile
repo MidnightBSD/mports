@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.16 2008/02/12 15:15:00 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.17 2008/03/28 22:31:01 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -102,7 +102,7 @@ do-install:
 	@(cd ${WRKSRC} && ./install.sh --prefix=${TRUE_PREFIX} --DESTDIR=${FAKE_DESTDIR})
 
 post-install:
-	@${MKDIR} ${PREFIX}/share/gnome/apps/Internet
+	@${MKDIR} ${PREFIX}/share/apps/Internet
 	@${MKDIR} ${PREFIX}/share/pixmaps
 	@${MKDIR} ${PREFIX}/share/applnk/Internet
 	@${MKDIR} ${PREFIX}/share/icons/hicolor/22x22/apps
