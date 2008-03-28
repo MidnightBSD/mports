@@ -2,12 +2,12 @@
 # Date created:		27 June 2001
 # Whom:			Jeremy <karlj000@unbc.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/bluej/Makefile,v 1.1 2006/10/04 20:24:39 laffer1 Exp $
 # $FreeBSD: ports/java/bluej/Makefile,v 1.18 2006/06/12 23:44:13 hq Exp $
 #
 
 PORTNAME=	bluej
-PORTVERSION=	2.0.2
+PORTVERSION=	2.2.0
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
