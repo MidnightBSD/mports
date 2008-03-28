@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.4 2007/10/19 20:45:20 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.5 2008/02/12 15:29:32 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -24,6 +24,7 @@ DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_DATE}.1-static-qt.i386-en
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
+LICENSE=	restricted
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libaspell.so.15:${PORTSDIR}/textproc/linux-aspell
 
@@ -35,9 +36,9 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-OPERA_VER=	9.25
-OPERA_DATE=	20071214
-OPERA_BUILD=	687
+OPERA_VER=	9.26
+OPERA_DATE=	20080215
+OPERA_BUILD=	698
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
