@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-fonts/xfs/Makefile,v 1.13 2007/07/02 17:42:22 lesi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/xfs/Makefile,v 1.1 2007/10/07 17:08:15 ctriv Exp $
 #
 
 PORTNAME=	xfs
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
