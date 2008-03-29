@@ -4,11 +4,11 @@
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/sqlite3/Makefile,v 1.21 2006/11/21 12:25:46 mnag Exp $
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.3 2007/08/10 18:18:49 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.4 2007/12/05 23:49:20 laffer1 Exp $
 #
 
 PORTNAME=	sqlite
-PORTVERSION=	3.5.3
+PORTVERSION=	3.5.4
 CATEGORIES=	databases
 MASTER_SITES=	http://www.sqlite.org/
 .if defined(USE_THOL)
