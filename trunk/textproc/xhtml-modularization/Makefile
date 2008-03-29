@@ -2,7 +2,7 @@
 # Date created:		March 27, 2008
 # Whom:			Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xhtml-modularization/Makefile,v 1.1 2008/03/27 23:10:57 laffer1 Exp $
 #
 
 PORTNAME=	xhtml-modularization
@@ -13,7 +13,7 @@ DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	W3C's Modularization of XHTML DTDs and docs
+COMMENT=	W3C's Modularization of XHTML DTDs and docs #'
 LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
@@ -48,7 +48,7 @@ CATALOG_PORTS_XML=	${PREFIX}/share/xml/catalog.ports
 
 .include "${.CURDIR}/contents.inc"
 
-pre-install:
+pre-fake:
 	${CAT} /dev/null > ${PLIST}
 .for f in ${contents_DTD}
 	${ECHO} ${dir_DTD}/${f} >> ${PLIST}
@@ -97,7 +97,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/DTD/templates/${f} \
 	    ${PREFIX}/${dir_TEMPLATES}/${f}
 .endfor
-	${SED} -e "s;@@PREFIX@@;${PREFIX};g" ${FILESDIR}/catalog.xml > \
+	${SED} -e "s;@@PREFIX@@;${TRUE_PREFIX};g" ${FILESDIR}/catalog.xml > \
 	    ${WRKDIR}/catalog.xml
 	${INSTALL_DATA} ${WRKDIR}/catalog.xml ${PREFIX}/${dir_DTD}/catalog.xml
 
