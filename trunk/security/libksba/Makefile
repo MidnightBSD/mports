@@ -3,11 +3,11 @@
 # Whom:					Tilman Linneweh <arved@FreeBSD.org>
 #
 # $FreeBSD: ports/security/libksba/Makefile,v 1.32 2007/01/08 10:01:15 lofi Exp $
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.3 2007/12/30 02:06:36 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.4 2008/03/23 03:30:52 ctriv Exp $
 #
 
 PORTNAME=	libksba
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
