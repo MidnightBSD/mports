@@ -2,7 +2,7 @@
 # Date created:                        	10 June 2003
 # Whom:                                 Peter van Dijk <peter@dataloss.nl>
 #
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.2 2007/05/07 03:46:10 ctriv Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.3 2007/08/30 19:04:59 laffer1 Exp $
 # $FreeBSD: ports/irc/bitlbee/Makefile,v 1.26 2006/08/12 09:52:53 miwi Exp $
 #
 
@@ -40,7 +40,7 @@ PATCHFILES+=	${PORTNAME}-1.0-ldap.diff
 .endif
 
 .if !defined(WITHOUT_MSN)
-LIB_DEPENDS+=	gnutls.13:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=--msn=1
 .else
 CONFIGURE_ARGS+=--msn=0 --ssl=bogus
