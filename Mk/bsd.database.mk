@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.5 2007/08/20 21:41:25 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.6 2007/10/12 22:58:01 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -85,7 +85,7 @@ DEFAULT_MYSQL_VER?=	50
 # MySQL client version currently supported.
 MYSQL41_LIBVER=		14
 MYSQL50_LIBVER=		15
-MYSQL51_LIBVER=		15
+MYSQL51_LIBVER=		16
 
 # Setting/finding MySQL version we want.
 .if exists(${LOCALBASE}/bin/mysql)
@@ -133,9 +133,10 @@ IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
 .endif # USE_MYSQL
 
 .if defined(USE_PGSQL)
-DEFAULT_PGSQL_VER?=	81
+DEFAULT_PGSQL_VER?=	82
 PGSQL81_LIBVER=		4
 PGSQL82_LIBVER=         5
+PGSQL83_LIBVER=		5
 
 # Setting/finding PostgreSQL version we want.
 .if exists(${LOCALBASE}/bin/pg_config)
