@@ -3,11 +3,11 @@
 # Whom:			Michael Nottebrock <lofi@freebsd.org>
 #
 # $FreeBSD: ports/security/libassuan/Makefile,v 1.7 2006/12/05 12:20:11 lofi Exp $
-# $MidnightBSD: mports/security/libassuan/Makefile,v 1.1 2007/01/24 19:33:44 laffer1 Exp $
+# $MidnightBSD: mports/security/libassuan/Makefile,v 1.2 2007/10/12 20:52:43 laffer1 Exp $
 #
 
 PORTNAME=	libassuan
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=${PORTNAME}
