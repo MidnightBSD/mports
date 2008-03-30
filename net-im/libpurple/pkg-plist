@@ -136,17 +136,17 @@ lib/libpurple.so
 lib/libpurple.so.3
 libdata/pkgconfig/purple.pc
 share/aclocal/purple.m4
-share/gnome/applications/pidgin.desktop
-share/gnome/purple/ca-certs/Equifax_Secure_CA.pem
-share/gnome/purple/ca-certs/GTE_CyberTrust_Global_Root.pem
-share/gnome/purple/ca-certs/Microsoft_Secure_Server_Authority.pem
-share/gnome/purple/ca-certs/Verisign_Class3_Primary_CA.pem
-share/gnome/purple/ca-certs/Verisign_RSA_Secure_Server_CA.pem
-share/gnome/sounds/purple/alert.wav
-share/gnome/sounds/purple/login.wav
-share/gnome/sounds/purple/logout.wav
-share/gnome/sounds/purple/receive.wav
-share/gnome/sounds/purple/send.wav
+share/applications/pidgin.desktop
+share/purple/ca-certs/Equifax_Secure_CA.pem
+share/purple/ca-certs/GTE_CyberTrust_Global_Root.pem
+share/purple/ca-certs/Microsoft_Secure_Server_Authority.pem
+share/purple/ca-certs/Verisign_Class3_Primary_CA.pem
+share/purple/ca-certs/Verisign_RSA_Secure_Server_CA.pem
+share/sounds/purple/alert.wav
+share/sounds/purple/login.wav
+share/sounds/purple/logout.wav
+share/sounds/purple/receive.wav
+share/sounds/purple/send.wav
 share/locale/af/LC_MESSAGES/pidgin.mo
 share/locale/am/LC_MESSAGES/pidgin.mo
 share/locale/ar/LC_MESSAGES/pidgin.mo
@@ -274,9 +274,9 @@ share/locale/zh_TW/LC_MESSAGES/pidgin.mo
 @dirrmtry share/locale/ca
 @dirrmtry share/locale/be@latin/LC_MESSAGES
 @dirrmtry share/locale/be@latin
-@dirrm share/gnome/sounds/purple
-@dirrm share/gnome/purple/ca-certs
-@dirrm share/gnome/purple
+@dirrm share/sounds/purple
+@dirrm share/purple/ca-certs
+@dirrm share/purple
 %%PERL:%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple
 @dirrm lib/purple-2
 @dirrm include/libpurple
