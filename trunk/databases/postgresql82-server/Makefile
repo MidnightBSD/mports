@@ -2,17 +2,16 @@
 # Date created:		15 Oct 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.1 2007/10/15 06:37:41 laffer1 Exp $
 #
 
 PORTNAME?=	postgresql
-PORTVERSION?=	8.2.4
+PORTVERSION?=	8.2.7
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${PORTVERSION}
 PKGNAMESUFFIX?=	-server
-DISTFILES?=	postgresql-base-${PORTVERSION}${EXTRACT_SUFX} \
-		postgresql-opt-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES?=	postgresql-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
@@ -103,7 +102,7 @@ OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 # .  endif
 
 # .  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-# USE_AUTOTOOLS=	autoconf:259
+# USE_AUTOTOOLS=	autoconf:261
 # CONFIGURE_ARGS+=--with-icu
 # LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
 # PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
