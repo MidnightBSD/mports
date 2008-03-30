@@ -253,6 +253,7 @@ share/postgresql/timezone/America/Indiana/Indianapolis
 share/postgresql/timezone/America/Indiana/Knox
 share/postgresql/timezone/America/Indiana/Marengo
 share/postgresql/timezone/America/Indiana/Petersburg
+share/postgresql/timezone/America/Indiana/Tell_City
 share/postgresql/timezone/America/Indiana/Vevay
 share/postgresql/timezone/America/Indiana/Vincennes
 share/postgresql/timezone/America/Indiana/Winamac
@@ -272,6 +273,7 @@ share/postgresql/timezone/America/Louisville
 share/postgresql/timezone/America/Maceio
 share/postgresql/timezone/America/Managua
 share/postgresql/timezone/America/Manaus
+share/postgresql/timezone/America/Marigot
 share/postgresql/timezone/America/Martinique
 share/postgresql/timezone/America/Mazatlan
 share/postgresql/timezone/America/Mendoza
@@ -312,6 +314,7 @@ share/postgresql/timezone/America/Santo_Domingo
 share/postgresql/timezone/America/Sao_Paulo
 share/postgresql/timezone/America/Scoresbysund
 share/postgresql/timezone/America/Shiprock
+share/postgresql/timezone/America/St_Barthelemy
 share/postgresql/timezone/America/St_Johns
 share/postgresql/timezone/America/St_Kitts
 share/postgresql/timezone/America/St_Lucia
@@ -723,16 +726,16 @@ share/postgresql/timezonesets/Pacific.txt
 @dirrm share/postgresql/timezone/US
 @dirrm share/postgresql/timezone
 @dirrm share/postgresql/timezonesets
-@unexec if cmp -s %D/pgsql/.profile %D/share/postgresql/dot.profile.dist; then rm -f ~pgsql/.profile; fi
-@unexec if cmp -s %D/pgsql/.cshrc %D/share/postgresql/dot.cshrc.dist; then rm -f ~pgsql/.cshrc; fi
-@unexec [ -f %D/pgsql/dot.profile.dist ] && rm %D/pgsql/dot.profile.dist
-@unexec [ -f %D/pgsql/dot.cshrc.dist ] && rm %D/pgsql/dot.cshrc.dist
+@unexec if cmp -s ~pgsql/.profile %D/share/postgresql/dot.profile.dist; then rm -f ~pgsql/.profile; fi
+@unexec if cmp -s ~pgsql/.cshrc %D/share/postgresql/dot.cshrc.dist; then rm -f ~pgsql/.cshrc; fi
+@unexec [ -f ~pgsql/dot.profile.dist ] && rm ~pgsql/dot.profile.dist
+@unexec [ -f ~pgsql/dot.cshrc.dist ] && rm ~pgsql/dot.cshrc.dist
 share/postgresql/dot.profile.dist
 share/postgresql/dot.cshrc.dist
-@exec [ -f %D/share/postgresql/dot.profile.dist ] && cp %D/share/postgresql/dot.profile.dist %D/pgsql/.
-@exec [ -f %D/share/postgresql/dot.cshrc.dist ] && cp %D/share/postgresql/dot.cshrc.dist %D/pgsql/.
-@exec [ -f %D/pgsql/.profile ] || (cp %D/share/postgresql/dot.profile.dist %D/pgsql/.profile && chown pgsql:pgsql %D/pgsql/.profile)
-@exec [ -f %D/pgsql/.cshrc ] || (cp %D/share/postgresql/dot.cshrc.dist %D/pgsql/.cshrc && chown pgsql:pgsql %D/pgsql/.cshrc)
+@exec [ -f %D/share/postgresql/dot.profile.dist ] && cp %D/share/postgresql/dot.profile.dist ~pgsql/.
+@exec [ -f %D/share/postgresql/dot.cshrc.dist ] && cp %D/share/postgresql/dot.cshrc.dist ~pgsql/.
+@exec [ -f ~pgsql/.profile ] || (cp %D/share/postgresql/dot.profile.dist ~pgsql/.profile && chown pgsql:pgsql ~pgsql/.profile)
+@exec [ -f ~pgsql/.cshrc ] || (cp %D/share/postgresql/dot.cshrc.dist ~pgsql/.cshrc && chown pgsql:pgsql ~pgsql/.cshrc)
 @unexec echo "Warning: If you will *NOT* use this package anymore, please remove the pgsql user manually."
 @dirrmtry share/postgresql
 @dirrmtry etc/periodic/daily
