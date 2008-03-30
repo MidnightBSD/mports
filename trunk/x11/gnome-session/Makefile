@@ -2,13 +2,13 @@
 # Date created:				08 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.1 2007/10/23 03:37:33 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-session/Makefile,v 1.56 2007/07/03 16:57:27 mezz Exp $
 #   $MCom: ports/x11/gnome-session/Makefile,v 1.110 2007/03/18 20:55:55 marcus Exp $
 #
 
 PORTNAME=	gnome-session
-PORTVERSION=	2.18.3
+PORTVERSION=	2.20.3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME} \
 		http://www.marcuscom.com/downloads/:local
@@ -24,7 +24,8 @@ COMMENT=	Session component for the GNOME 2 desktop
 BUILD_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-control-center
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		gnome-keyring.0:${PORTSDIR}/security/gnome-keyring
-RUN_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-control-center
+RUN_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-control-center \
+		${LOCALBASE}/bin/xdpyinfo:${PORTSDIR}/x11/xdpyinfo
 
 INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
@@ -35,7 +36,8 @@ GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+		LDFLAGS="-L${LOCALBASE}/lib" \
+		ESD_SERVER="${LOCALBASE}/bin/esd"
 
 MAN1=		gnome-session.1 gnome-wm.1 session-properties.1 \
 		gnome-session-save.1
@@ -49,12 +51,10 @@ post-extract:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/data/gnome-splash.png \
-		${PREFIX}/share/gnome/pixmaps/splash/original-gnome-splash.png
-#	${INSTALL_DATA} ${WRKDIR}/freebsd-splashes-gnome-2.12/domix-splash-2.12.png \
-#		${PREFIX}/share/gnome/pixmaps/splash/gnome-splash.png
+		${PREFIX}/share/pixmaps/splash/original-gnome-splash.png
 .for splash in MaMBaNgGaoX-2.12.png adamw-piggy-2.12.png adamw-trophy-2.12.png andreas-slogan-2.12.png andreas-splash-2.12.png domix-splash-2.12.png domix-splash2-2.12.png mumija-2.12.png mumija2-2.12.png mumija3-2.12.png tremulant-2.12.png tremulant-blood-2.12.png tremulant-brushed-metal-2.12.png franz-splash_218.png adamw-bat-2.18.jpg adamw-conky-2.18.png adamw-cow-2.18.png adamw-mouth-2.18.png adamw-swing-2.18.png
 	${INSTALL_DATA} ${WRKDIR}/freebsd-splashes-gnome-2.18/${splash} \
-		${PREFIX}/share/gnome/pixmaps/splash
+		${PREFIX}/share/pixmaps/splash
 .endfor
 
 .include <bsd.port.mk>
