@@ -3,7 +3,7 @@
 # Date created:			  Sat July 20, 1996
 # Whom:				  David O'Brien (obrien@FreeBSD.org)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.1 2008/03/31 02:43:05 laffer1 Exp $
 # $FreeBSD: ports/sysutils/lsof/Makefile,v 1.158 2008/01/26 22:28:53 wxs Exp $
 #
 
@@ -29,6 +29,8 @@ MASTER_SITE_SUBDIR=	wxs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists information about open files (similar to fstat(1))
+LICENSE=	other
+#very bsdish
 
 FIXUP_RELEASE=yes
 .if defined(FIXUP_RELEASE)
