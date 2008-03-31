@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.5 2007/08/29 08:16:28 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.6 2008/03/21 23:03:59 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -23,6 +23,8 @@ RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 LICENSE=	restricted
 RESTRICTED=	"License doesn't allow distribution with fee"
+
+IS_INTERACTIVE=	yes
 
 USE_BZIP2=	yes
 USE_GCPIO=	yes
