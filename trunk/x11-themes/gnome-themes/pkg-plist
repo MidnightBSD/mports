@@ -65,7 +65,6 @@ share/icons/Crux/16x16/places/gnome-fs-share.png
 share/icons/Crux/16x16/places/gnome-fs-smb.png
 share/icons/Crux/16x16/places/gnome-fs-ssh.png
 share/icons/Crux/16x16/places/gnome-mime-x-directory-smb-share.png
-share/icons/Crux/16x16/places/gtk-directory.png
 share/icons/Crux/16x16/places/network.png
 share/icons/Crux/16x16/places/stock_folder.png
 share/icons/Crux/16x16/places/user-home.png
@@ -143,7 +142,6 @@ share/icons/Crux/22x22/places/gnome-fs-share.png
 share/icons/Crux/22x22/places/gnome-fs-smb.png
 share/icons/Crux/22x22/places/gnome-fs-ssh.png
 share/icons/Crux/22x22/places/gnome-mime-x-directory-smb-share.png
-share/icons/Crux/22x22/places/gtk-directory.png
 share/icons/Crux/22x22/places/network.png
 share/icons/Crux/22x22/places/stock_folder.png
 share/icons/Crux/22x22/places/user-home.png
@@ -221,7 +219,6 @@ share/icons/Crux/24x24/places/gnome-fs-share.png
 share/icons/Crux/24x24/places/gnome-fs-smb.png
 share/icons/Crux/24x24/places/gnome-fs-ssh.png
 share/icons/Crux/24x24/places/gnome-mime-x-directory-smb-share.png
-share/icons/Crux/24x24/places/gtk-directory.png
 share/icons/Crux/24x24/places/network.png
 share/icons/Crux/24x24/places/stock_folder.png
 share/icons/Crux/24x24/places/user-home.png
@@ -248,7 +245,6 @@ share/icons/Crux/32x32/places/gnome-fs-share.png
 share/icons/Crux/32x32/places/gnome-fs-smb.png
 share/icons/Crux/32x32/places/gnome-fs-ssh.png
 share/icons/Crux/32x32/places/gnome-mime-x-directory-smb-share.png
-share/icons/Crux/32x32/places/gtk-directory.png
 share/icons/Crux/32x32/places/network.png
 share/icons/Crux/32x32/places/stock_folder.png
 share/icons/Crux/32x32/places/user-home.png
@@ -327,7 +323,6 @@ share/icons/Crux/scalable/places/gnome-fs-share.svg
 share/icons/Crux/scalable/places/gnome-fs-smb.svg
 share/icons/Crux/scalable/places/gnome-fs-ssh.svg
 share/icons/Crux/scalable/places/gnome-mime-x-directory-smb-share.svg
-share/icons/Crux/scalable/places/gtk-directory.svg
 share/icons/Crux/scalable/places/network.svg
 share/icons/Crux/scalable/places/stock_folder.svg
 share/icons/Crux/scalable/places/user-home.svg
@@ -430,7 +425,6 @@ share/icons/HighContrast-SVG/scalable/actions/go-previous.svg
 share/icons/HighContrast-SVG/scalable/actions/go-top.svg
 share/icons/HighContrast-SVG/scalable/actions/go-up.svg
 share/icons/HighContrast-SVG/scalable/actions/gohome.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-about.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-add.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-bold.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-cancel.svg
@@ -439,7 +433,6 @@ share/icons/HighContrast-SVG/scalable/actions/gtk-close.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-copy.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-cut.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-delete.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-execute.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-find-and-replace.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-find.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-fullscreen.svg
@@ -456,8 +449,6 @@ share/icons/HighContrast-SVG/scalable/actions/gtk-goto-last-ltr.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-goto-last-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-goto-top.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-home.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-indent-ltr.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-indent-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-italic.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-jump-to-ltr.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-jump-to-rtl.svg
@@ -488,20 +479,15 @@ share/icons/HighContrast-SVG/scalable/actions/gtk-quit.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-redo-ltr.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-refresh.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-remove.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-revert-to-saved-ltr.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-revert-to-saved-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-save-as.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-save.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-select-all.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-sort-ascending.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-sort-descending.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-spell-check.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-stop.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-strikethrough.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-underline.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-undo-ltr.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-unindent-ltr.svg
-share/icons/HighContrast-SVG/scalable/actions/gtk-unindent-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-zoom-100.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-zoom-fit.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-zoom-in.svg
@@ -569,11 +555,9 @@ share/icons/HighContrast-SVG/scalable/actions/reload3.svg
 share/icons/HighContrast-SVG/scalable/actions/reload_all_tabs.svg
 share/icons/HighContrast-SVG/scalable/actions/reload_page.svg
 share/icons/HighContrast-SVG/scalable/actions/remove.svg
-share/icons/HighContrast-SVG/scalable/actions/revert.svg
 share/icons/HighContrast-SVG/scalable/actions/rightjust.svg
 share/icons/HighContrast-SVG/scalable/actions/search.svg
 share/icons/HighContrast-SVG/scalable/actions/start.svg
-share/icons/HighContrast-SVG/scalable/actions/stock_about.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_bottom.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_close.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_copy.svg
@@ -609,7 +593,6 @@ share/icons/HighContrast-SVG/scalable/actions/stock_new-text.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_new-window.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_paste.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_print-preview.svg
-share/icons/HighContrast-SVG/scalable/actions/stock_print-setup.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_print.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_properties.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_redo.svg
@@ -621,7 +604,6 @@ share/icons/HighContrast-SVG/scalable/actions/stock_search-and-replace.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_search.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_select-all.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_spam.svg
-share/icons/HighContrast-SVG/scalable/actions/stock_spellcheck.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_stop.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_text-strikethrough.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_text_bold.svg
@@ -785,7 +767,6 @@ share/icons/HighContrast-SVG/scalable/categories/gnome-globe.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-graphics.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-joystick.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-multimedia.svg
-share/icons/HighContrast-SVG/scalable/categories/gnome-other.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-settings.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-system.svg
 share/icons/HighContrast-SVG/scalable/categories/gnome-util.svg
@@ -910,7 +891,6 @@ share/icons/HighContrast-SVG/scalable/devices/printer.svg
 share/icons/HighContrast-SVG/scalable/devices/printer1.svg
 share/icons/HighContrast-SVG/scalable/devices/printmgr.svg
 share/icons/HighContrast-SVG/scalable/devices/scanner.svg
-share/icons/HighContrast-SVG/scalable/devices/stock_cell-phone.svg
 share/icons/HighContrast-SVG/scalable/devices/stock_mic.svg
 share/icons/HighContrast-SVG/scalable/devices/stock_printers.svg
 share/icons/HighContrast-SVG/scalable/devices/system-floppy.svg
@@ -927,7 +907,6 @@ share/icons/HighContrast-SVG/scalable/devices/yast_joystick.svg
 share/icons/HighContrast-SVG/scalable/devices/yast_mouse.svg
 share/icons/HighContrast-SVG/scalable/devices/yast_printer.svg
 share/icons/HighContrast-SVG/scalable/devices/yast_soundcard.svg
-share/icons/HighContrast-SVG/scalable/emblems/emblem-default.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-documents.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-downloads.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-favorite.svg
@@ -946,14 +925,6 @@ share/icons/HighContrast-SVG/scalable/emotes/face-smile-big.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-smile.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-surprise.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-wink.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-1.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-2.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-3.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-4.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-5.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-6.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-7.svg
-share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-8.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/application-x-executable.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/ascii.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/audio-x-generic.svg
@@ -1051,7 +1022,6 @@ share/icons/HighContrast-SVG/scalable/places/gnome-mime-x-directory-smb-server.s
 share/icons/HighContrast-SVG/scalable/places/gnome-mime-x-directory-smb-share.svg
 share/icons/HighContrast-SVG/scalable/places/gnome-mime-x-directory-smb-workgroup.svg
 share/icons/HighContrast-SVG/scalable/places/gnome-stock-trash.svg
-share/icons/HighContrast-SVG/scalable/places/gtk-directory.svg
 share/icons/HighContrast-SVG/scalable/places/gtk-network.svg
 share/icons/HighContrast-SVG/scalable/places/library-internet-radio.svg
 share/icons/HighContrast-SVG/scalable/places/library-podcast.svg
@@ -1113,7 +1083,6 @@ share/icons/HighContrast-SVG/scalable/status/security-low.svg
 share/icons/HighContrast-SVG/scalable/status/security-medium.svg
 share/icons/HighContrast-SVG/scalable/status/software-update-available.svg
 share/icons/HighContrast-SVG/scalable/status/software-update-urgent.svg
-share/icons/HighContrast-SVG/scalable/status/stock_attach.svg
 share/icons/HighContrast-SVG/scalable/status/stock_dialog-error.svg
 share/icons/HighContrast-SVG/scalable/status/stock_dialog-info.svg
 share/icons/HighContrast-SVG/scalable/status/stock_dialog-question.svg
