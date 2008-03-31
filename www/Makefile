@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.68 2008/03/05 20:00:50 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.69 2008/03/21 01:23:53 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -77,6 +77,7 @@
     SUBDIR += tomcat6
     SUBDIR += youtube_dl
     SUBDIR += validator
+    SUBDIR += webkit-gtk2
     SUBDIR += webserver
 
 .include <bsd.port.subdir.mk>
