@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.apache.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.apache.mk,v 1.3 2007/08/14 02:29:25 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # bsd.apache.mk - Apache related macros.
@@ -226,7 +226,7 @@ SRC_FILE?=	${MODULENAME}.c
 OVERRIDABLE_VARS=	SRC_FILE MODULENAME SHORTMODNAME WRKSRC \
 					PKGNAMESUFFIX
 
-.if exists(${HTTPD})
+.if exists(${HTTPD}) && !defined(INDEXING)
 AP_CUR_VERSION!=	${HTTPD} -V | ${SED} -ne 's/^Server version: Apache\/\([0-9]\)\.\([0-9]*\).*/\1\2/p'
 .   if ${AP_CUR_VERSION} > 13
 APACHE_MPM!=		${APXS} -q MPM_NAME
@@ -249,7 +249,7 @@ APACHE_VERSION=	${AP_VERSION:C/\+//}
 .   endif
 .endif
 
-.if exists(${APXS})
+.if exists(${APXS}) && !defined(INDEXING)
 APXS_PREFIX!=	${APXS} -q prefix 2> /dev/null || echo NULL
 .   if ${APXS_PREFIX} == NULL
 IGNORE=	: Your apache does not support DSO modules
