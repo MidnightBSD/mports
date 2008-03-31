@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.61 2008/02/22 04:03:59 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.62 2008/03/11 03:06:39 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -38,6 +38,7 @@
     SUBDIR += kdeadmin3
     SUBDIR += libcdio
     SUBDIR += libchk
+    SUBDIR += lsof
     SUBDIR += makefs
     SUBDIR += mbmon
     SUBDIR += mdf2iso
