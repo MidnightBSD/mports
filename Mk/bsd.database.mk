@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.6 2007/10/12 22:58:01 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.7 2008/03/30 22:39:15 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -88,7 +88,7 @@ MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		16
 
 # Setting/finding MySQL version we want.
-.if exists(${LOCALBASE}/bin/mysql)
+.if exists(${LOCALBASE}/bin/mysql) && !defined(INDEXING)
 _MYSQL_VER!=	${LOCALBASE}/bin/mysql --version | ${SED} -e 's/.*Distrib \([0-9]\)\.\([0-9]*\).*/\1\2/'
 .endif
 
@@ -139,7 +139,7 @@ PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
 
 # Setting/finding PostgreSQL version we want.
-.if exists(${LOCALBASE}/bin/pg_config)
+.if exists(${LOCALBASE}/bin/pg_config) && !defined(INDEXING)
 _PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)[^0-9].*/\1\2/p'
 .endif
 
