@@ -2,13 +2,13 @@
 # Date created:			01 Jun 2002
 # Whom:				silence <oksala@videotron.ca>
 #
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.5 2007/08/01 20:03:21 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.6 2008/02/15 02:07:42 laffer1 Exp $
 # $FreeBSD: ports/www/cherokee/Makefile,v 1.26 2006/08/15 01:11:31 clsung Exp $
 #
 
 PORTNAME=	cherokee
 PORTVERSION=	0.5.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://www.cherokee-project.com/download/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTVERSION:R}/${PORTVERSION}
@@ -44,7 +44,7 @@ LDFLAGS=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_GNUTLS)
-LIB_DEPENDS+=	gnutls.13:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--enable-tls=gnutls
 .endif
 
