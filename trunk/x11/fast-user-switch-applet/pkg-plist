@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.79 2007/12/07 21:13:46 ctriv Exp $
+@comment $MidnightBSD: mports/x11/fast-user-switch-applet/pkg-plist,v 1.1 2008/01/02 02:19:53 laffer1 Exp $
 etc/gconf/schemas/fast-user-switch-applet.schemas
 libdata/bonobo/servers/GNOME_FastUserSwitchApplet.server
 libexec/fast-user-switch-applet
@@ -63,73 +63,73 @@ share/locale/uk/LC_MESSAGES/fast-user-switch-applet.mo
 share/locale/zh_CN/LC_MESSAGES/fast-user-switch-applet.mo
 share/locale/zh_HK/LC_MESSAGES/fast-user-switch-applet.mo
 share/locale/zh_TW/LC_MESSAGES/fast-user-switch-applet.mo
-share/gnome/gnome-2.0/ui/GNOME_FastUserSwitchApplet.xml
-share/gnome/help/fast-user-switch-applet/C/legal.xml
-share/gnome/help/fast-user-switch-applet/C/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/en_GB/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/es/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/fr/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/oc/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/pa/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/sr/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-username.png
-share/gnome/help/fast-user-switch-applet/sv/fast-user-switch-applet.xml
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-context.png
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-icon.png
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet.png
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-prefs.png
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-text.png
-share/gnome/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-username.png
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-C.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-en_GB.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-es.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-fr.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-oc.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-pa.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-sr.omf
-share/gnome/omf/fast-user-switch-applet/fast-user-switch-applet-sv.omf
-share/gnome/fast-user-switch-applet/ui.glade
+share/gnome-2.0/ui/GNOME_FastUserSwitchApplet.xml
+share/help/fast-user-switch-applet/C/legal.xml
+share/help/fast-user-switch-applet/C/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/C/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/en_GB/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/en_GB/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/es/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/es/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/fr/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/fr/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/oc/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/oc/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/pa/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/pa/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/sr/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/sr/figures/fast_user_switch_applet-username.png
+share/help/fast-user-switch-applet/sv/fast-user-switch-applet.xml
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-context.png
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-icon.png
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet.png
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-prefs.png
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-text.png
+share/help/fast-user-switch-applet/sv/figures/fast_user_switch_applet-username.png
+share/omf/fast-user-switch-applet/fast-user-switch-applet-C.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-en_GB.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-es.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-fr.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-oc.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-pa.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-sr.omf
+share/omf/fast-user-switch-applet/fast-user-switch-applet-sv.omf
+share/fast-user-switch-applet/ui.glade
 @dirrm share/locale/bn_IN/LC_MESSAGES
 @dirrm share/locale/bn_IN
 @dirrm share/locale/ca/LC_MESSAGES
@@ -174,30 +174,30 @@ share/gnome/fast-user-switch-applet/ui.glade
 @dirrm share/locale/zh_HK
 @dirrm share/locale/zh_TW/LC_MESSAGES
 @dirrm share/locale/zh_TW
-@dirrm share/gnome/help/fdl/C
-@dirrm share/gnome/help/fdl
-@dirrm share/gnome/help/gpl/C
-@dirrm share/gnome/help/gpl
-@dirrm share/gnome/help/lgpl/C
-@dirrm share/gnome/help/lgpl
-@dirrm share/gnome/help/fast-user-switch-applet/C/figures
-@dirrm share/gnome/help/fast-user-switch-applet/C
-@dirrm share/gnome/help/fast-user-switch-applet/en_GB/figures
-@dirrm share/gnome/help/fast-user-switch-applet/en_GB
-@dirrm share/gnome/help/fast-user-switch-applet/es/figures
-@dirrm share/gnome/help/fast-user-switch-applet/es
-@dirrm share/gnome/help/fast-user-switch-applet/fr/figures
-@dirrm share/gnome/help/fast-user-switch-applet/fr
-@dirrm share/gnome/help/fast-user-switch-applet/oc/figures
-@dirrm share/gnome/help/fast-user-switch-applet/oc
-@dirrm share/gnome/help/fast-user-switch-applet/pa/figures
-@dirrm share/gnome/help/fast-user-switch-applet/pa
-@dirrm share/gnome/help/fast-user-switch-applet/sr/figures
-@dirrm share/gnome/help/fast-user-switch-applet/sr
-@dirrm share/gnome/help/fast-user-switch-applet/sv/figures
-@dirrm share/gnome/help/fast-user-switch-applet/sv
-@dirrm share/gnome/help/fast-user-switch-applet
-@dirrm share/gnome/oaf
-@dirrm share/gnome/omf/fast-user-switch-applet
-@dirrm share/gnome/omf
-@dirrm share/gnome/fast-user-switch-applet
+@dirrm share/help/fdl/C
+@dirrm share/help/fdl
+@dirrm share/help/gpl/C
+@dirrm share/help/gpl
+@dirrm share/help/lgpl/C
+@dirrm share/help/lgpl
+@dirrm share/help/fast-user-switch-applet/C/figures
+@dirrm share/help/fast-user-switch-applet/C
+@dirrm share/help/fast-user-switch-applet/en_GB/figures
+@dirrm share/help/fast-user-switch-applet/en_GB
+@dirrm share/help/fast-user-switch-applet/es/figures
+@dirrm share/help/fast-user-switch-applet/es
+@dirrm share/help/fast-user-switch-applet/fr/figures
+@dirrm share/help/fast-user-switch-applet/fr
+@dirrm share/help/fast-user-switch-applet/oc/figures
+@dirrm share/help/fast-user-switch-applet/oc
+@dirrm share/help/fast-user-switch-applet/pa/figures
+@dirrm share/help/fast-user-switch-applet/pa
+@dirrm share/help/fast-user-switch-applet/sr/figures
+@dirrm share/help/fast-user-switch-applet/sr
+@dirrm share/help/fast-user-switch-applet/sv/figures
+@dirrm share/help/fast-user-switch-applet/sv
+@dirrm share/help/fast-user-switch-applet
+@dirrm share/oaf
+@dirrm share/omf/fast-user-switch-applet
+@dirrm share/omf
+@dirrm share/fast-user-switch-applet
