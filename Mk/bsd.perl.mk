@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.7 2007/11/14 18:49:04 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.8 2007/12/07 21:13:46 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -129,6 +129,7 @@ CONFIGURE_ARGS+= \
 .else
 CONFIGURE_SCRIPT?=	Makefile.PL
 CONFIGURE_ARGS+=	INSTALLDIRS="site"
+SKIP_FAKE_CHECK= 	.*\.packlist
 .endif 
 .endif # defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 
