@@ -24,7 +24,7 @@ package Magus::Run;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Run.pm,v 1.2 2008/02/28 20:11:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Run.pm,v 1.3 2008/03/05 18:53:18 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -37,6 +37,7 @@ use base qw(Magus::DBI);
 __PACKAGE__->table('runs');
 __PACKAGE__->columns(Essential => qw/id osversion arch status created/);
 
+__PACKAGE__->has_many(ports => 'Magus::Port');
 
 =head2 Magus::Run->latest($machine)
 
