@@ -2,16 +2,14 @@
 # Date created:				22 Jan 2001
 # Whom:					dwm
 #
-# $FreeBSD: ports/devel/icu/Makefile,v 1.22 2006/09/27 13:33:14 mi Exp $
-# $MidnightBSD: mports/devel/icu/Makefile,v 1.1 2006/10/31 20:27:40 laffer1 Exp $
+# $FreeBSD: ports/devel/icu/Makefile,v 1.27 2008/02/18 17:06:32 mi Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	icu
-PORTVERSION=	3.6
-PORTREVISION=	1
+PORTVERSION=	3.8.1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}	\
-		ftp://ftp.software.ibm.com/software/globalization/icu/${PORTVERSION}/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=${PORTNAME}
 DISTNAME=	icu4c-${PORTVERSION:S/./_/g}
 EXTRACT_SUFX=	-src.tgz
@@ -19,10 +17,10 @@ EXTRACT_SUFX=	-src.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	International Components for Unicode (from IBM)
 
-OPTIONS=	THREADS "Build multi-threaded version of the library" off
+OPTIONS=	THREADS "Build thread-safe version of the library" on
 CONFLICTS=	icu2-[0-9]*
 
-USE_LDCONFIG=		yes
+INSTALLS_SHLIB=		yes
 
 WRKSRC=			${WRKDIR}/icu/source
 
@@ -32,10 +30,9 @@ CONFIGURE_ARGS+=	${OPSYS}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-static
 CONFIGURE_ARGS+=	--enable-samples=no
+ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
 
 USE_GMAKE=		yes
-CONFIGURE_ENV+=		CFLAGS="${CFLAGS:N-funroll-loops:N-O*} -O2" CXX="${CXX}"
-CONFIGURE_ENV+=		CXXFLAGS="${CXXFLAGS:N-funroll-loops:N-O*} -O2" CC="${CC}"
 
 MAN1+=	derb.1
 MAN1+=	genbrk.1
@@ -53,17 +50,26 @@ MAN8+=	gensprep.8
 MAN8+=	genuca.8
 
 ICUMAJOR=	${PORTVERSION:S/.//:R}
-PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUMINOR=0
+PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUMINOR=1
 PLIST_SUB+=	ICUVER=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_THREADS)
-CONFIGURE_ARGS+=	--enable-threads=yes
+.if ${CC:T} == "cc"
+CFLAGS:=	${CFLAGS:N-funroll-loops:N-O*:N-*strict-aliasing} -O2 -fno-strict-aliasing
+.endif
+.if ${CXX:T} == "c++"
+CXXFLAGS:=	${CXXFLAGS:N-funroll-loops:N-O*:N-*strict-aliasing} -O2 -fno-strict-aliasing
+.endif
+CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
+
+.if defined(WITHOUT_THREADS)
+CONFIGURE_ARGS+=	--enable-threads=no
+.else
+# This builds thread-safe, but not the thread-using version:
+CONFIGURE_ARGS+=	--enable-weak-threads
 post-patch:
 	${REINPLACE_CMD} -e 's,\(THREADSC.*FLAGS\).*,\1=${PTHREAD_CFLAGS},g' ${WRKSRC}/config/mh-bsd-gcc
-.else
-CONFIGURE_ARGS+=	--enable-threads=no
 .endif
 
 iotest cintltst intltest:
