@@ -3,7 +3,7 @@
 # Whom:	      		Ralf S. Engelschall <rse@engelschall.com>
 #
 # $FreeBSD: ports/lang/p5-ePerl/Makefile,v 1.28 2004/08/21 15:19:41 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.1 2006/10/31 20:07:58 laffer1 Exp $
 
 PORTNAME=	eperl
 PORTVERSION=	2.2.14
@@ -12,7 +12,7 @@ MASTER_SITES=	${MASTER_SITE_OSSP}
 MASTER_SITE_SUBDIR=	tool/${PORTNAME}
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Modules of ePerl package: Parse::ePerl, Apache::ePerl
 
 PERL_CONFIGURE=	yes
