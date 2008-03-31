@@ -2,12 +2,12 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/galeon/Makefile,v 1.1 2007/11/08 02:49:30 laffer1 Exp $
 # $FreeBSD: ports/www/galeon/Makefile,v 1.154 2007/05/19 20:24:50 flz Exp $
 #
 
 PORTNAME=	galeon
-PORTVERSION=	2.0.3
+PORTVERSION=	2.0.5
 CATEGORIES=	www gnome
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://osdn.dl.sourceforge.net/sourceforge/galeon/
@@ -50,7 +50,7 @@ post-patch:
 		's|malloc\.h|stdlib.h|g'
 	@${REINPLACE_CMD} -e 's|@prefix@/@DATADIRNAME@|@datadir@|g' \
 		${WRKSRC}/ui/galeon-bookmarks-editor-ui.xml.in
-	@${REINPLACE_CMD} -e 's|/usr/lib/mozilla/plugins|${LOCALBASE}/lib/browser_plugins:${X11BASE}/lib/browser_plugins:${LOCALBASE}/lib/browser_linux_plugins:${X11BASE}/lib/browser_linux_plugins|' \
+	@${REINPLACE_CMD} -e 's|/usr/lib/mozilla/plugins|${LOCALBASE}/lib/browser_plugins:${LOCALBASE}/lib/browser_plugins:${LOCALBASE}/lib/browser_linux_plugins:${LOCALBASE}/lib/browser_linux_plugins|' \
 		${WRKSRC}/mozilla/mozilla-embed-shell.cpp
 
 .include <bsd.port.post.mk>
