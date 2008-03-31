@@ -2,7 +2,7 @@
 # Date created:		2 November 1997
 # Whom:			jseger@FreeBSD.org
 # 
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.2 2008/03/23 20:16:04 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.3 2008/03/23 20:16:50 laffer1 Exp $
 # $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
 #
 
@@ -24,6 +24,8 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
+			--host=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -48,6 +50,5 @@ post-patch:
 	  ${REINPLACE_CMD} -e 's|<malloc\.h>|<stdlib.h>|g' ${REINPLACE_FILES}
 	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${X11BASE}|g ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/libguile/load.c
-	@${REINPLACE_CMD} -e 's^sparc-\*-\*^sparc-*-*|sparc64-*-*^' ${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
