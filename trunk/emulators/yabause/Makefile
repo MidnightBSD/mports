@@ -2,7 +2,7 @@
 # Date created:		2006-08-23
 # Whom:			Jose Alonso Cardenas Marquez <acm@FreeBSD.org>
 #
-# $MidnightBSD: mports/emulators/yabause/Makefile,v 1.1 2007/05/05 05:19:27 laffer1 Exp $
+# $MidnightBSD: mports/emulators/yabause/Makefile,v 1.2 2008/03/24 18:22:08 laffer1 Exp $
 # $FreeBSD: ports/emulators/yabause/Makefile,v 1.7 2007/01/16 21:57:13 acm Exp $
 #
 
@@ -23,7 +23,6 @@ USE_AUTOTOOLS=	automake:19 aclocal:19 autoconf:261
 USE_XLIB=	yes
 
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-WRKSRC=	${WRKDIR}/${PORTNAME}
 
 SUB_FILES=	pkg-message
 MAN1=	yabause.1
