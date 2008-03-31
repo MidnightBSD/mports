@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.35 2007/10/15 06:52:06 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.36 2008/03/31 02:33:20 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -59,6 +59,7 @@ index:
 	@cd ${.CURDIR} && make ${INDEXDIR}/${INDEXFILE}
 
 indexbz2: index
+	@rm -f ${INDEXDIR}/${INDEXFILE}.bz2
 	@bzip2 ${INDEXDIR}/${INDEXFILE}
 
 fetchindex: ${INDEXDIR}/{INDEXFILE}.bz2
