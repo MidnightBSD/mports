@@ -2,7 +2,7 @@
 # Date created:				10 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.1 2006/10/04 14:53:13 laffer1 Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.2 2007/04/29 18:28:43 ctriv Exp $
 # $FreeBSD: ports/java/javavmwrapper/Makefile,v 1.29 2006/06/12 16:57:29 glewis Exp $
 #
 # This port is self contained in the src directory.
@@ -16,6 +16,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for various Java Virtual Machines
+LICENSE=	other
 
 CONFLICTS=	kaffe-1.* kaffe-devel-1.*
 
