@@ -2,7 +2,7 @@
 # Date created:         5th December 1994
 # Whom:                 gpalmer@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.2 2007/03/25 02:47:06 ctriv Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.3 2007/05/04 07:05:59 ctriv Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -11,7 +11,7 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES+=	x11
 MASTER_SITES=	\
 		http://public.planetmirror.com/pub/rxvt/%SUBDIR%/ \
