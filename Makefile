@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.34 2007/09/20 02:53:38 laffer1 Exp $
+# $MidnightBSD: mports/Makefile,v 1.35 2007/10/15 06:52:06 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -57,6 +57,9 @@ PORTSTOP=	yes
 index:
 	@rm -f ${INDEXDIR}/${INDEXFILE}
 	@cd ${.CURDIR} && make ${INDEXDIR}/${INDEXFILE}
+
+indexbz2: index
+	@bzip2 ${INDEXDIR}/${INDEXFILE}
 
 fetchindex: ${INDEXDIR}/{INDEXFILE}.bz2
 	@bunzip2 < ${INDEXDIR}/${INDEXFILE}.bz2 > ${INDEXDIR}/${INDEXFILE} && \
