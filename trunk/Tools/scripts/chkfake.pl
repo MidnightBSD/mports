@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.7 2007/11/14 18:51:17 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake.pl,v 1.8 2008/03/31 00:06:30 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -64,7 +64,7 @@ while (<$fh>) {
   next if -l "$destdir$cwd/$_";
   
   if (-e "$destdir$cwd/$_") {
-    if (($skip && m/$skip/) || grep_file($destdir,  "$destdir$cwd/$_")) {
+    unless (($skip && m/$skip/) || !grep_file($destdir,  "$destdir$cwd/$_")) {
       $ok = 0;
       print "    $_ contains the fake destdir.";
     }
