@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-video-nv/Makefile,v 1.5 2007/10/09 19:12:28 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xf86-video-nv/Makefile,v 1.2 2007/11/13 17:20:26 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-nv/Makefile,v 1.3 2008/03/03 23:26:36 laffer1 Exp $
 #
 
 PORTNAME=	xf86-video-nv
-PORTVERSION=	2.1.7
+PORTVERSION=	2.1.8
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
