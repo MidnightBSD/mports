@@ -2,13 +2,13 @@
 # Date created:		Sun May 22 17:22:53 CEST 2005
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/glade3/Makefile,v 1.2 2008/03/05 02:54:28 laffer1 Exp $
 # $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
 #   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
 #
 
 PORTNAME=	glade3
-PORTVERSION=	3.4.1
+PORTVERSION=	3.4.3
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
