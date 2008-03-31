@@ -2,13 +2,14 @@
 # Date created:				31 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.1 2007/10/20 15:58:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.2 2008/03/05 02:46:34 laffer1 Exp $
 # $FreeBSD: ports/devel/anjuta/Makefile,v 1.54 2007/09/07 05:01:40 marcus Exp $
 #   $MCom: ports/devel/anjuta-devel/Makefile,v 1.14 2006/09/10 00:51:07 mezz Exp $
 #
 
 PORTNAME=	anjuta
 PORTVERSION=	2.2.3
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	anjuta
@@ -67,7 +68,7 @@ PLIST_SUB+=	SVN="@comment "
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|/bin/bash|${LOCALBASE}/bin/bash| ; \
-	    	s|/usr/local|${PREFIX}| ; \
+	    	s|/usr/local|${PREFIX}|' \
 	    	${WRKSRC}/global-tags/create_global_tags.sh
 	@${REINPLACE_CMD} -e 's|PKG_PATH|PKG_CONFIG_PATH|g' \
 	    	${WRKSRC}/configure
