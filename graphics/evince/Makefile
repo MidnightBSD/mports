@@ -2,7 +2,7 @@
 # Date created:				09 January 2005
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/evince/Makefile,v 1.1 2007/10/24 17:08:41 laffer1 Exp $
 # $FreeBSD: ports/graphics/evince/Makefile,v 1.30 2007/09/12 19:42:13 marcus Exp $
 #   $MCom: ports/graphics/evince/Makefile,v 1.64 2007/03/13 12:00:09 ahze Exp $
 #
@@ -111,7 +111,5 @@ post-patch:
 		s| poppler-glib <= [$$]POPPLER_MAX_REQUIRED||g' \
 			${WRKSRC}/configure
 
-post-install:
-	@-update-desktop-database
 
 .include <bsd.port.post.mk>
