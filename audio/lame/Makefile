@@ -2,7 +2,7 @@
 # Date created:        11 January 1998
 # Whom:                yoshiaki Uchikawa
 #
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.1 2006/10/05 01:33:44 laffer1 Exp $
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.2 2007/04/04 21:25:38 laffer1 Exp $
 # $FreeBSD: ports/audio/lame/Makefile,v 1.42 2006/09/02 23:47:19 kris Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	lame
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
+LICENSE=	restricted
 
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
