@@ -2,7 +2,7 @@
 # Date created:		2007-10-21
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.1 2008/03/31 23:28:03 laffer1 Exp $
 # $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.2 2008/03/31 10:33:05 ahze Exp $
 #   $MCom: ports/www/webkit-gtk2/Makefile,v 1.5 2008/03/24 01:51:52 mezz Exp $
 #
@@ -16,6 +16,7 @@ DISTNAME=	WebKit-r${PORTVERSION:S/0.0.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opensource browser engine
+LICENSE=	lgpl
 
 LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
 		curl.4:${PORTSDIR}/ftp/curl \
