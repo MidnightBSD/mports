@@ -2,12 +2,12 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.5 2007/08/10 15:36:55 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.6 2007/08/10 15:41:13 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.226 2007/07/05 13:32:09 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.20
+PORTVERSION=	5.1.23
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
