@@ -2,7 +2,7 @@
 # Date created:		19 Jun 2003
 # Whom:			Hideyuki KURASHINA <rushani@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/linux-pam-docs/Makefile,v 1.2 2007/08/07 21:32:10 laffer1 Exp $
+# $MidnightBSD: mports/security/linux-pam-docs/Makefile,v 1.3 2007/08/07 21:35:25 laffer1 Exp $
 # $FreeBSD: ports/security/linux-pam-docs/Makefile,v 1.1 2003/10/10 06:06:13 edwin Exp $
 #
 
@@ -20,11 +20,11 @@ LICENSE=	unknown
 USE_GCPIO=	yes
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
-CPIO=		gcpio --quiet -pdum -R
+CPIODO=		gcpio --quiet -pdum -R
 
 do-install:
 	@ ${MKDIR} ${DOCSDIR}
 	@ cd ${WRKSRC} && ${FIND} * \
-	  | ${CPIO} ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
+	  | ${CPIODO} ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
 
 .include <bsd.port.mk>
