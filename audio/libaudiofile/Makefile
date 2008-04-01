@@ -2,7 +2,7 @@
 # Date created:				22 Dec 1998
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.1 2006/09/22 23:38:47 laffer1 Exp $
+# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.2 2008/02/28 17:33:36 laffer1 Exp $
 # $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	audiofile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sound library for SGI audio file
+LICENSE=	gpl2
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_LDCONFIG=	yes
