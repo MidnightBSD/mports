@@ -2,7 +2,7 @@
 # Date created:		8 May 2004
 # Whom:			Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/fast-user-switch-applet/Makefile,v 1.1 2008/01/02 02:19:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/fast-user-switch-applet/Makefile,v 1.2 2008/03/31 00:00:25 laffer1 Exp $
 # $FreeBSD: ports/x11/fast-user-switch-applet/Makefile,v 1.22 2007/10/24 23:36:52 marcus Exp $
 #    $MCom: ports/x11/fast-user-switch-applet/Makefile,v 1.28 2007/09/18 15:01:12 ahze Exp $
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast user switching applet for GNOME
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_XLIB=	yes
