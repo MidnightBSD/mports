@@ -2,14 +2,14 @@
 # Date created:				06 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/gnome-utils/Makefile,v 1.1 2007/10/23 19:00:34 laffer1 Exp $
 # $FreeBSD: ports/deskutils/gnome-utils/Makefile,v 1.93 2007/07/23 09:35:37 rafan Exp $
 #   $MCom: ports/deskutils/gnome-utils/Makefile,v 1.115 2007/03/11 20:46:37 mezz Exp $
 #
 
 PORTNAME=	gnome-utils
-PORTVERSION=	2.18.1
-PORTREVISION=	1
+PORTVERSION=	2.20.0.1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -18,6 +18,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 support utilities
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop
 
