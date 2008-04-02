@@ -84,6 +84,7 @@ bin/opera
 %%DATADIR%%/svg-sa.dat
 %%DATADIR%%/svg-mobd.dat
 %%DATADIR%%/svg-mo.dat
+%%GNOME%%share/apps/Internet/opera.desktop
 %%GNOME%%share/pixmaps/opera.xpm
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
@@ -101,6 +102,7 @@ bin/opera
 @dirrm %%DOCSDIR%%
 
 @cwd %%LOCALBASE%%
+%%KDE%%share/applnk/Internet/opera.desktop
 share/icons/hicolor/22x22/apps/opera.png
 share/icons/hicolor/32x32/apps/opera.png
 share/icons/hicolor/48x48/apps/opera.png

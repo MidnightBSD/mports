@@ -2,13 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.17 2008/03/28 22:31:01 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.18 2008/03/28 22:32:44 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
@@ -89,6 +89,9 @@ PLIST_SUB+=	KDE=""
 PLIST_SUB+=	KDE="@comment "
 .endif
 
+post-extract::
+	@${SED} -e 's|@PREFIX@|${LOCALBASE}|g' ${FILESDIR}/opera.desktop.in >${WRKDIR}/opera.desktop
+
 post-patch:
 	@${CP} ${WRKSRC}/search.ini ${WRKSRC}/locale/en
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g ; \
@@ -118,5 +121,7 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_32x32.png ${PREFIX}/share/icons/locolor/32x32/apps/opera.png
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_32x32.png ${PREFIX}/share/icons/hicolor/32x32/apps/opera.png
 	@${INSTALL_DATA} ${WRKSRC}/images/opera_48x48.png ${PREFIX}/share/icons/hicolor/48x48/apps/opera.png
+	${INSTALL_DATA} ${WRKDIR}/opera.desktop ${PREFIX}/share/apps/Internet/
+	${INSTALL_DATA} ${WRKDIR}/opera.desktop ${PREFIX}/share/applnk/Internet/
 
 .include <bsd.port.post.mk>
