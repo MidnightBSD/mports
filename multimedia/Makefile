@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.38 2008/01/05 02:24:54 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.39 2008/01/05 02:30:01 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
 
+    SUBDIR += clive
     SUBDIR += etoile-babbler
     SUBDIR += etoile-multimediakit
     SUBDIR += gnustep-mplayer
