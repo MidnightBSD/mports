@@ -3,13 +3,13 @@
 # Date created:			  19 Nov 1997
 # Whom:				  Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.2 2007/08/01 01:20:53 laffer1 Exp $
+# $MidnightBSD: mports/archivers/bzip2/Makefile,v 1.3 2008/03/11 23:40:21 laffer1 Exp $
 # $FreeBSD: ports/archivers/bzip2/Makefile,v 1.41 2005/10/20 10:01:04 edwin Exp $
 #
 
 PORTNAME=	bzip2
-PORTVERSION=	1.0.4
-PORTREVISION=	1
+PORTVERSION=	1.0.5
+PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.bzip.org/${PORTVERSION}/
 
