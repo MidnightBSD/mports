@@ -2,7 +2,7 @@
 # Date created:		17 April 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.11 2007/11/16 13:00:35 laffer1 Exp $
+# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.12 2008/02/27 20:35:51 laffer1 Exp $
 # $FreeBSD: ports/mail/linux-thunderbird/Makefile,v 1.6 2006/07/30 00:09:53 sat Exp $
 #
 
@@ -13,7 +13,6 @@ MASTER_SITE_SUBDIR?=	${PORTNAME}/releases/${PORTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird is standalone mail and news that stands above
-
 LICENSE=	mpl
 
 USE_GCPIO=	yes
