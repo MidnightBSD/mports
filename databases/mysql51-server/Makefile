@@ -2,7 +2,7 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.6 2007/08/10 15:41:13 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.7 2008/04/01 17:54:21 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.226 2007/07/05 13:32:09 ale Exp $
 #
 
@@ -12,11 +12,10 @@ CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
 PKGNAMESUFFIX?=	-server
-DISTNAME=	${PORTNAME}-${PORTVERSION}-beta
+DISTNAME=	${PORTNAME}-${PORTVERSION}-rc
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Multithreaded SQL database (server)
-
+COMMENT=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
@@ -30,7 +29,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--with-libwrap \
 		--with-mysqlfs \
 		--with-low-memory \
-		--with-comment='FreeBSD port: ${PKGNAME}' \
+		--with-comment='MidnightBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
 
 .ifdef USE_MYSQL
