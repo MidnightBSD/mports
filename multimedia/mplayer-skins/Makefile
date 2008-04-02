@@ -2,25 +2,27 @@
 # Date created:				Sat Jan 12 10:59:45 BRST 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/mplayer-skins/Makefile,v 1.2 2007/04/04 21:04:51 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.44 2007/01/30 01:42:14 rafan Exp $
 #
 
 PORTNAME=	mplayer-skins
 PORTVERSION=	1.1.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	multimedia
-MASTER_SITES=	http://www.mplayerhq.hu/MPlayer/Skin/ \
-		http://ftp5.mplayerhq.hu/mplayer/Skin/ \
-		http://ftp.lug.udel.edu/MPlayer/Skin/ \
-		ftp://ftp.mplayerhq.hu/MPlayer/Skin/ \
-		ftp://ftp5.mplayerhq.hu/mplayer/Skin/ \
-		ftp://ftp.lug.udel.edu/MPlayer/Skin/
+MASTER_SITES=	http://www3.mplayerhq.hu/MPlayer/skins/ \
+		http://www.mplayerhq.hu/MPlayer/skins/ \
+		http://ftp5.mplayerhq.hu/mplayer/skins/ \
+		http://ftp.lug.udel.edu/MPlayer/skins/ \
+		ftp://ftp.mplayerhq.hu/MPlayer/skins/ \
+		ftp://ftp5.mplayerhq.hu/mplayer/skins/ \
+		ftp://ftp.lug.udel.edu/MPlayer/skins/
 DISTFILES=	# filled in later after options
 DIST_SUBDIR=	mplayer
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Skins for MPlayer's Graphical User Interface (GUI)
+LICENSE=	unknown
 
 #
 # When adding a new skin, please make sure to add it after the following
