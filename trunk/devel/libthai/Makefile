@@ -3,12 +3,12 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.5 2008/03/28 02:33:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/libthai/Makefile,v 1.6 2008/04/01 04:24:31 laffer1 Exp $
 #
 
 PORTNAME=	libthai
 PORTVERSION=	0.1.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.usablelabs.com/download/
 
@@ -28,7 +28,7 @@ ALL_TARGET=	all check
 MAN3=	libthai.3 thctype.3 wtt.3
 
 pre-configure:
-	${SH} ${WRKSRC}/autogen.sh
+	@cd ${WRKSRC} && ${SH} autogen.sh
 
 post-patch:
 	@${REINPLACE_CMD} -E 's,^(pkgconfigdir = ).*$$,\1$$(prefix)/libdata/pkgconfig,' \
