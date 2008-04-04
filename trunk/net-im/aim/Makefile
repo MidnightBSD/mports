@@ -2,7 +2,7 @@
 # Date created:		Sat Jan 13 12:40:20 GMT 2001
 # Whom:			Roger Hardiman <roger@freebsd.org>
 #
-# $MidnightBSD: mports/net-im/aim/Makefile,v 1.2 2007/11/05 22:40:46 laffer1 Exp $
+# $MidnightBSD: mports/net-im/aim/Makefile,v 1.3 2007/11/05 22:44:42 laffer1 Exp $
 # $FreeBSD: ports/net-im/aim/Makefile,v 1.13 2006/09/11 02:14:24 clsung Exp $
 #
 
@@ -15,7 +15,8 @@ DISTNAME=	aim-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	AOL's Instant Messenger (AIM) client
+COMMENT=	AOL's Instant Messenger (AIM) client 
+#'
 LICENSE=	restricted
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-1.2.so.0:${PORTSDIR}/x11-toolkits/linux-gtk
@@ -29,23 +30,18 @@ USE_LDCONFIG=	yes
 USE_LINUX_PREFIX=	yes
 PLIST_SUB=	LINUXBASE=${LINUXBASE}
 
+pre-fake:
+	@${ECHO_CMD} "#!/bin/sh" >${WRKDIR}/aim
+	@${ECHO_CMD} "ulimit -Sc 0" >>${WRKDIR}/aim
+	@${ECHO_CMD} -n "exec ${LINUXBASE}/usr/bin/aim" >>${WRKDIR}/aim
+	@${ECHO_CMD} ' "$$@"' >>${WRKDIR}/aim
+
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/usr/bin/aim ${LINUXBASE}/usr/bin
 	${BRANDELF} -t Linux ${LINUXBASE}/usr/bin/aim
 	(cd ${WRKSRC}/usr/lib;exec ${TAR} --exclude aim/source -cf - *)|(cd ${LINUXBASE}/usr/lib;exec ${TAR} -xpf -)
-	@${ECHO_CMD} "#!/bin/sh" >${PREFIX}/bin/aim
-	@${ECHO_CMD} "ulimit -Sc 0" >>${PREFIX}/bin/aim
-	@${ECHO_CMD} -n "exec ${LINUXBASE}/usr/bin/aim" >>${PREFIX}/bin/aim
-	@${ECHO_CMD} ' "$$@"' >>${PREFIX}/bin/aim
-	${CHMOD} ${BINMODE} ${PREFIX}/bin/aim
+	${INSTALL_PROGRAM} ${WRKDIR}/aim ${PREFIX}/bin/aim
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.mk>
 
-post-install:
-.if !exists(${LINUXBASE}/usr/bin/esdplay) && !exists(${LOCALBASE}/bin/esdplay)
-	@${ECHO_MSG} "-----------------------------------------------------------------"
-	@${ECHO_MSG} "Install audio/linux-esound or disable Sounds in aim's Preferences"
-	@${ECHO_MSG} "-----------------------------------------------------------------"
-.endif
-
-.include <bsd.port.post.mk>
