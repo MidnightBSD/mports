@@ -2,12 +2,13 @@
 # Date created:				22 January 2003
 # Whom:					dougb
 #
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.4 2008/03/21 23:15:53 laffer1 Exp $
+# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.5 2008/04/04 01:49:00 laffer1 Exp $
 # $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.13 2007/12/26 22:18:26 dougb Exp $
 #
 
 PORTNAME=	pine-pgp-filters
 PORTVERSION=	1.6
+PORTREVISION=	1
 CATEGORIES=	mail security
 MASTER_SITES=	http://dougbarton.us/PGP/scripts/ppf/ \
 		${MASTER_SITE_LOCAL}
