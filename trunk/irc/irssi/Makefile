@@ -2,7 +2,7 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.5 2007/08/30 18:36:15 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.6 2008/01/21 21:18:02 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://mirror.irssi.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A modular IRC client with many features
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GNOME=	glib20
@@ -81,10 +82,5 @@ post-patch:
 post-configure:
 	@${MV} ${WRKSRC}/irssi.conf ${WRKSRC}/irssi.conf.sample
 
-post-install:
-	@if [ ! -f ${PREFIX}/etc/irssi.conf ]; then \
-		${ECHO} "Installing default configuration file."; \
-		${INSTALL_DATA} ${WRKSRC}/irssi.conf.sample ${PREFIX}/etc/irssi.conf ; \
-	fi
 
 .include <bsd.port.post.mk>
