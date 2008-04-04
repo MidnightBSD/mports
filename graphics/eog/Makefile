@@ -2,7 +2,7 @@
 # Date created:		21 May 2002
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/eog/Makefile,v 1.1 2007/09/03 19:45:38 laffer1 Exp $
+# $MidnightBSD: mports/graphics/eog/Makefile,v 1.2 2008/03/14 02:15:58 laffer1 Exp $
 # $FreeBSD: ports/graphics/eog/Makefile,v 1.52 2007/05/29 03:23:09 mezz Exp $
 #   $MCom: ports/graphics/eog/Makefile,v 1.51 2007/03/13 00:48:55 mezz Exp $
 #
@@ -16,6 +16,9 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Eye Of Gnome image viewer
+LICENSE=	gpl2
+
+BUILD_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
