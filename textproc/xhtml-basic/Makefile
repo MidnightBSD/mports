@@ -2,7 +2,7 @@
 # Date created:		Dec 2, 2003
 # Whom:			nectar
 #
-# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.1 2008/03/27 23:13:07 laffer1 Exp $
+# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.2 2008/03/27 23:44:00 laffer1 Exp $
 # $FreeBSD: ports/textproc/xhtml-basic/Makefile,v 1.3 2006/03/24 05:44:38 linimon Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	W3C's XHTML Basic DTD
+COMMENT=	W3C's XHTML Basic DTD #'
 LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr \
@@ -23,9 +23,9 @@ RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr \
 
 RECDATE=	20001219
 
-NO_MTREE=	YES
 NO_BUILD=	YES
 WRKSRC=		${WRKDIR}/REC-${PORTNAME}-${RECDATE}
+
 
 PLIST=		${WRKDIR}/PLIST
 dir_DTD=	share/xml/dtd/xhtml-basic
@@ -47,11 +47,13 @@ SGMLCAT_RM=	${XMLCATMGR} -sc ${SGMLCAT} remove \
 CATALOG_PORTS_SGML=	${LOCALBASE}/share/sgml/catalog.ports
 CATALOG_PORTS_XML=	${LOCALBASE}/share/xml/catalog.ports
 
+SUB_FILES= catalog.xml	
+
 .include "${.CURDIR}/contents.inc"
 
 # I'd much rather do this stuff in line with the actual installation
 # in do-install, but the PLIST must be generated in pre-install.
-pre-install:
+pre-fake:
 	${CAT} /dev/null > ${PLIST}
 .for f in ${contents_DTD}
 	${ECHO} ${dir_DTD}/${f} >> ${PLIST}
@@ -69,19 +71,17 @@ pre-install:
 	    ${PLIST}
 	${ECHO} "@dirrm ${dir_DOC}" >> ${PLIST}
 
+pre-fake:
+
 do-install:
-	@[ -d ${PREFIX}/${dir_DTD} ] || \
-	    ${MKDIR} ${PREFIX}/${dir_DTD}
-	@[ -d ${PREFIX}/${dir_DOC} ] || \
-	    ${MKDIR} ${PREFIX}/${dir_DOC}
+	@${MKDIR} ${PREFIX}/${dir_DTD}
+	@${MKDIR} ${PREFIX}/${dir_DOC}
 .for f in ${contents_DTD}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/${dir_DTD}/${f}
 .endfor
 .for f in ${contents_DOC}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/${dir_DOC}/${f}
 .endfor
-	${SED} -e "s;@@PREFIX@@;${PREFIX};g" ${FILESDIR}/catalog.xml > \
-	    ${WRKDIR}/catalog.xml
 	${INSTALL_DATA} ${WRKDIR}/catalog.xml ${PREFIX}/${dir_DTD}/catalog.xml
 	${MKDIR} ${PREFIX}/share/sgml
 	${MKDIR} ${PREFIX}/share/xml
