@@ -1,7 +1,5 @@
-$NetBSD: patch-aa,v 1.1.1.1 2000/03/25 20:13:24 jlam Exp $
-
---- cowsay.orig	Thu Nov  4 11:29:53 1999
-+++ cowsay	Sat Mar 25 12:07:09 2000
+--- cowsay.orig	Fri May 19 21:29:49 2000
++++ cowsay	Thu Apr  3 20:58:49 2008
 @@ -7,7 +7,7 @@
  ##
  
@@ -11,7 +9,16 @@ $NetBSD: patch-aa,v 1.1.1.1 2000/03/25 20:13:24 jlam Exp $
  use File::Basename;
  use Getopt::Std;
  use Cwd;
-@@ -180,4 +180,21 @@
+@@ -16,7 +16,7 @@
+ $progname = basename($0);
+ $eyes = "oo";
+ $tongue = "  ";
+-$cowpath = $ENV{'COWPATH'} || '%PREFIX%/share/cows';
++$cowpath = $ENV{'COWPATH'} || '/usr/local/share/cows';
+ @message = ();
+ $thoughts = "";
+ 
+@@ -184,4 +184,21 @@
  Usage: $progname [-bdgpstwy] [-h] [-e eyes] [-f cowfile] 
            [-l] [-n] [-T tongue] [-W wrapcolumn] [message]
  EOF
