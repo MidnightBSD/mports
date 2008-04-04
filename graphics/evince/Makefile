@@ -2,13 +2,13 @@
 # Date created:				09 January 2005
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/evince/Makefile,v 1.1 2007/10/24 17:08:41 laffer1 Exp $
-# $FreeBSD: ports/graphics/evince/Makefile,v 1.30 2007/09/12 19:42:13 marcus Exp $
-#   $MCom: ports/graphics/evince/Makefile,v 1.64 2007/03/13 12:00:09 ahze Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/graphics/evince/Makefile,v 1.33 2008/02/26 18:35:39 ahze Exp $
+#   $MCom: ports-stable/graphics/evince/Makefile,v 1.1 2007/12/01 19:16:37 marcus Exp $
 #
 
 PORTNAME=	evince
-PORTVERSION=	0.8.3
+PORTVERSION=	2.20.2
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -30,8 +30,8 @@ USE_GHOSTSCRIPT=yes
 INSTALLS_OMF=	yes
 USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui libgnomeprintui \
 		desktopfileutils gnomedocutils
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 GCONF_SCHEMAS=	evince.schemas evince-thumbnailer.schemas \
 		evince-thumbnailer-ps.schemas
@@ -80,14 +80,14 @@ CONFIGURE_ARGS+=	--enable-impress
 CONFIGURE_ARGS+=	--disable-impress
 .endif
 
-.if exists(${X11BASE}/bin/djview)
+.if exists(${LOCALBASE}/bin/djview)
 DJVU_DIR?=	# empty
 .else
 DJVU_DIR?=	-nox11
 .endif
 
 .if defined(WITH_DJVU)
-LIB_DEPENDS+=		djvulibre.19:${PORTSDIR}/graphics/djvulibre${DJVU_DIR}
+LIB_DEPENDS+=		djvulibre.20:${PORTSDIR}/graphics/djvulibre${DJVU_DIR}
 CONFIGURE_ARGS+=	--enable-djvu
 GCONF_SCHEMAS+=		evince-thumbnailer-djvu.schemas
 .else
@@ -107,9 +107,10 @@ RUN_DEPENDS+=	unrar:${PORTSDIR}/archivers/unrar \
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|execinfo.h|#|g ; s|[$$]POPPLER_VERSION|9|g ; \
-		s| poppler-glib <= [$$]POPPLER_MAX_REQUIRED||g' \
-			${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|execinfo.h|#|g' \
+		${WRKSRC}/configure
 
+post-install:
+	@-update-desktop-database
 
 .include <bsd.port.post.mk>
