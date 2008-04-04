@@ -2,7 +2,7 @@
 # Date created:				22 January 2003
 # Whom:					dougb
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.4 2008/03/21 23:15:53 laffer1 Exp $
 # $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.13 2007/12/26 22:18:26 dougb Exp $
 #
 
@@ -21,15 +21,8 @@ LICENSE=	bsd2
 
 .include <bsd.port.pre.mk>
 
-# We want to be version-agnostic here, but also record the right dependency
-# if the user installs the package and already has one or the other installed.
-.if exists(${LOCALBASE}/bin/gpg2)
 BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
 RUN_DEPENDS+=	gpg2:${PORTSDIR}/security/gnupg
-.else
-BUILD_DEPENDS=	gpg:${PORTSDIR}/security/gnupg1
-RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg1
-.endif
 
 .if exists(${LOCALBASE}/bin/pine)
 RUN_DEPENDS=	pine:${PORTSDIR}/mail/pine4
