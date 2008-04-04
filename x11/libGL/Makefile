@@ -2,7 +2,7 @@
 # Date created:		7 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libGL/Makefile,v 1.1 2006/10/04 16:41:30 laffer1 Exp $
 # $FreeBSD: ports/x11/libGL/Makefile,v 1.6 2005/03/17 23:22:08 lesi Exp $
 #
 
@@ -29,7 +29,7 @@ PREFIX?=	${X11BASE}
 XBUILD_DIRS=	lib/GL
 GLHEADERS=	gl.h glext.h glx.h glxext.h glxint.h glxmd.h glxproto.h \
 		glxtokens.h
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig
 
 .include <bsd.port.pre.mk>
