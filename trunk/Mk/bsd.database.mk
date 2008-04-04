@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.7 2008/03/30 22:39:15 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.8 2008/03/31 16:50:50 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -253,7 +253,7 @@ _BDB_VER=	${bdb}
 .else
 # USE_BDB is specified as VER+
 .  for dbx in ${_DB_${_MATCHED_DB_VER}P}
-.   if exists(${db${dbx}_FIND})
+.   if exists(${db${dbx}_FIND}) && !defined(INDEXING)
 _BRKDB=	no
 # Skip versions we are incompatible with
 .    if defined(INVALID_BDB_VER)
