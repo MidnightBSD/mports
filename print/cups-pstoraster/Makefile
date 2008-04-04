@@ -2,7 +2,7 @@
 # Date created:		Jul 13 2002
 # Whom:			ports@FreeBSD.org
 #
-# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.3 2007/10/31 02:18:30 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-pstoraster/Makefile,v 1.4 2008/03/21 05:38:34 ctriv Exp $
 # $FreeBSD: ports/print/cups-pstoraster/Makefile,v 1.25 2006/12/28 19:00:15 itetcu Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Postscript interpreter for CUPS printing to non-PS printers
+LICENSE=	gpl2
 
 LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
 
@@ -49,9 +50,9 @@ post-patch:
 	${LN} -sf ${WRKSRC}/pstoraster/gdevcups.c ${WRKSRC}/src
 	${CAT} ${FILESDIR}/cups.contrib.mak >> ${WRKSRC}/src/contrib.mak
 .for file in pstopxl pstoraster
-	${REINPLACE_CMD} -e 's:@prefix@:${FAKE_DESTDIR}${PREFIX}:g ; \
-		 s:@exec_prefix@:${FAKE_DESTDIR}${PREFIX}:g ; \
-		 s:@bindir@:${FAKE_DESTDIR}${PREFIX}/bin:g ; \
+	${REINPLACE_CMD} -e 's:@prefix@:${PREFIX}:g ; \
+		 s:@exec_prefix@:${PREFIX}:g ; \
+		 s:@bindir@:${PREFIX}/bin:g ; \
 		 s:@GS@:espgs:g ; \
 		 s|^GS_LIB="|GS_LIB="${PREFIX}/share/ghostscript/fonts:|' \
 		 ${WRKSRC}/pstoraster/${file}.in
