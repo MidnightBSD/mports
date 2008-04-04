@@ -3,6 +3,7 @@ bin/evince-thumbnailer
 %%NAUTILUS%%lib/nautilus/extensions-1.0/libevince-properties-page.a
 %%NAUTILUS%%lib/nautilus/extensions-1.0/libevince-properties-page.la
 %%NAUTILUS%%lib/nautilus/extensions-1.0/libevince-properties-page.so
+share/applications/evince.desktop
 %%DOCSDIR%%/EvAttachment.html
 %%DOCSDIR%%/EvJobPrint.html
 %%DOCSDIR%%/EvNavigationAction.html
@@ -65,68 +66,65 @@ bin/evince-thumbnailer
 %%DOCSDIR%%/right.png
 %%DOCSDIR%%/style.css
 %%DOCSDIR%%/up.png
-share/applications/evince.desktop
-share/evince/evince-password.glade
-share/evince/evince-preview-toolbar.xml
-share/evince/evince-properties.glade
-share/evince/evince-toolbar.xml
-share/evince/evince-ui.xml
-share/evince/hand-open.png
-share/evince/icons/hicolor/16x16/actions/view-page-continuous.png
-share/evince/icons/hicolor/16x16/actions/view-page-facing.png
-share/evince/icons/hicolor/16x16/actions/zoom-fit-page.png
-share/evince/icons/hicolor/16x16/actions/zoom-fit-width.png
-share/evince/icons/hicolor/22x22/actions/view-page-continuous.png
-share/evince/icons/hicolor/22x22/actions/view-page-facing.png
-share/evince/icons/hicolor/22x22/actions/zoom-fit-page.png
-share/evince/icons/hicolor/22x22/actions/zoom-fit-width.png
-share/evince/icons/hicolor/24x24/actions/view-page-continuous.png
-share/evince/icons/hicolor/24x24/actions/view-page-facing.png
-share/evince/icons/hicolor/24x24/actions/zoom-fit-page.png
-share/evince/icons/hicolor/24x24/actions/zoom-fit-width.png
-share/help/evince/C/evince.xml
-share/help/evince/C/figures/evince_start_window.png
-share/help/evince/C/legal.xml
-share/help/evince/bg/evince.xml
-share/help/evince/bg/figures/evince_start_window.png
-share/help/evince/ca/evince.xml
-share/help/evince/ca/figures/evince_start_window.png
-share/help/evince/el/evince.xml
-share/help/evince/el/figures/evince_start_window.png
-share/help/evince/en_GB/evince.xml
-share/help/evince/en_GB/figures/evince_start_window.png
-share/help/evince/es/evince.xml
-share/help/evince/es/figures/evince_start_window.png
-share/help/evince/fi/evince.xml
-share/help/evince/fi/figures/evince_start_window.png
-share/help/evince/fr/evince.xml
-share/help/evince/fr/figures/evince_start_window.png
-share/help/evince/it/evince.xml
-share/help/evince/it/figures/evince_start_window.png
-share/help/evince/nl/evince.xml
-share/help/evince/nl/figures/evince_start_window.png
-share/help/evince/ru/evince.xml
-share/help/evince/ru/figures/evince_start_window.png
-share/help/evince/sr/evince.xml
-share/help/evince/sr/figures/evince_start_window.png
-share/help/evince/sv/evince.xml
-share/help/evince/sv/figures/evince_start_window.png
-share/help/evince/uk/evince.xml
-share/help/evince/uk/figures/evince_start_window.png
-share/omf/evince/evince-C.omf
-share/omf/evince/evince-bg.omf
-share/omf/evince/evince-ca.omf
-share/omf/evince/evince-el.omf
-share/omf/evince/evince-en_GB.omf
-share/omf/evince/evince-es.omf
-share/omf/evince/evince-fi.omf
-share/omf/evince/evince-fr.omf
-share/omf/evince/evince-it.omf
-share/omf/evince/evince-nl.omf
-share/omf/evince/evince-ru.omf
-share/omf/evince/evince-sr.omf
-share/omf/evince/evince-sv.omf
-share/omf/evince/evince-uk.omf
+%%DATADIR%%/evince-password.glade
+%%DATADIR%%/evince-properties.glade
+%%DATADIR%%/evince-toolbar.xml
+%%DATADIR%%/evince-ui.xml
+%%DATADIR%%/hand-open.png
+%%DATADIR%%/icons/hicolor/16x16/actions/view-page-continuous.png
+%%DATADIR%%/icons/hicolor/16x16/actions/view-page-facing.png
+%%DATADIR%%/icons/hicolor/16x16/actions/zoom-fit-page.png
+%%DATADIR%%/icons/hicolor/16x16/actions/zoom-fit-width.png
+%%DATADIR%%/icons/hicolor/16x16/actions/zoom.png
+%%DATADIR%%/icons/hicolor/22x22/actions/view-page-continuous.png
+%%DATADIR%%/icons/hicolor/22x22/actions/view-page-facing.png
+%%DATADIR%%/icons/hicolor/22x22/actions/zoom-fit-page.png
+%%DATADIR%%/icons/hicolor/22x22/actions/zoom-fit-width.png
+%%DATADIR%%/icons/hicolor/22x22/actions/zoom.png
+%%DATADIR%%/icons/hicolor/24x24/actions/view-page-continuous.png
+%%DATADIR%%/icons/hicolor/24x24/actions/view-page-facing.png
+%%DATADIR%%/icons/hicolor/24x24/actions/zoom-fit-page.png
+%%DATADIR%%/icons/hicolor/24x24/actions/zoom-fit-width.png
+%%DATADIR%%/icons/hicolor/24x24/actions/zoom.png
+%%DATADIR%%/icons/hicolor/32x32/actions/view-page-continuous.png
+%%DATADIR%%/icons/hicolor/32x32/actions/view-page-facing.png
+%%DATADIR%%/icons/hicolor/48x48/actions/view-page-continuous.png
+%%DATADIR%%/icons/hicolor/48x48/actions/view-page-facing.png
+share/gnome/help/evince/C/evince.xml
+share/gnome/help/evince/C/figures/evince_start_window.png
+share/gnome/help/evince/C/legal.xml
+share/gnome/help/evince/bg/evince.xml
+share/gnome/help/evince/bg/figures/evince_start_window.png
+share/gnome/help/evince/ca/evince.xml
+share/gnome/help/evince/ca/figures/evince_start_window.png
+share/gnome/help/evince/el/evince.xml
+share/gnome/help/evince/el/figures/evince_start_window.png
+share/gnome/help/evince/en_GB/evince.xml
+share/gnome/help/evince/en_GB/figures/evince_start_window.png
+share/gnome/help/evince/es/evince.xml
+share/gnome/help/evince/es/figures/evince_start_window.png
+share/gnome/help/evince/fi/evince.xml
+share/gnome/help/evince/fi/figures/evince_start_window.png
+share/gnome/help/evince/fr/evince.xml
+share/gnome/help/evince/fr/figures/evince_start_window.png
+share/gnome/help/evince/it/evince.xml
+share/gnome/help/evince/it/figures/evince_start_window.png
+share/gnome/help/evince/ja/evince.xml
+share/gnome/help/evince/ja/figures/evince_start_window.png
+share/gnome/help/evince/nl/evince.xml
+share/gnome/help/evince/nl/figures/evince_start_window.png
+share/gnome/help/evince/oc/evince.xml
+share/gnome/help/evince/oc/figures/evince_start_window.png
+share/gnome/help/evince/pt_BR/evince.xml
+share/gnome/help/evince/pt_BR/figures/evince_start_window.png
+share/gnome/help/evince/ru/evince.xml
+share/gnome/help/evince/ru/figures/evince_start_window.png
+share/gnome/help/evince/sr/evince.xml
+share/gnome/help/evince/sr/figures/evince_start_window.png
+share/gnome/help/evince/sv/evince.xml
+share/gnome/help/evince/sv/figures/evince_start_window.png
+share/gnome/help/evince/uk/evince.xml
+share/gnome/help/evince/uk/figures/evince_start_window.png
 share/icons/hicolor/16x16/apps/evince.png
 share/icons/hicolor/22x22/apps/evince.png
 share/icons/hicolor/24x24/apps/evince.png
@@ -134,6 +132,7 @@ share/icons/hicolor/48x48/apps/evince.png
 share/icons/hicolor/scalable/apps/evince.svg
 share/locale/ar/LC_MESSAGES/evince.mo
 share/locale/be/LC_MESSAGES/evince.mo
+share/locale/be@latin/LC_MESSAGES/evince.mo
 share/locale/bg/LC_MESSAGES/evince.mo
 share/locale/bn/LC_MESSAGES/evince.mo
 share/locale/bn_IN/LC_MESSAGES/evince.mo
@@ -190,6 +189,7 @@ share/locale/sr/LC_MESSAGES/evince.mo
 share/locale/sr@Latn/LC_MESSAGES/evince.mo
 share/locale/sv/LC_MESSAGES/evince.mo
 share/locale/ta/LC_MESSAGES/evince.mo
+share/locale/te/LC_MESSAGES/evince.mo
 share/locale/th/LC_MESSAGES/evince.mo
 share/locale/tr/LC_MESSAGES/evince.mo
 share/locale/uk/LC_MESSAGES/evince.mo
@@ -198,8 +198,79 @@ share/locale/wa/LC_MESSAGES/evince.mo
 share/locale/zh_CN/LC_MESSAGES/evince.mo
 share/locale/zh_HK/LC_MESSAGES/evince.mo
 share/locale/zh_TW/LC_MESSAGES/evince.mo
+share/omf/evince/evince-C.omf
+share/omf/evince/evince-bg.omf
+share/omf/evince/evince-ca.omf
+share/omf/evince/evince-el.omf
+share/omf/evince/evince-en_GB.omf
+share/omf/evince/evince-es.omf
+share/omf/evince/evince-fi.omf
+share/omf/evince/evince-fr.omf
+share/omf/evince/evince-it.omf
+share/omf/evince/evince-ja.omf
+share/omf/evince/evince-nl.omf
+share/omf/evince/evince-oc.omf
+share/omf/evince/evince-pt_BR.omf
+share/omf/evince/evince-ru.omf
+share/omf/evince/evince-sr.omf
+share/omf/evince/evince-sv.omf
+share/omf/evince/evince-uk.omf
+@dirrm share/omf/evince
+@dirrm share/gnome/help/evince/uk/figures
+@dirrm share/gnome/help/evince/uk
+@dirrm share/gnome/help/evince/sv/figures
+@dirrm share/gnome/help/evince/sv
+@dirrm share/gnome/help/evince/sr/figures
+@dirrm share/gnome/help/evince/sr
+@dirrm share/gnome/help/evince/ru/figures
+@dirrm share/gnome/help/evince/ru
+@dirrm share/gnome/help/evince/pt_BR/figures
+@dirrm share/gnome/help/evince/pt_BR
+@dirrm share/gnome/help/evince/oc/figures
+@dirrm share/gnome/help/evince/oc
+@dirrm share/gnome/help/evince/nl/figures
+@dirrm share/gnome/help/evince/nl
+@dirrm share/gnome/help/evince/ja/figures
+@dirrm share/gnome/help/evince/ja
+@dirrm share/gnome/help/evince/it/figures
+@dirrm share/gnome/help/evince/it
+@dirrm share/gnome/help/evince/fr/figures
+@dirrm share/gnome/help/evince/fr
+@dirrm share/gnome/help/evince/fi/figures
+@dirrm share/gnome/help/evince/fi
+@dirrm share/gnome/help/evince/es/figures
+@dirrm share/gnome/help/evince/es
+@dirrm share/gnome/help/evince/en_GB/figures
+@dirrm share/gnome/help/evince/en_GB
+@dirrm share/gnome/help/evince/el/figures
+@dirrm share/gnome/help/evince/el
+@dirrm share/gnome/help/evince/ca/figures
+@dirrm share/gnome/help/evince/ca
+@dirrm share/gnome/help/evince/bg/figures
+@dirrm share/gnome/help/evince/bg
+@dirrm share/gnome/help/evince/C/figures
+@dirrm share/gnome/help/evince/C
+@dirrm share/gnome/help/evince
+@dirrm %%DATADIR%%/icons/hicolor/48x48/actions
+@dirrm %%DATADIR%%/icons/hicolor/48x48
+@dirrm %%DATADIR%%/icons/hicolor/32x32/actions
+@dirrm %%DATADIR%%/icons/hicolor/32x32
+@dirrm %%DATADIR%%/icons/hicolor/24x24/actions
+@dirrm %%DATADIR%%/icons/hicolor/24x24
+@dirrm %%DATADIR%%/icons/hicolor/22x22/actions
+@dirrm %%DATADIR%%/icons/hicolor/22x22
+@dirrm %%DATADIR%%/icons/hicolor/16x16/actions
+@dirrm %%DATADIR%%/icons/hicolor/16x16
+@dirrm %%DATADIR%%/icons/hicolor
+@dirrm %%DATADIR%%/icons
+@dirrm %%DATADIR%%
+@dirrm %%DOCSDIR%%
+@exec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
+@unexec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/te/LC_MESSAGES
+@dirrmtry share/locale/te
 @dirrmtry share/locale/rw/LC_MESSAGES
 @dirrmtry share/locale/rw
 @dirrmtry share/locale/oc/LC_MESSAGES
@@ -214,45 +285,6 @@ share/locale/zh_TW/LC_MESSAGES/evince.mo
 @dirrmtry share/locale/dz
 @dirrmtry share/locale/bn_IN/LC_MESSAGES
 @dirrmtry share/locale/bn_IN
-@dirrm share/omf/evince
-@dirrm share/help/evince/uk/figures
-@dirrm share/help/evince/uk
-@dirrm share/help/evince/sv/figures
-@dirrm share/help/evince/sv
-@dirrm share/help/evince/sr/figures
-@dirrm share/help/evince/sr
-@dirrm share/help/evince/ru/figures
-@dirrm share/help/evince/ru
-@dirrm share/help/evince/nl/figures
-@dirrm share/help/evince/nl
-@dirrm share/help/evince/it/figures
-@dirrm share/help/evince/it
-@dirrm share/help/evince/fr/figures
-@dirrm share/help/evince/fr
-@dirrm share/help/evince/fi/figures
-@dirrm share/help/evince/fi
-@dirrm share/help/evince/es/figures
-@dirrm share/help/evince/es
-@dirrm share/help/evince/en_GB/figures
-@dirrm share/help/evince/en_GB
-@dirrm share/help/evince/el/figures
-@dirrm share/help/evince/el
-@dirrm share/help/evince/ca/figures
-@dirrm share/help/evince/ca
-@dirrm share/help/evince/bg/figures
-@dirrm share/help/evince/bg
-@dirrm share/help/evince/C/figures
-@dirrm share/help/evince/C
-@dirrm share/help/evince
-@dirrm share/evince/icons/hicolor/24x24/actions
-@dirrm share/evince/icons/hicolor/24x24
-@dirrm share/evince/icons/hicolor/22x22/actions
-@dirrm share/evince/icons/hicolor/22x22
-@dirrm share/evince/icons/hicolor/16x16/actions
-@dirrm share/evince/icons/hicolor/16x16
-@dirrm share/evince/icons/hicolor
-@dirrm share/evince/icons
-@dirrm share/evince
-@dirrm %%DOCSDIR%%
-@exec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
-@unexec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
+@dirrmtry share/locale/be@latin/LC_MESSAGES
+@dirrmtry share/locale/be@latin
+@dirrmtry share/applications
