@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.1 2007/03/09 02:14:03 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.2 2007/03/25 03:03:59 ctriv Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -15,11 +15,14 @@ MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Save your screen while you entertain your cat
+LICENSE=	x11
 
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		gtk-x11-2.0:${PORTSDIR}/x11-toolkits/gtk20 \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		glade-2.0.0:${PORTSDIR}/devel/libglade2
+
+DESTDIRNAME=	install_prefix
 
 USE_XLIB=	yes
 USE_XPM=	yes
