@@ -211,7 +211,6 @@ lib/libnetsnmptrapd.so.%%SHLIB_VERSION%%
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/agent/netsnmp_request_infoPtr.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/NetSNMP/default_store.pm
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/SNMP.pm
-%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Bundle/NetSNMP/.packlist
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.bs
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/ASN.so
 %%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/NetSNMP/ASN/autosplit.ix
