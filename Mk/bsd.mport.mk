@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.84 2008/03/20 18:36:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.85 2008/03/26 01:48:36 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -487,7 +487,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #
 # DESTDIR		- The path to the environment we are installing to.  This is 
 #				  only used during the final package install, at which point
-#				  pkg_add is run chroot'ed into the DESTDIR.
+#				  mport.install is run chroot'ed into the DESTDIR.
 #
 # X11BASE		- Where X11 ports install things.
 #				  Default: ${LOCALBASE}
@@ -1002,9 +1002,6 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: ${ECHO_CMD}
 # PATCH_DEBUG	- If set, print out more information about the patches as
 #				  it attempts to apply them.
-# PKG_DBDIR		- Where package installation is recorded; this directory
-#				  must not contain anything else.
-#				  Default: ${DESTDIR}/var/db/pkg
 # PORT_DBDIR	- Where port configuration options are recorded.
 #				  Default: ${DESTDIR}/var/db/ports
 # NO_DEPENDS	- Don't verify build of dependencies.
@@ -2149,6 +2146,7 @@ COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 .endif
 
 
+
 # The user can override the NO_PACKAGE by specifying this from
 # the make command line
 .if defined(FORCE_PACKAGE)
@@ -2172,15 +2170,21 @@ _PORTDIRNAME=	${.CURDIR:T}
 PORTDIRNAME?=	${_PORTDIRNAME}
 PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
-.if defined(USE_MPORT_TOOLS)
 
-MPORT_CREATE?=	/usr/libexec/mport.create
-MPORT_DELETE?=	/usr/libexec/mport.delete
-MPORT_INSTALL?= /usr/libexec/mport.install
+.if !defined(USE_MPORT_TOOLS)
+.include "${PORTSDIR}/Mk/bsd.pkg_tools.mk"
+.endif
 
+
+MPORT_CREATE?=		/usr/libexec/mport.create
+MPORT_DELETE?=		/usr/libexec/mport.delete
+MPORT_INSTALL?= 	/usr/libexec/mport.install
+MPORT_QUERY?=		/usr/libexec/mport.query
+MPORT_CHECK_FAKE?=	/usr/libexec/mport.check-fake
 .if defined(DESTDIR)
 MPORT_INSTALL:=	${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
 MPORT_DELETE:=	${CHROOT} ${DESTDIR} ${MPORT_DELETE}
+MPORT_QUERY:=   ${CHROOT} ${DESTDIR} ${MPORT_QUERY}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
@@ -2199,48 +2203,6 @@ MPORT_CREATE_ARGS+=	-C "${CONFLICTS}"
 .endif
 
 PKG_SUFX?=	.mport
-
-.else # old pkg_* tools
-
-.if !defined(DESTDIR)
-PKG_CMD?=		/usr/sbin/pkg_create
-PKG_ADD?=		/usr/sbin/pkg_add
-PKG_DELETE?=	/usr/sbin/pkg_delete
-PKG_INFO?=		/usr/sbin/pkg_info
-PKG_VERSION?=	/usr/sbin/pkg_version
-.else
-PKG_CMD?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_create
-PKG_ADD?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_add
-PKG_DELETE?=	${CHROOT} ${DESTDIR} /usr/sbin/pkg_delete
-PKG_INFO?=		${CHROOT} ${DESTDIR} /usr/sbin/pkg_info
-PKG_VERSION?=	${CHROOT} ${DESTDIR} /usr/sbin/pkg_version
-.endif
-
-.if !defined(PKG_ARGS)
-PKG_ARGS=	-v -c -${COMMENT:Q} -S ${FAKE_DESTDIR} -d ${DESCR} -f ${TMPPLIST} -p ${PREFIX}\
-			-P "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
-			${EXTRA_PKG_ARGS} $${_LATE_PKG_ARGS} 
-.if !defined(NO_MTREE)
-PKG_ARGS+=		-m ${MTREE_FILE}
-.endif
-.if defined(PKGORIGIN)
-PKG_ARGS+=		-o ${PKGORIGIN}
-.endif
-.if defined(CONFLICTS) && !defined(DISABLE_CONFLICTS)
-PKG_ARGS+=		-C "${CONFLICTS}"
-.endif
-.endif
-
-.if defined(PKG_NOCOMPRESS)
-PKG_SUFX?=		.tar
-.else
-PKG_SUFX?=		.tbz
-.endif
-
-# where pkg_add records its dirty deeds.
-PKG_DBDIR?=		/var/db/pkg
-
-.endif # defined(USE_MPORT_TOOLS)
 
 MOTIFLIB?=	-L${X11BASE}/lib -lXm -lXp
 
@@ -2729,8 +2691,7 @@ PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
 
 # The "latest version" link -- ${PKGNAME} minus everthing after the last '-'
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
-PKGBASE?=			${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-LATEST_LINK?=		${PKGBASE}
+LATEST_LINK?=		${PKGSUBNAME}
 PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 
@@ -3639,7 +3600,6 @@ fix-fake-symlinks:
 # Package
 #
 .if !target(do-package)
-.if defined(USE_MPORT_TOOLS)
 do-package: ${TMPPLIST}
 	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
 		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
@@ -3663,34 +3623,6 @@ do-package: ${TMPPLIST}
 		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
 		exit 1; \
 	fi
-.else
-do-package: ${TMPPLIST}
-	@if ! ${MKDIR} -p ${PKGREPOSITORY}; then \
-		${ECHO_MSG} "=> Can't create directory ${PKGREPOSITORY}."; \
-		exit 1; \
-	fi; 
-	@__softMAKEFLAGS='${__softMAKEFLAGS:S/'/'\''/g}'; \
-	_LATE_PKG_ARGS=""; \
-	if [ -f ${PKGINSTALL} ]; then \
-		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -i ${PKGINSTALL}"; \
-	fi; \
-	if [ -f ${PKGDEINSTALL} ]; then \
-		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -k ${PKGDEINSTALL}"; \
-	fi; \
-	if [ -f ${PKGREQ} ]; then \
-		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -r ${PKGREQ}"; \
-	fi; \
-	if [ -f ${PKGMESSAGE} ]; then \
-		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
-	fi; \
-	if ${PKG_CMD} -v ${PKG_ARGS} ${PKGFILE} >/dev/null; then \
-		${ECHO_MSG} "Created ${PKGFILE}"; \
-		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} package-links; \
-	else \
-		cd ${.CURDIR} && eval ${MAKE} $${__softMAKEFLAGS} delete-package; \
-		exit 1; \
-	fi
-.endif
 .endif
 
 # Some support rules for do-package
@@ -3754,21 +3686,12 @@ delete-package-list: delete-package-links-list
 # This is the "real" install.  Really.  Not kidding.
 #
 .if !target(install-package)
-.if defined(USE_MPORT_TOOLS)
 install-package:
 .	if defined(DESTDIR) 
 		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
 .	endif
 # $MPORT_INSTALL calls chroot it DESTDIR is set
 	@${MPORT_INSTALL} ${PKGFILE}	
-.else
-install-package:
-.	if defined(DESTDIR) 
-		@${CP} ${PKGFILE} ${DISTDIR}${PKGFILE}
-.	endif
-# $PKG_ADD calls chroot if DESTDIR is set.
-	@${SETENV} PKG_PATH=${PKGREPOSITORY} ${PKG_ADD} ${PKGNAME}
-.endif
 .endif
 
 
@@ -4199,7 +4122,6 @@ refake:
 # Special target to remove installation
 
 .if !target(deinstall)
-.if defined(USE_MPORT_TOOLS)
 deinstall:
 .if !defined(DESTDIR)
 	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN}"
@@ -4213,88 +4135,12 @@ deinstall:
 	@${MPORT_DELETE} -o ${PKGORIGIN}
 .endif
 	@${RM} -f ${INSTALL_COOKIE}
-.else		
-deinstall:
-.if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@${ECHO_MSG} "===>  Switching to root credentials for '${.TARGET}' target"
-	@cd ${.CURDIR} && \
-		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${.TARGET}"
-	@${ECHO_MSG} "===>  Returning to user credentials"
-.else
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN}"
-.else
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN} from ${DESTDIR}"
-.endif
-	@found_names=`${PKG_INFO} -q -O ${PKGORIGIN}`; \
-	for p in $${found_names}; do \
-			check_name=`${ECHO_CMD} $${p} | ${SED} -e 's/-[^-]*$$//'`; \
-			if [ "$${check_name}" = "${PKGBASE}" ]; then \
-					prfx=`${PKG_INFO} -q -p $${p} 2> /dev/null | ${SED} -ne '1s|^@cwd ||p'`; \
-					if [ "x${PREFIX}" = "x$${prfx}" ]; then \
-							if [ -z "${DESTDIR}" ] ; then \
-									${ECHO_MSG} "===>   Deinstalling $${p}"; \
-							else \
-									${ECHO_MSG} "===>   Deinstalling $${p} from ${DESTDIR}"; \
-							fi; \
-							${PKG_DELETE} -f $${p}; \
-					else \
-							${ECHO_MSG} "===>   $${p} has a different PREFIX: $${prfx}, skipping"; \
-					fi; \
-			fi; \
-	done; \
-	if [ -z "$${found_names}" ]; then \
-			if [ -z "${DESTDIR}" ] ; then \
-					${ECHO_MSG} "===>   ${PKGBASE} not installed, skipping"; \
-			else \
-					${ECHO_MSG} "===>   ${PKGBASE} not installed in ${DESTDIR}, skipping"; \
-			fi; \
-	fi
-	@${RM} -f ${INSTALL_COOKIE}
-.endif 
-.endif # USE_MPORT_TOOLS
 .endif # !target(deinstall)
 
-# Deinstall-all
+
 #
-# Special target to remove installation of all ports of the same origin
-
-.if !target(deinstall-all)
-deinstall-all:
-.if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@${ECHO_MSG} "===>  Switching to root credentials for '${.TARGET}' target"
-	@cd ${.CURDIR} && \
-		${SU_CMD} "${MAKE} ${__softMAKEFLAGS} ${.TARGET}"
-	@${ECHO_MSG} "===>  Returning to user credentials"
-.else
-.if !defined(DESTDIR)
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN}"
-.else
-	@${ECHO_MSG} "===>  Deinstalling for ${PKGORIGIN} from ${DESTDIR}"
-.endif
-	@deinstall_names=`${PKG_INFO} -q -O ${PKGORIGIN}`; \
-	if [ -n "$${deinstall_names}" ]; then \
-		for d in $${deinstall_names}; do \
-			if [ -z "${DESTDIR}" ] ; then \
-				${ECHO_MSG} "===>   Deinstalling $${d}"; \
-			else \
-				${ECHO_MSG} "===>   Deinstalling $${d} from ${DESTDIR}"; \
-			fi; \
-			${PKG_DELETE} -f $${d}; \
-		done; \
-	else \
-		if [ -z "${DESTDIR}" ] ; then \
-			${ECHO_MSG} "===>   ${PKGORIGIN} not installed, skipping"; \
-		else \
-			${ECHO_MSG} "===>   ${PKGORIGIN} not installed in ${DESTDIR}, skipping"; \
-		fi; \
-	fi; \
-	${RM} -f ${INSTALL_COOKIE}
-.endif
-.endif
-
 # Cleaning up
-
+#
 .if !target(do-clean)
 do-clean:
 	@if [ -d ${WRKDIR} ]; then \
@@ -4698,6 +4544,7 @@ _INSTALL_DEPENDS=	\
 		fi;
 
 .for deptype in EXTRACT PATCH FETCH BUILD RUN
+.if !target(${deptype:L}-depends)
 ${deptype:L}-depends:
 .if defined(${deptype}_DEPENDS)
 .if !defined(NO_DEPENDS)
@@ -4743,7 +4590,10 @@ ${deptype:L}-depends:
 				*)		pkg="";; \
 			esac; \
 			if [ "$$pkg" != "" ]; then \
-				if ${PKG_INFO} "$$prog" > /dev/null 2>&1 ; then \
+				_version=`${ECHO_CMD} "$$prog" | ${SED} -E 's/^[^><=]*//'`; \
+				_name=`${ECHO_CMD} "$$prog" | ${SED} -E 's/[><=]+.*//'`; \
+				echo "====> ${MPORT_QUERY} name=$$_name version$$_version"; \
+				if ${MPORT_QUERY} name=$$_name version$$_version; then \
 					if [ -z "${DESTDIR}" ] ; then \
 						${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$prog - found"; \
 					else \
@@ -4764,10 +4614,10 @@ ${deptype:L}-depends:
 					notfound=1; \
 				fi; \
 				if [ $$notfound != 0 ]; then \
-					inverse_dep=`${ECHO_CMD} $$prog | ${SED} \
+					inverse_dep=`${ECHO_CMD} $$_version | ${SED} \
 						-e 's/<=/=gt=/; s/</=ge=/; s/>=/=lt=/; s/>/=le=/' \
 						-e 's/=gt=/>/; s/=ge=/>=/; s/=lt=/</; s/=le=/<=/'`; \
-					pkg_info=`${PKG_INFO} -E "$$inverse_dep" || ${TRUE}`; \
+					bad_version=`${MPORT_QUERY} name=$$_name version$$_version || ${TRUE}`; \
 					if [ "$$pkg_info" != "" ]; then \
 						${ECHO_MSG} "===>   Found $$pkg_info, but you need to upgrade to $$prog."; \
 						exit 1; \
@@ -4807,7 +4657,9 @@ ${deptype:L}-depends:
 .else
 	@${DO_NADA}
 .endif
+.endif
 .endfor
+
 
 lib-depends:
 .if defined(LIB_DEPENDS) && !defined(NO_DEPENDS)
@@ -5072,11 +4924,10 @@ package-depends-list:
 	@${PACKAGE-DEPENDS-LIST}
 .endif
 
-.if defined(USE_MPORT_TOOLS)
 # the mport binary tools only store the the first tier of the depenancy
 # tree in a mports archive.
 PACKAGE-DEPENDS-LIST?= \
-	for depend in `${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/'`; do \
+	for depend in `${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${SORT} -u`; do \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
@@ -5091,65 +4942,29 @@ PACKAGE-DEPENDS-LIST?= \
 			${ECHO_MSG} "\"$$dir\" non-existent -- dependency list incomplete" >&2; \
 		fi; \
 	done
+
+.if !target(package-depends)
 package-depends:
 	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{ if ($$4) print $$1":"$$3":"$$4; else print $$1":"$$3 }'
-
-.else
-PACKAGE-DEPENDS-LIST?= \
-	if [ "${CHILD_DEPENDS}" ]; then \
-		installed=$$(${PKG_INFO} -qO ${PKGORIGIN} 2>/dev/null || \
-			${TRUE}); \
-		if [ "$$installed" ]; then \
-			break; \
-		fi; \
-		if [ -z "$$installed" ]; then \
-			installed="${PKGNAME}"; \
-		fi; \
-		for pkgname in $$installed; do \
-			${ECHO_CMD} "$$pkgname ${.CURDIR} ${PKGORIGIN}"; \
-		done; \
-	fi; \
-	checked="${PARENT_CHECKED}"; \
-	for dir in $$(${ECHO_CMD} "${LIB_DEPENDS} ${RUN_DEPENDS}" | ${SED} -e 'y/ /\n/' | ${CUT} -f 2 -d ':') $$(${ECHO_CMD} ${DEPENDS} | ${SED} -e 'y/ /\n/' | ${CUT} -f 1 -d ':'); do \
-		dir=$$(${REALPATH} $$dir); \
-		if [ -d $$dir ]; then \
-			if (${ECHO_CMD} $$checked | ${GREP} -qwv "$$dir"); then \
-				childout=$$(cd $$dir; ${MAKE} CHILD_DEPENDS=yes PARENT_CHECKED="$$checked" package-depends-list); \
-				set -- $$childout; \
-				childdir=""; \
-				while [ $$\# != 0 ]; do \
-					childdir="$$childdir $$2"; \
-					${ECHO_CMD} "$$1 $$2 $$3"; \
-					shift 3; \
-				done; \
-				checked="$$dir $$childdir $$checked"; \
-			fi; \
-		else \
-			${ECHO_MSG} "${PKGNAME}: \"$$dir\" non-existent -- dependency list incomplete" >&2; \
-		fi; \
-	done
-
-package-depends:
-	@${PACKAGE-DEPENDS-LIST} | ${AWK} '{print $$1":"$$3}'
 .endif
 
-# Build packages for port and dependencies
 
+# Build packages for port and dependencies
 package-recursive: package
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		(cd $$dir; ${MAKE} package); \
 	done
 
 # Show missing dependiencies
+.if !target(missing)
 missing:
 	@for dir in $$(${ALL-DEPENDS-LIST}); do \
 		THISORIGIN=$$(${ECHO_CMD} $$dir | ${SED} 's,${PORTSDIR}/,,'); \
-		installed=$$(${PKG_INFO} -qO $${THISORIGIN}); \
-		if [ -z "$$installed" ]; then \
+		if ${MPORT_QUERY} -q origin=$${THISORIGIN}; then \
 			${ECHO_CMD} $$THISORIGIN; \
 		fi \
 	done
-
+.endif
 ################################################################
 # Everything after here are internal targets and really
 # shouldn't be touched by anybody but the release engineers.
@@ -5588,7 +5403,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.84 2008/03/20 18:36:35 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.85 2008/03/26 01:48:36 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5650,24 +5465,19 @@ makeplist:
 
 
 #
-# check to see how things went with a fake.
-#
-.if exists(${LOCALBASE}/bin/perl)
-_CHKFAKE=chkfake.pl
-.else
-_CHKFAKE=chkfake
-.endif
-
-_CHKFAKE_ARGS=	${TMPPLIST} ${FAKE_DESTDIR} ${PREFIX}
+# check-fake
+#	
+_CHKFAKE_ARGS= -f ${TMPPLIST} -d ${FAKE_DESTDIR} -p ${PREFIX}
 .if defined(SKIP_FAKE_CHECK)
 _CHKFAKE_ARGS+=	-s "${SKIP_FAKE_CHECK}"
 .endif
 
 .if !target(check-fake)
-check-fake: 
-	@${PORTSDIR}/Tools/scripts/${_CHKFAKE} ${_CHKFAKE_ARGS}
+check-fake:
+#	/usr/mports/Tools/scripts/chkfake.pl ${_CHKFAKE_ARGS}
+	@${MPORT_CHECK_FAKE} ${_CHKFAKE_ARGS}
 .endif
-	
+
 
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
