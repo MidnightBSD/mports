@@ -2,13 +2,13 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.5 2007/11/14 19:47:03 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.6 2008/03/05 02:30:32 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
 #
 
 PORTNAME=	openssh
 DISTVERSION=	4.7p1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
 		ftp://carroll.cac.psu.edu/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
@@ -133,7 +133,7 @@ EXTRA_PATCHES+=		${FILESDIR}/scardpin.patch
 IGNORE=			option HPN is temporary disabled, waiting patch for new openssh release
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=		http://www.psc.edu/networking/projects/hpn-ssh/
-PATCHFILES+=		openssh-4.3p2-hpn12.diff.gz
+PATCHFILES+=		openssh-4.7p1-hpn12v20.diff.gz
 .endif
 
 .if defined(WITH_OVERWRITE_BASE)
