@@ -2,11 +2,12 @@
 # Date created:				12 January 2005
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.1 2008/03/05 02:20:27 laffer1 Exp $
 # $FreeBSD: ports/security/libgnomesu/Makefile,v 1.19 2007/10/24 23:36:32 marcus Exp $
 
 PORTNAME=	libgnomesu
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	security gnome
 MASTER_SITES=	http://members.chello.nl/~h.lai/libgnomesu/
 
@@ -26,7 +27,6 @@ CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 post-install:
 	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_DATA} ${FILESDIR}/gnomesu-pam.4.x.sample ${EXAMPLESDIR}
 	${INSTALL_DATA} ${FILESDIR}/gnomesu-pam.5.x.sample ${EXAMPLESDIR}
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
