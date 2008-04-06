@@ -3,7 +3,7 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg/Makefile,v 1.98 2007/01/14 07:27:47 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg/Makefile,v 1.6 2008/03/30 23:58:07 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.7 2008/04/06 02:23:11 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
@@ -24,7 +24,7 @@ LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		ksba.17:${PORTSDIR}/security/libksba \
 		pth.20:${PORTSDIR}/devel/pth
 
-CONFLICTS=	gnupg-devel-[0-9]* gnupg1-[0-9]*
+CONFLICTS=	gnupg1-[0-9]*
 
 USE_BZIP2=	YES
 USE_GMAKE=	YES
