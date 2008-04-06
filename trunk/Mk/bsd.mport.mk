@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.85 2008/03/26 01:48:36 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.86 2008/04/05 02:46:34 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1275,8 +1275,9 @@ _SUF2=	,${PORTEPOCH}
 # check for old, crufty, makefile types, part 2.  The "else" case
 # should have been handled in part 1, above.
 PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
-PKGSUBNAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-PKGNAME?=		${PKGSUBNAME}-${PKGVERSION}
+PKGBASE?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+PKGSUBNAME=		${PKGBASE}
+PKGNAME?=		${PKGBASE}-${PKGVERSION}
 DISTNAME?=		${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 
@@ -5403,7 +5404,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.85 2008/03/26 01:48:36 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.86 2008/04/05 02:46:34 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
