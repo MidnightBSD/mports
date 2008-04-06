@@ -3,12 +3,11 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.1 2007/01/24 17:51:33 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.2 2007/08/01 20:31:42 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
-PORTVERSION=	1.4.6
-PORTREVISION=	3
+PORTVERSION=	1.4.8
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -17,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
+LICENSE=	gpl2
 
 USE_BZIP2=	YES
 USE_GMAKE=	YES
