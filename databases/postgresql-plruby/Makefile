@@ -2,7 +2,7 @@
 # Date created:		28 June 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.1 2006/10/19 16:28:40 wintellect Exp $
+# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.2 2008/04/06 19:09:23 laffer1 Exp $
 # $FreeBSD: ports/databases/postgresql-plruby/Makefile,v 1.29 2005/11/23 18:03:25 mat Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PL/Ruby procedural language for the PostgreSQL database system
+LICENSE=	unknown
 
 BUILD_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
 RUN_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
