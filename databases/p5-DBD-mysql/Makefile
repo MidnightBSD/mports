@@ -2,12 +2,12 @@
 # Date created:				27 Nov 2001
 # Whom:	      				Sergey Skvortsov <skv@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.1 2006/10/03 21:03:20 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.2 2007/08/10 15:50:20 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBD-mysql/Makefile,v 1.61 2006/09/12 11:45:26 skv Exp $
 #
 
 PORTNAME=	DBD-mysql
-PORTVERSION=	4.005
+PORTVERSION=	4.006
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/00$//}
 CATEGORIES=	databases perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	MySQL driver for the Perl5 Database Interface (DBI)
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
 RUN_DEPENDS=	${BUILD_DEPENDS}
