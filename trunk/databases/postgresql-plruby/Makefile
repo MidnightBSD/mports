@@ -2,14 +2,15 @@
 # Date created:		28 June 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.1 2006/10/19 16:28:40 wintellect Exp $
 # $FreeBSD: ports/databases/postgresql-plruby/Makefile,v 1.29 2005/11/23 18:03:25 mat Exp $
 #
 
 PORTNAME=	plruby
-PORTVERSION=	0.4.6
+PORTVERSION=	0.5.0
 CATEGORIES=	databases ruby
-MASTER_SITES=	ftp://moulon.inra.fr/pub/ruby/
+MASTER_SITES=	ftp://moulon.inra.fr/pub/ruby/ \
+		http://freebsd.unixfreunde.de/sources/
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	ruby
 
@@ -62,7 +63,7 @@ post-build:
 # Setting/finding PostgreSQL version we want.
 .if exists(${LOCALBASE}/bin/postmaster)
 PGSQL_VER!=	${LOCALBASE}/bin/postmaster -V | \
-		${SED} -n 's/postmaster.*PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1\2/p'
+		${SED} -n 's/.*PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1\2/p'
 .elif exists(${LOCALBASE}/bin/pg_config)
 PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1\2/p'
 .else
