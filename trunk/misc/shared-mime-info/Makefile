@@ -2,19 +2,20 @@
 # Date created:        31 May 2002
 # Whom:                olgeni@FreeBSD.org
 #
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.3 2007/04/25 04:01:42 ctriv Exp $
 # $FreeBSD: ports/misc/shared-mime-info/Makefile,v 1.40 2006/09/04 00:24:54 marcus Exp $
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	0.19
+PORTVERSION=	0.23
+PORTREVISION=	1
 CATEGORIES=	misc gnome
-MASTER_SITES=	http://www.marcuscom.com/downloads/ \
-		http://people.freedesktop.org/~hadess/
-DISTNAME=	shared-mime-info-${PORTVERSION}
+MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MIME type database from the FreeDesktop project
+LICENSE=	gpl2
 
+USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
@@ -26,20 +27,15 @@ MAN1=		update-mime-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
 
-MIMEDIRS=	${X11BASE}/share/gnome/mime \
-		${LOCALBASE}/share/gnome/mime \
-		${X11BASE}/share/mime \
-		${LOCALBASE}/share/mime \
-		${PREFIX}/share/mime \
-		/usr/share/mime
+MIMEDIRS=	${LOCALBASE}/share/mime \
+		${PREFIX}/share/mime
 MIMESUBDIRS=	application audio image inode message model multipart \
-		packages text video
+		packages text video x-epoc x-content
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%MIMEDIRS%%|${MIMEDIRS}|g' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-		s|%%X11BASE%%|${X11BASE}|g' \
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/update-mime-database.c
 
 pre-install:

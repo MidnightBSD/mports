@@ -1,16 +1,15 @@
---- Makefile.in.orig	Sat Dec  4 16:05:36 2004
-+++ Makefile.in	Sat Dec  4 16:06:17 2004
-@@ -795,7 +795,12 @@
+--- Makefile.in.orig	Fri Apr 27 16:56:45 2007
++++ Makefile.in	Fri Apr 27 16:57:14 2007
+@@ -901,7 +901,11 @@ $(pkgconfig_DATA): config.status
  @INTLTOOL_DESKTOP_RULE@
  
  install-data-hook: 
--@ENABLE_UPDATE_MIMEDB_TRUE@	$(DESTDIR)"$(bindir)/update-mime-database" "$(DESTDIR)${mimedir}"
+-@ENABLE_UPDATE_MIMEDB_TRUE@	$(DESTDIR)"$(bindir)/update-mime-database" -V "$(DESTDIR)$(datadir)/mime"
 +@ENABLE_UPDATE_MIMEDB_TRUE@	for mdir in %%MIMEDIRS%%; do \
 +@ENABLE_UPDATE_MIMEDB_TRUE@		if [ -d $${mdir} ]; then \
 +@ENABLE_UPDATE_MIMEDB_TRUE@			$(DESTDIR)"$(bindir)/update-mime-database" "$${mdir}" ; \
 +@ENABLE_UPDATE_MIMEDB_TRUE@		fi; \
 +@ENABLE_UPDATE_MIMEDB_TRUE@	done
-+
  
  uninstall-hook:
- 	for media in text application image audio inode video message model multipart; do rm -f "$(DESTDIR)${mimedir}/$${media}/"*.xml; done
+ 	for media in text application image audio inode video message model multipart; do rm -f "$(DESTDIR)$(datadir)/mime/$${media}/"*.xml; done
