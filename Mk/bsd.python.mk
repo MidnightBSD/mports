@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.6 2007/04/29 04:37:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.7 2007/08/29 04:09:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -547,6 +547,10 @@ RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twis
 .if defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
 
 Python_Post_Include=			bsd.python.mk
+
+# don't check precompiled python code.
+SKIP_FAKE_CHECK?=.*\.py[co]
+
 
 # py-distutils support
 PYDISTUTILS_CONFIGURE_TARGET?=	config
