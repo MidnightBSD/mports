@@ -2,7 +2,7 @@
 # Date created:				08/13/2002
 # Whom:					marc@informatik.uni-bremen.de
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.1 2007/12/28 04:14:41 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/py-gtk2/Makefile,v 1.94 2007/07/10 21:31:06 mezz Exp $
 #   $MCom: ports/x11-toolkits/py-gtk2/Makefile,v 1.49 2006/10/03 20:52:30 ahze Exp $
 #
@@ -18,6 +18,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of Python bindings for GTK+
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
 		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
