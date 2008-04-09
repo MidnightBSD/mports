@@ -107,6 +107,7 @@ sub summary_page {
     arch       => $_->port->run->arch,
     run        => $_->port->run->id,
     osversion  => $_->port->run->osversion,
+    id	       => $_->id,
   }} sort { $a->port->run <=> $b->port->run } Magus::Lock->retrieve_all;
 
   my @runs = map {{

@@ -87,9 +87,6 @@ function sendAsycQuery(url, callback) {
 }
 
 
-
-
-
-function confirm_delete() {
-	return confirm('Delete this result?')
+function confirm_reset() {
+	return confirm('Are you sure?')
 }
