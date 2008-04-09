@@ -2,12 +2,12 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.3 2007/07/21 16:21:59 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.4 2007/08/13 23:02:36 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.16
+PORTVERSION=	1.4.19
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
