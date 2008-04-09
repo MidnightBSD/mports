@@ -17,7 +17,8 @@
 <tbody>
 <TMPL_LOOP NAME="locks">
 <tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
-	<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
+	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
 	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
 	<td><TMPL_VAR name="arch"></td>
 	<td><TMPL_VAR NAME="osversion"></td>
