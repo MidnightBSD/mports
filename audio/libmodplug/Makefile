@@ -2,7 +2,7 @@
 # Date created:		3 February 2004
 # Whom:			Emanuel Haupt <ehaupt@critical.ch>
 #
-# $MidnightBSD: mports/audio/libmodplug/Makefile,v 1.1 2006/10/05 00:40:18 laffer1 Exp $
+# $MidnightBSD: mports/audio/libmodplug/Makefile,v 1.2 2008/02/28 15:38:47 laffer1 Exp $
 # $FreeBSD: ports/audio/libmodplug/Makefile,v 1.10 2006/06/29 17:52:14 ehaupt Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	modplug-xmms
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ModPlug mod-like music shared libraries
+LICENSE=	publicdom
 
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
