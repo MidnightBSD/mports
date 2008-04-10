@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.2 2007/08/19 02:46:36 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.3 2007/08/30 01:14:04 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -16,6 +16,9 @@ EXTRACT_SUFX=	.bin
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Sun Java Development Kit 1.6 for Linux
 LICENSE=	restricted
+
+# must fetch yourself
+IS_INTERACTIVE=	yes
 
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
