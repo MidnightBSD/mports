@@ -2,14 +2,15 @@
 # Date created:			25 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-tce/Makefile,v 1.1 2006/10/04 02:40:24 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-enemyterritory-tce/Makefile,v 1.2 2008/03/21 22:38:58 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-tce/Makefile,v 1.5 2006/05/31 01:43:26 alepulver Exp $
 #
 
 PORTNAME=	enemyterritory-tce
 PORTVERSION=	0.49
+PORTREVISION=	1
 CATEGORIES=	games linux
-MASTER_SITES=	http://ftp.games.skynet.be/pub/www.filesnetwork.com/Wolfenstein_Enemy_Territory/Mods/Total_Conversions/
+MASTER_SITES=	http://afro.truecombat.jp/files/tce/0.49/
 PKGNAMEPREFIX=	linux-
 DISTNAME=	tcetest
 DISTFILES=	tcetest049.zip
