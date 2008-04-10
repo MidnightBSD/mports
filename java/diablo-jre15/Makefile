@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.7 2007/08/30 01:40:01 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.8 2008/03/21 23:08:31 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -18,7 +18,11 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Runtime Environment ${JRE_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
 
+# must fetch yourself
+IS_INTERACTIVE= yes
+
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 LICENSE=	restricted
 RESTRICTED=	"License doesn't allow distribution with fee"
