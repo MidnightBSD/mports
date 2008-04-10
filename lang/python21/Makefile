@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python21/Makefile,v 1.109 2006/05/09 20:52:19 edwin Exp $
-# $MidnightBSD: mports/lang/python21/Makefile,v 1.6 2006/11/17 22:30:46 laffer1 Exp $
+# $MidnightBSD: mports/lang/python21/Makefile,v 1.7 2007/08/29 04:14:16 laffer1 Exp $
 
 PORTNAME=	python
 PORTVERSION=	2.1.3
@@ -30,6 +30,8 @@ USE_PYTHON=	yes
 PYTHON_VERSION=	python2.1
 PYTHON_NO_DEPENDS=	yes
 LATEST_LINK=	${PYTHON_VERSION:S/.//}
+
+FAKE_OPTS=	prefixhack
 
 #
 # If you don't want to use Python's thread module, you need to set
@@ -67,7 +69,7 @@ pre-patch:
 	${MKDIR} ${WRKSRC}/Lib/plat-midnightbsd0
 	${CP} ${WRKSRC}/Lib/plat-freebsd5/regen ${WRKSRC}/Lib/plat-midnightbsd0/
 
-pre-su-install:
+pre-install:
 .for platform in ${PLATFORMS}
 	${MKDIR} ${PYTHONPREFIX_LIBDIR}/${platform}
 .for file in FCNTL.py IN.py regen
