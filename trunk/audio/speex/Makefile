@@ -2,7 +2,7 @@
 # Date created:			Jul 30, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.2 2007/04/10 16:50:11 laffer1 Exp $
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.3 2008/02/28 00:28:55 laffer1 Exp $
 # $FreeBSD: ports/audio/speex/Makefile,v 1.48 2007/02/25 21:47:19 mezz Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source patent-free voice codec
+LICENSE=	bsd3
 
 LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 

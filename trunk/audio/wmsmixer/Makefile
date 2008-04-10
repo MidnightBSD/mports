@@ -2,7 +2,7 @@
 # Date created:				2 April 2001
 # Whom:					Konstantinos Konstantinidis <kkonstan@daemon.gr>
 #
-# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.3 2008/03/19 01:57:36 laffer1 Exp $
+# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.4 2008/03/19 16:40:58 laffer1 Exp $
 # $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://www.hibernaculum.net/download/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	An audio mixer for the WindowMaker dock
+LICENSE=	gpl2
 
 PLIST_FILES=	bin/wmsmixer
 USE_XPM=	YES

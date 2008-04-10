@@ -2,7 +2,7 @@
 # Date created:		09 December 1999
 # Whom:			Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.2 2007/03/22 03:11:02 ctriv Exp $
+# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.3 2008/02/28 00:18:28 laffer1 Exp $
 # $FreeBSD: ports/audio/wmmp3/Makefile,v 1.8 2003/12/15 01:17:26 pav Exp $
 
 PORTNAME=	wmmp3
@@ -13,6 +13,7 @@ MASTER_SITES=	http://www.dotfiles.com/software/wmmp3/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	A front-end for mpg123 in a Window Maker dockapp
+LICENSE=	gpl2
 
 RUN_DEPENDS=	mpg123:${PORTSDIR}/audio/mpg123
 

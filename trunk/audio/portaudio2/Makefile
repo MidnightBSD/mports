@@ -2,7 +2,7 @@
 # Date created:		18 May 2003
 # Whom:			michaelnottebrock@gmx.net and lioux@FreeBSD.org
 #
-# $MidnightBSD: mports/audio/portaudio2/Makefile,v 1.1 2007/03/13 20:16:15 laffer1 Exp $
+# $MidnightBSD: mports/audio/portaudio2/Makefile,v 1.2 2008/02/28 14:29:22 laffer1 Exp $
 # $FreeBSD: ports/audio/portaudio2/Makefile,v 1.13 2007/02/25 13:30:18 sat Exp $
 #
 
@@ -15,6 +15,7 @@ LATEST_LINK=	${PORTNAME}2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable cross-platform Audio API
+LICENSE=	x11
 
 SNAPREV=	1175
 USE_BZIP2=	yes
