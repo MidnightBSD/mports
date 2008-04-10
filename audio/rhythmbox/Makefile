@@ -2,7 +2,7 @@
 # Date created:		17 August 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.1 2007/12/06 05:31:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.2 2008/02/28 01:22:58 laffer1 Exp $
 # $FreeBSD: ports/audio/rhythmbox/Makefile,v 1.100 2007/07/23 17:35:54 danfe Exp $
 #   $MCom: ports/audio/rhythmbox/Makefile,v 1.70 2007/03/07 17:00:36 adamw Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio player for GNOME
+LICENSE=	gpl2
 
 LIB_DEPENDS=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 		id3tag.0:${PORTSDIR}/audio/libid3tag \

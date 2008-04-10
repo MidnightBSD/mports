@@ -2,7 +2,7 @@
 # Date created:		2005-05-02
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/twolame/Makefile,v 1.1 2007/04/04 21:38:50 laffer1 Exp $
+# $MidnightBSD: mports/audio/twolame/Makefile,v 1.2 2008/02/28 00:21:35 laffer1 Exp $
 # $FreeBSD: ports/audio/twolame/Makefile,v 1.10 2007/01/03 00:19:35 mezz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG Audio Layer 2 encoder
+LICENSE=	gpl2
 
 LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile
 
