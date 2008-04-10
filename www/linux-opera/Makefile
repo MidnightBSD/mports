@@ -2,12 +2,13 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.6 2008/03/28 23:12:11 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.7 2008/04/10 17:13:13 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
+PORTREVISION=	1
 CATEGORIES=	www linux
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/ \
 		ftp://ftp.sunet.se/pub/www/clients/Opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/ \
@@ -62,6 +63,11 @@ do-install:
 			--sharedir=${DATADIR} \
 			--exec_prefix=${DATADIR}/bin \
 			--plugindir=${DATADIR}/plugins)
+
+# We must make sure that the correct java jar file is used after installation.
+post-fake:
+	${REINPLACE_CMD} -e 's|file://${FAKE_DESTDIR}${LOCALBASE}/share/linux-opera/java/opera.jar|file://${LOCALBASE}/share/linux-opera/java/opera.jar|g' \
+		${FAKE_DESTDIR}${LOCALBASE}/share/linux-opera/java/opera.policy
 
 
 .include <bsd.port.mk>
