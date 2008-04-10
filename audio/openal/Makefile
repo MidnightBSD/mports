@@ -2,7 +2,7 @@
 # Date created:		25 September 2000
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.1 2007/01/11 16:49:06 wintellect Exp $
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.2 2008/02/28 14:31:09 laffer1 Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 #
 
@@ -15,6 +15,7 @@ DISTVERSION=	0.0.8
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3D positional spatialized sound library
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes

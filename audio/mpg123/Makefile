@@ -2,7 +2,7 @@
 # Date created:			25 June 1997
 # Whom:				Carey Jones <mcj@acquiesce.org>
 #
-# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.1 2006/09/29 20:54:01 wintellect Exp $
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.2 2007/08/02 06:54:43 laffer1 Exp $
 # $FreeBSD: ports/audio/mpg123/Makefile,v 1.66 2005/11/28 19:03:07 fenner Exp $
 #
 
@@ -25,6 +25,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Command-line player for mpeg layer 1, 2 and 3 audio
+LICENSE=	other
 
 WANT_GNOME=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
