@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python22/Makefile,v 1.115 2006/08/12 04:24:41 perky Exp $
-# $MidnightBSD: mports/lang/python22/Makefile,v 1.2 2007/08/02 09:15:46 laffer1 Exp $
+# $MidnightBSD: mports/lang/python22/Makefile,v 1.3 2007/08/29 04:13:52 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -33,6 +33,8 @@ NO_LATEST_LINK=	yes
 USE_PYTHON=	yes
 PYTHON_VERSION=	python2.2
 PYTHON_NO_DEPENDS=	yes
+
+FAKE_OPTS=	prefixhack
 
 #
 # If you don't want to use Python's thread module, you need to set
