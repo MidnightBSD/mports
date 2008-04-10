@@ -2,7 +2,7 @@
 # Date created:				06 December 2000
 # Whom:					Kevin Lo <kevlo@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk13/Makefile,v 1.1 2007/03/13 04:22:53 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk13/Makefile,v 1.2 2007/08/30 01:29:52 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jdk13/Makefile,v 1.48 2006/03/30 17:53:11 glewis Exp $
 #
 
@@ -17,6 +17,10 @@ EXTRACT_SUFX=	.bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sun Java Development Kit 1.3 for Linux
+LICENSE=	restricted
+
+# must fetch yourself
+IS_INTERACTIVE= yes
 
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
