@@ -3,7 +3,7 @@
 # Whom:				Akinori MUSHA aka knu <knu@idaemons.org>
 #
 # $FreeBSD: ports/palm/jfconv/Makefile,v 1.11 2005/11/11 01:17:46 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/palm/jfconv/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 #
 
 PORTNAME=	jfconv
@@ -17,6 +17,9 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts JFile database to CSV, and vice versa
+LICENSE=	unknown
+
+BROKEN=		not fetchable.  Try to find distfile
 
 ALL_TARGET=	# none
 
