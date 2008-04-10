@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.18 2008/03/28 22:32:44 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.19 2008/04/02 20:09:31 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -31,11 +31,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 LICENSE=	restricted
 
-OPERA_VER=	9.26
+OPERA_VER=	9.27
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20080215
-OPERA_BUILD=	698
+OPERA_DATE=	20080331
+OPERA_BUILD=	709
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
