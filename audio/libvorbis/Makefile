@@ -2,7 +2,7 @@
 # Date created:				18 October 2000
 # Whom:					t.vanklaveren@student.utwente.nl
 #
-# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.2 2007/09/01 08:12:07 laffer1 Exp $
+# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.3 2008/02/28 14:45:54 laffer1 Exp $
 # $FreeBSD: ports/audio/libvorbis/Makefile,v 1.30 2006/02/23 10:34:37 ade Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio compression codec library
+LICENSE=	bsd3
 
 LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 
