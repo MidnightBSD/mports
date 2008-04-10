@@ -2,7 +2,7 @@
 # Date created:		Sun Apr 11 13:06:01 PDT 1999
 # Whom:			Michael Haro <mharo@area51.fremont.ca.us>
 #
-# $MidnightBSD: mports/audio/libmikmod/Makefile,v 1.1 2006/10/03 15:54:53 wintellect Exp $
+# $MidnightBSD: mports/audio/libmikmod/Makefile,v 1.2 2008/02/28 16:27:05 laffer1 Exp $
 # $FreeBSD: ports/audio/libmikmod/Makefile,v 1.42 2006/05/03 05:14:20 edwin Exp $
 #
 
@@ -17,6 +17,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MikMod Sound Library
+LICENSE=	lgpl
 
 WANT_GNOME=	yes
 USE_GNOME=	gnometarget lthack

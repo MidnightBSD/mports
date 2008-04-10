@@ -2,7 +2,7 @@
 # Date Created:				26 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libmusicbrainz/Makefile,v 1.1 2007/09/03 19:56:17 laffer1 Exp $
 # $FreeBSD: ports/audio/libmusicbrainz/Makefile,v 1.32 2007/06/06 05:59:18 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	2nd generation incarnation of the CD Index - audio metadata
+LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
