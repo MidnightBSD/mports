@@ -2,7 +2,7 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.5 2007/10/17 02:28:49 ctriv Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.6 2008/04/10 18:37:14 laffer1 Exp $
 # $FreeBSD: ports/graphics/cairo/Makefile,v 1.23 2007/03/20 11:01:14 ahze Exp $
 #   $MCom: ports/graphics/cairo/Makefile,v 1.56 2007/03/06 13:39:18 ahze Exp $
 #
@@ -16,6 +16,8 @@ MASTER_SITES=	http://cairographics.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
+LICENSE=	lgpl
+#or mpl
 
 .if !defined(REFERENCE_PORT)
 
