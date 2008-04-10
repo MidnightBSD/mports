@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.2 2007/03/25 03:03:59 ctriv Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.3 2008/04/04 04:30:13 ctriv Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -33,7 +33,8 @@ CONFIGURE_ARGS=	--without-pam --with-gl --with-gle --with-xpm --with-xml \
 		--with-hackdir=${PREFIX}/bin/xscreensaver-hacks/ \
 		--with-configdir=${PREFIX}/share/xscreensaver/config/ \
 		--with-jpeg=${LOCALBASE} --without-gnome --without-kerberos \
-		--without-motif --mandir=${PREFIX}/man
+		--without-motif --mandir=${PREFIX}/man \
+		--with-x-app-defaults=${PREFIX}/lib/X11/app-defaults/		
 
 OPTIONS=	ALL_FORTUNES "Run fortune with -sa argument" off \
 		SETUID_HACKS "Install sonar hack suid so it can ping" off
