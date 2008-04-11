@@ -2,7 +2,7 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.1 2008/02/17 05:21:08 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-app/Makefile,v 1.7 2007/12/24 19:05:22 marcus Exp $
 #   $MCom: ports/net/avahi-app/Makefile,v 1.6 2007/08/26 06:10:14 marcus Exp $
 #
@@ -15,6 +15,7 @@ PKGNAMESUFFIX?=	-app
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Service discovery on a local network
+LICENSE=	lgpl
 
 LIB_DEPENDS?=	expat.6:${PORTSDIR}/textproc/expat2 \
 		daemon.0:${PORTSDIR}/devel/libdaemon \
