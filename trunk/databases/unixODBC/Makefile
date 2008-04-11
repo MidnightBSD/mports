@@ -2,7 +2,7 @@
 # Date created:         May 11, 2000
 # Whom:                 Nick Sayer <nsayer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.2 2007/10/12 20:23:04 laffer1 Exp $
 # $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
 #
 
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ODBC library suite for Unix
 LICENSE=	lgpl
 
-CONFLICTS=	libiodbc-*
+CONFLICTS=	libiodbc-[0-9]*
 
 USE_GNOME=	gnomehack gnometarget
 USE_ICONV=	yes
