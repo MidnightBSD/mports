@@ -5,18 +5,18 @@ bin/limewire
 %%DATADIR%%/root/magnet10/limewire.gif
 %%DATADIR%%/root/magnet10/options.js
 %%DATADIR%%/root/magnet10/silentdetect.js
-%%DATADIR%%/vorbis.jar
+%%DATADIR%%/vorbisspi.jar
 %%DATADIR%%/tritonus.jar
 %%DATADIR%%/themes.jar
 %%DATADIR%%/spacer.gif
-%%DATADIR%%/mp3sp14.jar
+%%DATADIR%%/mp3spi.jar
 %%DATADIR%%/magnet.protocol
 %%DATADIR%%/looks.jar
 %%DATADIR%%/log4j.properties
 %%DATADIR%%/log4j.jar
 %%DATADIR%%/limewire.js
 %%DATADIR%%/jmdns.jar
-%%DATADIR%%/jl011.jar
+%%DATADIR%%/jl.jar
 %%DATADIR%%/jdic_stub.jar
 %%DATADIR%%/jdic.jar
 %%DATADIR%%/jcraft.jar
@@ -34,8 +34,7 @@ bin/limewire
 %%DATADIR%%/commons-httpclient.jar
 %%DATADIR%%/clink.jar
 %%DATADIR%%/ProgressTabs.jar
-%%DATADIR%%/MessagesBundles.jar
-%%DATADIR%%/xml.war
+%%DATADIR%%/messages.jar
 %%DATADIR%%/LimeWire.jar
 @dirrm %%PORTDOCS%%%%DOCSDIR%%
 @dirrm %%DATADIR%%/root/magnet10
