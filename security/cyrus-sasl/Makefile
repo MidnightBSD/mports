@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.1 2006/10/02 15:22:18 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.2 2007/08/01 20:35:02 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl/Makefile,v 1.65 2006/08/15 01:04:48 clsung Exp $
 #
 
@@ -19,7 +19,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.hanse.de/sites/transit/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/ \
+		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/ \
 		http://www.surf.org.uk/downloads/:ldap_mysql \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/:ldap_mysql \
 		${MASTER_SITE_SOURCEFORGE:S/$/:ldap_mysql/}
