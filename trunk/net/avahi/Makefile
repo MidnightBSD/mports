@@ -2,7 +2,7 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/avahi/Makefile,v 1.4 2008/02/17 05:21:08 laffer1 Exp $
 # $FreeBSD: ports/net/avahi/Makefile,v 1.56 2007/12/20 18:23:32 ahze Exp $
 #   $MCom: ports/net/avahi/Makefile,v 1.26 2007/09/09 22:45:27 mezz Exp $
 #
@@ -17,6 +17,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the Avahi service discovery suite
+LICENSE=	lgpl
 
 RUN_DEPENDS=	avahi-resolve:${PORTSDIR}/net/avahi-app \
 		avahi-app>=0.6.20_2:${PORTSDIR}/net/avahi-app
