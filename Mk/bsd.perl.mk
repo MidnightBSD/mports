@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.8 2007/12/07 21:13:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.9 2008/03/31 18:39:57 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -13,7 +13,7 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 
 # This file contains the glue that is supposed to make your life easier when
 # dealing with ports of perl related software, specifially CPAN modules. It
-# is automatically included when USE_PERL, PERL_CONFIGURE, or PERL_MODBUILD
+# is automatically included when USE_PERL5, PERL_CONFIGURE, or PERL_MODBUILD
 # is defined in the port's makefile.
 #
 ##
@@ -50,7 +50,7 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 # Perl version stuff.
 #
 PERL_VERSION?=	5.8.8
-PERL_VER?=	5.8.8
+PERL_VER?=		${PERL_VERSION}
 
 .if !defined(PERL_LEVEL) && defined(PERL_VERSION)
 perl_major=		${PERL_VERSION:C|^([1-9]+).*|\1|}
@@ -89,6 +89,9 @@ USE_PERL5=	yes
 #
 # dependancies
 #
+PERL_NO_DEPENDS?= NO
+
+.if ${PERL_NO_DEPENDS} == "NO"
 .if defined(USE_PERL5) || defined(USE_PERL5_BUILD)
 EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
@@ -97,7 +100,7 @@ BUILD_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 .if defined(USE_PERL5) || defined(USE_PERL5_RUN)
 RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 .endif
-
+.endif
 
 #
 # Configure
@@ -142,6 +145,11 @@ SKIP_FAKE_CHECK= 	.*\.packlist
 Perl_Post_Include=	bsd.perl.mk
 
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
+				PERL_VER=${PERL_VER} \
+				PERL_ARCH=${PERL_ARCH} \
+				SITE_PERL=${SITE_PERL_REL}
+
+SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
 				PERL_ARCH=${PERL_ARCH} \
 				SITE_PERL=${SITE_PERL_REL}
