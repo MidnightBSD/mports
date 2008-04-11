@@ -2,13 +2,12 @@
 # Date created:				1 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.3 2007/08/25 04:49:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.4 2008/03/19 01:24:38 laffer1 Exp $
 # $FreeBSD: ports/devel/sdl12/Makefile,v 1.106 2007/05/19 20:03:46 flz Exp $
 #
 
 PORTNAME=	sdl
-PORTVERSION=	1.2.11
-PORTREVISION=	2
+PORTVERSION=	1.2.13
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.libsdl.org/release/
@@ -20,10 +19,11 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
+USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_ICONV=	yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --exec-prefix=${PREFIX} \
 			--datadir=${PREFIX}/share
@@ -120,7 +120,6 @@ pre-configure:
 	@${FIND} ${WRKSRC} -type f -name Makefile.in | ${XARGS} ${TOUCH}
 
 post-install:
-.if !defined(NOPORTDOCS)
 	@${MKDIR} -p ${EXAMPLESDIR}
 	@${MKDIR} -p ${DOCSDIR}
 	@(cd ${WRKSRC}/test && pax -rw . ${EXAMPLESDIR} )
@@ -130,6 +129,5 @@ post-install:
 	@${MKDIR} ${DOCSDIR}/docs
 	@cd ${WRKSRC}/docs; ${TAR} cf - `${ECHO_CMD} [^Mm]*` | \
 	(cd ${DOCSDIR}/docs; ${TAR} --unlink -xf - )
-.endif
 
 .include <bsd.port.post.mk>
