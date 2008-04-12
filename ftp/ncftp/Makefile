@@ -4,7 +4,7 @@
 # Whom:				  jkh
 #
 # $FreeBSD: ports/ftp/ncftp/Makefile,v 1.18 2004/04/19 11:42:54 obrien Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/ncftp/Makefile,v 1.1 2006/12/26 02:50:19 laffer1 Exp $
 #
 
 PORTNAME=	ncftp1
@@ -15,6 +15,7 @@ DISTNAME=	ncftp-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FTP replacement with advanced user interface
+LICENSE=	restricted
 
 .if defined(INSTALL_AS_NCFTP)
 LATEST_LINK=	ncftp
