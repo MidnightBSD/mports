@@ -3,23 +3,24 @@
 # Date created:			  4 Nov 1994
 # Whom:				  ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/ncftp3/Makefile,v 1.1 2007/04/02 00:45:56 laffer1 Exp $
 # $FreeBSD: ports/ftp/ncftp3/Makefile,v 1.108 2006/09/10 07:49:34 obrien Exp $
 #
 
 PORTNAME=	ncftp
-PORTVERSION=	3.2.0
+PORTVERSION=	3.2.1
 PORTREVISION?=	0
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/
 DISTNAME=	ncftp-${PORTVERSION}-src
 
 PATCH_SITES=	ftp://ftp.kame.net/pub/kame/misc/
-PATCHFILES=	ncftp-320-v6-20060806.diff.gz
+PATCHFILES=	ncftp-321-v6-20070822.diff.gz
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ftp replacement with advanced user interface
+LICENSE=	restricted
 
 USE_BZIP2=	yes
 
@@ -31,7 +32,7 @@ LATEST_LINK=	ncftp3
 LATEST_LINK=	ncftp
 .endif
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ncurses
 PLIST_SUB=	NCFTP=${LATEST_LINK}
