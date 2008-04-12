@@ -1,5 +1,5 @@
 # rsyncd.conf - Example file, see rsyncd.conf(5)
-#
+# $MidnightBSD$
 
 # Set this if you want to stop rsync daemon with rc.d scripts
 pid file = /var/run/rsyncd.pid
