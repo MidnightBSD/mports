@@ -2,7 +2,7 @@
 # Date created:         4 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/ncftp2/Makefile,v 1.1 2007/04/02 00:39:06 laffer1 Exp $
 # $FreeBSD: ports/ftp/ncftp2/Makefile,v 1.53 2007/02/09 08:37:01 rafan Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FTP replacement with advanced user interface
+LICENSE=	restricted
 
 .if defined(INSTALL_AS_NCFTP)
 LATEST_LINK=	ncftp
