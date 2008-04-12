@@ -2,7 +2,7 @@
 # Date created:		15 May 1995
 # Whom:			torstenb
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/mirror/Makefile,v 1.1 2007/04/02 02:20:28 laffer1 Exp $
 # $FreeBSD: ports/ftp/mirror/Makefile,v 1.22 2007/01/03 16:39:19 hrs Exp $
 #
 
@@ -10,9 +10,8 @@ PORTNAME=	mirror
 PORTVERSION=	2.9
 PORTREVISION=	1
 CATEGORIES=	ftp
-MASTER_SITES=	ftp://sunsite.org.uk/old-sunsite/mirror/ \
-		ftp://src.doc.ic.ac.uk/old-sunsite/mirror/ \
-		ftp://ftp.cs.columbia.edu/archives/perl/mirror/
+MASTER_SITES=	http://ry.ca/mirror/mirror/ \
+		ftp://sunsite.ualberta.ca/pub/Mirror/mirror/
 
 PATCH_SITES=	${MASTER_SITES}
 PATCHFILES=	ftp.pl_wupatch
