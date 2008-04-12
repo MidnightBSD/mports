@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net/rsync/files/rsyncd.sh.in,v 1.2 2006/02/20 20:47:29 dougb Exp $
 #
 
