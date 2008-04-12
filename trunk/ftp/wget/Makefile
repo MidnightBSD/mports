@@ -2,23 +2,25 @@
 # Date created:			  31 December 1996
 # Whom:				  Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.1 2006/10/31 22:00:09 wintellect Exp $
 # $FreeBSD: ports/ftp/wget/Makefile,v 1.83 2006/08/02 19:33:51 sobomax Exp $
 #
 
 PORTNAME=	wget
-DISTVERSION=	1.10.2
+DISTVERSION=	1.11
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP and FTP
+LICENSE=	gpl3
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
 .endif
 
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=		yes
