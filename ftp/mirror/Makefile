@@ -2,7 +2,7 @@
 # Date created:		15 May 1995
 # Whom:			torstenb
 #
-# $MidnightBSD: mports/ftp/mirror/Makefile,v 1.1 2007/04/02 02:20:28 laffer1 Exp $
+# $MidnightBSD: mports/ftp/mirror/Makefile,v 1.2 2008/04/12 00:32:39 laffer1 Exp $
 # $FreeBSD: ports/ftp/mirror/Makefile,v 1.22 2007/01/03 16:39:19 hrs Exp $
 #
 
@@ -18,6 +18,7 @@ PATCHFILES=	ftp.pl_wupatch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mirror packages on remote sites
+LICENSE=	other
 
 PLIST_FILES=	bin/mirror \
 		bin/do_unlinks \
