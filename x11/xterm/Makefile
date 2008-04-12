@@ -3,11 +3,11 @@
 # Whom:					krion
 #
 # $FreeBSD: ports/x11/xterm/Makefile,v 1.50 2007/09/05 12:11:37 krion Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.7 2007/10/08 16:14:51 ctriv Exp $
 #
 
 PORTNAME=	xterm
-PORTVERSION=	229
+PORTVERSION=	234
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
@@ -19,12 +19,12 @@ LICENSE=	x11
 
 USE_XORG=	xaw xft
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include" \
 		LIBS="-L${X11BASE}/lib"
 CONFIGURE_ARGS+=--enable-wide-chars --enable-luit --with-utempter \
 		--enable-narrowproto
-MAN1=		resize.1 xterm.1
+MAN1=		resize.1 koi8rxterm.1 uxterm.1 xterm.1
 
 OPTIONS=	256_COLOR "Enable 256 Color Support." Off
 
