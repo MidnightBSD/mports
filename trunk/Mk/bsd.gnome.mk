@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.7 2008/02/17 03:10:56 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.8 2008/02/22 03:15:02 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -755,10 +755,10 @@ CONFIGURE_FAIL_MESSAGE= "Report the build failure to the GNOME team at ${MAINTAI
 
 .if defined(GCONF_SCHEMAS) || defined(INSTALLS_OMF) || defined(INSTALLS_ICONS) \
 	|| (defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="")
-pre-su-install: gnome-pre-su-install
+pre-install: gnome-pre-install
 post-install: gnome-post-install
 
-gnome-pre-su-install:
+gnome-pre-install:
 .if defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="" && !defined(NO_MTREE)
 	@${MTREE_CMD} ${MTREE_ARGS:S/${MTREE_FILE}/${GNOME_MTREE_FILE}/} ${TARGETDIR}/ >/dev/null
 .endif
