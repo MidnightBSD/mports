@@ -2,13 +2,13 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.5 2007/12/28 17:52:45 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.6 2008/04/01 04:26:59 laffer1 Exp $
 # $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
 #   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
 #
 
 PORTNAME=	libpurple
-PORTVERSION=	2.4.0
+PORTVERSION=	2.4.1
 CATEGORIES=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
@@ -134,7 +134,7 @@ PLIST_SUB+=		SILC="@comment not installed: "
 .endif
 
 .if !defined(WITHOUT_BONJOUR)
-LIB_DEPENDS+=	avahi-core.5:${PORTSDIR}/net/avahi
+LIB_DEPENDS+=	avahi-core.5:${PORTSDIR}/net/avahi-app
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	${PRPL_MODULES},bonjour
 .else
