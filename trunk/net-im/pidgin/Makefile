@@ -2,11 +2,11 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.4 2008/03/30 22:14:37 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.5 2008/04/01 04:51:10 laffer1 Exp $
 #
 
 PORTNAME=	pidgin
-PORTVERSION=	2.4.0
+PORTVERSION=	2.4.1
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
