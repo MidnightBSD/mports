@@ -2,20 +2,21 @@
 # Date created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.2 2007/08/29 00:36:30 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.3 2008/02/17 20:21:24 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/vte/Makefile,v 1.58 2006/05/31 22:18:51 mezz Exp $
 #
 
 PORTNAME=	vte
 PORTVERSION=	0.16.12
 PORTREVISION?=	0
-CATEGORIES=	x11-toolkits gnome
+CATEGORIES?=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Terminal widget with improved accessibility and I18N support
+MAINTAINER?=	ports@MidnightBSD.org
+COMMENT?=	Terminal widget with improved accessibility and I18N support
+LICENSE?=	lgpl
 
 USE_BZIP2=	yes
 
@@ -27,12 +28,12 @@ USE_XLIB=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GETTEXT=	yes
-USE_GNOME=	gnomeprefix gnomehack gtk20 ltverhack referencehack
+USE_GNOME?=	gnomeprefix gnomehack gtk20 ltverhack referencehack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		BSD_PTHREAD_LIBS="${PTHREAD_LIBS}"
-CONFIGURE_ARGS=	--disable-python \
-		--disable-freetypetest
+CONFIGURE_ARGS?=	--disable-python \
+			--disable-freetypetest
 
 .if !defined(MASTERDIR)
 OPTIONS=	GLX	"Enable support for DRI/GLX rendering" off
