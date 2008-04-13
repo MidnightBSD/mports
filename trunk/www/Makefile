@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.70 2008/03/31 23:28:03 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.71 2008/03/31 23:42:43 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -65,6 +65,7 @@
     SUBDIR += php5-session
     SUBDIR += php5-tidy
     SUBDIR += pmwiki
+    SUBDIR += polipo
     SUBDIR += privoxy
     SUBDIR += retsina
     SUBDIR += seamonkey
