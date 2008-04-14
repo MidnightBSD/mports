@@ -3,7 +3,7 @@
 # Whom:					nork@FreeBSD.org
 #
 # $FreeBSD: ports/x11-drivers/synaptics/Makefile,v 1.10 2007/10/07 10:36:14 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/synaptics/Makefile,v 1.1 2007/10/11 21:28:49 ctriv Exp $
 #
 
 PORTNAME=	synaptics
@@ -31,8 +31,6 @@ FAKE_OPTS=	trueprefix
 X11VERSION!=	${MAKE} -C `${MAKE} -f bsd.port.mk -VX_SERVER_PORT` \
 			-VPORTVERSION
 
-.if	${X_WINDOW_SYSTEM:L} == xorg
-
 MASTER_SITES+=	ftp://ftp.freedesktop.org/pub/xorg/individual/xserver/:x11 \
                 http://xorg.freedesktop.org/releases/individual/xserver/:x11
 DIST_SUBDIR=	xorg/xserver
@@ -43,20 +41,6 @@ EXTRA_PATCHES=	${FILESDIR}/extra-xorg-server-1.4
 post-patch:
 	@${REINPLACE_CMD} 's|\(ALLINCLUDES = -I.\)|\1 -I${LOCALBASE}/include -I${LOCALBASE}/include/pixman-1|' \
 		${WRKSRC}/Makefile
-
-.elif	${X_WINDOW_SYSTEM:L} == xfree86-4
-
-MASTER_SITES+=	${MASTER_SITE_XFREE:C/$/:x11/}
-MASTER_SITE_SUBDIR=	${X11VERSION}/:x11
-DIST_SUBDIR=	xc
-X_DISTFILES=	XFree86-${X11VERSION}-src-3.tgz
-PLIST_SUB+=	XORG="@comment " XFREE86=""
-
-.else
-
-BROKEN=		no support yet
-
-.endif
 
 MAKE_ENV=	TOP=${WRKDIR}/xc CFLAGSCLIENT="${CFLAGS}"
 
