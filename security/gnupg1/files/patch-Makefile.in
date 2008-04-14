@@ -1,0 +1,12 @@
+--- Makefile.in.orig	Mon Apr 14 13:29:58 2008
++++ Makefile.in	Mon Apr 14 13:30:15 2008
+@@ -99,8 +99,7 @@
+   distclean-recursive maintainer-clean-recursive
+ ETAGS = etags
+ CTAGS = ctags
+-DIST_SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc \
+-	checks
++DIST_SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
