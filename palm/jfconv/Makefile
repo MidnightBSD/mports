@@ -3,23 +3,19 @@
 # Whom:				Akinori MUSHA aka knu <knu@idaemons.org>
 #
 # $FreeBSD: ports/palm/jfconv/Makefile,v 1.11 2005/11/11 01:17:46 linimon Exp $
-# $MidnightBSD: mports/palm/jfconv/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
+# $MidnightBSD: mports/palm/jfconv/Makefile,v 1.2 2008/04/10 17:58:21 laffer1 Exp $
 #
 
 PORTNAME=	jfconv
 PORTVERSION=	2000.05.17
 CATEGORIES=	palm databases
-MASTER_SITES=	http://www.land-j.com/files/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	knu
+MASTER_SITES=	${MASTER_SITE}
 DISTNAME=	jconv
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts JFile database to CSV, and vice versa
-LICENSE=	unknown
-
-BROKEN=		not fetchable.  Try to find distfile
+LICENSE=	gpl2
 
 ALL_TARGET=	# none
 
