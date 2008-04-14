@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.35 2008/04/14 04:45:29 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.36 2008/04/14 04:47:56 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -35,7 +35,7 @@ MASTER_SITE_LOCAL+= \
 	ftp://ftp.ru.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.jp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.tw.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.cn.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR% \
+	ftp://ftp.cn.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
 	ftp://ftp.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
 
 MASTER_SITE_PORTS_JP+=	\
@@ -212,9 +212,7 @@ MASTER_SITE_ECLIPSE+= \
 	http://www.eclipse.ps.pl/downloads/drops/%SUBDIR%/ \
 	http://eclipse.planetmirror.com/downloads/drops/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,misc/eclipse/downloads/drops/&,} \
-	ftp://sunsite.cnlab-switch.ch/mirror/eclipse/eclipse/downloads/drops/%SUBDIR%/ \
-	ftp://eclipse.cis.sinica.edu.tw/eclipse.org/%SUBDIR%/ \
-	http://eclipse.cis.sinica.edu.tw/downloads/drops/%SUBDIR%/
+	ftp://sunsite.cnlab-switch.ch/mirror/eclipse/eclipse/downloads/drops/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EXIM)
