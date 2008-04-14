@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.94 2008/04/14 06:06:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.95 2008/04/14 06:10:40 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1826,7 +1826,7 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 
 
 .if defined(USE_BISON)
-_BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
+_BISON_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 
 # XXX: backwards compatibility
 .	if ${USE_BISON:L} == "yes"
@@ -5429,7 +5429,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.94 2008/04/14 06:06:37 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.95 2008/04/14 06:10:40 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
