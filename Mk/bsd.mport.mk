@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.92 2008/04/14 05:57:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.93 2008/04/14 06:00:36 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -590,10 +590,11 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				- A command to install binary executables.  (By
 #				  default, also strips them, unless ${STRIP} is
 #				  overridden to be the empty string).
+# INSTALL_KLD		- As INSTALL_KLD, but without the STRIP.
 # INSTALL_SCRIPT
 #				- A command to install executable scripts.
-# INSTALL_DATA	- A command to install sharable data.
-# INSTALL_MAN	- A command to install manpages.  May or not compress,
+# INSTALL_DATA		- A command to install sharable data.
+# INSTALL_MAN		- A command to install manpages.  May or not compress,
 #				  depending on the value of MANCOMPRESSED (see below).
 #
 # Boolean to control whether manpages are installed.
@@ -2125,6 +2126,8 @@ _MANOWNGRP=
 # A few aliases for *-install targets
 INSTALL_PROGRAM= \
 	${INSTALL} ${COPY} ${STRIP} ${_BINOWNGRP} -m ${BINMODE}
+INSTALL_KLD= \
+	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
 INSTALL_SCRIPT= \
 	${INSTALL} ${COPY} ${_BINOWNGRP} -m ${BINMODE}
 INSTALL_DATA= \
@@ -5422,7 +5425,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.92 2008/04/14 05:57:37 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.93 2008/04/14 06:00:36 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
