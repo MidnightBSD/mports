@@ -3,7 +3,7 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-fonts/xorg-fonts-type1/Makefile,v 1.11 2007/09/13 19:44:53 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-type1/Makefile,v 1.3 2007/10/11 19:41:23 ctriv Exp $
 #
 
 PORTNAME=	xorg-fonts-type1
@@ -29,12 +29,4 @@ do-install:	# empty
 NO_BUILD=	# none
 FONTDIR=	${X11BASE}/lib/X11/fonts
 
-.include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
-	distribution. See The X Window System and Virtual Consoles chapter\
-	of FAQ for more information
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
