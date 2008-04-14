@@ -2,7 +2,7 @@
 # Date created:				2003-10-12
 # Whom:					trevor
 #
-# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.3 2007/11/09 20:36:08 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.4 2007/11/09 20:39:46 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_dist-gentoo-stage1/Makefile,v 1.39 2007/01/30 04:23:55 kris Exp $
 #
 
@@ -16,7 +16,6 @@ DISTNAME=	stage1-x86-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Files from Gentoo distribution, for Linux compatibility
-
 LICENSE=	gpl2
 RESTRICTED=	binaries licensed under GNU GPL without accompanying source
 
