@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.90 2008/04/14 05:34:43 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.91 2008/04/14 05:52:24 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1823,7 +1823,26 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 
 
 .if defined(USE_BISON)
-BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
+_BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
+
+# XXX: backwards compatibility
+.	if ${USE_BISON:L} == "yes"
+USE_BISON=	build
+pre-everything::
+	@${ECHO_MSG} "WARNING: USE_BISON=yes deprecated, use build/run/both"
+.	endif
+  	 
+.	if ${USE_BISON:L} == "build"
+BUILD_DEPENDS+=	${_BISON_DEPENDS}
+.	elif ${USE_BISON:L} == "run"
+RUN_DEPENDS+=	${_BISON_DEPENDS}
+.	elif ${USE_BISON:L} == "both"
+BUILD_DEPENDS+=	${_BISON_DEPENDS}
+RUN_DEPENDS+=	${_BISON_DEPENDS}
+.	else
+IGNORE=	uses unknown USE_BISON construct
+.	endif
+
 .endif
 
 .if defined(USE_LOCAL_MK)
@@ -5401,7 +5420,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.90 2008/04/14 05:34:43 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.91 2008/04/14 05:52:24 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
