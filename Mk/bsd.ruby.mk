@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.3 2007/04/20 03:55:31 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.4 2007/04/22 17:59:54 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -438,7 +438,7 @@ RUBY_NO_RD_HTML=	yes
 .undef RUBY_NO_RD_HTML
 .endif
 
-.if (${ARCH} == alpha || ${ARCH} == sparc64) && ${RUBY_VER} <= 1.6
+.if (${ARCH} == sparc64) && ${RUBY_VER} <= 1.6
 RUBY_NO_RD_HTML=	yes
 .endif
 
