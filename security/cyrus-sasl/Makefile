@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.2 2007/08/01 20:35:02 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.3 2008/04/11 21:57:11 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl/Makefile,v 1.65 2006/08/15 01:04:48 clsung Exp $
 #
 
@@ -51,6 +51,7 @@ USE_RC_SUBR=	YES
 
 USE_AUTOTOOLS=	automake:14 autoconf:213 libtool:15
 AUTOMAKE_ARGS=	--add-missing --include-deps
+
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-plugindir=${PREFIX}/lib/sasl \
@@ -222,9 +223,9 @@ pre-install:
 
 post-install:
 	@${MKDIR} ${EXAMPLESDIR}
-	@${SED} -e 's;%%PREFIX%%;${PREFIX};g' \
+	@${SED} -e 's;%%PREFIX%%;${TRUE_PREFIX};g' \
 		${FILESDIR}/cyrus.pam > ${EXAMPLESDIR}/cyrus.pam
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
+	${SED} -e "s;%%PREFIX%%;${TRUE_PREFIX};g" ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${FILESDIR}/pwcheck.sh > ${PREFIX}/etc/rc.d/cyrus_pwcheck.sh
 	@${CHMOD} 755 ${PREFIX}/etc/rc.d/cyrus_pwcheck.sh
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
