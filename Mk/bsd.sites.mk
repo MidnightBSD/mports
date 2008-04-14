@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.37 2008/04/14 04:51:16 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.38 2008/04/14 05:11:34 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -522,7 +522,12 @@ MASTER_SITE_GENTOO+=	\
 	ftp://files.gentoo.gr/%SUBDIR%/ \
 	ftp://ftp.planetmirror.com/pub/gentoo/%SUBDIR%/ \
 	ftp://ftp.ecc.u-tokyo.ac.jp/GENTOO/%SUBDIR%/ \
-	ftp://gentoo.kems.net/pub/mirrors/gentoo/%SUBDIR%/
+	ftp://gentoo.kems.net/pub/mirrors/gentoo/%SUBDIR%/ \
+	http://gentoo.arcticnetwork.ca/source/%SUBDIR%/ \
+	ftp://gentoo.arcticnetwork.ca/pub/gentoo/%SUBDIR%/ \
+	http://gentoo.mirrors.tera-byte.com/%SUBDIR%/ \
+	ftp://mirrors.tera-byte.com/pub/gentoo/%SUBDIR%/ \
+	http://mirror.csclub.uwaterloo.ca/gentoo-distfiles/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GET_E)
