@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.14 2007/08/07 17:54:18 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnustep.mk,v 1.15 2007/11/03 23:25:25 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -31,17 +31,16 @@
 #	use gcc 3.3.x with objective C shared libraries.
 #
 # GNUSTEP_WITH_GCC34=yes
-#	use gcc 3.4.x with objective C shared libraries (default).
-#
-# GNUSTEP_WITH_GCC40=yes
-#	use gcc 4.0.x with objective C shared libraries.
+#	use gcc 3.4.x with objective C shared libraries.
 #
 # GNUSTEP_WITH_GCC41=yes
-#	use gcc 4.1.x with objective C shared libraries.
+#	use gcc 4.1.x with objective C shared libraries. (default)
 #
 # GNUSTEP_WITH_GCC42=yes
 #	use gcc 4.2.x with objective C shared libraries.
 #
+# GNUSTEP_WITH_GCC43=yes
+#	use gcc 4.3.x with objective C shared libraries.
 #
 # Options for a port before include this file:
 # ============================================
@@ -217,9 +216,10 @@ PLIST_SUB+=	MAJORVERSION=${PORTVERSION:C/([0-9]).*/\1/1}
 PLIST_SUB+=	LIBVERSION=${DEFAULT_LIBVERSION}
 PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 
+# Set base version
 .if !defined(GNUSTEP_WITH_BASE_GCC)
 .if !defined(GNUSTEP_WITH_GCC32) && !defined(GNUSTEP_WITH_GCC33) && !defined(GNUSTEP_WITH_GCC34)
-.if !defined(GNUSTEP_WITH_GCC40) && !defined(GNUSTEP_WITH_GCC41) && !defined(GNUSTEP_WITH_GCC42)
+.if !defined(GNUSTEP_WITH_GCC41) && !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC43)
 GNUSTEP_WITH_GCC41=	yes
 .endif
 .endif
@@ -234,14 +234,14 @@ GCCSUFFIX=33
 .if defined(GNUSTEP_WITH_GCC34)
 GCCSUFFIX=34
 .endif
-.if defined(GNUSTEP_WITH_GCC40)
-GCCSUFFIX=40
-.endif
 .if defined(GNUSTEP_WITH_GCC41)
 GCCSUFFIX=41
 .endif
 .if defined(GNUSTEP_WITH_GCC42)
 GCCSUFFIX=42
+.endif
+.if defined(GNUSTEP_WITH_GCC43)
+GCCSUFFIX=43
 .endif
 CC=		gcc${GCCSUFFIX}
 CXX=		g++${GCCSUFFIX}
