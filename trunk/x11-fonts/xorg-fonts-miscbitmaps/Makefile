@@ -3,7 +3,7 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.11 2007/09/13 19:44:52 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-miscbitmaps/Makefile,v 1.3 2007/10/11 19:05:32 ctriv Exp $
 #
 
 PORTNAME=	xorg-fonts-miscbitmaps
@@ -30,19 +30,9 @@ RUN_DEPENDS=	${FONTDIR}/misc/arabic24.pcf.gz:${PORTSDIR}/x11-fonts/font-arabic-m
 		${FONTDIR}/misc/olcursor.pcf.gz:${PORTSDIR}/x11-fonts/font-sun-misc \
 		${FONTDIR}/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings
 
-CONFLICTS=	XFree86-fontDefaultBitmaps-*
-
 NO_BUILD=	# none
 FONTDIR=	${X11BASE}/lib/X11/fonts
 
 do-install:	# empty
 
-.include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
-	distribution. See The X Window System and Virtual Consoles chapter\
-	of FAQ for more information
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
