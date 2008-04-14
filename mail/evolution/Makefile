@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.1 2008/03/21 01:21:57 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.2 2008/04/14 17:46:17 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
@@ -57,8 +57,7 @@ OPTIONS=	PILOT "Enable Palm Pilot sync support" off \
 
 .include <bsd.port.pre.mk>
 
-USE_LDCONFIG=	${TRUE_PREFIX}/lib/evolution/${EVO_VERSION}
-.include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
+USE_LDCONFIG=	${PREFIX}/lib/evolution/${EVO_VERSION}
 
 .if defined(PACKAGE_BUILDING)
 WITH_DBUS=	yes
@@ -116,7 +115,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/sbin|${LOCALBASE}/bin|g' \
 		${WRKSRC}/plugins/sa-junk-plugin/em-junk-filter.c
 
-post-install: install-ldconfig-file
+post-install: 
 	${MKDIR} ${PREFIX}/include/evolution-${EVO_VERSION}/composer
 	${INSTALL_DATA} ${WRKSRC}/composer/e-msg*.h ${PREFIX}/include/evolution-${EVO_VERSION}/composer
 	${INSTALL_DATA} ${WRKSRC}/composer/Editor.h ${PREFIX}/include/evolution-${EVO_VERSION}/composer
