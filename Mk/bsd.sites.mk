@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.32 2008/04/14 04:34:38 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.33 2008/04/14 04:41:38 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -519,6 +519,16 @@ MASTER_SITE_GNU_ALPHA+=	\
 	ftp://ftp.funet.fi/pub/mirrors/alpha.gnu.org/gnu/%SUBDIR%/ \
 	ftp://ftp.lublin.pl/mirror/alpha.gnu.org/gnu/%SUBDIR%/ \
 	ftp://ftp.ps.pl/mirrors/alpha.gnu.org/pub/gnu/%SUBDIR%/ 
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_GOOGLE_CODE)
+.if defined(PROJECTHOST)
+MASTER_SITE_GOOGLE_CODE+= \
+	http://${PROJECTHOST}.googlecode.com/files/
+.else
+MASTER_SITE_GOOGLE_CODE+= \
+	http://${PORTNAME}.googlecode.com/files/
+.endif
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_IDSOFTWARE)
