@@ -3,7 +3,7 @@
 # Whom:			teramoto@comm.eng.osaka-u.ac.jp
 #
 # $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.3 2007/12/30 01:47:44 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.4 2007/12/30 01:59:04 laffer1 Exp $
 #
 
 PORTNAME=	gpgme
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	gpgme
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to make access to GnuPG easier
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg \
 		gpgsm:${PORTSDIR}/security/gnupg
