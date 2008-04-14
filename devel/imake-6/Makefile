@@ -2,7 +2,7 @@
 # Date created:         18 Jun 2004
 # Whom:                 anholt
 #
-# $MidnightBSD: mports/devel/imake-6/Makefile,v 1.2 2006/09/25 16:34:09 archite Exp $
+# $MidnightBSD: mports/devel/imake-6/Makefile,v 1.3 2007/12/06 00:23:04 laffer1 Exp $
 # $FreeBSD: ports/devel/imake-6/Makefile,v 1.12 2006/05/09 17:12:28 lesi Exp $
 #
 
@@ -53,12 +53,5 @@ pre-configure:
 	@${SED} -e 's|%%PTHREAD_CFLAGS%%|${PTHREAD_CFLAGS}|g ; \
 		s|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g' \
 		${WRKSRC}/cf/FreeBSD.cf
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE=	is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
-	distribution. See The X Window System and Virtual Consoles chapter\
-	of FAQ for more information
-NO_LATEST_LINK=	yes
-.endif
 
 .include <bsd.port.post.mk>
