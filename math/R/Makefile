@@ -3,12 +3,12 @@
 # Date created:		Fri Feb  9 10:50:25 EST 2001
 # Whom:			Maurice Castro <maurice@serc.rmit.edu.au>
 #
-# $MidnightBSD: mports/math/R/Makefile,v 1.1 2007/03/09 14:31:27 laffer1 Exp $
-# $FreeBSD: ports/math/R/Makefile,v 1.57 2007/01/25 17:56:40 rafan Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/math/R/Makefile,v 1.68 2008/03/23 16:44:04 miwi Exp $
 #
 
 PORTNAME=	R
-PORTVERSION=	2.4.1
+PORTVERSION=	2.6.1
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/src/base/R-2/ \
 		ftp://cran.r-project.org/pub/R/src/base/R-2/ \
@@ -44,7 +44,7 @@ OPTIONS=	ATLAS        "Use ATLAS instead of BLAS/LAPACK"           off \
 		INFO_MANUALS "Install GNU info manuals"                   on  \
 		LETTER_PAPER "Use US Letter paper"                        off
 
-MAN1=		R.1
+MAN1=		R.1 Rscript.1
 
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install install-libR
@@ -61,10 +61,7 @@ CONFIGURE_ARGS=	--enable-R-shlib --with-system-bzlib --with-system-zlib \
 
 .include <bsd.port.pre.mk>
 
-WANT_FORTRAN=	yes
-BUILD_DEPENDS+=	gfortran42:${PORTSDIR}/lang/gcc42
-FC=		gfortran42
-F77=		gfortran42
+USE_FORTRAN=	yes
 
 test check: build
 	@(cd ${WRKSRC}; ${MAKE} check)
@@ -73,8 +70,14 @@ check-all: build
 
 .if defined(WITH_ATLAS)
 LIB_DEPENDS+=	atlas.2:${PORTSDIR}/math/atlas
-CONFIGURE_ARGS+=--with-lapack="-lalapack -lcblas" --with-blas="-lf77blas"
+CONFIGURE_ARGS+=--with-blas="-lf77blas -latlas"
+# A workaround to prevent hangs up during the build.
+.if ${ARCH} != "i386"
+CONFIGURE_ARGS+=--with-lapack="-lalapack -lcblas"
 PLIST_SUB+=	BLAS="@comment "
+.else
+PLIST_SUB+=	BLAS=""
+.endif
 .else
 LIB_DEPENDS+=	blas.2:${PORTSDIR}/math/blas
 CONFIGURE_ARGS+=--with-blas="-lblas"
@@ -110,7 +113,7 @@ CONFIGURE_ARGS+=--without-x
 PLIST_SUB+=	X11="@comment "
 .else
 CONFIGURE_ARGS+=--with-x
-USE_XLIB=	yes
+USE_XORG=	x11
 PLIST_SUB+=	X11=""
 .endif
 
@@ -151,6 +154,11 @@ INFO=		R-FAQ R-admin R-data R-exts R-intro R-lang
 .if defined(WITH_LETTER_PAPER)
 CONFIGURE_ENV+=	R_PAPERSIZE=letter
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
+		${WRKSRC}/src/nmath/standalone/Makefile.in \
+		${WRKSRC}/src/unix/Makefile.in
 
 post-install:
 	${MV} ${PREFIX}/lib/libR.so ${PREFIX}/lib/libR.so.0
