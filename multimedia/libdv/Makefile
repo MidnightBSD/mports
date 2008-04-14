@@ -2,7 +2,7 @@
 # Date created:				Sun Nov 18 19:42:02 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.1 2007/01/19 18:52:51 wintellect Exp $
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 #
 
@@ -37,10 +37,6 @@ PORTDOCS=      AUTHORS COPYING COPYRIGHT ChangeLog NEWS README \
 		README.dvconnect README.encoder TODO
 
 .include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} == xfree86-3
-IGNORE=		"Requires Xv Extension"
-.endif
 
 .if ${HAVE_GNOME:Mgtk12}!=""
 USE_GNOME+=	gtk12
