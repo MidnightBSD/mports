@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.87 2008/04/06 18:37:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.88 2008/04/14 05:23:31 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1999,6 +1999,17 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" CFLAGS="${CFLAGS}" \
 			CXXFLAGS="${CXXFLAGS}" MANPREFIX="${MANPREFIX}"
 
+# Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
+# gcc 4.x enable strict aliasing optimization with -O2 which is known to break
+# a lot of ports.
+.if !defined(WITHOUT_NO_STRICT_ALIASING)
+.if ${CC} != "icc"
+.if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
+CFLAGS+=       -fno-strict-aliasing
+.endif
+.endif
+.endif
+
 PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
@@ -2063,9 +2074,9 @@ EXTRACT_AFTER_ARGS?=	-d ${WRKDIR}
 .else
 EXTRACT_BEFORE_ARGS?=	-dc
 .if defined(EXTRACT_PRESERVE_OWNERSHIP)
-EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner
-.else
 EXTRACT_AFTER_ARGS?=	| ${TAR} -xf -
+.else
+EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner
 .endif
 .if defined(USE_BZIP2)
 EXTRACT_CMD?=			${BZIP2_CMD}
@@ -5404,7 +5415,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.87 2008/04/06 18:37:54 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.88 2008/04/14 05:23:31 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
