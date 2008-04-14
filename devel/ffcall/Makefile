@@ -2,7 +2,7 @@
 # Date created:        21 February 2001
 # Whom:                jagapen@home.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.1 2006/09/20 16:42:06 laffer1 Exp $
 # $FreeBSD: ports/devel/ffcall/Makefile,v 1.22 2006/07/08 05:15:07 dinoex Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	libs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Foreign function call libraries
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
