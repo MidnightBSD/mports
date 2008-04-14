@@ -2,13 +2,13 @@
 # Date created:		2004-05-19
 # Whom:			michael johnson <ahze@ahze.net>
 #
-# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.1 2006/12/19 11:12:40 wintellect Exp $
+# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.2 2007/11/09 15:23:52 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/skippy-xd/Makefile,v 1.3 2006/05/13 05:00:43 edwin Exp $
 #
 
 PORTNAME=	skippy-xd
 PORTVERSION=	0.5.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://thegraveyard.org/files/
 
@@ -38,13 +38,4 @@ do-install:
 	@${MKDIR} ${DATADIR}
 	@${INSTALL_DATA} ${WRKSRC}/skippy-xd.rc-default ${DATADIR}
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
-
-.include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-BROKEN=	XFree86 does not support XComposite.
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
