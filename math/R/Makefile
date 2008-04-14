@@ -3,7 +3,7 @@
 # Date created:		Fri Feb  9 10:50:25 EST 2001
 # Whom:			Maurice Castro <maurice@serc.rmit.edu.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/R/Makefile,v 1.3 2008/04/14 18:08:52 laffer1 Exp $
 # $FreeBSD: ports/math/R/Makefile,v 1.68 2008/03/23 16:44:04 miwi Exp $
 #
 
@@ -31,6 +31,7 @@ MASTER_SITES=	http://cran.r-project.org/src/base/R-2/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A language for statistical computing and graphics
+LICENSE=	gpl2
 
 OPTIONS=	ATLAS        "Use ATLAS instead of BLAS/LAPACK"           off \
 		TCLTK        "Use Tcl/Tk (for the tcltk package)"         on  \
