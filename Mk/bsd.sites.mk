@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.30 2008/03/28 16:31:45 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.31 2008/03/28 16:33:06 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -394,7 +394,6 @@ MASTER_SITE_GENTOO+=	\
 	http://adelie.polymtl.ca/%SUBDIR%/ \
 	http://mirrors.tds.net/gentoo/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/www.ibiblio.org/gentoo/%SUBDIR%/ \
-	http://ftp.gentoo.skynet.be/pub/gentoo/%SUBDIR%/ \
 	http://ftp.belnet.be/mirror/rsync.gentoo.org/gentoo/%SUBDIR%/ \
 	http://ftp.easynet.nl/mirror/gentoo/%SUBDIR%/ \
 	http://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
@@ -420,7 +419,6 @@ MASTER_SITE_GENTOO+=	\
 	ftp://ftp.ucsb.edu/pub/mirrors/linux/gentoo/%SUBDIR%/ \
 	ftp://gentoo.mirrors.pair.com/%SUBDIR%/ \
 	ftp://mirrors.tds.net/gentoo/%SUBDIR%/ \
-	ftp://ftp.gentoo.skynet.be/pub/gentoo/%SUBDIR%/ \
 	ftp://ftp.belnet.be/mirror/rsync.gentoo.org/gentoo/%SUBDIR%/ \
 	ftp://ftp.easynet.nl/mirror/gentoo/%SUBDIR%/ \
 	ftp://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
