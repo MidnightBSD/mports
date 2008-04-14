@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.93 2008/04/14 06:00:36 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.94 2008/04/14 06:06:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -4572,6 +4572,10 @@ ${deptype:L}-depends:
 .if !defined(NO_DEPENDS)
 	@for i in `${ECHO_CMD} "${${deptype}_DEPENDS}"`; do \
 		prog=`${ECHO_CMD} $$i | ${SED} -e 's/:.*//'`; \
+		if [ -z "$$prog" ]; then \
+			${ECHO_MSG} "Error: there is an empty port dependency in ${deptype}_DEPENDS."; \
+			break; \
+		fi; \
 		dir=`${ECHO_CMD} $$i | ${SED} -e 's/[^:]*://'`; \
 		if ${EXPR} "$$dir" : '.*:' > /dev/null; then \
 			target=`${ECHO_CMD} $$dir | ${SED} -e 's/.*://'`; \
@@ -5425,7 +5429,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.93 2008/04/14 06:00:36 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.94 2008/04/14 06:06:37 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
