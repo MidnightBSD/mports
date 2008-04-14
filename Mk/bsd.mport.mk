@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.86 2008/04/05 02:46:34 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.87 2008/04/06 18:37:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1116,9 +1116,9 @@ OSREL!=	${UNAME} -r | ${SED} -e 's/[-(].*//'
 # Get __FreeBSD_version
 .if !defined(OSVERSION)
 .if exists(${DESTDIR}/usr/include/sys/param.h)
-OSVERSION!=	${AWK} '/^\#define __FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
 .elif exists(${DESTDIR}/usr/src/sys/sys/param.h)
-OSVERSION!=	${AWK} '/^\#define __FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/src/sys/sys/param.h
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/src/sys/sys/param.h
 .else
 OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
@@ -1697,7 +1697,7 @@ LIB_DEPENDS+=	intl.${USE_GETTEXT}:${PORTSDIR}/devel/gettext
 .	endif
 .endif
 
-.if defined(USE_LINUX_PREFIX) && defined(INSTALLS_SHLIB)
+.if defined(USE_LINUX_PREFIX) && (defined(INSTALLS_SHLIB) || defined(USE_LDCONFIG))
 # we need ${LINUXBASE}/sbin/ldconfig
 USE_LINUX?=	yes
 .endif
@@ -1803,7 +1803,7 @@ CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
 
 
 .if defined(USE_XPM)
-USE_XLIB=			yes
+USE_XORG+=			xpm
 .endif
 
 XAWVER=				8
@@ -5404,7 +5404,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.86 2008/04/05 02:46:34 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.87 2008/04/06 18:37:54 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
