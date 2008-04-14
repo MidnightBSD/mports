@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.34 2008/04/14 04:43:32 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.35 2008/04/14 04:45:29 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -88,12 +88,12 @@ MASTER_SITE_APACHE+=	\
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_APACHE_COMMONS_BINARIES)
-MASTER_SITE_APACHE_COMMONS_BINARIES+= \
+MASTER_SITE_APACHE_COMMONS_BINARIES+=	\
 	${MASTER_SITE_APACHE:S,%SUBDIR%,commons/&/binaries,}
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_APACHE_COMMONS_SOURCE)
-MASTER_SITE_APACHE_COMMONS_SOURCE+=   \
+MASTER_SITE_APACHE_COMMONS_SOURCE+=	\
 	${MASTER_SITE_APACHE:S,%SUBDIR%,commons/&/source,}
 .endif
 
@@ -132,7 +132,7 @@ MASTER_SITE_CENKES+=	\
 
 .if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
 MASTER_SITE_CHEESESHOP+=	\
-	http://cheeseshop.python.org/packages/%SUBDIR%/
+	http://pypi.python.org/packages/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_COMP_SOURCES)
@@ -192,8 +192,6 @@ MASTER_SITE_DEBIAN_POOL+=	\
 MASTER_SITE_EASYSW+=	\
 	http://ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp.easysw.com/pub/%SUBDIR%/ \
-	ftp://ftp2.easysw.com/pub/%SUBDIR%/ \
-	ftp://ftp3.easysw.com/pub/%SUBDIR%/ \
 	http://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/mirrors/ftp.easysw.com/pub/%SUBDIR%/ \
 	ftp://ftp.rz.tu-bs.de/pub/mirror/ftp.easysw.com/ftp/pub/%SUBDIR%/
