@@ -3,13 +3,13 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc32/Makefile,v 1.1 2006/09/20 13:16:51 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc32/Makefile,v 1.194 2006/06/24 09:42:34 dinoex Exp $
 #
 
 PORTNAME=	gcc
 PORTVERSION=	3.2.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC} \
 		http://web.inter.NL.net/hcc/Haj.Ten.Brugge/:bc
@@ -19,13 +19,12 @@ DISTFILES=	gcc-core-${PORTVERSION}${EXTRACT_SUFX} \
 		gcc-g77-${PORTVERSION}${EXTRACT_SUFX} \
 		gcc-objc-${PORTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	GNU Compiler Collection 3.2.3
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNU Compiler Collection 3.2.3
+LICENSE=	gpl2
 
 NOT_FOR_ARCHS=	amd64
-
 LATEST_LINK?=	gcc32${PKGNAMESUFFIX}
-
 USE_BZIP2=	yes
 INFO=		cpp cppinternals g77 gcc gccint
 
