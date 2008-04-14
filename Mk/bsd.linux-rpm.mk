@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.4 2007/04/29 04:39:28 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.5 2007/07/31 01:20:27 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -47,8 +47,6 @@ NO_BUILD=			yes
 
 .  if ${ARCH} == "amd64"
 LINUX_RPM_ARCH?=	i386	# the linuxulator does not yet support amd64 code
-.  elif ${ARCH} == "powerpc"
-LINUX_RPM_ARCH?=	ppc
 .  else
 LINUX_RPM_ARCH?=	${ARCH}
 .  endif
