@@ -1,5 +1,14 @@
---- Makefile.in.orig	Thu Apr 10 19:54:48 2008
-+++ Makefile.in	Thu Apr 10 19:55:44 2008
+--- Makefile.in.orig	Wed Mar 26 05:16:36 2008
++++ Makefile.in	Mon Apr 14 13:21:47 2008
+@@ -101,7 +101,7 @@
+ ETAGS = etags
+ CTAGS = ctags
+ DIST_SUBDIRS = m4 gl include jnlib common kbx g10 keyserver sm agent \
+-	scd tools po doc tests
++	scd tools po doc
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
 @@ -661,7 +661,7 @@
  	       $(distcleancheck_listfiles) ; \
  	       exit 1; } >&2
