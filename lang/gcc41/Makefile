@@ -3,7 +3,7 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD: mports/lang/gcc41/Makefile,v 1.1 2006/09/20 14:13:12 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc41/Makefile,v 1.2 2007/11/14 23:10:16 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc41/Makefile,v 1.289 2006/09/10 13:02:38 gerald Exp $
 #
 
@@ -33,8 +33,7 @@ LIB_DEPENDS+=	cairo.2:${PORTSDIR}/graphics/cairo
 
 SUFFIX=		41
 LATEST_LINK?=	gcc${SUFFIX}${PKGNAMESUFFIX}
-NOT_FOR_ARCHS=	alpha
-USE_BISON=	yes
+USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
