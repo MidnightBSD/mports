@@ -3,13 +3,13 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc33/Makefile,v 1.1 2006/10/04 23:23:02 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc33/Makefile,v 1.212 2006/06/17 13:47:29 gerald Exp $
 #
 
 PORTNAME=	gcc
 PORTVERSION=	3.3.6
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	lang
 VERSIONSTRING=	${PORTVERSION}
@@ -21,12 +21,14 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-objc-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-testsuite-${VERSIONSTRING}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	GNU Compiler Collection 3.3
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNU Compiler Collection 3.3
+LICENCE=	gpl2
 
 SUFFIX=		33
 LATEST_LINK?=	gcc${SUFFIX}${PKGNAMESUFFIX}
-USE_BISON=	yes
+NOT_FOR_ARCHS=	amd64
+USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
@@ -39,7 +41,6 @@ NOMANCOMPRESS=	yes	# too hard to deal with differences on 5-cur and releng4
 
 .if ${ARCH} == "amd64"
 CONFIGURE_TARGET=	x86_64-portbld-freebsd6.0
-BROKEN=			Bus errors in stage2; system compiler may be broken.
 .else
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.0
 .endif
