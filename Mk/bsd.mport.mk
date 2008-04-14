@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.89 2008/04/14 05:28:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.90 2008/04/14 05:34:43 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1448,10 +1448,6 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .endif
 .endif
 
-# We only support xorg.
-X_WINDOW_SYSTEM ?= xorg
-
-
 #
 # One of the includes may have changed CPIO
 #
@@ -1751,7 +1747,6 @@ LIB_DEPENDS+=		Xm.3:${PORTSDIR}/x11-toolkits/open-motif
 LIB_DEPENDS+=			ttf.4:${PORTSDIR}/print/freetype
 .endif
 
-.if defined(X_WINDOW_SYSTEM) && ${X_WINDOW_SYSTEM:L} == xorg
 X_IMAKE_PORT=		${PORTSDIR}/devel/imake
 X_LIBRARIES_PORT=	${PORTSDIR}/x11/xorg-libraries
 X_CLIENTS_PORT=		${PORTSDIR}/x11/xorg-apps
@@ -1769,9 +1764,6 @@ X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-truetype
 X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
 X_FONTS_ALIAS_PORT=	${PORTSDIR}/x11-fonts/font-alias
 X_MANUALS_PORT=		${PORTSDIR}/x11/xorg-manpages
-.else
-IGNORE=	cannot install: bad X_WINDOW_SYSTEM setting; valid values are 'xorg'
-.endif
 
 .if defined(USE_IMAKE)
 BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
@@ -1784,12 +1776,8 @@ BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
 .	if defined(USE_LINUX)
 RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-xorg-libs
 .	else
-.      if ${X_WINDOW_SYSTEM:L} == xorg
 BUILD_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
 RUN_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
-.      else
-LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
-.      endif
 .	endif
 .endif
 
@@ -1843,9 +1831,7 @@ BUILD_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 .endif
 
 .if defined(USE_XORG) || defined(XORG_CAT)
-. if ${X_WINDOW_SYSTEM} == "xorg"
 .include "${PORTSDIR}/Mk/bsd.xorg.mk"
-. endif
 .endif
 
 .if defined(USE_MYSQL) || defined(WANT_MYSQL_VER) || \
@@ -5415,7 +5401,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.89 2008/04/14 05:28:15 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.90 2008/04/14 05:34:43 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
