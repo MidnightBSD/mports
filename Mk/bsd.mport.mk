@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.91 2008/04/14 05:52:24 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.92 2008/04/14 05:57:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -346,7 +346,9 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				- If set, this port uses the AFPL version of the ghostscript
 #				  software instead of the GNU version, which is used otherwise.
 ##
-# USE_BISON		- If set, this port uses bison for building.
+# USE_BISON		- If set to build, adds a build dependancy on bison. run implies a run
+#				  depends, both adds a build and run depends.  The legacy
+#				  option yes is deprecated (but implies build for now).
 ##
 # USE_IMAKE		- If set, this port uses imake.  Implies USE_X_PREFIX 
 # XMKMF			- Set to path of `xmkmf' if not in $PATH
@@ -5420,7 +5422,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.91 2008/04/14 05:52:24 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.92 2008/04/14 05:57:37 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
