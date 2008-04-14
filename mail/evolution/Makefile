@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.1 2008/03/21 01:21:57 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
@@ -34,7 +34,7 @@ USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/evolution/%%VERSION%%
 CONFIGURE_ARGS=	--enable-nss=yes \
 		--enable-mono=no \
-		--with-sub-version=" FreeBSD GNOME Team Port"
+		--with-sub-version=" MidnightBSD Port"
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -57,7 +57,7 @@ OPTIONS=	PILOT "Enable Palm Pilot sync support" off \
 
 .include <bsd.port.pre.mk>
 
-USE_LDCONFIG=	${PREFIX}/lib/evolution/${EVO_VERSION}
+USE_LDCONFIG=	${TRUE_PREFIX}/lib/evolution/${EVO_VERSION}
 .include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
 
 .if defined(PACKAGE_BUILDING)
