@@ -2,7 +2,7 @@
 # Date created:		25 October 1994
 # Whom:			mr
 #
-# $MidnightBSD: mports/devel/m4/Makefile,v 1.4 2007/08/02 10:14:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/m4/Makefile,v 1.5 2007/08/07 00:36:27 laffer1 Exp $
 # $FreeBSD: ports/devel/m4/Makefile,v 1.32 2007/04/25 09:52:21 ade Exp $
 #
 
@@ -15,6 +15,8 @@ MASTER_SITE_SUBDIR=	m4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU m4
+LICENSE=	gpl2
+#careful, newer versions are GPL3
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
