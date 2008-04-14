@@ -3,7 +3,7 @@
 # Whom:			anholt
 #
 # $FreeBSD: ports/x11/xorg/Makefile,v 1.19 2007/09/16 12:42:25 flz Exp $
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.4 2007/10/12 23:12:17 ctriv Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.5 2007/10/17 00:04:43 ctriv Exp $
 #
 
 PORTNAME=	xorg
@@ -51,12 +51,4 @@ pre-everything::
 	@${ECHO_MSG} "upgrade X.Org.  If you simply type 'make install' it may use over 2GB to build"
 	@${ECHO_MSG} "all of the subports.  You can install the ports singly if you are low on space."
 
-.include <bsd.port.pre.mk>
-
-.if ${X_WINDOW_SYSTEM:L} != xorg
-IGNORE= is part of X.Org and you have ${X_WINDOW_SYSTEM} set for X11\
-	distribution. See The X Window System and Virtual Consoles chapter\
-	of FAQ for more information
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
