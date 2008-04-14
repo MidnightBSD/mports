@@ -18,7 +18,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/bsd.gcc.mk,v 1.3 2007/02/25 23:34:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gcc.mk,v 1.4 2008/03/24 20:34:34 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -28,7 +28,7 @@ GCC_Include_MAINTAINER=		portmgr@MidnightBSD.org
 # All GCC versions supported by the ports framework.
 # Please keep them in ascending order.
 #
-GCCVERSIONS=	020702 020801 029500 030200 030301 030402 040000 040100 040200 040300
+GCCVERSIONS=	030200 030301 030402 040100 040200 040300
 
 #
 # Versions of GCC shipped.
@@ -37,13 +37,9 @@ GCCVERSIONS=	020702 020801 029500 030200 030301 030402 040000 040100 040200 0403
 # the base system.
 # The third field is the version as USE_GCC would use.
 #
-GCCVERSION_020702=	000000 000000 2.7
-GCCVERSION_020801=	000000 400012 2.8
-GCCVERSION_029500=	400012 500035 2.95
 GCCVERSION_030200=	500039 501103 3.2
 GCCVERSION_030301=	501103 502126 3.3
 GCCVERSION_030402=	502126 999999 3.4
-GCCVERSION_040000=	999999 999999 4.0
 GCCVERSION_040100=	999999 999999 4.1
 GCCVERSION_040200=	999999 999999 4.2
 GCCVERSION_040300=	999999 999999 4.3
