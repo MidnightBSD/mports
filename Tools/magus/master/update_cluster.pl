@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.11 2008/03/07 20:43:43 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.12 2008/03/08 02:31:01 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -94,8 +94,8 @@ sub refresh_completed_runs {
   update_cvs_dir();
   
   foreach my $done (@completed) {
+    printf "refreshing %s on %s\n", $done->osversion, $done->arch;
     my $run = Magus::Run->create({osversion => $done->osversion, arch => $done->arch});
-    
     make_tarball($run);
 
     Magus::Index->sync("$Magus::Config{MasterDataDir}/$Magus::Config{MportsCvsDir}", $run);
@@ -108,10 +108,16 @@ sub refresh_completed_runs {
 
 sub update_cvs_dir {
   chdir($Magus::Config{'MasterDataDir'})  || die "Couldn't cd to $Magus::Config{'MasterDataDir'}: $!\n";
-  
+
+  # let the magus group read and write.
+  umask(0002);  
+
+  print "Deleteing $Magus::Config{MportsCvsDir}...";
   if (-d $Magus::Config{MportsCvsDir}) {
     rmtree($Magus::Config{MportsCvsDir})    || die "Couldn't rmtree $Magus::Config{'MportsCvsDir'}: $!\n";
   }
+  
+  print " done.\n";
   
   my $cmd = "cvs -d /home/cvs co -P $Magus::Config{MportsCvsDir}";
   
