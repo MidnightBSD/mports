@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.206 2008/04/01 03:23:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.207 2008/04/06 18:02:25 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -33,6 +33,7 @@
     SUBDIR += bugzilla
     SUBDIR += c_c++_reference
     SUBDIR += cscope
+    SUBDIR += ctags
     SUBDIR += cvsgraph
     SUBDIR += cvsnt
     SUBDIR += cvsps
