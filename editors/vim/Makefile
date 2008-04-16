@@ -4,7 +4,7 @@
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
 # $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.7 2008/04/16 05:17:00 ctriv Exp $
 #
 
 PORTNAME?=	vim
@@ -230,9 +230,6 @@ post-install:
 	${ECHO_CMD} "x!"				>> ${WRKDIR}/ex.script
 	${CP} -p ${TMPPLIST} ${TMPPLIST}.pre-share-vim
 	cd ${WRKDIR} ; ex < ex.script
-
-show-options:
-	@${MAKE} -DWITH_OPTIONS showconfig
 
 cklatest:
 	@-ncftpls \
