@@ -1,7 +1,7 @@
 # Ports collection makefile for:  foldingathome
 # Date created:			  2/8/2006
 # Whom:				  Yonatan <onatan@gmail.com>
-#
+# $MidnightBSD$
 # $FreeBSD: ports/biology/linux-foldingathome/Makefile,v 1.2 2007/09/23 05:45:41 edwin Exp $
 #
 
@@ -13,9 +13,9 @@ PKGNAMEPREFIX=	linux-
 DISTNAME=	FAH${PORTVERSION:S/.//}-Linux
 EXTRACT_SUFX=	.exe
 
-MAINTAINER=	onatan@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed client for Protein Folding
-
+LICENSE=        unknown
 USE_LINUX=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 REINPLACE_ARGS=
