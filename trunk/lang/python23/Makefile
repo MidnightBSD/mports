@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD: mports/lang/python23/Makefile,v 1.3 2007/08/29 04:13:20 laffer1 Exp $
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.4 2008/04/18 21:33:20 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -17,7 +17,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An interpreted object-oriented programming language
 LICENSE=	python
 
-CONFLICTS=	stackless_python-*
 DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
