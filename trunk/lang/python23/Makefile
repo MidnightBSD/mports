@@ -3,7 +3,7 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD: mports/lang/python23/Makefile,v 1.4 2008/04/18 21:33:20 laffer1 Exp $
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.5 2008/04/18 21:55:24 laffer1 Exp $
 #
 
 PORTNAME=	python
@@ -24,7 +24,7 @@ CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-fpectl
 CONFIGURE_ENV=	OPT="${CFLAGS}"
 MAKE_ENV=	VPATH="${WRKSRC}"
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
 MAN1=		${PYTHON_VERSION}.1
 
