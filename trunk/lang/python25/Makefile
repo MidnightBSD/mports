@@ -2,16 +2,17 @@
 # Date created:         3 July 2003
 # Whom:                 Hye-Shik Chang <perky@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/lang/python25/Makefile,v 1.144 2007/07/30 09:41:36 alexbl Exp $
 
 PORTNAME=	python25
-PORTVERSION=	2.5.1
+PORTVERSION=	2.5.2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
 DISTFILES=	${PYTHON_DISTFILE}
 
-MAINTAINER=	python@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An interpreted object-oriented programming language
 LICENSE=	python
 
@@ -107,7 +108,7 @@ PLIST_SUB+=	NO_NIS="@comment "
 PLIST_SUB+=	NO_NIS=""
 .endif
 
-.if !defined(WITHOUT_IPV6) && ${OSVERSION} >= 400014
+.if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+= --enable-ipv6
 .else
 CONFIGURE_ARGS+= --disable-ipv6
@@ -131,7 +132,7 @@ pre-patch:
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
 		${PATCH_WRKSRC}/Lib/pydoc.py
 	${REINPLACE_CMD} -e \
-		's|^\( *prefixes = .*\)\]$$|\1, "${X11BASE}"]|g' \
+		's|^\( *prefixes = .*\)\]$$|\1, "${LOCALBASE}"]|g' \
 		${PATCH_WRKSRC}/Lib/site.py
 	${REINPLACE_CMD} -e \
 		's|^	\(..ASDLGEN.*\)$$|	${TRUE}|g' \
