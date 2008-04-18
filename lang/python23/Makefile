@@ -3,12 +3,11 @@
 # Whom:                 jkh
 #
 # $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD: mports/lang/python23/Makefile,v 1.2 2007/08/02 09:16:22 laffer1 Exp $
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.3 2007/08/29 04:13:20 laffer1 Exp $
 #
 
 PORTNAME=	python
-PORTVERSION=	2.3.5
-PORTREVISION=	1
+PORTVERSION=	2.3.7
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -92,8 +91,6 @@ CONFIGURE_ARGS+= --enable-ipv6
 CONFIGURE_ARGS+= --disable-ipv6
 .endif
 
-PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
-
 post-extract:
 	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
 		${WRKSRC}/Tools/scripts/pydoc > ${WRKDIR}/pydoc2.3
@@ -136,15 +133,6 @@ post-build:
 	${SETENV} ${MAKE_ENV} ${MAKE} lib${PYTHON_VERSION}.so python; \
 	${LN} -f lib${PYTHON_VERSION}.so lib${PYTHON_VERSION}.so.1; \
 	${LN} -f python ${PYTHON_VERSION:S/thon/thon-shared/}
-
-pre-su-install:
-.for platform in ${PLATFORMS}
-	${MKDIR} ${PYTHONPREFIX_LIBDIR}/${platform}
-.for file in IN.py regen
-	${INSTALL_DATA} ${WRKSRC}/Lib/${platform}/${file} \
-		${PYTHONPREFIX_LIBDIR}/${platform}/
-.endfor
-.endfor
 
 post-install:
 	@# shared version of executable and library
