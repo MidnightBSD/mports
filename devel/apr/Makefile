@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.4 2007/08/16 18:00:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.5 2008/03/24 18:26:06 laffer1 Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -16,7 +16,7 @@
 # APR_UTIL_WITH_LDAP:		force dependency on OpenLDAP
 
 PORTNAME=	apr
-PORTVERSION=	1.2.8
+PORTVERSION=	1.2.12
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	apr
@@ -24,7 +24,7 @@ DISTFILES=	apr-${PORTVERSION}.tar.gz apr-util-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Apache Group's Portability Library
-
+LICENSE=	apache2
 
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
