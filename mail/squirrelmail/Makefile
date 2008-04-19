@@ -3,11 +3,12 @@
 # Whom: 				Simon Dick <simond@irrelevant.org>
 #
 # $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.6 2007/12/19 01:59:33 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.7 2008/04/19 18:19:53 laffer1 Exp $
 #
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.13
+PORTREVISION=	1
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,6 +18,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A webmail system which accesses mail over IMAP
+LICENSE=	gpl2
 
 USE_PHP=	session mhash gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
