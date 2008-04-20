@@ -3,7 +3,7 @@
 # Whom:			Will Andrews <andrews@technologist.com>
 #
 # $FreeBSD: ports/devel/kdevelop/Makefile,v 1.96 2007/10/29 23:47:28 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.2 2007/12/30 21:35:24 laffer1 Exp $
 #
 
 PORTNAME=	kdevelop
@@ -17,6 +17,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	IDE for a wide variety of programming tasks
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	cervisia:${PORTSDIR}/devel/kdesdk3 \
 		dot:${PORTSDIR}/graphics/graphviz \
