@@ -1,5 +1,14 @@
 <TMPL_INCLUDE NAME="header.tmpl">
 
+<script>
+	window.onload = function () {
+		if (location.hash.length > 0) {
+			var status = location.hash.substr(1, location.hash.length);
+			showPorts(<TMPL_VAR NAME="id">, status);
+		}
+	};
+</script>
+
 <h2>Run <TMPL_VAR name="id"></h2>
 
 <table class="run-summary">
@@ -21,7 +30,7 @@
 	    <ul class="stats">
 	      <TMPL_LOOP NAME="status_stats">
 		<li>
-		    <a class="<TMPL_VAR NAME="status">" href="#" onclick="return showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
+		    <a class="<TMPL_VAR NAME="status">" href="#<TMPL_VAR NAME="status">" onclick="showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
 			<TMPL_VAR NAME="status"></a>:
 		    <TMPL_VAR NAME="count">
 		</li>
