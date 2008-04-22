@@ -5,7 +5,6 @@ use warnings;
 
 BEGIN {
   our $Root  = '/usr/magus';
-  our @Archs = qw(i386 amd64);
 }
 
 
