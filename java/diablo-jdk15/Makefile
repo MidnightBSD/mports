@@ -2,7 +2,7 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.6 2008/03/21 23:03:59 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.7 2008/03/31 15:39:52 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
@@ -98,6 +98,7 @@ time zone update file, ${TZUPDATEFILE}.\n\n
 .endif
 .endif
 
+# "
 .if !defined(WITHOUT_TZUPDATE)
 post-extract:
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
@@ -111,12 +112,5 @@ do-install:
 	${MKDIR} "${INSTALL_DIR}"
 	cd "${WRKSRC}" && ${FIND} . \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} "${INSTALL_DIR}"
-
-post-install:
-	# Register the VM
-#	"${LOCALBASE}/bin/registervm" \
-#	  "${INSTALL_DIR}/bin/java # DiabloCaffe${JDK_VERSION}"
-	# Install the plugin
-#	${SETENV} PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
