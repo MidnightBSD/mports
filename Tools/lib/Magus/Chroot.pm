@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.18 2008/03/20 22:23:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.19 2008/03/20 22:57:49 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -130,6 +130,8 @@ sub _init {
   $self->_mtree('BSD.var.dist', '/var');
   $self->_mtree('BSD.usr.dist', '/usr');
   
+  $self->_mkdir("/tmp") unless (-d "$self->{root}/tmp");
+  
   for (qw(workdir x11base packages distfiles logs linuxcompat)) {  
     $self->_mkdir($self->{$_});
   }
@@ -162,6 +164,9 @@ sub _clean {
     
   rmtree("$self->{root}/var/db/pkg");
   rmtree("$self->{root}/var/db/ports");
+  rmtree("$self->{root}/tmp");
+  
+  $self->_mkdir("/tmp");
   
   $self->_mtree('BSD.local.dist', $self->{localbase});
   $self->_mtree('BSD.x11-4.dist', $self->{x11base});
