@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.8 2008/03/31 16:50:50 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.9 2008/04/04 04:48:07 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -88,7 +88,7 @@ MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		16
 
 # Setting/finding MySQL version we want.
-.if exists(${LOCALBASE}/bin/mysql) && !defined(INDEXING)
+.if exists(${LOCALBASE}/bin/mysql) && !defined(PACKAGE_BUILDING)
 _MYSQL_VER!=	${LOCALBASE}/bin/mysql --version | ${SED} -e 's/.*Distrib \([0-9]\)\.\([0-9]*\).*/\1\2/'
 .endif
 
@@ -139,7 +139,7 @@ PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
 
 # Setting/finding PostgreSQL version we want.
-.if exists(${LOCALBASE}/bin/pg_config) && !defined(INDEXING)
+.if exists(${LOCALBASE}/bin/pg_config) && !defined(PACKAGE_BUILDING)
 _PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)[^0-9].*/\1\2/p'
 .endif
 
@@ -253,7 +253,7 @@ _BDB_VER=	${bdb}
 .else
 # USE_BDB is specified as VER+
 .  for dbx in ${_DB_${_MATCHED_DB_VER}P}
-.   if exists(${db${dbx}_FIND}) && !defined(INDEXING)
+.   if exists(${db${dbx}_FIND}) && !defined(PACKAGE_BUILDING)
 _BRKDB=	no
 # Skip versions we are incompatible with
 .    if defined(INVALID_BDB_VER)

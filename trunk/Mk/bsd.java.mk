@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.15 2008/04/14 04:21:26 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.16 2008/04/20 20:58:34 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -199,7 +199,7 @@ _JAVA_OS_linux=		Linux
 
 # Enforce preferred Java ports according to OS
 .		if (${ARCH} == "amd64") || (${ARCH} == "i386")
-.			if defined(MAGUS) || defined(PACKAGE_BUILDING) || defined(BATCH) || defined(INDEXING)
+.			if defined(PACKAGE_BUILDING) 
 _JAVA_PREFERRED_PORTS+= JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4
 .			else
 _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5
@@ -342,7 +342,7 @@ __JAVA_PORTS_INSTALLED_POSSIBLE!=	${ECHO_CMD} "${__JAVA_PORTS_INSTALLED_POSSIBLE
 .		endfor
 _JAVA_PORTS_INSTALLED_POSSIBLE=		${__JAVA_PORTS_INSTALLED_POSSIBLE:C/ [ ]+/ /g}
 
-.		if ${_JAVA_PORTS_INSTALLED_POSSIBLE} != ""
+.		if !defined(PACKAGE_BUILDING) && ${_JAVA_PORTS_INSTALLED_POSSIBLE} != ""
 _JAVA_PORT!=	${ECHO_CMD} "${_JAVA_PORTS_INSTALLED_POSSIBLE}" \
 				| ${AWK} '{ print $$1 }'
 
