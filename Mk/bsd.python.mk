@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.10 2008/04/18 21:17:21 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.11 2008/04/18 21:33:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -227,9 +227,13 @@ _PYTHON_CMD=		${PYTHON_CMD}
 .else
 _PYTHON_CMD=		${LOCALBASE}/bin/python
 .endif
+.	if defined(PACKAGE_BUILDING)
+_PYTHON_VERSION!= ${ECHO_CMD} ${_PYTHON_PORTBRANCH} | ${TAIL} -n 1
+.   else
 _PYTHON_VERSION!=	(${_PYTHON_CMD} -c \
 					'import sys; print sys.version[:3]' 2> /dev/null \
-					|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
+					|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -n 1
+.	endif # defined(PACKAGE_BUILDING)
 .endif	# defined(PYTHON_VERSION)
 
 .if !defined(USE_PYTHON)
@@ -287,11 +291,17 @@ _PYTHON_VERSION=	${_PYTHON_PORTBRANCH} # just to avoid version sanity checking.
 
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
 PYTHON_CMD?=		${_PYTHON_CMD}
+DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
+
+.if defined(PACKAGE_BUILDING)
+PYTHONBASE= ${LOCALBASE}
+.else
 PYTHONBASE!=		(${PYTHON_CMD} -c 'import sys; print sys.prefix' \
 						2> /dev/null || ${ECHO_CMD} ${LOCALBASE}) | ${TAIL} -1
-DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 _PYTHON_PORTVERSION!=	(${PYTHON_CMD} -c 'import string, sys; \
 							print string.split(sys.version)[0].replace("b",".b")' 2> /dev/null) | ${TAIL} -1
+.endif
+
 .if !defined(PYTHON_NO_DEPENDS) && !empty(_PYTHON_PORTVERSION)
 PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 .endif
