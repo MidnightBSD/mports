@@ -2,7 +2,7 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.4 2007/05/18 18:39:35 ctriv Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.5 2007/05/18 18:40:26 ctriv Exp $
 #
 
 PORTNAME=	joe
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
+LICENSE=	gpl
 
 # '
 
