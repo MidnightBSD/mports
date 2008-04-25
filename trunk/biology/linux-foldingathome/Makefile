@@ -1,7 +1,7 @@
 # Ports collection makefile for:  foldingathome
 # Date created:			  2/8/2006
 # Whom:				  Yonatan <onatan@gmail.com>
-# $MidnightBSD$
+# $MidnightBSD: mports/biology/linux-foldingathome/Makefile,v 1.2 2008/04/17 20:19:31 crash Exp $
 # $FreeBSD: ports/biology/linux-foldingathome/Makefile,v 1.2 2007/09/23 05:45:41 edwin Exp $
 #
 
@@ -16,28 +16,27 @@ EXTRACT_SUFX=	.exe
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed client for Protein Folding
 LICENSE=        unknown
+
 USE_LINUX=	yes
 ONLY_FOR_ARCHS=	i386 amd64
-REINPLACE_ARGS=
+
 PLIST_FILES=	share/${PORTNAME}/${DISTNAME}${EXTRACT_SUFX} \
 		bin/FoldingAtHome
 PLIST_DIRS=	share/${PORTNAME}
 
+SUB_FILES=	FoldingAtHome
+SUB_LIST=	BINNAME=${DISTNAME}${EXTRACT_SUFX}
+
 do-extract:
-	${MKDIR} ${WRKSRC}
-	${CP} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${WRKSRC}
+	@${MKDIR} ${WRKSRC}
+	@${CP} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ${WRKSRC}
 
 do-build:
 	${BRANDELF} -t Linux ${WRKSRC}/${DISTNAME}${EXTRACT_SUFX}
-	${CHMOD} 755 ${WRKSRC}/${DISTNAME}${EXTRACT_SUFX}
 
 do-install:
-	${MKDIR} ${PREFIX}/bin
-	${REINPLACE_CMD} -e "s|DATADIR|${DATADIR}|" ${SCRIPTDIR}/FoldingAtHome \
-		| ${REINPLACE_CMD} -e "s|BINNAME|${DISTNAME}${EXTRACT_SUFX}|" \
-		> ${PREFIX}/bin/FoldingAtHome
-	${CHMOD} 755 ${PREFIX}/bin/FoldingAtHome
-	${MKDIR} ${DATADIR}
-	${CP} ${WRKSRC}/${DISTNAME}${EXTRACT_SUFX} ${DATADIR}/
+	${INSTALL_SCRIPT} ${WRKDIR}/FoldingAtHome ${PREFIX}/bin
+	@${MKDIR} ${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/${DISTNAME}${EXTRACT_SUFX} ${DATADIR}/
 
 .include <bsd.port.mk>
