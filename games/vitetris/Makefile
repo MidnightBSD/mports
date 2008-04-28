@@ -1,12 +1,12 @@
 # New ports collection makefile for:	vitetris
-# Date created:				20 January 2008
+# Date created:				27 April 2008
 # Whom:					<smultron@midnightbsd.org>
 #
-# $MidnightBSD: mports/games/vitetris/Makefile,v 1.1 2008/01/21 03:28:39 smultron Exp $
+# $MidnightBSD: mports/games/vitetris/Makefile,v 1.2 2008/02/28 21:41:30 smultron Exp $
 #
 
 PORTNAME=	vitetris
-PORTVERSION=	0.3.6
+PORTVERSION=	0.40
 CATEGORIES=	games
 MASTER_SITES=	http://victornils.net/tetris/
 
@@ -17,6 +17,8 @@ LICENSE=	bsd2
 USE_GMAKE=	yes
 ALL_TARGET=	tetris
 USE_XLIB=	yes
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	-with-x
 
 do-install:
 	${CP} ${WRKSRC}/tetris ${FAKE_DESTDIR}${LOCALBASE}/bin/
