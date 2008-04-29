@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.209 2008/04/29 03:45:54 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.210 2008/04/29 03:49:26 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -212,7 +212,6 @@
     SUBDIR += pccts
     SUBDIR += pcre
     SUBDIR += pcre-utf8
-    SUBDIR += pear
     SUBDIR += pecl-json
     SUBDIR += performance
     SUBDIR += perltidy
