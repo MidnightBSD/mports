@@ -2,7 +2,7 @@
 # Date created:		2007-02-22
 # Whom:			Mij <mij@bitchx.it>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.1 2008/04/29 15:23:52 laffer1 Exp $
 # $FreeBSD: ports/security/sshguard/Makefile,v 1.7 2008/01/04 20:35:08 arved Exp $
 #
 
@@ -50,7 +50,7 @@ PKGMSG_FWBLOCK="  Sshguard is going to use /etc/hosts.allow, I have touched it f
 .endif
 
 # for substitution in subfiles
-SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}
+SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}  PREFIX=${TRUE_PREFIX}
 
 CONFIGURE_ARGS+=	--with-firewall=${SSHGUARDFW}
 
