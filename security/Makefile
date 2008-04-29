@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.74 2008/04/29 05:06:38 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.75 2008/04/29 15:23:52 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -71,6 +71,8 @@
     SUBDIR += saint
     SUBDIR += secpwgen
     SUBDIR += sshguard
+    SUBDIR += sshguard-ipfw
+    SUBDIR += sshguard-pf
     SUBDIR += smap
     SUBDIR += sudo
     SUBDIR += tor
