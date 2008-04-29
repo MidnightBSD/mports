@@ -3,7 +3,7 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/net/cvsup/Makefile,v 1.64 2005/12/17 06:17:29 lawrance Exp $
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.1 2006/12/15 04:39:33 laffer1 Exp $
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.2 2007/05/20 18:05:40 ctriv Exp $
 #
 
 PORTNAME=	cvsup
@@ -53,11 +53,8 @@ MAN8=		cvsupd.8
 
 pre-everything::
 .ifdef STATIC
-	@${ECHO_MSG} "*****************************************************"
-	@${ECHO_MSG} "* In future, please define WITH_STATIC instead of   *"
-	@${ECHO_MSG} "* STATIC.                                           *"
-	@${ECHO_MSG} "*****************************************************"
-	@${ECHO_MSG} ""
+	@${ECHO_MSG} " In future, please define WITH_STATIC instead of "
+	@${ECHO_MSG} " STATIC.                                         "
 .endif
 
 .ifdef STATIC || WITH_STATIC
@@ -67,15 +64,11 @@ M3FLAGS+=	-DSTATIC
 pre-fetch:
 .ifndef WITHOUT_X11
 .if ${ARCH} == "amd64"
-	@${ECHO_MSG} "*****************************************************"
-	@${ECHO_MSG} "* CVSup with X11 is not yet supported on amd64.     *"
-	@${ECHO_MSG} "* I will build cvsup without X11 support now.       *"
-	@${ECHO_MSG} "*****************************************************"
+	@${ECHO_MSG} "CVSup with X11 is not yet supported on amd64.    "
+	@${ECHO_MSG} "I will build cvsup without X11 support now.      "
 .else
-	@${ECHO_MSG} "*****************************************************"
-	@${ECHO_MSG} "* To build CVSup without X11 (and without the GUI)  *"
-	@${ECHO_MSG} "* use the \"net/cvsup-without-gui\" port.             *"
-	@${ECHO_MSG} "*****************************************************"
+	@${ECHO_MSG} "To build CVSup without X11 (and without the GUI) "
+	@${ECHO_MSG} "use the \"net/cvsup-without-gui\" port.          "
 .endif
 .endif
 
