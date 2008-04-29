@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.72 2008/01/04 19:44:56 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.73 2008/03/05 02:20:27 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -70,6 +70,7 @@
     SUBDIR += qca-tls
     SUBDIR += saint
     SUBDIR += secpwgen
+    SUBDIR += smap
     SUBDIR += sudo
     SUBDIR += tor
     SUBDIR += tripwire
