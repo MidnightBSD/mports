@@ -3,11 +3,11 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.10 2008/04/13 20:32:39 ctriv Exp $
 #
 
 PORTNAME=	xine
-PORTVERSION=	1.1.11.1
+PORTVERSION=	1.1.12
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -73,11 +73,11 @@ OPTIONS=	ARTS 		"Enable aRts support" off \
 		GTK2 		"Enable gdkpixbuf support" off \
 		WAVPACK 	"Enable WavPack support" on
 
-MAN1=	xine-config.1
+MAN1=	xine-config.1 xine-list-1.1.1
 MAN5=	xine.5
 
 DOCSDIR=	${PREFIX}/share/doc/xine-lib
-PLIST_SUB=	PLUGINSDIR="lib/xine/plugins/1.20"
+PLIST_SUB=	PLUGINSDIR="lib/xine/plugins/1.21"
 
 .include <bsd.port.pre.mk>
 
