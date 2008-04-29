@@ -2,12 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.6 2008/03/14 01:19:14 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.7 2008/03/26 02:00:53 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.6.9.14
+PORTVERSION=	1.6.9.15
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://obsd.isc.org/pub/sudo/ \
@@ -15,8 +15,10 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://boulder.tele.dk/pub/sudo/ \
 		ftp://core.ring.gr.jp/pub/misc/sudo/ \
 		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/ \
-
-DISTNAME=	${PORTNAME}-1.6.9p14
+		${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	tmclaugh/sudo
+                                   
+DISTNAME=	${PORTNAME}-1.6.9p15
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
@@ -39,6 +41,13 @@ OPTIONS=	LDAP	"With LDAP support" off \
 		SHELL_SETS_HOME "Set HOME env to target user in shell mode" off
 
 .include <bsd.port.pre.mk>
+
+# SUDO_SECURE_PATH is a PATH string that will override the user's PATH.
+# ex: make SUDO_SECURE_PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
+.if defined(SUDO_SECURE_PATH)
+CONFIGURE_ARGS+=--with-secure-path="${SUDO_SECURE_PATH}"
+.endif
+
 
 .if defined(WITH_INSULTS)
 CONFIGURE_ARGS+=--with-insults
@@ -63,7 +72,7 @@ MAN8=		sudo.8 visudo.8
 MLINKS=		sudo.8 sudoedit.8
 
 post-install:
-	${RM} ${PREFIX}/libexec/sudo_noexec.la
+#	${RM} ${PREFIX}/libexec/sudo_noexec.la
 	${INSTALL_DATA} ${WRKSRC}/sudoers ${PREFIX}/etc/sudoers.default
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
 
