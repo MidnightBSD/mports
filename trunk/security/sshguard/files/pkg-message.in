@@ -1,4 +1,3 @@
-##########################################################################
   Sshguard installed successfully.
 
 %%PKGMSG_FWBLOCK%%
@@ -7,4 +6,3 @@
   and use "/etc/rc.d/syslogd reload" for activating it.
   
   See sshguard(8) and http://sshguard.sourceforge.net for additional info.
-##########################################################################
