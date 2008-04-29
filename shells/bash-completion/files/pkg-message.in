@@ -1,4 +1,3 @@
-
 The programmable completion library is not enabled by default for various
 reasons.  To use it, you should source %%PREFIX%%/etc/bash_completion from
 your .bashrc file.  For example:
