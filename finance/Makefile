@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/finance/Makefile,v 1.1 2007/09/20 02:53:38 laffer1 Exp $
+# $MidnightBSD: mports/finance/Makefile,v 1.2 2008/04/29 02:17:26 laffer1 Exp $
 #
 
     COMMENT = Monetary, financial and related applications
 
+    SUBDIR += libofx
     SUBDIR += opentaxsolver
     SUBDIR += wmstock
 
