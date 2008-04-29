@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.210 2008/04/29 03:49:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.211 2008/04/29 04:30:58 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -255,6 +255,7 @@
     SUBDIR += t1lib
     SUBDIR += tmake
     SUBDIR += uclmmbase
+    SUBDIR += upnp
     SUBDIR += viewvc
     SUBDIR += wizardkit
     SUBDIR += yasm
