@@ -1,4 +1,4 @@
-#
+# $MidnightBSD$
 # $FreeBSD: ports/java/javavmwrapper/files/javavm_opts.conf.dist,v 1.5 2006/07/05 20:32:58 glewis Exp $
 #
 # javavm_opts.conf.dist

@@ -2,14 +2,14 @@
 # Date created:				10 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.2 2007/04/29 18:28:43 ctriv Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.3 2008/03/31 01:31:03 laffer1 Exp $
 # $FreeBSD: ports/java/javavmwrapper/Makefile,v 1.29 2006/06/12 16:57:29 glewis Exp $
 #
 # This port is self contained in the src directory.
 #
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.3
+PORTVERSION=	2.3.1
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
