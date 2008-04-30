@@ -2,12 +2,12 @@
 # Date created:				Fri Feb 22 00:28:41 CST 2002
 # Whom:					Kyle Martin <mkm@ieee.org> et al
 #
-# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.2 2007/08/08 18:59:17 ctriv Exp $
+# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.3 2008/04/11 22:25:27 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/limewire/Makefile,v 1.30 2007/05/19 20:20:07 flz Exp $
 #
 
 PORTNAME=	limewire
-PORTVERSION=	4.14.12
+PORTVERSION=	4.16
 PORTEPOCH=	1
 CATEGORIES=	net-p2p java
 MASTER_SITES=	http://www10.limewire.com/download/
@@ -21,7 +21,7 @@ RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
 USE_ZIP=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.3+
+JAVA_VERSION=	1.4+
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/LimeWire
 
