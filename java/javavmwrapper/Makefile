@@ -2,7 +2,7 @@
 # Date created:				10 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.3 2008/03/31 01:31:03 laffer1 Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.4 2008/04/30 21:36:21 laffer1 Exp $
 # $FreeBSD: ports/java/javavmwrapper/Makefile,v 1.29 2006/06/12 16:57:29 glewis Exp $
 #
 # This port is self contained in the src directory.
@@ -69,6 +69,5 @@ do-install:
 .endfor
 	${INSTALL_DATA} ${FILESDIR}/javavm_opts.conf.dist \
 		${PREFIX}/etc/javavm_opts.conf.dist
-
 
 .include <bsd.port.mk>
