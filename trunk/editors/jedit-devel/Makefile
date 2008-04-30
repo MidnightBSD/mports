@@ -2,7 +2,7 @@
 # Date created:				02 Feb 2004
 # Whom:					Linh Pham <question+fbsdports@closedsrc.org>
 #
-# $MidnightBSD: mports/editors/jedit-devel/Makefile,v 1.1 2007/12/28 03:50:02 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit-devel/Makefile,v 1.2 2008/04/30 21:17:43 laffer1 Exp $
 # $FreeBSD: ports/editors/jedit-devel/Makefile,v 1.21 2007/10/05 21:54:51 miwi Exp $
 #
 
@@ -18,8 +18,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Powerful programmer\'s text editor written in Java
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
+BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.5+

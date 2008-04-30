@@ -2,7 +2,7 @@
 # Date created:				22 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.2 2007/12/28 03:56:39 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit/Makefile,v 1.3 2008/04/30 21:25:05 laffer1 Exp $
 # $FreeBSD: ports/editors/jedit/Makefile,v 1.28 2006/09/03 00:02:05 kris Exp $
 #
 
@@ -20,8 +20,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Powerful programmer\'s text editor written in Java
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
+BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 CONFLICTS=	jedit-4.3*
 
