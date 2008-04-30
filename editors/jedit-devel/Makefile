@@ -2,12 +2,12 @@
 # Date created:				02 Feb 2004
 # Whom:					Linh Pham <question+fbsdports@closedsrc.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/jedit-devel/Makefile,v 1.1 2007/12/28 03:50:02 laffer1 Exp $
 # $FreeBSD: ports/editors/jedit-devel/Makefile,v 1.21 2007/10/05 21:54:51 miwi Exp $
 #
 
 PORTNAME=	jedit
-DISTVERSION=	4.3.p11
+DISTVERSION=	4.3.p14
 CATEGORIES=	editors java
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}${PORTVERSION:S/.p/pre/}install
@@ -27,7 +27,7 @@ JAVA_VERSION=	1.5+
 CONFLICTS=	jedit-4.2*
 NO_LATEST_LINK=	yes
 
-USE_XLIB=	yes
+USE_XORG=	x11
 NO_BUILD=	yes
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
