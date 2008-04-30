@@ -2,12 +2,12 @@
 # Date created:		Tue Aug 12 23:26:32 CST 2003
 # Whom:			Kang Liu <liukang@bjpu.edu.cn>
 #
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.3 2007/08/22 20:49:55 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.4 2008/02/14 22:24:38 laffer1 Exp $
 # $FreeBSD: ports/www/tomcat55/Makefile,v 1.38 2006/09/08 09:31:07 pav Exp $
 #
 
 PORTNAME=	tomcat
-PORTVERSION=	5.5.25
+PORTVERSION=	5.5.26
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	tomcat/tomcat-5/v${PORTVERSION}/bin
