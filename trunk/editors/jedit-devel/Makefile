@@ -2,7 +2,7 @@
 # Date created:				02 Feb 2004
 # Whom:					Linh Pham <question+fbsdports@closedsrc.org>
 #
-# $MidnightBSD: mports/editors/jedit-devel/Makefile,v 1.2 2008/04/30 21:17:43 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit-devel/Makefile,v 1.3 2008/04/30 21:40:41 laffer1 Exp $
 # $FreeBSD: ports/editors/jedit-devel/Makefile,v 1.21 2007/10/05 21:54:51 miwi Exp $
 #
 
@@ -23,6 +23,8 @@ RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.5+
+JAVA_BUILD=	yes
+JAVA_RUN=	yes
 
 CONFLICTS=	jedit-4.2*
 NO_LATEST_LINK=	yes
