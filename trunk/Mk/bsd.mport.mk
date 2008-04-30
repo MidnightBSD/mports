@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.97 2008/04/22 22:18:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.98 2008/04/30 19:59:00 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3955,8 +3955,8 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
-				generate-plist fake-pre-su-install do-fake install-desktop-entries fake-post-install \
-				post-fake compress-man install-rc-script install-ldconfig-file \
+				generate-plist fake-pre-su-install do-fake fake-post-install \
+				post-fake compress-man install-rc-script install-ldconfig-file install-desktop-entries \
 				fix-fake-symlinks finish-tmpplist
 
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
@@ -5418,7 +5418,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.97 2008/04/22 22:18:23 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.98 2008/04/30 19:59:00 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5848,7 +5848,7 @@ install-desktop-entries:
 	done; \
 	${ECHO_CMD} "@unexec rmdir ${DESKTOPDIR} 2>/dev/null || true" >> ${TMPPLIST}; \
 	if [ -z "${_DESKTOPDIR_REL}" ]; then \
-		${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@cwd" >> ${TMPPLIST}; \
 	fi
 .else
 	@${DO_NADA}
