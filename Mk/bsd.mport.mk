@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.96 2008/04/14 20:08:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.97 2008/04/22 22:18:23 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3572,7 +3572,6 @@ do-fake:
 .	endif
 .endif
 
-
 .if !target(fake-post-install)
 fake-post-install:
 .	if target(post-install)
@@ -3956,7 +3955,7 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
-				generate-plist fake-pre-su-install do-fake fake-post-install \
+				generate-plist fake-pre-su-install do-fake install-desktop-entries fake-post-install \
 				post-fake compress-man install-rc-script install-ldconfig-file \
 				fix-fake-symlinks finish-tmpplist
 
@@ -5419,7 +5418,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.96 2008/04/14 20:08:37 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.97 2008/04/22 22:18:23 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5817,15 +5816,15 @@ check-desktop-entries:
 .if !target(install-desktop-entries)
 install-desktop-entries:
 .if defined(DESKTOP_ENTRIES)
-	@(${MKDIR} "${DESKTOPDIR}" 2> /dev/null) || \
-		(${ECHO_MSG} "===> Cannot create ${DESKTOPDIR}, check permissions"; exit 1)
+	@(${MKDIR} "${FAKE_DESTDIR}${DESKTOPDIR}" 2> /dev/null) || \
+		(${ECHO_MSG} "===> Cannot create ${FAKE_DESTDIR}${DESKTOPDIR}, check permissions"; exit 1)
 	@set -- ${DESKTOP_ENTRIES} XXX; \
 	if [ -z "${_DESKTOPDIR_REL}" ]; then \
 		${ECHO_CMD} "@cwd ${DESKTOPDIR}" >> ${TMPPLIST}; \
 	fi; \
 	while [ $$# -gt 6 ]; do \
 		filename="$$4.desktop"; \
-		pathname="${DESKTOPDIR}/$$filename"; \
+		pathname="${FAKE_DESTDIR}${DESKTOPDIR}/$$filename"; \
 		categories="$$5"; \
 		if [ -z "$$categories" ]; then \
 			categories="`cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} desktop-categories`"; \
