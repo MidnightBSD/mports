@@ -2,13 +2,13 @@
 # Date Created:				24 May 2005
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/german/tvbrowser/Makefile,v 1.3 2007/11/11 00:30:28 laffer1 Exp $
 # $FreeBSD: ports/german/tvbrowser/Makefile,v 1.5 2006/09/12 07:21:06 miwi Exp $
 #
 
 PORTNAME=	tvbrowser
 PORTVERSION=	2.2.1
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	german java
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	tvbrowser
