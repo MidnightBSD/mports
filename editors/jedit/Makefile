@@ -2,7 +2,7 @@
 # Date created:				22 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.3 2008/04/30 21:25:05 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit/Makefile,v 1.4 2008/04/30 21:40:41 laffer1 Exp $
 # $FreeBSD: ports/editors/jedit/Makefile,v 1.28 2006/09/03 00:02:05 kris Exp $
 #
 
@@ -27,6 +27,8 @@ CONFLICTS=	jedit-4.3*
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.4+
+JAVA_BUILD=	yes
+JAVA_RUN=	yes
 
 USE_XORG=	x11
 NO_BUILD=	yes
