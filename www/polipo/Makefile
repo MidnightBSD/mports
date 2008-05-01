@@ -2,13 +2,13 @@
 # Date created:        2005-01-25
 # Whom:                Frank Behrens <frank@pinky.sax.de>
 #
-# $MidnightBSD: mports/www/polipo/Makefile,v 1.1 2008/04/13 02:21:49 laffer1 Exp $
+# $MidnightBSD: mports/www/polipo/Makefile,v 1.2 2008/05/01 03:44:17 laffer1 Exp $
 # $FreeBSD: ports/www/polipo/Makefile,v 1.15 2008/01/10 23:19:14 miwi Exp $
 #
 
 PORTNAME=	polipo
 PORTVERSION=	1.0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://www.pps.jussieu.fr/~jch/software/files/polipo/ \
 		http://www.sax.de/~frank/polipo4bsd/files/
@@ -41,7 +41,7 @@ SUB_LIST+=	USER=${PUSER} GROUP=${PGRP} DESTDIR=${DESTDIR} PCONFIGDIR=${PCONFIGDI
 # polipo installation options, propagated to install scripts
 PUSER?=		polipo
 PGRP?=		polipo
-PCONFIGDIR?=	${PREFIX}/etc/polipo/
+PCONFIGDIR?=	${TRUE_PREFIX}/etc/polipo/
 PCACHEDIR?=	/var/cache/polipo
 PPIDDIR?=	/var/run/polipo/
 PPIDFILE=	${PPIDDIR}polipo.pid
@@ -56,10 +56,10 @@ do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily/
 	${INSTALL_SCRIPT} ${WRKDIR}/400.polipo ${PREFIX}/etc/periodic/daily/
 	${INSTALL_MAN} ${WRKSRC}/polipo.man ${PREFIX}/man/man1/polipo.1
-	${MKDIR} ${PCONFIGDIR}
-	${INSTALL_DATA} ${WRKSRC}/config.sample ${PCONFIGDIR}
-	${INSTALL_DATA} ${WRKSRC}/forbidden.sample ${PCONFIGDIR}
-	${CHGRP} -R ${PGRP} ${PCONFIGDIR}
+	${MKDIR} ${FAKE_DESTDIR}${PCONFIGDIR}
+	${INSTALL_DATA} ${WRKSRC}/config.sample ${FAKE_DESTDIR}${PCONFIGDIR}
+	${INSTALL_DATA} ${WRKSRC}/forbidden.sample ${FAKE_DESTDIR}${PCONFIGDIR}
+	${CHGRP} -R ${PGRP} ${FAKE_DESTDIR}${PCONFIGDIR}
 .if !defined(NO_PTEXINFO)
 	${INSTALL_DATA} ${WRKSRC}/polipo.info ${PREFIX}/info/
 .endif
