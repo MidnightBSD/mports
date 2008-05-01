@@ -2,17 +2,18 @@
 # Date Created:				1 May 2007
 # Whom:				 	Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/netbeans55/Makefile,v 1.1 2007/05/01 23:14:21 laffer1 Exp $
 #
 
 PORTNAME=	netbeans55
-PORTVERSION=	5.5
+PORTVERSION=	5.5.1
 CATEGORIES=	java devel
-MASTER_SITES=	http://us2.mirror.netbeans.org/download/5_5/mlfcs/200612070100/
-DISTNAME=	netbeans-5_5
+MASTER_SITES=	http://dlc.sun.com.edgesuite.net/netbeans/download/5_5_1/fcs/200704122300/
+DISTNAME=	netbeans-5_5_1
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	A free and open-source IDE for Java
+LICENSE=	restricted
 
 USE_BZIP2=	yes
 USE_JAVA=	yes
