@@ -2,12 +2,13 @@
 # Date created:        2005-01-25
 # Whom:                Frank Behrens <frank@pinky.sax.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/polipo/Makefile,v 1.1 2008/04/13 02:21:49 laffer1 Exp $
 # $FreeBSD: ports/www/polipo/Makefile,v 1.15 2008/01/10 23:19:14 miwi Exp $
 #
 
 PORTNAME=	polipo
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.pps.jussieu.fr/~jch/software/files/polipo/ \
 		http://www.sax.de/~frank/polipo4bsd/files/
@@ -35,7 +36,7 @@ PORTDOCS=	*
 SUB_FILES=	pkg-message pkg-install pkg-deinstall 400.polipo
 SUB_LIST+=	USER=${PUSER} GROUP=${PGRP} DESTDIR=${DESTDIR} PCONFIGDIR=${PCONFIGDIR} \
 		PCACHEDIR=${PCACHEDIR} PPIDDIR=${PPIDDIR} PPIDFILE=${PPIDFILE} \
-		PLOGFILE=${PLOGFILE} RC_SUBR=${RC_SUBR}
+		PLOGFILE=${PLOGFILE} RC_SUBR=${RC_SUBR} TRUE_PREFIX=${TRUE_PREFIX}
 
 # polipo installation options, propagated to install scripts
 PUSER?=		polipo
