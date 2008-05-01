@@ -2,11 +2,12 @@
 #
 # %%APP_TITLE%% startup script.
 #
-# $FreeBSD: ports/java/jboss4/files/startup.sh,v 1.4 2006/06/13 17:43:14 glewis Exp $
+# $FreeBSD: ports/java/jboss4/files/jboss4.in,v 1.1 2007/07/29 19:44:05 pav Exp $
 #
 
 # PROVIDE: %%APP_SHORTNAME%%
 # REQUIRE: NETWORKING SERVERS
+# KEYWORD: shutdown
 
 # Add the following lines to /etc/rc.conf to enable %%APP_SHORTNAME%%:
 # %%APP_SHORTNAME%%_enable (bool):		Set to "NO" by default.
