@@ -1,12 +1,13 @@
 # Ports collection makefile for:	jakarta-bcel
 # Date created:				6 May 2002
 # Whom:					des
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jakarta-bcel/Makefile,v 1.1 2006/10/06 02:59:45 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-bcel/Makefile,v 1.4 2006/05/24 14:00:57 hq Exp $
 #
 
 PORTNAME=	bcel
 PORTVERSION=	5.1
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE_JAKARTA}
 MASTER_SITE_SUBDIR=	${PORTNAME}/binaries
@@ -15,6 +16,7 @@ PKGNAMEPREFIX=	jakarta-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for generating Java bytecode
 
+USE_GCPIO=	yes
 NO_BUILD=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.2+
