@@ -2,13 +2,13 @@
 # Date created:				06 November 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/avalon-logkit/Makefile,v 1.1 2006/10/06 02:16:03 laffer1 Exp $
 # $FreeBSD: ports/java/avalon-logkit/Makefile,v 1.4 2004/09/01 13:36:46 hq Exp $
 #
 
 PORTNAME=	logkit
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	avalon/${PORTNAME:S,-,/,}/binaries
@@ -18,6 +18,7 @@ DISTNAME=	LogKit-${PORTVERSION}-bin
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java toolkit designed for secure performance oriented logging
 
+USE_GCPIO=	yes
 USE_JAVA=	YES
 JAVA_VERSION=	1.3+
 NO_BUILD=	YES
