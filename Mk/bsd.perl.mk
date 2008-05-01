@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.9 2008/03/31 18:39:57 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.10 2008/04/11 04:46:39 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -45,11 +45,53 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 # PERL_MODBUILD	- Use Module::Build to configure, build and install port.
 ##
 
+#
+# Common Vars.
+#
+PERL_ARCH?=			mach
+PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
+PERL_PORT?=			perl${PERL_BRANCH}
+SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
+SITE_PERL?=			${LOCALBASE}/${SITE_PERL_REL}
+PERL=				${LOCALBASE}/bin/perl
+PERL5=				${PERL}${PERL_VERSION}
+PERL_TEST_TARGET?=	test
+
+# PERL_CONFIGURE implies USE_PERL5
+.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
+USE_PERL5=	yes
+.endif
+
+
+# USE_PERL5_(RUN|BUILD) implies USE_PERL5, USE_PERL5 => USE_PERL5_*
+.if defined(USE_PERL5_BUILD)
+USE_PERL5= ${USE_PERL5_BUILD}
+.elif defined(USE_PERL5_RUN)
+USE_PERL5= ${USE_PERL5_RUN}
+.elif defined(USE_PERL5)
+USE_PERL5_RUN=yes
+USE_PERL5_BUILD=yes
+.endif
+
+
+.if ${USE_PERL5:L} == "yes"
+USE_PERL5= ${PERL_BRANCH}
+.endif
+
 
 #
 # Perl version stuff.
 #
-PERL_VERSION?=	5.8.8
+_DEFAULT_PERL_VERSION= 5.8.8
+_DEFAULT_PERL_BRANCH= 5.8
+
+.if exists(${PERL}) && !defined(PACKAGE_BUILDING)
+PERL_VERSION!= ${PERL} -MConfig -le 'print $$Config{version}'
+.else
+PERL_VERSION=	${_DEFAULT_PERL_VERSION}
+.endif
+
+
 PERL_VER?=		${PERL_VERSION}
 
 .if !defined(PERL_LEVEL) && defined(PERL_VERSION)
@@ -70,29 +112,15 @@ PERL_LEVEL=0
 
 
 
-#
-# Common Vars.
-#
-PERL_ARCH?=			mach
-PERL_PORT?=			perl5.8
-SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=			${LOCALBASE}/${SITE_PERL_REL}
-PERL5=				${LOCALBASE}/bin/perl${PERL_VERSION}
-PERL=				${LOCALBASE}/bin/perl
-PERL_TEST_TARGET?=	test
-
-# PERL_CONFIGURE implies USE_PERL5
-.if defined(PERL_CONFIGURE)
-USE_PERL5=	yes
-.endif
+# XXX parse USE_PERL=5.8 5.10+
 
 #
 # dependancies
 #
 PERL_NO_DEPENDS?= NO
 
-.if ${PERL_NO_DEPENDS} == "NO"
-.if defined(USE_PERL5) || defined(USE_PERL5_BUILD)
+.if ${PERL_NO_DEPENDS:U} == "NO"
+.if defined(USE_PERL5_BUILD)
 EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 BUILD_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
@@ -200,3 +228,4 @@ test: build
 .endif
 
 .endif      # defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
+
