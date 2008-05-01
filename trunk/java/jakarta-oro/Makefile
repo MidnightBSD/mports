@@ -2,7 +2,7 @@
 # Date created:         2000/12/01
 # Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jakarta-oro/Makefile,v 1.1 2006/10/04 16:22:30 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-oro/Makefile,v 1.11 2005/10/10 04:43:52 linimon Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://jakarta.apache.org/builds/${PORTNAME}/release/v${PORTVERSIO
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl/awk/sh regular expressions for Java
+LICENSE=	apache1.1
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
