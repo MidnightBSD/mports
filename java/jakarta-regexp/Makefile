@@ -2,14 +2,14 @@
 # Date created:         2000/12/01
 # Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.1 2006/10/04 16:17:21 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-regexp/Makefile,v 1.11 2005/10/10 04:43:53 linimon Exp $
 #
 
 PORTNAME=	jakarta-regexp
-PORTVERSION=	1.3
-PORTREVISION=	1
-CATEGORIES=	java
+PORTVERSION=	1.5
+PORTREVISION=	0
+CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE_JAKARTA}
 MASTER_SITE_SUBDIR=	regexp/binaries
 
