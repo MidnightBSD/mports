@@ -1,5 +1,5 @@
 #!/bin/sh
-# $MidnightBSD$
+# $MidnightBSD: mports/www/polipo/files/polipo.sh.in,v 1.1 2008/04/13 02:21:49 laffer1 Exp $
 
 # PROVIDE: polipo
 # REQUIRE: NETWORK
@@ -17,7 +17,7 @@ pidfile=%%PPIDFILE%%
 config_file=%%PCONFIGDIR%%config
 required_files=$config_file
 
-command="%%PREFIX%%/bin/polipo"
+command="%%TRUE_PREFIX%%/bin/polipo"
 config_args="-c ${config_file}"
 command_args="$config_args daemonise=true pidFile=${pidfile}"
 start_precmd="rm -f ${pidfile}"
