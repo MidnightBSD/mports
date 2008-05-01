@@ -2,22 +2,24 @@
 # Date created:				06 November 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jakarta-commons-primitives/Makefile,v 1.1 2006/10/04 20:22:08 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-commons-primitives/Makefile,v 1.4 2004/09/01 13:32:57 hq Exp $
 #
 
 PORTNAME=	commons-primitives
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java
-MASTER_SITES=	${MASTER_SITE_APACHE_JAKARTA}
-MASTER_SITE_SUBDIR=	commons/primitives/source
+MASTER_SITES= ${MASTER_SITE_APACHE_COMMONS_SOURCE}
+MASTER_SITE_SUBDIR=   ${PORTNAME:S,commons-,,}
 PKGNAMEPREFIX=	jakarta-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library supporting Java primitive types
+LICENSE=	apache2
 
+USE_GCPIO=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.3+
 USE_ANT=	yes
