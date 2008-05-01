@@ -2,12 +2,12 @@
 # Date created:				9 Decemeber 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jaxen/Makefile,v 1.1 2006/10/04 20:00:22 laffer1 Exp $
 # $FreeBSD: ports/java/jaxen/Makefile,v 1.5 2004/09/01 13:41:33 hq Exp $
 
 PORTNAME=	jaxen
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -15,7 +15,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-FCS
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java XPath Engine
+LICENSE=	bsd4
 
+USE_GCPIO=	YES
 USE_JAVA=	YES
 JAVA_VERSION=	1.3+
 NO_BUILD=	YES
