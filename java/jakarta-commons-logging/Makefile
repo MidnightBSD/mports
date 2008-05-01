@@ -2,19 +2,21 @@
 # Date created:				November 14, 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jakarta-commons-logging/Makefile,v 1.1 2006/10/05 01:32:36 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-commons-logging/Makefile,v 1.11 2006/05/16 15:43:15 hq Exp $
 #
 
 PORTNAME=	commons-logging
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_APACHE_JAKARTA}
-MASTER_SITE_SUBDIR=	${PORTNAME:S,-,/,}/binaries
+MASTER_SITES=	${MASTER_SITE_APACHE_COMMONS_BINARIES}
+MASTER_SITE_SUBDIR=	${PORTNAME:S,commons-,,}
 PKGNAMEPREFIX=	jakarta-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generic logging wrapper library
+LICENSE=	apache2
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.2+
