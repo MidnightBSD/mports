@@ -3,7 +3,7 @@
 # Whom:			Marc G. Fournier <scrappy@freebsd.org>
 #
 # $FreeBSD: ports/sysutils/bsdstats/Makefile,v 1.47 2006/12/09 06:06:13 scrappy Exp $
-# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.3 2007/10/10 20:56:02 ctriv Exp $ 
+# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.4 2008/01/21 15:44:06 laffer1 Exp $ 
 #
 
 PORTNAME=	bsdstats
@@ -25,8 +25,7 @@ PLIST_DIRS=	etc/periodic/monthly \
 
 do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/monthly
-	${CP} ${FILESDIR}/300.statistics ${PREFIX}/etc/periodic/monthly
-	${CP} ${FILESDIR}/bsdstats.sh ${PREFIX}/etc/rc.d
-	${CHMOD} 0755 ${PREFIX}/etc/rc.d/bsdstats.sh
+	${INSTALL_DATA} ${FILESDIR}/300.statistics ${PREFIX}/etc/periodic/monthly
+	${INSTALL_SCRIPT} ${FILESDIR}/bsdstats.sh ${PREFIX}/etc/rc.d
 
 .include <bsd.port.post.mk>
