@@ -2,7 +2,7 @@
 # Date created:				Dec 20 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 # 
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.2 2008/03/05 03:03:04 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 #
 
@@ -60,9 +60,9 @@ GCONF_SCHEMAS=	gwd.schemas \
 		compiz-wobbly.schemas \
 		compiz-zoom.schemas
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib ${PTHREAD_LIBS}"
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
 OPTIONS=	RSVG "Enable librsvg2 support" on \
 		GTK "Enable gtk2 support" on \
