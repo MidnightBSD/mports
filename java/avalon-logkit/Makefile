@@ -2,7 +2,7 @@
 # Date created:				06 November 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD: mports/java/avalon-logkit/Makefile,v 1.1 2006/10/06 02:16:03 laffer1 Exp $
+# $MidnightBSD: mports/java/avalon-logkit/Makefile,v 1.2 2008/05/01 23:00:48 laffer1 Exp $
 # $FreeBSD: ports/java/avalon-logkit/Makefile,v 1.4 2004/09/01 13:36:46 hq Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	LogKit-${PORTVERSION}-bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java toolkit designed for secure performance oriented logging
+LICENSE=	apache1.1
 
 USE_GCPIO=	yes
 USE_JAVA=	YES
