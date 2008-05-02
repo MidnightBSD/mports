@@ -3,13 +3,13 @@
 # Whom:					bsam@ipt.ru
 # based on ports/emulators/linux_base-fc3 by netchild and myself
 #
-# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.10 2007/10/27 04:02:34 laffer1 Exp $
+# $MidnightBSD: mports/emulators/linux_base-fc4/Makefile,v 1.11 2007/11/11 02:52:50 laffer1 Exp $
 # $FreeBSD: ports/emulators/linux_base-fc4/Makefile,v 1.19 2006/08/18 17:02:37 bsam Exp $
 #
 
 PORTNAME=		fc
 PORTVERSION=		4
-PORTREVISION=		11
+PORTREVISION=		12
 CATEGORIES=		emulators linux
 MASTER_SITES=		${MASTER_SITE_FEDORA_LINUX}
 MASTER_SITE_SUBDIR=	${PORTVERSION}/${LINUX_RPM_ARCH}/os/Fedora/RPMS \
@@ -104,9 +104,9 @@ SRC_DISTFILES+=	acl-2.2.32-1.FC4.2.src.rpm \
 ALWAYS_KEEP_DISTFILES=	yes
 .endif
 
-CONFLICTS=		linux_base-7* linux_base-deb* linux_base-gentoo* \
-			linux_base-rh-9* linux_base-suse-9* linux_base-8* \
-			linux_base-fc3 linux_locale*
+LATEST_LINK=		linux_base
+CONFLICTS=		linux_base-gentoo* \
+			linux_locale*
 ONLY_FOR_ARCHS=		i386 amd64
 LINUX_RPM_ARCH=		i386
 USE_LINUX_PREFIX=	yes
@@ -121,8 +121,6 @@ EXTRACT_ONLY=		${BIN_DISTFILES}
 EXTRACT_CMD?=		${RPM2CPIO}
 EXTRACT_BEFORE_ARGS?=
 EXTRACT_AFTER_ARGS?=	| ${CPIO} -id --quiet
-
-PLIST=			pkg-plist
 
 .include <bsd.port.pre.mk>
 
@@ -222,8 +220,10 @@ do-install:
 	@${LN} -sf /var/tmp ${PREFIX}/usr/tmp
 	@${CHOWN} root:wheel ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
 	@${CHMOD} 755 ${PREFIX}/var/lock ${PREFIX}/var/spool/mail
-
-
+	# fix printing with acrobat
+	@${INSTALL_SCRIPT} ${FILESDIR}/lp ${PREFIX}/usr/bin
+	# Linux threads to hide the mnbsd lib.
+	@${LN} -f ${PREFIX}/lib/librt-2.3.6.so ${PREFIX}/usr/lib/librt.so.1
 
 post-install:
 	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/etc/mtree
