@@ -2,7 +2,7 @@
 # Date created:				Sun Jun  3 00:52:38 EDT 2001
 # Whom:					pat@databits.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/linux-quake3/Makefile,v 1.1 2008/05/01 07:33:17 laffer1 Exp $
 # $FreeBSD: ports/games/linux-quake3/Makefile,v 1.23 2007/03/05 09:33:03 alepulver Exp $
 #
 
@@ -99,7 +99,6 @@ do-install:
 .endfor
 .if !defined(WITHOUT_PUNKBUSTER)
 	@${CP} -Rp ${WRKSRC}/pb ${DATADIR}
-	@${RM} ${DATADIR}/pb/PB_EULA.txt
 .endif
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
