@@ -2,12 +2,12 @@
 # Date created:			  31 December 1996
 # Whom:				  Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.1 2006/10/31 22:00:09 wintellect Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.2 2008/04/12 00:20:10 laffer1 Exp $
 # $FreeBSD: ports/ftp/wget/Makefile,v 1.83 2006/08/02 19:33:51 sobomax Exp $
 #
 
 PORTNAME=	wget
-DISTVERSION=	1.11
+DISTVERSION=	1.11.2
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
