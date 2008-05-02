@@ -4,17 +4,19 @@
 #
 # $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
 #   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.4 2007/08/16 02:40:03 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.5 2007/10/21 23:49:43 laffer1 Exp $
 #
 
 PORTNAME=	poppler
-PORTVERSION=	0.6
+PORTVERSION=	0.6.4
 CATEGORIES=	graphics print
 MASTER_SITES=	http://poppler.freedesktop.org/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A PDF rendering library
 LICENSE=	gpl2
+
+RUN_DEPENDS=	poppler-data>0:${PORTSDIR}/graphics/poppler-data
 
 USE_GMAKE=	yes
 USE_XLIB=	yes
@@ -24,7 +26,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-zlib \
 		--enable-xpdf-headers \
 		--with-html-dir=${DOCSDIR}
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2 -I${X11BASE}/include ${PTHREAD_CFLAGS}" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2 ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
 .if !defined(SLAVEPORT)
