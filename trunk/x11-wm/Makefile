@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.22 2007/11/13 20:01:54 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.23 2008/03/24 21:29:56 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -15,6 +15,7 @@
     SUBDIR += fvwm2
     SUBDIR += icewm
     SUBDIR += kompmgr
+    SUBDIR += libcompizconfig
     SUBDIR += libdockapp
     SUBDIR += metacity
     SUBDIR += mlvwm
