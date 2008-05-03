@@ -2,7 +2,7 @@
 # Date created:		2006-08-04
 # Whom:			Jose Alonso Cardenas Marquez <acm@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/linux-openssl/Makefile,v 1.1 2007/04/04 17:10:42 laffer1 Exp $
+# $MidnightBSD: mports/security/linux-openssl/Makefile,v 1.2 2007/04/05 20:03:50 laffer1 Exp $
 # $FreeBSD: ports/security/linux-openssl/Makefile,v 1.2 2006/11/08 00:12:10 acm Exp $
 #
 
@@ -13,7 +13,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-7.10
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SSL and crypto library (Linux Version)
-
+LICENSE=  dual-license     
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 INSTALLS_SHLIB=	yes
