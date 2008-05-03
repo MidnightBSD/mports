@@ -2,12 +2,12 @@
 # Date created:				28 May 2004
 # Whom:					Jamie Jones <jamie@bishopston.net>
 #
-# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.2 2007/08/19 20:46:52 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.3 2008/03/22 00:12:18 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flashplugin9/Makefile,v 1.23 2007/03/09 12:14:08 pav Exp $
 #
 
 PORTNAME=	flashplugin
-PORTVERSION=	9.0r115
+PORTVERSION=	9.0r124
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/current/:plugin \
 		LOCAL/lofi:suplib
