@@ -2,18 +2,22 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
+# $MidnightBSD$
 # $FreeBSD: ports/java/gnu-regexp/Makefile,v 1.11 2005/02/03 02:03:56 hq Exp $
 #
 
 PORTNAME=	gnu-regexp
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	ftp://ftp.tralfamadore.com/pub/java/
 DISTNAME=	gnu.regexp-${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A regexp library for Java
+LICENSE=	gpl2
 
+USE_GCPIO=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
 
