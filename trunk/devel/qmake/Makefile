@@ -3,7 +3,7 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.7 2007/10/18 03:52:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.8 2008/05/04 08:45:23 crash Exp $
 #
 
 PORTNAME=	qmake
@@ -48,7 +48,7 @@ post-patch:
 		-e 's|gcc|${CC}|' \
 		-e 's|g++|${CXX}|' \
 		-e 's|/usr/local|${LOCALBASE}|' \
-		-e 's|/usr/X11R6|${X11BASE}|' \
+		-e 's|/usr/X11R6|${LOCALBASE}|' \
 		-e 's|release|release thread|' \
 		-e 's|-pthread -D_THREAD_SAFE|${PTHREAD_CFLAGS}|' \
 		-e 's|-pthread|${PTHREAD_LIBS}|' \
