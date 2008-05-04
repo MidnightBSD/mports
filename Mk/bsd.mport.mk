@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.98 2008/04/30 19:59:00 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.99 2008/04/30 21:04:58 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3368,7 +3368,7 @@ check-license:
 	@if test -z '${LICENSE}'; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: empty license."; \
 		${_SLEEP} 5; \
-	elif ! ${ECHO_CMD} ${_LICENSES} | ${GREP} ${LICENSE} >/dev/null; then \
+	elif ! ${ECHO_CMD} ${_LICENSES} | ${GREP} -E " ${LICENSE} |^${LICENSE}|${LICENSE}$$" >/dev/null; then \
 		${ECHO_MSG} "${PKGNAME}: Makefile error: Invalid LICENSE: ${LICENSE}"; \
 		${_SLEEP} 5; \
 	else \
@@ -5418,7 +5418,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.98 2008/04/30 19:59:00 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.99 2008/04/30 21:04:58 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
