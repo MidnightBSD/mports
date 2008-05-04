@@ -3,17 +3,18 @@
 # Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
 #
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.1 2007/02/14 21:17:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.2 2007/11/07 20:20:18 ctriv Exp $
 #
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5
 PORTREVISION=	4
-CATEGORIES=	x11-toolkits
+CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	ftp://ftp.inf.uos.de/pub/elmar/gtk/objc-gtoolkit/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Obj-C wrapper for gtk, a x11 graphics library
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
@@ -23,7 +24,7 @@ USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-USE_GNUSTEP_LDCONFIG=	${LOCALLIBDIR}
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk12
