@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.8 2007/10/18 03:42:10 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.9 2008/05/04 18:56:13 laffer1 Exp $
 #
 
 PORTNAME=	qt
@@ -16,6 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiplatform C++ application framework
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
