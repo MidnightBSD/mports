@@ -59,7 +59,6 @@ libdata/pkgconfig/libcurl.pc
 %%PORTDOCS%%%%DOCSDIR%%/examples/debug.c
 %%PORTDOCS%%%%DOCSDIR%%/examples/fileupload.c
 %%PORTDOCS%%%%DOCSDIR%%/examples/fopen.c
-%%PORTDOCS%%%%DOCSDIR%%/examples/ftp3rdparty.c
 %%PORTDOCS%%%%DOCSDIR%%/examples/ftpget.c
 %%PORTDOCS%%%%DOCSDIR%%/examples/ftpgetresp.c
 %%PORTDOCS%%%%DOCSDIR%%/examples/ftpupload.c
