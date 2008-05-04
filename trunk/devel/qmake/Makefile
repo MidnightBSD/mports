@@ -3,12 +3,12 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.6 2007/08/14 09:12:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.7 2007/10/18 03:52:34 laffer1 Exp $
 #
 
 PORTNAME=	qmake
-PORTVERSION=	3.3.7
-PORTREVISION=	2
+PORTVERSION=	3.3.8
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -16,7 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
-
+LICENSE=        GPL
 FAKE_OPTS=	trueprefix
 
 USE_REINPLACE=	yes
