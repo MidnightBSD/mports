@@ -2,7 +2,7 @@
 # Date created:				2001/12/11
 # Whom:					nork@cityfujisawa.ne.jp
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.1 2007/02/23 21:17:33 laffer1 Exp $
 # $FreeBSD: ports/security/p5-Digest-HMAC/Makefile,v 1.6 2004/08/13 15:21:19 nork Exp $
 #
 
@@ -15,7 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to HMAC Message-Digest Algorithms
-
+LISENCE=       GPL
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
