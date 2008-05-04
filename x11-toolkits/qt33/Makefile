@@ -4,12 +4,11 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.7 2007/10/17 02:38:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.8 2007/10/18 03:42:10 laffer1 Exp $
 #
 
 PORTNAME=	qt
-PORTVERSION=	3.3.7
-PORTREVISION=	3
+PORTVERSION=	3.3.8
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -23,6 +22,8 @@ BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 LIB_DEPENDS+=	mng:${PORTSDIR}/graphics/libmng \
 		png:${PORTSDIR}/graphics/png \
 		jpeg:${PORTSDIR}/graphics/jpeg
+
+EXTRA_PATCHES=	${PATCHDIR}/0081-format-string-fixes.diff
 
 USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
@@ -53,7 +54,8 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	--exclude '${DISTNAME}/examples' --exclude '${DISTNAME}/tutorial' \
 	--exclude '${DISTNAME}/extensions/nsplugin/src/[^q]*' \
 	--exclude '${DISTNAME}/include/jri*' \
-	--exclude '${DISTNAME}/include/np*'
+	--exclude '${DISTNAME}/include/np*' \
+	--exclude '${DISTNAME}/doc/html/qmake*'
 
 OPTIONS=	CUPS "Enable CUPS support" on \
 		KDE_PATCHES "Apply KDE patches" off \
@@ -94,7 +96,7 @@ CONFIGURE_ARGS+=-debug
 .endif
 
 .if !defined(WITHOUT_OPENGL)
-USE_GL=		yes
+USE_GL=		glu
 CONFIGURE_ARGS+=-dlopen-opengl
 .elif defined(WITHOUT_OPENGL)
 CONFIGURE_ARGS+=-disable-opengl
@@ -115,7 +117,7 @@ CONFIGURE_ARGS+=-no-nas-sound
 .endif
 
 .if defined(WITH_KDE_PATCHES)
-EXTRA_PATCHES=	${PATCHDIR}/0001-dnd_optimization.patch \
+EXTRA_PATCHES+=	${PATCHDIR}/0001-dnd_optimization.patch \
 		${PATCHDIR}/0002-dnd_active_window_fix.patch \
 		${PATCHDIR}/0007-qpixmap_constants.patch \
 		${PATCHDIR}/0015-qiconview-finditem.patch \
@@ -133,17 +135,18 @@ EXTRA_PATCHES=	${PATCHDIR}/0001-dnd_optimization.patch \
 		${PATCHDIR}/0056-khotkeys_input_84434.patch \
 		${PATCHDIR}/0059-qpopup_has_mouse.patch \
 		${PATCHDIR}/0060-qpopup_ignore_mousepos.patch \
-		${PATCHDIR}/0061-qscrollview-propagate-horizontal-wheelevent.patch
+		${PATCHDIR}/0061-qscrollview-propagate-horizontal-wheelevent.patch \
+		${PATCHDIR}/0073-xinerama-aware-qpopup.patch \
+		${PATCHDIR}/0076-fix-qprocess.diff \
+		${PATCHDIR}/0078-argb-visual-hack.patch \
+		${PATCHDIR}/0079-compositing-types.patch \
+		${PATCHDIR}/0080-net-wm-sync-request.patch \
+		${PATCHDIR}/xxxx-qt-font-default-subst.patch
 PKGNAMESUFFIX=	-copy
 COMMENT+=	(+ KDE patches)
 CONFLICTS+=	qt-3.3.*
 .elif defined(WITHOUT_KDE_PATCHES)
 CONFLICTS+=	qt-copy-[0-9]*
-.endif
-
-.if exists(${X11BASE}/include/qt2/qapp.h)
-BROKEN=	You have QT2 headers installed!  Installing this port
-BROKEN+= will result in conflicts between QT3 and QT2!
 .endif
 
 post-patch:
@@ -169,6 +172,7 @@ post-patch:
 post-configure:
 	@${REINPLACE_CMD} -e \
 		's|/lib/pkgconfig/|/libdata/pkgconfig/|g' \
+		-e 's|^INCPATH.*=|INCPATH  = -I../include|g' \
 			${WRKSRC}/src/Makefile
 
 post-build:
