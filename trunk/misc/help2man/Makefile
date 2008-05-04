@@ -3,7 +3,7 @@
 # Date created:			Jan 30, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.1 2006/09/21 13:37:02 laffer1 Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.2 2008/05/04 10:17:23 crash Exp $
 # $FreeBSD: ports/misc/help2man/Makefile,v 1.18 2006/04/30 21:54:34 arved Exp $
 #
 
@@ -16,7 +16,8 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically generating simple manual pages from program output
-LICENSE=        gpl
+LICENSE=	gpl2
+
 .if !defined(WITHOUT_NLS)
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
