@@ -2,7 +2,7 @@
 # Date created:				15 April 2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/net/libdnet/Makefile,v 1.2 2006/11/05 16:17:02 laffer1 Exp $
+# $MidnightBSD: mports/net/libdnet/Makefile,v 1.3 2008/02/27 20:31:39 laffer1 Exp $
 # $FreeBSD: ports/net/libdnet/Makefile,v 1.21 2006/02/23 10:38:21 ade Exp $
 #
 
@@ -17,7 +17,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple interface to low level networking routines
-
+LICENSE=        unknown
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_GMAKE=	yes

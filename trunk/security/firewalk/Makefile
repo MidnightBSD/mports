@@ -2,7 +2,7 @@
 # Date created:		Sun May 3, 1999
 # Whom:			shipley@dis.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/firewalk/Makefile,v 1.1 2007/07/29 22:45:40 laffer1 Exp $
 # $FreeBSD: ports/security/firewalk/Makefile,v 1.22 2007/01/31 14:09:53 pav Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A remote firewall auditing tool
+LICENSE=        bsd
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdnet.a:${PORTSDIR}/net/libdnet	\
 		${LIBNET_CONFIG}:${PORTSDIR}/net/libnet
