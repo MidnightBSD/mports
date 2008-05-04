@@ -2,21 +2,20 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.2 2007/10/31 21:32:59 laffer1 Exp $
-# $FreeBSD: ports/lang/tcl85/Makefile,v 1.12 2007/09/28 05:14:14 mm Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/lang/tcl85/Makefile,v 1.16 2008/04/23 06:39:27 mm Exp $
 #
 
 PORTNAME=	tcl
-PORTVERSION=	8.5.b.1
+PORTVERSION=	8.5.2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.b./b/}-src
+DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Tool Command Language (development version)
-LICENSE=	other
+COMMENT=	Tool Command Language
 
 PATCH_DIST_ARGS=	-d ${WRKDIR}/${DISTNAME} -E ${PATCH_DIST_STRIP}
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}/unix
@@ -25,6 +24,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --without-tzdata --includedir=${PREFIX}/include/tcl${TCL_VER}
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0  --host=${ARCH}-portbld-freebsd6.0 \
+			--target=${ARCH}-portbld-freebsd6.0
 TCL_VER=	8.5
 SHORT_TCL_VER=	${TCL_VER:S/8./8/}
 MAKE_ENV=	SHORT_TCL_VER=${SHORT_TCL_VER} LANG=C LC_ALL=C	# LANG=C is required for some of UTF-using tests
@@ -713,8 +714,8 @@ post-patch:
 		-e 's/-ltclstub`echo $${TCL_VERSION} | tr -d .`/-ltclstub`echo $${TCL_VERSION} | tr -d .`${THREADS_SUFFIX}/g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|libtcl$${SHORT_TCL_VER}|libtcl$${SHORT_TCL_VER}${THREADS_SUFFIX}|g' \
-		-e 's|$$(BIN_INSTALL_DIR)/tclsh$$(VERSION)|$$(BIN_INSTALL_DIR)/tclsh$$(VERSION)${THREADS_SUFFIX}|g' \
-		-e 's|$$(SCRIPT_INSTALL_DIR)/tclConfig.sh|$$(SCRIPT_INSTALL_DIR)/tclConfig${THREADS_SUFFIX}.sh|g' \
+		-e 's|/tclsh$$(VERSION)|/tclsh$$(VERSION)${THREADS_SUFFIX}|g' \
+		-e 's|/tclConfig.sh|/tclConfig${THREADS_SUFFIX}.sh|g' \
 		${WRKSRC}/Makefile.in
 .endif
 
