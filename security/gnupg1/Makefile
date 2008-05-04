@@ -3,11 +3,12 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.3 2008/04/06 02:30:52 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.4 2008/04/14 17:35:30 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
 PORTVERSION=	1.4.9
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -98,8 +99,5 @@ post-install:
 .if defined(WITH_SUID_GPG)
 	${CHMOD} u+s ${PREFIX}/bin/gpg
 .endif
-
-check:
-	(cd ${WRKSRC}; ${MAKE} check)
 
 .include <bsd.port.post.mk>
