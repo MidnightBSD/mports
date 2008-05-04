@@ -2,12 +2,13 @@
 # Date created:         Jun 21. 2004
 # Whom:                 netchild@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/skype/Makefile,v 1.1 2008/04/11 03:20:43 laffer1 Exp $
 # $FreeBSD: ports/net/skype/Makefile,v 1.37 2007/11/01 12:24:53 beech Exp $
 #
 
 PORTNAME=	skype
 PORTVERSION=	1.2.0.18
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	NETBSD
@@ -43,7 +44,7 @@ do-build:
 do-install:
 	@${INSTALL} -d ${PREFIX}/share/applications
 	@${INSTALL_PROGRAM} ${WRKSRC}/skype ${PREFIX}/bin/skype_bin
-	@${ECHO_CMD} -e "#!/bin/sh\n\nSKYPE_RESOURCES_PATH='${DATADIR}' skype_bin \"\$$@\" 2>&1 | grep -v 'SOUND_MIXER_WRITE_IGAIN failed'" >${PREFIX}/bin/skype
+	@${ECHO_CMD} -e "#!/bin/sh\n\nSKYPE_RESOURCES_PATH='${LOCALBASE}/share/skype' skype_bin \"\$$@\" 2>&1 | grep -v 'SOUND_MIXER_WRITE_IGAIN failed'" >${PREFIX}/bin/skype
 	@${CHMOD} a+rx ${PREFIX}/bin/skype
 	@${INSTALL_DATA} ${WRKSRC}/skype.desktop ${PREFIX}/share/applications/
 	${MKDIR} ${PREFIX}/share/pixmaps
