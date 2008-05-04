@@ -3,7 +3,7 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.4 2008/04/14 17:35:30 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.5 2008/05/04 06:39:41 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
@@ -18,6 +18,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
 LICENSE=	gpl2
+
+CONFLICTS=      gnupg-[0-9]*
 
 USE_BZIP2=	YES
 USE_GMAKE=	YES
