@@ -25,9 +25,13 @@ use Mport::Globals   ();
 our $Machine;
 
 BEGIN {
-  $Machine = Magus::Machine->retrieve(
-    name => $Magus::Config{'Machine'}
-  ) || die "Invalid machine: $Magus::Config{Machine}\n";
+  if (Magus::DBI->ping) {
+    $Machine = Magus::Machine->retrieve(
+      name => $Magus::Config{'Machine'}
+    ) || die "Invalid machine: $Magus::Config{Machine}\n";
+  } else {
+    warn "Warning: Unable to connect to database.  \$Magus::Machine unset.\n";
+  }
 }
 
 
