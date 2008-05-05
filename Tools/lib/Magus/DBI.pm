@@ -24,7 +24,7 @@ package Magus::DBI;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.3 2008/02/24 23:58:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.4 2008/03/07 07:15:03 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -41,6 +41,25 @@ __PACKAGE__->connection(
   $Magus::Config{DBPass}
 );
 
+
+=head2 Magus::DBI->ping
+
+Return true if we can connect to the database, false otherwise.
+
+=cut
+
+sub ping {
+  my ($class) = @_;
+  
+  eval {
+    my $dbh = $class->db_Main();
+    
+    return $dbh->ping;
+  };
+  
+  return;
+}
+    
 
 
 =head2 $obj->refresh
