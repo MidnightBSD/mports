@@ -1,4 +1,4 @@
-package Magusc;
+package Magus;
 
 use strict;
 use warnings;
