@@ -2,25 +2,27 @@
 # Date created:				October 24th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Mail-Tools/Makefile,v 1.1 2007/03/20 19:35:27 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-Tools/Makefile,v 1.45 2006/03/13 05:00:11 kuriyama Exp $
 #
 
 PORTNAME=	Mail-Tools
-PORTVERSION=	1.74
+PORTVERSION=	2.02
 CATEGORIES=	mail perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Mail
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	MailTools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules for dealing with Internet e-mail messages
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
 MAN3=		Mail::Address.3 \
 		Mail::Cap.3 \
+		Mail::Field::Date.3 \
+		Mail::Field::Generic.3 \
 		Mail::Field.3 \
 		Mail::Field::AddrList.3 \
 		Mail::Filter.3 \
@@ -30,11 +32,4 @@ MAN3=		Mail::Address.3 \
 		Mail::Send.3 \
 		Mail::Util.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS=	${SITE_PERL}/Net/SMTP.pm:${PORTSDIR}/net/p5-Net
-RUN_DEPENDS=	${BUILD_DEPENDS}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
