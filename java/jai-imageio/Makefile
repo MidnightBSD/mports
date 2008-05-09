@@ -2,7 +2,7 @@
 # Date created:				2004-01-10
 # Whom:					OISHI Masakuni <yamasa@bsdhouse.org>
 #
-# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.1 2006/10/04 20:16:35 laffer1 Exp $
+# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.2 2008/05/01 22:58:55 laffer1 Exp $
 # $FreeBSD: ports/java/jai-imageio/Makefile,v 1.3 2005/02/13 21:28:05 hq Exp $
 #
 
@@ -15,6 +15,9 @@ DISTNAME=	${PORTNAME:S/-/_/}-${PORTVERSION:S/./_/g}-lib-linux-i586
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plug-ins for the Java Image I/O Framework
 LICENSE=	restricted
+
+# Fetch it yourself
+IS_INTERACTIVE=	yes
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.4+

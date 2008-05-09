@@ -2,7 +2,7 @@
 # Date created:				2004-01-10
 # Whom:					OISHI Masakuni <yamasa@bsdhouse.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jai/Makefile,v 1.2 2008/05/01 22:57:07 laffer1 Exp $
 # $FreeBSD: ports/java/jai/Makefile,v 1.7 2008/03/24 05:18:55 glewis Exp $
 #
 
@@ -15,6 +15,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/./_/g}-lib
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance image processing libraries for Java
 LICENSE=	restricted
+
+# a self fetching prophecy 
+IS_INTERACTIVE=	yes
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.3+
