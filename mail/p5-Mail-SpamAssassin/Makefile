@@ -2,12 +2,12 @@
 # Date created:				Nov 26 2001
 # Whom:					Anthony Kim
 #
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.3 2007/07/16 02:35:31 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.4 2007/10/01 09:46:50 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
 PORTNAME=	Mail-SpamAssassin
-PORTVERSION=	3.2.3
+PORTVERSION=	3.2.4
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
@@ -16,19 +16,22 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:apache,cpan
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A highly efficient mail filter for identifying spam
+LICENSE=	apache2
 
-BUILD_DEPENDS=	p5-Net-DNS>=0.60:${PORTSDIR}/dns/p5-Net-DNS \
+BUILD_DEPENDS=	p5-Net-DNS>=0.63:${PORTSDIR}/dns/p5-Net-DNS \
 		p5-IO-Zlib>=1.04:${PORTSDIR}/archivers/p5-IO-Zlib \
 		p5-HTML-Parser>=3.43:${PORTSDIR}/www/p5-HTML-Parser \
 		p5-IO-Compress-Zlib>=2.04:${PORTSDIR}/archivers/p5-IO-Compress-Zlib \
 		p5-Compress-Zlib>=2.04:${PORTSDIR}/archivers/p5-Compress-Zlib \
-		${SITE_PERL}/Mail/Internet.pm:${PORTSDIR}/mail/p5-Mail-Tools
+		${SITE_PERL}/Mail/Internet.pm:${PORTSDIR}/mail/p5-Mail-Tools \
+		p5-Digest-SHA1>=2.11:${PORTSDIR}/security/p5-Digest-SHA1
 
 RUN_DEPENDS=	${BUILD_DEPENDS} \
 		${SITE_PERL}/Bundle/LWP.pm:${PORTSDIR}/www/p5-libwww \
 		p5-Archive-Tar>=1.23:${PORTSDIR}/archivers/p5-Archive-Tar \
 		${SITE_PERL}/mach/Encode/Detect.pm:${PORTSDIR}/converters/p5-Encode-Detect
 
+MAKE_ENV+=    CC="${CC}"
 PERL_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
@@ -95,7 +98,7 @@ RUN_DEPENDS+=	razor-agents>=2.84:${PORTSDIR}/mail/razor-agents
 .endif
 
 .if defined(WITH_DKIM)
-RUN_DEPENDS+=	p5-Mail-DKIM>=.20:${PORTSDIR}/mail/p5-Mail-DKIM
+RUN_DEPENDS+=	p5-Mail-DKIM>=0.31:${PORTSDIR}/mail/p5-Mail-DKIM
 RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/SSL.pm:${PORTSDIR}/security/p5-IO-Socket-SSL
 RUN_DEPENDS+=	p5-Crypt-OpenSSL-RSA>=0.24:${PORTSDIR}/security/p5-Crypt-OpenSSL-RSA
 .endif
@@ -203,6 +206,7 @@ post-patch:
 		-e 's#B_CONFDIR)/v320.pre#B_CONFDIR)/v320.pre.sample#g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
+		@${REINPLACE_CMD} -e '/^CC =/d' ${WRKSRC}/spamc/Makefile.in
 
 .if defined(WITH_RAZOR)
 	${REINPLACE_CMD} -e '/Razor2/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v312.pre
