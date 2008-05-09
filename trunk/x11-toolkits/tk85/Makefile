@@ -1,34 +1,35 @@
 # New ports collection makefile for:	tk
 # Date created:		17 January 2007
-# Whom:			Martin Matuska <martin@matuska.org>
+# Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.6 2007/03/16 20:40:00 miwi Exp $
+# $MIdnightBSD$
+# $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.18 2008/04/02 12:02:41 mm Exp $
 #
 
 PORTNAME=	tk
-PORTVERSION=	8.5.a.5
-PORTREVISION=	3
+PORTVERSION=	8.5.2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 PKGNAMESUFFIX?=	${THREADS_SUFFIX}
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.a./a/}-src
+DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL
+LICENSE=	other
 
 LATEST_LINK?=	tk85
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION:S/.a./a/}/unix
+WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}/unix
 GNU_CONFIGURE=	yes
 TK_VER=		8.5
 SHORT_TK_VER=	85
-CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tk${TK_VER} \
-	--build=${ARCH}-portbld-freebsd6.0
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd6.0
+CONFIGURE_ARGS=	--enable-shared --includedir=${PREFIX}/include/tk${TK_VER}
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR} TK_LIB_FILE=libtk${SHORT_TK_VER}.so.1
+CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd6.0 \
+		--host=${ARCH}-portbld-freebsd6.0 \
+		--target=${ARCH}-portbld-freebsd6.0
 MAKE_ENV=	SHORT_TK_VER=${SHORT_TK_VER}
 PLIST_SUB=	TK_VER=${TK_VER} SHORT_TK_VER=${SHORT_TK_VER}
 NOPRECIOUSMAKEVARS=	yes # Otherwise 'make readmes' is broken
@@ -38,10 +39,10 @@ SUB_FILES=	pkgIndex.tcl
 
 .if !defined(BUILDING_TK_THREADS)
 USE_TCL=	${SHORT_TK_VER}
-USE_TCL_BUILD=	${SHORT_TK_VER}
 
 OPTIONS=	TK85_MAN "Install tk 8.5 manpages" off \
-		WISH_WRAPPER "Require wish wrapper from ports" off
+		XFT "Use Xft fonts" on \
+		DEMOS "Install demos" off
 .else
 USE_TK=		${SHORT_TK_VER}
 PLIST=		${PKGDIR}/pkg-plist.threads
@@ -53,20 +54,33 @@ SUB_LIST+=	THREADS_SUFFIX="${THREADS_SUFFIX}"
 
 .include <bsd.port.pre.mk>
 
+.if !defined(WITHOUT_XFT)
+CONFIGURE_ARGS+=	--enable-xft
+LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
+.else
+CONFIGURE_ARGS+=	--disable-xft
+.endif
+
 .if defined(BUILDING_TK_THREADS)
 CONFIGURE_ARGS+=	--enable-threads --with-tcl=${LOCALBASE}/lib/tcl${TK_VER}${THREADS_SUFFIX}
 CONFIGURE_ENV+=		PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 			ac_cv_path_tclsh="${LOCALBASE}/bin/tclsh${TK_VER}${THREADS_SUFFIX}"
 LATEST_LINK=		tk85${THREADS_SUFFIX}
+SUB_LIST+=		TK_PROVIDE="; package provide Tk-threads ${TK_VER}"
 .else
 CONFIGURE_ARGS+=	--disable-threads --with-tcl=${LOCALBASE}/lib/tcl${TK_VER} \
 			ac_cv_path_tclsh="${TCLSH}"
 
-.if defined(WITH_WISH_WRAPPER)
-RUN_DEPENDS+=		wish:${PORTSDIR}/lang/tcl-tk-wrapper
+SUB_LIST+=		TK_PROVIDE=""
+
+.if defined(WITH_DEMOS)
+INSTALL_TARGET+=	install install-demos
+PLIST_SUB+=	DEMOS=""
+.else
+PLIST_SUB+=	DEMOS="@comment "
 .endif
 
-.if defined(NO_INSTALL_MANPAGES) || !defined(WITH_TK84_MAN)
+.if defined(NO_INSTALL_MANPAGES) || !defined(WITH_TK85_MAN)
 
 PLIST_SUB+=	INSTMAN='@comment '
 
@@ -91,7 +105,8 @@ MAN3=	3DBorder.3 AddOption.3 BindTable.3 CanvPsY.3 CanvTkwin.3 \
 	Name.3 NameOfImg.3 OwnSelect.3 ParseArgv.3 QWinEvent.3 Restack.3 \
 	RestrictEv.3 SetAppName.3 SetCaret.3 SetClass.3 SetClassProcs.3 \
 	SetGrid.3 SetOptions.3 SetVisual.3 StrictMotif.3 TextLayout.3 \
-	Tk_Init.3 Tk_Main.3 TkInitStubs.3 WindowId.3
+	Tk_Init.3 Tk_Main.3 TkInitStubs.3 WindowId.3 ttk_Geometry.3 \
+	ttk_Theme.3
 
 MANN=	bell.n bind.n bindtags.n bitmap.n button.n canvas.n checkbutton.n \
 	chooseColor.n chooseDirectory.n clipboard.n colors.n console.n \
@@ -101,7 +116,12 @@ MANN=	bell.n bind.n bindtags.n bitmap.n button.n canvas.n checkbutton.n \
 	message.n messageBox.n option.n optionMenu.n options.n pack-old.n \
 	pack.n panedwindow.n palette.n photo.n place.n popup.n radiobutton.n \
 	raise.n scale.n scrollbar.n selection.n send.n spinbox.n text.n tk.n \
-	tkerror.n tkvars.n tkwait.n toplevel.n winfo.n wm.n
+	tkerror.n tkvars.n tkwait.n toplevel.n winfo.n wm.n \
+	ttk_button.n ttk_checkbutton.n ttk_combobox.n ttk_entry.n ttk_frame.n \
+	ttk_image.n ttk_intro.n ttk_label.n ttk_labelframe.n ttk_menubutton.n \
+	ttk_notebook.n ttk_panedwindow.n ttk_progressbar.n ttk_radiobutton.n \
+	ttk_scrollbar.n ttk_separator.n ttk_sizegrip.n ttk_style.n \
+	ttk_treeview.n ttk_widget.n
 
 # MLINKS generated via  awk '/ln/ {print "\t" $2,$3,"\\"}' unix/mkLinks
 MLINKS=	3DBorder.3 Tk_Alloc3DBorderFromObj.3 \
@@ -393,6 +413,7 @@ pre-everything::
 	@if ${TEST} -e "${NONEXISTENT}"; then ${ECHO_MSG} "=== Aborted, please remove ${NONEXISTENT}"; exit 1; fi
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|X11/Intrinsic.h|X11/Xlib.h|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|@TK_SHARED_BUILD@|#@TK_SHARED_BUILD@|g' ${WRKSRC}/Makefile.in
 .if defined(BUILDING_TK_THREADS)
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
@@ -403,8 +424,8 @@ post-patch:
 		-e 's/-ltkstub`echo $${TK_VERSION} | tr -d .`/-ltkstub`echo $${TK_VERSION} | tr -d .`${THREADS_SUFFIX}/g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|libtk$${SHORT_TK_VER}|libtk$${SHORT_TK_VER}${THREADS_SUFFIX}|g' \
-		-e 's|$$(BIN_INSTALL_DIR)/wish$$(VERSION)|$$(BIN_INSTALL_DIR)/wish$$(VERSION)${THREADS_SUFFIX}|g' \
-		-e 's|tk$$(VERSION)/tkConfig.sh|tk$$(VERSION)/tkConfig${THREADS_SUFFIX}.sh|g' \
+		-e 's|/wish$$(VERSION)|/wish$$(VERSION)${THREADS_SUFFIX}|g' \
+		-e 's|/tkConfig.sh|/tkConfig${THREADS_SUFFIX}.sh|g' \
 		-e 's|$$(LIB_INSTALL_DIR)$$(TK_PKG_DIR)|${WRKDIR}|g' \
 		-e 's|$$(MINOR_VERSION)$$(TCLPATCHL)|$$(MINOR_VERSION)$$(TCLPATCHL)${THREADS_SUFFIX}|g' \
 		${WRKSRC}/Makefile.in
@@ -414,6 +435,7 @@ post-configure:
 	${REINPLACE_CMD} \
 		-e 's|${WRKDIRPREFIX}${.CURDIR}|$${WRKDIRPREFIX}${TKBASE}|' \
 		${WRKSRC}/tkConfig.sh
+	${REINPLACE_CMD} -e 's|-Wl,--rpath -Wl,/usr/local/lib||g' ${WRKSRC}/Makefile
 
 .if defined(BUILDING_TK_THREADS)
 do-install:
