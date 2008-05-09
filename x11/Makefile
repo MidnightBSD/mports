@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.49 2008/03/05 02:25:25 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.50 2008/03/28 04:59:11 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -42,7 +42,6 @@
     SUBDIR += kde3
     SUBDIR += kdebase3
     SUBDIR += kdelibs3
-    SUBDIR += libGL
     SUBDIR += libICE
     SUBDIR += libSM
     SUBDIR += libX11
