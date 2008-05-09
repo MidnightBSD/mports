@@ -12,13 +12,13 @@
 # the version.
 #
 # For example:
-#	USE_GCC=	3.3		# port requires GCC 3.3 to build with.
+#	USE_GCC=	4.1		# port requires GCC 4.1 to build with.
 #	USE_GCC=	3.4+	# port requires GCC 3.4 or later to build with.
 #
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/bsd.gcc.mk,v 1.4 2008/03/24 20:34:34 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gcc.mk,v 1.5 2008/04/14 04:02:57 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -28,7 +28,7 @@ GCC_Include_MAINTAINER=		portmgr@MidnightBSD.org
 # All GCC versions supported by the ports framework.
 # Please keep them in ascending order.
 #
-GCCVERSIONS=	030200 030301 030402 040100 040200 040300
+GCCVERSIONS=	030402 040100 040200 040300
 
 #
 # Versions of GCC shipped.
@@ -37,8 +37,6 @@ GCCVERSIONS=	030200 030301 030402 040100 040200 040300
 # the base system.
 # The third field is the version as USE_GCC would use.
 #
-GCCVERSION_030200=	500039 501103 3.2
-GCCVERSION_030301=	501103 502126 3.3
 GCCVERSION_030402=	502126 999999 3.4
 GCCVERSION_040100=	999999 999999 4.1
 GCCVERSION_040200=	999999 999999 4.2
