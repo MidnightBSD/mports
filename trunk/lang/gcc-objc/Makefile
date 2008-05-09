@@ -2,7 +2,7 @@
 # Date created:		28.Mar.2003
 # Whom:			dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/lang/gcc-objc/Makefile,v 1.1 2006/09/20 13:09:51 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc-objc/Makefile,v 1.2 2008/04/14 04:14:24 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc-objc/Makefile,v 1.17 2006/04/06 13:31:42 dinoex Exp $
 #
 
@@ -16,25 +16,12 @@ LICENSE=	gpl2
 
 WITHOUT_JAVA=		yes
 
-.if !defined(GNUSTEP_WITH_GCC32) && !defined(GNUSTEP_WITH_GCC33) && !defined(GNUSTEP_WITH_GCC34)
+.if !defined(GNUSTEP_WITH_GCC34)
 .if !defined(GNUSTEP_WITH_GCC41) && !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC43)
-GNUSTEP_WITH_GCC32=	yes
+GNUSTEP_WITH_GCC41=	yes
 .endif
 .endif
 
-.if defined(GNUSTEP_WITH_GCC32)
-MASTERDIR?=		${.CURDIR}/../gcc32
-CONFLICTS?=		gcc-3.2*
-COMMENT2=		3.2.x
-WANT_SHAREDLIBS=	yes
-WANT_THREADS_SUPPORT=	yes
-.endif
-.if defined(GNUSTEP_WITH_GCC33)
-MASTERDIR?=		${.CURDIR}/../gcc33
-CONFLICTS?=		gcc-3.3*
-COMMENT2=		3.3.x
-BROKEN=			libobjc.so missing
-.endif
 .if defined(GNUSTEP_WITH_GCC41)
 MASTERDIR?=		${.CURDIR}/../gcc41
 CONFLICTS?=		gcc-4.1*
