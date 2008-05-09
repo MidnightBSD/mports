@@ -2,18 +2,20 @@
 # Date created:		June 1, 2001
 # Whom:			Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jdom/Makefile,v 1.1 2006/10/04 20:00:22 laffer1 Exp $
 # $FreeBSD: ports/java/jdom/Makefile,v 1.15 2004/12/03 01:01:24 hq Exp $
 #
 
 PORTNAME=	jdom
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 PORTEPOCH=	1
 CATEGORIES=	java textproc
 MASTER_SITES=	http://www.jdom.org/dist/source/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java library for accessing and manipulating XML documents
+LICENSE=	other
+# very simliar to bsd license.
 
 RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:${PORTSDIR}/java/jaxen
 
