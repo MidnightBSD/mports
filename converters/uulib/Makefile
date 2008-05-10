@@ -2,7 +2,7 @@
 # Date Created:		04 Aug 1996
 # Whom:			Tim Vanderhoek <ac199@freenet.hamilton.on.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/uulib/Makefile,v 1.1 2007/02/19 23:25:48 laffer1 Exp $
 # $FreeBSD: ports/converters/uulib/Makefile,v 1.35 2007/01/30 10:25:23 pav Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	uudeview-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for uu/xx/Base64/BinHex/yEnc de-/encoding
-
+LICENSE=        gpl2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
