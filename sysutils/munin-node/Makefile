@@ -2,7 +2,7 @@
 # Date created:				25 Januar 2004
 # Whom:					Lupe Christoph <lupe@lupe-christoph.de>
 #
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.1 2008/05/10 02:54:07 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.2 2008/05/10 02:55:06 laffer1 Exp $
 #
 
 PORTNAME=	munin
@@ -35,7 +35,7 @@ MAKE_ENV=	LANG=C
 MAN5=		munin-node.conf.5
 MAN8=		munin-node-configure.8 munin-node.8 munin-run.8
 
-SUB_FILES=	pkg-message munin-node.sh munin-node-revive.sh
+SUB_FILES=	pkg-message munin-node.sh
 SUB_LIST=	RC_SUBR=${RC_SUBR}
 USE_RC_SUBR=	YES
 
