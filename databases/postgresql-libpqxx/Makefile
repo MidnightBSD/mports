@@ -3,13 +3,13 @@
 # Whom:			Palle Girgensohn <girgen@pingpong.net>
 #
 # $FreeBSD: ports/databases/postgresql-libpqxx/Makefile,v 1.22 2006/08/09 10:36:43 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql-libpqxx/Makefile,v 1.2 2007/04/13 21:55:34 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql-libpqxx/Makefile,v 1.3 2008/05/10 17:14:56 crash Exp $
 #
 
 PORTNAME=	libpqxx
-PORTVERSION=	2.6.9
+PORTVERSION=	2.6.7
 CATEGORIES=	databases
-MASTER_SITES=	ftp://thaiopensource.org/%SUBDIR%/
+MASTER_SITES=	http://pqxx.org/download/%SUBDIR%/
 MASTER_SITE_SUBDIR=	software/libpqxx
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	postgresql
