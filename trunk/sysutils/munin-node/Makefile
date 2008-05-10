@@ -2,7 +2,7 @@
 # Date created:				25 Januar 2004
 # Whom:					Lupe Christoph <lupe@lupe-christoph.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.1 2008/05/10 02:54:07 laffer1 Exp $
 #
 
 PORTNAME=	munin
@@ -15,6 +15,8 @@ DISTNAME=	${PORTNAME}_${PORTVERSION:S/.r/rc/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Node-specific part of Munin
+LICENSE=	agg
+#gpl2 and others
 
 USE_PERL5=	yes
 
