@@ -3,11 +3,11 @@
 # Whom:			Palle Girgensohn <girgen@pingpong.net>
 #
 # $FreeBSD: ports/databases/postgresql-libpqxx/Makefile,v 1.22 2006/08/09 10:36:43 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql-libpqxx/Makefile,v 1.1 2007/01/20 15:50:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql-libpqxx/Makefile,v 1.2 2007/04/13 21:55:34 laffer1 Exp $
 #
 
 PORTNAME=	libpqxx
-PORTVERSION=	2.6.7
+PORTVERSION=	2.6.9
 CATEGORIES=	databases
 MASTER_SITES=	ftp://thaiopensource.org/%SUBDIR%/
 MASTER_SITE_SUBDIR=	software/libpqxx
@@ -16,7 +16,7 @@ DIST_SUBDIR=	postgresql
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A new C++ interface for PostgreSQL
-
+LICENSE=        gpl2
 USE_PGSQL=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
