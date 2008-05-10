@@ -2,7 +2,7 @@
 # Date created:		2 November 1996
 # Whom:			fenner
 #
-# $MidnightBSD: mports/mbone/vat/Makefile,v 1.1 2007/04/05 00:41:04 laffer1 Exp $
+# $MidnightBSD: mports/mbone/vat/Makefile,v 1.2 2008/03/22 04:50:42 ctriv Exp $
 # $FreeBSD: ports/mbone/vat/Makefile,v 1.26 2006/12/04 03:12:19 fenner Exp $
 #
 
@@ -15,6 +15,7 @@ DISTFILES=	vatsrc-4.0b2.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Visual Audio Tool - multicast audioconferencing
+LICENSE=	bsd4
 
 GSM_DIR=	${PORTSDIR}/audio/gsm
 GSM_WORK=	${WRKDIRPREFIX}${GSM_DIR}/work/gsm-1.0-pl12
@@ -34,6 +35,10 @@ MAN1=		vat.1
 PLIST_FILES=	bin/vat
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == "sparc64"
+BROKEN=	Does not build on sparc64
+.endif
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/vat
