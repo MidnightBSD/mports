@@ -2,12 +2,13 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.6 2008/01/21 21:18:02 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.7 2008/04/04 04:42:10 ctriv Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.12
+PORTREVISION=	1
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
@@ -20,6 +21,7 @@ USE_GNOME=	glib20
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-module
+WANT_PERL=	yes
 
 MAN1=		irssi.1
 
@@ -41,9 +43,8 @@ USE_OPENSSL=	yes
 
 # Process options.
 
-.if defined(WITH_PERL)
+.if !defined(WITHOUT_PERL)
 USE_PERL5=	yes
-WANT_PERL=	yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=	WITH_PERL=""
 .else
@@ -62,7 +63,7 @@ PLIST_SUB+=	WITH_PROXY="@comment "
 CONFIGURE_ARGS+=	--with-socks
 .endif
 
-.if defined(WITH_IPV6)
+.if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--enable-ipv6
 CATEGORIES+=	ipv6
 .endif
