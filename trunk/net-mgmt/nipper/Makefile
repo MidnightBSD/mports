@@ -2,19 +2,19 @@
 # Date created:		3 May 2007
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/nipper/Makefile,v 1.1 2008/02/28 14:25:11 laffer1 Exp $
 # $FreeBSD: ports/net-mgmt/nipper/Makefile,v 1.16 2008/02/27 20:37:48 sat Exp $
 #
 
 PORTNAME=	nipper
-PORTVERSION=	0.11.4
+PORTVERSION=	0.11.7
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Netdev config analyzer
-
+LICENSE=        gpl3
 PLIST_FILES=	bin/${PORTNAME} etc/nipper.conf.sample
 PORTDOCS=	Changelog Readme TODO Features.txt Options.txt Quickstart.txt \
 		XML.txt
