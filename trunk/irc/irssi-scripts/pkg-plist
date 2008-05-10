@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $FreeBSD: ports/irc/irssi-scripts/pkg-plist,v 1.3 2007/05/01 10:28:55 clsung Exp $
 share/irssi/scripts/8-ball.pl
 share/irssi/scripts/UNIBG-autoident.pl
 share/irssi/scripts/accent.pl
@@ -339,5 +339,5 @@ share/irssi/scripts/xmms.pl
 share/irssi/scripts/xmms2.pl
 share/irssi/scripts/xmmsinfo.pl
 share/irssi/scripts/xqf.pl
-@dirrm share/irssi/scripts
-@dirrm share/irssi
+@dirrmtry share/irssi/scripts
+@dirrmtry share/irssi
