@@ -2,13 +2,15 @@
 # Date created:        January 21, 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/bnc/Makefile,v 1.1 2008/01/21 21:09:02 laffer1 Exp $
 #
 
 PORTNAME=	bnc
 PORTVERSION=	2.9.4
 CATEGORIES=	irc
-MASTER_SITES=	http://www.gotbnc.com/files/
+MASTER_SITES=	http://www.gotbnc.com/files/ \
+		http://bnc.acmeshells.com/ \
+		http://www.sourcefiles.org/System/Servers/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
