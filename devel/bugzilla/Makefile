@@ -2,24 +2,24 @@
 # Date created:				28 September 2001
 # Whom:					Alexey Zelkin <phantom@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.2 2007/04/30 02:23:26 ctriv Exp $
+# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.3 2008/05/07 21:34:35 crash Exp $
 # $FreeBSD: ports/devel/bugzilla/Makefile,v 1.47 2006/11/15 14:47:20 skv Exp $
 #
 
 PORTNAME=	bugzilla
-PORTVERSION=	2.22.1
+PORTVERSION=	2.22.3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bug-tracking system developed by Mozilla Project
-LICENSE=        mpl
+LICENSE=	mpl
+
 OPTIONS=	MYSQL "MySQL database support" on \
 		PGSQL "PostgreSQL database support" off \
 		CHARTING_MODULES "Bug charting support" on \
 		GRAPHVIZ "Use GraphViz" off \
-		EMAIL_GATEWAY "Use email gateway" off \
 		EXPORT_IMPORT "Import/export bugs (via XML)" off \
 		CONTRIB	"Install user-contributed scripts" off \
 		LDAP "Enable LDAP support" off
@@ -32,9 +32,9 @@ RUN_DEPENDS+=	\
 		${SITE_PERL}/Text/Wrap.pm:${PORTSDIR}/textproc/p5-Text-Tabs+Wrap \
 		${SITE_PERL}/${PERL_ARCH}/Data/Dumper.pm:${PORTSDIR}/devel/p5-Data-Dumper \
 		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
+		${SITE_PERL}/MIME/Parser.pm:${PORTSDIR}/mail/p5-MIME-Tools \
+		${SITE_PERL}/Mail/Mailer.pm:${PORTSDIR}/mail/p5-Mail-Tools \
 		${SITE_PERL}/PatchReader.pm:${PORTSDIR}/devel/p5-PatchReader
-
-CONFLICTS?=	ja-bugzilla-2.*
 
 USE_PERL5=	yes
 
@@ -78,10 +78,6 @@ RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD \
 
 .ifdef WITH_GRAPHVIZ
 RUN_DEPENDS+=	dot:${PORTSDIR}/graphics/graphviz
-.endif
-
-.ifdef WITH_EMAIL_GATEWAY
-RUN_DEPENDS+=	${SITE_PERL}/MIME/Parser.pm:${PORTSDIR}/mail/p5-MIME-Tools
 .endif
 
 .ifdef WITH_EXPORT_IMPORT
