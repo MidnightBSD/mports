@@ -2,12 +2,13 @@
 # Date created:		12 December 1998
 # Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
 #
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.4 2008/05/04 19:40:36 smultron Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.5 2008/05/11 16:02:20 laffer1 Exp $
 # $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
 #
 
 PORTNAME=	curl
 PORTVERSION=	7.18.0
+PORTREVISION=	1
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		${MASTER_SITE_SOURCEFORGE} \
@@ -18,6 +19,7 @@ MASTER_SITE_SUBDIR=	curl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
+LICENSE=	mit
 
 MAN1=		curl.1 curl-config.1
 MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
