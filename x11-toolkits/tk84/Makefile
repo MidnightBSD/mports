@@ -3,19 +3,20 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/x11-toolkits/tk84/Makefile,v 1.93 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.1 2007/01/26 00:23:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.2 2007/04/28 18:16:33 ctriv Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.4.14
 PORTEPOCH=	2
-CATEGORIES=	x11-toolkits tk84
+CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL
+LICENSE=	other
 
 LIB_DEPENDS=	tcl84:${PORTSDIR}/${TCL84_PORT}
 
