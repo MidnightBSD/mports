@@ -3,12 +3,12 @@
 # Whom:			Neil Blakey-Milner
 #
 # $FreeBSD: ports/mail/courier-imap/Makefile,v 1.115 2007/01/02 05:47:47 oliver Exp $
-# $MidnightBSD: mports/mail/courier-imap/Makefile,v 1.2 2007/05/09 05:42:13 ctriv Exp $
+# $MidnightBSD: mports/mail/courier-imap/Makefile,v 1.3 2007/11/07 06:16:14 ctriv Exp $
 #
 
 PORTNAME=	courier-imap
-PORTVERSION=	4.1.2
-PORTREVISION=	1
+PORTVERSION=	4.3.1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -25,7 +25,8 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_RC_SUBR=	yes
+USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
+		courier-imap-pop3d courier-imap-pop3d-ssl
 
 CPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
@@ -44,8 +45,7 @@ SUB_LIST+=	CONFDIR=${CONFDIR}
 # WITH_SYSLOG_FACILITY:         The syslogfacility to use
 #
 
-OPTIONS=	OPENSSL		"Build with OpenSSL support"			on \
-		FAM		"Build in fam support for IDLE command"		off \
+OPTIONS=	FAM		"Build in fam support for IDLE command"		off \
 		DRAC		"Build in DRAC support"				off \
 		TRASHQUOTA	"Include deleted mails in the quota"		off \
 		GDBM		"Use gdbm db instead of system bdb"		off \
@@ -59,12 +59,13 @@ CONFDIR?=	${PREFIX}/etc/${PORTNAME}
 RCDIR?=		${PREFIX}/etc/rc.d
 USERDB?=	${PREFIX}/etc/userdb
 LIBEXECDIR?=	${PREFIX}/libexec/${PORTNAME}
+USE_OPENSSL=	yes
 
 PLIST_SUB=	CONFDIR=${CONFDIR:S,^${PREFIX}/,,} \
 		RCDIR=${RCDIR:S,^${PREFIX}/,,} \
 		LIBEXECDIR=${LIBEXECDIR:S,^${PREFIX}/,,}
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--sysconfdir=${CONFDIR} \
 		--datadir=${DATADIR} \
 		--libexecdir=${LIBEXECDIR} \
@@ -85,16 +86,6 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/libdrac.a:${PORTSDIR}/mail/drac
 
 .if exists(${.CURDIR}/../../security/courier-authlib/Makefile.dep)
 .include "${.CURDIR}/../../security/courier-authlib/Makefile.dep"
-.endif
-
-.if !defined(WITHOUT_SSL)
-# we can't use USE_OPENSSL=yes after including bsd.port.pre.mk
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
-PLIST_SUB+=	OPENSSLFLAG=
-CONFIGURE_ARGS+=--enable-ssl
-.else
-PLIST_SUB+=	OPENSSLFLAG="@comment "
-BROKEN=		"Incomplete pkg-plist"
 .endif
 
 .if defined(WITH_SYSLOG_FACILITY)
@@ -149,19 +140,13 @@ post-patch:
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|@LIBS@|@LIBS@ -rpath=:${LOCALBASE}/lib/courier-authlib|' \
 		${WRKSRC}/imap/Makefile.in
-
-pre-fake:
-.for i in imapd imapd-ssl pop3d pop3d-ssl
-	${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/courier-imap-${i}.sh > ${WRKDIR}/courier-imap-${i}.sh
-.endfor
+	@${REINPLACE_CMD} -e 's|TLS_PROTOCOL=SSL3|TLS_PROTOCOL=SSL23|g' \
+		${WRKSRC}/imap/pop3d-ssl.dist.in \
+		${WRKSRC}/imap/imapd-ssl.dist.in
 
 post-install:
 .for i in imapd pop3d
 	${INSTALL_DATA} ${WRKSRC}/imap/${i}.cnf ${CONFDIR}/${i}.cnf.dist
-.endfor
-.for i in imapd imapd-ssl pop3d pop3d-ssl
-	${INSTALL_SCRIPT} ${WRKDIR}/courier-imap-${i}.sh ${RCDIR}/courier-imap-${i}.sh
 .endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
