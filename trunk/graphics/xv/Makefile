@@ -3,14 +3,14 @@
 # Whom:			smace
 #
 # $FreeBSD: ports/graphics/xv/Makefile,v 1.67 2006/09/05 06:06:53 dinoex Exp $
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.1 2007/02/19 22:23:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.2 2007/10/31 04:16:32 laffer1 Exp $
 #
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES+=	graphics
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	../distfiles/xv
 # Workaround: pdf.patch, mp-tiff-patch, and xv-png-1.2d.patch must be fetched
 #		from MASTER_SITE_LOCAL.
@@ -30,12 +30,14 @@ PATCHFILES=	${DISTNAME}.JPEG-patch ${DISTNAME}.TIFF-patch \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	An X11 program that displays images of various formats
+LICENSE=	restricted
+# non commericial use only
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		png.5:${PORTSDIR}/graphics/png
 
-USE_XLIB=	yes
+USE_XORG=	xext x11 xt
 USE_IMAKE=	yes
 USE_PERL5_BUILD=yes
 .if !defined(NOMAN)
