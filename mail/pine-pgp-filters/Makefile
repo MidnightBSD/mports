@@ -2,16 +2,16 @@
 # Date created:				22 January 2003
 # Whom:					dougb
 #
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.5 2008/04/04 01:49:00 laffer1 Exp $
+# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.6 2008/04/04 01:49:49 laffer1 Exp $
 # $FreeBSD: ports/mail/pine-pgp-filters/Makefile,v 1.13 2007/12/26 22:18:26 dougb Exp $
 #
 
 PORTNAME=	pine-pgp-filters
 PORTVERSION=	1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail security
 MASTER_SITES=	http://dougbarton.us/PGP/scripts/ppf/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dougb
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -35,6 +35,7 @@ verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
 do-configure:
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/libexec
 	@(cd ${WRKSRC} && ./configure --prefix=${FAKE_DESTDIR}${PREFIX}) 
 
 post-install:
