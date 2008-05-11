@@ -2,7 +2,7 @@
 # Date created:		August 13, 1997
 # Whom:			handy@physics.montana.edu
 #
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.7 2007/08/05 05:49:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.8 2008/03/05 04:43:26 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/windowmaker/Makefile,v 1.133 2006/05/21 20:11:57 dougb Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	WindowMaker-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep-compliant NeXTstep window manager clone
+LICENSE=	gpl2
 
 LIB_DEPENDS=	ungif.5:${PORTSDIR}/graphics/libungif \
 		png.5:${PORTSDIR}/graphics/png \
