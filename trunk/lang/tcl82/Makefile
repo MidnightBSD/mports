@@ -2,14 +2,14 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/lang/tcl82/Makefile,v 1.3 2007/10/31 20:58:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl82/Makefile,v 1.4 2007/12/05 23:11:20 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl82/Makefile,v 1.57 2007/03/13 10:01:24 miwi Exp $
 #
 
 PORTNAME=	tcl
 PORTVERSION=	8.2.3
 PORTREVISION=	1
-CATEGORIES=	lang tcl82
+CATEGORIES=	lang tcl
 MASTER_SITES=	${MASTER_SITE_TCLTK}
 MASTER_SITE_SUBDIR=	tcl8_2
 DISTNAME=	${PORTNAME}${PORTVERSION}
