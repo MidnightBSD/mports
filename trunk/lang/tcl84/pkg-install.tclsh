@@ -13,10 +13,11 @@ then
 # Installed by ports system.  id: awieYJFnsuILOnfsYEW**002
 #
 # $FreeBSD: ports/lang/tcl84/pkg-install.tclsh,v 1.5 2000/05/31 18:31:17 hoek Exp $
+# $MidnightBSD$
 #
  
 (
-echo "In FreeBSD, tclsh is named with a version number.  This is because"
+echo "In MidnightBSD, tclsh is named with a version number.  This is because"
 echo "different versions of tclsh are not compatible with each other and"
 echo "they can not all be called \"tclsh\"!  You may need multiple versions"
 echo "installed because a given port may depend on a specific version."
