@@ -2,21 +2,21 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/x11-toolkits/tk82/Makefile,v 1.2 2007/11/06 04:43:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk82/Makefile,v 1.3 2007/11/06 23:59:44 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/tk82/Makefile,v 1.58 2007/03/13 10:31:53 miwi Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.2.3
 PORTREVISION=	9
-CATEGORIES=	x11-toolkits tk82
+CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_TCLTK}
 MASTER_SITE_SUBDIR=	tcl8_2
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical toolkit for TCL
-LICENSE=	unknown
+LICENSE=	other
 
 USE_TCL=	82
 USE_TCL_BUILD=	82
