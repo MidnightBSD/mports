@@ -2,13 +2,13 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.4 2008/05/04 07:05:01 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.5 2008/05/04 07:06:49 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl85/Makefile,v 1.16 2008/04/23 06:39:27 mm Exp $
 #
 
 PORTNAME=	tcl
 PORTVERSION=	8.5.2
-CATEGORIES=	lang
+CATEGORIES=	lang tcl
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
