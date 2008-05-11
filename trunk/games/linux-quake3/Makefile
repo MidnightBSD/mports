@@ -2,12 +2,13 @@
 # Date created:				Sun Jun  3 00:52:38 EDT 2001
 # Whom:					pat@databits.net
 #
-# $MidnightBSD: mports/games/linux-quake3/Makefile,v 1.1 2008/05/01 07:33:17 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-quake3/Makefile,v 1.2 2008/05/02 20:41:39 laffer1 Exp $
 # $FreeBSD: ports/games/linux-quake3/Makefile,v 1.23 2007/03/05 09:33:03 alepulver Exp $
 #
 
 PORTNAME=	quake3
 PORTVERSION=	1.32c
+PORTREVISION=	1
 CATEGORIES=	games linux
 MASTER_SITES=	${MASTER_SITE_IDSOFTWARE:S|$|quake3/linux/:data|} \
 		${MASTER_SITE_IDSOFTWARE:S|$|quake3/:patch|}
@@ -98,6 +99,7 @@ do-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/${f:R} ${PREFIX}/bin/linux-${f:R}
 .endfor
 .if !defined(WITHOUT_PUNKBUSTER)
+	${MKDIR} ${DATADIR}/pb
 	@${CP} -Rp ${WRKSRC}/pb ${DATADIR}
 .endif
 .if !defined(NOPORTDOCS)
