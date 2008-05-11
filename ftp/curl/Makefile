@@ -2,7 +2,7 @@
 # Date created:		12 December 1998
 # Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
 #
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.3 2007/08/13 22:03:20 laffer1 Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.4 2008/05/04 19:40:36 smultron Exp $
 # $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
 #
 
@@ -22,7 +22,8 @@ COMMENT=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
 MAN1=		curl.1 curl-config.1
 MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
 		curl_easy_escape.3 curl_easy_getinfo.3 \
-		curl_easy_init.3 curl_easy_perform.3 curl_easy_reset.3 \
+		curl_easy_init.3 curl_easy_pause.3 \
+		curl_easy_perform.3 curl_easy_reset.3 \
 		curl_easy_setopt.3 curl_easy_strerror.3 curl_easy_unescape.3 \
 		curl_escape.3 \
 		curl_unescape.3 curl_formadd.3 curl_formget.3 curl_formfree.3 curl_free.3 \
@@ -44,7 +45,7 @@ SHLIB_VER=	4
 
 MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
-
+USE_PERL5_BUILD=	yes
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
@@ -55,6 +56,8 @@ OPTIONS=	CARES "Asynchronous DNS resolution via c-ares" off \
 		GNUTLS "Use GNU TLS if OPENSSL is OFF" off \
 		IPV6 "IPv6 support" on \
 		KERBEROS4 "Kerberos 4 authentication" off \
+		LDAP "LDAP support" off \
+		LDAPS "LDAPS support (requires LDAP and SSL)" off \
 		LIBIDN "Internationalized Domain Names via libidn" off \
 		LIBSSH2 "SCP/SFTP support via libssh2" off \
 		NTLM "NTLM authentication" off \
@@ -76,6 +79,16 @@ IGNORE=		only supports NTLM with OpenSSL
 
 .if defined(WITH_CARES) && defined(WITH_IPV6)
 IGNORE=		does not support both c-ares and IPv6 - disable one of them
+.endif
+
+.if defined(WITH_LDAPS)
+.if !defined(WITH_LDAP)
+IGNORE=		only supports LDAPS with LDAP
+.else
+.if !defined(WITH_OPENSSL) && !defined(WITH_GNUTLS)
+IGNORE=		only supports LDAPS with SSL (OpenSSL or GNUTLS)
+.endif
+.endif
 .endif
 
 .if !defined(WITHOUT_OPENSSL)
@@ -117,6 +130,21 @@ CONFIGURE_ARGS += --with-krb4=/usr
 CONFIGURE_ARGS += --without-krb4
 .endif
 
+.if defined(WITH_LDAP)
+CONFIGURE_ARGS+=	--enable-ldap
+USE_OPENLDAP=	yes
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+ADDFLAGS=	true
+.if defined(WITH_LDAPS)
+CONFIGURE_ARGS+=	--enable-ldaps
+.else
+CONFIGURE_ARGS+=	--disable-ldaps
+.endif
+.else
+CONFIGURE_ARGS+=	--disable-ldap --disable-ldaps
+.endif
+
 .if defined(WITH_LIBIDN)
 LIB_DEPENDS+=	idn.16:${PORTSDIR}/dns/libidn
 CONFIGURE_ARGS+=	--with-libidn=${LOCALBASE}
@@ -125,7 +153,7 @@ CONFIGURE_ARGS+=	--without-libidn
 .endif
 
 .if defined(WITH_LIBSSH2)
-LIB_DEPENDS+=	ssh2.0:${PORTSDIR}/security/libssh2
+LIB_DEPENDS+=	ssh2.1:${PORTSDIR}/security/libssh2
 CONFIGURE_ARGS+=	--with-libssh2=${LOCALBASE}
 .else
 CONFIGURE_ARGS+=	--without-libssh2
@@ -139,6 +167,10 @@ CONFIGURE_ARGS+=	--enable-debug
 CONFIGURE_ARGS+=	--enable-ntlm
 .else
 CONFIGURE_ARGS+=	--disable-ntlm
+.endif
+
+.if defined(ADDFLAGS)
+CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 .endif
 
 post-patch:
