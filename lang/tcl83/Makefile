@@ -3,13 +3,13 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl83/Makefile,v 1.70 2006/08/15 00:29:09 clsung Exp $
-# $MidnightBSD: mports/lang/tcl83/Makefile,v 1.2 2007/04/27 02:38:53 ctriv Exp $
+# $MidnightBSD: mports/lang/tcl83/Makefile,v 1.3 2007/12/05 23:11:02 laffer1 Exp $
 #
 
 PORTNAME=	tcl
 PORTVERSION=	8.3.5
 PORTREVISION=	5
-CATEGORIES=	lang tcl83
+CATEGORIES=	lang tcl
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
