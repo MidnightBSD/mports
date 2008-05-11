@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.99 2008/04/30 21:04:58 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.100 2008/05/04 17:54:04 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2665,14 +2665,14 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	ipv6 irc japanese java kde korean lang linux lisp \
 	mail math mbone misc multimedia net net-im net-mgmt net-p2p news \
-	palm parallel pear perl5 picobsd plan9 polish portuguese ports-mgmt print \
+	palm parallel perl5 picobsd plan9 polish portuguese ports-mgmt print \
 	python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
-	tcl80 tcl81 tcl82 tcl83 tcl84 textproc \
-	tk80 tk82 tk83 tk84 tkstep80 \
+	tcl80 tcl81 tcl82 tcl83 tcl84 tcl textproc \
+	tk80 tk82 tk83 tk84 tk tkstep80 \
 	ukrainian vietnamese windowmaker www \
 	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
-	x11-toolkits x11-wm xfce zope
+	x11-toolkits x11-wm xfce
 
 check-categories:
 .for cat in ${CATEGORIES}
@@ -5418,7 +5418,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.99 2008/04/30 21:04:58 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.100 2008/05/04 17:54:04 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
