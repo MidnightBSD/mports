@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.75 2008/04/29 15:23:52 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.76 2008/04/29 15:46:46 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -35,6 +35,7 @@
     SUBDIR += libksba
     SUBDIR += libmcrypt
     SUBDIR += libntlm
+    SUBDIR += libssh2
     SUBDIR += libtasn1
     SUBDIR += linux-openssl
     SUBDIR += linux-pam-docs
