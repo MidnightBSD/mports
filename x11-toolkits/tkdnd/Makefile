@@ -2,15 +2,16 @@
 # Date created:		14 October 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tkdnd/Makefile,v 1.1 2007/04/04 22:28:31 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tkdnd/Makefile,v 1.2 2006/12/03 02:55:48 sat Exp $
 #
 
 PORTNAME=	tkdnd
 PORTVERSION=	1.0
+PORTREVISION=	1
 DISTVERSION=	1.0.20040304
-CATEGORIES=	x11-toolkits tk84
-MASTER_SITES=	CSME
+CATEGORIES=	x11-toolkits tk
+MASTER_SITES=	CENKES
 # Distfile prepared from SourceForge CVS
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,10 +20,11 @@ COMMENT=	Native drag and drop capabilities
 LIB_DEPENDS=	tk${USE_TK}.1:${PORTSDIR}/x11-toolkits/tk${USE_TK}
 
 USE_BZIP2=	yes
+USE_XORG=	x11 xext
 USE_TK=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-tcl=${TCL_LIBDIR} --with-tk=${TK_LIBDIR} \
-		--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include \
+		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--with-tclinclude=${TCL_INCLUDEDIR} --with-tkinclude=${TK_INCLUDEDIR} --enable-shared
 CPPFLAGS=	-I${TK_INCLUDEDIR}/generic -I${TCL_INCLUDEDIR}/generic
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}"
