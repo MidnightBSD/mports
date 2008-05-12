@@ -2,7 +2,7 @@
 # Date created:				5 Nov 1997
 # Whom:					Ian Vaudrey <i.vaudrey@bigfoot.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/texi2html/Makefile,v 1.1 2006/09/25 16:11:04 laffer1 Exp $
 # $FreeBSD: ports/textproc/texi2html/Makefile,v 1.22 2005/02/14 22:05:53 roam Exp $
 #
 
@@ -16,7 +16,7 @@ MASTER_SITE_SUBDIR=	hrs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Texinfo to HTML converter
-
+LICENSE=        gpl2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL=${PERL}
 CONFIGURE_ARGS=	--disable-multiplatform
