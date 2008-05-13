@@ -3,11 +3,11 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/lang/gawk/Makefile,v 1.19 2004/07/11 10:30:37 krion Exp $
-# $MidnightBSD: mports/lang/gawk/Makefile,v 1.1 2007/01/07 03:30:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/gawk/Makefile,v 1.2 2007/05/24 17:08:40 ctriv Exp $
 
 PORTNAME=	gawk
-PORTVERSION=	3.1.1
-PORTREVISION=	1
+PORTVERSION=	3.1.5
+PORTREVISION=	0
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gawk
@@ -24,7 +24,8 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nowchar
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE} \
 		--with-libintl-prefix=${LOCALBASE}
-MAN1=		gawk.1 igawk.1
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+MAN1=		gawk.1 igawk.1 pgawk.1
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
