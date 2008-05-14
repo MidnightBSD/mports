@@ -3,11 +3,11 @@
 # Whom:					krion
 #
 # $FreeBSD: ports/x11/xterm/Makefile,v 1.50 2007/09/05 12:11:37 krion Exp $
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.7 2007/10/08 16:14:51 ctriv Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.8 2008/04/12 00:02:51 laffer1 Exp $
 #
 
 PORTNAME=	xterm
-PORTVERSION=	234
+PORTVERSION=	235
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
