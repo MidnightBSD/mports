@@ -2,12 +2,12 @@
 # Date created:				2002/09/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.3 2008/02/27 20:49:34 laffer1 Exp $
 # $FreeBSD: ports/net/liveMedia/Makefile,v 1.264 2008/01/04 14:54:13 nork Exp $
 #
 
 PORTNAME=	liveMedia
-PORTVERSION=	2008.01.04
+PORTVERSION=	2008.05.12
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	net devel
