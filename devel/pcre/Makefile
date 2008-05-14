@@ -2,12 +2,12 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.6 2008/02/21 19:37:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.7 2008/03/15 23:09:43 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 #
 
 PORTNAME=	pcre
-PORTVERSION=	7.6
+PORTVERSION=	7.7
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
