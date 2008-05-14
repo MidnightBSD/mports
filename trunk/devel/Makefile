@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.213 2008/05/11 23:10:34 crash Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.214 2008/05/12 15:34:24 crash Exp $
 #
 
     COMMENT = Development utilities
@@ -82,6 +82,7 @@
     SUBDIR += icu
     SUBDIR += imake
     SUBDIR += imake-6
+    SUBDIR += judy
     SUBDIR += kdesdk3
     SUBDIR += kdevelop
     SUBDIR += libIDL
