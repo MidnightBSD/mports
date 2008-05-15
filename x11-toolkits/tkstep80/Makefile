@@ -2,13 +2,13 @@
 # Date created:		06 November 1997
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tkstep80/Makefile,v 1.1 2007/04/04 23:26:36 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tkstep80/Makefile,v 1.42 2006/08/15 01:13:40 clsung Exp $
 #
 
 PORTNAME=	tkstep
 PORTVERSION=	8.0.4
-CATEGORIES=	x11-toolkits tk80
+CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_TCLTK}
 MASTER_SITE_SUBDIR=	tcl8_0
 DISTNAME=	tk${PORTVERSION}
