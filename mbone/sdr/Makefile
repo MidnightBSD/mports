@@ -2,13 +2,13 @@
 # Date created:				5 September 1996
 # Whom:	      Bill Fenner <fenner@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mbone/sdr/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
 # $FreeBSD: ports/mbone/sdr/Makefile,v 1.24 2004/02/07 16:13:27 fenner Exp $
 #
 
 PORTNAME=	sdr
 PORTVERSION=	3.0
-CATEGORIES=	mbone tk84
+CATEGORIES=	mbone tk
 MASTER_SITES=	http://www-mice.cs.ucl.ac.uk/multimedia/software/sdr/3.0/
 
 MAINTAINER=	ports@MidnightBSD.org
