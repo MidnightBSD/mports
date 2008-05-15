@@ -2,13 +2,13 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.1 2007/02/25 16:32:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.2 2007/04/29 02:05:46 ctriv Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.71 2007/02/01 02:41:39 kris Exp $
 #
 
 PORTNAME=	graphviz
 PORTVERSION=	2.8
-CATEGORIES=	graphics tk84
+CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/ \
 		http://mirror.inerd.com/FreeBSD/distfiles/${PORTNAME}/
 
