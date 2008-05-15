@@ -2,13 +2,13 @@
 # Date created:			2006-03-17
 # Whom:				Alexander Zhuravlev <zaa@zaa.pp.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/pecl-json/Makefile,v 1.1 2007/10/09 18:57:00 laffer1 Exp $
 # $FreeBSD: ports/devel/pecl-json/Makefile,v 1.2 2006/03/27 21:27:51 thierry Exp $
 #
 
 PORTNAME=	json
 PORTVERSION=	1.2.1
-CATEGORIES=	devel pear www
+CATEGORIES=	devel www
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
 DISTNAME=	json-${PORTVERSION}
