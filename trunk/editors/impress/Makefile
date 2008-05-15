@@ -2,14 +2,14 @@
 # Date created:			  23 Aug 2001
 # Whom:				  Kris Kennaway <kris@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/impress/Makefile,v 1.1 2007/04/28 02:10:17 laffer1 Exp $
 # $FreeBSD: ports/editors/impress/Makefile,v 1.9 2007/04/02 22:56:10 pav Exp $
 #
 
 PORTNAME=	impress
 PORTVERSION=	1.1b9
 PORTREVISION=	1
-CATEGORIES=	editors tk84
+CATEGORIES=	editors tk
 MASTER_SITES=	TUCOWS http://fresh.t-systems-sfr.com/unix/src/privat2/ \
 		ftp://ftp.plig.net/pub/OpenBSD/distfiles/ \
 		ftp://ftp.openoffice.pl/bsd/FreeBSD/ports/distfiles/
