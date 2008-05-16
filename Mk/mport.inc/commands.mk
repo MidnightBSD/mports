@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/bsd.commands.mk,v 1.1 2007/11/14 18:49:04 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.commands.mk,v 1.2 2008/01/05 22:22:50 ctriv Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
