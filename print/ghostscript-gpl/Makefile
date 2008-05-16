@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-gpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.3 2007/08/07 20:56:43 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.4 2007/08/17 01:12:22 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -21,6 +21,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S/$/:gs_srcs,bjc250/} \
 		http://www.ucatv.ne.jp/~taeko/software/gs/:lips \
 		http://www.humblesoft.com/pub/:epag \
 		${MASTER_SITE_FREEBSD_LOCAL}:eplaser \
+		http://www.openprinting.org/download/printing/ghostscript-8.x/drivers/hl1250/:hl1250 \
 		http://www.linuxprinting.org/download/printing/samsung-gdi/:gdi \
 		http://www.linuxprinting.org/download/printing/:lxm3200 \
 		http://homepage.powerup.com.au/~pbwest/lexmark/:lx5000 \
@@ -47,25 +48,27 @@ DISTFILES=	${GS_SRCS}:gs_srcs \
 		${GDI_SRCS}:gdi \
 		${LXM3200_SRCS}:lxm3200 \
 		${LX5000_SRCS}:lx5000 \
-		${LEX7000_SRCS}:lx5000
+		${LEX7000_SRCS}:lx5000 \
+		${HL1250_SRCS}:hl1250
 DIST_SUBDIR=	ghostscript
 EXTRACT_ONLY=	${GS_SRCS}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GPL Postscript interpreter
-
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png
 RUN_DEPENDS=	${LOCALBASE}/share/ghostscript/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
 
-# normazile WRKSRC so things like cups-pstoraster may work
-WRKSRC=		${WRKDIR}/${PORTNAME}
+FAKE_OPTS=	trueprefix
 
 CONFLICTS=	ghostscript-afpl*
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
+			--host=${ARCH}-portbld-freebsd6.0 \
+			--target=${ARCH}-portbld-freebsd6.0
 MAKE_ENV=	CC="${CC}" CXX="${CXX}" CFLAGS_STANDARD="${CFLAGS}" \
 		XCFLAGS="${XCFLAGS}"
 PLIST_SUB=	GS_VERSION="${GS_VERSION}" \
@@ -86,7 +89,7 @@ MLINKS=		gslp.1 gsbj.1 \
 		ps2pdf.1 ps2pdf13.1 \
 		ps2ps.1 eps2eps.1
 
-XCFLAGS=	-DUPD_SIGNAL=0 -DSTDINT_TYPES_DEFINED=1
+XCFLAGS=	-DUPD_SIGNAL=0 -DHAVE_HYPOT=1 -DSYS_TYPES_HAS_STDINT_TYPES=1
 
 .if defined(A4)
 XCFLAGS+=	-DA4
@@ -95,7 +98,7 @@ XCFLAGS+=	-DA4
 .if defined(WITHOUT_X11)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-nox11
 .else
-USE_XLIB=	yes
+USE_ORG=	xt xext
 .endif
 
 .if defined(WITH_SVGALIB)
@@ -109,13 +112,12 @@ MAKE_ENV+=	FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".a"
 
 .if defined(WITH_SHLIB)
 .undef WITHOUT_X11
-USE_GNOME=	gtk12
-MAKE_ENV+=	GS_SHLIB_VER="${SHLIB_VER}"
+USE_GNOME=	gtk20
 ALL_TARGET=	so pcl3opts
 INSTALL_TARGET=	soinstall
 USE_LDCONFIG=	yes
-SHLIB_VER=	1
-PLIST_SUB+=	SHLIB="" SHLIB_VER="${SHLIB_VER}"
+PLIST_SUB+=	SHLIB="" SHLIB_VER="${GS_VERSION:R}"
+INCLUDEDIR=	${PREFIX}/include/ghostscript
 .else
 ALL_TARGET=	all pcl3opts
 PLIST_SUB+=	SHLIB="@comment "
@@ -133,6 +135,7 @@ HP8XX_SRCS=	gdevcd8.tar.gz
 
 # PCL3 - additional driver for HP PCL3 printers, by Martin Lottermoser
 # http://home.vrweb.de/martin.lottermoser/pcl3.html
+# broken
 PCL3=		pcl3
 PCL3_VERS=	3.3
 PCL3_NAME=	${PCL3}-${PCL3_VERS}
@@ -231,6 +234,10 @@ LX5000_SRCS=	gdevlx50.c
 LEX7000=	lex7000
 LEX7000_SRCS=	gs6.0.lexmark7000.patch
 
+# HL1250 - additional driver for Brother HL-1050/1070/1250/1270N/1030/1240
+HL1250=		hl1250
+HL1250_SRCS=	gdevhl12.c
+
 # contributed uniprint profiles
 CONTRIB_UPP=	lqx70ch.upp lqx70cl.upp lqx70cm.upp \
 		stc740ih.upp stc740p.upp stc740pl.upp
@@ -248,8 +255,6 @@ pre-everything::
 
 post-extract:
 	${ECHO_MSG} ">>> in post-extract ..."
-# normazile WRKSRC so things like cups-pstoraster may work
-	${LN} -sf ${WRKDIR}/${DISTNAME} ${WRKDIR}/${PORTNAME}
 # ** 3rd party driver **
 # Note: don't forget to add those devices in scripts/configure,
 # which update unix-gcc.mak to build gs with these new devices!
@@ -298,6 +303,7 @@ post-extract:
 # for EPAG driver
 	${ECHO_MSG} ">>>   extracting ${EPAG_SRCS} ..."
 	${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/${DIST_SUBDIR}/${EPAG_SRCS}
+	${LN} -sf ${EPAG_NAME} ${WRKSRC}/${EPAG}
 # for EPLASER driver
 	${ECHO_MSG} ">>>   extracting ${EPLASER_SRCS} ..."
 	${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/${DIST_SUBDIR}/${EPLASER_SRCS}
@@ -322,6 +328,10 @@ post-extract:
 	${CAT} ${DISTDIR}/${DIST_SUBDIR}/${LEX7000_SRCS} | \
 		${PATCH} -d ${WRKSRC}/${LEX7000} -f -s -N -E -p1 \
 		2>/dev/null || ${TRUE}
+# for HL1250 driver
+	${ECHO_MSG} ">>>   extracting ${HL1250_SRCS} ..."
+	${MKDIR} ${WRKSRC}/${HL1250}
+	${CP} ${DISTDIR}/${DIST_SUBDIR}/${HL1250_SRCS} ${WRKSRC}/src
 
 post-patch:
 	${REINPLACE_CMD} -e 's|^DEVICE_DEVS|#DEVICE_DEVS|g' \
@@ -341,13 +351,13 @@ pre-configure:
 	${ECHO_MSG} ">>>   adding ${HP8XX} driver to contrib.mak ..."
 	${CAT} ${FILESDIR}/cdj850.contrib.mak \
 		>> ${WRKSRC}/src/contrib.mak
-# for DJ970 driver
-	${ECHO_MSG} ">>>   adding ${DJ970} driver to contrib.mak ..."
-	${CAT} ${FILESDIR}/dj970.contrib.mak \
-		>> ${WRKSRC}/src/contrib.mak
 # for PCL3 driver
 	${ECHO_MSG} ">>>   adding ${PCL3} driver to contrib.mak ..."
 	${CAT} ${WRKSRC}/${PCL3_NAME}/src/contrib.mak-7.00.add \
+		>> ${WRKSRC}/src/contrib.mak
+# for DJ970 driver
+	${ECHO_MSG} ">>>   adding ${DJ970} driver to contrib.mak ..."
+	${CAT} ${FILESDIR}/dj970.contrib.mak \
 		>> ${WRKSRC}/src/contrib.mak
 # for MD2K driver
 	${ECHO_MSG} ">>>   adding ${MD2K} driver to contrib.mak ..."
@@ -407,6 +417,15 @@ pre-configure:
 	${ECHO_MSG} ">>>   adding ${LEX7000} driver to contrib.mak ..."
 	${CAT} ${FILESDIR}/lex7000.contrib.mak \
 		>> ${WRKSRC}/src/contrib.mak
+# for HL1250 driver
+	${ECHO_MSG} ">>>   adding ${HL1250} driver to contrib.mak ..."
+	${CAT} ${FILESDIR}/gdevhl12-hl1250.mak \
+		>> ${WRKSRC}/src/contrib.mak
+ 
+post-configure:
+	${ECHO_MSG} ">>> in post-configure ..."
+	cd ${WRKSRC}/jasper ; \
+		${SETENV} ${MAKE_ENV} ${SH} ./configure --build=${ARCH}-mports-freebsd6.0
 
 pre-build:
 	${ECHO_MSG} ">>> in pre-build ..."
@@ -479,11 +498,16 @@ pre-build:
 		${WRKSRC}/freetype/objs/freetype214MT_D.a
 .endif
 
-pre-su-install:
+pre-install:
 	${ECHO_MSG} ">>> in pre-install ..."
 	${ECHO_MSG} ">>>   creating ghostscript destdir ..."
-	${MKDIR} ${DATADIR}
+	${MKDIR} ${DATADIR}/${GS_VERSION}/examples
+	${MKDIR} ${CIDFONTDIR}
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}
+.if defined(WITH_SHLIB)
+	${MKDIR} ${INCLUDEDIR}
+	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${INCLUDEDIR}
+.endif
 
 post-install:
 	${ECHO_MSG} ">>> in post-install ..."
@@ -492,6 +516,9 @@ post-install:
 .if defined(WITH_SHLIB)
 	${STRIP_CMD} ${PREFIX}/bin/gsc ${PREFIX}/bin/gsx
 	${LN} -sf gsc ${PREFIX}/bin/gs
+.for i in iapi.h ierrors.h
+	${INSTALL_DATA} ${WRKSRC}/src/${i} ${INCLUDEDIR}
+.endfor
 .else
 	${STRIP_CMD} ${PREFIX}/bin/gs
 .endif
