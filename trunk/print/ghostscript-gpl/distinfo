@@ -1,6 +1,6 @@
-MD5 (ghostscript/ghostscript-8.15.tar.bz2) = ab8502f30629b730e0c9ca56b88a6b9d
-SHA256 (ghostscript/ghostscript-8.15.tar.bz2) = 1a4954e223bac832458655b2fea3a0dafa006b18716ac9561c48139d3da15736
-SIZE (ghostscript/ghostscript-8.15.tar.bz2) = 6931694
+MD5 (ghostscript/ghostscript-8.56.tar.bz2) = 498015a278308d147bea563be2c5165e
+SHA256 (ghostscript/ghostscript-8.56.tar.bz2) = 6b61f82e464a6e05bac017c9d0e22a01ea7be229cdbf92d303114cc194e77b2d
+SIZE (ghostscript/ghostscript-8.56.tar.bz2) = 12224304
 MD5 (ghostscript/gdevcd8.tar.gz) = 5ce48bff6082a023199c8ede4aae63a0
 SHA256 (ghostscript/gdevcd8.tar.gz) = f52656a951e402f3775fdf09087944dba6f7a58edff17ce350692cee101cccf9
 SIZE (ghostscript/gdevcd8.tar.gz) = 24803
@@ -52,3 +52,6 @@ SIZE (ghostscript/gdevlx50.c) = 99428
 MD5 (ghostscript/gs6.0.lexmark7000.patch) = fd5018c18351bf64805fe5727be196de
 SHA256 (ghostscript/gs6.0.lexmark7000.patch) = 509dfc02436639ce6b9f98465ec306dd2e7f9342feded043c78b0c9cf44021df
 SIZE (ghostscript/gs6.0.lexmark7000.patch) = 27361
+MD5 (ghostscript/gdevhl12.c) = 277c5ddac9c6fb0e2897e95265eb1ff1
+SHA256 (ghostscript/gdevhl12.c) = 0abaa60cbe950b9c923753a687181b775910ecff0848917641e281737f03527a
+SIZE (ghostscript/gdevhl12.c) = 22001
