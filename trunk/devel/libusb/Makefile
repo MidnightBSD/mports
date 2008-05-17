@@ -3,7 +3,7 @@
 # Whom:					John Reynolds <johnjen@reynoldsnet.org>
 #
 # $FreeBSD: ports/devel/libusb/Makefile,v 1.21 2006/08/26 17:27:35 garga Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libusb/Makefile,v 1.1 2006/11/24 18:33:09 laffer1 Exp $
 #
 
 PORTNAME=	libusb
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library giving userland programs access to USB devices
-
+LICENSE=        lgpl
 OPTIONS=	SGML "Install developer guide from SGML" off
 
 .include <bsd.port.pre.mk>
