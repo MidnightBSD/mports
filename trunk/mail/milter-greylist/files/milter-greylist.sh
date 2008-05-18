@@ -1,5 +1,6 @@
 #!/bin/sh
 # $FreeBSD: ports/mail/milter-greylist/files/milter-greylist.sh,v 1.4 2006/12/10 05:10:38 ache Exp $
+# $MidnightBSD$
 
 # PROVIDE: miltergreylist
 # REQUIRE: LOGIN
