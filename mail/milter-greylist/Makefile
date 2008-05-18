@@ -2,12 +2,12 @@
 # Date created:				27 Apr 2004
 # Whom:					Cyril Guibourg
 #
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.1 2007/05/07 20:22:17 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.2 2007/12/05 23:03:58 laffer1 Exp $
 # $FreeBSD: ports/mail/milter-greylist/Makefile,v 1.22 2006/12/13 11:19:21 ache Exp $
 #
 
 PORTNAME=	milter-greylist
-PORTVERSION=	3.0
+PORTVERSION=	4.0
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 DISTNAME=	milter-greylist-${PORTVERSION}
@@ -18,8 +18,12 @@ COMMENT=	Easy-to-use greylist milter for sendmail
 LICENSE=	bsd4
 # well bsd3 but it's advertising... be conservative
 
-CONFLICTS=	milter-greylist-devel-[1-9]*.*
 PKGMESSAGE=	${WRKDIR}/pkg-message
+
+
+OPTIONS=	LIBSPF2	 "Enable SPF checks" Off \
+		GEOIP	 "Enable GEOIP"  Off \
+		CURL	" Enable CURL for URL checks" Off
 
 ##
 # Use the following quirks to choose which sendmail to use (ports or system):
@@ -55,15 +59,25 @@ MILTERBASE?=	${LOCALBASE}
 .endif
 
 .if defined(WITH_LIBSPF2)
-LIB_DEPENDS+=	spf2.2:${PORTSDIR}/mail/libspf2
+LIB_DEPENDS+=		libspf2>=1.2.5:${PORTSDIR}/mail/libspf2
 CONFIGURE_ARGS+=	--with-libspf2=${LOCALBASE}
+.endif
+
+.if defined(WITH_GEOIP)
+BUILD_DEPENDS+=       GeoIP>=1.4.4:${PORTSDIR}/net/GeoIP
+CONFIGURE_ARGS+=      --with-libGeoIP=${LOCALBASE}
+.endif
+
+.if defined(WITH_CURL)
+BUILD_DEPENDS+= curl>=7.18:${PORTSDIR}/ftp/curl
+CONFIGURE_ARGS+=      --with-curl=${LOCALBASE}
 .endif
 
 CFLAGS+=	${PTHREAD_CFLAGS}
 LIBS+=		${PTHREAD_LIBS}
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--with-user=mailnull --with-libmilter=${MILTERBASE}
 CONFIGURE_ARGS+=	--enable-dnsrbl --with-thread-safe-resolver
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LIBS="${LIBS} "
