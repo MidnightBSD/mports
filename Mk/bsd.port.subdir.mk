@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.8 2008/05/15 08:16:31 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.9 2008/05/18 04:34:56 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -251,7 +251,7 @@ port-symlen:
 .for entry in ${SUBDIR}
 .if exists(${entry})
 .if !defined(PORTSTOP)
-	@echo "ln -s ../All/`cd ${entry}; make package-name` ${entry}.tbz " >> /portsymlink.txt
+	@echo "ln -s ../All/`cd ${entry}; make package-name`.tbz ${entry}.tbz " >> /portsymlink.txt
 .endif
 .endif
 .endfor
