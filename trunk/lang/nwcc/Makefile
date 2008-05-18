@@ -2,22 +2,21 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.8 2007/11/23 19:57:18 laffer1 Exp $
+# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.9 2007/11/23 20:27:41 laffer1 Exp $
 #
 
 PORTNAME=	nwcc
-PORTVERSION=	0.7.4
-PORTREVISION=	1
+PORTVERSION=	0.7.5
+PORTREVISION=	0
 CATEGORIES=	lang
-DISTFILES=	nwcc_0.7.4.tar.gz
+DISTNAME=	${PORTNAME}_${PORTVERSION}
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	nwcc
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A BSD-licensed C-compiler.
+COMMENT=	Nils Weller's BSD-licensed C-compiler.
 LICENSE=	bsd2
 
-WRKSRC=		${WRKDIR}/nwcc_0.7.4
 HAS_CONFIGURE=	yes
 ALL_TARGET=	nwcc
 
