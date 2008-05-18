@@ -2,7 +2,7 @@
 # Date created:				27 Apr 2004
 # Whom:					Cyril Guibourg
 #
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.3 2008/05/18 18:38:15 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.4 2008/05/18 19:11:11 laffer1 Exp $
 # $FreeBSD: ports/mail/milter-greylist/Makefile,v 1.22 2006/12/13 11:19:21 ache Exp $
 #
 
@@ -98,8 +98,8 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf \
 			${PREFIX}/etc/mail/greylist.conf.sample
 	@${INSTALL_SCRIPT} ${WRKSRC}/milter-greylist.sh ${PREFIX}/etc/rc.d/
-	@${SED} -e "s,%%DOCSDIR%%,${DOCSDIR},g" \
-		-e "s,%%PREFIX%%,${PREFIX},g" \
+	@${SED} -e "s,%%DOCSDIR%%,${LOCALBASE}/share/doc/milter-greylist,g" \
+		-e "s,%%PREFIX%%,${LOCALBASE},g" \
 		${.CURDIR}/pkg-message > ${PKGMESSAGE}
 
 post-install:
