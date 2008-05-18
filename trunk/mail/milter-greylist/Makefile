@@ -2,7 +2,7 @@
 # Date created:				27 Apr 2004
 # Whom:					Cyril Guibourg
 #
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.4 2008/05/18 19:11:11 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.5 2008/05/18 20:12:37 laffer1 Exp $
 # $FreeBSD: ports/mail/milter-greylist/Makefile,v 1.22 2006/12/13 11:19:21 ache Exp $
 #
 
@@ -17,8 +17,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use greylist milter for sendmail
 LICENSE=	bsd4
 # well bsd3 but it's advertising... be conservative
-
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 OPTIONS=	LIBSPF2	 "Enable SPF checks" Off \
 		GEOIP	 "Enable GEOIP"  Off \
@@ -37,6 +35,8 @@ OPTIONS=	LIBSPF2	 "Enable SPF checks" Off \
 
 MAN5=		greylist.conf.5
 MAN8=		milter-greylist.8
+
+SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
@@ -98,9 +98,6 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf \
 			${PREFIX}/etc/mail/greylist.conf.sample
 	@${INSTALL_SCRIPT} ${WRKSRC}/milter-greylist.sh ${PREFIX}/etc/rc.d/
-	@${SED} -e "s,%%DOCSDIR%%,${LOCALBASE}/share/doc/milter-greylist,g" \
-		-e "s,%%PREFIX%%,${LOCALBASE},g" \
-		${.CURDIR}/pkg-message > ${PKGMESSAGE}
 
 post-install:
 	@${MKDIR} /var/milter-greylist
