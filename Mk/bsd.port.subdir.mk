@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.7 2008/03/22 05:02:08 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.8 2008/05/15 08:16:31 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -122,7 +122,7 @@ ${__target}:
 
 .if defined(SUBDIR) && !empty(SUBDIR)
 
-.for __target in ${TARGETS} checksubdirs describe readmes
+.for __target in ${TARGETS} checksubdirs describe readmes port-ftplinks
 ${SUBDIR:S/^/_/:S/$/.${__target}/}: _SUBDIRUSE
 .endfor
 
@@ -234,6 +234,28 @@ describe:
 .endif
 .endif
 
+.if !target(port-ftplinks)
+.if defined(PORTSTOP)
+port-ftplinks: port-ftplink ${SUBDIR:S/^/_/:S/$/.port-ftplinks/}
+.else
+port-ftplinks: port-ftplink
+.endif
+.endif
+
+.if !target(port-ftplink)
+port-ftplink:
+	@make port-symlen
+.endif
+
+port-symlen:
+.for entry in ${SUBDIR}
+.if exists(${entry})
+.if !defined(PORTSTOP)
+	@echo "ln -s ../All/`cd ${entry}; make package-name` ${entry}.tbz " >> /portsymlink.txt
+.endif
+.endif
+.endfor
+
 .if !target(readmes)
 .if defined(PORTSTOP)
 readmes: readme ${SUBDIR:S/^/_/:S/$/.readmes/}
@@ -243,6 +265,7 @@ readmes: readme ${SUBDIR:S/^/_/:S/$/.readmes/}
 readmes: readme
 .endif
 .endif
+
 
 .if !target(readme)
 readme:
