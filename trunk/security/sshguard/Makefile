@@ -2,13 +2,13 @@
 # Date created:		2007-02-22
 # Whom:			Mij <mij@bitchx.it>
 #
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.1 2008/04/29 15:23:52 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.2 2008/04/29 15:42:36 laffer1 Exp $
 # $FreeBSD: ports/security/sshguard/Makefile,v 1.7 2008/01/04 20:35:08 arved Exp $
 #
 
 PORTNAME=	sshguard
 DISTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
