@@ -2,7 +2,7 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.5 2007/05/18 18:40:26 ctriv Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.6 2008/04/25 23:50:42 ctriv Exp $
 #
 
 PORTNAME=	joe
@@ -22,7 +22,7 @@ LICENSE=	gpl
 BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 
-CONFLICTS=	joe-2.*
+CONFLICTS=	joe-2.* jupp
 
 USE_GMAKE=	yes
 USE_ICONV=	yes

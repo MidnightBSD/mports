@@ -2,7 +2,7 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/joe2/Makefile,v 1.1 2007/04/02 04:22:04 laffer1 Exp $
 # $FreeBSD: ports/editors/joe2/Makefile,v 1.23 2005/10/23 10:09:52 pav Exp $
 #
 
@@ -18,7 +18,7 @@ COMMENT=	Joe's Own Editor
 RUN_DEPENDS=	ispell:${PORTSDIR}/textproc/ispell
 
 LATEST_LINK?=	joe2
-CONFLICTS=	joe-3*
+CONFLICTS=	joe-3* jupp
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
