@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.214 2008/05/12 15:34:24 crash Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.215 2008/05/14 17:45:57 crash Exp $
 #
 
     COMMENT = Development utilities
@@ -125,6 +125,7 @@
     SUBDIR += looks
     SUBDIR += m4
     SUBDIR += makedepend
+    SUBDIR += mercurial
     SUBDIR += monodoc
     SUBDIR += motor
     SUBDIR += nasm
