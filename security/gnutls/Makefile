@@ -2,12 +2,12 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.5 2007/12/30 01:27:40 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.6 2008/03/21 01:39:11 laffer1 Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
 PORTNAME=	gnutls
-PORTVERSION=	2.2.2
+PORTVERSION=	2.2.5
 CATEGORIES=	security net
 MASTER_SITES=	http://josefsson.org/gnutls/releases/ \
 	ftp://ftp.gnutls.org/pub/gnutls/ \
@@ -18,7 +18,7 @@ MASTER_SITE_SUBDIR=	alpha/gnutls
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
-
+LICENSE=        gpl3
 LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
