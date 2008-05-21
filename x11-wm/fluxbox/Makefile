@@ -2,7 +2,7 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.5 2008/03/05 03:19:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.6 2008/05/07 22:09:50 crash Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
 #
 
@@ -36,7 +36,7 @@ CONFIGURE_ARGS+=	--enable-debug
 
 .if defined(WITH_DOCHTML)
 # http://fluxbox.org/docbook/en/tarballs/
-MASTER_SITES+=		${MASTER_SITE_LOCAL:S,%SUBDIR%,mezz,}:html \
+MASTER_SITES+=		${MASTER_SITE_FREEBSD_LOCAL:S,%SUBDIR%,mezz,}:html \
 			http://people.freebsd.org/~mezz/distfiles/:html
 DISTFILES+=		fb-doc-mfhtml-${DOCSVERSION}.tgz:html
 EXTRACT_ONLY+=		fb-doc-mfhtml-${DOCSVERSION}.tgz
