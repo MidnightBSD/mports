@@ -3,7 +3,7 @@
 # Date created:			May 21 2008
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/mirmon/Makefile,v 1.1 2008/05/21 21:23:59 laffer1 Exp $
 #
 
 PORTNAME=	mirmon
@@ -14,6 +14,8 @@ MASTER_SITES=	http://jadawin.tuxaco.net/freebsd/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monitor the status of mirrors
+LICENSE=	other
+#bsdish
 
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
