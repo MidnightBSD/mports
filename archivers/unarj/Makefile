@@ -2,7 +2,7 @@
 # Date created:         28 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/unarj/Makefile,v 1.1 2006/09/18 00:37:03 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unarj/Makefile,v 1.2 2008/03/12 01:57:39 laffer1 Exp $
 # $FreeBSD: ports/archivers/unarj/Makefile,v 1.22 2006/08/23 06:34:55 ache Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	unarj
 PORTVERSION=	2.65
 PORTREVISION=	2
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ache
 EXTRACT_SUFX=	.tgz
 
