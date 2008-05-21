@@ -2,13 +2,14 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.7 2008/04/13 01:54:34 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.8 2008/05/21 16:15:57 laffer1 Exp $
 # $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
 #   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
 #
 
 PORTNAME=	libpurple
 PORTVERSION=	2.4.2
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
@@ -18,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backend library for the Pidgin multi-protocol messaging client
 LICENSE=	gpl2
 
-CONFLICTS?=	gaim-1* pidgin-2*
+CONFLICTS?=	pidgin-2*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
