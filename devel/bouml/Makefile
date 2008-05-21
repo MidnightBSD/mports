@@ -3,11 +3,10 @@
 # Whom:			Thierry Thomas <thierry@pompo.net>
 #
 # $FreeBSD: ports/devel/bouml/Makefile,v 1.120 2008/05/11 20:20:03 thierry Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/bouml/Makefile,v 1.1 2008/05/11 23:09:22 crash Exp $
 
 PORTNAME=	bouml
-PORTVERSION=	4.3.3
-PORTEPOCH=	1
+PORTVERSION=	4.3.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}	\
 		http://bouml.free.fr/
