@@ -2,17 +2,17 @@
 # Date created:		Wed Apr 12 17:51:07 UTC 2006
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.3 2007/12/28 23:04:56 laffer1 Exp $
 # $FreeBSD: ports/net-im/kopete/Makefile,v 1.8 2007/07/04 10:24:50 lofi Exp $
 #
 
 PORTNAME=	kopete
-PORTVERSION=	0.12.5
+PORTVERSION=	0.12.7
 CATEGORIES?=	net-im kde
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/3.5.7/src
+MASTER_SITE_SUBDIR=	stable/3.5.8/src
 PKGNAMEPREFIX=	kdenetwork-
-DISTNAME=	kdenetwork-3.5.7
+DISTNAME=	kdenetwork-3.5.8
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,7 +21,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${QT_PREFIX}/lib/plugins/crypto/libqca-tls.so:${PORTSDIR}/security/qca-tls
 
-CONFLICTS=	kdenetwork-[0-2]* kdenetwork-3.[0-4]* kdenetwork-3.5.[0-2]* kvirc-[0-9]*
+CONFLICTS=	kdenetwork-3.5.[0-2]* kvirc-[0-9]*
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
