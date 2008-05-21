@@ -2,7 +2,7 @@
 # Date created:        February 16 2003
 # Whom:                Glenn Johnson <glennpj@charter.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.1 2008/04/29 02:35:40 laffer1 Exp $
 # $FreeBSD: ports/finance/libofx/Makefile,v 1.21 2008/03/13 20:56:54 miwi Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenSource implementation of the OFX (Open Financial eXchange)
-
+LICENSE=        gpl2
 LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl \
 		xml\\+\\+-1.0.1:${PORTSDIR}/textproc/libxml++ \
 		osp.5:${PORTSDIR}/textproc/opensp
