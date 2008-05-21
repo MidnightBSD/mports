@@ -2,16 +2,15 @@
 # Date created:				2000/09/09
 # Whom:					kaz
 #
-# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.1 2007/05/07 18:35:00 laffer1 Exp $
+# $MidnightBSD: mports/mail/vrfy/Makefile,v 1.2 2007/12/05 22:49:34 laffer1 Exp $
 # $FreeBSD: ports/mail/vrfy/Makefile,v 1.7 2005/10/16 14:24:02 vs Exp $
 #
 
 PORTNAME=	vrfy
 PORTVERSION=	1.0
 CATEGORIES=	mail
-MASTER_SITES=	# disappeared
+MASTER_SITES=	http://jadawin.tuxaco.net/freebsd
 DISTNAME=	${PORTNAME}
-EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Verify mail address
