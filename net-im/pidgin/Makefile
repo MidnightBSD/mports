@@ -2,12 +2,16 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.6 2008/04/13 01:44:29 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.7 2008/05/21 16:22:28 laffer1 Exp $
 #
 
 PORTNAME=	pidgin
 PORTVERSION=	2.4.2
+PORTREVISION=	1
 CATEGORIES=	net-im
+MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE}
+MASTER_SITE_SUBDIR=     pidgin
+DISTNAME=       pidgin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pidgin multi-protocol messaging client (GTK+ UI)
@@ -17,7 +21,6 @@ LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 CONFLICTS=	libpurple-[0-9*] gaim-1*
 
-WITH_GTKUI=	yes
 WITHOUT_GSTREAMER=	yes
 
 USE_LDCONFIG=	yes
@@ -28,16 +31,19 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
 DISTNAME=	pidgin-${PORTVERSION}
 
+FAKE_OPTS=	trueprefix
+
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 INSTALL_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-gtkui \
+CONFIGURE_ARGS+= \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES} \
 		--disable-nm \
-		--datarootdir=${FAKE_DESTDIR}${PREFIX}/share
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
+		--disable-doxygen
+#		--datarootdir=${FAKE_DESTDIR}${PREFIX}/share
+CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
 
@@ -51,19 +57,14 @@ OPTIONS=	SILC "Secure Internet Live Conferencing support" off \
 		PERL "Perl scripting" off \
 		BONJOUR "Enable mDNS support" on \
 		SAMETIME "Enable Sametime client support" off \
-		TCLTK "Tcl/Tk scripting" off
-
-.if defined(WITH_GTKUI)
-OPTIONS+=	GTKSPELL "Spell checking support" on \
+		TCLTK "Tcl/Tk scripting" off \
+		GTKSPELL "Spell checking support" on \
 		GSTREAMER "Use GStreamer for playing sounds" on \
 		CAP "Enable Contact Availability Prediction plugin" on
-.endif
-
-CONFIGURE_ARGS+=--disable-doxygen
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
+.if ${HAVE_GNOME:Mevolutiondataserver}!=""
 USE_GNOME+=		evolutiondataserver
 PLIST_SUB+=		EVO=""
 CONFIGURE_ARGS+=	--enable-gevolution
@@ -72,13 +73,13 @@ CONFIGURE_ARGS+=	--disable-gevolution
 PLIST_SUB+=		EVO="@comment not installed: "
 .endif
 
-.if defined(WITH_GTKUI) && !defined(WITHOUT_GSTREAMER)
+.if !defined(WITHOUT_GSTREAMER)
 USE_GSTREAMER+=	core good
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
-.if defined(WITH_GTKUI) && !defined(WITHOUT_CAP)
+.if !defined(WITHOUT_CAP)
 LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
 CONIFGURE_ARGS+=	--enable-cap
 PLIST_SUB+=	CAP=""
@@ -172,7 +173,7 @@ CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=		PERL:="@comment not installed: "
 .endif
 
-.if defined(WITH_GTKUI) && !defined(WITHOUT_GTKSPELL)
+.if !defined(WITHOUT_GTKSPELL)
 LIB_DEPENDS+=		gtkspell.0:${PORTSDIR}/textproc/gtkspell
 .else
 CONFIGURE_ARGS+=	--disable-gtkspell
