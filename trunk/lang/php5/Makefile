@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.13 2008/01/04 16:39:32 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.14 2008/01/04 16:44:42 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.2.5
-PORTREVISION?=	1
+PORTVERSION=	5.2.6
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
 		http://downloads.php.net/ilia/:rc \
@@ -45,7 +45,7 @@ OPTIONS=	CLI "Build CLI version" on \
 		CGI "Build CGI version" on \
 		APACHE "Build Apache module" off \
 		DEBUG "Enable debug" off \
-		SUHOSIN "Enable Suhosin protection system" on \
+		SUHOSIN "Enable Suhosin protection system (not for jails)" on \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
 		REDIRECT "Enable force-cgi-redirect support (CGI only)" off \
@@ -58,8 +58,8 @@ MAN1=		php-config.1 phpize.1
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES=	suhosin-patch-${PORTVERSION}-0.9.6.2.patch.gz
-PATCH_SITES=	http://www.hardened-php.net/suhosin/_media/
+PATCHFILES+=	suhosin-patch-${PORTVERSION}-0.9.6.2.patch.gz:suhosin
+PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
 .else
