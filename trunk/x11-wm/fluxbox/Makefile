@@ -2,7 +2,7 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.6 2008/05/07 22:09:50 crash Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.7 2008/05/21 06:13:57 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
 #
 
@@ -47,7 +47,7 @@ PLIST_SUB+=		DOCHTML:="@comment "
 
 .if defined(WITH_DOCPDF)
 # http://fluxbox.org/docbook/en/pdf/
-MASTER_SITES+=		${MASTER_SITE_LOCAL:S,%SUBDIR%,mezz,}:pdf \
+MASTER_SITES+=		${MASTER_SITE_FREEBSD_LOCAL:S,%SUBDIR%,mezz,}:pdf \
 			http://people.freebsd.org/~mezz/distfiles/:pdf
 DISTFILES+=		fluxbook-${DOCSVERSION}.pdf:pdf
 PLIST_SUB+=		DOCPDF:=""
