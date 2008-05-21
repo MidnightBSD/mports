@@ -2,7 +2,7 @@
 # Date created:         31.10.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/yape/Makefile,v 1.1 2007/05/05 05:08:50 laffer1 Exp $
 # $FreeBSD: ports/emulators/yape/Makefile,v 1.11 2006/09/20 11:20:49 stas Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	${PORTNAME}SDL-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another Commodore +4 Emulator
-
+LICENSE=        gpl3
 USE_SDL=	sdl
 USE_GMAKE=	yes
 NO_WRKSUBDIR=	yes
