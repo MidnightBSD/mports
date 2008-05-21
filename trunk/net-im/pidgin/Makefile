@@ -2,7 +2,7 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.7 2008/05/21 16:22:28 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.8 2008/05/21 17:28:02 laffer1 Exp $
 #
 
 PORTNAME=	pidgin
@@ -21,20 +21,16 @@ LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 CONFLICTS=	libpurple-[0-9*] gaim-1*
 
+FAKE_OPTS=	trueprefix
+
+#gstreamer support seems to cause segfaults
 WITHOUT_GSTREAMER=	yes
 
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 libxml2
-WANT_GNOME=	yes
-
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	pidgin
-DISTNAME=	pidgin-${PORTVERSION}
-
-FAKE_OPTS=	trueprefix
-
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 libxml2
+WANT_GNOME=	yes
 INSTALL_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+= \
@@ -42,7 +38,6 @@ CONFIGURE_ARGS+= \
 		--with-dynamic_prpls=${PRPL_MODULES} \
 		--disable-nm \
 		--disable-doxygen
-#		--datarootdir=${FAKE_DESTDIR}${PREFIX}/share
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
@@ -81,7 +76,7 @@ CONFIGURE_ARGS+=--disable-gstreamer
 
 .if !defined(WITHOUT_CAP)
 LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
-CONIFGURE_ARGS+=	--enable-cap
+CONFIGURE_ARGS+=	--enable-cap
 PLIST_SUB+=	CAP=""
 .else
 CONFIGURE_ARGS+=--disable-cap
