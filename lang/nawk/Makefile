@@ -3,16 +3,16 @@
 # Date created:			  29 April 1998
 # Whom:				  Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/nawk/Makefile,v 1.1 2007/05/03 07:50:21 laffer1 Exp $
 # $FreeBSD: ports/lang/nawk/Makefile,v 1.33 2005/12/01 11:21:05 flz Exp $
 #
 
 PORTNAME=	nawk
-PORTVERSION=	20050424
+PORTVERSION=	20070501
 CATEGORIES=	lang
 MASTER_SITES=	http://cm.bell-labs.com/cm/cs/who/bwk/
 DISTNAME=	awk
-DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
+DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Brian Kernighan's pattern scanning and processing language
