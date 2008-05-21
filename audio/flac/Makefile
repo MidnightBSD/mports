@@ -2,7 +2,7 @@
 # Date created:		Mar 18, 2001
 # Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.3 2008/02/25 00:42:17 laffer1 Exp $
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.4 2008/03/24 23:04:25 ctriv Exp $
 # $FreeBSD: ports/audio/flac/Makefile,v 1.38 2006/05/03 05:14:16 edwin Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	1.1.2
 PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S/$/:sf/} \
-		${MASTER_SITE_LOCAL:S/$/:local/}
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:local/}
 MASTER_SITE_SUBDIR=	${PORTNAME}/:sf naddy/:local
 DISTFILES=	${EXTRACT_ONLY}:sf flac-alloc.h:local
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
