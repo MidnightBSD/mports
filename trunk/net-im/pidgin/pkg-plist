@@ -215,7 +215,6 @@ lib/purple-2/statenotify.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/autosplit.ix
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/Purple.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/Purple.bs
-%%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/.packlist
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/Purple.pm
 %%DBUS%%lib/libpurple-client.la
 %%DBUS%%lib/libpurple-client.so
