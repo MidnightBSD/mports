@@ -2,7 +2,7 @@
 # Date created:				7 March 1998
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/x11-fm/workplace/Makefile,v 1.1 2006/09/23 18:10:46 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/workplace/Makefile,v 1.2 2007/03/25 01:56:52 ctriv Exp $
 # $FreeBSD: ports/x11-fm/workplace/Makefile,v 1.28 2006/03/07 08:27:56 ade Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	1.0.a3
 PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11-fm
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	trevor
 
 PATCH_SITES=	http://people.freebsd.org/~trevor/ports/
