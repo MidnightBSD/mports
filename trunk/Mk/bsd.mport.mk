@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.102 2008/05/15 08:16:31 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -424,8 +424,8 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # USE_KDELIBS_VER
 #				- Set to 3 to use the KDE libraries.
 #				  Implies inclusion of bsd.kde.mk.
-# USE_QT_VER	- Set to 3 to use the QT libraries.
-#				  Implies inclusion of bsd.kde.mk.
+# USE_QT_VER	- Set to 3 to use the QT3 libraries which implies bsd.kde.mk.
+#				  Set to 4 to use QT4 which implies bsd.qt.mk.
 ##
 # USE_LINUX		- Set to yes to say the port needs the default linux base port.
 #				  Set to value <X>, if the port needs emulators/linux_base-<X>.
@@ -1381,8 +1381,12 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.apache.mk"
 .endif
 
-.if defined(USE_QT_VER) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
+.if (defined(USE_QT_VER) && ${USE_QT_VER:L} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
 .include "${PORTSDIR}/Mk/bsd.kde.mk"
+.endif
+
+.if defined (USE_QT_VER) && ${USE_QT_VER:L} == 4
+.include "${PORTSDIR}/Mk/bsd.qt.mk"
 .endif
 
 .if defined(WANT_GNOME) || defined(USE_GNOME) || defined(USE_GTK)
@@ -5229,7 +5233,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.102 2008/05/15 08:16:31 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \

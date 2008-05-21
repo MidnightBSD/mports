@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.6 2007/12/29 22:15:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.7 2007/12/29 22:17:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -59,7 +59,7 @@ CATEGORIES+=ipv6
 .if !defined(_NO_KDE_CONFTARGET_HACK)
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
-		--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include \
+		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--disable-as-needed
 .endif
 
@@ -115,9 +115,9 @@ MOC?=			${QT_PREFIX}/bin/moc
 #LIB_DEPENDS+=	qt-mt.3:${PORTSDIR}/x11-toolkits/qt33
 BUILD_DEPENDS+=	${QT_PREFIX}/bin/moc:${PORTSDIR}/x11-toolkits/qt33
 RUN_DEPENDS+=	${QT_PREFIX}/bin/moc:${PORTSDIR}/x11-toolkits/qt33
-QTCPPFLAGS+=	-I${LOCALBASE}/include -I${X11BASE}/include \
+QTCPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include \
 				-I${QT_PREFIX}/include -D_GETOPT_H
-QTCFGLIBS+=		-Wl,-export-dynamic -L${LOCALBASE}/lib -L${X11BASE}/lib -ljpeg \
+QTCFGLIBS+=		-Wl,-export-dynamic -L${LOCALBASE}/lib -ljpeg \
 				-L${QT_PREFIX}/lib
 .if defined(PACKAGE_BUILDING)
 TMPDIR?=	/tmp
@@ -130,7 +130,8 @@ CONFIGURE_ARGS+=--with-qt-includes=${QT_PREFIX}/include \
 				--with-qt-libraries=${QT_PREFIX}/lib \
 				--with-extra-libs=${LOCALBASE}/lib \
 				--with-extra-includes=${LOCALBASE}/include
-CONFIGURE_ENV+=	MOC="${MOC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}"
+CONFIGURE_ENV+=	MOC="${MOC}" CPPFLAGS="${CPPFLAGS} ${QTCPPFLAGS}" LIBS="${QTCFGLIBS}" \
+		QTDIR="${QT_PREFIX}" KDEDIR="${KDE_PREFIX}"
 .endif # !defined(QT_NONSTANDARD)
 .else
 IGNORE=			cannot install: unsupported value of USE_QT_VER
