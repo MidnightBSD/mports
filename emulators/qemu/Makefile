@@ -2,7 +2,7 @@
 # Date created:			2004/05/31
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.3 2007/05/05 04:17:47 laffer1 Exp $
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.4 2007/08/25 05:14:31 laffer1 Exp $
 # $FreeBSD: ports/emulators/qemu/Makefile,v 1.56 2006/08/25 21:16:20 miwi Exp $
 #
 
@@ -24,7 +24,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QEMU CPU Emulator
-
+LICENSE=        gpl2
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GETOPT_LONG=	yes
