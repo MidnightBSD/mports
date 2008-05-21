@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.qt.mk,v 1.1 2007/12/15 01:04:57 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Qt_Pre_Include)
@@ -70,7 +70,7 @@ QTCGFLIBS?=
 
 .endif # !defined(_POSTMKINCLUDED) && !defined(Qt_Pre_Include)
 
-QT4_VERSION?=		4.3.1
+QT4_VERSION?=		4.3.4
 
 _QT_COMPONENTS_ALL=	accessible assistant assistantclient codecs-cn \
 			codecs-jp codecs-kr codecs-tw corelib dbus designer \
