@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/devel/qmake4/Makefile,v 1.11 2007/09/02 06:23:21 lofi Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.2 2007/12/15 01:07:40 ctriv Exp $
 #
 
 PORTNAME=	qmake
@@ -50,7 +50,7 @@ post-patch:
 		-e 's|gcc.*|${CC}|' \
 		-e 's|g++.*|${CXX}|' \
 		-e 's|/usr/local|${LOCALBASE}|' \
-		-e 's|/usr/X11R6|${X11BASE}|' \
+		-e 's|/usr/X11R6|${LOCALBASE}|' \
 		-e 's|release|release thread|' \
 		-e 's|-pthread -D_THREAD_SAFE|${PTHREAD_CFLAGS}|' \
 		-e 's|-pthread|${PTHREAD_LIBS}|' \
