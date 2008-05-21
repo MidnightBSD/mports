@@ -2,11 +2,11 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.5 2008/04/01 04:51:10 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.6 2008/04/13 01:44:29 laffer1 Exp $
 #
 
 PORTNAME=	pidgin
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.2
 CATEGORIES=	net-im
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,9 +21,8 @@ WITH_GTKUI=	yes
 WITHOUT_GSTREAMER=	yes
 
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gtk20
+USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 libxml2
 WANT_GNOME=	yes
-CONFIGURE_ARGS=	--disable-consoleui
 
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
@@ -31,12 +30,12 @@ DISTNAME=	pidgin-${PORTVERSION}
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME?=	gnomeprefix gnomehack intlhack glib20
 INSTALL_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS?=--disable-gtkui \
+CONFIGURE_ARGS+=--disable-gtkui \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES} \
+		--disable-nm \
 		--datarootdir=${FAKE_DESTDIR}${PREFIX}/share
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
@@ -67,6 +66,7 @@ CONFIGURE_ARGS+=--disable-doxygen
 .if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
 USE_GNOME+=		evolutiondataserver
 PLIST_SUB+=		EVO=""
+CONFIGURE_ARGS+=	--enable-gevolution
 .else
 CONFIGURE_ARGS+=	--disable-gevolution
 PLIST_SUB+=		EVO="@comment not installed: "
@@ -80,6 +80,7 @@ CONFIGURE_ARGS+=--disable-gstreamer
 
 .if defined(WITH_GTKUI) && !defined(WITHOUT_CAP)
 LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
+CONIFGURE_ARGS+=	--enable-cap
 PLIST_SUB+=	CAP=""
 .else
 CONFIGURE_ARGS+=--disable-cap
@@ -124,6 +125,7 @@ LIB_DEPENDS+=	avahi-core.5:${PORTSDIR}/net/avahi
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	${PRPL_MODULES},bonjour
 .else
+CONFIGURE_ARGS+=	--disable-avahi
 PLIST_SUB+=	BONJOUR="@comment not installed: "
 .endif
 
@@ -132,6 +134,7 @@ LIB_DEPENDS+=	meanwhile.1:${PORTSDIR}/net-im/meanwhile
 PLIST_SUB+=	SAMETIME=""
 PRPL_MODULES:=	${PRPL_MODULES},sametime
 .else
+CONFIGURE_ARGS+=	--disable-meanwhile
 PLIST_SUB+=	SAMETIME="@comment not installed: "
 .endif
 
@@ -147,6 +150,7 @@ CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCLTK_VER} \
 CFLAGS+=		-I${LOCALBASE}/include/tk${TCLTK_VER} -I${LOCALBASE}/include/tcl${TCLTK_VER}
 PLIST_SUB+=		TCL:=""
 .else
+CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		TCL:="@comment not installed: "
 .endif
 
