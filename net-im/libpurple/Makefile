@@ -2,13 +2,13 @@
 # Date created:			26 Mar 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.6 2008/04/01 04:26:59 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.7 2008/04/13 01:54:34 laffer1 Exp $
 # $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
 #   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
 #
 
 PORTNAME=	libpurple
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.2
 CATEGORIES=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
@@ -22,11 +22,12 @@ CONFLICTS?=	gaim-1* pidgin-2*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME?=	gnomeprefix gnomehack intlhack glib20
+USE_GNOME?=	gnomeprefix gnomehack intlhack glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
-		--with-dynamic_prpls=${PRPL_MODULES}
+		--with-dynamic_prpls=${PRPL_MODULES} \
+		--disable-nm
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
@@ -81,6 +82,7 @@ GCONF_SCHEMAS=	purple.schemas
 .if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
 USE_GNOME+=		evolutiondataserver
 PLIST_SUB+=		EVO=""
+CONFIGURE_ARGS+=	--enable-gevolution
 .else
 CONFIGURE_ARGS+=	--disable-gevolution
 PLIST_SUB+=		EVO="@comment not installed: "
@@ -94,6 +96,7 @@ CONFIGURE_ARGS+=--disable-gstreamer
 
 .if defined(WITH_GTKUI) && !defined(WITHOUT_CAP)
 LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
+CONFIGURE_ARGS+=	--enable-cap
 PLIST_SUB+=	CAP=""
 .else
 CONFIGURE_ARGS+=--disable-cap
@@ -138,6 +141,7 @@ LIB_DEPENDS+=	avahi-core.5:${PORTSDIR}/net/avahi-app
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	${PRPL_MODULES},bonjour
 .else
+CONFIGURE_ARGS+=	--disable-avahi
 PLIST_SUB+=	BONJOUR="@comment not installed: "
 .endif
 
@@ -146,6 +150,7 @@ LIB_DEPENDS+=	meanwhile.1:${PORTSDIR}/net-im/meanwhile
 PLIST_SUB+=	SAMETIME=""
 PRPL_MODULES:=	${PRPL_MODULES},sametime
 .else
+CONFIGURE_ARGS+=	--disable-meanwhile
 PLIST_SUB+=	SAMETIME="@comment not installed: "
 .endif
 
@@ -161,6 +166,7 @@ CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCLTK_VER} \
 CFLAGS+=		-I${LOCALBASE}/include/tk${TCLTK_VER} -I${LOCALBASE}/include/tcl${TCLTK_VER}
 PLIST_SUB+=		TCL:=""
 .else
+CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		TCL:="@comment not installed: "
 .endif
 
