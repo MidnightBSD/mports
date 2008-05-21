@@ -3,11 +3,12 @@
 # Whom:                 jmz
 #
 # $FreeBSD: ports/emulators/mtools/Makefile,v 1.56 2006/05/29 10:02:22 jmz Exp $
-# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.2 2007/04/25 04:54:09 ctriv Exp $
+# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.3 2007/04/26 03:41:32 ctriv Exp $
 #
 
 PORTNAME=	mtools
 PORTVERSION=	3.9.10
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	ftp://ftp.tux.org/pub/knaff/mtools/  \
 		http://mtools.linux.lu/
@@ -22,11 +23,11 @@ SUB_FILES= 	pkg-message
 
 GNU_CONFIGURE=	yes
 .if !defined(WITHOUT_X11)
-USE_XLIB=	yes
+USE_XORG=	x11 sm ice xau
 CONFIGURE_ARGS=	--enable-xdf --enable-floppyd
 PLIST_SUB=	WITH_X11=""
 .else
-CONFIGURE_ARGS=	--enable-xdf
+CONFIGURE_ARGS=	--enable-xdf --disable-floppyd
 PLIST_SUB=	WITH_X11="@comment "
 .endif
 
