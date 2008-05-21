@@ -11,4 +11,5 @@ lib/libpng.a
 lib/libpng.so
 lib/libpng.so.%%SHLIB_VER%%
 libdata/pkgconfig/libpng12.pc
+libdata/pkgconfig/libpng.pc
 @dirrm include/libpng

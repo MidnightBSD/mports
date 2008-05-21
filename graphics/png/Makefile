@@ -2,13 +2,13 @@
 # Date created:         5 Dec 1995
 # Whom:                 ache
 #
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.11 2008/04/29 16:58:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.12 2008/05/02 19:09:55 laffer1 Exp $
 # $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
 #
 
 PORTNAME=	png
-PORTVERSION=	1.2.27
-PORTREVISION=	1
+PORTVERSION=	1.2.28
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	lib${PORTNAME}
@@ -54,5 +54,6 @@ post-install:
 		> ${WRKSRC}/scripts/libpng.pc
 	${INSTALL_DATA} ${WRKSRC}/scripts/libpng.pc \
 		${PREFIX}/libdata/pkgconfig/libpng12.pc
+	${LN} -sf libpng12.pc ${PREFIX}/libdata/pkgconfig/libpng.pc
 
 .include <bsd.port.post.mk>
