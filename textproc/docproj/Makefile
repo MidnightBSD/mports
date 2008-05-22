@@ -2,7 +2,7 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.4 2007/03/18 18:30:07 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.5 2007/05/09 15:49:33 ctriv Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the Documentation Project
+LICENSE=	agg
 
 NO_BUILD=		yes
 USE_GHOSTSCRIPT_RUN=	yes
@@ -74,11 +75,6 @@ RUN_DEPENDS+=	html2text:${PORTSDIR}/textproc/html2text
 
 
 PLIST_FILES=		#empty
-
-.if ${PERL_LEVEL} < 500804
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Digest/MD5.pm:${PORTSDIR}/security/p5-Digest-MD5
-.endif
-
 
 DEPENDS_ARGS+=	BATCH=yes WITHOUT_X11=${WITHOUT_X11}
 
