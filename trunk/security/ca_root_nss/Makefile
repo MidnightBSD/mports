@@ -2,7 +2,7 @@
 # Date created:				Mon Oct 1 5:39:39 EST 2007
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.1 2007/10/01 09:42:15 laffer1 Exp $
 # $FreeBSD: ports/security/ca_root_nss/Makefile,v 1.2 2007/07/11 17:07:13 brooks Exp $
 #
 
@@ -16,6 +16,7 @@ DISTFILES=	${NSS_FILE} ${MODSSL_FILE}:mod_ssl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The root certificate bundle from the Mozilla Project
+LICENSE=	unknown
 
 USE_PERL5_BUILD=	yes
 NO_WRKSUBDIR=	yes
@@ -24,9 +25,9 @@ CERTDIR?=	share/certs
 PLIST_DIRS=	${CERTDIR}
 PLIST_FILES=	${CERTDIR}/ca-root-nss.crt
 
-VERSION_NSS=	3.11.7
-VERSION_APACHE=	1.3.37
-VERSION_MODSSL=	2.8.28
+VERSION_NSS=	3.11.9
+VERSION_APACHE=	1.3.41
+VERSION_MODSSL=	2.8.31
 MASTER_SITES_MODSSL=	http://www.modssl.org/source/ \
 		ftp://ftp.modssl.org/source/ \
 		ftp://ftp.blatzheim.com/pub/mod_ssl/ \
