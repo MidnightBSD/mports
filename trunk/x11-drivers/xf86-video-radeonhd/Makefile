@@ -7,7 +7,7 @@
 #
 
 PORTNAME=	xf86-video-radeonhd
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
