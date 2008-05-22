@@ -3,12 +3,12 @@
 # Date created:			Oct 18, 2003
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.1 2007/12/28 20:35:53 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.2 2008/03/25 03:15:56 ctriv Exp $
 # $FreeBSD: ports/security/gsasl/Makefile,v 1.34 2007/09/05 13:55:04 krion Exp $
 #
 
 PORTNAME=	gsasl
-PORTVERSION=	0.2.21
+PORTVERSION=	0.2.26
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/${PORTNAME}/releases/
@@ -23,7 +23,6 @@ LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
-USE_GETOPT_LONG=	yes
 USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
