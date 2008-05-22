@@ -2,13 +2,13 @@
 # Date created:		13 October 1994
 # Whom:			wollman
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mbone/imm/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
 # $FreeBSD: ports/mbone/imm/Makefile,v 1.28 2004/08/23 07:36:54 linimon Exp $
 #
 
 PORTNAME=	imm
 PORTVERSION=	3.5a1
-CATEGORIES=	mbone tk82
+CATEGORIES=	mbone tk
 MASTER_SITES=	ftp://ftp.hawaii.edu/paccom/imm-3.5a1/
 DISTNAME=	imm.source
 EXTRACT_SUFX=	.tar.Z
