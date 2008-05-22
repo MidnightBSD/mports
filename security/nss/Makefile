@@ -2,7 +2,7 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/nss/Makefile,v 1.5 2007/12/28 05:16:54 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.6 2008/05/22 22:09:13 laffer1 Exp $
 # $FreeBSD: ports/security/nss/Makefile,v 1.33 2006/09/03 00:20:58 ahze Exp $
 #
 
@@ -14,6 +14,8 @@ MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries to support development of security-enabled applications
+LICENSE=	unknown
+#mpl?
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 LIB_DEPENDS=	nspr4.1:${PORTSDIR}/devel/nspr
