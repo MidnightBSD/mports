@@ -2,7 +2,7 @@
 # Date created:		14 Nov 2007
 # Whom:			ports@MidnightBSD.org
 #
-# $MidnightBSD: mports/security/pinentry/Makefile,v 1.1 2007/11/14 20:30:16 laffer1 Exp $
+# $MidnightBSD: mports/security/pinentry/Makefile,v 1.2 2008/03/30 23:58:53 laffer1 Exp $
 #
 
 PORTNAME=	pinentry
@@ -21,12 +21,11 @@ LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 
 CONFLICTS?=	pinentry-[a-z]*-[0.9]*
 
-USE_GETOPT_LONG=yes
 USE_ICONV=	yes
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 INFO=		pinentry
 
 CONFIGURE_ARGS+=--with-libiconv-prefix=${LOCALBASE}
