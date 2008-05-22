@@ -2,11 +2,11 @@
 # Date created:				July 17 2002
 # Whom:					Tilman Linneweh <arved@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.4 2008/03/21 01:42:03 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.5 2008/03/22 17:00:58 ctriv Exp $
 # $FreeBSD: ports/security/libgcrypt/Makefile,v 1.30 2006/08/31 21:20:52 arved Exp $
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.4.0
+PORTVERSION=	1.4.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	libgcrypt
