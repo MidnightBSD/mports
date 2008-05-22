@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.24 2008/05/01 07:33:16 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.25 2008/05/02 00:52:39 laffer1 Exp $
 #
 
     COMMENT = Games
@@ -33,6 +33,7 @@
     SUBDIR += quake3
     SUBDIR += quake3-data
     SUBDIR += scummvm
+    SUBDIR += supertux
     SUBDIR += tuxracer
     SUBDIR += vitetris
     SUBDIR += wesnoth
