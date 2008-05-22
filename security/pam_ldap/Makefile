@@ -2,12 +2,12 @@
 # Date created:				26 May 2001
 # Whom:	      				Joe Clarke <marcus@marcuscom.com>
 #
-# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.2 2007/10/07 14:53:35 laffer1 Exp $
+# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.3 2007/10/18 22:29:26 laffer1 Exp $
 # $FreeBSD: ports/security/pam_ldap/Makefile,v 1.38 2006/07/09 06:51:06 marcus Exp $
 #
 
 PORTNAME=	pam_ldap
-PORTVERSION=	1.8.2
+PORTVERSION=	1.8.4
 CATEGORIES=	security net
 MASTER_SITES=	http://www.padl.com/download/ \
 		ftp://ftp.padl.com/pub/
@@ -25,7 +25,9 @@ CONFIGURE_ARGS=	--with-ldap-lib=openldap \
 		--with-ldap-dir=${LOCALBASE} \
 		--with-ldap-conf-file=${PREFIX}/etc/ldap.conf \
 		--with-ldap-secret-file=${PREFIX}/etc/ldap.secret
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-unknown-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-unknown-freebsd6.0 \
+		--host=${MACHINE_ARCH}-unknown-freebsd6.0 \
+		--target=${MACHINE_ARCH}-unknown-freebsd6.0
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
