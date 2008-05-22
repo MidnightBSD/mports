@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-gpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.5 2008/05/16 21:42:40 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.6 2008/05/22 16:54:59 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -66,6 +66,7 @@ FAKE_OPTS=	trueprefix
 CONFLICTS=	ghostscript-afpl*
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+WANT_GNOME=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
 			--host=${ARCH}-portbld-freebsd6.0 \
 			--target=${ARCH}-portbld-freebsd6.0
@@ -112,7 +113,7 @@ MAKE_ENV+=	FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".a"
 
 .if defined(WITH_SHLIB)
 .undef WITHOUT_X11
-USE_GNOME=	gtk20
+USE_GNOME+=	gtk20
 ALL_TARGET=	so pcl3opts
 INSTALL_TARGET=	soinstall
 USE_LDCONFIG=	yes
