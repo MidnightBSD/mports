@@ -2,12 +2,13 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.3 2008/05/11 16:24:17 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.18 2008/04/02 12:02:41 mm Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.5.2
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
@@ -39,6 +40,7 @@ SUB_FILES=	pkgIndex.tcl
 
 .if !defined(BUILDING_TK_THREADS)
 USE_TCL=	${SHORT_TK_VER}
+USE_TCL_BUILD=	${SHORT_TK_VER}
 
 OPTIONS=	TK85_MAN "Install tk 8.5 manpages" off \
 		XFT "Use Xft fonts" on \
