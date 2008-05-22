@@ -2,12 +2,12 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/nss/Makefile,v 1.4 2007/04/08 05:00:22 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.5 2007/12/28 05:16:54 laffer1 Exp $
 # $FreeBSD: ports/security/nss/Makefile,v 1.33 2006/09/03 00:20:58 ahze Exp $
 #
 
 PORTNAME=	nss
-PORTVERSION=	3.11.7
+PORTVERSION=	3.11.9
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
