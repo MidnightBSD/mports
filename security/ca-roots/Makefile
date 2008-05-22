@@ -2,7 +2,7 @@
 # Date created:			  Sep 5, 2000
 # Whom:				  nsayer
 #
-# $MidnightBSD: mports/security/ca-roots/Makefile,v 1.1 2006/09/25 04:45:40 archite Exp $
+# $MidnightBSD: mports/security/ca-roots/Makefile,v 1.2 2007/07/20 03:46:02 archite Exp $
 # $FreeBSD: ports/security/ca-roots/Makefile,v 1.8 2006/05/30 08:47:36 erwin Exp $
 #
 
@@ -11,8 +11,12 @@ PORTVERSION=	1.2
 CATEGORIES=	security
 DISTFILES=	# none
 
-MAINTAINER=	nivo+kw+ports.bfa274@is-root.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A list of SSL CA root certificates
+
+DEPRECATED=	Not supported
+EXPIRATION_DATE=2008-07-07
+
 
 NO_BUILD=	yes
 
