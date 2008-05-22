@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.tcl.mk,v 1.4 2007/04/04 20:07:02 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.tcl.mk,v 1.5 2007/04/04 23:32:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.3 2006/05/01 19:49:57 sem Exp $
 #
 
@@ -14,7 +14,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 #			 	different TCL versions the version can be 
 #				specified directly. If version is not specified
 #				(USE_TCL=yes) then the latest version is used
-#				(8.4 currently).
+#				(8.5 currently).
 #				Available values are: 85, 85-thread, 84, 
 #				84-thread, 83, 82, and 80.
 #
@@ -22,7 +22,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 #				different TK versions the version can be 
 #				specified directly. If version is not specified
 #				(USE_TK=yes) then the latest version is used
-#				(8.4 currently).
+#				(8.5 currently).
 #				Available values are: 85, 84, 83, 82, and 80.
 ##
 # TCL_LIBDIR:		Path where tcl libraries can be found
@@ -59,7 +59,7 @@ _BUILD=		yes
 .endif
 
 .if ${USE_TCL} == "yes"
-USE_TCL=	84
+USE_TCL=	85
 .endif
 
 TCL_VER:=	${USE_TCL:S/8/8./:S/-thread//}
@@ -99,7 +99,7 @@ _TK_BUILD=	yes
 .endif
 
 .if ${USE_TK} == "yes"
-USE_TK=		84
+USE_TK=		85
 .endif
 
 TK_VER:=	${USE_TK:S/8/8./}
