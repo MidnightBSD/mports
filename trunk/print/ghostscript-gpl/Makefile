@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-gpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.4 2007/08/17 01:12:22 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.5 2008/05/16 21:42:40 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -98,7 +98,7 @@ XCFLAGS+=	-DA4
 .if defined(WITHOUT_X11)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-nox11
 .else
-USE_ORG=	xt xext
+USE_XORG=	xt xext
 .endif
 
 .if defined(WITH_SVGALIB)
