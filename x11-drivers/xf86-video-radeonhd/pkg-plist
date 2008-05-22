@@ -1,5 +1,6 @@
-lib/xorg/modules/drivers/radeonhd_drv.la
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $
 lib/xorg/modules/drivers/radeonhd_drv.so
+lib/xorg/modules/drivers/radeonhd_drv.la
 @dirrmtry lib/xorg/modules/drivers
 @dirrmtry lib/xorg/modules
 @dirrmtry lib/xorg
