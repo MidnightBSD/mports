@@ -2,12 +2,13 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.6 2008/03/21 01:39:11 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.7 2008/05/20 17:19:15 crash Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
 PORTNAME=	gnutls
 PORTVERSION=	2.2.5
+PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	http://josefsson.org/gnutls/releases/ \
 	ftp://ftp.gnutls.org/pub/gnutls/ \
@@ -33,7 +34,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS+=	--with-included-lzo \
+CONFIGURE_ARGS+=	--with-included-lzo --disable-guile \
 			--infodir="${PREFIX}/info" --mandir="${PREFIX}/man/"
 MANCOMPRESSED=	no
 
