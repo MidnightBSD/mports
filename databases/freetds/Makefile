@@ -2,7 +2,7 @@
 # Date created:		02 Nov 1999
 # Whom:			Domas Mituzas <midom@dammit.lt>
 #
-# $MidnightBSD: mports/databases/freetds/Makefile,v 1.1 2007/01/22 10:44:58 wintellect Exp $
+# $MidnightBSD: mports/databases/freetds/Makefile,v 1.2 2007/10/12 17:35:16 laffer1 Exp $
 # $FreeBSD: ports/databases/freetds/Makefile,v 1.45 2006/05/04 21:39:57 edwin Exp $
 
 PORTNAME=	freetds
@@ -13,7 +13,7 @@ MASTER_SITE_SUBDIR=	ALPHA/freetds/stable
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
-
+LICENSE=        gpl2
 TDS_VER?=	5.0
 
 USE_ICONV=	yes

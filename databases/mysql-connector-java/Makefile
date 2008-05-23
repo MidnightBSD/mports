@@ -2,7 +2,7 @@
 # Date created:		8 October 2003
 # Whom:			Matthew Seaman <m.seaman@infracaninophile.co.uk>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.1 2007/03/17 01:18:08 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql-connector-java/Makefile,v 1.41 2007/03/05 12:07:19 rafan Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	Connector-J
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MySQL Connector/J: JDBC interface for MySQL
-
+LICENSE=        gpl2
 RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
 
 .if !defined(WITHOUT_COMPILE)
