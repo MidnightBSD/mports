@@ -2,7 +2,7 @@
 # Date created: 	1 August 1998
 # Whom:			jkoshy
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/dbs/Makefile,v 1.1 2007/07/15 07:05:42 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/dbs/Makefile,v 1.12 2007/05/19 20:00:19 flz Exp $
 #
 
@@ -16,7 +16,7 @@ MASTER_SITE_SUBDIR=	jkoshy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A distributed network benchmarking system
-
+LICENSE=        other
 RUN_DEPENDS=	gnuplot:${PORTSDIR}/math/gnuplot
 
 DOCDIR=		${PREFIX}/share/doc/dbs/
