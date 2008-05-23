@@ -7,7 +7,7 @@
 #
 
 PORTNAME=	twm
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
