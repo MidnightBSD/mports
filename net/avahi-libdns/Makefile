@@ -2,7 +2,7 @@
 # Date created:				31 July 2007
 # Whom:					Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.1 2008/02/17 07:02:55 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.2 2008/04/11 21:08:02 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-libdns/Makefile,v 1.2 2007/10/27 14:18:24 ahze Exp $
 #
 
@@ -10,7 +10,7 @@ PORTREVISION=	0
 CATEGORIES=	net
 PKGNAMESUFFIX=	-libdns
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	mDNSResponder compatibility from Avahi
 LICENSE=	lgpl
 
@@ -24,5 +24,7 @@ PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	libdns
 AVAHI_PKGCONFIG=avahi-compat-libdns_sd.pc
+
+CONFLICTS=	mDNSResponder-[0-9]*
 
 .include "${MASTERDIR}/Makefile"
