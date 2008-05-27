@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11-fonts/Makefile,v 1.6 2007/08/23 02:51:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/Makefile,v 1.7 2007/10/12 14:40:25 ctriv Exp $
 #
 
     COMMENT = X11 fonts and font utilities
 
     SUBDIR += bdftopcf
     SUBDIR += bitstream-vera
+    SUBDIR += dejavu
     SUBDIR += encodings
     SUBDIR += font-adobe-100dpi
     SUBDIR += font-adobe-75dpi
