@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.4 2007/04/22 17:59:54 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.5 2008/04/14 04:21:26 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -314,7 +314,67 @@ ruby-shebang-patch:
 RUBY_FLAGS+=	-d
 .endif
 
-# extconf.rb
+#
+# RubyGems support
+#
+.if defined(USE_RUBYGEMS)
+
+. if ${RUBY_VER} == 1.8
+BUILD_DEPENDS+=	${RUBYGEMBIN}:${PORTSDIR}/devel/ruby-gems
+RUN_DEPENDS+=	${BUILD_DEPENDS}
+. endif
+
+PKGNAMEPREFIX?=	rubygem-
+EXTRACT_SUFX=	.gem
+EXTRACT_ONLY=
+DIST_SUBDIR=	rubygem
+
+NO_BUILD=	yes
+
+GEMS_BASE_DIR=	lib/ruby/gems/${RUBY_VER}
+GEMS_DIR=	${GEMS_BASE_DIR}/gems
+DOC_DIR=	${GEMS_BASE_DIR}/doc
+CACHE_DIR=	${GEMS_BASE_DIR}/cache
+SPEC_DIR=	${GEMS_BASE_DIR}/specifications
+GEM_NAME?=	${PORTNAME}-${PORTVERSION}
+GEM_LIB_DIR=	${GEMS_DIR}/${GEM_NAME}
+GEM_DOC_DIR=	${DOC_DIR}/${GEM_NAME}
+GEM_SPEC=	${SPEC_DIR}/${GEM_NAME}.gemspec
+GEM_CACHE=	${CACHE_DIR}/${GEM_NAME}.gem
+
+PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
+		REV="${RUBY_GEM}" \
+		GEMS_BASE_DIR="lib/ruby/gems/${RUBY_VER}" \
+		GEMS_DIR="${GEMS_DIR}" \
+		DOC_DIR="${DOC_DIR}" \
+		CACHE_DIR="${CACHE_DIR}" \
+		SPEC_DIR="${SPEC_DIR}" \
+		PORT="${PORTNAME}-${PORTVERSION}" \
+		GEM_NAME="${GEM_NAME}" \
+		GEM_LIB_DIR="${GEM_LIB_DIR}" \
+		GEM_DOC_DIR="${GEM_DOC_DIR}" \
+		GEM_SPEC="${GEM_SPEC}" \
+		GEM_CACHE="${GEM_CACHE}" \
+		EXTRACT_SUFX="${EXTRACT_SUFX}"
+
+RUBYGEMBIN=	${LOCALBASE}/bin/gem${RUBY_VER:S/.//}
+
+. if defined(DISTFILES)
+GEMFILES=	${DISTFILES:C/:[^:]+$//}
+. else
+GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
+. endif
+
+do-install:
+.for _D in ${GEMFILES}
+	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gems/${RUBY_VER} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
+.endfor
+
+.endif # USE_RUBYGEMS
+
+#
+# extconf.rb support
+#
 .if defined(USE_RUBY_EXTCONF)
 USE_RUBY=		yes
 
