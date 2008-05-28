@@ -2,7 +2,7 @@
 # Date created:				2007-08-16
 # Whom:					Robert Noland <rnoland@2hip.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/libcompizconfig/Makefile,v 1.1 2008/05/02 00:51:40 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/libcompizconfig/Makefile,v 1.5 2008/04/19 17:55:55 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://releases.compiz-fusion.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An alternative configuration system for Compiz
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compiz.pc:${PORTSDIR}/x11-wm/compiz
 
