@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	expat
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML 1.0 parser written in C
+LICENSE=	other
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
