@@ -3,7 +3,7 @@
 # Date created:				17 April 2006
 # Whom:					Maho Nakata <maho@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc41-withgcjawt/Makefile,v 1.1 2006/09/20 13:12:03 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc41-withgcjawt/Makefile,v 1.9 2006/08/10 07:53:06 maho Exp $
 #
 
@@ -24,6 +24,7 @@ BROKEN=		"Does not build gcj"
 #weird libtool issue http://gcc.gnu.org/bugzilla/show_bug.cgi?id=28442
 EXTRA_PATCHES+=	${.CURDIR}/files/patch-configure
 USE_AUTOTOOLS=	libtool:15
+USE_XORG=	xtst xt xaw xmu
 
 pre-build:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${SRCDIR}/libjava/configure
