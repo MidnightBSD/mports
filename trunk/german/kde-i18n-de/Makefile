@@ -2,11 +2,12 @@
 # Date created: 5 August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/german/kde-i18n-de/Makefile,v 1.2 2007/11/11 00:25:37 laffer1 Exp $
+# $MidnightBSD: mports/german/kde-i18n-de/Makefile,v 1.3 2008/05/22 17:30:02 laffer1 Exp $
 #
 
 PORTNAME=	kde-i18n-de
 PORTVERSION=	3.5.8
+PORTREVISION=	1
 CATEGORIES=	german kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src/kde-i18n
