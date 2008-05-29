@@ -2,13 +2,14 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.2 2008/04/14 17:46:17 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.3 2008/04/14 18:03:01 ctriv Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
 
 PORTNAME=	evolution
 PORTVERSION=	2.12.3
+PORTREVISION=	1
 CATEGORIES=	mail gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -16,8 +17,10 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An integrated mail, calendar and address book distributed suite
+LICENSE=	gpl2
 
-LIB_DEPENDS=	nss3.1:${PORTSDIR}/security/nss
+LIB_DEPENDS=	nss3.1:${PORTSDIR}/security/nss \
+                tasn1.3:${PORTSDIR}/security/libtasn1
 RUN_DEPENDS=	${LOCALBASE}/lib/gnome-spell/libgnome-spell-component-0.3.so:${PORTSDIR}/textproc/gnome-spell
 
 USE_BZIP2=	yes
