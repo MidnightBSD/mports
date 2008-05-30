@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.36 2008/04/17 17:46:07 crash Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.37 2008/05/21 21:23:59 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -8,6 +8,8 @@
     SUBDIR += compat5x
     SUBDIR += cpuid
     SUBDIR += dnetc
+    SUBDIR += e2fsprogs-libblkid
+    SUBDIR += e2fsprogs-libuuid
     SUBDIR += findutils
     SUBDIR += getopt
     SUBDIR += gnome-icon-theme
