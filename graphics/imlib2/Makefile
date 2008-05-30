@@ -2,14 +2,15 @@
 # Date created:		16 Oct 2000
 # Whom:			Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.2 2007/11/10 02:32:13 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.3 2007/11/10 02:34:58 laffer1 Exp $
 #
 
 PORTNAME=	imlib2
-PORTVERSION=	20070223
-PORTEPOCH=	1
+PORTVERSION=	1.4.1.000
+PORTEPOCH=	2
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/
+MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/ \
+		http://download.enlightenment.org/snapshots/2008-01-25/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The next generation graphic library for enlightenment package
@@ -20,8 +21,8 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack pkgconfig gnometarget
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
 
 OPTIONS=	JPEG	"Enable jpeg image support"	on \
@@ -46,7 +47,7 @@ CONFIGURE_ARGS+=	--without-x
 PKGNAMESUFFIX+=	-nox11
 PLIST_SUB=	X11="@comment "
 .else
-USE_XLIB=	yes
+USE_XORG=	x11 sm xext
 PLIST_SUB=	X11=""
 .endif
 
