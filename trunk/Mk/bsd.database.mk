@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.9 2008/04/04 04:48:07 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.10 2008/04/22 22:18:23 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -190,7 +190,7 @@ db42_DEPENDS=	db-4.2.2:${PORTSDIR}/databases/db42
 db43_DEPENDS=	db-4.3.0:${PORTSDIR}/databases/db43
 db44_DEPENDS=	db-4.4.0:${PORTSDIR}/databases/db44
 db45_DEPENDS=	db-4.5.0:${PORTSDIR}/databases/db45
-db45_DEPENDS=	db-4.6.0:${PORTSDIR}/databases/db46
+db46_DEPENDS=	db-4.6.0:${PORTSDIR}/databases/db46
 # Detect db versions by finding some files
 db3_FIND=	${LOCALBASE}/include/db3/db.h
 db40_FIND=	${LOCALBASE}/include/db4/db.h
