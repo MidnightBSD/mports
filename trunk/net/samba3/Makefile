@@ -2,7 +2,7 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.7 2008/03/24 19:11:56 laffer1 Exp $
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.8 2008/05/30 16:15:04 laffer1 Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=		${PORTNAME}-${PORTVERSION:S/.p/pre/:S/.r/rc/}
 
 MAINTAINER?=		ports@MidnightBSD.org
 COMMENT?=		A free SMB and CIFS client and server for UNIX
+LICENSE=		gpl2
 
 CONFLICTS?=		sharity-light-1.* tdb-1.*
 
