@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.25 2008/05/02 00:52:39 laffer1 Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.26 2008/05/22 22:53:57 stevan Exp $
 #
 
     COMMENT = Games
@@ -29,6 +29,7 @@
     SUBDIR += linux-quake3
     SUBDIR += linux-quake3-demo
     SUBDIR += nextgo
+    SUBDIR += pvpgn
     SUBDIR += qstat
     SUBDIR += quake3
     SUBDIR += quake3-data
