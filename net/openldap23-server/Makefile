@@ -2,12 +2,12 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.4 2007/08/01 20:50:09 laffer1 Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.5 2008/02/27 22:19:52 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
 PORTNAME=		openldap
-DISTVERSION=		2.3.40
+DISTVERSION=		2.3.41
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -43,7 +43,7 @@ PORTREVISION_CLIENT=	0
 PORTREVISION_SERVER=	0
 
 .if !defined(CLIENT_ONLY)
-OPTIONS=	SASL "With (Cyrus) SASL2 support" on \
+OPTIONS=	SASL "With (Cyrus) SASL2 support" off \
 		PERL "With Perl backend" off \
 		SHELL "With Shell backend (disables threading)" off \
 		ODBC "With SQL backend" off \
@@ -107,6 +107,7 @@ WANT_OPENLDAP_VER=	23
 
 .if defined(WITH_SASL) && !defined(WITHOUT_SASL)
 WANT_OPENLDAP_SASL=	yes
+PKGNAMESUFFIX=		-sasl-server
 CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-client-2.*
 .else
 CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-sasl-client-2.*
@@ -161,6 +162,7 @@ PKGMESSAGE=		${WRKSRC}/pkg-message.client
 .else
 # server specific configuration
 
+USE_LDCONFIG=		${PREFIX}/libexec/openldap
 SUB_FILES+=		pkg-deinstall pkg-message pkg-install
 USE_RC_SUBR=		slapd.sh ${SLURPDSH}
 
@@ -320,6 +322,14 @@ PLIST_SUB+=		BACK_PERL="@comment "
 CONFIGURE_ARGS+=	--enable-spasswd
 .endif
 
+.if defined(WITH_IODBC) && defined(WITH_UNIXODBC)
+IGNORE=               selected mutually exclusive options: WITH_IODBC and WITH_UNIXODBC
+.endif
+
+.if !defined(WITH_IODBC) && !defined(WITH_UNIXODBC)
+WITH_IODBC?=  yes
+.endif
+
 .if defined(WITH_ODBC)
 CONFIGURE_ARGS+=	--enable-sql=${BACKEND_ENABLE}
 PLIST_SUB+=		BACK_SQL=${BACKEND_PLIST}
@@ -383,7 +393,7 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" \
 .else
 RC_SUFX=
 SUB_LIST+=		RC_DIR=${PREFIX} \
-			RC_SUFX=${RC_SUFX} \
+			RC_SUFX=${RC_SUBR_SUFFIX} \
 			LDAP_RUN_DIR=${LDAP_RUN_DIR} \
 			DATABASEDIR=${DATABASEDIR}
 .endif
