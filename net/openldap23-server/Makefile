@@ -2,7 +2,7 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.5 2008/02/27 22:19:52 laffer1 Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.6 2008/05/30 23:10:16 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
@@ -29,6 +29,7 @@ EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT?=		Open source LDAP server implementation
+LICENSE=		openldap2.8
 
 UNIQUENAME?=		${PKGNAMEPREFIX}openldap23
 LATEST_LINK?=		${UNIQUENAME}${PKGNAMESUFFIX}
