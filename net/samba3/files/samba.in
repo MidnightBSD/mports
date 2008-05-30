@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/samba3/files/samba.in,v 1.5 2007/02/07 08:40:44 sem Exp $
+# $FreeBSD: ports/net/samba3/files/samba.in,v 1.6 2007/06/05 10:55:06 tdb Exp $
 #
 
 # PROVIDE: nmbd smbd
@@ -135,7 +135,7 @@ samba_reload_cmd() {
 		debug "reloading ${name} configuration"
 		echo "Reloading ${name}."
 		# XXX: Hack with pid_extra
-		"${smbcontrol_command}" "${name}${pid_extra}" 'reload-config' ${command_args}
+		"${smbcontrol_command}" "${name}${pid_extra}" 'reload-config' ${command_args} >/dev/null 2>&1
 	    fi
 	fi
     done
