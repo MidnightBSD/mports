@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.73 2008/05/30 21:28:42 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.74 2008/05/30 21:57:06 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -39,6 +39,9 @@
     SUBDIR += openldap23-client
     SUBDIR += openldap23-sasl-client
     SUBDIR += openldap23-server
+    SUBDIR += openldap24-client
+    SUBDIR += openldap24-sasl-client
+    SUBDIR += openldap24-server
     SUBDIR += openmpi
     SUBDIR += openslp
     SUBDIR += ortp
