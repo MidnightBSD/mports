@@ -3,18 +3,18 @@
 # Whom:				Jeremy Shaffner <jeremy@external.org>
 #
 # $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
-# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.2 2007/04/30 03:29:00 ctriv Exp $
+# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.3 2007/08/19 02:23:12 ctriv Exp $
 #
 
 PORTNAME=	dmalloc
-PORTVERSION=	5.4.2
+PORTVERSION=	5.5.2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	dmalloc
+MASTER_SITES=	http://dmalloc.com/releases/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable debug memory allocation library
+LICENSE=	other
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
@@ -26,15 +26,12 @@ ALL_TARGET=	all heavy
 INSTALL_TARGET=	install
 FAKE_OPTS=	prefixhack
 
-INFO=	dmalloc
-
 .if !defined(NOPORTDOCS)
-INSTALL_TARGET+=installdocs installinfo
+INSTALL_TARGET+=installdocs
 .endif
 
 pre-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|\.so|\.so.1|' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|\.@shlibext@|\.@shlibext@.1|' ${WRKSRC}/Makefile.in
 
 post-install:
 	@(cd ${PREFIX}/lib; \
