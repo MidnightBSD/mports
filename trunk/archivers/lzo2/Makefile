@@ -2,12 +2,12 @@
 # Date created:				21 Feb 1998
 # Whom:					giffunip@asme.org
 #
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.3 2008/02/22 04:32:28 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.4 2008/03/12 01:45:58 laffer1 Exp $
 # $FreeBSD: ports/archivers/lzo2/Makefile,v 1.38 2006/02/23 10:34:20 ade Exp $
 #
 
 PORTNAME=	lzo2
-PORTVERSION=	2.02
+PORTVERSION=	2.03
 PORTREVISION=	3
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
