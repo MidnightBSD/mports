@@ -3,10 +3,10 @@
 # Whom:					Koop Mast <einekoai@chello.nl>
 #
 # $FreeBSD: ports/net/samba-libsmbclient/Makefile,v 1.25 2006/09/04 19:00:16 garga Exp $
-# $MidnightBSD: mports/net/samba-libsmbclient/Makefile,v 1.1 2006/11/17 22:41:27 laffer1 Exp $
+# $MidnightBSD: mports/net/samba-libsmbclient/Makefile,v 1.2 2007/11/08 15:47:33 ctriv Exp $
 #
 
-PORTREVISION=		1
+PORTREVISION=		0
 PORTEPOCH=		0
 PKGNAMESUFFIX=		-libsmbclient
 
@@ -24,6 +24,6 @@ USE_LDCONFIG=		yes
 
 OPTIONS=		ADS		"With Active Directory support" off \
 			MSRPC		"Build the libmsrpc shared library" off \
-			SHAREMODES	"Build the libsharemods shared library" off
+			SHAREMODES	"Build the libsharemodes shared library" off
 
 .include "${MASTERDIR}/Makefile"
