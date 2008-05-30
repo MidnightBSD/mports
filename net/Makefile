@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.67 2008/05/30 19:08:41 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.68 2008/05/30 20:31:57 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -17,6 +17,7 @@
     SUBDIR += freeradius
     SUBDIR += gnet2
     SUBDIR += ilbc
+    SUBDIR += jags
     SUBDIR += kdenetwork3
     SUBDIR += libdnet
     SUBDIR += libnet
@@ -62,6 +63,7 @@
     SUBDIR += samba-pdbsql
     SUBDIR += samba3
     SUBDIR += samba4wins
+    SUBDIR += sambasentinel
     SUBDIR += sdl_net
     SUBDIR += skype
     SUBDIR += tsocks
