@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.104 2008/05/21 06:06:22 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1618,7 +1618,7 @@ LIB_DEPENDS+=		ldap-2.2.7:${PORTSDIR}/net/openldap22${_OPENLDAP_FLAVOUR}-client
 .elif ${WANT_OPENLDAP_VER} == 23
 LIB_DEPENDS+=		ldap-2.3.2:${PORTSDIR}/net/openldap23${_OPENLDAP_FLAVOUR}-client
 .elif ${WANT_OPENLDAP_VER} == 24
-LIB_DEPENDS+=		ldap-2.4.1:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
+LIB_DEPENDS+=		ldap-2.4.2:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
 .else
 IGNORE=				unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
@@ -5233,7 +5233,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.103 2008/05/16 19:08:41 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.104 2008/05/21 06:06:22 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
