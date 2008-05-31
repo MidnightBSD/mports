@@ -1,3 +1,4 @@
+@comment $FreeBSD: ports/multimedia/clive/pkg-plist,v 1.12 2008/05/21 16:09:35 nivit Exp $
 bin/clive
 %%PYTHON_SITELIBDIR%%/clive/__init__.py
 %%PYTHON_SITELIBDIR%%/clive/__init__.pyc
@@ -14,9 +15,27 @@ bin/clive
 %%PYTHON_SITELIBDIR%%/clive/error.py
 %%PYTHON_SITELIBDIR%%/clive/error.pyc
 %%PYTHON_SITELIBDIR%%/clive/error.pyo
+%%PYTHON_SITELIBDIR%%/clive/feedparser/__init__.py
+%%PYTHON_SITELIBDIR%%/clive/feedparser/__init__.pyc
+%%PYTHON_SITELIBDIR%%/clive/feedparser/__init__.pyo
+%%PYTHON_SITELIBDIR%%/clive/feedparser/feedparser.py
+%%PYTHON_SITELIBDIR%%/clive/feedparser/feedparser.pyc
+%%PYTHON_SITELIBDIR%%/clive/feedparser/feedparser.pyo
+%%PYTHON_SITELIBDIR%%/clive/login.py
+%%PYTHON_SITELIBDIR%%/clive/login.pyc
+%%PYTHON_SITELIBDIR%%/clive/login.pyo
 %%PYTHON_SITELIBDIR%%/clive/main.py
 %%PYTHON_SITELIBDIR%%/clive/main.pyc
 %%PYTHON_SITELIBDIR%%/clive/main.pyo
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/__init__.py
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/__init__.pyc
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/__init__.pyo
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/_snackmodule.a
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/_snackmodule.la
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/_snackmodule.so
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/snack.py
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/snack.pyc
+%%OPTNEWT%%%%PYTHON_SITELIBDIR%%/clive/newt/snack.pyo
 %%PYTHON_SITELIBDIR%%/clive/nomad.py
 %%PYTHON_SITELIBDIR%%/clive/nomad.pyc
 %%PYTHON_SITELIBDIR%%/clive/nomad.pyo
@@ -35,6 +54,12 @@ bin/clive
 %%PYTHON_SITELIBDIR%%/clive/recall.py
 %%PYTHON_SITELIBDIR%%/clive/recall.pyc
 %%PYTHON_SITELIBDIR%%/clive/recall.pyo
+%%PYTHON_SITELIBDIR%%/clive/rss.py
+%%PYTHON_SITELIBDIR%%/clive/rss.pyc
+%%PYTHON_SITELIBDIR%%/clive/rss.pyo
+%%PYTHON_SITELIBDIR%%/clive/scan.py
+%%PYTHON_SITELIBDIR%%/clive/scan.pyc
+%%PYTHON_SITELIBDIR%%/clive/scan.pyo
 %%PYTHON_SITELIBDIR%%/clive/update.py
 %%PYTHON_SITELIBDIR%%/clive/update.pyc
 %%PYTHON_SITELIBDIR%%/clive/update.pyo
@@ -54,4 +79,6 @@ bin/clive
 %%PYTHON_SITELIBDIR%%/clive/urlgrabber/sslfactory.pyc
 %%PYTHON_SITELIBDIR%%/clive/urlgrabber/sslfactory.pyo
 @dirrm %%PYTHON_SITELIBDIR%%/clive/urlgrabber
+@dirrm %%PYTHON_SITELIBDIR%%/clive/newt
+@dirrm %%PYTHON_SITELIBDIR%%/clive/feedparser
 @dirrm %%PYTHON_SITELIBDIR%%/clive
