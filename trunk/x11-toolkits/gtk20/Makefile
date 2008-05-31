@@ -2,14 +2,14 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.12 2008/03/04 04:25:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.13 2008/03/26 01:19:22 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	2
-PORTVERSION=	2.12.8
+PORTVERSION=	2.12.9
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/v2.12/ \
@@ -73,8 +73,10 @@ CONFIGURE_ARGS+=	--enable-debug=yes
 
 .if defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)
 LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS:=""
 .else
+CONFIGURE_ARGS+=--disable-cups
 PLIST_SUB+=	CUPS:="@comment "
 .endif
 
