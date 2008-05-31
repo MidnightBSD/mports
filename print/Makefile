@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.35 2008/03/04 18:44:42 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.36 2008/03/04 19:14:17 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -35,6 +35,7 @@
     SUBDIR += libgnomeprint-reference
     SUBDIR += libijs
     SUBDIR += libpaper
+    SUBDIR += mp-letter
     SUBDIR += pdflib
     SUBDIR += pecl-pdflib
     SUBDIR += t1utils
