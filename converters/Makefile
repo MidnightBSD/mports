@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.16 2008/05/12 19:08:20 crash Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.17 2008/05/30 21:05:47 laffer1 Exp $
 #
 
     COMMENT = Character code converters
 
     SUBDIR += fribidi
     SUBDIR += libiconv
+    SUBDIR += mpack
     SUBDIR += p5-Convert-ASN1
     SUBDIR += p5-Convert-BinHex
     SUBDIR += p5-Encode
