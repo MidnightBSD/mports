@@ -2,7 +2,7 @@
 # Date created:		25 December 2000
 # Whom:			KIRIYAMA Kazuhiko <kiri@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.2 2007/05/07 23:55:16 ctriv Exp $
+# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.3 2008/05/31 17:19:02 laffer1 Exp $
 # $FreeBSD: ports/textproc/sdocbook-xml/Makefile,v 1.7 2004/02/13 10:31:54 des Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	docbook-simple-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"Simplified" DocBook XML DTD
+LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
