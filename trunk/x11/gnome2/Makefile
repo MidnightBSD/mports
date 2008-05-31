@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.3 2008/01/04 22:11:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.4 2008/03/13 02:17:42 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
@@ -23,7 +23,6 @@ BROKEN=	Missing dependancies
 
 # Missing RUN DEPENDS:
 # gnect:${PORTSDIR}/games/gnome-games \
-# bug-buddy:${PORTSDIR}/devel/bug-buddy \
 # evolution:${PORTSDIR}/mail/evolution \
 # ${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 # exchange-connector-setup-2.12:${PORTSDIR}/mail/evolution-exchange
@@ -36,7 +35,6 @@ BROKEN=	Missing dependancies
 #gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
 #		gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
 #${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
-#gnome-nettool:${PORTSDIR}/net/gnome-nettool \
 # seahorse:${PORTSDIR}/security/seahorse
 # network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 
@@ -44,8 +42,10 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gnome-cd:${PORTSDIR}/audio/gnome-media \
 	 	gnome-dictionary:${PORTSDIR}/deskutils/gnome-utils \
 		eog:${PORTSDIR}/graphics/eog \
+		bug-buddy:${PORTSDIR}/devel/bug-buddy \
 		gconf-editor:${PORTSDIR}/sysutils/gconf-editor \
 		gedit:${PORTSDIR}/editors/gedit \
+		gnome-nettool:${PORTSDIR}/net/gnome-nettool \
 		gnome-terminal:${PORTSDIR}/x11/gnome-terminal \
 		gnome-session:${PORTSDIR}/x11/gnome-session \
 		gnome-system-monitor:${PORTSDIR}/sysutils/gnome-system-monitor \
