@@ -2,12 +2,12 @@
 # Date created:				9th February 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.3 2008/03/28 03:25:32 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.4 2008/03/28 03:39:03 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 #
 
 PORTNAME=	libxslt
-PORTVERSION=	1.1.22
+PORTVERSION=	1.1.24
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxslt/ \
 		ftp://fr.rpmfind.net/pub/libxml/
