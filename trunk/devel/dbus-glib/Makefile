@@ -3,11 +3,11 @@
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/dbus-glib/Makefile,v 1.2 2006/10/31 02:36:57 marcus Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.1 2007/02/19 22:40:24 laffer1 Exp $
 #
 
 PORTNAME=	dbus
-PORTVERSION=	0.72
+PORTVERSION=	0.74
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 PKGNAMESUFFIX=	-glib
@@ -15,12 +15,14 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib bindings for the D-BUS messaging system
+LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus
 
-USE_GNOME=	gnomehack glib20
+USE_GNOME=	gnomehack glib20 ltverhack
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
 		--disable-doxygen-docs \
