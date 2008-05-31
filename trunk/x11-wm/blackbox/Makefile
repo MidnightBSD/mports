@@ -2,7 +2,7 @@
 # Date created:		June 15, 1998
 # Whom:			Brian Handy <handy@physics.montana.edu>
 #
-# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.3 2007/03/25 02:09:23 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.4 2008/03/05 03:01:24 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/blackbox/Makefile,v 1.46 2006/05/13 05:00:41 edwin Exp $
 #
 
@@ -27,7 +27,6 @@ USE_XLIB=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
-USE_GCC=	3.3+
 
 post-patch:
 	@${REINPLACE_CMD} -e 's#-pedantic##' ${WRKSRC}/configure
