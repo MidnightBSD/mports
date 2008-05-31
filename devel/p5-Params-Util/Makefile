@@ -2,19 +2,19 @@
 # Date created:				4 July 2005
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Params-Util/Makefile,v 1.1 2008/03/21 20:39:51 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Params-Util/Makefile,v 1.19 2007/12/16 04:52:57 chinsan Exp $
 #
 
 PORTNAME=	Params-Util
-PORTVERSION=	0.31
+PORTVERSION=	0.33
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility functions to aid in parameter checking
-
+LICENSE=        gpl2     
 PERL_CONFIGURE=	yes
 
 MAN3=	Params::Util.3
