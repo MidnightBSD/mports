@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.81 2008/05/31 00:56:36 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.82 2008/05/31 01:07:58 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -30,6 +30,7 @@
     SUBDIR += libnet
     SUBDIR += libnet10
     SUBDIR += libpcap
+    SUBDIR += libgweather
     SUBDIR += linc
     SUBDIR += liveMedia
     SUBDIR += ipw-firmware
