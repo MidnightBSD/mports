@@ -2,17 +2,18 @@
 # Date created:         16 Oct 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ports-mgmt/pib/Makefile,v 1.1 2007/10/16 21:25:47 laffer1 Exp $
 #
 
 PORTNAME=	pib
 PORTVERSION=	1.2
-CATEGORIES=	ports-mgmt
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+CATEGORIES=	ports-mgmt tk
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	msmith
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI Ports Collection management tool
+LICENSE=	bsd2
 
 USE_TK=		yes
 USE_TK_BUILD=	yes
