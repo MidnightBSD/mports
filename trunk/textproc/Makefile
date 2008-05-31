@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.95 2008/05/21 05:19:55 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.96 2008/05/31 17:34:24 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -17,6 +17,7 @@
     SUBDIR += docbook-430
     SUBDIR += docbook-sk
     SUBDIR += docbook-to-man
+    SUBDIR += docbook-utils
     SUBDIR += docbook-xml
     SUBDIR += docbook-xml-430
     SUBDIR += docbook-xml-440
