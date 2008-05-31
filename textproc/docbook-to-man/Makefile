@@ -2,7 +2,7 @@
 # Date created:		5 Oct 2001
 # Whom:			Cyrille Lefevre <clefevre@citeweb.net>
 #
-# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.1 2006/09/24 12:48:23 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-to-man/Makefile,v 1.2 2007/05/18 04:14:09 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-to-man/Makefile,v 1.11 2006/06/22 19:01:35 linimon Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A DocBook SGML DTD into nroff/troff -man macros converter
+LICENSE=	unknown
 
 FAKE_OPTS=	trueprefix
 
@@ -24,10 +25,6 @@ FAKE_OPTS=	trueprefix
 
 # There are two ports that satisfy the nsgmls requirement.
 # Jade is preferred.
-
-.if ${MACHINE_ARCH} == "alpha"
-WITH_OPENJADE=	yes
-.endif
 
 .if defined(WITH_OPENJADE)
 RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/openjade
