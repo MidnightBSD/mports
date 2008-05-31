@@ -2,13 +2,13 @@
 # Date created:				13 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.1 2007/09/01 06:02:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.2 2008/03/14 01:58:17 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-desktop/Makefile,v 1.63 2007/07/03 07:27:20 marcus Exp $
 #   $MCom: ports/x11/gnome-desktop/Makefile,v 1.112 2007/03/13 12:15:44 ahze Exp $
 #
 
 PORTNAME=	gnome-desktop
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.1
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -23,14 +23,16 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-USE_XPM=	yes
+RUN_DEPENDS=	${pygnome2_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome2
+
+USE_XORG=	xpm
 USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui gnomedocutils \
 		ltverhack referencehack
 GNOME_DESKTOP_VERSION=2
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_BISON=	build
-USE_XLIB=	yes
+USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
