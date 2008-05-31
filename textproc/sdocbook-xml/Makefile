@@ -2,16 +2,16 @@
 # Date created:		25 December 2000
 # Whom:			KIRIYAMA Kazuhiko <kiri@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.1 2006/09/25 14:54:32 laffer1 Exp $
+# $MidnightBSD: mports/textproc/sdocbook-xml/Makefile,v 1.2 2007/05/07 23:55:16 ctriv Exp $
 # $FreeBSD: ports/textproc/sdocbook-xml/Makefile,v 1.7 2004/02/13 10:31:54 des Exp $
 #
 
 PORTNAME=	sdocbook-xml
-PORTVERSION= 	4.1.2.5
-PORTREVISION=	2
+PORTVERSION= 	1.1
+PORTEPOCH=	1
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/
-DISTNAME=	simple${PORTVERSION:S/.//g}
+MASTER_SITES=	http://www.oasis-open.org/docbook/xml/simple/${PORTVERSION}/
+DISTNAME=	docbook-simple-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	"Simplified" DocBook XML DTD
