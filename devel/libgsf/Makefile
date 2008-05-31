@@ -4,12 +4,12 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.3 2007/03/30 17:59:27 ctriv Exp $
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.4 2007/05/06 23:17:04 ctriv Exp $
 #
 
 PORTNAME=	libgsf
-PORTVERSION=	1.14.1
-PORTREVISION?=	1
+PORTVERSION=	1.14.8
+PORTREVISION?=	0
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}

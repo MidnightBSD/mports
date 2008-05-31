@@ -1,6 +1,8 @@
+bin/gsf
 bin/gsf-office-thumbnailer
-include/libgsf-1/gsf-win32/gsf-input-win32.h
-include/libgsf-1/gsf-win32/gsf-output-win32.h
+bin/gsf-vba-dump
+include/libgsf-1/gsf-gvfs/gsf-input-gvfs.h
+include/libgsf-1/gsf-gvfs/gsf-output-gvfs.h
 include/libgsf-1/gsf/gsf-blob.h
 include/libgsf-1/gsf/gsf-clip-data.h
 include/libgsf-1/gsf/gsf-doc-meta-data.h
@@ -14,6 +16,7 @@ include/libgsf-1/gsf/gsf-infile-zip.h
 include/libgsf-1/gsf/gsf-infile.h
 include/libgsf-1/gsf/gsf-input-bzip.h
 include/libgsf-1/gsf/gsf-input-gzip.h
+include/libgsf-1/gsf/gsf-input-http.h
 include/libgsf-1/gsf/gsf-input-impl.h
 include/libgsf-1/gsf/gsf-input-iochannel.h
 include/libgsf-1/gsf/gsf-input-memory.h
@@ -24,6 +27,7 @@ include/libgsf-1/gsf/gsf-input.h
 include/libgsf-1/gsf/gsf-libxml.h
 include/libgsf-1/gsf/gsf-meta-names.h
 include/libgsf-1/gsf/gsf-msole-utils.h
+include/libgsf-1/gsf/gsf-open-pkg-utils.h
 include/libgsf-1/gsf/gsf-opendoc-utils.h
 include/libgsf-1/gsf/gsf-outfile-impl.h
 include/libgsf-1/gsf/gsf-outfile-msole.h
@@ -66,6 +70,7 @@ share/doc/gsf/gsf-Text.html
 share/doc/gsf/gsf-XML-and-libxml.html
 share/doc/gsf/gsf-Zip.html
 share/doc/gsf/gsf-blobs.html
+share/doc/gsf/gsf-index.html
 share/doc/gsf/gsf-memory.html
 share/doc/gsf/gsf-metadata.html
 share/doc/gsf/gsf-users.html
@@ -78,7 +83,6 @@ share/doc/gsf/index.html
 share/doc/gsf/index.sgml
 share/doc/gsf/intro.html
 share/doc/gsf/io.html
-share/doc/gsf/ix01.html
 share/doc/gsf/left.png
 share/doc/gsf/misc.html
 share/doc/gsf/parsers.html
@@ -87,8 +91,15 @@ share/doc/gsf/sources.html
 share/doc/gsf/style.css
 share/doc/gsf/up.png
 share/locale/es/LC_MESSAGES/libgsf.mo
+share/locale/oc/LC_MESSAGES/libgsf.mo
 share/locale/sv/LC_MESSAGES/libgsf.mo
+share/locale/zh_HK/LC_MESSAGES/libgsf.mo
+share/locale/zh_TW/LC_MESSAGES/libgsf.mo
+@dirrmtry share/locale/zh_HK/LC_MESSAGES
+@dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/oc/LC_MESSAGES
+@dirrmtry share/locale/oc
 @dirrm share/doc/gsf
-@dirrm include/libgsf-1/gsf-win32
+@dirrm include/libgsf-1/gsf-gvfs
 @dirrm include/libgsf-1/gsf
 @dirrm include/libgsf-1
