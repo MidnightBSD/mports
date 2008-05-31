@@ -2,7 +2,7 @@
 # Date created:		28 March 1999
 # Whom:			kuriyama
 #
-# $MidnightBSD: mports/textproc/docbook-xml/Makefile,v 1.1 2006/09/24 02:58:19 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-xml/Makefile,v 1.2 2007/05/09 15:30:27 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-xml/Makefile,v 1.24 2004/04/19 09:13:36 kris Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	http://www.docbook.org/xml/${PORTVERSION}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML version of the DocBook DTD
+LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
