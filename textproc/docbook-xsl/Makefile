@@ -2,12 +2,12 @@
 # Date created:        17 January 2002
 # Whom:                des
 #
-# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.1 2006/09/25 15:59:30 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.2 2007/05/18 04:23:53 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-xsl/Makefile,v 1.39 2006/07/06 17:28:16 linimon Exp $
 #
 
 PORTNAME=	docbook-xsl
-PORTVERSION=	1.70.1
+PORTVERSION=	1.71.1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	docbook
@@ -15,9 +15,10 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XSL DocBook stylesheets
+LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLDIR}/docbook/4.2/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
-		${XMLDIR}/sdocbook/4.1.2.5/catalog:${PORTSDIR}/textproc/sdocbook-xml
+		${XMLDIR}/sdocbook/1.1/catalog:${PORTSDIR}/textproc/sdocbook-xml
 
 .ifndef NOPORTDOCS
 DISTFILES+=	${PORTNAME}-doc-${PORTVERSION}${EXTRACT_SUFX}
@@ -29,8 +30,9 @@ NO_BUILD=	yes
 XMLDIR=		${LOCALBASE}/share/xml
 INSTDIR=	share/xsl/docbook
 PINSTDIR=	${PREFIX}/${INSTDIR}
-COPYDIRS=	common fo extensions html htmlhelp images \
-		javahelp lib manpages params profiling template xhtml
+COPYDIRS=	common extensions fo highlighting html htmlhelp images \
+		javahelp lib manpages params profiling slides \
+		template tools wordml xhtml
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 
@@ -39,6 +41,8 @@ CATALOG_PORTS=	${XMLDIR}/catalog.ports
 
 post-extract:
 	${FIND} ${WRKSRC} -name '.#*' -delete
+	${FIND} ${WRKSRC}/extensions -type d -mindepth 1 -maxdepth 1 -print0 |\
+		${XARGS} -0 ${RM} -rf
 
 post-configure:
 	@${SED} -e 's,@INSTDIR@,${INSTDIR},g ; \
@@ -57,9 +61,5 @@ do-install:
 	${MKDIR} ${PINSTDIR}
 	(cd ${WRKSRC} && ${TAR} -cf - VERSION ${COPYDIRS} |\
 		${TAR} -xf - -C${PINSTDIR})
-
-post-install:
-	${RMDIR} ${PREFIX}/share/xsl/docbook/extensions/build
-	${RMDIR} ${PREFIX}/share/xsl/docbook/extensions/build2
 
 .include <bsd.port.mk>
