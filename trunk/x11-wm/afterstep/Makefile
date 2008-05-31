@@ -2,7 +2,7 @@
 # Date created:		October 29th 1996
 # Whom:			jfitz@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.1 2007/04/17 18:45:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.3 2008/05/23 15:41:04 stevan Exp $
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	AfterStep-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window manager originally based on the Bowman NeXTstep clone
+LICENSE=	x11
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
