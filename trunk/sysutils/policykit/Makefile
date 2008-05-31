@@ -2,7 +2,7 @@
 # Date Created:			01 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.3 2008/05/31 16:58:22 laffer1 Exp $
 # $FreeBSD: ports/sysutils/policykit/Makefile,v 1.11 2008/05/01 01:01:48 marcus Exp $
 #   $MCom: ports/sysutils/policykit/Makefile,v 1.19 2008/01/20 04:41:31 marcus Exp $
 #
@@ -16,7 +16,7 @@ DISTNAME=	PolicyKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for controlling access to system-wide components
-LICENSE=	gpl2
+LICENSE=	x11
 
 BUILD_DEPENDS=	${LOCALBASE}/share/sgml/docbook/4.1/catalog:${PORTSDIR}/textproc/docbook-410 \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
