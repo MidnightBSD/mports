@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.217 2008/05/30 23:16:49 crash Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.218 2008/05/31 00:03:52 crash Exp $
 #
 
     COMMENT = Development utilities
@@ -63,6 +63,7 @@
     SUBDIR += gdb6
     SUBDIR += geany
     SUBDIR += gettext
+    SUBDIR += gio-fam-backend
     SUBDIR += glade3
     SUBDIR += glib12
     SUBDIR += glib20
