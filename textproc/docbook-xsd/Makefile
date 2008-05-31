@@ -3,14 +3,14 @@
 # Date created:			Feb 9, 2004
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xsd/Makefile,v 1.1 2006/09/25 16:01:18 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xsd/Makefile,v 1.1 2004/02/11 03:31:08 ijliao Exp $
 #
 
 PORTNAME=	docbook-xsd
 PORTVERSION=	1.0.b1
 CATEGORIES=	textproc
-MASTER_SITES=	http://www.oasis-open.org/committees/docbook/xmlschema/${PORTVERSION:S/.b/b/}/
+MASTER_SITES=	http://www.oasis-open.org/docbook/xmlschema/${PORTVERSION:S/.b/b/}/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.b/b/}
 
 MAINTAINER=	ports@MidnightBSD.org
