@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.4 2008/03/13 02:17:42 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.5 2008/05/31 01:28:54 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
@@ -32,10 +32,8 @@ BROKEN=	Missing dependancies
 # alacarte:${PORTSDIR}/deskutils/alacarte \
 # ${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 #   dasher:${PORTSDIR}/accessibility/dasher \
-#gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
-#		gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
-#${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
 # seahorse:${PORTSDIR}/security/seahorse
+#             gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
 # network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 
 RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applets \
@@ -46,6 +44,7 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gconf-editor:${PORTSDIR}/sysutils/gconf-editor \
 		gedit:${PORTSDIR}/editors/gedit \
 		gnome-nettool:${PORTSDIR}/net/gnome-nettool \
+		${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
 		gnome-terminal:${PORTSDIR}/x11/gnome-terminal \
 		gnome-session:${PORTSDIR}/x11/gnome-session \
 		gnome-system-monitor:${PORTSDIR}/sysutils/gnome-system-monitor \
@@ -73,7 +72,8 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libexec/fast-user-switch-applet:${PORTSDIR}/x11/fast-user-switch-applet \
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
-		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
+		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon \
+		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager
 
 NO_BUILD=	yes
 
