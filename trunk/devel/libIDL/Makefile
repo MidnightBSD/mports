@@ -6,7 +6,7 @@
 #    $MCom: ports/devel/libIDL/Makefile,v 1.5 2006/07/24 14:11:11 ahze Exp $
 
 PORTNAME=	libIDL
-PORTVERSION=	0.8.7
+PORTVERSION=	0.8.10
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.8
@@ -14,7 +14,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for creating trees of CORBA IDL files
-
+LICENSE=        lgpl
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_BISON=	yes
