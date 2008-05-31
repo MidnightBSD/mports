@@ -2,22 +2,22 @@
 # Date created:		2007-02-11
 # Whom:			Nicola Vitale <nivit@FreeBSD.org>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/clive/Makefile,v 1.15 2008/03/19 14:33:49 nivit Exp $
-#
+# $FreeBSD: ports/multimedia/clive/Makefile,v 1.22 2008/05/30 13:52:48 nivit Exp $
+# $MidnightBSD@$
 
 PORTNAME=	clive
-PORTVERSION=	0.4.7
+PORTVERSION=	0.4.14
 #PORTREVISION=	0
 #PORTEPOCH=	0
 CATEGORIES=	multimedia
-MASTER_SITES=	SF
+MASTER_SITES=	http://download.gna.org/clive/0.4/src/ \
+		SF
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	Ports@MidnightBSD.org
 COMMENT=	Video extraction utility for YouTube and Google Video
-
+LICENSE=        gpl2
 # deskutils/ljclive (same executable/manpage/distfile name)
 CONFLICTS=	clive-[0-9]*
 
@@ -34,6 +34,7 @@ CONFIGURE_ARGS=	--with-doc=no
 
 OPTIONS=	FFMPEG	"Install ffmpeg for re-encoding" off \
 		MPLAYER	"Install mplayer as video player" off \
+		NEWT	"Use devel/newt instead of bundled module" off \
 		SQLITE3 "Install sqlite3 for caching visited URLs" off \
 		VLC	"Install vlc as video player" off \
 		XCLIP	"Install xclip (read URLs from clipboard)" off
@@ -47,6 +48,17 @@ RUN_DEPENDS+=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg
 
 .if defined(WITH_MPLAYER)
 RUN_DEPENDS+=	mplayer:${PORTSDIR}/multimedia/mplayer
+.endif
+
+.if defined(WITH_NEWT)
+PLIST_SUB+=	OPTNEWT="@comment "
+CONFIGURE_ARGS+=	--with-newt=no
+LIB_DEPENDS=	slang.1:${PORTSDIR}/devel/libslang
+RUN_DEPENDS+=	newt${PYTHON_PKGNAMESUFFIX}>=0.51.0_4:${PORTSDIR}/devel/newt
+.else
+PLIST_SUB+=	OPTNEWT=""
+LIB_DEPENDS=	slang.2:${PORTSDIR}/devel/libslang2
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${PYTHON_INCLUDEDIR} $${CPPFLAGS}" LDFLAGS="-L${LOCALBASE}/lib $${LDFLAGS} -L${PYTHON_LIBDIR}" SLANG_LIBS="-lncurses -lslang"
 .endif
 
 .if defined(WITH_SQLITE3)
