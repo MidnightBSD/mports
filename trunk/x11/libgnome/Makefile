@@ -2,13 +2,13 @@
 # Date created:				17 June 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.2 2008/03/14 01:32:33 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.3 2008/03/14 01:42:16 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnome/Makefile,v 1.156 2007/03/19 05:13:55 marcus Exp $
 #   $MCom: ports/x11/libgnome/Makefile,v 1.100 2007/03/12 15:49:09 ahze Exp $
 #
 
 PORTNAME=	libgnome
-PORTVERSION=	2.20.1.1
+PORTVERSION=	2.22.0
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -44,15 +44,17 @@ MAN7=		gnome-options.7
 GCONF_SCHEMAS=	desktop_gnome_accessibility_keyboard.schemas \
 		desktop_gnome_accessibility_startup.schemas \
 		desktop_gnome_applications_browser.schemas \
-		desktop_gnome_applications_help_viewer.schemas \
+		desktop_gnome_applications_office.schemas \
 		desktop_gnome_applications_terminal.schemas \
 		desktop_gnome_applications_window_manager.schemas \
 		desktop_gnome_background.schemas \
 		desktop_gnome_file_views.schemas \
-		desktop_gnome_interface.schemas desktop_gnome_lockdown.schemas \
+		desktop_gnome_interface.schemas  \
+                desktop_gnome_lockdown.schemas \
 		desktop_gnome_peripherals_keyboard.schemas \
 		desktop_gnome_peripherals_mouse.schemas \
-		desktop_gnome_sound.schemas desktop_gnome_thumbnailers.schemas \
+		desktop_gnome_sound.schemas \
+                desktop_gnome_thumbnailers.schemas \
 		desktop_gnome_typing_break.schemas \
 		desktop_gnome_applications_at_mobility.schemas \
 		desktop_gnome_applications_at_visual.schemas
