@@ -2,7 +2,7 @@
 # Date created:		26 August 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.1 2007/04/08 06:12:13 laffer1 Exp $
 # $FreeBSD: ports/sysutils/searchmonkey/Makefile,v 1.7 2006/12/05 15:12:57 sat Exp $
 #
 
@@ -15,7 +15,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Search using regexes for file names and text
 
 USE_GNOME=	gtk20
-USE_GCC=	3.3+
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libintl-prefix=${LOCALBASE}

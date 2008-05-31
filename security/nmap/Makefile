@@ -2,7 +2,7 @@
 # Date created:			  Tue Aug 04, 1998
 # Whom:				  David O'Brien (obrien@NUXI.com)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.1 2007/07/29 21:47:46 laffer1 Exp $
 # $FreeBSD: ports/security/nmap/Makefile,v 1.105 2007/06/14 14:11:29 jmelo Exp $
 #
 
@@ -72,7 +72,6 @@ MAN1=		nmapfe.1
 MLINKS=		nmapfe.1 xnmap.1
 
 USE_GNOME=	gtk20
-USE_GCC=	3.2+
 
 CONFIGURE_ARGS+=--without-openssl
 

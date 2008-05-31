@@ -2,7 +2,7 @@
 # Date created:		September 11, 2002
 # Whom:			Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.1 2006/09/17 04:48:51 archite Exp $
+# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.2 2007/03/25 02:11:24 ctriv Exp $
 # $FreeBSD: ports/x11-wm/boxtools/Makefile,v 1.7 2006/07/04 01:49:04 rafan Exp $
 #
 
@@ -26,7 +26,6 @@ PLIST_FILES=	bin/bsetbg bin/bsetroot
 USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
-USE_GCC=	3.3+
 
 pre-patch:
 	@${REINPLACE_CMD} -e 's#PACKAGE=blackbox#PACKAGE=boxtools#' \
