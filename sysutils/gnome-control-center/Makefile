@@ -3,32 +3,35 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.102 2008/01/09 02:45:58 mezz Exp $
-#   $MCom: ports/sysutils/gnome-control-center/Makefile,v 1.157 2007/10/15 17:48:45 mezz Exp $
+# $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.106 2008/04/23 09:11:52 pav Exp $
+#   $MCom: ports/sysutils/gnome-control-center/Makefile,v 1.172 2008/03/10 21:50:24 mezz Exp $
 #
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Control center for GNOME 2 project
 LICENSE=	gpl2
 
-LIB_DEPENDS=	xklavier.11:${PORTSDIR}/x11/libxklavier
+LIB_DEPENDS=	xklavier.12:${PORTSDIR}/x11/libxklavier
+BUILD_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
+RUN_DEPENDS=	gnome-eject:${PORTSDIR}/sysutils/gnome-mount \
+		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GSTREAMER=	good
 WANT_GNOME=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack metacity nautilus2 \
 		gnomemenus desktopfileutils libgnomekbd gnomepanel
+USE_XORG=	xscrnsaver
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
@@ -37,11 +40,7 @@ CONFIGURE_ARGS=	--enable-gstreamer=0.10
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-GCONF_SCHEMAS=	apps_gnome_settings_daemon_default_editor.schemas \
-		apps_gnome_settings_daemon_keybindings.schemas \
-		apps_gnome_settings_daemon_screensaver.schemas \
-		control-center.schemas \
-		desktop_gnome_font_rendering.schemas \
+GCONF_SCHEMAS=	control-center.schemas \
 		fontilus.schemas themus.schemas
 
 .if defined(PACKAGE_BUILDING)
