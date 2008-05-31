@@ -2,13 +2,13 @@
 # Date Created:			18 July 2000
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.7 2007/10/13 18:33:06 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.8 2008/02/17 06:34:19 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/pango/Makefile,v 1.85 2006/09/16 05:24:31 ahze Exp $
 #   $MCom: ports/x11-toolkits/pango/Makefile,v 1.60 2006/04/27 11:12:49 ahze Exp $
 #
 
 PORTNAME=	pango
-PORTVERSION=	1.18.4
+PORTVERSION=	1.20.3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/pango/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 	ftp://ftp.gtk.org/pub/pango/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
@@ -16,7 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source framework for the layout and rendering of i18n text
-
+LICENSE=        lgpl      
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
