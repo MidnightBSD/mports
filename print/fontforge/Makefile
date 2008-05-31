@@ -2,6 +2,7 @@
 # Date created:		25 March 2001
 # Whom:			KANOU Hiroki <kanou@khdd.net>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/print/fontforge/Makefile,v 1.78 2006/09/07 12:53:47 pav Exp $
 #
 
@@ -17,8 +18,9 @@ FREETYPE_VERSION=	2.1.10
 EXTRACT_ONLY+=	freetype-${FREETYPE_VERSION}.tar.bz2
 .endif
 
-MAINTAINER=	kanou@khdd.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
+LICENSE=	bsd3
 
 LIB_DEPENDS=	uninameslist.0:${PORTSDIR}/textproc/libuninameslist \
 		tiff.4:${PORTSDIR}/graphics/tiff \
@@ -41,7 +43,7 @@ USE_ICONV=	yes
 USE_XLIB=	yes
 PATCH_STRIP=	-l
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 .if !defined(FONTFORGE_NO_MULTILAYER)
 WITH_MULTILAYER=	--with-multilayer
 .endif
