@@ -3,7 +3,7 @@
 # Whom:			Nicola Vitale <nivit@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/clive/Makefile,v 1.22 2008/05/30 13:52:48 nivit Exp $
-# $MidnightBSD@$
+# $MidnightBSD$
 
 PORTNAME=	clive
 PORTVERSION=	0.4.14
