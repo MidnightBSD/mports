@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.216 2008/05/20 21:54:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.217 2008/05/30 23:16:49 crash Exp $
 #
 
     COMMENT = Development utilities
@@ -131,6 +131,7 @@
     SUBDIR += motor
     SUBDIR += nasm
     SUBDIR += ncurses
+    SUBDIR += newt
     SUBDIR += nspr
     SUBDIR += oaf
     SUBDIR += objcunit
