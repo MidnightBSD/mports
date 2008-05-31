@@ -2,7 +2,7 @@
 # Date created:        17 January 2002
 # Whom:                des
 #
-# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.2 2007/05/18 04:23:53 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.3 2008/05/31 17:12:49 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xsl/Makefile,v 1.39 2006/07/06 17:28:16 linimon Exp $
 #
 
@@ -15,7 +15,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XSL DocBook stylesheets
-LICENSE=	unknown
+LICENSE=	other
 
 RUN_DEPENDS=	${XMLDIR}/docbook/4.2/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
 		${XMLDIR}/sdocbook/1.1/catalog:${PORTSDIR}/textproc/sdocbook-xml
