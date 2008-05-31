@@ -2,13 +2,13 @@
 # Date created:				04 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.1 2007/05/08 01:02:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.2 2008/03/14 02:04:51 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libbonoboui/Makefile,v 1.57 2007/03/19 05:14:01 marcus Exp $
 #    $MCom: ports/x11-toolkits/libbonoboui/Makefile,v 1.55 2007/03/12 18:11:27 marcus Exp $
 #
 
 PORTNAME=	libbonoboui
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.0
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
