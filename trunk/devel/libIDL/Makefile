@@ -2,6 +2,7 @@
 # Date Created:			12 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/libIDL/Makefile,v 1.40 2006/07/24 15:03:26 ahze Exp $
 #    $MCom: ports/devel/libIDL/Makefile,v 1.5 2006/07/24 14:11:11 ahze Exp $
 
@@ -15,11 +16,12 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for creating trees of CORBA IDL files
 LICENSE=        lgpl
+
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_BISON=	yes
+USE_BISON=	build
 USE_GNOME=	gnomehack glib20
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
