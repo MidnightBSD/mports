@@ -2,28 +2,29 @@
 # Date created:				17 June 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/x11/gnome-libs/Makefile,v 1.124 2007/10/24 23:36:55 marcus Exp $
 #   $MCom: ports/x11/gnome-libs/Makefile,v 1.7 2007/08/04 03:51:32 marcus Exp $
 #
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gnome-libs/1.4
 DIST_SUBDIR=	gnome
 
-MAINTAINER?=	gnome@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Libraries for GNOME, a GNU desktop environment
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 LIB_DEPENDS=	Imlib.5:${PORTSDIR}/graphics/imlib
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm ice x11
 USE_PERL5=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix esound gtk12 imlib libxml orbit
