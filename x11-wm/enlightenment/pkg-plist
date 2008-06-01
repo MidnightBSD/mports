@@ -93,7 +93,6 @@ bin/starte16
 %%DATADIR%%/scripts/session.sh
 %%DATADIR%%/themes/winter/ABOUT/MAIN
 %%DATADIR%%/themes/winter/ABOUT/bg.png
-%%DATADIR%%/themes/winter/ABOUT/vixar.ttf
 %%DATADIR%%/themes/winter/README
 %%DATADIR%%/themes/winter/backgrounds/backgrounds.cfg
 %%DATADIR%%/themes/winter/backgrounds/images/startup-bg.png
@@ -375,7 +374,6 @@ bin/starte16
 %%DATADIR%%/themes/winter/tooltips/images/tooltipbg.png
 %%DATADIR%%/themes/winter/tooltips/tooltips.cfg
 %%DATADIR%%/themes/winter/ttfonts/COPYRIGHT.Vera
-%%DATADIR%%/themes/winter/ttfonts/LICENSE.Vera
 %%DATADIR%%/themes/winter/ttfonts/Vera.ttf
 %%DATADIR%%/themes/winter/ttfonts/VeraBd.ttf
 share/xsessions/e16.desktop
