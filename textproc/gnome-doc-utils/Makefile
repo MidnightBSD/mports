@@ -2,13 +2,13 @@
 # Date created:				11 November 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.2 2007/11/07 23:26:18 ctriv Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.3 2008/03/04 02:43:09 laffer1 Exp $
 # $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
 #   $MCom: ports/textproc/gnome-doc-utils/Makefile,v 1.44 2007/03/13 00:37:32 mezz Exp $
 #
 
 PORTNAME=	gnome-doc-utils
-PORTVERSION=	0.12.1
+PORTVERSION=	0.12.2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
