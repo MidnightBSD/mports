@@ -2,12 +2,13 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.7 2008/05/21 06:13:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.8 2008/05/21 06:14:31 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
 #
 
 PORTNAME=	fluxbox
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -56,7 +57,7 @@ PLIST_SUB+=		DOCPDF:="@comment "
 .endif
 
 .if !defined(WITHOUT_IMLIB2)
-LIB_DEPENDS+=		Imlib2.4:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS+=		Imlib2.5:${PORTSDIR}/graphics/imlib2
 CONFIGURE_ARGS+=	--enable-imlib2
 .else
 CONFIGURE_ARGS+=	--disable-imlib2
