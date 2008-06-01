@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.2 2007/11/23 23:49:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.3 2008/03/13 02:19:45 laffer1 Exp $
 #
 
 PORTREVISION=	0
@@ -30,8 +30,8 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applet
 		${LOCALBASE}/lib/X11/fonts/bitstream-vera/Vera.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
 		gconf-editor:${PORTSDIR}/sysutils/gconf-editor \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
-    		gnome-mount:${PORTSDIR}/sysutils/gnome-mount
-#		totem:${PORTSDIR}/multimedia/totem
+    		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
+		totem:${PORTSDIR}/multimedia/totem
 
 MASTERDIR=	${.CURDIR}/../gnome2
 CONFLICTS=	gnome2-[0-9]*
