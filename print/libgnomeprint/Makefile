@@ -2,7 +2,7 @@
 # Date created:				15 Jan 1999
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.1 2007/08/22 08:27:30 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.2 2008/03/04 02:51:23 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
 #
 
@@ -16,7 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome print support library
-
+LICENSE=        gpl2
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
