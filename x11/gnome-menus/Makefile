@@ -2,13 +2,13 @@
 # Date created:				30 November 2004
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.1 2007/09/01 05:51:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.2 2008/03/19 02:06:26 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
 #   $MCom: ports/x11/gnome-menus/Makefile,v 1.50 2007/03/12 22:36:46 marcus Exp $
 #
 
 PORTNAME=	gnome-menus
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -16,12 +16,13 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the FreeDesktop Desktop Menu Spec
+LICENSE=	gpl2
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomevfs2 ltverhack
+USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
 USE_AUTOTOOLS=	libtool:15
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
@@ -29,10 +30,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 .include <bsd.port.pre.mk>
-
-.if exists(${LOCALBASE}/lib/libfam.so) || !defined(WITHOUT_FAM)
-USE_FAM=	yes
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|applications.menu||' \
