@@ -2,13 +2,13 @@
 # Date created:				12 Nov 2000
 # Whom:					Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD: mports/graphics/giblib/Makefile,v 1.3 2007/12/06 04:16:43 laffer1 Exp $
+# $MidnightBSD: mports/graphics/giblib/Makefile,v 1.4 2007/12/06 04:23:08 laffer1 Exp $
 # $FreeBSD: ports/graphics/giblib/Makefile,v 1.20 2006/05/07 23:46:02 edwin Exp $
 #
 
 PORTNAME=	giblib
 PORTVERSION=	1.2.4
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://linuxbrit.co.uk/downloads/
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A utility library that includes a wrapper for imlib2
 LICENSE=	other
 
-LIB_DEPENDS=	Imlib2.4:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS=	Imlib2.5:${PORTSDIR}/graphics/imlib2
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes
