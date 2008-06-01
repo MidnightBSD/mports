@@ -3,11 +3,12 @@
 # Whom:			anholt
 #
 # $FreeBSD: ports/x11/xorg/Makefile,v 1.19 2007/09/16 12:42:25 flz Exp $
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.5 2007/10/17 00:04:43 ctriv Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.6 2008/04/14 18:41:37 laffer1 Exp $
 #
 
 PORTNAME=	xorg
 PORTVERSION=	7.3
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -41,6 +42,8 @@ BUILD_DEPENDS+=	Xnest:${PORTSDIR}/x11-servers/xorg-nestserver \
 		Xdmx:${PORTSDIR}/x11-servers/xorg-dmx \
 		Xvfb:${PORTSDIR}/x11-servers/xorg-vfbserver
 .endif
+
+RUN_DEPENDS+=	${BUILD_DEPENDS}
 
 do-install:	# empty
 
