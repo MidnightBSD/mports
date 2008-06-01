@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.219 2008/05/31 16:49:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.220 2008/05/31 20:11:02 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -90,6 +90,7 @@
     SUBDIR += libIDL
     SUBDIR += libbonobo
     SUBDIR += libcheck
+    SUBDIR += libconfuse
     SUBDIR += libdaemon
     SUBDIR += libevent
     SUBDIR += libexecinfo
