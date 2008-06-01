@@ -2,12 +2,12 @@
 # Date created:			11 Jun 2004
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
-# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.3 2006/09/25 16:34:08 archite Exp $
+# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.4 2007/05/06 07:51:33 ctriv Exp $
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
 #
 
 PORTNAME=		desktop-file-utils
-PORTVERSION=		0.11
+PORTVERSION=		0.15
 CATEGORIES=		devel
 MASTER_SITES=		http://freedesktop.org/software/${PORTNAME}/releases/
 
