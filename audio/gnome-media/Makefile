@@ -2,15 +2,14 @@
 # Date created:				06 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.3 2008/03/04 02:03:00 laffer1 Exp $
 # $FreeBSD: ports/audio/gnome-media/Makefile,v 1.81 2007/10/24 23:34:46 marcus Exp $
 #
 
 PORTNAME=	gnome-media
-PORTVERSION=	2.20.1
+PORTVERSION=	2.22.0
 CATEGORIES=	audio gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/gnome-media/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,6 +18,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
+INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
