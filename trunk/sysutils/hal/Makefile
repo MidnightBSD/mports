@@ -2,7 +2,7 @@
 # Date Created:			02 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.4 2008/01/04 19:25:20 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.5 2008/01/21 17:43:16 laffer1 Exp $
 # $FreeBSD: ports/sysutils/hal/Makefile,v 1.22 2007/04/07 11:53:22 jylefort Exp $
 #   $MCom: ports/sysutils/hal/Makefile,v 1.26 2006/10/13 10:00:57 ahze Exp $
 #
@@ -18,7 +18,7 @@ COMMENT?=	Hardware Abstraction Layer for simplifying device access
 LICENSE=	gpl2
 
 .if !defined(HAL_SLAVE)
-LIB_DEPENDS=	polkit.0:${PORTSDIR}/sysutils/policykit \
+LIB_DEPENDS=	polkit.2:${PORTSDIR}/sysutils/policykit \
 		volume_id.0:${PORTSDIR}/devel/libvolume_id
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
 .endif
