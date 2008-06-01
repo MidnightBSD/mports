@@ -2,17 +2,16 @@
 # Date created:				18 May 2002
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.2 2008/02/22 04:09:25 laffer1 Exp $
+# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.3 2008/03/11 23:40:21 laffer1 Exp $
 # $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
 #   $MCom: ports/archivers/file-roller/Makefile,v 1.117 2007/03/12 23:23:57 marcus Exp $
 #
 
 PORTNAME=	file-roller
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.2
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -29,7 +28,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack desktopfileutils nautilus2 \
 		gnomedocutils
