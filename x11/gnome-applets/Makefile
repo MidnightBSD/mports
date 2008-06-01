@@ -3,31 +3,32 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $MidnightBSD$
-# $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.109 2008/01/07 21:42:46 mezz Exp $
-#   $MCom: ports/x11/gnome-applets/Makefile,v 1.165 2007/09/16 17:19:03 ahze Exp $
+# $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
+#   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
 #
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.20.1
+PORTVERSION=	2.22.1
+PORTREVISION=	0
 CATEGORIES=	x11 gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Applets components for the GNOME 2 Desktop Environment
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${PORTSDIR}/sysutils/system-tools-backends \
-		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-control-center
+		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop \
-		xklavier.11:${PORTSDIR}/x11/libxklavier \
+		gweather.1:${PORTSDIR}/net/libgweather \
+		xklavier.12:${PORTSDIR}/x11/libxklavier \
 		gucharmap.6:${PORTSDIR}/deskutils/gucharmap
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${PORTSDIR}/sysutils/system-tools-backends \
-		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-control-center
+		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
-USE_XLIB=	yes
 USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 INSTALLS_OMF=	yes
@@ -45,8 +46,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		OS_SYS="/usr/include"
 
 GCONF_SCHEMAS=	charpick.schemas drivemount.schemas geyes.schemas \
-		gweather.schemas mixer.schemas multiload.schemas \
-		stickynotes.schemas
+		mixer.schemas multiload.schemas stickynotes.schemas
 
 OPTIONS=	MINI_COMMANDER "Enable mini-commander applet" off
 
@@ -96,8 +96,6 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g' \
-		${WRKSRC}/libgweather/weather-met.c
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 	    	's|" == "|" = "|g'
 .if !defined(USE_PYTHON)
