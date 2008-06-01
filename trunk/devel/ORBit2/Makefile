@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.3 2007/08/23 07:46:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.4 2007/08/23 07:48:41 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
-PORTVERSION=	2.14.8
+PORTVERSION=	2.14.12
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -23,6 +23,8 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
+#LIB_DEPENDS+=	linc.1:${PORTSDIR}/net/linc
+
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
@@ -34,14 +36,15 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${X11BASE}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g' \
-		${WRKSRC}/src/idl-compiler/orbit-idl-backend.c \
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/src/orb/orb-core/orbit-typelib.c
 
 post-install:
 	@${ECHO_CMD} "ORBIIOPIPv4=0" > ${PREFIX}/etc/orbit2rc.default
 	@${ECHO_CMD} "ORBIIOPIPv6=0" >> ${PREFIX}/etc/orbit2rc.default
+	@if [ ! -f ${PREFIX}/etc/orbit2rc ]; then \
+		${CP} -p ${PREFIX}/etc/orbit2rc.default ${PREFIX}/etc/orbit2rc ; \
+	fi
 	@${MKDIR} ${PREFIX}/lib/orbit-2.0/idl-backends
 
 .include <bsd.port.mk>
