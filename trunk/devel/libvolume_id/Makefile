@@ -2,18 +2,16 @@
 # Date created:		04 November 2006
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libvolume_id/Makefile,v 1.1 2007/05/07 20:04:50 laffer1 Exp $
-# $FreeBSD: ports/devel/libvolume_id/Makefile,v 1.3 2007/01/13 21:37:38 marcus Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/devel/libvolume_id/Makefile,v 1.6 2008/03/24 03:49:41 marcus Exp $
 
 PORTNAME=	libvolume_id
-PORTVERSION=	0.75.0
-PORTREVISION=	1
+PORTVERSION=	0.81.0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.marcuscom.com/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to provide file system type information
-LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
