@@ -3,12 +3,12 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg/Makefile,v 1.98 2007/01/14 07:27:47 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg/Makefile,v 1.9 2008/04/10 23:58:58 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.10 2008/05/09 18:38:13 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
 PORTVERSION=	2.0.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
