@@ -2,7 +2,7 @@
 # Date created:			10 June 1997
 # Whom:				Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-wm/enlightenment/Makefile,v 1.1 2007/11/10 02:56:25 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/enlightenment/Makefile,v 1.2 2008/03/05 03:10:55 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/enlightenment/Makefile,v 1.101 2007/10/27 18:50:51 pav Exp $
 #
 
@@ -17,13 +17,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A very artistic X window manager
 LICENSE=	unknown
 
-LIB_DEPENDS=	Imlib2.4:${PORTSDIR}/graphics/imlib2 \
+LIB_DEPENDS=	Imlib2.5:${PORTSDIR}/graphics/imlib2 \
 		Xft.2:${PORTSDIR}/x11-fonts/libXft
 
 DATADIR=	${PREFIX}/share/e16
 
-USE_XLIB=	yes
-USE_XORG=	xbitmaps
+USE_XORG=	xbitmaps xft x11
 USE_ICONV=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
