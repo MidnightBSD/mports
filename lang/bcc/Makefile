@@ -2,12 +2,12 @@
 # Date created:		29 May 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/bcc/Makefile,v 1.1 2008/05/30 14:11:55 laffer1 Exp $
 #
 
 PORTNAME=	bcc
 PORTVERSION=	1995.03.12
-CATEGORIES=	devel lang
+CATEGORIES=	lang devel
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
