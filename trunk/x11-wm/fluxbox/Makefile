@@ -2,7 +2,7 @@
 # Date created:				29 November 2001
 # Whom:					spn
 #
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.8 2008/05/21 06:14:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.9 2008/06/01 16:05:42 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
 #
 
@@ -18,9 +18,10 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and fast window manager based on BlackBox
 LICENSE=        x11
-LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
-USE_XLIB=	yes
+RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
+
+USE_XORG=	xextproto xft xpm xrandr
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget
 WANT_GNOME=	yes
@@ -70,6 +71,7 @@ CONFIGURE_ARGS+=	--disable-kde
 .endif
 
 .if defined(WITH_XINERAMA) || defined(PACKAGE_BUILDING)
+USE_XORG+=		xinerama
 CONFIGURE_ARGS+=	--enable-xinerama
 .endif
 
@@ -105,6 +107,7 @@ CONFIGURE_ARGS+=	--disable-toolbar
 .endif
 
 .if !defined(WITHOUT_XRENDER)
+USE_XORG+=		xrender
 CONFIGURE_ARGS+=	--enable-xrender
 .else
 CONFIGURE_ARGS+=	--disable-xrender
