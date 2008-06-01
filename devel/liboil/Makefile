@@ -2,7 +2,7 @@
 # Date created:				Nov 24, 2004
 # Whom:					ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/liboil/Makefile,v 1.1 2007/05/07 07:51:47 laffer1 Exp $
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of optimized inner loops
+LICENSE=	bsd2
 
 USE_GNOME=	pkgconfig gnomehack gnometarget
 GNU_CONFIGURE=	yes
