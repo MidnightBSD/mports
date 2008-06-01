@@ -2,13 +2,13 @@
 # Date created:         		04 December 2003
 # Whom:                 		Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.2 2007/08/29 01:40:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.3 2008/02/17 04:37:27 laffer1 Exp $
 # $FreeBSD: ports/devel/glibmm/Makefile,v 1.22 2006/06/07 06:08:04 marcus Exp $
 #   $MCom: ports/devel/glibmm/Makefile,v 1.31 2006/04/14 21:55:21 mezz Exp $
 #
 
 PORTNAME=	glibmm
-PORTVERSION=	2.14.2
+PORTVERSION=	2.16.2
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
