@@ -1,5 +1,5 @@
 --- Makefile.in.orig	Wed Mar 26 05:16:36 2008
-+++ Makefile.in	Fri May  9 14:35:25 2008
++++ Makefile.in	Sun Jun  1 16:49:03 2008
 @@ -94,14 +94,14 @@
  	install-dvi-recursive install-exec-recursive \
  	install-html-recursive install-info-recursive \
@@ -17,6 +17,15 @@
  DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
  distdir = $(PACKAGE)-$(VERSION)
  top_distdir = $(distdir)
+@@ -328,7 +328,7 @@
+ @HAVE_W32_SYSTEM_FALSE@tests = tests
+ @HAVE_W32_SYSTEM_TRUE@tests = 
+ SUBDIRS = m4 gl include jnlib common ${kbx} \
+- ${gpg} ${keyserver} ${sm} ${agent} ${scd} ${tools} po ${doc} ${tests}
++ ${gpg} ${keyserver} ${sm} ${agent} ${scd} ${tools} po ${doc}
+ 
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
 @@ -622,7 +622,6 @@
  	  && $(MAKE) $(AM_MAKEFLAGS) dvi \
  	  && $(MAKE) $(AM_MAKEFLAGS) check \
