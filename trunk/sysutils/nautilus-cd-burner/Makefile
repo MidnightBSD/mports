@@ -2,12 +2,12 @@
 # Date created:				13 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnighhtBSD$
+# $MidnightBSD$
 # $FreeBSD: ports/sysutils/nautilus-cd-burner/Makefile,v 1.42 2007/05/29 04:07:21 mezz Exp $
 #
 
 PORTNAME=	nautilus-cd-burner
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -15,6 +15,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD burner view for Nautilus
+LICENSE=	gpl2
 
 RUN_DEPENDS=	cdrdao:${PORTSDIR}/sysutils/cdrdao
 
@@ -35,8 +36,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 GCONF_SCHEMAS=	nautilus-cd-burner.schemas
 
 OPTIONS=	DVD "Enable DVD support" on \
-		CJK "Use cdrtools-cjk instead of cdrtools" off \
-		GNOMEMOUNT "Enable sysutils/gnome-mount support" off
+		CJK "Use cdrtools-cjk instead of cdrtools" off
 
 .include <bsd.port.pre.mk>
 
@@ -48,13 +48,9 @@ WITHOUT_DVD=	yes
 RUN_DEPENDS+=	growisofs:${PORTSDIR}/sysutils/dvd+rw-tools
 .endif
 
-.if defined(WITH_GNOMEMOUNT)
 BUILD_DEPENDS+=	gnome-mount:${PORTSDIR}/sysutils/gnome-mount
 RUN_DEPENDS+=	gnome-mount:${PORTSDIR}/sysutils/gnome-mount
 CONFIGURE_ARGS+=	--enable-gnome-mount
-.else
-CONFIGURE_ARGS+=	--disable-gnome-mount
-.endif
 
 post-install:
 	-@update-desktop-database
