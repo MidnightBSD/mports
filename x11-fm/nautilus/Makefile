@@ -2,16 +2,16 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.2 2008/03/26 02:11:30 laffer1 Exp $
-# $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.76 2007/07/03 17:16:52 mezz Exp $
-#   $MCom: ports/x11-fm/nautilus/Makefile,v 1.127 2007/03/16 16:07:42 marcus Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
+#   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
 
 PORTNAME=	nautilus
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.2
+PORTREVISION=	0
 CATEGORIES=	x11-fm gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,13 +20,13 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif
 
+USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop eel2 \
-		librsvg2 desktopfileutils ltverhack
+		librsvg2 desktopfileutils ltverhack gvfs ltasneededhack
 GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
@@ -45,13 +45,14 @@ GCONF_SCHEMAS=	apps_nautilus_preferences.schemas
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_TRACKER)
-LIB_DEPENDS+=	trackerclient.0:${PORTSDIR}/sysutils/tracker
+#RUN_DEPENDS+=	tracker-applet:${PORTSDIR}/sysutils/tracker-gnome		
+LIB_DEPENDS+=	trackerclient.0:${PORTSDIR}/sysutils/tracker-client \
+		tracker-gtk.0:${PORTSDIR}/sysutils/tracker-libtrackergtk
 .else
 CONFIGURE_ARGS+=--disable-tracker
 .endif
 
 post-install:
-	${MKDIR} ${PREFIX}/lib/nautilus/extensions-1.0
-	@-update-desktop-database
+	@${MKDIR} ${PREFIX}/lib/nautilus/extensions-2.0
 
 .include <bsd.port.post.mk>
