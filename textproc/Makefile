@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.96 2008/05/31 17:34:24 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.97 2008/05/31 19:13:47 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
 
     SUBDIR += agrep
+    SUBDIR += asciidoc
     SUBDIR += aspell
     SUBDIR += cdiff
     SUBDIR += diffutils
@@ -119,5 +120,6 @@
     SUBDIR += xhtml-modularization
     SUBDIR += xmlcatmgr
     SUBDIR += xmlcharent
+    SUBDIR += xmlto
 
 .include <bsd.port.subdir.mk>
