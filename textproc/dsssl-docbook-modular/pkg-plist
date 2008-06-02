@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/textproc/dsssl-docbook-modular/pkg-plist,v 1.30 2007/05/26 12:26:24 kuriyama Exp $
+@comment $MidnightBSD$
 share/sgml/docbook/dsssl/modular/BUGS
 share/sgml/docbook/dsssl/modular/ChangeLog
 share/sgml/docbook/dsssl/modular/README
