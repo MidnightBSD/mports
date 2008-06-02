@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.77 2008/05/11 15:49:28 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.78 2008/06/02 04:01:52 archite Exp $
 #
 
     COMMENT = Security tools
@@ -45,6 +45,7 @@
     SUBDIR += nmapfe
     SUBDIR += nss
     SUBDIR += opencdk
+    SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
     SUBDIR += openvpn
     SUBDIR += p5-Authen-SASL
