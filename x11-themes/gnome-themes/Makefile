@@ -2,13 +2,13 @@
 # Date Created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.1 2007/10/21 22:47:19 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.2 2008/03/31 00:37:30 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/gnome-themes/Makefile,v 1.43 2007/05/19 20:30:10 flz Exp $
 #   $MCom: ports/x11-themes/gnome-themes/Makefile,v 1.116 2007/03/15 03:20:01 marcus Exp $
 #
 
 PORTNAME=	gnome-themes
-PORTVERSION=	2.20.2
+PORTVERSION=	2.22.2
 PORTREVISION=	1
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -29,7 +29,7 @@ USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:15
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack intlhack metacity libgnomeui
+USE_GNOME=	gnomehack intlhack metacity libgnomeui 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 	       	LDFLAGS="-L${LOCALBASE}/lib"
 
