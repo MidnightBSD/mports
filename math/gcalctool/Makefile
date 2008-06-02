@@ -2,13 +2,13 @@
 # Date created:				12 Jun 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/gcalctool/Makefile,v 1.1 2007/10/21 23:22:08 laffer1 Exp $
+# $MidnightBSD: mports/math/gcalctool/Makefile,v 1.2 2008/03/28 02:54:48 laffer1 Exp $
 # $FreeBSD: ports/math/gcalctool/Makefile,v 1.63 2007/05/19 20:14:58 flz Exp $
 #   $MCom: ports/math/gcalctool/Makefile,v 1.65 2007/03/12 19:02:22 mezz Exp $
 #
 
 PORTNAME=	gcalctool
-PORTVERSION=	5.20.2
+PORTVERSION=	5.22.2
 PORTEPOCH=	2
 CATEGORIES=	math gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
