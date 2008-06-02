@@ -2,12 +2,13 @@
 # Date created:        27 June 1998
 # Whom:                Nik Clayton <nik@freebsd.org>
 #
-# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.5 2007/05/09 15:49:33 ctriv Exp $
+# $MidnightBSD: mports/textproc/docproj/Makefile,v 1.6 2008/05/22 16:57:31 laffer1 Exp $
 # $FreeBSD: ports/textproc/docproj/Makefile,v 1.53 2006/09/03 17:44:50 kris Exp $
 #
 
 PORTNAME=	docproj
 PORTVERSION=	1.17
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -20,7 +21,6 @@ LICENSE=	agg
 NO_BUILD=		yes
 USE_GHOSTSCRIPT_RUN=	yes
 USE_PERL5_RUN=		yes
-
 
 # This dependency list should be kept in sync with the list of
 # required ports in src/release/Makefile.inc.docports.
@@ -40,9 +40,8 @@ RUN_DEPENDS=	fixrtf:${PORTSDIR}/textproc/fixrtf \
 		${LOCALBASE}/share/xml/dtd/xhtml/xhtml.soc:${PORTSDIR}/textproc/xhtml \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl \
 		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
-		${LOCALBASE}/share/xml/xmlcharent/catalog:${PORTSDIR}/textproc/xmlcharent
-
-
+		${LOCALBASE}/share/xml/xmlcharent/catalog:${PORTSDIR}/textproc/xmlcharent \
+		${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
 
 .include <bsd.port.pre.mk>
 
@@ -73,18 +72,15 @@ RUN_DEPENDS+=	dvips:${PORTSDIR}/print/dvipsk-tetex
 RUN_DEPENDS+=	html2text:${PORTSDIR}/textproc/html2text
 .endif
 
-
 PLIST_FILES=		#empty
-
-DEPENDS_ARGS+=	BATCH=yes WITHOUT_X11=${WITHOUT_X11}
+DEPENDS_ARGS+=	BATCH=yes
+.if defined(WITHOUT_X11)
+DEPENDS_ARGS+=	WITHOUT_X11=${WITHOUT_X11}
+.endif
 
 message-jadetex:
 	@${CAT} ${FILESDIR}/JADETEX
 	@${FALSE}
-message-gs:
-	@${ECHO_MSG} "NOTICE: Define WITH_GHOSTSCRIPT_AFPL=yes to use"
-	@${ECHO_MSG} "        AFPL Postscript interpreter instead of GNU one."
-	@${ECHO_MSG} ""
 
 # generate MINIMALDOCPORTS for src/release/Makefile.inc.docports.
 # (XXX: incomplete yet)
@@ -94,9 +90,6 @@ minimaldocports:
 
 .if empty(WITH_JADETEX) && !make(deinstall)
 pre-everything:: message-jadetex
-.endif
-.if !defined(WITH_GHOSTSCRIPT_AFPL) || ${WITH_GHOSTSCRIPT_AFPL} != yes
-pre-everything:: message-gs
 .endif
 
 do-install:	# empty

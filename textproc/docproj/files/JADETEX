@@ -1,4 +1,4 @@
-This port will try and ensure that the tools used by the FreeBSD
+This port will try and ensure that the tools used by the MidnightBSD
 Documentation Project are installed on your system so you can convert
 documentation from SGML to other formats.
 
