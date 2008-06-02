@@ -1,0 +1,42 @@
+--- Makefile.orig	2007-09-06 22:05:15.000000000 +0200
++++ Makefile	2008-02-29 21:58:37.000000000 +0100
+@@ -20,14 +20,14 @@
+ # $Id: patch-Makefile,v 1.1 2008-06-02 04:01:52 archite Exp $
+ 
+ DESTDIR=
+-PREFIX=/usr/local
+-ETCDIR=/etc/vpnc
++PREFIX?=/usr/local
++ETCDIR=$(PREFIX)/etc/
+ BINDIR=$(PREFIX)/bin
+ SBINDIR=$(PREFIX)/sbin
+ MANDIR=$(PREFIX)/share/man
+ 
+ SRCS = sysdep.c vpnc-debug.c isakmp-pkt.c tunip.c config.c dh.c math_group.c supp.c
+-BINS = vpnc cisco-decrypt
++BINS += vpnc
+ OBJS = $(addsuffix .o,$(basename $(SRCS)))
+ BINOBJS = $(addsuffix .o,$(BINS))
+ BINSRCS = $(addsuffix .c,$(BINS))
+@@ -49,9 +49,9 @@
+ #OPENSSL_GPL_VIOLATION = -DOPENSSL_GPL_VIOLATION
+ #OPENSSLLIBS = -lcrypto
+ 
+-CC=gcc
+-CFLAGS ?= -O3 -g
+-CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings
++CC?=gcc
++#CFLAGS ?= -O3 -g
++#CFLAGS += -W -Wall -Wmissing-declarations -Wwrite-strings
+ CFLAGS +=  $(shell libgcrypt-config --cflags)
+ CPPFLAGS += -DVERSION=\"$(VERSION)\" $(OPENSSL_GPL_VIOLATION)
+ LDFLAGS ?= -g
+@@ -74,7 +74,7 @@
+ 	./makeman.pl
+ 
+ cisco-decrypt : cisco-decrypt.o config.o supp.o sysdep.o vpnc-debug.o
+-	$(CC) -o $@ $^ $(LDFLAGS)
++	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+ 
+ .depend: $(SRCS) $(BINSRCS)
+ 	$(CC) -MM $(SRCS) $(BINSRCS) $(CFLAGS) $(CPPFLAGS) > $@
