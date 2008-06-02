@@ -2,12 +2,12 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.1 2006/10/05 00:49:10 laffer1 Exp $
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager
 PORTVERSION=	0.7.23
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	vcdimager
@@ -17,10 +17,11 @@ COMMENT=	GNU VCDImager/VCDRip -- The GNU VideoCD Image Maker/Ripping Tool
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		xml2:${PORTSDIR}/textproc/libxml2 \
-		cdio.7:${PORTSDIR}/sysutils/libcdio
+		cdio.8:${PORTSDIR}/sysutils/libcdio
 
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_AUTOTOOLS=	libtool:15
+USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gnomehack pkgconfig lthack
 CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
