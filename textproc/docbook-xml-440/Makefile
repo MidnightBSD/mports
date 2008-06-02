@@ -2,7 +2,7 @@
 # Date created:		16 April 2005
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.2 2007/05/18 04:17:57 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.3 2008/05/31 17:37:15 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml-440/Makefile,v 1.2 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook-xml
@@ -28,7 +28,7 @@ DTD_NAME=	docbook
 DTD_VERSION=	${PORTVERSION}
 
 XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
-CATALOG_PORTS_XML=	${PREFIX}/${XMLCATBASE}/catalog.ports
+CATALOG_PORTS_XML=	${TRUE_PREFIX}/${XMLCATBASE}/catalog.ports
 REGIST_CAT_FLAGS_XML=	-c ${CATALOG_PORTS_XML} \
 			add nextCatalog ${DTD_NAME}/${DTD_VERSION}/catalog.xml
 UNREGIST_CAT_FLAGS_XML=	-c ${CATALOG_PORTS_XML} \
