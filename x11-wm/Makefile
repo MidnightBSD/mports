@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.24 2008/05/02 00:51:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.25 2008/05/09 17:23:36 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
 
     SUBDIR += afterstep
+    SUBDIR += awesome
     SUBDIR += blackbox
     SUBDIR += boxtools
     SUBDIR += compiz
