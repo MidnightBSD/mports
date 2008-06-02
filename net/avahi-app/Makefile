@@ -2,13 +2,14 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.1 2008/02/17 05:21:08 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.2 2008/04/11 21:08:57 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-app/Makefile,v 1.7 2007/12/24 19:05:22 marcus Exp $
 #   $MCom: ports/net/avahi-app/Makefile,v 1.6 2007/08/26 06:10:14 marcus Exp $
 #
 
 PORTNAME=	avahi
 PORTVERSION=	0.6.22
+PORTREVISION=	1
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
@@ -28,7 +29,6 @@ USE_GNOME_SUBR=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
-USE_GETOPT_LONG=yes
 AVAHI_SLAVE?=	no
 CONFIGURE_ARGS?=--with-distro=freebsd \
 		--with-dbus-system-address=unix:path=/var/run/dbus/system_bus_socket \
@@ -112,6 +112,9 @@ avahi-post-patch:
 	    	s|%%GNOME_SUBR%%|${GNOME_SUBR}|' \
 		${WRKSRC}/initscript/freebsd/avahi-dnsconfd.sh.in \
 		${WRKSRC}/initscript/freebsd/avahi-daemon.sh.in
+	@${REINPLACE_CMD} -e 's|dbus_connection_disconnect|dbus_connection_close|g' \
+		${WRKSRC}/avahi-client/client.c \
+		${WRKSRC}/avahi-daemon/dbus-protocol.c
 
 post-build: avahi-post-build
 
