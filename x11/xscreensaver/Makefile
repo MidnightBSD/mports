@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.3 2008/04/04 04:30:13 ctriv Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.4 2008/04/10 06:26:00 ctriv Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -24,8 +24,7 @@ LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 
 DESTDIRNAME=	install_prefix
 
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 USE_GL=		yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
@@ -110,11 +109,11 @@ post-patch:
 	@ ${CP} ${WRKSRC}/configure ${WRKSRC}/configure.Patched
 	@ ${SED} -e 's#-lpthread#${PTHREAD_LIBS}#g' \
 		-e 's#malloc.h#stdlib.h#g' \
-		-e 's#/usr/X11R6#${X11BASE}#g' \
+		-e 's#/usr/X11R6#${LOCALBASE}#g' \
 		${WRKSRC}/configure.Patched > ${WRKSRC}/configure
 
 post-install:
-	@(if test -x ${X11BASE}/bin/xscreensaver-hacks/webcollage-helper; then \
+	@(if test -x ${LOCALBASE}/bin/xscreensaver-hacks/webcollage-helper; then \
 		${ECHO} "bin/xscreensaver-hacks/webcollage-helper" | \
 			${CAT} - ${TMPPLIST} > ${TMPPLIST}.cat && \
 			${MV} ${TMPPLIST}.cat ${TMPPLIST}; fi)
