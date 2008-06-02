@@ -2,7 +2,7 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.1 2006/10/05 00:49:10 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.2 2008/06/02 15:34:27 laffer1 Exp $
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	vcdimager
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU VCDImager/VCDRip -- The GNU VideoCD Image Maker/Ripping Tool
+LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		xml2:${PORTSDIR}/textproc/libxml2 \
