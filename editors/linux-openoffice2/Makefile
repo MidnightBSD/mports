@@ -1,0 +1,147 @@
+# New ports collection makefile for: openoffice2-linux
+# Date created:		June 4 2008
+# Whom:                 Lucas Holt <luke@midnightbsd.org>
+#
+# $MidnightBSD$
+#
+
+PORTNAME=	openoffice2-linux
+PORTVERSION=	${OO_RELEASE}
+DISTNAME=		OOo_${OO_RELEASE}_LinuxIntel_install_en-US
+CATEGORIES=		editors
+
+MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
+
+MAINTAINER=		luke@midnightbsd.org
+COMMENT=		Integrated office productivity suite (binary pkg)
+
+ONLY_FOR_ARCHS=	i386 amd64
+
+USE_LINUX=	yes
+USE_XLIB=	yes
+NO_BUILD=	yes
+
+
+
+OO_VER=			2.4
+OO_RELEASE=		2.4.0
+PLIST_SUBST+=		VER=${OO_VER:Q}
+MESSAGE_SUBST+=		VER=${OO_VER:Q}
+FILES_SUBST+=		VER=${OO_VER:Q}
+
+TEMP?=			${WRKSRC}
+EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
+BUILD_DIRS=		# empty
+
+USE_GCPIO=      yes
+#USE_LINUX_RPM=  yes
+#LINUX_DIST_VER= 4
+RPM2CPIO?=              ${LOCALBASE}/bin/rpm2cpio
+
+BUILD_DEPENDS+=       ${RPM2CPIO}:${PORTSDIR}/archivers/rpm
+
+RC_CMD?=           ${RPM2CPIO}
+RC_AFTER_ARGS?=    | ${CPIO} -id --quiet
+
+
+
+EMUL_PKG_FMT=		rpm
+RPMFILES=		${WRKSRC}/RPMS/*.rpm
+RPMFILES= \
+openoffice.org-base-2.4.0-9286.i586.rpm \
+openoffice.org-calc-2.4.0-9286.i586.rpm \
+openoffice.org-core01-2.4.0-9286.i586.rpm \
+openoffice.org-core02-2.4.0-9286.i586.rpm \
+openoffice.org-core03-2.4.0-9286.i586.rpm \
+openoffice.org-core03u-2.4.0-9286.i586.rpm \
+openoffice.org-core04-2.4.0-9286.i586.rpm \
+openoffice.org-core04u-2.4.0-9286.i586.rpm \
+openoffice.org-core05-2.4.0-9286.i586.rpm \
+openoffice.org-core05u-2.4.0-9286.i586.rpm \
+openoffice.org-core06-2.4.0-9286.i586.rpm \
+openoffice.org-core07-2.4.0-9286.i586.rpm \
+openoffice.org-core08-2.4.0-9286.i586.rpm \
+openoffice.org-core09-2.4.0-9286.i586.rpm \
+openoffice.org-core10-2.4.0-9286.i586.rpm \
+openoffice.org-draw-2.4.0-9286.i586.rpm \
+openoffice.org-emailmerge-2.4.0-9286.i586.rpm \
+openoffice.org-gnome-integration-2.4.0-9286.i586.rpm \
+openoffice.org-graphicfilter-2.4.0-9286.i586.rpm \
+openoffice.org-headless-2.4.0-9286.i586.rpm \
+openoffice.org-impress-2.4.0-9286.i586.rpm \
+openoffice.org-javafilter-2.4.0-9286.i586.rpm \
+openoffice.org-kde-integration-2.4.0-9286.i586.rpm \
+openoffice.org-math-2.4.0-9286.i586.rpm \
+openoffice.org-onlineupdate-2.4.0-9286.i586.rpm \
+openoffice.org-pyuno-2.4.0-9286.i586.rpm \
+openoffice.org-testtool-2.4.0-9286.i586.rpm \
+openoffice.org-writer-2.4.0-9286.i586.rpm \
+openoffice.org-xsltfilter-2.4.0-9286.i586.rpm
+
+RPM2PKG_PREFIX=		${PREFIX}
+RPM2PKG_SUBPREFIX=	# empty
+RPM2PKG_STAGE=		do-install
+RUN_LDCONFIG=		no
+
+WRKSRC=			${WRKDIR}/OOH680_m12_native_packed-1_en-US.9286
+
+.include <bsd.port.pre.mk>
+
+LINPROCFS!=	/sbin/mount | ${GREP} linprocfs | ${AWK} '{print $1}'
+
+pre-fetch:
+.if ${LINPROCFS}
+	@${ECHO}
+	@${ECHO} Check if linprocfs is running: YES
+.else
+	@${ECHO} Check if linprocfs is running: NO
+	@${ECHO}
+	@${ECHO} ERROR:
+	@${ECHO}
+	@${ECHO} Staroffice setup needs a running linprocfs. it seems
+	@${ECHO} that procfs is not mounted on your system.  Please
+	@${ECHO} read the linprocfs\(5\) manpage and ensure the
+	@${ECHO} the following line is in /etc/fstab, and that the
+	@${ECHO} linprocfs file system is mounted:
+	@${ECHO}
+	@${ECHO} linproc /compat/linux/proc linprocfs rw 0 0
+	@${ECHO}
+	@${FALSE}
+.endif
+.if !exists(${LINUXBASE}/etc/mtab)
+	@${ECHO}
+	@${ECHO} ERROR:
+	@${ECHO}
+	@${ECHO} The file ${LINUXBASE}/etc/mtab is missing.
+	@${ECHO} Staroffice needs this file else some functions
+	@${ECHO} are not working. You can create it with
+	@${ECHO}
+	@${ECHO} touch ${LINUXBASE}/etc/mtab
+	@${ECHO}
+	@${FALSE}
+.else
+	@${ECHO} Check if ${LINUXBASE}/etc/mtab exists: YES
+.endif
+
+pre-install:
+	${MKDIR} ${WRKDIR}/oo
+
+do-install:
+	for file in ${RPMFILES}; do \
+	if !(cd ${WRKDIR}/oo && ${RC_CMD} ${WRKSRC}/RPMS/$$file ${RC_AFTER_ARGS});\
+                then \
+			exit 1; \
+                fi \
+	done
+	if [ `${ID} -u` = 0 ]; then \
+                ${CHMOD} -R ug-s ${WRKDIR}/oo; \
+                ${CHOWN} -R 0:0 ${WRKDIR}/oo; \
+	fi
+	${MV} ${WRKDIR}/oo/opt/openoffice.org2.4 ${PREFIX}
+
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/soffice
+.for i in scalc sdraw simpress swriter
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/${i} ${PREFIX}/bin/${i}
+.endfor
+
+.include <bsd.port.post.mk>
