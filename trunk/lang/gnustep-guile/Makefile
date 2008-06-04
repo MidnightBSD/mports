@@ -3,13 +3,13 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.2 2007/11/05 22:58:23 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.3 2007/11/07 20:20:14 ctriv Exp $
 #
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
-PORTREVISION=	2
-CATEGORIES=	lang
+PORTREVISION=	3
+CATEGORIES=	lang gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
 PKGNAMESUFFIX?=	${NOX11_SUFFIX}${PKGNAMESUFFIX2}
@@ -18,7 +18,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep interface to the GUILE scheme interpreter
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	guile.15:${PORTSDIR}/lang/guile
+LIB_DEPENDS+=	guile.18:${PORTSDIR}/lang/guile
+
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=
@@ -34,6 +36,7 @@ MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
 PLIST_SUB+=	GUILE_VER="${GUILE_VER}"
 
 MAN1=	greg.1
+FIXME=	Library/gg_class.m ScriptKit/Library/GuileInterpreter.m
 
 .if defined(WITHOUT_X11)
 NOX11_SUFFIX?=	-nox11
@@ -49,6 +52,17 @@ CONFLICTS?=		gnustep-guile-nox11-1.*
 .include <bsd.port.pre.mk>
 
 GUILE_VER!=	(cd ${PORTSDIR}/lang/guile && make -V GUILE_VER)
+
+post-patch:
+	${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
+               ${WRKSRC}/Greg/configure
+.for i in ${FIXME}
+	${REINPLACE_CMD} -e 's|scm_catch_body_t|scm_t_catch_body|' \
+               -e 's|scm_catch_handler_t|scm_t_catch_handler|' \
+               -e 's|scm_intern|scm_c_define|' \
+               ${WRKSRC}/${i}
+.endfor
+
 
 pre-configure:
 	${TOUCH} ${WRKSRC}/Greg/ac_nonexistent.h
