@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.10 2008/04/11 04:46:39 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.11 2008/05/01 21:20:47 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -85,10 +85,12 @@ USE_PERL5= ${PERL_BRANCH}
 _DEFAULT_PERL_VERSION= 5.8.8
 _DEFAULT_PERL_BRANCH= 5.8
 
-.if exists(${PERL}) && !defined(PACKAGE_BUILDING)
+.if !defined(PERL_VERSION)
+.	if exists(${PERL}) && !defined(PACKAGE_BUILDING)
 PERL_VERSION!= ${PERL} -MConfig -le 'print $$Config{version}'
-.else
+.	else
 PERL_VERSION=	${_DEFAULT_PERL_VERSION}
+.	endif
 .endif
 
 
