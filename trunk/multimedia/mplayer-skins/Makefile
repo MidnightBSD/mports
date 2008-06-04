@@ -2,7 +2,7 @@
 # Date created:				Sat Jan 12 10:59:45 BRST 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mplayer-skins/Makefile,v 1.3 2008/04/02 18:03:34 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer-skins/Makefile,v 1.4 2008/05/21 04:45:11 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer-skins/Makefile,v 1.44 2007/01/30 01:42:14 rafan Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	http://www3.mplayerhq.hu/MPlayer/skins/ \
 		http://www4.mplayerhq.hu/MPlayer/skins/ \
 		http://www5.mplayerhq.hu/MPlayer/skins/ \
 		http://ftp5.mplayerhq.hu/mplayer/skins/ \
+		ftp://ftp4.mplayerhq.hu/MPlayer/skins/ \
 		http://ftp.lug.udel.edu/MPlayer/skins/ \
 		ftp://ftp.mplayerhq.hu/MPlayer/skins/ \
 		ftp://ftp5.mplayerhq.hu/mplayer/skins/ \
