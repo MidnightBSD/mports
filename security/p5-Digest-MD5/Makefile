@@ -3,21 +3,21 @@
 # Whom:					ache
 #
 # $FreeBSD: ports/security/p5-Digest-MD5/Makefile,v 1.31 2006/04/14 20:45:41 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/p5-Digest-MD5/Makefile,v 1.1 2006/11/05 16:04:37 laffer1 Exp $
 #
 
 PORTNAME=	Digest-MD5
 PORTVERSION=	2.36
 CATEGORIES=	security perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Digest
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to the MD5 algorithm
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/Digest.pm:${PORTSDIR}/security/p5-Digest
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
