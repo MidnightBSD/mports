@@ -2,20 +2,20 @@
 # Date created:			13 June 1999
 # Whom:				Stephen J. Roznowski <sjr@home.net>
 #
-# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.1 2007/07/01 01:36:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.2 2008/01/05 05:48:30 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Time-HiRes/Makefile,v 1.43 2007/03/20 18:09:29 tobez Exp $
 #
 
 PORTNAME=	Time-HiRes
-PORTVERSION=	1.9711
+PORTVERSION=	1.9715
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Time
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl5 module implementing High resolution time, sleep, and alarm
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
