@@ -2,12 +2,13 @@
 # Date created:		June 4 2008
 # Whom:                 Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.1 2008/06/04 14:04:42 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.2 2008/06/04 14:35:28 laffer1 Exp $
 #
 
 PORTNAME=	openoffice2
 PORTVERSION=	${OO_RELEASE}
-CATEGORIES=	editors linux
+PORTREVISION=	1
+CATEGORIES=	editors java  linux 
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
 DISTNAME=		OOo_${OO_RELEASE}_LinuxIntel_install_en-US
@@ -17,22 +18,18 @@ MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Integrated office productivity suite (binary pkg)
 LICENSE=	lgpl
 
+RUN_DEPENDS+=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+
 ONLY_FOR_ARCHS=	i386 amd64
 
 USE_GCPIO=	yes
 USE_LINUX=	yes
-USE_XLIB=	yes
+USE_XORG=	x11 ice xaw xau xext xrender xrandr \
+		xi xt xcursor xdamage xcomposite xfixes 
 NO_BUILD=	yes
 
 OO_VER=			2.4
 OO_RELEASE=		2.4.0
-PLIST_SUBST+=		VER=${OO_VER:Q}
-MESSAGE_SUBST+=		VER=${OO_VER:Q}
-FILES_SUBST+=		VER=${OO_VER:Q}
-
-TEMP?=			${WRKSRC}
-
-BUILD_DIRS=		# empty
 
 RPM2CPIO?=              ${LOCALBASE}/bin/rpm2cpio
 BUILD_DEPENDS+=       ${RPM2CPIO}:${PORTSDIR}/archivers/rpm
@@ -72,9 +69,16 @@ RPMFILES= \
 
 WRKSRC=			${WRKDIR}/OOH680_m12_native_packed-1_en-US.9286
 
+OPTIONS=	JAVA "Enable Java Support" off
+
 .include <bsd.port.pre.mk>
 
 LINPROCFS!=	/sbin/mount | ${GREP} linprocfs | ${AWK} '{print $1}'
+
+.if defined(WITH_JAVA)
+USE_JAVA=	yes
+JAVA_VERSION=	1.4 1.5
+.endif
 
 pre-fetch:
 .if ${LINPROCFS}
@@ -85,7 +89,7 @@ pre-fetch:
 	@${ECHO}
 	@${ECHO} ERROR:
 	@${ECHO}
-	@${ECHO} Staroffice setup needs a running linprocfs. it seems
+	@${ECHO} OpenOffice.org setup needs a running linprocfs. it seems
 	@${ECHO} that procfs is not mounted on your system.  Please
 	@${ECHO} read the linprocfs\(5\) manpage and ensure the
 	@${ECHO} the following line is in /etc/fstab, and that the
@@ -100,7 +104,7 @@ pre-fetch:
 	@${ECHO} ERROR:
 	@${ECHO}
 	@${ECHO} The file ${LINUXBASE}/etc/mtab is missing.
-	@${ECHO} Staroffice needs this file else some functions
+	@${ECHO} OpenOffice.org needs this file else some functions
 	@${ECHO} are not working. You can create it with
 	@${ECHO}
 	@${ECHO} touch ${LINUXBASE}/etc/mtab
