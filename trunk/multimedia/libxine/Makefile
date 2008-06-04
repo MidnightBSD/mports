@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.10 2008/04/13 20:32:39 ctriv Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.11 2008/04/29 01:36:46 ctriv Exp $
 #
 
 PORTNAME=	xine
@@ -26,7 +26,7 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		dvdread.5:${PORTSDIR}/multimedia/libdvdread \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fame-0.9.1:${PORTSDIR}/multimedia/libfame \
-		cdio.7:${PORTSDIR}/sysutils/libcdio \
+		cdio.8:${PORTSDIR}/sysutils/libcdio \
 		modplug.0:${PORTSDIR}/audio/libmodplug \
 		vcdinfo.2:${PORTSDIR}/multimedia/vcdimager \
 		theora.0:${PORTSDIR}/multimedia/libtheora \
@@ -34,7 +34,6 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 		dca.0:${PORTSDIR}/multimedia/libdca
 
 USE_BZIP2=	yes
-USE_GCC=	3.4+
 USE_GETTEXT=	yes
 USE_ICONV=	yes
 USE_X_PREFIX=	yes
