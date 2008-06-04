@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.23 2008/05/16 15:49:10 crash Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.24 2008/05/20 17:58:02 laffer1 Exp $
 #
 
     COMMENT = Editors
@@ -18,6 +18,7 @@
     SUBDIR += jupp
     SUBDIR += kile
     SUBDIR += koffice-kde3
+    SUBDIR += linux-openoffice2
     SUBDIR += manedit
     SUBDIR += mg
     SUBDIR += nano
