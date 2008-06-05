@@ -3,13 +3,13 @@
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.2 2007/04/19 22:11:42 ctriv Exp $
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.3 2007/11/11 00:17:04 laffer1 Exp $
 #
 
 PORTNAME=	ltmdm
 PORTVERSION=	1.4
-PORTREVISION=	18
-CATEGORIES=	comms
+PORTREVISION=	19
+CATEGORIES=	comms kld
 MASTER_SITES=	http://www.dons.net.au/~darius/
 EXTRACT_SUFX=	.tgz
 
@@ -42,22 +42,17 @@ SYSDIR?=	${SRC_BASE}/sys
 
 .include <bsd.port.pre.mk>
 
-PLIST_SUB+=	FREEBSD5="" FREEBSD4="@comment "
 PLIST_SUB+=	KMODDIR=${KMODDIR}
 
 pre-fetch:
 .if !exists(${SYSDIR}/Makefile)
-	@${ECHO} "*************************************************"; \
-	${ECHO}  "This port requires the kernel source be available"; \
-	${ECHO}  "*************************************************"; \
+	@${ECHO}  "This port requires the kernel source be available"; \
 	exit 1
 .endif
 .if !defined(WITH_595_OBJ)
-	@${ECHO} "*************************************************";
 	@${ECHO} "If your ISP supports K56flex protocol only and   ";
 	@${ECHO} " doesn't support V90, define WITH_595_OBJ.       ";
 	@${ECHO} "Otheriwse your modem will not connect            ";
-	@${ECHO} "*************************************************";
 .endif
 
 do-install:
