@@ -2,22 +2,22 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.3 2008/02/17 05:38:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.4 2008/02/17 05:56:31 laffer1 Exp $
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #
 
 PORTNAME=	gnome-vfs
-PORTVERSION=	2.20.1
-PORTREVISION=	1
+PORTVERSION=	2.22.0
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/gnome-vfs/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
-DISTNAME=	gnome-vfs-${PORTVERSION}
+MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Virtual File System
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
@@ -28,9 +28,8 @@ RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info
 
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomemimedata gconf2 \
-		libbonobo ltverhack referencehack
+		ltverhack referencehack
 USE_AUTOTOOLS=	libtool:15
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
