@@ -2,7 +2,7 @@
 # Date created:         15 May 1996
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/rar/Makefile,v 1.3 2008/02/22 04:40:35 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rar/Makefile,v 1.4 2008/03/12 01:45:58 laffer1 Exp $
 # $FreeBSD: ports/archivers/rar/Makefile,v 1.58 2006/09/03 01:35:39 kris Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	rar
 PORTVERSION=	3.71
 PORTEPOCH=	2
 CATEGORIES=	archivers
-MASTER_SITES=	http://files.rarlab.com/rar/ \
-		http://files2.rarlab.com/rar/
+MASTER_SITES=	RAR
 DISTNAME=	rarbsd-3.7.1
 
 MAINTAINER=	ports@MidnightBSD.org
