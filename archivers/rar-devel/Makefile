@@ -1,23 +1,21 @@
 # New ports collection makefile for:    rar
-# Date created:         15 May 1996
-# Whom:                 ache
+# Date created:         June 5, 2008
+# Whom:                 Lucas Holt <luke@midnightbsd.org>
 #
 # $MidnightBSD: mports/archivers/rar/Makefile,v 1.5 2008/06/05 17:51:22 laffer1 Exp $
-# $FreeBSD: ports/archivers/rar/Makefile,v 1.58 2006/09/03 01:35:39 kris Exp $
 #
 
-PORTNAME=	rar
-PORTVERSION=	3.71
-PORTEPOCH=	2
+PORTNAME=	rar-devel
+PORTVERSION=	3.80
 CATEGORIES=	archivers
 MASTER_SITES=	RAR
-DISTNAME=	rarbsd-3.7.1
+DISTNAME=	rarbsd-3.8.b1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver (binary port)
 LICENSE=	restricted
 
-CONFLICTS=	rar-devel-*
+CONFLICTS=	rar-*
 
 IA32_BINARY_PORT=	YES
 RESTRICTED=	only unmodified original package can be distributed
@@ -29,18 +27,8 @@ PORTDOCS=	technote.txt license.txt whatsnew.txt order.htm \
 
 .include <bsd.port.pre.mk>
 
-LIB_DEPENDS+=	c.5:${PORTSDIR}/misc/compat5x
-
-.if ${PORTOBJFORMAT} == "elf"
-STRIP=
-.endif
-
 do-install:
-.if !defined(WITH_STATIC)
 	${INSTALL_PROGRAM} ${WRKSRC}/rar ${TARGETDIR}/bin/rar
-.else
-	${INSTALL_PROGRAM} ${WRKSRC}/rar_static ${TARGETDIR}/bin/rar
-.endif
 	${INSTALL_MAN} ${WRKSRC}/rar.txt ${TARGETDIR}/man/cat1/rar.1
 	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${TARGETDIR}/etc
 	${INSTALL_DATA} ${WRKSRC}/default.sfx ${TARGETDIR}/lib
