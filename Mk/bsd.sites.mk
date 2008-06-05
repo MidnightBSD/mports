@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.40 2008/05/21 05:53:18 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.41 2008/06/04 14:08:51 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1169,6 +1169,7 @@ MASTER_SITE_QT+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_RAR)
+MASTER_SITE_RAR+= http://www.rarlab.com/rar/%SUBDIR%/
 .for mirror in 2 3 4 5 6 7 8 9
 MASTER_SITE_RAR+= \
 	http://files${mirror}.rarlab.com/rar/%SUBDIR%/
