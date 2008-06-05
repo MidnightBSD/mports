@@ -3,14 +3,16 @@
 # Whom:			Dom Mitchell <dom@happygiraffe.net>
 #
 # $FreeBSD: ports/sysutils/ucspi-tcp/Makefile,v 1.27 2006/09/03 17:36:37 kris Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.1 2007/02/19 19:42:48 laffer1 Exp $
 #
 
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88
 PORTREVISION=	2
 CATEGORIES=	sysutils net
-MASTER_SITES=	http://cr.yp.to/ucspi-tcp/
+MASTER_SITES=	http://cr.yp.to/ucspi-tcp/ \
+		${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	garga/ucspi-tcp
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -30,9 +32,12 @@ SCRIPTS_ENV=	BINOWN="${BINOWN}" BINGRP="${BINGRP}" BINMODE="${BINMODE}" \
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_MAN)
-MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:1
-DISTFILES+=	${DISTNAME}-man.tar.gz:1
+.if defined(WITH_MAN)
+MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:man \
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:man/}
+MASTER_SITE_SUBDIR+=	garga/ucspi-tcp/:man
+DISTFILES+=	${DISTNAME}${EXTRACT_SUFX} \
+		${DISTNAME}-man.tar.gz:man
 MAN1=		addcr.1 argv0.1 date@.1 delcr.1 finger@.1 fixcrio.1 \
 		http@.1 mconnect.1 rblsmtpd.1 recordio.1 tcpcat.1 \
 		tcpclient.1 tcprules.1 tcprulescheck.1 tcpserver.1 who@.1
