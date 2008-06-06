@@ -2,12 +2,12 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.6 2008/05/30 23:10:16 laffer1 Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.7 2008/05/30 23:33:35 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
 PORTNAME=		openldap
-DISTVERSION=		2.3.41
+DISTVERSION=		2.3.42
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
