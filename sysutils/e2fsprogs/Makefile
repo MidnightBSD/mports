@@ -2,12 +2,12 @@
 # Date created:				3 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.1 2008/05/30 19:35:38 laffer1 Exp $
 # $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
 #
 
 PORTNAME=	e2fsprogs
-PORTVERSION=	1.40.9
+PORTVERSION=	1.40.10
 PORTREVISION?=	0
 CATEGORIES?=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
