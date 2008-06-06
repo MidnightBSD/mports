@@ -3,13 +3,13 @@
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.3 2007/11/11 00:17:04 laffer1 Exp $
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.4 2008/06/05 18:20:42 laffer1 Exp $
 #
 
 PORTNAME=	ltmdm
 PORTVERSION=	1.4
-PORTREVISION=	19
-CATEGORIES=	comms kld
+PORTREVISION=	20
+CATEGORIES=	comms 
 MASTER_SITES=	http://www.dons.net.au/~darius/
 EXTRACT_SUFX=	.tgz
 
