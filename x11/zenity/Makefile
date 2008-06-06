@@ -2,13 +2,13 @@
 # Date created:				01 Mar 2003
 # Whom:					Franz Klammer <klammer@webonaut.com>
 #
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.2 2008/03/14 01:45:41 laffer1 Exp $
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.3 2008/03/14 01:46:57 laffer1 Exp $
 # $FreeBSD: ports/x11/zenity/Makefile,v 1.34 2007/07/23 09:36:47 rafan Exp $
 #   $MCom: ports/x11/zenity/Makefile,v 1.77 2007/03/11 19:58:27 mezz Exp $
 #
 
 PORTNAME=	zenity
-PORTVERSION=	2.20.1
+PORTVERSION=	2.22.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
