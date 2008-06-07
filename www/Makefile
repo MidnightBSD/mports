@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.72 2008/04/13 02:21:49 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.73 2008/06/07 13:41:09 crash Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -81,6 +81,7 @@
     SUBDIR += youtube_dl
     SUBDIR += validator
     SUBDIR += webkit-gtk2
+    SUBDIR += weblint
     SUBDIR += webserver
 
 .include <bsd.port.subdir.mk>
