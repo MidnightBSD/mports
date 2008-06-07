@@ -1,6 +1,6 @@
---- libgimp/gimp.c.orig	Fri May 12 12:37:27 2000
-+++ libgimp/gimp.c	Thu May 18 16:42:21 2000
-@@ -26,6 +26,7 @@
+--- libgimp/gimp.c.orig	Fri Sep  1 06:14:32 2006
++++ libgimp/gimp.c	Sun Dec 31 15:56:37 2006
+@@ -29,6 +29,7 @@
  #include <stdlib.h>
  #include <string.h>
  #include <sys/types.h>
@@ -8,12 +8,13 @@
  
  #ifdef HAVE_SYS_TIME_H
  #include <sys/time.h>
-@@ -211,6 +212,9 @@
-     }
+@@ -291,6 +292,9 @@
+   gimp_env_init (TRUE);
  
    progname = argv[0];
 +
 +  /* Ignore floating point exceptions */
 +  fpsetmask(0);
  
-   g_set_prgname (g_basename (progname));
+   basename = g_path_get_basename (progname);
+ 
