@@ -2,15 +2,14 @@
 # Date created:				February 9, 2007
 # Whom:	      				Koen Martens <gmc@sonologic.nl>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.2 2007/11/11 23:28:06 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.3 2007/11/11 23:28:49 laffer1 Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
 #
 
 PORTNAME=	Net-DNS-Resolver-Programmable
 PORTVERSION=	0.003
 CATEGORIES=	dns net perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-v${PORTVERSION}
 
