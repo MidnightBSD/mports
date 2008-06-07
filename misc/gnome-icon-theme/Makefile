@@ -2,7 +2,7 @@
 # Date Created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.2 2008/03/28 02:41:08 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.3 2008/06/01 00:02:49 crash Exp $
 # $FreeBSD: ports/misc/gnome-icon-theme/Makefile,v 1.33 2007/05/19 20:15:48 flz Exp $
 #   $MCom: ports/misc/gnome-icon-theme/Makefile,v 1.99 2007/03/12 23:58:09 marcus Exp $
 #
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of icons for the GNOME 2 desktop
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		icon-naming-utils>=0.8.1:${PORTSDIR}/x11-themes/icon-naming-utils
@@ -35,7 +36,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@mkdir_p@|mkdir -p|g' \
 		${WRKSRC}/po/Makefile.in.in
 
-post-install:
+pre-install:
 	@${MKDIR} ${PREFIX}/share/icons/gnome/48x48/apps
 
 .include <bsd.port.mk>
