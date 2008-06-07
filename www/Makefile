@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.71 2008/03/31 23:42:43 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.72 2008/04/13 02:21:49 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -14,6 +14,7 @@
     SUBDIR += dillo
     SUBDIR += dummyflash
     SUBDIR += epiphany
+    SUBDIR += epiphany-extensions
     SUBDIR += etoile-bookmarkkit
     SUBDIR += etoile-mollusk
     SUBDIR += etoile-rsskit
