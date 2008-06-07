@@ -2,12 +2,13 @@
 # Date created:				08 October 2005
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.1 2008/03/15 21:41:28 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.2 2008/05/23 14:19:04 crash Exp $
 # $FreeBSD: ports/net-p2p/transmission/Makefile,v 1.34 2008/02/27 05:15:56 mezz Exp $
 #
 
 PORTNAME=	transmission
 PORTVERSION=	1.21
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 
@@ -15,19 +16,25 @@ MAINTAINER=	ports@MIdnightBSD.org
 COMMENT?=	A free BitTorrent client written from scratch in C
 LICENSE=	mit
 
-LIB_DEPENDS=    curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME?=	gnometarget intlhack
+USE_GNOME?=	gnometarget intlhack pkgconfig
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS?=--without-gtk \
-		--without-wx
+		LDFLAGS=-L${LOCALBASE}/lib
+CONFIGURE_ARGS?=${GCONFIGURE} \
+		--enable-cli \
+		--disable-daemon \
+		--disable-gtk
 
-CUSTOM_SUBDIRS?=third-party libtransmission cli
+# General configure
+GCONFIGURE=	--disable-beos \
+		--disable-darwin \
+		--disable-wx
+
 DOCS=		AUTHORS LICENSE NEWS README
 MAN1?=		transmissioncli.1
 
@@ -37,8 +44,10 @@ general-patch:
 		s|CXXFLAGS="-g -Wall.*"|CXXFLAGS="${CXXFLAGS} -Wall -W"|g ; \
 		s|_pthread_flags=".*"|_pthread_flags="${PTHREAD_LIBS}"|g' \
 			${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|%%CUSTOM_SUBDIRS%%|${CUSTOM_SUBDIRS}|g' \
-		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|bin_PROGRAMS = benc2php.*|bin_PROGRAMS = |g' \
+		${WRKSRC}/libtransmission/Makefile.in
+	@${REINPLACE_CMD} -e 's|-lrt||g' \
+		${WRKSRC}/third-party/libevent/configure
 	@${REINPLACE_CMD} -e 's|@SUBDIRS = . sample.*|@SUBDIRS = .|g' \
 		${WRKSRC}/third-party/libevent/Makefile.in
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
