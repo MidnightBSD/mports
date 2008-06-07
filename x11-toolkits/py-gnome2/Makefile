@@ -2,13 +2,13 @@
 # Date created:				09 February 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.1 2007/12/28 04:49:38 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/py-gnome2/Makefile,v 1.93 2007/05/19 20:31:46 flz Exp $
 #   $MCom: ports/x11-toolkits/py-gnome2/Makefile,v 1.41 2007/03/12 19:06:44 mezz Exp $
 #
 
 PORTNAME=	gnome
-PORTVERSION=	2.18.2
+PORTVERSION=	2.22.0
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits python gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -19,6 +19,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of Python bindings for GNOME 2
+LICENSE=        lgpl
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/ORBit.so:${PORTSDIR}/devel/py-orbit
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/ORBit.so:${PORTSDIR}/devel/py-orbit
