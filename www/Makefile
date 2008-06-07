@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.73 2008/06/07 13:41:09 crash Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.74 2008/06/07 20:49:54 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -8,6 +8,7 @@
     SUBDIR += analog
     SUBDIR += aria2
     SUBDIR += awstats
+    SUBDIR += bluefish
     SUBDIR += bookmarkbridge
     SUBDIR += bozohttpd
     SUBDIR += cherokee
