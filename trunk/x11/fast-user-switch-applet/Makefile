@@ -2,13 +2,13 @@
 # Date created:		8 May 2004
 # Whom:			Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/fast-user-switch-applet/Makefile,v 1.3 2008/04/01 03:42:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/fast-user-switch-applet/Makefile,v 1.4 2008/04/06 19:16:55 laffer1 Exp $
 # $FreeBSD: ports/x11/fast-user-switch-applet/Makefile,v 1.22 2007/10/24 23:36:52 marcus Exp $
 #    $MCom: ports/x11/fast-user-switch-applet/Makefile,v 1.28 2007/09/18 15:01:12 ahze Exp $
 
 PORTNAME=	fast-user-switch-applet
-PORTVERSION=	2.20.0
-PORTREVISION=	2
+PORTVERSION=	2.22.0
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -18,8 +18,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast user switching applet for GNOME
 LICENSE=	gpl2
 
+USE_XORG=       x11 xmu xau ice
 USE_BZIP2=	yes
-USE_XLIB=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack gnomeprefix gtk20 gnomepanel
