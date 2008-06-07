@@ -2,15 +2,14 @@
 # Date created:				April 5th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.6 2008/03/19 20:28:56 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.7 2008/05/04 09:36:42 crash Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS/Makefile,v 1.66 2006/09/27 23:40:21 dougb Exp $
 #
 
 PORTNAME=	Net-DNS
 PORTVERSION=	0.63
 CATEGORIES=	dns net perl5 ipv6
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
