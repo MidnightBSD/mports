@@ -14,7 +14,7 @@ lib/security/pam_gnome_keyring.la
 lib/security/pam_gnome_keyring.so
 libdata/pkgconfig/gnome-keyring-1.pc
 libexec/gnome-keyring-ask
-share/dbus-1/services/org.gnome.keyring.service
+@comment share/dbus-1/services/org.gnome.keyring.service
 %%DOCSDIR%%/ch01.html
 %%DOCSDIR%%/gnome-keyring-gnome-keyring-acl.html
 %%DOCSDIR%%/gnome-keyring-gnome-keyring-attributes.html
