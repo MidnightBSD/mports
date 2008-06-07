@@ -1,8 +1,8 @@
 # New ports collection makefile for: openoffice2-linux
 # Date created:		June 4 2008
-# Whom:                 Lucas Holt <luke@midnightbsd.org>
+# Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.2 2008/06/04 14:35:28 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.3 2008/06/04 15:55:36 laffer1 Exp $
 #
 
 PORTNAME=	openoffice2
@@ -31,10 +31,10 @@ NO_BUILD=	yes
 OO_VER=			2.4
 OO_RELEASE=		2.4.0
 
-RPM2CPIO?=              ${LOCALBASE}/bin/rpm2cpio
-BUILD_DEPENDS+=       ${RPM2CPIO}:${PORTSDIR}/archivers/rpm
-RC_CMD?=           ${RPM2CPIO}
-RC_AFTER_ARGS?=    | ${CPIO} -id --quiet
+RPM2CPIO?=	 		${LOCALBASE}/bin/rpm2cpio
+BUILD_DEPENDS+=	${RPM2CPIO}:${PORTSDIR}/archivers/rpm
+RC_CMD?=			${RPM2CPIO}
+RC_AFTER_ARGS?=	| ${CPIO} -id --quiet
 
 RPMFILES= \
 	openoffice.org-base-2.4.0-9286.i586.rpm \
@@ -67,7 +67,7 @@ RPMFILES= \
 	openoffice.org-writer-2.4.0-9286.i586.rpm \
 	openoffice.org-xsltfilter-2.4.0-9286.i586.rpm
 
-WRKSRC=			${WRKDIR}/OOH680_m12_native_packed-1_en-US.9286
+WRKSRC=	${WRKDIR}/OOH680_m12_native_packed-1_en-US.9286
 
 OPTIONS=	JAVA "Enable Java Support" off
 
@@ -81,6 +81,7 @@ JAVA_VERSION=	1.4 1.5
 .endif
 
 pre-fetch:
+.if !defined(PACKAGE_BUILDING)
 .if ${LINPROCFS}
 	@${ECHO}
 	@${ECHO} Check if linprocfs is running: YES
@@ -112,6 +113,7 @@ pre-fetch:
 	@${FALSE}
 .else
 	@${ECHO} Check if ${LINUXBASE}/etc/mtab exists: YES
+.endif
 .endif
 
 pre-install:
