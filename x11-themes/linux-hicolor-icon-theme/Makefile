@@ -2,19 +2,20 @@
 # Date created:		7 February 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.2 2007/04/19 15:53:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.3 2007/04/28 05:02:38 ctriv Exp $
 # $FreeBSD: ports/x11-themes/linux-hicolor-icon-theme/Makefile,v 1.4 2006/05/08 21:41:11 sat Exp $
 #
 
 PORTNAME=	hicolor-icon-theme
 PORTVERSION=	0.5
-CATEGORIES=	x11-themes linux
+CATEGORIES=	x11-themes gnome linux
 MASTER_SITES=	# empty
 PKGNAMEPREFIX=	linux-
 DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A high-color icon theme shell from the FreeDesktop project
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
