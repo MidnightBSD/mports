@@ -2,15 +2,15 @@
 # Date created:		Sun Aug 26 14:45:12 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.2 2007/11/11 23:04:54 laffer1 Exp $
+# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.3 2007/11/11 23:07:27 laffer1 Exp $
 # $FreeBSD: ports/dns/ddclient/Makefile,v 1.18 2006/06/16 13:14:30 sat Exp $
 #
 
 PORTNAME=	ddclient
 PORTVERSION=	3.7.3
+PORTREVISION=	1
 CATEGORIES=	dns
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update dynamic DNS entries
@@ -35,7 +35,11 @@ PORTDOCS=	COPYING COPYRIGHT Changelog README README.cisco README.ssl \
 
 post-patch:
 	@${GREP} -lr '/usr' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e 's|/usr|${PREFIX}|g'
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
+	@${REINPLACE_CMD} \
+		-e 's|/etc/ddclient|${PREFIX}/etc|' \
+		-e 's|/tmp|/var/tmp|' \
+		-e 's|/var/cache/ddclient|/var/tmp|' \
+		-e '/PATH/s|/etc:/usr/local/lib:||' \
 		-e 's|/usr.*perl|${PERL}|g' ${WRKSRC}/ddclient
 
 do-install:
@@ -45,6 +49,5 @@ do-install:
 	@${INSTALL} -d ${DOCSDIR}
 	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
