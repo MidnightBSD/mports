@@ -2,7 +2,7 @@
 # Date created:		15 Oct 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.1 2007/10/15 06:37:41 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.2 2008/03/30 23:17:10 laffer1 Exp $
 #
 
 PORTNAME?=	postgresql
@@ -15,6 +15,7 @@ DISTFILES?=	postgresql-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
+LICENSE=	mit
 
 CONFLICTS?=	${PORTNAME}-client-8.[0-13-9]* \
 		${PORTNAME}${PKGNAMESUFFIX}-8.[0-13-9]*
