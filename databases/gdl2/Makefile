@@ -1,14 +1,11 @@
 # New ports collection makefile for:    gdl2
-# Date created:         12 Sep 2006
-# Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.1 2007/04/13 21:54:33 laffer1 Exp $
-# $FreeBSD: ports/databases/gdl2/Makefile,v 1.4 2007/01/31 18:17:51 dinoex Exp $
+# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.2 2007/11/07 20:20:09 ctriv Exp $
 #
 
 PORTNAME=	gdl2
-PORTVERSION=	0.10.1
-PORTREVISION=	1
+PORTVERSION=	0.11.0
+PORTREVISION=	0
 CATEGORIES=	databases gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -16,6 +13,7 @@ DISTNAME=	gnustep-dl2-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Database Library 2 (Enterprise Objects Framework)
+LICENSE=	lgpl
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
