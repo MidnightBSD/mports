@@ -2,13 +2,14 @@
 # Date created:				12 Jun 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/gcalctool/Makefile,v 1.2 2008/03/28 02:54:48 laffer1 Exp $
+# $MidnightBSD: mports/math/gcalctool/Makefile,v 1.3 2008/06/02 15:58:28 crash Exp $
 # $FreeBSD: ports/math/gcalctool/Makefile,v 1.63 2007/05/19 20:14:58 flz Exp $
 #   $MCom: ports/math/gcalctool/Makefile,v 1.65 2007/03/12 19:02:22 mezz Exp $
 #
 
 PORTNAME=	gcalctool
 PORTVERSION=	5.22.2
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	math gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -20,13 +21,13 @@ COMMENT=	A GNOME 2 calculator tool based on the old calctool for OpenWindows
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_BISON=	yes
+USE_BISON=	build
 INSTALLS_OMF=	yes
 USE_GETTEXT=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 gnomedocutils
+USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 gnomedocutils libglade2
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
