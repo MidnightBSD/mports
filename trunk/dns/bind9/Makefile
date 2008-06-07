@@ -2,12 +2,12 @@
 # Date created:				6 October 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.5 2007/07/25 14:59:20 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.6 2007/11/11 21:20:31 laffer1 Exp $
 # $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
 #
 
 PORTNAME=	bind9
-PORTVERSION=	9.3.4.1
+PORTVERSION=	9.3.5
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -20,7 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Completely new version of the BIND DNS suite with updated DNSSEC
 
 # ISC releases things like 9.3.0rc1, which our versioning doesn't like
-ISCVERSION=	9.3.4-P1
+ISCVERSION=	9.3.5
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
@@ -28,7 +28,7 @@ CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 
 USE_OPENSSL=	yes
 
-CONFLICTS=	bind-8.* bind84-8.* bind9-dlz-* bind9-sdb-mysql-* host-* zh-bind-8.*
+CONFLICTS=	bind9-9.4.* bind9-9.5.* bind9-dlz-[0-9]* bind9-sdb-mysql-[0-9]* host-[0-9]*
 
 OPTIONS=	REPLACE_BASE "Replace base BIND with this version" off \
 		THREADS	"Compile with thread support (NOT RECOMMENDED!)" off
