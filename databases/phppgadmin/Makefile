@@ -2,12 +2,12 @@
 # Date created:		19 Jan 2001
 # Whom:			nbm
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/phppgadmin/Makefile,v 1.1 2007/08/10 18:59:31 laffer1 Exp $
 # $FreeBSD: ports/databases/phppgadmin/Makefile,v 1.40 2007/08/04 11:40:44 gabor Exp $
 #
 
 PORTNAME=	phppgadmin
-PORTVERSION=	4.1.3
+PORTVERSION=	4.2
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -15,6 +15,7 @@ DISTNAME=	phpPgAdmin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web Based Postgres Administration
+LICENSE=	gpl2
 
 USE_BZIP2=	YES
 .if !defined(WITHOUT_PHP_DEPENDS)
