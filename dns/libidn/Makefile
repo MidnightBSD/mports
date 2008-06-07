@@ -2,12 +2,12 @@
 # Date created:        	19.06.2003
 # Whom:               	Kirill Ponomarew <ponomarew@oberon.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.2 2007/11/11 02:58:06 laffer1 Exp $
 # $FreeBSD: ports/dns/libidn/Makefile,v 1.67 2007/10/10 12:18:15 krion Exp $
 #
 
 PORTNAME=	libidn
-PORTVERSION=	1.2
+PORTVERSION=	1.8
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/libidn/releases/
@@ -17,7 +17,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl3
 
-USE_GETOPT_LONG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
