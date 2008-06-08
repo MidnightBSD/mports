@@ -2,12 +2,12 @@
 # Date created:		15 Nov 1998
 # Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.1 2006/09/18 20:38:57 wintellect Exp $
+# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
 # $FreeBSD: ports/textproc/p5-XML-Parser/Makefile,v 1.26 2006/01/30 23:19:59 kuriyama Exp $
 #
 
 PORTNAME=	XML-Parser
-PORTVERSION=	2.34
+PORTVERSION=	2.36
 PORTREVISION=	2
 CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
