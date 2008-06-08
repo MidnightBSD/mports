@@ -2,7 +2,7 @@
 # Date created:				09 December 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.1 2008/03/21 01:19:35 laffer1 Exp $
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.2 2008/03/29 06:49:17 ctriv Exp $
 # $FreeBSD: ports/databases/evolution-data-server/Makefile,v 1.45 2008/01/14 19:19:18 marcus Exp $
 #   $MCom: ports-stable/databases/evolution-data-server/Makefile,v 1.3 2007/11/30 20:10:35 marcus Exp $
 #
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The data backends for the Evolution integrated mail/PIM suite
 LICENSE=	gpl2
 
-LIB_DEPENDS=	soup-2.2.8:${PORTSDIR}/devel/libsoup \
+LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		nss3.1:${PORTSDIR}/security/nss \
 		tasn1.3:${PORTSDIR}/security/libtasn1
 
