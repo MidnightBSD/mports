@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.9 2008/04/13 20:33:49 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.11 2008/05/31 21:15:21 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -507,7 +507,7 @@ pygtksourceview_RUN_DEPENDS=	${pygtksourceview_DETECT}:${PORTSDIR}/x11-toolkits/
 pygtksourceview_USE_GNOME_IMPL=	gtksourceview2 pygtk2
 
 libgnomekbd_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgnomekbd.pc
-libgnomekbd_LIB_DEPENDS=	gnomekbd.1:${PORTSDIR}/x11/libgnomekbd
+libgnomekbd_LIB_DEPENDS=	gnomekbd.2:${PORTSDIR}/x11/libgnomekbd
 libgnomekbd_USE_GNOME_IMPL=	libgnomeui
 
 # End component definition section
