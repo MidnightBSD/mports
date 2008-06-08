@@ -2,7 +2,7 @@
 # Date created:				25 June 2007
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/py-gtksourceview/Makefile,v 1.1 2008/03/22 02:12:08 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtksourceview/Makefile,v 1.2 2008/06/08 18:40:09 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/py-gtksourceview/Makefile,v 1.1 2007/10/24 23:37:20 marcus Exp $
 #   $MCom: ports/x11-toolkits/py-gtksourceview/Makefile,v 1.6 2007/09/17 13:46:28 ahze Exp $
 #
@@ -17,6 +17,7 @@ DISTNAME=	pygtksourceview-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A python bindings for the version 2 of the GtkSourceView library
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
