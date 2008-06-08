@@ -2,15 +2,15 @@
 # Date created:         		June 27, 2004
 # Whom:					fjoe@FreeBSD.ORG
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.1 2008/04/20 20:16:11 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/wxgtk26/Makefile,v 1.38 2007/11/24 19:58:43 fjoe Exp $
 #
 
 PORTNAME=	wx
 PORTVERSION=	2.6.3
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	wxwindows
+MASTER_SITES=	SF/wxwindows
 PKGNAMESUFFIX=	${WXGTK_FLAVOR}
 DISTNAME=	wxGTK-${PORTVERSION}
 
@@ -25,8 +25,8 @@ LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png\
 		mspack.1:${PORTSDIR}/archivers/libmspack
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
-USE_GL=		yes
+USE_XORG=	x11 sm xxf86vm xinerama
+USE_GL=		glu
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_GNOME=	gtk20
@@ -40,11 +40,11 @@ CONFIGURE_ARGS=	--with-libpng=sys\
 		--with-mspack\
 		--with-gtk\
 		--disable-backtrace
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include \
-		LDFLAGS="-L${LOCALBASE}/lib -liconv \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib -liconv" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"\
-		X11BASE="${X11BASE}"
+		X11BASE="${LOCALBASE}"
 NO_LATEST_LINK=	yes
 PLIST=		${.CURDIR}/pkg-plist
 
@@ -55,7 +55,7 @@ CONFLICTS=	wxgtk2-contrib-devel-2.5.2*
 .endif
 
 .if ${WXGTK_FLAVOR} != "gtk2-common"
-RUN_DEPENDS=	${X11BASE}/include/wx-2.6/wx/wx.h:${PORTSDIR}/x11-toolkits/wxgtk26-common
+RUN_DEPENDS=	${LOCALBASE}/include/wx-2.6/wx/wx.h:${PORTSDIR}/x11-toolkits/wxgtk26-common
 .endif
 
 .if ${WXGTK_FLAVOR:M*-common} != ""
@@ -71,7 +71,7 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 .if ${WXGTK_FLAVOR} != "gtk2-contrib-common"
 USE_WX=		2.6
-RUN_DEPENDS=	${X11BASE}/include/wx-2.6/wx/stc/stc.h:${PORTSDIR}/x11-toolkits/wxgtk26-contrib-common
+RUN_DEPENDS=	${LOCALBASE}/include/wx-2.6/wx/stc/stc.h:${PORTSDIR}/x11-toolkits/wxgtk26-contrib-common
 
 .if ${WXGTK_FLAVOR:M*-unicode*} != ""
 WX_UNICODE=	yes
