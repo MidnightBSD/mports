@@ -2,7 +2,7 @@
 # Date created:		13 October 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/www/neon/Makefile,v 1.1 2006/10/24 15:47:09 wintellect Exp $
+# $MidnightBSD: mports/www/neon/Makefile,v 1.2 2007/04/16 16:33:55 ctriv Exp $
 # $FreeBSD: ports/www/neon/Makefile,v 1.35 2006/04/20 10:27:08 lev Exp $
 #
 
@@ -15,10 +15,13 @@ MASTER_SITES=	http://www.webdav.org/neon/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An HTTP and WebDAV client library for Unix systems
+LICENSE=	lgpl
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
-INSTALLS_SHLIB=	yes
+CONFLICTS=	neon28-[0-9]* neon26-[0-9]*
+
+USE_LDCONFIG=	yes
 
 .ifndef WITHOUT_OPENSSL
 USE_OPENSSL=	yes
