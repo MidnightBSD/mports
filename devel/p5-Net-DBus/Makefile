@@ -2,12 +2,12 @@
 # Date created:				2005-11-25
 # Whom:					Roman Bogorodskiy <novel@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Net-DBus/Makefile,v 1.1 2007/10/24 02:55:49 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Net-DBus/Makefile,v 1.15 2007/09/08 00:57:37 linimon Exp $
 #
 
 PORTNAME=	Net-DBus
-PORTVERSION=	0.33.5
+PORTVERSION=	0.33.6
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Net
