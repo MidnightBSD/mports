@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.10 2007/12/07 17:25:26 ctriv Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.11 2008/02/21 19:41:46 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -95,7 +95,7 @@ SUB_LIST+= 	WITH_SVNSERVE_WRAPPER=${WITH_SVNSERVE_WRAPPER} \
 .endif
 
 .if !defined(WITHOUT_NEON)
-LIB_DEPENDS+=	neon.25:${PORTSDIR}/www/neon
+LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon26
 CONFIGURE_ARGS+=	--with-neon=${LOCALBASE}
 PLIST_SUB+=		WITHOUT_NEON=""
 .else
