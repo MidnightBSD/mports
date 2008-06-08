@@ -2,7 +2,7 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.4 2007/07/19 04:14:20 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.5 2008/06/08 23:27:40 laffer1 Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
@@ -22,6 +22,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
+LICENSE=	gpl2
 
 CONFLICTS?=	lynx-current*
 
