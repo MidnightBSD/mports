@@ -2,12 +2,13 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.3 2007/04/29 18:18:52 ctriv Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.4 2007/07/19 04:14:20 laffer1 Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
 PORTNAME=	lynx
 PORTVERSION=	2.8.6
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/ \
 		ftp://lynx.isc.org/lynx2.8.6/patches/:patches
@@ -22,14 +23,15 @@ PATCH_DIST_STRIP=	-p1
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
 
-CONFLICTS?=	lynx-ssl* lynx-current*
+CONFLICTS?=	lynx-current*
 
 USE_BZIP2=	yes
+USE_OPENSSL=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}2-8-6
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-screen=ncurses --with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies \
-		--enable-ipv6
+		--enable-ipv6 --with-ssl="${OPENSSLBASE}"
 
 _FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
 TARGET_DIR=	${DESTDIR}${PREFIX}
