@@ -2,12 +2,13 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.10 2007/06/06 20:50:21 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.11 2008/02/25 02:34:50 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
 PORTNAME=	perl
 PORTVERSION=	5.8.8
+PORTREVISION=	1
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN} \
 		${MASTER_SITE_LOCAL:S/$/:local/} \
@@ -25,30 +26,12 @@ MAINTAINER=	ports@MidnightBSD.org
 LICENSE=	perl
 COMMENT=	Practical Extraction and Report Language
 
-#
-# MPORT_MAINTAINER_MODE depends on perl scripts.  Make sure it is unset for this port.
-#
-.undef MPORT_MAINTAINER_MODE
-
-
-#
-# We have to define these vars ourselves, if we use bsd.perl.mk, we create a cirular
-# dependancy.
-#
 PERL_VER=	${PORTVERSION}
-PERL_VERSION=	${PERL_VER}
-PERL_ARCH?=	mach
-SITE_PERL_REL?=	lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=	${PREFIX}/${SITE_PERL_REL}
-PERL5=		${PREFIX}/bin/perl${PERL_VERSION}
-PERL=		${PREFIX}/bin/perl
+PERL_VERSION=	${PORTVERSION}
 
 
-PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
-		PERL_VER=${PERL_VER} \
-		PERL_ARCH=${PERL_ARCH} \
-		SITE_PERL=${SITE_PERL_REL}
-
+PERL_NO_DEPENDS= 	yes
+USE_PERL5=		yes
 
 
 USE_BZIP2=	yes
