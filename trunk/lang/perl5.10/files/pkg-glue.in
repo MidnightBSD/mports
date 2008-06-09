@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #
-# $MidnightBSD: mports/lang/perl5.8/files/pkg-glue,v 1.3 2007/06/06 20:50:21 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.10/files/pkg-glue.in,v 1.1 2008/04/11 04:45:00 ctriv Exp $
 
 
 PERL_VERSION='%%PERL_VERSION%%'
@@ -15,7 +15,6 @@ if [ "$2" = "POST-INSTALL" ] ; then
 	need_create_links=yes
 	need_cleanup_make_conf=yes
 	need_cleanup_manpath=yes
-	need_spam_make_conf=yes
 	need_spam_manpath=yes
 	need_post_install=yes
 elif [ "$2" = "POST-DEINSTALL" ] ; then
@@ -103,14 +102,6 @@ do_cleanup_manpath()
 	echo " Done."
 }
 
-do_spam_make_conf()
-{
-	echo -n "Spamming ${MAKE_CONF}..."
-	echo "$banner" >>${MAKE_CONF}
-	echo "PERL_VER=$PERL_VERSION" >>${MAKE_CONF}
-	echo "PERL_VERSION=$PERL_VERSION" >>${MAKE_CONF}
-	echo " Done."
-}
 
 do_spam_manpath()
 {
@@ -125,7 +116,6 @@ do_spam_manpath()
 [ $need_create_links ] && do_create_links
 [ $need_post_install ] && do_post_install
 [ $need_cleanup_make_conf ] && do_cleanup_make_conf
-[ $need_spam_make_conf ] && do_spam_make_conf
 [ $need_cleanup_manpath ] && do_cleanup_manpath
 [ $need_spam_manpath ] && do_spam_manpath
 
