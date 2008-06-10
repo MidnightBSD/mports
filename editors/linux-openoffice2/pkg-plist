@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+@comment $MidnightBSD: mports/editors/linux-openoffice2/pkg-plist,v 1.2 2008/06/10 03:35:17 laffer1 Exp $
 bin/openoffice.org2.4
 bin/soffice
 bin/scalc
@@ -4601,33 +4601,33 @@ openoffice.org2.4/LICENSE.html
 openoffice.org2.4/README
 openoffice.org2.4/README.html
 openoffice.org2.4/THIRDPARTYLICENSEREADME.html
-@dirrm share/icons/gnome/16x16/apps
-@dirrm share/icons/gnome/16x16/mimetypes
-@dirrm share/icons/gnome/16x16
-@dirrm share/icons/gnome/32x32/apps
-@dirrm share/icons/gnome/32x32/mimetypes
-@dirrm share/icons/gnome/32x32
-@dirrm share/icons/gnome/48x48/apps
-@dirrm share/icons/gnome/48x48/mimetypes
-@dirrm share/icons/gnome/48x48
-@dirrm share/icons/gnome
-@dirrm share/icons/hicolor/16x16/apps
-@dirrm share/icons/hicolor/16x16/mimetypes
-@dirrm share/icons/hicolor/16x16
-@dirrm share/icons/hicolor/32x32/apps
-@dirrm share/icons/hicolor/32x32/mimetypes
-@dirrm share/icons/hicolor/32x32
-@dirrm share/icons/hicolor/48x48/apps
-@dirrm share/icons/hicolor/48x48/mimetypes
-@dirrm share/icons/hicolor/48x48
-@dirrm share/icons/hicolor
-@dirrm share/icons/locolor/16x16/apps
-@dirrm share/icons/locolor/16x16/mimetypes
-@dirrm share/icons/locolor/16x16
-@dirrm share/icons/locolor/32x32/apps
-@dirrm share/icons/locolor/32x32/mimetypes
-@dirrm share/icons/locolor/32x32
-@dirrm share/icons/locolor
+@dirrmtry share/icons/gnome/16x16/apps
+@dirrmtry share/icons/gnome/16x16/mimetypes
+@dirrmtry share/icons/gnome/16x16
+@dirrmtry share/icons/gnome/32x32/apps
+@dirrmtry share/icons/gnome/32x32/mimetypes
+@dirrmtry share/icons/gnome/32x32
+@dirrmtry share/icons/gnome/48x48/apps
+@dirrmtry share/icons/gnome/48x48/mimetypes
+@dirrmtry share/icons/gnome/48x48
+@dirrmtry share/icons/gnome
+@dirrmtry share/icons/hicolor/16x16/apps
+@dirrmtry share/icons/hicolor/16x16/mimetypes
+@dirrmtry share/icons/hicolor/16x16
+@dirrmtry share/icons/hicolor/32x32/apps
+@dirrmtry share/icons/hicolor/32x32/mimetypes
+@dirrmtry share/icons/hicolor/32x32
+@dirrmtry share/icons/hicolor/48x48/apps
+@dirrmtry share/icons/hicolor/48x48/mimetypes
+@dirrmtry share/icons/hicolor/48x48
+@dirrmtry share/icons/hicolor
+@dirrmtry share/icons/locolor/16x16/apps
+@dirrmtry share/icons/locolor/16x16/mimetypes
+@dirrmtry share/icons/locolor/16x16
+@dirrmtry share/icons/locolor/32x32/apps
+@dirrmtry share/icons/locolor/32x32/mimetypes
+@dirrmtry share/icons/locolor/32x32
+@dirrmtry share/icons/locolor
 @dirrm share/icons
 @dirrm share/mime/packages
 @dirrm share/mime
