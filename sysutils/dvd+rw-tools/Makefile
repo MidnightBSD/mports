@@ -2,11 +2,11 @@
 # Date created:        2003-6-15
 # Whom:                chuck@pkix.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/dvd+rw-tools/Makefile,v 1.1 2007/10/22 04:34:57 laffer1 Exp $
 # $FreeBSD: ports/sysutils/dvd+rw-tools/Makefile,v 1.25 2007/03/30 20:51:44 pav Exp $
 
 PORTNAME=	dvd+rw-tools
-PORTVERSION=	7.0
+PORTVERSION=	7.1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.pkix.net/mirror/fy.chalmers.se/ \
 		http://fy.chalmers.se/~appro/linux/DVD+RW/tools/
