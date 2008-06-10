@@ -2,12 +2,12 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.3 2008/06/04 15:55:36 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.4 2008/06/07 13:37:59 laffer1 Exp $
 #
 
 PORTNAME=	openoffice2
 PORTVERSION=	${OO_RELEASE}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors java  linux 
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
@@ -65,7 +65,8 @@ RPMFILES= \
 	openoffice.org-pyuno-2.4.0-9286.i586.rpm \
 	openoffice.org-testtool-2.4.0-9286.i586.rpm \
 	openoffice.org-writer-2.4.0-9286.i586.rpm \
-	openoffice.org-xsltfilter-2.4.0-9286.i586.rpm
+	openoffice.org-xsltfilter-2.4.0-9286.i586.rpm \
+	desktop-integration/openoffice.org-freedesktop-menus-2.4-9268.noarch.rpm
 
 WRKSRC=	${WRKDIR}/OOH680_m12_native_packed-1_en-US.9286
 
@@ -131,8 +132,19 @@ do-install:
 		${CHOWN} -R 0:0 ${WRKDIR}/oo; \
 	fi
 	${MV} ${WRKDIR}/oo/opt/openoffice.org2.4 ${PREFIX}
-
-	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/soffice
+	${MV} ${WRKDIR}/oo/usr/share/icons ${PREFIX}/share
+	${MV} ${WRKDIR}/oo/usr/share/mime ${PREFIX}/share
+	${MKDIR} ${PREFIX}/share/applications
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/base.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-base.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/calc.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-calc.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/draw.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-draw.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/extension.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-extension.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/impress.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-impress.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/math.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-math.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/printeradmin.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-printeradmin.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/writer.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-writer.desktop
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/soffice 
+	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/openoffice.org${OO_VER}
 .for i in scalc sdraw simpress swriter
 	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/${i} ${PREFIX}/bin/${i}
 .endfor
