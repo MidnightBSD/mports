@@ -2,14 +2,15 @@
 # Date created:		1 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/aria2/Makefile,v 1.1 2007/08/11 23:30:01 laffer1 Exp $
+# $MidnightBSD: mports/www/aria2/Makefile,v 1.2 2008/02/14 22:37:37 laffer1 Exp $
 # $FreeBSD: ports/www/aria2/Makefile,v 1.27 2007/08/09 17:09:00 sat Exp $
 #
 
 PORTNAME=	aria2
-DISTVERSION=	0.12.0
+DISTVERSION=	0.13.1+2
 CATEGORIES=	www
 MASTER_SITES=	SFE
+DISTNAME=	${PORTNAME}c-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Another download tool with metalinks support
@@ -23,21 +24,20 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack libxml2
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-PLIST_FILES=	bin/aria2c \
-		share/locale/de/LC_MESSAGES/aria2c.mo \
-		share/locale/ja/LC_MESSAGES/aria2c.mo \
-		share/locale/ru/LC_MESSAGES/aria2c.mo
 #MAN1=		aria2c.1
 
 .ifdef WITHOUT_NLS
 CONFIGURE_ARGS+=	--disable-nls
 .else
-LINGUAS=	ca de es fr it ja nl pt_BR ru sv
+LINGUAS=	ca de es fi fr he hu id it ja nl nn pl pt_BR ru sv th zh_CN
 .endif
-
 
 post-configure:
 	@${REINPLACE_CMD} -e '/SETMODE/d' ${WRKSRC}/config.h
+
+post-patch:
+	@${REINPLACE_CMD} -e '/^install-data-am:/s|install-dist_docDATA||'\
+		${WRKSRC}/Makefile.in ${WRKSRC}/doc/Makefile.in
 
 post-install:
 	@${CP} ${WRKSRC}/doc/aria2c.1 ${FAKEDIR}/usr/local/man/man1/
