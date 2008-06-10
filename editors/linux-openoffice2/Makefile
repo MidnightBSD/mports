@@ -2,13 +2,13 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.4 2008/06/07 13:37:59 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.5 2008/06/10 03:35:17 laffer1 Exp $
 #
 
 PORTNAME=	openoffice2
 PORTVERSION=	${OO_RELEASE}
-PORTREVISION=	2
-CATEGORIES=	editors java  linux 
+PORTREVISION=	3
+CATEGORIES=	editors java linux 
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
 DISTNAME=		OOo_${OO_RELEASE}_LinuxIntel_install_en-US
@@ -28,10 +28,10 @@ USE_XORG=	x11 ice xaw xau xext xrender xrandr \
 		xi xt xcursor xdamage xcomposite xfixes 
 NO_BUILD=	yes
 
-OO_VER=			2.4
-OO_RELEASE=		2.4.0
+OO_VER=		2.4
+OO_RELEASE=	2.4.0
 
-RPM2CPIO?=	 		${LOCALBASE}/bin/rpm2cpio
+RPM2CPIO?=	${LOCALBASE}/bin/rpm2cpio
 BUILD_DEPENDS+=	${RPM2CPIO}:${PORTSDIR}/archivers/rpm
 RC_CMD?=			${RPM2CPIO}
 RC_AFTER_ARGS?=	| ${CPIO} -id --quiet
@@ -144,7 +144,9 @@ do-install:
 	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/printeradmin.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-printeradmin.desktop
 	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/share/xdg/writer.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-writer.desktop
 	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/soffice 
-	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/soffice ${PREFIX}/bin/openoffice.org${OO_VER}
+	${REINPLACE_CMD} "s,/etc,${TRUE_PREFIX}," \
+		${WRKDIR}/oo/usr/bin/openoffice.org${OO_VER}
+	${INSTALL} ${WRKDIR}/oo/usr/bin/openoffice.org${OO_VER} ${PREFIX}/bin/
 .for i in scalc sdraw simpress swriter
 	${LN} -sf ${PREFIX}/openoffice.org${OO_VER}/program/${i} ${PREFIX}/bin/${i}
 .endfor
