@@ -2,18 +2,17 @@
 # Date Created:				2 Jun 2003
 # Whom:				 	olgeni@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/netbeans/Makefile,v 1.2 2008/05/01 06:33:04 laffer1 Exp $
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.29 2008/02/12 11:24:13 olgeni Exp $
 #
 
 PORTNAME=	netbeans
-PORTVERSION=	6.0.1
+PORTVERSION=	6.1
 CATEGORIES=	java devel
-MASTER_SITES=	http://download.netbeans.org/netbeans/6.0/final/zip/
+MASTER_SITES=	http://download.netbeans.org/netbeans/6.1/final/zip/
+DISTNAME=	netbeans-${PORTVERSION}-200804211638
 
-DISTNAME=	netbeans-${PORTVERSION}-200801291616-ml
-
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-featured integrated environment for Java
 LICENSE=	agg
 
@@ -32,7 +31,7 @@ post-patch:
 	@${RM} ${WRKSRC}/etc/netbeans.conf.orig
 	@${REINPLACE_CMD} -e "s@%%GREP%%@${GREP}@" \
 		-e "s@%%GCONFTOOL%%@${LOCALBASE}/bin/gconftool-2@" \
-		${WRKSRC}/platform7/lib/nbexec
+		${WRKSRC}/platform8/lib/nbexec
 
 do-configure:
 	@${REINPLACE_CMD} 's|%%JAVA_HOME%%|${JAVA_HOME}|' ${WRKSRC}/etc/netbeans.conf
