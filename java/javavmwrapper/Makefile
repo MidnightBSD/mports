@@ -2,7 +2,7 @@
 # Date created:				10 June 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.4 2008/04/30 21:36:21 laffer1 Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.5 2008/04/30 21:39:34 laffer1 Exp $
 # $FreeBSD: ports/java/javavmwrapper/Makefile,v 1.29 2006/06/12 16:57:29 glewis Exp $
 #
 # This port is self contained in the src directory.
@@ -10,6 +10,7 @@
 
 PORTNAME=	javavmwrapper
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -55,10 +56,10 @@ do-configure:
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/classpath.sh ${PREFIX}/bin/classpath
 	${INSTALL_SCRIPT} ${WRKDIR}/javavmwrapper.sh ${PREFIX}/bin/javavm
-	${LN} -sf ${PREFIX}/bin/javavm ${PREFIX}/bin/registervm
-	${LN} -sf ${PREFIX}/bin/javavm ${PREFIX}/bin/unregistervm
-	${LN} -sf ${PREFIX}/bin/javavm ${PREFIX}/bin/checkvms
-	${LN} -sf ${PREFIX}/bin/javavm ${PREFIX}/bin/manvm
+	${LN} -sf javavm ${PREFIX}/bin/registervm
+	${LN} -sf javavm ${PREFIX}/bin/unregistervm
+	${LN} -sf javavm ${PREFIX}/bin/checkvms
+	${LN} -sf javavm ${PREFIX}/bin/manvm
 .for _man in checkvms.1 javavm.1 manvm.1 registervm.1
 	${INSTALL_MAN} ${WRKDIR}/${_man} ${MAN1PREFIX}/man/man1
 .endfor
