@@ -3,11 +3,11 @@
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
 # $FreeBSD: ports/security/libgpg-error/Makefile,v 1.17 2006/09/22 06:57:06 sergei Exp $
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.2 2007/01/24 19:41:47 laffer1 Exp $
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.3 2007/12/30 01:11:09 laffer1 Exp $
 #
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.5
+PORTVERSION=	1.6
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
