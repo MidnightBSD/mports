@@ -2,12 +2,12 @@
 # Date created:				19 May 2006
 # Whom:					Xin LI <delphij@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.1 2008/05/30 23:32:27 laffer1 Exp $
 # $FreeBSD: ports/net/openldap24-server/Makefile,v 1.153 2008/05/07 21:20:44 delphij Exp $
 #
 
 PORTNAME=		openldap
-DISTVERSION=		2.4.9
+DISTVERSION=		2.4.10
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
