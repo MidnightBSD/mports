@@ -2,7 +2,7 @@
 # Date created:		24 Apr 1999
 # Whom:			Michael Elbel (me@FreeBSD.org)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/xemacs-packages/Makefile,v 1.2 2008/03/28 16:22:55 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs-packages/Makefile,v 1.58 2007/06/10 18:36:27 anray Exp $
 #
 
@@ -74,7 +74,7 @@ DISTFILES=	\
 		oo-browser-1.04-pkg.tar.gz \
 		os-utils-1.37-pkg.tar.gz \
 		pc-1.28-pkg.tar.gz \
-		pcl-cvs-1.66-pkg.tar.gz \
+		pcl-cvs-1.67-pkg.tar.gz \
 		pcomplete-1.04-pkg.tar.gz \
 		perl-modes-1.09-pkg.tar.gz \
 		pgg-1.06-pkg.tar.gz \
