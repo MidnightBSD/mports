@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.10 2008/04/22 22:18:23 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.11 2008/05/30 23:19:37 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -38,41 +38,48 @@ Database_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  If no version is given (by the maintainer via the port or
 #				  by the user via defined variable), try to find the
 #				  currently installed version.  Fall back to default if
-#				  necessary (PostgreSQL-7.4 = 74).
+#				  necessary (PostgreSQL-8.2 = 82).
 # DEFAULT_PGSQL_VER
 #				- PostgreSQL default version. Can be overridden within a port.
-#				  Default: 74.
+#				  Default: 82.
 # WANT_PGSQL_VER
 #				- Maintainer can set an arbitrary version of PostgreSQL by
 #				  using it.
 # IGNORE_WITH_PGSQL
 #				- This variable can be defined if the ports doesn't support
 #				  one or more versions of PostgreSQL.
+# WITH_PGSQL_VER
+#				- User defined variable to set PostgreSQL version.
 # PGSQL_VER
 #				- Detected PostgreSQL version.
 ##
 # USE_BDB		- Add Berkeley DB library dependency.
-#                 If no version is given (by the maintainer via the port or
-#                 by the user via defined variable), try to find the
-#                 currently installed version.  Fall back to default if
-#                 necessary (db41+).
-# INVALID_BDB_VER	- This variable can be defined when the port doesn't
-#			  support one or more versions of Berkeley DB.
-# WANT_BDB_VER		- Maintainer can set a version of Berkeley DB to always
-#			  build this port with (overrides WITH_BDB_VER).
-# WITH_BDB_VER		- User defined global variable to set Berkeley DB version
-# <UNIQUENAME>_WITH_BDB_VER - User defined port specific variable to set
-#			  Berkeley DB version
-# WITH_BDB_HIGHEST	- Use the highest installed version of Berkeley DB
-# BDB_LIB_NAME		- This variable is automatically set to the name of the
-#			  Berkeley DB library (default: db41)
-# BDB_LIB_CXX_NAME	- This variable is automatically set to the name of the
-#			  Berkeley DB c++ library (default: db41_cxx)
-# BDB_INCLUDE_DIR	- This variable is automatically set to the location of
-#			  the Berkeley DB include directory.
-#			  (default: ${LOCALBASE}/include/db41)
-# BDB_LIB_DIR		- This variable is automatically set to the location of
-#			  the Berkeley DB library directory.
+#				  If no version is given (by the maintainer via the port or
+#				  by the user via defined variable), try to find the
+#				  currently installed version.  Fall back to default if
+#				  necessary (db41+).
+# INVALID_BDB_VER
+#				- This variable can be defined when the port doesn't
+#				  support one or more versions of Berkeley DB.
+# WANT_BDB_VER	- Maintainer can set a version of Berkeley DB to always
+#				  build this port with (overrides WITH_BDB_VER).
+# WITH_BDB_VER	- User defined global variable to set Berkeley DB version
+# <UNIQUENAME>_WITH_BDB_VER
+#				- User defined port specific variable to set
+#				  Berkeley DB version
+# WITH_BDB_HIGHEST
+#				- Use the highest installed version of Berkeley DB
+# BDB_LIB_NAME	- This variable is automatically set to the name of the
+#				  Berkeley DB library (default: db41)
+# BDB_LIB_CXX_NAME
+#				- This variable is automatically set to the name of the
+#				  Berkeley DB c++ library (default: db41_cxx)
+# BDB_INCLUDE_DIR
+#				- This variable is automatically set to the location of
+#				  the Berkeley DB include directory.
+#				  (default: ${LOCALBASE}/include/db41)
+# BDB_LIB_DIR	- This variable is automatically set to the location of
+#				  the Berkeley DB library directory.
 # BDB_VER		- Detected Berkeley DB version.
 ##
 # USE_SQLITE	- Add dependency on sqlite library. Valid values are:
@@ -143,16 +150,23 @@ PGSQL83_LIBVER=		5
 _PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)[^0-9].*/\1\2/p'
 .endif
 
-.if defined(WANT_PGSQL_VER) && defined(_PGSQL_VER) && ${WANT_PGSQL_VER} != ${_PGSQL_VER}
-IGNORE=		cannot install: the port wants postgresql${WANT_PGSQL_VER}-client but you have postgresql${_PGSQL_VER}-client installed
+.if defined(WANT_PGSQL_VER)
+.if defined(WITH_PGSQL_VER) && ${WITH_PGSQL_VER} != ${WANT_PGSQL_VER}
+IGNORE=		cannot install: the port wants postgresql${WANT_PGSQL_VER}-client and you try to install postgresql${WITH_PGSQL_VER}-client.
 .endif
-
+PGSQL_VER=	${WANT_PGSQL_VER}
+.elif defined(WITH_PGSQL_VER)
+PGSQL_VER=	${WITH_PGSQL_VER}
+.else
 .if defined(_PGSQL_VER)
 PGSQL_VER=	${_PGSQL_VER}
-.elif defined(WANT_PGSQL_VER)
-PGSQL_VER=	${WANT_PGSQL_VER}
 .else
 PGSQL_VER=	${DEFAULT_PGSQL_VER}
+.endif
+.endif # WANT_PGSQL_VER
+
+.if defined(_PGSQL_VER) && ${PGSQL_VER} != ${_PGSQL_VER}
+IGNORE=		cannot install: the port wants postgresql${PGSQL_VER}-client but you have postgresql${_PGSQL_VER}-client installed
 .endif
 
 # And now we are checking if we can use it
@@ -202,13 +216,13 @@ db45_FIND=	${LOCALBASE}/include/db45/db.h
 db46_FIND=	${LOCALBASE}/include/db46/db.h
 
 # For specifying [3, 40, 41, ..]+
-_DB_3P=		3 40 41 42 43 44 45 46
-_DB_40P=	40 41 42 43 44 45 46
-_DB_41P=	41 42 43 44 45 46
-_DB_42P=	42 43 44 45 46
-_DB_43P=	43 44 45 46
-_DB_44P=	44 45 46
-_DB_45P=	45 46
+_DB_3P=		3 ${_DB_40P}
+_DB_40P=	40 ${_DB_41P}
+_DB_41P=	41 ${_DB_42P}
+_DB_42P=	42 ${_DB_43P}
+_DB_43P=	43 ${_DB_44P}
+_DB_44P=	44 ${_DB_45P}
+_DB_45P=	45 ${_DB_46P}
 _DB_46P=	46
 
 # Override the global WITH_BDB_VER with the
@@ -294,7 +308,7 @@ IGNORE=	cannot install: unknown bdb version: ${USE_BDB}
 _CHK_PLUS:=	${VER:S/+//}
 # INVALID_BDB_VER is specified as VER+
 .   if ${_CHK_PLUS}  != "${VER}"
-.    if ${_BDB_VER} == "${_CHK_PLUS}
+.    if ${_BDB_VER} == "${_CHK_PLUS}"
 _BDB_IGNORE=	yes
 .    else
 .     for VER_P in ${_DB_${_CHK_PLUS}P}
@@ -375,7 +389,7 @@ IGNORE=	${_IGNORE_MSG}
 .if ${USE_SQLITE:L} == "yes"
 _SQLITE_VER=	3
 .else
-_SQLITE_VER=	${USE_SQLITE}
+_SQLITE_VER=	 ${USE_SQLITE}
 .endif
 
 # USE_SQLITE is specified incorrectly, so mark this as IGNORE
