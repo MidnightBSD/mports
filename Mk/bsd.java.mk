@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.16 2008/04/20 20:58:34 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.17 2008/04/22 22:18:23 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -20,7 +20,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVA_VERSION		List of space-separated suitable java versions for the
 #					port. An optional "+" allows you to specify a range of
-#					versions. (allowed values: 1.1[+] 1.2[+] 1.3[+] 1.4[+])
+#					versions. (allowed values: 1.3[+] 1.4[+] 1.5[+] 1.6[+])
 #
 # JAVA_OS			List of space-separated suitable JDK port operating systems
 #					for the port. (allowed values: native linux)
@@ -65,13 +65,13 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #					'/usr/local/jdk1.3.1')
 #
 # JAVAC				Path to the Java compiler to use. (e.g.
-#					'/usr/local/jdk1.1.8/bin/javac' or '/usr/local/bin/jikes')
+#					'/usr/local/jdk1.5.0/bin/javac' or '/usr/local/bin/jikes')
 #
 # JAR				Path to the JAR tool to use. (e.g.
-#					'/usr/local/jdk1.2.2/bin/jar' or '/usr/local/bin/fastjar')
+#					'/usr/local/jdk1.5.0/bin/jar' or '/usr/local/bin/fastjar')
 #
 # APPLETVIEWER		Path to the appletviewer utility. (e.g.
-#					'/usr/local/linux-jdk1.2.2/bin/appletviewer')
+#					'/usr/local/linux-jdk1.3.1/bin/appletviewer')
 #
 # JAVA				Path to the java executable. Use this for executing Java
 #					programs. (e.g. '/usr/local/jdk1.3.1/bin/java')
@@ -82,13 +82,11 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVAP				Path to the javap program.
 #
-# JAVA_KEYTOOL		Path to the keytool utility program. This settings is
-#					availble only if the JDK is Java 1.2 or higher.
+# JAVA_KEYTOOL		Path to the keytool utility program.
 #
 # JAVA_N2A			Path to the native2ascii tool.
 #
-# JAVA_POLICYTOOL	Path to the policytool program. This variable is available
-#					only if the JDK is Java 1.2 or higher.
+# JAVA_POLICYTOOL	Path to the policytool program.
 #
 # JAVA_SERIALVER	Path to the serialver utility program.
 #
@@ -96,19 +94,17 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # RMIREGISTRY		Path to the RMI registry program, rmiregistry.
 #
-# RMID				Path to the RMI daemon program. This settings is only
-#					available if the JDK is Java 1.2 or higher.
+# RMID				Path to the RMI daemon program.
 #
 # JAVA_CLASSES		Path to the archive that contains the JDK class files. On
-#					JDK 1.2 or later, this is ${JAVA_HOME}/jre/lib/rt.jar.
-#					Earlier JDK's use ${JAVA_HOME}/lib/classes.zip.
+#					most JDKs, this is ${JAVA_HOME}/jre/lib/rt.jar.
 #
-# JAVASHAREDIR      The base directory for all shared Java resources.
+# JAVASHAREDIR		The base directory for all shared Java resources.
 #
-# JAVAJARDIR        The directory where a port should install JAR files.
+# JAVAJARDIR		The directory where a port should install JAR files.
 #
-# JAVALIBDIR        The directory where JAR files installed by other ports
-#                   are located.
+# JAVALIBDIR		The directory where JAR files installed by other ports
+#					are located.
 #
 # HAVE_JIKES		Defined and set to "yes" whenever the port will effectively
 #					use Jikes. See stage 6 header for further detail.
@@ -124,7 +120,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # Stage 1: Define constants
 # Stage 2: Determine which JDK ports are installed and which JDK ports are
-#          suitable
+#		   suitable
 # Stage 3: Decide the exact JDK to use (or install)
 # Stage 4: Add any dependencies if necessary
 # Stage 5: Define all settings for the port to use
@@ -139,7 +135,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 
 # System-global directories
 # NB: If the value of JAVALIBDIR is altered here it must also be altered
-#     in java/javavmwrapper/Makefile.
+#	  in java/javavmwrapper/Makefile.
 JAVASHAREDIR?=	${PREFIX}/share/java
 JAVAJARDIR?=	${JAVASHAREDIR}/classes
 JAVALIBDIR?=	${LOCALBASE}/share/java/classes
@@ -161,8 +157,8 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 .		endif
 
 # The complete list of Java versions, os and vendors supported.
-__JAVA_VERSION_LIST=	1.1 1.2 1.3 1.4 1.5 1.6
-_JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/}
+__JAVA_VERSION_LIST=	1.3 1.4 1.5 1.6
+_JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/} 1.1+ 1.2+
 _JAVA_OS_LIST=			native linux
 _JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown
 
@@ -174,10 +170,10 @@ _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4_INFO=		PORT=java/jdk14					HOME=${LOCALBASE}/j
 											VERSION=1.4.2	OS=native	VENDOR=bsdjava
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5_INFO=		PORT=java/jdk15					HOME=${LOCALBASE}/jdk1.5.0 \
 											VERSION=1.5.0	OS=native	VENDOR=bsdjava
+_JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
+											VERSION=1.6.0	OS=native	VENDOR=bsdjava
 _JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4_INFO=	PORT=java/linux-blackdown-jdk14	HOME=${LOCALBASE}/linux-blackdown-jdk1.4.2 \
 											VERSION=1.4.2	OS=linux	VENDOR=blackdown
-_JAVA_PORT_LINUX_SUN_JDK_1_2_INFO=			PORT=java/linux-sun-jdk12		HOME=${LOCALBASE}/linux-sun-jdk1.2.2 \
-											VERSION=1.2.2	OS=linux	VENDOR=sun
 _JAVA_PORT_LINUX_SUN_JDK_1_3_INFO=			PORT=java/linux-sun-jdk13		HOME=${LOCALBASE}/linux-sun-jdk1.3.1 \
 											VERSION=1.3.1	OS=linux	VENDOR=sun
 _JAVA_PORT_LINUX_SUN_JDK_1_4_INFO=			PORT=java/linux-sun-jdk14		HOME=${LOCALBASE}/linux-sun-jdk1.4.2 \
@@ -210,13 +206,13 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
 
 # List all JDK ports
 __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
+					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4 \
 					JAVA_PORT_LINUX_SUN_JDK_1_6 \
 					JAVA_PORT_LINUX_SUN_JDK_1_5 \
 					JAVA_PORT_LINUX_SUN_JDK_1_4 \
 					JAVA_PORT_LINUX_SUN_JDK_1_3 \
-					JAVA_PORT_LINUX_SUN_JDK_1_2 \
 					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
@@ -291,7 +287,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.1+/1.1 1.2 1.3 1.4 1.5/:S/1.2+/1.2 1.3 1.4 1.5/:S/1.3+/1.3 1.4 1.5/:S/1.4+/1.4 1.5/:S/1.5+/1.5 1.6/:S/1.6+/1.6/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.1+/1.3+/:S/1.2+/1.3+/:S/1.3+/1.3 1.4+/:S/1.4+/1.4 1.5+/:S/1.5+/1.5 1.6+/:S/1.6+/1.6/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif
@@ -377,10 +373,10 @@ JAVA_PORT_OS_DESCRIPTION:=		${JAVA_PORT_OS:S/^/\${_JAVA_OS_/:S/$/}/}
 
 .		undef HAVE_JIKES
 
-# Enforce USE_JIKES=NO if not defined and using Java 1.5 or 1.6
-# XXX: This is a temporary fix to be removed when Jikes supports Java 1.5 or 1.6
+# Enforce USE_JIKES=NO if not defined and using Java 1.5+
+# XXX: This is a temporary fix to be removed when Jikes supports Java 1.5
 .		if (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.5") || \
-			(${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.6")
+           (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.6")
 USE_JIKES?=		NO
 .		endif
 # First test if USE_JIKES has a valid value
@@ -473,7 +469,6 @@ JAVA_N2A?=		${JAVA_HOME}/bin/native2ascii
 JAVA_SERIALVER?=${JAVA_HOME}/bin/serialver
 RMIC?=			${JAVA_HOME}/bin/rmic
 RMIREGISTRY?=	${JAVA_HOME}/bin/rmiregistry
-
 JAVA_KEYTOOL?=		${JAVA_HOME}/bin/keytool
 JAVA_POLICYTOOL?=	${JAVA_HOME}/bin/policytool
 RMID?=				${JAVA_HOME}/bin/rmid
