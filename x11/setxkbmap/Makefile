@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/setxkbmap/Makefile,v 1.2 2007/09/13 19:45:01 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/setxkbmap/Makefile,v 1.1 2007/10/04 05:59:40 ctriv Exp $
 #
 
 PORTNAME=	setxkbmap
@@ -17,7 +17,7 @@ LICENSE=	sgi
 XORG_CAT=	app
 USE_XORG=	xkbfile x11
 
-CONFIGURE_ARGS=	--with-xkb-config-root=${X11BASE}/share/X11/xkb
+CONFIGURE_ARGS=	--with-xkb-config-root=${LOCALBASE}/share/X11/xkb
 
 PLIST_FILES=	bin/setxkbmap
 
