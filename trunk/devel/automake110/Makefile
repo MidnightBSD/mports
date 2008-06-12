@@ -2,13 +2,13 @@
 # Date created:		5th December 2006
 # Whom:			Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/automake110/Makefile,v 1.3 2008/03/23 20:43:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/automake110/Makefile,v 1.4 2008/03/28 03:10:00 ctriv Exp $
 # $FreeBSD: ports/devel/automake110/Makefile,v 1.74 2007/07/28 10:01:08 ade Exp $
 #
 
 PORTNAME=	automake
 PKGSUFFIXNAME=	110
-PORTVERSION=	1.10
+PORTVERSION=	1.10.1
 PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
