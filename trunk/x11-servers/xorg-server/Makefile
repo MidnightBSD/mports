@@ -3,7 +3,7 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.6 2008/03/28 07:23:43 ctriv Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.7 2008/03/28 07:59:15 ctriv Exp $
 #
 
 PORTNAME=	xorg-server
@@ -68,8 +68,6 @@ MAN4=		exa.4 \
 		fbdevhw.4
 MAN5=		xorg.conf.5 \
 		SecurityPolicy.5
-
-NOT_FOR_ARCHS=	ia64
 
 .include <bsd.port.pre.mk>
 
