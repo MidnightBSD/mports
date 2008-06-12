@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.78 2008/06/02 04:01:52 archite Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.79 2008/06/02 04:33:10 archite Exp $
 #
 
     COMMENT = Security tools
@@ -76,6 +76,7 @@
     SUBDIR += sshguard-ipfw
     SUBDIR += sshguard-pf
     SUBDIR += smap
+    SUBDIR += snort
     SUBDIR += sudo
     SUBDIR += tor
     SUBDIR += tripwire
