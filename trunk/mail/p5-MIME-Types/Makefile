@@ -3,11 +3,11 @@
 # Whom:                                 -
 #
 # $FreeBSD: ports/mail/p5-MIME-Types/Makefile,v 1.11 2006/09/03 20:34:02 skv Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.3 2007/02/18 01:50:25 laffer1 Exp $
 #
 
 PORTNAME=		MIME-Types
-PORTVERSION=		1.18
+PORTVERSION=		1.24
 CATEGORIES=		mail perl5
 MASTER_SITES=		${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	MIME
