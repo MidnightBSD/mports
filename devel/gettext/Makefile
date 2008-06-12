@@ -2,12 +2,12 @@
 # Date created:        16 March 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.4 2007/12/30 17:32:48 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 #
 
 PORTNAME=	gettext
-PORTVERSION=	0.16.1
+PORTVERSION=	0.17
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
