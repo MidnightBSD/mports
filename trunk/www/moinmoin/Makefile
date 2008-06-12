@@ -2,12 +2,12 @@
 # Date created:				18 September 2001
 # Whom:					Hye-Shik Chang <perky@python.or.kr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.1 2008/03/05 20:00:50 laffer1 Exp $
 # $FreeBSD: ports/www/moinmoin/Makefile,v 1.36 2008/02/25 08:46:43 miwi Exp $
 #
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.6.1
+PORTVERSION=	1.6.3
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
