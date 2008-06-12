@@ -3,12 +3,12 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.7 2008/03/28 07:59:15 ctriv Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.8 2008/06/12 22:00:37 laffer1 Exp $
 #
 
 PORTNAME=	xorg-server
 PORTVERSION=	1.4
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/:fdo \
@@ -22,7 +22,7 @@ COMMENT=	X.Org X server and related programs
 LICENSE=	x11
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
-RUN_DEPENDS=	${X11BASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard-config
+RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard-config
 
 XORG_CAT=	xserver
 
@@ -37,25 +37,31 @@ USE_XORG=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 USE_PERL5_BUILD=yes
 CONFIGURE_ARGS=	--with-mesa-source=${WRKDIR}/Mesa-7.0.2 \
 		--disable-dmx --disable-xvfb --disable-xnest --disable-xprint \
-		--localstatedir=/var
+		--localstatedir=/var --without-dtrace
+
+OPTIONS=	HAL     "Compile with HAL config support" on \
+		AIGLX   "Compile with Accelerated Indirect GLX support" on \
+		SUID    "Install the Xorg server with setuid bit set" on
+
+.include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_HAL)
 LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
-CONFIGURE_ARGS+=	--enable-config-hal
+CONFIGURE_ARGS+=	--enable-config-hal=yes
 .else
-CONFIGURE_ARGS+=	--disable-config-hal
+CONFIGURE_ARGS+=	--enable-config-hal=no
 .endif
 
 .if !defined(WITHOUT_AIGLX)
 CONFIGURE_ARGS+=	--enable-aiglx=yes
 .else
-CONFIGURE_ARGS+=	--disable-aiglx=yes
+CONFIGURE_ARGS+=	--enable-aiglx=no
 .endif
 
-.if !defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO
-CONFIGURE_ARGS+=--enable-install-setuid
+.if !defined(WITHOUT_SUID) && (!defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO)
+CONFIGURE_ARGS+=--enable-install-setuid=yes
 .else
-CONFIGURE_ARGS+=--disable-install-setuid
+CONFIGURE_ARGS+=--enable-install-setuid=no
 .endif
 
 MAN1=		Xorg.1 \
@@ -68,9 +74,6 @@ MAN4=		exa.4 \
 		fbdevhw.4
 MAN5=		xorg.conf.5 \
 		SecurityPolicy.5
-
-.include <bsd.port.pre.mk>
-
 
 .if ${ARCH} == sparc64
 PLIST_SUB+=	SPARC64=""
@@ -87,8 +90,7 @@ MAN1+=		scanpci.1
 PLIST_SUB+=	AMD64_I386_SPARC64="@comment "
 .endif
 
-
-.if !defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO
+.if !defined(WITHOUT_SUID) && (!defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO)
 pre-everything::
 	@${ECHO_MSG} "By default, the X Server installs as a set-user-id root binary. When run by"
 	@${ECHO_MSG} "a normal user, it checks arguments and environment as done in the x11/wrapper"
