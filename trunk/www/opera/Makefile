@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.20 2008/04/10 17:10:32 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.21 2008/06/12 21:30:45 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -25,7 +25,7 @@ MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER
 		ftp://ftp.tiscali.nl/pub/mirrors/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/&,} \
 		ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/
-DISTNAME=	${PORTNAME}-${OPERA_VER}-freebsd6-${OPERA_LIB}-qt3.i386
+DISTNAME=	${PORTNAME}-${OPERA_VER}-freebsd6-shared-qt3.${ARCH}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
@@ -43,9 +43,9 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 USE_XLIB=	yes
-ONLY_FOR_ARCHS=	i386
+ONLY_FOR_ARCHS=	i386 amd64
 WRKSRC=		${WRKDIR}/${DISTNAME}
-WRKSRC=		${WRKDIR}/${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.freebsd6-shared-qt3.i386
+WRKSRC=		${WRKDIR}/${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.freebsd6-shared-qt3.${ARCH}
 
 MAN1=		opera.1
 NO_BUILD=	yes
@@ -67,7 +67,11 @@ OPERA_TYPE=	4
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 .endif
 
+.if ${ARCH} == amd64
+OPERA_LIB=	amd64
+.else
 OPERA_LIB=	shared
+.endif
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
