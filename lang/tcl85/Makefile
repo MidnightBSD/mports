@@ -2,7 +2,7 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.5 2008/05/04 07:06:49 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.6 2008/05/11 16:20:53 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl85/Makefile,v 1.16 2008/04/23 06:39:27 mm Exp $
 #
 
@@ -52,9 +52,6 @@ PLIST_SUB+=		TZDATA="@comment "
 .endif
 
 .if defined(BUILDING_TCL_THREADS)
-. if (${ARCH} == "ia64")
-BROKEN=	does not compile on ia64
-. endif
 . if exists(${TCLSH})
 TCL_PATCHLEVEL!=	${ECHO_CMD} "puts \$$tcl_patchLevel" | ${TCLSH}
 .  if ${TCL_PATCHLEVEL} != ${PORTVERSION:S/.b./b/}
@@ -741,13 +738,13 @@ post-configure:
 
 .if defined(BUILDING_TCL_THREADS)
 do-install:
-	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} -f Makefile install-binaries
+	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} -f Makefile install-binaries
 	@${MKDIR} ${PREFIX}/lib/tcl${TCL_VER}${THREADS_SUFFIX}
 	@${LN} -s ${PREFIX}/lib/tcl${TCL_VER}/tclConfig${THREADS_SUFFIX}.sh ${PREFIX}/lib/tcl${TCL_VER}${THREADS_SUFFIX}/tclConfig.sh
 .else
 post-install:
 .if defined(WITH_TZDATA)
-	@cd ${WRKSRC} && ${MAKE} -f Makefile install-tzdata ${MAKE_ENV}
+	@cd ${WRKSRC} && ${MAKE} ${FAKE_MAKEARGS} -f Makefile install-tzdata ${MAKE_ENV}
 .endif
 .if !defined(NO_INSTALL_MANPAGES) && defined(WITH_TCL85_MAN)
 	${MKDIR} ${DATADIR}
@@ -756,7 +753,7 @@ post-install:
 	@${REINPLACE_CMD} -e 's|^.so man.macros|.so ${DATADIR}/man.macros|'	\
 		${WRKSRC}/../doc/${mp}
 . endfor
-	@cd ${WRKSRC} && ${MAKE} -f Makefile install-doc ${MAKE_ENV}
+	@cd ${WRKSRC} && ${MAKE} ${FAKE_MAKEARGS} -f Makefile install-doc ${MAKE_ENV}
 .endif
 
 .endif # !defined(BUILDING_TCL_THREADS)
