@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/qmake4/files/Makefile.bsd,v 1.6 2007/08/11 10:27:36 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qmake4/files/Makefile.bsd,v 1.2 2007/12/15 01:07:40 ctriv Exp $
 
 _OBJS!=	${MAKE} -f Makefile.unix -V OBJS -V QOBJS
 # We'd like to avoid using qconfig.cpp, but can't -- see the comment
@@ -44,9 +44,9 @@ BINDIR=		${PREFIX}/bin
 SHAREDIR= 	${PREFIX}/share/qt4
 
 ${SHAREDIR}:
-	mkdir -p "$@/mkspecs"
+	mkdir -p "$@"
 
 beforeinstall: ${SHAREDIR}
-	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}/
+	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}
 
 .include <bsd.prog.mk>

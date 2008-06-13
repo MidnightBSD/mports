@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.2 2007/12/15 01:07:40 ctriv Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.3 2008/05/21 05:35:04 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -18,7 +18,7 @@ QT_NONSTANDARD=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_ENV+=	FILESDIR="${FILESDIR}"
+MAKE_ENV+=	FILESDIR="${FILESDIR}" ${FAKE_MAKEARGS}
 #USE_BZIP2=	yes
 
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
