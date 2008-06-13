@@ -3,7 +3,7 @@
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
 # $FreeBSD: ports/security/libgpg-error/Makefile,v 1.17 2006/09/22 06:57:06 sergei Exp $
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.3 2007/12/30 01:11:09 laffer1 Exp $
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.4 2008/06/10 15:54:44 crash Exp $
 #
 
 PORTNAME=	libgpg-error
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common error values for all GnuPG components
+LICENSE=	gpl2
 
 USE_BZIP2=    yes
 USE_AUTOTOOLS=        libtool:15
