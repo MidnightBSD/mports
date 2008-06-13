@@ -2,13 +2,13 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.5 2008/06/02 15:37:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.6 2008/06/02 15:52:07 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.05
-PORTREVISION=   0
+PORTREVISION=   1
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 		http://dougbarton.us/Downloads/
@@ -45,9 +45,6 @@ OPTIONS=	ALL_FORTUNES "Run fortune with -sa argument" off \
 .if defined(WITH_ALL_FORTUNES)
 CONFIGURE_ARGS+=	--with-fortune="/usr/games/fortune -sa"
 .endif
-.if defined(WITH_SETUID_HACKS)
-CONFIGURE_ARGS+=	--with-setuid-hacks
-.endif
 .if defined(WITH_KERBEROS)
 CONFIGURE_ARGS+=	--with-kerberos
 .else
@@ -59,6 +56,9 @@ PLIST_SUB+=		PAM=""
 .else
 CONFIGURE_ARGS+=	--without-pam
 PLIST_SUB+=		PAM="@comment not installed: "
+.endif
+.if defined(WITH_SETUID_HACKS)
+CONFIGURE_ARGS+=	--with-setuid-hacks
 .endif
 
 .undef HAVE_GNOME
@@ -130,17 +130,17 @@ post-patch:
 .for f in driver/passwd-pam.c driver/xscreensaver.man
 	@ ${CP} ${WRKSRC}/${f} ${WRKSRC}/${f}.presed
 	@ ${SED} -e "s#/etc/pam.d#${PREFIX}/etc/pam.d#g" \
-		${WRKSRC}/${f}.presed > ${WRKSRC}/${f}
+	    ${WRKSRC}/${f}.presed > ${WRKSRC}/${f}
 .endfor
 	@ ${CP} ${FILESDIR}/xscreensaver.pam ${WRKSRC}/driver/xscreensaver.pam
 .else
 	@ ${CP} ${WRKSRC}/driver/Makefile.in ${WRKSRC}/driver/Makefile.in.post
 	@ ${SED} -e "s#install-xml install-pam#install-xml#" \
-		${WRKSRC}/driver/Makefile.in.post > ${WRKSRC}/driver/Makefile.in
+	    ${WRKSRC}/driver/Makefile.in.post > ${WRKSRC}/driver/Makefile.in
 .endif
 
 post-install:
-	@(if test -x ${LOCALBASE}/bin/xscreensaver-hacks/webcollage-helper; then \
+	@(if test -x ${PREFIX}/bin/xscreensaver-hacks/webcollage-helper; then \
 		${ECHO} "bin/xscreensaver-hacks/webcollage-helper" | \
 			${CAT} - ${TMPPLIST} > ${TMPPLIST}.cat && \
 			${MV} ${TMPPLIST}.cat ${TMPPLIST}; fi)
