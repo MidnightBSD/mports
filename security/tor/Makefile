@@ -2,11 +2,12 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/tor/Makefile,v 1.2 2007/11/10 02:14:06 laffer1 Exp $
+# $MidnightBSD: mports/security/tor/Makefile,v 1.3 2008/03/26 01:54:16 laffer1 Exp $
 #
 
 PORTNAME=	tor
 PORTVERSION=	0.1.2.19
+PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	http://www.torproject.org/dist/ \
 		http://mirror.onionland.org/dist/
@@ -17,7 +18,7 @@ COMMENT=	An anonymizing overlay network for TCP
 LICENSE=	bsd3
 
 RUN_DEPENDS=	tsocks:${PORTSDIR}/net/tsocks
-LIB_DEPENDS=	event-1.3d:${PORTSDIR}/devel/libevent
+LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
 
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
