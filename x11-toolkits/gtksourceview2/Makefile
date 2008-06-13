@@ -2,7 +2,7 @@
 # Date created:				07 May 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.2 2008/06/01 21:08:47 crash Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.3 2008/06/13 14:55:35 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtksourceview2/Makefile,v 1.2 2007/12/12 04:32:18 mezz Exp $
 #   $MCom: ports-stable/x11-toolkits/gtksourceview2/Makefile,v 1.1 2007/12/01 06:20:10 marcus Exp $
 #
@@ -23,7 +23,6 @@ LICENSE=        gpl2
 .if !defined(REFERENCE_PORT)
 
 USE_GETTEXT=	yes
-USE_XORG=	x11
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
