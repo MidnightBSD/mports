@@ -2,13 +2,13 @@
 # Date Created:			16 Aug 1998
 # Whom:				Chia-liang Kao <clkao@CirX.ORG>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/ORBit/Makefile,v 1.1 2006/10/04 20:59:33 laffer1 Exp $
 # $FreeBSD: ports/devel/ORBit/Makefile,v 1.82 2006/05/16 04:10:37 mezz Exp $
 #
 
 PORTNAME=	ORBit
 PORTVERSION=	0.5.17
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/ORBit/0.5
@@ -21,7 +21,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib12 gnometarget
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS= --disable-indent
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -30,6 +30,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 INFO=		libIDL
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/configure ${WRKSRC}/libIDL/configure ${WRKSRC}/popt/configure
 	@${TOUCH} ${WRKSRC}/configure
 
 post-install:
