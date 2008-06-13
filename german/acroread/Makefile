@@ -3,9 +3,10 @@
 # Whom:				trevor
 #
 # $FreeBSD: ports/german/acroread/Makefile,v 1.6 2006/08/02 05:05:36 hrs Exp $
-# $MidnightBSD: mports/german/acroread/Makefile,v 1.2 2007/11/10 23:52:01 laffer1 Exp $
+# $MidnightBSD: mports/german/acroread/Makefile,v 1.3 2008/03/21 22:40:28 laffer1 Exp $
 #
 
+PKGNAMEPREFIX=	de-
 PORTVERSION=	7.0.9
 PORTREVISION=	1
 PORTEPOCH=	1
