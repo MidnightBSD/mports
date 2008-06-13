@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/german/Makefile,v 1.6 2007/08/06 18:46:53 laffer1 Exp $
+# $MidnightBSD: mports/german/Makefile,v 1.7 2008/06/13 02:26:50 laffer1 Exp $
 #
 
     COMMENT = German support
 
     SUBDIR += acroread
+    SUBDIR += acroread8
     SUBDIR += alt-aspell
     SUBDIR += aspell
     SUBDIR += dict
