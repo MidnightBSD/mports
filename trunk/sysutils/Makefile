@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.70 2008/05/31 16:52:14 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.71 2008/06/13 15:05:45 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -34,6 +34,7 @@
     SUBDIR += gnome-power-manager
     SUBDIR += gnome-settings-daemon
     SUBDIR += gnome-system-monitor
+    SUBDIR += gnome-system-tools
     SUBDIR += gnome_subr
     SUBDIR += gstreamer-plugins-hal
     SUBDIR += hal
