@@ -2,11 +2,11 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $FreeBSD: ports/devel/libevent/Makefile,v 1.33 2007/09/21 20:20:47 mnag Exp $
+# $MidnightBSD$
 #
 
 PORTNAME=	libevent
-PORTVERSION=	1.3d
+PORTVERSION=	1.3e
 CATEGORIES=	devel
 MASTER_SITES=	http://monkey.org/~provos/
 
