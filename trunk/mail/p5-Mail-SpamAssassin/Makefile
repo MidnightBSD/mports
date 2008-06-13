@@ -2,12 +2,12 @@
 # Date created:				Nov 26 2001
 # Whom:					Anthony Kim
 #
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.4 2007/10/01 09:46:50 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.5 2008/05/09 21:19:19 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
 PORTNAME=	Mail-SpamAssassin
-PORTVERSION=	3.2.4
+PORTVERSION=	3.2.5
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
