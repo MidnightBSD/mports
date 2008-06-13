@@ -4,12 +4,12 @@
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
 # $FreeBSD: ports/databases/sqlite3/Makefile,v 1.21 2006/11/21 12:25:46 mnag Exp $
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.4 2007/12/05 23:49:20 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.5 2008/03/29 05:27:11 laffer1 Exp $
 #
 
 PORTNAME=	sqlite
-PORTVERSION=	3.5.4
-CATEGORIES=	databases
+PORTVERSION=	3.5.6
+CATEGORIES=	databases lang tcl
 MASTER_SITES=	http://www.sqlite.org/
 .if defined(USE_THOL)
 PKGNAMESUFFIX=  -threads
@@ -37,6 +37,7 @@ EXAMPLESDIR=	${PREFIX}/share/examples/sqlite3
 OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
 		DOCS		"Building docs (depends on TCL)"	on \
 		FTS3            "Enable FTS3 (Full Text Search) module" off \
+		RAMTABLE	"Store temporary tables in RAM"		off \
 		TCLWRAPPER	"TCL wrapper for SQLITE"		off 
 
 # Defaults, for building the docs:
@@ -48,8 +49,10 @@ MAKE_ENV+=	TCL_VER=${TCL_V}
 OPTIONS+=	THREADS		"Enable threads support"		off
 PLIST_SUB+=	THOL="@comment "
 CONFLICTS=	sqlite-threads-3*
+CONFIGURE_ARGS+=	--disable-threadsafe
 .else
-CONFIGURE_ARGS+=	--enable-threadsafe --enable-threads-override-locks
+CONFIGURE_ARGS+=	--enable-threadsafe --enable-threads-override-locks \
+			--enable-cross-thread-connections
 PLIST_SUB+=	THOL=""
 CONFLICTS=	sqlite-3*
 .endif
@@ -67,23 +70,21 @@ PORTDOCS=		*
 .endif
 
 .if defined(WITH_FTS3)
-CFLAGS+=		-DSQLITE_ENABLE_FTS3
-#EXTRA_PATCHES+=		${FILESDIR}/fts2_patch-Makefile.in
+CFLAGS+=		-DSQLITE_CORE=1 -DSQLITE_ENABLE_FTS3
+.endif
+
+.if defined(WITH_RAMTABLE)
+CONFIGURE_ARGS+=        --enable-tempstore=yes
 .endif
 
 .if defined(WITH_TCLWRAPPER)
 ALL_TARGET+=		tclsqlite3
-CATEGORIES+=		lang tcl${TCL_V:S/.//}
 LIB_DEPENDS+=		tcl${TCL_V:S/.//}:${PORTSDIR}/lang/tcl${TCL_V:S/.//}
 CONFIGURE_ARGS+=	--with-tcl=${LOCALBASE}/lib/tcl${TCL_V}
 PLIST_SUB+=		WITH_TCLWRAPPER=""
 .else
 CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		WITH_TCLWRAPPER="@comment "
-.endif
-
-.if defined(WITH_THREADS)
-CONFIGURE_ARGS+=	--enable-threadsafe
 .endif
 
 post-extract:
