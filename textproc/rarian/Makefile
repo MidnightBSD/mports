@@ -2,21 +2,21 @@
 # Date created:				02 August 2007
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.1 2008/01/01 21:56:32 laffer1 Exp $
+# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.2 2008/06/02 20:44:08 crash Exp $
 # $FreeBSD: ports/textproc/rarian/Makefile,v 1.1 2007/10/24 23:37:25 marcus Exp $
 #   $MCom: ports/textproc/rarian/Makefile,v 1.8 2007/10/11 04:04:18 mezz Exp $
 #
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An OMF help system based on the Freedesktop specification
 LICENSE=        gpl2
+
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
     		${LOCALBASE}/share/xml/docbook/${DOCBOOK_VERSION}/catalog.xml:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xml/docbook/4.1.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-sk \
