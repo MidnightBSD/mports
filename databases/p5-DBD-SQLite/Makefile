@@ -3,25 +3,28 @@
 # Whom:					nork@cityfujisawa.ne.jp
 #
 # $FreeBSD: ports/databases/p5-DBD-SQLite/Makefile,v 1.32 2006/09/12 13:29:00 mat Exp $
-# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.1 2007/03/26 03:05:01 ctriv Exp $
+# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.2 2007/08/07 20:56:09 ctriv Exp $
 #
 
 PORTNAME=	DBD-SQLite
-PORTVERSION=	1.13
+PORTVERSION=	1.14
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	DBD
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	Provides access to SQLite3 databases through the DBI
 LICENSE=	perl
 
-.if exists(/usr/lib/libsqlite3.a)
+.if defined(PACKAGE_BUILDING)
+BUILD_DEPENDS=          sqlite>=3.4.1:${PORTSDIR}/databases/sqlite3
+RUN_DEPENDS=            ${BUILD_DEPENDS}
+SQLITE_LOCATION=        ${LOCALBASE}
+.elif exists(/usr/lib/libsqlite3.a)
 SQLITE_LOCATION=	/usr
 CONFIGURE_ARGS+=	LIBS="-lpthread -lsqlite3"
 .else
-BUILD_DEPENDS=		sqlite>=3.3.3:${PORTSDIR}/databases/sqlite3
+BUILD_DEPENDS=		sqlite>=3.4.1:${PORTSDIR}/databases/sqlite3
 RUN_DEPENDS=		${BUILD_DEPENDS}
 SQLITE_LOCATION= 	${LOCALBASE}
 .endif
