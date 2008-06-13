@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.221 2008/06/01 21:45:49 archite Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.222 2008/06/05 21:15:52 crash Exp $
 #
 
     COMMENT = Development utilities
@@ -106,6 +106,7 @@
     SUBDIR += libltdl15
     SUBDIR += libnotify
     SUBDIR += liboil
+    SUBDIR += liboobs
     SUBDIR += libopensync022
     SUBDIR += libpthread-stubs
     SUBDIR += libsigc++
