@@ -2,7 +2,7 @@
 # Date created:		6 November 1994
 # Whom:			smace
 #
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.1 2006/09/17 19:33:50 archite Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.2 2006/09/23 00:51:10 laffer1 Exp $
 # $FreeBSD: ports/graphics/jpeg/Makefile,v 1.43 2006/02/23 10:37:06 ade Exp $
 #
 # PLEASE update print/ghostscript5 (there's a symlink that uses a hardwired
@@ -22,6 +22,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IJG's jpeg compression utilities
+LICENSE=	other
 
 WRKSRC=		${WRKDIR}/jpeg-6b
 

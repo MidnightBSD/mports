@@ -2,7 +2,7 @@
 # Date created:			  Sat May 24, 2003
 # Whom:				  Hiroki Sato <hrs@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.2 2007/04/17 19:17:58 ctriv Exp $
+# $MidnightBSD: mports/textproc/xmlcatmgr/Makefile,v 1.3 2007/05/06 23:27:38 ctriv Exp $
 # $FreeBSD: ports/textproc/xmlcatmgr/Makefile,v 1.11 2005/01/01 00:49:22 hrs Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SGML and XML catalog manager
+LICENSE=	bsd3
 
 MAN1=		xmlcatmgr.1
 
