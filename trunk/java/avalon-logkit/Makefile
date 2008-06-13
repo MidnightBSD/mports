@@ -2,13 +2,13 @@
 # Date created:				06 November 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD: mports/java/avalon-logkit/Makefile,v 1.2 2008/05/01 23:00:48 laffer1 Exp $
+# $MidnightBSD: mports/java/avalon-logkit/Makefile,v 1.3 2008/05/01 23:01:48 laffer1 Exp $
 # $FreeBSD: ports/java/avalon-logkit/Makefile,v 1.4 2004/09/01 13:36:46 hq Exp $
 #
 
 PORTNAME=	logkit
 PORTVERSION=	1.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	avalon/${PORTNAME:S,-,/,}/binaries
@@ -34,13 +34,10 @@ PORTDOCS=	api changes.html css features.html images index.html whitepaper.html
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR file as ${JAVAJARDIR}/${PORTNAME}.jar..."
 	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}-${PORTVERSION}.jar ${JAVAJARDIR}/${PORTNAME}.jar
-	@${ECHO_MSG} " [DONE]"
 .if !defined(NOPORTDOCS)
-	@${ECHO_MSG} -n ">> Installing documentation..."
 	@${MKDIR} ${DOCSDIR}
 	@cd ${WRKSRC}/docs && ${FIND} ${PORTDOCS} \
 	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1
-	@${ECHO_MSG} " [DONE]"
 .endif
 
 .include <bsd.port.mk>
