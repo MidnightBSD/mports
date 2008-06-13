@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/x11-toolkits/tk84/Makefile,v 1.93 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.3 2008/05/11 16:24:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.4 2008/05/11 16:40:20 laffer1 Exp $
 #
 
 PORTNAME=	tk
@@ -12,6 +12,7 @@ PORTEPOCH=	2
 CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	tcl
+PKGNAMESUFFIX?=	${THREADS_SUFFIX}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -41,9 +42,10 @@ DATADIR=	${PREFIX}/share/${PORTNAME}${TK_VER}
 .ifdef (WITH_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
 CONFIGURE_ENV+=		PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"
-PKGNAMESUFFIX?=		-threads
+THREADS_SUFFIX=		-threads
 TCL84_PORT?=		lang/tcl84-thread
 .else
+THREADS_SUFFIX=	
 TCL84_PORT?=		lang/tcl84
 .endif
 
