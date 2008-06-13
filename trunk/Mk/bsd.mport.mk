@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.106 2008/05/30 23:29:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1679,7 +1679,7 @@ USE_LDCONFIG=	${PREFIX}/lib
 .endif
 
 .if defined(USE_LDCONFIG32) && ${USE_LDCONFIG32:L} == "yes"
-IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
+IGNORE=		has USE_LDCONFIG32 set to yes, which is not correct
 .endif
 
 .if defined(USE_ICONV)
@@ -2886,7 +2886,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl bsd4 bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 		bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php openldap2.8 \
-		restricted perl mit modula3 unknown other sgi agg
+		restricted perl mit modula3 cddl unknown other sgi agg
 
 
 
@@ -5231,7 +5231,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.106 2008/05/30 23:29:20 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
