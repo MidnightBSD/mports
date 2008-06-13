@@ -2,7 +2,7 @@
 # Date Created:			16 Aug 1998
 # Whom:				Chia-liang Kao <clkao@CirX.ORG>
 #
-# $MidnightBSD: mports/devel/ORBit/Makefile,v 1.1 2006/10/04 20:59:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit/Makefile,v 1.2 2008/06/13 04:25:21 laffer1 Exp $
 # $FreeBSD: ports/devel/ORBit/Makefile,v 1.82 2006/05/16 04:10:37 mezz Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance CORBA ORB with support for the C language
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
