@@ -2,7 +2,7 @@
 # Date created:			16 December 2000
 # Whom:				Jeremy Shaffner <jeremy@external.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/pico/Makefile,v 1.1 2006/09/24 00:51:59 laffer1 Exp $
 # $FreeBSD: ports/editors/pico/Makefile,v 1.20 2006/08/28 06:03:13 dougb Exp $
 #
 # All patch files have been taken from mail/pine4
@@ -22,6 +22,7 @@ DISTNAME=	pine${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PIne's message COmposition editor
+LICENSE-	other
 
 OPTIONS=	ISPELL "Use ispell as the spell checker" on \
 		NO_SPELLER "Do not use a spell checker" off
