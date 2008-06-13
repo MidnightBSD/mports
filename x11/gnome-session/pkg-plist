@@ -96,27 +96,8 @@ share/locale/zh_CN/LC_MESSAGES/gnome-session-2.0.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-session-2.0.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-session-2.0.mo
 share/locale/zu/LC_MESSAGES/gnome-session-2.0.mo
-share/pixmaps/splash/MaMBaNgGaoX-2.12.png
-share/pixmaps/splash/adamw-bat-2.18.jpg
-share/pixmaps/splash/adamw-conky-2.18.png
-share/pixmaps/splash/adamw-cow-2.18.png
-share/pixmaps/splash/adamw-mouth-2.18.png
-share/pixmaps/splash/adamw-piggy-2.12.png
-share/pixmaps/splash/adamw-swing-2.18.png
-share/pixmaps/splash/adamw-trophy-2.12.png
-share/pixmaps/splash/andreas-slogan-2.12.png
-share/pixmaps/splash/andreas-splash-2.12.png
-share/pixmaps/splash/domix-splash-2.12.png
-share/pixmaps/splash/domix-splash2-2.12.png
-share/pixmaps/splash/franz-splash_218.png
 share/pixmaps/splash/gnome-splash.png
-share/pixmaps/splash/mumija-2.12.png
-share/pixmaps/splash/mumija2-2.12.png
-share/pixmaps/splash/mumija3-2.12.png
 share/pixmaps/splash/original-gnome-splash.png
-share/pixmaps/splash/tremulant-2.12.png
-share/pixmaps/splash/tremulant-blood-2.12.png
-share/pixmaps/splash/tremulant-brushed-metal-2.12.png
 @dirrmtry share/xsessions
 @dirrmtry share/applications
 @dirrmtry share/locale/zu/LC_MESSAGES
