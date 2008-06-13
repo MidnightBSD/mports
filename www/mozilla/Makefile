@@ -2,14 +2,14 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/mozilla/Makefile,v 1.4 2007/05/08 00:11:32 ctriv Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile,v 1.5 2007/05/08 20:40:01 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
 
 PORTNAME=	mozilla
 PORTVERSION=	1.7.13
-PORTREVISION?=	2
+PORTREVISION?=	3
 PORTEPOCH=	2
 CATEGORIES?=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA} \
@@ -22,12 +22,17 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-source${EXTRACT_SUFX} \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
 
+DEPRECATED=   The mozilla team has shifted the development branch of mozilla to \
+               seamonkey, this port is outdated and has many vulnerabilities. \
+               Please consider using www/linux-seamonkey or www/firefox instead.
+
 MAKE_ENV+=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
 USE_GMAKE=	yes
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 HAS_CONFIGURE=	yes
 MAKE_ENV=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
+WANT_PERL=	yes
 ALL_TARGET=	default
 
 CONFIGURE_ENV=	LOCALBASE=${LOCALBASE}
