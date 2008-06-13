@@ -2,13 +2,13 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.8 2008/04/02 21:02:19 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.9 2008/04/06 01:56:15 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql51-server/Makefile,v 1.226 2007/07/05 13:32:09 ale Exp $
 #
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.23
-PORTREVISION=	1
+PORTVERSION=	5.1.25
+PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
@@ -21,7 +21,7 @@ LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
 USE_AUTOTOOLS=	libtool:15
-
+USE_GMAKE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-debug \
