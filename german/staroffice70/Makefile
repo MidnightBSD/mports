@@ -2,7 +2,7 @@
 # Date created:		08 Januar 2004
 # Whom:                 Martin Blapp
 #
-# $MidnightBSD: mports/german/staroffice70/Makefile,v 1.2 2007/03/25 03:02:38 ctriv Exp $
+# $MidnightBSD: mports/german/staroffice70/Makefile,v 1.3 2007/11/11 00:28:50 laffer1 Exp $
 #
 
 PORTNAME=	staroffice
@@ -24,6 +24,7 @@ DISTFILES=	116518-08.tar:patch
 .if defined(WITH_ADABAS)
 DISTFILES+=     soa-7-ga-bin-linux-de.bin
 .endif
+PKGNAMEPREFIX=	de-
 
 EXTRACT_ONLY=	116518-08.tar
 
