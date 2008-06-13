@@ -2,19 +2,19 @@
 # Date Created:				13 Oct 2000
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Tagset/Makefile,v 1.1 2007/01/12 13:44:24 wintellect Exp $
 # $FreeBSD: ports/www/p5-HTML-Tagset/Makefile,v 1.9 2005/11/09 13:44:24 lth Exp $
 #
 
 PORTNAME=	HTML-Tagset
-PORTVERSION=	3.10
+PORTVERSION=	3.20
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	HTML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Some useful data table in parsing HTML
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
