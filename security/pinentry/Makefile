@@ -2,12 +2,12 @@
 # Date created:		14 Nov 2007
 # Whom:			ports@MidnightBSD.org
 #
-# $MidnightBSD: mports/security/pinentry/Makefile,v 1.2 2008/03/30 23:58:53 laffer1 Exp $
+# $MidnightBSD: mports/security/pinentry/Makefile,v 1.3 2008/05/22 22:05:27 laffer1 Exp $
 #
 
 PORTNAME=	pinentry
 PORTVERSION=	0.7.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	pinentry
