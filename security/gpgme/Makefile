@@ -3,7 +3,7 @@
 # Whom:			teramoto@comm.eng.osaka-u.ac.jp
 #
 # $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.5 2008/04/14 23:23:08 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.6 2008/06/07 15:35:41 laffer1 Exp $
 #
 
 PORTNAME=	gpgme
@@ -27,7 +27,9 @@ USE_LDCONFIG=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-gpg=${LOCALBASE}/bin/gpg \
 		--with-gpgsm=${LOCALBASE}/bin/gpgsm \
-		--includedir=${PREFIX}/include/gpgme
+		--includedir=${PREFIX}/include/gpgme \
+		--disable-gpg-test \
+		--disable-gpgsm-test
 
 INFO=		gpgme
 
