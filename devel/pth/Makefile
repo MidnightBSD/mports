@@ -3,7 +3,7 @@
 # Whom:					Ralf S. Engelschall <rse@gnu.org>
 #
 # $FreeBSD: ports/devel/pth/Makefile,v 1.81 2006/06/19 09:06:13 vd Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/pth/Makefile,v 1.1 2007/01/24 19:28:59 laffer1 Exp $
 #
 
 PORTNAME=	pth
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	pth
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Portable Threads
+LICENSE=	lgpl
 
 USE_LDCONFIG=	${PREFIX}/lib/pth
 GNU_CONFIGURE=	yes
