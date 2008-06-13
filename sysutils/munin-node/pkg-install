@@ -112,6 +112,7 @@ case $2 in
 	make_group munin
 	;;      
     POST-INSTALL)
+	make_group munin
 	if [ -z "${PACKAGE_BUILDING}" ]; then
 		init_plugins
 		${PKG_PREFIX}/etc/rc.d/munin-node.sh start
