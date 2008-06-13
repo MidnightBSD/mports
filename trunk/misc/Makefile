@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.37 2008/05/21 21:23:59 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.38 2008/05/30 19:40:51 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -84,6 +84,7 @@
     SUBDIR += shared-mime-info
     SUBDIR += susv2
     SUBDIR += susv3
+    SUBDIR += tvbrowser
     SUBDIR += unclutter
     SUBDIR += wmScoreBoard
     SUBDIR += wmcalendar
