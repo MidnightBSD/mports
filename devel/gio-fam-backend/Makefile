@@ -2,7 +2,7 @@
 # Date Created:			22 December 2007
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.1 2008/05/31 16:49:19 laffer1 Exp $
 # $FreeBSD: ports/devel/gio-fam-backend/Makefile,v 1.3 2008/04/08 11:37:41 ahze Exp $
 #   $MCom: ports/devel/gio-fam-backend/Makefile,v 1.9 2008/03/12 17:46:37 marcus Exp $
 #
@@ -24,11 +24,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FAM backend for GLib's GIO library
 LICENSE=	lgpl
 
+LIB_DEPENDS+=	glib-2.0.0:${PORTSDIR}/devel/glib20
+
 USE_BZIP2=	yes
 BUILD_WRKSRC=	${WRKSRC}/gio/fam
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig _glib20
+USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_FAM=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu
