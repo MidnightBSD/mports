@@ -3,7 +3,7 @@
 # Date created:		12 Nov 2005
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.3 2007/05/07 18:18:05 ctriv Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.4 2007/05/08 00:11:32 ctriv Exp $
 # $FreeBSD: ports/www/mozilla/Makefile.common,v 1.23 2007/02/04 22:37:34 marcus Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile.common,v 1.1 2006/10/18 17:29:07 ahze Exp $
 
@@ -57,8 +57,7 @@ BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip
 LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		nspr4:${PORTSDIR}/devel/nspr \
-		nss3:${PORTSDIR}/security/nss \
-		Xft.2:${PORTSDIR}/x11-fonts/libXft
+		nss3:${PORTSDIR}/security/nss
 
 MAINTAINER?=	ports@MidnightBSD.org
 
@@ -70,7 +69,8 @@ USE_GNOME+=	gtk20 libidl desktopfileutils
 USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
-USE_XLIB=	yes
+USE_XORG=	printproto sm xt xi xext x11 xinerama \
+		ice xproto
 
 MOZILLA_SUFX?=	none
 WRKSRC?=	${WRKDIR}/mozilla
@@ -89,10 +89,10 @@ GENERIC_MOZCONFIG?=	${.CURDIR}/../../www/mozilla/files/mozconfig-generic.in
 PORT_MOZCONFIG?=	${FILESDIR}/mozconfig.in
 MOZCONFIG?=		${WRKSRC}/.mozconfig
 MOZILLA_PLIST_DIRS?=	bin include lib share/idl
-
+GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{\!pg: %{pthread:|| ; s|}.*$$||' || ${TRUE}
 PKGINSTALL?=	${WRKDIR}/pkg-install
 PKGDEINSTALL?=	${WRKDIR}/pkg-deinstall
-MASTER_MOZDIR?=	${.CURDIR}/../../www/mozilla
+MASTER_MOZDIR?=	${PORTSDIR}/www/mozilla
 PKGINSTALL_INC?=	${MASTER_MOZDIR}/pkg-install.in
 PKGDEINSTALL_INC?=	${MASTER_MOZDIR}/pkg-deinstall.in
 
@@ -116,9 +116,9 @@ JPI_LIST?=\
 PKGCONFIG_FILES?=	${MOZILLA}-gtkmozembed ${MOZILLA}-js \
 			${MOZILLA}-xpcom ${MOZILLA}-plugin
 
-CPPFLAGS+=		-I${X11BASE}/include
+CPPFLAGS+=		-I${LOCALBASE}/include/nss -I${LOCALBASE}/include/nss/nss
 CFLAGS+=		${PTHREAD_CFLAGS}
-LDFLAGS+=		-L${X11BASE}/lib -Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
+LDFLAGS+=		-L${LOCALBASE}/lib/nss -Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}
 LIBS+=			${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv
 
 _USE_GECKO_OPTIONS_ALL=	java debug logging optimized_cflags
@@ -140,14 +140,15 @@ _${option}=	${TRUE}
 .endfor
 
 # Standard options from README
+MOZ_TOOLKIT?=	gtk2
 MOZ_OPTIONS+=	--enable-crypto 	\
 		--disable-tests 	\
-		--enable-default-toolkit=gtk2 \
+		--enable-default-toolkit=${MOZ_TOOLKIT} \
 		--enable-xft		\
 		--with-pthreads
 # Configure options for install
-MOZ_OPTIONS+=	--x-includes=${X11BASE}/include \
-		--x-libraries=${X11BASE}/lib
+MOZ_OPTIONS+=	--x-includes=${LOCALBASE}/include \
+		--x-libraries=${LOCALBASE}/lib
 .if !defined(MOZ_EXTENSIONS)
 MOZ_OPTIONS+=	--enable-extensions=default
 .else
@@ -224,18 +225,11 @@ MOZ_OPTIONS+=	--enable-logging
 MOZ_OPTIONS+=	--disable-logging
 .endif
 
-.if exists(${LOCALBASE}/include/freetype/freetype.h)
-BROKEN=	"You must upgrade your freetype port to 1.3.1_2 or higher before \
-	installing ${PORTNAME}.  If you have 1.3.1_2 installed, please remove \
-	${LOCALBASE}/include/freetype, then build ${PORTNAME}"
-.endif
-
 # Makefile.common defines
 MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|@CFLAGS@|${CFLAGS}|g'		\
 		-e 's|@LDFLAGS@|${LDFLAGS}|g'		\
 		-e 's|@LIBS@|${LIBS}|g'			\
-		-e 's|@X11BASE@|${X11BASE}|g'		\
 		-e 's|@LOCALBASE@|${LOCALBASE}|g'	\
 		-e 's|@PREFIX@|${TRUE_PREFIX}|g'	\
 		-e 's|@FAKEDIR@|${FAKEDIR}|g'		\
@@ -246,7 +240,6 @@ MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|%%CFLAGS%%|${CFLAGS}|g'		\
 		-e 's|%%LDFLAGS%%|${LDFLAGS}|g'		\
 		-e 's|%%LIBS%%|${LIBS}|g'		\
-		-e 's|%%X11BASE%%|${X11BASE}|g'		\
 		-e 's|%%LOCALBASE%%|${LOCALBASE}|g'	\
 		-e 's|%%FAKEDIR%%|${FAKEDIR}|g'		\
 		-e 's|%%PERL%%|${PERL5}|g'		\
@@ -255,6 +248,17 @@ MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|%%MOZILLA_BIN%%|${MOZILLA_BIN}|g'	\
 		-e 's|%%MOZDIR%%|${PREFIX}/lib/${MOZILLA}|g'
 MOZCONFIG_SED?= ${SED} ${MOZ_SED_ARGS}
+
+.if ${ARCH}=="i386" && (exists(/usr/lib/libbz2_p.a))
+LIB_BZ2=	-lbz2_p
+.else
+LIB_BZ2=	-lbz2
+.endif
+
+.if ${ARCH}=="sparc64"
+# Work around miscompilation/mislinkage of the sCanonicalVTable hacks.
+MOZ_OPTIONS+=	--disable-v1-string-abi
+.endif
 
 post-patch: gecko-post-patch gecko-moz-pis-patch
 
@@ -294,7 +298,7 @@ gecko-post-patch:
 	@${REINPLACE_CMD} -e 's|%%MOZILLA%%|${MOZILLA}|g' \
 		${WRKSRC}/config/autoconf.mk.in
 	@${REINPLACE_CMD} -e 's|-pthread|${PTHREAD_LIBS}|g ; \
-		s|echo aout|echo elf|g' \
+		s|echo aout|echo elf|g ; s|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/security/coreconf/FreeBSD.mk \
 		${WRKSRC}/js/src/Makefile.in
 	@if [ -d ${WRKSRC}/directory/c-sdk ]; then \
@@ -305,7 +309,7 @@ gecko-post-patch:
 	@${REINPLACE_CMD} -e 's|-lc_r|${PTHREAD_LIBS}|g ; \
 		s|-lpthread|${PTHREAD_LIBS}|g ; \
 		s|echo aout|echo elf|g ; \
-		s|/usr/X11R6|${X11BASE}|g' \
+		s|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		${WRKSRC}/build/unix/run-mozilla.sh
