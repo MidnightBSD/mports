@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.99 2008/06/04 17:01:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.100 2008/06/14 03:57:25 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -46,6 +46,9 @@
     SUBDIR += intltool
     SUBDIR += iso8879
     SUBDIR += ispell
+    SUBDIR += ispell-alt-de
+    SUBDIR += ispell-neu-de
+    SUBDIR += ispell-de
     SUBDIR += jade
     SUBDIR += latex-service
     SUBDIR += libcroco
