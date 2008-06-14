@@ -2,41 +2,43 @@
 # Date created:        20 May 2002
 # Whom:                Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gdm/Makefile,v 1.2 2008/03/14 01:52:28 laffer1 Exp $
+# $MidnightBSD: mports/x11/gdm/Makefile,v 1.3 2008/04/12 06:31:38 laffer1 Exp $
 # $FreeBSD: ports/x11/gdm/Makefile,v 1.93 2007/08/27 20:12:05 marcus Exp $
 #   $MCom: ports/x11/gdm/Makefile,v 1.58 2007/03/12 16:56:06 marcus Exp $
 #
 
 PORTNAME=	gdm
-PORTVERSION=	2.20.3
+PORTVERSION=	2.20.6
 CATEGORIES=	x11 gnome ipv6
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 version of xdm display manager
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	zenity:${PORTSDIR}/x11/zenity
-RUN_DEPENDS=	zenity:${PORTSDIR}/x11/zenity
+LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
+		ck-connector.0:${PORTSDIR}/sysutils/consolekit
+RUN_DEPENDS=	zenity:${PORTSDIR}/x11/zenity \
+		xrdb:${PORTSDIR}/x11/xrdb
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_XLIB=	yes
 USE_XORG=	dmx dmxproto
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_RC_SUBR=	gdm
 USE_GNOME_SUBR=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack intlhack gnomehier libgnomeui librsvg2 gnomedocutils \
+USE_GNOME=	gnomehack intlhack gnomehier librsvg2 gnomedocutils \
 		gnomeprefix
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		GTKDOC="false"
-
+CONFIGURE_ARGS=--with-console-kit=yes
 GDMDIR?=	${PREFIX}/etc/gdm
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
@@ -45,8 +47,7 @@ GNOME_LOCALSTATEDIR=	/var
 MAN1=		gdm.1
 
 OPTIONS=	IPV6 "Enable IPv6 support" on \
-		LOG_LIMIT "Limit ~/.xsession-errors size" on \
-		CONSOLEKIT "Enable ConsoleKit support" off
+		LOG_LIMIT "Limit ~/.xsession-errors size" on
 
 .include <bsd.port.pre.mk>
 
@@ -66,21 +67,14 @@ CONFIGURE_ARGS+=	--disable-ipv6
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-daemon_slave.c
 .endif
 
-.if defined(WITH_CONSOLEKIT)
-CONFIGURE_ARGS+=--with-console-kit=yes
-LIB_DEPENDS+=	ck-connector.0:${PORTSDIR}/sysutils/consolekit
-.else
-CONFIGURE_ARGS+=--with-console-kit=no
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|root:root|root:wheel|g' \
 		${WRKSRC}/config/Makefile.in
 	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/configure ${WRKSRC}/po/*.po ${WRKSRC}/gui/*.glade \
-		${WRKSRC}/daemon/*.c ${WRKSRC}/docs/*/*.xml
+		${WRKSRC}/daemon/*.c ${WRKSRC}/docs/*/*.*
 	@${REINPLACE_CMD} -e 's|/etc/gdm/gdm.conf|${PREFIX}/etc/gdm/gdm.conf|' \
-	    	${WRKSRC}/docs/gdm.1
+		${WRKSRC}/docs/gdm.1
 
 post-install:
 .if !defined(PACKAGE_BUILDING)
