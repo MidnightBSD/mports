@@ -2,13 +2,17 @@
 # Date created:				27.October 2002
 # Whom:					dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.4 2007/11/05 23:07:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.5 2007/11/07 20:20:18 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-back
-PORTVERSION=	0.12.0
-PORTREVISION=	2
+.if defined(WITH_GNUSTEP_DEVEL)
+PORTVERSION=  0.13.2
+.else
+PORTVERSION=  0.12.1
+.endif
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -16,12 +20,15 @@ PKGNAMESUFFIX?=	${BACK_SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
+LICENSE=	gpl3
 
 LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
 LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
 LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
+LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_XLIB=		yes
+USE_XORG=	xft xrender xmu xext x11
+USE_FREETYPE=	yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
