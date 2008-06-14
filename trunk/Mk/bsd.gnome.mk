@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.12 2008/06/08 18:24:34 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.gnome.mk,v 1.10 2008/05/31 16:24:40 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -39,14 +39,15 @@ Gnome_Pre_Include=		bsd.gnome.mk
 #					  each .omf file found to track OMF registration database.
 #
 # INSTALLS_ICONS	- If your port installs Freedesktop-style icons to
-#					  ${LOCALBASE}/share/icons, then you should use this
-#					  macro. If the icons are not cached, they will not be
-#					  displayed.
+#					  ${LOCALBASE}/share/icons, then
+#					  you should use this macro. If the icons are not cached,
+#					  they will not be displayed.
 #
 
 # non-version specific components
-_USE_GNOME_ALL= esound intlhack intltool lthack ltverhack gnomehack \
-		referencehack gnomehier gnomemimedata gnomeprefix gnometarget pkgconfig
+_USE_GNOME_ALL= esound intlhack intltool ltasneededhack lthack ltverhack \
+		gnomehack referencehack gnomehier gnomemimedata gnomeprefix \
+		gnometarget pkgconfig
 
 # GNOME 1 components
 _USE_GNOME_ALL+= bonobo gal gconf gdkpixbuf glib12 glibwww \
@@ -56,9 +57,9 @@ _USE_GNOME_ALL+= bonobo gal gconf gdkpixbuf glib12 glibwww \
 
 # GNOME 2 components
 _USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver gail \
-		gal2 gconf2 glib20 gnomecontrolcenter2 gnomedesktop gnomedocutils \
+		gal2 gconf2 _glib20 glib20 gnomecontrolcenter2 gnomedesktop gnomedocutils \
 		gnomemenus gnomepanel gnomesharp20 gnomespeech gnomevfs2 gtk20 \
-		gtkhtml3 gtksharp10 gtksharp20 gtksourceview gtksourceview2 \
+		gtkhtml3 gtksharp10 gtksharp20 gtksourceview gtksourceview2 gvfs \
 		libartlgpl2 libbonobo libbonoboui libgailgnome libgda2 libgda3 \
 		libglade2 libgnome libgnomecanvas libgnomedb libgnomekbd libgnomeprint \
 		libgnomeprintui libgnomeui libgsf libgsf_gnome libgtkhtml libidl \
@@ -252,11 +253,13 @@ pygnome_BUILD_DEPENDS=	${pygnome_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome
 pygnome_RUN_DEPENDS=	${pygnome_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome
 pygnome_USE_GNOME_IMPL=	gtkhtml pygtk
 
-# I don't know about this.  other parts of gnome need gio-fam-backend with glib20
+_glib20_LIB_DEPENDS=	glib-2.0.0:${PORTSDIR}/devel/glib20
+_glib20_DETECT=		${LOCALBASE}/libdata/pkgconfig/glib-2.0.pc
+_glib20_USE_GNOME_IMPL=	gnometarget pkgconfig
+
 glib20_RUN_DEPENDS=	${LOCALBASE}/lib/gio/modules/libgiofam.so:${PORTSDIR}/devel/gio-fam-backend
-glib20_LIB_DEPENDS=	glib-2.0.0:${PORTSDIR}/devel/glib20
-glib20_DETECT=		${LOCALBASE}/libdata/pkgconfig/glib-2.0.pc
-glib20_USE_GNOME_IMPL=gnometarget pkgconfig
+glib20_DETECT=		${LOCALBASE}/lib/gio/modules/libgiofam.so
+glib20_USE_GNOME_IMPL=	_glib20
 
 atk_LIB_DEPENDS=	atk-1.0.0:${PORTSDIR}/accessibility/atk
 atk_DETECT=		${LOCALBASE}/libdata/pkgconfig/atk.pc
@@ -374,7 +377,7 @@ librsvg2_USE_GNOME_IMPL=libgsf gtk20
 
 eel2_LIB_DEPENDS=	eel-2.2:${PORTSDIR}/x11-toolkits/eel
 eel2_DETECT=		${LOCALBASE}/libdata/pkgconfig/eel-2.0.pc
-eel2_USE_GNOME_IMPL=	gnomemenus gnomedesktop gail
+eel2_USE_GNOME_IMPL=	gnomedesktop gail
 
 gnomepanel_LIB_DEPENDS=	panel-applet-2.0:${PORTSDIR}/x11/gnome-panel
 gnomepanel_DETECT=	${LOCALBASE}/libdata/pkgconfig/libpanelapplet-2.0.pc
@@ -413,7 +416,6 @@ libgnomedb_USE_GNOME_IMPL=libgnomeui libgda3
 gtksourceview_LIB_DEPENDS=	gtksourceview-1.0.0:${PORTSDIR}/x11-toolkits/gtksourceview
 gtksourceview_DETECT=	${LOCALBASE}/libdata/pkgconfig/gtksourceview-1.0.pc
 gtksourceview_USE_GNOME_IMPL=libgnome libgnomeprintui
-
 gtksourceview2_LIB_DEPENDS=	gtksourceview-2.0.0:${PORTSDIR}/x11-toolkits/gtksourceview2
 gtksourceview2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gtksourceview-2.0.pc
 gtksourceview2_USE_GNOME_IMPL=gtk20 libxml2
@@ -505,14 +507,14 @@ gnomesharp20_BUILD_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnom
 gnomesharp20_RUN_DEPENDS=	${gnomesharp20_DETECT}:${PORTSDIR}/x11-toolkits/gnome-sharp20
 gnomesharp20_USE_GNOME_IMPL=	gnomepanel gtkhtml3 gtksharp20 librsvg2 vte
 
-libgnomekbd_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgnomekbd.pc
-libgnomekbd_LIB_DEPENDS=	gnomekbd.2:${PORTSDIR}/x11/libgnomekbd
-libgnomekbd_USE_GNOME_IMPL=	libgnomeui
-
 pygtksourceview_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygtksourceview-2.0.pc
 pygtksourceview_BUILD_DEPENDS=	${pygtksourceview_DETECT}:${PORTSDIR}/x11-toolkits/py-gtksourceview
 pygtksourceview_RUN_DEPENDS=	${pygtksourceview_DETECT}:${PORTSDIR}/x11-toolkits/py-gtksourceview
 pygtksourceview_USE_GNOME_IMPL=	gtksourceview2 pygtk2
+
+libgnomekbd_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgnomekbd.pc
+libgnomekbd_LIB_DEPENDS=	gnomekbd.2:${PORTSDIR}/x11/libgnomekbd
+libgnomekbd_USE_GNOME_IMPL=	libgnomeui
 
 gvfs_DETECT=			${LOCALBASE}/lib/libgvfscommon.so
 gvfs_LIB_DEPENDS=		gvfscommon.0:${PORTSDIR}/devel/gvfs
@@ -610,6 +612,10 @@ HAVE_GNOME+=	${component}
 
 Gnome_Post_Include=		bsd.gnome.mk
 
+.if !defined(Gnome_Pre_Include)
+.error The Pre include part of bsd.gnome.mk part is not included. Did you forget WANT_GNOME=yes before bsd.port.pre.mk?
+.endif
+
 # DO NOT USE THESE MACROS!  They are obsolete, and only provided for
 # backward compatibility with old ports that have not converted to the new
 # GNOME infrastructure.
@@ -662,7 +668,7 @@ PLIST_SUB+=			GTK2_VERSION="${GTK2_VERSION}"
 # we rely on some bsd.autotools.mk variables, and bsd.autotools.mk is
 # included in the post-makefile section).
 .if defined(AUTOTOOL_libtool)
-ltverhack_PRE_PATCH=	${CP} -pf ${LTMAIN} ${WRKDIR}/gnome-ltmain.sh && \
+lthacks_PRE_PATCH=		${CP} -pf ${LTMAIN} ${WRKDIR}/gnome-ltmain.sh && \
 						${CP} -pf ${LIBTOOL} ${WRKDIR}/gnome-libtool && \
 						for file in ${LIBTOOLFILES}; do \
 							${REINPLACE_CMD} -e \
@@ -677,7 +683,7 @@ IGNORE=	cannot install: ${PORTNAME} uses the ltverhack and/or ltasneededhack GNO
 .endif
 
 ltverhack_PATCH_DEPENDS=${LIBTOOL_DEPENDS}
-ltverhack_PRE_PATCH+=	for file in gnome-ltmain.sh gnome-libtool; do \
+ltverhack_PRE_PATCH=	for file in gnome-ltmain.sh gnome-libtool; do \
 							if [ -f ${WRKDIR}/$$file ]; then \
 								${REINPLACE_CMD} -e \
 									'/freebsd-elf)/,/;;/ s|major="\.$$current"|major=.`expr $$current - $$age`|; \
@@ -773,7 +779,6 @@ SUB_LIST+=		GNOME_SUBR=${GNOME_SUBR}
 .if ${MAINTAINER}=="gnome@MidnightBSD.org"
 CONFIGURE_FAIL_MESSAGE= "Report the build failure to the GNOME team at ${MAINTAINER}, and attach (a) \"${CONFIGURE_WRKSRC}/${CONFIGURE_LOG}\", and (b) the output of the failed make command. Also, it might be a good idea to provide an overview of all packages installed on your system (i.e. an \`ls ${PKG_DBDIR}\`)."
 .endif
-
 
 .if defined(GCONF_SCHEMAS) || defined(INSTALLS_OMF) || defined(INSTALLS_ICONS) \
 	|| (defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="")
