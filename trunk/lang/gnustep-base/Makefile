@@ -2,12 +2,16 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.6 2007/11/15 05:43:21 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.7 2007/11/15 05:54:53 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep-base
-PORTVERSION=	1.14.1
+.if defined(WITH_GNUSTEP_DEVEL)
+PORTVERSION=	1.15.3
+.else
+PORTVERSION=	1.14.3
+.endif
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -62,7 +66,7 @@ PATH:=	${PREFIX}/System/Tools:${PATH}
 
 post-build:
 .for i in ${MAKE_APPS}
-	(cd ${WRKSRC}/${i}; . ${SYSMAKEDIR}/GNUstep.sh; \
+	(cd ${WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 .endfor
 
@@ -77,7 +81,7 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/GNUstep.sh ${FAKE_DESTDIR}${ETCDIR}/rc.d/GNUstep.sh
 	${INSTALL_DATA} ${FILESDIR}/gdomap_if ${FAKE_DESTDIR}${ETCDIR}
 .for i in ${INSTALL_APPS}
-	(cd ${WRKSRC}/${i}; . ${SYSMAKEDIR}/GNUstep.sh; \
+	(cd ${WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} -d ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endfor
 	${RM} ${PREFIX}/System/Library/Libraries/libgnustep-base.so
@@ -85,7 +89,7 @@ post-install:
 	 ${PREFIX}/System/Library/Libraries/libgnustep-base.so
 
 test:
-	@(cd ${WRKSRC}/Testing && . ${SYSTEMDIR}/Makefiles/GNUstep.sh; ${GMAKE})
+	@(cd ${WRKSRC}/Testing && . ${GNUSTEP_MAKEFILES}/GNUstep.sh; ${GMAKE})
 
 regression-test:	test
 
