@@ -3,24 +3,23 @@
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/gamin/Makefile,v 1.25 2006/02/23 15:33:39 ade Exp $
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.3 2008/01/04 19:17:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.4 2008/06/14 14:50:56 laffer1 Exp $
 #
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	devel
 MASTER_SITES=	http://www.gnome.org/~veillard/gamin/sources/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A file and directory monitoring system
-
-LIB_DEPENDS=	glib-2.0.0:${PORTSDIR}/devel/glib20
+LICENSE=	lgpl
 
 USE_GMAKE=	yes
-USE_GNOME?=	gnomehack
+USE_GNOME?=	gnomehack _glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=        libtool:15
+USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
