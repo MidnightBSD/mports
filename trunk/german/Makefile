@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/german/Makefile,v 1.12 2008/06/14 03:33:47 laffer1 Exp $
+# $MidnightBSD: mports/german/Makefile,v 1.13 2008/06/14 03:37:34 laffer1 Exp $
 #
 
     COMMENT = German support
@@ -9,7 +9,5 @@
     SUBDIR += ispell
     SUBDIR += ispell-alt
     SUBDIR += ispell-neu
-    SUBDIR += manpages
-    SUBDIR += phone
 
 .include <bsd.port.subdir.mk>
