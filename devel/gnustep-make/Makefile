@@ -2,12 +2,13 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.7 2007/11/15 04:58:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.8 2008/03/23 19:43:49 laffer1 Exp $
 # $FreeBSD: ports/devel/gnustep-make/Makefile,v 1.69 2006/08/31 05:35:31 dinoex Exp $
 #
 
 PORTNAME=	gnustep-make
 PORTVERSION=	2.0.5
+PORTREVISION=	1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -32,6 +33,28 @@ GNUSTEP_WITHOUT_LIBOBJC=	yes
 .endif
 
 post-install:
+	-${MKDIR} ${PREFIX}/System/Applications
+	-${MKDIR} ${PREFIX}/System/Library/ApplicationSupport
+	-${MKDIR} ${PREFIX}/System/Library/Bundles
+	-${MKDIR} ${PREFIX}/System/Library/ColorPickers
+	-${MKDIR} ${PREFIX}/System/Library/Colors
+	-${MKDIR} ${PREFIX}/System/Library/DocTemplates
+	-${MKDIR} ${PREFIX}/System/Library/Documentation/info
+	-${MKDIR} ${PREFIX}/System/Library/Documentation/man
+	-${MKDIR} ${PREFIX}/System/Library/Documentation/Developer
+	-${MKDIR} ${PREFIX}/System/Library/Documentation/User
+	-${MKDIR} ${PREFIX}/System/Library/Fonts
+	-${MKDIR} ${PREFIX}/System/Library/Frameworks
+	-${MKDIR} ${PREFIX}/System/Library/Headers
+	-${MKDIR} ${PREFIX}/System/Library/Images
+	-${MKDIR} ${PREFIX}/System/Library/KeyBindings
+	-${MKDIR} ${PREFIX}/System/Library/Libraries/Java
+	-${MKDIR} ${PREFIX}/System/Library/Libraries/Resources
+	-${MKDIR} ${PREFIX}/System/Library/PostScript
+	-${MKDIR} ${PREFIX}/System/Library/Services
+	-${MKDIR} ${PREFIX}/System/Library/Sounds
+	-${MKDIR} ${PREFIX}/System/Tools/Java
+	-${MKDIR} ${PREFIX}/System/Tools/Resources
 	${LN} -s Library/Makefiles ${PREFIX}/System/
 	-${MKDIR} ${PREFIX}/Local/Applications
 	-${MKDIR} ${PREFIX}/Local/Library/ApplicationSupport
