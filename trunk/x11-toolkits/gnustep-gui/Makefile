@@ -2,19 +2,23 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.7 2007/11/05 23:09:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.8 2007/11/07 20:20:18 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-gui
-PORTVERSION=	0.12.0
-PORTREVISION=	3
+.if defined(WITH_GNUSTEP_DEVEL)
+PORTVERSION=	0.13.2
+.else
+PORTVERSION=	0.12.1
+.endif
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI library
+LICENSE=	gpl3
 
 LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
@@ -30,8 +34,8 @@ CONFIGURE_ARGS+=	--with-tiff-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-jpeg-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ARGS+=	--with-x
-CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/include
-CONFIGURE_ARGS+=	--with-x-include=${X11BASE}/lib
+CONFIGURE_ARGS+=	--with-x-include=${LOCALBASE}/include
+CONFIGURE_ARGS+=	--with-x-include=${LCOALBASE}/lib
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -40,7 +44,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
-USE_XLIB=	yes
+USE_XORG=	x11 xt
 
 EXTRA_PATCHES+=	${FILESDIR}/GNUmakefile.patch
 MAKE_FLAGS+=	OPTFLAG="${CFLAGS}"
@@ -54,11 +58,16 @@ IGNORE=		requires procfs mounted to build or run, for details see procfs(5)
 .endif
 .endif
 
-.if defined(WITH_PORTAUDIO2)
-LIB_DEPENDS+=   portaudio:${PORTSDIR}/audio/portaudio2
-CPPFLAGS+=      -I${LOCALBASE}/include/portaudio2 ${PTHREAD_CFLAGS}
-CFLAGS+=        ${PTHREAD_CFLAGS}
-LDFLAGS+=       -L${LOCALBASE}/lib/portaudio2 ${PTHREAD_LIBS}
+.if !defined(WITHOUT_PORTAUDIO2) && !defined(WITHOUT_PORTAUDIO)
+LIB_DEPENDS+=	portaudio:${PORTSDIR}/audio/portaudio2
+CPPFLAGS+=	-I${LOCALBASE}/include/portaudio2 ${PTHREAD_CFLAGS}
+CFLAGS+=	${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib/portaudio2 ${PTHREAD_LIBS}
+ADDITIONAL_INCLUDE_DIRS+=	-I${LOCALBASE}/include/portaudio2
+ADDITIONAL_LDFLAGS+=	-L${LOCALBASE}/lib/portaudio2
+PLIST_SUB+=	WITH_PORTAUDIO=""
+.else
+PLIST_SUB+=	WITH_PORTAUDIO="@comment "
 .endif
 
 .if !defined(WITHOUT_CUPS)
