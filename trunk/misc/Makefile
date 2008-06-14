@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.39 2008/06/13 02:41:37 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.40 2008/06/14 03:32:43 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -74,6 +74,7 @@
     SUBDIR += koffice-i18n-zu
     SUBDIR += ldconfig_compat
     SUBDIR += localedata
+    SUBDIR += manpages-de
     SUBDIR += mime-support
     SUBDIR += mirmon
     SUBDIR += newer
