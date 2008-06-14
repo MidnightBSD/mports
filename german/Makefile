@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/german/Makefile,v 1.9 2008/06/13 02:42:08 laffer1 Exp $
+# $MidnightBSD: mports/german/Makefile,v 1.10 2008/06/14 03:23:18 laffer1 Exp $
 #
 
     COMMENT = German support
@@ -13,6 +13,5 @@
     SUBDIR += manpages
     SUBDIR += phone
     SUBDIR += selfhtml
-    SUBDIR += staroffice70
 
 .include <bsd.port.subdir.mk>
