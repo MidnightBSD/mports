@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.75 2008/06/07 21:02:08 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.76 2008/06/08 21:04:42 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -73,6 +73,7 @@
     SUBDIR += privoxy
     SUBDIR += retsina
     SUBDIR += seamonkey
+    SUBDIR += selfhtml-de
     SUBDIR += squid
     SUBDIR += thttpd
     SUBDIR += thttpd-st
