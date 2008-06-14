@@ -1,7 +1,9 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.10 2008/01/01 22:45:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.11 2008/05/10 01:46:02 laffer1 Exp $
 #
     COMMENT = X11 themes
 
+    SUBDIR += clearlooks
+    SUBDIR += clearlooks-themes
     SUBDIR += etoile-azbackground
     SUBDIR += etoile-camaelon
     SUBDIR += etoile-etoilemenus
