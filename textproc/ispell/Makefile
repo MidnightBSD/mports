@@ -3,13 +3,13 @@
 # Whom:					jmz
 #
 # $FreeBSD: ports/textproc/ispell/Makefile,v 1.104 2006/12/04 11:38:15 jmz Exp $
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.4 2007/02/19 06:56:59 archite Exp $
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.5 2007/04/22 22:32:04 ctriv Exp $
 #
 
 PORTNAME?=	ispell
 PORTVERSION?=	3.2.06
 PORTREVISION?=	16
-CATEGORIES+=	textproc
+CATEGORIES?=	textproc
 MASTER_SITES=	http://fmg-www.cs.ucla.edu/geoff/tars/ \
 		http://distfiles.opendarwin.org/
 DISTNAME=	ispell-3.2.06		# needed for slave ports / options
