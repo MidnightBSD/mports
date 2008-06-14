@@ -2,7 +2,7 @@
 # Date created:		November 13, 1998
 # Whom:			Marc G. Fournier <scrappy@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql81-server/Makefile,v 1.6 2008/03/26 00:27:19 laffer1 Exp $
 # $FreeBSD: ports/databases/postgresql81-server/Makefile,v 1.175 2008/03/20 09:37:16 pav Exp $
 #
 
@@ -17,6 +17,7 @@ DISTFILES?=	postgresql-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
+LICENSE=        mit
 
 CONFLICTS?=	${PORTNAME}-client-7.* \
 		${PORTNAME}${PKGNAMESUFFIX}-7.* \
