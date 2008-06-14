@@ -2,7 +2,7 @@
 # Date created:				24 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.2 2008/02/17 04:54:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.3 2008/06/14 16:59:59 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gdl/Makefile,v 1.29 2007/07/10 04:38:08 marcus Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Components intended to be shared between GNOME development tools
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
