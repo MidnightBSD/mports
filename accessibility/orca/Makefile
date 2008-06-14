@@ -2,16 +2,15 @@
 # Date created:				25 Jul 2006
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.2 2008/02/22 03:44:54 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.3 2008/03/11 23:32:04 laffer1 Exp $
 # $FreeBSD: ports/accessibility/orca/Makefile,v 1.9 2007/10/29 11:32:32 ahze Exp $
 #   $MCom: ports/accessibility/orca/Makefile,v 1.32 2007/10/13 21:13:14 marcus Exp $
 #
 
 PORTNAME=	orca
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.2
 CATEGORIES=	accessibility gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
