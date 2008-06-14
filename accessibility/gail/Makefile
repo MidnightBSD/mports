@@ -2,7 +2,7 @@
 # Date Created:			12 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/gail/Makefile,v 1.3 2008/02/22 02:46:38 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gail/Makefile,v 1.4 2008/05/31 21:13:04 crash Exp $
 # $FreeBSD: ports/accessibility/gail/Makefile,v 1.60 2007/05/19 19:57:34 flz Exp $
 #   $MCom: ports/accessibility/gail/Makefile,v 1.57 2007/03/12 13:34:38 ahze Exp $
 #
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 USE_GETTEXT=	yes
-USE_XLIB=	yes
+USE_XORG=	x11 xext
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
