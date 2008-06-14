@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.40 2008/06/14 03:32:43 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.41 2008/06/14 03:41:01 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -82,6 +82,7 @@
     SUBDIR += p5-Geography-Countries
     SUBDIR += p5-List-Compare
     SUBDIR += pciids
+    SUBDIR += phone-de
     SUBDIR += php5-calendar
     SUBDIR += shared-mime-info
     SUBDIR += susv2
