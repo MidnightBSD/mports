@@ -2,7 +2,7 @@
 # Date created:         11 Jun 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.3 2007/11/07 20:20:14 ctriv Exp $
+# $MidnightBSD: mports/mail/gnumail/Makefile,v 1.4 2007/11/14 20:32:18 laffer1 Exp $
 # $FreeBSD: ports/mail/gnumail/Makefile,v 1.30 2006/09/10 20:08:45 dinoex Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	GNUMail-${PORTVERSION}pre3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep mail client
+LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/GNUMail
 USE_GMAKE=	yes
@@ -31,7 +32,7 @@ ADDRESSES_PORT?=	mail/addresses
 
 post-patch:
 	for file in ${WRKSRC}/Bundles/*/GNUmakefile; do \
-		${REINPLACE_CMD} -e 's|\$$(GNUSTEP_INSTALLATION_DIR)/Library|\$$(GNUSTEP_LIBRARY)|' $$file; \
+		${REINPLACE_CMD} -e 's|\$$(GNUSTEP_INSTALLATION_DIR)/Library|\$$(GNUSTEP_LOCAL_LIBRARIES)|' $$file; \
 	done
 	
 
