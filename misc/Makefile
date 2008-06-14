@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.41 2008/06/14 03:41:01 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.42 2008/06/14 03:44:13 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -7,6 +7,7 @@
     SUBDIR += compat4x
     SUBDIR += compat5x
     SUBDIR += cpuid
+    SUBDIR += dict-de
     SUBDIR += dnetc
     SUBDIR += e2fsprogs-libblkid
     SUBDIR += e2fsprogs-libuuid
