@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.8 2008/04/10 17:23:51 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.9 2008/06/12 20:45:08 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -37,7 +37,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-BROKEN=		There is a security issue with this verison of opera.
+DEPRECATED=	There is a security issue with this verison of opera.
 
 OPERA_VER=	9.27
 OPERA_DATE=	20080331
