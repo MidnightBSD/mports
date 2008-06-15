@@ -2,12 +2,12 @@
 # Date created:				Fri Feb 22 00:28:41 CST 2002
 # Whom:					Kyle Martin <mkm@ieee.org> et al
 #
-# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.4 2008/04/30 20:10:59 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.5 2008/05/31 19:02:50 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/limewire/Makefile,v 1.30 2007/05/19 20:20:07 flz Exp $
 #
 
 PORTNAME=	limewire
-PORTVERSION=	4.16.7
+PORTVERSION=	4.18.2
 PORTEPOCH=	1
 CATEGORIES=	net-p2p java
 MASTER_SITES=	http://www10.limewire.com/download/
