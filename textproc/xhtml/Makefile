@@ -2,7 +2,7 @@
 # Date created:		10 May 2000
 # Whom:			kuriyama
 #
-# $MidnightBSD: mports/textproc/xhtml/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
+# $MidnightBSD: mports/textproc/xhtml/Makefile,v 1.2 2007/05/19 03:46:38 ctriv Exp $
 # $FreeBSD: ports/textproc/xhtml/Makefile,v 1.11 2005/06/13 20:54:18 glewis Exp $
 #
 
@@ -14,6 +14,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
 DISTNAME=	xhtml1-20020801
+LICENSE=	other
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	W3C's XHTML DTD
