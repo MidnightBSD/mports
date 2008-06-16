@@ -2,7 +2,7 @@
 # Date created:		09 July 1998
 # Whom:			Adrian Penisoara <ady@freebsd.ady.ro>
 #
-# $MidnightBSD: mports/mail/pine4/Makefile,v 1.2 2007/05/09 16:37:06 ctriv Exp $
+# $MidnightBSD: mports/mail/pine4/Makefile,v 1.3 2007/10/01 08:46:55 laffer1 Exp $
 # $FreeBSD: ports/mail/pine4/Makefile,v 1.86 2006/08/28 06:03:13 dougb Exp $
 #
 
@@ -21,6 +21,7 @@ DISTNAME=	pine${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PINE(tm) -- a Program for Internet News & Email
+LICENSE=	other
 
 OPTIONS=	PICO "Build and install pico, the default editor" on \
 		PASSFILE "Support for a stored Password File (DANGEROUS)" off \
