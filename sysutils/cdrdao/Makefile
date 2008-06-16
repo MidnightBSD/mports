@@ -12,6 +12,7 @@ CATEGORIES=	sysutils audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	cdrdao
 DISTNAME=	cdrdao-${PORTVERSION}
+LICENSE=	gpl2
 
 MAINTAINER=	marius@FreeBSD.org
 COMMENT?=	Record CD-R[W]s in disk-at-once mode
