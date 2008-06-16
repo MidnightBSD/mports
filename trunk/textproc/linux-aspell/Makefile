@@ -2,7 +2,7 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.3 2007/08/01 19:50:22 laffer1 Exp $
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.4 2007/10/17 13:59:18 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
@@ -21,6 +21,7 @@ EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better logic than ispell (linux version)
+LICENSE=	lgpl
 
 BUILD_DEPENDS=	rpm:${PORTSDIR}/archivers/rpm
 
