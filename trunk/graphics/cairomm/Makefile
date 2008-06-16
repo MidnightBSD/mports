@@ -2,7 +2,7 @@
 # Date created:		2005-12-07
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.1 2007/08/29 04:33:03 laffer1 Exp $
 # $FreeBSD: ports/graphics/cairomm/Makefile,v 1.9 2007/05/19 20:08:41 flz Exp $
 #   $MCom: ports/graphics/cairomm/Makefile,v 1.4 2006/09/06 22:06:40 marcus Exp $
 
@@ -11,6 +11,7 @@ PORTVERSION=	1.2.4
 PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
+LICENSE=	lgpl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ interface to cairo
