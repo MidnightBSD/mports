@@ -2,10 +2,11 @@
 # Date created: 5 August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/german/kde-i18n-de/Makefile,v 1.4 2008/05/29 21:12:34 laffer1 Exp $
+# $MidnightBSD: mports/misc/kde3-i18n-de/Makefile,v 1.1 2008/06/14 03:32:43 laffer1 Exp $
 #
 
 PORTNAME=	kde3-i18n-de
+DISTNAME=	kde-i18n-de-3.5.8
 PORTVERSION=	3.5.8
 PORTREVISION=	2
 CATEGORIES=	misc german kde
