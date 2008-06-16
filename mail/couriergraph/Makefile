@@ -3,7 +3,7 @@
 # Whom:				Xavier Beaudouin (kiwi@oav.net)
 #
 # $FreeBSD: ports/mail/couriergraph/Makefile,v 1.3 2006/08/08 15:11:44 clsung Exp $
-# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.2 2007/05/09 06:10:24 ctriv Exp $
+# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.3 2007/10/25 01:04:36 laffer1 Exp $
 #
 
 PORTNAME=	couriergraph
@@ -14,6 +14,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A RRDtool frontend for Courier statistics
+LICENSE=	gpl
 
 USE_PERL5=	yes
 
