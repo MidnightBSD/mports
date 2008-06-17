@@ -2,12 +2,12 @@
 # Date created:				11 September 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libgsf-gnome/Makefile,v 1.1 2007/12/28 04:31:40 laffer1 Exp $
 # $FreeBSD: ports/devel/libgsf-gnome/Makefile,v 1.9 2007/09/05 15:50:26 mezz Exp $
 #   $MCom: ports/devel/libgsf-gnome/Makefile,v 1.10 2006/03/05 21:26:56 marcus Exp $
 #
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 PKGNAMESUFFIX=	-gnome
 
@@ -20,6 +20,8 @@ BUILD_WRKSRC=	${WRKSRC}/gsf-gnome
 INSTALL_WRKSRC=	${WRKSRC}/gsf-gnome
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
+
+BUILD_DEPENDS+=	gnome-config:${PORTSDIR}/x11/gnome-libs
 
 USE_GNOME=	gnomehack libgsf gnomevfs2 ltverhack intlhack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc/gsf \
