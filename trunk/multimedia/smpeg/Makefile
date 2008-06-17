@@ -2,7 +2,7 @@
 # Date created:		2 Feb 2000
 # Whom:			Chris Piazza <cpiazza@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.1 2006/10/06 20:23:02 wintellect Exp $
 # $FreeBSD: ports/multimedia/smpeg/Makefile,v 1.39 2006/07/23 02:45:23 acm Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free MPEG1 video player library with sound support
+LICENSE=	lgpl
 
 WANT_GNOME=	yes
 USE_GMAKE=	yes
