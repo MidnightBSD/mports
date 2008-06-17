@@ -2,7 +2,7 @@
 # Date created:			19 Jun 2004
 # Whom:				Jean-Yves lefort
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.1 2008/06/14 02:15:02 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.14 2008/04/29 05:11:44 linimon Exp $
 #
 
@@ -10,13 +10,14 @@ PORTNAME=	gtk-bluecurve-theme
 DISTVERSION=	0.117-1
 CATEGORIES=	x11-themes linux
 DISTNAME=	redhat-artwork-${DISTVERSION}
+PKGNAMEPREFIX=	linux
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Bluecurve GTK+ 1.x and 2.x themes (Linux version)
+LICENSE=	unknown
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 PLIST=		${WRKDIR}/.plist
 
 # GTK+ 1.x theme engine
