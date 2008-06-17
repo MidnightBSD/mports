@@ -2,7 +2,7 @@
 # Date created:		19 August 1997
 # Whom:			jkh
 #
-# $MidnightBSD: mports/lang/tcl80/Makefile,v 1.5 2007/12/05 23:11:45 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl80/Makefile,v 1.6 2008/05/11 16:19:47 laffer1 Exp $
 # $FreeBSD: ports/lang/tcl80/Makefile,v 1.43 2007/03/13 10:31:46 miwi Exp $
 #
 
@@ -16,7 +16,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool Command Language
-LICENCE=	other
+LICENSE=	other
 
 NO_LATEST_LINK=	yes
 WRKSRC=		${WRKDIR}/tcl8.0.5/unix
