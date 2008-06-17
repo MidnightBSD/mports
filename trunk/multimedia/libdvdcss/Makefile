@@ -3,7 +3,7 @@
 # Date created:		Jul 6, 2001
 # Whom:			ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.1 2006/10/05 00:56:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdcss/Makefile,v 1.28 2006/05/10 22:37:31 edwin Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable abstraction library for DVD decryption
+LICENSE=	gpl2
 
 NO_CDROM=	CSS code may violate the DMCA
 
