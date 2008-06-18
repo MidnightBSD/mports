@@ -2,7 +2,7 @@
 # Date created:				17 June 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.3 2008/03/14 01:42:16 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.4 2008/05/31 11:00:52 crash Exp $
 # $FreeBSD: ports/x11/libgnome/Makefile,v 1.156 2007/03/19 05:13:55 marcus Exp $
 #   $MCom: ports/x11/libgnome/Makefile,v 1.100 2007/03/12 15:49:09 ahze Exp $
 #
@@ -26,12 +26,11 @@ BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_GETTEXT=	yes
-USE_XPM=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack esound \
-		gnomevfs2 libxslt ltverhack referencehack
+USE_GNOME=	gnomeprefix gnomehack intlhack esound libbonobo \
+		gnomevfs2 ltverhack referencehack
 USE_BISON=	build
-USE_XLIB=	yes
+USE_XORG=	xpm
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -43,21 +42,21 @@ MAN7=		gnome-options.7
 
 GCONF_SCHEMAS=	desktop_gnome_accessibility_keyboard.schemas \
 		desktop_gnome_accessibility_startup.schemas \
+		desktop_gnome_applications_at_mobility.schemas \
+		desktop_gnome_applications_at_visual.schemas \
 		desktop_gnome_applications_browser.schemas \
 		desktop_gnome_applications_office.schemas \
 		desktop_gnome_applications_terminal.schemas \
 		desktop_gnome_applications_window_manager.schemas \
 		desktop_gnome_background.schemas \
 		desktop_gnome_file_views.schemas \
-		desktop_gnome_interface.schemas  \
-                desktop_gnome_lockdown.schemas \
+		desktop_gnome_interface.schemas \
+		desktop_gnome_lockdown.schemas \
 		desktop_gnome_peripherals_keyboard.schemas \
 		desktop_gnome_peripherals_mouse.schemas \
 		desktop_gnome_sound.schemas \
-                desktop_gnome_thumbnailers.schemas \
-		desktop_gnome_typing_break.schemas \
-		desktop_gnome_applications_at_mobility.schemas \
-		desktop_gnome_applications_at_visual.schemas
+		desktop_gnome_thumbnailers.schemas \
+		desktop_gnome_typing_break.schemas
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
