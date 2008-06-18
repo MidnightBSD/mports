@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.74 2008/03/28 05:09:42 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.75 2008/06/12 20:36:56 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -57,6 +57,7 @@
     SUBDIR += libwmf
     SUBDIR += linux-ac3d
     SUBDIR += linux-adobesvg
+    SUBDIR += linux-cairo
     SUBDIR += linux-gdk-pixbuf
     SUBDIR += linux-imlib
     SUBDIR += linux-jpeg
