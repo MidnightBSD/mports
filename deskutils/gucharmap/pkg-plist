@@ -1,85 +1,38 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+bin/gucharmap
 bin/charmap
 bin/gnome-character-map
-bin/gucharmap
+etc/gconf/schemas/gucharmap.schemas
+include/gucharmap/gucharmap.h
 include/gucharmap/gucharmap-block-chapters.h
+include/gucharmap/gucharmap-block-chapters-model.h
 include/gucharmap/gucharmap-chapters.h
+include/gucharmap/gucharmap-chapters-model.h
+include/gucharmap/gucharmap-chapters-view.h
 include/gucharmap/gucharmap-charmap.h
 include/gucharmap/gucharmap-codepoint-list.h
 include/gucharmap/gucharmap-mini-fontsel.h
 include/gucharmap/gucharmap-script-chapters.h
+include/gucharmap/gucharmap-script-chapters-model.h
 include/gucharmap/gucharmap-script-codepoint-list.h
 include/gucharmap/gucharmap-search-dialog.h
 include/gucharmap/gucharmap-table.h
 include/gucharmap/gucharmap-unicode-info.h
 include/gucharmap/gucharmap-window.h
-include/gucharmap/gucharmap.h
-lib/libgucharmap.la
-lib/libgucharmap.so
+include/gucharmap/gucharmap-settings.h
 lib/libgucharmap.so.6
+lib/libgucharmap.so
+lib/libgucharmap.la
 libdata/pkgconfig/gucharmap.pc
-share/applications/gucharmap.desktop
-share/gnome/help/gucharmap/C/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/C/figures/gucharmap_window.png
-share/gnome/help/gucharmap/C/gucharmap.xml
-share/gnome/help/gucharmap/C/legal.xml
-share/gnome/help/gucharmap/bg/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/bg/figures/gucharmap_window.png
-share/gnome/help/gucharmap/bg/gucharmap.xml
-share/gnome/help/gucharmap/de/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/de/figures/gucharmap_window.png
-share/gnome/help/gucharmap/de/gucharmap.xml
-share/gnome/help/gucharmap/en_GB/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/en_GB/figures/gucharmap_window.png
-share/gnome/help/gucharmap/en_GB/gucharmap.xml
-share/gnome/help/gucharmap/es/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/es/figures/gucharmap_window.png
-share/gnome/help/gucharmap/es/gucharmap.xml
-share/gnome/help/gucharmap/fi/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/fi/figures/gucharmap_window.png
-share/gnome/help/gucharmap/fi/gucharmap.xml
-share/gnome/help/gucharmap/fr/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/fr/figures/gucharmap_window.png
-share/gnome/help/gucharmap/fr/gucharmap.xml
-share/gnome/help/gucharmap/it/figures/gucharmap_window.png
-share/gnome/help/gucharmap/it/gucharmap.xml
-share/gnome/help/gucharmap/it/legal.xml
-share/gnome/help/gucharmap/ja/figures/gucharmap_window.png
-share/gnome/help/gucharmap/ja/gucharmap.xml
-share/gnome/help/gucharmap/ja/legal.xml
-share/gnome/help/gucharmap/ko/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/ko/figures/gucharmap_window.png
-share/gnome/help/gucharmap/ko/gucharmap.xml
-share/gnome/help/gucharmap/oc/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/oc/figures/gucharmap_window.png
-share/gnome/help/gucharmap/oc/gucharmap.xml
-share/gnome/help/gucharmap/ru/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/ru/figures/gucharmap_window.png
-share/gnome/help/gucharmap/ru/gucharmap.xml
-share/gnome/help/gucharmap/sv/figures/gucharmap_start_window.png
-share/gnome/help/gucharmap/sv/figures/gucharmap_window.png
-share/gnome/help/gucharmap/sv/gucharmap.xml
-share/gnome/help/gucharmap/zh_CN/figures/gucharmap_window.png
-share/gnome/help/gucharmap/zh_CN/gucharmap.xml
-share/gnome/help/gucharmap/zh_CN/legal.xml
-share/gnome/help/gucharmap/zh_TW/figures/gucharmap_window.png
-share/gnome/help/gucharmap/zh_TW/gucharmap.xml
-share/gnome/help/gucharmap/zh_TW/legal.xml
-share/icons/hicolor/48x48/apps/gucharmap.png
 share/locale/am/LC_MESSAGES/gucharmap.mo
 share/locale/ar/LC_MESSAGES/gucharmap.mo
 share/locale/az/LC_MESSAGES/gucharmap.mo
-share/locale/be/LC_MESSAGES/gucharmap.mo
 share/locale/bg/LC_MESSAGES/gucharmap.mo
 share/locale/bn/LC_MESSAGES/gucharmap.mo
-share/locale/bn_IN/LC_MESSAGES/gucharmap.mo
 share/locale/bs/LC_MESSAGES/gucharmap.mo
-share/locale/ca/LC_MESSAGES/gucharmap.mo
-share/locale/cs/LC_MESSAGES/gucharmap.mo
 share/locale/cy/LC_MESSAGES/gucharmap.mo
 share/locale/da/LC_MESSAGES/gucharmap.mo
 share/locale/de/LC_MESSAGES/gucharmap.mo
-share/locale/dz/LC_MESSAGES/gucharmap.mo
-share/locale/el/LC_MESSAGES/gucharmap.mo
 share/locale/en_CA/LC_MESSAGES/gucharmap.mo
 share/locale/en_GB/LC_MESSAGES/gucharmap.mo
 share/locale/eo/LC_MESSAGES/gucharmap.mo
@@ -87,11 +40,10 @@ share/locale/es/LC_MESSAGES/gucharmap.mo
 share/locale/et/LC_MESSAGES/gucharmap.mo
 share/locale/eu/LC_MESSAGES/gucharmap.mo
 share/locale/fa/LC_MESSAGES/gucharmap.mo
-share/locale/fi/LC_MESSAGES/gucharmap.mo
 share/locale/fr/LC_MESSAGES/gucharmap.mo
 share/locale/ga/LC_MESSAGES/gucharmap.mo
-share/locale/gl/LC_MESSAGES/gucharmap.mo
 share/locale/gu/LC_MESSAGES/gucharmap.mo
+share/locale/he/LC_MESSAGES/gucharmap.mo
 share/locale/hi/LC_MESSAGES/gucharmap.mo
 share/locale/hr/LC_MESSAGES/gucharmap.mo
 share/locale/hu/LC_MESSAGES/gucharmap.mo
@@ -100,109 +52,313 @@ share/locale/is/LC_MESSAGES/gucharmap.mo
 share/locale/it/LC_MESSAGES/gucharmap.mo
 share/locale/ja/LC_MESSAGES/gucharmap.mo
 share/locale/ka/LC_MESSAGES/gucharmap.mo
-share/locale/ko/LC_MESSAGES/gucharmap.mo
 share/locale/lt/LC_MESSAGES/gucharmap.mo
 share/locale/lv/LC_MESSAGES/gucharmap.mo
-share/locale/mi/LC_MESSAGES/gucharmap.mo
 share/locale/mk/LC_MESSAGES/gucharmap.mo
 share/locale/ml/LC_MESSAGES/gucharmap.mo
 share/locale/mn/LC_MESSAGES/gucharmap.mo
-share/locale/mr/LC_MESSAGES/gucharmap.mo
 share/locale/ms/LC_MESSAGES/gucharmap.mo
 share/locale/nb/LC_MESSAGES/gucharmap.mo
-share/locale/ne/LC_MESSAGES/gucharmap.mo
 share/locale/nl/LC_MESSAGES/gucharmap.mo
-share/locale/nn/LC_MESSAGES/gucharmap.mo
-share/locale/oc/LC_MESSAGES/gucharmap.mo
 share/locale/or/LC_MESSAGES/gucharmap.mo
 share/locale/pa/LC_MESSAGES/gucharmap.mo
-share/locale/pl/LC_MESSAGES/gucharmap.mo
-share/locale/pt/LC_MESSAGES/gucharmap.mo
 share/locale/pt_BR/LC_MESSAGES/gucharmap.mo
-share/locale/ro/LC_MESSAGES/gucharmap.mo
 share/locale/ru/LC_MESSAGES/gucharmap.mo
-share/locale/rw/LC_MESSAGES/gucharmap.mo
-share/locale/si/LC_MESSAGES/gucharmap.mo
-share/locale/sk/LC_MESSAGES/gucharmap.mo
-share/locale/sl/LC_MESSAGES/gucharmap.mo
-share/locale/sq/LC_MESSAGES/gucharmap.mo
-share/locale/sr/LC_MESSAGES/gucharmap.mo
 share/locale/sr@Latn/LC_MESSAGES/gucharmap.mo
+share/locale/sq/LC_MESSAGES/gucharmap.mo
 share/locale/sv/LC_MESSAGES/gucharmap.mo
 share/locale/ta/LC_MESSAGES/gucharmap.mo
 share/locale/th/LC_MESSAGES/gucharmap.mo
 share/locale/tr/LC_MESSAGES/gucharmap.mo
-share/locale/uk/LC_MESSAGES/gucharmap.mo
 share/locale/vi/LC_MESSAGES/gucharmap.mo
 share/locale/wa/LC_MESSAGES/gucharmap.mo
+share/locale/be/LC_MESSAGES/gucharmap.mo
+share/locale/be@latin/LC_MESSAGES/gucharmap.mo
+share/locale/bn_IN/LC_MESSAGES/gucharmap.mo
+share/locale/ca/LC_MESSAGES/gucharmap.mo
+share/locale/cs/LC_MESSAGES/gucharmap.mo
+share/locale/dz/LC_MESSAGES/gucharmap.mo
+share/locale/el/LC_MESSAGES/gucharmap.mo
+share/locale/fi/LC_MESSAGES/gucharmap.mo
+share/locale/gl/LC_MESSAGES/gucharmap.mo
+share/locale/ko/LC_MESSAGES/gucharmap.mo
+share/locale/mi/LC_MESSAGES/gucharmap.mo
+share/locale/mr/LC_MESSAGES/gucharmap.mo
+share/locale/ne/LC_MESSAGES/gucharmap.mo
+share/locale/nn/LC_MESSAGES/gucharmap.mo
+share/locale/oc/LC_MESSAGES/gucharmap.mo
+share/locale/pl/LC_MESSAGES/gucharmap.mo
+share/locale/pt/LC_MESSAGES/gucharmap.mo
+share/locale/ro/LC_MESSAGES/gucharmap.mo
+share/locale/rw/LC_MESSAGES/gucharmap.mo
+share/locale/si/LC_MESSAGES/gucharmap.mo
+share/locale/sk/LC_MESSAGES/gucharmap.mo
+share/locale/sl/LC_MESSAGES/gucharmap.mo
+share/locale/sr/LC_MESSAGES/gucharmap.mo
+share/locale/uk/LC_MESSAGES/gucharmap.mo
 share/locale/xh/LC_MESSAGES/gucharmap.mo
 share/locale/zh_CN/LC_MESSAGES/gucharmap.mo
 share/locale/zh_HK/LC_MESSAGES/gucharmap.mo
 share/locale/zh_TW/LC_MESSAGES/gucharmap.mo
-share/omf/gucharmap/gucharmap-C.omf
-share/omf/gucharmap/gucharmap-bg.omf
-share/omf/gucharmap/gucharmap-de.omf
-share/omf/gucharmap/gucharmap-en_GB.omf
-share/omf/gucharmap/gucharmap-es.omf
-share/omf/gucharmap/gucharmap-fi.omf
-share/omf/gucharmap/gucharmap-fr.omf
+share/gnome/help/gucharmap/it/legal.xml
+share/gnome/help/gucharmap/it/gucharmap.xml
+share/gnome/help/gucharmap/it/figures/gucharmap_window.png
+share/gnome/help/gucharmap/ja/legal.xml
+share/gnome/help/gucharmap/ja/gucharmap.xml
+share/gnome/help/gucharmap/ja/figures/gucharmap_window.png
+share/gnome/help/gucharmap/zh_CN/legal.xml
+share/gnome/help/gucharmap/zh_CN/gucharmap.xml
+share/gnome/help/gucharmap/zh_CN/figures/gucharmap_window.png
+share/gnome/help/gucharmap/zh_TW/legal.xml
+share/gnome/help/gucharmap/zh_TW/gucharmap.xml
+share/gnome/help/gucharmap/zh_TW/figures/gucharmap_window.png
+share/gnome/help/gucharmap/C/legal.xml
+share/gnome/help/gucharmap/C/gucharmap.xml
+share/gnome/help/gucharmap/C/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/C/figures/gucharmap_window.png
+share/gnome/help/gucharmap/de/gucharmap.xml
+share/gnome/help/gucharmap/de/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/de/figures/gucharmap_window.png
+share/gnome/help/gucharmap/bg/gucharmap.xml
+share/gnome/help/gucharmap/bg/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/bg/figures/gucharmap_window.png
+share/gnome/help/gucharmap/en_GB/gucharmap.xml
+share/gnome/help/gucharmap/en_GB/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/en_GB/figures/gucharmap_window.png
+share/gnome/help/gucharmap/es/gucharmap.xml
+share/gnome/help/gucharmap/es/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/es/figures/gucharmap_window.png
+share/gnome/help/gucharmap/fr/gucharmap.xml
+share/gnome/help/gucharmap/fr/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/fr/figures/gucharmap_window.png
+share/gnome/help/gucharmap/fi/gucharmap.xml
+share/gnome/help/gucharmap/fi/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/fi/figures/gucharmap_window.png
+share/gnome/help/gucharmap/ko/gucharmap.xml
+share/gnome/help/gucharmap/ko/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/ko/figures/gucharmap_window.png
+share/gnome/help/gucharmap/oc/gucharmap.xml
+share/gnome/help/gucharmap/oc/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/oc/figures/gucharmap_window.png
+share/gnome/help/gucharmap/pt_BR/gucharmap.xml
+share/gnome/help/gucharmap/pt_BR/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/pt_BR/figures/gucharmap_window.png
+share/gnome/help/gucharmap/ru/gucharmap.xml
+share/gnome/help/gucharmap/ru/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/ru/figures/gucharmap_window.png
+share/gnome/help/gucharmap/sv/gucharmap.xml
+share/gnome/help/gucharmap/sv/figures/gucharmap_start_window.png
+share/gnome/help/gucharmap/sv/figures/gucharmap_window.png
 share/omf/gucharmap/gucharmap-it.omf
 share/omf/gucharmap/gucharmap-ja.omf
-share/omf/gucharmap/gucharmap-ko.omf
-share/omf/gucharmap/gucharmap-oc.omf
-share/omf/gucharmap/gucharmap-ru.omf
-share/omf/gucharmap/gucharmap-sv.omf
 share/omf/gucharmap/gucharmap-zh_CN.omf
 share/omf/gucharmap/gucharmap-zh_TW.omf
-@dirrm share/omf/gucharmap
-@dirrm share/gnome/help/gucharmap/zh_TW/figures
-@dirrm share/gnome/help/gucharmap/zh_TW
-@dirrm share/gnome/help/gucharmap/zh_CN/figures
-@dirrm share/gnome/help/gucharmap/zh_CN
-@dirrm share/gnome/help/gucharmap/sv/figures
-@dirrm share/gnome/help/gucharmap/sv
-@dirrm share/gnome/help/gucharmap/ru/figures
-@dirrm share/gnome/help/gucharmap/ru
-@dirrm share/gnome/help/gucharmap/oc/figures
-@dirrm share/gnome/help/gucharmap/oc
-@dirrm share/gnome/help/gucharmap/ko/figures
-@dirrm share/gnome/help/gucharmap/ko
-@dirrm share/gnome/help/gucharmap/ja/figures
-@dirrm share/gnome/help/gucharmap/ja
+share/omf/gucharmap/gucharmap-C.omf
+share/omf/gucharmap/gucharmap-de.omf
+share/omf/gucharmap/gucharmap-bg.omf
+share/omf/gucharmap/gucharmap-en_GB.omf
+share/omf/gucharmap/gucharmap-es.omf
+share/omf/gucharmap/gucharmap-fr.omf
+share/omf/gucharmap/gucharmap-fi.omf
+share/omf/gucharmap/gucharmap-ko.omf
+share/omf/gucharmap/gucharmap-oc.omf
+share/omf/gucharmap/gucharmap-pt_BR.omf
+share/omf/gucharmap/gucharmap-ru.omf
+share/omf/gucharmap/gucharmap-sv.omf
+share/icons/hicolor/48x48/apps/gucharmap.png
+share/applications/gucharmap.desktop
+@dirrm etc/CORBA/servers
+@dirrm etc/CORBA
+@dirrm etc/X11/serverconfig
+@dirrm etc/X11/starthere
+@dirrm etc/X11/sysconfig
+@dirrm etc/X11
+@dirrm etc/gconf/gconf.xml.defaults
+@dirrm etc/gconf/gconf.xml.mandatory
+@dirrm etc/gconf/schemas
+@dirrm etc/gconf
+@dirrm etc/gnome/config
+@dirrm etc/gnome
+@dirrm etc/gnome-vfs-2.0/modules
+@dirrm etc/gnome-vfs-2.0
+@dirrm etc/sound/events
+@dirrm etc/sound
+@dirrm etc/vfs/modules
+@dirrm etc/vfs
+@dirrm include/gconf
+@dirrm include/gdkcardimage
+@dirrm include/gnome-1.0
+@dirrm include/gucharmap
+@dirrm lib/GConf
+@dirrm lib/bonobo/monikers
+@dirrm lib/bonobo/plugin
+@dirrm lib/bonobo
+@dirrm lib/gnome-vfs-2.0/modules
+@dirrm lib/gnome-vfs-2.0
+@dirrm lib/vfs/modules
+@dirrm lib/vfs
+@dirrm libdata/bonobo/servers
+@dirrm libdata/bonobo
+@dirrm share/doc/libgda
+@dirrm share/locale/be/LC_MESSAGES
+@dirrm share/locale/be
+@dirrm share/locale/be@latin/LC_MESSAGES
+@dirrm share/locale/be@latin
+@dirrm share/locale/bn_IN/LC_MESSAGES
+@dirrm share/locale/bn_IN
+@dirrm share/locale/ca/LC_MESSAGES
+@dirrm share/locale/ca
+@dirrm share/locale/cs/LC_MESSAGES
+@dirrm share/locale/cs
+@dirrm share/locale/dz/LC_MESSAGES
+@dirrm share/locale/dz
+@dirrm share/locale/el/LC_MESSAGES
+@dirrm share/locale/el
+@dirrm share/locale/fi/LC_MESSAGES
+@dirrm share/locale/fi
+@dirrm share/locale/gl/LC_MESSAGES
+@dirrm share/locale/gl
+@dirrm share/locale/ko/LC_MESSAGES
+@dirrm share/locale/ko
+@dirrm share/locale/mi/LC_MESSAGES
+@dirrm share/locale/mi
+@dirrm share/locale/mr/LC_MESSAGES
+@dirrm share/locale/mr
+@dirrm share/locale/ne/LC_MESSAGES
+@dirrm share/locale/ne
+@dirrm share/locale/nn/LC_MESSAGES
+@dirrm share/locale/nn
+@dirrm share/locale/oc/LC_MESSAGES
+@dirrm share/locale/oc
+@dirrm share/locale/pl/LC_MESSAGES
+@dirrm share/locale/pl
+@dirrm share/locale/pt/LC_MESSAGES
+@dirrm share/locale/pt
+@dirrm share/locale/ro/LC_MESSAGES
+@dirrm share/locale/ro
+@dirrm share/locale/rw/LC_MESSAGES
+@dirrm share/locale/rw
+@dirrm share/locale/si/LC_MESSAGES
+@dirrm share/locale/si
+@dirrm share/locale/sk/LC_MESSAGES
+@dirrm share/locale/sk
+@dirrm share/locale/sl/LC_MESSAGES
+@dirrm share/locale/sl
+@dirrm share/locale/sr/LC_MESSAGES
+@dirrm share/locale/sr
+@dirrm share/locale/uk/LC_MESSAGES
+@dirrm share/locale/uk
+@dirrm share/locale/xh/LC_MESSAGES
+@dirrm share/locale/xh
+@dirrm share/locale/zh_CN/LC_MESSAGES
+@dirrm share/locale/zh_CN
+@dirrm share/locale/zh_HK/LC_MESSAGES
+@dirrm share/locale/zh_HK
+@dirrm share/locale/zh_TW/LC_MESSAGES
+@dirrm share/locale/zh_TW
+@dirrm share/sgml/docbook/gnome-customization-0.1
+@dirrm share/sgml/docbook
+@dirrm share/applets/Amusements
+@dirrm share/applets/Clocks
+@dirrm share/applets/Monitors
+@dirrm share/applets/Multimedia
+@dirrm share/applets/Network
+@dirrm share/applets/Utility
+@dirrm share/applets
+@dirrm share/application-registry
+@dirrm share/capplets
+@dirrm share/control-center/Desktop
+@dirrm share/control-center/Documents
+@dirrm share/control-center/Peripherals
+@dirrm share/control-center/Session
+@dirrm share/control-center/capplets
+@dirrm share/control-center/keybindings
+@dirrm share/control-center
+@dirrm share/control-center-2.0/capplets
+@dirrm share/control-center-2.0
+@dirrm share/games
+@dirrm share/gnome/apps/Applications
+@dirrm share/gnome/apps/Audio
+@dirrm share/gnome/apps/Development
+@dirrm share/gnome/apps/Games
+@dirrm share/gnome/apps/Graphics
+@dirrm share/gnome/apps/Internet
+@dirrm share/gnome/apps/Multimedia
+@dirrm share/gnome/apps/Settings/Desktop
+@dirrm share/gnome/apps/Settings/Documents
+@dirrm share/gnome/apps/Settings/Peripherals
+@dirrm share/gnome/apps/Settings/Session
+@dirrm share/gnome/apps/Settings
+@dirrm share/gnome/apps/System
+@dirrm share/gnome/apps/Utilities
+@dirrm share/gnome/apps
+@dirrm share/gnome/autostart
+@dirrm share/gnome/help/fdl/C
+@dirrm share/gnome/help/fdl
+@dirrm share/gnome/help/gpl/C
+@dirrm share/gnome/help/gpl
+@dirrm share/gnome/help/lgpl/C
+@dirrm share/gnome/help/lgpl
 @dirrm share/gnome/help/gucharmap/it/figures
 @dirrm share/gnome/help/gucharmap/it
-@dirrm share/gnome/help/gucharmap/fr/figures
-@dirrm share/gnome/help/gucharmap/fr
-@dirrm share/gnome/help/gucharmap/fi/figures
-@dirrm share/gnome/help/gucharmap/fi
-@dirrm share/gnome/help/gucharmap/es/figures
-@dirrm share/gnome/help/gucharmap/es
-@dirrm share/gnome/help/gucharmap/en_GB/figures
-@dirrm share/gnome/help/gucharmap/en_GB
+@dirrm share/gnome/help/gucharmap/ja/figures
+@dirrm share/gnome/help/gucharmap/ja
+@dirrm share/gnome/help/gucharmap/zh_CN/figures
+@dirrm share/gnome/help/gucharmap/zh_CN
+@dirrm share/gnome/help/gucharmap/zh_TW/figures
+@dirrm share/gnome/help/gucharmap/zh_TW
+@dirrm share/gnome/help/gucharmap/C/figures
+@dirrm share/gnome/help/gucharmap/C
 @dirrm share/gnome/help/gucharmap/de/figures
 @dirrm share/gnome/help/gucharmap/de
 @dirrm share/gnome/help/gucharmap/bg/figures
 @dirrm share/gnome/help/gucharmap/bg
-@dirrm share/gnome/help/gucharmap/C/figures
-@dirrm share/gnome/help/gucharmap/C
+@dirrm share/gnome/help/gucharmap/en_GB/figures
+@dirrm share/gnome/help/gucharmap/en_GB
+@dirrm share/gnome/help/gucharmap/es/figures
+@dirrm share/gnome/help/gucharmap/es
+@dirrm share/gnome/help/gucharmap/fr/figures
+@dirrm share/gnome/help/gucharmap/fr
+@dirrm share/gnome/help/gucharmap/fi/figures
+@dirrm share/gnome/help/gucharmap/fi
+@dirrm share/gnome/help/gucharmap/ko/figures
+@dirrm share/gnome/help/gucharmap/ko
+@dirrm share/gnome/help/gucharmap/oc/figures
+@dirrm share/gnome/help/gucharmap/oc
+@dirrm share/gnome/help/gucharmap/pt_BR/figures
+@dirrm share/gnome/help/gucharmap/pt_BR
+@dirrm share/gnome/help/gucharmap/ru/figures
+@dirrm share/gnome/help/gucharmap/ru
+@dirrm share/gnome/help/gucharmap/sv/figures
+@dirrm share/gnome/help/gucharmap/sv
 @dirrm share/gnome/help/gucharmap
-@dirrm include/gucharmap
-@dirrmtry share/locale/zh_HK/LC_MESSAGES
-@dirrmtry share/locale/zh_HK
-@dirrmtry share/locale/xh/LC_MESSAGES
-@dirrmtry share/locale/xh
-@dirrmtry share/locale/si/LC_MESSAGES
-@dirrmtry share/locale/si
-@dirrmtry share/locale/rw/LC_MESSAGES
-@dirrmtry share/locale/rw
-@dirrmtry share/locale/oc/LC_MESSAGES
-@dirrmtry share/locale/oc
-@dirrmtry share/locale/mr/LC_MESSAGES
-@dirrmtry share/locale/mr
-@dirrmtry share/locale/mi/LC_MESSAGES
-@dirrmtry share/locale/mi
-@dirrmtry share/locale/dz/LC_MESSAGES
-@dirrmtry share/locale/dz
-@dirrmtry share/locale/bn_IN/LC_MESSAGES
-@dirrmtry share/locale/bn_IN
-@dirrmtry share/applications
+@dirrm share/gnome/help
+@dirrm share/gnome/panel
+@dirrm share/gnome/ui
+@dirrm share/gnome/wm-properties
+@dirrm share/gnome
+@dirrm share/gnome-2.0/ui
+@dirrm share/gnome-2.0
+@dirrm share/gnome-about
+@dirrm share/gnome-control-center/keybindings
+@dirrm share/gnome-control-center
+@dirrm share/images
+@dirrm share/mc/templates
+@dirrm share/mc
+@dirrm share/mime-info
+@dirrm share/oaf
+@dirrm share/omf/gucharmap
+@dirrm share/omf
+@dirrm share/pixmaps/document-icons
+@dirrm share/pixmaps/splash
+@dirrm share/pixmaps
+@dirrm share/sounds
+@dirrm share/vala/vapi
+@dirrm share/vala
+@dirrm share/vfolders
+@dirrm share/xmodmap
+@dirrm share/icons/hicolor/48x48/apps
+@dirrm share/icons/hicolor/48x48
+@dirrm share/icons/hicolor
+@dirrm share/icons
+@dirrm share/applications
