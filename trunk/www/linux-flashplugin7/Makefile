@@ -2,12 +2,13 @@
 # Date created:				28 May 2004
 # Whom:					Jamie Jones <jamie@bishopston.net>
 #
-# $MidnightBSD: mports/www/linux-flashplugin7/Makefile,v 1.3 2007/10/31 01:56:10 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flashplugin7/Makefile,v 1.4 2008/03/22 00:10:12 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flashplugin7/Makefile,v 1.23 2007/10/10 03:00:35 edwin Exp $
 #
 
 PORTNAME=	flashplugin
 PORTVERSION=	7.0r73
+PORTREVISION=	1
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/installers/archive/
 PKGNAMEPREFIX=	linux-
