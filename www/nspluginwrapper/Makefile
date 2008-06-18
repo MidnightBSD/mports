@@ -2,7 +2,7 @@
 # Date created:         30 Oct 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.3 2008/06/17 16:53:11 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.4 2008/06/18 17:55:35 laffer1 Exp $
 # $FreeBSD: ports/www/nspluginwrapper/Makefile,v 1.5 2007/09/01 23:15:12 pav Exp $
 #
 
@@ -25,7 +25,7 @@ RPMFILE=	${PORTNAME}-i386-${PORTVERSION}-1.x86_64.rpm
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-USE_XORG=	x11 xlib
+USE_XORG=	x11
 USE_BZIP2=	yes
 USE_LINUX=	yes
 USE_XLIB=	yes
