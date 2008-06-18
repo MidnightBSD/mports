@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/Makefile,v 1.23 2007/07/15 08:11:51 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/Makefile,v 1.24 2008/06/13 03:56:14 laffer1 Exp $
 #
 
     COMMENT = Benchmarking tools
@@ -22,7 +22,6 @@
     SUBDIR += pathrate
     SUBDIR += pybench
     SUBDIR += raidtest
-    SUBDIR += rawio
     SUBDIR += scimark2c
     SUBDIR += siege
 
