@@ -8,7 +8,7 @@
 #
 
 PORTNAME=	eel
-PORTVERSION=	2.20.0
+PORTVERSION=	2.21.90
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -28,10 +28,5 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|applications.menu|gnome-applications.menu|; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g' \
-		${WRKSRC}/eel/eel-open-with-dialog.c
 
 .include <bsd.port.mk>
