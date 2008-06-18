@@ -21,7 +21,7 @@ LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus \
     		hal.1:${PORTSDIR}/sysutils/hal \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		gnome-keyring:${PORTSDIR}/security/gnome-keyring \
-		avahi-client.3:${PORTSDIR}/net/avahi-app \
+		avahi-client.3:${PORTSDIR}/net/avahi-app
 RUN_DEPENDS=	gnome-mount:${PORTSDIR}/sysutils/gnome-mount
 
 USE_BZIP2=	yes
