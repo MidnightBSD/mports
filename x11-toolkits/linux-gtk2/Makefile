@@ -2,7 +2,7 @@
 # Date created:				2003-11-19
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-toolkits/linux-gtk2/Makefile,v 1.3 2007/05/01 18:43:17 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/linux-gtk2/Makefile,v 1.4 2007/10/17 13:52:09 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-gtk2/Makefile,v 1.22 2006/07/09 21:01:45 bsam Exp $
 #
 
@@ -14,6 +14,7 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-2.fc4.4.${LINUX_RPM_ARCH}.rpm \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GTK+ library, version 2.X, Linux binary
+LICENSE=	lgpl
 
 # these libraries are required by gtk-query-immodules-2.0 or
 # gdk-pixbuf-query-loaders
@@ -29,7 +30,7 @@ USE_XLIB=	yes
 USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 BRANDELF_DIRS=	usr/bin
 PLIST_SUB=	LIBVERSION="600.10" PORTVERSION="${PORTVERSION}"
 SRC_DISTFILES=	${PORTNAME}-${PORTVERSION}-2.fc4.4.src.rpm \
