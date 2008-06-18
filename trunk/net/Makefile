@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.83 2008/05/31 17:06:08 crash Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.84 2008/06/08 21:27:14 crash Exp $
 #
 
     COMMENT = Networking tools
@@ -84,6 +84,7 @@
     SUBDIR += skype
     SUBDIR += tsocks
     SUBDIR += ulxmlrpcpp
+    SUBDIR += vnc2swf
     SUBDIR += vncreflector
     SUBDIR += x11vnc
     SUBDIR += xferstats
