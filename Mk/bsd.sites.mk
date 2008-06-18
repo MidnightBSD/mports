@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.41 2008/06/04 14:08:51 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.42 2008/06/05 17:52:51 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -794,7 +794,8 @@ MASTER_SITE_MOZILLA+= \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/mozilla/&,} \
 	ftp://ftp.kaist.ac.kr/pub/mozilla/%SUBDIR%/ \
 	ftp://mozilla.mirror.pacific.net.au/mozilla/%SUBDIR%/ \
-	ftp://ftp.chg.ru/pub/WWW/mozilla/%SUBDIR%/
+	ftp://ftp.chg.ru/pub/WWW/mozilla/%SUBDIR%/ \
+	http://mozilla.isc.org/pub/mozilla.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_MOZILLA_EXTENDED)
