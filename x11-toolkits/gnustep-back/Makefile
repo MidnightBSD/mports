@@ -2,7 +2,7 @@
 # Date created:				27.October 2002
 # Whom:					dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.5 2007/11/07 20:20:18 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.6 2008/06/14 16:48:36 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 #
 
@@ -56,7 +56,7 @@ LIB_DEPENDS+=		dpstk:${PORTSDIR}/${GNUSTEP_DGS_PORT}
 CONFIGURE_ARGS+=	--enable-graphics=xdps --with-name=xdps
 CONFIGURE_ARGS+=	--disable-glitz
 PLIST_SUB+=		BACK=xdps-${BACKVERSION}
-PLIST_SUB+=		USE_XLIB="@comment "
+PLIST_SUB+=		WITH_XLIB="@comment "
 BACK_SUFFIX?=		-xdps
 CONFLICTS?=		gunstep-back-0.* gunstep-back-art-0.* gunstep-back-cairo-0.*
 .elif defined(WITH_GNUSTEP_LIBART)
@@ -64,7 +64,7 @@ LIB_DEPENDS+=		art_lgpl_2:${PORTSDIR}/graphics/libart_lgpl
 CONFIGURE_ARGS+=	--enable-graphics=art --with-name=art
 CONFIGURE_ARGS+=	--disable-glitz
 PLIST_SUB+=		BACK=art-${BACKVERSION}
-PLIST_SUB+=		USE_XLIB="@comment "
+PLIST_SUB+=		WITH_XLIB="@comment "
 BACK_SUFFIX?=		-art
 CONFLICTS?=		gunstep-back-0.* gunstep-back-xdps-0.* gunstep-back-cairo-0.*
 .elif defined(WITH_GNUSTEP_CAIRO)
@@ -74,14 +74,14 @@ LIB_DEPENDS+=		cairo.2:${PORTSDIR}/graphics/cairo
 CONFIGURE_ARGS+=	--enable-graphics=cairo --with-name=cairo
 CONFIGURE_ARGS+=	--disable-glitz
 PLIST_SUB+=		BACK=cairo-${BACKVERSION}
-PLIST_SUB+=		USE_XLIB="@comment "
+PLIST_SUB+=		WITH_XLIB="@comment "
 BACK_SUFFIX?=		-cairo
 CONFLICTS?=		gunstep-back-0.* gunstep-back-xdps-0.* gunstep-back-art-0.*
 .else
 CONFIGURE_ARGS+=	--enable-graphics=xlib --with-name=back
 CONFIGURE_ARGS+=	--disable-glitz
 PLIST_SUB+=		BACK=back-${BACKVERSION}
-PLIST_SUB+=		USE_XLIB=""
+PLIST_SUB+=		WITH_XLIB=""
 CONFLICTS?=		gunstep-back-xdps-0.* gunstep-back-art-0.* gunstep-back-cairo-0.*
 .endif
 
