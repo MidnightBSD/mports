@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.28 2008/02/27 18:58:01 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.29 2008/03/24 21:32:23 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -20,6 +20,7 @@
     SUBDIR += glabels
     SUBDIR += gnome-utils
     SUBDIR += gnustep-notebook
+    SUBDIR += gtkjj
     SUBDIR += gucharmap
     SUBDIR += gworkspace
     SUBDIR += hot-babe
