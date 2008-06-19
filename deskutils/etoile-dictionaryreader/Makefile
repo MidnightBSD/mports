@@ -2,7 +2,7 @@
 # Date created:         4 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.3 2007/08/27 20:49:20 seirei Exp $
+# $MidnightBSD: mports/deskutils/etoile-dictionaryreader/Makefile,v 1.4 2007/11/07 20:20:10 ctriv Exp $
 # $FreeBSD: ports/deskutils/etoile-dictionaryreader/Makefile,v 1.6 2007/01/31 18:17:52 dinoex Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dict client for GNUstep
+LICENSE=	mit
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes

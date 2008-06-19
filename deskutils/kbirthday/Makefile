@@ -2,22 +2,24 @@
 # Date created:                         2003/04/12
 # Whom:                                 Heiner <h.eichmann@gmx.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/kbirthday/Makefile,v 1.1 2007/12/03 05:48:27 laffer1 Exp $
 # $FreeBSD: ports/deskutils/kbirthday/Makefile,v 1.15 2007/05/19 20:01:40 flz Exp $
 
 PORTNAME=	kbirthday
 PORTVERSION=	0.7.3
+PORTREVISION=	1
 CATEGORIES=	deskutils kde
 MASTER_SITES=	http://www.gfai.de/~jaham/download/ \
 		http://freshmeat.net/redir/kbirthday/32531/url_tgz/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE kicker-applet that reminds you of birthdays and anniversaries
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 USE_KDELIBS_VER=3
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 # may or may not solve the alpha compilation issue....
 CONFIGURE_ARGS=	--with-pic
 

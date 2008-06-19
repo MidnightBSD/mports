@@ -3,13 +3,13 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/deskutils/preferences.app/Makefile,v 1.10 2006/03/19 04:35:43 dinoex Exp $
-# $MidnightBSD: mports/deskutils/preferences.app/Makefile,v 1.3 2007/08/07 17:00:52 ctriv Exp $
+# $MidnightBSD: mports/deskutils/preferences.app/Makefile,v 1.4 2007/11/07 20:20:11 ctriv Exp $
 #
 
 PORTNAME=	preferences.app
 PORTVERSION=	1.2.0
-PORTREVISION=	4
-CATEGORIES=	deskutils
+PORTREVISION=	5
+CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	prefsapp
 DISTNAME=	Preferences-${PORTVERSION}

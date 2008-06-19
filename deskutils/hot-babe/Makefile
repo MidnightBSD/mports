@@ -2,12 +2,13 @@
 # Date created:		2004-11-06
 # Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/hot-babe/Makefile,v 1.1 2007/12/03 05:45:45 laffer1 Exp $
 # $FreeBSD: ports/deskutils/hot-babe/Makefile,v 1.10 2007/05/19 20:01:39 flz Exp $
 #
 
 PORTNAME=	hot-babe
 PORTVERSION=	0.2.2
+PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	http://dindinx.net/hotbabe/downloads/ \
 		${MASTER_SITE_LOCAL}
@@ -15,6 +16,7 @@ MASTER_SITE_SUBDIR=	novel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small utility which displays the system activity in a very special way
+LICENSE=	artistic
 
 USE_BZIP2=	yes
 USE_X_PREFIX=	yes
@@ -26,10 +28,8 @@ MAN1=	hot-babe.1
 PORTDOCS=	ChangeLog NEWS TODO LICENSE CONTRIBUTORS copyright config.example
 
 pre-everything::
-	@${ECHO_MSG}
 	@${ECHO_MSG} "Warning! This port contains some adults only content."
 	@${ECHO_MSG} "You might hit Ctrl-C to abort."
-	@${ECHO_MSG}
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/hot-babe.1 ${PREFIX}/man/man1

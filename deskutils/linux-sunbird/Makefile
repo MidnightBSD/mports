@@ -3,14 +3,15 @@
 # Whom:			voisine
 #
 # $FreeBSD: ports/deskutils/linux-sunbird/Makefile,v 1.5 2006/08/03 12:41:58 sat Exp $
-# $MidnightBSD: mports/deskutils/linux-sunbird/Makefile,v 1.3 2007/12/03 05:01:03 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/linux-sunbird/Makefile,v 1.4 2007/12/03 05:01:48 laffer1 Exp $
 #
 
 PORTNAME=	sunbird
-PORTVERSION=	0.7
+DISTVERSION=	0.8
 DISTVERSIONSUFFIX=	.en-US.linux-i686
 CATEGORIES=	deskutils
-MASTER_SITE_SUBDIR=	calendar/sunbird/releases/${DISTVERSION}/linux-i686/en-US
+PORTEPOCH=	1
+MASTER_SITE_SUBDIR?=	calendar/${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Calendaring application branched from Mozilla
