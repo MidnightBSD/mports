@@ -7,10 +7,10 @@
 #
 
 PORTNAME=	intltool
-PORTVERSION=	0.35.0
+PORTVERSION=	0.37.1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.35
+MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.37
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -31,14 +31,5 @@ MAN8=		intltool-extract.8 intltool-merge.8 intltool-prepare.8 \
 		intltool-update.8 intltoolize.8
 
 CONFLICTS=	xml-i18n-tools-[0-9]*
-
-post-patch:
-	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} \
-		-E -e '/^mkinstalldirs[[:space:]]*=/s^/\.\.^^g'
-
-post-install:
-	${MKDIR} ${PREFIX}/share/intltool/XML/Parser/Style
-	${INSTALL_DATA} ${FILESDIR}/OrigTree.pm \
-		${PREFIX}/share/intltool/XML/Parser/Style
 
 .include <bsd.port.mk>
