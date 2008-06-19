@@ -2,7 +2,7 @@
 # Date created:				2 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/kdepim3/Makefile,v 1.1 2007/12/31 18:18:02 laffer1 Exp $
 # $FreeBSD: ports/deskutils/kdepim3/Makefile,v 1.78 2007/11/01 03:45:59 linimon Exp $
 #
 
@@ -16,8 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Personal Information Management tools for KDE
-LICENSE=	unknown
-# assuming GPLv2 but not sure on all the code.
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gpgme:${PORTSDIR}/security/gpgme \
 		opensync.0:${PORTSDIR}/devel/libopensync022 \
@@ -63,10 +62,8 @@ CONFIGURE_ENV+=DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 
 pre-everything::
 .if defined(GNOKII_OVERRIDE)
-	@${ECHO_MSG}
 	@${ECHO_MSG} "*   gnokii is installed and support has been enabled     *"
 	@${ECHO_MSG} "* automatically (no additional files will be installed). *"
-	@${ECHO_MSG}
 .endif
 
 .include <bsd.port.post.mk>
