@@ -2,7 +2,7 @@
 # Date created:         04 Feb 2003
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/gworkspace/Makefile,v 1.4 2007/11/07 20:20:11 ctriv Exp $
+# $MidnightBSD: mports/deskutils/gworkspace/Makefile,v 1.5 2008/06/19 22:48:08 laffer1 Exp $
 # $FreeBSD: ports/deskutils/gworkspace/Makefile,v 1.27 2006/09/01 17:12:26 dinoex Exp $
 #
 
@@ -38,10 +38,5 @@ PLIST_SUB+=	PDFVIEW="@comment "
 PLIST_SUB+=	PDFVIEW=""
 USE_GHOSTSCRIPT=	yes
 .endif
-
-post-install:
-	${CP} ${WRKSRC}/Inspector/ContentViewersProtocol.h \
-		${GNUSTEP_SYSTEM_ROOT}/Library/Frameworks/Inspector.framework/Versions/${DEFAULT_LIBVERSION2:C/([0-9]).*/\1/1}/Headers/ContentViewersProtocol.h
-
 
 .include <bsd.port.mk>
