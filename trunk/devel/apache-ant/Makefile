@@ -2,7 +2,7 @@
 # Date created:		21 February 2001
 # Whom:			znerd@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.1 2006/10/04 16:13:30 laffer1 Exp $
 # $FreeBSD: ports/devel/apache-ant/Makefile,v 1.45 2006/09/06 21:52:18 hq Exp $
 #
 
@@ -19,6 +19,7 @@ EXTRACT_ONLY=	${ANT_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java- and XML-based build tool, conceptually similar to make
+LICENSE=	apache2
 
 RUN_DEPENDS=	classpath:${PORTSDIR}/java/javavmwrapper
 
