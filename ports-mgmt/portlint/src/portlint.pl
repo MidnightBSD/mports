@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.1 2007/04/07 03:32:05 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.2 2007/08/07 22:25:05 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -181,14 +181,13 @@ chdir "$portdir" || die "$portdir: $!";
 my @varlist =  qw(
 	PORTNAME PORTVERSION PORTREVISION PORTEPOCH PKGNAME PKGNAMEPREFIX
 	PKGNAMESUFFIX DISTVERSIONPREFIX DISTVERSION DISTVERSIONSUFFIX
-	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER MASTER_SITES
+	DISTNAME DISTFILES CATEGORIES MASTERDIR MAINTAINER LICENSE MASTER_SITES
 	WRKDIR WRKSRC NO_WRKSUBDIR PATCHDIR SCRIPTDIR FILESDIR
 	PKGDIR COMMENT DESCR PLIST PKGCATEGORY PKGINSTALL PKGDEINSTALL
 	PKGREQ PKGMESSAGE MD5_FILE .CURDIR USE_LDCONFIG USE_AUTOTOOLS
 	INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
 	PLIST_FILES OPTIONS INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
 	DIST_SUBDIR ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS
-	LICENSE
 );
 
 my $cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", @varlist);
@@ -1476,6 +1475,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $curline !~ /^NO_PACKAGE(.)?=[^\n]+$i/m
 				&& $curline !~ /^NO_CDROM(.)?=[^\n]+$i/m
 				&& $curline !~ /^MAINTAINER(.)?=[^\n]+$i/m
+				&& $curline !~ /^LICENSE(.)?=[^\n]+$i/m
 				&& $curline !~ /^CATEGORIES(.)?=[^\n]+$i/m
 				&& $curline !~ /^\s*#.+$/m
 				&& $curline !~ /\-\-$i/m
@@ -2213,7 +2213,7 @@ PATCH_SITES PATCHFILES PATCH_DIST_STRIP
 
 	&checkearlier($file, $tmp, @varnames);
 	&checkorder('MAINTAINER', $tmp, $file, qw(
-MAINTAINER COMMENT
+MAINTAINER COMMENT LICENSE
 	));
 
 	$tmp = "\n" . $tmp;
@@ -2229,7 +2229,7 @@ MAINTAINER COMMENT
 		}
 		if ($newport && $addr =~ /ports\@freebsd.org/i) {
 			&perror("WARN", $file, -1, "new ports should not be maintained by ".
-				"ports\@FreeBSD.org.");
+				"ports\@MidnightBSD.org.");
 		}
 		$tmp =~ s/\nMAINTAINER\??=[^\n]+//;
 	} elsif ($whole !~ /\nMAINTAINER[?]?=/) {
@@ -2251,8 +2251,26 @@ MAINTAINER COMMENT
 		}
 	}
 
+        if ($tmp !~ /\nLICENSE(.)?=/) {
+                &perror("FATAL", $file, -1, "LICENSE has to be there.") unless (
+$slaveport && $makevar{COMMENT} ne '');
+        } elsif ($1 ne '') {
+                &perror("WARN", $file, -1, "unless this is a master port, LICENSE
+ has to be set by \"=\", ".
+                        "not by \"$1=\".") unless ($masterport);
+        } else { # check for correctness
+                if (($makevar{LICENSE} !~ /^["a-z]/) || ($makevar{LICENSE} =~
+ m/\.$/)) { #"
+                        &perror("WARN", $file, -1, "LICENSE should begin with a
+letter, and end without a period");
+                } elsif (length($makevar{COMMENT}) > 70) {
+                        &perror("WARN", $file, -1, "LICENSE exceeds 70 character
+s limit.");
+                }
+        }
+
 	push(@varnames, qw(
-MAINTAINER COMMENT
+MAINTAINER COMMENT LICENSE
 	));
 
 	#
