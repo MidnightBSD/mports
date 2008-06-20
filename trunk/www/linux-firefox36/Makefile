@@ -2,7 +2,7 @@
 # Date created:		8 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.9 2008/03/05 22:45:00 laffer1 Exp $
 # $FreeBSD: ports/www/linux-firefox-devel/Makefile,v 1.23 2007/12/21 16:27:10 sat Exp $
 #
 
@@ -14,6 +14,7 @@ PKGNAMESUFFIX=		-devel
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
+LICENSE=	mpl
 
 USE_BZIP2=	yes
 
