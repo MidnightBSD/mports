@@ -2,7 +2,7 @@
 # Date created:         30 Oct 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.4 2008/06/18 17:55:35 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.5 2008/06/18 17:56:12 laffer1 Exp $
 # $FreeBSD: ports/www/nspluginwrapper/Makefile,v 1.5 2007/09/01 23:15:12 pav Exp $
 #
 
@@ -61,4 +61,9 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/usr/lib/nspluginwrapper/i386/linux/* \
 	     ${LIBDIR}/i386/linux/
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+
+.include <bsd.port.post.mk>
