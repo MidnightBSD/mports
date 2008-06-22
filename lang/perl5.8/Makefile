@@ -2,13 +2,13 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.11 2008/02/25 02:34:50 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.12 2008/06/09 20:20:10 ctriv Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
 PORTNAME=	perl
 PORTVERSION=	5.8.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN} \
 		${MASTER_SITE_LOCAL:S/$/:local/} \
@@ -23,8 +23,8 @@ PATCH_SITES=	${MASTER_SITE_LOCAL:S/$/tobez\//} \
 PATCHFILES=	defined-or-5.8.8.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
-LICENSE=	perl
 COMMENT=	Practical Extraction and Report Language
+LICENSE=	perl
 
 PERL_VER=	${PORTVERSION}
 PERL_VERSION=	${PORTVERSION}
