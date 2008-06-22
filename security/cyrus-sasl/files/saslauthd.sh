@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/security/cyrus-sasl/files/saslauthd.sh,v 1.7 2006/02/20 20:47:38 dougb Exp $
 #
 
