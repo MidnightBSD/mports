@@ -721,10 +721,10 @@ share/postgresql/timezone/posixrules
 @unexec [ -f ~pgsql/dot.cshrc.dist ] && rm ~pgsql/dot.cshrc.dist
 share/postgresql/dot.profile.dist
 share/postgresql/dot.cshrc.dist
-@exec [ -f %D/share/postgresql/dot.profile.dist ] && cp %D/share/postgresql/dot.profile.dist ~pgsql/.
-@exec [ -f %D/share/postgresql/dot.cshrc.dist ] && cp %D/share/postgresql/dot.cshrc.dist ~pgsql/.
-@exec [ -f ~pgsql/.profile ] || (cp %D/share/postgresql/dot.profile.dist ~pgsql/.profile && chown pgsql:pgsql ~pgsql/.profile)
-@exec [ -f ~pgsql/.cshrc ] || (cp %D/share/postgresql/dot.cshrc.dist ~pgsql/.cshrc && chown pgsql:pgsql ~pgsql/.cshrc)
+@exec [ -f %D/share/postgresql/dot.profile.dist ] && cp %D/share/postgresql/dot.profile.dist %D/pgsql/.
+@exec [ -f %D/share/postgresql/dot.cshrc.dist ] && cp %D/share/postgresql/dot.cshrc.dist %D/pgsql/.
+@exec [ -f ~pgsql/.profile ] || (cp %D/share/postgresql/dot.profile.dist ~pgsql/.profile && chown pgsql:pgsql %D/pgsql/.profile)
+@exec [ -f ~pgsql/.cshrc ] || (cp %D/share/postgresql/dot.cshrc.dist ~pgsql/.cshrc && chown pgsql:pgsql %D/pgsql/.cshrc)
 @unexec echo "Warning: If you will *NOT* use this package anymore, please remove the pgsql user manually."
 @dirrmtry share/postgresql
 @dirrmtry etc/periodic/daily
