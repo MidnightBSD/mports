@@ -2,13 +2,13 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.8 2008/03/23 19:43:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnustep-make/Makefile,v 1.9 2008/06/14 16:21:39 laffer1 Exp $
 # $FreeBSD: ports/devel/gnustep-make/Makefile,v 1.69 2006/08/31 05:35:31 dinoex Exp $
 #
 
 PORTNAME=	gnustep-make
-PORTVERSION=	2.0.5
-PORTREVISION=	1
+PORTVERSION=	2.0.6
+PORTREVISION=	0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
