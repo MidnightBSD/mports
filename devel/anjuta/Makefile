@@ -2,7 +2,7 @@
 # Date created:				31 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.4 2008/05/04 08:58:12 crash Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.5 2008/06/08 18:36:22 laffer1 Exp $
 # $FreeBSD: ports/devel/anjuta/Makefile,v 1.54 2007/09/07 05:01:40 marcus Exp $
 #   $MCom: ports/devel/anjuta-devel/Makefile,v 1.14 2006/09/10 00:51:07 mezz Exp $
 #
@@ -16,7 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Integrated Development Environment for C and C++
-LICENSE=	GPL
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen \
 		bash:${PORTSDIR}/shells/bash \
