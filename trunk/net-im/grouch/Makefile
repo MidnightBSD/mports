@@ -2,6 +2,7 @@
 # Date created:         09 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net-im/grouch/Makefile,v 1.2 2006/09/10 20:10:24 dinoex Exp $
 #
 
@@ -13,8 +14,9 @@ MASTER_SITES=	http://mail.rochester.edu/~asveikau/grouch/ \
 		http://florida.ethz.ch/ports/distfiles/
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}
 
-MAINTAINER=	gurkan@linuks.mine.nu
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AOL and ICQ Instant Messenger client for GNUstep
+LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/Grouch
 USE_GMAKE=	yes
