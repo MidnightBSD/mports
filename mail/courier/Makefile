@@ -3,7 +3,7 @@
 # Whom:			Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/mail/courier/Makefile,v 1.44 2007/01/01 00:00:21 miwi Exp $
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.2 2007/05/09 05:22:55 ctriv Exp $
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.3 2007/08/01 21:52:15 laffer1 Exp $
 #
 
 PORTNAME=	courier
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	courier
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Courier SMTP IMAP POP3 HTTP mail server suite
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
