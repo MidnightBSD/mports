@@ -3,7 +3,7 @@
 # Date created:			  6 Jun 2001
 # Whom:				  Udo Schweigert
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/mutt-devel/Makefile,v 1.3 2007/10/29 18:38:03 laffer1 Exp $
 # $FreeBSD: ports/mail/mutt-devel/Makefile,v 1.289 2007/10/03 23:34:15 edwin Exp $
 #
 # There are several knobs which are used to define additions to the core
@@ -145,6 +145,7 @@ PATCH_SITES+=	http://www.mutt.org.ua/download/mutt-${VVV_PATCH_VERSION}/:vvv \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The Mongrel of Mail User Agents (development version)
+LICENSE=	gpl2
 
 CONFLICTS=	mutt-[0-9]*
 DIST_SUBDIR=	mutt
