@@ -2,7 +2,7 @@
 # Date created:   3 September 2006
 # Whom:           wintellect
 #
-# $MidnightBSD: mports/mail/wpop3d/Makefile,v 1.2 2007/01/22 11:45:21 wintellect Exp $
+# $MidnightBSD: mports/mail/wpop3d/Makefile,v 1.3 2007/11/08 02:57:52 laffer1 Exp $
 #
 
 PORTNAME=	wpop3d
@@ -10,7 +10,6 @@ PORTVERSION=	1.2
 PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_LOCAL}
-DISTNAME=	wpop3d-1.2
 
 MAINTAINER=	wintellect@bsdnexus.com
 COMMENT=	A pop3 server for retrieval of remote mail on a UNIX system
@@ -23,4 +22,3 @@ MAN1=		wpop3d.1
 PLIST_FILES=	sbin/wpop3d
 
 .include <bsd.port.mk>
-
