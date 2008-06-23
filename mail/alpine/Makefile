@@ -2,7 +2,7 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/alpine/Makefile,v 1.1 2007/12/21 14:59:34 laffer1 Exp $
+# $MidnightBSD: mports/mail/alpine/Makefile,v 1.2 2008/05/04 11:12:15 crash Exp $
 #
 
 PORTNAME?=	alpine
@@ -73,7 +73,7 @@ CONFIGURE_ARGS+=	--without-nls
 CONFIGURE_ARGS+=--with-spellcheck-prog="${LOCALBASE}/bin/aspell --dont-backup --mode=email check"
 RUN_DEPENDS+=	aspell:${PORTSDIR}/textproc/aspell
 .else
-CONFIGURE_ARGS+=	--with-spellcheck-prog="${LOCALBASE}/bin/ispell
+CONFIGURE_ARGS+=	--with-spellcheck-prog="${LOCALBASE}/bin/ispell"
 RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
 .endif
 .endif
