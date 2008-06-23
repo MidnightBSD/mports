@@ -3,7 +3,7 @@
 # Whom:					Milan Obuch
 #
 # $FreeBSD: ports/mail/courier-pythonfilter/Makefile,v 1.2 2007/01/16 10:28:15 itetcu Exp $
-# $MidnightBSD: mports/mail/courier-pythonfilter/Makefile,v 1.1 2007/02/19 19:20:52 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier-pythonfilter/Makefile,v 1.2 2007/05/09 05:57:52 ctriv Exp $
 #
 
 PORTNAME=	courier-pythonfilter
@@ -13,6 +13,7 @@ MASTER_SITES=	http://phantom.dragonsdawn.net/~gordon/courier-patches/courier-pyt
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for courier filter development in python
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courier-config:${PORTSDIR}/mail/courier
 
