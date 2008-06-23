@@ -2,21 +2,22 @@
 # Date created:         29 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/mail/addresses-goodies/Makefile,v 1.1 2007/03/14 21:57:51 laffer1 Exp $
+# $MidnightBSD: mports/mail/addresses-goodies/Makefile,v 1.2 2007/11/07 20:20:14 ctriv Exp $
 # $FreeBSD: ports/mail/addresses-goodies/Makefile,v 1.4 2007/01/31 18:18:04 dinoex Exp $
 #
 
 PORTNAME=	addresses
-PORTVERSION=	0.4.6
-PORTREVISION=	2
+PORTVERSION=	0.4.7
+PORTREVISION=	0
 CATEGORIES=	mail gnustep
-MASTER_SITES=	http://giesler.biz/bjoern/downloads/ \
-		http://www.energyhq.es.eu.org/files/
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
 PKGNAMESUFFIX=	-goodies${PKGNAMESUFFIX2}
 DISTNAME=	Addresses-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Goodies for addressbook for GNUstep
+LICENSE=	lgpl
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -27,7 +28,7 @@ USE_GNUSTEP_SYSTEM_LIBS+=	Inspector:${GWORKSPACE_PORT}
 USE_GNUSTEP_LOCAL_LIBS+=	Addresses:${ADDRESSES_PORT}
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-WRKSRC=		${WRKDIR}/Addresses-${PORTVERSION}/Goodies
+WRKSRC=		${WRKDIR}/Addresses/Goodies
 
 ADDRESSES_PORT?=	mail/addresses
 GWORKSPACE_PORT?=	deskutils/gworkspace
