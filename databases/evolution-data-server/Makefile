@@ -1,17 +1,12 @@
 # New ports collection makefile for:	evolution-data-server
-# Date created:				09 December 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.2 2008/03/29 06:49:17 ctriv Exp $
-# $FreeBSD: ports/databases/evolution-data-server/Makefile,v 1.45 2008/01/14 19:19:18 marcus Exp $
-#   $MCom: ports-stable/databases/evolution-data-server/Makefile,v 1.3 2007/11/30 20:10:35 marcus Exp $
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.3 2008/06/08 18:38:44 laffer1 Exp $
 #
 
 PORTNAME=	evolution-data-server
-PORTVERSION=	1.12.3
+PORTVERSION=	2.22.2
 CATEGORIES=	databases gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,12 +21,12 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_BISON=	build
 USE_GETTEXT=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GNOME=	gnomeprefix gnomehack intlhack gnometarget libgnomeui \
 		ltverhack
 USE_OPENLDAP=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_BDB=	41
+USE_BDB=	41+
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static \
 		--enable-nss=yes \
@@ -40,7 +35,7 @@ CONFIGURE_ARGS=	--enable-static \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${BDB_INCLUDE_DIR} ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
-PLIST_SUB=	VERSION="1.12" EVO_VERSION="1.2"
+PLIST_SUB=	VERSION="2.22" EVO_VERSION="1.2"
 
 OPTIONS=	IMAP4	"Enable experimental IMAP4 backend" off
 
@@ -50,8 +45,10 @@ OPTIONS=	IMAP4	"Enable experimental IMAP4 backend" off
 HEIMDAL_HOME?=	${LOCALBASE}
 LIB_DEPENDS+=		krb5:${PORTSDIR}/security/heimdal
 CONFIGURE_ARGS+=	--with-krb5=${HEIMDAL_HOME} --with-krb5-includes=${HEIMDAL_HOME}/include
+KRB5_LIB=		`${HEIMDAL_HOME}/bin/krb5-config --libs`
 .elif !defined(NO_KERBEROS)
 CONFIGURE_ARGS+=        --with-krb5=/usr
+KRB5_LIB=		`/usr/bin/krb5-config gssapi --libs`
 .endif
 
 .if defined(WITH_IMAP4) || defined(PACKAGE_BUILDING)
@@ -61,8 +58,16 @@ PLIST_SUB+=		IMAP4=""
 PLIST_SUB+=		IMAP4="@comment "
 .endif
 
+EDS_BDB_MSG=	"!!!WARNING!!!: Berkeley Database version is ${BDB_VER}.  If this is an upgrade, you may experience problems if you or any other Evolution-data-server users were previously using BDB_VER 41."
+
+pre-everything::
+	@if [ x"${BDB_VER}" != x"41" ]; then \
+		${ECHO_MSG} ${EDS_BDB_MSG} | ${FMT} 75 79 ; \
+	fi
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|-ldb|-l${BDB_LIB_NAME}|g' \
-		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|-ldb|-l${BDB_LIB_NAME}|g ; \
+		s|heimlibs=".*"|heimlibs="${KRB5_LIB}"|g' \
+			${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
