@@ -3,19 +3,20 @@
 # Whom:                 Miguel Mendez <flynn@energyhq.es.eu.org>
 #
 # $FreeBSD: ports/mail/addresses/Makefile,v 1.4 2006/09/05 06:07:54 dinoex Exp $
-# $MidnightBSD: mports/mail/addresses/Makefile,v 1.3 2007/07/30 23:52:42 laffer1 Exp $
+# $MidnightBSD: mports/mail/addresses/Makefile,v 1.4 2007/11/07 20:20:14 ctriv Exp $
 #
 
 PORTNAME=	addresses
 PORTVERSION=	0.4.7
 PORTREVISION=	1
-CATEGORIES=	mail
+CATEGORIES=	mail gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
 DISTNAME=	Addresses-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A versatile addressbook for GNUstep
+LICENSE=	lgpl
 
 GNUSTEP_PREFIX?=	${LOCALBASE}/GNUstep
 PREFIX=		${GNUSTEP_PREFIX}
