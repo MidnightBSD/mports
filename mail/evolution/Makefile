@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.4 2008/05/29 21:58:45 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.5 2008/06/23 17:58:52 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
@@ -35,6 +35,7 @@ INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/evolution/%%VERSION%%
 CONFIGURE_ARGS=	--enable-nss=yes \
+		--enable-smime=yes \
 		--enable-mono=no \
 		--with-sub-version=" MidnightBSD Port"
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
