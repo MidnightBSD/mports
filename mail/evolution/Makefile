@@ -2,17 +2,15 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.3 2008/04/14 18:03:01 ctriv Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.4 2008/05/29 21:58:45 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
 
 PORTNAME=	evolution
-PORTVERSION=	2.12.3
-PORTREVISION=	1
+PORTVERSION=	2.22.2
 CATEGORIES=	mail gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +18,7 @@ COMMENT=	An integrated mail, calendar and address book distributed suite
 LICENSE=	gpl2
 
 LIB_DEPENDS=	nss3.1:${PORTSDIR}/security/nss \
-                tasn1.3:${PORTSDIR}/security/libtasn1
+		tasn1.3:${PORTSDIR}/security/libtasn1
 RUN_DEPENDS=	${LOCALBASE}/lib/gnome-spell/libgnome-spell-component-0.3.so:${PORTSDIR}/textproc/gnome-spell
 
 USE_BZIP2=	yes
@@ -28,8 +26,9 @@ USE_GMAKE=	yes
 USE_BISON=	build
 USE_GETTEXT=	yes
 USE_XLIB=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack evolutiondataserver \
-		gtkhtml3 desktopfileutils gnomedocutils libgnomeprintui
+USE_GNOME=	gnomeprefix gnomehack intlhack evolutiondataserver gtkhtml3 \
+		desktopfileutils gnomedocutils ltasneededhack
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
@@ -50,7 +49,7 @@ GCONF_SCHEMAS=	apps-evolution-mail-notification.schemas \
 		bogo-junk-plugin.schemas \
 		evolution-mail.schemas
 
-EVO_VERSION=	2.12
+EVO_VERSION=	2.22
 PLIST_SUB=	VERSION=${EVO_VERSION} \
 		PORTVERSION=2.12
 
