@@ -3,13 +3,13 @@
 # Date created:			  Thur July 25, 1996
 # Whom:				  David O'Brien (obrien@NUXI.com)
 #
-# $MidnightBSD: mports/mail/mutt/Makefile,v 1.1 2006/09/24 12:56:34 laffer1 Exp $
+# $MidnightBSD: mports/mail/mutt/Makefile,v 1.2 2007/10/29 18:08:36 laffer1 Exp $
 # $FreeBSD: ports/mail/mutt/Makefile,v 1.172 2006/07/18 14:44:03 erwin Exp $
 #
 
 PORTNAME=	mutt
 PORTVERSION=	1.4.2.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -30,6 +30,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The Mongrel of Mail User Agents (part Elm, Pine, Mush, mh, etc.)
+LICENSE=	gpl2
 
 CONFLICTS=	mutt-devel-*
 
@@ -62,9 +63,6 @@ LIB_DEPENDS+=	slang.1:${PORTSDIR}/devel/libslang
 LIB_DEPENDS+=	ncurses.5:${PORTSDIR}/devel/ncurses
 .endif
 .if !defined (MUTT_LITE)
-.if defined(WITH_MUTT_CYRUS_SASL)
-LIB_DEPENDS+=	sasl.8:${PORTSDIR}/security/cyrus-sasl
-.endif
 .if defined(WITH_SGML_DOCS) && ${WITH_SGML_DOCS} != "no"
 BUILD_DEPENDS+=	sgmlfmt:${PORTSDIR}/textproc/sgmlformat
 .endif
@@ -76,6 +74,7 @@ RUN_DEPENDS+=	slrnface:${PORTSDIR}/news/slrnface
 
 DIST_SUBDIR=	mutt
 WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
+USE_GMAKE=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	automake:19 autoconf:261
@@ -114,9 +113,6 @@ CONFIGURE_ARGS+=	--with-slang=${PREFIX}
 .elif defined(WITH_NCURSES_PORT)
 CONFIGURE_ARGS+=	--with-curses=${PREFIX}
 CFLAGS+=	-I${PREFIX}/include/ncurses -I${PREFIX}/include
-.endif
-.if defined(WITH_MUTT_CYRUS_SASL)
-CONFIGURE_ARGS+=	--with-sasl=${LOCALBASE}
 .endif
 MAN1=		mutt.1 mutt_dotlock.1
 MAN5=		mbox.5 muttrc.5
