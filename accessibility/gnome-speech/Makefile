@@ -2,13 +2,13 @@
 # Date created:			11 May 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.3 2008/02/22 03:31:22 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.4 2008/06/08 21:01:33 crash Exp $
 # $FreeBSD: ports/accessibility/gnome-speech/Makefile,v 1.32 2007/07/30 04:29:12 mezz Exp $
 #   $MCom: ports/accessibility/gnome-speech/Makefile,v 1.21 2006/08/22 00:55:57 ahze Exp $
 #
 
 PORTNAME=	gnome-speech
-PORTVERSION=	0.4.19
+PORTVERSION=	0.4.20
 CATEGORIES=	accessibility audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
