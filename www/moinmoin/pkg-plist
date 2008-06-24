@@ -1997,7 +1997,6 @@ share/moin/server/mointwisted.py
 share/moin/underlay/pages/AbandonedPages/current
 share/moin/underlay/pages/AbandonedPages/revisions/00000001
 share/moin/underlay/pages/AutoAdminGroup/current
-share/moin/underlay/pages/AutoAdminGroup/edit-log
 share/moin/underlay/pages/AutoAdminGroup/revisions/00000001
 share/moin/underlay/pages/BadContent/current
 share/moin/underlay/pages/BadContent/revisions/00000001
@@ -2279,7 +2278,6 @@ share/moin/underlay/pages/MoinMoin(2f)TextFormatting/revisions/00000001
 share/moin/underlay/pages/MoinMoin/current
 share/moin/underlay/pages/MoinMoin/revisions/00000001
 share/moin/underlay/pages/MoinPagesEditorGroup/current
-share/moin/underlay/pages/MoinPagesEditorGroup/edit-log
 share/moin/underlay/pages/MoinPagesEditorGroup/revisions/00000001
 share/moin/underlay/pages/OrphanedPages/current
 share/moin/underlay/pages/OrphanedPages/revisions/00000001
@@ -2314,10 +2312,8 @@ share/moin/underlay/pages/SystemAdmin/revisions/00000001
 share/moin/underlay/pages/SystemInfo/current
 share/moin/underlay/pages/SystemInfo/revisions/00000001
 share/moin/underlay/pages/SystemPagesGroup/current
-share/moin/underlay/pages/SystemPagesGroup/edit-log
 share/moin/underlay/pages/SystemPagesGroup/revisions/00000001
 share/moin/underlay/pages/SystemPagesInEnglishGroup/current
-share/moin/underlay/pages/SystemPagesInEnglishGroup/edit-log
 share/moin/underlay/pages/SystemPagesInEnglishGroup/revisions/00000001
 share/moin/underlay/pages/SystemPagesSetup/attachments/Bulgarian.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/Croatian.zip
