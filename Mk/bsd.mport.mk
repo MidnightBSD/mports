@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.108 2008/06/13 03:54:29 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.109 2008/06/20 01:29:24 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1534,7 +1534,6 @@ SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
-
 .if defined(WITHOUT_CPU_CFLAGS)
 .if defined(_CPUCFLAGS)
 .if !empty(_CPUCFLAGS)
@@ -1552,10 +1551,23 @@ CFLAGS+=	-fno-stack-protector
 DEBUG_FLAGS?=	-g
 CFLAGS+=	${DEBUG_FLAGS}
 .endif
+
 .if defined(NOPORTDOCS)
-PLIST_SUB+=	        PORTDOCS="@comment "
+PLIST_SUB+=	PORTDOCS="@comment "
 .else
-PLIST_SUB+=	        PORTDOCS=""
+PLIST_SUB+=	PORTDOCS=""
+.endif
+
+.if defined(NOPORTEXAMPLES)
+PLIST_SUB+=	PORTEXAMPLES="@comment "
+.else
+PLIST_SUB+=	PORTEXAMPLES=""
+.endif
+
+.if defined(NOPORTDATA)
+PLIST_SUB+=	PORTDATA="@comment "
+.else
+PLIST_SUB+=	PORTDATA=""
 .endif
 
 CONFIGURE_SHELL?=	${SH}
@@ -5231,7 +5243,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.108 2008/06/13 03:54:29 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.109 2008/06/20 01:29:24 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
