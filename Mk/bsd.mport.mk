@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.110 2008/06/24 21:01:41 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.111 2008/06/24 21:08:57 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -216,7 +216,7 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 #				  Default: not set.
 #
 # Set these if your port only makes sense to certain architectures.
-# They are lists containing names for them (e.g., "alpha i386").
+# They are lists containing names for them (e.g., "amd64 i386").
 # (Defaults: not set.)
 #
 # ONLY_FOR_ARCHS
@@ -1132,9 +1132,9 @@ SLAVE_PORT?=	no
 MASTER_PORT?=
 .endif
 
-# Check the compatibility layer for amd64/ia64
+# Check the compatibility layer for amd64
 
-.if ${ARCH} == "amd64" || ${ARCH} =="ia64"
+.if ${ARCH} == "amd64"
 .if exists(/usr/lib32)
 HAVE_COMPAT_IA32_LIBS?=  YES
 .endif
@@ -1144,7 +1144,7 @@ HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -a compat.ia32.maxvmem >/dev/null 2>&1; the
 .endif
 
 .if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 .if !defined(HAVE_COMPAT_IA32_KERN)
 IGNORE= you need a kernel with compiled-in IA32 compatibility to use this port.
 .elif !defined(HAVE_COMPAT_IA32_LIBS)
@@ -5247,7 +5247,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.110 2008/06/24 21:01:41 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.111 2008/06/24 21:08:57 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
