@@ -2,12 +2,12 @@
 # Date created:		20 February 2006
 # Whom:			hrs
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/acroreadwrapper/Makefile,v 1.4 2008/03/04 19:22:06 laffer1 Exp $
 # $FreeBSD: ports/print/acroreadwrapper/Makefile,v 1.9 2008/01/04 20:20:20 hrs Exp $
 #
 
 PORTNAME=	acroreadwrapper
-PORTVERSION=	0.0.20071020
+PORTVERSION=	0.0.20080110
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -31,7 +31,7 @@ SUB_LIST=	ACROBASE7=${ACROBASE7} \
 ADOBEBASE=	Adobe
 ACROBASE7=	${ADOBEBASE}/Acrobat7.0
 ACROBASE8=	${ADOBEBASE}/Reader8
-PLUGINDIR=	lib/browser_linux_plugins
+PLUGINDIR=	lib/npapi/linux-acroread
 
 do-fetch:
 	@${DO_NADA}
