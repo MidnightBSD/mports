@@ -1,15 +1,16 @@
-# $MidnightBSD: mports/net-im/Makefile,v 1.14 2008/01/21 21:47:43 laffer1 Exp $
+# $MidnightBSD: mports/net-im/Makefile,v 1.15 2008/04/12 21:01:23 laffer1 Exp $
 #
 
     COMMENT = Instant messaging
 
     SUBDIR += aim
     SUBDIR += etoile-stepchat
-    SUBDIR += gnome-jabber
+    SUBDIR += gossip
     SUBDIR += grouch
     SUBDIR += jabberd
     SUBDIR += kopete
     SUBDIR += libpurple
+    SUBDIR += loudmouth
     SUBDIR += meanwhile
     SUBDIR += msn-proxy
     SUBDIR += p5-Net-XMPP
