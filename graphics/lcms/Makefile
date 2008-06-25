@@ -2,12 +2,12 @@
 # Date created:		October 30, 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.1 2006/09/27 19:24:45 laffer1 Exp $
+# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.2 2008/06/25 16:01:07 laffer1 Exp $
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
 #
 
 PORTNAME=	lcms
-PORTVERSION=	1.15
+PORTVERSION=	1.17
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
@@ -21,6 +21,9 @@ LICENSE=	mit
 USE_GNOME=	gnomehack gnometarget lthack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-jpeg --without-tiff
+CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
+		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
+		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
 
 post-patch:
