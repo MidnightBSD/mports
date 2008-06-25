@@ -2,7 +2,7 @@
 # Date created:				2006-04-22
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/gtkperf/Makefile,v 1.1 2007/05/20 02:16:05 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/gtkperf/Makefile,v 1.5 2007/03/12 10:01:38 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=		${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Measure your system's GTK+ performance
+LICENSE=		gpl2
 
 WRKSRC=			${WRKDIR}/${PORTNAME}
 USE_GMAKE=		yes
