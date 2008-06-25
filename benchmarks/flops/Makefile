@@ -2,7 +2,7 @@
 # Date created:				06 Jul 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/flops/Makefile,v 1.1 2007/05/19 23:41:17 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/flops/Makefile,v 1.2 2006/09/07 10:42:35 danfe Exp $
 #
 
@@ -14,6 +14,7 @@ DISTFILES=	${PORTNAME}.c ${PORTNAME}.doc
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Floating point benchmark to give your MFLOPS rating
+LICENSE=	unknown
 
 PLIST_FILES=	bin/flops
 
