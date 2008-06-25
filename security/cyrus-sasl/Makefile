@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.4 2008/04/14 18:18:55 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.5 2008/06/22 19:58:16 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl/Makefile,v 1.65 2006/08/15 01:04:48 clsung Exp $
 #
 
@@ -228,9 +228,7 @@ post-install:
 	${SED} -e "s;%%PREFIX%%;${TRUE_PREFIX};g" ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${FILESDIR}/pwcheck.sh > ${PREFIX}/etc/rc.d/cyrus_pwcheck.sh
 	@${CHMOD} 755 ${PREFIX}/etc/rc.d/cyrus_pwcheck.sh
-	@${SED} -e 's;%%PREFIX%%;${TRUE_PREFIX};g' \
-		${FILESDIR}/saslauthd.sh > ${PREFIX}/etc/rc.d/saslauthd1.sh
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
+	@${SED} -e 's;%%PREFIX%%;${TRUE_PREFIX};g' ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${FILESDIR}/saslauthd.sh > ${PREFIX}/etc/rc.d/saslauthd1.sh
 	@${CHMOD} 755 ${PREFIX}/etc/rc.d/saslauthd1.sh
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
