@@ -2,7 +2,7 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.3 2007/07/22 09:34:40 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.4 2007/08/01 19:55:45 laffer1 Exp $
 # $FreeBSD: ports/www/seamonkey/Makefile,v 1.262 2007/03/19 16:54:15 mezz Exp $
 #    $MCom: ports/www/seamonkey/Makefile,v 1.46 2007/02/06 00:05:55 ahze Exp $
 #
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}-${DISTVERSION}.source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
+LICENSE=	mpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
