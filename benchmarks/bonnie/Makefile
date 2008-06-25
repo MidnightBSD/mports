@@ -2,7 +2,7 @@
 # Date created:         26 September 1994
 # Whom:                 se
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.1 2007/05/20 01:51:43 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/bonnie/Makefile,v 1.15 2006/08/12 15:16:45 se Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	bonnie
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Filesystem I/O
+LICENSE=	other
 
 NO_WRKSUBDIR=	yes
 #CFLAGS+=	-static
