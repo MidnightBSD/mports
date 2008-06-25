@@ -2,7 +2,7 @@
 # Date created:		October 30, 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.1 2006/09/27 19:24:45 laffer1 Exp $
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light Color Management System -- a color management library
+LICENSE=	mit
 
 USE_GNOME=	gnomehack gnometarget lthack
 GNU_CONFIGURE=	yes
