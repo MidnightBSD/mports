@@ -2,7 +2,7 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/munin-main/Makefile,v 1.1 2008/05/10 05:03:02 laffer1 Exp $
 #
 
 PORTNAME=	munin
@@ -38,6 +38,9 @@ MAN5=		munin.conf.5
 MAN8=		munin-cron.8 munin-graph.8 munin-html.8 munin-limits.8 munin-update.8
 
 SUB_FILES=pkg-message
+
+pre-install:
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/build/server/munin.conf ${PREFIX}/etc/munin/munin.conf.sample
