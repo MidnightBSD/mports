@@ -3,7 +3,7 @@
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/p5-List-MoreUtils/Makefile,v 1.10 2006/07/07 10:53:36 lth Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/p5-List-MoreUtils/Makefile,v 1.1 2006/10/31 20:07:58 laffer1 Exp $
 #
 
 PORTNAME=	List-MoreUtils
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide the stuff missing in List::Util
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
