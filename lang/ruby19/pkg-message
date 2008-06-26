@@ -8,6 +8,4 @@ ports since they require extra dependencies:
 	x11-toolkits/ruby-tk:	Tcl/Tk modules
 	x11-toolkits/ruby-tk-jp:	Tcl/Tk modules for Japanized Tcl/Tk
 
-	lang/ruby-mode.el:	Emacs lisp modules
-
 Install them as occasion demands.
