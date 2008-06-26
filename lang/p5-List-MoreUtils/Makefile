@@ -3,13 +3,13 @@
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/p5-List-MoreUtils/Makefile,v 1.10 2006/07/07 10:53:36 lth Exp $
-# $MidnightBSD: mports/lang/p5-List-MoreUtils/Makefile,v 1.1 2006/10/31 20:07:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/p5-List-MoreUtils/Makefile,v 1.2 2008/06/26 03:48:24 laffer1 Exp $
 #
 
 PORTNAME=	List-MoreUtils
 PORTVERSION=	0.22
 CATEGORIES=	lang perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/V/VP/VPARSEVAL
 PKGNAMEPREFIX=	p5-
 
