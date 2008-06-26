@@ -2,7 +2,7 @@
 # Date created:		14 October 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/tkdnd/Makefile,v 1.2 2008/05/11 16:14:15 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tkdnd/Makefile,v 1.3 2008/05/11 20:35:35 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tkdnd/Makefile,v 1.2 2006/12/03 02:55:48 sat Exp $
 #
 
@@ -17,10 +17,11 @@ MASTER_SITES=	CENKES
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Native drag and drop capabilities
 
-LIB_DEPENDS=	tk${USE_TK}.1:${PORTSDIR}/x11-toolkits/tk${USE_TK}
-
 USE_BZIP2=	yes
 USE_XORG=	x11 xext
+USE_TCL=	yes
+USE_TCL_BUILD=	yes
+USE_TK_BUILD=	yes
 USE_TK=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-tcl=${TCL_LIBDIR} --with-tk=${TK_LIBDIR} \
