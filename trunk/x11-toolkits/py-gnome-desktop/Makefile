@@ -2,13 +2,13 @@
 # Date created:				20 January 2006
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/py-gnome-desktop/Makefile,v 1.1 2008/03/21 01:54:42 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/py-gnome-desktop/Makefile,v 1.8 2007/10/24 23:34:31 marcus Exp $
 #    $MCom: ports/x11-toolkits/py-gnome-desktop/Makefile,v 1.65 2007/09/16 17:47:04 ahze Exp $
 #
 
 PORTNAME=	gnome
-PORTVERSION=	2.20.0
+PORTVERSION=	2.22.0
 CATEGORIES=	x11-toolkits python gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/gnome-python-desktop/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,6 +19,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of Python bindings used by modules in the GNOME Desktop
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	bug-buddy:${PORTSDIR}/devel/bug-buddy
 LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop \
@@ -31,7 +32,8 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PYTHON=	yes
 USE_GNOME=	gnomehack libgnomeprintui gnomepanel gnomedesktop \
-		gtksourceview libwnck nautiluscdburner pygnome2 metacity
+		gtksourceview libwnck nautiluscdburner pygnome2 metacity \
+		evolutiondataserver
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-metacity
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
