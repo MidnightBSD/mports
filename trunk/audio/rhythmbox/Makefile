@@ -2,14 +2,14 @@
 # Date created:		17 August 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.2 2008/02/28 01:22:58 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.3 2008/04/10 05:03:44 ctriv Exp $
 # $FreeBSD: ports/audio/rhythmbox/Makefile,v 1.100 2007/07/23 17:35:54 danfe Exp $
 #   $MCom: ports/audio/rhythmbox/Makefile,v 1.70 2007/03/07 17:00:36 adamw Exp $
 #
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.10.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.10
@@ -24,7 +24,7 @@ LIB_DEPENDS=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 		totem-plparser.7:${PORTSDIR}/multimedia/totem \
 		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		sexy.2:${PORTSDIR}/x11-toolkits/libsexy \
-		soup-2.2.8:${PORTSDIR}/devel/libsoup \
+		soup-2.2.8:${PORTSDIR}/devel/libsoup22 \
 		gnome-media-profiles.0:${PORTSDIR}/audio/gnome-media
 
 USE_BZIP2=	yes
