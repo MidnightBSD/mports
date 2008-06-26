@@ -2,7 +2,7 @@
 # Date created:		6 May 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.4 2007/04/20 04:26:07 ctriv Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.5 2008/06/26 03:50:14 laffer1 Exp $
 # $FreeBSD: ports/lang/ruby18/Makefile,v 1.113 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -61,13 +61,7 @@ MAN1=		${RUBY_NAME}.1
 
 .include <bsd.port.pre.mk>
 
-# Uncomment if it still segfaults with 1.8.4
-#.if ${ARCH} == "ia64"
-#BROKEN=		"Segfault during build on ia64"
-#.endif
-
 CONFIGURE_ARGS+=	--enable-ipv6
-
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}" \
 		LIBS="${LIBS} ${PTHREAD_LIBS}"
 
@@ -123,18 +117,16 @@ OBSOLETED_MODULES=	bigfloat \
 
 pre-everything::
 .if !defined(WITH_PTHREADS)
-	@${ECHO_MSG} ""
 	@${ECHO_MSG} "NOTE:"
 	@${ECHO_MSG} "You can enable pthread support by defining WITH_PTHREADS variable,"
 	@${ECHO_MSG} "but not recommended since this might break some ruby apps."
-	@${ECHO_MSG} ""
 .endif
 
 post-extract:
 	${MV} ${WRKSRC}/ext/dl/h2rb ${WRKSRC}/bin/
 
 post-patch:
-.if ${ARCH} == "sparc64" || ${ARCH} == "alpha"
+.if ${ARCH} == "sparc64"
 	${REINPLACE_CMD} -e 's|-lc"|"|g' ${WRKSRC}/configure
 .endif
 	${REINPLACE_CMD} -e 's|-l$$pthread_lib|${PTHREAD_LIBS}|g' \
