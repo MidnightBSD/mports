@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.41 2008/03/28 05:20:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.42 2008/04/20 20:16:11 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -43,6 +43,7 @@
     SUBDIR += py-vte
     SUBDIR += qt33
     SUBDIR += renaissance
+    SUBDIR += ruby-tk
     SUBDIR += tk82
     SUBDIR += tk83
     SUBDIR += tk84
