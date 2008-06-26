@@ -2,7 +2,7 @@
 # Date created:		16 January 2002
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/ruby-bdb1/Makefile,v 1.1 2007/03/21 01:02:58 laffer1 Exp $
 # $FreeBSD: ports/databases/ruby-bdb1/Makefile,v 1.18 2006/11/19 15:50:36 miwi Exp $
 #
 
@@ -15,6 +15,8 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Berkeley DB revision 1.8x with full feature support
+LICENSE=	gpl2
+# same terms as ruby
 
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
