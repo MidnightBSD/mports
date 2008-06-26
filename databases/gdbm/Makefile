@@ -2,7 +2,7 @@
 # Date created:		8 Apr 1996
 # Whom:			Brent J. Nordquist <bjn@visi.com>
 #
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.4 2007/05/07 02:50:33 ctriv Exp $
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.5 2008/05/10 01:33:48 crash Exp $
 # $FreeBSD: ports/databases/gdbm/Makefile,v 1.35 2006/12/08 13:46:26 gabor Exp $
 #
 
@@ -16,6 +16,8 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU database manager
 LICENSE=        gpl2
+
+USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
