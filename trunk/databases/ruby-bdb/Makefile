@@ -2,13 +2,12 @@
 # Date created:		8 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/databases/ruby-bdb/Makefile,v 1.1 2006/10/30 23:52:55 wintellect Exp $
+# $MidnightBSD: mports/databases/ruby-bdb/Makefile,v 1.2 2007/04/22 17:58:52 ctriv Exp $
 # $FreeBSD: ports/databases/ruby-bdb/Makefile,v 1.52 2006/07/15 19:31:45 sem Exp $
 #
 
 PORTNAME=	bdb
-PORTVERSION=	0.5.9
-PORTREVISION=	2
+PORTVERSION=	0.6.2
 CATEGORIES=	databases ruby
 MASTER_SITES=	ftp://moulon.inra.fr/pub/ruby/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -17,8 +16,8 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ruby interface to Sleepycat's Berkeley DB revision 2 or later
-
-#'
+LICENSE=	gpl2
+# same terms as ruby
 
 USE_BDB=	YES
 WITH_BDB_VER=	43
