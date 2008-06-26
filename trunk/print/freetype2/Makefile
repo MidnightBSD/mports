@@ -2,7 +2,7 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.5 2007/10/13 16:40:56 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.6 2008/06/26 20:55:28 laffer1 Exp $
 # $FreeBSD: ports/print/freetype2/Makefile,v 1.77 2007/01/28 09:07:43 kris Exp $
 #
 
@@ -21,6 +21,7 @@ DISTNAME=	${PORTNAME:S/2//}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free and portable TrueType font rendering engine
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
