@@ -2,7 +2,7 @@
 # Date created:		17 May 2007
 # Whom:			Thierry Thomas <thierry@pompo.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.1 2008/06/26 17:56:52 laffer1 Exp $
 # $FreeBSD: ports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.4 2008/06/11 20:41:13 thierry Exp $
 #
 
@@ -14,8 +14,7 @@ DISTNAME=	liberation-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Liberation fonts from Red Hat to replace MS TTF fonts
-LICENSE=	restricted
-# possible licensing issues.
+LICENSE=	liberation
 
 BUILD_DEPENDS=	mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale	\
 		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
