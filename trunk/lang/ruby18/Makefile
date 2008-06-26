@@ -2,7 +2,7 @@
 # Date created:		6 May 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.3 2006/12/15 04:35:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.4 2007/04/20 04:26:07 ctriv Exp $
 # $FreeBSD: ports/lang/ruby18/Makefile,v 1.113 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -17,6 +17,7 @@ DIST_SUBDIR=	ruby
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An object-oriented interpreted scripting language
+LICENSE=	gpl2
 
 .if defined(WITH_ONIGURUMA)
 PKGNAMESUFFIX=	+oniguruma
