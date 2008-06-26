@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.111 2008/06/24 21:08:57 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.112 2008/06/24 21:10:51 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1634,7 +1634,7 @@ LIB_DEPENDS+=		ldap-2.3.2:${PORTSDIR}/net/openldap23${_OPENLDAP_FLAVOUR}-client
 .elif ${WANT_OPENLDAP_VER} == 24
 LIB_DEPENDS+=		ldap-2.4.2:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
 .else
-IGNORE=				unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
+IGNORE=			unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 .endif
 
@@ -2902,7 +2902,7 @@ USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e
 #
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl3 bsd4 bsd3 bsd2 python ruby x11 guile artistic artistic2 \
 		bdb mpl npl publicdom zlib apache2 apache1.1 apache1 apsl2 apsl1 php openldap2.8 \
-		restricted perl mit modula3 cddl opera unknown other sgi agg
+		restricted perl mit modula3 cddl opera liberation unknown other sgi agg
 
 
 
@@ -5247,7 +5247,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.111 2008/06/24 21:08:57 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.112 2008/06/24 21:10:51 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
