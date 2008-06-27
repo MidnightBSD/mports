@@ -2,12 +2,12 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.6 2008/06/26 20:55:28 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.7 2008/06/26 21:04:52 laffer1 Exp $
 # $FreeBSD: ports/print/freetype2/Makefile,v 1.77 2007/01/28 09:07:43 kris Exp $
 #
 
 PORTNAME=	freetype2
-PORTVERSION=	2.3.5
+PORTVERSION=	2.3.6
 PORTREVISION=	0
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
@@ -40,7 +40,7 @@ CFLAGS+=	-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
 .endif
 
 .if defined(WITH_LCD_FILTERING)
-CFLAGS+=      -DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
+CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
 .endif
 
 .if defined(WITH_CJK)
@@ -53,7 +53,6 @@ CFLAGS+=      -DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
 
 pre-everything::
 .if !defined(WITHOUT_TTF_BYTECODE_ENABLED)
-	@${ECHO_MSG}
 	@${ECHO_MSG} "You may want not to compile a bytecode interpreter into the"
 	@${ECHO_MSG} "TrueType driver. Without this you will only compile the code"
 	@${ECHO_MSG} "necessary to load TrueType glyphs without hinting."
@@ -63,6 +62,14 @@ pre-everything::
 	@${ECHO_MSG} "Note that there are important patent issues related to the"
 	@${ECHO_MSG} "use of the interpreter."
 	@${ECHO_MSG}
+.endif
+.if !defined(WITH_LCD_FILTERING)
+	@${ECHO_MSG} "You may want to enable LCD filtering."
+	@${ECHO_MSG}
+	@${ECHO_MSG} "Hit Ctrl-C now and use \"make WITH_LCD_FILTERING=yes\""
+	@${ECHO_MSG}
+	@${ECHO_MSG} "Note that there are possible patent issues related to the"
+	@${ECHO_MSG} "use of the LCD filtering technology."
 .endif
 
 pre-patch:
