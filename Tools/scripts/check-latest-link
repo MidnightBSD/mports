@@ -4,7 +4,7 @@
 # then look for duplicates.  Send a nag-mail to the responsible maintainers.
 
 if [ -z "${PORTSDIR}" ]; then
-	PORTSDIR=/usr/ports
+	PORTSDIR=/usr/mports
 fi
 
 if [ "$1" = "-nomail" ]; then
@@ -38,7 +38,7 @@ grep -f .latest_dups .latest_link | sort -i -k4 > .latest_full
 
 maint=$(awk '{print $2}' < .latest_full | sort -ui | tr '\n' ',')
 
-(echo "Dear port maintainers,"
+(echo "Dear mports maintainers,"
   echo
   echo "The following list includes ports maintained by you that have duplicate"
   echo "LATEST_LINK values.  They should either be modified to use a unique"
@@ -46,10 +46,6 @@ maint=$(awk '{print $2}' < .latest_full | sort -ui | tr '\n' ',')
   echo "each other in the packages/Latest directory.  If your ports conflict with"
   echo "ports maintained by another person, please coordinate your efforts with"
   echo "them."
-  echo
-  echo
-  echo "Thanks,"
-  echo "Kris \"Annoying Reminder Guy II\" Kennaway"
 
   printf "%-20s %-30s %-20s\n"  "LATEST_LINK" "PORTNAME" "MAINTAINER"
   echo "=========================================================================="
