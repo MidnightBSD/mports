@@ -2,7 +2,7 @@
 # Date created:		15 Nov 1998
 # Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.2 2006/09/25 16:34:13 archite Exp $
+# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.3 2008/06/08 23:56:53 crash Exp $
 # $FreeBSD: ports/textproc/p5-XML-Parser/Makefile,v 1.26 2006/01/30 23:19:59 kuriyama Exp $
 #
 
@@ -10,12 +10,13 @@ PORTNAME=	XML-Parser
 PORTVERSION=	2.36
 PORTREVISION=	2
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	XML
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension interface to James Clark's XML parser, expat
+LICENSE=	perl
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
