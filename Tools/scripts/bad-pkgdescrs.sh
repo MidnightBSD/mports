@@ -4,12 +4,12 @@
 # onatan@gmail.com 
 
 usage(){
-	echo "$0 [/usr/ports]"
+	echo "$0 [/usr/mports]"
 	echo "Locates identical pkg-descr files"
 	exit 1
 }
 
-DIR=${1-/usr/ports}
+DIR=${1-/usr/mports}
 [ -d ${DIR} ] || usage
 
 find ${DIR}/ -name pkg-descr -exec md5 -r {} \; 2>/dev/null | 	\
