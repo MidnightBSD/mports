@@ -2,6 +2,7 @@
 # Date created:		Thu Aug 26 14:38:07 CEST 1999
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/textproc/expat2/Makefile,v 1.32 2006/02/23 10:39:20 ade Exp $
 #
 
@@ -17,7 +18,7 @@ COMMENT=	XML 1.0 parser written in C
 LICENSE=	other
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 ALL_TARGET=	default
 USE_LDCONFIG=	yes
 MAN1=		xmlwf.1
