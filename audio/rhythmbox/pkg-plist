@@ -4,23 +4,23 @@ lib/librhythmbox-core.a
 lib/librhythmbox-core.la
 lib/librhythmbox-core.so
 lib/librhythmbox-core.so.0
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.py
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.pyc
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.pyo
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.py
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.pyc
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.pyo
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.py
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.pyc
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.pyo
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.py
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.pyc
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.pyo
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/artdisplay.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/__init__.py
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/__init__.pyc
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/__init__.pyo
-%%PYTHON%%lib/rhythmbox/plugins/artdisplay/rhythmbox-missing-artwork.svg
+lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.py
+lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.pyc
+lib/rhythmbox/plugins/artdisplay/AmazonCoverArtSearch.pyo
+lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.py
+lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.pyc
+lib/rhythmbox/plugins/artdisplay/CoverArtDatabase.pyo
+lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.py
+lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.pyc
+lib/rhythmbox/plugins/artdisplay/LocalCoverArtSearch.pyo
+lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.py
+lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.pyc
+lib/rhythmbox/plugins/artdisplay/PodcastCoverArtSearch.pyo
+lib/rhythmbox/plugins/artdisplay/artdisplay.rb-plugin
+lib/rhythmbox/plugins/artdisplay/__init__.py
+lib/rhythmbox/plugins/artdisplay/__init__.pyc
+lib/rhythmbox/plugins/artdisplay/__init__.pyo
+lib/rhythmbox/plugins/artdisplay/rhythmbox-missing-artwork.svg
 lib/rhythmbox/plugins/audiocd/audiocd.rb-plugin
 lib/rhythmbox/plugins/audiocd/libaudiocd.a
 lib/rhythmbox/plugins/audiocd/libaudiocd.la
@@ -61,51 +61,51 @@ lib/rhythmbox/plugins/iradio/libiradio.a
 lib/rhythmbox/plugins/iradio/libiradio.la
 lib/rhythmbox/plugins/iradio/libiradio.so
 lib/rhythmbox/plugins/iradio/station-properties.glade
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.py
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.pyc
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.pyo
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.py
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.pyc
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.pyo
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSource.py
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSource.pyc
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/JamendoSource.pyo
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/__init__.py
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/__init__.pyc
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/__init__.pyo
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo-loading.glade
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo-prefs.glade
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo_logo.png
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo_logo_medium.png
-%%PYTHON%%lib/rhythmbox/plugins/jamendo/jamendo_logo_small.png
+lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.py
+lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.pyc
+lib/rhythmbox/plugins/jamendo/JamendoConfigureDialog.pyo
+lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.py
+lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.pyc
+lib/rhythmbox/plugins/jamendo/JamendoSaxHandler.pyo
+lib/rhythmbox/plugins/jamendo/JamendoSource.py
+lib/rhythmbox/plugins/jamendo/JamendoSource.pyc
+lib/rhythmbox/plugins/jamendo/JamendoSource.pyo
+lib/rhythmbox/plugins/jamendo/__init__.py
+lib/rhythmbox/plugins/jamendo/__init__.pyc
+lib/rhythmbox/plugins/jamendo/__init__.pyo
+lib/rhythmbox/plugins/jamendo/jamendo-loading.glade
+lib/rhythmbox/plugins/jamendo/jamendo-prefs.glade
+lib/rhythmbox/plugins/jamendo/jamendo.rb-plugin
+lib/rhythmbox/plugins/jamendo/jamendo_logo.png
+lib/rhythmbox/plugins/jamendo/jamendo_logo_medium.png
+lib/rhythmbox/plugins/jamendo/jamendo_logo_small.png
 %%LIRC%%lib/rhythmbox/plugins/lirc/librblirc.a
 %%LIRC%%lib/rhythmbox/plugins/lirc/librblirc.la
 %%LIRC%%lib/rhythmbox/plugins/lirc/librblirc.so
 %%LIRC%%lib/rhythmbox/plugins/lirc/lirc.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/lyrics/lyrics.py
-%%PYTHON%%lib/rhythmbox/plugins/lyrics/lyrics.pyc
-%%PYTHON%%lib/rhythmbox/plugins/lyrics/lyrics.pyo
-%%PYTHON%%lib/rhythmbox/plugins/lyrics/lyrics.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.py
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.pyc
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.pyo
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/MagnatuneSource.py
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/MagnatuneSource.pyc
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/MagnatuneSource.pyo
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/TrackListHandler.py
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/TrackListHandler.pyc
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/TrackListHandler.pyo
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/__init__.py
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/__init__.pyc
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/__init__.pyo
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune-loading.glade
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune-prefs.glade
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune-purchase.glade
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune_circle_small.png
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune_logo_color_small.png
-%%PYTHON%%lib/rhythmbox/plugins/magnatune/magnatune_logo_color_tiny.png
+lib/rhythmbox/plugins/lyrics/lyrics.py
+lib/rhythmbox/plugins/lyrics/lyrics.pyc
+lib/rhythmbox/plugins/lyrics/lyrics.pyo
+lib/rhythmbox/plugins/lyrics/lyrics.rb-plugin
+lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.py
+lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.pyc
+lib/rhythmbox/plugins/magnatune/BuyAlbumHandler.pyo
+lib/rhythmbox/plugins/magnatune/MagnatuneSource.py
+lib/rhythmbox/plugins/magnatune/MagnatuneSource.pyc
+lib/rhythmbox/plugins/magnatune/MagnatuneSource.pyo
+lib/rhythmbox/plugins/magnatune/TrackListHandler.py
+lib/rhythmbox/plugins/magnatune/TrackListHandler.pyc
+lib/rhythmbox/plugins/magnatune/TrackListHandler.pyo
+lib/rhythmbox/plugins/magnatune/__init__.py
+lib/rhythmbox/plugins/magnatune/__init__.pyc
+lib/rhythmbox/plugins/magnatune/__init__.pyo
+lib/rhythmbox/plugins/magnatune/magnatune-loading.glade
+lib/rhythmbox/plugins/magnatune/magnatune-prefs.glade
+lib/rhythmbox/plugins/magnatune/magnatune-purchase.glade
+lib/rhythmbox/plugins/magnatune/magnatune.rb-plugin
+lib/rhythmbox/plugins/magnatune/magnatune_circle_small.png
+lib/rhythmbox/plugins/magnatune/magnatune_logo_color_small.png
+lib/rhythmbox/plugins/magnatune/magnatune_logo_color_tiny.png
 lib/rhythmbox/plugins/mmkeys/libmmkeys.a
 lib/rhythmbox/plugins/mmkeys/libmmkeys.la
 lib/rhythmbox/plugins/mmkeys/libmmkeys.so
@@ -114,19 +114,19 @@ lib/rhythmbox/plugins/power-manager/libpower-manager.a
 lib/rhythmbox/plugins/power-manager/libpower-manager.la
 lib/rhythmbox/plugins/power-manager/libpower-manager.so
 lib/rhythmbox/plugins/power-manager/power-manager.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/python-console/pythonconsole.py
-%%PYTHON%%lib/rhythmbox/plugins/python-console/pythonconsole.pyc
-%%PYTHON%%lib/rhythmbox/plugins/python-console/pythonconsole.pyo
-%%PYTHON%%lib/rhythmbox/plugins/python-console/pythonconsole.rb-plugin
-%%PYTHON%%lib/rhythmbox/plugins/rb/Coroutine.py
-%%PYTHON%%lib/rhythmbox/plugins/rb/Coroutine.pyc
-%%PYTHON%%lib/rhythmbox/plugins/rb/Coroutine.pyo
-%%PYTHON%%lib/rhythmbox/plugins/rb/Loader.py
-%%PYTHON%%lib/rhythmbox/plugins/rb/Loader.pyc
-%%PYTHON%%lib/rhythmbox/plugins/rb/Loader.pyo
-%%PYTHON%%lib/rhythmbox/plugins/rb/__init__.py
-%%PYTHON%%lib/rhythmbox/plugins/rb/__init__.pyc
-%%PYTHON%%lib/rhythmbox/plugins/rb/__init__.pyo
+lib/rhythmbox/plugins/python-console/pythonconsole.py
+lib/rhythmbox/plugins/python-console/pythonconsole.pyc
+lib/rhythmbox/plugins/python-console/pythonconsole.pyo
+lib/rhythmbox/plugins/python-console/pythonconsole.rb-plugin
+lib/rhythmbox/plugins/rb/Coroutine.py
+lib/rhythmbox/plugins/rb/Coroutine.pyc
+lib/rhythmbox/plugins/rb/Coroutine.pyo
+lib/rhythmbox/plugins/rb/Loader.py
+lib/rhythmbox/plugins/rb/Loader.pyc
+lib/rhythmbox/plugins/rb/Loader.pyo
+lib/rhythmbox/plugins/rb/__init__.py
+lib/rhythmbox/plugins/rb/__init__.pyc
+lib/rhythmbox/plugins/rb/__init__.pyo
 lib/rhythmbox/plugins/visualizer/libvisualizer.a
 lib/rhythmbox/plugins/visualizer/libvisualizer.la
 lib/rhythmbox/plugins/visualizer/libvisualizer.so
@@ -415,14 +415,14 @@ share/locale/zh_TW/LC_MESSAGES/rhythmbox.mo
 @dirrm share/gnome/help/rhythmbox
 @dirrm %%DOCSDIR%%
 @dirrm lib/rhythmbox/plugins/visualizer
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/rb
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/python-console
+@dirrm lib/rhythmbox/plugins/rb
+@dirrm lib/rhythmbox/plugins/python-console
 @dirrm lib/rhythmbox/plugins/power-manager
 @dirrm lib/rhythmbox/plugins/mmkeys
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/magnatune
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/lyrics
+@dirrm lib/rhythmbox/plugins/magnatune
+@dirrm lib/rhythmbox/plugins/lyrics
 %%LIRC%%@dirrm lib/rhythmbox/plugins/lirc
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/jamendo
+@dirrm lib/rhythmbox/plugins/jamendo
 @dirrm lib/rhythmbox/plugins/iradio
 %%IPOD%%@dirrm lib/rhythmbox/plugins/ipod
 @dirrm lib/rhythmbox/plugins/generic-player
@@ -430,7 +430,7 @@ share/locale/zh_TW/LC_MESSAGES/rhythmbox.mo
 @dirrm lib/rhythmbox/plugins/cd-recorder
 @dirrm lib/rhythmbox/plugins/audioscrobbler
 @dirrm lib/rhythmbox/plugins/audiocd
-%%PYTHON%%@dirrm lib/rhythmbox/plugins/artdisplay
+@dirrm lib/rhythmbox/plugins/artdisplay
 @dirrm lib/rhythmbox/plugins
 @dirrm lib/rhythmbox
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
