@@ -43,7 +43,7 @@
 # after every repocopy and correct errors immediately.
 #
 # Usage:
-#   [env PORTSDIR=/usr/ports] chkorigin.sh [category ...]
+#   [env PORTSDIR=/usr/mports] chkorigin.sh [category ...]
 #
 
 opt_verbose=false
@@ -67,7 +67,7 @@ rc=0
 
 $opt_quiet || echo "checking categories for ports with a wrong PKGORIGIN"
 
-cd "${PORTSDIR:=/usr/ports}"
+cd "${PORTSDIR:=/usr/mports}"
 if [ $# -gt 0 ]; then
     CATEGORIES=`echo $@`
 else
