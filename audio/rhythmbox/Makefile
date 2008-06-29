@@ -2,14 +2,14 @@
 # Date created:		17 August 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.3 2008/04/10 05:03:44 ctriv Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.4 2008/06/26 03:30:29 laffer1 Exp $
 # $FreeBSD: ports/audio/rhythmbox/Makefile,v 1.100 2007/07/23 17:35:54 danfe Exp $
 #   $MCom: ports/audio/rhythmbox/Makefile,v 1.70 2007/03/07 17:00:36 adamw Exp $
 #
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.10.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	audio gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.10
@@ -28,15 +28,16 @@ LIB_DEPENDS=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 		gnome-media-profiles.0:${PORTSDIR}/audio/gnome-media
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui nautiluscdburner
+USE_PYTHON=     yes
+USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui nautiluscdburner pygtk2
 WANT_GNOME=	yes
 USE_GSTREAMER=	flac mp3 gnomevfs gconf jpeg
 USE_AUTOTOOLS=	libtool:15
-CONFIGURE_ARGS=	--enable-nautilus-menu --with-playback=gstreamer-0-10
+CONFIGURE_ARGS=	--enable-nautilus-menu --with-playback=gstreamer-0-10 --enable-python
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	LIBS="-lm" \
@@ -99,17 +100,6 @@ LIB_DEPENDS+=		notify.1:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS+=		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon
 .else
 CONFIGURE_ARGS+=	--disable-libnotify
-.endif
-
-.if ${HAVE_GNOME:Mpygtk2}!=""
-USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
-USE_GNOME+=	pygtk2
-CONFIGURE_ARGS+=--enable-python
-PLIST_SUB+=	PYTHON=""
-.else
-CONFIGURE_ARGS+=--disable-python
-PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if !defined(WITHOUT_IPOD)
