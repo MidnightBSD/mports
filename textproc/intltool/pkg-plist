@@ -1,12 +1,16 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+@comment $MidnightBSD$
 bin/intltool-extract
 bin/intltool-merge
+bin/intltool-prepare
 bin/intltool-update
 bin/intltoolize
-bin/intltool-prepare
 share/aclocal/intltool.m4
-share/intltool/Makefile.in.in
-share/intltool/intltool-extract.in
-share/intltool/intltool-merge.in
-share/intltool/intltool-update.in
-@dirrm share/intltool
+%%DATADIR%%/Makefile.in.in
+%%DATADIR%%/XML/Parser/Style/OrigTree.pm
+%%DATADIR%%/intltool-extract.in
+%%DATADIR%%/intltool-merge.in
+%%DATADIR%%/intltool-update.in
+@dirrm %%DATADIR%%/XML/Parser/Style
+@dirrm %%DATADIR%%/XML/Parser
+@dirrm %%DATADIR%%/XML
+@dirrm %%DATADIR%%
