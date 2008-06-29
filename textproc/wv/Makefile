@@ -2,24 +2,24 @@
 # Date created:         Fri Nov  6 09:06:33 PST 1998
 # Whom:                 sumikawa@kame.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.1 2007/08/22 08:45:09 laffer1 Exp $
 # $FreeBSD: ports/textproc/wv/Makefile,v 1.45 2007/07/10 15:14:02 delphij Exp $
 #
 
 PORTNAME=	wv
 PORTVERSION=	1.2.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	wvware
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library and executables to access Microsoft Word files
+LICENSE=	gpl2
 
 LIB_DEPENDS=	wmf.2:${PORTSDIR}/graphics/libwmf
 RUN_DEPENDS=	lynx:${PORTSDIR}/www/lynx
 
-USE_GETOPT_LONG=	yes
 USE_GNOME=	gnometarget libgsf
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
