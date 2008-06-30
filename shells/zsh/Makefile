@@ -2,7 +2,7 @@
 # Date created:			11 Feb. 1995
 # Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.7 2007/08/05 16:49:22 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.8 2007/08/11 17:05:57 ctriv Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
@@ -21,35 +21,20 @@
 #			NOTE: does NOT have to be inside ${PREFIX} tree
 
 PORTNAME=	zsh
-PORTVERSION=	4.3.4
+PORTVERSION=	4.3.6
 CATEGORIES=	shells
-MASTER_SITES=	SF \
-		http://www.zsh.org/pub/ \
-		ftp://ftp.zsh.org/zsh/ \
-		http://mirrors.dotsrc.org/zsh/ \
-		ftp://mirrors.dotsrc.org/zsh/ \
-		ftp://ftp.funet.fi/pub/unix/shells/zsh/ \
-		ftp://nephtys.lip6.fr/pub/unix/shells/zsh/ \
-		ftp://ftp.fu-berlin.de/pub/unix/shells/zsh/ \
-		http://www.cs.elte.hu/pub/zsh/ \
-		ftp://ftp.cs.elte.hu/pub/zsh/ \
-		ftp://ftp.kfki.hu/pub/packages/zsh/ \
-		ftp://ftp.math.technion.ac.il/pub/zsh/ \
-		ftp://ftp.demon.nl/pub/mirrors/zsh/ \
-		ftp://ftp.kappa.ro/pub/mirrors/ftp.zsh.org/pub/zsh/ \
-		ftp://ftp.lysator.liu.se/pub/unix/zsh/ \
-		ftp://sunsite.org.uk/package/zsh/ \
-		http://zsh.open-mirror.com/
-DISTNAME=	${PORTNAME}-${ZSH_VER}
+MASTER_SITES=	SF
 .if !defined(NOPORTDOCS)
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-doc${EXTRACT_SUFX}
 .endif
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	The Z shell
+LICENSE=	other
 
 ZSH_VER=	${PORTVERSION}
 
+USE_AUTOTOOLS=	autoconf:261 autoheader:261
 USE_BZIP2=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
@@ -58,7 +43,7 @@ USE_LDCONFIG=  ${PREFIX}/lib/${PORTNAME}
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
         	LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--with-curses-terminfo --with-tcsetpgrp \
+CONFIGURE_ARGS=	--with-term-lib="ncursesw ncurses" --with-tcsetpgrp \
 		--enable-etcdir=${ZSH_ETCDIR} \
 		--enable-fndir=${ZSH_FNDIR} --enable-function-subdirs \
 		--enable-site-fndir=${ZSH_SITEFNDIR}
@@ -115,6 +100,8 @@ PLIST_SUB+=            NO_STATIC=""
 
 .if !defined(WITHOUT_ZSH_MULTIBYTE)
 CONFIGURE_ARGS+=	--enable-multibyte
+.else
+CONFIGURE_ARGS+=	--disable-multibyte
 .endif
 
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-bsdtar
