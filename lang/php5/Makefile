@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.15 2008/05/21 05:37:18 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.16 2008/05/21 05:48:02 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
 PORTVERSION=	5.2.6
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
 		http://downloads.php.net/ilia/:rc \
@@ -148,6 +148,10 @@ post-patch:
 
 pre-configure:
 	@${CAT} ${WRKSRC}/acinclude.m4 ${WRKSRC}/build/libtool.m4 > ${WRKSRC}/aclocal.m4
+.if defined(WITH_APACHE)
+	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
+	${CP} ${LOCALBASE}/${APACHEETCDIR}/httpd.conf ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
+.endif	
 
 post-build:
 	@${ECHO_CMD} "PHP_VER=5" > ${WRKDIR}/php.conf
