@@ -2,13 +2,12 @@
 # Date created:         21.03.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/www/bozohttpd/Makefile,v 1.2 2007/10/25 05:14:21 laffer1 Exp $
+# $MidnightBSD: mports/www/bozohttpd/Makefile,v 1.3 2008/02/15 02:03:00 laffer1 Exp $
 # $FreeBSD: ports/www/bozohttpd/Makefile,v 1.12 2006/07/08 05:16:35 clsung Exp $
 #
 
 PORTNAME=	bozohttpd
-PORTVERSION=	20060517
-PORTREVISON=	2
+PORTVERSION=	20080303
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.eterna.com.au/bozohttpd/ \
 		${MASTER_SITE_NETBSD}
