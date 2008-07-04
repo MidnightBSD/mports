@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.11 2008/02/21 19:41:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.12 2008/06/08 21:06:57 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -20,6 +20,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
 LICENSE=	other
 # for the most part it's similar to a traditional BSD 4 clause license.
+
+CONFLICTS=	subversion-perl-[0-9]* subversion-python-[0-9]* subversion-ruby-[0-9]*
 
 OPTIONS=	NEON "Enable WebDAV/Delta-V repository access" On \
 		BDB  "Enable db4 repository backend" On \
@@ -73,7 +75,7 @@ PLIST_SUB+=		WITHOUT_GETTEXT="@comment "
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 CFLAGS+=	-fpic -DPIC
 .endif
 
