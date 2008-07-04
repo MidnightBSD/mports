@@ -3,12 +3,12 @@
 # Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
 # $FreeBSD: ports/databases/db42/Makefile,v 1.63 2005/04/13 07:31:27 leeym Exp $
-# $MidnightBSD: mports/databases/db42/Makefile,v 1.2 2007/11/10 23:32:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/db42/Makefile,v 1.3 2007/11/11 00:10:21 laffer1 Exp $
 # 
 
 PORTNAME=	db42
 PORTVERSION=	4.2.52
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	databases
 PKGNAMESUFFIX?=
 
