@@ -2,12 +2,12 @@
 # Date created:				3 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.1 2008/05/30 19:35:38 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.2 2008/06/06 11:59:02 crash Exp $
 # $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
 #
 
 PORTNAME=	e2fsprogs
-PORTVERSION=	1.40.10
+PORTVERSION=	1.40.11
 PORTREVISION?=	0
 CATEGORIES?=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
@@ -24,10 +24,9 @@ CONFIGURE_ARGS+=--disable-fsck --disable-e2initrd-helper \
 		--with-cc='${CC}' --with-linker='${LD}' \
 		--with-ccopts='${CFLAGS}' \
 		--with-root-prefix='${PREFIX}'
-# for unknown reasons, the assembly bitops cause SIGSEGV.
-# _EXT2_USE_C_VERSIONS_ uses C bitops, these appear to work fine.
+
 CONFIGURE_ENV+=	CPPFLAGS='${CPPFLAGS} -I${WRKSRC}/lib \
-		-I${LOCALBASE}/include -D_EXT2_USE_C_VERSIONS_'
+		-I${LOCALBASE}/include' 
 
 MAKE_ARGS+=	LDFLAGS='${LDFLAGS} -L${LOCALBASE}/lib'
 
