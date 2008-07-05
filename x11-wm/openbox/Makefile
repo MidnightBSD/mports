@@ -3,18 +3,18 @@
 # Whom:					trevor
 # based on the blackbox port
 #
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.2 2007/03/25 02:30:06 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.3 2008/03/05 04:38:36 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/openbox/Makefile,v 1.74 2006/09/02 10:04:56 novel Exp $
 #
 
 PORTNAME=	openbox
-PORTVERSION=	3.4.6.1
+PORTVERSION=	3.4.7.2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://offload1.icculus.org/openbox/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A standards compliant, fast, light-weight, extensible window manager
-
+LICENSE=        gpl2
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
 USE_AUTOTOOLS=	libtool:15
