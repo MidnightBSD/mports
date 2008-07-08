@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.11 2008/05/30 23:19:37 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.12 2008/06/11 03:43:02 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -141,7 +141,6 @@ IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
 
 .if defined(USE_PGSQL)
 DEFAULT_PGSQL_VER?=	82
-PGSQL81_LIBVER=		4
 PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
 
