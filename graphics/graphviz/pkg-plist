@@ -1,7 +1,7 @@
 bin/dot
 bin/dot2gxl
-bin/dot_static
 bin/circo
+bin/diffimg
 bin/fdp
 bin/gc
 bin/gvcolor
@@ -18,12 +18,16 @@ bin/gvpack
 bin/dijkstra
 bin/bcomps
 bin/gvpr
-bin/lefty
+%%WITH_XPM%%bin/lefty
 bin/lneato
 bin/dotty
 bin/prune
+%%WITH_SMYRNA%%bin/smyrna
 include/graphviz/ast_common.h
 include/graphviz/cdt.h
+include/graphviz/cgraph.h
+include/graphviz/demand_loading.c
+include/graphviz/dot_builtins.c
 include/graphviz/dthdr.h
 include/graphviz/graph.h
 include/graphviz/libgraph.h
@@ -33,107 +37,162 @@ include/graphviz/agxbuf.h
 include/graphviz/aghdr.h
 include/graphviz/agraph.h
 include/graphviz/malloc.h
-include/graphviz/vmstub.h
-include/graphviz/grammar.h
-include/graphviz/gd.h
-include/graphviz/gd_io.h
-include/graphviz/gdcache.h
-include/graphviz/gdfontg.h
-include/graphviz/gdfontl.h
-include/graphviz/gdfontmb.h
-include/graphviz/gdfonts.h
-include/graphviz/gdfontt.h
-include/graphviz/gdhelpers.h
-include/graphviz/jisx0208.h
-include/graphviz/wbmp.h
-include/graphviz/gdfx.h
-include/graphviz/tri.h
-include/graphviz/entities.h
+include/graphviz/no_demand_loading.c
 include/graphviz/pathgeom.h
 include/graphviz/pathplan.h
 include/graphviz/pathutil.h
 include/graphviz/solvers.h
+include/graphviz/textpara.h
+include/graphviz/usershape.h
 include/graphviz/vis.h
 include/graphviz/vispath.h
 include/graphviz/logic.h
 include/graphviz/arith.h
+include/graphviz/vmstub.h
+include/graphviz/grammar.h
+include/graphviz/tri.h
 include/graphviz/geom.h
 include/graphviz/color.h
 include/graphviz/types.h
 include/graphviz/globals.h
 include/graphviz/gvc.h
 include/graphviz/gvcext.h
+include/graphviz/gvcommon.h
 include/graphviz/gvplugin.h
 include/graphviz/gvcjob.h
 include/graphviz/gvcint.h
 include/graphviz/gvplugin_render.h
 include/graphviz/gvplugin_layout.h
+include/graphviz/gvplugin_loadimage.h
 include/graphviz/gvplugin_textlayout.h
 include/graphviz/gvplugin_device.h
-include/graphviz/gvplugin_usershape.h
 include/graphviz/pack.h
-include/graphviz/exlib.h
-include/graphviz/exgram.h
-include/graphviz/expr.h
 include/graphviz/gv.i
 include/graphviz/gv.cpp
 lib/graphviz/libcdt.so
-lib/graphviz/libcdt.so.2
+lib/graphviz/libcdt.so.4
 lib/graphviz/libcdt.la
 lib/graphviz/libcdt.a
 lib/graphviz/libgraph.so
-lib/graphviz/libgraph.so.2
+lib/graphviz/libgraph.so.4
 lib/graphviz/libgraph.la
 lib/graphviz/libgraph.a
 lib/graphviz/libagraph.so
-lib/graphviz/libagraph.so.2
+lib/graphviz/libagraph.so.4
 lib/graphviz/libagraph.la
 lib/graphviz/libagraph.a
-lib/graphviz/libgvgd.so
-lib/graphviz/libgvgd.so.2
-lib/graphviz/libgvgd.la
-lib/graphviz/libgvgd.a
+lib/graphviz/libcgraph.so
+lib/graphviz/libcgraph.so.4
+lib/graphviz/libcgraph.la
+lib/graphviz/libcgraph.a
 lib/graphviz/libpathplan.so
-lib/graphviz/libpathplan.so.2
+lib/graphviz/libpathplan.so.4
 lib/graphviz/libpathplan.la
 lib/graphviz/libpathplan.a
 lib/graphviz/libgvc.so
-lib/graphviz/libgvc.so.2
+lib/graphviz/libgvc.so.4
 lib/graphviz/libgvc.la
 lib/graphviz/libgvc.a
-lib/graphviz/libgvc_builtins.so
-lib/graphviz/libgvc_builtins.so.2
-lib/graphviz/libgvc_builtins.la
-lib/graphviz/libgvc_builtins.a
-lib/graphviz/libpack.so
-lib/graphviz/libpack.so.2
-lib/graphviz/libpack.la
-lib/graphviz/libpack.a
-lib/graphviz/libexpr.so
-lib/graphviz/libexpr.so.2
-lib/graphviz/libexpr.la
-lib/graphviz/libexpr.a
-lib/graphviz/libgvplugin_neato_layout.so
-lib/graphviz/libgvplugin_neato_layout.so.2
-lib/graphviz/libgvplugin_neato_layout.la
-lib/graphviz/libgvplugin_neato_layout.a
+lib/graphviz/libgvplugin_core.so
+lib/graphviz/libgvplugin_core.so.5
+lib/graphviz/libgvplugin_core.la
+lib/graphviz/libgvplugin_core.a
 lib/graphviz/libgvplugin_dot_layout.so
-lib/graphviz/libgvplugin_dot_layout.so.2
+lib/graphviz/libgvplugin_dot_layout.so.5
 lib/graphviz/libgvplugin_dot_layout.la
 lib/graphviz/libgvplugin_dot_layout.a
-lib/graphviz/libgvplugin_usershape_gd.so
-lib/graphviz/libgvplugin_usershape_gd.so.2
-lib/graphviz/libgvplugin_usershape_gd.la
-lib/graphviz/libgvplugin_usershape_gd.a
-lib/graphviz/tcl/gv.so
-lib/graphviz/lua/gv.so
-lib/graphviz/perl/gv.so
-lib/graphviz/python/_gv.so
-lib/graphviz/ruby/gv.so
-lib/graphviz/pkgIndex.tcl
+lib/graphviz/libgvplugin_gd.so
+lib/graphviz/libgvplugin_gd.so.5
+lib/graphviz/libgvplugin_gd.la
+lib/graphviz/libgvplugin_gd.a
+%%WITH_GTK%%lib/graphviz/libgvplugin_gtk.a
+%%WITH_GTK%%lib/graphviz/libgvplugin_gtk.la
+%%WITH_GTK%%lib/graphviz/libgvplugin_gtk.so
+%%WITH_GTK%%lib/graphviz/libgvplugin_gtk.so.5
+%%WITH_PIXBUF%%lib/graphviz/libgvplugin_gdk_pixbuf.a
+%%WITH_PIXBUF%%lib/graphviz/libgvplugin_gdk_pixbuf.la
+%%WITH_PIXBUF%%lib/graphviz/libgvplugin_gdk_pixbuf.so
+%%WITH_PIXBUF%%lib/graphviz/libgvplugin_gdk_pixbuf.so.5
+lib/graphviz/libgvplugin_neato_layout.so
+lib/graphviz/libgvplugin_neato_layout.so.5
+lib/graphviz/libgvplugin_neato_layout.la
+lib/graphviz/libgvplugin_neato_layout.a
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_pango.so
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_pango.so.5
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_pango.la
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_pango.a
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_xlib.a
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_xlib.la
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_xlib.so
+%%WITH_PANGOCAIRO%%lib/graphviz/libgvplugin_xlib.so.5
+%%WITH_GUILE%%lib/graphviz/guile/libgv_guile.a
+%%WITH_GUILE%%lib/graphviz/guile/libgv_guile.la
+%%WITH_GUILE%%lib/graphviz/guile/libgv_guile.so
+%%WITH_PHP%%lib/graphviz/php/gv.php
+%%WITH_PHP%%lib/graphviz/php/gv.so
+%%WITH_PHP%%lib/graphviz/php/libgv_php.a
+%%WITH_PHP%%lib/graphviz/php/libgv_php.la
+%%WITH_PHP%%lib/graphviz/php/libgv_php.so
+%%WITH_TCL%%lib/graphviz/tcl/libgdtclft.a
+%%WITH_TCL%%lib/graphviz/tcl/libgdtclft.la
+%%WITH_TCL%%lib/graphviz/tcl/libgdtclft.so
+%%WITH_TCL%%lib/graphviz/tcl/libgdtclft.so.0
+%%WITH_TCL%%lib/graphviz/tcl/libgv_tcl.a
+%%WITH_TCL%%lib/graphviz/tcl/libgv_tcl.la
+%%WITH_TCL%%lib/graphviz/tcl/libgv_tcl.so
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot.a
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot.la
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot.so
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot.so.0
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot_builtin.a
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot_builtin.la
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot_builtin.so
+%%WITH_TCL%%lib/graphviz/tcl/libtcldot_builtin.so.0
+%%WITH_TCL%%lib/graphviz/tcl/libtclplan.a
+%%WITH_TCL%%lib/graphviz/tcl/libtclplan.la
+%%WITH_TCL%%lib/graphviz/tcl/libtclplan.so
+%%WITH_TCL%%lib/graphviz/tcl/libtclplan.so.0
+%%WITH_TCL%%lib/graphviz/tcl/pkgIndex.tcl
+%%WITH_TCL%%lib/tcl%%TCL_VER%%/graphviz
+%%WITH_TK%%lib/graphviz/tcl/libtkspline.a
+%%WITH_TK%%lib/graphviz/tcl/libtkspline.la
+%%WITH_TK%%lib/graphviz/tcl/libtkspline.so
+%%WITH_TK%%lib/graphviz/tcl/libtkspline.so.0
+%%WITH_LUA%%lib/graphviz/lua/gv.so
+%%WITH_LUA%%lib/graphviz/lua/libgv_lua.a
+%%WITH_LUA%%lib/graphviz/lua/libgv_lua.la
+%%WITH_LUA%%lib/graphviz/lua/libgv_lua.so
+%%WITH_PERL%%lib/graphviz/perl/gv.so
+%%WITH_PERL%%lib/graphviz/perl/gv.pm
+%%WITH_PERL%%lib/graphviz/perl/libgv_perl.a
+%%WITH_PERL%%lib/graphviz/perl/libgv_perl.la
+%%WITH_PERL%%lib/graphviz/perl/libgv_perl.so
+%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/gv.pm
+%%WITH_PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/gv.so
+%%WITH_PYTHON%%lib/graphviz/python/_gv.so
+%%WITH_PYTHON%%lib/graphviz/python/gv.py
+%%WITH_PYTHON%%lib/graphviz/python/libgv_python.a
+%%WITH_PYTHON%%lib/graphviz/python/libgv_python.la
+%%WITH_PYTHON%%lib/graphviz/python/libgv_python.so
+%%WITH_PYTHON%%%%PYTHON_LIBDIR%%/site-packages/_gv.so
+%%WITH_PYTHON%%%%PYTHON_LIBDIR%%/site-packages/gv.py
+%%WITH_RUBY%%lib/graphviz/ruby/gv.so
+%%WITH_RUBY%%lib/graphviz/ruby/libgv_ruby.a
+%%WITH_RUBY%%lib/graphviz/ruby/libgv_ruby.la
+%%WITH_RUBY%%lib/graphviz/ruby/libgv_ruby.so
+%%WITH_RUBY%%%%RUBY_SITEARCHLIBDIR%%/gv.so
+%%WITH_RSVG%%lib/graphviz/libgvplugin_rsvg.a
+%%WITH_RSVG%%lib/graphviz/libgvplugin_rsvg.la
+%%WITH_RSVG%%lib/graphviz/libgvplugin_rsvg.so
+%%WITH_RSVG%%lib/graphviz/libgvplugin_rsvg.so.5
+%%WITH_DEVIL%%lib/graphviz/libgvplugin_devil.a
+%%WITH_DEVIL%%lib/graphviz/libgvplugin_devil.la
+%%WITH_DEVIL%%lib/graphviz/libgvplugin_devil.so
+%%WITH_DEVIL%%lib/graphviz/libgvplugin_devil.so.5
 libdata/pkgconfig/libcdt.pc
 libdata/pkgconfig/libgraph.pc
 libdata/pkgconfig/libagraph.pc
+libdata/pkgconfig/libcgraph.pc
 libdata/pkgconfig/libpathplan.pc
 libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/FAQ.html
@@ -159,6 +218,7 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/a_forward.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/a_halfopen.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/box.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/box3d.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/a_inv.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/a_invdot.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/a_invempty.gif
@@ -211,6 +271,8 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/back.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/both.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/circle.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/colorlist.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/component.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/constraint.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/diamond.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/doublecircle.gif
@@ -218,16 +280,21 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/egg.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/ellipse.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/fill.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/folder.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/forward.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/hexagon.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/house.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/html1.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/html2.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/html3.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/html4.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/invhouse.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/invtrapezium.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/invtriangle.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/mrecord.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/nohead.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/none.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/note.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/octagon.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/parallelogram.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/pentagon.gif
@@ -239,6 +306,7 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/rectangle.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/round.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/septagon.gif
+%%PORTDOCS%%%%DOCSDIR%%/html/tab.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/trapezium.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/triangle.gif
 %%PORTDOCS%%%%DOCSDIR%%/html/tripleoctagon.gif
@@ -256,6 +324,7 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/pdf/ccomps.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/dijkstra.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/gc.pdf
+%%PORTDOCS%%%%DOCSDIR%%/pdf/gvc.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/gvcolor.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/gvpack.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/gxl2dot.pdf
@@ -266,9 +335,7 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/pdf/prune.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/agraph.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/cdt.pdf
-%%PORTDOCS%%%%DOCSDIR%%/pdf/expr.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/graph.pdf
-%%PORTDOCS%%%%DOCSDIR%%/pdf/pack.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/pathplan.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/gdtclft.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/tcldot.pdf
@@ -278,18 +345,19 @@ libdata/pkgconfig/libgvc.pc
 %%PORTDOCS%%%%DOCSDIR%%/pdf/twopi.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/fdp.pdf
 %%PORTDOCS%%%%DOCSDIR%%/pdf/circo.pdf
+%%PORTDOCS%%%%DOCSDIR%%/pdf/cgraph.pdf
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/cpl1.0.txt
 %%PORTDOCS%%%%DOCSDIR%%/Dot.ref
 %%PORTDOCS%%%%DOCSDIR%%/latex_suggestions.txt
-%%EXAMPLESDIR%%/entities
-%%EXAMPLESDIR%%/entities.README
-%%EXAMPLESDIR%%/doted
-%%EXAMPLESDIR%%/doted.README
-%%EXAMPLESDIR%%/gcat
-%%EXAMPLESDIR%%/gcat.README
+%%EXAMPLESDIR%%/entities.tcl
+%%EXAMPLESDIR%%/entities.tcl.README
+%%EXAMPLESDIR%%/doted.tcl
+%%EXAMPLESDIR%%/doted.tcl.README
+%%EXAMPLESDIR%%/gcat.tcl
+%%EXAMPLESDIR%%/gcat.tcl.README
 %%EXAMPLESDIR%%/pathplan_data/boxes.dat
 %%EXAMPLESDIR%%/pathplan_data/dpd.dat
 %%EXAMPLESDIR%%/pathplan_data/funny.dat
@@ -302,10 +370,54 @@ libdata/pkgconfig/libgvc.pc
 %%EXAMPLESDIR%%/pathplan_data/rotor.dat
 %%EXAMPLESDIR%%/pathplan_data/u.dat
 %%EXAMPLESDIR%%/pathplan_data/unknown.dat
-%%EXAMPLESDIR%%/pathplan
-%%EXAMPLESDIR%%/pathplan.README
-%%EXAMPLESDIR%%/spline
-%%EXAMPLESDIR%%/spline.README
+%%EXAMPLESDIR%%/pathplan.tcl
+%%EXAMPLESDIR%%/pathplan.tcl.README
+%%EXAMPLESDIR%%/spline.tcl
+%%EXAMPLESDIR%%/spline.tcl.README
+%%WITH_LUA%%%%DATADIR%%/demo/modgraph.lua
+%%WITH_PERL%%%%DATADIR%%/demo/modgraph.pl
+%%WITH_PHP%%%%DATADIR%%/demo/modgraph.php
+%%WITH_PYTHON%%%%DATADIR%%/demo/modgraph.py
+%%WITH_RUBY%%%%DATADIR%%/demo/modgraph.rb
+%%WITH_TCL%%%%DATADIR%%/demo/modgraph.tcl
+%%WITH_SMYRNA%%%%DATADIR%%/examples/4elt.dot
+%%WITH_SMYRNA%%%%DATADIR%%/examples/world.dot
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/AntiselectRect.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/AntiselectRectX.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/add_edge.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/arial.tga
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/attrs.txt
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/cursor.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/deletE_edge.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/delete_node.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/find_edge.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/find_node.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/fisheye.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/fit_to_screen.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/hourglass.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/magifier_zoom_out.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/magnifier.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/magnifier_zoom_in.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/move.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/new_delete.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/new_node.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/newzoom.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/ok.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/ok2.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/ok3.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/pan.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/pan.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/rotate.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/select.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/selectx.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/smyrna.glade
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/template.dot
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoom.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoom.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoom_in.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoom_out.png
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoomminus.raw
+%%WITH_SMYRNA%%%%DATADIR%%/smyrna/zoomplus.raw
 %%DATADIR%%/lefty/box.lefty
 %%DATADIR%%/lefty/def.lefty
 %%DATADIR%%/lefty/fractal.lefty
@@ -374,31 +486,52 @@ libdata/pkgconfig/libgvc.pc
 %%DATADIR%%/graphs/undirected/process.dot
 %%DATADIR%%/graphs/undirected/Heawood.dot
 %%DATADIR%%/graphs/undirected/Petersen.dot
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/pdf
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-%%PORTDOCS%%@dirrm %%EXAMPLESDIR%%/pathplan_data
-%%PORTDOCS%%@dirrm %%EXAMPLESDIR%%
+@exec mkdir -p %D/lib/graphviz/R
 @exec mkdir -p %D/lib/graphviz/guile
+@exec mkdir -p %D/lib/graphviz/io
+@exec mkdir -p %D/lib/graphviz/lua
 @exec mkdir -p %D/lib/graphviz/java
 @exec mkdir -p %D/lib/graphviz/ocaml
+@exec mkdir -p %D/lib/graphviz/perl
 @exec mkdir -p %D/lib/graphviz/php
+@exec mkdir -p %D/lib/graphviz/python25
+@exec mkdir -p %D/lib/graphviz/python24
+@exec mkdir -p %D/lib/graphviz/python23
+@exec mkdir -p %D/lib/graphviz/python
+@exec mkdir -p %D/lib/graphviz/ruby
 @exec mkdir -p %D/lib/graphviz/sharp
+@exec mkdir -p %D/lib/graphviz/tcl
+@exec mkdir -p %D/%%DATADIR%%/demo
+@exec mkdir -p %D/%%DATADIR%%/examples
+@exec mkdir -p %D/%%DATADIR%%/smyrna
 @unexec rm -f %D/lib/graphviz/config
-@dirrm %%DATADIR%%/graphs/directed
-@dirrm %%DATADIR%%/graphs/undirected
-@dirrm %%DATADIR%%/graphs
-@dirrm %%DATADIR%%/lefty
-@dirrm %%DATADIR%%
+@dirrm lib/graphviz/R
 @dirrm lib/graphviz/guile
+@dirrm lib/graphviz/io
 @dirrm lib/graphviz/java
 @dirrm lib/graphviz/lua
 @dirrm lib/graphviz/ocaml
 @dirrm lib/graphviz/perl
 @dirrm lib/graphviz/php
+@dirrm lib/graphviz/python25
+@dirrm lib/graphviz/python24
+@dirrm lib/graphviz/python23
 @dirrm lib/graphviz/python
 @dirrm lib/graphviz/ruby
 @dirrm lib/graphviz/sharp
 @dirrm lib/graphviz/tcl
 @dirrm lib/graphviz
 @dirrm include/graphviz
+@dirrm %%DATADIR%%/demo
+@dirrm %%DATADIR%%/examples
+@dirrm %%DATADIR%%/graphs/directed
+@dirrm %%DATADIR%%/graphs/undirected
+@dirrm %%DATADIR%%/graphs
+@dirrm %%DATADIR%%/lefty
+@dirrm %%DATADIR%%/smyrna
+@dirrm %%DATADIR%%
+@dirrm %%EXAMPLESDIR%%/pathplan_data
+@dirrm %%EXAMPLESDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/html
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/pdf
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
