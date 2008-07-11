@@ -2,7 +2,7 @@
 # Date created:				25 Januar 2004
 # Whom:					Lupe Christoph <lupe@lupe-christoph.de>
 #
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.3 2008/05/10 02:57:25 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.4 2008/06/26 21:25:36 laffer1 Exp $
 #
 
 PORTNAME=	munin
@@ -40,7 +40,7 @@ SUB_LIST=	RC_SUBR=${RC_SUBR}
 USE_RC_SUBR=	YES
 
 pre-install:
-        @${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/munin-node.sh ${PREFIX}/etc/rc.d/munin-node.sh
