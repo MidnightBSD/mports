@@ -2,13 +2,13 @@
 # Date created:				Dec 11 2004
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.6 2008/02/14 22:09:17 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.7 2008/03/24 19:13:44 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.8
+PORTVERSION=	2.2.9
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
