@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.4 2008/07/10 17:54:40 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -16,7 +16,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 LICENSE=	other
 
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
@@ -401,6 +402,8 @@ pre-patch:
 		${WRKSRC}/cmd/smyrna/tvnodes.h
 	@${REINPLACE_CMD} -e 's|#include "regex_win32.h"|#include <regex.h>|' \
 		${WRKSRC}/cmd/smyrna/btree.c
+	@${REINPLACE_CMD} -e 's|#! /bin/sh|#! /${LOCALBASE}/bin/bash|g' \
+		${WRKSRC}/configure
 
 .if defined(WITH_TK)
 post-install-script:
