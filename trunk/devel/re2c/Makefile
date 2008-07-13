@@ -2,12 +2,12 @@
 # Date created:		14 May 1998
 # Whom:			Eivind Eklund <eivind@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/re2c/Makefile,v 1.1 2007/07/22 11:01:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/re2c/Makefile,v 1.2 2007/11/09 20:54:56 laffer1 Exp $
 # $FreeBSD: ports/devel/re2c/Makefile,v 1.21 2007/06/16 19:43:13 sat Exp $
 #
 
 PORTNAME=	re2c
-PORTVERSION=	0.12.1
+PORTVERSION=	0.13.5
 PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
