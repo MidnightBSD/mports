@@ -2,7 +2,7 @@
 # Date created:		25 Feb 2000
 # Whom:			Ville Eerola <ve@sci.fi>
 #
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.8 2008/06/16 00:36:53 stevan Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.9 2008/06/17 16:50:42 laffer1 Exp $
 # $FreeBSD: ports/mail/fetchmail/Makefile,v 1.178 2007/01/06 14:38:42 barner Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
@@ -12,7 +12,7 @@
 
 PORTNAME=	fetchmail
 PORTVERSION=	6.3.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_BERLIOS}
 MASTER_SITE_SUBDIR=	fetchmail
