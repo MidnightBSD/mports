@@ -2,12 +2,12 @@
 # Date created:				August 27 2002
 # Whom:	      				Sheldon Hearn <sheldonh@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Config-General/Makefile,v 1.1 2007/05/08 21:51:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Config-General/Makefile,v 1.2 2008/07/05 22:41:00 crash Exp $
 # $FreeBSD: ports/devel/p5-Config-General/Makefile,v 1.16 2007/02/25 07:55:16 rafan Exp $
 #
 
 PORTNAME=	Config-General
-PORTVERSION=	2.39
+PORTVERSION=	2.40
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Config
