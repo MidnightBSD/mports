@@ -3,12 +3,12 @@
 # Date created:				March 23, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.1 2008/03/24 20:30:11 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.2 2008/03/24 20:32:13 laffer1 Exp $
 #
 
 PORTNAME=	gcc
-PORTVERSION=	4.3.1
-PORTREVISION=	20080320
+PORTVERSION=	4.3.2
+PORTREVISION=	20080710
 CATEGORIES=	lang java
 VERSIONSTRING=	4.3-${PORTREVISION}
 MASTER_SITES=	${MASTER_SITE_GCC}
