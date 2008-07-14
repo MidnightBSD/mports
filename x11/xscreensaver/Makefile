@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.7 2008/06/13 14:37:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.8 2008/07/14 04:08:46 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -27,7 +27,7 @@ LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 
 DESTDIRNAME=	install_prefix
 
-USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi
+USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi xaw xcomposite ice  x11
 USE_GL=		yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
