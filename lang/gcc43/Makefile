@@ -3,7 +3,7 @@
 # Date created:				March 23, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.2 2008/03/24 20:32:13 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.3 2008/07/14 03:28:19 laffer1 Exp $
 #
 
 PORTNAME=	gcc
@@ -40,7 +40,7 @@ CONFIGURE_SCRIPT=	../${SRCDIR:C/${WRKDIR}//}/configure
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} != i386
+.if ${ARCH} != i386 || defined(PACKAGE_BUILDING)
 WITHOUT_JAVA=	yes
 .endif
 
