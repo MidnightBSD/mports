@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.6 2008/06/02 15:52:07 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.7 2008/06/13 14:37:51 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -20,11 +20,14 @@ LICENSE=	x11
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		gtk-x11-2.0:${PORTSDIR}/x11-toolkits/gtk20 \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
-		glade-2.0.0:${PORTSDIR}/devel/libglade2
+		glade-2.0.0:${PORTSDIR}/devel/libglade2 \
+		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		png.5:${PORTSDIR}/graphics/png \
+		freetype.9:${PORTSDIR}/print/freetype2
 
 DESTDIRNAME=	install_prefix
 
-USE_XORG=	xpm
+USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi
 USE_GL=		yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
@@ -107,16 +110,6 @@ MAN6=	anemone.6 anemotaxis.6 antinspect.6 antmaze.6 antspotlight.6 \
 
 .if ${ARCH} == "amd64"
 CFLAGS+=	-O0
-.endif
-
-pre-fetch:
-.if !defined(BATCH) && !defined(PACKAGE_BUILDING)
-	@${ECHO} ''
-	@${ECHO} '*** This is the non-gnome version of the port.'
-	@${ECHO} '    If you want gnome support, hit Ctrl-C now,'
-	@${ECHO} '    and cd ../xscreensaver-gnome.'
-	@${ECHO} ''
-	@sleep 2
 .endif
 
 USE_DOS2UNIX=	hacks/glx/topblock.c
