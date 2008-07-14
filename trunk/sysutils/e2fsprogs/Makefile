@@ -2,7 +2,7 @@
 # Date created:				3 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.2 2008/06/06 11:59:02 crash Exp $
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.3 2008/07/05 23:45:36 crash Exp $
 # $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
 #
 
@@ -26,7 +26,7 @@ CONFIGURE_ARGS+=--disable-fsck --disable-e2initrd-helper \
 		--with-root-prefix='${PREFIX}'
 
 CONFIGURE_ENV+=	CPPFLAGS='${CPPFLAGS} -I${WRKSRC}/lib \
-		-I${LOCALBASE}/include' 
+		-I${LOCALBASE}/include'
 
 MAKE_ARGS+=	LDFLAGS='${LDFLAGS} -L${LOCALBASE}/lib'
 
