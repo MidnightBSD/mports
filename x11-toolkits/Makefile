@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.45 2008/06/26 21:31:09 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.46 2008/06/27 04:30:21 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -50,7 +50,6 @@
     SUBDIR += tk84-thread
     SUBDIR += tk85
     SUBDIR += tk85-thread
-    SUBDIR += tkdnd
     SUBDIR += tkshape
     SUBDIR += vte
     SUBDIR += wxgtk26
