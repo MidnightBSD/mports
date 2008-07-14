@@ -3,13 +3,13 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.5 2008/03/24 18:12:40 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.6 2008/06/26 03:47:29 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
 PORTNAME=	gcc
-PORTVERSION=	4.2.4
-PORTREVISION=	20080305
+PORTVERSION=	4.2.5
+PORTREVISION=	20080702
 CATEGORIES=	lang java
 VERSIONSTRING=	4.2-${PORTREVISION}
 MASTER_SITES=	${MASTER_SITE_GCC}
