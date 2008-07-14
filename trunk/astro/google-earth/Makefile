@@ -2,7 +2,7 @@
 # Date created:				Jun 13 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.5 2008/05/09 18:40:48 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.6 2008/07/14 02:50:21 laffer1 Exp $
 # $FreeBSD: ports/astro/google-earth/Makefile,v 1.17 2007/09/17 21:23:48 nox Exp $
 #
 
@@ -19,7 +19,9 @@ LICENSE=	restricted
 
 EXTRACT_DEPENDS=	unmakeself:${PORTSDIR}/archivers/unmakeself
 BUILD_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS=	${BUILD_DEPENDS} \
+		${LINUXBASE}/usr/lib/libgthread-2.0.so.0:${PORTSDIR}/devel/linux-glib2
+      
 
 RESTRICTED=	Not sure about redistribution rights
 LICENSE=	restricted
