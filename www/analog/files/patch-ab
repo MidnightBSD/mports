@@ -1,5 +1,5 @@
 --- src/tree.c.orig	Sun Dec 19 08:51:31 2004
-+++ src/tree.c	Tue Jul 15 23:57:41 2008
++++ src/tree.c	Wed Jul 16 00:26:29 2008
 @@ -776,6 +776,7 @@
  	((*name = strstr(whole, "Chimera")) != NULL && (len = 7)) ||
  	((*name = strstr(whole, "Camino")) != NULL && (len = 6)) ||
@@ -33,3 +33,16 @@
      else if (strstr(whole, "SunOS") != NULL || strstr(whole, "sunos") != NULL)
        *name = "Unix:SunOS";
      else if (strstr(whole, "HP-UX") != NULL || strstr(whole, "HPUX") != NULL ||
+@@ -938,6 +953,12 @@
+       *name = "Palm OS";
+     else if (strstr(whole, "Atari") != NULL)
+       *name = "Atari";
++    else if (strstr(whole, "Nintendo Wii") != NULL)
++      *name = "Nintendo Wii";
++    else if (strstr(whole, "PLAYSTATION 3") != NULL)
++      *name = "Sony PS3";
++    else if (strstr(whole, "PlayStation Portable") !=NULL)
++      *name = "Sony PSP";
+     else
+       *name = "OS unknown";
+     *nameend = strchr(*name, '\0');
