@@ -1,6 +1,14 @@
 --- src/tree.c.orig	Sun Dec 19 08:51:31 2004
-+++ src/tree.c	Fri Feb 15 10:09:16 2008
-@@ -904,8 +904,22 @@
++++ src/tree.c	Tue Jul 15 23:57:41 2008
+@@ -776,6 +776,7 @@
+ 	((*name = strstr(whole, "Chimera")) != NULL && (len = 7)) ||
+ 	((*name = strstr(whole, "Camino")) != NULL && (len = 6)) ||
+ 	((*name = strstr(whole, "Safari")) != NULL && (len = 6)) ||
++	((*name = strstr(whole, "iPhone")) != NULL && (len = 6)) ||
+ 	((*name = strstr(whole, "WebTV")) != NULL && (len = 5)) ||
+ 	((*name = strstr(whole, "Opera")) != NULL && (len = 5)) ||
+ 	((*name = strstr(whole, "MSIE")) != NULL && (len = 4))) {
+@@ -904,8 +905,22 @@
  	*name = "Macintosh";
      else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
        *name = "Unix:Linux";

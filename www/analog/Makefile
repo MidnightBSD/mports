@@ -2,13 +2,13 @@
 # Date created:		October 21st 1996
 # Whom:			jfitz
 #
-# $MidnightBSD: mports/www/analog/Makefile,v 1.2 2008/02/14 22:29:59 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.3 2008/02/15 15:15:29 laffer1 Exp $
 # $FreeBSD: ports/www/analog/Makefile,v 1.57 2006/01/04 23:32:10 edwin Exp $
 #
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
