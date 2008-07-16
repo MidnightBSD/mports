@@ -2,7 +2,7 @@
 # Date created:		October 21st 1996
 # Whom:			jfitz
 #
-# $MidnightBSD: mports/www/analog/Makefile,v 1.3 2008/02/15 15:15:29 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.4 2008/07/16 04:01:51 laffer1 Exp $
 # $FreeBSD: ports/www/analog/Makefile,v 1.57 2006/01/04 23:32:10 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ MASTER_SITES=	http://www.analog.cx/ \
 		http://analog.netsoc.ucd.ie/ \
 		http://analog.tzone.it/
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	An extremely fast program for analysing WWW logfiles
 LICENSE=	gpl2
 
