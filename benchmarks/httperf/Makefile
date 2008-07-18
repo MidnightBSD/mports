@@ -3,19 +3,18 @@
 # Whom:			Will Andrews <andrews@technologist.com>
 #
 # $FreeBSD: ports/benchmarks/httperf/Makefile,v 1.20 2006/04/05 21:04:28 jmelo Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/httperf/Makefile,v 1.1 2007/01/07 18:57:56 laffer1 Exp $
 #
 
 PORTNAME=	httperf
-PORTVERSION=	0.8
+PORTVERSION=	0.9.0
 CATEGORIES=	benchmarks www
 MASTER_SITES=	ftp://ftp.hpl.hp.com/pub/httperf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool for measuring webserver performance
-
+LICENSE=        gpl
 USE_OPENSSL=	yes
-USE_GETOPT_LONG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKE_ARGS=	LIBUTIL_OBJS=ssl_writev.o \
@@ -34,5 +33,10 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/${file} ${DOCSDIR}
 .endfor
 .endif
+
+do-install:
+	@${INSTALL_MAN} ${WRKSRC}/man/${PORTNAME}.1 ${MAN1PREFIX}/man/man1/
+	@${INSTALL_PROGRAM} ${WRKSRC}/src/${PORTNAME} ${PREFIX}/bin/
+
 
 .include <bsd.port.mk>
