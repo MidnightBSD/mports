@@ -2,7 +2,7 @@
 # Date created:				18 October 2003
 # Whom:					Kimura Fuyuki <fuyuki@nigredo.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.1 2007/01/20 15:11:20 wintellect Exp $
 # $FreeBSD: ports/databases/qdbm/Makefile,v 1.76 2006/11/15 01:06:25 ahze Exp $
 #    $MCom: ports-stable/databases/qdbm/Makefile,v 1.4 2006/03/04 21:25:54 ahze Exp $
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Quick Database Manager
-
+LICENSE=        lgpl
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
