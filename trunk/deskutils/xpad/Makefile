@@ -2,7 +2,7 @@
 # Date created:		6 March 2002
 # Whom:			Guillaume Paquet <amyfoub@gmail.com>
 #
-# $MidnightBSD: mports/deskutils/xpad/Makefile,v 1.1 2007/12/03 05:28:00 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/xpad/Makefile,v 1.2 2008/06/19 22:48:09 laffer1 Exp $
 # $FreeBSD: ports/deskutils/xpad/Makefile,v 1.16 2007/05/19 20:01:57 flz Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A virtual note-pad system for your X11 desktop
-
+LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_GNOME=	pkgconfig gtk20 gnomehier intltool
 USE_GMAKE=	yes
