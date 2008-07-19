@@ -3,7 +3,7 @@
 # Whom:					Joseph Scott <joseph@randomnetworks.com>
 #
 # $FreeBSD: ports/devel/activitymail/Makefile,v 1.4 2006/05/31 17:40:11 aaron Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/activitymail/Makefile,v 1.1 2007/03/30 18:00:12 ctriv Exp $
 #
 
 PORTNAME=	activitymail
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	../../authors/id/D/DW/DWHEELER/activitymail
 
 MAINTAINER=	ctriv@midnightbsd.org
 COMMENT=	A program for sending email messages for CVS repository commits
-
+LICENSE=        perl
 PERL_MODBUILD=	yes
 
 PLIST_FILES=	bin/activitymail
