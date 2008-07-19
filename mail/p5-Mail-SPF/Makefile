@@ -2,19 +2,20 @@
 # Date created:                         Thu Feb 8 18:46:25 CET 2007
 # Whom:                                 gmc@sonologic.nl
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/07/22 07:51:26 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/02/10 16:39:01 miwi Exp $
 #
 
 PORTNAME=	Mail-SPF
-PORTVERSION=	2.004
+PORTVERSION=	2.005
 CATEGORIES=	mail perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Mail
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
+DISTNAME=	${PORTNAME}-v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reference implementation of the RFC 4408 SPF protocol
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/Net/DNS/Resolver/Programmable.pm:${PORTSDIR}/dns/p5-Net-DNS-Resolver-Programmable \
 		${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
