@@ -2,20 +2,19 @@
 # Date created:		February 7, 1998
 # Whom:			Don Croyle <croyle@gelemna.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/p5-Set-IntSpan/Makefile,v 1.1 2007/05/08 21:32:10 laffer1 Exp $
 # $FreeBSD: ports/math/p5-Set-IntSpan/Makefile,v 1.12 2006/01/01 19:06:39 leeym Exp $
 #
 
 PORTNAME=	Set-IntSpan
-PORTVERSION=	1.09
-PORTREVISION=	0
+PORTVERSION=	1.13
 CATEGORIES=	math perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Set
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manages sets of integers
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
