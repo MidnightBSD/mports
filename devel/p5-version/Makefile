@@ -2,16 +2,17 @@
 # Date created:				Aug 27 2003
 # Whom:					Autrijus Tang <autrijus@autrijus.org>
 #
-# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.2 2008/01/05 05:42:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.3 2008/06/13 06:23:58 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-version/Makefile,v 1.29 2007/04/18 08:14:14 clsung Exp $
 #
 
 PORTNAME=	version
 PORTVERSION=	0.75
+PORTREVISION=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	../by-authors/id/J/JP/JPEACOCK
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
+DISTNAME=	${PORTNAME}-${PORTVERSION}01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Version Objects
