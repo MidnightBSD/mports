@@ -2,14 +2,14 @@
 # Date created:		20 April 1997
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/py-numeric/Makefile,v 1.1 2007/04/08 04:34:08 laffer1 Exp $
 # $FreeBSD: ports/math/py-numeric/Makefile,v 1.48 2006/02/06 11:57:02 tg Exp $
 #
 
 PORTNAME=	numeric
 PORTVERSION=	24.2
 CATEGORIES=	math python
-MASTER_SITES=	http://numeric.scipy.org/:doc \
+MASTER_SITES=	http://numpy.scipy.org/:doc \
 		${MASTER_SITE_SOURCEFORGE:S/$/:source/}
 MASTER_SITE_SUBDIR=	numpy/:source
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,6 +19,7 @@ EXTRACT_ONLY=	Numeric-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Numeric Extension to Python
+LICENSE=	mit
 
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
