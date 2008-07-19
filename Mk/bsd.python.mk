@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.12 2008/04/22 22:37:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.13 2008/07/19 21:23:17 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -312,7 +312,7 @@ PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 # Python-2.5
 .if ${PYTHON_VERSION} == "python2.5"
 PYTHON_PORTVERSION?=2.5.2
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python-devel
+PYTHON_PORTSDIR=	${PORTSDIR}/lang/python25
 PYTHON_REL=			252
 PYTHON_SUFFIX=		25
 
@@ -330,20 +330,6 @@ PYTHON_PORTSDIR=	${PORTSDIR}/lang/python23
 PYTHON_REL=			237
 PYTHON_SUFFIX=		23
 
-# Python-2.2
-.elif ${PYTHON_VERSION} == "python2.2"
-PYTHON_PORTVERSION?=2.2.3
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python22
-PYTHON_REL=			223
-PYTHON_SUFFIX=		22
-
-# Python-2.1
-.elif ${PYTHON_VERSION} == "python2.1"
-PYTHON_PORTVERSION?=2.1.3
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python21
-PYTHON_REL=			213
-PYTHON_SUFFIX=		21
-
 # Python versions in development
 .elif defined(FORCE_PYTHON_VERSION)
 PYTHON_PORTSDIR=	# empty
@@ -357,8 +343,6 @@ PYTHON_SUFFIX!=		${PYTHON_CMD} -c 'import sys; h = "%x" % sys.hexversion; \
 check-makevars::
 	@${ECHO} "Makefile error: bad value for PYTHON_VERSION: ${PYTHON_VERSION}."
 	@${ECHO} "Legal values are:"
-	@${ECHO} "  python2.1"
-	@${ECHO} "  python2.2"
 	@${ECHO} "  python2.3"
 	@${ECHO} "  python2.4 (default)"
 	@${ECHO} "  python2.5"
