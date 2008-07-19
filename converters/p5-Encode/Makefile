@@ -3,7 +3,7 @@
 # Whom:					Rong-En Fan <rafan@infor.org>
 #
 # $FreeBSD: ports/converters/p5-Encode/Makefile,v 1.19 2008/05/12 02:05:38 rafan Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.1 2008/05/12 19:07:28 crash Exp $
 
 PORTNAME=	Encode
 PORTVERSION=	2.25
@@ -11,9 +11,10 @@ CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	rafan@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides interfaces between strings and the rest of the system
 LICENSE=        perl
+
 PERL_CONFIGURE=	5.7.3+
 
 MAN3=		Encode.3 \
