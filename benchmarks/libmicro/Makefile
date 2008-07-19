@@ -2,7 +2,7 @@
 # Date created:		2005-08-06
 # Whom:			Vsevolod Stakhov <vsevolod@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/libmicro/Makefile,v 1.1 2008/06/13 03:56:14 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/libmicro/Makefile,v 1.4 2008/01/12 17:01:38 rafan Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	http://opensolaris.org/os/project/libmicro/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set of utilities to benchmark productivity of system calls
-LICENSEE=	cddl
+LICENSE=	cddl
 
 USE_GMAKE=	yes
 CFLAGS+=	${PTHREAD_CFLAGS}
