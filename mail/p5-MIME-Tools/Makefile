@@ -2,25 +2,27 @@
 # Date created:				April 27th 1998
 # Whom:	      				Eivind Eklund <eivind@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-MIME-Tools/Makefile,v 1.1 2007/03/20 19:35:27 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-MIME-Tools/Makefile,v 1.39 2006/03/24 12:01:40 tobez Exp $
 #
 
-PORTNAME=	p5-MIME-Tools
-PORTVERSION=	5.420
+PORTNAME=	MIME-Tools
+PORTVERSION=	5.426
 PORTEPOCH=	2
 CATEGORIES=	mail perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	MIME
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
 DISTNAME=	MIME-tools-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of perl5 modules for MIME
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/Mail/Header.pm:${PORTSDIR}/mail/p5-Mail-Tools \
 		${SITE_PERL}/IO/Wrap.pm:${PORTSDIR}/devel/p5-IO-stringy \
 		${SITE_PERL}/Convert/BinHex.pm:${PORTSDIR}/converters/p5-Convert-BinHex \
-		${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
+		${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64 \
+		${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	YES
