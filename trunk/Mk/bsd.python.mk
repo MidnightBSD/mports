@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.11 2008/04/18 21:33:46 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.12 2008/04/22 22:37:44 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -149,10 +149,10 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #				version of zope.
 #
 
-## Default Python version set to 2.4
+## Default Python version set to 2.5
 
-_PYTHON_PORTBRANCH=		2.4
-_PYTHON_ALLBRANCHES=	2.4 2.3 2.2 2.1 2.5 # preferred first
+_PYTHON_PORTBRANCH=		2.5
+_PYTHON_ALLBRANCHES=	2.5 2.4 2.3 # preferred first
 _ZOPE_PORTBRANCH=		2.7
 _ZOPE_ALLBRANCHES=		2.7 2.8 2.9 3.2
 
