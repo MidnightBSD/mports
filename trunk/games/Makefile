@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.26 2008/05/22 22:53:57 stevan Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.27 2008/05/30 20:07:21 crash Exp $
 #
 
     COMMENT = Games
@@ -28,6 +28,7 @@
     SUBDIR += linux-enemyterritory-tce
     SUBDIR += linux-quake3
     SUBDIR += linux-quake3-demo
+    SUBDIR += moon-buggy
     SUBDIR += nextgo
     SUBDIR += pvpgn
     SUBDIR += qstat
