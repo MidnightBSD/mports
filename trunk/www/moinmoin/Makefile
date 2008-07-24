@@ -2,12 +2,12 @@
 # Date created:				18 September 2001
 # Whom:					Hye-Shik Chang <perky@python.or.kr>
 #
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.1 2008/03/05 20:00:50 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.2 2008/06/12 20:33:43 laffer1 Exp $
 # $FreeBSD: ports/www/moinmoin/Makefile,v 1.36 2008/02/25 08:46:43 miwi Exp $
 #
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.6.3
+PORTVERSION=	1.7.1
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
@@ -33,7 +33,7 @@ MOINTYPE?=	CGI
 PKGDEINSTALL=	${PKGINSTALL}
 
 .if ${MOINTYPE} == "STANDALONE"
-MOINSCRIPT=	${MOINDIR}/server/moin.py
+MOINSCRIPT=	${MOINDIR}/server/wikiserver.py
 .elif ${MOINTYPE} == "FCGI"
 MOINSCRIPT=	${MOINDIR}/server/moin.fcg
 .elif ${MOINTYPE} == "MOD_PYTHON"
