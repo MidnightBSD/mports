@@ -3,20 +3,18 @@
 # Whom:			lesi@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-dmx/Makefile,v 1.7 2007/09/13 19:44:55 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.2 2007/10/17 04:47:03 ctriv Exp $
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.3 2007/11/01 05:51:23 ctriv Exp $
 #
 
 PORTNAME=	xorg-dmx
 PORTVERSION=	1.4
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Multihead X from X.Org
 LICENSE=	x11
-
-CONFLICTS=	XFree86-dmx-[0-9]*
 
 XORG_CAT=	xserver
 
@@ -28,14 +26,25 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		compositeproto trapproto recordproto resourceproto \
 		xineramaproto evieproto xkbfile xfont fontenc xkbui \
 		xxf86misc xxf86vm xaw7 xmu xpm xext xrender xfixes xi dmxproto \
-		xau dmx xtst xres pixman
+		xau dmx xtst xres pixman xtrans
 		
 CONFIGURE_ARGS=	--disable-xprint --disable-xvfb --disable-xorg --disable-xnest \
-		--disable-config-hal --enable-dmx --localstatedir=/var
+		--enable-dmx --localstatedir=/var
 
 MAN1=		Xdmx.1 dmxtodmx.1 vdltodmx.1 xdmxconfig.1
 
 do-install:
 	cd ${WRKSRC}/hw/dmx; ${MAKE} ${FAKE_MAKEARGS} install
 
-.include <bsd.port.mk>
+OPTIONS=	HAL "Compile with HAL config support" on
+
+.include <bsd.port.pre.mk>
+
+.if !defined(WITHOUT_HAL)
+LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
+CONFIGURE_ARGS+=	--enable-config-hal=yes
+.else
+CONFIGURE_ARGS+=	--enable-config-hal=no
+.endif
+
+.include <bsd.port.post.mk>
