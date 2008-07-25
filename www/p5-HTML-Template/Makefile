@@ -2,12 +2,12 @@
 # Date Created:				26 Oct, 2000
 # Whom:					Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Template/Makefile,v 1.1 2007/01/12 13:15:31 wintellect Exp $
 # $FreeBSD: ports/www/p5-HTML-Template/Makefile,v 1.17 2006/01/30 14:47:01 kuriyama Exp $
 #
 
 PORTNAME=	HTML-Template
-PORTVERSION=	2.8
+PORTVERSION=	2.9
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
