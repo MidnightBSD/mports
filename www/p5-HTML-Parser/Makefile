@@ -3,11 +3,11 @@
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
 # $FreeBSD: ports/www/p5-HTML-Parser/Makefile,v 1.59 2006/07/13 13:10:59 mat Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Parser/Makefile,v 1.1 2006/11/05 16:05:02 laffer1 Exp $
 #
 
 PORTNAME=	HTML-Parser
-PORTVERSION=	3.55
+PORTVERSION=	3.56
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
@@ -31,10 +31,4 @@ MAN3=		HTML::Entities.3 \
 		HTML::PullParser.3 \
 		HTML::TokeParser.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
