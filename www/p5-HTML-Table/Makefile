@@ -3,11 +3,11 @@
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/www/p5-HTML-Table/Makefile,v 1.16 2006/06/25 16:38:46 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Table/Makefile,v 1.1 2006/11/05 16:05:02 laffer1 Exp $
 #
 
 PORTNAME=	HTML-Table
-PORTVERSION=	2.04a
+PORTVERSION=	2.08
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
