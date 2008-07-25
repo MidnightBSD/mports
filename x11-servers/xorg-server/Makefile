@@ -3,12 +3,12 @@
 # Whom:			anholt@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.8 2008/06/12 22:00:37 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.9 2008/06/12 22:09:18 laffer1 Exp $
 #
 
 PORTNAME=	xorg-server
-PORTVERSION=	1.4
-PORTREVISION=	3
+PORTVERSION=	1.4.1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/:fdo \
