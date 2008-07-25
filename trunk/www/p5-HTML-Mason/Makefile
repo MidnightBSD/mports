@@ -3,11 +3,11 @@
 # Whom:					Denis Shaposhnikov <dsh@vlink.ru>
 #
 # $FreeBSD: ports/www/p5-HTML-Mason/Makefile,v 1.58 2007/09/08 01:11:28 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.1 2007/09/12 02:54:37 ctriv Exp $
 #
 
 PORTNAME=	HTML-Mason
-PORTVERSION=	1.35
+PORTVERSION=	1.39
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
