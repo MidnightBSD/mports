@@ -3,11 +3,11 @@
 # Whom:	      		andrew@scoop.co.nz
 #
 # $FreeBSD: ports/www/p5-HTML-Breadcrumbs/Makefile,v 1.2 2006/05/23 07:08:47 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Breadcrumbs/Makefile,v 1.1 2007/01/24 17:16:41 laffer1 Exp $
 #
 
 PORTNAME=	HTML-Breadcrumbs
-PORTVERSION=	0.06
+PORTVERSION=	0.7
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
