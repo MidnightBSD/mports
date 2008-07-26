@@ -2,13 +2,13 @@
 # Date created:		2007-10-21
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.1 2008/03/31 23:28:03 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.2 2008/04/01 03:33:37 ctriv Exp $
 # $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.2 2008/03/31 10:33:05 ahze Exp $
 #   $MCom: ports/www/webkit-gtk2/Makefile,v 1.5 2008/03/24 01:51:52 mezz Exp $
 #
 
 PORTNAME=	webkit
-PORTVERSION=	0.0.30549
+PORTVERSION=	0.0.35289
 CATEGORIES=	www
 MASTER_SITES=	http://nightly.webkit.org/files/trunk/src/
 PKGNAMESUFFIX=	-gtk2
