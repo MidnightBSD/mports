@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.4 2008/07/10 17:54:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.5 2008/07/12 17:53:04 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -67,7 +67,7 @@ PDOCS_TXT=	AUTHORS NEWS ChangeLog cpl1.0.txt doc/Dot.ref doc/latex_suggestions.t
 PDOCS_PDF=	doc/*.pdf */*/*.pdf
 PDOCS_HTML=	doc/*.html doc/info/*.html doc/info/*.gif
 
-OPTIONS=	ICONV "Build with ICONV support" on \
+OPTIONS=	\
 		XPM "Build with XPM support" on \
 		DIGCOLA "DIGCOLA features in neato layout engine" on \
 		IPSEPCOLA "IPSEPCOLA features in neato layout engine" on \
@@ -129,13 +129,9 @@ MANN+=			gdtclft.n tcldot.n
 PLIST_SUB+=		TCL_VER="${TCL_VER}"
 .endif
 
-.if defined(WITHOUT_ICONV)
-CONFIGURE_ARGS+=	--without-libiconv-prefix
-.else
 USE_ICONV=		yes
 CONFIGURE_ARGS+=	--with-iconvlibdir=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-iconvincludedir=${LOCALBASE}/include
-.endif
 
 .if !defined(WITHOUT_XPM) || exists(${LOCALBASE}/lib/libXpm.so)
 USE_XORG+=		xaw8 xpm xmu xt sm ice xext x11 xau xdmcp xp
@@ -383,6 +379,7 @@ pre-patch:
 		-e "s|\([^:]*:.*\) install-demoDATA\(.*\)|\1\2|g" \
 		-e "s|\([^:]*:.*\) install-demoSCRIPTS\(.*\)|\1\2|g" \
 		-e "s|\([^:]*:.*\) install-pathplanexampleDATA\(.*\)|\1\2|g" \
+		-e "s|@LIBICONV@|-liconv|g" \
 		-e 's|demodir = $$(pkgdatadir)/demo|demodir = ${EXAMPLESDIR}|';
 	@${REINPLACE_CMD} \
 		-e 's|^\.SUFFIXES: \(.*\)\.1\(.*\)|.SUFFIXES: \1 \2|' \
