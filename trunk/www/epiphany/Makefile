@@ -2,7 +2,7 @@
 # Date created:				24 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.4 2008/06/07 13:10:04 crash Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.5 2008/07/25 09:52:56 laffer1 Exp $
 # $FreeBSD: ports/www/epiphany/Makefile,v 1.113 2008/01/08 04:29:19 marcus Exp $
 #   $MCom: ports-stable/www/epiphany/Makefile,v 1.8 2007/12/01 19:54:36 marcus Exp $
 #
@@ -55,7 +55,7 @@ WITH_GNOME=	yes
 .include <bsd.port.pre.mk>
 
 .if defined(EPHY_SLAVE) && ${EPHY_SLAVE}=="webkit"
-LIB_DEPENDS+=	WebKitGtk.1:${PORTSDIR}/www/webkit-gtk2
+LIB_DEPENDS+=	webkit-1.0.1:${PORTSDIR}/www/webkit-gtk2
 CONFIGURE_ARGS+=	--with-engine=webkit
 EXTRA_CFLAGS+=	`pkg-config --cflags WebKitGtk` -I${LOCALBASE}/include/WebKit/webkit
 EXTRA_LIBS+=	`pkg-config --libs WebKitGtk`
