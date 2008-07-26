@@ -2,7 +2,7 @@
 # Date created:		2007-10-21
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.2 2008/04/01 03:33:37 ctriv Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.3 2008/07/26 12:08:02 laffer1 Exp $
 # $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.2 2008/03/31 10:33:05 ahze Exp $
 #   $MCom: ports/www/webkit-gtk2/Makefile,v 1.5 2008/03/24 01:51:52 mezz Exp $
 #
@@ -22,6 +22,7 @@ LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
 		curl.4:${PORTSDIR}/ftp/curl \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3
 
+WANT_GSTREAMER=	yes
 USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -29,7 +30,7 @@ USE_GNOME=	gnometarget gtk20 libxslt
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf:261 automake:110 libtool:15
-USE_GSTREAMER=	gnomevfs
+USE_GSTREAMER=	gnomevfs theora
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-webkit-target=x11 \
