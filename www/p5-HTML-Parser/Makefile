@@ -3,7 +3,7 @@
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
 # $FreeBSD: ports/www/p5-HTML-Parser/Makefile,v 1.59 2006/07/13 13:10:59 mat Exp $
-# $MidnightBSD: mports/www/p5-HTML-Parser/Makefile,v 1.1 2006/11/05 16:05:02 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-HTML-Parser/Makefile,v 1.2 2008/07/25 05:46:13 laffer1 Exp $
 #
 
 PORTNAME=	HTML-Parser
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for parsing HTML documents
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/HTML/Tagset.pm:${PORTSDIR}/www/p5-HTML-Tagset \
 		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI
