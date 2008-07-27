@@ -2,12 +2,13 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.5 2008/06/17 22:16:59 stevan Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.6 2008/07/19 21:09:31 laffer1 Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
 PORTNAME=	gnuplot
 PORTVERSION=	4.2.3
+PORTREVISION=	1
 CATEGORIES=	math graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,6 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A command-driven interactive function plotting program
 LICENSE=	other
 
+USE_ICONV=	yes
 USE_GCPIO=	yes
 GNU_CONFIGURE=	yes
 WANT_WX=	yes
@@ -99,6 +101,9 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		'/^install:/s/install-am//' ${WRKSRC}/share/LaTeX/Makefile.in
 .endif
+	@${FIND} ${WRKSRC} -name Makefile.in | \
+                ${XARGS} ${REINPLACE_CMD} \
+                -e "s|@LIBICONV@|-liconv|g";
 	@${REINPLACE_CMD} -e \
 		's|)/@PACKAGE@/@PKG_MAJOR@|)|g' ${WRKSRC}/src/Makefile.in
 	@${FIND} "${WRKSRC}" -name '*.orig' -delete
