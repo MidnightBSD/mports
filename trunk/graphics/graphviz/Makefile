@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.5 2008/07/12 17:53:04 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.6 2008/07/26 12:15:00 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -401,6 +401,7 @@ pre-patch:
 		${WRKSRC}/cmd/smyrna/btree.c
 	@${REINPLACE_CMD} -e 's|#! /bin/sh|#! /${LOCALBASE}/bin/bash|g' \
 		${WRKSRC}/configure
+	(cd ${WRKSRC}; ${SH} ./autogen.sh)
 
 .if defined(WITH_TK)
 post-install-script:
