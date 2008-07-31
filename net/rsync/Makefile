@@ -2,13 +2,12 @@
 # Date created:			  Sat Aug 3, 1996
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MIdnightBSD$
+# $MidnightBSD$
 # $FreeBSD: ports/net/rsync/Makefile,v 1.131 2008/04/08 19:24:06 ehaupt Exp $
 #
 
 PORTNAME=	rsync
-PORTVERSION=	3.0.2
-PORTREVION=	1
+PORTVERSION=	3.0.3
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
