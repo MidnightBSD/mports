@@ -2,12 +2,12 @@
 # Date created:		1 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/aria2/Makefile,v 1.3 2008/06/10 03:23:54 laffer1 Exp $
+# $MidnightBSD: mports/www/aria2/Makefile,v 1.4 2008/07/25 04:42:14 smultron Exp $
 # $FreeBSD: ports/www/aria2/Makefile,v 1.27 2007/08/09 17:09:00 sat Exp $
 #
 
 PORTNAME=	aria2
-DISTVERSION=	0.15.0
+DISTVERSION=	0.15.1
 CATEGORIES=	www
 MASTER_SITES=	SFE
 DISTNAME=	${PORTNAME}c-${DISTVERSION}
