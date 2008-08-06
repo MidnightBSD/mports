@@ -2,18 +2,19 @@
 # Date created:		14 Feb 2007
 # Whom:			Nemo Liu <nemoliu@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.1 2008/02/14 22:28:55 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.2 2008/04/30 20:22:35 laffer1 Exp $
 # $FreeBSD: ports/www/tomcat6/Makefile,v 1.45 2007/08/21 03:39:05 nemoliu Exp $
 #
 
 PORTNAME=	apache-tomcat
-PORTVERSION=	6.0.16
+PORTVERSION=	6.0.18
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	tomcat/tomcat-6/v${PORTVERSION}/bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 6.x branch
+LICENSE=	apache2
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.5+
