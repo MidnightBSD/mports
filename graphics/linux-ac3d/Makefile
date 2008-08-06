@@ -2,7 +2,7 @@
 # Date created:		12 July 2002
 # Whom:			Igor Pokrovsky <tiamat@comset.net>
 #
-# $MidnightBSD: mports/graphics/linux-ac3d/Makefile,v 1.4 2008/03/21 22:58:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux-ac3d/Makefile,v 1.5 2008/03/21 22:58:42 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-ac3d/Makefile,v 1.22 2007/07/29 00:21:32 pav Exp $
 #
 
@@ -18,6 +18,8 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Easy to use and powerful 3D graphics modeller (trial version)
 LICENSE=	restricted
+
+BROKEN=		Not fetchable.  New version out, but untested.
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libjpeg.so.62:${PORTSDIR}/graphics/linux-jpeg \
 		${LINUXBASE}/usr/lib/libpng.so.2:${PORTSDIR}/graphics/linux-png10 \
