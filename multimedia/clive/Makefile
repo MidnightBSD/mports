@@ -3,10 +3,10 @@
 # Whom:			Nicola Vitale <nivit@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/clive/Makefile,v 1.22 2008/05/30 13:52:48 nivit Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/clive/Makefile,v 1.3 2008/05/31 00:13:31 crash Exp $
 
 PORTNAME=	clive
-PORTVERSION=	0.4.14
+PORTVERSION=	0.4.15
 #PORTREVISION=	0
 #PORTEPOCH=	0
 CATEGORIES=	multimedia
