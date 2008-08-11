@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/print/cups-base/files/cupsd.in,v 1.1 2006/01/27 11:28:06 dougb Exp $
 #
 # PROVIDE: cupsd
