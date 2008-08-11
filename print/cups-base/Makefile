@@ -2,13 +2,13 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.10 2008/03/23 04:05:51 ctriv Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.11 2008/03/23 18:54:16 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
 PORTVERSION=	1.2.11
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -62,6 +62,12 @@ CUPSOWN=	cups
 CUPSSYSGRP=	wheel
 
 .include <bsd.port.pre.mk>
+
+.if defined(CUPS_OVERWRITE_BASE)
+PLIST_SUB+=		OVERWRITE=""
+.else
+PLIST_SUB+=		OVERWRITE="@comment "
+.endif
 
 .if !defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
@@ -150,14 +156,16 @@ pre-install:
 	if ! pw groupshow ${CUPSGRP}; then pw groupadd ${CUPSGRP} -g 193; fi
 	if ! pw usershow ${CUPSOWN}; then pw useradd ${CUPSOWN} -g ${CUPSGRP} -u 193 \
 		-h - -d ${NONEXISTENT} -s /usr/sbin/nologin -c "CUPS Owner"; fi
+.if defined(CUPS_OVERWRITE_BASE)
+	if test -e /usr/bin/lp; then chmod -h 0 /usr/bin/lp; fi
+	if test -e /usr/bin/lpq; then chmod -h 0 /usr/bin/lpq; fi
+	if test -e /usr/bin/lpr; then chmod -h 0 /usr/bin/lpr; fi
+	if test -e /usr/bin/lprm; then chmod -h 0 /usr/bin/lprm; fi
+	if test -e /usr/sbin/lpc; then chmod -h 0 /usr/sbin/lpc; fi
+.endif
 
 post-install:
 	${INSTALL} -d ${CUPS_ETCDIR}/
-.if defined(CUPS_OVERWRITE_BASE)
-	${SH} ${PKGINSTALL} placeholder POST-INSTALL overwrite
-.else
-	${SH} ${PKGINSTALL} placeholder POST-INSTALL
-.endif
 .for f in cupsd.conf mime.convs mime.types
 	${INSTALL_DATA} ${WRKSRC}/conf/${f} ${CUPS_ETCDIR}/${f}.N
 	cd ${CUPS_ETCDIR}/; if test ! -f ${f}; then ${CP} -p ${f}.N ${f}; fi
