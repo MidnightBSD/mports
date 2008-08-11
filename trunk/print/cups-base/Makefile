@@ -2,13 +2,13 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.11 2008/03/23 18:54:16 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.12 2008/08/11 15:05:17 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
-PORTVERSION=	1.2.11
-PORTREVISION=	2
+PORTVERSION=	1.2.12
+PORTREVISION=	0
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -16,6 +16,7 @@ PKGNAMESUFFIX=	-base${PKGNAMESUFFIX2}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System
+LICENSE=	gpl2
 
 DESTDIRNAME=	BUILDROOT
 
