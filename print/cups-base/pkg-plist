@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/print/cups-base/pkg-plist,v 1.4 2007/08/04 23:26:24 laffer1 Exp $
+@comment $MidnightBSD: mports/print/cups-base/pkg-plist,v 1.5 2007/08/05 00:20:35 laffer1 Exp $
 @exec if ! pw groupshow cups 2>/dev/null; then pw groupadd cups -g 193; fi
 @exec if ! pw usershow cups 2>/dev/null; then pw useradd cups -g cups -u 193 -h - -d /nonexistent -s /usr/sbin/nologin -c "CUPS Owner"; fi
 @unexec if pw usershow cups; then pw userdel cups; fi
@@ -16,6 +16,11 @@
 @unexec rmdir /var/log/cups 2>/dev/null || true
 @unexec rmdir /var/run/cups/certs 2>/dev/null || true
 @unexec rmdir /var/run/cups 2>/dev/null || true
+%%OVERWRITE%%@exec if test -e /usr/bin/lp; then chmod -h 0 /usr/bin/lp; fi
+%%OVERWRITE%%@exec if test -e /usr/bin/lpq; then chmod -h 0 /usr/bin/lpq; fi
+%%OVERWRITE%%@exec if test -e /usr/bin/lpr; then chmod -h 0 /usr/bin/lpr; fi
+%%OVERWRITE%%@exec if test -e /usr/bin/lprm; then chmod -h 0 /usr/bin/lprm; fi
+%%OVERWRITE%%@exec if test -e /usr/sbin/lpc; then chmod -h 0 /usr/sbin/lpc; fi
 @unexec if cmp -s %D/etc/cups/cupsd.conf.N %D/etc/cups/cupsd.conf; then rm -f %D/etc/cups/cupsd.conf; fi
 etc/cups/cupsd.conf.N
 @exec if test ! -f %D/etc/cups/cupsd.conf; then cp -p %D/etc/cups/cupsd.conf.N %D/etc/cups/cupsd.conf; fi
