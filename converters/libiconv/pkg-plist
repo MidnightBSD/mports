@@ -1,3 +1,4 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.114 2008/06/29 18:30:42 laffer1 Exp $
 bin/iconv
 include/iconv.h
 include/libcharset.h

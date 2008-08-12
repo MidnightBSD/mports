@@ -2,11 +2,11 @@
 # Date created:				17 July 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.3 2007/11/11 02:41:05 laffer1 Exp $
 #
 
 PORTNAME=	libiconv
-PORTVERSION=	1.11
+PORTVERSION=	1.12
 CATEGORIES=	converters devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
