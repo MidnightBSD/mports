@@ -2,12 +2,13 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.6 2008/07/26 12:15:00 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.7 2008/07/28 03:47:54 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
 PORTNAME=	graphviz
 PORTVERSION=	2.20.0
+PORTREVISION=	1
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/ \
 		http://mirror.inerd.com/FreeBSD/distfiles/${PORTNAME}/
@@ -67,8 +68,7 @@ PDOCS_TXT=	AUTHORS NEWS ChangeLog cpl1.0.txt doc/Dot.ref doc/latex_suggestions.t
 PDOCS_PDF=	doc/*.pdf */*/*.pdf
 PDOCS_HTML=	doc/*.html doc/info/*.html doc/info/*.gif
 
-OPTIONS=	\
-		XPM "Build with XPM support" on \
+OPTIONS=	XPM "Build with XPM support" on \
 		DIGCOLA "DIGCOLA features in neato layout engine" on \
 		IPSEPCOLA "IPSEPCOLA features in neato layout engine" on \
 		SMYRNA "SMYRNA large graph viewer" off \
@@ -92,7 +92,8 @@ OPTIONS=	\
 .include <bsd.port.pre.mk>
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0
+			--host=${ARCH}-portbld-freebsd6.0 \
+			--target=${ARCH}-portbld-freebsd6.0
 
 CONFIGURE_ARGS+=	--program-transform-name="s/x/x/" \
 		--enable-dependency-tracking \
@@ -280,7 +281,7 @@ CONFIGURE_ARGS+=	--without-devil
 PLIST_SUB+=		WITH_DEVIL="@comment "
 .endif
 
-.if defined(WITH_PERL) || defined(WITH_PHP) || defined(WITH_PYTHON) || \
+.if defined(PACKAGE_BUILDING) || defined(WITH_PERL) || defined(WITH_PHP) || defined(WITH_PYTHON) || \
     defined(WITH_RUBY) || defined(WITH_LUA) || defined(WITH_TCL) || defined(WITH_GUILE)
 BUILD_DEPENDS+=		swig1.3:${PORTSDIR}/devel/swig13
 RUN_DEPENDS+=		swig1.3:${PORTSDIR}/devel/swig13
@@ -291,7 +292,7 @@ CONFIGURE_ARGS+=	--disable-swig
 CONFIGURE_ENV+=		SWIG="/nonexistent"
 .endif
 
-.if defined(WITH_PERL)
+.if defined(WITH_PERL) || defined(PACKAGE_BUILDING)
 CONFIGURE_ARGS+=	--enable-perl
 PLIST_SUB+=		WITH_PERL=""
 USE_PERL5=	yes
@@ -401,7 +402,6 @@ pre-patch:
 		${WRKSRC}/cmd/smyrna/btree.c
 	@${REINPLACE_CMD} -e 's|#! /bin/sh|#! /${LOCALBASE}/bin/bash|g' \
 		${WRKSRC}/configure
-	(cd ${WRKSRC}; ${SH} ./autogen.sh)
 
 .if defined(WITH_TK)
 post-install-script:
