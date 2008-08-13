@@ -3,36 +3,32 @@
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/libmpeg2/Makefile,v 1.32 2006/09/21 08:07:58 stas Exp $
-# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.1 2006/12/13 20:12:24 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.2 2007/03/15 01:26:50 laffer1 Exp $
 #
 
 PORTNAME=	libmpeg2
-PORTVERSION=	0.4.0b
-PORTREVISION=	3
+PORTVERSION=	0.4.1
+PORTREVISION=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	http://libmpeg2.sourceforge.net/files/
 DISTNAME=	mpeg2dec-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free library for decoding mpeg-2 and mpeg-1 video streams
+LICENSE=	gpl2
 
-USE_GNOME=	lthack
-USE_XLIB=	yes
-GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_GNOME=	gnometarget
+USE_AUTOTOOLS=	libtool:15
+USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS=	--enable-shared \
 		--with-x
 
-WRKSRC=		${WRKDIR}/mpeg2dec-0.4.0
-
 MAN1=	extract_mpeg2.1 mpeg2dec.1
 
-PORTDOCS=	libmpeg2.txt
+PORTDOCS=	libmpeg2.txt README COPYING
 
-.ifdef(WITH_MGA)
-CONFIGURE_ARGS+=	--enable-mga
-.endif
+OPTIONS=	SDL "Enable SDL support" off
 
 .ifdef(WITH_SDL)
 USE_SDL=	yes
@@ -49,16 +45,6 @@ CONFIGURE_ARGS+=	--disable-warnings
 
 .include <bsd.port.pre.mk>
 
-pre-everything::
-	@${ECHO_MSG} "====>"
-.ifndef(WITH_SDL)
-	@${ECHO_MSG} "====> You can enable SDL support by defining WITH_SDL"
-.endif
-.ifndef(WITH_MGA)
-	@${ECHO_MSG} "====> You can enable MGA support by defining WITH_MGA"
-.endif
-	@${ECHO_MSG} "====>"
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3||;s|<termio.h>|<termios.h>|' ${WRKSRC}/configure
 # AMD64 prefers position independent code
@@ -74,6 +60,8 @@ post-install:
 .ifndef(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/doc/libmpeg2.txt ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}
 .endif
 	@${INSTALL_DATA} ${WRKSRC}/libvo/libvo.a ${PREFIX}/lib
 	@${INSTALL_DATA} ${WRKSRC}/include/video_out.h \
