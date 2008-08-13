@@ -3,17 +3,16 @@
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
 # $FreeBSD: ports/devel/p5-Class-Accessor/Makefile,v 1.11 2007/07/27 05:24:53 skv Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Class-Accessor/Makefile,v 1.1 2007/09/01 16:25:18 ctriv Exp $
 #
 
 PORTNAME=	Class-Accessor
 PORTVERSION=	0.31
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Class
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	skv@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automated accessor generation
 LICENSE=	perl
 
