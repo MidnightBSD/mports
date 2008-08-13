@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.40 2008/04/02 21:17:10 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.41 2008/08/13 18:17:47 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -31,6 +31,7 @@
     SUBDIR += libtheora
     SUBDIR += libxine
     SUBDIR += linux-divx4linux
+    SUBDIR += linux-libtheora
     SUBDIR += linux-realplayer
     SUBDIR += mpeg2codec
     SUBDIR += mpeg4ip-libmp4v2
