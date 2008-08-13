@@ -2,12 +2,12 @@
 # Date created:				09 februari 2003
 # Whom:					Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.3 2007/10/25 05:11:38 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.4 2007/11/24 00:33:46 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libtheora/Makefile,v 1.12 2006/06/29 19:27:59 stefan Exp $
 #
 
 PORTNAME=	libtheora
-DISTVERSION=	1.0alpha8
+DISTVERSION=	1.0beta2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 		http://distfiles.master.finkmirrors.net/
