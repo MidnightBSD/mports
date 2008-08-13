@@ -3,13 +3,13 @@
 # Date created:		Jul 6, 2001
 # Whom:			ijliao
 #
-# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.1 2006/10/05 00:56:36 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.2 2008/06/17 22:13:22 stevan Exp $
 # $FreeBSD: ports/multimedia/libdvdcss/Makefile,v 1.28 2006/05/10 22:37:31 edwin Exp $
 #
 
 PORTNAME=	libdvdcss
 PORTVERSION=	1.2.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
@@ -20,10 +20,11 @@ LICENSE=	gpl2
 
 NO_CDROM=	CSS code may violate the DMCA
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 .ifndef(WITH_DOXYGEN)
 NOPORTDOCS=	yes
