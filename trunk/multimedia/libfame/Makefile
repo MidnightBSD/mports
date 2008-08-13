@@ -3,22 +3,24 @@
 # Date created:			Mar 23, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.1 2006/10/05 00:52:06 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
 #
 
 PORTNAME=	libfame
 PORTVERSION=	0.9.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	fame
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A video encoding library
+LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
@@ -26,8 +28,8 @@ MAN3=	fame_close.3 fame_encode_frame.3 fame_get_object.3 fame_init.3 \
 	fame_open.3 fame_register.3 fame_unregister.3 fame_encode_slice.3 \
 	fame_start_frame.3 fame_end_frame.3
 
-#OPTIONS=	SSE "SSE optimized routines (no effect in this release)" off \
-OPTIONS=	MMX "MMX optimized routines" on
+OPTIONS=	SSE "SSE optimized routines (no effect in this release)" off \
+		MMX "MMX optimized routines" on
 
 .include <bsd.port.pre.mk>
 
