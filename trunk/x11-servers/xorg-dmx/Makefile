@@ -3,7 +3,7 @@
 # Whom:			lesi@FreeBSD.org
 #
 # $FreeBSD: ports/x11-servers/xorg-dmx/Makefile,v 1.7 2007/09/13 19:44:55 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.3 2007/11/01 05:51:23 ctriv Exp $
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.4 2008/07/25 06:06:39 laffer1 Exp $
 #
 
 PORTNAME=	xorg-dmx
@@ -29,7 +29,7 @@ USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
 		xau dmx xtst xres pixman xtrans
 		
 CONFIGURE_ARGS=	--disable-xprint --disable-xvfb --disable-xorg --disable-xnest \
-		--enable-dmx --localstatedir=/var
+		--enable-dmx --localstatedir=/var --without-dtrace
 
 MAN1=		Xdmx.1 dmxtodmx.1 vdltodmx.1 xdmxconfig.1
 
