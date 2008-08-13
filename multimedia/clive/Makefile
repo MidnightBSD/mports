@@ -3,12 +3,10 @@
 # Whom:			Nicola Vitale <nivit@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/clive/Makefile,v 1.22 2008/05/30 13:52:48 nivit Exp $
-# $MidnightBSD: mports/multimedia/clive/Makefile,v 1.3 2008/05/31 00:13:31 crash Exp $
+# $MidnightBSD: mports/multimedia/clive/Makefile,v 1.4 2008/08/10 13:04:42 crash Exp $
 
 PORTNAME=	clive
-PORTVERSION=	0.4.15
-#PORTREVISION=	0
-#PORTEPOCH=	0
+PORTVERSION=	0.4.16
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.gna.org/clive/0.4/src/ \
 		SF
