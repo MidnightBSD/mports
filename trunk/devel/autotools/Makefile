@@ -2,17 +2,18 @@
 # Date created:				14th April 2007
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/autotools/Makefile,v 1.1 2008/03/24 18:03:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/autotools/Makefile,v 1.2 2008/03/27 22:34:12 laffer1 Exp $
 # $FreeBSD: ports/devel/autotools/Makefile,v 1.2 2007/09/30 04:46:42 linimon Exp $
 
 PORTNAME=	autotools
-PORTVERSION=	20080328
+PORTVERSION=	20080813
 CATEGORIES=	devel
 MASTER_SITES=	# none
 DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Autotools meta-port
+LICENSE=	agg
 
 RUN_DEPENDS=	libtool:${PORTSDIR}/devel/libtool15
 
@@ -20,7 +21,7 @@ PLIST_FILES=	share/${PORTNAME}
 NO_BUILD=	yes
 NO_FETCH=	yes
 
-AVAIL_AUTOCONF=	2.13 2.61
+AVAIL_AUTOCONF=	2.13 2.61 2.62
 AVAIL_AUTOMAKE=	1.4 1.5 1.6 1.9 1.10
 
 .for VER in ${AVAIL_AUTOCONF}
