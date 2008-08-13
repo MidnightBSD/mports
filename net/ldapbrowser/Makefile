@@ -2,7 +2,7 @@
 # Date created:         May 30, 2008
 # Whom:                 Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/ldapbrowser/Makefile,v 1.1 2008/05/30 21:28:42 laffer1 Exp $
 #
 
 PORTNAME=	ldapbrowser
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java/Swing-based LDAP Browser/Editor
 LICENSE=	restricted
 
-RESTRICTED=	"No reply from author regarding redistribution licensing"
+RESTRICTED=	"2.7 is known to be restricted, 2.8 is ambiguous"
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.4+
