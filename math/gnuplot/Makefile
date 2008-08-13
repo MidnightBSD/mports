@@ -2,13 +2,13 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.6 2008/07/19 21:09:31 laffer1 Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.7 2008/07/27 08:43:41 laffer1 Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
 PORTNAME=	gnuplot
 PORTVERSION=	4.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -107,6 +107,11 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|)/@PACKAGE@/@PKG_MAJOR@|)|g' ${WRKSRC}/src/Makefile.in
 	@${FIND} "${WRKSRC}" -name '*.orig' -delete
+
+post-configure:
+	${FIND} ${WRKSRC} -name 'Makefile' | \
+		${XARGS} ${REINPLACE_CMD} \
+		-e 's|@LIBICONV@|-liconv|';
 
 .if !defined(NOPORTDOCS)
 post-build:
