@@ -2,13 +2,13 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.7 2008/07/28 03:47:54 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.8 2008/08/12 16:14:45 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
 PORTNAME=	graphviz
-PORTVERSION=	2.20.0
-PORTREVISION=	1
+PORTVERSION=	2.20.2
+PORTREVISION=	0
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/ \
 		http://mirror.inerd.com/FreeBSD/distfiles/${PORTNAME}/
@@ -34,7 +34,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 
-MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE}
+MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE} @LIBICONV@=-liconv
 SUB_FILES=	pkg-install
 MAN1=		acyclic.1 bcomps.1 ccomps.1 dijkstra.1 dot.1 \
 		dotty.1 gc.1 gvcolor.1 gvpack.1 gvpr.1 gxl2dot.1 \
@@ -402,6 +402,11 @@ pre-patch:
 		${WRKSRC}/cmd/smyrna/btree.c
 	@${REINPLACE_CMD} -e 's|#! /bin/sh|#! /${LOCALBASE}/bin/bash|g' \
 		${WRKSRC}/configure
+
+post-configure:
+	${FIND} ${WRKSRC} -name 'Makefile' | \
+		${XARGS} ${REINPLACE_CMD} \
+		-e 's|@LIBICONV@|-liconv|';
 
 .if defined(WITH_TK)
 post-install-script:
