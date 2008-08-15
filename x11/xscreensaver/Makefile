@@ -2,12 +2,12 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.8 2008/07/14 04:08:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.9 2008/07/14 04:10:12 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
-PORTVERSION=	5.05
+PORTVERSION=	5.06
 PORTREVISION=   1
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
@@ -106,6 +106,7 @@ MAN6=	anemone.6 anemotaxis.6 antinspect.6 antmaze.6 antspotlight.6 \
 	xanalogtv.6 xflame.6 xjack.6 xlyap.6 xmatrix.6 xrayswarm.6 \
 	xspirograph.6 xsublim.6 zoom.6 cwaves.6 glcells.6 voronoi.6 \
 	abstractile.6 moebiusgears.6 lockward.6 cubicgrid.6 hypnowheel.6 \
+        lcdscrub.6 skytentacles.6 \
 	xscreensaver-gl-helper.6
 
 .if ${ARCH} == "amd64"
