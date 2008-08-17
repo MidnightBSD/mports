@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.18 2008/08/17 22:04:59 laffer1 Exp $
+# $MidnightBSD: mports/comms/Makefile,v 1.19 2008/08/17 22:14:13 laffer1 Exp $
 #
 
     COMMENT = Communication utilities
@@ -22,6 +22,7 @@
     SUBDIR += ltmdm
     SUBDIR += minicom
     SUBDIR += pr
+    SUBDIR += qfaxreader
     SUBDIR += tits
 
 .include <bsd.port.subdir.mk>
