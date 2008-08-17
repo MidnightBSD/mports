@@ -3,11 +3,11 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.11 2008/04/29 01:36:46 ctriv Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.12 2008/06/04 18:13:47 laffer1 Exp $
 #
 
 PORTNAME=	xine
-PORTVERSION=	1.1.12
+PORTVERSION=	1.1.14
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -36,12 +36,12 @@ LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_ICONV=	yes
-USE_X_PREFIX=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack gnometarget
 USE_GMAKE=	yes
-USE_GL=		yes
+USE_XORG=	x11 xv xinerama
+USE_GL=		gl glu
 USE_SDL=	sdl
 USE_LDCONFIG=	yes
 # built in libtool is very old and doesn't work with fake.
@@ -76,7 +76,7 @@ MAN1=	xine-config.1 xine-list-1.1.1
 MAN5=	xine.5
 
 DOCSDIR=	${PREFIX}/share/doc/xine-lib
-PLIST_SUB=	PLUGINSDIR="lib/xine/plugins/1.21"
+PLIST_SUB=	PLUGINSDIR="lib/xine/plugins/1.23"
 
 .include <bsd.port.pre.mk>
 
@@ -160,7 +160,7 @@ CONFIGURE_ARGS+=	--disable-aalib --disable-aalibtest
 .endif
 
 .if defined(WITH_IMAGEMAGICK)
-LIB_DEPENDS+=	Wand.10:${PORTSDIR}/graphics/ImageMagick
+LIB_DEPENDS+=	MagickWand.1:${PORTSDIR}/graphics/ImageMagick
 PLIST_SUB+=	WITH_IMAGEMAGICK=""
 .else
 PLIST_SUB+=	WITH_IMAGEMAGICK="@comment "
