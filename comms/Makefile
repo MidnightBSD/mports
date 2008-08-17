@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.6 2007/06/27 01:14:31 laffer1 Exp $
+# $MidnightBSD: mports/comms/Makefile,v 1.7 2007/09/01 08:30:07 laffer1 Exp $
 #
 
     COMMENT = Communication utilities
 
+    SUBDIR += efax
     SUBDIR += libirman
     SUBDIR += libticables
     SUBDIR += lirc
