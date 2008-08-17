@@ -2,11 +2,11 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.9 2007/11/23 20:27:41 laffer1 Exp $
+# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.10 2008/05/18 06:36:29 laffer1 Exp $
 #
 
 PORTNAME=	nwcc
-PORTVERSION=	0.7.5
+PORTVERSION=	0.7.6
 PORTREVISION=	0
 CATEGORIES=	lang
 DISTNAME=	${PORTNAME}_${PORTVERSION}
