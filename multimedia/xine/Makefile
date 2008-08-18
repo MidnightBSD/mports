@@ -3,11 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/xine/Makefile,v 1.77 2008/03/23 13:59:02 nobutaka Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.7 2008/04/13 21:22:49 ctriv Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	0.99.5
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -81,7 +82,7 @@ CONFIGURE_ARGS+=	--disable-lirc
 .endif
 
 .if defined(WITH_CACA)
-LIBXINE_VER=	1.20
+LIBXINE_VER=	1.24
 .if !exists(${LOCALBASE}/lib/xine/plugins/${LIBXINE_VER}/xineplug_vo_out_caca.so)
 IGNORE=libxine should be compiled with caca support
 .endif
