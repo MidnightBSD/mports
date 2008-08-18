@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/Makefile,v 1.21 2008/08/17 22:49:16 laffer1 Exp $
+# $MidnightBSD: mports/comms/Makefile,v 1.22 2008/08/18 16:18:09 laffer1 Exp $
 #
 
     COMMENT = Communication utilities
@@ -21,6 +21,7 @@
     SUBDIR += lrzsz
     SUBDIR += ltmdm
     SUBDIR += minicom
+    SUBDIR += p5-Device-Modem
     SUBDIR += p5-Device-SerialPort
     SUBDIR += p5-SMS-Send
     SUBDIR += pr
