@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.230 2008/08/17 22:33:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.231 2008/08/17 22:37:11 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -79,6 +79,7 @@
     SUBDIR += gnustep-make
     SUBDIR += gorm
     SUBDIR += goffice
+    SUBDIR += goffice04
     SUBDIR += gstreamer-plugins-gconf
     SUBDIR += gstreamer-plugins-gnomevfs
     SUBDIR += gvfs
