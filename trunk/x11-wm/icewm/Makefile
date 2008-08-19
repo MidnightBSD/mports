@@ -2,12 +2,13 @@
 # Date created:		10 August 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.1 2008/03/24 21:29:56 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
 #
 
 PORTNAME=	icewm
 PORTVERSION=	1.2.35
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
 
@@ -15,6 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window Manager designed for speed, usability and consistency
 LICENSE=	lgpl
 
+USE_XORG=	x11 ice xinerama xext xrandr
 WANT_GNOME=	yes
 USE_GNOME=	gnometarget
 USE_GMAKE=	yes
