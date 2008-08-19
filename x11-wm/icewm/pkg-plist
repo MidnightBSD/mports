@@ -332,7 +332,6 @@ bin/icewmtray
 %%NLS%%share/locale/vi/LC_MESSAGES/icewm.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/icewm.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/icewm.mo
-%%NLS%%share/locale/zh_TW.Big5/LC_MESSAGES/icewm.mo
 @dirrm %%DATADIR%%/themes/yellowmotif
 @dirrm %%DATADIR%%/themes/win95
 @dirrm %%DATADIR%%/themes/warp4
