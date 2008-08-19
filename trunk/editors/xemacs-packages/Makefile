@@ -2,7 +2,7 @@
 # Date created:		24 Apr 1999
 # Whom:			Michael Elbel (me@FreeBSD.org)
 #
-# $MidnightBSD: mports/editors/xemacs-packages/Makefile,v 1.2 2008/03/28 16:22:55 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs-packages/Makefile,v 1.3 2008/06/11 02:28:59 laffer1 Exp $
 # $FreeBSD: ports/editors/xemacs-packages/Makefile,v 1.58 2007/06/10 18:36:27 anray Exp $
 #
 
@@ -59,7 +59,7 @@ DISTFILES=	\
 		ibuffer-1.09-pkg.tar.gz \
 		idlwave-1.32-pkg.tar.gz \
 		igrep-1.14-pkg.tar.gz \
-		ilisp-1.33-pkg.tar.gz \
+		ilisp-1.34-pkg.tar.gz \
 		ispell-1.32-pkg.tar.gz \
 		jde-1.51-pkg.tar.gz \
 		mail-lib-1.79-pkg.tar.gz \
@@ -129,6 +129,7 @@ DIST_SUBDIR=	xemacs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Basic XEmacs elisp packages(xemacs-packages)
+LICENSE=	unknown
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/${PACKAGES_SUBDIR}
