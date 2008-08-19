@@ -3,7 +3,7 @@
 # Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
 # $FreeBSD: ports/x11-wm/mlvwm/Makefile,v 1.26 2006/09/17 02:11:02 kris Exp $
-# $MidnightBSD: mports/x11-wm/mlvwm/Makefile,v 1.3 2007/08/01 20:08:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/mlvwm/Makefile,v 1.4 2008/03/05 03:23:53 laffer1 Exp $
 #
 
 PORTNAME=	mlvwm
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Macintosh like window manager for X11
+LICENSE=	mit
 
 DEPRECATED=	Project is dead
 
