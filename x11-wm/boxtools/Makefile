@@ -2,7 +2,7 @@
 # Date created:		September 11, 2002
 # Whom:			Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.3 2008/05/31 19:39:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.4 2008/08/19 20:35:35 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/boxtools/Makefile,v 1.7 2006/07/04 01:49:04 rafan Exp $
 #
 
@@ -24,7 +24,7 @@ MAN1=		bsetbg.1 bsetroot.1
 PORTDOCS=	README.bbtools README.bsetbg
 PLIST_FILES=	bin/bsetbg bin/bsetroot
 
-USE_XLIB=	yes
+USE_XORG=	x11 xext
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
 
