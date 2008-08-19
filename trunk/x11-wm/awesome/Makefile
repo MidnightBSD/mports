@@ -2,13 +2,12 @@
 # Date created:                September 26, 2007
 # Whom:                        Nikos Ntarmos <ntarmos@ceid.upatras.gr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.1 2008/06/02 00:11:04 archite Exp $
 # $FreeBSD: ports/x11-wm/awesome/Makefile,v 1.9 2008/05/26 13:13:22 garga Exp $
 #
 
 PORTNAME=	awesome
-PORTVERSION=	2.3
-PORTREVISION=	1
+PORTVERSION=	2.3.2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://awesome.naquadah.org/download/
 
