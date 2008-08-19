@@ -2,7 +2,7 @@
 # Date created:		September 11, 2002
 # Whom:			Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.2 2007/03/25 02:11:24 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.3 2008/05/31 19:39:59 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/boxtools/Makefile,v 1.7 2006/07/04 01:49:04 rafan Exp $
 #
 
@@ -14,8 +14,9 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	blackboxwm
 DISTNAME=	blackbox-${PORTVERSION}
 
-MAINTAINER=	A.J.Caines@halplant.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Style tools for the blackbox family of window managers
+LICENSE=	mit
 
 CONFLICTS=	blackbox-0.[7-9]*
 
