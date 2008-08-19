@@ -2,18 +2,19 @@
 # Date created:		2004-05-19
 # Whom:			michael johnson <ahze@ahze.net>
 #
-# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.2 2007/11/09 15:23:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/skippy-xd/Makefile,v 1.3 2008/04/14 18:45:20 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/skippy-xd/Makefile,v 1.3 2006/05/13 05:00:43 edwin Exp $
 #
 
 PORTNAME=	skippy-xd
 PORTVERSION=	0.5.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://thegraveyard.org/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-screen X11 task-switcher like Apple's Expose
+LICENSE=	gpl2
 
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 BUILD_DEPENDS=	freetype-config:${PORTSDIR}/print/freetype2
@@ -27,7 +28,7 @@ PLIST_DIRS=	%%DATADIR%%
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/X11R6|${X11BASE}|; \
+	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|; \
 		s|/usr/local|${LOCALBASE}|; s|gcc|${CC}|' \
 			${WRKSRC}/Makefile
 post-build:
