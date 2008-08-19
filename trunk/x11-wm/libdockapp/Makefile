@@ -2,25 +2,23 @@
 # Date created:		17 July 1999
 # Whom:			Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.2 2007/03/22 04:24:09 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.3 2008/03/05 03:22:19 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/libdockapp/Makefile,v 1.26 2006/05/13 05:00:42 edwin Exp $
 #
 
 PORTNAME=	libdockapp
-PORTVERSION=	0.6.1
-PORTREVISION=	2
+PORTVERSION=	0.6.2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://solfertje.student.utwente.nl/~dalroi/libdockapp/files/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Standard library for Window Maker dock apps
-
-WRKSRC=		${WRKDIR}/${PORTNAME:S/^lib//}-${PORTVERSION}
+LICENSE=	mit
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xext xpm
+USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--without-font --without-examples
@@ -35,7 +33,7 @@ post-install:
 .for file in fonts.alias fonts.dir *.pcf.gz
 	${INSTALL_DATA} ${WRKSRC}/fonts/${file} ${PREFIX}/lib/X11/fonts/dockapp
 .endfor
-.if !defined(NOPORTDOCS)
+.if !defined(NOPORTEXAMPLES)
 	@${MKDIR} ${EXAMPLESDIR}
 .for file in README
 	${INSTALL_DATA} ${WRKSRC}/examples/${file} ${EXAMPLESDIR}
