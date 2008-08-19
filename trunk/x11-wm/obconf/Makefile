@@ -2,7 +2,7 @@
 # Date created:				2002-10-13
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.3 2008/03/05 03:54:50 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.4 2008/07/08 03:40:51 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/obconf/Makefile,v 1.13 2006/09/02 10:02:10 novel Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://offload1.icculus.org/openbox/obconf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preferences manager for the Openbox window manager
+LICENSE=	gpl2
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
 		obparser.21:${PORTSDIR}/x11-wm/openbox
