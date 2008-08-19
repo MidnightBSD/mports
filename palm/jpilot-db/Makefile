@@ -4,17 +4,19 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/palm/jpilot-db/Makefile,v 1.1 2006/09/22 09:59:10 ijliao Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/palm/jpilot-db/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 #
 
 PORTNAME=	jpilot-db
 PORTVERSION=	1.3.20
+PORTREVISION=	1
 CATEGORIES=	palm java
 MASTER_SITES=	http://chickenshick.com/jpilot-db/download/
 EXTRACT_SUFX=	-ej.jar
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A desktop app for pilot-db
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 EXTRACT_CMD=	${CP}
