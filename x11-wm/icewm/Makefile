@@ -2,15 +2,18 @@
 # Date created:		10 August 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.1 2008/03/24 21:29:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.2 2008/08/19 17:59:16 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
 #
 
 PORTNAME=	icewm
-PORTVERSION=	1.2.35
+PORTVERSION=	1.2.36
 PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
+DISTFILES=	icewm-1.2.36pre2.tar.gz
+
+WRKSRC=		${WRKDIR}/icewm-1.2.36pre2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Window Manager designed for speed, usability and consistency
