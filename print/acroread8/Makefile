@@ -2,13 +2,13 @@
 # Date created:		20 October 2007
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.3 2008/06/15 16:17:03 laffer1 Exp $
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.4 2008/06/25 15:00:14 laffer1 Exp $
 # $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
 #
 
 PORTNAME=	acroread8
 PORTVERSION?=	8.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/ \
 		ftp://ftp.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/
@@ -25,7 +25,7 @@ RUN_DEPENDS=	acroreadwrapper>=0.0.20071020:${PORTSDIR}/print/acroreadwrapper \
 		${LOCALBASE}/lib/linux-nvu/libgtkembedmoz.so:${PORTSDIR}/www/linux-nvu
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
-ONLY_FOR_ARCHS=	i386 amd64
+ONLY_FOR_ARCHS=	i386
 USE_BZIP2=	yes
 USE_LINUX=	yes
 USE_XLIB=	yes
@@ -80,5 +80,9 @@ do-install:
 	@${ECHO_CMD} Installing...
 	@${MKDIR} ${INSTALLDIR}
 	@cd ${WRKSRC} && ${SETENV} PATH=${WRKDIR}/bin:${PATH} ${INSTALLEXEC} > /dev/null
+
+post-fake:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g'  \
+		${FAKE_DESTDIR}${LOCALBASE}/Adobe/Reader8/ENU/Adobe/Reader8/Reader/GlobalPrefs/.config
 
 .include <bsd.port.mk>
