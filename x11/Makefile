@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.50 2008/03/28 04:59:11 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.51 2008/05/09 18:43:13 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -139,7 +139,6 @@
     SUBDIR += xf86dga
     SUBDIR += xf86dgaproto
     SUBDIR += xf86driproto
-    SUBDIR += xf86ext
     SUBDIR += xf86miscproto
     SUBDIR += xf86rushproto
     SUBDIR += xf86vidmodeproto
