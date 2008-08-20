@@ -3,11 +3,11 @@
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-fonts/libXft/Makefile,v 1.44 2007/05/19 20:29:31 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.4 2007/10/04 20:05:15 ctriv Exp $
 #
 
 PORTNAME=	libXft
-PORTVERSION=	2.1.12
+PORTVERSION=	2.1.13
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
