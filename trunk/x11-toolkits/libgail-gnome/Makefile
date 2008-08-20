@@ -2,7 +2,7 @@
 # Date Created:			12 April 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.1 2008/01/01 20:11:30 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libgail-gnome/Makefile,v 1.45 2007/10/24 23:34:35 marcus Exp $
 #   $MCom: ports/x11-toolkits/libgail-gnome/Makefile,v 1.21 2007/09/17 13:13:59 ahze Exp $
 #
@@ -15,6 +15,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of the ATK interfaces for GNOME widgets
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
