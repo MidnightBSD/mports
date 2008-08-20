@@ -2,7 +2,7 @@
 # Date created:        20 June 1997
 # Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.1 2007/05/25 19:59:15 laffer1 Exp $
 # $FreeBSD: ports/x11-clocks/asclock/Makefile,v 1.20 2006/12/30 15:08:20 garga Exp $
 #
 
@@ -20,8 +20,7 @@ COMMENT=	Afterstep clock with some language extensions
 CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 
 USE_IMAKE=	yes
-USE_PREFIX=	yes
-USE_XPM=	yes
+USE_XORG=	xpm xext x11
 MAN1=		asclock.1
 
 pre-configure:
