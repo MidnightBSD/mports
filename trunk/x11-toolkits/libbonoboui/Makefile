@@ -2,7 +2,7 @@
 # Date created:				04 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.2 2008/03/14 02:04:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.3 2008/05/31 21:32:03 crash Exp $
 # $FreeBSD: ports/x11-toolkits/libbonoboui/Makefile,v 1.57 2007/03/19 05:14:01 marcus Exp $
 #    $MCom: ports/x11-toolkits/libbonoboui/Makefile,v 1.55 2007/03/12 18:11:27 marcus Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GUI frontend to the libbonobo component of GNOME 2
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
