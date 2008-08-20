@@ -2,15 +2,14 @@
 # Date created:				12 August 2001
 # Whom:					Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.1 2007/05/21 01:33:03 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/gentoo/Makefile,v 1.52 2006/08/28 12:01:16 miwi Exp $
 #
 
 PORTNAME=	gentoo
-PORTVERSION=	0.11.56
+PORTVERSION=	0.11.57
 CATEGORIES=	x11-fm
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ based, file manager inspired by DirectoryOpus
