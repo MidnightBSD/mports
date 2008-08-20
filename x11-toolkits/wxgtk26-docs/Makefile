@@ -2,7 +2,7 @@
 # Date created:				November, 15th 2005
 # Whom:					Matthias Sund <m.sund@arcor.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/wxgtk26-docs/Makefile,v 1.1 2008/04/20 20:16:12 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/wxgtk26-docs/Makefile,v 1.4 2006/04/02 11:06:58 fjoe Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	wxWidgets-${PORTVERSION}-HTML
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	wxWidgets ${PORTVERSION} HTML documentation
+LICENSE=	unknown
 
 LATEST_LINK=	wxgtk26_doc
 
