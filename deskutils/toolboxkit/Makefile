@@ -2,7 +2,7 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/toolboxkit/Makefile,v 1.1 2007/04/07 18:47:31 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/toolboxkit/Makefile,v 1.2 2007/11/07 20:20:11 ctriv Exp $
 # $FreeBSD: ports/deskutils/toolboxkit/Makefile,v 1.4 2007/02/25 06:48:26 dinoex Exp $
 #
 
@@ -18,7 +18,7 @@ DISTNAME=	Toolbox-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Toolbox bundle for GNUstep
-
+LICENSE=        gpl2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes

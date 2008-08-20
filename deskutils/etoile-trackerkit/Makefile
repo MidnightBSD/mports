@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.4 2007/10/25 22:52:08 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-trackerkit/Makefile,v 1.5 2007/11/07 20:20:11 ctriv Exp $
 # $FreeBSD: ports/deskutils/etoile-trackerkit/Makefile,v 1.7 2007/01/31 18:17:53 dinoex Exp $
 #
 
@@ -17,7 +17,7 @@ DISTNAME=	Etoile-${SNAPSHOT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project TrackerKit framework
-
+LICENSE=        lgpl
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
