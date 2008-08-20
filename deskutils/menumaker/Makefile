@@ -2,7 +2,7 @@
 # Date created:				2007-03-21
 # Whom:					alepulver
 # 
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/menumaker/Makefile,v 1.1 2008/03/24 21:32:23 laffer1 Exp $
 # $FreeBSD: ports/deskutils/menumaker/Makefile,v 1.1 2007/03/23 00:31:58 alepulver Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Menu generator for X Window Managers and desktop environments
-
+LICENSE=        unknown
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
 

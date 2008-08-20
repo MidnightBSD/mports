@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-servicesbarkit/Makefile,v 1.3 2007/10/25 22:51:13 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-servicesbarkit/Makefile,v 1.4 2007/11/07 20:20:10 ctriv Exp $
 # $FreeBSD: ports/deskutils/etoile-servicesbarkit/Makefile,v 1.6 2007/01/31 18:17:53 dinoex Exp $
 #
 
@@ -17,7 +17,7 @@ DISTNAME=	Etoile-${SNAPSHOT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project ServicesBarKit framework
-
+LICENSE=        lgpl
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
