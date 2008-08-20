@@ -2,7 +2,7 @@
 # Date created:        20 June 1997
 # Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.1 2007/05/25 19:59:15 laffer1 Exp $
+# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.2 2008/08/20 19:39:34 laffer1 Exp $
 # $FreeBSD: ports/x11-clocks/asclock/Makefile,v 1.20 2006/12/30 15:08:20 garga Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Afterstep clock with some language extensions
+LICENSE=	unknown
 
 CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
 
