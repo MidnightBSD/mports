@@ -2,16 +2,15 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.1 2007/09/01 06:36:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.3 2008/06/18 23:43:02 stevan Exp $
 # $FreeBSD: ports/x11-toolkits/eel/Makefile,v 1.33 2007/07/03 17:08:19 mezz Exp $
 #   $MCom: ports/x11-toolkits/eel/Makefile,v 1.51 2007/03/12 15:59:00 ahze Exp $
 #
 
 PORTNAME=	eel
-PORTVERSION=	2.21.90
+PORTVERSION=	2.22.2
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,9 +19,9 @@ COMMENT=	Generally useful classes and extensions to GNOME
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	xrender
 GNOME_DESKTOP_VERSION=2
-USE_GNOME=	gnomeprefix gnomehack gail gnomedesktop gnomemenus ltverhack
+USE_GNOME=	gnomeprefix gnomehack gail gnomedesktop ltverhack intlhack
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
