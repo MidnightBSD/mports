@@ -3,7 +3,7 @@
 # Whom:                hemi@puresimplicity.net
 #
 # $FreeBSD: ports/x11/xscreensaver.app/Makefile,v 1.4 2005/11/22 22:15:02 pav Exp $
-# $MidnightBSD: mports/x11/xscreensaver.app/Makefile,v 1.2 2007/03/25 02:56:11 ctriv Exp $
+# $MidnightBSD: mports/x11/xscreensaver.app/Makefile,v 1.3 2008/08/20 19:42:48 laffer1 Exp $
 #
 
 PORTNAME=	XScreenSaver.App
@@ -14,6 +14,7 @@ MASTER_SITES=	SF/xscreensaverapp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WindowMaker dockapp to control XScreenSaver
+LICENSE=	gpl2
 
 LIB_DEPENDS=	dockapp.2:${PORTSDIR}/x11-wm/libdockapp
 
