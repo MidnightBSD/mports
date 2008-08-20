@@ -2,13 +2,14 @@
 # Date created:				18 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.3 2008/03/14 02:02:57 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.4 2008/06/08 18:30:51 laffer1 Exp $
 # $FreeBSD: ports/x11/yelp/Makefile,v 1.57 2007/05/19 20:28:22 flz Exp $
 #   $MCom: ports/x11/yelp/Makefile,v 1.110 2007/03/14 17:45:40 marcus Exp $
 #
 
 PORTNAME=	yelp
 PORTVERSION=	2.22.1
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
