@@ -2,7 +2,7 @@
 # Date created:		30 May 2004
 # Whom:			anholt@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-cyrillic/Makefile,v 1.5 2008/08/20 19:07:49 laffer1 Exp $
 # $FreeBSD: ports/x11-fonts/xorg-fonts-cyrillic/Makefile,v 1.11 2007/09/13 19:44:52 flz Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org Cyrillic bitmap fonts
+LICENSE=	agg
 
 RUN_DEPENDS=	${FONTDIR}/cyrillic/crox1c.pcf.gz:${PORTSDIR}/x11-fonts/font-cronyx-cyrillic \
 		${FONTDIR}/cyrillic/koi12x24.pcf.gz:${PORTSDIR}/x11-fonts/font-misc-cyrillic \
