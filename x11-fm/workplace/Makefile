@@ -2,7 +2,7 @@
 # Date created:				7 March 1998
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/x11-fm/workplace/Makefile,v 1.2 2007/03/25 01:56:52 ctriv Exp $
+# $MidnightBSD: mports/x11-fm/workplace/Makefile,v 1.3 2008/05/21 06:17:03 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/workplace/Makefile,v 1.28 2006/03/07 08:27:56 ade Exp $
 #
 
@@ -19,6 +19,7 @@ PATCHFILES=	workplace-1.0.a3+tj1.diff.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager and launcher
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk12
