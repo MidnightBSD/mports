@@ -2,13 +2,13 @@
 # Date created:		August 31, 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.3 2007/05/04 07:14:30 ctriv Exp $
+# $MidnightBSD: mports/x11/wdm/Makefile,v 1.4 2007/08/01 19:57:02 laffer1 Exp $
 # $FreeBSD: ports/x11/wdm/Makefile,v 1.73 2006/07/16 16:17:04 pav Exp $
 #
 
 PORTNAME=	wdm
 PORTVERSION=	1.28
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	http://voins.program.ru/wdm/:wdm \
 		http://wolfram.schneider.org/bsd/gif/bsd/:pic_large \
@@ -22,13 +22,14 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WINGs Display Manager; an xdm replacement
+LICENSE=	gpl2
 
 LIB_DEPENDS=	wraster.4:${PORTSDIR}/x11-wm/windowmaker
 
 NOT_FOR_ARCHS=	sparc64
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
+USE_XORG=	x11 xmu
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
@@ -41,8 +42,8 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-Logo=beastie.xpm \
 		--with-gfx-incs=${LOCALBASE}/include \
 		--with-gfx-libs=${LOCALBASE}/lib \
-		--with-defuserpath=/bin:/usr/bin:/sbin:/usr/sbin:${X11BASE}/bin:${LOCALBASE}/bin \
-		--with-defsystempath=/bin:/usr/bin:/sbin:/usr/sbin:${X11BASE}/bin \
+		--with-defuserpath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin:${LOCALBASE}/bin \
+		--with-defsystempath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
 
 MAN1=	wdm.1 wdmLogin.1
@@ -50,8 +51,8 @@ MAN1=	wdm.1 wdmLogin.1
 CPPFLAGS=	-I${LOCALBASE}/include -DCSRG_BASED -DHAS_SETUSERCONTEXT
 LDFLAGS=	-L${LOCALBASE}/lib -lintl
 
-DEF_SERVER?=	${X11BASE}/bin/X
-XRDB_PATH?=	${X11BASE}/bin/xrdb
+DEF_SERVER?=	${LOCALBASE}/bin/X
+XRDB_PATH?=	${LOCALBASE}/bin/xrdb
 
 WDMDIR=		${PREFIX}/lib/X11/wdm
 
