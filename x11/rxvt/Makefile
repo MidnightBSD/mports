@@ -2,7 +2,7 @@
 # Date created:         5th December 1994
 # Whom:                 gpalmer@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.4 2008/03/31 00:03:25 laffer1 Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.5 2008/04/04 01:43:47 laffer1 Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -11,12 +11,13 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES+=	x11
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low memory usage xterm replacement that supports color
+LICENSE=	gpl2
 
 OPTIONS=	XIM "XIM (X Input Method) protocol support" On \
 		XGETDEFAULT "Enable XGetDefault() resource checking" Off \
@@ -30,13 +31,12 @@ OPTIONS=	XIM "XIM (X Input Method) protocol support" On \
 		XTERM_SCROLLBAR "Enable Xterm'ish scrollbars" Off \
 		CLEARTEXTPASSWD "Use cleartext passwords" Off
 
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-utmp --enable-wtmp \
+CONFIGURE_ARGS=	--enable-utmp --enable-wtmp --enable-ttygid \
 		--with-xpm --enable-xpm-background --enable-transparency \
-		--with-xpm-includes=${X11BASE}/include/X11 \
-		--with-xpm-library=${X11BASE}/lib
+		--with-xpm-includes=${LOCALBASE}/include/X11 \
+		--with-xpm-library=${LOCALBASE}/lib
 MAN1=		rxvt.1
 PLIST_FILES=	bin/rxvt
 
