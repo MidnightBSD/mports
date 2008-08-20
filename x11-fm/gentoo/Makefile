@@ -2,7 +2,7 @@
 # Date created:				12 August 2001
 # Whom:					Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.1 2007/05/21 01:33:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.2 2008/08/20 19:02:53 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/gentoo/Makefile,v 1.52 2006/08/28 12:01:16 miwi Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gtk+ based, file manager inspired by DirectoryOpus
+LICENSE=	gpl2
 
 OPTIONS=	NLS "Native Language Support" on \
 		FAM "File Alteration Monitor Support" off
