@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.1 2008/05/20 21:54:54 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.0
+PORTVERSION=	1.0.2
 CATEGORIES=	devel python
 MASTER_SITES=	http://hg.intevation.org/files/
 
