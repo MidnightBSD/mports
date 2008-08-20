@@ -2,32 +2,31 @@
 # Date created:		25 February 1999
 # Whom:		 	Chris Piazza <cpiazza@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/wterm/Makefile,v 1.3 2007/03/25 02:52:45 ctriv Exp $
+# $MidnightBSD: mports/x11/wterm/Makefile,v 1.4 2007/04/17 17:49:55 laffer1 Exp $
 # $FreeBSD: ports/x11/wterm/Makefile,v 1.26 2006/11/30 22:44:28 dougb Exp $
 #
 
 PORTNAME=	wterm
 PORTVERSION=	6.2.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 windowmaker
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	A color vt102 terminal emulator with transparency support
+LICENSE=	gpl2
 
-BUILD_DEPENDS=	${PREFIX}/lib/libWINGs.a:${PORTSDIR}/x11-wm/windowmaker
+BUILD_DEPENDS=	${LOCALBASE}/lib/libWINGs.a:${PORTSDIR}/x11-wm/windowmaker
 
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-transparency --enable-xpm-background \
 		--disable-delete-key --disable-backspace-key \
 		--enable-next-scrollbar --enable-utmp --enable-wtmp \
 		--enable-menubar --enable-graphics --with-term=xterm-color \
-		--with-xpm-includes=${X11BASE} --with-xpm-library=${X11BASE} \
+		--with-xpm-includes=${LOCALBASE} --with-xpm-library=${LOCALBASE} \
 		--libdir=${PREFIX}/lib
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include/WINGs -L${PREFIX}/lib" LDFLAGS="-L${PREFIX}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -L${PREFIX}/lib" LDFLAGS="-L${PREFIX}/lib"
 
 MAN1=		wterm.1
 PLIST_FILES=	bin/wterm
