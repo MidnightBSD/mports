@@ -2,51 +2,52 @@
 # Date created:				13 March 2004
 # Whom:					nivit@users.sourceforge.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.1 2007/04/04 22:31:36 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tkshape/Makefile,v 1.4 2006/12/10 01:21:51 nivit Exp $
 
-PORTNAME=		tkshape
-PORTVERSION=		0.4
-CATEGORIES=		x11-toolkits
-MASTER_SITES=		http://www.cs.man.ac.uk/~fellowsd/tcl/ \
-			http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
-DISTNAME=		shape${PORTVERSION:S/.//g}
+PORTNAME=	tkshape
+PORTVERSION=	0.4
+CATEGORIES=	x11-toolkits
+MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/ \
+		http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
+DISTNAME=	shape${PORTVERSION:S/.//g}
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		A Tk library to access to X Shaped Window Extension
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A Tk library to access to X Shaped Window Extension
+LICENSE=	other
 
-LIB_DEPENDS=		tk84.1:${PORTSDIR}/x11-toolkits/tk84
+LIB_DEPENDS=	tk84.1:${PORTSDIR}/x11-toolkits/tk84
 
-PLIST_SUB=		PORTNAME="${PORTNAME}"
+PLIST_SUB=	PORTNAME="${PORTNAME}"
 
-USE_LDCONFIG=		yes
+USE_LDCONFIG=	yes
 
-OPTIONS=		MANPAGES "Install manual pages" on
+OPTIONS=	MANPAGES "Install manual pages" on
 
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_MANPAGES)
-MAN3=			CombShape.3 QuryShape.3
-MANN=			shape.n
+MAN3=		CombShape.3 QuryShape.3
+MANN=		shape.n
 .endif
 
-WRKSRC=			${WRKDIR}/${PORTNAME:C/^tk//1}${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME:C/^tk//1}${PORTVERSION}
 
-TCL_VER?=		8.4
-TK_VER?=		8.4
-WISH?=			wish${TK_VER}
+TCL_VER?=	8.4
+TK_VER?=	8.4
+WISH?=		wish${TK_VER}
 
-USE_GMAKE=		yes
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS=		--with-tclconf=${LOCALBASE}/lib/tcl${TCL_VER} \
+USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-tclconf=${LOCALBASE}/lib/tcl${TCL_VER} \
 			--with-tkconf=${LOCALBASE}/lib/tk${TK_VER}
 CONFIGURE_WRKSRC=	${WRKSRC}/unix
-BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
+BUILD_WRKSRC=	${CONFIGURE_WRKSRC}
 
-WHERE_REPLACE=		${WRKSRC}/demos
-REPLACE_FILES=		${WHERE_REPLACE}/dragger.tcl \
-			${WHERE_REPLACE}/fancytext.tcl \
-			${WHERE_REPLACE}/fingerprint.tcl
+WHERE_REPLACE=	${WRKSRC}/demos
+REPLACE_FILES=	${WHERE_REPLACE}/dragger.tcl \
+		${WHERE_REPLACE}/fancytext.tcl \
+		${WHERE_REPLACE}/fingerprint.tcl
 
 post-patch: .SILENT
 	for FILE in ${REPLACE_FILES}; do \
@@ -56,14 +57,14 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's,(^CFLAGS = )-g,\1${CFLAGS},' \
 		${BUILD_WRKSRC}/Makefile.in
 
-FIND_DIRS=		-type d \! -empty
-FIND_DEMOS=		demos -type f -and -name "*.tcl" -maxdepth 1
-FIND_IMAGES=		demos/images -type f \
-			-and \( -name "*.gif" -or -name "*.xbm" \
-			-or -name "*.cur" \)
+FIND_DIRS=	-type d \! -empty
+FIND_DEMOS=	demos -type f -and -name "*.tcl" -maxdepth 1
+FIND_IMAGES=	demos/images -type f \
+		-and \( -name "*.gif" -or -name "*.xbm" \
+		-or -name "*.cur" \)
 
-TARGET_DIR=		${PREFIX}/lib/${PORTNAME}
-MANPAGES=		${MAN3} ${MANN}
+TARGET_DIR=	${PREFIX}/lib/${PORTNAME}
+MANPAGES=	${MAN3} ${MANN}
 
 do-install:
 # script, library
