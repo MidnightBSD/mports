@@ -1,19 +1,6 @@
---- configure.orig	Sat May 17 13:51:10 2008
-+++ configure	Thu Aug 14 10:15:56 2008
-@@ -179,6 +179,12 @@
-         f_insttool=/usr/bin/install
-       fi
-       ;;
-+   MidnightBSD:*)
-+      f_platform=freebsd-g++
-+      if test "$f_insttool" = NO; then
-+        f_insttool=/usr/bin/install
-+      fi
-+      ;;
-     HP-UX:*)
-       f_platform=hpux-g++
-       if test "$f_insttool" = NO; then
-@@ -596,7 +602,7 @@
+--- configure.orig	Sat Oct 28 18:20:11 2006
++++ configure	Sun Feb 25 15:23:52 2007
+@@ -525,7 +525,7 @@
  EOF
  fi
  
@@ -22,7 +9,7 @@
  
  for i in $f_inmakefiles ; do
       SRC=$i
-@@ -612,10 +618,8 @@
+@@ -541,10 +541,8 @@
       if test $i = Makefile.in; then
         echo "" >> $DST
         echo "all: src/version.cpp " >> $DST
@@ -35,7 +22,7 @@
         if test $f_wizard = YES; then
           echo "	\$(MAKE) -C addon/doxywizard" >> $DST
         fi
-@@ -637,7 +641,7 @@
+@@ -562,7 +560,7 @@
       echo "  Created $DST from $SRC..."
  done
  
