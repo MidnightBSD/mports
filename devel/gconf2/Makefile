@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
 #   $MCom: ports/devel/gconf2/Makefile,v 1.72 2006/04/13 07:52:32 bland Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.2 2007/03/20 18:14:14 ctriv Exp $
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.3 2008/05/31 20:28:27 laffer1 Exp $
 #
 
 PORTNAME=	gconf2
@@ -18,6 +18,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A configuration database system for GNOME
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 
