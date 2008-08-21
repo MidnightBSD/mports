@@ -2,7 +2,7 @@
 # Date created:				18 September 2004
 # Whom:					Juraj Lutter <otis@sk.freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libconfuse/Makefile,v 1.1 2008/06/01 21:45:49 archite Exp $
 # $FreeBSD: ports/devel/libconfuse/Makefile,v 1.7 2008/04/25 12:50:35 garga Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	confuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configuration file parsing library
+LICENSE=	mit
 
 .if defined(WITH_CHECK)
 LIB_DEPENDS+=	${LOCALBASE}/lib/libcheck.a:${PORTSDIR}/devel/libcheck
