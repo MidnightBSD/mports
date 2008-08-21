@@ -2,7 +2,7 @@
 # Date created:				2nd June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.1 2007/09/01 07:23:09 laffer1 Exp $
+# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.2 2007/12/30 01:00:16 laffer1 Exp $
 # $FreeBSD: ports/www/libgtkhtml/Makefile,v 1.81 2007/05/19 20:25:07 flz Exp $
 #   $MCom: ports/www/libgtkhtml/Makefile,v 1.39 2006/09/10 00:51:14 mezz Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight HTML rendering/printing/editing engine
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_XLIB=	yes
