@@ -2,7 +2,7 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.1 2008/08/01 11:47:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.2 2008/08/21 17:28:25 laffer1 Exp $
 #
 
 PORTNAME=	memcached
@@ -21,7 +21,7 @@ LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
 USE_RC_SUBR=	memcached
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=		--with-libevent=${LOCALBASE} --program-prefix=
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 OPTIONS=	REPCACHED	"Enable data replication feature"	off
 
