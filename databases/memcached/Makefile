@@ -2,7 +2,7 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.1 2008/08/01 11:47:31 laffer1 Exp $
 #
 
 PORTNAME=	memcached
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High-performance distributed memory object cache system
+LICENSE=	bsd3
 
 LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
 
