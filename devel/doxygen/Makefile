@@ -2,7 +2,7 @@
 # Date created:        20 March 1998
 # Whom:                Joep Grooten <joep@di.nl>
 #
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.1 2007/02/25 17:14:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.2 2008/08/14 14:30:06 laffer1 Exp $
 # $FreeBSD: ports/devel/doxygen/Makefile,v 1.53 2006/06/27 14:14:17 mi Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A documentation system for C, C++ and other languages
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
 LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
