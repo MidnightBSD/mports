@@ -2,19 +2,19 @@
 # Date created:			3 January 2000
 # Whom:				Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD: mports/www/p5-HTML-Tree/Makefile,v 1.1 2007/03/20 19:11:09 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-HTML-Tree/Makefile,v 1.2 2008/07/25 05:50:27 laffer1 Exp $
 # $FreeBSD: ports/www/p5-HTML-Tree/Makefile,v 1.19 2006/08/07 06:41:04 clsung Exp $
 #
 
 PORTNAME=	HTML-Tree
 PORTVERSION=	3.23
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	HTML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of modules to manupulate HTML syntax trees
+LICENSE=	perl
 
 BUILD_DEPENDS=	p5-HTML-Parser>=2.19:${PORTSDIR}/www/p5-HTML-Parser \
 		p5-HTML-Tagset>=3.02:${PORTSDIR}/www/p5-HTML-Tagset
@@ -27,12 +27,4 @@ MAN3=		HTML::Parse.3 HTML::TreeBuilder.3 HTML::AsSubs.3 \
 		HTML::Tree::Scanning.3 HTML::Tree::AboutObjects.3 \
 		HTML::Tree::AboutTrees.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-post-patch:
-	${PERL} -pi -e 's/our\s+([\$$\@\%]\w+)/use vars qw($$1); $$1/;' ${WRKSRC}/t/*.t
-	${PERL} -pi -e 's,-Tw,-,; s/(use|no) warnings;.*//' ${WRKSRC}/t/*.t
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
