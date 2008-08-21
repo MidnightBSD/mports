@@ -2,7 +2,7 @@
 # Date Created:			14 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.3 2008/05/31 21:22:10 crash Exp $
+# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.4 2008/06/14 14:44:38 laffer1 Exp $
 # $FreeBSD: ports/devel/libbonobo/Makefile,v 1.54 2007/03/19 05:13:31 marcus Exp $
 #    $MCom: ports/devel/libbonobo/Makefile,v 1.58 2007/03/12 17:59:36 marcus Exp $
 #
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A component and compound document system for GNOME2
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
