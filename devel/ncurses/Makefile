@@ -2,13 +2,13 @@
 # Date created:				23 September 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.4 2008/03/31 15:10:26 laffer1 Exp $
 # $FreeBSD: ports/devel/ncurses/Makefile,v 1.49 2008/03/31 07:26:11 rafan Exp $
 #
 
 PORTNAME=	ncurses
 PORTVERSION=	${RELEASE}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,6 +16,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for terminal-independent, full-screen output
+LICENSE=	mit
 
 CONFLICTS=	ncurses-devel-*
 
