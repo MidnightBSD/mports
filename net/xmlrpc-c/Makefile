@@ -3,7 +3,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.1 2008/02/27 01:47:46 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.2 2008/08/21 19:19:06 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
@@ -15,6 +15,7 @@ DISTFILES=	${PORTNAME:S/-c//}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
+LICENSE=	agg
 
 OPTIONS=	DEBUG "Compile with debugging information" off \
 		CURL "Compile with curl support" on \
