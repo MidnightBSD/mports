@@ -2,20 +2,21 @@
 # Date created:				1st June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/oaf/Makefile,v 1.1 2007/10/27 17:21:15 laffer1 Exp $
 # $FreeBSD: ports/devel/oaf/Makefile,v 1.33 2007/05/19 20:03:14 flz Exp $
 #
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/oaf/0.6
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object Activation Framework for GNOME
+LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
