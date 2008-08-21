@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11/etoile-xwindowserverkit/Makefile,v 1.5 2007/10/27 04:23:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/etoile-xwindowserverkit/Makefile,v 1.6 2007/11/07 20:20:17 ctriv Exp $
 # $FreeBSD: ports/x11/etoile-xwindowserverkit/Makefile,v 1.7 2007/01/31 18:18:13 dinoex Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project XWindowServerKit frameowrk
+LICENSE=	bsd3
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
