@@ -2,7 +2,7 @@
 # Date created:         9 January 1994
 # Whom:                 jmz
 #
-# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.1 2006/10/28 05:44:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.2 2007/05/04 07:19:08 ctriv Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
 #
 
@@ -21,6 +21,7 @@ PATCH_DIST_STRIP= -p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 Image Loading Utility
+LICENSE=	mit
 
 PATCH_STRIP=	-p1
 EXTRA_PATCHES=	${WRKSRC}/debian/patches/*.dpatch
