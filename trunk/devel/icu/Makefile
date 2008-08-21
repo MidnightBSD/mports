@@ -3,7 +3,7 @@
 # Whom:					dwm
 #
 # $FreeBSD: ports/devel/icu/Makefile,v 1.27 2008/02/18 17:06:32 mi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/icu/Makefile,v 1.3 2008/03/31 15:20:06 laffer1 Exp $
 #
 
 PORTNAME=	icu
@@ -16,11 +16,14 @@ EXTRACT_SUFX=	-src.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	International Components for Unicode (from IBM)
+LICENSE=	mit
 
 OPTIONS=	THREADS "Build thread-safe version of the library" on
 CONFLICTS=	icu2-[0-9]*
 
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
+
+ONLY_FOR_ARCHS=	i386 amd64
 
 WRKSRC=			${WRKDIR}/icu/source
 
