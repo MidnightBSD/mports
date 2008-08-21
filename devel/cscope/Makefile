@@ -3,7 +3,7 @@
 # Date created:		1998-11-21
 # Whom:			Castor Fu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cscope/Makefile,v 1.1 2007/01/22 09:43:23 wintellect Exp $
 # $FreeBSD: ports/devel/cscope/Makefile,v 1.27 2006/11/01 11:23:29 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interactive C program browser
+LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-yacc
