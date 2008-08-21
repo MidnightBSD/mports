@@ -3,16 +3,18 @@
 # Whom:					trevor
 #
 # $FreeBSD: ports/devel/cvsgraph/Makefile,v 1.25 2006/07/10 01:15:03 clsung Exp $
-# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.1 2006/11/25 00:45:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.2 2007/04/30 02:40:29 ctriv Exp $
 #
 
 PORTNAME=	cvsgraph
 PORTVERSION=	1.6.1
+PORTREVISION=	1
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph the life story of a file under CVS or RCS
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd
 
