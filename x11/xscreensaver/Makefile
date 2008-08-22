@@ -2,13 +2,13 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.9 2008/07/14 04:10:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.10 2008/08/15 19:02:34 crash Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.06
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 		http://dougbarton.us/Downloads/
@@ -18,16 +18,15 @@ COMMENT=	Save your screen while you entertain your cat
 LICENSE=	x11
 
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
-		gtk-x11-2.0:${PORTSDIR}/x11-toolkits/gtk20 \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
-		glade-2.0.0:${PORTSDIR}/devel/libglade2 \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 DESTDIRNAME=	install_prefix
 
-USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi xaw xcomposite ice  x11
+USE_GNOME=	glib20 gtk20 libglade2
+USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi xaw xcomposite ice x11
 USE_GL=		yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
