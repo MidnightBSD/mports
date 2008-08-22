@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.236 2008/08/22 02:24:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.237 2008/08/22 02:29:28 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -272,6 +272,7 @@
     SUBDIR += stlport
     SUBDIR += subversion
     SUBDIR += subversion-python
+    SUBDIR += svndelta
     SUBDIR += svnkit
     SUBDIR += swig13
     SUBDIR += sysconftool
