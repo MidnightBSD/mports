@@ -3,7 +3,7 @@
 # Date created:			  26 September 1994
 # Whom:				  jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/iozone21/Makefile,v 1.1 2007/05/20 19:27:36 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/iozone21/Makefile,v 1.42 2005/06/04 14:02:13 vs Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.shar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Sequential File I/O (older version)
+LICENSE=	other
 
 CONFLICTS=	iozone-3.*
 
