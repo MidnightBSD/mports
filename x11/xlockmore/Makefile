@@ -2,12 +2,13 @@
 # Date created:		9 November 1994
 # Whom:			smace
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.5 2008/08/20 19:57:05 laffer1 Exp $
 # $FreeBSD: ports/x11/xlockmore/Makefile,v 1.115 2008/07/18 05:10:39 ehaupt Exp $
 #
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.26.1
+PORTREVISION=	1
 CATEGORIES?=	x11
 MASTER_SITES=	ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
 		CRITICAL
@@ -49,7 +50,12 @@ OPTIONS=MESAGL			"Enable Mesa 3D (for GL modes)"		off \
 	TIME_BOMB		"Allow autologout"			off \
 	CUSTOMIZATION		"Allow tune through resource file"	off
 
+FAKE_OPTS=	prefixhack
+
 .include <bsd.port.pre.mk>
+
+FAKE_MAKEARGS+=	xapploaddir=${FAKE_DESTDIR}${LOCALBASE}/lib/X11/app-defaults \
+		mandir=${FAKE_DESTDIR}${MANPREFIX}/man/man1
 
 .if ${ARCH} == amd64
 .undef WITH_MESAGL
