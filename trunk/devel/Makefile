@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.232 2008/08/19 17:04:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.233 2008/08/22 02:09:00 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -6,6 +6,7 @@
     SUBDIR += 9base
     SUBDIR += ORBit
     SUBDIR += ORBit2
+    SUBDIR += ZendOptimizer
     SUBDIR += activitymail
     SUBDIR += anjuta
     SUBDIR += apache-ant
