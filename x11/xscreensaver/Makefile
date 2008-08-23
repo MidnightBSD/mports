@@ -2,13 +2,13 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.10 2008/08/15 19:02:34 crash Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.11 2008/08/22 14:43:08 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.06
-PORTREVISION=   2
+PORTREVISION=   3
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 		http://dougbarton.us/Downloads/
@@ -34,6 +34,7 @@ CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
 		--with-jpeg=${LOCALBASE} --with-xshm-ext --with-xdbe-ext \
 		--with-hackdir=${PREFIX}/bin/xscreensaver-hacks/ \
 		--with-configdir=${PREFIX}/share/xscreensaver/config/ \
+		--with-x-app-defaults=${PREFIX}/lib/X11/app-defaults \
 		--with-dpms-ext --with-xinerama-ext --with-xf86vmode-ext \
 		--with-xf86gamma-ext --with-randr-ext --enable-locking
 
