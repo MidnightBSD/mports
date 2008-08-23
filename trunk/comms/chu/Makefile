@@ -2,7 +2,7 @@
 # Date created:				September 16 2006
 # Whom:					Diane Bruce <db@db.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/chu/Makefile,v 1.1 2008/08/17 21:45:15 laffer1 Exp $
 # $FreeBSD: ports/comms/chu/Makefile,v 1.2 2007/01/19 18:14:16 db Exp $
 #
 
@@ -32,27 +32,24 @@ do-extract:
 	${EXTRACT_CMD} -d ${WRKSRC}/testsignal.gz
 
 post-patch:
-	${REINPLACE_CMD} -e 's|/etc/chu|${PREFIX}/etc/chu|g' ${WRKSRC}/chu.c ${WRKSRC}/chu.8
-	${REINPLACE_CMD} -e 's|/sbin/chu|${PREFIX}/sbin/chu|g' ${WRKSRC}/chu.8
+	@${REINPLACE_CMD} -e 's|/etc/chu|${PREFIX}/etc/chu|g' ${WRKSRC}/chu.c ${WRKSRC}/chu.8
+	@${REINPLACE_CMD} -e 's|/sbin/chu|${PREFIX}/sbin/chu|g' ${WRKSRC}/chu.8
 	@${REINPLACE_CMD} -e 's|gcc -O2|${CC} ${CFLAGS}|g' ${WRKSRC}/Makefile
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/chu ${PREFIX}/sbin
-	${MKDIR} ${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/testsignal ${DATADIR}
-	${INSTALL_MAN} ${WRKSRC}/chu.8 ${PREFIX}/man/man8
+	@${INSTALL_PROGRAM} ${WRKSRC}/chu ${PREFIX}/sbin
+	@${MKDIR} ${DATADIR}
+	@${INSTALL_DATA} ${WRKSRC}/testsignal ${DATADIR}
+	@${INSTALL_MAN} ${WRKSRC}/chu.8 ${PREFIX}/man/man8
 .if	!defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for	d in ${WRKSRC}/COPYING \
 	${WRKSRC}/TESTING \
 	${WRKSRC}/chu.html \
 	${WRKSRC}/chuman.html \
 	${WRKSRC}/ntp.html
-	${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${d} ${DOCSDIR}
 .endfor
-	@${ECHO} ""
-	@${ECHO} "chu docs installed in ${DOCSDIR}"
-	@${ECHO} ""
 .endif
 
 .include <bsd.port.mk>
