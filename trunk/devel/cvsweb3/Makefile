@@ -2,6 +2,7 @@
 # Date created:		27 Jun 1999
 # Whom:			SADA Kenji <sada@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/cvsweb3/Makefile,v 1.82 2006/01/23 07:04:09 linimon Exp $
 #
 
@@ -12,10 +13,9 @@ MASTER_SITES=	${MASTER_SITE_LOCAL} \
 		http://people.FreeBSD.org/~scop/cvsweb/
 MASTER_SITE_SUBDIR=	scop
 
-# For issues that are not specific to this port/package, please consult
-# the <freebsd-cvsweb@FreeBSD.org> mailing list.
-MAINTAINER=	noackjr@alumni.rice.edu
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WWW CGI script to browse CVS repository trees version 3
+LICENSE=	bsd2
 
 RUN_DEPENDS=	${SITE_PERL}/IPC/Run.pm:${PORTSDIR}/devel/p5-IPC-Run \
 		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI
@@ -37,10 +37,6 @@ NO_BUILD=	yes
 USE_PERL5=	yes
 
 .include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500601
-IGNORE=		requires perl 5.6.1 or later. Install lang/perl5 then try again
-.endif
 
 .if ${PERL_LEVEL} < 500800
 RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
