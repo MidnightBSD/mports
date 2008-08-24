@@ -2,7 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.1 2008/08/11 17:22:27 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.2 2008/08/13 14:03:20 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
@@ -26,7 +26,15 @@ BUILD_DEPENDS=	nss>=3.11.2:${PORTSDIR}/security/nss \
 LIB_DEPENDS+=   jpeg.9:${PORTSDIR}/graphics/jpeg \
                 png.5:${PORTSDIR}/graphics/png \
                 nspr4:${PORTSDIR}/devel/nspr \
-                nss3:${PORTSDIR}/security/nss
+                nss3:${PORTSDIR}/security/nss \
+		freetype.9:${PORTSDIR}/print/freetype2
+
+USE_GNOME+=     gtk20 libidl desktopfileutils
+USE_ICONV=      yes
+USE_PERL5=      yes
+USE_PERL5_BUILD=yes
+USE_XORG=       printproto sm xt xi xext x11 xinerama \
+                ice xproto
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
