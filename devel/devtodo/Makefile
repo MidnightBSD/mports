@@ -2,17 +2,18 @@
 # Date Created:				26 May 2001
 # Whom:					Pete Fritchman <petef@databits.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/devtodo/Makefile,v 1.1 2006/11/03 12:41:20 wintellect Exp $
 # $FreeBSD: ports/devel/devtodo/Makefile,v 1.18 2006/05/04 21:40:31 edwin Exp $
 #
 
 PORTNAME=	devtodo
-PORTVERSION=	0.1.19
+PORTVERSION=	0.1.20
 CATEGORIES=	devel
 MASTER_SITES=	http://swapoff.org/files/devtodo/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool to effectively maintain todo lists aimed at developers
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 
