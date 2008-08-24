@@ -1,4 +1,3 @@
-************************************************************
 Quickstart:
 	cd %%PREFIX%%/etc/cvsweb
 	cp cvsweb.conf.dist cvsweb.conf
@@ -12,4 +11,3 @@ browse, edit cvsweb.conf* as you like.
 
   For further information, please look into the directory
 `%%DOCSDIR%%'.
-************************************************************
