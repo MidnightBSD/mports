@@ -2,7 +2,7 @@
 # Date created:		20 October 2007
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.4 2008/06/25 15:00:14 laffer1 Exp $
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.5 2008/08/19 18:47:22 laffer1 Exp $
 # $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
 #
 
@@ -82,7 +82,7 @@ do-install:
 	@cd ${WRKSRC} && ${SETENV} PATH=${WRKDIR}/bin:${PATH} ${INSTALLEXEC} > /dev/null
 
 post-fake:
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g'  \
-		${FAKE_DESTDIR}${LOCALBASE}/Adobe/Reader8/ENU/Adobe/Reader8/Reader/GlobalPrefs/.config
+	(if test -f ${FAKE_DESTDIR}${LOCALBASE}/Adobe/Reader8/ENU/Adobe/Reader8/Reader/GlobalPrefs/.config; ${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g'  \
+		${FAKE_DESTDIR}${LOCALBASE}/Adobe/Reader8/ENU/Adobe/Reader8/Reader/GlobalPrefs/.config; fi )
 
 .include <bsd.port.mk>
