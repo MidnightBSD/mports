@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.76 2008/08/24 21:47:44 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.77 2008/08/24 21:57:26 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -75,6 +75,7 @@
     SUBDIR += ucspi-tcp
     SUBDIR += ufs_copy
     SUBDIR += uif2iso
+    SUBDIR += upsd
     SUBDIR += upsmon
     SUBDIR += wmbsdbatt
     SUBDIR += yawho
