@@ -2,7 +2,7 @@
 # Date created:        8 March 2000
 # Whom:                imura@af.airnet.ne.jp
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/c_c++_reference/Makefile,v 1.1 2007/12/30 23:49:47 laffer1 Exp $
 # $FreeBSD: ports/devel/c_c++_reference/Makefile,v 1.18 2007/05/19 20:02:12 flz Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	c_cpp_reference-${PORTVERSION}_for_KDE_3.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C/C++ reference manual for KDevelop
+LICENSE=	unknown
 
 RUN_DEPENDS=	kdevelop:${PORTSDIR}/devel/kdevelop
 
