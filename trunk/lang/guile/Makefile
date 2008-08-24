@@ -2,12 +2,12 @@
 # Date created:		2 November 1997
 # Whom:			jseger@FreeBSD.org
 # 
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.3 2008/03/23 20:16:50 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.4 2008/03/31 03:22:28 laffer1 Exp $
 # $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
 #
 
 PORTNAME=	guile
-PORTVERSION=	1.8.4
+PORTVERSION=	1.8.5
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
@@ -48,7 +48,7 @@ post-extract:
 post-patch:
 	@cd ${WRKSRC} ; \
 	  ${REINPLACE_CMD} -e 's|<malloc\.h>|<stdlib.h>|g' ${REINPLACE_FILES}
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${X11BASE}|g ; \
+	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${LOCALBASE}|g ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/libguile/load.c
 
 .include <bsd.port.post.mk>
