@@ -2,7 +2,7 @@
 # Date created:		30 March 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-flock/Makefile,v 1.3 2007/11/28 22:10:49 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flock/Makefile,v 1.4 2008/02/12 16:44:16 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flock/Makefile,v 1.17 2007/03/26 22:52:58 sat Exp $
 #
 
@@ -18,6 +18,8 @@ MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The social web browser
+LICENSE=	unknown
+# this should be gpl2 or mpl, but they don't post what they are distributing it under.
 
 .include "${.CURDIR}/../linux-seamonkey/Makefile.common"
 .include <bsd.port.mk>
