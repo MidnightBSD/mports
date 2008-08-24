@@ -2,7 +2,7 @@
 # Date created:				August 8th 2005
 # Whom:					Frerich Raabe <frerich.raabe@gmx.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/bisongen/Makefile,v 1.1 2008/04/01 03:23:04 laffer1 Exp $
 # $FreeBSD: ports/devel/bisongen/Makefile,v 1.3 2007/07/30 09:41:08 alexbl Exp $
 #
 
@@ -14,6 +14,8 @@ DISTNAME=	BisonGen-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A general-purpose parser generator for Python
+LICENSE=	other
+#apache 1.1 like
 
 USE_BZIP2=	yes
 USE_PYTHON=	yes
