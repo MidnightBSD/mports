@@ -2,13 +2,13 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gconf/Makefile,v 1.1 2007/10/27 17:31:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf/Makefile,v 1.2 2008/03/31 01:33:53 laffer1 Exp $
 # $FreeBSD: ports/devel/gconf/Makefile,v 1.50 2007/05/19 20:02:32 flz Exp $
 #
 
 PORTNAME=	gconf
 PORTVERSION=	1.0.9
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/GConf/1.0
@@ -18,7 +18,7 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A configuration database system for GNOME
 
-LIB_DEPENDS=	guile.18:${PORTSDIR}/lang/guile
+LIB_DEPENDS=	guile.19:${PORTSDIR}/lang/guile
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
