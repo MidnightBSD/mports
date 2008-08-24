@@ -2,13 +2,13 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.12 2008/08/23 21:12:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.13 2008/08/23 21:15:31 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
 PORTNAME=	xscreensaver
 PORTVERSION=	5.06
-PORTREVISION=   3
+PORTREVISION=   4
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
 		http://dougbarton.us/Downloads/
@@ -140,5 +140,7 @@ post-install:
 		${ECHO} "bin/xscreensaver-hacks/webcollage-helper" | \
 			${CAT} - ${TMPPLIST} > ${TMPPLIST}.cat && \
 			${MV} ${TMPPLIST}.cat ${TMPPLIST}; fi)
+	(if ! test -e ${PREFIX}/lib/X11/app-defaults/XScreenSaver; then \
+		${CP} ${FILESDIR}/XScreenSaver ${PREFIX}/lib/X11/app-defaults/; fi )
 
 .include <bsd.port.post.mk>
