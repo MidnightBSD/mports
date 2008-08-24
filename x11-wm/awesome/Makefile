@@ -2,7 +2,7 @@
 # Date created:                September 26, 2007
 # Whom:                        Nikos Ntarmos <ntarmos@ceid.upatras.gr>
 #
-# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.1 2008/06/02 00:11:04 archite Exp $
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.2 2008/08/19 22:15:30 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/awesome/Makefile,v 1.9 2008/05/26 13:13:22 garga Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://awesome.naquadah.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tiling window manager initially based on a dwm code rewriting
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
 		xmlto:${PORTSDIR}/textproc/xmlto
