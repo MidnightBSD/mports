@@ -3,7 +3,7 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.8 2008/05/04 08:45:23 crash Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.9 2008/05/04 18:32:07 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -16,7 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
-LICENSE=        GPL
+LICENSE=        gpl2
 FAKE_OPTS=	trueprefix
 
 USE_REINPLACE=	yes
