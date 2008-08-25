@@ -3,18 +3,18 @@
 # Whom:					ache
 #
 # $FreeBSD: ports/net/p5-URI/Makefile,v 1.37 2004/11/30 16:09:07 tobez Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/p5-URI/Makefile,v 1.1 2006/11/05 15:54:23 laffer1 Exp $
 #
 
 PORTNAME=	URI
-PORTVERSION=	1.35
+PORTVERSION=	1.37
 CATEGORIES=	net perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	URI
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to Uniform Resource Identifier (URI) references
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
@@ -30,11 +30,6 @@ MAN3=		URI.3 \
 		URI::ldap.3
 
 .include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
-RUN_DEPENDS=	${BUILD_DEPENDS}
-.endif
 
 post-patch:
 	${PERL} -pi -e 's/^our\s+([\$$\@\%]\w+)/use vars qw($$1);/' \
