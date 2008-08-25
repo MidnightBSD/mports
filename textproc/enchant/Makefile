@@ -2,18 +2,21 @@
 # Date created:				03 January 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.1 2007/08/22 08:53:28 laffer1 Exp $
 # $FreeBSD: ports/textproc/enchant/Makefile,v 1.23 2006/11/30 20:37:18 mezz Exp $
 #
 
 PORTNAME=	enchant
-PORTVERSION=	1.3.0
+PORTVERSION=	1.4.0
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dictionary/spellchecking framework
+LICENSE=	lgpl
+
+LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15
@@ -68,5 +71,11 @@ pre-everything::
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
 		${WRKSRC}/install-sh
+.if ${OSVERSION} < 700042
+	@${REINPLACE_CMD} -E -e "s|-Wunsafe-loop-optimizations ||g" \
+		-e "s|-Wno-missing-field-initializers ||g" \
+		-e "s|-Wno-attributes ||g" \
+			${WRKSRC}/configure
+.endif
 
 .include <bsd.port.post.mk>
