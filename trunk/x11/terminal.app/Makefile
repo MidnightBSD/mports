@@ -2,7 +2,7 @@
 # Date created:         28 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.2 2007/11/07 20:20:17 ctriv Exp $
+# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.3 2008/08/20 20:34:50 laffer1 Exp $
 # $FreeBSD: ports/x11/terminal.app/Makefile,v 1.1 2006/09/06 19:22:27 ehaupt Exp $
 #
 
@@ -29,4 +29,4 @@ MAKEFILE=	GNUmakefile
 
 WRKSRC=		${WRKDIR}/${PORTNAME:C/\.app//}-${DISTVERSION}${DISTVERSIONSUFFIX:C/\.orig//}
 
-.include <bsd.port..mk>
+.include <bsd.port.mk>
