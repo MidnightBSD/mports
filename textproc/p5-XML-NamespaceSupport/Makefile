@@ -2,7 +2,7 @@
 # Date created:		19 Nov 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/p5-XML-NamespaceSupport/Makefile,v 1.1 2007/03/11 04:40:44 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-XML-NamespaceSupport/Makefile,v 1.7 2005/05/23 15:43:24 skv Exp $
 #
 
@@ -10,12 +10,12 @@ PORTNAME=	XML-NamespaceSupport
 PORTVERSION=	1.09
 PORTREVISION=	1
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple generic namespace support class
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
