@@ -2,7 +2,7 @@
 # Date created:				10 August 2003
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libexecinfo/Makefile,v 1.1 2007/10/19 06:11:20 laffer1 Exp $
 # $FreeBSD: ports/devel/libexecinfo/Makefile,v 1.7 2006/06/29 13:21:47 itetcu Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	itetcu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for inspecting program's backtrace
+LICENSE=	bsd2
 
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
