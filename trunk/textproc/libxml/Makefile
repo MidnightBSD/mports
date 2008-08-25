@@ -2,7 +2,7 @@
 # Date created:				28 September 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.1 2007/08/31 06:08:01 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxml/Makefile,v 1.57 2007/01/28 09:07:45 kris Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	sources/libxml/1.8
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML parser library for GNOME
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
