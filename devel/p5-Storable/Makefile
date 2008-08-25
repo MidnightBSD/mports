@@ -2,19 +2,19 @@
 # Date created:				July 7th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Storable/Makefile,v 1.1 2006/10/03 22:39:26 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Storable/Makefile,v 1.43 2005/06/11 16:12:52 skv Exp $
 #
 
 PORTNAME=	Storable
-PORTVERSION=	2.15
+PORTVERSION=	2.18
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Storable
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Persistency for perl data structures
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
