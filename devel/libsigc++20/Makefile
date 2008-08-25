@@ -2,13 +2,12 @@
 # Date created:        14 Feb 2004
 # Whom:                Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libsigc++20/Makefile,v 1.1 2006/09/27 18:36:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsigc++20/Makefile,v 1.2 2007/05/06 21:26:19 ctriv Exp $
 # $FreeBSD: ports/devel/libsigc++20/Makefile,v 1.41 2006/05/04 21:40:52 edwin Exp $
 #
 
 PORTNAME=	libsigc++
-PORTVERSION=	2.0.17
-PORTREVISION=	1
+PORTVERSION=	2.2.2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/libsigc++/${PORTVERSION:R}
@@ -19,7 +18,6 @@ COMMENT=	Callback Framework for C++
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_BZIP2=	yes
-USE_GCC=	3.4
 USE_GMAKE=	yes
 LATEST_LINK=	libsigc++20
 USE_LDCONFIG=	yes
