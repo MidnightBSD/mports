@@ -2,9 +2,8 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
-# $FreeBSD: ports/databases/mysql60-server/Makefile,v 1.236 2008/07/26 08:33:37 ale Exp $
-#
+# $MidnightBSD: mports/databases/mysql60-server/Makefile,v 1.1 2008/08/04 13:58:11 laffer1 Exp $
+
 
 PORTNAME?=	mysql
 PORTVERSION=	6.0.5
@@ -178,6 +177,7 @@ post-patch:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/support-files/mysql.m4 ${PREFIX}/share/aclocal/
 
+
 .else
 # MySQL-Scripts part
 USE_MYSQL=	yes
@@ -185,9 +185,6 @@ WANT_MYSQL_VER=	60
 USE_PERL5=	yes
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql60
-.if ${PERL_LEVEL} <= 500800
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
-.endif
 
 LATEST_LINK=	mysql60-scripts
 
