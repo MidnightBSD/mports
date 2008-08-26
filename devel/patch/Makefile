@@ -2,7 +2,7 @@
 # Date created:         24 Apr 2007
 # Whom:                 laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/patch/Makefile,v 1.1 2007/04/28 03:21:49 laffer1 Exp $
 #
 
 PORTNAME=	patch
@@ -13,6 +13,7 @@ MASTER_SITE_SUBDIR=	patch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU patch utility
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
