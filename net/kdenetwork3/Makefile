@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/net/kdenetwork3/Makefile,v 1.124 2006/09/12 23:26:43 lofi Exp $
-# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.1 2007/01/20 16:27:34 laffer1 Exp $
+# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.2 2007/12/30 03:07:02 laffer1 Exp $
 #
 
 PORTNAME=	kdenetwork
@@ -16,6 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Network-related programs and modules for KDE
+LICENSE=	gpl2
 
 LIB_DEPENDS=	slp:${PORTSDIR}/net/openslp
 
