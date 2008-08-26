@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.1 2007/01/25 22:20:03 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.2 2007/12/30 05:32:57 laffer1 Exp $
 #
 
 PORTNAME=	kdegraphics
@@ -16,6 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics utilities for the KDE3 integrated X11 desktop
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	kpsewhich:${PORTSDIR}/print/teTeX-base
 LIB_DEPENDS=	art_lgpl_2:${PORTSDIR}/graphics/libart_lgpl \
