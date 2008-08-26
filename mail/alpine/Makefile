@@ -2,11 +2,12 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/alpine/Makefile,v 1.2 2008/05/04 11:12:15 crash Exp $
+# $MidnightBSD: mports/mail/alpine/Makefile,v 1.3 2008/06/23 01:58:57 laffer1 Exp $
 #
 
 PORTNAME?=	alpine
 PORTVERSION=	1.10
+PORTREVISION=	1
 CATEGORIES?=	mail news ipv6
 MASTER_SITES=	ftp://ftp.cac.washington.edu/alpine/ \
 		http://dougbarton.us/Downloads/alpine-${PORTVERSION}/
