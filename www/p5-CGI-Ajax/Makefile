@@ -3,11 +3,11 @@
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
 # $FreeBSD: ports/www/p5-CGI-Ajax/Makefile,v 1.21 2007/02/01 21:37:07 lth Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-CGI-Ajax/Makefile,v 1.1 2007/11/02 21:52:25 ctriv Exp $
 #
 
 PORTNAME=	CGI-Ajax
-PORTVERSION=	0.701
+PORTVERSION=	0.703
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CGI
