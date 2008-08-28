@@ -2,9 +2,8 @@
 # Date created:		2005-01-11
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/x264/Makefile,v 1.1 2008/08/24 22:15:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/x264/Makefile,v 1.63 2008/06/06 14:33:38 edwin Exp $
-#      $Id: Makefile,v 1.1 2008-08-24 22:15:36 laffer1 Exp $
 
 PORTNAME=	x264
 PORTVERSION=	0.0.20080409
