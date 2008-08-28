@@ -1,0 +1,36 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.108 2008/06/13 03:54:29 laffer1 Exp $
+lib/npapi/linux-flashplugin/flashplayer.xpt
+lib/npapi/linux-flashplugin/libflashplayer.so
+lib/npapi/symlinks/linux-firefox/flashplayer.xpt
+lib/npapi/symlinks/linux-firefox/libflashplayer.so
+lib/npapi/symlinks/linux-firefox-devel/flashplayer.xpt
+lib/npapi/symlinks/linux-firefox-devel/libflashplayer.so
+lib/npapi/symlinks/linux-flock/flashplayer.xpt
+lib/npapi/symlinks/linux-flock/libflashplayer.so
+lib/npapi/symlinks/linux-mozilla/flashplayer.xpt
+lib/npapi/symlinks/linux-mozilla/libflashplayer.so
+lib/npapi/symlinks/linux-nvu/flashplayer.xpt
+lib/npapi/symlinks/linux-nvu/libflashplayer.so
+lib/npapi/symlinks/linux-opera/flashplayer.xpt
+lib/npapi/symlinks/linux-opera/libflashplayer.so
+lib/npapi/symlinks/linux-seamonkey/flashplayer.xpt
+lib/npapi/symlinks/linux-seamonkey/libflashplayer.so
+lib/npapi/symlinks/linux-sunbird/flashplayer.xpt
+lib/npapi/symlinks/linux-sunbird/libflashplayer.so
+@dirrm lib/npapi/linux-flashplugin
+@dirrm lib/npapi/symlinks/firefox
+@dirrm lib/npapi/symlinks/linux-firefox
+@dirrm lib/npapi/symlinks/linux-firefox-devel
+@dirrm lib/npapi/symlinks/linux-flock
+@dirrm lib/npapi/symlinks/mozilla
+@dirrm lib/npapi/symlinks/linux-mozilla
+@dirrm lib/npapi/symlinks/linux-nvu
+@dirrm lib/npapi/symlinks/opera
+@dirrm lib/npapi/symlinks/linux-opera
+@dirrm lib/npapi/symlinks/seamonkey
+@dirrm lib/npapi/symlinks/linux-seamonkey
+@dirrm lib/npapi/symlinks/linux-sunbird
+@dirrm lib/npapi/symlinks
+@dirrm lib/npapi
+@cwd /compat/linux
+@cwd /usr/local

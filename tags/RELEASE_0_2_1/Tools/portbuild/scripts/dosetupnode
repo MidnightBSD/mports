@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# configurable variables
+pb=/var/portbuild
+arch=$1
+branch=$2
+node=$3
+shift 3
+
+norsync=0
+if [ "$1" = "-norsync" ]; then
+  norsync=1
+fi
+
+. ${pb}/${arch}/portbuild.conf
+
+. ${pb}/scripts/buildenv
+
+echo "setting up of $node started at $(date)"
+
+# Read in client config and decide if the node is disconnected or not (i.e. mounts via NFS)
+disconnected=0
+. ${pb}/${arch}/portbuild.${node}
+
+if [ "${norsync}" = 1 ]; then
+  md5=0
+  nocopy=
+else
+  md5=$(/sbin/md5 ${pb}/${arch}/${branch}/tarballs/bindist.tar | awk '{print $4}')
+  nocopy=
+fi
+
+scp -p ${pb}/scripts/setupnode ${client_user}@${node}:/tmp
+ssh -n ${client_user}@${node} ${sudo_cmd} sh /tmp/setupnode ${nocopy} $(hostname) ${pb} ${arch} ${branch} ${scratchdir} ${md5} ${disconnected}
+
+if [ "${disconnected}" = 1 -a "${norsync}" = 0 ]; then
+  rsync ${rsync_gzip} -r -l -p --delete ${pb}/scripts ${client_user}@${node}:${pb}/
+  rsync ${rsync_gzip} -r -l -p --delete ${pb}/${arch}/portbuild* ${client_user}@${node}:${pb}/${arch}
+  rsync ${rsync_gzip} -r -l -p --delete ${pb}/${arch}/${branch}/ports ${client_user}@${node}:${pb}/${arch}/${branch}
+  rsync ${rsync_gzip} -r -l -p --delete ${pb}/${arch}/${branch}/src ${client_user}@${node}:${pb}/${arch}/${branch}
+  rsync ${rsync_gzip} -r -L -p --delete ${pb}/${arch}/${branch}/tarballs/ ${client_user}@${node}:${pb}/${arch}/${branch}/tarballs/
+fi
+
+lockf -k ${pb}/${arch}/queue/.lock ${pb}/scripts/pollmachine ${arch} ${node} -queue
+echo "setting up of $node ended at $(date)"

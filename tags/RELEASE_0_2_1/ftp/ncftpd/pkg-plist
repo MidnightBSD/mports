@@ -1,0 +1,14 @@
+sbin/ncftpd
+bin/ncftpd_edquota
+bin/ncftpd_passwd
+bin/ncftpd_repquota
+bin/ncftpd_spy
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README.freebsd
+%%PORTDOCS%%%%DOCSDIR%%/install.html
+%%PORTDOCS%%%%DOCSDIR%%/LICENSE
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+etc/rc.d/ncftpd.sh
+etc/ncftpd/general.cf-dist
+etc/ncftpd/domain.cf-dist
+@dirrm etc/ncftpd

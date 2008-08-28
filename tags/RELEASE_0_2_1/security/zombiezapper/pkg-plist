@@ -1,0 +1,4 @@
+bin/zz
+%%PORTDOCS%%share/doc/zz/USAGE
+%%PORTDOCS%%share/doc/zz/tekpaper.txt
+%%PORTDOCS%%@dirrm share/doc/zz

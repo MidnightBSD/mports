@@ -1,0 +1,4 @@
+sbin/biosdecode
+sbin/dmidecode
+sbin/ownership
+sbin/vpddecode

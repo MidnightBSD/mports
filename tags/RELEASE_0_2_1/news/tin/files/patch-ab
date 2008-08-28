@@ -1,0 +1,29 @@
+--- configure.orig	Tue Apr 25 16:23:36 2006
++++ configure	Sat May 27 05:10:52 2006
+@@ -6189,7 +6189,7 @@
+ 
+ 
+ case $host_os in #(vi
+-freebsd*)
++XXXfreebsd*)
+ 	# This is only necessary if you are linking against an obsolete
+ 	# version of ncurses (but it should do no harm, since it's static).
+ 	if test "$cf_nculib_root" = ncurses ; then
+@@ -7114,7 +7114,7 @@
+ 
+ 
+ case $host_os in #(vi
+-freebsd*)
++XXXfreebsd*)
+ 	# This is only necessary if you are linking against an obsolete
+ 	# version of ncurses (but it should do no harm, since it's static).
+ 	if test "$cf_nculib_root" = ncurses ; then
+@@ -7654,7 +7654,7 @@
+ 
+ if test "$cf_result" = no ; then
+ case $host_os in #(vi
+-freebsd*) #(vi
++XXXfreebsd*) #(vi
+ 	echo $ac_n "checking for tgoto in -lmytinfo""... $ac_c" 1>&6
+ echo "configure:7660: checking for tgoto in -lmytinfo" >&5
+ ac_lib_var=`echo mytinfo'_'tgoto | sed 'y%./+-%__p_%'`

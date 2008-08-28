@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Authorization Required"
+AuthBasicProvider file
+AuthUserFile /home/mbsd/magus/magus-passwd
+Require valid-user

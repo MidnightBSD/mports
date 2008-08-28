@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/audio/libvorbis/files/patch-doc_vorbisfile_Makefile.in,v 1.4 2007/10/24 23:34:49 marcus Exp $
+
+--- doc/vorbisfile/Makefile.in.bak	2007-07-25 16:46:35.000000000 +0000
++++ doc/vorbisfile/Makefile.in	2007-07-26 21:53:26.000000000 +0000
+@@ -150,7 +150,7 @@
+ builddir = @builddir@
+ datadir = @datadir@
+ datarootdir = @datarootdir@
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)/vorbisfile
++docdir = $(datadir)/doc/$(PACKAGE)/vorbisfile
+ dvidir = @dvidir@
+ exec_prefix = @exec_prefix@
+ host = @host@

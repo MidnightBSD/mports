@@ -1,0 +1,5 @@
+%%DOOM%%share/doom/doom1.wad
+%%HERETIC%%share/doom/heretic1.wad
+%%HEXEN%%share/doom/hexen.wad
+%%STRIFE%%share/doom/strife0.wad
+@unexec rmdir %D/share/doom >/dev/null 2>&1 || echo "If you are permanently removing this port, you should remove any WAD files left in %D/share/doom." | fmt

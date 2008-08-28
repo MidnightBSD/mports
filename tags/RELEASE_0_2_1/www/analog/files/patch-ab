@@ -1,0 +1,48 @@
+--- src/tree.c.orig	Sun Dec 19 08:51:31 2004
++++ src/tree.c	Wed Jul 16 00:26:29 2008
+@@ -776,6 +776,7 @@
+ 	((*name = strstr(whole, "Chimera")) != NULL && (len = 7)) ||
+ 	((*name = strstr(whole, "Camino")) != NULL && (len = 6)) ||
+ 	((*name = strstr(whole, "Safari")) != NULL && (len = 6)) ||
++	((*name = strstr(whole, "iPhone")) != NULL && (len = 6)) ||
+ 	((*name = strstr(whole, "WebTV")) != NULL && (len = 5)) ||
+ 	((*name = strstr(whole, "Opera")) != NULL && (len = 5)) ||
+ 	((*name = strstr(whole, "MSIE")) != NULL && (len = 4))) {
+@@ -904,8 +905,22 @@
+ 	*name = "Macintosh";
+     else if (strstr(whole, "Linux") != NULL || strstr(whole, "linux") != NULL)
+       *name = "Unix:Linux";
+-    else if (strstr(whole, "BSD") != NULL)
+-      *name = "Unix:BSD";
++    else if (strstr(whole, "DragonFly") != NULL || strstr(whole, "dragonfly") != NULL)
++      *name = "Unix:DragonFly";
++    else if (strstr(whole, "FreeBSD") != NULL || strstr(whole, "freebsd") != NULL)
++      *name = "Unix:FreeBSD";
++    else if (strstr(whole, "OpenBSD") != NULL || strstr(whole, "openbsd") != NULL)
++      *name = "Unix:OpenBSD";
++    else if (strstr(whole, "MidnightBSD") != NULL || strstr(whole, "midnightbsd") != NULL)
++      *name = "Unix:MidnightBSD";
++    else if (strstr(whole, "MirBSD") != NULL || strstr(whole, "mirbsd") != NULL)
++      *name = "Unix:MirBSD";
++    else if (strstr(whole, "NetBSD") != NULL || strstr(whole, "netbsd") != NULL)
++      *name = "Unix:NetBSD";
++    else if (strstr(whole, "BSD/OS") != NULL || strstr(whole, "bsd/os") != NULL)
++      *name = "Unix:BSD/OS";
++    else if (strstr(whole, "BSD") != NULL || strstr(whole, "bsd") != NULL)
++      *name = "Unix:Unknown BSD";
+     else if (strstr(whole, "SunOS") != NULL || strstr(whole, "sunos") != NULL)
+       *name = "Unix:SunOS";
+     else if (strstr(whole, "HP-UX") != NULL || strstr(whole, "HPUX") != NULL ||
+@@ -938,6 +953,12 @@
+       *name = "Palm OS";
+     else if (strstr(whole, "Atari") != NULL)
+       *name = "Atari";
++    else if (strstr(whole, "Nintendo Wii") != NULL)
++      *name = "Nintendo Wii";
++    else if (strstr(whole, "PLAYSTATION 3") != NULL)
++      *name = "Sony PS3";
++    else if (strstr(whole, "PlayStation Portable") !=NULL)
++      *name = "Sony PSP";
+     else
+       *name = "OS unknown";
+     *nameend = strchr(*name, '\0');

@@ -1,0 +1,11 @@
+--- ./Cddb/GNUmakefile.orig	Fri Aug  3 14:11:09 2007
++++ ./Cddb/GNUmakefile	Fri Aug  3 14:12:10 2007
+@@ -3,7 +3,7 @@
+ BUNDLE_NAME = Cddb
+ BUNDLE_EXTENSION = .bundle
+ 
+-BUNDLE_INSTALL_DIR = $(GNUSTEP_INSTALLATION_DIR)/Library/Bundles
++BUNDLE_INSTALL_DIR = $(GNUSTEP_BUNDLES)
+ 
+ Cddb_RESOURCE_FILES =
+ 

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+export PATH
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating module list... "
+    @chroot %%PREFIX%%/usr/bin/pango-querymodules-32 > %%PREFIX%%/etc/pango/i686-redhat-linux-gnu/pango.modules
+    ;;
+esac

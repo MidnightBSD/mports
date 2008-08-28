@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/x11/kdebase3/files/pkg-install.in,v 1.10 2007/10/29 23:48:15 lofi Exp $
+#
+
+if [ "$2" != "POST-INSTALL" ]; then
+        exit 0
+fi
+
+boguscreatenewentry=%%PREFIX%%/share/templates/.keep_me
+
+if [ -f $boguscreatenewentry ]; then
+	rm -f $boguscreatenewentry
+fi
+
+exit 0

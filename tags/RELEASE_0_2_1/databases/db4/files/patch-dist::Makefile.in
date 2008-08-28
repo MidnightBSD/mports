@@ -1,0 +1,242 @@
+--- ../dist/Makefile.in.orig	Sat Nov 10 07:48:45 2001
++++ ../dist/Makefile.in	Sat Nov  9 17:36:00 2002
+@@ -11,7 +11,7 @@
+ bindir=	@bindir@
+ includedir=@includedir@
+ libdir=	@libdir@
+-docdir=	$(prefix)/docs
++docdir=	$(prefix)/share/doc/db4
+ 
+ dmode=	755
+ emode=	555
+@@ -45,6 +45,7 @@
+ SOLINK=		@MAKEFILE_SOLINK@
+ SOFLAGS=	@SOFLAGS@
+ SOMAJOR=	@DB_VERSION_MAJOR@
++SOMINOR=	@DB_VERSION_MINOR@
+ SOVERSION=	@DB_VERSION_MAJOR@.@DB_VERSION_MINOR@
+ 
+ ##################################################
+@@ -60,13 +61,13 @@
+ LIBS=		@LIBS@
+ LIBSO_LIBS=	@LIBSO_LIBS@
+ 
+-libdb=		libdb.a
+-libso_base=	libdb
+-libso=		$(libso_base)-$(SOVERSION).@SOSUFFIX@
+-libso_static=	$(libso_base)-$(SOVERSION).a
+-libso_target=	$(libso_base)-$(SOVERSION).la
++libdb=		libdb4.a
++libso_base=	libdb4
++libso=		$(libso_base).@SOSUFFIX@
++libso_static=	$(libso_base).a
++libso_target=	$(libso_base).la
+ libso_default=	$(libso_base).@SOSUFFIX@
+-libso_major=	$(libso_base)-$(SOMAJOR).@SOSUFFIX@
++libso_major=	$(libso_base).@SOSUFFIX@.$(SOMINOR)
+ 
+ ##################################################
+ # C++ API.
+@@ -79,13 +80,13 @@
+ XSOLINK=	@MAKEFILE_XSOLINK@
+ LIBXSO_LIBS=	@LIBXSO_LIBS@
+ 
+-libcxx=		libdb_cxx.a
+-libxso_base=	libdb_cxx
+-libxso=		$(libxso_base)-$(SOVERSION).@SOSUFFIX@
+-libxso_static=	$(libxso_base)-$(SOVERSION).a
+-libxso_target=	$(libxso_base)-$(SOVERSION).la
++libcxx=		libdb4_cxx.a
++libxso_base=	libdb4_cxx
++libxso=		$(libxso_base).@SOSUFFIX@
++libxso_static=	$(libxso_base).a
++libxso_target=	$(libxso_base).la
+ libxso_default=	$(libxso_base).@SOSUFFIX@
+-libxso_major=	$(libxso_base)-$(SOMAJOR).@SOSUFFIX@
++libxso_major=	$(libxso_base).@SOSUFFIX@.$(SOMINOR)
+ 
+ ##################################################
+ # Java API.
+@@ -235,8 +236,8 @@
+ 	db_server_proc@o@ db_server_svc@o@ db_server_util@o@ gen_db_server@o@
+ 
+ UTIL_PROGS=\
+-	@ADDITIONAL_PROGS@ db_archive db_checkpoint db_deadlock \
+-	db_dump db_load db_printlog db_recover db_stat db_upgrade db_verify
++	@ADDITIONAL_PROGS@ db4_archive db4_checkpoint db4_deadlock \
++	db4_dump db4_load db4_printlog db4_recover db4_stat db4_upgrade db4_verify
+ 
+ ##################################################
+ # List of files installed into the library directory.
+@@ -330,53 +331,53 @@
+ 	    $(RPC_SRV_OBJS) util_log@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_archive: db_archive@o@ util_sig@o@ $(DEF_LIB)
++db4_archive: db_archive@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_archive@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_checkpoint: db_checkpoint@o@ util_log@o@ util_sig@o@ $(DEF_LIB)
++db4_checkpoint: db_checkpoint@o@ util_log@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_checkpoint@o@ util_log@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_deadlock: db_deadlock@o@ util_log@o@ util_sig@o@ $(DEF_LIB)
++db4_deadlock: db_deadlock@o@ util_log@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_deadlock@o@ util_log@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_dump: db_dump@o@ util_sig@o@ $(DEF_LIB)
++db4_dump: db_dump@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) db_dump@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_dump185: db_dump185@o@ @LIBOBJS@
++db4_dump185: db_dump185@o@ @LIBOBJS@
+ 	$(CCLINK) -o $@ $(LDFLAGS) db_dump185@o@ @LIBOBJS@ $(DB185LIB)
+ 	$(POSTLINK) $@
+ 
+-db_load: db_load@o@ util_sig@o@ $(DEF_LIB)
++db4_load: db_load@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) db_load@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_printlog: db_printlog@o@ util_sig@o@ $(DEF_LIB)
++db4_printlog: db_printlog@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_printlog@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_recover: db_recover@o@ util_sig@o@ $(DEF_LIB)
++db4_recover: db_recover@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_recover@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_stat: db_stat@o@ util_sig@o@ $(DEF_LIB)
++db4_stat: db_stat@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) db_stat@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_upgrade: db_upgrade@o@ util_sig@o@ $(DEF_LIB)
++db4_upgrade: db_upgrade@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_upgrade@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+ 
+-db_verify: db_verify@o@ util_sig@o@ $(DEF_LIB)
++db4_verify: db_verify@o@ util_sig@o@ $(DEF_LIB)
+ 	$(CCLINK) -o $@ $(LDFLAGS) \
+ 	    db_verify@o@ util_sig@o@ $(DEF_LIB) $(LIBS)
+ 	$(POSTLINK) $@
+@@ -385,7 +386,7 @@
+ # Library and standard utilities install.
+ ##################################################
+ library_install: install_setup
+-library_install: install_include install_lib install_utilities install_docs
++library_install: install_include install_lib install_utilities
+ 
+ uninstall: uninstall_include uninstall_lib uninstall_utilities uninstall_docs
+ 
+@@ -390,30 +390,30 @@
+ uninstall: uninstall_include uninstall_lib uninstall_utilities uninstall_docs
+ 
+ install_setup:
+-	@test -d $(prefix) || \
+-	    ($(mkdir) -p $(prefix) && $(chmod) $(dmode) $(prefix))
++	@test -d $(DESTDIR)$(prefix) || \
++	    ($(mkdir) -p $(DESTDIR)$(prefix) && $(chmod) $(dmode) $(DESTDIR)$(prefix))
+ 
+ INCDOT=	db.h db_cxx.h @ADDITIONAL_INCS@
+ INCINC=	cxx_common.h cxx_except.h
+ install_include:
+-	@echo "Installing DB include files: $(includedir) ..."
+-	@test -d $(includedir) || \
+-	    ($(mkdir) -p $(includedir) && $(chmod) $(dmode) $(includedir))
+-	@cd $(includedir) && $(rm) -f $(INCDOT) $(INCINC)
+-	@$(cp) -p $(INCDOT) $(includedir)
+-	@cd $(srcdir)/include/ && $(cp) -p $(INCINC) $(includedir)
+-	@cd $(includedir) && $(chmod) $(fmode) $(INCDOT) $(INCINC)
++	@echo "Installing DB include files: $(DESTDIR)$(includedir) ..."
++	@test -d $(DESTDIR)$(includedir) || \
++	    ($(mkdir) -p $(DESTDIR)$(includedir) && $(chmod) $(dmode) $(DESTDIR)$(includedir))
++	@cd $(DESTDIR)$(includedir) && $(rm) -f $(INCDOT) $(INCINC)
++	@$(cp) -p $(INCDOT) $(DESTDIR)$(includedir)
++	@cd $(srcdir)/include/ && $(cp) -p $(INCINC) $(DESTDIR)$(includedir)
++	@cd $(DESTDIR)$(includedir) && $(chmod) $(fmode) $(INCDOT) $(INCINC)
+ 
+ uninstall_include:
+ 	@cd $(includedir) && $(rm) -f $(INCDOT) $(INCINC)
+ 
+ install_lib:
+-	@echo "Installing DB library: $(libdir) ..."
+-	@test -d $(libdir) || \
+-	    ($(mkdir) -p $(libdir) && $(chmod) $(dmode) $(libdir))
+-	@cd $(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
+-	@$(INSTALLER) @INSTALL_LIBS@ $(libdir)
+-	@(cd $(libdir) && \
++	@echo "Installing DB library: $(DESTDIR)$(libdir) ..."
++	@test -d $(DESTDIR)$(libdir) || \
++	    ($(mkdir) -p $(DESTDIR)$(libdir) && $(chmod) $(dmode) $(DESTDIR)$(libdir))
++	@cd $(DESTDIR)$(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
++	@$(INSTALLER) @INSTALL_LIBS@ $(DESTDIR)$(libdir)
++	@(cd $(DESTDIR)$(libdir) && \
+ 	    test -f $(libso) && $(ln) -s $(libso) $(libso_default); \
+ 	    test -f $(libso) && $(ln) -s $(libso) $(libso_major); \
+ 	    test -f $(libso_static) && $(ln) -s $(libso_static) $(libdb); \
+@@ -426,8 +426,8 @@
+ 	    test -f $(libjso) && $(ln) -s $(libjso) $(libjso_major); \
+ 	    test -f $(libjso) && $(ln) -s $(libjso) $(libjso_g)) || true
+ 	@(test -f $(libj_jarfile) && \
+-	    $(cp) $(libj_jarfile) $(libdir)) || true
+-	@(cd $(libdir); for i in $(LIB_INSTALL_FILE_LIST); do \
++	    $(cp) $(libj_jarfile) $(DESTDIR)$(libdir)) || true
++	@(cd $(DESTDIR)$(libdir); for i in $(LIB_INSTALL_FILE_LIST); do \
+ 		test -f $$i && $(chmod) $(fmode) $$i || true; \
+ 	done)
+ 
+@@ -435,17 +435,17 @@
+ 	@cd $(libdir) && $(rm) -f $(LIB_INSTALL_FILE_LIST)
+ 
+ install_utilities:
+-	echo "Installing DB utilities: $(bindir) ..."
+-	@test -d $(bindir) || \
+-	    ($(mkdir) -p $(bindir) && $(chmod) $(dmode) $(bindir))
+-	@(cd $(bindir); for i in $(UTIL_PROGS); do \
++	echo "Installing DB utilities: $(DESTDIR)$(bindir) ..."
++	@test -d $(DESTDIR)$(bindir) || \
++	    ($(mkdir) -p $(DESTDIR)$(bindir) && $(chmod) $(dmode) $(DESTDIR)$(bindir))
++	@(cd $(DESTDIR)$(bindir); for i in $(UTIL_PROGS); do \
+ 		$(rm) -f $$i $$i.exe; \
+ 	done)
+ 	@for i in $(UTIL_PROGS); do \
+ 		test -f $$i.exe && i=$$i.exe; \
+-		$(INSTALLER) -fp $$i $(bindir); \
++		$(INSTALLER) -fp $$i $(DESTDIR)$(bindir); \
+ 	done
+-	@(cd $(bindir); for i in $(UTIL_PROGS); do \
++	@(cd $(DESTDIR)$(bindir); for i in $(UTIL_PROGS); do \
+ 		test -f $$i.exe && i=$$i.exe; \
+ 		test -f $(strip) && $(strip) $$i || true; \
+ 		$(chmod) $(emode) $$i; \
+@@ -460,11 +460,11 @@
+ 	api_c api_cxx api_java api_tcl images index.html ref reftoc.html \
+ 	sleepycat utility
+ install_docs:
+-	@echo "Installing documentation: $(docdir) ..."
+-	@test -d $(docdir) || \
+-	    ($(mkdir) -p $(docdir) && $(chmod) $(dmode) $(docdir))
+-	@cd $(docdir) && $(rm) -rf $(DOCLIST)
+-	@cd $(srcdir)/docs && $(cp) -pr $(DOCLIST) $(docdir)/
++	@echo "Installing documentation: $(DESTDIR)$(docdir) ..."
++	@test -d $(DESTDIR)$(docdir) || \
++	    ($(mkdir) -p $(DESTDIR)$(docdir) && $(chmod) $(dmode) $(DESTDIR)$(docdir))
++	@cd $(DESTDIR)$(docdir) && $(rm) -rf $(DOCLIST)
++	@cd $(srcdir)/docs && $(cp) -pr $(DOCLIST) $(DESTDIR)$(docdir)/
+ 
+ uninstall_docs:
+ 	@cd $(docdir) && $(rm) -rf $(DOCLIST)

@@ -1,0 +1,8 @@
+#!/bin/sh
+# $MidnightBSD: mports/editors/jedit-devel/files/jedit.sh.in,v 1.1 2007/12/28 03:50:02 laffer1 Exp $
+# $FreeBSD: ports/editors/jedit-devel/files/jedit.sh.in,v 1.1 2005/02/21 23:28:42 hq Exp $
+
+# Java heap size, in megabytes
+JAVA_HEAP_SIZE=32
+
+JAVA_VERSION="1.5+" "%%LOCALBASE%%/bin/java" -mx${JAVA_HEAP_SIZE}m ${JEDIT} -jar "%%DATADIR%%/jedit.jar" "$@"

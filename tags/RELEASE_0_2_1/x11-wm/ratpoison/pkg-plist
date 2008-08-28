@@ -1,0 +1,21 @@
+@comment $MidnightBSD$
+@comment $FreeBSD: ports/x11-wm/ratpoison/pkg-plist,v 1.8 2006/04/23 01:08:27 hq Exp $
+bin/ratpoison
+bin/rpws
+%%PORTDOCS%%%%DATADIR%%/allwindows.sh
+%%PORTDOCS%%%%DATADIR%%/clickframe.pl
+%%PORTDOCS%%%%DATADIR%%/genrpbindings
+%%PORTDOCS%%%%DATADIR%%/ratpoison.el
+%%PORTDOCS%%%%DATADIR%%/rpshowall.sh
+%%PORTDOCS%%%%DATADIR%%/rpws
+%%PORTDOCS%%%%DATADIR%%/split.sh
+%%PORTDOCS%%%%DATADIR%%/sloppy.c
+%%PORTDOCS%%%%DATADIR%%/unrat.c
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%WITH_GDM%%etc/dm/Sessions/ratpoison.desktop
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTDOCS%%@dirrm %%DATADIR%%

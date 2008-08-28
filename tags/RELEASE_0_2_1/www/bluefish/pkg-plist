@@ -1,0 +1,58 @@
+bin/bluefish
+%%DATADIR%%/bluefish_splash.png
+%%DATADIR%%/custom_menu.de.default
+%%DATADIR%%/custom_menu.default
+%%DATADIR%%/custom_menu.fr.default
+%%DATADIR%%/encodings.default
+%%DATADIR%%/filetypes.default
+%%DATADIR%%/funcref_css.xml
+%%DATADIR%%/funcref_html.xml
+%%DATADIR%%/funcref_php.xml
+%%DATADIR%%/funcref_python.xml
+%%DATADIR%%/highlighting.default
+%%DATADIR%%/icon_c.png
+%%DATADIR%%/icon_cfml.png
+%%DATADIR%%/icon_dir.png
+%%DATADIR%%/icon_html.png
+%%DATADIR%%/icon_image.png
+%%DATADIR%%/icon_java.png
+%%DATADIR%%/icon_pascal.png
+%%DATADIR%%/icon_php.png
+%%DATADIR%%/icon_python.png
+%%DATADIR%%/icon_r.png
+%%DATADIR%%/icon_unknown.png
+%%DATADIR%%/icon_xml.png
+share/applications/bluefish-project.desktop
+share/applications/bluefish.desktop
+share/pixmaps/bluefish-icon.png
+share/pixmaps/gnome-mime-application-bluefish-project.png
+share/locale/bg/LC_MESSAGES/bluefish.mo
+share/locale/cs/LC_MESSAGES/bluefish.mo
+share/locale/da/LC_MESSAGES/bluefish.mo
+share/locale/de/LC_MESSAGES/bluefish.mo
+share/locale/es/LC_MESSAGES/bluefish.mo
+share/locale/eu/LC_MESSAGES/bluefish.mo
+share/locale/fi/LC_MESSAGES/bluefish.mo
+share/locale/fr/LC_MESSAGES/bluefish.mo
+share/locale/hu/LC_MESSAGES/bluefish.mo
+share/locale/it/LC_MESSAGES/bluefish.mo
+share/locale/ja/LC_MESSAGES/bluefish.mo
+share/locale/no/LC_MESSAGES/bluefish.mo
+share/locale/pl/LC_MESSAGES/bluefish.mo
+share/locale/pt/LC_MESSAGES/bluefish.mo
+share/locale/pt_BR/LC_MESSAGES/bluefish.mo
+share/locale/ru/LC_MESSAGES/bluefish.mo
+share/locale/sk/LC_MESSAGES/bluefish.mo
+share/locale/sr/LC_MESSAGES/bluefish.mo
+share/locale/sv/LC_MESSAGES/bluefish.mo
+share/locale/ta/LC_MESSAGES/bluefish.mo
+share/locale/tr/LC_MESSAGES/bluefish.mo
+share/locale/zh_CN/LC_MESSAGES/bluefish.mo
+share/locale/zh_TW/LC_MESSAGES/bluefish.mo
+share/mime/packages/bluefish.xml
+@dirrm share/bluefish
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
+@dirrmtry share/mime
+@dirrmtry share/applications

@@ -1,0 +1,13 @@
+--- vpnc-script.orig	2008-02-26 00:42:09.000000000 +0100
++++ vpnc-script	2008-02-26 00:43:41.000000000 +0100
+@@ -56,8 +56,8 @@
+ 		;;
+ esac
+ 
+-DEFAULT_ROUTE_FILE=/var/run/vpnc/defaultroute
+-RESOLV_CONF_BACKUP=/var/run/vpnc/resolv.conf-backup
++DEFAULT_ROUTE_FILE=/var/run/vpnc.defaultroute
++RESOLV_CONF_BACKUP=/var/run/vpnc.resolv.conf-backup
+ FULL_SCRIPTNAME=/usr/local/sbin/vpnc
+ SCRIPTNAME=`basename $FULL_SCRIPTNAME`
+ 

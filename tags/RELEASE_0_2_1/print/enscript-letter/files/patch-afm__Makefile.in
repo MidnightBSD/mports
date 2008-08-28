@@ -1,0 +1,16 @@
+--- ./afm/Makefile.in.orig	Sun Apr 29 17:46:10 2007
++++ ./afm/Makefile.in	Sun Apr 29 17:46:28 2007
+@@ -319,10 +319,10 @@
+ 
+ 
+ install-data-local:
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript
+-	$(top_srcdir)/mkinstalldirs $(datadir)/enscript/afm
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript
++	$(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir)/enscript/afm
+ 	for f in $(EXTRA_DIST); do \
+-	  $(INSTALL_DATA) $(srcdir)/$$f $(datadir)/enscript/afm/$$f; \
++	  $(INSTALL_DATA) $(srcdir)/$$f $(DESTDIR)$(datadir)/enscript/afm/$$f; \
+ 	done
+ 
+ uninstall-local:

@@ -1,0 +1,13 @@
+--- ./Makefile.in.orig	Thu May 10 09:55:46 2007
++++ ./Makefile.in	Thu May 10 09:56:00 2007
+@@ -80,8 +80,8 @@
+ 	find . -type f | sed s/..// > MANIFEST
+ 
+ install : es
+-	$(INSTALL) $(srcdir)/es $(bindir)
+-	$(INSTALL) $(srcdir)/es.1 $(mandir)/man1
++	$(INSTALL) $(srcdir)/es $(DESTDIR)$(bindir)
++	$(INSTALL) $(srcdir)/es.1 $(DESTDIR)$(mandir)/man1
+ 
+ test	: trip
+ 

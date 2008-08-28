@@ -1,0 +1,12 @@
+#!/usr/local/bin/perl
+# 
+# $MidnightBSD$
+#
+
+use strict;
+use warnings;
+use lib qw(/usr/mports/Tools/lib);
+use Mport::Index;
+
+Mport::Index->build;	
+

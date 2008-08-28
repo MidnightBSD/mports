@@ -1,0 +1,59 @@
+@comment $FreeBSD: ports/net/p5-perl-ldap/pkg-plist,v 1.11 2008/04/22 15:01:56 mat Exp $
+%%SITE_PERL%%/Bundle/Net/LDAP.pm
+%%SITE_PERL%%/LWP/Protocol/ldap.pm
+%%SITE_PERL%%/Net/LDAP.pm
+%%SITE_PERL%%/Net/LDAP.pod
+%%SITE_PERL%%/Net/LDAP/ASN.pm
+%%SITE_PERL%%/Net/LDAP/Bind.pm
+%%SITE_PERL%%/Net/LDAP/Constant.pm
+%%SITE_PERL%%/Net/LDAP/Control.pm
+%%SITE_PERL%%/Net/LDAP/Control/EntryChange.pm
+%%SITE_PERL%%/Net/LDAP/Control/ManageDsaIT.pm
+%%SITE_PERL%%/Net/LDAP/Control/Paged.pm
+%%SITE_PERL%%/Net/LDAP/Control/PasswordPolicy.pm
+%%SITE_PERL%%/Net/LDAP/Control/PersistentSearch.pm
+%%SITE_PERL%%/Net/LDAP/Control/PostRead.pm
+%%SITE_PERL%%/Net/LDAP/Control/PreRead.pm
+%%SITE_PERL%%/Net/LDAP/Control/ProxyAuth.pm
+%%SITE_PERL%%/Net/LDAP/Control/Sort.pm
+%%SITE_PERL%%/Net/LDAP/Control/SortResult.pm
+%%SITE_PERL%%/Net/LDAP/Control/VLV.pm
+%%SITE_PERL%%/Net/LDAP/Control/VLVResponse.pm
+%%SITE_PERL%%/Net/LDAP/DSML.pm
+%%SITE_PERL%%/Net/LDAP/Entry.pm
+%%SITE_PERL%%/Net/LDAP/Entry.pod
+%%SITE_PERL%%/Net/LDAP/Examples.pod
+%%SITE_PERL%%/Net/LDAP/Extension.pm
+%%SITE_PERL%%/Net/LDAP/Extension/SetPassword.pm
+%%SITE_PERL%%/Net/LDAP/Extension/WhoAmI.pm
+%%SITE_PERL%%/Net/LDAP/Extra.pm
+%%SITE_PERL%%/Net/LDAP/FAQ.pod
+%%SITE_PERL%%/Net/LDAP/Filter.pm
+%%SITE_PERL%%/Net/LDAP/Filter.pod
+%%SITE_PERL%%/Net/LDAP/FilterMatch.pm
+%%SITE_PERL%%/Net/LDAP/LDIF.pm
+%%SITE_PERL%%/Net/LDAP/LDIF.pod
+%%SITE_PERL%%/Net/LDAP/Message.pm
+%%SITE_PERL%%/Net/LDAP/Message.pod
+%%SITE_PERL%%/Net/LDAP/RFC.pod
+%%SITE_PERL%%/Net/LDAP/Reference.pod
+%%SITE_PERL%%/Net/LDAP/RootDSE.pm
+%%SITE_PERL%%/Net/LDAP/Schema.pm
+%%SITE_PERL%%/Net/LDAP/Schema.pod
+%%SITE_PERL%%/Net/LDAP/Search.pm
+%%SITE_PERL%%/Net/LDAP/Search.pod
+%%SITE_PERL%%/Net/LDAP/Security.pod
+%%SITE_PERL%%/Net/LDAP/Util.pm
+%%SITE_PERL%%/Net/LDAPI.pm
+%%SITE_PERL%%/Net/LDAPS.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/LDAP/.packlist
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/LDAP
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Net
+@dirrm %%SITE_PERL%%/Net/LDAP/Control
+@dirrm %%SITE_PERL%%/Net/LDAP/Extension
+@dirrm %%SITE_PERL%%/Net/LDAP
+@dirrm %%SITE_PERL%%/Bundle/Net
+@dirrmtry %%SITE_PERL%%/Bundle
+@dirrmtry %%SITE_PERL%%/Net
+@dirrmtry %%SITE_PERL%%/LWP/Protocol
+@dirrmtry %%SITE_PERL%%/LWP

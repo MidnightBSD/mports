@@ -1,0 +1,23 @@
+--- python/Makefile.in.orig	Mon Feb  6 23:00:32 2006
++++ python/Makefile.in	Tue Feb  7 08:10:46 2006
+@@ -59,7 +59,7 @@
+ pythonLTLIBRARIES_INSTALL = $(INSTALL)
+ LTLIBRARIES = $(python_LTLIBRARIES)
+ @WITH_PYTHON_TRUE@am__DEPENDENCIES_1 =  \
+-@WITH_PYTHON_TRUE@	$(top_builddir)/libgamin/libgamin-1.la
++@WITH_PYTHON_TRUE@	-lgamin-1
+ @WITH_PYTHON_TRUE@_gamin_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
+ am___gamin_la_SOURCES_DIST = gamin.c
+ @WITH_PYTHON_TRUE@am__gamin_la_OBJECTS = gamin.lo
+@@ -239,9 +239,9 @@
+ 	gamin.c			\
+ 	gamin.py
+ 
+-_gamin_la_LDFLAGS = -module -avoid-version -L$(top_builddir)/libgamin/.libs
++_gamin_la_LDFLAGS = -module -avoid-version
+ @WITH_PYTHON_TRUE@mylibs = \
+-@WITH_PYTHON_TRUE@	$(top_builddir)/libgamin/libgamin-1.la
++@WITH_PYTHON_TRUE@	-lgamin-1
+ 
+ @WITH_PYTHON_TRUE@python_LTLIBRARIES = _gamin.la
+ @WITH_PYTHON_TRUE@_gamin_la_SOURCES = gamin.c

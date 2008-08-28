@@ -1,0 +1,20 @@
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCConfig.h
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCKeyboard.h
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCMonitor.h
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCMouse.h
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCSound.h
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/Resources/Info-gnustep.plist
+Local/Library/Frameworks/SystemConfig.framework/Versions/0/SystemConfig
+Local/Library/Frameworks/SystemConfig.framework/Versions/Current
+Local/Library/Frameworks/SystemConfig.framework/Resources
+Local/Library/Frameworks/SystemConfig.framework/Headers
+Local/Library/Frameworks/SystemConfig.framework/SystemConfig
+Local/Library/Frameworks/SystemConfig.framework/libSystemConfig.so
+Local/Library/Libraries/libSystemConfig.so
+Local/Library/Libraries/libSystemConfig.so.0.0.1
+Local/Library/Headers/SystemConfig
+@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0
+@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions
+@dirrm Local/Library/Frameworks/SystemConfig.framework

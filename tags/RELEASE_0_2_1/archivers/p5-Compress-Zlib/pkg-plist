@@ -1,0 +1,7 @@
+%%SITE_PERL%%/Compress/Zlib.pm
+%%SITE_PERL%%/auto/Compress/Zlib/autosplit.ix
+@dirrm %%SITE_PERL%%/mach/auto/Compress/Zlib
+@dirrmtry %%SITE_PERL%%/mach/auto/Compress
+@dirrmtry %%SITE_PERL%%/auto/Compress/Zlib
+@dirrmtry %%SITE_PERL%%/auto/Compress
+@dirrmtry %%SITE_PERL%%/Compress

@@ -1,0 +1,14 @@
+%%I386%%lib/dri/i810_dri.so
+%%I386_AMD64%%lib/dri/i915_dri.so
+%%I386%%lib/dri/i965_dri.so
+lib/dri/mach64_dri.so
+lib/dri/mga_dri.so
+lib/dri/r128_dri.so
+lib/dri/r200_dri.so
+lib/dri/r300_dri.so
+lib/dri/radeon_dri.so
+lib/dri/savage_dri.so
+lib/dri/sis_dri.so
+%%I386%%lib/dri/tdfx_dri.so
+%%I386%%lib/dri/unichrome_dri.so
+@dirrm lib/dri

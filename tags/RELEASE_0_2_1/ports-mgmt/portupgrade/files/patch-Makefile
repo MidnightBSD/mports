@@ -1,0 +1,11 @@
+--- Makefile.org	Fri Apr 20 14:16:26 2007
++++ Makefile	Fri Apr 20 14:16:36 2007
+@@ -45,7 +45,7 @@
+ .endif
+ 
+ install-doc: ${CHANGELOG}
+-	mkdir -p ${DOCSDIR}
++	mkdir -p ${DESTDIR}${DOCSDIR}
+ 	${INSTALL} -c -o ${DOCOWN} -g ${DOCGRP} -m ${DOCMODE} \
+ 		${DOCFILES} ${DESTDIR}${DOCSDIR}
+ 

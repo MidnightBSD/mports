@@ -1,0 +1,11 @@
+--- ./misc/zsh/Makefile.orig	Fri Apr 20 14:13:36 2007
++++ ./misc/zsh/Makefile	Fri Apr 20 14:10:19 2007
+@@ -5,7 +5,7 @@
+ FILESDIR?=	${PREFIX}/share/zsh/site-functions
+ 
+ beforeinstall:
+-	mkdir -p ${FILESDIR}
++	mkdir -p ${DESTDIR}${FILESDIR}
+ 
+ .include <bsd.prog.mk>
+ 

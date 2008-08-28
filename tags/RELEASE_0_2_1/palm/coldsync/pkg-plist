@@ -1,0 +1,30 @@
+bin/coldsync
+etc/sample.coldsync.rc
+lib/libpconn.a
+lib/libpconn.so
+lib/libpconn.so.0
+lib/libpdb.a
+lib/libpdb.so
+lib/libpdb.so.0
+share/locale/cs/LC_MESSAGES/coldsync.mo
+share/locale/de/LC_MESSAGES/coldsync.mo
+share/locale/fr/LC_MESSAGES/coldsync.mo
+share/locale/it/LC_MESSAGES/coldsync.mo
+include/palm.h
+include/pdb.h
+include/pconn/util.h
+include/pconn/slp.h
+include/pconn/pconn.h
+include/pconn/palm_types.h
+include/pconn/palm_errno.h
+include/pconn/padp.h
+include/pconn/dlp_rpc.h
+include/pconn/dlp_cmd.h
+include/pconn/dlp.h
+include/pconn/cmp.h
+include/pconn/netsync.h
+include/pconn/PConnection.h
+include/pconn/spc_client.h
+@dirrm include/pconn
+@dirrmtry share/locale/cs/LC_MESSAGES
+@dirrmtry share/locale/cs

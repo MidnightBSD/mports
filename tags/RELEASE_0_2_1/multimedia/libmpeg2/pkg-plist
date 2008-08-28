@@ -1,0 +1,23 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.114 2008/06/29 18:30:42 laffer1 Exp $
+bin/mpeg2dec
+bin/extract_mpeg2
+bin/corrupt_mpeg2
+include/mpeg2dec/mpeg2.h
+include/mpeg2dec/mpeg2convert.h
+include/mpeg2dec/video_out.h
+lib/libmpeg2convert.so.0
+lib/libmpeg2convert.so
+lib/libmpeg2convert.la
+lib/libmpeg2convert.a
+lib/libmpeg2.so.0
+lib/libmpeg2.so
+lib/libmpeg2.la
+lib/libmpeg2.a
+lib/libvo.a
+libdata/pkgconfig/libmpeg2convert.pc
+libdata/pkgconfig/libmpeg2.pc
+%%DOCSDIR%%/COPYING
+%%DOCSDIR%%/libmpeg2.txt
+%%DOCSDIR%%/README
+@dirrm include/mpeg2dec
+@dirrm %%DOCSDIR%%
