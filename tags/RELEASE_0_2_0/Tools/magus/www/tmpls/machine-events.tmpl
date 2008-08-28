@@ -1,0 +1,18 @@
+<table class="event-list">
+<tr>
+	<th>Port</th>
+	<th>Run</th>
+        <th>Type</th>
+        <th>Time</th>
+        <th>Message</th>
+</tr>
+
+<TMPL_LOOP name="events">
+<tr class="<TMPL_VAR NAME=type><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
+	<td><a href="<TMPL_VAR NAME="port_root">/<TMPL_VAR NAME="port_id">"><TMPL_VAR NAME="port"></a></td>
+	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
+        <td><TMPL_VAR NAME="type"></td>
+        <td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
+        <td><TMPL_VAR NAME="msg"></td>
+</tr>
+</TMPL_LOOP>

@@ -1,0 +1,10 @@
+--- doc/minirc.dfl.orig	Sun Jan 27 23:21:45 2002
++++ doc/minirc.dfl	Sun Jan 27 23:21:49 2002
+@@ -1,2 +1,7 @@
+ # $Id: patch-minirc.dfl,v 1.1 2007-02-19 23:46:59 laffer1 Exp $
+ # Machine-generated file - use "minicom -s" to change parameters.
++pr port             /dev/cuaa0
++pu baudrate         9600
++pu bits             8
++pu parity           N
++pu minit            

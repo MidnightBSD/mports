@@ -1,0 +1,16 @@
+@comment $FreeBSD: ports/graphics/p5-Image-Info/pkg-plist,v 1.4 2006/07/16 19:11:39 erwin Exp $
+%%SITE_PERL%%/Image/Info.pm
+%%SITE_PERL%%/Image/Info/BMP.pm
+%%SITE_PERL%%/Image/Info/GIF.pm
+%%SITE_PERL%%/Image/Info/JPEG.pm
+%%SITE_PERL%%/Image/Info/PNG.pm
+%%SITE_PERL%%/Image/Info/PPM.pm
+%%SITE_PERL%%/Image/Info/SVG.pm
+%%SITE_PERL%%/Image/Info/TIFF.pm
+%%SITE_PERL%%/Image/Info/XBM.pm
+%%SITE_PERL%%/Image/Info/XPM.pm
+%%SITE_PERL%%/Image/TIFF.pm
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Info
+@dirrmtry %%SITE_PERL%%/Image/Info
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image
+@dirrmtry %%SITE_PERL%%/Image

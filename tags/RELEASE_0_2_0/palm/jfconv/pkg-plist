@@ -1,0 +1,3 @@
+bin/jfconv
+%%PORTDOCS%%share/doc/jfconv/README
+%%PORTDOCS%%@dirrm share/doc/jfconv

@@ -1,0 +1,2 @@
+bin/sshfs
+lib/sshnodelay.so

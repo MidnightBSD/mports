@@ -1,0 +1,19 @@
+--- Makefile.in.orig	Fri Aug 10 17:47:18 2007
++++ Makefile.in	Fri Aug 10 17:49:52 2007
+@@ -13,11 +13,11 @@
+ LDFLAGS	=@LDFLAGS@ @LIBS@
+ LINTFLAGS=$(CPPFLAGS) @LINTFLAGS@ 
+ CXFLAGS	=@CXFLAGS@ $(CPPFLAGS)
+-prefix	=@prefix@
+-exec_prefix=@exec_prefix@
+-bindir	=@bindir@
+-datadir	=@datadir@
+-mandir	=@mandir@
++prefix	=${PREFIX}
++exec_prefix=${PREFIX}
++bindir	=@bindir@
++datadir=@datadir@
++mandir	=${DESTDIR}@mandir@
+ INSTALL	=@INSTALL@
+ MKDEP	=@MKDEP@
+ BINST	=$(INSTALL) -m755

@@ -1,0 +1,4 @@
+%%SITE_PERL%%/Geography/Countries.pm
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Geography/Countries
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Geography
+@dirrmtry %%SITE_PERL%%/Geography

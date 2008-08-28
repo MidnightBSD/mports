@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+# $FreeBSD: ports/devel/desktop-file-utils/files/pkg-deinstall.in,v 1.3 2006/02/26 01:03:37 marcus Exp $
+#
+# Remove leftover mimeinfo.cache files.
+
+if [ "$2" != "POST-DEINSTALL" ]; then
+    exit 0
+fi
+
+for mdir in %%MIMEDIRS%%; do
+    if [ -f ${mdir}/mimeinfo.cache ]; then
+	rm -f ${mdir}/mimeinfo.cache
+    fi
+done
+
+for pmdir in $(echo %%RMDIRS%% | sort -r); do
+    rmdir ${pmdir} 2>/dev/null
+done
+
+exit 0

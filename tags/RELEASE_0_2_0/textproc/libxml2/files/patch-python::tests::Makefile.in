@@ -1,0 +1,11 @@
+--- python/tests/Makefile.in.orig	Fri May  9 16:04:48 2008
++++ python/tests/Makefile.in	Fri May  9 16:08:00 2008
+@@ -270,7 +270,7 @@
+ target_alias = @target_alias@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-exampledir = $(datadir)/doc/libxml2-python-$(LIBXML_VERSION)/examples
++exampledir = $(datadir)/examples/py-libxml2
+ dist_example_DATA = $(PYTESTS) $(XMLS)
+ PYTESTS = \
+     build.py	\

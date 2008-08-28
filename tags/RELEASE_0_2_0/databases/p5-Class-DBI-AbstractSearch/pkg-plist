@@ -1,0 +1,7 @@
+@comment $FreeBSD: ports/databases/p5-Class-DBI-AbstractSearch/pkg-plist,v 1.3 2006/01/22 01:28:57 edwin Exp $
+%%SITE_PERL%%/Class/DBI/AbstractSearch.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/DBI/AbstractSearch
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/DBI
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Class
+@dirrmtry %%SITE_PERL%%/Class/DBI
+@dirrmtry %%SITE_PERL%%/Class

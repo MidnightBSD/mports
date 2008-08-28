@@ -1,0 +1,41 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+# $FreeBSD: ports/devel/dbus/files/dbus.in,v 1.12 2008/03/24 03:49:35 marcus Exp $
+#
+# PROVIDE: dbus
+# REQUIRE: DAEMON
+#
+# Add the following lines to /etc/rc.conf to enable the D-BUS messaging system:
+#
+# dbus_enable="YES"
+#
+
+. %%RC_SUBR%%
+. %%GNOME_SUBR%%
+
+dbus_enable=${dbus_enable-${gnome_enable}}
+dbus_flags=${dbus_flags-"--system"}
+
+name=dbus
+rcvar=`set_rcvar`
+
+command="%%PREFIX%%/bin/dbus-daemon"
+pidfile="/var/run/dbus/${name}.pid"
+
+start_precmd="dbus_prestart"
+stop_postcmd="dbus_poststop"
+
+dbus_prestart()
+{
+    mkdir -p $(dirname $pidfile)
+}
+
+dbus_poststop()
+{
+    rm -f $pidfile
+}
+
+
+load_rc_config ${name}
+run_rc_command "$1"

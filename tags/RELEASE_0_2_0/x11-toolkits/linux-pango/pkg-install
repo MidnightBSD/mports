@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+case $2 in
+POST-INSTALL)
+    echo -n "Creating module list... "
+    $PKG_PREFIX/usr/bin/pango-querymodules-32 > $PKG_PREFIX/etc/pango/i686-redhat-linux-gnu/pango.modules
+    echo "done."
+    ;;
+esac

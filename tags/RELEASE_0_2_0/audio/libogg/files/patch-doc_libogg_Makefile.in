@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/audio/libogg/files/patch-doc_libogg_Makefile.in,v 1.2 2007/10/24 23:34:49 marcus Exp $
+
+--- doc/libogg/Makefile.in.orig
++++ doc/libogg/Makefile.in
+@@ -168,7 +168,7 @@
+ sharedstatedir = @sharedstatedir@
+ sysconfdir = @sysconfdir@
+ target_alias = @target_alias@
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)/ogg
++docdir = $(datadir)/doc/$(PACKAGE)/ogg
+ doc_DATA = bitpacking.html datastructures.html decoding.html encoding.html\
+ 	general.html index.html ogg_packet.html ogg_packet_clear.html\
+ 	ogg_page.html ogg_page_bos.html ogg_page_checksum_set.html\

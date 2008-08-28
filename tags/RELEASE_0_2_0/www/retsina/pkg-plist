@@ -1,0 +1,3 @@
+bin/retsina
+share/retsina/retsina.conf
+@dirrm share/retsina

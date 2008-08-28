@@ -1,0 +1,16 @@
+From the Introduction:
+
+PHP is a wonderful language for building dynamic web pages.
+Unfortunately, PHP's database access functions are not standardised.
+Every database extension uses a different and incompatibile API.
+This creates a need for a database class library to hide the differences
+between the different databases (encapsulate the differences) so we can
+easily switch databases. 
+
+ADODB stands for Active Data Objects Data Base.
+
+ADODB currently supports:
+	MySQL, PostgreSQL, Interbase, Oracle, MS SQL 7
+	Foxpro, Access, ADO, Sybase, DB2 and generic ODBC.
+
+WWW: http://adodb.sourceforge.net

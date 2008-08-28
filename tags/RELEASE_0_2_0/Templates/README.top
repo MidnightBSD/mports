@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>The MidnightBSD Ports Collection</title>
+  </head>
+
+  <body>
+    <h1>The MidnightBSD Ports Collection</h1>
+
+    <p>You are at the top of the ports tree.</p>
+
+    <p>For information on how to use the ports tree, please look at 
+    the <a href="http://www.midnightbsd.org/ports">MidnightBSD mports</a>
+    website.</p>
+
+    <p>If you find a bug in a port, contact the port maintainer or
+    <a href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>.</p>
+
+    <p>If you would like to contribute a port, contact <a
+    href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>.</p>
+
+    <p>Here are the one-line descriptions for each of the directories:</p>
+<pre>
+%%SUBDIR%%
+</pre>
+  </body>
+</html>

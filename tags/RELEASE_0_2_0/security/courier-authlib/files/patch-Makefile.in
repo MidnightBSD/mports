@@ -1,0 +1,244 @@
+--- Makefile.in.orig	Sat Dec 30 06:27:59 2006
++++ Makefile.in	Mon Jan  1 22:23:31 2007
+@@ -45,11 +45,10 @@
+ POST_UNINSTALL = :
+ build_triplet = @build@
+ host_triplet = @host@
+-sbin_PROGRAMS = authtest$(EXEEXT) authenumerate$(EXEEXT) \
+-	authpasswd$(EXEEXT)
+-bin_PROGRAMS = courierauthconfig$(EXEEXT)
+-noinst_PROGRAMS = authdaemontest$(EXEEXT) authmksock$(EXEEXT) \
+-	authdaemondprog$(EXEEXT)
++@HAVE_BASE_TRUE@sbin_PROGRAMS = authtest$(EXEEXT) authenumerate$(EXEEXT)
++@HAVE_BASE_TRUE@bin_PROGRAMS = courierauthconfig$(EXEEXT)
++@HAVE_BASE_TRUE@noinst_PROGRAMS = authdaemontest$(EXEEXT) authmksock$(EXEEXT) \
++@HAVE_BASE_TRUE@	authdaemondprog$(EXEEXT)
+ DIST_COMMON = README $(am__configure_deps) $(include_HEADERS) \
+ 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+ 	$(srcdir)/README.authdebug.html.in $(srcdir)/authdaemond.in \
+@@ -85,7 +84,7 @@
+ 	"$(DESTDIR)$(sbindir)" "$(DESTDIR)$(pkglibexecdir)" \
+ 	"$(DESTDIR)$(sbindir)" "$(DESTDIR)$(man1dir)" \
+ 	"$(DESTDIR)$(man3dir)" "$(DESTDIR)$(includedir)"
+-pkglibLTLIBRARIES_INSTALL = $(INSTALL)
++pkglibLTLIBRARIES_INSTALL = $(INSTALL) -m 0444
+ LTLIBRARIES = $(pkglib_LTLIBRARIES)
+ am__DEPENDENCIES_1 = libcourierauthcommon.la
+ am_libauthcustom_la_OBJECTS = authcustom.lo preauthcustom.lo
+@@ -401,8 +400,14 @@
+ userdb = @userdb@
+ vpopmail_home = @vpopmail_home@
+ AUTOMAKE_OPTIONS = dist-bzip2
+-SUBDIRS = @LIBLTDL_SUBDIR@ @DBSUBDIR@ md5 sha1 libhmac numlib makedat userdb rfc822 random128 liblock liblog
+-DIST_SUBDIRS = libltdl gdbmobj bdbobj md5 sha1 libhmac numlib makedat userdb rfc822 random128 liblock liblog
++SUBDIRS = libltdl @DBSUBDIR@ md5 sha1 libhmac numlib
++@HAVE_USERDB_TRUE@SUBDIRS += makedat userdb
++SUBDIRS += rfc822 random128
++@HAVE_BASE_TRUE@SUBDIRS += liblock liblog
++DIST_SUBDIRS = libltdl gdbmobj bdbobj md5 sha1 libhmac numlib
++@HAVE_USERDB_TRUE@DIST_SUBDIRS+= makedat userdb
++DIST_SUBDIRS += rfc822 random128
++@HAVE_BASE_TRUE@DIST_SUBDIRS += liblock liblog
+ INCLUDES = $(LTDLINCL)
+ modules = @LIBAUTHUSERDB@ \
+ 	@LIBAUTHPAM@ @LIBAUTHPWD@ @LIBAUTHSHADOW@ \
+@@ -411,9 +416,11 @@
+ 
+ pkglibexecdir = $(libexecdir)/courier-authlib
+ pkglibexec_SCRIPTS = authsystem.passwd
+-pkglib_LTLIBRARIES = libcourierauth.la \
+-	libcourierauthsasl.la libcourierauthsaslclient.la \
+-	libcourierauthcommon.la $(modules)
++@HAVE_BASE_TRUE@pkglib_LTLIBRARIES = libcourierauth.la \
++@HAVE_BASE_TRUE@	libcourierauthsasl.la libcourierauthsaslclient.la \
++@HAVE_BASE_TRUE@	libcourierauthcommon.la $(modules)
++
++@HAVE_BASE_FALSE@pkglib_LTLIBRARIES = $(modules)
+ 
+ sbin_SCRIPTS = authdaemond
+ EXTRA_LTLIBRARIES = libauthuserdb.la \
+@@ -571,8 +578,8 @@
+ 
+ libcourierauthsaslclient_la_LIBADD = libcourierauth.la
+ libcourierauthsaslclient_la_LDFLAGS = -export-symbols-regex '^auth_sasl_client$$'
+-include_HEADERS = courier_auth_config.h courierauth.h courierauthsasl.h \
+-	courierauthsaslclient.h courierauthdebug.h
++@HAVE_BASE_TRUE@include_HEADERS = courier_auth_config.h courierauth.h courierauthsasl.h \
++@HAVE_BASE_TRUE@	courierauthsaslclient.h courierauthdebug.h
+ 
+ courierauthconfig_SOURCES = authinfo.c
+ authpasswd_SOURCES = authpasswd.c
+@@ -613,7 +620,7 @@
+ man3 = authlib.3 auth_generic.3 auth_login.3 auth_getuserinfo.3 \
+ 	auth_enumerate.3 auth_passwd.3 auth_getoption.3 auth_sasl.3
+ 
+-man1 = authpasswd.1 authtest.1
++man1 = authtest.1
+ man_MANS = $(man1) $(man3)
+ BUILT1 = authlib.html authldaprc.h authmysqlrc.h authpgsqlrc.h authpiperc.h \
+ 	authdaemonrc.h vpopmail_config.h packageversion.h \
+@@ -997,8 +1004,8 @@
+ 	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+ 	  inst=`echo $$inst | sed -e 's/^.*\///'`; \
+ 	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+-	  echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man1dir)/$$inst'"; \
+-	  $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man1dir)/$$inst"; \
++	  echo " install  -o root -g wheel -m 444 '$$file' '$(DESTDIR)$(man1dir)/$$inst'"; \
++	  install  -o root -g wheel -m 444 "$$file" "$(DESTDIR)$(man1dir)/$$inst"; \
+ 	done
+ uninstall-man1:
+ 	@$(NORMAL_UNINSTALL)
+@@ -1042,8 +1049,8 @@
+ 	  inst=`echo $$i | sed -e 's/\\.[0-9a-z]*$$//'`; \
+ 	  inst=`echo $$inst | sed -e 's/^.*\///'`; \
+ 	  inst=`echo $$inst | sed '$(transform)'`.$$ext; \
+-	  echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man3dir)/$$inst'"; \
+-	  $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man3dir)/$$inst"; \
++	  echo " install  -o root -g wheel -m 444 '$$file' '$(DESTDIR)$(man3dir)/$$inst'"; \
++	  install  -o root -g wheel -m 444 "$$file" "$(DESTDIR)$(man3dir)/$$inst"; \
+ 	done
+ uninstall-man3:
+ 	@$(NORMAL_UNINSTALL)
+@@ -1422,15 +1429,21 @@
+ 
+ info-am:
+ 
+-install-data-am: install-includeHEADERS install-man
+-	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
++@HAVE_BASE_TRUE@install-data-am: install-includeHEADERS install-man
++@HAVE_BASE_TRUE@	@$(NORMAL_INSTALL)
++@HAVE_BASE_TRUE@	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
++
++@HAVE_BASE_FALSE@install-data-am:
++@HAVE_BASE_FALSE@	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
++
++@HAVE_BASE_TRUE@install-exec-am: install-binPROGRAMS install-pkglibLTLIBRARIES \
++@HAVE_BASE_TRUE@	install-pkglibexecSCRIPTS install-sbinPROGRAMS \
++@HAVE_BASE_TRUE@	install-sbinSCRIPTS
++@HAVE_BASE_TRUE@	@$(NORMAL_INSTALL)
++@HAVE_BASE_TRUE@	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
+ 
+-install-exec-am: install-binPROGRAMS install-pkglibLTLIBRARIES \
+-	install-pkglibexecSCRIPTS install-sbinPROGRAMS \
+-	install-sbinSCRIPTS
+-	@$(NORMAL_INSTALL)
+-	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
++@HAVE_BASE_FALSE@install-exec-am: install-pkglibLTLIBRARIES
++@HAVE_BASE_FALSE@	$(MAKE) $(AM_MAKEFLAGS) install-exec-hook
+ 
+ install-info: install-info-recursive
+ 
+@@ -1540,6 +1553,19 @@
+ @HAVE_LDAP_FALSE@uninstall-authldaprc:
+ @HAVE_LDAP_FALSE@	@:
+ 
++@HAVE_LDAP_TRUE@install-ldapschema:
++@HAVE_LDAP_TRUE@	$(mkinstalldirs) ${sysconfdir}/openldap/schema
++@HAVE_LDAP_TRUE@	$(INSTALL_DATA) -m 0444 $(srcdir)/authldap.schema \
++@HAVE_LDAP_TRUE@		${sysconfdir}/openldap/schema/authldap.schema.default
++@HAVE_LDAP_TRUE@	if test ! -f ${sysconfdir}/openldap/schema/authldap.schema ; then \
++@HAVE_LDAP_TRUE@		$(INSTALL_DATA) -m 0444 $(srcdir)/authldap.schema \
++@HAVE_LDAP_TRUE@			${sysconfdir}/openldap/schema/authldap.schema ; \
++@HAVE_LDAP_TRUE@	fi
++
++@HAVE_LDAP_FALSE@install-ldapschema:
++@HAVE_LDAP_FALSE@	@:
++		
++
+ authldaprc.h:
+ 	echo "#define AUTHLDAPRC \"@authldaprc@\"" >authldaprc.h
+ 
+@@ -1569,16 +1595,22 @@
+ authpiperc.h:
+ 	echo "#define PIPE_PROGRAM \"@authProg@\"" >authpiperc.h
+ 
+-install-authdaemonrc:
+-	$(mkinstalldirs) $(DESTDIR)`dirname @authdaemonrc@` || :
+-	sed 's/@ALLMODULES@/$(modules:lib%.la=%)/' <authdaemonrc >authdaemonrc.tmp
+-	$(INSTALL_DATA) -m 660 authdaemonrc.tmp $(DESTDIR)@authdaemonrc@.dist
+-	rm -f authdaemonrc.tmp
+-	-chown @mailuser@ $(DESTDIR)@authdaemonrc@.dist
+-	-chgrp @mailgroup@ $(DESTDIR)@authdaemonrc@.dist
++@HAVE_BASE_TRUE@install-authdaemonrc:
++@HAVE_BASE_TRUE@	$(mkinstalldirs) $(DESTDIR)`dirname @authdaemonrc@`
++@HAVE_BASE_TRUE@	sed 's/@ALLMODULES@/$(modules:lib%.la=%)/' <authdaemonrc >authdaemonrc.tmp
++@HAVE_BASE_TRUE@	$(INSTALL_DATA) -m 660 authdaemonrc.tmp $(DESTDIR)@authdaemonrc@.dist
++@HAVE_BASE_TRUE@	rm -f authdaemonrc.tmp
++@HAVE_BASE_TRUE@	-chown @mailuser@ $(DESTDIR)@authdaemonrc@.dist
++@HAVE_BASE_TRUE@	-chgrp @mailgroup@ $(DESTDIR)@authdaemonrc@.dist
++
++@HAVE_BASE_FALSE@install-authdaemonrc:
++@HAVE_BASE_FALSE@	@:
++
++@HAVE_BASE_TRUE@uninstall-authdaemonrc:
++@HAVE_BASE_TRUE@	rm -f $(DESTDIR)@authdaemonrc@.dist
+ 
+-uninstall-authdaemonrc:
+-	rm -f $(DESTDIR)@authdaemonrc@.dist
++@HAVE_BASE_FALSE@uninstall-authdaemonrc:
++@HAVE_BASE_FALSE@	@:
+ 
+ authdaemonrc.h:
+ 	echo "#define AUTHDAEMONRC \"@authdaemonrc@\"" >authdaemonrc.h
+@@ -1621,18 +1653,18 @@
+ # automake still a bit stupid...
+ 
+ install-data-hook: install-authdaemonrc install-authpgsqlrc \
+-	install-authldaprc install-authmysqlrc
++	install-authldaprc install-ldapschema install-authmysqlrc
+ 	:
+ 
+ install-exec-hook:
+-	$(mkinstalldirs) $(DESTDIR)$(bindir) || :
+-	$(mkinstalldirs) $(DESTDIR)$(sbindir) || :
+-	$(mkinstalldirs) $(DESTDIR)$(pkglibexecdir) || :
+-	$(INSTALL_PROGRAM_ENV) $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) authdaemondprog $(DESTDIR)$(pkglibexecdir)/authdaemond
+-	$(mkinstalldirs) $(DESTDIR)@authdaemonvar@ || :
+-	chmod 750 $(DESTDIR)@authdaemonvar@
+-	-chown @mailuser@ $(DESTDIR)@authdaemonvar@
+-	-chgrp @mailgroup@ $(DESTDIR)@authdaemonvar@
++@HAVE_BASE_TRUE@	$(mkinstalldirs) $(DESTDIR)$(bindir) || :
++@HAVE_BASE_TRUE@	$(mkinstalldirs) $(DESTDIR)$(sbindir) || :
++@HAVE_BASE_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkglibexecdir) || :
++@HAVE_BASE_TRUE@	$(INSTALL_PROGRAM_ENV) $(LIBTOOL) --mode=install $(INSTALL_PROGRAM) authdaemondprog $(DESTDIR)$(pkglibexecdir)/authdaemond
++@HAVE_BASE_TRUE@	$(mkinstalldirs) $(DESTDIR)@authdaemonvar@ || :
++@HAVE_BASE_TRUE@	chmod 750 $(DESTDIR)@authdaemonvar@
++@HAVE_BASE_TRUE@	-chown @mailuser@ $(DESTDIR)@authdaemonvar@
++@HAVE_BASE_TRUE@	-chgrp @mailgroup@ $(DESTDIR)@authdaemonvar@
+ 	test "@LIBAUTHUSERDB@" = "" && exit 0 ;\
+ 		$(INSTALL_PROGRAM_ENV) $(INSTALL_PROGRAM) makedat/makedatprog \
+ 				$(DESTDIR)$(pkglibexecdir)/makedatprog ; \
+@@ -1650,7 +1682,7 @@
+ 				$(DESTDIR)$(sbindir)/userdb-test-cram-md5
+ 
+ uninstall-hook: uninstall-authldaprc uninstall-authdaemonrc uninstall-authmysqlrc uninstall-authpgsqlrc
+-	rm -f $(DESTDIR)$(pkglibexecdir)/authdaemond
++@HAVE_BASE_TRUE@	rm -f $(DESTDIR)$(pkglibexecdir)/authdaemond
+ 	test "@AUTHUSERDB@" = "" && exit 0 ;\
+ 		rm -f $(DESTDIR)$(pkglibexecdir)/makedatprog \
+ 				$(DESTDIR)$(sbindir)/vchkpw2userdb \
+@@ -1664,7 +1696,7 @@
+ 	CONFIG_FILES=authlib.html CONFIG_HEADERS= $(SHELL) ./config.status
+ 
+ authlib.3: authlib.3.in
+-	CONFIG_FILES=authlib.3 CONFIG_HEADERS= $(SHELL) ./config.status
++@HAVE_BASE_TRUE@	CONFIG_FILES=authlib.3 CONFIG_HEADERS= $(SHELL) ./config.status
+ 
+ @HAVE_SGML_TRUE@authpasswd.html: authpasswd.sgml docbook/sgml2html
+ @HAVE_SGML_TRUE@	docbook/sgml2html authpasswd.sgml authpasswd.html
+@@ -1738,10 +1770,10 @@
+ 	@SHELL@ authmigrate
+ 
+ install-configure:
+-	test -f $(DESTDIR)@authdaemonrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authdaemonrc@.dist || true
+-	test -f $(DESTDIR)@authmysqlrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authmysqlrc@.dist || true
+-	test -f $(DESTDIR)@authpgsqlrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authpgsqlrc@.dist || true
+-	test -f $(DESTDIR)@authldaprc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authldaprc@.dist || true
++@HAVE_BASE_TRUE@	test -f $(DESTDIR)@authdaemonrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authdaemonrc@.dist || true ; chmod 0600 $(DESTDIR)@authdaemonrc@
++@HAVE_AUTHMYSQL_TRUE@	test -f $(DESTDIR)@authmysqlrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authmysqlrc@.dist || true ; chmod 0600 $(DESTDIR)@authmysqlrc@
++@HAVE_AUTHPGSQL_TRUE@	test -f $(DESTDIR)@authpgsqlrc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authpgsqlrc@.dist || true ; chmod 0600 $(DESTDIR)@authpgsqlrc@
++@HAVE_LDAP_TRUE@	test -f $(DESTDIR)@authldaprc@.dist && @SYSCONFTOOL@ $(DESTDIR)@authldaprc@.dist || true ; chmod 0600 $(DESTDIR)@authldaprc@
+ 
+ # For maintainer's use only
+ 

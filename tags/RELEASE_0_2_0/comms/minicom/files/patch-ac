@@ -1,0 +1,11 @@
+--- src/updown.c.orig	Sun Jan 27 18:45:22 2002
++++ src/updown.c	Sun Jan 27 18:45:58 2002
+@@ -245,7 +245,7 @@
+     do_log("%s", cmdline);   /* jl 22.06.97 */
+ 
+   if (P_PFULL(g) == 'N') {
+-    win = wopen(10, 7, 70, 13, BSINGLE, stdattr, mfcolor, mbcolor, 1, 0, 1);
++    win = wopen(5, 5, 74, 11, BSINGLE, stdattr, mfcolor, mbcolor, 1, 0, 1);
+     snprintf(title, sizeof(title), _("%.30s %s - Press CTRL-C to quit"), P_PNAME(g),
+ 	    what == 'U' ? _("upload") : _("download"));
+     wtitle(win, TMID, title);

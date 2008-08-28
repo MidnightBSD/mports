@@ -1,0 +1,77 @@
+# $MidnightBSD: mports/audio/Makefile,v 1.62 2008/04/14 04:05:11 laffer1 Exp $
+#
+
+    COMMENT = Audio tools
+
+    SUBDIR += akode
+    SUBDIR += akode-plugins-jack
+    SUBDIR += akode-plugins-mpc
+    SUBDIR += akode-plugins-mpeg
+    SUBDIR += akode-plugins-oss
+    SUBDIR += akode-plugins-resampler
+    SUBDIR += akode-plugins-xiph
+    SUBDIR += arts
+    SUBDIR += artswrapper
+    SUBDIR += cddb-bundle
+    SUBDIR += cdparanoia
+    SUBDIR += esound
+    SUBDIR += espeak
+    SUBDIR += faac
+    SUBDIR += faad
+    SUBDIR += flac
+    SUBDIR += gnome-audio
+    SUBDIR += gnome-media
+    SUBDIR += gnustep-cdplayer
+    SUBDIR += gsm
+    SUBDIR += gstreamer-plugins-a52dec
+    SUBDIR += gstreamer-plugins-cdparanoia
+    SUBDIR += gstreamer-plugins-esound
+    SUBDIR += gstreamer-plugins-faac
+    SUBDIR += gstreamer-plugins-faad
+    SUBDIR += gstreamer-plugins-flac
+    SUBDIR += gstreamer-plugins-fluendo-mp3
+    SUBDIR += gstreamer-plugins-mad
+    SUBDIR += gstreamer-plugins-mp3
+    SUBDIR += gstreamer-plugins-ogg
+    SUBDIR += gstreamer-plugins-vorbis
+    SUBDIR += jack
+    SUBDIR += ladspa
+    SUBDIR += lame
+    SUBDIR += liba52
+    SUBDIR += libao
+    SUBDIR += libaudiofile
+    SUBDIR += libcdaudio
+    SUBDIR += libcddb
+    SUBDIR += libgpod
+    SUBDIR += libid3tag
+    SUBDIR += libmad
+    SUBDIR += libmikmod
+    SUBDIR += libmodplug
+    SUBDIR += libmpcdec
+    SUBDIR += libmusicbrainz
+    SUBDIR += libogg
+    SUBDIR += libsamplerate
+    SUBDIR += libsndfile
+    SUBDIR += libvorbis
+    SUBDIR += linux-esound
+    SUBDIR += linux-libaudiofile
+    SUBDIR += linux-libogg
+    SUBDIR += linux-libvorbis
+    SUBDIR += linux-shoutcast
+    SUBDIR += madplay
+    SUBDIR += mpg123
+    SUBDIR += nas
+    SUBDIR += openal
+    SUBDIR += portaudio
+    SUBDIR += portaudio2
+    SUBDIR += rhythmbox
+    SUBDIR += sdl_mixer
+    SUBDIR += sound-juicer
+    SUBDIR += taglib
+    SUBDIR += twolame
+    SUBDIR += speex
+    SUBDIR += wavpack
+    SUBDIR += wmmp3
+    SUBDIR += wmsmixer
+
+.include <bsd.port.subdir.mk>

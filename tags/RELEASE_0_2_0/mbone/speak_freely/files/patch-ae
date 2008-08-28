@@ -1,0 +1,24 @@
+
+$FreeBSD: ports/mbone/speak_freely/files/patch-ae,v 1.5 2003/06/25 18:08:47 naddy Exp $
+
+--- soundbyte.c.orig	Fri Feb 28 23:18:38 2003
++++ soundbyte.c	Wed Jun 25 19:42:45 2003
+@@ -13,7 +13,9 @@
+ #ifdef Solaris
+ #include <sys/filio.h>
+ #else
++#ifndef __FreeBSD__
+ #include <sys/dir.h>
++#endif
+ #include <sys/file.h>
+ #endif
+ 
+@@ -32,7 +34,7 @@
+ #ifdef LINUX
+ #include <linux/soundcard.h>
+ #else /*!LINUX */
+-#include <machine/soundcard.h>
++#include <sys/soundcard.h>
+ #endif /* LINUX */
+ #endif /* sun */
+ 

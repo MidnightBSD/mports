@@ -1,0 +1,6 @@
+MD5 (webfwlog-0.92.tar.gz) = c0c94543bdb5694febf40352a0fae0dd
+SHA256 (webfwlog-0.92.tar.gz) = 374230f485a276036490a7fc9c500ebb00e9b7db5a83461fed5d50018175b1f7
+SIZE (webfwlog-0.92.tar.gz) = 246148
+MD5 (webfwlog-0.92-date_syntax_url.patch) = 9e30ea72a6724d6a9adff91754906aa8
+SHA256 (webfwlog-0.92-date_syntax_url.patch) = 11abd961fc327af4aad3d907ef4e8cfaf4ec0ec1d70acf2f478ef313856c255a
+SIZE (webfwlog-0.92-date_syntax_url.patch) = 1147

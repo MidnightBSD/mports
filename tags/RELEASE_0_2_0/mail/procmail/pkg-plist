@@ -1,0 +1,23 @@
+@comment $FreeBSD: ports/mail/procmail/pkg-plist,v 1.7 2003/07/10 16:05:02 osa Exp $
+bin/procmail
+bin/formail
+bin/lockfile
+bin/mailstat
+%%PORTDOCS%%%%DOCSDIR%%/FAQ
+%%PORTDOCS%%%%DOCSDIR%%/FEATURES
+%%PORTDOCS%%%%DOCSDIR%%/HISTORY
+%%PORTDOCS%%%%DOCSDIR%%/KNOWN_BUGS
+%%PORTDOCS%%%%DOCSDIR%%/README
+share/examples/procmail/1procmailrc
+share/examples/procmail/1rmail
+share/examples/procmail/2procmailrc
+share/examples/procmail/2rmail
+share/examples/procmail/3procmailrc
+share/examples/procmail/3rmail
+share/examples/procmail/advanced
+share/examples/procmail/dirname
+share/examples/procmail/forward
+share/examples/procmail/local_procmail_lmtp.m4
+share/examples/procmail/mailstat
+@dirrm share/examples/procmail
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

@@ -1,0 +1,6 @@
+@comment $FreeBSD: ports/devel/libslang/pkg-plist,v 1.18 2005/05/17 13:06:54 novel Exp $
+include/slang.h
+include/slcurses.h
+lib/libslang.a
+lib/libslang.so
+lib/libslang.so.1

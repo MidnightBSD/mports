@@ -1,0 +1,16 @@
+bin/pdfimage
+bin/pdflib-config
+include/pdflib.h
+lib/libpdf.a
+lib/libpdf.la
+lib/libpdf.so
+lib/libpdf.so.8
+%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/pdflib_pl.pm
+%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/pdflib_pl.a
+%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/pdflib_pl.la
+%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/pdflib_pl.so
+%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/pdflib_pl.so.0
+%%DATADIR%%/fonts/pdflib.upr
+%%DATADIR%%/fonts/print_glyphs.ps
+@dirrm share/pdflib/fonts
+@dirrm share/pdflib

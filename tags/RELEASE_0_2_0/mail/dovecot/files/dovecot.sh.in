@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/mail/dovecot/files/dovecot.sh.in,v 1.2 2006/02/20 20:47:10 dougb Exp $
+#
+
+# PROVIDE: dovecot
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf to enable dovecot:
+#
+#dovecot_enable="YES"
+#
+
+. %%RC_SUBR%%
+
+name=dovecot
+rcvar=`set_rcvar`
+
+: ${dovecot_enable:="NO"}
+command=%%PREFIX%%/sbin/${name}
+required_files=%%PREFIX%%/etc/${name}.conf
+
+load_rc_config ${name}
+run_rc_command "$1"

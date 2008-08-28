@@ -1,0 +1,18 @@
+--- Makefile.orig	Sun Sep  3 02:57:42 2000
++++ Makefile	Sat Jan 13 14:14:55 2001
+@@ -46,13 +46,13 @@
+ 
+ 
+ MAKE = make
+-BUILDHASH = buildhash
++BUILDHASH ?= buildhash
+ ISPELL = ispell
+ SQ = sq
+-UNSQ = unsq
++UNSQ ?= unsq
+ #   if for some reason you don't have Ispell's unsq use my Perl sq/unsq
+ #  and put it into a directory known by your PATH variable!
+ #UNSQ = unsq.pl
+ 
+ ASPELL = aspell
+ 

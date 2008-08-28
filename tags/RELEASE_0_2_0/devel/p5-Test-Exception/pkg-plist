@@ -1,0 +1,5 @@
+%%SITE_PERL%%/mach/auto/Test/Exception/.packlist
+%%SITE_PERL%%/Test/Exception.pm
+@dirrm %%SITE_PERL%%/mach/auto/Test/Exception
+@dirrmtry %%SITE_PERL%%/mach/auto/Test
+@dirrmtry %%SITE_PERL%%/Test

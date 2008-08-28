@@ -1,0 +1,28 @@
+Local/Library/Frameworks/EtoileFoundation.framework/EtoileFoundation
+Local/Library/Frameworks/EtoileFoundation.framework/Headers
+Local/Library/Frameworks/EtoileFoundation.framework/Resources
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/EtoileFoundation
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/EtoileCompatibility.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/NSFileManager+NameForTempFile.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/OSBundleExtensionLoader.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKFileWatcher.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKKQueue.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKMainThreadProxy.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKPluginsRegistry.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKPushbackMessenger.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers/UKThreadMessenger.h
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Resources/Info-gnustep.plist
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/libEtoileFoundation.so
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/libEtoileFoundation.so.%%MAJORLIBVERSION%%
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/libEtoileFoundation.so.%%LIBVERSION%%
+Local/Library/Frameworks/EtoileFoundation.framework/Versions/Current
+Local/Library/Frameworks/EtoileFoundation.framework/libEtoileFoundation.so
+Local/Library/Headers/EtoileFoundation
+Local/Library/Libraries/libEtoileFoundation.so
+Local/Library/Libraries/libEtoileFoundation.so.%%MAJORLIBVERSION%%
+Local/Library/Libraries/libEtoileFoundation.so.%%LIBVERSION%%
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Headers
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0/Resources
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions/0
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework/Versions
+@dirrm Local/Library/Frameworks/EtoileFoundation.framework

@@ -1,0 +1,8 @@
+bin/onig-config
+include/oniguruma.h
+include/oniggnu.h
+include/onigposix.h
+lib/libonig.so.2
+lib/libonig.so
+lib/libonig.la
+lib/libonig.a
