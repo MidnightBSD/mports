@@ -3,11 +3,11 @@
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/pcc/Makefile,v 1.1 2008/05/13 03:24:43 laffer1 Exp $
 #
 
 PORTNAME=	pcc
-DATESPEC=	080213
+DATESPEC=	080613
 PORTVERSION=	0.9.9.${DATESPEC}
 PORTREVISION?=	0
 CATEGORIES=	lang
