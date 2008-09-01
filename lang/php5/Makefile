@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.16 2008/05/21 05:48:02 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.17 2008/07/01 20:21:57 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
 PORTVERSION=	5.2.6
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
 		http://downloads.php.net/ilia/:rc \
@@ -25,7 +25,7 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USE_BZIP2=	yes
 .if !defined(PKGNAMESUFFIX)
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 USE_GETOPT_LONG=yes
 
 CONFIGURE_ARGS=	--enable-versioning \
