@@ -2,7 +2,7 @@
 # Date created:		24 Oct 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/ports-mgmt/magus-utils/Makefile,v 1.3 2007/10/24 19:54:24 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/magus-utils/Makefile,v 1.4 2007/10/24 19:55:21 laffer1 Exp $
 #
 
 PORTNAME=	magus-utils
@@ -13,6 +13,7 @@ DISTFILES=	# none
 
 MAINTAINER=     luke@MidnightBSD.org
 COMMENT=        mports magus runtime utilities for build cluster
+LICENSE=	agg
 
 USE_PERL5=	yes
 RUN_DEPENDS=	mysql:${PORTSDIR}/databases/mysql50-client \
