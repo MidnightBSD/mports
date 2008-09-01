@@ -2,7 +2,7 @@
 # Date created:				2000-10-31
 # Whom:					Trevor Johnson
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.1 2007/07/29 21:41:40 laffer1 Exp $
 # $FreeBSD: ports/security/l0phtcrack/Makefile,v 1.17 2006/09/03 17:34:52 kris Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cracks SAMBA or Windows NT passwords
+LICENSE=	restricted
 
 DOCDIR=		share/doc/${PORTNAME}
 RESTRICTED=	"uses GNU getopt with BSDish-licensed code from OpenSSL"
