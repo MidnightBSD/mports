@@ -2,20 +2,22 @@
 # Date created:		Wed Jul 25 23:30:19 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.3 2007/05/21 23:04:18 ctriv Exp $
+# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.4 2007/07/19 10:22:45 laffer1 Exp $
 # $FreeBSD: ports/sysutils/cdrtools/Makefile,v 1.69 2006/08/03 09:29:49 marius Exp $
 #
 
 PORTNAME=	cdrtools
-PORTVERSION?=	2.01.01a31
-PORTREVISION?=	5
+PORTVERSION?=	2.01
+PORTEPOCH=	1
+PORTREVISION?=	6
 CATEGORIES?=	sysutils audio
 MASTER_SITES=	ftp://ftp.berlios.de/pub/cdrecord/ \
 		ftp://ftp.cs.tu-berlin.de/pub/misc/cdrecord/
-DISTNAME=	cdrtools-2.01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/CD-R[W] and ISO-9660 image creation and extraction tools
+LICENSE=	gpl2
+# warning newer versions are under cddl
 
 CONFLICTS?=	cdrtools-devel-* cjk-cdrtools-*
 
@@ -54,8 +56,8 @@ CDRTLSTARGET=	${ARCH}-freebsd-${CCOM}
 
 .if exists(${LOCALBASE}/lib/libcdio.a) || defined(WITH_CDDB)
 WITH_CDDB=	yes
-LIB_DEPENDS+=	cddb.3:${PORTSDIR}/audio/libcddb \
-		cdio.7:${PORTSDIR}/sysutils/libcdio
+LIB_DEPENDS+=	cddb.4:${PORTSDIR}/audio/libcddb \
+		cdio.8:${PORTSDIR}/sysutils/libcdio
 .endif
 
 pre-everything::
@@ -98,9 +100,14 @@ post-patch:
 		s|\/usr\/local|${PREFIX}|g; s|\/etc\/default|${PREFIX}\/etc|g; \
 		s|\/var\/adm\/messages|\/var\/run\/dmesg.boot|g' ${WRKSRC}/${i}
 .endfor
+.for i in include/schily.h libschily/fexec.c
+	@${REINPLACE_CMD} -e 's|fexecve|js_fexecve|g' ${WRKSRC}/${i}
+.endfor
 #	@${REINPLACE_CMD} -E -e \
 #		's|#define.+INSERT_YOUR_EMAIL_ADDRESS_HERE|& "${MAINTAINER}"|' \
 #		${WRKSRC}/cdrecord/cdrecord.c
+	@${CHMOD} u+w ${WRKSRC}/mkisofs/Makefile
+	@${ECHO} GCCOPTOPT=-O0 >> ${WRKSRC}/mkisofs/Makefile
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/cdda2wav/OBJ/${CDRTLSTARGET}/cdda2wav \
@@ -155,6 +162,5 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/mkisofs/${i} ${DOCSDIR}/mkisofs
 .endfor
 .endif
-
 
 .include <bsd.port.post.mk>
