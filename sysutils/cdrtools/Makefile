@@ -1,15 +1,15 @@
-
+# New ports collection makefile for: cdrtools
 # Date created:		Wed Jul 25 23:30:19 CEST 2001
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.4 2007/07/19 10:22:45 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/cdrtools/Makefile,v 1.5 2008/09/02 06:28:59 laffer1 Exp $
 # $FreeBSD: ports/sysutils/cdrtools/Makefile,v 1.69 2006/08/03 09:29:49 marius Exp $
 #
 
 PORTNAME=	cdrtools
-PORTVERSION?=	2.01
+PORTVERSION=	2.01
+PORTREVISION=	6
 PORTEPOCH=	1
-PORTREVISION?=	6
 CATEGORIES?=	sysutils audio
 MASTER_SITES=	ftp://ftp.berlios.de/pub/cdrecord/ \
 		ftp://ftp.cs.tu-berlin.de/pub/misc/cdrecord/
@@ -19,7 +19,7 @@ COMMENT=	CD/CD-R[W] and ISO-9660 image creation and extraction tools
 LICENSE=	gpl2
 # warning newer versions are under cddl
 
-CONFLICTS?=	cdrtools-devel-* cjk-cdrtools-*
+CONFLICTS?=	cdrtools-devel-[0-9]* cjk-cdrtools-[0-9]*
 
 MAN1=		cdda2wav.1 cdrecord.1 readcd.1 scgcheck.1
 MAN8=		isoinfo.8 mkisofs.8
