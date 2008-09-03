@@ -3,12 +3,12 @@
 # Whom:			Marc G. Fournier <scrappy@freebsd.org>
 #
 # $FreeBSD: ports/sysutils/bsdstats/Makefile,v 1.47 2006/12/09 06:06:13 scrappy Exp $
-# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.5 2008/05/01 17:42:51 ctriv Exp $ 
+# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.6 2008/06/02 00:26:20 laffer1 Exp $ 
 #
 
 PORTNAME=	bsdstats
 PORTVERSION=	5.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 DISTFILES=
 
@@ -19,10 +19,6 @@ LICENSE=	unknown
 .include <bsd.port.pre.mk>
 
 NO_BUILD=	yes
-PLIST_FILES=	etc/periodic/monthly/300.statistics \
-		etc/rc.d/bsdstats.sh
-PLIST_DIRS=	etc/periodic/monthly \
-		etc/periodic
 
 do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/monthly
