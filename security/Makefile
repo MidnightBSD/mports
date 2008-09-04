@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.79 2008/06/02 04:33:10 archite Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.80 2008/06/12 20:43:49 crash Exp $
 #
 
     COMMENT = Security tools
@@ -39,6 +39,7 @@
     SUBDIR += libtasn1
     SUBDIR += linux-openssl
     SUBDIR += linux-pam-docs
+    SUBDIR += logcheck
     SUBDIR += mcrypt
     SUBDIR += mhash
     SUBDIR += nmap
