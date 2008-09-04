@@ -1,0 +1,16 @@
+@comment $FreeBSD: ports/security/logcheck/pkg-plist,v 1.8 2004/04/20 08:36:26 kris Exp $
+bin/logtail
+@exec test -d %%LOGCHECK_TMP%% || mkdir -m 700 %%LOGCHECK_TMP%% && chown root:wheel %%LOGCHECK_TMP%%
+@unexec rmdir %%LOGCHECK_TMP%% 2>/dev/null || true
+etc/logcheck.hacking.sample
+etc/logcheck.ignore.sample
+etc/logcheck.sh
+etc/logcheck.violations.ignore.sample
+etc/logcheck.violations.sample
+%%PORTDOCS%%%%DOCSDIR%%/CREDITS
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/README.how.to.interpret
+%%PORTDOCS%%%%DOCSDIR%%/README.keywords
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrm %%EXAMPLESDIR%%
