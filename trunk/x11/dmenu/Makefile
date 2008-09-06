@@ -2,21 +2,21 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.6 2008/03/22 07:07:34 ctriv Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.7 2008/05/29 21:22:23 laffer1 Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
 PORTNAME=	dmenu
-PORTVERSION=	3.6
+PORTVERSION=	3.8
 CATEGORIES=	x11
-MASTER_SITES=	http://www.suckless.org/download/ \
+MASTER_SITES=	http://code.suckless.org/dl/tools/ \
 		http://schot.a-eskwadraat.nl/files/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 menu application (not only) for the dwm window manager
 LICENSE=	mit
 
-USE_XORG=	x11
+USE_XORG=	x11 
 
 FAKE_OPTS=	trueprefix
 
