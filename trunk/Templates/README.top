@@ -22,23 +22,30 @@
   </head>
 
   <body>
+    <div id="globe">
     <h1>The MidnightBSD Ports Collection</h1>
-    <p>TOP</p>
+    <h2>TOP</h2>
+    <h3>Parent dir</h3>
 
 <pre>
 %%SUBDIR%%
 </pre>
 
+    <blockquote>
     <p>For information on how to use the ports tree, please look at 
     the <a href="http://www.midnightbsd.org/ports">MidnightBSD mports</a>
     website.</p>
 
     <p>If you find a bug in a port, contact the port maintainer or
-    <a href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>.</p>
+    <a href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>. You may 
+    also create a <a href="http://bugreport.midnightbsd.org/">bug report</a>.</p>
 
     <p>If you would like to contribute a port, contact <a
     href="mailto:ports@MidnightBSD.org">ports@MidnightBSD.org</a>.</p>
+    </blockquote>
+    </div>
 
-    <p>Here are the one-line descriptions for each of the directories:</p>
+    <div style="clear:both;"></div>
+
   </body>
 </html>
