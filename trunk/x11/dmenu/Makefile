@@ -2,7 +2,7 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.7 2008/05/29 21:22:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.8 2008/09/06 21:04:11 crash Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 menu application (not only) for the dwm window manager
 LICENSE=	mit
 
-USE_XORG=	x11 
+USE_XORG=	x11 xinerama
 
 FAKE_OPTS=	trueprefix
 
