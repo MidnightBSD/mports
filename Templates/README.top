@@ -9,7 +9,7 @@
 	html,body{ margin:0; padding; 0; height: 100%; }
 	body{ background: #fff; color:#333; font-family: sans-serif; }
 	#globe { width: 850px; margin: 0 auto; border-left: 1px solid #999; border-right: 1px solid #999; padding: 0 2em; }
-	h1 { background: url("ports-tree.png"); padding: 399px 0 0 0; width: 512px; height: 0; overflow: hidden; margin: auto; }
+	h1 { background: url("http://www.midnightbsd.org/images/ports-tree.png"); padding: 399px 0 0 0; width: 512px; height: 0; overflow: hidden; margin: auto; }
 	h2, h2 a { text-align: center; color: #666; }
 	h3, h3 a { text-align: center; color: #999; }
 	a { color: #79c143; }
