@@ -2,7 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.3 2008/08/24 20:27:41 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.4 2008/09/07 22:01:33 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
@@ -57,13 +57,8 @@ GECKO_PLIST_PRE_DIRS=	lib/${MOZILLA}/chrome/icons/default lib/${MOZILLA}/chrome/
 
 FIREFOX_ICON=		${MOZILLA}.xpm
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/icons/default.xpm
-MOZ_OPTIONS=	--enable-application=browser \
-		--enable-system-cairo	\
-		--disable-official-branding \
-		--enable-canvas	\
-		--with-system-nss
 
-SYSTEM_PREFS=		${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
+SYSTEM_PREFS=	${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 
 OPTIONS=	NEWTAB "Open external links in a new tab" on \
@@ -74,12 +69,17 @@ OPTIONS=	NEWTAB "Open external links in a new tab" on \
 GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{\!pg: %{pthread:|| ; s|}.*$$||' || ${TRUE}
 
 MOZ_TOOLKIT?=	gtk2
-MOZ_OPTIONS+=	--enable-crypto         \
-		--disable-tests         \
+MOZ_OPTIONS+=	--enable-application=browser	\
+		--enable-system-cairo		\
+		--disable-official-branding	\
+		--enable-canvas			\
+		--with-system-nss		\
+		--enable-crypto			\
+		--disable-tests			\
 		--enable-default-toolkit=${MOZ_TOOLKIT} \
-		--enable-xft            \
-		--with-pthreads \
-		--enable-extensions=default \
+		--enable-xft			\
+		--with-pthreads			\
+		--enable-extensions=default	\
 		--enable-image-decoders=default \
 		--with-system-jpeg=${LOCALBASE} \
 		--with-system-zlib=/usr         \
@@ -99,12 +99,11 @@ MOZ_OPTIONS+=	--enable-crypto         \
 		--disable-md                    \
 		--disable-pedantic              \
 		--disable-bidi                  \
-		--disable-xterm-updates         \
-		--enable-xinerama
-
-MOZ_OPTIONS+=	--enable-svg --enable-svg-renderer=cairo
-
-MOZ_OPTIONS+=	--x-includes=${LOCALBASE}/include \
+		--disable-xterm-updates		\
+		--enable-xinerama		\
+		--enable-svg			\
+		--enable-svg-renderer=cairo	\
+		--x-includes=${LOCALBASE}/include \
 		--x-libraries=${LOCALBASE}/lib
 
 .if ${ARCH}=="sparc64"
@@ -112,13 +111,13 @@ MOZ_OPTIONS+=	--x-includes=${LOCALBASE}/include \
 MOZ_OPTIONS+=	--disable-v1-string-abi
 .endif
 
-MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
+MOZ_SED_ARGS+=	-e 's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|@CFLAGS@|${CFLAGS}|g'		\
 		-e 's|@LDFLAGS@|${LDFLAGS}|g'		\
 		-e 's|@LIBS@|${LIBS}|g'			\
-		-e 's|@LOCALBASE@|${LOCALBASE}|g'		\
+		-e 's|@LOCALBASE@|${LOCALBASE}|g'	\
 		-e 's|@FAKEDIR@|${FAKEDIR}|g'		\
-		-e 's|@PERL@|${PERL5}|g'			\
+		-e 's|@PERL@|${PERL5}|g'		\
 		-e 's|@KRB5_HOME@|${KRB5_HOME}|g'	\
 		-e 's|@MOZDIR@|${PREFIX}/lib/${MOZILLA}|g'	\
 		-e 's|@PREFIX@|${PREFIX}|g' 	        \
@@ -126,14 +125,14 @@ MOZ_SED_ARGS+=	-e's|@CPPFLAGS@|${CPPFLAGS}|g'		\
 		-e 's|%%CFLAGS%%|${CFLAGS}|g'		\
 		-e 's|%%LDFLAGS%%|${LDFLAGS}|g'		\
 		-e 's|%%LIBS%%|${LIBS}|g'		\
-		-e 's|%%LOCALBASE%%|${LOCALBASE}|g'		\
+		-e 's|%%LOCALBASE%%|${LOCALBASE}|g'	\
 		-e 's|%%FAKEDIR%%|${FAKEDIR}|g'		\
 		-e 's|%%PERL%%|${PERL5}|g'		\
 		-e 's|%%KRB5_HOME%%|${KRB5_HOME}|g'	\
 		-e 's|%%MOZILLA%%|${MOZILLA}|g'		\
 		-e 's|%%MOZILLA_BIN%%|${MOZILLA_BIN}|g'	\
 		-e 's|%%MOZDIR%%|${PREFIX}/lib/${MOZILLA}|g'
-MOZCONFIG_SED?= ${SED} ${MOZ_SED_ARGS}
+MOZCONFIG_SED?=	${SED} ${MOZ_SED_ARGS}
 
 CONFIGURE_ARGS+=	${MOZ_OPTIONS}
 
@@ -145,7 +144,7 @@ post-extract:
 #	${CP} ${FILESDIR}/config.guess ${WRKSRC}/build/autoconf
 
 post-patch:
-	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS:C/-pthread/${GECKO_PTHREAD_LIBS}/}|' \
+	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS:C/-pthread/${GECKO_PTHREAD_LIBS}/}|' \
 		${WRKSRC}/storage/build/Makefile.in
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/security/manager/ssl/src/Makefile.in
