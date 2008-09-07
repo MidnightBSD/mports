@@ -2,14 +2,13 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.2 2008/08/13 14:03:20 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.3 2008/08/24 20:27:41 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
 
 PORTNAME=	browser
 DISTVERSION=	2.0.0.16
-PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -23,18 +22,20 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nss>=3.11.2:${PORTSDIR}/security/nss \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS+=   jpeg.9:${PORTSDIR}/graphics/jpeg \
-                png.5:${PORTSDIR}/graphics/png \
-                nspr4:${PORTSDIR}/devel/nspr \
-                nss3:${PORTSDIR}/security/nss \
+LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+		png.5:${PORTSDIR}/graphics/png \
+		nspr4:${PORTSDIR}/devel/nspr \
+		nss3:${PORTSDIR}/security/nss \
 		freetype.9:${PORTSDIR}/print/freetype2
 
-USE_GNOME+=     gtk20 libidl desktopfileutils
-USE_ICONV=      yes
-USE_PERL5=      yes
+CONFLICTS=	firefox-[0-9]*
+
+USE_GNOME+=	gtk20 libidl desktopfileutils
+USE_ICONV=	yes
+USE_PERL5=	yes
 USE_PERL5_BUILD=yes
-USE_XORG=       printproto sm xt xi xext x11 xinerama \
-                ice xproto
+USE_XORG=	printproto sm xt xi xext x11 xinerama \
+		ice xproto
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
@@ -60,7 +61,7 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--enable-system-cairo	\
 		--disable-official-branding \
 		--enable-canvas	\
-		--with-system-nss 
+		--with-system-nss
 
 SYSTEM_PREFS=		${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
@@ -72,40 +73,39 @@ OPTIONS=	NEWTAB "Open external links in a new tab" on \
 
 GECKO_PTHREAD_LIBS!=${CC} -dumpspecs | ${GREP} -m 1 pthread | ${SED} -e 's|^.*%{\!pg: %{pthread:|| ; s|}.*$$||' || ${TRUE}
 
-MOZ_TOOLKIT?=   gtk2
-MOZ_OPTIONS+=   --enable-crypto         \
-                --disable-tests         \
-                --enable-default-toolkit=${MOZ_TOOLKIT} \
-                --enable-xft            \
-                --with-pthreads \
+MOZ_TOOLKIT?=	gtk2
+MOZ_OPTIONS+=	--enable-crypto         \
+		--disable-tests         \
+		--enable-default-toolkit=${MOZ_TOOLKIT} \
+		--enable-xft            \
+		--with-pthreads \
 		--enable-extensions=default \
 		--enable-image-decoders=default \
 		--with-system-jpeg=${LOCALBASE} \
-                --with-system-zlib=/usr         \
-                --with-system-png=${LOCALBASE}  \
-                --with-gssapi=${KRB5_HOME}      \
-                --with-system-nspr              \
-                --disable-auto-deps             \
-                --enable-chrome-format=jar      \
-                --disable-cpp-exceptions        \
-                --disable-cpp-rtti              \
-                --disable-glibtest              \
-                --disable-gtktest               \
-                --disable-freetypetest          \
-                --enable-double-buffer          \
-                --enable-mathml                 \
-                --disable-installer             \
-                --disable-md                    \
-                --disable-pedantic              \
-                --disable-bidi                  \
-                --disable-xterm-updates         \
-                --enable-xinerama
+		--with-system-zlib=/usr         \
+		--with-system-png=${LOCALBASE}  \
+		--with-gssapi=${KRB5_HOME}      \
+		--with-system-nspr              \
+		--disable-auto-deps             \
+		--enable-chrome-format=jar      \
+		--disable-cpp-exceptions        \
+		--disable-cpp-rtti              \
+		--disable-glibtest              \
+		--disable-gtktest               \
+		--disable-freetypetest          \
+		--enable-double-buffer          \
+		--enable-mathml                 \
+		--disable-installer             \
+		--disable-md                    \
+		--disable-pedantic              \
+		--disable-bidi                  \
+		--disable-xterm-updates         \
+		--enable-xinerama
 
 MOZ_OPTIONS+=	--enable-svg --enable-svg-renderer=cairo
 
-MOZ_OPTIONS+=   --x-includes=${LOCALBASE}/include \
-                --x-libraries=${LOCALBASE}/lib
-
+MOZ_OPTIONS+=	--x-includes=${LOCALBASE}/include \
+		--x-libraries=${LOCALBASE}/lib
 
 .if ${ARCH}=="sparc64"
 # Work around miscompilation/mislinkage of the sCanonicalVTable hacks.
@@ -208,16 +208,16 @@ pre-install:
 		>> ${SYSTEM_PREFS}
 .endif # !defined(WITHOUT_NEWTAB)
 
-do-install:
-	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
-		for jpi in ${JPI_LIST}; do \
-			if [ -f $${jpi} ]; then \
-				${LN} -sf $${jpi} \
-					${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ; \
-				break; \
-			fi; \
-		done; \
-	fi
+#do-install:
+#	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
+#		for jpi in ${JPI_LIST}; do \
+#			if [ -f $${jpi} ]; then \
+#				${LN} -sf $${jpi} \
+#					${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ; \
+#				break; \
+#			fi; \
+#		done; \
+#	fi
 
 post-install:
 	${MKDIR} ${PREFIX}/share/applications ${PREFIX}/share/pixmaps
@@ -225,5 +225,8 @@ post-install:
 	${MKDIR} ${PREFIX}/lib/${MOZILLA}/chrome/icons/default
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/lib/${MOZILLA}/chrome/icons/default/default.xpm
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
+	${MV} ${PREFIX}/bin/firefox ${PREFIX}/bin/browser
+	${MV} ${PREFIX}/lib/browser/firefox-bin ${PREFIX}/lib/browser/browser-bin
+	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
 
 .include <bsd.port.post.mk>
