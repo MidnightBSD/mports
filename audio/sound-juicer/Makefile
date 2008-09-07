@@ -2,7 +2,7 @@
 # Date created:		20 Jan 2004
 # Whom:			Alexander Nedotsukov <bland@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/sound-juicer/Makefile,v 1.4 2008/06/20 17:00:27 laffer1 Exp $
+# $MidnightBSD: mports/audio/sound-juicer/Makefile,v 1.5 2008/09/07 20:44:00 laffer1 Exp $
 # $FreeBSD: ports/audio/sound-juicer/Makefile,v 1.39 2007/10/24 23:34:51 marcus Exp $
 #   $MCom: ports/audio/sound-juicer/Makefile,v 1.71 2007/10/15 00:27:00 marcus Exp $
 #
@@ -26,7 +26,7 @@ LIB_DEPENDS=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
 USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui nautiluscdburner \
