@@ -2,21 +2,19 @@
 # Date created:				12 June 2000
 # Whom:				Philippe Lefebvre <nemesis@balistik.net>
 #
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.2 2007/08/23 21:58:16 laffer1 Exp $
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.3 2008/04/15 05:57:17 crash Exp $
 # $FreeBSD: ports/editors/nano/Makefile,v 1.37 2007/01/31 20:48:39 naddy Exp $
 #
 
 PORTNAME=	nano
-PORTVERSION=	2.0.7
+PORTVERSION=	2.0.8
 CATEGORIES=	editors
 MASTER_SITES=	http://www.nano-editor.org/dist/v2.0/ \
 		http://www.ewtoo.org/~astyanax/nano/dist/v2.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
-LICENSE=	gpl2
-# Check for GPLv3 when upgrading.  They changed it in cvs.
-
+LICENSE=	gpl3
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/${INFO_PATH} --mandir=${PREFIX}/man \
 		--enable-all
