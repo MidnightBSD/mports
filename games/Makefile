@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.27 2008/05/30 20:07:21 crash Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.28 2008/07/21 23:22:15 laffer1 Exp $
 #
 
     COMMENT = Games
@@ -30,6 +30,7 @@
     SUBDIR += linux-quake3-demo
     SUBDIR += moon-buggy
     SUBDIR += nextgo
+    SUBDIR += oolite
     SUBDIR += pvpgn
     SUBDIR += qstat
     SUBDIR += quake3
