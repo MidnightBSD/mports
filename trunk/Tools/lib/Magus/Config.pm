@@ -24,7 +24,7 @@ package Magus::Config;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.2 2007/10/22 05:59:32 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.3 2008/02/24 23:58:47 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -34,19 +34,31 @@ use strict;
 use warnings;
 use YAML qw(LoadFile);
 
-our %Config = ( load_config("$Magus::Root/config.yaml") );
+our %Config;
+
 
 sub import {
   no strict 'refs';
   
   my $caller = caller;
-  
+
   *{"$caller\::Config"} = \%Config;
 }
 
 sub load_config {
-  %Config = %{ LoadFile(shift) };
+  %Config = (
+    # defaults
+    SlaveSrcDir    => '/usr/src',
+    %{ LoadFile(shift) },
+  );
+  
+  # More defaults
+  $Config{SlaveDataDir}   ||= "$Magus::Root/slave-data";
+  $Config{SlaveMportsDir} ||= "$Config{SlaveDataDir}/mports";
 }
+
+BEGIN { load_config("$Magus::Root/config.yaml") };
+
 
 1;
 __END__
