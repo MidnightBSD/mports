@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.23 2008/07/06 03:29:19 laffer1 Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.24 2008/09/09 16:04:18 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -45,8 +45,7 @@ Magus::Chroot
   use Magus::Chroot;
   
   my $chroot = Magus::Chroot->new(
-    branch => 'RELENG_0_1',
-    root   => '/usr/magus',
+    tarball => $foo
   );
   
   print $chroot->root;
@@ -67,12 +66,20 @@ an old cleaned up directory.
 
 =cut
 
+my $Branch;
+
 sub new {
   my ($class, %args) = @_;
   
+  if (!$Branch) {
+    $Branch = `uname -r`;
+    chomp($Branch);
+  }
+  
   my $self = bless {
-    branch      => 'current',
-    prefix      => '/usr/magus',
+    prefix      => $Magus::Config{SlaveChrootsDir},
+    branch      => $Branch,
+    workerid    => 1,
     # This are relative to $prefix/$branch
     localbase   => '/usr/local',
     x11base     => '/usr/X11R6',
@@ -98,8 +105,10 @@ sub new {
 
 sub _init {
   my ($self) = @_;
+
+  $self->_create_reference_dir;
   
-  $self->{root} = "$self->{prefix}/$self->{branch}";
+  $self->{root} = "$self->{prefix}/$self->{branch}/$self->{workerid}";
 
   # check to make sure that things are working properly in the chroot, a restart
   # or deleting /usr/mports can break the loopback.
@@ -117,18 +126,55 @@ sub _init {
   $self->delete if -e "$self->{root}/.dead";
   
   mkpath($self->{root}); 
+   
+  $self->_sync_reference_dir;
+  $self->_mount_loopbacks;
+}
 
-  system(qq(/usr/bin/tar xf $self->{tarball} -C $self->{root})) == 0 
-    or die "Couldn't untar root tarball: $?\n";
+
+sub _create_reference_dir {
+  my ($self) = @_;
   
-  while (my ($src, $dst) = each %{$self->{loopbacks}}) {  
-    $self->_mkdir($dst);
-    system("/sbin/mount -t nullfs -o ro $src $self->{root}/$dst") == 0
-      or die "mount returned non-zero: $?\n";
+  $self->{refdir} = "$self->{prefix}/$self->{branch}/reference";
+  
+  # get the tarball checksum, caching it if needed.
+  my $tarballsum;
+  if (open(my $fh, '<', "$self->{tarball}.md5")) {
+    chomp($tarballsum = <$fh>);
+    close($fh) || die "Couldn't close $self->{tarball}.md5: $!\n";
+  } else {
+    chomp($tarballsum = `md5 -q $self->{tarball}`);
+    open(my $fh, '>', "$self->{tarball}.md5") || die "Couldn't open $self->{tarball}.md5: $!\n";
+    print $fh "$tarballsum\n";
+    close($fh) || die "Couldn't close $self->{tarball}.md5: $!\n";
+  }
+
+  # get the refdir checksum and check if it matches the tarball sum.
+  if (open(my $fh, '<', "$self->{refdir}/.checksum")) {
+    my $refdirsum = <$fh>;
+    close($fh);
+    
+    chomp($refdirsum);
+    
+    # if the checksums are the same, then the right tarball is alread extracted, and we're done.
+    return if $refdirsum eq $tarballsum;
+  }
+    
+  if (-e $self->{refdir}) {
+    rmtree($self->{refdir}) || die "Couldn't delete $self->{refdir} $!\n";
   }
   
-  symlink("usr/src/sys", "$self->{root}/sys") || die "Couldn't symlink /sys to /usr/src/sys: $!\n";
+  mkpath($self->{refdir});
   
+  system(qq(/usr/bin/tar xf $self->{tarball} -C $self->{refdir})) == 0 
+    or die "Couldn't untar root tarball: $?\n";
+  
+  # for the rest of this scope, override root to the refdir, that will make these
+  # methods do the right thing.
+  local $self->{root} = $self->{refdir};
+  
+  symlink("usr/src/sys", "$self->{root}/sys") || die "Couldn't symlink /sys to /usr/src/sys: $!\n";
+ 
   $self->_mtree('BSD.root.dist', '/');  
   $self->_mtree('BSD.var.dist', '/var');
   $self->_mtree('BSD.usr.dist', '/usr');
@@ -145,45 +191,53 @@ sub _init {
   $self->_mtree('BSD.local.dist', $self->{localbase});
   $self->_mtree('BSD.x11-4.dist', $self->{x11base}) if $self->{x11base};
   
-  system("/sbin/mount -t devfs devfs $self->{root}/dev");
   $self->_touchfile('/.clean');
+  
+  open(my $fh, '>', "$self->{refdir}/.checksum") || die "Couldn't open .checksum: $!\n";
+  print $fh "$tarballsum\n";
+  close($fh) || die "Couldn't close .checksum: $!\n";
 }
 
 
-#
-# Nuke the workdir, packages, x11base and localbase and then recreate them.
-# 
-sub _clean {
+sub _sync_reference_dir {
   my ($self) = @_;
   
-  $self->_clear_flags("/");
+  system("/bin/cpdup -i0 -s0 $self->{refdir} $self->{root}") == 0 or die "cpdup returned non-zero: $?\n";
+}
+
+
+sub _mount_loopbacks {
+  my ($self) = @_;
   
-  
-  for (qw(workdir x11base localbase packages logs linuxcompat)) {
-    rmtree("$self->{root}/$self->{$_}");
-    $self->_mkdir($self->{$_});
+  while (my ($src, $dst) = each %{$self->{loopbacks}}) {  
+    $self->_mkdir($dst);
+    system("/sbin/mount -t nullfs -o ro $src $self->{root}/$dst") == 0
+      or die "mount returned non-zero: $?\n";
   }
-
-  # Make sure that packages/All exists.  
-  $self->_mkdir("$self->{packages}/All");
   
-  # Make sure that make.conf is clean.
-  unlink("$self->{root}/etc/make.conf");
-  $self->_touchfile('/etc/make.conf');
+  $self->_mkdir('dev');
+  system("/sbin/mount -t devfs devfs $self->{root}/dev");
+} 
 
-  rmtree("$self->{root}/var/db/pkg");
-  rmtree("$self->{root}/var/db/ports");
-  rmtree("$self->{root}/var/tmp");
-  rmtree("$self->{root}/tmp");
+sub _unmount_loopbacks {
+  my ($self) = @_;
 
-  $self->_mkdir("/var/tmp"); 
-  $self->_mkdir("/tmp");
+  for ("/dev", values %{$self->{loopbacks}}) {
+    # if umount failed it is probably because nothing was mounted.
+    # therefore we ignore the error code here 
+    system("/sbin/umount $self->{root}$_"); 
+  }
+}
+
+sub _clean {
+  my ($self) = @_;
+
+  $self->_unmount_loopbacks;
   
-  $self->_mtree('BSD.local.dist', $self->{localbase});
-  $self->_mtree('BSD.x11-4.dist', $self->{x11base});
+  #$self->_clear_flags("/");
   
-  unlink("$self->{root}/.dirty");
-  $self->_touchfile('/.clean');
+  $self->_sync_reference_dir;
+  $self->_mount_loopbacks;
 }
 
 
@@ -296,13 +350,7 @@ Deletes the chroot dir.
 sub delete {
   my ($self) = @_;
   
-  for ("/dev", values %{$self->{loopbacks}}) {
-    # if umount failed it is probably because nothing was mounted.
-    # therefore we ignore the error code here 
-    system("/sbin/umount $self->{root}$_"); 
-  }
-  
- 
+  $self->_unmount_loopbacks;
   $self->_clear_flags("/");
   
   rmtree($self->root) || die "Couldn't rmtree $self->{root}: $!\n";
