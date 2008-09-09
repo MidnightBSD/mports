@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.22 2008/06/29 22:31:22 laffer1 Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.23 2008/07/06 03:29:19 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -81,7 +81,10 @@ sub new {
     distfiles   => '/magus/distfiles',
     workdir     => '/magus/work',    
     logs        => '/magus/logs',
-    loopbacks   => [qw(/usr/mports /usr/src)],
+    loopbacks   => {
+      "$Magus::Config{SlaveMportsDir}" => "/usr/mports",
+      "$Magus::Config{SlaveSrcDir}"    => "/usr/src",
+    },
     %args,
   }, $class;
 
@@ -117,10 +120,10 @@ sub _init {
 
   system(qq(/usr/bin/tar xf $self->{tarball} -C $self->{root})) == 0 
     or die "Couldn't untar root tarball: $?\n";
-    
-  foreach my $dir (@{$self->{loopbacks}}) {
-    $self->_mkdir($dir);
-    system("/sbin/mount -t nullfs -o ro $dir $self->{root}/$dir") == 0
+  
+  while (my ($src, $dst) = each %{$self->{loopbacks}}) {  
+    $self->_mkdir($dst);
+    system("/sbin/mount -t nullfs -o ro $src $self->{root}/$dst") == 0
       or die "mount returned non-zero: $?\n";
   }
   
@@ -153,8 +156,10 @@ sub _init {
 sub _clean {
   my ($self) = @_;
   
+  $self->_clear_flags("/");
+  
+  
   for (qw(workdir x11base localbase packages logs linuxcompat)) {
-    $self->_clear_flags($self->{$_});
     rmtree("$self->{root}/$self->{$_}");
     $self->_mkdir($self->{$_});
   }
@@ -165,8 +170,6 @@ sub _clean {
   # Make sure that make.conf is clean.
   unlink("$self->{root}/etc/make.conf");
   $self->_touchfile('/etc/make.conf');
-
-  $self->_clear_flags("/var/tmp");
 
   rmtree("$self->{root}/var/db/pkg");
   rmtree("$self->{root}/var/db/ports");
@@ -293,10 +296,10 @@ Deletes the chroot dir.
 sub delete {
   my ($self) = @_;
   
-  for (qw(/dev /usr/src /usr/mports)) {
+  for ("/dev", values %{$self->{loopbacks}}) {
     # if umount failed it is probably because nothing was mounted.
     # therefore we ignore the error code here 
-    system("/sbin/umount $self->{root}$_") 
+    system("/sbin/umount $self->{root}$_"); 
   }
   
  
