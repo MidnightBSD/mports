@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.18 2008/03/14 18:48:21 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.19 2008/03/14 19:20:31 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -48,8 +48,33 @@ $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" 
 
 my @origARGV = @ARGV;
 my $self     = '/usr/mports/Tools/magus/slave/magus.pl';
+my $Lock;
 
-main();
+while (1) {
+  eval {
+    main();
+    exit(0);
+  };
+  
+  if ($@) {
+    # Check ping in case a dropped DB caused some other exception.
+    if ($@ =~ m/DBI/ || !Magus::DBI->ping) {
+      while (1) {
+        report(err => "Could not connect to database ($@) waiting $Magus::Config{'DoneWaitPeriod'} seconds");
+        sleep($Magus::Config{'DoneWaitPeriod'});
+        last if Magus::DBI->ping;
+      }
+
+      if ($Lock) {
+        $Lock->port->reset;
+        $Lock->delete;
+      }
+      # back up to the main() call we go.
+    } else {
+      die $@;
+    }
+  }
+}
 
 =head1 magus.pl
 
@@ -102,6 +127,9 @@ sub main {
       next;
     }
     
+    # stick the current lock in the global, so we can flush it if need be.
+    $Lock = $lock;
+    
     report('info', "Starting test run for: %s", $lock->port);
     
     run_test($lock);
@@ -109,6 +137,7 @@ sub main {
     report('info', 'Run completed for:     %s', $lock->port);
     
     $lock->delete;
+    undef $Lock;
   }
 }
 
@@ -117,13 +146,15 @@ sub main {
 =head3 Exiting
 
 Note that all the locks associated with this machine will be deleted at
-script exit. If you are running two copies of this script on one machine,
-make sure to assign them different machine IDs in the master database.
+script exit. 
 
 =cut
 
 END {
-  Magus::Lock->search(machine => $Magus::Machine)->delete_all;
+  if ($Lock) {
+    $Lock->port->reset;
+    $Lock->delete;
+  }
 }
   
 
@@ -181,7 +212,7 @@ sub run_test {
       insert_results($port, $results);
     };
     
-    if ($@) {
+    if ($@ && $@ !~ m/DBI/) {
       handle_exception($@, $lock);
     }
     
@@ -373,11 +404,11 @@ Report an exception for the given lock.
 
 sub handle_exception {
   my ($error, $lock) = @_;
+
+  die $error if $error =~ m/DBI/;
   
   if ($error =~ m/SIGINT/) {
-    $lock->port->events->delete_all;
-    $lock->port->status('untested');
-    $lock->port->update;
+    $lock->port->reset;
     
     report('debug', 'Exiting 0 from SIGINT (prior result for %s deleted).', $lock->port);
     exit 0;
@@ -397,7 +428,7 @@ Check to see if the current run is the latest, and update it if it isn't.
 
 sub get_current_run {
   my $current = Magus::Run->latest($Magus::Machine) || return;
-  my $tree_id = get_tree_id('/usr/mports') || 0;
+  my $tree_id = get_tree_id("$Magus::Config{'SlaveDataDir'}/mports") || 0;
 
   if ($current != $Magus::Machine->run || $tree_id != $current) {
     $Magus::Machine->run($current);
@@ -406,21 +437,24 @@ sub get_current_run {
     my $tarball = $current->tarballpath;
     
     report(debug => "Downloading tree ID $current: $tarball");
+ 
+    my $dir = $Magus::Config{'SlaveDataDir'} || die "SlaveDataDir is not set!\n";
     
-    chdir('/usr');
+    mkdir($dir);
+    chdir($dir) || die "Couldn't chdir to $dir: $!\n";
         
     if (system("/usr/bin/fetch -p $tarball") != 0) {
       die "Couldn't fetch $tarball";
     }
 
-
-    report(debug => "Deleting old /usr/mports");
-    rmtree('/usr/mports');
-    
+    report(debug => "Deleting old $dir/mports");
+    rmtree('$dir/mports');
     
     report(debug => "Extracting %s", $current->tarball);
     system('/usr/bin/tar xf ' . $current->tarball);
-    
+
+    unlink($current->tarball);
+        
     report(debug => "Reloading self.");
     exec($self, @origARGV);
   }
