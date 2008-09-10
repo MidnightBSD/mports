@@ -3,12 +3,12 @@
 # Date created:         Sa   9 Nov 1996 00:52:22 MET
 # Whom:			se
 #
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.4 2007/11/16 21:14:05 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.5 2008/07/19 15:00:05 crash Exp $
 # $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
 #
 
 PORTNAME=	wine
-PORTVERSION=  1.1.1	
+PORTVERSION=    1.1.4	
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED} \
