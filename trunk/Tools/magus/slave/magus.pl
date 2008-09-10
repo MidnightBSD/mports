@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.19 2008/03/14 19:20:31 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.20 2008/09/09 15:46:51 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -49,6 +49,8 @@ $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" 
 my @origARGV = @ARGV;
 my $self     = '/usr/mports/Tools/magus/slave/magus.pl';
 my $Lock;
+my $WorkerID = 1;
+
 
 while (1) {
   eval {
@@ -111,9 +113,26 @@ my %opts;
 sub main {
   my $lock;
   
-  getopts('fv', \%opts);
+  getopts('fvj:', \%opts);
   
   daemonize() unless $opts{f};
+  
+  if ($opts{j}) {
+    while ($opts{j} > 1) {
+      my $pid = fork;
+      
+      if ($pid) {
+        report(debug => "Forked child: $pid");
+        $opts{j}--;
+        next;
+      } elsif (defined $pid) {
+        $WorkerID++;
+        last;
+      } else {
+        die "Unable to fork child: $!\n";
+      }
+    }
+  }  
       
   report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
   
@@ -152,7 +171,6 @@ script exit.
 
 END {
   if ($Lock) {
-    $Lock->port->reset;
     $Lock->delete;
   }
 }
@@ -177,7 +195,10 @@ sub run_test {
 
   eval {
     $port = $lock->port;
-    $chroot = Magus::Chroot->new(tarball => $Magus::Config{ChrootTarBall});
+    $chroot = Magus::Chroot->new(
+      workerid => $WorkerID,
+      tarball  => $Magus::Config{ChrootTarBall},
+    );
 
     copy_dep_pkgfiles($lock, $chroot);
   };
