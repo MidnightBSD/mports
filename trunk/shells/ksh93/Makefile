@@ -2,8 +2,19 @@
 # Date created:                2000-12-26
 # Whom:                        Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.1 2006/09/18 13:24:12 laffer1 Exp $
-# $FreeBSD: ports/shells/ksh93/Makefile,v 1.47 2006/04/22 22:21:28 kris Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/shells/ksh93/Makefile,v 1.53 2008/08/18 18:36:36 miwi Exp $
+#
+# Make sure that your configuration DOES NOT set AN?Y gcc-related
+# variables.  ksh93 will not compile if you set even the seemingly
+# most unrelated variable related to gcc configuration.  This means
+# especially any flag which attempts to set the cputype.  Setting the
+# cputype does absolutely nothing except cause systems to fail in
+# horrible ways.  For any modern processor, setting the cputype only
+# serves to expose gcc bugs and does nothing to speed up any known
+# program.  If you are really unconvinced, go ahead but do not
+# complain to me about it.
+#
 
 PORTNAME=	ksh93
 PORTVERSION=	${VERSION:S/-//g}
@@ -18,13 +29,13 @@ COMMENT=	Official AT&T release of KornShell 93
 
 MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
 
-VERSION=	2007-03-28
+VERSION=	2008-07-25
 RESTRICTED=	Source recipient must acknowledge license
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
 FETCH_CMD=	/usr/bin/fetch -Rr		# see bin/76134
 NO_WRKSUBDIR=	yes
-MAKE_ENV=	CCFLAGS="${CFLAGS}" SHELL="${SH}"
+MAKE_ENV=	CCFLAGS="${CFLAGS}"
 .if defined(WANT_STATIC)
 MAKE_ENV+=	LDFLAGS=-static
 .endif
@@ -34,10 +45,6 @@ MAN1=		ksh93.1
 .include <bsd.port.pre.mk>
 
 INSTALLROOT=	${WRKSRC}/arch/midnightbsd.${ARCH}
-
-.if ${ARCH} == "sparc64"
-BROKEN=	Does not compile on sparc64
-.endif
 
 do-build:
 	@cd ${WRKSRC} && ${SETENV} -i ${MAKE_ENV} ${SH} bin/package make
@@ -51,6 +58,13 @@ do-install:
 	${INSTALL_SCRIPT} ${INSTALLROOT}/fun/${fun} \
 	    ${PREFIX}/share/examples/ksh93/
 .endfor
+
+post-install:
+	@${ECHO} "updating /etc/shells"
+	@${CP} /etc/shells /etc/shells.bak
+	@(${GREP} -v ${PREFIX}/bin/ksh93 /etc/shells.bak; \
+	  ${ECHO_CMD} ${PREFIX}/bin/ksh93) >/etc/shells
+	@${RM} -f /etc/shells.bak
 
 test: build
 	@cd ${WRKSRC}/src/cmd/ksh93/tests && \
