@@ -24,7 +24,7 @@ package Magus::Config;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.4 2008/09/09 15:28:40 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.5 2008/09/09 18:16:44 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -48,6 +48,8 @@ sub import {
 sub load_config {
   %Config = (
     # defaults
+    CvsFlags       => '',
+    CvsRoot        => '/home/cvs',
     SlaveSrcDir    => '/usr/src',
     %{ LoadFile(shift) },
   );
