@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.12 2008/03/08 02:31:01 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.13 2008/04/15 21:20:52 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -119,7 +119,7 @@ sub update_cvs_dir {
   
   print " done.\n";
   
-  my $cmd = "cvs -d /home/cvs co -P $Magus::Config{MportsCvsDir}";
+  my $cmd = "cvs $Magus::Config{CvsFlags} -d $Magus::Config{CvsRoot} co -P $Magus::Config{MportsCvsDir}";
   
   system($cmd) == 0 || die "$cmd returned non-zero: $?\n";
 }
