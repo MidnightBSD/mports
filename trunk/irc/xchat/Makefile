@@ -2,13 +2,13 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.4 2007/08/29 05:19:24 ctriv Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.5 2008/05/10 01:24:07 laffer1 Exp $
 # $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
 #   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
 
 PORTNAME=	xchat
-PORTVERSION=	2.8.4
+PORTVERSION=	2.8.6
 CATEGORIES=	irc gnome ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
