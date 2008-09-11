@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.66 2008/09/11 05:02:48 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.67 2008/09/11 05:05:53 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -10,6 +10,7 @@
     SUBDIR += akode-plugins-oss
     SUBDIR += akode-plugins-resampler
     SUBDIR += akode-plugins-xiph
+    SUBDIR += amarok
     SUBDIR += arts
     SUBDIR += artswrapper
     SUBDIR += cddb-bundle
