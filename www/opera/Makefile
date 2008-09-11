@@ -2,7 +2,7 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.22 2008/06/12 21:41:12 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.23 2008/06/20 01:30:14 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
@@ -10,32 +10,32 @@ PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
 PORTREVISION=	0
 CATEGORIES=	www ipv6
-MASTER_SITES=	ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://ftp.ucr.ac.cr/WWW/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://www.microrpm.ca/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://www.opera.mirroarrr.de/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://opera.eurenet.net/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		ftp://opera.ftp.fu-berlin.de/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://ftp.ntua.gr/pub/www/Opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		ftp://ftp.wayne.edu/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://mirrors.dedipower.com/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		ftp://ftp.mirror.ac.uk/sites/ftp.opera.com/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		http://opera.nedmirror.nl/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		ftp://ftp.tiscali.nl/pub/mirrors/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/&,} \
-		ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_LIB}/
-DISTNAME=	${PORTNAME}-${OPERA_VER}-freebsd6-shared-qt3.${ARCH}
+MASTER_SITES=	ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://ftp.ucr.ac.cr/WWW/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://www.microrpm.ca/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://opera.eurenet.net/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		ftp://opera.ftp.fu-berlin.de/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://ftp.ntua.gr/pub/www/Opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		ftp://ftp.wayne.edu/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://mirrors.dedipower.com/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		ftp://ftp.mirror.ac.uk/sites/ftp.opera.com/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		http://opera.nedmirror.nl/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		ftp://ftp.tiscali.nl/pub/mirrors/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/${OPERA_REL}/en/${OPERA_ARCH}/${OPERA_LIB}/&,} \
+		http://T32.TecNik93.com/FreeBSD/others_ports/${PORTNAME}${PKGNAMESUFFIX}/sources/
+DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.freebsd6-shared-qt3.${ARCH}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 LICENSE=	opera
 
-OPERA_VER=	9.50
+OPERA_VER=	9.52
 OPERA_MINVER=	
 OPERA_REL=	final
-OPERA_DATE=	20080331
-OPERA_BUILD=	2042
+OPERA_DATE=	20080814
+OPERA_BUILD=	2091
 
 DATADIR=	${PREFIX}/share/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
@@ -44,7 +44,7 @@ USE_BZIP2=	yes
 WANT_GNOME=	yes
 USE_XLIB=	yes
 ONLY_FOR_ARCHS=	i386 amd64
-WRKSRC=		${WRKDIR}/${DISTNAME}
+#WRKSRC=		${WRKDIR}/${DISTNAME}
 WRKSRC=		${WRKDIR}/${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.freebsd6-shared-qt3.${ARCH}
 
 MAN1=		opera.1
@@ -60,6 +60,11 @@ QT_PRESENT=	off
 
 .include <bsd.port.pre.mk>
 
+.if ${ARCH} == amd64
+OPERA_ARCH=	amd64
+.else
+OPERA_ARCH=	intel
+.endif
 
 OPERA_TYPE=	4
 
@@ -67,11 +72,7 @@ OPERA_TYPE=	4
 LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
 .endif
 
-.if ${ARCH} == amd64
-OPERA_LIB=	amd64
-.else
 OPERA_LIB=	shared
-.endif
 LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
 
 .if ${HAVE_GNOME:Mgnomehier}!=""
