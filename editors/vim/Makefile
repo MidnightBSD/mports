@@ -4,12 +4,12 @@
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
 # $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.9 2008/06/22 21:31:28 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.10 2008/09/03 01:25:34 laffer1 Exp $
 #
 
 PORTNAME?=	vim
-PATCHLEVEL=	330
-PORTVERSION=	7.1.${PATCHLEVEL}
+PATCHLEVEL=	14
+PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
 CATEGORIES?=	editors
@@ -17,14 +17,17 @@ MASTER_SITES=	${MASTER_SITE_VIM}
 DISTFILES=	${RELEASE}${EXTRACT_SUFX}
 
 PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}
-PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
-			${PATCHLEVEL} 1 ${PATCHLEVEL}
+PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d \
+                	${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=	003 007 041 065 070 072 080 088 091 092 124 128 129 134 146 158 168 196 204 275 278 280 282 283 285 312 321
+BADPATCHES=     007
+
+#.if !defined(WITH_LANG)
+#BADPATCHES+=
+#.endif
 .for p in ${BADPATCHES}
-PATCHFILES:=	${PATCHFILES:N7.1.${p}}
+PATCHFILES:=	${PATCHFILES:N7.2.${p}}
 .endfor
-PATCHFILES:=	${PATCHFILES:S/126/126ne/}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Vi "workalike", with many additional features
