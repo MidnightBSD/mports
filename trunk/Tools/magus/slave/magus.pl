@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.20 2008/09/09 15:46:51 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.21 2008/09/10 19:42:46 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -411,7 +411,7 @@ Logs the current
       my ($format, @args) = @msg;
       my $time = localtime;
       
-      printf "[$time] ($$): $format\n", @args;
+      printf "[$time] ($$:$WorkerID): $format\n", @args;
     }    
   }
 }
