@@ -2,70 +2,134 @@
 # Date created:                        	10 June 2003
 # Whom:                                 Peter van Dijk <peter@dataloss.nl>
 #
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.3 2007/08/30 19:04:59 laffer1 Exp $
-# $FreeBSD: ports/irc/bitlbee/Makefile,v 1.26 2006/08/12 09:52:53 miwi Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/irc/bitlbee/Makefile,v 1.45 2008/08/27 20:16:32 brix Exp $
 #
 
 PORTNAME=	bitlbee
-PORTVERSION=	1.0.4
+PORTVERSION=	1.2.2
 CATEGORIES=	irc
-MASTER_SITES=	http://get.bitlbee.org/src/
-
-PATCH_SITES=	http://get.bitlbee.org/patches/
+MASTER_SITES=	http://get.bitlbee.org/src/ \
+		${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	brix
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An IRC to other chat networks gateway
+LICENSE=	gpl2
 
 SUB_FILES=	pkg-message
 MAN5=		bitlbee.conf.5
 MAN8=		bitlbee.8
+PORTDOCS=	AUTHORS CHANGES CREDITS FAQ README
+PORTEXAMPLES=	bitlbee.conf motd.txt
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20
-USE_GETOPT_LONG=yes
+USE_RC_SUBR=	bitlbee
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS=	MSN "Enable MSN protocol support" On \
-		LDAP "Enable LDAP authentication support" Off \
-		RECODE "Enable oscar_recode_charset" Off \
-		IPV6 "Enable IPV6 support" On
+OPTIONS=	DEBUG "Enable debug support" Off \
+		IPV6 "Enable IPv6 support" On \
+		OPENSSL "Use OpenSSL rather than GnuTLS" Off \
+		MSN "Enable MSN protocol support" On \
+		JABBER "Enable Jabber (XMPP) protocol support" On \
+		OSCAR "Enable OSCAR (ICQ, AIM) protocol support" On \
+		YAHOO "Enable Yahoo! protocol support" On
 
-CONFIGURE_ARGS=	--mandir=${PREFIX}/man --config=${PREFIX}/etc/bitlbee
+
+CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0
+
+BITLBEEUSER?=	bitlbee
+BITLBEEGROUP?=	bitlbee
+BITLBEEDIR?=	/nonexistent
+
+BITLBEEUID=	914
+BITLBEEGID=	${BITLBEEUID}
+
+PLIST_SUB=	BITLBEEUSER=${BITLBEEUSER} \
+		BITLBEEGROUP=${BITLBEEGROUP}
+
+SUB_LIST+=	BITLBEEUSER=${BITLBEEUSER} \
+		BITLBEEGROUP=${BITLBEEGROUP} \
+		BITLBEEDIR=${BITLBEEDIR} \
+		BITLBEEUID=${BITLBEEUID} \
+		BITLBEEGID=${BITLBEEGID}
+
+SUB_FILES+=	pkg-install pkg-deinstall
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_LDAP)
-PATCHFILES+=	${PORTNAME}-1.0-ldap.diff
-.endif
-
-.if !defined(WITHOUT_MSN)
-LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=--msn=1
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=--debug=1
 .else
-CONFIGURE_ARGS+=--msn=0 --ssl=bogus
+CONFIGURE_ARGS+=--debug=0
 .endif
 
-.if defined(WITH_RECODE)
-post-patch:
-	@cd ${WRKSRC} && \
-		${PATCH} ${PATCH_ARGS} < ${FILESDIR}/oscar-recode-patch
-.endif
-
-.if defined(WITH_LDAP)
-USE_OPENLDAP=	yes
-CONFIGURE_ARGS+=--ldap=${LOCALBASE}
-.endif
-
-.if defined(WITHOUT_IPV6)
+.if defined(WITH_IPV6)
+CONFIGURE_ARGS+=--ipv6=1
+.else
 CONFIGURE_ARGS+=--ipv6=0
 .endif
 
+.if defined(WITH_OPENSSL)
+CONFIGURE_ARGS+=--ssl=openssl
+.else
+CONFIGURE_ARGS+=--ssl=gnutls
+LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
+.endif
+
+.if defined(WITH_MSN)
+CONFIGURE_ARGS+=--msn=1
+.else
+CONFIGURE_ARGS+=--msn=0
+.endif
+
+.if defined(WITH_JABBER)
+CONFIGURE_ARGS+=--jabber=1
+.else
+CONFIGURE_ARGS+=--jabber=0
+.endif
+
+.if defined(WITH_OSCAR)
+CONFIGURE_ARGS+=--oscar=1
+.else
+CONFIGURE_ARGS+=--oscar=0
+.endif
+
+.if defined(WITH_YAHOO)
+CONFIGURE_ARGS+=--yahoo=1
+.else
+CONFIGURE_ARGS+=--yahoo=0
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} \
+		-e "s|^EFLAGS=|EFLAGS=${LDFLAGS}|" \
+		${WRKSRC}/configure
+
+	@${REINPLACE_CMD} \
+		-e "s:/etc/bitlbee/motd.txt:${PREFIX}/etc/bitlbee/motd.txt:" \
+		-e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
+		${WRKSRC}/bitlbee.conf
+	@${REINPLACE_CMD} \
+		-e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
+		${WRKSRC}/doc/bitlbee.8
+
 pre-install:
-	@${MKDIR} -m 700 ${PREFIX}/etc/bitlbee
+	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
-	@${CP} ${WRKSRC}/bitlbee.conf ${PREFIX}/etc/bitlbee/bitlbee.conf.orig
-	@${CP} ${WRKSRC}/motd.txt ${PREFIX}/etc/bitlbee/motd.txt.orig
+	${MKDIR} ${PREFIX}/etc/bitlbee
+	${MKDIR} -m 0700 /var/db/bitlbee
+	${CHOWN} -R ${BITLBEEUSER}:${BITLBEEGROUP} /var/db/bitlbee
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S@^@${WRKSRC}/doc/@} ${DOCSDIR}
+.endif
+.if !defined(NOPORTEXAMPLES)
+	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${PORTEXAMPLES:S@^@${WRKSRC}/@} ${EXAMPLESDIR}
+.endif
 
 .include <bsd.port.post.mk>
