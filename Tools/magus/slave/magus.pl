@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.21 2008/09/10 19:42:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.22 2008/09/11 21:56:30 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -47,7 +47,7 @@ use File::Path qw(rmtree);
 $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
 
 my @origARGV = @ARGV;
-my $self     = '/usr/mports/Tools/magus/slave/magus.pl';
+my $self     = "$Magus::Config{SlaveMportsDir}/Tools/magus/slave/magus.pl";
 my $Lock;
 my $WorkerID = 1;
 
