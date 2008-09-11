@@ -2,12 +2,13 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.7 2007/10/25 00:55:48 ctriv Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.8 2008/09/10 19:09:55 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.4.6
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
@@ -17,6 +18,7 @@ DISTNAME=	pkgtools-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	BSD ports/packages administration and management tool suite
+LICENSE=	bsd3
 
 USE_BZIP2=	yes
 USE_RUBY=	yes
@@ -67,6 +69,8 @@ post-patch:
 	${MV} convert2.txt $i
 .endfor
 	${REINPLACE_CMD} -e 's|ftp.FreeBSD.org|ftp.midnightbsd.org|g;' \
+			-e 's|FreeBSD/ports|MidnightBSD/mports/packages|g' \
+			-e 's|FreeBSD|MidnightBSD|g' \
 		${WRKSRC}/lib/pkgtools.rb
 
 pre-install: 
