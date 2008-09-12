@@ -2,11 +2,12 @@
 # Date created:		2005-01-11
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/x264/Makefile,v 1.1 2008/08/24 22:15:36 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/x264/Makefile,v 1.2 2008/08/28 22:54:47 laffer1 Exp $
 # $FreeBSD: ports/multimedia/x264/Makefile,v 1.63 2008/06/06 14:33:38 edwin Exp $
 
 PORTNAME=	x264
 PORTVERSION=	0.0.20080409
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.videolan.org/pub/videolan/x264/snapshots/
 DISTNAME=	${PORTNAME}-snapshot-${PORTVERSION:S/0.0.//}-2245
@@ -31,10 +32,8 @@ OPTIONS=	DEBUG "Enable Debugging" Off \
 
 CONFIGURE_ARGS+=	--extra-cflags="${CPPFLAGS} ${CFLAGS} -fPIC -I${LOCALBASE}/include -I${LOCALBASE}/include" \
 			--extra-ldflags="${LDFLAGS} -L${LOCALBASE}/lib -L${LOCALBASE}/lib" \
-			--enable-shared 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0 \
-			--target=${ARCH}-portbld-freebsd6.0
+			--enable-shared  \
+			--host=${ARCH}-portbld-freebsd6.0
 
 .include <bsd.port.pre.mk>
 
