@@ -2,7 +2,7 @@
 # Date created:		25 Feb 2000
 # Whom:			Ville Eerola <ve@sci.fi>
 #
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.9 2008/06/17 16:50:42 laffer1 Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.10 2008/07/13 20:53:03 crash Exp $
 # $FreeBSD: ports/mail/fetchmail/Makefile,v 1.178 2007/01/06 14:38:42 barner Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
@@ -12,10 +12,13 @@
 
 PORTNAME=	fetchmail
 PORTVERSION=	6.3.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail ipv6
-MASTER_SITES=	${MASTER_SITE_BERLIOS}
-MASTER_SITE_SUBDIR=	fetchmail
+MASTER_SITES=	${MASTER_SITE_BERLIOS} \
+		${MASTER_SITE_SUNSITE:S/$/:sunsite/}\
+		http://home.leo.org/~barner/freebsd/distfiles/:leo
+MASTER_SITE_SUBDIR=	fetchmail/:DEFAULT,leo \
+			system/mail/pop/fetchmail/:sunsite
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:DEFAULT,leo,sunsite
 SUB_FILES=	pkg-message
 
@@ -23,7 +26,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Batch mail retrieval utility for IMAP/POP3/ETRN/ODMR
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root.crt:${PORTSDIR}/security/ca-roots
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
 USE_RC_SUBR=	fetchmail
 FETCHMAILRC=	${PREFIX}/etc/fetchmailrc
@@ -142,6 +145,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/fetchmailconf.py ${PREFIX}/libexec
 #	the group and owner of this file get changed by the plist.
-	${INSTALL} -m 640 -o root -g wheel ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
+	${INSTALL} -m 644 -o root -g wheel ${FILESDIR}/fetchmailrc.sample ${PREFIX}/etc/fetchmailrc.sample
 
 .include <bsd.port.post.mk>
