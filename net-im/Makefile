@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/Makefile,v 1.17 2008/09/13 22:17:19 laffer1 Exp $
+# $MidnightBSD: mports/net-im/Makefile,v 1.18 2008/09/13 22:26:49 laffer1 Exp $
 #
 
     COMMENT = Instant messaging
@@ -16,6 +16,7 @@
     SUBDIR += msn-proxy
     SUBDIR += p5-Net-XMPP
     SUBDIR += pidgin
+    SUBDIR += pidgin-twitter
     SUBDIR += pork
     SUBDIR += sendxmpp
     SUBDIR += telepathy-glib
