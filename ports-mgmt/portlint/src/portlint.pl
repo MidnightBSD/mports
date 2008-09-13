@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.3 2008/06/20 06:58:18 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.4 2008/09/13 20:32:59 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -47,7 +47,7 @@ $portdir = '.';
 # version variables
 my $major = 2;
 my $minor = 9;
-my $micro = 2;
+my $micro = 4;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -1188,7 +1188,6 @@ sub checkmakefile {
 			(?:LIB)?RUBY
 			LINUX_PREFIX
 			OPENSSL
-			PHP
 			PYTHON
 			QT2?
 			QT_VER
@@ -1435,13 +1434,6 @@ sub checkmakefile {
 				&perror("FATAL", $file, -1, $derror);
 			}
 		}
-	}
-
-	if ($whole =~ /\n(_USE_BSD_JAVA_MK_1_0)[+?:!]?=/) {
-		&perror("WARN", $file, -1, "This port uses bsd.java.mk 1.0 syntax. ".
-			"You should consider updating it to 2.0 syntax. ".
-			"Please refer to the Porter's Handbook for further ".
-			"information");
 	}
 
 	#
@@ -1992,6 +1984,10 @@ DIST_SUBDIR EXTRACT_ONLY
 			&perror("WARN", $file, -1, "EXTRACT_SUFX is \".tar.bz2.\" ".
 				"You should use USE_BZIP2 instead.");
 		}
+		if ($extractsufx eq '.zip') {
+			 &perror("WARN", $file, -1, "EXTRACT_SUFX is \".zip\" ".
+				"You should use USE_ZIP instead.");
+		}
 	} else {
 		print "OK: no EXTRACT_SUFX seen, using default value.\n"
 			if ($verbose);
@@ -2301,10 +2297,10 @@ MAINTAINER COMMENT LICENSE
 	# NOTE: EXEC_DEPENDS is obsolete, so it should not be listed.
 	@linestocheck = qw(
 EXTRACT_DEPENDS LIB_DEPENDS PATCH_DEPENDS BUILD_DEPENDS RUN_DEPENDS
-FETCH_DEPENDS DEPENDS DEPENDS_TARGET
+FETCH_DEPENDS DEPENDS_TARGET
 	);
 
-	if ($tmp =~ /(LIB_|BUILD_|RUN_|FETCH_)?DEPENDS/) {
+	if ($tmp =~ /^(PATCH_|EXTRACT_|LIB_|BUILD_|RUN_|FETCH_)DEPENDS/m) {
 		&checkearlier($file, $tmp, @varnames);
 
 		my %seen_depends;
@@ -2312,8 +2308,8 @@ FETCH_DEPENDS DEPENDS DEPENDS_TARGET
 		if (!defined $ENV{'PORTSDIR'}) {
 			$ENV{'PORTSDIR'} = $portsdir;
 		}
-		foreach my $i (grep(/^[A-Z_]*DEPENDS[?+]?=/, split(/\n/, $tmp))) {
-			$i =~ s/^([A-Z_]*DEPENDS)[?+]?=[ \t]*//;
+		foreach my $i (grep(/^(PATCH_|EXTRACT_|LIB_|BUILD_|RUN_|FETCH_)*DEPENDS[?+]?=/, split(/\n/, $tmp))) {
+			$i =~ s/^((PATCH_|EXTRACT_|LIB_|BUILD_|RUN_|FETCH_)*DEPENDS)[?+]?=[ \t]*//;
 			$j = $1;
 			$seen_depends{$j}++;
 			if ($j ne 'DEPENDS' &&
@@ -2332,27 +2328,18 @@ FETCH_DEPENDS DEPENDS DEPENDS_TARGET
 
 				print "OK: checking dependency value for $j.\n"
 					if ($verbose);
-				if (($j eq 'DEPENDS'
-				  && scalar(@l) != 1 && scalar(@l) != 2)
-				 || ($j ne 'DEPENDS'
+				if (($j ne 'DEPENDS'
 				  && scalar(@l) != 2 && scalar(@l) != 3)) {
 					&perror("WARN", $file, -1, "wrong dependency value ".
 						"for $j. $j requires ".
-						($j eq 'DEPENDS'
-							? "1 or 2 "
-							: "2 or 3 ").
+							"2 or 3 ".
 						"colon-separated tuples.");
 					next;
 				}
 				my %m = ();
-				if ($j eq 'DEPENDS') {
-					$m{'dir'} = $l[0];
-					$m{'tgt'} = $l[1];
-				} else {
-					$m{'dep'} = $l[0];
-					$m{'dir'} = $l[1];
-					$m{'tgt'} = $l[2];
-				}
+				$m{'dep'} = $l[0];
+				$m{'dir'} = $l[1];
+				$m{'tgt'} = $l[2];
 				print "OK: dep=\"$m{'dep'}\", ".
 					"dir=\"$m{'dir'}\", tgt=\"$m{'tgt'}\"\n"
 					if ($verbose);
@@ -2404,6 +2391,20 @@ FETCH_DEPENDS DEPENDS DEPENDS_TARGET
 					&perror("WARN", $file, -1, "dependency to $1 ".
 						"listed in $j.  consider using ".
 						"USE_LIBLTDL.");
+				}
+
+				# check CDRTOOLS
+				if ($m{'dir'} =~ /(cdrtools|cdrtools-cjk)$/) {
+					&perror("WARN", $file, -1, "dependency to $1 ".
+						"listed in $j.  consider using ".
+						"USE_CDRTOOLS.");
+				}
+
+				# check GHOSTSCRIPT
+				if ($m{'dep'} eq "gs") {
+					&perror("WARN", $file, -1, "dependency to gs ".
+						"listed in $j.  consider using ".
+						"USE_GHOSTSCRIPT(_BUILD|_RUN).");
 				}
 
 				# check JAVALIBDIR
