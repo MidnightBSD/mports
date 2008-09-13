@@ -2,13 +2,12 @@
 # Date created:				08 July 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.1 2008/06/25 14:33:01 laffer1 Exp $
 # $FreeBSD: ports/net-im/loudmouth/Makefile,v 1.42 2008/06/06 13:51:48 edwin Exp $
 #
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.2.3
-PORTREVISION=	0
 CATEGORIES=	net-im gnome
 MASTER_SITES=	http://ftp.imendio.com/pub/imendio/loudmouth/src/ \
 		${MASTER_SITE_GNOME}
