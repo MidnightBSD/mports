@@ -2,7 +2,7 @@
 # Date created:		24 June 2004
 # Whom:		 	Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.1 2007/05/07 03:01:42 laffer1 Exp $
+# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.2 2007/12/28 19:40:20 laffer1 Exp $
 # $FreeBSD: ports/net-im/meanwhile/Makefile,v 1.25 2007/01/28 09:07:42 kris Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-doxygen=no \
 		--with-gmp-prefix=${LOCALBASE}
