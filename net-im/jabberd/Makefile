@@ -2,7 +2,7 @@
 # Date created:				29 December 2003
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.2 2007/12/28 20:38:44 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.3 2007/12/28 20:43:13 laffer1 Exp $
 # $FreeBSD: ports/net-im/jabberd/Makefile,v 1.51 2007/10/21 20:56:17 mm Exp $
 #
 
@@ -82,7 +82,7 @@ PLIST_SUB+=	SUB_PGSQL="@comment "
 
 .if defined(WITH_SQLITE)
 CONFIGURE_ARGS+=--enable-sqlite
-LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3-threads
+LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
 CFLAGS+=	${PTHREAD_CFLAGS}
 PLIST_SUB+=	SUB_SQLITE=""
 .else
