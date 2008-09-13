@@ -2,14 +2,13 @@
 # Date created:				08 July 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/gossip/Makefile,v 1.1 2008/06/25 14:33:01 laffer1 Exp $
 # $FreeBSD: ports/net-im/gossip/Makefile,v 1.54 2008/06/06 13:51:45 edwin Exp $
 #   $MCom: ports/net-im/gossip/Makefile,v 1.10 2007/07/30 20:30:21 mezz Exp $
 #
 
 PORTNAME=	gossip
 PORTVERSION=	0.26
-PORTREVISION=	0
 CATEGORIES=	net-im gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
