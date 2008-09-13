@@ -2,7 +2,7 @@
 # Date created:         8 Sep 2007
 # Whom:                 seirei@MidnightBSD.org
 #
-# $MidnightBSD: mports/net-im/etoile-stepchat/Makefile,v 1.1 2007/09/08 01:30:46 seirei Exp $
+# $MidnightBSD: mports/net-im/etoile-stepchat/Makefile,v 1.2 2007/11/07 20:20:15 ctriv Exp $
 #
 
 PORTNAME=	stepchat
@@ -10,12 +10,12 @@ PORTVERSION=	0.1.${SNAPSHOT}
 PORTREVISION=	1
 CATEGORIES=	net-im gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
-LICENSE=        bsd3
 PKGNAMEPREFIX=	etoile-
 DISTNAME=       etoile-0.2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project Jabber Client
+LICENSE=	bsd3
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
