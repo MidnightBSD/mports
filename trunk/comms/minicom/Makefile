@@ -3,14 +3,15 @@
 # Date created:			  Fri Dec 01, 1995
 # Whom:				  obrien@cs.ucdavis.edu
 #
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.2 2007/08/02 06:56:57 laffer1 Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.3 2007/11/11 00:18:21 laffer1 Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
 #
 
 PORTNAME=	minicom
-PORTVERSION=	2.1
+PORTVERSION=	2.3
 CATEGORIES=	comms
-MASTER_SITES=	ftp://ftp.nuug.no/pub/anders/distfiles/ \
+MASTER_SITES=	http://alioth.debian.org/frs/download.php/2332/ \
+                ftp://ftp.nuug.no/pub/anders/distfiles/ \
 		http://atreides.freenix.no/~anders/
 
 MAINTAINER=	ports@MidnightBSD.org
