@@ -2,7 +2,7 @@
 # Date created:         09 Sep 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/grouch/Makefile,v 1.4 2008/06/22 18:15:09 laffer1 Exp $
 # $FreeBSD: ports/net-im/grouch/Makefile,v 1.2 2006/09/10 20:10:24 dinoex Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	20060713
 PORTREVISION=	1
 CATEGORIES=	net-im gnustep
 MASTER_SITES=	http://mail.rochester.edu/~asveikau/grouch/ \
-		http://florida.ethz.ch/ports/distfiles/
+		${MASTER_SITE_GNUSTEP_CH}
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
