@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.4 2008/09/13 20:32:59 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.5 2008/09/13 20:35:36 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -47,7 +47,7 @@ $portdir = '.';
 # version variables
 my $major = 2;
 my $minor = 9;
-my $micro = 4;
+my $micro = 7;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -189,6 +189,7 @@ my @varlist =  qw(
 	INDEXFILE PKGORIGIN CONFLICTS PKG_VERSION PKGINSTALLVER
 	PLIST_FILES OPTIONS INSTALLS_OMF USE_GETTEXT USE_RC_SUBR
 	DIST_SUBDIR ALLFILES IGNOREFILES CHECKSUM_ALGORITHMS INSTALLS_ICONS
+	GNU_CONFIGURE CONFIGURE_ARGS
 );
 
 my $cmd = join(' -V ', "make $makeenv MASTER_SITE_BACKUP=''", @varlist);
@@ -745,8 +746,11 @@ sub checkplist {
 				$rcsidseen++ if (/\$$rcsidstr[:\$]/);
 			} elsif ($_ =~ /^\@(owner|group|mode)\s/) {
 				&perror("WARN", $file, $., "\@$1 should not be needed");
-			} elsif ($_ =~ /^\@(dirrm|option)/) {
+			} elsif ($_ =~ /^\@(dirrm|option|stopdaemon)/) {
 				; # no check made
+			} elsif ($_ eq "\@cwd") {
+				; # @cwd by itself means change directory back to the original
+				  # PREFIX.
 			} else {
 				&perror("WARN", $file, $.,
 					"unknown pkg-plist directive \"$_\"");
@@ -775,7 +779,7 @@ sub checkplist {
 				"for more details.");
 		}
 
-		if ($_ =~ m|lib/pkgconfig/[^\.]+.pc$|) {
+		if ($_ =~ m|lib/pkgconfig/[^\/]+.pc$|) {
 			&perror("FATAL", $file, $., "installing pkg-config files into ".
 				"lib/pkgconfig.  All pkg-config files must be installed ".
 				"into libdata/pkgconfig for them to be found by pkg-config.");
@@ -831,20 +835,35 @@ sub checkplist {
 		}
 
 		if ($_ =~ /^(\%\%PORTDOCS\%\%)?share\/doc\//) {
-			&perror("WARN", $file, $., "consider using DOCSDIR macro");
+			&perror("WARN", $file, $., "If and only if your port is ".
+					"DOCSDIR-safe (that is, a user can override DOCSDIR ".
+					"when building this port and the port will still work ".
+					"correctly) consider using DOCSDIR macro; if you are ".
+					"unsure if this this port is DOCSDIR-safe, then ignore ".
+					"this warning");
 			$sharedocused++;
 		} elsif ($_ =~ /^(\%\%PORTDOCS\%\%)?\%\%DOCSDIR\%\%/) {
 			$sharedocused++;
 		}
 
 		if ($_ =~ /^share\/examples\//) {
-			&perror("WARN", $file, $., "consider using EXAMPLESDIR macro");
+			&perror("WARN", $file, $., "If and only if your port is ".
+				"EXAMPLESDIR-safe (that is, a user can override EXAMPLESDIR ".
+				"when building this port and the port will still work ".
+				"correctly) consider using EXAMPLESDIR macro; if you are ".
+				"unsure if this port is EXAMPLESDIR-safe, then ignore this ".
+				"warning");
 		}
 
 		{
 			my $tmpportname = quotemeta($makevar{PORTNAME});
 			if ($_ =~ /^share\/$tmpportname\//) {
-				&perror("WARN", $file, $., "consider using DATADIR macro");
+				&perror("WARN", $file, $., "If and only if your port is ".
+					"DATADIR-safe (that is, a user can override DATADIR when ".
+					"building this port and the port will still work ".
+					"correctly) consider using DATADIR macro; if you are ".
+					"unsure if this port is DATADIR-safe, then ignore this ".
+					"warning");
 			}
 		}
 
@@ -1183,7 +1202,6 @@ sub checkmakefile {
 			BZIP2
 			GNUSTEP
 			IMAKE
-			JAVA
 			KDE(?:BASE|LIBS)_VER
 			(?:LIB)?RUBY
 			LINUX_PREFIX
@@ -1665,6 +1683,15 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	}
 
 	#
+	# whole file: check for --mandir and --infodir when GNU_CONFIGURE
+	#
+	if ($makevar{GNU_CONFIGURE} ne '' &&
+		$makevar{CONFIGURE_ARGS} =~ /(man|info)dir/) {
+		&perror("WARN", $file, -1, "--mandir and --infodir are not needed ".
+			"in CONFIGURE_ARGS as they are already set in bsd.port.mk");
+	}
+
+	#
 	# slave port check
 	#
 	my $masterdir = $makevar{MASTERDIR};
@@ -1710,6 +1737,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 	$tmp = $rawwhole;
 	# keep comment, blank line, comment in the same section
 	$tmp =~ s/(#.*\n)\n+(#.*)/$1$2/g;
+	$tmp =~ s/\\\n\n/\n/g;
 	@sections = split(/\n\n+/, $tmp);
 	for ($i = 0; $i <= $#sections; $i++) {
 		if ($sections[$i] !~ /\n$/) {
@@ -2192,21 +2220,21 @@ DISTFILES EXTRACT_ONLY
 	if ($tmp =~ /(PATCH_SITES|PATCH_SITE_SUBDIR|PATCHFILES|PATCH_DIST_STRIP)/) {
 		&checkearlier($file, $tmp, @varnames);
 
-		if ($tmp =~ /^PATCH_SITES=/) {
+		if ($tmp =~ /PATCH_SITES[?+]?=[^\n]+\n/) {
 			print "OK: seen PATCH_SITES.\n" if ($verbose);
-			$tmp =~ s/^[^\n]+\n//;
+			$tmp =~ s/PATCH_SITES[?+]?=[^\n]+\n//;
 		}
-		if ($tmp =~ /^PATCH_SITE_SUBDIR=/) {
+		if ($tmp =~ /PATCH_SITE_SUBDIR[?+]?=[^\n]+\n/) {
 			print "OK: seen PATCH_SITE_SUBDIR.\n" if ($verbose);
-			$tmp =~ s/^[^\n]+\n//;
+			$tmp =~ s/PATCH_SITE_SUBDIR[?+]?=[^\n]+\n//;
 		}
-		if ($tmp =~ /^PATCHFILES=/) {
+		if ($tmp =~ /PATCHFILES[?+]?=[^\n]+\n/) {
 			print "OK: seen PATCHFILES.\n" if ($verbose);
-			$tmp =~ s/^[^\n]+\n//;
+			$tmp =~ s/PATCHFILES[?+]?=[^\n]+\n//;
 		}
-		if ($tmp =~ /^PATCH_DIST_STRIP=/) {
+		if ($tmp =~ /PATCH_DIST_STRIP[?+]?=[^\n]+\n/) {
 			print "OK: seen PATCH_DIST_STRIP.\n" if ($verbose);
-			$tmp =~ s/^[^\n]+\n//;
+			$tmp =~ s/PATCH_DIST_STRIP[?+]?=[^\n]+\n//;
 		}
 
 		&checkextra($tmp, 'PATCH_SITES', $file);
@@ -2258,7 +2286,7 @@ MAINTAINER COMMENT LICENSE
 		&perror("WARN", $file, -1, "unless this is a master port, COMMENT has to be set by \"=\", ".
 			"not by \"$1=\".") unless ($masterport);
 	} else { # check for correctness
-		if (($makevar{COMMENT} !~ /^["0-9A-Z]/) || ($makevar{COMMENT} =~ m/\.$/)) { #"
+		if (($makevar{COMMENT} !~ /^["\[0-9A-Z]/) || ($makevar{COMMENT} =~ m/\.$/)) { #"
 			&perror("WARN", $file, -1, "COMMENT should begin with a capital, and end without a period");
 		} elsif (length($makevar{COMMENT}) > 70) {
 			&perror("WARN", $file, -1, "COMMENT exceeds 70 characters limit.");
@@ -2444,6 +2472,7 @@ FETCH_DEPENDS DEPENDS_TARGET
 				}
 			}
 		}
+
 		foreach my $i (@linestocheck) {
 			$tmp =~ s/$i[?+]?=[^\n]+\n//g;
 		}
