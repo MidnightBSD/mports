@@ -2,12 +2,12 @@
 # Date created:				08 July 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.1 2008/06/25 14:33:01 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.2 2008/09/13 22:37:35 laffer1 Exp $
 # $FreeBSD: ports/net-im/loudmouth/Makefile,v 1.42 2008/06/06 13:51:48 edwin Exp $
 #
 
 PORTNAME=	loudmouth
-PORTVERSION=	1.2.3
+PORTVERSION=	1.4.0
 CATEGORIES=	net-im gnome
 MASTER_SITES=	http://ftp.imendio.com/pub/imendio/loudmouth/src/ \
 		${MASTER_SITE_GNOME}
@@ -19,11 +19,11 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack glib20
+USE_GNOME=	gnomehack glib20 ltverhack
 CONFIGURE_ARGS=	--disable-gtk-doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
