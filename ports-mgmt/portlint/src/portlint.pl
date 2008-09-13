@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.5 2008/09/13 20:35:36 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.6 2008/09/13 20:42:01 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -47,7 +47,7 @@ $portdir = '.';
 # version variables
 my $major = 2;
 my $minor = 9;
-my $micro = 7;
+my $micro = 10;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -238,18 +238,11 @@ open(MK, $sites_mk) || die "$sites_mk: $!";
 my @site_groups = grep($_ = /^MASTER_SITE_(\w+)/ && $1, <MK>);
 close(MK);
 
-$cmd = join(' -V MASTER_SITE_', "make $makeenv -f - all", @site_groups);
+$cmd = join(' -V MASTER_SITE_', "make $makeenv ", @site_groups);
 
 $i = 0;
 
 open2(\*IN, \*OUT, $cmd);
-
-print OUT <<EOF;
-all:
-	# do nothing
-
-.include "$sites_mk"
-EOF
 
 close(OUT);
 
@@ -612,7 +605,20 @@ sub checkdescr {
 	open(IN, "< $file") || return 0;
 	while (<IN>) {
 		$tmp .= $_;
-		chomp || &perror("WARN", $file, -1, "should terminate in '\n'.");
+		chomp || &perror("WARN", $file, -1, "lines should terminate with a ".
+			"newline (i.e. '\\n').");
+		if (/$/) {
+			&perror("WARN", $file, -1, "lines should not contain carriage ".
+				"returns.  Strip all carriage returns (e.g. run dos2unix) ".
+				"in $file.");
+		}
+		if (/^WWW:\s*(\S*)/) {
+			my $wwwurl = $1;
+			if ($wwwurl !~ m|^http://|) {
+				&perror("WARN", $file, -1, "WWW URL, $wwwurl should begin ".
+					"with \"http://\".");
+			}
+		}
 		$linecnt++;
 		$longlines++ if ($maxchars{$file} < length);
 	}
@@ -865,6 +871,12 @@ sub checkplist {
 					"unsure if this port is DATADIR-safe, then ignore this ".
 					"warning");
 			}
+		}
+
+		if ($_ =~ m{^%%PORT(\w+)%%(.*?)%%(\w+)DIR%%(.*)$} and $1 ne $3) {
+			&perror("WARN", $file, $., "Do not mix %%PORT$1%% with %%$3DIR%%. ".
+				"Use '%%PORT$3%%$2%%$3DIR%%$4' instead and update Makefile ".
+				"accordingly.");
 		}
 
 		if ($_ =~ m#man/([^/]+/)?man([$manchapters])/([^\.]+\.[$manchapters])(\.gz)?$#) {
@@ -1149,6 +1161,18 @@ sub checkmakefile {
 	}
 
 	#
+	# whole file: use of !=
+	#
+	print "OK: checking for use of !=.\n" if ($verbose);
+	if ($whole =~ /^[\w\d_]+\!=/m) {
+		my $lineno = &linenumber($`);
+		&perror("WARN", $file, $lineno, "use of != in assignments is almost ".
+			"never a good thing to do.  Try to avoid using them.  See ".
+			"http://lists.freebsd.org/pipermail/freebsd-ports/2008-July/049777.html ".
+			"for some helpful hints on what to do instead.");
+	}
+
+	#
 	# whole file: use of .elseif
 	#
 	print "OK: checking for use of .elseif.\n" if ($verbose);
@@ -1355,6 +1379,16 @@ sub checkmakefile {
 			my $lineno = &linenumber($`);
 			&perror("WARN", $file, $lineno, "USE_REINPLACE is now obsolete. ".
 				"You can safely use REINPLACE_CMD without it.");
+	}
+
+	#
+	# whole file: USE_GETOPT_LONG
+	#
+	print "OK: checking for USE_GETOPT_LONG.\n" if ($verbose);
+	if ($whole =~ /\nUSE_GETOPT_LONG.?=/) {
+		my $lineno = &linenumber($`);
+		&perror("WARN", $file, $lineno, "USE_GETOPT_LONG is now obsolete. ".
+			"You can safely remove this macro from your Makefile.");
 	}
 
 	#
@@ -1637,6 +1671,29 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 			$use_gnome_hack = 1;
 		}
 	}
+
+	#
+	# whole file: USE_GCC checks
+	#
+	if ($whole =~ /^USE_GCC[?:]?=\s*(.*)$/m) {
+		my $lineno = &linenumber($`);
+		my $gcc_val = $1;
+		if ($gcc_val =~ /3\.[234]\+/) {
+			&perror("WARN", $file, $lineno, "USE_GCC=3.2+, USE_GCC=3.3+, ".
+				"and USE_GCC=3.4+ are noops on all currently (and future) ".
+				"supported versions of FreeBSD.  Do not use them.");
+		} elsif ($gcc_val eq "4.1+") {
+			&perror("WARN", $file, $lineno, "USE_GCC=4.2+ is recommended ".
+				"over USE_GCC=4.1+ since the former is the system compiler ".
+				"for FreeBSD 7.X.");
+		} elsif ($gcc_val !~ /\+/) {
+			&perror("WARN", $file, $lineno, "Setting a specific version for ".
+				"USE_GCC should only be done as a last resort.  Unless you ".
+				"have confirmed this port does not build with later ".
+				"versions of GCC, please use USE_GCC=$gcc_val+.");
+		}
+	}
+
 
 	#
 	# whole file: USE_JAVA check
@@ -2356,6 +2413,11 @@ FETCH_DEPENDS DEPENDS_TARGET
 
 				print "OK: checking dependency value for $j.\n"
 					if ($verbose);
+				if ($k =~ /\${((PATCH_|EXTRACT_|LIB_|BUILD_|RUN_|FETCH_)*DEPENDS)}/) {
+					&perror("WARN", $file, -1, "do not set $j to $k. ".
+						"Instead, explicity list out required $j dependencies.");
+				}
+
 				if (($j ne 'DEPENDS'
 				  && scalar(@l) != 2 && scalar(@l) != 3)) {
 					&perror("WARN", $file, -1, "wrong dependency value ".
@@ -2405,13 +2467,6 @@ FETCH_DEPENDS DEPENDS_TARGET
 					&perror("WARN", $file, -1, "dependency to $1 ".
 						"listed in $j. consider using ".
 						"USE_QT.");
-				}
-
-				# check USE_GETOPT_LONG
-				if ($m{'dep'} =~ /^(gnugetopt\.\d)+$/) {
-					&perror("WARN", $file, -1, "dependency to $1 ".
-							"listed in $j.  consider using ".
-							"USE_GETOPT_LONG.");
 				}
 
 				# check LIBLTDL
