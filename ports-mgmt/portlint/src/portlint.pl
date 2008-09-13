@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.2 2007/08/07 22:25:05 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.3 2008/06/20 06:58:18 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -25,6 +25,7 @@ use vars qw/ $opt_a $opt_A $opt_b $opt_C $opt_c $opt_g $opt_h $opt_t $opt_v $opt
 use Getopt::Std;
 use File::Find;
 use IPC::Open2;
+use POSIX qw(strftime);
 use strict;
 
 sub perror($$$$);
@@ -46,7 +47,7 @@ $portdir = '.';
 # version variables
 my $major = 2;
 my $minor = 9;
-my $micro = 1;
+my $micro = 2;
 
 sub l { '[{(]'; }
 sub r { '[)}]'; }
@@ -1340,6 +1341,23 @@ sub checkmakefile {
 	}
 
 	#
+	# whole file: EXPIRATION_DATE
+	#
+	print "OK: checking for valid EXPIRATION_DATE.\n" if ($verbose);
+	my $edate;
+	if (($edate) = ($whole =~ m/\nEXPIRATION_DATE\??=[ \t]*([^\n]*)\n/)) {
+		my $lineno = &linenumber($`);
+		if ($edate ne strftime("%Y-%m-%d", 0, 0, 0,
+					substr($edate, 8, 2),
+					substr($edate, 5, 2) - 1,
+					substr($edate, 0, 4) - 1900)) {
+			&perror("FATAL", $file, $lineno, "EXPIRATION_DATE ($edate) is ".
+				"either not in YYYY-MM-DD format or it is not a valid ".
+				"date.");
+		}
+	}
+
+	#
 	# whole file: IS_INTERACTIVE/NOPORTDOCS
 	#
 	print "OK: checking IS_INTERACTIVE.\n" if ($verbose);
@@ -1394,7 +1412,7 @@ sub checkmakefile {
 			USE_AUTOHEADER_VER	=> 'USE_AUTOTOOLS',
 			USE_AUTOCONF_VER	=> 'USE_AUTOTOOLS',
 			WANT_AUTOCONF_VER	=> 'USE_AUTOTOOLS',
-			__HELP__			=> 'http://people.freebsd.org/~ade/autotools.txt',
+			__HELP__			=> 'http://www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/using-autotools.html',
 	);
 
 	%deprecated = (
@@ -1508,7 +1526,7 @@ ruby sed sh sort sysctl touch tr which xargs xmkmf
 				&& $lm !~ /^COMMENT(.)?=[^\n]+($i\d*)/m) {
 					&perror("WARN", $file, $lineno, "possible direct use of ".
 						"command \"$sm\" found. Use $autocmdnames{$i} ".
-						"instead and set according USE_*_VER= flag");
+						"instead and set according USE_AUTOTOOLS=<tool> macro");
 			}
 		}
 	}
