@@ -2,7 +2,7 @@
 # Date created:		Fri Nov 16 02:47:45 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.1 2007/06/10 23:59:40 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.2 2007/10/25 01:11:41 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift/Makefile,v 1.25 2007/01/27 08:16:35 kris Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME:L}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An OpenFT, Gnutella and FastTrack p2p network client
+LICENSE=	gpl2
 
 LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
