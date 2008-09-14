@@ -2,7 +2,7 @@
 # Date created:		2003-09-04
 # Whom:			Stefan Ehmann <shoesoft@gmx.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-p2p/gift-gnutella/Makefile,v 1.1 2007/06/10 23:59:41 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift-gnutella/Makefile,v 1.9 2007/01/12 21:57:29 miwi Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME:L}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A gnutella plugin for giFT
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gift.0:${PORTSDIR}/net-p2p/gift
 
