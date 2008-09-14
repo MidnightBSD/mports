@@ -2,7 +2,7 @@
 # Date created:		Fri Nov 16 02:47:45 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.2 2007/10/25 01:11:41 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.3 2008/09/14 00:40:11 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift/Makefile,v 1.25 2007/01/27 08:16:35 kris Exp $
 #
 
@@ -30,7 +30,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	yes
-USE_RC_SUBR=	yes
+USE_RC_SUBR=	giftd.sh
 
 MAN1=		giftd.1
 
@@ -48,7 +48,7 @@ post-patch:
 	${WRKSRC}/lib/Makefile.in
 
 post-build:
-	@${SED} ${SED_SCRIPT} <${FILESDIR}/giftd.sh >${WRKDIR}/giftd.sh
+	@${SED} ${SED_SCRIPT} <${FILESDIR}/giftd.sh.in >${WRKDIR}/giftd.sh
 
 post-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/giftd.sh ${PREFIX}/etc/rc.d/
@@ -58,6 +58,5 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
