@@ -2,15 +2,17 @@
 # Date created:				Jan 07 2005
 # Whom:					Florent Thoumie <flz@xbsd.org>
 #
-# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.2 2007/06/07 19:12:19 ctriv Exp $
+# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.3 2007/06/25 06:15:17 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/libtorrent/Makefile,v 1.28 2006/07/12 19:09:46 flz Exp $
 #
 
 PORTNAME?=	libtorrent
-PORTVERSION?=	0.11.4
+PORTVERSION?=	0.11.9
 PORTREVISION?=	0
 CATEGORIES=	net-p2p
-MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/
+MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
+		${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	flz/libtorrent
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	BitTorrent Library written in C++
@@ -23,7 +25,6 @@ CONFLICTS?=	libtorrent-devel-[0-9]* \
 		rblibtorrent-devel-[0-9]*
 
 USE_AUTOTOOLS=	libtool:15
-USE_GCC=	3.4+
 USE_GNOME=	pkgconfig gnomehack
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
