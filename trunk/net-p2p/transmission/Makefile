@@ -2,7 +2,7 @@
 # Date created:				08 October 2005
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.2 2008/05/23 14:19:04 crash Exp $
+# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.3 2008/06/07 22:56:54 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/transmission/Makefile,v 1.34 2008/02/27 05:15:56 mezz Exp $
 #
 
@@ -13,7 +13,7 @@ CATEGORIES=	net-p2p
 MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 
 MAINTAINER=	ports@MIdnightBSD.org
-COMMENT?=	A free BitTorrent client written from scratch in C
+COMMENT=	A free BitTorrent client written from scratch in C
 LICENSE=	mit
 
 LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl
