@@ -3,10 +3,10 @@
 # Whom:					Rong-En Fan <rafan@infor.org>
 #
 # $FreeBSD: ports/converters/p5-Encode/Makefile,v 1.19 2008/05/12 02:05:38 rafan Exp $
-# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.1 2008/05/12 19:07:28 crash Exp $
+# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.2 2008/07/19 18:11:24 laffer1 Exp $
 
 PORTNAME=	Encode
-PORTVERSION=	2.25
+PORTVERSION=	2.26
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -40,7 +40,7 @@ MAN3=		Encode.3 \
 
 .if ${PERL_LEVEL} > 500800
 post-patch:
-	${PERL} -pi -e '$$_="" if $$.>=23 && $$.<=25; $$_="my \@exe_files=();\n" if $$.==25' ${WRKSRC}/Makefile.PL
+	${PERL} -pi -e '$$_="" if $$.>=24 && $$.<=26; $$_="my \@exe_files=();\n" if $$.==25' ${WRKSRC}/Makefile.PL
 .endif
 
 post-configure:
