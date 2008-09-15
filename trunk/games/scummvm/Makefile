@@ -2,12 +2,12 @@
 # Date created:				Tue Sep  2 23:34:32 BST 2003
 # Whom:				Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/scummvm/Makefile,v 1.1 2007/01/19 18:07:47 wintellect Exp $
 # $FreeBSD: ports/games/scummvm/Makefile,v 1.34 2006/09/20 11:21:25 stas Exp $
 #
 
 PORTNAME=	scummvm
-PORTVERSION=	0.8.2
+PORTVERSION=	0.12.0
 PORTREVISION=	1
 CATEGORIES=	games emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -25,13 +25,14 @@ USE_SDL=	sdl
 CONFIGURE_ARGS=--with-sdl-prefix=${LOCALBASE} \
 		--disable-alsa \
 		--with-zlib-prefix=/usr \
-		--disable-debug
+		--disable-debug \
+                --disable-tremor
 CONFIGURE_ENV=	CXX="${CXX}"
 
 OPTIONS=	VORBIS "Enable Ogg Vorbis support" off \
 		MAD "Enable mad (MP3) support" on \
 		MPEG2 "Enable MPEG2 support (implies VORBIS)" off
-
+                
 MAN6=		scummvm.6
 
 PORTDOCS=	NEWS README TODO
@@ -72,7 +73,7 @@ post-patch:
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/scummvm ${PREFIX}/bin
-	@${INSTALL_MAN} ${WRKSRC}/scummvm.6 ${PREFIX}/man/man6
+	@${INSTALL_MAN} ${WRKSRC}/dists/scummvm.6 ${PREFIX}/man/man6
 
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
