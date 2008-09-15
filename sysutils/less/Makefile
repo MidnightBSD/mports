@@ -2,7 +2,7 @@
 # Date created:		8 Nov 1994
 # Whom:			ache
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/less/Makefile,v 1.1 2008/08/24 21:38:29 laffer1 Exp $
 # $FreeBSD: ports/sysutils/less/Makefile,v 1.41 2007/01/29 19:05:06 gabor Exp $
 #
 
@@ -24,8 +24,10 @@ PLIST_FILES=	bin/less bin/lesskey bin/lessecho
 GNU_CONFIGURE=	yes
 MAN1=		less.1 lesskey.1
 
+MAKE_ENV+=	destdir=${FAKE_DESTDIR}
+
 .if defined(COLOUR_LESS) || defined(COLOR_LESS)
-MAKE_ENV=	CPPFLAGS="-DCOLOUR_LESS"
+MAKE_ENV+=	CPPFLAGS="-DCOLOUR_LESS"
 
 pre-fetch:
 	@${ECHO_MSG} "Making a colour version of less."
