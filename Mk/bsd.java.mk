@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.17 2008/04/22 22:18:23 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.18 2008/06/11 03:26:24 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -187,7 +187,7 @@ _JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
 _JAVA_VENDOR_blackdown=		Blackdown
-_JAVA_VENDOR_sun=			Sun
+_JAVA_VENDOR_sun=		Sun
 
 # Verbose description for each OS
 _JAVA_OS_native=	Native
@@ -199,6 +199,7 @@ _JAVA_OS_linux=		Linux
 _JAVA_PREFERRED_PORTS+= JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4
 .			else
 _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5
+NOT_FOR_ARCHS=sparc64
 .			endif
 .		else
 _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
