@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.22 2008/09/11 21:56:30 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.23 2008/09/11 22:49:30 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -43,6 +43,7 @@ use Sys::Syslog;
 use POSIX qw(setsid);
 use Getopt::Std qw(getopts);
 use File::Path qw(rmtree);
+use Fcntl qw(:flock);
 
 $SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
 
@@ -451,7 +452,27 @@ sub get_current_run {
   my $current = Magus::Run->latest($Magus::Machine) || return;
   my $tree_id = get_tree_id("$Magus::Config{'SlaveDataDir'}/mports") || 0;
 
+  # we need up update the mports tree to match the new run, but we need
+  # to make sure that no other worker is using it, and that we have an
+  # exclusive lock to change it.
   if ($current != $Magus::Machine->run || $tree_id != $current) {
+    return if Magus::Lock->search(machine => $Magus::Machine);
+    
+    my $lockfile = "$Magus::Config{SlaveDataDir}/mports.lock";
+    
+    # we need to make sure that no other process is updating the mports dir.
+    open(my $lock, '>>', $lockfile) || die "Couldn't open $lockfile: $!\n";
+    unless (flock($lock, LOCK_EX|LOCK_NB)) {
+      report(debug => "Unable to lock mports directory (perhaps another process is updating it?)");
+      # this will block until the file is unlocked.
+      flock($lock, LOCK_EX) || die "Couldn't lock $lockfile: $!\n";
+      
+      report(debug => "Reloading self.");
+      exec($self, @origARGV);
+  
+      return;
+    }
+    
     $Magus::Machine->run($current);
     $Magus::Machine->update;
     
