@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.24 2008/09/09 16:04:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.25 2008/09/09 18:16:44 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -251,8 +251,8 @@ sub _clear_flags {
 
 sub _mtree {
   my ($self, $mtreefile, $dir) = @_;
-  
-  system("/usr/sbin/mtree -deU -f $self->{root}/usr/src/etc/mtree/$mtreefile -p $self->{root}$dir >/dev/null 2>&1");
+
+  system("/usr/sbin/mtree -deU -f $self->{root}/etc/mtree/$mtreefile -p $self->{root}$dir >/dev/null 2>&1");
 }
 
 sub _mkdir {
