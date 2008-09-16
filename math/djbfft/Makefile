@@ -2,7 +2,7 @@
 # Date created:				Wed May 15 16:29:51 BRT 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/djbfft/Makefile,v 1.1 2006/11/02 20:46:54 wintellect Exp $
+# $MidnightBSD: mports/math/djbfft/Makefile,v 1.2 2007/12/05 22:45:20 laffer1 Exp $
 # $FreeBSD: ports/math/djbfft/Makefile,v 1.16 2006/09/03 17:33:38 kris Exp $
 #
 
@@ -14,9 +14,7 @@ MASTER_SITES=	http://cr.yp.to/djbfft/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extremely fast library for floating-point convolution
-LICENSE=	restricted
-# djb open sourced some of is stuff but is this included?
-RESTRICTED=	Forbidden to redistribute - we have patches to the distribution.
+LICENSE=	publicdom
 
 DISABLE_SIZE=	yes
 ALL_TARGET=
