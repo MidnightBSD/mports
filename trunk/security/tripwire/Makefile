@@ -3,7 +3,7 @@
 # Whom:			Cy Schubert <Cy.Schubert@uumail.gov.bc.ca>
 #
 # $FreeBSD: ports/security/tripwire/Makefile,v 1.36 2006/06/20 01:47:23 cy Exp $
-# $MidnightBSD: mports/security/tripwire/Makefile,v 1.1 2006/11/25 04:40:45 laffer1 Exp $
+# $MidnightBSD: mports/security/tripwire/Makefile,v 1.2 2007/08/01 20:14:53 laffer1 Exp $
 #
 
 PORTNAME=	tripwire
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File system security and verification program
+LICENSE=	restricted
 
 LATEST_LINK=	${PORTNAME}
 MAN5=		twfiles.5 twconfig.5 twpolicy.5
