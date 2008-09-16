@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/LEGAL,v 1.5 2007/10/22 23:01:47 laffer1 Exp $
+# $MidnightBSD: mports/LEGAL,v 1.6 2008/06/14 02:58:28 laffer1 Exp $
 # $FreeBSD: ports/LEGAL,v 1.496 2006/09/11 18:06:11 vd Exp $
 
    **********************************************************************
@@ -143,10 +143,6 @@ diablo-latte-1.5*.tar.bz2	java/diablo-jre15	License does not allow distribution
 dist10.tar.gz		audio/mp3encode		Condition is not clear
 divx4linux-*.tgz	multimedia/linux-divx4linux4 Unsure of licensing issues
 divx4linux-*.tar.gz	multimedia/linux-divx4linux Unsure of licensing issues
-djbdns			dns/djbdns		No license -- see
-						http://cr.yp.to/softwarelaw.html
-djbfft-*		math/djbfft		No license -- see
-						http://cr.yp.to/softwarelaw.html
 dn*.tgz			emulators/darcnes	Commercial use is restricted
 dnews_*			news/dnews		Only free for schools and
 						universities, but they have to
