@@ -2,13 +2,13 @@
 # Date created:				08/13/2002
 # Whom:					marc@informatik.uni-bremen.de
 #
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.1 2007/12/28 04:14:41 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.2 2008/04/07 03:14:46 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/py-gtk2/Makefile,v 1.94 2007/07/10 21:31:06 mezz Exp $
 #   $MCom: ports/x11-toolkits/py-gtk2/Makefile,v 1.49 2006/10/03 20:52:30 ahze Exp $
 #
 
 PORTNAME=	gtk
-PORTVERSION=	2.10.6
+PORTVERSION=	2.12.1
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
