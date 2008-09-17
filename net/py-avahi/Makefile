@@ -2,8 +2,8 @@
 # Date Created:			06 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net/py-avahi/Makefile,v 1.16 2008/07/03 21:53:55 mezz Exp $
-#   $MCom: ports/net/py-avahi/Makefile,v 1.4 2007/07/31 18:24:13 ahze Exp $
 #
 
 PORTREVISION=	0
@@ -11,8 +11,9 @@ CATEGORIES=	net gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	# empty
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface to the Avahi mDNS system
+LICENSE=	lgpl
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm \
 		${PYTHON_SITELIBDIR}/dbus/_dbus.py:${PORTSDIR}/devel/py-dbus
