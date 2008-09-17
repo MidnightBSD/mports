@@ -2,7 +2,7 @@
 # Date created:        28 July 2002
 # Whom:                Tom Carrick <knyghtmare@knyghtmare.com>
 #
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.4 2007/10/25 17:23:15 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.5 2007/10/25 17:23:46 laffer1 Exp $
 # $FreeBSD: ports/emulators/dosbox/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
 #
 
@@ -44,6 +44,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/INSTALL ${DOCSDIR}
 .endif
-
 
 .include <bsd.port.mk>
