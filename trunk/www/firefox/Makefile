@@ -2,7 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/firefox/Makefile,v 1.15 2008/07/03 04:10:34 laffer1 Exp $
+# $MidnightBSD: mports/www/firefox/Makefile,v 1.16 2008/07/16 23:09:47 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
@@ -20,7 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	mpl
 
-#BROKEN=	Works fine, but we need to unbrand it.
+BROKEN=	Works fine, but we need to unbrand it.
 
 BUILD_DEPENDS=	nss>=3.11.2:${PORTSDIR}/security/nss
 
