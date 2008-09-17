@@ -2,25 +2,28 @@
 # Date created:			Sun Feb 3, 1999
 # Whom:				shipley@dis.org
 #
+# $MidnightBSD$
 # $FreeBSD: ports/net/libnet/Makefile,v 1.16 2005/11/14 17:07:01 sem Exp $
 #
 
 PORTNAME=	libnet
 PORTVERSION=	1.1.2.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net
+PKGNAMESUFFIX=	11
 MASTER_SITES=	http://www.packetfactory.net/libnet/dist/
 
-MAINTAINER=	shipley@dis.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for creating IP packets
-
-CONFLICTS=	libnet-devel-1.1.*\
-		libnet10-1.0.*
+LICENSE=	agg
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
+DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PORTNAME}${PKGNAMESUFFIX}
 
 DOCS=		README doc/BUGS doc/CHANGELOG doc/CONTRIB doc/COPYING \
 		doc/DESIGN_NOTES doc/MIGRATION doc/PACKET_BUILDING doc/PORTED \
@@ -28,7 +31,8 @@ DOCS=		README doc/BUGS doc/CHANGELOG doc/CONTRIB doc/COPYING \
 EXAMPLES=	sample/*.c
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/libnet-config ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/libnet-config \
+		${PREFIX}/bin/libnet${PKGNAMESUFFIX}-config
 	@${MKDIR} ${EXAMPLESDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
 .if !defined(NOPORTDOCS)
