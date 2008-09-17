@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD: mports/x11/kde3/Makefile,v 1.3 2007/08/22 10:03:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/kde3/Makefile,v 1.4 2007/12/31 21:14:07 laffer1 Exp $
 #
 
 PORTNAME?=	kde
@@ -16,6 +16,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	The "meta-port" for KDE
+LICENSE=	agg
 
 # This port conflicts with the kde-lite port, so make it known.
 .if defined(IS_INTERACTIVE)
