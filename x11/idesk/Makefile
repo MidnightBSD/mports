@@ -2,7 +2,7 @@
 # Date created:		16 February 2003
 # Whom:			Sascha Holzleiter <sascha@root-login.org>
 #
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.2 2007/08/22 21:03:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.3 2008/03/24 19:19:28 laffer1 Exp $
 # $FreeBSD: ports/x11/idesk/Makefile,v 1.20 2007/05/19 20:26:40 flz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Place launch icons and background directly on your desktop
+LICENSE=	bsd3
 
 BUILD_DEPENDS=	imlib2-config:${PORTSDIR}/graphics/imlib2
 
