@@ -2,20 +2,19 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.2 2008/04/11 21:08:57 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.3 2008/06/02 01:01:49 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-app/Makefile,v 1.7 2007/12/24 19:05:22 marcus Exp $
 #   $MCom: ports/net/avahi-app/Makefile,v 1.6 2007/08/26 06:10:14 marcus Exp $
 #
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.22
-PORTREVISION=	1
+PORTVERSION=	0.6.23
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Service discovery on a local network
+COMMENT=	Service discovery on a local network
 LICENSE=	lgpl
 
 LIB_DEPENDS?=	expat.6:${PORTSDIR}/textproc/expat2 \
@@ -31,7 +30,7 @@ USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 AVAHI_SLAVE?=	no
 CONFIGURE_ARGS?=--with-distro=freebsd \
-		--with-dbus-system-address=unix:path=/var/run/dbus/system_bus_socket \
+		--with-dbus-system-socket=unix:path=/var/run/dbus/system_bus_socket \
 		--disable-monodoc \
 		--disable-doxygen-doc \
 		--disable-doxygen-dot \
@@ -115,6 +114,9 @@ avahi-post-patch:
 	@${REINPLACE_CMD} -e 's|dbus_connection_disconnect|dbus_connection_close|g' \
 		${WRKSRC}/avahi-client/client.c \
 		${WRKSRC}/avahi-daemon/dbus-protocol.c
+	@${REINPLACE_CMD} -e 's|^_||g' \
+ 		${WRKSRC}/avahi-ui/*.desktop.in
+
 
 post-build: avahi-post-build
 
@@ -124,9 +126,9 @@ avahi-post-build:
 		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${f}
 .endfor
 
-pre-su-install: avahi-pre-su-install
+pre-install: avahi-pre-install
 
-avahi-pre-su-install:
+avahi-pre-install:
 .if ${AVAHI_SLAVE}=="no"
 	@${MKDIR} ${PREFIX}/lib/avahi
 	@${TOUCH} -f ${PREFIX}/lib/avahi/.keep
