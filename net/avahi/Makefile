@@ -2,13 +2,12 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi/Makefile,v 1.4 2008/02/17 05:21:08 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi/Makefile,v 1.5 2008/04/11 21:11:53 laffer1 Exp $
 # $FreeBSD: ports/net/avahi/Makefile,v 1.56 2007/12/20 18:23:32 ahze Exp $
-#   $MCom: ports/net/avahi/Makefile,v 1.26 2007/09/09 22:45:27 mezz Exp $
 #
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.22
+PORTVERSION=	0.6.23
 PORTREVISION?=	0
 CATEGORIES?=	net dns
 MASTER_SITES=	# empty
@@ -27,7 +26,6 @@ OPTIONS=	AUTOIPD "IPv4LL network address configuration daemon" off \
 		LIBDNS "Apple's mDNSResponder compatibility library" off \
 		MONO "Mono bindings" off \
 		QT3 "Qt 3 bindings" off \
-		QT4 "Qt 4 bindings" off \
 		PYTHON "Python bindings and tools" off
 
 NO_BUILD=	yes
@@ -52,10 +50,6 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/mono/avahi-sharp/avahi-sharp.dll:${PORTSDIR}/net/
 
 .if defined(WITH_QT3)
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/avahi-qt3.pc:${PORTSDIR}/net/avahi-qt3
-.endif
-
-.if defined(WITH_QT4)
-RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/avahi-qt4.pc:${PORTSDIR}/net/avahi-qt4
 .endif
 
 .if defined(WITH_PYTHON)
