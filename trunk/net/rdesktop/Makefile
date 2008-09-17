@@ -2,14 +2,13 @@
 # Date created:               13 December 2000
 # Whom:                       mwest@uct.ac.za
 #
-# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.3 2008/05/04 09:57:46 crash Exp $
+# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.4 2008/05/04 18:02:09 ctriv Exp $
 # $FreeBSD: ports/net/rdesktop/Makefile,v 1.41 2007/06/19 08:55:10 pav Exp $
 #
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.5.0
-PORTREVISION=	1
-CATEGORIES=	net comms
+PORTVERSION=	1.6.0
+CATEGORIES=	net comms ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
@@ -23,6 +22,23 @@ USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 DOCS=		doc/AUTHORS doc/TODO doc/*.txt
 MAN1=		rdesktop.1
+
+.if !defined(WITHOUT_RDESKTOP_IPV6) && !defined(WITHOUT_IPV6)
+CONFIGURE_ARGS+=	--with-ipv6
+.endif
+
+.if defined(WITH_RDESKTOP_DEBUG)
+CONFIGURE_ARGS+=	--with-debug\
+			--with-debug-kbd\
+			--with-debug-rdp5\
+			--with-debug-clipboard\
+			--with-debug-sound\
+			--with-debug-channel\
+			--with-debug-seamless
+
+post-configure:
+	${ECHO} "#define WITH_DEBUG_SERIAL 1" >> ${WRKSRC}/rdesktop.h
+.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/rdesktop ${PREFIX}/bin
