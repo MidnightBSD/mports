@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.86 2008/08/11 16:59:30 crash Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.87 2008/08/24 19:53:13 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -70,6 +70,7 @@
     SUBDIR += php5-sockets
     SUBDIR += php5-xmlrpc
     SUBDIR += phpldapadmin
+    SUBDIR += py-avahi
     SUBDIR += rdesktop
     SUBDIR += rrdtool
     SUBDIR += rsync
