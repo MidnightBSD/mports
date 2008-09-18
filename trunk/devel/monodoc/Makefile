@@ -3,17 +3,18 @@
 # Friday the 13th!
 # Whom:                 Christopher Nehren
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/monodoc/Makefile,v 1.1 2007/08/22 07:07:02 laffer1 Exp $
 # $FreeBSD: ports/devel/monodoc/Makefile,v 1.15 2007/03/17 03:48:35 tmclaugh Exp $
 #
 
 PORTNAME=	monodoc
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.5
 CATEGORIES=	devel gnome
-MASTER_SITES=	http://www.go-mono.com/sources/${PORTNAME}/
+MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Documentation for Mono and Mono libraries
+LICENSE=	unknown
 
 BUILD_DEPENDS=	mono:${PORTSDIR}/lang/mono
 RUN_DEPENDS=	mono:${PORTSDIR}/lang/mono
