@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/www/tomcat55/pkg-plist,v 1.22 2007/09/20 01:38:44 miwi Exp $
+@comment $MidnightBSD$
 @unexec if cmp -s %D/%%T%%/conf/Catalina/localhost/host-manager.xml %D/%%T%%/conf/Catalina/localhost/host-manager.xml.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/Catalina/localhost/host-manager.xml; else echo If permanently deleting this package, %D/%%T%%/conf/Catalina/localhost/host-manager.xml must be removed manually; fi
 @unexec if cmp -s %D/%%T%%/conf/Catalina/localhost/manager.xml %D/%%T%%/conf/Catalina/localhost/manager.xml.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/Catalina/localhost/manager.xml; else echo If permanently deleting this package, %D/%%T%%/conf/Catalina/localhost/manager.xml must be removed manually; fi
 @unexec if cmp -s %D/%%T%%/conf/catalina.policy %D/%%T%%/conf/catalina.policy.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/catalina.policy; else echo If permanently deleting this package, %D/%%T%%/conf/catalina.policy must be removed manually; fi

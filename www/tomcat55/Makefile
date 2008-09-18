@@ -2,12 +2,12 @@
 # Date created:		Tue Aug 12 23:26:32 CST 2003
 # Whom:			Kang Liu <liukang@bjpu.edu.cn>
 #
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.4 2008/02/14 22:24:38 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.5 2008/04/30 20:21:07 laffer1 Exp $
 # $FreeBSD: ports/www/tomcat55/Makefile,v 1.38 2006/09/08 09:31:07 pav Exp $
 #
 
 PORTNAME=	tomcat
-PORTVERSION=	5.5.26
+PORTVERSION=	5.5.27
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	tomcat/tomcat-5/v${PORTVERSION}/bin
@@ -15,6 +15,7 @@ DISTFILES=	apache-tomcat-${PORTVERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source Java web server by Apache, 5.5.x branch
+LICENSE=	apache2
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.4+
