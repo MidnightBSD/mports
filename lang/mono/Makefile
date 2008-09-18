@@ -2,7 +2,7 @@
 # Date created:        22 August 2007
 # Whom:                Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.1 2007/08/22 06:45:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.2 2008/06/17 22:25:34 stevan Exp $
 # $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
 #
 
@@ -17,8 +17,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open source implementation of .NET Development Framework
 # There are many different licenses used!
 LICENSE=	unknown
-
-CONFLICTS=	mono-devel-[0-9]* mono-svn-[0-9]*
 
 USE_BISON=	yes
 USE_GNOME=	gnomehack glib20
