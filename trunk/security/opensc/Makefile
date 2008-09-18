@@ -2,7 +2,7 @@
 # Date created:		10 September 2002
 # Whom:			Bruce M Simpson
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/opensc/Makefile,v 1.1 2008/09/18 15:25:28 laffer1 Exp $
 # $FreeBSD: ports/security/opensc/Makefile,v 1.30 2008/04/19 17:53:27 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://www.opensc-project.org/files/${PORTNAME}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries and utilities to access smart cards
+LICENSE=	lgpl
 
 OPTIONS=	OPENCT "Enable direct OpenCT backend support" on \
 		PCSC "Enable PC/SC backend support" off \
@@ -81,8 +82,7 @@ CONFIGURE_ARGS+=--disable-pcsc-lite
 .if defined(WITH_SIGNER)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libassuan.a:${PORTSDIR}/security/libassuan
 PINENTRY?=	${LOCALBASE}/bin/pinentry
-PINENTRY_PORT?=	security/pinentry
-RUN_DEPENDS+=	pinentry:${PORTSDIR}/${PINENTRY_PORT}
+RUN_DEPENDS+=	pinentry:${PORTSDIR}/security/pinentry
 USE_XORG=	x11
 CONFIGURE_ARGS+=--with-libassuan-prefix=${LOCALBASE} \
 		--with-plugin-dir=${LOCALBASE}/lib/browser_plugins \
