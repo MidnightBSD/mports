@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.4 2008/06/13 16:54:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.5 2008/06/25 14:06:11 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -36,14 +36,6 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	'${DISTNAME}/src/3rdparty/md5' \
 	'${DISTNAME}/src/3rdparty/sha1'
 
-.if !defined(NOPORTDOCS)
-EXTRACT_AFTER_ARGS+='${DISTNAME}/doc/html/qmake*'
-DOCSDIR=${PREFIX}/share/doc/qt4
-post-install:
-	${MKDIR} '${DOCSDIR}'
-	${CP} -Rp '${WRKSRC:H}/doc/html' '${DOCSDIR}'
-.endif
-
 post-patch:
 	@${RM} -fr ${WRKSRC}/examples ${WRKSRC}/tutorial
 	@${REINPLACE_CMD} -e 's|-O2|${CXXFLAGS}|' \
@@ -70,9 +62,11 @@ do-configure:
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/../../Mk/bsd.qt.mk"
 
-
 .if ${ARCH} == "amd64"
 CXXFLAGS+=	-fno-gcse
 .endif
+
+post-install:
+	${LN} -sf ${PREFIX}/share/qt4/mkspecs/freebsd-g++ ${PREFIX}/share/qt4/mkspecs/default
 
 .include <bsd.port.post.mk>
