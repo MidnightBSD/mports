@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.43 2008/06/23 19:56:44 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.44 2008/06/23 20:18:23 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -36,6 +36,8 @@
     SUBDIR += p5-Mail-SPF
     SUBDIR += p5-Mail-SPF-Query
     SUBDIR += p5-Mail-Sendmail
+    SUBDIR += p5-Email-Send
+    SUBDIR += p5-Email-Simple
     SUBDIR += p5-Mail-SpamAssassin
     SUBDIR += p5-Mail-Tools
     SUBDIR += pantomime
