@@ -2,18 +2,15 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.6 2008/03/05 02:30:32 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.7 2008/04/06 06:44:01 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
 #
 
 PORTNAME=	openssh
-DISTVERSION=	4.7p1
-PORTREVISION=	2
+DISTVERSION=	5.0p1
 CATEGORIES=	security ipv6
-MASTER_SITES=	ftp://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
-		ftp://carroll.cac.psu.edu/pub/OpenBSD/OpenSSH/portable/%SUBDIR%/ \
-		http://mirror.mcs.anl.gov/openssh/portable/%SUBDIR%/
-MASTER_SITE_SUBDIR=	# empty
+MASTER_SITES=	${MASTER_SITE_OPENBSD}
+MASTER_SITE_SUBDIR=	OpenSSH/portable
 PKGNAMESUFFIX=	${PORTABLE_SUFFIX}${GSSAPI_SUFFIX}${BASE_SUFFIX}
 DISTNAME=	# empty
 
@@ -130,10 +127,9 @@ EXTRA_PATCHES+=		${FILESDIR}/scardpin.patch
 .endif
 
 .if defined(WITH_HPN)
-IGNORE=			option HPN is temporary disabled, waiting patch for new openssh release
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=		http://www.psc.edu/networking/projects/hpn-ssh/
-PATCHFILES+=		openssh-4.7p1-hpn12v20.diff.gz
+PATCHFILES+=		openssh-5.0p1-hpn13v3.diff.gz
 .endif
 
 .if defined(WITH_OVERWRITE_BASE)
@@ -148,6 +144,7 @@ SUB_FILES+=		openssh
 SUB_LIST+=		ETCSSH="${ETCSSH}"
 PLIST_SUB+=		NOTBASE="@comment "
 PLIST_SUB+=		BASE=""
+PLIST_SUB+=		BASEPREFIX="${PREFIX}"
 .else
 .if exists(/var/empty)
 EMPTYDIR=		/var/empty
@@ -191,6 +188,10 @@ post-patch:
 		${WRKSRC}/version.h
 	@${ECHO_CMD} '#define SSH_RELEASE	TMP_SSH_VERSION SSH_PORTABLE FREEBSD_PORT_VERSION' >> \
 		${WRKSRC}/version.h
+.if defined(WITH_HPN)
+	@${REINPLACE_CMD} -e 's|TMP_SSH_VERSION SSH_PORTABLE|TMP_SSH_VERSION SSH_PORTABLE SSH_HPN|' \
+		${WRKSRC}/version.h
+.endif
 
 pre-install:
 .if defined(WITH_OVERWRITE_BASE)
