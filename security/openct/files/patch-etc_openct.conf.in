@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/security/openct/files/patch-etc_openct.conf.in,v 1.1 2005/10/11 17:30:43 garga Exp $
+
+--- etc/openct.conf.in.orig
++++ etc/openct.conf.in
+@@ -2,7 +2,7 @@
+ debug	= 0;
+ #
+ # Enable hot plugging
+-hotplug	= yes;
++hotplug	= no;
+ #
+ # Path to ifdhandler
+ ifdhandler = SBINDIR/ifdhandler;
