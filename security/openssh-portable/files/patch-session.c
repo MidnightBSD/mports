@@ -1,5 +1,5 @@
---- session.c.orig	Fri Sep  1 02:38:37 2006
-+++ session.c	Sat Sep 30 19:32:06 2006
+--- session.c.orig	2008-03-26 21:03:05.000000000 -0300
++++ session.c	2008-04-07 21:57:52.000000000 -0300
 @@ -776,6 +776,24 @@
  {
  	FILE *f;
@@ -25,7 +25,7 @@
  
  	if (options.print_motd) {
  #ifdef HAVE_LOGIN_CAP
-@@ -1004,6 +1022,9 @@
+@@ -1005,6 +1023,9 @@
  	struct passwd *pw = s->pw;
  #ifndef HAVE_LOGIN_CAP
  	char *path = NULL;
@@ -35,7 +35,7 @@
  #endif
  
  	/* Initialize the environment. */
-@@ -1025,6 +1046,9 @@
+@@ -1026,6 +1047,9 @@
  	}
  #endif
  
@@ -45,7 +45,7 @@
  #ifdef GSSAPI
  	/* Allow any GSSAPI methods that we've used to alter
  	 * the childs environment as they see fit
-@@ -1044,11 +1068,22 @@
+@@ -1045,11 +1069,22 @@
  		child_set_env(&env, &envsize, "LOGIN", pw->pw_name);
  #endif
  		child_set_env(&env, &envsize, "HOME", pw->pw_dir);
@@ -72,7 +72,7 @@
  #else /* HAVE_LOGIN_CAP */
  # ifndef HAVE_CYGWIN
  		/*
-@@ -1069,15 +1104,9 @@
+@@ -1070,15 +1105,9 @@
  # endif /* HAVE_CYGWIN */
  #endif /* HAVE_LOGIN_CAP */
  
@@ -88,26 +88,20 @@
  
  	/* Set custom environment options from RSA authentication. */
  	if (!options.use_login) {
-@@ -1287,6 +1316,10 @@
+@@ -1344,6 +1373,9 @@
  void
  do_setusercontext(struct passwd *pw)
  {
 +#ifdef CHROOT
-+	char *user_dir;
-+	char *new_root;
++	char *user_dir, *new_root;
 +#endif /* CHROOT */
- #ifndef HAVE_CYGWIN
- 	if (getuid() == 0 || geteuid() == 0)
- #endif /* HAVE_CYGWIN */
-@@ -1314,10 +1347,31 @@
+ 	char *chroot_path, *tmp;
+ 
+ #ifdef WITH_SELINUX
+@@ -1369,8 +1401,25 @@
+ 			do_pam_setcred(use_privsep);
  		}
  # endif /* USE_PAM */
- 		if (setusercontext(lc, pw, pw->pw_uid,
--		    (LOGIN_SETALL & ~LOGIN_SETPATH)) < 0) {
-+		    (LOGIN_SETALL & ~(LOGIN_SETENV|LOGIN_SETPATH))) < 0) {
- 			perror("unable to set user context");
- 			exit(1);
- 		}
 +#ifdef CHROOT
 +		user_dir = xstrdup(pw->pw_dir);
 +		new_root = user_dir + 1;
@@ -117,23 +111,22 @@
 +			if(strncmp(new_root, "/./", 3) == 0) {
 +				*new_root = '\0';
 +				new_root += 2;
-+
 +				if(chroot(user_dir) != 0)
-+					fatal("Couldn't chroot to user directory %s", user_dir);
++					fatal("Couldn't chroot to user directory %s. %s", user_dir, strerror(errno));
 +				pw->pw_dir = new_root;
 +				break;
 +			}
-+
 +			new_root += 2;
 +		}
 +#endif /* CHROOT */
-+		/* Permanently switch to the desired uid. */
-+		permanently_set_uid(pw);
- #else
- # if defined(HAVE_GETLUID) && defined(HAVE_SETLUID)
- 		/* Sets login uid for accounting */
-@@ -1472,6 +1526,9 @@
- 	char *argv[10];
+ 		if (setusercontext(lc, pw, pw->pw_uid,
+-		    (LOGIN_SETALL & ~(LOGIN_SETPATH|LOGIN_SETUSER))) < 0) {
++		    (LOGIN_SETALL & ~(LOGIN_SETPATH|LOGIN_SETUSER|LOGIN_SETENV))) < 0) {
+ 			perror("unable to set user context");
+ 			exit(1);
+ 		}
+@@ -1540,6 +1589,9 @@
+ 	char *argv[ARGV_MAX];
  	const char *shell, *shell0, *hostname = NULL;
  	struct passwd *pw = s->pw;
 +#ifdef HAVE_LOGIN_CAP
@@ -142,7 +135,7 @@
  
  	/* remove hostkey from the child's memory */
  	destroy_sensitive_data();
-@@ -1559,6 +1616,10 @@
+@@ -1627,6 +1679,10 @@
  	 */
  	environ = env;
  
@@ -153,7 +146,7 @@
  #if defined(KRB5) && defined(USE_AFS)
  	/*
  	 * At this point, we check to see if AFS is active and if we have
-@@ -1590,7 +1651,7 @@
+@@ -1658,7 +1714,7 @@
  		fprintf(stderr, "Could not chdir to home directory %s: %s\n",
  		    pw->pw_dir, strerror(errno));
  #ifdef HAVE_LOGIN_CAP
