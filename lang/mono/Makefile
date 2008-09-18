@@ -2,12 +2,12 @@
 # Date created:        22 August 2007
 # Whom:                Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.3 2008/09/18 16:38:29 laffer1 Exp $
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.4 2008/09/18 18:28:24 laffer1 Exp $
 # $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
 #
 
 PORTNAME=	mono
-PORTVERSION=	1.2.5.1
+PORTVERSION=	1.2.5.2
 CATEGORIES=	lang
 MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
 
