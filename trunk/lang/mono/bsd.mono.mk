@@ -1,10 +1,4 @@
-# bsd.mono.mk: accomodate the peculiarities of building C# ports within
-# the FreeBSD ports system.
-#
-# $MidnightBSD$
-# $FreeBSD: ports/lang/mono/bsd.mono.mk,v 1.7 2007/03/17 03:48:02 tmclaugh Exp $
-#   $Id: bsd.mono.mk,v 1.1 2007-08-22 06:45:19 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/mono/bsd.mono.mk,v 1.1 2007/08/22 06:45:19 laffer1 Exp $
 
 # USE_NANT		- If set, the port uses nant.
 # USE_NANT		- If set "contrib", the port uses nantcontrib.
