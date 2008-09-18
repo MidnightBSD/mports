@@ -2,9 +2,8 @@
 # Date created:  18 Mar 1999
 # Whom:   dwcjr@inethouston.net
 #
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.7 2008/04/06 06:44:01 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.8 2008/09/18 14:44:13 laffer1 Exp $
 # $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
-#
 
 PORTNAME=	openssh
 DISTVERSION=	5.0p1
@@ -18,16 +17,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The portable version of OpenBSD's OpenSSH
 LICENSE=	agg
 #most of this is BSD, but some of it is public domain
- 
-.if defined(OPENSSH_SNAPSHOT)
-PORTREVISION!=		date -v-1d +%Y%m%d
-NO_CHECKSUM=		yes
-MASTER_SITE_SUBDIR+=	snapshot
-DISTNAME+=		${PORTNAME}-SNAP-${PORTREVISION}
-.else
-DISTNAME+=		${PORTNAME}-${DISTVERSION}
-.endif
 
+DISTNAME+=		${PORTNAME}-${DISTVERSION}
 WRKSRC=			${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAN1=	sftp.1 ssh-add.1 ssh-agent.1 ssh-keygen.1 ssh-keyscan.1 scp.1 ssh.1
@@ -35,7 +26,7 @@ MLINKS=	ssh.1 slogin.1
 MAN5=	ssh_config.5 sshd_config.5
 MAN8=	sftp-server.8 sshd.8 ssh-keysign.8
 
-CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.*
+CONFLICTS?=		ssh-1.* ssh2-3.*
 
 USE_OPENSSL=		yes
 USE_PERL5_BUILD=	yes
@@ -164,12 +155,6 @@ CONFIGURE_ARGS+=	--sysconfdir=${ETCSSH} --with-privsep-path=${EMPTYDIR}
 
 # Sync this with bsd.port.mk
 RC_SCRIPT_NAME=		openssh
-
-post-extract:
-.if defined(OPENSSH_SNAPSHOT)
-	@# rc.d script have same name of openssh snapshot dir
-	@${MV} ${WRKDIR}/${PORTNAME} ${WRKDIR}/${PORTNAME}-${DISTVERSION}
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-ldes|-lcrypto|g' ${WRKSRC}/configure
