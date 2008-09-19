@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.65 2008/08/04 13:58:11 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.66 2008/08/25 17:38:34 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -80,6 +80,7 @@
     SUBDIR += postgresql-plruby
     SUBDIR += postgresql82-client
     SUBDIR += postgresql82-server
+    SUBDIR += py-MySQLdb
     SUBDIR += py-gdbm
     SUBDIR += qdbm
     SUBDIR += rrdtool
