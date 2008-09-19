@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.25 2008/09/09 18:16:44 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.26 2008/09/15 18:35:53 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -244,8 +244,10 @@ sub _clean {
 sub _clear_flags {
   my ($self, $dir) = @_;
   
-  system("/bin/chflags -R 0 $self->{root}$dir") == 0
-      or die "chflags 0 $self->{root}$dir returned non-zero: $?\n";  
+  my $cmd = "/bin/chflags -R 0 $self->{root}$dir";
+  
+  (system($cmd) == 0)
+      or die qq/"$cmd" returned non-zero: $?\n/;  
 }
   
 
@@ -257,9 +259,8 @@ sub _mtree {
 
 sub _mkdir {
   my ($self, $dir) = @_;
-  use Carp;
-  mkpath("$self->{root}/$dir") ||
-    croak "Couldn't mkdir $self->{root}/$dir: $!\n";
+  
+  mkpath("$self->{root}/$dir");
 }
 
 
@@ -385,8 +386,6 @@ sub mark_dead {
 }
 
 
-
-  
 
 1;
 __END__
