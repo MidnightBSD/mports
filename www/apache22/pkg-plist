@@ -1,4 +1,4 @@
-@comment $FreeBSD: /usr/local/www/cvsroot/FreeBSD/ports/www/apache22/pkg-plist,v 1.87 2008/06/23 21:11:14 clement Exp $
+@comment $MidnightBSD$
 @exec mkdir -p %D/etc/apache22/extra 2> /dev/null
 @exec mkdir -p %D/etc/apache22/Includes 2> /dev/null || true
 @exec mkdir -p %D/etc/apache22/envvars.d 2> /dev/null || true
