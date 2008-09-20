@@ -2,13 +2,14 @@
 # Date created:				Dec 11 2004
 # Whom:					Clement Laforet <clement@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.7 2008/03/24 19:13:44 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.8 2008/07/12 17:53:21 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.9
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
@@ -40,9 +41,10 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 USE_APACHE=		common22
 USE_BZIP2=		yes
 USE_ICONV=		yes
-USE_AUTOTOOLS=	autoconf:261 libtool:15
+USE_AUTOTOOLS=	autoconf:262 libtool:15
 USE_PERL5=		yes
-USE_RC_SUBR=		apache22.sh
+USE_RC_SUBR=		apache22.sh htcacheclean.sh
+SUB_LIST+=		RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
 LIBTOOLFILES=		configure
 
 .if !defined(WITH_APR_FROM_PORTS)
@@ -127,7 +129,7 @@ CONFIGURE_ARGS+=	--with-apr=${LOCALBASE}/bin/apr-1-config \
 CONFIGURE_ENV+=		LTFLAGS="--tag=CXX"
 .else
 PLIST_SUB+=	APR_PORTS=""
-CONFLICTS+=	apr-1.*
+CONFLICTS+=	apr-1.* apr-db4[0-9]-1.*
 CONFIGURE_ENV+=	USE_BUNDLED_APR=YES
 .endif
 
