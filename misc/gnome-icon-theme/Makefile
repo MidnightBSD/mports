@@ -2,7 +2,7 @@
 # Date Created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.3 2008/06/01 00:02:49 crash Exp $
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.4 2008/06/07 20:56:59 laffer1 Exp $
 # $FreeBSD: ports/misc/gnome-icon-theme/Makefile,v 1.33 2007/05/19 20:15:48 flz Exp $
 #   $MCom: ports/misc/gnome-icon-theme/Makefile,v 1.99 2007/03/12 23:58:09 marcus Exp $
 #
@@ -10,8 +10,7 @@
 PORTNAME=	gnome-icon-theme
 PORTVERSION=	2.22.0
 CATEGORIES=	misc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
