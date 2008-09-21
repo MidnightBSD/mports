@@ -2,7 +2,7 @@
 # Date created:	2003-06-05
 # Whom:		Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/getopt/Makefile,v 1.1 2008/01/01 21:54:42 laffer1 Exp $
 # $FreeBSD: ports/misc/getopt/Makefile,v 1.6 2005/11/21 13:15:48 sergei Exp $
 #
 
@@ -19,7 +19,6 @@ FAKE_OPTS+=	trueprefix
 
 USE_GETTEXT=		yes
 USE_GMAKE=		yes
-USE_GETOPT_LONG=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
