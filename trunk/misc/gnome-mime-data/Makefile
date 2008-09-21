@@ -2,7 +2,7 @@
 # Date created:				22 January 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnome-mime-data/Makefile,v 1.1 2007/04/28 03:43:32 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-mime-data/Makefile,v 1.2 2008/03/13 03:22:07 laffer1 Exp $
 # $FreeBSD: ports/misc/gnome-mime-data/Makefile,v 1.37 2007/04/03 20:38:53 marcus Exp $
 #
 
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MIME and Application database for GNOME
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
