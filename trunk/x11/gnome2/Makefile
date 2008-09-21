@@ -2,11 +2,11 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.5 2008/05/31 01:28:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.6 2008/05/31 01:51:50 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
-PORTVERSION=	2.20.3
+PORTVERSION=	2.22.0
 PORTREVISION?=	0
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
@@ -23,7 +23,6 @@ BROKEN=	Missing dependancies
 
 # Missing RUN DEPENDS:
 # gnect:${PORTSDIR}/games/gnome-games \
-# evolution:${PORTSDIR}/mail/evolution \
 # ${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 # exchange-connector-setup-2.12:${PORTSDIR}/mail/evolution-exchange
 # ino-session:${PORTSDIR}/net/vino \
@@ -73,7 +72,8 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
 		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon \
-		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager
+		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
+		evolution:${PORTSDIR}/mail/evolution
 
 NO_BUILD=	yes
 
@@ -91,7 +91,7 @@ do-install:	# empty
 .include <bsd.port.pre.mk>
 
 .if !defined(GNOME_SLAVE)
-.if (${ARCH}!="sparc64" && ${ARCH}!="ia64")
+.if (${ARCH}!="sparc64")
 RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 		epiphany:${PORTSDIR}/www/epiphany
 .endif
