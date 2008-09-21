@@ -2,13 +2,13 @@
 # Date created:				08 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.3 2008/06/01 19:22:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.4 2008/06/13 14:49:39 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-session/Makefile,v 1.56 2007/07/03 16:57:27 mezz Exp $
 #   $MCom: ports/x11/gnome-session/Makefile,v 1.110 2007/03/18 20:55:55 marcus Exp $
 #
 
 PORTNAME=	gnome-session
-PORTVERSION=	2.22.2
+PORTVERSION=	2.22.3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
