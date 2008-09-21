@@ -2,14 +2,15 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libglademm/Makefile,v 1.1 2008/03/28 05:04:04 laffer1 Exp $
 # $FreeBSD: ports/devel/libglademm/Makefile,v 1.19 2007/05/19 20:03:07 flz Exp $
 #
 
 PORTNAME=	libglademm
 PORTVERSION=	2.1.3
+PORTREVISION=	1
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	gtkmm
 DIST_SUBDIR=	gnome2
 
@@ -20,7 +21,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.0:${PORTSDIR}/x11-toolkits/gtkmm20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_XLIB=	yes
+USE_XORG=	x11 sm
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libglade2
 USE_AUTOTOOLS=	libtool:15
