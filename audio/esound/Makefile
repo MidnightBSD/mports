@@ -2,12 +2,12 @@
 # Date created:		19 July 1998
 # Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/esound/Makefile,v 1.2 2008/02/25 00:33:28 laffer1 Exp $
+# $MidnightBSD: mports/audio/esound/Makefile,v 1.3 2008/03/24 19:49:08 ctriv Exp $
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
 #
 
 PORTNAME=	esound
-PORTVERSION=	0.2.38
+PORTVERSION=	0.2.40
 PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -26,7 +26,7 @@ USE_GNOME=	gnometarget gnomehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 CONFIGURE_ENV=	JW=false
-USE_GETOPT_LONG=yes
+
 
 CONFLICTS=	py*-ro-[0-9]*
 
