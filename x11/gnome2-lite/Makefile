@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.3 2008/03/13 02:19:45 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.4 2008/06/01 19:55:07 laffer1 Exp $
 #
 
 PORTREVISION=	0
@@ -12,7 +12,7 @@ PKGNAMESUFFIX=	-lite
 COMMENT=	The "meta-port" of the GNOME desktop (trimmed)
 
 RUN_DEPENDS=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applets \
-	 	gnome-cd:${PORTSDIR}/audio/gnome-media \
+		gnome-cd:${PORTSDIR}/audio/gnome-media \
 		gnome-dictionary:${PORTSDIR}/deskutils/gnome-utils \
 		eog:${PORTSDIR}/graphics/eog \
 		gedit:${PORTSDIR}/editors/gedit \
