@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.6 2008/05/31 01:51:50 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.7 2008/09/21 19:44:26 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
@@ -29,13 +29,13 @@ BROKEN=	Missing dependancies
 # {LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-p
 #lugins-core \
 # alacarte:${PORTSDIR}/deskutils/alacarte \
-# ${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 #   dasher:${PORTSDIR}/accessibility/dasher \
 # seahorse:${PORTSDIR}/security/seahorse
 #             gnome-volume-manager:${PORTSDIR}/sysutils/gnome-volume-manager \
 # network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 
 RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-applets \
+		${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 		gnome-cd:${PORTSDIR}/audio/gnome-media \
 	 	gnome-dictionary:${PORTSDIR}/deskutils/gnome-utils \
 		eog:${PORTSDIR}/graphics/eog \
