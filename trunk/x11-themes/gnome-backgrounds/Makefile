@@ -2,7 +2,7 @@
 # Date Created:				12 January 2005
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.1 2008/01/01 22:45:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.2 2008/09/21 18:43:36 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/gnome-backgrounds/Makefile,v 1.17 2007/10/24 23:37:12 marcus Exp $
 #   $MCom: ports/x11-themes/gnome-backgrounds/Makefile,v 1.31 2007/09/18 16:40:37 mezz Exp $
 #
@@ -15,7 +15,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of backgrounds for GNOME 2
-LICENSE=	unknown
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
