@@ -2,12 +2,12 @@
 # Date created:			02 April 2005
 # Whom:				Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.5 2008/01/10 18:46:58 laffer1 Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.6 2008/06/01 20:58:04 crash Exp $
 # $FreeBSD: ports/misc/iso-codes/Makefile,v 1.21 2007/07/30 03:59:42 beech Exp $
 #
 
 PORTNAME=	iso-codes
-DISTVERSION=	2.0
+DISTVERSION=	3.1
 CATEGORIES=	misc
 MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/
 
@@ -18,6 +18,7 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	xmlproc_parse:${PORTSDIR}/textproc/py-xml
 
 USE_BZIP2=	yes
+USE_GNOME=	gnomehack gnometarget
 USE_PYTHON_BUILD=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
