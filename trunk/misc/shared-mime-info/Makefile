@@ -2,12 +2,11 @@
 # Date created:        31 May 2002
 # Whom:                olgeni@FreeBSD.org
 #
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.3 2007/04/25 04:01:42 ctriv Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.4 2008/04/06 17:21:09 laffer1 Exp $
 # $FreeBSD: ports/misc/shared-mime-info/Makefile,v 1.40 2006/09/04 00:24:54 marcus Exp $
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	0.23
-PORTREVISION=	1
+PORTVERSION=	0.40
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
@@ -22,7 +21,7 @@ USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 intltool gnomehack intlhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS= --disable-update-mimedb
+#CONFIGURE_ARGS= --disable-update-mimedb
 MAN1=		update-mime-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
