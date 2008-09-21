@@ -2,13 +2,13 @@
 # Date created:				26th May 2000
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.3 2008/06/01 19:35:26 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
 #   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
 #
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.22.1
+PORTVERSION=	2.22.3
 PORTREVISION=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
