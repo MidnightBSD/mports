@@ -2,16 +2,15 @@
 # Date created:				30 November 2004
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.2 2008/03/19 02:06:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.3 2008/06/01 19:41:41 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
 #   $MCom: ports/x11/gnome-menus/Makefile,v 1.50 2007/03/12 22:36:46 marcus Exp $
 #
 
 PORTNAME=	gnome-menus
-PORTVERSION=	2.22.1
+PORTVERSION=	2.22.2
 CATEGORIES=	x11 gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
