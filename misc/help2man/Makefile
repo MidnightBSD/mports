@@ -3,13 +3,13 @@
 # Date created:			Jan 30, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.2 2008/05/04 10:17:23 crash Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.3 2008/05/04 18:03:55 ctriv Exp $
 # $FreeBSD: ports/misc/help2man/Makefile,v 1.18 2006/04/30 21:54:34 arved Exp $
 #
 
 PORTNAME=	help2man
 PORTVERSION=	1.36.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
