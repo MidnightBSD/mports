@@ -2,14 +2,13 @@
 # Date created:		2006-08-07
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.1 2007/05/07 20:01:58 laffer1 Exp $
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.2 2007/11/12 00:23:06 laffer1 Exp $
 # $FreeBSD: ports/misc/pciids/Makefile,v 1.6 2007/02/26 00:56:11 ahze Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20071004
+PORTVERSION=	20080312
 CATEGORIES=	misc
-MASTER_SITES=	http://ahze.net/~ahze/distfiles/ \
-		${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
