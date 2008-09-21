@@ -2,12 +2,12 @@
 # Date created:				13 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/nautilus-cd-burner/Makefile,v 1.3 2008/06/01 19:58:43 laffer1 Exp $
 # $FreeBSD: ports/sysutils/nautilus-cd-burner/Makefile,v 1.42 2007/05/29 04:07:21 mezz Exp $
 #
 
 PORTNAME=	nautilus-cd-burner
-PORTVERSION=	2.22.0
+PORTVERSION=	2.22.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -25,7 +25,7 @@ USE_XLIB=	yes
 USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GNOME=	gnomeprefix gnomehack intlhack nautilus2 ltverhack \
-		desktopfileutils
+		desktopfileutils ltasneededhack
 USE_CDRTOOLS=	yes
 INSTALLS_ICONS=	yes
 USE_AUTOTOOLS=	libtool:15
