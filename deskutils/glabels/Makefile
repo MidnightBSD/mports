@@ -2,12 +2,12 @@
 # Date created:		29 September 2002
 # Whom:			Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD: mports/deskutils/glabels/Makefile,v 1.3 2008/06/05 06:41:23 crash Exp $
+# $MidnightBSD: mports/deskutils/glabels/Makefile,v 1.4 2008/06/19 22:48:08 laffer1 Exp $
 # $FreeBSD: ports/deskutils/glabels/Makefile,v 1.41 2007/05/19 20:01:34 flz Exp $
 #
 
 PORTNAME=	glabels
-PORTVERSION=	2.2.2
+PORTVERSION=	2.2.3
 PORTREVISION=	3
 CATEGORIES=	deskutils
 MASTER_SITES=	SF
@@ -26,8 +26,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-                PKG_CONFIG="${LOCALBASE}/bin/pkg-config"
+        LDFLAGS="-L${LOCALBASE}/lib"        
 
 MAN1=		glabels.1
 
