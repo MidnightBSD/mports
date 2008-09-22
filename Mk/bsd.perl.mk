@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.11 2008/05/01 21:20:47 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.12 2008/06/04 23:57:15 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -182,7 +182,8 @@ PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 SUB_LIST+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
 				PERL_ARCH=${PERL_ARCH} \
-				SITE_PERL=${SITE_PERL_REL}
+				SITE_PERL=${SITE_PERL_REL} \
+				PERL=${PERL}
 
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
