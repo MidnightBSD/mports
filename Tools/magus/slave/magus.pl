@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.23 2008/09/11 22:49:30 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.24 2008/09/15 18:34:39 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -35,49 +35,19 @@
 
 use strict;
 use warnings;
-use lib qw(/usr/mports/Tools/lib);
+use FindBin;
+use lib "$FindBin::Bin/../../lib"; 
 
 use Magus;
 
 use Sys::Syslog;
-use POSIX qw(setsid);
+use POSIX qw(setsid :sys_wait_h);
 use Getopt::Std qw(getopts);
 use File::Path qw(rmtree);
-use Fcntl qw(:flock);
 
-$SIG{INT} = sub { report('info', "$$: caught sigint"); die "Caught SIGINT $$\n" };
+# Load some things before we chroot.
+use YAML::Dumper;
 
-my @origARGV = @ARGV;
-my $self     = "$Magus::Config{SlaveMportsDir}/Tools/magus/slave/magus.pl";
-my $Lock;
-my $WorkerID = 1;
-
-
-while (1) {
-  eval {
-    main();
-    exit(0);
-  };
-  
-  if ($@) {
-    # Check ping in case a dropped DB caused some other exception.
-    if ($@ =~ m/DBI/ || !Magus::DBI->ping) {
-      while (1) {
-        report(err => "Could not connect to database ($@) waiting $Magus::Config{'DoneWaitPeriod'} seconds");
-        sleep($Magus::Config{'DoneWaitPeriod'});
-        last if Magus::DBI->ping;
-      }
-
-      if ($Lock) {
-        $Lock->port->reset;
-        $Lock->delete;
-      }
-      # back up to the main() call we go.
-    } else {
-      die $@;
-    }
-  }
-}
 
 =head1 magus.pl
 
@@ -98,84 +68,165 @@ Stay in the forground (don't daemonize).
 
 Verbose mode, print lots of status information to stdout.
 
-=back
+=item -j <n>
 
-=head2 main()
-
-Top level function.  Sets up logging and starts the main loop.  The general
-logic is to keep looping.  If we have an active run, we want to work on ports
-from that run, as long as there are ports.
+Test n ports in parallel.  Defaults to 1.
 
 =cut
 
-my %opts;
+
+our @origARGV = @ARGV;
+our $Self     = "$Magus::Config{SlaveMportsDir}/Tools/magus/slave/magus.pl";
+
+our %Children;
+our $Children = 0;
+our @DeadChildren;
+our %WorkerIDs;
+
+$SIG{CHLD} = sub {
+  my $pid;
+
+  while (($pid = waitpid(-1, WNOHANG)) > 0) {
+    # we don't care about children that aren't magus.pls (make and what not also go thru this).
+    my $info = delete $Children{$pid} || return;
+    $Children--;
+    $WorkerIDs{$info->{worker_id}} = 1;
+    push(@DeadChildren, {lock => $info->{lock}, pid => $pid});
+  }
+};
+
+$SIG{INT} = sub { warn "Parent caught SIGINT"; kill_children(); exit 0 };
+
+
+=pod debug 
+
+sub X {
+  use Data::Dumper;
+  
+  print Dumper({PID => $$, ChildrenCnt => $Children, Children => \%Children, Dead => \@DeadChildren, IDs => \%WorkerIDs});
+}
+
+=cut
+
+sub X { }
+    
+our (%opts, $run);
+getopts('fvj:', \%opts);
+  
+$opts{j} ||= 1;
+%WorkerIDs = map { $_ => 1 } 1 .. $opts{j};
+
+report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
+
+clean_up_reports_dir();
+
+daemonize() unless $opts{f};
+
+while (1) {
+  eval { main() };
+
+  if ($@) {
+    my $error = $@;
+    
+    # Check ping in case a dropped DB caused some other exception.
+    if (($@ =~ m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i) || !Magus::DBI->ping) {
+      while (1) {
+        report(err => "Could not connect to database ($@) waiting $Magus::Config{'LostDBWaitPeriod'} seconds");
+        sleep($Magus::Config{'LostDBWaitPeriod'});
+        if (Magus::DBI->ping) {
+          last;
+        }
+      }
+
+      # back up to the main() call we go.
+    } else {
+      die $error;
+    }
+  }
+}
+
 
 
 sub main {
-  my $lock;
+  my $parentPID = $$;
+  # This isn't right yet. XXX
   
-  getopts('fvj:', \%opts);
-  
-  daemonize() unless $opts{f};
-  
-  if ($opts{j}) {
-    while ($opts{j} > 1) {
-      my $pid = fork;
-      
-      if ($pid) {
-        report(debug => "Forked child: $pid");
-        $opts{j}--;
-        next;
-      } elsif (defined $pid) {
-        $WorkerID++;
-        last;
-      } else {
-        die "Unable to fork child: $!\n";
+  MAIN: while (1) {
+    if (@DeadChildren) {
+      process_dead_children();
+    }
+
+    while ($Children < $opts{j}) {    
+      X();
+      my $lock;
+      my $run = get_current_run();
+      if (!$run || !($lock = Magus::Lock->get_ready_lock($run))) {
+        # there's no more ports to test, sleep for a while and check again.
+        X();
+        report(debug => "No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
+        sleep($Magus::Config{DoneWaitPeriod});
+        next MAIN;
+      }
+
+     
+      eval { start_child($lock); };
+      if ($@) {
+        report(debug => "Unhandled child exception: $@\n");
+        exit(0) if $$ != $parentPID;
       }
     }
-  }  
       
-  report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
-  
-  while (1) {
-    my $run = get_current_run($Magus::Machine);
-  
-    if (!$run || !($lock = Magus::Lock->get_ready_lock($run))) {
-      # there's no more ports to test, sleep for a while and check again.
-      report('debug', "No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
-      sleep($Magus::Config{DoneWaitPeriod});
-      next;
-    }
-    
-    # stick the current lock in the global, so we can flush it if need be.
-    $Lock = $lock;
-    
-    report('info', "Starting test run for: %s", $lock->port);
-    
-    run_test($lock);
-    
-    report('info', 'Run completed for:     %s', $lock->port);
-    
-    $lock->delete;
-    undef $Lock;
+    sleep;
   }
 }
+  
 
 
+=head2 start_child($lock)
 
-=head3 Exiting
-
-Note that all the locks associated with this machine will be deleted at
-script exit. 
+Start the child off.
 
 =cut
 
-END {
-  if ($Lock) {
-    $Lock->delete;
+sub start_child {
+  my ($lock) = @_;
+  
+  my $worker_id = (keys %WorkerIDs)[0] || die "No worker IDs\n";
+  delete $WorkerIDs{$worker_id};
+  
+  # XXX Block signals
+  my $pid = fork;
+  
+  if ($pid) {
+    report(info => "Forked child worker $pid");
+  
+    # parent return
+    $Children{$pid} = { lock => $lock, worker_id => $worker_id };
+    $Children++;
+        
+    X();
+    return;
+  } elsif (defined($pid)) {
+    $SIG{INT}  = sub { die "CAUGHT SIGINT\n"; };
+    $SIG{CHLD} = 'DEFAULT';
+    
+    eval { init_results_file(); };
+    
+    if ($@) {
+      # not good.
+      report(alert => "Unable to init reporting system for child! $@");
+      exit(72);
+    }
+
+    eval { run_test($lock, $worker_id); };
+
+    handle_exception($@, $lock) if $@;
+    
+    exit(0);
+  } else {
+    die "Couldn't fork: $!\n";
   }
 }
-  
 
 =head2 run_test($lock)
 
@@ -185,84 +236,26 @@ port is at C<< $lock->port >>).
 =cut
 
 sub run_test {
-  my ($lock) = @_;
-  #
-  # we have a few eval blocks here, because we want to be sure that the 
-  # exception will not allow the child to go to the main program logic.
-  #
-  my ($port, $chroot);
+  my ($lock, $worker_id) = @_;
 
-  $lock->port->note_event(info => "Test started.");
+  my $port = $lock->port;
+  $port->note_event(info => "Test started.");
+ 
+  my $chroot = Magus::Chroot->new(
+    workerid => $worker_id,
+    tarball  => $Magus::Config{ChrootTarBall},
+  );
 
-  eval {
-    $port = $lock->port;
-    $chroot = Magus::Chroot->new(
-      workerid => $WorkerID,
-      tarball  => $Magus::Config{ChrootTarBall},
-    );
-
-    copy_dep_pkgfiles($lock, $chroot);
-  };
+  copy_dep_pkgfiles($lock, $chroot);
   
-  if (my $error = $@) {
-    handle_exception($error, $lock);
-    return;
-  }
+  $chroot->do_chroot();
+  chdir($port->origin);
+    
+  my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
+  report('info', "Building $port");
+  my $results = $test->run;
   
-  # we fork so just the child chroots, then we can get out of the chroot.
-  my $pid = fork();
-  if ($pid) {
-    # Parent, we wait for the child to finish, and if we get sigint
-    # while we are waiting, we stop the child and then cleanup
-    local $SIG{INT} = sub { 
-      waitpid($pid, 0);
-      handle_exception("Caught SIGINT", $lock);
-      exit(1);
-    };
-    
-    waitpid($pid, 0);
-  } elsif (defined $pid) {
-    # child here; chroot and test the port
-    eval {
-      $chroot->do_chroot();
-      chdir($port->origin);
-    
-      my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
-      report('info', "Building $port");
-      my $results = $test->run;
-  
-      insert_results($port, $results);
-    };
-    
-    if ($@ && $@ !~ m/DBI/) {
-      handle_exception($@, $lock);
-    }
-    
-    exit(0);
-  } else {
-    die "Could not fork: $!\n";
-  } 
-
-  # Back to the parent here
-  if ($? == 0) {
-    # update our port object with new data from the database, as the child
-    # process probably changed stuff
-    $port->refresh;
-    
-    eval {
-      if ($port->status eq 'pass' || $port->status eq 'warn') {
-        upload_pkgfile($port, $chroot);
-      }
-    };
-    
-    if ($@) {
-      handle_exception($@, $lock);
-    }
-  } else {
-    die "Child exited unexpectantly: $?\n";
-  }
-  
-  $port->note_event($port->status => "Test complete.");
+  store_results($results);
 }
 
 
@@ -346,7 +339,6 @@ inserts the results into the database, referencing the current port.
 =cut  
 
 
-
 sub insert_results {
   my ($port, $results) = @_;
 
@@ -412,7 +404,7 @@ Logs the current
       my ($format, @args) = @msg;
       my $time = localtime;
       
-      printf "[$time] ($$:$WorkerID): $format\n", @args;
+      printf "[$time] ($$): $format\n", @args;
     }    
   }
 }
@@ -429,17 +421,100 @@ sub handle_exception {
 
   die $error if $error =~ m/DBI/;
   
-  if ($error =~ m/SIGINT/) {
-    $lock->port->reset;
-    
-    report('debug', 'Exiting 0 from SIGINT (prior result for %s deleted).', $lock->port);
-    exit 0;
-  }
+  return if $error =~ m/SIGINT/;
       
-  report('err', "Exception throw building %s: %s", $lock->port, $error);
+  report('err', "Exception thrown building %s: %s", $lock->port, $error);
   
-  $lock->port->set_result_internal(internal => ExceptionThrown => "Internal exception thrown: $error");
+  store_results({ exception => $error });
 }
+
+
+
+=head2 init_results_file()
+
+Prepares the results file for writing.  Run this before you chroot.
+
+=cut
+
+{
+  my $fh; # this var is private to init_results_file() and store_results()
+  sub init_results_file {
+    my $file = "$Magus::Config{SlaveResultsDir}/$$";
+  
+    if (! -d $Magus::Config{SlaveResultsDir} && !mkdir($Magus::Config{SlaveResultsDir})) {
+      die "Couldn't mkdir $Magus::Config{SlaveResultsDir}: $!";
+    }
+    
+    open($fh, '>', $file) || die "Couldn't open $file: $!";
+    
+    return;
+  }
+    
+
+=head3 store_results($ref)
+
+Dump the hashref into a file that the parent can find.
+
+=cut
+
+  sub store_results {
+    my ($ref) = @_;
+  
+    my $yaml = YAML::Dump($ref);
+    
+  
+    print $fh $yaml;
+    close($fh);
+    undef $fh;
+  }
+}
+
+
+=head3 process_dead_children(@remains)
+
+Takes a list of hash containing information about dead child 
+processes and takes action on that information.
+
+=cut
+
+sub process_dead_children {
+  while (@DeadChildren) {
+    my $corpse = shift @DeadChildren;
+      
+    my $port = $corpse->{lock}->port;
+    my $file = "$Magus::Config{SlaveResultsDir}/$corpse->{pid}";
+    
+    my $results;
+    
+    # if there's no file, then there are no results to store, the child
+    # probably exited from SIGINT, or maybe a dropped DB.
+    if (-e $file) {
+      eval {
+        $results = YAML::LoadFile($file)
+      };
+      
+      # unlink($file) || report(err => "Couldn't unlink $file: $!);
+      
+      if ($@) {
+        report(err => "Unable to load YAML results file (pid: $corpse->{pid}): $@");
+        $port->note_event(internal => "Unable to load YAML results file: $@");
+        $port->status('internal');
+        $port->update;      
+      } elsif ($results->{exception}) {
+        report(err => "Exception from pid $corpse->{pid}: $results->{exception}");
+        $port->note_event(internal => $results->{exception});
+        $port->status('internal');
+        $port->update;
+      } else {
+        insert_results($port, $results);
+      }
+    }
+    
+    $corpse->{lock}->delete;
+  }
+}      
+    
+
 
 
 =head3 get_current_run()
@@ -452,27 +527,16 @@ sub get_current_run {
   my $current = Magus::Run->latest($Magus::Machine) || return;
   my $tree_id = get_tree_id("$Magus::Config{'SlaveDataDir'}/mports") || 0;
 
-  # we need up update the mports tree to match the new run, but we need
-  # to make sure that no other worker is using it, and that we have an
-  # exclusive lock to change it.
-  if ($current != $Magus::Machine->run || $tree_id != $current) {
-    return if Magus::Lock->search(machine => $Magus::Machine);
-    
-    my $lockfile = "$Magus::Config{SlaveDataDir}/mports.lock";
-    
-    # we need to make sure that no other process is updating the mports dir.
-    open(my $lock, '>>', $lockfile) || die "Couldn't open $lockfile: $!\n";
-    unless (flock($lock, LOCK_EX|LOCK_NB)) {
-      report(debug => "Unable to lock mports directory (perhaps another process is updating it?)");
-      # this will block until the file is unlocked.
-      flock($lock, LOCK_EX) || die "Couldn't lock $lockfile: $!\n";
-      
-      report(debug => "Reloading self.");
-      exec($self, @origARGV);
+  #report(debug => "latest run: $current, tree id: $tree_id, machine id: " . $Magus::Machine->run);
   
+  if ($current != $Magus::Machine->run || $tree_id != $current) {
+    local $SIG{CHLD} = 'DEFAULT';
+  
+    if ($Children) {
+      report(debug => "Children active, not moving to new run yet.");
       return;
     }
-    
+  
     $Magus::Machine->run($current);
     $Magus::Machine->update;
     
@@ -486,7 +550,7 @@ sub get_current_run {
     chdir($dir) || die "Couldn't chdir to $dir: $!\n";
         
     if (system("/usr/bin/fetch -p $tarball") != 0) {
-      die "Couldn't fetch $tarball";
+      die "Couldn't fetch $tarball: (exit $?)";
     }
 
     report(debug => "Deleting old $dir/mports");
@@ -498,7 +562,7 @@ sub get_current_run {
     unlink($current->tarball);
         
     report(debug => "Reloading self.");
-    exec($self, @origARGV);
+    exec($Self, @origARGV);
   }
   
   return $current;
@@ -515,6 +579,47 @@ sub get_tree_id {
   
   return $id;
 }
+
+
+=head2 kill_children()
+
+Kill all the children we have.
+
+=cut
+
+sub kill_children {
+  if ($Children) {
+    local $SIG{CHLD} = 'DEFAULT';
+
+    warn "Killing children @{[keys %Children ]}\n";
+    X();
+    kill INT => keys %Children;
+    
+    # make sure that we wait until all the kids are dead.
+    my $kid;
+    do {
+      $kid = waitpid(-1, WNOHANG);
+    } until $kid > 0;
+  }
+    
+  foreach my $lock (Magus::Lock->search(machine => $Magus::Machine)) {
+    $lock->port->reset;
+    $lock->delete;
+  }
+}
+
+    
+=head2 clean_up_reports_dir()
+
+Nuke everything in the reports dir.
+
+=cut
+
+sub clean_up_reports_dir {
+  local $SIG{CHLD} = 'DEFAULT';
+  system("rm $Magus::Config{SlaveResultsDir}/*");
+}
+      
 
 1;
 __END__
