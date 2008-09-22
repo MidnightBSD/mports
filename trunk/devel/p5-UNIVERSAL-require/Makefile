@@ -2,6 +2,7 @@
 # Date Created:				25 Oct, 2005
 # Whom:					Jun Kuriyama <kuriyama@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-UNIVERSAL-require/Makefile,v 1.2 2006/11/29 01:09:56 kuriyama Exp $
 #
 
@@ -12,7 +13,7 @@ MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../authors/id/M/MS/MSCHWERN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	kuriyama@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to require() from a variable
 LICENSE=	perl
 
