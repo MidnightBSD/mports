@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/mail/p5-Email-Send/Makefile,v 1.13 2008/04/17 14:26:54 araujo Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Email-Send/Makefile,v 1.1 2008/09/18 20:39:55 crash Exp $
 
 PORTNAME=	Email-Send
 PORTVERSION=	2.192
@@ -14,6 +14,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Email::Send - Simply Sending Email
 LICENSE=        gpl2
+
 BUILD_DEPENDS=	p5-Class-Accessor>=0.19:${PORTSDIR}/devel/p5-Class-Accessor \
 		p5-Email-Address>=1.80:${PORTSDIR}/mail/p5-Email-Address \
 		p5-Email-Simple>=1.92:${PORTSDIR}/mail/p5-Email-Simple \
