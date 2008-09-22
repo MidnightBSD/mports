@@ -3,11 +3,11 @@
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/dbus-glib/Makefile,v 1.2 2006/10/31 02:36:57 marcus Exp $
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.1 2007/02/19 22:40:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.2 2008/05/31 02:06:51 laffer1 Exp $
 #
 
 PORTNAME=	dbus
-PORTVERSION=	0.74
+PORTVERSION=	0.76
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 PKGNAMESUFFIX=	-glib
@@ -36,7 +36,6 @@ PLIST_SUB=	VERSION="1.0"
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 
-pre-build:
-	@${CP} ${FILESDIR}/dbus-bus-introspect.xml ${WRKSRC}/tools
+
 
 .include <bsd.port.mk>
