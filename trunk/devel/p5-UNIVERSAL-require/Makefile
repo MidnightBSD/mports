@@ -2,15 +2,14 @@
 # Date Created:				25 Oct, 2005
 # Whom:					Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-UNIVERSAL-require/Makefile,v 1.2 2008/09/22 18:48:45 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-UNIVERSAL-require/Makefile,v 1.2 2006/11/29 01:09:56 kuriyama Exp $
 #
 
 PORTNAME=	UNIVERSAL-require
 PORTVERSION=	0.11
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	../../authors/id/M/MS/MSCHWERN
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
