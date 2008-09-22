@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.244 2008/09/18 20:50:32 crash Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.245 2008/09/18 22:26:15 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -230,6 +230,7 @@
     SUBDIR += p5-threads
     SUBDIR += p5-threads-shared
     SUBDIR += p5-UNIVERSAL-moniker
+    SUBDIR += p5-UNIVERSAL-require
     SUBDIR += p5-version
     SUBDIR += patch
     SUBDIR += pccts
