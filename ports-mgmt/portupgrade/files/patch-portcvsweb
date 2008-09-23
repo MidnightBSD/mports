@@ -1,0 +1,28 @@
+--- bin/portcvsweb.orig	Tue Sep 23 00:33:59 2008
++++ bin/portcvsweb	Tue Sep 23 00:35:14 2008
+@@ -38,7 +38,7 @@
+ 
+ BROWSER = ENV['BROWSER'] || 'w3m:lynx:links:firefox:mozilla:netscape'
+ 
+-OS_DEFAULT = 'FreeBSD'
++OS_DEFAULT = 'MidnightBSD'
+ 
+ MAKEFILE = 'Makefile'
+ 
+@@ -46,7 +46,7 @@
+ NEXTLINE = "\n%*s" % [5 + COLUMNSIZE, '']
+ 
+ module PortCvsWeb
+-  CVSTAGS = ['FreeBSD', 'NetBSD', 'OpenBSD']
++  CVSTAGS = ['MidnightBSD', 'FreeBSD', 'NetBSD', 'OpenBSD']
+   CVSTAG_RE = /\$(#{CVSTAGS.join('|')}):\s+(\S+),v\s*(\d[\d.]*)/
+ 
+   PathInfo = Struct.new(:dir, :file, :path)
+@@ -276,6 +276,7 @@
+ 
+   class Uri_CvsWeb < Uri_Base
+     URI_BASE = {
++      'MidnightBSD' => 'http://www.midnightbsd.org/cgi-bin/cvsweb.cgi/',
+       'FreeBSD' => 'http://www.FreeBSD.org/cgi/cvsweb.cgi/',
+       'NetBSD' => 'http://cvsweb.netbsd.org/bsdweb.cgi/',
+       'OpenBSD' => 'http://www.openbsd.org/cgi-bin/cvsweb/',
