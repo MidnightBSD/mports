@@ -1,0 +1,18 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.115 2008/09/18 22:08:30 laffer1 Exp $
+share/wallpapers/MidnightBSD-Space.jpg
+share/wallpapers/MidnightBSD-Space.jpg.desktop
+share/wallpapers/mnbsd_bg_gray.png
+share/wallpapers/mnbsd_bg_gray.png.desktop
+share/wallpapers/mnbsd_bg_purple.png
+share/wallpapers/mnbsd_bg_purple.png.desktop
+share/wallpapers/mnbsd_bg_black.png
+share/wallpapers/mnbsd_bg_black.png.desktop
+share/wallpapers/mnbsd_bg_green.png
+share/wallpapers/mnbsd_bg_green.png.desktop
+share/wallpapers/mnbsd_bg_yellow.png
+share/wallpapers/mnbsd_bg_yellow.png.desktop
+share/wallpapers/mnbsd_bg_blue.png
+share/wallpapers/mnbsd_bg_blue.png.desktop
+share/wallpapers/mnbsd_bg_pink.png
+share/wallpapers/mnbsd_bg_pink.png.desktop
+@dirrmtry share/wallpapers
