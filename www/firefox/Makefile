@@ -2,13 +2,13 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/firefox/Makefile,v 1.16 2008/07/16 23:09:47 laffer1 Exp $
+# $MidnightBSD: mports/www/firefox/Makefile,v 1.17 2008/09/17 19:10:11 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
 
 PORTNAME=	firefox
-DISTVERSION=	2.0.0.16
+DISTVERSION=	2.0.0.17
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
@@ -36,7 +36,6 @@ EXTRA_CFLAGS=	-O2
 HAS_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GCC=	3.4+
 WANT_PERL=	yes
 GECKO_PLIST_PRE_FILES=	lib/${MOZILLA}/chrome/icons/default/default.xpm
 GECKO_PLIST_PRE_DIRS=	lib/${MOZILLA}/chrome/icons/default lib/${MOZILLA}/chrome/icons
