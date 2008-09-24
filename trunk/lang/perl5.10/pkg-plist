@@ -1,7 +1,7 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.85 2008/03/26 01:48:36 ctriv Exp $
+@comment $MidnightBSD: mports/lang/perl5.10/pkg-plist,v 1.1 2008/04/11 04:45:00 ctriv Exp $
 bin/perl
 bin/perl%%PERL_VER%%
-@exec ln -fs %D/%F %D/perl5
+@exec ln -fs %D/%F %B/perl5
 @unexec rm -f %B/perl5 2>&1 >/dev/null || true
 bin/a2p
 bin/pod2html

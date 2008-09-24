@@ -1,9 +1,10 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/perl5.10/Makefile,v 1.1 2008/04/11 04:45:00 ctriv Exp $
 #
 
 PORTNAME=	perl
 PORTVERSION=	5.10.0
+PORTREVISION=	1
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../src
@@ -111,6 +112,12 @@ post-install:
 	@${INSTALL_MAN} ${WRKDIR}/perl-after-upgrade.1 ${MAN1PREFIX}/man/man1/perl-after-upgrade.1
 	@${LN} -sf ${PREFIX}/lib/perl5/${PERL_VER}/mach/CORE/libperl.so ${PREFIX}/lib/libperl.so
 	@${LN} -sf ${PREFIX}/bin/perl${PERL_VER} ${PREFIX}/bin/perl5
+
+
+rebuild-xs:
+	${LOCALBASE}/sbin/portupgrade -f `(${FIND} ${PKG_DBDIR}/p5*/+CONTENTS | \
+		${XARGS} ${GREP} -El 'site_perl.*\.so' | \
+		${SED} -e 's!/var/db/pkg/!!; s!/+CONTENTS!!;')`
 
 
 .include <bsd.port.post.mk>
