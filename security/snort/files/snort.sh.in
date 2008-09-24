@@ -1,4 +1,5 @@
 #!/bin/sh
+# $MidnightBSD$
 # $FreeBSD: ports/security/snort/files/snort.sh.in,v 1.3 2007/06/14 02:51:01 clsung Exp $
 
 # PROVIDE: snort
