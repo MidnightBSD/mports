@@ -3,11 +3,10 @@
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
 # $FreeBSD: ports/security/snort/Makefile,v 1.98 2008/06/09 06:16:02 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/snort/Makefile,v 1.1 2008/06/12 20:43:14 crash Exp $
 
 PORTNAME=	snort
-PORTVERSION=	2.8.2
-PORTREVISION=	1
+PORTVERSION=	2.8.2.1
 CATEGORIES=	security
 MASTER_SITES=	http://www.snort.org/dl/current/
 
@@ -15,8 +14,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight network intrusion detection system
 LICENSE=        gpl2
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
-
-CONFLICTS?=	snort-1.* snort-2.[0-7].*
 
 OPTIONS=	DYNAMIC "Enable dynamic plugin support" on \
 		FLEXRESP "Flexible response to events" off \
@@ -44,10 +41,6 @@ DOCS=		RELEASE.NOTES doc/AUTHORS doc/BUGS doc/CREDITS \
 		doc/README* doc/USAGE doc/*.pdf
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 500036
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src-sf_snort_plugin_api.h
-.endif
 
 .if defined(WITH_FLEXRESP)
 LIBNET_CONFIG?=		${LOCALBASE}/bin/libnet10-config
@@ -167,6 +160,5 @@ post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
