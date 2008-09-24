@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.25 2008/05/09 17:23:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.26 2008/06/02 00:11:04 archite Exp $
 #
 
     COMMENT = X11 window managers
@@ -27,5 +27,6 @@
     SUBDIR += twm
     SUBDIR += windowmaker
     SUBDIR += wmii
+    SUBDIR += xfce
 
 .include <bsd.port.subdir.mk>
