@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.81 2008/09/04 04:35:19 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.82 2008/09/18 15:25:27 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -45,6 +45,7 @@
     SUBDIR += nmap
     SUBDIR += nmapfe
     SUBDIR += nss
+    SUBDIR += oinkmaster
     SUBDIR += opencdk
     SUBDIR += openct
     SUBDIR += opensc
