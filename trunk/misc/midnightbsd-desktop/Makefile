@@ -2,11 +2,11 @@
 # Date created:		July 4, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.5 2007/11/08 23:34:06 laffer1 Exp $
+# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.1 2008/07/04 21:42:09 laffer1 Exp $
 #
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	1.0
+PORTVERSION=	1.1
 CATEGORIES=	misc
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -25,7 +25,8 @@ RUN_DEPENDS=	startkde:${PORTSDIR}/x11/kde-lite \
 		smbd:${PORTSDIR}/net/samba3 \
 		cupsd:${PORTSDIR}/print/cups-base \
 		pidgin:${PORTSDIR}/net-im/pidgin \
-		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats
+		${LOCALBASE}/etc/rc.d/bsdstats.sh:${PORTSDIR}/sysutils/bsdstats \
+		${LOCALBASE}/share/wallpapers/mnbsd_bg_gray.png:${PORTSDIR}/x11-themes/midnightbsd-backgrounds
 
 USE_XORG=	x11
 USE_PERL5_RUN=	yes
