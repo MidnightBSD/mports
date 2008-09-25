@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.245 2008/09/18 22:26:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.246 2008/09/22 18:52:05 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -58,6 +58,7 @@
     SUBDIR += etoile-collectionkit
     SUBDIR += etoile-foundation
     SUBDIR += etoile-unitkit
+    SUBDIR += fam
     SUBDIR += ffcall
     SUBDIR += gamin
     SUBDIR += gccmakedep
