@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.27 2008/09/24 23:59:37 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.28 2008/09/25 03:51:12 laffer1 Exp $
 #
 
     COMMENT = X11 window managers
@@ -28,6 +28,7 @@
     SUBDIR += windowmaker
     SUBDIR += wmii
     SUBDIR += xfce
+    SUBDIR += xfce4-panel
     SUBDIR += xfce4-session
 
 .include <bsd.port.subdir.mk>
