@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.87 2008/08/24 19:53:13 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.88 2008/09/17 20:04:31 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -13,6 +13,7 @@
     SUBDIR += avahi-qt3
     SUBDIR += cvsup
     SUBDIR += cvsup-without-gui
+    SUBDIR += dhcp6
     SUBDIR += dhcpdump
     SUBDIR += fping
     SUBDIR += freeradius
