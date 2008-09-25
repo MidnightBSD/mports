@@ -2,7 +2,7 @@
 # Date created:				6 October 2000
 # Whom:					will
 #
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.8 2008/07/10 03:27:07 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.9 2008/09/25 00:58:02 laffer1 Exp $
 # $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
 #
 
@@ -18,6 +18,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Completely new version of the BIND DNS suite with updated DNSSEC
+LICENSE=	mit
 
 # ISC releases things like 9.3.0rc1, which our versioning doesn't like
 ISCVERSION=	9.3.5-P2
