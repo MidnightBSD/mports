@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.68 2008/09/11 05:54:58 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.69 2008/09/12 18:25:53 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -39,6 +39,7 @@
     SUBDIR += ladspa
     SUBDIR += lame
     SUBDIR += liba52
+    SUBDIR += libamrwb
     SUBDIR += libao
     SUBDIR += libaudiofile
     SUBDIR += libcdaudio
