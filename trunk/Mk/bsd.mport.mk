@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.115 2008/09/18 22:08:30 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.116 2008/09/25 02:48:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -369,6 +369,10 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 ##
 # USE_SDL		- If set, this port uses the sdl libraries.
 #				  See bsd.sdl.mk for more information.
+#
+# USE_XFCE		- If set, this port uses the XFCE libraries.
+#				  See bsd.xfce.mk for more information.
+#
 # USE_XPM		- If set, this port uses the xpm graphics libraries.
 ##
 # USE_OPENSSL	- If set, this port relies on the OpenSSL package.
@@ -1940,6 +1944,9 @@ IGNORE=	uses unknown USE_BISON construct
 .include "${PORTSDIR}/Mk/bsd.gnome.mk"
 .endif
 
+.if defined(USE_XFCE)
+.include "${PORTSDIR}/Mk/bsd.xfce.mk"
+.endif
 
 .if exists(${PORTSDIR}/../Makefile.inc)
 .include "${PORTSDIR}/../Makefile.inc"
@@ -5255,7 +5262,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.115 2008/09/18 22:08:30 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.116 2008/09/25 02:48:42 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
