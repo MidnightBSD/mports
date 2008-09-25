@@ -2,18 +2,20 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.4 2007/08/13 23:02:36 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.5 2008/04/09 21:17:27 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.19
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A secure, fast, compliant, and very flexible Web Server
+LICENSE=	bsd3
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
@@ -21,7 +23,7 @@ USE_AUTOTOOLS=	autoconf:261 libtool:15
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack
 USE_RC_SUBR=	lighttpd.sh
-CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd --mandir=${PREFIX}/man
+CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd 
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
@@ -30,11 +32,12 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		lighttpd.1 spawn-fcgi.1
 
-OPTIONS=	OPENSSL		"Enable SSL support"	on  \
-		OPENLDAP	"Enable LDAP support"	off \
-		MYSQL		"Enable MYSQL support"	off \
-		IPV6		"Enable IPV6 support"	on \
-		CML		"Enable Cache Meta Language support" off
+OPTIONS=	BZIP2		"Enable Bzip2 support"	off \
+		CML		"Enable Cache Meta Language support" off \
+		IPV6		"Enable IPV6 support"   on  \
+		MYSQL		"Enable MYSQL support"  off \
+		OPENSSL		"Enable SSL support"	on  \
+		OPENLDAP	"Enable LDAP support"	off
 
 .include <bsd.port.pre.mk>
 
@@ -46,6 +49,10 @@ _REQUIRE=	DAEMON
 CONFIGURE_ARGS+=	--with-openssl \
 			--with-openssl-includes=${OPENSSLINC} \
 			--with-openssl-libs=${OPENSSLLIB}
+.endif
+
+.if defined(WITH_BZIP2)
+CONFIGURE_ARGS+=	--with-bzip2
 .endif
 
 .if defined(WITH_OPENLDAP)
