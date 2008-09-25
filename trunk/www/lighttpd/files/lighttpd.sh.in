@@ -1,5 +1,6 @@
 #!/bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/lighttpd/files/lighttpd.sh.in,v 1.3 2006/02/06 12:19:17 mnag Exp $
 #
 # PROVIDE: lighttpd
