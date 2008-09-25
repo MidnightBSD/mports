@@ -2,13 +2,13 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.5 2008/04/09 21:17:27 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.6 2008/09/25 18:38:44 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
@@ -32,7 +32,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		lighttpd.1 spawn-fcgi.1
 
-OPTIONS=	BZIP2		"Enable Bzip2 support"	off \
+OPTIONS=	BZIP2		"Enable Bzip2 support"	on \
 		CML		"Enable Cache Meta Language support" off \
 		IPV6		"Enable IPV6 support"   on  \
 		MYSQL		"Enable MYSQL support"  off \
@@ -53,18 +53,24 @@ CONFIGURE_ARGS+=	--with-openssl \
 
 .if defined(WITH_BZIP2)
 CONFIGURE_ARGS+=	--with-bzip2
+.else
+CONFIGURE_ARGS+=	--disable-bzip2
 .endif
 
 .if defined(WITH_OPENLDAP)
 USE_OPENLDAP=		yes
 CONFIGURE_ARGS+=	--with-ldap
 _REQUIRE+=		slapd
+.else
+CONFIGURE_ARGS+=	--disable-ldap
 .endif
 
 .if defined(WITH_MYSQL)
 USE_MYSQL=		yes
 CONFIGURE_ARGS+=	--with-mysql
 _REQUIRE+=		mysql
+.else
+CONFIGURE_ARGS+=	--disable-mysql
 .endif
 
 .if defined(WITHOUT_IPV6)
