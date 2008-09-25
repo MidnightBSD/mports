@@ -2,13 +2,13 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.6 2008/09/25 18:38:44 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.7 2008/09/25 18:45:25 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.19
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
@@ -23,7 +23,7 @@ USE_AUTOTOOLS=	autoconf:261 libtool:15
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack
 USE_RC_SUBR=	lighttpd.sh
-CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd 
+CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
@@ -34,6 +34,8 @@ MAN1=		lighttpd.1 spawn-fcgi.1
 
 OPTIONS=	BZIP2		"Enable Bzip2 support"	on \
 		CML		"Enable Cache Meta Language support" off \
+		FAM		"Enable FAM support"    off \
+		GDBM		"Enable GDBM support"   off \
 		IPV6		"Enable IPV6 support"   on  \
 		MYSQL		"Enable MYSQL support"  off \
 		OPENSSL		"Enable SSL support"	on  \
@@ -55,6 +57,17 @@ CONFIGURE_ARGS+=	--with-openssl \
 CONFIGURE_ARGS+=	--with-bzip2
 .else
 CONFIGURE_ARGS+=	--disable-bzip2
+.endif
+
+.if defined(WITH_FAM)
+LIB_DEPENDS+=		fam:${PORTSDIR}/devel/fam
+CONFIGURE_ARGS+=	--with-fam
+CONFIGURE_ENV+=		FAM_CFLAGS="-I${LOCALBASE}/include" FAM_LIBS="-L${LOCALBASE}/lib"
+.endif
+
+.if defined(WITH_GDBM)
+LIB_DEPENDS+=		gdbm:${PORTSDIR}/databases/gdbm
+CONFIGURE_ARGS+=	--with-gdbm
 .endif
 
 .if defined(WITH_OPENLDAP)
