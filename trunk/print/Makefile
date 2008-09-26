@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/print/Makefile,v 1.37 2008/05/31 02:51:54 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.38 2008/06/14 03:23:18 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
 
+    SUBDIR += a2ps-a4
     SUBDIR += a2ps-letter
     SUBDIR += acroread7
     SUBDIR += acroread7-de
@@ -48,5 +49,6 @@
     SUBDIR += ttf2pt1
     SUBDIR += wmlpq
     SUBDIR += xdvik
+    SUBDIR += xfce4-print
 
 .include <bsd.port.subdir.mk>
