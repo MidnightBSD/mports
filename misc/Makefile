@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.43 2008/06/14 03:47:52 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.44 2008/07/04 21:42:09 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -101,6 +101,10 @@
     SUBDIR += wmweather
     SUBDIR += wmweather+
     SUBDIR += wmx10
+    SUBDIR += xfce4-appfinder
+    SUBDIR += xfce4-artwork
+    SUBDIR += xfce4-weather-plugin
+    SUBDIR += xfce4-wm-themes
     SUBDIR += xtail
 
 .include <bsd.port.subdir.mk>
