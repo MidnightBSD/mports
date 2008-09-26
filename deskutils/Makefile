@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.31 2008/09/21 21:03:44 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.32 2008/09/24 20:34:15 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -33,6 +33,7 @@
     SUBDIR += ljclive
     SUBDIR += menumaker
     SUBDIR += notification-daemon
+    SUBDIR += orage
     SUBDIR += planner
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
