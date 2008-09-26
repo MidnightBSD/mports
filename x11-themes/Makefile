@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.16 2008/09/24 16:29:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.17 2008/09/26 18:18:19 laffer1 Exp $
 #
     COMMENT = X11 themes
 
@@ -13,6 +13,7 @@
     SUBDIR += gnome-backgrounds
     SUBDIR += gnome-themes
     SUBDIR += gtk-engines2
+    SUBDIR += gtk-xfce-engine
     SUBDIR += icon-naming-utils
     SUBDIR += irssi-themes
     SUBDIR += kdeartwork3
