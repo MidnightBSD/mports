@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.69 2008/09/12 18:25:53 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.70 2008/09/25 03:38:45 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -50,6 +50,7 @@
     SUBDIR += libmikmod
     SUBDIR += libmodplug
     SUBDIR += libmpcdec
+    SUBDIR += libmpd
     SUBDIR += libmtp
     SUBDIR += libmusicbrainz
     SUBDIR += libnjb
@@ -80,5 +81,7 @@
     SUBDIR += wavpack
     SUBDIR += wmmp3
     SUBDIR += wmsmixer
+    SUBDIR += xfce4-mixer
+    SUBDIR += xfce4-mpc-plugin
 
 .include <bsd.port.subdir.mk>
