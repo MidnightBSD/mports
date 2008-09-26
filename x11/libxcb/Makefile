@@ -3,13 +3,14 @@
 # Whom:					Ashish Shukla <wahjava@gmail.com>
 #
 # $FreeBSD: ports/x11/libxcb/Makefile,v 1.7 2007/09/05 14:45:07 beech Exp $
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.1 2007/10/02 21:55:54 ctriv Exp $
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.2 2007/10/02 21:56:49 ctriv Exp $
 #
 
 PORTNAME=	libxcb
-PORTVERSION=	1.0
-CATEGORIES=	x11
-MASTER_SITES=	XORG/current/src/extras
+PORTVERSION=	1.1.90.1
+CATEGORIES=	x11 python
+#MASTER_SITES=	XORG/current/src/extras
+MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The X protocol C-language Binding (XCB) library
@@ -28,6 +29,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
+USE_PYTHON=	2.5
 USE_XORG=	xau xdmcp
 
 GNU_CONFIGURE=	yes
