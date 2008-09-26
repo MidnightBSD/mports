@@ -2,7 +2,7 @@
 # Date created:		9 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.1 2008/09/26 18:28:43 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
 #
 
@@ -62,10 +62,9 @@ do-install:	# empty
 
 post-install:
 .if defined(WITH_GDM)
-	@${TEST} -d ${PREFIX}/etc/gdm/Sessions || \
-		${MKDIR} -p ${PREFIX}/etc/gdm/Sessions
-	@${INSTALL_SCRIPT} ${FILESDIR}/XFce4 ${PREFIX}/etc/gdm/Sessions
-	@${SED} -e 's|%%PREFIX%%|${PREFIX}|' ${FILESDIR}/XFce4.desktop > ${PREFIX}/etc/dm/Sessions/XFce4.desktop
+	${MKDIR} -p ${PREFIX}/etc/gdm/Sessions ${PREFIX}/etc/dm/Sessions
+	${INSTALL_SCRIPT} ${FILESDIR}/XFce4 ${PREFIX}/etc/gdm/Sessions
+	${SED} -e 's|%%PREFIX%%|${TRUE_PREFIX}|' ${FILESDIR}/XFce4.desktop > ${PREFIX}/etc/dm/Sessions/XFce4.desktop
 .endif
 
 .include <bsd.port.post.mk>
