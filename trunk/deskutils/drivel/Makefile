@@ -2,13 +2,12 @@
 # Date created:			Thu Feb 26 23:13:12 CET 2004
 # Whom:				Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.3 2007/12/28 04:21:44 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.4 2008/02/28 18:43:11 laffer1 Exp $
 # $FreeBSD: ports/deskutils/drivel/Makefile,v 1.33 2007/05/19 20:01:28 flz Exp $
 #
 
 PORTNAME=	drivel
-PORTVERSION=	2.0.2
-PORTREVISION=	2
+PORTVERSION=	2.0.3
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
