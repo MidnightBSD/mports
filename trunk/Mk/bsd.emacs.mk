@@ -1,5 +1,5 @@
 #
-# 	$MidnightBSD$
+# 	$MidnightBSD: mports/Mk/bsd.emacs.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
 #	$FreeBSD: ports/Mk/bsd.emacs.mk,v 1.59 2006/08/14 13:24:18 erwin Exp $
 #
 #	bsd.emacs.mk - 19990829 Shigeyuki Fukushima.
@@ -62,65 +62,14 @@ Emacs_Include_MAINTAINER=	ports@MidnightBSD.org
 
 EMACS_MASTERDIR_PKGFILES?=	NO
 
-# Emacs-19.x
-.if (${EMACS_PORT_NAME} == "emacs19")
-EMACS_NAME=		emacs
-EMACS_VER=		19.34
-EMACS_MAJOR_VER=	19
-EMACS_LIBDIR?=		share/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs19
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		NO
-EMACS_NO_SUBDIRSEL=	YES
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.emacs19
-DESCR?=                 ${PKGDIR}/pkg-descr.emacs19
-PLIST?=                 ${PKGDIR}/pkg-plist.emacs19
-.endif
-
-# Emacs-20.x
-.elif (${EMACS_PORT_NAME} == "emacs20")
-EMACS_NAME=		emacs
-EMACS_VER=		20.7
-EMACS_MAJOR_VER=	20
-EMACS_LIBDIR?=		share/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs20
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
-.endif
-
-# Emacs-21.x
-.elif (${EMACS_PORT_NAME} == "emacs21")
-EMACS_NAME=		emacs
-EMACS_VER=		21.3
-EMACS_MAJOR_VER=	21
-EMACS_LIBDIR?=		share/${EMACS_NAME}
-EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs
-EMACS_COMMON_PORT=	NO
-EMACS_HAS_MULE=		YES
-EMACS_NO_SUBDIRSEL=	NO
-.if (${EMACS_MASTERDIR_PKGFILES} == "YES")
-COMMENTFILE?=		${PKGDIR}/pkg-comment.${EMACS_PORT_NAME}
-DESCR?=                 ${PKGDIR}/pkg-descr.${EMACS_PORT_NAME}
-PLIST?=                 ${PKGDIR}/pkg-plist.${EMACS_PORT_NAME}
-.endif
-
 # Emacs-22.x
-.elif (${EMACS_PORT_NAME} == "emacs22")
+.if (${EMACS_PORT_NAME} == "emacs22")
 EMACS_NAME=		emacs
-EMACS_VER=		22.0.50
+EMACS_VER=		22.2
 EMACS_MAJOR_VER=	22
 EMACS_LIBDIR?=		share/${EMACS_NAME}
 EMACS_LIBDIR_WITH_VER?=	share/${EMACS_NAME}/${EMACS_VER}
-EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs-devel
+EMACS_PORTSDIR=		${PORTSDIR}/editors/emacs
 EMACS_COMMON_PORT=	NO
 EMACS_HAS_MULE=		YES
 EMACS_NO_SUBDIRSEL=	NO
