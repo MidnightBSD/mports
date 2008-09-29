@@ -2,6 +2,7 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
@@ -11,16 +12,15 @@ CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	keramida@ceid.upatras.gr
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros
 LICENSE=	gpl2
-
 
 CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-[0-9]* xemacs-devel-[0-9]* \
 		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]*
 
-EMACS_VER=	22.1
+EMACS_VER=	22.2
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
@@ -40,12 +40,9 @@ INFO=		ada-mode autotype calc ccmode cl dired-x ebrowse ediff \
 		tramp url vip viper widget woman
 
 LATEST_LINK=	emacs
-
-
 WANT_GNOME=	yes
 
 .include <bsd.port.pre.mk>
-
 
 .if !defined(WITHOUT_X11)
 .if defined(WITHOUT_GTK)
@@ -56,7 +53,6 @@ LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		png.5:${PORTSDIR}/graphics/png
 .endif
-
 
 .if !defined(WITHOUT_X11)
 .if !defined(WITHOUT_GTK)
@@ -78,12 +74,6 @@ CONFIGURE_ARGS=		--with-gtk
 
 .if defined(WITHOUT_XIM)
 CONFIGURE_ARGS+=	--without-xim
-.endif
-
-
-
-.if ${ARCH} == "ia64"
-BROKEN=	Emacs 22.X does not currently build on ia64
 .endif
 
 .include <bsd.port.post.mk>
