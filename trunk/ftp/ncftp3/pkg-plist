@@ -1,8 +1,8 @@
-@comment $FreeBSD: ports/ftp/ncftp3/pkg-plist,v 1.14 2002/08/04 05:38:32 obrien Exp $
+@comment $FreeBSD: ports/ftp/ncftp3/pkg-plist,v 1.15 2008/08/27 14:31:01 obrien Exp $
 lib/libStrn.so
 lib/libStrn.so.1
 lib/libncftp.so
-lib/libncftp.so.2
+lib/libncftp.so.3
 lib/libsio.so
 lib/libsio.so.5
 bin/%%NCFTP%%
