@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/ftp/Makefile,v 1.19 2008/04/12 00:23:09 laffer1 Exp $
+# $MidnightBSD: mports/ftp/Makefile,v 1.20 2008/04/12 00:31:19 laffer1 Exp $
 #
 
     COMMENT = File Transfer Protocol 
@@ -16,6 +16,7 @@
     SUBDIR += php5-curl
     SUBDIR += php5-ftp
     SUBDIR += proftpd
+    SUBDIR += tnftp
     SUBDIR += wget
     SUBDIR += wu-ftpd
     SUBDIR += wu-ftpd+ipv6
