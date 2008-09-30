@@ -2,14 +2,15 @@
 # Date created:				27 May 2005
 # Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/lcab/Makefile,v 1.2 2007/08/01 01:50:07 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lcab/Makefile,v 1.3 2008/03/12 01:36:31 laffer1 Exp $
 # $FreeBSD: ports/archivers/lcab/Makefile,v 1.2 2006/10/17 10:07:04 danfe Exp $
 #
 
 PORTNAME=	lcab
 DISTVERSION=	1.0b12
 CATEGORIES=	archivers
-MASTER_SITES=	http://lcab.move-to-cork.com/sources/
+MASTER_SITES=	http://lcab.move-to-cork.com/sources/ \
+		http://coding.wooyayhoopla.be/lcab/sources/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft .CABinet file creator
