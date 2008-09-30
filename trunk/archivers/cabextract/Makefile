@@ -2,7 +2,7 @@
 # Date Created:				30 November 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/cabextract/Makefile,v 1.1 2007/08/23 02:17:35 laffer1 Exp $
+# $MidnightBSD: mports/archivers/cabextract/Makefile,v 1.2 2008/03/11 23:40:21 laffer1 Exp $
 # $FreeBSD: ports/archivers/cabextract/Makefile,v 1.18 2007/08/07 18:21:25 sobomax Exp $
 #
 
@@ -15,7 +15,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A program to extract Microsoft cabinet (.CAB) files
 LICENSE=	gpl2
 
-USE_GETOPT_LONG=	yes
 GNU_CONFIGURE=	yes
 
 MANLANG=	"" ja
