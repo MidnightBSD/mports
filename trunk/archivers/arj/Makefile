@@ -2,13 +2,13 @@
 # Date created:			9 April 2002
 # Whom:				Konstantin Reznichenko <kot@premierbank.dp.ua>
 #
-# $MidnightBSD: mports/archivers/arj/Makefile,v 1.2 2008/02/22 03:51:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/arj/Makefile,v 1.3 2008/03/11 23:40:21 laffer1 Exp $
 # $FreeBSD: ports/archivers/arj/Makefile,v 1.21 2006/05/03 05:14:00 edwin Exp $
 #
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source ARJ
 LICENSE=	unknown
 
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 USE_GMAKE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_WRKSRC=	${WRKSRC}/gnu
