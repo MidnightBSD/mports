@@ -3,19 +3,19 @@
 # Date created:			  4 Nov 1994
 # Whom:				  ache
 #
-# $MidnightBSD: mports/ftp/ncftp3/Makefile,v 1.1 2007/04/02 00:45:56 laffer1 Exp $
+# $MidnightBSD: mports/ftp/ncftp3/Makefile,v 1.2 2008/04/12 00:12:05 laffer1 Exp $
 # $FreeBSD: ports/ftp/ncftp3/Makefile,v 1.108 2006/09/10 07:49:34 obrien Exp $
 #
 
 PORTNAME=	ncftp
-PORTVERSION=	3.2.1
+PORTVERSION=	3.2.2
 PORTREVISION?=	0
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/
 DISTNAME=	ncftp-${PORTVERSION}-src
 
 PATCH_SITES=	ftp://ftp.kame.net/pub/kame/misc/
-PATCHFILES=	ncftp-321-v6-20070822.diff.gz
+PATCHFILES=	ncftp-322-v6-20080821.diff.gz
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -40,7 +40,7 @@ MAN1=		${LATEST_LINK}.1 ncftpbatch.1 ncftpget.1 ncftpls.1 ncftpput.1 \
 		ncftpspooler.1
 MAN3=		Strn.3
 
-LIBNCFTP=	libncftp.so.2
+LIBNCFTP=	libncftp.so.3
 LIBSIO=		libsio.so.5
 LIBSTRN=	libStrn.so.1
 
