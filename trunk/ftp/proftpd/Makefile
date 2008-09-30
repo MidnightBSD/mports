@@ -2,12 +2,12 @@
 # Date created:		26 January 1998
 # Whom:			Stephane Legrand
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.2 2007/11/14 23:31:50 laffer1 Exp $
 # $FreeBSD: ports/ftp/proftpd/Makefile,v 1.121 2007/10/08 19:22:45 beech Exp $
 #
 
 PORTNAME=	proftpd
-DISTVERSION=	1.3.1
+DISTVERSION=	1.3.2rc2
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		ftp://ftp.fastorama.com/mirrors/ftp.proftpd.org/distrib/source/ \
@@ -16,8 +16,12 @@ MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		ftp://proftpd.networkedsystems.co.uk/distrib/source/ \
 		http://mirrors.ibiblio.org/pub/mirrors/proftpd/distrib/source/ \
 		http://www.mirrorservice.org/sites/ftp.proftpd.org/distrib/source/ \
-		CENKES:clam
+		http://www.alaskaparadise.com/freebsd/:clam \
+		http://www.smartftp.com/oss/proftpd/:digest \
+		LOCAL/beech:clam \
+		LOCAL/beech:digest
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Highly configurable ftp daemon
@@ -31,7 +35,10 @@ PORTDOCSdoc=	Configuration.html faq.html
 PORTDOCScontrib=mod_ifsession.html mod_radius.html mod_rewrite.html \
 		mod_tls.html mod_wrap2.html mod_wrap2_file.html mod_wrap2_sql.html \
 		mod_ban.html mod_quotatab_radius.html ftpasswd.html
-PORTDOCS=	${PORTDOCSdoc} ${PORTDOCScontrib}
+PORTDOCSreadme=	README README.DSO README.FreeBSD README.IPv6 README.LDAP README.PAM \
+		README.capabilities README.classes README.facl README.modules \
+		README.ports RELEASE_NOTES
+PORTDOCS=	${PORTDOCSdoc} ${PORTDOCScontrib} ${PORTDOCSreadme}
 
 PORTEXAMPLES=	ASCII.html CreateHome.html Filters.html SQL.html Umask.html \
 		AuthFiles.html DNS.html Globbing.html SSH.html Upgrade.html \
@@ -44,38 +51,36 @@ PORTEXAMPLES=	ASCII.html CreateHome.html Filters.html SQL.html Umask.html \
 
 USE_GMAKE=	yes
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 GNU_CONFIGURE=	yes
 
 USE_RC_SUBR=	proftpd.sh
 
-CONFIGURE_ARGS=	--localstatedir=/var/run \
+CONFIGURE_ARGS=	--with-pkgconfig=libdata/pkgconfig \
+		--localstatedir=/var/run \
 		--sysconfdir=${PREFIX}/etc \
-		--enable-builtin-getnameinfo \
 		--disable-sendfile
-
-OPTIONS=	IPV6 "Use IPv6" off \
+OPTIONS=	BAN "Include mod_ban (Requires CTRLS)" off \
+		CLAMAV "Include mod_clamav" off \
+		CTRLS "Include controls" off \
+		DIGEST "Include mod_digest" off \
+		IFSESSION "Include mod_ifsession" on \
+		IPV6 "Use IPv6" off \
 		LDAP "Use LDAP" off \
 		LDAP_TLS "Use LDAP TLS (Requires LDAP, OPENSSL)" off\
-		MYSQL "Use MySQL" off \
-		PGSQL "Use Postgres" off \
+		MYSQL "MySQL auth (Can be combined with PGSQL)" off \
+		NLS "Use nls (builds mod_lang)" off \
 		OPENSSL "Include mod_tls" on \
+		PGSQL "Postgres auth (Can be combined with MYSQL)" off \
 		QUOTA "Include mod_quota" off \
-		IFSESSION "Include mod_ifsession" on \
-		README "Include mod_readme" on \
+		QUOTATAB_RADIUS "include mod_quotatab_radius" off \
+		RADIUS "Include mod_radius" on \
 		RATIO "Include mod_ratio" on \
-		CTRLS "Include controls" off \
+		README "Include mod_readme" on \
 		REWRITE "Include mod_rewrite" on \
 		WRAP "Include mod_wrap2" on \
 		WRAP_FILE "Include mod_wrap2_file" off \
-		WRAP_SQL "Include mod_wrap2_sql" off \
-		RADIUS "Include mod_radius" on \
-		QUOTATAB_RADIUS "include mod_quotatab_radius" off \
-		BAN "Include mod_ban (Requires CTRLS)" off \
-		NLS "Use nls (builds mod_lang)" off \
-		CYRFIX "Patch to fix cyrillic encoding" off \
-		CLAMAV "Include mod_clamav " off
-
+		WRAP_SQL "Include mod_wrap2_sql" off
 MODULES?=
 LIBDIRS?=
 INCLUDEDIRS?=
@@ -149,10 +154,6 @@ USE_GETTEXT=yes
 PROFTPD_LIBS+=	-lintl -L${LOCALBASE}/lib
 .endif
 
-.if defined (WITH_CYRFIX)
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-cyrillic-fix-netio.c
-.endif
-
 #allow user to override
 MODULES?=	mod_ratio:mod_readme:mod_rewrite:mod_wrap2:mod_ifsession
 
@@ -186,9 +187,9 @@ PLIST_FILES+=	include/proftpd/mod_sql.h
 .endif
 
 .if defined(WITH_OPENSSL)
-CFLAGS+=	-DHAVE_OPENSSL
 .include <${PORTSDIR}/Mk/bsd.openssl.mk>
-PROFTPD_LIBS+=	-lssl -lcrypto -L${LOCALBASE}/lib
+CFLAGS+=	-DHAVE_OPENSSL -I${OPENSSLINC}
+PROFTPD_LIBS+=	-lssl -lcrypto -L${OPENSSLLIB}
 MODULES:=${MODULES}:mod_tls
 .endif
 
@@ -212,13 +213,23 @@ MODULES:=${MODULES}:mod_quotatab_sql
 .endif
 
 .if defined(WITH_CLAMAV)
-#http://www.uglyboxindustries.com/mod_clamav_new.c
-DISTFILES+=	mod_clamav-0.5.tar.bz2:clam
+#http://www.thrallingpenguin.com/resources/mod_clamav-0.10.tar.bz2
+DISTFILES+=	mod_clamav-0.10.tar.bz2:clam
+EXTRACT_ONLY+=	mod_clamav-0.10.tar.bz2
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-modules_mod_xfer.c
 USE_CLAMAV=	yes
 MODULES:=${MODULES}:mod_clamav
-LIB_DEPENDS+=	clamav.2:${PORTSDIR}/security/clamav
+LIB_DEPENDS+=	clamav.5:${PORTSDIR}/security/clamav
 INCLUDEDIRS:=${INCLUDEDIRS}:${LOCALBASE}/include
 LIBDIRS:=${LIBDIRS}:${LOCALBASE}/lib
+PLIST_SUB=	CLAMAV=""
+.else
+PLIST_SUB=	CLAMAV="@comment "
+.endif
+
+.if defined(WITH_DIGEST)
+DISTFILES+=	mod_digest.c:digest
+MODULES:=${MODULES}:mod_digest
 .endif
 
 # mod_ifsession should be the last item in the modules list
@@ -245,7 +256,10 @@ MODULES!=${ECHO} ${MODULES} | ${SED} -e 's,^:,,' -e 's,:$$,,'
 
 post-extract:
 .if defined(WITH_CLAMAV)
-	@${MV} ${WRKDIR}/mod_clamav_new.c ${WRKSRC}/modules/mod_clamav.c
+	@${CP} ${WRKDIR}/mod_clamav-0.10/mod_clamav.* ${WRKSRC}/contrib
+.endif
+.if defined(WITH_DIGEST)
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/mod_digest.c ${WRKSRC}/modules/
 .endif
 
 post-patch:
@@ -274,6 +288,7 @@ post-install:
 	@${INSTALL} -d ${DOCSDIR}/
 	@cd ${WRKSRC}/doc/ && ${INSTALL_DATA} ${PORTDOCSdoc} ${DOCSDIR}/
 	@cd ${WRKSRC}/doc/contrib && ${INSTALL_DATA} ${PORTDOCScontrib} ${DOCSDIR}/
+	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCSreadme} ${DOCSDIR}/
 .endif
 .if !defined(NOPORTEXAMPLES)
 	@${INSTALL} -d ${EXAMPLESDIR}/
