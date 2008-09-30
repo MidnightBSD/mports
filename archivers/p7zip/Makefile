@@ -2,12 +2,13 @@
 # Date created:			Sun Jul 18 15:07:26 CEST 2004
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.4 2008/03/12 01:45:58 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.5 2008/09/09 21:26:23 crash Exp $
 # $FreeBSD: ports/archivers/p7zip/Makefile,v 1.29 2007/07/17 07:10:19 sat Exp $
 #
 
 PORTNAME=	p7zip
 PORTVERSION=	4.58
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
@@ -19,7 +20,7 @@ LICENSE=	agg
 USE_BZIP2=	yes
 MAKEFILE=	makefile
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
-MAN1=		7z.1 7za.1 7zr.1
+MAN1=		7z.1 7za.1 7zr.1 p7zip.1
 
 DLLDIR=		${PREFIX}/libexec/p7zip
 PLIST_SUB=	MODULES=""
@@ -33,7 +34,7 @@ ALL_TARGET=	7za 7zr sfx
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 CFLAGS+=	-fPIC
 .endif
 
@@ -49,6 +50,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|/usr/share/doc/p7zip/DOCS|${DOCSDIR}|' \
 		${WRKSRC}/man1/*
 	${MV} ${WRKSRC}/README ${WRKSRC}/DOCS/readme.unix
+	${MV} ${WRKSRC}/contrib/gzip-like_CLI_wrapper_for_7z/man1/p7zip.1 ${WRKSRC}/man1/
 
 do-install:
 	${INSTALL} -d ${DLLDIR}/
