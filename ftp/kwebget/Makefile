@@ -2,13 +2,13 @@
 # Date created:				21 September 2001
 # Whom:					David <ddavid_3@yahoo.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.2 2008/09/30 21:21:24 laffer1 Exp $
 # $FreeBSD: ports/ftp/kwebget/Makefile,v 1.14 2006/05/07 11:09:19 edwin Exp $
 #
 
 PORTNAME=	kwebget
 PORTVERSION=	0.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	ftp kde
 MASTER_SITES=	http://www.kpage.de/download/
 DIST_SUBDIR=	KDE
