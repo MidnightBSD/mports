@@ -2,7 +2,7 @@
 # Date created:				21 September 2001
 # Whom:					David <ddavid_3@yahoo.com>
 #
-# $MidightBSD$
+# $MidnightBSD$
 # $FreeBSD: ports/ftp/kwebget/Makefile,v 1.14 2006/05/07 11:09:19 edwin Exp $
 #
 
@@ -15,6 +15,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A KDE frontend to wget
+LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/bin/wget:${PORTSDIR}/ftp/wget
 
