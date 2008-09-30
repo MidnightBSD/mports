@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:	pbzip2
-# Date created:			Dec 7, 2004
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.2 2008/02/22 04:34:32 laffer1 Exp $
-# $FreeBSD: ports/archivers/pbzip2/Makefile,v 1.10 2007/03/30 05:49:40 sat Exp $
-#
+# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.3 2008/03/12 01:45:58 laffer1 Exp $
 
 PORTNAME=	pbzip2
 PORTVERSION=	1.0.2
@@ -14,8 +7,7 @@ MASTER_SITES=	http://compression.ca/pbzip2/ CENKES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Parallel BZIP2
-LICENSE=	unknown
-#bsdish...
+LICENSE=	bzip2
 PLIST_FILES=	bin/pbzip2
 
 MAN1=	pbzip2.1
