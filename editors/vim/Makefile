@@ -4,7 +4,7 @@
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
 # $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.10 2008/09/03 01:25:34 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.11 2008/09/11 19:15:04 crash Exp $
 #
 
 PORTNAME?=	vim
@@ -48,7 +48,7 @@ OPTIONS=	PERL "Enable Perl interpreter" on \
 		XTERM_SAVE "" off
 .endif
 
-CONFLICTS=	vim6*-* vim*-lite-*
+CONFLICTS?=	vim-lite-[0-9]*
 USE_BZIP2=	yes
 DIST_SUBDIR=	vim
 WRKSRC=		${WRKDIR}/vim${PORTVERSION:C/\.[0-9]*$//:S/.//g}/src
