@@ -2,17 +2,16 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.4 2007/10/31 19:22:47 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.5 2008/02/22 04:45:53 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
 PORTNAME=	unzip
 PORTVERSION=	5.52
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES?=	archivers
-#MASTER_SITES=	ftp://ftp.info-zip.org/pub/infozip/src/ \
-MASTER_SITES=	${MASTER_SITE_TEX_CTAN}
-MASTER_SITE_SUBDIR=	tools/zip/info-zip/src
+MASTER_SITES= ${MASTER_SITE_SOURCEFORGE}
+MASTER_SITE_SUBDIR=	infozip
 DISTNAME=	${PORTNAME}552
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -25,7 +24,6 @@ MAKE_ENV=	LOCAL_UNZIP="${CFLAGS} -DUSE_UNSHRINK"
 PLIST_FILES=	bin/unzip bin/funzip bin/unzipsfx bin/zipgrep bin/zipinfo
 PORTDOCS=	README WHERE
 MAN1=		funzip.1 unzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
-#EXTRACT_SUFX=	.tgz
 CFLAGS+=      -D_FILE_OFFSET_BITS=64
 
 .if defined(WITH_UNZIP_UNREDUCE)
