@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.43 2008/06/18 03:36:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.44 2008/09/28 20:06:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -407,7 +407,8 @@ MASTER_SITE_FEDORA_LINUX+= \
 	ftp://ftp.gtlib.gatech.edu/pub/fedora.redhat/linux/core/%SUBDIR%/ \
 	http://mirror.cogentco.com/pub/linux/fedora/linux/core/%SUBDIR%/ \
 	http://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/core/%SUBDIR%/ \
-	ftp://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/core/%SUBDIR%/
+	ftp://mirrors.tummy.com/pub/fedora.redhat.com/fedora/linux/core/%SUBDIR%/ \
+	ftp://ftp1.midnightbsd.org/pub/mirrors/fedora/core/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_FESTIVAL)
