@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.27 2008/06/29 23:03:11 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.28 2008/09/26 17:40:53 laffer1 Exp $
 #
 
     COMMENT = Editors
@@ -31,7 +31,6 @@
     SUBDIR += textedit.app
     SUBDIR += vim
     SUBDIR += vim-lite
-    SUBDIR += vim6
     SUBDIR += xemacs
     SUBDIR += xemacs-packages
     SUBDIR += xenon
