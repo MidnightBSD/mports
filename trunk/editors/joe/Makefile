@@ -2,12 +2,12 @@
 # Date created:		01 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.6 2008/04/25 23:50:42 ctriv Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.7 2008/05/20 17:58:02 laffer1 Exp $
 #
 
 PORTNAME=	joe
 PORTVERSION=	3.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}-editor
@@ -17,12 +17,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Joe's Own Editor
 LICENSE=	gpl
 
-# '
-
 BUILD_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 RUN_DEPENDS=	aspell:${PORTSDIR}/textproc/aspell
 
-CONFLICTS=	joe-2.* jupp
+CONFLICTS=	jupp-[0-9]*
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
