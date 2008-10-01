@@ -3,12 +3,12 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.5 2007/11/13 19:45:45 ctriv Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.6 2008/04/29 05:01:20 laffer1 Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
 PORTNAME=		bash
-PATCHLEVEL=		33
+PATCHLEVEL=		39
 PORTVERSION=		3.2.${PATCHLEVEL:S/^0//g}
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
@@ -30,10 +30,7 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
 LICENSE=		gpl2
 
-# '
-
 IGNOREFILES=		FAQ
-CONFLICTS=		bash-[0-24-9].*
 
 OPTIONS=	IMPLICITCD       "Add support for implicit cd." On \
 		COLONBREAKSWORDS "Have word completion break words on ':'." On \
