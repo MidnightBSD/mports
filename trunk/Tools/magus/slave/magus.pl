@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.25 2008/09/22 18:28:08 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.26 2008/10/01 20:12:20 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,14 +39,13 @@ use FindBin;
 use lib "$FindBin::Bin/../../lib"; 
 
 use Magus;
+use Magus::App::Slave::Worker;
 
 use Sys::Syslog;
 use POSIX qw(setsid :sys_wait_h);
 use Getopt::Std qw(getopts);
 use File::Path qw(rmtree);
 
-# Load some things before we chroot.
-use YAML::Dumper;
 
 
 =head1 magus.pl
@@ -90,17 +89,16 @@ $SIG{CHLD} = sub {
   while (($pid = waitpid(-1, WNOHANG)) > 0) {
     # we don't care about children that aren't magus.pls (make and what not also go thru this).
     my $info = delete $Children{$pid} || return;
-    
+    push(@DeadChildren, { lock => $info->{lock} });
     $Children--;
     $WorkerIDs{$info->{worker_id}} = 1;
-    push(@DeadChildren, {lock => $info->{lock}, pid => $pid});
   }
 };
 
 $SIG{INT} = sub { warn "Parent caught SIGINT"; kill_children(); exit 0 };
 
 
-=pod debug 
+#=pod debug 
 
 sub X {
   use Data::Dumper;
@@ -108,9 +106,9 @@ sub X {
   print Dumper({PID => $$, ChildrenCnt => $Children, Children => \%Children, Dead => \@DeadChildren, IDs => \%WorkerIDs});
 }
 
-=cut
+#=cut
 
-sub X { }
+#sub X { }
     
 our (%opts, $run);
 getopts('fvj:', \%opts);
@@ -119,8 +117,6 @@ $opts{j} ||= 1;
 %WorkerIDs = map { $_ => 1 } 1 .. $opts{j};
 
 report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
-
-clean_up_reports_dir();
 
 daemonize() unless $opts{f};
 
@@ -209,175 +205,13 @@ sub start_child {
     X();
     return;
   } elsif (defined($pid)) {
-    $SIG{INT}  = sub { die "CAUGHT SIGINT\n"; };
-    $SIG{CHLD} = 'DEFAULT';
-    
-    eval { init_results_file(); };
-    
-    if ($@) {
-      # not good.
-      report(alert => "Unable to init reporting system for child! $@");
-      exit(72);
-    }
-
-    eval { run_test($lock, $worker_id); };
-
-    handle_exception($@, $lock) if $@;
-    
+    Magus::App::Slave::Worker->run(lock => $lock, worker_id => $worker_id); 
     exit(0);
   } else {
     die "Couldn't fork: $!\n";
   }
 }
 
-=head2 run_test($lock)
-
-Run the entire test process on the given port (well, the given lock, but the
-port is at C<< $lock->port >>).  
-
-=cut
-
-sub run_test {
-  my ($lock, $worker_id) = @_;
-
-  my $port = $lock->port;
-  $port->note_event(info => "Test started.");
- 
-  my $chroot = Magus::Chroot->new(
-    workerid => $worker_id,
-    tarball  => $Magus::Config{ChrootTarBall},
-  );
-
-  copy_dep_pkgfiles($lock, $chroot);
-
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
-
-  
-  $chroot->do_chroot();
-  chdir($port->origin);
-    
-  my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
-  report('info', "Building $port");
-  my $results = $test->run;
-  
-  $results->{pkgfile} = $from;
-    
-  store_results($results);
-}
-
-
-=head2 copy_dep_pkgfiles($lock, $chroot)
-
-Copies the package files for all the dependancies of the current port into
-the package dir in the chroot dir.
-
-=cut
-
-sub copy_dep_pkgfiles {
-  my ($lock, $chroot) = @_;
-  
-  foreach my $depend ($lock->port->all_depends) {
-    if ($depend->status eq 'pass' || $depend->status eq 'warn') {
-      # There should be a package that we can use to install the port.
-      copy_pkgfile($depend, $chroot);
-      next;
-    }
-    
-    die "Port was scheduled as ready to build, but $depend had not been built successfuly.\n";
-  }
-  
-  return 1;
-}
-    
-
-=head2 copy_pkgfile($port, $chroot)
-
-Copy a single package file from the master dir to the chroot package dir.
-
-=cut
-      
-sub copy_pkgfile {
-  my ($port, $chroot) = @_;
-  
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $run  = $port->run->id;
-  my $dest = join('/', $chroot->root, $chroot->packages, 'All');
-  
-  my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$run/$file $dest";
-  report('debug', "downloading: $run/$file");
-  
-  my $out = `$cmd 2>&1`;
-  
-  if ($? != 0) {
-    die "$cmd returned non-zero: $out\n";
-  }
-  
-}  
-  
-
-=head2 upload_pkgfile($port, $file)  
-  
-Upload the built package of the current port to the master dir.
-
-=cut
-
-sub upload_pkgfile {
-  my ($port, $from) = @_;
-
-  my $run  = $port->run->id;
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-          
-  my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
-  report('debug', "uploading: $run/$file");
-  
-  my $out = `$cmd 2>&1`;
-
- # if ($LastExit != 0 ) {
- #   die "$cmd returned non-zero: $out\n";
- # }
-  
-  # we should really check the error message, but we won't handle the logging of the exception correctly anyways..
-  # so for now, we just assume things go right.  I will need to look at this again.
-
-}  
-
-
-=head2 insert_results($port, $results)
-
-Takes a port and a the data structure from Magus::PortTester, and then
-inserts the results into the database, referencing the current port.
-
-=cut  
-
-
-sub insert_results {
-  my ($port, $results) = @_;
-
-  report('info', "Inserting results for $port; summary: $results->{summary}");
-  
-  $port->status($results->{'summary'});
-  $port->update;  
-  
-  my %type_conversion = (skip => 'skip', warning => 'warn', error => 'fail');
-  
-  foreach my $type (qw(skip warning error)) {
-    next unless $results->{$type . 's'};
-    
-    foreach my $sr (@{$results->{$type . 's'}}) {
-      $port->note_event($type_conversion{$type} => $sr->{msg});
-    }
-  }  
-  
-  if ($results->{log}) {
-    Magus::Log->insert({ port => $port, data => $results->{log}->{data}});
-  }
-  
-  if ($port->status eq 'pass' || $port->status eq 'warn') {
-    upload_pkgfile($port, $results->{pkgfile});
-  }
-  
-}
 
 =head2 daemonize()
 
@@ -427,65 +261,6 @@ Logs the current
 }
 
 
-=head2 handle_exception($error, $lock)
-
-Report an exception for the given lock.
-
-=cut
-
-sub handle_exception {
-  my ($error, $lock) = @_;
-
-  die $error if $error =~ m/DBI/;
-  
-  return if $error =~ m/SIGINT/;
-      
-  report('err', "Exception thrown building %s: %s", $lock->port, $error);
-  
-  store_results({ exception => $error });
-}
-
-
-
-=head2 init_results_file()
-
-Prepares the results file for writing.  Run this before you chroot.
-
-=cut
-
-{
-  my $fh; # this var is private to init_results_file() and store_results()
-  sub init_results_file {
-    my $file = "$Magus::Config{SlaveResultsDir}/$$";
-  
-    if (! -d $Magus::Config{SlaveResultsDir} && !mkdir($Magus::Config{SlaveResultsDir})) {
-      die "Couldn't mkdir $Magus::Config{SlaveResultsDir}: $!";
-    }
-    
-    open($fh, '>', $file) || die "Couldn't open $file: $!";
-    
-    return;
-  }
-    
-
-=head3 store_results($ref)
-
-Dump the hashref into a file that the parent can find.
-
-=cut
-
-  sub store_results {
-    my ($ref) = @_;
-  
-    my $yaml = YAML::Dump($ref);
-    
-  
-    print $fh $yaml;
-    close($fh);
-    undef $fh;
-  }
-}
-
 
 =head3 process_dead_children(@remains)
 
@@ -498,35 +273,6 @@ sub process_dead_children {
   while (@DeadChildren) {
     my $corpse = shift @DeadChildren;
       
-    my $port = $corpse->{lock}->port;
-    my $file = "$Magus::Config{SlaveResultsDir}/$corpse->{pid}";
-    
-    my $results;
-    
-    # if there's no file, then there are no results to store, the child
-    # probably exited from SIGINT, or maybe a dropped DB.
-    if (-e $file) {
-      eval {
-        $results = YAML::LoadFile($file)
-      };
-      
-      # unlink($file) || report(err => "Couldn't unlink $file: $!);
-      
-      if ($@) {
-        report(err => "Unable to load YAML results file (pid: $corpse->{pid}): $@");
-        $port->note_event(internal => "Unable to load YAML results file: $@");
-        $port->status('internal');
-        $port->update;      
-      } elsif ($results->{exception}) {
-        report(err => "Exception from pid $corpse->{pid}: $results->{exception}");
-        $port->note_event(internal => $results->{exception});
-        $port->status('internal');
-        $port->update;
-      } else {
-        insert_results($port, $results);
-      }
-    }
-    
     $corpse->{lock}->delete;
   }
 }      
@@ -626,17 +372,5 @@ sub kill_children {
 }
 
     
-=head2 clean_up_reports_dir()
-
-Nuke everything in the reports dir.
-
-=cut
-
-sub clean_up_reports_dir {
-  local $SIG{CHLD} = 'DEFAULT';
-  system("rm $Magus::Config{SlaveResultsDir}/*");
-}
-      
-
 1;
 __END__
