@@ -14,13 +14,20 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.xorg.mk,v 1.3 2007/11/14 18:49:04 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
 
 Xorg_Include_MAINTAINER=	ports@MidnightBSD.org
 Xorg_Pre_Include=		bsd.xorg.mk
+
+#
+# If we're going to build a complete xorg for packages
+#
+.if defined(PACKAGE_BUILDING)
+XORG_COMPLETE=1
+.endif
 
 # Some notes:
 #
