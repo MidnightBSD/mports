@@ -3,7 +3,7 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.6 2008/04/29 05:01:20 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.7 2008/10/01 19:54:15 laffer1 Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
@@ -38,8 +38,10 @@ OPTIONS=	IMPLICITCD       "Add support for implicit cd." On \
 		STATIC_BASH      "Statically link bash." Off \
 		NLS		 "Enable native language support." On \
 		HELP		 "Install builtin help." On \
-		HELPFILES        "Install descrete helpfiles." On 
-		
+		HELPFILES        "Install descrete helpfiles." On
+
+.include <bsd.port.pre.mk>
+
 .if !defined(WITHOUT_IMPLICITCD)
 EXTRA_PATCHES+=		${PATCHDIR}/xpatch-implicitcd
 .endif
@@ -103,8 +105,6 @@ CONFIGURE_ENV=		CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" \
 			YACC="${YACC}"
 
-.include <bsd.port.pre.mk>
-
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/doc/bash.1
 
@@ -115,9 +115,8 @@ post-configure:
 pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
 
-
 post-install:
-	ln -s ${PREFIX}/bin/bash ${PREFIX}/bin/rbash
+	${LN} -s ${PREFIX}/bin/bash ${PREFIX}/bin/rbash
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .if !defined(WITH_INCLUDED_FAQ)
