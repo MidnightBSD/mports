@@ -2,7 +2,7 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.6 2008/03/31 02:02:41 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.7 2008/04/11 20:52:36 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
@@ -11,7 +11,8 @@ PORTVERSION=	${JDK_VERSION}
 PORTREVISION=	6
 CATEGORIES=	java
 MASTER_SITES=	http://www.mirrorservice.org/sites/ftp.blackdown.org/java-linux/JDK-1.4.2/i386/03/ \
-		ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/03/
+		ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/03/ \
+		ftp://ftp1.midnightbsd.org/mirrors/ftp.blackdown.org/JDK-1.4.2/i386/03/
 PKGNAMEPREFIX=	linux-blackdown-
 DISTNAME=	j2sdk-${JDK_VERSION}${JDK_VER_SUFFIX}-linux-i586
 EXTRACT_SUFX=	.bin
