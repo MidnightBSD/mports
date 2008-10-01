@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.24 2008/09/15 18:34:39 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.25 2008/09/22 18:28:08 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -82,6 +82,7 @@ our %Children;
 our $Children = 0;
 our @DeadChildren;
 our %WorkerIDs;
+our $LastExit;
 
 $SIG{CHLD} = sub {
   my $pid;
@@ -89,6 +90,7 @@ $SIG{CHLD} = sub {
   while (($pid = waitpid(-1, WNOHANG)) > 0) {
     # we don't care about children that aren't magus.pls (make and what not also go thru this).
     my $info = delete $Children{$pid} || return;
+    
     $Children--;
     $WorkerIDs{$info->{worker_id}} = 1;
     push(@DeadChildren, {lock => $info->{lock}, pid => $pid});
@@ -126,10 +128,10 @@ while (1) {
   eval { main() };
 
   if ($@) {
-    my $error = $@;
+    local $_ = $@;
     
     # Check ping in case a dropped DB caused some other exception.
-    if (($@ =~ m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i) || !Magus::DBI->ping) {
+    if ((m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i) || !Magus::DBI->ping) {
       while (1) {
         report(err => "Could not connect to database ($@) waiting $Magus::Config{'LostDBWaitPeriod'} seconds");
         sleep($Magus::Config{'LostDBWaitPeriod'});
@@ -140,7 +142,7 @@ while (1) {
 
       # back up to the main() call we go.
     } else {
-      die $error;
+      die $_;
     }
   }
 }
@@ -247,6 +249,10 @@ sub run_test {
   );
 
   copy_dep_pkgfiles($lock, $chroot);
+
+  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
+  my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
+
   
   $chroot->do_chroot();
   chdir($port->origin);
@@ -255,6 +261,8 @@ sub run_test {
   report('info', "Building $port");
   my $results = $test->run;
   
+  $results->{pkgfile} = $from;
+    
   store_results($results);
 }
 
@@ -304,30 +312,34 @@ sub copy_pkgfile {
   if ($? != 0) {
     die "$cmd returned non-zero: $out\n";
   }
+  
 }  
   
 
-=head2 upload_pkgfile($port, $chroot)  
+=head2 upload_pkgfile($port, $file)  
   
 Upload the built package of the current port to the master dir.
 
 =cut
 
 sub upload_pkgfile {
-  my ($port, $chroot) = @_;
+  my ($port, $from) = @_;
 
-  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
-  my $from = join('/', $chroot->root, $chroot->packages, 'All', $file);
   my $run  = $port->run->id;
+  my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
           
   my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
   report('debug', "uploading: $run/$file");
   
   my $out = `$cmd 2>&1`;
 
-  if ($? != 0) {
-    die "$cmd returned non-zero: $out\n";
-  }
+ # if ($LastExit != 0 ) {
+ #   die "$cmd returned non-zero: $out\n";
+ # }
+  
+  # we should really check the error message, but we won't handle the logging of the exception correctly anyways..
+  # so for now, we just assume things go right.  I will need to look at this again.
+
 }  
 
 
@@ -360,6 +372,11 @@ sub insert_results {
   if ($results->{log}) {
     Magus::Log->insert({ port => $port, data => $results->{log}->{data}});
   }
+  
+  if ($port->status eq 'pass' || $port->status eq 'warn') {
+    upload_pkgfile($port, $results->{pkgfile});
+  }
+  
 }
 
 =head2 daemonize()
@@ -554,7 +571,7 @@ sub get_current_run {
     }
 
     report(debug => "Deleting old $dir/mports");
-    rmtree('$dir/mports');
+    rmtree("$dir/mports");
     
     report(debug => "Extracting %s", $current->tarball);
     system('/usr/bin/tar xf ' . $current->tarball);
