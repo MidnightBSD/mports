@@ -2,14 +2,14 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.7 2008/04/11 20:52:36 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.8 2008/10/01 20:08:17 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}
 PORTREVISION=	6
-CATEGORIES=	java
+CATEGORIES=	java lang
 MASTER_SITES=	http://www.mirrorservice.org/sites/ftp.blackdown.org/java-linux/JDK-1.4.2/i386/03/ \
 		ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/03/ \
 		ftp://ftp1.midnightbsd.org/mirrors/ftp.blackdown.org/JDK-1.4.2/i386/03/
@@ -41,7 +41,7 @@ JDK_VER_SUFFIX=	-03
 DOWNLOAD_DIR=	${PORTNAME:U}-${JDK_VERSION}/i386/03
 ONLY_FOR_ARCHS=	i386 amd64
 
-RESTRICTED=	"License doesn\'t allow binary distribution or distribution with fee"
+RESTRICTED=	License does not allow binary distribution or distribution with fee
 
 APP_HOME=	${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}
 PACKED_JARS=	lib/tools.jar jre/lib/rt.jar jre/lib/jsse.jar jre/lib/charsets.jar jre/lib/ext/localedata.jar jre/lib/plugin.jar jre/javaws/javaws.jar
