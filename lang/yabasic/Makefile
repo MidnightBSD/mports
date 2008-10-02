@@ -2,20 +2,22 @@
 # Date created:		11 Nov 1999
 # Whom:			Frank Gruender
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.1 2007/05/03 07:57:39 laffer1 Exp $
 # $FreeBSD: ports/lang/yabasic/Makefile,v 1.31 2006/05/09 20:52:24 edwin Exp $
 #
 
 PORTNAME=	yabasic
 PORTVERSION=	2.763
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://www.yabasic.de/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet another Basic for Unix and Windows
+LICENSE=	artistic
 
-USE_XLIB=	yes
-USE_BISON=	yes
+USE_XORG=	x11 ice sm xt
+USE_BISON=	build
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
