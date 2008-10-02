@@ -13,7 +13,8 @@ sub run {
   
   eval {
         $self->{port} = $self->{lock}->port;
-        $self->{port}->note_event(info => "Test Started");
+        $self->log->info("Starting test run for $self->{port}");
+	$self->{port}->note_event(info => "Test Started");
 	$self->prep_chroot();
 	$self->inject_depends();
   	$self->run_test();
@@ -62,9 +63,8 @@ sub inject_depends {
 }
 
 sub inject_pkgfile {
-  my ($self) = @_;
+  my ($self, $port) = @_;
   
-  my $port = $self->{port};
   my $chroot = $self->{chroot};
   my $file = sprintf("%s-%s.%s", $port->pkgname, $port->version, $Magus::Config{'PkgExtension'});
   my $run  = $port->run->id;
