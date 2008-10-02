@@ -26,8 +26,12 @@ sub run {
 	} 
 	
 	# we make sure we never have an uncaught exception!
-	my $error;
-	eval { $self->{port}->set_result_internal("Exception thrown building %s: $error", $self->port); };
+	my $error = $@;
+	eval { 
+	  my $port = $self->port;
+	  $self->log->err("Exception thrown building $port: $error");
+	  $port->set_result_internal("Exception thrown: $error");
+        };
   }
 }
 
