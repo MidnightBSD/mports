@@ -7,7 +7,10 @@ use Sys::Syslog;
 sub new {
   my ($class, %args) = @_;
   
-  return bless \%args, $class;
+  my $self = bless \%args, $class;
+  
+  $self->_init;
+  return $self;
 }
 
 sub verbose {
