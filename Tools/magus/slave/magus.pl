@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.26 2008/10/01 20:12:20 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.27 2008/10/01 21:09:15 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -39,6 +39,7 @@ use FindBin;
 use lib "$FindBin::Bin/../../lib"; 
 
 use Magus;
+use Magus::App::Logger;
 use Magus::App::Slave::Worker;
 
 use Sys::Syslog;
@@ -81,7 +82,7 @@ our %Children;
 our $Children = 0;
 our @DeadChildren;
 our %WorkerIDs;
-our $LastExit;
+our $Logger;
 
 $SIG{CHLD} = sub {
   my $pid;
@@ -95,10 +96,10 @@ $SIG{CHLD} = sub {
   }
 };
 
-$SIG{INT} = sub { warn "Parent caught SIGINT"; kill_children(); exit 0 };
+$SIG{INT} = sub { kill_children(); exit 0 };
 
 
-#=pod debug 
+=pod debug 
 
 sub X {
   use Data::Dumper;
@@ -106,9 +107,9 @@ sub X {
   print Dumper({PID => $$, ChildrenCnt => $Children, Children => \%Children, Dead => \@DeadChildren, IDs => \%WorkerIDs});
 }
 
-#=cut
+=cut
 
-#sub X { }
+sub X { }
     
 our (%opts, $run);
 getopts('fvj:', \%opts);
@@ -116,7 +117,9 @@ getopts('fvj:', \%opts);
 $opts{j} ||= 1;
 %WorkerIDs = map { $_ => 1 } 1 .. $opts{j};
 
-report('info', "Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
+$Logger = Magus::App::Logger->new(verbose => $opts{v});
+
+$Logger->info("Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
 
 daemonize() unless $opts{f};
 
@@ -129,7 +132,7 @@ while (1) {
     # Check ping in case a dropped DB caused some other exception.
     if ((m/lost\s+connection/i || m/can't\s+connect/i || m/server\s+shutdown/i || m/gone\s+away/i) || !Magus::DBI->ping) {
       while (1) {
-        report(err => "Could not connect to database ($@) waiting $Magus::Config{'LostDBWaitPeriod'} seconds");
+        $Logger->err("Could not connect to database ($@) waiting $Magus::Config{'LostDBWaitPeriod'} seconds");
         sleep($Magus::Config{'LostDBWaitPeriod'});
         if (Magus::DBI->ping) {
           last;
@@ -147,7 +150,6 @@ while (1) {
 
 sub main {
   my $parentPID = $$;
-  # This isn't right yet. XXX
   
   MAIN: while (1) {
     if (@DeadChildren) {
@@ -161,7 +163,7 @@ sub main {
       if (!$run || !($lock = Magus::Lock->get_ready_lock($run))) {
         # there's no more ports to test, sleep for a while and check again.
         X();
-        report(debug => "No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
+        $Logger->debug("No ports to build, sleeping $Magus::Config{DoneWaitPeriod} seconds.");
         sleep($Magus::Config{DoneWaitPeriod});
         next MAIN;
       }
@@ -169,7 +171,7 @@ sub main {
      
       eval { start_child($lock); };
       if ($@) {
-        report(debug => "Unhandled child exception: $@\n");
+        $Logger->debug("Unhandled child exception: $@\n");
         exit(0) if $$ != $parentPID;
       }
     }
@@ -196,7 +198,7 @@ sub start_child {
   my $pid = fork;
   
   if ($pid) {
-    report(info => "Forked child worker $pid");
+    $Logger->info("Forked child worker $pid");
   
     # parent return
     $Children{$pid} = { lock => $lock, worker_id => $worker_id };
@@ -205,7 +207,11 @@ sub start_child {
     X();
     return;
   } elsif (defined($pid)) {
-    Magus::App::Slave::Worker->run(lock => $lock, worker_id => $worker_id); 
+    Magus::App::Slave::Worker->run(
+      lock 	=> $lock, 
+      worker_id => $worker_id,
+      logger    => $Logger,
+    ); 
     exit(0);
   } else {
     die "Couldn't fork: $!\n";
@@ -220,7 +226,7 @@ Disassociate with our parent process group and run as a daemon.
 =cut
 
 sub daemonize {
-  report('debug', 'daemonizing');
+  $Logger->debug('daemonizing');
   
   my $pid = fork;
   
@@ -234,32 +240,6 @@ sub daemonize {
   # create our own process group
   setsid();
 }
-
-=head2 report($level, $format, ...)
-
-Logs the current      
-
-=cut
-
-{
-  my $is_open = 0;
-
-  sub report {
-    my ($level, @msg) = @_;
-    
-    openlog("magus", "ndelay,pid", "local0") unless $is_open++;
-    
-    syslog($level, @msg);
-
-    if ($opts{v}) {
-      my ($format, @args) = @msg;
-      my $time = localtime;
-      
-      printf "[$time] ($$): $format\n", @args;
-    }    
-  }
-}
-
 
 
 =head3 process_dead_children(@remains)
@@ -290,13 +270,11 @@ sub get_current_run {
   my $current = Magus::Run->latest($Magus::Machine) || return;
   my $tree_id = get_tree_id("$Magus::Config{'SlaveDataDir'}/mports") || 0;
 
-  #report(debug => "latest run: $current, tree id: $tree_id, machine id: " . $Magus::Machine->run);
-  
   if ($current != $Magus::Machine->run || $tree_id != $current) {
     local $SIG{CHLD} = 'DEFAULT';
   
     if ($Children) {
-      report(debug => "Children active, not moving to new run yet.");
+      $Logger->debug("Children active, not moving to new run yet.");
       return;
     }
   
@@ -305,7 +283,7 @@ sub get_current_run {
     
     my $tarball = $current->tarballpath;
     
-    report(debug => "Downloading tree ID $current: $tarball");
+    $Logger->debug("Downloading tree ID $current: $tarball");
  
     my $dir = $Magus::Config{'SlaveDataDir'} || die "SlaveDataDir is not set!\n";
     
@@ -316,15 +294,15 @@ sub get_current_run {
       die "Couldn't fetch $tarball: (exit $?)";
     }
 
-    report(debug => "Deleting old $dir/mports");
+    $Logger->debug("Deleting old $dir/mports");
     rmtree("$dir/mports");
     
-    report(debug => "Extracting %s", $current->tarball);
+    $Logger->debug("Extracting %s", $current->tarball);
     system('/usr/bin/tar xf ' . $current->tarball);
 
     unlink($current->tarball);
         
-    report(debug => "Reloading self.");
+    $Logger->debug("Reloading self.");
     exec($Self, @origARGV);
   }
   
@@ -354,7 +332,7 @@ sub kill_children {
   if ($Children) {
     local $SIG{CHLD} = 'DEFAULT';
 
-    warn "Killing children @{[keys %Children ]}\n";
+    $Logger->debug("Killing children @{[keys %Children ]}\n");
     X();
     kill INT => keys %Children;
     
