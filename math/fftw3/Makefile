@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/math/fftw3/Makefile,v 1.46 2006/07/06 06:34:17 ahze Exp $
 #    $MCom: ports-experimental/math/fftw3/Makefile,v 1.1 2006/03/28 00:08:57 ahze Exp $
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.1 2007/01/25 21:41:17 laffer1 Exp $
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.2 2007/11/14 19:03:25 laffer1 Exp $
 #
 
 PORTNAME=	fftw3
@@ -27,7 +27,7 @@ FFTW3_SUFX=
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_PERL5_BUILD=yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS=	--enable-shared --enable-threads  --build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPLAGS="${PTHREAD_CFLAGS}" \
