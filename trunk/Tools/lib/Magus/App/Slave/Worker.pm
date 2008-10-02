@@ -7,16 +7,16 @@ sub run {
   my ($class, %args) = @_;
   
   local $SIG{CHLD} = 'DEFAULT';
-  local $SIG{INT}  = { die "SIGINT\n" };
+  local $SIG{INT}  = sub { die "SIGINT\n" };
   
   my $self = bless \%args, $class;
   
   eval {
         $self->{port} = $self->{lock}->port;
         $self->{port}->note_event(info => "Test Started");
-	$self->_prep_chroot();
-	$self->_inject_depends();
-  	$self->_run_test();
+	$self->prep_chroot();
+	$self->inject_depends();
+  	$self->run_test();
   	$self->{port}->note_event($self->{port}->status => "Test complete.");
   }; 
   
@@ -26,29 +26,30 @@ sub run {
 	} 
 	
 	# we make sure we never have an uncaught exception!
-	eval { $self->{port}->set_result_internal("Exception thrown: $@"); };
+	my $error;
+	eval { $self->{port}->set_result_internal("Exception thrown building %s: $error", $self->port); };
   }
 }
 
-sub _prep_chroot {
+sub prep_chroot {
   my ($self) = @_;
  
-  report(debug => "Preping chroot $self->{worker_id}");
+  $self->log->debug("Preping chroot $self->{worker_id}");
   
-  $self->{chroot} =  Magus::Chroot->new(
+  $self->{chroot} = Magus::Chroot->new(
     workerid => $self->{worker_id},
     tarball  => $Magus::Config{ChrootTarBall},
   );
 }
 
 
-sub _inject_depends {
+sub inject_depends {
   my ($self) = @_;
   
   foreach my $depend ($self->{port}->all_depends) {
     if ($depend->status eq 'pass' || $depend->status eq 'warn') {
       # There should be a package that we can use to install the port.
-      $self->_inject_pkgfile($depend);
+      $self->inject_pkgfile($depend);
       next;
     }
   
@@ -56,7 +57,7 @@ sub _inject_depends {
   }
 }
 
-sub _inject_pkgfile {
+sub inject_pkgfile {
   my ($self) = @_;
   
   my $port = $self->{port};
@@ -67,7 +68,7 @@ sub _inject_pkgfile {
   
   my $cmd = "/usr/bin/scp $Magus::Config{'PkgfilesRoot'}/$run/$file $dest";
   
-  report('debug', "downloading: $run/$file");
+  $self->log->debug("downloading: $run/$file");
   
   my $out = `$cmd 2>&1`;
   
@@ -77,7 +78,7 @@ sub _inject_pkgfile {
 }  
                                                                                 
                                                              
-sub _run_test {
+sub run_test {
   my ($self) = @_;
   
   my $port = $self->{port};
@@ -102,10 +103,12 @@ sub _run_test {
       chdir($port->origin);
     
       my $test = Magus::PortTest->new(port => $port, chroot => $chroot);
-      report('info', "Building $port");
+
+      $self->log->info("Building $port");
+
       my $results = $test->run;
   
-      $self->_insert_results($results);
+      $self->insert_results($results);
     };
     
     if ($@) {
@@ -113,7 +116,9 @@ sub _run_test {
         exit(0);
       }
       # make sure we get to that exit() down there. 
-      eval { $port->set_result_internal("Exception thrown: $@"); };
+      my $error = $@;
+      $self->log->err("Exception thrown building $port: $error");
+      eval { $port->set_result_internal("Exception thrown: $error"); };
     }
     
     exit(0);
@@ -127,21 +132,37 @@ sub _run_test {
     # process probably changed stuff
     $port->refresh;
     
+    
     if ($port->status eq 'pass' || $port->status eq 'warn') {
-        $self->_upload_pkgfile();
+        $self->upload_pkgfile();
     }
   } else {
     die "Child exited unexpectantly: $?\n";
   }
 }  
 
-
-
-=head2 upload_pkgfile($port, $file)  
+sub insert_results {
+  my ($self, $results) = @_;
   
-Upload the built package of the current port to the master dir. 
-    
-=cut
+  $self->log->info("Inserting results for %s; summary: $results->{summary}", $self->port);
+      
+  $self->port->status($results->{'summary'});
+  $self->port->update;  
+            
+  my %type_conversion = (skip => 'skip', warning => 'warn', error => 'fail');
+                
+  foreach my $type (qw(skip warning error)) {
+    next unless $results->{$type . 's'};
+                          
+    foreach my $sr (@{$results->{$type . 's'}}) {
+      $self->port->note_event($type_conversion{$type} => $sr->{msg});
+    }
+  }  
+                                            
+  if ($results->{log}) {
+    Magus::Log->insert({ port => $self->port, data => $results->{log}->{data}});
+  }
+}
     
 sub upload_pkgfile {
   my ($self) = @_;
@@ -153,7 +174,7 @@ sub upload_pkgfile {
   
   my $cmd = "/usr/bin/scp $from $Magus::Config{'PkgfilesRoot'}/$run/$file";
 
-  report('debug', "uploading: $run/$file");
+  $self->log->debug("uploading: $run/$file");
   
   my $out = `$cmd 2>&1`;
 
@@ -161,6 +182,15 @@ sub upload_pkgfile {
      die "$cmd returned non-zero: $out\n";
   }
 } 
+    
+    
+sub log {
+  return $_[0]->{logger};
+}    
+
+sub port {
+  return $_[0]->{port};
+}
                                    
 
 1;
