@@ -2,12 +2,13 @@
 # Date created:		03 July 1996
 # Whom:			ABURAYER Rewsirow <rewsirow@ff.iij4u.or.jp>
 #
-# $MidnightBSD: mports/astro/luna/Makefile,v 1.1 2007/05/01 23:27:30 laffer1 Exp $
+# $MidnightBSD: mports/astro/luna/Makefile,v 1.2 2007/11/11 00:39:22 laffer1 Exp $
 # $FreeBSD: ports/astro/luna/Makefile,v 1.15 2006/05/03 05:14:05 edwin Exp $
 #
 
 PORTNAME=	luna
 PORTVERSION=	1.9
+PORTREVISION=	1
 CATEGORIES=	astro games
 MASTER_SITES=	ftp://ftp.vector.co.jp/pack/dos/edu/science/space/
 DISTNAME=	luna19s
@@ -20,7 +21,7 @@ LICENSE=	unknown
 EXTRACT_DEPENDS=	lha:${PORTSDIR}/archivers/lha
 
 EXTRACT_CMD=	lha
-EXTRACT_BEFORE_ARGS=	xtfq1w=${WRKDIR}
+EXTRACT_BEFORE_ARGS=	xtfqw=${WRKDIR}
 EXTRACT_AFTER_ARGS=	# empty
 
 NO_WRKSUBDIR=	yes
