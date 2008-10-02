@@ -2,23 +2,21 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.17 2008/07/01 20:21:57 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.18 2008/09/01 02:29:37 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
 PORTVERSION=	5.2.6
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES?=	lang devel www
-MASTER_SITES=	${MASTER_SITE_PHP:S,$,:release,} \
-		http://downloads.php.net/ilia/:rc \
-		http://downloads.php.net/jani/:rc
-MASTER_SITE_SUBDIR=	distributions/:release
-DISTNAME=	php-${PORTVERSION:S/.r/RC/}
+MASTER_SITES=	${MASTER_SITE_PHP}
+MASTER_SITE_SUBDIR=	distributions
+DISTNAME=	php-${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:release
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	PHP Scripting Language (Apache Module and CLI)
+COMMENT?=	PHP Scripting Language
 LICENSE?=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
@@ -26,7 +24,6 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 USE_BZIP2=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf:262
-USE_GETOPT_LONG=yes
 
 CONFIGURE_ARGS=	--enable-versioning \
 		--enable-memory-limit \
@@ -46,6 +43,7 @@ OPTIONS=	CLI "Build CLI version" on \
 		APACHE "Build Apache module" off \
 		DEBUG "Enable debug" off \
 		SUHOSIN "Enable Suhosin protection system (not for jails)" on \
+		MAILHEAD "Enable mail header patch" off \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
 		REDIRECT "Enable force-cgi-redirect support (CGI only)" off \
@@ -64,6 +62,11 @@ PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
 .else
 PLIST_SUB+=	SUHOSIN="@comment "
+.endif
+
+.if defined(WITH_MAILHEAD)
+PATCHFILES+=	php-${PORTVERSION}-mail-header.patch:mail
+PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
 .if !defined(WITHOUT_CLI)
@@ -151,7 +154,7 @@ pre-configure:
 .if defined(WITH_APACHE)
 	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
 	${CP} ${LOCALBASE}/${APACHEETCDIR}/httpd.conf ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
-.endif	
+.endif
 
 post-build:
 	@${ECHO_CMD} "PHP_VER=5" > ${WRKDIR}/php.conf
