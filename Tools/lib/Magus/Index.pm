@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.11 2008/03/08 05:32:56 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.12 2008/03/20 22:23:49 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -86,7 +86,7 @@ sub sync {
       
     if ($dump{is_interactive}) {
       print "\n\tIGNORE set.  Marking as skippped.";
-      $port->set_result_skip(index => IsInteractive => "Port is marked as interactive.");
+      $port->set_result_skip("Port is marked as interactive.");
     }
     
     print "done.\n";
@@ -102,7 +102,7 @@ sub sync {
       
       if (!$depend) {
         warn "\tMissing depend for $port: $_\n";
-        $port->set_result_fail(index => 'NonExistantDepend' => qq(depend "$_" does not exist.));
+        $port->set_result_fail(qq(depend "$_" does not exist.));
         next PORT;
       }
       

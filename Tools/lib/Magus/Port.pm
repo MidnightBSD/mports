@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.17 2008/03/14 19:30:24 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.18 2008/03/25 05:13:26 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -128,74 +128,68 @@ sub _walk {
 }
 
 
-=head2 $port->set_result_pass($phase => $name => $message);
+=head2 $port->set_result_pass($message);
 
-A convience method for setting a port as passed.  Creates one subresult of
-type C<$name>, with message C<$message> in phase C<$phase>.
+A convience method for setting a port as passed.  
 
 =cut
 
 sub set_result_pass {
-  my ($self, $phase, $name, $msg) = @_;
+  my ($self, $msg) = @_;
   
-  $self->_set_result('pass', $phase, $name, $msg);
+  $self->_set_result('pass', $msg);
 }
 
 
-=head2 $port->set_result_skip($phase => $name => $message);
+=head2 $port->set_result_skip($message);
 
-A convience method for setting a port as skipped.  Creates one subresult of
-type C<$name>, with message C<$message> in phase C<$phase>.
+A convience method for setting a port as skipped.  
 
 =cut
 
 sub set_result_skip {
-  my ($self, $phase, $name, $msg) = @_;
+  my ($self, $msg) = @_;
   
-  $self->_set_result('skip', $phase, $name, $msg);
+  $self->_set_result('skip', $msg);
 }
 
 
-=head2 $port->set_result_internal($phase => $name => $message);
+=head2 $port->set_result_internal($message);
 
-A convience method for setting a port as internalled.  Creates one subresult of
-type C<$name>, with message C<$message> in phase C<$phase>.
+A convience method for setting a port as internalled.
 
 =cut
 
 sub set_result_internal {
-  my ($self, $phase, $name, $msg) = @_;
+  my ($self, $msg) = @_;
   
-  $self->_set_result('internal', $phase, $name, $msg);
+  $self->_set_result('internal', $msg);
 }
 
 
-=head2 $port->set_result_fail($phase, $name => $message);
+=head2 $port->set_result_fail($message);
 
-A convience method for setting a port as failed.  Creates one subresult of
-type C<$name>, with message C<$message> in phase C<$phase>.
+A convience method for setting a port as failed. 
 
 =cut
 
 sub set_result_fail {
-  my ($self, $phase, $name, $msg) = @_;
+  my ($self, $msg) = @_;
   
-  $self->_set_result('fail', $phase, $name, $msg);
+  $self->_set_result('fail', $msg);
 }
 
 
 
 sub _set_result {
-  my ($self, $status, $phase, $name, $msg) = @_;
+  my ($self, $status, $msg) = @_;
   
   $self->status($status);
   $self->update;
     
   $self->add_to_events({
     machine   => $Magus::Machine,
-    type  => $status,
     msg   => $msg,
-    phase => $phase,
   });
 }
 
