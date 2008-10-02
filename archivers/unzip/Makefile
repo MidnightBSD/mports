@@ -2,7 +2,7 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.5 2008/02/22 04:45:53 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.6 2008/10/01 00:09:10 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
@@ -16,7 +16,7 @@ DISTNAME=	${PORTNAME}552
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	List, test and extract compressed files in a ZIP archive
-LICENSE=	unknown
+LICENSE=	infozip
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 MAKEFILE=	unix/Makefile
