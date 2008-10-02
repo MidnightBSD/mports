@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.14 2008/07/19 21:25:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.python.mk,v 1.15 2008/07/26 00:02:00 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -310,7 +310,13 @@ PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 .MAKEFLAGS:	PYTHON_VERSION=python${_PYTHON_VERSION}
 
 # Python-2.5
-.if ${PYTHON_VERSION} == "python2.5"
+.if ${PYTHON_VERSION} == "python2.6"
+PYTHON_PORTVERSION?=2.6.0
+PYTHON_PORTSDIR=        ${PORTSDIR}/lang/python26
+PYTHON_REL=                     260
+PYTHON_SUFFIX=          26
+
+.elif ${PYTHON_VERSION} == "python2.5"
 PYTHON_PORTVERSION?=2.5.2
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python25
 PYTHON_REL=			252
@@ -354,6 +360,11 @@ PYTHON_MASTER_SITES=		${MASTER_SITE_PYTHON}
 PYTHON_MASTER_SITE_SUBDIR=	ftp/python/2.5
 PYTHON_DISTFILE=			Python-${PYTHON_PORTVERSION:S/5.b/5b/}.tgz
 PYTHON_WRKSRC=				${WRKDIR}/Python-${PYTHON_PORTVERSION:S/5.b/5b/}
+.elif defined(PYTHON_REL) && ${PYTHON_REL} == 260
+PYTHON_MASTER_SITES=            ${MASTER_SITE_PYTHON}
+PYTHON_MASTER_SITE_SUBDIR=      ftp/python/2.6
+PYTHON_DISTFILE=                        Python-2.6.tar.bz2
+PYTHON_WRKSRC=                          ${WRKDIR}/Python-2.6
 .else
 PYTHON_MASTER_SITES=		${MASTER_SITE_PYTHON}
 PYTHON_MASTER_SITE_SUBDIR=	ftp/python/${PYTHON_PORTVERSION}
