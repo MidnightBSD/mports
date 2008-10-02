@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.27 2008/10/01 21:09:15 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.28 2008/10/02 20:06:35 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -122,6 +122,8 @@ $Logger = Magus::App::Logger->new(verbose => $opts{v});
 $Logger->info("Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
 
 daemonize() unless $opts{f};
+
+create_pid_file();
 
 while (1) {
   eval { main() };
@@ -349,6 +351,21 @@ sub kill_children {
   }
 }
 
+
+=head2 create_pid_file()
+
+Create a pid file at SlavePidFile
+
+=cut
+
+sub create_pid_file {
+  my $fh;
+  my $file = $Magus::Config{SlavePidFile};
+  
+  open($fh, '>', $file) || die "Couldn't open $file: $!\n";
+  print $fh "$$\n";
+  close($fh) || die "Couldn't close $file: $!\n";
+}
     
 1;
 __END__
