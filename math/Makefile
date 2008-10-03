@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.19 2008/06/05 21:52:44 crash Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.20 2008/10/02 14:39:30 laffer1 Exp $
 #
 
     COMMENT = Mathematics
@@ -13,6 +13,7 @@
     SUBDIR += gcalctool
     SUBDIR += gnuplot
     SUBDIR += gnumeric
+    SUBDIR += ldouble
     SUBDIR += libgmp4
     SUBDIR += mpfr
     SUBDIR += p5-Bit-Vector
