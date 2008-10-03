@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.4 2007/05/06 23:17:04 ctriv Exp $
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.5 2008/05/31 23:17:27 crash Exp $
 #
 
 PORTNAME=	libgsf
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An extensible i/o abstraction for dealing with structured file formats
+LICENSE=	gpl2
 
 .if !exists(/usr/lib/libbz2.so)
 LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
