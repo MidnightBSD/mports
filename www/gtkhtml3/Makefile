@@ -2,13 +2,13 @@
 # Date created:				12 March 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.1 2008/03/21 01:23:53 laffer1 Exp $
+# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.2 2008/06/08 18:27:51 laffer1 Exp $
 # $FreeBSD: ports/www/gtkhtml3/Makefile,v 1.95 2008/01/07 21:49:07 mezz Exp $
 #   $MCom: ports-stable/www/gtkhtml3/Makefile,v 1.5 2007/11/30 19:38:35 marcus Exp $
 #
 
 PORTNAME=	gtkhtml3
-PORTVERSION=	3.18.1
+PORTVERSION=	3.18.3
 CATEGORIES=	www gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/3$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -17,6 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight HTML rendering/printing/editing engine
+LICENSE=	gpl2
 
 LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup
 
