@@ -2,7 +2,7 @@
 # Date created:        8 November 2002
 # Whom:                Joe Kelsey
 #
-# $MidnightBSD: mports/devel/libical/Makefile,v 1.1 2007/03/09 05:18:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/libical/Makefile,v 1.2 2007/05/06 21:44:59 ctriv Exp $
 # $FreeBSD: ports/devel/libical/Makefile,v 1.14 2007/02/01 02:41:28 kris Exp $
 #
 
@@ -15,7 +15,8 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	freeassociation
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	An implementation of the IETF's Calendaring and Scheduling protocols
+COMMENT=	An implementation of the IETF's Calendaring and Scheduling protocols 
+LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
