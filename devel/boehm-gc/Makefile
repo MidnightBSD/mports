@@ -2,7 +2,7 @@
 # Date created:		15 November 1996
 # Whom:			Mike McGaughey <mmcg@cs.monash.edu.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.1 2007/05/03 08:17:35 laffer1 Exp $
 # $FreeBSD: ports/devel/boehm-gc/Makefile,v 1.54 2007/02/05 22:12:46 stas Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	gc${PORTVERSION:S/.a/alpha/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Garbage collection and memory leak detection for C and C++
+LICENSE=	other
 
 USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
