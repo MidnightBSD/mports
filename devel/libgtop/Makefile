@@ -2,7 +2,7 @@
 # Date Created:			29 April 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.2 2008/03/28 16:21:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.3 2008/05/31 16:55:49 crash Exp $
 # $FreeBSD: ports/devel/libgtop/Makefile,v 1.76 2007/07/23 09:35:42 rafan Exp $
 #   $MCom: ports/devel/libgtop/Makefile,v 1.5 2006/10/02 23:26:51 ahze Exp $
 #
@@ -16,6 +16,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 top library
+LICENSE=	gpl2
 
 RUN_DEPENDS=	lsof:${PORTSDIR}/sysutils/lsof
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
