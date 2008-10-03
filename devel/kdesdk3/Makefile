@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/kdesdk3/Makefile,v 1.57 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.1 2007/01/20 19:18:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.2 2007/05/05 04:34:15 ctriv Exp $
 #
 
 PORTNAME=	kdesdk
@@ -15,6 +15,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE Software Development Kit
+LICENSE=	gpl2
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 LIB_DEPENDS=	db4:${PORTSDIR}/databases/db4 \
