@@ -4,10 +4,10 @@
 #
 # $FreeBSD: ports/x11-fonts/dejavu/Makefile,v 1.40 2008/05/27 05:35:26 ahze Exp $
 #    $MCom: ports/x11-fonts/dejavu/Makefile,v 1.1 2006/10/13 23:29:09 ahze Exp $
-# $Midnightbsd$ 
+# $MidnightBSD$ 
 
 PORTNAME=	dejavu
-DISTVERSION=	2.25
+DISTVERSION=	2.27
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
