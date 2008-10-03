@@ -2,7 +2,7 @@
 # Date created:        27 January 2000
 # Whom:                Joe Lu <JoeLu@JoeLu.m8.ntu.edu.tw>
 #
-# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.1 2006/09/27 16:36:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.2 2007/05/06 21:31:47 ctriv Exp $
 # $FreeBSD: ports/devel/libsigc++/Makefile,v 1.25 2006/05/04 21:40:52 edwin Exp $
 #
 
@@ -18,6 +18,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:sf,gnome
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
+LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
