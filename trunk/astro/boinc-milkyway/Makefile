@@ -2,7 +2,7 @@
 # Date created:				8 August 2008
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/boinc-milkyway/Makefile,v 1.1 2008/10/02 14:35:57 laffer1 Exp $
 # $FreeBSD: ports/astro/boinc-milkyway/Makefile,v 1.1 2008/08/08 22:22:38 pav Exp $
 #
 
@@ -26,6 +26,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
 .endif
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS+=	boinc_client:${PORTSDIR}/net/boinc-client
 
 NO_BUILD=	yes
