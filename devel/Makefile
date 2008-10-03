@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.246 2008/09/22 18:52:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.247 2008/09/25 19:04:08 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -268,6 +268,7 @@
     SUBDIR += py-xdg
     SUBDIR += qmake
     SUBDIR += qmake4
+    SUBDIR += qt4
     SUBDIR += qt4-moc
     SUBDIR += re2c
     SUBDIR += ruby-gnustep
