@@ -2,7 +2,7 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libgii/Makefile,v 1.1 2007/08/25 05:16:37 laffer1 Exp $
 # $FreeBSD: ports/devel/libgii/Makefile,v 1.28 2007/05/19 20:03:05 flz Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}.src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GGI API for input sources
+LICENSE=	x11
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_BZIP2=	yes
