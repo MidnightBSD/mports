@@ -2,13 +2,12 @@
 # Date created:				16 July 2006
 # Whom:					Yoshisato YANAGISAWA
 #
-# $MidnightBSD: mports/mail/p5-Mail-DKIM/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-DKIM/Makefile,v 1.3 2008/07/19 18:01:19 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-DKIM/Makefile,v 1.7 2007/03/16 20:58:23 miwi Exp $
 #
 
 PORTNAME=	Mail-DKIM
-PORTVERSION=	0.31
-PORTREVISION=	1
+PORTVERSION=	0.32
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -25,8 +24,7 @@ BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Crypt/OpenSSL/RSA.pm:${PORTSDIR}/securi
 		${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-MASTER_SITE_BACKUP+=	\
-			http://jason.long.name/dkimproxy/
+MASTER_SITE_BACKUP+=	http://jason.long.name/dkimproxy/
 
 PERL_CONFIGURE=	yes
 
@@ -37,6 +35,7 @@ MAN3=		Mail::DKIM.3 \
 		Mail::DKIM::DkimPolicy.3 \
     		Mail::DKIM::DkSignature.3 \
 		Mail::DKIM::Policy.3 \
+		Mail::DKIM::PrivateKey.3 \
 		Mail::DKIM::Signature.3 \
 		Mail::DKIM::Signer.3 \
 		Mail::DKIM::SignerPolicy.3 \
@@ -46,11 +45,4 @@ MAN3=		Mail::DKIM.3 \
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/dkim*.pl ${PREFIX}/bin
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-RUN_DEPENDS+= ${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/
-p5-MIME-Base64
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

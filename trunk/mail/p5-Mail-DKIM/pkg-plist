@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 %%SITE_PERL%%/Mail/DKIM.pm
 %%SITE_PERL%%/Mail/DKIM/Algorithm/Base.pm
 %%SITE_PERL%%/Mail/DKIM/Algorithm/dk_rsa_sha1.pm
