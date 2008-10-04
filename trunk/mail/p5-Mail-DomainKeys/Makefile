@@ -2,7 +2,7 @@
 # Date created:	   23 May 2005
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/mail/p5-Mail-DomainKeys/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-DomainKeys/Makefile,v 1.2 2008/10/04 16:43:19 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-DomainKeys/Makefile,v 1.10 2006/11/10 16:06:42 skv Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl implementation of DomainKeys
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/${PERL_ARCH}/Crypt/OpenSSL/RSA.pm:${PORTSDIR}/security/p5-Crypt-OpenSSL-RSA \
