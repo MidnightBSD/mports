@@ -2,13 +2,13 @@
 # Date created:		Sun May 3, 1999
 # Whom:			shipley@dis.org
 #
-# $MidnightBSD: mports/security/firewalk/Makefile,v 1.2 2008/05/04 09:53:53 crash Exp $
+# $MidnightBSD: mports/security/firewalk/Makefile,v 1.3 2008/05/04 17:56:40 ctriv Exp $
 # $FreeBSD: ports/security/firewalk/Makefile,v 1.22 2007/01/31 14:09:53 pav Exp $
 #
 
 PORTNAME=	firewalk
 PORTVERSION=	5.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	http://www.packetfactory.net/firewalk/dist/
 EXTRACT_SUFX=	.tgz
@@ -28,7 +28,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include `${LIBNET_CONFIG} --cflags`" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 MAN8=		firewalk.8
 
-LIBNET_CONFIG?=	${LOCALBASE}/bin/libnet-config
+LIBNET_CONFIG?=	${LOCALBASE}/bin/libnet11-config
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lnet|`${LIBNET_CONFIG} --libs`|' \
