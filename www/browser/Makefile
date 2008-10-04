@@ -2,13 +2,13 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.6 2008/09/07 23:56:23 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.7 2008/10/04 17:20:06 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
 
 PORTNAME=	browser
-DISTVERSION=	2.0.0.16
+DISTVERSION=	2.0.0.17
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
