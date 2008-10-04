@@ -3,12 +3,11 @@
 # Whom: 				Simon Dick <simond@irrelevant.org>
 #
 # $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.7 2008/04/19 18:19:53 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.8 2008/04/19 18:20:53 laffer1 Exp $
 #
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.13
-PORTREVISION=	1
+PORTVERSION=	1.4.16
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -60,11 +59,14 @@ pre-everything::
 
 post-patch:
 .ifndef PATCH_DEBUG
-	@${RM} -f ${WRKSRC}/config/config_default.php.orig ${WRKSRC}/functions/global.php.orig
+	@${RM} -f ${WRKSRC}/config/config_default.php.orig ${WRKSRC}/functions/global.php.orig ${WRKSRC}/src/compose.php.orig ${WRKSRC}/src/addrbook_search_html.php.orig
 .endif
 	@${REINPLACE_CMD} -e 's|ispell|${LOCALBASE}/bin/ispell|g' \
 		${WRKSRC}/plugins/squirrelspell/sqspell_config.php
-	@${RM} ${WRKSRC}/plugins/squirrelspell/sqspell_config.php.bak
+	@${REINPLACE_CMD} -e 's|/usr/bin/fortune|/usr/games/fortune|g' \
+		${WRKSRC}/plugins/fortune/fortune_functions.php
+	@${RM} ${WRKSRC}/plugins/squirrelspell/sqspell_config.php.bak \
+		${WRKSRC}/plugins/fortune/fortune_functions.php.bak
 
 # Rearrange the documentation
 do-build:
