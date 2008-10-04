@@ -1,7 +1,5 @@
 #!/bin/sh
-#
-#	$FreeBSD: ports/mail/squirrelmail/files/pkg-install.in,v 1.1 2006/03/20 16:24:34 garga Exp $
-#
+# $MidnightBSD$
 
 PKG_BATCH=${BATCH:=NO}
 PKG_PREFIX=${PKG_PREFIX:=/usr/local}
