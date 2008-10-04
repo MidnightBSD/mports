@@ -2,7 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.5 2008/09/07 23:53:05 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.6 2008/09/07 23:56:23 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
@@ -196,9 +196,6 @@ post-configure:
 	@${ECHO_CMD} "#define JNIIMPORT" >> ${WRKSRC}/mozilla-config.h
 
 pre-install:
-	${ECHO_CMD} 'share/applications/${MOZILLA}.desktop' >> ${PLIST}
-	${ECHO_CMD} "@unexec ${RMDIR} %D/share/applications 2>/dev/null || ${TRUE}" >> ${PLIST}
-	${ECHO_CMD} 'share/pixmaps/${FIREFOX_ICON}' >> ${PLIST}
 .if !defined(WITHOUT_NEWTAB)
 	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref
 	${ECHO_CMD} >> ${SYSTEM_PREFS}

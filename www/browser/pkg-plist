@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.114 2008/06/29 18:30:42 laffer1 Exp $
+@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.2 2008/09/07 22:01:33 laffer1 Exp $
 bin/browser-config
 bin/browser
 include/browser/nsBuildID.h
@@ -3567,12 +3567,4 @@ share/pixmaps/browser.xpm
 @dirrm share/idl/firefox-2.0.0.16
 @dirrm share/idl
 @dirrm share/pixmaps
-share/applications/browser.desktop
 @unexec /bin/rmdir %D/share/applications 2>/dev/null || true
-share/pixmaps/browser.xpm
-share/applications/browser.desktop
-@unexec /bin/rmdir %D/share/applications 2>/dev/null || true
-share/pixmaps/browser.xpm
-share/applications/browser.desktop
-@unexec /bin/rmdir %D/share/applications 2>/dev/null || true
-share/pixmaps/browser.xpm
