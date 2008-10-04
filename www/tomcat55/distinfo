@@ -1,3 +1,6 @@
 MD5 (apache-tomcat-5.5.27.tar.gz) = e576fed8ce66c32ee5295d5f7727b138
 SHA256 (apache-tomcat-5.5.27.tar.gz) = b1fa8816881963ce9486b0d45ed0d946cb98b9e04dbdc6fd31fc54b6af378aba
 SIZE (apache-tomcat-5.5.27.tar.gz) = 6478912
+MD5 (apache-tomcat-5.5.27-compat.tar.gz) = 028f3f8bb750b83e6e56d7417488d372
+SHA256 (apache-tomcat-5.5.27-compat.tar.gz) = 0d0f4c5db1ede55474c002a7440df516cf277bbd7fb5663c067ba929d7daa9a5
+SIZE (apache-tomcat-5.5.27-compat.tar.gz) = 1650784
