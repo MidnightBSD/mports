@@ -2,7 +2,7 @@
 # Date created:				23 September 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.4 2008/03/31 15:10:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.5 2008/08/21 19:00:43 laffer1 Exp $
 # $FreeBSD: ports/devel/ncurses/Makefile,v 1.49 2008/03/31 07:26:11 rafan Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for terminal-independent, full-screen output
 LICENSE=	mit
 
-CONFLICTS=	ncurses-devel-*
+CONFLICTS=	ncurses-devel-[0-9]*
 
 RELEASE=	5.6
 
@@ -78,10 +78,6 @@ EXAMPLES_CPP=	Makefile NEWS PROBLEMS README-first cursesapp.cc \
 .include <bsd.port.pre.mk>
 
 .include "${.CURDIR}/Makefile.man"
-
-.if ${OSVERSION} < 503000
-WITHOUT_WIDEC=	yes
-.endif
 
 .if !defined(WITHOUT_PROFILE) && !defined(NO_PROFILE) && !defined(NOPROFILE)
 CONFIGURE_ARGS+=--with-profile
