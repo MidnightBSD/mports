@@ -2,13 +2,12 @@
 # Date created:         30 Oct 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.5 2008/06/18 17:56:12 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.6 2008/06/20 16:46:29 laffer1 Exp $
 # $FreeBSD: ports/www/nspluginwrapper/Makefile,v 1.5 2007/09/01 23:15:12 pav Exp $
 #
 
 PORTNAME=	nspluginwrapper
-PORTVERSION=	0.9.91.5
-PORTREVISION=	1
+PORTVERSION=	1.0.0
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://gwenole.beauchesne.info/projects/nspluginwrapper/files/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${RPMFILE}
