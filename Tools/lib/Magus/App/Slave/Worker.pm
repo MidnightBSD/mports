@@ -7,6 +7,7 @@ sub run {
   my ($class, %args) = @_;
   
   local $SIG{CHLD} = 'DEFAULT';
+  local $SIG{TERM} = sub { die "SIGTERM\n" };
   local $SIG{INT}  = sub { die "SIGINT\n" };
   
   my $self = bless \%args, $class;
@@ -22,8 +23,11 @@ sub run {
   }; 
   
   if ($@) {
-	if ($@ =~ m/DBI/ || $@ =~ m/SIGINT/) {
-		return;
+	if ($@ =~ m/DBI/) {
+	  # we want to let the parent know that we lost the DB connection.
+	  exit 6;
+	} elsif ($@ =~ m/SIGINT/ || $@ =~ /SIGTERM/) {
+	  return;
 	} 
 	
 	# we make sure we never have an uncaught exception!
@@ -33,6 +37,11 @@ sub run {
 	  $self->log->err("Exception thrown building $port: $error");
 	  $port->set_result_internal("Exception thrown: $error");
         };
+        
+        if ($@ && $@ =~ m/DBI/) {
+          $self->log->err($@);
+          exit 6;
+        }
   }
 }
 
