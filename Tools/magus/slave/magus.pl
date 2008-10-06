@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.28 2008/10/02 20:06:35 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.29 2008/10/02 23:32:04 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -90,13 +90,13 @@ $SIG{CHLD} = sub {
   while (($pid = waitpid(-1, WNOHANG)) > 0) {
     # we don't care about children that aren't magus.pls (make and what not also go thru this).
     my $info = delete $Children{$pid} || return;
-    push(@DeadChildren, { lock => $info->{lock} });
+    push(@DeadChildren, { lock => $info->{lock}, exitcode => $? >> 8, pid => $pid });
     $Children--;
     $WorkerIDs{$info->{worker_id}} = 1;
   }
 };
 
-$SIG{INT} = sub { kill_children(); exit 0 };
+$SIG{TERM} = $SIG{INT} = sub { kill_children(); exit 0 };
 
 
 =pod debug 
@@ -119,11 +119,14 @@ $opts{j} ||= 1;
 
 $Logger = Magus::App::Logger->new(verbose => $opts{v});
 
-$Logger->info("Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
-
 daemonize() unless $opts{f};
 
+# create our own process group
+setsid();
+
 create_pid_file();
+
+$Logger->info("Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
 
 while (1) {
   eval { main() };
@@ -238,9 +241,6 @@ sub daemonize {
   
   # if $pid is non-zero, we're the parent.  Time to die.
   exit 0 if $pid;
-  
-  # create our own process group
-  setsid();
 }
 
 
@@ -254,8 +254,13 @@ processes and takes action on that information.
 sub process_dead_children {
   while (@DeadChildren) {
     my $corpse = shift @DeadChildren;
-      
-    $corpse->{lock}->delete;
+
+    if ($corpse->{exitcode} == 6) {
+      $Logger->info("Child $corpse->{pid} lost database connection.  Reseting %s", $corpse->{lock}->port);
+      $corpse->{lock}->port->reset;
+    } else {
+      $corpse->{lock}->delete;
+    }  
   }
 }      
     
@@ -332,11 +337,15 @@ Kill all the children we have.
 
 sub kill_children {
   if ($Children) {
+    local $SIG{INT}  = 'IGNORE';
+    local $SIG{TERM} = 'IGNORE';
     local $SIG{CHLD} = 'DEFAULT';
-
-    $Logger->debug("Killing children @{[keys %Children ]}\n");
+    
+    $Logger->debug("Killing children (Active Child Count: $Children)");
     X();
-    kill INT => keys %Children;
+    
+    # send sigint to our entire process group    
+    kill INT => -$$;
     
     # make sure that we wait until all the kids are dead.
     my $kid;
@@ -346,6 +355,7 @@ sub kill_children {
   }
     
   foreach my $lock (Magus::Lock->search(machine => $Magus::Machine)) {
+    $Logger->debug("Reseting %s", $lock->port);
     $lock->port->reset;
     $lock->delete;
   }
