@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/editors/vim/pkg-plist,v 1.46 2006/06/26 18:21:38 obrien Exp $
+@comment $MidnightBSD$
 bin/vim
 bin/vimtutor
 bin/xxd
@@ -8,7 +8,7 @@ bin/eview
 bin/evim
 bin/gview
 bin/gvim
-bin/gvimtutor
+%%LITETIME%%bin/gvimtutor
 bin/rgview
 bin/rgvim
 bin/rview
