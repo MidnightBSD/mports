@@ -4,11 +4,11 @@
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
 # $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.13 2008/10/07 14:09:54 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.14 2008/10/07 14:18:32 laffer1 Exp $
 #
 
 PORTNAME?=	vim
-PATCHLEVEL=	14
+PATCHLEVEL=	25
 PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	1
