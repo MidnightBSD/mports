@@ -2,12 +2,13 @@
 # Date created:                        	10 June 2003
 # Whom:                                 Peter van Dijk <peter@dataloss.nl>
 #
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.5 2008/09/11 05:14:01 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.6 2008/09/11 05:15:14 laffer1 Exp $
 # $FreeBSD: ports/irc/bitlbee/Makefile,v 1.45 2008/08/27 20:16:32 brix Exp $
 #
 
 PORTNAME=	bitlbee
 PORTVERSION=	1.2.3
+PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
 		${MASTER_SITE_LOCAL}
@@ -36,7 +37,6 @@ OPTIONS=	DEBUG "Enable debug support" Off \
 		JABBER "Enable Jabber (XMPP) protocol support" On \
 		OSCAR "Enable OSCAR (ICQ, AIM) protocol support" On \
 		YAHOO "Enable Yahoo! protocol support" On
-
 
 CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0
 
@@ -121,8 +121,6 @@ pre-install:
 
 post-install:
 	${MKDIR} ${PREFIX}/etc/bitlbee
-	${MKDIR} -m 0700 /var/db/bitlbee
-	${CHOWN} -R ${BITLBEEUSER}:${BITLBEEGROUP} /var/db/bitlbee
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S@^@${WRKSRC}/doc/@} ${DOCSDIR}
