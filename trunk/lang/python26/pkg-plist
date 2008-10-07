@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.119 2008/10/02 00:59:57 laffer1 Exp $
+@comment $MidnightBSD: mports/lang/python26/pkg-plist,v 1.1 2008/10/02 20:05:46 laffer1 Exp $
 bin/python2.6
 bin/python2.6-config
 bin/pydoc
@@ -3889,10 +3889,8 @@ lib/python2.6/lib-dynload/_ssl.so
 lib/python2.6/lib-dynload/_hashlib.so
 lib/python2.6/lib-dynload/_sha256.so
 lib/python2.6/lib-dynload/_sha512.so
-lib/python2.6/lib-dynload/_bsddb.so
 lib/python2.6/lib-dynload/_sqlite3.so
 lib/python2.6/lib-dynload/dbm.so
-lib/python2.6/lib-dynload/gdbm.so
 lib/python2.6/lib-dynload/termios.so
 lib/python2.6/lib-dynload/resource.so
 lib/python2.6/lib-dynload/nis.so
@@ -3911,7 +3909,6 @@ lib/python2.6/lib-dynload/_codecs_tw.so
 lib/python2.6/lib-dynload/_codecs_hk.so
 lib/python2.6/lib-dynload/_codecs_iso2022.so
 lib/python2.6/lib-dynload/_multiprocessing.so
-lib/python2.6/lib-dynload/_tkinter.so
 lib/python2.6/lib-dynload/_ctypes.so
 lib/python2.6/lib-dynload/Python-2.6-py2.6.egg-info
 lib/libpython2.6.so.1
