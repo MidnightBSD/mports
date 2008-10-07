@@ -18,8 +18,8 @@ lib/dovecot/imap/lib20_fts_plugin.so
 lib/dovecot/imap/lib20_expire_plugin.so
 lib/dovecot/imap/lib20_mail_log_plugin.so
 lib/dovecot/imap/lib20_mbox_snarf_plugin.so
-lib/dovecot/imap/lib20_zlib_plugin.a
-lib/dovecot/imap/lib20_zlib_plugin.la
+lib/dovecot/lib20_zlib_plugin.a
+lib/dovecot/lib20_zlib_plugin.la
 lib/dovecot/imap/lib20_zlib_plugin.so
 lib/dovecot/imap/lib21_fts_squat_plugin.so
 @dirrm lib/dovecot/imap
