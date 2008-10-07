@@ -1,9 +1,8 @@
-# ex:ts=8
 # New ports collection makefile for:	dovecot
 # Date created:				12/08/2002
 # Whom:			Dominic Marks <dominic.marks@btinternet.com>
 #
-# $MidnightBSD: mports/mail/dovecot-devel/Makefile,v 1.1 2008/06/23 19:56:44 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot-devel/Makefile,v 1.2 2008/09/20 02:41:51 laffer1 Exp $
 # $FreeBSD: ports/mail/dovecot-devel/Makefile,v 1.87 2008/05/05 10:00:54 delphij Exp $
 #
 
