@@ -2,7 +2,7 @@
 # Date created:        30 September 2002
 # Whom:                Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD: mports/devel/libsigc++12/Makefile,v 1.1 2006/09/27 17:08:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsigc++12/Makefile,v 1.2 2007/05/06 21:29:12 ctriv Exp $
 # $FreeBSD: ports/devel/libsigc++12/Makefile,v 1.32 2006/05/16 04:27:42 mezz Exp $
 #
 
@@ -19,6 +19,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
+LICENSE=	lgpl
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
