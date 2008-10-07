@@ -4,7 +4,7 @@
 # Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
 # $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.12 2008/10/01 19:20:56 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.13 2008/10/07 14:09:54 laffer1 Exp $
 #
 
 PORTNAME?=	vim
@@ -68,7 +68,7 @@ MLINKS+=	vim.1 gvim.1	vim.1 gview.1	vimdiff.1 gvimdiff.1 \
 		vim.1 rgvim.1	vim.1 rgview.1	evim.1 eview.1
 PLIST_SUB+=	LITETIME=
 .else
-PLIST_SUB+=	LITETIME=@comment No GVIM stuff
+PLIST_SUB+=	LITETIME="@comment "
 .endif
 MANLANG=	"" ru.KOI8-R ru.UTF-8 pl.ISO8859-2 pl.UTF-8 pl fr.ISO8859-1 \
 		fr.UTF-8 fr it.ISO8859-1 it.UTF-8 it
