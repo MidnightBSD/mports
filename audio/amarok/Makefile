@@ -2,11 +2,11 @@
 # Date created:			Tue Feb 24 02:21:14 CET 2004
 # Whom:				Markus Brueffer <markus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.1 2008/09/11 05:54:59 laffer1 Exp $
 # $FreeBSD: ports/audio/amarok/Makefile,v 1.85 2008/06/20 15:41:47 tabthorpe Exp $
 
 PORTNAME=	amarok
-PORTVERSION=	1.4.9.1
+PORTVERSION=	1.4.10
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src
