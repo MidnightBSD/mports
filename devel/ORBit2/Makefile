@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.4 2007/08/23 07:48:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.5 2008/06/01 21:16:09 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
-PORTVERSION=	2.14.12
+PORTVERSION=	2.14.14
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -22,8 +22,6 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
-
-#LIB_DEPENDS+=	linc.1:${PORTSDIR}/net/linc
 
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
