@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.89 2008/09/25 01:08:45 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.90 2008/10/02 13:32:38 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -11,6 +11,7 @@
     SUBDIR += avahi-gtk
     SUBDIR += avahi-libdns
     SUBDIR += avahi-qt3
+    SUBDIR += avahi-qt4
     SUBDIR += boinc-client
     SUBDIR += cvsup
     SUBDIR += cvsup-without-gui
@@ -73,6 +74,7 @@
     SUBDIR += php5-xmlrpc
     SUBDIR += phpldapadmin
     SUBDIR += py-avahi
+    SUBDIR += qt4-network
     SUBDIR += rdesktop
     SUBDIR += rrdtool
     SUBDIR += rsync
