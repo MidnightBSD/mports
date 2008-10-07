@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.66 2008/08/25 17:38:34 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.67 2008/09/19 15:20:06 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -83,6 +83,11 @@
     SUBDIR += py-MySQLdb
     SUBDIR += py-gdbm
     SUBDIR += qdbm
+    SUBDIR += qt4-mysql-plugin
+    SUBDIR += qt4-odbc-plugin
+    SUBDIR += qt4-pgsql-plugin
+    SUBDIR += qt4-sql
+    SUBDIR += qt4-sqlite3-plugin
     SUBDIR += rrdtool
     SUBDIR += ruby-bdb
     SUBDIR += ruby-bdb1
