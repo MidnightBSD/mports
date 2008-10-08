@@ -3,19 +3,19 @@
 # Whom:			Pankov Pavel <pankov_p@mail.ru>
 #
 # $FreeBSD: ports/www/youtube_dl/Makefile,v 1.2 2006/09/05 17:32:56 miwi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.1 2006/11/24 23:57:07 laffer1 Exp $
 #
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2006.08.28
+PORTVERSION=	2008.07.26
 CATEGORIES=	www
-MASTER_SITES=	http://www.arrakis.es/~rggi3/youtube-dl/ \
-		http://pankovpv.sovietservers.com/freebsd/ports/distfiles/
+MASTER_SITES=	http://www.arrakis.es/~rggi3/youtube-dl/
 DISTFILES=	youtube-dl-${PORTVERSION}
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A program for downloading videos from YouTube.com
+LICENSE=	publicdom
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
