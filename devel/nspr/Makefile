@@ -2,18 +2,20 @@
 # Date created:				18 December 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/nspr/Makefile,v 1.3 2007/05/06 18:42:45 ctriv Exp $
+# $MidnightBSD: mports/devel/nspr/Makefile,v 1.4 2007/12/28 05:26:19 laffer1 Exp $
 # $FreeBSD: ports/devel/nspr/Makefile,v 1.25 2006/07/23 17:21:54 marcus Exp $
 #
 
 PORTNAME=	nspr
-PORTVERSION=	4.6.7
+PORTVERSION=	4.7
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	nspr/releases/v${PORTVERSION}/src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A platform-neutral API for system level and libc like functions
+LICENSE=	lgpl
+# lgpl, gpl2, or mpl
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/mozilla/nsprpub/build
 
