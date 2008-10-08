@@ -2,7 +2,7 @@
 # Date created:		2007-02-22
 # Whom:			Mij <mij@bitchx.it>
 #
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.3 2008/05/19 04:35:13 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.4 2008/10/08 16:56:32 laffer1 Exp $
 # $FreeBSD: ports/security/sshguard/Makefile,v 1.7 2008/01/04 20:35:08 arved Exp $
 #
 
@@ -16,7 +16,7 @@ COMMENT?=	Protect hosts from brute force attacks against ssh
 LICENSE=	gpl2
 #author says bsdl on site, but can't find it. There seems to be GPL code.
 
-CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]*
+CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9]*
 
 PLIST_FILES=	sbin/sshguard
 
