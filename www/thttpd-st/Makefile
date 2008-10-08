@@ -2,7 +2,7 @@
 # Date created:		2005-09-21
 # Whom:			Alexander Novitsky <alecn2002@yandex.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/thttpd-st/Makefile,v 1.1 2007/07/21 11:26:30 laffer1 Exp $
 # $FreeBSD: ports/www/thttpd-st/Makefile,v 1.1 2005/11/22 13:29:07 edwin Exp $
 #
 
@@ -13,6 +13,7 @@ PATCHFILES=	st-patch-fdwatch.c st-patch-thttpd.c st-patch-Makefile.in
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny/turbo/throttling HTTP server with State Threads
+LICENSE=	bsd2
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libst.so.1:${PORTSDIR}/devel/st
 LIB_DEPENDS=	st.1:${PORTSDIR}/devel/st
