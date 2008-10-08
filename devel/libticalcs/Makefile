@@ -2,7 +2,7 @@
 # Date created:		27 August 2003
 # Whom:			Tijl Coosemans <tijl@ulyssis.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libticalcs/Makefile,v 1.1 2007/05/05 04:58:45 laffer1 Exp $
 # $FreeBSD: ports/devel/libticalcs/Makefile,v 1.15 2006/10/05 15:18:42 clsung Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	tilp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TI calculator library
+LICENSE=	gpl2
 
 LIB_DEPENDS=	ticables.12:${PORTSDIR}/comms/libticables \
 		tifiles.6:${PORTSDIR}/devel/libtifiles
