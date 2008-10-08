@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.30 2008/10/06 16:27:46 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.31 2008/10/08 14:34:28 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -126,6 +126,10 @@ setsid();
 
 create_pid_file();
 
+$Logger->info("Initializing chroot subsystem.");
+
+init_chroot();
+
 $Logger->info("Starting magus on %s (%s)", $Magus::Machine->name, $Magus::Machine->arch);
 
 while (1) {
@@ -156,7 +160,6 @@ while (1) {
 sub main {
   my $parentPID = $$;
 
-  init_chroot();
   
   MAIN: while (1) {
     if (@DeadChildren) {
