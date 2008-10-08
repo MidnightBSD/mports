@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.18 2008/03/25 05:13:26 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.19 2008/10/02 21:13:57 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -50,7 +50,7 @@ __PACKAGE__->has_many(events => 'Magus::Event');
 
 
 __PACKAGE__->set_sql(ready_ports => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=?');
-
+__PACKAGE__->set_sql(single_ready_port => 'SELECT __ESSENTIAL__ FROM ready_ports WHERE run=? LIMIT 1');
 
 =head2 Magus::Port->get_ready_port($run);
 
@@ -77,7 +77,7 @@ All the port's depends are tested and unlocked.
 
 sub get_ready_port {
   my ($class, $run) = @_;
-  return shift->search_ready_ports($run)->next;
+  return shift->search_single_ready_port($run)->next;
 }
   
 
