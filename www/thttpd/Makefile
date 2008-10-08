@@ -2,7 +2,7 @@
 # Date created:		24 May 1999
 # Whom:			Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/www/thttpd/Makefile,v 1.1 2006/10/02 23:32:50 laffer1 Exp $
+# $MidnightBSD: mports/www/thttpd/Makefile,v 1.2 2007/07/21 11:29:01 laffer1 Exp $
 # $FreeBSD: ports/www/thttpd/Makefile,v 1.39 2006/02/26 01:12:54 mnag Exp $
 #
 
@@ -18,6 +18,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tiny/turbo/throttling HTTP server
+LICENSE=	bsd2
 
 IGNOREFILES=	notes.html
 
