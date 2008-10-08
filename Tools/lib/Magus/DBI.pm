@@ -24,7 +24,7 @@ package Magus::DBI;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.5 2008/05/05 19:47:18 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/DBI.pm,v 1.6 2008/05/05 19:52:22 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -36,7 +36,7 @@ use base 'Class::DBI';
 
 
 __PACKAGE__->connection(
-  "DBI:mysql:database=$Magus::Config{DBName}:host=$Magus::Config{DBHost}", 
+  "DBI:mysql:database=$Magus::Config{DBName};host=$Magus::Config{DBHost};mysql_compression=1", 
   $Magus::Config{DBUser},
   $Magus::Config{DBPass}
 );
