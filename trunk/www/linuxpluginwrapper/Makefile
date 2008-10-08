@@ -2,13 +2,13 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.4 2007/08/19 20:22:42 laffer1 Exp $
+# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.5 2007/08/19 20:36:03 laffer1 Exp $
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 
 PORTNAME=	linuxpluginwrapper
 PORTVERSION=	20051113
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://people.FreeBSD.org/~nork/distfiles/ \
 		${MASTER_SITE_LOCAL}
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	nork
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A wrapper allowing use of linux-plugins with native applications
+LICENSE=	bsd2
 
 OPTIONS=	REALPLAYER	"install linux-realplayer"	off \
 		ACROREAD	"install acroread7"	off

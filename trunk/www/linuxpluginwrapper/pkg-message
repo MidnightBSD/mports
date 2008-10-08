@@ -3,11 +3,6 @@
 Flash7 support is unstable.  I know well that there are often
 crashes or freezes with flash7.
 
-Please get and apply a dlsym(3) hook patch.
-	http://people.FreeBSD.org/~nork/rtld_dlsym_hack.diff
-This provides _dlsym(3) function to fix dynamic-link
-error "can't find gtk_major_version" ad-hoc-ly.
-
 I don't set the default to use flash7.  Please set-up your
 enviroment(ln -s, apply patch to rtld,...).
 
