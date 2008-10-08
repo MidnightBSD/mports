@@ -1,5 +1,3 @@
-$FreeBSD: ports/devel/nspr/files/patch-..::pr::src::pthreads::ptio.c,v 1.2 2004/02/03 21:45:44 adamw Exp $
-
 --- ../pr/src/pthreads/ptio.c.orig	Mon Feb  2 10:41:43 2004
 +++ ../pr/src/pthreads/ptio.c	Mon Feb  2 10:44:49 2004
 @@ -3470,6 +3470,17 @@
