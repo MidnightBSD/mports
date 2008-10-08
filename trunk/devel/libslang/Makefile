@@ -2,7 +2,7 @@
 # Date created:         11 July 1996
 # Whom:                 ache
 #
-# $MidnightBSD: mports/devel/libslang/Makefile,v 1.1 2006/09/25 13:38:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/libslang/Makefile,v 1.2 2007/05/06 21:22:57 ctriv Exp $
 # $FreeBSD: ports/devel/libslang/Makefile,v 1.41 2006/08/29 15:41:00 garga Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	slang-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Routines for rapid alpha-numeric terminal applications development
+LICENSE=	perl
 
 OPTIONS=	UTF8	"Enable UTF-8 support - EXPERIMENTAL"	off
 
