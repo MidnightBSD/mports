@@ -3,18 +3,18 @@
 # Whom:					will
 #
 # $FreeBSD: ports/www/p5-HTML-Pager/Makefile,v 1.7 2003/10/24 14:15:29 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTML-Pager/Makefile,v 1.1 2006/11/05 16:05:02 laffer1 Exp $
 #
 
 PORTNAME=	HTML-Pager
 PORTVERSION=	0.03
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	HTML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for handling CGI HTML paging of arbitrary data
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/HTML/Template.pm:${PORTSDIR}/www/p5-HTML-Template
 RUN_DEPENDS=	${BUILD_DEPENDS}
