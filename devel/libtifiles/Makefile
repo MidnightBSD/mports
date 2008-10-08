@@ -2,7 +2,7 @@
 # Date created:		27 August 2003
 # Whom:			Tijl Coosemans <tijl@ulyssis.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libtifiles/Makefile,v 1.1 2007/05/05 04:51:52 laffer1 Exp $
 # $FreeBSD: ports/devel/libtifiles/Makefile,v 1.14 2006/10/06 02:31:27 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	tilp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TI calculator file types library
+LICENSE=	gpl2
 
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehack pkgconfig
