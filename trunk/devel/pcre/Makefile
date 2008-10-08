@@ -2,12 +2,12 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.7 2008/03/15 23:09:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.8 2008/05/14 18:14:54 crash Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 #
 
 PORTNAME=	pcre
-PORTVERSION=	7.7
+PORTVERSION=	7.8
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
@@ -46,6 +46,12 @@ MAN3=		pcre.3 pcre_compile.3 pcre_compile2.3 pcre_config.3 \
 		pcrecpp.3 pcrematching.3 pcrepattern.3 \
 		pcreperform.3 pcreposix.3 pcresample.3 pcrestack.3 \
 		pcresyntax.3
+
+post-patch:
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -E -e '/^install-data-am/,/^$$/ s,install-(dist_doc|dist_html|html)DATA,,g' \
+	   ${WRKSRC}/Makefile.in
+.endif
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/pcregrep ${PREFIX}/bin/pcretest
