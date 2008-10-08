@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.29 2008/10/02 23:32:04 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.30 2008/10/06 16:27:46 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -155,6 +155,8 @@ while (1) {
 
 sub main {
   my $parentPID = $$;
+
+  init_chroot();
   
   MAIN: while (1) {
     if (@DeadChildren) {
@@ -253,14 +255,17 @@ processes and takes action on that information.
 
 sub process_dead_children {
   while (@DeadChildren) {
-    my $corpse = shift @DeadChildren;
+    my $corpse = $DeadChildren[0];
 
     if ($corpse->{exitcode} == 6) {
       $Logger->info("Child $corpse->{pid} lost database connection.  Reseting %s", $corpse->{lock}->port);
       $corpse->{lock}->port->reset;
-    } else {
-      $corpse->{lock}->delete;
-    }  
+    } 
+    
+    $corpse->{lock}->delete;
+    
+    # we do this last, so if a DBI exception was thrown while clearing the lock, we try again later.
+    shift @DeadChildren;
   }
 }      
     
@@ -376,6 +381,24 @@ sub create_pid_file {
   print $fh "$$\n";
   close($fh) || die "Couldn't close $file: $!\n";
 }
+
+
+=head2 init_chroot()
+
+Get the reference dir for the chroot set up so the children don't get 
+into a race trying to do it.
+
+=cut
+
+sub init_chroot {
+  local $SIG{CHLD} = 'DEFAULT';
+  Magus::Chroot->new(
+    workerid => 1,
+    tarball  => $Magus::Config{ChrootTarBall},
+  );
+}
+
+  
     
 1;
 __END__
