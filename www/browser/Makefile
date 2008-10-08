@@ -2,7 +2,7 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.8 2008/10/04 19:41:38 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.9 2008/10/08 19:49:55 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
@@ -193,6 +193,7 @@ post-patch:
 		${FALSE}; \
 	fi
 	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD`${UNAME} -r`.mk
+	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD${OSREL}.mk
 
 post-configure:
 	@${ECHO_CMD} "#define JNIIMPORT" >> ${WRKSRC}/mozilla-config.h
