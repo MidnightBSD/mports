@@ -2,35 +2,33 @@
 # Date created:		2007-02-22
 # Whom:			Mij <mij@bitchx.it>
 #
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.2 2008/04/29 15:42:36 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.3 2008/05/19 04:35:13 laffer1 Exp $
 # $FreeBSD: ports/security/sshguard/Makefile,v 1.7 2008/01/04 20:35:08 arved Exp $
 #
 
 PORTNAME=	sshguard
-DISTVERSION=	1.0
-PORTREVISION=	2
+DISTVERSION=	1.2
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Protect hosts from brute force attacks against ssh
 LICENSE=	gpl2
 #author says bsdl on site, but can't find it. There seems to be GPL code.
 
-CONFLICTS?=	sshguard-ipfw-1.0* sshguard-pf-1.0*
+CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]*
 
 PLIST_FILES=	sbin/sshguard
 
 MAN8=		sshguard.8
 MANCOMPRESSED=	no
+USE_AUTOTOOLS=	autoconf:261
 USE_BZIP2=	yes
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 HAS_CONFIGURE=	yes
 
 # sublist will be set afterward
 SUB_FILES=	pkg-message
-#SUB_LIST=
 
 # backend type in { hosts, ipfw, pf }
 SSHGUARDFW?=	hosts
@@ -41,10 +39,15 @@ SSHGUARDFW?=	hosts
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 .endif
 
+# set path for manpages
+CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man
+
 .if ${SSHGUARDFW} == pf
 PKGMSG_FWBLOCK="  To activate or configure PF see http://sshguard.sf.net/doc/setup/blockingpf.html"
 .elif ${SSHGUARDFW} == ipfw
 PKGMSG_FWBLOCK="  Verify that IPFW is active with \"ipfw show\"."
+.elif ${SSHGUARDFW} == ipfilter
+PKGMSG_FWBLOCK="Sshguard will use /etc/ipf.rules as ruleset."
 .elif ${SSHGUARDFW} == hosts
 PKGMSG_FWBLOCK="  Sshguard is going to use /etc/hosts.allow, I have touched it for you."
 .endif
