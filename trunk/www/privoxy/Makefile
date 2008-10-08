@@ -2,34 +2,32 @@
 # Date created:				21 November 2002
 # Whom:					John von Essen
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/privoxy/Makefile,v 1.21 2008/01/25 15:44:02 miwi Exp $
 #
 
 PORTNAME=	privoxy
-PORTVERSION=	3.0.8
+PORTVERSION=	3.0.10
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	ijbswa
 DISTNAME=	privoxy-${PORTVERSION}-stable-src
 
-MAINTAINER=	fk@fabiankeil.de
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Privoxy is a web proxy with advanced filtering capabilities
+LICENSE=	gpl2
 
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 
 USE_RC_SUBR=	privoxy
 SUB_FILES=	pkg-message
 
 MAKEFILE=	GNUmakefile
-
-# privoxy-devel is the development release available at the Privoxy website.
-# It's not (yet) part of the FreeBSD ports collection.
-CONFLICTS=	privoxy-devel-[0-9]*
 
 MAN1=		privoxy.1
 
@@ -109,6 +107,5 @@ post-install:
 	@${MKDIR} /var/run/privoxy
 	@${CHOWN} privoxy:privoxy /var/run/privoxy
 	@${CHMOD} 0750 /var/run/privoxy
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
