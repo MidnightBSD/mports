@@ -2,7 +2,7 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.6 2007/08/05 06:05:41 laffer1 Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.7 2008/07/24 03:39:25 laffer1 Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}-2.1pre37
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
+LICENSE=	gpl2
 
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 
