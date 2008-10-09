@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.1 2008/10/07 01:24:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.2 2008/10/09 01:27:31 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.17 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -55,6 +55,8 @@ pre-configure:
 	${MKDIR} ${WRKSRC}/../../mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/qt4/mkspecs
+
 post-configure:
 	${REINPLACE_CMD} -e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
 		-e 's|.*$$(QMAKE).*||g' ${WRKSRC}/Makefile
