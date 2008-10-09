@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/scripts/chkfake,v 1.4 2007/10/25 20:18:54 ctriv Exp $
+# $MidnightBSD: mports/Tools/scripts/chkfake,v 1.5 2007/11/14 18:51:17 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -68,15 +68,15 @@ for _ENTRY in `cat $PLIST | grep -e '^[^@]\|^@cw\?d'`; do
 		
 		if grep $DESTDIR $DESTDIR$CWD/$ENTRY >/dev/null; then
 			EXIT=1
-			echo "	$ENTRY contains the fake destdir."
+			echo "    $ENTRY contains the fake destdir."
 		fi
 		continue;
 	fi
 	EXIT=1
 	if [ -e $CWD/$ENTRY ]; then
-		echo "	$ENTRY installed in $CWD"
+		echo "    $ENTRY installed in $CWD"
 	else
-		echo "	$ENTRY not installed."
+		echo "    $ENTRY not installed."
 	fi			
 done
 
