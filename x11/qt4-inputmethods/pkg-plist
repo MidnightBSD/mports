@@ -1,0 +1,3 @@
+lib/qt4/plugins/inputmethods/libqimsw-multi.so
+%%DEBUG%%lib/qt4/plugins/inputmethods/libqimsw-multi.so.debug
+@dirrm lib/qt4/plugins/inputmethods
