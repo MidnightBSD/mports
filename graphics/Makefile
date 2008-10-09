@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.79 2008/09/07 19:55:14 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.80 2008/09/24 23:51:27 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -94,6 +94,10 @@
     SUBDIR += popplerkit
     SUBDIR += plotutils
     SUBDIR += py-cairo
+    SUBDIR += qt4-iconengines
+    SUBDIR += qt4-imageformats
+    SUBDIR += qt4-pixeltool
+    SUBDIR += qt4-svg
     SUBDIR += sane-backends
     SUBDIR += scr2png
     SUBDIR += sdl_gfx
