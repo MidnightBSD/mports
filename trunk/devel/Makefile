@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.248 2008/10/03 19:13:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.249 2008/10/07 01:24:21 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -11,6 +11,7 @@
     SUBDIR += anjuta
     SUBDIR += apache-ant
     SUBDIR += apr
+    SUBDIR += apr-cvs2svn
     SUBDIR += apr-svn
     SUBDIR += autoconf-wrapper
     SUBDIR += autoconf213
@@ -272,6 +273,7 @@
     SUBDIR += qt4-corelib
     SUBDIR += qt4-moc
     SUBDIR += qt4-qt3support
+    SUBDIR += qt4-rcc
     SUBDIR += re2c
     SUBDIR += ruby-gnustep
     SUBDIR += scons
