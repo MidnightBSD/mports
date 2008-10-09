@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.1 2008/10/07 01:24:22 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.17 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -69,6 +69,7 @@ post-configure:
 .if ${OSVERSION} >= 700042
 	${ECHO_CMD} "#define QT_VISIBILITY_AVAILABLE" >> ${WRKSRC}/global/qconfig.h
 .endif
+	${MKDIR} -p ${FAKE_DESTDIR}${PREFIX}/share/qt4/mkspecs
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/qt4/plugins
