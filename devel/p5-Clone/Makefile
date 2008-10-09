@@ -3,19 +3,18 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-Clone/Makefile,v 1.9 2007/08/21 08:20:58 tobez Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.1 2007/09/02 02:49:24 ctriv Exp $
 #
 
 PORTNAME=	Clone
-PORTVERSION=	0.27
+PORTVERSION=	0.29
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Clone
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Clone - recursively copy Perl datatypes
-LICESE=		perl
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
