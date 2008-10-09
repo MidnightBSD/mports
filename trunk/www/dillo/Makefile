@@ -2,7 +2,7 @@
 # Date created:        23 February 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/dillo/Makefile,v 1.1 2007/03/13 02:52:38 laffer1 Exp $
 # $FreeBSD: ports/www/dillo/Makefile,v 1.36 2006/06/03 02:01:25 mnag Exp $
 #
 # Tunables:
@@ -12,11 +12,13 @@
 
 PORTNAME=	dillo
 PORTVERSION=	0.8.6
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.dillo.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast, small graphical Web browser built upon GTK+
+LICENSE=	gpl2
 
 RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -44,8 +46,8 @@ CONFIGURE_ARGS+=	--disable-ssl
 .if defined(WITH_DILLO_DLGUI)
 CONFIGURE_ARGS+=	--enable-dlgui
 BUILD_DEPENDS+=	fltk>=2.0.r4825:${PORTSDIR}/x11-toolkits/fltk2
-CPPFLAGS+=	-I${X11BASE}/include
-LDFLAGS+=	-L${X11BASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 .else
 CONFIGURE_ARGS+=	--disable-dlgui
 .endif
