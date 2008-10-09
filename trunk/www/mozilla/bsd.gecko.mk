@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/www/mozilla/bsd.gecko.mk,v 1.2 2007/05/07 08:03:07 laffer1 Exp $
+# $MidnightBSD: mports/www/mozilla/bsd.gecko.mk,v 1.3 2007/08/01 20:03:21 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/bsd.gecko.mk,v 1.18 2006/11/01 13:20:10 ahze Exp $
 #    $MCom: ports-stable/www/mozilla/bsd.gecko.mk,v 1.3 2006/10/24 17:48:39 ahze Exp $
 #
@@ -67,8 +67,8 @@ Gecko_Pre_Include=			bsd.gecko.mk
 #		${WRKSRC}/configure
 #  .endif
 
-.if ${ARCH}!="sparc64" && ${ARCH}!="ia64"
-_GECKO_ALL=	firefox nvu seamonkey thunderbird xulrunner flock firefox15
+.if ${ARCH}!="sparc64"
+_GECKO_ALL=	browser firefox nvu seamonkey thunderbird xulrunner flock
 .endif
 _GECKO_ALL+=	mozilla
 
