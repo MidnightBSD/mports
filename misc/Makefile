@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.44 2008/07/04 21:42:09 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.45 2008/09/26 18:12:06 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -86,6 +86,9 @@
     SUBDIR += pciids
     SUBDIR += phone-de
     SUBDIR += php5-calendar
+    SUBDIR += qt4-doc
+    SUBDIR += qt4-qtconfig
+    SUBDIR += qt4-qtdemo
     SUBDIR += shared-mime-info
     SUBDIR += susv2
     SUBDIR += susv3
