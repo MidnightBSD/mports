@@ -24,7 +24,7 @@ package Magus::OutcomeRules;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.4 2007/11/16 05:29:37 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/OutcomeRules.pm,v 1.5 2008/02/24 23:58:47 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -101,7 +101,7 @@ package Magus::OutcomeRules::fake;
 use base qw(Magus::OutcomeRules::Base);
 
 sub IncompleteInstall :error {
-  m/^\s+.* not installed.\n$/m
+  m/^\s+.* not installed.$/m
     && return "A file in the plist wasn't installed in the fake dir or the final dir.";
 }
 
@@ -111,7 +111,7 @@ sub FakeDestdirInFile :error {
 }
 
 sub FakedOutsideDestdir :error {
-  m:^\s+.* installed in /:m
+  m:^    .* installed in /:m
     && return "A file was installed in the final dir instead of the fake dir.";
 }
 
