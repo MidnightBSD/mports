@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.58 2008/09/26 18:25:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.59 2008/09/26 20:41:55 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -94,6 +94,7 @@
     SUBDIR += oclock
     SUBDIR += pixman
     SUBDIR += printproto
+    SUBDIR += qt4-inputmethods
     SUBDIR += randrproto
     SUBDIR += recordproto
     SUBDIR += renderproto
