@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.250 2008/10/09 19:51:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.251 2008/10/09 19:53:58 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -51,6 +51,7 @@
     SUBDIR += dbus
     SUBDIR += dbus-glib
     SUBDIR += dbus-qt3
+    SUBDIR += dbus-qt4
     SUBDIR += desktop-file-utils
     SUBDIR += devhelp
     SUBDIR += devtodo
