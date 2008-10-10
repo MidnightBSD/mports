@@ -2,7 +2,7 @@
 # Date created:		Sat Apr 05 2003
 # Whom:			thierry@pompo.net
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/scimark2c/Makefile,v 1.1 2007/07/15 06:33:58 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/scimark2c/Makefile,v 1.3 2006/05/03 23:26:31 edwin Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ANSI C version of the SciMark2 benchmark
+LICENSE=	unknown
 
 PLIST_FILES=	bin/scimark2
 WRKSRC=		${WRKDIR}
