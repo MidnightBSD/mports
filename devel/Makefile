@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.252 2008/10/09 20:21:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.253 2008/10/10 17:20:44 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -274,6 +274,8 @@
     SUBDIR += qt4-assistant
     SUBDIR += qt4-assistant-adp
     SUBDIR += qt4-corelib
+    SUBDIR += qt4-designer
+    SUBDIR += qt4-help
     SUBDIR += qt4-moc
     SUBDIR += qt4-qt3support
     SUBDIR += qt4-rcc
