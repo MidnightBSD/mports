@@ -2,19 +2,19 @@
 # Date created:		24 May 2000
 # Whom:			Hajimu UMEMOTO <ume@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/p5-Socket6/Makefile,v 1.1 2007/02/25 00:17:11 laffer1 Exp $
 # $FreeBSD: ports/net/p5-Socket6/Makefile,v 1.15 2006/06/13 16:17:15 ume Exp $
 #
 
 PORTNAME=	Socket6
-PORTVERSION=	0.19
+PORTVERSION=	0.22
 CATEGORIES=	net perl5 ipv6
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Socket6
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPv6 related part of the C socket.h defines and structure manipulators
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
