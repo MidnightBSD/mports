@@ -3,18 +3,16 @@
 # Whom:		   Dominic Mitchell <dom@happygiraffe.net>
 #
 # $FreeBSD: ports/databases/p5-SQL-Abstract/Makefile,v 1.9 2007/01/05 17:55:38 lbr Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-SQL-Abstract/Makefile,v 1.1 2007/09/01 16:36:12 ctriv Exp $
 #
 
 PORTNAME=	SQL-Abstract
-PORTVERSION=	1.22
+PORTVERSION=	1.24
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	SQL
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-EXTRACT_SUFX=   .tgz
 
-MAINTAINER=	lbr@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension to generate SQL from Perl data structures
 LICENSE=	perl
 
