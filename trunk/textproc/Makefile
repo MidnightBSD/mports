@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.103 2008/10/04 16:39:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.104 2008/10/07 01:39:22 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -113,7 +113,10 @@
     SUBDIR += py-xml
     SUBDIR += popup
     SUBDIR += py-docutils
+    SUBDIR += qt4-clucene
     SUBDIR += qt4-xml
+    SUBDIR += qt4-xmlpatterns
+    SUBDIR += qt4-xmlpatterns-tool
     SUBDIR += rarian
     SUBDIR += scr2txt
     SUBDIR += scrollkeeper
