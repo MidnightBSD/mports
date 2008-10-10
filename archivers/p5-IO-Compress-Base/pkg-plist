@@ -1,18 +1,13 @@
-%%PERL58%%%%SITE_PERL%%/File/GlobMapper.pm
-%%PERL58%%%%SITE_PERL%%/IO/Compress/Base.pm
-%%PERL58%%%%SITE_PERL%%/IO/Compress/Base/Common.pm
-%%PERL58%%%%SITE_PERL%%/IO/Uncompress/AnyUncompress.pm
-%%PERL58%%%%SITE_PERL%%/IO/Uncompress/Base.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/File/GlobMapper.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress/Base.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress/Base/Common.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/IO/Uncompress/AnyUncompress.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/IO/Uncompress/Base.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/File/GlobMapper.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress/Base.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress/Base/Common.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/IO/Uncompress/AnyUncompress.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/IO/Uncompress/Base.pm
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Compress/Base
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Compress
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO
-@dirrmtry %%SITE_PERL%%/IO/Uncompress
-@dirrmtry %%SITE_PERL%%/IO/Compress/Base
-@dirrmtry %%SITE_PERL%%/IO/Compress
-@dirrmtry %%SITE_PERL%%/IO
-@dirrmtry %%SITE_PERL%%/File
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/IO/Uncompress
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress/Base
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/IO/Compress
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/IO
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/File
