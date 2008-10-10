@@ -2,7 +2,7 @@
 # Date created:			19 May 2005
 # Whom:				dikshie <dikshie@lapi.itb.ac.id>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.1 2007/07/15 06:54:10 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/pathrate/Makefile,v 1.2 2006/08/22 08:08:58 miwi Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A measurement tool for capacity estimation of network paths
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
