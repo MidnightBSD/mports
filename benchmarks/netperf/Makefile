@@ -3,7 +3,7 @@
 # Whom:			koshy
 #
 # $FreeBSD: ports/benchmarks/netperf/Makefile,v 1.24 2005/10/14 03:33:07 jkoshy Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.1 2007/01/07 03:26:38 laffer1 Exp $
 #
 
 PORTNAME=	netperf
@@ -15,6 +15,7 @@ DISTNAME=	netperf-2.3pl1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rick Jones' <raj@cup.hp.com> network performance benchmarking package
+LICENSE=	other
 
 MAKEFILE=	makefile
 MAN1=		netperf.1 netserver.1
