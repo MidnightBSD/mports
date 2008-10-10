@@ -2,7 +2,7 @@
 # Date created:		15 Feb 2002
 # Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/p5-IO-Zlib/Makefile,v 1.5 2008/04/11 20:22:37 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-IO-Zlib/Makefile,v 1.6 2008/10/03 19:06:43 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-IO-Zlib/Makefile,v 1.6 2006/12/03 12:45:57 demon Exp $
 #
 
@@ -17,8 +17,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IO:: style interface to Compress::Zlib
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Compress/Zlib.pm:${PORTSDIR}/archivers/p5-Compress-Zlib
-RUN_DEPENDS=	${SITE_PERL}/Compress/Zlib.pm:${PORTSDIR}/archivers/p5-Compress-Zlib
+BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Compress/Zlib.pm:${PORTSDIR}/archivers/p5-Compress-Zlib
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 MAN3=		IO::Zlib.3
