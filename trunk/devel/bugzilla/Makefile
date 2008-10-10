@@ -2,7 +2,7 @@
 # Date created:				28 September 2001
 # Whom:					Alexey Zelkin <phantom@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.4 2008/05/10 04:07:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.5 2008/10/07 15:13:32 laffer1 Exp $
 # $FreeBSD: ports/devel/bugzilla/Makefile,v 1.47 2006/11/15 14:47:20 skv Exp $
 #
 
@@ -59,9 +59,8 @@ DATA_DIRS_LIST=	images js skins/standard skins/standard/global \
 .include <bsd.port.pre.mk>
 
 .ifdef WITH_MYSQL
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql${MYSQL_VER}
 USE_MYSQL=	yes
-IGNORE_WITH_MYSQL=	323
 .endif
 
 .ifdef WITH_PGSQL
