@@ -1,10 +1,7 @@
-%%PERL58%%%%SITE_PERL%%/Compress/Zlib.pm
-%%PERL58%%%%SITE_PERL%%/auto/Compress/Zlib/autosplit.ix
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/Compress/Zlib.pm
-%%PERL510%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress/Zlib/autosplit.ix
-@dirrm %%SITE_PERL%%/mach/auto/Compress/Zlib
-@dirrmtry %%SITE_PERL%%/mach/auto/Compress
-@dirrmtry %%SITE_PERL%%/auto/Compress/Zlib
-@dirrmtry %%SITE_PERL%%/auto/Compress
-@dirrmtry %%SITE_PERL%%/Compress
+%%SITE_PERL%%/%%PERL_ARCH%%/Compress/Zlib.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress/Zlib/autosplit.ix
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress/Zlib
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress/Zlib
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Compress
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Compress
