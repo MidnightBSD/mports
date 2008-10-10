@@ -2,7 +2,7 @@
 # Date created:				18 Nov 2003
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/linux-allegro/Makefile,v 1.1 2006/10/01 17:01:49 laffer1 Exp $
 # $FreeBSD: ports/devel/linux-allegro/Makefile,v 1.8 2006/05/01 17:28:12 netchild Exp $
 #
 
@@ -15,11 +15,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform game programming library (linux version)
+LICENSE=	other
 
 USE_LINUX_RPM=		yes
 ONLY_FOR_ARCHS=		i386 amd64
 DIST_SUBDIR=		rpm
-INSTALLS_SHLIB=		yes
+USE_LDCONFIG=		yes
 USE_XLIB=		yes
 SRC_DISTFILES=
 
