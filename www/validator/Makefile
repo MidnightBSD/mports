@@ -2,7 +2,7 @@
 # Date created:				13 September 2005
 # Whom:					Naram Qashat <cyberbotx@cyberbotx.com>
 #
-# $MidnightBSD: mports/www/validator/Makefile,v 1.1 2007/05/08 22:05:46 laffer1 Exp $
+# $MidnightBSD: mports/www/validator/Makefile,v 1.2 2008/10/09 18:32:54 laffer1 Exp $
 # $FreeBSD: ports/www/validator/Makefile,v 1.9 2006/12/06 08:52:31 miwi Exp $
 #
 
@@ -19,7 +19,6 @@ LICENSE=	other
 
 RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/opensp \
 		${SITE_PERL}/Config/General.pm:${PORTSDIR}/devel/p5-Config-General \
-		${SITE_PERL}/${PERL_ARCH}/Encode/HanExtra.pm:${PORTSDIR}/chinese/p5-Encode-HanExtra \
 		${SITE_PERL}/${PERL_ARCH}/Encode/JIS2K.pm:${PORTSDIR}/converters/p5-Encode-JIS2K \
 		${SITE_PERL}/${PERL_ARCH}/HTML/Parser.pm:${PORTSDIR}/www/p5-HTML-Parser \
 		${SITE_PERL}/HTML/Encoding.pm:${PORTSDIR}/www/p5-HTML-Encoding \
