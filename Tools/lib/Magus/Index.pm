@@ -24,7 +24,7 @@ package Magus::Index;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.12 2008/03/20 22:23:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Index.pm,v 1.13 2008/10/02 21:13:56 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -90,7 +90,7 @@ sub sync {
     }
     
     print "done.\n";
-  } root    => $root;
+  } root    => $root, nochdir => sub { warn "ERROR: no such port $_[0]\n" };
 
   print "Building depends list... \n";
   
