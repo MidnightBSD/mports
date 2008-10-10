@@ -2,18 +2,20 @@
 # Date created:					2005-01-09
 # Whom:						arved
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/benchmarks/netio/Makefile,v 1.1 2007/07/15 07:36:22 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/netio/Makefile,v 1.5 2006/09/02 12:07:20 arved Exp $
 
 PORTNAME=	netio
 PORTVERSION=	1.26
 CATEGORIES=	benchmarks net ipv6
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	arved
 DISTNAME=	netio126
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network benchmark
+LICENSE=	restricted
+#non commercial use only
 
 WRKSRC=		${WRKDIR}
 USE_ZIP=	yes
