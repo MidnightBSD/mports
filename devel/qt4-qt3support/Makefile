@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-qt3support/Makefile,v 1.1 2008/10/07 01:21:33 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-qt3support/Makefile,v 1.16 2008/08/04 23:30:34 miwi Exp $
 #
 
@@ -30,7 +30,8 @@ USE_XLIB=	yes
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH
+		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
+		INSTALL_ROOT=${FAKE_DESTDIR}
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/opengl src/phonon \
