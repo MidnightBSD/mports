@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.261 2008/10/10 18:03:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.262 2008/10/10 18:06:38 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -11,7 +11,7 @@
     SUBDIR += anjuta
     SUBDIR += apache-ant
     SUBDIR += apr
-    SUBDIR += apr-cvs2svn
+#    SUBDIR += apr-cvs2svn
     SUBDIR += apr-svn
     SUBDIR += autoconf-wrapper
     SUBDIR += autoconf213
