@@ -2,7 +2,7 @@
 # Date created:				3 December 2006
 # Whom:	      				Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.5 2008/05/12 18:54:14 crash Exp $
+# $MidnightBSD: mports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.6 2008/10/03 19:05:42 laffer1 Exp $
 # $FreeBSD: ports/archivers/p5-IO-Compress-Zlib/Makefile,v 1.4 2007/02/01 11:28:45 demon Exp $
 #
 
@@ -28,4 +28,12 @@ MAN3=		IO::Uncompress::RawInflate.3 IO::Uncompress::Unzip.3 \
 		IO::Compress::RawDeflate.3 IO::Uncompress::AnyInflate.3 \
 		IO::Compress::Gzip.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_BRANCH} == "5.10"
+PLIST_SUB+=	PERL510="" PERL58="@comment "
+.else
+PLIST_SUB+=	PERL510="@comment " PERL58=""
+.endif
+
+.include <bsd.port.post.mk>
