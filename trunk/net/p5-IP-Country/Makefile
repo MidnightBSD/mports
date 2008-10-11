@@ -2,19 +2,23 @@
 # Date created:				20 June 2005
 # Whom:					dikshie <dikshie@lapi.itb.ac.id>
 #
-# $MidightBSD$
+# $MidnightBSD$
 # $FreeBSD: ports/net/p5-IP-Country/Makefile,v 1.4 2007/02/07 04:57:46 leeym Exp $
 #
 
 PORTNAME=	IP-Country
 PORTVERSION=	2.23
+PORTREVISION=	1
 CATEGORIES=	net perl5 geography
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	../by-authors/id/N/NW/NWETTERS
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast lookup of country codes from IP addresses
+LICENSE=	perl
+
+BUILD_DEPENDS=	${SITE_PERL}/Geography/Countries.pm:${PORTSDIR}/misc/p5-Geography-Countries
+RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
