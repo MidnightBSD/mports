@@ -2,12 +2,12 @@
 # Date created:			02 April 2005
 # Whom:				Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.6 2008/06/01 20:58:04 crash Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.7 2008/09/21 20:20:28 laffer1 Exp $
 # $FreeBSD: ports/misc/iso-codes/Makefile,v 1.21 2007/07/30 03:59:42 beech Exp $
 #
 
 PORTNAME=	iso-codes
-DISTVERSION=	3.1
+DISTVERSION=	3.2
 CATEGORIES=	misc
 MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/
 
