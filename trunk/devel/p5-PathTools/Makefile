@@ -3,7 +3,7 @@
 # Whom:	      				Donald Burr <dburr@FreeBSD.ORG>
 #
 # $FreeBSD: ports/devel/p5-PathTools/Makefile,v 1.27 2006/07/13 11:05:18 leeym Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-PathTools/Makefile,v 1.1 2006/11/05 15:56:23 laffer1 Exp $
 #
 
 PORTNAME=	PathTools
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Perl module for portably manipulating file specifications
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Scalar/Util.pm:${PORTSDIR}/lang/p5-Scalar-List-Utils
 RUN_DEPENDS=	${BUILD_DEPENDS}
