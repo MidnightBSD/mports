@@ -2,7 +2,7 @@
 # Date created:				October 11, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.1 2008/10/11 20:32:56 laffer1 Exp $
 
 PORTNAME=	bugzilla
 PORTVERSION=	3.0.5
@@ -39,7 +39,6 @@ RUN_DEPENDS+=	\
 		${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI \
 		${SITE_PERL}/${PERL_ARCH}/Template.pm:${PORTSDIR}/www/p5-Template-Toolkit \
 		${SITE_PERL}/${PERL_ARCH}/Data/Dumper.pm:${PORTSDIR}/devel/p5-Data-Dumper \
-		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
 		${SITE_PERL}/Email/Send.pm:${PORTSDIR}/mail/p5-Email-Send \
 		${SITE_PERL}/Email/MIME/Modifier.pm:${PORTSDIR}/mail/p5-Email-MIME-Modifier
 
@@ -66,6 +65,10 @@ DATA_DIRS_LIST=	images js skins/standard skins/standard/global \
 		skins/standard/index
 
 .include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
+.endif
 
 .ifdef WITH_MYSQL
 USE_MYSQL=	yes
