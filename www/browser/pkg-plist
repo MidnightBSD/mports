@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.120 2008/10/03 03:32:58 ctriv Exp $
+@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.4 2008/10/04 19:41:38 laffer1 Exp $
 bin/browser
 bin/browser-config
 include/browser/nsBuildID.h
@@ -703,7 +703,6 @@ include/browser/imglib2/imgIEncoder.h
 include/browser/imglib2/imgILoad.h
 include/browser/imglib2/imgILoader.h
 include/browser/imglib2/imgIRequest.h
-include/browser/imgicon/nsIIconURI.h
 include/browser/java/java_lang_String.h
 include/browser/java/jdk_java_lang_String.h
 include/browser/java/bool.h
@@ -1912,8 +1911,6 @@ lib/browser/components/gfx.xpt
 lib/browser/components/libgfxps.so
 lib/browser/components/libgfx_gtk.so
 lib/browser/components/imglib2.xpt
-lib/browser/components/libimgicon.so
-lib/browser/components/imgicon.xpt
 lib/browser/components/libimglib2.so
 lib/browser/components/plugin.xpt
 lib/browser/components/dom_css.xpt
@@ -2034,7 +2031,6 @@ lib/browser/components/libpipnss.so
 lib/browser/components/pipnss.xpt
 lib/browser/components/pippki.xpt
 lib/browser/components/libpippki.so
-lib/browser/components/libmozgnome.so
 lib/browser/components/mozgnome.xpt
 lib/browser/components/libcookie.so
 lib/browser/components/cookie.xpt
@@ -2662,7 +2658,6 @@ share/idl/firefox-2.0.0.17/imgIEncoder.idl
 share/idl/firefox-2.0.0.17/imgILoad.idl
 share/idl/firefox-2.0.0.17/imgILoader.idl
 share/idl/firefox-2.0.0.17/imgIRequest.idl
-share/idl/firefox-2.0.0.17/nsIIconURI.idl
 share/idl/firefox-2.0.0.17/nspluginroot.idl
 share/idl/firefox-2.0.0.17/nsIPluginStreamInfo.idl
 share/idl/firefox-2.0.0.17/nsIPluginManager.idl
