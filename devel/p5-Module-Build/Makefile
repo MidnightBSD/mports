@@ -2,7 +2,7 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.3 2007/07/22 09:07:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.4 2008/10/11 06:36:31 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Module-Build/Makefile,v 1.43 2006/12/26 02:22:21 clsung Exp $
 #
 
@@ -72,10 +72,9 @@ RUN_DEPENDS+=	${SITE_PERL}/Pod/Man.pm:${PORTSDIR}/textproc/p5-podlators
 .endif
 
 .if ${PERL_LEVEL} < 501000
-BUILD_DEPENDS=  ${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
 		${SITE_PERL}/Archive/Tar.pm:${PORTSDIR}/archivers/p5-Archive-Tar \
 		${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
-RUN_DEPENDS=    ${BUILD_DEPENDS}
 .endif
 
 .include <bsd.port.post.mk>
