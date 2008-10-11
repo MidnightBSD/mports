@@ -2,7 +2,7 @@
 # Date created:                         Thu Feb 8 18:46:25 CET 2007
 # Whom:                                 gmc@sonologic.nl
 #
-# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/07/22 07:51:26 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.2 2008/07/19 17:48:08 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/02/10 16:39:01 miwi Exp $
 #
 
@@ -19,11 +19,9 @@ LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/Net/DNS/Resolver/Programmable.pm:${PORTSDIR}/dns/p5-Net-DNS-Resolver-Programmable \
 		${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
-		${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version \
 		${SITE_PERL}/Error.pm:${PORTSDIR}/lang/p5-Error \
 		${SITE_PERL}/${PERL_ARCH}/NetAddr/IP.pm:${PORTSDIR}/net-mgmt/p5-NetAddr-IP \
-		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI \
-		${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
+		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_MODBUILD=	yes
@@ -51,6 +49,13 @@ post-install:
 .for doc in CHANGES LICENSE README TODO
 	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
+.endif
+
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version \
+		${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
+BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version \
+		${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
 .endif
 
 .include <bsd.port.post.mk>
