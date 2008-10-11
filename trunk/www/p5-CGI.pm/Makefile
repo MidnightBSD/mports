@@ -2,12 +2,13 @@
 # Date created:				12 July 2001
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.4 2008/08/21 16:48:28 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.5 2008/08/26 19:52:34 laffer1 Exp $
 # $FreeBSD: ports/www/p5-CGI.pm/Makefile,v 1.29 2006/09/30 08:50:54 tobez Exp $
 #
 
 PORTNAME=	CGI.pm
 PORTVERSION=	3.39
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
@@ -17,9 +18,6 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple Common Gateway Interface Class for Perl
 LICENSE=	perl
-
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
-RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
@@ -48,4 +46,11 @@ post-install:
 post-patch:
 	@${REINPLACE_CMD} -e '/require 5\.6/d; /INSTALLDIRS/d' ${WRKSRC}/Makefile.PL
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 501000
+BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
+RUN_DEPENDS=	${BUILD_DEPENDS}
+.endif
+
+.include <bsd.port.post.mk>
