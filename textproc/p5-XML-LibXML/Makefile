@@ -2,7 +2,7 @@
 # Date created:		28 May 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/p5-XML-LibXML/Makefile,v 1.1 2008/10/10 18:48:50 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-XML-LibXML/Makefile,v 1.32 2008/01/31 20:13:48 skv Exp $
 #
 
@@ -18,15 +18,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Interface to Gnome libxml2 library
 LICENSE=	perl
 
-CONFLICTS=	p5-XML-LibXML-XPathContext-*
-
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/LibXML/Common.pm:${PORTSDIR}/textproc/p5-XML-LibXML-Common \
 		${SITE_PERL}/XML/NamespaceSupport.pm:${PORTSDIR}/textproc/p5-XML-NamespaceSupport \
 		${SITE_PERL}/XML/SAX.pm:${PORTSDIR}/textproc/p5-XML-SAX
 LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	5.6.1+
+CONFLICTS=	p5-XML-LibXML-XPathContext-[0-9]*
+
+PERL_CONFIGURE=	yes
 CONFIGURE_ENV=	XMLPREFIX=${LOCALBASE}
 
 PKGDEINSTALL=	${PKGINSTALL}
