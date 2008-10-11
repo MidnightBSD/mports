@@ -2,7 +2,7 @@
 # Date created:		28 May 2001
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/textproc/p5-XML-LibXML/Makefile,v 1.1 2008/10/10 18:48:50 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-XML-LibXML/Makefile,v 1.2 2008/10/11 22:59:31 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-XML-LibXML/Makefile,v 1.32 2008/01/31 20:13:48 skv Exp $
 #
 
@@ -45,8 +45,5 @@ MAN3=		XML::LibXML.3 XML::LibXML::Attr.3 XML::LibXML::Boolean.3 \
 		XML::LibXML::SAX::Builder.3 XML::LibXML::SAX::Generator.3 \
 		XML::LibXML::Schema.3 XML::LibXML::Text.3 \
 		XML::LibXML::XPathContext.3
-
-post-install:
-	@PKG_PREFIX=${PREFIX} ${PERL} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
