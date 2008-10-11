@@ -2,7 +2,7 @@
 # Date created:				August 27 2002
 # Whom:	      				Sheldon Hearn <sheldonh@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Config-General/Makefile,v 1.2 2008/07/05 22:41:00 crash Exp $
+# $MidnightBSD: mports/devel/p5-Config-General/Makefile,v 1.3 2008/07/13 20:29:08 crash Exp $
 # $FreeBSD: ports/devel/p5-Config-General/Makefile,v 1.16 2007/02/25 07:55:16 rafan Exp $
 #
 
@@ -16,12 +16,17 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for handling Apache-style configuration files
 LICENSE=        perl
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
-RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	YES
 
 MAN3=		Config::General::Extended.3 Config::General::Interpolated.3 \
 		Config::General.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 501000
+BUILD_DEPENDS=  ${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
+RUN_DEPENDS=    ${BUILD_DEPENDS}
+.endif
+
+.include <bsd.port.post.mk>

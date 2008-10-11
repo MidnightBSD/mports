@@ -2,7 +2,7 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.2 2007/03/30 17:54:27 ctriv Exp $
+# $MidnightBSD: mports/devel/p5-Module-Build/Makefile,v 1.3 2007/07/22 09:07:45 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Module-Build/Makefile,v 1.43 2006/12/26 02:22:21 clsung Exp $
 #
 
@@ -16,10 +16,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/\.(..)$/\1/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Build and install Perl modules
+LICENSE=	perl
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/Archive/Tar.pm:${PORTSDIR}/archivers/p5-Archive-Tar \
-		${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder \
+RUN_DEPENDS=	\
 		${SITE_PERL}/ExtUtils/ParseXS.pm:${PORTSDIR}/devel/p5-ExtUtils-ParseXS \
 		${SITE_PERL}/YAML.pm:${PORTSDIR}/textproc/p5-YAML
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -70,6 +69,13 @@ MAN1=		config_data.1
 
 .if ${PERL_LEVEL} < 500805
 RUN_DEPENDS+=	${SITE_PERL}/Pod/Man.pm:${PORTSDIR}/textproc/p5-podlators
+.endif
+
+.if ${PERL_LEVEL} < 501000
+BUILD_DEPENDS=  ${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
+		${SITE_PERL}/Archive/Tar.pm:${PORTSDIR}/archivers/p5-Archive-Tar \
+		${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
+RUN_DEPENDS=    ${BUILD_DEPENDS}
 .endif
 
 .include <bsd.port.post.mk>
