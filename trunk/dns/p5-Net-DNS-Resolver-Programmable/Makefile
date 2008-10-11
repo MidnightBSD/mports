@@ -2,7 +2,7 @@
 # Date created:				February 9, 2007
 # Whom:	      				Koen Martens <gmc@sonologic.nl>
 #
-# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.3 2007/11/11 23:28:49 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.4 2008/06/07 16:44:40 laffer1 Exp $
 # $FreeBSD: ports/dns/p5-Net-DNS-Resolver-Programmable/Makefile,v 1.1 2007/02/10 16:13:31 miwi Exp $
 #
 
@@ -17,8 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Programmable DNS resolver for off-line testing
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
-		${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_MODBUILD=	yes
@@ -36,6 +35,11 @@ post-install:
 .for doc in CHANGES README TODO
 	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
+.endif
+
+.if ${PERL_LEVEL} < 501000
+BUILD_DEPENDS+=  ${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
+RUN_DEPENDS+=    ${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version
 .endif
 
 .include <bsd.port.post.mk>
