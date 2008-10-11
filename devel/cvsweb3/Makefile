@@ -2,14 +2,15 @@
 # Date created:		27 Jun 1999
 # Whom:			SADA Kenji <sada@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cvsweb3/Makefile,v 1.3 2008/08/24 20:38:56 laffer1 Exp $
 # $FreeBSD: ports/devel/cvsweb3/Makefile,v 1.82 2006/01/23 07:04:09 linimon Exp $
 #
 
 PORTNAME=	cvsweb
 PORTVERSION=	3.0.6
+PORTREVISION=	1
 CATEGORIES=	devel www
-MASTER_SITES=	${MASTER_SITE_LOCAL} \
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.FreeBSD.org/~scop/cvsweb/
 MASTER_SITE_SUBDIR=	scop
 
@@ -38,8 +39,9 @@ USE_PERL5=	yes
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 500800
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
+#perl 5.10 fixes
+.if ${PERL_LEVEL} > 500800
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-perl5.10
 .endif
 
 # Specify where your repository belongs.
@@ -52,15 +54,15 @@ CVSROOT=	/home/cvs
 TITLE?=		My CVS Repository
 
 # Specify these directories in relative paths to ${PREFIX}.
-.if exists(${PREFIX}/www/cgi-bin)
+.if exists(${TRUE_PREFIX}/www/cgi-bin)
 CGIDIR?=	www/cgi-bin
 ICONSDIR?=	www/icons
 CSSDIR?=	www/data/css
-.elif exists(${PREFIX}/www/apache22/cgi-bin)
+.elif exists(${TRUE_PREFIX}/www/apache22/cgi-bin)
 CGIDIR?=       www/apache22/cgi-bin
 ICONSDIR?=     www/apache22/icons
 CSSDIR?=       www/apache22/data/css
-.elif exists(${PREFIX}/apache/cgi-bin)
+.elif exists(${TRUE_PREFIX}/apache/cgi-bin)
 CGIDIR?=	apache/cgi-bin
 ICONSDIR?=	apache/icons
 CSSDIR?=	apache/data/css
