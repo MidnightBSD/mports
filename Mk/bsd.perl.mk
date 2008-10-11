@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.13 2008/09/22 19:01:25 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.14 2008/09/22 19:40:47 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -149,7 +149,9 @@ ALL_TARGET?=
 PL_BUILD?=		Build
 CONFIGURE_SCRIPT?=	Build.PL
 .if ${PORTNAME} != Module-Build
+.if ${PERL_LEVEL} < 501000
 BUILD_DEPENDS+=		${SITE_PERL}/Module/Build.pm:${PORTSDIR}/devel/p5-Module-Build
+.endif
 .endif
 CONFIGURE_ARGS+= \
 	create_packlist=0 \
