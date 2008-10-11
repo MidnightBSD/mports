@@ -2,7 +2,7 @@
 # Date created:                         	31 December 2003
 # Whom:					Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/qt4-odbc-plugin/Makefile,v 1.1 2008/10/07 01:33:54 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-odbc-plugin/Makefile,v 1.10 2008/08/04 23:30:31 miwi Exp $
 #
 
@@ -36,5 +36,8 @@ MAKE_ENV+=	DB="${DB}" DRIVER="${DRIVER}" MOC="${MOC}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
 PLIST_SUB=	DB=${DB}
+
+pre-fake:
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/qt4/plugins/sqldrivers
 
 .include <bsd.port.mk>
