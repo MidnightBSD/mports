@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/mail/p5-Email-Send/Makefile,v 1.13 2008/04/17 14:26:54 araujo Exp $
-# $MidnightBSD: mports/mail/p5-Email-Send/Makefile,v 1.1 2008/09/18 20:39:55 crash Exp $
+# $MidnightBSD: mports/mail/p5-Email-Send/Makefile,v 1.2 2008/09/22 18:47:36 laffer1 Exp $
 
 PORTNAME=	Email-Send
 PORTVERSION=	2.192
@@ -18,7 +18,6 @@ LICENSE=        gpl2
 BUILD_DEPENDS=	p5-Class-Accessor>=0.19:${PORTSDIR}/devel/p5-Class-Accessor \
 		p5-Email-Address>=1.80:${PORTSDIR}/mail/p5-Email-Address \
 		p5-Email-Simple>=1.92:${PORTSDIR}/mail/p5-Email-Simple \
-		p5-Module-Pluggable>=2.97:${PORTSDIR}/devel/p5-Module-Pluggable \
 		p5-Return-Value>=1.28:${PORTSDIR}/devel/p5-Return-Value \
 		${SITE_PERL}/UNIVERSAL/require.pm:${PORTSDIR}/devel/p5-UNIVERSAL-require \
 		p5-Net>0:${PORTSDIR}/net/p5-Net
@@ -33,4 +32,11 @@ MAN3=	Email::Send.3 \
 	Email::Send::Sendmail.3 \
 	Email::Send::Test.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 501000
+BUILD_DEPENDS+=	p5-Module-Pluggable>=2.97:${PORTSDIR}/devel/p5-Module-Pluggable
+RUN_DEPENDS+=	p5-Module-Pluggable>=2.97:${PORTSDIR}/devel/p5-Module-Pluggable
+.endif
+
+.include <bsd.port.post.mk>
