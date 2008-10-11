@@ -2,7 +2,7 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Email-MIME/Makefile,v 1.1 2008/10/11 20:02:15 laffer1 Exp $
 
 PORTNAME=	Email-MIME
 PORTVERSION=	1.861
@@ -24,6 +24,10 @@ PERL_CONFIGURE=	yes
 
 MAN3=		Email::MIME.3
 
-RUN_DEPENDS+=	p5-Encode>=1.98.1:${PORTSDIR}/converters/p5-Encode
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	p5-Encode>=1.98.1:${PORTSDIR}/converters/p5-Encode
+.endif
+
+.include <bsd.port.post.mk>
