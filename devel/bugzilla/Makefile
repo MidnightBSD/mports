@@ -2,12 +2,13 @@
 # Date created:				28 September 2001
 # Whom:					Alexey Zelkin <phantom@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.5 2008/10/07 15:13:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla/Makefile,v 1.6 2008/10/10 20:17:22 laffer1 Exp $
 # $FreeBSD: ports/devel/bugzilla/Makefile,v 1.47 2006/11/15 14:47:20 skv Exp $
 #
 
 PORTNAME=	bugzilla
 PORTVERSION=	2.22.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
@@ -57,6 +58,10 @@ DATA_DIRS_LIST=	images js skins/standard skins/standard/global \
 		skins/standard/index
 
 .include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} > 500800
+BROKEN=	Bugzilla 2.x does not support Perl 5.10+
+.endif
 
 .ifdef WITH_MYSQL
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/DBD/mysql.pm:${PORTSDIR}/databases/p5-DBD-mysql${MYSQL_VER}
