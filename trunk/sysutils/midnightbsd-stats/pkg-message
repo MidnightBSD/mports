@@ -1,0 +1,24 @@
+This script, meant to be run monthly, submits statistics anonymously
+to a checkin server (http://rpt.midnightbsd.org), in an attempt to
+generate reasonably accurate demographics of MidnightBSD usage and
+hardware.
+
+To enable monthly reporting, edit or create /etc/periodic.conf and 
+add this line:
+	monthly_statistics_enable="YES"
+
+To enable boottime reporting, edit or create /etc/rc.conf and add 
+this line:
+ 	midnightbsd_stats_enable="YES"
+
+To enable device reporting, add this line:
+	monthly_statistics_report_devices="YES"
+
+To enable ports reporting, add this line:
+	monthly_statistics_report_ports="YES"
+
+To run it manually the first time, just run it as:
+	/usr/local/etc/periodic/monthly/310.statistics -nodelay
+
+To view current statistics, go to:
+        http://rpt.midnightbsd.org
