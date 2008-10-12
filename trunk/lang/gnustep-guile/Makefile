@@ -3,7 +3,7 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.4 2008/06/04 11:17:26 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.5 2008/08/24 19:18:12 laffer1 Exp $
 #
 
 PORTNAME=	gnustep-guile
@@ -33,6 +33,7 @@ USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=
 MAKE_FLAGS=	OPTFLAG="${CFLAGS}"
+MAKE_ENV+=	INSTALL_ROOT_DIR=${FAKE_DESTDIR}
 PLIST_SUB+=	GUILE_VER="${GUILE_VER}"
 
 MAN1=	greg.1
@@ -54,17 +55,17 @@ CONFLICTS?=		gnustep-guile-nox11-1.*
 GUILE_VER!=	(cd ${PORTSDIR}/lang/guile && make -V GUILE_VER)
 
 post-patch:
-	${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
-               ${WRKSRC}/Greg/configure
+	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
+		${WRKSRC}/Greg/configure
 .for i in ${FIXME}
-	${REINPLACE_CMD} -e 's|scm_catch_body_t|scm_t_catch_body|' \
-               -e 's|scm_catch_handler_t|scm_t_catch_handler|' \
-               -e 's|scm_intern|scm_c_define|' \
-               ${WRKSRC}/${i}
+	@${REINPLACE_CMD} -e 's|scm_catch_body_t|scm_t_catch_body|' \
+		-e 's|scm_catch_handler_t|scm_t_catch_handler|' \
+		-e 's|scm_intern|scm_c_define|' \
+		${WRKSRC}/${i}
 .endfor
-
+	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}
 
 pre-configure:
-	${TOUCH} ${WRKSRC}/Greg/ac_nonexistent.h
+	@${TOUCH} ${WRKSRC}/Greg/ac_nonexistent.h
 
 .include <bsd.port.post.mk>
