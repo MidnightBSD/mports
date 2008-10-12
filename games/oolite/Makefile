@@ -2,12 +2,13 @@
 # Date created:         04 Oct 2005
 # Whom:                 Andriy Gapon <avg@icyb.net.ua>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/oolite/Makefile,v 1.1 2008/09/09 02:14:53 laffer1 Exp $
 # $FreeBSD: ports/games/oolite/Makefile,v 1.11 2008/03/13 14:27:54 miwi Exp $
 #
 
 PORTNAME=		oolite
 PORTVERSION=		1.65
+PORTREVISION=		1
 CATEGORIES=		games gnustep
 MASTER_SITES=		${MASTER_SITE_BERLIOS} \
 			ftp://ftp.alioth.net/%SUBDIR%/:alioth
@@ -37,8 +38,8 @@ post-patch:
 	${REINPLACE_CMD} -e "s|shared_obj|obj|g" ${WRKSRC}/${MAKEFILE}.postamble
 
 do-install:
-	${MKDIR} ${GNUSTEP_PREFIX}/Local/Applications
-	${CP} -R ${WRKSRC}/oolite.app ${GNUSTEP_PREFIX}/Local/Applications
-	${STRIP_CMD} ${GNUSTEP_PREFIX}/Local/Applications/oolite.app/oolite
+	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/Local/Applications
+	${CP} -R ${WRKSRC}/oolite.app ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/Local/Applications
+	${STRIP_CMD} ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/Local/Applications/oolite.app/oolite
 
 .include <bsd.port.mk>
