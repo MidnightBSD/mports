@@ -2,12 +2,12 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.3 2008/05/11 16:24:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.4 2008/05/22 16:42:31 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.18 2008/04/02 12:02:41 mm Exp $
 #
 
 PORTNAME=	tk
-PORTVERSION=	8.5.2
+PORTVERSION=	8.5.4
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits tk
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
