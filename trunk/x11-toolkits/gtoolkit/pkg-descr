@@ -1,7 +1,5 @@
 GToolKit is a (relatively) small library that implements a simple and easy to
-use Objective-C interface to the GTK+ widget set. Well, the library in itself
-does not do very much, of course. It just allows you to write your favourite
-program in my favourite programming language ;-). 
+use Objective-C interface to the GTK+ widget set.
 
 Currently implemented features: 
 
@@ -15,5 +13,3 @@ Currently implemented features:
 - works in multi-threaded programs (not well tested) 
 
 WWW: http://www.informatik.uni-osnabrueck.de/elmar/projects/gtoolkit/
-
-Miguel Mendez <flynn@energyhq.homeip.net>
