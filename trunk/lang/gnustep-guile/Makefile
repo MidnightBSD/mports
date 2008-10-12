@@ -3,7 +3,7 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.7 2008/10/12 19:17:06 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.8 2008/10/12 19:26:29 laffer1 Exp $
 #
 
 PORTNAME=	gnustep-guile
@@ -63,7 +63,8 @@ post-patch:
 		${WRKSRC}/Greg/Test/Makefile
 	${REINPLACE_CMD} -e 's|$$(GNUSTEP_SYSTEM_ROOT)|${FAKE_DESTDIR}${GNUSTEP_SYSTEM_ROOT}|' \
 		${WRKSRC}/ScriptKit/Library/GNUmakefile \
-		${WRKSRC}/ScriptKit/Examples/GNUmakefile
+		${WRKSRC}/ScriptKit/Examples/GNUmakefile \
+		${WRKSRC}/Library/GNUmakefile
 .for i in ${FIXME}
 	@${REINPLACE_CMD} -e 's|scm_catch_body_t|scm_t_catch_body|' \
 		-e 's|scm_catch_handler_t|scm_t_catch_handler|' \
