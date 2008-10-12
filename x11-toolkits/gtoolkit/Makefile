@@ -3,12 +3,12 @@
 # Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
 #
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.2 2007/11/07 20:20:18 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.3 2008/05/04 05:35:40 laffer1 Exp $
 #
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	ftp://ftp.inf.uos.de/pub/elmar/gtk/objc-gtoolkit/
 
@@ -16,7 +16,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Obj-C wrapper for gtk, a x11 graphics library
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_MAKEFILE=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -39,10 +38,4 @@ post-patch:
 	${REINPLACE_CMD} -e 's|)/Makefiles|)/Library/Makefiles|' \
 		${WRKSRC}/Makefile.gnustep
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "ia64"
-BROKEN=		gtksignal.h is missing from gtk
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
