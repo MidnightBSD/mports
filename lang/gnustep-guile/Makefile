@@ -3,12 +3,12 @@
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.5 2008/08/24 19:18:12 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.6 2008/10/12 14:16:55 laffer1 Exp $
 #
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
-PORTREVISION=	4444
+PORTREVISION=	4445
 CATEGORIES=	lang gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -57,13 +57,16 @@ GUILE_VER!=	(cd ${PORTSDIR}/lang/guile && make -V GUILE_VER)
 post-patch:
 	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
 		${WRKSRC}/Greg/configure
+	${REINPLACE_CMD} -e 's|$$(INSTALL_ROOT_DIR)|${FAKE_DESTDIR}|' \
+		${WRKSRC}/GNUmakefile ${WRKSRC}/Greg/Library/Makefile.in \
+		${WRKSRC}/Greg/Documentation/Makefile.in \
+		${WRKSRC}/Greg/Test/Makefile
 .for i in ${FIXME}
 	@${REINPLACE_CMD} -e 's|scm_catch_body_t|scm_t_catch_body|' \
 		-e 's|scm_catch_handler_t|scm_t_catch_handler|' \
 		-e 's|scm_intern|scm_c_define|' \
 		${WRKSRC}/${i}
 .endfor
-	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}
 
 pre-configure:
 	@${TOUCH} ${WRKSRC}/Greg/ac_nonexistent.h
