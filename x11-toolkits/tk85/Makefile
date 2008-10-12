@@ -2,7 +2,7 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.4 2008/05/22 16:42:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.5 2008/10/12 14:45:29 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.18 2008/04/02 12:02:41 mm Exp $
 #
 
@@ -441,9 +441,9 @@ post-configure:
 
 .if defined(BUILDING_TK_THREADS)
 do-install:
-	@cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} -f Makefile install-binaries
-	@${MKDIR} ${PREFIX}/lib/tk${TK_VER}${THREADS_SUFFIX}
-	@${LN} -s ${PREFIX}/lib/tk${TK_VER}/tkConfig${THREADS_SUFFIX}.sh \
+	cd ${WRKSRC} && ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} -f Makefile install-binaries
+	${MKDIR} ${PREFIX}/lib/tk${TK_VER}${THREADS_SUFFIX}
+	${LN} -s ${PREFIX}/lib/tk${TK_VER}/tkConfig${THREADS_SUFFIX}.sh \
 		${PREFIX}/lib/tk${TK_VER}${THREADS_SUFFIX}/tkConfig.sh
 .endif
 
