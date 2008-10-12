@@ -2,25 +2,21 @@
 # Date created:         28 Aug 2006
 # Whom:                 gurkan@linuks.mine.nu
 #
-# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.2 2007/10/25 22:11:06 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/timemon/Makefile,v 1.3 2007/11/07 20:20:16 ctriv Exp $
 # $FreeBSD: ports/sysutils/timemon/Makefile,v 1.1 2006/09/07 05:38:19 dinoex Exp $
 #
 
 PORTNAME=	timemon
-PORTVERSION=	4.0
-PORTREVISION=	2
+PORTVERSION=	4.1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	gap
-DISTNAME=	TimeMon-gnustep
-EXTRACT_SUFX=	.tgz
+DISTNAME=	TimeMon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CPU time usage monitor for GNUstep
 LICENSE=	unknown
 
-WRKSRC=		${WRKDIR}/TimeMon
-USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
