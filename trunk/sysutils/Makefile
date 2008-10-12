@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.81 2008/09/25 15:43:41 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.82 2008/10/11 01:25:36 laffer1 Exp $
 #
 
     COMMENT = System utilities
 
     SUBDIR += 915resolution
     SUBDIR += LPRng
+    SUBDIR += batmon
     SUBDIR += battmond
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdstats
