@@ -3,7 +3,7 @@
 # Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
 #
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.3 2008/05/04 05:35:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.4 2008/10/12 19:47:57 laffer1 Exp $
 #
 
 PORTNAME=	gtoolkit
@@ -37,5 +37,8 @@ post-patch:
 		${CONFIGURE_WRKSRC}/configure
 	${REINPLACE_CMD} -e 's|)/Makefiles|)/Library/Makefiles|' \
 		${WRKSRC}/Makefile.gnustep
+	${REINPLACE_CMD} -e 's|$$(GNUSTEP_MAKEFILES)|${FAKE_DESTDIR}${GNUSTEP_MAKEFILES}|' \
+		${WRKSRC}/Makefile.postamble
+	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_MAKEFILES}
 
 .include <bsd.port.mk>
