@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.3 2007/08/30 01:14:04 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.4 2008/04/10 17:51:14 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -36,7 +36,7 @@ USE_LINUX=	yes
 USE_GCPIO=	yes
 USE_XLIB=	yes
 JDK_VERSION=	1.6.0
-JDK_REVISION=	02
+JDK_REVISION=	07
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://java.sun.com/javase/downloads/index.jsp
@@ -57,7 +57,7 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +441 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +556 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
 	&& ${WRKDIR}/install.sfx > /dev/null
 
@@ -79,9 +79,7 @@ do-install:
 	done
 
 post-install:
-	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Sun-JDK${PORTVERSION}"
 	${SED} -e "s:%%JRE_HOME%%:${APP_HOME}/jre:g" \
 	  < ${FILESDIR}/pkg-install.in > ${PKGINSTALL}
-	${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
