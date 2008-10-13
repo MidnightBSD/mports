@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/databases/qt4-sql/Makefile,v 1.1 2008/10/07 01:33:55 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-sql/Makefile,v 1.2 2008/10/09 19:44:34 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-sql/Makefile,v 1.12 2008/08/04 23:30:30 miwi Exp $
 #
 
@@ -30,8 +30,8 @@ ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
 		PATH=${WRKSRC}/bin:$$PATH \
-		${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+
+DESTDIRNAME=	INSTALL_ROOT
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/gui src/network src/opengl src/phonon \
@@ -51,6 +51,7 @@ pre-configure:
 	${MKDIR} ${WRKSRC}/../../mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc
+
 post-configure:
 	${REINPLACE_CMD} -e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
 		-e 's|.*$$(QMAKE).*||g' ${WRKSRC}/Makefile
