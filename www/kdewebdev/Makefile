@@ -3,7 +3,7 @@
 # Whom:					AlanE <alane@freebsd.org>
 #
 # $FreeBSD: ports/www/kdewebdev/Makefile,v 1.55 2006/09/12 23:26:48 lofi Exp $
-# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.1 2007/01/24 17:09:39 laffer1 Exp $
+# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.2 2007/12/31 05:13:43 laffer1 Exp $
 #
 
 PORTNAME=	kdewebdev
@@ -16,7 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Comprehensive html/website development environment
-
+LICENSE=        gpl2
 BUILD_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
 		xgettext:${PORTSDIR}/devel/gettext
 RUN_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
