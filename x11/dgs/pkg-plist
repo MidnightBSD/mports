@@ -3,8 +3,39 @@ bin/dgs-config
 bin/dpsexec
 bin/dpsnx.agent
 bin/makepsres
+bin/pswrap
 bin/texteroids
 bin/xepsf
+include/DPS/ColorSB.h
+include/DPS/ColorSBP.h
+include/DPS/DPSScrollW.h
+include/DPS/DPSScrollWP.h
+include/DPS/FontCreatP.h
+include/DPS/FontCreato.h
+include/DPS/FontSB.h
+include/DPS/FontSBP.h
+include/DPS/FontSamplP.h
+include/DPS/FontSample.h
+include/DPS/PSres.h
+include/DPS/XDPS.h
+include/DPS/XDPSlib.h
+include/DPS/XDPSproto.h
+include/DPS/dpsNXargs.h
+include/DPS/dpsXclient.h
+include/DPS/dpsXcommon.h
+include/DPS/dpsXpreview.h
+include/DPS/dpsXshare.h
+include/DPS/dpsXuserpath.h
+include/DPS/dpsclient.h
+include/DPS/dpsconfig.h
+include/DPS/dpsexcept.h
+include/DPS/dpsfriends.h
+include/DPS/dpsops.h
+include/DPS/psops.h
+lib/libdps.a
+lib/libdps.la
+lib/libdps.so
+lib/libdps.so.0
 lib/libdpstk.a
 lib/libdpstk.la
 lib/libdpstk.so
@@ -13,7 +44,6 @@ lib/libpsres.a
 lib/libpsres.la
 lib/libpsres.so
 lib/libpsres.so.0
-share/aclocal/path_dps.m4
 share/ghostscript/5.50/Fontmap
 share/ghostscript/5.50/doc/Bug-form.htm
 share/ghostscript/5.50/doc/C-style.htm
@@ -83,6 +113,7 @@ share/ghostscript/5.50/gs_typ32.ps
 share/ghostscript/5.50/gs_typ42.ps
 share/ghostscript/5.50/gs_type1.ps
 share/ghostscript/5.50/gs_wan_e.ps
+@dirrm include/DPS
 @dirrmtry share/ghostscript/5.50/doc
 @dirrmtry share/ghostscript/5.50/examples
 @dirrmtry share/ghostscript/5.50
