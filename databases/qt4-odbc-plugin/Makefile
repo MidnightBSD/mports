@@ -2,7 +2,7 @@
 # Date created:                         	31 December 2003
 # Whom:					Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD: mports/databases/qt4-odbc-plugin/Makefile,v 1.1 2008/10/07 01:33:54 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-odbc-plugin/Makefile,v 1.2 2008/10/11 23:20:04 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-odbc-plugin/Makefile,v 1.10 2008/08/04 23:30:31 miwi Exp $
 #
 
@@ -18,6 +18,8 @@ COMMENT=	Qt ODBC database plugin
 LICENSE=	gpl2
 
 DB=		odbc
+
+FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS+=	odbc:${PORTSDIR}/databases/unixODBC
 

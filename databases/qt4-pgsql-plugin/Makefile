@@ -2,7 +2,7 @@
 # Date created:                         	5 August 2003
 # Whom:                                        	Lauri Watts <lauri@kde.org>
 #
-# $MidnightBSD: mports/databases/qt4-pgsql-plugin/Makefile,v 1.1 2008/10/07 01:33:55 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-pgsql-plugin/Makefile,v 1.2 2008/10/11 23:20:05 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-pgsql-plugin/Makefile,v 1.10 2008/08/04 23:30:31 miwi Exp $
 #
 
@@ -16,6 +16,8 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt PostgreSQL database plugin
 LICENSE=	gpl2
+
+FAKE_OPTS=	trueprefix
 
 DB=		psql
 
