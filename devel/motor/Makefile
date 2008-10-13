@@ -2,7 +2,7 @@
 # Date created:				20 February 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/motor/Makefile,v 1.2 2007/05/06 19:16:16 ctriv Exp $
+# $MidnightBSD: mports/devel/motor/Makefile,v 1.3 2007/08/22 10:18:38 laffer1 Exp $
 # $FreeBSD: ports/devel/motor/Makefile,v 1.24 2006/08/18 17:16:36 delphij Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://thekonst.net/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A powerful text mode based programming IDE
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
