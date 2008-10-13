@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/bsd.qt.mk,v 1.3 2008/09/18 21:55:33 laffer1 Exp $
 #
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
 # QT_DIST			- Package being built is part of the Qt distribution.
@@ -243,24 +243,28 @@ _QT_COMPONENTS_SUFFIXED+=${component} ${component}_build ${component}_run
 .endfor
 
 .if defined(QT_COMPONENTS)
-.for ext in ${QT_COMPONENTS}
+.	for ext in ${QT_COMPONENTS}
 ${ext}_QT4_PREFIX?=	qt4-
 ${ext}_QT4_VERSION?=	${QT4_VERSION}
 ${ext}_NAME?=		${ext}
 _${ext}=		${ext}
-.if ${_QT_COMPONENTS_SUFFIXED:M${ext}}!= ""
-.if ${_${ext}:M*_build}!= ""
+.		if ${_QT_COMPONENTS_SUFFIXED:M${ext}}!= ""
+.			if ${_${ext}:M*_build}!= ""
 BUILD_DEPENDS+=	${${ext}_QT4_PREFIX}${${ext}_NAME:S/_build//}>=${${ext}_QT4_VERSION}:${PORTSDIR}/${${ext}_DEPENDS}
-.elif ${_${ext}:M*_run}!= ""
+.			elif ${_${ext}:M*_run}!= ""
 RUN_DEPENDS+=	${${ext}_QT4_PREFIX}${${ext}_NAME:S/_run//}>=${${ext}_QT4_VERSION}:${PORTSDIR}/${${ext}_DEPENDS}
-.else
+.			else
 BUILD_DEPENDS+=	${${ext}_QT4_PREFIX}${${ext}_NAME}>=${${ext}_QT4_VERSION}:${PORTSDIR}/${${ext}_DEPENDS}
 RUN_DEPENDS+=	${${ext}_QT4_PREFIX}${${ext}_NAME}>=${${ext}_QT4_VERSION}:${PORTSDIR}/${${ext}_DEPENDS}
-.endif
-.else
+.			endif
+.		else
 IGNORE= cannot install: unknown Qt4 component -- ${ext}
-.endif
-.endfor
+.		endif
+.	endfor
+.	if ${QT_COMPONENTS:Mqmake*} != ""
+# we're using qmake.  Set up DESTDIRNAME so fake works correctly.
+DESTDIRNAME= INSTALL_ROOT
+.	endif
 .else
 BUILD_DEPENDS+=		qt4>=${QT4_VERSION}:${PORTSDIR}/devel/qt4
 RUN_DEPENDS+=		qt4>=${QT4_VERSION}:${PORTSDIR}/devel/qt4
