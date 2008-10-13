@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.7 2008/09/13 20:45:03 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.8 2008/09/13 20:46:59 laffer1 Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -1429,7 +1429,7 @@ sub checkmakefile {
 	# whole file: USE_* as a user-settable option
 	#
 	print "OK: checking for USE_* as a user-settable option.\n" if ($verbose);
-	while ($whole =~ /\n\s*\.\s*(?:el)?if[^\n]*?\b(\w*USE_)(\w+)(?\![^\n]*\n#?\.error)/g) {
+	while ($whole =~ /\n\s*\.\s*(?:el)?if[^\n]*?\b(\w*USE_)(\w+)(?![^\n]*\n#?\.error)/g) {
 		my $lineno = &linenumber($`);
 		&perror("WARN", $file, $lineno, "is $1$2 a user-settable option? ".
 			"Consider using WITH_$2 instead.")
