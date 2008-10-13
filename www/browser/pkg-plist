@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.4 2008/10/04 19:41:38 laffer1 Exp $
+@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.5 2008/10/11 23:23:58 laffer1 Exp $
 bin/browser
 bin/browser-config
 include/browser/nsBuildID.h
@@ -2047,7 +2047,6 @@ lib/browser/components/websrvcs.xpt
 lib/browser/components/nsInterfaceInfoToIDL.js
 lib/browser/components/libwebsrvcs.so
 lib/browser/components/inspector-cmdline.js
-lib/browser/components/libnkgnomevfs.so
 lib/browser/components/libauth.so
 lib/browser/components/libpermissions.so
 lib/browser/components/libspellchecker.so
