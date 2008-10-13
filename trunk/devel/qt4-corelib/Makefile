@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.2 2008/10/09 01:27:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.3 2008/10/09 20:50:02 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.17 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -31,8 +31,9 @@ USE_LDCONFIG=	${PREFIX}/lib/qt4
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+		PATH=${WRKSRC}/bin:$$PATH
+		
+DESTDIRNAME=	INSTALL_ROOT
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/gui src/network src/opengl src/phonon \
@@ -71,10 +72,11 @@ post-configure:
 .if ${OSVERSION} >= 700042
 	${ECHO_CMD} "#define QT_VISIBILITY_AVAILABLE" >> ${WRKSRC}/global/qconfig.h
 .endif
-	${MKDIR} -p ${FAKE_DESTDIR}${PREFIX}/share/qt4/mkspecs
+
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/qt4/plugins
+	${MKDIR} ${PREFIX}/share/qt4/mkspecs
 	${TOUCH} ${PREFIX}/lib/qt4/plugins/.keep_me
 	${INSTALL_DATA} ${WRKDIR}/${DISTNAME}/mkspecs/qconfig.pri ${PREFIX}/share/qt4/mkspecs/
 
