@@ -2,7 +2,7 @@
 # Date created:				20 April 2003
 # Whom:					Kay Lehmann <kay_lehmann@web.de>
 #
-# $MidnightBSD: mports/databases/qt4-mysql-plugin/Makefile,v 1.2 2008/10/11 23:17:53 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-mysql-plugin/Makefile,v 1.3 2008/10/11 23:20:04 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-mysql-plugin/Makefile,v 1.10 2008/08/04 23:30:30 miwi Exp $
 
 PORTNAME=	qt4-${DB}-plugin
@@ -17,6 +17,8 @@ COMMENT=	Qt MySQL database plugin
 LICENSE=	gpl2
 
 DB=		mysql
+
+FAKE_OPTS=	trueprefix
 
 USE_QT_VER=	4
 QT_COMPONENTS=	moc_build sql
