@@ -2,7 +2,7 @@
 # Date created:		21 February 2001
 # Whom:			znerd@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xalan-j/Makefile,v 1.1 2008/10/04 16:39:10 laffer1 Exp $
 # $FreeBSD: ports/textproc/xalan-j/Makefile,v 1.23 2008/06/06 14:05:06 edwin Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	apache2
 RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 USE_ANT=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION:S/./_/g}
