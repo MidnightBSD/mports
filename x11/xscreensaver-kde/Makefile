@@ -2,7 +2,7 @@
 # Date created:				July 08 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.3 2007/12/30 02:39:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.4 2008/01/05 00:04:27 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver-kde/Makefile,v 1.22 2006/12/19 21:19:53 lofi Exp $
 #
 
@@ -18,7 +18,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Support for xscreensaver blankers in KDE
-
+LICENSE=        gpl2
 CONFLICTS=	kdeartwork-3.1.* kdeartwork-3.2.[0-3]
 
 USE_KDELIBS_VER=3
