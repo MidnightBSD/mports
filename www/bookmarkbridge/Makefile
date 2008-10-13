@@ -2,7 +2,7 @@
 # Date Created:				January 2004
 # Whom:					Marco Molteni <molter@gufi.org>
 #
-# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.2 2007/03/25 01:48:46 ctriv Exp $
+# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.3 2008/02/15 01:55:56 laffer1 Exp $
 # $FreeBSD: ports/www/bookmarkbridge/Makefile,v 1.9 2006/02/23 10:39:35 ade Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	bookmarkbridge
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronize bookmarks between multiple browsers
-
+LICENSE=        gpl2
 LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
 
 USE_QT_VER=	3
