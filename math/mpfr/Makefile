@@ -2,7 +2,7 @@
 # Date created:			28 Aug 2005
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/mpfr/Makefile,v 1.1 2007/02/25 20:34:26 laffer1 Exp $
+# $MidnightBSD: mports/math/mpfr/Makefile,v 1.2 2008/03/23 19:44:33 laffer1 Exp $
 # $FreeBSD: ports/math/mpfr/Makefile,v 1.7 2006/11/30 21:20:07 ale Exp $
 #
 
@@ -14,6 +14,7 @@ DIST_SUBDIR=	mpfr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for multiple-precision floating-point computations
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 

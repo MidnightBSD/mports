@@ -3,7 +3,7 @@
 # Whom:                                 -
 #
 # $FreeBSD: ports/mail/p5-MIME-Types/Makefile,v 1.11 2006/09/03 20:34:02 skv Exp $
-# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.3 2007/02/18 01:50:25 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.4 2008/06/12 20:06:06 crash Exp $
 #
 
 PORTNAME=		MIME-Types
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=		p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for determining MIME types
+LICENSE=	perl
 
 PERL_CONFIGURE=		YES
 

@@ -2,7 +2,7 @@
 # Date created:		28 Sep 2004
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.1 2007/04/04 22:42:01 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.2 2007/08/07 04:02:30 ctriv Exp $
 # $FreeBSD: ports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.15 2007/01/27 07:54:19 kris Exp $
 #
 
@@ -15,6 +15,8 @@ PKGNAMESUFFIX=	-libmp4v2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mpeg-4 library and tools from mpeg4ip
+LICENSE=	agg
+#mpl etc
 
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes

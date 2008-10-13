@@ -2,7 +2,7 @@
 # Date Created:			25 July 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.1 2007/05/07 02:25:25 laffer1 Exp $
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
 #    $MCom: ports/devel/py-dbus/Makefile,v 1.8 2007/03/01 05:52:46 marcus Exp $
 
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-python-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python bindings for the D-BUS messaging system
+LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 

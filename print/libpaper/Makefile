@@ -3,7 +3,7 @@
 # Whom:                 lofi@freebsd.org
 #
 # $FreeBSD: ports/print/libpaper/Makefile,v 1.7 2006/09/06 22:03:49 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/libpaper/Makefile,v 1.1 2007/01/20 16:14:15 laffer1 Exp $
 #
 
 PORTNAME=	libpaper
@@ -16,6 +16,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION:S/.3/-3/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library providing routines for paper size management
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 INSTALLS_SHLIB=	yes

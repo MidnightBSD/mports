@@ -2,7 +2,7 @@
 # Date created:		11 September 1997
 # Whom:			giffunip
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/gsfonts/Makefile,v 1.1 2006/09/23 00:35:58 laffer1 Exp $
 # $FreeBSD: ports/print/gsfonts/Makefile,v 1.18 2006/05/14 11:08:25 lawrance Exp $
 #
 
@@ -18,6 +18,7 @@ DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fonts used by GNU Ghostscript (or X)
+LICENSE=	gpl2
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes

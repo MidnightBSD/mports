@@ -2,7 +2,7 @@
 # Date created:		Jan 6, 2003
 # Whom:			kuriyama
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/opensp/Makefile,v 1.1 2007/05/08 21:29:33 laffer1 Exp $
 # $FreeBSD: ports/textproc/opensp/Makefile,v 1.15 2007/01/19 12:37:57 kuriyama Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	openjade
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This package is a collection of SGML/XML tools called OpenSP
+LICENSE=	mit
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes

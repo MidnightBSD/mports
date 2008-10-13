@@ -2,7 +2,7 @@
 # Date created:		19 November 1996
 # Whom:			mi
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.1 2006/09/27 16:00:05 laffer1 Exp $
 # $FreeBSD: ports/graphics/jbigkit/Makefile,v 1.21 2004/06/27 18:10:45 krion Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://www.cl.cam.ac.uk/~mgk25/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lossless compression for bi-level images such as scanned pages, faxes
+LICENSE=	gpl2
 
 WRKSRC=	${WRKDIR}/${PORTNAME}
 

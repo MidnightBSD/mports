@@ -3,7 +3,7 @@
 # Whom:					jmz
 #
 # $FreeBSD: ports/textproc/ispell/Makefile,v 1.104 2006/12/04 11:38:15 jmz Exp $
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.5 2007/04/22 22:32:04 ctriv Exp $
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.6 2008/06/14 15:30:47 laffer1 Exp $
 #
 
 PORTNAME?=	ispell
@@ -17,6 +17,8 @@ DISTFILES=	ispell-3.2.06.tar.gz    # needed for slave ports / options
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	An interactive spelling checker for multiple languages
+LICENSE=	other
+
 ISPELL_FILES= 	ispell-3.2.06.tar.gz
 
 MAN1=		ispell.1
