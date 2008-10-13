@@ -2,7 +2,7 @@
 # Date created:				27.October 2002
 # Whom:					dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.6 2008/06/14 16:48:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.7 2008/06/19 23:59:55 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 #
 
@@ -12,7 +12,6 @@ PORTVERSION=  0.13.2
 .else
 PORTVERSION=  0.12.1
 .endif
-PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -22,13 +21,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
-LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
-LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
-LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+		tiff.4:${PORTSDIR}/graphics/tiff \
+		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_XORG=	xft xrender xmu xext x11
-USE_FREETYPE=	yes
+USE_XORG=		xft xrender xmu xext x11
+USE_FREETYPE=		yes
 GNU_CONFIGURE=		yes
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-tiff-library=${LOCALBASE}/lib
@@ -37,7 +35,7 @@ CONFIGURE_ARGS+=	--with-jpeg-library=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}"
 USE_GMAKE=		yes
-USE_GNUSTEP=	yes
+USE_GNUSTEP=		yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_GUI=	yes
 USE_GNUSTEP_CONFIGURE=	yes
@@ -50,9 +48,9 @@ BREAKS_IF_PEDANTIC=	yes
 
 .if defined(WITH_GNUSTEP_XDPS)
 GNUSTEP_DGS_PORT?=	x11/dgs
-BUILD_DEPENDS+=		imake:${X_IMAKE_PORT}
-BUILD_DEPENDS+=		dgs:${PORTSDIR}/${GNUSTEP_DGS_PORT}
-LIB_DEPENDS+=		dpstk:${PORTSDIR}/${GNUSTEP_DGS_PORT}
+BUILD_DEPENDS+=		imake:${PORTSDIR}/devel/imake
+BUILD_DEPENDS+=		dgs:${PORTSDIR}/x11/dgs
+LIB_DEPENDS+=		dpstk:${PORTSDIR}/x11/dgs
 CONFIGURE_ARGS+=	--enable-graphics=xdps --with-name=xdps
 CONFIGURE_ARGS+=	--disable-glitz
 PLIST_SUB+=		BACK=xdps-${BACKVERSION}
@@ -93,7 +91,6 @@ ADDITIONAL_LDFLAGS+=	-L${TARGLIB}
 MAKE_ENV+=		ADDITIONAL_LDFLAGS="${ADDITIONAL_LDFLAGS}"
 MAKE_FLAGS+=		messages=yes
 PLIST_SUB+=		BACKVERSION=${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
-
 
 pre-configure:
 .for file in config.guess config.sub install-sh
