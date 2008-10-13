@@ -2,7 +2,7 @@
 # Date created:                         	27 February 2004
 # Whom:                                        	Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.1 2008/10/07 01:33:55 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.2 2008/10/11 23:20:05 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.10 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -18,6 +18,8 @@ COMMENT=	Qt SQLite 3.x database plugin
 LICENSE=	gpl2
 
 DB=		sqlite
+
+FAKE_OPTS=	trueprefix
 
 LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
 
