@@ -2,7 +2,7 @@
 # Date created:	   02 June 2002
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/p5-HTTP-DAV/Makefile,v 1.1 2007/08/14 06:09:11 laffer1 Exp $
 # $FreeBSD: ports/www/p5-HTTP-DAV/Makefile,v 1.5 2006/08/04 12:34:50 erwin Exp $
 #
 
@@ -15,7 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WebDAV client library
-
+LICENSE=        gpl2
 BUILD_DEPENDS=	${SITE_PERL}/XML/DOM.pm:${PORTSDIR}/textproc/p5-XML-DOM \
 		${SITE_PERL}/LWP.pm:${PORTSDIR}/www/p5-libwww
 RUN_DEPENDS=	${BUILD_DEPENDS}
