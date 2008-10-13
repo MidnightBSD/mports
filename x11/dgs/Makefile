@@ -2,13 +2,13 @@
 # Date created:        22 April 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.5 2007/05/04 06:51:54 ctriv Exp $
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.6 2008/03/26 02:53:52 ctriv Exp $
 # $FreeBSD: ports/x11/dgs/Makefile,v 1.44 2006/07/26 15:30:48 dinoex Exp $
 #
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	dgs
@@ -22,24 +22,28 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_GHOSTSCRIPT_RUN=	yes
-USE_XLIB=	yes
+USE_XORG=	xt sm ice xext x11
 USE_GMAKE=	yes
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:15
 WRKSRC=		${WRKDIR}/${PORTNAME}-0.5.9
 
 MAN1=		dgs.1 dpsnx.agent.1
-MANN=		dpsexec.man xepsf.man
-INSTALLDIRS=	gs DPS/demos/dpsexec DPS/demos/xepsf DPS/lib/dpstk DPS/lib/psres \
-		DPS/clients/makepsres DPS/demos/texteroids
+MANN=		dpsexec.man makepsres.man xepsf.man
+INSTALLDIRS=	gs DPS/clients/makepsres DPS/clients/pswrap \
+		DPS/demos/dpsexec DPS/demos/texteroids DPS/demos/xepsf \
+		DPS/lib/dpstk DPS/lib/psres DPS/lib/dps DPS/include/DPS
 
 .include <bsd.port.pre.mk>
 
 pre-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} \
 		${REINPLACE_CMD} -e 's|manm|mann|g'
-
+post-patch:
+	${REINPLACE_CMD} -e 's|echo aout|echo elf|' \
+		${WRKSRC}/DPS/ltconfig
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/dgs-config ${PREFIX}/bin/
@@ -50,6 +54,5 @@ do-install:
 	@(cd ${INSTALL_WRKSRC}/${i} && ${SETENV} ${MAKE_ENV} \
 		${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endfor
-
 
 .include <bsd.port.post.mk>
