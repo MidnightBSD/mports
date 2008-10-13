@@ -3,11 +3,11 @@
 # Whom:	      		Ralf S. Engelschall <rse@engelschall.com>
 #
 # $FreeBSD: ports/lang/p5-ePerl/Makefile,v 1.28 2004/08/21 15:19:41 pav Exp $
-# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.3 2008/03/31 02:16:14 laffer1 Exp $
+# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.4 2008/03/31 02:19:53 laffer1 Exp $
 
 PORTNAME=	eperl
 PORTVERSION=	2.2.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang www perl5
 MASTER_SITES=	${MASTER_SITE_OSSP}
 MASTER_SITE_SUBDIR=	tool/${PORTNAME}
