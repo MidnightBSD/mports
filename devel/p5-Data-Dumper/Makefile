@@ -2,7 +2,7 @@
 # Date created:	   23 March 2003
 # Whom:		   mat
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Data-Dumper/Makefile,v 1.1 2007/03/11 04:21:38 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Data-Dumper/Makefile,v 1.2 2004/12/01 11:42:51 tobez Exp $
 #
 
@@ -15,13 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stringified perl data structures, suitable for both printing and eval
-
+LICENSE=	perl
 PERL_CONFIGURE=	yes
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500601
-IGNORE="Need at least perl 5.6.1 to build"
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

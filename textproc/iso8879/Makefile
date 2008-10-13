@@ -2,7 +2,7 @@
 # Date created:		June 19, 1997
 # Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/iso8879/Makefile,v 1.1 2006/09/24 02:58:19 laffer1 Exp $
+# $MidnightBSD: mports/textproc/iso8879/Makefile,v 1.2 2007/05/09 15:17:13 ctriv Exp $
 # $FreeBSD: ports/textproc/iso8879/Makefile,v 1.22 2005/06/13 20:54:18 glewis Exp $
 #
 
@@ -10,13 +10,14 @@ PORTNAME=	iso8879
 PORTVERSION=	1986
 PORTREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
 DISTNAME=	isoENTS
 EXTRACT_SUFX=	.zip
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Character entity sets from ISO 8879:1986 (SGML)
+LICENSE=	unknown
 
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr

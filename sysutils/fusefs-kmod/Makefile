@@ -2,7 +2,7 @@
 # Date created:				08 October 2005
 # Whom:					Anish Mistry <amistry@am-productions.biz>
 #
-# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.2 2006/09/28 02:07:26 archite Exp $
+# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.3 2007/07/29 21:54:11 laffer1 Exp $
 # $FreeBSD: ports/sysutils/fusefs-kmod/Makefile,v 1.8 2006/08/12 21:11:12 pav Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	fuse4bsd-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel module for fuse
+LICENSE=	bsd2
 
 BUILD_DEPENDS=	fusefs-libs>2.4.1:${PORTSDIR}/sysutils/fusefs-libs
 

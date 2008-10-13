@@ -3,7 +3,7 @@
 # Whom:			hrs@FreeBSD.org
 #
 # $FreeBSD: ports/print/tex-texmflocal/Makefile,v 1.12 2005/02/10 17:54:28 hrs Exp $
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.2 2007/04/27 20:38:19 ctriv Exp $
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.3 2007/04/27 20:45:36 ctriv Exp $
 #
 
 PORTNAME=	tex-texmflocal
@@ -14,6 +14,7 @@ DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Meta-port that creates a site-local $$TEXMF directory
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
