@@ -2,7 +2,7 @@
 # Date created:         22 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/www/etoile-mollusk/Makefile,v 1.1 2007/03/13 06:10:18 laffer1 Exp $
+# $MidnightBSD: mports/www/etoile-mollusk/Makefile,v 1.2 2007/11/07 20:20:16 ctriv Exp $
 # $FreeBSD: ports/www/etoile-mollusk/Makefile,v 1.2 2007/01/31 18:18:10 dinoex Exp $
 #
 
@@ -17,7 +17,7 @@ DISTNAME=	Etoile-${SNAPSHOT}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RSS reader in general
-
+LICENSE=        gpl3
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes

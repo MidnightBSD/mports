@@ -2,7 +2,7 @@
 # Date created:			May 13, 2002
 # Whom:				Munish Chopra <mchopra@engmail.uwaterloo.ca>
 #
-# $MidnightBSD: mports/www/awstats/Makefile,v 1.1 2007/06/11 01:54:33 laffer1 Exp $
+# $MidnightBSD: mports/www/awstats/Makefile,v 1.2 2008/02/14 22:41:29 laffer1 Exp $
 #
 
 PORTNAME=	awstats
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free real-time logfile analyzer to get advanced web statistics
-
+LICENSE=        gpl2
 RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
 
 NO_BUILD=	yes
