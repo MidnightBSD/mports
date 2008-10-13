@@ -2,7 +2,7 @@
 # Date created:		2000/08/12
 # Whom:			Marcin Cieslak
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.1 2008/10/06 19:13:55 laffer1 Exp $
 # $FreeBSD: ports/textproc/xerces-j/Makefile,v 1.24 2008/06/06 14:05:07 edwin Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	apache2
 CONFLICTS=	xml4j-4.*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.3+
+JAVA_VERSION=	1.5+
 USE_ANT=	yes
 USE_JIKES=	no
 
