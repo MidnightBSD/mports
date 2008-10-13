@@ -2,7 +2,7 @@
 # Date created:				11 October 2002
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/log4j/Makefile,v 1.1 2007/03/17 01:08:05 laffer1 Exp $
 # $FreeBSD: ports/devel/log4j/Makefile,v 1.12 2006/11/01 18:39:39 hq Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	logging-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast and flexible logging library for Java
+LICENSE=	apache2
 
 USE_JAVA=	YES
 NO_BUILD=	YES
