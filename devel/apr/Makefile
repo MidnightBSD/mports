@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.6 2008/04/19 18:30:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.7 2008/10/10 18:18:45 laffer1 Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -17,6 +17,7 @@
 
 PORTNAME?=	apr
 PORTVERSION=	1.2.12
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	apr
@@ -42,6 +43,13 @@ APR_UTIL_CONF_ARGS=	--with-apr=../apr-${PORTVERSION} \
 			--with-iconv=${PREFIX}
 
 .include <bsd.port.pre.mk>
+
+.if defined(PACKAGE_BUILDING)
+.if !defined(APR_SLAVE_PORT)
+APR_UTIL_WITHOUT_BERKELEY_DB=yes
+APR_UTIL_WITHOUT_GDBM=yes
+.endif
+.endif
 
 .if defined(APR_UTIL_WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--disable-threads
