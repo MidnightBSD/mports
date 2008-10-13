@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-clocks/kdetoys3/Makefile,v 1.64 2006/09/12 23:26:50 lofi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.1 2007/01/20 17:30:20 laffer1 Exp $
 #
 
 PORTNAME=	kdetoys
@@ -16,7 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small applications for KDE
-
+LICENSE=        gpl2
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
