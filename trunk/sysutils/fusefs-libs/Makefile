@@ -2,7 +2,7 @@
 # Date created:         01 October 2005
 # Whom:                 Anish Mistry
 #
-# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.3 2007/07/29 21:57:54 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.4 2007/07/29 22:06:02 laffer1 Exp $
 # $FreeBSD: ports/sysutils/fusefs-libs/Makefile,v 1.9 2006/09/05 17:25:01 pav Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	fuse-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FUSE allows filesystem implementation in userspace
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MOUNT_FUSE_PATH=${PREFIX}/sbin \

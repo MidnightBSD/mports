@@ -2,7 +2,7 @@
 # Date created:				21 February 2000
 # Whom:	      				Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/p5-GD-Graph/Makefile,v 1.1 2007/03/11 05:35:04 laffer1 Exp $
 # $FreeBSD: ports/graphics/p5-GD-Graph/Makefile,v 1.17 2006/06/14 11:24:32 mat Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	GDGraph-${PORTVERSION:C/\.(..)$/\1/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph plotting module for perl5
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD \
 		${SITE_PERL}/GD/Text/Align.pm:${PORTSDIR}/graphics/p5-GD-TextUtil

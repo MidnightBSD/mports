@@ -2,7 +2,7 @@
 # Date created:				March 11, 2003
 # Whom:					Philip M. Gollucci <pgollucci@p6m7g8.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/p5-GD/Makefile,v 1.1 2007/03/11 05:30:14 laffer1 Exp $
 # $FreeBSD: ports/graphics/p5-GD/Makefile,v 1.44 2006/11/23 11:59:02 miwi Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	GD-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl5 interface to Gd Graphics Library version2
+LICENSE=	perl
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd
 

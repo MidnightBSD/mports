@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.2 2007/08/01 20:36:47 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.3 2007/08/02 03:28:36 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl2/Makefile,v 1.127 2006/08/15 16:47:37 ume Exp $
 #
 
@@ -17,6 +17,7 @@ MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RFC 2222 SASL (Simple Authentication and Security Layer)
+LICENSE=	bsd4
 
 LATEST_LINK=	${PORTNAME}2
 

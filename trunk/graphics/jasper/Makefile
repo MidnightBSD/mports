@@ -3,7 +3,7 @@
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
 # $FreeBSD: ports/graphics/jasper/Makefile,v 1.17 2006/08/14 23:06:34 clsung Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.1 2006/11/24 18:56:21 laffer1 Exp $
 #
 
 PORTNAME=	jasper
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	ImageMagick/delegates
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of the codec specified in the JPEG-2000 standard
+LICENSE=	other
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg
 

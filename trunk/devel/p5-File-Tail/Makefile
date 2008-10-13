@@ -3,7 +3,7 @@
 # Whom:				Jeremy Shaffner <jeremy@external.org>
 #
 # $FreeBSD: ports/devel/p5-File-Tail/Makefile,v 1.11 2006/06/19 20:06:51 shaun Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-File-Tail/Makefile,v 1.1 2007/02/19 19:23:59 laffer1 Exp $
 #
 
 PORTNAME=	File-Tail
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Module to read the end of a file as it\'s appended to
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 

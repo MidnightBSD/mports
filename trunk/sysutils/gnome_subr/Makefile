@@ -2,7 +2,7 @@
 # Date created:				31 Oct 2006
 # Whom:					Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/gnome_subr/Makefile,v 1.1 2007/08/29 06:51:07 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gnome_subr/Makefile,v 1.1 2006/10/31 09:08:29 jylefort Exp $
 #
 
@@ -13,6 +13,7 @@ DISTFILES=
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common startup and shutdown subroutines used by GNOME scripts
+LICENSE=	unknown
 
 NO_BUILD=	yes
 PLIST_FILES=	etc/gnome.subr
