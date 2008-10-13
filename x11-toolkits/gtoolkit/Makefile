@@ -3,7 +3,7 @@
 # Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
 #
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.5 2008/10/12 20:03:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.6 2008/10/12 20:04:07 laffer1 Exp $
 #
 
 PORTNAME=	gtoolkit
@@ -16,6 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Obj-C wrapper for gtk, a x11 graphics library
 LICENSE=	gpl2
 
+USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_MAKEFILE=	yes
 USE_GNUSTEP_PREFIX=	yes
