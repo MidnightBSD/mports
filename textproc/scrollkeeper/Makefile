@@ -2,7 +2,7 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.1 2007/04/01 16:18:14 laffer1 Exp $
+# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.2 2008/03/19 02:12:08 laffer1 Exp $
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 
@@ -17,7 +17,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Open Document Cataloging Project
-
+LICENSE=        lgpl
 BUILD_DEPENDS=	intltool-extract:${PORTSDIR}/textproc/intltool \
 		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:${PORTSDIR}/textproc/docbook-xsl \
 		${LOCALBASE}/share/xml/docbook/${DOCBOOK_VERSION}/catalog.xml:${PORTSDIR}/textproc/docbook-xml \

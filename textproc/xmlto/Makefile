@@ -2,7 +2,7 @@
 # Date created:		2003-06-05
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.1 2008/06/01 21:40:26 archite Exp $
 # $FreeBSD: ports/textproc/xmlto/Makefile,v 1.18 2008/05/28 12:40:05 edwin Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITES=	http://cyberelk.net/tim/data/xmlto/stable/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Front-end to an XSL toolchain
-
+LICENSE=        gpl2
 BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
 		${GETOPT_CMD}:${PORTSDIR}/misc/getopt \
 		xmllint:${PORTSDIR}/textproc/libxml2 \
