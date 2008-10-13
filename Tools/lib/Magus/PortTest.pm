@@ -24,7 +24,7 @@ package Magus::PortTest;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.7 2007/11/05 20:13:50 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/PortTest.pm,v 1.8 2008/02/24 23:58:47 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -119,9 +119,10 @@ sub run {
   
   foreach my $target (qw(fetch extract patch configure build fake package install deinstall reinstall)) {
     if (!$self->_run_make($target)) {
+      my $error_code = $? >> 8;
       push(@{$results{errors}}, {
         phase => $target,
-        msg   => "make $target returned non-zero: $?",
+        msg   => "make $target returned non-zero: $error_code",
         name  => "MakeExitNonZero",
       });
       
