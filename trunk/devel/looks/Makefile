@@ -2,7 +2,7 @@
 # Date created:		22 May 2005
 # Whom:			Thierry Thomas <thierry@pompo.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/looks/Makefile,v 1.1 2008/01/04 16:25:17 laffer1 Exp $
 # $FreeBSD: ports/devel/looks/Makefile,v 1.14 2008/01/04 13:05:18 des Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S|.|_|g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The JGoodies Looks improve the appearance of your Java applications
+LICENSE=	bsd3
 
 USE_ZIP=	yes
 USE_JAVA=	yes
