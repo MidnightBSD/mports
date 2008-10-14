@@ -2,7 +2,7 @@
 # Date created:			Sun Feb 3, 1999
 # Whom:				shipley@dis.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/libnet/Makefile,v 1.2 2008/09/17 21:27:00 laffer1 Exp $
 # $FreeBSD: ports/net/libnet/Makefile,v 1.16 2005/11/14 17:07:01 sem Exp $
 #
 
@@ -19,7 +19,9 @@ COMMENT=	A C library for creating IP packets
 LICENSE=	agg
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
+		--host=${ARCH}-portbld-freebsd6.0 \
+		--target=${ARCH}-portbld-freebsd6.0
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
