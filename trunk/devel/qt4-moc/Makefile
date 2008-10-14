@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-moc/Makefile,v 1.1 2008/09/18 22:25:56 laffer1 Exp $
 #
 
 PORTNAME=	moc
@@ -25,8 +25,7 @@ HAS_CONFIGURE=	yes
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+		PATH=${WRKSRC}/bin:$$PATH 
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/gui src/network src/opengl \
