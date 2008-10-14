@@ -2,7 +2,7 @@
 # Date created:				24 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.6 2008/07/26 12:07:35 laffer1 Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.7 2008/10/09 15:34:08 laffer1 Exp $
 # $FreeBSD: ports/www/epiphany/Makefile,v 1.113 2008/01/08 04:29:19 marcus Exp $
 #   $MCom: ports-stable/www/epiphany/Makefile,v 1.8 2007/12/01 19:54:36 marcus Exp $
 #
@@ -102,10 +102,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/mozilla/plugins"|/lib/browser_plugins" ":" MOZILLA_PREFIX "/lib/browser_linux_plugins"|' \
 		${WRKSRC}/embed/mozilla/mozilla-embed-single.cpp
 
-
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/data/epiphany-fonts.schemas \
 		${PREFIX}/etc/gconf/schemas
-	@-update-desktop-database
 
 .include <bsd.port.post.mk>
