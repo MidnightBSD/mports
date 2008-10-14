@@ -2,7 +2,7 @@
 # Date created:				5 October 2007
 # Whom:					Jung-uk Kim <jkim@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.1 2008/10/12 21:02:51 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jre16/Makefile,v 1.1 2007/10/26 20:49:42 jkim Exp $
 #
 
@@ -17,6 +17,9 @@ EXTRACT_SUFX=	.bin
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sun Java Runtime Environment 1.6 for Linux
 LICENSE=	restricted
+
+# must fetch yourself
+IS_INTERACTIVE= yes
 
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
