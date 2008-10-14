@@ -2,7 +2,7 @@
 # Date created:		July 26 2008
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.1 2008/10/12 21:17:45 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre16/Makefile,v 1.3 2008/08/20 04:13:02 glewis Exp $
 #
 
@@ -17,6 +17,9 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Runtime Environment ${JRE_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
 LICENSE=	restricted
+
+# must fetch yourself
+IS_INTERACTIVE= yes
 
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
@@ -52,6 +55,7 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}
 JRE_OSREL=	freebsd7
 PLIST_SUB+=	RELEASENOTE="@comment "
 .elif ${OSVERSION} >= 600000
+BROKEN=		required gethostbyname_r
 JRE_OSREL=	freebsd6
 PLIST_SUB+=	RELEASENOTE=""
 .else
