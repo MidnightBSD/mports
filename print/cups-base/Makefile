@@ -2,12 +2,12 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.13 2008/08/11 15:17:42 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.14 2008/08/11 17:15:16 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
-PORTVERSION=	1.3.7
+PORTVERSION=	1.3.9
 PORTREVISION=	0
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
