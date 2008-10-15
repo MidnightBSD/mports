@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-designer/Makefile,v 1.1 2008/10/10 17:24:38 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-designer/Makefile,v 1.16 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -30,8 +30,7 @@ USE_LDCONFIG=	${PREFIX}/lib/qt4
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+		PATH=${WRKSRC}/bin:$$PATH 
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/dbus src/opengl src/phonon \
@@ -65,7 +64,7 @@ post-configure:
 		${WRKSRC}/../../lib/pkgconfig/QtDesigner.pc \
 		${WRKSRC}/../../lib/pkgconfig/QtDesignerComponents.pc
 
-pre-install:
+pre-fake:
 	${REINPLACE_CMD} -e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
 		${WRKSRC}/src/lib/Makefile \
 		${WRKSRC}/src/uitools/Makefile \
