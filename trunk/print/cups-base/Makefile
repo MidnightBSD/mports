@@ -2,13 +2,13 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.14 2008/08/11 17:15:16 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.15 2008/10/15 20:05:50 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
 PORTNAME=	cups
 PORTVERSION=	1.3.9
-PORTREVISION=	0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -219,6 +219,7 @@ pre-su-install:
 .endif
 
 post-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/notifier/testnotify ${PREFIX}/libexec/cups/notifier/testnotify
 	${INSTALL} -d ${CUPS_ETCDIR}/
 	${CP} -p ${WRKSRC}/conf/snmp.conf ${WRKSRC}/conf/snmp.conf.N
 .for f in cupsd.conf mime.convs mime.types snmp.conf
