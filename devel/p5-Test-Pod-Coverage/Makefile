@@ -2,7 +2,7 @@
 # Date created:				20 november 2004
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Test-Pod-Coverage/Makefile,v 1.1 2008/03/21 19:58:15 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-Pod-Coverage/Makefile,v 1.6 2007/09/08 00:59:11 linimon Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check for pod coverage in your distribution
+LICENSE=	perl
 
 RUN_DEPENDS=	p5-Pod-Coverage>0:${PORTSDIR}/devel/p5-Pod-Coverage \
 		p5-Test-Simple>0:${PORTSDIR}/devel/p5-Test-Simple

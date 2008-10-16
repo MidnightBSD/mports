@@ -2,7 +2,7 @@
 # Date created:	   31 August 2005
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Readonly/Makefile,v 1.1 2008/03/21 20:28:09 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Readonly/Makefile,v 1.3 2007/09/08 00:59:03 linimon Exp $
 #
 
@@ -18,6 +18,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Facility for creating read-only scalars, arrays, hashes
+LICENSE=	perl
 
 PERL_CONFIGURE=	5.8.0+
 CONFIGURE_ARGS=	DIR="${PORTNAME}-XS-${PORTVERSION_XS}"

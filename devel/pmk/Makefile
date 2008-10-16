@@ -13,6 +13,7 @@ MASTER_SITE_SUBDIR=	pmk
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pre Make Kit, a sane replacement for autoconf
+LICENSE=	bsd4
 
 MAN1=	pmk.1 pmkscan.1 pmkinstall.1 pmkpc.1
 MAN5=	pmk.conf.5 pmkfile.5

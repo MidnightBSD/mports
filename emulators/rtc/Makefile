@@ -2,7 +2,7 @@
 # Date created:		28 March 2000
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/rtc/Makefile,v 1.1 2007/04/04 21:15:20 laffer1 Exp $
 # $FreeBSD: ports/emulators/rtc/Makefile,v 1.32 2007/01/06 15:02:19 netchild Exp $
 #
 
@@ -15,6 +15,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel module which provides /dev/rtc device support
+LICENSE=	bsd2
 
 WRKSRC=		${WRKDIR}/files
 

@@ -2,7 +2,7 @@
 # Date created:		10 December 1999
 # Whom:			Martin Hinner
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/vxtools/Makefile,v 1.1 2007/05/05 05:43:23 laffer1 Exp $
 # $FreeBSD: ports/emulators/vxtools/Makefile,v 1.4 2004/02/04 05:20:09 marcus Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ftp.penguin.cz/pub/users/mhi/vxfs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line utilities for reading Veritas Filesystem (VxFS)
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 # Date created:			Mon Sep  1 17:03:41 CEST 1997
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-TimeDate/Makefile,v 1.1 2007/03/11 04:17:14 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-TimeDate/Makefile,v 1.20 2003/10/24 12:02:16 ijliao Exp $
 #
 
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module containing a better/faster date parser for absolute dates
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 

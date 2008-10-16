@@ -2,7 +2,7 @@
 # Date created:				2005-11-25
 # Whom:					Roman Bogorodskiy <novel@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Net-DBus/Makefile,v 1.1 2007/10/24 02:55:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Net-DBus/Makefile,v 1.2 2008/06/08 21:35:08 crash Exp $
 # $FreeBSD: ports/devel/p5-Net-DBus/Makefile,v 1.15 2007/09/08 00:57:37 linimon Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for the DBus message system
+LICENSE=	perl
 
 LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus
 RUN_DEPENDS=	${SITE_PERL}/XML/Twig.pm:${PORTSDIR}/textproc/p5-XML-Twig \

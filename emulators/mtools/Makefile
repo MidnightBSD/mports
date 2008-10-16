@@ -3,7 +3,7 @@
 # Whom:                 jmz
 #
 # $FreeBSD: ports/emulators/mtools/Makefile,v 1.56 2006/05/29 10:02:22 jmz Exp $
-# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.3 2007/04/26 03:41:32 ctriv Exp $
+# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.4 2008/05/21 05:42:08 laffer1 Exp $
 #
 
 PORTNAME=	mtools
@@ -19,6 +19,8 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of tools for manipulating MSDOS files
+LICENSE=	gpl2
+
 SUB_FILES= 	pkg-message
 
 GNU_CONFIGURE=	yes

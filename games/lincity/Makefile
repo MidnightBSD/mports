@@ -2,7 +2,7 @@
 # Date created:         13 Feb 1997
 # Whom:                 Julian Assange
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/lincity/Makefile,v 1.1 2007/06/27 06:00:42 laffer1 Exp $
 # $FreeBSD: ports/games/lincity/Makefile,v 1.24 2007/05/19 20:06:46 flz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Rich city simulation game for X
+LICENSE=	gpl2
 
 LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
 

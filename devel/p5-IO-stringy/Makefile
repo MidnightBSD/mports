@@ -2,7 +2,7 @@
 # Date created:				April 27 1998
 # Whom:	      				Eivind Eklund <eivind@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-IO-stringy/Makefile,v 1.1 2007/03/20 19:31:15 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-IO-stringy/Makefile,v 1.25 2005/02/15 16:57:53 skv Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for using IO handles with non-file objects
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 

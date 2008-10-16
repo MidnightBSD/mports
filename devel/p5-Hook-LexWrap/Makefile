@@ -2,7 +2,7 @@
 # Date created:				Wed Jul 7 2004
 # Whom:					Anton Berezin <tobez@tobez.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Hook-LexWrap/Makefile,v 1.1 2008/03/21 20:41:18 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Hook-LexWrap/Makefile,v 1.2 2007/09/08 00:57:29 linimon Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lexically scoped subroutine wrappers for Perl
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

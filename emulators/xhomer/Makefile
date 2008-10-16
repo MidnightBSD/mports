@@ -2,7 +2,7 @@
 # Date created:			24 May 2006
 # Whom:				trasz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/xhomer/Makefile,v 1.1 2007/05/05 05:31:23 laffer1 Exp $
 # $FreeBSD: ports/emulators/xhomer/Makefile,v 1.3 2007/04/13 13:03:46 trasz Exp $
 #
 
@@ -15,6 +15,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emulator for the DEC Pro 350 computer
+LICENSE=	agg
 
 USE_GMAKE=	yes
 USE_XLIB=	yes
