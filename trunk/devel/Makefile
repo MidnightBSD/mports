@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.263 2008/10/10 18:59:35 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.264 2008/10/11 20:33:21 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -11,7 +11,6 @@
     SUBDIR += anjuta
     SUBDIR += apache-ant
     SUBDIR += apr
-#    SUBDIR += apr-cvs2svn
     SUBDIR += apr-svn
     SUBDIR += autoconf-wrapper
     SUBDIR += autoconf213
@@ -231,10 +230,10 @@
     SUBDIR += p5-Time-HiRes
     SUBDIR += p5-Time-Local
     SUBDIR += p5-TimeDate
-    SUBDIR += p5-threads
     SUBDIR += p5-threads-shared
     SUBDIR += p5-UNIVERSAL-moniker
     SUBDIR += p5-UNIVERSAL-require
+    SUBDIR += p5-threads
     SUBDIR += p5-version
     SUBDIR += patch
     SUBDIR += pccts
@@ -300,6 +299,7 @@
     SUBDIR += st
     SUBDIR += stlport
     SUBDIR += subversion
+    SUBDIR += subversion-perl
     SUBDIR += subversion-python
     SUBDIR += svndelta
     SUBDIR += svnkit
