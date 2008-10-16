@@ -2,7 +2,7 @@
 # Date created:				2005/10/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.1 2007/04/02 03:09:12 laffer1 Exp $
+# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.2 2007/04/25 04:47:05 ctriv Exp $
 # $FreeBSD: ports/emulators/kqemu-kmod/Makefile,v 1.15 2007/02/07 21:13:06 nox Exp $
 #
 
@@ -19,6 +19,7 @@ DIST_SUBDIR=	kqemu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel Acceralator for QEMU CPU Emulator (development version)
+LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	i386 amd64
 HAS_CONFIGURE=	yes

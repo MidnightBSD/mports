@@ -3,7 +3,7 @@
 # Last updated:		2nd August, 1998
 # Whom:			Joel Sutton <jsutton@bbcon.com.au>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/aftp/Makefile,v 1.1 2007/05/05 05:25:56 laffer1 Exp $
 # $FreeBSD: ports/emulators/aftp/Makefile,v 1.11 2004/02/05 20:37:08 trevor Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A ftp-like shell for accessing Apple II disk images
+LICENSE=	publicdom
 
 MAN1=		aftp.1
 PLIST_FILES=	bin/aftp

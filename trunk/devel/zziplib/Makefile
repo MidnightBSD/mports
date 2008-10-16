@@ -2,7 +2,7 @@
 # Date created:        3 January 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.1 2006/10/03 20:05:45 laffer1 Exp $
 # $FreeBSD: ports/devel/zziplib/Makefile,v 1.17 2006/09/07 06:24:37 ale Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to provide transparent read access to zipped files
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack pkgconfig

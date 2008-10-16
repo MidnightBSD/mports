@@ -3,7 +3,7 @@
 # Date created:			Mar 4, 2001
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/perltidy/Makefile,v 1.1 2008/03/21 20:30:05 laffer1 Exp $
 # $FreeBSD: ports/devel/perltidy/Makefile,v 1.33 2008/01/21 23:55:59 leeym Exp $
 #
 
@@ -17,6 +17,7 @@ DISTNAME=	Perl-Tidy-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Indents and reformats Perl scripts to make them easier to read
+LICENSE=	gpl2
 
 PERL_CONFIGURE=	yes
 

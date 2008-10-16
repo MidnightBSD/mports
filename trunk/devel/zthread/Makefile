@@ -2,7 +2,7 @@
 # Date created:				23 May 2001
 # Whom:					pvh@egenetics.com
 #
-# $MidnightBSD: mports/devel/zthread/Makefile,v 1.1 2006/10/03 20:18:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/zthread/Makefile,v 1.2 2007/05/05 05:23:33 ctriv Exp $
 # $FreeBSD: ports/devel/zthread/Makefile,v 1.21 2006/06/19 20:06:51 shaun Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	ZThread-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A platform-independent object-oriented C++ threading library
+LICENSE=	mit
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-ftime --disable-static

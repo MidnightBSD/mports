@@ -2,7 +2,7 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/performance/Makefile,v 1.4 2007/10/25 22:42:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/performance/Makefile,v 1.5 2007/11/07 20:20:12 ctriv Exp $
 # $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	Performance-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Help improve the performance of GNUstep applications
+LICENSE=	lgpl
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes

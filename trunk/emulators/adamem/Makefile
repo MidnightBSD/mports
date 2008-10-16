@@ -2,7 +2,7 @@
 # Date created:				November 11, 2001
 # Whom:					Jeremy Karlson
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.1 2007/05/05 05:39:27 laffer1 Exp $
 # $FreeBSD: ports/emulators/adamem/Makefile,v 1.6 2004/09/23 07:16:23 danfe Exp $
 #
 
@@ -14,10 +14,13 @@ DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ADAMEm is a portable Coleco ADAM and ColecoVision emulator
+LICENSE=	restricted
+
+RESTRICTED=	yes
+NO_CDROM=	yes
 
 NO_WRKSUBDIR=	yes
-USE_XLIB=	yes
-USE_X_PREFIX=	yes
+USE_XORG=	x11
 ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}

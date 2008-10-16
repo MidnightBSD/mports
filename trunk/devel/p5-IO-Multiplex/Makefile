@@ -2,6 +2,7 @@
 # Date created:		04 June 2002
 # Whom:	      		Anton Berezin <tobez@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-IO-Multiplex/Makefile,v 1.9 2007/03/05 08:43:47 tobez Exp $
 #
 
@@ -12,18 +13,12 @@ MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	IO
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	tobez@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IO::Multiplex - Manage IO on many file handles
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
 MAN3=		IO::Multiplex.3
 
-.include <bsd.port.pre.mk>
-
-.if ( ${PERL_LEVEL} < 500805 )
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Time/HiRes.pm:${PORTSDIR}/devel/p5-Time-HiRes
-RUN_DEPENDS=	${BUILD_DEPENDS}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

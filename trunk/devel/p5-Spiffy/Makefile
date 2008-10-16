@@ -2,7 +2,7 @@
 # Date created:		15 Jul 2004
 # Whom:			Elvis Chiang <elvis@sslab.cs.ccu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Spiffy/Makefile,v 1.1 2007/03/11 05:15:10 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Spiffy/Makefile,v 1.13 2006/01/30 07:29:30 clsung Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spiffy Perl Interface Framework For You
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
@@ -29,15 +30,4 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Filter/Util/Call.pm:${PORTSDIR}/devel/p5-Filter \
-		${SITE_PERL}/${PERL_ARCH}/Scalar/Util.pm:${PORTSDIR}/lang/p5-Scalar-List-Utils
-RUN_DEPENDS+=	${BUILD_DEPENDS}
-.endif
-.if ${PERL_LEVEL} < 500601
-IGNORE=		requires perl 5.6.1 or later. Install lang/perl then try again
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

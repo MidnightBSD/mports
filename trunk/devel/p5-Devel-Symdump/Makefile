@@ -2,7 +2,7 @@
 # Date created:				June 15th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Devel-Symdump/Makefile,v 1.1 2008/03/21 20:02:16 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Devel-Symdump/Makefile,v 1.24 2008/02/20 19:10:02 erwin Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-2.08
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl5 module that dumps symbol names or the symbol table
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 

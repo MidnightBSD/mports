@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/devel/py-fileutils/Makefile,v 1.7 2006/08/16 15:31:32 shaun Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-fileutils/Makefile,v 1.1 2007/01/07 03:40:58 laffer1 Exp $
 #
 
 PORTNAME=	fileutils
@@ -16,6 +16,7 @@ DISTNAME=	FileUtils-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File I/O related functions and classes
+LICENSE=	mit
 
 USE_BZIP2=		yes
 USE_PYTHON=		yes

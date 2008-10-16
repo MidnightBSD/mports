@@ -2,7 +2,7 @@
 # Date created:				Jul 11th 1999
 # Whom:					troll
 #
-# $MidnightBSD: mports/emulators/vMac/Makefile,v 1.1 2007/03/09 18:34:51 laffer1 Exp $
+# $MidnightBSD: mports/emulators/vMac/Makefile,v 1.2 2007/04/26 01:42:11 ctriv Exp $
 # $FreeBSD: ports/emulators/vMac/Makefile,v 1.9 2006/12/06 13:50:42 rafan Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=		.tgz
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=	Emulates a MacPlus machine!  Runs MacOS versions up to 7.5.5
+LICENSE=	other
 
 WRKSRC=			${WRKDIR}/${PORTNAME}-${PORTVERSION}
 SUB_FILES=		pkg-message

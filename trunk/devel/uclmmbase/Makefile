@@ -2,7 +2,7 @@
 # Date created:				Thanksgiving Day, 1999
 # Whom:	      				Garrett Wollman <wollman@lcs.mit.edu>
 #
-# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.1 2007/03/21 17:07:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/uclmmbase/Makefile,v 1.2 2007/05/05 04:55:28 ctriv Exp $
 # $FreeBSD: ports/devel/uclmmbase/Makefile,v 1.12 2005/04/12 17:16:21 mi Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	common-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common subroutines for UCL mbone applications
+LICENSE=	bsd4
 
 WRKSRC=		${WRKDIR}/common
 GNU_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 # Date created:				Sun Apr 20 18:28:16 CEST 2003
 # Whom:					king@v2project.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/extract-xiso/Makefile,v 1.1 2007/05/05 04:31:31 laffer1 Exp $
 # $FreeBSD: ports/emulators/extract-xiso/Makefile,v 1.6 2006/03/15 06:16:49 vanilla Exp $
 #
 
@@ -16,6 +16,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tool for extracting and creating optimised Xbox ISO images
+LICENSE=	bsd4
 
 WRKSRC=		${WRKDIR}/extract-xiso
 

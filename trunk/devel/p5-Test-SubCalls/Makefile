@@ -2,7 +2,7 @@
 # Date created:				08 October 2005
 # Whom:					Lars Thegler <lth@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Test-SubCalls/Makefile,v 1.1 2008/03/21 20:39:51 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-SubCalls/Makefile,v 1.9 2007/12/17 17:33:06 lth Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Track the number of times subs are called
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/Hook/LexWrap.pm:${PORTSDIR}/devel/p5-Hook-LexWrap \
 		${SITE_PERL}/Test/Builder/Tester.pm:${PORTSDIR}/devel/p5-Test-Simple

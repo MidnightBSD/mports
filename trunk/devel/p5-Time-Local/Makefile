@@ -2,7 +2,7 @@
 # Date created:	   1 july 2003
 # Whom:		   Mathieu Arnold <m@absolight.net>
 #
-# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.1 2007/07/01 02:04:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.2 2008/01/05 05:49:17 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Time-Local/Makefile,v 1.12 2007/01/26 12:19:14 mat Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Efficiently compute time from local and GMT time
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

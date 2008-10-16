@@ -2,7 +2,7 @@
 # Date created:	   2 july 2003
 # Whom:		   Mathieu Arnold <m@absolight.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Test-Pod/Makefile,v 1.1 2008/03/21 19:58:15 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-Pod/Makefile,v 1.16 2007/09/08 00:59:11 linimon Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check for POD errors in files
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/Test/Builder/Tester.pm:${PORTSDIR}/devel/p5-Test-Simple \
 		${SITE_PERL}/Pod/Simple.pm:${PORTSDIR}/textproc/p5-Pod-Simple
