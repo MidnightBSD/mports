@@ -2,7 +2,7 @@
 # Date created:			2006-03-17
 # Whom:				Alexander Zhuravlev <zaa@zaa.pp.ru>
 #
-# $MidnightBSD: mports/devel/pecl-json/Makefile,v 1.1 2007/10/09 18:57:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/pecl-json/Makefile,v 1.2 2008/05/15 08:24:12 laffer1 Exp $
 # $FreeBSD: ports/devel/pecl-json/Makefile,v 1.2 2006/03/27 21:27:51 thierry Exp $
 #
 
@@ -17,6 +17,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PHP extension for JSON (JavaScript Object Notation) serialization
+LICENSE=	php
 
 USE_PHP=	yes
 USE_PHPEXT=	yes
