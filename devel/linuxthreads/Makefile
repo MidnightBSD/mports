@@ -2,7 +2,7 @@
 # Date created:		14 Jan 1999
 # Whom:			Richard Seaman, Jr. <dick@tar.com>
 #
-# $MidnightBSD: mports/devel/linuxthreads/Makefile,v 1.1 2006/10/01 17:01:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/linuxthreads/Makefile,v 1.2 2007/05/06 19:33:09 ctriv Exp $
 # $FreeBSD: ports/devel/linuxthreads/Makefile,v 1.46 2006/05/28 17:47:01 tegge Exp $
 #
 
@@ -218,7 +218,6 @@ pre-su-install:
 	@cd ${WRKSRC}/libsupc++ ; \
 		${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} install
 .endif
-
 
 PLIST_SUB=	PROFILE:="@comment "
 
