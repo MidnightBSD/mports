@@ -98,7 +98,6 @@ DISTFILES+=	mutru.theme
 DISTFILES+=	n.theme
 DISTFILES+=	naula.theme
 DISTFILES+=	neutralorange.theme
-DISTFILES+=	nigga.theme
 DISTFILES+=	nitz.theme
 DISTFILES+=	ocean.theme
 DISTFILES+=	osbxwannabe.theme
