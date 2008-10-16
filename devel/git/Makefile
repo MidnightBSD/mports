@@ -2,7 +2,7 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/git/Makefile,v 1.2 2008/10/16 19:34:33 laffer1 Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
@@ -202,8 +202,7 @@ MAKE_ENV+=	NO_TCLTK=yes
 
 .ifdef (WITH_SVN)
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Term/ReadKey.pm:${PORTSDIR}/devel/p5-Term-ReadKey \
-		${SITE_PERL}/${PERL_ARCH}/SVN/Core.pm:${PORTSDIR}/devel/p5-subversion \
-		svn:${PORTSDIR}/devel/subversion
+		svn:${PORTSDIR}/devel/subversion-perl
 .endif
 
 .ifdef (WITH_GITWEB)
