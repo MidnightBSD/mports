@@ -2,7 +2,7 @@
 # Date created:	   10 octobre 2003
 # Whom:		   mat
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Pod-Coverage/Makefile,v 1.1 2008/03/21 19:59:57 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Pod-Coverage/Makefile,v 1.13 2007/10/26 21:46:04 mat Exp $
 #
 
@@ -14,6 +14,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Checks if the documentation of a module is comprehensive
+LICENSE=	perl
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	${SITE_PERL}/Pod/Parser.pm:${PORTSDIR}/textproc/p5-Pod-Parser \

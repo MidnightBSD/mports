@@ -3,7 +3,7 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-IPC-Run/Makefile,v 1.8 2006/05/11 08:34:41 tobez Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-IPC-Run/Makefile,v 1.1 2006/11/25 00:45:05 laffer1 Exp $
 #
 
 PORTNAME=	IPC-Run
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IPC::Run - Run subprocesses with piping and redirection
+LICENSE=	perl
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
@@ -24,10 +25,6 @@ MAN3=	IPC::Run.3 IPC::Run::IO.3 IPC::Run::Timer.3 IPC::Run::Debug.3 \
 	IPC::Run::Win32IO.3 IPC::Run::Win32Helper.3 IPC::Run::Win32Pump.3
 
 .include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500601
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/IO/Handle.pm:${PORTSDIR}/devel/p5-IO
-.endif
 
 .if ${PERL_LEVEL} >= 500800
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/IO/Tty.pm:${PORTSDIR}/devel/p5-IO-Tty

@@ -2,7 +2,7 @@
 # Date created:				25 February 2000
 # Whom:	      				Brad Hendrickse <bradh@uunet.co.za>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Date-Calc/Makefile,v 1.1 2007/03/11 04:14:46 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Date-Calc/Makefile,v 1.11 2007/01/27 19:20:17 mat Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gregorian calendar date calculations
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Bit/Vector.pm:${PORTSDIR}/math/p5-Bit-Vector
 RUN_DEPENDS=	${BUILD_DEPENDS}

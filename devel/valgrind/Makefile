@@ -2,7 +2,7 @@
 # Date created:				June 27, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.1 2008/06/27 16:01:39 laffer1 Exp $
 #
 
 PORTNAME=	valgrind
@@ -14,6 +14,7 @@ DISTNAME=	${PORTNAME}-stable-${PORTVERSION}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	A (memory) debugging and profiling tool
+LICENSE=	unknown
 
 ONLY_FOR_ARCHS=	i386
 CONFLICTS=	valgrind-snapshot-[0-9]*

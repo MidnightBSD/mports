@@ -2,7 +2,7 @@
 # Date created:			2007-04-27
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/2bsd-vi/Makefile,v 1.1 2007/04/28 00:32:02 laffer1 Exp $
 #
 
 PORTNAME=	vi
@@ -15,6 +15,7 @@ DISTNAME=	ex-${PORTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	The original vi editor
+LICENSE=	bsd4
 
 USE_BZIP2=	yes
 

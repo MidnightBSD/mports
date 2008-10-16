@@ -2,7 +2,7 @@
 # Date created:				22 October 1999
 # Whom:					Chris D. Faulhaber <jedgar@fxp.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/xenon/Makefile,v 1.1 2007/06/25 18:12:29 laffer1 Exp $
 # $FreeBSD: ports/editors/xenon/Makefile,v 1.17 2007/05/19 20:04:22 flz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITES=	http://sydney.proximity.com.au/~ben/xenon/dist/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple X-based text editor
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_GCC=	3.4+

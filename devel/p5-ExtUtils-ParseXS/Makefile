@@ -2,7 +2,7 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.1 2007/03/11 05:19:08 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.8 2006/12/23 14:07:18 demon Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts Perl XS code into C code
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/ExtUtils/CBuilder.pm:${PORTSDIR}/devel/p5-ExtUtils-CBuilder
 RUN_DEPENDS=	${BUILD_DEPENDS}

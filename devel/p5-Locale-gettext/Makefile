@@ -2,7 +2,7 @@
 # Date created:			1 February 2000
 # Whom:				Dmitry Sivachenko <dima@Chg.RU>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Locale-gettext/Makefile,v 1.1 2006/09/21 13:39:19 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Locale-gettext/Makefile,v 1.18 2005/12/07 17:05:21 demon Exp $
 #
 
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Message handling functions
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ENV+=	LOCALBASE=${LOCALBASE}

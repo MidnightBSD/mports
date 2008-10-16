@@ -2,7 +2,7 @@
 # Date created:				27 Dec 2005
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Test-Base/Makefile,v 1.1 2007/03/11 05:15:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Test-Base/Makefile,v 1.2 2007/07/22 08:53:25 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-Base/Makefile,v 1.9 2006/12/02 14:40:56 tobez Exp $
 #
 
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Test::Base - A Data Driven Testing Framework
+LICENSE=	perl
 
 BUILD_DEPENDS=	\
 		p5-Spiffy>=0.30:${PORTSDIR}/devel/p5-Spiffy \
@@ -28,10 +29,4 @@ MAN3=	Test::Base.3 \
 	Test::Base::Filter.3 \
 	Module::Install::TestBase.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

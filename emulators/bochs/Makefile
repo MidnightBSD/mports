@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	An IA-32 (x86) PC emulator that runs DOS, Win 95, and more
+LICENSE=	lgpl
 
 BUILD_DEPENDS=	mkfontdir:${X_CLIENTS_PORT}
 RUN_DEPENDS=	mkfontdir:${X_CLIENTS_PORT}

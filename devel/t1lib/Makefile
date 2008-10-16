@@ -3,7 +3,7 @@
 # Date created:			13, May, 1999
 # Whom:				Ying-Chieh Liao <ijliao@csie.nctu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/t1lib/Makefile,v 1.1 2006/09/25 02:43:43 laffer1 Exp $
 # $FreeBSD: ports/devel/t1lib/Makefile,v 1.33 2006/08/14 22:55:17 clsung Exp $
 #
 
@@ -17,6 +17,7 @@ MASTER_SITE_SUBDIR=	libs/graphics
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Type 1 Rasterizer Library for UNIX/X11
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:15

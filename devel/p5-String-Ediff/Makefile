@@ -3,7 +3,7 @@
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
 # $FreeBSD: ports/devel/p5-String-Ediff/Makefile,v 1.4 2005/11/11 21:36:28 mnag Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-String-Ediff/Makefile,v 1.1 2006/11/25 00:45:05 laffer1 Exp $
 #
 
 PORTNAME=	String-Ediff
@@ -15,6 +15,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to produce common sub-string indices for two strings
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

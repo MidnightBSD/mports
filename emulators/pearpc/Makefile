@@ -2,7 +2,7 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.2 2007/04/25 16:03:25 ctriv Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.3 2007/04/26 20:30:50 ctriv Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PowerPC emulator
+LICENSE=	gpl2
 
 USE_XLIB=	yes
 GNU_CONFIGURE=	yes

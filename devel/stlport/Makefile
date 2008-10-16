@@ -3,7 +3,7 @@
 # Date Created:			  2 December 1998
 # Whom:				  Josh Gilliam <josh@quick.net>
 #
-# $MidnightBSD: mports/devel/stlport/Makefile,v 1.1 2007/01/02 00:38:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.2 2007/05/05 05:44:02 ctriv Exp $
 
 PORTNAME=	stlport
 PORTVERSION=	4.6.2
@@ -15,6 +15,7 @@ DISTNAME=	STLport-${PORTVERSION:S/.b/-b/}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Adaptation of SGI's Standard Template Library
+LICENSE=	other
 
 .include <bsd.port.pre.mk>
 

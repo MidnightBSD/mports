@@ -2,7 +2,7 @@
 # Date created:				April 28th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Date-Manip/Makefile,v 1.1 2007/03/21 00:46:31 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Date-Manip/Makefile,v 1.25 2005/06/07 08:56:28 clsung Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	DateManip-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module containing date manipulation routines
+LICENSE=	perl
 
 PERL_CONFIGURE=	YES
 

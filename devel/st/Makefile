@@ -2,7 +2,7 @@
 # Date created:         Sun Feb 18 2001
 # Whom:                 tobez@tobez.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/st/Makefile,v 1.1 2007/07/21 11:21:24 laffer1 Exp $
 # $FreeBSD: ports/devel/st/Makefile,v 1.9 2005/08/31 11:38:07 tobez Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	state-threads
 
 MAINTAINER=	ports@midnightBSD.org
 COMMENT=	State Threads Library for Internet Applications
+LICENSE=	mpl
 
 USE_LDCONFIG=	yes
 ONLY_FOR_ARCHS=	i386 amd64
