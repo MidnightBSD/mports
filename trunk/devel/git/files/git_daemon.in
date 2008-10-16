@@ -1,5 +1,6 @@
 #! /bin/sh
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/git/files/git_daemon.in,v 1.2 2008/08/27 22:05:12 wxs Exp $
 #
 
