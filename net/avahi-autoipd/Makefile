@@ -2,11 +2,11 @@
 # Date created:				31 July 2007
 # Whom:					Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.1 2008/02/17 06:51:06 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.2 2008/04/11 21:10:39 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-autoipd/Makefile,v 1.3 2007/12/23 20:29:49 marcus Exp $
 #    $MCom: ports/net/avahi-autoipd/Makefile,v 1.1 2007/07/31 18:24:12 ahze Exp $
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	-autoipd
 
