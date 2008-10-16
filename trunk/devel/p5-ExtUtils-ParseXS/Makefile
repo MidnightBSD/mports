@@ -2,7 +2,7 @@
 # Date created:				29 June 2003
 # Whom:                			Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.1 2007/03/11 05:19:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.2 2008/10/16 21:36:11 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-ExtUtils-ParseXS/Makefile,v 1.8 2006/12/23 14:07:18 demon Exp $
 #
 
@@ -24,10 +24,4 @@ PERL_CONFIGURE=	yes
 
 MAN3=		ExtUtils::ParseXS.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} <= 500600
-IGNORE=		needs perl 5.6 or higher because of "/??{}/" in regexes
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
