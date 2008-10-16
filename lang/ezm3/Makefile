@@ -3,7 +3,7 @@
 # Whom:			John Polstra <jdp@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.5 2008/06/13 04:40:17 laffer1 Exp $
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.6 2008/10/02 20:35:37 laffer1 Exp $
 #
 
 PORTNAME=	ezm3
@@ -48,7 +48,7 @@ PROGS=		bin/m3build \
 		bin/m3ship \
 		lib/m3/${TARGET}/m3cgc1
 
-ONLY_FOR_ARCHS=	alpha amd64 i386 sparc64
+ONLY_FOR_ARCHS=	amd64 i386 sparc64
 
 .if ${ARCH} == "amd64"
 PORTVERSION=	1.1
