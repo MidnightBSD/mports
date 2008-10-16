@@ -3,13 +3,13 @@
 # Whom:					will
 #
 # $FreeBSD: ports/devel/viewvc/Makefile,v 1.22 2006/07/26 19:01:22 mnag Exp $
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.4 2007/11/15 00:36:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.5 2008/09/19 15:23:20 laffer1 Exp $
 #
 
 PORTNAME=	viewvc
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.7
 CATEGORIES=	devel python
-MASTER_SITES=	http://viewvc.tigris.org/files/documents/3330/41694/
+MASTER_SITES=	http://viewvc.tigris.org/files/documents/3330/44050/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
