@@ -1,13 +1,13 @@
-# New ports collection makefile for:   tcpreplay
-# Date created:        2 November 2000
-# Whom:                cnh@ivmg.net
+# New ports collection makefile for:	tcpreplay
+# Date created:				2 November 2000
+# Whom:					cnh@ivmg.net
 #
-# $FreeBSD: ports/net-mgmt/tcpreplay/Makefile,v 1.21 2005/12/21 06:02:47 az Exp $
-# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.2 2007/06/06 20:58:12 ctriv Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/net-mgmt/tcpreplay/Makefile,v 1.28 2008/06/25 22:07:29 ehaupt Exp $
 #
 
 PORTNAME=	tcpreplay
-PORTVERSION=	2.3.5
+PORTVERSION=	3.3.2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,20 +16,21 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to replay saved packet capture files
 LICENSE=	bsd3
 
-BUILD_DEPENDS=	libnet*>=1.1.2,1:${PORTSDIR}/net/libnet \
-		${LOCALBASE}/lib/libpcap.a:${PORTSDIR}/net/libpcap
+BUILD_DEPENDS=	${LOCALBASE}/lib/libpcap.a:${PORTSDIR}/net/libpcap
+
+CONFLICTS=	libdnet-[0-9]*
 
 GNU_CONFIGURE=	yes
-# Pickup correct pcap.h; CFLAGS gets overwritten
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
+
 CONFIGURE_ARGS=	--with-libpcap=${LOCALBASE} \
-		--without-pcapnav-config
+		--without-pcapnav-config \
+		--program-transform-name='s|.*\(tcp.*\)|\1|' \
+		--enable-tcpreplay-edit
 
-FAKE_OPTS=	prefixhack
-FAKE_MAKEARGS=	MAN1DIR=${FAKE_DESTDIR}${PREFIX}/man/man1 MAN8DIR=${FAKE_DESTDIR}${PREFIX}/man/man8
-MAN1=		capinfo.1 tcpprep.1 pcapmerge.1 flowreplay.1
-MAN8=		tcpreplay.8
+MAN1=		tcpreplay.1 tcpprep.1 tcprewrite.1 tcpbridge.1 tcpreplay-edit.1
+PLIST_FILES=	bin/tcpreplay bin/tcpprep bin/tcprewrite bin/tcpbridge
 
-PLIST_FILES=	bin/capinfo bin/pcapmerge bin/tcpprep sbin/tcpreplay bin/flowreplay
+post-patch:
+	@${REINPLACE_CMD} -e 's|-Wall -O3||' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
 .include <bsd.port.mk>
