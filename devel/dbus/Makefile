@@ -2,12 +2,12 @@
 # Date Created:			22 June 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.3 2007/10/27 03:12:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.4 2008/05/31 02:15:12 laffer1 Exp $
 # $FreeBSD: ports/devel/dbus/Makefile,v 1.67 2007/05/19 20:02:19 flz Exp $
 #
 
 PORTNAME=	dbus
-PORTVERSION?=	1.2.1
+PORTVERSION?=	1.2.4
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
