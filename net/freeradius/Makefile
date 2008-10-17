@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.4 2008/02/28 00:37:14 laffer1 Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
@@ -22,6 +22,9 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 WANT_PERL=	yes
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
+			--host=${ARCH}-portbld-freebsd6.0 \
+			--target=${ARCH}-portbld-freebsd6.0
 
 LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
 
@@ -39,7 +42,7 @@ CONFLICTS+=	freeradius-mysql-[0-9].* freeradius-[02-9].*
 .endif
 
 USE_RC_SUBR=	radiusd.sh
-USE_AUTOTOOLS=	libltdl:15 libtool:15 autoconf:261
+USE_AUTOTOOLS=	libltdl:15 libtool:15 autoconf:262
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 DESTDIRNAME=	R
@@ -216,7 +219,7 @@ pre-configure:
 		${REINPLACE_CMD} -e "s:-pthread:${PTHREAD_LIBS}:g" {} \;
 # Force the rebuild of some configures from configure.in, as we're patching
 # the configure.in
-# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf:261 is
+# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf:262 is
 # added to USE_AUTOTOOLS
 	@cd ${WRKSRC}/src/modules/rlm_ldap && ${AUTOCONF} -I ${WRKSRC}
 	@cd ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_mysql \
