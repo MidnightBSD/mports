@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.1 2008/10/09 20:26:01 laffer1 Exp $
 # $FreeBSD: ports/misc/qt4-qtdemo/Makefile,v 1.13 2008/08/04 23:30:37 miwi Exp $
 #
 
@@ -31,8 +31,9 @@ HAS_CONFIGURE=	yes
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+		PATH=${WRKSRC}/bin:$$PATH
+
+DESTDIRNAME=        INSTALL_ROOT
 
 DO_NOT_EXTRACT=	doc mkspecs qmake translations
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
