@@ -3,10 +3,10 @@
 # Whom:			Renato Botelho <freebsd@galle.com.br>
 #
 # $FreeBSD: ports/devel/libslang2/Makefile,v 1.20 2008/05/19 20:14:18 garga Exp $
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.1 2008/05/30 23:15:53 crash Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.2 2008/06/11 01:56:16 laffer1 Exp $
 
 PORTNAME=	libslang2
-PORTVERSION=	2.1.3
+PORTVERSION=	2.1.4
 CATEGORIES=	devel
 MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
 		ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PORTVERSION:R}/ \
@@ -14,9 +14,10 @@ MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
 		ftp://ftp.plig.org/pub/slang/v${PORTVERSION:R}/
 DISTNAME=	slang-${PORTVERSION}
 
-MAINTAINER=	Ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Routines for rapid alpha-numeric terminal applications development
 LICENSE=        gpl2     
+
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -38,7 +39,10 @@ OPTIONS=	PCRE	"Include pcre support" on \
 
 PORTDOCS=	*
 
+
 .include <bsd.port.pre.mk>
+
+PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .if !defined(WITHOUT_PCRE)
 LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
