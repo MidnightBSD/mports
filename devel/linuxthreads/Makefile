@@ -2,7 +2,7 @@
 # Date created:		14 Jan 1999
 # Whom:			Richard Seaman, Jr. <dick@tar.com>
 #
-# $MidnightBSD: mports/devel/linuxthreads/Makefile,v 1.2 2007/05/06 19:33:09 ctriv Exp $
+# $MidnightBSD: mports/devel/linuxthreads/Makefile,v 1.3 2008/10/16 21:28:39 laffer1 Exp $
 # $FreeBSD: ports/devel/linuxthreads/Makefile,v 1.46 2006/05/28 17:47:01 tegge Exp $
 #
 
@@ -16,6 +16,7 @@ DISTNAME=	glibc-linuxthreads-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	POSIX pthreads implementation using rfork to generate kernel threads
+LICENSE=	unknown
 
 .if defined(LINUXTHREADS_WRAP_API)
 USE_PERL5_BUILD=true
