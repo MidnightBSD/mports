@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.1 2008/10/09 20:26:01 laffer1 Exp $
+# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.2 2008/10/17 14:17:39 laffer1 Exp $
 # $FreeBSD: ports/misc/qt4-qtdemo/Makefile,v 1.13 2008/08/04 23:30:37 miwi Exp $
 #
 
@@ -63,6 +63,6 @@ post-build:
 	cd ${WRKSRC}/../examples && ${MAKE} -f Makefile first
 
 post-install:
-	cd ${WRKSRC}/../examples && ${MAKE} -f Makefile install
+	cd ${WRKSRC}/../examples && ${MAKE} ${FAKE_MAKEARGS} -f Makefile install
 
 .include <bsd.port.mk>
