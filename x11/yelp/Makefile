@@ -2,14 +2,14 @@
 # Date created:				18 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.4 2008/06/08 18:30:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.5 2008/08/20 16:52:44 laffer1 Exp $
 # $FreeBSD: ports/x11/yelp/Makefile,v 1.57 2007/05/19 20:28:22 flz Exp $
 #   $MCom: ports/x11/yelp/Makefile,v 1.110 2007/03/14 17:45:40 marcus Exp $
 #
 
 PORTNAME=	yelp
 PORTVERSION=	2.22.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -21,7 +21,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		rarian.0:${PORTSDIR}/textproc/rarian
 
-USE_GECKO=	firefox xulrunner
+USE_GECKO=	browser<->firefox xulrunner
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_XORG=	ice
