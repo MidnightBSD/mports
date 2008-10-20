@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.5 2008/10/11 23:23:58 laffer1 Exp $
+@comment $MidnightBSD: mports/www/browser/pkg-plist,v 1.6 2008/10/13 04:09:22 laffer1 Exp $
 bin/browser
 bin/browser-config
 include/browser/nsBuildID.h
@@ -2308,12 +2308,12 @@ lib/browser/init.d/README
 lib/browser/libgtkembedmoz.so
 lib/browser/TestGtkEmbed
 lib/browser/browser-bin
-lib/pkgconfig/firefox-nspr.pc
-lib/pkgconfig/firefox-xpcom.pc
-lib/pkgconfig/firefox-js.pc
-lib/pkgconfig/firefox-gtkmozembed.pc
-lib/pkgconfig/firefox-nss.pc
-lib/pkgconfig/firefox-plugin.pc
+lib/pkgconfig/browser-nspr.pc
+lib/pkgconfig/browser-xpcom.pc
+lib/pkgconfig/browser-js.pc
+lib/pkgconfig/browser-gtkmozembed.pc
+lib/pkgconfig/browser-nss.pc
+lib/pkgconfig/browser-plugin.pc
 share/applications/browser.desktop
 share/idl/firefox-2.0.0.17/nsIConsoleListener.idl
 share/idl/firefox-2.0.0.17/nsIConsoleMessage.idl
