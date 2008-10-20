@@ -2,21 +2,22 @@
 # Date created:				Nov 24, 2004
 # Whom:					ijliao
 #
-# $MidnightBSD: mports/devel/liboil/Makefile,v 1.1 2007/05/07 07:51:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboil/Makefile,v 1.2 2008/06/01 20:58:44 laffer1 Exp $
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
-PORTVERSION=	0.3.11
+PORTVERSION=	0.3.15
 CATEGORIES=	devel
 MASTER_SITES=	http://liboil.freedesktop.org/download/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of optimized inner loops
 LICENSE=	bsd2
 
-USE_GNOME=	pkgconfig gnomehack gnometarget
+USE_GNOME=	pkgconfig gnomehack gnometarget ltverhack
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
