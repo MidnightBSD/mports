@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/www/epiphany-extensions/Makefile,v 1.52 2008/06/06 14:06:51 edwin Exp $
 #   $MCom: ports/www/epiphany-extensions/Makefile,v 1.105 2008/03/11 17:19:08 mezz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/epiphany-extensions/Makefile,v 1.1 2008/06/07 13:40:19 crash Exp $
 
 PORTNAME=	epiphany-extensions
 PORTVERSION=	2.22.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,7 +23,7 @@ RUN_DEPENDS=	epiphany:${PORTSDIR}/www/epiphany
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
-USE_GECKO=	firefox xulrunner
+USE_GECKO=	browser<->firefox xulrunner
 USE_GNOME=	gnomeprefix gnomehack intlhack gnometarget
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
@@ -42,7 +42,6 @@ PLIST_SUB=	VERSION="2.22" EPHY_VERSION=${EPHY_VERSION}
 OPTIONS=	OPENSP "Enable OpenSP SGML support" off
 
 .include <bsd.port.pre.mk>
-.include "${PORTSDIR}/www/mozilla/bsd.gecko.mk"
 
 .if defined(WITH_OPENSP)
 CONFIGURE_ARGS+=	--enable-opensp=yes
@@ -59,10 +58,5 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 CONFIGURE_ARGS+=--with-extensions="${EPHY_EXTENSIONS}"
-
-pre-everything::
-	@${ECHO_MSG} "Epiphany-extensions also supports the following tunable option(s):"
-	@${ECHO_MSG} "	WITH_OPENSP=yes		Enable support for OpenSP SGML validation"
-	@${ECHO_MSG} ""
 
 .include <bsd.port.post.mk>
