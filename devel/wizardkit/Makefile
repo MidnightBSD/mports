@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/devel/wizardkit/Makefile,v 1.1 2006/10/31 05:53:29 dinoex Exp $
-# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.2 2007/08/25 00:43:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.3 2007/11/07 20:20:12 ctriv Exp $
 #
 
 PORTNAME=	wizardkit
@@ -15,6 +15,7 @@ DISTNAME=	WizardKit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework needed by Project Manager
+LICENSE=	agg
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
