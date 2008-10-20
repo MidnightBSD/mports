@@ -2,16 +2,12 @@
 # Date created:				27.October 2002
 # Whom:					dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.7 2008/06/19 23:59:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.8 2008/10/13 18:12:47 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-back
-.if defined(WITH_GNUSTEP_DEVEL)
-PORTVERSION=  0.13.2
-.else
-PORTVERSION=  0.12.1
-.endif
+PORTVERSION=	0.14.0
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -42,7 +38,7 @@ USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 MAKEFILE=
-MAKE_FLAGS+=		OPTFLAG="${CFLAGS} -I${X11BASE}/include"
+MAKE_FLAGS+=		OPTFLAG="${CFLAGS} -I${LOCALBASE}/include"
 BACKVERSION=		${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
 BREAKS_IF_PEDANTIC=	yes
 
