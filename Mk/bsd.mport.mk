@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.121 2008/10/13 20:50:55 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.122 2008/10/17 19:47:47 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1353,6 +1353,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.openssl.mk"
 .endif
 
+
 .if defined(USE_EMACS)
 .include "${PORTSDIR}/Mk/bsd.emacs.mk"
 .endif
@@ -1894,6 +1895,10 @@ IGNORE=	uses unknown USE_BISON construct
 
 .if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) || defined(USE_PERL5_BUILD) || defined(USE_PERL5_RUN) 
 .include "${PORTSDIR}/Mk/bsd.perl.mk"
+.endif
+
+.if defined(USE_GECKO)
+.include "${PORTSDIR}/Mk/bsd.gecko.mk"
 .endif
 
 .if defined(USE_GNUSTEP)
@@ -5268,7 +5273,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.121 2008/10/13 20:50:55 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.122 2008/10/17 19:47:47 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
