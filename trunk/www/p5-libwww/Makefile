@@ -2,12 +2,12 @@
 # Date created:				September 30th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.4 2008/10/10 18:38:57 ctriv Exp $
+# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.5 2008/10/11 22:20:48 laffer1 Exp $
 # $FreeBSD: ports/www/p5-libwww/Makefile,v 1.72 2006/12/03 12:45:59 demon Exp $
 #
 
 PORTNAME=	libwww
-PORTVERSION=	5.816
+PORTVERSION=	5.819
 CATEGORIES=	www perl5 devel
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	LWP
