@@ -2,17 +2,12 @@
 # Date created:         03 October 1998
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.7 2007/11/07 20:20:12 ctriv Exp $ 
+# $MidnightBSD: mports/devel/gnustep/Makefile,v 1.8 2008/06/14 16:21:39 laffer1 Exp $ 
 # $FreeBSD: ports/devel/gnustep/Makefile,v 1.62 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep
-.if defined(WITH_GNUSTEP_DEVEL)
-PORTVERSION=	1.15.3
-.else
-PORTVERSION=	1.14.3
-.endif
-PORTREVISION=	0
+PORTVERSION=	1.16.3
 CATEGORIES=	devel lang gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
