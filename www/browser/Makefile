@@ -2,14 +2,14 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.10 2008/10/08 21:12:24 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.11 2008/10/10 18:59:49 laffer1 Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
 
 PORTNAME=	browser
 DISTVERSION=	2.0.0.17
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -31,6 +31,8 @@ LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	firefox-[0-9]*
+
+USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
 USE_GNOME+=	gtk20 libidl desktopfileutils
 USE_ICONV=	yes
@@ -60,7 +62,7 @@ GECKO_PLIST_PRE_DIRS=	lib/${MOZILLA}/chrome/icons/default lib/${MOZILLA}/chrome/
 FIREFOX_ICON=		${MOZILLA}.xpm
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/icons/default.xpm
 
-SYSTEM_PREFS=	${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
+SYSTEM_PREFS=	${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 
 OPTIONS=	NEWTAB "Open external links in a new tab" on \
@@ -201,7 +203,7 @@ post-configure:
 
 pre-install:
 .if !defined(WITHOUT_NEWTAB)
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/${MOZILLA}/defaults/pref
+	${MKDIR} ${PREFIX}/lib/${MOZILLA}/defaults/pref
 	${ECHO_CMD} >> ${SYSTEM_PREFS}
 	${ECHO_CMD} "// Open external links in new tab" >> ${SYSTEM_PREFS}
 	${ECHO_CMD} "pref(\"browser.link.open_external\", 3);" \
@@ -228,5 +230,11 @@ post-install:
 	${MV} ${PREFIX}/bin/firefox ${PREFIX}/bin/browser
 	${MV} ${PREFIX}/lib/browser/firefox-bin ${PREFIX}/lib/browser/browser-bin
 	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
-
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/lib/pkgconfig/browser-nspr.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/lib/pkgconfig/browser-xpcom.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/lib/pkgconfig/browser-js.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc ${PREFIX}/lib/pkgconfig/browser-gtkmozembed.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-nss.pc ${PREFIX}/lib/pkgconfig/browser-nss.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-plugin.pc ${PREFIX}/lib/pkgconfig/browser-plugin.pc
+	
 .include <bsd.port.post.mk>
