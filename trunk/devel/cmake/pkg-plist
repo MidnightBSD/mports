@@ -273,6 +273,7 @@ bin/ctest
 %%DATADIR%%/Modules/Platform/Linux-icpc.cmake
 %%DATADIR%%/Modules/Platform/Linux-ifort.cmake
 %%DATADIR%%/Modules/Platform/Linux.cmake
+%%DATADIR%%/Modules/Platform/MidnightBSD.cmake
 %%DATADIR%%/Modules/Platform/MP-RAS.cmake
 %%DATADIR%%/Modules/Platform/NetBSD.cmake
 %%DATADIR%%/Modules/Platform/OSF1.cmake

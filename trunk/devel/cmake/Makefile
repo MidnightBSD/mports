@@ -2,12 +2,13 @@
 # Date created:         March 18 2002
 # Whom:                 Kyle Martin <mkm@ieee.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.1 2008/10/17 18:44:19 laffer1 Exp $
 # $FreeBSD: ports/devel/cmake/Makefile,v 1.26 2008/08/26 07:58:40 makc Exp $
 #
 
 PORTNAME=	cmake
 PORTVERSION=	2.6.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
