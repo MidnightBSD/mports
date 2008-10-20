@@ -2,16 +2,12 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.7 2007/11/15 05:54:53 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.8 2008/06/14 16:41:34 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
 PORTNAME=	gnustep-base
-.if defined(WITH_GNUSTEP_DEVEL)
-PORTVERSION=	1.15.3
-.else
-PORTVERSION=	1.14.3
-.endif
+PORTVERSION=	1.16.3
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -25,7 +21,7 @@ LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
 LIB_DEPENDS+=	gmp.7:${PORTSDIR}/math/libgmp4
 
 ETCDIR=		${LOCALBASE}/etc
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --with-config-file=${PREFIX}/GNUstep.conf
 CFLAGS+=	-rpath=/usr/local/lib:/usr/lib
