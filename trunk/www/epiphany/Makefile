@@ -2,7 +2,7 @@
 # Date created:				24 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.7 2008/10/09 15:34:08 laffer1 Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.8 2008/10/14 20:23:15 laffer1 Exp $
 # $FreeBSD: ports/www/epiphany/Makefile,v 1.113 2008/01/08 04:29:19 marcus Exp $
 #   $MCom: ports-stable/www/epiphany/Makefile,v 1.8 2007/12/01 19:54:36 marcus Exp $
 #
@@ -62,7 +62,7 @@ EXTRA_LIBS+=	`pkg-config --libs WebKitGtk`
 CONFLICTS=	epiphany-[1-9]*
 PLIST_SUB+=	GECKO="@comment "
 .else
-USE_GECKO+=	browser firefox xulrunner
+USE_GECKO+=	browser<->firefox xulrunner
 CONFIGURE_ARGS+=	--with-gecko=${GECKO} \
 			--with-engine=mozilla
 .include "${PORTSDIR}/www/mozilla/bsd.gecko.mk"
