@@ -2,12 +2,12 @@
 # Date created:				11th Feb 1995
 # Whom:					Gary Palmer <gpalmer>
 #
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.8 2008/05/30 16:15:04 laffer1 Exp $
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.9 2008/05/30 18:49:54 laffer1 Exp $
 # $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
 #
 
 PORTNAME=		samba
-PORTVERSION?=		3.0.28a
+PORTVERSION?=		3.0.32
 PORTREVISION?=		0
 PORTEPOCH?=		1
 CATEGORIES?=		net
@@ -23,7 +23,7 @@ CONFLICTS?=		sharity-light-1.* tdb-1.*
 
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:261 autoheader:261
+USE_AUTOTOOLS=		autoconf:262 autoheader:262
 AUTOHEADER_ARGS=        -I${WRKSRC} -I${WRKSRC}/lib/replace
 AUTOCONF_ARGS=          -I${WRKSRC} -I${WRKSRC}/lib/replace
 
@@ -351,6 +351,9 @@ MAN8+=                vfs_catia.8
 .if !empty(WANT_EXP_MODULES:Mvfs_commit)
 MAN8+=                vfs_commit.8
 .endif
+
+# Off by now
+PLIST_SUB+=   SAMBA_BOOK="@comment "
 
 PLIST_SUB+=	SAMBA_LOGDIR="${SAMBA_LOGDIR}" \
 		SAMBA_LOCKDIR="${SAMBA_LOCKDIR}" \
