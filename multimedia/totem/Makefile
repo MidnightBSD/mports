@@ -2,14 +2,14 @@
 # Date created:         17 Oct 2002
 # Whom:                 Hendrik Scholz <hendrik@scholz.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/totem/Makefile,v 1.2 2008/02/28 02:57:50 laffer1 Exp $
 # $FreeBSD: ports/multimedia/totem/Makefile,v 1.92 2008/01/07 22:03:13 mezz Exp $
 #   $MCom: ports/multimedia/totem/Makefile,v 1.89 2007/10/17 17:22:32 mezz Exp $
 #
 
 PORTNAME=	totem
 PORTVERSION=	2.20.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -68,8 +68,7 @@ PLIST_SUB+=	GALAGO="@comment "
 .endif
 
 .if defined(WITH_MOZILLA_PLUGIN) && ${SLAVE_PORT:L}=="yes"
-USE_GECKO=	firefox mozilla seamonkey xulrunner<->firefox firefox-devel<->firefox
-.include "${PORTSDIR}/www/mozilla/bsd.gecko.mk"
+USE_GECKO=	browser<->firefox mozilla seamonkey 
 CONFIGURE_ARGS+=--with-mozilla=${GECKO} \
 		--enable-gmp-plugin \
 		--enable-complex-plugin \
@@ -124,7 +123,6 @@ post-patch:
 		${WRKSRC}/src/backend/bacon-video-widget-gst-0.10.c
 
 post-install:
-	@-update-desktop-database
 	${MKDIR} ${PREFIX}/share/vala/vapi
 	${INSTALL_DATA} ${WRKSRC}/bindings/vala/totem.vala ${PREFIX}/share/vala/vapi
 	${INSTALL_DATA} ${WRKSRC}/bindings/vala/totem.deps ${PREFIX}/share/vala/vapi
