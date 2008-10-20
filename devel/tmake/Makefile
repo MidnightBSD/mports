@@ -2,7 +2,7 @@
 # Date created:				8 March 2000
 # Whom:					jesse@cs.uni-magdeburg.de
 #
-# $MidnightBSD: mports/devel/tmake/Makefile,v 1.1 2007/02/25 03:12:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/tmake/Makefile,v 1.2 2007/05/05 04:44:40 ctriv Exp $
 # $FreeBSD: ports/devel/tmake/Makefile,v 1.16 2006/12/06 17:54:34 rafan Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	ftp://ftp.trolltech.com/freebies/tmake/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely portable perl-based make utility
+LICENSE=	other
 
 USE_PERL5=	yes
 USE_QT_VER=	3
