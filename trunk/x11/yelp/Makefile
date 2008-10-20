@@ -2,7 +2,7 @@
 # Date created:				18 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.5 2008/08/20 16:52:44 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.6 2008/10/20 18:32:57 ctriv Exp $
 # $FreeBSD: ports/x11/yelp/Makefile,v 1.57 2007/05/19 20:28:22 flz Exp $
 #   $MCom: ports/x11/yelp/Makefile,v 1.110 2007/03/14 17:45:40 marcus Exp $
 #
@@ -36,6 +36,4 @@ MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
 
 GCONF_SCHEMAS=	yelp.schemas
 
-.include <bsd.port.pre.mk>
-.include "${PORTSDIR}/www/mozilla/bsd.gecko.mk"
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
