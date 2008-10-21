@@ -2,14 +2,14 @@
 # Date created:			2002/10/21
 # Whom:				Alan Eldridge <alane@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/browser/Makefile,v 1.11 2008/10/10 18:59:49 laffer1 Exp $
+# $MidnightBSD: mports/www/browser/Makefile,v 1.12 2008/10/20 17:38:10 ctriv Exp $
 # $FreeBSD: ports/www/firefox/Makefile,v 1.183 2007/10/10 00:15:32 marcus Exp $
 #   $MCom: ports/www/firefox/Makefile,v 1.39 2007/05/31 12:16:54 ahze Exp $
 #
 
 PORTNAME=	browser
 DISTVERSION=	2.0.0.17
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -230,11 +230,11 @@ post-install:
 	${MV} ${PREFIX}/bin/firefox ${PREFIX}/bin/browser
 	${MV} ${PREFIX}/lib/browser/firefox-bin ${PREFIX}/lib/browser/browser-bin
 	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/lib/pkgconfig/browser-nspr.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/lib/pkgconfig/browser-xpcom.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/lib/pkgconfig/browser-js.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc ${PREFIX}/lib/pkgconfig/browser-gtkmozembed.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-nss.pc ${PREFIX}/lib/pkgconfig/browser-nss.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-plugin.pc ${PREFIX}/lib/pkgconfig/browser-plugin.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nspr.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-xpcom.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-js.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-gtkmozembed.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-nss.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nss.pc
+	${MV} ${PREFIX}/lib/pkgconfig/firefox-plugin.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-plugin.pc
 	
 .include <bsd.port.post.mk>
