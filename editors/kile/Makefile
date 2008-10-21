@@ -2,7 +2,7 @@
 # Date created:		21 Jun 2002
 # Whom:			Stefan Jahn <stefan.jahn@nemesis-sektor.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/kile/Makefile,v 1.1 2008/03/05 05:08:17 laffer1 Exp $
 # $FreeBSD: ports/editors/kile/Makefile,v 1.30 2007/05/19 20:04:08 flz Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A LaTeX source editor for KDE
+LICENSE=	gpl2
 
 RUN_DEPENDS=	latex:${PORTSDIR}/print/teTeX-base \
 		identify:${PORTSDIR}/graphics/ImageMagick
