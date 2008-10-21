@@ -2,7 +2,7 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.7 2008/06/12 22:43:06 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.1 2008/10/21 19:15:09 laffer1 Exp $
 #
 
 PORTNAME=	openoffice3
@@ -151,8 +151,7 @@ do-install:
 	${CHOWN} -R 0:0 ${WRKDIR}/oo
 	${MV} ${WRKDIR}/oo/opt/openoffice.org3 ${PREFIX}
 	${MV} ${WRKDIR}/oo/opt/openoffice.org/basis3.0 ${PREFIX}/openoffice.org3/
-	${LN} -sf ${PREFIX}/openoffice.org3/basis3.0 ${PREFIX}/openoffice.org3/basis-link
-	${MV} ${WRKDIR}/oo/opt/openoffice.org/ure ${PREFIX}/openoffice.org3/
+	${MV} ${WRKDIR}/oo/opt/openoffice.org/ure ${PREFIX}/openoffice.org3/basis3.0/
 	${MV} ${WRKDIR}/oo/usr/share/icons ${PREFIX}/share
 	${MV} ${WRKDIR}/oo/usr/share/mime ${PREFIX}/share
 	${MKDIR} ${PREFIX}/share/applications
@@ -171,5 +170,9 @@ do-install:
 .for i in scalc sdraw simpress swriter
 	${LN} -sf ${PREFIX}/openoffice.org3/program/${i} ${PREFIX}/bin/${i}
 .endfor
+
+post-install:
+	(cd ${PREFIX}/openoffice.org3; rm basis-link; ${LN} -s basis3.0 basis-link )
+	(cd ${PREFIX}/openoffice.org3/basis3.0; rm ure-link;  ${LN} -s ure ure-link )
 
 .include <bsd.port.post.mk>
