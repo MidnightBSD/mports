@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.14 2008/09/22 19:40:47 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.15 2008/10/11 06:35:45 laffer1 Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -51,11 +51,13 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 PERL_ARCH?=			mach
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=			perl${PERL_BRANCH}
+PERL_PREFIX?=		${PREFIX}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=			${LOCALBASE}/${SITE_PERL_REL}
-PERL=				${LOCALBASE}/bin/perl
+SITE_PERL?=			${PERL_PREFIX}/${SITE_PERL_REL}
+PERL=				${PERL_PREFIX}/bin/perl
 PERL5=				${PERL}${PERL_VERSION}
 PERL_TEST_TARGET?=	test
+CPAN_CMD?=			${PERL_PREFIX}/bin/cpan
 
 # PERL_CONFIGURE implies USE_PERL5
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
@@ -231,6 +233,17 @@ test: build
 	@cd ${BUILD_WRKSRC} && ${SETENV} ${MAKE_ENV} make ${PERL_TEST_TARGET}
 .endif
 .endif
+
+
+check-latest:
+	@if [ -x ${CPAN_CMD} ]; then \
+		_cpan_version=`${CPAN_CMD} -D ${PORTNAME:S/-/::/g} | ${GREP} "	CPAN:" | ${AWK} '{ print $$2 }'`; \
+		${ECHO_MSG} "CPAN version: $$_cpan_version"; \
+		${ECHO_MSG} "Port version: ${PORTVERSION}"; \
+	else \
+		${ECHO_MSG} "Cannot check for latest CPAN version: ${CPAN_CMD} not installed"; \
+	fi
+	
 
 .endif      # defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
