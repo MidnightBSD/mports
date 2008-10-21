@@ -2,16 +2,16 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.2 2008/10/21 20:34:44 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.3 2008/10/21 20:43:38 laffer1 Exp $
 #
 
 PORTNAME=	openoffice3
 PORTVERSION=	${OO_RELEASE}
-PORTREVISION=	0
-CATEGORIES=	editors java linux 
+PORTREVISION=	1
+CATEGORIES=	editors java linux
 MASTER_SITES=	${MASTER_SITE_OPENOFFICE:=stable/${OO_RELEASE}/}
 PKGNAMEPREFIX?=	linux-
-DISTNAME=		OOo_${OO_RELEASE}_LinuxIntel_install_en-US
+DISTNAME=	OOo_${OO_RELEASE}_LinuxIntel_install_en-US
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@midnightbsd.org
@@ -25,7 +25,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 USE_GCPIO=	yes
 USE_LINUX=	yes
 USE_XORG=	x11 ice xaw xau xext xrender xrandr \
-		xi xt xcursor xdamage xcomposite xfixes 
+		xi xt xcursor xdamage xcomposite xfixes
 NO_BUILD=	yes
 
 OO_VER=		3.0
@@ -97,7 +97,7 @@ LINPROCFS!=	/sbin/mount | ${GREP} linprocfs | ${AWK} '{print $1}'
 
 .if defined(WITH_JAVA)
 USE_JAVA=	yes
-JAVA_VERSION=	1.4 1.5
+JAVA_VERSION=	1.4 1.5 1.6
 .endif
 
 pre-fetch:
@@ -163,7 +163,7 @@ do-install:
 	${LN} -sf ${PREFIX}/openoffice.org3/share/xdg/math.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-math.desktop
 	${LN} -sf ${PREFIX}/openoffice.org3/share/xdg/printeradmin.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-printeradmin.desktop
 	${LN} -sf ${PREFIX}/openoffice.org3/share/xdg/writer.desktop ${PREFIX}/share/applications/openoffice.org${OO_VER}-writer.desktop
-	${LN} -sf ${PREFIX}/openoffice.org3/program/soffice ${PREFIX}/bin/soffice 
+	${LN} -sf ${PREFIX}/openoffice.org3/program/soffice ${PREFIX}/bin/soffice
 	${REINPLACE_CMD} "s,/etc,${TRUE_PREFIX}," \
 		${WRKDIR}/oo/usr/bin/openoffice.org3
 	${INSTALL} ${WRKDIR}/oo/usr/bin/openoffice.org3 ${PREFIX}/bin/
@@ -173,7 +173,7 @@ do-install:
 .endfor
 
 post-install:
-	(cd ${PREFIX}/openoffice.org3; rm basis-link; ${LN} -s basis3.0 basis-link )
-	(cd ${PREFIX}/openoffice.org3/basis3.0; rm ure-link;  ${LN} -s ure ure-link )
+	(cd ${PREFIX}/openoffice.org3; ${RM} basis-link; ${LN} -s basis3.0 basis-link )
+	(cd ${PREFIX}/openoffice.org3/basis3.0; ${RM} ure-link;  ${LN} -s ure ure-link )
 
 .include <bsd.port.post.mk>
