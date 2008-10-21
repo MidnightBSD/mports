@@ -2,7 +2,7 @@
 # Date created:				2008-01-18
 # Whom:					arved
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.1 2008/10/17 18:01:54 laffer1 Exp $
 # $FreeBSD: ports/textproc/soprano/Makefile,v 1.2 2008/08/08 22:37:30 miwi Exp $
 
 PORTNAME=	soprano
@@ -23,6 +23,10 @@ QT_COMPONENTS=	corelib dbus qtestlib qmake moc uic rcc network
 USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
 USE_CMAKE=	yes
+
+MAKE_ARGS+=	${PTHREASD_LDFLAGS}
+LDFLAGS+=	${PTHREAD_LDFLAGS}
+#MAKE_ENV+=	CFLAGS+=${CFLAGS} LDFLAGS+=${LDFLAGS}
 
 post-patch:
 	${MKDIR} ${WRKSRC}
