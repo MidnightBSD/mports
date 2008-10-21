@@ -2,7 +2,7 @@
 # Date created:			22 December 2003
 # Whom:				Mezz <mezz7@cox.net>
 #
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.1 2006/11/24 23:02:24 wintellect Exp $
+# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.2 2007/03/22 04:04:21 ctriv Exp $
 # $FreeBSD: ports/games/wesnoth/Makefile,v 1.38 2006/10/14 08:54:15 marcus Exp $
 #
 
@@ -16,6 +16,7 @@ MASTER_SITE_SUBDIR=	wesnoth
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fantasy turn-based strategy game
+LICENSE=	gpl2
 
 LIB_DEPENDS=	zipios.0:${PORTSDIR}/archivers/zipios++
 

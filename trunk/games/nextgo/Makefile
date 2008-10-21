@@ -2,7 +2,7 @@
 # Date created:         05 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/games/nextgo/Makefile,v 1.1 2007/04/07 23:46:04 laffer1 Exp $
+# $MidnightBSD: mports/games/nextgo/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
 # $FreeBSD: ports/games/nextgo/Makefile,v 1.3 2007/01/31 18:18:00 dinoex Exp $
 #
 
@@ -15,6 +15,7 @@ DISTNAME=	NeXTGo-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	classic Go game for OPENSTEP/GNUstep
+LICENSE=	gpl
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
