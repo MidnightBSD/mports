@@ -2,7 +2,7 @@
 # Date created:				Tue Sep  2 23:34:32 BST 2003
 # Whom:				Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD: mports/games/scummvm/Makefile,v 1.1 2007/01/19 18:07:47 wintellect Exp $
+# $MidnightBSD: mports/games/scummvm/Makefile,v 1.2 2008/09/15 19:22:37 crash Exp $
 # $FreeBSD: ports/games/scummvm/Makefile,v 1.34 2006/09/20 11:21:25 stas Exp $
 #
 
@@ -15,6 +15,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Adventure Game Virtual Machine
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 #USE_GCC=	3.3+

@@ -3,7 +3,7 @@
 # Whom:					Eric Anholt
 #
 # $FreeBSD: ports/games/tuxracer/Makefile,v 1.23 2006/09/20 11:21:32 stas Exp $
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.1 2006/11/24 17:15:42 laffer1 Exp $
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.2 2007/11/07 23:04:10 laffer1 Exp $
 #
 
 PORTNAME=	tuxracer
@@ -17,6 +17,7 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3d penguin racing game using OpenGL
+LICENSE=	gpl2
 
 LIB_DEPENDS=	tcl83.1:${PORTSDIR}/lang/tcl83
 

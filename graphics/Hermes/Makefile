@@ -2,7 +2,7 @@
 # Date created:				29 April 1999
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.1 2007/03/09 04:34:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.2 2007/08/14 05:16:13 laffer1 Exp $
 # $FreeBSD: ports/graphics/Hermes/Makefile,v 1.39 2007/02/01 02:41:37 kris Exp $
 #
 
@@ -17,6 +17,7 @@ MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast pixel formats conversion library
+LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
