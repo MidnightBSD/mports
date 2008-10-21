@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.4 2007/10/20 02:47:47 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.5 2007/11/24 02:51:21 laffer1 Exp $
 #
 
 PORTNAME=	koffice
@@ -17,6 +17,7 @@ DIST_SUBDIR=	KDE/koffice
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Office Suite for KDE3
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
 LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
