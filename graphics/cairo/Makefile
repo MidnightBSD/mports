@@ -2,13 +2,13 @@
 # Date created:		2004-10-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.6 2008/04/10 18:37:14 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.7 2008/04/10 19:39:19 laffer1 Exp $
 # $FreeBSD: ports/graphics/cairo/Makefile,v 1.23 2007/03/20 11:01:14 ahze Exp $
 #   $MCom: ports/graphics/cairo/Makefile,v 1.56 2007/03/06 13:39:18 ahze Exp $
 #
 
 PORTNAME=	cairo
-PORTVERSION=	1.4.12
+PORTVERSION=	1.6.4
 PORTREVISION?=	0
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -23,7 +23,8 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		png.5:${PORTSDIR}/graphics/png \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
+		pixman-1.9:${PORTSDIR}/x11/pixman
 
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--enable-pdf \
@@ -52,7 +53,7 @@ PLIST_SUB+=	GLITZ="@comment "
 CONFIGURE_ARGS+=--disable-xlib
 PLIST_SUB+=	X11="@comment "
 .else
-USE_XLIB=	yes
+USE_XORG+=	xrender
 PLIST_SUB+=	X11=""
 .endif
 
