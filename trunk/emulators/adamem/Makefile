@@ -2,7 +2,7 @@
 # Date created:				November 11, 2001
 # Whom:					Jeremy Karlson
 #
-# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.2 2008/10/16 22:04:55 laffer1 Exp $
+# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.3 2008/10/20 12:40:47 laffer1 Exp $
 # $FreeBSD: ports/emulators/adamem/Makefile,v 1.6 2004/09/23 07:16:23 danfe Exp $
 #
 
@@ -20,7 +20,7 @@ RESTRICTED=	yes
 NO_CDROM=	yes
 
 NO_WRKSUBDIR=	yes
-USE_XORG=	x11 xextproto
+USE_XORG=	x11 xextproto xext
 ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}
