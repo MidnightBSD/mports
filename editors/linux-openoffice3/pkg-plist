@@ -5,6 +5,14 @@ bin/scalc
 bin/sdraw
 bin/simpress
 bin/swriter
+share/applications/openoffice.org3.0-base.desktop
+share/applications/openoffice.org3.0-calc.desktop
+share/applications/openoffice.org3.0-draw.desktop
+share/applications/openoffice.org3.0-extension.desktop
+share/applications/openoffice.org3.0-impress.desktop
+share/applications/openoffice.org3.0-math.desktop
+share/applications/openoffice.org3.0-printeradmin.desktop
+share/applications/openoffice.org3.0-writer.desktop
 share/icons/gnome/16x16/apps/openofficeorg3-base.png
 share/icons/gnome/16x16/apps/openofficeorg3-calc.png
 share/icons/gnome/16x16/apps/openofficeorg3-draw.png
@@ -326,14 +334,6 @@ share/icons/locolor/32x32/mimetypes/openofficeorg3-spreadsheet.png
 share/icons/locolor/32x32/mimetypes/openofficeorg3-text-template.png
 share/icons/locolor/32x32/mimetypes/openofficeorg3-text.png
 share/mime/packages/openoffice.org.xml
-share/applications/openoffice.org3.0-base.desktop
-share/applications/openoffice.org3.0-calc.desktop
-share/applications/openoffice.org3.0-draw.desktop
-share/applications/openoffice.org3.0-extension.desktop
-share/applications/openoffice.org3.0-impress.desktop
-share/applications/openoffice.org3.0-math.desktop
-share/applications/openoffice.org3.0-printeradmin.desktop
-share/applications/openoffice.org3.0-writer.desktop
 openoffice.org3/LICENSE
 openoffice.org3/LICENSE.html
 openoffice.org3/README
@@ -389,6 +389,7 @@ openoffice.org3/licenses/LICENSE_en-US
 openoffice.org3/licenses/LICENSE_en-US.html
 openoffice.org3/readmes/README_en-US
 openoffice.org3/readmes/README_en-US.html
+openoffice.org3/basis-link
 openoffice.org3/basis3.0/program/libabpli.so
 openoffice.org3/basis3.0/program/libadabasuili.so
 openoffice.org3/basis3.0/program/libdbpli.so
@@ -4078,6 +4079,7 @@ openoffice.org3/basis3.0/presets/gallery/sg100.sdv
 openoffice.org3/basis3.0/presets/gallery/sg100.thm
 openoffice.org3/basis3.0/presets/gallery/sg30.sdv
 openoffice.org3/basis3.0/presets/gallery/sg30.thm
+openoffice.org3/basis3.0/ure-link
 openoffice.org3/basis3.0/help/main_transform.xsl
 openoffice.org3/basis3.0/help/en/sdatabase.cfg
 openoffice.org3/basis3.0/help/en/sdatabase.db
@@ -4160,67 +4162,67 @@ openoffice.org3/basis3.0/help/en/swriter.idxl/segments_3
 openoffice.org3/basis3.0/help/en/swriter.jar
 openoffice.org3/basis3.0/help/en/swriter.key
 openoffice.org3/basis3.0/help/en/swriter.tree
-openoffice.org3/ure/bin/javaldx
-openoffice.org3/ure/bin/regcomp
-openoffice.org3/ure/bin/regcomp.bin
-openoffice.org3/ure/bin/regmerge
-openoffice.org3/ure/bin/regview
-openoffice.org3/ure/bin/startup.sh
-openoffice.org3/ure/bin/uno
-openoffice.org3/ure/bin/uno.bin
-openoffice.org3/ure/bin/versionrc
-openoffice.org3/ure/lib/JREProperties.class
-openoffice.org3/ure/lib/acceptor.uno.so
-openoffice.org3/ure/lib/bootstrap.uno.so
-openoffice.org3/ure/lib/bridgefac.uno.so
-openoffice.org3/ure/lib/connector.uno.so
-openoffice.org3/ure/lib/introspection.uno.so
-openoffice.org3/ure/lib/invocadapt.uno.so
-openoffice.org3/ure/lib/invocation.uno.so
-openoffice.org3/ure/lib/javaloader.uno.so
-openoffice.org3/ure/lib/javavm.uno.so
-openoffice.org3/ure/lib/jvmfwk3rc
-openoffice.org3/ure/lib/libaffine_uno_uno.so
-openoffice.org3/ure/lib/libgcc3_uno.so
-openoffice.org3/ure/lib/libgcc_s.so.1
-openoffice.org3/ure/lib/libjava_uno.so
-openoffice.org3/ure/lib/libjpipe.so
-openoffice.org3/ure/lib/libjuh.so
-openoffice.org3/ure/lib/libjuhx.so
-openoffice.org3/ure/lib/libjvmfwk.so.3
-openoffice.org3/ure/lib/libjvmaccessgcc3.so.3
-openoffice.org3/ure/lib/libreg.so.3
-openoffice.org3/ure/lib/librmcxt.so.3
-openoffice.org3/ure/lib/libstdc++.so.6
-openoffice.org3/ure/lib/libstlport_gcc.so
-openoffice.org3/ure/lib/libstore.so.3
-openoffice.org3/ure/lib/libuno_cppu.so.3
-openoffice.org3/ure/lib/libuno_cppuhelpergcc3.so.3
-openoffice.org3/ure/lib/libuno_purpenvhelpergcc3.so.3
-openoffice.org3/ure/lib/libuno_sal.so.3
-openoffice.org3/ure/lib/libuno_salhelpergcc3.so.3
-openoffice.org3/ure/lib/libunsafe_uno_uno.so
-openoffice.org3/ure/lib/liburp_uno.so
-openoffice.org3/ure/lib/libxml2.so.2
-openoffice.org3/ure/lib/namingservice.uno.so
-openoffice.org3/ure/lib/proxyfac.uno.so
-openoffice.org3/ure/lib/reflection.uno.so
-openoffice.org3/ure/lib/remotebridge.uno.so
-openoffice.org3/ure/lib/stocservices.uno.so
-openoffice.org3/ure/lib/streams.uno.so
-openoffice.org3/ure/lib/sunjavaplugin.so
-openoffice.org3/ure/lib/textinstream.uno.so
-openoffice.org3/ure/lib/textoutstream.uno.so
-openoffice.org3/ure/lib/unorc
-openoffice.org3/ure/lib/uuresolver.uno.so
-openoffice.org3/ure/share/java/java_uno.jar
-openoffice.org3/ure/share/java/juh.jar
-openoffice.org3/ure/share/java/jurt.jar
-openoffice.org3/ure/share/java/ridl.jar
-openoffice.org3/ure/share/java/unoloader.jar
-openoffice.org3/ure/share/misc/javavendors.xml
-openoffice.org3/ure/share/misc/services.rdb
-openoffice.org3/ure/share/misc/types.rdb
+openoffice.org3/basis3.0/ure/bin/javaldx
+openoffice.org3/basis3.0/ure/bin/regcomp
+openoffice.org3/basis3.0/ure/bin/regcomp.bin
+openoffice.org3/basis3.0/ure/bin/regmerge
+openoffice.org3/basis3.0/ure/bin/regview
+openoffice.org3/basis3.0/ure/bin/startup.sh
+openoffice.org3/basis3.0/ure/bin/uno
+openoffice.org3/basis3.0/ure/bin/uno.bin
+openoffice.org3/basis3.0/ure/bin/versionrc
+openoffice.org3/basis3.0/ure/lib/JREProperties.class
+openoffice.org3/basis3.0/ure/lib/acceptor.uno.so
+openoffice.org3/basis3.0/ure/lib/bootstrap.uno.so
+openoffice.org3/basis3.0/ure/lib/bridgefac.uno.so
+openoffice.org3/basis3.0/ure/lib/connector.uno.so
+openoffice.org3/basis3.0/ure/lib/introspection.uno.so
+openoffice.org3/basis3.0/ure/lib/invocadapt.uno.so
+openoffice.org3/basis3.0/ure/lib/invocation.uno.so
+openoffice.org3/basis3.0/ure/lib/javaloader.uno.so
+openoffice.org3/basis3.0/ure/lib/javavm.uno.so
+openoffice.org3/basis3.0/ure/lib/jvmfwk3rc
+openoffice.org3/basis3.0/ure/lib/libaffine_uno_uno.so
+openoffice.org3/basis3.0/ure/lib/libgcc3_uno.so
+openoffice.org3/basis3.0/ure/lib/libgcc_s.so.1
+openoffice.org3/basis3.0/ure/lib/libjava_uno.so
+openoffice.org3/basis3.0/ure/lib/libjpipe.so
+openoffice.org3/basis3.0/ure/lib/libjuh.so
+openoffice.org3/basis3.0/ure/lib/libjuhx.so
+openoffice.org3/basis3.0/ure/lib/libjvmfwk.so.3
+openoffice.org3/basis3.0/ure/lib/libjvmaccessgcc3.so.3
+openoffice.org3/basis3.0/ure/lib/libreg.so.3
+openoffice.org3/basis3.0/ure/lib/librmcxt.so.3
+openoffice.org3/basis3.0/ure/lib/libstdc++.so.6
+openoffice.org3/basis3.0/ure/lib/libstlport_gcc.so
+openoffice.org3/basis3.0/ure/lib/libstore.so.3
+openoffice.org3/basis3.0/ure/lib/libuno_cppu.so.3
+openoffice.org3/basis3.0/ure/lib/libuno_cppuhelpergcc3.so.3
+openoffice.org3/basis3.0/ure/lib/libuno_purpenvhelpergcc3.so.3
+openoffice.org3/basis3.0/ure/lib/libuno_sal.so.3
+openoffice.org3/basis3.0/ure/lib/libuno_salhelpergcc3.so.3
+openoffice.org3/basis3.0/ure/lib/libunsafe_uno_uno.so
+openoffice.org3/basis3.0/ure/lib/liburp_uno.so
+openoffice.org3/basis3.0/ure/lib/libxml2.so.2
+openoffice.org3/basis3.0/ure/lib/namingservice.uno.so
+openoffice.org3/basis3.0/ure/lib/proxyfac.uno.so
+openoffice.org3/basis3.0/ure/lib/reflection.uno.so
+openoffice.org3/basis3.0/ure/lib/remotebridge.uno.so
+openoffice.org3/basis3.0/ure/lib/stocservices.uno.so
+openoffice.org3/basis3.0/ure/lib/streams.uno.so
+openoffice.org3/basis3.0/ure/lib/sunjavaplugin.so
+openoffice.org3/basis3.0/ure/lib/textinstream.uno.so
+openoffice.org3/basis3.0/ure/lib/textoutstream.uno.so
+openoffice.org3/basis3.0/ure/lib/unorc
+openoffice.org3/basis3.0/ure/lib/uuresolver.uno.so
+openoffice.org3/basis3.0/ure/share/java/java_uno.jar
+openoffice.org3/basis3.0/ure/share/java/juh.jar
+openoffice.org3/basis3.0/ure/share/java/jurt.jar
+openoffice.org3/basis3.0/ure/share/java/ridl.jar
+openoffice.org3/basis3.0/ure/share/java/unoloader.jar
+openoffice.org3/basis3.0/ure/share/misc/javavendors.xml
+openoffice.org3/basis3.0/ure/share/misc/services.rdb
+openoffice.org3/basis3.0/ure/share/misc/types.rdb
 @dirrm share/icons/gnome/16x16/apps
 @dirrm share/icons/gnome/16x16/mimetypes
 @dirrm share/icons/gnome/16x16
@@ -4251,8 +4253,6 @@ openoffice.org3/ure/share/misc/types.rdb
 @dirrm share/icons
 @dirrm share/mime/packages
 @dirrm share/mime
-@dirrm share/applications
-@dirrm openoffice.org3/basis-link
 @dirrm openoffice.org3/program/resource
 @dirrm openoffice.org3/program
 @dirrm openoffice.org3/share/config
@@ -4666,7 +4666,6 @@ openoffice.org3/ure/share/misc/types.rdb
 @dirrm openoffice.org3/basis3.0/presets/uno_packages
 @dirrm openoffice.org3/basis3.0/presets/wordbook
 @dirrm openoffice.org3/basis3.0/presets
-@dirrm openoffice.org3/basis3.0/ure-link
 @dirrm openoffice.org3/basis3.0/help/en/sdatabase.idxl
 @dirrm openoffice.org3/basis3.0/help/en/scalc.idxl
 @dirrm openoffice.org3/basis3.0/help/en/sdraw.idxl
@@ -4677,13 +4676,13 @@ openoffice.org3/ure/share/misc/types.rdb
 @dirrm openoffice.org3/basis3.0/help/en/swriter.idxl
 @dirrm openoffice.org3/basis3.0/help/en
 @dirrm openoffice.org3/basis3.0/help
+@dirrm openoffice.org3/basis3.0/ure/bin
+@dirrm openoffice.org3/basis3.0/ure/lib
+@dirrm openoffice.org3/basis3.0/ure/share/java
+@dirrm openoffice.org3/basis3.0/ure/share/misc
+@dirrm openoffice.org3/basis3.0/ure/share
+@dirrm openoffice.org3/basis3.0/ure
 @dirrm openoffice.org3/basis3.0
-@dirrm openoffice.org3/ure/bin
-@dirrm openoffice.org3/ure/lib
-@dirrm openoffice.org3/ure/share/java
-@dirrm openoffice.org3/ure/share/misc
-@dirrm openoffice.org3/ure/share
-@dirrm openoffice.org3/ure
 @dirrm openoffice.org3
 @cwd /compat/linux
 @cwd /usr/local
