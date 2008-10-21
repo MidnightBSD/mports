@@ -2,7 +2,7 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.1 2008/10/21 19:15:09 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.2 2008/10/21 20:34:44 laffer1 Exp $
 #
 
 PORTNAME=	openoffice3
@@ -167,6 +167,7 @@ do-install:
 	${REINPLACE_CMD} "s,/etc,${TRUE_PREFIX}," \
 		${WRKDIR}/oo/usr/bin/openoffice.org3
 	${INSTALL} ${WRKDIR}/oo/usr/bin/openoffice.org3 ${PREFIX}/bin/
+	${REINPLACE_CMD} -e 's|opt|usr/local|' ${PREFIX}/bin/openoffice.org3
 .for i in scalc sdraw simpress swriter
 	${LN} -sf ${PREFIX}/openoffice.org3/program/${i} ${PREFIX}/bin/${i}
 .endfor
