@@ -3,7 +3,7 @@
 # Date created:				17 April 2006
 # Whom:					Maho Nakata <maho@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gcc41-withgcjawt/Makefile,v 1.1 2006/09/20 13:12:03 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc41-withgcjawt/Makefile,v 1.2 2008/05/29 21:15:17 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc41-withgcjawt/Makefile,v 1.9 2006/08/10 07:53:06 maho Exp $
 #
 
@@ -14,6 +14,8 @@ MAINTAINER=	ports@MidnightBSD.org
 MASTERDIR=	${.CURDIR}/../../lang/gcc41
 
 DESCR=	${.CURDIR}/pkg-descr
+
+ONLY_FOR_ARCH=	i386
 
 WITH_JAVA_AWT=	yes
 
