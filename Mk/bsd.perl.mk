@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.16 2008/10/21 04:07:19 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.17 2008/10/21 04:57:54 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
@@ -237,6 +237,7 @@ test: build
 .endif
 
 
+.if !target(check-latest)
 check-latest:
 	@if [ -x ${CPAN_CMD} ]; then \
 		_cpan_version=`${CPAN_CMD} -D ${PORTNAME:S/-/::/g} | ${GREP} "	CPAN:" | ${AWK} '{ print $$2 }'`; \
@@ -245,7 +246,7 @@ check-latest:
 	else \
 		${ECHO_MSG} "Cannot check for latest CPAN version: ${CPAN_CMD} not installed"; \
 	fi
-	
+.endif	
 
 .endif      # defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
