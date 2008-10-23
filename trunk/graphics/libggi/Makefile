@@ -2,12 +2,13 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.1 2007/08/25 05:25:32 laffer1 Exp $
 # $FreeBSD: ports/graphics/libggi/Makefile,v 1.28 2007/05/19 20:09:47 flz Exp $
 #
 
 PORTNAME=	libggi
 PORTVERSION=	2.2.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.ggi-project.org/ftp/ggi/v2.2/ \
@@ -17,6 +18,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}.src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A flexible drawing library
+LICENSE=	mit
 
 LIB_DEPENDS=	gii.1:${PORTSDIR}/devel/libgii
 
@@ -125,7 +127,7 @@ CONFIGURE_ARGS+=	--enable-kgi --with-extra-includes=/usr/include/dev
 .endif
 
 .if !defined(WITHOUT_X11)
-USE_XLIB=	yes
+USE_XORG=	x11 xxf86dga xxf86vm ice sm xau xext
 PLIST_SUB+=	WITH_X=""
 .else
 CONFIGURE_ARGS+=	--disable-x --disable-dga
