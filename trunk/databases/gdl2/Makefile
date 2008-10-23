@@ -1,11 +1,11 @@
 # New ports collection makefile for:    gdl2
 #
-# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.2 2007/11/07 20:20:09 ctriv Exp $
+# $MidnightBSD: mports/databases/gdl2/Makefile,v 1.3 2008/06/07 17:39:32 laffer1 Exp $
 #
 
 PORTNAME=	gdl2
 PORTVERSION=	0.11.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
