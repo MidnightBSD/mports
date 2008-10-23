@@ -2,13 +2,13 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/projectmanager/Makefile,v 1.3 2007/11/05 22:56:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/projectmanager/Makefile,v 1.4 2007/11/07 20:20:12 ctriv Exp $
 # $FreeBSD: ports/devel/projectmanager/Makefile,v 1.5 2007/05/25 05:55:24 dinoex Exp $
 #
 
 PORTNAME=	projectmanager
 PORTVERSION=	0.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel gnustep
 MASTER_SITES=	http://download.gna.org/pmanager/0.2/
 DISTNAME=	ProjectManager-${PORTVERSION}
