@@ -2,13 +2,13 @@
 # Date created:         05 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/games/nextgo/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
+# $MidnightBSD: mports/games/nextgo/Makefile,v 1.3 2008/10/21 22:50:29 ctriv Exp $
 # $FreeBSD: ports/games/nextgo/Makefile,v 1.3 2007/01/31 18:18:00 dinoex Exp $
 #
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games gnustep
 MASTER_SITES=	http://download.savannah.gnu.org/releases/gap/
 DISTNAME=	NeXTGo-${PORTVERSION}
@@ -26,5 +26,7 @@ USE_GNUSTEP_INSTALL=	yes
 post-patch:
 	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DIR|#GNUSTEP_INSTALLATION_DIR|' \
 		${WRKSRC}/GNUmakefile
+	${REINPLACE_CMD} -e 's|PSWait|myPSWait|' \
+		${WRKSRC}/Board.m
 
 .include <bsd.port.mk>
