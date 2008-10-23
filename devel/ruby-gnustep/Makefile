@@ -2,7 +2,7 @@
 # Date created:		14 September 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.3 2008/06/14 16:21:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.4 2008/06/22 18:20:52 laffer1 Exp $
 # $FreeBSD: ports/devel/ruby-gnustep/Makefile,v 1.35 2007/01/31 18:17:57 dinoex Exp $
 #
 
@@ -42,6 +42,7 @@ post-patch:
 
 pre-fake:
 	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/lib/ruby/site_ruby/1.8/i386-freebsd0
+	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/lib/ruby/site_ruby/1.8/rigs
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/Source/obj/librigs.so $(RUBY_SITEARCHLIBDIR)/
