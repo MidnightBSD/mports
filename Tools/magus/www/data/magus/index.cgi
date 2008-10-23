@@ -108,7 +108,7 @@ sub summary_page {
     run        => $_->port->run->id,
     osversion  => $_->port->run->osversion,
     id	       => $_->id,
-  }} sort { $a->port->run <=> $b->port->run } Magus::Lock->retrieve_all;
+  }} sort { ($a->machine->name cmp $b->machine->name) || ($a->port->run <=> $b->port->run) } Magus::Lock->retrieve_all;
 
   my @runs = map {{
     run       => $_->id,
@@ -276,7 +276,7 @@ sub search {
     delete $where{$_} if m/\W/;
   }      
   
-  my @ports = Magus::Port->search_where(\%where, { order_by => 'name' });
+  my @ports = Magus::Port->search_where(\%where, { order_by => 'name,run' });
   
   if (@ports == 1) {
     my $id = $ports[0]->id;
