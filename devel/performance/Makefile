@@ -2,13 +2,12 @@
 # Date created:         28 Oct 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/devel/performance/Makefile,v 1.5 2007/11/07 20:20:12 ctriv Exp $
+# $MidnightBSD: mports/devel/performance/Makefile,v 1.6 2008/10/16 21:49:11 laffer1 Exp $
 # $FreeBSD: ports/devel/performance/Makefile,v 1.4 2007/01/31 18:17:57 dinoex Exp $
 #
 
 PORTNAME=	performance
-PORTVERSION=	0.2.4
-PORTREVISION=	1
+PORTVERSION=	0.2.5
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
