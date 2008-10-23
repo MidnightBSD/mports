@@ -2,11 +2,12 @@
 # Date created:				2008-01-18
 # Whom:					arved
 #
-# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.1 2008/10/17 18:01:54 laffer1 Exp $
+# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.2 2008/10/21 00:36:22 laffer1 Exp $
 # $FreeBSD: ports/textproc/soprano/Makefile,v 1.2 2008/08/08 22:37:30 miwi Exp $
 
 PORTNAME=	soprano
 PORTVERSION=	2.1.1
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF
 
@@ -24,9 +25,9 @@ USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
 USE_CMAKE=	yes
 
-MAKE_ARGS+=	${PTHREASD_LDFLAGS}
+MAKE_ARGS+=	${PTHREASD_LDFLAGS} DESTDIR=${FAKE_DESTDIR}
 LDFLAGS+=	${PTHREAD_LDFLAGS}
-#MAKE_ENV+=	CFLAGS+=${CFLAGS} LDFLAGS+=${LDFLAGS}
+MAKE_ENV+=	DESTDIR=${FAKE_DESTDIR}
 
 post-patch:
 	${MKDIR} ${WRKSRC}
