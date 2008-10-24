@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.45 2008/10/01 20:14:39 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.46 2008/10/24 20:15:28 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -62,6 +62,7 @@ MASTER_SITE_AFTERSTEP+=	\
 MASTER_SITE_APACHE+=	\
 	http://www.apache.org/dist/%SUBDIR%/ \
 	http://archive.apache.org/dist/%SUBDIR%/ \
+	http://mirror.facebook.com/apache/%SUBDIR%/ \
 	ftp://ftp.planetmirror.com/pub/apache/dist/%SUBDIR%/ \
 	ftp://ftp.pop-mg.com.br/data/apache/dist/%SUBDIR%/ \
 	ftp://ftp.gin.cz/pub/mirrors/www.apache.org/dist/%SUBDIR%/ \
@@ -1016,6 +1017,7 @@ MASTER_SITE_PACKETSTORM+= \
 
 .if !defined(IGNORE_MASTER_SITE_PERL_CPAN)
 MASTER_SITE_PERL_CPAN+=	\
+	http://mirror.facebook.com/cpan/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%SUBDIR%/ \
 	http://www.cpan.dk/modules/by-module/%SUBDIR%/ \
