@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.44 2008/09/28 20:06:10 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.sites.mk,v 1.45 2008/10/01 20:14:39 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -663,6 +663,7 @@ MASTER_SITE_ISC+=	\
 .if !defined(IGNORE_MASTER_SITE_KDE)
 MASTER_SITE_KDE+=	\
 	ftp://ftp.kde.org/pub/kde/%SUBDIR%/ \
+	http://mirror.facebook.com/kde/%SUBDIR%/ \
 	http://ftp.scarlet.be/pub/kde/%SUBDIR%/ \
 	http://mirrors.isc.org/pub/kde/%SUBDIR%/ \
 	ftp://ftp.gtlib.cc.gatech.edu/pub/kde/%SUBDIR%/ \
