@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/Mk/bsd.cmake.mk,v 1.1 2008/10/17 19:47:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
 #
 
-.if !defined(_POSTMKINCLUDED) || !defined(Cmake_Pre_Include)
+.if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)
 
 Cmake_Pre_Include = cmake.mk
 
