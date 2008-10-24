@@ -1,12 +1,12 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.18 2008/10/22 15:50:13 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
 #
 # bsd.perl.mk - perl specific make directives
 
 
-.if !defined(_POSTMKINCLUDED) || !defined(Perl_Pre_Include)
+.if !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
 
 Perl_Pre_Include=			perl.mk
 Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
