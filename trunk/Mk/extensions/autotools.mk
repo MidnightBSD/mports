@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.autotools.mk,v 1.6 2008/03/24 18:42:03 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -12,8 +12,6 @@
 .if defined(_POSTMKINCLUDED) && !defined(Autotools_Post_Include)
 
 Autotools_Post_Include=		    autotools.mk
-
-
 Autotools_Include_MAINTAINER=	luke@MidnightBSD.org
 
 #---------------------------------------------------------------------------
@@ -345,3 +343,5 @@ patch-autotools::
 	@${DO_NADA}
 . endif
 .endif
+
+.endif # defined(_POSTMKINCLUDED) && !defined(Autotools_Post_Include)
