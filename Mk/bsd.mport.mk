@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.122 2008/10/17 19:47:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.123 2008/10/20 18:47:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1057,7 +1057,7 @@ INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
-.include "${PORTSDIR}/Mk/mport.inc/commands.mk"
+.include "${PORTSDIR}/Mk/components/commands.mk"
 
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
@@ -1251,9 +1251,9 @@ check-makefile::
 .endif
 
 .if defined(PORTVERSION)
-.if ${PORTVERSION:M*[-_,]*}x != x
+.	if ${PORTVERSION:M*[-_,]*}x != x
 IGNORE=			PORTVERSION ${PORTVERSION} may not contain '-' '_' or ','
-.endif
+.	endif
 DISTVERSION?=	${PORTVERSION:S/:/::/g}
 .elif defined(DISTVERSION)
 PORTVERSION=	${DISTVERSION:L:C/([a-z])[a-z]+/\1/g:C/([0-9])([a-z])/\1.\2/g:C/:(.)/\1/g:C/[^a-z0-9+]+/./g}
@@ -1272,19 +1272,73 @@ _SUF2=	,${PORTEPOCH}
 # check for old, crufty, makefile types, part 2.  The "else" case
 # should have been handled in part 1, above.
 PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
-PKGBASE?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+PKGBASE?=		${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGSUBNAME=		${PKGBASE}
 PKGNAME?=		${PKGBASE}-${PKGVERSION}
 DISTNAME?=		${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 
-.if defined(USE_LINUX_RPM)
-.include "${PORTSDIR}/Mk/bsd.linux-rpm.mk"
+
+PKGCOMPATDIR?=	${LOCALBASE}/lib/compat/pkg
+
+#
+# Handle the backwards compatibility stuff for extension loading
+#
+.if defined(XORG_CAT)
+_LOAD_XORG_EXT=		yes
 .endif
 
-.if defined(USE_XORG) || defined(XORG_CAT)
-.include "${PORTSDIR}/Mk/bsd.xorg.mk"
+.if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) 
+_LOAD_PERL_EXT=		yes
 .endif
+
+.if defined(USE_LIBRUBY)
+_LOAD_RUBY_EXT=		yes
+.endif
+
+.if defined(USE_TK)
+_LOAD_TCL_EXT=		yes
+.endif
+
+.if defined(APACHE_COMPAT)
+_LOAD_APACHE_EXT=	yes
+.endif
+
+.if (defined(USE_QT_VER) && ${USE_QT_VER:L} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
+_LOAD_KDE_EXT=		yes
+.endif
+
+.if defined (USE_QT_VER) && ${USE_QT_VER:L} == 4
+_LOAD_QT_EXT=		yes
+.endif
+
+.if defined(USE_GTK)
+_LOAD_GNOME_EXT=	yes
+.endif
+
+.if defined(USE_GSTREAMER80)
+_LOAD_GSTREAMER_EXT=	yes
+.endif
+
+.if defined(KDE4_BUILDENV)
+_LOAD_KDE4_EXT=		yes
+.endif
+
+
+# This is the order that we used before the extensions where refactored. 
+# in the future if things could be fixed to work when loaded alphabetacally, then
+# we could go back to the above approach.
+_ALL_EXT=	linux_rpm xorg gcc local perl openssl emacs gnustep php python java ruby \
+			tcl apache kde qt gnome lua wx gstreamer sdl xfce kde4 cmake mysql pgsql \
+			bdb sqlite gecko scons autotools
+
+.for EXT in ${_ALL_EXT:U} 
+.	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
+.		include "${PORTSDIR}/Mk/extensions/${EXT:L}.mk"
+.	endif
+.endfor
+
+
 
 .if defined(USE_GCPIO)
 EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
@@ -1338,93 +1392,6 @@ LDCONFIG_PLIST_EXEC_CMD?=	${LDCONFIG} -m ${USE_LDCONFIG:S|${PREFIX}|%D|g}
 LDCONFIG_PLIST_UNEXEC_CMD?=	${LDCONFIG} -R
 .endif
 
-PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
-
-
-.if defined(USE_LOCAL_MK)
-.include "${PORTSDIR}/Mk/bsd.local.mk"
-.endif
-
-.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) || defined(USE_PERL5_BUILD) || defined(USE_PERL5_RUN)
-.include "${PORTSDIR}/Mk/bsd.perl.mk"
-.endif
-
-.if defined(USE_OPENSSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
-.endif
-
-
-.if defined(USE_EMACS)
-.include "${PORTSDIR}/Mk/bsd.emacs.mk"
-.endif
-
-.if defined(USE_GNUSTEP)
-.include "${PORTSDIR}/Mk/bsd.gnustep.mk"
-.endif
-
-.if defined(USE_PHP)
-.include "${PORTSDIR}/Mk/bsd.php.mk"
-.endif
-
-.if defined(USE_PYTHON) || defined(USE_PYTHON_BUILD) || defined(USE_PYTHON_RUN)
-.include "${PORTSDIR}/Mk/bsd.python.mk"
-.endif
-
-.if defined(USE_JAVA)
-.include "${PORTSDIR}/Mk/bsd.java.mk"
-.endif
-
-.if defined(USE_RUBY) || defined(USE_LIBRUBY)
-.include "${PORTSDIR}/Mk/bsd.ruby.mk"
-.endif
-
-.if defined(USE_TCL) || defined(USE_TCL_BUILD) || defined(USE_TK)
-.include "${PORTSDIR}/Mk/bsd.tcl.mk"
-.endif
-
-.if defined(USE_APACHE) || defined(APACHE_COMPAT)
-.include "${PORTSDIR}/Mk/bsd.apache.mk"
-.endif
-
-.if (defined(USE_QT_VER) && ${USE_QT_VER:L} == 3) || defined(USE_KDELIBS_VER) || defined(USE_KDEBASE_VER)
-.include "${PORTSDIR}/Mk/bsd.kde.mk"
-.endif
-
-.if defined (USE_QT_VER) && ${USE_QT_VER:L} == 4
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
-.endif
-
-.if defined(WANT_GNOME) || defined(USE_GNOME) || defined(USE_GTK)
-.include "${PORTSDIR}/Mk/bsd.gnome.mk"
-.endif
-
-.if defined(WANT_LUA) || defined(USE_LUA) || defined(USE_LUA_NOT)
-.include "${PORTSDIR}/Mk/bsd.lua.mk"
-.endif
-
-.if defined(WANT_WX) || defined(USE_WX) || defined(USE_WX_NOT)
-.include "${PORTSDIR}/Mk/bsd.wx.mk"
-.endif
-
-.if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER80)
-.include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
-.endif
-
-.if defined(USE_SDL) || defined(WANT_SDL)
-.include "${PORTSDIR}/Mk/bsd.sdl.mk"
-.endif
-
-.if defined(USE_XFCE)
-.include "${PORTSDIR}/Mk/bsd.xfce.mk"
-.endif
-
-.if defined(USE_KDE4) || defined(KDE4_BUILDENV)
-.include "${PORTSDIR}/Mk/bsd.kde4.mk"
-.endif
-
-.if defined(USE_CMAKE)
-.include "${PORTSDIR}/Mk/bsd.cmake.mk"
-.endif
 
 # These do some path checks if DESTDIR is set correctly.
 # You can force skipping these test by defining IGNORE_PATH_CHECKS
@@ -1527,7 +1494,7 @@ _POSTMKINCLUDED=	yes
 #
 # Pull in our mixins.
 #
-.include "${PORTSDIR}/Mk/mport.inc/metadata.mk"
+.include "${PORTSDIR}/Mk/components/metadata.mk"
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
 .if defined(NO_WRKSUBDIR)
@@ -1625,10 +1592,6 @@ EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
 BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
 CONFIGURE_ENV+=		MAKE=${GMAKE}
 _MAKE_CMD=		${GMAKE}
-.endif
-
-.if defined(USE_GCC)
-.include "${PORTSDIR}/Mk/bsd.gcc.mk"
 .endif
 
 .if defined(USE_OPENLDAP_VER)
@@ -1875,87 +1838,16 @@ IGNORE=	uses unknown USE_BISON construct
 
 .endif
 
-.if defined(USE_LOCAL_MK)
-.include "${PORTSDIR}/Mk/bsd.local.mk"
-.endif
+#
+# Here we include again XXX
+#
+.for EXT in ${_ALL_EXT:U} 
+.	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
+.		include "${PORTSDIR}/Mk/extensions/${EXT:L}.mk"
+.	endif
+.endfor
 
-.if defined(USE_XORG) || defined(XORG_CAT)
-.include "${PORTSDIR}/Mk/bsd.xorg.mk"
-.endif
 
-.if defined(USE_MYSQL) || defined(WANT_MYSQL_VER) || \
-	defined(USE_PGSQL) || defined(WANT_PGSQL_VER) || \
-	defined(USE_BDB) || defined(USE_SQLITE)
-.include "${PORTSDIR}/Mk/bsd.database.mk"
-.endif
-
-.if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER80)
-.include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
-.endif
-
-.if defined(USE_PERL5) || defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) || defined(USE_PERL5_BUILD) || defined(USE_PERL5_RUN) 
-.include "${PORTSDIR}/Mk/bsd.perl.mk"
-.endif
-
-.if defined(USE_GECKO)
-.include "${PORTSDIR}/Mk/bsd.gecko.mk"
-.endif
-
-.if defined(USE_GNUSTEP)
-.include "${PORTSDIR}/Mk/bsd.gnustep.mk"
-.endif
-
-.if defined(USE_JAVA)
-.include "${PORTSDIR}/Mk/bsd.java.mk"
-.endif
-
-.if defined(USE_LINUX_RPM)
-.include "${PORTSDIR}/Mk/bsd.linux-rpm.mk"
-.endif
-
-.if defined (USE_QT_VER) && ${USE_QT_VER:L} == 4
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
-.endif
-
-.if defined(USE_SCONS)
-.include "${PORTSDIR}/Mk/bsd.scons.mk"
-.endif
-
-.if defined(USE_SDL) || defined(WANT_SDL)
-.include "${PORTSDIR}/Mk/bsd.sdl.mk"
-.endif
-
-.if defined(USE_PYTHON)
-.include "${PORTSDIR}/Mk/bsd.python.mk"
-.endif
-
-.if defined(USE_TCL) || defined(USE_TCL_BUILD) || defined(USE_TK)
-.include "${PORTSDIR}/Mk/bsd.tcl.mk"
-.endif
-
-.if defined(USE_LUA) || defined(USE_LUA_NOT)
-.include "${PORTSDIR}/Mk/bsd.lua.mk"
-.endif
-
-.if defined(USE_WX) || defined(USE_WX_NOT)
-.include "${PORTSDIR}/Mk/bsd.wx.mk"
-.endif
-
-.if defined(USE_APACHE) || defined(APACHE_COMPAT)
-.include "${PORTSDIR}/Mk/bsd.apache.mk"
-.endif
-
-.if defined(USE_AUTOTOOLS)
-.include "${PORTSDIR}/Mk/bsd.autotools.mk"
-.endif
-
-.if defined(WANT_GNOME) || defined(USE_GNOME) || defined(USE_GTK)
-.include "${PORTSDIR}/Mk/bsd.gnome.mk"
-.endif
-
-.if defined(USE_XFCE)
-.include "${PORTSDIR}/Mk/bsd.xfce.mk"
-.endif
 
 .if exists(${PORTSDIR}/../Makefile.inc)
 .include "${PORTSDIR}/../Makefile.inc"
@@ -2232,7 +2124,7 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
 .if !defined(USE_MPORT_TOOLS)
-.include "${PORTSDIR}/Mk/bsd.pkg_tools.mk"
+.include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
 .endif
 
 
@@ -2289,7 +2181,7 @@ check-makevars::
 .endif
 
 # Popular master sites
-.include "bsd.sites.mk"
+.include "${PORTSDIR}/Mk/components/sites.mk"
 
 # Empty declaration to avoid "variable MASTER_SITES recursive" error
 MASTER_SITES?=
@@ -5273,7 +5165,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.122 2008/10/17 19:47:47 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.123 2008/10/20 18:47:10 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
