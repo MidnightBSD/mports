@@ -1,12 +1,12 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.19 2008/10/23 04:36:01 ctriv Exp $
 #
-# bsd.perl.mk - perl specific make directives
+# perl.mk - perl specific make directives
 
 
-.if !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
+.if !defined(_POSTMKINCLUDED) || !defined(Perl_Pre_Include)
 
 Perl_Pre_Include=			perl.mk
 Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
@@ -53,7 +53,7 @@ PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=			perl${PERL_BRANCH}
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
-PERL_PREFIX?=		${TRUE_PREFIX}
+PERL_PREFIX?=		${LOCALBASE}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=			${PERL_PREFIX}/${SITE_PERL_REL}
 PERL=				${PERL_PREFIX}/bin/perl
@@ -178,7 +178,7 @@ SKIP_FAKE_CHECK= 	.*\.packlist
 .endif      # !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
 .if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
-Perl_Post_Include=	perl.mk
+Perl_Post_Include=	bsd.perl.mk
 
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \
