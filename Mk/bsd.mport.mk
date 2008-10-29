@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.125 2008/10/29 18:43:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.126 2008/10/29 19:28:35 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1265,7 +1265,7 @@ _LOAD_XORG_EXT=		yes
 .endif
 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD) 
-_LOAD_PERL_EXT=		yes
+_LOAD_PERL5_EXT=	yes
 .endif
 
 .if defined(USE_LIBRUBY)
@@ -5127,7 +5127,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.125 2008/10/29 18:43:46 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.126 2008/10/29 19:28:35 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
