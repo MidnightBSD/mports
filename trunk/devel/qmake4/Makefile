@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.5 2008/06/25 14:06:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.6 2008/09/18 21:55:00 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -14,11 +14,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The build utility of the Qt project
 LICENSE=	gpl2
 
-QT_NONSTANDARD=	yes
+EXTENSIONS=		qt
+QT_NONSTANDARD=		yes
+QT_BUILD_ENV_ONLY=	yes
+
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_ENV+=	FILESDIR="${FILESDIR}" ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR}
+MAKE_ENV+=	FILESDIR="${FILESDIR}" 
+
+FAKE_OPTS=	trueprefix
+
 #USE_BZIP2=	yes
 
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
@@ -60,7 +66,6 @@ do-configure:
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/../include/QtCore/qconfig.h
 
 .include <bsd.port.pre.mk>
-.include "${.CURDIR}/../../Mk/bsd.qt.mk"
 
 .if ${ARCH} == "amd64"
 CXXFLAGS+=	-fno-gcse
