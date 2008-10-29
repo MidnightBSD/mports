@@ -2,7 +2,7 @@
 # Date created:		12 December 1998
 # Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
 #
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.5 2008/05/11 16:02:20 laffer1 Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.6 2008/05/11 16:04:32 laffer1 Exp $
 # $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
 #
 
@@ -65,7 +65,7 @@ OPTIONS=	CARES "Asynchronous DNS resolution via c-ares" off \
 		NTLM "NTLM authentication" off \
 		OPENSSL "OpenSSL support" on
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_GNUTLS) && defined(WITH_OPENSSL)
 IGNORE=		may only use GNU TLS if OpenSSL support is disabled
@@ -94,7 +94,8 @@ IGNORE=		only supports LDAPS with SSL (OpenSSL or GNUTLS)
 .endif
 
 .if !defined(WITHOUT_OPENSSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=		openssl
+WITH_OPENSSL_BASE=	yes
 CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
 .else
 CONFIGURE_ARGS+=	--without-ssl
@@ -174,6 +175,8 @@ CONFIGURE_ARGS+=	--disable-ntlm
 .if defined(ADDFLAGS)
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|\$$(libdir)/pkgconfig|\$$(prefix)/libdata/pkgconfig|' \
