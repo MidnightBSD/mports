@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.8 2008/08/12 16:14:45 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.9 2008/08/13 13:47:13 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -89,7 +89,7 @@ OPTIONS=	XPM "Build with XPM support" on \
 		TCL "TCL bindings (swig)" off \
 		GUILE "Guile bindings (swig)" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
 			--host=${ARCH}-portbld-freebsd6.0 \
@@ -123,7 +123,6 @@ PLIST_SUB+=		WITH_TK="@comment "
 .if defined(WITH_TCL) || defined(WITH_TK)
 CPPFLAGS+=		-I${TCL_INCLUDEDIR}
 USE_TCL_BUILD=		84+
-.include "${PORTSDIR}/Mk/bsd.tcl.mk"
 CONFIGURE_ARGS+=	--with-tclsh=${TCLSH}
 CONFIGURE_ENV+=		TCLCONFIG="${TCL_LIBDIR}/tclConfig.sh"
 MANN+=			gdtclft.n tcldot.n
@@ -134,7 +133,7 @@ USE_ICONV=		yes
 CONFIGURE_ARGS+=	--with-iconvlibdir=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-iconvincludedir=${LOCALBASE}/include
 
-.if !defined(WITHOUT_XPM) || exists(${LOCALBASE}/lib/libXpm.so)
+.if !defined(WITHOUT_XPM) || (!defined(PACKAGE_BUILDING) && exists(${LOCALBASE}/lib/libXpm.so))
 USE_XORG+=		xaw8 xpm xmu xt sm ice xext x11 xau xdmcp xp
 MAN1+=			lefty.1
 PLIST_SUB+=		WITH_XPM=""
@@ -212,12 +211,6 @@ USE_GNOME+=		gnomelibs libglade2
 CONFIGURE_ARGS+=	--without-glade
 .endif
 
-.if defined(USE_GNOME)
-.include "${PORTSDIR}/Mk/bsd.gnome.mk"
-.endif
-.if defined(USE_XORG)
-.include "${PORTSDIR}/Mk/bsd.xorg.mk"
-.endif
 
 .if defined(WITH_SMYRNA)
 CONFIGURE_ARGS+=	 --with-gtkgl=yes
@@ -318,7 +311,6 @@ PLIST_SUB+=		WITH_PHP="@comment "
 CONFIGURE_ARGS+=	--enable-python
 PLIST_SUB+=		WITH_PYTHON=""
 USE_PYTHON_BUILD=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 LDFLAGS+=		"-L${PYTHON_LIBDIR}"
 MANN+=			gv_python.n
 .else
@@ -330,7 +322,6 @@ PLIST_SUB+=		WITH_PYTHON="@comment "
 CONFIGURE_ARGS+=	--enable-ruby
 PLIST_SUB+=		WITH_RUBY=""
 USE_RUBY=		yes
-.include "${PORTSDIR}/Mk/bsd.ruby.mk"
 MANN+=			gv_ruby.n
 .else
 CONFIGURE_ARGS+=	--disable-ruby
@@ -341,7 +332,6 @@ PLIST_SUB+=		WITH_RUBY="@comment "
 CONFIGURE_ARGS+=	--enable-lua
 PLIST_SUB+=		WITH_LUA=""
 USE_LUA=		yes
-.include "${PORTSDIR}/Mk/bsd.lua.mk"
 CFLAGS+=		-I${LUA_INCDIR}
 LDFLAGS+=		-L${LUA_LIBDIR} -lm
 CONFIGURE_ENV+=		LUA="${LUA_BINDIR}/lua"
@@ -369,6 +359,8 @@ MANN+=			gv_guile.n
 CONFIGURE_ARGS+=	--disable-guile
 PLIST_SUB+=		WITH_GUILE="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 pre-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | \
