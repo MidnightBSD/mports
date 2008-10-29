@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
 #   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.5 2007/10/21 23:49:43 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.6 2008/05/02 18:20:58 laffer1 Exp $
 #
 
 PORTNAME=	poppler
@@ -33,7 +33,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
 OPTIONS=	CAIRO "Enable cairo output backend" on
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(SLAVEPORT)
 LIB_DEPENDS+=	poppler.2:${PORTSDIR}/graphics/poppler
@@ -51,8 +51,6 @@ CONFIGURE_ARGS+=--enable-poppler-qt
 USE_QT_VER+=	3
 BUILD_WRKSRC=	${WRKSRC}/qt
 INSTALL_WRKSRC=	${WRKSRC}/qt
-# blah.. USE_QT_VER can't be defined after bsd.port.pre.mk
-.include "${PORTSDIR}/Mk/bsd.kde.mk"
 .else
 CONFIGURE_ARGS+=--disable-poppler-qt
 .endif
@@ -87,6 +85,8 @@ CONFIGURE_ARGS+=	--disable-cairo-output
 LIB_DEPENDS+=		cairo.2:${PORTSDIR}/graphics/cairo
 .endif
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 .if defined(SLAVEPORT) && ${SLAVEPORT}=="qt"
