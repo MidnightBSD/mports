@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.124 2008/10/28 22:43:08 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/options.mk,v 1.1 2008/10/29 18:43:47 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 # options.mk -- The options component
@@ -50,7 +50,7 @@ WITHOUT_${W}:=	true
 .endif
 .endif
 
-.if defined(AFTERPORTMK)
+.if defined(_POSTMKINCLUDED)
 
 .if !target(config)
 config:
@@ -211,9 +211,9 @@ options-message:
 .endif
 .if defined(_OPTIONS_READ)
 	@${ECHO_MSG} "===>  Found saved configuration for ${_OPTIONS_READ}"
-.if ${OPTIONSFILE} != ${_OPTIONSFILE}
+.	if ${OPTIONSFILE} != ${_OPTIONSFILE}
 	@${ECHO_MSG} "===>  *** CAUTION *** Using wrong configuration file ${_OPTIONSFILE}"
-.endif
+.	endif
 .endif
 
 .endif
