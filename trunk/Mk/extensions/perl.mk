@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.perl.mk,v 1.19 2008/10/23 04:36:01 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.3 2008/10/28 22:51:32 ctriv Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -78,7 +78,7 @@ USE_PERL5_BUILD=yes
 .endif
 
 
-.if ${USE_PERL5:L} == "yes"
+.if defined(USE_PERL) && ${USE_PERL5:L} == "yes"
 USE_PERL5= ${PERL_BRANCH}
 .endif
 
