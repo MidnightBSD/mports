@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.123 2008/10/20 18:47:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.124 2008/10/28 22:43:08 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1057,7 +1057,15 @@ INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
 
-.include "${PORTSDIR}/Mk/components/commands.mk"
+MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
+MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
+
+.include "${MPORTCOMPONENTS}/commands.mk"
+
+.if !defined(UID)
+UID!=	${ID} -u
+.endif
+
 
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
@@ -1079,16 +1087,8 @@ makepatch:
 .endif
 
 
-# Start of pre-makefile section.
-.if !defined(AFTERPORTMK)
-
-.if defined(_PREMKINCLUDED)
-check-makefile::
-	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.pre].mk twice"
-	@${FALSE}
-.endif
-
-_PREMKINCLUDED=	yes
+# Start of options section.
+.if defined(INOPTIONSMK) || (!defined(USEOPTIONSMK) && !defined(AFTERPORTMK))
 
 NOPRECIOUSSOFTMAKEVARS= yes
 
@@ -1195,51 +1195,27 @@ LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
 
 
-
 .if defined(LATEST_LINK)
 UNIQUENAME?=	${LATEST_LINK}
 .else
 UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}
 .endif
-OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
-_OPTIONSFILE!=	${ECHO_CMD} "${OPTIONSFILE}"
-.if defined(OPTIONS)
-.	if defined(PACKAGE_BUILDING) || (defined(BATCH) && !exists(${_OPTIONSFILE}))
-WITHOUT:=
-WITH:=
-.	if defined(OPTIONS)
-REALOPTIONS=${OPTIONS:C/".*"//g}
-.	for O in ${REALOPTIONS}
-RO:=${O}
-.	if ${RO:L} == off
-WITHOUT:=	${WITHOUT} ${OPT}
-.	endif
-.	if ${RO:L} == on
-WITH:=		${WITH} ${OPT}
-.	endif
-OPT:=${RO}
-.	endfor
-.	endif
-.	for W in ${WITH}
-WITH_${W}:=	true
-.	endfor
-.	for W in ${WITHOUT}
-WITHOUT_${W}:=	true
-.	endfor
-.	undef WITH
-.	undef WITHOUT
-.	undef RO
-.	undef REALOPTIONS
-.	endif
-.if !defined(PACKAGE_BUILDING)
-.	if exists(${_OPTIONSFILE}) && !make(rmconfig)
-.	include "${_OPTIONSFILE}"
-.	endif
-.	if exists(${_OPTIONSFILE}.local)
-.	include "${_OPTIONSFILE}.local"
-.	endif
+
+.include "${MPORTCOMPONENTS}/options.mk"
+
+.endif # end of options
+
+.if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
+
+
+.if defined(_PREMKINCLUDED)
+check-makefile::
+	@${ECHO_MSG} "${PKGNAME}: Makefile error: you cannot include bsd.port[.pre].mk twice"
+	@${FALSE}
 .endif
-.endif
+
+_PREMKINCLUDED=	yes
+
 
 # check for old, crufty, makefile types, part 1:
 .if !defined(PORTNAME) || !( defined(PORTVERSION) || defined (DISTVERSION) ) || defined(PKGNAME)
@@ -1328,13 +1304,13 @@ _LOAD_KDE4_EXT=		yes
 # This is the order that we used before the extensions where refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
-_ALL_EXT=	linux_rpm xorg gcc local perl openssl emacs gnustep php python java ruby \
+_ALL_EXT=	linux_rpm xorg gcc local perl5 openssl emacs gnustep php python java ruby \
 			tcl apache kde qt gnome lua wx gstreamer sdl xfce kde4 cmake mysql pgsql \
 			bdb sqlite gecko scons autotools
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
-.		include "${PORTSDIR}/Mk/extensions/${EXT:L}.mk"
+.		include "${MPORTEXTENSIONS}/${EXT:L}.mk"
 .	endif
 .endfor
 
@@ -1480,7 +1456,7 @@ WWWGRP?=	www
 # End of pre-makefile section.
 
 # Start of post-makefile section.
-.if !defined(BEFOREPORTMK)
+.if !defined(BEFOREPORTMK) && !defined(INOPTIONSMK)
 
 .if defined(_POSTMKINCLUDED)
 check-makefile::
@@ -1494,7 +1470,8 @@ _POSTMKINCLUDED=	yes
 #
 # Pull in our mixins.
 #
-.include "${PORTSDIR}/Mk/components/metadata.mk"
+.include "${MPORTCOMPONENTS}/metadata.mk"
+.include "${MPORTCOMPONENTS}/options.mk"
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
 .if defined(NO_WRKSUBDIR)
@@ -2040,9 +2017,6 @@ MTREE_ARGS?=		-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
 MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 
 # Determine whether or not we can use rootly owner/group functions.
-.if !defined(UID)
-UID!=	${ID} -u
-.endif
 .if ${UID} == 0
 _BINOWNGRP=	-o ${BINOWN} -g ${BINGRP}
 _SHROWNGRP=	-o ${SHAREOWN} -g ${SHAREGRP}
@@ -3059,21 +3033,6 @@ buildanyway-message:
 	@${ECHO_MSG} "Trying build of ${PKGNAME} even though it is marked BROKEN."
 .else
 	@${DO_NADA}
-.endif
-
-options-message:
-.if defined(GNOME_OPTION_MSG) && (!defined(PACKAGE_BUILDING) || !defined(BATCH))
-	@for m in ${GNOME_OPTION_MSG}; do \
-		${ECHO_MSG} $$m; \
-	done
-.else
-	@${DO_NADA}
-.endif
-.if defined(_OPTIONS_READ)
-	@${ECHO_MSG} "===>  Found saved configuration for ${_OPTIONS_READ}"
-.if ${OPTIONSFILE} != ${_OPTIONSFILE}
-	@${ECHO_MSG} "===>  *** CAUTION *** Using wrong configuration file ${_OPTIONSFILE}"
-.endif
 .endif
 
 
@@ -5165,7 +5124,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.123 2008/10/20 18:47:10 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.124 2008/10/28 22:43:08 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -5271,154 +5230,6 @@ __softMAKEFLAGS+=      '${softvar}+=${${softvar}:S/'/'\''/g}'
 	OSVERSION="${OSVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	PORTOBJFORMAT="${PORTOBJFORMAT:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	SYSTEMVERSION="${SYSTEMVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}"
-.endif
-
-.if !target(config)
-config:
-.if !defined(OPTIONS)
-	@${ECHO_MSG} "===> No options to configure"
-.else
-.if ${OPTIONSFILE} != ${_OPTIONSFILE}
-	@${ECHO_MSG} "===> Using wrong configuration file ${_OPTIONSFILE}"
-	@exit 1
-.endif
-.if ${UID} != 0 && !defined(INSTALL_AS_USER)
-	@${ECHO_MSG} "===>  Switching to root credentials to create `${DIRNAME} ${_OPTIONSFILE}`"
-	@(${SU_CMD} "${SH} -c \"${MKDIR} `${DIRNAME} ${_OPTIONSFILE}` 2> /dev/null\"") || \
-		(${ECHO_MSG} "===> Cannot create `${DIRNAME} ${_OPTIONSFILE}`, check permissions"; exit 1)
-	@${ECHO_MSG} "===>  Returning to user credentials"
-.else
-	@(${MKDIR} `${DIRNAME} ${_OPTIONSFILE}` 2> /dev/null) || \
-		(${ECHO_MSG} "===> Cannot create `${DIRNAME} ${_OPTIONSFILE}`, check permissions"; exit 1)
-.endif
-	-@if [ -e ${_OPTIONSFILE} ]; then \
-		. ${_OPTIONSFILE}; \
-	fi; \
-	set -- ${OPTIONS} XXX; \
-	while [ $$# -gt 3 ]; do \
-		OPTIONSLIST="$${OPTIONSLIST} $$1"; \
-		defaultval=$$3; \
-		withvar=WITH_$$1; \
-		withoutvar=WITHOUT_$$1; \
-		withval=$$(eval ${ECHO_CMD} $$\{$${withvar}\}); \
-		withoutval=$$(eval ${ECHO_CMD} $$\{$${withoutvar}\}); \
-		if [ ! -z "$${withval}" ]; then \
-			val=on; \
-		elif [ ! -z "$${withoutval}" ]; then \
-			val=off; \
-		else \
-			val=$$3; \
-		fi; \
-		DEFOPTIONS="$${DEFOPTIONS} $$1 \"$$2\" $${val}"; \
-		shift 3; \
-	done; \
-	TMPOPTIONSFILE=$$(mktemp -t portoptions); \
-	trap "${RM} -f $${TMPOPTIONSFILE}; exit 1" 1 2 3 5 10 13 15; \
-	${SH} -c "${DIALOG} --checklist \"Options for ${PKGNAME:C/-([^-]+)$/ \1/}\" 21 70 15 $${DEFOPTIONS} 2> $${TMPOPTIONSFILE}"; \
-	status=$$?; \
-	if [ $${status} -ne 0 ] ; then \
-		${RM} -f $${TMPOPTIONSFILE}; \
-		${ECHO_MSG} "===> Options unchanged"; \
-		exit 0; \
-	fi; \
-	if [ ! -e ${TMPOPTIONSFILE} ]; then \
-		${ECHO_MSG} "===> No user-specified options to save for ${PKGNAME}"; \
-		exit 0; \
-	fi; \
-	SELOPTIONS=$$(${CAT} $${TMPOPTIONSFILE}); \
-	${RM} -f $${TMPOPTIONSFILE}; \
-	TMPOPTIONSFILE=$$(mktemp -t portoptions); \
-	trap "${RM} -f $${TMPOPTIONSFILE}; exit 1" 1 2 3 5 10 13 15; \
-	${ECHO_CMD} "# This file is auto-generated by 'make config'." > $${TMPOPTIONSFILE}; \
-	${ECHO_CMD} "# No user-servicable parts inside!" >> $${TMPOPTIONSFILE}; \
-	${ECHO_CMD} "# Options for ${PKGNAME}" >> $${TMPOPTIONSFILE}; \
-	${ECHO_CMD} "_OPTIONS_READ=${PKGNAME}" >> $${TMPOPTIONSFILE}; \
-	for i in $${OPTIONSLIST}; do \
-		${ECHO_CMD} $${SELOPTIONS} | ${GREP} -qw $${i}; \
-		if [ $$? -eq 0 ]; then \
-			${ECHO_CMD} WITH_$${i}=true >> $${TMPOPTIONSFILE}; \
-		else \
-			${ECHO_CMD} WITHOUT_$${i}=true >> $${TMPOPTIONSFILE}; \
-		fi; \
-	done; \
-	if [ `${ID} -u` != 0 -a "x${INSTALL_AS_USER}" = "x" ]; then \
-		${ECHO_MSG} "===>  Switching to root credentials to write ${_OPTIONSFILE}"; \
-		${SU_CMD} "${CAT} $${TMPOPTIONSFILE} > ${_OPTIONSFILE}"; \
-		${ECHO_MSG} "===>  Returning to user credentials"; \
-	else \
-		${CAT} $${TMPOPTIONSFILE} > ${_OPTIONSFILE}; \
-	fi; \
-	${RM} -f $${TMPOPTIONSFILE}
-.endif
-.endif
-
-.if !target(config-recursive)
-config-recursive:
-	@${ECHO_MSG} "===> Setting user-specified options for ${PKGNAME} and dependencies";
-	@for dir in ${.CURDIR} $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} config-conditional); \
-	done
-.endif
-
-.if !target(config-conditional)
-config-conditional:
-.if defined(OPTIONS) && !exists(${_OPTIONSFILE})
-	cd ${.CURDIR} && ${MAKE} config;
-.endif
-.endif
-
-.if !target(showconfig)
-showconfig:
-.if defined(OPTIONS)
-	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME}:"
-	-@if [ -e ${_OPTIONSFILE} ]; then \
-		. ${_OPTIONSFILE}; \
-	fi; \
-	set -- ${OPTIONS} XXX; \
-	while [ $$# -gt 3 ]; do \
-		defaultval=$$3; \
-		withvar=WITH_$$1; \
-		withoutvar=WITHOUT_$$1; \
-		withval=$$(eval ${ECHO_CMD} $$\{$${withvar}\}); \
-		withoutval=$$(eval ${ECHO_CMD} $$\{$${withoutvar}\}); \
-		if [ ! -z "$${withval}" ]; then \
-			val=on; \
-		elif [ ! -z "$${withoutval}" ]; then \
-			val=off; \
-		else \
-			val="$$3 (default)"; \
-		fi; \
-		${ECHO_MSG} "     $$1=$${val} \"$$2\""; \
-		shift 3; \
-	done
-	@${ECHO_MSG} "===> Use 'make config' to modify these settings"
-.endif
-.endif
-
-.if !target(rmconfig)
-rmconfig:
-.if defined(OPTIONS) && exists(${_OPTIONSFILE})
-	-@${ECHO_MSG} "===> Removing user-configured options for ${PKGNAME}"; \
-	if [ `${ID} -u` != 0 -a "x${INSTALL_AS_USER}" = "x" ]; then \
-		${ECHO_MSG} "===> Switching to root credentials to remove ${_OPTIONSFILE} and `${DIRNAME} ${_OPTIONSFILE}`"; \
-		${SU_CMD} "${RM} -f ${_OPTIONSFILE} ; \
-			${RMDIR} `${DIRNAME} ${_OPTIONSFILE}`"; \
-		${ECHO_MSG} "===> Returning to user credentials"; \
-	else \
-		${RM} -f ${_OPTIONSFILE}; \
-		${RMDIR} `${DIRNAME} ${_OPTIONSFILE}`; \
-	fi
-.else
-	@${ECHO_MSG} "===> No user-specified options configured for ${PKGNAME}"
-.endif
-.endif
-
-.if !target(rmconfig-recursive)
-rmconfig-recursive:
-	@${ECHO_MSG} "===> Removing user-specified options for ${PKGNAME} and dependencies";
-	@for dir in ${.CURDIR} $$(${ALL-DEPENDS-LIST}); do \
-		(cd $$dir; ${MAKE} rmconfig); \
-	done
 .endif
 
 desktop-categories:
