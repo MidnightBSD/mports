@@ -35,7 +35,7 @@ BINDIR=	${PREFIX}/bin
 SHAREDIR=${PREFIX}/share/qt
 
 ${SHAREDIR}:
-	mkdir -p ${DESTDIR}"$@"/mkspecs
+	mkdir -p ${DESTDIR}$@/mkspecs
 
 beforeinstall: ${SHAREDIR}
 	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}/
