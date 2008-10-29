@@ -2,7 +2,7 @@
 # Date created:			2004/05/31
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.5 2008/05/21 21:19:23 crash Exp $
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.6 2008/09/17 23:33:42 laffer1 Exp $
 # $FreeBSD: ports/emulators/qemu/Makefile,v 1.56 2006/08/25 21:16:20 miwi Exp $
 
 PORTNAME=	qemu
@@ -37,16 +37,18 @@ OPTIONS=	KQEMU "Build with (alpha!) accelerator module" Off \
 		GNUTLS "gnutls dependency (vnc encryption)" On \
 		CDROM_DMA "IDE CDROM DMA" On
 
-.include <bsd.port.pre.mk>
-
-WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
-CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
+.include <bsd.mport.options.mk>
 
 .if defined(WITHOUT_SDL)
 CONFIGURE_ARGS+=	--disable-sdl --disable-gfx-check
 .else
 USE_SDL=	sdl
 .endif
+
+.include <bsd.port.pre.mk>
+
+WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
+CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
 
 .if defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=       --disable-vnc-tls
