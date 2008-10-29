@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.12 2008/06/08 21:06:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.13 2008/07/04 18:59:21 laffer1 Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -45,7 +45,6 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=		--with-ssl
-WANT_PERL=    yes
 
 USE_RC_SUBR=	svnserve
 
@@ -61,6 +60,9 @@ TXT_DOCS=	BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
 PORTDOCS=	${TXT_DOCS}
 .endif
 
+.include <bsd.mport.options.mk>
+
+
 .if defined(WITH_ASVN)
 RUN_DEPENDS= ${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils:install
 .endif
@@ -71,45 +73,6 @@ PLIST_SUB+=		WITHOUT_GETTEXT=""
 .else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=		WITHOUT_GETTEXT="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == "amd64"
-CFLAGS+=	-fpic -DPIC
-.endif
-
-SVNREPOS?=	/home/svn/repos
-SVNFSTYPE?=	fsfs
-
-
-.if defined(WITH_MAINTAINER_DEBUG)
-CONFIGURE_ARGS+=--enable-maintainer-mode \
-		--enable-debug
-CFLAGS+=	-g
-.endif
-
-.if defined(WITH_REPOSITORY_CREATION) 
-SUB_FILES+=	install-repos
-SUB_LIST+= 	WITH_SVNSERVE_WRAPPER=${WITH_SVNSERVE_WRAPPER} \
-		SVNREPOS=${SVNREPOS} \
-		SVNFSTYPE=${SVNFSTYPE}
-.endif
-
-.if !defined(WITHOUT_NEON)
-LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon26
-CONFIGURE_ARGS+=	--with-neon=${LOCALBASE}
-PLIST_SUB+=		WITHOUT_NEON=""
-.else
-CONFIGURE_ARGS+=	--without-neon
-PLIST_SUB+=		WITHOUT_NEON="@comment "
-.endif
-
-.if defined(WITHOUT_BDB)
-CONFIGURE_ARGS+=	--without-berkeley-db
-PLIST_SUB+=		WITHOUT_BDB="@comment "
-.else
-PLIST_SUB+=		WITHOUT_BDB=""
 .endif
 
 .if defined(WITH_PERL)
@@ -161,26 +124,9 @@ PLIST_SUB+=		WITH_JAVA=""
 PLIST_SUB+=		WITH_JAVA="@comment "
 .endif
 
-.if !defined(SWIG_BINDINGS)
-CONFIGURE_ARGS+=	--without-swig --disable-swig-bindings
-.endif
-
-.if defined(WITH_MOD_DAV_SVN)
-WITH_APACHE2_APR=	yes
-CONFIGURE_ARGS+=	--with-apxs=${APXS}
-PLIST_SUB+=	MOD_DAV_SVN=""
-SVNGROUP?=	www
-SUB_FILES+=	install-mod_dev_svn
-SUB_LIST+=	APACHEMODDIR=${APACHEMODDIR}
-.else
-PLIST_SUB+=	MOD_DAV_SVN="@comment "
-PKGDEINSTALL=	NONEXISTENT
-SVNGROUP?=	svn
-.endif
 
 .if defined(WITH_APACHE2_APR)
 USE_APACHE=	2.0+
-.include "${PORTSDIR}/Mk/bsd.apache.mk"
 .if ${APACHE_VERSION} >= 22
 APR_APU_DIR=	${LOCALBASE}/bin
 APR_CONFIG=	apr-1-config
@@ -208,6 +154,64 @@ LIB_DEPENDS+=	apr-1.2:${PORTSDIR}/devel/apr
 APR_PORT=	devel/apr
 .endif
 .endif
+
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == "amd64"
+CFLAGS+=	-fpic -DPIC
+.endif
+
+SVNREPOS?=	/home/svn/repos
+SVNFSTYPE?=	fsfs
+
+
+.if defined(WITH_MAINTAINER_DEBUG)
+CONFIGURE_ARGS+=--enable-maintainer-mode \
+		--enable-debug
+CFLAGS+=	-g
+.endif
+
+.if defined(WITH_REPOSITORY_CREATION) 
+SUB_FILES+=	install-repos
+SUB_LIST+= 	WITH_SVNSERVE_WRAPPER=${WITH_SVNSERVE_WRAPPER} \
+		SVNREPOS=${SVNREPOS} \
+		SVNFSTYPE=${SVNFSTYPE}
+.endif
+
+.if !defined(WITHOUT_NEON)
+LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon26
+CONFIGURE_ARGS+=	--with-neon=${LOCALBASE}
+PLIST_SUB+=		WITHOUT_NEON=""
+.else
+CONFIGURE_ARGS+=	--without-neon
+PLIST_SUB+=		WITHOUT_NEON="@comment "
+.endif
+
+.if defined(WITHOUT_BDB)
+CONFIGURE_ARGS+=	--without-berkeley-db
+PLIST_SUB+=		WITHOUT_BDB="@comment "
+.else
+PLIST_SUB+=		WITHOUT_BDB=""
+.endif
+
+.if !defined(SWIG_BINDINGS)
+CONFIGURE_ARGS+=	--without-swig --disable-swig-bindings
+.endif
+
+.if defined(WITH_MOD_DAV_SVN)
+WITH_APACHE2_APR=	yes
+CONFIGURE_ARGS+=	--with-apxs=${APXS}
+PLIST_SUB+=	MOD_DAV_SVN=""
+SVNGROUP?=	www
+SUB_FILES+=	install-mod_dev_svn
+SUB_LIST+=	APACHEMODDIR=${APACHEMODDIR}
+.else
+PLIST_SUB+=	MOD_DAV_SVN="@comment "
+PKGDEINSTALL=	NONEXISTENT
+SVNGROUP?=	svn
+.endif
+
 CONFIGURE_ARGS+=--with-apr=${APR_APU_DIR}/${APR_CONFIG} \
 		--with-apr-util=${APR_APU_DIR}/${APU_CONFIG}
 
