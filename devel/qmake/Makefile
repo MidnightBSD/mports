@@ -3,7 +3,7 @@
 # Whom:					mi@aldan.algebra.com
 #
 # $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.9 2008/05/04 18:32:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.10 2008/08/25 19:06:46 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -63,7 +63,5 @@ do-configure:
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/qmodules.h
 	${LN} -s . ${WRKDIR}/${DISTNAME}/src/tools/private
 
-pre-install:
-	${MKDIR} ${FAKEDIR}${PREFIX}/share/qt/mkspecs
 
 .include <bsd.port.mk>
