@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.3 2008/10/28 22:51:32 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.4 2008/10/29 14:24:36 ctriv Exp $
 #
 # perl.mk - perl specific make directives
 
