@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.13 2008/07/04 18:59:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.14 2008/10/29 18:46:50 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -94,7 +94,6 @@ PLIST_SUB+=		WITH_PERL="@comment "
 
 .if defined(WITH_PYTHON)
 USE_PYTHON=		yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 SWIG_BINDINGS+=		yes
 PLIST_SUB+=		WITH_PYTHON=""
 .else
@@ -103,7 +102,6 @@ PLIST_SUB+=		WITH_PYTHON="@comment "
 
 .if defined(WITH_RUBY)
 USE_RUBY=		yes
-.include "${PORTSDIR}/Mk/bsd.ruby.mk"
 SWIG_BINDINGS+=		yes
 PLIST_SUB+=		WITH_RUBY=""
 .else
@@ -117,7 +115,6 @@ JAVA_VERSION=	1.2+
 JAVA_OS=	native
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
-.include "${PORTSDIR}/Mk/bsd.java.mk"
 CONFIGURE_ARGS+=	--enable-javahl --with-jdk=${JAVA_HOME}
 PLIST_SUB+=		WITH_JAVA=""
 .else
