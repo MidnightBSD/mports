@@ -2,13 +2,12 @@
 # Date created:         22 Sep 2000
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.4 2007/11/05 22:55:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.5 2007/11/07 20:20:12 ctriv Exp $
 # $FreeBSD: ports/devel/projectcenter.app/Makefile,v 1.33 2006/03/19 04:35:44 dinoex Exp $
 #
 
 PORTNAME=	projectcenter.app
-PORTVERSION=	0.4.3
-PORTREVISION=	2
+PORTVERSION=	0.5.0
 CATEGORIES=	devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	dev-apps
