@@ -2,7 +2,7 @@
 # Date created:         22 Sep 2000
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.5 2007/11/07 20:20:12 ctriv Exp $
+# $MidnightBSD: mports/devel/projectcenter.app/Makefile,v 1.6 2008/10/30 16:27:18 laffer1 Exp $
 # $FreeBSD: ports/devel/projectcenter.app/Makefile,v 1.33 2006/03/19 04:35:44 dinoex Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	ProjectCenter-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A development environment for GNUstep
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
