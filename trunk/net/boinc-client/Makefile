@@ -2,7 +2,7 @@
 # Date created:				01 October 2004
 # Whom:					J.R. Oldroyd <fbsd@opal.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.1 2008/10/02 13:32:39 laffer1 Exp $
 # $FreeBSD: ports/net/boinc-client/Makefile,v 1.35 2008/08/06 08:29:56 pav Exp $
 #
 
@@ -42,7 +42,7 @@ CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" CXXFLAGSS="${CXXFLAGS}" CFLAGS="${CFLAGS}"
 OPTIONS=	X11 "Build Boinc Manager GUI" on \
 		ALT "Accept Linux science applications" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_X11)
 USE_XORG=	x11
@@ -65,6 +65,8 @@ CONFIGURE_ARGS+=--with-boinc-alt-platform=i686-pc-linux-gnu
 USE_LINUX=	yes
 .endif
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|gui_rpc_auth.cfg|${BOINC_HOME}/gui_rpc_auth.cfg|g' \
 		${WRKSRC}/client/file_names.h ${WRKSRC}/lib/boinc_cmd.C \
@@ -79,6 +81,5 @@ post-configure:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/version.h ${PREFIX}/include/BOINC
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.post.mk>
