@@ -2,7 +2,7 @@
 # Date created:				Sun Nov 18 19:42:02 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.3 2008/08/13 19:01:29 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.4 2008/08/22 14:14:46 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 #
 
@@ -37,6 +37,15 @@ MAN1=	dubdv.1 dvconnect.1 encodedv.1
 PORTDOCS=      AUTHORS COPYING COPYRIGHT ChangeLog NEWS README \
 		README.dvconnect README.encoder TODO
 
+OPTIONS=	SDL "SDL Support" on
+
+.include <bsd.mport.options.mk>
+
+.ifndef(WITHOUT_SDL)
+USE_SDL=	sdl
+CONFIGURE_ARGS+= --enable-sdl
+.endif
+
 .include <bsd.port.pre.mk>
 
 .if ${HAVE_GNOME:Mgtk12}!=""
@@ -53,17 +62,6 @@ CONFIGURE_ARGS+=--disable-gtk
 # Therefore, make sure we have AT LEAST -O and avoid -O0
 CONFIGURE_ENV+=	CFLAGS="-O ${CFLAGS:N-O0}"
 
-.ifndef(WITHOUT_SDL)
-USE_SDL=	sdl
-CONFIGURE_ARGS+= --enable-sdl
-.endif
-
-pre-everything::
-.ifndef(WITHOUT_SDL)
-	@${ECHO_MSG} '===>'
-	@${ECHO_MSG} '===> Define WITHOUT_SDL to disable SDL support'
-	@${ECHO_MSG} '===>'
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -E \
