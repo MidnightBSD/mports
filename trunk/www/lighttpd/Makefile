@@ -2,7 +2,7 @@
 # Date created:					20 May 2004
 # Whom:						k@123.org
 #
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.9 2008/09/30 15:43:25 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.10 2008/09/30 19:04:33 laffer1 Exp $
 # $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
 #
 
@@ -40,13 +40,14 @@ OPTIONS=	BZIP2		"Enable Bzip2 support"	on \
 		OPENSSL		"Enable SSL support"	on  \
 		OPENLDAP	"Enable LDAP support"	off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # Default REQUIRE to rc.d script
 _REQUIRE=	DAEMON
 
 .if !defined(WITHOUT_OPENSSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=		openssl
+USE_OPENSSL_BASE=	yes
 CONFIGURE_ARGS+=	--with-openssl \
 			--with-openssl-includes=${OPENSSLINC} \
 			--with-openssl-libs=${OPENSSLLIB}
@@ -96,6 +97,8 @@ CONFIGURE_ENV+=		CPPFLAGS="-I${LUA_INCDIR}" LDFLAGS="-L${LUA_LIBDIR}"
 .endif
 
 SUB_LIST+=		REQUIRE="${_REQUIRE}"
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|-D_XOPEN_SOURCE=600||' ${WRKSRC}/configure.in
