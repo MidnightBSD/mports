@@ -2,7 +2,7 @@
 # Date created:				Nov 26 2001
 # Whom:					Anthony Kim
 #
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.5 2008/05/09 21:19:19 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.6 2008/06/13 22:50:26 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
@@ -53,7 +53,7 @@ OPTIONS=	AS_ROOT "Run spamd as root (recommended)" on \
 		SPF_QUERY "Add SPF query support" off \
 		RELAY_COUNTRY "Relay country support" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined (WITH_SPAMC)
 CONFIGURE_ARGS+=	BUILD_SPAMC=yes
@@ -69,7 +69,7 @@ RUN_DEPENDS+=	${SITE_PERL}/Mail/SPF.pm:${PORTSDIR}/mail/p5-Mail-SPF
 .endif
 
 .if !defined(WITHOUT_SSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=	openssl
 RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/SSL.pm:${PORTSDIR}/security/p5-IO-Socket-SSL
 USE_OPENSSL=	yes
 CFLAGS+=	-I${OPENSSLINC}
@@ -110,6 +110,8 @@ RUN_DEPENDS+=	re2c>=.12.0:${PORTSDIR}/devel/re2c
 .if defined(WITH_RELAY_COUNTRY)
 RUN_DEPENDS+=	${SITE_PERL}/IP/Country/Fast.pm:${PORTSDIR}/net/p5-IP-Country
 .endif
+
+.include <bsd.port.pre.mk>
 
 MAN3=		Mail::SpamAssassin.3 \
 		Mail::SpamAssassin::AICache.3 \
