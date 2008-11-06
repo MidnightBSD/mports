@@ -2,7 +2,7 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/gedit/Makefile,v 1.4 2008/03/04 03:00:27 laffer1 Exp $
+# $MidnightBSD: mports/editors/gedit/Makefile,v 1.5 2008/10/20 19:32:50 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
 #   $MCom: ports-stable/editors/gedit/Makefile,v 1.9 2007/12/02 02:00:32 marcus Exp $
 #
@@ -48,7 +48,7 @@ WITH_GNOME=	yes
 
 .if ${HAVE_GNOME:Mpygtksourceview}!=""
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
+EXTENSIONS+=	python
 USE_GNOME+=	pygtksourceview
 CONFIGURE_ARGS+=--enable-python
 PLIST_SUB+=	PYTHON=""
