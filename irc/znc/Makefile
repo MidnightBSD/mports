@@ -2,7 +2,7 @@
 # Date created:        May 9 2008
 # Whom:                Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/znc/Makefile,v 1.1 2008/05/10 01:23:14 laffer1 Exp $
 #
 
 PORTNAME=	znc
@@ -23,7 +23,7 @@ OPTIONS=	DEBUG		"Enable debugging" off \
 		PERL		"Enable Perl support" on \
 		SASL		"Enable SASL support" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
@@ -34,7 +34,7 @@ CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
 .if defined(WITH_OPENSSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
 PLIST_SUB+=		OPENSSL=""
 .else
@@ -58,5 +58,7 @@ PLIST_SUB+=		SASL=""
 .else
 PLIST_SUB+=		SASL="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 .include <bsd.port.post.mk>
