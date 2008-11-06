@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.126 2008/10/29 19:28:35 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.127 2008/10/29 19:47:03 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1308,8 +1308,8 @@ _LOAD_${EXT:U}_EXT=	yes
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
 _ALL_EXT=	linux_rpm xorg gcc local perl5 openssl emacs gnustep php python java ruby \
-			tcl apache kde qt gnome lua wx gstreamer sdl xfce kde4 cmake mysql pgsql \
-			bdb sqlite gecko scons autotools
+			tcl apache kde qt autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
+			pgsql bdb sqlite gecko scons 
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -5127,7 +5127,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.126 2008/10/29 19:28:35 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.127 2008/10/29 19:47:03 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
