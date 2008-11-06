@@ -2,7 +2,7 @@
 # Date created:		26 January 1998
 # Whom:			Stephane Legrand
 #
-# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.2 2007/11/14 23:31:50 laffer1 Exp $
+# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.3 2008/09/30 15:16:51 laffer1 Exp $
 # $FreeBSD: ports/ftp/proftpd/Makefile,v 1.121 2007/10/08 19:22:45 beech Exp $
 #
 
@@ -60,6 +60,7 @@ CONFIGURE_ARGS=	--with-pkgconfig=libdata/pkgconfig \
 		--localstatedir=/var/run \
 		--sysconfdir=${PREFIX}/etc \
 		--disable-sendfile
+
 OPTIONS=	BAN "Include mod_ban (Requires CTRLS)" off \
 		CLAMAV "Include mod_clamav" off \
 		CTRLS "Include controls" off \
@@ -85,7 +86,7 @@ MODULES?=
 LIBDIRS?=
 INCLUDEDIRS?=
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_RATIO)
 MODULES:=${MODULES}:mod_ratio
@@ -187,7 +188,7 @@ PLIST_FILES+=	include/proftpd/mod_sql.h
 .endif
 
 .if defined(WITH_OPENSSL)
-.include <${PORTSDIR}/Mk/bsd.openssl.mk>
+EXTENSIONS+=	openssl
 CFLAGS+=	-DHAVE_OPENSSL -I${OPENSSLINC}
 PROFTPD_LIBS+=	-lssl -lcrypto -L${OPENSSLLIB}
 MODULES:=${MODULES}:mod_tls
@@ -236,6 +237,8 @@ MODULES:=${MODULES}:mod_digest
 .if !defined(WITHOUT_IFSESSION)
 MODULES:=${MODULES}:mod_ifsession
 .endif
+
+.include <bsd.port.pre.mk>
 
 # Keep this here below, in case similar constructs need to be made
 CONFIGURE_ENV+=	"LIBS=${PROFTPD_LIBS}"
