@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.5 2008/10/19 20:48:06 laffer1 Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.6 2008/11/06 20:11:22 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -147,7 +147,7 @@ sub inject_etc_files {
   
   my @files = (
     {
-      name     => 'resolve.conf',
+      name     => 'resolv.conf',
       contents => <<END,
 search emich.edu
 nameserver 164.76.2.251
