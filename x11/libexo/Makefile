@@ -2,7 +2,7 @@
 # Date created:		23 October 2004
 # Whom:			Matt Lancereau <ports@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libexo/Makefile,v 1.1 2008/09/25 02:53:41 laffer1 Exp $
 # $FreeBSD: ports/x11/libexo/Makefile,v 1.28 2008/06/06 14:09:03 edwin Exp $
 
 PORTNAME=	libexo
@@ -38,7 +38,7 @@ OPTIONS=	HAL	"Enable HAL support"			on \
 
 MAN1=		exo-csource.1 exo-open.1
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_HAL)
 CONFIGURE_ARGS+=--enable-hal
@@ -59,7 +59,6 @@ PLIST_SUB+=	NOTIFY="@comment "
 .if defined(WITH_PYTHON)
 CONFIGURE_ARGS+=--enable-python
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/pygtk.py:${PORTSDIR}/x11-toolkits/py-gtk2
 RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/pygtk.py:${PORTSDIR}/x11-toolkits/py-gtk2
 PLIST_SUB+=	PYTHON=""
@@ -77,6 +76,8 @@ PLIST_SUB+=	MCS_MANAGER=""
 CONFIGURE_ARGS+=--disable-mcs-plugin
 PLIST_SUB+=	MCS_MANAGER="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|FALSE;;|FALSE;|' ${WRKSRC}/exo/exo-icon-view.c
