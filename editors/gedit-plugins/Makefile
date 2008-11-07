@@ -2,7 +2,7 @@
 # Date created:				19 September 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/gedit-plugins/Makefile,v 1.2 2008/03/04 03:02:36 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit-plugins/Makefile,v 1.21 2007/10/24 23:35:36 marcus Exp $
 #   $MCom: ports/editors/gedit-plugins/Makefile,v 1.24 2007/09/30 17:15:47 mezz Exp $
 #
@@ -45,7 +45,6 @@ WITH_GNOME=	yes
 
 .if ${HAVE_GNOME:Mpygtksourceview}!="" && ${ARCH}!="sparc64"
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 USE_GNOME+=	pygtksourceview
 BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte
 RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte
