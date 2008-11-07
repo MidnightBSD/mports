@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/squid/Makefile,v 1.3 2008/04/11 18:37:53 laffer1 Exp $
+# $MidnightBSD: mports/www/squid/Makefile,v 1.4 2008/07/25 08:32:23 laffer1 Exp $
 # $FreeBSD: ports/www/squid/Makefile,v 1.209 2008/04/05 00:46:55 beech Exp $
 #
 # Tunables not (yet) configurable via 'make config':
@@ -206,7 +206,7 @@ CONFIGURE_ARGS=	--bindir=${PREFIX}/sbin  \
 		--disable-linux-tproxy \
 		--disable-epoll
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # Authentication methods and modules:
 
@@ -291,7 +291,7 @@ CONFIGURE_ARGS+=	--disable-carp
 # works when it is defined before bsd.port{.pre}.mk is .included.
 # This makes it currently impossible to combine this macro with OPTIONS to
 # conditionally include OpenSSL support.
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--enable-ssl \
 			--with-openssl="${OPENSSLBASE}"
 CFLAGS+=	-I${OPENSSLINC}
@@ -341,39 +341,38 @@ CONFIGURE_ARGS+=	--enable-pf-transparent
 IGNORE=		pf available only in FreeBSD 5.3 and newer
 .endif
 .endif
-# IPFilter-headers are not installed on FreeBSD 4 since 4.7-RELEASE,
-# they were not installed on FreeBSD 5 from 2002-03-26 (OSVERSION > 500032) to
-# 2003-06-27 (OSVERSION < 501101).
-#
-# Please see PR misc/44148 and the CVS log of src/include/Makefile for further
-# information.
+
 .if defined(WITH_SQUID_IPFILTER)
-.if (${OSVERSION} > 500032 && ${OSVERSION} < 501101)
-IGNORE=		the IPFilter headers are not part of the base system
-.else
 CONFIGURE_ARGS+=	--enable-ipf-transparent
 .endif
-.endif
+
 .if defined(WITH_SQUID_FOLLOW_XFF)
 CONFIGURE_ARGS+=	--enable-follow-x-forwarded-for
 .endif
+
 .if defined(WITH_SQUID_ICAP)
 EXTRA_PATCHES+=		${PATCHDIR}/icap-2.6-bootstrap.patch \
 			${PATCHDIR}/icap-2.6-core.patch
 CONFIGURE_ARGS+=	--enable-icap-support
 error_files+=		ERR_ICAP_FAILURE
 .endif
+
 .if defined(WITHOUT_SQUID_KQUEUE)
 CONFIGURE_ARGS+=	--disable-kqueue
 .endif
+
 .if defined(WITH_SQUID_LARGEFILE)
 CONFIGURE_ARGS+=	--with-large-files --enable-large-cache-files
 .endif
+
 .if defined(WITH_SQUID_STACKTRACES)
 CONFIGURE_ARGS+=	--enable-stacktraces
 CFLAGS+=	-g
 STRIP=
 .endif
+
+
+.include <bsd.port.pre.mk>
 
 # Languages:
 #
@@ -424,10 +423,6 @@ pre-install:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
-pre-su-install:
-	@${SETENV} ${SCRIPTS_ENV} PKG_PREFIX=${PREFIX} \
-	    ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 post-install:
 .if !defined(NOPORTEXAMPLES)
 	@${MKDIR} ${EXAMPLESDIR}
@@ -441,12 +436,5 @@ post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${docs} ${DOCSDIR}
 .endif
-	@${SETENV} PKG_PREFIX=${PREFIX} \
-	    ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-
-	@${ECHO_CMD} "===> post-installation information for ${PKGNAME}:"
-	@${ECHO_CMD} ""
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_CMD} ""
 
 .include <bsd.port.post.mk>
