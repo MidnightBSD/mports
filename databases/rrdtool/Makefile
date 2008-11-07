@@ -2,7 +2,7 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.1 2008/05/10 04:37:14 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
@@ -30,10 +30,10 @@ OPTIONS=	PYTHON_MODULE	"Build PYTHON bindings" off \
 		RUBY_MODULE	"Build RUBY bindings" off \
 		PERL_MODULE	"Build PERL module" on
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
+
 .if defined(WITH_PYTHON_MODULE)
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 PLIST_SUB+=	WITH_PYTHON=""
 CONFIGURE_ARGS+=	--enable-python
 .else
@@ -43,7 +43,6 @@ PLIST_SUB+=	WITH_PYTHON="@comment "
 
 .if defined(WITH_RUBY_MODULE)
 USE_RUBY=	yes
-.include "${PORTSDIR}/Mk/bsd.ruby.mk"
 PLIST_SUB+=	WITH_RUBY=""
 CONFIGURE_ARGS+=	--enable-ruby
 .else
@@ -59,6 +58,8 @@ PLIST_SUB+=	WITH_PERL=""
 CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=	WITH_PERL="@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libart-2.0 -I${LOCALBASE}/include/freetype2
