@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.4 2008/02/28 00:37:14 laffer1 Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.5 2008/10/17 14:27:36 laffer1 Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
@@ -63,7 +63,7 @@ OPTIONS+=	PGSQL		"With PostgreSQL database support" off \
 		NOPERL		"Do not require perl (use only if necessary)" off \
 		EXPERIMENTAL	"Build experimental modules" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # Default requirements for rc script
 _REQUIRE=	NETWORKING SERVERS
@@ -87,11 +87,6 @@ PLIST_SUB+=	PORTDOCS=""
 CONFIGURE_ARGS+=--with-logdir=${LOGDIR} \
 		--with-large-files \
 		--with-openssl-includes=${OPENSSLINC}
-# This conditionality avoids -L/usr/lib in the radiusd build step when
-# building with base system OpenSSL
-.if ${OPENSSLLIB} != "/usr/lib"
-CONFIGURE_ARGS+=--with-openssl-libraries=${OPENSSLLIB}
-.endif
 CONFIGURE_ARGS+=--without-rlm_sql_db2 \
 		--without-rlm_sql_freetds \
 		--without-rlm_sql_iodbc \
@@ -170,8 +165,6 @@ CONFIGURE_ARGS+=--without-snmp
 
 .ifdef(WITH_EXPERIMENTAL)
 USE_PYTHON=	yes
-# hack to get the dependency
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 CONFIGURE_ARGS+=--with-experimental-modules
 PLIST_SUB+=	EXPM=""
 .else
@@ -189,6 +182,14 @@ PLIST_SUB+=	RLMPERL="@comment "
 USE_PERL5=	yes
 CONFIGURE_ARGS+=--with-rlm_perl
 PLIST_SUB+=	RLMPERL=""
+.endif
+
+.include <bsd.port.pre.mk>
+
+# This conditionality avoids -L/usr/lib in the radiusd build step when
+# building with base system OpenSSL
+.if ${OPENSSLLIB} != "/usr/lib"
+CONFIGURE_ARGS+=--with-openssl-libraries=${OPENSSLLIB}
 .endif
 
 USE_LDCONFIG=	yes
