@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.6 2008/11/06 20:11:22 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.7 2008/11/07 20:17:28 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -67,6 +67,7 @@ my @files = qw(
   /boot/screen.4th
   /boot/support.4th
   /COPYRIGHT
+  /etc
   /lib
   /libexec
   /rescue
@@ -82,6 +83,7 @@ my @files = qw(
   /usr/libdata
   /usr/libexec
   /usr/sbin
+  /usr/share
   /var/account
   /var/at
   /var/at/jobs
@@ -103,27 +105,16 @@ my @files = qw(
 );
 
 # directories to get out of the tempdir
-my @tempdirs = qw(mnt proc usr/share etc var/named);
+my @tempdirs = qw(mnt proc);
 
 run(qq(/usr/bin/tar -cpf $ballname --exclude '*perl*' @files));
 
-
-run("mtree -p $tmpdir -f /usr/src/etc/mtree/BSD.root.dist -dU");
-run("mtree -p $tmpdir/usr -f /usr/src/etc/mtree/BSD.usr.dist -dU");
-run("mtree -p $tmpdir/var -f /usr/src/etc/mtree/BSD.var.dist -dU");
-run("mtree -p $tmpdir/var/named -f /usr/src/etc/mtree/BIND.chroot.dist -dU");
-
-run("cd /usr/src/share && make DESTDIR=$tmpdir install");
-run("cd /usr/src/etc && make DESTDIR=$tmpdir distribution");
-
-inject_etc_files($tmpdir);
+mkdir("$tmpdir/$_") for @tempdirs;
 
 run(qq(tar -C $tmpdir -rpf $ballname @tempdirs));
 run(qq(bzip2 $ballname));
 run(qq(/bin/ls -hl $ballname.bz2));
 
-# clean this up so the tmpdir can get deleted
-run(qq(chflags 0 $tmpdir/var/empty));
 
 sub run {
   my ($command) = @_;
@@ -140,27 +131,5 @@ sub run {
   }
   
   die "Command \"$command\" returned non-zero ($?)\n";
-}
-
-sub inject_etc_files {
-  my ($tempdir) = @_;
-  
-  my @files = (
-    {
-      name     => 'resolv.conf',
-      contents => <<END,
-search emich.edu
-nameserver 164.76.2.251
-nameserver 164.76.2.54
-nameserver 164.76.102.66
-END
-    }
-  );
-  
-  foreach my $file (@files) {
-    open(my $fh, '>', "$tempdir/etc/$file->{name}") || die "Couldn't open $tempdir/etc/$file->{name}: $!\n";
-    print $fh $file->{contents};
-    close($fh) || die "Couldn't close $tempdir/etc/$file->{name}: $!\n";
-  }
 }
 
