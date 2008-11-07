@@ -2,7 +2,7 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.15 2008/10/15 20:05:50 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.16 2008/10/16 15:42:00 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
@@ -68,27 +68,20 @@ CUPSGRP=	cups
 CUPSOWN=	cups
 CUPSSYSGRP=	wheel
 
-.include <bsd.port.pre.mk>
-
-.if defined(CUPS_OVERWRITE_BASE)
-PLIST_SUB+=		OVERWRITE=""
-.else
-PLIST_SUB+=		OVERWRITE="@comment "
-.endif
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
 LIB_DEPENDS+=		gnutls-openssl.26:${PORTSDIR}/security/gnutls
 .else
+EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
 .endif
 
 .if defined(WITH_PHP)
 CONFIGURE_ARGS+=	--with-php
 USE_PHP=		yes
 PLIST_SUB+=		PHP=""
-.include "${PORTSDIR}/Mk/bsd.php.mk"
 .else
 CONFIGURE_ARGS+=	--without-php
 PLIST_SUB+=		PHP="@comment "
@@ -97,7 +90,6 @@ PLIST_SUB+=		PHP="@comment "
 .if defined(WITH_PYTHON)
 CONFIGURE_ARGS+=	--with-python
 USE_PYTHON=		yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 .endif
 
 .if defined(WITH_LIBPAPER)
@@ -139,6 +131,15 @@ CONFIGURE_ARGS+=	--disable-dbus
 .if defined(WITH_XDG_OPEN)
 RUN_DEPENDS=		xdg-open:${PORTSDIR}/devel/xdg-utils
 .endif
+
+.include <bsd.port.pre.mk>
+
+.if defined(CUPS_OVERWRITE_BASE)
+PLIST_SUB+=		OVERWRITE=""
+.else
+PLIST_SUB+=		OVERWRITE="@comment "
+.endif
+
 
 MAN1EXT=	1
 MAN5EXT=	5
@@ -205,11 +206,8 @@ post-patch:
 		-e 's|/private/etc/pam.d|${LOCALBASE}/etc/pam.d|' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
 
-pre-su-install:
+pre-install:
 	@${INSTALL} -d ${DESKTOPDIR}/
-	if ! pw groupshow ${CUPSGRP}; then pw groupadd ${CUPSGRP} -g 193; fi
-	if ! pw usershow ${CUPSOWN}; then pw useradd ${CUPSOWN} -g ${CUPSGRP} -u 193 \
-		-h - -d ${NONEXISTENT} -s /usr/sbin/nologin -c "CUPS Owner"; fi
 .if defined(CUPS_OVERWRITE_BASE)
 	if test -e /usr/bin/lp; then ${CHMOD} -h 0 /usr/bin/lp; fi
 	if test -e /usr/bin/lpq; then ${CHMOD} -h 0 /usr/bin/lpq; fi
@@ -228,10 +226,5 @@ post-install:
 .endfor
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${FILESDIR}/lpt-cupsd.conf ${EXAMPLESDIR}/
-	${INSTALL} -d ${CUPS_SPOOLDIR}/tmp/
-	${CHOWN} -R ${CUPSOWN}:${CUPSGRP} ${CUPS_SPOOLDIR}/
-	${CHMOD} -R g+w ${CUPS_SPOOLDIR}/
-	${INSTALL} -d /var/cache/cups/
-	${CHOWN} root:${CUPSGRP} /var/cache/cups/
 
 .include <bsd.port.post.mk>
