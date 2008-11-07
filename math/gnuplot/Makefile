@@ -2,7 +2,7 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.7 2008/07/27 08:43:41 laffer1 Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.8 2008/08/13 14:44:50 laffer1 Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
@@ -39,7 +39,7 @@ OPTIONS=	GD		"Enable GD support"		on \
 MAN1=		gnuplot.1 lasergnu.1
 INFO=		gnuplot
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_X11)
 USE_XORG=		x11
@@ -95,6 +95,8 @@ CONFIGURE_ARGS+=	--disable-wxwidgets
 USE_WX=			2.4+
 WX_CONF_ARGS=		absolute
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 .if defined(WITHOUT_TETEX)
