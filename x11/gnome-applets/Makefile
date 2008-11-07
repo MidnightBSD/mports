@@ -2,7 +2,7 @@
 # Date created:				26th May 2000
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.3 2008/06/01 19:35:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.4 2008/09/21 18:55:06 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
 #   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
 #
@@ -88,7 +88,6 @@ PLIST_SUB+=	COMMANDER="@comment "
 .if ( exists(${pygnomedesktop_DETECT}) ) || \
 	( ( ${HAVE_GNOME:Mpygnomedesktop}!="" ) && ${ARCH}!="sparc64" )
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 USE_GNOME+=	pygnomedesktop
 PLIST_SUB+=	PYTHON=""
 .else
