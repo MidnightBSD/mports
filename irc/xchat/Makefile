@@ -2,7 +2,7 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.5 2008/05/10 01:24:07 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.6 2008/09/11 05:55:53 laffer1 Exp $
 # $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
 #   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
@@ -39,7 +39,7 @@ OPTIONS=	DBUS "Enable DBUS support" on \
 		TCL "Enable TCL support" off \
 		SOCKS "Build with socks5 support" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_DBUS)
 LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
@@ -88,7 +88,6 @@ PLIST_SUB+=	PERL=""
 
 .if defined(WITH_PYTHON)
 USE_PYTHON=	yes
-.include "${PORTSDIR}/Mk/bsd.python.mk"
 CONFIGURE_ARGS+=--enable-python
 PLIST_SUB+=	PYTHON=""
 .else
@@ -113,6 +112,9 @@ PLIST_SUB+=	TCL="@comment "
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsocks5.a:${PORTSDIR}/net/socks5
 CONFIGURE_ARGS+=--enable-socks
 .endif
+
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -E -e 's|PY_LIBS=.*|PY_LIBS="-L\$$PY_EXEC_PREFIX/lib/python\$$PY_VER/config -lpython\$$PY_VER ${PTHREAD_LIBS} -lutil"|' \
