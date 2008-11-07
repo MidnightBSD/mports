@@ -2,7 +2,7 @@
 # Date created:				Dec 20 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 # 
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.3 2008/05/01 22:52:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.4 2008/08/19 20:32:48 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 #
 
@@ -76,7 +76,7 @@ OPTIONS=	RSVG "Enable librsvg2 support" on \
 post-patch:
 	@${REINPLACE_CMD} -e 's|libpng|libpng12|' ${WRKSRC}/configure
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_RSVG)
 CONFIGURE_ARGS+=	--enable-librsvg
@@ -149,11 +149,10 @@ PLIST_SUB+=		FUSEFS="@comment "
 USE_KDEBASE_VER=	3
 CONFIGURE_ARGS+=	--enable-kde
 PLIST_SUB+=	KDE=""
-# allow bsd.kde.mk to be included after bsd.port.mk
-.include "${PORTSDIR}/Mk/bsd.kde.mk"
 .else
 CONFIGURE_ARGS+=	--disable-kde
 PLIST_SUB+=	KDE="@comment "
 .endif
 
+.include <bsd.port.pre.mk>
 .include <bsd.port.post.mk>
