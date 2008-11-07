@@ -3,7 +3,7 @@
 # Whom:			Dom Mitchell <dom@happygiraffe.net>
 #
 # $FreeBSD: ports/sysutils/ucspi-tcp/Makefile,v 1.27 2006/09/03 17:36:37 kris Exp $
-# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.1 2007/02/19 19:42:48 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.2 2008/06/05 18:26:29 laffer1 Exp $
 #
 
 PORTNAME=	ucspi-tcp
@@ -24,13 +24,14 @@ OPTIONS=	MAN "Install man(1) pages" on \
 		RBL2SMTPD "Don't drop connection, pass envvar to smtpd" off
 
 RESTRICTED=	Unsure of djb's license
+# '
 
 ALL_TARGET=	prog install instcheck
 
 SCRIPTS_ENV=	BINOWN="${BINOWN}" BINGRP="${BINGRP}" BINMODE="${BINMODE}" \
 		MANMODE="${MANMODE}" CFLAGS="${CFLAGS}"
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_MAN)
 MASTER_SITES+=	http://smarden.org/pape/djb/manpages/:man \
@@ -50,8 +51,7 @@ PATCH_DIST_STRIP=	-p1
 .endif
 
 .if defined(WITH_SSL)
-# we can't use USE_OPENSSL=yes after including bsd.port.pre.mk
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+EXTENSIONS+=	openssl
 PATCH_SITES+=	http://www.nrg4u.com/qmail/
 PATCHFILES+=	ucspi-tcp-ssl-20050405.patch.gz
 PATCH_DIST_STRIP=	-p1
@@ -66,6 +66,8 @@ PATCH_SITES+=		${MASTER_SITE_LOCAL:S/$/garga\/ucspi-tcp\/:rbl2smtpd/}
 PATCHFILES+=		ucspi-tcp_rbl2smtpd.diff:rbl2smtpd
 PATCH_DIST_STRIP=	-p1
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-configure:
 	@${ECHO_CMD} ${PREFIX} > ${WRKSRC}/conf-home
