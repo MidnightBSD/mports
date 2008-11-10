@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.5 2008/10/17 14:27:36 laffer1 Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.6 2008/11/07 17:32:31 ctriv Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
@@ -63,6 +63,8 @@ OPTIONS+=	PGSQL		"With PostgreSQL database support" off \
 		NOPERL		"Do not require perl (use only if necessary)" off \
 		EXPERIMENTAL	"Build experimental modules" off
 
+FAKE_OPTS=	trueprefix
+
 .include <bsd.mport.options.mk>
 
 # Default requirements for rc script
@@ -72,7 +74,6 @@ _REQUIRE=	NETWORKING SERVERS
 WITH_MYSQL=	yes
 .endif
 
-FAKE_OPTS=	prefixhack
 CONFIGURE_ARGS=	--quiet \
 		--prefix=${PREFIX} \
 		--localstatedir=/var \
