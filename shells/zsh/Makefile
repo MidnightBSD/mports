@@ -1,8 +1,4 @@
-# New ports collection makefile for:	zsh
-#
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.9 2008/06/30 04:34:45 laffer1 Exp $
-# $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
-#
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.10 2008/11/10 20:35:59 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -51,7 +47,7 @@ OPTIONS=	ZSH_MEM         "Enable zsh-mem and zsh-secure-free options" on \
 		ZSH_STATIC	"Enable static zsh" off
 
 # These variables can be overriden by user
-ZSH_ETCDIR?=	/etc
+ZSH_ETCDIR?=	${LOCALBASE}/etc
 ZSH_FNDIR?=	${DATADIR}/${ZSH_VER}/functions
 ZSH_SITEFNDIR?=	${DATADIR}/site-functions
 
@@ -125,8 +121,8 @@ INFO=	zsh
 
 post-install:
 	${LN} ${PREFIX}/bin/zsh ${PREFIX}/bin/rzsh
-	${TEST} -d ${ZSH_ETCDIR} || ${MKDIR} ${ZSH_ETCDIR}
-	${TEST} -d ${ZSH_SITEFNDIR} || ${MKDIR} ${ZSH_SITEFNDIR}
+	@${MKDIR} ${ZSH_ETCDIR}
+	@${MKDIR} ${ZSH_SITEFNDIR}
 	@${MKDIR} ${EXAMPLESDIR}
 	cd ${WRKSRC}/StartupFiles && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
 .if !defined(NOPORTDOCS)
