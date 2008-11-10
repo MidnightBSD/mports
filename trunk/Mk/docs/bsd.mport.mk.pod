@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.128 2008/11/06 21:51:19 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.1 2008/11/10 20:08:59 ctriv Exp $
 
 =head1 NAME
 
@@ -189,22 +189,45 @@ a major can of worms.
 
 =head1 VARIABLES
 
+=head2 Meta Variables
+
 These are meta-variables that are automatically set to the system
 you are running on.  These are provided in case you need to take
 different actions for different values.
 
-ARCH			 - The architecture of the target machine, such as would be
-				   returned by "uname -p".  (Note: Ports should test against
-				   ARCH, and not the host machine's architecture which is
-				   MACHINE_ARCH, to enable ports to be cross-built.)
-OPSYS			 - Portability clause.  This is the operating system the
-				   makefile is being used on.  Automatically set to
-				   "MidnightBSD", "FreeBSD," "NetBSD," or "OpenBSD" as
-				  appropriate.
-OSREL			 - The release version (numeric) of the operating system.
-OSVERSION		 - The value of __MidnightBSD_version.
-FREEBSDVERSION - 
-PORTOBJFORMAT	 - The object format ("aout" or "elf").
+=over 4
+
+=item ARCH
+
+The architecture of the target machine, such as would be returned by "uname
+-p".  (Note: Ports should test against ARCH, and not the host machine's
+architecture which is MACHINE_ARCH, to enable ports to be cross-built.)
+
+=item OPSYS
+
+Portability clause.  This is the operating system the makefile is being used
+on.  Automatically set to "MidnightBSD", "FreeBSD," "NetBSD," or "OpenBSD"
+as appropriate.
+
+=item OSREL
+
+The release version (numeric) of the operating system.
+
+=item OSVERSION
+
+The value of __MidnightBSD_version.
+
+=item FREEBSDVERSION 
+
+The version of FreeBSD closest to your version of MidnightBSD.
+
+=item PORTOBJFORMAT
+
+The object format ("aout" or "elf").
+
+=back
+
+=head2 Fundemental Variables
 
 This is the beginning of the list of all variables that need to be
 defined in a port, listed in order that they should be included
@@ -213,80 +236,159 @@ should appear after EXTRACT_ONLY and before MASTER_SITE_BACKUP).
 
 These variables are used to identify your port.
 
-PORTNAME		- Name of software.  Mandatory.
-PORTVERSION	- Version of software.  Mandatory when no DISTVERSION is given.
-PORTREVISION	- Version of port.  Optional.  Commonly used to indicate
-				  that an update has happened that affects the port
-				  framework itself, but not the distributed software
-				  (e.g., local patches or Makefile changes).
-PORTEPOCH		- Optional.  In certain odd cases, the PORTREVISION logic
-				  can be fooled by ports that appear to go backwards
-				  numerically (e.g. if port-0.3 is newer than port-1998).
-				  In this case, incrementing PORTEPOCH forces the revision.
-				  Default: 0 (no effect).
-PKGSUBNAME	- Always defined as
-				  ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-PKGNAME		- Defined as ${PKGSUBNAME}-${PORTVERSION}
-				  Do not define this or PKGSUBNAME  in your Makefile.
-PKGNAMEPREFIX	- Prefix to specify that port is language-specific, etc.
-				  Optional.
-PKGNAMESUFFIX	- Suffix to specify compilation options.  Optional.
-PKGVERSION	- Always defined as
-		  ${PORTVERSION},
-		  Do not define this in your Makefile.
-UNIQUENAME	- A name for your port that is globally unique.  By default,
-				  this is set to ${LATEST_LINK} when LATEST_LINK is set,
-				  and to ${PKGNAMEPREFIX}${PORTNAME} otherwise.
-DISTVERSION	- Vendor version of the distribution.
-				  Default: ${PORTVERSION}
-DISTNAME		- Name of port or distribution used in generating
-				  WRKSRC and DISTFILES below.
-				  Default:
-				  ${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
-CATEGORIES	- A list of descriptive categories into which this port falls.
-				  Mandatory.
+=over 4
+
+=item PORTNAME
+
+Name of software.  Mandatory.
+
+=item PORTVERSION
+
+Version of software.  Mandatory when no DISTVERSION is given.
+
+=item PORTREVISION
+
+Version of port.  Optional.  Commonly used to indicate that an update has
+happened that affects the port framework itself, but not the distributed
+software (e.g., local patches or Makefile changes).
+
+=item PORTEPOCH
+
+Optional.  In certain odd cases, the PORTREVISION logic can be fooled by
+ports that appear to go backwards numerically (e.g. if port-0.3 is newer
+than port-1998). In this case, incrementing PORTEPOCH forces the revision.
+
+Default: 0 (no effect).
+
+=item PKGBASE
+
+Defined as ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+
+Do not define this in your Makefile.
+
+=item PKGNAME
+
+Defined as ${PKGSUBNAME}-${PORTVERSION}
+
+Do not define this or PKGSUBNAME  in your Makefile.
+
+=item PKGNAMEPREFIX
+
+Prefix to specify that port is language-specific, etc. Optional.
+
+=item PKGNAMESUFFIX
+
+Suffix to specify compilation options.  Optional.
+
+=item PKGVERSION
+
+Always defined as ${PORTVERSION}[_${PKGREVISION}][,${PORTEPOCH}]
+
+Do not define this in your Makefile.
+
+=item UNIQUENAME
+
+A name for your port that is globally unique.  
+
+Default: ${LATEST_LINK} when LATEST_LINK is set, ${PKGNAMEPREFIX}${PORTNAME}
+otherwise.
+
+=item DISTVERSION
+
+Vendor version of the distribution. 
+
+Default: ${PORTVERSION}
+
+=item DISTNAME
+
+Name of port or distribution used in generating WRKSRC and DISTFILES below.
+
+Default: ${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
+
+=item CATEGORIES
+
+A list of descriptive categories into which this port falls. Mandatory.
+
+=back
+
+=head2 Fetch Variables 
 
 These variable describe how to fetch files required for building the port.
 
-DISTFILES		- Name(s) of archive file(s) containing distribution.
-				  Set this to an empty string if the port doesn't require it.
-				  Default: ${DISTNAME}${EXTRACT_SUFX}
-EXTRACT_SUFX	- Suffix for archive names
-				  You never have to set both DISTFILES and EXTRACT_SUFX.
-				  Default: .tar.bz2 if USE_BZIP2 is set, .zip if USE_ZIP is
-				  set, .tar.gz otherwise.
-MASTER_SITES	- Primary location(s) for distribution files if not found
-				  locally.  See bsd.sites.mk for common choices for
-				  MASTER_SITES.
-MASTER_SITE_SUBDIR
-				- Subdirectory of MASTER_SITES. Will sometimes need to be
-				  set to ${PORTNAME} for (e.g.) MASTER_SITE_SOURCEFORGE.
-				  Only guaranteed to work for choices of ${MASTER_SITES}
-				  defined in bsd.sites.mk.
-				  Default: not set.
-PATCHFILES	- Name(s) of additional files that contain distribution
-				  patches. Make will look for them at PATCH_SITES (see below).
-				  They will automatically be uncompressed before patching if
-				  the names end with ".gz", ".bz2" or ".Z".
-				  Default: not set.
-PATCH_SITES	- Primary location(s) for distribution patch files
-				  if not found locally.
-DIST_SUBDIR	- Suffix to ${DISTDIR}.  If set, all ${DISTFILES} and
-				  ${PATCHFILES} will be put in this subdirectory of
-				  ${DISTDIR} (see below).  Also they will be fetched in this
-				  subdirectory from FreeBSD mirror sites.
-ALLFILES		- All of ${DISTFILES} and ${PATCHFILES}.
-IGNOREFILES	- If set, don't perform checksum checks on these files.
-NOFETCHFILES	- If set, don't download these files from the ${MASTER_SITES}
-				  or ${MASTER_SITE_BACKUP} (but do from
-				  ${MASTER_SITE_OVERRIDE})
-EXTRACT_ONLY	- If set, a subset of ${DISTFILES} you want to
-				  actually extract.
-ALWAYS_KEEP_DISTFILES
-				- If set, the package building cluster will save the distfiles
-				  along with the packages. This may be required to comply with
-				  some licenses, e.g. GPL in some cases.
-				  Default: not set.
+=over 4
+
+=item DISTFILES
+
+Name(s) of archive file(s) containing distribution. Set this to an empty
+string if the port doesn't require it. 
+
+Default: ${DISTNAME}${EXTRACT_SUFX}
+
+=item EXTRACT_SUFX 
+
+Suffix for archive names. You never have to set both DISTFILES and
+EXTRACT_SUFX.
+
+Default: .tar.bz2 if USE_BZIP2 is set, .zip if USE_ZIP is set,
+.tar.gz otherwise.
+
+=item MASTER_SITES
+
+Primary location(s) for distribution files if not found locally.  See
+sites.mk for common choices for MASTER_SITES.
+
+=item MASTER_SITE_SUBDIR
+
+Subdirectory of MASTER_SITES. Will sometimes need to be set to ${PORTNAME}
+for (e.g.) MASTER_SITE_SOURCEFORGE. Only guaranteed to work for choices of
+${MASTER_SITES} defined in sites.mk.
+
+Default: not set.
+
+=item PATCHFILES
+
+Name(s) of additional files that contain distribution patches. Make will
+look for them at PATCH_SITES (see below). They will automatically be
+uncompressed before patching if the names end with ".gz", ".bz2" or ".Z".
+
+Default: not set.
+
+=item PATCH_SITES
+
+Primary location(s) for distribution patch files if not found locally.
+
+=item DIST_SUBDIR	
+
+Suffix to ${DISTDIR}.  If set, all ${DISTFILES} and ${PATCHFILES} will be
+put in this subdirectory of ${DISTDIR} (see below).  Also they will be
+fetched in this subdirectory from FreeBSD mirror sites.
+
+=item ALLFILES
+
+All of ${DISTFILES} and ${PATCHFILES}.
+
+=item IGNOREFILES
+
+If set, don't perform checksum checks on these files.
+
+=item NOFETCHFILES
+
+If set, don't download these files from the ${MASTER_SITES} or
+${MASTER_SITE_BACKUP} (but do from ${MASTER_SITE_OVERRIDE})
+
+=item EXTRACT_ONLY
+
+If set, a subset of ${DISTFILES} you want to actually extract.
+
+=item ALWAYS_KEEP_DISTFILES
+
+If set, the package building cluster will save the distfiles along with the
+packages. This may be required to comply with some licenses, e.g. GPL in
+some cases. 
+
+Default: not set.
+
+=back
 
 (NOTE: by convention, the MAINTAINER entry (see above) should go here.)
 
@@ -294,156 +396,223 @@ These variables are typically set in /etc/make.conf to indicate
 the user's preferred location to fetch files from.  You should
 rarely need to set these.
 
-MASTER_SITE_BACKUP
-				- Backup location(s) for distribution files and patch
-				  files if not found locally and ${MASTER_SITES}/${PATCH_SITES}
-				  Default:
-				  ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
-MASTER_SITE_OVERRIDE
-				- If set, override the MASTER_SITES setting with this
-				  value.
-MASTER_SITE_FREEBSD
-				- If set, only use ${MASTER_SITE_BACKUP} for
-				  MASTER_SITES.
-CD_MOUNTPTS	- List of CDROM mountpoints to look for distfiles under.
-				  This variable supercedes CD_MOUNTPT, which is
-				  obsolete.
+=over 4
 
+=item MASTER_SITE_BACKUP
+
+Backup location(s) for distribution files and patch files if not found
+locally and ${MASTER_SITES}/${PATCH_SITES}
+
+Default: ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
+
+=item MASTER_SITE_OVERRIDE
+
+If set, override the MASTER_SITES setting with this value.
+
+=item MASTER_SITE_FREEBSD
+
+If set, only use ${MASTER_SITE_BACKUP} for MASTER_SITES.
+
+=item CD_MOUNTPTS
+
+List of CDROM mountpoints to look for distfiles under. This variable
+supercedes CD_MOUNTPT, which is obsolete.
+
+=back
+
+=head2 Licenses And Restrictions
 
 Set these if your port should not be built under certain circumstances.
 These are string variables; you should set them to the reason why
 they are necessary.  Over time, many of the variables will be replaced
 by the LICENSE variable.
 
-LICENSE		- The license of the port.  This variable is required. 
-				  Run 'make license-list' to see the list of valid licenses.
+=over 4
 
-RESTRICTED	- Prevent the distribution of distfiles and packages to
-				  the FTP sites or on CDROM (e.g. forbidden by license
-				  considerations).
-NO_CDROM		- Packages and distfiles may not go on CDROM (e.g. must
-				  not be re-sold) but can go on FTP sites.
-NO_PACKAGE	- Port should not be packaged for ftp sites or CDROMs,
-				  but distfiles can be put on ftp sites and CDROMs.
-FORBIDDEN		- Package build should not be attempted because of
-				  security vulnerabilities.
-IGNORE		- Package build should be skipped entirely (e.g.
-				  because of serious unfixable problems in the build,
-				  because it cannot be manually fetched, etc).  Error
-				  logs will not appear on pointyhat, so this should be
-				  used sparingly.
-BROKEN		- Port is believed to be broken.  Package builds will
-				  still be attempted on the pointyhat package cluster to
-				  test this assumption.
-DEPRECATED	- Port is deprecated to install. Advisory only.
-EXPIRATION_DATE
-				- If DEPRECATED is set, determines a date when
-				  the port is planed to remove. The date format is
-				  ISO 8601 (YYYY-MM-DD).
+=item LICENSE
 
-DISABLE_VULNERABILITIES
-				- If set, do not check if the port is listed in the
-				  vulnerabilities database.
+The license of the third-party software.  This variable is required. Run
+'make license-list' to see the list of valid licenses.
 
-In addition to RESTRICTED or NO_CDROM, if only a subset of distfiles
-or patchfiles have redistribution restrictions, set the following
-to the list of such files.
+=item RESTRICTED
 
-RESTRICTED_FILES
-				- List of files that cannot be redistributed.
-				  Default: "${DISTFILES} ${PATCHFILES}" if RESTRICTED
-				  or NO_CDROM is set, empty otherwise.
+Prevent the distribution of distfiles and packages to the FTP sites or on
+CDROM (e.g. forbidden by license considerations).
+
+=item NO_CDROM
+
+Packages and distfiles may not go on CDROM (e.g. must not be re-sold) but
+can go on FTP sites.
+
+=item NO_PACKAGE
+
+Port should not be packaged for ftp sites or CDROMs, but distfiles can be
+put on ftp sites and CDROMs.
+
+=item FORBIDDEN
+
+Package build should not be attempted because of security vulnerabilities.
+
+=item IGNORE
+
+Package build should be skipped entirely (e.g. because of serious unfixable
+problems in the build, because it cannot be manually fetched, etc).  Minimal
+error logs will appear on magus, so this should be used sparingly.
+
+=item BROKEN
+
+Port is believed to be broken.  Packaage builds will still be attempted on
+the magus build cluster to test this assumption.
+
+=item DEPRECATED
+
+Port is deprecated to install. Advisory only.
+
+=item EXPIRATION_DATE
+
+If DEPRECATED is set, determines a date when the port is planed to remove.
+The date format is ISO 8601 (YYYY-MM-DD).
+
+=item DISABLE_VULNERABILITIES
+
+If set, do not check if the port is listed in the vulnerabilities database.
+
+=back
+
+In addition to RESTRICTED or NO_CDROM, if only a subset of distfiles or
+patchfiles have redistribution restrictions, set the following to the list
+of such files.
+
+=over 4
+
+=item RESTRICTED_FILES
+
+List of files that cannot be redistributed. Default: "${DISTFILES}
+${PATCHFILES}" if RESTRICTED or NO_CDROM is set, empty otherwise.
 
 These variables are booleans, so you don't need to set them to the reason.
 
-IS_INTERACTIVE
-				- Set this if your port needs to interact with the user
-				  during any step in a package build.  User can then decide
-				  to skip this port by setting ${BATCH}, or compiling only
-				  the interactive ports by setting ${INTERACTIVE}.
-				  Default: not set.
-USE_SUBMAKE	- Set this if you want that each of the port's main 6 targets
-				  (extract, patch, configure, build, install and package) to be
-				  executed in a separate make(1) process. Useful when one of
-				  the stages needs to influence make(1) variables of the later
-				  stages using ${WRKDIR}/Makefile.inc generated on the fly.
-				  Default: not set.
+=item IS_INTERACTIVE
+
+Set this if your port needs to interact with the user during any step in a
+package build.  User can then decide to skip this port by setting ${BATCH},
+or compiling only the interactive ports by setting ${INTERACTIVE}.
+
+Default: not set.
+
+=item USE_SUBMAKE
+
+Set this if you want that each of the port's main 6 targets (extract, patch,
+configure, build, install and package) to be executed in a separate make(1)
+process. Useful when one of the stages needs to influence make(1) variables
+of the later stages using ${WRKDIR}/Makefile.inc generated on the fly.
+
+Default: not set.
+
+=back 
 
 Set these if your port only makes sense to certain architectures.
 They are lists containing names for them (e.g., "amd64 i386").
 (Defaults: not set.)
 
-ONLY_FOR_ARCHS
-				- Only build ports if ${ARCH} matches one of these.
-NOT_FOR_ARCHS	- Only build ports if ${ARCH} doesn't match one of these.
-ONLY_FOR_ARCHS_REASON
-ONLY_FOR_ARCHS_REASON_${ARCH}
-				- Reason why it's only for ${ONLY_FOR_ARCHS}s
-NOT_FOR_ARCHS_REASON
-NOT_FOR_ARCHS_REASON_${ARCH}
-				- Reason why it's not for ${NOT_FOR_ARCHS}s
-IA32_BINARY_PORT	- Set this instead of ONLY_FOR_ARCHS if the given port
-				  fetches and installs compiled i386 binaries.
+=over 4
+
+=item ONLY_FOR_ARCHS
+
+Only build ports if ${ARCH} matches one of these.
+
+=item NOT_FOR_ARCHS
+
+Only build ports if ${ARCH} doesn't match one of these.
+
+=item ONLY_FOR_ARCHS_REASON
+=item ONLY_FOR_ARCHS_REASON_${ARCH}
+
+Reason why it's only for ${ONLY_FOR_ARCHS}s.
+
+=item NOT_FOR_ARCHS_REASON
+=item NOT_FOR_ARCHS_REASON_${ARCH}
+
+Reason why it's not for ${NOT_FOR_ARCHS}s.
+
+=item IA32_BINARY_PORT	
+
+Set this instead of ONLY_FOR_ARCHS if the given port fetches and installs
+compiled i386 binaries.
+
+=back
+
+=head2 Dependency Variables
 
 Dependency checking.  Use these if your port requires another port
 not in the list below.  (Default: empty.)
 
-EXTRACT_DEPENDS
-				- A list of "path:dir[:target]" tuples of other ports this
-				  package depends on in the "extract" stage.  "path" is
-				  the name of a file if it starts with a slash (/), an
-				  executable otherwise.  make will test for the existence
-				  (if it is a full pathname) or search for it in your
-				  $PATH (if it is an executable) and go into "dir" to do
-				  a "make all install" if it's not found.  If the third
-				  field ("target") exists, it will be used instead of
-				  ${DEPENDS_TARGET}.
-PATCH_DEPENDS	- A list of "path:dir[:target]" tuples of other ports this
-				  package depends on in the "patch" stage.  "path" is the
-				  name of a file if it starts with a slash (/), an
-				  executable otherwise.  make will test for the existence
-				  (if it is a full pathname) or search for it in your
-				  $PATH (if it is an executable) and go into "dir" to do
-				  a "make all install" if it's not found.  If the third
-				  field ("target") exists, it will be used instead of
-				  ${DEPENDS_TARGET}.
-FETCH_DEPENDS	- A list of "path:dir[:target]" tuples of other ports this
-				  package depends in the "fetch" stage.  "path" is the
-				  name of a file if it starts with a slash (/), an
-				  executable otherwise.  make will test for the
-				  existence (if it is a full pathname) or search for
-				  it in your $PATH (if it is an executable) and go
-				  into "dir" to do a "make all install" if it's not
-				  found.  If the third field ("target") exists, it will
-				  be used instead of ${DEPENDS_TARGET}.
-BUILD_DEPENDS	- A list of "path:dir[:target]" tuples of other ports this
-				  package depends to build (between the "extract" and
-				  "build" stages, inclusive).  The test done to
-				  determine the existence of the dependency is the
-				  same as FETCH_DEPENDS.  If the third field ("target")
-				  exists, it will be used instead of ${DEPENDS_TARGET}.
-RUN_DEPENDS	- A list of "path:dir[:target]" tuples of other ports this
-				  package depends to run.  The test done to determine
-				  the existence of the dependency is the same as
-				  FETCH_DEPENDS.  This will be checked during the
-				  "install" stage and the name of the dependency will
-				  be put into the package as well.  If the third field
-				  ("target") exists, it will be used instead of
-				  ${DEPENDS_TARGET}.
-LIB_DEPENDS	- A list of "lib:dir[:target]" tuples of other ports this
-				  package depends on.  "lib" is the name of a shared library.
-				  make will use "ldconfig -r" to search for the library.
-				  lib can contain extended regular expressions.
-DEPENDS		- A list of "dir[:target]" tuples of other ports this
-				  package depends on being made first.  Use this only for
-				  things that don't fall into the above four categories.
-				  If the second field ("target") exists, it will be used
-				  instead of ${DEPENDS_TARGET}.
+=over 4
 
-DEPENDS_TARGET
-				- The default target to execute when a port is calling a
-				  dependency.
-				  Default: cached-install
+=item EXTRACT_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends on
+in the "extract" stage.  "path" is the name of a file if it starts with a
+slash (/), an executable otherwise.  make will test for the existence (if it
+is a full pathname) or search for it in your $PATH (if it is an executable)
+and go into "dir" to do a "make all install" if it's not found.  If the
+third field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+
+=item PATCH_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends on
+in the "patch" stage.  "path" is the name of a file if it starts with a
+slash (/), an executable otherwise.  make will test for the existence (if it
+is a full pathname) or search for it in your $PATH (if it is an executable)
+and go into "dir" to do a "make all install" if it's not found.  If the
+third field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item FETCH_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends in
+the "fetch" stage.  "path" is the name of a file if it starts with a slash
+(/), an executable otherwise.  make will test for the existence (if it is a
+full pathname) or search for it in your $PATH (if it is an executable) and
+go into "dir" to do a "make all install" if it's not found.  If the third
+field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item BUILD_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends to
+build (between the "extract" and "build" stages, inclusive).  The test done
+to determine the existence of the dependency is the same as FETCH_DEPENDS. 
+If the third field ("target") exists, it will be used instead of
+${DEPENDS_TARGET}.
+
+=item RUN_DEPENDS
+
+A list of "path:dir[:target]" tuples of other ports this package depends to
+run.  The test done to determine the existence of the dependency is the same
+as FETCH_DEPENDS.  This will be checked during the "install" stage and the
+name of the dependency will be put into the package as well.  If the third
+field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
+
+=item LIB_DEPENDS
+
+A list of "lib:dir[:target]" tuples of other ports this package depends on. 
+"lib" is the name of a shared library. make will use "ldconfig -r" to search
+for the library. lib can contain extended regular expressions.
+
+=item DEPENDS
+
+A list of "dir[:target]" tuples of other ports this package depends on being
+made first.  Use this only for things that don't fall into the above four
+categories. If the second field ("target") exists, it will be used instead
+of ${DEPENDS_TARGET}.
+
+=item DEPENDS_TARGET
+
+The default target to execute when a port is calling a dependency.
+
+Default: cached-install
+
+=back
 
 These variables control options about how a port gets built and/or
 are shorthand notations for common sets of dependencies.
