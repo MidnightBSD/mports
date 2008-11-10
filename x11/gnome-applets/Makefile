@@ -2,7 +2,7 @@
 # Date created:				26th May 2000
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.4 2008/09/21 18:55:06 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.5 2008/11/07 18:22:20 ctriv Exp $
 # $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
 #   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
 #
@@ -49,6 +49,9 @@ GCONF_SCHEMAS=	charpick.schemas drivemount.schemas geyes.schemas \
 		mixer.schemas multiload.schemas stickynotes.schemas
 
 OPTIONS=	MINI_COMMANDER "Enable mini-commander applet" off
+
+# Load python because we may use it later.
+EXTENSIONS=	python
 
 .if defined(PACKAGE_BUILDING)
 .undef WITHOUT_GNOME
