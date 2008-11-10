@@ -2,7 +2,7 @@
 # Date created:				Tue Jan  4 11:45:29 PST 2000
 # Whom:					Cy Schubert (Cy.Schubert@uumail.gov.bc.ca)
 #
-# $MidnightBSD: mports/security/aide/Makefile,v 1.2 2007/05/13 14:16:48 ctriv Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.3 2007/12/30 01:38:55 laffer1 Exp $
 # $FreeBSD: ports/security/aide/Makefile,v 1.21 2006/02/23 05:05:38 cy Exp $
 #
 
@@ -21,7 +21,7 @@ LIB_DEPENDS=	mhash.2:${PORTSDIR}/security/mhash
 
 USE_GMAKE=	yes
 USE_BISON=	yes
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
