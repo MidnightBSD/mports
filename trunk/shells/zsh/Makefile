@@ -1,14 +1,10 @@
 # New ports collection makefile for:	zsh
-# Date created:			11 Feb. 1995
-# Whom:				torstenb
 #
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.8 2007/08/11 17:05:57 ctriv Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.9 2008/06/30 04:34:45 laffer1 Exp $
 # $FreeBSD: ports/shells/zsh/Makefile,v 1.81 2006/05/02 09:03:06 sergei Exp $
 #
 
 # The following compile-time options are available:
-# NO_SHARED=yes		compile a static version of zsh
-#			(default: use dynamically loadable modules)
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
 #			zshenv, zlogin, zprofile, zshrc, zlogout.
 #			(default: /etc)
@@ -21,7 +17,7 @@
 #			NOTE: does NOT have to be inside ${PREFIX} tree
 
 PORTNAME=	zsh
-PORTVERSION=	4.3.6
+PORTVERSION=	4.3.9
 CATEGORIES=	shells
 MASTER_SITES=	SF
 .if !defined(NOPORTDOCS)
@@ -34,7 +30,7 @@ LICENSE=	other
 
 ZSH_VER=	${PORTVERSION}
 
-USE_AUTOTOOLS=	autoconf:261 autoheader:261
+USE_AUTOTOOLS=	autoconf:262 autoheader:262
 USE_BZIP2=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
@@ -51,7 +47,8 @@ CONFIGURE_ARGS=	--with-term-lib="ncursesw ncurses" --with-tcsetpgrp \
 OPTIONS=	ZSH_MEM         "Enable zsh-mem and zsh-secure-free options" on \
 		ZSH_MAILDIR     "Enable support for Maildirs in MAIL(PATH)" on \
 		ZSH_MULTIBYTE   "Enable multibyte character support" on \
-		ZSH_PCRE        "Enable PCRE support" off
+		ZSH_PCRE        "Enable PCRE support" off \
+		ZSH_STATIC	"Enable static zsh" off
 
 # These variables can be overriden by user
 ZSH_ETCDIR?=	/etc
@@ -89,7 +86,7 @@ CONFIGURE_ARGS+=        --enable-zsh-mem --enable-zsh-secure-free
 CONFIGURE_ARGS+=	--enable-maildir-support
 .endif
 
-.if defined(NO_SHARED)
+.if defined(WITH_ZSH_STATIC)
 CONFIGURE_ENV=         LDFLAGS="${LDFLAGS} -static"
 CONFIGURE_ARGS+=       --disable-dynamic
 PLIST_SUB+=            NO_STATIC="@comment "
