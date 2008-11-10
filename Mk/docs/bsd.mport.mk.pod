@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.1 2008/11/10 20:08:59 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.2 2008/11/10 20:51:27 ctriv Exp $
 
 =head1 NAME
 
@@ -558,7 +558,6 @@ is a full pathname) or search for it in your $PATH (if it is an executable)
 and go into "dir" to do a "make all install" if it's not found.  If the
 third field ("target") exists, it will be used instead of ${DEPENDS_TARGET}.
 
-
 =item PATCH_DEPENDS
 
 A list of "path:dir[:target]" tuples of other ports this package depends on
@@ -614,54 +613,115 @@ Default: cached-install
 
 =back
 
+=head2 Built-In Depends
+
 These variables control options about how a port gets built and/or
 are shorthand notations for common sets of dependencies.
 Use these if your port uses some of the common software packages. By
 convention these should be set to 'yes', although they only need to be
 defined. Defaults: not set, unless explicitly indicated below.
 
-Note: the distinction between the USE_* and WANT_* variables, and the
-WITH_* and WITHOUT_* variables, are that the former are restricted to
-usage inside the ports framework, and the latter are reserved for user-
-settable options.  (Setting USE_* in /etc/make.conf is always wrong).
+This approach to built-in dependencies is going away in the future.  Soon a
+declaration like:
+ 
+ USE_GHOSTSCRIPT_RUN=yes
 
-WITH_DEBUG            - If set, debugging flags are added to CFLAGS and the
-                        binaries don't get stripped by INSTALL_PROGRAM.
-                        Besides, individual ports might add their specific
-                        to produce binaries for debugging purposes.
-                        You can override the debug flags that are passed to
-                        the compiler by setting DEBUG_FLAGS. It is set to
-                        "-g" at default.
+will be replaced by
 
-USE_BZIP2		- If set, this port tarballs use bzip2, not gzip, for
-				  compression.
-USE_ZIP		- If set, this port distfile uses zip, not tar w/[bg]zip
-				  for compression.
-USE_DOS2UNIX	- If set to "YES", remove the ^M from all files
-				  under ${WRKSRC}. If set to a string, remove in all
-				  files under ${WRKSRC} with one of these names the ^Ms.
-USE_GCC		- If set, this port requires this version of gcc, either in
-				  the system or installed from a port.
-USE_GCPIO		- if set, uses GNU cpio.  Changes the value of ${CPIO}.
-USE_GMAKE		- If set, this port uses gmake.
-GMAKE			- Set to path of GNU make if not in $PATH.
-				  Default: gmake
+RUN_DEPENDS +=	@ghostscript
 
-USE_ICONV		- If set, this port uses libiconv.
-USE_GETTEXT	- If set, this port uses GNU gettext (libintl).
+However, some of these so called "depends" actually change the behavoir of 
+the mports system.  For example, USE_GMAKE not only add a dependcy for gmake,
+but it uses gmake instead of make to build and install the software.  Options
+like USE_GMAKE will remain; as USE_* variable will be variables that add 
+functionality to the system.  See extensions for more information.
 
-USE_GHOSTSCRIPT
-				- If set, this port needs ghostscript to both
-				  build and run.
-USE_GHOSTSCRIPT_BUILD
-				- If set, this port needs ghostscript to build.
-USE_GHOSTSCRIPT_RUN
-				- If set, this port needs ghostscript to run.
-GHOSTSCRIPT_PORT
-				- The port that provides postscript functionality.
-				  Some installations may wish to override the default
-				  to specify a version without X11 and/or localized
-				  versions for their nationality.
+B<NOTE>:  These ideas are still in maturation.  Changes expected!
+
+
+=head2 Extension Variables
+
+Extensions are additional logic that some ports need to function.  Some
+extensions are in the mport system core, while others are in the extensions
+directory.
+
+For the larger extensions, the code is located in the extentions
+directory. See the extension files sectio for details.
+
+=over4
+
+=item EXTENSIONS
+
+A list of extension files to pull in.  These files are in
+${PORTSDIR}/Mk/extension, and are named in a format like L<lt>extL<gt>.mk. 
+Loading an extension in this manner should not cause the extension to
+perform any actions.
+
+Example:
+
+ EXTENSIONS+=	perl5 python
+
+This would load perl5.mk and python.mk from the extensions directory.
+
+=item USE_BZIP2
+
+If set, this port tarballs use bzip2, not gzip, for compression.
+
+=item USE_ZIP
+
+If set, this port distfile uses zip, not tar w/[bg]zip for compression.
+
+=item USE_DOS2UNIX
+
+If set to "YES", remove the ^M from all files under ${WRKSRC}. If set to a
+string, remove in all files under ${WRKSRC} with one of these names the ^Ms.
+
+=item USE_GCC	
+
+If set, this port requires this version of gcc, either in the system or
+installed from a port.  Loads gcc.mk from the extensions directory.
+
+=item USE_GCPIO
+
+If set, uses GNU cpio.  Changes the value of ${CPIO}.
+
+=item USE_GMAKE
+
+If set, this port uses gmake.
+
+=item GMAKE
+
+Set to path of GNU make if not in $PATH.
+
+Default: gmake
+
+=item USE_ICONV	
+
+If set, this port uses libiconv.
+
+=item USE_GETTEXT
+
+If set, this port uses GNU gettext (libintl).
+
+=item USE_GHOSTSCRIPT
+
+If set, this port needs ghostscript to both build and run.
+
+=item USE_GHOSTSCRIPT_BUILD
+
+If set, this port needs ghostscript to build.
+
+=item USE_GHOSTSCRIPT_RUN
+
+If set, this port needs ghostscript to run.
+
+=item GHOSTSCRIPT_PORT
+
+The port that provides postscript functionality. Some installations may wish
+to override the default to specify a version without X11 and/or localized
+versions for their nationality.
+
+
 WITH_GHOSTSCRIPT_GPL
 				- If set, this port uses the GPL version of the ghostscript
 				  software instead of the GNU version, which is used otherwise.
@@ -1270,9 +1330,25 @@ DISABLE_SIZE	- Do not check the size of a distfile even if the SIZE field
 				  has been specified in distinfo.  This is useful
 				  when using an alternate FETCH_CMD.
 
-End of the list of all variables that need to be defined in a port.
-Most port authors should not need to understand anything after this point.
 
+=head2 Miscellaneous Variables
+
+Note: the distinction between the USE_* and WANT_* variables, and the
+WITH_* and WITHOUT_* variables, are that the former are restricted to
+usage inside the ports framework, and the latter are reserved for user-
+settable options.  (Setting USE_* in /etc/make.conf is always wrong).
+
+=over 4
+
+=item WITH_DEBUG
+
+If set, debugging flags are added to CFLAGS and the binaries don't get
+stripped by INSTALL_PROGRAM. Besides, individual ports might add their
+specific to produce binaries for debugging purposes. You can override the
+debug flags that are passed to the compiler by setting DEBUG_FLAGS. It is
+set to "-g" at default.
+
+=back
 
 =head1 HISTORY
 
