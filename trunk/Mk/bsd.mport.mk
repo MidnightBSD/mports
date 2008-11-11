@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.128 2008/11/06 21:51:19 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.129 2008/11/10 20:10:25 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -824,17 +824,6 @@ IGNORE=	uses unknown USE_BISON construct
 USE_SUBMAKE=	yes
 .endif
 
-.if defined(USE_XLIB)
-.	if defined(USE_LINUX)
-RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-xorg-libs
-.	else
-LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
-.	endif
-# 	Add explicit X options to avoid problems with false positives in configure
-.	if !defined(GNU_CONFIGURE)
-CFLAGS+= -I${X11BASE}/include -L${X11BASE}/lib
-.	endif
-.endif
 
 # Set the default for the installation of Postscript(TM)-
 # compatible functionality.
@@ -4117,7 +4106,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.128 2008/11/06 21:51:19 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.129 2008/11/10 20:10:25 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
