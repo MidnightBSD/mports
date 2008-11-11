@@ -2,13 +2,13 @@
 # Date created:		August 13, 1997
 # Whom:			handy@physics.montana.edu
 #
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.8 2008/03/05 04:43:26 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.9 2008/05/11 17:02:58 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/windowmaker/Makefile,v 1.133 2006/05/21 20:11:57 dougb Exp $
 #
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
 		http://dougbarton.us/Downloads/
@@ -87,6 +87,8 @@ post-patch:
 
 post-install:
 	@${MKDIR} ${PREFIX}/share/WindowMaker/Sounds
+	@${MKDIR} -p ${PREFIX}/etc/dm/Sessions
+	${CP} ${FILESDIR}/wmaker.desktop ${PREFIX}/etc/dm/Sessions
 
 update-LINGUAS: extract
 	cd ${WRKSRC}/po && \
