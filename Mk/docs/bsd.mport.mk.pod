@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.3 2008/11/10 21:51:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.4 2008/11/11 03:39:52 ctriv Exp $
 
 =head1 NAME
 
@@ -1852,10 +1852,10 @@ set to "-g" at default.
 =head1 HISTORY
 
 bsd.mport.mk is based on bsd.port.mk from FreeBSD 6.0.  It diverged when the fake
-frame work was introduced.  The fake framekwork was influenced greatly by OpenBSD's
+framework was introduced.  The fake framekwork was greatly influenced by OpenBSD's
 port system.
 
-After the fake frame work was introduced work has concentrated on standardizing
+After the fake framework was introduced work has concentrated on standardizing
 the behavoirs of the various extensions and reorganizing the makefiles that 
 comprise the mports framework.
 
