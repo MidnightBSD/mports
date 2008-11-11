@@ -89,6 +89,7 @@ etc/WindowMaker/WMRootMenu
 etc/WindowMaker/WMState
 etc/WindowMaker/WMWindowAttributes
 etc/WindowMaker/WindowMaker
+etc/dm/Sessions/wmaker.desktop
 include/WINGs/WINGs.h
 include/WINGs/WINGsP.h
 include/WINGs/WUtil.h
@@ -334,6 +335,7 @@ share/WindowMaker/xtree.dat
 @dirrm GNUstep/Local/Applications/WPrefs.app/xpm
 @dirrm GNUstep/Local/Applications/WPrefs.app
 @dirrm etc/WindowMaker
+@dirrmtry etc/dm/Sessions
 @dirrm include/WINGs
 @dirrm man/sk/man1
 @dirrm man/sk
