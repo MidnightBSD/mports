@@ -2,7 +2,7 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.8 2008/08/13 14:44:50 laffer1 Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.9 2008/11/07 18:56:18 ctriv Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
@@ -20,7 +20,6 @@ LICENSE=	other
 USE_ICONV=	yes
 USE_GCPIO=	yes
 GNU_CONFIGURE=	yes
-WANT_WX=	yes
 CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=--with-lasergnu \
 		--with-readline=gnu \
