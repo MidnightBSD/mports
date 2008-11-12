@@ -1,0 +1,23 @@
+--- nb.orig	Sun Jan 14 17:38:03 2007
++++ nb	Sun Jan 14 17:41:26 2007
+@@ -1,4 +1,4 @@
+-#! /bin/bash
++#!/usr/bin/env bash
+ ############################################################
+ #  NanoBlogger 3.3 Copyright 2006 n1xt3r (Kevin R. Wood)   #
+ ############################################################
+@@ -8,11 +8,11 @@
+ VERSION="3.3"
+ 
+ # nanoblogger's base install directory.
+-NB_BASE_DIR=`dirname $0`
++NB_BASE_DIR="%%PREFIX%%/share/nanoblogger"
+ # documentation
+-NB_DOC_DIR="$NB_BASE_DIR/docs"
++NB_DOC_DIR="%%PREFIX%%/share/doc/nanoblogger"
+ # nanoblogger's conf file
+-NB_CFG_DIR="$NB_BASE_DIR"
++NB_CFG_DIR="%%PREFIX%%/etc"
+ 
+ ### hardcoded paths ###
+ 
