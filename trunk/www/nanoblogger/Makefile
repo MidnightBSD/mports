@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/www/nanoblogger/Makefile,v 1.12 2008/06/15 18:46:30 jadawin Exp $
-# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.1 2008/11/12 20:47:16 crash Exp $
+# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.2 2008/11/12 20:49:32 crash Exp $
 
 PORTNAME=	nanoblogger
 PORTVERSION=	3.3
@@ -18,8 +18,6 @@ LICENSE=        gpl2
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 NO_BUILD=	yes
-
-SUB_FILES=	pkg-message
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX},g" ${WRKSRC}/nb
@@ -49,6 +47,6 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 .endif
-	@${CAT} ${PKGMESSAGE}
+
 
 .include <bsd.port.mk>
