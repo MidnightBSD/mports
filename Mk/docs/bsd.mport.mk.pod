@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.4 2008/11/11 03:39:52 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.5 2008/11/11 16:32:23 ctriv Exp $
 
 =head1 NAME
 
@@ -1057,15 +1057,8 @@ linux infrastructure port (e.g. contains libs or a sound server which
 supports the FreeBSD native one), use the default or the X11 prefix if it's
 a leaf port (e.g. a game or program).
 
-Implies NO_MTREE=yes, and, if INSTALLS_SHLIB is defined:
-
-=over 8
-
-=item USE_LINUX=yes
-
-=item appropriate invocation of the Linux ldconfig
-
-=back
+Implies NO_MTREE=yes, and if INSTALLS_SHLIB is defined then USE_LINUX=yes
+and an appropriate invocation of the Linux ldconfig is also implied.
 
 =item USE_LINUX_RPM
 
@@ -1778,10 +1771,9 @@ Example:
  "Application;System;" \
  true
 
-See
-http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html
-for an explanation of the fields. If you need to create more than one file,
-just chain them into a single variable.
+See http://standards.freedesktop.org/desktop-entry-spec/ for an explanation
+of the fields. If you need to create more than one file, just chain them
+into a single variable.
 
 =back
 
