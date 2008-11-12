@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/www/nanoblogger/Makefile,v 1.12 2008/06/15 18:46:30 jadawin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.1 2008/11/12 20:47:16 crash Exp $
 
 PORTNAME=	nanoblogger
 PORTVERSION=	3.3
@@ -14,7 +14,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small weblog engine written in Bash for the command line
-
+LICENSE=        gpl2
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 NO_BUILD=	yes
