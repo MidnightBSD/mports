@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/docs/Makefile,v 1.1 2008/11/12 18:30:49 ctriv Exp $
 #
 
 #
@@ -25,7 +25,7 @@ all: ${MANS}
 .  if defined(MAN${SEC})
 .    for PAGE in ${MAN${SEC}:S/.${SEC}//g}
 ${PAGE}.${SEC}: ${PAGE}.pod
-	${POD2MAN} -c "MidnightBSD File Formats Manual" -n ${PAGE} -s ${SEC} ${PAGE}.pod > ${PAGE}.${SEC}
+	${POD2MAN} -r MidnightBSD -c "MidnightBSD File Formats Manual" -n ${PAGE} -s ${SEC} ${PAGE}.pod > ${PAGE}.${SEC}
 .    endfor
 .  endif
 .endfor
