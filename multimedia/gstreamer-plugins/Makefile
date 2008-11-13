@@ -2,7 +2,7 @@
 # Date created:		Wed Jul 10 23:38:01 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.3 2008/10/21 00:30:25 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.4 2008/11/10 19:12:35 ctriv Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile,v 1.110 2007/03/08 12:50:40 ahze Exp $
 #   $MCom: ports/multimedia/gstreamer-plugins/Makefile,v 1.100 2006/09/14 21:02:22 ahze Exp $
 #
@@ -24,11 +24,12 @@ PKGNAMESUFFIX=	-plugins${GST_PLUGIN_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GStreamer written collection of plugins handling several media types
+LICENSE?=	gpl2
 
 BUILD_DEPENDS+=	v4l_compat>=1.0.20060801:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
 		popt.0:${PORTSDIR}/devel/popt \
-		oil-0.3.1:${PORTSDIR}/devel/liboil
+		oil-0.3.0:${PORTSDIR}/devel/liboil
 
 CFLAGS:=	${CFLAGS} -O2
 
