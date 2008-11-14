@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.5 2008/11/11 16:32:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.6 2008/11/12 18:30:49 ctriv Exp $
 
 =head1 NAME
 
@@ -194,6 +194,14 @@ a major can of worms.
 The following change globals behavoirs for the mports system.
 
 =over 4
+
+=item PACKAGE_BUILDING
+
+If set, the mport system goes into package building mode.  The options
+framework is disabled, and the defaults for OPTIONS are used instead.  Some
+ports may define extra depends in order to create a complete install. 
+Probing of the system for versions of installed software (such as apache or
+perl) is disabled.
 
 =item USE_MPORT_TOOLS
 
