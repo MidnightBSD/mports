@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.apache.mk,v 1.5 2008/04/22 22:18:23 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -261,7 +261,7 @@ APXS_PREFIX!=	${APXS} -q prefix 2> /dev/null || echo NULL
 IGNORE=	: Your apache does not support DSO modules
 .   endif
 .   if defined(AP_GENPLIST) && ${APXS_PREFIX} != ${PREFIX}
-IGNORE?=	PREFIX must be equal to APXS_PREFIX.
+IGNORE?=	PREFIX (${$PREFIX}) must be equal to APXS_PREFIX (${APXS_PREFIX})
 .   endif
 .endif
 
@@ -270,12 +270,14 @@ AP_BUILDEXT=	la
 APACHEMODDIR=	libexec/apache2
 APACHEINCLUDEDIR=include/apache2
 APACHEETCDIR=	etc/apache2
+APACHEBUILDDIR=	share/apache2/build
 APACHE_PORT?=	www/apache${APACHE_VERSION}
 .else
 AP_BUILDEXT=	la
 APACHEMODDIR=	libexec/apache${APACHE_VERSION}
 APACHEINCLUDEDIR=include/apache${APACHE_VERSION}
 APACHEETCDIR=	etc/apache${APACHE_VERSION}
+APACHEBUILDDIR=	share/apache${APACHE_VERSION}/build
 APACHE_PORT?=	www/apache${APACHE_VERSION}
 .endif
 
@@ -348,6 +350,9 @@ show-modules:
 
 .elif defined(AP_PORT_IS_MODULE)
 
+APR_CONFIG!=	${APXS} -q APR_CONFIG
+AP_LIBTOOL!=	${APR_CONFIG} --apr-libtool
+
 .if defined(AP_FAST_BUILD)
 .if !target(ap-gen-plist)
 ap-gen-plist:
@@ -371,7 +376,8 @@ do-build: ap-gen-plist
 
 .if !target(do-install)
 do-install:
-	@${APXS} -i -A -n ${SHORTMODNAME} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT}
+	${MKDIR} ${PREFIX}/${APACHEMODDIR}
+	${TRUE_PREFIX}/${APACHEBUILDDIR}/instdso.sh SH_LIBTOOL=${AP_LIBTOOL} ${WRKSRC}/${MODULENAME}.${AP_BUILDEXT} ${PREFIX}/${APACHEMODDIR}
 .endif
 
 .endif
