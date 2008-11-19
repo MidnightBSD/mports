@@ -3,7 +3,7 @@
 # Whom:					Hye-Shik Chang <perky@fallin.lv>
 #
 # $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.7 2008/02/14 22:13:27 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.8 2008/03/24 19:13:13 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -46,30 +46,30 @@ USE_ICONV=		yes
 USE_AUTOTOOLS=	autoconf:261 libtool:15
 USE_PERL5=		yes
 USE_RC_SUBR=		yes
+USE_GNOME=		pkgconfig
 USE_APACHE=		common20
 LIBTOOLFILES=		configure
 INSTALLS_SHLIB=		yes
 LDCONFIG_DIRS=		${PREFIX}/lib/apache2
 USE_BZIP2=		yes
 
-CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
+CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--enable-layout=FreeBSD \
 		--with-perl=${PERL5} \
 		--with-port=${WITH_HTTP_PORT} \
 		--with-expat=${LOCALBASE} \
 		--with-iconv=${LOCALBASE} \
-		--libdir=${PREFIX_RELDEST}/lib/apache2 \
-		--includedir=${PREFIX_RELDEST}/include/apache2
+		--libdir=${PREFIX}/lib/apache2 \
+		--includedir=${PREFIX}/include/apache2
 
 CONFIGURE_ENV=	CC="${CC}" CPPFLAGS="${CPPFLAGS}" \
 		CFLAGS="${CFLAGS}" \
 		LDFLAGS="${LDFLAGS}" CONFIG_SHELL="${SH}" \
 		LOCALBASE="${LOCALBASE}"
 
-PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
-RC_SCRIPTS_SUB=	PREFIX=${TRUE_PREFIX} RC_SUBR=${RC_SUBR}
+RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
 
-MAKE_ENV+=	DESTDIR=${DESTDIR} EXPR_COMPAT=yes
+MAKE_ENV+=	EXPR_COMPAT=yes
 
 WITH_MPM?=	prefork # or worker, perchild, threadpool
 
@@ -170,6 +170,9 @@ pre-everything::
 	@${ECHO_MSG}	"make print-closest-mirrors >> /etc/make.conf"
 	@${ECHO_MSG}	""
 
+
+#"
+
 post-patch:
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
@@ -197,10 +200,7 @@ post-configure:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," \
 			${WRKSRC}/support/envvars-std
 
-pre-install:
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
-install-startup-script:
+pre-fake:
 .if !exists(${WRKDIR}/apache2libs.sh) || !exists(${WRKDIR}/apache2.sh)
 	@${MKDIR} ${WRKDIR}
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
@@ -208,15 +208,12 @@ install-startup-script:
 	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
 		${FILESDIR}/apache2libs.sh > ${WRKDIR}/apache2libs.sh
 .endif
-	@${ECHO_CMD} "=> Installing ${PREFIX}/etc/rc.d/000.apache2libs.sh startup script."
-	@${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2libs.sh ${PREFIX}/etc/rc.d/000.apache2libs.sh
-	@${ECHO_CMD} "=> Installing ${PREFIX}/etc/rc.d/apache2.sh startup script."
-	@${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2.sh ${PREFIX}/etc/rc.d/apache2.sh
 
-post-install: install-startup-script
+post-install:
+	${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2libs.sh ${PREFIX}/etc/rc.d/000.apache2libs.sh
+	${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2.sh ${PREFIX}/etc/rc.d/apache2.sh
 	@${MKDIR} ${PREFIX}/etc/apache2/envvars.d
 	@${MKDIR} ${PREFIX}/etc/apache2/Includes
-	@${ECHO_CMD} ""
 .if !defined(NOPORTDOCS)
 	@[ -d ${DOCSDIR}/style/lang/ ] && ${TOUCH} ${DOCSDIR}/style/lang/.keepme
 .endif
