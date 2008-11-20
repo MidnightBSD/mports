@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.46 2008/10/09 20:26:00 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.47 2008/10/11 20:23:34 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -76,6 +76,8 @@
     SUBDIR += ldconfig_compat
     SUBDIR += localedata
     SUBDIR += manpages-de
+    SUBDIR += mc
+    SUBDIR += mc-light
     SUBDIR += midnightbsd-desktop
     SUBDIR += mime-support
     SUBDIR += mirmon
