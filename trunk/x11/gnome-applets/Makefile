@@ -2,7 +2,7 @@
 # Date created:				26th May 2000
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.5 2008/11/07 18:22:20 ctriv Exp $
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.6 2008/11/10 21:08:32 ctriv Exp $
 # $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
 #   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
 #
@@ -67,10 +67,10 @@ LIB_DEPENDS+=	notify:${PORTSDIR}/devel/libnotify
 
 .if ${ARCH} != "i386" && ${ARCH} != "amd64"
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS} -fPIC"
-PLIST_SUB=	BATTERY="@comment "
+PLIST_SUB+=	BATTERY="@comment "
 .else
 GCONF_SCHEMAS+=	battstat.schemas
-PLIST_SUB=	BATTERY=""
+PLIST_SUB+=	BATTERY=""
 .endif
 
 .if ${ARCH} != "i386" && ${ARCH} != "amd64"
