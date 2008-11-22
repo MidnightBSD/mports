@@ -2,7 +2,7 @@
 # Date created:		2003-01-22
 # Whom:			Alan Eldridge <alane@geeksrus.net>
 #
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.16 2008/10/16 15:42:00 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.17 2008/11/07 17:56:07 ctriv Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
 #
 
@@ -68,7 +68,6 @@ CUPSGRP=	cups
 CUPSOWN=	cups
 CUPSSYSGRP=	wheel
 
-.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
