@@ -2,7 +2,7 @@
 # Date created:			17 Aug 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.6 2008/09/11 05:55:53 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.7 2008/11/07 17:23:08 ctriv Exp $
 # $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
 #   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
 #
@@ -39,7 +39,6 @@ OPTIONS=	DBUS "Enable DBUS support" on \
 		TCL "Enable TCL support" off \
 		SOCKS "Build with socks5 support" off
 
-.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_DBUS)
 LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
