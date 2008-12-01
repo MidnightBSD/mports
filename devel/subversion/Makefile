@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.14 2008/10/29 18:46:50 ctriv Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.15 2008/10/29 19:51:34 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -121,9 +121,28 @@ PLIST_SUB+=		WITH_JAVA=""
 PLIST_SUB+=		WITH_JAVA="@comment "
 .endif
 
+.if defined(WITH_MOD_DAV_SVN)
+WITH_APACHE2_APR=	yes
+CONFIGURE_ARGS+=	--with-apxs=${APXS}
+PLIST_SUB+=	MOD_DAV_SVN=""
+SVNGROUP?=	www
+SUB_FILES+=	install-mod_dev_svn
+SUB_LIST+=	APACHEMODDIR=${APACHEMODDIR}
+.else
+PLIST_SUB+=	MOD_DAV_SVN="@comment "
+PKGDEINSTALL=   NONEXISTENT
+SVNGROUP?=	svn
+.endif
+
 
 .if defined(WITH_APACHE2_APR)
 USE_APACHE=	2.0+
+.endif
+
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_APACHE2_APR)
 .if ${APACHE_VERSION} >= 22
 APR_APU_DIR=	${LOCALBASE}/bin
 APR_CONFIG=	apr-1-config
@@ -135,7 +154,7 @@ APU_CONFIG=	apu-config
 .endif
 APR_PORT=	${APACHE_PORT}
 .if !defined(WITHOUT_BDB)
-DEPENDS_ARGS+=	WITH_BERKELEYDB=db4
+DEPENDS_ARGS+=  WITH_BERKELEYDB=db4
 OPT_NAME=	WITH_BERKELEYDB=(db4|db41|db42)
 .endif
 .else
@@ -143,17 +162,14 @@ APR_APU_DIR=	${LOCALBASE}/bin
 APR_CONFIG=	apr-1-config
 APU_CONFIG=	apu-1-config
 .if !defined(WITHOUT_BDB)
-LIB_DEPENDS+=	apr-1.2:${PORTSDIR}/devel/apr-svn
+LIB_DEPENDS+=   apr-1.2:${PORTSDIR}/devel/apr-svn
 APR_PORT=	devel/apr-svn
 OPT_NAME=	APR_UTIL_WITH_BERKELEY_DB=yes
 .else
-LIB_DEPENDS+=	apr-1.2:${PORTSDIR}/devel/apr
+LIB_DEPENDS+=   apr-1.2:${PORTSDIR}/devel/apr
 APR_PORT=	devel/apr
+.endif  
 .endif
-.endif
-
-
-.include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
 CFLAGS+=	-fpic -DPIC
@@ -196,20 +212,7 @@ PLIST_SUB+=		WITHOUT_BDB=""
 CONFIGURE_ARGS+=	--without-swig --disable-swig-bindings
 .endif
 
-.if defined(WITH_MOD_DAV_SVN)
-WITH_APACHE2_APR=	yes
-CONFIGURE_ARGS+=	--with-apxs=${APXS}
-PLIST_SUB+=	MOD_DAV_SVN=""
-SVNGROUP?=	www
-SUB_FILES+=	install-mod_dev_svn
-SUB_LIST+=	APACHEMODDIR=${APACHEMODDIR}
-.else
-PLIST_SUB+=	MOD_DAV_SVN="@comment "
-PKGDEINSTALL=	NONEXISTENT
-SVNGROUP?=	svn
-.endif
-
-CONFIGURE_ARGS+=--with-apr=${APR_APU_DIR}/${APR_CONFIG} \
+CONFIGURE_ARGS+=--with-apr=${APR_CONFIG} \
 		--with-apr-util=${APR_APU_DIR}/${APU_CONFIG}
 
 .if defined(WITH_SVNSERVE_WRAPPER)
@@ -269,7 +272,7 @@ post-patch:
 	@${REINPLACE_CMD} "s#^LIBTOOL =.*#LIBTOOL = ${LIBTOOL}#" ${WRKSRC}/Makefile.in
 
 pre-configure:
-	@if [ ! -x ${APR_APU_DIR}/${APR_CONFIG} -o ! -x ${APR_APU_DIR}/${APU_CONFIG} ] ; then \
+	@if [ ! -x ${APR_CONFIG} ] || [ ! -x ${APR_APU_DIR}/${APU_CONFIG} ] ; then \
 		${ECHO_MSG} "" ; \
 		${ECHO_MSG} 'You selected to use`'"${APR_PORT}' for apr library." ; \
 		${ECHO_MSG} 'It seems that `'"${APR_PORT}' is not properly installed." ; \
