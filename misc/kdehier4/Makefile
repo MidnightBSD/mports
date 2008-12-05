@@ -1,6 +1,6 @@
 #
 # $FreeBSD: ports/misc/kdehier4/Makefile,v 1.27 2008/08/09 16:52:18 miwi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/kdehier4/Makefile,v 1.1 2008/12/05 16:13:04 ctriv Exp $
 #
 
 PORTNAME=	kdehier4
@@ -9,7 +9,7 @@ CATEGORIES=	misc kde
 MASTER_SITES=	# none
 DISTFILES=	# none
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility port that creates hierarchy of shared KDE4 directories
 LICENSE=	unknown
 

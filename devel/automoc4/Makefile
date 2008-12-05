@@ -11,7 +11,7 @@ MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	unstable/automoc4/0.9.84/
 DIST_SUBDIR=	KDE
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic moc for Qt 4 packages
 LICENSE=	bsd2
 
