@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/Mk/bsd.kde4.mk,v 1.1 2008/09/25 02:48:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 
 # Please make sure all changes to this file are past through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
-Kde_Pre_Include=	bsd.kde4.mk
+Kde_Pre_Include=	kde4.mk
 Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 
 #
@@ -42,7 +42,7 @@ Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 #		with :kde tag. It could be used when port needs multiple
 #		distfiles from different sites. See for details porters-handbook:
 #		http://www.freebsd.org/doc/en_US.ISO8859-1/books/porters-handbook/makefile-distfiles.html
-# KDE4_PREFIX	- The place where KDE4 ports live. Currently it is {LOCALBASE}/kde4,
+# KDE4_PREFIX	- The place where KDE4 ports live. Currently it is ${LOCALBASE},
 #		but this could be changed in a future.
 #
 
@@ -51,7 +51,7 @@ KDE4_VERSION=		4.1.1
 #
 # KDE4 is installed into its own prefix to not conflict with KDE3
 #
-KDE4_PREFIX?=		${LOCALBASE}/kde4
+KDE4_PREFIX?=		${LOCALBASE}
 
 #
 # Tagged MASTER_SITE_KDE
@@ -97,6 +97,8 @@ workspace_LIB_DEPENDS=		kscreensaver.5:${PORTSDIR}/x11/kdebase4-workspace
 .if defined(_POSTMKINCLUDED) && !defined(Kde_Post_Include)
 
 Kde_Post_Include=	bsd.kde4.mk
+
+CONFLICTS+= kdelibs-3* kdeutils-3* kdebase-3*
 
 .for component in ${USE_KDE4}
 . if ${_USE_KDE4_ALL:M${component}}!=""
