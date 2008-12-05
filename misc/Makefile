@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.47 2008/10/11 20:23:34 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.48 2008/11/20 15:54:53 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -25,6 +25,7 @@
     SUBDIR += kde-xdg-env
     SUBDIR += kdeedu3
     SUBDIR += kdehier
+    SUBDIR += kdehier4
     SUBDIR += kdeutils3
     SUBDIR += koffice-i18n-af
     SUBDIR += koffice-i18n-bg
