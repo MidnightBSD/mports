@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.1 2008/10/07 01:40:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.2 2008/10/10 18:39:09 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/qt4-gui/Makefile,v 1.20 2008/09/05 12:15:53 miwi Exp $
 #
 
@@ -34,8 +34,7 @@ USE_XORG=	xrender xrandr xinerama inputproto xfixes \
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+		PATH=${WRKSRC}/bin:$$PATH 
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/network src/opengl src/phonon \
