@@ -2,7 +2,7 @@
 # Date created:        27 March 2001
 # Whom:                Jimmy Olgeni <olgeni@uli.it>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/egroupware/Makefile,v 1.1 2008/12/08 19:34:46 laffer1 Exp $
 # $FreeBSD: ports/deskutils/egroupware/Makefile,v 1.31 2008/07/12 05:03:55 kuriyama Exp $
 
 PORTNAME=	eGroupWare
@@ -17,7 +17,6 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-#WRKSRC=		${DEST}
 
 DEST=		${PREFIX}/www/data-dist/egroupware
 PLIST_SUB=	WWWGRP=${WWWGRP}
