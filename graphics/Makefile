@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.81 2008/10/09 20:31:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.82 2008/10/20 01:16:23 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -15,6 +15,7 @@
     SUBDIR += eog
     SUBDIR += etoile-distributedview
     SUBDIR += evince
+    SUBDIR += exiv2
     SUBDIR += feh
     SUBDIR += gd
     SUBDIR += gdchart
@@ -40,6 +41,8 @@
     SUBDIR += kooka
     SUBDIR += kuickshow
     SUBDIR += lcms
+    SUBDIR += libGL
+    SUBDIR += libGLU
     SUBDIR += libart
     SUBDIR += libart_lgpl
     SUBDIR += libcaca
@@ -47,8 +50,6 @@
     SUBDIR += libexif
     SUBDIR += libfpx
     SUBDIR += libggi
-    SUBDIR += libGL
-    SUBDIR += libGLU
     SUBDIR += libglut
     SUBDIR += libgnomecanvas
     SUBDIR += libgnomecanvasmm
@@ -86,6 +87,7 @@
     SUBDIR += php5-exif
     SUBDIR += php5-gd
     SUBDIR += php5-ming
+    SUBDIR += plotutils
     SUBDIR += png
     SUBDIR += poppler
     SUBDIR += poppler-data
@@ -93,7 +95,6 @@
     SUBDIR += poppler-qt
     SUBDIR += poppler-utils
     SUBDIR += popplerkit
-    SUBDIR += plotutils
     SUBDIR += py-cairo
     SUBDIR += qt4-iconengines
     SUBDIR += qt4-imageformats
