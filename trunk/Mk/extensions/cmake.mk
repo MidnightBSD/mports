@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.2 2008/10/24 20:33:50 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)
@@ -93,3 +93,16 @@ do-configure:
 
 
 .endif
+
+#
+# make sure DESTDIRNAME is DESTDIR (qt4 does this another way, and may ports use both cmake 
+# and qt4
+#
+.if defined(_POSTMKINCLUDED) && !defined(Cmake_Post_Include)
+
+Cmake_Post_Include= cmake.mk
+ 
+
+DESTDIRNAME= DESTDIR
+
+.endif # defined(_POSTMKINCLUDED) && !defined(Cmake_Post_Include)
