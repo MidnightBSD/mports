@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.32 2008/09/24 20:34:15 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.33 2008/09/26 15:58:24 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -37,6 +37,7 @@
     SUBDIR += planner
     SUBDIR += preferencepanes
     SUBDIR += preferences.app
+    SUBDIR += strigi
     SUBDIR += toolbox
     SUBDIR += toolboxkit
     SUBDIR += twitter
