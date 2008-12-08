@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.2 2008/12/05 16:14:43 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
@@ -92,6 +92,25 @@ sharedmime_RUN_DEPENDS=		kde4-shared-mime-info>=1:${PORTSDIR}/misc/kde4-shared-m
 
 workspace_LIB_DEPENDS=		kscreensaver.5:${PORTSDIR}/x11/kdebase4-workspace
 
+
+#
+# Common build related stuff for kde4 ports. It's not intended for usage
+# in KDE4-dependent ports
+#
+.if defined(KDE4_BUILDENV)
+USE_CMAKE=	yes
+CMAKE_DEBUG=	yes
+CMAKE_VERBOSE=	yes
+
+USE_LDCONFIG=	${KDE4_PREFIX}/lib ${KDE4_PREFIX}/lib/kde4
+
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/build
+CMAKE_SOURCE_PATH=	..
+
+.endif # KDE4_BUILDENV
+
+
+
 .endif
 
 .if defined(_POSTMKINCLUDED) && !defined(Kde_Post_Include)
@@ -117,22 +136,6 @@ NO_MTREE=	yes
 IGNORE=	cannot install: Unknown component ${component}
 . endif
 .endfor
-
-#
-# Common build related stuff for kde4 ports. It's not intended for usage
-# in KDE4-dependent ports
-#
-.if defined(KDE4_BUILDENV)
-USE_CMAKE=	yes
-CMAKE_DEBUG=	yes
-CMAKE_VERBOSE=	yes
-
-USE_LDCONFIG=	${KDE4_PREFIX}/lib ${KDE4_PREFIX}/lib/kde4
-
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/build
-CMAKE_SOURCE_PATH=	..
-
-.endif # KDE4_BUILDENV
 
 .endif # !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 
