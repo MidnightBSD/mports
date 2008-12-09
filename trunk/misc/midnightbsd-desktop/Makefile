@@ -2,7 +2,7 @@
 # Date created:		July 4, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.2 2008/09/25 03:29:33 laffer1 Exp $
+# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.3 2008/11/29 22:20:54 laffer1 Exp $
 #
 
 PORTNAME=	midnightbsd-desktop
@@ -37,7 +37,7 @@ NO_WRKSUBDIR=	YES
 NO_BUILD=	YES
 
 do-install:
-	${MKDIR} -p etc/dm/Sessions
+	${MKDIR} ${PREFIX}/etc/dm/Sessions
 	${CP} ${FILESDIR}/kde.desktop ${PREFIX}/etc/dm/Sessions
 	${CP} ${FILESDIR}/etoile.desktop ${PREFIX}/etc/dm/Sessions
 
