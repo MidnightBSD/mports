@@ -2,7 +2,7 @@
 # Date created:				31.08.2004
 # Whom:					Roman Y. Bogdanov <sam@brj.pp.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.1 2008/11/20 15:54:54 laffer1 Exp $
 # $FreeBSD: ports/misc/mc-light/Makefile,v 1.14 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc-light
@@ -13,12 +13,13 @@ DISTNAME=	mc-${PORTVERSION:S/.p9/-pre9/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A lightweight Midnight Commander clone
+LICENSE=	gpl2
 
 RUN_DEPENDS+=	gawk:${PORTSDIR}/lang/gawk
 
 CONFLICTS=	mc-4.6*
 
-OPTIONS=	NLS "Enable gettext support" on \
+OPTIONS=	\
 		SUBSHELL "Build with subshell support (only for bash!)" off \
 		MC_IN_MC "Allow run mc inside mc (useful for mcedit)" off
 
@@ -42,13 +43,9 @@ MAN8=		mcserv.8
 CONFIGURE_ARGS+=--without-subshell
 .endif
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
+# Add an NLS option later
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
-.endif
 
 .if defined(WITH_MC_IN_MC)
 CONFIGURE_ENV+=	CPPFLAGS=-DMC_IN_MC_ALLOWED
