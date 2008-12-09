@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.68 2008/10/07 01:33:53 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.69 2008/10/20 17:45:45 laffer1 Exp $
 #
 
     COMMENT = Databases
 
     SUBDIR += adodb
+    SUBDIR += akonadi
     SUBDIR += courier-authlib-userdb
     SUBDIR += db
     SUBDIR += db2
@@ -43,18 +44,20 @@
     SUBDIR += mysql60-scripts
     SUBDIR += mysql60-server
     SUBDIR += p5-Class-DBI
-    SUBDIR += p5-Ima-DBI
-    SUBDIR += p5-Data-Page
+    SUBDIR += p5-Class-DBI-AbstractSearch
+    SUBDIR += p5-Class-DBI-Plugin-Pager
     SUBDIR += p5-DBD-Pg
+    SUBDIR += p5-DBD-SQLite
     SUBDIR += p5-DBD-mysql
     SUBDIR += p5-DBD-mysql41
     SUBDIR += p5-DBD-mysql50
     SUBDIR += p5-DBD-mysql51
     SUBDIR += p5-DBD-mysql60
-    SUBDIR += p5-DBD-SQLite
     SUBDIR += p5-DBI
     SUBDIR += p5-DBIx-Class
     SUBDIR += p5-DBIx-ContextualFetch
+    SUBDIR += p5-Data-Page
+    SUBDIR += p5-Ima-DBI
     SUBDIR += p5-SQL-Abstract
     SUBDIR += p5-SQL-Abstract-Limit
     SUBDIR += p5-SQL-Statement
