@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 bin/mc
 bin/mcedit
 bin/mcmfmt
