@@ -3,18 +3,14 @@
 # Whom:					samm@os2.kiev.ua
 #
 # $FreeBSD: ports/archivers/libunrar/Makefile,v 1.8 2006/09/28 12:18:55 barner Exp $
-# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.3 2008/03/12 01:45:57 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.4 2008/05/17 08:29:30 crash Exp $
 #
 
 PORTNAME=	libunrar
-PORTVERSION=	3.7.8
+PORTVERSION=	3.8.5
 PORTEPOCH=	1
 CATEGORIES=	archivers
-MASTER_SITES=	http://files2.rarlab.com/rar/ \
-		http://files3.rarlab.com/rar/ \
-		http://files4.rarlab.com/rar/ \
-		http://files5.rarlab.com/rar/ \
-		http://files6.rarlab.com/rar/
+MASTER_SITES=	http://www.rarlab.com/rar/
 DISTNAME=	unrarsrc-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,7 +21,7 @@ WRKSRC=		${WRKDIR}/unrar
 
 USE_GMAKE=	yes
 MAKEFILE=	makefile.unix
-MAKE_ENV+=	CXX="${CXX}" LDFLAGS="${LDFLAGS}"
+MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
 ALL_TARGET=	lib
 USE_LDCONFIG=	yes
 
