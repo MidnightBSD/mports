@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.34 2008/12/08 16:55:36 ctriv Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.35 2008/12/08 19:35:08 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -30,6 +30,7 @@
     SUBDIR += jlj
     SUBDIR += kbirthday
     SUBDIR += kdepim3
+    SUBDIR += kdepimlibs4
     SUBDIR += linux-sunbird
     SUBDIR += ljclive
     SUBDIR += menumaker
