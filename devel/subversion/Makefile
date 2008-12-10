@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.15 2008/10/29 19:51:34 ctriv Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.16 2008/12/01 22:48:50 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -159,7 +159,7 @@ OPT_NAME=	WITH_BERKELEYDB=(db4|db41|db42)
 .endif
 .else
 APR_APU_DIR=	${LOCALBASE}/bin
-APR_CONFIG=	apr-1-config
+APR_CONFIG=	${APR_APU_DIR}/apr-1-config
 APU_CONFIG=	apu-1-config
 .if !defined(WITHOUT_BDB)
 LIB_DEPENDS+=   apr-1.2:${PORTSDIR}/devel/apr-svn
