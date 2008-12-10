@@ -2,7 +2,7 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.19 2008/10/02 21:01:53 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.20 2008/11/07 17:26:35 ctriv Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
@@ -10,8 +10,8 @@ PORTNAME=	php5
 PORTVERSION=	5.2.6
 PORTREVISION?=	4
 CATEGORIES?=	lang devel www
-MASTER_SITES=	${MASTER_SITE_PHP}
-MASTER_SITE_SUBDIR=	distributions
+MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
+MASTER_SITE_SUBDIR=	distributions/:release
 DISTNAME=	php-${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:release
 
