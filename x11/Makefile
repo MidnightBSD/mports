@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.62 2008/12/10 15:09:55 ctriv Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.63 2008/12/11 17:46:23 ctriv Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -96,6 +96,7 @@
     SUBDIR += oclock
     SUBDIR += pixman
     SUBDIR += printproto
+    SUBDIR += qimageblitz
     SUBDIR += qt4-inputmethods
     SUBDIR += qt4-opengl
     SUBDIR += randrproto
