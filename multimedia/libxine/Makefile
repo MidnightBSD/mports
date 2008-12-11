@@ -3,11 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.13 2008/08/17 16:21:58 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.14 2008/08/17 18:16:28 laffer1 Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.15
+PORTREVISION=	1
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
