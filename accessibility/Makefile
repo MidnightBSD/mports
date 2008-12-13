@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.13 2008/01/04 21:47:22 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/Makefile,v 1.14 2008/10/09 19:56:04 laffer1 Exp $
 #
     COMMENT = Ports to help disabled users
 
@@ -13,6 +13,7 @@
     SUBDIR += gnome-speech
     SUBDIR += gok
     SUBDIR += kdeaccessibility
+    SUBDIR += kdeaccessibility4
     SUBDIR += linux-atk
     SUBDIR += orca
     SUBDIR += qt4-accessible
