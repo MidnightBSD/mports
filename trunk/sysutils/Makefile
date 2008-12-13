@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.84 2008/11/20 15:58:20 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.85 2008/11/25 01:49:05 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -27,10 +27,11 @@
     SUBDIR += flashback
     SUBDIR += fusefs-curlftpfs
     SUBDIR += fusefs-httpfs
-    SUBDIR += fusefs-kmod 
+    SUBDIR += fusefs-kmod
     SUBDIR += fusefs-libs
     SUBDIR += fusefs-ntfs
     SUBDIR += fusefs-sshfs
+    SUBDIR += fusefs-unionfs
     SUBDIR += gag
     SUBDIR += gconf-editor
     SUBDIR += gnome-control-center
@@ -44,6 +45,7 @@
     SUBDIR += hal
     SUBDIR += hal-info
     SUBDIR += kdeadmin3
+    SUBDIR += kdeadmin4
     SUBDIR += less
     SUBDIR += libcdio
     SUBDIR += libchk
@@ -62,9 +64,9 @@
     SUBDIR += nvclock
     SUBDIR += obliterate
     SUBDIR += openupsd
-    SUBDIR += pecl-fileinfo
     SUBDIR += p5-File-Which
     SUBDIR += p5-Sys-Hostname-Long
+    SUBDIR += pecl-fileinfo
     SUBDIR += php5-posix
     SUBDIR += policykit
     SUBDIR += policykit-gnome
