@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.20 2008/10/02 14:39:30 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.21 2008/10/03 19:00:25 laffer1 Exp $
 #
 
     COMMENT = Mathematics
@@ -7,12 +7,13 @@
     SUBDIR += blas
     SUBDIR += calc
     SUBDIR += djbfft
+    SUBDIR += eigen
     SUBDIR += fftw3
     SUBDIR += fftw3-float
     SUBDIR += fftw3-long
     SUBDIR += gcalctool
-    SUBDIR += gnuplot
     SUBDIR += gnumeric
+    SUBDIR += gnuplot
     SUBDIR += ldouble
     SUBDIR += libgmp4
     SUBDIR += mpfr
