@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.30 2008/12/14 03:33:33 ctriv Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.31 2008/12/14 03:36:59 ctriv Exp $
 #
 
     COMMENT = Games
@@ -17,6 +17,7 @@
     SUBDIR += gtkpool
     SUBDIR += gtypist
     SUBDIR += kdegames3
+    SUBDIR += kdegames4
     SUBDIR += libggz
     SUBDIR += lincity
     SUBDIR += linux-americasarmy
