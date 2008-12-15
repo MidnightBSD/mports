@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.129 2008/11/10 20:10:25 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.130 2008/11/11 02:31:27 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -49,6 +49,24 @@ TARGETDIR:=		${DESTDIR}${PREFIX}
 
 MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
+
+
+# Set up PREFIX.
+.if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
+.undef USE_X_PREFIX
+.endif
+
+.if defined(USE_X_PREFIX) || defined(USE_IMAKE)
+PREFIX?=	${X11BASE_REL}
+.elif defined(USE_LINUX_PREFIX)
+PREFIX?=	${LINUXBASE_REL}
+.else
+PREFIX?=	${LOCALBASE_REL}
+.endif
+
+# Fake targets override this when they submake.
+TRUE_PREFIX?=		${PREFIX} 
+
 
 .include "${MPORTCOMPONENTS}/commands.mk"
 
@@ -299,7 +317,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # we could go back to the above approach.
 _ALL_EXT=	linux_rpm xorg gcc local perl5 openssl emacs gnustep php python java ruby \
 			tcl apache kde qt autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-			pgsql bdb sqlite gecko scons 
+			pgsql bdb sqlite gecko scons ocaml
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -335,21 +353,6 @@ SCRIPTDIR?=		${MASTERDIR}/scripts
 PKGDIR?=		${MASTERDIR}
 
 
-# Set up PREFIX.
-.if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
-.undef USE_X_PREFIX
-.endif
-
-.if defined(USE_X_PREFIX) || defined(USE_IMAKE)
-PREFIX?=	${X11BASE_REL}
-.elif defined(USE_LINUX_PREFIX)
-PREFIX?=	${LINUXBASE_REL}
-.else
-PREFIX?=	${LOCALBASE_REL}
-.endif
-
-# Fake targets override this when they submake.
-TRUE_PREFIX?=		${PREFIX} 
 
 
 .if defined(USE_LINUX_PREFIX)
@@ -1096,7 +1099,7 @@ MPORT_QUERY:=   ${CHROOT} ${DESTDIR} ${MPORT_QUERY}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
-MPORT_CREATE_ARGS=	-n ${PKGSUBNAME} -v ${PKGVERSION} -o ${PKGFILE} \
+MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-s ${FAKE_DESTDIR} -p ${TMPPLIST} -P ${PREFIX} \
 					-O ${PKGORIGIN} -c "${COMMENT:Q}" -l en \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
@@ -1598,7 +1601,7 @@ PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
 
 # The "latest version" link -- ${PKGNAME} minus everthing after the last '-'
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
-LATEST_LINK?=		${PKGSUBNAME}
+LATEST_LINK?=		${PKGBASE}
 PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 
@@ -3822,7 +3825,7 @@ PACKAGE-DEPENDS-LIST?= \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
-			meta=`cd $$dir && ${MAKE} -V PKGSUBNAME -V PKGORIGIN | ${PASTE} - -'`; \
+			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -'`; \
 			if [ -z "$$version" ]; then \
 				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
 			else \
@@ -4106,7 +4109,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.129 2008/11/10 20:10:25 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.130 2008/11/11 02:31:27 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \

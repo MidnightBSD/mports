@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.2 2008/12/05 16:14:43 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.3 2008/12/08 20:29:02 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
@@ -46,7 +46,7 @@ Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 #		but this could be changed in a future.
 #
 
-KDE4_VERSION=		4.1.1
+KDE4_VERSION=		4.1.3
 
 #
 # KDE4 is installed into its own prefix to not conflict with KDE3
