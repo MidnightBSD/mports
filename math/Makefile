@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.22 2008/12/14 18:11:25 ctriv Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.23 2008/12/16 17:25:34 ctriv Exp $
 #
 
     COMMENT = Mathematics
@@ -13,6 +13,7 @@
     SUBDIR += fftw3-float
     SUBDIR += fftw3-long
     SUBDIR += gcalctool
+    SUBDIR += gmm++
     SUBDIR += gnumeric
     SUBDIR += gnuplot
     SUBDIR += ldouble
