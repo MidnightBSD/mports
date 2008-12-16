@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.45 2008/07/19 21:26:59 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.46 2008/10/02 20:05:45 laffer1 Exp $
 
     COMMENT = Programming languages
 
@@ -25,6 +25,7 @@
     SUBDIR += nawk
     SUBDIR += nwcc
     SUBDIR += objc
+    SUBDIR += ocaml
     SUBDIR += open-cobol
     SUBDIR += p5-Data-JavaScript
     SUBDIR += p5-Error
@@ -33,14 +34,14 @@
     SUBDIR += p5-Scalar-List-Utils
     SUBDIR += p5-ePerl
     SUBDIR += pcc
+    SUBDIR += perl5.10
+    SUBDIR += perl5.8
+    SUBDIR += php5
+    SUBDIR += php5-extensions
     SUBDIR += python
     SUBDIR += python23
     SUBDIR += python25
     SUBDIR += python26
-    SUBDIR += perl5.8
-    SUBDIR += perl5.10
-    SUBDIR += php5
-    SUBDIR += php5-extensions
     SUBDIR += ruby18
     SUBDIR += ruby19
     SUBDIR += tcl-tk-wrapper
