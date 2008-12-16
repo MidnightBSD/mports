@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/Makefile,v 1.3 2007/09/19 20:15:55 laffer1 Exp $
+# $MidnightBSD: mports/astro/Makefile,v 1.4 2008/10/02 14:35:57 laffer1 Exp $
 #
 
     COMMENT = Astronomical ports
@@ -7,6 +7,7 @@
     SUBDIR += boinc-milkyway
     SUBDIR += boinc-setiathome-enhanced
     SUBDIR += google-earth
+    SUBDIR += libnova
     SUBDIR += luna
     SUBDIR += xearth
 
