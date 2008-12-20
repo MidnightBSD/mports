@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.24 2008/12/16 22:23:36 ctriv Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.25 2008/12/20 05:53:07 ctriv Exp $
 #
 
     COMMENT = Mathematics
@@ -19,6 +19,7 @@
     SUBDIR += gnuplot
     SUBDIR += ldouble
     SUBDIR += libgmp4
+    SUBDIR += libqalculate
     SUBDIR += mpfr
     SUBDIR += p5-Bit-Vector
     SUBDIR += p5-Math-BigInt
