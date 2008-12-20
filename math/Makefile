@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.25 2008/12/20 05:53:07 ctriv Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.26 2008/12/20 18:26:11 ctriv Exp $
 #
 
     COMMENT = Mathematics
@@ -17,6 +17,7 @@
     SUBDIR += gmm++
     SUBDIR += gnumeric
     SUBDIR += gnuplot
+    SUBDIR += gsl
     SUBDIR += ldouble
     SUBDIR += libgmp4
     SUBDIR += libqalculate
