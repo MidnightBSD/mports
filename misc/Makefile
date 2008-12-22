@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.50 2008/12/05 19:48:45 ctriv Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.51 2008/12/12 19:28:12 ctriv Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -26,6 +26,7 @@
     SUBDIR += kde4-shared-mime-info
     SUBDIR += kde4-xdg-env
     SUBDIR += kdeedu3
+    SUBDIR += kdeedu4
     SUBDIR += kdehier
     SUBDIR += kdehier4
     SUBDIR += kdeutils3
