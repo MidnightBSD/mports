@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.7 2008/11/07 20:17:28 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.8 2008/11/07 21:35:47 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -88,6 +88,7 @@ my @files = qw(
   /var/at
   /var/at/jobs
   /var/at/spool
+  /var/audit
   /var/backups
   /var/db/entropy
   /var/db/ipf
