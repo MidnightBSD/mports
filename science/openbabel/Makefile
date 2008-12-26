@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: ports/science/openbabel/Makefile,v 1.21 2008/07/21 10:26:09 miwi Exp $
+# $MidnightBSD: mports/science/openbabel/Makefile,v 1.1 2008/12/19 08:45:22 ctriv Exp $
 #
 
 PORTNAME=	openbabel
@@ -13,6 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chemistry file translation program
 LICENSE=	gpl2
 
+LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python
+
 USE_GNOME=	gnomehack gnometarget libxml2
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
@@ -21,16 +23,9 @@ MAN1=		obchiral.1 obconformer.1 obenergy.1 obfit.1 obgen.1 obgrep.1 \
 		obminimize.1 obprobe.1 obprop.1 obrotamer.1 obrotate.1 \
 		openbabel.1 roundtrip.1
 
-LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python
-
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "ia64"
-BROKEN=		does not compile on ia64 (gcc internal error)
-.endif
-
 
 post-extract:
 	@${LN} -sf babel.1 ${WRKSRC}/doc/openbabel.1
