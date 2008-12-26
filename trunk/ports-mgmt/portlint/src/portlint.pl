@@ -16,7 +16,7 @@
 # This code now mainly supports FreeBSD, but patches to update support for
 # OpenBSD and NetBSD will be accepted.
 #
-# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.8 2008/09/13 20:46:59 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portlint/src/portlint.pl,v 1.9 2008/10/13 17:20:01 ctriv Exp $
 # $FreeBSD: ports/devel/portlint/src/portlint.pl,v 1.91 2006/08/06 22:36:45 marcus Exp $
 # $MCom: portlint/portlint.pl,v 1.123 2006/08/06 22:36:21 marcus Exp $
 #
@@ -233,7 +233,7 @@ EOF
 }
 
 # Read bsd.sites.mk
-my $sites_mk = "$portsdir/Mk/bsd.sites.mk";
+my $sites_mk = "$portsdir/Mk/components/sites.mk";
 open(MK, $sites_mk) || die "$sites_mk: $!";
 my @site_groups = grep($_ = /^MASTER_SITE_(\w+)/ && $1, <MK>);
 close(MK);
