@@ -3,16 +3,17 @@
 # Whom:					Dmitry Sivachenko <dima@Chg.RU>
 #
 # $FreeBSD: ports/net/rrdtool/Makefile,v 1.59 2006/08/16 08:38:14 demon Exp $
-# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.1 2007/01/26 02:57:58 laffer1 Exp $
+# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.2 2007/05/21 20:49:32 ctriv Exp $
 #
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.2.15
 CATEGORIES=	net
-MASTER_SITES=	http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/
+MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Round Robin Database Tools
+LICENSE=	gpl2
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
