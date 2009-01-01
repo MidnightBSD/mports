@@ -1,6 +1,17 @@
---- ./FreeBSD.cf.orig	Tue Oct 16 22:57:20 2007
-+++ ./FreeBSD.cf	Tue Oct 16 23:09:35 2007
-@@ -47,19 +47,10 @@
+--- ./FreeBSD.cf.orig	2005-05-04 00:14:57 -0400
++++ ./FreeBSD.cf	2008-12-25 00:22:56 -0500
+@@ -5,9 +5,7 @@
+ XCOMM
+ XCOMM platform:  $XFree86: xc/config/cf/FreeBSD.cf,v 3.147 2004/01/28 01:46:21 dawes Exp $
+ 
+-#ifndef UseElfFormat
+-#define UseElfFormat		DefaultToElfFormat
+-#endif
++#define UseElfFormat		YES
+ 
+ #if UseElfFormat
+ #define OSBinaryFormat		[ELF]
+@@ -47,19 +45,10 @@
  #define HasNdbm			YES
  #define HasPutenv		YES
  #define HasSnprintf		YES
@@ -22,7 +33,7 @@
  #ifndef HasLibCrypt
  # define HasLibCrypt		YES
  #endif
-@@ -74,63 +65,28 @@
+@@ -74,63 +63,28 @@
  #ifndef BuildPDFdocs
  # define BuildPDFdocs NO
  #endif
@@ -94,7 +105,7 @@
  
  #define AvoidNullMakeCommand	YES
  #define StripInstalledPrograms	YES
-@@ -155,22 +111,9 @@
+@@ -155,22 +109,9 @@
  #endif
  
  #ifndef HasMktemp
@@ -117,7 +128,7 @@
  
  #ifndef CcCmd
  #define CcCmd			cc
-@@ -195,41 +138,12 @@
+@@ -195,41 +136,12 @@
  	GccWarningOptions
  #endif
  #endif
@@ -160,7 +171,7 @@
  #endif
  
  /*
-@@ -237,17 +151,14 @@
+@@ -237,17 +149,14 @@
   * mechanism for specifying a subset of drivers in the OS.cf files yet.
   */
  #ifndef BuildXF86DRI
@@ -179,7 +190,7 @@
  #define HasAgpGart		YES
  #endif
  #if (defined(AlphaArchitecture) || defined(ia64Architecture) || \
-@@ -260,8 +171,7 @@
+@@ -260,8 +169,7 @@
   * SSE and 3DNow will be autodetected, so binutils is the only 
   * requirement for enabling this.  By 4.2 they were all supported.
   */
@@ -189,7 +200,7 @@
  # define HasX86Support          YES
  # define HasMMXSupport		YES
  # define Has3DNowSupport	YES
-@@ -311,8 +221,6 @@
+@@ -311,8 +219,6 @@
  # define UseRpath		YES
  #endif
  
@@ -198,7 +209,7 @@
  # ifndef RpathLoadFlags
  #  if UseRpath
  #   if UseElfFormat
-@@ -333,7 +241,6 @@
+@@ -333,7 +239,6 @@
  #  endif
  # endif
  
@@ -206,7 +217,7 @@
  
  #ifndef LibraryRpathLoadFlags
  # if UseRpath
-@@ -359,20 +266,13 @@
+@@ -359,20 +264,13 @@
  #define GnuMallocLibrary	-lgnumalloc
  #endif
  
@@ -227,7 +238,7 @@
  
  /* There are two options for building.  One is to assume that the system has
   * many of the dependencies provided by the ports tree.  The other is to just
-@@ -449,7 +349,6 @@
+@@ -449,7 +347,6 @@
  
  #define StandardDefines	-DCSRG_BASED
  
@@ -235,7 +246,7 @@
  #define ServerOSDefines		XFree86ServerOSDefines -DDDXTIME
  #define XawI18nDefines		-DUSE_XWCHAR_STRING
  #define HasMakefileSafeInclude	YES
-@@ -462,17 +361,11 @@
+@@ -462,17 +359,11 @@
  #define ForceNormalLib		YES
  #endif
  #define HasMkstemp		YES
@@ -253,7 +264,7 @@
  
  #ifdef i386Architecture
  # define OptimizedCDebugFlags DefaultGcc2i386Opt
-@@ -507,9 +400,7 @@
+@@ -507,9 +398,7 @@
  # define CompressManPages	YES
  #endif
  
@@ -263,7 +274,7 @@
  
  #ifndef StaticLibrary
  #define StaticLibrary(libpath,libname) -Wl,-Bstatic Concat(-L,libpath) Concat(-l,libname) -Wl,-Bdynamic
-@@ -561,13 +452,9 @@
+@@ -561,13 +450,9 @@
  
  #ifndef HasCookieMaker
  /* Which versions have /dev/urandom? */
