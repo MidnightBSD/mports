@@ -2,7 +2,7 @@
 # Date created:			7 Jul 2004
 # Whom:				Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.4 2007/10/09 16:28:35 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.5 2007/10/15 05:38:04 laffer1 Exp $
 # $FreeBSD: ports/lang/php5-extensions/Makefile,v 1.17 2007/02/10 19:09:33 ale Exp $
 #
 
@@ -19,7 +19,6 @@ COMMENT=	A "meta-port" to install PHP extensions
 LICENSE=	agg
 
 DEFAULT_PHP_VER=5
-IGNORE_WITH_PHP=4
 USE_PHP_BUILD=	yes
 
 NO_BUILD=	yes
