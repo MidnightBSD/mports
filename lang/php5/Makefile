@@ -2,13 +2,13 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.20 2008/11/07 17:26:35 ctriv Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.21 2008/12/10 19:31:37 ctriv Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.2.6
-PORTREVISION?=	4
+PORTVERSION=	5.2.8
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
 MASTER_SITE_SUBDIR=	distributions/:release
@@ -56,7 +56,7 @@ MAN1=		php-config.1 phpize.1
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-${PORTVERSION}-0.9.6.2.patch.gz:suhosin
+PATCHFILES+=	suhosin-patch-5.2.7-0.9.6.3.patch.gz:suhosin
 PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
