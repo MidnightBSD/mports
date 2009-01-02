@@ -2,7 +2,7 @@
 # Date created:                         	27 February 2004
 # Whom:                                        	Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.2 2008/10/11 23:20:05 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.3 2008/10/13 18:03:54 ctriv Exp $
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.10 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -21,8 +21,6 @@ DB=		sqlite
 
 FAKE_OPTS=	trueprefix
 
-LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
-
 USE_QT_VER=	4
 QT_COMPONENTS=	moc_build sql
 QT_NONSTANDARD=	yes
@@ -34,13 +32,25 @@ EXTRACT_AFTER_ARGS?=| ${TAR} -xf - \
 		${DISTNAME}/include/QtSql \
 		${DISTNAME}/src/sql/kernel
 MAKEFILE=	${FILESDIR}/Makefile.bsd
+
+PLIST_SUB=	DB=${DB}
+
+
+.include <bsd.port.pre.mk>
+
+
+# old mbsd versions didn't come with sqlite in core.
+.if ${OSVERSION} < 2000
+LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
+.endif
+
 MAKE_ENV+=	DB="${DB}" DRIVER="${DRIVER}" MOC="${MOC}" \
 		PLUGIN="${PLUGIN}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
-PLIST_SUB=	DB=${DB}
 
-pre-fake:
-	@${MKDIR} ${FAKE_DESTDIR}${PREFIX}/lib/qt4/plugins/sqldrivers
+pre-install:
+	@${MKDIR} ${PREFIX}/lib/qt4/plugins/sqldrivers
 
-.include <bsd.port.mk>
+
+.include <bsd.port.post.mk>
