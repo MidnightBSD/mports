@@ -2,7 +2,7 @@
 # Date created:		Sun May  1 20:46:59 UTC 2005
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.1 2008/09/25 03:34:30 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ffmpeg/Makefile,v 1.88 2008/08/17 02:58:21 ahze Exp $
 
 PORTNAME=	ffmpeg
@@ -244,12 +244,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|faacD|NeAACD|' ${WRKSRC}/libavcodec/libfaad.c
 # {C,LD}FLAGS safeness
 # fix x264 math, use correct log base 2 from math(3)
-.if ${OSVERSION} <= 601000
 	@${REINPLACE_CMD} -E \
 		-e 's| log2| log|' \
 		${WRKSRC}/libavcodec/libx264.c
-.endif
-
 	${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/common.mak ${WRKSRC}/subdir.mak
 	@${REINPLACE_CMD} -e 's|/etc/ffserver.conf|${PREFIX}/etc/ffserver.conf|' \

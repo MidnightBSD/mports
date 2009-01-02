@@ -79,13 +79,8 @@ LIB_DEPENDS+=	m.3:${PORTSDIR}/misc/compat5x
 post-patch: .SILENT
 # We should support -CURRENT: kill the check
 	${REINPLACE_CMD} '24,26d' ${WRKSRC}/src/nv-freebsd.h
-# Fix `agpvar.h' location on recent -CURRENT
-.if ${OSVERSION} >= 800004
-	${REINPLACE_CMD} -e 's,pci/agpvar\.h,dev/agp/agpvar.h,' \
-		${WRKSRC}/src/nv-freebsd.h
-.endif
 # Building with -Werror requires prototype for suser() which was moved
-.if ${OSVERSION} >= 700048
+.if ${OSVERSION} >= 3000
 	${REINPLACE_CMD} -e '15s,^,#include <sys/priv.h>,' \
 		${WRKSRC}/src/nvidia_os.c
 .endif

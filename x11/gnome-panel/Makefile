@@ -2,7 +2,7 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.3 2008/06/01 19:43:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.4 2008/09/21 19:08:12 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
 #
@@ -70,12 +70,6 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f | \
 		${XARGS} -n 10 ${REINPLACE_CMD} -e \
 		's|"applications.menu"|"gnome-applications.menu"|'
-.if ( ${OSVERSION} > 600000 && ${OSVERSION} < 600006 ) || \
-	( ${OSVERSION} < 503101 )
-.for po in da.po it.po zh_CN.po zh_TW.po
-	@${REINPLACE_CMD} -e 's|%-|%|g' ${WRKSRC}/po/${po}
-.endfor
-.endif
 
 post-install:
 	${MKDIR} ${PREFIX}/share/gnome-panel

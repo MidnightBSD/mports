@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/squid/Makefile,v 1.4 2008/07/25 08:32:23 laffer1 Exp $
+# $MidnightBSD: mports/www/squid/Makefile,v 1.5 2008/11/07 18:16:46 ctriv Exp $
 # $FreeBSD: ports/www/squid/Makefile,v 1.209 2008/04/05 00:46:55 beech Exp $
 #
 # Tunables not (yet) configurable via 'make config':
@@ -254,10 +254,9 @@ libexec+=	squid_kerb_auth
 storage_schemes=	ufs diskd null
 .if defined(WITH_SQUID_AUFS)
 storage_schemes+=	aufs
-.if ${OSVERSION}>=501000
-# Only document libmap.conf where it is available:
+
 EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-src-cf.data.pre.aufs
-.endif
+
 # Nil aufs threads is default, set any other value via SQUID_CONFIGURE_ARGS
 CONFIGURE_ARGS+=	--with-pthreads
 CFLAGS+=	${PTHREAD_CFLAGS}
@@ -337,9 +336,6 @@ CONFIGURE_ARGS+=	--enable-arp-acl
 .endif
 .if defined(WITH_SQUID_PF)
 CONFIGURE_ARGS+=	--enable-pf-transparent
-.if ${OSVERSION} < 502106
-IGNORE=		pf available only in FreeBSD 5.3 and newer
-.endif
 .endif
 
 .if defined(WITH_SQUID_IPFILTER)
