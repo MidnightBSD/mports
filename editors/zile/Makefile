@@ -3,7 +3,7 @@
 # Whom:			jasone
 #
 # $FreeBSD: ports/editors/zile/Makefile,v 1.58 2008/05/16 14:10:54 miwi Exp $
-# $MidnightBSD: mports/editors/zile/Makefile,v 1.1 2008/05/16 15:47:56 crash Exp $
+# $MidnightBSD: mports/editors/zile/Makefile,v 1.2 2008/09/09 21:00:38 crash Exp $
 
 PORTNAME=	zile
 PORTVERSION=	2.2.61
@@ -25,11 +25,7 @@ PLIST_DIRS=	%%DATADIR%%
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} > 502010
 GNU_REGEX_H=	gnu/regex.h
-.else
-GNU_REGEX_H=	gnuregex.h
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e \
