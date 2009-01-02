@@ -2,13 +2,13 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.3 2007/04/26 20:30:50 ctriv Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.4 2008/10/16 22:09:15 laffer1 Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
 PORTNAME=	pearpc
 PORTVERSION=	0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -85,6 +85,11 @@ pre-everything::
 post-extract:
 	@${REINPLACE_CMD} -e 's|-g -O2||;s|-O2||' ${WRKSRC}/configure
 
+pre-configure:
+# Assumes __FreeBSD_version value.  Change when current switches over.
+.if ${OSVERSION} > 700000
+	@${REINPLACE_CMD} -e 's|clock_settime\ ()|foobar()|' ${WRKSRC}/configure
+.endif
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Makefile
