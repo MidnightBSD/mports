@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.130 2008/11/11 02:31:27 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.131 2008/12/15 19:37:29 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -118,12 +118,10 @@ OPSYS!=	${UNAME} -s
 OSREL!=	${UNAME} -r | ${SED} -e 's/[-(].*//'
 .endif
 
-# Get __FreeBSD_version
+# Get __MidnightBSD_version
 .if !defined(OSVERSION)
 .if exists(${DESTDIR}/usr/include/sys/param.h)
-OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
-.elif exists(${DESTDIR}/usr/src/sys/sys/param.h)
-OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${DESTDIR}/usr/src/sys/sys/param.h
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
 .else
 OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
@@ -4109,7 +4107,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.130 2008/11/11 02:31:27 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.131 2008/12/15 19:37:29 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
