@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.6 2008/11/12 18:30:49 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.7 2008/11/14 16:11:49 ctriv Exp $
 
 =head1 NAME
 
@@ -243,10 +243,6 @@ The release version (numeric) of the operating system.
 =item OSVERSION
 
 The value of __MidnightBSD_version.
-
-=item FREEBSDVERSION 
-
-The version of FreeBSD closest to your version of MidnightBSD.
 
 =item PORTOBJFORMAT
 
