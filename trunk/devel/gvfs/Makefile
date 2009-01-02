@@ -2,7 +2,7 @@
 # Date created:		2007-11-06
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.4 2008/06/17 15:23:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.6 2008/06/18 22:53:07 stevan Exp $
 # $FreeBSD: ports/devel/gvfs/Makefile,v 1.8 2008/04/12 22:18:14 pav Exp $
 #   $MCom: ports/devel/gvfs/Makefile,v 1.21 2008/03/18 16:16:48 mezz Exp $
 #
@@ -71,13 +71,6 @@ PLIST_SUB+=	GPHOTO2=""
 .else
 CONFIGURE_ARGS+=	--disable-gphoto2
 PLIST_SUB+=	GPHOTO2="@comment "
-.endif
-
-.if ${OSVERSION} < 602112
-CONFIGURE_ARGS+=	--disable-archive
-PLIST_SUB+=	ARCHIVE="@comment "
-.else
-PLIST_SUB+=	ARCHIVE=""
 .endif
 
 .include <bsd.port.post.mk>
