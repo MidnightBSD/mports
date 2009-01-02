@@ -2,7 +2,7 @@
 # Date created:				8 August 2008
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD: mports/astro/boinc-milkyway/Makefile,v 1.1 2008/10/02 14:35:57 laffer1 Exp $
+# $MidnightBSD: mports/astro/boinc-milkyway/Makefile,v 1.2 2008/10/03 19:17:22 laffer1 Exp $
 # $FreeBSD: ports/astro/boinc-milkyway/Makefile,v 1.1 2008/08/08 22:22:38 pav Exp $
 #
 
@@ -22,7 +22,7 @@ EXTRACT_SUFX=	#
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-.if ${OSVERSION} >= 700000
+.if ${OSVERSION} >= 3000
 LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
 .endif
 
