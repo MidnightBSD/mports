@@ -18,7 +18,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/bsd.gcc.mk,v 1.6 2008/05/09 17:41:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -40,7 +40,7 @@ GCCVERSIONS=	030402 040100 040200 040300
 # the base system.
 # The third field is the version as USE_GCC would use.
 #
-GCCVERSION_030402=	502126 999999 3.4
+GCCVERSION_030402=	2000 999999 3.4
 GCCVERSION_040100=	999999 999999 4.1
 GCCVERSION_040200=	999999 999999 4.2
 GCCVERSION_040300=	999999 999999 4.3

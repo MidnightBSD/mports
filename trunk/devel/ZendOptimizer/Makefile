@@ -2,7 +2,7 @@
 # Date created:			Thu Apr 24 00:23:22 CET 2003
 # Whom:				Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/devel/ZendOptimizer/Makefile,v 1.1 2008/08/22 02:14:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/ZendOptimizer/Makefile,v 1.2 2008/08/25 17:28:02 laffer1 Exp $
 # $FreeBSD: ports/devel/ZendOptimizer/Makefile,v 1.31 2008/01/26 13:44:55 ale Exp $
 #
 
@@ -26,7 +26,7 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 .include <bsd.port.pre.mk>
 
 VER=		6.0
-.if ${OSVERSION} >= 700043
+.if ${OSVERSION} >= 3000
 LIB_DEPENDS+=	m.4:${PORTSDIR}/misc/compat6x
 .endif
 
