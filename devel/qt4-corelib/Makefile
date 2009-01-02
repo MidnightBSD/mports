@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.3 2008/10/09 20:50:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.4 2008/10/13 19:17:18 ctriv Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.17 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -69,9 +69,10 @@ post-configure:
 	${HEAD} -n 27 ${WRKSRC}/global/qconfig.h > ${WRKDIR}/qconfig.tmp
 	${CHMOD} 644 ${WRKSRC}/global/qconfig.h
 	${CAT} ${WRKDIR}/qconfig.tmp ${FILESDIR}/qconfig.h.in > ${WRKSRC}/global/qconfig.h
-.if ${OSVERSION} >= 700042
-	${ECHO_CMD} "#define QT_VISIBILITY_AVAILABLE" >> ${WRKSRC}/global/qconfig.h
-.endif
+# this looks to be a newer GCC thing.
+#.if ${OSVERSION} >= 3000
+#	${ECHO_CMD} "#define QT_VISIBILITY_AVAILABLE" >> ${WRKSRC}/global/qconfig.h
+#.endif
 
 
 post-install:
