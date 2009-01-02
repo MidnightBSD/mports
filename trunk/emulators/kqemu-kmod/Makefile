@@ -2,16 +2,16 @@
 # Date created:				2005/10/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.2 2007/04/25 04:47:05 ctriv Exp $
+# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.3 2008/10/16 22:08:00 laffer1 Exp $
 # $FreeBSD: ports/emulators/kqemu-kmod/Makefile,v 1.15 2007/02/07 21:13:06 nox Exp $
 #
 
 PORTNAME=	kqemu
 PORTVERSION=	1.3.0.p11
+PORTREVISION=	1
 CATEGORIES=	emulators
-MASTER_SITES=	http://qemu.org/ \
-		http://fabrice.bellard.free.fr/qemu/ \
-		${MASTER_SITE_LOCAL}
+MASTER_SITES=	http://bellard.org/qemu/ \
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	nox
 PKGNAMESUFFIX=	-kmod
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/.p/pre/}
@@ -24,9 +24,7 @@ LICENSE=	gpl2
 ONLY_FOR_ARCHS=	i386 amd64
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_GCC=	3.4
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
-
 
 USE_RC_SUBR=	kqemu
 
