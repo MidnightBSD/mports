@@ -2,11 +2,7 @@
 FFLAGS=	@FFLAGS@
 
 LIBDIR= ${PREFIX}/lib
-.if (${OSVERSION} > 600007)
 NO_PROFILE= no
-.else
-NOPROFILE= no
-.endif
 
 SHLIB_MAJOR= 2
 

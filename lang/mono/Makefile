@@ -2,7 +2,7 @@
 # Date created:        22 August 2007
 # Whom:                Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.5 2008/09/18 20:56:06 laffer1 Exp $
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.6 2008/10/02 20:32:00 laffer1 Exp $
 # $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
 #
 
@@ -77,12 +77,8 @@ post-patch:
 		${WRKSRC}/mcs/class/Managed.Windows.Forms/build-csproj \
 		${WRKSRC}/mcs/class/Managed.Windows.Forms/build-csproj2k5
 
-.if ${OSVERSION} >= 700000
-	@${REINPLACE_CMD} -e 's|freebsd6|freebsd7|g' \
-		${WRKSRC}/configure ${WRKSRC}/libgc/configure
-.endif
 
-tests: build
+test: build
 	@${ECHO_MSG} "===> Running mono regression tests"
 	@(cd ${WRKSRC}/mono/tests && ${SETENV} ${MAKE_ENV} ${GMAKE} \
 		${MAKE_FLAGS} Makefile ${MAKE_ARGS} test)
