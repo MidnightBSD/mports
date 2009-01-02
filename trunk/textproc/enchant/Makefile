@@ -2,7 +2,7 @@
 # Date created:				03 January 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.1 2007/08/22 08:53:28 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.2 2008/08/25 19:10:23 laffer1 Exp $
 # $FreeBSD: ports/textproc/enchant/Makefile,v 1.23 2006/11/30 20:37:18 mezz Exp $
 #
 
@@ -71,11 +71,9 @@ pre-everything::
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
 		${WRKSRC}/install-sh
-.if ${OSVERSION} < 700042
 	@${REINPLACE_CMD} -E -e "s|-Wunsafe-loop-optimizations ||g" \
 		-e "s|-Wno-missing-field-initializers ||g" \
 		-e "s|-Wno-attributes ||g" \
 			${WRKSRC}/configure
-.endif
 
 .include <bsd.port.post.mk>

@@ -2,7 +2,7 @@
 # Date Created:			02 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.7 2008/06/01 23:27:30 archite Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.8 2008/06/17 17:45:43 laffer1 Exp $
 # $FreeBSD: ports/sysutils/hal/Makefile,v 1.38 2008/05/19 06:24:44 marcus Exp $
 #   $MCom: ports/sysutils/hal/Makefile,v 1.43 2008/03/22 19:31:15 marcus Exp $
 #
@@ -72,15 +72,11 @@ OPTIONS=	FIXED_MOUNTPOINTS "use fixed mountpoints" off
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 505000
-IGNORE=	not supported on FreeBSD prior to 5.5-RELEASE
-.endif
-
 .if (${ARCH}=="i386" || ${ARCH}=="amd64" || ${ARCH}=="ia64")
 RUN_DEPENDS+=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 .endif
 
-.if ${OSVERSION} <= 601100
+.if ${OSVERSION} <= 3000
 NEEDS_MEDIA=	yes
 PLIST_SUB+=	MEDIA=""
 .else

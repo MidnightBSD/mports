@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/net/iwi-firmware/Makefile,v 1.8 2006/05/08 09:37:17 flz Exp $
-# $MidnightBSD: mports/net/iwi-firmware/Makefile,v 1.1 2007/02/17 06:04:08 archite Exp $
+# $MidnightBSD: mports/net/iwi-firmware/Makefile,v 1.2 2007/02/17 21:42:51 archite Exp $
 
 PORTNAME=	iwi-firmware
 RELNAME=	ipw2200
@@ -30,6 +30,6 @@ FIRMWARES=	ipw-${PORTVERSION}-boot.fw:${DRIVERNAME}-boot.fw \
 		ipw-${PORTVERSION}-sniffer.fw:${DRIVERNAME}-sniffer.fw \
 		ipw-${PORTVERSION}-sniffer_ucode.fw:${DRIVERNAME}-ucode-sniffer.fw
 
-MIN7OSVERSION=	700006
+MIN7OSVERSION=	3000
 
 .include "${MASTERDIR}/Makefile"
