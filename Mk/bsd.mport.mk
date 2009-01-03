@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.131 2008/12/15 19:37:29 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.132 2009/01/02 01:33:17 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2919,25 +2919,25 @@ ${${target:U}_COOKIE}::
 .ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
 
 extract-message:
-	@${ECHO_MSG} "===>  Extracting for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Extracting for ${PKGNAME}\033[0m"
 patch-message:
-	@${ECHO_MSG} "===>  Patching for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Patching for ${PKGNAME}\033[0m"
 configure-message:
-	@${ECHO_MSG} "===>  Configuring for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Configuring for ${PKGNAME}\033[0m"
 build-message:
-	@${ECHO_MSG} "===>  Building for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Building for ${PKGNAME}\033[0m"
 fake-message:
-	@${ECHO_MSG} "===>  Faking install for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Faking install for ${PKGNAME}\033[0m"
 install-message:
 .if !defined(DESTDIR)
-	@${ECHO_MSG} "===>  Installing ${PKGFILE}"
+	@${ECHO_MSG} -e "\033[1m===>  Installing ${PKGFILE}\033[0m"
 .else
-	@${ECHO_MSG} "===>  Installing ${PKGFILE} into ${DESTDIR}"
+	@${ECHO_MSG} -e "\033[1m===>  Installing ${PKGFILE} into ${DESTDIR}\033[0m"
 .endif
 package-message:
-	@${ECHO_MSG} "===>  Building package for ${PKGNAME}"
+	@${ECHO_MSG} -e "\033[1m===>  Building package for ${PKGNAME}\033[0m"
 done-message:
-	@${ECHO_MSG} "===>  Done."
+	@${ECHO_MSG} -e "\033[1m===>  Done.\033[0m"
 
 
 # Empty pre-* and post-* targets
@@ -4107,7 +4107,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.131 2008/12/15 19:37:29 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.132 2009/01/02 01:33:17 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
