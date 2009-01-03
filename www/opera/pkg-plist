@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+@comment $MidnightBSD: mports/www/opera/pkg-plist,v 1.9 2008/06/12 21:30:45 laffer1 Exp $
 bin/opera
 share/doc/opera/LICENSE
 share/doc/opera/LGPL
@@ -8,6 +8,7 @@ share/opera/bin/opera
 share/opera/bin/works
 share/opera/bin/operaplugincleaner
 share/opera/bin/operapluginwrapper
+share/opera/bin/operapluginwrapper.midnightbsd
 share/opera/locale/ka/georgian.lng
 share/opera/locale/ka/license.txt
 share/opera/locale/ka/search.ini
@@ -146,6 +147,7 @@ share/opera/locale/cs/opera6.adr
 share/opera/locale/english.lng
 share/opera/ini/dialog.ini
 share/opera/ini/fastforward.ini
+share/opera/ini/speeddial_default.ini
 share/opera/ini/mailproviders.xml
 share/opera/ini/standard_keyboard.ini
 share/opera/ini/standard_keyboard_compat.ini
@@ -205,6 +207,7 @@ share/opera/styles/mime.css
 share/opera/styles/plugins.css
 share/opera/styles/search.css
 share/opera/styles/warning.css
+share/opera/webfeeds.html
 share/opera/styles/wml.css
 share/opera/skin/standard_skin.zip
 share/opera/skin/windows_skin.zip
