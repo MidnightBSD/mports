@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/opera/pkg-plist,v 1.9 2008/06/12 21:30:45 laffer1 Exp $
+@comment $MidnightBSD: mports/www/opera/pkg-plist,v 1.10 2009/01/03 22:03:35 laffer1 Exp $
 bin/opera
 share/doc/opera/LICENSE
 share/doc/opera/LGPL
@@ -281,13 +281,13 @@ share/icons/hicolor/48x48/apps/opera.png
 @dirrm share/pixmaps
 @dirrm share/applnk/Internet
 @dirrm share/applnk
-@dirrm share/icons/hicolor/16x16/apps
-@dirrm share/icons/hicolor/16x16
-@dirrm share/icons/hicolor/22x22/apps
-@dirrm share/icons/hicolor/22x22
-@dirrm share/icons/hicolor/32x32/apps
-@dirrm share/icons/hicolor/32x32
-@dirrm share/icons/hicolor/48x48/apps
-@dirrm share/icons/hicolor/48x48
-@dirrm share/icons/hicolor
+@dirrmtry share/icons/hicolor/16x16/apps
+@dirrmtry share/icons/hicolor/16x16
+@dirrmtry share/icons/hicolor/22x22/apps
+@dirrmtry share/icons/hicolor/22x22
+@dirrmtry share/icons/hicolor/32x32/apps
+@dirrmtry share/icons/hicolor/32x32
+@dirrmtry share/icons/hicolor/48x48/apps
+@dirrmtry share/icons/hicolor/48x48
+@dirrmtry share/icons/hicolor
 @dirrm share/icons
