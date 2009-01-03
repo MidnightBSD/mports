@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.52 2008/12/22 01:10:41 ctriv Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.53 2009/01/03 02:23:27 ctriv Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -7,6 +7,7 @@
     SUBDIR += chmlib
     SUBDIR += compat4x
     SUBDIR += compat5x
+    SUBDIR += compat6x
     SUBDIR += cpuid
     SUBDIR += dict-de
     SUBDIR += dnetc
