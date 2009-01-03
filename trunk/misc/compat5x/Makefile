@@ -2,7 +2,7 @@
 # Date created:				19 Aug 2005
 # Whom:					hrs, lesi
 #
-# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.5 2007/08/17 00:35:18 laffer1 Exp $
+# $MidnightBSD: mports/misc/compat5x/Makefile,v 1.6 2007/11/12 01:08:43 laffer1 Exp $
 # $FreeBSD: ports/misc/compat5x/Makefile,v 1.14 2006/08/15 00:56:14 clsung Exp $
 #
 
@@ -14,7 +14,7 @@ PORTNAME=	compat5x
 PORTVERSION=	5.4.0.8
 PORTREVISION=	7
 CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=lesi/compat5x
 PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
