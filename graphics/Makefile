@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.82 2008/10/20 01:16:23 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.83 2008/12/08 16:51:44 ctriv Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -93,6 +93,7 @@
     SUBDIR += poppler-data
     SUBDIR += poppler-gtk
     SUBDIR += poppler-qt
+    SUBDIR += poppler-qt4
     SUBDIR += poppler-utils
     SUBDIR += popplerkit
     SUBDIR += py-cairo
