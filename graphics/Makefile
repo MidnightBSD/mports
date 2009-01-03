@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.83 2008/12/08 16:51:44 ctriv Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.84 2009/01/03 02:15:14 ctriv Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -11,6 +11,7 @@
     SUBDIR += cairo
     SUBDIR += cairomm
     SUBDIR += dia
+    SUBDIR += djvulibre-nox11
     SUBDIR += dri
     SUBDIR += eog
     SUBDIR += etoile-distributedview
