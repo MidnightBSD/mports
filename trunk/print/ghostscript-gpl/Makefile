@@ -3,7 +3,7 @@
 # Whom:			Andreas Klemm <andreas@klemm.gtn.com>
 #
 # $FreeBSD: ports/print/ghostscript-gpl/Makefile,v 1.143 2006/08/15 00:56:22 clsung Exp $
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.6 2008/05/22 16:54:59 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.7 2008/05/22 18:55:23 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -111,7 +111,10 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/libfreetype.a:${PORTSDIR}/print/freetype2
 MAKE_ENV+=	FT_BRIDGE=1 FT_ROOT="${WRKSRC}/freetype" FT_LIB_EXT=".a"
 .endif
 
-.if defined(WITH_SHLIB)
+.if defined(WITHOUT_SHLIB)
+ALL_TARGET=	all pcl3opts
+PLIST_SUB+=	SHLIB="@comment "
+.else
 .undef WITHOUT_X11
 USE_GNOME+=	gtk20
 ALL_TARGET=	so pcl3opts
@@ -119,9 +122,6 @@ INSTALL_TARGET=	soinstall
 USE_LDCONFIG=	yes
 PLIST_SUB+=	SHLIB="" SHLIB_VER="${GS_VERSION:R}"
 INCLUDEDIR=	${PREFIX}/include/ghostscript
-.else
-ALL_TARGET=	all pcl3opts
-PLIST_SUB+=	SHLIB="@comment "
 .endif
 
 GS_SRCS=	${DISTNAME}${EXTRACT_SUFX}
@@ -514,9 +514,10 @@ post-install:
 	${ECHO_MSG} ">>> in post-install ..."
 	${LN} -s -f ${LOCALBASE}/share/fonts/CIDFont ${CIDFONTDIR}/CIDFont
 	${ECHO_MSG} ">>>   stripping gs ..."
-.if defined(WITH_SHLIB)
+.if !defined(WITHOUT_SHLIB)
 	${STRIP_CMD} ${PREFIX}/bin/gsc ${PREFIX}/bin/gsx
 	${LN} -sf gsc ${PREFIX}/bin/gs
+	${MKDIR} ${INCLUDEDIR}
 .for i in iapi.h ierrors.h
 	${INSTALL_DATA} ${WRKSRC}/src/${i} ${INCLUDEDIR}
 .endfor
