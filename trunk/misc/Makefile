@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.51 2008/12/12 19:28:12 ctriv Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.52 2008/12/22 01:10:41 ctriv Exp $
 #
 
     COMMENT = Miscellaneous utilities
 
     SUBDIR += brs
+    SUBDIR += chmlib
     SUBDIR += compat4x
     SUBDIR += compat5x
     SUBDIR += cpuid
