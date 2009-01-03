@@ -2,13 +2,13 @@
 # Date created:					November 5th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/opera/Makefile,v 1.24 2008/09/11 04:20:18 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.25 2009/01/03 22:03:34 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.51 2006/08/10 08:42:06 simon Exp $
 #
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
 		ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
@@ -66,8 +66,9 @@ OPERA_ARCH=	intel
 .endif
 
 .if ${OSVERSION} >= 3000
-BROKEN=		Does not run pending GCC 4 migration
-OPERA_TYPE=	7
+#OPERA_TYPE=	7 switch after GCC 4 migration
+LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
+OPERA_TYPE=	6
 .else
 OPERA_TYPE=	6
 .endif
@@ -104,8 +105,8 @@ post-patch:
 do-install:
 	@(cd ${WRKSRC} && ./install.sh --prefix=${TRUE_PREFIX} --DESTDIR=${FAKE_DESTDIR})
 	@${MKDIR} ${PREFIX}/share/bin
-	@${CP} ${WRKSRC}/usr/lib/opera/${OPERA_VER}/operapluginwrapper ${PREFIX}/share/bin/operapluginwrapper.midnightbsd
-	@${INSTALL_SCRIPT} ${PATCHDIR}/operapluginwrapper ${PREFIX}/share/bin
+	@${CP} ${WRKSRC}/usr/lib/opera/${OPERA_VER}/operapluginwrapper ${PREFIX}/share/opera/bin/operapluginwrapper.midnightbsd
+	@${INSTALL_SCRIPT} ${PATCHDIR}/operapluginwrapper ${PREFIX}/share/opera/bin
 	@${MKDIR} ${PREFIX}/share/apps/Internet
 	@${MKDIR} ${PREFIX}/share/pixmaps
 	@${MKDIR} ${PREFIX}/share/applnk/Internet
