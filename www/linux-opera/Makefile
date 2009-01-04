@@ -2,13 +2,12 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.10 2008/06/14 21:18:31 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.11 2008/06/20 01:30:15 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
 PORTNAME=	opera
-PORTVERSION=	${OPERA_VER}.${OPERA_DATE}
-PORTREVISION=	1
+PORTVERSION=	${OPERA_VER}
 CATEGORIES=	www linux
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/ \
 		ftp://ftp.sunet.se/pub/www/clients/Opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/ \
@@ -21,7 +20,7 @@ MASTER_SITES=	ftp://ftp.opera.com/pub/opera/linux/${OPERA_VER:S/.//}/final/en/i3
 		http://gd.tuwien.ac.at/infosys/browsers/opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/linux/${OPERA_VER:S/.//}/final/en/i386/static/&,}
 PKGNAMEPREFIX=	linux-
-DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_DATE}.1-static-qt.i386-en
+DISTNAME=	${PORTNAME}-${OPERA_VER}.gcc4-static-qt3.i386
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
@@ -29,7 +28,7 @@ LICENSE=	opera
 
 RUN_DEPENDS=	${LINUXBASE}/usr/lib/libaspell.so.15:${PORTSDIR}/textproc/linux-aspell
 
-WRKSRC=		${WRKDIR}/${DISTNAME}-${OPERA_BUILD}
+WRKSRC=		${WRKDIR}/${DISTNAME:S/.gcc/-${OPERA_BUILD}.gcc/}
 USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_LINUX=	yes
@@ -37,34 +36,43 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-DEPRECATED=	There is a security issue with this verison of opera.
-
-OPERA_VER=	9.27
-OPERA_DATE=	20080331
-OPERA_BUILD=	709
-
+OPERA_VER=	9.63
+OPERA_BUILD=	2474
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
 MAN1=		linux-opera.1
 
+post-extract:
+	@${MV} ${WRKSRC}/usr/share/man/man1/opera.1 \
+		${WRKSRC}/usr/share/man/man1/${UNIQUENAME}.1
+	@${SED} -e 's|@PREFIX@|${LOCALBASE}|g' ${FILESDIR}/linux-opera.desktop.in >${WRKDIR}/linux-opera.desktop
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g ; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g ; s|%%X11BASE%%|${X11BASE}|g' \
-			${WRKSRC}/install.sh ${WRKSRC}/ini/pluginpath.ini
+			${WRKSRC}/install.sh ${WRKSRC}/usr/share/opera/ini/pluginpath.ini
+	${REINPLACE_CMD} -e 's|FreeBSD|MidnightBSD|g' \
+		${WRKSRC}/install.sh 
+	@${REINPLACE_CMD} -e 's|man1/opera.1|man1/${UNIQUENAME}.1|g' \
+		${WRKSRC}/Manifest.md5
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 do-install:
-	${MKDIR} ${PREFIX}/share/applications
-	${MKDIR} ${PREFIX}/share/pixmaps
-	${INSTALL_DATA} ${WRKSRC}/images/opera.xpm ${PREFIX}/share/pixmaps/linux-opera.xpm
+	@${MKDIR} ${PREFIX}/share/apps/Internet
+	@${MKDIR} ${PREFIX}/share/applnk/Internet
+	@${MKDIR} ${PREFIX}/share/applications
+	@${MKDIR} ${PREFIX}/share/pixmaps
+	@${INSTALL_DATA} ${WRKSRC}/usr/share/pixmaps/opera.xpm ${PREFIX}/share/pixmaps/linux-opera.xpm
 	@(cd ${WRKSRC} && ./install.sh \
 			--prefix=${PREFIX} \
 			--docdir=${DOCSDIR} \
 			--sharedir=${DATADIR} \
 			--exec_prefix=${DATADIR}/bin \
 			--plugindir=${DATADIR}/plugins)
+	@${INSTALL_DATA} ${WRKDIR}/linux-opera.desktop ${PREFIX}/share/apps/Internet/
+	@${INSTALL_DATA} ${WRKDIR}/linux-opera.desktop ${PREFIX}/share/applnk/Internet/
 
 # We must make sure that the correct java jar file is used after installation.
 post-fake:
