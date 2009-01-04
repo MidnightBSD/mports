@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.267 2008/10/23 13:24:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.268 2008/12/22 21:00:16 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -20,11 +20,11 @@
     SUBDIR += autoconf262
     SUBDIR += autogen
     SUBDIR += automake-wrapper
+    SUBDIR += automake110
     SUBDIR += automake14
     SUBDIR += automake15
     SUBDIR += automake16
     SUBDIR += automake19
-    SUBDIR += automake110
     SUBDIR += automoc4
     SUBDIR += autotools
     SUBDIR += bison
@@ -84,9 +84,9 @@
     SUBDIR += gnome-vfs
     SUBDIR += gnustep
     SUBDIR += gnustep-make
-    SUBDIR += gorm
     SUBDIR += goffice
     SUBDIR += goffice04
+    SUBDIR += gorm
     SUBDIR += gstreamer-plugins-gconf
     SUBDIR += gstreamer-plugins-gnomevfs
     SUBDIR += gvfs
@@ -154,14 +154,13 @@
     SUBDIR += objcunit
     SUBDIR += oniguruma4
     SUBDIR += oniguruma5
-    SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-Algorithm-C3
+    SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-AppConfig
     SUBDIR += p5-B-Keywords
     SUBDIR += p5-BSD-Resource
     SUBDIR += p5-Cache-Cache
     SUBDIR += p5-Carp-Clan
-    SUBDIR += p5-Config-General
     SUBDIR += p5-Class-Accessor
     SUBDIR += p5-Class-Accessor-Chained
     SUBDIR += p5-Class-Accessor-Grouped
@@ -174,6 +173,7 @@
     SUBDIR += p5-Class-Inspector
     SUBDIR += p5-Class-Trigger
     SUBDIR += p5-Clone
+    SUBDIR += p5-Config-General
     SUBDIR += p5-Config-Tiny
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Date-Calc
@@ -196,10 +196,10 @@
     SUBDIR += p5-IPC-Run
     SUBDIR += p5-IPC-ShareLite
     SUBDIR += p5-Locale-gettext
+    SUBDIR += p5-MRO-Compat
     SUBDIR += p5-Module-Build
     SUBDIR += p5-Module-Find
     SUBDIR += p5-Module-Pluggable
-    SUBDIR += p5-MRO-Compat
     SUBDIR += p5-Net-DBus
     SUBDIR += p5-Params-Util
     SUBDIR += p5-Params-Validate
@@ -207,8 +207,8 @@
     SUBDIR += p5-PathTools
     SUBDIR += p5-Pod-Coverage
     SUBDIR += p5-ReadLine-Perl
-    SUBDIR += p5-Return-Value
     SUBDIR += p5-Readonly
+    SUBDIR += p5-Return-Value
     SUBDIR += p5-SDL
     SUBDIR += p5-Scope-Guard
     SUBDIR += p5-Spiffy
@@ -230,10 +230,10 @@
     SUBDIR += p5-Time-HiRes
     SUBDIR += p5-Time-Local
     SUBDIR += p5-TimeDate
-    SUBDIR += p5-threads-shared
     SUBDIR += p5-UNIVERSAL-moniker
     SUBDIR += p5-UNIVERSAL-require
     SUBDIR += p5-threads
+    SUBDIR += p5-threads-shared
     SUBDIR += p5-version
     SUBDIR += patch
     SUBDIR += pccts
@@ -268,6 +268,7 @@
     SUBDIR += py-gobject
     SUBDIR += py-orbit
     SUBDIR += py-xdg
+    SUBDIR += qca
     SUBDIR += qmake
     SUBDIR += qmake4
     SUBDIR += qt4
@@ -286,7 +287,7 @@
     SUBDIR += qt4-qt3support
     SUBDIR += qt4-qtestlib
     SUBDIR += qt4-qvfb
-    SUBDIR += qt4-rcc 
+    SUBDIR += qt4-rcc
     SUBDIR += qt4-script
     SUBDIR += qt4-uic
     SUBDIR += qt4-uic3
