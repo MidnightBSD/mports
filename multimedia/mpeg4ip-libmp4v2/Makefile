@@ -2,7 +2,7 @@
 # Date created:		28 Sep 2004
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.2 2007/08/07 04:02:30 ctriv Exp $
+# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.3 2008/10/13 20:52:53 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.15 2007/01/27 07:54:19 kris Exp $
 #
 
@@ -29,13 +29,13 @@ USE_LDCONFIG=	yes
 .include <bsd.port.pre.mk>
 
 post-patch:
-	${TOUCH} -f ${WRKSRC}/bootstrapped
+	@${TOUCH} -f ${WRKSRC}/bootstrapped
 # Speed up configure by not using 2 unneeded configure scripts.
 	@${ECHO_CMD} "" > ${WRKSRC}/lib/rtp/configure
 	@${ECHO_CMD} "" > ${WRKSRC}/lib/SDLAudio/configure
 	@${REINPLACE_CMD} \
 		-e 's|>&/|>/|; s|-Wmissing-declarations||; \
-			s|-Wmissing-prototypes||' \
+			s|-Wmissing-prototypes||; s|nasm -r|nasm -v|' \
 			${WRKSRC}/configure
 do-build:
 .for dir in lib/gnu lib/mp4av lib/mp4v2
