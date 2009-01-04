@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.132 2009/01/02 01:33:17 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.133 2009/01/03 02:47:17 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -58,7 +58,9 @@ MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 
 .if defined(USE_X_PREFIX) || defined(USE_IMAKE)
 PREFIX?=	${X11BASE_REL}
-.elif defined(USE_LINUX_PREFIX)
+# sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
+# will already have been evaluated. XXX - Find a better fix in the future.
+.elif defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
 PREFIX?=	${LINUXBASE_REL}
 .else
 PREFIX?=	${LOCALBASE_REL}
@@ -4107,7 +4109,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.132 2009/01/02 01:33:17 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.133 2009/01/03 02:47:17 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
