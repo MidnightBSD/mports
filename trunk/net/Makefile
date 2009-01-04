@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.91 2008/10/07 01:37:42 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.92 2008/10/11 20:19:00 laffer1 Exp $
 #
 
     COMMENT = Networking tools
@@ -6,8 +6,8 @@
     SUBDIR += 44bsd-rdist
     SUBDIR += GeoIP
     SUBDIR += avahi
-    SUBDIR += avahi-autoipd
     SUBDIR += avahi-app
+    SUBDIR += avahi-autoipd
     SUBDIR += avahi-gtk
     SUBDIR += avahi-libdns
     SUBDIR += avahi-qt3
@@ -28,19 +28,20 @@
     SUBDIR += hping
     SUBDIR += htpdate
     SUBDIR += ilbc
+    SUBDIR += ipw-firmware
+    SUBDIR += iwi-firmware
     SUBDIR += jags
     SUBDIR += kdenetwork3
+    SUBDIR += ldap2dns
+    SUBDIR += ldapdiff
     SUBDIR += libdnet
+    SUBDIR += libgweather
     SUBDIR += libnet
     SUBDIR += libnet10
     SUBDIR += libpcap
-    SUBDIR += libgweather
+    SUBDIR += libvncserver
     SUBDIR += linc
     SUBDIR += liveMedia
-    SUBDIR += ipw-firmware
-    SUBDIR += iwi-firmware
-    SUBDIR += ldap2dns
-    SUBDIR += ldapdiff
     SUBDIR += mDNSResponder
     SUBDIR += netatalk
     SUBDIR += netcat
@@ -90,6 +91,7 @@
     SUBDIR += skype
     SUBDIR += tsocks
     SUBDIR += ulxmlrpcpp
+    SUBDIR += vino
     SUBDIR += vnc2swf
     SUBDIR += vncreflector
     SUBDIR += x11vnc
@@ -104,5 +106,4 @@
     SUBDIR += zniper
     SUBDIR += zsync
     SUBDIR += ztelnet
-    SUBDIR += vino
 .include <bsd.port.subdir.mk>
