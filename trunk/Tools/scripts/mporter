@@ -115,7 +115,7 @@ sub checkin_port {
 		chdir($orig) || die "Couldn't chdir $orig: $!\n";
 	}
 	
-	run("cvs add Makefile distinfo pkg-*");
+	system("cvs add Makefile distinfo pkg-*");
 	
 	if (-d 'files') {
 		run("cvs add files");
@@ -252,7 +252,7 @@ subdirs, and then update the file on disk.
 		}
 		
 		
-		if (m/SUBDIR\s*\+?=\s*([\.\w-]+)/) {
+		if (m/SUBDIR\s*\+?=\s*([\.\w+-]+)/) {
 			push(@{$self->{subdirs}}, $1);
 		} else {
 			die "Couldn't match first subdir.";
