@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.110 2008/10/17 17:54:23 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.111 2008/10/17 18:01:52 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -32,6 +32,7 @@
     SUBDIR += docproj
     SUBDIR += dsssl-docbook-modular
     SUBDIR += easydiff
+    SUBDIR += ebook-tools
     SUBDIR += enchant
     SUBDIR += etoile-lucenekit
     SUBDIR += etoile-ogrekit
@@ -49,8 +50,8 @@
     SUBDIR += iso8879
     SUBDIR += ispell
     SUBDIR += ispell-alt-de
-    SUBDIR += ispell-neu-de
     SUBDIR += ispell-de
+    SUBDIR += ispell-neu-de
     SUBDIR += jade
     SUBDIR += latex-service
     SUBDIR += libcroco
@@ -68,7 +69,6 @@
     SUBDIR += openjade
     SUBDIR += opensp
     SUBDIR += p5-HTML-Tidy
-    SUBDIR += p5-libxml
     SUBDIR += p5-PPI
     SUBDIR += p5-Parse-Syslog
     SUBDIR += p5-Perl-Critic
@@ -79,10 +79,10 @@
     SUBDIR += p5-SGML-Parser-OpenSP
     SUBDIR += p5-SGMLSpm
     SUBDIR += p5-String-Format
+    SUBDIR += p5-Test-Perl-Critic
     SUBDIR += p5-Text-Autoformat
     SUBDIR += p5-Text-Diff
     SUBDIR += p5-Text-Glob
-    SUBDIR += p5-Test-Perl-Critic
     SUBDIR += p5-Text-Reform
     SUBDIR += p5-Text-Tabs+Wrap
     SUBDIR += p5-Text-WordDiff
@@ -104,6 +104,7 @@
     SUBDIR += p5-XML-Writer
     SUBDIR += p5-XML-XPath
     SUBDIR += p5-YAML
+    SUBDIR += p5-libxml
     SUBDIR += php5-ctype
     SUBDIR += php5-dom
     SUBDIR += php5-pspell
@@ -113,10 +114,10 @@
     SUBDIR += php5-xmlreader
     SUBDIR += php5-xmlwriter
     SUBDIR += php5-xsl
-    SUBDIR += py-libxml2
-    SUBDIR += py-xml
     SUBDIR += popup
     SUBDIR += py-docutils
+    SUBDIR += py-libxml2
+    SUBDIR += py-xml
     SUBDIR += qt4-clucene
     SUBDIR += qt4-xml
     SUBDIR += qt4-xmlpatterns
