@@ -1,1 +1,1 @@
-.include "${PORTSDIR}/Mk/bsd.gecko.mk"
+.include "${PORTSDIR}/Mk/extensions/gecko.mk"
