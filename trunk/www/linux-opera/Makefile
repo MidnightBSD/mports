@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.11 2008/06/20 01:30:15 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.12 2009/01/04 01:43:17 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -66,11 +66,12 @@ do-install:
 	@${MKDIR} ${PREFIX}/share/pixmaps
 	@${INSTALL_DATA} ${WRKSRC}/usr/share/pixmaps/opera.xpm ${PREFIX}/share/pixmaps/linux-opera.xpm
 	@(cd ${WRKSRC} && ./install.sh \
-			--prefix=${PREFIX} \
-			--docdir=${DOCSDIR} \
-			--sharedir=${DATADIR} \
-			--exec_prefix=${DATADIR}/bin \
-			--plugindir=${DATADIR}/plugins)
+			--prefix=${TRUE_PREFIX} \
+			--docdir=${TRUE_PREFIX}/share/doc/linux-opera \
+			--sharedir=${TRUE_PREFIX}/share/linux-opera \
+			--exec_prefix=${TRUE_PREFIX}/share/linux-opera/bin \
+			--plugindir=${TRUE_PREFIX}/share/linux-opera/plugins \
+			--DESTDIR=${FAKE_DESTDIR})
 	@${INSTALL_DATA} ${WRKDIR}/linux-opera.desktop ${PREFIX}/share/apps/Internet/
 	@${INSTALL_DATA} ${WRKDIR}/linux-opera.desktop ${PREFIX}/share/applnk/Internet/
 
