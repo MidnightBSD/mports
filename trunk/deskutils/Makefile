@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.35 2008/12/08 19:35:08 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.36 2008/12/10 15:45:35 ctriv Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -26,6 +26,7 @@
     SUBDIR += gucharmap
     SUBDIR += gworkspace
     SUBDIR += hot-babe
+    SUBDIR += javajj
     SUBDIR += jjclient
     SUBDIR += jlj
     SUBDIR += kbirthday
