@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/Makefile,v 1.1 2007/01/26 03:21:18 laffer1 Exp $
+# $MidnightBSD: mports/palm/Makefile,v 1.2 2008/10/13 17:29:57 laffer1 Exp $
 # $FreeBSD: ports/palm/Makefile,v 1.63 2006/09/22 09:59:10 ijliao Exp $
 #
 
@@ -10,6 +10,7 @@
     SUBDIR += imgvtopgm
     SUBDIR += isilo
     SUBDIR += jfconv
+    SUBDIR += libmal
     SUBDIR += mdbconv
     SUBDIR += palmos-sdk
     SUBDIR += pilot-link
