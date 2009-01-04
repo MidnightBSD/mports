@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.31 2008/04/14 22:08:10 crash Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.32 2008/06/05 18:04:54 laffer1 Exp $
 
     COMMENT = Archivers
 
@@ -18,6 +18,7 @@
     SUBDIR += lha-ac
     SUBDIR += libmspack
     SUBDIR += libunrar
+    SUBDIR += libzip
     SUBDIR += lzo
     SUBDIR += lzo2
     SUBDIR += p5-Archive-Tar
