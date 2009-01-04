@@ -2,14 +2,14 @@
 # Date created:		31 Mar 1998
 # Whom:			eivind/dima/jseger
 #
-# $MidnightBSD: mports/www/mozilla/Makefile,v 1.6 2008/06/13 05:43:06 laffer1 Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile,v 1.7 2008/06/13 06:43:17 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/Makefile,v 1.216 2007/01/18 22:37:11 mezz Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile,v 1.15 2006/10/18 17:29:07 ahze Exp $
 #
 
 PORTNAME=	mozilla
 PORTVERSION=	1.7.13
-PORTREVISION?=	3
+PORTREVISION?=	4
 PORTEPOCH=	2
 CATEGORIES?=	www
 MASTER_SITES=	${MASTER_SITE_MOZILLA} \
