@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.84 2009/01/03 02:15:14 ctriv Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.85 2009/01/03 02:42:34 ctriv Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -39,6 +39,7 @@
     SUBDIR += jpeg
     SUBDIR += kamera
     SUBDIR += kdegraphics3
+    SUBDIR += kdegraphics4
     SUBDIR += kooka
     SUBDIR += kuickshow
     SUBDIR += lcms
