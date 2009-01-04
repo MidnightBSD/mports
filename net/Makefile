@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.92 2008/10/11 20:19:00 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.93 2009/01/04 03:40:05 ctriv Exp $
 #
 
     COMMENT = Networking tools
@@ -32,6 +32,7 @@
     SUBDIR += iwi-firmware
     SUBDIR += jags
     SUBDIR += kdenetwork3
+    SUBDIR += kdenetwork4
     SUBDIR += ldap2dns
     SUBDIR += ldapdiff
     SUBDIR += libdnet
