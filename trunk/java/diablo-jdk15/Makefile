@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.7 2008/03/31 15:39:52 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.8 2008/04/22 19:28:43 ctriv Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -53,6 +53,9 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}
 .include <bsd.port.pre.mk>
 
 JDK_OSREL=freebsd6
+.if ${OSVERSION} >= 3000
+LIB_DEPENDS=  z.3:${PORTSDIR}/misc/compat6x
+.endif
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
