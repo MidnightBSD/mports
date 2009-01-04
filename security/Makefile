@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/security/Makefile,v 1.83 2008/09/24 14:03:58 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.84 2008/10/11 22:16:00 laffer1 Exp $
 #
 
     COMMENT = Security tools
 
     SUBDIR += aide
     SUBDIR += ca-roots
-    SUBDIR += ca_root_nss   
+    SUBDIR += ca_root_nss
     SUBDIR += chroot_safe
-    SUBDIR += clamav 
+    SUBDIR += clamav
     SUBDIR += courier-authlib
     SUBDIR += courier-authlib-base
     SUBDIR += courierpassd
@@ -35,6 +35,7 @@
     SUBDIR += libksba
     SUBDIR += libmcrypt
     SUBDIR += libntlm
+    SUBDIR += libotr
     SUBDIR += libssh2
     SUBDIR += libtasn1
     SUBDIR += linux-openssl
@@ -77,11 +78,12 @@
     SUBDIR += qca-tls
     SUBDIR += saint
     SUBDIR += secpwgen
-    SUBDIR += sshguard
-    SUBDIR += sshguard-ipfw
-    SUBDIR += sshguard-pf
     SUBDIR += smap
     SUBDIR += snort
+    SUBDIR += sshguard
+    SUBDIR += sshguard-ipfilter
+    SUBDIR += sshguard-ipfw
+    SUBDIR += sshguard-pf
     SUBDIR += sudo
     SUBDIR += tor
     SUBDIR += tripwire
