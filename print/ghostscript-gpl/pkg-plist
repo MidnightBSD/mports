@@ -1,22 +1,22 @@
-@comment $FreeBSD: ports/print/ghostscript-gpl/pkg-plist,v 1.41 2007/03/27 19:59:20 rafan Exp $
+@comment $FreeBSD: ports/print/ghostscript8/pkg-plist,v 1.50 2008/11/02 15:42:28 hrs Exp $
 bin/bdftops
 bin/dumphint
 bin/dvipdf
 bin/eps2eps
-bin/ert
+%%GS_dmprt%%bin/ert
 bin/fixmswrd.pl
 bin/font2c
 bin/gs
 bin/gsbj
-%%SHLIB%%bin/gsc
+bin/gsc
 bin/gsdj
 bin/gsdj500
 bin/gslj
 bin/gslp
 bin/gsnd
-%%SHLIB%%bin/gsx
+bin/gsx
 bin/lprsetup.sh
-bin/pcl3opts
+%%GS_pcl3%%bin/pcl3opts
 bin/pdf2dsc
 bin/pdf2ps
 bin/pdfopt
@@ -35,35 +35,13 @@ bin/ps2ps2
 bin/pv.sh
 bin/unix-lpr.sh
 bin/wftopfa
-%%SHLIB%%include/ghostscript/iapi.h
-%%SHLIB%%include/ghostscript/ierrors.h
-%%SHLIB%%lib/libgs.so
-%%SHLIB%%lib/libgs.so.%%SHLIB_VER%%
-%%SHLIB%%lib/libgs.so.%%GS_VERSION%%
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/alps/README.gdevalps
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/bj10v/gdev10v.jis
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/dmprt/gdevdmpr.sj
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/epag/ChangeLog
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/epag/ert.txt
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/epag/gdevepag.txt
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/epag/gsepagif.sh
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/epag/psprint
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/eplaser/readme-eplaser-705.euc
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/gdi/README
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/lips/Gdevlips.htm
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/lxm3200/README
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/lxm3200/RELEASE_NOTES
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/lxm3200/Z12-Z31-QuickSetup
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/md2k/README.jis
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/mjc/MJ700V2C.FAQ
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/mjc/README.mjc
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/mjc/README.mje
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/mjc/README.noz
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/mjc/cpem.doc
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/pcl3/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/pcl3/gs-pcl3.html
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/pcl3/how-to-report.txt
-%%PORTDOCS%%%%DOCSDIR%%/%%GS_VERSION%%/pcl3/pcl3opts.html
+include/ghostscript/gdevdsp.h
+include/ghostscript/iapi.h
+include/ghostscript/ierrors.h
+@dirrm include/ghostscript
+lib/libgs.so
+lib/libgs.so.%%SHLIB_VER%%
+lib/libgs.so.%%GS_VERSION%%
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-EUC-H
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-EUC-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/78-H
@@ -282,11 +260,19 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS-UTF32-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS-UTF8-H
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS-UTF8-V
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF16-H
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF16-V
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF32-H
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF32-V
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF8-H
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJIS2004-UTF8-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISPro-UCS2-HW-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISPro-UCS2-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISPro-UTF8-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISX0213-UTF32-H
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISX0213-UTF32-V
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISX02132004-UTF32-H
+%%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniJISX02132004-UTF32-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniKS-UCS2-H
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniKS-UCS2-V
 %%DATADIR%%/%%GS_VERSION%%/Resource/CMap/UniKS-UTF16-H
@@ -309,6 +295,41 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding/StandardEncoding
 %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding/Unicode
 %%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/Wingdings
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-Bold
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-BoldItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-Ital
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-Roma
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/Dingbats
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusMonL-Bold
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusMonL-BoldObli
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusMonL-Regu
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusMonL-ReguObli
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusRomNo9L-Medi
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusRomNo9L-MediItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusRomNo9L-Regu
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusRomNo9L-ReguItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-Bold
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-BoldCond
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-BoldCondItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-BoldItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-Regu
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-ReguCond
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-ReguCondItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/NimbusSanL-ReguItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/StandardSymL
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWBookmanL-DemiBold
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWBookmanL-DemiBoldItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWBookmanL-Ligh
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWBookmanL-LighItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWChanceryL-MediItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWGothicL-Book
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWGothicL-BookObli
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWGothicL-Demi
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWGothicL-DemiObli
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-Bold
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-BoldItal
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-Ital
+%%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-Roma
 %%DATADIR%%/%%GS_VERSION%%/doc/API.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/C-style.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Changes.htm
@@ -337,7 +358,6 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/doc/Issues.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Language.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Lib.htm
-%%DATADIR%%/%%GS_VERSION%%/doc/Maintain.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Make.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/News.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Projects.htm
@@ -349,7 +369,6 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/doc/Readme.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Release.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Source.htm
-%%DATADIR%%/%%GS_VERSION%%/doc/Testing.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Unix-lpr.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Use.htm
 %%DATADIR%%/%%GS_VERSION%%/doc/Xfonts.htm
@@ -368,11 +387,32 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/examples/tiger.eps
 %%DATADIR%%/%%GS_VERSION%%/examples/vasarely.ps
 %%DATADIR%%/%%GS_VERSION%%/examples/waterfal.ps
+%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/lib/FAPIcidfmap
+%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/lib/FAPIconfig
+%%FAPI%%%%DATADIR%%/%%GS_VERSION%%/lib/FAPIfontmap
 %%DATADIR%%/%%GS_VERSION%%/lib/FCOfontmap-PCLPS2
 %%DATADIR%%/%%GS_VERSION%%/lib/Fontmap
 %%DATADIR%%/%%GS_VERSION%%/lib/Fontmap.GS
 %%DATADIR%%/%%GS_VERSION%%/lib/PDFA_def.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/PDFX_def.ps
+%%DATADIR%%/%%GS_VERSION%%/lib/PM760p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/PM760pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/PM820p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/PM820pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc670p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc670pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc680p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc680pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc740p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc740pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc760p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc760pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc777p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stc777pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stp720p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stp720pl.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stp870p.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/Stp870pl.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/acctest.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/addxchar.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/align.ps
@@ -384,6 +424,8 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/bj8pa06n.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/bj8pp12f.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/bj8ts06n.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/bjc6000a1.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/bjc6000b1.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/bjc610a0.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/bjc610a1.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/bjc610a2.upp
@@ -512,9 +554,9 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/landscap.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/level1.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/lines.ps
-%%DATADIR%%/%%GS_VERSION%%/lib/lqx70ch.upp
-%%DATADIR%%/%%GS_VERSION%%/lib/lqx70cl.upp
-%%DATADIR%%/%%GS_VERSION%%/lib/lqx70cm.upp
+%%GS_dmprt%%%%DATADIR%%/%%GS_VERSION%%/lib/lqx70ch.upp
+%%GS_dmprt%%%%DATADIR%%/%%GS_VERSION%%/lib/lqx70cl.upp
+%%GS_dmprt%%%%DATADIR%%/%%GS_VERSION%%/lib/lqx70cm.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/markhint.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/markpath.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/mkcidfm.ps
@@ -525,6 +567,7 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/pcharstr.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf2dsc.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf_base.ps
+%%DATADIR%%/%%GS_VERSION%%/lib/pdf_cslayer.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf_draw.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf_font.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf_main.ps
@@ -551,8 +594,12 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/ras4.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/ras8m.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/rollconv.ps
+%%DATADIR%%/%%GS_VERSION%%/lib/s400a1.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/s400b1.upp
+%%DATADIR%%/%%GS_VERSION%%/lib/sharp.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/showchar.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/showpage.ps
+%%DATADIR%%/%%GS_VERSION%%/lib/sipixa6.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/st640ih.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/st640ihg.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/st640p.upp
@@ -575,8 +622,6 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/stc600pl.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/stc640p.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/stc740ih.upp
-%%DATADIR%%/%%GS_VERSION%%/lib/stc740p.upp
-%%DATADIR%%/%%GS_VERSION%%/lib/stc740pl.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/stc800ih.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/stc800p.upp
 %%DATADIR%%/%%GS_VERSION%%/lib/stc800pl.upp
@@ -605,27 +650,23 @@ bin/wftopfa
 %%DATADIR%%/%%GS_VERSION%%/lib/wrfont.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/xlatmap
 %%DATADIR%%/%%GS_VERSION%%/lib/zeroline.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/BUGS
-%%DATADIR%%/%%GS_VERSION%%/pcl3/NEWS
-%%DATADIR%%/%%GS_VERSION%%/pcl3/README
-%%DATADIR%%/%%GS_VERSION%%/pcl3/calign.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/dumppdd.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/example.mcf
-%%DATADIR%%/%%GS_VERSION%%/pcl3/if-pcl3
-%%DATADIR%%/%%GS_VERSION%%/pcl3/levels-test.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-A4.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-A4Rotated.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Env10Rotated.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-EnvDLRotated.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Letter.ps
-%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-LetterRotated.ps
-@exec ln -s -f %D/share/fonts/CIDFont %%CIDFONTDIR%%/CIDFont
-@unexec rm -f %%CIDFONTDIR%%/CIDFont
-%%SHLIB%%@dirrm include/ghostscript
-@dirrm %%DATADIR%%/%%GS_VERSION%%/pcl3
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/calign.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/dumppdd.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/example.mcf
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/if-pcl3
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/levels-test.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-A4.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-A4Rotated.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Env10Rotated.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-EnvDLRotated.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-Letter.ps
+%%GS_pcl3%%%%DATADIR%%/%%GS_VERSION%%/pcl3/margins-LetterRotated.ps
+%%CIDFONTDIR%%/CIDFont
+%%GS_pcl3%%@dirrm %%DATADIR%%/%%GS_VERSION%%/pcl3
 @dirrm %%DATADIR%%/%%GS_VERSION%%/lib
 @dirrm %%DATADIR%%/%%GS_VERSION%%/examples
 @dirrm %%DATADIR%%/%%GS_VERSION%%/doc
+@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Font
 @dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Encoding
 @dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding
 @dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/ColorSpace
@@ -633,16 +674,3 @@ bin/wftopfa
 @dirrm %%DATADIR%%/%%GS_VERSION%%/Resource
 @dirrmtry %%DATADIR%%/%%GS_VERSION%%
 @dirrmtry %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/pcl3
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/mjc
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/md2k
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/lxm3200
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/lips
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/gdi
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/eplaser
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/epag
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/dmprt
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/bj10v
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%/alps
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/%%GS_VERSION%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
