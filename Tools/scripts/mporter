@@ -252,14 +252,16 @@ subdirs, and then update the file on disk.
 		}
 		
 		
-		if (m/SUBDIR\s*\+?=\s*([\.\w+-]+)/) {
+		my $linere = qr/SUBDIR\s*\+?=\s*(\S+)/;
+		
+		if (m/$linere/) {
 			push(@{$self->{subdirs}}, $1);
 		} else {
 			die "Couldn't match first subdir.";
 		}
 		
 		while (<$fh>) {
-			last unless m/SUBDIR\s*\+?=\s*([\.\w-]+)/;
+			last unless m/$linere/;
 			push(@{$self->{subdirs}}, $1);
 		}
 		
