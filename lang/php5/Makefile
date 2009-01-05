@@ -2,7 +2,7 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.21 2008/12/10 19:31:37 ctriv Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.22 2009/01/01 23:28:12 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
@@ -25,13 +25,15 @@ USE_BZIP2=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf:262
 
-CONFIGURE_ARGS=	--enable-versioning \
+CONFIGURE_ARGS=	\
+		--enable-versioning \
 		--enable-memory-limit \
 		--with-layout=GNU \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--enable-libxml \
 		--with-libxml-dir=${LOCALBASE} \
+		--with-pcre-regex=yes \
 		--enable-reflection \
 		--program-prefix=""
 
@@ -161,6 +163,10 @@ post-build:
 	@${ECHO_CMD} "PHP_VER=5" > ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_VERSION=${PORTVERSION}" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_SAPI=${PHP_SAPI}" >> ${WRKDIR}/php.conf
+	@${ECHO_CMD} "PHP_EXT_INC=pcre" >> ${WRKDIR}/php.conf
+
+test: build
+	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/php.ini-dist ${PREFIX}/etc
