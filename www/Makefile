@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/Makefile,v 1.86 2008/10/15 21:44:58 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.87 2008/11/12 20:48:20 crash Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
 
+    SUBDIR += analog
     SUBDIR += apache20
     SUBDIR += apache22
-    SUBDIR += analog
     SUBDIR += aria2
     SUBDIR += awstats
     SUBDIR += bluefish
@@ -31,6 +31,7 @@
     SUBDIR += google-sitemapgen
     SUBDIR += gtkhtml3
     SUBDIR += kdewebdev
+    SUBDIR += kdewebdev4
     SUBDIR += libgtkhtml
     SUBDIR += libwww
     SUBDIR += lighttpd
@@ -51,8 +52,10 @@
     SUBDIR += man2web
     SUBDIR += mediawiki
     SUBDIR += midori
+    SUBDIR += mod_fastcgi
     SUBDIR += mod_perl2
     SUBDIR += moinmoin
+    SUBDIR += mozilla
     SUBDIR += nanoblogger
     SUBDIR += neon
     SUBDIR += neon26
@@ -92,10 +95,10 @@
     SUBDIR += tidy-lib
     SUBDIR += tomcat55
     SUBDIR += tomcat6
-    SUBDIR += youtube_dl
     SUBDIR += validator
     SUBDIR += webkit-gtk2
     SUBDIR += weblint
     SUBDIR += webserver
+    SUBDIR += youtube_dl
 
 .include <bsd.port.subdir.mk>
