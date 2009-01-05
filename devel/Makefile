@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.269 2009/01/04 00:40:38 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.270 2009/01/05 00:24:50 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -96,6 +96,7 @@
     SUBDIR += imake-6
     SUBDIR += judy
     SUBDIR += kdesdk3
+    SUBDIR += kdesdk4
     SUBDIR += kdevelop
     SUBDIR += libIDL
     SUBDIR += libbonobo
