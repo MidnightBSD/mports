@@ -245,12 +245,6 @@ USE_OPENSSL=	yes
 CONFIGURE_ARGS+=--enable-pcntl
 .endif
 
-.if ${PHP_MODNAME} == "pcre"
-CONFIGURE_ARGS+=--with-pcre-regex=yes
-
-PHP_HEADER_DIRS=pcrelib
-.endif
-
 .if ${PHP_MODNAME} == "pdo"
 CONFIGURE_ARGS+=--enable-pdo
 .endif
@@ -393,7 +387,7 @@ CONFIGURE_ARGS+=--enable-spl \
 
 USE_GNOME=	libxml2
 
-USE_PHP=	pcre simplexml
+USE_PHP=	simplexml
 USE_PHP_BUILD=	yes
 .endif
 
@@ -585,11 +579,6 @@ CONFIGURE_ARGS+=--disable-mbregex
 .endif
 
 .if ${PHP_MODNAME} == "openssl"
-post-extract:
-	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
-.endif
-
-.if ${PHP_MODNAME} == "pcre"
 post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
 .endif
