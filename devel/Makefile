@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.268 2008/12/22 21:00:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.269 2009/01/04 00:40:38 ctriv Exp $
 #
 
     COMMENT = Development utilities
@@ -246,7 +246,6 @@
     SUBDIR += php5-gettext
     SUBDIR += php5-ncurses
     SUBDIR += php5-pcntl
-    SUBDIR += php5-pcre
     SUBDIR += php5-readline
     SUBDIR += php5-shmop
     SUBDIR += php5-spl
