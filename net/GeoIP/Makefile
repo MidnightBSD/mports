@@ -2,13 +2,14 @@
 # Date created:				May 17 2008
 # Whom:	      				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.1 2008/05/18 18:41:55 laffer1 Exp $
 #
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.4.4
+PORTVERSION=	1.4.5
 CATEGORIES=	net geography
-MASTER_SITES=	http://www.maxmind.com/download/geoip/api/c/
+MASTER_SITES=	http://www.maxmind.com/download/geoip/api/c/ \
+		http://mirror.mcx2.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Find the country that any IP address or hostname originates from
@@ -20,5 +21,8 @@ USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 
 MAN1=		geoiplookup.1 geoipupdate.1
+
+post-install:
+	${INSTALL_SCRIPT} ${FILESDIR}/geoipupdate.sh ${PREFIX}/bin/
 
 .include <bsd.port.mk>
