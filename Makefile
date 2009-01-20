@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Makefile,v 1.38 2008/04/17 18:49:52 crash Exp $
+# $MidnightBSD: mports/Makefile,v 1.39 2008/06/14 04:06:01 laffer1 Exp $
 #
 
 SUBDIR += accessibility
@@ -35,6 +35,7 @@ SUBDIR += news
 SUBDIR += palm
 SUBDIR += ports-mgmt
 SUBDIR += print
+SUBDIR += science
 SUBDIR += security
 SUBDIR += shells
 SUBDIR += sysutils
