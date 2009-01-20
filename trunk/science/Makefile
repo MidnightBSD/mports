@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/science/Makefile,v 1.3 2008/12/26 12:31:39 laffer1 Exp $
+# $MidnightBSD: mports/science/Makefile,v 1.4 2009/01/20 15:33:48 laffer1 Exp $
 
-COMMENT= science
+COMMENT= Scientific applications
 
 SUBDIR += cfitsio
 SUBDIR += openbabel
