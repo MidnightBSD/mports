@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/science/Makefile,v 1.2 2008/12/20 02:59:57 ctriv Exp $
+# $MidnightBSD: mports/science/Makefile,v 1.3 2008/12/26 12:31:39 laffer1 Exp $
 
-    COMMENT= science
+COMMENT= science
 
-    SUBDIR += cfitsio
-    SUBDIR += openbabel
+SUBDIR += cfitsio
+SUBDIR += openbabel
 
 .include <bsd.port.subdir.mk>
