@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.2 2008/11/17 21:42:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -350,8 +350,13 @@ show-modules:
 
 .elif defined(AP_PORT_IS_MODULE)
 
+.if exists(${APXS}) 
 APR_CONFIG!=	${APXS} -q APR_CONFIG
 AP_LIBTOOL!=	${APR_CONFIG} --apr-libtool
+.else
+APR_CONFIG=		${LOCALBASE}/bin/apr-1-config
+AP_LIBTOOL=		${LOCALBASE}/build-1/libtool
+.endif
 
 .if defined(AP_FAST_BUILD)
 .if !target(ap-gen-plist)
