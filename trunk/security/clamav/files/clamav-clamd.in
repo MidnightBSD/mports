@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # $FreeBSD: ports/security/clamav/files/clamav-clamd.in,v 1.2 2008/04/16 16:05:54 garga Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/clamav/files/clamav-clamd.in,v 1.3 2008/04/18 21:40:47 laffer1 Exp $
 
 # PROVIDE: clamd
 # REQUIRE: LOGIN
@@ -36,8 +36,8 @@ start_precmd=clamav_clamd_precmd
 
 #clamav .93 won't start without a valid main.cvd file
 clamav_clamd_precmd() {
-	if [ ! -f %%DBDIR%%/main.cvd ];then
-		echo "Missing %%DBDIR%%/clamav/*.cvd files.  You must run freshclam first"
+	if [ ! -f %%DBDIR%%/main.cvd -a ! -f %%DBDIR%%/main.cld ];then
+		echo "Missing %%DBDIR%%/*.cvd or *.cld files.  You must run freshclam first"
 		exit 1
 	fi
 }
