@@ -2,12 +2,12 @@
 # Date created:		15 July 2002
 # Whom:			markun@onohara.to
 #
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.14 2008/07/13 03:30:16 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.15 2008/09/24 13:47:04 laffer1 Exp $
 # $FreeBSD: ports/security/clamav/Makefile,v 1.95 2007/03/16 19:16:32 garga Exp $
 #
 
 PORTNAME=	clamav
-PORTVERSION=	0.94
+PORTVERSION=	0.94.2
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -28,7 +28,7 @@ OPTIONS=	ARC "Enable arch archives support" On \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
 
-USE_AUTOTOOLS=	libtool:15
+GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
@@ -43,9 +43,9 @@ PLIST_SUB+=	DBDIR=${DBDIR} LOGDIR=${LOGDIR} RUNDIR=${RUNDIR}
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--with-dbdir=${DBDIR} \
+		--libdir=${PREFIX}/lib \
 		--with-zlib=/usr \
 		--mandir=${MANPREFIX}/man \
-		--disable-zlib-vcheck \
 		--disable-clamuko \
 		--disable-clamav \
 		--enable-bigstack \
