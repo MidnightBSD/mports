@@ -9,6 +9,7 @@
 #	gsed 's/^\(.*\)mod\(.*\)\.so/%%\MOD\U\2%%\L\1mod\2\.so/' pkg-plist > tmp
 #	mv tmp pkg-plist
 #
+# $MidnightBSD$
 # $FreeBSD: ports/www/apache22/Makefile.modules,v 1.21 2007/01/13 13:18:35 clement Exp $
 #
 
