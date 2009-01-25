@@ -2,12 +2,12 @@
 # Date created:			Sun Jul 18 15:07:26 CEST 2004
 # Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
 #
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.5 2008/09/09 21:26:23 crash Exp $
+# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.6 2008/09/30 23:55:08 laffer1 Exp $
 # $FreeBSD: ports/archivers/p7zip/Makefile,v 1.29 2007/07/17 07:10:19 sat Exp $
 #
 
 PORTNAME=	p7zip
-PORTVERSION=	4.58
+PORTVERSION=	4.61
 PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	SF
