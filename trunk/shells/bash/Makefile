@@ -3,12 +3,12 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.7 2008/10/01 19:54:15 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.8 2008/10/01 20:03:03 laffer1 Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
 PORTNAME=		bash
-PATCHLEVEL=		39
+PATCHLEVEL=		48
 PORTVERSION=		3.2.${PATCHLEVEL:S/^0//g}
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
