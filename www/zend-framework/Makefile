@@ -1,0 +1,140 @@
+# $MidnightBSD$
+
+PORTNAME=	ZendFramework
+PORTVERSION=	1.7.3
+CATEGORIES=	www
+MASTER_SITES=	http://framework.zend.com/releases/${DISTNAME}/ GENTOO/distfiles
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A framework for developing PHP web applications
+LICENSE=	unknown
+
+NO_BUILD=	yes
+USE_PHP=	spl
+WANT_PHP_WEB=	yes
+USE_GETTEXT=	yes
+
+SUB_FILES=	pkg-message
+
+OPTIONS=	\
+		EDOJO "Install embedded Dojo" On \
+		PDOJO "Install Dojo from ports" Off \
+		INCUBATOR "Install incubator classes" Off \
+		MYSQL "Install MySQL PDO support" Off \
+		MYSQLI "Install MySQLi support" Off \
+		DBLIB "Install DBLIB PDO support" Off \
+		PGSQL "Install PostgreSQL PDO support" Off \
+		ODBC "Install ODBC PDO support" Off \
+		SQLITE "Install SQLite v3 PDO support" Off \
+		REQPHP "Install required PHP dependencies" On \
+		OPTPHP "Install optional PHP dependencies" Off
+
+#OCI "Install Oracle OCI 8 PDO support" Off \
+
+.if !defined(NOPORTDOCS)
+PORTDOCS=	INSTALL.txt README.txt
+.endif
+
+.include <bsd.port.pre.mk>
+
+# Check for mutually-exclusive options
+.if defined(WITH_EDOJO) && defined(WITH_PDOJO)
+IGNORE=		please select only one type of Dojo installation
+.endif
+
+INSTALL_DIRS=	library
+
+.if defined(WITH_EDOJO)
+DOJO=		""
+INSTALL_DIRS+=	externals
+CONFLICTS+=	dojo-1.*
+.else
+DOJO=		"@comment "
+.endif
+PLIST_SUB+=	DOJO=${DOJO}
+
+.if defined(WITH_INCUBATOR)
+INCUBATOR=	""
+INSTALL_DIRS+=	incubator
+.else
+INCUBATOR=	"@comment "
+.endif
+PLIST_SUB+=	INCUBATOR=${INCUBATOR}
+
+.if defined(WITH_PDOJO)
+RUN_DEPENDS+=	dojo>=0:${PORTSDIR}/www/dojo
+.endif
+
+# Add all of the required and/or optional PHP extension dependencies,
+# if chosen by the user.
+#
+# See http://framework.zend.com/manual/en/requirements.extensions.html for
+# a table of what PHP extensions are required for what ZF classes.
+
+.if defined(WITH_REQPHP)
+USE_PHP+=	apc ctype curl dom gd hash iconv mbstring \
+		memcache pdo session simplexml soap xml zlib
+.endif
+.if defined(WITH_OPTPHP)
+USE_PHP+=	bcmath bitset json posix
+.endif
+
+.if defined(WITH_MYSQL)
+USE_PHP+=	pdo_mysql
+.endif
+
+.if defined(WITH_MYSQLI)
+USE_PHP+=	mysqli
+.endif
+
+.if defined(WITH_DBLIB)
+RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/pdo_dblib.so:${PORTSDIR}/databases/php5-pdo_dblib
+.endif
+
+.if defined(WITH_PGSQL)
+RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/pdo_pgsql.so:${PORTSDIR}/databases/php5-pdo_pgsql
+.endif
+
+#.if defined(WITH_OCI)
+#RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/pdo_oci.so:${PORTSDIR}/databases/php5-pdo_oci
+#.endif
+
+.if defined(WITH_ODBC)
+RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/pdo_odbc.so:${PORTSDIR}/databases/php5-pdo_odbc
+.endif
+
+.if defined(WITH_SQLITE)
+USE_PHP+=	pdo_sqlite
+.endif
+
+do-install:
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} "${INSTALL_DIRS}" ${DATADIR}
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${DATADIR}
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} \
+		${DATADIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
+	@${FIND} ${DATADIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
+	@${ECHO_CMD} '@exec ${FIND} ${DATADIR} -type f -print0 | \
+		${XARGS} -0 ${CHMOD} 644' >> ${TMPPLIST}
+	@${FIND} ${DATADIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${ECHO_CMD} '@exec ${FIND} ${DATADIR} -type d -print0 | \
+		${XARGS} -0 ${CHMOD} 755' >> ${TMPPLIST}
+.if !defined(NOPORTEXAMPLES)
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} "demos tests" ${EXAMPLESDIR}
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${EXAMPLESDIR}
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} \
+		${EXAMPLESDIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
+	@${FIND} ${EXAMPLESDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
+	@${ECHO_CMD} '@exec ${FIND} ${EXAMPLESDIR} -type f -print0 | \
+		${XARGS} -0 ${CHMOD} 644' >> ${TMPPLIST}
+	@${FIND} ${EXAMPLESDIR} -type d -print0 | ${XARGS} -0 ${CHMOD} 755
+	@${ECHO_CMD} '@exec ${FIND} ${EXAMPLESDIR} -type d -print0 | \
+		${XARGS} -0 ${CHMOD} 755' >> ${TMPPLIST}
+.endif
+
+post-install:
+.if !defined(NOPORTDOCS)
+	@${INSTALL} -d ${DOCSDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} "${PORTDOCS}" ${DOCSDIR}
+.endif
+
+.include <bsd.port.post.mk>
