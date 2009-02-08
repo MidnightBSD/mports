@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.271 2009/01/05 02:34:18 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.272 2009/01/05 04:11:05 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -41,6 +41,7 @@
     SUBDIR += cmake
     SUBDIR += cscope
     SUBDIR += ctags
+    SUBDIR += cunit
     SUBDIR += cvs2svn
     SUBDIR += cvsbook
     SUBDIR += cvschangelogbuilder
