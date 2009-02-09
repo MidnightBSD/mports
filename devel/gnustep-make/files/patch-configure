@@ -1,0 +1,11 @@
+--- configure.orig	2008-05-25 07:16:03 -0400
++++ configure	2009-02-09 02:18:49 -0500
+@@ -3699,7 +3699,7 @@
+ # specific target_os options
+ #--------------------------------------------------------------------
+ case "$target_os" in
+-  freebsd* | openbsd* )
++  freebsd* | midnightbsd* | openbsd* )
+ 	        INCLUDES="$INCLUDES -I/usr/local/include"
+ 		LIB_DIR="$LIB_DIR -L/usr/local/lib";;
+   netbsd*)	INCLUDES="$INCLUDES -I/usr/pkg/include"
