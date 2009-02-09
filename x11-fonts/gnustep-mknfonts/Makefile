@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.3 2007/11/07 20:20:09 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/gnustep-mknfonts/Makefile,v 1.1 2009/02/09 07:42:12 laffer1 Exp $
 
 PORTNAME=	mknfonts
 PORTVERSION=	0.5
+PORTREVISION=	1
 CATEGORIES=	x11-fonts gnustep
 MASTER_SITES=	http://ftp.debian.org/debian/pool/main/m/mknfonts.tool/
 PKGNAMEPREFIX=	gnustep-
