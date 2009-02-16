@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.272 2009/01/05 04:11:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.273 2009/02/08 23:08:37 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -246,6 +246,7 @@
     SUBDIR += pecl-json
     SUBDIR += performance
     SUBDIR += perltidy
+    SUBDIR += php-dbg2
     SUBDIR += php5-gettext
     SUBDIR += php5-ncurses
     SUBDIR += php5-pcntl
