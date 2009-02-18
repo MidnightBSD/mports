@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.274 2009/02/16 23:42:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.275 2009/02/18 19:44:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -92,6 +92,7 @@
     SUBDIR += gstreamer-plugins-gnomevfs
     SUBDIR += gvfs
     SUBDIR += highlighterkit
+    SUBDIR += hs-haddock
     SUBDIR += icu
     SUBDIR += imake
     SUBDIR += imake-6
