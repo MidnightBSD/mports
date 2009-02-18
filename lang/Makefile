@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.47 2008/12/16 17:09:55 ctriv Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.48 2008/12/20 02:54:55 ctriv Exp $
 
     COMMENT = Programming languages
 
@@ -14,6 +14,7 @@
     SUBDIR += gcc42
     SUBDIR += gcc42-withgcjawt
     SUBDIR += gcc43
+    SUBDIR += ghc
     SUBDIR += gnustep-base
     SUBDIR += gnustep-guile
     SUBDIR += gnustep-objc
