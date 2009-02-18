@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.39 2008/09/26 18:16:38 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.40 2009/01/04 00:30:23 ctriv Exp $
 #
 
     COMMENT = Desktop publishing
@@ -31,6 +31,8 @@
     SUBDIR += gimp-print
     SUBDIR += gsfonts
     SUBDIR += gv
+    SUBDIR += hs-hscolour
+    SUBDIR += hs-hscolour-docs
     SUBDIR += jadetex
     SUBDIR += libgnomecups
     SUBDIR += libgnomeprint
