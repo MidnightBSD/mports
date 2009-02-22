@@ -2,13 +2,13 @@
 # Date created:		24 November 1994
 # Whom:			asami
 #
-# $MidnightBSD: mports/graphics/xli/Makefile,v 1.1 2006/10/09 20:41:51 wintellect Exp $
+# $MidnightBSD: mports/graphics/xli/Makefile,v 1.2 2007/11/10 00:35:35 laffer1 Exp $
 # $FreeBSD: ports/graphics/xli/Makefile,v 1.29 2005/10/22 13:20:30 jkoshy Exp $
 #
 
 PORTNAME=	xli
 PORTVERSION=	1.17.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	http://pantransit.reptiles.org/prog/xli/ \
 		${MASTER_SITE_XCONTRIB}
@@ -24,7 +24,7 @@ LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
 
 WRKSRC=		${WRKDIR}/xli-${XLI_SNAPVER}
 FAKE_MAKEARGS+=	DESTDIR=${FAKE_DESTDIR}
-USE_XLIB=	yes
+USE_XORG=	xi
 USE_IMAKE=	yes
 MAN1=		xli.1 xlito.1
 MLINKS=		xli.1 xview.1 \
