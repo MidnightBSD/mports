@@ -2,11 +2,11 @@
 # Date created:			3 Oct 2004
 # Whom:				Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/gstreamer-plugins-flac/Makefile,v 1.1 2007/12/06 05:00:33 laffer1 Exp $
+# $MidnightBSD: mports/audio/gstreamer-plugins-flac/Makefile,v 1.2 2008/03/26 04:33:52 ctriv Exp $
 # $FreeBSD: ports/audio/gstreamer-plugins-flac/Makefile,v 1.7 2007/05/19 19:58:55 flz Exp $
 #
 
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 
 COMMENT=	Gstreamer free lossless audio encoder/decoder plugin
