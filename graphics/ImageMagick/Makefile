@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.3 2009/02/22 21:40:56 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.4.8-3
@@ -18,6 +18,7 @@ MASTER_SITE_SUBDIR=	imagemagick
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image processing tools
+LICENSE=	other
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
