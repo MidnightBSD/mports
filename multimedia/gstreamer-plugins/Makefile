@@ -2,14 +2,14 @@
 # Date created:		Wed Jul 10 23:38:01 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.4 2008/11/10 19:12:35 ctriv Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.5 2008/11/13 20:17:54 ctriv Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile,v 1.110 2007/03/08 12:50:40 ahze Exp $
 #   $MCom: ports/multimedia/gstreamer-plugins/Makefile,v 1.100 2006/09/14 21:02:22 ahze Exp $
 #
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	1
+PORTREVISION?=	2
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
