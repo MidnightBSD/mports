@@ -136,7 +136,6 @@ lib/ImageMagick-%%PORTVERSION%%/config/francais.xml
 lib/ImageMagick-%%PORTVERSION%%/config/locale.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type-ghostscript.xml
-lib/ImageMagick-%%PORTVERSION%%/config/type-solaris.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type-windows.xml
 lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/art.a
@@ -461,15 +460,15 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/filters/.keep
 lib/libMagick++.a
 lib/libMagick++.la
 lib/libMagick++.so
-lib/libMagick++.so.1
+lib/libMagick++.so.2
 lib/libMagickCore.a
 lib/libMagickCore.la
 lib/libMagickCore.so
-lib/libMagickCore.so.1
+lib/libMagickCore.so.2
 lib/libMagickWand.a
 lib/libMagickWand.la
 lib/libMagickWand.so
-lib/libMagickWand.so.1
+lib/libMagickWand.so.2
 libdata/pkgconfig/ImageMagick++.pc
 libdata/pkgconfig/Magick++.pc
 libdata/pkgconfig/ImageMagick.pc
