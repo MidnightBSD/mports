@@ -1,14 +1,8 @@
-# New ports collection makefile for:    yap
-# Date created:         30 Dec 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/graphics/yap/Makefile,v 1.1 2007/04/07 18:45:52 laffer1 Exp $
-# $FreeBSD: ports/graphics/yap/Makefile,v 1.3 2007/02/18 18:51:41 dinoex Exp $
-#
+# $MidnightBSD: mports/graphics/yap/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
 
 PORTNAME=	yap
 PORTVERSION=	0.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://www.gnustep.it/marko/GPSText/
 DISTNAME=	Yap
@@ -17,6 +11,7 @@ DIST_SUBDIR=	repacked/2007-02-15
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep a2ps/gs frontend
+LICENSE=	gpl2
 
 RUN_DEPENDS+=	a2ps:${PORTSDIR}/print/a2ps-${PAPERSIZE}
 
@@ -32,7 +27,6 @@ PAPERSIZE?=	letter
 
 .if ${PAPERSIZE} != a4 && ${PAPERSIZE} != letter && ${PAPERSIZE} != letterdj
 .BEGIN:
-	@${ECHO_CMD}
 	@${ECHO_CMD} "PAPERSIZE incorrect value: ${PAPERSIZE}."
 	@${ECHO_CMD}
 	@${ECHO_CMD} "Must specify PAPERSIZE as one of a4, letter, or letterdj."
