@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.3 2009/02/22 21:40:56 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.4 2009/02/22 21:56:28 laffer1 Exp $
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.4.8-3
+DISTVERSION=	6.4.9-3
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/ \
