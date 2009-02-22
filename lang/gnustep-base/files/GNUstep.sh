@@ -1,4 +1,5 @@
 #!/bin/sh
+# $MidnightBSD$
 
 PREFIX=%%PREFIX%%
 IFFILE=${PREFIX}/etc/gdomap_if
