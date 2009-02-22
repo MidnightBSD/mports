@@ -2,18 +2,20 @@
 # Date Created:		22 May 1999
 # Whom:			Chris Piazza <cpiazza@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.1 2007/03/21 00:51:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.2 2007/03/21 01:01:17 laffer1 Exp $
 # $FreeBSD: ports/graphics/libwmf/Makefile,v 1.41 2007/02/01 02:41:41 kris Exp $
 #
 
 PORTNAME=	libwmf
 PORTVERSION=	0.2.8.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	wvware
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library for converting Microsoft WMF (windows metafile)
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	freetype-config:${PORTSDIR}/print/freetype2     # XXX
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -34,7 +36,7 @@ PKGNAMESUFFIX=	-nox11
 CONFIGURE_ARGS+=	--with-x=no
 PLIST_SUB+=	X11='@comment '
 .else
-USE_XLIB=	yes
+USE_XORG=	x11
 PLIST_SUB+=	X11=''
 .endif
 
