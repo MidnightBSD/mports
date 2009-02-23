@@ -4,12 +4,13 @@
 #			Mikhail Teterin <mi@aldan.algebra.com>
 #			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.3 2007/08/25 04:59:28 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.4 2008/06/13 02:22:15 laffer1 Exp $
 # $FreeBSD: ports/graphics/tiff/Makefile,v 1.61 2006/04/08 20:22:41 dinoex Exp $
 #
 
 PORTNAME=	tiff
 PORTVERSION=	3.8.2
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://dl1.maptools.org/dl/libtiff/
@@ -29,7 +30,8 @@ LDFLAGS+=	-lcompat
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
 
 .if defined(WITH_X11) && !defined(WITHOUT_X11)
-USE_XLIB=	yes
+USE_XORG=	sm ice xmu xi x11
+USE_GL=		glut glu gl
 .else
 CONFIGURE_ARGS+=	--without-x --without-libgl
 .endif
