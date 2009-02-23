@@ -3,13 +3,13 @@
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.4 2008/06/05 18:20:42 laffer1 Exp $
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.5 2008/06/06 09:26:13 crash Exp $
 #
 
 PORTNAME=	ltmdm
 PORTVERSION=	1.4
-PORTREVISION=	20
-CATEGORIES=	comms 
+PORTREVISION=	21
+CATEGORIES=	comms kld
 MASTER_SITES=	http://www.dons.net.au/~darius/
 EXTRACT_SUFX=	.tgz
 
@@ -23,7 +23,7 @@ BUILD_WRKSRC=	${WRKSRC}/sys/modules/ltmdm
 NO_WRKSUBDIR=	yes
 SUB_FILES+=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
-RESTRICTED=	"Unknown license type for binary object file ltmdmobj.o"
+RESTRICTED=	Unknown license type for binary object file ltmdmobj.o
 
 LTMDM_DEV_MAJOR?=	228
 LTMDM_OBJ_VERSION?=	600
