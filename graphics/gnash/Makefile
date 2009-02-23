@@ -2,19 +2,20 @@
 # Date created:				12 Jan 2006
 # Whom:					Dmitry Marakasov <amdmi3@amdmi3.ru>
 #
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.1 2007/03/15 02:27:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.2 2007/03/25 03:34:42 ctriv Exp $
 # $FreeBSD: ports/graphics/gnash/Makefile,v 1.13 2007/02/10 06:05:01 kris Exp $
 #
 
 PORTNAME=	gnash
 PORTVERSION=	0.7.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Flash movie player
+LICENSE=	gpl2
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -27,7 +28,6 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehier glib20 pkgconfig libxml2
 USE_SDL=	sdl mixer
-USE_GCC=	3.4+
 
 PLUGIN_DIR=	${PREFIX}/lib/browser_plugins
 
