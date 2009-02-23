@@ -2,18 +2,18 @@
 # Date created:		Di   5 Mai 1998 21:31:03 CEST
 # Whom:			andreas
 #
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.2 2008/02/27 19:50:48 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.3 2008/09/25 01:01:53 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 #
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.4p5
+PORTVERSION=	4.2.4p6
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
 		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
 		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ \
 		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-rc/}
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-RC/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Network Time Protocol Distribution
