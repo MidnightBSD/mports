@@ -1,12 +1,7 @@
-# New ports collection makefile for:    python25
-# Date created:         3 July 2003
-# Whom:                 Hye-Shik Chang <perky@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/lang/python25/Makefile,v 1.144 2007/07/30 09:41:36 alexbl Exp $
+# $MidnightBSD: mports/lang/python25/Makefile,v 1.3 2008/04/18 21:10:33 laffer1 Exp $
 
 PORTNAME=	python25
-PORTVERSION=	2.5.2
+PORTVERSION=	2.5.4
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
