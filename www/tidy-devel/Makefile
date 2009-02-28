@@ -1,15 +1,9 @@
-# New ports collection makefile for:	tidy
-# Date created:		27 Oct 1998
-# Whom:			Abel Chow <achow@transoft.net>
-#
-# $MidinghtBSD$
-# $FreeBSD: ports/www/tidy-devel/Makefile,v 1.159 2007/09/30 04:47:34 linimon Exp $
-#
+# $MidnightBSD$
 
 PORTNAME?=	tidy
-DISTVERSION=	070813-cvs
+DISTVERSION=	080621-cvs
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 #MASTER_SITES=	http://tidy.sourceforge.net/src/%SUBDIR%/	\
 #		http://tidy.sourceforge.net/docs/:docs
 #MASTER_SITE_SUBDIR=	. old
@@ -31,9 +25,9 @@ USE_GMAKE=	yes
 PLIST_SUB=	SHLIB="@comment " NSHLIB=""
 CONFLICTS=	tidy-20000804* tidy-lib-[0-9]*
 .else
-USE_AUTOTOOLS=	automake:15 autoconf:261 libtool:15
+USE_AUTOTOOLS=	automake:15 autoconf:262 libtool:15
 AUTOMAKE_ARGS+=	-a -c --foreign
-CONFIGURE_TARGET=	 --target=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	 --target=${MACHINE_ARCH}-portbld-freebsd6.1
 USE_LDCONFIG=	yes
 PLIST_SUB=	SHLIB="" NSHLIB="@comment "
 CONFLICTS=	tidy-20000804* tidy-devel-[0-9]*
