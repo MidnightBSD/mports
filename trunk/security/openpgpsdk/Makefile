@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openpgpsdk/Makefile,v 1.1 2009/02/08 23:30:08 laffer1 Exp $
+# $MidnightBSD: mports/security/openpgpsdk/Makefile,v 1.2 2009/02/08 23:33:59 laffer1 Exp $
 
 PORTNAME=	openpgpsdk
 PORTVERSION=	0.9
@@ -12,7 +12,7 @@ LICENSE=	bsd3
 
 USE_PERL5=	yes
 HAS_CONFIGURE=	YES
-USE_AUTOTOOLS=	autoheader:262
+#USE_AUTOTOOLS=	autoheader:262
 CONFIGURE_ARGS=	--without-idea --with-cunit=${LOCALBASE}
 
 LIB_DEPENDS=	cunit.1:${PORTSDIR}/devel/cunit
