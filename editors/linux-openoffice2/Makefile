@@ -2,7 +2,7 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.6 2008/06/10 04:47:00 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice2/Makefile,v 1.7 2008/06/12 22:43:06 laffer1 Exp $
 #
 
 PORTNAME=	openoffice2
@@ -29,8 +29,8 @@ USE_XORG=	x11 ice xaw xau xext xrender xrandr \
 NO_BUILD=	yes
 
 OO_VER=		2.4
-OO_RELEASE=	2.4.1
-OO_BUILD=	9310
+OO_RELEASE=	2.4.2
+OO_BUILD=	9364
 
 RPM2CPIO?=	${LOCALBASE}/bin/rpm2cpio
 BUILD_DEPENDS+=	${RPM2CPIO}:${PORTSDIR}/archivers/rpm
@@ -71,7 +71,7 @@ RPMFILES= \
 	openoffice.org-xsltfilter-${OO_RELEASE}-${OO_BUILD}.i586.rpm \
 	desktop-integration/openoffice.org-freedesktop-menus-${OO_VER}-9268.noarch.rpm
 
-WRKSRC=	${WRKDIR}/OOH680_m17_native_packed-1_en-US.${OO_BUILD}
+WRKSRC=	${WRKDIR}/OOH680_m18_native_packed-1_en-US.${OO_BUILD}
 
 OPTIONS=	JAVA "Enable Java Support" off
 
