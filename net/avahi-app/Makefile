@@ -2,13 +2,13 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.3 2008/06/02 01:01:49 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.4 2008/09/17 20:01:13 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-app/Makefile,v 1.7 2007/12/24 19:05:22 marcus Exp $
 #   $MCom: ports/net/avahi-app/Makefile,v 1.6 2007/08/26 06:10:14 marcus Exp $
 #
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.23
+PORTVERSION=	0.6.24
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
@@ -115,7 +115,7 @@ avahi-post-patch:
 		${WRKSRC}/avahi-client/client.c \
 		${WRKSRC}/avahi-daemon/dbus-protocol.c
 	@${REINPLACE_CMD} -e 's|^_||g' \
- 		${WRKSRC}/avahi-ui/*.desktop.in
+ 		${WRKSRC}/avahi-ui/*.desktop.in.in
 
 
 post-build: avahi-post-build
