@@ -1,29 +1,21 @@
-# New ports collection makefile for:	JUnit
-# Date created:		Jun 15 1999
-# Whom:			OKAZAKI Tetsurou
-#
-# $FreeBSD: ports/java/junit/Makefile,v 1.12 2006/05/20 14:19:08 hq Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	junit
-PORTVERSION=	3.8.2
+PORTVERSION=	4.4
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
+#MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
-MAINTAINER=	hq@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A regression testing utility for use with the Java(TM) Language
+LICENSE=	other
 
 USE_ZIP=	yes
 USE_JAVA=	yes
 NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
-
-.if ${JAVA_PORT_VERSION} == "1.1"
-RUN_DEPENDS+=	${JAVALIBDIR}/jfc-1.1.1/swing.jar:${PORTSDIR}/java/jfc
-.endif
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	README.html cpl-v10.html doc javadoc
@@ -33,9 +25,9 @@ PLIST_FILES=	%%JAVAJARDIR%%/junit.jar %%DATADIR%%/src.jar
 PLIST_DIRS=	%%DATADIR%%
 
 do-install:
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/junit.jar ${JAVAJARDIR}/
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/junit-${PORTVERSION}.jar ${JAVAJARDIR}/junit.jar
 	${MKDIR} ${DATADIR}
-	${INSTALL_DATA} ${INSTALL_WRKSRC}/src.jar ${DATADIR}/
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/junit-${PORTVERSION}-src.jar ${DATADIR}/src.jar
 	cd ${INSTALL_WRKSRC}/junit/samples \
 	  && ${FIND} . -type d -exec ${MKDIR} ${EXAMPLESDIR}/\{} \; \
 	  && ${FIND} . -type f -exec ${INSTALL_DATA} \{} ${EXAMPLESDIR}/\{} \;
