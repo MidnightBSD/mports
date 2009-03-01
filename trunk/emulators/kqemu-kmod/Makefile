@@ -2,15 +2,16 @@
 # Date created:				2005/10/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.3 2008/10/16 22:08:00 laffer1 Exp $
+# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.4 2009/01/02 00:59:46 laffer1 Exp $
 # $FreeBSD: ports/emulators/kqemu-kmod/Makefile,v 1.15 2007/02/07 21:13:06 nox Exp $
 #
 
 PORTNAME=	kqemu
 PORTVERSION=	1.3.0.p11
-PORTREVISION=	1
-CATEGORIES=	emulators
+PORTREVISION=	2
+CATEGORIES=	emulators kld
 MASTER_SITES=	http://bellard.org/qemu/ \
+		http://qemu.org/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	nox
 PKGNAMESUFFIX=	-kmod
@@ -18,7 +19,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/.p/pre/}
 DIST_SUBDIR=	kqemu
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Kernel Acceralator for QEMU CPU Emulator (development version)
+COMMENT=	Kernel Acceralator for QEMU CPU Emulator
 LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	i386 amd64
@@ -49,7 +50,7 @@ KMODDIR=	/boot/modules
 MAKE_ENV+=	KMODDIR="${KMODDIR}"
 
 .if !exists(${SRC_BASE}/sys/Makefile)
-IGNORE=		kqemu requires kernel source to be installed
+IGNORE=		requires kernel source to be installed
 .endif
 
 do-build:
