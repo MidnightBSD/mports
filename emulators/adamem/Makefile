@@ -2,12 +2,13 @@
 # Date created:				November 11, 2001
 # Whom:					Jeremy Karlson
 #
-# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.3 2008/10/20 12:40:47 laffer1 Exp $
+# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.4 2008/10/21 14:30:52 laffer1 Exp $
 # $FreeBSD: ports/emulators/adamem/Makefile,v 1.6 2004/09/23 07:16:23 danfe Exp $
 #
 
 PORTNAME=	adamem
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.komkon.org/~dekogel/files/coleco/
 DISTNAME=	${PORTNAME}
@@ -20,7 +21,7 @@ RESTRICTED=	yes
 NO_CDROM=	yes
 
 NO_WRKSUBDIR=	yes
-USE_XORG=	x11 xextproto xext
+USE_XORG=	sm x11 xau xextproto xext xfixes xi xrandr
 ALL_TARGET=	x
 
 PROGDIR=	${PREFIX}/${PORTNAME}
