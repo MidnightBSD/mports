@@ -1,4 +1,4 @@
-Mtools is a public domain collection of programs to allow Unix systems
+Mtools is a collection of programs to allow Unix systems
 to read, write, and manipulate files on an MSDOS filesystem (typically
 a diskette).  Each program attempts to emulate the MSDOS equivalent
 command as closely as practical.
