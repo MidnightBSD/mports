@@ -4498,6 +4498,9 @@ usr/share/terminfo/z/ztx11
 usr/tmp
 var/mail
 var/cache/ldconfig/aux-cache
+@cwd %%LOCALBASE%%
+etc/mtree/bsd.linux-compat.mtree
+@cwd %%TARGETDIR%%
 @comment empty directory listing
 @exec /bin/mkdir -p %D/var/yp
 @exec /bin/mkdir -p %D/var/spool/mail
