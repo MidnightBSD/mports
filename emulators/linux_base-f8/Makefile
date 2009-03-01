@@ -1,15 +1,16 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/linux_base-f8/Makefile,v 1.1 2009/03/01 19:12:38 laffer1 Exp $
 
-PORTNAME=		f8
-PORTVERSION=		8
-CATEGORIES=		emulators linux
-MASTER_SITES=		${MASTER_SITE_FEDORA_LINUX}
+PORTNAME=	f8
+PORTVERSION=	8
+PORTREVISION=	1
+CATEGORIES=	emulators linux
+MASTER_SITES=	${MASTER_SITE_FEDORA_LINUX}
 MASTER_SITE_SUBDIR=	../releases/${PORTVERSION}/Everything/${LINUX_RPM_ARCH}/os/Packages \
-			../updates/${PORTVERSION}/${LINUX_RPM_ARCH}.newkey
-PKGNAMEPREFIX=		linux_base-
-DISTFILES=		${BIN_DISTFILES} ${SRC_DISTFILES}
-DIST_SUBDIR=		rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}.newkey
-EXTRACT_ONLY=		${BIN_DISTFILES}
+		../updates/${PORTVERSION}/${LINUX_RPM_ARCH}.newkey
+PKGNAMEPREFIX=	linux_base-
+DISTFILES=	${BIN_DISTFILES} ${SRC_DISTFILES}
+DIST_SUBDIR=	rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}.newkey
+EXTRACT_ONLY=	${BIN_DISTFILES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of packages needed in Linux mode (for i386/amd64)
