@@ -24,3 +24,4 @@ In such cases (e.g. cross-development) you are better suited with a linux_dist
 port.
 
 It is recommended to have compat.linux.osrelease=2.6.16 in /etc/sysctl.conf
+and put OVERRIDE_LINUX_BASE_PORT=f8 in /etc/make.conf
