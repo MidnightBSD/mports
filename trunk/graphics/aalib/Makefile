@@ -2,13 +2,13 @@
 # Date created:				9 Dec 1997
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.1 2006/10/03 20:56:16 laffer1 Exp $
 # $FreeBSD: ports/graphics/aalib/Makefile,v 1.38 2006/06/19 20:06:52 shaun Exp $
 #
 
 PORTNAME=	aalib
 PORTVERSION=	1.4.r5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	aa-project
@@ -16,16 +16,17 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ascii art library
+LICENSE=	lgpl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.4.0
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 INFO=		aalib
 
 .if !defined(WITHOUT_X11)
-USE_XLIB=	yes
-CONFIGURE_ARGS=	--x-includes="${X11BASE}/include" \
-		--x-libraries="${X11BASE}/lib"
+USE_XORG=	x11
+CONFIGURE_ARGS=	--x-includes="${LOCALBASE}/include" \
+		--x-libraries="${LOCALBASE}/lib"
 .else
 CONFIGURE_ARGS=	--with-x=no
 .endif
