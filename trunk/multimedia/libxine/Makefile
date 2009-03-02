@@ -3,12 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.14 2008/08/17 18:16:28 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.15 2008/12/11 03:15:40 ctriv Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.15
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -19,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for xine multimedia player
 LICENSE=	gpl2
 
-LIB_DEPENDS=	FLAC.7:${PORTSDIR}/audio/flac \
+LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
 		vorbis.4:${PORTSDIR}/audio/libvorbis \
 		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
