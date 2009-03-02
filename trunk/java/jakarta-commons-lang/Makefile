@@ -1,13 +1,8 @@
-# New ports collection makefile for:	Jakarta Commons Lang
-# Date created:				October 18, 2002
-# Whom:					Ernst de Haan <znerd@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/java/jakarta-commons-lang/Makefile,v 1.15 2008/02/27 15:10:53 ehaupt Exp $
-#
+# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.1 2008/09/10 23:44:49 laffer1 Exp $
 
 PORTNAME=	commons-lang
 PORTVERSION=	2.3
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE_COMMONS_SOURCE}
 MASTER_SITE_SUBDIR=	${PORTNAME:S,commons-,,}
@@ -25,9 +20,11 @@ USE_ANT=	yes
 USE_JIKES=	no
 
 ALL_TARGET=	jar
+.if !defined(PACKAGE_BUILDING)
 .if !defined(NOPORTDOCS)
 ALL_TARGET+=	javadoc
 PORTDOCS=	*
+.endif
 .endif
 
 JARFILE=	${PORTNAME}-${PORTVERSION}.jar
