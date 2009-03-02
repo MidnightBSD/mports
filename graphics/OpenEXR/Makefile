@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.2 2009/03/02 22:36:33 laffer1 Exp $
 
 PORTNAME=	OpenEXR
 PORTVERSION=	1.6.1
@@ -9,7 +9,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME:L}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A high dynamic-range (HDR) image file format
-LICENSE=	bsd3
+LICENSE=	ilm
 
 LIB_DEPENDS=	Half.6:${PORTSDIR}/graphics/ilmbase
 
