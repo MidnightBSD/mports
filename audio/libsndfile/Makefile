@@ -1,15 +1,8 @@
-# ex:ts=8
-# New ports collection makefile for:	libsndfile
-# Date created:			Jul 20, 2001
-# Whom:				ijliao
-#
-# $FreeBSD: ports/audio/libsndfile/Makefile,v 1.35 2006/09/02 20:48:50 ahze Exp $
-# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.4 2008/04/10 03:59:10 ctriv Exp $
-#
+# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.5 2009/02/22 16:53:47 laffer1 Exp $
 
 PORTNAME=	libsndfile
 PORTVERSION=	1.0.17
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/libsndfile/
 
@@ -30,8 +23,11 @@ OPTIONS=	FLAC "Enable flac support" On
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_FLAC) || exists(${LOCALBASE}/lib/libFLAC.a)
+.if !defined(WITHOUT_FLAC)
 LIB_DEPENDS+=	FLAC.10:${PORTSDIR}/audio/flac
+CONFIGURE_ARGS+=--enable-flac
+.else
+CONFIGURE_ARGS+=--disable-flac
 .endif
 
 post-patch:
