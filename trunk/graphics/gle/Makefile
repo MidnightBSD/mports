@@ -2,29 +2,30 @@
 # Date created:				29 August 2000
 # Whom:					David Gilbert <dgilbert@velocet.ca>
 #
-# $MidnightBSD: mports/graphics/gle/Makefile,v 1.2 2007/03/22 04:19:17 ctriv Exp $
+# $MidnightBSD: mports/graphics/gle/Makefile,v 1.3 2007/04/27 18:54:16 ctriv Exp $
 # $FreeBSD: ports/graphics/gle/Makefile,v 1.14 2006/08/14 23:06:33 clsung Exp $
 #
 
 PORTNAME=	gle
 PORTVERSION=	3.1.0
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF \
 		http://linas.org/gle/pub/ \
 		http://metalab.unc.edu/pub/Linux/libs/X/ \
 		ftp://tsx-11.mit.edu/pub/linux/sources/libs/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	ports@dclg.ca
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GL Tubing and Extrusion Library
+LICENSE=	gpl2
 
-LIB_DEPENDS=	glut.4:${PORTSDIR}/graphics/libglut
-
-USE_XLIB=	yes
+USE_GL=		glut
+USE_AUTOTOOLS=	libtool:15
+USE_XORG=	x11 xext
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	"CFLAGS=-I${LOCALBASE}/include -L${LOCALBASE}/lib -L${X11BASE}/lib -lXext ${PTHREAD_LIBS}"
+CONFIGURE_ENV=	"CFLAGS=-I${LOCALBASE}/include -L${LOCALBASE}/lib -lXext ${PTHREAD_LIBS}"
 
 
 MAN3=		gle.3gle gleExtrusion.3gle gleHelicoid.3gle gleLathe.3gle \
