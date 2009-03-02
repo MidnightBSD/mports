@@ -1,13 +1,7 @@
-# New ports collection makefile for:	privoxy
-# Date created:				21 November 2002
-# Whom:					John von Essen
-#
-# $MidnightBSD$
-# $FreeBSD: ports/www/privoxy/Makefile,v 1.21 2008/01/25 15:44:02 miwi Exp $
-#
+# $MidnightBSD: mports/www/privoxy/Makefile,v 1.3 2008/10/08 04:34:26 laffer1 Exp $
 
 PORTNAME=	privoxy
-PORTVERSION=	3.0.10
+PORTVERSION=	3.0.11
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	ijbswa
@@ -82,7 +76,7 @@ do-install:
 	@${MKDIR} ${PREFIX}/etc/privoxy/templates
 	@${INSTALL_PROGRAM} ${WRKSRC}/privoxy ${PREFIX}/sbin
 	@${INSTALL_DATA} ${WRKSRC}/templates/[a-z]* ${PREFIX}/etc/privoxy/templates
-.for defaultfile in default.action standard.action default.filter
+.for defaultfile in default.action default.action.master default.filter
 	@${INSTALL_DATA} ${WRKSRC}/${defaultfile} ${PREFIX}/etc/privoxy
 	@${CHOWN} privoxy:privoxy ${PREFIX}/etc/privoxy/${defaultfile}
 	@${CHMOD} 0640 ${PREFIX}/etc/privoxy/${defaultfile}
