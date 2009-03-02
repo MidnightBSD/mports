@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.1 2009/03/02 22:35:33 laffer1 Exp $
 
 PORTNAME=	ilmbase
 PORTVERSION=	1.0.1
@@ -8,7 +8,7 @@ MASTER_SITE_SUBDIR=	openexr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ILM Base libraries a.k.a. Half, IlmThread, Imath and Iex
-LICENSE=	bsd3
+LICENSE=	ilm
 
 CONFLICTS=	OpenEXR-1.[0-4].*
 
