@@ -3,11 +3,12 @@
 # Whom:				arved
 #
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.3 2008/02/28 17:52:27 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.4 2008/03/26 18:00:18 ctriv Exp $
 #
 
 PORTNAME=	jackit
 PORTVERSION=	0.103.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	jackit
@@ -19,7 +20,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
-		FLAC.7:${PORTSDIR}/audio/flac
+		FLAC.10:${PORTSDIR}/audio/flac
 
 OPTIONS=	DOCS "Build HTML documentation. Requires doxygen/TeX." off
 
