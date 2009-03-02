@@ -3,16 +3,17 @@
 # Whom:			hrs
 #
 # $FreeBSD: ports/print/cm-super/Makefile,v 1.1 2006/06/29 18:42:45 hrs Exp $
-# $MidnightBSD: mports/print/cm-super/Makefile,v 1.1 2007/01/24 20:34:41 laffer1 Exp $
+# $MidnightBSD: mports/print/cm-super/Makefile,v 1.2 2007/11/02 02:25:42 ctriv Exp $
 #
 
 PORTNAME=	cm-super
-PORTVERSION=	0.3.3
-PORTREVISION=	1
+PORTVERSION=	0.3.4
 CATEGORIES=	print x11-fonts
-MASTER_SITES=	${MASTER_SITE_TEX_CTAN}
-MASTER_SITE_SUBDIR=	fonts/ps-type1
-DISTNAME=	${PORTNAME}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+#MASTER_SITES=	${MASTER_SITE_TEX_CTAN}
+MASTER_SITE_SUBDIR=	hrs
+#MASTER_SITE_SUBDIR=	fonts/ps-type1
+#DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Computer Modern Font Families in Type 1 Fonts
@@ -24,6 +25,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
 RUN_DEPENDS=	mktexlsr:${PORTSDIR}/print/teTeX-base
 
 USE_ZIP=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
 .if !defined(WITHOUT_X11)
 PLIST_X11=	""
