@@ -1,13 +1,8 @@
-# ports collection makefile for:	Berkeley DB v4.3
-# Date created:				2004-11-10
-# Whom:					Matthias Andree <matthias.andree@gmx.de>
-#
-# $MidnightBSD: mports/databases/db43/Makefile,v 1.2 2007/11/10 23:32:46 laffer1 Exp $
-# $FreeBSD: ports/databases/db43/Makefile,v 1.73 2006/04/14 03:44:08 mnag Exp $
-#
+# $MidnightBSD: mports/databases/db43/Makefile,v 1.3 2007/11/11 00:43:24 laffer1 Exp $
 
 PORTNAME=	db43
 PORTVERSION=	4.3.29
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
 		http://download-east.oracle.com/berkeley-db/ \
@@ -30,7 +25,9 @@ USE_LDCONFIG=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
-CONFIGURE_TARGET=	--target=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--target=${ARCH}-portbld-freebsd6.1 \
+			--build=${ARCH}-portbld-freebsd6.1 \
+			--host=${ARCH}-portbld-freebsd6.1
 BDBVER=			${PORTVERSION:R}
 BDBMINOR=		${BDBVER:E:S/^\.//}
 BDBDIR=			BerkeleyDB.${BDBVER}
@@ -47,7 +44,7 @@ PORTDOCS=		*
 .endif
 
 pre-patch:
-	@${REINPLACE_CMD} -Ee 's|-l?pthread|${PTHREAD_LIBS}|g' ${WRKSRC}/${CONFIGURE_SCRIPT}
+	${REINPLACE_CMD} -Ee 's|-l?pthread|${PTHREAD_LIBS}|g; s,/usr/bin/objformat \|\| echo aout,/usr/bin/objformat || echo elf,' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
 pre-configure:
 	${CHMOD} u+w ${WRKSRC}/../dist/configure
