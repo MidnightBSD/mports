@@ -2,12 +2,12 @@
 # Date created:		8 October 2003
 # Whom:			Matthew Seaman <m.seaman@infracaninophile.co.uk>
 #
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.1 2007/03/17 01:18:08 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.2 2008/05/23 15:05:14 crash Exp $
 # $FreeBSD: ports/databases/mysql-connector-java/Makefile,v 1.41 2007/03/05 12:07:19 rafan Exp $
 #
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.0.5
+PORTVERSION=	5.1.7
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-J
@@ -32,7 +32,7 @@ BUILDDIR=	${WRKDIR}/${DISTNAME}/build/${DISTNAME}
 .else
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.3+
 BUILDDIR=	${WRKDIR}/${DISTNAME}
 
 .endif
