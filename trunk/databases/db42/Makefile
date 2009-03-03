@@ -1,14 +1,10 @@
 # ports collection makefile for:	Berkeley DB v4.2
-# Date created:				2003-11-26
-# Whom:					Matthias Andree <matthias.andree@gmx.de>
 #
-# $FreeBSD: ports/databases/db42/Makefile,v 1.63 2005/04/13 07:31:27 leeym Exp $
-# $MidnightBSD: mports/databases/db42/Makefile,v 1.3 2007/11/11 00:10:21 laffer1 Exp $
-# 
+# $MidnightBSD: mports/databases/db42/Makefile,v 1.4 2008/07/04 19:31:41 laffer1 Exp $
 
 PORTNAME=	db42
 PORTVERSION=	4.2.52
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	databases
 PKGNAMESUFFIX?=
 
