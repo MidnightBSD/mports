@@ -1,34 +1,28 @@
-# ports collection makefile for:	feh
-# Date created:				16 Oct 2000
-# Whom:					Jeremy Norris <ishmael27@home.com>
-#
-# $MidnightBSD: mports/graphics/feh/Makefile,v 1.1 2006/09/26 15:45:34 archite Exp $
-# $FreeBSD: ports/graphics/feh/Makefile,v 1.22 2006/03/08 17:45:20 novel Exp $
-#
+# $MidnightBSD: mports/graphics/feh/Makefile,v 1.2 2007/03/22 03:54:18 ctriv Exp $
 
 PORTNAME=	feh
 PORTVERSION=	1.3.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://linuxbrit.co.uk/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An image viewer that utilizes Imlib2
+LICENSE=	mit
 
 LIB_DEPENDS=	giblib.1:${PORTSDIR}/graphics/giblib
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
-USE_XLIB=	yes
+USE_XORG=	x11 xt xinerama
 USE_PERL5=	yes
-USE_GETOPT_LONG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
 MAN1=		feh.1
 
-CPPFLAGS=	-I${LOCALBASE}/include -I${X11BASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib -L${X11BASE}/lib
+CPPFLAGS=	-I${LOCALBASE}/include
+LDFLAGS=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${PERL} -pi.bak -e \
