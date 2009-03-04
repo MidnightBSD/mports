@@ -2,12 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.7 2008/03/26 02:00:53 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.8 2008/04/29 16:55:19 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.6.9.15
+PORTVERSION=	1.7.0
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://obsd.isc.org/pub/sudo/ \
@@ -15,15 +15,14 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://boulder.tele.dk/pub/sudo/ \
 		ftp://core.ring.gr.jp/pub/misc/sudo/ \
 		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	tmclaugh/sudo
                                    
-DISTNAME=	${PORTNAME}-1.6.9p15
+DISTNAME=	${PORTNAME}-1.7.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
-LICENSE=	agg
-#ISC and BSD3
+LICENSE=	isc
 
 GNU_CONFIGURE=	yes
 
@@ -83,8 +82,6 @@ post-install:
 
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/BUGS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/CHANGES ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/TROUBLESHOOTING ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/UPGRADE ${DOCSDIR}
