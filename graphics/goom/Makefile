@@ -1,10 +1,4 @@
-# New ports collection makefile for:	goom
-# Date created:				12 February 2005
-# Whom:					Koop Mast <kwm@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/goom/Makefile,v 1.7 2006/08/14 23:06:33 clsung Exp $
-#
+# $MidnightBSD: mports/graphics/goom/Makefile,v 1.1 2007/03/16 19:16:00 laffer1 Exp $
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0
@@ -16,11 +10,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S|.|-|}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Visual effects library
+LICENCE=	lgpl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION:S|.|-|}
+USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack gnometarget
 GNU_CONFIGURE=	yes
-USE_GCC=	3.4
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--disable-sdltest --enable-static
