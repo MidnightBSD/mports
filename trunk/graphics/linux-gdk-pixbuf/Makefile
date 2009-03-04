@@ -1,10 +1,4 @@
-# New ports collection makefile for:	linux-gdk-pixbuf
-# Date created:		23 December 2003
-# Whom:			Seth Kingsley <sethk@meowfishies.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/linux-gdk-pixbuf/Makefile,v 1.10 2006/06/26 22:16:22 bsam Exp $
-#
+# $MidnightBSD: mports/graphics/linux-gdk-pixbuf/Makefile,v 1.1 2006/09/23 22:21:44 laffer1 Exp $
 
 PORTNAME=	gdk-pixbuf
 PORTVERSION=	0.22.0.18.fc4.2
@@ -13,13 +7,12 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/^([^\.]+\.[^\.]+\.[^\.]+)\./\1-/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux version of the graphic library for GTK+
-
-CONFLICTS=	linux-gtk2*
+LICENSE=	lgpl
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
 ONLY_FOR_ARCHS=	i386 amd64
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 PLIST_SUB=	VERSION=${PORTVERSION:C/^([^\.]+\.[^\.]+\.[^\.]+).+/\1/}
 MD5_FILE?=	${PKGDIR}/distinfo
 
