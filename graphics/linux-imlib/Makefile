@@ -1,10 +1,4 @@
-# New ports collection makefile for: linux-imlib
-# Date created:		01/09/18
-# Whom:                 taoka@FreeBSD.org
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/linux-imlib/Makefile,v 1.12 2006/07/09 21:01:44 bsam Exp $
-#
+# $MidnightBSD: mports/graphics/linux-imlib/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.13
@@ -14,10 +8,11 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-24
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of imlib
+LICENSE=	lgpl
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 BRANDELF_DIRS=	usr/bin
 PLIST=		pkg-plist.${LINUX_RPM_ARCH}
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
