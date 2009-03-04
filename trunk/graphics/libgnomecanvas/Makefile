@@ -2,7 +2,7 @@
 # Date created:				18 May 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.2 2008/05/31 21:41:12 crash Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.3 2008/06/07 13:40:59 laffer1 Exp $
 # $FreeBSD: ports/graphics/libgnomecanvas/Makefile,v 1.51 2006/10/14 08:35:17 marcus Exp $
 #   $MCom: ports/graphics/libgnomecanvas/Makefile,v 1.60 2006/09/10 00:51:11 mezz Exp $
 
@@ -10,8 +10,7 @@ PORTNAME=	libgnomecanvas
 PORTVERSION=	2.20.1.1
 PORTREVISION?=	2
 CATEGORIES=	graphics gnome
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
