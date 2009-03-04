@@ -2,7 +2,7 @@
 # Date created:				18 Feb 2006
 # Whom:					Jean-Yves Lefort <jylefort@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/linux-adobesvg/Makefile,v 1.1 2006/09/23 22:21:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux-adobesvg/Makefile,v 1.2 2007/03/25 03:07:34 ctriv Exp $
 # $FreeBSD: ports/graphics/linux-adobesvg/Makefile,v 1.1 2006/02/18 09:50:32 jylefort Exp $
 #
 
@@ -16,6 +16,7 @@ DISTFILES=	adobesvg-${DISTVERSION}-linux-i386${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Adobe SVG browser plugin (Linux version)
+LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_XLIB=	yes

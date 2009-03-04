@@ -1,10 +1,4 @@
-# New ports collection makefile for:	gnomecanvas
-# Date created:				18 May 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.3 2008/06/07 13:40:59 laffer1 Exp $
-# $FreeBSD: ports/graphics/libgnomecanvas/Makefile,v 1.51 2006/10/14 08:35:17 marcus Exp $
-#   $MCom: ports/graphics/libgnomecanvas/Makefile,v 1.60 2006/09/10 00:51:11 mezz Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.4 2009/03/04 00:27:30 laffer1 Exp $
 
 PORTNAME=	libgnomecanvas
 PORTVERSION=	2.20.1.1
@@ -15,6 +9,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphics library for GNOME
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 
