@@ -2,13 +2,12 @@
 # Date created:		12 December 1998
 # Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
 #
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.6 2008/05/11 16:04:32 laffer1 Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.7 2008/10/29 20:06:08 ctriv Exp $
 # $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
 #
 
 PORTNAME=	curl
-PORTVERSION=	7.18.0
-PORTREVISION=	1
+PORTVERSION=	7.19.4
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		${MASTER_SITE_SOURCEFORGE} \
@@ -21,11 +20,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
 LICENSE=	mit
 
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
+
 MAN1=		curl.1 curl-config.1
 MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
 		curl_easy_escape.3 curl_easy_getinfo.3 \
 		curl_easy_init.3 curl_easy_pause.3 \
-		curl_easy_perform.3 curl_easy_reset.3 \
+		curl_easy_perform.3 curl_easy_reset.3 curl_easy_recv.3 \
+		curl_easy_send.3 \
 		curl_easy_setopt.3 curl_easy_strerror.3 curl_easy_unescape.3 \
 		curl_escape.3 \
 		curl_unescape.3 curl_formadd.3 curl_formget.3 curl_formfree.3 curl_free.3 \
@@ -43,7 +45,7 @@ MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
 		libcurl-multi.3 libcurl-share.3 libcurl-tutorial.3
 
 USE_LDCONFIG=	yes
-SHLIB_VER=	4
+SHLIB_VER=	5
 
 MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
@@ -183,10 +185,8 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	${CP} -r ${WRKSRC}/docs/* ${DOCSDIR}/
-.endif
 
 # Setting LC_ALL=C is a kludge; maybe curl/libcurl shouldn't actually use
 # the user's locale when dates are sent to the server.
