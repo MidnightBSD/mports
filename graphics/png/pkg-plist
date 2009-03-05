@@ -2,14 +2,15 @@
 bin/libpng-config
 @exec ln -sf %f %D/bin/libpng12-config
 include/libpng/png.h
-@exec ln -sf libpng/png.h %D/include/png.h
+@exec ln -sf libpng/%f %D/include/%f
 @unexec rm -f %D/include/%f
 include/libpng/pngconf.h
-@exec ln -sf libpng/pngconf.h %D/include/pngconf.h
+@exec ln -sf libpng/%f %D/include/%f
 @unexec rm -f %D/include/%f
 lib/libpng.a
 lib/libpng.so
 lib/libpng.so.%%SHLIB_VER%%
 libdata/pkgconfig/libpng12.pc
-libdata/pkgconfig/libpng.pc
+@exec ln -sf %f %D/libdata/pkgconfig/libpng.pc
+@unexec rm -f %D/libdata/pkgconfig/libpng.pc
 @dirrm include/libpng
