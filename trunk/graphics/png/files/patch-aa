@@ -1,5 +1,5 @@
---- ./scripts/makefile.freebsd.orig	2007-06-20 18:10:26 -0400
-+++ ./scripts/makefile.freebsd	2009-01-01 21:27:38 -0500
+--- scripts/makefile.freebsd.orig	2007-06-20 18:10:26 -0400
++++ scripts/makefile.freebsd	2009-03-05 11:29:34 -0500
 @@ -8,26 +8,22 @@
  LIB=		png
  SHLIB_MAJOR=	${SHLIB_VER}

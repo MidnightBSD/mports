@@ -1,13 +1,7 @@
-# New ports collection makefile for:    PNG images library
-# Date created:         5 Dec 1995
-# Whom:                 ache
-#
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.14 2008/09/13 21:35:04 laffer1 Exp $
-# $FreeBSD: ports/graphics/png/Makefile,v 1.78 2006/07/27 18:21:10 ache Exp $
-#
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.15 2008/09/21 22:42:29 crash Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.2.32
+PORTVERSION=	1.2.35
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -16,7 +10,7 @@ DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 FAKE_OPTS=	trueprefix
 
-PATCH_SITES=	${MASTER_SITES}
+#PATCH_SITES=	${MASTER_SITES}
 #PATCH_SITE_SUBDIR=	${MASTER_SITE_SUBDIR}
 #PATCHFILES=
 #PATCH_DIST_STRIP= -p1
