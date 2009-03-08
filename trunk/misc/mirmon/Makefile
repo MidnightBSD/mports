@@ -1,13 +1,13 @@
-# ex:ts=8
 # Ports collection makefile for:	mirmon
 # Date created:			May 21 2008
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/misc/mirmon/Makefile,v 1.1 2008/05/21 21:23:59 laffer1 Exp $
+# $MidnightBSD: mports/misc/mirmon/Makefile,v 1.2 2008/05/21 21:33:46 laffer1 Exp $
 #
 
 PORTNAME=	mirmon
 PORTVERSION=	1.38
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://jadawin.tuxaco.net/freebsd/ \
 		http://www.cs.uu.nl/people/henkp/mirmon/src/
@@ -16,6 +16,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Monitor the status of mirrors
 LICENSE=	other
 #bsdish
+
+RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
