@@ -1,28 +1,21 @@
-# ex:ts=8
-# New ports collection makefile for:	dovecot
-# Date created:				12/08/2002
-# Whom:			Dominic Marks <dominic.marks@btinternet.com>
-#
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.17 2008/03/14 20:09:02 laffer1 Exp $
-# $FreeBSD: ports/mail/dovecot/Makefile,v 1.66 2007/03/15 00:38:04 clsung Exp $
-#
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.18 2008/09/20 02:26:27 laffer1 Exp $
 
 PORTNAME=	dovecot
-DISTVERSION=	1.0.15
+DISTVERSION=	1.1.11
 CATEGORIES=	mail ipv6
-MASTER_SITES=	http://www.dovecot.org/releases/1.0/
+MASTER_SITES=	http://www.dovecot.org/releases/1.1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
 LICENSE=	lgpl
-# technically agg, but worst case is lgpl
 
 USE_ICONV=	yes
 USE_RC_SUBR=	dovecot.sh
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS=	--without-shadow --localstatedir=/var
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_ARGS=	--without-shadow --localstatedir=/var \
+		--with-statedir=/var/db/dovecot
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	${PREFIX}/lib/dovecot \
