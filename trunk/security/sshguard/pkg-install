@@ -9,7 +9,7 @@
 # real syslog.conf configuration file path
 SYSLOGCONF=/etc/syslog.conf
 # configuration line to add
-SSHGUARDCONFLINE="auth.info;authpriv.info     |exec $TRUE_PREFIX/sbin/sshguard"
+SSHGUARDCONFLINE="auth.info;authpriv.info     |exec /usr/local/sbin/sshguard"
 
 case "$2" in
     "POST-INSTALL")

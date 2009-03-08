@@ -1,13 +1,7 @@
-# New ports collection makefile for:	sshguard
-# Date created:		2007-02-22
-# Whom:			Mij <mij@bitchx.it>
-#
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.4 2008/10/08 16:56:32 laffer1 Exp $
-# $FreeBSD: ports/security/sshguard/Makefile,v 1.7 2008/01/04 20:35:08 arved Exp $
-#
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.5 2008/10/08 17:00:13 laffer1 Exp $
 
 PORTNAME=	sshguard
-DISTVERSION=	1.2
+DISTVERSION=	1.3
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -22,7 +16,7 @@ PLIST_FILES=	sbin/sshguard
 
 MAN8=		sshguard.8
 MANCOMPRESSED=	no
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 USE_BZIP2=	yes
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 HAS_CONFIGURE=	yes
