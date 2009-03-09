@@ -1,17 +1,16 @@
-# ex:ts=8
 # New ports collection makefile for:	xmlrpc-c
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.2 2008/08/21 19:19:06 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.3 2008/08/21 19:20:27 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.06.27
+PORTVERSION=	1.06.32
 CATEGORIES=	net
 MASTER_SITES=	SF
 EXTRACT_SUFX=	.tgz
-DISTFILES=	${PORTNAME:S/-c//}-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
@@ -43,7 +42,7 @@ CFLAGS+=	-DNDEBUG
 .if defined(WITHOUT_CURL)
 CONFIGURE_ARGS+=	--disable-curl-client
 .else
-LIB_DEPENDS+=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 OPT_CURL=	yes
 .endif
 
