@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.2 2009/03/11 20:29:07 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)
@@ -14,7 +14,7 @@ XFCE_VERSION=	4.6.0
 # is defined in the ports' makefile.
 
 _USE_XFCE_ALL=			configenv libexo libgui libutil libmcs mcsmanager panel \
-				thunar wm xfdev
+						thunar wm xfdev xfconf
 
 MASTER_SITE_SUBDIR?=		xfce-${XFCE_VERSION}
 
@@ -45,6 +45,9 @@ wm_BUILD_DEPENDS=		xfce4-wm>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-wm
 wm_RUN_DEPENDS=			xfce4-wm>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-wm
 
 xfdev_RUN_DEPENDS=		xfce4-dev-tools:${PORTSDIR}/devel/xfce4-dev-tools
+
+xfconf_BUILD_DEPENDS=	xfconf4>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfconf4 
+xfconf_RUN_DEPENDS=		xfconf4>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfconf4 
 
 .endif
 
