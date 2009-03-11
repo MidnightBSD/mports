@@ -2,12 +2,12 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/xfce4-panel/Makefile,v 1.1 2008/09/25 12:52:34 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4-panel/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
 #
 
 PORTNAME=	xfce4-panel
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -24,21 +24,11 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libgui libmcs libutil mcsmanager
+USE_XFCE=	configenv libgui libutil xfconf
 
-OPTIONS=	GTKDOC	"install the library documentation"	off \
-		STARTUP "Enable startup notification support"	on
+OPTIONS=	STARTUP "Enable startup notification support"	on
 
 .include <bsd.port.pre.mk>
-
-.if defined(WITH_GTKDOC)
-BUILD_DEPENDS+=	gtkdocize:${PORTSDIR}/textproc/gtk-doc
-CONFIGURE_ARGS+=--enable-gtk-doc
-PLIST_SUB+=	GTK_DOC=""
-.else
-CONFIGURE_ARGS+=--disable-gtk-doc
-PLIST_SUB+=	GTK_DOC="@comment "
-.endif
 
 .if !defined(WITHOUT_STARTUP)
 LIB_DEPENDS+=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
