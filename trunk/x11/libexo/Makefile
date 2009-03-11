@@ -2,11 +2,11 @@
 # Date created:		23 October 2004
 # Whom:			Matt Lancereau <ports@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libexo/Makefile,v 1.1 2008/09/25 02:53:41 laffer1 Exp $
+# $MidnightBSD: mports/x11/libexo/Makefile,v 1.2 2008/11/07 18:24:16 ctriv Exp $
 # $FreeBSD: ports/x11/libexo/Makefile,v 1.28 2008/06/06 14:09:03 edwin Exp $
 
 PORTNAME=	libexo
-PORTVERSION=	0.3.4
+PORTVERSION=	0.3.100
 CATEGORIES=	x11 xfce
 DISTNAME=	exo-${PORTVERSION}
 MASTER_SITES=	${MASTER_SITE_XFCE}
@@ -29,12 +29,11 @@ USE_GMAKE=	yes
 USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
-USE_XFCE=	configenv libutil mcsmanager
+USE_XFCE=	configenv xfconf
 
 OPTIONS=	HAL	"Enable HAL support"			on \
 		NOTIFY  "Enable notification support"		on \
-		PYTHON	"Enable Python support"			off \
-		MCS	"Build with xfce4-mcs-manager support"	on
+		PYTHON	"Enable Python support"			off 
 
 MAN1=		exo-csource.1 exo-open.1
 
@@ -65,16 +64,6 @@ PLIST_SUB+=	PYTHON=""
 .else
 CONFIGURE_ARGS+=--disable-python
 PLIST_SUB+=	PYTHON="@comment "
-.endif
-
-.if !defined(WITHOUT_MCS)
-CONFIGURE_ARGS+=--enable-mcs-plugin
-BUILD_DEPENDS+=	xfce-mcs-manager:${PORTSDIR}/sysutils/xfce4-mcs-manager
-RUN_DEPENDS+=	xfce-mcs-manager:${PORTSDIR}/sysutils/xfce4-mcs-manager
-PLIST_SUB+=	MCS_MANAGER=""
-.else
-CONFIGURE_ARGS+=--disable-mcs-plugin
-PLIST_SUB+=	MCS_MANAGER="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
