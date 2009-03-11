@@ -3,12 +3,12 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/net/cvsup/Makefile,v 1.64 2005/12/17 06:17:29 lawrance Exp $
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.2 2007/05/20 18:05:40 ctriv Exp $
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.3 2008/04/29 02:00:36 laffer1 Exp $
 #
 
 PORTNAME=	cvsup
 PORTVERSION?=	16.1h
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	net devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_ORG}
 MASTER_SITE_SUBDIR=development/CVSup/snapshots
@@ -19,6 +19,7 @@ COMMENT?=	General network file distribution system optimized for CVS (GUI versio
 
 CONFLICTS?=	cvsup-without-gui-[0-9]*
 ONLY_FOR_ARCHS=	amd64 i386 sparc64
+USE_RC_SUBR=	cvsupd.sh
 
 .include <bsd.port.pre.mk>
 
