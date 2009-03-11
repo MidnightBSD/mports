@@ -2,12 +2,12 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libxfce4util/Makefile,v 1.1 2008/09/25 02:01:20 laffer1 Exp $
 # $FreeBSD: ports/x11/libxfce4util/Makefile,v 1.35 2008/06/06 14:09:04 edwin Exp $
 #
 
 PORTNAME=	libxfce4util
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	x11 xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
