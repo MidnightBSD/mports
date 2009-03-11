@@ -1,13 +1,7 @@
-# New ports collection makefile for:	squirrelmail
-# Date created: 			27 December 2001
-# Whom: 				Simon Dick <simond@irrelevant.org>
-#
-# $FreeBSD: ports/mail/squirrelmail/Makefile,v 1.45 2006/08/11 16:28:19 clsung Exp $
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.8 2008/04/19 18:20:53 laffer1 Exp $
-#
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.9 2008/10/04 16:56:28 laffer1 Exp $
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.16
+PORTVERSION=	1.4.17
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
