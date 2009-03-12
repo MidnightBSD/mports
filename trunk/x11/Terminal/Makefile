@@ -2,13 +2,12 @@
 # Date created:		23 October 2004
 # Whom:			Matt Lancereau <ports@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.1 2008/09/26 18:25:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.2 2008/12/24 19:01:45 ctriv Exp $
 # $FreeBSD: ports/x11/Terminal/Makefile,v 1.19 2008/06/06 14:08:50 edwin Exp $
 #
 
 PORTNAME=	Terminal
-PORTVERSION=	0.2.8
-PORTREVISION=	1
+PORTVERSION=	0.2.10
 CATEGORIES=	x11 xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
