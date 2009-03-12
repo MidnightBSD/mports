@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.135 2009/03/01 16:29:22 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.136 2009/03/02 22:38:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3486,8 +3486,7 @@ ${deptype:L}-depends:
 			if [ "$$pkg" != "" ]; then \
 				_version=`${ECHO_CMD} "$$prog" | ${SED} -E 's/^[^><=]*//'`; \
 				_name=`${ECHO_CMD} "$$prog" | ${SED} -E 's/[><=]+.*//'`; \
-				echo "====> ${MPORT_QUERY} name=$$_name version$$_version"; \
-				if ${MPORT_QUERY} name=$$_name version$$_version; then \
+				if ${MPORT_QUERY} -q name=$$_name version$$_version; then \
 					if [ -z "${DESTDIR}" ] ; then \
 						${ECHO_MSG} "===>   ${PKGNAME} depends on package: $$prog - found"; \
 					else \
@@ -3511,7 +3510,7 @@ ${deptype:L}-depends:
 					inverse_dep=`${ECHO_CMD} $$_version | ${SED} \
 						-e 's/<=/=gt=/; s/</=ge=/; s/>=/=lt=/; s/>/=le=/' \
 						-e 's/=gt=/>/; s/=ge=/>=/; s/=lt=/</; s/=le=/<=/'`; \
-					bad_version=`${MPORT_QUERY} name=$$_name version$$_version || ${TRUE}`; \
+					bad_version=`${MPORT_QUERY} -q name=$$_name version$$_version || ${TRUE}`; \
 					if [ "$$pkg_info" != "" ]; then \
 						${ECHO_MSG} "===>   Found $$pkg_info, but you need to upgrade to $$prog."; \
 						exit 1; \
@@ -4109,7 +4108,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.135 2009/03/01 16:29:22 laffer1 Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.136 2009/03/02 22:38:58 laffer1 Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
