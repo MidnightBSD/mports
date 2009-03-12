@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-wm/xfce4-desktop/Makefile,v 1.1 2008/09/25 14:34:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4-desktop/Makefile,v 1.2 2009/03/12 05:20:33 ctriv Exp $
 # $FreeBSD: ports/x11-wm/xfce4-desktop/Makefile,v 1.46 2008/06/06 14:17:20 edwin Exp $
 #
 
@@ -26,7 +26,7 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libgui libutil xfconf panel
+USE_XFCE=	configenv libgui libutil xfconf panel libmenu
 
 OPTIONS=	THUNAR	"Enable thunar support"		on
 
