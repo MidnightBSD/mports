@@ -2,7 +2,7 @@
 # Date Created:			22 June 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.4 2008/05/31 02:15:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.5 2008/10/17 14:21:32 laffer1 Exp $
 # $FreeBSD: ports/devel/dbus/Makefile,v 1.67 2007/05/19 20:02:19 flz Exp $
 #
 
@@ -63,9 +63,6 @@ post-patch:
 
 .if !defined(DBUS_SLAVE)
 post-install:
-.if !defined(PACKAGE_BUILDING)
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.endif
 	${MKDIR} ${PREFIX}/etc/dbus-1/system.d
 	${MKDIR} ${PREFIX}/share/dbus-1/services
 	${MKDIR} ${PREFIX}/share/dbus-1/interface
