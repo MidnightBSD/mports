@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.50 2008/10/07 01:40:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.51 2008/10/14 15:32:54 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -21,25 +21,26 @@
     SUBDIR += gtksourceview
     SUBDIR += gtksourceview2
     SUBDIR += gtoolkit
-    SUBDIR += libbonoboui
-    SUBDIR += libgail-gnome
-    SUBDIR += libgdiplus
-    SUBDIR += libgnomeui
-    SUBDIR += libgnomeuimm
-    SUBDIR += libgnomeprintui
-    SUBDIR += libsexy
-    SUBDIR += libwnck
     SUBDIR += libXaw
     SUBDIR += libXmu
     SUBDIR += libXt
+    SUBDIR += libbonoboui
+    SUBDIR += libgail-gnome
+    SUBDIR += libgdiplus
+    SUBDIR += libgnomeprintui
+    SUBDIR += libgnomeui
+    SUBDIR += libgnomeuimm
+    SUBDIR += libsexy
+    SUBDIR += libwnck
     SUBDIR += libxfce4gui
+    SUBDIR += libxfce4menu
     SUBDIR += linux-gtk
     SUBDIR += linux-gtk2
     SUBDIR += linux-pango
     SUBDIR += open-motif
     SUBDIR += pango
-    SUBDIR += py-gnome2
     SUBDIR += py-gnome-desktop
+    SUBDIR += py-gnome2
     SUBDIR += py-gtk2
     SUBDIR += py-gtksourceview
     SUBDIR += py-vte
