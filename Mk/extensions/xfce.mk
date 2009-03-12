@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.2 2009/03/11 20:29:07 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.3 2009/03/11 21:18:50 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)
@@ -14,7 +14,7 @@ XFCE_VERSION=	4.6.0
 # is defined in the ports' makefile.
 
 _USE_XFCE_ALL=			configenv libexo libgui libutil libmcs mcsmanager panel \
-						thunar wm xfdev xfconf
+						thunar wm xfdev xfconf libmenu
 
 MASTER_SITE_SUBDIR?=		xfce-${XFCE_VERSION}
 
@@ -38,8 +38,8 @@ mcsmanager_RUN_DEPENDS=		xfce4-mcs-manager>=${XFCE_VERSION}:${PORTSDIR}/sysutils
 panel_BUILD_DEPENDS=		xfce4-panel>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-panel
 panel_RUN_DEPENDS=		xfce4-panel>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-panel
 
-thunar_BUILD_DEPENDS=		Thunar>=0.9.0:${PORTSDIR}/x11-fm/thunar
-thunar_RUN_DEPENDS=		Thunar>=0.9.0:${PORTSDIR}/x11-fm/thunar
+thunar_BUILD_DEPENDS=		Thunar>=1.0.0:${PORTSDIR}/x11-fm/thunar
+thunar_RUN_DEPENDS=		Thunar>=1.0.0:${PORTSDIR}/x11-fm/thunar
 
 wm_BUILD_DEPENDS=		xfce4-wm>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-wm
 wm_RUN_DEPENDS=			xfce4-wm>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-wm
@@ -48,6 +48,10 @@ xfdev_RUN_DEPENDS=		xfce4-dev-tools:${PORTSDIR}/devel/xfce4-dev-tools
 
 xfconf_BUILD_DEPENDS=	xfconf4>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfconf4 
 xfconf_RUN_DEPENDS=		xfconf4>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfconf4 
+
+libmenu_BUILD_DEPENDS=	libxfce4menu>=${XFCE_VERSION}:${PORTSDIR}/x11-toolkits/libxfce4menu
+libmenu_BUN_DEPENDS=	libxfce4menu>=${XFCE_VERSION}:${PORTSDIR}/x11-toolkits/libxfce4menu
+
 
 .endif
 
