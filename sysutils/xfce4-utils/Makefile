@@ -2,12 +2,12 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/xfce4-utils/Makefile,v 1.1 2008/09/25 15:43:41 laffer1 Exp $
 # $FreeBSD: ports/sysutils/xfce4-utils/Makefile,v 1.42 2008/06/06 14:03:25 edwin Exp $
 #
 
 PORTNAME=	xfce4-utils
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DISTNAME=	xfce-utils-${PORTVERSION}
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui libmcs libutil mcsmanager panel
+USE_XFCE=	configenv libgui libutil xfconf panel
 
 OPTIONS=	DBUS	"Enable D-BUS support"			on
 
