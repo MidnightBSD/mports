@@ -2,12 +2,12 @@
 # Date created:		2003-01-14
 # Whom:			Matt Lancereau <matt@rimasec.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.1 2008/09/26 15:58:25 laffer1 Exp $
 # $FreeBSD: ports/deskutils/orage/Makefile,v 1.12 2008/06/06 13:18:27 edwin Exp $
 #
 
 PORTNAME=	orage
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -22,7 +22,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui libmcs mcsmanager panel
+USE_XFCE=	configenv libgui xfconf panel
 USE_XORG=	xext xrender xinerama xi xrandr xcursor xcomposite xdamage x11 \
 		xfixes
 
