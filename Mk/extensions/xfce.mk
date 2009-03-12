@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.3 2009/03/11 21:18:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.4 2009/03/12 04:11:04 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)
@@ -13,7 +13,7 @@ XFCE_VERSION=	4.6.0
 # desktop environment. It's automatically included when USE_XFCE
 # is defined in the ports' makefile.
 
-_USE_XFCE_ALL=			configenv libexo libgui libutil libmcs mcsmanager panel \
+_USE_XFCE_ALL=			configenv libexo libgui libutil panel \
 						thunar wm xfdev xfconf libmenu
 
 MASTER_SITE_SUBDIR?=		xfce-${XFCE_VERSION}
@@ -28,12 +28,6 @@ libgui_RUN_DEPENDS=		libxfce4gui>=${XFCE_VERSION}:${PORTSDIR}/x11-toolkits/libxf
 
 libutil_BUILD_DEPENDS=		libxfce4util>=${XFCE_VERSION}:${PORTSDIR}/x11/libxfce4util
 libutil_RUN_DEPENDS=		libxfce4util>=${XFCE_VERSION}:${PORTSDIR}/x11/libxfce4util
-
-libmcs_BUILD_DEPENDS=		libxfce4mcs>=${XFCE_VERSION}:${PORTSDIR}/x11/libxfce4mcs
-libmcs_RUN_DEPENDS=		libxfce4mcs>=${XFCE_VERSION}:${PORTSDIR}/x11/libxfce4mcs
-
-mcsmanager_BUILD_DEPENDS=	xfce4-mcs-manager>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfce4-mcs-manager
-mcsmanager_RUN_DEPENDS=		xfce4-mcs-manager>=${XFCE_VERSION}:${PORTSDIR}/sysutils/xfce4-mcs-manager
 
 panel_BUILD_DEPENDS=		xfce4-panel>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-panel
 panel_RUN_DEPENDS=		xfce4-panel>=${XFCE_VERSION}:${PORTSDIR}/x11-wm/xfce4-panel
