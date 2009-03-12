@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/sysutils/xfce4-utils/Makefile,v 1.1 2008/09/25 15:43:41 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/xfconf4/Makefile,v 1.1 2009/03/11 21:16:15 ctriv Exp $
 # $FreeBSD: ports/sysutils/xfce4-utils/Makefile,v 1.42 2008/06/06 14:03:25 edwin Exp $
 #
 
@@ -19,6 +19,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_XFCE=	configenv 
+USE_GNOME=	pkgconfig gnomehack gnometarget
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
