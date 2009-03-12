@@ -2,12 +2,12 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.1 2008/09/26 18:16:39 laffer1 Exp $
 # $FreeBSD: ports/print/xfce4-print/Makefile,v 1.50 2008/06/06 13:58:00 edwin Exp $
 #
 
 PORTNAME=	xfce4-print
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	print xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DISTNAME=	xfprint-${PORTVERSION}
@@ -24,7 +24,7 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libgui libmcs libutil mcsmanager
+USE_XFCE=	configenv libgui libutil xfconf
 
 OPTIONS=	LPR	"Use lpr as printing system"		on \
 		CUPS	"Use cups as printing system"		off \
