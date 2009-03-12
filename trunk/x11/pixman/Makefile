@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/pixman/Makefile,v 1.3 2007/09/15 13:58:26 flz Exp $
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.1 2007/10/05 20:03:04 ctriv Exp $
+# $MidnightBSD: mports/x11/pixman/Makefile,v 1.2 2008/10/21 17:48:57 laffer1 Exp $
 #
 
 PORTNAME=	pixman
@@ -23,6 +23,6 @@ post-patch:
  		-e 's|-msse||' ${WRKSRC}/configure
 
 post-install:
-	(cd ${FAKE_DESTDIR}${LOCALBASE}/lib; ln -s libpixman-1.so.0 libpixman-1.so.9 )
+	(cd ${PREFIX}/lib; ln -s libpixman-1.so.0 libpixman-1.so.9 )
 
 .include <bsd.port.mk>
