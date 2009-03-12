@@ -2,12 +2,12 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/xfce4-wm-themes/Makefile,v 1.1 2008/09/26 18:12:08 laffer1 Exp $
 # $FreeBSD: ports/misc/xfce4-wm-themes/Makefile,v 1.23 2008/02/12 18:10:58 oliver Exp $
 #
 
 PORTNAME=	xfce4-wm-themes
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	misc xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DISTNAME=	xfwm4-themes-${PORTVERSION}
