@@ -2,12 +2,12 @@
 # Date Created:				10 October 2002
 # Whom:				 	olgeni@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-themes/gtk-xfce-engine/Makefile,v 1.1 2008/09/26 18:20:04 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/gtk-xfce-engine/Makefile,v 1.46 2008/06/06 14:14:26 edwin Exp $
 #
 
 PORTNAME=	gtk-xfce-engine
-PORTVERSION=	2.4.2
+PORTVERSION=	2.6.0
 CATEGORIES=	x11-themes xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
