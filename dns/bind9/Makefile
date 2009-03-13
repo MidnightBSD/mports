@@ -1,13 +1,7 @@
-# New ports collection makefile for:	bind
-# Date created:				6 October 2000
-# Whom:					will
-#
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.9 2008/09/25 00:58:02 laffer1 Exp $
-# $FreeBSD: ports/dns/bind9/Makefile,v 1.71 2006/09/06 18:42:40 dougb Exp $
-#
+# $MidnightBSD: mports/dns/bind9/Makefile,v 1.10 2008/09/25 01:45:44 laffer1 Exp $
 
 PORTNAME=	bind9
-PORTVERSION=	9.3.5.2
+PORTVERSION=	9.3.6.1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -21,7 +15,7 @@ COMMENT=	Completely new version of the BIND DNS suite with updated DNSSEC
 LICENSE=	mit
 
 # ISC releases things like 9.3.0rc1, which our versioning doesn't like
-ISCVERSION=	9.3.5-P2
+ISCVERSION=	9.3.6-P1
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
@@ -63,7 +57,7 @@ BIND_DESTETC=	${PREFIX}/etc
 
 PLIST_SUB=	BIND_DESTETC="${BIND_DESTETC}"
 
-MAN1=	dig.1 host.1 nslookup.1
+MAN1=	dig.1 host.1 nslookup.1 nsupdate.1
 MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
 	lwres_buffer_back.3 lwres_buffer_clear.3 lwres_buffer_first.3 \
 	lwres_buffer_forward.3 lwres_buffer_getmem.3 lwres_buffer_getuint16.3 \
@@ -99,13 +93,13 @@ MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
 	lwres_sethostent_r.3 lwres_string_parse.3
 MAN5=	named.conf.5 rndc.conf.5
 MAN8=	dnssec-keygen.8 dnssec-signzone.8 lwresd.8 named-checkconf.8 \
-	named-checkzone.8 named.8 nsupdate.8 rndc-confgen.8 rndc.8
+	named-checkzone.8 named.8 rndc-confgen.8 rndc.8
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
 post-patch:
-.for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.8 \
+.for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.1 \
 	rndc/rndc.8
 	@${MV} ${WRKSRC}/bin/${FILE} ${WRKSRC}/bin/${FILE}.Dist
 	@${SED} -e 's#/etc/named.conf#${BIND_DESTETC}/named.conf#g' \
@@ -113,11 +107,11 @@ post-patch:
 		${WRKSRC}/bin/${FILE}.Dist > ${WRKSRC}/bin/${FILE}
 .endfor
 
-	@${MV} ${WRKSRC}/bin/nsupdate/nsupdate.8 \
-	    ${WRKSRC}/bin/nsupdate/nsupdate.8.patched
+	@${MV} ${WRKSRC}/bin/nsupdate/nsupdate.1 \
+	    ${WRKSRC}/bin/nsupdate/nsupdate.1.patched
 	@${SED} -e "s@^\.HP [0-9]* @@" \
-	    ${WRKSRC}/bin/nsupdate/nsupdate.8.patched \
-	    > ${WRKSRC}/bin/nsupdate/nsupdate.8
+	    ${WRKSRC}/bin/nsupdate/nsupdate.1.patched \
+	    > ${WRKSRC}/bin/nsupdate/nsupdate.1
 	@${MV} ${WRKSRC}/bin/dig/nslookup.1 ${WRKSRC}/bin/dig/nslookup.1.Dist
 	@${SED} -e "s@^host \[server\]@\\\fBhost\\\fR \\\fI[server]\\\fR@" \
 	    ${WRKSRC}/bin/dig/nslookup.1.Dist > ${WRKSRC}/bin/dig/nslookup.1
