@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.87 2009/03/11 21:17:23 ctriv Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.88 2009/03/12 17:01:29 ctriv Exp $
 #
 
     COMMENT = System utilities
@@ -49,6 +49,7 @@
     SUBDIR += less
     SUBDIR += libcdio
     SUBDIR += libchk
+    SUBDIR += libutempter
     SUBDIR += lsof
     SUBDIR += makefs
     SUBDIR += mbmon
