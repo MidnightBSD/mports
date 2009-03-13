@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.130 2008/11/11 02:31:27 ctriv Exp $
+@comment $MidnightBSD: mports/x11/kdelibs4/pkg-plist,v 1.1 2008/12/10 15:09:14 ctriv Exp $
 bin/kde4-config
 bin/kconfig_compiler
 bin/preparetips
@@ -3839,3 +3839,6 @@ share/icons/hicolor/48x48/actions/presence_online.png
 @dirrm share/kde4/services/qimageioplugins
 @dirrm share/kde4/services
 @dirrm share/kde4
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime > /dev/null || /usr/bin/true
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime > /dev/null || /usr/bin/true
+

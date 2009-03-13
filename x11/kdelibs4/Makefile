@@ -1,10 +1,11 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: ports/x11/kdelibs4/Makefile,v 1.229 2008/09/03 13:06:23 miwi Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.1 2008/12/10 15:09:13 ctriv Exp $
 #
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION}/src
