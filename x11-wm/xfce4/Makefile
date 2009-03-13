@@ -2,12 +2,12 @@
 # Date created:		9 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.1 2008/09/26 18:28:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.2 2008/09/26 18:33:37 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
 #
 
 PORTNAME=	xfce
-PORTVERSION=	4.4.2
+PORTVERSION=	${XFCE_VERSION}
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -17,14 +17,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "meta-port" for the XFce 4 desktop environment
 LICENSE=	agg
 
-RUN_DEPENDS=	${LOCALBASE}/lib/xfce4/mcs-plugins/ui_plugin.so:${PORTSDIR}/sysutils/xfce4-mcs-plugins \
-		xfwm4:${PORTSDIR}/x11-wm/xfce4-wm \
+USE_XFCE=	configenv
+
+RUN_DEPENDS=	xfwm4:${PORTSDIR}/x11-wm/xfce4-wm \
 		xfce4-appfinder:${PORTSDIR}/misc/xfce4-appfinder \
 		xfce4-session:${PORTSDIR}/x11-wm/xfce4-session \
 		xfce4-panel:${PORTSDIR}/x11-wm/xfce4-panel \
 		xfdesktop:${PORTSDIR}/x11-wm/xfce4-desktop \
 		startxfce4:${PORTSDIR}/sysutils/xfce4-utils \
 		xfprint4:${PORTSDIR}/print/xfce4-print \
+		xfce4-settings-manager:${PORTSDIR}/sysutils/xfce4-settings \
 		${LOCALBASE}/lib/gtk-2.0/2.10.0/engines/libxfce.so:${PORTSDIR}/x11-themes/gtk-xfce-engine \
 		thunar:${PORTSDIR}/x11-fm/thunar \
 		orage:${PORTSDIR}/deskutils/orage \
@@ -54,7 +56,7 @@ RUN_DEPENDS+=	${LOCALBASE}/share/xfce4/mime/Rodent.mime.xml:${PORTSDIR}/x11-them
 .endif
 
 .if !defined(WITHOUT_PLUGINS)
-RUN_DEPENDS+=	${LOCALBASE}/lib/xfce4/modules/libxfce4mixer.so:${PORTSDIR}/audio/xfce4-mixer
+RUN_DEPENDS+=	xfce4-mixer:${PORTSDIR}/audio/xfce4-mixer
 .endif
 .endif
 
