@@ -1,9 +1,9 @@
 #!/bin/sh
+# $MidnightBSD$
 
 # PROVIDE: slim
 # REQUIRE: LOGIN
 
-# $MidnightBSD$
 #
 # Add the following lines to /etc/rc.conf to enable slim:
 # slim_enable (bool):      Set to "NO" by default.
