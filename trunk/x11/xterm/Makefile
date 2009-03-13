@@ -3,11 +3,11 @@
 # Whom:					krion
 #
 # $FreeBSD: ports/x11/xterm/Makefile,v 1.50 2007/09/05 12:11:37 krion Exp $
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.10 2009/01/02 00:26:38 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.11 2009/01/07 22:29:24 laffer1 Exp $
 #
 
 PORTNAME=	xterm
-PORTVERSION=	238
+PORTVERSION=	241
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
@@ -16,6 +16,9 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X Window System
 LICENSE=	x11
+
+BUILD_DEPENDS=	luit:${PORTSDIR}/x11/luit
+LIB_DEPENDS=	utempter.0:${PORTSDIR}/sysutils/libutempter
 
 USE_XORG=	xaw xft
 GNU_CONFIGURE=	yes
