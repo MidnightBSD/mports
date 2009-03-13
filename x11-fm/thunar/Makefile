@@ -2,12 +2,12 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.1 2008/09/25 14:09:14 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
 PORTNAME=	Thunar
-PORTVERSION=	0.9.0
+PORTVERSION=	1.0.0
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -17,9 +17,6 @@ COMMENT=	XFce 4 file manager
 LICENSE=	gpl2
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
-
-PATCHFILES=	Thunar-0.9.0-missing-audio-cds-for-volman.patch
-PATCH_SITES=	http://thunar.xfce.org/download/sources/Thunar/0.9.0/
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
