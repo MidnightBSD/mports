@@ -2,14 +2,14 @@
 # Date created:		2003/05/24
 # Whom:			Dan Pelleg <daniel+mdnsd@pelleg.org>
 #
-# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.1 2006/10/03 20:15:47 laffer1 Exp $
+# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.2 2007/11/11 23:10:51 laffer1 Exp $
 # $FreeBSD: ports/dns/mdnsd/Makefile,v 1.2 2003/09/05 04:54:35 edwin Exp $
 #
 
 PORTNAME=	mdnsd
 PORTVERSION=	0.7G
 CATEGORIES=	dns
-MASTER_SITES=	http://dotlocal.org/${PORTNAME}/ \
+MASTER_SITES=	\
 		http://web.cs.cmu.edu/~dpelleg/download/
 
 MAINTAINER=	ports@MidnightBSD.org
