@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/sysutils/xfconf4/Makefile,v 1.1 2009/03/11 21:16:15 ctriv Exp $
+# $MidnightBSD: mports/sysutils/xfconf4/Makefile,v 1.2 2009/03/12 03:21:46 ctriv Exp $
 # $FreeBSD: ports/sysutils/xfce4-utils/Makefile,v 1.42 2008/06/06 14:03:25 edwin Exp $
 #
 
@@ -18,7 +18,7 @@ GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_XFCE=	configenv 
+USE_XFCE=	configenv libutil
 USE_GNOME=	pkgconfig gnomehack gnometarget
 USE_LDCONFIG=	yes
 
