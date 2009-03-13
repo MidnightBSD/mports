@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.2 2009/03/02 22:38:28 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.3 2009/03/13 03:43:35 laffer1 Exp $
 
 PORTNAME=	ilmbase
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	openexr
