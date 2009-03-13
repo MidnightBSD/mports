@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-Net-DNS
-# Date created:				April 5th 1997
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.7 2008/05/04 09:36:42 crash Exp $
-# $FreeBSD: ports/dns/p5-Net-DNS/Makefile,v 1.66 2006/09/27 23:40:21 dougb Exp $
-#
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.8 2008/06/07 16:44:00 laffer1 Exp $
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.63
+PORTVERSION=	0.65
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -21,7 +15,7 @@ RUN_DEPENDS=	ipcount:${PORTSDIR}/net-mgmt/p5-Net-IP \
 		${SITE_PERL}/Digest/HMAC_MD5.pm:${PORTSDIR}/security/p5-Digest-HMAC
 
 PERL_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--no-online-tests
+CONFIGURE_ARGS+=	--no-online-tests --no-IPv6-tests
 
 MAN3=		Net::DNS.3 Net::DNS::Header.3 Net::DNS::Packet.3 \
 		Net::DNS::Question.3 Net::DNS::RR.3 Net::DNS::RR::A.3 \
