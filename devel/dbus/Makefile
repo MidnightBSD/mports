@@ -2,15 +2,16 @@
 # Date Created:			22 June 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.5 2008/10/17 14:21:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.6 2009/03/12 05:03:45 ctriv Exp $
 # $FreeBSD: ports/devel/dbus/Makefile,v 1.67 2007/05/19 20:02:19 flz Exp $
 #
 
 PORTNAME=	dbus
-PORTVERSION?=	1.2.4
+PORTVERSION?=	1.2.4.4
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
+DISTNAME=	dbus-${PORTVERSION}permissive
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A message bus system for inter-application communication
@@ -32,6 +33,8 @@ CONFIGURE_ARGS=--localstatedir=/var \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CONFIGURE_TARGET+=	--build=${MACHINE_ARCH}-portbld-freebsd6.1 \
+			--host=${MACHINE_ARCH}-portbld-freebsd6.1
 
 .if !defined(DBUS_SLAVE)
 USE_RC_SUBR=	dbus
