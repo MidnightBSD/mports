@@ -77,7 +77,6 @@ include/php/ext/pcre/pcrelib/pcre.h
 include/php/ext/pcre/pcrelib/pcre_internal.h
 include/php/ext/pcre/pcrelib/pcreposix.h
 include/php/ext/pcre/pcrelib/ucp.h
-include/php/ext/pcre/pcrelib/ucptable.h
 include/php/ext/pcre/php_pcre.h
 include/php/ext/standard/base64.h
 include/php/ext/standard/basic_functions.h
