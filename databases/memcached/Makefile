@@ -2,11 +2,11 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.2 2008/08/21 17:28:25 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.3 2008/08/21 17:28:46 laffer1 Exp $
 #
 
 PORTNAME=	memcached
-PORTVERSION=	1.2.5
+PORTVERSION=	1.2.6
 CATEGORIES=	databases
 MASTER_SITES=	http://www.danga.com/memcached/dist/ \
 		${MASTER_SITE_GENTOO}
@@ -28,7 +28,8 @@ OPTIONS=	REPCACHED	"Enable data replication feature"	off
 MAN1=		memcached.1
 
 PLIST_FILES=	bin/memcached \
-		bin/memcached-debug
+		bin/memcached-debug \
+		bin/memcached-tool
 
 PORTDOCS=	memory_management.txt protocol.txt
 
@@ -39,15 +40,17 @@ PORTDOCS=	memory_management.txt protocol.txt
 PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE}
 PATCH_SITE_SUBDIR=	repcached
 PATCH_DIST_STRIP+=	-p1
-REPCACHED_VERSION=	2.0
-PATCHFILES+=		repcached-${REPCACHED_VERSION}-${PORTVERSION}.patch.gz
+PATCHFILES+=		repcached-2.2-1.2.6.patch.gz
 CONFIGURE_ARGS+=	--enable-replication --disable-threads
+.else
+CONFIGURE_ARGS+=	--enable-threads
 .endif
 
 post-configure:
 	@${REINPLACE_CMD} -e 's#doc/memcached.1##' ${WRKSRC}/Makefile
 
 post-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/doc/${MAN1} ${MAN1PREFIX}/man/man1
 .if !defined(NOPORTDOCS)
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
