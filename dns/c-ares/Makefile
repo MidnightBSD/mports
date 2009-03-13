@@ -2,14 +2,14 @@
 # Date created:		8 September 2003
 # Whom:			roam@FreeBSD.org
 #
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.4 2007/11/11 21:33:28 laffer1 Exp $
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.5 2008/10/16 21:58:18 laffer1 Exp $
 # $FreeBSD: ports/dns/c-ares/Makefile,v 1.5 2006/12/06 09:58:55 roam Exp $
 #
 
 PORTNAME=	c-ares
 PORTVERSION=	1.4.0
 CATEGORIES=	dns
-MASTER_SITES=	http://daniel.haxx.se/projects/c-ares/
+MASTER_SITES=	http://c-ares.haxx.se/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An asynchronous DNS resolver library
