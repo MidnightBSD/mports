@@ -1,13 +1,7 @@
-# New ports collection makefile for:	luit
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/luit/Makefile,v 1.2 2007/06/02 20:03:29 rafan Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/luit/Makefile,v 1.1 2007/10/04 05:24:44 ctriv Exp $
 
 PORTNAME=	luit
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
