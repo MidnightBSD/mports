@@ -2,11 +2,10 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.10 2008/09/13 22:09:37 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.11 2009/03/02 19:02:22 laffer1 Exp $
 
 PORTNAME=	pidgin
-PORTVERSION=	2.5.1
-PORTREVISION=	1
+PORTVERSION=	2.5.5
 CATEGORIES=	net-im
 MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=     pidgin
@@ -116,7 +115,7 @@ PLIST_SUB+=		SILC="@comment not installed: "
 .endif
 
 .if !defined(WITHOUT_BONJOUR)
-LIB_DEPENDS+=	avahi-core.6:${PORTSDIR}/net/avahi
+LIB_DEPENDS+=	avahi-core.6:${PORTSDIR}/net/avahi-app
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	${PRPL_MODULES},bonjour
 .else
