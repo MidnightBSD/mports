@@ -2,12 +2,12 @@
 # Date created:				Tue Feb 18 11:17:13 CET 2003
 # Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.23 2009/01/05 00:25:18 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.24 2009/03/07 17:24:46 laffer1 Exp $
 # $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
 #
 
 PORTNAME=	php5
-PORTVERSION=	5.2.8
+PORTVERSION=	5.2.9
 PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
@@ -58,7 +58,7 @@ MAN1=		php-config.1 phpize.1
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-5.2.7-0.9.6.3.patch.gz:suhosin
+PATCHFILES+=	suhosin-patch-${PORTVERSION}-0.9.7.patch.gz:suhosin
 PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
@@ -67,7 +67,7 @@ PLIST_SUB+=	SUHOSIN="@comment "
 .endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-${PORTVERSION}-mail-header.patch:mail
+PATCHFILES+=	php-5.2.8-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
