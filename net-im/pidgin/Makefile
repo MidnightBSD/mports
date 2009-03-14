@@ -2,10 +2,11 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.12 2009/03/13 03:55:10 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.13 2009/03/14 01:18:23 laffer1 Exp $
 
 PORTNAME=	pidgin
 PORTVERSION=	2.5.5
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=   ${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=     pidgin
@@ -95,8 +96,10 @@ CONFIGURE_ARGS+=	--enable-nss=yes \
 			--with-nspr-libs=${LOCALBASE}/lib \
 			--with-nss-includes=${LOCALBASE}/include/nss/nss \
 			--with-nss-libs=${LOCALBASE}/lib/nss
+PLIST_SUB+=		NSS=""
 .else
 CONFIGURE_ARGS+=	--enable-nss=no
+PLIST_SUB+=		NSS="@comment "
 .endif
 
 .if defined(WITH_SASL)
