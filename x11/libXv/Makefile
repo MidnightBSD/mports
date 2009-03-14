@@ -1,13 +1,7 @@
-# New ports collection makefile for:   libXv
-# Date Created:			13 Nov, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXv/Makefile,v 1.20 2007/05/19 20:26:57 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXv/Makefile,v 1.1 2007/10/05 17:48:09 ctriv Exp $
 
 PORTNAME=	libXv
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +9,7 @@ COMMENT=	X Video Extension library
 LICENSE=	x11	
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto videoproto:both
+USE_XORG=	x11 xext xextproto videoproto:both xproto
 
 MAN3=	Xv.3 \
 	XvFreeAdaptorInfo.3 \
