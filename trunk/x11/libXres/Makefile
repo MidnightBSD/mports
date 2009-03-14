@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXext
-# Date Created:			29 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXres/Makefile,v 1.21 2007/09/13 19:45:00 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXres/Makefile,v 1.1 2007/10/05 15:13:37 ctriv Exp $
 
 PORTNAME=	libXres
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +10,7 @@ COMMENT=	X Resource usage library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto resourceproto
+USE_XORG=	x11 xext xextproto resourceproto xproto
 
 MAN3=		XRes.3 \
 		XResQueryClients.3 \
