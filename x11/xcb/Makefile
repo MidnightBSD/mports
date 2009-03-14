@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xcb
-# Date created:		1 August 1995
-# Whom:			jkh
-#
-# $MidnightBSD: mports/x11/xcb/Makefile,v 1.2 2008/10/07 15:25:40 laffer1 Exp $
-# $FreeBSD: ports/x11/xcb/Makefile,v 1.14 2007/05/19 20:27:38 flz Exp $
-#
+# $MidnightBSD: mports/x11/xcb/Makefile,v 1.3 2008/10/07 15:27:56 laffer1 Exp $
 
 PORTNAME=	xcb
 PORTVERSION=	2.4
