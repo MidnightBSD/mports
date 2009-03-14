@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.86 2009/01/04 03:44:30 ctriv Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.87 2009/02/08 23:30:07 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -69,9 +69,9 @@
     SUBDIR += p5-Net-SSLeay
     SUBDIR += pam_ldap
     SUBDIR += pecl-crack
-    SUBDIR += pecl-filter
     SUBDIR += pecl-gnupg
     SUBDIR += pecl-hash
+    SUBDIR += php5-filter
     SUBDIR += php5-mcrypt
     SUBDIR += php5-mhash
     SUBDIR += php5-openssl
