@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.2 2009/01/05 00:24:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -256,7 +256,7 @@ domxml_DEPENDS=	textproc/php${PHP_VER}-domxml
 exif_DEPENDS=	graphics/php${PHP_VER}-exif
 fileinfo_DEPENDS=	sysutils/pecl-fileinfo
 filepro_DEPENDS=databases/php${PHP_VER}-filepro
-filter_DEPENDS=	security/pecl-filter
+filter_DEPENDS=	security/php${PHP_VER}-filter
 fribidi_DEPENDS=converters/pecl-fribidi
 ftp_DEPENDS=	ftp/php${PHP_VER}-ftp
 gd_DEPENDS=	graphics/php${PHP_VER}-gd
