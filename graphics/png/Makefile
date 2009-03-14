@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.15 2008/09/21 22:42:29 crash Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.16 2009/03/05 16:32:16 laffer1 Exp $
 
 PORTNAME=	png
 PORTVERSION=	1.2.35
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	lib${PORTNAME}
