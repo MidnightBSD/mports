@@ -1,14 +1,7 @@
-# New ports collection makefile for:	fontconfig
-# Date created:		06 October 2002
-# Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-fonts/fontconfig/Makefile,v 1.69 2007/07/28 18:19:09 marcus Exp $
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.6 2007/10/04 20:00:20 ctriv Exp $
-#   $MCom: ports/x11-fonts/fontconfig/Makefile,v 1.12 2007/02/02 19:49:43 mezz Exp $
-#
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.7 2008/06/29 22:13:53 laffer1 Exp $
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.5.0
+PORTVERSION=	2.6.0
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://fontconfig.org/release/
@@ -43,22 +36,15 @@ PORTDOCS=	fontconfig-user.html fontconfig-user.pdf fontconfig-user.txt
 
 .include <bsd.port.pre.mk>
 
-.if exists(${LOCALBASE}/bin/docbook2man)
-USE_DOCBOOK2MAN=	yes
-BUILD_DEPENDS+=		${LOCALBASE}/share/sgml/docbook/4.1:${PORTSDIR}/textproc/docbook-410
-.endif
-
 post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/doc/|} ${DOCSDIR}
 .endif
 	${INSTALL_MAN} ${MAN5:S|^|${WRKSRC}/doc/|} ${PREFIX}/man/man5
-.if !defined(USE_DOCBOOK2MAN)
 .for manpage in ${MAN1}
 	${INSTALL_MAN} ${FILESDIR}/${manpage} ${PREFIX}/man/man1
 .endfor
-.endif
 	if [ ! -f ${PREFIX}/etc/fonts/fonts.conf ]; then \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf; \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.default; \
