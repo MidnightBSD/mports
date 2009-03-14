@@ -1,10 +1,4 @@
-# New ports collection makefile for:	MySQL-server
-# Date created:				Fri Apr 11 10:06:26 CET 2003
-# Whom:					Alex Dupre <sysadmin@alexdupre.com>
-#
-# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.4 2007/08/01 19:47:42 laffer1 Exp $
-# $FreeBSD: ports/databases/mysql41-server/Makefile,v 1.224 2007/01/20 09:22:57 ale Exp $
-#
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.5 2007/08/10 15:41:13 laffer1 Exp $
 
 PORTNAME?=	mysql
 PORTVERSION=	4.1.22
@@ -16,7 +10,6 @@ PKGNAMESUFFIX?=	-server
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multithreaded SQL database (server)
-
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql41-client
