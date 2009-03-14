@@ -15,7 +15,7 @@
 +LIBDIR=         ${PREFIX}/lib
  INCS=		png.h pngconf.h
 -INCSDIR=	/include/libpng
-+INCSDIR=        ${PREFIX}/include/libpng
++INCSDIR=        ${PREFIX}/include/libpng/
  INCDIR=		${INCSDIR}		# for 4.x bsd.lib.mk
  MAN=		libpng.3 libpngpf.3 png.5
 -MANDIR=		/man/man
