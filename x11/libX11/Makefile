@@ -3,33 +3,33 @@
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/libX11/Makefile,v 1.18 2007/09/13 19:44:58 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libX11/Makefile,v 1.2 2007/10/02 22:13:20 ctriv Exp $
 #
 
 PORTNAME=	libX11
-PORTVERSION=	1.1.3
+PORTVERSION=	1.2
 PORTEPOCH=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 library
-LICENSE=	x11
 
-.if defined(WITH_XCB)
-BUILD_DEPENDS=	${X11BASE}/libdata/pkgconfig/xcb-xlib.pc:${PORTSDIR}/x11/libxcb
-RUN_DEPENDS=	${BUILD_DEPENDS}
-CONFIGURE_ARGS=	--with-xcb=yes
-PLIST_SUB+=	XCB=""
-.else
-CONFIGURE_ARGS=	--with-xcb=no
-PLIST_SUB+=	XCB="@comment "
-.endif
+BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xcb.pc:${PORTSDIR}/x11/libxcb \
+		${LOCALBASE}/share/aclocal/xorg-macros.m4:${PORTSDIR}/devel/xorg-macros
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xcb.pc:${PORTSDIR}/x11/libxcb
 
 XORG_CAT=	lib
-USE_XORG=	bigreqsproto xau xdmcp xextproto xtrans xcmiscproto kbproto:both \
-		inputproto:both xf86bigfontproto xproto:both
-USE_AUTOTOOLS=	libtool:15
-CONFIGURE_ARGS+=	--enable-xdmauth --datadir=${PREFIX}/lib
+USE_XORG=	bigreqsproto xau xcmiscproto xdmcp xextproto xtrans \
+		kbproto:both inputproto xf86bigfontproto xproto:both
+USE_AUTOTOOLS=	aclocal:110 autoheader:262 automake:110 autoconf:262 libtool:15
+ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
+AUTOMAKE_ARGS=	--add-missing
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
+			--with-xcb=yes
+
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/x11-xcb.pc ${PREFIX}/libdata/pkgconfig/
+	${INSTALL_DATA} ${WRKSRC}/x11.pc ${PREFIX}/libdata/pkgconfig/
 
 .include "${.CURDIR}/manpages"
 .include <bsd.port.mk>
