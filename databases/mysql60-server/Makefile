@@ -2,11 +2,11 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/mysql60-server/Makefile,v 1.1 2008/08/04 13:58:11 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql60-server/Makefile,v 1.2 2008/08/26 16:11:44 laffer1 Exp $
 
 
 PORTNAME?=	mysql
-PORTVERSION=	6.0.5
+PORTVERSION=	6.0.9
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -29,6 +29,7 @@ CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-libedit \
 		--with-libwrap \
 		--with-mysqlfs \
+		--with-zlib-dir=/usr \
 		--with-low-memory \
 		--with-comment='MidnightBSD port: ${PKGNAME}' \
 		--enable-thread-safe-client
@@ -74,7 +75,7 @@ CONFIGURE_ARGS+=--with-named-thread-libs='-DHAVE_GLIBC2_STYLE_GETHOSTBYNAME_R
 CONFIGURE_ARGS+=-D_THREAD_SAFE -I${LOCALBASE}/include/pthread/linuxthreads
 CFLAGS+=	-D__USE_UNIX98 -D_REENTRANT -D_THREAD_SAFE
 CFLAGS+=	-I${LOCALBASE}/include/pthread/linuxthreads
-LIB_DEPENDS+=	lthread.[35]:${PORTSDIR}/devel/linuxthreads
+LIB_DEPENDS+=	lthread:${PORTSDIR}/devel/linuxthreads
 CONFIGURE_ARGS+=-L${LOCALBASE}/lib -llthread -llgcc_r -llstdc++ -llsupc++'
 .else
 CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
@@ -111,6 +112,11 @@ MAN1=		myisamchk.1 myisamlog.1 myisampack.1 \
 
 INFO=		mysql
 
+CONFIGURE_ARGS+=--with-embedded-server
+
+CFLAGS+=	-fPIC
+
+
 pre-fetch:
 	@${ECHO} ""
 	@${ECHO} "You may use the following build options:"
@@ -132,13 +138,14 @@ pre-fetch:
 	@${ECHO} ""
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ sql-common @sql_server_dirs@ storage scripts @sql_server@ @man_dirs@ support-files|g" ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ sql-common @sql_server_dirs@ libmysql storage scripts @sql_server@ @man_dirs@ @libmysqld_dirs@ support-files|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = @server_scripts@|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = fill_help_tables.sql mysql_system_tables.sql mysql_system_tables_data.sql|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-pkgincludeHEADERS|install-data-am:|g" ${WRKSRC}/extra/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-includeHEADERS|install-data-am:|g" ${WRKSRC}/extra/libevent/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-data-am: install-pkgincludeHEADERS|install-data-am:|g" ${WRKSRC}/include/Makefile.in
+	@${REINPLACE_CMD} -e "s|install-exec-am: install-pkglibLTLIBRARIES|install-exec-am:|g" ${WRKSRC}/libmysql/Makefile.in
 	@${REINPLACE_CMD} -e "s|PROGRAMS = \$$(noinst_PROGRAMS)|PROGRAMS =|g" ${WRKSRC}/storage/archive/Makefile.in
 	@${REINPLACE_CMD} -e "/^AM_CXXFLAGS/s|=.*|+= \$$(NDB_CXXFLAGS)|" `${FIND} ${WRKSRC}/storage/ndb -name Makefile.in`
 .if defined(WITH_PROC_SCOPE_PTH)
@@ -160,18 +167,16 @@ CONFLICTS=	mysql-client-3.* mysql-client-4.* mysql-client-5.*
 MAN1=		mysql_config.1 mysql.1 mysqladmin.1 mysqlbinlog.1 \
 		mysqlcheck.1 mysqldump.1 mysqlimport.1 mysqlshow.1
 
-MAN8=		mysqlmanager.8
-
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 
 CONFIGURE_ARGS+=--without-server
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include sql-common scripts strings regex mysys dbug extra libmysql libmysql_r client @man_dirs@|g" ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e "s|install-exec-am: install-pkglibLIBRARIES|install-exec-am:|g" ${WRKSRC}/strings/Makefile.in ${WRKSRC}/mysys/Makefile.in ${WRKSRC}/dbug/Makefile.in
+	@${REINPLACE_CMD} -e "s|install-exec-am: install-pkglibLTLIBRARIES|install-exec-am:|g" ${WRKSRC}/strings/Makefile.in ${WRKSRC}/mysys/Makefile.in ${WRKSRC}/dbug/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = mysql_config mysql_fix_privilege_tables mysqlbug|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = mysql_fix_privilege_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-binPROGRAMS|install-exec-am:|g" ${WRKSRC}/extra/Makefile.in
 
 post-install:
