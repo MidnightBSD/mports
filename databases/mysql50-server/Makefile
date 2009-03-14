@@ -1,13 +1,7 @@
-# New ports collection makefile for:	MySQL-server
-# Date created:				Fri Apr 11 10:06:26 CET 2003
-# Whom:					Alex Dupre <sysadmin@alexdupre.com>
-#
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.8 2008/03/12 02:21:06 laffer1 Exp $
-# $FreeBSD: ports/databases/mysql50-server/Makefile,v 1.224 2007/03/14 16:13:27 ale Exp $
-#
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.9 2008/09/29 17:43:28 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.0.67
+PORTVERSION=	5.0.77
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
