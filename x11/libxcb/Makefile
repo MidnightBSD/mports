@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libxcb
-# Date Created:				2006-08-23
-# Whom:					Ashish Shukla <wahjava@gmail.com>
-#
-# $FreeBSD: ports/x11/libxcb/Makefile,v 1.7 2007/09/05 14:45:07 beech Exp $
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.2 2007/10/02 21:56:49 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.3 2008/09/26 21:23:53 laffer1 Exp $
 
 PORTNAME=	libxcb
-PORTVERSION=	1.1.90.1
+PORTVERSION=	1.2
 CATEGORIES=	x11 python
 #MASTER_SITES=	XORG/current/src/extras
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
@@ -29,11 +23,11 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_PYTHON=	2.5
+USE_PYTHON=	2.5+
 USE_XORG=	xau xdmcp
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS+=	--with-check=${LOCALBASE}
 .for f in XPROTO_CFLAGS XPROTO_LIBS XDMCP_CFLAGS XDMCP_LIBS NEEDED_CFLAGS NEEDED_LIBS
 CONFIGURE_ARGS+=${f}="${${f}}"
