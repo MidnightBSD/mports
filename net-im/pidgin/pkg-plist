@@ -206,8 +206,8 @@ lib/purple-2/psychic.la
 lib/purple-2/psychic.so
 lib/purple-2/ssl-gnutls.la
 lib/purple-2/ssl-gnutls.so
-lib/purple-2/ssl-nss.la
-lib/purple-2/ssl-nss.so
+%%NSS%%lib/purple-2/ssl-nss.la
+%%NSS%%lib/purple-2/ssl-nss.so
 lib/purple-2/ssl.la
 lib/purple-2/ssl.so
 lib/purple-2/statenotify.la
