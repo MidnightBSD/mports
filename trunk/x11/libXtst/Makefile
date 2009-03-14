@@ -1,10 +1,4 @@
-# New ports collection makefile for:   libXtst
-# Date Created:			8 Feb 2006
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXtst/Makefile,v 1.3 2007/09/13 19:45:00 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.1 2007/10/05 17:41:23 ctriv Exp $
 
 PORTNAME=	libXtst
 PORTVERSION=	1.0.3
@@ -18,7 +12,7 @@ XORG_CAT=	lib
 USE_XORG=	x11 xext recordproto:both xextproto inputproto
 USE_AUTOTOOLS=	libtool:15
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 
 MAN3=		XTestQueryExtension.3 \
 		XTestCompareCursorWithWindow.3 \
