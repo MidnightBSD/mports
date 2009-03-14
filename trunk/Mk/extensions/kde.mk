@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.kde.mk,v 1.8 2008/05/21 06:06:22 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -62,7 +62,7 @@ CATEGORIES+=ipv6
 ##  XXX - This really belongs into bsd.port.mk
 .if !defined(_NO_KDE_CONFTARGET_HACK)
 CONFIGURE_TARGET=
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
+CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.1 \
 		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--disable-as-needed
 .endif
