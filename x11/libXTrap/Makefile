@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libXTrap
-# Date Created:				21 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXTrap/Makefile,v 1.1 2007/05/19 20:26:47 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXTrap/Makefile,v 1.1 2007/10/05 15:17:27 ctriv Exp $
 
 PORTNAME=	libXTrap
 PORTVERSION=	1.0.0
@@ -18,6 +12,6 @@ XORG_CAT=	lib
 USE_XORG=	trapproto:both x11 xext xextproto xt
 USE_AUTOTOOLS=	libtool:15
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 
 .include <bsd.port.mk>
