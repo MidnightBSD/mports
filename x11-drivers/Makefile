@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.3 2009/03/15 20:45:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.4 2009/03/15 20:52:21 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -48,6 +48,7 @@
     SUBDIR += xf86-video-nsc
     SUBDIR += xf86-video-nv
     SUBDIR += xf86-video-openchrome
+    SUBDIR += xf86-video-r128
     SUBDIR += xf86-video-radeonhd
     SUBDIR += xf86-video-rendition
     SUBDIR += xf86-video-s3
