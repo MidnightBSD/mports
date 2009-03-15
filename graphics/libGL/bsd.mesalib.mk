@@ -14,14 +14,15 @@
 #    - graphics/libGLw
 #    - graphics/dri
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.3 2009/03/15 19:00:33 laffer1 Exp $
 
 MESAVERSION=	7.3
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.fu-berlin.de/pub/unix/X11/graphics/Mesa/
 MASTER_SITE_SUBDIR=	mesa3d
 DISTFILES=	MesaLib-${MESAVERSION}${EXTRACT_SUFX}
-MAINTAINER?=	x11@FreeBSD.org
+MAINTAINER?=	ports@MidnightBSD.org
+LICENSE?=	x11
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
