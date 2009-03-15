@@ -1,13 +1,7 @@
-# New ports collection makefile for:   libXaw
-# Date Created:			25 Jan, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-toolkits/libXaw/Makefile,v 1.19 2007/09/13 19:44:56 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-toolkits/libXaw/Makefile,v 1.1 2007/10/03 20:37:27 ctriv Exp $
 
 PORTNAME=	libXaw
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +9,7 @@ COMMENT=	X Athena Widgets library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	printproto x11 xau xext xextproto xmu xp xpm xproto xt
+USE_XORG=	printproto:both x11 xau xext xextproto xmu xp xpm xproto:both xt
 
 MAN3=		Xaw.3
 
