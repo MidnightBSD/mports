@@ -1,14 +1,7 @@
-# New ports collection makefile for:    xorg-drivers
-# Date created:				Jun 22 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xorg-drivers/Makefile,v 1.6 2007/10/09 19:30:14 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.2 2008/03/03 23:42:11 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	xorg-drivers
-PORTVERSION=	7.3
-PORTREVISION=	1
+PORTVERSION=	7.4
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -29,14 +22,16 @@ ARCH!=  /usr/bin/uname -p
 
 VIDEO_ON=	ati \
 		intel \
+		mach64 \
 		nv \
+		r128 \
 		radeonhd \
-		vesa vga
+		vesa
 
 .if ${ARCH} == "sparc64"
 VIDEO_ON+=	sunffb
 .else
-VIDEO_ON+=	via
+VIDEO_ON+=	openchrome
 .endif
 
 VIDEO_OFF=	apm ark \
@@ -44,16 +39,15 @@ VIDEO_OFF=	apm ark \
 		dummy \
 		fbdev \
 		glint \
-		i128 i740 i810 imstt \
+		i128 i740 imstt \
 		mga \
 		neomagic newport nsc \
-		openchrome \
 		rendition \
 		s3 s3virge savage siliconmotion	sis \
 		tdfx tga trident tseng \
-		vmware voodoo
+		via vmware voodoo
 
-VIDEO_EXCL=	intel:i810 via:openchrome
+VIDEO_EXCL=	via:openchrome
 
 INPUT_ON=	mouse \
 		keyboard
@@ -66,11 +60,11 @@ INPUT_OFF=	acecad \
 		jamstudio joystick \
 		magellan magictouch microtouch mutouch \
 		palmax penmount \
-		spaceorb summa \
+		spaceorb summa synaptics \
 		tek4957 \
 		vmmouse void
 
-QUIRKS=		keyboard:kbd jamstudio:js_x openchrome:via
+QUIRKS=		keyboard:kbd jamstudio:js_x
 
 .if defined(XORG_COMPLETE)
 . for type in input video
@@ -103,7 +97,7 @@ DRV_CONFLICTS+=	${i}
 .endfor
 
 .if defined(DRV_CONFLICTS)
-IGNORE=		can't be installed because of conflicting drivers (${DRV_CONFLICTS})
+IGNORE=		can't be installed because of conflicting drivers (${DRV_CONFLICTS}). Re-run make config.
 .endif
 
 .for default in on off
