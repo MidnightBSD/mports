@@ -1,12 +1,7 @@
-# New ports collection makefile for:	pciids
-# Date created:		2006-08-07
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.3 2008/09/21 20:17:15 laffer1 Exp $
-# $FreeBSD: ports/misc/pciids/Makefile,v 1.6 2007/02/26 00:56:11 ahze Exp $
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.4 2008/10/11 20:24:37 laffer1 Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20080901
+PORTVERSION=	20090224
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ahze
@@ -17,14 +12,12 @@ LICENSE=	unknown
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-PLIST_FILES=	%%DATADIR%%/pci.ids \
-		%%DATADIR%%/pci.db
+PLIST_FILES=	%%DATADIR%%/pci.ids
 PLIST_DIRS=	%%DATADIR%%
 
 do-install:
 	${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/pci.ids ${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/pci.db ${DATADIR}
 
 .include <bsd.port.pre.mk>
 
@@ -34,7 +27,7 @@ CT_WRKSRC=	${WRKDIR}/tmp
 CT_DESTDIR=	${PORTNAME}-${CT_DATE}
 CT_TEMPDIR=	${CT_WRKSRC}/${CT_DESTDIR}
 CT_MASTER_SITE=	http://pciids.sourceforge.net/v2.2/
-CT_DISTFILES=	pci.ids pci.db
+CT_DISTFILES=	pci.ids
 
 maketar: extract
 	${MKDIR} ${CT_TEMPDIR}
