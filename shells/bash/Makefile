@@ -3,13 +3,13 @@
 # Date created:				30 Jul 2004
 # Whom:					Oliver Eikemeier
 #
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.8 2008/10/01 20:03:03 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.9 2009/01/25 20:27:24 crash Exp $
 # $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
 #
 
 PORTNAME=		bash
-PATCHLEVEL=		48
-PORTVERSION=		3.2.${PATCHLEVEL:S/^0//g}
+PATCHLEVEL=		10
+PORTVERSION=		4.0.${PATCHLEVEL:S/^0//g}
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
 			ftp://ftp.cwru.edu/pub/%SUBDIR%/:faq
@@ -30,11 +30,11 @@ MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
 LICENSE=		gpl2
 
+#'
+
 IGNOREFILES=		FAQ
 
-OPTIONS=	IMPLICITCD       "Add support for implicit cd." On \
-		COLONBREAKSWORDS "Have word completion break words on ':'." On \
-		INCLUDED_FAQ	 "Install the included FAQ." Off \
+OPTIONS=	INCLUDED_FAQ	 "Install the included FAQ." Off \
 		STATIC_BASH      "Statically link bash." Off \
 		NLS		 "Enable native language support." On \
 		HELP		 "Install builtin help." On \
@@ -42,13 +42,6 @@ OPTIONS=	IMPLICITCD       "Add support for implicit cd." On \
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_IMPLICITCD)
-EXTRA_PATCHES+=		${PATCHDIR}/xpatch-implicitcd
-.endif
-
-.if !defined(WITHOUT_COLONBREAKSWORDS)
-EXTRA_PATCHES+=		${PATCHDIR}/xpatch-colonbreakswords
-.endif
 
 MAN1=			bash.1 bashbug.1
 MLINKS=			bash.1 rbash.1
@@ -107,10 +100,6 @@ CONFIGURE_ENV=		CPPFLAGS="${CPPFLAGS}" \
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/doc/bash.1
-
-post-configure:
-	@${FIND} ${WRKSRC} -name Makefile -print0 | ${XARGS} -0 \
-		${REINPLACE_CMD} -e "s|^DESTDIR *=|& ${DESTDIR}|"
 
 pre-build:
 	@${ECHO_CMD} $$((${PORTREVISION}-1)) > ${WRKSRC}/.build
