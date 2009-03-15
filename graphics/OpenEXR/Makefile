@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.2 2009/03/02 22:36:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.3 2009/03/02 22:38:28 laffer1 Exp $
 
 PORTNAME=	OpenEXR
 PORTVERSION=	1.6.1
@@ -20,6 +20,7 @@ USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=--enable-imfexamples
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 

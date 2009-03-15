@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.86 2009/01/04 03:20:49 ctriv Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.87 2009/03/02 22:35:33 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -46,6 +46,7 @@
     SUBDIR += lcms
     SUBDIR += libGL
     SUBDIR += libGLU
+    SUBDIR += libGLw
     SUBDIR += libart
     SUBDIR += libart_lgpl
     SUBDIR += libcaca
