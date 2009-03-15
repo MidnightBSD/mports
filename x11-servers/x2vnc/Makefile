@@ -1,10 +1,4 @@
-# New ports collection makefile for:	x2vnc
-# Date created:				12th September 2000
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-servers/x2vnc/Makefile,v 1.14 2006/06/23 16:33:56 erwin Exp $
-# $MidnightBSD: mports/x11-servers/x2vnc/Makefile,v 1.3 2008/08/20 18:52:44 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-servers/x2vnc/Makefile,v 1.4 2008/08/20 18:53:38 laffer1 Exp $
 
 PORTNAME=	x2vnc
 PORTVERSION=	1.72
