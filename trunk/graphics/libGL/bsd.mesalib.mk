@@ -14,7 +14,7 @@
 #    - graphics/libGLw
 #    - graphics/dri
 #
-# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.3 2009/03/15 19:00:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.4 2009/03/15 19:33:20 laffer1 Exp $
 
 MESAVERSION=	7.3
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
@@ -44,11 +44,7 @@ WRKSRC=		${WRKDIR}/Mesa-${MESAVERSION}
 ARCH!=		uname -p
 .endif
 
-.if ${ARCH} == alpha
-FAST_MATH=
-.else
 FAST_MATH=      -ffast-math
-.endif
 
 COMPONENT=	${PORTNAME:L:C/^lib//:C/mesa-//}
 
