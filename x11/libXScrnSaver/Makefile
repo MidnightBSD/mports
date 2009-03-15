@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libXScrnSaver
-# Date Created:				15 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXScrnSaver/Makefile,v 1.1 2007/05/19 20:26:47 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXScrnSaver/Makefile,v 1.1 2007/10/03 19:30:39 ctriv Exp $
 
 PORTNAME=	libXScrnSaver
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
