@@ -1,9 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.1 2007/10/12 04:01:06 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.2 2008/03/03 23:38:25 laffer1 Exp $
 
     COMMENT = X11 drivers
 
-    SUBDIR += synaptics
     SUBDIR += xf86-input-acecad
     SUBDIR += xf86-input-calcomp
     SUBDIR += xf86-input-citron
