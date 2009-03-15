@@ -2,11 +2,11 @@
 # Date created:		September 24, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11-themes/midnightbsd-backgrounds/Makefile,v 1.1 2008/09/24 16:29:39 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/midnightbsd-backgrounds/Makefile,v 1.2 2008/10/24 17:29:18 laffer1 Exp $
 #
 
 PORTNAME=	midnightbsd-backgrounds
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 CATEGORIES=	x11-themes graphics gnome kde
 MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
@@ -16,9 +16,9 @@ LICENSE=	agg
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-WRKSRC=		${WRKDIR}/dtps
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
-BACKGROUNDS=	mnbsd_bsdgurl1.jpg mnbsd_bsdgurl2.jpg MidnightBSD-Space.jpg mnbsd_bg_gray.png mnbsd_bg_purple.png mnbsd_bg_black.png mnbsd_bg_green.png mnbsd_bg_yellow.png mnbsd_bg_blue.png mnbsd_bg_pink.png
+BACKGROUNDS=	BSDkeyboard.jpg bsdheart.jpg mnbsd_bsdgurl1.jpg mnbsd_bsdgurl2.jpg MidnightBSD-Space.jpg mnbsd_bg_gray.png mnbsd_bg_purple.png mnbsd_bg_black.png mnbsd_bg_green.png mnbsd_bg_yellow.png mnbsd_bg_blue.png mnbsd_bg_pink.png
 
 do-install:
 	${MKDIR} ${PREFIX}/share/wallpapers
