@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.278 2009/02/18 21:58:36 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.279 2009/03/14 22:28:52 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -123,6 +123,7 @@
     SUBDIR += liboil
     SUBDIR += liboobs
     SUBDIR += libopensync022
+    SUBDIR += libpciaccess
     SUBDIR += libpthread-stubs
     SUBDIR += libsigc++
     SUBDIR += libsigc++12
