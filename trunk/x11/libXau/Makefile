@@ -1,13 +1,7 @@
-# New ports collection makefile for:   libXau
-# Date Created:			29 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXau/Makefile,v 1.15 2007/05/19 20:26:48 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXau/Makefile,v 1.2 2007/10/02 21:24:32 ctriv Exp $
 
 PORTNAME=	libXau
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
