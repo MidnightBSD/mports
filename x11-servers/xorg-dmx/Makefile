@@ -1,15 +1,8 @@
-# New ports collection makefile for:    xorg-dmx
-# Date created:		13 Mar 2005
-# Whom:			lesi@FreeBSD.org
-#
-# $FreeBSD: ports/x11-servers/xorg-dmx/Makefile,v 1.7 2007/09/13 19:44:55 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.4 2008/07/25 06:06:39 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.5 2008/08/13 21:12:46 crash Exp $
 
 PORTNAME=	xorg-dmx
-PORTVERSION=	1.4
+PORTVERSION=	1.5.3
 PORTEPOCH=	1
-PORTREVISION=	2
 CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +13,7 @@ XORG_CAT=	xserver
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
 USE_XORG=	x11 xf86driproto glproto randrproto renderproto fixesproto \
-		damageproto xcmiscproto xextproto xf86miscproto \
+		dri2proto damageproto xcmiscproto xextproto xf86miscproto \
 		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
 		resourceproto fontsproto xf86dgaproto videoproto \
 		compositeproto trapproto recordproto resourceproto \
