@@ -1,13 +1,8 @@
-# New ports collection makefile for:   xrender
-# Date Created:			2 Jul, 2003
-# Whom:				Foxfair Hu <foxfair@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXrender/Makefile,v 1.23 2007/09/13 19:45:00 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXrender/Makefile,v 1.1 2007/10/03 03:49:26 ctriv Exp $
 
 PORTNAME=	libXrender
 PORTVERSION=	0.9.4
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,6 +10,6 @@ COMMENT=	X Render extension library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	x11 renderproto:both
+USE_XORG=	x11 renderproto:both xproto
 
 .include <bsd.port.mk>
