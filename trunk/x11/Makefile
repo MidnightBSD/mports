@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.66 2008/12/13 01:48:10 ctriv Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.67 2009/01/05 07:47:46 ctriv Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -14,6 +14,7 @@
     SUBDIR += dmenu
     SUBDIR += dmxproto
     SUBDIR += docker
+    SUBDIR += dri2proto
     SUBDIR += editres
     SUBDIR += etoile
     SUBDIR += etoile-iterm
