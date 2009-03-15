@@ -2,118 +2,93 @@
 # Date created:			22 December 2003
 # Whom:				Mezz <mezz7@cox.net>
 #
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.2 2007/03/22 04:04:21 ctriv Exp $
-# $FreeBSD: ports/games/wesnoth/Makefile,v 1.38 2006/10/14 08:54:15 marcus Exp $
+# $FreeBSD: ports/games/wesnoth/Makefile,v 1.62 2008/12/28 13:31:05 philip Exp $
 #
 
 PORTNAME=	wesnoth
-PORTVERSION=	1.0.2
-PORTREVISION=	4
+PORTVERSION=	1.4.7
 CATEGORIES=	games
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.wesnoth.org/files/
 MASTER_SITE_SUBDIR=	wesnoth
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	philip@FreeBSD.org
 COMMENT=	A fantasy turn-based strategy game
-LICENSE=	gpl2
 
-LIB_DEPENDS=	zipios.0:${PORTSDIR}/archivers/zipios++
+LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost \
+		freetype.9:${PORTSDIR}/print/freetype2
 
-USE_GCC=	3.4
 USE_SDL=	image mixer net
 USE_GNOME=	gnometarget
 USE_GMAKE=	yes
 WANT_GNOME=	yes
-USE_GETTEXT=	yes
-USE_XLIB=	yes
+USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-libiconv-prefix=${LOCALBASE} \
 		--with-libintl-prefix=${LOCALBASE} \
 		--with-freetype-prefix=${LOCALBASE} \
 		--with-localedir=${PREFIX}/share/locale
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/SDL" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		CXXFLAGS="-I${LOCALBASE}/include ${CXXFLAGS} -ftemplate-depth-45" \
 		LDFLAGS="-L${LOCALBASE}/lib -lintl"
 
 MAN6=		wesnoth.6
-MANLANG=	"" de hu sv
+MANLANG=	"" ca_ES@valencia cs da de es fr gl hu it ja
+MANLANG+=	nl pl sk sr sr@latin sv tr zh_CN zh_TW
 
-.if defined(WITH_CAMPAIGN) || defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=	--enable-campaign-server
-PLIST_SUB+=		CAMPAIGN:=""
-.else
-PLIST_SUB+=		CAMPAIGN:="@comment "
-.endif
+OPTIONS=	CAMPAIGN "Enable campaign server" On \
+		EDITOR	"Enable map editor"  On \
+		NLS	"Enable localization" On \
+		SERVER "Enable server" On \
+		TOOLS "Enable extra tools for artists and translators" On
+
+.include <bsd.port.pre.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
-.if defined(WITH_EDITOR) || defined(PACKAGE_BUILDING)
+.if defined(WITHOUT_CAMPAIGN)
+PLIST_SUB+=		CAMPAIGN="@comment "
+.else
+CONFIGURE_ARGS+=	--enable-campaign-server
+PLIST_SUB+=		CAMPAIGN=""
+.endif
+
+.if defined(WITHOUT_EDITOR)
+PLIST_SUB+=		EDITOR="@comment "
+.else
 CONFIGURE_ARGS+=	--enable-editor
 MAN6+=			wesnoth_editor.6
-PLIST_SUB+=		EDITOR:=""
-.else
-PLIST_SUB+=		EDITOR:="@comment "
+PLIST_SUB+=		EDITOR=""
 .endif
 
-.if defined(WITH_SERVER) || defined(PACKAGE_BUILDING)
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=		NLS="@comment "
+.else
+USE_GETTEXT=		yes
+PLIST_SUB+=		NLS=""
+.endif
+
+.if defined(WITHOUT_SERVER)
+PLIST_SUB+=		SERVER="@comment "
+.else
 CONFIGURE_ARGS+=	--enable-server
 MAN6+=			wesnothd.6
-PLIST_SUB+=		SERVER:=""
-.else
-PLIST_SUB+=		SERVER:="@comment "
+PLIST_SUB+=		SERVER=""
 .endif
 
-.if defined(WITH_TOOLS) || defined(PACKAGE_BUILDING)
+.if defined(WITHOUT_TOOLS)
+PLIST_SUB+=		TOOLS="@comment "
+.else
 CONFIGURE_ARGS+=	--enable-tools
-PLIST_SUB+=		TOOLS:=""
-.else
-PLIST_SUB+=		TOOLS:="@comment "
+PLIST_SUB+=		TOOLS=""
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mgnomehier}!=""
-CONFIGURE_ARGS+=	--with-gnome
-PLIST_SUB+=		GNOME:=""
-.else
-PLIST_SUB+=		GNOME:="@comment "
-.endif
-
-.if exists(${LOCALBASE}/bin/kde-config)
-CONFIGURE_ARGS+=	--with-kde
-PLIST_SUB+=		KDE:=""
-.else
-PLIST_SUB+=		KDE:="@comment "
-.endif
-
-pre-everything::
-.if !defined(WITH_CAMPAIGN) || !defined(WITH_DEBUG) || !defined(WITH_EDITOR) || !defined(WITH_SERVER) || !defined(WITH_TOOLS)
-	@${ECHO_MSG} "You may specify the following on the command line:"
-	@${ECHO_MSG} " "
-.endif
-.if !defined(WITH_CAMPAIGN)
-	@${ECHO_MSG} "WITH_CAMPAIGN=yes to enable compilation of campaign server."
-.endif
-.if !defined(WITH_DEBUG)
-	@${ECHO_MSG} "WITH_DEBUG=yes to enable debugging in Wesnoth."
-.endif
-.if !defined(WITH_EDITOR)
-	@${ECHO_MSG} "WITH_EDITOR=yes to enable compilation of map editor."
-.endif
-.if !defined(WITH_SERVER)
-	@${ECHO_MSG} "WITH_SERVER=yes to enable compilation of server."
-.endif
-.if !defined(WITH_TOOLS)
-	@${ECHO_MSG} "WITH_TOOLS=yes to enable compilation of tools for translators and artists."
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|[$$][(]datadir[)]/applications|${LOCALBASE}/share/gnome/applications|g ; \
-		s|[$$][(]datadir[)]/icons|${LOCALBASE}/share/gnome/pixmaps|g' \
-			${WRKSRC}/icons/Makefile.in
+post-configure:
+	@${REINPLACE_CMD} -e 's|[$$][{]datarootdir[}]/icons|${LOCALBASE}/share/pixmaps|' \
+			${WRKSRC}/icons/Makefile
 
 .include <bsd.port.post.mk>
