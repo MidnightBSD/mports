@@ -1,13 +1,7 @@
-# New ports collection makefile for:	glproto
-# Date Created:				06 Feb 2006
-# Whom:					Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/glproto/Makefile,v 1.1 2007/05/19 20:26:24 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/glproto/Makefile,v 1.1 2007/10/02 19:44:49 ctriv Exp $
 
 PORTNAME=	glproto
-PORTVERSION=	1.4.8
+PORTVERSION=	1.4.9
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
