@@ -3,12 +3,11 @@
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-fonts/libXfont/Makefile,v 1.17 2007/09/13 19:44:52 flz Exp $
-# $MidnightBSD: mports/x11-fonts/libXfont/Makefile,v 1.1 2007/10/03 18:15:40 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/libXfont/Makefile,v 1.2 2008/03/28 08:06:21 ctriv Exp $
 #
 
 PORTNAME=	libXfont
-PORTVERSION=	1.3.1
-PORTREVISION=	1
+PORTVERSION=	1.3.4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +17,6 @@ LICENSE=	bsd4
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
 XORG_CAT=	lib
-USE_XORG=	fontcacheproto xproto xtrans fontsproto:both fontenc
+USE_XORG=	fontcacheproto xproto:both xtrans fontsproto:both fontenc
 
 .include <bsd.port.mk>
