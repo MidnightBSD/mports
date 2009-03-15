@@ -1,10 +1,4 @@
-# New ports collection makefile for:   libXt
-# Date Created:			25 Jan, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-toolkits/libXt/Makefile,v 1.22 2007/05/19 20:31:15 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-toolkits/libXt/Makefile,v 1.1 2007/10/03 19:56:27 ctriv Exp $
 
 PORTNAME=	libXt
 PORTVERSION=	1.0.5
@@ -15,7 +9,7 @@ COMMENT=	X Toolkit library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	x11 sm xproto kbproto
+USE_XORG=	x11 sm xproto:both kbproto
 
 MAN1=		makestrs.1
 MAN3=		XtNew.3 \
