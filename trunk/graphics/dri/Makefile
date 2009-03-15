@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/dri/Makefile,v 1.5 2009/03/15 19:00:33 laffer1 Exp $
 
 PORTNAME=	dri
 PORTVERSION=	${MESAVERSION}
@@ -17,7 +17,7 @@ CONFLICTS=	dri-6.2.2005* dri-6.5.2006*
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
 
 do-install:
-	cd ${WRKSRC}/src/mesa; ${GMAKE} install-dri
+	cd ${WRKSRC}/src/mesa; ${GMAKE} ${FAKE_MAKEARGS} install-dri
 
 .include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
 .include <bsd.port.mk>
