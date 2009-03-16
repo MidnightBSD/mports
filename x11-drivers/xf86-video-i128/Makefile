@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-video-i128
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-i128/Makefile,v 1.2 2007/09/15 14:04:26 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-i128/Makefile,v 1.1 2007/10/12 00:40:00 ctriv Exp $
 
 PORTNAME=	xf86-video-i128
-PORTVERSION=	1.2.1
+PORTVERSION=	1.3.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
