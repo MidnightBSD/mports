@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-video-fbdev
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-fbdev/Makefile,v 1.2 2007/09/15 14:04:26 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-fbdev/Makefile,v 1.1 2007/10/12 00:34:33 ctriv Exp $
 
 PORTNAME=	xf86-video-fbdev
-PORTVERSION=	0.3.1
+PORTVERSION=	0.4.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
