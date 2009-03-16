@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-video-openchrome
-# Date Created:				17 Sep 2007
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-drivers/xf86-video-openchrome/Makefile,v 1.7 2008/03/14 23:20:55 pav Exp $
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-openchrome/Makefile,v 1.2 2008/03/24 19:23:38 laffer1 Exp $
 
 PORTNAME=	xf86-video-openchrome
-PORTVERSION=	0.2.901
+PORTVERSION=	0.2.903
 CATEGORIES=	x11-drivers
 MASTER_SITES=	http://www.openchrome.org/releases/
 
