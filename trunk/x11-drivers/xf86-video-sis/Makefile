@@ -1,19 +1,14 @@
-# New ports collection makefile for:	xf86-video-sis
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-sis/Makefile,v 1.2 2007/09/15 14:04:28 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-sis/Makefile,v 1.1 2007/10/12 03:12:13 ctriv Exp $
 
 PORTNAME=	xf86-video-sis
-PORTVERSION=	0.9.3
-PORTREVISION=	2
+PORTVERSION=	0.10.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org sis display driver
 LICENSE=	bsd3
+
+CONFLICTS=	xf86-video-sis-intel-[0-9]*
 
 USE_GL=		gl
 
