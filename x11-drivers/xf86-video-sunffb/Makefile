@@ -1,14 +1,7 @@
-# New ports collection makefile for:	xf86-video-sunffb
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-sunffb/Makefile,v 1.2 2007/09/15 14:04:28 flz Exp $
-# $MidnightBSD: mports/x11-drivers/xf86-video-sunffb/Makefile,v 1.1 2007/10/12 03:20:29 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-sunffb/Makefile,v 1.2 2007/11/09 22:01:01 laffer1 Exp $
 
 PORTNAME=	xf86-video-sunffb
-PORTVERSION=	1.1.0
-PORTREVISION=	5
+PORTVERSION=	1.2.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
