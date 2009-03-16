@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-video-vga/Makefile,v 1.2 2007/09/15 14:04:29 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-video-vga/Makefile,v 1.1 2007/10/12 03:45:24 ctriv Exp $
 #
 
 PORTNAME=	xf86-video-vga
@@ -13,6 +13,8 @@ CATEGORIES=	x11-drivers
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org vga display driver
 LICENSE=	x11
+
+BROKEN=		broken with the latest x.org
 
 XORG_CAT=	driver
 USE_XORG=	xextproto
