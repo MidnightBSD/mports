@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xf86-video-via
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-via/Makefile,v 1.2 2007/09/15 14:04:29 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-via/Makefile,v 1.1 2007/10/12 03:46:22 ctriv Exp $
 
 PORTNAME=	xf86-video-via
 PORTVERSION=	0.2.2
@@ -13,6 +7,8 @@ CATEGORIES=	x11-drivers
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org via display driver
 LICENSE=	x11
+
+IGNORE=		currently borked.
 
 USE_GL=		gl
 
