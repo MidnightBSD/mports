@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-video-rendition
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-rendition/Makefile,v 1.2 2007/09/15 14:04:28 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-rendition/Makefile,v 1.1 2007/10/12 02:54:43 ctriv Exp $
 
 PORTNAME=	xf86-video-rendition
-PORTVERSION=	4.1.3
+PORTVERSION=	4.2.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
