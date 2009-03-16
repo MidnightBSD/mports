@@ -3,16 +3,19 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-video-cyrix/Makefile,v 1.2 2007/09/15 14:04:26 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-video-cyrix/Makefile,v 1.1 2007/10/12 00:30:34 ctriv Exp $
 #
 
 PORTNAME=	xf86-video-cyrix
 PORTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org cyrix display driver
 LICENSE=	x11
+
+IGNORE=		requires pciVideoPtr typede
 
 XORG_CAT=	driver
 USE_XORG=	xextproto xf86dgaproto
