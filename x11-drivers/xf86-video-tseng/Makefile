@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-video-tseng
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-video-tseng/Makefile,v 1.2 2007/09/15 14:04:29 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-video-tseng/Makefile,v 1.1 2007/10/12 03:43:52 ctriv Exp $
 
 PORTNAME=	xf86-video-tseng
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
