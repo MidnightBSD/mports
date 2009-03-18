@@ -2,14 +2,14 @@
 # Date Created:			28 July 1998
 # Whom:				Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.8 2008/05/31 01:09:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.9 2008/09/17 20:13:41 laffer1 Exp $
 # $FreeBSD: ports/devel/glib20/Makefile,v 1.142 2007/07/17 02:35:58 marcus Exp $
 #   $MCom: ports/devel/glib20/Makefile,v 1.91 2006/10/05 06:55:34 mezz Exp $
 #
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
-PORTVERSION=	2.16.5
+PORTVERSION=	2.18.4
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
@@ -62,7 +62,7 @@ GLIB_ARCH=	x86_64
 .else
 GLIB_ARCH=	${ARCH}
 .endif
-CONFIGURE_TARGET=	--build=${GLIB_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${GLIB_ARCH}-portbld-freebsd6.1
 
 .if defined(WITH_COLLATION_FIX)
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
