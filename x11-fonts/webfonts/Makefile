@@ -1,14 +1,8 @@
-# New ports collection makefile for:	TrueType core fonts for the Web
-# Date created:		12 Jan 2001
-# Whom:			Konstantinos Konstantinidis <kkonstan@daemon.gr>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-fonts/webfonts/Makefile,v 1.29 2007/05/23 07:10:46 marck Exp $
-#
+# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.1 2007/08/23 02:26:43 laffer1 Exp $
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-fonts
 MASTER_SITES=	${MASTER_SITE_NETBSD:S/%SUBDIR%/ms-ttf/}:group1 \
 	${MASTER_SITE_SOURCEFORGE:S/%SUBDIR%/corefonts/}:group1 \
@@ -38,11 +32,10 @@ EXTRACT_DEPENDS=cabextract:${PORTSDIR}/archivers/cabextract
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_X_PREFIX=	yes
 USE_XLIB=	yes
 
 NO_BUILD=	yes
-RESTRICTED=	"Restrictive license - cannot sell for profit or distribute in modified form"
+RESTRICTED=	Restrictive license - cannot sell for profit or distribute in modified form
 
 EXTRACT_CMD=		${LOCALBASE}/bin/cabextract
 EXTRACT_BEFORE_ARGS=	-qLF '*.ttf' -d ${WRKSRC}
@@ -53,11 +46,11 @@ EXTRACT_AFTER_ARGS=
 #
 FONTNAME=	${PORTNAME}
 FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
-TTFONTSDIR?=	${X11BASE}/lib/X11/fonts/TrueType
+TTFONTSDIR?=	${LOCALBASE}/lib/X11/fonts/TrueType
 
 PLIST_SUB=	FONTNAME="${FONTNAME}" \
 		FONTSDIR="${FONTSDIR:S|${PREFIX}/||}" \
-		TTFONTSDIR="${TTFONTSDIR:S|${X11BASE}/||}"
+		TTFONTSDIR="${TTFONTSDIR:S|${LOCALBASE}/||}"
 
 MSG_FILE=	${PKGDIR}/pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
@@ -99,9 +92,6 @@ PLIST_SUB+=	EXTRAFONTS=""
 PLIST_SUB+=	EXTRAFONTS="@comment "
 .endif
 
-#
-# Install
-#
 do-install:
 	${MKDIR} ${FONTSDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/*.ttf ${FONTSDIR}
@@ -109,11 +99,8 @@ do-install:
 	${INSTALL_DATA} ${FONTS_FILE} ${FONTSDIR}/fonts.scale
 	${INSTALL_DATA} ${WRKSRC}/licen.txt ${DOCSDIR}/LICENSE
 
-#
-# Post-install
-#
 post-install:
 	${ECHO_MSG} "===> Running fc-cache"
-	-${X11BASE}/bin/fc-cache -f -v ${FONTSDIR}
+	-${LOCALBASE}/bin/fc-cache -f -v ${FONTSDIR}
 
 .include <bsd.port.post.mk>
