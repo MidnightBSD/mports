@@ -2,17 +2,17 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.14 2008/05/31 01:31:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.15 2008/09/22 18:40:57 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	2
-PORTVERSION=	2.12.11
+PORTVERSION=	2.14.7
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
-		ftp://ftp.gtk.org/pub/gtk/v2.12/ \
+		ftp://ftp.gtk.org/pub/gtk/v2.14/ \
 		ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		ftp://ftp.cs.umn.edu/pub/gimp/%SUBDIR%/ \
 		http://www.ameth.org/gimp/%SUBDIR%/ \
@@ -23,7 +23,7 @@ DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Gimp Toolkit for X11 GUI (current stable version)
+COMMENT=	Gimp Toolkit for X11 GUI
 LICENSE=	lgpl
 
 USE_BZIP2=	yes
@@ -44,14 +44,11 @@ USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack atk pango ltverhack
 USE_GETTEXT=	yes
-USE_XORG=	dmx fontenc fontutil ice libfs oldx sm x11 xau xaw xaw6 xaw7 xaw8 xbitmaps \
-		xcomposite xcursor xdamage xdmcp xevie xext xfixes xfont xfontcache xft xi \
-		xinerama xkbfile xkbui xmu xmuu xp xpm xprintapputil xprintutil \
-		xrandr xrender xres xscrnsaver xt xtrans xtrap xtst xv xvmc xxf86dga xxf86misc \
-		xxf86vm xcomposite
+USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
+		xcomposite
 
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
 			  -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
@@ -85,8 +82,6 @@ post-patch:
 		${XARGS} ${REINPLACE_CMD} -e 's|-lgmodule|@GMODULE_LIBS@|g'
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g'  \
-		${WRKSRC}/gtk/xdgmime/xdgmime.c
 # GnomeVFS needs pthread; gtk-demo may use GnomeVFS (via GtkFileChooser)
 	@${REINPLACE_CMD} -e 's|@CFLAGS@|& ${PTHREAD_CFLAGS}|; \
 		s|@LDFLAGS@|& ${PTHREAD_LIBS}|' \
