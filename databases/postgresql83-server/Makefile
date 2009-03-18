@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql83-server/Makefile,v 1.1 2009/03/14 15:03:05 laffer1 Exp $
 
 PORTNAME?=	postgresql
-DISTVERSION?=	8.3.6
+DISTVERSION?=	8.3.7
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${DISTVERSION}
@@ -94,19 +94,19 @@ OPTIONS+=	TZDATA "Use internal timezone database (server)" on
 OPTIONS+=	DEBUG "Builds with debugging symbols" off
 
 # See http://people.freebsd.org/~girgen/postgresql-icu/README.html for more info
-OPTIONS+=	ICU   "Use ICU for unicode collation (server)" off
+#OPTIONS+=	ICU   "Use ICU for unicode collation (server)" off
 
 # See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/76999 for more info
 # (requires dump/restore if modified.)
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 
-.  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-USE_AUTOTOOLS=	autoconf:262
-CONFIGURE_ARGS+=--with-icu
-LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
-PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
-PATCHFILES+=	pg-833-icu-xx-2008-08-28.diff.gz:icu
-.  endif
+#.  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
+#USE_AUTOTOOLS=	autoconf:262
+#CONFIGURE_ARGS+=--with-icu
+#LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
+#PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
+#PATCHFILES+=	pg-833-icu-xx-2008-08-28.diff.gz:icu
+#.  endif
 
 PATCH_DIST_STRIP=-p1
 
