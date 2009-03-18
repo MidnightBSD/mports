@@ -2,11 +2,11 @@
 # Date created:        May 17 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.1 2008/05/18 18:37:57 laffer1 Exp $
 #
 
 PORTNAME=	libspf2
-PORTVERSION=	1.2.5
+PORTVERSION=	1.2.9
 PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	http://www.libspf2.org/%SUBDIR%/
