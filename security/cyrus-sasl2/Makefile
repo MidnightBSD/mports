@@ -2,13 +2,13 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.3 2007/08/02 03:28:36 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.4 2008/10/13 20:56:27 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl2/Makefile,v 1.127 2006/08/15 16:47:37 ume Exp $
 #
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.22
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
@@ -251,7 +251,5 @@ post-install:
 .endfor
 	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${DOCSDIR}
 .endif
-	@PKG_PREFIX=${PREFIX} BATCH=${BATCH} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
