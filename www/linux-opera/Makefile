@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.12 2009/01/04 01:43:17 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.13 2009/01/04 02:24:49 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -36,8 +36,8 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes
 
-OPERA_VER=	9.63
-OPERA_BUILD=	2474
+OPERA_VER=	9.64
+OPERA_BUILD=	2480
 DATADIR=	${PREFIX}/share/${UNIQUENAME}
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
 
