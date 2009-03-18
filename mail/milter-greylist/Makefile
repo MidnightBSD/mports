@@ -1,13 +1,7 @@
-# New ports collection makefile for:	milter-greylist
-# Date created:				27 Apr 2004
-# Whom:					Cyril Guibourg
-#
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.5 2008/05/18 20:12:37 laffer1 Exp $
-# $FreeBSD: ports/mail/milter-greylist/Makefile,v 1.22 2006/12/13 11:19:21 ache Exp $
-#
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.6 2008/05/18 21:24:37 ctriv Exp $
 
 PORTNAME=	milter-greylist
-PORTVERSION=	4.0
+PORTVERSION=	4.0.1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 DISTNAME=	milter-greylist-${PORTVERSION}
@@ -68,7 +62,7 @@ CONFIGURE_ARGS+=--with-libGeoIP=${LOCALBASE}
 .endif
 
 .if defined(WITH_CURL)
-LIB_DEPENDS+=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=--with-curl=${LOCALBASE}
 .endif
 
@@ -76,7 +70,7 @@ CFLAGS+=	${PTHREAD_CFLAGS}
 LIBS+=		${PTHREAD_LIBS}
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS+=	--with-user=mailnull --with-libmilter=${MILTERBASE}
 CONFIGURE_ARGS+=	--enable-dnsrbl --with-thread-safe-resolver
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LIBS="${LIBS} "
