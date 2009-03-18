@@ -2,13 +2,13 @@
 # Date Created:			22 December 2007
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.1 2008/05/31 16:49:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.2 2008/06/13 19:32:14 laffer1 Exp $
 # $FreeBSD: ports/devel/gio-fam-backend/Makefile,v 1.3 2008/04/08 11:37:41 ahze Exp $
 #   $MCom: ports/devel/gio-fam-backend/Makefile,v 1.9 2008/03/12 17:46:37 marcus Exp $
 #
 
 PORTNAME=	gio-fam-backend
-PORTVERSION=	2.16.3
+PORTVERSION=	2.18.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
