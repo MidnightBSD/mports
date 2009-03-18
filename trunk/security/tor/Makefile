@@ -2,15 +2,17 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/tor/Makefile,v 1.3 2008/03/26 01:54:16 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/tor/Makefile,v 1.4 2008/06/13 04:12:35 laffer1 Exp $
 
 PORTNAME=	tor
-PORTVERSION=	0.1.2.19
-PORTREVISION=	1
+PORTVERSION=	0.2.0.34
 CATEGORIES=	security net
 MASTER_SITES=	http://www.torproject.org/dist/ \
-		http://mirror.onionland.org/dist/
+		http://tor.cypherpunks.at/dist/ \
+		http://tor.depthstrike.com/dist/ \
+		http://tor.boinc.ch/dist/ \
+		http://tor.anonymity.cn/dist/
+
 DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,7 +25,7 @@ LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 
-OPTIONS=	EVENTDNS "asynchronous DNS module" on \
+OPTIONS=	\
 		THREADS "multi-threading support" on \
 		TRANSPARENT "transparent proxy support" on \
 		VIDALIA "Vidalia graphical Tor controller" off
@@ -32,18 +34,12 @@ USE_RC_SUBR=	tor
 SUB_FILES=	pkg-message
 
 MANCOMPRESSED=	no
-MAN1=		tor.1 tor-resolve.1 torify.1
+MAN1=		tor.1 tor-resolve.1 torify.1 tor-gencert.1
 
 .include <bsd.port.pre.mk>
 
 CONFIGURE_ENV+=	CPPFLAGS+=-I{LOCALBASE}/include \
 		LDFLAGS+=-L{LOCALBASE}/lib
-
-.if defined(WITH_EVENTDNS)
-CONFIGURE_ARGS+=	--enable-eventdns
-.else
-CONFIGURE_ARGS+=	--disable-eventdns
-.endif
 
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
