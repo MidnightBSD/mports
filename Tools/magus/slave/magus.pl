@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.31 2008/10/08 14:34:28 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.32 2008/10/08 14:48:49 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -45,7 +45,7 @@ use Magus::App::Slave::Worker;
 use Sys::Syslog;
 use POSIX qw(setsid :sys_wait_h);
 use Getopt::Std qw(getopts);
-use File::Path qw(rmtree);
+use File::Path qw(rmtree mkpath);
 
 
 
@@ -395,6 +395,11 @@ into a race trying to do it.
 
 sub init_chroot {
   local $SIG{CHLD} = 'DEFAULT';
+  
+  unless (-d $Magus::Config{SlaveMportsDir}) {
+    mkpath($Magus::Config{SlaveMportsDir});
+  }
+  
   Magus::Chroot->new(
     workerid => 1,
     tarball  => $Magus::Config{ChrootTarBall},
