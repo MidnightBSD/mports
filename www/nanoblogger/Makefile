@@ -4,7 +4,7 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/www/nanoblogger/Makefile,v 1.12 2008/06/15 18:46:30 jadawin Exp $
-# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.2 2008/11/12 20:49:32 crash Exp $
+# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.3 2008/11/12 21:51:24 crash Exp $
 
 PORTNAME=	nanoblogger
 PORTVERSION=	3.3
@@ -47,6 +47,5 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/${doc} ${DOCSDIR}
 .endfor
 .endif
-
 
 .include <bsd.port.mk>
