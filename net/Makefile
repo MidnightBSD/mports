@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.93 2009/01/04 03:40:05 ctriv Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.94 2009/01/04 04:32:09 ctriv Exp $
 #
 
     COMMENT = Networking tools
@@ -40,6 +40,7 @@
     SUBDIR += libnet
     SUBDIR += libnet10
     SUBDIR += libpcap
+    SUBDIR += libproxy
     SUBDIR += libvncserver
     SUBDIR += linc
     SUBDIR += liveMedia
