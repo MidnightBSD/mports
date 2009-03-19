@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl.mk,v 1.4 2008/10/29 14:24:36 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.1 2008/10/29 18:42:27 ctriv Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -48,18 +48,31 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 #
 # Common Vars.
 #
-PERL_ARCH?=			mach
+
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
 PERL_PORT?=			perl${PERL_BRANCH}
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
+
 PERL_PREFIX?=		${LOCALBASE}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=			${PERL_PREFIX}/${SITE_PERL_REL}
+
+.if exists(/usr/lib/perl5)
+PERL=				/usr/bin/perl
+CPAN_CMD?= 			/usr/bin/cpan
+_CORE_PERL=			yes
+PERL_ARCH?=			${ARCH}-midnightbsd
+.else
 PERL=				${PERL_PREFIX}/bin/perl
+CPAN_CMD?=			${PERL_PREFIX}/bin/cpan
+PERL_ARCH?=			mach
+.endif
+
 PERL5=				${PERL}${PERL_VERSION}
 PERL_TEST_TARGET?=	test
-CPAN_CMD?=			${PERL_PREFIX}/bin/cpan
+
+
 
 # PERL_CONFIGURE implies USE_PERL5
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
@@ -141,7 +154,11 @@ RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 # 
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" 
-MAN3PREFIX?=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
+
+.if !defined(_CORE_PERL)
+MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
+.endif
+
 .undef HAS_CONFIGURE
 
 .if (defined(BATCH) && !defined(IS_INTERACTIVE))
