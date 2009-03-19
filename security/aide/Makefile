@@ -1,13 +1,8 @@
-# New ports collection makefile for:	aide
-# Date created:				Tue Jan  4 11:45:29 PST 2000
-# Whom:					Cy Schubert (Cy.Schubert@uumail.gov.bc.ca)
-#
-# $MidnightBSD: mports/security/aide/Makefile,v 1.3 2007/12/30 01:38:55 laffer1 Exp $
-# $FreeBSD: ports/security/aide/Makefile,v 1.21 2006/02/23 05:05:38 cy Exp $
-#
+# $MidnightBSD: mports/security/aide/Makefile,v 1.4 2008/11/10 21:45:16 laffer1 Exp $
 
 PORTNAME=	aide
 PORTVERSION=	0.13.1
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.cs.tut.fi/~rammer/
@@ -20,7 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	mhash.2:${PORTSDIR}/security/mhash
 
 USE_GMAKE=	yes
-USE_BISON=	yes
+USE_BISON=	build
 USE_AUTOTOOLS=	autoconf:262
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
