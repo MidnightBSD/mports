@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/aide/Makefile,v 1.4 2008/11/10 21:45:16 laffer1 Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.5 2009/03/19 14:47:30 laffer1 Exp $
 
 PORTNAME=	aide
 PORTVERSION=	0.13.1
@@ -31,7 +31,7 @@ MAN5=		aide.conf.5
 SUB_FILES=	pkg-message
 
 post-install:
-	@${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${PREFIX}/etc/aide.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${FAKE_DESTDIR}${TRUE_PREFIX}/etc/aide.conf.sample
 .if defined(AIDE_FLOPPY)
 	@disklabel -w -B /dev/rfd0c fd1440
 	@newfs -u 0 -t 0 -i 196608 -m 0 -T minimum -o space /dev/rfd0c
