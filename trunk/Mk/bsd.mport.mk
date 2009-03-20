@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.139 2009/03/19 17:02:30 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.140 2009/03/20 06:44:53 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -434,6 +434,12 @@ _POSTMKINCLUDED=	yes
 #
 # Pull in our mixins.
 #
+
+.if !defined(USE_MPORT_TOOLS)
+.include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
+.endif
+
+
 .include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
 .include "${MPORTCOMPONENTS}/fake.mk"
@@ -1037,9 +1043,6 @@ PORTDIRNAME?=	${_PORTDIRNAME}
 PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
-.if !defined(USE_MPORT_TOOLS)
-.include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
-.endif
 
 
 MPORT_CREATE?=		/usr/libexec/mport.create
