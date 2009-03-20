@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.141 2009/03/20 18:20:37 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.142 2009/03/20 18:30:58 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -438,6 +438,18 @@ _POSTMKINCLUDED=	yes
 .undef NO_PACKAGE
 .endif
 
+WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
+.if defined(NO_WRKSUBDIR)
+WRKSRC?=		${WRKDIR}
+.else
+WRKSRC?=		${WRKDIR}/${DISTNAME}
+.endif
+
+PATCH_WRKSRC?=	${WRKSRC}
+CONFIGURE_WRKSRC?=	${WRKSRC}
+BUILD_WRKSRC?=	${WRKSRC}
+INSTALL_WRKSRC?=${WRKSRC}
+
 COMMENTFILE?=	${PKGDIR}/pkg-comment
 DESCR?=			${PKGDIR}/pkg-descr
 PLIST?=			${PKGDIR}/pkg-plist
@@ -470,17 +482,7 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 .include "${MPORTCOMPONENTS}/fake.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
 
-WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
-.if defined(NO_WRKSUBDIR)
-WRKSRC?=		${WRKDIR}
-.else
-WRKSRC?=		${WRKDIR}/${DISTNAME}
-.endif
 
-PATCH_WRKSRC?=	${WRKSRC}
-CONFIGURE_WRKSRC?=	${WRKSRC}
-BUILD_WRKSRC?=	${WRKSRC}
-INSTALL_WRKSRC?=${WRKSRC}
 
 PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
