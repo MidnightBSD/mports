@@ -1,3 +1,9 @@
+#
+# $MidnightBSD$
+#
+# fake.mk -- This file contains all the code for the 'fake' target.
+#
+
 ################
 #
 # Fake Setup 
