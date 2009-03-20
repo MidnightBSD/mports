@@ -1,0 +1,8 @@
+bin/cpu_microcode_tool
+include/cpu.h
+%%EXTRACTOR%%libexec/extract_mcodes.rb
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@cwd /
+%%KMODDIR%%/cpu.ko
+@unexec kldxref /%%KMODDIR%%
