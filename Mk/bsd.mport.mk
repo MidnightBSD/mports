@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.140 2009/03/20 06:44:53 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.141 2009/03/20 18:20:37 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -430,11 +430,36 @@ _POSTMKINCLUDED=	yes
 
 
 
+# Make sure we have some stuff defined before we pull in the mixins.
+#
+# The user can override the NO_PACKAGE by specifying this from
+# the make command line
+.if defined(FORCE_PACKAGE)
+.undef NO_PACKAGE
+.endif
+
+COMMENTFILE?=	${PKGDIR}/pkg-comment
+DESCR?=			${PKGDIR}/pkg-descr
+PLIST?=			${PKGDIR}/pkg-plist
+PKGINSTALL?=	${PKGDIR}/pkg-install
+PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
+PKGREQ?=		${PKGDIR}/pkg-req
+PKGMESSAGE?=	${PKGDIR}/pkg-message
+
+TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
+
+.for _CATEGORY in ${CATEGORIES}
+PKGCATEGORY?=	${_CATEGORY}
+.endfor
+_PORTDIRNAME=	${.CURDIR:T}
+PORTDIRNAME?=	${_PORTDIRNAME}
+PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
+
+
 
 #
 # Pull in our mixins.
 #
-
 .if !defined(USE_MPORT_TOOLS)
 .include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
 .endif
@@ -1017,30 +1042,6 @@ COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					${FIND} $$1/ -type f -exec chmod ${SHAREMODE} {} \;' --
 .endif
 
-
-
-# The user can override the NO_PACKAGE by specifying this from
-# the make command line
-.if defined(FORCE_PACKAGE)
-.undef NO_PACKAGE
-.endif
-
-COMMENTFILE?=	${PKGDIR}/pkg-comment
-DESCR?=			${PKGDIR}/pkg-descr
-PLIST?=			${PKGDIR}/pkg-plist
-PKGINSTALL?=	${PKGDIR}/pkg-install
-PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
-PKGREQ?=		${PKGDIR}/pkg-req
-PKGMESSAGE?=	${PKGDIR}/pkg-message
-
-TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
-
-.for _CATEGORY in ${CATEGORIES}
-PKGCATEGORY?=	${_CATEGORY}
-.endfor
-_PORTDIRNAME=	${.CURDIR:T}
-PORTDIRNAME?=	${_PORTDIRNAME}
-PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 
 
