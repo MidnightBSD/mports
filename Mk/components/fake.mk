@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/components/fake.mk,v 1.2 2009/03/20 06:44:09 ctriv Exp $
 #
 # fake.mk -- This file contains all the code for the 'fake' target.
 #
@@ -25,7 +25,7 @@ FAKE_SETUP=		TRUE_PREFIX=${TRUE_PREFIX} PREFIX=${FAKE_DESTDIR}${TRUE_PREFIX} \
 .if defined(FAKE_OPTS)
 .if ${FAKE_OPTS:Mtrueprefix}x != "x" 
 # do this to FAKE_MAKEARGS so that post-install,pre-install still get a twiddled ${PREFIX}
-FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX} MANPREFIX=${MANPREFIX} DOCSDIR=${DOCSDIR}
+FAKE_MAKEARGS+=	PREFIX=${TRUE_PREFIX} MANPREFIX=${MANPREFIX} DOCSDIR=${DOCSDIR} KMODDIR=${KMODDIR}
 .endif
 .if ${FAKE_OPTS:Mlibs}x != "x"
 FAKE_SETUP+=	LD_LIBRARY_PATH=${FAKE_DESTDIR}${PREFIX}/lib
