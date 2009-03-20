@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.88 2009/03/12 17:01:29 ctriv Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.89 2009/03/13 03:10:37 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -16,6 +16,8 @@
     SUBDIR += ciso
     SUBDIR += consolekit
     SUBDIR += coreutils
+    SUBDIR += devcpu
+    SUBDIR += devcpu-data
     SUBDIR += dmidecode
     SUBDIR += dvd+rw-tools
     SUBDIR += dvdbackup
