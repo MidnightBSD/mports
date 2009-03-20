@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.138 2009/03/14 19:04:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.139 2009/03/19 17:02:30 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -95,22 +95,6 @@ UID!=	${ID} -u
 
 # Look for ${WRKSRC}/.../*.orig files, and (re-)create
 # ${FILEDIR}/patch-* files from them.
-
-.if !target(makepatch)
-makepatch:
-	@cd ${.CURDIR} && ${MKDIR} ${FILESDIR}
-	@(cd ${WRKSRC}; \
-		for i in `find . -type f -name '*.orig'`; do \
-			ORG=$$i; \
-			NEW=$${i%.orig}; \
-			OUT=${FILESDIR}`${ECHO} $${NEW} | \
-				${SED} -e 's|/|__|g' \
-					-e 's|^\.__|/patch-|'`; \
-			${ECHO} ${DIFF} -ud $${ORG} $${NEW} '>' $${OUT}; \
-			${DIFF} -ud $${ORG} $${NEW} > $${OUT} || ${TRUE}; \
-		done \
-	)
-.endif
 
 
 # Start of options section.
@@ -453,6 +437,7 @@ _POSTMKINCLUDED=	yes
 .include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
 .include "${MPORTCOMPONENTS}/fake.mk"
+.include "${MPORTCOMPONENTS}/maintainer.mk"
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
 .if defined(NO_WRKSUBDIR)
@@ -3073,16 +3058,6 @@ fetch-list:
 
 # Generates patches.
 
-update-patches:
-	@toedit=`PATCH_WRKSRC=${PATCH_WRKSRC} \
-		PATCHDIR=${PATCHDIR} \
-		PATCH_LIST=${PATCHDIR}/patch-* \
-		DIFF_ARGS=${DIFF_ARGS} \
-		DISTORIG=${DISTORIG} \
-		${SH} ${PORTSDIR}/Tools/scripts/update-patches`; \
-	case $$toedit in "");; \
-	*) ${ECHO_CMD} -n 'edit patches: '; read i; \
-	cd ${PATCHDIR} && $${VISUAL:-$${EDIT:-/usr/bin/vi}} $$toedit;; esac
 
 # Checksumming utilities
 
@@ -3989,76 +3964,6 @@ compress-man:
 .  else
 	@${DO_NADA}
 .endif
-.endif
-
-
-GENPLIST?=	${.CURDIR}/gen-plist
-
-# Try to make a plist.  This will probably need to be edited.
-.if !target(makeplist)
-makeplist: 
-	@cd ${.CURDIR} && ${SETENV} _MAKEPLIST=1 ${MAKE} fake
-	@${ECHO_MSG} "===>   Generating packing list"
-	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
-	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.138 2009/03/14 19:04:13 laffer1 Exp $$' > ${GENPLIST}
-
-.	if !defined(NO_MTREE)
-		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_FILE} | ${SED} -e 's/\s*extra$$//' | ${EGREP} -v "^man/|^share/nls/POSIX|^share/nls/en_US.US-ASCII"`; \
-		for file in $$new; do \
-			if [ ! -L $$file ] && [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d -or -type l | ${EGREP} -v "man/man[123456789]`; \
-				for f in $$tree; do \
-					if [ -d $$f ]; then \
-						directories="$$directories $$f"; \
-					else \
-						files="$$files $$f"; \
-					fi; \
-				done; \
-			else \
-				files="$$files $$file"; \
-			fi; \
-		done; \
-		for file in $$files; do \
-			${ECHO_CMD} $$file >> ${GENPLIST}; \
-		done; \
-		for dir in $$directories; do \
-			${ECHO_CMD} "@dirrm $$dir" >> ${GENPLIST}; \
-		done;
-.	else 
-		@cd ${FAKE_DESTDIR}${PREFIX}; \
-		${FIND} -d . ! -type d	| ${SED} -e 's:^\./::' >> ${GENPLIST}; \
-		${FIND} -d . -type d ! -name . | ${SED} -e 's:^\./:@dirrm :' >> ${GENPLIST};
-.	endif
-
-
-.	if defined(USE_LINUX) && ${PREFIX} != ${LINUXBASE_REL}
-		@${ECHO_CMD} '@cwd ${LINUXBASE_REL}' >> ${GENPLIST}
-		@cd ${FAKE_DESTDIR}${LINUXBASE_REL}; directoriess=""; files=""; \
-		new=`${MTREE_CMD} -Uf ${MTREE_LINUX_FILE} | ${SED} -e 's/\s*extra$$//'`; \
-		for file in $$new; do \
-			if [ -d $$file ]; then \
-				tree=`${FIND} -d $$file -type f -or -type d | ${EGREP} -v "man/man[123456789]"`; \
-				for f in $$tree; do \
-					if [ -d $$f ]; then \
-						directories="$$directories $$f"; \
-					else \
-						files="$$files $$f"; \
-					fi; \
-				done; \
-			else \
-				files="$$files $$file"; \
-			fi; \
-		done; \
-		for file in $$files; do \
-			${ECHO_CMD} $$file >> ${GENPLIST}; \
-		done; \
-		for dir in $$directories; do \
-			${ECHO_CMD} "@dirrm " >> ${GENPLIST}; \
-		done;
-		@${ECHO_CMD} '@cwd ${PREFIX}' >> ${GENPLIST}
-.	endif
 .endif
 
 
