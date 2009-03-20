@@ -1,7 +1,5 @@
-# New ports collection makefile for:	devel/p5-Return-Value
-# Date created:				27 December 2005
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
+# $MidnightBSD$
 # $FreeBSD: ports/devel/p5-Return-Value/Makefile,v 1.5 2008/04/17 14:26:00 araujo Exp $
 #
 
