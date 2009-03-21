@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.280 2009/03/15 18:38:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.281 2009/03/21 15:37:55 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -187,6 +187,8 @@
     SUBDIR += p5-Date-Calc
     SUBDIR += p5-Date-Manip
     SUBDIR += p5-DateTime
+    SUBDIR += p5-DateTime-Format-Mail
+    SUBDIR += p5-DateTime-Format-W3CDTF
     SUBDIR += p5-DateTime-Locale
     SUBDIR += p5-DateTime-TimeZone
     SUBDIR += p5-Devel-StackTrace
