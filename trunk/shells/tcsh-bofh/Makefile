@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tcsh-bofh
-# Date created:		2005-10-13
-# Whom:			Krzysztof Kowalewski <pyzmen@kam.pl>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/shells/tcsh-bofh/Makefile,v 1.2 2005/10/14 19:15:55 garga Exp $
-#
+# $MidnightBSD: mports/shells/tcsh-bofh/Makefile,v 1.1 2006/09/18 18:56:52 laffer1 Exp $
 
 PORTNAME=	tcsh-bofh
 PORTVERSION=	6.12.00
@@ -18,6 +12,7 @@ DISTFILES=	tcsh-6.12.00.tar.gz \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Patch tcsh to providing user activity logging to syslog
+LICENSE=	bsd3
 
 WRKSRC=		${WRKDIR}/tcsh-${PORTVERSION}
 
