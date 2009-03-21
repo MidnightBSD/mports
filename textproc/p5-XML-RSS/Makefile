@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.1 2009/03/21 15:05:23 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.2 2009/03/21 15:09:57 laffer1 Exp $
 # $OpenBSD: Makefile,v 1.14 2003/12/09 18:48:54 jose Exp $
 
 PORTNAME=	XML-RSS
-PORTVERSION=	1.05
+PORTVERSION=	1.12
 CATEGORIES=     textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	XML
