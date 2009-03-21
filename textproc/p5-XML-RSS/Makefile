@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.3 2009/03/21 15:11:36 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.4 2009/03/21 15:14:44 laffer1 Exp $
 # $OpenBSD: Makefile,v 1.14 2003/12/09 18:48:54 jose Exp $
 
 PORTNAME=	XML-RSS
-PORTVERSION=	1.31
+PORTVERSION=	1.42
 CATEGORIES=     textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	XML
@@ -12,7 +12,10 @@ COMMENT=	perl module to manage XML RSS files
 MAINTAINER=	luke@MidnightBSD.org
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
+BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
+		${SITE_PERL}/${PERL_ARCH}/DateTime.pm:${PORTSDIR}/devel/p5-DateTime \
+		${SITE_PERL}/DateTime/Format/Mail.pm:${PORTSDIR}/devel/p5-DateTime-Format-Mail \
+		${SITE_PERL}/DateTime/Format/W3CDTF.pm:${PORTSDIR}/devel/p5-DateTime-Format-W3CDTF
 RUN_DEPENDS=    ${BUILD_DEPENDS}
 
 USE_PERL5=	yes
