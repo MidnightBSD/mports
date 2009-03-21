@@ -1,10 +1,4 @@
-# New ports collection makefile for:    es
-# Date created:         Sun Aug 13 12:36:14 CDT 1995
-# Whom:                 erich@rrnet.com
-#
-# $MidnightBSD$
-# $FreeBSD: ports/shells/es/Makefile,v 1.18 2006/01/10 18:45:31 pav Exp $
-#
+# $MidnightBSD: mports/shells/es/Makefile,v 1.1 2006/09/18 01:35:22 laffer1 Exp $
 
 PORTNAME=	es
 PORTVERSION=	0.9.b1
@@ -15,6 +9,7 @@ DISTNAME=	es-0.9-beta1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An extensible shell, derived from plan9's rc
+LICENSE=	other
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS= --with-readline
