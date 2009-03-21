@@ -1,0 +1,40 @@
+# $MidnightBSD$
+
+PORTNAME=	DateTime
+PORTVERSION=	0.47
+CATEGORIES=	devel perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	A date and time object
+LICENSE=	perl
+
+RUN_DEPENDS=	${SITE_PERL}/Class/Factory/Util.pm:${PORTSDIR}/devel/p5-Class-Factory-Util \
+		${SITE_PERL}/${PERL_ARCH}/Params/Validate.pm:${PORTSDIR}/devel/p5-Params-Validate \
+		${SITE_PERL}/DateTime/TimeZone.pm:${PORTSDIR}/devel/p5-DateTime-TimeZone \
+		${SITE_PERL}/DateTime/Locale.pm:${PORTSDIR}/devel/p5-DateTime-Locale \
+		${SITE_PERL}/Time/Local.pm:${PORTSDIR}/devel/p5-Time-Local
+BUILD_DEPENDS=	${RUN_DEPENDS}
+
+PERL_CONFIGURE=	yes
+
+MAN3=		DateTime.3 DateTime::Duration.3 \
+		DateTime::Helpers.3 DateTime::Infinite.3 DateTime::LeapSecond.3
+
+.if !defined(NOPORTDOCS)
+PORTDOCS=	CREDITS Changes TODO
+
+post-install:
+	@${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 500800
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Scalar/Util.pm:${PORTSDIR}/lang/p5-Scalar-List-Utils
+.endif
+
+.include <bsd.port.post.mk>
