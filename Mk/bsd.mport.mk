@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.142 2009/03/20 18:30:58 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.143 2009/03/20 18:48:15 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -479,7 +479,6 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 
 .include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
-.include "${MPORTCOMPONENTS}/fake.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
 
 
@@ -829,6 +828,13 @@ IGNORE=	uses unknown USE_BISON construct
 .include "${PORTSDIR}/../Makefile.inc"
 USE_SUBMAKE=	yes
 .endif
+
+#
+# These componenets include targets that may have been overwritten by the 
+# above extentions, so they are loaded here.
+#
+.include "${MPORTCOMPONENTS}/fake.mk"
+
 
 
 # Set the default for the installation of Postscript(TM)-
