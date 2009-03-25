@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xrandr
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xrandr/Makefile,v 1.2 2007/09/13 19:45:06 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xrandr/Makefile,v 1.1 2007/10/08 15:42:36 ctriv Exp $
 
 PORTNAME=	xrandr
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
