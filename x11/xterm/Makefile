@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xterm
-# Date created:				24.07.2004
-# Whom:					krion
-#
-# $FreeBSD: ports/x11/xterm/Makefile,v 1.50 2007/09/05 12:11:37 krion Exp $
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.11 2009/01/07 22:29:24 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.12 2009/03/13 03:11:55 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	241
+PORTVERSION=	242
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
@@ -22,7 +16,7 @@ LIB_DEPENDS=	utempter.0:${PORTSDIR}/sysutils/libutempter
 
 USE_XORG=	xaw xft
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include" \
 		LIBS="-L${X11BASE}/lib"
 CONFIGURE_ARGS+=--enable-wide-chars --enable-luit --with-utempter \
