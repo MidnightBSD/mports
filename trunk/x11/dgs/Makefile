@@ -1,17 +1,11 @@
-# New ports collection makefile for:   dgs
-# Date created:        22 April 1998
-# Whom:                Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.6 2008/03/26 02:53:52 ctriv Exp $
-# $FreeBSD: ports/x11/dgs/Makefile,v 1.44 2006/07/26 15:30:48 dinoex Exp $
-#
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.7 2008/10/13 19:11:05 laffer1 Exp $
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	dgs
+MASTER_SITE_SUBDIR=	../old-gnu/dgs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A display ghostscript system
