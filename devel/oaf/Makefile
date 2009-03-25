@@ -1,14 +1,8 @@
-# New ports collection makefile for:	oaf
-# Date created:				1st June 2000
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/oaf/Makefile,v 1.1 2007/10/27 17:21:15 laffer1 Exp $
-# $FreeBSD: ports/devel/oaf/Makefile,v 1.33 2007/05/19 20:03:14 flz Exp $
-#
+# $MidnightBSD: mports/devel/oaf/Makefile,v 1.2 2008/08/21 19:01:50 laffer1 Exp $
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/oaf/0.6
@@ -22,7 +16,7 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk12 orbit libxml
 USE_GETTEXT=	yes
@@ -32,7 +26,7 @@ CONFIGURE_ARGS= --enable-static --enable-shared \
 		--disable-more-warnings
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -lintl"
-CONFIGURE_TARGET=	--target=${MACHINE_ARCH}-unknown-freebsd6.0
+CONFIGURE_TARGET=	--target=${MACHINE_ARCH}-unknown-freebsd6.1
 
 MAN1=	oafd.1
 
