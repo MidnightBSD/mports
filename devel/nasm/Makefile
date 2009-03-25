@@ -1,10 +1,4 @@
-# New ports collection makefile for:	nasm
-# Date created:        7 April 1998
-# Whom:                Murray Stokely <murray@cdrom.com>
-#
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.8 2008/10/05 09:56:34 crash Exp $
-# $FreeBSD: ports/devel/nasm/Makefile,v 1.28 2006/05/04 21:40:56 edwin Exp $
-#
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.9 2009/01/04 20:03:31 ctriv Exp $
 
 PORTNAME=	nasm
 PORTVERSION=	2.05.01
@@ -20,7 +14,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 DESTDIRNAME=	INSTALLROOT
 INSTALL_TARGET=	install install_rdf
 MAN1=		nasm.1 ndisasm.1 \
