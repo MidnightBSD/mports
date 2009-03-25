@@ -1,10 +1,4 @@
-# New ports collection makefile for:   mm
-# Date Created:			14 March 1999
-# Whom:				Ralf S. Engelschall
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/mm/Makefile,v 1.39 2007/07/23 09:35:43 rafan Exp $
-#
+# $MidnightBSD: mports/devel/mm/Makefile,v 1.1 2008/08/17 22:37:11 laffer1 Exp $
 
 PORTNAME=	mm
 PORTVERSION=	1.4.2
@@ -18,7 +12,7 @@ LICENSE=	bsd4
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 MAN1=		mm-config.1
 MAN3=		mm.3
