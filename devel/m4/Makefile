@@ -1,22 +1,14 @@
-# New ports collection makefile for:	m4
-# Date created:		25 October 1994
-# Whom:			mr
-#
-# $MidnightBSD: mports/devel/m4/Makefile,v 1.6 2008/04/14 04:25:38 laffer1 Exp $
-# $FreeBSD: ports/devel/m4/Makefile,v 1.32 2007/04/25 09:52:21 ade Exp $
-#
+# $MidnightBSD: mports/devel/m4/Makefile,v 1.7 2008/06/12 17:43:09 crash Exp $
 
 PORTNAME=	m4
-PORTVERSION=	1.4.11
-PORTREVISION=	1
+PORTVERSION=	1.4.12
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	m4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU m4
-LICENSE=	gpl2
-#careful, newer versions are GPL3
+LICENSE=	gpl3
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
