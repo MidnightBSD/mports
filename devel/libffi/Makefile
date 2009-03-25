@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libffi
-# Date created:			14, June, 1998
-# Whom:				Horance Chou <horance@freedom.ie.cycu.edu.tw>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libffi/Makefile,v 1.25 2008/04/04 13:09:46 pav Exp $
-#
+# $MidnightBSD: mports/devel/libffi/Makefile,v 1.1 2008/07/08 01:56:05 laffer1 Exp $
 
 PORTNAME=	libffi
-PORTVERSION=	3.0.4
+PORTVERSION=	3.0.8
 CATEGORIES=	devel
 MASTER_SITES=	ftp://sourceware.org/pub/libffi/
 
@@ -23,5 +17,10 @@ PLIST_SUB=	PORTVERSION=${PORTVERSION}
 INFO=		libffi
 
 MAN3=		ffi.3 ffi_call.3 ffi_prep_cif.3
+
+post-install:
+	${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffi.h ${PREFIX}/include/
+	${LN} -sf ../lib/libffi-${PORTVERSION}/include/ffitarget.h ${PREFIX}/include/
+
 
 .include <bsd.port.mk>
