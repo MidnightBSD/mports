@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/python25/Makefile,v 1.3 2008/04/18 21:10:33 laffer1 Exp $
+# $MidnightBSD: mports/lang/python25/Makefile,v 1.4 2009/02/27 04:23:07 laffer1 Exp $
 
 PORTNAME=	python25
 PORTVERSION=	2.5.4
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -15,9 +16,9 @@ DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}/portbld.static
 PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_SCRIPT=	../configure # must be relative
-CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo freebsd"
+CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd"
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
@@ -182,7 +183,7 @@ pre-install:
 		${GREP} -v 'lib-dynload/_sha' ${PLIST} > ${PLIST}.tmp && \
 		${CAT} ${PLIST}.tmp > ${PLIST}) || ${TRUE}
 
-post-install:
+post-install: make-tmpplist
 	@# install config providers
 	${INSTALL_SCRIPT} ${WRKDIR}/${PYTHON_VERSION}-config ${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKDIR}/${PYTHON_VERSION:S/thon/thon-shared/}-config ${PREFIX}/bin
