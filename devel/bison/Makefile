@@ -1,14 +1,7 @@
-# Ports collection makefile for:  bison
-# Date created:			  27 Mar 1999
-# Whom:				  Jerry Hicks
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/bison/Makefile,v 1.56 2007/10/18 02:28:45 ade Exp $
-#
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.4 2008/03/31 15:31:22 laffer1 Exp $
 
 PORTNAME=	bison
-PORTVERSION=	2.3
-PORTREVISION=	3
+PORTVERSION=	2.4.1
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
@@ -23,7 +16,7 @@ RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -47,13 +40,7 @@ PLIST_SUB+=	NLS=""
 
 post-extract:
 	@${RM} -f ${WRKSRC}/doc/bison.info*
-
-#
-# Requires texinfo 4.8 or above
-#
-.if ${OSVERSION} < 601000
-	@${REINPLACE_CMD} "/^@headitem/d" ${WRKSRC}/doc/bison.texinfo
-.endif
+	@${REINPLACE_CMD} 's/MANS = yacc.1/MANS =/' ${WRKSRC}/doc/Makefile.in
 
 .if !defined(NOPORTDOCS)
 post-install:
