@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xinit
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xinit/Makefile,v 1.4 2007/09/13 19:45:03 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xinit/Makefile,v 1.1 2007/10/08 05:23:22 ctriv Exp $
 
 PORTNAME=	xinit
-PORTVERSION=	1.0.7
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
