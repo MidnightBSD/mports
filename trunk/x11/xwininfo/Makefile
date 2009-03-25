@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xwininfo
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xwininfo/Makefile,v 1.2 2007/09/13 19:45:07 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xwininfo/Makefile,v 1.1 2007/10/08 16:08:48 ctriv Exp $
 
 PORTNAME=	xwininfo
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
