@@ -1,14 +1,7 @@
-# New ports collection makefile for:	silc-toolkit
-# Date created:				2003.12.15
-# Whom:					Evgueni V. Gavrilov <aquatique@rusunix.org>
-#
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.3 2007/11/15 01:23:50 laffer1 Exp $
-# $FreeBSD: ports/devel/silc-toolkit/Makefile,v 1.25 2007/10/03 22:44:56 edwin Exp $
-#
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.4 2007/11/15 01:25:09 laffer1 Exp $
 
 PORTNAME=	silc
-PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTVERSION=	1.1.7
 CATEGORIES=	devel ipv6 net security
 MASTER_SITES=	http://www.silcnet.org/download/%SUBDIR%/ \
 		http://ftp.silcnet.org/%SUBDIR%/ \
@@ -34,7 +27,7 @@ USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 USE_GNOME=    glib12
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX} \
@@ -55,8 +48,6 @@ CONFIGURE_ARGS+=	--without-pthreads
 .else
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS} ${PTHREAD_LIBS}"
 .endif
-
-MAN1=		silc.1
 
 pre-everything::
 .ifndef(WITHOUT_IPV6)
