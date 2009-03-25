@@ -1,13 +1,8 @@
-# New ports collection makefile for:    python25
-# Date created:         3 July 2003
-# Whom:                 Hye-Shik Chang <perky@FreeBSD.org>
-#
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.1 2008/10/02 20:05:46 laffer1 Exp $
-# $FreeBSD: ports/lang/python25/Makefile,v 1.144 2007/07/30 09:41:36 alexbl Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.2 2008/10/07 14:00:32 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -22,9 +17,9 @@ DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}/portbld.static
 PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_SCRIPT=	../configure # must be relative
-CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo freebsd"
+CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd"
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
