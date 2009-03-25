@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.2 2008/08/20 16:51:02 crash Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.3 2008/10/16 15:46:40 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.2
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.selenic.com/mercurial/release/
 
@@ -19,13 +19,18 @@ USE_PYDISTUTILS=yes
 
 CONTRIB_FILES=	bash_completion \
 		convert-repo \
-		darcs2hg.py \
+		dumprevlog \
+		hg-relink \
 		hg-ssh \
 		hgdiff \
 		hgk \
+		logo-droplets.svg \
 		mercurial.el \
+		mq.el \
 		sample.hgrc \
+		simplemerge \
 		tcsh_completion \
+		undumprevlog \
 		zsh_completion \
 		git-viz/git-cat-file \
 		git-viz/git-diff-tree \
