@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xdm
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xdm/Makefile,v 1.4 2007/09/13 19:45:02 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.1 2007/10/04 21:50:37 ctriv Exp $
 
 PORTNAME=	xdm
-PORTVERSION=	1.1.6
+PORTVERSION=	1.1.8
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
