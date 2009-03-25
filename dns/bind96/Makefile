@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/bind9/Makefile,v 1.10 2008/09/25 01:45:44 laffer1 Exp $
+# $MidnightBSD$
 
-PORTNAME=	bind9
-PORTVERSION=	9.3.6.1
+PORTNAME=	bind96
+PORTVERSION=	9.6.0.1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -11,34 +11,76 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Completely new version of the BIND DNS suite with updated DNSSEC
+COMMENT=	The BIND DNS suite with updated DNSSEC and threads
 LICENSE=	mit
 
-# ISC releases things like 9.3.0rc1, which our versioning doesn't like
-ISCVERSION=	9.3.6-P1
+# ISC releases things like 9.4.0b3, which our versioning doesn't like
+ISCVERSION=	9.6.0-P1
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 		--with-randomdev=/dev/random
 
+CONFLICTS=	bind9-9.[345].* bind9-sdb-* host-*
+
+OPTIONS=	SSL "Building without OpenSSL removes DNSSEC" on \
+		XML "Support for xml statistics output" on \
+		IDN "Add IDN support to dig, host, etc." off \
+		REPLACE_BASE "Replace base BIND with this version" off \
+		LARGE_FILE "64-bit file support" off \
+		SIGCHASE "dig/host/nslookup will do DNSSEC validation" off \
+		IPV6 "IPv6 Support (autodetected by default)" off
+
+# Just in case
 USE_OPENSSL=	yes
-
-CONFLICTS=	bind9-9.4.* bind9-9.5.* bind9-dlz-[0-9]* bind9-sdb-mysql-[0-9]* host-[0-9]*
-
-OPTIONS=	REPLACE_BASE "Replace base BIND with this version" off \
-		THREADS	"Compile with thread support (NOT RECOMMENDED!)" off
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_OPENSSL_PORT)
-CONFIGURE_ARGS+=	--with-openssl=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=	--with-openssl
+.if (${ARCH} == "amd64")
+ARCH=		x86_64
 .endif
 
-# ISC staff has informed me that for 9.3.x, threads are always a bad idea.
-# Leave the affirmative option for those that want to experiment.
-.if defined(WITH_THREADS)
+# We are ok by default from 0.3-CURRENT on
+.if ${OSVERSION} < 600000
+OPTIONS+=	THREADS	"Compile with thread support" on
+.else
+OPTIONS+=	THREADS	"Compile w/threads (Not Recommended <MidnightBSD 0.3)" off
+.endif
+
+.if !defined(WITHOUT_SSL)
+CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
+.else
+CONFIGURE_ARGS+=	--disable-openssl-version-check
+CONFIGURE_ARGS+=	--without-openssl
+.endif
+
+.if !defined(WITHOUT_XML)
+CONFIGURE_ARGS+=	--with-libxml2=${LOCALBASE}
+LIB_DEPENDS+=		xml2.5:${PORTSDIR}/textproc/libxml2
+.else
+CONFIGURE_ARGS+=	--without-libxml2
+.endif
+
+.if defined(WITH_IDN)
+CONFIGURE_ARGS+=	--with-idn=${LOCALBASE} --with-libiconv=${LOCALBASE}
+BUILD_DEPENDS+=		runidn:${PORTSDIR}/dns/idnkit
+.else
+CONFIGURE_ARGS+=	--without-idn
+.endif
+
+.if defined(WITH_LARGE_FILE)
+CONFIGURE_ARGS+=	--enable-largefile
+.endif
+
+.if defined(WITH_SIGCHASE)
+CONFIGURE_ARGS+=	STD_CDEFINES="-DDIG_SIGCHASE=1"
+.endif
+
+.if defined(WITH_IPV6)
+CONFIGURE_ARGS+=	--enable-ipv6
+.endif
+
+.if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
 .else
 CONFIGURE_ARGS+=	--disable-threads
@@ -49,8 +91,7 @@ PKGNAMESUFFIX=	-base
 PREFIX=		/usr
 BIND_DESTETC=	/etc/namedb
 CONFIGURE_ARGS+=	--prefix=${PREFIX} \
-			--sysconfdir=${BIND_DESTETC} \
-			--mandir=${MANPREFIX}/man
+			--sysconfdir=${BIND_DESTETC}
 .else
 BIND_DESTETC=	${PREFIX}/etc
 .endif
@@ -92,8 +133,10 @@ MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
 	lwres_packet.3 lwres_resutil.3 lwres_sethostent.3 \
 	lwres_sethostent_r.3 lwres_string_parse.3
 MAN5=	named.conf.5 rndc.conf.5
-MAN8=	dnssec-keygen.8 dnssec-signzone.8 lwresd.8 named-checkconf.8 \
-	named-checkzone.8 named.8 rndc-confgen.8 rndc.8
+MAN8=	dnssec-dsfromkey.8 dnssec-keyfromlabel.8 dnssec-keygen.8 \
+	dnssec-signzone.8 lwresd.8 named-checkconf.8 named-checkzone.8 \
+	named.8 rndc-confgen.8 rndc.8
+MLINKS=	named-checkzone.8 named-compilezone.8
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
@@ -107,24 +150,18 @@ post-patch:
 		${WRKSRC}/bin/${FILE}.Dist > ${WRKSRC}/bin/${FILE}
 .endfor
 
-	@${MV} ${WRKSRC}/bin/nsupdate/nsupdate.1 \
-	    ${WRKSRC}/bin/nsupdate/nsupdate.1.patched
-	@${SED} -e "s@^\.HP [0-9]* @@" \
-	    ${WRKSRC}/bin/nsupdate/nsupdate.1.patched \
-	    > ${WRKSRC}/bin/nsupdate/nsupdate.1
-	@${MV} ${WRKSRC}/bin/dig/nslookup.1 ${WRKSRC}/bin/dig/nslookup.1.Dist
-	@${SED} -e "s@^host \[server\]@\\\fBhost\\\fR \\\fI[server]\\\fR@" \
-	    ${WRKSRC}/bin/dig/nslookup.1.Dist > ${WRKSRC}/bin/dig/nslookup.1
-
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
 		${BIND_DESTETC}/rndc.conf.sample
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}/arm ${DOCSDIR}/misc
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM*html ${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DOCSDIR}/arm
+	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/misc/[a-z]* ${DOCSDIR}/misc
 	${CP} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
-		${WRKSRC}/README ${DOCSDIR}/
+	    ${WRKSRC}/NSEC3-NOTES ${WRKSRC}/README ${WRKSRC}/README.idnkit \
+	    ${WRKSRC}/README.pkcs11 \
+	    ${DOCSDIR}/
 .endif
 
 .include <bsd.port.post.mk>
