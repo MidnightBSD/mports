@@ -1,3 +1,5 @@
+
+------------------------------------------------------------------------
 In the directory %%EXAMPLESDIR%%/gitweb you can find all files to
 make gitweb work as a public repository on the web.
 
@@ -8,3 +10,5 @@ All you have to do to make gitweb work is:
 2) In gitweb.cgi, adjust the variable $projectroot to point to
    your git repository (that is where you have your *.git project
    directories).
+------------------------------------------------------------------------
+
