@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.281 2009/03/21 15:37:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.282 2009/03/21 15:42:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -35,7 +35,6 @@
     SUBDIR += bouml
     SUBDIR += bouml-doc
     SUBDIR += bug-buddy
-    SUBDIR += bugzilla
     SUBDIR += bugzilla3
     SUBDIR += c_c++_reference
     SUBDIR += cmake
@@ -143,6 +142,7 @@
     SUBDIR += linux-libglade
     SUBDIR += linux-sdl12
     SUBDIR += linuxthreads
+    SUBDIR += llvm
     SUBDIR += lndir
     SUBDIR += log4j
     SUBDIR += looks
