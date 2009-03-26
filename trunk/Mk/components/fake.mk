@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/components/fake.mk,v 1.2 2009/03/20 06:44:09 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/fake.mk,v 1.3 2009/03/20 18:17:48 laffer1 Exp $
 #
 # fake.mk -- This file contains all the code for the 'fake' target.
 #
@@ -38,6 +38,8 @@ FAKE_MAKEARGS+=	prefix=${FAKE_DESTDIR}${TRUE_PREFIX} infodir=${FAKE_DESTDIR}${TR
 FAKE_MAKEARGS+=	mandir=${FAKE_DESTDIR}${MANPREFIX}/man MANDIR=${FAKE_DESTDIR}${MANPREFIX}/man
 .endif
 .endif
+
+FAKE_MAKEARGS+= ${EXTRA_FAKE_MAKEARGS}
 
 .if !target(fake-dir) 
 fake-dir:
