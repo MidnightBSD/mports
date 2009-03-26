@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $
 #
 # maintainer.mk
 #
@@ -35,7 +35,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/bsd.mport.mk,v 1.139 2009/03/19 17:02:30 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
@@ -127,3 +127,14 @@ update-patches:
 	case $$toedit in "");; \
 	*) ${ECHO_CMD} -n 'edit patches: '; read i; \
 	cd ${PATCHDIR} && $${VISUAL:-$${EDIT:-/usr/bin/vi}} $$toedit;; esac
+
+
+_CHECKSECS=	1 2 3 4 5 6 7 8 9
+manvars: fake
+.for SEC in ${_CHECKSECS}
+	@cd ${FAKE_DESTDIR}; \
+		_pages=`${FIND} . -path '*man/man${SEC}/*' -type f | perl -pe 'chomp; s/(\.gz)+$$//; s:.*/::; $$_ .= " ";'`; \
+		if [ "x$$_pages" != "x" ]; then \
+			echo "MAN${SEC}= $$_pages"; \
+		fi
+.endfor
