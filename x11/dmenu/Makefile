@@ -2,7 +2,7 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.8 2008/09/06 21:04:11 crash Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.9 2008/09/06 21:15:14 crash Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
@@ -23,9 +23,8 @@ FAKE_OPTS=	trueprefix
 MAN1=		dmenu.1
 PLIST_FILES=	bin/dmenu bin/dmenu_path bin/dmenu_run
 
-.include <bsd.port.pre.mk>
+EXTRA_FAKE_MAKEARGS= MANPREFIX=${PREFIX}/man
 
-# Just stick this at the end 
-FAKE_MAKEARGS+= MANPREFIX=${PREFIX}/man
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
+
