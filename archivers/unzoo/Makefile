@@ -1,12 +1,12 @@
 #
-# $MidnightBSD: ports/archivers/unzoo/Makefile,v 1.11 2007/08/04 11:40:38 gabor Exp $
+# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.6 2008/03/21 02:55:01 ctriv Exp $
 #
 
 PORTNAME=	unzoo
 PORTVERSION=	4.4
 PORTREVISION=	2
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
+MASTER_SITES=	CRITICAL
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 
 PATCH_SITES=	${MASTER_SITES}
