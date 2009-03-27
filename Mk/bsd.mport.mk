@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.143 2009/03/20 18:48:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.144 2009/03/21 16:45:54 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -341,12 +341,6 @@ EXTRACT_SUFX?=			.tar.gz
 PACKAGES?=		${PORTSDIR}/Packages/${ARCH}
 TEMPLATES?=		${PORTSDIR}/Templates
 
-.if (!defined(PKGDIR) && exists(${MASTERDIR}/pkg/DESCR)) || \
-	(!defined(MD5_FILE) && exists(${MASTERDIR}/files/md5))
-check-makefile::
-	@${ECHO_MSG} "Makefile error: your port uses an old layout.  Please update it to match this bsd.port.mk.  If you have updated your ports collection via cvsup and are still getting this error, see Q12 and Q13 in the cvsup FAQ on http://www.polstra.com for further information."
-	@${FALSE}
-.endif
 PATCHDIR?=		${MASTERDIR}/files
 FILESDIR?=		${MASTERDIR}/files
 SCRIPTDIR?=		${MASTERDIR}/scripts
@@ -896,8 +890,15 @@ SHA256?=		${LOCALBASE_REL}/sbin/sha256
 .else
 SHA256?=		NO
 .endif
+.if exists(/sbin/rmd160)
+RMD160?=                /sbin/rmd160
+.elif exists(${LOCALBASE_REL}/sbin/rmd160)
+RMD160?=                ${LOCALBASE_REL}/sbin/rmd160
+.else
+RMD160?=                NO
+.endif
 
-CHECKSUM_ALGORITHMS?= md5 sha256
+CHECKSUM_ALGORITHMS?= md5 sha256 rmd160
 
 MD5_FILE?=		${MASTERDIR}/distinfo
 
@@ -3087,6 +3088,7 @@ check-checksum-algorithms:
 	done; \
 
 checksum_init=\
+	RMD160=${RMD160}; \
 	SHA256=${SHA256}; \
 	MD5=${MD5};
 
