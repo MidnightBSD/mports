@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-Compress-Zlib
-# Date created:				October 20th 1996
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/archivers/p5-Compress-Zlib/Makefile,v 1.6 2008/10/10 16:40:50 ctriv Exp $
-# $FreeBSD: ports/archivers/p5-Compress-Zlib/Makefile,v 1.46 2007/02/01 11:30:58 demon Exp $
-#
+# $MidnightBSD: mports/archivers/p5-Compress-Zlib/Makefile,v 1.7 2008/10/10 18:13:28 ctriv Exp $
 
 PORTNAME=	Compress-Zlib
-PORTVERSION=	2.010
+PORTVERSION=	2.015
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Compress

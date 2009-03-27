@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-Compress-Raw-Bzip2
-# Date created:		2007-01-16
-# Whom:			Thomas Abthorpe <thomas@goodking.ca>
-#
-# $MidnightBSD: mports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.3 2008/01/04 16:11:39 laffer1 Exp $
-# $FreeBSD: ports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.2 2007/03/06 21:01:23 miwi Exp $
-#
+# $MidnightBSD: mports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.4 2008/05/17 08:36:54 crash Exp $
 
 PORTNAME=	Compress-Raw-Bzip2
-PORTVERSION=	2.010
+PORTVERSION=	2.015
 CATEGORIES=	archivers perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Compress
