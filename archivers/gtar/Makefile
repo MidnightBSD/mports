@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gtar
-# Date created:		Sa   6 Jun 1998 10:24:51 CEST
-# Whom:			Andreas Klemm <andreas@klemm.gtn.com>
-#
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.7 2008/09/30 23:45:41 laffer1 Exp $
-# $FreeBSD: ports/archivers/gtar/Makefile,v 1.47 2006/03/04 14:59:42 naddy Exp $
-#
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.8 2008/09/30 23:46:13 laffer1 Exp $
 
 PORTNAME=	tar
-PORTVERSION=	1.20
+PORTVERSION=	1.22
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
