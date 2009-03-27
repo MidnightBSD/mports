@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.1 2008/10/29 18:42:27 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.2 2009/03/19 01:55:34 ctriv Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -138,7 +138,7 @@ PERL_LEVEL=0
 #
 PERL_NO_DEPENDS?= NO
 
-.if ${PERL_NO_DEPENDS:U} == "NO"
+.if (${PERL_NO_DEPENDS:U} == "NO") && !defined(_CORE_PERL)
 .if defined(USE_PERL5_BUILD)
 EXTRACT_DEPENDS+=${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 PATCH_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
