@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXdmcp
-# Date Created:			28 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXdmcp/Makefile,v 1.14 2007/05/19 20:26:49 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXdmcp/Makefile,v 1.2 2007/10/02 21:29:11 ctriv Exp $
 
 PORTNAME=	libXdmcp
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
