@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.7 2008/11/14 16:11:49 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.8 2009/01/02 01:36:29 ctriv Exp $
 
 =head1 NAME
 
@@ -1404,7 +1404,7 @@ specified in distinfo.  This is useful when using an alternate FETCH_CMD.
 Different checksum algorithms to check for verifying the integrity of the
 distfiles. The absence of the algorithm in distinfo doesn't make it fail.
 
-Default: md5 sha256
+Default: md5 sha256 rmd160
 
 =item NO_CHECKSUM
 
