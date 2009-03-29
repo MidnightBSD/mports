@@ -3883,8 +3883,6 @@
 %%DATADIR%%/library/Zend/Gdata/Health/ProfileListEntry.php
 %%DATADIR%%/library/Zend/Gdata/Health/ProfileListFeed.php
 %%DATADIR%%/library/Zend/Gdata/Health/Query.php
-%%DATADIR%%/library/Zend/Gdata/HttpAdapterStreamingProxy.php
-%%DATADIR%%/library/Zend/Gdata/HttpAdapterStreamingSocket.php
 %%DATADIR%%/library/Zend/Gdata/HttpClient.php
 %%DATADIR%%/library/Zend/Gdata/Kind/EventEntry.php
 %%DATADIR%%/library/Zend/Gdata/Media.php
@@ -3904,7 +3902,6 @@
 %%DATADIR%%/library/Zend/Gdata/Media/Extension/MediaThumbnail.php
 %%DATADIR%%/library/Zend/Gdata/Media/Extension/MediaTitle.php
 %%DATADIR%%/library/Zend/Gdata/Media/Feed.php
-%%DATADIR%%/library/Zend/Gdata/MediaMimeStream.php
 %%DATADIR%%/library/Zend/Gdata/Photos.php
 %%DATADIR%%/library/Zend/Gdata/Photos/AlbumEntry.php
 %%DATADIR%%/library/Zend/Gdata/Photos/AlbumFeed.php
@@ -3962,8 +3959,6 @@
 %%DATADIR%%/library/Zend/Gdata/Spreadsheets/WorksheetEntry.php
 %%DATADIR%%/library/Zend/Gdata/Spreadsheets/WorksheetFeed.php
 %%DATADIR%%/library/Zend/Gdata/YouTube.php
-%%DATADIR%%/library/Zend/Gdata/YouTube/ActivityEntry.php
-%%DATADIR%%/library/Zend/Gdata/YouTube/ActivityFeed.php
 %%DATADIR%%/library/Zend/Gdata/YouTube/CommentEntry.php
 %%DATADIR%%/library/Zend/Gdata/YouTube/CommentFeed.php
 %%DATADIR%%/library/Zend/Gdata/YouTube/ContactEntry.php
@@ -4798,7 +4793,6 @@
 %%DATADIR%%/library/Zend/Search/Lucene/Analysis/TokenFilter/StopWords.php
 %%DATADIR%%/library/Zend/Search/Lucene/Document.php
 %%DATADIR%%/library/Zend/Search/Lucene/Document/Docx.php
-%%DATADIR%%/library/Zend/Search/Lucene/Document/Exception.php
 %%DATADIR%%/library/Zend/Search/Lucene/Document/Html.php
 %%DATADIR%%/library/Zend/Search/Lucene/Document/OpenXml.php
 %%DATADIR%%/library/Zend/Search/Lucene/Document/Pptx.php
@@ -5985,7 +5979,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/Health/_files/TestDataHealthProfileListEntrySample.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/Health/_files/ccr_notice_sample.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/HealthOnlineTest.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/MediaMimeStreamTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/OpenSearchItemsPerPageTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/OpenSearchStartIndexTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/OpenSearchTotalResultsTest.php
@@ -6042,8 +6035,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/WhenTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/WhereTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/WhoTest.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/ActivityEntryTest.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/ActivityFeedTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/CommentEntryTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/CommentFeedTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/ContactEntryTest.php
@@ -6058,8 +6049,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/VideoEntryTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/VideoFeedTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/VideoQueryTest.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/_files/ActivityEntryDataSample1.xml
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/_files/ActivityFeedDataSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/_files/CommentEntryDataSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/_files/CommentFeedDataSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/YouTube/_files/ContactEntryDataSample1.xml
@@ -6104,7 +6093,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/FeedLinkElementSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/FeedSampleV1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/FeedSampleV2.xml
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/MediaMimeStreamSample1.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/OpenSearchItemsPerPageElementSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/OpenSearchStartIndexElementSample1.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Gdata/_files/OpenSearchTotalResultsElementSample1.xml
@@ -6468,7 +6456,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Amazon/AllTests.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Amazon/OfflineTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Amazon/OnlineTest.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Amazon/_files/mozart_result.xml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Audioscrobbler/AlbumDataTest.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Audioscrobbler/AllTests.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/Service/Audioscrobbler/ArtistTest.php
@@ -6870,7 +6857,6 @@
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_stubs/HelperDir2/Datetime.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_stubs/HelperDir2/Stub1.php
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_stubs/HelperDir2/Stub2.php
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_stubs/scripts/LfiProtectionCheck.phtml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_templates/test.phtml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_templates/testParent.phtml
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Zend/View/_templates/testStrictVars.phtml

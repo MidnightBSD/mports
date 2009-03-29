@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.1 2009/01/29 17:52:55 laffer1 Exp $
+# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.2 2009/03/29 20:27:44 laffer1 Exp $
 
 PORTNAME=	ZendFramework
 PORTVERSION=	1.7.4
@@ -108,6 +108,7 @@ USE_PHP+=	pdo_sqlite
 .endif
 
 do-install:
+	${MKDIR} ${DATADIR} ${EXAMPLESDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} "${INSTALL_DIRS}" ${DATADIR}
 	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${DATADIR}
 	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} \
