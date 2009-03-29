@@ -1,13 +1,13 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.1 2009/01/29 17:52:55 laffer1 Exp $
 
 PORTNAME=	ZendFramework
-PORTVERSION=	1.7.3
+PORTVERSION=	1.7.4
 CATEGORIES=	www
 MASTER_SITES=	http://framework.zend.com/releases/${DISTNAME}/ GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A framework for developing PHP web applications
-LICENSE=	unknown
+LICENSE=	bsd3
 
 NO_BUILD=	yes
 USE_PHP=	spl
