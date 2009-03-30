@@ -1,10 +1,4 @@
-# New ports collection makefile for:	linux-q3ademo
-# Date created:				11 December 2000
-# Whom:					Marc van Woerkom <3d@freebsd.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/games/linux-quake3-demo/Makefile,v 1.20 2007/02/02 17:06:20 pav Exp $
-#
+# $MidnightBSD: mports/games/linux-quake3-demo/Makefile,v 1.1 2008/05/01 07:31:12 laffer1 Exp $
 
 PORTNAME=	quake3
 DISTVERSION=	1.11-6
