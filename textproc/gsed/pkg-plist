@@ -1,0 +1,7 @@
+@comment $FreeBSD: ports/textproc/gsed/pkg-plist,v 1.5 2005/12/02 17:44:28 garga Exp $
+bin/gsed
+%%EXAMPLESDIR%%/binary.sed
+%%EXAMPLESDIR%%/binary2.sed
+%%EXAMPLESDIR%%/binary3.sed
+%%EXAMPLESDIR%%/dc.sed
+@dirrm %%EXAMPLESDIR%%
