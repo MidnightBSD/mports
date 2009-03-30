@@ -2,7 +2,7 @@
 # Date created:		22. May 2008
 # Whom:			Stevan Tiefert
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/supertux/Makefile,v 1.1 2008/05/22 22:47:41 stevan Exp $
 #
 
 PORTNAME=	supertux
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 USE_SDL=	sdl mixer image
 USE_GMAKE=	yes
 
