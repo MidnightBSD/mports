@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.146 2009/03/30 19:38:30 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.147 2009/03/30 19:41:29 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -764,7 +764,7 @@ PLIST_SUB+=			XAWVER=${XAWVER}
 _GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
 _GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
 _GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
-_GL_glut_LIB_DEPENDS=		glut.4:${PORTSDIR}/graphics/libglut
+_GL_glut_LIB_DEPENDS=		glut.3:${PORTSDIR}/graphics/libglut
 _GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
 
 .if defined(USE_GL)
