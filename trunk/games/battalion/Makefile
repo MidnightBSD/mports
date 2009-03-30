@@ -2,7 +2,7 @@
 # Date created:				17 May 1998
 # Whom:					Andrey Zakhvatov
 #
-# $MidnightBSD: mports/games/battalion/Makefile,v 1.2 2007/03/22 03:38:22 ctriv Exp $
+# $MidnightBSD: mports/games/battalion/Makefile,v 1.3 2008/03/22 18:23:24 laffer1 Exp $
 # $FreeBSD: ports/games/battalion/Makefile,v 1.19 2005/02/20 19:42:57 fjoe Exp $
 #
 
@@ -20,8 +20,8 @@ LICENSE=	other
 WRKSRC=		${WRKDIR}/battalionSource
 
 ALL_TARGET=	# empty
-USE_XLIB=	yes
-USE_GL=		yes
+USE_XORG=	x11
+USE_GL=		glu gl
 MAKE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
 
