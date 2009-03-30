@@ -2,7 +2,7 @@
 # Date created:			16 May 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/dopewars/Makefile,v 1.1 2008/03/24 21:44:50 laffer1 Exp $
 # $FreeBSD: ports/games/dopewars/Makefile,v 1.35 2007/05/19 20:05:49 flz Exp $
 #
 
@@ -20,7 +20,6 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk12
-USE_X_PREFIX=	yes
 
 CONFIGURE_ARGS=	--enable-networking --disable-plugins --localstatedir=${DATADIR}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -43,7 +42,7 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/doc/*html ${WRKSRC}/doc/example* ${DOCSDIR}/
 	@${INSTALL_DATA} ${WRKSRC}/doc/help/*html ${DOCSDIR}/help/
 	@${INSTALL_DATA} ${PORTDOCS:S.^.${WRKSRC}/.} ${DOCSDIR}/
-	@${INSTALL_MAN} ${WRKSRC}/doc/dopewars.6 ${MAN6PREFIX}/man/man6/
+	@${INSTALL_MAN} ${WRKSRC}/doc/dopewars.6 ${MAN6PREFIX}/man/man6
 .endif
 
 .include <bsd.port.mk>
