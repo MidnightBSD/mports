@@ -1,37 +1,39 @@
-# New ports collection makefile for:    libglut
-# Date created:         Tue Feb  7 12:02:49  1995
-# Whom:                 anholt
-#
-# $MidnightBSD: mports/graphics/libglut/Makefile,v 1.6 2008/03/21 03:50:33 ctriv Exp $
-# $FreeBSD: ports/graphics/libglut/Makefile,v 1.7 2006/06/19 20:06:53 shaun Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	libglut
-PORTVERSION=	7.0.1
+PORTVERSION=	${MESAVERSION}
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	mesa3d
-DISTNAME=	MesaGLUT-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A graphics library similar to SGI's OpenGL # '
-LICENSE=	restricted
+COMMENT=	OpenGL utility toolkit
+LICENSE=	agg
+# mostly MIT with some SGI free stuff
 
-# not public domain, but freely redistributable.
-
-USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 USE_GL=		glu
-USE_XORG=	xmu xi
+USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes xi xmu dri2proto
 
-WRKSRC=		${WRKDIR}/Mesa-${PORTVERSION}/src/glut/glx
-
-FAKE_OPTS=	trueprefix
+FAKE_OPTS=	prefixhack
 
 pre-patch:
-	${CP} ${FILESDIR}/Makefile ${WRKSRC}/
+	${CP} ${FILESDIR}/midnightbsd ${FILESDIR}/midnightbsd-dri \
+		${FILESDIR}/midnightbsd-dri-amd64 \
+		${FILESDIR}/midnightbsd-dri-x86 ${WRKSRC}/configs
 
 pre-install:
 	@${MKDIR} ${PREFIX}/include/GL
 
+do-install:
+	cd ${WRKSRC}/src/glut/glx; ${GMAKE} install
+	${INSTALL} -C -o ${BINOWN} -g ${BINGRP} -m 444 \
+		${WRKSRC}/include/GL/glutf90.h \
+		${WRKSRC}/include/GL/glut.h \
+		${PREFIX}/include/GL
+	${INSTALL_SCRIPT} ${WRKSRC}/lib/libglut.so.3 \
+		${PREFIX}/lib
+	${LN} -s ${PREFIX}/lib/libglut.so.3 ${PREFIX}/lib/libglut.so
+	${INSTALL_DATA} ${WRKSRC}/src/glut/glx/glut.pc \
+		${PREFIX}/libdata/pkgconfig
+
+.include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
 .include <bsd.port.mk>
