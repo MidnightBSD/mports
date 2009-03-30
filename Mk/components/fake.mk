@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/components/fake.mk,v 1.3 2009/03/20 18:17:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/fake.mk,v 1.4 2009/03/26 22:19:26 ctriv Exp $
 #
 # fake.mk -- This file contains all the code for the 'fake' target.
 #
@@ -105,7 +105,7 @@ run-fake:
 .if !target(fix-fake-symlinks) 
 fix-fake-symlinks:
 	-@cd ${FAKE_DESTDIR}${PREFIX}; \
-	links=`${FIND} . -type l | ${GREP} -v -e 'share/nls/POSIX\|share/nls/en_US.US-ASCII`; \
+	links=`${FIND} . -type l | ${GREP} -v -e 'share/nls/POSIX\|share/nls/en_US.US-ASCII'`; \
 	for link in $$links; do \
 		if ! readlink $$link | grep ${FAKE_DESTDIR} >/dev/null; then \
 			continue; \
