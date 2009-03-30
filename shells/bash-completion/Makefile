@@ -2,17 +2,18 @@
 # Date created:				29 May 2003
 # Whom:					kirk@strauser.com
 #
-# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.2 2007/05/17 17:20:39 ctriv Exp $
+# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.3 2008/04/29 04:57:08 laffer1 Exp $
 # $FreeBSD: ports/shells/bash-completion/Makefile,v 1.14 2006/03/15 14:31:33 mnag Exp $
 #
 
 PORTNAME=	bash-completion
 PORTVERSION=	20060301
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	http://www.caliban.org/files/bash/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Programmable completion library for Bash 2.04 and up
+COMMENT=	Programmable completion library for Bash
 LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/bash_completion
@@ -39,7 +40,7 @@ post-patch:
 		s|/usr/share\(/ssl/openssl.cnf\)|/etc\1|g; \
 		s|/usr/ports|${PORTSDIR}|g; \
 		s|/usr/lib\(/aspell\)|${LOCALBASE}/share\1|g; \
-		s|/usr/share/info|&:${LOCALBASE}/info:${X11BASE}/info|g' \
+		s|/usr/share/info|&:${LOCALBASE}/info|g' \
 		${WRKSRC}/bash_completion
 
 do-install:
