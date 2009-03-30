@@ -2,7 +2,7 @@
 # Date created:         13 Feb 1997
 # Whom:                 Julian Assange
 #
-# $MidnightBSD: mports/games/lincity/Makefile,v 1.1 2007/06/27 06:00:42 laffer1 Exp $
+# $MidnightBSD: mports/games/lincity/Makefile,v 1.2 2008/10/16 22:12:56 laffer1 Exp $
 # $FreeBSD: ports/games/lincity/Makefile,v 1.24 2007/05/19 20:06:46 flz Exp $
 #
 
@@ -35,7 +35,7 @@ LIB_DEPENDS+=	vga.1:${PORTSDIR}/graphics/svgalib
 CONFIGURE_ARGS+=	--without-x
 PLIST_SUB=	PROG="bin/lincity"
 .else
-USE_XLIB=	yes
+USE_XORG=	sm xext
 CONFIGURE_ARGS+=	--without-svga
 PLIST_SUB=	PROG="bin/xlincity"
 .endif
