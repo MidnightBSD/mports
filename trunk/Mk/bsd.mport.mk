@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.144 2009/03/21 16:45:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.145 2009/03/27 05:30:36 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1033,25 +1033,23 @@ SCRIPTS_ENV+=	${INSTALL_MACROS}
 COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
 					${CHOWN} -R ${BINOWN}:${BINGRP} $$1 && \
-					${FIND} $$1 -type d -exec chmod 755 {} \; && \
-					${FIND} $$1 -type f -exec chmod ${BINMODE} {} \;' --
+					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
+					${FIND} -d $$0 $$2 -type f -exec chmod ${BINMODE} $$1/{} \;' --
 COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
 					${CHOWN} -R ${SHAREOWN}:${SHAREGRP} $$1 && \
-					${FIND} $$1/ -type d -exec chmod 755 {} \; && \
-					${FIND} $$1/ -type f -exec chmod ${SHAREMODE} {} \;' --
+					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
+					${FIND} -d $$0 $$2 -type f -exec chmod ${SHAREMODE} $$1/{} \;' --
 .else
 COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
-					${FIND} $$1 -type d -exec chmod 755 {} \; && \
-					${FIND} $$1 -type f -exec chmod ${BINMODE} {} \;' --
+					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
+					${FIND} -d $$0 $$2 -type f -exec chmod ${BINMODE} $$1/{} \;' --
 COPYTREE_SHARE=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
-					${FIND} $$1/ -type d -exec chmod 755 {} \; && \
-					${FIND} $$1/ -type f -exec chmod ${SHAREMODE} {} \;' --
+					${FIND} -d $$0 $$2 -type d -exec chmod 755 $$1/{} \; && \
+					${FIND} -d $$0 $$2 -type f -exec chmod ${SHAREMODE} $$1/{} \;' --
 .endif
-
-
 
 
 
