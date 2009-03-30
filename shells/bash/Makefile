@@ -1,11 +1,4 @@
-# ex:ts=8
-# New ports collection makefile for:    bash3
-# Date created:				30 Jul 2004
-# Whom:					Oliver Eikemeier
-#
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.9 2009/01/25 20:27:24 crash Exp $
-# $FreeBSD: ports/shells/bash/Makefile,v 1.93 2006/09/01 05:45:04 obrien Exp $
-#
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.10 2009/03/15 20:04:54 ctriv Exp $
 
 PORTNAME=		bash
 PATCHLEVEL=		10
@@ -28,9 +21,7 @@ PATCHFILES!=		/usr/bin/jot -s " " -w \
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		The GNU Project's Bourne Again SHell
-LICENSE=		gpl2
-
-#'
+LICENSE=		gpl3
 
 IGNOREFILES=		FAQ
 
@@ -58,7 +49,9 @@ PORTDOCS=		FAQ INTRO CHANGES COMPAT NEWS POSIX RBASH
 
 CONFIGURE_ARGS=		--without-bash-malloc \
 			--disable-rpath \
-			--enable-disabled-builtins
+			--enable-disabled-builtins \
+			--mandir=${PREFIX}/man \
+			--infodir=${PREFIX}/info
 
 .if defined(WITH_STATIC_BASH) || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:L} != "no")
 .if !defined(WITHOUT_NLS)
