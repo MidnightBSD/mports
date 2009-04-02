@@ -2,7 +2,7 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD: mports/devel/git/Makefile,v 1.5 2009/03/25 21:50:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.6 2009/04/02 15:03:30 ctriv Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
@@ -27,8 +27,6 @@ RUN_DEPENDS=	cvsps:${PORTSDIR}/devel/cvsps \
 		
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
 		curl.5:${PORTSDIR}/ftp/curl 
-
-CONFLICTS=	cogito-0.1[012] 
 
 MAN1= 	git-am.1 git-apply.1 git-archimport.1 git-archive.1 git-bisect.1 \
 	git-blame.1 git-branch.1 git-bundle.1 git-cat-file.1 git-check-attr.1 \
