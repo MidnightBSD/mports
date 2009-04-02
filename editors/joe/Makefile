@@ -1,13 +1,7 @@
-# New ports collection makefile for:	joe
-# Date created:		01 Jul 1995
-# Whom:			torstenb@FreeBSD.org
-#
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.7 2008/05/20 17:58:02 laffer1 Exp $
-#
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.8 2008/10/01 19:20:55 laffer1 Exp $
 
 PORTNAME=	joe
-PORTVERSION=	3.5
-PORTREVISION=	2
+PORTVERSION=	3.7
 CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}-editor
@@ -25,7 +19,7 @@ CONFLICTS=	jupp-[0-9]*
 USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -liconv"
 
