@@ -2,7 +2,7 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/alpine/Makefile,v 1.3 2008/06/23 01:58:57 laffer1 Exp $
+# $MidnightBSD: mports/mail/alpine/Makefile,v 1.4 2008/08/26 19:20:05 laffer1 Exp $
 #
 
 PORTNAME?=	alpine
@@ -44,8 +44,6 @@ CONFIGURE_ARGS+=--with-system-pinerc=${PREFIX}/etc/alpine.conf \
 		--enable-background-post --without-krb5 --without-tcl
 .endif
 CONFIGURE_ARGS+=--with-debug-level=2
-
-CONFLICTS=	pico-4* pine4-4*
 
 USE_OPENSSL=	yes
 
