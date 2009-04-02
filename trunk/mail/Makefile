@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.49 2008/10/27 22:04:03 crash Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.50 2009/03/07 17:37:49 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -51,7 +51,6 @@
     SUBDIR += pantomime
     SUBDIR += php5-imap
     SUBDIR += pine-pgp-filters
-    SUBDIR += pine4
     SUBDIR += popd
     SUBDIR += procmail
     SUBDIR += razor-agents
