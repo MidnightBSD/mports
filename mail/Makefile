@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.50 2009/03/07 17:37:49 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.51 2009/04/02 23:24:13 laffer1 Exp $
 #
 
     COMMENT = Electronic mail utilities
@@ -26,7 +26,6 @@
     SUBDIR += milter-greylist
     SUBDIR += msmtp
     SUBDIR += mutt
-    SUBDIR += mutt-devel
     SUBDIR += p5-Email-Address
     SUBDIR += p5-Email-Date-Format
     SUBDIR += p5-Email-MIME
