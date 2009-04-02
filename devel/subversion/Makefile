@@ -2,7 +2,7 @@
 # Date created:				10 September 2001
 # Whom:					rooneg@electricjellyfish.net
 #
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.16 2008/12/01 22:48:50 ctriv Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.17 2008/12/10 00:03:30 ctriv Exp $
 # $FreeBSD: ports/devel/subversion/Makefile,v 1.106 2006/09/13 10:20:27 lev Exp $
 
 PORTNAME=	subversion
@@ -79,7 +79,6 @@ PLIST_SUB+=		WITHOUT_GETTEXT="@comment "
 SWIG_BINDINGS+=		yes
 USE_PERL5=		yes
 PLIST_SUB+=		WITH_PERL=""
-MAN3PREFIX=		${TARGETDIR}/lib/perl5/${PERL_VERSION}
 MAN3=			SVN::Base.3 \
 			SVN::Client.3 \
 			SVN::Core.3 \
