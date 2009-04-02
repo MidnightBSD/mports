@@ -1,79 +1,79 @@
-bin/jmacs
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/joe
-bin/jpico
+bin/termidx
+bin/jmacs
 bin/jstar
 bin/rjoe
-bin/termidx
-etc/joe/charmaps/klingon
-etc/joe/doc/ChangeLog
-etc/joe/doc/HACKING
-etc/joe/doc/HINTS
-etc/joe/doc/LIST
-etc/joe/doc/NEWS
-etc/joe/doc/README
-etc/joe/ftyperc
+bin/jpico
+etc/joe/joerc
 etc/joe/jicerc.ru
-@unexec if cmp -s %D/etc/joe/jmacsrc.dist %D/etc/joe/jmacsrc; then rm -f %D/etc/joe/jmacsrc; fi
+etc/joe/jmacsrc
+etc/joe/jstarrc
+etc/joe/rjoerc
+etc/joe/jpicorc
+etc/joe/ftyperc
 etc/joe/jmacsrc.dist
-@exec if [ ! -f %D/etc/joe/jmacsrc ]; then cp %D/etc/joe/%f %D/etc/joe/jmacsrc; fi
-@unexec if cmp -s %D/etc/joe/joerc.dist %D/etc/joe/joerc; then rm -f %D/etc/joe/joerc; fi
-etc/joe/joerc.dist
-@exec if [ ! -f %D/etc/joe/joerc ]; then cp %D/etc/joe/%f %D/etc/joe/joerc; fi
-@unexec if cmp -s %D/etc/joe/jpicorc.dist %D/etc/joe/jpicorc; then rm -f %D/etc/joe/jpicorc; fi
 etc/joe/jpicorc.dist
-@exec if [ ! -f %D/etc/joe/jpicorc ]; then cp %D/etc/joe/%f %D/etc/joe/jpicorc; fi
-@unexec if cmp -s %D/etc/joe/jstarrc.dist %D/etc/joe/jstarrc; then rm -f %D/etc/joe/jstarrc; fi
 etc/joe/jstarrc.dist
-@exec if [ ! -f %D/etc/joe/jstarrc ]; then cp %D/etc/joe/%f %D/etc/joe/jstarrc; fi
-@unexec if cmp -s %D/etc/joe/rjoerc.dist %D/etc/joe/rjoerc; then rm -f %D/etc/joe/rjoerc; fi
 etc/joe/rjoerc.dist
-@exec if [ ! -f %D/etc/joe/rjoerc ]; then cp %D/etc/joe/%f %D/etc/joe/rjoerc; fi
-etc/joe/lang/de.po
-etc/joe/lang/fr.po
-etc/joe/lang/ru.po
-etc/joe/syntax/4gl.jsf
-etc/joe/syntax/ada.jsf
-etc/joe/syntax/asm.jsf
-etc/joe/syntax/awk.jsf
-etc/joe/syntax/c.jsf
-etc/joe/syntax/cobol.jsf
-etc/joe/syntax/conf.jsf
-etc/joe/syntax/csh.jsf
-etc/joe/syntax/css.jsf
-etc/joe/syntax/diff.jsf
-etc/joe/syntax/fortran.jsf
-etc/joe/syntax/haskell.jsf
-etc/joe/syntax/html.jsf
-etc/joe/syntax/java.jsf
-etc/joe/syntax/joerc.jsf
-etc/joe/syntax/lisp.jsf
-etc/joe/syntax/lua.jsf
-etc/joe/syntax/m4.jsf
-etc/joe/syntax/mail.jsf
-etc/joe/syntax/mason.jsf
-etc/joe/syntax/ocaml.jsf
-etc/joe/syntax/pascal.jsf
-etc/joe/syntax/perl.jsf
-etc/joe/syntax/php.jsf
-etc/joe/syntax/ps.jsf
-etc/joe/syntax/python.jsf
-etc/joe/syntax/rexx.jsf
-etc/joe/syntax/ruby.jsf
-etc/joe/syntax/sed.jsf
-etc/joe/syntax/sh.jsf
-etc/joe/syntax/skill.jsf
-etc/joe/syntax/sml.jsf
-etc/joe/syntax/sql.jsf
-etc/joe/syntax/tcl.jsf
-etc/joe/syntax/tex.jsf
-etc/joe/syntax/troff.jsf
-etc/joe/syntax/verilog.jsf
-etc/joe/syntax/vhdl.jsf
-etc/joe/syntax/xml.jsf
-@dirrmtry man/ru/man1
-@dirrmtry man/ru
-@dirrmtry etc/joe/charmaps
-@dirrmtry etc/joe/doc
-@dirrmtry etc/joe/lang
-@dirrmtry etc/joe/syntax
-@dirrmtry etc/joe
+etc/joe/joerc.dist
+%%DOCSDIR%%/LIST
+%%DOCSDIR%%/README
+%%DOCSDIR%%/HINTS
+%%DOCSDIR%%/ChangeLog
+%%DOCSDIR%%/HACKING
+%%DOCSDIR%%/NEWS
+%%DATADIR%%/lang/ru.po
+%%DATADIR%%/lang/de.po
+%%DATADIR%%/lang/fr.po
+%%DATADIR%%/lang/uk.po
+%%DATADIR%%/syntax/c.jsf
+%%DATADIR%%/syntax/perl.jsf
+%%DATADIR%%/syntax/verilog.jsf
+%%DATADIR%%/syntax/conf.jsf
+%%DATADIR%%/syntax/python.jsf
+%%DATADIR%%/syntax/php.jsf
+%%DATADIR%%/syntax/sh.jsf
+%%DATADIR%%/syntax/mail.jsf
+%%DATADIR%%/syntax/pascal.jsf
+%%DATADIR%%/syntax/html.jsf
+%%DATADIR%%/syntax/vhdl.jsf
+%%DATADIR%%/syntax/fortran.jsf
+%%DATADIR%%/syntax/java.jsf
+%%DATADIR%%/syntax/xml.jsf
+%%DATADIR%%/syntax/tcl.jsf
+%%DATADIR%%/syntax/lisp.jsf
+%%DATADIR%%/syntax/csh.jsf
+%%DATADIR%%/syntax/mason.jsf
+%%DATADIR%%/syntax/diff.jsf
+%%DATADIR%%/syntax/asm.jsf
+%%DATADIR%%/syntax/tex.jsf
+%%DATADIR%%/syntax/css.jsf
+%%DATADIR%%/syntax/ocaml.jsf
+%%DATADIR%%/syntax/4gl.jsf
+%%DATADIR%%/syntax/sml.jsf
+%%DATADIR%%/syntax/sql.jsf
+%%DATADIR%%/syntax/awk.jsf
+%%DATADIR%%/syntax/cobol.jsf
+%%DATADIR%%/syntax/sed.jsf
+%%DATADIR%%/syntax/ps.jsf
+%%DATADIR%%/syntax/ada.jsf
+%%DATADIR%%/syntax/troff.jsf
+%%DATADIR%%/syntax/haskell.jsf
+%%DATADIR%%/syntax/rexx.jsf
+%%DATADIR%%/syntax/skill.jsf
+%%DATADIR%%/syntax/lua.jsf
+%%DATADIR%%/syntax/ruby.jsf
+%%DATADIR%%/syntax/m4.jsf
+%%DATADIR%%/syntax/joerc.jsf
+%%DATADIR%%/syntax/spec.jsf
+%%DATADIR%%/syntax/matlab.jsf
+%%DATADIR%%/syntax/jsf.jsf
+%%DATADIR%%/syntax/jsf_check.jsf
+%%DATADIR%%/charmaps/klingon
+@dirrm etc/joe
+@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%/lang
+@dirrm %%DATADIR%%/syntax
+@dirrm %%DATADIR%%/charmaps
+@dirrm %%DATADIR%%
