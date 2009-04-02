@@ -2,7 +2,7 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD: mports/devel/git/Makefile,v 1.6 2009/04/02 15:03:30 ctriv Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.7 2009/04/02 22:46:53 laffer1 Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
@@ -147,7 +147,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/fast-import/git-p4 \
 		${PREFIX}/bin/
 .ifdef (WITH_GITWEB)
-	@${ECHO_MSG} "===> Installing gitweb files"
 	${MKDIR} ${EXAMPLESDIR}/gitweb
 	${INSTALL_DATA} ${WRKSRC}/gitweb/INSTALL ${EXAMPLESDIR}/gitweb/
 	${INSTALL_DATA} ${WRKSRC}/gitweb/README ${EXAMPLESDIR}/gitweb/
