@@ -1,13 +1,8 @@
-# New ports collection makefile for:	apachetop
-# Date created:				30 Sep 2003
-# Whom:					Sebastian Yepes F. <esn@x123.info>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/apachetop/Makefile,v 1.19 2008/08/20 00:57:14 ade Exp $
-#
+# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.1 2008/11/20 15:58:21 laffer1 Exp $
 
 PORTNAME=	apachetop
 PORTVERSION=	0.12.6
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.webta.org/apachetop/
 
