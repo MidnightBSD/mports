@@ -1,19 +1,12 @@
-# New ports collection makefile for:	fusefs-kmod
-# Date created:				08 October 2005
-# Whom:					Anish Mistry <amistry@am-productions.biz>
-#
-# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.3 2007/07/29 21:54:11 laffer1 Exp $
-# $FreeBSD: ports/sysutils/fusefs-kmod/Makefile,v 1.8 2006/08/12 21:11:12 pav Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	fusefs
-PORTVERSION=	0.3.0
-PORTREVISION=	2
-CATEGORIES=	sysutils
-MASTER_SITES=	http://fuse4bsd.creo.hu/downloads/ \
-		http://am-productions.biz/docs/
+DISTVERSION=	0.3.9-pre1.20080208
+CATEGORIES=	sysutils kld
+MASTER_SITES=	http://mercurial.creo.hu/repos/fuse4bsd-hg/index.cgi/archive/
 PKGNAMESUFFIX=	-kmod
-DISTNAME=	fuse4bsd-${PORTVERSION}
+DISTNAME=	${HG_SHORTREV}
+DIST_SUBDIR=	fuse4bsd
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Kernel module for fuse
@@ -21,17 +14,23 @@ LICENSE=	bsd2
 
 BUILD_DEPENDS=	fusefs-libs>2.4.1:${PORTSDIR}/sysutils/fusefs-libs
 
-MAKE_ENV=	BINDIR="${PREFIX}/sbin" MANDIR="${PREFIX}/man/man"
+FAKE_OPTS=	trueprefix
+
+USE_RC_SUBR=	fusefs
+KMODDIR?=	${PREFIX}/modules
+PLIST_SUB=	KMODDIR=${KMODDIR}
+MAKE_ENV=	BINDIR="${PREFIX}/sbin" MANDIR="${MANPREFIX}/man/man" \
+		KMODDIR="${KMODDIR}" SYSDIR="${SRC_BASE}/sys" \
+		MOUNT="${SRC_BASE}/sbin/mount"
+WRKSRC=		${WRKDIR}/fuse4bsd-${HG_SHORTREV}
+DISABLE_SIZE=	yes
 
 SRC_BASE?=	/usr/src
-KMODDIR=	${PREFIX}/modules
-MAKE_ARGS=	KMODDIR=${KMODDIR}
-MODULE_PATH=	`/sbin/sysctl -n kern.module_path`;${KMODDIR}
-USE_RC_SUBR=	fusefs
 SETUP=		setup.sh
+HG_SHORTREV=	498acaef33b0
 
 MAN8=		mount_fusefs.8
-TXT_DOCS=	doc.txt
+TXT_DOCS=	doc.text
 HTML_DOCS=	Faq.html \
 		Implementation.html \
 		Quickstart.html \
@@ -55,6 +54,19 @@ OPTIONS=	AUTOSETUP "Automatic global config file setup" off
 .if !exists(${SRC_BASE}/sys/Makefile)
 IGNORE=		requires the Kernel source to be installed. Set SRC_BASE if it is not in /usr/src
 .endif
+.if !exists(${SRC_BASE}/sbin/mount)
+IGNORE=		requires the userland sources to be installed. Set SRC_BASE if it is not in /usr/src
+.endif
+
+.if defined(WITH_AUTOSETUP)
+SUB_FILES+=	${SETUP}
+.else
+SUB_FILES+=	pkg-message
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's/deplate.rb/deplate/g' \
+		${WRKSRC}/doc/Makefile
 
 post-configure:
 	@${CP} ${LOCALBASE}/include/fuse/fuse_kernel.h ${WRKSRC}/fuse_module
@@ -63,25 +75,10 @@ pre-install:
 	@${MKDIR} ${KMODDIR}
 
 post-install:
-.if (defined(WITH_AUTOSETUP) && !defined(BATCH) && !defined(PACKAGE_BUILDING)) \
-	|| (defined(WITH_AUTOSETUP) && defined(BATCH) && !defined(PACKAGE_BUILDING))
-	@${SED} -e 's|@@PREFIX@@|${PREFIX}|g' \
-		${FILESDIR}/${SETUP} > ${WRKDIR}/${SETUP}
-	@${ECHO} "Modifying global startup config files and loading module...";
-	${SH} ${WRKDIR}/${SETUP}
-.else
-	@${SED} -e "s|%%PREFIX%%|${PREFIX}|g" \
-		-e "s|%%MODULE_PATH%%|${MODULE_PATH}|g" ${PKGMESSAGE}
-.endif
-
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/kmod/html
-.for i in ${TXT_DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/doc/plaintext_out/$i ${DOCSDIR}/kmod
-.endfor
-.for i in ${HTML_DOCS}
-	@${INSTALL_DATA} ${WRKSRC}/doc/html_chunked_out/$i ${DOCSDIR}/kmod/html
-.endfor
+	@${LN} -fs ${PREFIX}/sbin/mount_fusefs /usr/sbin
+.if defined(WITH_AUTOSETUP) && !defined(PACKAGE_BUILDING)
+	@${ECHO} "Modifying global startup config files and loading module..."
+	@${SH} ${WRKDIR}/${SETUP}
 .endif
 
 .include <bsd.port.post.mk>
