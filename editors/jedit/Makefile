@@ -1,17 +1,10 @@
-# New ports collection makefile for:    jedit
-# Date created:				22 June 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.6 2008/05/02 19:32:25 laffer1 Exp $
-# $FreeBSD: ports/editors/jedit/Makefile,v 1.28 2006/09/03 00:02:05 kris Exp $
-#
+# $MidnightBSD: mports/editors/jedit/Makefile,v 1.7 2008/05/02 19:40:45 laffer1 Exp $
 
 PORTNAME=	jedit
 PORTVERSION=	4.2
 PORTREVISION=	4
 CATEGORIES=	editors java
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}install
 EXTRACT_SUFX=	.jar
 EXTRACT_ONLY=
