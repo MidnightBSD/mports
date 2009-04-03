@@ -1,4 +1,0 @@
-etc/periodic/monthly/310.statistics
-etc/rc.d/midnightbsd-stats.sh
-@dirrmtry etc/periodic/monthly
-@dirrmtry etc/periodic
