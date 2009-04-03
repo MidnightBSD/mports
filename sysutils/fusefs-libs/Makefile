@@ -1,14 +1,7 @@
-# New ports collection makefile for:    fusefs-libs
-# Date created:         01 October 2005
-# Whom:                 Anish Mistry
-#
-# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.4 2007/07/29 22:06:02 laffer1 Exp $
-# $FreeBSD: ports/sysutils/fusefs-libs/Makefile,v 1.9 2006/09/05 17:25:01 pav Exp $
-#
+# $MidnightBSD: mports/sysutils/fusefs-libs/Makefile,v 1.5 2008/10/13 20:57:22 laffer1 Exp $
 
 PORTNAME=	fusefs
-PORTVERSION=	2.7.0
-PORTREVISION=	1
+PORTVERSION=	2.7.4
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	fuse
@@ -24,6 +17,7 @@ CONFIGURE_ENV=	MOUNT_FUSE_PATH=${PREFIX}/sbin \
 		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
 USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
+USE_ICONV=	yes
 CONFIGURE_ARGS=	--disable-kernel-module --prefix=${PREFIX} \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 TXT_DOCS=	how-fuse-works \
