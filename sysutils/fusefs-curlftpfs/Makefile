@@ -1,22 +1,17 @@
-# New ports collection makefile for:	fusefs-curlftpfs
-# Date created:		25 May 2006
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/fusefs-curlftpfs/Makefile,v 1.6 2006/12/15 22:08:00 sat Exp $
-#
+# $MidnightBSD: mports/sysutils/fusefs-curlftpfs/Makefile,v 1.1 2007/07/30 03:13:53 laffer1 Exp $
 
 PORTNAME=	curlftpfs
-PORTVERSION=	0.9
+PORTVERSION=	0.9.2
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 PKGNAMEPREFIX=	fusefs-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount remote ftp directories
+LICENSE=	gpl2
 
 LIB_DEPENDS=	fuse.2:${PORTSDIR}/sysutils/fusefs-libs \
-		curl.4:${PORTSDIR}/ftp/curl
+		curl.5:${PORTSDIR}/ftp/curl
 RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
 
 GNU_CONFIGURE=	yes
