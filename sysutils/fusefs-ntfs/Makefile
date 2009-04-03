@@ -1,9 +1,4 @@
-# New ports collection makefile for:	fusefs-ntfs
-# Date created: 			25 July 2006
-# Whom:					Max Khon
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/fusefs-ntfs/Makefile,v 1.13 2007/07/24 15:10:12 rafan Exp $
-#
+# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.1 2007/07/29 22:30:05 laffer1 Exp $
 
 PORTNAME=	ntfs
 PORTVERSION=	1.710
@@ -17,6 +12,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:ntfs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mount NTFS partitions and disk images
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	fusefs-libs>=2.6.0:${PORTSDIR}/sysutils/fusefs-libs
 LIB_DEPENDS=	fuse.2:${PORTSDIR}/sysutils/fusefs-libs
@@ -25,7 +21,7 @@ RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--exec-prefix=${PREFIX} --prefix=${PREFIX} --mandir=${PREFIX}/man
 
 OPTIONS=	LOCK "Lock the device when mounting (avoids access)" off \
