@@ -2,11 +2,12 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD: mports/devel/git/Makefile,v 1.8 2009/04/02 23:03:48 ctriv Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.9 2009/04/03 04:28:32 ctriv Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
 PORTVERSION=	1.6.2.2
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -28,38 +29,44 @@ RUN_DEPENDS=	cvsps:${PORTSDIR}/devel/cvsps \
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
 		curl.5:${PORTSDIR}/ftp/curl 
 
-MAN1= 	git-am.1 git-apply.1 git-archimport.1 git-archive.1 git-bisect.1 \
-	git-blame.1 git-branch.1 git-bundle.1 git-cat-file.1 git-check-attr.1 \
-	git-checkout-index.1 git-checkout.1 git-cherry-pick.1 git-cherry.1 \
-	git-clean.1 git-clone.1 git-commit-tree.1 git-commit.1 git-config.1 \
-	git-cvsexportcommit.1 git-cvsimport.1 git-cvsserver.1 git-daemon.1 \
-	git-describe.1 git-diff-files.1 git-diff-index.1 git-diff-tree.1 git-diff.1 \
-	git-fast-import.1 git-fetch-pack.1 git-fetch.1 git-filter-branch.1 \
-	git-fmt-merge-msg.1 git-for-each-ref.1 git-format-patch.1 git-gc.1 \
-	git-fsck.1 git-get-tar-commit-id.1 git-grep.1 git-hash-object.1 git-help.1 \
-	git-http-fetch.1 git-http-push.1 git-imap-send.1 git-index-pack.1 \
-	git-init-db.1 git-init.1 git-log.1 git-lost-found.1 git-ls-files.1 \
-	git-ls-remote.1 git-ls-tree.1 git-mailinfo.1 git-merge.1 git-mv.1 \
-	git-merge-file.1 git-merge-index.1 git-merge-one-file.1 git-merge-tree.1 \
-	git-mergetool.1 git-mktag.1 git-mktree.1 git-name-rev.1 git-pack-objects.1 \
-	git-pack-redundant.1 git-pack-refs.1 git-parse-remote.1 git-patch-id.1 \
-	git-peek-remote.1 git-prune-packed.1 git-prune.1 git-pull.1 git-push.1 \
-	git-read-tree.1 git-rebase.1 git-receive-pack.1 git-reflog.1 git-relink.1 \
-	git-remote.1 git-repack.1 git-repo-config.1 git-request-pull.1 git-rerere.1 \
-	git-reset.1 git-rev-list.1 git-revert.1 git-rm.1 git-send-pack.1 \
-	git-sh-setup.1 git-shell.1 git-shortlog.1 git-rev-parse.1 git-show-index.1 \
-	git-show-ref.1 git-show.1 git-stash.1 git-status.1 git-stripspace.1 \
-	git-submodule.1 git-svn.1 git-symbolic-ref.1 git-tag.1 git-unpack-file.1 \
-	git-unpack-objects.1 git-update-index.1 git-update-ref.1 \
-	git-update-server-info.1 git-upload-archive.1 git-upload-pack.1 git-var.1 \
-	git-verify-tag.1 git-write-tree.1 git-add.1 \
-	git-annotate.1 git-check-ref-format.1 git-count-objects.1 git-fast-export.1 \
-	git-fsck-objects.1 git-instaweb.1 git-mailsplit.1 git-merge-base.1 \
-	git-verify-pack.1 git-web--browse.1 git-quiltimport.1 git-send-email.1 \
-	git-show-branch.1 git-tar-tree.1 git-whatchanged.1 
 
-MAN3= 	Git.3 
-MAN5= 	gitignore.5 gitattributes.5 gitmodules.5 
+MAN1= 	git-add.1 git-am.1 git-annotate.1 git-apply.1 git-archimport.1 \
+	git-archive.1 git-bisect.1 git-blame.1 git-branch.1 git-bundle.1 \
+	git-cat-file.1 git-check-attr.1 git-check-ref-format.1 git-checkout-index.1 \
+	git-checkout.1 git-cherry-pick.1 git-cherry.1 git-clean.1 \
+	git-clone.1 git-commit-tree.1 git-commit.1 git-config.1 git-count-objects.1 \
+	git-cvsexportcommit.1 git-cvsimport.1 git-cvsserver.1 git-daemon.1 \
+	git-describe.1 git-diff-files.1 git-diff-index.1 git-diff-tree.1 \
+	git-diff.1 git-fast-export.1 git-fast-import.1 git-fetch-pack.1 \
+	git-fetch.1 git-filter-branch.1 git-fmt-merge-msg.1 git-for-each-ref.1 \
+	git-format-patch.1 git-fsck-objects.1 git-fsck.1 git-gc.1 \
+	git-get-tar-commit-id.1 git-grep.1 git-hash-object.1 \
+	git-help.1 git-http-fetch.1 git-http-push.1 git-imap-send.1 \
+	git-index-pack.1 git-init-db.1 git-init.1 git-instaweb.1 git-log.1 \
+	git-lost-found.1 git-ls-files.1 git-ls-remote.1 git-ls-tree.1 \
+	git-mailinfo.1 git-mailsplit.1 git-merge-base.1 git-merge-file.1 \
+	git-merge-index.1 git-merge-one-file.1 git-merge-tree.1 git-merge.1 \
+	git-mergetool.1 git-mktag.1 git-mktree.1 git-mv.1 git-name-rev.1 \
+	git-pack-objects.1 git-pack-redundant.1 git-pack-refs.1 git-parse-remote.1 \
+	git-patch-id.1 git-peek-remote.1 git-prune-packed.1 git-prune.1 \
+	git-pull.1 git-push.1 git-quiltimport.1 git-read-tree.1 git-rebase.1 \
+	git-receive-pack.1 git-reflog.1 git-relink.1 git-remote.1 git-repack.1 \
+	git-repo-config.1 git-request-pull.1 git-rerere.1 git-reset.1 \
+	git-rev-list.1 git-rev-parse.1 git-revert.1 git-rm.1 git-send-email.1 \
+	git-send-pack.1 git-sh-setup.1 git-shell.1 git-shortlog.1 \
+	git-show-branch.1 git-show-index.1 git-show-ref.1 git-show.1 \
+	git-stage.1 git-stash.1 git-status.1 git-stripspace.1 git-submodule.1 \
+	git-svn.1 git-symbolic-ref.1 git-tag.1 git-tar-tree.1 git-unpack-file.1 \
+	git-unpack-objects.1 git-update-index.1 git-update-ref.1 \
+	git-update-server-info.1 git-upload-archive.1 git-upload-pack.1 \
+	git-var.1 git-verify-pack.1 git-verify-tag.1 git-web--browse.1 \
+	git-whatchanged.1 git-write-tree.1 git.1 
+
+
+MAN5= 	gitattributes.5 githooks.5 gitignore.5 gitmodules.5 gitrepository-layout.5 
+MAN7=	gitcli.7 gitcore-tutorial.7 gitcvs-migration.7 gitdiffcore.7 \
+	gitglossary.7 gittutorial-2.7 gittutorial.7 gitworkflows.7 
+
 
 SUB_FILES=	pkg-message
 
