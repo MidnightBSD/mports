@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xlsfonts
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-fonts/xlsfonts/Makefile,v 1.1 2007/05/19 20:29:40 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/xlsfonts/Makefile,v 1.1 2007/10/08 15:11:17 ctriv Exp $
 
 PORTNAME=	xlsfonts
 PORTVERSION=	1.0.2
