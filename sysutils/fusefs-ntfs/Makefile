@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.1 2007/07/29 22:30:05 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.2 2009/04/03 06:22:21 laffer1 Exp $
 
 PORTNAME=	ntfs
 PORTVERSION=	1.710
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ntfs-3g.org/:ntfs \
-		${MASTER_SITE_LOCAL:S|$|alepulver/:ublio|}
+		${MASTER_SITE_FREEBSD_LOCAL:S|$|alepulver/:ublio|}
 PKGNAMEPREFIX=	fusefs-
 DISTNAME=	${PORTNAME}-3g-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
