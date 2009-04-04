@@ -1,13 +1,7 @@
-# New ports collection makefile for:    xorg-fonts
-# Date created:				Jun 22 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-fonts/xorg-fonts/Makefile,v 1.2 2007/09/13 19:44:53 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/xorg-fonts/Makefile,v 1.1 2007/10/11 19:42:54 ctriv Exp $
 
 PORTNAME=	xorg-fonts
-PORTVERSION=	7.3
+PORTVERSION=	7.4
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -18,7 +12,6 @@ COMMENT=	X.org fonts meta-port
 LICENSE=	agg
 
 USE_XORG=	fontutil
-PREFIX?=	${X11BASE}
 
 FONTSDIR=	${PREFIX}/lib/X11/fonts
 RUN_DEPENDS=	${FONTSDIR}/100dpi/courB08-ISO8859-1.pcf.gz:${PORTSDIR}/x11-fonts/xorg-fonts-100dpi \
