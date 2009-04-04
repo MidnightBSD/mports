@@ -1,16 +1,9 @@
-# New ports collection makefile for:	javavmwrapper
-# Date created:				10 June 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.5 2008/04/30 21:39:34 laffer1 Exp $
-# $FreeBSD: ports/java/javavmwrapper/Makefile,v 1.29 2006/06/12 16:57:29 glewis Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.6 2008/06/10 00:41:25 laffer1 Exp $
 #
 # This port is self contained in the src directory.
-#
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTVERSION=	2.3.2
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -19,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Wrapper script for various Java Virtual Machines
 LICENSE=	other
 
-CONFLICTS=	kaffe-1.* kaffe-devel-1.*
+CONFLICTS=	kaffe-1.*
 
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
@@ -56,10 +49,10 @@ do-configure:
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/classpath.sh ${PREFIX}/bin/classpath
 	${INSTALL_SCRIPT} ${WRKDIR}/javavmwrapper.sh ${PREFIX}/bin/javavm
-	${LN} -sf javavm ${PREFIX}/bin/registervm
-	${LN} -sf javavm ${PREFIX}/bin/unregistervm
-	${LN} -sf javavm ${PREFIX}/bin/checkvms
-	${LN} -sf javavm ${PREFIX}/bin/manvm
+	(cd ${PREFIX}/bin && ${LN} -sf javavm registervm && \
+	${LN} -sf javavm unregistervm && \
+	${LN} -sf javavm checkvms && \
+	${LN} -sf javavm manvm )
 .for _man in checkvms.1 javavm.1 manvm.1 registervm.1
 	${INSTALL_MAN} ${WRKDIR}/${_man} ${MAN1PREFIX}/man/man1
 .endfor
