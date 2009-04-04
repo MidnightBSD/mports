@@ -1,13 +1,7 @@
-# New ports collection makefile for:    xorg-fonts-100dpi
-# Date created:		30 May 2004
-# Whom:			anholt@FreeBSD.org
-#
-# $FreeBSD: ports/x11-fonts/xorg-fonts-100dpi/Makefile,v 1.11 2007/09/13 19:44:52 flz Exp $
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-100dpi/Makefile,v 1.3 2007/10/09 15:48:29 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-100dpi/Makefile,v 1.4 2008/04/14 18:32:27 laffer1 Exp $
 
 PORTNAME=	xorg-fonts-100dpi
-PORTVERSION=	7.3
+PORTVERSION=	7.4
 CATEGORIES=	x11-fonts
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -27,7 +21,7 @@ RUN_DEPENDS=	${FONTDIR}/100dpi/courB08.pcf.gz:${PORTSDIR}/x11-fonts/font-adobe-1
 CONFLICTS=	XFree86-font100dpi-*
 
 NO_BUILD=	# none
-FONTDIR=	${X11BASE}/lib/X11/fonts
+FONTDIR=	${LOCALBASE}/lib/X11/fonts
 
 do-install:	# empty
 
