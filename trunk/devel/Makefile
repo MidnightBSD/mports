@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.282 2009/03/21 15:42:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.283 2009/03/25 15:44:29 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -135,6 +135,7 @@
     SUBDIR += libticalcs
     SUBDIR += libtifiles
     SUBDIR += libtool15
+    SUBDIR += libublio
     SUBDIR += libusb
     SUBDIR += libvolume_id
     SUBDIR += linux-allegro
