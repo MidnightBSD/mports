@@ -25,7 +25,7 @@
 # Greg Lewis
 # ----------------------------------------------------------------------------
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/javavmwrapper/src/javavmwrapper.sh,v 1.2 2008/04/30 21:35:49 laffer1 Exp $
 # $FreeBSD: ports/java/javavmwrapper/src/javavmwrapper.sh,v 1.19 2006/06/12 16:57:29 glewis Exp $
 #
 # MAINTAINER=ports@MidnightBSD.org
@@ -453,8 +453,13 @@ manualpageVM () {
     # Run man(1)
     MANPATH="${JAVA_HOME}/man:${MANPATH}"
     export MANPATH
-    setJavaOptions man "`basename ${JAVA_HOME}`"
-    exec man -S 1 ${_JAVAVM_OPTS} ${1}
+    if [ "${LANG}" = "ja_JP.eucJP" -a -x "${_JAVAVM_PREFIX}/bin/jman" ]; then
+	setJavaOptions jman "`basename ${JAVA_HOME}`"
+	exec ${_JAVAVM_PREFIX}/bin/jman -S 1 ${_JAVAVM_OPTS} ${1}
+    else
+	setJavaOptions man "`basename ${JAVA_HOME}`"
+	exec man -S 1 ${_JAVAVM_OPTS} ${1}
+    fi
 }
 
 #
@@ -592,6 +597,9 @@ setJavaHome() {
                     ;;
                 linux-blackdown*)
                     _JAVAVM_VENDOR=blackdown
+                    ;;
+                linux-ibm*)
+                    _JAVAVM_VENDOR=ibm
                     ;;
                 linux-sun*)
                     _JAVAVM_VENDOR=sun
