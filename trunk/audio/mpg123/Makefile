@@ -2,7 +2,7 @@
 # Date created:			25 June 1997
 # Whom:				Carey Jones <mcj@acquiesce.org>
 #
-# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.2 2007/08/02 06:54:43 laffer1 Exp $
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.3 2008/04/10 04:57:30 ctriv Exp $
 # $FreeBSD: ports/audio/mpg123/Makefile,v 1.66 2005/11/28 19:03:07 fenner Exp $
 #
 
@@ -16,7 +16,7 @@ DISTNAME=	mpg123-0.59r-pl1
 
 PATCH_SITES=	ftp://ftp.kame.net/pub/kame/misc/:ipv6 \
 		http://www.unix-ag.org/Linux-Alpha/Packages/:l3 \
-		${MASTER_SITE_LOCAL:S/$/:recode/}
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:recode/}
 PATCH_SITE_SUBDIR=	sobomax/:recode
 PATCHFILES=	mpg123-059r-v6-20000713b.diff.gz:ipv6 \
 		mpg123-059r-recode-20010410.diff.gz:recode \
