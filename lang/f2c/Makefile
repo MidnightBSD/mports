@@ -1,11 +1,9 @@
-#
-# $MidnightBSD: ports/lang/f2c/Makefile,v 1.20 2008/08/13 07:51:51 maho Exp $
-#
+# $MidnightBSD: mports/lang/f2c/Makefile,v 1.1 2008/12/20 02:54:13 ctriv Exp $
 
 PORTNAME=	f2c
 PORTVERSION=	20060810
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	maho/f2c
 DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tar

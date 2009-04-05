@@ -1,11 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/ghc/Makefile,v 1.1 2009/02/18 19:52:44 laffer1 Exp $
 
 PORTNAME=	ghc
 PORTVERSION=	6.8.3
 CATEGORIES=	lang haskell
 MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		http://www.haskell.org/ghc/dist/${PORTVERSION}/FreeBSD/:boot \
-		${MASTER_SITE_LOCAL:S/$/:boot/}
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:boot/}
 DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source \
 		ghc-${PORTVERSION}-src-extralibs${EXTRACT_SUFX}:source
 

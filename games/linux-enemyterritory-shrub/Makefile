@@ -2,7 +2,7 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2008/03/22 16:09:13 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-enemyterritory-shrub/Makefile,v 1.3 2008/03/22 16:48:40 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-shrub/Makefile,v 1.2 2006/05/31 01:43:26 alepulver Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	shrub
 PORTVERSION=	1.2
 PORTREVISION=	2
 CATEGORIES=	games linux
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=   alepulver
 PKGNAMEPREFIX=	linux-enemyterritory-
 DISTNAME=	1.2-test13-l
