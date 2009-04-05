@@ -2,7 +2,7 @@
 # Date created:				17 July 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.4 2008/08/12 20:20:15 laffer1 Exp $
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.5 2008/08/22 13:35:00 laffer1 Exp $
 #
 
 PORTNAME=	libiconv
@@ -45,7 +45,7 @@ CONFIGURE_ARGS+=	--enable-extra-encodings
 
 .if defined(WITH_EXTRA_PATCHES)
 PATCH_SITES+=	http://www2d.biglobe.ne.jp/~msyk/software/libiconv/
-PATCH_SITES+=	${MASTER_SITE_LOCAL}
+PATCH_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
 PATCH_SITE_SUBDIR=	nork
 PATCHFILES+=	${DISTNAME}-cp932.patch.gz
 PATCH_DIST_STRIP+=	-p1
