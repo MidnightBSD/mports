@@ -2,7 +2,7 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/toolbox/Makefile,v 1.3 2007/11/07 20:20:11 ctriv Exp $
+# $MidnightBSD: mports/deskutils/toolbox/Makefile,v 1.4 2008/10/23 13:34:02 laffer1 Exp $
 # $FreeBSD: ports/deskutils/toolbox/Makefile,v 1.3 2007/02/25 06:48:25 dinoex Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	0.8
 PORTREVISION=	2
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	http://ftp.azc.uam.mx/mirrors/gnu/savannah/files/toolbox/Release.pkg/0.8/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
 DISTNAME=	Toolbox-${PORTVERSION}
 
