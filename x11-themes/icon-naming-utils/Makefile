@@ -1,13 +1,7 @@
-# New ports collection makefile for:	icon-naming-utils
-# Date created:		2005-11-05
-# Whom:			Phillip Neumann <pneumann@gmail.com>
-#
-# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.1 2007/08/15 05:03:35 laffer1 Exp $
-# $FreeBSD: ports/x11-themes/icon-naming-utils/Makefile,v 1.8 2007/03/04 20:26:22 rafan Exp $
-#
+# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.2 2008/03/28 02:42:18 laffer1 Exp $
 
 PORTNAME=	icon-naming-utils
-PORTVERSION=	0.8.6
+PORTVERSION=	0.8.7
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/
 
