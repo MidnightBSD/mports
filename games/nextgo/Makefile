@@ -1,16 +1,11 @@
-# New ports collection makefile for:    nextgo
-# Date created:         05 Nov 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/games/nextgo/Makefile,v 1.3 2008/10/21 22:50:29 ctriv Exp $
-# $FreeBSD: ports/games/nextgo/Makefile,v 1.3 2007/01/31 18:18:00 dinoex Exp $
-#
+# $MidnightBSD: mports/games/nextgo/Makefile,v 1.4 2008/10/23 13:50:37 laffer1 Exp $
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0
 PORTREVISION=	2
 CATEGORIES=	games gnustep
-MASTER_SITES=	http://download.savannah.gnu.org/releases/gap/
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
 DISTNAME=	NeXTGo-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
