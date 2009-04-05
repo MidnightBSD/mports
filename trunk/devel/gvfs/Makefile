@@ -1,17 +1,10 @@
-# New ports collection makefile for:	gvfs
-# Date created:		2007-11-06
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.6 2008/06/18 22:53:07 stevan Exp $
-# $FreeBSD: ports/devel/gvfs/Makefile,v 1.8 2008/04/12 22:18:14 pav Exp $
-#   $MCom: ports/devel/gvfs/Makefile,v 1.21 2008/03/18 16:16:48 mezz Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	gvfs
-PORTVERSION=	0.2.3
-PORTREVISION=	2
+PORTVERSION=	1.0.3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
+DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME virtual file system
@@ -32,7 +25,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--disable-obexftp
+CONFIGURE_ARGS=	--disable-obexftp --disable-http
 OPTIONS=	FUSE "Enable fuse" on \
 		SAMBA "Enable Samba" on \
 		GPHOTO2 "Enable Gphoto 2 camera support" on \
