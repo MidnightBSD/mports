@@ -2,7 +2,7 @@
 # Date created:		21 February 2001
 # Whom:			znerd@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.1 2006/10/04 16:13:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.2 2008/06/20 17:01:57 laffer1 Exp $
 # $FreeBSD: ports/devel/apache-ant/Makefile,v 1.45 2006/09/06 21:52:18 hq Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	1.6.5
 PORTREVISION=	2
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
-		${MASTER_SITE_LOCAL:S,%SUBDIR%/,hq/:man,} \
+		${MASTER_SITE_FREEBSD_LOCAL:S,%SUBDIR%/,hq/:man,} \
 		http://www.esil.univ-mrs.fr/~hquiroz/:man
 DISTFILES=	${ANT_DISTFILE}:bin \
 		${MANPAGE_DISTFILE}:man

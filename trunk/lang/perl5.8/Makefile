@@ -2,7 +2,7 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.12 2008/06/09 20:20:10 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.13 2008/06/22 21:02:43 laffer1 Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
@@ -11,14 +11,14 @@ PORTVERSION=	5.8.8
 PORTREVISION=	2
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN} \
-		${MASTER_SITE_LOCAL:S/$/:local/} \
+		${MASTER_SITE_FREEBSD_LOCAL:S/$/:local/} \
 		http://www.tobez.org/download/port-mirrors/lang/perl58/:local
 MASTER_SITE_SUBDIR=	../../src \
 			tobez/:local
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		BSDPAN-${PERL_VER}${EXTRACT_SUFX}:local
 
-PATCH_SITES=	${MASTER_SITE_LOCAL:S/$/tobez\//} \
+PATCH_SITES=	${MASTER_SITE_FREEBSD_LOCAL:S/$/tobez\//} \
 		http://www.tobez.org/download/port-mirrors/lang/perl58/
 PATCHFILES=	defined-or-5.8.8.bz2
 

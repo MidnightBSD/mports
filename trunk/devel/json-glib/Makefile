@@ -1,11 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/json-glib/Makefile,v 1.1 2009/02/18 20:37:03 laffer1 Exp $
 
 PORTNAME=	json-glib
 PORTVERSION=	0.6.2
 PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://folks.o-hand.com/~ebassi/sources/ \
-    		${MASTER_SITE_LOCAL:S/$/:local/}
+    		${MASTER_SITE_FREEBSD_LOCAL:S/$/:local/}
 MASTER_SITE_SUBDIR=	marcus:local
 
 MAINTAINER=	ports@MidnightBSD.org

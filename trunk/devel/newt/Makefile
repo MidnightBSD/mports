@@ -3,13 +3,13 @@
 # Whom:			Will Andrews <andrews@technologist.com>
 #
 # $FreeBSD: ports/devel/newt/Makefile,v 1.30 2007/12/14 23:14:24 miwi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/newt/Makefile,v 1.1 2008/05/31 00:03:01 crash Exp $
 
 PORTNAME=	newt
 PORTVERSION=	0.51.0
 PORTREVISION=	4
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_LOCAL} \
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		# ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
 MASTER_SITE_SUBDIR=	perky
 PKGNAMESUFFIX=	${PYTHONSUFFIX}${TCLSUFFIX}

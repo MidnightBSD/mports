@@ -2,14 +2,14 @@
 # Date created:				10 August 2003
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libexecinfo/Makefile,v 1.1 2007/10/19 06:11:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/libexecinfo/Makefile,v 1.2 2008/08/25 19:20:59 laffer1 Exp $
 # $FreeBSD: ports/devel/libexecinfo/Makefile,v 1.7 2006/06/29 13:21:47 itetcu Exp $
 #
 
 PORTNAME=	libexecinfo
 PORTVERSION=	1.1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	itetcu
 
 MAINTAINER=	ports@MidnightBSD.org

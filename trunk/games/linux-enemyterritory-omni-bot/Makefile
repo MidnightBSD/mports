@@ -2,14 +2,14 @@
 # Date created:				7 May 2006
 # Whom:					alepulver
 #
-# $MidnightBSD: mports/games/linux-enemyterritory-omni-bot/Makefile,v 1.2 2008/03/22 05:33:56 laffer1 Exp $
+# $MidnightBSD: mports/games/linux-enemyterritory-omni-bot/Makefile,v 1.3 2008/03/22 16:47:47 laffer1 Exp $
 # $FreeBSD: ports/games/linux-enemyterritory-omni-bot/Makefile,v 1.12 2008/02/19 13:20:31 alepulver Exp $
 #
 
 PORTNAME=	omni-bot
 PORTVERSION=	0.66
 CATEGORIES=	games linux
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	alepulver
 PKGNAMEPREFIX=	linux-enemyterritory-
 
