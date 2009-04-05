@@ -2,7 +2,7 @@
 # Date created:				27 September 2000
 # Whom:	      				Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jad/Makefile,v 1.1 2006/10/06 02:55:35 laffer1 Exp $
 # $FreeBSD: ports/java/jad/Makefile,v 1.15 2005/12/11 13:32:50 barner Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	jad
 PORTVERSION=	1.5.8c
 CATEGORIES=	java devel
 MASTER_SITES=	http://www.kpdus.com/jad/freebsd/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	znerd
 DISTNAME=	jadfb158
 

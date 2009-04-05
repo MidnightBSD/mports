@@ -2,7 +2,7 @@
 # Date created:		1 May 2004
 # Whom:			Hye-Shik Chang
 #
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.2 2008/08/23 20:55:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.3 2008/08/23 20:58:07 laffer1 Exp $
 # $FreeBSD: ports/devel/cvs2svn/Makefile,v 1.15 2008/03/16 23:05:51 araujo Exp $
 
 PORTNAME=	cvs2svn
@@ -12,7 +12,7 @@ MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/41596/ \
 		http://cvs2svn.tigris.org/files/documents/1462/39919/ \
 		ftp://ftp.rewt.org.uk/pub/distfiles/ \
 		http://gentoo.nedlinux.nl/distfiles/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	jkoshy
 
 MAINTAINER=	ports@MidnightBSD.org

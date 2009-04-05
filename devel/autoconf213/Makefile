@@ -2,7 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.7 2008/03/24 18:08:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.8 2008/03/28 03:10:00 ctriv Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.62 2007/07/28 06:33:44 ade Exp $
 #
 
@@ -11,7 +11,7 @@ PKGNAMESUFFIX=	213
 PORTVERSION=	2.13.000227
 PORTREVISION=	7
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ade/gnu
 DISTNAME=	autoconf-000227
 
