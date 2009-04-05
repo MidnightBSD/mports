@@ -1,13 +1,7 @@
-# New ports collection makefile for:   iso-codes
-# Date created:			02 April 2005
-# Whom:				Koop Mast <kwm@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.7 2008/09/21 20:20:28 laffer1 Exp $
-# $FreeBSD: ports/misc/iso-codes/Makefile,v 1.21 2007/07/30 03:59:42 beech Exp $
-#
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.8 2008/10/11 20:26:29 laffer1 Exp $
 
 PORTNAME=	iso-codes
-DISTVERSION=	3.2
+DISTVERSION=	3.7
 CATEGORIES=	misc
 MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/
 
