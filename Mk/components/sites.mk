@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.7 2009/04/05 16:28:10 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.8 2009/04/05 16:41:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1081,8 +1081,6 @@ MASTER_SITE_PGSQL+= \
 
 .if !defined(IGNORE_MASTER_SITE_PHP)
 MASTER_SITE_PHP+= \
-	http://br.php.net/%SUBDIR%/ \
-	http://cn.php.net/%SUBDIR%/ \
 	http://dk.php.net/%SUBDIR%/ \
 	http://de.php.net/%SUBDIR%/ \
 	http://es.php.net/%SUBDIR%/ \
@@ -1095,6 +1093,8 @@ MASTER_SITE_PHP+= \
 	http://se.php.net/%SUBDIR%/ \
 	http://uk.php.net/%SUBDIR%/ \
 	http://us2.php.net/%SUBDIR%/ \
+	http://br.php.net/%SUBDIR%/ \
+	http://cn.php.net/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/php/&,}
 .endif
 
@@ -1210,7 +1210,8 @@ MASTER_SITE_REDHAT_LINUX+= \
 #
 .if !defined(IGNORE_MASTER_SITE_RINGSERVER)
 MASTER_SITE_RINGSERVER+=	\
-	http://ring.sakura.ad.jp/archives/%SUBDIR%/ \
+	http://ring.nict.go.jp/archives/%SUBDIR%/ \
+	http://ring.k-opti.com/archives/%SUBDIR%/ \
 	http://ring.riken.jp/archives/%SUBDIR%/
 .endif
 
@@ -1233,7 +1234,6 @@ MASTER_SITE_RUBY+= \
 # See http://rubyforge.org/credits/
 .if !defined(IGNORE_MASTER_SITE_RUBYFORGE)
 MASTER_SITE_RUBYFORGE+= \
-	http://rubyforge.rubyuser.de/%SUBDIR%/ \
 	http://rubyforge.iasi.roedu.net/files/%SUBDIR%/ \
 	http://rubyforge.halostatue.info/%SUBDIR%/ \
 	http://files.rubyforge.vm.bytemark.co.uk/%SUBDIR%/
