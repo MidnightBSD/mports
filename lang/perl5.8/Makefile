@@ -2,25 +2,24 @@
 # Date created:		16 April 1995
 # Whom:			markm
 #
-# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.13 2008/06/22 21:02:43 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.8/Makefile,v 1.14 2009/04/05 20:01:40 laffer1 Exp $
 # $FreeBSD: ports/lang/perl5.8/Makefile,v 1.89 2006/08/04 12:34:44 erwin Exp $
 #
 
 PORTNAME=	perl
-PORTVERSION=	5.8.8
-PORTREVISION=	2
+PORTVERSION=	5.8.9
 CATEGORIES=	lang devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN} \
+MASTER_SITES=	CPAN \
 		${MASTER_SITE_FREEBSD_LOCAL:S/$/:local/} \
-		http://www.tobez.org/download/port-mirrors/lang/perl58/:local
+		http://protey.ru/freebsd/distfiles/:local
 MASTER_SITE_SUBDIR=	../../src \
-			tobez/:local
+			skv/:local
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		BSDPAN-${PERL_VER}${EXTRACT_SUFX}:local
 
-PATCH_SITES=	${MASTER_SITE_FREEBSD_LOCAL:S/$/tobez\//} \
-		http://www.tobez.org/download/port-mirrors/lang/perl58/
-PATCHFILES=	defined-or-5.8.8.bz2
+PATCH_SITES=	${MASTER_SITE_FREEBSD_LOCAL:S!$!skv/!} \
+		http://protey.ru/freebsd/distfiles/
+PATCHFILES=	defined-or-5.8.9.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
@@ -79,10 +78,10 @@ CONFIGURE_ARGS+=	-Doptimize="${CFLAGS}"
 
 .if defined(WITH_SUIDPERL)
 CONFIGURE_ARGS+=	-Dd_dosuid=define
-PLIST_SUB+=		ENABLE_SUIDPERL=""
+PLIST_SUB+=		SUIDPERL=""
 .else
 CONFIGURE_ARGS+=	-Ud_dosuid
-PLIST_SUB+=		ENABLE_SUIDPERL="@comment "
+PLIST_SUB+=		SUIDPERL="@comment "
 .endif
 
 .if defined(WITH_GDBM)
