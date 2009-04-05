@@ -1,14 +1,7 @@
-# New ports collection makefile for:	gnupg
-# Date created:		Sep 30, 1998
-# Whom:			kuriyama@FreeBSD.org
-#
-# $FreeBSD: ports/security/gnupg/Makefile,v 1.98 2007/01/14 07:27:47 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg/Makefile,v 1.10 2008/05/09 18:38:13 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.11 2008/06/01 20:56:11 laffer1 Exp $
 
 PORTNAME=	gnupg
-PORTVERSION=	2.0.9
-PORTREVISION=	3
+PORTVERSION=	2.0.11
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -17,7 +10,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU Privacy Guard
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 BUILD_DEPENDS=	libassuan>=1.0.1:${PORTSDIR}/security/libassuan
 LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
@@ -35,18 +28,24 @@ USE_LDCONFIG=	YES
 USE_GETTEXT=	YES
 CONFIGURE_TARGET=# empty
 CONFIGURE_ARGS+=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man \
-	--enable-nls
+	--enable-nls --enable-symcryptrun
+.if defined(NOPORTDOCS)
+CONFIGURE_ARGS+=      --disable-doc
+.else
 MAN1=		gpg2.1 gpgsm.1 gpgv2.1 gpg-agent.1 scdaemon.1 watchgnupg.1 \
 		gpgconf.1 gpg-preset-passphrase.1 gpg-connect-agent.1 \
-		gpgparsemail.1 symcryptrun.1 gpgsm-gencert.sh.1
+		gpgparsemail.1 symcryptrun.1 gpgsm-gencert.sh.1 gpg-zip.1
 MAN8=		addgnupghome.8 applygnupgdefaults.8
 INFO=		gnupg
+.endif
 
 OPTIONS=	LDAP "LDAP keyserver interface" off \
 		NLS "National Language Support" off \
 		SCDAEMON "Enable Smartcard daemon (with libusb)" off \
 		CURL "Use the real curl library (worked around if no)" on \
-		GPGSM "Enable GPGSM" on
+		GPGSM "Enable GPGSM" on \
+		CAMELLIA "Enable Camellia algorithm (for testing only)" off \
+		KDNS "Use DNS CERT helper" off 
 
 .include <bsd.port.pre.mk>
 
@@ -68,7 +67,20 @@ CONFIGURE_ARGS+=--disable-ldap
 PLIST_SUB+=	LDAP="@comment "
 .endif
 
+.if defined(WITH_CAMELLIA) && !defined(WITHOUT_CAMELLIA)
+CONFIGURE_ARGS+=--enable-camellia
+.endif
+
+.if defined(WITH_KDNS) && !defined(WITHOUT_KDNS)
+LIB_DEPENDS+= adns:${PORTSDIR}/dns/adns
+PLIST_SUB+=   ADNS=""
+.else
+CONFIGURE_SUB=        -e '/GPGKEYS_KDNS=/s/".*"/""/'
+PLIST_SUB+=   ADNS="@comment "
+.endif
+
 .if defined(WITH_NLS)
+USE_GETTEXT=	YES
 CONFIGURE_ARGS+=--enable-nls
 PLIST_SUB+=	NLS=""
 .else
@@ -96,7 +108,7 @@ verify:	checksum
 	gpg2 --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.sig
 
 pre-configure:
-	${REINPLACE_CMD} -e "s@-lpthread@${PTHREAD_LIBS}@g" \
+	${REINPLACE_CMD} -e "s@-lpthread@${PTHREAD_LIBS}@g" ${CONFIGURE_SUB} \
 		${WRKSRC}/acinclude.m4 ${WRKSRC}/aclocal.m4 ${WRKSRC}/configure
 
 post-install:
