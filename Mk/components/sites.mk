@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.5 2009/03/21 16:13:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.6 2009/04/05 16:15:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1459,15 +1459,18 @@ MASTER_SITE_TUCOWS+= \
 # Updated:	2006-06-13
 .if !defined(IGNORE_MASTER_SITE_VIM)
 MASTER_SITE_VIM+= \
-	ftp://ftp.vim.org/pub/vim/unix/  \
-	ftp://ftp2.us.vim.org/pub/vim/unix/ \
 	ftp://ftp9.us.vim.org/pub/vim/unix/ \
 	ftp://ftp.ca.vim.org/pub/vim/unix/ \
 	ftp://ftp.nl.vim.org/pub/vim/unix/ \
+	ftp://ftp2.nl.vim.org/pub/vim/unix/ \
+	ftp://ftp3.nl.vim.org/pub/vim/unix/ \
+	ftp://ftp.be.vim.org/pub/vim/unix/ \
 	ftp://ftp.de.vim.org/unix/ \
 	ftp://ftp3.de.vim.org/pub/vim/unix/ \
 	ftp://ftp.uk.vim.org/pub/vim/unix/ \
 	ftp://ftp.ie.vim.org/pub/vim/unix/ \
+	ftp://ftp.fr.vim.org/pub/vim/unix/ \
+	ftp://miroir-francais.fr/pub/vim/unix \
 	ftp://ftp.at.vim.org/pub/vim/unix/ \
 	ftp://ftp.se.vim.org/pub/vim/unix/ \
 	ftp://ftp.pt.vim.org/pub/vim/unix/ \
@@ -1481,6 +1484,7 @@ MASTER_SITE_VIM+= \
 	ftp://ftp.jp.vim.org/pub/vim/unix/ \
 	ftp://ftp.kr.vim.org/pub/vim/unix/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.vim.org/pub/vim/unix/ \
+	ftp://ftp.home.vim.org/pub/vim/unix/ \
 	http://ftp.vim.org/pub/vim/unix/ \
 	http://mirrors.24-7-solutions.net/pub/vim/unix/ \
 	http://ftp.tw.vim.org/pub/vim/unix/ \
