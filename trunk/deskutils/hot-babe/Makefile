@@ -2,7 +2,7 @@
 # Date created:		2004-11-06
 # Whom:			Roman Bogorodskiy <bogorodskiy@inbox.ru>
 #
-# $MidnightBSD: mports/deskutils/hot-babe/Makefile,v 1.1 2007/12/03 05:45:45 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/hot-babe/Makefile,v 1.2 2008/06/19 22:48:09 laffer1 Exp $
 # $FreeBSD: ports/deskutils/hot-babe/Makefile,v 1.10 2007/05/19 20:01:39 flz Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	0.2.2
 PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	http://dindinx.net/hotbabe/downloads/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	novel
 
 MAINTAINER=	ports@MidnightBSD.org
