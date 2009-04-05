@@ -1,4 +1,4 @@
-If you are not a regular user of GNUstep environment, please follow these
+If you are not a regular user of GNUstep environment, please follow this
 advice to run oolite:
 
 1. Make sure that necessary GNUstep daemons are running before starting oolite.
@@ -10,3 +10,4 @@ advice to run oolite:
    . %%PREFIX%%/System/Library/Makefiles/GNUstep.sh
    or
    source %%PREFIX%%/System/Library/Makefiles/GNUstep.csh
+   This might be done for you already on MidnightBSD.
