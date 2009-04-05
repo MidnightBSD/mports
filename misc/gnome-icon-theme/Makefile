@@ -1,14 +1,7 @@
-# New ports collection makefile for:	gnome-icon-theme
-# Date Created:				05 October 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.4 2008/06/07 20:56:59 laffer1 Exp $
-# $FreeBSD: ports/misc/gnome-icon-theme/Makefile,v 1.33 2007/05/19 20:15:48 flz Exp $
-#   $MCom: ports/misc/gnome-icon-theme/Makefile,v 1.99 2007/03/12 23:58:09 marcus Exp $
-#
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.5 2008/09/21 20:03:05 laffer1 Exp $
 
 PORTNAME=	gnome-icon-theme
-PORTVERSION=	2.22.0
+PORTVERSION=	2.24.0
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
