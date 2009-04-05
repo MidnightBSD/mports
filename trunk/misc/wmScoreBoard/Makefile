@@ -2,7 +2,7 @@
 # Date created:				Sun Jun 24 17:08:15 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.2 2007/03/22 04:36:49 ctriv Exp $
+# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.3 2007/10/31 01:23:54 laffer1 Exp $
 # $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	wmScoreBoard
 PORTVERSION=	0.30
 PORTREVISION=	2
 CATEGORIES=	misc windowmaker
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	pat
 
 MAINTAINER=	ports@MidnightBSD.org
