@@ -2,7 +2,7 @@
 # Date created:				December 21, 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/alpine/Makefile,v 1.4 2008/08/26 19:20:05 laffer1 Exp $
+# $MidnightBSD: mports/mail/alpine/Makefile,v 1.5 2009/04/02 23:24:13 laffer1 Exp $
 #
 
 PORTNAME?=	alpine
@@ -107,7 +107,7 @@ EXTRA_PATCHES=	${FILESDIR}/cons25-alpine_keymenu.c
 .if defined(WITH_QUOTA) || defined(WITH_MAILDIR)
 PATCH_SITES=	http://staff.washington.edu/chappa/alpine/patches/alpine-${PORTVERSION}/ \
 		http://dougbarton.us/Downloads/alpine-${PORTVERSION}/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 PATCH_SITE_SUBDIR=	dougb/alpine-${PORTVERSION}/
 PATCH_DIST_ARGS+=	-E --quiet -d ${PATCH_WRKSRC} -p1
 .endif
