@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.4 2009/01/04 20:45:16 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.5 2009/03/21 16:13:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1263,14 +1263,16 @@ MASTER_SITE_SAMBA+= \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/samba/&,}
 .endif
 
+# List:         http://dl.sv.gnu.org/releases/00_MIRRORS.html
 .if !defined(IGNORE_MASTER_SITE_SAVANNAH)
 MASTER_SITE_SAVANNAH+= \
-	http://download.savannah.nongnu.org/releases/%SUBDIR%/ \
-	http://www.de-mirrors.de/nongnu/%SUBDIR%/ \
+	http://download.savannah.gnu.org/releases/%SUBDIR%/ \
 	http://ftp.cc.uoc.gr/mirrors/nongnu.org/%SUBDIR%/ \
+	http://www.very-clever.com/download/nongnu/%SUBDIR%/ \
 	http://ftp.twaren.net/Unix/NonGNU/%SUBDIR%/ \
 	ftp://ftp.cc.uoc.gr/mirrors/nongnu.org/%SUBDIR%/ \
-	ftp://ftp.twaren.net/Unix/NonGNU/%SUBDIR%/
+	ftp://ftp.twaren.net/Unix/NonGNU/%SUBDIR%/ \
+	http://download.savannah.gnu.org/releases-noredirect/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
