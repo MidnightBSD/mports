@@ -1,10 +1,4 @@
-# New ports collection makefile for:    oolite
-# Date created:         04 Oct 2005
-# Whom:                 Andriy Gapon <avg@icyb.net.ua>
-#
-# $MidnightBSD: mports/games/oolite/Makefile,v 1.1 2008/09/09 02:14:53 laffer1 Exp $
-# $FreeBSD: ports/games/oolite/Makefile,v 1.11 2008/03/13 14:27:54 miwi Exp $
-#
+# $MidnightBSD: mports/games/oolite/Makefile,v 1.2 2008/10/12 14:06:55 laffer1 Exp $
 
 PORTNAME=		oolite
 PORTVERSION=		1.65
