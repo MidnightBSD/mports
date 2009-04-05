@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 share/icons/hicolor/index.theme
 @unexec /bin/rmdir %D/share/icons/hicolor/scalable/stock/text 2> /dev/null || /usr/bin/true
 @unexec /bin/rmdir %D/share/icons/hicolor/scalable/stock/table 2> /dev/null || /usr/bin/true
