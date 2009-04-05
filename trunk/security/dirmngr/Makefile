@@ -1,17 +1,11 @@
-# New ports collection makefile for:	dirmngr
-# Date created:		06 Feb 2003
-# Whom:			michaelnottebrock@gmx.net
-#
-# $FreeBSD: ports/security/dirmngr/Makefile,v 1.24 2006/09/22 07:10:30 sergei Exp $
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.5 2008/03/25 22:40:42 laffer1 Exp $
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.6 2008/03/28 02:51:44 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
-PORTVERSION=	0.9.7
-PORTREVISION=	1
+PORTVERSION=	1.0.2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
-MASTER_SITE_SUBDIR=	alpha/dirmngr
+MASTER_SITE_SUBDIR=	dirmngr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A client for managing and downloading certificate revocation lists
@@ -25,12 +19,12 @@ LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 
 USE_BZIP2=	yes
 USE_OPENLDAP=	yes
-USE_GETOPT_LONG=yes
+USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 INFO=		dirmngr
 MAN1=		dirmngr-client.1 dirmngr.1
-
+CONFIGURE_ARGS+=	--docdir=${DOCSDIR}
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
 
 .if defined(WITHOUT_NLS)
