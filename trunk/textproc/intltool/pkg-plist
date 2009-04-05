@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/textproc/intltool/pkg-plist,v 1.3 2008/06/29 22:52:58 laffer1 Exp $
 bin/intltool-extract
 bin/intltool-merge
 bin/intltool-prepare
@@ -7,9 +7,6 @@ bin/intltoolize
 share/aclocal/intltool.m4
 %%DATADIR%%/Makefile.in.in
 %%DATADIR%%/XML/Parser/Style/OrigTree.pm
-%%DATADIR%%/intltool-extract.in
-%%DATADIR%%/intltool-merge.in
-%%DATADIR%%/intltool-update.in
 @dirrm %%DATADIR%%/XML/Parser/Style
 @dirrm %%DATADIR%%/XML/Parser
 @dirrm %%DATADIR%%/XML
