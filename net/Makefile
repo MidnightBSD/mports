@@ -1,9 +1,4 @@
-<<<<<<< Makefile
-# $MidnightBSD: mports/net/Makefile,v 1.94 2009/01/04 04:32:09 ctriv Exp $
-=======
-# $MidnightBSD: mports/net/Makefile,v 1.95 2009/03/19 19:21:41 ctriv Exp $
-#
->>>>>>> 1.95
+# $MidnightBSD: mports/net/Makefile,v 1.96 2009/04/06 04:12:13 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -17,6 +12,7 @@
     SUBDIR += avahi-qt3
     SUBDIR += avahi-qt4
     SUBDIR += boinc-client
+    SUBDIR += csup
     SUBDIR += cvsup
     SUBDIR += cvsup-without-gui
     SUBDIR += dhcp6
