@@ -1,5 +1,9 @@
+<<<<<<< Makefile
 # $MidnightBSD: mports/net/Makefile,v 1.94 2009/01/04 04:32:09 ctriv Exp $
+=======
+# $MidnightBSD: mports/net/Makefile,v 1.95 2009/03/19 19:21:41 ctriv Exp $
 #
+>>>>>>> 1.95
 
     COMMENT = Networking tools
 
@@ -80,6 +84,7 @@
     SUBDIR += py-avahi
     SUBDIR += qt4-network
     SUBDIR += rdesktop
+    SUBDIR += remotedesk
     SUBDIR += rrdtool
     SUBDIR += rsync
     SUBDIR += samba-libsmbclient
