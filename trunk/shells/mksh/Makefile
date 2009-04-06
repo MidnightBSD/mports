@@ -1,13 +1,7 @@
-# Ports collection makefile for:	mksh
-# Date created:				2006-06-24
-# Whom:					Andreas Kohn <andreas@syndrom23.de>
-#
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.15 2008/10/29 02:24:38 laffer1 Exp $
-# $FreeBSD: ports/shells/mksh/Makefile,v 1.3 2006/09/04 07:02:54 miwi Exp $
-#
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.16 2009/03/22 16:08:35 laffer1 Exp $
 
 PORTNAME=	mksh
-DISTVERSION=	R36b
+DISTVERSION=	R37b
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/
 DISTFILES=	${PORTNAME}-${DISTVERSION}.cpio.gz
