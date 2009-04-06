@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libtool
-# Date created:		6 May 1998
-# Whom:			Motoyuki Kasahara <m-kasahr@sra.co.jp>
-#
-# $MidnightBSD: mports/devel/libtool15/Makefile,v 1.5 2008/06/12 17:44:47 crash Exp $
-# $FreeBSD: ports/devel/libtool15/Makefile,v 1.53 2006/05/04 21:40:52 edwin Exp $
-#
+# $MidnightBSD: mports/devel/libtool15/Makefile,v 1.6 2008/07/31 02:38:35 laffer1 Exp $
 
 PORTNAME?=	libtool
 PORTVERSION=	1.5.26
@@ -21,7 +15,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?= --disable-ltdl-install
 CONFIGURE_ARGS+= --infodir=${PREFIX}/info
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 INFO?=		libtool
 
 .include <bsd.port.mk>
