@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-input-magellan/Makefile,v 1.2 2007/09/13 19:44:48 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-input-magellan/Makefile,v 1.1 2007/10/11 23:03:04 ctriv Exp $
 #
 
 PORTNAME=	xf86-input-magellan
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
