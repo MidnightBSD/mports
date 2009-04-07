@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-input-dynapro/Makefile,v 1.2 2007/09/13 19:44:47 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-input-dynapro/Makefile,v 1.1 2007/10/11 22:31:00 ctriv Exp $
 #
 
 PORTNAME=	xf86-input-dynapro
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
