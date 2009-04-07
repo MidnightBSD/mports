@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.10 2009/03/15 20:04:54 ctriv Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.11 2009/03/30 15:06:06 laffer1 Exp $
 
 PORTNAME=		bash
 PATCHLEVEL=		10
 PORTVERSION=		4.0.${PATCHLEVEL:S/^0//g}
+PORTREVISION=		1
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
 			ftp://ftp.cwru.edu/pub/%SUBDIR%/:faq
@@ -30,6 +31,8 @@ OPTIONS=	INCLUDED_FAQ	 "Install the included FAQ." Off \
 		NLS		 "Enable native language support." On \
 		HELP		 "Install builtin help." On \
 		HELPFILES        "Install descrete helpfiles." On
+
+USE_BISON=	build
 
 .include <bsd.port.pre.mk>
 
@@ -88,8 +91,7 @@ CPPFLAGS+=		${PTHREAD_CFLAGS} \
 LDFLAGS+=		-L${LOCALBASE}/lib
 
 CONFIGURE_ENV=		CPPFLAGS="${CPPFLAGS}" \
-			LDFLAGS="${LDFLAGS}" \
-			YACC="${YACC}"
+			LDFLAGS="${LDFLAGS}" 
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/doc/bash.1
