@@ -1,3 +1,4 @@
-MD5 (gnome2/libsoup-2.4.1.tar.bz2) = d0fc91ccb9da401e9e40d2f4612bdac9
-SHA256 (gnome2/libsoup-2.4.1.tar.bz2) = 774094746748fb0c8985210de0994accdc7095c222fba42c5623e2137443b6cd
-SIZE (gnome2/libsoup-2.4.1.tar.bz2) = 627890
+MD5 (gnome2/libsoup-2.26.0.tar.bz2) = 9df9d2b3304213641d3214a774d75ee1
+SHA256 (gnome2/libsoup-2.26.0.tar.bz2) = 47b749b20717df24393c83adcce9a3a10f0690517c18da8d0a1ddcb410a0ac1d
+RMD160 (gnome2/libsoup-2.26.0.tar.bz2) = 51ddd3fb779be777be886f26a90366d746fe6ed4
+SIZE (gnome2/libsoup-2.26.0.tar.bz2) = 736527
