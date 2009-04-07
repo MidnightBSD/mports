@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-input-jamstudio/Makefile,v 1.1 2007/05/19 20:28:40 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-input-jamstudio/Makefile,v 1.1 2007/10/11 22:54:08 ctriv Exp $
 #
 
 PORTNAME=	xf86-input-jamstudio
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
