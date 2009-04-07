@@ -1,3 +1,4 @@
-MD5 (xorg/driver/xf86-video-ati-6.11.0.tar.bz2) = b4120aa6a3bb22a7a3bc83cba060675a
-SHA256 (xorg/driver/xf86-video-ati-6.11.0.tar.bz2) = 601920d4260c6155d248034f6e75418f08b6e06a6cd0dca5dadee403a6720ea8
-SIZE (xorg/driver/xf86-video-ati-6.11.0.tar.bz2) = 833773
+MD5 (xorg/driver/xf86-video-ati-6.12.1.tar.bz2) = 2adf5988c5e5b6df5f4cb61006fa2bf1
+SHA256 (xorg/driver/xf86-video-ati-6.12.1.tar.bz2) = b1637b11344f080ff5366799892e8bea0427087166d4db761e8dd4ecadb8b574
+RMD160 (xorg/driver/xf86-video-ati-6.12.1.tar.bz2) = 928c0b24c906a53e0df5da651831dd86581dd703
+SIZE (xorg/driver/xf86-video-ati-6.12.1.tar.bz2) = 896448
