@@ -3,11 +3,11 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-input-elographics/Makefile,v 1.1 2007/05/19 20:28:39 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-input-elographics/Makefile,v 1.1 2007/10/11 22:47:54 ctriv Exp $
 #
 
 PORTNAME=	xf86-input-elographics
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
