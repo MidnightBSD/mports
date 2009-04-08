@@ -1,9 +1,4 @@
-# New ports collection makefile for:	nvidia-driver
-# Date created:				4 December 2002
-# Whom:					Stijn Hoop <stijn@win.tue.nl>
-#
-# $FreeBSD: ports/x11/nvidia-driver/Makefile,v 1.74 2008/03/07 21:47:38 flz Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	nvidia-driver
 DISTVERSION?=	169.12
@@ -13,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_NVIDIA}
 MASTER_SITE_SUBDIR=	freebsd/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-x86-${DISTVERSION}
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 LICENSE=	restricted
 
