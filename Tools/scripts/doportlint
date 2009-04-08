@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-indexfile=/usr/mports/INDEX-6
+indexfile=/usr/mports/INDEX-3
 tmpfile=/tmp/portlint.tmp
 #
 failures=0
