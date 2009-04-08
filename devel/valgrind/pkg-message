@@ -17,3 +17,5 @@ Note 2: A sample suppression file might have been installed to \
       --suppressions=%%PREFIX%%/etc/freebsd-default.supp
       to Valgrind on the commandline, or add that line to your
       ~/.valgrindrc file, which is the recommended way.
+
+You will need procfs(5) enabled for all functionaly.
