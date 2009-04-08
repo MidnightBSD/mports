@@ -1,14 +1,8 @@
-# New ports collection makefile for:	makedepend
-# Date created:				August 15th 1997
-# Whom:					Ian Vaudrey <i.vaudrey@bigfoot.com>
-#
-# $FreeBSD: ports/devel/makedepend/Makefile,v 1.14 2007/07/02 17:00:43 lesi Exp $
-# $MidnightBSD: mports/devel/makedepend/Makefile,v 1.1 2007/10/02 19:19:49 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/makedepend/Makefile,v 1.2 2007/11/19 17:21:28 laffer1 Exp $
 
 PORTNAME=	makedepend
 PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,9 +10,8 @@ COMMENT=	A dependency generator for makefiles
 LICENSE=	x11
 
 XORG_CAT=	util
+USE_GNOME=	pkgconfig
 USE_XORG=	xproto
-
-BUILD_DEPENDS+=	pkg-config:${PORTSDIR}/devel/pkg-config
 
 PLIST_FILES=	bin/makedepend
 
