@@ -1,10 +1,4 @@
-# New ports collection makefile for:	php5-gettext
-# Date created:			7 Jul 2004
-# Whom:				Alex Dupre <ale@FreeBSD.org>
-#
-# $FreeBSD: ports/devel/php5-gettext/Makefile,v 1.1 2004/07/19 09:02:02 ale Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/devel/php5-gettext/Makefile,v 1.1 2006/12/04 05:04:08 laffer1 Exp $
 
 CATEGORIES=	devel
 
