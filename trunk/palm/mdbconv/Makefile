@@ -1,9 +1,4 @@
-# ports collection makefile for:	mdbconv
-# Date created:			14 June 2000
-# Whom:				Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $FreeBSD: ports/palm/mdbconv/Makefile,v 1.5 2005/11/11 01:17:47 linimon Exp $
-# $MidightBSD$
+# $MidnightBSD$
 #
 
 PORTNAME=	mdbconv
