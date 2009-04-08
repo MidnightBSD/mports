@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.1 2009/04/08 05:49:02 laffer1 Exp $
 
 PORTNAME=	google-perftools
 PORTVERSION=	1.0
@@ -12,8 +12,13 @@ COMMENT=	Fast, multi-threaded malloc() and nifty performance analysis tools
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=--build=i386-portbld-freebsd7.0 \
+		--host=i386-portbld-freebsd7.0
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
+
+pre-extract:
+	@${ECHO} "This port requires a NON SMP kernel to function"
 
 post-patch:
 .if defined(NOPORTDOCS)
@@ -21,10 +26,6 @@ post-patch:
 		'/^install-data-am:/ s|install-dist_docDATA||' \
 		${WRKSRC}/Makefile.in
 .endif
-
-post-install:
-	${CP} ${PREFIX}/bin/i386-portbld-freebsd6.1-pprof ${PREFIX}/bin/pprof
-	${CP} ${PREFIX}/man/man1/i386-portbld-freebsd6.1-pprof.1 ${PREFIX}/man/man1/pprof.1
 
 post-build:
 	@${ECHO}
