@@ -1,20 +1,15 @@
-# New ports collection makefile for:	p5-Authen-SASL
-# Date created:				January 3rd 2003
-# Whom:	      				Blaz Zupan <blaz@si.FreeBSD.org>
-#
-# $FreeBSD: ports/security/p5-Authen-SASL/Makefile,v 1.14 2006/05/17 13:50:43 erwin Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	Authen-SASL
-PORTVERSION=	2.10
-PORTREVISION=	1
+PORTVERSION=	2.12
 CATEGORIES=	security perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Authen
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 module for SASL authentication
+LICENSE=	perl
 
 BUILD_DEPENDS=	\
 	p5-Digest-MD5>0:${PORTSDIR}/security/p5-Digest-MD5 \
