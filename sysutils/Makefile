@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.90 2009/03/20 18:24:46 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.91 2009/04/03 06:13:31 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -58,7 +58,6 @@
     SUBDIR += mdf2iso
     SUBDIR += memtest
     SUBDIR += memtest86
-    SUBDIR += mixer
     SUBDIR += munin-main
     SUBDIR += munin-node
     SUBDIR += nautilus-cd-burner
