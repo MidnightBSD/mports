@@ -2,19 +2,19 @@
 # Date created:				June 27, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.1 2008/06/27 16:01:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.2 2008/10/16 21:55:57 laffer1 Exp $
 #
 
 PORTNAME=	valgrind
 PORTVERSION=	352
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.rabson.org/
 DISTNAME=	${PORTNAME}-stable-${PORTVERSION}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	A (memory) debugging and profiling tool
-LICENSE=	unknown
+LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	i386
 CONFLICTS=	valgrind-snapshot-[0-9]*
@@ -22,17 +22,26 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS+=	autoconf:261 aclocal:19 automake:19
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+USE_AUTOTOOLS+=	autoconf:262 aclocal:19 automake:19
 CONFIGURE_ARGS+=--enable-maintainer-mode
 USE_PERL5_BUILD=yes
 USE_GCC=	3.4
 
 .include <bsd.port.pre.mk>
 
-PLIST_SUB+=	RELENG_5="@comment "
-PLIST_SUB+=	RELENG_6=""
-PLIST_SUB+=	RELENG_7="@comment "
+.if ${OSVERSION} >= 600000
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+PLIST_SUB+=   RELENG_6=""
+PLIST_SUB+=   RELENG_7="@comment "
+.elif ${OSVERSION} < 3000
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+PLIST_SUB+=   RELENG_6=""
+PLIST_SUB+=   RELENG_7="@comment "
+.else
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+PLIST_SUB+=	RELENG_6="@comment "
+PLIST_SUB+=	RELENG_7=""
+.endif
 
 PROCFS!=	/sbin/mount | ${GREP} '^procfs' | ${AWK} '{print $1}'
 
