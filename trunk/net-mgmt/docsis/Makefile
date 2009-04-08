@@ -1,9 +1,4 @@
-# New ports collection makefile for:	docsis
-# Date created:				Jul 5, 2002
-# Whom:					James Flemer <jflemer@acm.jhu.edu>
-#
-# $FreeBSD: ports/net-mgmt/docsis/Makefile,v 1.13 2007/10/17 10:12:53 ade Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	docsis
 PORTVERSION=	0.9.5
@@ -12,8 +7,9 @@ CATEGORIES=	net-mgmt
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	jflemer@alum.rpi.edu
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DOCSIS(tm) binary configuration file encoder/decoder
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 LIB_DEPENDS=	netsnmp:${PORTSDIR}/net-mgmt/net-snmp
