@@ -13,7 +13,7 @@
     static const vki_kstack_t ss = { .ss_flags = VKI_SS_DISABLE };
  
 -#if __FreeBSD__ == 5
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
     VG_(do_syscall)(__NR__umtx_lock, &px->mutex);
     px->mutex.u_owner |= UMTX_CONTESTED;
     VG_(do_syscall)(__NR_thr_self, &px->lwp);
@@ -22,7 +22,7 @@
     px->exitcode = ret;
  
 -#if __FreeBSD__ == 5
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
     ret = VG_(do_syscall)(__NR__umtx_unlock, &px->mutex);
     if (use_rfork)
        VG_(do_syscall)(__NR_exit, 0);
@@ -31,7 +31,7 @@
        ret = VG_(rfork_thread)(VKI_RFPROC | VKI_RFMEM | VKI_RFSIGSHARE
  			      | VKI_RFTHREAD
 -#if __FreeBSD__ == 5
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
  			      | VKI_RFNOWAIT
  #endif
  			      ,
@@ -39,7 +39,7 @@
        VG_(do_signal_routing) = True;
     } else {
 -#if __FreeBSD__ == 5
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
        vki_ucontext_t ctx;
        extern void makecontext(vki_ucontext_t*, ...);
  
@@ -48,7 +48,7 @@
     }
  #endif
 -#if __FreeBSD__ == 5
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
     if (block) {
         if(proxy->lwp != 0)
  	   VG_(do_syscall)(__NR__umtx_lock, &proxy->mutex);

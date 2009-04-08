@@ -58,7 +58,7 @@
     VG_TRACK( post_mem_write, arg1, arg2 );
  }
  
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
 +PRE(uuidgen)
 +{
 +   /* int uuidgen(struct uuid *store, int count); */
@@ -90,7 +90,7 @@
     SYSBA(kldstat,		False),
     SYSB_(kldfirstmod,		False),
     SYSBA(__getcwd,		False),
-+#if __FreeBSD__ >= 5
++#if __FreeBSD__ >= 5 || __MidnightBSD__
 +   SYSBA(uuidgen,		False),
 +#endif
  };
