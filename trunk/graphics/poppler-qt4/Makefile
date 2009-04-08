@@ -1,16 +1,11 @@
-# New ports collection makefile for:	poppler-qt4
-# Date created:		June 26, 2007
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $FreeBSD: ports/graphics/poppler-qt4/Makefile,v 1.9 2008/08/04 02:28:00 mezz Exp $
-#   $MCom: ports-stable/graphics/poppler-qt4/Makefile,v 1.3 2008/06/20 17:48:14 mezz Exp $
-#
+# $MidnightBSD$
 
 PORTREVISION=	0
 PKGNAMESUFFIX=	-qt4
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 bindings to poppler
+LICENSE=	gpl2
 
 MASTERDIR=	${.CURDIR}/../../graphics/poppler
 SLAVEPORT=	qt4
