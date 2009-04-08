@@ -100,6 +100,7 @@ include/glibmm-%%API_VERSION%%/glibmm/main.h
 include/glibmm-%%API_VERSION%%/glibmm/markup.h
 include/glibmm-%%API_VERSION%%/glibmm/miscutils.h
 include/glibmm-%%API_VERSION%%/glibmm/module.h
+include/glibmm-%%API_VERSION%%/glibmm/nodetree.h
 include/glibmm-%%API_VERSION%%/glibmm/object.h
 include/glibmm-%%API_VERSION%%/glibmm/objectbase.h
 include/glibmm-%%API_VERSION%%/glibmm/optioncontext.h
@@ -116,6 +117,7 @@ include/glibmm-%%API_VERSION%%/glibmm/private/iochannel_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/keyfile_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/markup_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/module_p.h
+include/glibmm-%%API_VERSION%%/glibmm/private/nodetree_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/object_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/optioncontext_p.h
 include/glibmm-%%API_VERSION%%/glibmm/private/optionentry_p.h
@@ -203,15 +205,15 @@ lib/glibmm-%%API_VERSION%%/proc/pm/WrapParser.pm
 lib/libgiomm-%%VERSION%%.a
 lib/libgiomm-%%VERSION%%.la
 lib/libgiomm-%%VERSION%%.so
-lib/libgiomm-%%VERSION%%.so.1
+lib/libgiomm-%%VERSION%%.so.3
 lib/libglibmm-%%VERSION%%.a
 lib/libglibmm-%%VERSION%%.la
 lib/libglibmm-%%VERSION%%.so
-lib/libglibmm-%%VERSION%%.so.1
+lib/libglibmm-%%VERSION%%.so.3
 lib/libglibmm_generate_extra_defs-%%VERSION%%.a
 lib/libglibmm_generate_extra_defs-%%VERSION%%.la
 lib/libglibmm_generate_extra_defs-%%VERSION%%.so
-lib/libglibmm_generate_extra_defs-%%VERSION%%.so.1
+lib/libglibmm_generate_extra_defs-%%VERSION%%.so.3
 libdata/pkgconfig/giomm-%%API_VERSION%%.pc
 libdata/pkgconfig/glibmm-%%API_VERSION%%.pc
 share/aclocal/glibmm_check_perl.m4

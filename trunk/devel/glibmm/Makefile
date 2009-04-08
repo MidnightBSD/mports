@@ -2,13 +2,13 @@
 # Date created:         		04 December 2003
 # Whom:                 		Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.5 2008/06/13 06:28:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.6 2008/06/24 21:31:19 crash Exp $
 # $FreeBSD: ports/devel/glibmm/Makefile,v 1.22 2006/06/07 06:08:04 marcus Exp $
 #   $MCom: ports/devel/glibmm/Makefile,v 1.31 2006/04/14 21:55:21 mezz Exp $
 #
 
 PORTNAME=	glibmm
-PORTVERSION=	2.16.3
+PORTVERSION=	2.18.1
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -27,6 +27,7 @@ USE_BZIP2=	yes
 LIB_DEPENDS=	sigc-2.0.0:${PORTSDIR}/devel/libsigc++20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
+USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget glib20
 USE_PERL5=	yes
