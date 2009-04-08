@@ -1,9 +1,4 @@
-# New ports collection makefile for:	wesnoth
-# Date created:			22 December 2003
-# Whom:				Mezz <mezz7@cox.net>
-#
-# $FreeBSD: ports/games/wesnoth/Makefile,v 1.62 2008/12/28 13:31:05 philip Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.4.7
@@ -12,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.wesnoth.org/files/
 MASTER_SITE_SUBDIR=	wesnoth
 
-MAINTAINER=	philip@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fantasy turn-based strategy game
 
 LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost \
