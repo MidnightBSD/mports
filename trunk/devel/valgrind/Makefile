@@ -2,7 +2,7 @@
 # Date created:				June 27, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.2 2008/10/16 21:55:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.3 2009/04/08 04:39:29 laffer1 Exp $
 #
 
 PORTNAME=	valgrind
@@ -17,7 +17,6 @@ COMMENT=	A (memory) debugging and profiling tool
 LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	i386
-CONFLICTS=	valgrind-snapshot-[0-9]*
 WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
@@ -38,6 +37,7 @@ CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 PLIST_SUB+=   RELENG_6=""
 PLIST_SUB+=   RELENG_7="@comment "
 .else
+BROKEN=		doesn't work on current, missing symbols.
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
 PLIST_SUB+=	RELENG_6="@comment "
 PLIST_SUB+=	RELENG_7=""
