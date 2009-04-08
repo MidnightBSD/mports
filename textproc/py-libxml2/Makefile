@@ -1,15 +1,10 @@
-# New ports collection makefile for:	py-libxml2
-# Date created:				30 Jun 2004
-# Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
-#
-# $FreeBSD: ports/textproc/py-libxml2/Makefile,v 1.7 2006/04/28 21:15:20 marcus Exp $
-#
+# $MidnightBSD$
 
 PORTREVISION=	0
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Python interface for XML parser library for GNOME
 
 MASTERDIR=	${.CURDIR}/../libxml2
