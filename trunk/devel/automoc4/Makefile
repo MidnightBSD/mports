@@ -1,8 +1,4 @@
-# New ports collection makefile for:	kdesupport4
-# Date created:				today
-# Whom:					miwi
-#
-# $FreeBSD: ports/devel/automoc4/Makefile,v 1.1 2008/08/09 16:52:07 miwi Exp $
+# $MidnightBSD$
 
 PORTNAME=	automoc4
 PORTVERSION=	0.9.84
