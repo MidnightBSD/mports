@@ -1,13 +1,7 @@
-# New ports collection makefile for:   zziplib
-# Date created:        3 January 2001
-# Whom:                George Reid <greid@ukug.uk.freebsd.org>
-#
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.2 2008/10/16 21:56:55 laffer1 Exp $
-# $FreeBSD: ports/devel/zziplib/Makefile,v 1.17 2006/09/07 06:24:37 ale Exp $
-#
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.3 2009/04/08 19:26:24 laffer1 Exp $
 
 PORTNAME=	zziplib
-PORTVERSION=	0.13.49
+PORTVERSION=	0.13.50
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
