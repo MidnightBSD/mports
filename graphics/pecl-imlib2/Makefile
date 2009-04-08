@@ -1,10 +1,4 @@
-# New ports collection makefile for:	pecl-imlib2
-# Date created:				18 September 2006
-# Whom:	      				Yen-Ming Lee <leeym@FreeBSD.org>
-#
-# $MidightBSD$
-# $FreeBSD: ports/graphics/pecl-imlib2/Makefile,v 1.1 2006/11/01 15:32:46 leeym Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	imlib2
 PORTVERSION=	0.1.00
@@ -16,6 +10,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A PECL extension if imlib2
+LICENSE=	php
 
 LIB_DEPENDS=	Imlib2:${PORTSDIR}/graphics/imlib2
 
