@@ -1,26 +1,24 @@
-# New ports collection makefile for:	pmk
-# Date created:		October 13, 2003
-# Whom:			Sean Chittenden <seanc@FreeBSD.org>
-#
-# $FreeBSD: ports/devel/pmk/Makefile,v 1.9 2005/10/11 18:35:10 seanc Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	pmk
-PORTVERSION=	0.9.3
+PORTVERSION=	0.10.4
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	pmk
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pre Make Kit, a sane replacement for autoconf
-LICENSE=	bsd4
+LICENSE=	bsd3
+
+PKGINSTALL=	${WRKDIR}/pkg-install
 
 MAN1=	pmk.1 pmkscan.1 pmkinstall.1 pmkpc.1
-MAN5=	pmk.conf.5 pmkfile.5
+MAN5=	pmk.conf.5 pmkfile.5 pmksyntax.5 scanfile.5
 MAN8=	pmksetup.8
 
 do-configure:
 	cd ${WRKSRC}; SYSCONFDIR=${PREFIX}/etc ./pmkcfg.sh
 
+post-build:
+	@${CAT} ${PKGDIR}/pkg-install | ${SED} -e 's,%%PREFIX%%,${PREFIX},g' > ${PKGINSTALL}
 
 .include <bsd.port.mk>
