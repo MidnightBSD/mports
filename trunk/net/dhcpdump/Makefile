@@ -1,9 +1,4 @@
-# New ports collection makefile for:   dhcpdump
-# Date created:        1 March 2001
-# Whom:                Edwin Groothuis (edwin@mavetju.org)
-#
-# $FreeBSD: ports/net/dhcpdump/Makefile,v 1.12 2008/06/24 03:28:19 edwin Exp $
-# $Midnightbsd$
+# $MidnightBSD$
 
 PORTNAME=	dhcpdump
 PORTVERSION=	1.8
@@ -13,6 +8,7 @@ MASTER_SITES=	http://www.mavetju.org/download/
 MAINTAINER=	ports@Midnightbsd.org
 COMMENT=	Decode and diagnose sniffed DHCP packets
 LICENSE=        other
+
 MAN8=		dhcpdump.8
 PLIST_FILES=	bin/dhcpdump
 
