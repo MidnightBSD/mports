@@ -1,9 +1,4 @@
-# New ports collection makefile for:	yafic
-# Date created:		20 August 2001
-# Whom:			allan@saddi.com
-#
-# $FreeBSD: ports/security/yafic/Makefile,v 1.10 2006/07/29 21:07:25 miwi Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2
@@ -11,11 +6,12 @@ CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	allan@saddi.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
+LICENSE=	bsd2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 USE_GMAKE=	yes
 CONFIGURE_ENV=	LDFLAGS="-static"
 
@@ -48,8 +44,6 @@ do-install:
 post-install:
 	@${MKDIR} ${PREFIX}/share/examples/yafic
 	@${CP} ${FILESDIR}/yafic.conf.sample ${EXAMPLESDIR}
-	@${ECHO}
 	@${SED} -e "s%@@PREFIX@@%${PREFIX}%g" ${PKGMESSAGE}
-	@${ECHO}
 
 .include <bsd.port.mk>
