@@ -1,25 +1,21 @@
-# New ports collection makefile for:    cdrdao
-# Date created:         7 April 1999
-# Whom:                 futatuki
-#
-# $FreeBSD: ports/sysutils/cdrdao/Makefile,v 1.49 2006/10/14 08:53:21 marcus Exp $
-#
+# $MidnightBSD$
 
 PORTNAME?=	cdrdao
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 PORTREVISION?=	0
 CATEGORIES=	sysutils audio
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
 MASTER_SITE_SUBDIR=	cdrdao
 DISTNAME=	cdrdao-${PORTVERSION}
-LICENSE=	gpl2
 
-MAINTAINER=	marius@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Record CD-R[W]s in disk-at-once mode
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/antlr:${PORTSDIR}/devel/pccts \
 		${LOCALBASE}/bin/dlg:${PORTSDIR}/devel/pccts
 
+USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 
@@ -28,7 +24,6 @@ MP3OGG_LIB_DEPENDS=	ao.3:${PORTSDIR}/audio/libao \
 			vorbis.4:${PORTSDIR}/audio/libvorbis
 
 .if ${PORTNAME} == "gcdmaster"
-USE_GCC=		3.4
 USE_GNOME=		gnomehier pkgconfig
 LIB_DEPENDS=		${MP3OGG_LIB_DEPENDS} \
 			gnomeuimm-2.6.1:${PORTSDIR}/x11-toolkits/libgnomeuimm26
@@ -58,10 +53,7 @@ CONFIGURE_ARGS+=	--without-mp3-support --without-ogg-support
 
 CONFIGURE_ARGS+=	--with-pcctsbin=${LOCALBASE}/bin \
 			--with-pcctsinc=${LOCALBASE}/include/pccts \
-			--without-posix-threads --with-scglib=pkg \
-			--build=${ARCH}-portbld-freebsd6.0 \
-			--target=${ARCH}-portbld-freebsd6.0
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+			--without-posix-threads --with-scglib=pkg
 
 .include <bsd.port.pre.mk>
 
@@ -98,6 +90,9 @@ post-patch:
 	55readcd 55scgcheck 55scgskeleton 55rscsi 85man
 	@${RM} ${WRKSRC}/scsilib/TARGETS/${i}
 .endfor
+.for i in include/schily.h libschily/fexec.c
+	@${REINPLACE_CMD} -e 's|fexecve|js_fexecve|g' ${WRKSRC}/scsilib/${i}
+.endfor
 .if ${PORTNAME} == "gcdmaster"
 	@${REINPLACE_CMD} -E -e 's|(^SUBDIRS.+) utils|\1|' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -E -e 's|(^gladedir.+=).+|\1 ${DATADIR}|' \
@@ -106,8 +101,10 @@ post-patch:
 		's|(SET_CDRDAO_PATH.+path=)(cdrdao)|\1${LOCALBASE}\/bin\/\2|g' \
 		${WRKSRC}/xdao/Settings.cc
 	@${REINPLACE_CMD} -E -e \
-		's|(icon-filename=).+(gcdmaster-doc.png)|\1${LOCALBASE}\/share\/gnome\/pixmaps\/document-icons\/\2|g' \
+		's|(icon-filename=).+(gcdmaster-doc.png)|\1${LOCALBASE}\/share\/pixmaps\/document-icons\/\2|g' \
 		${WRKSRC}/xdao/gcdmaster.keys
+	@${REINPLACE_CMD} -e 's|connect(SigC::slot|connect(sigc::ptr_fun|g' \
+		${WRKSRC}/xdao/xcdrdao.cc
 .else
 .for i in cdrdao.man main.cc
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/dao/${i}
@@ -122,17 +119,17 @@ do-install:
 	@${INSTALL_MAN} ${WRKSRC}/xdao/gcdmaster.man \
 		${PREFIX}/man/man1/gcdmaster.1
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster-doc.png \
-		${LOCALBASE}/share/gnome/pixmaps/document-icons
+		${LOCALBASE}/share/pixmaps/document-icons
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.applications \
-		${LOCALBASE}/share/gnome/application-registry
+		${LOCALBASE}/share/application-registry
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.desktop \
-		${LOCALBASE}/share/gnome/applications
+		${LOCALBASE}/share/applications
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.keys \
-		${LOCALBASE}/share/gnome/mime-info
+		${LOCALBASE}/share/mime-info
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.mime \
-		${LOCALBASE}/share/gnome/mime-info
+		${LOCALBASE}/share/mime-info
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.png \
-		${LOCALBASE}/share/gnome/pixmaps
+		${LOCALBASE}/share/pixmaps
 	@${INSTALL_DATA} ${WRKSRC}/xdao/gcdmaster.xml \
 		${LOCALBASE}/share/mime/packages
 	@${MKDIR} ${DATADIR}
