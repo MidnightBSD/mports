@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 bin/neon-config
 include/neon/ne_207.h
 include/neon/ne_acl.h
@@ -81,7 +82,6 @@ libdata/pkgconfig/neon.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/refxml.html
 %%PORTDOCS%%%%DOCSDIR%%/html/using.html
 %%PORTDOCS%%%%DOCSDIR%%/html/xml.html
-%%PORTDOCS%%%%DOCSDIR%%/using-neon.txt
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/html
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrm include/neon
