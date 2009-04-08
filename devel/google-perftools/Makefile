@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.1 2009/04/08 05:49:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.2 2009/04/08 06:29:31 laffer1 Exp $
 
 PORTNAME=	google-perftools
 PORTVERSION=	1.0
@@ -18,7 +18,7 @@ CONFIGURE_TARGET=--build=i386-portbld-freebsd7.0 \
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
 
 pre-extract:
-	@${ECHO} "This port requires a NON SMP kernel to function"
+	@${ECHO} "This port requires sysctl machdep.tsc_freq kernel to function"
 
 post-patch:
 .if defined(NOPORTDOCS)
