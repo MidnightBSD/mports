@@ -1,9 +1,4 @@
-# New ports collection makefile for:   v7sh
-# Date created:        4 June 2004
-# Whom:                Cyrille.Lefevre@laposte.net
-#
-# $FreeBSD: ports/shells/v7sh/Makefile,v 1.4 2005/12/02 02:05:38 linimon Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	v7sh
 PORTVERSION=	1.0
