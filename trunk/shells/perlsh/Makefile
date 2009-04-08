@@ -1,9 +1,4 @@
-# New ports collection makefile for:	perlsh
-# Date created:		11 Dec 1999
-# Whom:			Will Andrews <andrews@technologist.com>
-#
-# $FreeBSD: ports/shells/perlsh/Makefile,v 1.22 2005/07/11 17:25:16 garga Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	perlsh
 PORTVERSION=	1.8
@@ -13,6 +8,7 @@ DISTNAME=	psh-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New shell made entirely out of a Perl script
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
