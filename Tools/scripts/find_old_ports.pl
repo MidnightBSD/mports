@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 #
 # $MidnightBSD$
-#
+# warning: when using this, use cvs update -ko to get the file without
+# the keyword expansion which breaks the code below.
 
 use strict;
 use warnings;
