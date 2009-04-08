@@ -1,17 +1,13 @@
-# New ports collection makefile for:    mesa-demos
-# Date created:         7 Nov 2003
-# Whom:                 anholt@FreeBSD.org
-#
-# $FreeBSD: ports/graphics/mesa-demos/Makefile,v 1.24 2009/01/24 21:45:05 rnoland Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	demos
 PORTVERSION=	${MESAVERSION}
 CATEGORIES=	graphics
 PKGNAMEPREFIX=	mesa-
 
-MAINTAINER=	araujo@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenGL demos distributed with Mesa
+LICENSE=	agg
 
 USE_GL=		glu glut
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
