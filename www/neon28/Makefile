@@ -2,13 +2,12 @@
 # Date created:		13 October 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/neon28/Makefile,v 1.1 2008/06/08 21:04:42 laffer1 Exp $
 # $FreeBSD: ports/www/neon28/Makefile,v 1.41 2008/06/06 14:07:03 edwin Exp $
 #
 
 PORTNAME=	neon28
-PORTVERSION=	0.28.2
-PORTREVISION=	0
+PORTVERSION=	0.28.3
 CATEGORIES=	www
 MASTER_SITES=	http://www.webdav.org/neon/ \
 		http://keyserver.kjsl.com/~jharris/distfiles/
@@ -25,14 +24,6 @@ CONFLICTS=	neon26-[0-9]* neon-[0-9]*
 USE_AUTOTOOLS=	libtool:15
 USE_LDCONFIG=	yes
 
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.endif
-
 .ifndef WITHOUT_OPENSSL
 USE_OPENSSL=	yes
 .endif
@@ -43,7 +34,19 @@ CONFIGURE_ARGS=	--with-ssl \
 		--enable-xml \
 		--enable-shared \
 		--with-expat \
-		--with-libs=${PREFIX}
+		--with-libs=${LOCALBASE}:${PREFIX}
+
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.else
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.endif
+
+.if defined(WITHOUT_GSSAPI)
+CONFIGURE_ARGS+=--without-gssapi
+.endif
 
 MAN1=	neon-config.1
 MAN3=	ne_add_request_header.3 ne_addr_resolve.3 ne_buffer.3 \
@@ -57,7 +60,7 @@ MAN3=	ne_add_request_header.3 ne_addr_resolve.3 ne_buffer.3 \
 	ne_ssl_cert_cmp.3 ne_ssl_cert_identity.3 ne_ssl_cert_read.3 \
 	ne_ssl_clicert_read.3 ne_ssl_readable_dname.3 ne_ssl_set_verify.3 \
 	ne_ssl_trust_cert.3 ne_status.3 ne_token.3 ne_version_match.3 \
-	ne_xml_create.3 neon.3
+	ne_xml_create.3 neon.3 ne_set_connect_timeout.3
 MLINKS=	ne_add_request_header.3 ne_print_request_header.3 \
 	ne_addr_resolve.3 ne_addr_destroy.3 \
 	ne_addr_resolve.3 ne_addr_error.3 \
@@ -127,7 +130,6 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.3 ${MANPREFIX}/man/man3
 .ifndef NOPORTDOCS
 	(cd ${WRKSRC} ; ${MAKE} install-html ${FAKE_MAKEARGS})
-	${INSTALL_DATA} ${WRKSRC}/doc/using-neon.txt ${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>
