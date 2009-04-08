@@ -1,10 +1,4 @@
-# New ports collection makefile for:	viewcvs
-# Date created:				Sun 02 Jul 2000
-# Whom:					will
-#
-# $FreeBSD: ports/devel/viewvc/Makefile,v 1.22 2006/07/26 19:01:22 mnag Exp $
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.6 2008/10/16 19:25:18 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.7 2009/04/08 04:23:32 laffer1 Exp $
 
 PORTNAME=	viewvc
 PORTVERSION=	1.0.7
