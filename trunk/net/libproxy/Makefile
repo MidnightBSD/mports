@@ -1,5 +1,5 @@
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/libproxy/Makefile,v 1.1 2009/03/19 19:20:22 ctriv Exp $
 # $FreeBSD: ports/net/libproxy/Makefile,v 1.1 2009/02/27 05:26:27 marcus Exp $
 #
 
@@ -8,7 +8,7 @@ PORTVERSION=	0.2.3
 CATEGORIES?=	net devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Library that provides automatic proxy configuration management
 LICENSE=	lgpl
 
