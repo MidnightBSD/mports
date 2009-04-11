@@ -1,9 +1,10 @@
 #
-# $MidnightBSD: ports/misc/kde4-shared-mime-info/Makefile,v 1.2 2008/09/03 13:06:18 miwi Exp $
+# $MidnightBSD: mports/misc/kde4-shared-mime-info/Makefile,v 1.1 2008/12/05 19:48:21 ctriv Exp $
 #
 
 PORTNAME=	shared-mime-info
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	misc kde
 MASTER_SITES=	# none
 PKGNAMEPREFIX=	kde4-
