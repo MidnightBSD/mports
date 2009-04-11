@@ -1,12 +1,7 @@
-# New ports collection makefile for:	shared-mime-info
-# Date created:        31 May 2002
-# Whom:                olgeni@FreeBSD.org
-#
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.4 2008/04/06 17:21:09 laffer1 Exp $
-# $FreeBSD: ports/misc/shared-mime-info/Makefile,v 1.40 2006/09/04 00:24:54 marcus Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.5 2008/09/21 20:34:56 laffer1 Exp $
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	0.40
+PORTVERSION=	0.60
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
