@@ -1,3 +1,4 @@
-MD5 (gnome2/glib-2.18.4.tar.bz2) = ec25ed261534d870141000ab73f1a2bf
-SHA256 (gnome2/glib-2.18.4.tar.bz2) = 6aeb2c845e9fdc388943acdaba2f6357e3007c5ffaa8d666904679cfb40de100
-SIZE (gnome2/glib-2.18.4.tar.bz2) = 4809051
+MD5 (gnome2/glib-2.20.1.tar.bz2) = d7ef53c7b65827a1baa4bad1c6893fa3
+SHA256 (gnome2/glib-2.20.1.tar.bz2) = 5bade2d900514cf00fb5131c2f42b697bc3cb6ce7b3c5579bc43de8f19d4af59
+RMD160 (gnome2/glib-2.20.1.tar.bz2) = b2f1b23c8db482b335e7fa5f1c2fbb3165d43e9a
+SIZE (gnome2/glib-2.20.1.tar.bz2) = 5000484
