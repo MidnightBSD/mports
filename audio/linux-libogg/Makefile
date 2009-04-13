@@ -1,10 +1,4 @@
-# New ports collection makefile for:	linux-libogg
-# Date created:				25 Nov 2005
-# Whom:					jylefort@FreeBSD.org
-#
-# $MidnightBSD: mports/audio/linux-libogg/Makefile,v 1.2 2008/04/10 04:52:54 ctriv Exp $
-# $FreeBSD: ports/audio/linux-libogg/Makefile,v 1.8 2006/07/13 12:35:13 bsam Exp $
-#
+# $MidnightBSD: mports/audio/linux-libogg/Makefile,v 1.3 2008/08/24 21:13:06 laffer1 Exp $
 
 PORTNAME=	libogg
 DISTVERSION=	1.1.2-2
