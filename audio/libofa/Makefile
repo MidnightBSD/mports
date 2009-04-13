@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libofa
-# Date created:		2006-04-01
-# Whom:			Alexander Botero-Lowry <alex@foxybanana.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/audio/libofa/Makefile,v 1.10 2007/01/28 09:07:35 kris Exp $
-#
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.1 2008/09/07 19:41:23 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
@@ -18,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	fftw3.4:${PORTSDIR}/math/fftw3 \
 		expat.6:${PORTSDIR}/textproc/expat2 \
-		curl.4:${PORTSDIR}/ftp/curl
+		curl.5:${PORTSDIR}/ftp/curl
 
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	pkgconfig
