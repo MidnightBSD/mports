@@ -1,13 +1,8 @@
-# New ports collection makefile for:	raptor
-# Date created:			Nov 22, 2001
-# Whom:				ijliao
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/raptor/Makefile,v 1.44 2008/03/20 10:03:49 pav Exp $
-#
+# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.1 2008/10/17 17:54:24 laffer1 Exp $
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.16
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://download.librdf.org/source/
@@ -17,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
 
 USE_GNOME=	gnomehack gnometarget libxml2
 GNU_CONFIGURE=	yes
