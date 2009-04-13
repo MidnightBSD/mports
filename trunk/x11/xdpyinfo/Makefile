@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xdpyinfo
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xdpyinfo/Makefile,v 1.2 2007/07/02 17:13:55 lesi Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xdpyinfo/Makefile,v 1.1 2007/10/07 16:43:06 ctriv Exp $
 
 PORTNAME=	xdpyinfo
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +9,8 @@ COMMENT=	Display information utility for X
 LICENSE=	x11
 
 XORG_CAT=	app
-USE_XORG=	xext x11 xtst
+USE_XORG=	xext x11 xtst xxf86vm xxf86misc xxf86dga xi xrender \
+		xinerama dmxproto xp
 
 PLIST_FILES=	bin/xdpyinfo
 
