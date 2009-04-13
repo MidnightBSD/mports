@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-clocks/kdetoys3/Makefile,v 1.64 2006/09/12 23:26:50 lofi Exp $
-# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.1 2007/01/20 17:30:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.2 2008/10/13 19:22:26 crash Exp $
 #
 
 PORTNAME=	kdetoys
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
