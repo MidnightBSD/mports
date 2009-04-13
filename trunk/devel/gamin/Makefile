@@ -1,14 +1,7 @@
-# ports collection makefile for:	gamin
-# Date created:				24 March 2005
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $FreeBSD: ports/devel/gamin/Makefile,v 1.25 2006/02/23 15:33:39 ade Exp $
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.4 2008/06/14 14:50:56 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.5 2008/06/14 21:07:27 laffer1 Exp $
 
 PORTNAME=	gamin
-PORTVERSION=	0.1.9
-PORTREVISION=	2
+PORTVERSION=	0.1.10
 CATEGORIES?=	devel
 MASTER_SITES=	http://www.gnome.org/~veillard/gamin/sources/
 
