@@ -1,27 +1,21 @@
-# New ports collection makefile for:	Ming
-# Date created:		14 October 2000
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/ming/Makefile,v 1.19 2006/08/14 23:06:36 clsung Exp $
-#
+# $MidnightBSD: mports/graphics/ming/Makefile,v 1.1 2007/01/22 10:52:39 wintellect Exp $
 
 PORTNAME=	ming
 PORTVERSION=	0.3.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LGPL'ed Flash 4/5 movie output library with many languages support
+LICENSE=	lgpl
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
-CONFLICTS=	ja-ming-*
-
 USE_GNOME=	gnometarget
-USE_BISON=	yes
+USE_BISON=	build
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/ming \
@@ -34,7 +28,7 @@ CFLAGS+=	${CPPFLAGS}
 
 UTILS=		dbl2png listaction listaction_d listfdb listjpeg listmp3 \
 		listswf listswf_d makefdb makeswf raw2adpcm swftoperl \
-		swftophp swftopython
+		swftophp swftopython gif2dbl gif2mask png2dbl png2swf
 DOCS=		CREDITS ChangeLog HISTORY NEWS README TODO
 DOCS_UTIL=	README TIPS TODO swftoperl.html
 
@@ -49,9 +43,13 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/util/${file} ${PREFIX}/bin
 .endfor
 	${INSTALL_SCRIPT} ${WRKSRC}/util/ming-config ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/util/cws2fws ${PREFIX}/bin
 	@${MKDIR} ${PREFIX}/include/ming
 	${INSTALL_DATA} ${WRKSRC}/*.h ${PREFIX}/include/ming
 	${INSTALL_DATA} ${WRKSRC}/src/*.h ${PREFIX}/include/ming
+	@${MKDIR} ${PREFIX}/include/ming/util
+	${INSTALL_DATA} ${WRKSRC}/util/*.h ${PREFIX}/include/ming/util
+	${INSTALL_DATA} ${WRKSRC}/util/png2dbl.c ${PREFIX}/include/ming/util
 	@${MKDIR} ${PREFIX}/include/ming/blocks
 	${INSTALL_DATA} ${WRKSRC}/src/blocks/*.h ${PREFIX}/include/ming/blocks
 	${INSTALL_DATA} ${WRKSRC}/libming.a ${PREFIX}/lib
