@@ -1,9 +1,10 @@
 #
-# $MidnightBSD: ports/audio/vorbis-tools/Makefile,v 1.50 2008/08/21 06:16:20 rafan Exp $
+# $MidnightBSD: mports/audio/vorbis-tools/Makefile,v 1.1 2009/01/04 19:35:44 ctriv Exp $
 #
 
 PORTNAME=	vorbis-tools
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/
 
@@ -12,7 +13,7 @@ COMMENT=	Play, encode, and manage Ogg Vorbis files
 LICENSE=	gpl2
 
 LIB_DEPENDS=	ao.3:${PORTSDIR}/audio/libao \
-		curl.4:${PORTSDIR}/ftp/curl \
+		curl.5:${PORTSDIR}/ftp/curl \
 		FLAC.10:${PORTSDIR}/audio/flac \
 		speex.1:${PORTSDIR}/audio/speex \
 		vorbis.4:${PORTSDIR}/audio/libvorbis
