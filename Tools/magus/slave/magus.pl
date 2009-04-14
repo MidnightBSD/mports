@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.32 2008/10/08 14:48:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.33 2009/03/18 18:23:11 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
