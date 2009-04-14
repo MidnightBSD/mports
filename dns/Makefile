@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/Makefile,v 1.16 2009/01/20 15:34:51 laffer1 Exp $
+# $MidnightBSD: mports/dns/Makefile,v 1.17 2009/03/25 20:04:09 laffer1 Exp $
 
 COMMENT = Domain Name Service tools
 
@@ -17,5 +17,6 @@ SUBDIR += nslint
 SUBDIR += p5-Net-DNS
 SUBDIR += p5-Net-DNS-Resolver-Programmable
 SUBDIR += pdnsd
+SUBDIR += udns
 
 .include <bsd.port.subdir.mk>
