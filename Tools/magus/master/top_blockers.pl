@@ -1,6 +1,6 @@
 #!/usr/local/bin/perl
 #
-# $MidnightBSD: mports/Tools/magus/master/halt_cluster.pl,v 1.1 2007/10/31 18:02:28 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/top_blockers.pl,v 1.1 2008/04/22 06:54:49 ctriv Exp $
 #
 use strict;
 use warnings;
@@ -10,35 +10,32 @@ use Magus;
 
 my $run = shift || die "Usage: $0 <run ID>\n";
 my %blocking;
+my %objs;
 
 my $ports = Magus::Port->search(run => $run, status => 'untested');
 
 $|++;
 
 while (my $port = $ports->next) {
-  print "$port... ";
-  note_failures($port, \%blocking);
-  print "done\n";
+  my $add = $blocking{$port} || 1;
+  $objs{$port} ||= $port;
+
+  foreach my $dep ($port->depends) {
+    next unless $dep->status eq 'fail' || $dep->status eq 'skip' || $dep->status eq 'untested';
+    
+    
+    $objs{$dep}    ||= $dep;
+    $blocking{$dep} += $add;
+  }    
 }
 
 print '-' x 79, "\n";
 
 foreach my $port (sort { $blocking{$b} <=> $blocking{$a} } keys %blocking) {
+  next if $objs{$port}->status eq 'untested';
   print "$port: $blocking{$port}\n";
 }
 
-sub note_failures {
-  my ($port, $blocking) = @_;
-  
-  my @depends = $port->depends;
-  
-  $blocking->{$_}++ for grep { $_->status eq 'fail' || $_->status eq 'skip' } @depends;
-  
-  note_failures($_, $blocking) 
-    for grep { $_->status eq 'untested' } @depends;
-}
-  
-    
   
   
   
