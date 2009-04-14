@@ -24,7 +24,7 @@ package Magus::Chroot;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.27 2008/09/19 17:10:21 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Chroot.pm,v 1.28 2008/10/06 16:42:17 ctriv Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -217,12 +217,18 @@ sub _mount_loopbacks {
   
   $self->_mkdir('dev');
   system("/sbin/mount -t devfs devfs $self->{root}/dev");
+
+  $self->_mkdir('proc');
+  system("/sbin/mount -t procfs procfs $self->{root}/proc");
+
+  $self->_mkdir('compat/linux/proc');
+  system("/sbin/mount -t linprocfs linprocfs $self->{root}/compat/linux/proc");
 } 
 
 sub _unmount_loopbacks {
   my ($self) = @_;
 
-  for ("/dev", values %{$self->{loopbacks}}) {
+  for ("/dev", "/proc", "/compat/linux/proc", values %{$self->{loopbacks}}) {
     # if umount failed it is probably because nothing was mounted.
     # therefore we ignore the error code here 
     system("/sbin/umount $self->{root}$_"); 
