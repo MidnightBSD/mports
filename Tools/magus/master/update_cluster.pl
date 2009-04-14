@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
 # Copyright (c) 2007,2008 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.13 2008/04/15 21:20:52 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/update_cluster.pl,v 1.14 2008/09/10 19:44:16 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
