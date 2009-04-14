@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.2 2008/05/21 21:14:49 crash Exp $
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.3 2009/04/14 23:33:27 laffer1 Exp $
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.0
-PORTVERSION=	1
+PORTREVISION=	1
 CATEGORIES=	finance
 MASTER_SITES=	SF
 
