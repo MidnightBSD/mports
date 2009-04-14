@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.5 2009/02/22 23:30:07 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.6 2009/02/22 23:38:20 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.4.9-6
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/ \
@@ -178,7 +179,7 @@ CONFIGURE_ARGS+=	--without-bzlib
 
 # FPX (FlashPIX) images
 .if !defined(WITHOUT_IMAGEMAGICK_FPX)
-LIB_DEPENDS+=		fpx.1:${PORTSDIR}/graphics/libfpx
+LIB_DEPENDS+=		fpx.2:${PORTSDIR}/graphics/libfpx
 CONFIGURE_ARGS+=	--with-fpx
 PLIST_SUB+=		FPX=""
 .else
