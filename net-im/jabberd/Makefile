@@ -1,13 +1,7 @@
-# New ports collection makefile for:	jabberd
-# Date created:				29 December 2003
-# Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.3 2007/12/28 20:43:13 laffer1 Exp $
-# $FreeBSD: ports/net-im/jabberd/Makefile,v 1.51 2007/10/21 20:56:17 mm Exp $
-#
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.4 2008/09/13 22:29:25 laffer1 Exp $
 
 PORTNAME=	jabberd
-PORTVERSION=	2.1.20
+PORTVERSION=	2.2.7.1
 CATEGORIES=	net-im
 MASTER_SITES=	http://ftp.xiaoka.com/jabberd2/releases/
 DIST_SUBDIR=	jabber
@@ -17,7 +11,9 @@ COMMENT=	Online presence and instant messaging server
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		idn.16:${PORTSDIR}/dns/libidn
+		gsasl.13:${PORTSDIR}/security/gsasl \
+		idn.16:${PORTSDIR}/dns/libidn \
+		udns.0:${PORTSDIR}/dns/udns
 
 OPTIONS=	MYSQL "Support MySQL (storage/auth/reg)" on \
 		POSTGRESQL "Support PostgreSQL (storage/auth/reg)" off \
@@ -28,14 +24,16 @@ OPTIONS=	MYSQL "Support MySQL (storage/auth/reg)" on \
 		PIPE "Enable pipe (auth/reg)" off \
 		ANON "Enable anonymous (auth/reg)" off \
 		FS "Filesystem storage (only for testing)" off \
-		GSASL "Authenticate via GNU SASL" on \
-		CYRUS_SASL "Authenticate via Cyrus SASL" off \
-		DEBUG "Compile with debug messages" on
+		DEBUG "Compile with debug messages" on \
+		REQUIRES "Add backend requires to startup script" off
 
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
+USE_PERL5_RUN=	yes
 USE_OPENSSL=	yes
 USE_ICONV=	yes
 USE_RC_SUBR=	jabberd
+USE_BZIP2=	yes
 USE_LDCONFIG=	${PREFIX}/lib/jabberd
 CONFIGURE_ARGS+=	--localstatedir=/var \
 		--sysconfdir=${PREFIX}/etc/jabberd \
@@ -53,14 +51,17 @@ JABBER_RUNDIR=	"/var/jabberd"
 SUB_LIST+=	JABBER_USER=${JABBER_USER} JABBER_UID=${JABBER_UID} \
 		JABBER_GROUP=${JABBER_GROUP} JABBER_GID=${JABBER_GID} \
 		JABBER_ETCDIR="${JABBER_ETCDIR}" \
-		JABBER_RUNDIR="${JABBER_RUNDIR}"
+		JABBER_RUNDIR="${JABBER_RUNDIR}" \
+		PERL="${PERL}"
 
 SUB_FILES+=	pkg-install pkg-deinstall
 
 PORTDOCS=	*
 
-DOCFILES=	AUTHORS COPYING ChangeLog INSTALL NEWS PROTOCOL README \
+DOCFILES=	AUTHORS COPYING ChangeLog INSTALL NEWS README \
 		TODO UPGRADE
+
+_REQUIRE=	LOGIN
 
 .include <bsd.port.pre.mk>
 
@@ -75,6 +76,7 @@ CONFIGURE_ARGS+=--enable-debug
 USE_PGSQL=	yes
 CONFIGURE_ARGS+=--enable-pgsql
 PLIST_SUB+=	SUB_PGSQL=""
+_REQUIRE+=	postgresql
 .else
 CONFIGURE_ARGS+=--disable-pgsql
 PLIST_SUB+=	SUB_PGSQL="@comment "
@@ -96,6 +98,7 @@ CONFIGURE_ARGS+=--enable-mysql
 EIP+=:${LOCALBASE}/include/mysql
 ELP+=:${LOCALBASE}/lib/mysql
 PLIST_SUB+=	SUB_MYSQL=""
+_REQUIRE+=	mysql
 .else
 CONFIGURE_ARGS+=--disable-mysql
 PLIST_SUB+=	SUB_MYSQL="@comment "
@@ -117,6 +120,7 @@ PLIST_SUB+=	SUB_BDB="@comment "
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--enable-ldap
 PLIST_SUB+=	SUB_LDAP=""
+_REQUIRE+=	slapd
 .else
 CONFIGURE_ARGS+=--disable-ldap
 PLIST_SUB+=	SUB_LDAP="@comment "
@@ -152,23 +156,19 @@ PLIST_SUB+=	SUB_ANON=""
 PLIST_SUB+=	SUB_ANON="@comment "
 .endif
 
-.if defined(WITH_GSASL) && defined(WITH_CYRUS_SASL)
-IGNORE=	cannot be compiled with both, gsasl and cyrus-sasl. Please (re)run 'make config' and deselect either GSASL or CYRUS_SASL
-.elif defined(WITHOUT_GSASL) && !defined(WITH_CYRUS_SASL)
-IGNORE=	is useless without a sasl library. Please (re)run 'make config' and choose either GSASL or CYRUS_SASL
-.elif defined(WITH_GSASL)
-CONFIGURE_ARGS+=	--enable-sasl=gsasl
-LIB_DEPENDS+=		gsasl.11:${PORTSDIR}/security/gsasl
-.elif defined(WITH_CYRUS_SASL)
-CONFIGURE_ARGS+=	--enable-sasl=cyrus
-LIB_DEPENDS+=		sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+.if defined(WITH_REQUIRES)
+SUB_LIST+=	REQUIRE="${_REQUIRE}"
+.else
+SUB_LIST+=	REQUIRE="LOGIN"
 .endif
 
-MAN8=		c2s.8 jabberd.8 resolver.8 router.8 s2s.8 sm.8
+MAN8=		c2s.8 jabberd.8 router.8 s2s.8 sm.8
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|"-lsqlite3|"-lsqlite3 ${PTHREAD_LIBS}|g' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|%%PERL%%|${PERL}|g' \
+		${WRKSRC}/tools/jabberd.in
 
 post-install:
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
