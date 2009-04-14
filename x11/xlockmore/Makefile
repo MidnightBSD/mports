@@ -1,14 +1,8 @@
-# New ports collection makefile for:	xlockmore
-# Date created:		9 November 1994
-# Whom:			smace
-#
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.5 2008/08/20 19:57:05 laffer1 Exp $
-# $FreeBSD: ports/x11/xlockmore/Makefile,v 1.115 2008/07/18 05:10:39 ehaupt Exp $
-#
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.6 2008/08/22 14:27:17 laffer1 Exp $
 
 PORTNAME=	xlockmore
-PORTVERSION=	5.26.1
-PORTREVISION=	1
+PORTVERSION=	5.27
+PORTREVISION=	0
 CATEGORIES?=	x11
 MASTER_SITES=	ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
 		CRITICAL
@@ -56,10 +50,6 @@ FAKE_OPTS=	prefixhack
 
 FAKE_MAKEARGS+=	xapploaddir=${FAKE_DESTDIR}${LOCALBASE}/lib/X11/app-defaults \
 		mandir=${FAKE_DESTDIR}${MANPREFIX}/man/man1
-
-.if ${ARCH} == amd64
-.undef WITH_MESAGL
-.endif
 
 .if defined(WITH_MESAGL)
 CONFIGURE_ARGS+=	--with-mesa
@@ -151,5 +141,8 @@ post-patch:
 
 post-configure:
 	${REINPLACE_CMD} -e 's/-lXdpms//g' ${WRKSRC}/modes/Makefile
+
+post-install:
+	${CP} ${PREFIX}/man/xlock.1 ${PREFIX}/man/man1/
 
 .include <bsd.port.post.mk>
