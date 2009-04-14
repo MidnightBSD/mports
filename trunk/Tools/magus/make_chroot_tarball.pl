@@ -1,4 +1,4 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
 # Copyright (c) 2007 Chris Reinhardt. All rights reserved.
 #
@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.8 2008/11/07 21:35:47 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.9 2008/12/22 19:54:28 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
