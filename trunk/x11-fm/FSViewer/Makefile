@@ -1,14 +1,8 @@
-# New ports collection makefile for:   FSViewer.app
-# Date created:                6. Sept. 2003
-# Whom:                        Fritz Heinrichmeyer@fernuni-hagen.de
-#
-# $MidnightBSD: mports/x11-fm/FSViewer/Makefile,v 1.1 2007/05/21 01:41:26 laffer1 Exp $
-# $FreeBSD: ports/x11-fm/FSViewer/Makefile,v 1.6 2005/04/12 03:26:52 obrien Exp $
-#
+# $MidnightBSD: mports/x11-fm/FSViewer/Makefile,v 1.2 2008/05/31 18:53:26 laffer1 Exp $
 
 PORTNAME=	FSViewer.app
 PORTVERSION=	0.2.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-fm windowmaker
 MASTER_SITES=	http://www.bayernline.de/~gscholz/linux/fsviewer/
 
