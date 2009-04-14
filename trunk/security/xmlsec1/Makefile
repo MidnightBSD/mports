@@ -1,13 +1,8 @@
-# Ports collection makefile for:	xmlsec1
-# Date created:			Apr 17, 2003
-# Whom:				Jim Geovedi <jim@corebsd.or.id>
-#
-# $FreeBSD: ports/security/xmlsec1/Makefile,v 1.16 2006/09/10 23:53:06 kris Exp $
-# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.1 2006/11/09 14:40:38 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	xmlsec1
-PORTVERSION=	1.2.10
+PORTVERSION=	1.2.11
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 		ftp://ftp.aleksey.com/pub/xmlsec/releases/ \
@@ -16,6 +11,7 @@ MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML Security Library
+LICENSE=	mit
 
 RUN_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -24,11 +20,11 @@ OPTIONS=	GNUTLS	"Enable GNUTLS support"	off	\
 		NSS	"Enable Mozilla's NSS support"	off
 
 USE_OPENSSL=	yes
-OPENSSL_CFLAGS+=-DXMLSEC_OPENSSL_097=1 -DXMLSEC_CRYPTO_OPENSSL=1
 USE_GNOME=	gnomehack lthack libxslt gnometarget
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
-PLIST_FILES=	bin/xmlsec1 bin/xmlsec1-config etc/xmlsec1Conf.sh
+USE_LDCONFIG=	yes
+PLIST_FILES=	bin/xmlsec1 bin/xmlsec1-config etc/xmlsec1Conf.sh \
+		share/aclocal/xmlsec1.m4
 
 MAN1=	xmlsec1.1 xmlsec1-config.1
 # The software comes with its own tests, but it is nauseating to sort,
@@ -63,21 +59,32 @@ LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--without-gnutls
 .endif
 
+CONFIGURE_ARGS+=	--with-openssl="${OPENSSLBASE}"
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|src apps man docs|src apps man \$${DOCS}|g' \
 	    -e 's|^confexecdir =.*$$|confexecdir = \$$(sysconfdir)|g' \
 	    -e 's|/tmp/\*\.log|${WRKSRC}/*.log|g' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|-ldl"|"|' \
+	@${REINPLACE_CMD} -e '/objformat=/s|=[`/a-z]*|=elf|' \
+	    -e '/^XMLSEC_SHLIBSFX="/s|"[^"]*"|".so"|' \
+	    -e 's|openssl_exlibs=-ldl|openssl_exlibs=|' \
+	    -e 's|-ldl"|"|' \
 	    -e 's,with_nspr/include,with_nspr/include/nspr ${PTHREAD_CFLAGS},' \
 	    -e 's,with_nss/include,with_nss/include/nss/nss,' \
+	    -e 's,with_nss/lib,with_nss/lib/nss,g' \
 	    -e 's,\(CPPFLAGS="\$$NSS_CFLAGS\),\1 $$NSPR_CFLAGS,' \
+	    -e '/XMLSEC_CRYPTO_LIST=.*openssl/s,$$,\; CPPFLAGS="$$CPPFLAGS $$OPENSSL_CFLAGS",' \
 	    -e 's,\(-lplc4\)",\1 ${PTHREAD_LIBS}",' \
+	    -e '/ test /s, == , = ,' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
+	@${REINPLACE_CMD} \
+	    -e 's,total_time.*/ 1000),total_time*1000/CLOCKS_PER_SEC,' \
+		${WRKSRC}/apps/xmlsec.c
 .if defined(WITH_NSS)
 	# Makeing the xmlsec1 executable multi-threaded to let load -lnss,
 	# when needed.
-	@${REINPLACE_CMD} -e 's,^\(xmlsec1_LDADD = \)\\$$,\1 ${PTHREAD_LIBS}\\,' \
+	@${REINPLACE_CMD} -e 's,^\(xmlsec1_LDADD = \)\\$$,\1 -L${LOCALBASE}/lib ${PTHREAD_LIBS}\\,' \
 		${WRKSRC}/apps/Makefile.in
 
 CONFIGURE_ARGS+=	--with-nss="${LOCALBASE}" --with-nspr="${LOCALBASE}"
