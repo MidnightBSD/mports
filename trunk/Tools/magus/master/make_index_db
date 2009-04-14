@@ -1,6 +1,6 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 # 
-# $MidnightBSD: mports/Tools/make_index_db,v 1.1 2007/09/11 02:34:33 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/make_index_db,v 1.1 2007/10/20 22:35:33 ctriv Exp $
 #
 
 use strict;
