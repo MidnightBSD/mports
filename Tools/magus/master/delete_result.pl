@@ -1,6 +1,6 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Tools/magus/master/delete_result.pl,v 1.1 2007/10/24 00:31:41 ctriv Exp $
 #
 
 use strict;

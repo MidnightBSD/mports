@@ -1,6 +1,6 @@
-#!/usr/local/bin/perl
+#!/usr/bin/perl
 #
-# $MidnightBSD: mports/Tools/magus/master/top_blockers.pl,v 1.1 2008/04/22 06:54:49 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/master/top_blockers.pl,v 1.2 2009/04/14 20:26:02 ctriv Exp $
 #
 use strict;
 use warnings;
