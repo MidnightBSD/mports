@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.10 2008/11/10 20:35:59 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.11 2008/11/10 20:54:05 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -32,7 +32,8 @@ USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=  ${PREFIX}/lib/${PORTNAME}
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+#CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0 \
+#			--host=${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
         	LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-term-lib="ncursesw ncurses" --with-tcsetpgrp \
@@ -64,6 +65,14 @@ DOCS=		LICENCE META-FAQ README Etc/BUGS Etc/CONTRIBUTORS Etc/FAQ \
 EXAMPLES=	zlogin zshenv zshrc
 
 .include <bsd.port.pre.mk>
+
+.if (${OSVERSION} < 600000 && ${OSVERSION} > 2999)
+CONFIGURE_TARGET=       --build=${MACHINE_ARCH}-portbld-freebsd7.0 \
+                        --host=${MACHINE_ARCH}-portbld-freebsd7.0
+.else
+CONFIGURE_TARGET=       --build=${MACHINE_ARCH}-portbld-freebsd6.1 \
+                        --host=${MACHINE_ARCH}-portbld-freebsd6.1
+.endif
 
 .if defined(WITH_ZSH_PCRE)
 CONFIGURE_ARGS+=	--enable-pcre
