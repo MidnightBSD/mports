@@ -1,14 +1,7 @@
-# ex:ts=8
-# Ports collection makefile for:	gsasl
-# Date created:			Oct 18, 2003
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.2 2008/03/25 03:15:56 ctriv Exp $
-# $FreeBSD: ports/security/gsasl/Makefile,v 1.34 2007/09/05 13:55:04 krion Exp $
-#
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.3 2008/05/22 21:51:53 laffer1 Exp $
 
 PORTNAME=	gsasl
-PORTVERSION=	0.2.26
+PORTVERSION=	0.2.29
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/${PORTNAME}/releases/
