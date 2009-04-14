@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.148 2009/03/30 20:28:33 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.149 2009/04/06 17:39:20 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -828,7 +828,7 @@ USE_SUBMAKE=	yes
 .include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
 .endif
 .include "${MPORTCOMPONENTS}/fake.mk"
-
+.include "${MPORTCOMPONENTS}/update.mk"
 
 
 # Set the default for the installation of Postscript(TM)-
@@ -862,6 +862,7 @@ REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
 # Names of cookies used to skip already completed stages
 EXTRACT_COOKIE?=	${WRKDIR}/.extract_done.${PORTNAME}.${PREFIX:S/\//_/g}
 CONFIGURE_COOKIE?=	${WRKDIR}/.configure_done.${PORTNAME}.${PREFIX:S/\//_/g}
+UPDATE_COOKIE?=		${WRKDIR}/.update_done.${PORTNAME}.${PREFIX:S/\//_/g}
 INSTALL_COOKIE?=	${WRKDIR}/.install_done.${PORTNAME}.${PREFIX:S/\//_/g}
 BUILD_COOKIE?=		${WRKDIR}/.build_done.${PORTNAME}.${PREFIX:S/\//_/g}
 PATCH_COOKIE?=		${WRKDIR}/.patch_done.${PORTNAME}.${PREFIX:S/\//_/g}
@@ -1058,10 +1059,17 @@ MPORT_DELETE?=		/usr/libexec/mport.delete
 MPORT_INSTALL?= 	/usr/libexec/mport.install
 MPORT_QUERY?=		/usr/libexec/mport.query
 MPORT_CHECK_FAKE?=	/usr/libexec/mport.check-fake
+MPORT_UPDEPENDS?=	/usr/libexec/mport.updepends
+MPORT_UPDATE?=		/usr/libexec/mport.update
+MPORT_CHECK_OLDER?=	/usr/libexec/mport.check-for-older
+
 .if defined(DESTDIR)
-MPORT_INSTALL:=	${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
-MPORT_DELETE:=	${CHROOT} ${DESTDIR} ${MPORT_DELETE}
-MPORT_QUERY:=   ${CHROOT} ${DESTDIR} ${MPORT_QUERY}
+MPORT_INSTALL:=		${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
+MPORT_DELETE:=		${CHROOT} ${DESTDIR} ${MPORT_DELETE}
+MPORT_QUERY:=   	${CHROOT} ${DESTDIR} ${MPORT_QUERY}
+MPORT_UPDEPENDS:=	${CHROOT} ${DESTDIR} ${MPORT_UPDEPENDS}
+MPORT_UPDATE:=		${CHROOT} ${DESTDIR} ${MPORT_UPDATE}
+MPORT_CHECK_OLDER:=	${CHROOT} ${DESTDIR} ${MPORT_CHECK_OLDER}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
@@ -1069,6 +1077,7 @@ MPORT_CREATE_ARGS=	-n ${PKGBASE} -v ${PKGVERSION} -o ${PKGFILE} \
 					-s ${FAKE_DESTDIR} -p ${TMPPLIST} -P ${PREFIX} \
 					-O ${PKGORIGIN} -c "${COMMENT:Q}" -l en \
 					-D "`cd ${.CURDIR} && ${MAKE} package-depends | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u`" \
+					-t "${CATEGORIES}" \
 					$$_LATE_MPORT_CREATE_ARGS
 					
 .if !defined(NO_MTREE)
@@ -2369,12 +2378,6 @@ run-build:
 
 
 
-# 
-# Fake
-#
-
-
-
 #
 # Package
 #
@@ -2740,6 +2743,9 @@ _INSTALL_DEP=	package
 _INSTALL_SEQ=	install-message run-depends lib-depends install-package done-message
 
 
+_UPDATE_DEP=	package
+_UPDATE_SEQ=	update-message check-for-older-installed do-update update-upwards-depends done-message
+
 .if !target(check-sanity)
 check-sanity: ${_SANITY_SEQ}
 .endif
@@ -2749,10 +2755,10 @@ check-sanity: ${_SANITY_SEQ}
 fetch: ${_FETCH_DEP} ${_FETCH_SEQ}
 .endif
 
-# Main logic. The loop generates 6 main targets and using cookies
+# Main logic. The loop generates 8 main targets and using cookies
 # ensures that those already completed are skipped.
 
-.for target in extract patch configure build fake package install
+.for target in extract patch configure build fake package install update
 
 .if !target(${target}) && defined(_OPTIONS_OK)
 ${target}: ${${target:U}_COOKIE}
@@ -2808,6 +2814,7 @@ ${${target:U}_COOKIE}::
 .ORDER: ${_FAKE_DEP} ${_FAKE_SEQ}
 .ORDER: ${_PACKAGE_DEP} ${_PACKAGE_SEQ}
 .ORDER: ${_INSTALL_DEP} ${_INSTALL_SEQ}
+.ORDER: ${_UPDATE_DEP} ${_UPDATE_SEQ}
 
 extract-message:
 	@${ECHO_MSG} -e "\033[1m===>  Extracting for ${PKGNAME}\033[0m"
@@ -2827,6 +2834,8 @@ install-message:
 .endif
 package-message:
 	@${ECHO_MSG} -e "\033[1m===>  Building package for ${PKGNAME}\033[0m"
+update-message:
+	@${ECHO_MSG} -e "\033[1m===>  Updating ${PKGBASE} to ${PKGVERSION}\033[0m"
 done-message:
 	@${ECHO_MSG} -e "\033[1m===>  Done.\033[0m"
 
@@ -2909,9 +2918,9 @@ deinstall:
 .endif
 .if ${UID} != 0 && !defined(INSTALL_AS_USER)
 	@${ECHO_MSG} "===>   Running ${SUDO} ${MPORT_DELETE} -o ${PKGORIGIN}
-	@${SUDO} ${MPORT_DELETE} -o ${PKGORIGIN}
+	@${SUDO} ${MPORT_DELETE} -f -o ${PKGORIGIN}
 .else
-	@${MPORT_DELETE} -o ${PKGORIGIN}
+	@${MPORT_DELETE} -f -o ${PKGORIGIN}
 .endif
 	@${RM} -f ${INSTALL_COOKIE}
 .endif # !target(deinstall)
