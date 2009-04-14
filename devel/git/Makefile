@@ -2,12 +2,11 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD: mports/devel/git/Makefile,v 1.9 2009/04/03 04:28:32 ctriv Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.10 2009/04/04 00:51:28 ctriv Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.2.2
-PORTREVISION=	1
+PORTVERSION=	1.6.2.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
