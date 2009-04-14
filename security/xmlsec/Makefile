@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/xmlsec/Makefile,v 1.2 2007/08/01 20:12:48 laffer1 Exp $
+# $MidnightBSD: mports/security/xmlsec/Makefile,v 1.3 2009/04/14 23:41:52 laffer1 Exp $
 
 PORTNAME=	xmlsec
 PORTVERSION=	0.0.15
@@ -11,6 +11,7 @@ MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML Security Library
+LICENSE=	mit
 
 RUN_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 BUILD_DEPENDS=	${RUN_DEPENDS}
