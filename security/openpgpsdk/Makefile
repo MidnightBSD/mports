@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/openpgpsdk/Makefile,v 1.3 2009/02/28 17:20:36 laffer1 Exp $
+# $MidnightBSD: mports/security/openpgpsdk/Makefile,v 1.4 2009/03/18 21:39:02 laffer1 Exp $
 
 PORTNAME=	openpgpsdk
 PORTVERSION=	0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://openpgp.nominet.org.uk/downloads/
 EXTRACT_SUFX=	.tgz
@@ -17,6 +17,7 @@ HAS_CONFIGURE=	YES
 #USE_AUTOTOOLS=	autoheader:262
 CONFIGURE_ARGS=	--without-idea --with-cunit=${LOCALBASE}
 
+BUILD_DEPENDS=	gpg:${PORTSDIR}/security/gnupg
 LIB_DEPENDS=	cunit.1:${PORTSDIR}/devel/cunit
 
 .include <bsd.port.pre.mk>
