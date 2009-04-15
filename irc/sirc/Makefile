@@ -1,9 +1,4 @@
-# New ports collection makefile for: sirc
-# Date created:                      4 May 1998
-# Whom:                              Doug Barton <Doug@gorean.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/irc/sirc/Makefile,v 1.13 2005/10/29 07:13:28 dougb Exp $
+# $MidnightBSD: mports/irc/sirc/Makefile,v 1.1 2007/08/10 21:12:20 laffer1 Exp $
 #
 # If you need SOCKS support, define SOCKS_SERVER with
 # the name of your SOCKS proxy and remove the '#'.
@@ -20,6 +15,7 @@ MASTER_SITES=	http://www.iagora.com/~espel/sirc/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small (150k), fast, perl-based IRC client
+LICENSE=	gpl2
 
 USE_PERL5=	yes
 
