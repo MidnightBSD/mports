@@ -1,14 +1,8 @@
-# New ports collection makefile for:	apache-ant
-# Date created:		21 February 2001
-# Whom:			znerd@FreeBSD.org
-#
-# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.2 2008/06/20 17:01:57 laffer1 Exp $
-# $FreeBSD: ports/devel/apache-ant/Makefile,v 1.45 2006/09/06 21:52:18 hq Exp $
-#
+# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.3 2009/04/05 19:51:12 laffer1 Exp $
 
 PORTNAME=	apache-ant
-PORTVERSION=	1.6.5
-PORTREVISION=	2
+PORTVERSION=	1.7.1
+PORTREVISION=	0
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
 		${MASTER_SITE_FREEBSD_LOCAL:S,%SUBDIR%/,hq/:man,} \
@@ -32,11 +26,11 @@ JAVA_VERSION=	1.2+
 
 NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-
+PLIST_SUB+=	ANT_VERSION="${PORTVERSION}"
 READMES=	LICENSE README WHATSNEW
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	*
+PORTDOCS=	* .htaccess
 .endif
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
