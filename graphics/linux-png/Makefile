@@ -1,10 +1,4 @@
-# New ports collection makefile for: linux-png
-# Date created:		28 September 2000
-# Whom:                 sanpei@FreeBSD.org
-#
-# $MidnightBSD: mports/graphics/linux-png/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $ 
-# $FreeBSD: ports/graphics/linux-png/Makefile,v 1.23 2006/07/09 21:01:44 bsam Exp $
-#
+# $MidnightBSD: mports/graphics/linux-png/Makefile,v 1.2 2007/10/17 13:54:25 laffer1 Exp $ 
 
 PORTNAME=	png
 PORTVERSION=	1.2.8
@@ -14,12 +8,13 @@ DISTNAME=	libpng-${PORTVERSION}-2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of the PNG lib
+LICENSE=	other
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_GCPIO=	yes
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 PLIST_FILES=	\
 		usr/lib/libpng.so.3 \
