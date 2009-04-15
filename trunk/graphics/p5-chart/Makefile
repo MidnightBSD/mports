@@ -1,20 +1,14 @@
-# New ports collection makefile for:	p5-chart
-# Date Created:		8 April 1998
-# Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/p5-chart/Makefile,v 1.25 2006/04/11 15:04:30 mat Exp $
-#
+# $MidnightBSD: mports/graphics/p5-chart/Makefile,v 1.1 2007/03/11 05:35:04 laffer1 Exp $
 
 PORTNAME=	Chart
 PORTVERSION=	2.4.1
 CATEGORIES=	graphics perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Chart
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A perl5 interface to build chart graphics
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/GD.pm:${PORTSDIR}/graphics/p5-GD
 
