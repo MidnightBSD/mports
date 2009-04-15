@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/irc/Makefile,v 1.9 2008/01/21 21:09:02 laffer1 Exp $
+# $MidnightBSD: mports/irc/Makefile,v 1.10 2008/05/10 01:23:14 laffer1 Exp $
 #
 
     COMMENT = Internet Relay Chat utilities
 
-    SUBDIR += bitchx
     SUBDIR += bitlbee
     SUBDIR += bnc
     SUBDIR += irssi
