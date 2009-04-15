@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/llvm/Makefile,v 1.1 2009/03/25 15:44:30 laffer1 Exp $
 
 PORTNAME=	llvm
 PORTVERSION=	2.5
@@ -9,9 +9,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low Level Virtual Machine
 LICENSE=	agg
 
-.if defined(PACKAGE_BUILDING) || defined(MAINTAINER_MODE)
-BUILD_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
-.endif
+#.if defined(PACKAGE_BUILDING) || defined(MAINTAINER_MODE)
+#BUILD_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
+#.endif
 .if defined(MAINTAINER_MODE)
 BUILD_DEPENDS+=	f2c:${PORTSDIR}/lang/f2c
 .endif
