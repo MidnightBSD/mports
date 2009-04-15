@@ -1,16 +1,9 @@
-# New ports collection makefile for:   libIDL
-# Date Created:			12 February 2002
-# Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/libIDL/Makefile,v 1.40 2006/07/24 15:03:26 ahze Exp $
-#    $MCom: ports/devel/libIDL/Makefile,v 1.5 2006/07/24 14:11:11 ahze Exp $
+# $MidnightBSD: mports/devel/libIDL/Makefile,v 1.4 2008/06/01 21:14:09 laffer1 Exp $
 
 PORTNAME=	libIDL
-PORTVERSION=	0.8.10
+PORTVERSION=	0.8.13
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.8
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
