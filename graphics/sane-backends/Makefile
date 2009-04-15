@@ -1,15 +1,9 @@
-# New ports collection makefile for:	sane-backends
-# Date created:			Sat Jul 19 16:23:10 MET DST 1997
-# Whom:				gary@hotlava.com
-#
-# $FreeBSD: ports/graphics/sane-backends/Makefile,v 1.74 2006/09/26 12:35:08 rafan Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.1 2007/01/26 04:00:10 laffer1 Exp $
 
 PORTNAME=	sane-backends
-PORTVERSION=	1.0.18
+PORTVERSION=	1.0.19
 CATEGORIES=	graphics
-MASTER_SITES=	http://alioth.debian.org/download.php/1669/ \
+MASTER_SITES=	http://alioth.debian.org/frs/download.php/2318/ \
 		ftp://ftp.sane-project.org/pub/sane/%SUBDIR%/ \
 		ftp://ftp2.sane-project.org/pub/sane/%SUBDIR%/ \
 		ftp://ftp3.sane-project.org/pub/sane/%SUBDIR%/ \
@@ -19,6 +13,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for access to scanners, digitals camera, frame grabbers etc
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
@@ -63,18 +58,11 @@ CONFIGURE_ARGS+=	--with-gphoto2=no
 PLIST_SUB+=		GPHOTO2="@comment "
 .endif
 
-pre-everithing::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "*** ATTENTION ***"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "Older versions than 1.0.17_1 do not check if you change config files."
-	@${ECHO_MSG} "If that's the case for you, press CTRL+C and backup your config files."
-	@${ECHO_MSG} ""
-
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|= \.\./libtool|= @LIBTOOL@|g'
-	@${REINPLACE_CMD} -e 's|} -D_REENT|} ${PTHREAD_CFLAGS} -D_REENT|g ; \
-		 s|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e '/^for ac_header in/s|libc.h||g ; \
+		s|} -D_REENT|} ${PTHREAD_CFLAGS} -D_REENT|g ; \
+		s|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
