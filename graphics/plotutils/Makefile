@@ -1,20 +1,14 @@
-# New ports collection makefile for:	plotutils
-# Date created:		19 June 1998
-# Whom:			Chuck Robey (chuckr)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/plotutils/Makefile,v 1.35 2007/05/19 20:10:20 flz Exp $
-#
+# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.1 2008/07/20 04:59:39 laffer1 Exp $
 
 PORTNAME=	plotutils
-PORTVERSION=	2.5
+PORTVERSION=	2.5.1
 PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A plotting library and toolkit
+LICENSE=	gpl3
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
