@@ -1,22 +1,17 @@
-# New ports collection makefile for:	svgalib
-# Date created:				24 August 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/svgalib/Makefile,v 1.19 2005/07/30 11:52:40 danfe Exp $
-#
+# $MidnightBSD: mports/graphics/svgalib/Makefile,v 1.1 2006/10/03 23:01:05 laffer1 Exp $
 
 PORTNAME=	svgalib
 PORTVERSION=	1.4.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.svgalib.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low level console graphics library
+LICENSE=	publicdom
 
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 MANCOMPRESSED=	yes
 
 ALL_TARGET=	shared static
@@ -37,6 +32,10 @@ pre-patch:
 		${MV} $${file}.new $${file}; \
 	done
 	${MKDIR} ${WRKSRC}/include/linux
+# Fix for GCC 4.1
+	${REINPLACE_CMD} '30d' ${WRKSRC}/src/vgabg.h
+	${REINPLACE_CMD} -e 's,^   (unsigned [[:alpha:]]*),,' \
+		${WRKSRC}/src/apm.c
 
 post-install:
 	${MKDIR} ${PREFIX}/include/linux
