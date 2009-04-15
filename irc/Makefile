@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/Makefile,v 1.10 2008/05/10 01:23:14 laffer1 Exp $
+# $MidnightBSD: mports/irc/Makefile,v 1.11 2009/04/15 01:13:17 laffer1 Exp $
 #
 
     COMMENT = Internet Relay Chat utilities
@@ -9,7 +9,6 @@
     SUBDIR += irssi-scripts
     SUBDIR += ngircd
     SUBDIR += sirc
-    SUBDIR += tirc
     SUBDIR += xchat
     SUBDIR += znc
 
