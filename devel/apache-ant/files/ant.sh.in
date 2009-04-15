@@ -1,14 +1,8 @@
 #!/bin/sh
 #
-#-*- mode: Fundamental; tab-width: 4; -*-
-# ex:ts=4
-#
-# FreeBSD-specific startup script for Apache Ant.
-#
 # See: http://ant.apache.org/
 #
-# $FreeBSD: ports/devel/apache-ant/files/ant.sh.in,v 1.6 2006/09/06 21:52:18 hq Exp $
-#
+# $MidnightBSD$
 
 
 DEFAULT_JIKES=false
@@ -46,7 +40,7 @@ else
 	LOCALCLASSPATH=${ANT_LIB}/ant-launcher.jar:${LOCALCLASSPATH}
 fi
 
-# FreeBSD-specific: Add the .jar files from ${JAVALIBDIR}
+# MidnightBSD-specific: Add the .jar files from ${JAVALIBDIR}
 if [ -n "${ANT_INCLUDE_SHARED_JARS}" ]; then
 	CLASSPATH_CMD=%%LOCALBASE%%/bin/classpath
 	if [ -x "${CLASSPATH_CMD}" ]; then
