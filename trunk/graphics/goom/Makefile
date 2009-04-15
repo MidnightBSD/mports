@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/goom/Makefile,v 1.1 2007/03/16 19:16:00 laffer1 Exp $
+# $MidnightBSD: mports/graphics/goom/Makefile,v 1.2 2009/03/04 00:22:44 laffer1 Exp $
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0
@@ -10,7 +10,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S|.|-|}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Visual effects library
-LICENCE=	lgpl
+LICENSE=	lgpl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION:S|.|-|}
 USE_AUTOTOOLS=	libtool:15
