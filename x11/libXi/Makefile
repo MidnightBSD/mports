@@ -1,18 +1,13 @@
-# New ports collection makefile for:   libXi
-# Date Created:			22 Nov, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/libXi/Makefile,v 1.17 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXi/Makefile,v 1.1 2007/10/05 17:34:55 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/libXi/Makefile,v 1.2 2009/03/14 22:20:03 laffer1 Exp $
 
 PORTNAME=	libXi
 PORTVERSION=	1.2.1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
-MAINTAINER=	x11@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Input extension library
+LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	xproto x11 xext xextproto inputproto:both
@@ -57,6 +52,6 @@ MAN3=		XAllowDeviceEvents.3 \
 		XSetDeviceValuators.3 \
 		XUngrabDeviceButton.3 \
 		XUngrabDeviceKey.3 \
-		XUngrabDevice.3 \
+		XUngrabDevice.3
 
 .include <bsd.port.mk>
