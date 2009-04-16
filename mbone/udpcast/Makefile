@@ -1,26 +1,20 @@
-# New ports collection makefile for:	udpcast
-# Date created:		Mon Jul 19 19:10:56 UTC 2004
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
 # $MidnightBSD$
-# $FreeBSD: ports/mbone/udpcast/Makefile,v 1.5 2006/05/10 22:37:14 edwin Exp $
-#
 
 PORTNAME=	udpcast
 PORTVERSION=	0.${RELEASE_DATE}
 CATEGORIES=	mbone sysutils
-MASTER_SITES=	http://udpcast.linux.lu/current/
+MASTER_SITES=	http://udpcast.linux.lu/download/
 DISTNAME=	${PORTNAME}-${RELEASE_DATE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A file transfer tool using ethernet's multicast
+LICENSE=	gpl2
 
-USE_GETOPT_LONG=yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
-WRKSRC=	${WRKDIR}/${PORTNAME}
+WRKSRC=	${WRKDIR}/${PORTNAME}-${RELEASE_DATE}
 
-RELEASE_DATE=	20040531
+RELEASE_DATE=	20081213
 
 PROGRAM_SBIN_FILES=	udp-receiver udp-sender
 
@@ -30,19 +24,9 @@ PORTDOCS=	Changelog.txt cmd.html
 
 MAN1=		udp-receiver.1 udp-sender.1
 
-post-patch:
-	@${REINPLACE_CMD} -E \
-		-e 's|<malloc.h>|<stdlib.h>|' \
-		${WRKSRC}/libbb_udpcast.h
-
-do-configure:
-# C{C,FLAGS}, PTHREAD_* safeness
-	@${REINPLACE_CMD} -E \
-		-e 's|gcc|${CC}|' \
-		-e 's|^(CFLAGS[[:space:]]*=.+)$$|\1 ${CFLAGS} ${CPPFLAGS} ${PTHREAD_CFLAGS}|' \
-		-e 's|^(LDFLAGS[[:space:]]*=.+)$$|\1 ${LDFLAGS}|' \
-		-e 's|-lpthread|${PTHREAD_LIBS}|g' \
-		${BUILD_WRKSRC}/${MAKEFILE}
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
+		LIBS="-L${LOCALBASE}/lib"
 
 do-install:
 .ifndef(NOPORTDOCS)
