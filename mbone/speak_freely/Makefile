@@ -1,10 +1,4 @@
-# New ports collection makefile for:    speak_freely
-# Date created:         18 Apr 1996
-# Whom:                 Mister X (to make portlint happy ;)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/mbone/speak_freely/Makefile,v 1.20 2004/05/16 16:33:08 krion Exp $
-#
+# $MidnightBSD: mports/mbone/speak_freely/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
 
 PORTNAME=	speak_freely
 PORTVERSION=	7.6a
@@ -14,6 +8,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME:S/_/-/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Voice communication over data networks
+LICENSE=	agg
 
 LIB_DEPENDS=	gsm.1:${PORTSDIR}/audio/gsm
 
