@@ -1,10 +1,4 @@
-# New ports collection makefile for:    Pantomime
-# Date created:         17 Sep 2001
-# Whom:                 Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.3 2007/11/07 20:20:14 ctriv Exp $
-# $FreeBSD: ports/mail/pantomime/Makefile,v 1.26 2006/03/19 04:35:46 dinoex Exp $
-#
+# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.4 2007/11/14 20:33:05 laffer1 Exp $
 
 PORTNAME=	pantomime
 PORTVERSION=	1.2.0
@@ -14,6 +8,7 @@ DISTNAME=	Pantomime-${PORTVERSION}pre3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail/MIME handling library for GNUstep
+LICENSE=	lgpl
 
 WRKSRC=		${WRKDIR}/Pantomime
 USE_GMAKE=	yes
