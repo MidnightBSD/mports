@@ -1,10 +1,4 @@
-# New ports collection makefile for:	razor-agents
-# Date created:				29 November 2001
-# Whom:	      				Yen-Ming Lee <leeym@leeym.com>
-#
-# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.1 2007/03/11 05:28:20 laffer1 Exp $
-# $FreeBSD: ports/mail/razor-agents/Makefile,v 1.43 2006/06/03 02:09:59 mnag Exp $
-#
+# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.2 2007/08/04 23:49:25 laffer1 Exp $
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.84
@@ -14,6 +8,7 @@ MASTER_SITE_SUBDIR=	razor
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A distributed, collaborative, spam detection and filtering network
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1 \
