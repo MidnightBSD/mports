@@ -1,9 +1,4 @@
-# New ports collection makefile for:	wmymail
-# Date created:		27 August 2002
-# Whom:			Bruce M Simpson <bms@FreeBSD.org>
-#
-# $MidnightBSD: mports/mail/wmymail/Makefile,v 1.1 2006/09/29 19:58:25 wintellect Exp $
-# $FreeBSD: ports/mail/wmymail/Makefile,v 1.7 2005/12/12 21:53:34 bms Exp $
+# $MidnightBSD: mports/mail/wmymail/Makefile,v 1.2 2007/03/22 04:29:57 ctriv Exp $
 
 PORTNAME=	wmymail
 PORTVERSION=	0.2
@@ -13,11 +8,12 @@ MASTER_SITES=	http://dockapps.org/files/65/96/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Check inbox using a WindowMaker DockApp
+LICENSE=	unknown
 
 LIB_DEPENDS=	dockapp.2:${PORTSDIR}/x11-wm/libdockapp
 RUN_DEPENDS=	fetchmail:${PORTSDIR}/mail/fetchmail
 
-USE_XLIB=	yes
+USE_XORG=	x11
 
 NO_MAN=
 PLIST_FILES=	bin/wmymail
