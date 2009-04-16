@@ -1,10 +1,4 @@
-# New ports collection makefile for:	wb
-# Date created:		2 Novermber 1996
-# Whom:			fenner
-#
-# $MidnightBSD$
-# $FreeBSD: ports/mbone/wb/Makefile,v 1.16 2007/01/30 10:25:31 pav Exp $
-#
+# $MidnightBSD: mports/mbone/wb/Makefile,v 1.1 2007/04/05 00:41:04 laffer1 Exp $
 
 PORTNAME=	wb
 PORTVERSION=	1.59
@@ -14,22 +8,13 @@ DISTFILES=	i386-wb-1.59.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A shared drawing (whiteboard) tool using multicast
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
-USE_X_PREFIX=	yes
 STRIP=
 
-# ghostscript, ghostscript3, ghostscript4 or ghostscript5 will all do.
 USE_GHOSTSCRIPT_RUN=	yes
-
-pre-everything::
-.if !defined(WITH_GHOSTSCRIPT_AFPL) || ${WITH_GHOSTSCRIPT_AFPL} != yes
-	@${ECHO} ""
-	@${ECHO} "      Define WITH_GHOSTSCRIPT_AFPL=yes to use"
-	@${ECHO} "      AFPL Postscript interpreter instead of GNU one"
-	@${ECHO} ""
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/wb ${PREFIX}/bin
