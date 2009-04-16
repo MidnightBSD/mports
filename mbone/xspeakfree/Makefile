@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xspeakfree
-# Date created:			08 Nov 2003
-# Whom:				Travis Poppe <tlp@liquidx.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/mbone/xspeakfree/Makefile,v 1.4 2006/05/10 22:37:14 edwin Exp $
-#
+# $MidnightBSD: mports/mbone/xspeakfree/Makefile,v 1.1 2007/04/05 00:41:04 laffer1 Exp $
 
 PORTNAME=	xspeakfree
 PORTVERSION=	0.8.2
@@ -13,13 +7,13 @@ MASTER_SITES=	http://www.liquidx.org/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tcl/Tk (wish) frontend to Speak Freely
+LICENSE=	agg
 
-RUN_DEPENDS=	${LOCALBASE}/bin/wish8.4:${PORTSDIR}/x11-toolkits/tk84 \
-		${LOCALBASE}/bin/sfmike:${PORTSDIR}/mbone/speak_freely \
+RUN_DEPENDS=	${LOCALBASE}/bin/sfmike:${PORTSDIR}/mbone/speak_freely
+
+USE_TK=		84
 
 NO_BUILD=	yes
-USE_X_PREFIX=	yes
-
 PORTDOCS=	BUGS HISTORY INSTALL LICENSE README TODO
 
 post-patch:
