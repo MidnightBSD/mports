@@ -1,13 +1,8 @@
-# New ports collection makefile for:	imm
-# Date created:		13 October 1994
-# Whom:			wollman
-#
-# $MidnightBSD: mports/mbone/imm/Makefile,v 1.1 2007/04/05 00:41:03 laffer1 Exp $
-# $FreeBSD: ports/mbone/imm/Makefile,v 1.28 2004/08/23 07:36:54 linimon Exp $
-#
+# $MidnightBSD: mports/mbone/imm/Makefile,v 1.2 2008/05/22 16:36:15 laffer1 Exp $
 
 PORTNAME=	imm
 PORTVERSION=	3.5a1
+PORTREVISION=	1
 CATEGORIES=	mbone tk
 MASTER_SITES=	ftp://ftp.hawaii.edu/paccom/imm-3.5a1/
 DISTNAME=	imm.source
@@ -15,11 +10,11 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internet Image(or other data) Multicaster (and receiver)
-
-LIB_DEPENDS=	tk82.1:${PORTSDIR}/x11-toolkits/tk82
+LICENSE=	other
 
 WRKSRC=		${WRKDIR}/mnm
-USE_X_PREFIX=	yes
+USE_TK=		84
+USE_TK_BUILD=	84
 
 .include <bsd.port.pre.mk>
 
