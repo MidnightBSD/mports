@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-drivers/xf86-input-magictouch/Makefile,v 1.1 2007/05/19 20:28:41 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-input-magictouch/Makefile,v 1.1 2007/10/12 03:56:22 ctriv Exp $
 #
 
 PORTNAME=	xf86-input-magictouch
@@ -17,6 +17,8 @@ LICENSE=	unknown
 XORG_CAT=	driver
 MAN4=		magictouch.4x
 USE_AUTOTOOLS=	libtool:15
+
+BROKEN=		missing header files not found in recent X versions.
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
 
