@@ -1,14 +1,8 @@
-# New ports collection makefile for:    xine
-# Date created:         14 Oct 2000
-# Whom:                 alex
-#
-# $FreeBSD: ports/multimedia/xine/Makefile,v 1.77 2008/03/23 13:59:02 nobutaka Exp $
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.7 2008/04/13 21:22:49 ctriv Exp $
-#
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.8 2008/08/18 16:33:23 laffer1 Exp $
 
 PORTNAME=	xine
 PORTVERSION=	0.99.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -69,7 +63,7 @@ CONFIGURE_ARGS+=	--disable-xft
 .endif
 
 .if !defined(WITHOUT_CURL)
-LIB_DEPENDS+=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 .else
 CONFIGURE_ARGS+=	--without-curl
 .endif
