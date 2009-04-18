@@ -1,6 +1,13 @@
---- xpcom/reflect/xptcall/src/md/unix/Makefile.in
-+++ xpcom/reflect/xptcall/src/md/unix/Makefile.in
-@@ -70,6 +70,9 @@
+--- xpcom/reflect/xptcall/src/md/unix/Makefile.in.orig	2008-04-09 02:34:20 -0400
++++ xpcom/reflect/xptcall/src/md/unix/Makefile.in	2009-04-18 01:30:36 -0400
+@@ -64,12 +64,15 @@
+ #
+ # Lots of Unixish x86 flavors
+ #
+-ifneq (,$(filter FreeBSD NetBSD OpenBSD BSD_OS Darwin,$(OS_ARCH)))
++ifneq (,$(filter FreeBSD NetBSD OpenBSD MidnightBSD BSD_OS Darwin,$(OS_ARCH)))
+ ifeq (86,$(findstring 86,$(OS_TEST)))
+ CPPSRCS		:= xptcinvoke_unixish_x86.cpp xptcstubs_unixish_x86.cpp
  ifeq (Darwin,$(OS_ARCH))
  DEFINES		+= -DKEEP_STACK_16_BYTE_ALIGNED
  endif
@@ -45,7 +52,7 @@
  CPPSRCS		:= xptcinvoke_ppc_linux.cpp xptcstubs_ppc_linux.cpp
  ASFILES		:= xptcinvoke_asm_ppc_linux.s xptcstubs_asm_ppc_linux.s
  AS		:= $(CC) -c -x assembler-with-cpp
-@@ -389,6 +398,15 @@
+@@ -389,6 +398,25 @@
  ASFILES		:= xptcinvoke_asm_sparc_netbsd.s xptcstubs_asm_sparc_netbsd.s
  endif
  #
@@ -55,6 +62,16 @@
 +ifneq (,$(findstring sparc,$(OS_TEST)))
 +CPPSRCS		:= xptcinvoke_sparc64_freebsd.cpp xptcstubs_sparc64_freebsd.cpp
 +ASFILES		:= xptcinvoke_asm_sparc64_freebsd.s xptcstubs_asm_sparcv9_solaris.s
++endif
++endif
++#
++# MidnightBSD/SPARC64
++#
++ifeq ($(OS_ARCH),MidnightBSD)
++ifneq (,$(findstring sparc,$(OS_TEST)))
++CPPSRCS         := xptcinvoke_sparc64_freebsd.cpp xptcstubs_sparc64_freebsd.cpp
++ASFILES         := xptcinvoke_asm_sparc64_freebsd.s xptcstubs_asm_sparcv9_solari
++s.s
 +endif
 +endif
 +#
