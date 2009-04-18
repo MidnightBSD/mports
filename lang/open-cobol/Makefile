@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:	open-cobol
-# Date created:			Aug 6, 2002
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.1 2007/07/21 18:06:06 laffer1 Exp $
-# $FreeBSD: ports/lang/open-cobol/Makefile,v 1.28 2007/03/27 16:29:08 pav Exp $
-#
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.2 2008/07/20 04:56:19 laffer1 Exp $
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.0
@@ -14,6 +7,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source COBOL compiler
+LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
