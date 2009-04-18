@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser/Makefile,v 1.16 2009/02/10 22:18:41 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.1 2009/04/18 05:11:07 laffer1 Exp $
 
 PORTNAME=	browser3
 DISTVERSION=	3.0.7
@@ -18,13 +18,13 @@ BROKEN=		port is under development
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
 		nss3:${PORTSDIR}/security/nss \
 		freetype.9:${PORTSDIR}/print/freetype2
 
-CONFLICTS=	firefox-[0-9]* browser-2.[0-9]*
+CONFLICTS=	firefox-[0-9]* browser-2*
 
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
@@ -153,11 +153,11 @@ post-patch:
 		${WRKSRC}/${ii}/all.js
 .endfor
 .if ${ARCH} == "sparc64"
-	@(cd ${WRKSRC}/xpcom/reflect/xptcall/src/md/unix && \
-          ${LN} -s xptcstubs_asm_sparc64_openbsd.s xptcstubs_asm_sparc64_freebsd.s && \
-          ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_freebsd.cpp && \
-          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_freebsd.cpp) && \
-          ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_freebsd.s)
+	(cd ${WRKSRC}/xpcom/reflect/xptcall/src/md/unix && \
+          ${LN} -s xptcstubs_asm_sparc64_openbsd.s xptcstubs_asm_sparc64_midnightbsd.s && \
+          ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_midnightbsd.cpp && \
+          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_midnightbsd.cpp) && \
+          ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_midnightbsd.s)
 .endif
 	@${REINPLACE_CMD} -e  's/%{idldir}/%idldir%/g ; \
 		s|"%FULL_NSPR_CFLAGS%"|`nspr-config --cflags`|g ; \
