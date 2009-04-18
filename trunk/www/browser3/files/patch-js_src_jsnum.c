@@ -4,7 +4,7 @@
  #if defined(XP_WIN) || defined(XP_OS2)
  #include <float.h>
  #endif
-+#if defined(__FreeBSD__)
++#if defined(__FreeBSD__) || defined(__MidnightBSD__)
 +#include <sys/param.h>
 +#endif
  #include <locale.h>
@@ -14,7 +14,7 @@
  
  #else
  
-+#if defined(__FreeBSD__) && __FreeBSD_version >= 601000
++#if defined(__MidnightBSD__) || defined(__FreeBSD__) && __FreeBSD_version >= 601000
 +#include <fenv.h>
 +#define FIX_FPU() (fedisableexcept(FE_ALL_EXCEPT))
 +
