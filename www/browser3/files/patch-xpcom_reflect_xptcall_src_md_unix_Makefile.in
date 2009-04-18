@@ -69,8 +69,8 @@
 +#
 +ifeq ($(OS_ARCH),MidnightBSD)
 +ifneq (,$(findstring sparc,$(OS_TEST)))
-+CPPSRCS         := xptcinvoke_sparc64_freebsd.cpp xptcstubs_sparc64_freebsd.cpp
-+ASFILES         := xptcinvoke_asm_sparc64_freebsd.s xptcstubs_asm_sparcv9_solari
++CPPSRCS         := xptcinvoke_sparc64_midnightbsd.cpp xptcstubs_sparc64_midnightbsd.cpp
++ASFILES         := xptcinvoke_asm_sparc64_midnightbsd.s xptcstubs_asm_sparcv9_solari
 +s.s
 +endif
 +endif

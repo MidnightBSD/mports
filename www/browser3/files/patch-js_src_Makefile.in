@@ -5,7 +5,7 @@
  endif # WINNT
  
 +ifeq ($(OS_ARCH),MidnightBSD)
-+LDFLAGS         += -pthread
++LDFLAGS         += -pthread -lc -lm
 +endif
  ifeq ($(OS_ARCH),FreeBSD)
  LDFLAGS		+= -pthread
