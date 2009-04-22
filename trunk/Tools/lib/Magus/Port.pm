@@ -24,7 +24,7 @@ package Magus::Port;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.19 2008/10/02 21:13:57 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Port.pm,v 1.20 2008/10/08 18:43:08 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -126,6 +126,18 @@ sub _walk {
   }
   
 }
+
+=head2 $port->bundle_name
+
+Returns the bundle filename for this port.
+
+=cut
+
+sub bundle_name {
+  my ($self) = @_;
+  return sprintf("%s-%s.%s", $self->pkgname, $self->version, $Magus::Config{'PkgExtension'});
+}
+
 
 
 =head2 $port->set_result_pass($message);
