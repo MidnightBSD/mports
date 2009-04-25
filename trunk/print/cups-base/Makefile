@@ -1,14 +1,7 @@
-# New ports collection makefile for:	cups
-# Date created:		2003-01-22
-# Whom:			Alan Eldridge <alane@geeksrus.net>
-#
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.18 2008/11/22 09:14:39 stevan Exp $
-# $FreeBSD: ports/print/cups-base/Makefile,v 1.56 2006/08/06 09:13:35 itetcu Exp $
-#
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.19 2008/11/22 14:09:02 laffer1 Exp $
 
 PORTNAME=	cups
-PORTVERSION=	1.3.9
-PORTREVISION=	1
+PORTVERSION=	1.3.10
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
