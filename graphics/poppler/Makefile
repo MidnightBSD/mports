@@ -1,14 +1,8 @@
-# New ports collection makefile for:	poppler
-# Date created:         03 March 2005
-# Whom:                 marcus@FreeBSD.org
-#
-# $FreeBSD: ports/graphics/poppler/Makefile,v 1.20 2006/09/17 21:51:24 marcus Exp $
-#   $MCom: ports/graphics/poppler/Makefile,v 1.23 2006/04/12 17:10:20 ahze Exp $
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.6 2008/05/02 18:20:58 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.7 2008/10/29 20:19:22 ctriv Exp $
 
 PORTNAME=	poppler
 PORTVERSION=	0.6.4
+PORTREVISION=	1
 CATEGORIES=	graphics print
 MASTER_SITES=	http://poppler.freedesktop.org/
 
@@ -16,10 +10,10 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A PDF rendering library
 LICENSE=	gpl2
 
+LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	poppler-data>0:${PORTSDIR}/graphics/poppler-data
 
 USE_GMAKE=	yes
-USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack gnometarget libxml2
 USE_LDCONFIG=	yes
