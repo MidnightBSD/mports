@@ -1,16 +1,8 @@
-# New ports collection makefile for:	jpeg
-# Date created:		6 November 1994
-# Whom:			smace
-#
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.3 2008/06/13 02:24:56 laffer1 Exp $
-# $FreeBSD: ports/graphics/jpeg/Makefile,v 1.43 2006/02/23 10:37:06 ade Exp $
-#
-# PLEASE update print/ghostscript5 (there's a symlink that uses a hardwired
-# version number) when updating this port.  Thank you.
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.4 2008/06/13 02:25:26 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	6b
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		ftp://ftp.uu.net/graphics/jpeg/ \
