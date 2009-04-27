@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/LEGAL,v 1.7 2008/09/16 20:33:25 laffer1 Exp $
+# $MidnightBSD: mports/LEGAL,v 1.8 2008/09/16 20:35:53 laffer1 Exp $
 # $FreeBSD: ports/LEGAL,v 1.496 2006/09/11 18:06:11 vd Exp $
 
    **********************************************************************
@@ -18,12 +18,6 @@ Such ports are listed below:
 
 Dist			Port			Why
 ------------------------------------------------------------------------------
-116518-03.tar		editors/staroffice70	Must be bought and downloaded
-						directly from Sun via WWW
-						interface
-116518-03.tar		german/staroffice70	Must be bought and downloaded
-						directly from Sun via WWW
-						interface
 5400s_fbsd_cli_v10.zip	sysutils/aaccli		May not be redistributed in
 						binary form
 ac3dlx*			graphics/linux-ac3d	Commercial license, no
