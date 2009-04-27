@@ -1,3 +1,4 @@
-MD5 (clamav-0.94.2.tar.gz) = 1181e6d62341b84708f126cc353f7ebf
-SHA256 (clamav-0.94.2.tar.gz) = 1aec7fecff375958d067aceeb9782d3ff0be7c13bed0eecf6240fb089f8d268c
-SIZE (clamav-0.94.2.tar.gz) = 22107637
+MD5 (clamav-0.95.1.tar.gz) = c802d4b372e455849cfcb0d776fc72d8
+SHA256 (clamav-0.95.1.tar.gz) = 6161a0ffa988166cfe3c2afb3056b791f3f70285fc87f547612427bd57f63b7d
+RMD160 (clamav-0.95.1.tar.gz) = 80769c09ca15c864a578206feabe9cc4a3d985b4
+SIZE (clamav-0.95.1.tar.gz) = 24260964

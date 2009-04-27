@@ -1,8 +1,6 @@
 #!/bin/sh
 #
 # $MidnightBSD$
-# $FreeBSD: ports/security/clamav/files/clamav-milter.in,v 1.10 2008/08/18 18:44:19 garga Exp $
-#
 
 # PROVIDE: clamav-milter
 # REQUIRE: LOGIN clamd
@@ -22,10 +20,10 @@
 name=clamav_milter
 rcvar=`set_rcvar`
 
+conf_file=%%PREFIX%%/etc/clamav-milter.conf
 command=%%PREFIX%%/sbin/clamav-milter
-pidfile=%%RUNDIR%%/clamav-milter.pid
 required_dirs=%%DBDIR%%
-required_files=%%PREFIX%%/etc/clamd.conf
+required_files=${conf_file}
 
 start_precmd=start_precmd
 start_postcmd=start_postcmd
@@ -36,7 +34,7 @@ start_precmd()
 		warn "Stale socket $clamav_milter_socket removed."
 		rm "$clamav_milter_socket"
 	fi
-	rc_flags="--pidfile ${pidfile} ${flags:-$clamav_milter_flags} $clamav_milter_socket"
+	rc_flags="${flags:-$clamav_milter_flags}"
 
 	clamav_clamd_socket_prefix=${clamav_clamd_socket%:*}
 	# We can have inet or inet6, try to remove 6
@@ -85,8 +83,8 @@ start_postcmd()
 			echo "There is no clamav-milter socket (${clamav_milter_socket})!"
 			exit 1
 		fi
-		/bin/chmod ${clamav_milter_socket_mode} ${clamav_milter_socket}
-		/usr/sbin/chown ${clamav_milter_socket_user}:${clamav_milter_socket_group} ${clamav_milter_socket}
+		%%CHMOD%% ${clamav_milter_socket_mode} ${clamav_milter_socket}
+		%%CHOWN%% ${clamav_milter_socket_user}:${clamav_milter_socket_group} ${clamav_milter_socket}
 	fi
 }
 
@@ -94,7 +92,7 @@ start_postcmd()
 load_rc_config $name
 : ${clamav_milter_enable="NO"}
 : ${clamav_milter_socket="%%CLAMAV_MILTER_SOCKET%%"}
-: ${clamav_milter_flags="--postmaster-only --local --outgoing --timeout=0 --max-children=50"}
+: ${clamav_milter_flags="-c ${conf_file}"}
 : ${clamav_milter_socktimeout="60"}
 : ${clamav_milter_socket_mode="755"}
 : ${clamav_milter_socket_user="%%CLAMAVUSER%%"}
