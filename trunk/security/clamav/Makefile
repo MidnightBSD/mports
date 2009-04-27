@@ -1,22 +1,13 @@
-# New ports collection makefile for:	clamav
-# Date created:		15 July 2002
-# Whom:			markun@onohara.to
-#
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.15 2008/09/24 13:47:04 laffer1 Exp $
-# $FreeBSD: ports/security/clamav/Makefile,v 1.95 2007/03/16 19:16:32 garga Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.94.2
+PORTVERSION=	0.95.1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
 LICENSE=	agg
-# gpl, lgpl, a "freeware license for unrar code that is not that free..."
-
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
 OPTIONS=	ARC "Enable arch archives support" On \
 		ARJ "Enable arj archives support" On \
@@ -25,13 +16,16 @@ OPTIONS=	ARC "Enable arch archives support" On \
 		UNRAR "Enable rar archives support" On \
 		MILTER "Compile the milter interface" Off \
 		LDAP "libmilter was built with LDAP" Off \
+		ICONV "Enable ICONV support" Off \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
+			--host=${ARCH}-portbld-freebsd6.0
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
+CONF_FILES=	clamd freshclam
 
 PORTDOCS=	*
 
@@ -42,14 +36,12 @@ PLIST_SUB+=	DBDIR=${DBDIR} LOGDIR=${LOGDIR} RUNDIR=${RUNDIR}
 
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
-CONFIGURE_ARGS=	--with-dbdir=${DBDIR} \
-		--libdir=${PREFIX}/lib \
+CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
+		--with-dbdir=${DBDIR} \
 		--with-zlib=/usr \
-		--mandir=${MANPREFIX}/man \
 		--disable-clamuko \
 		--disable-clamav \
 		--enable-bigstack \
-		--disable-gethostbyname_r \
 		--enable-readdir_r \
 		--disable-dependency-tracking
 CPPFLAGS+=	-I${LOCALBASE}/include \
@@ -57,20 +49,27 @@ CPPFLAGS+=	-I${LOCALBASE}/include \
 LDFLAGS+=	-L${LOCALBASE}/lib \
 		${PTHREAD_LIBS}
 
+# This port has a problem with -pthread,
+# force to use -lthr until it's not fixed.
+PTHREAD_LIBS=	-lthr
+
 MAN1=		clamconf.1 \
 		clamscan.1 \
 		freshclam.1 \
 		sigtool.1 \
-		clamdscan.1
+		clamdscan.1 \
+		clamdtop.1
 MAN5=		clamd.conf.5 \
 		freshclam.conf.5
 MAN8=		clamd.8 \
 		clamav-milter.8
 
+CONFLICTS=	clamav-devel-[0-9]*
+
 CLAMAVUSER?=	clamav
 CLAMAVGROUP?=	clamav
 
-CLAMAV_CLAMD_SOCKET?=	${RUNDIR}/clamd
+CLAMAV_CLAMD_SOCKET?=	${RUNDIR}/clamd.sock
 CLAMAV_MILTER_SOCKET?=	${RUNDIR}/clmilter.sock
 
 SUB_FILES=	pkg-install pkg-deinstall
@@ -80,11 +79,13 @@ SUB_LIST+=	DBDIR=${DBDIR} \
 		CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP} \
 		CLAMAV_CLAMD_SOCKET=${CLAMAV_CLAMD_SOCKET} \
-		CLAMAV_MILTER_SOCKET=${CLAMAV_MILTER_SOCKET}
+		CLAMAV_MILTER_SOCKET=${CLAMAV_MILTER_SOCKET} \
+		CHMOD=${CHMOD} \
+		CHOWN=${CHOWN}
 
 SED_CONF=	-E -e 's|^\#?(Example)$$|\#\1|' \
 		-e 's|^\#?((Update)?LogFile) .*/([a-z]+\.log)$$|\1 ${LOGDIR}/\3|' \
-		-e 's|^\#?(PidFile) .*/([a-z]+\.pid)$$|\1 ${RUNDIR}/\2|' \
+		-e 's|^\#?(PidFile) .*/([a-z\-]+\.pid)$$|\1 ${RUNDIR}/\2|' \
 		-e 's|^\#?(LocalSocket) .*$$|\1 ${CLAMAV_CLAMD_SOCKET}|' \
 		-e 's|^\#?(User) .*$$|\1 ${CLAMAVUSER}|' \
 		-e 's|^\#?(AllowSupplementaryGroups).*$$|\1 yes|' \
@@ -92,15 +93,20 @@ SED_CONF=	-E -e 's|^\#?(Example)$$|\#\1|' \
 		-e 's|^\#?(DatabaseDirectory) .*$$|\1 ${DBDIR}|' \
 		-e 's|^\#?(DatabaseOwner) .*$$|\1 ${CLAMAVUSER}|' \
 		-e 's|^\#?(FixStaleSocket).*$$|\1 yes|' \
-		-e 's|^\#?(NotifyClamd) .*$$|\1 ${PREFIX}/etc/clamd.conf|'
+		-e 's|^\#?(NotifyClamd) .*$$|\1 ${PREFIX}/etc/clamd.conf|' \
+		-e 's|^\#?(MilterSocket) */tmp.*$$|\1 ${CLAMAV_MILTER_SOCKET}|' \
+		-e 's|^\#?(ClamdSocket).*$$|\1 unix:${CLAMAV_CLAMD_SOCKET}|'
 
 PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP}
 
 .include <bsd.port.pre.mk>
 
-# Only works with -lthr
-PTHREAD_LIBS=	-lthr
+.if (${OSVERSION} > 2999)
+CONFIGURE_ARGS+=	--enable-gethostbyname_r
+.else
+CONFIGURE_ARGS+=	--disable-gethostbyname_r
+.endif
 
 .if defined(WITH_ARC)
 RUN_DEPENDS+=	arc:${PORTSDIR}/archivers/arc
@@ -120,19 +126,28 @@ PLIST_SUB+=	UNRAR=""
 PLIST_SUB+=	UNRAR="@comment "
 CONFIGURE_ARGS+=	--disable-unrar
 .endif
+.if defined(WITH_ICONV)
+CONFIGURE_ARGS+=--with-iconv
+USE_ICONV=	yes
+.else
+CONFIGURE_ARGS+=--without-iconv
+.endif
 
 .if defined(WITH_MILTER)
 USE_RC_SUBR+=	clamav-milter
-.if defined(WITH_LDAP) && exists(${LOCALBASE}/lib/libldap.so)
+CONF_FILES+=	clamav-milter
+. if defined(WITH_LDAP) && exists(${LOCALBASE}/lib/libldap.so)
 USE_OPENLDAP=	yes
 LDFLAGS+=	-lldap
-.endif
-.if !exists(/usr/lib/libmilter.a) || exists(${LOCALBASE}/lib/libmilter.a)
+. endif
+
+. if !exists(/usr/lib/libmilter.a) || exists(${LOCALBASE}/lib/libmilter.a)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libmilter.a:${PORTSDIR}/mail/sendmail
 CONFIGURE_ARGS+=	--with-sendmail=${LOCALBASE}/sbin/sendmail
-.else
+. else
 CONFIGURE_ARGS+=	--with-sendmail=/usr/sbin/sendmail
-.endif
+. endif
+
 CONFIGURE_ARGS+=	--enable-milter
 PLIST_SUB+=	CLAMAV-MILTER=""
 .else
@@ -150,27 +165,28 @@ CONFIGURE_ARGS+=	--enable-experimental
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g' \
 		${WRKSRC}/${CONFIGURE_SCRIPT}
-	@${REINPLACE_CMD} -E 's,^(pkgconfigdir = ).*$$,\1$$(prefix)/libdata/pkgconfig,g' \
+	@${REINPLACE_CMD} -e 's,^\(pkgconfigdir = \).*$$,\1$$\(prefix\)/libdata/pkgconfig,g' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
-		${WRKSRC}/libclamunrar/unrar.c
 	@${REINPLACE_CMD} ${SED_CONF} \
 		${WRKSRC}/etc/clamd.conf \
-		${WRKSRC}/etc/freshclam.conf
+		${WRKSRC}/etc/freshclam.conf \
+		${WRKSRC}/etc/clamav-milter.conf
+	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
+		${WRKSRC}/libclamunrar/unrar.c
 
-pre-install:
+pre-su-install:
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
-.for c in clamd freshclam
+	${INSTALL_DATA} ${WRKSRC}/clamav-config.h ${PREFIX}/include
+.for c in ${CONF_FILES}
 	@[ -f ${PREFIX}/etc/${c}.conf ] || \
-		${CP} ${PREFIX}/etc/${c}.conf.default ${PREFIX}/etc/${c}.conf
+		${CP} -v ${PREFIX}/etc/${c}.conf.default ${PREFIX}/etc/${c}.conf
 .endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/html
-	@${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${DOCSDIR}/html
 .endif
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
