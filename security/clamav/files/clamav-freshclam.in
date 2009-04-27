@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/security/clamav/files/clamav-freshclam.in,v 1.1 2006/04/06 15:20:18 garga Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/clamav/files/clamav-freshclam.in,v 1.2 2007/12/28 02:58:14 laffer1 Exp $
 
 # PROVIDE: freshclam
 # REQUIRE: LOGIN clamd
