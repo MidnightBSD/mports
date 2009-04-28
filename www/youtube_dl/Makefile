@@ -3,14 +3,16 @@
 # Whom:			Pankov Pavel <pankov_p@mail.ru>
 #
 # $FreeBSD: ports/www/youtube_dl/Makefile,v 1.2 2006/09/05 17:32:56 miwi Exp $
-# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.2 2008/10/08 04:16:17 laffer1 Exp $
+# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.3 2008/10/08 04:20:02 laffer1 Exp $
 #
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2008.07.26
+PORTVERSION=	2009.04.06
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.arrakis.es/~rggi3/youtube-dl/
-DISTFILES=	youtube-dl-${PORTVERSION}
+MASTER_SITES=	http://bitbucket.org/rg3/youtube-dl/raw/468b207ea6ee/
+DISTNAME=	youtube-dl
+EXTRACT_SUFX=
 EXTRACT_ONLY=
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,7 +37,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/conv2avi.patch
 
 .if defined(WITH_FFMPEG)
 .if defined (WITH_FLV2MPEG4)
-IGNORE=		cannot use WITH_FFMPEG and WITH_FLV2MPEG4 simultaneously
+IGNORE=	cannot use WITH_FFMPEG and WITH_FLV2MPEG4 simultaneously
 .endif
 CONV2AVI_CMD=	${PREFIX}/bin/ffmpeg -y -i
 RUN_DEPENDS+=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg
@@ -45,7 +47,7 @@ RUN_DEPENDS+=	flv2mpeg4:${PORTSDIR}/multimedia/flv2mpeg4
 .endif
 
 post-extract:
-	@${CP} ${DISTDIR}/youtube-dl-${PORTVERSION} ${WRKSRC}/youtube-dl
+	@${CP} ${DISTDIR}/youtube-dl ${WRKSRC}/youtube-dl
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|' ${WRKSRC}/youtube-dl
