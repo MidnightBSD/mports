@@ -1,10 +1,4 @@
-# New ports collection makefile for:	weblint
-# Date created:		Oct 14, 1995
-# Whom:			pst
-#
-# $MidnightBSD$
-# $FreeBSD: ports/www/weblint/Makefile,v 1.17 2008/04/17 14:30:26 araujo Exp $
-#
+# $MidnightBSD: mports/www/weblint/Makefile,v 1.1 2008/06/07 20:49:31 laffer1 Exp $
 
 PORTNAME=	weblint
 PORTVERSION=	1.020
