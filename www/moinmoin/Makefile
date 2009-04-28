@@ -1,13 +1,7 @@
-# New ports collection makefile for:	moinmoin
-# Date created:				18 September 2001
-# Whom:					Hye-Shik Chang <perky@python.or.kr>
-#
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.3 2008/07/24 03:47:34 laffer1 Exp $
-# $FreeBSD: ports/www/moinmoin/Makefile,v 1.36 2008/02/25 08:46:43 miwi Exp $
-#
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.4 2009/01/13 01:01:10 laffer1 Exp $
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.7.3
+PORTVERSION=	1.8.3
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
@@ -44,7 +38,6 @@ BROKEN=		MOINTYPE must be a STANDALONE, FCGI, MOD_PYTHON or CGI.
 .endif
 
 pre-everything::
-	@${ECHO}
 	@${ECHO} "Set MOINTYPE=(CGI|FCGI|STANDALONE) to define"
 	@${ECHO} "type of installation. Default is CGI."
 	@${ECHO} "Use MOINDEST=/path to modify installation destination."
