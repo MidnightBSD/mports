@@ -1,10 +1,4 @@
-# New ports collection makefile for:	jakarta-tomcat-devel
-# Date created:		Tue Aug 12 23:26:32 CST 2003
-# Whom:			Kang Liu <liukang@bjpu.edu.cn>
-#
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.6 2008/09/18 14:33:28 laffer1 Exp $
-# $FreeBSD: ports/www/tomcat55/Makefile,v 1.38 2006/09/08 09:31:07 pav Exp $
-#
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.7 2008/10/04 17:10:40 laffer1 Exp $
 
 PORTNAME=	tomcat
 PORTVERSION=	5.5.27

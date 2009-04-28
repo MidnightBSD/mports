@@ -1,10 +1,4 @@
-# New ports collection makefile for:	apache-tomcat
-# Date created:		14 Feb 2007
-# Whom:			Nemo Liu <nemoliu@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.2 2008/04/30 20:22:35 laffer1 Exp $
-# $FreeBSD: ports/www/tomcat6/Makefile,v 1.45 2007/08/21 03:39:05 nemoliu Exp $
-#
+# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.3 2008/08/06 18:50:25 laffer1 Exp $
 
 PORTNAME=	apache-tomcat
 PORTVERSION=	6.0.18
@@ -77,9 +71,7 @@ pre-patch:
 	@${ECHO_MSG} "   Logfile stderr:           ${STDERR_LOG}"
 
 post-patch:
-	@${ECHO_MSG} -n ">> Removing unneeded files..."
 	@${RM} -f `${FIND} ${WRKSRC} -name '*.bat'` `${FIND} ${WRKSRC} -name '*.orig'` `${FIND} ${WRKSRC} -name '*.exe'`
-	@${ECHO_MSG} " [ DONE ]"
 
 .for file in ${REPLACE_FILES}
 	@${ECHO_MSG} -n ">> Customizing `basename ${file}`..."
@@ -91,12 +83,9 @@ pre-install:
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 do-install:
-	@${ECHO_MSG} -n ">> Creating destination directory..."
 	@${MKDIR} ${APP_HOME}
 	@${MKDIR} ${LOG_DIR}
-	@${ECHO_MSG} " [ DONE ]"
 
-	@${ECHO_MSG} ">> Copying files to destination directory..."
 	@${CP} ${WRKDIR}/server.xml ${WRKSRC}/conf/
 	@(cd ${WRKSRC};${FIND} conf -type f | ${SED} -e '/${CONF_EXT}/d') \
 		| while read a; do \
@@ -109,25 +98,16 @@ do-install:
 			fi; \
 		done
 	@${CP} -R ${WRKSRC}/* ${APP_HOME}
-	@${ECHO_MSG} " [ DONE ]"
 
-	@${ECHO_MSG} -n ">> Creating log files..."
 	@${INSTALL} -m 664 -o ${TOMCAT_USER} -g ${TOMCAT_GROUP} /dev/null ${STDOUT_LOG}
 	@${INSTALL} -m 664 -o ${TOMCAT_USER} -g ${TOMCAT_GROUP} /dev/null ${STDERR_LOG}
-	@${ECHO_MSG} " [ DONE ]"
 
-	@${ECHO_MSG} -n ">> Creating symlink to tools.jar..."
 	@${LN} -sf ${JAVA_HOME}/lib/tools.jar ${APP_HOME}/lib/tools.jar
-	@${ECHO_MSG} " [ DONE ]"
 
-	@${ECHO_MSG} -n ">> Fixing ownership settings..."
 	@${CHOWN} -R ${TOMCAT_USER}:${TOMCAT_GROUP} ${APP_HOME}/conf ${APP_HOME}/logs \
 		${APP_HOME}/temp ${APP_HOME}/work
-	@${ECHO_MSG} " [ DONE ]"
 
-	@${ECHO_MSG} -n ">> Fixing permissions..."
 	@${CHMOD} 755 `${FIND} ${APP_HOME} -type d`
-	@${ECHO_MSG} " [ DONE ]"
 
 post-install:
 	@${ECHO_MSG} "${APP_TITLE} ${PORTVERSION} has been installed in ${APP_HOME}."
