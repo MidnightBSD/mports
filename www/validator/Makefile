@@ -1,13 +1,7 @@
-# New ports collection makefile for:	w3c-validator
-# Date created:				13 September 2005
-# Whom:					Naram Qashat <cyberbotx@cyberbotx.com>
-#
-# $MidnightBSD: mports/www/validator/Makefile,v 1.3 2008/10/10 18:14:09 laffer1 Exp $
-# $FreeBSD: ports/www/validator/Makefile,v 1.9 2006/12/06 08:52:31 miwi Exp $
-#
+# $MidnightBSD: mports/www/validator/Makefile,v 1.4 2008/10/10 18:26:57 laffer1 Exp $
 
 PORTNAME=	validator
-PORTVERSION=	0.8.3
+PORTVERSION=	0.8.5
 CATEGORIES=	www
 MASTER_SITES=	http://validator.w3.org/dist/ \
 		http://www.cyberbotx.com/w3c-validator/
@@ -25,6 +19,7 @@ RUN_DEPENDS=	onsgmls:${PORTSDIR}/textproc/opensp \
 		${SITE_PERL}/Bundle/LWP.pm:${PORTSDIR}/www/p5-libwww \
 		${SITE_PERL}/Net/IP.pm:${PORTSDIR}/net-mgmt/p5-Net-IP \
 		${SITE_PERL}/${PERL_ARCH}/SGML/Parser/OpenSP.pm:${PORTSDIR}/textproc/p5-SGML-Parser-OpenSP \
+		${SITE_PERL}/${PERL_ARCH}/String/Approx.pm:${PORTSDIR}/devel/p5-String-Approx \
 		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI \
 		${SITE_PERL}/${PERL_ARCH}/XML/LibXML.pm:${PORTSDIR}/textproc/p5-XML-LibXML
 
@@ -60,11 +55,11 @@ do-install:
 	${MKDIR} ${PREFIX}/www/validator/htdocs/docs
 	${MKDIR} ${PREFIX}/www/validator/htdocs/images
 	${MKDIR} ${PREFIX}/www/validator/htdocs/images/info_icons
+	${MKDIR} ${PREFIX}/www/validator/htdocs/images/roadmap
 	${MKDIR} ${PREFIX}/www/validator/htdocs/images/valid_icons
 	${MKDIR} ${PREFIX}/www/validator/htdocs/misc
 	${MKDIR} ${PREFIX}/www/validator/htdocs/scripts
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib
-	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/CR-xhtml-basic-20070713
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/IETF
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/ISO-HTML
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/REC-MathML2-20031021
@@ -87,6 +82,7 @@ do-install:
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/REC-xhtml11-20010531
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/WD-XHTMLplusMathMLplusSVG-20020809
 	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/WD-xhtml-basic-20060705
+	${MKDIR} ${PREFIX}/www/validator/htdocs/sgml-lib/WD-xhtml11-20070216
 	${MKDIR} ${PREFIX}/www/validator/htdocs/source
 	${MKDIR} ${PREFIX}/www/validator/htdocs/style
 	${MKDIR} ${PREFIX}/www/validator/httpd
@@ -101,11 +97,11 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/htdocs/docs/* ${PREFIX}/www/validator/htdocs/docs
 	${INSTALL_DATA} `${FIND} ${WRKSRC}/htdocs/images -type f -depth 1` ${PREFIX}/www/validator/htdocs/images
 	${INSTALL_DATA} ${WRKSRC}/htdocs/images/info_icons/* ${PREFIX}/www/validator/htdocs/images/info_icons
+	${INSTALL_DATA} ${WRKSRC}/htdocs/images/roadmap/* ${PREFIX}/www/validator/htdocs/images/roadmap
 	${INSTALL_DATA} ${WRKSRC}/htdocs/images/valid_icons/* ${PREFIX}/www/validator/htdocs/images/valid_icons
 	${INSTALL_DATA} ${WRKSRC}/htdocs/misc/* ${PREFIX}/www/validator/htdocs/misc
 	${INSTALL_DATA} `${FIND} ${WRKSRC}/htdocs/scripts -type f -depth 1` ${PREFIX}/www/validator/htdocs/scripts
 	${INSTALL_DATA} `${FIND} ${WRKSRC}/htdocs/sgml-lib -type f -depth 1` ${PREFIX}/www/validator/htdocs/sgml-lib
-	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/CR-xhtml-basic-20070713/* ${PREFIX}/www/validator/htdocs/sgml-lib/CR-xhtml-basic-20070713
 	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/IETF/* ${PREFIX}/www/validator/htdocs/sgml-lib/IETF
 	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/ISO-HTML/* ${PREFIX}/www/validator/htdocs/sgml-lib/ISO-HTML
 	${INSTALL_DATA} `${FIND} ${WRKSRC}/htdocs/sgml-lib/REC-MathML2-20031021 -type f -depth 1` ${PREFIX}/www/validator/htdocs/sgml-lib/REC-MathML2-20031021
@@ -128,6 +124,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/REC-xhtml11-20010531/* ${PREFIX}/www/validator/htdocs/sgml-lib/REC-xhtml11-20010531
 	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/WD-XHTMLplusMathMLplusSVG-20020809/* ${PREFIX}/www/validator/htdocs/sgml-lib/WD-XHTMLplusMathMLplusSVG-20020809
 	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/WD-xhtml-basic-20060705/* ${PREFIX}/www/validator/htdocs/sgml-lib/WD-xhtml-basic-20060705
+	${INSTALL_DATA} ${WRKSRC}/htdocs/sgml-lib/WD-xhtml11-20070216/* ${PREFIX}/www/validator/htdocs/sgml-lib/WD-xhtml11-20070216
 	${INSTALL_DATA} ${WRKSRC}/htdocs/source/* ${PREFIX}/www/validator/htdocs/source
 	${INSTALL_DATA} ${WRKSRC}/htdocs/style/* ${PREFIX}/www/validator/htdocs/style
 	${INSTALL_SCRIPT} ${WRKSRC}/httpd/cgi-bin/* ${PREFIX}/www/validator/httpd/cgi-bin
