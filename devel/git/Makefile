@@ -2,11 +2,11 @@
 # Date created:				7 Feb 2006
 # Whom:					Eric Anholt
 #
-# $MidnightBSD: mports/devel/git/Makefile,v 1.10 2009/04/04 00:51:28 ctriv Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.11 2009/04/14 16:53:33 ctriv Exp $
 # $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.2.3
+PORTVERSION=	1.6.2.4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -103,6 +103,7 @@ MAKE_ENV+=	NO_TCLTK=yes
 .endif
 
 .ifdef (WITH_SVN)
+BROKEN=		The subversion-perl port has been deleted
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Term/ReadKey.pm:${PORTSDIR}/devel/p5-Term-ReadKey \
 		svn:${PORTSDIR}/devel/subversion-perl
 .endif
