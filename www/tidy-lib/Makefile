@@ -1,10 +1,4 @@
-# New ports collection makefile for:    tidy-lib
-# Date created:                         21 February 2003
-# Whom:                                 Thierry Thomas <thierry@pompo.net>
-#
-# $FreeBSD: ports/www/tidy-lib/Makefile,v 1.2 2003/02/25 19:17:49 petef Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/www/tidy-lib/Makefile,v 1.1 2006/11/05 15:33:04 laffer1 Exp $
 
 PORTNAME=	tidy
 CATEGORIES=	www
