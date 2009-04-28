@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.2 2009/03/29 20:27:44 laffer1 Exp $
+# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.3 2009/03/29 21:17:09 laffer1 Exp $
 
 PORTNAME=	ZendFramework
-PORTVERSION=	1.7.4
+PORTVERSION=	1.7.8
 CATEGORIES=	www
 MASTER_SITES=	http://framework.zend.com/releases/${DISTNAME}/ GENTOO/distfiles
 
@@ -28,8 +28,6 @@ OPTIONS=	\
 		SQLITE "Install SQLite v3 PDO support" Off \
 		REQPHP "Install required PHP dependencies" On \
 		OPTPHP "Install optional PHP dependencies" Off
-
-#OCI "Install Oracle OCI 8 PDO support" Off \
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	INSTALL.txt README.txt
