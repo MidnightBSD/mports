@@ -1,12 +1,7 @@
-# New ports collection makefile for: openssh
-# Date created:  18 Mar 1999
-# Whom:   dwcjr@inethouston.net
-#
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.8 2008/09/18 14:44:13 laffer1 Exp $
-# $FreeBSD: ports/security/openssh-portable/Makefile,v 1.111 2006/10/01 19:37:54 mnag Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.9 2008/09/18 14:48:58 laffer1 Exp $
 
 PORTNAME=	openssh
-DISTVERSION=	5.0p1
+DISTVERSION=	5.1p1
 CATEGORIES=	security ipv6
 MASTER_SITES=	${MASTER_SITE_OPENBSD}
 MASTER_SITE_SUBDIR=	OpenSSH/portable
@@ -120,7 +115,7 @@ EXTRA_PATCHES+=		${FILESDIR}/scardpin.patch
 .if defined(WITH_HPN)
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=		http://www.psc.edu/networking/projects/hpn-ssh/
-PATCHFILES+=		openssh-5.0p1-hpn13v3.diff.gz
+PATCHFILES+=		openssh-5.1p1-hpn13v5.diff.gz
 .endif
 
 .if defined(WITH_OVERWRITE_BASE)
@@ -207,7 +202,6 @@ post-install:
 	@${ECHO_CMD} "etc/rc.d/${RC_SCRIPT_NAME}" >> ${TMPPLIST}
 	@${ECHO_CMD} "@cwd ${PREFIX}" >> ${TMPPLIST}
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 test:	build
 	(cd ${WRKSRC}/regress && ${SETENV} ${MAKE_ENV} TEST_SHELL=/bin/sh \
