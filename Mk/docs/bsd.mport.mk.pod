@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.8 2009/01/02 01:36:29 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.9 2009/03/27 05:30:36 laffer1 Exp $
 
 =head1 NAME
 
@@ -1710,6 +1710,18 @@ Default: ${PREFIX}/share/examples/${PORTNAME}
 Name of the directory to install the packages shared data in.
 
 Default: ${PREFIX}/share/${PORTNAME}
+
+=item WWWDIR
+
+Name of the directory to install the packages www data in.
+
+Default: ${PREFIX}/www/${PORTNAME}
+
+=item ETCDIR
+
+Name of the directory to install the packages etc data in.
+
+Default: ${PREFIX}/etc/${PORTNAME}
 
 =item DESKTOPDIR
 
