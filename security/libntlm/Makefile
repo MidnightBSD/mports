@@ -1,14 +1,7 @@
-# ex:ts=8
-# Ports collection makefile for:	libntlm
-# Date created:			Oct 19, 2003
-# Whom:				ijliao
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/libntlm/Makefile,v 1.10 2007/01/28 09:07:43 kris Exp $
-#
+# $MidnightBSD: mports/security/libntlm/Makefile,v 1.1 2007/12/28 20:32:33 laffer1 Exp $
 
 PORTNAME=	libntlm
-PORTVERSION=	0.3.6
+PORTVERSION=	1.0
 CATEGORIES=	security
 MASTER_SITES=	http://josefsson.org/${PORTNAME}/releases/
 
