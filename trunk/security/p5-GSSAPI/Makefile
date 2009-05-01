@@ -1,13 +1,7 @@
-# New ports collection makefile for:	security/p5-GSSAPI
-# Date created:				28 March 2006
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $MidnightBSD: mports/security/p5-GSSAPI/Makefile,v 1.1 2007/02/23 21:13:36 laffer1 Exp $
-# $FreeBSD: ports/security/p5-GSSAPI/Makefile,v 1.8 2006/10/03 15:34:35 chinsan Exp $
-#
+# $MidnightBSD: mports/security/p5-GSSAPI/Makefile,v 1.2 2007/08/01 20:11:59 laffer1 Exp $
 
 PORTNAME=	GSSAPI
-PORTVERSION=	0.23
+PORTVERSION=	0.26
 CATEGORIES=	security perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../authors/id/A/AG/AGROLMS
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension providing access to the GSSAPIv2 library
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
