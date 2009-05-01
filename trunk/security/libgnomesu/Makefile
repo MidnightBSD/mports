@@ -1,9 +1,4 @@
-# New ports collection makefile for:	libgnomesu
-# Date created:				12 January 2005
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.1 2008/03/05 02:20:27 laffer1 Exp $
-# $FreeBSD: ports/security/libgnomesu/Makefile,v 1.19 2007/10/24 23:36:32 marcus Exp $
+# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.2 2008/04/06 01:53:00 laffer1 Exp $
 
 PORTNAME=	libgnomesu
 PORTVERSION=	1.0.0
@@ -16,8 +11,6 @@ COMMENT=	Library and frontend for running commands as root
 LICENSE=	gpl2
 # while the library is lgpl, it uses GPL components directly.
 
-USE_XLIB=	yes
-USE_GETOPT_LONG=yes
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix libgnomeui
