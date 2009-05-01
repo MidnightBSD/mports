@@ -1,13 +1,7 @@
-# New ports collection makefile for:	openct
-# Date created:		2004-09-08
-# Whom:			Janos Mohacsi <janos.mohacsi@bsd.hu>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/openct/Makefile,v 1.17 2008/04/19 17:53:27 miwi Exp $
-#
+# $MidnightBSD: mports/security/openct/Makefile,v 1.1 2008/09/18 15:25:28 laffer1 Exp $
 
 PORTNAME=	openct
-DISTVERSION=	0.6.14
+DISTVERSION=	0.6.15
 CATEGORIES=	security
 MASTER_SITES=	http://www.opensc-project.org/files/${PORTNAME}/ \
 		http://www.opensc-project.org/files/${PORTNAME}/testing/
@@ -27,12 +21,12 @@ USE_LDCONFIG=	yes
 USE_RC_SUBR=	openct
 SUB_FILES=	etoken.conf
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LTLIB_CFLAGS="-I${LOCALBASE}/include" \
+		LTLIB_LIBS="-L${LOCALBASE}/lib -lltdl"
+
+CONFIGURE_ARGS=	--localstatedir=/var
 
 MAN1=		openct-tool.1
-
-DOC_FILES=	README export-wiki.sh export-wiki.xsl trac.css *.html api
 
 PORTDOCS=	*
 
@@ -42,20 +36,34 @@ PORTDOCS=	*
 LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
 .endif
 
-.if defined(WITH_PCSC) || exists(${LOCALBASE}/lib/libpcsclite.so)
+.if defined(WITH_PCSC)
 LIB_DEPENDS+=	pcsclite.1:${PORTSDIR}/devel/pcsc-lite
+CONFIGURE_ARGS+=--enable-pcsc
 PLIST_SUB+=	PCSC=""
 .else
 PLIST_SUB+=	PCSC="@comment "
 .endif
 
+.ifndef(NOPORTDOCS)
+CONFIGURE_ARGS+=--enable-doc
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
+		${WRKSRC}/configure
+.ifndef(NOPORTDOCS)
+	@${REINPLACE_CMD} 's|install-data-am: install-apidocDATA install-dist_docDATA|install-data-am: install-dist_docDATA|' \
+		${WRKSRC}/doc/Makefile.in
+.else
+	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA|install-data-am:|' \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} 's|install-data-am: install-apidocDATA install-dist_docDATA|install-data-am:|' \
+		${WRKSRC}/doc/Makefile.in
+.endif
+
 post-install:
-	${INSTALL_DATA}	${WRKSRC}/etc/openct.conf ${PREFIX}/etc/openct.conf-sample
 	@${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA}	${WRKDIR}/etoken.conf ${EXAMPLESDIR}
-.ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/doc && ${CP} -R ${DOC_FILES} ${DOCSDIR})
-.endif
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
