@@ -2,12 +2,12 @@
 # Date created:		10 September 2002
 # Whom:			Bruce M Simpson
 #
-# $MidnightBSD: mports/security/opensc/Makefile,v 1.1 2008/09/18 15:25:28 laffer1 Exp $
+# $MidnightBSD: mports/security/opensc/Makefile,v 1.2 2008/09/18 15:30:30 laffer1 Exp $
 # $FreeBSD: ports/security/opensc/Makefile,v 1.30 2008/04/19 17:53:27 miwi Exp $
 #
 
 PORTNAME=	opensc
-DISTVERSION=	0.11.4
+PORTVERSION=	0.11.7
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.opensc-project.org/files/${PORTNAME}/ \
 		http://www.opensc-project.org/files/${PORTNAME}/testing/
@@ -21,26 +21,24 @@ OPTIONS=	OPENCT "Enable direct OpenCT backend support" on \
 		SIGNER "Enable signer browser plugin" off
 
 USE_AUTOTOOLS=	libltdl:15
+USE_ICONV=	yes
 USE_OPENSSL=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack pkgconfig
+USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="${LDFLAGS}" \
+CONFIGURE_ENV=	LTLIB_CFLAGS="-I${LOCALBASE}/include" \
+		LTLIB_LIBS="-L${LOCALBASE}/lib -lltdl" \
+		ICONV_CFLAGS="-I${LOCALBASE}/include" \
+		ICONV_LIBS="-L${LOCALBASE}/lib -liconv" \
 		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB} -lssl"
-
-DOC_FILES=	README *.sh *.xsl *.css *.html api html tools
 
 PORTDOCS=	*
 
 MANCOMPRESSED=	no
-MAN1=		cardos-info.1 cryptoflex-tool.1 netkey-tool.1 \
+MAN1=		cardos-tool.1 cryptoflex-tool.1 netkey-tool.1 \
 		opensc-config.1 opensc-explorer.1 opensc-tool.1 \
 		pkcs11-tool.1 pkcs15-crypt.1 pkcs15-init.1 pkcs15-tool.1
 MAN3=		sc_app_info_t.3 sc_append_record.3 sc_asn1_decode.3 \
@@ -69,14 +67,12 @@ MAN5=		pkcs15-profile.5
 
 .if !defined(WITHOUT_OPENCT)
 LIB_DEPENDS+=	openct.1:${PORTSDIR}/security/openct
-.else
-CONFIGURE_ARGS+=--disable-openct
+CONFIGURE_ARGS+=--enable-openct
 .endif
 
 .if defined(WITH_PCSC)
 LIB_DEPENDS+=	pcsclite.1:${PORTSDIR}/devel/pcsc-lite
-.else
-CONFIGURE_ARGS+=--disable-pcsc-lite
+CONFIGURE_ARGS+=--enable-pcsc
 .endif
 
 .if defined(WITH_SIGNER)
@@ -84,20 +80,35 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/libassuan.a:${PORTSDIR}/security/libassuan
 PINENTRY?=	${LOCALBASE}/bin/pinentry
 RUN_DEPENDS+=	pinentry:${PORTSDIR}/security/pinentry
 USE_XORG=	x11
-CONFIGURE_ARGS+=--with-libassuan-prefix=${LOCALBASE} \
-		--with-plugin-dir=${LOCALBASE}/lib/browser_plugins \
-		--with-pin-entry=${PINENTRY}
+CONFIGURE_ARGS+=--enable-nsplugin \
+		--with-libassuan-prefix=${LOCALBASE} \
+		--with-plugindir=${WEBPLUGINS_DIR} \
+		--with-pinentry=${PINENTRY}
 PLIST_SUB+=	SIGNER=""
+
+USE_WEBPLUGINS=	gecko*
+WEBPLUGINS_FILES=opensc-signer.so
+.include "${PORTSDIR}/www/firefox/Makefile.webplugins"
 .else
-CONFIGURE_ARGS+=--disable-nsplugin
 PLIST_SUB+=	SIGNER="@comment "
 .endif
 
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/etc/opensc.conf ${PREFIX}/etc/opensc.conf-sample
 .ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@(cd ${WRKSRC}/doc && ${CP} -R ${DOC_FILES} ${DOCSDIR})
+CONFIGURE_ARGS+=--enable-doc
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
+		${WRKSRC}/configure
+.if !defined(WITH_SIGNER)
+	@${REINPLACE_CMD} 's|install-data-am: install-pluginDATA|install-data-am:|' \
+		${WRKSRC}/src/signer/Makefile.in
+.endif
+.ifdef(NOPORTDOCS)
+	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA|install-data-am:|' \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} 's|install-data-am: install-dist_docDATA install-dist_htmlDATA|install-data-am:|' \
+		${WRKSRC}/doc/Makefile.in
 .endif
 
 .include <bsd.port.post.mk>
