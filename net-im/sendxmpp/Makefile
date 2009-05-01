@@ -1,10 +1,4 @@
-# New ports collection makefile for:	sendxmpp
-# Date created:				24 Jan 2006
-# Whom:	      				Max E. Kuznecov <mek@mek.uz.ua>
-#
-# $MidnightBSD: mports/net-im/sendxmpp/Makefile,v 1.1 2007/05/02 23:32:45 laffer1 Exp $
-# $FreeBSD: ports/net-im/sendxmpp/Makefile,v 1.1 2006/01/25 10:23:24 garga Exp $
-#
+# $MidnightBSD: mports/net-im/sendxmpp/Makefile,v 1.2 2007/08/01 20:39:07 laffer1 Exp $
 
 PORTNAME=	sendxmpp
 PORTVERSION=	0.0.8
@@ -13,6 +7,7 @@ MASTER_SITES=	http://www.djcbsoftware.nl/code/sendxmpp/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl-script to send xmpp (jabber) messages
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${SITE_PERL}/Net/XMPP.pm:${PORTSDIR}/net-im/p5-Net-XMPP
 RUN_DEPENDS=	${BUILD_DEPENDS}
