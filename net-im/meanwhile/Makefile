@@ -1,10 +1,4 @@
-# New ports collection makefile for:	meanwhile
-# Date created:		24 June 2004
-# Whom:		 	Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.2 2007/12/28 19:40:20 laffer1 Exp $
-# $FreeBSD: ports/net-im/meanwhile/Makefile,v 1.25 2007/01/28 09:07:42 kris Exp $
-#
+# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.3 2008/09/13 22:43:07 laffer1 Exp $
 
 PORTNAME=	meanwhile
 PORTVERSION=	1.0.2
