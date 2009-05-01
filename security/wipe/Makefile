@@ -1,10 +1,4 @@
-# New ports collection makefile for:	wipe
-# Date created:				04 February 2005
-# Whom:					Edson Brandi <ebrandi@fugspbr.org>
-#
-# $FreeBSD: ports/security/wipe/Makefile,v 1.1 2005/03/05 16:04:43 pav Exp $
-# $MidnightBSD: mports/security/wipe/Makefile,v 1.1 2006/11/09 13:56:44 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/wipe/Makefile,v 1.2 2007/10/31 03:24:09 laffer1 Exp $
 
 PORTNAME=	wipe
 PORTVERSION=	2.2.0
