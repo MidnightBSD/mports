@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Crypt-SSLeay
-# Date created:				December-15-2000
-# Whom:	      				Alfred Perlstein <alfred@freebsd.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/p5-Crypt-SSLeay/Makefile,v 1.27 2008/04/17 14:28:13 araujo Exp $
-#
+# $MidnightBSD: mports/security/p5-Crypt-SSLeay/Makefile,v 1.2 2008/10/11 22:17:13 laffer1 Exp $
 
 PORTNAME=	Crypt-SSLeay
 PORTVERSION=	0.57
