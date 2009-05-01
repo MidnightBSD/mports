@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gnutls
-# Date created:				13 Nov 2002
-# Whom:					Sergei Kolobov <sergei@kolobov.com>
-#
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.9 2008/08/10 13:32:39 crash Exp $
-# $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
-#
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.10 2009/05/01 14:22:34 laffer1 Exp $
 
 PORTNAME=	gnutls
-PORTVERSION=	2.6.4
+PORTVERSION=	2.6.6
 CATEGORIES=	security net
 MASTER_SITES=	${MASTER_SITE_GNU} \
 		${MASTER_SITE_GNUPG}
@@ -17,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 LICENSE=        gpl3
 
-LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
