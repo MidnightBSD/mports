@@ -1,16 +1,9 @@
-# New ports collection makefile for:	p5-Digest-HMAC
-# Date created:				2001/12/11
-# Whom:					nork@cityfujisawa.ne.jp
-#
-# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.3 2008/05/04 10:00:23 crash Exp $
-# $FreeBSD: ports/security/p5-Digest-HMAC/Makefile,v 1.6 2004/08/13 15:21:19 nork Exp $
-#
+# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.4 2008/05/04 17:47:49 ctriv Exp $
 
 PORTNAME=	Digest-HMAC
 PORTVERSION=	1.01
 CATEGORIES=	security perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Digest
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
