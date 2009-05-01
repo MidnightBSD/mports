@@ -1,17 +1,12 @@
-# New ports collection makefile for:	gpgme
-# Date created:		15 June 2001
-# Whom:			teramoto@comm.eng.osaka-u.ac.jp
-#
-# $FreeBSD: ports/security/gpgme/Makefile,v 1.42 2006/12/22 02:51:14 kuriyama Exp $
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.6 2008/06/07 15:35:41 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.7 2008/06/13 04:08:34 laffer1 Exp $
 
 PORTNAME=	gpgme
-PORTVERSION=	1.1.5
-PORTREVISION=	1
+PORTVERSION=	1.1.8
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gpgme
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to make access to GnuPG easier
@@ -25,40 +20,58 @@ USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS=	--with-gpg=${LOCALBASE}/bin/gpg \
-		--with-gpgsm=${LOCALBASE}/bin/gpgsm \
+CONFIGURE_ARGS=	\
 		--includedir=${PREFIX}/include/gpgme \
 		--disable-gpg-test \
 		--disable-gpgsm-test
 
 INFO=		gpgme
+PORTDOCS=	AUTHORS ChangeLog COPYING COPYING.LESSER INSTALL \
+		NEWS README THANKS TODO
 
-OPTIONS=	PTH "Enable alternative libgpgme using GNU portable threads" off
+OPTIONS=	GNUPG1 "Use GNUPG 1.x instead of GNUPG 2.x" off \
+		PTH "Build alternate lib with GNU portable threads" off
 
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_GNUPG1)
+BUILD_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg1
+RUN_DEPENDS+=	gpg:${PORTSDIR}/security/gnupg1
+CONFIGURE_ARGS+=--with-gpg=${LOCALBASE}/bin/gpg \
+		--with-gpgsm=no \
+		--with-gpgconf=no
+.else
+BUILD_DEPENDS+=	gpg2:${PORTSDIR}/security/gnupg
+RUN_DEPENDS+=	gpg2:${PORTSDIR}/security/gnupg
+CONFIGURE_ARGS+=--with-gpg=${LOCALBASE}/bin/gpg2 \
+		--with-gpgsm=${LOCALBASE}/bin/gpgsm \
+		--with-gpgconf=${LOCALBASE}/bin/gpgconf
+.endif
 
 .if defined(WITH_PTH)
 LIB_DEPENDS+=	pth:${PORTSDIR}/devel/pth
 PLIST_SUB+=	WITH_PTH=''
-.elif defined(WITHOUT_PTH)
+.else
 CONFIGURE_ARGS+=--without-pth --without-pth-test
 PLIST_SUB+=	WITH_PTH='@comment '
 .endif
+
+verify: checksum
+	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.sig
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|EOF||g' ${WRKSRC}/assuan/assuan-errors.c
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
 					${WRKSRC}/${CONFIGURE_SCRIPT} \
-					${WRKSRC}/gpgme/Makefile.in \
-					${WRKSRC}/gpgme/gpgme-config.in
+					${WRKSRC}/src/Makefile.in \
+					${WRKSRC}/src/gpgme-config.in
 	@${REINPLACE_CMD} -e 's|^clfilesdir.*|clfilesdir=$$\(libdir\)/common-lisp/gpgme|g' \
-                                        ${WRKSRC}/lang/cl/Makefile.in
+					${WRKSRC}/lang/cl/Makefile.in
 
-.if defined(WITH_PTH)
-.if defined(PTHREAD_LIBS) && ${PTHREAD_LIBS} != "-pthread"
-	@${REINPLACE_CMD} -e 's|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la|t_thread1_LDADD = ../../gpgme/libgpgme-pthread.la -lpthread|g' \
-					${WRKSRC}/tests/gpg/Makefile.in
-.endif
+post-install:
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>
