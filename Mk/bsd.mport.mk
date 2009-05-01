@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.149 2009/04/06 17:39:20 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.150 2009/04/14 20:39:10 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -478,6 +478,7 @@ PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BAS
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
+		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
 PLIST_REINPLACE+=	stopdaemon rmtry
@@ -1725,10 +1726,14 @@ INFO_PATH?=	info
 DOCSDIR?=	${PREFIX}/share/doc/${PORTNAME}
 EXAMPLESDIR?=	${PREFIX}/share/examples/${PORTNAME}
 DATADIR?=	${PREFIX}/share/${PORTNAME}
+WWWDIR?=	${PREFIX}/www/${PORTNAME}
+ETCDIR?=	${PREFIX}/etc/${PORTNAME}
 
 PLIST_SUB+=	DOCSDIR="${DOCSDIR:S,^${PREFIX}/,,}" \
 		EXAMPLESDIR="${EXAMPLESDIR:S,^${PREFIX}/,,}" \
-		DATADIR="${DATADIR:S,^${PREFIX}/,,}"
+		DATADIR="${DATADIR:S,^${PREFIX}/,,}" \
+		WWWDIR="${WWWDIR:S,^${PREFIX}/,,}" \
+		ETCDIR="${ETCDIR:S,^${PREFIX}/,,}"
 
 DESKTOPDIR?=		${PREFIX}/share/applications
 _DESKTOPDIR_REL=	${DESKTOPDIR:S,^${PREFIX}/,,}/
