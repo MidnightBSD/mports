@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/security/libgpg-error/pkg-plist,v 1.7 2007/03/08 14:11:30 jylefort Exp $
+@comment $FreeBSD: ports/security/libgpg-error/pkg-plist,v 1.8 2008/03/03 12:13:46 novel Exp $
 bin/gpg-error
 bin/gpg-error-config
 include/gpg-error.h
@@ -23,4 +23,5 @@ share/common-lisp/source/gpg-error/gpg-error-codes.lisp
 %%NLS%%share/locale/fr/LC_MESSAGES/libgpg-error.mo
 %%NLS%%share/locale/pl/LC_MESSAGES/libgpg-error.mo
 %%NLS%%share/locale/ro/LC_MESSAGES/libgpg-error.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/libgpg-error.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/libgpg-error.mo

@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libgpg-error
-# Date created:		2003-10-12
-# Whom:			Sergei Kolobov <sergei@kolobov.com>
-#
-# $FreeBSD: ports/security/libgpg-error/Makefile,v 1.17 2006/09/22 06:57:06 sergei Exp $
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.4 2008/06/10 15:54:44 crash Exp $
-#
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.5 2008/06/13 02:45:02 laffer1 Exp $
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.6
+PORTVERSION=	1.7
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
