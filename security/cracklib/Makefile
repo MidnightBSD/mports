@@ -2,7 +2,7 @@
 # Date created:				12 Oct 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/cracklib/Makefile,v 1.1 2007/10/12 17:05:54 laffer1 Exp $
 #
 
 PORTNAME=	cracklib
@@ -13,6 +13,7 @@ DISTNAME=	${PORTNAME},${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Password-checking library
+LICENSE=	other
 
 MAN3=		cracklib.3
 MLINKS=		cracklib.3 FascistCheck.3
