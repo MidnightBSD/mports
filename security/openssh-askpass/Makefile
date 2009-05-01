@@ -1,9 +1,4 @@
-# New ports collection makefile for:	OpenSSH-askpass
-# Date created:		27 February 2000
-# Whom:			Kris Kennaway <kris@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/openssh-askpass/Makefile,v 1.15 2008/05/13 10:27:09 flz Exp $
+# $MidnightBSD: mports/security/openssh-askpass/Makefile,v 1.1 2008/06/02 04:33:10 archite Exp $
 #
 
 PORTNAME=	OpenSSH-askpass
@@ -14,6 +9,7 @@ DISTNAME=	x11-ssh-askpass-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical password applet for entering SSH passphrase
+LICENSE=	agg
 
 USE_IMAKE=	yes
 USE_XORG=	x11 xt
