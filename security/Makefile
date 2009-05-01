@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.87 2009/02/08 23:30:07 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.88 2009/03/14 15:50:01 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -95,7 +95,6 @@
     SUBDIR += vpnc
     SUBDIR += webfwlog
     SUBDIR += wipe
-    SUBDIR += wpa_supplicant
     SUBDIR += xinetd
     SUBDIR += xmlsec
     SUBDIR += xmlsec1
