@@ -1,3 +1,4 @@
-MD5 (libgcrypt-1.4.1.tar.bz2) = 26703ecef4bbe113b8e6a87572b80b32
-SHA256 (libgcrypt-1.4.1.tar.bz2) = fe3b32bdf0c92d6b3bb7b3e4b3c19a6a899a9deb65f1b36f0a5882d308c91fa3
-SIZE (libgcrypt-1.4.1.tar.bz2) = 969240
+MD5 (libgcrypt-1.4.4.tar.bz2) = 34105aa927e23c217741966496b97e67
+SHA256 (libgcrypt-1.4.4.tar.bz2) = 3212b88080cf8fa006164d38fc176fafa5c29591c8384f284ab880db0dbf306f
+RMD160 (libgcrypt-1.4.4.tar.bz2) = 65fd66687bd17bc8a680c59f26a8edf3e21e7dbf
+SIZE (libgcrypt-1.4.4.tar.bz2) = 1143139
