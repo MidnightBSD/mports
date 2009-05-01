@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.10 2009/05/01 14:22:34 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.11 2009/05/01 14:33:08 laffer1 Exp $
 
 PORTNAME=	gnutls
 PORTVERSION=	2.6.6
@@ -31,7 +31,7 @@ MANCOMPRESSED=	no
 .include <bsd.port.pre.mk>
 
 .if (defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.4)) && !defined(WITHOUT_LIBTASN1)
-LIB_DEPENDS+=	tasn1.3:${PORTSDIR}/security/libtasn1
+LIB_DEPENDS+=	tasn1.4:${PORTSDIR}/security/libtasn1
 .else
 CONFIGURE_ARGS+=	--with-included-libtasn1
 .endif
