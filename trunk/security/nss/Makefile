@@ -1,10 +1,4 @@
-# Ports collection Makefile for:	nss
-# Date created:				18 December 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/security/nss/Makefile,v 1.6 2008/05/22 22:09:13 laffer1 Exp $
-# $FreeBSD: ports/security/nss/Makefile,v 1.33 2006/09/03 00:20:58 ahze Exp $
-#
+# $MidnightBSD: mports/security/nss/Makefile,v 1.7 2008/05/22 22:10:18 laffer1 Exp $
 
 PORTNAME=	nss
 PORTVERSION=	3.11.9
