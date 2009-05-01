@@ -1,11 +1,4 @@
-# ex:ts=8
-# New ports collection makefile for:	smap
-# Date created:			May 25, 2007
-# Whom:				Edwin Groothuis <edwin@mavetju.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/smap/Makefile,v 1.2 2007/05/27 21:38:43 edwin Exp $
-#
+# $MidnightBSD: mports/security/smap/Makefile,v 1.1 2008/04/29 05:06:38 laffer1 Exp $
 
 PORTNAME=	smap
 PORTVERSION=	0.5.0
