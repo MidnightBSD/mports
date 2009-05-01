@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Digest-SHA1
-# Date created:				30 March 2001
-# Whom:					Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
-#
-# $MidnightBSD: mports/security/p5-Digest-SHA1/Makefile,v 1.1 2007/02/23 21:17:33 laffer1 Exp $
-# $FreeBSD: ports/security/p5-Digest-SHA1/Makefile,v 1.13 2006/01/19 14:34:54 erwin Exp $
-#
+# $MidnightBSD: mports/security/p5-Digest-SHA1/Makefile,v 1.2 2008/06/04 18:02:13 laffer1 Exp $
 
 PORTNAME=	Digest-SHA1
 PORTVERSION=	2.11
