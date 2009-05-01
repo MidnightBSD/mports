@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libtasn1
-# Date created:		7 Nov 2007
-# Whom:			Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.3 2008/03/21 01:35:09 laffer1 Exp $
-# $FreeBSD: ports/security/libtasn1/Makefile,v 1.32 2007/07/23 09:36:30 rafan Exp $
-#
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.4 2008/05/22 21:47:14 laffer1 Exp $
 
 PORTNAME=	libtasn1
-PORTVERSION=	1.3
+PORTVERSION=	1.8
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/ \
 		http://josefsson.org/gnutls/releases/libtasn1/
@@ -45,6 +39,7 @@ MAN3=		\
 		asn1_find_node.3 \
 		asn1_find_structure_from_oid.3 \
 		asn1_get_bit_der.3 \
+		asn1_get_length_ber.3 \
 		asn1_get_length_der.3 \
 		asn1_get_octet_der.3 \
 		asn1_get_tag_der.3 \
@@ -53,9 +48,11 @@ MAN3=		\
 		asn1_octet_der.3 \
 		asn1_parser2array.3 \
 		asn1_parser2tree.3 \
+		asn1_perror.3 \
 		asn1_print_structure.3 \
 		asn1_read_tag.3 \
 		asn1_read_value.3 \
+		asn1_strerror.3 \
 		asn1_write_value.3 \
 		libtasn1_perror.3 \
 		libtasn1_strerror.3
