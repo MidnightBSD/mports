@@ -1,10 +1,4 @@
-# New ports collection makefile for:	l0phtcrack
-# Date created:				2000-10-31
-# Whom:					Trevor Johnson
-#
-# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.1 2007/07/29 21:41:40 laffer1 Exp $
-# $FreeBSD: ports/security/l0phtcrack/Makefile,v 1.17 2006/09/03 17:34:52 kris Exp $
-#
+# $MidnightBSD: mports/security/l0phtcrack/Makefile,v 1.2 2008/09/01 01:47:09 laffer1 Exp $
 
 PORTNAME=	l0phtcrack
 PORTVERSION=	1.5
