@@ -1,10 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/p5-Authen-SASL/Makefile,v 1.2 2009/04/08 21:08:13 laffer1 Exp $
 
 PORTNAME=	Authen-SASL
 PORTVERSION=	2.12
 CATEGORIES=	security perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Authen
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -31,10 +30,6 @@ MAN3+=	Authen::SASL::Perl::LOGIN.3
 MAN3+=	Authen::SASL::Perl::PLAIN.3
 
 .include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires perl 5.6.0 or later. Install lang/perl5.8 and try again
-.endif
 
 .if !defined(WITHOUT_KERBEROS)
 BUILD_DEPENDS+=	p5-GSSAPI>0:${PORTSDIR}/security/p5-GSSAPI
