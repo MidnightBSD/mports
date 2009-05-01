@@ -2,24 +2,21 @@
 # Date created:				13 Nov 2002
 # Whom:					Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.8 2008/05/22 21:43:17 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.9 2008/08/10 13:32:39 crash Exp $
 # $FreeBSD: ports/security/gnutls/Makefile,v 1.42 2006/09/08 18:24:27 novel Exp $
 #
 
 PORTNAME=	gnutls
-PORTVERSION=	2.4.1
-PORTREVISION=	1
+PORTVERSION=	2.6.4
 CATEGORIES=	security net
-MASTER_SITES=	http://josefsson.org/gnutls/releases/ \
-	ftp://ftp.gnutls.org/pub/gnutls/ \
-	${MASTER_SITE_GNUPG} \
-	http://www.mirrors.wiretapped.net/security/network-security/gnutls/ \
-	ftp://ftp.mirrors.wiretapped.net/security/network-security/gnutls/
-MASTER_SITE_SUBDIR=	alpha/gnutls
+MASTER_SITES=	${MASTER_SITE_GNU} \
+		${MASTER_SITE_GNUPG}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 LICENSE=        gpl3
+
 LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
@@ -29,7 +26,6 @@ USE_GNOME=	pkgconfig ltverhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_GCC=	3.4+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"
@@ -39,19 +35,25 @@ CONFIGURE_ARGS+=	--with-included-lzo --disable-guile \
 MANCOMPRESSED=	no
 
 .include <bsd.port.pre.mk>
-.if defined(WITH_OPENCDK) || exists(${LOCALBASE}/lib/libopencdk.so.10)
-LIB_DEPENDS+=	opencdk.10:${PORTSDIR}/security/opencdk
+
+.if (defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.4)) && !defined(WITHOUT_LIBTASN1)
+LIB_DEPENDS+=	tasn1.3:${PORTSDIR}/security/libtasn1
+.else
+CONFIGURE_ARGS+=	--with-included-libtasn1
 .endif
 
-.if defined(WITH_LIBTASN1) || exists(${LOCALBASE}/lib/libtasn1.so.3)
-LIB_DEPENDS+=	tasn1.3:${PORTSDIR}/security/libtasn1
+.if (defined(WITH_LZO) || exists(${LOCALBASE}/lib/liblzo2.so)) && !defined(WITHOUT_LZO)
+LIB_DEPENDS+=		lzo2:${PORTSDIR}/archivers/lzo2
+CONFIGURE_ARGS+=	--with-lzo
+.else
+CONFIGURE_ARGS+=	--with-lzo=no
 .endif
 
 .if defined(WITHOUT_CXX)
 CONFIGURE_ARGS+=	--disable-cxx
-PLIST_SUB+=	CXX="@comment "
+PLIST_SUB+=		CXX="@comment "
 .else
-PLIST_SUB+=	CXX=""
+PLIST_SUB+=		CXX=""
 .endif
 
 .if defined(WITHOUT_NLS)
@@ -67,7 +69,7 @@ PORTDOCS=		AUTHORS NEWS README THANKS
 .endif
 EXAMPLES=	doc/examples/*.c
 
-post-patch:
+pre-configure:
 	@${REINPLACE_CMD} -e 's,(libdir)/pkgconfig,(prefix)/libdata/pkgconfig,' \
 		${WRKSRC}/lib/Makefile.in ${WRKSRC}/libextra/Makefile.in
 
