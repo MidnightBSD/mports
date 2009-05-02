@@ -4,11 +4,11 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.3 2007/12/31 06:01:29 laffer1 Exp $
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.4 2008/03/12 19:12:05 laffer1 Exp $
 #
 
 PORTNAME=	arts
-PORTVERSION=	1.5.8
+PORTVERSION=	1.5.10
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
@@ -39,7 +39,7 @@ _NO_KDE_FINAL=	yes
 CFLAGS+=	-DHAVE_VASPRINTF
 CONFIGURE_ENV+=	DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 CONFIGURE_TARGET= # empty
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
+CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd6.1 \
 		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 
 OPTIONS=	ESD "Enable esound support" off \
