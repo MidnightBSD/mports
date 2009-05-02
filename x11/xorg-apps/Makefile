@@ -1,13 +1,7 @@
-# New ports collection makefile for:    xorg-apps
-# Date created:				Jun 22 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xorg-apps/Makefile,v 1.3 2007/09/13 19:45:04 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xorg-apps/Makefile,v 1.1 2007/10/08 16:57:38 ctriv Exp $
 
 PORTNAME=	xorg-apps
-PORTVERSION=	7.3
+PORTVERSION=	7.4
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -87,7 +81,6 @@ RUN_DEPENDS=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
 		xmh:${PORTSDIR}/x11/xmh \
 		xmodmap:${PORTSDIR}/x11/xmodmap \
 		xmore:${PORTSDIR}/x11/xmore \
-		xphelloworld:${PORTSDIR}/x11/xphelloworld \
 		xplsprinters:${PORTSDIR}/x11/xplsprinters \
 		xpr:${PORTSDIR}/x11/xpr \
 		xprehashprinterlist:${PORTSDIR}/x11/xprehashprinterlist \
@@ -100,7 +93,6 @@ RUN_DEPENDS=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
 		xsetmode:${PORTSDIR}/x11/xsetmode \
 		xsetpointer:${PORTSDIR}/x11/xsetpointer \
 		xsetroot:${PORTSDIR}/x11/xsetroot \
-		xstdcmap:${PORTSDIR}/x11/xstdcmap \
 		xtrapchar:${PORTSDIR}/x11/xtrap \
 		xvidtune:${PORTSDIR}/x11/xvidtune \
 		xvinfo:${PORTSDIR}/x11/xvinfo \
