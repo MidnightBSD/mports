@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.68 2009/03/15 18:27:18 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.69 2009/05/02 23:16:13 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -162,6 +162,7 @@
     SUBDIR += xhost
     SUBDIR += xineramaproto
     SUBDIR += xinit
+    SUBDIR += xinput
     SUBDIR += xkbcomp
     SUBDIR += xkbevd
     SUBDIR += xkbprint
@@ -204,7 +205,6 @@
     SUBDIR += xsetpointer
     SUBDIR += xsetroot
     SUBDIR += xsm
-    SUBDIR += xstdcmap
     SUBDIR += xterm
     SUBDIR += xtrans
     SUBDIR += xtrap
