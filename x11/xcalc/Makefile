@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xcalc
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xcalc/Makefile,v 1.2 2007/09/13 19:45:02 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xcalc/Makefile,v 1.1 2007/10/04 21:23:19 ctriv Exp $
 
 PORTNAME=	xcalc
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
