@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11-clocks/Makefile,v 1.4 2007/05/25 19:59:15 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-clocks/Makefile,v 1.5 2009/01/05 01:40:27 ctriv Exp $
 
-    COMMENT = X11 clocks
+COMMENT = X11 clocks
 
-    SUBDIR += asclock
-    SUBDIR += kdetoys3
-    SUBDIR += kdetoys4
-    SUBDIR += wmbinclock
-    SUBDIR += wmcalclock
+SUBDIR += asclock
+SUBDIR += kdetoys3
+SUBDIR += kdetoys4
+SUBDIR += wmbinclock
+SUBDIR += wmcalclock
+SUBDIR += xclock
 
 .include <bsd.port.subdir.mk>
