@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xbacklight
-# Date Created:				11 Sep 2007
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/xbacklight/Makefile,v 1.1 2007/09/13 19:45:01 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xbacklight/Makefile,v 1.1 2007/10/04 21:20:01 ctriv Exp $
 
 PORTNAME=	xbacklight
 PORTVERSION=	1.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
