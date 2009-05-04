@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.69 2009/05/02 23:16:13 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.70 2009/05/04 01:47:01 laffer1 Exp $
 #
 
     COMMENT = Ports to support the X window system
@@ -133,7 +133,6 @@
     SUBDIR += xcb
     SUBDIR += xcb-proto
     SUBDIR += xclipboard
-    SUBDIR += xclock
     SUBDIR += xcmiscproto
     SUBDIR += xcmsdb
     SUBDIR += xconsole
