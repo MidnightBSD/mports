@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/libXaw/Makefile,v 1.1 2007/10/03 20:37:27 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/libXaw/Makefile,v 1.2 2009/03/15 20:40:08 laffer1 Exp $
 
 PORTNAME=	libXaw
 PORTVERSION=	1.0.5
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
