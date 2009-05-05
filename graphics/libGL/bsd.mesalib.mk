@@ -14,9 +14,9 @@
 #    - graphics/libGLw
 #    - graphics/dri
 #
-# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.4 2009/03/15 19:33:20 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.5 2009/03/15 19:35:21 laffer1 Exp $
 
-MESAVERSION=	7.3
+MESAVERSION=	7.4
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.fu-berlin.de/pub/unix/X11/graphics/Mesa/
 MASTER_SITE_SUBDIR=	mesa3d
