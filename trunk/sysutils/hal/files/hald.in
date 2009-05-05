@@ -1,9 +1,10 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/sysutils/hal/files/hald.in,v 1.5 2008/03/24 03:50:17 marcus Exp $
+# $FreeBSD: ports/sysutils/hal/files/hald.in,v 1.7 2009/01/26 17:55:44 marcus Exp $
+#   $MCom: ports/sysutils/hal/files/hald.in,v 1.14 2008/08/21 16:04:48 mezz Exp $
 #
 # PROVIDE: hald
-# REQUIRE: DAEMON usbd devd dbus
+# REQUIRE: DAEMON usbd devd dbus moused
 #
 # Add the following line to /etc/rc.conf to enable the HAL daemon:
 #

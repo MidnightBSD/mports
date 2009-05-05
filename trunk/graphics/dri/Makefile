@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/dri/Makefile,v 1.5 2009/03/15 19:00:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/dri/Makefile,v 1.6 2009/03/15 20:10:45 laffer1 Exp $
 
 PORTNAME=	dri
 PORTVERSION=	${MESAVERSION}
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	graphics
 
