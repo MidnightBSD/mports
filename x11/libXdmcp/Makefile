@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXdmcp/Makefile,v 1.2 2007/10/02 21:29:11 ctriv Exp $
+# $MidnightBSD: mports/x11/libXdmcp/Makefile,v 1.3 2009/03/27 23:56:08 laffer1 Exp $
 
 PORTNAME=	libXdmcp
 PORTVERSION=	1.0.2
@@ -10,6 +10,6 @@ COMMENT=	X Display Manager Control Protocol library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	xproto
+USE_XORG=	xproto:both
 
 .include <bsd.port.mk>
