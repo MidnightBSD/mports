@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-calcomp/Makefile,v 1.1 2007/10/11 21:33:42 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-calcomp/Makefile,v 1.2 2009/03/15 21:03:12 laffer1 Exp $
 
 PORTNAME=	xf86-input-calcomp
 PORTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
