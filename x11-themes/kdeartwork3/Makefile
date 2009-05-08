@@ -1,11 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	KDE artwork
-# Date created:				20 August 2001
-# Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-themes/kdeartwork3/Makefile,v 1.44 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.2 2007/12/30 02:40:15 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.3 2008/08/24 20:31:07 laffer1 Exp $
 
 PORTNAME=	kdeartwork
 PORTVERSION=	${KDE_VERSION}
@@ -16,8 +9,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Additional themes, sounds, wallpapers and window styles for KDE
-LICENSE=	unknown
-#possibly gpl2
+LICENSE=	gpl2
 
 CONFLICTS=	phase-[0-9]* kde-windeco-smoothblend-[0.9]*
 
