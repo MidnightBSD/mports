@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.9 2007/09/25 05:33:08 ctriv Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.10 2009/03/13 03:18:12 laffer1 Exp $
 
 PORTNAME=	slim
 PORTVERSION=	1.3.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
