@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.2 2008/10/07 14:00:32 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.3 2009/03/25 21:38:00 laffer1 Exp $
 
 PORTNAME=	python26
-PORTVERSION=	2.6.0
-PORTREVISION=	2
+PORTVERSION=	2.6.1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -12,12 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An interpreted object-oriented programming language
 LICENSE=	python
 
-USE_BZIP2=	yes
 DIST_SUBDIR=	python
 WRKSRC=		${PYTHON_WRKSRC}/portbld.static
 PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_SCRIPT=	../configure # must be relative
 CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd"
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
@@ -37,19 +34,41 @@ PLIST_SUB=	PYVER=${PYTHON_VERSION:S/python//} \
 DEMODIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
 TOOLSDIR=	${PREFIX}/share/${PYTHON_VERSION}
 
-BIN_SCRIPTS=	idle pydoc python python-shared smtpd.py python-config \
-		python-shared-config
+PLATFORMS=	plat-freebsd4 plat-freebsd5 plat-freebsd6 \
+		plat-freebsd7 plat-midnightbsd0
+
+BIN_SCRIPTS=	2to3 idle pydoc smtpd.py
+BIN_FILES=	python python-shared python-config python-shared-config \
+		${BIN_SCRIPTS}
 BINLINKS_SUB=	-e 's,smtpd,smtpd${PYTHON_VER},' \
+		-e 's,2to3,2to3-${PYTHON_VER},' \
 		-e 's,(idle|pydoc|python-shared|python),\1${PYTHON_VER},'
 
 OPTIONS=	THREADS "Enable thread support" on \
 		HUGE_STACK_SIZE "Use a larger thread stack" off \
+		SEM "Use POSIX semaphores (experimental)" off \
+		PTH "Use GNU Pth for threading/multiprocessing" off \
 		UCS4 "Use UCS4 for unicode support" on \
 		PYMALLOC "Use python's internal malloc" on \
 		IPV6 "Enable IPv6 support" on \
 		FPECTL "Enable floating point exception handling" off
 
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_SEM)
+.if ${OSVERSION} >= 701106
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-setup.py
+SEM_MSG=	""
+.else
+IGNORE=		POSIX semaphore support only works in FreeBSD 7-STABLE and later
+.
+.endif # ${OSVERSION} >= 701106
+.else # !defined(WITH_SEM)
+SEM_MSG=	"@comment "
+.endif # defined(WITH_SEM)
+
+SUB_FILES=      pkg-message
+SUB_LIST=       SEM=${SEM_MSG}
 
 .if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
 MLINKS=		${PYTHON_VERSION}.1 python.1
@@ -62,15 +81,25 @@ PLIST_SUB+=	IF_DEFAULT="@comment "
 CFLAGS+=	-D__wchar_t=wchar_t
 
 .if !defined(WITHOUT_THREADS)
+.if defined(WITH_PTH)
+CONFIGURE_ARGS+=	--with-pth
+EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-configure-pth
+LIB_DEPENDS+=		pth:${PORTSDIR}/devel/pth
+_PTH_CPPFLAGS=		"-I${LOCALBASE}/include/pth"
+_PTH_LDFLAGS=		"-L${LOCALBASE}/lib/pth"
+CONFIGURE_ENV+=		CPPFLAGS="${_PTH_CPPFLAGS} ${CPPFLAGS}"
+CONFIGURE_ENV+=		LDFLAGS="${_PTH_LDFLAGS} ${LDFLAGS}"
+.else # !defined(WITH_PTH)
 CONFIGURE_ARGS+=	--with-threads
 CFLAGS+=		${PTHREAD_CFLAGS}
+CONFIGURE_ENV+=		LDFLAGS="${PTHREAD_LIBS} ${LDFLAGS}"
+.endif # defined(WITH_PTH)
 .if defined(WITHOUT_HUGE_STACK_SIZE)
 CFLAGS+=		-DTHREAD_STACK_SIZE=0x20000
 .else
 CFLAGS+=		-DTHREAD_STACK_SIZE=0x100000
 .endif # defined(WITHOUT_HUGE_STACK_SIZE)
-CONFIGURE_ENV+=		LDFLAGS="${PTHREAD_LIBS} ${LDFLAGS}"
-.else
+.else # defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--without-threads
 .if defined(LDFLAGS)
 CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
@@ -82,7 +111,7 @@ CONFIGURE_ARGS+=	--enable-unicode=ucs4
 .endif
 
 .if defined(WITHOUT_PYMALLOC)
-CONFIGURE_ARGS+=        --without-pymalloc
+CONFIGURE_ARGS+=	--without-pymalloc
 .endif
 
 .if ${ARCH} == i386
@@ -93,10 +122,10 @@ PLIST_SUB+=	X86_ONLY="@comment "
 .if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64
 PLIST_SUB+=     32BIT_ONLY="@comment "
 .else
-PLIST_SUB+=     32BIT_ONLY=""
+PLIST_SUB+=	32BIT_ONLY=""
 .endif
 .if ${ARCH} == sparc64
-CFLAGS+=        -DPYTHON_DEFAULT_RECURSION_LIMIT=900
+CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
 .endif
 
 .if !exists(/usr/bin/ypcat) # the world with NO_NIS
@@ -106,25 +135,25 @@ PLIST_SUB+=	NO_NIS=""
 .endif
 
 .if !defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+= --enable-ipv6
+CONFIGURE_ARGS+=	--enable-ipv6
 .else
-CONFIGURE_ARGS+= --disable-ipv6
+CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 .if defined(WITH_FPECTL)
-CONFIGURE_ARGS+= --with-fpectl
+CONFIGURE_ARGS+=	--with-fpectl
 .endif
 
 PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
 
 pre-patch:
 	${MKDIR} ${WRKSRC} ${SHARED_WRKSRC}/Modules
+	${LN} ${PATCH_WRKSRC}/Lib/smtpd.py ${PATCH_WRKSRC}/Tools/scripts/
+.for script in ${BIN_SCRIPTS}
 	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
-		${PATCH_WRKSRC}/Tools/scripts/pydoc > ${WRKDIR}/pydoc2.6
-	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
-		${PATCH_WRKSRC}/Tools/scripts/idle > ${WRKDIR}/idle2.6
-	${SED} -e '1s,^.*$$,#!${PREFIX}/bin/${PYTHON_VERSION},' \
-		${PATCH_WRKSRC}/Lib/smtpd.py > ${WRKDIR}/smtpd2.6.py
+		${PATCH_WRKSRC}/Tools/scripts/${script} \
+		> ${WRKDIR}/`${ECHO_CMD} ${script} | ${SED} -E ${BINLINKS_SUB}`
+.endfor
 	${REINPLACE_CMD} -e \
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
 		${PATCH_WRKSRC}/Lib/pydoc.py
@@ -200,26 +229,30 @@ post-install:
 		${PREFIX}/bin
 
 	@# additional files installing by ports
-	${INSTALL_SCRIPT} ${WRKDIR}/pydoc2.6 ${WRKDIR}/idle2.6 \
-		${WRKDIR}/smtpd2.6.py ${PREFIX}/bin
+.for script in ${BIN_SCRIPTS}
+	${INSTALL_SCRIPT} \
+		${WRKDIR}/`${ECHO_CMD} ${script} | ${SED} -E ${BINLINKS_SUB}` \
+		${PREFIX}/bin
+.endfor
 	@${MKDIR} ${MANPREFIX}/man/man1
 	${INSTALL_MAN} ${PYTHON_WRKSRC}/Misc/python.man \
 		${MANPREFIX}/man/man1/${PYTHON_VERSION}.1
 
 .if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
-	for f in ${BIN_SCRIPTS}; do \
+	for f in ${BIN_FILES}; do \
 		TARGET=`${ECHO_CMD} $$f | ${SED} -E ${BINLINKS_SUB}`; \
 		cd ${PREFIX}/bin && ${LN} -f $$TARGET $$f; \
 	done
 .endif
 
-# XXX port docs optional disable
+.if !defined(NOPORTDOCS)
 	@${MKDIR} ${TOOLSDIR}
 	@cd ${PYTHON_WRKSRC}; ${TAR} -cf - Tools | \
 		(cd ${TOOLSDIR}; ${TAR} -xf -)
 	@${MKDIR} ${DEMODIR}
 	@cd ${PYTHON_WRKSRC}/Demo; ${TAR} -cf - * | \
 		(cd ${DEMODIR}; ${TAR} -xf -)
+.endif
 
 
 .include <bsd.port.post.mk>
