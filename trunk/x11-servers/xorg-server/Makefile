@@ -1,13 +1,7 @@
-# New ports collection makefile for:    xorg-server
-# Date created:		7 May 2004
-# Whom:			anholt@FreeBSD.org
-#
-# $FreeBSD: ports/x11-servers/xorg-server/Makefile,v 1.46 2007/10/09 22:31:49 flz Exp $
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.11 2008/09/02 21:09:51 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.12 2009/03/15 20:06:53 laffer1 Exp $
 
 PORTNAME=	xorg-server
-PORTVERSION=	1.5.3
+PORTVERSION=	1.6.1
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
@@ -30,7 +24,7 @@ USE_XORG=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		xf86vidmodeproto xf86bigfontproto scrnsaverproto bigreqsproto \
 		resourceproto fontsproto inputproto xf86dgaproto \
 		videoproto compositeproto trapproto recordproto xineramaproto \
-		evieproto xfont fontenc xkbui pixman pciaccess
+		xinerama evieproto xfont fontenc xkbui pixman pciaccess
 
 USE_OPENSSL=	yes
 USE_PERL5_BUILD=yes
