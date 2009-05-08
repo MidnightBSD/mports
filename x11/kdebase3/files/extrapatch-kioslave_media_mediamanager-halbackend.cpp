@@ -1,5 +1,5 @@
---- kioslave/media/mediamanager/halbackend.cpp.orig	Mon May 14 09:55:40 2007
-+++ kioslave/media/mediamanager/halbackend.cpp	Sat Jun  2 11:40:22 2007
+--- kioslave/media/mediamanager/halbackend.cpp.orig-3.5.10	2008-08-19 22:16:59.000000000 +0400
++++ kioslave/media/mediamanager/halbackend.cpp	2008-09-18 09:21:00.000000000 +0400
 @@ -17,9 +17,15 @@
  */
  
@@ -28,7 +28,7 @@
          const QPtrList<Medium> medlist = m_mediaList.list();
          QPtrListIterator<Medium> it (medlist);
          for ( const Medium *current_medium = it.current(); current_medium; current_medium = ++it)
-@@ -184,6 +194,10 @@
+@@ -187,6 +197,10 @@
  
      libhal_free_string_array( halDeviceList );
  
@@ -39,7 +39,7 @@
      return true;
  }
  
-@@ -245,11 +259,11 @@
+@@ -248,11 +262,11 @@
              }
          }
          QMap<QString,QString> options = MediaManagerUtils::splitOptions(mountoptions(udi));
@@ -53,8 +53,8 @@
          }
          m_mediaList.addMedium(medium, allowNotification);
  
-@@ -264,6 +278,11 @@
-         {
+@@ -269,6 +283,11 @@
+                 allowNotification = false;
              /* Create medium */
              Medium* medium = new Medium(udi, "");
 +#ifdef Q_OS_FREEBSD
@@ -65,7 +65,7 @@
              // if the storage has a volume, we ignore it
              if ( setFloppyProperties(medium) )
                  m_mediaList.addMedium(medium, allowNotification);
-@@ -290,12 +309,23 @@
+@@ -295,11 +314,23 @@
  
  void HALBackend::RemoveDevice(const char *udi)
  {
@@ -79,7 +79,6 @@
  
  void HALBackend::ModifyDevice(const char *udi, const char* key)
  {
--    Q_UNUSED(key);
 +    if (
 +        !( strcmp(key, "info.hal_mount.created_mount_point")
 +        && strcmp(key, "info.hal_mount.mounted_by_uid")
@@ -90,7 +89,7 @@
      const char* mediumUdi = findMediumUdiFromUdi(udi);
      if (!mediumUdi)
          return;
-@@ -331,7 +361,7 @@
+@@ -340,7 +371,7 @@
      }
  
      const char* mediumUdi = findMediumUdiFromUdi(udi);
@@ -99,24 +98,24 @@
      if (!mediumUdi)
          return;
  
-@@ -389,7 +419,7 @@
+@@ -398,7 +429,7 @@
          {
              Medium m( *cmedium );
              if ( setFstabProperties( &m ) ) {
 -                kdDebug() << "setFstabProperties worked" << endl;
 +                kdDebug(1219) << "setFstabProperties worked" << endl;
-                 m_mediaList.changeMediumState(m, false);
+                 m_mediaList.changeMediumState(m, allowNotification);
              }
              return;
-@@ -404,6 +434,7 @@
+@@ -413,6 +444,7 @@
          setFloppyProperties(m);
      if (libhal_device_query_capability(m_halContext, mediumUdi, "camera", NULL))
          setCameraProperties(m);
 +    m->setHalMounted(libhal_device_get_property_string(m_halContext, mediumUdi, "info.hal_mount.created_mount_point", NULL));
  
-     m_mediaList.changeMediumState(*m, false);
+     m_mediaList.changeMediumState(*m, allowNotification);
  
-@@ -476,28 +507,23 @@
+@@ -485,28 +517,23 @@
              else
                  mimeType = "media/dvd" + MOUNT_SUFFIX;
  
@@ -156,7 +155,7 @@
      }
      else
      {
-@@ -581,7 +607,7 @@
+@@ -590,7 +617,7 @@
              }
          }
  
@@ -165,7 +164,7 @@
          QString fstype = medium->fsType();
          if ( fstype.isNull() )
              fstype = "auto";
-@@ -766,7 +792,32 @@
+@@ -780,7 +807,32 @@
      if (medium && !isInFstab(medium).isNull())
          return QStringList(); // not handled by HAL - fstab entry
  
@@ -198,7 +197,7 @@
      config.setGroup(name);
  
      char ** array = libhal_device_get_property_strlist(m_halContext, name.latin1(), "volume.mount.valid_options", NULL);
-@@ -777,25 +828,68 @@
+@@ -791,25 +843,68 @@
          if (t.endsWith("="))
              t = t.left(t.length() - 1);
          valids[t] = true;
@@ -270,7 +269,7 @@
      config.setGroup(name);
  
      if (libhal_device_get_property_bool(m_halContext, name.latin1(), "volume.disc.is_blank", NULL)
-@@ -809,44 +903,98 @@
+@@ -823,51 +918,98 @@
  
      if (valids.contains("ro"))
      {
@@ -325,6 +324,13 @@
 +#endif
      }
  
+-	if ( valids.contains("locale") )
+-	{
+-		value = config.readBoolEntry( "locale", true );
+-		tmp = QString( "locale=%1" ).arg( value ? "true" : "false" );
+-		result << tmp;
+-	}
+-
      if (valids.contains("utf8"))
      {
 -        value = config.readBoolEntry("utf8", true);
@@ -375,7 +381,7 @@
          if (svalue == "winnt")
              result << "shortname=winnt";
          else if (svalue == "win95")
-@@ -856,28 +1004,36 @@
+@@ -877,28 +1019,36 @@
          else
              result << "shortname=lower";
      }
@@ -415,7 +421,7 @@
  
      if (!mount_point.startsWith("/"))
          mount_point = "/media/" + mount_point;
-@@ -887,7 +1043,9 @@
+@@ -908,7 +1058,9 @@
  
      if (valids.contains("data"))
      {
@@ -426,7 +432,7 @@
          if (svalue == "ordered")
              result << "journaling=ordered";
          else if (svalue == "writeback")
-@@ -896,6 +1054,82 @@
+@@ -917,6 +1069,82 @@
              result << "journaling=data";
          else
              result << "journaling=ordered";
@@ -509,7 +515,7 @@
      }
  
      return result;
-@@ -903,32 +1137,82 @@
+@@ -924,36 +1152,82 @@
  
  bool HALBackend::setMountoptions(const QString &name, const QStringList &options )
  {
@@ -522,7 +528,8 @@
  
      QMap<QString,QString> valids = MediaManagerUtils::splitOptions(options);
  
-     const char *names[] = { "ro", "quiet", "atime", "uid", "utf8", "flush", "sync", 0 };
+-    const char *names[] = { "ro", "quiet", "atime", "uid", "utf8", "flush", "sync", "locale", 0 };
++    const char *names[] = { "ro", "quiet", "atime", "uid", "utf8", "flush", "sync", 0 };
      for (int index = 0; names[index]; ++index)
          if (valids.contains(names[index]))
 -            config.writeEntry(names[index], valids[names[index]] == "true");
@@ -588,7 +595,10 @@
 +						config.deleteEntry("charset");
 +        else
 +						config.writeEntry("charset", valids["charset"]);
-+
+ 
+-	if (valids.contains("locale") ) {
+-		config.writeEntry("locale", valids["locale"]);
+-	}
 +    if (valids.contains("locale"))
 +        if (valids["locale"].isEmpty())
 +						config.deleteEntry("locale");
@@ -604,7 +614,7 @@
  
      return true;
  }
-@@ -943,7 +1227,7 @@
+@@ -968,7 +1242,7 @@
      if (!(dmesg = dbus_message_new_method_call ("org.freedesktop.Hal", udi,
                                                  "org.freedesktop.Hal.Device.Volume",
                                                  "Mount"))) {
@@ -613,7 +623,7 @@
          return i18n("Internal Error");
      }
  
-@@ -951,7 +1235,7 @@
+@@ -976,7 +1250,7 @@
                                     DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &poptions, noptions,
                                     DBUS_TYPE_INVALID))
      {
@@ -622,7 +632,7 @@
          dbus_message_unref (dmesg);
          return i18n("Internal Error");
      }
-@@ -979,7 +1263,7 @@
+@@ -1004,7 +1278,7 @@
          return qerror;
      }
  
@@ -631,7 +641,7 @@
  
      dbus_message_unref (dmesg);
      dbus_message_unref (reply);
-@@ -991,8 +1275,13 @@
+@@ -1016,8 +1290,13 @@
  QString HALBackend::listUsingProcesses(const Medium* medium)
  {
      QString proclist, fullmsg;
@@ -646,7 +656,7 @@
  
      uint counter = 0;
      if (fuser) {
-@@ -1027,7 +1316,7 @@
+@@ -1052,7 +1331,7 @@
  
  void HALBackend::slotResult(KIO::Job *job)
  {
@@ -655,7 +665,7 @@
  
      struct mount_job_data *data = mount_jobs[job];
      QString& qerror = data->errorMessage;
-@@ -1054,7 +1343,6 @@
+@@ -1079,7 +1358,6 @@
          qerror = job->errorText();
      }
  
@@ -663,7 +673,7 @@
      mount_jobs.remove(job);
  
      /* Job completed. Notify the caller */
-@@ -1063,6 +1351,25 @@
+@@ -1088,6 +1366,25 @@
      kapp->eventLoop()->exitLoop();
  }
  
@@ -689,7 +699,7 @@
  QString HALBackend::isInFstab(const Medium *medium)
  {
      KMountPoint::List fstab = KMountPoint::possibleMountPoints(KMountPoint::NeedMountOptions|KMountPoint::NeedRealDeviceName);
-@@ -1075,11 +1382,13 @@
+@@ -1100,11 +1397,13 @@
          QString reald = (*it)->realDeviceName();
          if ( reald.endsWith( "/" ) )
              reald = reald.left( reald.length() - 1 );
@@ -704,7 +714,7 @@
                  return (*it)->mountPoint();
          }
      }
-@@ -1099,7 +1408,7 @@
+@@ -1124,7 +1423,7 @@
          data.completed = false;
          data.medium = medium;
  
@@ -713,7 +723,7 @@
          KIO::Job *job = KIO::mount( false, 0, medium->deviceNode(), mountPoint );
          connect(job, SIGNAL( result (KIO::Job *)),
                  SLOT( slotResult( KIO::Job *)));
-@@ -1117,7 +1426,7 @@
+@@ -1142,7 +1441,7 @@
  
      QStringList soptions;
  
@@ -722,7 +732,7 @@
  
      QMap<QString,QString> valids = MediaManagerUtils::splitOptions(mountoptions(medium->id()));
      if (valids["flush"] == "true")
-@@ -1125,15 +1434,19 @@
+@@ -1150,20 +1449,19 @@
  
      if (valids["uid"] == "true")
      {
@@ -733,6 +743,11 @@
 +#endif
      }
  
+-    if (valids["locale"] == "true")
+-	{
+-		soptions << QString("locale=%1").arg( KGlobal::locale()->language() ); 
+-	}
+-
      if (valids["ro"] == "true")
          soptions << "ro";
 -
@@ -744,7 +759,7 @@
      if (valids["quiet"] == "true")
          soptions << "quiet";
  
-@@ -1149,7 +1462,19 @@
+@@ -1179,7 +1477,19 @@
  
      if (valids.contains("shortname"))
      {
@@ -764,7 +779,7 @@
      }
  
      if (valids.contains("journaling"))
-@@ -1163,6 +1488,41 @@
+@@ -1193,6 +1503,41 @@
              soptions << QString("data=ordered");
      }
  
@@ -806,7 +821,7 @@
      const char **options = new const char*[soptions.size() + 1];
      uint noptions = 0;
      for (QStringList::ConstIterator it = soptions.begin(); it != soptions.end(); ++it, ++noptions)
-@@ -1175,9 +1535,6 @@
+@@ -1205,9 +1550,6 @@
          return qerror;
      }
  
@@ -816,7 +831,7 @@
      return QString();
  }
  
-@@ -1238,7 +1595,7 @@
+@@ -1268,7 +1610,7 @@
      const char *options[2];
  
      const char *udi = medium->id().latin1();
@@ -825,7 +840,7 @@
  
      dbus_error_init(&error);
      DBusConnection *dbus_connection = dbus_bus_get(DBUS_BUS_SYSTEM, &error);
-@@ -1251,7 +1608,7 @@
+@@ -1281,7 +1623,7 @@
      if (!(dmesg = dbus_message_new_method_call ("org.freedesktop.Hal", udi,
                                                  "org.freedesktop.Hal.Device.Volume",
                                                  "Unmount"))) {
@@ -834,7 +849,7 @@
          return i18n("Internal Error");
      }
  
-@@ -1261,7 +1618,7 @@
+@@ -1291,7 +1633,7 @@
      if (!dbus_message_append_args (dmesg, DBUS_TYPE_ARRAY, DBUS_TYPE_STRING, &options, 0,
                                     DBUS_TYPE_INVALID))
      {
@@ -843,7 +858,7 @@
          dbus_message_unref (dmesg);
          return i18n("Internal Error");
      }
-@@ -1271,7 +1628,7 @@
+@@ -1301,7 +1643,7 @@
      {
          QString qerror, reason;
  
@@ -852,7 +867,7 @@
          qerror = "<qt>";
          qerror += "<p>" + i18n("Unfortunately, the device <b>%1</b> (%2) named <b>'%3'</b> and "
                         "currently mounted at <b>%4</b> could not be unmounted. ").arg(
-@@ -1301,13 +1658,10 @@
+@@ -1331,14 +1673,11 @@
          return qerror;
      }
  
@@ -861,9 +876,10 @@
  
      dbus_message_unref (dmesg);
      dbus_message_unref (reply);
--
+ 
 -    medium->setHalMounted(false);
 -    ResetProperties(udi);
- 
+-
      return QString();
  }
+ 
