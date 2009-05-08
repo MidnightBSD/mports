@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.2 2009/03/15 18:46:24 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -63,7 +63,7 @@ USE_GNOME+=	pkgconfig
 
 . if ${XORG_CAT} == "driver"
 USE_GNOME+=	pkgconfig
-USE_XORG+=	xorg-server xproto randrproto
+USE_XORG+=	xorg-server xproto randrproto xi
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 .  if ${PORTNAME:M*input*}x != x
 USE_XORG+=	inputproto
