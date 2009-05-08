@@ -1,11 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	kdeadmin
-# Date created:				2 November 2001
-# Whom:					will@cvs.kde.org
-#
-# $FreeBSD: ports/sysutils/kdeadmin3/Makefile,v 1.45 2006/09/12 23:26:46 lofi Exp $
-# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.1 2007/01/25 21:17:26 laffer1 Exp $
-#
+# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.2 2007/12/30 04:48:35 laffer1 Exp $
 
 PORTNAME=	kdeadmin
 PORTVERSION=	${KDE_VERSION}
@@ -16,6 +9,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE applications related to system administration
+LICENSE=	gpl2
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
