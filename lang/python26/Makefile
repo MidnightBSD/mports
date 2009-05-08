@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.3 2009/03/25 21:38:00 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.4 2009/05/08 16:44:05 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.1
@@ -17,6 +17,8 @@ PATCH_WRKSRC=	${PYTHON_WRKSRC}
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../configure # must be relative
 CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo midnightbsd"
+CONFIGURE_TARGET= --build=${ARCH}-portbld-midnightbsd${OSREL} \
+		  --host=${ARCH}-portbld-midnightbsd${OSREL}
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
@@ -143,8 +145,6 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .if defined(WITH_FPECTL)
 CONFIGURE_ARGS+=	--with-fpectl
 .endif
-
-PLATFORMS=plat-freebsd4 plat-freebsd5 plat-freebsd7
 
 pre-patch:
 	${MKDIR} ${WRKSRC} ${SHARED_WRKSRC}/Modules
