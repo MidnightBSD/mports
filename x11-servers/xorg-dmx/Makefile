@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.7 2009/04/17 16:23:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.8 2009/05/05 01:12:20 laffer1 Exp $
 
 PORTNAME=	xorg-dmx
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 

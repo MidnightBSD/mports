@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.5 2009/03/15 20:21:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.6 2009/05/05 01:15:19 laffer1 Exp $
 
 PORTNAME=	xorg-vfbserver
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 

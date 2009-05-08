@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.5 2009/03/15 20:18:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.6 2009/05/05 01:13:52 laffer1 Exp $
 
 PORTNAME=	xorg-nestserver
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 
