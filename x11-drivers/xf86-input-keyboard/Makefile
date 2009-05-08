@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-keyboard/Makefile,v 1.1 2007/10/11 23:00:06 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-keyboard/Makefile,v 1.2 2009/03/16 15:56:39 laffer1 Exp $
 
 PORTNAME=	xf86-input-keyboard
 PORTVERSION=	1.3.2
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
