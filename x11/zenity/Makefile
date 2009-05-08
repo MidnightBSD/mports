@@ -1,11 +1,4 @@
-# New ports collection makefile for:	zenity
-# Date created:				01 Mar 2003
-# Whom:					Franz Klammer <klammer@webonaut.com>
-#
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.3 2008/03/14 01:46:57 laffer1 Exp $
-# $FreeBSD: ports/x11/zenity/Makefile,v 1.34 2007/07/23 09:36:47 rafan Exp $
-#   $MCom: ports/x11/zenity/Makefile,v 1.77 2007/03/11 19:58:27 mezz Exp $
-#
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.4 2008/06/06 22:11:56 crash Exp $
 
 PORTNAME=	zenity
 PORTVERSION=	2.22.1
