@@ -1,10 +1,4 @@
-# New ports collection makefile for:    python
-# Date created:         08 August 1995
-# Whom:                 jkh
-#
-# $FreeBSD: ports/lang/python23/Makefile,v 1.145 2006/05/09 20:52:20 edwin Exp $
-# $MidnightBSD: mports/lang/python23/Makefile,v 1.5 2008/04/18 21:55:24 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/python23/Makefile,v 1.6 2008/04/18 21:56:12 laffer1 Exp $
 
 PORTNAME=	python
 PORTVERSION=	2.3.7
@@ -75,7 +69,7 @@ PLIST_SUB+=	X86_ONLY=""
 .else
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
-.if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64
+.if ${ARCH} == amd64 || ${ARCH} == sparc64
 PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
