@@ -1,10 +1,4 @@
-# New ports collection makefile for:    python
-# Date created:         08 August 1995
-# Whom:                 jkh
-#
-# $FreeBSD: ports/lang/python/Makefile,v 1.152 2006/05/14 01:17:03 edwin Exp $
-# $MidnightBSD: mports/lang/python/Makefile,v 1.6 2007/08/29 04:12:36 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/python/Makefile,v 1.7 2008/04/18 21:16:57 laffer1 Exp $
 
 PORTNAME=	python
 PORTVERSION=	2.4.5
