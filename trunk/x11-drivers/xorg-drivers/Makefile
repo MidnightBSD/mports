@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.4 2009/03/15 20:56:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.5 2009/03/25 14:50:23 laffer1 Exp $
 
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.4
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -30,7 +31,11 @@ VIDEO_ON=	ati \
 .if ${ARCH} == "sparc64"
 VIDEO_ON+=	sunffb
 .else
-VIDEO_ON+=	intel openchrome
+VIDEO_ON+=	openchrome
+.endif
+
+.if ${ARCH} == "amd64" || ${ARCH} == "i386"
+VIDEO_ON+=	intel
 .endif
 
 VIDEO_OFF=	apm ark \
