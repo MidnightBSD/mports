@@ -1,10 +1,4 @@
-# New ports collection makefile for:	kdeaccessibility
-# Date created:				19 Jan 2004 18:40:32 EST
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
-# $FreeBSD: ports/accessibility/kdeaccessibility/Makefile,v 1.19 2006/09/12 23:26:11 lofi Exp $
-# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.2 2007/08/07 22:48:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.3 2007/08/20 22:26:37 laffer1 Exp $
 
 PORTNAME=	kdeaccessibility
 PORTVERSION=	${KDE_VERSION}
@@ -20,6 +14,7 @@ LICENSE=	gpl2
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
+USE_XORG=	xtst
 USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:15
 USE_GMAKE=	yes
