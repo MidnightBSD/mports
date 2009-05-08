@@ -1,11 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	KDE libraries 3
-# Date created:				2 November 2001
-# Whom:					will@cvs.kde.org
-#
-# $FreeBSD: ports/x11/kdelibs3/Makefile,v 1.202 2006/09/27 11:56:59 lofi Exp $
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.4 2007/04/30 17:22:50 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.5 2007/12/29 22:09:15 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
@@ -40,7 +33,6 @@ RUN_DEPENDS=	iceauth:${X_CLIENTS_PORT} \
 		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT} \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
-CONFLICTS+=	kdeadmin-3.[0-3].* kdeadmin-3.4.[0-1]* kdeartwork-3.[2-3]* kdebase-3.[0-4]* kdepim-3.2*
 .if defined(WITHOUT_CUPS) || defined(KDE_WITHOUT_CUPS)
 CONFLICTS+=	kdelibs-[0-9]*
 PKGNAMESUFFIX=	-nocups
@@ -67,14 +59,14 @@ CONFIGURE_ARGS+=--disable-ltdl-install	\
 		--disable-as-needed \
 		--enable-mt \
 		--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
-		--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include \
+		--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include \
 		--with-libthai=yes \
 		--with-lua=no \
 		--with-ssl-dir=${OPENSSLBASE}
 CONFIGURE_ENV+=	libltdl_cv_shlibext=".so"
 
-FONTSCALE=	${X11BASE}/lib/X11/fonts/TTF/luximb.ttf
-FONTENCOD=	${X11BASE}/lib/X11/fonts/encodings/encodings.dir
+FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
+FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
