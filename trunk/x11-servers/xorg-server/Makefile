@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.12 2009/03/15 20:06:53 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.13 2009/05/08 14:02:21 laffer1 Exp $
 
 PORTNAME=	xorg-server
 PORTVERSION=	1.6.1
@@ -67,8 +67,7 @@ CONFIGURE_ARGS+=--enable-install-setuid=no
 MAN1=		Xorg.1 \
 		Xserver.1 \
 		cvt.1 \
-		gtf.1 \
-		xorgconfig.1
+		gtf.1
 MAN4=		exa.4 \
 		fbdevhw.4
 MAN5=		xorg.conf.5
