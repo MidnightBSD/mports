@@ -1,11 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	kdenetwork2
-# Date created:				2 November 2001
-# Whom:					will@cvs.kde.org
-#
-# $FreeBSD: ports/net/kdenetwork3/Makefile,v 1.124 2006/09/12 23:26:43 lofi Exp $
-# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.2 2007/12/30 03:07:02 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.3 2008/08/26 17:41:30 laffer1 Exp $
 
 PORTNAME=	kdenetwork
 PORTVERSION=	${KDE_VERSION}
@@ -28,6 +21,7 @@ PREFIX=		${KDE_PREFIX}
 USE_PERL5=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+USE_XORG=	xtst
 USE_OPENSSL=	yes
 
 USE_AUTOTOOLS=  libtool:15
