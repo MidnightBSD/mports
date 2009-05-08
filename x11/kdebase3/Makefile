@@ -1,11 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	kdebase3.1
-# Date created:				29 November 2002
-# Whom:					kde@freebsd.org
-#
-# $FreeBSD: ports/x11/kdebase3/Makefile,v 1.183 2006/09/18 16:31:54 lofi Exp $
-# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.2 2007/12/30 01:49:56 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.3 2008/03/22 02:03:00 laffer1 Exp $
 
 PORTNAME=	kdebase
 PORTVERSION=	${KDE_VERSION}
@@ -36,13 +29,12 @@ CONFLICTS=	kdeartwork-3.[2-3]* kdelibs-3.[0-4]* kdeutils-3.[0-2]*
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
-USE_GETOPT_LONG=yes
 USE_OPENLDAP=	yes
 USE_OPENSSL=	yes
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_XPM=	yes
+USE_XORG=	xpm xkbfile xrandr xcursor
 SUB_FILES=	kdm pkg-deinstall pkg-install pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 PKGINSTALL=	${WRKDIR}/pkg-install
