@@ -1,18 +1,11 @@
-# New ports collection makefile for:	dia
-# Date created:        21 December 1999
-# Whom:                saper@system.pl
-#
-# $MidnightBSD: mports/graphics/dia/Makefile,v 1.1 2007/12/28 04:28:25 laffer1 Exp $
-# $FreeBSD: ports/graphics/dia/Makefile,v 1.64 2007/05/19 20:08:48 flz Exp $
-#
+# $MidnightBSD: mports/graphics/dia/Makefile,v 1.2 2008/03/21 22:46:40 laffer1 Exp $
 
 PORTNAME=	dia
 DISTVERSION=	0.96.1
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
