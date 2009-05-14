@@ -2,10 +2,11 @@
 # Date created:				Sept 25, 2008
 # Whom:					laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/kaffeine/Makefile,v 1.1 2008/09/25 15:57:27 laffer1 Exp $
 
 PORTNAME=	kaffeine
 PORTVERSION=	0.8.7
+PORTREVISION=	1
 CATEGORIES=	multimedia kde
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	kaffeine
@@ -16,7 +17,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	xine.1:${PORTSDIR}/multimedia/libxine \
 		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia \
-		xcb.1:${PORTSDIR}/x11/libxcb
+		xcb.2:${PORTSDIR}/x11/libxcb
 
 USE_BZIP2=		yes
 USE_KDELIBS_VER=	3
