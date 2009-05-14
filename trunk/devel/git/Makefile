@@ -1,12 +1,7 @@
-# Ports collection makefile for:	git
-# Date created:				7 Feb 2006
-# Whom:					Eric Anholt
-#
-# $MidnightBSD: mports/devel/git/Makefile,v 1.11 2009/04/14 16:53:33 ctriv Exp $
-# $FreeBSD: ports/devel/git/Makefile,v 1.37 2008/09/23 02:42:22 wxs Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.12 2009/04/28 03:12:56 ctriv Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.2.4
+PORTVERSION=	1.6.2.5
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
