@@ -1,10 +1,4 @@
-# New ports collection makefile for:	Quanta+
-# Date created:				26 Sep 2002
-# Whom:					AlanE <alane@freebsd.org>
-#
-# $FreeBSD: ports/www/kdewebdev/Makefile,v 1.55 2006/09/12 23:26:48 lofi Exp $
-# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.2 2007/12/31 05:13:43 laffer1 Exp $
-#
+# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.3 2008/10/13 19:39:44 crash Exp $
 
 PORTNAME=	kdewebdev
 PORTVERSION=	${KDE_VERSION}
@@ -17,6 +11,7 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Comprehensive html/website development environment
 LICENSE=        gpl2
+
 BUILD_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
 		xgettext:${PORTSDIR}/devel/gettext
 RUN_DEPENDS=	cvsservice:${PORTSDIR}/devel/kdesdk3 \
@@ -26,7 +21,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 USE_GMAKE=	yes
 USE_AUTOTOOLS=  libtool:15
 
