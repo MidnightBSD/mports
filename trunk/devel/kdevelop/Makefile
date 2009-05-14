@@ -1,13 +1,7 @@
-# New ports collection makefile for:	kdevelop
-# Date created:		12 Aug 1999
-# Whom:			Will Andrews <andrews@technologist.com>
-#
-# $FreeBSD: ports/devel/kdevelop/Makefile,v 1.96 2007/10/29 23:47:28 lofi Exp $
-# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.2 2007/12/30 21:35:24 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.3 2008/04/20 21:26:48 laffer1 Exp $
 
 PORTNAME=	kdevelop
-PORTVERSION=	3.5.0
+PORTVERSION=	3.5.3
 PORTREVISION=	0
 CATEGORIES?=	devel kde
 MASTER_SITES=	${MASTER_SITE_KDE}
