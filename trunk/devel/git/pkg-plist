@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/devel/git/pkg-plist,v 1.3 2009/04/02 15:03:30 ctriv Exp $
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/git
 bin/git-upload-pack
 bin/git-receive-pack
@@ -15,7 +15,6 @@ etc/rc.d/git_daemon.sh
 lib/xemacs/site-lisp/git/git.el
 lib/xemacs/site-lisp/git/vc-git.el
 libexec/git-core/git-fast-import
-libexec/git-core/git-fetch-pack
 libexec/git-core/git-hash-object
 libexec/git-core/git-index-pack
 libexec/git-core/git-merge-index
@@ -24,7 +23,6 @@ libexec/git-core/git-mktag
 libexec/git-core/git-mktree
 libexec/git-core/git-pack-redundant
 libexec/git-core/git-patch-id
-libexec/git-core/git-send-pack
 libexec/git-core/git-shell
 libexec/git-core/git-show-index
 libexec/git-core/git-unpack-file
@@ -36,12 +34,14 @@ libexec/git-core/git-daemon
 libexec/git-core/git-imap-send
 libexec/git-core/git-am
 libexec/git-core/git-bisect
+libexec/git-core/git-difftool--helper
 libexec/git-core/git-filter-branch
 libexec/git-core/git-lost-found
 libexec/git-core/git-merge-octopus
 libexec/git-core/git-merge-one-file
 libexec/git-core/git-merge-resolve
 libexec/git-core/git-mergetool
+libexec/git-core/git-mergetool--lib
 libexec/git-core/git-parse-remote
 libexec/git-core/git-pull
 libexec/git-core/git-quiltimport
@@ -54,6 +54,7 @@ libexec/git-core/git-stash
 libexec/git-core/git-submodule
 libexec/git-core/git-web--browse
 libexec/git-core/git-add--interactive
+libexec/git-core/git-difftool
 libexec/git-core/git-archimport
 libexec/git-core/git-cvsexportcommit
 libexec/git-core/git-cvsimport
@@ -64,20 +65,21 @@ libexec/git-core/git-svn
 libexec/git-core/git-instaweb
 %%GUI%%libexec/git-core/git-gui
 %%GUI%%libexec/git-core/git-gui--askpass
-%%GUI%%libexec/git-core/git-citool
+libexec/git-core/git-citool
 libexec/git-core/git-add
 libexec/git-core/git-annotate
 libexec/git-core/git-apply
 libexec/git-core/git-archive
+libexec/git-core/git-bisect--helper
 libexec/git-core/git-blame
 libexec/git-core/git-branch
 libexec/git-core/git-bundle
 libexec/git-core/git-cat-file
 libexec/git-core/git-check-attr
 libexec/git-core/git-check-ref-format
+libexec/git-core/git-gc
 libexec/git-core/git-checkout-index
 libexec/git-core/git-checkout
-libexec/git-core/git-gc
 libexec/git-core/git-clean
 libexec/git-core/git-clone
 libexec/git-core/git-commit-tree
@@ -91,6 +93,7 @@ libexec/git-core/git-diff-tree
 libexec/git-core/git-diff
 libexec/git-core/git-fast-export
 libexec/git-core/git-fetch--tool
+libexec/git-core/git-fetch-pack
 libexec/git-core/git-fetch
 libexec/git-core/git-fmt-merge-msg
 libexec/git-core/git-for-each-ref
@@ -100,8 +103,8 @@ libexec/git-core/git-help
 libexec/git-core/git-init-db
 libexec/git-core/git-log
 libexec/git-core/git-ls-files
-libexec/git-core/git-ls-tree
 libexec/git-core/git-ls-remote
+libexec/git-core/git-ls-tree
 libexec/git-core/git-mailinfo
 libexec/git-core/git-mailsplit
 libexec/git-core/git-merge
@@ -126,6 +129,7 @@ libexec/git-core/git-rev-list
 libexec/git-core/git-rev-parse
 libexec/git-core/git-revert
 libexec/git-core/git-rm
+libexec/git-core/git-send-pack
 libexec/git-core/git-shortlog
 libexec/git-core/git-show-branch
 libexec/git-core/git-show-ref
@@ -171,6 +175,7 @@ share/git-core/templates/description
 %%GUI%%share/gitk/lib/msgs/de.msg
 %%GUI%%share/gitk/lib/msgs/es.msg
 %%GUI%%share/gitk/lib/msgs/it.msg
+%%GUI%%share/gitk/lib/msgs/ru.msg
 %%GUI%%share/gitk/lib/msgs/sv.msg
 %%GUI%%share/git-gui/lib/tclIndex
 %%GUI%%share/git-gui/lib/about.tcl
@@ -221,26 +226,18 @@ share/git-core/templates/description
 %%GUI%%share/git-gui/lib/msgs/ru.msg
 %%GUI%%share/git-gui/lib/msgs/sv.msg
 %%GUI%%share/git-gui/lib/msgs/zh_cn.msg
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/INSTALL
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/README
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/git-favicon.png
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/git-logo.png
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/gitweb.cgi
-%%GITWEB%%%%EXAMPLESDIR%%/gitweb/gitweb.css
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Git
-@dirrmtry lib/xemacs/site-lisp/git
+@dirrm %%SITE_PERL%%/i386-midnightbsd/auto/Git
+@dirrm lib/xemacs/site-lisp/git
 @dirrm libexec/git-core
-@dirrmtry share/emacs/site-lisp/git
+@dirrm share/emacs/site-lisp/git
 @dirrm share/git-core/templates/branches
 @dirrm share/git-core/templates/hooks
 @dirrm share/git-core/templates/info
 @dirrm share/git-core/templates
 @dirrm share/git-core
-@dirrm share/gitk/lib/msgs
-@dirrm share/gitk/lib
+%%GUI%%@dirrm share/gitk/lib/msgs
+%%GUI%%@dirrm share/gitk/lib
 %%GUI%%@dirrm share/gitk
 %%GUI%%@dirrm share/git-gui/lib/msgs
 %%GUI%%@dirrm share/git-gui/lib
 %%GUI%%@dirrm share/git-gui
-%%GITWEB%%@dirrm %%EXAMPLESDIR%%/gitweb
-%%GITWEB%%@dirrm %%EXAMPLESDIR%%
