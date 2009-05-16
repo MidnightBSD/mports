@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.9 2008/10/04 16:56:28 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.10 2009/03/11 18:25:50 laffer1 Exp $
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.17
+PORTVERSION=	1.4.18
 CATEGORIES=	mail www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -65,9 +65,9 @@ post-patch:
 # Rearrange the documentation
 do-build:
 .for file in AUTHORS ChangeLog COPYING INSTALL README UPGRADE
-	@${MV} ${WRKSRC}/${file} ${WRKSRC}/doc/
+	@${MV} ${WRKSRC}/doc/${file} ${WRKSRC}/doc/
 .endfor
-	@${MV} ${WRKSRC}/ReleaseNotes ${WRKSRC}/doc/ReleaseNotes-${PORTVERSION}.txt
+	@${MV} ${WRKSRC}/doc/ReleaseNotes ${WRKSRC}/doc/ReleaseNotes-${PORTVERSION}.txt
 	@${MV} ${WRKSRC}/themes/README.themes ${WRKSRC}/doc/
 	@cd ${WRKSRC} ; for f in `find plugins -name "README*" -or \
 		-name INSTALL -or -name CHANGES -or -name HISTORY`; \
