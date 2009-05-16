@@ -1,5 +1,5 @@
---- ./Documentation/Makefile.orig	2009-03-15 17:59:04 -0400
-+++ ./Documentation/Makefile	2009-03-21 07:16:13 -0400
+--- ./Documentation/Makefile.orig	2009-05-13 02:50:52 -0400
++++ ./Documentation/Makefile	2009-05-16 12:28:08 -0400
 @@ -12,8 +12,6 @@
  MAN_XML=$(patsubst %.txt,%.xml,$(MAN_TXT))
  MAN_HTML=$(patsubst %.txt,%.html,$(MAN_TXT))
@@ -23,9 +23,9 @@
  mandir?=$(prefix)/share/man
  man1dir=$(mandir)/man1
  man5dir=$(mandir)/man5
-@@ -76,7 +74,7 @@
- # yourself - yes, all 6 characters of it!
- #
+@@ -142,7 +140,7 @@
+ endif
+ endif
  
 -all: html man
 +all: html
