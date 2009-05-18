@@ -1,3 +1,4 @@
-MD5 (dovecot-1.1.11.tar.gz) = c973eb41aca79fb16630a16f0d84f765
-SHA256 (dovecot-1.1.11.tar.gz) = d37fa251219559841151e12ba000565da6b999f48827db6beee612865f7a5a34
-SIZE (dovecot-1.1.11.tar.gz) = 2362415
+MD5 (dovecot-1.1.15.tar.gz) = 90562401bbf6bd052b23b89f7f5a700f
+SHA256 (dovecot-1.1.15.tar.gz) = d65828787c97919fca3e607369d87a3a29940fde3e5162ebb4444dfda47f7fca
+RMD160 (dovecot-1.1.15.tar.gz) = 2ddda6240e8aaed8afdce11196070c3628443083
+SIZE (dovecot-1.1.15.tar.gz) = 2383354
