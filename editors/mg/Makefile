@@ -2,12 +2,12 @@
 # Date created:			14 May 2001
 # Whom:				Dima Dorfman <dima@unixfreak.org>
 #
-# $MidnightBSD: mports/editors/mg/Makefile,v 1.2 2008/08/10 11:38:41 crash Exp $
+# $MidnightBSD: mports/editors/mg/Makefile,v 1.3 2008/10/16 22:00:10 laffer1 Exp $
 # $FreeBSD: ports/editors/mg/Makefile,v 1.9 2006/11/19 12:28:48 miwi Exp $
 #
 
 PORTNAME=	mg
-PORTVERSION=	20080610
+PORTVERSION=    20090107	
 CATEGORIES=	editors
 MASTER_SITES=	http://www.xs4all.nl/~hanb/software/mg/
 
