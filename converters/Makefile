@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.21 2008/06/26 22:12:01 laffer1 Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.22 2009/05/21 14:49:11 laffer1 Exp $
 
 COMMENT = Character code converters
 
@@ -15,6 +15,7 @@ SUBDIR += p5-MIME-Base32
 SUBDIR += p5-MIME-Base64
 SUBDIR += p5-Text-Iconv
 SUBDIR += p5-Unicode-Map
+SUBDIR += p5-Unicode-Map8
 SUBDIR += p5-Unicode-MapUTF8
 SUBDIR += p5-Unicode-String
 SUBDIR += pecl-fribidi
