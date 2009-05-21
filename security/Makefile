@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.89 2009/05/01 15:25:16 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.90 2009/05/01 16:17:04 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -59,6 +59,7 @@
     SUBDIR += p5-Crypt-OpenSSL-RSA
     SUBDIR += p5-Crypt-OpenSSL-Random
     SUBDIR += p5-Crypt-SSLeay
+    SUBDIR += p5-Crypt-SmbHash
     SUBDIR += p5-Digest
     SUBDIR += p5-Digest-HMAC
     SUBDIR += p5-Digest-MD5
