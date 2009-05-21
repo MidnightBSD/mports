@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/p5-Unicode-MapUTF8/Makefile,v 1.1 2009/05/21 14:49:16 laffer1 Exp $
+# $MidnightBSD: mports/converters/p5-Unicode-MapUTF8/Makefile,v 1.2 2009/05/21 19:26:31 laffer1 Exp $
 
 PORTNAME=	Unicode-MapUTF8
 PORTVERSION=	1.11
@@ -16,8 +16,9 @@ BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Unicode/Map.pm:${PORTSDIR}/converters/p
 		${SITE_PERL}/Jcode.pm:${PORTSDIR}/converters/p5-Jcode
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
+USE_PERL5=	yes
 PERL_CONFIGURE=	yes
 
 MAN3=		Unicode::MapUTF8.3
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
