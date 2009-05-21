@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.2 2009/01/05 00:24:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.3 2009/03/14 15:54:36 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -229,7 +229,7 @@ php-ini:
 # non-version specific components
 _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
 		exif fileinfo filepro fribidi ftp gd gettext gmp \
-		hash iconv imap interbase json ldap mbstring mcrypt \
+		iconv imap interbase json ldap mbstring mcrypt \
 		memcache mhash ming mssql mysql ncurses odbc \
 		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
@@ -262,7 +262,6 @@ ftp_DEPENDS=	ftp/php${PHP_VER}-ftp
 gd_DEPENDS=	graphics/php${PHP_VER}-gd
 gettext_DEPENDS=devel/php${PHP_VER}-gettext
 gmp_DEPENDS=	math/php${PHP_VER}-gmp
-hash_DEPENDS=	security/pecl-hash
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
