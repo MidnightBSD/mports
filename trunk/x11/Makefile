@@ -1,7 +1,6 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.74 2009/05/08 14:13:40 laffer1 Exp $
-#
-
-    COMMENT = Ports to support the X window system
+# $MidnightBSD: mports/x11/Makefile,v 1.75 2009/05/08 14:16:15 laffer1 Exp $
+    
+COMMENT = Ports to support the X window system
 
     SUBDIR += Terminal
     SUBDIR += appres
