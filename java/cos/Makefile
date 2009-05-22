@@ -1,10 +1,4 @@
-# New ports collection makefile for:	cos
-# Date created:		1999/07/05
-# Whom:			Jose Marques <noway@nohow.demon.co.uk>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/java/cos/Makefile,v 1.13 2005/02/13 21:20:52 hq Exp $
-#
+# $MidnightBSD: mports/java/cos/Makefile,v 1.1 2006/10/06 02:44:46 laffer1 Exp $
 
 PORTNAME=	cos
 PORTVERSION=	2002.11.05
@@ -16,6 +10,7 @@ DISTNAME=	${PORTNAME}-05Nov2002
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The O\'Reilly package of utility classes for servlet developers
+LICENSE=	restricted
 
 USE_ZIP=	yes
 NO_WRKSUBDIR=	yes
