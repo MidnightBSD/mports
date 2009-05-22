@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.6 2009/05/05 01:15:19 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-vfbserver/Makefile,v 1.7 2009/05/08 14:02:21 laffer1 Exp $
 
 PORTNAME=	xorg-vfbserver
 PORTVERSION=	1.6.1
@@ -30,7 +30,7 @@ PLIST_FILES=	bin/Xvfb
 MAN1=		Xvfb.1
 
 do-install:
-	cd ${WRKSRC}/hw/vfb; ${MAKE} install
+	cd ${WRKSRC}/hw/vfb; ${MAKE} ${FAKE_MAKEARGS} install
 
 .include <bsd.port.pre.mk>
 
