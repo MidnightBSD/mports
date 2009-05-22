@@ -1,10 +1,4 @@
-# New ports collection makefile for:   bouncycastle
-# Date created:        27 December 2001
-# Whom:                rasputin
-#
-# $MidnightBSD$
-# $FreeBSD: ports/java/bouncycastle/Makefile,v 1.15 2006/07/19 06:45:20 ale Exp $
-#
+# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.1 2006/10/06 02:36:03 laffer1 Exp $
 
 PORTNAME=	bouncycastle
 PORTVERSION=	1.33
@@ -16,6 +10,7 @@ DISTNAME=	crypto-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cleanroom build of Java Cryptography Extensions
+LICENSE=	mit
 
 NO_BUILD=	yes
 USE_JAVA=	yes
