@@ -1,13 +1,8 @@
-# New ports collection makefile for:	rtorrent
-# Date created:				Mar 03 2005
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.3 2007/06/25 06:30:20 laffer1 Exp $
-# $FreeBSD: ports/net-p2p/rtorrent/Makefile,v 1.21 2006/08/08 10:19:40 flz Exp $
-#
+# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.4 2008/09/14 00:30:11 laffer1 Exp $
 
 PORTNAME?=	rtorrent
 PORTVERSION?=	0.7.9
+PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -19,7 +14,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS?=	libtorrent>=0.11.3:${PORTSDIR}/net-p2p/libtorrent
 RUN_DEPENDS?=	libtorrent>=0.11.3:${PORTSDIR}/net-p2p/libtorrent
-LIB_DEPENDS+=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 
 CONFLICTS=	rtorrent-devel-[0-9]*
 
