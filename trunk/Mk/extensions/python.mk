@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.2 2009/02/27 04:23:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.3 2009/05/08 16:40:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -272,6 +272,10 @@ ZOPE_VERSION?=	${_ZOPE_VERSION}
 PYTHON_VERSION=         python2.4
 .endif	# defined(USE_ZOPE)
 
+
+.if defined(PACKAGE_BUILDING)
+PYTHON_DEFAULT_VERSION=		python${_PYTHON_PORTBRANCH}
+.endif
 
 # Determine version number of Python to use
 .if !defined(PYTHON_DEFAULT_VERSION)
