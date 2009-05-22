@@ -1,14 +1,8 @@
-# New ports collection makefile for:	vpnc
-# Date created:				15 December 2003
-# Whom:					Christian Lackas
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/vpnc/Makefile,v 1.35 2008/03/27 19:27:30 ehaupt Exp $
-#
+# $MidnightBSD: mports/security/vpnc/Makefile,v 1.1 2008/06/02 04:01:52 archite Exp $
 
 PORTNAME=	vpnc
 PORTVERSION=	0.5.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	security
 MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 		CRITICAL
@@ -16,7 +10,7 @@ MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
 
-LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
