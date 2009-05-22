@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-Jcode/Makefile,v 1.1 2009/05/21 14:49:13 laffer1 Exp $
 # $FreeBSD: ports/japanese/p5-Jcode/Makefile,v 1.35 2008/09/03 11:06:07 kuriyama Exp $
 
 PORTNAME=	Jcode
 PORTVERSION=	2.07
-CATEGORIES=	japanese perl5
+CATEGORIES=	converters japanese perl5
 MASTER_SITES=	CPAN
 
 MAINTAINER=	ports@MidnightBSD.org
