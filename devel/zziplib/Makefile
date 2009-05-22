@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.3 2009/04/08 19:26:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.4 2009/04/08 20:11:58 laffer1 Exp $
 
 PORTNAME=	zziplib
 PORTVERSION=	0.13.50
@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to provide transparent read access to zipped files
 LICENSE=	lgpl
 
+USE_PYTHON_BUILD=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
