@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Image-Magick-Iterator
-# Date created:		2006-11-12
-# Whom:			Gea-Suan Lin <gslin@gslin.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/p5-Image-Magick-Iterator/Makefile,v 1.1 2006/12/09 02:37:26 clsung Exp $
-#
+# $MidnightBSD: mports/graphics/p5-Image-Magick-Iterator/Makefile,v 1.1 2007/03/20 19:55:45 laffer1 Exp $
 
 PORTNAME=	Image-Magick-Iterator
 PORTVERSION=	0.01
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Sequentially read Image::Magick object from a filehandle
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Image/Magick.pm:${PORTSDIR}/graphics/ImageMagick \
 		${SITE_PERL}/Image/PBMlib.pm:${PORTSDIR}/graphics/p5-Image-PBMlib
