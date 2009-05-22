@@ -1,10 +1,4 @@
-# New ports collection makefile for:		NetBSD makefs
-# Date created:					17 December 2003
-# Whom:						cperciva@daemonology.net
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/makefs/Makefile,v 1.5 2007/05/27 02:57:57 kris Exp $
-#
+# $MidnightBSD: mports/sysutils/makefs/Makefile,v 1.1 2007/08/27 19:39:22 laffer1 Exp $
 
 PORTNAME=	makefs
 PORTVERSION=	20040704
@@ -13,6 +7,7 @@ MASTER_SITES=	http://www.daemonology.net/makefs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Builds FFS images
+LICENSE=	bsd4
 
 MAN8=		makefs.8
 PLIST_FILES=	sbin/makefs
