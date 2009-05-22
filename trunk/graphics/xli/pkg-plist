@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 bin/xli
 bin/xlito
 bin/xview
