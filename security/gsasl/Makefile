@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.3 2008/05/22 21:51:53 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.4 2009/04/14 03:17:22 laffer1 Exp $
 
 PORTNAME=	gsasl
 PORTVERSION=	0.2.29
@@ -12,7 +12,7 @@ COMMENT=	GNU SASL Library
 LICENSE=	gpl3
 
 LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn \
-		gcrypt.15:${PORTSDIR}/security/libgcrypt \
+		gcrypt.16:${PORTSDIR}/security/libgcrypt \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
