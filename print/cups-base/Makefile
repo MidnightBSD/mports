@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.19 2008/11/22 14:09:02 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.20 2009/04/25 15:17:31 laffer1 Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.3.10
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -22,6 +23,7 @@ CONFLICTS=	LPRng-[0-9]*
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+USE_GHOSTSCRIPT=	yes
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	cupsd
 CFLAGS+=	${PTHREAD_CFLAGS}
@@ -33,6 +35,7 @@ CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--localstatedir=/var			\
 			--disable-slp				\
 			--disable-gssapi			\
+			--enable-pdftops --with-pdftops=gs	\
 			--with-cups-user=${CUPSOWN}		\
 			--with-cups-group=${CUPSGRP}		\
 			--with-system-groups=${CUPSSYSGRP}	\
@@ -45,7 +48,7 @@ OPTIONS=	GNUTLS		"Build with GNUTLS library" on \
 		PHP		"Build PHP support" off \
 		PYTHON		"Build PYTHON support" off \
 		LIBPAPER	"Build with libpaper support" off \
-		DNSSD		"Build with DNS_SD (avahi) support" off \
+		DNSSD		"Build with DNS_SD (avahi) support" on \
 		PAM		"Build with PAM support" off \
 		LDAP		"Build with LDAP support" off \
 		DBUS		"Build with DBUS support" off \
