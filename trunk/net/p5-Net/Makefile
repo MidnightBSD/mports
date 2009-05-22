@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Net
-# Date created:				September 30th 1996
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/p5-Net/Makefile,v 1.1 2007/02/23 21:21:03 laffer1 Exp $
-# $FreeBSD: ports/net/p5-Net/Makefile,v 1.45 2007/02/09 16:02:05 mat Exp $
-#
+# $MidnightBSD: mports/net/p5-Net/Makefile,v 1.2 2008/02/27 22:37:31 laffer1 Exp $
 
 PORTNAME=	p5-Net
 PORTVERSION=	1.22
@@ -16,8 +10,7 @@ DISTNAME=	libnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 modules to access and use network protocols
-
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/MIME/Base64.pm:${PORTSDIR}/converters/p5-MIME-Base64
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ARGS=	< /dev/null
