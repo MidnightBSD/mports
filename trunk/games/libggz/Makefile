@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: ports/games/libggz/Makefile,v 1.22 2008/06/06 13:31:37 edwin Exp $
+# $MidnightBSD: mports/games/libggz/Makefile,v 1.1 2008/12/14 03:32:19 ctriv Exp $
 #
 
 PORTNAME=	libggz
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GGZ Gaming Zone - Base Library
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.15:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt
 
 USE_AUTOTOOLS=	libtool:15
 USE_GNOME=	gnomehack gnometarget
