@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:	Perl::Critic
-# Date created:			Nov 26, 2005
-# Whom:				ijliao
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Perl-Critic/Makefile,v 1.22 2008/01/15 05:52:08 clsung Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Perl-Critic/Makefile,v 1.1 2008/03/21 20:05:44 laffer1 Exp $
 
 PORTNAME=	Perl-Critic
 PORTVERSION=	1.08.0
@@ -16,6 +9,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Critique Perl source for style and standards
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/List/MoreUtils.pm:${PORTSDIR}/lang/p5-List-MoreUtils \
 		${SITE_PERL}/B/Keywords.pm:${PORTSDIR}/devel/p5-B-Keywords \
