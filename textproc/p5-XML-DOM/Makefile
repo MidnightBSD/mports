@@ -1,10 +1,4 @@
-# New ports collection makefile for:	XML::DOM
-# Date created:		7 Nov 1999
-# Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-DOM/Makefile,v 1.15 2005/08/30 13:51:56 kuriyama Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-DOM/Makefile,v 1.1 2007/08/14 06:06:21 laffer1 Exp $
 
 PORTNAME=	XML-DOM
 PORTVERSION=	1.44
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for building DOM Level 1 compliant document structures
+LICENSE=	perl
 
 RUN_DEPENDS=	${PBASE}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
 		${PBASE}/XML/Parser/PerlSAX.pm:${PORTSDIR}/textproc/p5-libxml \

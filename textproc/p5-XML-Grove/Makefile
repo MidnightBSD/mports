@@ -1,10 +1,4 @@
-# New ports collection makefile for:	XML::Grove
-# Date created:				31 Dec 2001
-# Whom:					Seamus Venasse <svenasse@polaris.ca>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-Grove/Makefile,v 1.5 2005/09/20 14:20:33 erwin Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-Grove/Makefile,v 1.1 2007/10/24 02:45:04 laffer1 Exp $
 
 PORTNAME=	XML-Grove
 PORTVERSION=	0.46.a
@@ -16,6 +10,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.a/alpha/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl-style XML objects
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
 		${SITE_PERL}/Data/Grove.pm:${PORTSDIR}/textproc/p5-libxml

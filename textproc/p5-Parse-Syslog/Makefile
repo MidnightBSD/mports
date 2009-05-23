@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Parse-Syslog
-# Date created:				27 August 2001
-# Whom:					Stephen Roznowski (sjr@home.com)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Parse-Syslog/Makefile,v 1.10 2006/01/07 11:10:02 erwin Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Parse-Syslog/Makefile,v 1.1 2007/03/21 01:15:31 laffer1 Exp $
 
 PORTNAME=	Parse-Syslog
 PORTVERSION=	1.09
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 routines that present a simple interface to parse syslog files
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/IO/Scalar.pm:${PORTSDIR}/devel/p5-IO-stringy
 

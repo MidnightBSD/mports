@@ -1,10 +1,4 @@
-# New ports collection makefile for:	XML::Writer
-# Date created:				24 December 2000
-# Whom:					Adam Herzog <adam@herzogdesigns.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-Writer/Makefile,v 1.18 2006/11/14 00:40:21 clsung Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-Writer/Makefile,v 1.1 2007/06/11 02:03:59 laffer1 Exp $
 
 PORTNAME=	XML-Writer
 PORTVERSION=	0.602
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple Perl module for writing XML documents
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

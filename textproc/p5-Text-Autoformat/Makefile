@@ -1,10 +1,4 @@
-# New ports collection makefile for:	textproc/p5-Text-Autoformat
-# Date created:				28 December 2000
-# Whom:					Anton Berezin <tobez@tobez.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Text-Autoformat/Makefile,v 1.6 2005/05/24 12:00:28 tobez Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Text-Autoformat/Makefile,v 1.1 2007/03/11 04:28:29 laffer1 Exp $
 
 PORTNAME=	Text-Autoformat
 PORTVERSION=	1.13
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatic and manual text wrapping and reformating formatting
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/Text/Reform.pm:${PORTSDIR}/textproc/p5-Text-Reform
 RUN_DEPENDS=	${BUILD_DEPENDS}
@@ -23,10 +18,4 @@ PERL_CONFIGURE=	yes
 
 MAN3=		Text::Autoformat.3
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500600
-IGNORE=		requires at least perl 5.6.0, use lang/perl5.8 or lang/perl5
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
