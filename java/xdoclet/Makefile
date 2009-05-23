@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xdoclet
-# Date created:				Feb 25 2003
-# Whom:					Sheldon Hearn <sheldonh@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/java/xdoclet/Makefile,v 1.8 2005/11/14 00:36:48 hq Exp $
-#
+# $MidnightBSD: mports/java/xdoclet/Makefile,v 1.1 2006/10/06 02:14:11 laffer1 Exp $
 
 PORTNAME=	xdoclet
 PORTVERSION=	1.2.3
@@ -17,6 +11,7 @@ DISTFILES=	${DISTNAME}.zip xjavadoc-${XJAVADOC_VER}.zip
 
 MAINTAINER=	ports@Midnight.org
 COMMENT=	Java attribute-oriented code generation engine
+LICENSE=	bsd4
 
 RUN_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
