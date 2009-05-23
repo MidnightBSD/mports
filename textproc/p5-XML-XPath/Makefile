@@ -1,10 +1,4 @@
-# New ports collection makefile for:	XML::XPath
-# Date created:		11 Nov 2000
-# Whom:			Sergey Skvortsov <skv@protey.ru>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-XPath/Makefile,v 1.11 2003/11/04 12:23:33 skv Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-XPath/Makefile,v 1.1 2007/03/19 16:22:21 laffer1 Exp $
 
 PORTNAME=	XML-XPath
 PORTVERSION=	1.13
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modules for parsing and evaluating XPath statements
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
 RUN_DEPENDS=	${BUILD_DEPENDS}

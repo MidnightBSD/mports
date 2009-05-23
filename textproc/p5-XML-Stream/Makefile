@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-XML-Stream
-# Date created:				28 Augest 2000
-# Whom:	      				Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-XML-Stream/Makefile,v 1.15 2005/10/31 18:24:18 erwin Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-Stream/Makefile,v 1.1 2007/05/02 23:27:11 laffer1 Exp $
 
 PORTNAME=	XML-Stream
 PORTVERSION=	1.22
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML::Stream provides you with access to XML Stream
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
 		${SITE_PERL}/Authen/SASL.pm:${PORTSDIR}/security/p5-Authen-SASL \

@@ -1,10 +1,4 @@
-# New ports collection makefile for:	textproc/p5-Text-Reform
-# Date created:				2 August 2002
-# Whom:					Mathieu Arnold <m@absolight.net>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Text-Reform/Makefile,v 1.3 2003/08/16 09:13:43 mat Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Text-Reform/Makefile,v 1.1 2007/03/11 04:28:29 laffer1 Exp $
 
 PORTNAME=	Text-Reform
 PORTVERSION=	1.11
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manual text wrapping and reformatting
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 

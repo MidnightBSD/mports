@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-XML-Twig
-# Date created:		13 August 2001
-# Whom:	      		Johann Visagie <wjv@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.1 2007/03/19 16:38:36 laffer1 Exp $
-# $FreeBSD: ports/textproc/p5-XML-Twig/Makefile,v 1.19 2007/01/23 13:22:33 miwi Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.2 2007/08/14 06:48:08 laffer1 Exp $
 
 PORTNAME=	XML-Twig
 PORTVERSION=	3.29
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Process huge XML documents by chunks via a tree interface
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Text/Iconv.pm:${PORTSDIR}/converters/p5-Text-Iconv \
 		${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \

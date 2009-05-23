@@ -1,10 +1,4 @@
-# New ports collection makefile for:	textproc/p5-PPI
-# Date created:				24 March 2005
-# Whom:					Lars Thegler <lth@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-PPI/Makefile,v 1.18 2007/10/29 15:24:25 lth Exp $
-#
+# $MidnightBSD: mports/textproc/p5-PPI/Makefile,v 1.1 2008/03/21 20:12:40 laffer1 Exp $
 
 PORTNAME=	PPI
 PORTVERSION=	1.201
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analyze and manipulate Perl code without using perl itself
+LICENSE=	perl
 
 BUILD_DEPENDS=	\
 		p5-Clone>=0.22:${PORTSDIR}/devel/p5-Clone \
