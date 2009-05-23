@@ -31,12 +31,22 @@
 %%PYTHON_SITELIBDIR%%/Numeric/Matrix.py
 %%PYTHON_SITELIBDIR%%/Numeric/Matrix.pyc
 %%PYTHON_SITELIBDIR%%/Numeric/Matrix.pyo
-%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.py
-%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.pyc
-%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.pyo
+%%NOEGGINFO%%%%NOTEASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%
+%%NOEGGINFO%%%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%/PKG-INFO
+%%NOEGGINFO%%%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%/SOURCES.txt
+%%NOEGGINFO%%%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%/dependency_links.txt
+%%NOEGGINFO%%%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%/not-zip-safe
+%%NOEGGINFO%%%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%/top_level.txt
 %%PYTHON_SITELIBDIR%%/Numeric/Numeric.py
 %%PYTHON_SITELIBDIR%%/Numeric/Numeric.pyc
 %%PYTHON_SITELIBDIR%%/Numeric/Numeric.pyo
+%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/Numeric/arrayobject.h
+%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/Numeric/f2c.h
+%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/Numeric/ranlib.h
+%%EASY%%%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/Numeric/ufuncobject.h
+%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.py
+%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.pyc
+%%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/__init__.pyo
 %%PYTHON_SITELIBDIR%%/Numeric/Precision.py
 %%PYTHON_SITELIBDIR%%/Numeric/Precision.pyc
 %%PYTHON_SITELIBDIR%%/Numeric/Precision.pyo
@@ -63,19 +73,21 @@
 %%PYTHON_SITELIBDIR%%/Numeric/ranlib.so
 %%PYTHON_SITELIBDIR%%/Numeric/umath.so
 %%PORTDOCS%%%%DOCSDIR%%/numpy.pdf
-%%EXAMPLESDIR%%/NumTut/__init__.py
-%%EXAMPLESDIR%%/NumTut/greece.pik
-%%EXAMPLESDIR%%/NumTut/mkpic.py
-%%EXAMPLESDIR%%/NumTut/testview.py
-%%EXAMPLESDIR%%/NumTut/view.py
-%%EXAMPLESDIR%%/life.py
-%%EXAMPLESDIR%%/mandelbrot.py
-%%EXAMPLESDIR%%/sieve.py
-@dirrm %%EXAMPLESDIR%%/NumTut
-@dirrm %%EXAMPLESDIR%%
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/NumTut/__init__.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/NumTut/greece.pik
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/NumTut/mkpic.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/NumTut/testview.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/NumTut/view.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/life.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/mandelbrot.py
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/sieve.py
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/NumTut
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrm %%PYTHON_SITELIBDIR%%/Numeric/RNG
+%%EASY%%@dirrm %%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers/Numeric
 @dirrm %%PYTHON_SITELIBDIR%%/Numeric/Numeric_headers
+%%NOEGGINFO%%%%EASY%%@dirrm %%PYTHON_SITELIBDIR%%/Numeric/%%PYDISTUTILS_EGGINFO%%
 @dirrm %%PYTHON_SITELIBDIR%%/Numeric/MA
 @dirrm %%PYTHON_SITELIBDIR%%/Numeric/FFT
 @dirrm %%PYTHON_SITELIBDIR%%/Numeric
