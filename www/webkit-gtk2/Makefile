@@ -1,11 +1,4 @@
-# New ports collection makefile for:	webkit
-# Date created:		2007-10-21
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.4 2008/07/26 17:11:24 laffer1 Exp $
-# $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.2 2008/03/31 10:33:05 ahze Exp $
-#   $MCom: ports/www/webkit-gtk2/Makefile,v 1.5 2008/03/24 01:51:52 mezz Exp $
-#
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.5 2009/04/08 18:30:00 ctriv Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	0.0.42260
@@ -23,6 +16,7 @@ BUILD_DEPENDS=	flex>=2.5.33:${PORTSDIR}/textproc/flex \
 		
 LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
 		curl.5:${PORTSDIR}/ftp/curl \
+		soup-2.4.1:{PORTSDIR}/devel/libsoup
 
 USE_SQLITE=	yes
 USE_BISON=	build
@@ -31,8 +25,8 @@ USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 libxslt
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf:261 automake:110 libtool:15
-USE_GSTREAMER=	yes theora
+USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:15
+USE_GSTREAMER=	gnomevfs theora
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		FLEX="${LOCALBASE}/bin/flex" 
