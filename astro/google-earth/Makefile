@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.9 2009/03/03 22:54:59 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.10 2009/05/26 00:19:47 laffer1 Exp $
 
 PORTNAME=	google-earth
-PORTVERSION=	4.3.7284.3916
-PORTREVISION=	2
+PORTVERSION=	5.0.11337.1968
 CATEGORIES=	astro deskutils geography
 MASTER_SITES=	http://dl.google.com/earth/client/current/
-DISTFILES=	${TARGET_DISTFILE}
+DISTNAME=	GoogleEarthLinux
+EXTRACT_SUFX=	.bin
+DIST_SUBDIR=    ${PORTNAME}/${PORTVERSION}
 EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,12 +26,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/\..*//g}/
 USE_LINUX=	yes
 USE_GNOME=	desktopfileutils
 
-REAL_DISTFILE=		GoogleEarthLinux.bin
-TARGET_DISTFILE=	GoogleEarthLinux-${PORTVERSION}.bin
-
-FETCH_CMD=	/usr/bin/fetch -ARm
-FETCH_BEFORE_ARGS=	-o ${TARGET_DISTFILE}
-
 .include <bsd.port.pre.mk>
 
 UNMAKESELF=	${LOCALBASE}/bin/unmakeself
@@ -41,15 +36,9 @@ RUN_DEPENDS+=	${LINUXBASE}/usr/lib/libGL.so.1:${PORTSDIR}/x11/nvidia-driver
 RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
 .endif
 
-do-fetch:
-	@if [ ! -f ${DISTDIR}/${TARGET_DISTFILE} ]; then \
-		cd ${DISTDIR}; \
-		${FETCH_CMD} ${FETCH_BEFORE_ARGS} -1 ${MASTER_SITES:S|$|${REAL_DISTFILE}|g} ${FETCH_AFTER_ARGS}; \
-	fi
-
 do-extract:
 	@${MKDIR} ${WRKSRC}
-	@${CP} ${DISTDIR}/${DISTFILES} ${WRKSRC}
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTFILES} ${WRKSRC}
 	@cd ${WRKSRC} && ${UNMAKESELF} ${DISTFILES} && ${RM} -f ${DISTFILES}
 	@cd ${WRKSRC} && ${TAR} xf googleearth-data.tar && ${RM} -f googleearth-data.tar
 	@cd ${WRKSRC} && ${TAR} xf googleearth-linux-x86.tar && ${RM} -f googleearth-linux-x86.tar
