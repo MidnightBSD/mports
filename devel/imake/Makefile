@@ -1,14 +1,8 @@
-# New ports collection makefile for:    imake-6
-# Date created:         18 Jun 2004
-# Whom:                 anholt
-#
-# $FreeBSD: ports/devel/imake/Makefile,v 1.18 2007/05/19 20:02:53 flz Exp $
-# $MidnightBSD: mports/devel/imake/Makefile,v 1.3 2007/12/06 00:22:30 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/imake/Makefile,v 1.4 2007/12/06 00:23:27 laffer1 Exp $
 
 PORTNAME=	imake
 PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	devel
 
