@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ghc/Makefile,v 1.1 2009/02/18 19:52:44 laffer1 Exp $
+# $MidnightBSD: mports/lang/ghc/Makefile,v 1.2 2009/04/05 19:59:39 laffer1 Exp $
 
 PORTNAME=	ghc
 PORTVERSION=	6.8.3
@@ -46,7 +46,7 @@ LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
 .endif
 
 .if ${ARCH} == "i386"
-.if ${OSVERSION} >= 700000
+.if ${OSVERSION} >= 3000
 DISTFILES+=	ghc-${PORTVERSION}-i386-unknown-freebsd7-boot${EXTRACT_SUFX}:boot
 .else
 DISTFILES+=	ghc-${PORTVERSION}-i386-unknown-freebsd6-boot${EXTRACT_SUFX}:boot
@@ -54,7 +54,7 @@ DISTFILES+=	ghc-${PORTVERSION}-i386-unknown-freebsd6-boot${EXTRACT_SUFX}:boot
 .endif
 
 .if ${ARCH} == "amd64"
-.if ${OSVERSION} >= 700000
+.if ${OSVERSION} >= 3000
 DISTFILES+=	ghc-${PORTVERSION}-x86_64-unknown-freebsd7-boot${EXTRACT_SUFX}:boot
 .else
 IGNORE=		unsupported at the moment
