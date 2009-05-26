@@ -2,7 +2,7 @@
 # Date created:		18 November 1994
 # Whom:			asami
 #
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.3 2007/10/25 04:34:28 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.4 2008/03/19 01:56:30 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/Xaw3d/Makefile,v 1.47 2006/08/15 01:13:35 clsung Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_LDCONFIG=	yes
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
