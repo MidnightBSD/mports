@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/llvm-gcc4/Makefile,v 1.1 2009/03/25 19:36:25 laffer1 Exp $
 
 PORTNAME=	gcc4
 PORTVERSION=	2.5
@@ -39,12 +39,12 @@ CONFIGURE_ARGS+=	--enable-checking
 .endif
 PLIST_SUB=	GCC_VER=${GCC_VER} \
 		GNU_HOST=${CONFIGURE_TARGET}
-INFO=		llvm-gcc/cpp \
-		llvm-gcc/cppinternals \
-		llvm-gcc/gcc \
-		llvm-gcc/gccinstall \
-		llvm-gcc/gccint \
-		llvm-gcc/libgomp
+#INFO=		llvm-gcc/cpp \
+#		llvm-gcc/cppinternals \
+#		llvm-gcc/gcc \
+#		llvm-gcc/gccinstall \
+#		llvm-gcc/gccint \
+#		llvm-gcc/libgomp
 MAN1=		llvm-cpp.1 llvm-g++.1 llvm-gcc.1 llvm-gcov.1
 
 .include <bsd.port.pre.mk>
