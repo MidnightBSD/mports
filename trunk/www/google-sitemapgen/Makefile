@@ -1,10 +1,4 @@
-# New ports collection makefile for:	google-sitemapgen
-# Date created:	   09 June 2005
-# Whom:		   Sergey Skvortsov <skv@protey.ru>
-#
-# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.1 2007/05/08 21:24:16 laffer1 Exp $
-# $FreeBSD: ports/www/google-sitemapgen/Makefile,v 1.3 2006/02/17 09:01:57 skv Exp $
-#
+# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.2 2008/10/08 04:47:25 laffer1 Exp $
 
 PORTNAME=	google-sitemapgen
 PORTVERSION=	1.4
@@ -19,5 +13,6 @@ LICENSE=	bsd3
 
 USE_PYTHON=	YES
 USE_PYDISTUTILS=YES
+PYDISTUTILS_PKGNAME=	sitemap_gen
 
 .include <bsd.port.mk>
