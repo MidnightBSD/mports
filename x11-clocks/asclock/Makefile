@@ -1,10 +1,4 @@
-# New ports collection makefile for:   asclock
-# Date created:        20 June 1997
-# Whom:                Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
-#
-# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.2 2008/08/20 19:39:34 laffer1 Exp $
-# $FreeBSD: ports/x11-clocks/asclock/Makefile,v 1.20 2006/12/30 15:08:20 garga Exp $
-#
+# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.3 2008/08/20 19:41:16 laffer1 Exp $
 
 PORTNAME=	asclock
 PORTVERSION=	1.0
