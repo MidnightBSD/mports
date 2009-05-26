@@ -1,11 +1,4 @@
-# New ports collection makefile for:	gaim
-# Date created:			26 Mar 1999
-# Whom:				Jim Mock <jim@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.9 2008/05/21 17:56:31 laffer1 Exp $
-# $FreeBSD: /repoman/r/pcvs/ports/net-im/libpurple/Makefile,v 1.22 2007/05/03 19:11:01 marcus Exp $
-#   $MCom: ports/net-im/libgaim/Makefile,v 1.10 2007/03/11 06:36:56 marcus Exp $
-#
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.10 2008/09/13 21:54:15 laffer1 Exp $
 
 PORTNAME=	libpurple
 PORTVERSION=	2.5.1
@@ -137,7 +130,7 @@ PLIST_SUB+=		SILC="@comment not installed: "
 .endif
 
 .if !defined(WITHOUT_BONJOUR)
-LIB_DEPENDS+=	avahi-core.5:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS+=	avahi-core.6:${PORTSDIR}/net/avahi-app
 PLIST_SUB+=	BONJOUR=""
 PRPL_MODULES:=	${PRPL_MODULES},bonjour
 .else
