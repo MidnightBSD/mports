@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xfce4-session
-# Date created:		2003-10-30
-# Whom:			Matt Lancereau <matt@rimasec.net>
-#
-# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.1 2008/09/25 03:51:12 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/xfce4-session/Makefile,v 1.39 2008/06/06 14:17:21 edwin Exp $
-#
+# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.2 2009/03/12 05:13:21 ctriv Exp $
 
 PORTNAME=	xfce4-session
 PORTVERSION=	${XFCE_VERSION}
@@ -20,7 +14,7 @@ BUILD_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
 		dbus-glib>=0.73:${PORTSDIR}/devel/dbus-glib
 RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
 		dbus-glib>=0.73:${PORTSDIR}/devel/dbus-glib
-
+LIB_DEPENDS=	wnck.22:${PORTSDIR}/x11-toolkits/libwnck
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
