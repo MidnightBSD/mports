@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.19 2009/04/08 04:09:26 laffer1 Exp $
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
@@ -17,7 +17,7 @@ OPTIONS=	MOD_DAV_SVN	"mod_dav_svn module for Apache 2.X" off \
 		NEON		"WebDAV/Delta-V repo access module (neon)" on \
 		SERF		"WebDAV/Delta-V repo access module (serf)" off \
 		SASL		"SASL2 authorization support" off \
-		BDB		"db4 repository backend" on \
+		BDB		"db4 repository backend" off \
 		ASVN		"Build and install Archive SVN (asvn)" off \
 		MAINTAINER_DEBUG	"Build debug version" off \
 		SVNSERVE_WRAPPER	"Enable svnserve wrapper" off \
