@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.51 2008/10/14 15:32:54 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.52 2009/03/12 03:25:55 ctriv Exp $
 #
 
     COMMENT = X11 toolkits
@@ -39,6 +39,7 @@
     SUBDIR += linux-pango
     SUBDIR += open-motif
     SUBDIR += pango
+    SUBDIR += pangomm
     SUBDIR += py-gnome-desktop
     SUBDIR += py-gnome2
     SUBDIR += py-gtk2
