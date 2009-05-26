@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.8 2009/02/23 16:31:21 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.9 2009/03/03 22:54:59 laffer1 Exp $
 
 PORTNAME=	google-earth
 PORTVERSION=	4.3.7284.3916
@@ -19,7 +19,6 @@ RUN_DEPENDS=	${BUILD_DEPENDS} \
       
 
 RESTRICTED=	Not sure about redistribution rights
-LICENSE=	restricted
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/\..*//g}/
 
