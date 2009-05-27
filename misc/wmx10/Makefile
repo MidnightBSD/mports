@@ -2,7 +2,7 @@
 # Date created:                                16 September 2000
 # Whom:                                        eric
 #
-# $MidnightBSD: mports/misc/wmx10/Makefile,v 1.1 2007/03/09 05:05:41 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmx10/Makefile,v 1.2 2007/03/25 01:14:01 ctriv Exp $
 # $FreeBSD: ports/misc/wmx10/Makefile,v 1.10 2004/08/08 17:13:17 krion Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	http://www.cs.uml.edu/~jhawkins/wmx10/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Remote control for X10 devices
-
+LICENSE=        gpl2
 WRKSRC=		${WRKDIR}/wmx10.app/wmx10
 
 USE_XLIB=	yes
