@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.291 2009/05/21 00:39:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.292 2009/05/27 16:33:28 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -99,6 +99,7 @@
     SUBDIR += imake-6
     SUBDIR += json-glib
     SUBDIR += judy
+    SUBDIR += kBuild
     SUBDIR += kdbg
     SUBDIR += kdesdk3
     SUBDIR += kdesdk4
