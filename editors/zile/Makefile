@@ -3,37 +3,33 @@
 # Whom:			jasone
 #
 # $FreeBSD: ports/editors/zile/Makefile,v 1.58 2008/05/16 14:10:54 miwi Exp $
-# $MidnightBSD: mports/editors/zile/Makefile,v 1.2 2008/09/09 21:00:38 crash Exp $
+# $MidnightBSD: mports/editors/zile/Makefile,v 1.3 2009/01/02 01:46:08 ctriv Exp $
 
 PORTNAME=	zile
-PORTVERSION=	2.2.61
+PORTVERSION=	2.3.7
 CATEGORIES=	editors
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small emacs-like text editor
 LICENSE=        gpl3
-USE_GNOME=	gnometarget
+USE_GMAKE=      yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LIBS="-lgnuregex"
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS= --without-included-regex
 MAN1=		zile.1
-INFO=		zile
-PLIST_FILES=	bin/zile %%DATADIR%%/AUTODOC %%DATADIR%%/FAQ %%DATADIR%%/HELP \
-		%%DATADIR%%/TUTORIAL %%DATADIR%%/dotzile.sample
+PLIST_FILES=	bin/zile %%DATADIR%%/FAQ %%DATADIR%%/dotzile.sample
 PLIST_DIRS=	%%DATADIR%%
 
-.include <bsd.port.pre.mk>
-
-GNU_REGEX_H=	gnu/regex.h
+CPPFLAGS=	-isystem /usr/include/gnu
+LDFLAGS=	-lgnuregex
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|<regex\.h>|<${GNU_REGEX_H}>|g ; \
-		 s|-pedantic||g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e \
-	    's|"regex\.h"|<${GNU_REGEX_H}>|g' ${WRKSRC}/src/search.c
+		's|-pedantic||g' ${WRKSRC}/configure
         @${REINPLACE_CMD} -e \
 		's|: install-exec-local|:|g' ${WRKSRC}/lib/Makefile.in
+
+
 	
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
