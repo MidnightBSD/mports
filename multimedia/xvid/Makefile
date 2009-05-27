@@ -2,7 +2,7 @@
 # Date created:		04 April 2002
 # Whom:			Michael Nottebrock <michaelnottebrock@gmx.net> et al
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.1 2006/10/24 16:16:03 wintellect Exp $
 # $FreeBSD: ports/multimedia/xvid/Makefile,v 1.23 2006/06/26 16:21:35 lofi Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	${PORTNAME}core-${PORTVERSION}
 
 MAINTAINER=	ports@MidnighBSD.org
 COMMENT=	An opensource MPEG-4 codec, based on OpenDivx
-
+LICENSE=        gpl2
 BUILD_DEPENDS=	${LOCALBASE}/bin/nasm:${PORTSDIR}/devel/nasm
 
 GNU_CONFIGURE=	yes

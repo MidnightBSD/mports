@@ -3,7 +3,7 @@
 # Whom:			"Philippe Charnier" <charnier@lirmm.fr>
 #
 # $FreeBSD: ports/multimedia/mpeg2codec/Makefile,v 1.12 2005/04/24 08:03:31 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/mpeg2codec/Makefile,v 1.1 2007/01/20 16:04:57 laffer1 Exp $
 #
 
 PORTNAME=	mpeg2codec
@@ -15,7 +15,7 @@ DISTFILES=	mpeg2vidcodec_v12.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MPEG-2 Encoder and Decoder
-
+LICENSE=        other
 USE_XLIB=	yes
 WRKSRC=		${WRKDIR}/mpeg2
 DATADIR=	share/mpeg2

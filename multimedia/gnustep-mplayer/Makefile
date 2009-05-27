@@ -2,7 +2,7 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/multimedia/gnustep-mplayer/Makefile,v 1.1 2007/08/20 07:29:07 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gnustep-mplayer/Makefile,v 1.2 2007/11/07 20:20:15 ctriv Exp $
 # $FreeBSD: ports/multimedia/gnustep-mplayer/Makefile,v 1.4 2007/05/19 20:17:15 flz Exp $
 #
 
@@ -16,7 +16,7 @@ DISTNAME=	Mplayer-0.4-1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep port of MPlayerOSX
-
+LICENSE=        gpl3
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes

@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.7 2007/11/29 21:51:15 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.8 2007/12/06 17:54:42 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -101,7 +101,7 @@ DISTNAME=	MPlayer-1.0rc1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	High performance media player/encoder supporting many formats
-
+LICENSE=        lgpl
 PATCH_SITES=	http://www.mplayerhq.hu/MPlayer/patches/
 PATCHFILES+=	asmrules_fix_20061231.diff
 

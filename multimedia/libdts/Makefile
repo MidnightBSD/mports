@@ -2,7 +2,7 @@
 # Date created:				12th May 2004
 # Whom:					Pav Lucistnik <pav@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdts/Makefile,v 1.1 2006/10/05 01:12:45 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdts/Makefile,v 1.4 2006/08/30 08:08:37 pav Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITES=	http://debian.unnet.nl/pub/videolan/libdts/${PORTVERSION}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free DTS Coherent Acoustics decoder
-
+LICENSE=        gpl2
 GNU_CONFIGURE=	yes
 USE_GNOME=	pkgconfig gnomehack
 

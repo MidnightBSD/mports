@@ -2,7 +2,7 @@
 # Date created:		2004-11-15
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-plugins-core/Makefile,v 1.1 2008/01/05 02:30:01 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins-core/Makefile,v 1.15 2007/06/07 14:04:25 ahze Exp $
 #    $MCom: ports/multimedia/gstreamer-plugins-core/Makefile,v 1.17 2006/07/17 01:39:57 ahze Exp $
 
@@ -15,7 +15,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Core set of typical audio and video gstreamer-plugins
-
+LICENSE=        lgpl
 NO_BUILD=	yes
 GST_DIR=	lib/gstreamer-${PORTVERSION}
 PLIST_FILES=	${GST_DIR}/.gstreamer-plugins-core.keep

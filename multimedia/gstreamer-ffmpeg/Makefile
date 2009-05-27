@@ -2,7 +2,7 @@
 # Date created:		Thu Feb 26 20:10:39 CET 2004
 # Whom:			Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.1 2007/11/24 03:08:17 laffer1 Exp $
 #
 
 PORTNAME=	gstreamer
@@ -15,7 +15,7 @@ DISTNAME=	gst-ffmpeg-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
-
+LICENSE=        gpl2
 CFLAGS:=	${CFLAGS} -O2
 USE_XLIB=	yes
 USE_BZIP2=	yes

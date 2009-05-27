@@ -2,7 +2,7 @@
 # Date created:			3 July 1999
 # Whom:				Espen Skoglund <esk@ira.uka.de>
 #
-# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.3 2007/08/01 20:41:14 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.4 2007/11/06 00:07:37 laffer1 Exp $
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
 #
 
@@ -15,7 +15,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	X Multimedia System --- An audio player with a Winamp GUI
-
+LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GNOME=	gtk12 gnomehack
