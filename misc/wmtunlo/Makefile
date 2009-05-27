@@ -2,7 +2,7 @@
 # Date created:			27 July 2002
 # Whom:				Adam Weinberger <adam@vectors.cx>
 #
-# $MidnightBSD: mports/misc/wmtunlo/Makefile,v 1.1 2007/03/09 05:05:41 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmtunlo/Makefile,v 1.2 2007/03/25 01:01:13 ctriv Exp $
 # $FreeBSD: ports/misc/wmtunlo/Makefile,v 1.7 2004/05/16 23:45:05 adamw Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	http://clay.ll.pl/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A falling-down-a-tunnel dockapp
-
+LICENSE=        gpl2
 USE_XLIB=	yes
 ALL_TARGET=	wmtunlo
 

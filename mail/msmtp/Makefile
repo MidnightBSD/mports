@@ -2,7 +2,7 @@
 # Date created:                   22 Aug 2003
 # Whom:                           R.I.Pienaar <rip@devco.net>
 #
-# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.3 2007/02/18 01:48:16 laffer1 Exp $
+# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.4 2007/10/29 19:01:42 laffer1 Exp $
 # $FreeBSD: ports/mail/msmtp/Makefile,v 1.25 2006/08/21 07:35:52 novel Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITE_SUBDIR=	msmtp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SMTP plugin for MUAs
-
+LICENSE=        gpl3
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GETOPT_LONG=yes

@@ -2,7 +2,7 @@
 # Date created:         15 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/graphics/vindaloo/Makefile,v 1.1 2007/03/13 06:53:12 laffer1 Exp $
+# $MidnightBSD: mports/graphics/vindaloo/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
 # $FreeBSD: ports/graphics/vindaloo/Makefile,v 1.2 2007/01/31 18:18:03 dinoex Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	Vindaloo-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PDF Reader for GNUstep
-
+LICENSE=        gpl2
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes

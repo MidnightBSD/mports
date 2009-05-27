@@ -2,7 +2,7 @@
 # Date created:         09 February 2004
 # Whom:                 Thomas Kempka <t.kempka@web.de>
 #
-# $MidnightBSD: mports/misc/wminfo/Makefile,v 1.2 2007/03/25 03:33:56 ctriv Exp $
+# $MidnightBSD: mports/misc/wminfo/Makefile,v 1.3 2009/04/05 19:32:35 laffer1 Exp $
 # $FreeBSD: ports/misc/wminfo/Makefile,v 1.3 2006/05/10 22:37:25 edwin Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	pav
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dockapp to run shell scripts and display the output
-
+LICENSE=        gpl2
 WRKSRC=		${WRKDIR}/${PORTNAME}/${PORTNAME}
 
 USE_XLIB=	yes

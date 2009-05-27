@@ -2,7 +2,7 @@
 # Date Created:				8 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-FuzzyOcr/Makefile,v 1.1 2007/11/08 16:33:38 laffer1 Exp $
 #
 
 PORTNAME=	FuzzyOcr
@@ -16,7 +16,7 @@ DISTNAME=	${PORTNAME:L}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Plugin for SpamAssassin which scans image attachments for spam
-
+LICENSE=        apache2
 RUN_DEPENDS=	giftopnm:${PORTSDIR}/graphics/netpbm			\
 		import:${PORTSDIR}/graphics/ImageMagick			\
 		gocr:${PORTSDIR}/graphics/gocr				\
