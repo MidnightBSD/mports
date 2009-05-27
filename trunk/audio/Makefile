@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.71 2008/09/26 15:46:06 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.72 2009/01/04 19:37:17 ctriv Exp $
 #
 
     COMMENT = Audio tools
@@ -71,6 +71,7 @@
     SUBDIR += openal
     SUBDIR += portaudio
     SUBDIR += portaudio2
+    SUBDIR += pulseaudio
     SUBDIR += rhythmbox
     SUBDIR += sdl_mixer
     SUBDIR += shoutcast
