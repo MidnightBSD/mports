@@ -2,7 +2,7 @@
 # Date created:				Fri Jul 22 18:30:01 EDT 2005
 # Whom:					Serge Gagnon <serge.gagnon@b2b2c.ca>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/streamdvd/Makefile,v 1.1 2007/06/11 02:40:50 laffer1 Exp $
 # $FreeBSD: ports/multimedia/streamdvd/Makefile,v 1.3 2007/04/05 06:03:22 koitsu Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	http://www.badabum.de/down/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast tool to backup Video DVDs 'on the fly'
-
+LICENSE=        gpl2
 LIB_DEPENDS=	dvdread.5:${PORTSDIR}/multimedia/libdvdread
 
 WRKSRC=		${WRKDIR}/StreamDVD-${PORTVERSION}

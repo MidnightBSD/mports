@@ -2,7 +2,7 @@
 # Date created:				24 Jun 2001
 # Whom:					Marc van Woerkom <3d@freebsd.org>
 #
-# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.2 2007/06/11 02:13:42 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.3 2007/06/30 00:05:17 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdread/Makefile,v 1.20 2006/05/10 22:37:31 edwin Exp $
 #
 
@@ -14,7 +14,7 @@ MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This is needed by ogle, which is a DVD player that supports DVD menus and libxine.
-
+LICENSE=        gpl2
 LIB_DEPENDS=	dvdcss.${DVDCSS_LIBVERSION}:${PORTSDIR}/multimedia/libdvdcss
 
 GNU_CONFIGURE=	yes
