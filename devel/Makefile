@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.290 2009/04/30 19:16:11 ctriv Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.291 2009/05/21 00:39:43 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -55,6 +55,7 @@
     SUBDIR += dbus-qt3
     SUBDIR += dbus-qt4
     SUBDIR += desktop-file-utils
+    SUBDIR += dev86
     SUBDIR += devhelp
     SUBDIR += devtodo
     SUBDIR += dmalloc
