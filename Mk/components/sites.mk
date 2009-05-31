@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.11 2009/04/05 16:53:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.12 2009/05/01 16:03:02 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1258,7 +1258,7 @@ MASTER_SITE_SAVANNAH+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
-.for mirror in garr superb-east nchc kent easynews ufpr mesh heanet
+.for mirror in garr superb-east nchc kent easynews ufpr mesh voxel
 MASTER_SITE_SOURCEFORGE+= \
 	http://${mirror}.dl.sourceforge.net/sourceforge/%SUBDIR%/
 .endfor
