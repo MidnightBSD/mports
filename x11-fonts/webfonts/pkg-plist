@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+@comment $MidnightBSD: mports/x11-fonts/webfonts/pkg-plist,v 1.1 2007/08/23 02:26:43 laffer1 Exp $
 %%FONTSDIR%%/andalemo.ttf
 %%FONTSDIR%%/arial.ttf
 %%FONTSDIR%%/arialbd.ttf
@@ -37,4 +37,4 @@
 %%DOCSDIR%%/LICENSE
 @dirrm %%DOCSDIR%%
 @dirrm %%FONTSDIR%%
-@exec %%X11BASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
+@exec %%LOCALBASE%%/bin/fc-cache -f -v %%FONTSDIR%% || /usr/bin/true
