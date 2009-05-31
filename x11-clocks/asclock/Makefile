@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.3 2008/08/20 19:41:16 laffer1 Exp $
+# $MidnightBSD: mports/x11-clocks/asclock/Makefile,v 1.4 2009/05/26 00:41:53 laffer1 Exp $
 
 PORTNAME=	asclock
 PORTVERSION=	1.0
@@ -12,8 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Afterstep clock with some language extensions
 LICENSE=	unknown
 
-CONFLICTS=	asclock-gtk-[0-9]* asclock-xlib-[0-9]*
-
 USE_IMAKE=	yes
 USE_XORG=	xpm xext x11
 MAN1=		asclock.1
@@ -21,8 +19,6 @@ MAN1=		asclock.1
 pre-configure:
 	(cd ${WRKSRC}; \
 	${ECHO_CMD} ${ASCLOCK_LANG} | ${WRKSRC}/configure > /dev/null)
-	@${ECHO_MSG} "*****************  NOTE  *****************"
-	@${ECHO_MSG} "*                                        *"
 	@${ECHO_MSG} "*  You can choose languages for asclock. *"
 	@${ECHO_MSG} "* 1) engligh [DEFAULT]                   *"
 	@${ECHO_MSG} "* 2) german                              *"
@@ -39,6 +35,5 @@ pre-configure:
 	@${ECHO_MSG} "*                                        *"
 	@${ECHO_MSG} "* Specify the number you want when make. *"
 	@${ECHO_MSG} "* Example: \" make ASCLOCK_LANG=1 \"       *"
-	@${ECHO_MSG} "******************************************"
 
 .include <bsd.port.mk>
