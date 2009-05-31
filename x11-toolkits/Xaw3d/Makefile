@@ -1,10 +1,4 @@
-# New ports collection makefile for:	Xaw3d
-# Date created:		18 November 1994
-# Whom:			asami
-#
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.4 2008/03/19 01:56:30 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/Xaw3d/Makefile,v 1.47 2006/08/15 01:13:35 clsung Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.5 2009/05/26 00:40:57 laffer1 Exp $
 
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
@@ -18,7 +12,7 @@ LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
-USE_XORG=	x11
+USE_XORG=	x11 xt xmu
 USE_LDCONFIG=	yes
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
