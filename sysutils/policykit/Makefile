@@ -1,14 +1,7 @@
-# New ports collection makefile for:   PolicyKit
-# Date Created:			01 May 2006
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.3 2008/05/31 16:58:22 laffer1 Exp $
-# $FreeBSD: ports/sysutils/policykit/Makefile,v 1.11 2008/05/01 01:01:48 marcus Exp $
-#   $MCom: ports/sysutils/policykit/Makefile,v 1.19 2008/01/20 04:41:31 marcus Exp $
-#
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.4 2008/05/31 16:59:21 laffer1 Exp $
 
 PORTNAME=	policykit
-PORTVERSION=	0.8
+PORTVERSION=	0.9
 PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
