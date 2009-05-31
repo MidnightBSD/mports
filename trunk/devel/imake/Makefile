@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/imake/Makefile,v 1.4 2007/12/06 00:23:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/imake/Makefile,v 1.5 2009/05/26 00:47:26 laffer1 Exp $
 
 PORTNAME=	imake
 PORTVERSION=	1.0.2
@@ -13,8 +13,9 @@ LICENSE=	x11
 BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config \
 		gccmakedep:${PORTSDIR}/devel/gccmakedep \
 		makedepend:${PORTSDIR}/devel/makedepend \
-		${PREFIX}/lib/X11/config/xorg.cf:${PORTSDIR}/x11/xorg-cf-files
+		${LOCALBASE}/lib/X11/config/xorg.cf:${PORTSDIR}/x11/xorg-cf-files
 
+GNU_CONFIGURE=	yes
 USE_PERL5=	yes
 
 XORG_CAT=	util
