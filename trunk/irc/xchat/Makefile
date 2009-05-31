@@ -1,11 +1,4 @@
-# New ports collection makefile for:	xchat2
-# Date created:			17 Aug 2002
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.8 2008/11/22 09:33:47 stevan Exp $
-# $FreeBSD: ports/irc/xchat/Makefile,v 1.133 2007/07/28 18:35:48 marcus Exp $
-#   $MCom: ports-stable/irc/xchat/Makefile,v 1.1 2006/10/26 08:33:06 marcus Exp $
-#
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.9 2008/11/22 14:07:54 laffer1 Exp $
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.6
@@ -19,6 +12,8 @@ COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
 LICENSE=	gpl2
 
 CONFLICTS=	xchat-1* xchat-systray-plugin-[0-9]*
+
+LIB_DEPENDS+=	gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
