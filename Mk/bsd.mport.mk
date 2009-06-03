@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.150 2009/04/14 20:39:10 ctriv Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.151 2009/05/01 15:36:22 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -500,7 +500,7 @@ CFLAGS+=	-fno-stack-protector
 .if defined(WITH_DEBUG) && ${WITH_DEBUG} != "no"
 .undef STRIP
 DEBUG_FLAGS?=	-g
-CFLAGS+=	${DEBUG_FLAGS}
+CFLAGS:=	${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
 .endif
 
 .if defined(NOPORTDOCS)
