@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ghc/Makefile,v 1.2 2009/04/05 19:59:39 laffer1 Exp $
+# $MidnightBSD: mports/lang/ghc/Makefile,v 1.3 2009/05/26 00:55:07 laffer1 Exp $
 
 PORTNAME=	ghc
 PORTVERSION=	6.8.3
@@ -107,7 +107,7 @@ MASTER_SITES+=	http://hackage.haskell.org/packages/archive/haddock/2.1.0/:docs \
 		ftp://ftp.cs.york.ac.uk/pub/haskell/contrib/:docs
 
 DISTFILES+=	haddock-2.1.0.tar.gz:docs \
-		hscolour-1.10.1.tar.gz:docs
+		hscolour-1.12.tar.gz:docs
 
 EXTRACT_ONLY=	${_DISTFILES:C/hscolour.*$//g:C/haddock.*$//g}
 
