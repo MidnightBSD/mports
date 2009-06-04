@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.5 2009/05/26 00:40:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.6 2009/05/31 03:36:15 laffer1 Exp $
 
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
@@ -12,7 +12,7 @@ LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
-USE_XORG=	x11 xt xmu
+USE_XORG=	x11 xt xmu xpm
 USE_LDCONFIG=	yes
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
