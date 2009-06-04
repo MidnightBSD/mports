@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dev86/Makefile,v 1.1 2009/05/27 16:33:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/dev86/Makefile,v 1.2 2009/06/04 16:25:01 laffer1 Exp $
 
 PORTNAME=	dev86
 PORTVERSION=	0.16.17
@@ -8,6 +8,7 @@ DISTNAME=	Dev86src-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Robert de Bath's 8086 development tools
+LICENSE=	gpl2
 
 CONFLICTS=	bcc-[0-9]* \
 		bin86-[0-9]*
@@ -26,5 +27,9 @@ post-patch:
 
 do-configure:
 	cd ${WRKSRC} && ${MAKE} DESTDIR=${FAKE_DESTDIR} PREFIX=${PREFIX} make.fil
+
+post-install:
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/lib/bcc/as86_encap
 
 .include <bsd.port.post.mk>
