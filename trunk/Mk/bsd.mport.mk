@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.152 2009/06/03 23:39:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.153 2009/06/04 00:13:47 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -920,6 +920,10 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 CFLAGS+=       -fno-strict-aliasing
 .endif
 .endif
+.endif
+
+.if defined(USE_CSTD)
+CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
 .endif
 
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
