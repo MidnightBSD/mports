@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.4 2008/04/14 18:37:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.5 2009/04/04 15:26:27 laffer1 Exp $
 
 PORTNAME=	xorg-fonts-truetype
 PORTVERSION=	7.4
@@ -15,7 +15,7 @@ RUN_DEPENDS=	${FONTDIR}/TTF/luximb.ttf:${PORTSDIR}/x11-fonts/font-bh-ttf \
 		${FONTDIR}/OTF/SyrCOMAdiabene.otf:${PORTSDIR}/x11-fonts/font-misc-meltho \
 		${FONTDIR}/TTF/GohaTibebZemen.ttf:${PORTSDIR}/x11-fonts/font-misc-ethiopic \
 		${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
-		${LOCALBASE}/lib/X11/fonts/bitstream-vera/VeraIt.ttf:${PORTSDIR}/x11-fonts/bitstream-vera \
+		${LOCALBASE}/lib/X11/fonts/bitstream-vera/VeraIt.ttf:${PORTSDIR}/x11-fonts/bitstream-vera
 
 do-install:	# empty
 
