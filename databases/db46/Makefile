@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/db46/Makefile,v 1.3 2007/11/11 21:19:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/db46/Makefile,v 1.4 2009/06/03 23:28:27 laffer1 Exp $
 
 PORTNAME=	db46
 PORTVERSION=	4.6.21.4
@@ -26,9 +26,6 @@ PATCH_DIST_STRIP=	-d .. -l
 # Fixes a bug which could lead to slow performance of internal init under
 # Replication Manager, as evidenced by "queue limit exceeded" messages in
 # verbose replication diagnostic output. [#15788]
-
-# I allow matthias.andree@gmx.de and all freebsd committer to do changes
-# to this package.
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.6
