@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.9 2009/03/27 05:30:36 laffer1 Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.10 2009/05/01 15:36:23 laffer1 Exp $
 
 =head1 NAME
 
@@ -1580,6 +1580,33 @@ and fake stages.
 Any extra arguments to sub-make in build and install stages.
 
 Default: none
+
+=item MAKE_JOBS_SAFE
+
+This port can be built on multiple CPUs in parallel. Make will
+be invoked with -jX parameter where X is the MAKE_JOBS_NUMBER
+set.
+
+=item MAKE_JOBS_UNSAFE
+
+Disallow multiple jobs even when a global override is in affect
+to work around broken ports.
+
+=item DISABLE_MAKE_JOBS
+
+Set to disable multiple jobs feature.  This is a user defined
+setting.
+
+=item FORCE_MAKE_JOBS
+
+Set to enable multiple jobs for all ports except those marked
+unsafe with MAKE_JOBS_UNSAFE
+
+=item MAKE_JOBS_NUMBER
+
+The number of make jobs to be used; the make -jX setting that
+defaults to the number of CPU cores present from 
+the sysctl kern.smp.cpus
 
 =back
 

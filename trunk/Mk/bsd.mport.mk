@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.151 2009/05/01 15:36:22 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.152 2009/06/03 23:39:48 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -918,6 +918,18 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 .if ${CC} != "icc"
 .if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
 CFLAGS+=       -fno-strict-aliasing
+.endif
+.endif
+.endif
+
+.if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
+_MAKE_JOBS=	#
+.else
+.if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
+MAKE_JOBS_NUBMER?=	`${SYSCTL} -n kern.smp.cpus`
+_MAKE_JOBS=	-j${MAKE_JOBS_NUMBER}
+.if defined(FORCE_MAKE_JOBS)
+BUILD_FAIL_MESSAGE+=	"You have chosen to use multiple make jobs (parallelization) for all mports.  This port was not tested with this setting.  Please remove FORCE_MAKE_JOBS and retry the build before reporting errors to the maintainer"
 .endif
 .endif
 .endif
@@ -2374,9 +2386,9 @@ do-build: run-build
 
 run-build:
 .if defined(USE_GMAKE)
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET})
 .else
-	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
+	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET})
 .endif
 
 
