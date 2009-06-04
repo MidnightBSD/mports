@@ -1,13 +1,7 @@
-# Ports collection makefile for:	Speex
-# Date created:			Jul 30, 2002
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.3 2008/02/28 00:28:55 laffer1 Exp $
-# $FreeBSD: ports/audio/speex/Makefile,v 1.48 2007/02/25 21:47:19 mezz Exp $
-#
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.4 2008/04/10 05:07:22 ctriv Exp $
 
 PORTNAME=	speex
-DISTVERSION=	1.2beta2
+DISTVERSION=	1.2rc1
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
@@ -20,10 +14,11 @@ LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
 
 CONFLICTS=	speex-devel-[0-9]*
 
+MAKE_JOBS_SAFE=	yes
+
 USE_GNOME=	gnomehack gnometarget ltverhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
-USE_GETOPT_LONG=yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg-dir=${LOCALBASE} \
 		--build=${ARCH}-portbld-freebsd6.0
