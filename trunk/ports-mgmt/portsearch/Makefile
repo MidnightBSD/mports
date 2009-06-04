@@ -3,17 +3,18 @@
 # Whom:					Vasil Dimov <vd@datamax.bg>
 #
 # $FreeBSD: ports/sysutils/portsearch/Makefile,v 1.2 2006/05/02 07:13:34 vd Exp $
-# $MidnightBSD: mports/ports-mgmt/portsearch/Makefile,v 1.1 2007/02/16 22:23:19 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portsearch/Makefile,v 1.2 2007/10/25 00:57:14 laffer1 Exp $
 #
 
 PORTNAME=	portsearch
 PORTVERSION=	1.2.3
 CATEGORIES=	ports-mgmt
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	vd/portsearch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port searching tool that supports search by packing list files
+LICENSE=	bsd2
 
 PLIST_FILES=	bin/portsearch %%DATADIR%%/Makefile
 PLIST_DIRS=	%%DATADIR%%
