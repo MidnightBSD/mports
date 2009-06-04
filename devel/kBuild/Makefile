@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.1 2009/05/27 16:37:14 laffer1 Exp $
 
 PORTNAME=	kBuild
 PORTVERSION=	0.1.5
@@ -12,6 +12,9 @@ LICENSE=	gpl3
 
 BUILD_DEPENDS=	gsed:${PORTSDIR}/textproc/gsed
 
+CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0 \
+		  --host=${ARCH}-portbld-freebsd7.0 \
+		  --target=${ARCH}-portbld-freebsd7.0
 USE_AUTOTOOLS=	automake:19 autoconf:262
 USE_GMAKE=	yes
 
@@ -46,14 +49,14 @@ do-build:
 
 do-install:
 .for bin in ${KBUILD_BINS}
-	${INSTALL_PROGRAM} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${PREFIX}/bin/${bin} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/bin/${bin} ${PREFIX}/bin
 .endfor
 	${MKDIR) ${DATADIR}
-	(cd ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${DATADIR})
+	(cd ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/kBuild && ${COPYTREE_SHARE} \* ${DATADIR})
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${PREFIX}/share/doc/${PKGNAME}/${doc} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/doc/${PKGNAME}/${doc} ${DOCSDIR}
 .endfor
 .endif
 
