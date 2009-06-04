@@ -1,10 +1,4 @@
-# New ports collection makefile for:	renderproto
-# Date Created:				08 Aug 2005
-# Whom:					Dejan Lesjak <lesi@FreeBSD.org>
-#
-# $FreeBSD: ports/x11/renderproto/Makefile,v 1.2 2007/09/13 19:45:01 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/renderproto/Makefile,v 1.1 2007/10/03 03:46:07 ctriv Exp $
 
 PORTNAME=	renderproto
 PORTVERSION=	0.9.3
