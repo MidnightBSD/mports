@@ -2,7 +2,7 @@
 # Date created:		18 March 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.9 2008/09/11 00:49:05 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.10 2008/09/23 04:38:15 laffer1 Exp $
 # $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
 #
 
@@ -73,11 +73,10 @@ post-patch:
 			-e 's|FreeBSD|MidnightBSD|g' \
 		${WRKSRC}/lib/pkgtools.rb
 
-pre-install: 
-	${MKDIR} -p ${RUBY_SITELIBDIR}
-	
+pre-install:
+	${MKDIR} ${RUBY_SITELIBDIR}
 
-post-install: 
+post-install:
 	if [ ! -f ${PREFIX}/etc/pkgtools.conf ]; then \
 		${CP} -p ${PREFIX}/etc/pkgtools.conf.sample ${PREFIX}/etc/pkgtools.conf; \
 	fi
