@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.153 2009/06/04 00:13:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.154 2009/06/04 00:59:25 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -930,7 +930,7 @@ CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
 _MAKE_JOBS=	#
 .else
 .if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
-MAKE_JOBS_NUBMER?=	`${SYSCTL} -n kern.smp.cpus`
+MAKE_JOBS_NUMBER?=	`${SYSCTL} -n kern.smp.cpus`
 _MAKE_JOBS=	-j${MAKE_JOBS_NUMBER}
 .if defined(FORCE_MAKE_JOBS)
 BUILD_FAIL_MESSAGE+=	"You have chosen to use multiple make jobs (parallelization) for all mports.  This port was not tested with this setting.  Please remove FORCE_MAKE_JOBS and retry the build before reporting errors to the maintainer"
