@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libdrm/Makefile,v 1.5 2009/05/05 00:58:28 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libdrm/Makefile,v 1.6 2009/05/31 22:38:40 laffer1 Exp $
 
 PORTNAME=	libdrm
 PORTVERSION=	2.4.11
@@ -15,7 +15,7 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
+MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--enable-nouveau-experimental-api
 
 pre-patch:
