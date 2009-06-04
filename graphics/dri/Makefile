@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/dri/Makefile,v 1.6 2009/03/15 20:10:45 laffer1 Exp $
+# $MidnightBSD: mports/graphics/dri/Makefile,v 1.7 2009/05/05 00:48:27 laffer1 Exp $
 
 PORTNAME=	dri
 PORTVERSION=	${MESAVERSION}
@@ -14,7 +14,7 @@ LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm \
 BUILD_DEPENDS=	makedepend:${PORTSDIR}/devel/makedepend
 
 CONFLICTS=	dri-6.2.2005* dri-6.5.2006*
-
+MAKE_JOBS_UNSAFE=	yes
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto
 
 do-install:
