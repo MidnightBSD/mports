@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.10 2009/05/01 15:36:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.11 2009/06/04 00:13:49 laffer1 Exp $
 
 =head1 NAME
 
@@ -876,6 +876,12 @@ only when USE_MOTIF is set.
 
 If set, this port uses Lesstif as Motif toolkit.  Used only when USE_MOTIF
 is set.  Implies NO_OPENMOTIF.
+
+=item USE_CSTD
+
+If set, overrides the -std= c standard in effect for the mport.  This
+might be useful if we have multiple system compilers to force a
+version like c89 or c99 always with a port.
 
 =back
 
