@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.5 2009/04/04 15:26:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/xorg-fonts-truetype/Makefile,v 1.6 2009/06/04 22:44:40 laffer1 Exp $
 
 PORTNAME=	xorg-fonts-truetype
 PORTVERSION=	7.4
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${FONTDIR}/TTF/luximb.ttf:${PORTSDIR}/x11-fonts/font-bh-ttf \
 
 do-install:	# empty
 
-NO_BUILD=	# none
+NO_BUILD=	yes
 FONTDIR=	${LOCALBASE}/lib/X11/fonts
 
 .include <bsd.port.mk>
