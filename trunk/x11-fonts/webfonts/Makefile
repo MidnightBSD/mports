@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.2 2009/03/18 21:48:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.3 2009/05/31 17:45:21 laffer1 Exp $
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30
@@ -37,9 +37,6 @@ EXTRACT_CMD=		${LOCALBASE}/bin/cabextract
 EXTRACT_BEFORE_ARGS=	-qLF '*.ttf' -d ${WRKSRC}
 EXTRACT_AFTER_ARGS=
 
-#
-# Local variables
-#
 FONTNAME=	${PORTNAME}
 FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
 TTFONTSDIR?=	${LOCALBASE}/lib/X11/fonts/TrueType
@@ -86,9 +83,5 @@ do-install:
 	${INSTALL_DATA} ${FONTS_FILE} ${FONTSDIR}
 	${INSTALL_DATA} ${FONTS_FILE} ${FONTSDIR}/fonts.scale
 	${INSTALL_DATA} ${WRKSRC}/licen.txt ${DOCSDIR}/LICENSE
-
-post-install:
-	${ECHO_MSG} "===> Running fc-cache"
-	-${LOCALBASE}/bin/fc-cache -f -v ${FONTSDIR}
 
 .include <bsd.port.post.mk>
