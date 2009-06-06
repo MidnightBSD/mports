@@ -1,5 +1,5 @@
---- python/Makefile.in.orig	Fri May  9 16:01:15 2008
-+++ python/Makefile.in	Fri May  9 16:03:48 2008
+--- python/Makefile.in.orig	2008-05-23 22:39:11.000000000 -0500
++++ python/Makefile.in	2008-05-23 22:40:42.000000000 -0500
 @@ -322,7 +322,7 @@
  	-I$(top_builddir)/include \
  	-I$(top_builddir)/$(subdir)
