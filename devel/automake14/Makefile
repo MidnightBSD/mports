@@ -1,10 +1,4 @@
-# New ports collection makefile for:	automake
-# Date created:		15 March 1997
-# Whom:			FUJIMOTO Kensaku <fujimoto@oscar.elec.waseda.ac.jp>
-#
-# $MidnightBSD: mports/devel/automake14/Makefile,v 1.4 2008/03/23 20:38:14 laffer1 Exp $
-# $FreeBSD: ports/devel/automake14/Makefile,v 1.62 2007/07/28 06:33:46 ade Exp $
-#
+# $MidnightBSD: mports/devel/automake14/Makefile,v 1.5 2008/03/28 03:10:00 ctriv Exp $
 
 PORTNAME=	automake
 PKGNAMESUFFIX=	14
@@ -22,7 +16,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
 		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
 
-USE_AUTOTOOLS=	autoconf:261:env
+USE_AUTOTOOLS=	autoconf:262:env
 BUILD_VERSION=	1.4
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 LATEST_LINK=	automake14
