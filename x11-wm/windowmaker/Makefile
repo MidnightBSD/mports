@@ -1,14 +1,8 @@
-# New ports collection makefile for:	WindowMaker
-# Date created:		August 13, 1997
-# Whom:			handy@physics.montana.edu
-#
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.9 2008/05/11 17:02:58 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/windowmaker/Makefile,v 1.133 2006/05/21 20:11:57 dougb Exp $
-#
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.10 2008/11/11 18:45:54 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
 		http://dougbarton.us/Downloads/
