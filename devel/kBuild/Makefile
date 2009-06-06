@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.1 2009/05/27 16:37:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.2 2009/06/04 03:30:29 laffer1 Exp $
 
 PORTNAME=	kBuild
 PORTVERSION=	0.1.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.netlabs.org/pub/kbuild/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-src
+DISTNAME=	${PORTNAME}-${PORTVERSION}-p1-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Makefile framework
@@ -18,7 +19,7 @@ CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0 \
 USE_AUTOTOOLS=	automake:19 autoconf:262
 USE_GMAKE=	yes
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-p1
 
 KBUILD_ARCH=	${MACHINE_ARCH:S/i386/x86/}
 KBUILD_ENV=	ACLOCAL=${ACLOCAL} \
@@ -56,7 +57,7 @@ do-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 .for doc in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/doc/${PKGNAME}/${doc} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/out/freebsd.${KBUILD_ARCH}/release${TRUE_PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}/${doc} ${DOCSDIR}
 .endfor
 .endif
 
