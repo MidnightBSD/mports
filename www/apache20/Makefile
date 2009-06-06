@@ -1,12 +1,6 @@
-# New ports collection makefile for:	apache2
-# Date created:				7 April 2001
-# Whom:					Hye-Shik Chang <perky@fallin.lv>
-#
-# $FreeBSD: ports/www/apache20/Makefile,v 1.242 2006/08/05 20:16:14 clement Exp $
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.8 2008/03/24 19:13:13 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.9 2008/11/19 20:08:01 ctriv Exp $
 #
 # For more information, please read Makefile.doc
-#
 
 PORTNAME=	apache
 PORTVERSION=	2.0.63
@@ -22,6 +16,7 @@ LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
+MAKE_JOBS_SAFE=	yes
 LATEST_LINK=	apache20
 
 CONFLICTS=	caudium-devel-1.* caudium10-1.* caudium12-* \
@@ -43,7 +38,7 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_M4=${LOCALBASE}/share/aclocal/libtool${LIBTOOL_VERSION}.m4 \
 			AUTOHEADER=${AUTOHEADER}
 USE_ICONV=		yes
-USE_AUTOTOOLS=	autoconf:261 libtool:15
+USE_AUTOTOOLS=		autoconf:262 libtool:15
 USE_PERL5=		yes
 USE_RC_SUBR=		yes
 USE_GNOME=		pkgconfig
