@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xfsinfo
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-fonts/xfsinfo/Makefile,v 1.1 2007/05/19 20:29:40 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/xfsinfo/Makefile,v 1.1 2007/10/07 17:10:49 ctriv Exp $
 
 PORTNAME=	xfsinfo
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
