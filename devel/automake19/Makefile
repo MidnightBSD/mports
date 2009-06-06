@@ -1,10 +1,4 @@
-# New ports collection makefile for:	automake19
-# Date created:		15 Feb 2003
-# Whom:			Udo Schweigert
-#
-# $MidnightBSD: mports/devel/automake19/Makefile,v 1.2 2008/03/23 20:41:07 laffer1 Exp $
-# $FreeBSD: ports/devel/automake19/Makefile,v 1.71 2007/07/31 07:36:14 ade Exp $
-#
+# $MidnightBSD: mports/devel/automake19/Makefile,v 1.3 2008/03/28 03:10:00 ctriv Exp $
 
 PORTNAME=	automake
 PKGNAMESUFFIX=	19
@@ -22,7 +16,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
 		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
 
-USE_AUTOTOOLS=	autoconf:261:env
+USE_AUTOTOOLS=	autoconf:262:env
 BUILD_VERSION=	1.9
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 LATEST_LINK=	automake19
