@@ -2,7 +2,7 @@
 # Date created:				28 September 1998
 # Whom:					Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.3 2008/03/28 03:37:21 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.4 2008/05/09 20:15:51 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxml2/Makefile,v 1.148 2008/01/22 20:59:41 marcus Exp $
 #
 # WITH_THREADS_BREAK enable pthread support (WILL BREAK OTHER PORTS!)
@@ -13,7 +13,7 @@
 #
 
 PORTNAME=	libxml2
-PORTVERSION=	2.6.32
+PORTVERSION=	2.7.3
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
@@ -26,6 +26,7 @@ LICENSE=	bsd3
 
 .if !defined(REFERENCE_PORT)
 
+MAKE_JOBS_SAFE=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
