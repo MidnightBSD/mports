@@ -2,7 +2,7 @@
 # Date created:				12 June 2000
 # Whom:				Philippe Lefebvre <nemesis@balistik.net>
 #
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.4 2008/09/08 20:12:37 crash Exp $
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.5 2008/10/01 19:23:46 laffer1 Exp $
 # $FreeBSD: ports/editors/nano/Makefile,v 1.37 2007/01/31 20:48:39 naddy Exp $
 #
 
@@ -19,10 +19,10 @@ LICENSE=	gpl3
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/${INFO_PATH} --mandir=${PREFIX}/man \
 		--enable-all
-CONFIGURE_ARGS+=--disable-utf8	# requires wide character curses
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
@@ -37,6 +37,14 @@ MAN1=		nano.1 rnano.1
 MAN5=		nanorc.5
 MANLANG=	"" fr
 
+.include <bsd.port.pre.mk>
+
+.if (${OSVERSION} < 3000)
+CONFIGURE_ARGS+=--disable-utf8
+.else
+CONFIGURE_ARGS+=--enable-utf8
+.endif
+
 post-build:
 	cd ${WRKSRC}/doc/man; ${REINPLACE_CMD} \
 		-e 's:SYSCONFDIR:${PREFIX}/etc:g' \
@@ -49,4 +57,4 @@ post-install:
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/nanorc.sample ${EXAMPLESDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
