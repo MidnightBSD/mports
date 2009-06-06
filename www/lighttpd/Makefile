@@ -1,13 +1,7 @@
-# New ports collection makefile for:		lighttpd
-# Date created:					20 May 2004
-# Whom:						k@123.org
-#
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.10 2008/09/30 19:04:33 laffer1 Exp $
-# $FreeBSD: ports/www/lighttpd/Makefile,v 1.42 2006/09/26 09:07:17 clsung Exp $
-#
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.11 2008/10/30 16:34:33 ctriv Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.20
+PORTVERSION=	1.4.22
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
@@ -18,13 +12,13 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
-USE_AUTOTOOLS=	autoconf:261 libtool:15
+USE_AUTOTOOLS=	autoconf:262 libtool:15
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack
 USE_RC_SUBR=	lighttpd.sh
 CONFIGURE_ARGS=	--libdir=${PREFIX}/lib/lighttpd
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
