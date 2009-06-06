@@ -1,10 +1,4 @@
-# New ports collection Makefile for: moon-buggy
-# Date created:		10 January 2002
-# Whom:			Ralf Becker <ralf@akk.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/games/moon-buggy/Makefile,v 1.8 2007/09/30 04:46:51 linimon Exp $
-#
+# $MidnightBSD: mports/games/moon-buggy/Makefile,v 1.1 2008/07/21 23:22:15 laffer1 Exp $
 
 PORTNAME=	moon-buggy
 PORTVERSION=	1.0.51
@@ -26,7 +20,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	esd:${PORTSDIR}/audio/esound:install
 .endif
 
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--sharedstatedir=/var/games\
 		--with-setgid=games
