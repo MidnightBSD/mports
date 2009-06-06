@@ -1,3 +1,4 @@
-MD5 (gnome2/libxml2-2.6.32.tar.gz) = 2621d322c16f0257e30f0ff2b13384de
-SHA256 (gnome2/libxml2-2.6.32.tar.gz) = 1b4428b879afcaae3c2013b21283baad040661fbd502e893e83adc3d15c85d53
-SIZE (gnome2/libxml2-2.6.32.tar.gz) = 4722227
+MD5 (gnome2/libxml2-2.7.3.tar.gz) = 8f4fda3969237c2a33bdb1583b5d06b2
+SHA256 (gnome2/libxml2-2.7.3.tar.gz) = 432464d8c9bd8060d9c1fdef1cfa75803c1a363ceac20b21f8c7e34e056e5a98
+RMD160 (gnome2/libxml2-2.7.3.tar.gz) = 14018347531fd135366cee9fd9d760a1988546e2
+SIZE (gnome2/libxml2-2.7.3.tar.gz) = 4789450
