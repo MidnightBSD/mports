@@ -1,9 +1,4 @@
-# New ports collection makefile for:   freetds
-# Date created:		02 Nov 1999
-# Whom:			Domas Mituzas <midom@dammit.lt>
-#
-# $MidnightBSD: mports/databases/freetds/Makefile,v 1.2 2007/10/12 17:35:16 laffer1 Exp $
-# $FreeBSD: ports/databases/freetds/Makefile,v 1.45 2006/05/04 21:39:57 edwin Exp $
+# $MidnightBSD: mports/databases/freetds/Makefile,v 1.3 2008/05/23 14:55:40 crash Exp $
 
 PORTNAME=	freetds
 PORTVERSION=	0.64
@@ -19,7 +14,7 @@ TDS_VER?=	5.0
 USE_ICONV=	yes
 USE_GMAKE=	yes
 GNU_GONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:261:env libtool:15
+USE_AUTOTOOLS=	autoconf:262:env libtool:15
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-tdsver=${TDS_VER}
