@@ -1,10 +1,4 @@
-# New ports collection makefile for:	automake
-# Date created:				14th April 2007
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/automake16/Makefile,v 1.2 2008/03/25 18:12:15 laffer1 Exp $
-# $FreeBSD: ports/devel/automake16/Makefile,v 1.38 2007/07/28 06:33:47 ade Exp $
-#
+# $MidnightBSD: mports/devel/automake16/Makefile,v 1.3 2008/03/28 03:10:00 ctriv Exp $
 
 PORTNAME=	automake
 PKGNAMESUFFIX=	16
@@ -20,7 +14,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
 		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
 
-USE_AUTOTOOLS=	autoconf:261:env
+USE_AUTOTOOLS=	autoconf:262:env
 BUILD_VERSION=	1.6
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 LATEST_LINK=	automake16
