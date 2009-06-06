@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.292 2009/05/27 16:33:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.293 2009/05/27 16:37:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -58,6 +58,7 @@
     SUBDIR += dev86
     SUBDIR += devhelp
     SUBDIR += devtodo
+    SUBDIR += distcc
     SUBDIR += dmalloc
     SUBDIR += doxygen
     SUBDIR += etoile-collectionkit
