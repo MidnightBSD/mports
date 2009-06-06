@@ -1,10 +1,4 @@
-# New ports collection makefile for:	diablo-jre16
-# Date created:		July 26 2008
-# Whom:			Greg Lewis <glewis@FreeBSD.org>
-#
-# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.3 2009/01/02 02:33:29 ctriv Exp $
-# $FreeBSD: ports/java/diablo-jre16/Makefile,v 1.3 2008/08/20 04:13:02 glewis Exp $
-#
+# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.4 2009/01/04 18:53:33 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
@@ -52,17 +46,14 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 3000
-#JRE_OSREL=	freebsd7 borked until GCC 4
+.if ${OSVERSION} >= 3004
+JRE_OSREL=	freebsd7
 LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
-JRE_OSREL=	freebsd6
 PLIST_SUB+=	RELEASENOTE="@comment "
 .elif ${OSVERSION} >= 1000
 BROKEN=		required gethostbyname_r
 JRE_OSREL=	freebsd6
 PLIST_SUB+=	RELEASENOTE=""
-.else
-IGNORE=		Somehow, you have a copy of MidnightBSD 0.0.0.  Well done!
 .endif
 
 .if ${ARCH} == "i386"
