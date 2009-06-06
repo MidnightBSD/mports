@@ -1,10 +1,4 @@
-# New ports collection makefile for:	idesk
-# Date created:		16 February 2003
-# Whom:			Sascha Holzleiter <sascha@root-login.org>
-#
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.3 2008/03/24 19:19:28 laffer1 Exp $
-# $FreeBSD: ports/x11/idesk/Makefile,v 1.20 2007/05/19 20:26:40 flz Exp $
-#
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.4 2008/09/17 21:51:02 laffer1 Exp $
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
@@ -18,30 +12,23 @@ COMMENT=	Place launch icons and background directly on your desktop
 LICENSE=	bsd3
 
 BUILD_DEPENDS=	imlib2-config:${PORTSDIR}/graphics/imlib2
+LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
 USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:261
+USE_AUTOTOOLS=	autoconf:262
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 CXXFLAGS+=	`imlib2-config --cflags` `freetype-config --cflags`
 MAKE_ARGS=	cc="${CXX}" cflags="${CXXFLAGS}"
 SUB_FILES=	pkg-message
 
-OPTIONS=	XFT	"XFT antialias support"	on \
-		SHAPE	"Enable support of the XShape extension"	on \
+OPTIONS=	SHAPE	"Enable support of the XShape extension"	on \
 		SN	"Startup notification support"	off
 
 .include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_XFT)
-LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
-CONFIGURE_ARGS+=	--enable-xft
-.else
-CONFIGURE_ARGS+=	--disable-xft
-.endif
 
 .if !defined(WITHOUT_SHAPE)
 CONFIGURE_ARGS+=	--enable-shape
