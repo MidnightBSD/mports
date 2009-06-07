@@ -1,11 +1,4 @@
-# ex:ts=8
-# New ports collection makefile for:	py-fileutils
-# Date created:			Nov 2, 2001
-# Whom:				ijliao
-#
-# $FreeBSD: ports/devel/py-fileutils/Makefile,v 1.7 2006/08/16 15:31:32 shaun Exp $
-# $MidnightBSD: mports/devel/py-fileutils/Makefile,v 1.1 2007/01/07 03:40:58 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/py-fileutils/Makefile,v 1.2 2008/10/16 21:51:11 laffer1 Exp $
 
 PORTNAME=	fileutils
 PORTVERSION=	0.6
@@ -21,5 +14,6 @@ LICENSE=	mit
 USE_BZIP2=		yes
 USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
+PYDISTUTILS_PKGNAME=	FileUtils
 
 .include <bsd.port.mk>
