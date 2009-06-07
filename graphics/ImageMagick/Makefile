@@ -1,20 +1,12 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.6 2009/02/22 23:38:20 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.7 2009/04/14 23:29:47 laffer1 Exp $
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.4.9-6
-PORTREVISION=	1
+DISTVERSION=	6.5.1-10
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
-		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/ \
-		ftp://ftp.carnet.hr/misc/imagemagick/ \
-		ftp://ftp.fu-berlin.de/unix/X11/graphics/ImageMagick/ \
-		ftp://ftp.kddlabs.co.jp/graphics/ImageMagick/ \
-		ftp://ftp.u-aizu.ac.jp/pub/graphics/image/ImageMagick/imagemagick.org/ \
-		ftp://zoffy.asahi-net.or.jp/pub/graphics/ImageMagick/ \
+		${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.nluug.nl/pub/ImageMagick/ \
-		ftp://ftp.sunet.se/pub/multimedia/graphics/ImageMagick/ \
-		ftp://ftp.fifi.org/pub/ImageMagick/ \
-		${MASTER_SITE_SOURCEFORGE}
+		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/
 MASTER_SITE_SUBDIR=	imagemagick
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,11 +19,10 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_AUTOTOOLS=	libltdl:15
-# For some reason, using our libtool breaks the build into pieces:
-#USE_AUTOTOOLS+=	libtool:15
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--enable-shared --without-dps
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 MAN1=		ImageMagick.1 Magick++-config.1 Magick-config.1 Wand-config.1 \
@@ -70,11 +61,12 @@ OPTIONS=	X11				"X11 support" on \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_GHOSTSCRIPT_GNU) && !defined(WITHOUT_IMAGEMAGICK_PDF)
-IGNORE=		requires newer version of ghostscript
+.if !defined(WITHOUT_IMAGEMAGICK_PDF) && defined(WITH_GHOSTSCRIPT_VER) && $(WITH_GHOSTSCRIPT_VER) == "7"
+IGNORE=		support for the PDF format requires ghostscript 8 and higher
 .endif
 
 .if defined(WITH_IMAGEMAGICK_HDRI)
+BROKEN=			hdri support broken, disable in options
 CONFIGURE_ARGS+=	--enable-hdri
 .else
 CONFIGURE_ARGS+=	--disable-hdri
@@ -89,8 +81,8 @@ CONFIGURE_ARGS+=	--disable-openmp
 .if !defined(WITHOUT_IMAGEMAGICK_PERL)
 CONFIGURE_ARGS+=	--with-perl=${PERL5}
 PLIST_SUB+=		WITH_PERL=''
-MAN3=			Image::Magick.3
-MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
+#MAN3=			Image::Magick.3
+#MAN3PREFIX=		${SITE_PERL}
 .else
 CONFIGURE_ARGS+=	--without-perl
 PLIST_SUB+=		WITH_PERL='@comment '
@@ -140,6 +132,7 @@ PLIST_SUB+=		OPENEXR="@comment "
 .endif
 
 CONFIGURE_ARGS+=	--without-djvu
+PLIST_SUB+=		DJVU="@comment "
 
 .if !defined(WITHOUT_IMAGEMAGICK_JPEG)
 LIB_DEPENDS+=		jpeg:${PORTSDIR}/graphics/jpeg
@@ -179,7 +172,7 @@ CONFIGURE_ARGS+=	--without-bzlib
 
 # FPX (FlashPIX) images
 .if !defined(WITHOUT_IMAGEMAGICK_FPX)
-LIB_DEPENDS+=		fpx.2:${PORTSDIR}/graphics/libfpx
+LIB_DEPENDS+=		fpx.[2-9]:${PORTSDIR}/graphics/libfpx
 CONFIGURE_ARGS+=	--with-fpx
 PLIST_SUB+=		FPX=""
 .else
@@ -286,7 +279,7 @@ USE_XORG=		xext xt
 PLIST_SUB+=		X11=''
 .endif
 
-.if ${ARCH} == sparc64
+.if ${ARCH} == sparc64 && ${OSVERSION} < 3004
 USE_GCC=	4.2+
 .endif
 
@@ -295,6 +288,10 @@ INSTALL_TARGET=	install
 .else
 INSTALL_TARGET=	install install-data-html
 .endif
+
+#.if ${ARCH} == sparc64
+WITHOUT_IMAGEMAGICK_TESTS=yes
+#.endif
 
 post-patch:
 # prevent perllocal.pod from being written
