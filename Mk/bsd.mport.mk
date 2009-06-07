@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.154 2009/06/04 00:59:25 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.155 2009/06/04 01:59:14 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -407,6 +407,9 @@ WANT_OPENLDAP_VER?=	24
 WWWOWN?=	www
 WWWGRP?=	www
 
+
+.include "${MPORTCOMPONENTS}/fake/vars.mk"
+
 .endif
 # End of pre-makefile section.
 
@@ -471,7 +474,6 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 .include "${MPORTCOMPONENTS}/metadata.mk"
 .include "${MPORTCOMPONENTS}/options.mk"
 .include "${MPORTCOMPONENTS}/maintainer.mk"
-
 
 
 PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
@@ -828,7 +830,7 @@ USE_SUBMAKE=	yes
 .if !defined(USE_MPORT_TOOLS)
 .include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
 .endif
-.include "${MPORTCOMPONENTS}/fake.mk"
+.include "${MPORTCOMPONENTS}/fake/targets.mk"
 .include "${MPORTCOMPONENTS}/update.mk"
 
 
