@@ -1,30 +1,19 @@
-# ex:ts=8
-# Ports collection makefile for:  vim
-# Date created:			  Sat June 29, 1996
-# Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
-#
-# $FreeBSD: ports/editors/vim/Makefile,v 1.323 2008/03/19 14:20:37 obrien Exp $
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.14 2008/10/07 14:18:32 laffer1 Exp $
-#
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.15 2008/10/07 15:17:49 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	25
+PATCHLEVEL=	171
 PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES?=	editors
 MASTER_SITES=	${MASTER_SITE_VIM}
 DISTFILES=	${RELEASE}${EXTRACT_SUFX}
 
 PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}
-PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d \
-                	${PATCHLEVEL} 1 ${PATCHLEVEL}
+PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
+			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=     007
-
-#.if !defined(WITH_LANG)
-#BADPATCHES+=
-#.endif
+BADPATCHES=	007 027 030 036 041 049 071 072 074 088 089 093 101 138 150 172 173
 .for p in ${BADPATCHES}
 PATCHFILES:=	${PATCHFILES:N7.2.${p}}
 .endfor
@@ -35,20 +24,12 @@ LICENSE=	other
 
 SLAVEDIRS=	editors/vim-lite
 
-.if !defined(LITE)
-OPTIONS=	PERL "Enable Perl interpreter" on \
-		PYTHON "Enable Python interpreter" on \
-		RUBY "Enable Ruby interpreter" on \
-		CSCOPE "Enable cscope" on \
-		EXUBERANT_CTAGS "Use exctags instead of ctags" on \
-		ATHENA "Athena GUI" off \
-		GTK2 "GTK2 GUI" off \
-		GNOME "Gnome1 GUI" off \
-		MOTIF "Motif GUI" off \
-		XTERM_SAVE "" off
+.if defined(WITH_OPTIONS) || defined(WITH_VIM_OPTIONS)
+.include "${.CURDIR}/../vim/options"
 .endif
 
-CONFLICTS?=	vim-lite-[0-9]*
+CONFLICTS=	vim*-lite
+MAKE_JOBS_UNSAFE= yes
 USE_BZIP2=	yes
 DIST_SUBDIR=	vim
 WRKSRC=		${WRKDIR}/vim${PORTVERSION:C/\.[0-9]*$//:S/.//g}/src
@@ -73,6 +54,14 @@ PLIST_SUB+=	LITETIME="@comment "
 MANLANG=	"" ru.KOI8-R ru.UTF-8 pl.ISO8859-2 pl.UTF-8 pl fr.ISO8859-1 \
 		fr.UTF-8 fr it.ISO8859-1 it.UTF-8 it
 
+.if defined(PACKAGE_BUILDING) && !defined(LITE)
+WITH_TCL=	yes
+WITH_PERL=	yes
+WITH_PYTHON=	yes
+WITH_CSCOPE=	yes
+WITH_EXUBERANT_CTAGS=yes
+WITH_LANG=	yes
+.endif
 
 .if defined(WITH_PYTHON)
 USE_PYTHON=	yes
@@ -129,7 +118,7 @@ MAKE_ARGS+=	CONF_OPT_TCL="--enable-tclinterp --with-tclsh="${TCLSH:S/${LOCALBASE
 #	for now default the GUI to the GTK+ one
 #	will be reviewed when the GTK+ 1.{3,4} behemoth is released
 .if !defined(WITH_ATHENA) && !defined(WITH_MOTIF) && !defined(WITH_GNOME) && !defined(WITH_GTK2)
-WITH_GNOME=	gtk12
+USE_GNOME=	gtk12
 .endif
 
 .if defined(WITH_ATHENA)
@@ -137,23 +126,26 @@ MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=athena" ${I18N}
 .elif defined(WITH_GTK2)
 USE_GNOME=	gtk20
 PKGNAMESUFFIX=	-gtk2
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk2 --with-gtk-prefix=${X11BASE}" ${I18N}
+MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk2 --with-gtk-prefix=${LOCALBASE}" ${I18N}
 MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
+USE_XORG+=	xt
 .elif defined(WITH_GNOME)
 .if ${WITH_GNOME:Mgnomelibs}!="" || ${WITH_GNOME}=="yes" || \
 	${WITH_GNOME}=="1"
 USE_GNOME=	gnomelibs gnomeprefix
 PKGNAMESUFFIX=	-gnome
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gnome --with-gtk-prefix=${X11BASE}" ${I18N}
+MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gnome --with-gtk-prefix=${LOCALBASE}" ${I18N}
 MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
+USE_XORG+=	xt
 .else
 USE_GNOME=	gtk12
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk --with-gtk-prefix=${X11BASE}" ${I18N}
+MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=gtk --with-gtk-prefix=${LOCALBASE}" ${I18N}
 MAKE_ARGS+=	X_LIBS="$(X_LIBS) -lXt"
+USE_XORG+=	xt
 .endif
 .elif defined(WITH_MOTIF)
 USE_MOTIF=	yes
-MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=motif --with-motif-lib=\"${MOTIFLIB}\"" MOTIFHOME=${X11BASE} ${I18N}
+MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=motif --with-motif-lib=\"${MOTIFLIB}\"" MOTIFHOME=${LOCALBASE} ${I18N}
 .endif
 .else	# WITHOUT_X11
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" ${I18N}
@@ -220,6 +212,8 @@ post-install:
 	${TEST} -e ${PREFIX}/bin/eview  || (cd ${PREFIX}/bin ; ${LN} -sf vim eview)
 	${TEST} -e ${PREFIX}/bin/gvimdiff  \
 		|| (cd ${PREFIX}/bin ; ${LN} -sf vim gvimdiff)
+	${TEST} -e ${PREFIX}/bin/gvimtutor  \
+		|| (cd ${PREFIX}/bin ; ${LN} -sf vimtutor gvimtutor)
 	${INSTALL_DATA} ${FILESDIR}/vietnamese_viscii.vim ${DATADIR}/keymap
 	cd ${PREFIX} ;\
 	    ${FIND} share/vim/${_DATADIR} -type f -o -type l	\
@@ -237,13 +231,16 @@ post-install:
 	${CP} -p ${TMPPLIST} ${TMPPLIST}.pre-share-vim
 	cd ${WRKDIR} ; ex < ex.script
 
+show-options:
+	@${MAKE} -DWITH_OPTIONS showconfig
+
 cklatest:
-	@-ncftpls \
+	-ncftpls \
 	    ftp://ftp.vim.org/pub/vim/patches/${PORTVERSION:C/\.[0-9a-z]*$//}/ \
 		| fgrep ${PORTVERSION:C/[0-9]*$//} | ${TAIL}
 
 find-bad-patches:
-	cd ${DISTDIR} ; egrep -l \
+	@cd ${DISTDIR} ; egrep -l \
 		'(src/if_ole|src/gui_(w32|w48|mac)|src/os_(riscos|cyg|os2|vms|amiga|win32|mswin))|src/Make_(cyg|vms|mvc)'\
 		vim/${PORTVERSION:C/\.[0-9a-z]*$//}*
 
