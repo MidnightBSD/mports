@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.2 2009/06/07 17:26:28 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -83,6 +83,9 @@
 #
 # USE_GNUSTEP_LOCAL_THEMES+=	WildMenus:x11-themes/etoile-wildmenus
 #	depends on Themes installed in Local directrory
+#
+# USE_GNUSTEP_LOCAL_MENULETS+=	PowerMenulet:sysutils/etoile-powermenulet
+#	depends on Menulets installed in Local directrory
 #
 # USE_GNUSTEP_SYSTEM_APPS+=	ProjectCenter:devel/projectcenter.app
 #	depends on Application installed in System directrory
@@ -361,8 +364,8 @@ RUN_DEPENDS+=	${GNUSTEP_LOCAL_LIBRARIES}/lib${_GNUSTEP_DEP:C/:.*//}.so:${PORTSDI
 #
 .if defined(USE_GNUSTEP_LOCAL_BUNDLES)
 .for _GNUSTEP_DEP in ${USE_GNUSTEP_LOCAL_BUNDLES}
-BUILD_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.bundle/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
-RUN_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.bundle/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
+BUILD_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.bundle/${_GNUSTEP_DEP:C/:.*//:C;.*/;;}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
+RUN_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.bundle/${_GNUSTEP_DEP:C/:.*//:C;.*/;;}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
 .endfor
 .endif
 
@@ -373,6 +376,16 @@ RUN_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.bundle/${_GNUSTEP
 .for _GNUSTEP_DEP in ${USE_GNUSTEP_LOCAL_THEMES}
 BUILD_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.themeEngine/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
 RUN_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.themeEngine/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
+.endfor
+.endif
+
+# ---------------------------------------------------------------------------
+# source local menulets
+#
+.if defined(USE_GNUSTEP_LOCAL_MENULETS)
+.for _GNUSTEP_DEP in ${USE_GNUSTEP_LOCAL_MENULETS}
+BUILD_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.menulet/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
+RUN_DEPENDS+=	${GNUSTEP_LOCAL_BUNDLES}/${_GNUSTEP_DEP:C/:.*//}.menulet/${_GNUSTEP_DEP:C/:.*//}:${PORTSDIR}/${_GNUSTEP_DEP:C/.*://}
 .endfor
 .endif
 
@@ -469,11 +482,11 @@ do-configure:
 do-build:
 .if defined(USE_GNUSTEP_MAKE_DIRS)
 .for i in ${USE_GNUSTEP_MAKE_DIRS}
-	@(cd ${WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+	@(cd ${BUILD_WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 .endfor
 .else
-	@(cd ${WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+	@(cd ${BUILD_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET})
 .endif
 
@@ -486,11 +499,11 @@ do-build:
 do-install:
 .if defined(USE_GNUSTEP_MAKE_DIRS)
 .for i in ${USE_GNUSTEP_MAKE_DIRS}
-	@(cd ${WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+	@(cd ${INSTALL_WRKSRC}/${i}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endfor
 .else
-	@(cd ${WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
+	@(cd ${INSTALL_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${FAKE_MAKEARGS} ${INSTALL_TARGET})
 .endif
 .if defined(PACKAGE_BUILDING) || defined(BATCH) || defined(CLEAN_ROOT)
