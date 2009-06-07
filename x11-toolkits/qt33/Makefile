@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.9 2008/05/04 18:56:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.10 2008/05/04 18:57:28 laffer1 Exp $
 #
 
 PORTNAME=	qt
@@ -28,7 +28,7 @@ EXTRA_PATCHES=	${PATCHDIR}/0081-format-string-fixes.diff
 
 USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
-USE_XLIB=	yes
+USE_XORG=	xinerama sm inputproto xi
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 DESTDIRNAME=	INSTALL_ROOT
