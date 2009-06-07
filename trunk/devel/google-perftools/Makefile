@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.2 2009/04/08 06:29:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.3 2009/04/08 19:03:16 laffer1 Exp $
 
 PORTNAME=	google-perftools
 PORTVERSION=	1.0
@@ -44,7 +44,11 @@ check: build
 
 .if ${ARCH} == "amd64" || ${ARCH} == "sparc64"
 # src/stacktrace.cc:81:5: #error Cannnot calculate stack trace: need libunwind (see INSTALL file)
+.if defined(PACKAGE_BUILDING)
+IGNORE=	Does not build, need libunwind
+.else
 BROKEN=	Does not build, cannot calculate stack trace: need libunwind (see INSTALL file)
+.endif
 .endif
 
 .include <bsd.port.post.mk>
