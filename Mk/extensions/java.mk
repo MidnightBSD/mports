@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/bsd.java.mk,v 1.19 2008/09/15 21:36:09 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -162,6 +162,8 @@ _JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
+_JAVA_PORT_NATIVE_FREEBSD_JDK_1_6_INFO=         PORT=java/diablo-jdk16                  HOME=${LOCALBASE}/diablo-jdk1.6.0 \
+                                                                                        VERSION=1.6.0   OS=native       VENDOR=freebsd
 _JAVA_PORT_NATIVE_FREEBSD_JDK_1_5_INFO=		PORT=java/diablo-jdk15			HOME=${LOCALBASE}/diablo-jdk1.5.0 \
 											VERSION=1.5.0	OS=native	VENDOR=freebsd
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4_INFO=		PORT=java/jdk14					HOME=${LOCALBASE}/jdk1.4.2 \
@@ -204,7 +206,8 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
 .		endif
 
 # List all JDK ports
-__JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
+__JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
+					JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4 \
