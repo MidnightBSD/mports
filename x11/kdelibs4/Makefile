@@ -1,6 +1,6 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.1 2008/12/10 15:09:13 ctriv Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.2 2009/03/13 02:51:35 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
@@ -59,6 +59,7 @@ QT_COMPONENTS=	corelib dbus gui moc network opengl qmake qt3support \
 		qtestlib rcc script sql svg uic3 xml designer \
 		assistant svg qdbusviewer makeqpf imageformats
 USE_GNOME=	libxml2 libxslt
+MAKE_JOBS_UNSAFE=	yes
 
 MAN1=		checkXML.1 kde4-config.1 makekdewidgets.1 kdecmake.1
 MAN7=		kdeoptions.7 qtoptions.7
