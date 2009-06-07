@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xenon
-# Date created:				22 October 1999
-# Whom:					Chris D. Faulhaber <jedgar@fxp.org>
-#
-# $MidnightBSD: mports/editors/xenon/Makefile,v 1.1 2007/06/25 18:12:29 laffer1 Exp $
-# $FreeBSD: ports/editors/xenon/Makefile,v 1.17 2007/05/19 20:04:22 flz Exp $
-#
+# $MidnightBSD: mports/editors/xenon/Makefile,v 1.2 2008/10/16 22:01:55 laffer1 Exp $
 
 PORTNAME=	xenon
 PORTVERSION=	1.0.0
@@ -18,9 +12,7 @@ COMMENT=	Simple X-based text editor
 LICENSE=	gpl2
 
 USE_GMAKE=	yes
-USE_GCC=	3.4+
-USE_X_PREFIX=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 MAKEFILE=	${WRKSRC}/makefiles/Makefile.Linux
 
 MAN1=		xe.1
@@ -42,6 +34,8 @@ do-configure:
 		-e 's|std::hash|__gnu_cxx::hash|g' \
 		${WRKSRC}/${file}
 .endfor
+	@${REINPLACE_CMD} '/friend int compare/d' ${WRKSRC}/KrAtom.h
+	@${REINPLACE_CMD} 's|<Undo\*>|<class Undo*>|' ${WRKSRC}/XeText.h
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/xe ${PREFIX}/bin
