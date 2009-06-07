@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.3 2009/03/13 03:49:07 laffer1 Exp $
+# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.4 2009/06/07 19:03:50 laffer1 Exp $
 
 PORTNAME=	mdnsd
 PORTVERSION=	0.7G
@@ -11,7 +11,6 @@ LICENSE=	bsd4
 # he says it's bsd without being too specific.. let's worst case this
 
 do-install:
-	@${ECHO_MSG} "Installing files"
 .for i in mhttp mquery
 	@${INSTALL} ${COPY} ${_BINOWNGRP} ${WRKSRC}/${i} ${PREFIX}/bin
 .endfor
