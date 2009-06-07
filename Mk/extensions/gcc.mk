@@ -18,7 +18,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.2 2009/01/02 01:35:46 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -31,7 +31,7 @@ Gcc_Include_MAINTAINER=		portmgr@MidnightBSD.org
 # All GCC versions supported by the ports framework.
 # Please keep them in ascending order.
 #
-GCCVERSIONS=	030402 040100 040200 040300
+GCCVERSIONS=	030402 040200 040300
 
 #
 # Versions of GCC shipped.
@@ -40,9 +40,8 @@ GCCVERSIONS=	030402 040100 040200 040300
 # the base system.
 # The third field is the version as USE_GCC would use.
 #
-GCCVERSION_030402=	2000 999999 3.4
-GCCVERSION_040100=	999999 999999 4.1
-GCCVERSION_040200=	999999 999999 4.2
+GCCVERSION_030402=	2000 3004 3.4
+GCCVERSION_040200=	3004 999999 4.2
 GCCVERSION_040300=	999999 999999 4.3
 
 #
@@ -132,11 +131,10 @@ _USE_GCC:=${_GCC_FOUND}
 . if ${_USE_GCC} == ${_GCCVERSION_${v}_V}
 .  if ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R}
 # If Fortran support is requested, regardless of the value of USE_GCC
-# we use lang/gcc42 which is the first release which features the new
-# Fortran frontend and has Fortran enabled by default.
+# we use lang/gcc43
 .   if defined(WITH_FORTRAN)
-V:=			42
-_GCC_BUILD_DEPENDS:=	gcc42
+V:=			43
+_GCC_BUILD_DEPENDS:=	gcc43
 _GCC_PORT_DEPENDS:=	gfortran${V}
 .else
 V:=			${_GCCVERSION_${v}_V:S/.//}
