@@ -2,7 +2,7 @@
 # Date created:		03 Aug 1996
 # Whom:			shanee@augusta.de
 #
-# $MidnightBSD: mports/misc/unclutter/Makefile,v 1.1 2007/04/04 13:53:04 archite Exp $
+# $MidnightBSD: mports/misc/unclutter/Makefile,v 1.2 2007/08/17 00:48:47 laffer1 Exp $
 # $FreeBSD: ports/misc/unclutter/Makefile,v 1.13 2006/08/21 11:28:14 miwi Exp $
 #
 
@@ -15,7 +15,7 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Remove idle cursor image from screen
-
+LICENSE=        publicdom
 WRKSRC=		$(WRKDIR)/unclutter
 USE_IMAKE=	yes
 USE_XLIB=	yes
