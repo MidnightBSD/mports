@@ -4,7 +4,7 @@
 # Whom:				  David O'Brien (obrien@NUXI.com)
 #
 # $FreeBSD: ports/net/fping/Makefile,v 1.23 2006/05/11 22:49:06 edwin Exp $
-# $MidnightBSD: mports/net/fping/Makefile,v 1.1 2006/12/26 01:05:30 laffer1 Exp $
+# $MidnightBSD: mports/net/fping/Makefile,v 1.2 2008/02/27 19:54:11 laffer1 Exp $
 #
 
 PORTNAME=	fping
@@ -17,7 +17,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}_to-ipv6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quickly ping N hosts w/o flooding the network
-
+LICENSE=        bsd3
 PLIST_FILES=	sbin/fping
 
 GNU_CONFIGURE=	yes
