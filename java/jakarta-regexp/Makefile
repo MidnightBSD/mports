@@ -2,7 +2,7 @@
 # Date created:         2000/12/01
 # Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
 #
-# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.1 2006/10/04 16:17:21 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.2 2008/05/01 23:26:45 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-regexp/Makefile,v 1.11 2005/10/10 04:43:53 linimon Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	regexp/binaries
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Regular expressions for Java
-
+LICENSE=        apache2
 BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
 USE_JAVA=	yes
