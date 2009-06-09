@@ -3,7 +3,7 @@
 # Date created:			  11 November 2000
 # Whom:				  David O'Brien <obrien@NUXI.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/44bsd-rdist/Makefile,v 1.1 2006/10/01 22:58:30 laffer1 Exp $
 # $FreeBSD: ports/net/44bsd-rdist/Makefile,v 1.6 2004/02/27 01:12:27 clement Exp $
 #
 
@@ -15,7 +15,7 @@ MASTER_SITE_SUBDIR=	obrien
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The traditional 4.4BSD rdist
-
+LICENSE=        bsd3
 USE_BZIP2=	yes
 
 NO_WRKSUBDIR=	yes
