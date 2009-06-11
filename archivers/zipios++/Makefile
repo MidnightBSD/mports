@@ -3,7 +3,7 @@
 # Date created:			Jul 23, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.2 2008/02/22 04:58:31 laffer1 Exp $
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.3 2008/03/22 05:00:20 ctriv Exp $
 # $FreeBSD: ports/archivers/zipios++/Makefile,v 1.14 2006/08/14 09:56:58 clsung Exp $
 #
 
@@ -20,8 +20,6 @@ LICENSE=	gpl2
 USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-# port don't strictly need it, but Wesnoth use it so must we
-USE_GCC=	3.4
 USE_AUTOTOOLS=	automake:19:env
 CONFIGURE_ARGS+=--disable-static
 
