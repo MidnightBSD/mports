@@ -3,7 +3,7 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.6 2008/04/01 04:24:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/libthai/Makefile,v 1.7 2008/04/04 00:46:52 laffer1 Exp $
 #
 
 PORTNAME=	libthai
@@ -19,7 +19,8 @@ LICENSE=	lgpl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	automake:15 autoconf:261 libtool:15
+USE_AUTOTOOLS=	automake:15 autoconf:262 libtool:15
+MAKE_JOBS_UNSAFE=	yes
 
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen
 
@@ -33,7 +34,7 @@ pre-configure:
 post-patch:
 	@${REINPLACE_CMD} -E 's,^(pkgconfigdir = ).*$$,\1$$(prefix)/libdata/pkgconfig,' \
 		${WRKSRC}/Makefile.am
-	@${REINPLACE_CMD} -e 's,15,-1.5,' -e 's,259,-2.61,' -e 's,FreeBSD,MidnightBSD,' \
+	@${REINPLACE_CMD} -e 's,15,-1.5,' -e 's,259,-2.62,' -e 's,FreeBSD,MidnightBSD,' \
                ${WRKSRC}/autogen.sh
 
 
