@@ -1,14 +1,11 @@
-# New ports collection makefile for:	apache22
-# Date created:				Dec 11 2004
-# Whom:					Clement Laforet <clement@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.10 2008/10/15 19:48:29 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.11 2009/01/25 21:55:16 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.11
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
@@ -28,6 +25,7 @@ BUILD_DEPENDS=	python:${PORTSDIR}/lang/python
 SCRIPTS_ENV+=	FULLBUILD=on
 .endif
 
+MAKE_JOBS_SAFE=	yes
 LATEST_LINK=	apache22
 
 CONFLICTS=	apache-2.0.* apache-*-2.0.*
