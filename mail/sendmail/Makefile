@@ -1,13 +1,8 @@
-# New ports collection makefile for:	sendmail
-# Date created:				20 Apr 2000
-# Whom:					dirk.meyer@dinoex.sub.org
-#
-# $FreeBSD: ports/mail/sendmail/Makefile,v 1.126 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.7 2007/11/23 22:59:22 laffer1 Exp $
-#
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.8 2008/05/20 21:20:25 laffer1 Exp $
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.3
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
@@ -44,6 +39,8 @@ MILTER_SOVER?=	4
 # SENDMAIL_WITHOUT_NIS=yes
 # SENDMAIL_WITHOUT_SHMEM=yes
 # SENDMAIL_WITHOUT_SEM=yes
+# SENDMAIL_WITHOUT_LA=yes
+# SENDMAIL_WITHOUT_MILTER_POOL
 # SENDMAIL_WITH_TLS=yes
 # SENDMAIL_WITH_SMTPS=yes
 # SENDMAIL_WITH_SASL=yes
@@ -234,6 +231,19 @@ do-configure:
 .if defined(SENDMAIL_WITHOUT_SEM)
 	${ECHO_CMD} \
 	'APPENDDEF(`confENVDEF'\'', `-DSM_CONF_SEM=0'\'')' \
+		>> ${WCONF}/site.config.m4
+.endif
+.if defined(SENDMAIL_WITHOUT_LA)
+	${ECHO_CMD} \
+	'APPENDDEF(`confENVDEF'\'', `-DLA_TYPE=LA_ZERO'\'')' \
+		>> ${WCONF}/site.config.m4
+.endif
+.if !defined(SENDMAIL_WITHOUT_MILTER) && !defined(SENDMAIL_WITHOUT_MILTER_POOL)
+	${ECHO_CMD} \
+	 'APPENDDEF(`conf_libmilter_ENVDEF'\'', `-DSM_CONF_POLL=1'\'')' \
+		>> ${WCONF}/site.config.m4
+	${ECHO_CMD} \
+	 'APPENDDEF(`conf_libmilter_ENVDEF'\'', `-D_FFR_WORKERS_POOL=1'\'')' \
 		>> ${WCONF}/site.config.m4
 .endif
 
