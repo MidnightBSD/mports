@@ -1,9 +1,8 @@
-# ex:ts=8
 # Ports collection makefile for:	xmlrpc++
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/xmlrpc++/Makefile,v 1.1 2008/02/27 01:57:29 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc++
@@ -17,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C++ implementation of the XML-RPC protocol
 LICENSE=	lgpl
 
-USE_GCC=	3.4
+MAKE_JOBS_SAFE=	yes
 USE_GMAKE=	yes
 
 .include <bsd.port.pre.mk>
