@@ -1,10 +1,10 @@
 # ex:ts=8
 #
-# $MidnightBSD: ports/astro/libnova/Makefile,v 1.25 2008/12/16 05:15:39 linimon Exp $
+# $MidnightBSD: mports/astro/libnova/Makefile,v 1.1 2008/12/16 22:27:44 ctriv Exp $
 #
 
 PORTNAME=	libnova
-PORTVERSION=	0.12.1
+PORTVERSION=	0.12.3
 CATEGORIES=	astro
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
