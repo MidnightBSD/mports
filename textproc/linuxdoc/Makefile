@@ -1,10 +1,4 @@
-# New ports collection makefile for:	linuxdoc
-# Date created:		July 8, 1997
-# Whom:			jfieber
-#
-# $MidnightBSD: mports/textproc/linuxdoc/Makefile,v 1.1 2006/09/24 03:04:16 laffer1 Exp $
-# $FreeBSD: ports/textproc/linuxdoc/Makefile,v 1.19 2005/07/13 02:38:23 kuriyama Exp $
-#
+# $MidnightBSD: mports/textproc/linuxdoc/Makefile,v 1.2 2007/05/09 15:19:45 ctriv Exp $
 
 PORTNAME=	linuxdoc
 PORTVERSION=	1.1
@@ -15,6 +9,7 @@ MASTER_SITES=	http://dist.bsdlab.org/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Linuxdoc SGML DTD
+LICENSE=	unknown
 
 RUN_DEPENDS=	${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
 		${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
