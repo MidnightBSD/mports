@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/html/Makefile,v 1.2 2007/05/18 04:52:14 ctriv Exp $
+# $MidnightBSD: mports/textproc/html/Makefile,v 1.3 2009/06/12 19:43:03 laffer1 Exp $
 
 PORTNAME=	html
 PORTVERSION=	4.01
@@ -10,6 +10,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	All W3C published SGML DTDs for HTML
+LICENSE=	other
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
