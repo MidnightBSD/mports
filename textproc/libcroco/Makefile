@@ -1,19 +1,14 @@
-# New ports collection makefile for:	libcroco
-# Date created:				08 July 2003
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/libcroco/Makefile,v 1.17 2006/11/05 03:51:39 mezz Exp $
+# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.1 2007/08/23 05:57:20 laffer1 Exp $
 #
 
 PORTNAME=	libcroco
-PORTVERSION=	0.6.1
+PORTVERSION=	0.6.2
 CATEGORIES=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.6
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CSS2 parsing library
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
