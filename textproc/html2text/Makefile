@@ -1,10 +1,4 @@
-# New ports collection makefile for:	html2text
-# Date created:		7 March 2003
-# Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/html2text/Makefile,v 1.5 2006/05/13 04:24:44 edwin Exp $
-#
+# $MidnightBSD: mports/textproc/html2text/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
 
 PORTNAME=	html2text
 PORTVERSION=	1.3.2a
@@ -15,6 +9,7 @@ MASTER_SITE_SUBDIR=	apps/www/converters
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts HTML documents into plain text
+LICENSE=	gpl2
 
 HAS_CONFIGURE=	yes
 MAKE_ARGS=	CXX="${CXX}"
