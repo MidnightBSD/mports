@@ -1,20 +1,15 @@
-# New ports collection makefile for:   String::Format
-# Date created:                24 March, 2005
-# Whom:                        Matt Mills <matt_mills@btopenworld.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-String-Format/Makefile,v 1.2 2006/01/23 19:07:01 erwin Exp $
-#
+# $MidnightBSD: mports/textproc/p5-String-Format/Makefile,v 1.1 2008/03/21 20:14:20 laffer1 Exp $
 
 PORTNAME=	String-Format
 PORTVERSION=	1.14
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	String
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for sprintf-like string formatting capability
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
