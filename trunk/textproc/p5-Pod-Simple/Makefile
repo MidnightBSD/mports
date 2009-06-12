@@ -1,21 +1,16 @@
-# New ports collection makefile for:	p5-Pod-Simple # Date created:	   2 july 2003
-# Whom:		   Mathieu Arnold <m@absolight.net>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Pod-Simple/Makefile,v 1.13 2007/08/31 13:37:20 mat Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Pod-Simple/Makefile,v 1.1 2008/03/21 20:09:18 laffer1 Exp $
 
 PORTNAME=	Pod-Simple
-PORTVERSION=	3.05
+PORTVERSION=	3.07
 CATEGORIES=	textproc devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Framework for parsing Pod
+LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Text/Wrap.pm:${PORTSDIR}/textproc/p5-Text-Tabs+Wrap \
-		${SITE_PERL}/Pod/Escapes.pm:${PORTSDIR}/textproc/p5-Pod-Escapes
+BUILD_DEPENDS=	${SITE_PERL}/Text/Wrap.pm:${PORTSDIR}/textproc/p5-Text-Tabs+Wrap
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
@@ -44,4 +39,10 @@ MAN3=		Pod::Simple.3 \
 		perlpod.3 \
 		perlpodspec.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 500903
+RUN_DEPENDS+=	p5-Pod-Escapes>=1.04:${PORTSDIR}/textproc/p5-Pod-Escapes
+.endif
+
+.include <bsd.port.post.mk>
