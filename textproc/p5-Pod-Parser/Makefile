@@ -1,13 +1,7 @@
-# New ports collection makefile for:	Pod::Parser
-# Date created:		18 Dec 2001
-# Whom:			Sergey Skvortsov <skv@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/p5-Pod-Parser/Makefile,v 1.20 2007/09/08 16:52:42 linimon Exp $
-#
+# $MidnightBSD: mports/textproc/p5-Pod-Parser/Makefile,v 1.1 2008/03/21 20:07:30 laffer1 Exp $
 
 PORTNAME=	Pod-Parser
-PORTVERSION=	1.35
+PORTVERSION=	1.38
 CATEGORIES=	textproc perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Pod
@@ -15,6 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Modules to work with POD (Plain Old Documentation)
+LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
 RUN_DEPENDS=	${BUILD_DEPENDS}
