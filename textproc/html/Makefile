@@ -1,16 +1,10 @@
-# New ports collection makefile for:	html
-# Date created:		Sept 19, 1997
-# Whom:			jfieber
-#
-# $MidnightBSD: mports/textproc/html/Makefile,v 1.1 2006/09/27 14:16:58 laffer1 Exp $
-# $FreeBSD: ports/textproc/html/Makefile,v 1.18 2005/06/13 20:54:18 glewis Exp $
-#
+# $MidnightBSD: mports/textproc/html/Makefile,v 1.2 2007/05/18 04:52:14 ctriv Exp $
 
 PORTNAME=	html
 PORTVERSION=	4.01
 PORTREVISION=	2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
 EXTRACT_ONLY=	# empty
 
