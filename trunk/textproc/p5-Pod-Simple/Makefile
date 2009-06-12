@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-Pod-Simple/Makefile,v 1.1 2008/03/21 20:09:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-Pod-Simple/Makefile,v 1.2 2009/06/12 19:30:57 laffer1 Exp $
 
 PORTNAME=	Pod-Simple
 PORTVERSION=	3.07
@@ -35,6 +35,7 @@ MAN3=		Pod::Simple.3 \
 		Pod::Simple::Subclassing.3 \
 		Pod::Simple::Text.3 \
 		Pod::Simple::TextContent.3 \
+		Pod::Simple::XHTML.3 \
 		Pod::Simple::XMLOutStream.3 \
 		perlpod.3 \
 		perlpodspec.3
