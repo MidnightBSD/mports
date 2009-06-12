@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/p5-String-Format/Makefile,v 1.1 2008/03/21 20:14:20 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-String-Format/Makefile,v 1.2 2009/06/12 19:28:01 laffer1 Exp $
 
 PORTNAME=	String-Format
 PORTVERSION=	1.14
-CATEGORIES=	textproc
+CATEGORIES=	textproc perl
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	String
 PKGNAMEPREFIX=	p5-
