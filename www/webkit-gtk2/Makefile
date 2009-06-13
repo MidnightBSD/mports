@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.6 2009/05/23 16:46:51 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.7 2009/05/26 01:40:08 laffer1 Exp $
 
 PORTNAME=	webkit
-PORTVERSION=	0.0.42260
+PORTVERSION=	0.0.42533
 CATEGORIES=	www
 MASTER_SITES=	http://nightly.webkit.org/files/trunk/src/
 PKGNAMESUFFIX=	-gtk2
