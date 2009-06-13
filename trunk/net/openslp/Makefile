@@ -1,10 +1,4 @@
-# New ports collection makefile for:    OpenSLP 1.0
-# Date created:		15 Sep 2001
-# Whom:			Joe Clarke
-#
-# $FreeBSD: ports/net/openslp/Makefile,v 1.17 2006/02/23 10:38:26 ade Exp $
-# $MidnightBSD: mports/net/openslp/Makefile,v 1.1 2007/01/20 15:53:31 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/openslp/Makefile,v 1.2 2008/02/27 22:30:56 laffer1 Exp $
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1
@@ -15,6 +9,7 @@ MASTER_SITE_SUBDIR=	openslp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
+LICENSE=	bsd3
 
 USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
