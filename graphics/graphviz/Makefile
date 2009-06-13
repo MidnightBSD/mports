@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.9 2008/08/13 13:47:13 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.10 2008/10/29 20:13:51 ctriv Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -134,7 +134,7 @@ CONFIGURE_ARGS+=	--with-iconvlibdir=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-iconvincludedir=${LOCALBASE}/include
 
 .if !defined(WITHOUT_XPM) || (!defined(PACKAGE_BUILDING) && exists(${LOCALBASE}/lib/libXpm.so))
-USE_XORG+=		xaw8 xpm xmu xt sm ice xext x11 xau xdmcp xp
+USE_XORG+=		xaw xpm xmu xt sm ice xext x11 xau xdmcp xp
 MAN1+=			lefty.1
 PLIST_SUB+=		WITH_XPM=""
 .else
