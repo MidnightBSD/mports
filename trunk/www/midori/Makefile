@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/www/midori/Makefile,v 1.5 2009/06/13 05:44:55 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.6 2009/06/13 05:49:43 laffer1 Exp $
 #
 
 PORTNAME=	midori
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
 LICENSE=	lgpl
 
-LIB_DEPENDS=	webkit-1.0.4:${PORTSDIR}/www/webkit-gtk2 \
+LIB_DEPENDS=	webkit-1.0.5:${PORTSDIR}/www/webkit-gtk2 \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/WebKit/webkit -I${LOCALBASE}/include" \
