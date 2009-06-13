@@ -1,9 +1,9 @@
 #
-# $MidnightBSD: mports/www/midori/Makefile,v 1.3 2008/07/26 12:10:16 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.4 2009/04/08 18:46:03 ctriv Exp $
 #
 
 PORTNAME=	midori
-PORTVERSION=	0.1.5
+PORTVERSION=	0.1.6
 CATEGORIES=	www
 MASTER_SITES=	http://goodies.xfce.org/releases/midori/
 
