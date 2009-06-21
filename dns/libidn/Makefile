@@ -2,12 +2,12 @@
 # Date created:        	19.06.2003
 # Whom:               	Kirill Ponomarew <ponomarew@oberon.net>
 #
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.2 2007/11/11 02:58:06 laffer1 Exp $
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.3 2008/06/07 16:42:04 laffer1 Exp $
 # $FreeBSD: ports/dns/libidn/Makefile,v 1.67 2007/10/10 12:18:15 krion Exp $
 #
 
 PORTNAME=	libidn
-PORTVERSION=	1.8
+PORTVERSION=	1.14
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/libidn/releases/
@@ -41,6 +41,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|$$(AUTOMAKE)|${TRUE}|' \
 			-e 's|imagesdir = $$(infodir)|imagesdir = $$(docdir)|' \
 		${WRKSRC}/doc/Makefile.in
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -e 's|install-data-am: install-imagesDATA install-info-am install-man|install-data-am: install-info-am install-man|' \
+		${WRKSRC}/doc/Makefile.in
+.endif
 
 post-install:
 .if !defined(NOPORTDOCS)
