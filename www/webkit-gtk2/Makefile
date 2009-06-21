@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.7 2009/05/26 01:40:08 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.8 2009/06/13 06:41:17 laffer1 Exp $
 
 PORTNAME=	webkit
-PORTVERSION=	0.0.42533
+PORTVERSION=	0.0.44906
 CATEGORIES=	www
 MASTER_SITES=	http://nightly.webkit.org/files/trunk/src/
 PKGNAMESUFFIX=	-gtk2
@@ -16,7 +16,8 @@ BUILD_DEPENDS=	flex>=2.5.33:${PORTSDIR}/textproc/flex \
 		
 LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
 		curl.5:${PORTSDIR}/ftp/curl \
-		soup-2.4.1:${PORTSDIR}/devel/libsoup
+		soup-2.4.1:${PORTSDIR}/devel/libsoup \
+		enchant.1:${PORTSDIR}/textproc/enchant
 
 USE_SQLITE=	yes
 USE_BISON=	build
@@ -34,8 +35,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 CONFIGURE_ARGS=	--with-webkit-target=x11 \
 		--enable-icon-database \
 		--enable-svg \
-		--enable-video \
-		--disable-jit
+		--disable-video \
+		--enable-jit
 
 DATADIR=	${PREFIX}/share/webkit-1.0
 		
