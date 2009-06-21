@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/webkit-gtk2/pkg-plist,v 1.3 2009/04/08 18:30:00 ctriv Exp $
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/jsc
 include/webkit-1.0/JavaScriptCore/JSBase.h
 include/webkit-1.0/JavaScriptCore/JSContextRef.h
@@ -13,6 +13,7 @@ include/webkit-1.0/JavaScriptCore/WebKitAvailability.h
 include/webkit-1.0/webkit/webkit.h
 include/webkit-1.0/webkit/webkitdefines.h
 include/webkit-1.0/webkit/webkitdownload.h
+include/webkit-1.0/webkit/webkiterror.h
 include/webkit-1.0/webkit/webkitnetworkrequest.h
 include/webkit-1.0/webkit/webkitsoupauthdialog.h
 include/webkit-1.0/webkit/webkitversion.h
@@ -26,13 +27,18 @@ include/webkit-1.0/webkit/webkitwebsettings.h
 include/webkit-1.0/webkit/webkitwebwindowfeatures.h
 include/webkit-1.0/webkit/webkitwebview.h
 include/webkit-1.0/webkit/webkitenumtypes.h
-lib/libwebkit-1.0.so.5
+lib/libwebkit-1.0.so.9
 lib/libwebkit-1.0.so
 lib/libwebkit-1.0.la
 libdata/pkgconfig/webkit-1.0.pc
 libdata/pkgconfig/WebKitGtk.pc
 share/locale/de/LC_MESSAGES/webkit.mo
+share/locale/it/LC_MESSAGES/webkit.mo
 share/locale/pt_BR/LC_MESSAGES/webkit.mo
+share/locale/ru/LC_MESSAGES/webkit.mo
+share/locale/sv/LC_MESSAGES/webkit.mo
+%%DATADIR%%/resources/error.html
+%%DATADIR%%/webinspector/localizedStrings.js
 %%DATADIR%%/webinspector/Images/back.png
 %%DATADIR%%/webinspector/Images/checker.png
 %%DATADIR%%/webinspector/Images/clearConsoleButtons.png
@@ -83,6 +89,7 @@ share/locale/pt_BR/LC_MESSAGES/webkit.mo
 %%DATADIR%%/webinspector/Images/profileSmallIcon.png
 %%DATADIR%%/webinspector/Images/profilesIcon.png
 %%DATADIR%%/webinspector/Images/profilesSilhouette.png
+%%DATADIR%%/webinspector/Images/radioDot.png
 %%DATADIR%%/webinspector/Images/recordButtons.png
 %%DATADIR%%/webinspector/Images/reloadButtons.png
 %%DATADIR%%/webinspector/Images/resourceCSSIcon.png
@@ -93,6 +100,7 @@ share/locale/pt_BR/LC_MESSAGES/webkit.mo
 %%DATADIR%%/webinspector/Images/resourcePlainIconSmall.png
 %%DATADIR%%/webinspector/Images/resourcesIcon.png
 %%DATADIR%%/webinspector/Images/resourcesSizeGraphIcon.png
+%%DATADIR%%/webinspector/Images/segment.png
 %%DATADIR%%/webinspector/Images/resourcesTimeGraphIcon.png
 %%DATADIR%%/webinspector/Images/scriptsIcon.png
 %%DATADIR%%/webinspector/Images/scriptsSilhouette.png
@@ -100,7 +108,6 @@ share/locale/pt_BR/LC_MESSAGES/webkit.mo
 %%DATADIR%%/webinspector/Images/searchSmallBrightBlue.png
 %%DATADIR%%/webinspector/Images/searchSmallGray.png
 %%DATADIR%%/webinspector/Images/searchSmallWhite.png
-%%DATADIR%%/webinspector/Images/segment.png
 %%DATADIR%%/webinspector/Images/segmentEnd.png
 %%DATADIR%%/webinspector/Images/segmentHover.png
 %%DATADIR%%/webinspector/Images/segmentHoverEnd.png
@@ -146,9 +153,17 @@ share/locale/pt_BR/LC_MESSAGES/webkit.mo
 %%DATADIR%%/webinspector/Images/warningIcon.png
 %%DATADIR%%/webinspector/Images/warningMediumIcon.png
 %%DATADIR%%/webinspector/Images/warningsErrors.png
+%%DATADIR%%/images/textAreaResizeCorner.png
+%%DATADIR%%/images/nullPlugin.png
+%%DATADIR%%/images/urlIcon.png
+%%DATADIR%%/images/missingImage.png
+%%DATADIR%%/images/panIcon.png
+%%DATADIR%%/images/deleteButton.png
 @dirrm include/webkit-1.0/JavaScriptCore
 @dirrm include/webkit-1.0/webkit
 @dirrm include/webkit-1.0
+@dirrm %%DATADIR%%/resources
 @dirrm %%DATADIR%%/webinspector/Images
 @dirrm %%DATADIR%%/webinspector
+@dirrm %%DATADIR%%/images
 @dirrm %%DATADIR%%
