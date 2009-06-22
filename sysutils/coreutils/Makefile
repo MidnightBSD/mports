@@ -1,29 +1,17 @@
-# New ports collection makefile for:	coreutils
-# Date created:				18 November 2003
-# Whom:					Jason Harris <jharris@widomaker.com>
-#
-# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.1 2006/10/04 20:52:54 laffer1 Exp $
-# $FreeBSD: ports/sysutils/coreutils/Makefile,v 1.9 2006/05/13 04:15:27 edwin Exp $
-#
+# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.2 2007/10/01 19:48:41 ctriv Exp $
 
 PORTNAME=	coreutils
-PORTVERSION=	5.2.1
+PORTVERSION=	6.9
 CATEGORIES=	sysutils textproc
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Free Software Foundation's core utilities
+LICENSE=	gpl3
 
-#'
+CONFLICTS=	id-utils-[0-9]* linux-gid-[0-9]*
 
-CONFLICTS=	fileutils-[0-9]* id-utils-[0-9]* linux-gid-[0-9]* \
-		sh-utils-[0-9]*  textutils-[0-9]*
-
-USE_GPG?=	yes
-SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
@@ -53,7 +41,10 @@ MAN1=	gbasename.1 gcat.1 gchgrp.1 gchmod.1 gchown.1 gchroot.1 gcksum.1 \
 	gstat.1 gstty.1 gsu.1 gsum.1 gsync.1 gtac.1 gtail.1 gtee.1 \
 	gtest.1 gtouch.1 gtr.1 gtrue.1 gtsort.1 gtty.1 guname.1 \
 	gunexpand.1 guniq.1 gunlink.1 guptime.1 gusers.1 gvdir.1 \
-	gwc.1 gwho.1 gwhoami.1 gyes.1
+	gwc.1 gwho.1 gwhoami.1 gyes.1 gbase64.1 gsha224sum.1 gsha256sum.1 \
+	gsha384sum.1 gsha512sum.1 gshuf.1
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 .if !defined(WITH_SUID)
@@ -63,5 +54,7 @@ post-patch:
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile
 
+regression-test: build
+	(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} check)
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
