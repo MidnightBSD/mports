@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mutella
-# Date created:				2/12/2001
-# Whom:			Dominic Marks <dominic.marks@btinternet.com>
-#
-# $MidnightBSD: mports/net-p2p/mutella/Makefile,v 1.1 2007/06/11 00:12:20 laffer1 Exp $
-# $FreeBSD: ports/net-p2p/mutella/Makefile,v 1.17 2006/01/30 21:36:22 pav Exp $
-#
+# $MidnightBSD: mports/net-p2p/mutella/Makefile,v 1.2 2008/09/14 00:53:50 laffer1 Exp $
 
 PORTNAME=	mutella
 PORTVERSION=	0.4.5
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
