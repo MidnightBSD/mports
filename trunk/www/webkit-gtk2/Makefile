@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.8 2009/06/13 06:41:17 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.9 2009/06/21 21:40:41 laffer1 Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	0.0.44906
@@ -27,7 +27,7 @@ USE_GNOME=	gnometarget gtk20 libxslt
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:15
-USE_GSTREAMER=	theora
+#USE_GSTREAMER=	theora
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		FLEX="${LOCALBASE}/bin/flex" 
@@ -35,8 +35,12 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 CONFIGURE_ARGS=	--with-webkit-target=x11 \
 		--enable-icon-database \
 		--enable-svg \
+		--with-unicode-backend=icu \
+		--enable-fast-malloc \
+		--enable-wml \
+		--enable-channel-messaging \
 		--disable-video \
-		--enable-jit
+		--enable-jit 
 
 DATADIR=	${PREFIX}/share/webkit-1.0
 		
