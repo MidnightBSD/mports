@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.1 2007/10/20 05:44:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.2 2008/03/28 02:19:25 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
@@ -20,10 +20,10 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 RUN_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 
-MOZILLA=	firefox
+MOZILLA=	browser
 
 .if !defined(WITH_MOZILLA)
-MOZILLA=	firefox
+MOZILLA=	browser
 .else
 .if ${WITH_MOZILLA} == "xulrunner"
 MOZILLA=	xulrunner
