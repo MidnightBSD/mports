@@ -1,0 +1,23 @@
+--- configure.orig	Thu Mar 22 14:20:28 2007
++++ configure
+@@ -2415,13 +2415,13 @@
+   for ac_prog in mkdir gmkdir; do
+ 	 for ac_exec_ext in '' $ac_executable_extensions; do
+ 	   { test -f "$as_dir/$ac_prog$ac_exec_ext" && $as_test_x "$as_dir/$ac_prog$ac_exec_ext"; } || continue
+-	   case `"$as_dir/$ac_prog$ac_exec_ext" --version 2>&1` in #(
+-	     'mkdir (GNU coreutils) '* | \
+-	     'mkdir (coreutils) '* | \
+-	     'mkdir (fileutils) '4.1*)
+-	       ac_cv_path_mkdir=$as_dir/$ac_prog$ac_exec_ext
+-	       break 3;;
+-	   esac
++#	   case `"$as_dir/$ac_prog$ac_exec_ext" --version 2>&1` in #(
++#	     'mkdir (GNU coreutils) '* | \
++#	     'mkdir (coreutils) '* | \
++#	     'mkdir (fileutils) '4.1*)
++#	       ac_cv_path_mkdir=$as_dir/$ac_prog$ac_exec_ext
++#	       break 3;;
++#	   esac
+ 	 done
+        done
+ done
