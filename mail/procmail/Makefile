@@ -3,7 +3,7 @@
 # Whom:			adam
 #
 # $FreeBSD: ports/mail/procmail/Makefile,v 1.55 2006/08/12 13:02:31 ache Exp $
-# $MidnightBSD: mports/mail/procmail/Makefile,v 1.1 2007/02/18 04:26:14 laffer1 Exp $
+# $MidnightBSD: mports/mail/procmail/Makefile,v 1.2 2007/12/05 22:55:02 laffer1 Exp $
 #
 
 PORTNAME=	procmail
@@ -26,6 +26,8 @@ MASTER_SITES=	ftp://ftp.procmail.org/pub/procmail/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A local mail delivery agent
 LICENSE=	perl
+
+MAKE_JOBS_UNSAFE=     yes
 
 #.if defined(WITH_COURIER_MAILDIR_KLUDGE)
 #PATCH_SITES=	http://www.john.net.au/pub/procmail-courier/
