@@ -1,13 +1,7 @@
-# New ports collection makefile for:	linux-thunderbird
-# Date created:		17 April 2006
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.17 2008/11/23 16:21:06 laffer1 Exp $
-# $FreeBSD: ports/mail/linux-thunderbird/Makefile,v 1.6 2006/07/30 00:09:53 sat Exp $
-#
+# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.18 2009/01/13 02:52:38 laffer1 Exp $
 
 PORTNAME=	thunderbird
-PORTVERSION=	2.0.0.19
+PORTVERSION=	2.0.0.21
 CATEGORIES=	mail
 MASTER_SITE_SUBDIR?=	${PORTNAME}/releases/${PORTVERSION}/linux-i686/en-US
 
