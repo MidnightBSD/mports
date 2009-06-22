@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.90 2009/05/01 16:17:04 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.91 2009/05/21 14:36:04 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -49,7 +49,6 @@
     SUBDIR += oinkmaster
     SUBDIR += opencdk
     SUBDIR += openct
-    SUBDIR += openpgpsdk
     SUBDIR += opensc
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
