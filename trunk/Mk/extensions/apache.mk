@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.2 2008/11/17 21:42:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.3 2009/01/21 16:47:02 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -40,7 +40,7 @@ AP_PORT_IS_MODULE=	YES
 
 #### for backward compatibility
 .elif ${USE_APACHE:L} == yes
-APACHE_PORT?=	www/apache20
+APACHE_PORT?=	www/apache22
 APXS?=			${LOCALBASE}/sbin/apxs
 .if !defined(APACHE_COMPAT)
 BUILD_DEPENDS+=	${APXS}:${PORTSDIR}/${APACHE_PORT}
