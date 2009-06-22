@@ -1,15 +1,8 @@
-# ex:ts=8
-# Ports collection makefile for:  mutt w/pgp hooks
-# Date created:			  Thur July 25, 1996
-# Whom:				  David O'Brien (obrien@NUXI.com)
-#
-# $MidnightBSD: mports/mail/mutt/Makefile,v 1.2 2007/10/29 18:08:36 laffer1 Exp $
-# $FreeBSD: ports/mail/mutt/Makefile,v 1.172 2006/07/18 14:44:03 erwin Exp $
-#
+# $MidnightBSD: mports/mail/mutt/Makefile,v 1.3 2008/06/23 01:50:01 laffer1 Exp $
 
 PORTNAME=	mutt
 PORTVERSION=	1.4.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -18,14 +11,13 @@ MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 
 PATCHVERSION?=	${PORTVERSION}
 PATCHVERSION=	1.4.2.2
-
-PATCH_SITES=	http://www.mutt.org.ua/download/mutt-${PORTVERSION}/:vvv \
-		http://www2.mutt.org.ua/download/mutt-${PORTVERSION}/:vvv \
-		http://www3.mutt.org.ua/download/mutt-${PORTVERSION}/:vvv \
-		ftp://ftp.mutt.org.ua/pub/mutt/mutt-${PORTVERSION}/:vvv \
-		ftp://ftp3.mutt.org.ua/pub/mutt/mutt-${PORTVERSION}/:vvv
-PATCHFILES=	patch-${PORTVERSION}.rr.compressed.gz:vvv \
-		patch-${PORTVERSION}.vvv.initials.gz:vvv
+PATCH_SITES=	http://www.mutt.org.ua/download/mutt-${PATCHVERSION}/:vvv \
+		http://www2.mutt.org.ua/download/mutt-${PATCHVERSION}/:vvv \
+		http://www3.mutt.org.ua/download/mutt-${PATCHVERSION}/:vvv \
+		ftp://ftp.mutt.org.ua/pub/mutt/mutt-${PATCHVERSION}/:vvv \
+		ftp://ftp3.mutt.org.ua/pub/mutt/mutt-${PATCHVERSION}/:vvv
+PATCHFILES=	patch-${PATCHVERSION}.rr.compressed.gz:vvv \
+		patch-${PATCHVERSION}.vvv.initials.gz:vvv
 PATCH_DIST_STRIP=	-p1
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -33,6 +25,7 @@ COMMENT?=	The Mongrel of Mail User Agents (part Elm, Pine, Mush, mh, etc.)
 LICENSE=	gpl2
 
 CONFLICTS=	mutt-devel-*
+.include <bsd.port.pre.mk>
 
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 .if defined(PACKAGE_BUILDING) && !defined (MUTT_LITE)
@@ -40,6 +33,7 @@ WITH_SLANG=	yes
 BUILD_DEPENDS=	ispell:${PORTSDIR}/textproc/ispell
 RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell \
 		urlview:${PORTSDIR}/textproc/urlview
+USE_GMAKE=	yes
 .endif
 .if defined (MUTT_LITE)
 PKGNAMESUFFIX=	-lite
@@ -58,11 +52,14 @@ USE_ICONV=	yes
 .endif
 
 .if defined(WITH_SLANG)
-LIB_DEPENDS+=	slang.1:${PORTSDIR}/devel/libslang
+LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
 .elif defined(WITH_NCURSES_PORT)
 LIB_DEPENDS+=	ncurses.5:${PORTSDIR}/devel/ncurses
 .endif
 .if !defined (MUTT_LITE)
+.if defined(WITH_MUTT_CYRUS_SASL)
+IGNORE=	The SASL support for mutt has been withdrawn. Please use the mutt-devel port instead
+.endif
 .if defined(WITH_SGML_DOCS) && ${WITH_SGML_DOCS} != "no"
 BUILD_DEPENDS+=	sgmlfmt:${PORTSDIR}/textproc/sgmlformat
 .endif
@@ -74,7 +71,6 @@ RUN_DEPENDS+=	slrnface:${PORTSDIR}/news/slrnface
 
 DIST_SUBDIR=	mutt
 WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
-USE_GMAKE=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	automake:19 autoconf:261
@@ -114,6 +110,15 @@ CONFIGURE_ARGS+=	--with-slang=${PREFIX}
 CONFIGURE_ARGS+=	--with-curses=${PREFIX}
 CFLAGS+=	-I${PREFIX}/include/ncurses -I${PREFIX}/include
 .endif
+.if !defined(WITHOUT_GSSAPI)
+.if exists(${LOCALBASE}/bin/gss-client)
+LIB_DEPENDS+=		gssapi_krb5:${PORTSDIR}/security/krb5
+CONFIGURE_ARGS+=	--with-gss=${LOCALBASE}
+.elif (defined(MAKE_KERBEROS5)) || exists(/usr/lib/libkrb5.a)
+CONFIGURE_ARGS+=	--with-gss
+USE_KRB5_SYS=YES
+.endif
+.endif
 MAN1=		mutt.1 mutt_dotlock.1
 MAN5=		mbox.5 muttrc.5
 
@@ -135,6 +140,11 @@ post-patch::
 
 pre-configure::
 	@(cd ${WRKSRC}; ${SETENV} ${AUTOMAKE_ENV} ${ACLOCAL} -I m4)
+.if defined(USE_KRB5_SYS)
+	@${ECHO_CMD} "#define HAVE_HEIMDAL" >> ${WRKSRC}/config.h.in
+	@${REINPLACE_CMD} -e 's|<gssapi/gssapi\.h>|<gssapi.h>|' \
+		${WRKSRC}/imap/auth_gss.c
+.endif
 
 # XXX
 # this should be done automagically by aclocal but ....
@@ -183,11 +193,13 @@ post-install:
 
 .if defined(WITH_MUTT_XFACE)
 	@${ECHO} ""
+	@${ECHO} "************************************************************"
 	@${ECHO} "  To enable the XFACE support in mutt you also have to add"
 	@${ECHO} "        set xface=yes"
 	@${ECHO} "  to your ~/.muttrc"
 	@${ECHO} "  Additional information is provided by news/slrnface"
+	@${ECHO} "************************************************************"
 	@${ECHO} ""
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
