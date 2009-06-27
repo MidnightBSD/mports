@@ -1,17 +1,11 @@
-# New ports collection makefile for:	xanim
-# Date created:         Sat Nov 5 11:43:03 PST 1994
-# Whom:                 piero
-#
-# $MidnightBSD: mports/multimedia/xanim/Makefile,v 1.2 2007/10/31 04:13:58 laffer1 Exp $
-# $FreeBSD: ports/multimedia/xanim/Makefile,v 1.41 2005/10/02 05:59:11 dinoex Exp $
-#
+# $MidnightBSD: mports/multimedia/xanim/Makefile,v 1.3 2007/11/06 04:52:34 laffer1 Exp $
 
 PORTNAME=	xanim
 PORTVERSION=	2.92.0
 PORTREVISION=	2
 CATEGORIES=	multimedia graphics
 MASTER_SITES=	ftp://ftp.informatik.uni-hamburg.de/pub/soft/graphics/xanim/:main \
-		${MASTER_SITE_LOCAL} \
+		${MASTER_SITE_FREEBSD_LOCAL} \
 		ftp://ftp.informatik.uni-hamburg.de/pub/soft/graphics/xanim/dlls/
 MASTER_SITE_SUBDIR=	dinoex
 DISTNAME=	xanim2920
@@ -19,9 +13,11 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main ${EXTRA_FILES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Play most popular animation formats and show pictures
+LICENSE=	restricted
 
+NO_CDROM=	no distribution without fee on CD.
 USE_IMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	xext xt sm ice xext x11
 MAN1=		xanim.1
 MAKE_ARGS+=	-j 2 # safe and helps even the single-CPU machines
 DLLDIR=		${PREFIX}/lib/X11/xanim
