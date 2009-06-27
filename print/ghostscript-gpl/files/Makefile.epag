@@ -1,4 +1,4 @@
-# $FreeBSD: ports/print/ghostscript8/files/Makefile.epag,v 1.1 2008/05/05 13:16:25 hrs Exp $
+# $FreeBSD: ports/print/ghostscript8/files/Makefile.epag,v 1.2 2009/03/28 20:05:52 hrs Exp $
 
 # EPAG - additional driver for Epson ESC/Page printers
 # http://www.humblesoft.com/gdevepag.html
@@ -8,7 +8,7 @@ PORTDOC_FILES+= epag/ert.txt epag/gdevepag.txt epag/ChangeLog	\
 	epag/psprint epag/gsepagif.sh
 
 pre-build-epag:
-	${LN} -s -f ${WRKSRC}/${EPAG_NAME}/gdevepag.c ${WRKSRC}/src
+	${LN} -s -f ${WRKSRC}/${EPAG_NAME}/gdevepag.c ${WRKSRC}/base
 
 post-build-epag:
 	cd ${WRKSRC}/${EPAG_NAME} && \
