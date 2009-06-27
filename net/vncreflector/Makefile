@@ -1,10 +1,4 @@
-# Ports collection makefile for:	vncreflector
-# Date created:				Wed, Jan 19 2005
-# Whom:					Brooks Davis <brooks@freebsd.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/vncreflector/Makefile,v 1.4 2007/04/24 05:56:39 sobomax Exp $
-#
+# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.1 2008/02/02 01:54:45 laffer1 Exp $
 
 PORTNAME=	vncreflector
 PORTVERSION=	1.2.4
@@ -15,6 +9,7 @@ DISTNAME=	vnc_reflector-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-client VNC proxy server
+LICENSE=	bsd3
 
 LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
 
