@@ -1,11 +1,4 @@
-# Ports collection Makefile for:	epiphany
-# Date created:				24 April 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.10 2008/10/20 18:46:56 ctriv Exp $
-# $FreeBSD: ports/www/epiphany/Makefile,v 1.113 2008/01/08 04:29:19 marcus Exp $
-#   $MCom: ports-stable/www/epiphany/Makefile,v 1.8 2007/12/01 19:54:36 marcus Exp $
-#
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.11 2008/11/07 18:52:56 ctriv Exp $
 
 PORTNAME=	epiphany
 PORTVERSION=	2.22.3
