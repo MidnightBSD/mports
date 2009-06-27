@@ -1,20 +1,15 @@
-# New ports collection makefile for:   xtail
-# Date created:        20 January 1999
-# Whom:                gmarco@giovannelli.it
-#
-# $MidnightBSD$
-# $FreeBSD: ports/misc/xtail/Makefile,v 1.10 2006/11/03 22:24:54 ale Exp $
-#
+# $MidnightBSD: mports/misc/xtail/Makefile,v 1.1 2007/03/09 05:26:11 laffer1 Exp $
 
 PORTNAME=	xtail
 PORTVERSION=	2.1
 CATEGORIES=	misc
-MASTER_SITES=	http://www.unicom.com/sw/xtail/ \
+MASTER_SITES=	\
 		http://utenti.gufi.org/~gmarco/files/distfiles/
 DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Watches the growth of files or directories
+LICENSE=	unknown
 
 HAS_CONFIGURE=	yes
 
