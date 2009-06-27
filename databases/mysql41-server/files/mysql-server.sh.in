@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/databases/mysql41-server/files/mysql-server.sh.in,v 1.4 2006/03/07 16:25:00 ale Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: mysql
 # REQUIRE: LOGIN
@@ -36,7 +35,7 @@ mysql_user="mysql"
 mysql_limits_args="-e -U ${mysql_user}"
 pidfile="${mysql_dbdir}/`/bin/hostname`.pid"
 command="%%PREFIX%%/bin/mysqld_safe"
-command_args="--defaults-extra-file=${mysql_dbdir}/my.cnf --user=${mysql_user} --datadir=${mysql_dbdir} --pid-file=${pidfile} ${mysql_args} > /dev/null &"
+command_args="--defaults-extra-file=${mysql_dbdir}/my.cnf --user=${mysql_user} --datadir=${mysql_dbdir} --pid-file=${pidfile} ${mysql_args} > /dev/null 2>&1 &"
 procname="%%PREFIX%%/libexec/mysqld"
 start_precmd="${name}_prestart"
 mysql_install_db="%%PREFIX%%/bin/mysql_install_db"

@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.5 2007/08/10 15:41:13 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.6 2009/03/14 01:13:08 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	4.1.22
+PORTVERSION=	4.1.25
 PORTREVISION?=	0
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_MYSQL}
-MASTER_SITE_SUBDIR=	MySQL-4.1
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	ale
 PKGNAMESUFFIX?=	-server
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,6 +14,7 @@ LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql41-client
 USE_AUTOTOOLS=	libtool:15
+MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
@@ -70,7 +71,7 @@ CONFIGURE_ARGS+=--with-named-thread-libs='-DHAVE_GLIBC2_STYLE_GETHOSTBYNAME_R
 CONFIGURE_ARGS+=-D_THREAD_SAFE -I${LOCALBASE}/include/pthread/linuxthreads
 CFLAGS+=	-D__USE_UNIX98 -D_REENTRANT -D_THREAD_SAFE
 CFLAGS+=	-I${LOCALBASE}/include/pthread/linuxthreads
-LIB_DEPENDS+=	lthread.[35]:${PORTSDIR}/devel/linuxthreads
+LIB_DEPENDS+=	lthread:${PORTSDIR}/devel/linuxthreads
 CONFIGURE_ARGS+=-L${LOCALBASE}/lib -llthread -llgcc_r -llstdc++ -llsupc++'
 .else
 CONFIGURE_ARGS+=--with-named-thread-libs=${PTHREAD_LIBS}
@@ -91,9 +92,11 @@ WANT_MYSQL_VER=	41
 
 LATEST_LINK=	mysql41-server
 
-CONFLICTS=	mysql-server-3.* mysql-server-4.[02-9].* mysql-server-5.*
+CONFLICTS=	mysql-server-3.* mysql-server-4.[02-9].* mysql-server-5.* mysql-server-6.*
 
 USE_RC_SUBR=	mysql-server.sh
+
+USE_BISON=	build
 
 .if defined(WITH_NDB)
 PLIST_SUB+=	NDB=""
@@ -149,7 +152,7 @@ post-install:
 .if defined(CLIENT_ONLY)
 LATEST_LINK=	mysql41-client
 
-CONFLICTS=	mysql-client-3.* mysql-client-4.[02-9].* mysql-client-5.*
+CONFLICTS=	mysql-client-3.* mysql-client-4.[02-9].* mysql-client-5.* mysql-client-6.*
 
 MAN1=		mysql_config.1 mysql.1 mysqladmin.1 mysqlbinlog.1 \
 		mysqlcheck.1 mysqldump.1 mysqlimport.1 mysqlshow.1
@@ -182,7 +185,7 @@ RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
 
 LATEST_LINK=	mysql41-scripts
 
-CONFLICTS=	mysql-scripts-3.* mysql-scripts-4.[02-9].* mysql-scripts-5.*
+CONFLICTS=	mysql-scripts-3.* mysql-scripts-4.[02-9].* mysql-scripts-5.* mysql-scripts-6.*
 
 MAN1=		msql2mysql.1 mysql_zap.1 mysqlaccess.1 mysqlhotcopy.1 \
 		mysqld_multi.1 mysql_fix_privilege_tables.1
