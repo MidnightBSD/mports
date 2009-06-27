@@ -1,10 +1,4 @@
-# New ports collection makefile for:	lirc
-# Date created:		4 January 2003
-# Whom:			Mike Heffner <mikeh@FreeBSD.org>
-#
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.5 2007/11/11 00:13:36 laffer1 Exp $
-# $FreeBSD: ports/comms/lirc/Makefile,v 1.22 2006/08/23 00:41:37 grog Exp $
-#
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.6 2007/11/11 00:15:42 laffer1 Exp $
 
 PORTNAME=	lirc
 PORTVERSION=	0.8.0
@@ -18,8 +12,7 @@ LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
-USE_XLIB=	yes
-USE_GETOPT_LONG=yes
+USE_XORG=	x11
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
