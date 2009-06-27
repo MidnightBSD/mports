@@ -1,5 +1,5 @@
---- configure.orig	Sun Aug  2 09:48:40 1998
-+++ configure	Mon Oct 13 13:35:48 2008
+--- configure.orig	Sun Aug  2 15:48:40 1998
++++ configure	Wed Feb 25 12:10:13 2004
 @@ -571,7 +571,7 @@
  if test "${with_perl+set}" = set; then
    withval="$with_perl"
@@ -14,7 +14,7 @@
  echo "$ac_t""$perlprog v$perlvers" 1>&6
  case $perlvers in
 -    5.003* | 5.004* | 5.005* | 5.006* )
-+    5.003* | 5.004* | 5.005* | 5.006* | 5.008* | 5.01* )
++    5.003* | 5.004* | 5.005* | 5.006* | 5.008* | 5.010* )
          ;;
      * ) echo ""
          echo "Latest Perl found on your system is $perlvers,"
