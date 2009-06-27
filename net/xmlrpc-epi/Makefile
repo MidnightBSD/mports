@@ -2,17 +2,20 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.1 2008/02/27 01:52:27 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-epi
-PORTVERSION=	0.51
+PORTVERSION=	0.54
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A general purpose implementation of the xmlrpc specification in C
+LICENSE=	other
+
+LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
@@ -20,7 +23,8 @@ USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:15
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"		\
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib -liconv"
-CONFIGURE_ARGS=	--program-transform="s|^|xre-|"
+CONFIGURE_ARGS=	--program-transform="s|^|xre-|" \
+		--with-expat=/usr/local
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
