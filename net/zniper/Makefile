@@ -1,10 +1,4 @@
-# New ports collection makefile for:	zniper
-# Date created:		8 April 2007
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/zniper/Makefile,v 1.1 2007/04/08 18:05:08 sat Exp $
-#
+# $MidnightBSD: mports/net/zniper/Makefile,v 1.1 2008/02/27 02:09:56 laffer1 Exp $
 
 PORTNAME=	zniper
 PORTVERSION=	1.0
@@ -15,6 +9,7 @@ MASTER_SITES=	CENKES
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Display and reset active TCP connections
+LICENSE=	bsd3
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 MAKE_ARGS=	CFLAGS="${CFLAGS}" CC="${CC}"
