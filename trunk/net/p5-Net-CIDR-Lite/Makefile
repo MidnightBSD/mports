@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/net/p5-Net-CIDR-Lite/Makefile,v 1.2 2008/02/27 22:38:26 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-Net-CIDR-Lite/Makefile,v 1.3 2009/06/27 22:23:39 laffer1 Exp $
 
 PORTNAME=	Net-CIDR-Lite
 PORTVERSION=	0.20
 CATEGORIES=	net perl5 ipv6
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
