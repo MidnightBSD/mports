@@ -2,7 +2,7 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/tsocks/Makefile,v 1.1 2007/11/10 01:48:53 laffer1 Exp $
 
 PORTNAME=	tsocks
 PORTVERSION=	1.8.b5
@@ -15,11 +15,11 @@ DISTNAME=${PORTNAME}-${PORTVERSION:C/.b/beta/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow non SOCKS aware applications to use SOCKS without modification
-LICENCE=	gpl2
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 WRKSRC=${WRKDIR}/${PORTNAME}-${PORTVERSION:C/.b.*//}
 
