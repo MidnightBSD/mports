@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.87 2008/11/12 20:48:20 crash Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.88 2009/01/05 04:02:40 ctriv Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -23,7 +23,6 @@
     SUBDIR += etoile-mollusk
     SUBDIR += etoile-rsskit
     SUBDIR += fcgi
-    SUBDIR += firefox
     SUBDIR += firefox-remote
     SUBDIR += furl
     SUBDIR += galeon
