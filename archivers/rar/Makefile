@@ -2,7 +2,7 @@
 # Date created:         15 May 1996
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/rar/Makefile,v 1.6 2008/06/05 18:04:54 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rar/Makefile,v 1.7 2009/03/27 05:56:03 laffer1 Exp $
 # $FreeBSD: ports/archivers/rar/Makefile,v 1.58 2006/09/03 01:35:39 kris Exp $
 #
 
@@ -27,23 +27,11 @@ PLIST_FILES=	bin/rar lib/default.sfx etc/rarfiles.lst man/cat1/rar.1
 PORTDOCS=	technote.txt license.txt whatsnew.txt order.htm \
 		readme.txt file_id.diz
 
-.include <bsd.port.pre.mk>
-
-LIB_DEPENDS+=	c.5:${PORTSDIR}/misc/compat5x
-
-.if ${PORTOBJFORMAT} == "elf"
-STRIP=
-.endif
-
 do-install:
-.if !defined(WITH_STATIC)
-	${INSTALL_PROGRAM} ${WRKSRC}/rar ${TARGETDIR}/bin/rar
-.else
-	${INSTALL_PROGRAM} ${WRKSRC}/rar_static ${TARGETDIR}/bin/rar
-.endif
-	${INSTALL_MAN} ${WRKSRC}/rar.txt ${TARGETDIR}/man/cat1/rar.1
-	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${TARGETDIR}/etc
-	${INSTALL_DATA} ${WRKSRC}/default.sfx ${TARGETDIR}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/rar_static ${PREFIX}/bin/rar
+	${INSTALL_MAN} ${WRKSRC}/rar.txt ${PREFIX}/man/cat1/rar.1
+	${INSTALL_DATA} ${WRKSRC}/rarfiles.lst ${PREFIX}/etc
+	${INSTALL_DATA} ${WRKSRC}/default.sfx ${PREFIX}/lib
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -53,4 +41,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
