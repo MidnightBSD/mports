@@ -1,9 +1,9 @@
 #
-# $MidnightBSD: ports/print/ghostscript8/Makefile,v 1.177 2008/11/02 15:42:28 hrs Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.9 2009/01/04 00:25:18 ctriv Exp $
 #
 
 PORTNAME=	ghostscript
-PORTVERSION=	8.63
+PORTVERSION=	8.64
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S/$/:gs_srcs/} \
 		ftp://mirror.cs.wisc.edu/pub/mirrors/ghost/GPL/gs${PORTVERSION:S/.//}/:gs_srcs \
@@ -30,6 +30,7 @@ USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 MAKE_ENV=	CFLAGS_STANDARD="${CFLAGS}" \
 		XCFLAGS="${XCFLAGS}" XLDFLAGS="${XLDFLAGS}" \
@@ -97,7 +98,7 @@ EPAG_NAME=	${EPAG_SRCS:S,.tar.gz$,,}
 post-extract-epag:
 	${TAR} -C ${WRKSRC} -xzf ${DISTDIR}/${DIST_SUBDIR}/${EPAG_SRCS}
 	${LN} -s -f ${EPAG_NAME} ${WRKSRC}/${EPAG_BASE}
-	${INSTALL_DATA} ${FILESDIR}/epag.contrib.mak ${WRKSRC}/src/epag.contrib.mak
+	${INSTALL_DATA} ${FILESDIR}/epag.contrib.mak ${WRKSRC}/base/epag.contrib.mak
 
 post-extract: post-extract-epag
 
@@ -216,10 +217,10 @@ post-patch:
 			${WRKSRC}/contrib/japanese/dmp_site.ps
 
 pre-build-drivers.mak:
-	@${ECHO_CMD} 'DEVICE_DEVS= \' > ${WRKSRC}/src/drivers.mak
+	@${ECHO_CMD} 'DEVICE_DEVS= \' > ${WRKSRC}/base/drivers.mak
 .for D in ${OPTIONS:MGS_*:S/^GS_//}
 .if defined(WITH_GS_${D})
-	@${ECHO_CMD} '$$(DD)${D}.dev \' >> ${WRKSRC}/src/drivers.mak
+	@${ECHO_CMD} '$$(DD)${D}.dev \' >> ${WRKSRC}/base/drivers.mak
 .endif
 .endfor
 
@@ -235,6 +236,9 @@ pre-build: pre-build-drivers.mak
 	${MKDIR} ${WRKSRC}/freetype/objs
 	${LN} -s -f ${LOCALBASE}/lib/libfreetype.so \
 		${WRKSRC}/freetype/objs/freetype214MT_D.so
+	${MV} ${WRKSRC}/base/write_t[12].[ch] \
+		${WRKSRC}/base/wrfont.[ch] \
+		${WRKSRC}/psi
 .endif
 
 pre-install:
@@ -253,7 +257,7 @@ post-install-docs:
 post-install-fapi:
 	${INSTALL_DATA} ${WRKSRC}/lib/FAPIcidfmap			\
 		${WRKSRC}/lib/FAPIconfig ${WRKSRC}/lib/FAPIfontmap	\
-		${DATADIR}/${PORTVERSION}/lib
+		${DATADIR}/${PORTVERSION}/Resource/Init
 
 post-install: post-install-fapi
 .endif
