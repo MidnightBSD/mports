@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.12 2009/01/13 07:22:16 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.13 2009/03/13 02:26:28 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.32
+PORTVERSION=	5.1.35
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -16,6 +16,7 @@ LICENSE=	gpl2
 SLAVEDIRS=	databases/mysql51-client databases/mysql51-scripts
 USE_AUTOTOOLS=	libtool:15
 USE_GMAKE=	yes
+MAKE_JOBS_SAFE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-debug \
