@@ -3,17 +3,18 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.1 2008/02/27 01:47:46 laffer1 Exp $
 #
 
 PORTNAME=	ulxmlrpcpp
-PORTVERSION=	1.7.3
+PORTVERSION=	1.7.4
 CATEGORIES=	net devel
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ultra lightweight xml-rpc library written in C++
+LICENSE=	lgpl
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
