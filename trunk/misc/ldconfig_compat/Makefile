@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ldconfig_compat
-# Date created:				30 Dec 2005
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/ldconfig_compat/Makefile,v 1.2 2006/09/25 16:34:12 archite Exp $
-# $FreeBSD: ports/misc/ldconfig_compat/Makefile,v 1.13 2006/06/26 14:38:56 flz Exp $
-#
+# $MidnightBSD: mports/misc/ldconfig_compat/Makefile,v 1.3 2007/08/01 20:55:50 laffer1 Exp $
 
 PORTNAME=	ldconfig_compat
 PORTVERSION=	1.0
@@ -15,6 +9,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ldconfig compatibility script
+LICENSE=	unknown
 
 NO_BUILD=	yes
 SUB_FILES=	ldconfig_compat.sh
