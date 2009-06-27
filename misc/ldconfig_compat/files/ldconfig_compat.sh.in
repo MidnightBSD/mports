@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/misc/ldconfig_compat/files/ldconfig_compat.sh.in,v 1.4 2006/06/26 14:38:56 flz Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: ldconfig_compat
 # REQUIRE: mountcritremote ldconfig
