@@ -1,13 +1,7 @@
-# New ports collection makefile for:	www/p5-CGI.pm
-# Date created:				12 July 2001
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.6 2008/10/11 20:44:18 laffer1 Exp $
-# $FreeBSD: ports/www/p5-CGI.pm/Makefile,v 1.29 2006/09/30 08:50:54 tobez Exp $
-#
+# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.7 2009/03/11 19:25:09 laffer1 Exp $
 
 PORTNAME=	CGI.pm
-PORTVERSION=	3.42
+PORTVERSION=	3.43
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
