@@ -1,13 +1,7 @@
-# New ports collection makefile for: phpMyAdmin
-# Date created:		19 Jan 2001
-# Whom:			nbm
-#
-# $FreeBSD: ports/databases/phpmyadmin/Makefile,v 1.67 2007/03/07 21:34:20 thierry Exp $
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.16 2008/10/15 19:43:21 laffer1 Exp $
-#
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.17 2009/03/09 20:03:48 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.1.2
+DISTVERSION=	3.1.5
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	phpmyadmin
@@ -20,7 +14,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-USE_PHP=	ctype mysql pcre session
+USE_PHP=	ctype mysql pcre session spl filter
 .endif
 
 SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
@@ -51,7 +45,7 @@ OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 
 .if !defined(WITHOUT_PHP_DEPENDS)
 # Options that default to on:
-.for opt in BZ2 GD OPENSSL PDF ZLIB MCRYPT MBSTRING
+.for opt in BZ2 GD OPENSSL PDF ZLIB MCRYPT MBSTRING ZIP
 .    if !defined(WITHOUT_${opt}) || defined(WITH_${opt})
 USE_PHP+=	${opt:L}
 .    endif
