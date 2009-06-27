@@ -1,18 +1,14 @@
-# New ports collection makefile for:	p5-Net-Server
-# Date created:				24 Apr 2001
-#
-# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.2 2007/07/01 01:28:49 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.3 2008/02/27 22:47:55 laffer1 Exp $
 
 PORTNAME=	Net-Server
 PORTVERSION=	0.97
 CATEGORIES=	net perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A base class for writing internet servers in Perl
+LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
