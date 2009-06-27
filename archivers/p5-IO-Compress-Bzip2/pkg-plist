@@ -2,7 +2,6 @@
 %%SITE_PERL%%/IO/Compress/Bzip2.pm
 %%SITE_PERL%%/IO/Uncompress/Adapter/Bunzip2.pm
 %%SITE_PERL%%/IO/Uncompress/Bunzip2.pm
-%%SITE_PERL%%/mach/auto/IO/Compress/Bzip2/.packlist
 @dirrm %%SITE_PERL%%/mach/auto/IO/Compress/Bzip2
 @dirrmtry %%SITE_PERL%%/mach/auto/IO/Compress
 @dirrmtry %%SITE_PERL%%/mach/auto/IO
