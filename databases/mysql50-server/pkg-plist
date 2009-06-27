@@ -1,11 +1,13 @@
-@unexec %D/etc/rc.d/mysql-server.sh stop > /dev/null 2>&1 || true
+@stopdaemon mysql-server
 bin/comp_err
-bin/innochecksum
+%%INNODB%%bin/innochecksum
 bin/my_print_defaults
 bin/myisam_ftdump
 bin/myisamchk
 bin/myisamlog
 bin/myisampack
+bin/mysqltest_embedded
+bin/mysql_client_test_embedded
 bin/mysql_install_db
 bin/mysql_tzinfo_to_sql
 bin/mysql_upgrade_shell
@@ -61,6 +63,7 @@ lib/mysql/libdbug.a
 lib/mysql/libheap.a
 lib/mysql/libmyisam.a
 lib/mysql/libmyisammrg.a
+lib/mysql/libmysqld.a
 lib/mysql/libmystrings.a
 lib/mysql/libmysys.a
 %%NDB%%lib/mysql/libndbclient.a
@@ -123,8 +126,8 @@ libexec/mysqld
 %%DATADIR%%/mysql_system_tables.sql
 %%DATADIR%%/mysql_system_tables_data.sql
 %%DATADIR%%/mysql-log-rotate
-%%DATADIR%%/mysqld_multi.server
 %%DATADIR%%/mysql.server
+%%DATADIR%%/mysqld_multi.server
 %%DATADIR%%/ndb-config-2-node.ini
 %%NDB%%%%DATADIR%%/ndb_size.tmpl
 %%DATADIR%%/norwegian-ny/errmsg.sys
