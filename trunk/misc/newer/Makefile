@@ -1,10 +1,4 @@
-# New ports collection makefile for:    newer
-# Date created:         22 January 2006
-# Whom:                 Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/misc/newer/Makefile,v 1.2 2006/01/23 15:24:11 sem Exp $
-#
+# $MidnightBSD: mports/misc/newer/Makefile,v 1.1 2008/03/24 22:16:09 laffer1 Exp $
 
 PORTNAME=	newer
 PORTVERSION=	1.0
@@ -15,8 +9,9 @@ EXTRACT_ONLY=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of AT&T Research UNIX V8 newer(1)
+LICENSE=	publicdom
 
-CONFLICTS=	teTeX-base-[0-9]* tex-[0-9]* ja-ptex-base-*
+CONFLICTS=	teTeX-base-[0-9]* tex-[0-9]*
 
 PLIST_FILES=	bin/newer
 NO_EXTRACT=	yes
