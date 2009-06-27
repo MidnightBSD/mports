@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/www/webserver/Makefile,v 1.3 2007/11/07 20:20:17 ctriv Exp $
+# $MidnightBSD: mports/www/webserver/Makefile,v 1.4 2009/04/28 00:51:40 laffer1 Exp $
 
 PORTNAME=	webserver
 PORTVERSION=	1.2.1
 PORTREVISION=	0
-CATEGORIES=	www 
+CATEGORIES=	www gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
 DISTNAME=	WebServer-${PORTVERSION}
