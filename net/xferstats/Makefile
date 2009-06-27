@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xferstats
-# Date created:         19 February 1999
-# Whom:                 Dima Sivachenko
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/xferstats/Makefile,v 1.16 2006/03/07 08:27:10 ade Exp $
-#
+# $MidnightBSD: mports/net/xferstats/Makefile,v 1.1 2008/02/27 02:24:52 laffer1 Exp $
 
 PORTNAME=	xferstats
 PORTVERSION=	2.16
@@ -13,6 +7,7 @@ MASTER_SITES=	ftp://ftp.wu-ftpd.org/pub/support/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiles information about file transfers from logfiles
+LICENSE=	gpl2
 
 USE_GNOME=	glib12
 GNU_CONFIGURE=	yes

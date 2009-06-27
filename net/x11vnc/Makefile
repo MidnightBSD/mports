@@ -1,10 +1,4 @@
-# New ports collection makefile for:	x11vnc
-# Date created:				7 June 2005
-# Whom:					Loren M. Lang
-#
-# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.2 2008/03/21 23:37:10 laffer1 Exp $
-# $FreeBSD: ports/net/x11vnc/Makefile,v 1.10 2007/10/10 01:16:52 araujo Exp $
-#
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.3 2009/06/27 23:33:40 laffer1 Exp $
 
 PORTNAME=	x11vnc
 PORTVERSION=	0.9.6
@@ -15,6 +9,7 @@ MASTER_SITE_SUBDIR=libvncserver
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC server for use with real X displays
+LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		dbus:${PORTSDIR}/devel/dbus \
