@@ -1,10 +1,4 @@
-# Ports collection makefile for:	zsync
-# Date created:			16 Jan 2005
-# Whom:				Gea-Suan Lin <gslin@ccca.nctu.edu.tw>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/zsync/Makefile,v 1.7 2005/10/17 23:28:33 gordon Exp $
-#
+# $MidnightBSD: mports/net/zsync/Makefile,v 1.1 2008/02/27 02:06:39 laffer1 Exp $
 
 PORTNAME=	zsync
 PORTVERSION=	0.4.2
@@ -14,6 +8,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A file transfer program
+LICENSE=	artistic2
 
 PLIST_FILES=	bin/zsync \
 		bin/zsyncmake
