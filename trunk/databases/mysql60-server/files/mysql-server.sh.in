@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/databases/mysql60-server/files/mysql-server.sh.in,v 1.8 2008/07/30 06:11:16 ale Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: mysql
 # REQUIRE: LOGIN
