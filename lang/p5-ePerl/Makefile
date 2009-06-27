@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-ePerl
-# Date created:		03-Sep-1997
-# Whom:	      		Ralf S. Engelschall <rse@engelschall.com>
-#
-# $FreeBSD: ports/lang/p5-ePerl/Makefile,v 1.28 2004/08/21 15:19:41 pav Exp $
-# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.4 2008/03/31 02:19:53 laffer1 Exp $
+# $MidnightBSD: mports/lang/p5-ePerl/Makefile,v 1.5 2008/10/13 17:36:42 laffer1 Exp $
 
 PORTNAME=	eperl
 PORTVERSION=	2.2.14
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang www perl5
 MASTER_SITES=	${MASTER_SITE_OSSP}
 MASTER_SITE_SUBDIR=	tool/${PORTNAME}

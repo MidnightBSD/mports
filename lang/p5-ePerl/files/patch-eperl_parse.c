@@ -1,5 +1,5 @@
---- eperl_parse.c.orig	Fri Jul 10 03:50:48 1998
-+++ eperl_parse.c	Sun Mar 30 22:18:15 2008
+--- eperl_parse.c.orig	2009-02-27 12:23:36.000000000 +0000
++++ eperl_parse.c	2009-02-27 12:25:38.000000000 +0000
 @@ -298,6 +298,7 @@
      return NULL;
  }
@@ -16,20 +16,23 @@
  
  char *strncasestr(char *buf, char *str, int n)
  {
-@@ -325,16 +327,6 @@
-     }
+@@ -326,6 +328,9 @@
      return NULL;
  }
+ 
++#if defined(__MidnightBSD__)  
++#include <osreldate.h>  
++#if __MidnightBSD_version < 3000
+ char *strndup(char *buf, int n)
+ {
+     char *cp;
+@@ -334,7 +339,8 @@
+     strncpy(cp, buf, n);
+     return cp;
+ }
 -
--char *strndup(char *buf, int n)
--{
--    char *cp;
--
--    cp = (char *)malloc(n+1);
--    strncpy(cp, buf, n);
--    return cp;
--}
--
++#endif
++#endif
  
  /*
  **  convert buffer from bristled format to plain format
