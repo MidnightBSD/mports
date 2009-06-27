@@ -2,28 +2,33 @@
 # Date created:				7 June 2005
 # Whom:					Loren M. Lang
 #
-# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.1 2008/01/30 22:20:01 laffer1 Exp $
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.2 2008/03/21 23:37:10 laffer1 Exp $
 # $FreeBSD: ports/net/x11vnc/Makefile,v 1.10 2007/10/10 01:16:52 araujo Exp $
 #
 
 PORTNAME=	x11vnc
-PORTVERSION=	0.9.3
+PORTVERSION=	0.9.6
 PORTREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=libvncserver
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC server for use with real X displays
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+		dbus:${PORTSDIR}/devel/dbus \
+		avahi-common.3:${PORTSDIR}/net/avahi-app
 
 USE_GNOME=	gnometarget
-USE_XLIB=	yes
+USE_XORG=	x11 xdamage xfixes xrandr xinerama xext xtst xau xrender xdmcp recordproto
+# Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
+LDFLAGS+=	-L${LOCALBASE}/lib
+USE_OPENSSL=	yes
+USE_ICONV=	yes
+USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-USE_GCC=	3.4+
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
 
 MAN1=		x11vnc.1
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README README.LibVNCServer TODO
