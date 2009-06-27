@@ -1,10 +1,4 @@
-# Ports collection makefile for:  vnc2swf
-# Date created:			  Sun Dec 7 2:45:15 CET 2003
-# Whom:				  Sebastian Yepes F. <esn@x123.info>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/vnc2swf/Makefile,v 1.10 2008/03/23 23:03:06 miwi Exp $
-#
+# $MidnightBSD: mports/net/vnc2swf/Makefile,v 1.1 2008/06/18 05:54:13 laffer1 Exp $
 
 PORTNAME=	vnc2swf
 PORTVERSION=	0.5.0
@@ -15,6 +9,7 @@ MASTER_SITES=	http://www.unixuser.org/~euske/${PORTNAME}/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC Session Recorder to SWF Flash (Movie) format
+LICENSE=	gpl2
 
 USE_XORG=	xmu x11 xi xaw
 USE_GMAKE=	yes
