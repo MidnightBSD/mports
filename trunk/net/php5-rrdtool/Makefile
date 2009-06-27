@@ -1,20 +1,13 @@
-# New ports collection makefile for:	php5-rrdtool
-# Date created:				19 Mar 2006
-# Whom:					rick@wzoeterwoude.net
-# Credits:				mat
-#
-# $FreeBSD: ports/net/php5-rrdtool/Makefile,v 1.1 2006/03/20 21:25:07 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/php5-rrdtool/Makefile,v 1.1 2007/01/26 02:57:58 laffer1 Exp $
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.00
 CATEGORIES=	net
-MASTER_SITES=	http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/pub/contrib/ \
-		http://ftp.ntua.gr/pub/net/monitoring/rrdtool/contrib/ \
+MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/contrib/ \
 		http://www.mirrors.wiretapped.net/security/network-monitoring/rrdtool/contrib/
 PKGNAMEPREFIX=	php5-
 DISTNAME=	php_rrdtool
-EXTRACT_SUFX=	.tgz
+EXTRACT_SUFX=	.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A php 5 rrdtool glue
