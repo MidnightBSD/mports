@@ -1,10 +1,4 @@
-# New ports collection makefile for:	linux-firefox-devel
-# Date created:		8 May 2006
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.9 2008/03/05 22:45:00 laffer1 Exp $
-# $FreeBSD: ports/www/linux-firefox-devel/Makefile,v 1.23 2007/12/21 16:27:10 sat Exp $
-#
+# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.10 2008/06/20 02:09:39 laffer1 Exp $
 
 PORTNAME=	firefox
 DISTVERSION=	3.0b2
@@ -17,6 +11,8 @@ COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	mpl
 
 USE_BZIP2=	yes
+
+FORBIDDEN=	security issues.
 
 .include "${.CURDIR}/../linux-seamonkey/Makefile.common"
 .include <bsd.port.mk>
