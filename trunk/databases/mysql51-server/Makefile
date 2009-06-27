@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.14 2009/06/27 16:51:30 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.15 2009/06/27 17:20:58 laffer1 Exp $
 
 PORTNAME?=	mysql
 PORTVERSION=	5.1.35
@@ -126,7 +126,7 @@ pre-fetch:
 	@${ECHO} "	WITH_LINUXTHREADS=yes	Use the linuxthreads pthread library."
 	@${ECHO} "	WITH_PROC_SCOPE_PTH=yes	Use process scope threads"
 	@${ECHO} "				(try it if you use libpthread)."
-	@${ECHO} "      WITH_FAST_MUTEXES=yes   Replace mutexes with spinlocks."
+	@${ECHO} "	WITH_FAST_MUTEXES=yes   Replace mutexes with spinlocks."
 	@${ECHO} "	BUILD_OPTIMIZED=yes	Enable compiler optimizations"
 	@${ECHO} "				(use it if you need speed)."
 	@${ECHO} "	BUILD_STATIC=yes	Build a static version of mysqld."
