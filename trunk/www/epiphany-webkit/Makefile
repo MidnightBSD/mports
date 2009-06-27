@@ -1,9 +1,4 @@
-# New ports collection makefile for:	epiphany-webkit
-# Date created:		2007-10-21
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/www/epiphany-webkit/Makefile,v 1.1 2008/07/25 05:39:10 laffer1 Exp $
 
 PORTVERSION=	0
 PKGNAMESUFFIX=	-webkit
