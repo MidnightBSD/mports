@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  netcat
-# Date created:			  Thur Nov 21, 1996
-# Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net/netcat/Makefile,v 1.17 2005/07/18 13:05:27 sumikawa Exp $
-#
+# $MidnightBSD: mports/net/netcat/Makefile,v 1.1 2006/10/01 16:49:13 laffer1 Exp $
 
 PORTNAME=	netcat
 PORTVERSION=	1.10
@@ -23,6 +16,7 @@ PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple utility which reads and writes data across network connections
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 ALL_TARGET=	freebsd
