@@ -1,10 +1,4 @@
-# New ports collection Makefile for:	iSiloXC
-# Date created:		17 Aug 2002
-# Whom:			Sergey Skvortsov <skv@FreeBSD.org>
-#
-# $FreeBSD: ports/palm/iSiloXC/Makefile,v 1.9 2006/01/23 11:31:04 skv Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/palm/iSiloXC/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 
 PORTNAME=	iSiloXC
 PORTVERSION=	4.30
@@ -14,6 +8,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}BSD
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts documents from text/html files or URLs to iSilo format
+LICENSE=	other
 
 USE_ZIP=	yes
 NO_BUILD=	yes
