@@ -1,14 +1,7 @@
-# New ports collection makefile for:	libmng
-# Date created:		Nov 2, 2000
-# Whom:			Mikhail Teterin <mi@aldan.algebra.com>
-#
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.2 2007/10/31 20:27:07 laffer1 Exp $
-# $FreeBSD: ports/graphics/libmng/Makefile,v 1.23 2006/05/07 23:46:15 edwin Exp $
-#
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.3 2007/11/05 22:52:55 ctriv Exp $
 
 PORTNAME=	libmng
-PORTVERSION=	1.0.9
-PORTREVISION=	1
+PORTVERSION=	1.0.10
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://www.libmng.com/download/
@@ -27,7 +20,7 @@ REINPLACE_ARGS=	-i ""
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 MAKE_ARGS+=	-j2 WITH_MNG_OPTIMIZE=${WITH_MNG_OPTIMIZE}
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 MAN3=		libmng.3
 MAN5=		mng.5 jng.5
