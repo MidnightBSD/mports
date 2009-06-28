@@ -1,16 +1,10 @@
-# New ports collection makefile for:	kismet
-# Date created:			3 May 2004
-# Whom:					Thomas Spreng <spreng@socket.ch>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/net-mgmt/kismet/Makefile,v 1.13 2007/01/27 23:43:57 miwi Exp $
-#
+# $MidnightBSD: mports/net-mgmt/kismet/Makefile,v 1.1 2007/04/13 21:57:46 laffer1 Exp $
 
 PORTNAME=	kismet
-PORTVERSION=	200701.r1
+PORTVERSION=	200805.r1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.kismetwireless.net/code/
-DISTNAME=	kismet-2007-01-R1b
+DISTNAME=	kismet-2008-05-R1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
@@ -59,7 +53,7 @@ PLIST_SUB+=	GPS="@comment "
 PATCH_SITES=	http://www.parknation.com/gmap/files/
 PATCHFILES=	gpsmap-gmap-0.1.tgz
 PLIST_SUB+=	GMAP=""
-.ifndef(NOPORTDOC)
+.ifndef(NOPORTDOCS)
 SUB_LIST+=	DOCSDIR=${DOCSDIR}
 SUB_FILES+=	pkg-message
 .endif
@@ -84,7 +78,7 @@ post-extract:
 		${WRKSRC}/configure
 
 post-install:
-.ifndef(NOPORTDOC)
+.ifndef(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
@@ -95,7 +89,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/wep.png ${DATADIR}/${GMAP}/mapfiles/wep.png
 	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/open.png ${DATADIR}/${GMAP}/mapfiles/open.png
 	${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/mapfiles/wpa.png ${DATADIR}/${GMAP}/mapfiles/wpa.png
-.ifndef(NOPORTDOC)
+.ifndef(NOPORTDOCS)
 	@${INSTALL_DATA} ${WRKSRC}/${GMAP}-0.1/README.txt ${DOCSDIR}/${GMAP}
 	@${CAT} ${PKGMESSAGE}
 .endif
