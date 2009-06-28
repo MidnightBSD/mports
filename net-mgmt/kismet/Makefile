@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/kismet/Makefile,v 1.1 2007/04/13 21:57:46 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/kismet/Makefile,v 1.2 2009/06/28 00:09:59 laffer1 Exp $
 
 PORTNAME=	kismet
 PORTVERSION=	200805.r1
@@ -8,6 +8,7 @@ DISTNAME=	kismet-2008-05-R1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	802.11 layer2 wireless network detector, sniffer, and IDS
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
