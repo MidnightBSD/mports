@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/palm/mdbconv/Makefile,v 1.2 2009/04/08 21:05:50 laffer1 Exp $
 #
 
 PORTNAME=	mdbconv
@@ -9,6 +9,7 @@ DISTNAME=	${PORTNAME}freebsd3x
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts CSV to MobileDB database
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 PLIST_FILES=	bin/mdbconv

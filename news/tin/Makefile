@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tin
-# Date created:		25 July 1996
-# Whom:			obrien@cs.ucdavis.edu
-#
-# $MidnightBSD: mports/news/tin/Makefile,v 1.2 2007/03/18 21:27:40 laffer1 Exp $
-# $FreeBSD: ports/news/tin/Makefile,v 1.137 2006/11/12 11:49:16 ache Exp $
-#
+# $MidnightBSD: mports/news/tin/Makefile,v 1.3 2007/08/20 03:20:04 laffer1 Exp $
 
 PORTNAME=	tin
 PORTVERSION=	1.8.3
@@ -15,6 +9,7 @@ MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/ \
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Easy-to-use threaded newsreader with NOV/NNTP support
+LICENSE=	bsd3
 
 LIB_DEPENDS=	uu.3:${PORTSDIR}/converters/uulib \
 		pcre.0:${PORTSDIR}/devel/pcre

@@ -1,10 +1,4 @@
-# New ports collection Makefile for:	isilo
-# Date created:		20 December 1999
-# Whom:			nik
-#
-# $FreeBSD: ports/palm/isilo/Makefile,v 1.12 2006/05/25 01:49:27 mnag Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/palm/isilo/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 
 PORTNAME=	isilo
 PORTVERSION=	2.58
@@ -15,6 +9,7 @@ DISTNAME=	iSiloBSD
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts documents from text/HTML to iSilo format
+LICENSE=	unknown
 
 USE_ZIP=	yes
 NO_BUILD=	yes
