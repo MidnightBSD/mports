@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.5 2007/12/29 22:09:15 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.6 2009/05/08 21:55:15 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
@@ -13,9 +13,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
 LICENSE=	agg
 
-DEPENDS=	${PORTSDIR}/misc/kdehier
 BUILD_DEPENDS=	mkfontdir:${X_CLIENTS_PORT} \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		${LOCALBASE}/share/icons/crystalsvg/.keep_me:${PORTSDIR}/misc/kdehier
 LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
 		artsc.0:${PORTSDIR}/audio/arts \
@@ -31,7 +31,8 @@ LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 RUN_DEPENDS=	iceauth:${X_CLIENTS_PORT} \
 		${FONTSCALE}:${X_FONTS_TTF_PORT} \
 		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT} \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		${LOCALBASE}/share/icons/crystalsvg/.keep_me:${PORTSDIR}/misc/kdehier
 
 .if defined(WITHOUT_CUPS) || defined(KDE_WITHOUT_CUPS)
 CONFLICTS+=	kdelibs-[0-9]*
