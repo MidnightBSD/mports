@@ -2,7 +2,7 @@
 # Date created:		Wed Jul 10 23:38:01 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.5 2008/11/13 20:17:54 ctriv Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.6 2009/02/22 16:56:22 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile,v 1.110 2007/03/08 12:50:40 ahze Exp $
 #   $MCom: ports/multimedia/gstreamer-plugins/Makefile,v 1.100 2006/09/14 21:02:22 ahze Exp $
 #
@@ -33,16 +33,16 @@ LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
 
 CFLAGS:=	${CFLAGS} -O2
 
-BASE_PORTVERSION=	0.10.14
+BASE_PORTVERSION=	0.10.23
 BASE_DISTNAME=		gst-plugins-base-${BASE_PORTVERSION}
 BASE_DISTFILE=		${BASE_DISTNAME}${EXTRACT_SUFX}
-BAD_PORTVERSION=	0.10.5
+BAD_PORTVERSION=	0.10.13
 BAD_DISTNAME=		gst-plugins-bad-${BAD_PORTVERSION}
 BAD_DISTFILE=		${BAD_DISTNAME}${EXTRACT_SUFX}
-GOOD_PORTVERSION=	0.10.6
+GOOD_PORTVERSION=	0.10.15
 GOOD_DISTNAME=		gst-plugins-good-${GOOD_PORTVERSION}
 GOOD_DISTFILE=		${GOOD_DISTNAME}${EXTRACT_SUFX}
-UGLY_PORTVERSION=	0.10.6
+UGLY_PORTVERSION=	0.10.12
 UGLY_DISTNAME=		gst-plugins-ugly-${UGLY_PORTVERSION}
 UGLY_DISTFILE=		${UGLY_DISTNAME}${EXTRACT_SUFX}
 DIST?=		good
