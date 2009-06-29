@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $MidnightBSD: mports/www/browser3/pkg-plist,v 1.2 2009/06/29 05:50:40 laffer1 Exp $
 bin/browser
 include/browser/stable/nsXPCOMStrings.h
 include/browser/stable/nsEmbedString.h
@@ -3176,7 +3176,6 @@ lib/browser/chrome/reporter.jar
 lib/browser/chrome/pippki.jar
 lib/browser/chrome/pippki.manifest
 lib/browser/browserconfig.properties
-lib/browser/old-homepage-default.properties
 lib/browser/searchplugins/amazondotcom.xml
 lib/browser/searchplugins/answers.xml
 lib/browser/searchplugins/creativecommons.xml
@@ -3190,7 +3189,7 @@ lib/browser/dictionaries/en-US.dic
 lib/browser/libmozjs.so
 lib/browser/libxpcom.so
 lib/browser/libxul.so
-lib/browser/firefox
+lib/browser/browser
 lib/browser/application.ini
 lib/browser/platform.ini
 lib/browser/mozilla-xremote-client
@@ -3249,7 +3248,7 @@ lib/browser/components/nsSafebrowsingApplication.js
 lib/browser/components/nsUrlClassifierListManager.js
 lib/browser/components/nsUrlClassifierLib.js
 lib/browser/components/browser.xpt
-lib/browser/components/libnkgnomevfs.so
+%%SMB%%lib/browser/components/libnkgnomevfs.so
 lib/browser/modules/debug.js
 lib/browser/modules/distribution.js
 lib/browser/modules/DownloadUtils.jsm
