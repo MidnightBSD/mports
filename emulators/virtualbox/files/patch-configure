@@ -1,16 +1,16 @@
---- configure.orig	2009-05-20 05:30:17 -0400
-+++ configure	2009-05-27 12:20:15 -0400
-@@ -297,6 +297,9 @@
-       ;;
-     freebsd)
-       ;;
-+    midnightbsd)
-+      OS='freebsd'
-+      ;;
-     sunos)
-       OS='solaris'
-       ;;
-@@ -1576,7 +1579,7 @@
+--- configure.orig	2009-06-04 04:40:02 -0400
++++ configure	2009-06-06 18:26:34 -0400
+@@ -51,6 +51,9 @@
+     ;;
+   freebsd)
+     ;;
++  midnightbsd)
++    OS='freebsd'
++    ;;
+   sunos)
+     OS='solaris'
+     ;;
+@@ -1581,7 +1584,7 @@
      fi
      echo "export PATH" >> $ENV
      echo "unset path_kbuild_bin path_dev_bin" >> $ENV
@@ -19,7 +19,7 @@
    elif check_avail "kmk" KBUILDDIR really; then
      # check for installed kBuild
      KBUILD_SED="`which_wrapper kmk_sed`"
-@@ -1698,7 +1701,7 @@
+@@ -1703,7 +1706,7 @@
          cat $ODIR.tmp_src.cc >> $LOG
          echo "using the following command line:" >> $LOG
          echo "$CXX -O -Wall -o $ODIR.tmp_out $ODIR.tmp_src.cc -I$p/include/$d $p/$b/lib$d.so" >> $LOG
