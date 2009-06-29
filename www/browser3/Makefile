@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.2 2009/04/18 06:20:14 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.3 2009/06/29 05:50:40 laffer1 Exp $
 
 PORTNAME=	browser3
-DISTVERSION=	3.0.10
+DISTVERSION=	3.0.11
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
@@ -13,8 +13,6 @@ WRKSRC=		${WRKDIR}/mozilla
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	gpl2
-
-#BROKEN=		port is under development
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
@@ -32,8 +30,7 @@ USE_GNOME+=	gtk20 libidl desktopfileutils
 USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
-USE_XORG=	printproto sm xt xi xext x11 xinerama \
-		ice xproto
+USE_XORG=	printproto sm xt xi xext x11 xinerama ice xproto
 MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
@@ -63,7 +60,8 @@ FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/icons/default.xpm
 SYSTEM_PREFS=	${PREFIX}/lib/${MOZILLA}/defaults/pref/firefox.js
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 
-OPTIONS=	NEWTAB "Open external links in a new tab" on \
+OPTIONS=	DBUS "Enable D-BUS support" on \
+		NEWTAB "Open external links in a new tab" on \
 		SMB "Enable smb:// URI support using gnomevfs" off
 
 .include <bsd.port.pre.mk>
@@ -103,13 +101,68 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--disable-xterm-updates		\
 		--disable-xprint		\
 		--disable-tests			\
-		--disable-javaxpcom		\
+		--disable-crashreporter		\
 		--enable-xinerama		\
 		--enable-libxul			\
 		--enable-svg			\
 		--enable-svg-renderer=cairo	\
 		--x-includes=${LOCALBASE}/include \
 		--x-libraries=${LOCALBASE}/lib
+
+
+.if ${HAVE_GNOME:Mlibgnomeui}!=""
+USE_GNOME+=     libgnomeui
+MOZ_OPTIONS+=   --enable-gnomeui
+.else
+MOZ_OPTIONS+=   --disable-gnomeui
+.endif
+
+.if defined(WITHOUT_DBUS)
+MOZ_OPTIONS+=   --disable-dbus
+.else
+LIB_DEPENDS+=   dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+.endif
+
+.if defined(WITH_SMB)
+USE_GNOME+=             gnomevfs2
+MOZ_OPTIONS+=   --enable-gnomevfs
+PLIST_SUB+=	SMB=""
+.else
+MOZ_OPTIONS+=   --disable-gnomevfs
+PLIST_SUB+=	SMB="@comment "
+.endif
+
+.if defined(WITH_DEBUG)
+MOZ_OPTIONS+=   --enable-debug                          \
+                --disable-strip
+WITH_LOGGING=   yes
+.else
+MOZ_OPTIONS+=   --disable-debug                         \
+                --enable-optimize=${WITH_OPTIMIZE}      \
+                --enable-strip
+.endif
+
+.if defined(WITH_OPTIMIZED_CFLAGS)
+CFLAGS:=        ${CFLAGS} -O2 -fno-strict-aliasing ${EXTRA_CFLAGS}
+WITH_OPTIMIZE?= -O2
+.else
+CFLAGS:=        ${CFLAGS} ${EXTRA_CFLAGS}
+WITH_OPTIMIZE?=
+.endif
+
+.if defined(WITH_JAVA) && defined(_WITH_JAVA)
+USE_JAVA=       yes
+JAVA_VERSION+=  1.4+
+JAVA_OS+=       native
+CONFIGURE_ENV+= JAVA_HOME="${JAVA_HOME}"
+MOZ_OPTIONS+=   --enable-javaxpcom
+.endif
+
+.if defined(WITH_LOGGING)
+MOZ_OPTIONS+=   --enable-logging
+.else
+MOZ_OPTIONS+=   --disable-logging
+.endif
 
 .if ${ARCH}=="sparc64"
 # Work around miscompilation/mislinkage of the sCanonicalVTable hacks.
@@ -239,9 +292,9 @@ post-install:
 	${MKDIR} ${PREFIX}/lib/${MOZILLA}/chrome/icons/default
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/lib/${MOZILLA}/chrome/icons/default/default.xpm
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
-	${MV} ${PREFIX}/bin/firefox ${PREFIX}/bin/browser
+	${LN} -s ${PREFIX}/lib/browser/browser ${PREFIX}/bin/browser
 	${MV} ${PREFIX}/lib/browser/firefox-bin ${PREFIX}/lib/browser/browser-bin
-#	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
+	${MV} ${PREFIX}/lib/browser/firefox ${PREFIX}/lib/browser/browser
 #	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nspr.pc
 #	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-xpcom.pc
 #	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-js.pc
