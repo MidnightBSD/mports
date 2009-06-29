@@ -1,14 +1,8 @@
-# New ports collection makefile for:	qmake
-# Date created:				2 September 2003
-# Whom:					mi@aldan.algebra.com
-#
-# $FreeBSD: ports/devel/qmake/Makefile,v 1.17 2006/05/04 21:41:04 edwin Exp $
-# $MidnightBSD: mports/devel/qmake/Makefile,v 1.10 2008/08/25 19:06:46 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/qmake/Makefile,v 1.11 2008/10/29 19:43:38 ctriv Exp $
 
 PORTNAME=	qmake
 PORTVERSION=	3.3.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -23,6 +17,7 @@ USE_REINPLACE=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
+ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
 PLIST_SUB+=	_PREFIX="${PREFIX}"
 MAKE_ENV+=	FILESDIR="${FILESDIR}"
 
@@ -35,11 +30,11 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 
 .if !defined(NOPORTDOCS)
 EXTRACT_AFTER_ARGS+='${DISTNAME}/doc/html/qmake*'
-DOCSDIR=${PREFIX}/share/doc/qt
+DOCSDIR=share/doc/qt
 PLIST_SUB+=	DOCSDIR='${DOCSDIR}'
 post-install:
-	${MKDIR} '${DOCSDIR}'
-	${CP} -Rp '${WRKSRC:H}/doc/html' '${DOCSDIR}'
+	${MKDIR} '${PREFIX}/${DOCSDIR}'
+	${CP} -Rp '${WRKSRC:H}/doc/html' '${PREFIX}/${DOCSDIR}'
 .endif
 
 post-patch:
@@ -62,6 +57,5 @@ do-configure:
 	${ECHO} '/* empty */' > ${WRKSRC}/qconfig.h
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/qmodules.h
 	${LN} -s . ${WRKDIR}/${DISTNAME}/src/tools/private
-
 
 .include <bsd.port.mk>
