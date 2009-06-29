@@ -1,29 +1,26 @@
-# New ports collection makefile for:	virtualbox
-# Date created:		2009-05-02
-# Whom:			Bernhard Froehlich <decke@bluelife.at>
+# $MidnightBSD$
 
 PORTNAME=	virtualbox
-PORTVERSION=	${VBOXVERSION}r19980
+DISTVERSION=	2.2.51.r20457
 CATEGORIES=	emulators kld
 MASTER_SITES=	http://tmp.chruetertee.ch/ \
 		http://freebsd.unixfreunde.de/sources/ \
 		http://disasterarea.chruetertee.ch/ \
 		http://mirror.4bit.ws/ \
-		http://dlc.sun.com/virtualbox/${VBOXVERSION}/:guestadditions
-.if defined(WITH_GUESTADDITIONS)
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${GUESTADDITIONS}:guestadditions
+		http://dlc.sun.com/virtualbox/${VBOX_GUEST_VER}/:guestadditions
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${GADISTFILES}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
-.endif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A general-purpose full virtualizer for x86 hardware
+LICENSE=	other
 
 BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm \
 		as86:${PORTSDIR}/devel/dev86 \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
 		kmk:${PORTSDIR}/devel/kBuild
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
-		pulse.0:${PORTSDIR}/audio/pulseaudio
+		curl.5:${PORTSDIR}/ftp/curl
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_XORG=	xcursor xmu
@@ -31,16 +28,18 @@ USE_GNOME=	libidl
 USE_SDL=	sdl
 USE_CDRTOOLS=	yes
 USE_PYTHON=	yes
+USE_BZIP2=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}-2.2.51r20457
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/virtualbox
 
 CONFLICTS=	bcc-[0-9]*
 
-VBOXVERSION=	2.2.2
 VBOXGROUP?=	vboxusers
-VBOXGID?=	919
+VBOXGID?=	920
 VBOX_FRONTENDS=	VBoxBFE VBoxHeadless VBoxSDL
+VBOX_GUEST_VER=	2.2.4
 
 SUB_FILES=	pkg-install
 
@@ -50,14 +49,16 @@ SUB_LIST=	PREFIX=${PREFIX} \
 
 OPTIONS=	QT4 "Build with QT4 Frontend" on \
 		DEBUG "Build with debugging symbols" off \
-		GUESTADDITIONS "Build with Guest Additions" off
+		GUESTADDITIONS "Build with Guest Additions" off \
+		DBUS "Build with D-Bus and HAL support" on \
+		PULSEAUDIO "Build with PulseAudio" off
 
 .include <bsd.mport.options.mk>
 
 KMODDIR=	/boot/modules
-PLIST_SUB+=	KMODDIR=${KMODDIR}
+PLIST_SUB+=	KMODDIR=${KMODDIR:C,^/,,}
 KMK_BUILDTYPE=	release
-KMK_CONFIG=	VBOX_LIBPATH_X11=${LOCALBASE}
+KMK_CONFIG=	VBOX_LIBPATH_X11=${LOCALBASE} VBOX_FREEBSD_SRC=${SRC_BASE}/sys
 KMK_FLAGS=
 
 .if !defined(WITHOUT_QT4)
@@ -73,7 +74,8 @@ PLIST_SUB+=	QT4="@comment "
 .endif
 
 .if defined(WITH_GUESTADDITIONS)
-GUESTADDITIONS=	VBoxGuestAdditions_${VBOXVERSION}.iso
+GUESTADDITIONS=	VBoxGuestAdditions_${VBOX_GUEST_VER}.iso
+GADISTFILES=	${GUESTADDITIONS}:guestadditions
 RESTRICTED=	for personal use only
 RESTRICTED_FILES=	${GUESTADDITIONS}
 FETCH_ARGS=	-pRr
@@ -87,12 +89,22 @@ KMK_FLAGS+=	BUILD_TYPE=debug
 KMK_BUILDTYPE=	debug
 .endif
 
+.if !defined(WITHOUT_DBUS)
+LIB_DEPENDS+=	dbus-1.3:${PORTSDIR}/devel/dbus
+.else
+CONFIGURE_ARGS+=--disable-dbus
+.endif
+
+.if !defined(WITH_PULSEAUDIO)
+CONFIGURE_ARGS+=--disable-pulse
+.endif
+
 .if !exists(${SRC_BASE}/sys/kern/bus_if.m)
 IGNORE=		requires kernel sources for the kernel module
 .endif
 
 .if ${OSVERSION} < 3000
-BROKEN=	Does not compile on MidnightBSD 0.2.x
+BROKEN=	Does not compile on MidnightBSD 0.2.x or lower
 .endif
 
 .if ${ARCH} == i386
@@ -109,14 +121,6 @@ PLIST_SUB+=	I386="@comment "
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|<qevent.h>|<QEvent>|'\
-		${WRKSRC}/src/VBox/Frontends/VirtualBox/include/VBoxDefs.h
-	@${REINPLACE_CMD} -e 's|<qmessagebox.h>|<QMessageBox>|'\
-		${WRKSRC}/src/VBox/Frontends/VirtualBox/src/main.cpp
-	@${REINPLACE_CMD} -e 's|<qlocale.h>|<QLocale>|'\
-		${WRKSRC}/src/VBox/Frontends/VirtualBox/src/main.cpp
-	@${REINPLACE_CMD} -e 's|<qtranslator.h>|<QTranslator>|'\
-		${WRKSRC}/src/VBox/Frontends/VirtualBox/src/main.cpp
 	@${REINPLACE_CMD} -e 's|#VBOX_PATH_APP_PRIVATE_ARCH  = /usr/lib/virtualbox|VBOX_PATH_APP_PRIVATE_ARCH = ${PREFIX}/lib/virtualbox|'\
 		${WRKSRC}/Config.kmk
 	@${REINPLACE_CMD} -e 's|#VBOX_PATH_SHARED_LIBS       = /usr/lib|VBOX_PATH_SHARED_LIBS = ${PREFIX}/lib/virtualbox|' \
@@ -148,7 +152,7 @@ do-install:
 	(cd ${WRKSRC}/out/${KMK_ARCH}/${KMK_BUILDTYPE}/bin && ${COPYTREE_SHARE} "*.so *.gc *.r0 components" ${PREFIX}/lib/virtualbox)
 
 	${MKDIR} ${PREFIX}/bin
-.for f in VBoxManage VBoxNetDHCP VBoxSVC VBoxXPCOMIPCD ${VBOX_FRONTENDS}
+.for f in VBoxManage VBoxNetDHCP VBoxSVC VBoxXPCOMIPCD ${VBOX_FRONTENDS} VBoxTestOGL
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${KMK_ARCH}/${KMK_BUILDTYPE}/bin/$f ${PREFIX}/lib/virtualbox/
 	${LN} -sf ${PREFIX}/lib/virtualbox/${f} ${PREFIX}/bin/
 .endfor

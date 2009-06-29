@@ -1,10 +1,10 @@
-@comment $FreeBSD$
 bin/VBoxBFE
 bin/VBoxHeadless
 bin/VBoxManage
 bin/VBoxNetDHCP
 bin/VBoxSDL
 bin/VBoxSVC
+bin/VBoxTestOGL
 bin/VBoxXPCOMIPCD
 %%QT4%%bin/VirtualBox
 lib/virtualbox/VBoxBFE
@@ -19,8 +19,12 @@ lib/virtualbox/VBoxHeadless.so
 lib/virtualbox/VBoxManage
 lib/virtualbox/VBoxNetDHCP
 lib/virtualbox/VBoxNetDHCP.so
+lib/virtualbox/VBoxOGLhostcrutil.so
+lib/virtualbox/VBoxOGLhosterrorspu.so
+lib/virtualbox/VBoxOGLrenderspu.so
 lib/virtualbox/VBoxPython.so
 lib/virtualbox/VBoxREM.so
+lib/virtualbox/VBoxTestOGL
 %%I386%%lib/virtualbox/VBoxREM32.so
 %%I386%%lib/virtualbox/VBoxREM64.so
 lib/virtualbox/VBoxRT.so
@@ -28,6 +32,8 @@ lib/virtualbox/VBoxSDL
 lib/virtualbox/VBoxSDL.so
 lib/virtualbox/VBoxSVC
 lib/virtualbox/VBoxSettings.so
+lib/virtualbox/VBoxSharedClipboard.so
+lib/virtualbox/VBoxSharedCrOpenGL.so
 lib/virtualbox/VBoxSharedFolders.so
 lib/virtualbox/VBoxVMM.so
 lib/virtualbox/VBoxXPCOM.so
@@ -42,7 +48,7 @@ lib/virtualbox/tstMicroGC.gc
 lib/virtualbox/VBoxDD2R0.r0
 lib/virtualbox/VBoxDDR0.r0
 %%GUESTADDITIONS%%lib/virtualbox/VBoxGuestAdditions.iso
-%%GUESTADDITIONS%%lib/virtualbox/VBoxGuestAdditions_2.2.2.iso
+%%GUESTADDITIONS%%lib/virtualbox/VBoxGuestAdditions_2.2.4.iso
 lib/virtualbox/VMMR0.r0
 lib/virtualbox/components/VirtualBox_XPCOM.xpt
 lib/virtualbox/components/VBoxXPCOMIPCC.so
