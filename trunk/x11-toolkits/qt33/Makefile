@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.10 2008/05/04 18:57:28 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.11 2009/06/07 21:04:05 laffer1 Exp $
 #
 
 PORTNAME=	qt
@@ -27,8 +27,8 @@ LIB_DEPENDS+=	mng:${PORTSDIR}/graphics/libmng \
 EXTRA_PATCHES=	${PATCHDIR}/0081-format-string-fixes.diff
 
 USE_BZIP2=	yes
-REINPLACE_ARGS=	-i ""
 USE_XORG=	xinerama sm inputproto xi
+REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 DESTDIRNAME=	INSTALL_ROOT
@@ -73,6 +73,11 @@ PACKAGE_COOKIE=	${WRKDIR}/.package_done.${PORTNAME}.${PREFIX:S/\//_/g}
 
 .include <bsd.port.pre.mk>
 
+PREFIX_REAL!=	/bin/realpath ${PREFIX}
+
+# The previous Qt port versions installed qmake and qmake's specs under LOCALBASE
+# The new devel/qmake port installs them under LOCALBASE. We can use
+# either one here, but we prefer the newer:
 .for d in ${LOCALBASE} ${PREFIX}
 .	if exists($d/share/qt/mkspecs/freebsd-g++/qplatformdefs.h)
 QTBASE=$d
@@ -175,15 +180,17 @@ post-configure:
 		's|/lib/pkgconfig/|/libdata/pkgconfig/|g' \
 		-e 's|^INCPATH.*=|INCPATH  = -I../include|g' \
 			${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} -e \
+		's|^prefix=.*|prefix=${PREFIX}|g' ${WRKSRC}/lib/qt-mt.pc
 
 post-build:
 .for tool in makeqpf mergetr msg2qm qembed qvfb
 	@cd ${WRKSRC}/tools/${tool}; ${SETENV} ${MAKE_ENV} ${MAKE}
 .endfor
-	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} ${GREP} --mmap -F -l -- \
-		"${PLATFORM}" | ${XARGS} ${REINPLACE_CMD} -e "s,${PLATFORM}/qmake.conf,," \
-		-e "s,${PLATFORM},,"
 	@${RM} -f ${WRKSRC}/doc/html/qmake*
+	${REINPLACE_CMD} -e 's|${PREFIX_REAL}/include/q.*h||g' \
+			-e 's|${PREFIX_REAL}/include/private/q.*h||g' \
+		${WRKSRC}/src/Makefile
 
 # Work around qmake generated dependencies
 pre-install:
