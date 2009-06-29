@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.10 2008/09/13 21:54:15 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.11 2009/05/26 00:14:14 laffer1 Exp $
 
 PORTNAME=	libpurple
-PORTVERSION=	2.5.1
+PORTVERSION=	2.5.8
 CATEGORIES=	net-im
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	pidgin
@@ -39,7 +39,7 @@ USE_PYTHON=	yes
 WITH_GNOME=	yes
 .endif
 
-MAN1=		pidgin.1 finch.1
+#MAN1=		pidgin.1 finch.1
 
 .endif
 
