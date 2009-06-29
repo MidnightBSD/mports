@@ -1,19 +1,11 @@
-# New ports collection makefile for:   gtk--
-# Date created:        11 May 1998
-# Whom:                Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/x11-toolkits/gtkmm12/Makefile,v 1.2 2007/03/25 02:04:10 ctriv Exp $
-# $FreeBSD: ports/x11-toolkits/gtkmm12/Makefile,v 1.49 2006/02/23 10:40:15 ade Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/gtkmm12/Makefile,v 1.3 2008/03/26 01:11:10 ctriv Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	12
 PORTVERSION=	1.2.8
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/gtkmm/1.2
-#DIST_SUBDIR=	gnome
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ wrapper for gtk, a x11 graphics library
@@ -22,12 +14,13 @@ LICENSE=	lgpl
 LIB_DEPENDS=	sigc.1:${PORTSDIR}/devel/libsigc++
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
+USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gtk12
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static=yes \
 		--without-gnome \
 		--with-sigc-prefix=${LOCALBASE}
