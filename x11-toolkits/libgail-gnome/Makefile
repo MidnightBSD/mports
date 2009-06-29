@@ -1,14 +1,7 @@
-# New ports collection makefile for:   libgail-gnome
-# Date Created:			12 April 2002
-# Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.1 2008/01/01 20:11:30 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/libgail-gnome/Makefile,v 1.45 2007/10/24 23:34:35 marcus Exp $
-#   $MCom: ports/x11-toolkits/libgail-gnome/Makefile,v 1.21 2007/09/17 13:13:59 ahze Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.2 2008/08/20 17:55:48 laffer1 Exp $
 
 PORTNAME=	libgail-gnome
-PORTVERSION=	1.20.0
+PORTVERSION=	1.20.1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
