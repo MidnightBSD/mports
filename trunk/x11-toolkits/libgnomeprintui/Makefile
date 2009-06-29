@@ -1,15 +1,8 @@
-# New ports collection makefile for:	libgnomeprintui
-# Date created:				12 April 2002
-# Whom:					Maxim Sobolev <sobomax@FreBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.2 2008/03/22 04:12:06 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/libgnomeprintui/Makefile,v 1.48 2007/05/19 20:31:18 flz Exp $
-#   $MCom: ports/x11-toolkits/libgnomeprintui/Makefile,v 1.64 2007/03/12 19:15:02 mezz Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	libgnomeprintui
-PORTVERSION=	2.18.2
-PORTREVISION=	1
+PORTVERSION=	2.18.4
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
