@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba33/Makefile,v 1.1 2009/04/25 15:59:59 laffer1 Exp $
 
 PORTNAME=		samba
-PORTVERSION?=		3.3.3
+PORTVERSION?=		3.3.6
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -322,8 +322,8 @@ MAN8=		eventlogadm.8 net.8 nmbd.8 pdbedit.8 smbd.8 smbpasswd.8 \
 
 .if !defined(WITHOUT_WINBIND)
 MAN1+=		wbinfo.1
-MAN7+=		pam_winbind.7 winbind_krb5_locator.7
-MAN8+=		winbindd.8
+MAN7+=		winbind_krb5_locator.7
+MAN8+=		pam_winbind.8 winbindd.8
 .endif
 
 .if !defined(WITHOUT_SWAT)
