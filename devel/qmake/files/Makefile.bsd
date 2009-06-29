@@ -34,10 +34,8 @@ PROG_CXX=	qmake
 BINDIR=	${PREFIX}/bin
 SHAREDIR=${PREFIX}/share/qt
 
-${SHAREDIR}:
-	mkdir -p ${DESTDIR}$@/mkspecs
-
-beforeinstall: ${SHAREDIR}
-	cp -Rp ${.CURDIR:H}/mkspecs ${DESTDIR}${SHAREDIR}/
+beforeinstall:
+	mkdir -p ${DESTDIR}${SHAREDIR}/mkspecs
+	cp -Rp ${.CURDIR:H}/mkspecs/* ${DESTDIR}${SHAREDIR}/mkspecs
 
 .include <bsd.prog.mk>
