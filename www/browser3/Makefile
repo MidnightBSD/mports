@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.1 2009/04/18 05:11:07 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.2 2009/04/18 06:20:14 laffer1 Exp $
 
 PORTNAME=	browser3
-DISTVERSION=	3.0.7
+DISTVERSION=	3.0.10
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	gpl2
 
-BROKEN=		port is under development
+#BROKEN=		port is under development
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
@@ -34,6 +34,7 @@ USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XORG=	printproto sm xt xi xext x11 xinerama \
 		ice xproto
+MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
@@ -42,9 +43,9 @@ MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/'
 WANT_GNOME=	yes
 ALL_TARGET=	default
 CONFIGURE_ENV=	LOCALBASE=${LOCALBASE}
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \
-			--target=${ARCH}-portbld-freebsd6.1 \
-			--host=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
+			--target=${ARCH}-portbld-freebsd7.0 \
+			--host=${ARCH}-portbld-freebsd7.0
 EXTRA_CFLAGS=	-O2
 HAS_CONFIGURE=	yes
 USE_BZIP2=	yes
@@ -100,7 +101,11 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--disable-pedantic              \
 		--disable-bidi                  \
 		--disable-xterm-updates		\
+		--disable-xprint		\
+		--disable-tests			\
+		--disable-javaxpcom		\
 		--enable-xinerama		\
+		--enable-libxul			\
 		--enable-svg			\
 		--enable-svg-renderer=cairo	\
 		--x-includes=${LOCALBASE}/include \
@@ -158,6 +163,11 @@ post-patch:
           ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_midnightbsd.cpp && \
           ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_midnightbsd.cpp) && \
           ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_midnightbsd.s)
+        (cd ${WRKSRC}/xpcom/reflect/xptcall/src/md/unix && \
+          ${LN} -s xptcstubs_asm_sparc64_openbsd.s xptcstubs_asm_sparc64_freebsd.s && \
+          ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_freebsd.cpp && \
+          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_freebsd.cpp) && \
+          ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_freebsd.s)
 .endif
 	@${REINPLACE_CMD} -e  's/%{idldir}/%idldir%/g ; \
 		s|"%FULL_NSPR_CFLAGS%"|`nspr-config --cflags`|g ; \
@@ -172,6 +182,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-pthread|${PTHREAD_LIBS}|g ; \
 		s|echo aout|echo elf|g ; s|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/security/coreconf/FreeBSD.mk \
+		${WRKSRC}/security/coreconf/MidnightBSD.mk \
 		${WRKSRC}/js/src/Makefile.in
 	@if [ -d ${WRKSRC}/directory/c-sdk ]; then \
 		${REINPLACE_CMD} -e 's|echo aout|echo elf|g' \
@@ -230,13 +241,13 @@ post-install:
 	${LN} -sf ${FIREFOX_ICON_SRC} ${PREFIX}/share/pixmaps/${FIREFOX_ICON}
 	${MV} ${PREFIX}/bin/firefox ${PREFIX}/bin/browser
 	${MV} ${PREFIX}/lib/browser/firefox-bin ${PREFIX}/lib/browser/browser-bin
-	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nspr.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-xpcom.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-js.pc
-	${REINPLACE_CMD} -e 's/firefox/${MOZILLA}/' ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc 
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-gtkmozembed.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-nss.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nss.pc
-	${MV} ${PREFIX}/lib/pkgconfig/firefox-plugin.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-plugin.pc
+#	${MV} ${PREFIX}/bin/firefox-config ${PREFIX}/bin/browser-config
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-nspr.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nspr.pc
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-xpcom.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-xpcom.pc
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-js.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-js.pc
+#	${REINPLACE_CMD} -e 's/firefox/${MOZILLA}/' ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc 
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-gtkmozembed.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-gtkmozembed.pc
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-nss.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-nss.pc
+#	${MV} ${PREFIX}/lib/pkgconfig/firefox-plugin.pc ${PREFIX}/libdata/pkgconfig/${MOZILLA}-plugin.pc
 	
 .include <bsd.port.post.mk>
