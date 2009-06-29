@@ -1,13 +1,7 @@
-# New ports collection makefile for:	samba
-# Date created:				11th Feb 1995
-# Whom:					Gary Palmer <gpalmer>
-#
-# $MidnightBSD: mports/net/samba3/Makefile,v 1.9 2008/05/30 18:49:54 laffer1 Exp $
-# $FreeBSD: ports/net/samba3/Makefile,v 1.157 2007/02/07 08:40:44 sem Exp $
-#
+# $MidnightBSD: mports/net/samba3/Makefile,v 1.10 2008/10/20 18:35:42 laffer1 Exp $
 
 PORTNAME=		samba
-PORTVERSION?=		3.0.32
+PORTVERSION?=		3.0.35
 PORTREVISION?=		0
 PORTEPOCH?=		1
 CATEGORIES?=		net
@@ -46,7 +40,7 @@ SAMBA_LIB=		lib
 SAMBA_LIBDIR=		${PREFIX}/${SAMBA_LIB}
 SAMBA_MODULEDIR=	${SAMBA_LIBDIR}/samba
 
-CONFIGURE_TARGET=	--build="${MACHINE_ARCH}-portbld-freebsd6.0"
+CONFIGURE_TARGET=	--build="${MACHINE_ARCH}-portbld-freebsd6.1"
 
 CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--localstatedir="${VARDIR}" \
