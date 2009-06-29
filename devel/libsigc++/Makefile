@@ -1,10 +1,4 @@
-# New ports collection makefile for:   libsigc++
-# Date created:        27 January 2000
-# Whom:                Joe Lu <JoeLu@JoeLu.m8.ntu.edu.tw>
-#
-# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.2 2007/05/06 21:31:47 ctriv Exp $
-# $FreeBSD: ports/devel/libsigc++/Makefile,v 1.25 2006/05/04 21:40:52 edwin Exp $
-#
+# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.3 2008/10/03 03:38:41 ctriv Exp $
 
 PORTNAME=	libsigc++
 PORTVERSION=	1.0.4
@@ -20,6 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
 LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:15
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack
