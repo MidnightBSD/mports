@@ -22,7 +22,7 @@
  endif
  # IA64 Linux
 -ifneq (,$(filter Linux,$(OS_ARCH)))
-+ifneq (,$(filter Linux FreeBSD,$(OS_ARCH)))
++ifneq (,$(filter Linux MidnightBSD FreeBSD,$(OS_ARCH)))
  ifneq (,$(findstring ia64,$(OS_TEST)))
  CPPSRCS		:= xptcinvoke_ipf64.cpp xptcstubs_ipf64.cpp
  ASFILES		:= xptcstubs_asm_ipf64.s xptcinvoke_asm_ipf64.s
