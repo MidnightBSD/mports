@@ -2,7 +2,7 @@
 # Date created:		Wed Jul 10 23:38:01 UTC 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.7 2009/06/29 16:59:59 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.8 2009/06/29 17:02:37 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile,v 1.110 2007/03/08 12:50:40 ahze Exp $
 #   $MCom: ports/multimedia/gstreamer-plugins/Makefile,v 1.100 2006/09/14 21:02:22 ahze Exp $
 #
@@ -16,10 +16,10 @@ MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
 		http://gstreamer.freedesktop.org/src/gst-plugins-bad/:bad \
 		http://gstreamer.freedesktop.org/src/gst-plugins-good/:good \
 		http://gstreamer.freedesktop.org/src/gst-plugins-ugly/:ugly \
-		${MASTER_SITE_LOCAL:S|$|ahze/:base|} \
-		${MASTER_SITE_LOCAL:S|$|ahze/:good|} \
+		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:base|} \
+		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:good|} \
 		${MASTER_SITE_LOCAL:S|$|ahze/:bad|} \
-		${MASTER_SITE_LOCAL:S|$|ahze/:ugly|}
+		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:ugly|}
 PKGNAMESUFFIX=	-plugins${GST_PLUGIN_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -59,8 +59,8 @@ GST_PLUGIN?=	base
 
 CONFIGURE_ARGS+=--mandir=${PREFIX}/man
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
-		CPPFLAGS="${CPPFLAGS} -I${X11BASE}/include -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LDFLAGS="${LDFLAGS} -L${X11BASE}/lib -L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}"
+		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
+		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}"
 
 DEFAULT_AUDIOSINK?=	osssink
 DEFAULT_AUDIOSRC?=	osssrc
