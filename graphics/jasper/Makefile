@@ -1,10 +1,4 @@
-# New ports collection makefile for:	jasper
-# Date created:				6 November 1994
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $FreeBSD: ports/graphics/jasper/Makefile,v 1.17 2006/08/14 23:06:34 clsung Exp $
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.2 2008/10/13 20:42:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.3 2009/06/06 21:01:04 laffer1 Exp $
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
