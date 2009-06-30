@@ -1,19 +1,16 @@
-Index: snmplib/snmpUDPIPv6Domain.c
-diff -u -p snmplib/snmpUDPIPv6Domain.c.orig snmplib/snmpUDPIPv6Domain.c
---- snmplib/snmpUDPIPv6Domain.c.orig	Mon Aug 20 17:06:42 2007
-+++ snmplib/snmpUDPIPv6Domain.c	Fri Jan 11 13:39:36 2008
-@@ -103,13 +103,24 @@ netsnmp_udp6_fmtaddr(netsnmp_transport *
+--- snmplib/snmpUDPIPv6Domain.c.orig	2007-09-29 22:10:22.000000000 +0900
++++ snmplib/snmpUDPIPv6Domain.c	2008-11-14 21:36:45.000000000 +0900
+@@ -109,12 +109,22 @@
      if (to == NULL) {
          return strdup("UDP/IPv6: unknown");
      } else {
 -        char addr[INET6_ADDRSTRLEN];
 -        char tmp[INET6_ADDRSTRLEN + 18];
-+	char addr[NI_MAXHOST], tmp[NI_MAXHOST + NI_MAXSERV + 12];
- 
+-
 -        sprintf(tmp, "UDP/IPv6: [%s]:%hu",
 -                inet_ntop(AF_INET6, (void *) &(to->sin6_addr), addr,
 -                          INET6_ADDRSTRLEN), ntohs(to->sin6_port));
--        return strdup(tmp);
++        char addr[NI_MAXHOST], tmp[NI_MAXHOST + NI_MAXSERV + 12];
 +/*
 + * NI_WITHSCOPEID will be obsoleted.  But some implementations require
 + * this flag to retrieve scoped name.
@@ -29,7 +26,6 @@ diff -u -p snmplib/snmpUDPIPv6Domain.c.orig snmplib/snmpUDPIPv6Domain.c
 +	}
 +	snprintf(tmp, sizeof(tmp), "UDP/IPv6: [%s]:%hu", addr,
 +		 ntohs(to->sin6_port));
-+	return strdup(tmp);
+         return strdup(tmp);
      }
  }
- 
