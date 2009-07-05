@@ -34,8 +34,8 @@ bin/pykig.py
 bin/skycommander
 bin/spotlight2kvtml
 bin/temma
-bin/test_extdate
-bin/test_extdatepicker
+@comment bin/test_extdate
+@comment bin/test_extdatepicker
 include/kstarsinterface.h
 include/libkdeedu/kdeeduglossary.h
 include/libkdeedu/keduvocdata.h
