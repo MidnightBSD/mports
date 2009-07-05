@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libtorrent
-# Date created:				Jan 07 2005
-# Whom:					Florent Thoumie <flz@xbsd.org>
-#
-# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.3 2007/06/25 06:15:17 laffer1 Exp $
-# $FreeBSD: ports/net-p2p/libtorrent/Makefile,v 1.28 2006/07/12 19:09:46 flz Exp $
-#
+# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.4 2008/09/14 00:36:01 laffer1 Exp $
 
 PORTNAME?=	libtorrent
-PORTVERSION?=	0.11.9
+PORTVERSION?=	0.12.2
 PORTREVISION?=	0
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
@@ -29,9 +23,7 @@ USE_GNOME=	pkgconfig gnomehack
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
-
-EXTRA_PATCHES?=	${.CURDIR}/files/stable-*
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 
 OPTIONS=	KQUEUE "Use kqueue(2) support" on
 
