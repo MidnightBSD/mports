@@ -1,16 +1,15 @@
-# New ports collection makefile for:	x264
-# Date created:		2005-01-11
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/x264/Makefile,v 1.2 2008/08/28 22:54:47 laffer1 Exp $
-# $FreeBSD: ports/multimedia/x264/Makefile,v 1.63 2008/06/06 14:33:38 edwin Exp $
+# $MidnightBSD: mports/multimedia/x264/Makefile,v 1.3 2008/09/12 20:03:26 laffer1 Exp $
 
 PORTNAME=	x264
-PORTVERSION=	0.0.20080409
-PORTREVISION=	1
+PORTVERSION=	0.0.20081218
+PORTREVISION=	0
 CATEGORIES=	multimedia
-MASTER_SITES=	http://downloads.videolan.org/pub/videolan/x264/snapshots/
+MASTER_SITES=	http://downloads.videolan.org/pub/videolan/x264/snapshots/ \
+		http://samples.mplayerhq.hu/yuv4mpeg2/:pgo
 DISTNAME=	${PORTNAME}-snapshot-${PORTVERSION:S/0.0.//}-2245
+DISTFILES=	${PORTNAME}-snapshot-${PORTVERSION:S/0.0.//}-2245${EXTRACT_SUFX}
+DIST_SUBDIR=	x264
+EXTRACT_ONLY=	${PORTNAME}-snapshot-${PORTVERSION:S/0.0.//}-2245${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Multimedia library and tool for encoding H.264/AVC video streams
@@ -18,37 +17,26 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	yasm>=0.6.0:${PORTSDIR}/devel/yasm
 
-WANT_GNOME=	yes
 USE_BZIP2=	yes
 EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --exclude .svn
 WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
-ALL_TARGET=	default
 USE_LDCONFIG=	yes
 HAS_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	DEBUG "Enable Debugging" Off \
-		OPTIMIZED_CFLAGS "Enable Optimized CFLAGS" Off
+		OPTIMIZED_CFLAGS "Enable Optimized CFLAGS" Off \
+		PGO "Enable Profile-Guided Optimization" Off \
+		GPAC "Enable MPEG-4 Output" On \
+		X11_OUTPUT "Enable X11 Output" Off
 
 CONFIGURE_ARGS+=	--extra-cflags="${CPPFLAGS} ${CFLAGS} -fPIC -I${LOCALBASE}/include -I${LOCALBASE}/include" \
 			--extra-ldflags="${LDFLAGS} -L${LOCALBASE}/lib -L${LOCALBASE}/lib" \
 			--enable-shared  \
-			--host=${ARCH}-portbld-freebsd6.0
+			--host=${ARCH}-portbld-freebsd6.1
 
 .include <bsd.port.pre.mk>
-
-.if defined(WITH_GTK2) && ${SLAVE_PORT:L}=="yes"
-LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
-BUILD_WRKSRC=	${WRKSRC}/gtk
-INSTALL_WRKSRC=	${WRKSRC}/gtk
-ALL_TARGET=	all
-USE_GETTEXT=	yes
-USE_GNOME=	gtk20
-CONFIGURE_ARGS+=	--enable-gtk
-.else
-OPTIONS+=	GPAC "Enable MPEG-4 Output" On \
-		X11_OUTPUT "Enable X11 Output" Off
-.endif
 
 .if ${ARCH}=="i386"
 MAKE_ENV+=	ARCH_X86="1"
@@ -58,6 +46,19 @@ MAKE_ENV+=	ARCH=${ARCH}
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
+.endif
+
+.if defined(WITH_PGO) && ${SLAVE_PORT:L}!="yes"
+# y4m sample video
+Y4M_VIDEO=example.y4m
+Y4M_VIDEO_DISTFILE=example.y4m.bz2
+
+DISTFILES+=	${Y4M_VIDEO_DISTFILE}:pgo
+ALL_TARGET=	fprofiled
+MAKE_ENV+=	VIDS="${WRKDIR}/${Y4M_VIDEO}"
+
+RESTRICTED=	${Y4M_VIDEO_DISTFILE} file may not be mirrored
+RESTRICTED_FILES=	${Y4M_VIDEO_DISTFILE}
 .endif
 
 .if defined(WITH_OPTIMIZED_CFLAGS)
@@ -75,14 +76,21 @@ CONFIGURE_ARGS+=	--enable-visualize
 USE_XORG=	x11
 .endif
 
+post-extract:
+.if defined(WITH_PGO) && ${SLAVE_PORT:L}!="yes"
+	@( cd ${WRKDIR} && ${BZIP2_CMD} -dc ${DISTDIR}/${DIST_SUBDIR}/${Y4M_VIDEO_DISTFILE} > ${Y4M_VIDEO} )
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|; \
-		s|-lpthread|${PTHREAD_LIBS}|g' \
+		s|-lpthread|${PTHREAD_LIBS}|g; \
+		s|bash|sh|; \
+		s|gpac_static|gpac|g' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|bash|sh|' ${WRKSRC}/version.sh
 	@${REINPLACE_CMD} -e 's|$$(libdir)/pkgconfig|${PREFIX}/libdata/pkgconfig|; \
 		s|$${libdir}/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
-		${WRKSRC}/Makefile \
-		${WRKSRC}/*/Makefile
+		${WRKSRC}/Makefile
 
 .if ${SLAVE_PORT:L}=="no"
 .if 0 # BROKEN
