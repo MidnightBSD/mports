@@ -1,13 +1,7 @@
-# New ports collection makefile for:	pdflib
-# Date created:		Wed Jan 9 12:27:54 CET 2002
-# Whom:			Alex Dupre <sysadmin@alexdupre.com>
-#
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.7 2008/06/13 04:18:22 laffer1 Exp $
-# $FreeBSD: ports/print/pdflib/Makefile,v 1.52 2006/11/01 12:35:35 ale Exp $
-#
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.8 2008/10/09 20:16:21 laffer1 Exp $
 
 PORTNAME=	pdflib
-PORTVERSION=	7.0.3
+PORTVERSION=	7.0.4
 CATEGORIES=	print
 MASTER_SITES=	http://www.pdflib.com/binaries/PDFlib/${PORTVERSION:S/.//g}/
 DISTNAME=	PDFlib-Lite-${PORTVERSION}
