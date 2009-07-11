@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/print/pecl-pdflib/Makefile,v 1.3 2008/05/15 08:25:42 laffer1 Exp $
+# $MidnightBSD: mports/print/pecl-pdflib/Makefile,v 1.4 2009/03/14 15:40:25 laffer1 Exp $
 
 PORTNAME=	pdflib
-PORTVERSION=	2.1.5
+PORTVERSION=	2.1.6
 CATEGORIES=	print
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -20,5 +20,9 @@ USE_PHPEXT=	yes
 PHP_MODNAME=	pdf
 
 CONFIGURE_ARGS=	--with-pdflib=${LOCALBASE}
+
+post-extract:
+	@${ECHO_CMD} "#define PHP_PDFLIB_VERSION \"${PORTVERSION}\"" > \
+		${WRKSRC}/php_pdflib.h
 
 .include <bsd.port.mk>
