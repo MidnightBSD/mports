@@ -1,15 +1,10 @@
-# New ports collection makefile for:	ffmpeg cvs
-# Date created:		Sun May  1 20:46:59 UTC 2005
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.1 2008/09/25 03:34:30 laffer1 Exp $
-# $FreeBSD: ports/multimedia/ffmpeg/Makefile,v 1.88 2008/08/17 02:58:21 ahze Exp $
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.2 2009/01/02 03:01:28 ctriv Exp $
 
 PORTNAME=	ffmpeg
 DISTVERSION=	2008-07-27
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	multimedia audio ipv6 net
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ahze
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +16,7 @@ CONFIGURE_LOG=	config.err
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WANT_SDL=	yes
+MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	AMR_NB	"AMR narrowband encoder" off \
 		AMR_WB	"AMR wideband encoder" off \
@@ -36,8 +32,6 @@ OPTIONS=	AMR_NB	"AMR narrowband encoder" off \
 		VORBIS	"libvorbisenc support (implies OGG)" on \
 		X264	"X.264 codec" off \
 		XVID	"XVID codec" off
-
-#FAKE_OPTS=	prefixhack
 
 COMPAT_HEADERS=	libavcodec/avcodec.h \
 	libavcodec/opt.h \
@@ -109,7 +103,7 @@ MAN1+=	ffmpeg.1 ffserver.1
 .endif
 
 .ifdef(WITH_OPTIMIZED_CFLAGS)
-CFLAGS:=		${CFLAGS:N-O*} -O3 -ffast-math -fomit-frame-pointer
+CFLAGS:=		${CFLAGS:N-O*} -O3 -ffast-math -fno-finite-math-only -fomit-frame-pointer
 .else
 CFLAGS:=		${CFLAGS:N-O0} -O2
 DEBUG_FLAGS+=		 -O2
@@ -135,7 +129,7 @@ CONFIGURE_ARGS+=	--disable-libfaac
 
 ## faad
 .ifndef(WITHOUT_FAAD)
-LIB_DEPENDS+=		faad.0:${PORTSDIR}/audio/faad
+LIB_DEPENDS+=		faad.2:${PORTSDIR}/audio/faad
 CONFIGURE_ARGS+=	--enable-libfaad \
 			--enable-libfaadbin
 .else
