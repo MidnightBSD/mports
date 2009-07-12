@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.10 2009/06/22 02:48:17 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.11 2009/07/09 22:50:03 laffer1 Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	0.0.44925
@@ -24,6 +24,7 @@ USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 libxslt
+USE_XORG=	xt
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:15
