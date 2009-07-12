@@ -1,9 +1,9 @@
-# $FreeBSD: ports/multimedia/gstreamer-plugins/Makefile.common,v 1.62 2007/10/09 18:20:05 ahze Exp $
-#    $MCom: ports/multimedia/gstreamer-plugins/Makefile.common,v 1.63 2006/09/29 23:22:28 ahze Exp $
+# $MidnightBSD$
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
 		cdparanoia \
+		gio \
 		gnomevfs \
 		libvisual \
 		ogg \
@@ -12,42 +12,56 @@ BASE_GST_ALL_PLUGINS= \
 		vorbis
 # bad
 BAD_GST_ALL_PLUGINS+= \
-		alsaspdif \
+		alsa \
 		amrwb \
+		apexsink \
 		bz2 \
 		cdaudio \
+		celt \
+		dc1394 \
 		directfb \
+		dirac \
 		divx \
 		dts \
+		dvb \
 		faac \
 		faad \
 		gsm \
 		ivorbis \
 		jack \
 		libmms \
+		metadata \
 		mpeg2enc \
+		mplex \
 		musepack \
 		musicbrainz \
 		mythtv \
 		nas \
 		neon \
+		ofa \
+		oss4 \
+		qtwrapper \
+		resindvd \
 		sdl \
+		sf \
 		sndfile \
 		soundtouch \
 		spc \
 		swfdec \
+		theoraexpdec \
 		timidity \
+		twolame \
+		vcdsrc \
+		wildmidi \
+		wininet \
 		x264 \
 		xvid
-#		ladspa \
-#		theora
 
 # good
 GOOD_GST_ALL_PLUGINS+= \
 		aalib \
 		annodex \
 		cairo \
-		cdio \
 		dv \
 		esd \
 		flac \
@@ -58,8 +72,10 @@ GOOD_GST_ALL_PLUGINS+= \
 		ladspa \
 		libcaca \
 		libpng \
+		pulse \
 		raw1394 \
 		shout2 \
+		soup \
 		speex \
 		taglib \
 		wavpack
@@ -68,6 +84,7 @@ GOOD_GST_ALL_PLUGINS+= \
 UGLY_GST_ALL_PLUGINS+= \
 		a52dec \
 		amrnb \
+		cdio \
 		dvdnav \
 		dvdread \
 		lame \
@@ -93,6 +110,8 @@ CONFIGURE_ARGS+=	--enable-${GST_PLUGIN}
 
 CONFIGURE_ARGS+=--disable-tests \
 		--disable-examples \
+		--disable-1394 \
+		--disable-acm \
 		--disable-amrnb \
 		--disable-alsa \
 		--disable-http \
@@ -101,8 +120,12 @@ CONFIGURE_ARGS+=--disable-tests \
 		--disable-gconftool \
 		--disable-schemas-install \
 		--enable-oss \
+		--enable-oss4 \
 		--disable-osx_audio \
 		--disable-osx_video \
+		--disable-directdrawsink \
+		--disable-directsoundsink \
+		--disable-v4l2src \
 		--disable-tarkin \
 		--enable-static \
 		--disable-sunaudio \
@@ -125,51 +148,68 @@ PLIST=		${NONEXISTENT}
 
 # a52dec
 gst_a52dec_LIB_DEPENDS+=	a52.0:${PORTSDIR}/audio/liba52
+gst_a52dec_PLIST_FILES=	${GST_LIB_DIR}/libgsta52dec.la \
+		${GST_LIB_DIR}/libgsta52dec.so
 gst_a52dec_DIST=	ugly
 
 # aalib
 gst_aalib_LIB_DEPENDS+=	aa.1:${PORTSDIR}/graphics/aalib
 gst_aalib_PLIST_FILES=	${GST_LIB_DIR}/libgstaasink.so \
-		${GST_LIB_DIR}/libgstaasink.a \
 		${GST_LIB_DIR}/libgstaasink.la
 
 # annodex
+gst_annodex_LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
+gst_annodex_PLIST_FILES=	${GST_LIB_DIR}/libgstannodex.la \
+				${GST_LIB_DIR}/libgstannodex.so
 
 # bz2
+gst_bz2_PLIST_FILES=	${GST_LIB_DIR}/libgstbz2.la \
+		${GST_LIB_DIR}/libgstbz2.so
 gst_bz2_DIST=		bad
 
 # cairo
 gst_cairo_LIB_DEPENDS+=	cairo.2:${PORTSDIR}/graphics/cairo
+gst_cairo_PLIST_FILES=		${GST_LIB_DIR}/libgstcairo.la \
+				${GST_LIB_DIR}/libgstcairo.so
 
 # cdaudio
 gst_cdaudio_LIB_DEPENDS+=cdaudio.1:${PORTSDIR}/audio/libcdaudio
+gst_cdaudio_PLIST_FILES=	${GST_LIB_DIR}/libgstcdaudio.la \
+		${GST_LIB_DIR}/libgstcdaudio.so
 gst_cdaudio_DIST=	bad
 
 # cdparanoia
 gst_cdparanoia_LIB_DEPENDS+=	cdda_interface.0:${PORTSDIR}/audio/cdparanoia
 gst_cdparanoia_EXTRA_LIBS+=	-lgstcdda-${VERSION}
+gst_cdparanoia_PLIST_FILES=	${GST_LIB_DIR}/libgstcdparanoia.la \
+		${GST_LIB_DIR}/libgstcdparanoia.so
 gst_cdparanoia_DIST=	base
+
+# cdio
+gst_cdio_LIB_DEPENDS+=	cdio.8:${PORTSDIR}/sysutils/libcdio
+gst_cdio_PLIST_FILES=	${GST_LIB_DIR}/libgstcdio.la \
+		${GST_LIB_DIR}/libgstcdio.so
+gst_cdio_DIST=		ugly
 
 # dts
 gst_dts_LIB_DEPENDS+=	dca.0:${PORTSDIR}/multimedia/libdca
-gst_dts_PLIST_FILES=	${GST_LIB_DIR}/libgstdtsdec.a \
-		${GST_LIB_DIR}/libgstdtsdec.la \
+gst_dts_PLIST_FILES=	${GST_LIB_DIR}/libgstdtsdec.la \
 		${GST_LIB_DIR}/libgstdtsdec.so
 gst_dts_EXTRA_LIBS+=	-ldca
 gst_dts_DIST=	bad
 
 # dv
 gst_dv_LIB_DEPENDS+=	dv.4:${PORTSDIR}/multimedia/libdv
+gst_dv_PLIST_FILES=	${GST_LIB_DIR}/libgstdv.la \
+			${GST_LIB_DIR}/libgstdv.so
 
 # dvd
 gst_dvd_EXTRA_LIBS+=	-ldvdnav
 gst_dvd_LIB_DEPENDS+=	dvdnav.4:${PORTSDIR}/multimedia/libdvdnav
 gst_dvd_GST_PLUGIN_DIR=	ext/dvdnav \
 		ext/dvdread
-gst_dvd_PLIST_FILES=	${GST_LIB_DIR}/libgstdvdnav.a \
-		${GST_LIB_DIR}/libgstdvdnav.la \
+gst_dvd_PLIST_FILES=	${GST_LIB_DIR}/libgstdvdnav.la \
 		${GST_LIB_DIR}/libgstdvdnav.so \
-		${GST_LIB_DIR}/libgstdvdread.a \
 		${GST_LIB_DIR}/libgstdvdread.la \
 		${GST_LIB_DIR}/libgstdvdread.so
 gst_dvd_DIST=	ugly
@@ -181,20 +221,25 @@ gst_esound_GST_PLUGIN_DIR=	ext/esd
 gst_esound_CONFIGURE_ENV+=	ESD_CFLAGS="`pkg-config --cflags esound`" \
 		ESD_LIBS="`pkg-config --libs esound`"
 gst_esound_PLIST_FILES=	${GST_LIB_DIR}/libgstesd.so \
-		${GST_LIB_DIR}/libgstesd.a \
 		${GST_LIB_DIR}/libgstesd.la
 
 # faac
 gst_faac_LIB_DEPENDS+=	faac.0:${PORTSDIR}/audio/faac
+gst_faac_PLIST_FILES=	${GST_LIB_DIR}/libgstfaac.la \
+	${GST_LIB_DIR}/libgstfaac.so
 gst_faac_DIST=	bad
 
 # faad
 gst_faad_USE_GSTREAMER+=	bad
-gst_faad_LIB_DEPENDS+=	faad.0:${PORTSDIR}/audio/faad
+gst_faad_LIB_DEPENDS+=	faad.2:${PORTSDIR}/audio/faad
+gst_faad_PLIST_FILES=	${GST_LIB_DIR}/libgstfaad.la \
+		${GST_LIB_DIR}/libgstfaad.so
 gst_faad_DIST=	bad
 
 # flac
 gst_flac_LIB_DEPENDS+=	FLAC.10:${PORTSDIR}/audio/flac
+gst_flac_PLIST_FILES=	${GST_LIB_DIR}/libgstflac.la \
+			${GST_LIB_DIR}/libgstflac.so
 
 # gconf
 gst_gconf_USE_GNOME+=	gnomeprefix gconf2
@@ -203,51 +248,74 @@ gst_gconf_GST_PLUGIN_DIR=	ext/gconf \
 gst_gconf_CONFIGURE_ARGS+=	--enable-schemas-install
 gst_gconf_GCONF_SCHEMAS=	gstreamer-${GST_VERSION}.schemas
 gst_gconf_PLIST_FILES=	${GST_LIB_DIR}/libgstgconfelements.so \
-		${GST_LIB_DIR}/libgstgconfelements.a \
 		${GST_LIB_DIR}/libgstgconfelements.la
+
+# gdk_pixbuf
+gst_gdk_pixbuf_USE_GNOME+=	gtk20
+gst_gdk_pixbuf_GST_PLUGIN_DIR=	ext/gdk_pixbuf
+gst_gdk_pixbuf_PLIST_FILES=	${GST_LIB_DIR}/libgstgdkpixbuf.la \
+				${GST_LIB_DIR}/libgstgdkpixbuf.so
+# gio
+gst_gio_USE_GNOME+=	glib20
+gst_gio_CONFIGURE_ARGS+=--enable-experimental
+gst_gio_PLIST_FILES=	${GST_LIB_DIR}/libgstgio.la \
+		${GST_LIB_DIR}/libgstgio.so
+gst_gio_DIST=	base
 
 # gnomevfs
 gst_gnomevfs_USE_GNOME+=	gnomevfs2
 gst_gnomevfs_CONFIGURE_ARGS+=--enable-gnome_vfs
+gst_gnomevfs_PLIST_FILES=	${GST_LIB_DIR}/libgstgnomevfs.la \
+		${GST_LIB_DIR}/libgstgnomevfs.so
 gst_gnomevfs_DIST=	base
 
 # gsm
 gst_gsm_LIB_DEPENDS+=	gsm.1:${PORTSDIR}/audio/gsm
+gst_gsm_PLIST_FILES=	${GST_LIB_DIR}/libgstgsm.la \
+		${GST_LIB_DIR}/libgstgsm.so
 gst_gsm_DIST=	bad
 
 # ivorbis
 gst_ivorbis_LIB_DEPENDS+=	vorbisidec.1:${PORTSDIR}/audio/libtremor
+gst_ivorbis_PLIST_FILES=	${GST_LIB_DIR}/libgstivorbis.la \
+		${GST_LIB_DIR}/libgstivorbis.so
 gst_ivorbis_DIST=	bad
 
 # hal
 gst_hal_LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
-gst_hal_PLIST_FILES=	${GST_LIB_DIR}/libgsthalelements.a \
-		${GST_LIB_DIR}/libgsthalelements.la \
+gst_hal_PLIST_FILES=	${GST_LIB_DIR}/libgsthalelements.la \
 		${GST_LIB_DIR}/libgsthalelements.so
+
 # jack
 gst_jack_LIB_DEPENDS+=	jack.0:${PORTSDIR}/audio/jack
+gst_jack_PLIST_FILES=	${GST_LIB_DIR}/libgstjack.la \
+		${GST_LIB_DIR}/libgstjack.so
 gst_jack_DIST=	bad
 
 # jpeg
 gst_jpeg_LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+gst_jpeg_PLIST_FILES=	${GST_LIB_DIR}/libgstjpeg.la \
+			${GST_LIB_DIR}/libgstjpeg.so
 
 # ladspa
 gst_ladspa_BUILD_DEPENDS+=	${LOCALBASE}/include/ladspa.h:${PORTSDIR}/audio/ladspa
+gst_ladspa_PLIST_FILES=		${GST_LIB_DIR}/libgstladspa.la \
+				${GST_LIB_DIR}/libgstladspa.so
 
 # lame
 gst_lame_LIB_DEPENDS+=	mp3lame.0:${PORTSDIR}/audio/lame
+gst_lame_PLIST_FILES=	${GST_LIB_DIR}/libgstlame.la \
+		${GST_LIB_DIR}/libgstlame.so
 gst_lame_DIST=	ugly
 
 # libcaca
 gst_libcaca_LIB_DEPENDS+=	caca.0:${PORTSDIR}/graphics/libcaca
 gst_libcaca_PLIST_FILES=	${GST_LIB_DIR}/libgstcacasink.so \
-		${GST_LIB_DIR}/libgstcacasink.a \
 		${GST_LIB_DIR}/libgstcacasink.la
 
 # libmms
 gst_libmms_LIB_DEPENDS+=	mms.0:${PORTSDIR}/net/libmms
 gst_libmms_PLIST_FILES=	${GST_LIB_DIR}/libgstmms.so \
-		${GST_LIB_DIR}/libgstmms.a \
 		${GST_LIB_DIR}/libgstmms.la
 gst_libmms_DIST=	bad
 
@@ -255,109 +323,169 @@ gst_libmms_DIST=	bad
 gst_libpng_LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
 gst_libpng_GST_PLUGIN_DIR=	ext/libpng
 gst_libpng_PLIST_FILES=	${GST_LIB_DIR}/libgstpng.so \
-		${GST_LIB_DIR}/libgstpng.a \
 		${GST_LIB_DIR}/libgstpng.la
 
 # libvisual
 gst_libvisual_LIB_DEPENDS+=	visual.0:${PORTSDIR}/graphics/libvisual
+gst_libvisual_PLIST_FILES=	${GST_LIB_DIR}/libgstlibvisual.la \
+		${GST_LIB_DIR}/libgstlibvisual.so
 gst_libvisual_DIST=	base
 
 # mad
 gst_mad_LIB_DEPENDS+=	mad.2:${PORTSDIR}/audio/libmad \
 		id3tag.0:${PORTSDIR}/audio/libid3tag
+gst_mad_PLIST_FILES=	${GST_LIB_DIR}/libgstmad.la \
+		${GST_LIB_DIR}/libgstmad.so
 gst_mad_DIST=	ugly
 
 # mpeg2enc
 gst_mpeg2enc_LIB_DEPENDS+=	mjpegutils-1.9.1:${PORTSDIR}/multimedia/mjpegtools
+gst_mpeg2enc_PLIST_FILES=	${GST_LIB_DIR}/libgstmpeg2enc.la \
+		${GST_LIB_DIR}/libgstmpeg2enc.so
 gst_mpeg2enc_DIST=	bad
 
 # mpeg2dec
 gst_mpeg2dec_LIB_DEPENDS+=	mpeg2.0:${PORTSDIR}/multimedia/libmpeg2
+gst_mpeg2dec_PLIST_FILES=	${GST_LIB_DIR}/libgstmpeg2dec.la \
+		${GST_LIB_DIR}/libgstmpeg2dec.so
 gst_mpeg2dec_DIST=	ugly
 
 # musepack
 gst_musepack_LIB_DEPENDS+=	mpcdec.5:${PORTSDIR}/audio/libmpcdec
+gst_musepack_PLIST_FILES=	${GST_LIB_DIR}/libgstmusepack.la \
+		${GST_LIB_DIR}/libgstmusepack.so
 gst_musepack_DIST=	bad
 
 # musicbrainz
 gst_musicbrainz_LIB_DEPENDS+=	musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz
 gst_musicbrainz_PLIST_FILES=	${GST_LIB_DIR}/libgsttrm.so \
-		${GST_LIB_DIR}/libgsttrm.a \
 		${GST_LIB_DIR}/libgsttrm.la
 gst_musicbrainz_DIST=	bad
 
 # nas
 gst_nas_LIB_DEPENDS+=	audio.2:${PORTSDIR}/audio/nas
 gst_nas_DIST=	bad
-gst_nas_PLIST_FILES=	${GST_LIB_DIR}/libgstnassink.a \
-		${GST_LIB_DIR}/libgstnassink.la \
+gst_nas_PLIST_FILES=	${GST_LIB_DIR}/libgstnassink.la \
 		${GST_LIB_DIR}/libgstnassink.so
 
 # neon
-gst_neon_LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon
+.if exists(${LOCALBASE}/lib/libneon.so.26)
+gst_neon_LIB_DEPENDS+=	neon.26:${PORTSDIR}/www/neon26
+.else
+gst_neon_LIB_DEPENDS+=	neon.28:${PORTSDIR}/www/neon28
+.endif
 gst_neon_CONFIGURE_ENV+=	NEON_CFLAGS="-I${LOCALBASE}/include/neon"
-gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.a \
-			${GST_LIB_DIR}/libgstneonhttpsrc.la \
+gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.la \
 			${GST_LIB_DIR}/libgstneonhttpsrc.so
 gst_neon_DIST=		bad
 
 # ogg
 gst_ogg_LIB_DEPENDS+=	ogg.5:${PORTSDIR}/audio/libogg
 gst_ogg_EXTRA_LIBS+=	-lgstriff-${VERSION}
+gst_ogg_PLIST_FILES=	${GST_LIB_DIR}/libgstogg.la \
+		${GST_LIB_DIR}/libgstogg.so
 gst_ogg_DIST=	base
 
 # pango
 gst_pango_USE_GNOME+=	pango
+gst_pango_PLIST_FILES=	${GST_LIB_DIR}/libgstpango.la \
+		${GST_LIB_DIR}/libgstpango.so
 gst_pango_DIST=	base
+
+# pulse
+gst_pulse_LIB_DEPENDS=	pulse.0:${PORTSDIR}/audio/pulseaudio
+gst_pulse_PLIST_FILES=	${GST_LIB_DIR}/libgstpulse.la \
+		${GST_LIB_DIR}/libgstpulse.so
+gst_pulse_DIST=	good
 
 # sdl
 gst_sdl_USE_SDL+=	sdl
+gst_sdl_PLIST_FILES=	${GST_LIB_DIR}/libgstsdl.la \
+		${GST_LIB_DIR}/libgstsdl.so
 gst_sdl_DIST=	bad
 
 # shout2
 gst_shout2_LIB_DEPENDS+=	shout.5:${PORTSDIR}/audio/libshout2
+gst_shout2_PLIST_FILES=		${GST_LIB_DIR}/libgstshout2.la \
+				${GST_LIB_DIR}/libgstshout2.so
 
 # sidplay
 gst_sidplay_LIB_DEPENDS+=	sidplay.1:${PORTSDIR}/audio/libsidplay
 gst_sidplay_PLIST_FILES=	${GST_LIB_DIR}/libgstsid.so \
-		${GST_LIB_DIR}/libgstsid.a \
 		${GST_LIB_DIR}/libgstsid.la
 gst_sidplay_DIST=	ugly
 
 # sndfile
 gst_sndfile_LIB_DEPENDS+=	sndfile.1:${PORTSDIR}/audio/libsndfile
+gst_sndfile_PLIST_FILES=	${GST_LIB_DIR}/libgstsndfile.la \
+		${GST_LIB_DIR}/libgstsndfile.so
 gst_sndfile_DIST=	bad
 
+# soundtouch
+gst_soundtouch_LIB_DEPENDS+=	SoundTouch.0:${PORTSDIR}/audio/soundtouch
+gst_soundtouch_PLIST_FILES=	${GST_LIB_DIR}/libgstsoundtouch.la \
+		${GST_LIB_DIR}/libgstsoundtouch.so
+gst_soundtouch_DIST=	bad
+ 
+# souphttpsrc
+gst_soup_LIB_DEPENDS+=	soup-2.4.1:${PORTSDIR}/devel/libsoup
+gst_soup_GST_PLUGIN_DIR=ext/soup
+gst_soup_PLIST_FILES=	${GST_LIB_DIR}/libgstsouphttpsrc.la \
+			${GST_LIB_DIR}/libgstsouphttpsrc.so
+
 # spc
-gst_spc_LIB_DEPENDS+=	OpenSPC.3:${PORTSDIR}/audio/openspc
+gst_spc_LIB_DEPENDS+=	openspc.0:${PORTSDIR}/audio/libopenspc
+gst_spc_PLIST_FILES=	${GST_LIB_DIR}/libgstspc.la \
+		${GST_LIB_DIR}/libgstspc.so
 gst_spc_DIST=		bad
 
 # speex
 gst_speex_LIB_DEPENDS+=	speex.1:${PORTSDIR}/audio/speex
+gst_speex_PLIST_FILES=	${GST_LIB_DIR}/libgstspeex.la \
+			${GST_LIB_DIR}/libgstspeex.so
 
 # swfdec
 gst_swfdec_LIB_DEPENDS+=swfdec-0.4.1:${PORTSDIR}/graphics/swfdec
 gst_swfdec_DIST=	bad
+
+# taglib
+gst_taglib_LIB_DEPENDS+=	tag.6:${PORTSDIR}/audio/taglib
+gst_taglib_PLIST_FILES=		${GST_LIB_DIR}/libgsttaglib.la \
+				${GST_LIB_DIR}/libgsttaglib.so
+
 # theora
 gst_theora_LIB_DEPENDS+=	theora.0:${PORTSDIR}/multimedia/libtheora
+gst_theora_PLIST_FILES=		${GST_LIB_DIR}/libgsttheora.la \
+		${GST_LIB_DIR}/libgsttheora.so
 gst_theora_DIST=	base
 
 # vorbis
 gst_vorbis_USE_GSTREAMER+=	ogg
 gst_vorbis_LIB_DEPENDS+=	vorbis.4:${PORTSDIR}/audio/libvorbis
 gst_vorbis_EXTRA_LIBS+=	-lgsttag-${VERSION} -lgstaudio-${VERSION}
+gst_vorbis_PLIST_FILES=	${GST_LIB_DIR}/libgstvorbis.la \
+		${GST_LIB_DIR}/libgstvorbis.so
 gst_vorbis_DIST=	base
 
 # x264
 gst_x264_LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
-gst_x264_DIST=	bad
+gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.la \
+		${GST_LIB_DIR}/libgstx264.so \
+		share/gstreamer-${VERSION}/presets/GstX264Enc.prs
+gst_x264_PLIST_DIRS=	share/gstreamer-${VERSION}/presets \
+			share/gstreamer-${VERSION}
+gst_x264_DIST=	ugly
 
 # xvid
 gst_xvid_LIB_DEPENDS+=	xvidcore.4:${PORTSDIR}/multimedia/xvid
+gst_xvid_PLIST_FILES=	${GST_LIB_DIR}/libgstxvid.la \
+		${GST_LIB_DIR}/libgstxvid.so
 gst_xvid_DIST=	bad
 
 # wavpack
 gst_wavpack_LIB_DEPENDS+=	wavpack.1:${PORTSDIR}/audio/wavpack
+gst_wavpack_PLIST_FILES=	${GST_LIB_DIR}/libgstwavpack.la \
+				${GST_LIB_DIR}/libgstwavpack.so
 
 .endif # NO_GSTREAMER_COMMON
 
@@ -386,6 +514,7 @@ BUILD_DEPENDS+=	${gst_${GST_PLUGIN}_BUILD_DEPENDS}
 LIB_DEPENDS+=	${gst_${GST_PLUGIN}_LIB_DEPENDS}
 RUN_DEPENDS+=	${gst_${GST_PLUGIN}_RUN_DEPENDS}
 PLIST_FILES=	${gst_${GST_PLUGIN}_PLIST_FILES}
+PLIST_DIRS=	${gst_${GST_PLUGIN}_PLIST_DIRS}
 EXTRA_LIBS+=	${gst_${GST_PLUGIN}_EXTRA_LIBS}
 USE_GNOME+=	${gst_${GST_PLUGIN}_USE_GNOME}
 CONFIGURE_ENV+=	${gst_${GST_PLUGIN}_CONFIGURE_ENV}
