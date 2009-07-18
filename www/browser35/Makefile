@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.4 2009/06/29 16:39:15 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.1 2009/07/01 01:16:13 laffer1 Exp $
 
 PORTNAME=	browser35
-DISTVERSION=	3.5
+DISTVERSION=	3.5.1
 PORTREVISION=	0
-PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	firefox/releases/${DISTVERSION}/source
@@ -14,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
+BUILD_DEPENDS=	nspr>=4.8:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
 LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
@@ -26,7 +25,7 @@ CONFLICTS=	firefox-[0-9]* browser-2* browser-3.0.[0-9]*
 
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
-USE_AUTOTOOLS=	autoconf:213:run
+USE_AUTOTOOLS=	autoconf:213
 USE_GNOME+=	gtk20 libidl desktopfileutils
 USE_ICONV=	yes
 USE_PERL5=	yes
@@ -44,7 +43,6 @@ CONFIGURE_ENV=	LOCALBASE=${LOCALBASE}
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
 			--target=${ARCH}-portbld-freebsd7.0 \
 			--host=${ARCH}-portbld-freebsd7.0
-EXTRA_CFLAGS=	-O2
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
