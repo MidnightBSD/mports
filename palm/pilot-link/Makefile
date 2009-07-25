@@ -3,7 +3,7 @@
 # Whom:                 Paul Traina <pst@FreeBSD.org>
 #
 # $FreeBSD: ports/palm/pilot-link/Makefile,v 1.79 2006/09/23 08:21:41 ijliao Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
 #
 
 PORTNAME=	pilot-link
@@ -15,7 +15,7 @@ MASTER_SITES=	http://www.mirrorservice.org/sites/master.us.finkmirrors.net/distf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Suite of tools used to connect and sync your Palm handled
-
+LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_GETOPT_LONG=yes
