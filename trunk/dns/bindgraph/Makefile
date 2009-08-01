@@ -1,10 +1,4 @@
-# New ports collection makefile for:	bindgraph
-# Date created:				Nov 29 2007
-# Whom:					Rong-En Fan <rafan@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/dns/bindgraph/Makefile,v 1.2 2008/03/30 12:06:56 rafan Exp $
-#
+# $MidnightBSD: mports/dns/bindgraph/Makefile,v 1.1 2008/06/07 16:35:53 laffer1 Exp $
 
 PORTNAME=	bindgraph
 PORTVERSION=	0.2
@@ -38,7 +32,6 @@ PORTDOCS=	${DOCS}
 .endif
 
 pre-everything::
-	@${ECHO_MSG} ""
 	@${ECHO_MSG} "You may set following options:"
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "DATADIR=/var/db/bindgraph	Where do you put RRD databases?"
@@ -50,13 +43,13 @@ post-patch:
 	@${REINPLACE_CMD} -e "s,%%DATADIR%%,${DATADIR}," ${WRKSRC}/bindgraph.cgi
 
 do-install:
-	${MKDIR} ${CGIDIR}
-	${MKDIR} ${DATADIR}
+	@${MKDIR} ${CGIDIR}
+	@${MKDIR} ${DATADIR}
 	@${CHOWN} -R ${BINDGRAPH_USER}:${BINDGRAPH_GROUP} ${DATADIR}/
 	@${INSTALL_SCRIPT} ${WRKSRC}/bindgraph.pl ${PREFIX}/sbin/
 	@${INSTALL_SCRIPT} ${WRKSRC}/bindgraph.cgi ${CGIDIR}/
 .if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 	for f in ${DOCS}; do \
 	  ${INSTALL_DATA} ${WRKSRC}/$$f ${DOCSDIR}/; \
 	done
