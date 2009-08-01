@@ -2,7 +2,7 @@
 # Date created:		10 Nov 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/dns/nslint/Makefile,v 1.1 2007/11/11 23:25:35 laffer1 Exp $
+# $MidnightBSD: mports/dns/nslint/Makefile,v 1.2 2007/11/11 23:26:10 laffer1 Exp $
 #
 
 PORTNAME=	nslint
@@ -17,6 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perform consistency checks on DNS zone files
 LICENSE=	bsd3
 
+MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 
 ALL_TARGET=	${PORTNAME}
