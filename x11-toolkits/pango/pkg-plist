@@ -1,8 +1,8 @@
 bin/pango-querymodules
-%%X11%%bin/pango-view
-@comment etc/pango/pango.modules
+bin/pango-view
 %%X11%%etc/pango/pangox.aliases
 include/pango-1.0/pango/pango-attributes.h
+include/pango-1.0/pango/pango-bidi-type.h
 include/pango-1.0/pango/pango-break.h
 include/pango-1.0/pango/pango-context.h
 include/pango-1.0/pango/pango-coverage.h
