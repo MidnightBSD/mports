@@ -1,19 +1,11 @@
-# New ports collection makefile for:    glibmm
-# Date created:         		04 December 2003
-# Whom:                 		Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.6 2008/06/24 21:31:19 crash Exp $
-# $FreeBSD: ports/devel/glibmm/Makefile,v 1.22 2006/06/07 06:08:04 marcus Exp $
-#   $MCom: ports/devel/glibmm/Makefile,v 1.31 2006/04/14 21:55:21 mezz Exp $
-#
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.7 2009/04/08 20:22:46 laffer1 Exp $
 
 PORTNAME=	glibmm
-PORTVERSION=	2.18.1
+PORTVERSION=	2.20.0
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
