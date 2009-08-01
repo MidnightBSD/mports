@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/bind95/Makefile,v 1.4 2009/03/13 03:32:03 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind95/Makefile,v 1.5 2009/03/25 19:36:44 laffer1 Exp $
 
 PORTNAME=	bind95
-PORTVERSION=	9.5.1.2
+PORTVERSION=	9.5.1.3
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -15,7 +15,7 @@ COMMENT=	The BIND DNS suite with updated DNSSEC and threads
 LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
-ISCVERSION=	9.5.1-P2
+ISCVERSION=	9.5.1-P3
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
