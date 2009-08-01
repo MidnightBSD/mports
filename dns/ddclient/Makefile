@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ddclient
-# Date created:		Sun Aug 26 14:45:12 CEST 2001
-# Whom:			Dirk Froemberg <dirk@FreeBSD.org>
-#
-# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.3 2007/11/11 23:07:27 laffer1 Exp $
-# $FreeBSD: ports/dns/ddclient/Makefile,v 1.18 2006/06/16 13:14:30 sat Exp $
-#
+# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.4 2008/06/07 16:39:42 laffer1 Exp $
 
 PORTNAME=	ddclient
 PORTVERSION=	3.7.3
