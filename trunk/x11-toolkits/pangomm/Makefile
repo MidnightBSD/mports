@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.1 2009/05/26 01:42:07 laffer1 Exp $
 
 PORTNAME=	pangomm
-PORTVERSION=	2.14.1
+PORTVERSION=	2.24.0
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -15,7 +15,7 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	glibmm-2.4.1:${PORTSDIR}/devel/glibmm \
+LIB_DEPENDS=	glibmm-2.4.3:${PORTSDIR}/devel/glibmm \
 		cairomm-1.0.1:${PORTSDIR}/graphics/cairomm
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
