@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.9 2009/08/01 22:17:44 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.8.8
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -74,4 +74,5 @@ post-install:
 	${MV} ${PREFIX}/lib/libcairo.so.10802 ${PREFIX}/lib/libcairo.so.2
 	${RM} ${PREFIX}/lib/libcairo.so
 	(cd ${PREFIX}/lib; ${LN} -s libcairo.so.2 libcairo.so)
+	(cd ${PREFIX}/lib; ${LN} -s libcairo.so.2 libcairo.so.10802)
 .include <bsd.port.post.mk>
