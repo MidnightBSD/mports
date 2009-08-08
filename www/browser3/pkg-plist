@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/browser3/pkg-plist,v 1.2 2009/06/29 05:50:40 laffer1 Exp $
+@comment $MidnightBSD: mports/www/browser3/pkg-plist,v 1.3 2009/06/29 16:39:15 laffer1 Exp $
 bin/browser
 include/browser/stable/nsXPCOMStrings.h
 include/browser/stable/nsEmbedString.h
@@ -290,7 +290,6 @@ include/browser/stable/secoidt.h
 include/browser/stable/secport.h
 include/browser/stable/secerr.h
 include/browser/stable/utilrename.h
-include/browser/stable/watcomfx.h
 include/browser/stable/blapit.h
 include/browser/stable/shsign.h
 include/browser/stable/ecl-exp.h
