@@ -3,15 +3,15 @@
 # Date created:         Sa   9 Nov 1996 00:52:22 MET
 # Whom:			se
 #
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.5 2008/07/19 15:00:05 crash Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.6 2008/09/10 04:15:49 crash Exp $
 # $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
 #
 
 PORTNAME=	wine
-PORTVERSION=    1.1.4	
+PORTVERSION=    1.1.27
 PORTEPOCH=	1
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED} \
+MASTER_SITES=	SFE \
 		http://ibiblio.org/pub/linux/system/emulators/wine/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
@@ -26,10 +26,12 @@ LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		xml2:${PORTSDIR}/textproc/libxml2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--datadir=${DATADIR} --verbose
+CONFIGURE_ARGS=	--datadir=${DATADIR} --verbose --disable-tests \
+                --without-capi --without-gphoto --without-sane
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/wine
+MAKE_JOBS_SAFE= yes
 MAN1=		widl.1 wine.1 winebuild.1 winedbg.1 winedump.1 winegcc.1 \
 		winemaker.1 wineprefixcreate.1 wineserver.1 wmc.1 wrc.1
 MLINKS=		winegcc.1 wineg++.1
@@ -38,13 +40,15 @@ USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GL=	glut
-USE_XORG=	xpm
+USE_XORG=	xpm xrender
 
 SUB_FILES=	pkg-message
 
+OPTIONS=	CUPS	"Use CUPS (Common UNIX Printing System)" On \
+		HAL	"Use HAL (Hardware Abstraction Layer)"	 Off \
+		LDAP	"Use LDAP"				 Off \
+		LIBXSLT	"Use libxslt (only used by msxml3.dll)"	 Off
 
-OPTIONS=	CUPS	"Use CUPS (Common UNIX Printing System)"	On \
-		HAL	"Use HAL (Hardware Abstraction Layer)"		Off
 
 .include <bsd.port.pre.mk>
 
@@ -61,6 +65,21 @@ LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
 .else
 CONFIGURE_ARGS+=	--without-hal
 .endif
+
+.ifdef WITH_LDAP
+CONFIGURE_ARGS+=        --with-ldap
+USE_OPENLDAP=   yes
+.else
+CONFIGURE_ARGS+=        --without-ldap
+.endif
+
+.ifdef WITH_LIBXSLT
+CONFIGURE_ARGS+=        --with-xslt
+LIB_DEPENDS+=   xslt.2:${PORTSDIR}/textproc/libxslt
+.else
+CONFIGURE_ARGS+=        --without-xslt
+.endif
+
 
 post-patch:
 	${REINPLACE_CMD} 's/-lpthread/-lthr/g' ${WRKSRC}/configure
@@ -82,13 +101,12 @@ post-install:
 .for i in README ANNOUNCE AUTHORS LICENSE
 	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
-.for i in progman uninstaller winedbg winemine
-	@${INSTALL_DATA} ${WRKSRC}/programs/${i}/README ${DOCSDIR}/README.${i}
-.endfor
+	@${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${DOCSDIR}/README.winedbg
 	@${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${DOCSDIR}/README.winedump
 .endif
 	@${MKDIR} ${DESKTOPDIR}
 	@${MV} ${DATADIR}/applications/wine.desktop ${DESKTOPDIR}/
-
-
+	@${ECHO}
+	@${CAT} ${PKGMESSAGE}
+    
 .include <bsd.port.post.mk>
