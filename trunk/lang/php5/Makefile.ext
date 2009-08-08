@@ -454,7 +454,7 @@ USE_GNOME=	libxml2
 .endif
 
 .if ${PHP_MODNAME} == "xmlreader"
-CONFIGURE_ARGS+=--with-xmlreader \
+CONFIGURE_ARGS+=--enable-xmlreader \
 		--with-libxml-dir=${LOCALBASE}
 
 USE_GNOME=	libxml2
@@ -478,7 +478,7 @@ USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "xmlwriter"
-CONFIGURE_ARGS+=--with-xmlwriter \
+CONFIGURE_ARGS+=--enable-xmlwriter \
                 --with-libxml-dir=${LOCALBASE}
 
 USE_GNOME=      libxml2
@@ -547,10 +547,10 @@ LIB_DEPENDS+=	qdbm.14:${PORTSDIR}/databases/qdbm
 CONFIGURE_ARGS+=--with-qdbm=${LOCALBASE}
 .	endif
 .	if defined(WITHOUT_INIFILE)
-CONFIGURE_ARGS+=--without-inifile
+CONFIGURE_ARGS+=--disable-inifile
 .	endif
 .	if defined(WITHOUT_FLATFILE)
-CONFIGURE_ARGS+=--without-flatfile
+CONFIGURE_ARGS+=--disable-flatfile
 .	endif
 .endif
 

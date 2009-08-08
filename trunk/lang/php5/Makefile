@@ -1,14 +1,8 @@
-# New ports collection makefile for:	php5
-# Date created:				Tue Feb 18 11:17:13 CET 2003
-# Whom:					Alex Dupre <sysadmin@alexdupre.com>
-#
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.24 2009/03/07 17:24:46 laffer1 Exp $
-# $FreeBSD: ports/lang/php5/Makefile,v 1.104 2006/10/16 09:30:58 ale Exp $
-#
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.25 2009/03/13 00:59:27 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.2.9
-PORTREVISION?=	1
+PORTVERSION=	5.2.10
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
 MASTER_SITE_SUBDIR=	distributions/:release
@@ -24,6 +18,7 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 USE_BZIP2=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf:262
+MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	\
 		--enable-versioning \
@@ -67,7 +62,7 @@ PLIST_SUB+=	SUHOSIN="@comment "
 .endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-5.2.8-mail-header.patch:mail
+PATCHFILES+=	php-5.2.9-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
