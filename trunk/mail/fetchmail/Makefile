@@ -1,9 +1,4 @@
-# New ports collection makefile for:	fetchmail
-# Date created:		25 Feb 2000
-# Whom:			Ville Eerola <ve@sci.fi>
-#
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.10 2008/07/13 20:53:03 crash Exp $
-# $FreeBSD: ports/mail/fetchmail/Makefile,v 1.178 2007/01/06 14:38:42 barner Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.11 2008/09/12 18:38:41 laffer1 Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc..
@@ -11,8 +6,8 @@
 # want fetchmailconf to work, define WITH_X11
 
 PORTNAME=	fetchmail
-PORTVERSION=	6.3.8
-PORTREVISION=	3
+PORTVERSION=	6.3.11
+PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		${MASTER_SITE_SUNSITE:S/$/:sunsite/}\
