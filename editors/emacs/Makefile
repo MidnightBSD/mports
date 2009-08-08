@@ -2,7 +2,7 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.5 2008/09/29 21:17:42 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
@@ -20,7 +20,7 @@ CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-[0-9]* xemacs-devel-[0-9]* \
 		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]*
 
-EMACS_VER=	22.2
+EMACS_VER=	22.3
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 
