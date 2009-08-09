@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.1 2009/04/08 04:09:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.2 2009/04/15 16:25:21 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.5.5
+PORTVERSION=	1.5.7
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
@@ -68,7 +68,7 @@ SVNUSER?=	svn
 
 .if defined(WITH_APACHE2_APR)
 USE_APACHE=	2.0+
-.include "${PORTSDIR}/Mk/bsd.apache.mk"
+.include "${PORTSDIR}/Mk/extensions/apache.mk"
 .if ${APACHE_VERSION} >= 21
 APR_APU_DIR=	${LOCALBASE}/bin
 APR_CONFIG=	apr-1-config
