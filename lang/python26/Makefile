@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.4 2009/05/08 16:44:05 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.5 2009/05/08 20:31:42 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.1
@@ -37,7 +37,8 @@ DEMODIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
 TOOLSDIR=	${PREFIX}/share/${PYTHON_VERSION}
 
 PLATFORMS=	plat-freebsd4 plat-freebsd5 plat-freebsd6 \
-		plat-freebsd7 plat-midnightbsd0
+		plat-freebsd7 
+#plat-midnightbsd0
 
 BIN_SCRIPTS=	2to3 idle pydoc smtpd.py
 BIN_FILES=	python python-shared python-config python-shared-config \
@@ -195,7 +196,7 @@ pre-build:
 	${LN} -f lib${PYTHON_VERSION}.so lib${PYTHON_VERSION}.so.1; \
 	${LN} -f python ${PYTHON_VERSION:S/thon/thon-shared/}
 
-pre-su-install:
+pre-install:
 .for platform in ${PLATFORMS}
 	${MKDIR} ${PYTHONPREFIX_LIBDIR}/${platform}
 .for file in IN.py regen
@@ -203,8 +204,6 @@ pre-su-install:
 		${PYTHONPREFIX_LIBDIR}/${platform}/
 .endfor
 .endfor
-
-pre-install:
 	${CAT} ${PLIST_TEMPLATE} | ${AWK} '{ print $$0; } \
 	/LIBDIR.*\.py$$/ && !/\/bad/ { print $$0 "o"; print $$0 "c"; }'	> ${PLIST}
 
