@@ -1,13 +1,7 @@
-# New ports collection makefile for:	freetype
-# Date created:		January 24, 1998
-# Whom:			jseger@FreeBSD.org
-#
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.8 2008/06/27 05:00:29 laffer1 Exp $
-# $FreeBSD: ports/print/freetype2/Makefile,v 1.77 2007/01/28 09:07:43 kris Exp $
-#
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.9 2008/08/20 17:06:11 crash Exp $
 
 PORTNAME=	freetype2
-PORTVERSION=	2.3.7
+PORTVERSION=	2.3.9
 PORTREVISION=	0
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
