@@ -1,14 +1,7 @@
-# New ports collection makefile for:    AbiWord2
-# Date created:         22 February 2003
-# Whom:                 Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.3 2008/08/19 17:02:10 laffer1 Exp $
-# $FreeBSD: ports/editors/abiword/Makefile,v 1.130 2008/06/06 13:25:44 edwin Exp $
-#   $MCom: ports/editors/abiword/Makefile,v 1.8 2007/07/24 04:25:21 mezz Exp $
-#
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.4 2008/09/17 15:01:08 laffer1 Exp $
 
 PORTNAME=	abiword
-PORTVERSION=	2.6.4
+PORTVERSION=	2.6.8
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
