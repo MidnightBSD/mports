@@ -1,15 +1,8 @@
-# New ports collection makefile for:	libgnome
-# Date created:				17 June 1998
-# Whom:					Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.5 2008/06/18 05:07:59 laffer1 Exp $
-# $FreeBSD: ports/x11/libgnome/Makefile,v 1.156 2007/03/19 05:13:55 marcus Exp $
-#   $MCom: ports/x11/libgnome/Makefile,v 1.100 2007/03/12 15:49:09 ahze Exp $
-#
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.6 2008/08/21 16:15:55 laffer1 Exp $
 
 PORTNAME=	libgnome
-PORTVERSION=	2.22.0
-PORTREVISION?=	1
+PORTVERSION=	2.26.0
+PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libraries for GNOME, a GNU desktop environment
 LICENSE=	lgpl
 
-#USE_BZIP2=	yes
+USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 

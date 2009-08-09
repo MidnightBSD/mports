@@ -1,3 +1,4 @@
-MD5 (gnome2/libgnome-2.22.0.tar.gz) = 556dea8d920cb0a20a852ea36c28b58b
-SHA256 (gnome2/libgnome-2.22.0.tar.gz) = 5992dcdc6fc0f5385c9b1e6254b7a9c1fb14dc6c53f24a029c818d6519407085
-SIZE (gnome2/libgnome-2.22.0.tar.gz) = 1954010
+MD5 (gnome2/libgnome-2.26.0.tar.bz2) = a5634fe9ddc54bbb726cbaaa35abc0b9
+SHA256 (gnome2/libgnome-2.26.0.tar.bz2) = 2ef0287ab19fd34a7d20bc8beef86bb22db13cfc414367cb48e6121b8163e318
+RMD160 (gnome2/libgnome-2.26.0.tar.bz2) = 0c98138b3e19c70ea331ffb84019c8bdd277337b
+SIZE (gnome2/libgnome-2.26.0.tar.bz2) = 1414016
