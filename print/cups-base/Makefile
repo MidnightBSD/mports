@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.20 2009/04/25 15:17:31 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.21 2009/05/22 23:45:53 laffer1 Exp $
 
 PORTNAME=	cups
-PORTVERSION=	1.3.10
-PORTREVISION=	1
+PORTVERSION=	1.3.11
+PORTREVISION=	0
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
