@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.7 2008/10/04 17:10:40 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.8 2009/04/28 01:19:41 laffer1 Exp $
 
 PORTNAME=	tomcat
-PORTVERSION=	5.5.27
-PORTREVISION=	1
+PORTVERSION=	5.5.28
+PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	tomcat/tomcat-5/v${PORTVERSION}/bin
@@ -60,7 +60,7 @@ SUB_LIST=	AJP_1_3_PORT=${AJP_1_3_PORT} \
 
 .include <bsd.port.pre.mk>
 
-.if ${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.4"
+.if ${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.4" 
 DISTFILES+=	apache-tomcat-${PORTVERSION}-compat.tar.gz
 PLIST_SUB+=	JAVA14=""
 .else
