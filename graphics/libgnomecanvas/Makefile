@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.4 2009/03/04 00:27:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.5 2009/03/04 00:28:14 laffer1 Exp $
 
 PORTNAME=	libgnomecanvas
-PORTVERSION=	2.20.1.1
-PORTREVISION?=	2
+PORTVERSION=	2.26.0
+PORTREVISION?=	0
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
