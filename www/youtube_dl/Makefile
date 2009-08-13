@@ -1,16 +1,10 @@
-# New ports collection makefile for:	youtube_dl
-# Date created:		2006-08-12
-# Whom:			Pankov Pavel <pankov_p@mail.ru>
-#
-# $FreeBSD: ports/www/youtube_dl/Makefile,v 1.2 2006/09/05 17:32:56 miwi Exp $
-# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.3 2008/10/08 04:20:02 laffer1 Exp $
-#
+# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.4 2009/04/28 00:49:17 laffer1 Exp $
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2009.04.06
-PORTREVISION=	1
+PORTVERSION=	2009.08.08
+PORTREVISION=	0
 CATEGORIES=	www
-MASTER_SITES=	http://bitbucket.org/rg3/youtube-dl/raw/468b207ea6ee/
+MASTER_SITES=	http://bitbucket.org/rg3/youtube-dl/raw/df8b882d8b39/
 DISTNAME=	youtube-dl
 EXTRACT_SUFX=
 EXTRACT_ONLY=
