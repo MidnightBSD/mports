@@ -2,13 +2,11 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/www/galeon/Makefile,v 1.3 2008/10/09 15:23:52 laffer1 Exp $
-# $FreeBSD: ports/www/galeon/Makefile,v 1.154 2007/05/19 20:24:50 flz Exp $
-#
+# $MidnightBSD: mports/www/galeon/Makefile,v 1.4 2008/10/20 18:54:20 ctriv Exp $
 
 PORTNAME=	galeon
-PORTVERSION=	2.0.6
-PORTREVISION=	1
+PORTVERSION=	2.0.7
+PORTREVISION=	0
 CATEGORIES=	www gnome
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	${PORTNAME:S/2$//}
@@ -17,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNOME 2 Web browser based on gecko (the Mozilla rendering engine)
 LICENSE=	gpl2
 
-USE_GECKO=	browser<->firefox mozilla seamonkey xulrunner browser
+USE_GECKO=	browser3<->firefox3 browser<->firefox mozilla seamonkey xulrunner
 WRKSRC=		${WRKDIR}/${PORTNAME:S/2$//}-${PORTVERSION:S/a$//}
 USE_BZIP2=	yes
 USE_XLIB=	yes
