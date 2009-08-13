@@ -1,13 +1,7 @@
-# New ports collection makefile for: 	libgphoto2
-# Date created:		26 May 1999
-# Whom:			Anders Nordby <anders@fix.no>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/libgphoto2/Makefile,v 1.37 2008/05/18 15:08:07 pav Exp $
-#
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.2 2008/06/09 20:41:48 laffer1 Exp $
 
 PORTNAME=	libgphoto2
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.5
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	gphoto
@@ -19,6 +13,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb \
 		exif.12:${PORTSDIR}/graphics/libexif
 
+MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnometarget pkgconfig ltverhack
 USE_GMAKE=	yes
