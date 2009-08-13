@@ -1,16 +1,10 @@
-# New ports collection makefile for:    libgnomecanvasmm
-# Date created:         22 May 2003
-# Whom:                 Alexander Nedotsukov <bland@mail.ru>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/libgnomecanvasmm/Makefile,v 1.16 2007/05/19 20:09:50 flz Exp $
-#
+# $MidnightBSD: mports/graphics/libgnomecanvasmm/Makefile,v 1.1 2008/03/28 05:09:42 laffer1 Exp $
 
 PORTNAME=	libgnomecanvasmm
 PORTVERSION=	2.0.1
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	gtkmm
+MASTER_SITES=	SF/gtkmm
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +14,6 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.0:${PORTSDIR}/x11-toolkits/gtkmm20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_X_PREFIX=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libgnomecanvas
 USE_AUTOTOOLS=	libtool:15
