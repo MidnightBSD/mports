@@ -1,35 +1,28 @@
-# New ports collection makefile for:	enlightenment
-# Date created:			10 June 1997
-# Whom:				Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
-#
-# $MidnightBSD: mports/x11-wm/enlightenment/Makefile,v 1.3 2008/06/01 16:15:11 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/enlightenment/Makefile,v 1.101 2007/10/27 18:50:51 pav Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	enlightenment
-PORTVERSION=	0.16.8.13
+DISTVERSION=	1.0.0
 CATEGORIES=	x11-wm
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTNAME=	e16-${PORTVERSION}-0.01
+MASTER_SITES=	SF/enlightenment
+DISTNAME=	e16-${DISTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	ports@MdinightBSD.org
 COMMENT=	A very artistic X window manager
-LICENSE=	unknown
+LICENSE=	mit
 
-LIB_DEPENDS=	Imlib2.5:${PORTSDIR}/graphics/imlib2
-
+E16_REVISION=	000
 DATADIR=	${PREFIX}/share/e16
+DOCSDIR=	${PREFIX}/share/doc/e16
 
-USE_XORG=	xbitmaps xft x11
-USE_EFL=	Imlib2
+LIB_DEPENDS+=	Imlib2.5:${PORTSDIR}/graphics/imlib2
+
+USE_XORG=	compositeproto damageproto xextproto x11 xbitmaps xcomposite xdamage \
+		xext xfixes xft xinerama xrandr xrender xxf86vm
 USE_ICONV=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-fsstd --disable-esdtest --disable-dependency-tracking \
+CONFIGURE_ARGS=	--disable-esdtest --disable-dependency-tracking \
 		--disable-rpath
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
 
 .if !defined(WITHOUT_ESOUND)
 USE_GNOME=	esound
@@ -39,30 +32,20 @@ CONFIGURE_ARGS+=--disable-sound
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
-PLIST_FILES=	share/locale/bg/LC_MESSAGES/e16.mo \
-		share/locale/bs/LC_MESSAGES/e16.mo \
-		share/locale/da/LC_MESSAGES/e16.mo \
-		share/locale/de/LC_MESSAGES/e16.mo \
-		share/locale/en_US/LC_MESSAGES/e16.mo \
-		share/locale/es/LC_MESSAGES/e16.mo \
-		share/locale/fr/LC_MESSAGES/e16.mo \
-		share/locale/hu/LC_MESSAGES/e16.mo \
-		share/locale/ja/LC_MESSAGES/e16.mo \
-		share/locale/ko/LC_MESSAGES/e16.mo \
-		share/locale/nl/LC_MESSAGES/e16.mo \
-		share/locale/no/LC_MESSAGES/e16.mo \
-		share/locale/pl/LC_MESSAGES/e16.mo \
-		share/locale/pt/LC_MESSAGES/e16.mo \
-		share/locale/pt_BR/LC_MESSAGES/e16.mo \
-		share/locale/ru/LC_MESSAGES/e16.mo \
-		share/locale/sv/LC_MESSAGES/e16.mo \
-		share/locale/tr/LC_MESSAGES/e16.mo
+PLIST_SUB+=	NLS=""
 .else
 CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
 .endif
 
+.if !defined(NOPORTDOCS)
+BUILD_DEPENDS+=	xmlto:${PORTSDIR}/textproc/xmlto
+CONFIGURE_ARGS+=--enable-docs=yes
+.else
+CONFIGURE_ARGS+=--enable-docs=no
 post-patch:
-	@${REINPLACE_CMD}  \
-		-e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/scripts/e_gen_menu
+	${REINPLACE_CMD} -e '/^SUBDIRS/s|docs ||' \
+	    ${WRKSRC}/Makefile.am ${WRKSRC}/Makefile.in
+.endif
 
 .include <bsd.port.mk>
