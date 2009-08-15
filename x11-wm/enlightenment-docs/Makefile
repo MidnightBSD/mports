@@ -1,17 +1,11 @@
-# New ports collection makefile for:	enlightenment-docs
-# Date created:				08 Aug 2004
-# Whom:					vanilla
-#
-# $MidnightBSD: mports/x11-wm/enlightenment-docs/Makefile,v 1.1 2007/11/10 04:00:39 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/enlightenment-docs/Makefile,v 1.4 2007/05/19 20:32:36 flz Exp $
-#
+# $MidnightBSD: mports/x11-wm/enlightenment-docs/Makefile,v 1.2 2008/08/19 20:31:52 laffer1 Exp $
 
 PORTNAME=	enlightenment-docs
-PORTVERSION=	0.16.8
-PORTREVISION=	1
+PORTVERSION=	0.16.8.0.2
+PORTREVISION=	0
 CATEGORIES=	x11-wm
-MASTER_SITES=	SF
-DISTNAME=	e16-docs-${PORTVERSION}-0.02
+MASTER_SITES=	SF/enlightenment
+DISTNAME=	e16-docs-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data files of enlightenment DOX
