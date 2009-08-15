@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.2 2007/11/07 21:37:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.3 2009/08/15 19:09:41 laffer1 Exp $
 
 PORTNAME=	fvwm
 PORTVERSION=	2.4.20
@@ -30,7 +30,7 @@ LATEST_LINK=	${PORTNAME}2
 PKGNAMESUFFIX=	-imlib
 .endif
 USE_GMAKE=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 
