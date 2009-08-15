@@ -3,6 +3,28 @@ bin/edox
 bin/eesh
 bin/epp
 bin/starte16
+%%NLS%%share/locale/it/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/eo/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/bg/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/bs/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/da/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/de/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/en_US/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/es/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/ko/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/nb/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/e16.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/e16.mo
+%%DATADIR%%/E-docs/bg.png
 %%DATADIR%%/E-docs/exit1.png
 %%DATADIR%%/E-docs/exit2.png
 %%DATADIR%%/E-docs/next1.png
@@ -14,8 +36,8 @@ bin/starte16
 %%DATADIR%%/config/bindings.cfg
 %%DATADIR%%/config/definitions
 %%DATADIR%%/config/e16keyedit.db
-%%DATADIR%%/config/fonts.cfg.xft
-%%DATADIR%%/config/fonts.cfg.pango
+%%DATADIR%%/config/fonts.xft.cfg
+%%DATADIR%%/config/fonts.pango.cfg
 %%DATADIR%%/config/matches.cfg
 %%DATADIR%%/config/menus.cfg
 %%DATADIR%%/config/menus/desktop.menu
@@ -80,10 +102,15 @@ bin/starte16
 %%DATADIR%%/config/pix/wait8.png
 %%DATADIR%%/config/pix/wait9.png
 %%DATADIR%%/config/pix/world.png
+%%DATADIR%%/misc/e16.desktop-app
 %%DATADIR%%/misc/e16.desktop
 %%DATADIR%%/misc/e16.png
 %%DATADIR%%/misc/e16-gnome.desktop
 %%DATADIR%%/misc/e16-kde.desktop
+%%DATADIR%%/misc/e16-dbus-cmd
+%%DATADIR%%/misc/starte16
+%%DATADIR%%/misc/starte16-gnome
+%%DATADIR%%/misc/starte16-kde
 %%DATADIR%%/misc/Xclients.e16.sh
 %%DATADIR%%/misc/Xclients.e16-gnome.sh
 %%DATADIR%%/misc/Xclients.e16-kde.sh
@@ -334,10 +361,7 @@ bin/starte16
 %%DATADIR%%/themes/winter/focuslist/focuslist.cfg
 %%DATADIR%%/themes/winter/focuslist/images/hbar.png
 %%DATADIR%%/themes/winter/focuslist/images/hbar2.png
-%%DATADIR%%/themes/winter/fonts.cfg
-%%DATADIR%%/themes/winter/fonts.cfg.ja
-%%DATADIR%%/themes/winter/fonts.cfg.ko
-%%DATADIR%%/themes/winter/fonts.cfg.pl
+%%DATADIR%%/themes/winter/fonts.theme.cfg
 %%DATADIR%%/themes/winter/iconbox/iconbox.cfg
 %%DATADIR%%/themes/winter/iconbox/images/base_.png
 %%DATADIR%%/themes/winter/iconbox/images/bg.png
@@ -373,12 +397,32 @@ bin/starte16
 %%DATADIR%%/themes/winter/tooltips/images/clear.png
 %%DATADIR%%/themes/winter/tooltips/images/tooltipbg.png
 %%DATADIR%%/themes/winter/tooltips/tooltips.cfg
-%%DATADIR%%/themes/winter/ttfonts/COPYRIGHT.Vera
-%%DATADIR%%/themes/winter/ttfonts/Vera.ttf
-%%DATADIR%%/themes/winter/ttfonts/VeraBd.ttf
+%%DATADIR%%/fonts/Vera.ttf
+%%DATADIR%%/fonts/VeraBd.ttf
+%%DATADIR%%/fonts/COPYRIGHT.Vera
+%%DATADIR%%/fonts/normal.ttf
+%%DATADIR%%/fonts/bold.ttf
+share/applications/e16.desktop
 share/xsessions/e16.desktop
 share/xsessions/e16-gnome.desktop
 share/xsessions/e16-kde.desktop
+%%PORTDOCS%%%%DOCSDIR%%/README.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s02.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s03.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s04.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s05.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s06.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s07.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s08.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s09.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s10.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s11.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s12.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s13.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s14.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s15.html
+%%PORTDOCS%%%%DOCSDIR%%/ar01s16.html
+@dirrm lib/e16
 @dirrm %%DATADIR%%/E-docs
 @dirrm %%DATADIR%%/config/menus
 @dirrm %%DATADIR%%/config/pix
@@ -438,14 +482,15 @@ share/xsessions/e16-kde.desktop
 @dirrm %%DATADIR%%/themes/winter/sound
 @dirrm %%DATADIR%%/themes/winter/tooltips/images
 @dirrm %%DATADIR%%/themes/winter/tooltips
-@dirrm %%DATADIR%%/themes/winter/ttfonts
 @dirrm %%DATADIR%%/themes/winter
 @dirrm %%DATADIR%%/themes
-@dirrm %%DATADIR%%
+@dirrm %%DATADIR%%/fonts
+@dirrmtry %%DATADIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrmtry share/locale/en_US/LC_MESSAGES
 @dirrmtry share/locale/en_US
-@dirrm lib/e16
 @dirrmtry etc/X11/dm/Sessions
 @dirrmtry etc/X11/dm
 @dirrmtry etc/X11
 @dirrmtry share/xsessions
+@dirrmtry share/applications
