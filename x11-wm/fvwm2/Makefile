@@ -1,17 +1,11 @@
-# New ports collection makefile for:	Fvwm2
-# Date created:		20 Jan 1996
-# Whom:			peter
-#
-# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.1 2007/03/16 15:29:01 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/fvwm2/Makefile,v 1.72 2007/01/09 19:34:55 cy Exp $
-#
+# $MidnightBSD: mports/x11-wm/fvwm2/Makefile,v 1.2 2007/11/07 21:37:02 laffer1 Exp $
 
 PORTNAME=	fvwm
 PORTVERSION=	2.4.20
 CATEGORIES=	x11-wm
 MASTER_SITES=	ftp://ftp.fvwm.org/pub/fvwm/version-2/ \
 		http://www.fvwm.org/generated/icon_download/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} fvwm_icons.tgz
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} fvwm_icons-20070101.tar.gz
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -89,7 +83,7 @@ PLIST_SUB+=	GTK="@comment not installed: "
 
 post-extract:
 	@${MKDIR} ${WRKDIR}/icons
-	@${TAR} -xzf ${DISTDIR}/fvwm_icons.tgz -C ${WRKDIR}/icons
+	@${TAR} -xzf ${DISTDIR}/fvwm_icons-20070101.tar.gz -C ${WRKDIR}/icons
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' \
@@ -103,7 +97,7 @@ post-install:
 			${PREFIX}/etc/system.fvwm2rc; \
 	fi
 	@${MKDIR} ${PREFIX}/share/fvwm2/pixmaps
-	${INSTALL_DATA} ${WRKDIR}/icons/fvwm_icons/*.xpm \
+	${INSTALL_DATA} ${WRKDIR}/icons/fvwm_icons-20070101/*.xpm \
 		${PREFIX}/share/fvwm2/pixmaps
 
 .include <bsd.port.post.mk>
