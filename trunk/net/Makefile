@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.97 2009/04/06 15:46:24 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.98 2009/04/25 15:59:58 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -92,6 +92,7 @@
     SUBDIR += sambasentinel
     SUBDIR += sdl_net
     SUBDIR += sharity-light
+    SUBDIR += sixxs-aiccu
     SUBDIR += skype
     SUBDIR += smbldap-tools
     SUBDIR += tsocks
