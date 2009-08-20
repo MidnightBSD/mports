@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/bsd.ruby.mk,v 1.8 2008/06/26 19:37:21 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -63,6 +63,9 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 #			  documents from. If this is defined and not empty,
 #			  USE_RUBY_RDTOOL is implied and RUBY_RD_HTML_FILES is
 #			  defined.
+# USE_RUBYGEMS		- Says that the port uses rubygems packaging system.
+# RUBYGEM_AUTOPLIST	- Generate packing list for rubygems based port
+#			  automatically.
 #
 #
 # [variables that each port should not (re)define]
@@ -167,10 +170,10 @@ RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 #
 # Ruby 1.8
 #
-RUBY_RELVERSION=	1.8.6
+RUBY_RELVERSION=	1.8.7
 RUBY_PORTREVISION=	3
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	111
+RUBY_PATCHLEVEL=	160
 
 .  if ${RUBY_PATCHLEVEL} == 0
 RUBY_VERSION?=		${RUBY_RELVERSION}
@@ -195,13 +198,13 @@ RUBY19=			"@comment "
 #
 # Ruby 1.9
 #
-RUBY_RELVERSION=	1.9.0
+RUBY_RELVERSION=	1.9.1
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	1
+RUBY_PATCHLEVEL=	129
 
 RUBY_VERSION?=		${RUBY_RELVERSION}.${RUBY_PATCHLEVEL}
-RUBY_DISTVERSION?=	${RUBY_RELVERSION}-${RUBY_PATCHLEVEL}
+RUBY_DISTVERSION?=	${RUBY_RELVERSION}-p${RUBY_PATCHLEVEL}
 
 RUBY_WRKSRC=		${WRKDIR}/ruby-${RUBY_DISTVERSION}
 
@@ -394,10 +397,10 @@ DOC_DIR=	${GEMS_BASE_DIR}/doc
 CACHE_DIR=	${GEMS_BASE_DIR}/cache
 SPEC_DIR=	${GEMS_BASE_DIR}/specifications
 GEM_NAME?=	${PORTNAME}-${PORTVERSION}
-GEM_LIB_DIR=	${GEMS_DIR}/${GEM_NAME}
-GEM_DOC_DIR=	${DOC_DIR}/${GEM_NAME}
-GEM_SPEC=	${SPEC_DIR}/${GEM_NAME}.gemspec
-GEM_CACHE=	${CACHE_DIR}/${GEM_NAME}.gem
+GEM_LIB_DIR?=	${GEMS_DIR}/${GEM_NAME}
+GEM_DOC_DIR?=	${DOC_DIR}/${GEM_NAME}
+GEM_SPEC?=	${SPEC_DIR}/${GEM_NAME}.gemspec
+GEM_CACHE?=	${CACHE_DIR}/${GEM_NAME}.gem
 
 PLIST_SUB+=	PORTVERSION="${PORTVERSION}" \
 		REV="${RUBY_GEM}" \
@@ -424,8 +427,31 @@ GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 do-install:
 .for _D in ${GEMFILES}
-	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gems/${RUBY_VER} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
+	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install -l --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gems/${RUBY_VER} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
 .endfor
+
+. if defined(RUBYGEM_AUTOPLIST)
+.  if !target(post-install-script)
+post-install-script:
+	@${ECHO} ${GEM_CACHE} >> ${TMPPLIST}
+	@${ECHO} ${GEM_SPEC} >> ${TMPPLIST}
+	@${FIND} -ds ${PREFIX}/${GEM_DOC_DIR} -type f -print | ${SED} -E -e \
+		's,^${PREFIX}/?,,' >> ${TMPPLIST}
+	@${FIND} -ds ${PREFIX}/${GEM_DOC_DIR} -type d -print | ${SED} -E -e \
+		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
+	@${FIND} -ds ${PREFIX}/${GEM_LIB_DIR} -type f -print | ${SED} -E -e \
+		's,^${PREFIX}/?,,' >> ${TMPPLIST}
+	@${FIND} -ds ${PREFIX}/${GEM_LIB_DIR} -type d -print | ${SED} -E -e \
+		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${GEMS_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${DOC_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${CACHE_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${SPEC_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/${GEMS_BASE_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/lib/ruby/gems 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/lib/ruby 2>/dev/null || true" >> ${TMPPLIST}
+.  endif
+. endif
 
 .endif # USE_RUBYGEMS
 
@@ -565,5 +591,4 @@ PLIST_SUB+=		RUBY_RD_HTML_FILES="@comment "
 BUILD_DEPENDS+=		${DEPEND_RUBY_RDTOOL}
 .endif
 
-.endif # !defined(_POSTMKINCLUDED) && !defined(Ruby_Pre_Include)
-
+.endif
