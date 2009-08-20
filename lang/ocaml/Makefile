@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.1 2008/12/16 17:08:52 ctriv Exp $
+# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.2 2009/05/26 00:52:43 laffer1 Exp $
 
 PORTNAME=	ocaml
-PORTVERSION=	3.10.2
+PORTVERSION=	3.11.1
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/distrib/${DISTNAME:R}/ \
 		ftp://ftp.inria.fr/INRIA/caml-light/${DISTNAME:R}/ \
@@ -17,9 +17,10 @@ LICENSE=	other
 USE_BZIP2=	yes
 REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
+USE_LDCONFIG=	yes
 ALL_TARGET=	world.opt
 STRIP=
-
+MAKE_JOBS_UNSAFE=	yes
 
 CONFIGURE_ARGS=	-prefix ${PREFIX} -host ${MACHINE_ARCH}-portbld-freebsd6.0
 
