@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ruby18
-# Date created:		6 May 2001
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/lang/ruby18/Makefile,v 1.134 2007/10/30 11:24:58 stas Exp $
-#
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.7 2008/06/26 19:31:43 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -28,6 +22,9 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-shared --with-openssl-include=${OPENSSLINC}
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	aclocal:110 autoconf:262
+ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
+AUTOMAKE_ARGS=	--add-missing
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${RUBY_DISTVERSION}
 
@@ -38,11 +35,9 @@ RUBY_NO_BUILD_DEPENDS=	yes
 RUBY_NO_RUN_DEPENDS=	yes
 _RUBY_SYSLIBDIR=	${PREFIX}/lib
 
-OPTIONS=	PTHREADS "Enable pthreads support (may break some apps)" off \
-		ONIGURUMA "Build with oniguruma regular expressions lib" off \
-		GCPATCH "Build with GC performance statistics collector" off \
+OPTIONS=	ONIGURUMA "Build with oniguruma regular expressions lib" off \
 		IPV6 "Enable IPv6 support" on \
-		RDOC "Build and install Rdoc indexes" off \
+		RDOC "Build and install Rdoc indexes" on \
 		DEBUG "Compile-in debug info" off
 
 .include <bsd.port.pre.mk>
@@ -58,14 +53,13 @@ _SUF1=	_${PORTREVISION}
 .endif
 
 PKGNAMESUFFIX=	#empty
-CFLAGS+=	${PTHREAD_CFLAGS}	# Keep this, else ruby will fail to load
-LDFLAGS+=	${PTHREAD_LIBS}		# libraries dependent op libpthread.
 
-.if defined(WITH_PTHREADS)
-CONFIGURE_ARGS+=--enable-pthread
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+pthreads
-.else
+.if defined(WITHOUT_PTHREADS)
 CONFIGURE_ARGS+=--disable-pthread
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
+.else
+LDFLAGS+=	${PTHREAD_LIBS}
+CONFIGURE_ARGS+=--enable-pthread
 .endif
 
 .if defined(WITH_ONIGURUMA)
@@ -86,16 +80,10 @@ STRIP=		# none
 #
 # Disable doc generation if requested or docs disabled at all
 #
-.if defined(WITH_RDOC) && !defined(NOPORTDOCS)
+.if !defined(WITHOUT_RDOC) && !defined(NOPORTDOCS)
 CONFIGURE_ARGS+=	--enable-install-doc
 .else
 CONFIGURE_ARGS+=	--disable-install-doc
-.endif
-
-# This patch can be used for GC performance analysis and tweaking
-# svn://rubyforge.org/var/svn/railsbench/trunk/railsbench/ruby185gc.patch
-.if defined(WITH_GCPATCH)
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-gc
 .endif
 
 .if !defined(WITHOUT_IPV6)
@@ -126,7 +114,6 @@ EXTSAMPLES=	bigdecimal/sample/*.rb	\
 
 EXTDOCS=	bigdecimal/bigdecimal_*.html	\
 		dl/doc/dl.txt			\
-		enumerator/enumerator.txt	\
 		etc/etc.txt*			\
 		pty/README*			\
 		readline/README*		\
@@ -142,12 +129,6 @@ post-extract:
 	${MV} ${WRKSRC}/ext/dl/h2rb ${WRKSRC}/bin/
 
 post-patch:
-.if ${ARCH} == "sparc64"
-	${REINPLACE_CMD} -e 's|-lc"|"|g' ${WRKSRC}/configure
-.endif
-	${REINPLACE_CMD} -e 's|-l$$pthread_lib|${PTHREAD_LIBS}|g' \
-		${WRKSRC}/configure
-
 #
 # Remove modules we don't want
 #
@@ -170,6 +151,11 @@ pre-configure:
 .endif
 	${TOUCH} ${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 
+post-configure:
+.if defined(WITH_ONIGURUMA)
+	cd ${WRKSRC}/ && ${PATCH} -p0 < ${PATCHDIR}/extrapatch-oniguruma-reggnu.c
+.endif
+
 post-build:
 #
 # Hack to allow modules to be installed into separate PREFIX and/or under user
@@ -187,7 +173,8 @@ pre-su-install:
 			${RUBY_EXAMPLESDIR}	\
 			${RUBY_RIDIR}		\
 			${RUBY_SITERIDIR}	\
-			${RUBY_SITEARCHLIBDIR}
+			${RUBY_SITEARCHLIBDIR}	\
+			${RUBY_VENDORARCHLIBDIR}
 
 	${SETENV} LC_TIME=C /bin/date > ${RUBY_RIDIR}/created.rid
 	${SETENV} LC_TIME=C /bin/date > ${RUBY_SITERIDIR}/created.rid
@@ -195,6 +182,7 @@ pre-su-install:
 	${TOUCH} ${RUBY_EXAMPLESDIR}/.keep_me
 	${TOUCH} ${RUBY_DOCDIR}/.keep_me
 	${TOUCH} ${RUBY_SITEARCHLIBDIR}/.keep_me
+	${TOUCH} ${RUBY_VENDORARCHLIBDIR}/.keep_me
 
 post-install:
 #
@@ -299,14 +287,24 @@ plist::
 		${SED} -E -e 's,^${RUBY_LIBDIR}(.*),@dirrm %%RUBY_LIBDIR%%\1,' >> pkg-plist
 
 	@${ECHO_CMD} "%%RUBY_SITEARCHLIBDIR%%/.keep_me" >> pkg-plist
+	@${ECHO_CMD} "%%RUBY_VENDORARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITEARCHLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITELIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby/site_ruby" >> pkg-plist
+	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORARCHLIBDIR%%" >> pkg-plist
+	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORLIBDIR%%" >> pkg-plist
+	@${ECHO_CMD} "@dirrmtry lib/ruby/vendor_ruby" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby" >> pkg-plist
 
 	@${SED} -i "" -E -e "s,${RUBY_ARCH},%%RUBY_ARCH%%,g" pkg-plist
 
 test:
 	@(cd ${WRKSRC}; ${MAKE} test)
+
+validate::
+	@${MKDIR} ${WRKSRC}/rubyspec
+	(cd ${WRKSRC}/rubyspec && git clone git://github.com/rubyspec/rubyspec.git)
+	(cd ${WRKSRC}/rubyspec && git clone git://github.com/rubyspec/mspec.git)
+	(cd ${WRKSRC}/rubyspec/rubyspec && env PATH=${WRKSRC}/rubyspec/mspec/bin:${PATH} mspec -t ${PREFIX}/bin/ruby${RUBY_SUFFIX})
 
 .include <bsd.port.post.mk>
