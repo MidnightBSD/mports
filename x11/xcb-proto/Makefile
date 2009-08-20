@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xcb-proto/Makefile,v 1.2 2008/09/26 20:51:45 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcb-proto/Makefile,v 1.3 2009/05/04 02:23:54 laffer1 Exp $
 
 PORTNAME=	xcb-proto
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
