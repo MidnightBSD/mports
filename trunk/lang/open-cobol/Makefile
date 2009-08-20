@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.2 2008/07/20 04:56:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.3 2009/04/18 05:18:59 laffer1 Exp $
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.0
@@ -19,6 +19,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=  yes
 
 INFO=		open-cobol
 
