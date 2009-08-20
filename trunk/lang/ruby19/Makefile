@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ruby18
-# Date created:		6 May 2001
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/lang/ruby19/Makefile,v 1.2 2008/05/03 23:40:04 stas Exp $
-#
+# $MidnightBSD: mports/lang/ruby19/Makefile,v 1.1 2008/06/26 20:41:17 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -22,12 +16,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	An object-oriented interpreted scripting language
 LICENSE=	gpl2
 
+USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
 CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-shared \
 		--enable-pthread \
-		--with-openssl-include=${OPENSSLINC}
+		--with-openssl-include=${OPENSSLINC} \
+		--with-ruby-version=minor \
+		--with-sitedir="${PREFIX}/lib/ruby/site_ruby" \
+		--with-vendordir="${PREFIX}/lib/ruby/vendor_ruby"
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 
@@ -67,9 +65,6 @@ CFLAGS+=	-g
 STRIP=		# none
 .endif
 
-#
-# Disable doc generation if requested or docs disabled at all
-#
 .if defined(WITH_RDOC) && !defined(NOPORTDOCS)
 CONFIGURE_ARGS+=	--enable-install-doc
 .else
@@ -106,7 +101,8 @@ EXTDOCS=	bigdecimal/bigdecimal_*.html	\
 		syslog/syslog.txt		\
 		zlib/doc/zlib.rd
 
-MAN1=		${RUBY_NAME}.1
+MAN1=		${RUBY_NAME}.1 erb${RUBY_SUFFIX}.1  irb${RUBY_SUFFIX}.1 \
+		rake${RUBY_SUFFIX}.1 ri${RUBY_SUFFIX}.1
 
 # Macros to change variables in rbconfig.rb
 RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]]*=[[:space:]]*)(\(?)(.*)(\)?),\1\2$$1\4," ${WRKSRC}/rbconfig.rb' --
@@ -118,6 +114,8 @@ post-patch:
 		-e '/^RUBY_SITE_LIB_PATH2/s,\.\$$\{TEENY\},,' \
 		-e '/^RUBY_VENDOR_LIB_PATH2/s,\.\$$\{TEENY\},,' \
 		${WRKSRC}/configure
+
+	@${FIND} ${WRKSRC}/ -name "*.orig" -delete
 
 #
 # Remove modules we don't want
@@ -227,9 +225,9 @@ plist::
 # Includes
 #
 	@${FIND} -ds ${PREFIX}/include/ruby-${RUBY_VER} ! -type d | \
-		${SED} 's,^${PREFIX},,' >> pkg-plist
+		${SED} 's,^${PREFIX}/*,,' >> pkg-plist
 	@${FIND} -ds ${PREFIX}/include/ruby-${RUBY_VER} -type d | \
-		${SED} 's,^${PREFIX},@dirrm ,' >> pkg-plist
+		${SED} 's,^${PREFIX}/*,@dirrm ,' >> pkg-plist
 
 #
 # Vendor and site libs
