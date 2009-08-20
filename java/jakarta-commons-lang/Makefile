@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.1 2008/09/10 23:44:49 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.2 2009/03/02 21:56:55 laffer1 Exp $
 
 PORTNAME=	commons-lang
 PORTVERSION=	2.3
@@ -37,14 +37,13 @@ JDK_API!=	(${FIND} -s ${LOCALBASE}/share/doc/jdk1.? -maxdepth 1 -name api -type 
 
 .if ${JDK_API} != ""
 MAKE_ARGS+=	-Djdk.javadoc=${JDK_API}
-
 .endif
 
 do-install:
 	@${INSTALL_DATA} ${WRKSRC}/dist/${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
 
 .if !defined(NOPORTDOCS)
-	@cd ${WRKSRC}/dist/docs/api \
+	-cd ${WRKSRC}/dist/docs/api \
 	  && ${FIND} . -type d -exec ${MKDIR} ${DOCSDIR}/{} \; \
 	  && ${FIND} . -type f -exec ${INSTALL_DATA} {} ${DOCSDIR}/{} \;
 .endif
