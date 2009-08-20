@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.5 2009/05/08 20:31:42 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.6 2009/08/09 21:42:38 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.1
@@ -49,7 +49,6 @@ BINLINKS_SUB=	-e 's,smtpd,smtpd${PYTHON_VER},' \
 
 OPTIONS=	THREADS "Enable thread support" on \
 		HUGE_STACK_SIZE "Use a larger thread stack" off \
-		SEM "Use POSIX semaphores (experimental)" off \
 		PTH "Use GNU Pth for threading/multiprocessing" off \
 		UCS4 "Use UCS4 for unicode support" on \
 		PYMALLOC "Use python's internal malloc" on \
@@ -58,17 +57,11 @@ OPTIONS=	THREADS "Enable thread support" on \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_SEM)
-.if ${OSVERSION} >= 701106
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-setup.py
-SEM_MSG=	""
-.else
-IGNORE=		POSIX semaphore support only works in FreeBSD 7-STABLE and later
-.
-.endif # ${OSVERSION} >= 701106
-.else # !defined(WITH_SEM)
+.if ${OSVERSION} < 3000
+BROKEN=		ctype module is not building
+.endif
+
 SEM_MSG=	"@comment "
-.endif # defined(WITH_SEM)
 
 SUB_FILES=      pkg-message
 SUB_LIST=       SEM=${SEM_MSG}
@@ -252,6 +245,5 @@ post-install:
 	@cd ${PYTHON_WRKSRC}/Demo; ${TAR} -cf - * | \
 		(cd ${DEMODIR}; ${TAR} -xf -)
 .endif
-
 
 .include <bsd.port.post.mk>
