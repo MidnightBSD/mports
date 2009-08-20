@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.89 2009/06/27 21:39:33 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.90 2009/06/27 21:49:18 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -12,6 +12,8 @@
     SUBDIR += bookmarkbridge
     SUBDIR += bozohttpd
     SUBDIR += browser
+    SUBDIR += browser3
+    SUBDIR += browser35
     SUBDIR += cherokee
     SUBDIR += dillo
     SUBDIR += dummyflash
