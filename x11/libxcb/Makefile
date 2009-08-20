@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.3 2008/09/26 21:23:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.4 2009/03/14 22:34:03 laffer1 Exp $
 
 PORTNAME=	libxcb
-PORTVERSION=	1.2
+PORTVERSION=	1.3
 CATEGORIES=	x11 python
 #MASTER_SITES=	XORG/current/src/extras
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
