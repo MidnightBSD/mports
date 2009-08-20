@@ -1,0 +1,8 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+usr/lib/libogg.so.0
+usr/lib/libogg.so.0.5.2
+usr/%%DOCSDIR%%-1.1.2/AUTHORS
+usr/%%DOCSDIR%%-1.1.2/CHANGES
+usr/%%DOCSDIR%%-1.1.2/COPYING
+usr/%%DOCSDIR%%-1.1.2/README
+@dirrm usr/%%DOCSDIR%%-1.1.2
