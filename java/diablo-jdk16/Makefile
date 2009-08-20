@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.1 2009/06/07 22:19:59 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
@@ -16,6 +16,7 @@ LICENSE=	restricted
 
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
+IS_INTERACTIVE=	yes
 RESTRICTED=	License does not allow distribution with fee
 
 USE_BZIP2=	yes
