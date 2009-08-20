@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ArrowLISP
-# Date created:				12 Aug 2003
-# Whom:					Nils M Holm <nmh@t3x.org>
-#
-# $MidnightBSD: mports/lang/alisp/Makefile,v 1.1 2007/05/03 08:03:26 laffer1 Exp $
-# $FreeBSD: ports/lang/alisp/Makefile,v 1.19 2006/09/18 19:19:07 miwi Exp $
-#
+# $MidnightBSD: mports/lang/alisp/Makefile,v 1.2 2007/05/24 16:51:38 ctriv Exp $
 
 PORTNAME=	alisp
 PORTVERSION=	20060917
@@ -14,6 +8,8 @@ MASTER_SITES=	http://t3x.org/files/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An interpreter for purely symbolic LISP
 LICENSE=	bsd2
+
+MAKE_JOBS_SAFE=  yes
 
 MAN7=		alisp.7
 
