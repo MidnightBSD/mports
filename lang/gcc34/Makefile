@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc34/Makefile,v 1.1 2009/06/11 19:51:29 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	3.4.6
@@ -56,12 +56,12 @@ MAN1=		cpp${SUFFIX}.1 \
 		g77-${SUFFIX}.1 \
 		gcc${SUFFIX}.1 \
 		gcov${SUFFIX}.1
-INFO=		gcc${SUFFIX}/cpp \
-		gcc${SUFFIX}/cppinternals \
-		gcc${SUFFIX}/g77 \
-		gcc${SUFFIX}/gcc \
-		gcc${SUFFIX}/gccinstall \
-		gcc${SUFFIX}/gccint
+#INFO=		gcc${SUFFIX}/cpp \
+#		gcc${SUFFIX}/cppinternals \
+#		gcc${SUFFIX}/g77 \
+#		gcc${SUFFIX}/gcc \
+#		gcc${SUFFIX}/gccinstall \
+#		gcc${SUFFIX}/gccint
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${DISTNAME:S/^gcc-//} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
