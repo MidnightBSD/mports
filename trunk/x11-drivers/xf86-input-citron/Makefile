@@ -1,13 +1,7 @@
-# New ports collection makefile for:	xf86-input-citron
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-drivers/xf86-input-citron/Makefile,v 1.2 2007/09/13 19:44:47 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-drivers/xf86-input-citron/Makefile,v 1.1 2007/10/11 21:44:46 ctriv Exp $
 
 PORTNAME=	xf86-input-citron
-PORTVERSION=	2.2.1
+PORTVERSION=	2.2.2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
