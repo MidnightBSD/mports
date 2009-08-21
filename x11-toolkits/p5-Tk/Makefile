@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.1 2009/06/30 13:53:29 laffer1 Exp $
 
 PORTNAME=	Tk
 DISTVERSION=	804.028_501
@@ -9,6 +9,8 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A re-port of a perl5 interface to Tk8.4
 LICENSE=	perl
+
+LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
 PERL_CONFIGURE=	5.8.0+
 USE_XORG=	x11
