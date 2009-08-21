@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.8 2009/05/21 15:58:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.9 2009/08/21 02:23:34 laffer1 Exp $
 
     COMMENT = X11 drivers
 
     SUBDIR += input-wacom
     SUBDIR += xf86-input-acecad
-    SUBDIR += xf86-input-calcomp
     SUBDIR += xf86-input-citron
     SUBDIR += xf86-input-digitaledge
     SUBDIR += xf86-input-dmc
