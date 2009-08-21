@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.1 2008/10/17 17:54:24 laffer1 Exp $
+# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.2 2009/04/13 17:55:20 laffer1 Exp $
 
 PORTNAME=	raptor
-PORTVERSION=	1.4.16
+PORTVERSION=	1.4.18
 PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
