@@ -1,5 +1,5 @@
---- setproctitle.h.orig	2009-06-29 18:37:01 -0400
-+++ setproctitle.h	2009-06-29 18:38:00 -0400
+--- kinit/setproctitle.h.orig	2009-06-29 18:37:01 -0400
++++ kinit/setproctitle.h	2009-06-29 18:38:00 -0400
 @@ -76,16 +76,12 @@
  #  undef SPT_TYPE
  #  define SPT_TYPE      SPT_BUILTIN     /* setproctitle is in libc */
