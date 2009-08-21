@@ -1,22 +1,17 @@
-# ex:ts=8
-# Ports collection makefile for:  ncftp3
-# Date created:			  4 Nov 1994
-# Whom:				  ache
-#
-# $MidnightBSD: mports/ftp/ncftp3/Makefile,v 1.2 2008/04/12 00:12:05 laffer1 Exp $
-# $FreeBSD: ports/ftp/ncftp3/Makefile,v 1.108 2006/09/10 07:49:34 obrien Exp $
-#
+# $MidnightBSD: mports/ftp/ncftp3/Makefile,v 1.3 2008/09/30 23:07:04 laffer1 Exp $
 
 PORTNAME=	ncftp
 PORTVERSION=	3.2.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftp/
 DISTNAME=	ncftp-${PORTVERSION}-src
 
+.if !defined(WITHOUT_NCFTP_IPV6) && !defined(WITHOUT_IPV6)
 PATCH_SITES=	ftp://ftp.kame.net/pub/kame/misc/
 PATCHFILES=	ncftp-322-v6-20080821.diff.gz
 PATCH_DIST_STRIP=	-p1
+.endif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ftp replacement with advanced user interface
