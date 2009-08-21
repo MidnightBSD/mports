@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.9 2009/08/21 02:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.10 2009/08/21 17:43:35 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -16,7 +16,6 @@
     SUBDIR += xf86-input-joystick
     SUBDIR += xf86-input-keyboard
     SUBDIR += xf86-input-magellan
-    SUBDIR += xf86-input-magictouch
     SUBDIR += xf86-input-microtouch
     SUBDIR += xf86-input-mouse
     SUBDIR += xf86-input-mutouch
