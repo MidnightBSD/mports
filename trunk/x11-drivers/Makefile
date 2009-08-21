@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.7 2009/04/08 16:53:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.8 2009/05/21 15:58:17 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -63,7 +63,6 @@
     SUBDIR += xf86-video-trident
     SUBDIR += xf86-video-tseng
     SUBDIR += xf86-video-vesa
-    SUBDIR += xf86-video-vga
     SUBDIR += xf86-video-via
     SUBDIR += xf86-video-vmware
     SUBDIR += xf86-video-voodoo
