@@ -1,45 +1,45 @@
-# New ports collection makefile for:	aria2
-# Date created:		1 May 2006
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/aria2/Makefile,v 1.4 2008/07/25 04:42:14 smultron Exp $
-# $FreeBSD: ports/www/aria2/Makefile,v 1.27 2007/08/09 17:09:00 sat Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	aria2
-DISTVERSION=	0.15.1
+DISTVERSION=	1.4.1
 CATEGORIES=	www
 MASTER_SITES=	SFE
-DISTNAME=	${PORTNAME}c-${DISTVERSION}
+DISTNAME=	${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Another download tool with metalinks support
+COMMENT=	Yet another download tool
 LICENSE=	gpl2
 
 CONFIGURE_ARGS=	--with-libintl-prefix=${LOCALBASE} --with-openssl \
-		--with-libxml2 --without-gnutls --without-libares --without-libcares \
-		--program-transform-name="" --prefix=${PREFIX}
+		--with-libxml2 --without-gnutls --without-libares \
+		--without-libcares --program-transform-name=""
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack libxml2
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-#MAN1=		aria2c.1
-
+MAKE_JOBS_SAFE=	yes
 .ifdef WITHOUT_NLS
 CONFIGURE_ARGS+=	--disable-nls
 .else
-LINGUAS=	ca de es fi fr he hu id it ja nl nn pl pt_BR ru sv th zh_CN
+LINGUAS=	bg ca da de es en@boldquot en@quot el fi fr he hu id it ja nl nn pl pt_BR ru sv \
+		sk sr th tr uk vi zh_CN zh_TW
 .endif
+PLIST_FILES=	bin/aria2c \
+		${LINGUAS:S|^|share/locale/|:S|$|/LC_MESSAGES/aria2.mo|}
+MAN1=		aria2c.1
 
-post-configure:
-	@${REINPLACE_CMD} -e '/SETMODE/d' ${WRKSRC}/config.h
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 3000
+BROKEN=		Does not compile on MidnightBSD 0.2
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/^install-data-am:/s|install-dist_docDATA||'\
 		${WRKSRC}/Makefile.in ${WRKSRC}/doc/Makefile.in
 
-post-install:
-	@${CP} ${WRKSRC}/doc/aria2c.1 ${FAKEDIR}/usr/local/man/man1/
+post-configure:
+	@${REINPLACE_CMD} -e '/SETMODE/d' ${WRKSRC}/config.h
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
