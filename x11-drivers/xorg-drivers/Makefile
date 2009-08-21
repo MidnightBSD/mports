@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.5 2009/03/25 14:50:23 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.6 2009/05/08 15:57:58 laffer1 Exp $
 
 PORTNAME=	xorg-drivers
 PORTVERSION=	7.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -56,13 +56,13 @@ VIDEO_EXCL=	via:openchrome
 INPUT_ON=	mouse \
 		keyboard
 INPUT_OFF=	acecad \
-		calcomp citron \
+		citron \
 		digitaledge dmc	dynapro \
 		elo2300	elographics \
 		fpit \
 		hyperpen \
 		jamstudio joystick \
-		magellan magictouch microtouch mutouch \
+		magellan microtouch mutouch \
 		palmax penmount \
 		spaceorb summa synaptics \
 		tek4957 \
