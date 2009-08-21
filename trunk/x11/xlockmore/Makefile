@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.6 2008/08/22 14:27:17 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.7 2009/04/14 02:30:58 laffer1 Exp $
 
 PORTNAME=	xlockmore
 PORTVERSION=	5.27
@@ -143,6 +143,6 @@ post-configure:
 	${REINPLACE_CMD} -e 's/-lXdpms//g' ${WRKSRC}/modes/Makefile
 
 post-install:
-	${CP} ${PREFIX}/man/xlock.1 ${PREFIX}/man/man1/
+	-${CP} ${PREFIX}/man/xlock.1 ${PREFIX}/man/man1/
 
 .include <bsd.port.post.mk>
