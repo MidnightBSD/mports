@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-voodoo/Makefile,v 1.1 2007/10/12 03:50:40 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-voodoo/Makefile,v 1.2 2009/03/16 15:46:52 laffer1 Exp $
 
 PORTNAME=	xf86-video-voodoo
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
