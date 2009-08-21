@@ -1,13 +1,7 @@
-# New ports collection Makefile for:	ncftpd
-# Date created:		19 June 2001
-# Whom:			Justin Stanford <jus@security.za.net>
-#
-# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.2 2007/04/23 02:49:57 ctriv Exp $
-# $FreeBSD: ports/ftp/ncftpd/Makefile,v 1.17 2006/11/12 11:57:27 itetcu Exp $
-#
+# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.3 2008/09/30 23:15:43 laffer1 Exp $
 
 PORTNAME=	ncftpd
-PORTVERSION=	2.8.5
+PORTVERSION=	2.8.6
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftpd/${PORTVERSION}/ \
 		ftp://ftp.nl.uu.net/pub/unix/ftp/ncftpd/${PORTVERSION}/ \
@@ -28,7 +22,11 @@ SUB_FILES=	pkg-message
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} >= 3000
+BINVER=		7.0
+.else
 BINVER=		6.0
+.endif
 .if ${ARCH} == amd64
 DIST_ARCH=	x86_64
 .if ${BINVER} == "6.0"
