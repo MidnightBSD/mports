@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.10 2009/02/23 20:30:07 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/limewire/Makefile,v 1.11 2009/06/07 22:01:56 laffer1 Exp $
 
 PORTNAME=	limewire
-PORTVERSION=	5.0.13
+PORTVERSION=	5.2.13
 PORTEPOCH=	1
 CATEGORIES=	net-p2p java
 MASTER_SITES=	http://www10.limewire.com/download/
