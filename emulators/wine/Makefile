@@ -1,14 +1,7 @@
-# ex:ts=8
-# New ports collection makefile for:    wine
-# Date created:         Sa   9 Nov 1996 00:52:22 MET
-# Whom:			se
-#
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.6 2008/09/10 04:15:49 crash Exp $
-# $FreeBSD: ports/emulators/wine/Makefile,v 1.222 2006/11/25 18:15:21 gerald Exp $
-#
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.7 2009/08/08 19:24:26 crash Exp $
 
 PORTNAME=	wine
-PORTVERSION=    1.1.27
+PORTVERSION=    1.1.28
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SFE \
@@ -18,6 +11,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
 LICENSE=        lgpl3
+
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		jpeg.9:${PORTSDIR}/graphics/jpeg \
@@ -27,11 +21,12 @@ LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--datadir=${DATADIR} --verbose --disable-tests \
-                --without-capi --without-gphoto --without-sane
+                --without-capi --without-gphoto -without-libgsm \
+		--without-sane
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/wine
-MAKE_JOBS_SAFE= yes
+MAKE_JOBS_SAFE=	yes
 MAN1=		widl.1 wine.1 winebuild.1 winedbg.1 winedump.1 winegcc.1 \
 		winemaker.1 wineprefixcreate.1 wineserver.1 wmc.1 wrc.1
 MLINKS=		winegcc.1 wineg++.1
@@ -39,7 +34,7 @@ ONLY_FOR_ARCHS=	i386
 USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GL=	glut
+USE_GL=		glut
 USE_XORG=	xpm xrender
 
 SUB_FILES=	pkg-message
@@ -48,7 +43,6 @@ OPTIONS=	CUPS	"Use CUPS (Common UNIX Printing System)" On \
 		HAL	"Use HAL (Hardware Abstraction Layer)"	 Off \
 		LDAP	"Use LDAP"				 Off \
 		LIBXSLT	"Use libxslt (only used by msxml3.dll)"	 Off
-
 
 .include <bsd.port.pre.mk>
 
@@ -80,7 +74,6 @@ LIB_DEPENDS+=   xslt.2:${PORTSDIR}/textproc/libxslt
 CONFIGURE_ARGS+=        --without-xslt
 .endif
 
-
 post-patch:
 	${REINPLACE_CMD} 's/-lpthread/-lthr/g' ${WRKSRC}/configure
 	${REINPLACE_CMD} '/ac_hal_libs=/s/"$$/ -lthr"/' ${WRKSRC}/configure
@@ -106,7 +99,5 @@ post-install:
 .endif
 	@${MKDIR} ${DESKTOPDIR}
 	@${MV} ${DATADIR}/applications/wine.desktop ${DESKTOPDIR}/
-	@${ECHO}
-	@${CAT} ${PKGMESSAGE}
     
 .include <bsd.port.post.mk>
