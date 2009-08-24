@@ -1,17 +1,12 @@
-# New ports collection makefile for:	teTeX-texmf
-# Date created:		5 June 2004
-# Whom:			hrs
-#
-# $FreeBSD: ports/print/teTeX-texmf/Makefile,v 1.15 2006/06/29 18:50:58 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/teTeX-texmf/Makefile,v 1.1 2007/01/24 17:07:24 laffer1 Exp $
 
 PORTNAME=	teTeX-texmf
 PORTVERSION=	3.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
-MASTER_SITE_SUBDIR=	systems/unix/teTeX/3.0/distrib
+MASTER_SITE_SUBDIR=	obsolete/systems/unix/teTeX/3.0/distrib
 DISTFILES=	${TETEX_TEXMF_SRC} dvipsk-jpatch-p1.6a1${EXTRACT_SUFX}:1
 DIST_SUBDIR=	teTeX
 EXTRACT_ONLY=	dvipsk-jpatch-p1.6a1${EXTRACT_SUFX}
@@ -26,7 +21,8 @@ RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/share/fonts/cmpsfont/README:${PORTSDIR}/print/cmpsfont \
 		${LOCALBASE}/share/fonts/amspsfont/READ.ME:${PORTSDIR}/print/amspsfnt
 
-CONFLICTS=	latex2e-[0-9]* tex-[0-9]* dvips-[0-9]* xdvi-[0-9]*
+CONFLICTS=	latex2e-[0-9]* tex-[0-9]* dvips-[0-9]* xdvi-[0-9]* \
+		ja-ptext-base-[0-9]*
 
 .include <bsd.port.pre.mk>
 
@@ -37,7 +33,6 @@ PLIST_SUB=	TEXMFDIR=${TEXMFDIR} \
 		TEXMFCONFIGDIR=${TEXMFCONFIGDIR} \
 		MKTEXLSR=${MKTEXLSR} \
 		TEXMF_LSR=${TEXMF_LSR}
-CONFLICTS=	ja-ptex-base-[0-9]*
 
 TETEX_TEXMF_SRC=tetex-texmf-${PORTVERSION}.tar.gz
 TEXMFDIR=	share/texmf
@@ -64,6 +59,9 @@ do-install:
 	cd ${PREFIX}/${TEXMFDISTDIR} && \
 		${TAR} -x -z -U -f ${DISTDIR}/${DIST_SUBDIR}/${TETEX_TEXMF_SRC} \
 			${EXCLUDE_LIST:S,^,--exclude ,g}
+	cd ${PREFIX}/${TEXMFDISTDIR} && \
+		${PATCH} < ${FILESDIR}/extra-patch-latex.ltx && \
+		${RM} -f tex/latex/base/latex.ltx.orig
 	${INSTALL_DATA} ${FILESDIR}/cslatex.ini ${PREFIX}/${TEXMFDISTDIR}/tex/cslatex/cslatex.ini
 	${INSTALL_DATA} ${FILESDIR}/csplain.ini ${PREFIX}/${TEXMFDISTDIR}/tex/csplain/csplain.ini
 	${INSTALL_DATA} ${FILESDIR}/t1code.tex ${PREFIX}/${TEXMFDISTDIR}/tex/csplain/t1code.tex
