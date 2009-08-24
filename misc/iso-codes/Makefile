@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.9 2009/04/05 19:27:24 laffer1 Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.10 2009/04/12 16:37:42 laffer1 Exp $
 
 PORTNAME=	iso-codes
-DISTVERSION=	3.8
+DISTVERSION=	3.10
 CATEGORIES=	misc
 MASTER_SITES=	ftp://pkg-isocodes.alioth.debian.org/pub/pkg-isocodes/
 
