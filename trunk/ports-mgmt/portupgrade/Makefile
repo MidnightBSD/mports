@@ -1,14 +1,8 @@
-# New ports collection makefile for:	portupgrade
-# Date created:		18 March 2001
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.10 2008/09/23 04:38:15 laffer1 Exp $
-# $FreeBSD: ports/sysutils/portupgrade/Makefile,v 1.232 2006/08/25 12:46:50 sem Exp $
-#
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.11 2009/06/04 01:29:00 laffer1 Exp $
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.4.6
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
