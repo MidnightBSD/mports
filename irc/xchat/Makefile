@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.9 2008/11/22 14:07:54 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.10 2009/05/31 03:24:22 laffer1 Exp $
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.6
@@ -104,6 +104,7 @@ PLIST_SUB+=	TCL="@comment "
 .endif
 
 .if defined(WITH_SOCKS)
+ONLY_FOR_ARCHS=	i386
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libsocks5.a:${PORTSDIR}/net/socks5
 CONFIGURE_ARGS+=--enable-socks
 .endif
