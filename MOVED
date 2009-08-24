@@ -1,0 +1,26 @@
+#
+# MOVED - a list of (recently) moved or removed ports
+#
+# $MidnightBSD$
+
+# Each entry consists of a single line containing the following four
+# fields in the order named, separated with the pipe (`|') character:
+#
+#     Port:	A port that was moved (category/portname).
+#     Moved to:	Where the port was moved to, or which port users
+#		can and should migrate to (category/portname).
+#		Blank indicates that the port was deleted.
+#     Date:	When the moving or the removal was done (YYYY-MM-DD,
+#		in EST/EDT).
+#     Why:	The reason why the port was moved or removed.
+#
+# Keep this list sorted in the chronological order.  New entries must
+# be added at the tail.
+#
+# If previously removed port gets restored, make sure to delete the relevant
+# line.  If a port is copied to a new location and the old location is kept
+# (e.g. upgraded to a later version), don't record it here.
+#
+# Port|Moved to|Date|Why
+devel/subversion-perl|devel/p5-subversion|2009-04-08|Renamed
+devel/subversion-python|devel/py-subversion|2009-04-08|Renamed
