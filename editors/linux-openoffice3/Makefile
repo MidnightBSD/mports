@@ -2,7 +2,7 @@
 # Date created:		June 4 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.3 2008/10/21 20:43:38 laffer1 Exp $
+# $MidnightBSD: mports/editors/linux-openoffice3/Makefile,v 1.4 2008/10/21 20:56:06 laffer1 Exp $
 #
 
 PORTNAME=	openoffice3
@@ -29,8 +29,8 @@ USE_XORG=	x11 ice xaw xau xext xrender xrandr \
 NO_BUILD=	yes
 
 OO_VER=		3.0
-OO_RELEASE=	3.0.0
-OO_BUILD=	9358
+OO_RELEASE=	3.0.1
+OO_BUILD=	9379
 
 RPM2CPIO?=	${LOCALBASE}/bin/rpm2cpio
 BUILD_DEPENDS+=	${RPM2CPIO}:${PORTSDIR}/archivers/rpm
@@ -38,56 +38,56 @@ RC_CMD?=			${RPM2CPIO}
 RC_AFTER_ARGS?=	| ${CPIO} -id --quiet
 
 RPMFILES= \
-	ooobasis3.0-base-3.0.0-9358.i586.rpm \
-	ooobasis3.0-binfilter-3.0.0-9358.i586.rpm \
-	ooobasis3.0-calc-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core01-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core02-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core03-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core04-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core05-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core06-3.0.0-9358.i586.rpm \
-	ooobasis3.0-core07-3.0.0-9358.i586.rpm \
-	ooobasis3.0-draw-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-base-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-binfilter-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-calc-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-draw-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-help-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-impress-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-math-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-res-3.0.0-9358.i586.rpm \
-	ooobasis3.0-en-US-writer-3.0.0-9358.i586.rpm \
-	ooobasis3.0-gnome-integration-3.0.0-9358.i586.rpm \
-	ooobasis3.0-graphicfilter-3.0.0-9358.i586.rpm \
-	ooobasis3.0-images-3.0.0-9358.i586.rpm \
-	ooobasis3.0-impress-3.0.0-9358.i586.rpm \
-	ooobasis3.0-javafilter-3.0.0-9358.i586.rpm \
-	ooobasis3.0-kde-integration-3.0.0-9358.i586.rpm \
-	ooobasis3.0-math-3.0.0-9358.i586.rpm \
-	ooobasis3.0-onlineupdate-3.0.0-9358.i586.rpm \
-	ooobasis3.0-ooofonts-3.0.0-9358.i586.rpm \
-	ooobasis3.0-ooolinguistic-3.0.0-9358.i586.rpm \
-	ooobasis3.0-pyuno-3.0.0-9358.i586.rpm \
-	ooobasis3.0-testtool-3.0.0-9358.i586.rpm \
-	ooobasis3.0-writer-3.0.0-9358.i586.rpm \
-	ooobasis3.0-xsltfilter-3.0.0-9358.i586.rpm \
-	openoffice.org-ure-1.4.0-9358.i586.rpm \
-	openoffice.org3-3.0.0-9358.i586.rpm \
-	openoffice.org3-base-3.0.0-9358.i586.rpm \
-	openoffice.org3-calc-3.0.0-9358.i586.rpm \
-	openoffice.org3-dict-en-3.0.0-9358.i586.rpm \
-	openoffice.org3-dict-es-3.0.0-9358.i586.rpm \
-	openoffice.org3-dict-fr-3.0.0-9358.i586.rpm \
-	openoffice.org3-draw-3.0.0-9358.i586.rpm \
-	openoffice.org3-en-US-3.0.0-9358.i586.rpm \
-	openoffice.org3-impress-3.0.0-9358.i586.rpm \
-	openoffice.org3-math-3.0.0-9358.i586.rpm \
-	openoffice.org3-writer-3.0.0-9358.i586.rpm \
-	desktop-integration/openoffice.org${OO_VER}-freedesktop-menus-${OO_VER}-9354.noarch.rpm
+	ooobasis3.0-base-3.0.1-9379.i586.rpm \
+	ooobasis3.0-binfilter-3.0.1-9379.i586.rpm \
+	ooobasis3.0-calc-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core01-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core02-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core03-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core04-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core05-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core06-3.0.1-9379.i586.rpm \
+	ooobasis3.0-core07-3.0.1-9379.i586.rpm \
+	ooobasis3.0-draw-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-base-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-binfilter-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-calc-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-draw-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-help-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-impress-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-math-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-res-3.0.1-9379.i586.rpm \
+	ooobasis3.0-en-US-writer-3.0.1-9379.i586.rpm \
+	ooobasis3.0-gnome-integration-3.0.1-9379.i586.rpm \
+	ooobasis3.0-graphicfilter-3.0.1-9379.i586.rpm \
+	ooobasis3.0-images-3.0.1-9379.i586.rpm \
+	ooobasis3.0-impress-3.0.1-9379.i586.rpm \
+	ooobasis3.0-javafilter-3.0.1-9379.i586.rpm \
+	ooobasis3.0-kde-integration-3.0.1-9379.i586.rpm \
+	ooobasis3.0-math-3.0.1-9379.i586.rpm \
+	ooobasis3.0-onlineupdate-3.0.1-9379.i586.rpm \
+	ooobasis3.0-ooofonts-3.0.1-9379.i586.rpm \
+	ooobasis3.0-ooolinguistic-3.0.1-9379.i586.rpm \
+	ooobasis3.0-pyuno-3.0.1-9379.i586.rpm \
+	ooobasis3.0-testtool-3.0.1-9379.i586.rpm \
+	ooobasis3.0-writer-3.0.1-9379.i586.rpm \
+	ooobasis3.0-xsltfilter-3.0.1-9379.i586.rpm \
+	openoffice.org-ure-1.4.1-9379.i586.rpm \
+	openoffice.org3-3.0.1-9379.i586.rpm \
+	openoffice.org3-base-3.0.1-9379.i586.rpm \
+	openoffice.org3-calc-3.0.1-9379.i586.rpm \
+	openoffice.org3-dict-en-3.0.1-9379.i586.rpm \
+	openoffice.org3-dict-es-3.0.1-9379.i586.rpm \
+	openoffice.org3-dict-fr-3.0.1-9379.i586.rpm \
+	openoffice.org3-draw-3.0.1-9379.i586.rpm \
+	openoffice.org3-en-US-3.0.1-9379.i586.rpm \
+	openoffice.org3-impress-3.0.1-9379.i586.rpm \
+	openoffice.org3-math-3.0.1-9379.i586.rpm \
+	openoffice.org3-writer-3.0.1-9379.i586.rpm \
+	desktop-integration/openoffice.org3.0-freedesktop-menus-3.0-9376.noarch.rpm
 
-WRKSRC=	${WRKDIR}/OOO300_m9_native_packed-1_en-US.${OO_BUILD}
+WRKSRC=	${WRKDIR}/OOO300_m15_native_packed-1_en-US.${OO_BUILD}
 
 OPTIONS=	JAVA "Enable Java Support" off
 
