@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/MOVED,v 1.1 2009/08/24 17:58:57 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -24,3 +24,4 @@
 # Port|Moved to|Date|Why
 devel/subversion-perl|devel/p5-subversion|2009-04-08|Renamed
 devel/subversion-python|devel/py-subversion|2009-04-08|Renamed
+www/firefox|www/browser|2009-06-27|We must ship unbranded firefox.
