@@ -1,5 +1,5 @@
 --- bin/portcvsweb.orig	2008-01-08 06:32:27 -0500
-+++ bin/portcvsweb	2009-08-24 14:12:27 -0400
++++ bin/portcvsweb	2009-08-24 14:58:27 -0400
 @@ -38,7 +38,7 @@
  
  BROWSER = ENV['BROWSER'] || 'w3m:lynx:links:firefox:mozilla:netscape'
@@ -44,3 +44,14 @@
  	  uri_info.uri = uri_info.base + uri_info.path
  	  ret = uri_info
  	end
+@@ -534,8 +535,8 @@
+     return uri
+   end
+ 
+-  puts "Inquiring the CVSweb site (ports)..." if $verbose
+-  uri = PortCvsWeb::Uri_CvsWeb::URI_BASE[OS_DEFAULT] + File.join('ports', file)
++  puts "Inquiring the CVSweb site (mports)..." if $verbose
++  uri = PortCvsWeb::Uri_CvsWeb::URI_BASE[OS_DEFAULT] + File.join('mports', file)
+   if uri_exist?(uri)
+     return uri
+   end
