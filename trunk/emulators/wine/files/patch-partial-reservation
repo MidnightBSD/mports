@@ -25,4 +25,3 @@ index d107fc7..a694e4f 100644
  #endif /* __i386__ */
  
      /* reserve the DOS area if not already done */
-
