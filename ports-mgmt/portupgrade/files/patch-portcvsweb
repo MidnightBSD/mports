@@ -1,5 +1,5 @@
---- bin/portcvsweb.orig	Tue Sep 23 00:33:59 2008
-+++ bin/portcvsweb	Tue Sep 23 00:35:14 2008
+--- bin/portcvsweb.orig	2008-01-08 06:32:27 -0500
++++ bin/portcvsweb	2009-08-24 14:12:27 -0400
 @@ -38,7 +38,7 @@
  
  BROWSER = ENV['BROWSER'] || 'w3m:lynx:links:firefox:mozilla:netscape'
@@ -26,3 +26,21 @@
        'FreeBSD' => 'http://www.FreeBSD.org/cgi/cvsweb.cgi/',
        'NetBSD' => 'http://cvsweb.netbsd.org/bsdweb.cgi/',
        'OpenBSD' => 'http://www.openbsd.org/cgi-bin/cvsweb/',
+@@ -293,7 +294,7 @@
+ 	uri_info = UriInfo.new
+ 	uri_info.os = Uri_Base.guess_os(nil) || OS_DEFAULT
+ 	uri_info.base = URI_BASE[uri_info.os]
+-	uri_info.path = File.join('ports', origin)  # XXX
++	uri_info.path = File.join('mports', origin)  # XXX
+ 	uri_info.uri = uri_info.base + uri_info.path
+ 	uri_info
+       else
+@@ -308,7 +309,7 @@
+ 	  uri_info = UriInfo.new
+ 	  uri_info.os = Uri_Base.guess_os(nil) || OS_DEFAULT
+ 	  uri_info.base = URI_BASE[uri_info.os]
+-	  uri_info.path = File.join('ports', origin)  # XXX
++	  uri_info.path = File.join('mports', origin)  # XXX
+ 	  uri_info.uri = uri_info.base + uri_info.path
+ 	  ret = uri_info
+ 	end
