@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.5 2009/04/03 06:07:00 laffer1 Exp $
 
 PORTNAME=	fusefs
 DISTVERSION=	0.3.9-pre1.20080208
@@ -58,6 +58,10 @@ IGNORE=		requires the Kernel source to be installed. Set SRC_BASE if it is not i
 IGNORE=		requires the userland sources to be installed. Set SRC_BASE if it is not in /usr/src
 .endif
 
+.if !defined(NOPORTDOCS)
+BUILD_DEPENDS+=	deplate:${PORTSDIR}/textproc/ruby-deplate
+.endif
+
 .if defined(WITH_AUTOSETUP)
 SUB_FILES+=	${SETUP}
 .else
@@ -71,7 +75,12 @@ post-patch:
 post-configure:
 	@${CP} ${LOCALBASE}/include/fuse/fuse_kernel.h ${WRKSRC}/fuse_module
 
-pre-install:
+post-build:
+.if !defined(NOPORTDOCS)
+	@cd ${WRKSRC}/doc && make plaintext html_chunked
+.endif
+
+pre-su-install:
 	@${MKDIR} ${KMODDIR}
 
 post-install:
@@ -79,6 +88,18 @@ post-install:
 .if defined(WITH_AUTOSETUP) && !defined(PACKAGE_BUILDING)
 	@${ECHO} "Modifying global startup config files and loading module..."
 	@${SH} ${WRKDIR}/${SETUP}
+.else
+	@${ECHO_CMD}; ${CAT} ${PKGMESSAGE}; ${ECHO_CMD}
+.endif
+
+.if !defined(NOPORTDOCS)
+	@${MKDIR} ${DOCSDIR}/kmod/html
+.for i in ${TXT_DOCS}
+	@${INSTALL_DATA} ${WRKSRC}/doc/plaintext_out/$i ${DOCSDIR}/kmod
+.endfor
+.for i in ${HTML_DOCS}
+	@${INSTALL_DATA} ${WRKSRC}/doc/html_chunked_out/$i ${DOCSDIR}/kmod/html
+.endfor
 .endif
 
 .include <bsd.port.post.mk>
