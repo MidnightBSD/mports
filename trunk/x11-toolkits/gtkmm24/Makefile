@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.6 2008/06/06 12:06:58 crash Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.7 2009/05/26 00:36:08 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	24
-PORTVERSION=	2.14.3
+PORTVERSION=	2.16.0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,7 +16,7 @@ LATEST_LINK=	gtkmm24
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	glibmm-2.4.1:${PORTSDIR}/devel/glibmm \
+LIB_DEPENDS=	glibmm-2.4.3:${PORTSDIR}/devel/glibmm \
 		cairomm-1.0.1:${PORTSDIR}/graphics/cairomm \
 		pangomm-1.4.1:${PORTSDIR}/x11-toolkits/pangomm
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
