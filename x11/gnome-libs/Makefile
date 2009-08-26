@@ -1,18 +1,10 @@
-# New ports collection makefile for:	gnomelibs
-# Date created:				17 June 1998
-# Whom:					Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11/gnome-libs/Makefile,v 1.124 2007/10/24 23:36:55 marcus Exp $
-#   $MCom: ports/x11/gnome-libs/Makefile,v 1.7 2007/08/04 03:51:32 marcus Exp $
-#
+# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.2 2008/06/01 19:37:55 laffer1 Exp $
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES?=	x11 gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/gnome-libs/1.4
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER?=	ports@MidnightBSD.org
