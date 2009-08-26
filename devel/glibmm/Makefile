@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.7 2009/04/08 20:22:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.8 2009/08/01 21:32:44 laffer1 Exp $
 
 PORTNAME=	glibmm
-PORTVERSION=	2.20.0
+PORTVERSION=	2.20.1
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
