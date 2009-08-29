@@ -14,9 +14,9 @@
 #    - graphics/libGLw
 #    - graphics/dri
 #
-# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.7 2009/05/08 13:44:55 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.8 2009/06/03 01:06:44 laffer1 Exp $
 
-MESAVERSION=	7.4.2
+MESAVERSION=	7.4.4
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.fu-berlin.de/pub/unix/X11/graphics/Mesa/
 MASTER_SITE_SUBDIR=	mesa3d
@@ -28,6 +28,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ENV=	CPPFLAGS=-I${LOCALBASE}/include \
 		LDFLAGS=-L${LOCALBASE}/lib
