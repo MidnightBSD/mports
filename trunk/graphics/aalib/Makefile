@@ -1,14 +1,8 @@
-# New ports collection makefile for:	aalib
-# Date created:				9 Dec 1997
-# Whom:					Andrey Zakhvatov
-#
-# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.1 2006/10/03 20:56:16 laffer1 Exp $
-# $FreeBSD: ports/graphics/aalib/Makefile,v 1.38 2006/06/19 20:06:52 shaun Exp $
-#
+# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.2 2009/03/02 22:43:20 laffer1 Exp $
 
 PORTNAME=	aalib
 PORTVERSION=	1.4.r5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	aa-project
@@ -18,6 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ascii art library
 LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:15
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.4.0
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
