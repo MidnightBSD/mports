@@ -1,14 +1,7 @@
-# New ports collection makefile for:	eog2
-# Date created:		21 May 2002
-# Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/eog/Makefile,v 1.3 2008/04/04 01:11:55 laffer1 Exp $
-# $FreeBSD: ports/graphics/eog/Makefile,v 1.52 2007/05/29 03:23:09 mezz Exp $
-#   $MCom: ports/graphics/eog/Makefile,v 1.51 2007/03/13 00:48:55 mezz Exp $
-#
+# $MidnightBSD: mports/graphics/eog/Makefile,v 1.4 2008/06/01 20:28:52 crash Exp $
 
 PORTNAME=	eog
-PORTVERSION=	2.22.2
+PORTVERSION=	2.26.2
 CATEGORIES=	graphics gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -19,6 +12,7 @@ COMMENT=	The Eye Of Gnome image viewer
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
+LIB_DEPENDS=	lcms.1:${PORTSDIR}/graphics/lcms
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
