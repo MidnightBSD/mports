@@ -1,10 +1,4 @@
-# New ports collection makefile for:	jbig
-# Date created:		19 November 1996
-# Whom:			mi
-#
-# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.1 2006/09/27 16:00:05 laffer1 Exp $
-# $FreeBSD: ports/graphics/jbigkit/Makefile,v 1.21 2004/06/27 18:10:45 krion Exp $
-#
+# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.2 2008/10/13 20:43:26 laffer1 Exp $
 
 PORTNAME=	jbigkit
 PORTVERSION=	1.6
@@ -17,7 +11,7 @@ LICENSE=	gpl2
 
 WRKSRC=	${WRKDIR}/${PORTNAME}
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 MAN1=	jbgtopbm.1 pbmtojbg.1
 
