@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gnomedesktop
-# Date created:				13 April 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.3 2008/05/31 02:20:09 laffer1 Exp $
-# $FreeBSD: ports/x11/gnome-desktop/Makefile,v 1.63 2007/07/03 07:27:20 marcus Exp $
-#
+# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.4 2008/09/21 18:59:09 laffer1 Exp $
 
 PORTNAME=	gnome-desktop
-PORTVERSION=	2.22.3
+PORTVERSION=	2.26.2
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
@@ -40,6 +34,12 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 MAN1=	gnome-about.1
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|xsltproc -o| xsltproc --nonet -o|g' \
+		${WRKSRC}/desktop-docs/fdl/Makefile.in \
+		${WRKSRC}/desktop-docs/gpl/Makefile.in \
+		${WRKSRC}/desktop-docs/lgpl/Makefile.in
 
 .include <bsd.port.mk>
 
