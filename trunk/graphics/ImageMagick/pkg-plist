@@ -80,6 +80,7 @@ include/ImageMagick/magick/montage.h
 include/ImageMagick/magick/option.h
 include/ImageMagick/magick/paint.h
 include/ImageMagick/magick/pixel.h
+include/ImageMagick/magick/policy.h
 include/ImageMagick/magick/prepress.h
 include/ImageMagick/magick/profile.h
 include/ImageMagick/magick/property.h
@@ -134,6 +135,7 @@ lib/ImageMagick-%%PORTVERSION%%/config/delegates.xml
 lib/ImageMagick-%%PORTVERSION%%/config/english.xml
 lib/ImageMagick-%%PORTVERSION%%/config/francais.xml
 lib/ImageMagick-%%PORTVERSION%%/config/locale.xml
+lib/ImageMagick-%%PORTVERSION%%/config/policy.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type-ghostscript.xml
 lib/ImageMagick-%%PORTVERSION%%/config/type-windows.xml
@@ -153,6 +155,9 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/bmp.a
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/bmp.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/bmp.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/cals.a
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/cals.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/cals.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/caption.a
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/caption.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/caption.so
@@ -213,6 +218,9 @@ lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/.keep
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/gray.a
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/gray.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/gray.so
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/hald.a
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/hald.la
+%%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/hald.so
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/histogram.a
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/histogram.la
 %%MODULES%%lib/ImageMagick-%%PORTVERSION%%/modules-%%QBIT%%/coders/histogram.so
@@ -503,20 +511,16 @@ libdata/pkgconfig/Wand.pc
 %%PORTDOCS%%%%DOCSDIR%%/images/bluebells_darker.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/bluebells_lin.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/bluebells_log.jpg
-%%PORTDOCS%%%%DOCSDIR%%/images/business+directory.gif
 %%PORTDOCS%%%%DOCSDIR%%/images/button.gif
-%%PORTDOCS%%%%DOCSDIR%%/images/button_kmvu.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/configure.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/definitive-guide.png
 %%PORTDOCS%%%%DOCSDIR%%/images/difference.png
-%%PORTDOCS%%%%DOCSDIR%%/images/dogwaffle.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/examples.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/frame.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/fuzzy-magick.png
 %%PORTDOCS%%%%DOCSDIR%%/images/gaussian-blur.png
 %%PORTDOCS%%%%DOCSDIR%%/images/granite.png
 %%PORTDOCS%%%%DOCSDIR%%/images/imade_art2.jpg
-%%PORTDOCS%%%%DOCSDIR%%/images/ivedc.png
 %%PORTDOCS%%%%DOCSDIR%%/images/label.gif
 %%PORTDOCS%%%%DOCSDIR%%/images/logo.eps
 %%PORTDOCS%%%%DOCSDIR%%/images/logo.jpg
@@ -539,7 +543,6 @@ libdata/pkgconfig/Wand.pc
 %%PORTDOCS%%%%DOCSDIR%%/images/sponsor.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/sprite.jpg
 %%PORTDOCS%%%%DOCSDIR%%/images/t-shirt.png
-%%PORTDOCS%%%%DOCSDIR%%/images/travelsur.gif
 %%PORTDOCS%%%%DOCSDIR%%/images/tricks.png
 %%PORTDOCS%%%%DOCSDIR%%/images/wand.ico
 %%PORTDOCS%%%%DOCSDIR%%/images/white-highlight.png
