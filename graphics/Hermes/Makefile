@@ -1,16 +1,10 @@
-# New ports collection makefile for:	Hermes
-# Date created:				29 April 1999
-# Whom:					Andrey Zakhvatov
-#
-# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.2 2007/08/14 05:16:13 laffer1 Exp $
-# $FreeBSD: ports/graphics/Hermes/Makefile,v 1.39 2007/02/01 02:41:37 kris Exp $
-#
+# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.3 2008/10/21 22:59:19 ctriv Exp $
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3
 PORTREVISION=	3
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.su.se/pub/lunar/source-archive/ \
+MASTER_SITES=	\
 		http://www.clanlib.org/download/legacy/ \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
@@ -23,7 +17,7 @@ USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 MAKE_ARGS=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}" \
 		AUTOHEADER="${TRUE}"
 USE_LDCONFIG=	yes
