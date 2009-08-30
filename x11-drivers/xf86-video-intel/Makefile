@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-intel/Makefile,v 1.3 2008/03/28 07:39:20 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-intel/Makefile,v 1.4 2009/03/16 14:35:46 laffer1 Exp $
 
 PORTNAME=	xf86-video-intel
-PORTVERSION=	2.5.1
+PORTVERSION=	2.7.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +13,6 @@ USE_GL=		gl
 
 XORG_CAT=	driver
 USE_XORG=	xvmc xineramaproto xextproto x11 xf86driproto glproto
-MAN4=		i810.4x intel.4x
+MAN4=		intel.4x
 
 .include <bsd.port.mk>

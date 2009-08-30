@@ -1,3 +1,4 @@
-MD5 (xorg/driver/xf86-video-intel-2.5.1.tar.bz2) = 62e96948860b7a8507963300f56d0d16
-SHA256 (xorg/driver/xf86-video-intel-2.5.1.tar.bz2) = c203b728f1203d6d52b2963cdc6bfd87fb83eb12ab786c8122ea26c7984ac313
-SIZE (xorg/driver/xf86-video-intel-2.5.1.tar.bz2) = 716182
+MD5 (xorg/driver/xf86-video-intel-2.7.1.tar.bz2) = 0eed17138da18ff1fb2b8ab0f076d957
+SHA256 (xorg/driver/xf86-video-intel-2.7.1.tar.bz2) = 255c0d54249cc0132f743254a43c21fac695fab2139c8ed96a07cf3c628e5f42
+RMD160 (xorg/driver/xf86-video-intel-2.7.1.tar.bz2) = 25208fe03f0fe849974a703f4a81e734e67cad18
+SIZE (xorg/driver/xf86-video-intel-2.7.1.tar.bz2) = 780625
