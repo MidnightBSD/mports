@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.87 2009/03/02 22:35:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.88 2009/03/15 19:00:32 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -21,6 +21,7 @@
     SUBDIR += gd
     SUBDIR += gdchart
     SUBDIR += gdk-pixbuf
+    SUBDIR += gegl
     SUBDIR += giblib
     SUBDIR += gimp-app
     SUBDIR += gle
