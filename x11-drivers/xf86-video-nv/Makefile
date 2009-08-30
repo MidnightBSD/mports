@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-nv/Makefile,v 1.4 2008/03/31 14:45:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-nv/Makefile,v 1.5 2009/03/16 14:39:43 laffer1 Exp $
 
 PORTNAME=	xf86-video-nv
-PORTVERSION=	2.1.12
+PORTVERSION=	2.1.13
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
