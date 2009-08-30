@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.76 2009/05/21 15:19:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.77 2009/08/20 17:52:37 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
     SUBDIR += Terminal
     SUBDIR += appres
+    SUBDIR += babl
     SUBDIR += beforelight
     SUBDIR += bigreqsproto
     SUBDIR += bitmap
