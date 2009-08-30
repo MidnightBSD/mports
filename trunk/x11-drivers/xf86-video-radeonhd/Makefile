@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.5 2009/03/16 14:30:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.6 2009/05/08 20:18:30 laffer1 Exp $
 
 PORTNAME=	xf86-video-radeonhd
 PORTVERSION=	1.2.5
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +12,7 @@ LICENSE=	x11
 OPTIONS=	UTILS "Install rhd_conntest and rhd_dump utilities" off
 
 XORG_CAT=	driver
-USE_XORG=	damageproto videoproto xextproto xf86driproto
+USE_XORG=	damageproto glproto videoproto xextproto xf86driproto
 CONFIGURE_ARGS=	--enable-exa
 
 MAN4=	radeonhd.4x
