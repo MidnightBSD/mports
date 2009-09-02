@@ -1,13 +1,7 @@
-# New ports collection makefile for:   D-BUS
-# Date Created:			22 June 2004
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.6 2009/03/12 05:03:45 ctriv Exp $
-# $FreeBSD: ports/devel/dbus/Makefile,v 1.67 2007/05/19 20:02:19 flz Exp $
-#
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.7 2009/03/13 04:15:10 laffer1 Exp $
 
 PORTNAME=	dbus
-PORTVERSION?=	1.2.4.4
+PORTVERSION?=	1.2.4.6
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
