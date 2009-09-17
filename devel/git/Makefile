@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.16 2009/06/27 14:54:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.17 2009/09/16 20:15:11 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.3.4
+PORTVERSION=	1.6.4.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -23,6 +23,7 @@ RUN_DEPENDS=	cvsps:${PORTSDIR}/devel/cvsps \
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
 		curl.5:${PORTSDIR}/ftp/curl 
 
+MAKE_JOBS_SAFE=	yes
 
 MAN1= 	git-add.1 git-am.1 git-annotate.1 git-apply.1 git-archimport.1 \
 	git-archive.1 git-bisect.1 git-blame.1 git-branch.1 git-bundle.1 \
@@ -55,12 +56,18 @@ MAN1= 	git-add.1 git-am.1 git-annotate.1 git-apply.1 git-archimport.1 \
 	git-update-server-info.1 git-upload-archive.1 git-upload-pack.1 \
 	git-var.1 git-verify-pack.1 git-verify-tag.1 git-web--browse.1 \
 	git-whatchanged.1 git-write-tree.1 git.1 
-
-
-MAN5= 	gitattributes.5 githooks.5 gitignore.5 gitmodules.5 gitrepository-layout.5 
-MAN7=	gitcli.7 gitcore-tutorial.7 gitcvs-migration.7 gitdiffcore.7 \
-	gitglossary.7 gittutorial-2.7 gittutorial.7 gitworkflows.7 
-
+MAN3=	Git.3
+MAN5=	gitattributes.5 \
+	githooks.5 \
+	gitignore.5 \
+	gitmodules.5 \
+	gitrepository-layout.5
+MAN7=	gitcli.7 \
+	gitglossary.7 \
+	gittutorial.7 \
+	gitcore-tutorial.7 \
+	gitdiffcore.7 \
+	gittutorial-2.7
 
 SUB_FILES=	pkg-message
 
@@ -72,6 +79,7 @@ USE_GMAKE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 MAKE_ENV+=	CURLDIR=${LOCALBASE} \
 		NEEDS_LIBICONV=yes \
+		OLD_ICONV=yes \
 		PYTHON_PATH=${LOCALBASE}/bin/python \
 		PERL_PATH=${PERL} \
 		LIBMD_SHA1=yes
@@ -84,6 +92,14 @@ OPTIONS=	GUI "Enable building of GUI tools" on \
 		GITWEB "Install gitweb" off
 
 .include <bsd.port.pre.mk>
+
+.ifdef (WITH_HTMLDOCS)
+RUN_DEPENDS+=	${LOCALBASE}/bin/asciidoc:${PORTSDIR}/textproc/asciidoc \
+		${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt
+PLIST_SUB+=	HTMLDOCS=""
+.else
+PLIST_SUB+=	HTMLDOCS="@comment "
+.endif
 
 .ifndef (WITHOUT_GUI)
 MAN1+=		git-citool.1 \
@@ -131,6 +147,11 @@ post-install:
 .for i in ${MAN7}
 	${INSTALL_MAN} ${WRKDIR}/man7/${i} ${MANPREFIX}/man/man7/
 .endfor
+
+.ifdef (WITH_HTMLDOCS)
+	${MKDIR} ${DOCSDIR}
+        ${GMAKE} -C ${WRKSRC} install-html ${MAKE_ENV} ${FAKE_MAKEARGS}
+.endif
 
 	-${RM} -f ${PREFIX}/lib/perl5/${PERL_VERSION}/mach/perllocal.pod
 	${MKDIR} ${PREFIX}/share/emacs/site-lisp/git
