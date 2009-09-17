@@ -1,17 +1,11 @@
-# Ports collection makefile for:	Jakarta Log4J
-# Date created:				11 October 2002
-# Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
-#
-# $MidnightBSD: mports/devel/log4j/Makefile,v 1.1 2007/03/17 01:08:05 laffer1 Exp $
-# $FreeBSD: ports/devel/log4j/Makefile,v 1.12 2006/11/01 18:39:39 hq Exp $
-#
+# $MidnightBSD: mports/devel/log4j/Makefile,v 1.2 2008/10/13 20:53:44 ctriv Exp $
 
 PORTNAME=	log4j
-PORTVERSION=	1.2.14
+PORTVERSION=	1.2.15
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	logging/${PORTNAME}/${PORTVERSION}
-DISTNAME=	logging-${PORTNAME}-${PORTVERSION}
+DISTNAME=	apache-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast and flexible logging library for Java
@@ -28,11 +22,11 @@ PORTDOCS=	*
 
 do-install:
 	@${ECHO_MSG} -n ">> Installing JAR as ${JAVAJARDIR}/${PORTNAME}.jar..."
-	@${INSTALL_DATA} ${WRKSRC}/dist/lib/log4j-${PORTVERSION}.jar ${JAVAJARDIR}/${PORTNAME}.jar
+	@${INSTALL_DATA} ${WRKSRC}/log4j-${PORTVERSION}.jar ${JAVAJARDIR}/${PORTNAME}.jar
 	@${ECHO_MSG} " [ DONE ]"
 .if !defined(NOPORTDOCS)
 	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}/..."
-	@cd ${WRKSRC}/docs \
+	@cd ${WRKSRC}/site \
 	  && ${FIND} . -type d -exec ${MKDIR} ${DOCSDIR}/{} \; \
 	  && ${FIND} . -type f -exec ${INSTALL_DATA} {} ${DOCSDIR}/{} \;
 	@${ECHO_MSG} " [ DONE ]"
