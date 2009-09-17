@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.9 2008/08/20 17:06:11 crash Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.10 2009/08/09 17:22:41 laffer1 Exp $
 
 PORTNAME=	freetype2
 PORTVERSION=	2.3.9
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S,%SUBDIR%,freetype,} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/%SUBDIR%/ \
@@ -16,6 +16,8 @@ DISTNAME=	${PORTNAME:S/2//}-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free and portable TrueType font rendering engine
 LICENSE=	gpl2
+
+MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool:15
 USE_BZIP2=	yes
