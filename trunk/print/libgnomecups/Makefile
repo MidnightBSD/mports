@@ -1,13 +1,7 @@
-# New ports collection makefile for:	libgnomecups
-# Date created:				14 Jul 2003
-# Whom:					Glenn Johnson <glennpj@charter.net>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/print/libgnomecups/Makefile,v 1.22 2007/07/05 03:54:51 tmclaugh Exp $
-#
+# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.1 2007/08/22 08:15:10 laffer1 Exp $
 
 PORTNAME=	libgnomecups
-PORTVERSION=	0.2.2
+PORTVERSION=	0.2.3
 PORTEPOCH=	1
 CATEGORIES=	print gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
