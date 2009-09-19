@@ -1,14 +1,8 @@
-# New ports collection makefile for:	lzo
-# Date created:				21 Feb 1998
-# Whom:					giffunip@asme.org
-#
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.4 2008/03/12 01:45:58 laffer1 Exp $
-# $FreeBSD: ports/archivers/lzo2/Makefile,v 1.38 2006/02/23 10:34:20 ade Exp $
-#
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.5 2008/05/30 20:20:38 crash Exp $
 
 PORTNAME=	lzo2
 PORTVERSION=	2.03
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		http://fresh.t-systems-sfr.com/unix/src/misc/ \
@@ -20,9 +14,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=  yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--enable-shared
 USE_LDCONFIG=	yes
 

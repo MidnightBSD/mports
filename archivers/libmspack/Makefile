@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libmspack
-# Date created:				25 Nov 2004
-# Whom:					Max Khon <fjoe@FreeBSD.org>
-#
-# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.4 2008/03/12 01:45:57 laffer1 Exp $
-# $FreeBSD: ports/archivers/libmspack/Makefile,v 1.7 2007/02/01 02:41:15 kris Exp $
-#
+# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.5 2009/03/27 05:52:36 laffer1 Exp $
 
 PORTNAME=	libmspack
 PORTVERSION=	0.0.20060920
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
@@ -17,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for Microsoft compression formats
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 USE_LDCONFIG=	yes
