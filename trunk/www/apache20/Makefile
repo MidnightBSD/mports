@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.9 2008/11/19 20:08:01 ctriv Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.10 2009/06/06 21:13:44 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 
@@ -38,7 +38,7 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 			LIBTOOL_M4=${LOCALBASE}/share/aclocal/libtool${LIBTOOL_VERSION}.m4 \
 			AUTOHEADER=${AUTOHEADER}
 USE_ICONV=		yes
-USE_AUTOTOOLS=		autoconf:262 libtool:15
+USE_AUTOTOOLS=		autoconf:262 libtool:22
 USE_PERL5=		yes
 USE_RC_SUBR=		yes
 USE_GNOME=		pkgconfig
