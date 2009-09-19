@@ -1,9 +1,4 @@
-# New ports collection makefile for:	linux-atk
-# Date created:				2003-07-05
-# Whom:					trevor
-#
-# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.4 2007/09/14 15:07:22 laffer1 Exp $
-#
+# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.5 2007/11/06 05:13:17 laffer1 Exp $
 
 PORTNAME=	atk
 PORTVERSION=	1.9.1

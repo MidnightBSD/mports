@@ -1,10 +1,4 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
-# $MidnightBSD$
-# $FreeBSD: ports/accessibility/qt4-accessible/Makefile,v 1.12 2008/08/04 23:30:29 miwi Exp $
-#
+# $MidnightBSD: mports/accessibility/qt4-accessible/Makefile,v 1.1 2008/10/09 19:56:05 laffer1 Exp $
 
 PORTNAME=	accessible
 PORTVERSION=	${QT4_VERSION}

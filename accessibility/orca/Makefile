@@ -1,11 +1,4 @@
-# New ports collection makefile for:	orca
-# Date created:				25 Jul 2006
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.3 2008/03/11 23:32:04 laffer1 Exp $
-# $FreeBSD: ports/accessibility/orca/Makefile,v 1.9 2007/10/29 11:32:32 ahze Exp $
-#   $MCom: ports/accessibility/orca/Makefile,v 1.32 2007/10/13 21:13:14 marcus Exp $
-#
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.4 2008/06/14 14:41:22 laffer1 Exp $
 
 PORTNAME=	orca
 PORTVERSION=	2.22.2
