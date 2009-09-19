@@ -1,11 +1,4 @@
-# New ports collection makefile for:	gok
-# Date created:			12 April 2003
-# Whom:				Adam Weinberger <adamw@freebsd.org>
-#
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.3 2008/03/11 23:32:04 laffer1 Exp $
-# $FreeBSD: ports/accessibility/gok/Makefile,v 1.37 2007/10/24 23:34:41 marcus Exp $
-#    $MCom: ports/accessibility/gok/Makefile,v 1.83 2007/10/15 13:40:59 ahze Exp $
-#
+# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.4 2008/06/14 14:39:38 laffer1 Exp $
 
 PORTNAME=	gok
 PORTVERSION=	1.3.7
