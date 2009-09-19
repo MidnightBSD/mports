@@ -1,14 +1,8 @@
-# New ports collection makefile for:	rpm
-# Date created:		30 April 1999
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.1 2006/09/18 00:22:50 laffer1 Exp $
-# $FreeBSD: ports/archivers/rpm/Makefile,v 1.62 2006/08/14 09:56:58 clsung Exp $
-#
+# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.2 2008/03/12 01:57:39 laffer1 Exp $
 
 PORTNAME=	rpm
 PORTVERSION=	3.0.6
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	archivers
 MASTER_SITES=	http://ftp.tpnet.pl/vol/d4/ftp.rpm.org/rpm/dist/rpm-3.0.x/ \
 		http://www.stttelkom.ac.id/staf/TBH/distfiles/
@@ -23,7 +17,7 @@ CONFLICTS=	rpm-4.*
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	automake:14 autoconf:213 libtool:15
+USE_AUTOTOOLS=	automake:14 autoconf:213 libtool:22
 CONFIGURE_ARGS=	--with-glob
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -lintl -liconv"
