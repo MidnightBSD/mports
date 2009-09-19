@@ -3,7 +3,7 @@
 # Date created:				30 March 2001
 # Whom:					David O'Brien <obrien@NUXI.com>
 #
-# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.1 2007/12/30 21:32:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.2 2008/06/14 21:13:14 laffer1 Exp $
 # $FreeBSD: ports/devel/gdb6/Makefile,v 1.51 2007/06/29 13:14:33 mi Exp $
 #
 
@@ -71,7 +71,7 @@ PLIST_SUB+=	INSIGHT='@comment '
 .endif
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd6.1
 .endif
 
 post-patch:
