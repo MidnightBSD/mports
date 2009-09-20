@@ -1,10 +1,4 @@
-# New ports collection makefile for:	JSON
-# Date created:		19 Aug 2005
-# Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
-#
-# $FreeBSD: ports/converters/p5-JSON/Makefile,v 1.8 2007/04/21 10:16:51 kuriyama Exp $
-# $MidnightBSD: mports/converters/p5-JSON/Makefile,v 1.2 2007/09/24 22:08:11 ctriv Exp $
-#
+# $MidnightBSD: mports/converters/p5-JSON/Makefile,v 1.3 2008/03/14 00:36:43 laffer1 Exp $
 
 PORTNAME=	JSON
 PORTVERSION=	1.15
