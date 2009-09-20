@@ -2,7 +2,7 @@
 # Date created:				02 May 2005
 # Whom:					Vsevolod Stakhov <vsevolod@highsecure.ru>
 #
-# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.8 2008/06/06 00:29:30 laffer1 Exp $ 
+# $MidnightBSD: mports/net/openldap23-server/Makefile,v 1.9 2009/09/20 01:48:40 laffer1 Exp $ 
 # $FreeBSD: ports/net/openldap23-server/Makefile,v 1.140 2006/08/20 06:31:42 delphij Exp $
 #
 
@@ -170,7 +170,7 @@ USE_RC_SUBR=		slapd.sh ${SLURPDSH}
 EXTRA_PATCHES+=		${FILESDIR}/extrapatch-Makefile.in
 
 .if defined(WITH_MODULES) || !defined(WITHOUT_DYNAMIC_BACKENDS) || defined(WITH_SLAPI)
-USE_AUTOTOOLS+=		libltdl:15
+USE_AUTOTOOLS+=		libltdl:22
 CONFIGURE_ARGS+=	--enable-modules
 PLIST_SUB+=		MODULES=""
 .else

@@ -2,7 +2,7 @@
 # Date created:				19 Dec 2004
 # Whom:					Oliver Lehmann
 #
-# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.2 2007/02/20 00:11:23 laffer1 Exp $
+# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.3 2007/09/01 00:10:00 ctriv Exp $
 # $FreeBSD: ports/security/courier-authlib/Makefile,v 1.28 2007/01/17 05:25:27 oliver Exp $
 #
 
@@ -36,7 +36,7 @@ OPTIONS+=	GDBM	"Use gdbm instead of system bdb"	off
 
 .else	# !defined(PKGNAMESUFFIX)
 
-USE_AUTOTOOLS=	libltdl:15
+USE_AUTOTOOLS=	libltdl:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
