@@ -1,12 +1,7 @@
-# New ports collection makefile for:	p5-Encode
-# Date created:				Jul 24, 2005
-# Whom:					Rong-En Fan <rafan@infor.org>
-#
-# $FreeBSD: ports/converters/p5-Encode/Makefile,v 1.19 2008/05/12 02:05:38 rafan Exp $
-# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.2 2008/07/19 18:11:24 laffer1 Exp $
+# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.3 2008/09/15 18:07:49 crash Exp $
 
 PORTNAME=	Encode
-PORTVERSION=	2.26
+PORTVERSION=	2.37
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
