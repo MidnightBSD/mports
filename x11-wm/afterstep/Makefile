@@ -2,7 +2,7 @@
 # Date created:		October 29th 1996
 # Whom:			jfitz@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.4 2008/05/31 19:15:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.5 2008/05/31 19:38:31 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 #
 
@@ -23,7 +23,7 @@ USE_GMAKE=	yes
 LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo \
 		execinfo.1:${PORTSDIR}/devel/libexecinfo \
 		freetype.9:${PORTSDIR}/print/freetype2 \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		rsvg-2.2:${PORTSDIR}/graphics/librsvg2 \
 		tiff.4:${PORTSDIR}/graphics/tiff \

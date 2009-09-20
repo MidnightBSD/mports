@@ -2,7 +2,7 @@
 # Date created:         		June 27, 2004
 # Whom:					fjoe@FreeBSD.ORG
 #
-# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.1 2008/04/20 20:16:11 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.2 2008/06/08 01:04:19 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/wxgtk26/Makefile,v 1.38 2007/11/24 19:58:43 fjoe Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT?=	The wxWidgets GUI toolkit with GTK+ bindings
 LICENSE=	lgpl
 
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png\
-		jpeg.9:${PORTSDIR}/graphics/jpeg\
+		jpeg.10:${PORTSDIR}/graphics/jpeg\
 		tiff.4:${PORTSDIR}/graphics/tiff\
 		expat.6:${PORTSDIR}/textproc/expat2\
 		mspack.1:${PORTSDIR}/archivers/libmspack
