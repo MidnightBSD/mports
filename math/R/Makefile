@@ -3,7 +3,7 @@
 # Date created:		Fri Feb  9 10:50:25 EST 2001
 # Whom:			Maurice Castro <maurice@serc.rmit.edu.au>
 #
-# $MidnightBSD: mports/math/R/Makefile,v 1.3 2008/04/14 18:08:52 laffer1 Exp $
+# $MidnightBSD: mports/math/R/Makefile,v 1.4 2008/04/14 18:09:47 laffer1 Exp $
 # $FreeBSD: ports/math/R/Makefile,v 1.68 2008/03/23 16:44:04 miwi Exp $
 #
 
@@ -98,7 +98,7 @@ PLIST_SUB+=	TCLTK=""
 .if defined(WITHOUT_JPEG)
 CONFIGURE_ARGS+=--without-jpeglib
 .else
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=--with-jpeglib
 .endif
 
