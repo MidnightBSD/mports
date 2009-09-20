@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.1 2009/05/27 16:30:12 laffer1 Exp $
 
 PORTNAME=	pulseaudio
 PORTVERSION=	0.9.14
@@ -19,7 +19,7 @@ USE_GNOME=	gnometarget gnomehack glib20 intltool ltverhack
 USE_XORG=	x11 sm
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libltdl:15 libtool:15
+USE_AUTOTOOLS=	libltdl:22 libtool:22
 USE_GMAKE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \

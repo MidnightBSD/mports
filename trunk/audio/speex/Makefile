@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.4 2008/04/10 05:07:22 ctriv Exp $
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.5 2009/06/04 22:26:54 laffer1 Exp $
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1
@@ -18,7 +18,7 @@ MAKE_JOBS_SAFE=	yes
 
 USE_GNOME=	gnomehack gnometarget ltverhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg-dir=${LOCALBASE} \
 		--build=${ARCH}-portbld-freebsd6.0

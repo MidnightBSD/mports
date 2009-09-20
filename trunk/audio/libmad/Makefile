@@ -2,7 +2,7 @@
 # Date created:        26 November 2003
 # Whom:                Sergey Akifyev <asa@gascom.ru>
 #
-# $MidnightBSD: mports/audio/libmad/Makefile,v 1.2 2008/02/28 17:15:00 laffer1 Exp $
+# $MidnightBSD: mports/audio/libmad/Makefile,v 1.3 2008/04/10 03:36:11 ctriv Exp $
 # $FreeBSD: ports/audio/libmad/Makefile,v 1.9 2006/02/23 10:34:34 ade Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libmad library (part of MAD project)
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
