@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.6 2009/03/14 01:13:08 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql41-server/Makefile,v 1.7 2009/06/27 20:11:35 laffer1 Exp $
 
 PORTNAME?=	mysql
 PORTVERSION=	4.1.25
@@ -13,7 +13,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql41-client
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0

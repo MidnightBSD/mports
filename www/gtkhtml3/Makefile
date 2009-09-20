@@ -1,16 +1,9 @@
-# New ports collection makefile for:	gtkhtml3
-# Date created:				12 March 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.2 2008/06/08 18:27:51 laffer1 Exp $
-# $FreeBSD: ports/www/gtkhtml3/Makefile,v 1.95 2008/01/07 21:49:07 mezz Exp $
-#   $MCom: ports-stable/www/gtkhtml3/Makefile,v 1.5 2007/11/30 19:38:35 marcus Exp $
-#
+# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.3 2008/10/03 19:27:37 laffer1 Exp $
 
 PORTNAME=	gtkhtml3
-PORTVERSION=	3.18.3
+PORTVERSION=	3.26.2
 CATEGORIES=	www gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/3$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/3$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
@@ -19,15 +12,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight HTML rendering/printing/editing engine
 LICENSE=	gpl2
 
-LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
+		enchant.1:${PORTSDIR}/textproc/enchant
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_XORG=	xinerama xi xrandr xcursor xcomposite xdamage
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gail libgnomeui ltverhack
+USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui ltverhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

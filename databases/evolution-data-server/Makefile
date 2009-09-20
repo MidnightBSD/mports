@@ -1,6 +1,6 @@
 # New ports collection makefile for:	evolution-data-server
 #
-# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.3 2008/06/08 18:38:44 laffer1 Exp $
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.4 2008/06/23 02:02:42 laffer1 Exp $
 #
 
 PORTNAME=	evolution-data-server
@@ -25,7 +25,7 @@ USE_XORG=	x11
 USE_GNOME=	gnomeprefix gnomehack intlhack gnometarget libgnomeui \
 		ltverhack
 USE_OPENLDAP=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BDB=	41+
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static \

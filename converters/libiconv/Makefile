@@ -2,7 +2,7 @@
 # Date created:				17 July 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.5 2008/08/22 13:35:00 laffer1 Exp $
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.6 2009/04/05 19:35:54 laffer1 Exp $
 #
 
 PORTNAME=	libiconv
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A character set conversion library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
 LIBTOOLFILES=	configure libcharset/configure

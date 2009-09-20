@@ -2,7 +2,7 @@
 # Date created:		14 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.3 2007/08/07 18:17:37 laffer1 Exp $
+# $MidnightBSD: mports/converters/recode/Makefile,v 1.4 2007/08/07 18:23:51 laffer1 Exp $
 # $FreeBSD: ports/converters/recode/Makefile,v 1.36 2006/02/23 10:35:00 ade Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	Converts files between character sets and usages
 LICENSE=	gpl2
 
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_PERL5=	yes
 INSTALLS_SHLIB=	yes
 CONFIGURE_ARGS=	--without-included-gettext

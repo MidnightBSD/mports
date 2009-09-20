@@ -2,7 +2,7 @@
 # Date created:				28 Jan 2006
 # Whom:					Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/mysql60-server/Makefile,v 1.3 2009/03/14 02:25:43 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql60-server/Makefile,v 1.4 2009/06/27 20:01:09 laffer1 Exp $
 
 
 PORTNAME?=	mysql
@@ -19,7 +19,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql60-client databases/mysql60-scripts
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
