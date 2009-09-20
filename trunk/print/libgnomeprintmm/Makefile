@@ -2,7 +2,7 @@
 # Date created:				17 December 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/libgnomeprintmm/Makefile,v 1.1 2008/03/04 18:44:43 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprintmm/Makefile,v 1.10 2007/05/28 04:39:07 bland Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	C++ bindings for the GNOME print support library
 LIB_DEPENDS=	gtkmm-2.4.1:${PORTSDIR}/x11-toolkits/gtkmm24
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_X_PREFIX=	yes
 USE_GMAKE=	yes

@@ -3,7 +3,7 @@
 # Whom:			Yarema <yds@CoolRat.org>
 #
 # $FreeBSD: ports/mail/courier/Makefile,v 1.44 2007/01/01 00:00:21 miwi Exp $
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.3 2007/08/01 21:52:15 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.4 2008/06/23 02:01:17 laffer1 Exp $
 #
 
 PORTNAME=	courier
@@ -61,7 +61,7 @@ CALENDIR=	/var/spool/calendar
 MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_FAM=	yes
 USE_GETTEXT=	yes

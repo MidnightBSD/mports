@@ -3,7 +3,7 @@
 # Whom:                Peter Schmiedeskamp
 #
 # $FreeBSD: ports/graphics/libexif/Makefile,v 1.25 2006/03/29 06:54:33 pav Exp $
-# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.1 2007/01/20 15:54:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.2 2008/03/28 02:48:08 laffer1 Exp $
 #
 
 PORTNAME=	libexif
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to read digital camera file meta-data
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
 GNU_CONFIGURE=	yes

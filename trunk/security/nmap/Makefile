@@ -1,10 +1,4 @@
-# Ports collection makefile for:  nmap
-# Date created:			  Tue Aug 04, 1998
-# Whom:				  David O'Brien (obrien@NUXI.com)
-#
-# $MidnightBSD: mports/security/nmap/Makefile,v 1.1 2007/07/29 21:47:46 laffer1 Exp $
-# $FreeBSD: ports/security/nmap/Makefile,v 1.105 2007/06/14 14:11:29 jmelo Exp $
-#
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.2 2008/05/31 19:42:00 laffer1 Exp $
 
 PORTNAME?=	nmap
 PORTVERSION=	${DISTVERSION:L:C/([a-z])[a-z]+/\1/g:C/[^a-z0-9+]+/./g}

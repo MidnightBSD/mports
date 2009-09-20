@@ -2,7 +2,7 @@
 # Date created:		Sun May 22 17:22:53 CEST 2005
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glade3/Makefile,v 1.3 2008/03/31 00:52:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/glade3/Makefile,v 1.4 2008/06/22 19:44:18 laffer1 Exp $
 # $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
 #   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
 #
@@ -27,7 +27,7 @@ WANT_GNOME=	yes
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--enable-gnome
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"

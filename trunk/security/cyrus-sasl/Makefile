@@ -2,7 +2,7 @@
 # Date created:				Nov 1 1999
 # Whom:					hetzels@westbend.net
 #
-# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.5 2008/06/22 19:58:16 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl/Makefile,v 1.6 2008/06/25 14:55:39 laffer1 Exp $
 # $FreeBSD: ports/security/cyrus-sasl/Makefile,v 1.65 2006/08/15 01:04:48 clsung Exp $
 #
 
@@ -49,7 +49,7 @@ MAN8=		sasldblistusers.8 saslpasswd.8 saslauthd1.8
 
 USE_RC_SUBR=	YES
 
-USE_AUTOTOOLS=	automake:14 autoconf:213 libtool:15
+USE_AUTOTOOLS=	automake:14 autoconf:213 libtool:22
 AUTOMAKE_ARGS=	--add-missing --include-deps
 
 

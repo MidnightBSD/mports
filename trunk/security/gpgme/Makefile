@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.7 2008/06/13 04:08:34 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.8 2009/05/01 14:47:59 laffer1 Exp $
 
 PORTNAME=	gpgme
 PORTVERSION=	1.1.8
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 RUN_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0

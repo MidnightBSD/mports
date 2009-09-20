@@ -2,7 +2,7 @@
 # Date created:				03 May 2006
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/gnome-power-manager/Makefile,v 1.1 2008/05/31 01:49:02 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gnome-power-manager/Makefile,v 1.17 2008/04/19 17:53:39 miwi Exp $
 #   $MCom: ports/sysutils/gnome-power-manager/Makefile,v 1.40 2008/03/10 22:50:08 ahze Exp $
 #
@@ -29,7 +29,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GSTREAMER=	good
 USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui libwnck \
 		gnomedocutils gnomepanel

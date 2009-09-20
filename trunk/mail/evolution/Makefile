@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.6 2008/06/23 18:07:41 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.7 2008/06/23 19:52:24 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution/Makefile,v 1.151 2008/01/08 02:59:45 marcus Exp $
 #   $MCom: ports-stable/mail/evolution/Makefile,v 1.1 2007/11/30 21:33:37 marcus Exp $
 #
@@ -28,7 +28,7 @@ USE_GETTEXT=	yes
 USE_XLIB=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack evolutiondataserver gtkhtml3 \
 		desktopfileutils gnomedocutils ltasneededhack
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes

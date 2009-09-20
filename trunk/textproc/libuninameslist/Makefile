@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libuninameslist
-# Date created:				3 November 2003
-# Whom:					KANOU Hiroki <kanou@khdd.net>
-#
-# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.2 2007/04/26 03:35:55 ctriv Exp $ 
-# $FreeBSD: ports/textproc/libuninameslist/Makefile,v 1.4 2006/04/08 17:18:35 mnag Exp $
-#
+# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.3 2009/06/12 19:39:15 laffer1 Exp $ 
 
 PORTNAME=	libuninameslist
 PORTVERSION=	20060907
@@ -21,7 +15,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USE_GNOME=	gnometarget
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 ALL_TARGET=	both
 USE_LDCONFIG=	yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.8 2009/08/01 21:32:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.9 2009/08/26 20:43:15 laffer1 Exp $
 
 PORTNAME=	glibmm
 PORTVERSION=	2.20.1
@@ -19,7 +19,7 @@ USE_BZIP2=	yes
 LIB_DEPENDS=	sigc-2.0.0:${PORTSDIR}/devel/libsigc++20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget glib20
 USE_PERL5=	yes

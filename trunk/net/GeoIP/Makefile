@@ -2,7 +2,7 @@
 # Date created:				May 17 2008
 # Whom:	      				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.1 2008/05/18 18:41:55 laffer1 Exp $
+# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.2 2009/01/12 22:31:31 laffer1 Exp $
 #
 
 PORTNAME=	GeoIP
@@ -17,7 +17,7 @@ LICENSE=	gpl2
 # lgpl 2.1 but has a few gpl2 files
 
 USE_GNOME=	gnometarget
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 
 MAN1=		geoiplookup.1 geoipupdate.1

@@ -3,7 +3,7 @@
 # Whom:                 lofi@freebsd.org
 #
 # $FreeBSD: ports/textproc/wv2/Makefile,v 1.17 2006/05/27 10:26:18 lofi Exp $
-# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.3 2007/10/03 18:22:19 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.4 2008/06/29 23:00:26 laffer1 Exp $
 #
 
 PORTNAME=	wv2
@@ -22,7 +22,7 @@ CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} --disable-debug
 
 USE_GNOME=	gnometarget libgsf
 USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes

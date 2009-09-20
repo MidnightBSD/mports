@@ -2,7 +2,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.1 2008/02/27 01:52:27 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.2 2009/06/27 23:42:15 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-epi
@@ -20,7 +20,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"		\
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib -liconv"
 CONFIGURE_ARGS=	--program-transform="s|^|xre-|" \

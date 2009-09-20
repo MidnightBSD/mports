@@ -2,7 +2,7 @@
 # Date created:         23 Jul 1997
 # Whom:                 stb
 #
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.3 2008/02/27 20:51:15 laffer1 Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.4 2008/09/13 21:51:11 laffer1 Exp $
 # $FreeBSD: ports/net/netatalk/Makefile,v 1.74 2007/01/29 23:51:52 kris Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and print server for AppleTalk networks
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_BDB=	41+

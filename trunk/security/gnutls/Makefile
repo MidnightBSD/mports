@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.11 2009/05/01 14:33:08 laffer1 Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.12 2009/05/01 14:49:02 laffer1 Exp $
 
 PORTNAME=	gnutls
 PORTVERSION=	2.6.6
@@ -19,7 +19,7 @@ USE_ICONV=	yes
 USE_GNOME=	pkgconfig ltverhack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"

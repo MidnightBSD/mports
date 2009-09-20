@@ -2,7 +2,7 @@
 # Date created:				29 August 2000
 # Whom:					David Gilbert <dgilbert@velocet.ca>
 #
-# $MidnightBSD: mports/graphics/gle/Makefile,v 1.3 2007/04/27 18:54:16 ctriv Exp $
+# $MidnightBSD: mports/graphics/gle/Makefile,v 1.4 2009/03/02 22:46:34 laffer1 Exp $
 # $FreeBSD: ports/graphics/gle/Makefile,v 1.14 2006/08/14 23:06:33 clsung Exp $
 #
 
@@ -21,7 +21,7 @@ COMMENT=	A GL Tubing and Extrusion Library
 LICENSE=	gpl2
 
 USE_GL=		glut
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_XORG=	x11 xext
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gconf/Makefile,v 1.3 2008/08/24 19:19:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf/Makefile,v 1.4 2008/08/24 19:22:56 laffer1 Exp $
 # $FreeBSD: ports/devel/gconf/Makefile,v 1.50 2007/05/19 20:02:32 flz Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	guile.19:${PORTSDIR}/lang/guile
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_XLIB=	yes

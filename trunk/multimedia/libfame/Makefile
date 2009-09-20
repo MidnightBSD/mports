@@ -3,7 +3,7 @@
 # Date created:			Mar 23, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.1 2006/10/05 00:52:06 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.2 2008/08/13 19:05:20 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A video encoding library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

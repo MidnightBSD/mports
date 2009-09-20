@@ -2,7 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/kuickshow/Makefile,v 1.1 2007/03/16 19:35:14 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kuickshow/Makefile,v 1.2 2008/03/21 22:53:20 laffer1 Exp $
 # $FreeBSD: ports/graphics/kuickshow/Makefile,v 1.20 2006/09/12 23:26:18 lofi Exp $
 #
 
@@ -24,7 +24,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
 USE_LDCONFIG=	yes

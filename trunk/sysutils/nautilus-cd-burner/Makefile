@@ -2,7 +2,7 @@
 # Date created:				13 April 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/nautilus-cd-burner/Makefile,v 1.3 2008/06/01 19:58:43 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/nautilus-cd-burner/Makefile,v 1.4 2008/09/21 20:49:10 laffer1 Exp $
 # $FreeBSD: ports/sysutils/nautilus-cd-burner/Makefile,v 1.42 2007/05/29 04:07:21 mezz Exp $
 #
 
@@ -28,7 +28,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack nautilus2 ltverhack \
 		desktopfileutils ltasneededhack
 USE_CDRTOOLS=	yes
 INSTALLS_ICONS=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

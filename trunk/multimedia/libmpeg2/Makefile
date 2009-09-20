@@ -3,7 +3,7 @@
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
 # $FreeBSD: ports/multimedia/libmpeg2/Makefile,v 1.32 2006/09/21 08:07:58 stas Exp $
-# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.2 2007/03/15 01:26:50 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.3 2008/08/13 19:17:08 laffer1 Exp $
 #
 
 PORTNAME=	libmpeg2
@@ -18,7 +18,7 @@ COMMENT=	A free library for decoding mpeg-2 and mpeg-1 video streams
 LICENSE=	gpl2
 
 USE_GNOME=	gnometarget
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS=	--enable-shared \

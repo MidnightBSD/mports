@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.1 2007/08/23 05:57:20 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.2 2009/06/12 19:41:21 laffer1 Exp $
 #
 
 PORTNAME=	libcroco
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack
 
