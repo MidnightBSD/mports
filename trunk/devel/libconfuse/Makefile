@@ -2,7 +2,7 @@
 # Date created:				18 September 2004
 # Whom:					Juraj Lutter <otis@sk.freebsd.org>
 #
-# $MidnightBSD: mports/devel/libconfuse/Makefile,v 1.1 2008/06/01 21:45:49 archite Exp $
+# $MidnightBSD: mports/devel/libconfuse/Makefile,v 1.2 2008/08/21 19:04:36 laffer1 Exp $
 # $FreeBSD: ports/devel/libconfuse/Makefile,v 1.7 2008/04/25 12:50:35 garga Exp $
 #
 
@@ -22,7 +22,7 @@ LIB_DEPENDS+=	${LOCALBASE}/lib/libcheck.a:${PORTSDIR}/devel/libcheck
 .endif
 
 USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig
 CONFIGURE_ARGS+=	--disable-nls

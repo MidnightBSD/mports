@@ -1,10 +1,4 @@
-# New ports collection makefile for:	SWIG
-# Date created:			19 April 1996
-# Whom:				jkh
-#
-# $MidnightBSD: mports/devel/swig13/Makefile,v 1.1 2007/12/31 05:45:00 laffer1 Exp $
-# $FreeBSD: ports/devel/swig13/Makefile,v 1.76 2007/09/30 04:46:46 linimon Exp $
-#
+# $MidnightBSD: mports/devel/swig13/Makefile,v 1.2 2008/10/08 04:34:21 ctriv Exp $
 
 PORTNAME=	swig
 PORTVERSION=	1.3.36
@@ -16,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simplified Wrapper and Interface Generator
 LICENSE=	bsd2
 
-USE_AUTOTOOLS=	autoconf:261:env libtool:15
+USE_AUTOTOOLS=	autoconf:262:env libtool:22
 
 VER=		${PORTVERSION:R}
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
