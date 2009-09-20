@@ -2,7 +2,7 @@
 # Date created:				26 June 1996
 # Whom:					gpalmer
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/net-snmp53/Makefile,v 1.1 2008/06/20 22:13:20 laffer1 Exp $
 # $FreeBSD: ports/net-mgmt/net-snmp53/Makefile,v 1.153 2008/04/28 22:54:28 sobomax Exp $
 #
 
@@ -28,7 +28,7 @@ RUN_DEPEND=	${SITE_PERL}/${PERL_ARCH}/Tk.pm:${PORTSDIR}/x11-toolkits/p5-Tk
 .endif
 PATCH_DEPENDS=	${LIBTOOL_DEPENDS}
 
-USE_AUTOTOOLS=	autoconf:261 libtool:15
+USE_AUTOTOOLS=	autoconf:262 libtool:22
 USE_RC_SUBR=	snmpd.sh snmptrapd.sh
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes

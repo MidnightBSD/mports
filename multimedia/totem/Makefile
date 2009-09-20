@@ -2,7 +2,7 @@
 # Date created:         17 Oct 2002
 # Whom:                 Hendrik Scholz <hendrik@scholz.net>
 #
-# $MidnightBSD: mports/multimedia/totem/Makefile,v 1.2 2008/02/28 02:57:50 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/totem/Makefile,v 1.3 2008/10/20 18:51:35 ctriv Exp $
 # $FreeBSD: ports/multimedia/totem/Makefile,v 1.92 2008/01/07 22:03:13 mezz Exp $
 #   $MCom: ports/multimedia/totem/Makefile,v 1.89 2007/10/17 17:22:32 mezz Exp $
 #
@@ -31,7 +31,7 @@ GNOME_DESKTOP_VERSION=2
 WANT_GSTREAMER=	yes
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 INSTALLS_OMF=	yes
 PKGMESSAGE=	${WRKDIR}/pkg-message

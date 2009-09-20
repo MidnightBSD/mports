@@ -1,10 +1,4 @@
-# New ports collection makefile for:    wv
-# Date created:         Fri Nov  6 09:06:33 PST 1998
-# Whom:                 sumikawa@kame.net
-#
-# $MidnightBSD: mports/textproc/wv/Makefile,v 1.1 2007/08/22 08:45:09 laffer1 Exp $
-# $FreeBSD: ports/textproc/wv/Makefile,v 1.45 2007/07/10 15:14:02 delphij Exp $
-#
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.2 2008/06/29 23:01:41 laffer1 Exp $
 
 PORTNAME=	wv
 PORTVERSION=	1.2.4
@@ -22,7 +16,7 @@ RUN_DEPENDS=	lynx:${PORTSDIR}/www/lynx
 
 USE_GNOME=	gnometarget libgsf
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-png=${LOCALBASE} \

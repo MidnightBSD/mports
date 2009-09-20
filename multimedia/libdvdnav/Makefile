@@ -2,7 +2,7 @@
 # Date created:         21 May 2002
 # Whom:                 MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.1 2008/01/05 01:44:18 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.2 2008/03/26 00:45:45 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdnav/Makefile,v 1.26 2007/09/30 04:47:08 linimon Exp $
 #
 
@@ -23,7 +23,7 @@ CONFIGURE_ENV=	THREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		THREAD_LIBS="${PTHREAD_LIBS}"
 CONFIGURE_ARGS=	--program-transform-name=''
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15 autoconf:261 automake:16
+USE_AUTOTOOLS=	libtool:22 autoconf:261 automake:16
 GNU_CONFIGURE=	yes
 
 post-patch:

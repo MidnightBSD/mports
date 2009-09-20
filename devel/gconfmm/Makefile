@@ -1,10 +1,4 @@
-# New ports collection makefile for:    gconfmm
-# Date created:         22 May 2003
-# Whom:                 Alexander Nedotsukov <bland@mail.ru>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/gconfmm/Makefile,v 1.15 2007/05/19 20:02:33 flz Exp $
-#
+# $MidnightBSD: mports/devel/gconfmm/Makefile,v 1.1 2008/03/28 05:07:28 laffer1 Exp $
 
 PORTNAME=	gconfmm
 PORTVERSION=	2.0.2
@@ -20,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.0:${PORTSDIR}/x11-toolkits/gtkmm20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_X_PREFIX=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack lthack gconf2

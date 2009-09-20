@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libmcrypt/Makefile,v 1.2 2008/03/26 01:48:55 laffer1 Exp $
+# $MidnightBSD: mports/security/libmcrypt/Makefile,v 1.3 2009/05/01 14:36:06 laffer1 Exp $
 
 PORTNAME=	libmcrypt
 PORTVERSION=	2.5.8
@@ -11,7 +11,7 @@ COMMENT=	Multi-cipher cryptographic library (used in PHP)
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-static
 USE_LDCONFIG=	yes

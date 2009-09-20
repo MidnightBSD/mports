@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.5 2008/06/13 02:45:02 laffer1 Exp $
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.6 2009/05/01 14:35:08 laffer1 Exp $
 
 PORTNAME=	libgpg-error
 PORTVERSION=	1.7
@@ -11,7 +11,7 @@ COMMENT=	Common error values for all GnuPG components
 LICENSE=	gpl2
 
 USE_BZIP2=    yes
-USE_AUTOTOOLS=        libtool:15
+USE_AUTOTOOLS=        libtool:22
 USE_GNOME=    ltverhack
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes

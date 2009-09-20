@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.5 2008/06/14 21:07:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.6 2009/04/13 18:10:21 laffer1 Exp $
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 USE_GMAKE=	yes
 USE_GNOME?=	gnomehack _glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \

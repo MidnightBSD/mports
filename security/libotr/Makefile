@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: ports/security/libotr/Makefile,v 1.15 2008/08/20 00:57:13 ade Exp $
+# $MidnightBSD: mports/security/libotr/Makefile,v 1.1 2009/01/04 03:28:38 ctriv Exp $
 #
 
 PORTNAME=	libotr
@@ -19,7 +19,7 @@ LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		gcrypt:${PORTSDIR}/security/libgcrypt
 
 USE_GNOME=	pkgconfig
-USE_AUTOTOOLS=	autoconf:262 libtool:15
+USE_AUTOTOOLS=	autoconf:262 libtool:22
 USE_LDCONFIG=	yes
 
 MAN1=		otr_toolkit.1

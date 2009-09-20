@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.6 2008/11/07 17:32:31 ctriv Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.7 2008/11/10 18:53:11 ctriv Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
@@ -42,7 +42,7 @@ CONFLICTS+=	freeradius-mysql-[0-9].* freeradius-[02-9].*
 .endif
 
 USE_RC_SUBR=	radiusd.sh
-USE_AUTOTOOLS=	libltdl:15 libtool:15 autoconf:262
+USE_AUTOTOOLS=	libltdl:22 libtool:22 autoconf:262
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 DESTDIRNAME=	R

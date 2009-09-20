@@ -3,7 +3,7 @@
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
 # $FreeBSD: ports/net/linc/Makefile,v 1.40 2006/05/31 22:18:45 mezz Exp $
-# $MidnightBSD: mports/net/linc/Makefile,v 1.1 2007/01/20 16:21:27 laffer1 Exp $
+# $MidnightBSD: mports/net/linc/Makefile,v 1.2 2007/05/20 23:55:12 ctriv Exp $
 #
 
 PORTNAME=	linc
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

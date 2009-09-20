@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.2 2008/04/06 01:53:00 laffer1 Exp $
+# $MidnightBSD: mports/security/libgnomesu/Makefile,v 1.3 2009/05/01 15:20:28 laffer1 Exp $
 
 PORTNAME=	libgnomesu
 PORTVERSION=	1.0.0
@@ -11,7 +11,7 @@ COMMENT=	Library and frontend for running commands as root
 LICENSE=	gpl2
 # while the library is lgpl, it uses GPL components directly.
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix libgnomeui
 CONFIGURE_ARGS+=--disable-install-pam

@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: ports/math/cln/Makefile,v 1.36 2008/08/12 00:40:51 araujo Exp $
+# $MidnightBSD: mports/math/cln/Makefile,v 1.1 2008/12/20 05:52:19 ctriv Exp $
 #
 
 PORTNAME=	cln
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_GMAKE=	yes

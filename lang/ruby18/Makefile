@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.7 2008/06/26 19:31:43 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.8 2009/08/20 19:23:59 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -234,8 +234,6 @@ post-install:
 	@${ECHO_CMD} "@unexec rmdir %D/share/ri/${RUBY_VER} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/share/ri 2>/dev/null || true" >> ${TMPPLIST}
 
-	@${CAT} ${PKGMESSAGE}
-
 plist::
 	truncate -s0 pkg-plist
 .for FILE in ${INSTALLED_SCRIPTS}
@@ -285,7 +283,6 @@ plist::
 		${SED} 's,^${RUBY_LIBDIR},%%RUBY_LIBDIR%%,' >> pkg-plist
 	@${FIND} -ds ${RUBY_LIBDIR}/ -type d | ${SORT} -r | \
 		${SED} -E -e 's,^${RUBY_LIBDIR}(.*),@dirrm %%RUBY_LIBDIR%%\1,' >> pkg-plist
-
 	@${ECHO_CMD} "%%RUBY_SITEARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "%%RUBY_VENDORARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITEARCHLIBDIR%%" >> pkg-plist
@@ -295,7 +292,6 @@ plist::
 	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby/vendor_ruby" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby" >> pkg-plist
-
 	@${SED} -i "" -E -e "s,${RUBY_ARCH},%%RUBY_ARCH%%,g" pkg-plist
 
 test:

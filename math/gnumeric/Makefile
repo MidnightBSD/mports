@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gnumeric
-# Date created:				08 October 1998
-# Whom:					Yukihiro Nakai <Nakai@technologist.com>
-#
-# $FreeBSD: ports/math/gnumeric/Makefile,v 1.141 2008/05/25 19:26:22 marcus Exp $
-#   $MCom: ports/math/gnumeric/Makefile,v 1.42 2008/03/11 12:45:31 ahze Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/math/gnumeric/Makefile,v 1.1 2008/06/05 21:52:13 crash Exp $
 
 PORTNAME=	gnumeric
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.4
 CATEGORIES=	math gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
@@ -16,6 +10,7 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNOME 2 spreadsheet
 LICENSE=        gpl2
+
 LIB_DEPENDS=	goffice-0.6.6:${PORTSDIR}/devel/goffice \
 		psiconv.10:${PORTSDIR}/converters/psiconv
 
@@ -25,7 +20,7 @@ USE_PERL5=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier \
 		libgsf_gnome pygtk2 desktopfileutils libgnomeui
-USE_PYTHON=	yes
+USE_PYTHON=	2.6+
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

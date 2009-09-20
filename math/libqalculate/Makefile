@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/math/libqalculate/Makefile,v 1.17 2008/06/06 13:44:00 edwin Exp $
+# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.1 2008/12/20 18:25:29 ctriv Exp $
 #
 
 PORTNAME=	libqalculate
@@ -16,7 +16,7 @@ LIB_DEPENDS=	cln.5:${PORTSDIR}/math/cln
 USE_GNOME=	glib20 gnomehack gnometarget intlhack libxml2
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 
 post-patch:

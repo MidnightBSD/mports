@@ -2,7 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.2 2008/03/21 22:51:10 laffer1 Exp $
 # $FreeBSD: ports/graphics/kamera/Makefile,v 1.15 2006/09/12 23:26:17 lofi Exp $
 #
 
@@ -26,7 +26,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
 

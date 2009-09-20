@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.2 2008/03/28 02:19:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.3 2009/06/22 17:41:29 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
@@ -37,7 +37,7 @@ USE_XLIB=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui libwnck
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	${LOCALBASE}/lib/${MOZILLA}

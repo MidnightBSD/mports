@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/openslp/Makefile,v 1.2 2008/02/27 22:30:56 laffer1 Exp $
+# $MidnightBSD: mports/net/openslp/Makefile,v 1.3 2009/06/13 04:43:20 laffer1 Exp $
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes

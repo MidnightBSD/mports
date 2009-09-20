@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.1 2008/07/20 04:59:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.2 2009/04/15 00:46:26 laffer1 Exp $
 
 PORTNAME=	plotutils
 PORTVERSION=	2.5.1
@@ -14,7 +14,7 @@ LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
 USE_GNOME=	gnometarget
 USE_MOTIF=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--enable-libplotter --enable-libxmi --with-motif
 USE_LDCONFIG=	yes

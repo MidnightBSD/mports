@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgnomecanvasmm/Makefile,v 1.1 2008/03/28 05:09:42 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvasmm/Makefile,v 1.2 2009/08/13 19:41:41 laffer1 Exp $
 
 PORTNAME=	libgnomecanvasmm
 PORTVERSION=	2.0.1
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libgnomecanvas
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static
 

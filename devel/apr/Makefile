@@ -2,7 +2,7 @@
 # Date created:		19 February 2002
 # Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.7 2008/10/10 18:18:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.8 2008/10/13 18:01:59 laffer1 Exp $
 # $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
 #
 # Tunables:
@@ -30,7 +30,7 @@ LICENSE=	apache2
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_ICONV=		yes
-USE_AUTOTOOLS=		automake:19 autoconf:261 libtool:15:env
+USE_AUTOTOOLS=		automake:19 autoconf:262 libtool:22:env
 USE_PERL5=		yes
 USE_GMAKE=		yes
 USE_PYTHON_BUILD=	yes

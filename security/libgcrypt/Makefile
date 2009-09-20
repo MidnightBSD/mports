@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.7 2009/05/01 14:32:17 laffer1 Exp $
 
 PORTNAME=	libgcrypt
 PORTVERSION=	1.4.4
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 USE_LDCONFIG=	yes

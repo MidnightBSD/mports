@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: mports/games/libggz/Makefile,v 1.1 2008/12/14 03:32:19 ctriv Exp $
+# $MidnightBSD: mports/games/libggz/Makefile,v 1.2 2009/05/22 03:30:55 laffer1 Exp $
 #
 
 PORTNAME=	libggz
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack gnometarget
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
