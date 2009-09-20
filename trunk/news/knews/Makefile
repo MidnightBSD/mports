@@ -2,7 +2,7 @@
 # Date created:         Sun Apr 14 09:23:59 MET DST 1996
 # Whom:                 Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/news/knews/Makefile,v 1.1 2008/05/31 16:05:46 laffer1 Exp $
 # $FreeBSD: ports/news/knews/Makefile,v 1.48 2008/03/29 12:38:04 dinoex Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A threaded nntp newsreader for X
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		compface:${PORTSDIR}/mail/faces
 RUN_DEPENDS=	newsp:${PORTSDIR}/print/mp-letter

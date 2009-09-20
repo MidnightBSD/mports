@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.4 2009/06/29 16:39:15 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.5 2009/08/08 16:11:44 laffer1 Exp $
 
 PORTNAME=	browser3
 DISTVERSION=	3.0.13
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
 		nss3:${PORTSDIR}/security/nss \
