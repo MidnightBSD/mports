@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.3 2009/04/14 23:33:27 laffer1 Exp $
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.4 2009/04/14 23:33:59 laffer1 Exp $
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.0
@@ -17,7 +17,7 @@ LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl \
 USE_GNOME=	gnometarget
 USE_ICONV=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--disable-doxygen --disable-dot --disable-gengetopt \
 		--with-opensp-includes=${LOCALBASE}/include/OpenSP
