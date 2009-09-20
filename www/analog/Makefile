@@ -2,7 +2,7 @@
 # Date created:		October 21st 1996
 # Whom:			jfitz
 #
-# $MidnightBSD: mports/www/analog/Makefile,v 1.4 2008/07/16 04:01:51 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.5 2008/07/16 04:28:51 laffer1 Exp $
 # $FreeBSD: ports/www/analog/Makefile,v 1.57 2006/01/04 23:32:10 edwin Exp $
 #
 
@@ -27,7 +27,7 @@ COMMENT=	An extremely fast program for analysing WWW logfiles
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png
 
 LIMGDIR?=	www/data/images

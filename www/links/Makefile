@@ -2,7 +2,7 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.7 2008/07/24 03:39:25 laffer1 Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.8 2008/10/08 04:46:22 laffer1 Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
@@ -36,7 +36,7 @@ OPTIONS=	SVGALIB "non-X11 graphics support" off \
 .if defined(WITH_SVGALIB)
 LIB_DEPENDS+=	vga.1:${PORTSDIR}/graphics/svgalib \
 		png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--enable-graphics
 OPTIONS_MESG=	"non-X11 graphics support enabled, "
@@ -47,7 +47,7 @@ OPTIONS_MESG=	"non-X11 graphics support disabled, "
 
 .if !defined(WITHOUT_X11)
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 USE_XLIB=	yes
 CONFIGURE_ARGS+=	--enable-graphics --with-x
