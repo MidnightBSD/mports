@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/devel/libglademm/Makefile,v 1.1 2008/03/28 05:04:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/libglademm/Makefile,v 1.2 2008/09/21 19:54:09 laffer1 Exp $
 # $FreeBSD: ports/devel/libglademm/Makefile,v 1.19 2007/05/19 20:03:07 flz Exp $
 #
 
@@ -24,7 +24,7 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 USE_XORG=	x11 sm
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libglade2
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static
 

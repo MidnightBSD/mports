@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.3 2008/04/20 21:26:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.4 2009/05/14 23:18:43 laffer1 Exp $
 
 PORTNAME=	kdevelop
 PORTVERSION=	3.5.3
@@ -36,7 +36,7 @@ USE_KDELIBS_VER=3
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_BDB=	yes
-USE_AUTOTOOLS=  libtool:15 autotools:run
+USE_AUTOTOOLS=  libtool:22 autotools:run
 _NO_KDE_FINAL=	yes
 CONFIGURE_ARGS+=--with-qtdoc-dir=${X11BASE}/share/doc/qt/html \
 		--with-db-includedir=${BDB_INCLUDE_DIR} \

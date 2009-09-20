@@ -2,7 +2,7 @@
 # Date Created:			25 July 2004
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.1 2007/05/07 02:25:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.2 2008/10/13 20:41:32 laffer1 Exp $
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
 #    $MCom: ports/devel/py-dbus/Makefile,v 1.8 2007/03/01 05:52:46 marcus Exp $
 
@@ -22,7 +22,7 @@ LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 USE_GNOME=	gnomehack gnometarget
 USE_PYTHON=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
