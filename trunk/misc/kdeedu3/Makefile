@@ -3,7 +3,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeedu3/Makefile,v 1.34 2006/09/12 23:26:32 lofi Exp $
-# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.2 2007/08/01 20:56:40 laffer1 Exp $
+# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.3 2007/12/30 03:53:25 laffer1 Exp $
 #
 
 PORTNAME=	kdeedu
@@ -26,7 +26,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_XPM=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 
 CONFIGURE_ARGS+=--enable-libusb=${LOCALBASE}
 
