@@ -2,7 +2,7 @@
 # Date created:				05 October 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.4 2008/04/13 21:52:47 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.5 2008/06/06 12:06:30 crash Exp $
 # $FreeBSD: ports/x11-toolkits/vte/Makefile,v 1.58 2006/05/31 22:18:51 mezz Exp $
 #
 
@@ -26,7 +26,7 @@ USE_GMAKE=	yes
 USE_BISON=	build
 USE_XLIB=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GETTEXT=	yes
 USE_GNOME?=	gnomeprefix gnomehack gtk20 ltverhack referencehack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

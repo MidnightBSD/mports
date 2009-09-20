@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gdl
-# Date created:				24 July 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.3 2008/06/14 16:59:59 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/gdl/Makefile,v 1.29 2007/07/10 04:38:08 marcus Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.4 2008/06/14 17:01:00 laffer1 Exp $
 
 PORTNAME=	gdl
-PORTVERSION=	0.7.11
+PORTVERSION=	2.26.2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 
@@ -17,7 +11,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_GNOME=	gnomeprefix gnomehack libgnomeui
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
