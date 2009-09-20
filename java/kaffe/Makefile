@@ -2,7 +2,7 @@
 # Date created:         4 August 2003
 # Whom:                 Mark Huizer <xaa+ports@timewasters.nl>
 #
-# $MidnightBSD: mports/java/kaffe/Makefile,v 1.1 2008/06/10 02:09:25 laffer1 Exp $
+# $MidnightBSD: mports/java/kaffe/Makefile,v 1.2 2008/06/10 02:11:14 laffer1 Exp $
 # $FreeBSD: ports/java/kaffe/Makefile,v 1.79 2008/06/06 13:38:47 edwin Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-platform Java virtual machine with JIT compiler and AWT package
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		png.5:${PORTSDIR}/graphics/png \
 		gmp.7:${PORTSDIR}/math/libgmp4
