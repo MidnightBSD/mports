@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libxfce4mcs/Makefile,v 1.1 2008/09/25 02:39:54 laffer1 Exp $
 # $FreeBSD: ports/x11/libxfce4mcs/Makefile,v 1.37 2008/06/06 14:09:04 edwin Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 settings management library used by most XFce 4 modules
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes

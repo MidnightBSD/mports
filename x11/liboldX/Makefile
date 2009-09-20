@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/liboldX/Makefile,v 1.1 2007/10/05 19:59:53 ctriv Exp $
+# $MidnightBSD: mports/x11/liboldX/Makefile,v 1.2 2009/03/14 19:52:53 laffer1 Exp $
 
 PORTNAME=	liboldX
 PORTVERSION=	1.0.1
@@ -11,7 +11,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	x11
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 

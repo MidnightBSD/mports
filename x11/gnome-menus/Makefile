@@ -2,7 +2,7 @@
 # Date created:				30 November 2004
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.3 2008/06/01 19:41:41 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.4 2008/09/21 19:02:39 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
 #   $MCom: ports/x11/gnome-menus/Makefile,v 1.50 2007/03/12 22:36:46 marcus Exp $
 #
@@ -22,7 +22,7 @@ USE_BZIP2=	yes
 USE_XORG=	x11
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
