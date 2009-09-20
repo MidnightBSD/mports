@@ -1,14 +1,8 @@
-# New ports collection makefile for:	gd
-# Date created:				27 Mar 1998
-# Whom:					jeff@cetlink.net
-#
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.4 2008/08/12 21:17:09 laffer1 Exp $
-# $FreeBSD: ports/graphics/gd/Makefile,v 1.78 2005/12/18 10:30:10 dinoex Exp $
-#
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.5 2009/09/20 02:44:54 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
-PORTREVISION?=	1
+PORTREVISION?=	2
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	http://www.libgd.org/releases/
@@ -30,6 +24,7 @@ USE_LDCONFIG=	yes
 SCRIPTDIR=	${FILESDIR}
 CPPFLAGS+=	-DHAVE_ERRNO_H -DHAVE_FT2BUILD_H -DHAVE_LIBFREETYPE -DHAVE_LIBJPEG -DHAVE_LIBPNG \
 		-DHAVE_LIBZ -DHAVE_STDDEF_H -DHAVE_STDINT_H -DHAVE_STDLIB_H
+LDFLAGS+=	-L${WRKSRC}
 LDFLAGS2=	-L${PREFIX}/lib -L${LOCALBASE}/lib
 FEATURES=	GD_JPEG GD_FREETYPE GD_PNG GD_GIF GD_GIFANIM GD_OPENPOLYGON
 FAKE_OPTS=	trueprefix
@@ -53,7 +48,7 @@ FEATURES+=	GD_XPM
 
 .if defined(WITH_FONTCONFIG)
 LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
-CPPFLAGS+= -I${LOCALBASE}/include -DHAVE_LIBFONTCONFIG -DHAVE_PTHREAD ${PTHREAD_CFLAGS}
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_LIBFONTCONFIG -DHAVE_PTHREAD ${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib -lfontconfig
 LDFLAGS2+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
 FEATURES+=	GD_FONTCONFIG
@@ -69,10 +64,15 @@ LDFLAGS+=	-L${LOCALBASE}/lib -liconv
 
 .if defined(GD_FONTS)
 USE_PERL5_BUILD=	yes
-SCRIPTS_ENV+=		GD_FONTS="${GD_FONTS}"
+SCRIPTS_ENV+=	GD_FONTS="${GD_FONTS}"
 .endif
 
 FONTBASE=	${LOCALBASE}/lib/X11/fonts
+
+pre-extract::
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "GD_FONTS can be set to specify an alternative list of .bdf files"
+	@${ECHO_MSG} ""
 
 post-configure:
 	${SED} -e 's|@libdir@|${PREFIX}/lib|' \
@@ -83,11 +83,12 @@ post-configure:
 		-e 's|@GDLIB_REVISION@|${PORTVERSION:C/.*[.]([0-9]*)/\1/1}|' \
 		-e 's|@LDFLAGS@|${LDFLAGS2}|' \
 		-e 's|@LIBS@|-lgd|' \
+		-e 's|@LIBICONV@|${LIBICONV}|' \
 		-e 's|@FEATURES@|${FEATURES}|' \
 		${WRKSRC}/config/gdlib-config.in \
 		> ${WRKDIR}/gdlib-config
 	${REINPLACE_CMD} \
-		-e 's|#define DEFAULT_FONTPATH .*|#define DEFAULT_FONTPATH "${FONTBASE}/TTF:${FONTBASE}/Type1:${FONTBASE}"|' \
+	-e 's|#define DEFAULT_FONTPATH .*|#define DEFAULT_FONTPATH "${FONTBASE}/TTF:${FONTBASE}/Type1:${FONTBASE}"|' \
 		${WRKSRC}/gd.h
 
 post-install:
