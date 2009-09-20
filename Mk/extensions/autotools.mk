@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.2 2008/10/28 04:52:09 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -190,10 +190,10 @@ BUILD_DEPENDS+=		${AUTOCONF_DEPENDS}
 #---------------------------------------------------------------------------
 
 # Convenience function to save people having to depend directly on
-# devel/libltdl15
+# devel/libltdl22
 #
 .if defined(AUTOTOOL_libltdl)
-LIB_DEPENDS+=	ltdl.4:${PORTSDIR}/devel/libltdl15
+LIB_DEPENDS+=	ltdl.7:${PORTSDIR}/devel/libltdl22
 .endif
 
 .if defined(AUTOTOOL_libtool)
