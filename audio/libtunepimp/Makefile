@@ -2,7 +2,7 @@
 # Date Created:				11 Aug 2004
 # Whom:					Lauri Watts <lauri@kde.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libtunepimp/Makefile,v 1.1 2008/09/07 19:51:09 laffer1 Exp $
 # $FreeBSD: ports/audio/libtunepimp/Makefile,v 1.21 2008/06/20 15:41:49 tabthorpe Exp $
 #
 
@@ -31,7 +31,7 @@ LIB_DEPENDS=	FLAC:${PORTSDIR}/audio/flac \
 CONFLICTS=	trm-0*
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -liconv"
 USE_LDCONFIG=	yes

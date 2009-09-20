@@ -2,7 +2,7 @@
 # Date created:		17 August 2003
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.4 2008/06/26 03:30:29 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.5 2008/06/29 22:45:06 laffer1 Exp $
 # $FreeBSD: ports/audio/rhythmbox/Makefile,v 1.100 2007/07/23 17:35:54 danfe Exp $
 #   $MCom: ports/audio/rhythmbox/Makefile,v 1.70 2007/03/07 17:00:36 adamw Exp $
 #
@@ -36,7 +36,7 @@ USE_PYTHON=     yes
 USE_GNOME=	gnomehack intlhack gnomeprefix libgnomeui nautiluscdburner pygtk2
 WANT_GNOME=	yes
 USE_GSTREAMER=	flac mp3 gnomevfs gconf jpeg
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--enable-nautilus-menu --with-playback=gstreamer-0-10 --enable-python
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes

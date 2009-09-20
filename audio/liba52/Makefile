@@ -2,7 +2,7 @@
 # Date created:				Tue Oct 16 10:43:56 BRST 2001
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/liba52/Makefile,v 1.1 2007/10/31 00:53:56 laffer1 Exp $
+# $MidnightBSD: mports/audio/liba52/Makefile,v 1.2 2008/04/01 05:09:03 laffer1 Exp $
 # $FreeBSD: ports/audio/liba52/Makefile,v 1.21 2007/04/01 07:56:18 lioux Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free library for decoding ATSC A/52 streams, aka AC-3
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-oss --enable-shared

@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.4 2008/02/25 00:18:36 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.5 2008/03/22 05:04:58 ctriv Exp $
 #
 
 PORTNAME=	akode
@@ -30,7 +30,7 @@ OPTIONS=	JACK "Jack output plugin" off \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
 USE_AUTOTOOLS=	libltdl
-USE_AUTOTOOLS+=  libtool:15 automake:19
+USE_AUTOTOOLS+=  libtool:22 automake:19
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

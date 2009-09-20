@@ -2,7 +2,7 @@
 # Date created:		19 July 1998
 # Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/esound/Makefile,v 1.3 2008/03/24 19:49:08 ctriv Exp $
+# $MidnightBSD: mports/audio/esound/Makefile,v 1.4 2008/09/21 22:23:24 crash Exp $
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GNOME=	gnometarget gnomehack
 USE_LDCONFIG=	yes

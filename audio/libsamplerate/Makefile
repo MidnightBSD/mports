@@ -3,7 +3,7 @@
 # Whom:			<dmagda+libsamplerate@ee.ryerson.ca>
 #
 # $FreeBSD: ports/audio/libsamplerate/Makefile,v 1.15 2006/06/09 18:00:28 ahze Exp $
-# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.2 2008/02/28 15:30:42 laffer1 Exp $
+# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.3 2008/04/10 03:55:06 ctriv Exp $
 #
 
 PORTNAME=	libsamplerate
@@ -20,7 +20,7 @@ LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile \
 		fftw3.4:${PORTSDIR}/math/fftw3
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

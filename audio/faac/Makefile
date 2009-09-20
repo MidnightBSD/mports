@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/faac/Makefile,v 1.4 2009/06/06 21:03:24 laffer1 Exp $
 
 PORTNAME=	faac
 PORTVERSION=	1.28
@@ -17,7 +17,7 @@ USE_BZIP2=	yes
 USE_DOS2UNIX=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
-USE_AUTOTOOLS=	aclocal:110 autoheader:262 automake:110 autoconf:262 libtool:15
+USE_AUTOTOOLS=	aclocal:110 autoheader:262 automake:110 autoconf:262 libtool:22
 ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

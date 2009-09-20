@@ -2,7 +2,7 @@
 # Date created:				July 09 2004
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.3 2008/02/25 00:27:02 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.4 2008/03/24 19:38:19 ctriv Exp $
 # $FreeBSD: ports/audio/akode-plugins-xiph/Makefile,v 1.14 2006/09/17 19:59:22 lofi Exp $
 #
 
@@ -31,7 +31,7 @@ PLUGIN=		xiph_decoder
 PORTNAMESUFX=	${PLUGIN:S/_sink//:S/_decoder//:S/src_//}
 
 USE_AUTOTOOLS=	libltdl
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}
