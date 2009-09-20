@@ -1,16 +1,9 @@
-# New ports collection makefile for:	Text::Iconv
-# Date created:		26 Dec 2000
-# Whom:			Sergey Skvortsov <skv@protey.ru>
-#
-# $MidnightBSD: mports/converters/p5-Text-Iconv/Makefile,v 1.2 2007/09/24 22:13:00 ctriv Exp $
-# $FreeBSD: ports/converters/p5-Text-Iconv/Makefile,v 1.12 2004/07/19 06:51:03 skv Exp $
-#
+# $MidnightBSD: mports/converters/p5-Text-Iconv/Makefile,v 1.3 2008/01/05 05:53:00 laffer1 Exp $
 
 PORTNAME=	Text-Iconv
 PORTVERSION=	1.7
 CATEGORIES=	converters perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Text
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
