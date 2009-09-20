@@ -2,7 +2,7 @@
 # Date created:				2007-08-16
 # Whom:					Robert Noland <rnoland@2hip.net>
 #
-# $MidnightBSD: mports/x11-wm/libcompizconfig/Makefile,v 1.1 2008/05/02 00:51:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/libcompizconfig/Makefile,v 1.2 2008/05/28 18:15:16 stevan Exp $
 # $FreeBSD: ports/x11-wm/libcompizconfig/Makefile,v 1.5 2008/04/19 17:55:55 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 USE_GNOME=	gnomehack intltool libxml2
 

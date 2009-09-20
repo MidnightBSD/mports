@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.1 2008/09/18 19:53:32 laffer1 Exp $
 
 PORTNAME=	libgdiplus
 PORTVERSION=	1.2.5
@@ -21,7 +21,7 @@ USE_GMAKE=	yes
 USE_XORG=	x11 xrender
 USE_LDCONFIG=	yes
 LIBTOOLFILES=	configure cairo/configure
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 # Included cairo does not work for us.  Enable below when Mono catches
