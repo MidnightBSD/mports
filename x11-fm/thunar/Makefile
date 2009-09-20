@@ -2,7 +2,7 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.1 2008/09/25 14:09:14 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.2 2009/03/13 04:26:20 ctriv Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
@@ -54,7 +54,7 @@ PLIST_SUB+=	WITH_DBUS="@comment "
 .endif
 
 .if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=--enable-jpeg
 .else
 CONFIGURE_ARGS+=--disable-jpeg
