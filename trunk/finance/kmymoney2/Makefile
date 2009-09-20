@@ -2,7 +2,7 @@
 # Date created:				21 June 2004
 # Whom:					Alexander Novitsky
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.1 2008/04/29 03:32:12 laffer1 Exp $
 # $FreeBSD: ports/finance/kmymoney2/Makefile,v 1.17 2007/10/04 00:50:27 edwin Exp $
 #
 
@@ -38,7 +38,7 @@ PLIST_SUB+=	OFXPLUGIN=${OFXPLUGIN}
 USE_KDELIBS_VER=	3
 USE_GMAKE=		yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_PERL5=		yes
 USE_BZIP2=		yes
 USE_LDCONFIG=	yes

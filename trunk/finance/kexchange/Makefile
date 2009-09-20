@@ -2,7 +2,7 @@
 # Date created:				17 October 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/finance/kexchange/Makefile,v 1.1 2008/04/29 03:07:20 laffer1 Exp $
 # $FreeBSD: ports/finance/kexchange/Makefile,v 1.13 2007/05/19 20:04:55 flz Exp $
 #
 
@@ -18,7 +18,7 @@ COMMENT=	KDE currency converter
 LICENSE=	gpl2
 
 USE_KDELIBS_VER=3
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||g' ${WRKSRC}/${CONFIGURE_SCRIPT}
