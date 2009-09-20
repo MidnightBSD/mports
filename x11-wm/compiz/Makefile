@@ -2,7 +2,7 @@
 # Date created:				Dec 20 2006
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 # 
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.4 2008/08/19 20:32:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.5 2008/11/07 18:20:25 ctriv Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 #
 
@@ -28,7 +28,7 @@ USE_GL=		glu
 USE_GNOME=	gnomehack gconf2 libxslt
 USE_XORG=	xcomposite xfixes xdamage xrandr xrender ice sm xinerama glproto
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 GCONF_SCHEMAS=	gwd.schemas \
 		compiz-annotate.schemas \

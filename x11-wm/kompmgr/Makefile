@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.3 2007/11/07 21:26:45 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.4 2008/01/10 18:55:25 laffer1 Exp $
 #
 
 PORTNAME=	kompmgr
@@ -23,7 +23,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdebase-${PORTVERSION}
 USE_LDCONFIG=	yes

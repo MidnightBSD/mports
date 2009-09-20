@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.5 2007/10/25 04:18:47 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.6 2008/03/26 01:19:22 ctriv Exp $
 # $FreeBSD: ports/x11-toolkits/gtk12/Makefile,v 1.104 2006/02/23 10:40:17 ade Exp $
 #
 
@@ -23,7 +23,7 @@ USE_PERL5=	yes
 USE_XLIB=	yes
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/gtk12 --with-native-locale \
 		--with-xinput=xfree
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
