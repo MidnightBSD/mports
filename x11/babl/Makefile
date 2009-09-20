@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/babl/Makefile,v 1.1 2009/08/30 18:49:36 laffer1 Exp $
 
 PORTNAME=	babl
 PORTVERSION=	0.0.22
@@ -19,7 +19,7 @@ LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	pkgconfig gnomehack ltverhack
 USE_GMAKE=	yes
 
