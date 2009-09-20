@@ -2,7 +2,7 @@
 # Date created:				18 October 2000
 # Whom:					t.vanklaveren@student.utwente.nl
 #
-# $MidnightBSD: mports/audio/libogg/Makefile,v 1.3 2008/02/25 00:10:49 laffer1 Exp $
+# $MidnightBSD: mports/audio/libogg/Makefile,v 1.4 2008/02/25 00:11:56 laffer1 Exp $
 # $FreeBSD: ports/audio/libogg/Makefile,v 1.27 2006/02/23 10:34:35 ade Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ogg bitstream library
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack
 USE_LDCONFIG=	yes

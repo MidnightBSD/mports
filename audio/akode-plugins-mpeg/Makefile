@@ -3,7 +3,7 @@
 # Whom:					Michael Nottebrock <lofi@FreeBSD.org>
 #
 # $FreeBSD: ports/audio/akode-plugins-mpeg/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode-plugins-mpeg/Makefile,v 1.2 2007/08/07 03:31:43 ctriv Exp $
+# $MidnightBSD: mports/audio/akode-plugins-mpeg/Makefile,v 1.3 2008/03/24 19:21:13 ctriv Exp $
 #
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
@@ -27,8 +27,7 @@ CONFLICTS=	kdemultimedia-3.[1-3]*
 PLUGIN=		mpeg_decoder
 PORTNAMESUFX=	${PLUGIN:S/_sink//:S/_decoder//:S/src_//}
 
-USE_AUTOTOOLS=	libltdl
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libltdl libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}

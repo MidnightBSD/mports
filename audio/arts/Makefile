@@ -4,7 +4,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.4 2008/03/12 19:12:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.5 2009/05/02 15:15:57 laffer1 Exp $
 #
 
 PORTNAME=	arts
@@ -29,7 +29,7 @@ PREFIX=		${KDE_PREFIX}
 WANT_GNOME=	yes
 USE_QT_VER=	3
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 QTCPPFLAGS+=	-L${LOCALBASE}/lib

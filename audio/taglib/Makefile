@@ -1,10 +1,4 @@
-# New ports collection makefile for:	taglib
-# Date Created:				06 Nov 2003
-# Whom:				 	Frank Laszlo <laszlof@vonostingroup.com>
-#
-# $FreeBSD: ports/audio/taglib/Makefile,v 1.13 2006/05/03 05:14:29 edwin Exp $
-# $MidnightBSD: mports/audio/taglib/Makefile,v 1.3 2008/04/10 05:05:26 ctriv Exp $
-#
+# $MidnightBSD: mports/audio/taglib/Makefile,v 1.4 2008/09/07 20:37:19 laffer1 Exp $
 
 PORTNAME=	taglib
 PORTVERSION=	1.5
@@ -15,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes

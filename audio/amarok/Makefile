@@ -2,7 +2,7 @@
 # Date created:			Tue Feb 24 02:21:14 CET 2004
 # Whom:				Markus Brueffer <markus@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.1 2008/09/11 05:54:59 laffer1 Exp $
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.2 2008/10/07 15:42:09 laffer1 Exp $
 # $FreeBSD: ports/audio/amarok/Makefile,v 1.85 2008/06/20 15:41:47 tabthorpe Exp $
 
 PORTNAME=	amarok
@@ -25,7 +25,7 @@ MIN_OPTIONS_VER=	${PORTNAME}-1.4.1
 USE_BZIP2=	yes
 USE_KDEBASE_VER=3
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GETTEXT=	yes
 USE_SDL=	sdl
 USE_RUBY=	yes
