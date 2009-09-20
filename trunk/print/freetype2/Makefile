@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.10 2009/08/09 17:22:41 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.11 2009/09/17 02:16:05 laffer1 Exp $
 
 PORTNAME=	freetype2
 PORTVERSION=	2.3.9
@@ -19,7 +19,7 @@ LICENSE=	gpl2
 
 MAKE_JOBS_SAFE=	yes
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 MAKE_ENV=	TOP=""

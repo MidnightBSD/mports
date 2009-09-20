@@ -2,7 +2,7 @@
 # Date created:		January 24, 1998
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/print/freetype/Makefile,v 1.2 2007/10/13 16:41:47 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype/Makefile,v 1.3 2007/11/09 21:50:44 laffer1 Exp $
 # $FreeBSD: ports/print/freetype/Makefile,v 1.40 2007/01/26 15:46:46 shaun Exp $
 #
 
@@ -25,7 +25,7 @@ LICENSE=	restricted
 
 FAKE_OPTS+=	prefixhack
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-nls --enable-static --enable-shared
 
