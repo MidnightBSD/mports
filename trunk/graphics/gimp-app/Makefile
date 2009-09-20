@@ -1,14 +1,8 @@
-# New ports collection makefile for:    The GIMP
-# Date created:         Mon Nov 18 21:28:43 CST 1996
-# Whom:                 erich@FreeBSD.org
-#
-# $FreeBSD: ports/graphics/gimp-app/Makefile,v 1.239 2009/08/08 21:29:50 marcus Exp $
-#   $MCom: ports/graphics/gimp-app/Makefile,v 1.35 2009/04/09 03:24:07 mezz Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	gimp-app
 DISTVERSION=	2.6.6
-PORTREVISION?=	3
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
@@ -21,8 +15,9 @@ MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	gimp/v${PORTVERSION:R}
 DISTNAME=	gimp-${DISTVERSION}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNU Image Manipulation Program
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
@@ -132,7 +127,7 @@ USE_GNOME+=	libgnomeui
 .endif
 
 .if defined(WITH_HELPBROWSER)
-LIB_DEPENDS+=		webkit-1.0.1:${PORTSDIR}/www/webkit-gtk2
+LIB_DEPENDS+=		webkit-1.0.9:${PORTSDIR}/www/webkit-gtk2
 CONFIGURE_ARGS+=	--with-webkit
 PLIST_SUB+=		HELPBROWSER=""
 .else
