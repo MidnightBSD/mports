@@ -1,24 +1,16 @@
-# New ports collection makefile for:	graphviz
-# Date created:		03 Feb 1998
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.12 2009/09/20 01:33:25 laffer1 Exp $
-# $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	graphviz
-PORTVERSION=	2.20.2
+PORTVERSION=	2.24.0
 PORTREVISION=	0
 CATEGORIES=	graphics tk
-MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/ \
-		http://mirror.inerd.com/FreeBSD/distfiles/${PORTNAME}/
+MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 LICENSE=	other
 
-BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
@@ -30,29 +22,31 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libltdl:22 libtool:22
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \
+			--host=${ARCH}-portbld-freebsd6.1
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 
-MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE} @LIBICONV@=-liconv
-SUB_FILES=	pkg-install
-MAN1=		acyclic.1 bcomps.1 ccomps.1 dijkstra.1 dot.1 \
-		dotty.1 gc.1 gvcolor.1 gvpack.1 gvpr.1 gxl2dot.1 \
-		lneato.1 nop.1 prune.1 sccmap.1 tred.1 unflatten.1
-MAN3=		agraph.3 cdt.3 cgraph.3 graph.3 gvc.3 pathplan.3
+MAKE_ENV+=	EXPR_COMPAT=yes MISSING=${TRUE}
+FAKE_MAKEENV+= 	 EXPR_COMPAT=yes MISSING=${TRUE}
+
+MAN1=		acyclic.1 bcomps.1 ccomps.1 dijkstra.1 dot.1 dotty.1 gc.1 \
+		gv2gxl.1 gvgen.1 mm2gv.1 gvcolor.1 gvpack.1 gvpr.1 lneato.1 \
+		nop.1 osage.1 prune.1 sccmap.1 tred.1 unflatten.1
+MAN3=		cdt.3 cgraph.3 graph.3 gvc.3 pathplan.3
 MAN7=		graphviz.7
 MLINKS=		dot.1 circo.1 \
-		gxl2dot.1 dot2gxl.1 \
 		dot.1 fdp.1 \
 		dot.1 neato.1 \
-		dot.1 twopi.1
+		dot.1 sfdp.1 \
+		dot.1 twopi.1 \
+		gv2gxl.1 gxl2gv.1
+
 FIX_INCLUDE=	ast_common.h \
 		lib/cdt/dthdr.h \
 		lib/graph/libgraph.h lib/graph/triefa.h \
 		lib/graph/parser.h lib/graph/agxbuf.h \
-		lib/agraph/aghdr.h lib/agraph/agraph.h \
-		lib/agraph/malloc.h lib/agraph/vmstub.h \
-		lib/agraph/grammar.h \
 		lib/pathplan/tri.h lib/pathplan/pathplan.h \
 		lib/pathplan/pathutil.h lib/pathplan/solvers.h \
 		lib/pathplan/vis.h lib/pathplan/vispath.h \
@@ -64,11 +58,14 @@ PATCH_TCL_SCRIPTS=	tclpkg/gv/Makefile.in tclpkg/tcldot/demo/doted.tcl \
 			tclpkg/tclpathplan/demo/pathplan.tcl tclpkg/tkspline/demo/spline.tcl
 PATCH_TK_SCRIPTS=	${PATCH_TCL_SCRIPTS}
 
-PDOCS_TXT=	AUTHORS NEWS ChangeLog cpl1.0.txt doc/Dot.ref doc/latex_suggestions.txt
+PDOCS_TXT=	doc/Dot.ref doc/latex_suggestions.txt
 PDOCS_PDF=	doc/*.pdf */*/*.pdf
-PDOCS_HTML=	doc/*.html doc/info/*.html doc/info/*.gif
+PDOCS_HTML=	doc/*.html doc/info/*.gif
 
-OPTIONS=	XPM "Build with XPM support" on \
+USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+
+OPTIONS=	ICONV "Build with ICONV support" on \
+		XPM "Build with XPM support" on \
 		DIGCOLA "DIGCOLA features in neato layout engine" on \
 		IPSEPCOLA "IPSEPCOLA features in neato layout engine" on \
 		SMYRNA "SMYRNA large graph viewer" off \
@@ -81,6 +78,7 @@ OPTIONS=	XPM "Build with XPM support" on \
 		GNOMEUI  "build with libgnomeui support" off \
 		MING "Build with ming plugin" off \
 		DEVIL "Build with devil plugin" off \
+		GHOSTSCRIPT "Build with ghostscript plugin" off \
 		PERL "Perl bindings (swig)" off \
 		PHP "PHP bindings (swig)" off \
 		PYTHON "Python bindings (swig)" off \
@@ -89,11 +87,7 @@ OPTIONS=	XPM "Build with XPM support" on \
 		TCL "TCL bindings (swig)" off \
 		GUILE "Guile bindings (swig)" off
 
-.include <bsd.mport.options.mk>
-
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0 \
-			--target=${ARCH}-portbld-freebsd6.0
+.include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=	--program-transform-name="s/x/x/" \
 		--enable-dependency-tracking \
@@ -115,7 +109,7 @@ CPPFLAGS+=		-I${TK_INCLUDEDIR}
 USE_TK_BUILD=		84+
 CONFIGURE_ARGS+=	--with-wish=${WISH}
 CONFIGURE_ENV+=		TKCONFIG="${TK_LIBDIR}/tkConfig.sh"
-MANN+=			tkspline.n
+MAN3+=			tkspline.3tk
 PLIST_SUB+=		WITH_TK=""
 .else
 PLIST_SUB+=		WITH_TK="@comment "
@@ -123,17 +117,22 @@ PLIST_SUB+=		WITH_TK="@comment "
 .if defined(WITH_TCL) || defined(WITH_TK)
 CPPFLAGS+=		-I${TCL_INCLUDEDIR}
 USE_TCL_BUILD=		84+
+.include "${PORTSDIR}/Mk/bsd.tcl.mk"
 CONFIGURE_ARGS+=	--with-tclsh=${TCLSH}
 CONFIGURE_ENV+=		TCLCONFIG="${TCL_LIBDIR}/tclConfig.sh"
-MANN+=			gdtclft.n tcldot.n
+MAN3+=			gdtclft.3tcl tcldot.3tcl
 PLIST_SUB+=		TCL_VER="${TCL_VER}"
 .endif
 
+.if defined(WITHOUT_ICONV)
+CONFIGURE_ARGS+=	--without-libiconv-prefix
+.else
 USE_ICONV=		yes
 CONFIGURE_ARGS+=	--with-iconvlibdir=${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-iconvincludedir=${LOCALBASE}/include
+.endif
 
-.if !defined(WITHOUT_XPM) || (!defined(PACKAGE_BUILDING) && exists(${LOCALBASE}/lib/libXpm.so))
+.if !defined(WITHOUT_XPM) || exists(${LOCALBASE}/lib/libXpm.so)
 USE_XORG+=		xaw xpm xmu xt sm ice xext x11 xau xdmcp xp
 MAN1+=			lefty.1
 PLIST_SUB+=		WITH_XPM=""
@@ -211,6 +210,12 @@ USE_GNOME+=		gnomelibs libglade2
 CONFIGURE_ARGS+=	--without-glade
 .endif
 
+.if defined(USE_GNOME)
+.include "${PORTSDIR}/Mk/extensions/gnome.mk"
+.endif
+.if defined(USE_XORG)
+.include "${PORTSDIR}/Mk/extensions/xorg.mk"
+.endif
 
 .if defined(WITH_SMYRNA)
 CONFIGURE_ARGS+=	 --with-gtkgl=yes
@@ -268,13 +273,13 @@ PLIST_SUB+=		WITH_MING="@comment "
 .if defined(WITH_DEVIL)
 CONFIGURE_ARGS+=	--with-devil
 PLIST_SUB+=		WITH_DEVIL=""
-LIB_DEPENDS+=		IL.1:${PORTSDIR}/graphics/devil
+LIB_DEPENDS+=		IL:${PORTSDIR}/graphics/devil
 .else
 CONFIGURE_ARGS+=	--without-devil
 PLIST_SUB+=		WITH_DEVIL="@comment "
 .endif
 
-.if defined(PACKAGE_BUILDING) || defined(WITH_PERL) || defined(WITH_PHP) || defined(WITH_PYTHON) || \
+.if defined(WITH_PERL) || defined(WITH_PHP) || defined(WITH_PYTHON) || \
     defined(WITH_RUBY) || defined(WITH_LUA) || defined(WITH_TCL) || defined(WITH_GUILE)
 BUILD_DEPENDS+=		swig1.3:${PORTSDIR}/devel/swig13
 RUN_DEPENDS+=		swig1.3:${PORTSDIR}/devel/swig13
@@ -285,11 +290,11 @@ CONFIGURE_ARGS+=	--disable-swig
 CONFIGURE_ENV+=		SWIG="/nonexistent"
 .endif
 
-.if defined(WITH_PERL) || defined(PACKAGE_BUILDING)
+.if defined(WITH_PERL)
 CONFIGURE_ARGS+=	--enable-perl
 PLIST_SUB+=		WITH_PERL=""
 USE_PERL5=	yes
-MANN+=			gv_perl.n
+MAN3+=			gv.3perl
 .else
 CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=		WITH_PERL="@comment "
@@ -301,7 +306,7 @@ PLIST_SUB+=		WITH_PHP=""
 USE_PHP=	yes
 USE_PHP_BUILD=	yes
 CPPFLAGS+=		-I${LOCALBASE}/include/php/Zend
-MANN+=			gv_php.n
+MAN3+=			gv.3php
 .else
 CONFIGURE_ARGS+=	--disable-php
 PLIST_SUB+=		WITH_PHP="@comment "
@@ -311,8 +316,9 @@ PLIST_SUB+=		WITH_PHP="@comment "
 CONFIGURE_ARGS+=	--enable-python
 PLIST_SUB+=		WITH_PYTHON=""
 USE_PYTHON_BUILD=	yes
+.include "${PORTSDIR}/Mk/bsd.python.mk"
 LDFLAGS+=		"-L${PYTHON_LIBDIR}"
-MANN+=			gv_python.n
+MAN3+=			gv.3python
 .else
 CONFIGURE_ARGS+=	--disable-python
 PLIST_SUB+=		WITH_PYTHON="@comment "
@@ -322,7 +328,8 @@ PLIST_SUB+=		WITH_PYTHON="@comment "
 CONFIGURE_ARGS+=	--enable-ruby
 PLIST_SUB+=		WITH_RUBY=""
 USE_RUBY=		yes
-MANN+=			gv_ruby.n
+.include "${PORTSDIR}/Mk/bsd.ruby.mk"
+MAN3+=			gv.3ruby
 .else
 CONFIGURE_ARGS+=	--disable-ruby
 PLIST_SUB+=		WITH_RUBY="@comment "
@@ -332,10 +339,12 @@ PLIST_SUB+=		WITH_RUBY="@comment "
 CONFIGURE_ARGS+=	--enable-lua
 PLIST_SUB+=		WITH_LUA=""
 USE_LUA=		yes
+.include "${PORTSDIR}/Mk/bsd.lua.mk"
 CFLAGS+=		-I${LUA_INCDIR}
 LDFLAGS+=		-L${LUA_LIBDIR} -lm
-CONFIGURE_ENV+=		LUA="${LUA_BINDIR}/lua"
-MANN+=			gv_lua.n
+CONFIGURE_ENV+=		LUA="${LUA_BINDIR}/lua" \
+			LUA_INSTALL_DIR=${PREFIX}/lib/lua/${LUA_VER}
+MAN3+=			gv.3lua
 .else
 CONFIGURE_ARGS+=	--disable-lua
 PLIST_SUB+=		WITH_LUA="@comment "
@@ -344,7 +353,7 @@ PLIST_SUB+=		WITH_LUA="@comment "
 .if defined(WITH_TCL)
 CONFIGURE_ARGS+=	--enable-tcl
 PLIST_SUB+=		WITH_TCL=""
-MANN+=			gv_tcl.n
+MAN3+=			gv.3tcl
 .else
 CONFIGURE_ARGS+=	--disable-tcl
 PLIST_SUB+=		WITH_TCL="@comment "
@@ -353,16 +362,21 @@ PLIST_SUB+=		WITH_TCL="@comment "
 .if defined(WITH_GUILE)
 CONFIGURE_ARGS+=	--enable-guile
 PLIST_SUB+=		WITH_GUILE=""
-LIB_DEPENDS+=		guile.18:${PORTSDIR}/lang/guile
-MANN+=			gv_guile.n
+LIB_DEPENDS+=		guile.20:${PORTSDIR}/lang/guile
+MAN3+=			gv.3guile
 .else
 CONFIGURE_ARGS+=	--disable-guile
 PLIST_SUB+=		WITH_GUILE="@comment "
 .endif
 
-.include <bsd.port.pre.mk>
+.if defined(WITH_GHOSTSCRIPT)
+USE_GHOSTSCRIPT=	yes
+PLIST_SUB+=		WITH_GHOSTSCRIPT=""
+.else
+PLIST_SUB+=		WITH_GHOSTSCRIPT="@comment "
+.endif
 
-pre-patch:
+post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in | \
 		${XARGS} ${REINPLACE_CMD} \
 		-e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
@@ -372,7 +386,7 @@ pre-patch:
 		-e "s|\([^:]*:.*\) install-demoDATA\(.*\)|\1\2|g" \
 		-e "s|\([^:]*:.*\) install-demoSCRIPTS\(.*\)|\1\2|g" \
 		-e "s|\([^:]*:.*\) install-pathplanexampleDATA\(.*\)|\1\2|g" \
-		-e "s|@LIBICONV@|-liconv|g" \
+		-e 's|txtdir = $$(pkgdatadir)/doc|txtdir = ${DOCSDIR}|' \
 		-e 's|demodir = $$(pkgdatadir)/demo|demodir = ${EXAMPLESDIR}|';
 	@${REINPLACE_CMD} \
 		-e 's|^\.SUFFIXES: \(.*\)\.1\(.*\)|.SUFFIXES: \1 \2|' \
@@ -392,21 +406,9 @@ pre-patch:
 		${WRKSRC}/cmd/smyrna/tvnodes.h
 	@${REINPLACE_CMD} -e 's|#include "regex_win32.h"|#include <regex.h>|' \
 		${WRKSRC}/cmd/smyrna/btree.c
-	@${REINPLACE_CMD} -e 's|#! /bin/sh|#! /${LOCALBASE}/bin/bash|g' \
-		${WRKSRC}/configure
-
-post-configure:
-	${FIND} ${WRKSRC} -name 'Makefile' | \
-		${XARGS} ${REINPLACE_CMD} \
-		-e 's|@LIBICONV@|-liconv|';
-
-.if defined(WITH_TK)
-post-install-script:
-	${INSTALL_MAN} \
-		${WRKSRC}/tclpkg/gdtclft/gdtclft.n \
-		${WRKSRC}/tclpkg/tcldot/tcldot.n \
-		${WRKSRC}/tclpkg/tkspline/tkspline.n \
-		${MANNPREFIX}/man/mann/
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -e 's| install-txtDATA$$||' \
+		${WRKSRC}/Makefile.in
 .endif
 
 post-install:
@@ -415,17 +417,15 @@ post-install:
 	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${FIX_INCLUDE} ${PREFIX}/include/graphviz/
 .if !defined(NOPORTDOCS)
+	@${MKDIR} ${DOCSDIR}
 	@${MKDIR} ${DOCSDIR}/html
 	@${MKDIR} ${DOCSDIR}/pdf
 	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${PDOCS_TXT} ${DOCSDIR}/ && \
 		${INSTALL_DATA} ${PDOCS_PDF} ${DOCSDIR}/pdf/ && \
 		${INSTALL_DATA} ${PDOCS_HTML} ${DOCSDIR}/html/
-.	for i in neato.pdf twopi.pdf fdp.pdf circo.pdf
-		cd ${DOCSDIR}/pdf && ${LN} -fs dot.pdf ${i}
-.	endfor
-	cd ${DOCSDIR}/pdf && ${LN} -fs gxl2dot.pdf dot2gxl.pdf
 .endif
+.if !defined(NOPORTEXAMPLES)
 	@${ECHO_MSG} "Installing demo data..."
 	@${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} \
@@ -446,5 +446,6 @@ post-install:
 	${INSTALL_DATA} \
 		${WRKSRC}/tclpkg/tclpathplan/demo/pathplan_data/*.dat \
 		${EXAMPLESDIR}/pathplan_data/
+.endif
 
 .include <bsd.port.post.mk>
