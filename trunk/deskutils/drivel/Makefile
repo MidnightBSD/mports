@@ -2,7 +2,7 @@
 # Date created:			Thu Feb 26 23:13:12 CET 2004
 # Whom:				Koop Mast <kwm@rainbow-runner.nl>
 #
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.4 2008/02/28 18:43:11 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.5 2008/09/27 16:19:59 laffer1 Exp $
 # $FreeBSD: ports/deskutils/drivel/Makefile,v 1.33 2007/05/19 20:01:28 flz Exp $
 #
 
@@ -25,7 +25,7 @@ USE_GNOME=	gnomeprefix gnomehack libgnomeui intlhack gtksourceview
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

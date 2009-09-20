@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libwww
-# Date created:		18 Feb 1996
-# Whom:			torstenb
-#
-# $MidnightBSD: mports/www/libwww/Makefile,v 1.1 2006/09/24 13:08:26 laffer1 Exp $
-# $FreeBSD: ports/www/libwww/Makefile,v 1.42 2006/08/15 01:11:31 clsung Exp $
-#
+# $MidnightBSD: mports/www/libwww/Makefile,v 1.2 2008/08/21 17:24:31 laffer1 Exp $
 
 PORTNAME=	libwww
 PORTVERSION=	5.4.0
@@ -18,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The W3C Reference Library
 LICENSE=	other
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static --with-zlib 

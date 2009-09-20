@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/freetds/Makefile,v 1.3 2008/05/23 14:55:40 crash Exp $
+# $MidnightBSD: mports/databases/freetds/Makefile,v 1.4 2009/06/06 21:26:12 laffer1 Exp $
 
 PORTNAME=	freetds
 PORTVERSION=	0.64
@@ -14,7 +14,7 @@ TDS_VER?=	5.0
 USE_ICONV=	yes
 USE_GMAKE=	yes
 GNU_GONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:262:env libtool:15
+USE_AUTOTOOLS=	autoconf:262:env libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-tdsver=${TDS_VER}

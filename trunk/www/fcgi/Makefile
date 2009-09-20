@@ -2,7 +2,7 @@
 # Date created:        13 May 1999
 # Whom:                kbyanc
 #
-# $MidnightBSD: mports/www/fcgi/Makefile,v 1.1 2008/02/15 02:16:27 laffer1 Exp $
+# $MidnightBSD: mports/www/fcgi/Makefile,v 1.2 2008/10/09 15:41:00 laffer1 Exp $
 # $FreeBSD: ports/www/fcgi/Makefile,v 1.18 2007/02/01 02:42:00 kris Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	FastCGI Development Kit
 LICENSE=	other
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
