@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.4 2008/03/31 15:31:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.5 2009/03/25 21:57:24 laffer1 Exp $
 
 PORTNAME=	bison
 PORTVERSION=	2.4.1
@@ -41,7 +41,9 @@ PLIST_SUB+=	NLS=""
 post-extract:
 	@${RM} -f ${WRKSRC}/doc/bison.info*
 	@${REINPLACE_CMD} 's/MANS = yacc.1/MANS =/' ${WRKSRC}/doc/Makefile.in
-
+.if defined(WITHOUT_NLS)
+	@${REINPLACE_CMD} 's/ install-exec-local//' ${WRKSRC}/lib/Makefile.in
+.endif
 .if !defined(NOPORTDOCS)
 post-install:
 	${MKDIR} ${EXAMPLESDIR}/calc++
