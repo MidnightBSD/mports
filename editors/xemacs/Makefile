@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.7 2007/11/15 17:10:09 ctriv Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.8 2009/09/20 01:07:09 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
@@ -71,7 +71,7 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/xemacs/xemacs-packages/etc/enriched.doc:${PORTSDI
 .endif
 .if !defined(WITHOUT_X11)
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
 USE_XLIB=	yes
