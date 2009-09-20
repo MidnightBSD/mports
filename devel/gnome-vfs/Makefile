@@ -2,7 +2,7 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.4 2008/02/17 05:56:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.5 2008/06/05 18:15:44 laffer1 Exp $
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #
@@ -30,7 +30,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomemimedata gconf2 \
 		ltverhack referencehack
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-openssl \

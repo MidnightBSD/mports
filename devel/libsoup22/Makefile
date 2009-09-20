@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsoup22/Makefile,v 1.1 2008/06/26 03:30:08 laffer1 Exp $
 #
 
 PORTNAME=	libsoup
@@ -24,7 +24,7 @@ NO_LATEST_LINK=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack referencehack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.3 2008/10/03 03:38:41 ctriv Exp $
+# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.4 2009/06/29 04:02:08 laffer1 Exp $
 
 PORTNAME=	libsigc++
 PORTVERSION=	1.0.4
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Callback Framework for C++
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack
