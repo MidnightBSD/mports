@@ -3,7 +3,7 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeutils3/Makefile,v 1.107 2006/09/12 23:26:33 lofi Exp $
-# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.2 2007/12/30 04:41:52 laffer1 Exp $
+# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.3 2009/05/14 23:02:15 laffer1 Exp $
 #
 
 PORTNAME=	kdeutils
@@ -31,11 +31,11 @@ PREFIX=		${KDE_PREFIX}
 USE_PYTHON=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 DO_NOT_COMPILE+=klaptopdaemon kmilo
 CONFIGURE_ENV+=	DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 CONFIGURE_ARGS+=--with-pythondir=${LOCALBASE}
-
+MAKE_ENV+=__FreeBSD_version=601000
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
@@ -44,5 +44,8 @@ LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 
 post-patch:
 	${REINPLACE_CMD} -e 's|>tar<|>gtar<|g' ${WRKSRC}/ark/ark.kcfg
+	${REINPLACE_CMD} -e 's|%%PYTHON_VER%%|${PYTHON_VER}|g' \
+		-e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
