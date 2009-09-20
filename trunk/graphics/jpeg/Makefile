@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.5 2009/04/27 23:43:41 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.6 2009/09/20 01:38:30 laffer1 Exp $
 
 PORTNAME=	jpeg
-PORTVERSION=	6b
-PORTREVISION=	5
+PORTVERSION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		ftp://ftp.uu.net/graphics/jpeg/ \
@@ -16,12 +15,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IJG's jpeg compression utilities
 LICENSE=	other
 
-WRKSRC=		${WRKDIR}/jpeg-6b
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
-
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \
+			--host=${ARCH}-portbld-freebsd6.1
 ADDITIONAL_HEADER=	jinclude.h jpegint.h
 
 # define J_MAXMEM like "make J_MAXMEM=32" to limit max processing memory to 32Mb
@@ -41,13 +41,13 @@ post-build:
 post-install:
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${PREFIX}/share/doc/jpeg
-	@${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/share/doc/jpeg
-	@${INSTALL_DATA} ${WRKSRC}/*.doc ${PREFIX}/share/doc/jpeg
+	@${INSTALL_DATA} ${WRKSRC}/README ${PREFIX}/share/doc/jpeg/
+	@${INSTALL_DATA} ${WRKSRC}/*.txt ${PREFIX}/share/doc/jpeg/
 .endif
 .for header in ${ADDITIONAL_HEADER}
-	@${INSTALL_DATA} ${WRKSRC}/${header} ${PREFIX}/include
+	@${INSTALL_DATA} ${WRKSRC}/${header} ${PREFIX}/include/
 .endfor
-	${INSTALL_PROGRAM} ${WRKSRC}/jpegexiforient ${PREFIX}/bin
-	${INSTALL_SCRIPT} ${WRKSRC}/exifautotran ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/jpegexiforient ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/exifautotran ${PREFIX}/bin/
 
 .include <bsd.port.mk>
