@@ -1,9 +1,4 @@
-# New ports collection makefile for:	qemu
-# Date created:			2004/05/31
-# Whom:				Juergen Lock <nox@jelal.kn-bremen.de>
-#
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.6 2008/09/17 23:33:42 laffer1 Exp $
-# $FreeBSD: ports/emulators/qemu/Makefile,v 1.56 2006/08/25 21:16:20 miwi Exp $
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.7 2008/10/29 19:59:36 ctriv Exp $
 
 PORTNAME=	qemu
 PORTVERSION=	0.9.1
@@ -29,6 +24,7 @@ MAKE_ENV+=	BSD_MAKE="${MAKE}" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 MAN1=		qemu.1 qemu-img.1
 ONLY_FOR_ARCHS=	amd64 i386
 CONFLICTS=	qemu-devel-[0-9]*
+MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	KQEMU "Build with (alpha!) accelerator module" Off \
 		RTL8139_TIMER "allow use of re(4) nic with FreeBSD guests" Off \

@@ -2,7 +2,7 @@
 # Date created:				2002-10-06
 # Whom:					Klaus Goger <klaus.goger@reflex.at>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-SDL/Makefile,v 1.1 2008/08/22 13:46:28 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-SDL/Makefile,v 1.21 2007/09/08 00:59:04 linimon Exp $
 
 PORTNAME=	sdl
@@ -18,7 +18,7 @@ COMMENT=	Perl Bindings for SDL
 LICENSE=	perl
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg
+		jpeg.10:${PORTSDIR}/graphics/jpeg
 
 USE_PERL5=	yes
 USE_SDL=	sdl

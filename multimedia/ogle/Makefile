@@ -2,7 +2,7 @@
 # Date created:				Tue Oct 16 18:35:39 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.5 2009/05/27 21:26:38 crash Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.6 2009/09/20 01:51:12 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
 #
 
@@ -17,7 +17,7 @@ COMMENT=	Open DVD player that supports DVD menus
 LICENSE=        gpl2
 LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 		dvdread.5:${PORTSDIR}/multimedia/libdvdread \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		mad.2:${PORTSDIR}/audio/libmad \
 		xml2.5:${PORTSDIR}/textproc/libxml2
 

@@ -2,7 +2,7 @@
 # Date created:		2003-09-04
 # Whom:			Stefan Ehmann <shoesoft@gmx.net>
 #
-# $MidnightBSD: mports/net-p2p/gift-fasttrack/Makefile,v 1.1 2007/06/10 23:59:40 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/gift-fasttrack/Makefile,v 1.2 2008/09/14 00:45:15 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift-fasttrack/Makefile,v 1.11 2007/04/03 17:33:40 jmelo Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gift.0:${PORTSDIR}/net-p2p/gift
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig

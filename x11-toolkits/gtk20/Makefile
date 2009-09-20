@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.18 2009/06/30 00:01:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.19 2009/09/20 03:06:14 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
@@ -34,7 +34,7 @@ LATEST_LINK=	gtk20
 LIB_DEPENDS=	pango:${PORTSDIR}/x11-toolkits/pango \
 		png.5:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		jasper.4:${PORTSDIR}/graphics/jasper
 RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
