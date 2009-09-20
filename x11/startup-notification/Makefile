@@ -2,7 +2,7 @@
 # Date created:				14 November 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.4 2008/03/05 02:39:20 laffer1 Exp $
+# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.5 2008/03/25 18:18:55 laffer1 Exp $
 # $FreeBSD: ports/x11/startup-notification/Makefile,v 1.20 2006/02/23 10:39:59 ade Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library that supports startup notification spec from freedesktop.org
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes

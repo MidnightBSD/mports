@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.1 2007/10/05 17:41:23 ctriv Exp $
+# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.2 2009/03/14 20:29:06 laffer1 Exp $
 
 PORTNAME=	libXtst
 PORTVERSION=	1.0.3
@@ -10,7 +10,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext recordproto:both xextproto inputproto
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 

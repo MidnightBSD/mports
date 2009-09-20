@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xrx/Makefile,v 1.1 2007/10/08 15:53:02 ctriv Exp $
+# $MidnightBSD: mports/x11/xrx/Makefile,v 1.2 2009/03/25 01:31:13 laffer1 Exp $
 
 PORTNAME=	xrx
 PORTVERSION=	1.0.1
@@ -12,7 +12,7 @@ LICENSE=	x11
 XORG_CAT=	app
 USE_XORG=	x11 xt xext xtrans xproxymngproto xau xaw
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 

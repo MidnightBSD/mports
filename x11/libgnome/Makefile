@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.6 2008/08/21 16:15:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.7 2009/08/09 17:31:54 laffer1 Exp $
 
 PORTNAME=	libgnome
 PORTVERSION=	2.26.0
@@ -26,7 +26,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack esound libbonobo \
 USE_BISON=	build
 USE_XORG=	xpm
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
