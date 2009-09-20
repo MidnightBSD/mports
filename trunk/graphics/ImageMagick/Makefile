@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.8 2009/06/07 20:41:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.9 2009/08/29 21:06:37 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.5.3-10
@@ -18,7 +18,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 USE_BZIP2=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
-USE_AUTOTOOLS=	libltdl:15
+USE_AUTOTOOLS=	libltdl:22
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--enable-shared --without-dps
