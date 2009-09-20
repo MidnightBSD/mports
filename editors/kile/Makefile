@@ -2,7 +2,7 @@
 # Date created:		21 Jun 2002
 # Whom:			Stefan Jahn <stefan.jahn@nemesis-sektor.de>
 #
-# $MidnightBSD: mports/editors/kile/Makefile,v 1.1 2008/03/05 05:08:17 laffer1 Exp $
+# $MidnightBSD: mports/editors/kile/Makefile,v 1.2 2008/10/21 21:06:10 ctriv Exp $
 # $FreeBSD: ports/editors/kile/Makefile,v 1.30 2007/05/19 20:04:08 flz Exp $
 #
 
@@ -24,7 +24,7 @@ CONFLICTS=	kile-i18n-[0-9]*
 
 USE_KDELIBS_VER=3
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 
 OPTIONS=	KPDF "Use KPDF and KDVI for viewing" on

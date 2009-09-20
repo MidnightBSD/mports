@@ -1,10 +1,4 @@
-# New ports collection makefile for:	X-Emacs
-# Date created:		25 Oct 2001
-# Whom:			Gary Jennejohn (gj@FreeBSD.org)
-#
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.6 2007/11/09 16:42:07 laffer1 Exp $
-# $FreeBSD: ports/editors/xemacs/Makefile,v 1.98 2006/03/17 15:08:39 vs Exp $
-#
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.7 2007/11/15 17:10:09 ctriv Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
@@ -23,7 +17,7 @@ CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-devel-[0-9]* 
 
 XEMACS_REL=	21.4
-XEMACS_VER=	21.4.20
+XEMACS_VER=	21.4.22
 XEMACS_ARCH=	${CONFIGURE_TARGET}
 
 USE_BZIP2=	yes
