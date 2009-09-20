@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.10 2008/11/11 18:45:54 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.11 2009/06/06 20:37:59 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
@@ -19,7 +19,7 @@ LIB_DEPENDS=	ungif.5:${PORTSDIR}/graphics/libungif \
 		Xft.2:${PORTSDIR}/x11-fonts/libXft
 RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_XPM=	yes

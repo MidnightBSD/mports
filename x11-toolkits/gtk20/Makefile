@@ -2,7 +2,7 @@
 # Date Created:			28 Sep 1997
 # Whom:				Vanilla I. Shu <vanilla@MinJe.com.TW>
 #
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.17 2009/04/15 16:52:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.18 2009/06/30 00:01:35 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtk20/Makefile,v 1.182 2006/07/02 19:22:57 marcus Exp $
 #   $MCom: ports-stable/x11-toolkits/gtk20/Makefile,v 1.8 2006/03/13 22:32:30 mezz Exp $
 #
@@ -42,7 +42,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 USE_GMAKE=	yes
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack atk pango ltverhack
 USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \

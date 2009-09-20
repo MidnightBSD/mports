@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.3 2009/05/23 16:55:46 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.4 2009/05/26 00:39:08 laffer1 Exp $
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
@@ -17,7 +17,7 @@ USE_GNOME=	gnomehack gnomeprefix gnometarget gtk20
 USE_XORG=	x11 xt
 USE_GL=		yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

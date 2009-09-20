@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm12/Makefile,v 1.3 2008/03/26 01:11:10 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm12/Makefile,v 1.4 2009/06/29 03:57:01 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	12
@@ -14,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	sigc.1:${PORTSDIR}/devel/libsigc++
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes

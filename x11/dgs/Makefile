@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.7 2008/10/13 19:11:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.8 2009/03/25 01:51:14 laffer1 Exp $
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
@@ -21,7 +21,7 @@ USE_GMAKE=	yes
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 WRKSRC=		${WRKDIR}/${PORTNAME}-0.5.9
 
 MAN1=		dgs.1 dpsnx.agent.1
