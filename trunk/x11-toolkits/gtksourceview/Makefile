@@ -2,7 +2,7 @@
 # Date created:				07 May 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.2 2008/02/22 04:23:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.3 2008/06/13 14:58:50 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtksourceview/Makefile,v 1.38 2007/05/19 20:31:05 flz Exp $
 #   $MCom: ports/x11-toolkits/gtksourceview/Makefile,v 1.43 2006/10/02 00:40:29 ahze Exp $
 #
@@ -26,7 +26,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomeprefix gnomehack libgnome libgnomeprintui intlhack \
 		ltverhack referencehack

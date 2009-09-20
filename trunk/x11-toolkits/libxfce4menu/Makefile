@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.3 2009/03/12 02:50:20 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/libxfce4menu/Makefile,v 1.1 2009/03/12 03:25:29 ctriv Exp $
 #
 
 PORTNAME=	libxfce4menu
@@ -14,7 +14,7 @@ COMMENT=	A menu library for Xfce 4
 LICENSE=	
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes

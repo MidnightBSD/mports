@@ -2,7 +2,7 @@
 # Date created:        21 May 2002
 # Whom:                Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.3 2008/06/19 02:12:44 stevan Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.4 2008/08/19 19:02:21 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 #    $MCom: ports/x11-wm/metacity/Makefile,v 1.101 2007/03/14 04:17:20 marcus Exp $
 #
@@ -25,7 +25,7 @@ USE_BZIP2=	yes
 USE_XORG=	x11 xcomposite xdamage
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomeprefix intlhack gnomehack gconf2 ltverhack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-render
