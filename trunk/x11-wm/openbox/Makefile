@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.4 2008/07/05 22:27:24 crash Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.5 2009/08/15 19:03:39 laffer1 Exp $
 
 PORTNAME=	openbox
 PORTVERSION=	3.4.7.2
@@ -12,7 +12,7 @@ LICENSE=        gpl2
 
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 ltverhack

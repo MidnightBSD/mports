@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcb/Makefile,v 1.3 2008/10/07 15:27:56 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcb/Makefile,v 1.4 2009/03/14 22:30:54 laffer1 Exp $
 
 PORTNAME=	xcb
 PORTVERSION=	2.4
@@ -10,7 +10,7 @@ COMMENT=	A tool for managing x11 cut-buffers
 LICENSE=	other
 
 USE_IMAKE=	yes
-USE_XORG=	xaw xt
+USE_XORG=	ice sm x11 xaw xext xmu xt
 MAN1=		xcb.1
 
 .include <bsd.port.mk>

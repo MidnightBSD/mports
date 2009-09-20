@@ -2,7 +2,7 @@
 # Date created:        30 September 2002
 # Whom:                Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD: mports/x11-toolkits/gtkmm20/Makefile,v 1.4 2008/03/26 01:15:26 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm20/Makefile,v 1.5 2008/06/07 15:17:05 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gtkmm20/Makefile,v 1.80 2006/05/31 22:18:49 mezz Exp $
 #
 
@@ -29,7 +29,7 @@ LATEST_LINK=	gtkmm2
 LIB_DEPENDS=	sigc-1.2.5:${PORTSDIR}/devel/libsigc++12
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
