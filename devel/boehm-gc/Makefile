@@ -1,10 +1,4 @@
-# New ports collection makefile for:	boehm-gc
-# Date created:		15 November 1996
-# Whom:			Mike McGaughey <mmcg@cs.monash.edu.au>
-#
-# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.1 2007/05/03 08:17:35 laffer1 Exp $
-# $FreeBSD: ports/devel/boehm-gc/Makefile,v 1.54 2007/02/05 22:12:46 stas Exp $
-#
+# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.2 2008/10/03 02:59:26 ctriv Exp $
 
 PORTNAME=	boehm-gc
 PORTVERSION=	6.8
@@ -17,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Garbage collection and memory leak detection for C and C++
 LICENSE=	other
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
 USE_LDCONFIG=	yes

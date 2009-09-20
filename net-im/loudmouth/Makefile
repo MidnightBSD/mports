@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.3 2008/09/13 22:40:08 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.4 2009/05/01 22:55:33 laffer1 Exp $
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
@@ -13,7 +13,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes

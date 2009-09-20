@@ -2,7 +2,7 @@
 # Date created:		Wed Apr 12 17:51:07 UTC 2006
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.3 2007/12/28 23:04:56 laffer1 Exp $
+# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.4 2008/05/21 19:45:42 laffer1 Exp $
 # $FreeBSD: ports/net-im/kopete/Makefile,v 1.8 2007/07/04 10:24:50 lofi Exp $
 #
 
@@ -30,7 +30,7 @@ USE_BZIP2=	yes
 USE_GNOME=	glib20
 USE_OPENSSL=	yes
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-ilbc=${LOCALBASE} \

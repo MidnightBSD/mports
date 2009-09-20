@@ -2,7 +2,7 @@
 # Date Created:			08 December 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.3 2008/06/07 13:56:02 laffer1 Exp $
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.4 2009/05/23 16:28:26 laffer1 Exp $
 # $FreeBSD: ports/security/gnome-keyring/Makefile,v 1.32 2008/04/07 04:20:38 marcus Exp $
 #   $MCom: ports/security/gnome-keyring/Makefile,v 1.59 2008/03/09 18:30:40 mezz Exp $
 #
@@ -26,7 +26,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk20 ltverhack intlhack gconf2
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.3 2009/04/18 05:18:59 laffer1 Exp $
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.4 2009/08/20 18:54:11 laffer1 Exp $
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.0
@@ -14,7 +14,7 @@ LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 USE_GNOME=	gnometarget
 USE_BDB=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"

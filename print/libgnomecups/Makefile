@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.1 2007/08/22 08:15:10 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.2 2009/09/17 02:29:27 laffer1 Exp $
 
 PORTNAME=	libgnomecups
 PORTVERSION=	0.2.3
@@ -18,7 +18,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack ltverhack glib20
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

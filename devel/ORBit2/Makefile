@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.5 2008/06/01 21:16:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.6 2008/10/07 01:18:56 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
@@ -25,7 +25,7 @@ USE_BZIP2=	yes
 
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack libidl ltverhack referencehack
 CONFIGURE_ARGS=	--disable-indent \
 		--with-html-dir=${PREFIX}/share/doc \

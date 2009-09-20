@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.4 2008/06/13 02:25:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.5 2009/04/27 23:43:41 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	6b
@@ -18,7 +18,7 @@ LICENSE=	other
 
 WRKSRC=		${WRKDIR}/jpeg-6b
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 

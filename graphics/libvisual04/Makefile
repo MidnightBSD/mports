@@ -2,7 +2,7 @@
 # Date created:		23 oktober 2004
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libvisual04/Makefile,v 1.1 2008/09/07 19:55:14 laffer1 Exp $
 # $FreeBSD: ports/graphics/libvisual04/Makefile,v 1.14 2008/06/06 13:34:42 edwin Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Abstraction library that sits between apps and visual plugin
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack pkgconfig
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes

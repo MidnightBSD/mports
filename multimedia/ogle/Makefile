@@ -2,7 +2,7 @@
 # Date created:				Tue Oct 16 18:35:39 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.4 2007/10/31 01:05:12 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.5 2009/05/27 21:26:38 crash Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
 #
 
@@ -21,7 +21,7 @@ LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 		mad.2:${PORTSDIR}/audio/libmad \
 		xml2.5:${PORTSDIR}/textproc/libxml2
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_SUBMAKE=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes

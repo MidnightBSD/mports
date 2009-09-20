@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.2 2007/12/30 04:48:35 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/kdeadmin3/Makefile,v 1.3 2009/05/08 22:19:41 laffer1 Exp $
 
 PORTNAME=	kdeadmin
 PORTVERSION=	${KDE_VERSION}
@@ -16,7 +16,7 @@ PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3

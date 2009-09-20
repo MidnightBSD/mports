@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.4 2008/03/04 02:46:04 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.5 2009/08/24 19:25:59 laffer1 Exp $
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.15
@@ -18,7 +18,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 intlhack
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

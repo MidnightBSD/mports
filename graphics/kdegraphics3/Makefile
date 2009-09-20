@@ -4,7 +4,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.2 2007/12/30 05:32:57 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.3 2008/08/26 19:10:44 laffer1 Exp $
 #
 
 PORTNAME=	kdegraphics
@@ -34,7 +34,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:15
+USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_GHOSTSCRIPT=yes

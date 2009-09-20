@@ -2,7 +2,7 @@
 # Date created:				Apr 19 2007
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/telepathy-glib/Makefile,v 1.1 2008/09/13 22:17:19 laffer1 Exp $
 # $FreeBSD: ports/net-im/telepathy-glib/Makefile,v 1.11 2008/07/06 21:57:45 marcus Exp $
 
 PORTNAME=	telepathy-glib
@@ -22,7 +22,7 @@ BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
 BUILD_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
 RUN_DEPENDS+=	${LIB_PC_DEPENDS:C|^|${LOCALBASE}/libdata/pkgconfig/|g}
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig glib20 ltverhack

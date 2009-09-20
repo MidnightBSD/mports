@@ -2,7 +2,7 @@
 # Date created:				Sept 25, 2008
 # Whom:					laffer1
 #
-# $MidnightBSD: mports/multimedia/kaffeine/Makefile,v 1.1 2008/09/25 15:57:27 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/kaffeine/Makefile,v 1.2 2009/05/14 23:13:09 laffer1 Exp $
 
 PORTNAME=	kaffeine
 PORTVERSION=	0.8.7
@@ -24,7 +24,7 @@ USE_KDELIBS_VER=	3
 USE_GMAKE=		yes
 USE_GETTEXT=		yes
 USE_LDCONFIG=		yes
-USE_AUTOTOOLS=		libtool:15
+USE_AUTOTOOLS=		libtool:22
 CONFIGURE_ENV=		CXXFLAGS="${CFLAGS} -I${WRKSRC}" CFLAGS="${CFLAGS} -I${WRKSRC}"
 DVB_HEADERS=		ca.h dmx.h frontend.h net.h audio.h video.h
 

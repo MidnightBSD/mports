@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.4 2009/03/15 19:00:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.5 2009/05/31 03:21:37 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.4
@@ -18,7 +18,7 @@ LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost \
 		ogg.5:${PORTSDIR}/audio/libogg \
 		gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GL=		yes
 USE_GMAKE=	yes

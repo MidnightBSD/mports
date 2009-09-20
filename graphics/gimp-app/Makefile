@@ -2,7 +2,7 @@
 # Date created:         Mon Nov 18 21:28:43 CST 1996
 # Whom:                 erich@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.2 2008/06/07 20:59:32 laffer1 Exp $
 #
 
 PORTNAME=	gimp-app
@@ -38,7 +38,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XORG=	xpm xmu xext
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GNOME+=	gnomehack intltool intlhack gtk20 libartlgpl2 ltverhack desktopfileutils
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes

@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.10 2008/10/29 20:13:51 ctriv Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.11 2009/06/13 06:51:55 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -27,7 +27,7 @@ LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
 
 USE_BISON=	build
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libltdl:15 libtool:15
+USE_AUTOTOOLS=	libltdl:22 libtool:22
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib

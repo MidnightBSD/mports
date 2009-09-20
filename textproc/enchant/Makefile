@@ -2,7 +2,7 @@
 # Date created:				03 January 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.2 2008/08/25 19:10:23 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.3 2009/01/02 03:06:56 ctriv Exp $
 # $FreeBSD: ports/textproc/enchant/Makefile,v 1.23 2006/11/30 20:37:18 mezz Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget glib20 ltverhack
 CONFIGURE_ARGS=	--disable-hspell \

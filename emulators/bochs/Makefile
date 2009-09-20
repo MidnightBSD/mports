@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.5 2009/03/01 17:11:03 laffer1 Exp $
 
 PORTNAME=	bochs
 PORTVERSION=	2.3.7
@@ -15,7 +15,7 @@ RUN_DEPENDS=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
 
 USE_GNOME=	gnometarget
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--disable-docbook
 
