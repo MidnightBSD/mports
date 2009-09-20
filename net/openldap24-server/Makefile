@@ -2,7 +2,7 @@
 # Date created:				19 May 2006
 # Whom:					Xin LI <delphij@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.2 2008/06/11 21:34:12 laffer1 Exp $
+# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.3 2009/09/20 01:49:56 laffer1 Exp $
 # $FreeBSD: ports/net/openldap24-server/Makefile,v 1.153 2008/05/07 21:20:44 delphij Exp $
 #
 
@@ -174,7 +174,7 @@ USE_RC_SUBR=		slapd.sh
 EXTRA_PATCHES+=		${FILESDIR}/extrapatch-Makefile.in
 
 .if defined(WITH_MODULES) || !defined(WITHOUT_DYNAMIC_BACKENDS) || defined(WITH_SLAPI)
-USE_AUTOTOOLS+=		libltdl:15
+USE_AUTOTOOLS+=		libltdl:22
 CONFIGURE_ARGS+=	--enable-modules
 PLIST_SUB+=		MODULES=""
 .else

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openct/Makefile,v 1.1 2008/09/18 15:25:28 laffer1 Exp $
+# $MidnightBSD: mports/security/openct/Makefile,v 1.2 2009/05/01 15:04:38 laffer1 Exp $
 
 PORTNAME=	openct
 DISTVERSION=	0.6.15
@@ -13,7 +13,7 @@ LICENSE=	lgpl
 OPTIONS=	USB "Install libusb for USB tokens/readers support" on \
 		PCSC "Install pcsc-lite to build the PC/SC->OpenCT frontend" off
 
-USE_AUTOTOOLS=	libltdl:15
+USE_AUTOTOOLS=	libltdl:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack pkgconfig

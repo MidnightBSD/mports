@@ -2,7 +2,7 @@
 # Date created:		2 November 1997
 # Whom:			jseger@FreeBSD.org
 #
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.5 2008/08/24 19:17:10 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.6 2008/10/02 20:45:07 laffer1 Exp $
 # $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
-USE_AUTOTOOLS=	autoconf:262 libltdl:15
+USE_AUTOTOOLS=	autoconf:262 libltdl:22
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
