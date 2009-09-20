@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.lua.mk,v 1.1 2007/05/03 08:44:55 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/lua.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.lua.mk,v 1.13 2007/04/11 03:22:34 alepulver Exp $
 #
 # bsd.lua.mk - Support for Lua based ports.
@@ -32,12 +32,13 @@
 #				  type.
 #				  The available components are:
 #				  lua			- The Lua library.
-#				  tolua			- The tolua library (for 4.0-5.0).
+#				  tolua			- The tolua library (for 4.0-5.1).
+#				  toluaxx		- The tolua++ library (for 5.0-5.1).
 #				  ruby			- The Ruby bindings for Lua (for 4.0-5.0).
 #				  Other components (modules):
 #				  5.0			- app, compat51, dfui, filename, gettext,
 #								  posix, pty, socket.
-#				  5.1			- filename, gettext, posix, pty.
+#				  5.1			- filename, gettext, posix, pty, socket.
 #				  The available dependency types are:
 #				  build			- Requires component for building.
 #				  lib			- Requires component for building and running.
@@ -73,9 +74,13 @@
 # LUA_VER_SH	- The Lua shared library major version (e.g. "1").
 # LUA_VER_STR	- The Lua version without the dots (e.g. "51").
 # LUA_PREFIX	- The prefix where Lua (and components) is installed.
+#				  NOTE: please see comments below about its double function.
 # LUA_SUBDIR	- The directory under bin/share/lib where Lua is installed.
-# LUA_INCDIR	- The directory where Lua and tolua header files are installed.
-# LUA_LIBDIR	- The directory where Lua and tolua libraries are installed.
+#				  Also used by Lua ports (lang/lua*) to set LATEST_LINK.
+# LUA_INCDIR	- The directory where Lua, tolua and tolua++ header files are
+#				  installed.
+# LUA_LIBDIR	- The directory where Lua, tolua and tolua++ libraries are
+#				  installed.
 # LUA_MODLIBDIR	- The directory where Lua module libraries (.so) are installed.
 # LUA_MODSHAREDIR
 #				- The directory where Lua modules (.lua) are installed.
@@ -84,6 +89,7 @@
 # LUA_CMD		- The path to the Lua interpreter.
 # LUAC_CMD		- The path to the Lua compiler.
 # TOLUA_CMD		- The path to the tolua program.
+# TOLUAXX_CMD	- The path to the tolua++ program.
 #
 # Examples:
 # - A port that needs Lua 4.0 and tolua (also 4.0) libraries (lua for building
@@ -101,6 +107,26 @@
 # - A port that needs Lua of any version other than 5.1 for building and
 #	running.
 #	USE_LUA_NOT=5.1
+#
+# Notes about the integration of lua related ports with bsd.lua.mk:
+# (please read when updating ports referred here, see lang/lua[0-9]*)
+#
+# The lua/tolua ports have to be patched so they can coexist, as the internal
+# application build infrastructure does not handle it automatically. Currently
+# the framework provides variables to the lua ports themselves, so changing
+# some things here won't require changes in lang/{lua,tolua}*.
+#
+# For lua ports: if they install a static library, use the same method for
+# tolua ports, otherwise in addition the libraries have to be symlinked to the
+# common library directory with a versioned name, and linked with the -soname
+# parameter (so when a port links with -L/usr/local/lib/lua51 -llua, it stores
+# the dynamic dependency as the name which figures under /usr/local/lib).
+#
+# For tolua ports: as it is a static library (.a), installing binaries,
+# headers and libraries under a versioned directory is fine (binary has also a
+# symlink).
+#
+# The lua modules install in a separate directory, so there is no problem.
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Lua_Pre_Include)
@@ -125,7 +151,7 @@ _LUA_Definitions_Done=	yes
 #						  to be added to PLIST_SUB.
 #
 
-_LUA_COMPS_ALL=			lua tolua ruby \
+_LUA_COMPS_ALL=			lua tolua toluaxx ruby \
 						app compat51 dfui filename gettext posix pty socket
 _LUA_DEP_TYPES_ALL=		build lib run
 _LUA_VERS_ALL=			4.0 5.0 5.1
@@ -150,7 +176,8 @@ _LUA_PORT_ruby_4.0=		lang/ruby-lua4
 
 _LUA_PORT_lua_5.0=		lang/lua50
 _LUA_DEPTYPE_lua_5.0=	lib
-_LUA_PORT_tolua_5.0=	lang/tolua
+_LUA_PORT_tolua_5.0=	lang/tolua50
+_LUA_PORT_toluaxx_5.0=	lang/tolua++50
 _LUA_PORT_ruby_5.0=		lang/ruby-lua
 
 _LUA_PORT_app_5.0=		devel/lua50-app
@@ -161,15 +188,18 @@ _LUA_PORT_filename_5.0=	devel/lua50-filename
 _LUA_PORT_gettext_5.0=	devel/lua50-gettext
 _LUA_PORT_posix_5.0=	devel/lua50-posix
 _LUA_PORT_pty_5.0=		devel/lua50-pty
-_LUA_PORT_socket_5.0=	net/luasocket
+_LUA_PORT_socket_5.0=	net/lua50-luasocket
 
 _LUA_PORT_lua_5.1=		lang/lua
-_LUA_DEPTYPE_lua_5.1=	build
+_LUA_DEPTYPE_lua_5.1=	lib
 
 _LUA_PORT_filename_5.1=	devel/lua-filename
 _LUA_PORT_gettext_5.1=	devel/lua-gettext
 _LUA_PORT_posix_5.1=	devel/lua-posix
 _LUA_PORT_pty_5.1=		devel/lua-pty
+_LUA_PORT_socket_5.1=	net/luasocket
+_LUA_PORT_tolua_5.1=	lang/tolua
+_LUA_PORT_toluaxx_5.1=	lang/tolua++
 
 .	for comp in ${_LUA_COMPS_ALL}
 _LUA_COMP=				${comp}
@@ -183,6 +213,9 @@ _LUA_FILE_${comp}_${ver}=	${LOCALBASE}/lib/lua${ver:S/.//g}/liblua.a
 .			elif ${_LUA_COMP} == "tolua"
 _LUA_FILE_${comp}_${ver}=	${LOCALBASE}/lib/lua${ver:S/.//g}/libtolua.a
 _LUA_DEPTYPE_${comp}_${ver}=build
+.			elif ${_LUA_COMP} == "toluaxx"
+_LUA_FILE_${comp}_${ver}=	${LOCALBASE}/lib/lua${ver:S/.//g}/libtolua++.so
+_LUA_DEPTYPE_${comp}_${ver}=lib
 .			elif ${_LUA_COMP} == "ruby"
 _LUA_FILE_${comp}_${ver}=	${RUBY_SITEARCHLIBDIR}/lua-${ver}.so
 _LUA_DEPTYPE_${comp}_${ver}=lib
@@ -413,22 +446,42 @@ LUA_VER?=				${_LUA_VER}
 LUA_VER_SH?=			${LUA_VER:C/[[:digit:]]\.([[:digit:]])/\1/}
 LUA_VER_STR?=			${LUA_VER:S/.//g}
 
-# Paths.
-LUA_PREFIX?=			${LOCALBASE}
+# Package name.
+LUA_PKGNAMEPREFIX?=		lua${LUA_VER_STR}-
 LUA_SUBDIR?=			lua${LUA_VER_STR}
+
+# Currently Lua ports (those which install Lua and modules) must either:
+# 1. Have PORTNAME=lua and LATEST_LINK=${LUA_SUBDIR} (currently Lua ports).
+# 2. Have PKGNAMEPREFIX=${LUA_PKGNAMEPREFIX} (currently Lua modules).
+# 3. Have LUA_PREFIX?=${PREFIX} (currently none).
+#
+# FIXME: the correct solution to this problem could be either:
+# 1. Create a lua*-config script, and make dependent ports use it.
+# 2. Set in each port if it's a "Lua module", or just requires Lua.
+#
+
+.if (defined(PKGNAMEPREFIX) && ${PKGNAMEPREFIX} == ${LUA_PKGNAMEPREFIX}) || \
+    (${PORTNAME} == "lua" && defined(LATEST_LINK) && \
+    ${LATEST_LINK} == ${LUA_SUBDIR})
+# For Lua and modules, which need to install in LUA_*DIR, respect PREFIX.
+LUA_PREFIX?=			${PREFIX}
+.else
+# For dependencies using LUA_{INC,LIB}DIR, use LOCALBASE as expected.
+LUA_PREFIX?=			${LOCALBASE}
+.endif
+
+# Paths.
 LUA_BINDIR?=			${LUA_PREFIX}/bin/${LUA_SUBDIR}
 LUA_INCDIR?=			${LUA_PREFIX}/include/${LUA_SUBDIR}
 LUA_LIBDIR?=			${LUA_PREFIX}/lib/${LUA_SUBDIR}
 LUA_MODLIBDIR?=			${LUA_PREFIX}/lib/lua/${LUA_VER}
 LUA_MODSHAREDIR?=		${LUA_PREFIX}/share/lua/${LUA_VER}
 
-# Package name.
-LUA_PKGNAMEPREFIX?=		lua${LUA_VER_STR}-
-
 # Programs.
 LUA_CMD?=				${LUA_PREFIX}/bin/lua-${LUA_VER}
 LUAC_CMD?=				${LUA_PREFIX}/bin/luac-${LUA_VER}
 TOLUA_CMD?=				${LUA_PREFIX}/bin/tolua-${LUA_VER}
+TOLUAXX_CMD?=			${LUA_PREFIX}/bin/tolua++-${LUA_VER}
 
 .endif		# _LUA_Need_Version
 
