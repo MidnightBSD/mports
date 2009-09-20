@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.2 2009/04/15 00:57:25 laffer1 Exp $
+# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.3 2009/08/13 20:19:55 laffer1 Exp $
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.20
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for access to scanners, digitals camera, frame grabbers etc
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 MAKE_JOBS_UNSAFE=	yes
 

@@ -2,7 +2,7 @@
 # Date created:		03 Feb 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.11 2009/06/13 06:51:55 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.12 2009/09/20 01:33:25 laffer1 Exp $
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.101 2008/06/25 14:24:20 dinoex Exp $
 #
 
@@ -18,7 +18,7 @@ COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 LICENSE=	other
 
 BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \

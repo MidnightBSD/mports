@@ -1,6 +1,6 @@
 # Date Created:		20 July 1999
 #
-# $MidnightBSD: ports/graphics/djvulibre-nox11/Makefile,v 1.3 2008/08/26 15:55:02 stas Exp $
+# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.1 2009/01/03 02:40:50 ctriv Exp $
 #
 
 PORTNAME=	djvulibre
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DjVu base libraries and utilities
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_ICONV=	yes

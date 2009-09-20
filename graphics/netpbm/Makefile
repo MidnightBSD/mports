@@ -2,7 +2,7 @@
 # Date created:		?
 # Whom:			jmz (original)
 #
-# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.2 2007/08/02 07:37:37 laffer1 Exp $
+# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.3 2008/10/13 20:45:07 laffer1 Exp $
 # $FreeBSD: ports/graphics/netpbm/Makefile,v 1.130 2006/08/05 06:01:42 dinoex Exp $
 #
 
@@ -25,7 +25,7 @@ COMMENT=	A toolkit for conversion of images between different formats
 LICENSE=	other
 
 LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		jbig.1:${PORTSDIR}/graphics/jbigkit
 #		jasper.4:${PORTSDIR}/graphics/jasper
