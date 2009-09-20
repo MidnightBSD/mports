@@ -1,26 +1,19 @@
-# ex:ts=8
-# New ports collection makefile for:	libdvdcss
-# Date created:		Jul 6, 2001
-# Whom:			ijliao
-#
-# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.2 2008/06/17 22:13:22 stevan Exp $
-# $FreeBSD: ports/multimedia/libdvdcss/Makefile,v 1.28 2006/05/10 22:37:31 edwin Exp $
-#
+# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.3 2008/08/13 19:02:44 laffer1 Exp $
 
 PORTNAME=	libdvdcss
-PORTVERSION=	1.2.9
-PORTREVISION=	3
+PORTVERSION=	1.2.10
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable abstraction library for DVD decryption
-LICENSE=	gpl2
+LICENSE=	restricted
+#gpl2, but DMCA?
 
 NO_CDROM=	CSS code may violate the DMCA
 
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
@@ -43,6 +36,8 @@ pre-everything::
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|' ${WRKSRC}/src/ioctl.c
+	${REINPLACE_CMD} -e '/^pkgconfigdir/s|$$(libdir)|$$(libdir)data|' \
+		${WRKSRC}/src/Makefile.in
 # should we disable doc building?
 .ifdef(NOPORTDOCS)
 	@${REINPLACE_CMD} -E \
