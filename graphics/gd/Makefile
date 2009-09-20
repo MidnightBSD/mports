@@ -2,7 +2,7 @@
 # Date created:				27 Mar 1998
 # Whom:					jeff@cetlink.net
 #
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.3 2008/06/25 16:14:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.4 2008/08/12 21:17:09 laffer1 Exp $
 # $FreeBSD: ports/graphics/gd/Makefile,v 1.78 2005/12/18 10:30:10 dinoex Exp $
 #
 
@@ -19,7 +19,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A graphics library for fast creation of images
 LICENSE=	agg
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2
 

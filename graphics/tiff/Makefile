@@ -4,7 +4,7 @@
 #			Mikhail Teterin <mi@aldan.algebra.com>
 #			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.5 2009/02/23 00:46:04 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.6 2009/09/20 02:01:24 laffer1 Exp $
 # $FreeBSD: ports/graphics/tiff/Makefile,v 1.61 2006/04/08 20:22:41 dinoex Exp $
 #
 
@@ -19,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
 LICENSE=	mit
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg
 
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22

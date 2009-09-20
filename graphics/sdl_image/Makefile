@@ -2,7 +2,7 @@
 # Date created:				20 September 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.2 2007/08/25 04:57:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.3 2008/06/16 00:21:17 stevan Exp $
 # $FreeBSD: ports/graphics/sdl_image/Makefile,v 1.28 2006/09/01 21:34:14 shaun Exp $
 #
 
@@ -16,7 +16,7 @@ LICENSE=	lgpl
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple library to load images of various formats as SDL surfaces
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 

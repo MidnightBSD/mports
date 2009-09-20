@@ -2,7 +2,7 @@
 # Date created:		25 March 2001
 # Whom:			KANOU Hiroki <kanou@khdd.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/print/fontforge/Makefile,v 1.5 2008/05/31 19:19:36 laffer1 Exp $
 # $FreeBSD: ports/print/fontforge/Makefile,v 1.78 2006/09/07 12:53:47 pav Exp $
 #
 
@@ -24,7 +24,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	uninameslist.0:${PORTSDIR}/textproc/libuninameslist \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		freetype.9:${PORTSDIR}/print/freetype2 \

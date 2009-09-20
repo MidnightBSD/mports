@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.9 2009/01/04 00:25:18 ctriv Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.10 2009/06/27 15:55:20 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -19,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ghostscript 8.x PostScript interpreter
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png
 RUN_DEPENDS=	${LOCALBASE}/share/${PORTNAME:S,8,,}/fonts/a010013l.pfb:${PORTSDIR}/print/gsfonts
 

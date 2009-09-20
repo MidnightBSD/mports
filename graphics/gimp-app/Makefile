@@ -2,12 +2,13 @@
 # Date created:         Mon Nov 18 21:28:43 CST 1996
 # Whom:                 erich@FreeBSD.org
 #
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.2 2008/06/07 20:59:32 laffer1 Exp $
+# $FreeBSD: ports/graphics/gimp-app/Makefile,v 1.239 2009/08/08 21:29:50 marcus Exp $
+#   $MCom: ports/graphics/gimp-app/Makefile,v 1.35 2009/04/09 03:24:07 mezz Exp $
 #
 
 PORTNAME=	gimp-app
-DISTVERSION=	2.4.5
-PORTREVISION?=	0
+DISTVERSION=	2.6.6
+PORTREVISION?=	3
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
@@ -20,48 +21,55 @@ MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	gimp/v${PORTVERSION:R}
 DISTNAME=	gimp-${DISTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	A GNU Image Manipulation Program
-LICENSE=	gpl2
 
-LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
-		wmf.2:${PORTSDIR}/graphics/libwmf \
-		poppler-glib.2:${PORTSDIR}/graphics/poppler-gtk \
-		aa.1:${PORTSDIR}/graphics/aalib \
-		mng.1:${PORTSDIR}/graphics/libmng \
-		png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		lcms.1:${PORTSDIR}/graphics/lcms
+		lcms.1:${PORTSDIR}/graphics/lcms \
+		gegl-0.0.22:${PORTSDIR}/graphics/gegl
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+
+CONFLICTS=	gimp-app-devel-[0-9]*
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XORG=	xpm xmu xext
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
-USE_GNOME+=	gnomehack intltool intlhack gtk20 libartlgpl2 ltverhack desktopfileutils
+USE_GNOME+=	gnomehack intltool intlhack gtk20 libartlgpl2 ltverhack \
+		desktopfileutils
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 LIBTOOLFLAGS=	--disable-ltlibs --release-ignore
-CONFIGURE_ARGS?=--disable-perl \
-		--with-html-dir=${PREFIX}/share/doc/gimp \
+CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc/gimp \
 		--disable-gtk-doc \
 		--without-print \
 		--disable-python \
 		--with-desktop-dir=${PREFIX}/share \
 		--docdir=${PREFIX}/share/doc/gimp \
-		--enable-default-binary
+		--enable-default-binary \
+		--without-gnomevfs
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		GIMP_THREAD_LIBS=${PTHREAD_LIBS}
 
 .if !defined(GIMP_SLAVE)
-OPTIONS?=	DEBUG "debugging" off \
+WANT_GNOME=	yes
+
+OPTIONS?=	AA "Ascii Art plug-in" on \
 		DBUS "D-BUS support" on \
-		GNOMEVFS "Use GNOME VFS for the URI plug-in" on \
+		EXIF "reading meta-data from camera/scanner" on \
+		GVFS "Use GVFS for the URI plug-in" on \
 		HELPBROWSER "internal help browser" on \
+		MNG "MNG format support" on \
 		MP "multiple processor support" off \
-		RSVG "SVG format support" on
+		POPPLER "PDF format support" on \
+		RSVG "SVG format support" on \
+		SIMD "Use cpu-specific optimizations if available" off \
+		WMF "wmf plugin" on
 .endif
 
 .include <bsd.port.pre.mk>
@@ -76,30 +84,15 @@ LIB_DEPENDS+=	gimp-2.0.0:${PORTSDIR}/graphics/gimp-app
 
 .else
 
-MAN1+=	gimp-2.4.1 gimp-remote-2.4.1 gimptool-2.0.1
-MAN5+=	gimprc-2.4.5
-MLINKS=	gimp-2.4.1 gimp.1 \
-	gimp-2.4.1 gimp-console-2.4.1 \
-	gimp-console-2.4.1 gimp-console.1 \
-	gimp-remote-2.4.1 gimp-remote.1 \
-	gimprc-2.4.5 gimprc.5
-
-.if defined(WITHOUT_RSVG)
-CONFIGURE_ARGS+=	--without-librsvg
-PLIST_SUB+=		SVG="@comment "
-.else
-USE_GNOME+=		librsvg2
-PLIST_SUB+=		SVG=""
-.endif
+MAN1+=	gimp-2.6.1 gimptool-2.0.1
+MAN5+=	gimprc-2.6.5
+MLINKS=	gimp-2.6.1 gimp.1 \
+	gimp-2.6.1 gimp-console-2.6.1 \
+	gimp-console-2.6.1 gimp-console.1 \
+	gimprc-2.6.5 gimprc.5
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
-.endif
-
-.if defined(WITH_MP)
-CONFIGURE_ARGS+=	--enable-mp
-.else
-CONFIGURE_ARGS+=	--disable-mp
 .endif
 
 .if ${HAVE_GNOME:Mgnomehier}!="" || defined(WITH_GNOME)
@@ -109,13 +102,12 @@ PLIST_SUB+=		GNOME=""
 PLIST_SUB+=		GNOME="@comment "
 .endif
 
-.if defined(WITH_HELPBROWSER)
-USE_GNOME+=		libgtkhtml
-CONFIGURE_ARGS+=	--with-gtkhtml2
-PLIST_SUB+=		HELPBROWSER=""
+.if defined(WITH_AA)
+LIB_DEPENDS+=		aa.1:${PORTSDIR}/graphics/aalib
+PLIST_SUB+=		AA=""
 .else
-CONFIGURE_ARGS+=	--without-gtkhtml2
-PLIST_SUB+=		HELPBROWSER="@comment "
+CONFIGURE_ARGS+=	--without-aa
+PLIST_SUB+=		AA="@comment "
 .endif
 
 .if defined(WITH_DBUS)
@@ -125,9 +117,71 @@ CONFIGURE_ARGS+=	--with-dbus
 CONFIGURE_ARGS+=	--without-dbus
 .endif
 
-.if defined(WITH_GNOMEVFS) || ${HAVE_GNOME:Mgnomevfs2}!=""
+.if defined(WITH_EXIF)
+LIB_DEPENDS+=		exif.12:${PORTSDIR}/graphics/libexif
+.else
+CONFIGURE_ARGS+=	--without-libexif
+.endif
+
+.if defined(WITH_GVFS) || ${HAVE_GNOME:Mgvfs}!=""
 LIB_DEPENDS+=	gnome-keyring.0:${PORTSDIR}/security/gnome-keyring
-USE_GNOME+=	gnomevfs2
+USE_GNOME+=	gvfs
+.  if ${HAVE_GNOME:Mlibgnomeui}!=""
+USE_GNOME+=	libgnomeui
+.  endif
+.endif
+
+.if defined(WITH_HELPBROWSER)
+LIB_DEPENDS+=		webkit-1.0.1:${PORTSDIR}/www/webkit-gtk2
+CONFIGURE_ARGS+=	--with-webkit
+PLIST_SUB+=		HELPBROWSER=""
+.else
+CONFIGURE_ARGS+=	--without-webkit
+PLIST_SUB+=		HELPBROWSER="@comment "
+.endif
+
+.if defined(WITH_MNG)
+LIB_DEPENDS+=		mng.1:${PORTSDIR}/graphics/libmng
+PLIST_SUB+=		MNG=""
+.else
+CONFIGURE_ARGS+=	--without-libmng
+PLIST_SUB+=		MNG="@comment "
+.endif
+
+.if defined(WITH_MP)
+CONFIGURE_ARGS+=	--enable-mp
+.else
+CONFIGURE_ARGS+=	--disable-mp
+.endif
+
+.if defined(WITH_POPPLER)
+LIB_DEPENDS+=		poppler-glib.4:${PORTSDIR}/graphics/poppler-gtk
+PLIST_SUB+=		POPPLER=""
+.else
+CONFIGURE_ARGS+=	--without-poppler
+PLIST_SUB+=		POPPLER="@comment "
+.endif
+
+.if defined(WITH_RSVG)
+USE_GNOME+=		librsvg2
+PLIST_SUB+=		SVG=""
+.else
+CONFIGURE_ARGS+=	--without-librsvg
+PLIST_SUB+=		SVG="@comment "
+.endif
+
+.if defined(WITH_WMF)
+LIB_DEPENDS+=		wmf.2:${PORTSDIR}/graphics/libwmf
+PLIST_SUB+=		WMF=""
+.else
+CONFIGURE_ARGS+=	--without-wmf
+PLIST_SUB+=		WMF="@comment "
+.endif
+
+.if !defined(WITH_SIMD)
+CONFIGURE_ARGS+=	--disable-mmx \
+			--disable-sse \
+			--disable-altivec
 .endif
 
 .endif
@@ -138,16 +192,10 @@ post-patch:
 		s|%%GIMP_UI_LIBS%%|${GIMP_UI_LIBS}|' \
 			${WRKSRC}/plug-ins/pygimp/Makefile.in
 	@${REINPLACE_CMD} -e 's|"libpng"|"libpng12"|' \
+	    	-e 's|x86_64|amd64|g' \
 		${WRKSRC}/configure
 
 post-install:
-.if !defined(GIMP_SLAVE)
-.if ${HAVE_GNOME:Mgnomehier}!="" || defined(WITH_GNOME)
-	${MKDIR} ${PREFIX}/share/mime-info ${PREFIX}/share/application-registry
-	${INSTALL_DATA} ${WRKSRC}/desktop/gimp.applications ${PREFIX}/share/application-registry
-	${INSTALL_DATA} ${WRKSRC}/desktop/gimp.keys ${PREFIX}/share/mime-info
-.endif
-.endif
 	@-update-desktop-database
 
 .include <bsd.port.post.mk>
