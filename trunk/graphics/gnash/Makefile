@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.5 2009/05/31 03:21:37 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.6 2009/09/20 01:30:53 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.4
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost \
 		png.5:${PORTSDIR}/graphics/png \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		ogg.5:${PORTSDIR}/audio/libogg \
 		gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext

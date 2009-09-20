@@ -3,7 +3,7 @@
 # Whom:			smace
 #
 # $FreeBSD: ports/graphics/xv/Makefile,v 1.67 2006/09/05 06:06:53 dinoex Exp $
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.2 2007/10/31 04:16:32 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.3 2008/05/11 14:38:58 laffer1 Exp $
 #
 
 PORTNAME=	xv
@@ -33,7 +33,7 @@ COMMENT?=	An X11 program that displays images of various formats
 LICENSE=	restricted
 # non commericial use only
 
-LIB_DEPENDS=	jpeg.9:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		png.5:${PORTSDIR}/graphics/png
 

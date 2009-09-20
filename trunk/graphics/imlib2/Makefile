@@ -2,7 +2,7 @@
 # Date created:		16 Oct 2000
 # Whom:			Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.3 2007/11/10 02:34:58 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.4 2008/05/30 22:41:55 laffer1 Exp $
 #
 
 PORTNAME=	imlib2
@@ -52,7 +52,7 @@ PLIST_SUB=	X11=""
 .endif
 
 .if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=	JPEG=""
 .else
 CONFIGURE_ARGS+=	--without-jpeg

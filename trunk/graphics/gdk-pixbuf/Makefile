@@ -2,7 +2,7 @@
 # Date created:		September 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.1 2008/09/24 23:51:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.2 2009/09/20 01:27:04 laffer1 Exp $
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.9:${PORTSDIR}/graphics/jpeg
+		jpeg.10:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
