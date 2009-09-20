@@ -1,11 +1,23 @@
---- configure.orig	2008-03-10 20:32:12.000000000 +0100
-+++ configure	2008-04-03 17:38:34.000000000 +0200
-@@ -34060,7 +34060,7 @@
+--- configure.orig	2008-10-08 01:54:55.000000000 +0200
++++ configure	2009-02-27 11:12:03.000000000 +0100
+@@ -6481,6 +6481,9 @@
+ 	        *-apple-darwin* )
+ 	            CFLAGS="${CFLAGS} -fno-common -Wall"
+ 	            ;;
++	        *alpha*-freebsd* )
++	            CFLAGS="${CFLAGS} -Wstrict-prototypes -Wpointer-arith -Wall"
++		    ;;
+ 	        *-freebsd* )
+ 	            CFLAGS="${CFLAGS} -Wstrict-prototypes -Wpointer-arith -Wall -ffast-math"
+ 		    ;;
+@@ -26247,7 +26250,9 @@
  
- # Check whether --with-platformsdkincludedir was given.
- if test "${with_platformsdkincludedir+set}" = set; then
--  withval=$with_platformsdkincludedir; PLATFORMSDKINCLUDE=$withval; PLATFORMSDKINCLUDE_ESCAPED=${PLATFORMSDKINCLUDE//'\\'/\\\\}; PLATFORMSDKINCLUDE_ESCAPED=${PLATFORMSDKINCLUDE_ESCAPED// /\\ }
-+  withval=$with_platformsdkincludedir; PLATFORMSDKINCLUDE=$withval; PLATFORMSDKINCLUDE_ESCAPED=${PLATFORMSDKINCLUDE}; PLATFORMSDKINCLUDE_ESCAPED=${PLATFORMSDKINCLUDE_ESCAPED}
- fi
+         LUA_INCLUDES=""
+         LUA_LIBS=""
+-        LUA_INSTALL_DIR=""
++	if test -z "$LUA_INSTALL_DIR" ; then
++	        LUA_INSTALL_DIR=""
++	fi
  
- 
+         if test -n "$lua_inc"; then
+            CFLAGS="$CFLAGS -I$lua_inc"
