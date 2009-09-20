@@ -2,7 +2,7 @@
 # Date created:         May 11, 2000
 # Whom:                 Nick Sayer <nsayer@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.2 2007/10/12 20:23:04 laffer1 Exp $
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.3 2008/04/11 20:44:20 laffer1 Exp $
 # $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
 #
 
@@ -19,7 +19,7 @@ CONFLICTS=	libiodbc-[0-9]*
 
 USE_GNOME=	gnomehack gnometarget
 USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--enable-static --enable-shared \
 		--with-libiconv-prefix=${LOCALBASE}
 USE_LDCONFIG=	yes

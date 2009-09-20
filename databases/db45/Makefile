@@ -1,10 +1,4 @@
-# New ports collection makefile for:	db45
-# Date created:		2007-05-10
-# Whom:			Gea-Suan Lin <gslin@gslin.org>
-#
-# $MidnightBSD: mports/databases/db45/Makefile,v 1.1 2007/08/10 15:56:31 laffer1 Exp $
-# $FreeBSD: ports/databases/db45/Makefile,v 1.81 2007/07/31 09:18:11 clsung Exp $
-#
+# $MidnightBSD: mports/databases/db45/Makefile,v 1.2 2007/11/10 23:33:36 laffer1 Exp $
 
 PORTNAME=	db45
 PORTVERSION=	4.5.20.0
@@ -28,6 +22,7 @@ CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 --enable-cxx \
 		--bindir=${PREFIX}/bin/${PORTNAME}
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 INSTALL_TARGET=	install_include install_lib install_utilities
 LIBTOOLFILES=	${CONFIGURE_SCRIPT}
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix

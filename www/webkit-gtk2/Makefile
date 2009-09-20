@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.11 2009/07/09 22:50:03 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.12 2009/07/12 15:51:33 laffer1 Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	0.0.44925
@@ -27,7 +27,7 @@ USE_GNOME=	gnometarget gtk20 libxslt
 USE_XORG=	xt
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:15
+USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:22
 #USE_GSTREAMER=	theora
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \

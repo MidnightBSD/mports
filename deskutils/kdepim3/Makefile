@@ -2,7 +2,7 @@
 # Date created:				2 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/deskutils/kdepim3/Makefile,v 1.1 2007/12/31 18:18:02 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/kdepim3/Makefile,v 1.2 2008/06/19 22:48:09 laffer1 Exp $
 # $FreeBSD: ports/deskutils/kdepim3/Makefile,v 1.78 2007/11/01 03:45:59 linimon Exp $
 #
 
@@ -31,7 +31,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_BISON=	build
 USE_OPENSSL=	yes
-USE_AUTOTOOLS=	libtool:15
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 
 USE_LDCONFIG=	yes
