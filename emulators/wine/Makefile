@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.7 2009/08/08 19:24:26 crash Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.8 2009/08/24 21:11:36 laffer1 Exp $
 
 PORTNAME=	wine
 PORTVERSION=    1.1.28
@@ -14,7 +14,7 @@ LICENSE=        lgpl3
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
-		jpeg.9:${PORTSDIR}/graphics/jpeg \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		lcms.1:${PORTSDIR}/graphics/lcms \
 		png.5:${PORTSDIR}/graphics/png \
 		xml2:${PORTSDIR}/textproc/libxml2
