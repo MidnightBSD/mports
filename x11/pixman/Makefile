@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.5 2009/05/08 03:17:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/pixman/Makefile,v 1.6 2009/09/20 01:58:04 smultron Exp $
 
 PORTNAME=	pixman
 PORTVERSION=	0.15.2 
@@ -18,6 +18,6 @@ post-patch:
 		-e 's|-msse||' ${WRKSRC}/configure
 
 post-install:
-	(cd ${PREFIX}/lib; ln -s libpixman-1.so.0 libpixman-1.so.9 )
+	(cd ${PREFIX}/lib; ln -s libpixman-1.so.15 libpixman-1.so.9 )
 
 .include <bsd.port.mk>
