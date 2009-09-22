@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.19 2009/06/27 16:26:21 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.20 2009/07/05 15:45:46 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.2.0.1
+DISTVERSION=	3.2.2
 CATEGORIES=	databases www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	phpmyadmin
