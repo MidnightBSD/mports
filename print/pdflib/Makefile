@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.9 2009/07/11 17:57:27 laffer1 Exp $
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.10 2009/09/20 02:19:13 laffer1 Exp $
 
 PORTNAME=	pdflib
 PORTVERSION=	7.0.4
 CATEGORIES=	print
 MASTER_SITES=	http://www.pdflib.com/binaries/PDFlib/${PORTVERSION:S/.//g}/
-DISTNAME=	PDFlib-Lite-${PORTVERSION}
+DISTNAME=	PDFlib-Lite-${PORTVERSION}p4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for dynamically generating PDF
