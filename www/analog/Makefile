@@ -1,14 +1,8 @@
-# New ports collection makefile for: analog
-# Date created:		October 21st 1996
-# Whom:			jfitz
-#
-# $MidnightBSD: mports/www/analog/Makefile,v 1.5 2008/07/16 04:28:51 laffer1 Exp $
-# $FreeBSD: ports/www/analog/Makefile,v 1.57 2006/01/04 23:32:10 edwin Exp $
-#
+# $MidnightBSD: mports/www/analog/Makefile,v 1.6 2009/09/20 02:49:16 laffer1 Exp $
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
