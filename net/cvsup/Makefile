@@ -1,14 +1,8 @@
-# New ports collection makefile for:	cvsup
-# Date created:		7 August 1996
-# Whom:			asami
-#
-# $FreeBSD: ports/net/cvsup/Makefile,v 1.64 2005/12/17 06:17:29 lawrance Exp $
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.3 2008/04/29 02:00:36 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.4 2009/03/11 23:11:19 laffer1 Exp $
 
 PORTNAME=	cvsup
 PORTVERSION?=	16.1h
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	net devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_ORG}
 MASTER_SITE_SUBDIR=development/CVSup/snapshots
@@ -24,7 +18,6 @@ USE_RC_SUBR=	cvsupd.sh
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-MAINTAINER=	bzeeb+freebsdports@zabbadoz.net
 TARGET=		FBSD_AMD64
 AMD64_PATCHES=	p-amd64-aa p-amd64-zlib
 .elif ${ARCH} == "i386"
