@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.8 2009/03/14 00:09:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.9 2009/09/20 02:32:21 smultron Exp $
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.6.0
+PORTREVISION=	1
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://fontconfig.org/release/
