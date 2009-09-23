@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.5 2009/09/20 02:44:54 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.6 2009/09/20 17:09:19 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
-PORTREVISION?=	2
+PORTREVISION?=	3
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	http://www.libgd.org/releases/
