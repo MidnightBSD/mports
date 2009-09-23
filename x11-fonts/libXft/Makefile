@@ -1,13 +1,8 @@
-# New ports collection makefile for:	Xft
-# Date created:		06 October 2002
-# Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $FreeBSD: ports/x11-fonts/libXft/Makefile,v 1.44 2007/05/19 20:29:31 flz Exp $
-# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.4 2007/10/04 20:05:15 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.5 2008/08/20 17:10:44 crash Exp $
 
 PORTNAME=	libXft
 PORTVERSION=	2.1.13
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
