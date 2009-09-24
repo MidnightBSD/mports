@@ -2,10 +2,10 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD: mports/mail/p5-Email-MIME/Makefile,v 1.1 2008/10/11 20:02:15 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Email-MIME/Makefile,v 1.2 2008/10/11 21:11:23 laffer1 Exp $
 
 PORTNAME=	Email-MIME
-PORTVERSION=	1.861
+PORTVERSION=	1.863
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -22,7 +22,8 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Email::MIME.3
+MAN3=		Email::MIME.3 \
+		Email::MIME::Header.3
 
 .include <bsd.port.pre.mk>
 
