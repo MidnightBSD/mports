@@ -1,17 +1,10 @@
-# New ports collection makefile for:	courier-authlib
-# Date created:				19 Dec 2004
-# Whom:					Oliver Lehmann
-#
-# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.3 2007/09/01 00:10:00 ctriv Exp $
-# $FreeBSD: ports/security/courier-authlib/Makefile,v 1.28 2007/01/17 05:25:27 oliver Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	courier-authlib
-PORTVERSION=	0.59.1
-PORTREVISION=	0
+PORTVERSION=	0.62.4
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
 MASTER_SITE_SUBDIR=	courier
 .else
 MASTER_SITES=	# empty
@@ -21,8 +14,10 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Meta-port for the courier authentication library
+LICENSE=	gpl3
 
 CONFLICTS=	courier-0.45*
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 .if !defined(PKGNAMESUFFIX)
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -42,7 +37,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/${PORTNAME}
 
 MAILOWN=	courier
@@ -61,7 +56,6 @@ CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' \
 		LDFLAGS='${LDFLAGS}'
 MAKE_ENV:=	${CONFIGURE_ENV}
 
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 CONFIGURE_ARGS=	--enable-unicode \
 		--enable-ltdl-install=no \
 		--without-authcustom \
@@ -87,7 +81,8 @@ CONFIGURE_ARGS+=--with-base --with-authpam
 MAN1=		courierlogger.1 authtest.1
 
 MAN3=		authlib.3 auth_generic.3 auth_login.3 auth_getuserinfo.3 \
-		auth_enumerate.3 auth_passwd.3 auth_getoption.3 auth_sasl.3
+		auth_enumerate.3 auth_passwd.3 auth_getoption.3 auth_sasl.3 \
+		auth_sasl_ex.3
 
 DOCS=		AUTHORS COPYING ChangeLog INSTALL NEWS README \
 		README.authdebug.html README_authlib.html
@@ -177,15 +172,14 @@ USE_RC_SUBR=	courier-authdaemond.sh
 .endif
 
 pre-everything::
-	@${ECHO_CMD}
 	@${ECHO_CMD}	"	Set WITH_AUTHPIPE_PROG to a program you want to use instead of"
 	@${ECHO_CMD}	"	authProg for libauthpipe"
-	@${ECHO_CMD}
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|$$VPOPMAILLIBS|& -lcrypt|g' \
-		-e 's|^\(INSTALL_STRIP_PROGRAM=\).*$$|\1"$${INSTALL_PROGRAM} -s"|' \
+	@${REINPLACE_CMD} -e 's|$$VPOPMAILLIBS|& -lcrypt|g;  \
+		s|^\(INSTALL_STRIP_PROGRAM=\).*$$|\1"$${INSTALL_PROGRAM} -s"| ; \
+		s|mysql_connect|mysql_real_connect|g' \
 		${WRKSRC}/*/configure \
 		${WRKSRC}/configure
 .for subdir in ${REMOVE_SUBDIRS}
@@ -206,8 +200,11 @@ pre-configure:
 		${RM} -f "${WRKDIR}/courier-authlib.cache" ; \
 	fi
 
+.if ${PKGNAMESUFFIX} == "-base"
 pre-install:
 	@${MKDIR} ${PREFIX}/libexec/courier-authlib
+#	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
+.endif	# ${PKGNAMESUFFIX} == "-base"
 
 post-install:
 .if !defined(NOPORTDOCS)
