@@ -1,12 +1,7 @@
-# New ports collection makefile for:	mail/p5-Email-Send
-# Date created:				27 December 2005
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $FreeBSD: ports/mail/p5-Email-Send/Makefile,v 1.13 2008/04/17 14:26:54 araujo Exp $
-# $MidnightBSD: mports/mail/p5-Email-Send/Makefile,v 1.2 2008/09/22 18:47:36 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Email-Send/Makefile,v 1.3 2008/10/11 20:51:12 laffer1 Exp $
 
 PORTNAME=	Email-Send
-PORTVERSION=	2.192
+PORTVERSION=	2.198
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
