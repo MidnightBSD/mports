@@ -1,16 +1,10 @@
-# New ports collection makefile for:	abook
-# Date created:				June 6th 2000
-# Whom:	      				Yen-Ming Lee <leeym@cae.ce.ntu.edu.tw>
-#
-# $MidnightBSD: mports/mail/abook/Makefile,v 1.3 2007/12/05 23:06:43 laffer1 Exp $
-# $FreeBSD: ports/mail/abook/Makefile,v 1.21 2006/08/10 01:30:07 clsung Exp $
-#
+# $MidnightBSD: mports/mail/abook/Makefile,v 1.4 2008/06/23 01:53:12 laffer1 Exp $
 
 PORTNAME=	abook
 PORTVERSION=	0.5.6
+PORTREVISION=	1
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An addressbook program with mutt mail client support
@@ -37,8 +31,8 @@ PORTDOCS=	ANNOUNCE AUTHORS BUGS ChangeLog FAQ INSTALL NEWS README \
 
 .include <bsd.port.pre.mk>
 
-.if exists(${LOCALBASE}/lib/libreadline.so.5)
-LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
+.if exists(${LOCALBASE}/lib/libreadline.so.6)
+LIB_DEPENDS+=	readline.6:${PORTSDIR}/devel/readline
 .endif
 
 post-install:
