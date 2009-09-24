@@ -1,10 +1,4 @@
-# New ports collection makefile for:	procmail
-# Date created:		24 September 1994
-# Whom:			adam
-#
-# $FreeBSD: ports/mail/procmail/Makefile,v 1.55 2006/08/12 13:02:31 ache Exp $
-# $MidnightBSD: mports/mail/procmail/Makefile,v 1.2 2007/12/05 22:55:02 laffer1 Exp $
-#
+# $MidnightBSD: mports/mail/procmail/Makefile,v 1.3 2009/06/22 17:55:41 laffer1 Exp $
 
 PORTNAME=	procmail
 PORTVERSION=	3.22
@@ -27,7 +21,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A local mail delivery agent
 LICENSE=	perl
 
-MAKE_JOBS_UNSAFE=     yes
+MAKE_JOBS_UNSAFE=	yes
 
 #.if defined(WITH_COURIER_MAILDIR_KLUDGE)
 #PATCH_SITES=	http://www.john.net.au/pub/procmail-courier/
@@ -37,7 +31,9 @@ MAKE_JOBS_UNSAFE=     yes
 
 # It asks for list of directories to do test for file locking
 # (defaults to /tmp and ".", so return should suffice in most cases).
-.if !defined(BATCH) # handled in patch-aa
+.if defined(BATCH) # handled in patch-aa
+MAKE_ARGS+=	-DBATCH
+.else
 IS_INTERACTIVE=	yes
 .endif
 
