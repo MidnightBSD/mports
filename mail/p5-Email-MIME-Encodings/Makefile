@@ -2,11 +2,11 @@
 # Date created:				Oct 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Email-MIME-Encodings/Makefile,v 1.1 2008/10/11 20:02:16 laffer1 Exp $
 #
 
 PORTNAME=	Email-MIME-Encodings
-PORTVERSION=	1.311
+PORTVERSION=	1.312
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
