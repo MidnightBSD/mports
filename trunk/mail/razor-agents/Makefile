@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.2 2007/08/04 23:49:25 laffer1 Exp $
+# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.3 2009/04/16 04:05:12 laffer1 Exp $
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.84
@@ -14,6 +14,8 @@ BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1 \
 		${SITE_PERL}/URI/Escape.pm:${PORTSDIR}/net/p5-URI
 RUN_DEPENDS=	${BUILD_DEPENDS}
+
+MAKE_JOBS_UNSAFE=	yes
 
 PERL_CONFIGURE=	yes
 
