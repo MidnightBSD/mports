@@ -1,10 +1,4 @@
-# New ports collection makefile for:	php5-imap
-# Date created:			7 Jul 2004
-# Whom:				Alex Dupre <ale@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/mail/php5-imap/Makefile,v 1.1 2004/07/19 09:12:31 ale Exp $
-#
+# $MidnightBSD: mports/mail/php5-imap/Makefile,v 1.1 2007/01/20 16:09:40 wintellect Exp $
 
 CATEGORIES=	mail
 
