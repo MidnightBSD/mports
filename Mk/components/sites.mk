@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.15 2009/06/04 01:27:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.16 2009/06/06 21:30:03 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1150,11 +1150,9 @@ MASTER_SITE_QMAIL+= \
 
 .if !defined(IGNORE_MASTER_SITE_QT)
 MASTER_SITE_QT+= \
-	ftp://ftp.iasi.roedu.net/mirrors/ftp.trolltech.com/qt/source/%SUBDIR%/ \
-	ftp://ftp.ntua.gr/pub/X11/Qt/qt/source/%SUBDIR%/ \
-	ftp://ftp.tu-chemnitz.de/pub/Qt/qt/source/%SUBDIR%/ \
-	ftp://ftp.silug.org/mirrors/ftp.trolltech.com/qt/source/%SUBDIR%/ \
-	ftp://ftp.fu-berlin.de/unix/X11/gui/Qt/source/%SUBDIR%/ \
+	http://mi.mirror.garr.it/mirrors/qt/%SUBDIR%/ \
+	ftp://ftp.heanet.ie/mirrors/trolltech/pub/qt/source/%SUBDIR%/ \
+	http://download.qt.nokia.com/qt/source/%SUBDIR%/ \
 	ftp://ftp.trolltech.com/qt/source/%SUBDIR%/
 .endif
 
@@ -1258,21 +1256,12 @@ MASTER_SITE_SAVANNAH+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
-.for mirror in garr superb-east nchc kent easynews ufpr mesh voxel
+.for mirror in heanet sunet iweb switch surfnet kent freefr \
+		voxel jaist osdn nchc transact softlayer \
+		internode biznetnetworks upfr
 MASTER_SITE_SOURCEFORGE+= \
-	http://${mirror}.dl.sourceforge.net/sourceforge/%SUBDIR%/
+	http://${mirror}.dl.sourceforge.net/project/%SUBDIR%/
 .endfor
-.endif
-
-# official sf.net mirrors that don't mirror all projects, check
-# http://prdownloads.sourceforge.net/%SUBDIR%/
-.if !defined(IGNORE_MASTER_SITE_SOURCEFORGE_EXTENDED)
-.for mirror in easynews switch puzzle belnet osdn ovh keihanna
-MASTER_SITE_SOURCEFORGE_EXTENDED+= \
-	http://${mirror}.dl.sourceforge.net/sourceforge/%SUBDIR%/
-.endfor
-MASTER_SITE_SOURCEFORGE_EXTENDED+= \
-	${MASTER_SITE_SOURCEFORGE}
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE_JP)
@@ -1522,6 +1511,7 @@ MASTER_SITE_XEMACS+= \
 	ftp://ftp.se.xemacs.org/pub/gnu/xemacs/%SUBDIR%/ \
 	ftp://ftp.tw.xemacs.org/Unix/Editors/XEmacs/%SUBDIR%/ \
 	ftp://ftp.uk.xemacs.org/sites/ftp.xemacs.org/pub/xemacs/%SUBDIR%/ \
+	ftp://ftp.us.xemacs.org/pub/xemacs/%SUBDIR%/ \
 	ftp://xemacs.xmundo.net/pub/mirrors/xemacs/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/unix/editor/xemacs/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,text/xemacs/&,}
@@ -1536,12 +1526,10 @@ MASTER_SITE_XFCE+= \
 	http://www.p0llux.be/xfce/%SUBDIR%/src/
 .endif
 
-
 .if !defined(IGNORE_MASTER_SITE_XFREE)
 MASTER_SITE_XFREE+= \
 	http://www.gtlib.cc.gatech.edu/pub/XFree86/%SUBDIR%/source/ \
 	ftp://ftp.xfree86.org/pub/XFree86/%SUBDIR%/source/ \
-	ftp://archive.progeny.com/XFree86/%SUBDIR%/source/ \
 	ftp://ftp.dti.ad.jp/pub/X/XFree86/XFree86/%SUBDIR%/source/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,XFree86/&/source,} \
 	ftp://ftp.fit.vutbr.cz/pub/XFree86/%SUBDIR%/source/ \
@@ -1566,6 +1554,7 @@ MASTER_SITE_XORG+= \
 	ftp://ftp.cs.cuhk.edu.hk/pub/X11/%SUBDIR%/ \
 	ftp://ftp.unicamp.br/pub/X11/releases/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/X11/X.org/%SUBDIR%/ \
+	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/opengroup/&/,} \
 	ftp://ftp.task.gda.pl/mirror/ftp.x.org/pub/%SUBDIR%/ \
 	ftp://ftp.sunet.se/pub/X11/ftp.x.org/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.x.org/pub/%SUBDIR%/ \
@@ -1578,18 +1567,20 @@ MASTER_SITE_XORG+= \
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
 MASTER_SITE_KERNEL_ORG+= \
 	http://kernel.org/pub/%SUBDIR%/ \
- 	http://www.us.kernel.org/pub/%SUBDIR%/ \
- 	http://www.uk.kernel.org/pub/%SUBDIR%/ \
- 	http://www.no.kernel.org/pub/%SUBDIR%/ \
- 	http://www.de.kernel.org/pub/%SUBDIR%/ \
- 	http://www.it.kernel.org/pub/%SUBDIR%/ \
- 	http://www.ru.kernel.org/pub/%SUBDIR%/ \
- 	http://www.au.kernel.org/pub/%SUBDIR%/
+	http://www.us.kernel.org/pub/%SUBDIR%/ \
+	http://www.uk.kernel.org/pub/%SUBDIR%/ \
+	http://www.no.kernel.org/pub/%SUBDIR%/ \
+	http://www.de.kernel.org/pub/%SUBDIR%/ \
+	http://www.it.kernel.org/pub/%SUBDIR%/ \
+	http://www.ru.kernel.org/pub/%SUBDIR%/ \
+	http://www.au.kernel.org/pub/%SUBDIR%/
 .endif
 
 # Macro magic
 
-MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN SF:SOURCEFORGE SFE:SOURCEFORGE_EXTENDED \
+MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN \
+			SF:SOURCEFORGE \
+			SFJP:SOURCEFORGE_JP \
 			RF:RUBYFORGE
 MASTER_SITES_SUBDIRS=	\
 			APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
@@ -1601,6 +1592,8 @@ MASTER_SITES_SUBDIRS=	\
 			GCC:releases/${DISTNAME} \
 			GNOME:sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/} \
 			GNU:${PORTNAME} \
+			HORDE:${PORTNAME} \
+			LOGILAB:${PORTNAME} \
 			MOZDEV:${PORTNAME:L} \
 			PERL_CPAN:${PORTNAME:C/-.*//} \
 			PNET:${PNET_MASTER_SITE_SUBDIR} \
@@ -1608,8 +1601,7 @@ MASTER_SITES_SUBDIRS=	\
 			RUBY_DBI:${RUBY_DBI_MASTER_SITE_SUBDIR} \
 			RUBY_GNOME:${RUBY_GNOME_MASTER_SITE_SUBDIR} \
 			SAVANNAH:${PORTNAME:L} \
-			SOURCEFORGE:${PORTNAME:L} \
-			SOURCEFORGE_EXTENDED:${PORTNAME:L} \
+			SOURCEFORGE:${PORTNAME:L}/${PORTNAME:L}/${PORTVERSION} \
 			RUBYFORGE:${PORTNAME:L}
 
 .if defined(MASTER_SITES) && ${MASTER_SITES:N*\:/*}
