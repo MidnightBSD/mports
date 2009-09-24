@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/mail/courier/files/pkg-install.in,v 1.1 2005/07/16 22:52:35 pav Exp $
-#
+# $MidnightBSD$
 
 PKG_PREFIX=${PKG_PREFIX:=/usr/local}
 
@@ -39,7 +38,7 @@ yesno() {
 
 replace() {
     local orig repl
-    
+
     orig=$1
     repl=$2
     if [ -e ${orig} ]; then
@@ -62,13 +61,6 @@ if [ ":$2" = ":POST-INSTALL" ]; then
             echo "send-mail	${PKG_PREFIX}/bin/sendmail"	>> /etc/mail/mailer.conf
             echo "mailq		${PKG_PREFIX}/bin/mailq"	>> /etc/mail/mailer.conf
             echo "newaliases	${PKG_PREFIX}/sbin/makealiases"	>> /etc/mail/mailer.conf
-            echo "Done."
-        fi
-    else
-        if yesno "Would you like to replace {sendmail,mailq,newaliases} with Courier versions" n; then
-            replace /usr/sbin/sendmail	${PKG_PREFIX}/bin/sendmail
-            replace /usr/bin/mailq	${PKG_PREFIX}/bin/mailq
-            replace /usr/bin/newaliases	${PKG_PREFIX}/sbin/makealiases
             echo "Done."
         fi
 fi

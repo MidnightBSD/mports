@@ -1,33 +1,29 @@
-# New ports collection makefile for: Courier MTA
-# Date created:		17 Oct 2001
-# Whom:			Yarema <yds@CoolRat.org>
-#
-# $FreeBSD: ports/mail/courier/Makefile,v 1.44 2007/01/01 00:00:21 miwi Exp $
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.4 2008/06/23 02:01:17 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	courier
-PORTVERSION=	0.54.0
+PORTVERSION=	0.62.0
 CATEGORIES=	mail ipv6
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	courier
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Courier SMTP IMAP POP3 HTTP mail server suite
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base \
 		${LOCALBASE}/share/sysconftool/sysconftool:${PORTSDIR}/devel/sysconftool \
 		${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support \
-		${SITE_PERL}/Net/CIDR.pm:${PORTSDIR}/net-mgmt/p5-Net-CIDR
+		${SITE_PERL}/Net/CIDR.pm:${PORTSDIR}/net-mgmt/p5-Net-CIDR \
+		ca_root_nss>=3.*:${PORTSDIR}/security/ca_root_nss
 
-CONFLICTS=	exim-4.* courier-imap-2.* maildrop-1.* \
+CONFLICTS=	courier-imap-2.* couriermlm-0.* \
+		exim-4.* maildrop-1.* \
 		postfix-1.* postfix-2.* \
-		qmail-1.* qmail-*-1.* \
-		sendmail-8.* sendmail-*-8.* \
-		smail-3.* sqwebmail-3.* zmailer-2.*
+		qmail-*-1.* qmail-1.* \
+		sendmail-*-8.* sendmail-8.* \
+		smail-3.* sqwebmail-3.* \
+		zmailer-2.*
 
 .if !defined(BATCH) && !defined(PACKAGE_BUILDING)
 IS_INTERACTIVE=	yes
@@ -53,7 +49,6 @@ MAILUID=	465
 MAILGID=	465
 ETCDIR=		${PREFIX}/etc
 SYSCONFDIR=	${ETCDIR}/courier
-USERDB?=	${ETCDIR}/userdb
 LIBEXECDIR=	${PREFIX}/libexec
 LOCALSTATEDIR=	/var/spool/courier
 CACHEDIR=	/var/spool/webmail
@@ -74,13 +69,12 @@ USE_RC_SUBR=	courier.sh
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	REHASH=${SCRIPTDIR}/c_rehash \
-		CPPFLAGS='${CPPFLAGS}' \
+CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' \
 		LDFLAGS='${LDFLAGS}'
 MAKE_ENV:=	${CONFIGURE_ENV}
 
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
-CONFIGURE_ARGS=	--disable-root-check --with-db=db \
+CONFIGURE_ARGS=	--disable-root-check \
+		--with-db=db \
 		--enable-syslog=1 --enable-use-flock \
 		--program-transform-name=s,^,, \
 		--enable-utf7-folder-encoding \
@@ -91,7 +85,6 @@ CONFIGURE_ARGS=	--disable-root-check --with-db=db \
 		--with-mailgid=${MAILGID} \
 		--with-etcdir=${ETCDIR} \
 		--sysconfdir=${SYSCONFDIR} \
-		--with-userdb=${USERDB} \
 		--datadir=${DATADIR} \
 		--libexecdir=${LIBEXECDIR} \
 		--localstatedir=${LOCALSTATEDIR} \
@@ -176,6 +169,48 @@ OPTIONS+=on
 OPTIONS+=off
 .endif
 
+OPTIONS+=MAILDROPFLAGS "maildrop set flags patch"
+.if defined(WITH_MAILDROPFLAGS)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
+OPTIONS+=WEBMAILFLAGS "webmail show flags patch"
+.if defined(WITH_WEBMAILFLAGS)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
+OPTIONS+=WEBMAILXFACE "experimental webmail X-Face patch"
+.if defined(WITH_WEBMAILXFACE)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
+OPTIONS+=WEBMAILRSENT "enable Autorename Sent folder"
+.if !defined(WITHOUT_WEBMAILRSENT)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
+OPTIONS+=SYSTEMALIASES "symlink system /etc/aliases"
+.if !defined(WITHOUT_SYSTEMALIASES)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
+OPTIONS+=EMPTYALIASES "create empty aliases file"
+.if defined(WITH_EMPTYALIASES)
+OPTIONS+=on
+.else
+OPTIONS+=off
+.endif
+
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/Makefile.doc"
 .include "${.CURDIR}/Makefile.man"
@@ -192,6 +227,22 @@ SUB_LIST+=	WITHLDAP=""
 CONFIGURE_ARGS+=--without-ldapaliasd
 PLIST_SUB+=	WITHLDAP="@comment "
 SUB_LIST+=	WITHLDAP="@comment "
+.endif
+
+.if defined(WITH_SYSTEMALIASES) && !defined(WITHOUT_SYSTEMALIASES)
+PLIST_SUB+=	WITHSYSTEMALIASES=""
+SUB_LIST+=	WITHSYSTEMALIASES=""
+.else
+PLIST_SUB+=	WITHSYSTEMALIASES="@comment "
+SUB_LIST+=	WITHSYSTEMALIASES="@comment "
+.endif
+
+.if defined(WITH_EMPTYALIASES) && !defined(WITHOUT_EMPTYALIASES)
+PLIST_SUB+=	WITHEMPTYALIASES=""
+SUB_LIST+=	WITHEMPTYALIASES=""
+.else
+PLIST_SUB+=	WITHEMPTYALIASES="@comment "
+SUB_LIST+=	WITHEMPTYALIASES="@comment "
 .endif
 
 .if exists(${.CURDIR}/../../security/courier-authlib/Makefile.dep)
@@ -259,6 +310,25 @@ CONFIGURE_ARGS+=--with-ipv6
 CONFIGURE_ARGS+=--without-ipv6
 .endif
 
+.if defined(WITH_MAILDROPFLAGS) || !defined(WITHOUT_MAILDROPFLAGS)
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-maildrop__maildir.C
+.endif
+
+.if defined(WITH_WEBMAILXFACE) || !defined(WITHOUT_WEBMAILXFACE)
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-webmail__msg2html.c
+.endif
+
+.if defined(WITH_WEBMAILFLAGS) || !defined(WITHOUT_WEBMAILFLAGS)
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-webmail__folder.c ${FILESDIR}/extra-patch-webmail__maildir.c
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-webmail__maildir.h ${FILESDIR}/extra-patch-webmail__images__sqwebmail.css
+.endif
+
+.if defined(WITH_WEBMAILRSENT) || !defined(WITHOUT_WEBMAILRSENT)
+CONFIGURE_ARGS+=--enable-autorenamesent
+.else
+CONFIGURE_ARGS+=--disable-autorenamesent
+.endif
+
 pre-everything::
 	@${ECHO_MSG} "===> --------------------------------------------------------"
 	@${ECHO_MSG} "===>	Run 'make config' to (re)configure ${PKGNAME}"
@@ -270,15 +340,15 @@ pre-patch:
 post-patch:
 	@${REINPLACE_CMD} -e 's|^PROG=\./|PROG=exec ./|g' \
 		${WRKSRC}/courier/module.*/courier.config
-	@${REINPLACE_CMD} -e 's|@datadir@|@sysconfdir@|g' \
+	@${REINPLACE_CMD} -e 's|@mydatadir@|@sysconfdir@|g' \
 		${WRKSRC}/*/mk*cert.* \
 		${WRKSRC}/*/*/mk*cert.*
-	@${REINPLACE_CMD} -e 's|^\(TLS_CERTFILE=\)@datadir@|\1@sysconfdir@|g' \
+	@${REINPLACE_CMD} -e 's|^\(TLS_CERTFILE=\)@mydatadir@|\1@sysconfdir@|g' \
 		${WRKSRC}/*/*.dist.in \
 		${WRKSRC}/*/*/*.dist.in
-	@${REINPLACE_CMD} -e 's|^\(RANDFILE = \)@datadir@[^[:space:]]*|\1@sysconfdir@/random.tmp|g' \
-		${WRKSRC}/*/*.cnf.in \
-		${WRKSRC}/*/*/*.cnf.in
+	@${REINPLACE_CMD} -e 's|^\(RANDFILE[[:space:]]*=[[:space:]]*\)@mydatadir@|\1@sysconfdir@|g' \
+		${WRKSRC}/*/*.cnf.openssl.in \
+		${WRKSRC}/*/*/*.cnf.openssl.in
 	@${REINPLACE_CMD} -e 's|$$(INSTALL_DATA) \(.$$$$file.\)|${INSTALL_MAN} \1|' \
 		${WRKSRC}/Makefile.in \
 		${WRKSRC}/*/Makefile.in \
@@ -324,6 +394,10 @@ post-install:
 .for file in ${OWNER0}
 	@-${CHOWN} -Rh ${BINOWN}:${BINGRP} ${PREFIX}/${file}
 .endfor
+	@${GREP} '^@exec ' ${TMPPLIST} \
+		| ${SED} -e 's:^@exec ::' -e 's:%D:${PREFIX}:g' \
+		> ${WRKDIR}/.PLIST.exec \
+		&& ${SH} ${WRKDIR}/.PLIST.exec
 .if !defined(NOPORTDOCS)
 	@${INSTALL} ${_DOCOWNGRP} -d ${DOCSDIR}/html
 .for f in ${DOCS}
@@ -339,5 +413,18 @@ post-install:
 	@${CHMOD} -R a+r ${DATADIR}/courierwebadmin
 	@${CHMOD} -R a-w ${DATADIR} ${LIBEXECDIR}/courier
 	@${CHMOD} 550 ${LIBEXECDIR}/courier/modules/esmtp/courieresmtp*
+	@${ECHO_MSG}
+	@${CAT} ${PKGMESSAGE}
+	@${ECHO_MSG}
+.if defined(BATCH) || defined(PACKAGE_BUILDING)
+	@${ECHO_MSG} "	To activate Courier in /etc/mail/mailer.conf or to"
+	@${ECHO_MSG} "	replace {sendmail,mailq,newaliases} with Courier"
+	@${ECHO_MSG} "	versions execute the following as root user:"
+	@${ECHO_MSG}
+	@${ECHO_MSG} "PKG_PREFIX=\"${PREFIX}\" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL"
+	@${ECHO_MSG}
+.else
+	@PKG_PREFIX="${PREFIX}" ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+.endif
 
 .include <bsd.port.post.mk>
