@@ -1,13 +1,7 @@
-# New ports collection makefile for:	cclient
-# Date created:				2 July 2000
-# Whom:					Kelly Yancey <kbyanc@FreeBSD.org>
-#
-# $MidnightBSD: mports/mail/cclient/Makefile,v 1.3 2007/10/29 18:53:10 laffer1 Exp $
-# $FreeBSD: ports/mail/cclient/Makefile,v 1.41 2007/10/01 04:03:01 marcus Exp $
-#
+# $MidnightBSD: mports/mail/cclient/Makefile,v 1.4 2007/12/05 22:56:04 laffer1 Exp $
 
 PORTNAME=	cclient
-PORTVERSION=	2006j
+PORTVERSION=	2007e
 PORTEPOCH=	1
 CATEGORIES=	mail devel ipv6
 MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
@@ -16,8 +10,6 @@ MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
 		ftp://ftp.nuug.no/pub/anders/distfiles/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. old
 DISTNAME=	imap-${PORTVERSION}
-EXTRACT_SUFX=	.tar.Z
-DISTVERSIONSUFFIX=	2
 DISTFILES=	${DISTNAME}${DISTVERSIONSUFFIX}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
