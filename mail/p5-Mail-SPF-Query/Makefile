@@ -1,10 +1,4 @@
-# New ports collection makefile for:    p5-Mail-SPF-Query
-# Date created:                         Fri Jan 16 12:32:39 PST 2004
-# Whom:                                 mharo@FreeBSD.org
-#
-# $MidnightBSD: mports/mail/p5-Mail-SPF-Query/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
-# $FreeBSD: ports/mail/p5-Mail-SPF-Query/Makefile,v 1.5 2006/03/21 13:37:55 leeym Exp $
-#
+# $MidnightBSD: mports/mail/p5-Mail-SPF-Query/Makefile,v 1.2 2008/07/19 17:49:31 laffer1 Exp $
 
 PORTNAME=	Mail-SPF-Query
 PORTVERSION=	1.999.1
@@ -21,6 +15,8 @@ BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/Sys/Hostname/Long.pm:${PORTSDIR}/sysutils/p5-Sys-Hostname-Long \
 		${SITE_PERL}/URI/Escape.pm:${PORTSDIR}/net/p5-URI
 RUN_DEPENDS=	${BUILD_DEPENDS}
+
+CONFLICTS=	p5-Mail-SPF-[0-9]*
 
 PERL_CONFIGURE=	yes
 
