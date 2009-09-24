@@ -1,40 +1,32 @@
-# New ports collection makefile for:   libical
-# Date created:        8 November 2002
-# Whom:                Joe Kelsey
-#
-# $MidnightBSD: mports/devel/libical/Makefile,v 1.3 2008/10/03 03:37:12 ctriv Exp $
-# $FreeBSD: ports/devel/libical/Makefile,v 1.14 2007/02/01 02:41:28 kris Exp $
-#
+# $MidnightBSD: mports/devel/libical/Makefile,v 1.4 2009/09/20 00:38:47 laffer1 Exp $
 
 PORTNAME=	libical
-PORTVERSION=	0.24
-PORTREVISION=	3
-DISTFILES=	${DISTNAME}.RC4${EXTRACT_SUFX}
+PORTVERSION=	0.43
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	freeassociation
+MASTER_SITES=	SF/freeassociation/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of the IETF's Calendaring and Scheduling protocols 
 LICENSE=	lgpl
 
+USE_GNOME=	gnomehack
 USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 USE_LDCONFIG=	yes
+CONFIGURE_ENV+= CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include"
 
 .if !defined(WITHOUT_PYTHON)
 CONFIGURE_ARGS=	--enable-python=yes
 USE_PYTHON=	yes
-PLIST_SUB+=     PYTHON:=""
 .else
 CONFIGURE_ARGS=	--enable-python=no
-PLIST_SUB+=     PYTHON:="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
 .if ${ARCH} == "amd64" || ${ARCH} == "ia64"
-CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fPIC"
+CONFIGURE_ENV+=	CFLAGS="${CFLAGS} -fPIC"
 .endif
+
 .include <bsd.port.post.mk>
