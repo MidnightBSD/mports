@@ -16,3 +16,4 @@ cd %%SQUIRRELDIR%% && ./configure
 SquirrelMail will not work until this has been done. After this
 step is complete, and the config.php is created, plugin ports will
 properly auto activate.
+

@@ -1,12 +1,13 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.10 2009/03/11 18:25:50 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.11 2009/05/16 15:31:38 laffer1 Exp $
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.18
+PORTVERSION=	1.4.20.r2
 CATEGORIES=	mail www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		all_locales-1.4.13-20071220${EXTRACT_SUFX}
+MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION:S/.r/-RC/}:squirrelmail \
+		SF/${PORTNAME}/locales/1.4.18-20090526:locales
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-RC/}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:squirrelmail \
+		all_locales-1.4.18-20090526${EXTRACT_SUFX}:locales
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -53,7 +54,13 @@ pre-everything::
 
 post-patch:
 .ifndef PATCH_DEBUG
-	@${RM} -f ${WRKSRC}/config/config_default.php.orig ${WRKSRC}/functions/global.php.orig ${WRKSRC}/src/compose.php.orig ${WRKSRC}/src/addrbook_search_html.php.orig
+	@${RM} -f \
+		${WRKSRC}/class/deliver/Deliver.class.php.orig \
+		${WRKSRC}/config/config_default.php.orig \
+		${WRKSRC}/functions/global.php.orig \
+		${WRKSRC}/functions/i18n.php.orig \
+		${WRKSRC}/src/addrbook_search_html.php.orig \
+		${WRKSRC}/src/compose.php.orig
 .endif
 	@${REINPLACE_CMD} -e 's|ispell|${LOCALBASE}/bin/ispell|g' \
 		${WRKSRC}/plugins/squirrelspell/sqspell_config.php
@@ -64,10 +71,6 @@ post-patch:
 
 # Rearrange the documentation
 do-build:
-.for file in AUTHORS ChangeLog COPYING INSTALL README UPGRADE
-	@${MV} ${WRKSRC}/doc/${file} ${WRKSRC}/doc/
-.endfor
-	@${MV} ${WRKSRC}/doc/ReleaseNotes ${WRKSRC}/doc/ReleaseNotes-${PORTVERSION}.txt
 	@${MV} ${WRKSRC}/themes/README.themes ${WRKSRC}/doc/
 	@cd ${WRKSRC} ; for f in `find plugins -name "README*" -or \
 		-name INSTALL -or -name CHANGES -or -name HISTORY`; \
@@ -84,21 +87,25 @@ do-build:
 	@${CP} -r ${WRKSRC}/../locale ${WRKSRC}
 	@${CP} -r ${WRKSRC}/../images ${WRKSRC}
 	@${CP} -r ${WRKSRC}/../help ${WRKSRC}
+	@${MV} ${WRKSRC}/config/config_local.php ${WRKSRC}/config/config_local.php.sample
+
+pre-install:
+	@${ECHO} "Your umask should be lax while installing this. Like, 022 or something."
+	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
 	${MKDIR} ${SQUIRRELDIR}
-	@${CP} -pv ${WRKSRC}/index.php ${SQUIRRELDIR}
-	@${CP} -pv ${WRKSRC}/configure ${SQUIRRELDIR}
+	${CP} -pv ${WRKSRC}/index.php ${SQUIRRELDIR}
+	${CP} -pv ${WRKSRC}/configure ${SQUIRRELDIR}
 .for DIR in class config data functions help images include locale plugins po src themes
-	@${CP} -rpv ${WRKSRC}/${DIR} ${SQUIRRELDIR}
+	${CP} -rpv ${WRKSRC}/${DIR} ${SQUIRRELDIR}
 .endfor
 	${CHOWN} -R ${WWWOWN}:${WWWGRP} ${SQUIRRELDIR}/data
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	@${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
+	${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
 .endif
-
 
 .include <bsd.port.mk>
