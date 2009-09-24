@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-MIME-Lite
-# Date created:				August 3, 1999
-# Whom:	      				Alex Perel <veers@disturbed.net>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/mail/p5-MIME-Lite/Makefile,v 1.17 2008/01/29 16:43:38 vsevolod Exp $
-#
+# $MidnightBSD: mports/mail/p5-MIME-Lite/Makefile,v 1.1 2008/10/11 22:12:17 laffer1 Exp $
 
 PORTNAME=	MIME-Lite
-PORTVERSION=	3.02.1
+PORTVERSION=	3.02.5
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
