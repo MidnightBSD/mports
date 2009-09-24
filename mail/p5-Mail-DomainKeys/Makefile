@@ -1,16 +1,9 @@
-# New ports collection makefile for:	Mail-DomainKeys
-# Date created:	   23 May 2005
-# Whom:		   Sergey Skvortsov <skv@protey.ru>
-#
-# $MidnightBSD: mports/mail/p5-Mail-DomainKeys/Makefile,v 1.2 2008/10/04 16:43:19 laffer1 Exp $
-# $FreeBSD: ports/mail/p5-Mail-DomainKeys/Makefile,v 1.10 2006/11/10 16:06:42 skv Exp $
-#
+# $MidnightBSD: mports/mail/p5-Mail-DomainKeys/Makefile,v 1.3 2008/10/04 16:44:53 laffer1 Exp $
 
 PORTNAME=	Mail-DomainKeys
 PORTVERSION=	1.0
 CATEGORIES=	mail perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Mail
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
