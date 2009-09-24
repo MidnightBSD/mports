@@ -1,14 +1,8 @@
-# New ports collection makefile for:	popd
-# Date created:				17 April 2001
-# Whom:					ianf@za.uu.net
-#
-# $FreeBSD: ports/mail/popd/Makefile,v 1.19 2005/06/16 16:35:10 ume Exp $
-# $MidnightBSD: mports/mail/popd/Makefile,v 1.2 2007/05/09 16:51:56 ctriv Exp $
-#
+# $MidnightBSD: mports/mail/popd/Makefile,v 1.3 2007/12/05 22:57:16 laffer1 Exp $
 
 PORTNAME=	popd
 PORTVERSION=	2.2.2a
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp3.za.freebsd.org/pub/popd/
 
@@ -21,7 +15,7 @@ MAN8=	popd.8
 
 FAKE_OPTS=	trueprefix
 USE_LDCONFIG=	yes
-MANCOMPRESSED=	maybe
+MANCOMPRESSED=	yes
 .if defined(NOPROFILE)
 PLIST_SUB=	NOPROFILE="@comment "
 .else
