@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.18 2009/04/07 14:47:16 ctriv Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.19 2009/04/10 02:53:33 laffer1 Exp $
 
 PORTNAME=	mksh
-DISTVERSION=	R37c
+DISTVERSION=	R39
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
