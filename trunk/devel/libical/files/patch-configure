@@ -1,10 +1,11 @@
---- configure.orig	Wed Nov  6 05:18:06 2002
-+++ configure	Fri Nov  8 10:49:39 2002
-@@ -3428,6 +3428,7 @@
- 
- # This can be used to rebuild libtool when needed
- LIBTOOL_DEPS="$ac_aux_dir/ltconfig $ac_aux_dir/ltmain.sh"
-+$ac_aux_dir/ltconfig $LIBTOOL_DEPS
- 
- # Always use our own libtool.
- LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+--- configure.orig	2009-04-13 19:05:37.000000000 -0400
++++ configure	2009-04-13 19:05:00.000000000 -0400
+@@ -20096,7 +20096,7 @@ case "$host" in
+     use_builtin_timezone=yes
+     os_win32=yes
+     ;;
+-*linux*)
++*linux*|*freebsd*)
+     use_builtin_timezone=no
+     os_win32=no
+     ;;
