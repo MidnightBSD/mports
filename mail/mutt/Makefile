@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/mail/mutt/Makefile,v 1.3 2008/06/23 01:50:01 laffer1 Exp $
+# $MidnightBSD: mports/mail/mutt/Makefile,v 1.4 2009/06/22 18:10:31 laffer1 Exp $
 
 PORTNAME=	mutt
 PORTVERSION=	1.4.2.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES+=	mail ipv6
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/ \
 		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/ \
@@ -73,7 +73,7 @@ DIST_SUBDIR=	mutt
 WRKSRC=		${WRKDIR}/${DISTNAME:S/i$//}
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	automake:19 autoconf:261
+USE_AUTOTOOLS=	automake:19 autoconf:262
 CONFIGURE_TARGET=${ARCH}-portbld-freebsd6.0
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CC="${CC} -I${LOCALBASE}/include" LDFLAGS="${LDFLAGS}"
