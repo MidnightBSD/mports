@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Email-Address
-# Date created:				2004-08-29
-# Whom:					Lars Thegler <lth@FreeBSD.org>
-#
-# $MidnightBSD: mports/mail/p5-Email-Address/Makefile,v 1.1 2007/03/21 01:29:11 laffer1 Exp $
-# $FreeBSD: ports/mail/p5-Email-Address/Makefile,v 1.12 2007/03/02 01:26:19 clsung Exp $
-#
+# $MidnightBSD: mports/mail/p5-Email-Address/Makefile,v 1.2 2008/06/04 18:15:19 laffer1 Exp $
 
 PORTNAME=	Email-Address
 PORTVERSION=	1.88.9
