@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/libX11/Makefile,v 1.4 2009/04/15 00:24:00 laffer1 Exp $
+# $MidnightBSD: mports/x11/libX11/Makefile,v 1.5 2009/09/20 01:41:33 smultron Exp $
 
 PORTNAME=	libX11
 PORTVERSION=	1.2.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
