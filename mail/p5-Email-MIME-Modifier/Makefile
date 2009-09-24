@@ -2,11 +2,11 @@
 # Date created:				October 11, 2008
 # Whom:					Lucas Holt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Email-MIME-Modifier/Makefile,v 1.1 2008/10/11 20:02:16 laffer1 Exp $
 #
 
 PORTNAME=	Email-MIME-Modifier
-PORTVERSION=	1.442
+PORTVERSION=	1.444
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
