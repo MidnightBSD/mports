@@ -2,12 +2,12 @@
 # Date created:                         Thu Feb 8 18:46:25 CET 2007
 # Whom:                                 gmc@sonologic.nl
 #
-# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.2 2008/07/19 17:48:08 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.3 2008/10/11 07:14:25 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/02/10 16:39:01 miwi Exp $
 #
 
 PORTNAME=	Mail-SPF
-PORTVERSION=	2.005
+PORTVERSION=	2.006
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -42,20 +42,12 @@ MAN3=		Mail::SPF.3 Mail::SPF::Mech::PTR.3 Mail::SPF::Mech.3 \
 .include <bsd.port.pre.mk>
 
 DOCSDIR=	${PREFIX}/share/doc/p5-Mail-SPF
+DOCS=		CHANGES INSTALL LICENSE README TODO
 
 post-install:
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for doc in CHANGES LICENSE README TODO
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
-.endfor
-.endif
-
-.if ${PERL_LEVEL} < 501000
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version \
-		${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/version.pm:${PORTSDIR}/devel/p5-version \
-		${SITE_PERL}/Test/More.pm:${PORTSDIR}/devel/p5-Test-Simple
+	@${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 .endif
 
 .include <bsd.port.post.mk>
