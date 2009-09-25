@@ -1,15 +1,8 @@
-# New ports collection makefile for:	system-tools-backends
-# Date created:				11 February 2005
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/system-tools-backends/Makefile,v 1.1 2007/10/24 03:02:36 laffer1 Exp $
-# $FreeBSD: ports/sysutils/system-tools-backends/Makefile,v 1.17 2007/05/19 20:23:33 flz Exp $
-#   $MCom: ports/sysutils/system-tools-backends/Makefile,v 1.34 2007/03/12 12:25:41 ahze Exp $
-#
+# $MidnightBSD: mports/sysutils/system-tools-backends/Makefile,v 1.2 2008/06/08 21:59:12 crash Exp $
 
 PORTNAME=	system-tools-backends
-PORTVERSION=	2.6.0
-PORTREVISION=	3
+PORTVERSION=	2.6.1
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
