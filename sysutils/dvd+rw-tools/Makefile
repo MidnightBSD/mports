@@ -1,9 +1,4 @@
-# New ports collection makefile for: dvd+rw-tools
-# Date created:        2003-6-15
-# Whom:                chuck@pkix.net
-#
-# $MidnightBSD: mports/sysutils/dvd+rw-tools/Makefile,v 1.2 2008/06/10 22:02:06 crash Exp $
-# $FreeBSD: ports/sysutils/dvd+rw-tools/Makefile,v 1.25 2007/03/30 20:51:44 pav Exp $
+# $MidnightBSD: mports/sysutils/dvd+rw-tools/Makefile,v 1.3 2008/06/10 22:07:01 crash Exp $
 
 PORTNAME=	dvd+rw-tools
 PORTVERSION=	7.1
@@ -14,6 +9,7 @@ MASTER_SITES=	http://www.pkix.net/mirror/fy.chalmers.se/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DVD burning software
 LICENSE=        gpl2
+
 USE_CDRTOOLS=	yes
 
 MAN1=		growisofs.1
