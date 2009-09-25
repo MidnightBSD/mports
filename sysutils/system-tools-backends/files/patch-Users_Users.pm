@@ -45,4 +45,3 @@
  
      $pwdpipe = &Utils::File::run_pipe_write ($command);
      print $pwdpipe $$new_user[$PASSWD];
-
