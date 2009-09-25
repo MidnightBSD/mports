@@ -1,19 +1,17 @@
-# New ports collection makefile for:	libgweather
-# Date created:				14th Jan 2008
-# Whom:					Koop Mast <kwm@FreeBSD.org>
-#
-# $FreeBSD: ports/net/libgweather/Makefile,v 1.4 2008/05/26 22:25:03 mezz Exp $
-#   $MCom: ports/net/libgweather/Makefile,v 1.7 2008/03/11 11:45:48 ahze Exp $
-# $MidnightBSD: mports/net/libgweather/Makefile,v 1.1 2008/05/31 17:05:12 crash Exp $
+# $MidnightBSD: mports/net/libgweather/Makefile,v 1.2 2009/09/20 01:44:52 laffer1 Exp $
 
 PORTNAME=	libgweather
-PORTVERSION=	2.22.2
+PORTVERSION=	2.26.2.1
+PORTREVISION=	1
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to accessing online weather informations
-LICENSE=        gpl2     
+LICENSE=	gpl2
+
+LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup
+
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
