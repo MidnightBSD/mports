@@ -140,7 +140,6 @@ bin/zsh-%%ZSH_VER%%
 %%ZSH_FNDIR%%/Completion/Cygwin/_cygstart
 %%ZSH_FNDIR%%/Completion/Cygwin/_dumper
 %%ZSH_FNDIR%%/Completion/Cygwin/_getclip
-%%ZSH_FNDIR%%/Completion/Cygwin/_getfacl
 %%ZSH_FNDIR%%/Completion/Cygwin/_mkshortcut
 %%ZSH_FNDIR%%/Completion/Cygwin/_mkzsh
 %%ZSH_FNDIR%%/Completion/Cygwin/_pscp
