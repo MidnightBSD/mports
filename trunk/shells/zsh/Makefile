@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.11 2008/11/10 20:54:05 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.12 2009/04/14 03:14:16 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -13,9 +13,9 @@
 #			NOTE: does NOT have to be inside ${PREFIX} tree
 
 PORTNAME=	zsh
-PORTVERSION=	4.3.9
+PORTVERSION=	4.3.10
 CATEGORIES=	shells
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-dev/${PORTVERSION}
 .if !defined(NOPORTDOCS)
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-doc${EXTRACT_SUFX}
 .endif
@@ -23,6 +23,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-doc${EXTRACT_SUFX}
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	The Z shell
 LICENSE=	other
+
+MAKE_JOBS_UNSAFE=	yes
 
 ZSH_VER=	${PORTVERSION}
 
