@@ -3,12 +3,11 @@
 # Whom:			Marc G. Fournier <scrappy@freebsd.org>
 #
 # $FreeBSD: ports/sysutils/bsdstats/Makefile,v 1.47 2006/12/09 06:06:13 scrappy Exp $
-# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.6 2008/06/02 00:26:20 laffer1 Exp $ 
+# $MidnightBSD: mports/sysutils/bsdstats/Makefile,v 1.7 2008/09/03 01:40:12 laffer1 Exp $ 
 #
 
 PORTNAME=	bsdstats
-PORTVERSION=	5.4
-PORTREVISION=	2
+PORTVERSION=	5.5
 CATEGORIES=	sysutils
 DISTFILES=
 
