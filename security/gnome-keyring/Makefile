@@ -2,14 +2,14 @@
 # Date Created:			08 December 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.4 2009/05/23 16:28:26 laffer1 Exp $
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.5 2009/09/20 01:59:41 laffer1 Exp $
 # $FreeBSD: ports/security/gnome-keyring/Makefile,v 1.32 2008/04/07 04:20:38 marcus Exp $
 #   $MCom: ports/security/gnome-keyring/Makefile,v 1.59 2008/03/09 18:30:40 mezz Exp $
 #
 
 PORTNAME=	gnome-keyring
-PORTVERSION=	2.22.1
-PORTREVISION=	2
+PORTVERSION=	2.26.3
+PORTREVISION=	0
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2

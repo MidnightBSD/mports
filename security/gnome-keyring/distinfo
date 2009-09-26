@@ -1,3 +1,4 @@
-MD5 (gnome2/gnome-keyring-2.22.1.tar.bz2) = 4ca9c19fa6ada61cdc93ab24214b5c4f
-SHA256 (gnome2/gnome-keyring-2.22.1.tar.bz2) = 83983786ac5273fa7341f2b43db8759534d2516704ab1165682c9afcd0f8b4d0
-SIZE (gnome2/gnome-keyring-2.22.1.tar.bz2) = 960392
+MD5 (gnome2/gnome-keyring-2.26.3.tar.bz2) = d7639185dce46c26cf2e7d2a75028f78
+SHA256 (gnome2/gnome-keyring-2.26.3.tar.bz2) = 319eef68f9c82225dcce06d2f6cfda9196da66a799459b8a00da9bb490529539
+RMD160 (gnome2/gnome-keyring-2.26.3.tar.bz2) = 323cf0fe5f11260573e0d20998c879380f4c2122
+SIZE (gnome2/gnome-keyring-2.26.3.tar.bz2) = 2692915
