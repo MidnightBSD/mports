@@ -1,42 +1,22 @@
-# New ports collection makefile for:	mysql-connector-java
-# Date created:		8 October 2003
-# Whom:			Matthew Seaman <m.seaman@infracaninophile.co.uk>
-#
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.2 2008/05/23 15:05:14 crash Exp $
-# $FreeBSD: ports/databases/mysql-connector-java/Makefile,v 1.41 2007/03/05 12:07:19 rafan Exp $
-#
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.3 2009/03/03 23:08:25 laffer1 Exp $
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.7
+PORTVERSION=	5.1.8
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-J
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MySQL Connector/J: JDBC interface for MySQL
-LICENSE=        gpl2
+LICENSE=	gpl2
+
+CONFLICTS=	mysql-connector-java*-5.0.*
+
 RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
-
-.if !defined(WITHOUT_COMPILE)
-
-BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:${PORTSDIR}/java/junit \
-		${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
-
-USE_JAVA=	yes
-USE_ANT=	yes
-JAVA_VERSION=	1.4+
-ALL_TARGET=	clean dist
-MAKE_ARGS=	-Djavalibdir=${JAVALIBDIR}
-BUILDDIR=	${WRKDIR}/${DISTNAME}/build/${DISTNAME}
-
-.else
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.3+
 BUILDDIR=	${WRKDIR}/${DISTNAME}
-
-.endif
-
 APIDOCSDIR=	${DOCSDIR}/javadoc
 SRCDIR=		${WRKDIR}/${DISTNAME}/src
 JAVADOCDIR=	${WRKDIR}/${DISTNAME}/javadoc
@@ -48,7 +28,7 @@ JDCLASSPATH=	${SRCDIR}:${SRCDIR}/lib/jdbc2_0-stdext.jar:${SRCDIR}/lib/jta-spec1_
 
 PLIST_FILES=	%%JAVAJARDIR%%/jdbc2_0-stdext.jar \
 		%%JAVAJARDIR%%/jta-spec1_0_1.jar  \
-		%%JAVAJARDIR%%/mysql-connector-java.jar
+		%%JAVAJARDIR%%/${DESTJARFILE}
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	*
@@ -56,20 +36,12 @@ PORTDOCS=	*
 
 pre-fetch:
 	@${ECHO_MSG} ""
-	@${ECHO_MSG} "You may use the following build options to override the"
-	@${ECHO_MSG} "default behaviour:"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "    WITHOUT_COMPILE=yes    Install the pre-compiled .jar file"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "This port requires JDK 1.4.x or better to compile, but the"
-	@${ECHO_MSG} "JDBC driver can be made to operate with JVM 1.2.x or better"
+	@${ECHO_MSG} "Note: this port now installs the pre-compiled driver without"
+	@${ECHO_MSG} "the option of compiling from source, because compilation requires"
+	@${ECHO_MSG} "a mix of Java-5 and Java-6 that is not supported by java.mk"
 	@${ECHO_MSG} ""
 
-.if !defined(WITHOUT_COMPILE)
-post-build:
-.else
 do-build:
-.endif
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${JAVADOCDIR} && (cd ${SRCDIR}; \
 	    ${JAVADOC} -quiet -breakiterator      \
