@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
-# $FreeBSD: ports/net/rsync/files/rsyncd.sh.in,v 1.2 2006/02/20 20:47:29 dougb Exp $
+# $FreeBSD: ports/net/rsync/files/rsyncd.sh.in,v 1.3 2009/07/15 16:55:54 dougb Exp $
 #
 
 # PROVIDE: %%NAME%%
@@ -9,9 +8,10 @@
 # BEFORE:  securelevel
 # KEYWORD: shutdown
 
-# Add the following line to /etc/rc.conf to enable `%%NAME%%':
+# Add the following lines to /etc/rc.conf to enable `%%NAME%%':
 #
-#%%NAME%%_enable="YES"
+# %%NAME%%_enable="YES"
+# %%NAME%%_flags="<set as needed>"
 #
 # See rsync(1) for %%NAME%%_flags
 #
@@ -29,6 +29,5 @@ required_files="%%PREFIX%%/etc/$name.conf"
 # read configuration and set defaults
 load_rc_config "$name"
 : ${%%NAME%%_enable="NO"}
-: ${%%NAME%%_flags=""}
 
 run_rc_command "$1"
