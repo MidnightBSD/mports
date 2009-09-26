@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.41 2009/02/18 19:55:57 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.42 2009/09/20 01:54:59 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -22,6 +22,9 @@
     SUBDIR += enscript-a4
     SUBDIR += enscript-letter
     SUBDIR += fontforge
+    SUBDIR += foomatic-db
+    SUBDIR += foomatic-db-engine
+    SUBDIR += foomatic-db-hpijs
     SUBDIR += freetype
     SUBDIR += freetype-tools
     SUBDIR += freetype2
@@ -30,6 +33,7 @@
     SUBDIR += ghostscript-gpl-nox11
     SUBDIR += gimp-gutenprint
     SUBDIR += gsfonts
+    SUBDIR += gutenprint-base
     SUBDIR += gv
     SUBDIR += hs-hscolour
     SUBDIR += hs-hscolour-docs
