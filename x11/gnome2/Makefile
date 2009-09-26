@@ -2,7 +2,7 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.7 2008/09/21 19:44:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.8 2008/09/21 21:04:38 laffer1 Exp $
 #
 
 PORTNAME=	gnome2
@@ -65,7 +65,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
 		${LOCALBASE}/share/gnome-background-properties/gnome-branded.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		sound-juicer:${PORTSDIR}/audio/sound-juicer \
-		gnome-keyring-manager:${PORTSDIR}/security/gnome-keyring-manager \
 		${LOCALBASE}/libdata/pkgconfig/libgtkhtml-2.0.pc:${PORTSDIR}/www/libgtkhtml \
 		evince:${PORTSDIR}/graphics/evince \
 		${LOCALBASE}/libexec/fast-user-switch-applet:${PORTSDIR}/x11/fast-user-switch-applet \
