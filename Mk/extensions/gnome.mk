@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.2 2009/03/14 19:04:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.3 2009/08/26 22:43:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -460,7 +460,7 @@ gnomespeech_LIB_DEPENDS=gnomespeech.7:${PORTSDIR}/accessibility/gnome-speech
 gnomespeech_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-speech-1.0.pc
 gnomespeech_USE_GNOME_IMPL=libbonobo
 
-evolutiondataserver_LIB_DEPENDS=edataserver-1.2.9:${PORTSDIR}/databases/evolution-data-server
+evolutiondataserver_LIB_DEPENDS=edataserver-1.2.11:${PORTSDIR}/databases/evolution-data-server
 evolutiondataserver_DETECT=		${LOCALBASE}/libdata/pkgconfig/evolution-data-server-1.2.pc
 evolutiondataserver_USE_GNOME_IMPL=libgnomeui
 
