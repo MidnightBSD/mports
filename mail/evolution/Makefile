@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.9 2009/09/26 01:35:54 laffer1 Exp $
 
 PORTNAME=	evolution
 PORTVERSION=	2.26.3
@@ -95,7 +95,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/sbin|${LOCALBASE}/bin|g' \
 		${WRKSRC}/plugins/sa-junk-plugin/em-junk-filter.c
 
-post-install: install-ldconfig-file
+post-install:
 	${MKDIR} ${PREFIX}/include/evolution-${EVO_VERSION}/composer
 	${INSTALL_DATA} ${WRKSRC}/composer/e-msg*.h ${PREFIX}/include/evolution-${EVO_VERSION}/composer
 
