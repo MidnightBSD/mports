@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.1 2009/09/26 22:22:46 laffer1 Exp $
 
 PORTNAME?=	gutenprint
 PORTVERSION=	5.1.7
@@ -34,7 +34,7 @@ GUTENPRINTUI2_LIBS=`${PKG_CONFIG} --libs gutenprintui2`
 MAN1+=		escputil.1
 .endif
 
-.if defined(GUT_SLAVE) && (${GUT_SLAVE}=="gimp"
+.if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
 LIB_DEPENDS+=	gimp-2.0:${PORTSDIR}/graphics/gimp-app
 LIB_DEPENDS+=	gutenprint.2:${PORTSDIR}/print/gutenprint-base
 CONFIGURE_ARGS=--with-gimp2=yes # Override CONFIGURE_ARGS
