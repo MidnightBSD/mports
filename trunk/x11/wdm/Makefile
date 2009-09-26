@@ -2,7 +2,7 @@
 # Date created:		August 31, 1998
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/wdm/Makefile,v 1.4 2007/08/01 19:57:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/wdm/Makefile,v 1.5 2008/08/20 20:33:13 laffer1 Exp $
 # $FreeBSD: ports/x11/wdm/Makefile,v 1.73 2006/07/16 16:17:04 pav Exp $
 #
 
@@ -42,7 +42,7 @@ CONFIGURE_ARGS=	--with-logdir=/var/log \
 		--with-Logo=beastie.xpm \
 		--with-gfx-incs=${LOCALBASE}/include \
 		--with-gfx-libs=${LOCALBASE}/lib \
-		--with-defuserpath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin:${LOCALBASE}/bin \
+		--with-defuserpath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-defsystempath=/bin:/usr/bin:/sbin:/usr/sbin:${LOCALBASE}/bin \
 		--with-wmlist=wmaker:afterstep:blackbox:ctwm:enlightenment:fvwm:fvwm2:fvwm95:olvwm:qvwm:tvtwm
 
