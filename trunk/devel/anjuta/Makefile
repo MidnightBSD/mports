@@ -2,7 +2,7 @@
 # Date created:				31 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.5 2008/06/08 18:36:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.6 2008/06/22 19:28:27 laffer1 Exp $
 # $FreeBSD: ports/devel/anjuta/Makefile,v 1.54 2007/09/07 05:01:40 marcus Exp $
 #   $MCom: ports/devel/anjuta-devel/Makefile,v 1.14 2006/09/10 00:51:07 mezz Exp $
 #
@@ -29,7 +29,7 @@ LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre \
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		autogen:${PORTSDIR}/devel/autogen \
 		neato:${PORTSDIR}/graphics/graphviz \
-		libtool:${PORTSDIR}/devel/libtool15 \
+		libtool:${PORTSDIR}/devel/libtool22 \
 		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
 
 USE_BZIP2=	yes
