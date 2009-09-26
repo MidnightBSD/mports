@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.10 2009/05/05 00:50:58 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.11 2009/09/20 02:14:10 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
