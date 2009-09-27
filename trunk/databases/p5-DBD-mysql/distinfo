@@ -1,3 +1,4 @@
-MD5 (DBD-mysql-4.007.tar.gz) = 67a4d921acda942aeb0e65a0023f2098
-SHA256 (DBD-mysql-4.007.tar.gz) = d340241750147d0102a591cda9ebd9afbfd9b5d331b756524533d86b2c99b271
-SIZE (DBD-mysql-4.007.tar.gz) = 123516
+MD5 (DBD-mysql-4.013.tar.gz) = 0b28c245eb4cc49d5071db91bd8819b1
+SHA256 (DBD-mysql-4.013.tar.gz) = a9270edae22ac9e6e051c7cb0f0fa08fa8134b8d9c2a14495529aed4dca8921c
+RMD160 (DBD-mysql-4.013.tar.gz) = cf712e63f994925d45f30dc60d7164761df1df6d
+SIZE (DBD-mysql-4.013.tar.gz) = 129065
