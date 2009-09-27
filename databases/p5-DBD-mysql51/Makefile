@@ -1,10 +1,4 @@
-# New ports collection makefile for:   p5-DBD-mysql51
-# Date created:                28 Jan 2006
-# Whom:                        Alex Dupre <ale@FreeBSD.org>
-#
-# $FreeBSD: ports/databases/p5-DBD-mysql51/Makefile,v 1.1 2006/02/05 10:10:41 ale Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/p5-DBD-mysql51/Makefile,v 1.1 2006/11/05 16:09:34 laffer1 Exp $
 
 PKGNAMESUFFIX=	51
 
