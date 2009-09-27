@@ -1,13 +1,8 @@
-# New ports collection makefile for:    DBD::mysql
-# Date created:				27 Nov 2001
-# Whom:	      				Sergey Skvortsov <skv@FreeBSD.org>
-#
-# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.5 2008/06/13 06:13:28 laffer1 Exp $
-# $FreeBSD: ports/databases/p5-DBD-mysql/Makefile,v 1.61 2006/09/12 11:45:26 skv Exp $
-#
+# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.6 2008/08/25 17:38:34 laffer1 Exp $
 
 PORTNAME=	DBD-mysql
 PORTVERSION=	4.007
+PORTREVISION=	1
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/00$//}
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
