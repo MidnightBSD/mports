@@ -1,17 +1,11 @@
-# ports collection makefile for:   lame
-# Date created:        11 January 1998
-# Whom:                yoshiaki Uchikawa
-#
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.3 2008/04/01 05:07:32 laffer1 Exp $
-# $FreeBSD: ports/audio/lame/Makefile,v 1.42 2006/09/02 23:47:19 kris Exp $
-#
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.4 2009/09/20 00:23:32 laffer1 Exp $
 
 PORTNAME=	lame
-PORTVERSION=	3.97
+PORTVERSION=	3.98.2
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF \
 		ftp://ftp.fu-berlin.de/unix/sound/%SUBDIR%/
-MASTER_SITE_SUBDIR=	lame
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//:S/./-/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
@@ -21,6 +15,7 @@ USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 USE_GMAKE=	yes
+MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
 
 RESTRICTED=	patent issues, see http://www.mp3licensing.com/
@@ -34,6 +29,11 @@ DOC_FILES=	API LICENSE README TODO USAGE
 .if ${ARCH} == "i386"
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 .endif
+
+post-patch:
+ 	# Fix parallel builds
+	@${REINPLACE_CMD} -e 's,test -d \.libs || mkdir,mkdir -p,' \
+ 		${WRKSRC}/libmp3lame/i386/Makefile.in
 
 .if defined(NOPORTDOCS)
 do-install:
