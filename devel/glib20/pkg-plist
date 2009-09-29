@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $MidnightBSD: mports/devel/glib20/pkg-plist,v 1.6 2009/04/14 02:09:00 laffer1 Exp $
 bin/glib-gettextize
 bin/gtester
 bin/gtester-report
@@ -134,23 +134,23 @@ include/gio-unix-2.0/gio/gdesktopappinfo.h
 include/gio-unix-2.0/gio/gunixmounts.h
 include/gio-unix-2.0/gio/gunixinputstream.h
 include/gio-unix-2.0/gio/gunixoutputstream.h
-lib/libglib-2.0.so.0
+lib/libglib-2.0.so.2000
 lib/libglib-2.0.so
 lib/libglib-2.0.la
 lib/libglib-2.0.a
-lib/libgmodule-2.0.so.0
+lib/libgmodule-2.0.so.2000
 lib/libgmodule-2.0.so
 lib/libgmodule-2.0.la
 lib/libgmodule-2.0.a
-lib/libgthread-2.0.so.0
+lib/libgthread-2.0.so.2000
 lib/libgthread-2.0.so
 lib/libgthread-2.0.la
 lib/libgthread-2.0.a
-lib/libgobject-2.0.so.0
+lib/libgobject-2.0.so.2000
 lib/libgobject-2.0.so
 lib/libgobject-2.0.la
 lib/libgobject-2.0.a
-lib/libgio-2.0.so.0
+lib/libgio-2.0.so.2000
 lib/libgio-2.0.so
 lib/libgio-2.0.la
 lib/libgio-2.0.a
