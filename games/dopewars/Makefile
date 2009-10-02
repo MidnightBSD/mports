@@ -1,10 +1,4 @@
-# New ports collection makefile for:	dopewars
-# Date created:			16 May 1999
-# Whom:				Jim Mock <jim@FreeBSD.org>
-#
-# $MidnightBSD: mports/games/dopewars/Makefile,v 1.1 2008/03/24 21:44:50 laffer1 Exp $
-# $FreeBSD: ports/games/dopewars/Makefile,v 1.35 2007/05/19 20:05:49 flz Exp $
-#
+# $MidnightBSD: mports/games/dopewars/Makefile,v 1.2 2009/03/30 22:50:48 laffer1 Exp $
 
 PORTNAME=	dopewars
 PORTVERSION=	1.5.12
