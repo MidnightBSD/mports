@@ -1,17 +1,10 @@
-# New ports collection makefile for:	QStat
-# Date created:				28 May 1998
-# Whom:					Daniel O'Connor <darius@dons.net.au>
-#
-# $MidnightBSD: mports/games/qstat/Makefile,v 1.5 2008/03/22 16:25:14 laffer1 Exp $
-# $FreeBSD: ports/games/qstat/Makefile,v 1.23 2006/04/17 08:13:21 danfe Exp $
-#
+# $MidnightBSD: mports/games/qstat/Makefile,v 1.6 2009/03/30 22:53:48 laffer1 Exp $
 
 PORTNAME=	qstat
 PORTVERSION=	2.11
 PORTREVISION=	2
 CATEGORIES=	games net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A command line program to query game servers on the net
