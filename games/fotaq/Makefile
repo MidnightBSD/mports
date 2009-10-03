@@ -1,16 +1,10 @@
-# New ports collection makefile for: fotaq (Flight of the Amazon Queen)
-# Date created:        Fri Mar 26 23:34:32 BST 2004
-# Whom:                Alex Trull <freebsd.alex@trull.org>
-#
-# $MidnightBSD: mports/games/fotaq/Makefile,v 1.1 2007/01/19 18:23:35 wintellect Exp $
-# $FreeBSD: ports/games/fotaq/Makefile,v 1.5 2005/11/21 16:35:32 pav Exp $
-#
+# $MidnightBSD: mports/games/fotaq/Makefile,v 1.2 2008/03/22 18:26:38 laffer1 Exp $
 
 PORTNAME=	fotaq
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	scummvm
+MASTER_SITES=	SF/scummvm/extras/Flight%20of%20the%20Amazon%20Queen
 DISTNAME=	FOTAQ_Talkie
 
 MAINTAINER=	ports@MidnightBSD.org
