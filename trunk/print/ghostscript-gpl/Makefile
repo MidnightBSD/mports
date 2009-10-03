@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.10 2009/06/27 15:55:20 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.11 2009/09/20 02:43:49 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
@@ -174,7 +174,7 @@ MSG_PAPERSIZE=	"NOTE: Default paper size will be A4."
 .endif
 
 .if !defined(WITHOUT_FONTCONFIG)
-LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS+=	fontconfig.4:${PORTSDIR}/x11-fonts/fontconfig
 CONFIGURE_ARGS+=	--enable-fontconfig
 .else
 CONFIGURE_ARGS+=	--disable-fontconfig
