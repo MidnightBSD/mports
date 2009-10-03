@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.3 2009/09/20 04:05:57 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.4 2009/09/20 16:52:29 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -217,10 +217,10 @@ LIBTOOLIZE=			${LOCALBASE}/bin/libtoolize
 LIBTOOL_LIBEXECDIR=	${LOCALBASE}/libexec/libtool
 LIBTOOL_SHAREDIR=	${LOCALBASE}/share/libtool
 LIBTOOL_M4=			${LOCALBASE}/share/aclocal/libtool.m4
-LTMAIN=				${LIBTOOL_SHAREDIR}/ltmain.sh
+LTMAIN=				${LIBTOOL_SHAREDIR}/config/ltmain.sh
 LIBTOOL_VARS=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} LIBTOOL_M4=${LIBTOOL_M4}
 
-LIBTOOL_DEPENDS=	${LIBTOOL}:${PORTSDIR}/devel/libtool${LIBTOOL_VERSION}
+LIBTOOL_DEPENDS=	libtool>=2.2:${PORTSDIR}/devel/libtool${LIBTOOL_VERSION}
 BUILD_DEPENDS+=		${LIBTOOL_DEPENDS}
 
 LIBTOOLFLAGS?=		# default to empty
