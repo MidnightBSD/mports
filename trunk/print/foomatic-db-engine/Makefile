@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/foomatic-db-engine/Makefile,v 1.1 2009/09/26 22:22:45 laffer1 Exp $
 
 PORTNAME=	engine
 PORTVERSION=	4.0.1
@@ -37,8 +37,13 @@ post-patch:
 		 s,/usr/local/etc:,${PREFIX}/etc:,g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		"s,/usr/local/bin:,${PREFIX}/bin:,g" ${WRKSRC}/Makefile.in
+	@${MKDIR} ${FAKE_DESTDIR}${SITE_PERL}/Foomatic
 
 post-install:
+.for file in DB.pm Defaults.pm PPD.pm UIElem.pm
+	${MV} ${FAKE_DESTDIR}${FAKE_DESTDIR}${SITE_PERL}/Foomatic/${file} \
+		${FAKE_DESTDIR}${SITE_PERL}/Foomatic/${file}
+.endfor
 .for file in foomatic-combo-xml foomatic-perl-data
 	@${STRIP_CMD} ${PREFIX}/bin/${file}
 .endfor

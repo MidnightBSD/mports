@@ -8,7 +8,6 @@ bin/foomatic-ppdfile
 bin/foomatic-ppd-to-xml
 bin/foomatic-printjob
 bin/foomatic-searchprinter
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Foomatic/.packlist
 %%SITE_PERL%%/Foomatic/DB.pm
 %%SITE_PERL%%/Foomatic/Defaults.pm
 %%SITE_PERL%%/Foomatic/PPD.pm
@@ -28,7 +27,6 @@ share/foomatic/templates/pjl_enum_option.xml
 share/foomatic/templates/pjl_num_option.xml
 @dirrm share/foomatic/templates
 @dirrmtry share/foomatic
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Foomatic
 @dirrm %%SITE_PERL%%/Foomatic
 @dirrmtry etc/foomatic
 @exec mkdir -p %D/etc/foomatic
