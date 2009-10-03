@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/babl/Makefile,v 1.1 2009/08/30 18:49:36 laffer1 Exp $
+# $MidnightBSD: mports/x11/babl/Makefile,v 1.2 2009/09/20 01:11:34 smultron Exp $
 
 PORTNAME=	babl
 PORTVERSION=	0.0.22
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
@@ -23,4 +23,14 @@ USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	pkgconfig gnomehack ltverhack
 USE_GMAKE=	yes
 
-.include <bsd.port.mk>
+OPTIONS=	SIMD "Use cpu-specific optimizations if available" off
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITHOUT_SIMD)
+CONFIGURE_ARGS+=--disable-mmx \
+		--disable-sse \
+		--disable-altivec
+.endif
+
+.include <bsd.port.post.mk>
