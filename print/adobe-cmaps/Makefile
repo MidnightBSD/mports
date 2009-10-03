@@ -1,16 +1,10 @@
-# New ports collection makefile for:    adobe-cmaps
-# Date created:         Wed, 10 Apr 2002 02:22:30 +0900
-# Whom:                 KATO Tsuguru <tkato@prontomail.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/print/adobe-cmaps/Makefile,v 1.11 2006/05/20 17:23:47 hrs Exp $
-#
+# $MidnightBSD: mports/print/adobe-cmaps/Makefile,v 1.1 2007/02/25 20:08:06 laffer1 Exp $
 
 PORTNAME=	adobe-cmaps
 PORTVERSION=	20051217
 PORTREVISION=	1
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	hrs/adobe
 DISTFILES=	ac15.tar.gz ag15.tar.gz \
 		ai0.tar.gz aj16.tar.gz \
@@ -19,6 +13,7 @@ DIST_SUBDIR=	adobe
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe CMap collection
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
