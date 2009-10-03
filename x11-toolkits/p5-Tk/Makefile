@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.1 2009/06/30 13:53:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.2 2009/08/21 17:39:03 laffer1 Exp $
 
 PORTNAME=	Tk
 DISTVERSION=	804.028_501
@@ -16,6 +16,7 @@ PERL_CONFIGURE=	5.8.0+
 USE_XORG=	x11
 CONFIGURE_ARGS=	X11LIB=${LOCALBASE}/lib X11INC=${LOCALBASE}/include
 WRKSRC=		${WRKDIR}/${DISTNAME}
+MAKE_JOBS_UNSAFE=	yes
 
 MAN1=		ptked.1 \
 		ptksh.1 \
