@@ -1,10 +1,4 @@
-# New ports collection makefile for:	pilot_makedoc
-# Date created:				May 10th 1997
-# Whom:					jfitz@FreeBSD.org
-#
-# $FreeBSD: ports/palm/pilot_makedoc/Makefile,v 1.17 2004/02/06 13:12:13 trevor Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/palm/pilot_makedoc/Makefile,v 1.1 2007/01/24 21:16:08 laffer1 Exp $
 
 PORTNAME=	pilot_makedoc
 PORTVERSION=	0.7a
@@ -17,6 +11,7 @@ EXTRACT_SUFX=	.cpp
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Converts text into the Doc format used by PalmPilots
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	YES
 PLIST_FILES=	bin/pilot_makedoc
