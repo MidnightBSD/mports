@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.3 2008/10/21 22:53:44 ctriv Exp $
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.4 2009/03/30 22:39:20 laffer1 Exp $
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	games
-MASTER_SITES=	SF/tuxracer
+MASTER_SITES=	SF
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz \
 		${PORTNAME}-data-${PORTVERSION}.tar.gz
 
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3d penguin racing game using OpenGL
 LICENSE=	gpl2
 
-LIB_DEPENDS=	tcl83.1:${PORTSDIR}/lang/tcl83
+LIB_DEPENDS=	tcl85:${PORTSDIR}/lang/tcl85
 
 USE_SDL=	mixer sdl
 USE_GL=		gl
@@ -22,7 +22,7 @@ USE_AUTOTOOLS=	automake:14 autoconf:262
 AUTOMAKE_ARGS=	-a
 CONFIGURE_ENV=	THREAD_LIB="${PTHREAD_LIBS}"
 MAKE_ENV=	${CONFIGURE_ENV}
-CONFIGURE_ARGS=	--with-tcl-inc="${LOCALBASE}/include/tcl8.3" \
+CONFIGURE_ARGS=	--with-tcl-inc="${LOCALBASE}/include/tcl8.5" \
 		--with-tcl-libs="${LOCALBASE}/lib" \
 		--with-gl-libs="${LOCALBASE}/lib" \
 		--with-gl-inc="${LOCALBASE}/include" \
