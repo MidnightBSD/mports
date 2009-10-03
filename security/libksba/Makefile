@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.5 2008/03/30 23:54:47 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.6 2009/05/01 14:39:54 laffer1 Exp $
 
 PORTNAME=	libksba
 PORTVERSION=	1.0.5
@@ -11,7 +11,7 @@ COMMENT=	KSBA is an X.509 Library
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt \
-		gpg-error.0:${PORTSDIR}/security/libgpg-error
+		gpg-error.5:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
