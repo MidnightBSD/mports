@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/games/goonies/Makefile,v 1.2 2008/03/22 18:29:19 laffer1 Exp $
+# $MidnightBSD: mports/games/goonies/Makefile,v 1.3 2009/10/03 00:18:34 laffer1 Exp $
 
 PORTNAME=	goonies
 PORTVERSION=	1.0.1
 CATEGORIES=	games
-MASTER_SITES=	http://goonies.jorito.net/download/ \
+MASTER_SITES=	http://braingames.jorito.net/goonies/download/ \
 		http://mirror.amdmi3.ru/distfiles/
 DISTNAME=	${PORTNAME}_r${PORTVERSION:C/\./-/g}
 EXTRACT_SUFX=	.tgz
