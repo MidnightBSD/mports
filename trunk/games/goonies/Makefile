@@ -1,15 +1,10 @@
-# New ports collection makefile for:	goonies
-# Date created:		07 Sep 2006
-# Whom:			Dmitry Marakasov <amdmi3@mail.ru>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/games/goonies/Makefile,v 1.1 2006/09/12 20:47:55 miwi Exp $
-#
+# $MidnightBSD: mports/games/goonies/Makefile,v 1.2 2008/03/22 18:29:19 laffer1 Exp $
 
 PORTNAME=	goonies
 PORTVERSION=	1.0.1
 CATEGORIES=	games
-MASTER_SITES=	http://goonies.jorito.net/download/
+MASTER_SITES=	http://goonies.jorito.net/download/ \
+		http://mirror.amdmi3.ru/distfiles/
 DISTNAME=	${PORTNAME}_r${PORTVERSION:C/\./-/g}
 EXTRACT_SUFX=	.tgz
 
