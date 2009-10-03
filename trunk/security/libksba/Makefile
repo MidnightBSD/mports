@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.6 2009/05/01 14:39:54 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.7 2009/10/03 04:08:44 laffer1 Exp $
 
 PORTNAME=	libksba
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.7
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
