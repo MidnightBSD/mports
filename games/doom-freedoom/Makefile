@@ -2,14 +2,14 @@
 # Date created:				23 November 2005
 # Whom:					Alejandro Pulver <alejandro@varnet.biz>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/doom-freedoom/Makefile,v 1.1 2008/03/24 21:40:45 laffer1 Exp $
 # $FreeBSD: ports/games/doom-freedoom/Makefile,v 1.7 2008/03/10 16:05:05 alepulver Exp $
 #
 
 PORTNAME=	freedoom
-PORTVERSION=	0.6
+PORTVERSION=	0.6.2
 CATEGORIES=	games
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/OldFiles
 PKGNAMEPREFIX=	${DMPKGNAMEPREFIX}
 DISTNAME=	${PORTNAME}-iwad-${PORTVERSION}
 
