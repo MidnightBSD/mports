@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/games/gtypist/pkg-plist,v 1.7 2004/07/11 10:55:23 krion Exp $
+@comment $FreeBSD: ports/games/gtypist/pkg-plist,v 1.9 2009/02/04 21:05:57 naddy Exp $
 bin/gtypist
 bin/typefortune
 share/gtypist/cs.typ
@@ -28,8 +28,11 @@ share/gtypist/v.typ
 %%NLS%%share/locale/cs/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/de/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/es/LC_MESSAGES/gtypist.mo
+%%NLS%%share/locale/eu/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/fi/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/gtypist.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/gtypist.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/gtypist.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/gtypist.mo
 @dirrm share/gtypist
