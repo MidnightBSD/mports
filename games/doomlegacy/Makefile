@@ -2,14 +2,14 @@
 # Date Created:				Oct 20 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>	
 #
-# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.1 2007/10/20 05:40:00 laffer1 Exp $
+# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.2 2007/11/15 00:52:23 laffer1 Exp $
 # $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
 
 PORTNAME=	doomlegacy
 PORTVERSION=	142
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	games
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/DooM%20Legacy%20source%20code/1.42
 DISTNAME=	legacy_${PORTVERSION}_src
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${WADFILE}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -52,7 +52,7 @@ post-patch:
 		's|-I/usr/local/include/SDL11|`${SDL_CONFIG} --cflags`|; \
 		 s|-lSDL-1\.1|`${SDL_CONFIG} --libs`|; \
 		 s|/usr/local|${LOCALBASE}|; \
-		 s|/usr/X11R6|${X11BASE}|' \
+		 s|/usr/X11R6|${LOCALBASE}|' \
 		 ${WRKSRC}/${MAKEFILE}
 
 pre-build:
