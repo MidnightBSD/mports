@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-Template-Toolkit
-# Date Created:				3 Mar, 2001
-# Whom:					clive
-#
-# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.4 2008/07/25 05:59:08 laffer1 Exp $
-# $FreeBSD: ports/www/p5-Template-Toolkit/Makefile,v 1.24 2007/02/08 14:38:13 clsung Exp $
-#
+# $MidnightBSD: mports/www/p5-Template-Toolkit/Makefile,v 1.5 2008/10/11 20:13:25 laffer1 Exp $
 
 PORTNAME=	Template-Toolkit
-PORTVERSION=	2.20
+PORTVERSION=	2.22
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -16,13 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extensive Toolkit for template processing
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp \
+BUILD_DEPENDS=	\
 		${SITE_PERL}/AppConfig.pm:${PORTSDIR}/devel/p5-AppConfig
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-OPTIONS=TEXT_AUTOFORMAT "With Text::Autoformat Plugin"		off \
-	IMAGE_INFO	"With Image::Info Plugin"		off \
+OPTIONS=IMAGE_INFO	"With Image::Info Plugin"		off \
 	IMAGE_SIZE	"With Image::Size Plugin"		off \
 	DATE_CALC	"With Date::Calc Plugin"		off \
 	POD_POM		"With Pod::POM Plugin"			off
@@ -34,9 +26,6 @@ MASTER_SITE_BACKUP+=	http://www.template-toolkit.org/download/
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_TEXT_AUTOFORMAT)
-BUILD_DEPENDS+=${SITE_PERL}/Text/Autoformat.pm:${PORTSDIR}/textproc/p5-Text-Autoformat
-.endif
 .if defined(WITH_IMAGE_INFO)
 BUILD_DEPENDS+=${SITE_PERL}/Image/Info.pm:${PORTSDIR}/graphics/p5-Image-Info
 .endif
