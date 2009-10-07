@@ -1,16 +1,9 @@
-# New ports collection makefile for:	Params::Validate
-# Date created:				10 April 2001
-# Whom:					Denis Shaposhnikov <dsh@vlink.ru>
-#
-# $FreeBSD: ports/devel/p5-Params-Validate/Makefile,v 1.31 2007/09/08 00:59:00 linimon Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.1 2007/09/12 02:04:43 ctriv Exp $
 
 PORTNAME=	Params-Validate
-PORTVERSION=	0.88
+PORTVERSION=	0.91
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Devel/DROLSKY
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
