@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.1 2009/03/21 15:37:56 laffer1 Exp $
 
 PORTNAME=	DateTime
-PORTVERSION=	0.47
+PORTVERSION=	0.50
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A date and time object
 LICENSE=	perl
 
-RUN_DEPENDS=	${SITE_PERL}/Class/Factory/Util.pm:${PORTSDIR}/devel/p5-Class-Factory-Util \
+RUN_DEPENDS=	\
 		${SITE_PERL}/${PERL_ARCH}/Params/Validate.pm:${PORTSDIR}/devel/p5-Params-Validate \
 		${SITE_PERL}/DateTime/TimeZone.pm:${PORTSDIR}/devel/p5-DateTime-TimeZone \
 		${SITE_PERL}/DateTime/Locale.pm:${PORTSDIR}/devel/p5-DateTime-Locale \
@@ -31,10 +31,4 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Scalar/Util.pm:${PORTSDIR}/lang/p5-Scalar-List-Utils
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
