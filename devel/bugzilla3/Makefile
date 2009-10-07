@@ -2,10 +2,10 @@
 # Date created:				October 11, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.3 2009/03/11 22:13:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.4 2009/10/06 20:01:48 laffer1 Exp $
 
 PORTNAME=	bugzilla
-PORTVERSION=	3.0.9
+PORTVERSION=	3.4.2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
@@ -24,6 +24,7 @@ OPTIONS=	MYSQL "MySQL database support" off \
 		PATCH_VIEWER "Patch Viewer" on \
 		MORE_HTML "More HTML in Product/Group Descriptions" on \
 		INBOUND_EMAIL "Inbound Email" off \
+		MAIL_QUEUEING "Mail Queueing" off \
 		MOVE_BUGZ "Move Bugs Between Installations" off \
 		BMP2PNG "BMP Attachments to PNGs" off \
 		XMLRPC "XML-RPC Interface" off \
@@ -31,7 +32,8 @@ OPTIONS=	MYSQL "MySQL database support" off \
 		GRAPHVIZ "Use GraphViz" off \
 		EXPORT_IMPORT "Import/export bugs (via XML)" off \
 		CONTRIB	"Install user-contributed scripts" off \
-		LDAP "LDAP Authentication" off
+		LDAP "LDAP Authentication" off \
+		RADIUS "RADIUS Authentication" off
 
 RUN_DEPENDS+=	\
 		${SITE_PERL}/CGI.pm:${PORTSDIR}/www/p5-CGI.pm \
@@ -40,7 +42,12 @@ RUN_DEPENDS+=	\
 		${SITE_PERL}/${PERL_ARCH}/Template.pm:${PORTSDIR}/www/p5-Template-Toolkit \
 		${SITE_PERL}/${PERL_ARCH}/Data/Dumper.pm:${PORTSDIR}/devel/p5-Data-Dumper \
 		${SITE_PERL}/Email/Send.pm:${PORTSDIR}/mail/p5-Email-Send \
-		${SITE_PERL}/Email/MIME/Modifier.pm:${PORTSDIR}/mail/p5-Email-MIME-Modifier
+		p5-DateTime>=0.28:${PORTSDIR}/devel/p5-DateTime \
+		p5-DateTime-TimeZone>=0.71:${PORTSDIR}/devel/p5-DateTime-TimeZone \
+		p5-Digest-SHA>=0:${PORTSDIR}/security/p5-Digest-SHA \
+		p5-URI>=0:${PORTSDIR}/net/p5-URI \
+		p5-Email-MIME>=1.861:${PORTSDIR}/mail/p5-Email-MIME \
+		p5-Email-MIME-Modifier>=1.442:${PORTSDIR}/mail/p5-Email-MIME-Modifier
 
 CONFLICTS?=	bugzilla-2.[0-9]*
 
@@ -61,8 +68,7 @@ BUGZILLADIR=	${PREFIX}/www/data/bugzilla
 
 PLIST_SUB+=	BUGZILLADIR=${BUGZILLADIR:S!^${PREFIX}/!!}
 
-DATA_DIRS_LIST=	images js skins/standard skins/standard/global \
-		skins/standard/index
+DATA_DIRS_LIST=	images js skins
 
 .include <bsd.port.pre.mk>
 
@@ -92,7 +98,7 @@ RUN_DEPENDS+=	${SITE_PERL}/Chart/Base.pm:${PORTSDIR}/graphics/p5-chart
 .endif
 
 .ifdef WITH_PATCH_VIEWER
-RUN_DEPENDS+=	${SITE_PERL}/PatchReader.pm:${PORTSDIR}/devel/p5-PatchReader \
+RUN_DEPENDS+=	p5-PatchReader>=0.9.4:${PORTSDIR}/devel/p5-PatchReader \
 		interdiff:${PORTSDIR}/misc/patchutils
 .endif
 
@@ -104,6 +110,11 @@ RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/HTML/Parser.pm:${PORTSDIR}/www/p5-HTML-P
 .ifdef WITH_INBOUND_EMAIL
 RUN_DEPENDS+=	${SITE_PERL}/Email/MIME/Attachment/Stripper.pm:${PORTSDIR}/mail/p5-Email-MIME-Attachment-Stripper \
 		${SITE_PERL}/Email/Reply.pm:${PORTSDIR}/mail/p5-Email-Reply
+.endif
+
+.ifdef WITH_MAIL_QUEUEING
+RUN_DEPENDS+=	p5-TheSchwartz>=0:${PORTSDIR}/devel/p5-TheSchwartz \
+		p5-Daemon-Generic>=0:${PORTSDIR}/net/p5-Daemon-Generic
 .endif
 
 .ifdef WITH_MOVE_BUGZ
@@ -143,6 +154,10 @@ PLIST_SUB+=	CONTRIB="@comment "
 RUN_DEPENDS+=	${SITE_PERL}/Net/LDAP.pm:${PORTSDIR}/net/p5-perl-ldap
 .endif
 
+.ifdef WITH_RADIUS
+RUN_DEPENDS+=	p5-Authen-Radius>=0:${PORTSDIR}/security/p5-Authen-Radius
+.endif
+
 post-patch:
 	@${PERL} -pi -e "s!(?<=webservergroup_default = ')apache!www!" \
 		${WRKSRC}/checksetup.pl
@@ -163,14 +178,12 @@ do-install:
 		${INSTALL_SCRIPT} {} ${BUGZILLADIR} \;
 	@${MKDIR} ${DATA_DIRS_LIST:S!^!${BUGZILLADIR}/!}
 .for D in ${DATA_DIRS_LIST}
-	${INSTALL_DATA} ${WRKSRC}/${D}/*.* ${BUGZILLADIR}/${D}
+	(cd ${WRKSRC}/${D} && ${COPYTREE_SHARE} . ${BUGZILLADIR}/${D})
 .endfor
 	${TAR} -C ${WRKSRC} -cf - Bugzilla template | ${TAR} --unlink -C ${BUGZILLADIR} -xf -
 .ifndef NOPORTDOCS
-.for D in html images/callouts images pdf txt xml ""
-	${MKDIR} ${DOCSDIR}/${D}
-	${INSTALL_DATA} ${WRKSRC}/docs/${D}/*.* ${DOCSDIR}/${D}/
-.endfor
+	${MKDIR} ${DOCSDIR}
+	(cd ${WRKSRC}/docs/ && ${COPYTREE_SHARE} . ${DOCSDIR}/)
 .endif
 .ifdef WITH_CONTRIB
 	${MKDIR} ${BUGZILLADIR}/contrib
