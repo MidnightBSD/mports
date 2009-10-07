@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-DateTime-Locale/Makefile,v 1.1 2009/03/21 15:37:56 laffer1 Exp $
 
 PORTNAME=	DateTime-Locale
-PORTVERSION=	0.42
+PORTVERSION=	0.44
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -478,10 +478,4 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500703
-RUN_DEPENDS+=	p5-Class-ISA>=0:${PORTSDIR}/devel/p5-Class-ISA
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
