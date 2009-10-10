@@ -5,5 +5,5 @@ include/ltdl.h
 lib/libltdl.a
 lib/libltdl.la
 lib/libltdl.so
-lib/libltdl.so.9
+lib/libltdl.so.7
 @dirrm include/libltdl
