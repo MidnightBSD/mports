@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.5 2009/08/08 16:11:44 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.6 2009/09/20 02:51:48 laffer1 Exp $
 
 PORTNAME=	browser3
-DISTVERSION=	3.0.13
+DISTVERSION=	3.0.14
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
