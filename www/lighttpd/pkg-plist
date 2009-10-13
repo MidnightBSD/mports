@@ -1,5 +1,4 @@
-@comment $MidnightBSD$
-bin/spawn-fcgi
+@comment $MidnightBSD: mports/www/lighttpd/pkg-plist,v 1.2 2008/09/25 18:38:45 laffer1 Exp $
 @unexec if cmp -s %D/etc/lighttpd.conf %D/etc/lighttpd.conf.sample; then rm -f %D/etc/lighttpd.conf; fi
 etc/lighttpd.conf.sample
 @exec [ -f %B/lighttpd.conf ] || cp %B/%f %B/lighttpd.conf
