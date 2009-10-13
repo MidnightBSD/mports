@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/autotools/Makefile,v 1.4 2009/09/19 23:28:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/autotools/Makefile,v 1.5 2009/10/13 03:17:18 laffer1 Exp $
 
 PORTNAME=	autotools
-PORTVERSION=	20090919
+PORTVERSION=	20091013
 CATEGORIES=	devel
 MASTER_SITES=	# none
 DISTFILES=	# none
