@@ -5,7 +5,7 @@
  #endif
  
 -#if __FreeBSD_version >= 602000
-+#if __MidnightBSD_version >= 300
++#if __MidnightBSD_version >= 3000
  #define _PR_HAVE_GETPROTO_R
  #define _PR_HAVE_5_ARG_GETPROTO_R
  #endif
