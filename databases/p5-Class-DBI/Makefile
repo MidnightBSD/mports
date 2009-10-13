@@ -1,17 +1,10 @@
-# New ports collection makefile for:	Class-DBI
-# Date created:		15 Dec 2001
-# Whom:			Sergey Skvortsov <skv@FreeBSD.org>
-#
-# $FreeBSD: ports/databases/p5-Class-DBI/Makefile,v 1.24 2006/11/20 07:45:48 skv Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/p5-Class-DBI/Makefile,v 1.1 2007/09/02 02:52:49 ctriv Exp $
 
 PORTNAME=	Class-DBI
-PORTVERSION=	3.0.16
+PORTVERSION=	3.0.17
 DISTVERSIONPREFIX=	v
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Class
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
