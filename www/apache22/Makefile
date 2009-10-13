@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.12 2009/06/11 15:44:32 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.13 2009/09/19 23:56:44 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.11
-PORTREVISION=	1
+PORTVERSION=	2.2.13
+PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD} \
 		${MASTER_SITE_LOCAL:S/%SUBDIR%\//clement\/:aprmysql/}
