@@ -1,3 +1,4 @@
-MD5 (gnome2/gtk+-2.16.2.tar.bz2) = 396e98df15f6e4005e360b5710660ce3
-SHA256 (gnome2/gtk+-2.16.2.tar.bz2) = a32e6be7a7847476e775416811e453c036603202818f0f1a73fc521507d5ed1d
-SIZE (gnome2/gtk+-2.16.2.tar.bz2) = 18461964
+MD5 (gnome2/gtk+-2.16.6.tar.bz2) = 416412b336d9f3b6b78ca887395d1726
+SHA256 (gnome2/gtk+-2.16.6.tar.bz2) = 18e0f9792028e6cc5108447678f17d396f9a2cdfec1e6ab5dca98cb844f954af
+RMD160 (gnome2/gtk+-2.16.6.tar.bz2) = 1048704042ffbbabe0de60278f49f8b7700f2d1f
+SIZE (gnome2/gtk+-2.16.6.tar.bz2) = 18518781
