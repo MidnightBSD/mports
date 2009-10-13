@@ -1,4 +1,4 @@
-@comment $MidnightBSD$
+%%APR_PORTS%%@exec mkdir -p %D/lib/apr-util-1
 @exec mkdir -p %D/etc/apache22/extra 2> /dev/null
 @exec mkdir -p %D/etc/apache22/Includes 2> /dev/null || true
 @exec mkdir -p %D/etc/apache22/envvars.d 2> /dev/null || true
@@ -126,7 +126,6 @@ include/apache22/ap_release.h
 %%EVENT%%include/apache22/pod.h
 %%EVENT%%include/apache22/fdqueue.h
 %%WORKER%%include/apache22/fdqueue.h
-%%THREADPOOL%%include/apache22/pod.h
 include/apache22/http_config.h
 include/apache22/http_connection.h
 include/apache22/http_core.h
@@ -144,6 +143,7 @@ include/apache22/mod_dbd.h
 include/apache22/mod_include.h
 include/apache22/mod_log_config.h
 include/apache22/mod_proxy.h
+include/apache22/mod_rewrite.h
 include/apache22/mod_ssl.h
 include/apache22/mod_status.h
 include/apache22/mpm.h
@@ -174,6 +174,22 @@ include/apache22/util_xml.h
 %%APR_PORTS%%lib/libaprutil-1.la
 %%APR_PORTS%%lib/libaprutil-1.so
 %%APR_PORTS%%lib/libaprutil-1.so.3
+%%APR_PORTS%%%%MYSQL%%lib/apr-util-1/apr_dbd_mysql-1.so
+%%APR_PORTS%%%%MYSQL%%lib/apr-util-1/apr_dbd_mysql.so
+%%APR_PORTS%%%%MYSQL%%lib/apr-util-1/apr_dbd_mysql.la
+%%APR_PORTS%%%%MYSQL%%lib/apr-util-1/apr_dbd_mysql.a
+%%APR_PORTS%%%%PGSQL%%lib/apr-util-1/apr_dbd_pgsql-1.so
+%%APR_PORTS%%%%PGSQL%%lib/apr-util-1/apr_dbd_pgsql.so
+%%APR_PORTS%%%%PGSQL%%lib/apr-util-1/apr_dbd_pgsql.la
+%%APR_PORTS%%%%PGSQL%%lib/apr-util-1/apr_dbd_pgsql.a
+%%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3-1.so
+%%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.so
+%%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.la
+%%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.a
+%%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap-1.so
+%%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap.so
+%%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap.la
+%%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap.a
 libexec/apache22/httpd.exp
 %%MOD_ACTIONS%%libexec/apache22/mod_actions.so
 %%MOD_ALIAS%%libexec/apache22/mod_alias.so
@@ -261,6 +277,7 @@ sbin/httpd
 sbin/httxt2dbm
 sbin/logresolve
 sbin/rotatelogs
+sbin/split-logfile
 %%MOD_SUEXEC%%sbin/suexec
 %%APR_PORTS%%build-1/apr_rules.mk
 %%APR_PORTS%%build-1/libtool
@@ -278,7 +295,10 @@ share/apache22/build/rules.mk
 share/apache22/build/special.mk
 www/apache22/cgi-bin/printenv
 www/apache22/cgi-bin/test-cgi
-www/apache22/data/index.html
+@unexec if cmp -s %D/www/apache22/data/index.html %D/%%EXAMPLESDIR%%/index.html; then rm -f %D/www/apache22/data/index.html; fi
+%%EXAMPLESDIR%%/index.html
+@exec [ -d %D/www/apache22/data ] || mkdir -p %D/www/apache22/data
+@exec [ -f %D/www/apache22/data/index.html ] || cp %D/%%EXAMPLESDIR%%/index.html %D/www/apache22/data/index.html
 www/apache22/error/HTTP_BAD_GATEWAY.html.var
 www/apache22/error/HTTP_BAD_REQUEST.html.var
 www/apache22/error/HTTP_FORBIDDEN.html.var
@@ -302,6 +322,7 @@ www/apache22/error/include/bottom.html
 www/apache22/error/include/spacer.html
 www/apache22/error/include/top.html
 www/apache22/icons/README
+www/apache22/icons/README.html
 www/apache22/icons/a.gif
 www/apache22/icons/a.png
 www/apache22/icons/alert.black.gif
@@ -525,20 +546,21 @@ www/apache22/icons/world2.png
 @dirrm www/apache22/icons
 @dirrm www/apache22/error/include
 @dirrm www/apache22/error
-@dirrm www/apache22/data
-@dirrm www/apache22/cgi-bin
+@dirrmtry www/apache22/data
+@dirrmtry www/apache22/cgi-bin
 @dirrm %%EXAMPLESDIR%%/extra
 @dirrm %%EXAMPLESDIR%%
+@dirrmtry %%DOCSDIR%%
 @dirrm share/apache22/build
 @dirrm share/apache22
 %%APR_PORTS%%@dirrm include/apr-1
-%%APR_PORTS%%@dirrm lib/apr-util-1
+%%APR_PORTS%%@dirrmtry lib/apr-util-1
 %%APR_PORTS%%@dirrm build-1
 @dirrmtry libexec/apache22
-@dirrm include/apache22
+@dirrmtry include/apache22
 @dirrmtry www/apache22
 @dirrmtry etc/apache22/Includes
 @unexec rm -f %D/etc/apache22/httpd.conf.bak 2> /dev/null || true
 @dirrmtry etc/apache22/envvars.d
 @dirrmtry etc/apache22/extra
-@unexec rmdir %D/etc/apache22 2> /dev/null || echo "===> If you plan to do not reinstall apache22, you can safely remove %D/etc/apache22."
+@dirrmtry etc/apache22
