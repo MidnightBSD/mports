@@ -1,6 +1,6 @@
---- srclib/apr-util/build/dbm.m4.orig	Thu Feb 24 10:23:34 2005
-+++ srclib/apr-util/build/dbm.m4	Sun Oct 30 19:44:43 2005
-@@ -314,8 +314,8 @@
+--- srclib/apr-util/build/dbm.m4.orig	2008-06-25 01:54:26.000000000 +0200
++++ srclib/apr-util/build/dbm.m4	2008-12-09 22:40:21.000000000 +0100
+@@ -315,8 +315,8 @@
    fi
    APU_CHECK_BERKELEY_DB(1, -1, -1,
      "$places",
@@ -11,7 +11,7 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=185
-@@ -357,7 +357,7 @@
+@@ -358,7 +358,7 @@
    APU_CHECK_BERKELEY_DB(3, -1, -1,
      "$places",
      "db3/db.h db.h",
@@ -20,7 +20,7 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=3
-@@ -377,8 +377,8 @@
+@@ -378,8 +378,8 @@
    fi
    APU_CHECK_BERKELEY_DB("4", "0", "-1",
      "$places",
@@ -31,7 +31,7 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=4
-@@ -398,8 +398,8 @@
+@@ -399,8 +399,8 @@
    fi
    APU_CHECK_BERKELEY_DB("4", "1", "-1",
      "$places",
@@ -42,7 +42,7 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=4
-@@ -419,8 +419,8 @@
+@@ -420,8 +420,8 @@
    fi
    APU_CHECK_BERKELEY_DB("4", "2", "-1",
      "$places",
@@ -53,7 +53,7 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=4
-@@ -438,8 +438,8 @@
+@@ -439,8 +439,8 @@
    fi
    APU_CHECK_BERKELEY_DB("4", "3", "-1",
      "$places",
@@ -64,3 +64,53 @@
    )
    if test "$apu_have_db" = "1"; then
      apu_db_version=4
+@@ -522,6 +522,25 @@
+     apu_db_version=4
+   fi
+ ])
++dnl
++dnl APU_CHECK_DB47: is DB4.7 present?
++dnl
++dnl if present: sets apu_db_header, apu_db_lib, and apu_db_version
++dnl
++AC_DEFUN([APU_CHECK_DB47], [
++  places=$1
++  if test -z "$places"; then
++    places="std /usr/local/BerkeleyDB.4.7 /boot/home/config"
++  fi
++  APU_CHECK_BERKELEY_DB("4", "7", "-1",
++    "$places",
++    "db47/db.h db4/db.h db.h",
++    "db-4.7 db4-4.7 db47 db4 db"
++  )
++  if test "$apu_have_db" = "1"; then
++    apu_db_version=4
++  fi
++])
+ 
+ AC_DEFUN([APU_CHECK_DB], [
+   requested=$1
+@@ -606,6 +625,12 @@
+       AC_MSG_ERROR(Berkeley db4 not found)
+     fi
+     ;;
++  db47)
++    APU_CHECK_DB47("$check_places")
++    if test "$apu_db_version" != "4"; then
++      AC_MSG_ERROR(Berkeley db4 not found)
++    fi
++    ;;
+   default)
+     APU_CHECK_DB_ALL("$check_places")
+     ;;
+@@ -882,6 +907,10 @@
+       apu_use_db=1
+       apu_default_dbm=db4
+       ;;
++    db47)
++      apu_use_db=1
++      apu_default_dbm=db4
++      ;;
+     default)
+       dnl ### use more sophisticated DBMs for the default?
+       apu_default_dbm="sdbm (default)"
