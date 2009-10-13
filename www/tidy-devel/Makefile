@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.4 2009/03/02 14:40:06 laffer1 Exp $
+# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.5 2009/09/20 00:27:08 laffer1 Exp $
 
 PORTNAME?=	tidy
-DISTVERSION=	080621-cvs
-PORTREVISION=	1
+DISTVERSION=	090315-cvs
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 #MASTER_SITES=	http://tidy.sourceforge.net/src/%SUBDIR%/	\
