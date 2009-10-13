@@ -2,11 +2,11 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.9 2009/04/15 16:28:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.10 2009/09/20 00:43:52 laffer1 Exp $
 
 PORTNAME=	libsoup
-PORTVERSION=	2.26.0
-PORTREVISION=	1
+PORTVERSION=	2.26.3
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -45,6 +45,19 @@ LIB_DEPENDS+=	gnutls.26:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=--disable-ssl
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+pre-everything::
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "libsoup has the following configurable option(s):"
+	@${ECHO_MSG} "	WITHOUT_SSL	Disable GnuTLS SSL support"
+	@${ECHO_MSG} ""
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g ; \
+	    	s|" == "|" = "|g' \
+		${WRKSRC}/configure
+
+.include <bsd.port.post.mk>
 
 .endif
