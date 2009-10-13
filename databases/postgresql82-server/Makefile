@@ -2,11 +2,11 @@
 # Date created:		15 Oct 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.2 2008/03/30 23:17:10 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.3 2008/06/07 20:58:38 laffer1 Exp $
 #
 
 PORTNAME?=	postgresql
-PORTVERSION?=	8.2.7
+PORTVERSION?=	8.2.13
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${PORTVERSION}
@@ -17,7 +17,9 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The most advanced open-source database available anywhere
 LICENSE=	mit
 
-CONFLICTS?=	${PORTNAME}-client-8.[0-13-9]* \
+CONFLICTS?=	${PORTNAME}-client-7.* \
+		${PORTNAME}${PKGNAMESUFFIX}-7.* \
+		${PORTNAME}-client-8.[0-13-9]* \
 		${PORTNAME}${PKGNAMESUFFIX}-8.[0-13-9]*
 
 WRKSRC=		${WRKDIR}/postgresql-${PORTVERSION}
@@ -37,10 +39,14 @@ GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=--with-libraries=${LOCALBASE}/lib \
 		--with-includes=${LOCALBASE}/include \
+		--enable-thread-safety \
 		--with-docdir=${DOCSDIR}
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+
+CFLAGS+=	${PTHREAD_CFLAGS}
+LDFLAGS+=	${PTHREAD_LIBS}
 
 PLIST=		${PKGDIR}/pkg-plist${PKGNAMESUFFIX}
 
@@ -80,8 +86,6 @@ OPTIONS+=	LDAP "Build with LDAP authentication support" off
 OPTIONS+=	MIT_KRB5 "Build with MIT's kerberos support" off
 OPTIONS+=	HEIMDAL_KRB5 "Builds with Heimdal kerberos support" off
 OPTIONS+=	OPTIMIZED_CFLAGS "Builds with compiler optimizations (-O3)" off
-OPTIONS+=	LIBC_R "Link w/ libc_r, used by plpython (server)" off
-OPTIONS+=	THREADSAFE "make libpq thread safe" off
 #  to run regression tests:
 OPTIONS+=	TESTS "Allows the use of a \"check\" target (server)" off
 OPTIONS+=	DEBUG "Builds with debugging symbols" off
@@ -89,21 +93,12 @@ OPTIONS+=	DEBUG "Builds with debugging symbols" off
 # See http://people.freebsd.org/~girgen/postgresql-icu/README.html for more info
 #OPTIONS+=	ICU   "Use ICU for unicode collation (server)" off
 
-# See http://gppl.moonbone.ru/ for more info
-#OPTIONS+=	HIER  "Builds with query hierarchy (server)" off
-
 # See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/76999 for more info
 # (requires dump/restore if modified.)
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 
-# .  if (defined(SERVER_ONLY) && defined(WITH_HIER)) || make(makesum)
-# PATCH_SITES+=	http://gppl.moonbone.ru/:hier812055
-# PATCHFILES+=	hier-Pg8.1.2-0.5.5.diff.gz:hier812055
-# USE_BISON=	yes
-# .  endif
-
 # .  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-# USE_AUTOTOOLS=	autoconf:261
+# USE_AUTOTOOLS=	autoconf:262
 # CONFIGURE_ARGS+=--with-icu
 # LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
 # PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu
@@ -179,18 +174,6 @@ CONFIGURE_ARGS+=--with-krb5
 .    endif
 .  endif
 
-.  if (defined(SERVER_ONLY) && defined(WITH_TESTS)) || defined(WITH_THREADSAFE) || make(makesum)
-DISTFILES+=	postgresql-test-${PORTVERSION}${EXTRACT_SUFX}
-.  endif
-
-.  if defined(WITH_THREADSAFE)
-CONFIGURE_ARGS+=--enable-thread-safety
-.  endif
-
-.  if defined(SERVER_ONLY) && defined(WITH_LIBC_R)
-CFLAGS+=	${PTHREAD_CFLAGS}
-LDFLAGS+=	${PTHREAD_LIBS}
-.  endif
 .endif # !SLAVE_ONLY
 
 .if defined(CLIENT_ONLY)

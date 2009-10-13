@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $FreeBSD: ports/databases/postgresql82-server/files/postgresql.in,v 1.2 2007/01/09 16:29:35 girgen Exp $
+# $FreeBSD: ports/databases/postgresql82-server/files/postgresql.in,v 1.3 2009/07/15 16:55:40 dougb Exp $
 #
 # PROVIDE: postgresql
 # REQUIRE: LOGIN
@@ -23,8 +23,7 @@
 #
 # For postmaster startup options, edit ${postgresql_data}/postgresql.conf
 
-prefix=%%PREFIX%%
-command=${prefix}/bin/pg_ctl
+command=%%PREFIX%%/bin/pg_ctl
 
 . %%RC_SUBR%%
 
@@ -58,7 +57,7 @@ postgresql_command()
     
 postgresql_initdb()
 {
-    su -l -c ${postgresql_class} ${postgresql_user} -c "exec ${prefix}/bin/initdb ${postgresql_initdb_flags} -D ${postgresql_data}"
+    su -l -c ${postgresql_class} ${postgresql_user} -c "exec %%PREFIX%%/bin/initdb ${postgresql_initdb_flags} -D ${postgresql_data}"
 }
 
 run_rc_command "$1"

@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/databases/postgresql82-server/files/502.pgsql,v 1.8 2006/12/06 16:48:57 girgen Exp $
+# $FreeBSD: ports/databases/postgresql82-server/files/502.pgsql,v 1.9 2008/06/12 23:46:07 girgen Exp $
 #
 # Maintenance shell script to vacuum and backup database
 # Put this in /usr/local/etc/periodic/daily, and it will be run 
@@ -56,15 +56,15 @@ case "$daily_pgsql_backup_enable" in
 
 	# Protect the data
 	umask 077
-	dbnames=`su -l pgsql -c "psql -q -t -A -d template1 -c SELECT\ datname\ FROM\ pg_database\ WHERE\ datname!=\'template0\'"`
+	dbnames=`su -l pgsql -c "umask 077; psql -q -t -A -d template1 -c SELECT\ datname\ FROM\ pg_database\ WHERE\ datname!=\'template0\'"`
 	rc=$?
 	now=`date "+%Y-%m-%dT%H:%M:%S"`
 	file=${daily_pgsql_backupdir}/pgglobals_${now}
-	su -l pgsql -c "pg_dumpall -g | gzip -9 > ${file}.gz"
+	su -l pgsql -c "umask 077; pg_dumpall -g | gzip -9 > ${file}.gz"
 	for db in ${dbnames}; do
 	    echo -n " $db"
 	    file=${backupdir}/pgdump_${db}_${now}
-	    su -l pgsql -c "pg_dump ${daily_pgsql_pgdump_args} -f ${file} ${db}"
+	    su -l pgsql -c "umask 077; pg_dump ${daily_pgsql_pgdump_args} -f ${file} ${db}"
 	    [ $? -gt 0 ] && rc=3
 	done
 

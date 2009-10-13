@@ -195,7 +195,9 @@ share/postgresql/timezone/America/Argentina/Jujuy
 share/postgresql/timezone/America/Argentina/La_Rioja
 share/postgresql/timezone/America/Argentina/Mendoza
 share/postgresql/timezone/America/Argentina/Rio_Gallegos
+share/postgresql/timezone/America/Argentina/Salta
 share/postgresql/timezone/America/Argentina/San_Juan
+share/postgresql/timezone/America/Argentina/San_Luis
 share/postgresql/timezone/America/Argentina/Tucuman
 share/postgresql/timezone/America/Argentina/Ushuaia
 share/postgresql/timezone/America/Aruba
@@ -309,6 +311,7 @@ share/postgresql/timezone/America/Regina
 share/postgresql/timezone/America/Resolute
 share/postgresql/timezone/America/Rio_Branco
 share/postgresql/timezone/America/Rosario
+share/postgresql/timezone/America/Santarem
 share/postgresql/timezone/America/Santiago
 share/postgresql/timezone/America/Santo_Domingo
 share/postgresql/timezone/America/Sao_Paulo
@@ -372,6 +375,7 @@ share/postgresql/timezone/Asia/Dubai
 share/postgresql/timezone/Asia/Dushanbe
 share/postgresql/timezone/Asia/Gaza
 share/postgresql/timezone/Asia/Harbin
+share/postgresql/timezone/Asia/Ho_Chi_Minh
 share/postgresql/timezone/Asia/Hong_Kong
 share/postgresql/timezone/Asia/Hovd
 share/postgresql/timezone/Asia/Irkutsk
@@ -383,7 +387,9 @@ share/postgresql/timezone/Asia/Kabul
 share/postgresql/timezone/Asia/Kamchatka
 share/postgresql/timezone/Asia/Karachi
 share/postgresql/timezone/Asia/Kashgar
+share/postgresql/timezone/Asia/Kathmandu
 share/postgresql/timezone/Asia/Katmandu
+share/postgresql/timezone/Asia/Kolkata
 share/postgresql/timezone/Asia/Krasnoyarsk
 share/postgresql/timezone/Asia/Kuala_Lumpur
 share/postgresql/timezone/Asia/Kuching
