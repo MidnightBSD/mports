@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.6 2009/06/27 22:38:45 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.7 2009/10/13 03:07:55 laffer1 Exp $
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.18
@@ -100,6 +100,8 @@ post-patch:
 	@${SED} -e 's|%%PREFIX%%|${PREFIX}|g' \
 		< ${FILESDIR}/seamonkey.desktop.in > \
 		${WRKDIR}/seamonkey.desktop
+	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD`${UNAME} -r`.mk
+	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD${OSREL}.mk
 
 pre-install:
 	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
