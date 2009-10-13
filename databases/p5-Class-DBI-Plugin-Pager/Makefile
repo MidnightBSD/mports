@@ -1,10 +1,4 @@
-# New ports collection makefile for:	Class-DBI-Plugin-Pager
-# Date created:		25 Oct 2005
-# Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
-#
-# $FreeBSD: ports/databases/p5-Class-DBI-Plugin-Pager/Makefile,v 1.3 2007/09/08 00:54:30 linimon Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/p5-Class-DBI-Plugin-Pager/Makefile,v 1.1 2008/03/21 19:05:32 ctriv Exp $
 
 
 PORTNAME=	Class-DBI-Plugin-Pager
