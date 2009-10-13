@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/autotools/Makefile,v 1.3 2008/08/13 14:39:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/autotools/Makefile,v 1.4 2009/09/19 23:28:13 laffer1 Exp $
 
 PORTNAME=	autotools
 PORTVERSION=	20090919
@@ -16,7 +16,7 @@ PLIST_FILES=	share/${PORTNAME}
 NO_BUILD=	yes
 NO_FETCH=	yes
 
-AVAIL_AUTOCONF=	2.13 2.62
+AVAIL_AUTOCONF=	2.13 2.62 2.63
 AVAIL_AUTOMAKE=	1.4 1.5 1.6 1.9 1.10
 
 .for VER in ${AVAIL_AUTOCONF}
