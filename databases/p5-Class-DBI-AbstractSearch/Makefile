@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-Class-DBI-AbstractSearch
-# Date created:	   21 july 2003
-# Whom:		   Mathieu Arnold <m@absolight.net>
-#
-# $FreeBSD: ports/databases/p5-Class-DBI-AbstractSearch/Makefile,v 1.7 2007/08/31 13:37:04 mat Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/p5-Class-DBI-AbstractSearch/Makefile,v 1.1 2007/09/06 21:48:46 ctriv Exp $
 
 PORTNAME=	Class-DBI-AbstractSearch
 PORTVERSION=	0.07
