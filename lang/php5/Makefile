@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.25 2009/03/13 00:59:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.26 2009/08/08 20:45:33 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.2.10
+PORTVERSION=	5.2.11
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
@@ -62,7 +62,7 @@ PLIST_SUB+=	SUHOSIN="@comment "
 .endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-5.2.9-mail-header.patch:mail
+PATCHFILES+=	php-5.2.10-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
@@ -123,9 +123,10 @@ CONFIGURE_ARGS+=--with-zend-vm=SWITCH
 CONFIGURE_ARGS+=--with-zend-vm=GOTO
 .endif
 
-CONFIGURE_ENV+=	ac_cv_pthreads_lib=${PTHREAD_LIBS} \
-		ac_cv_pthreads_cflags=${PTHREAD_CFLAGS} \
-		pthreads_working="yes"
+CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
+		ac_cv_pthreads_cflags="" \
+		pthreads_working="yes" \
+		lt_cv_path_SED="sed"
 
 MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
 
@@ -159,9 +160,6 @@ post-build:
 	@${ECHO_CMD} "PHP_VERSION=${PORTVERSION}" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_SAPI=${PHP_SAPI}" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_EXT_INC=pcre" >> ${WRKDIR}/php.conf
-
-test: build
-	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/php.ini-dist ${PREFIX}/etc
