@@ -1,3 +1,4 @@
-MD5 (xorg/lib/pixman-0.15.2.tar.bz2) = 4d3ad419e9febd021a1bb72b73c236ef
-SHA256 (xorg/lib/pixman-0.15.2.tar.bz2) = f537b565bb6823da3d02eded36aaca3e4cf191422435f04003b448897a65c0f1
-SIZE (xorg/lib/pixman-0.15.2.tar.bz2) = 343019
+MD5 (xorg/lib/pixman-0.16.0.tar.bz2) = 183dea8a100c1d9732cdb2146ec90f68
+SHA256 (xorg/lib/pixman-0.16.0.tar.bz2) = d1808fda5f4b3feb867cfb5a1a3311a713d21ce866eb38e9096841f7e241551d
+RMD160 (xorg/lib/pixman-0.16.0.tar.bz2) = 436bca0dc3bec542da59db2a226e5217cdadd8f1
+SIZE (xorg/lib/pixman-0.16.0.tar.bz2) = 402602
