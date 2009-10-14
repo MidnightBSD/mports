@@ -1,18 +1,16 @@
-# New ports collection makefile for:	PL/Ruby
-# Date created:		28 June 2001
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.2 2008/04/06 19:09:23 laffer1 Exp $
-# $FreeBSD: ports/databases/postgresql-plruby/Makefile,v 1.29 2005/11/23 18:03:25 mat Exp $
-#
+# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.3 2008/04/06 19:10:26 laffer1 Exp $
 
 PORTNAME=	plruby
-PORTVERSION=	0.5.0
+PORTVERSION=	0.5.3
 CATEGORIES=	databases ruby
-MASTER_SITES=	ftp://moulon.inra.fr/pub/ruby/ \
-		http://freebsd.unixfreunde.de/sources/
+MASTER_SITES=	${MASTER_SITE_RUBYFORGE}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	ruby
+
+PATCHFILES=	3b3cc0786b0814eaa792cec65cedd54e1e43e9bd.diff
+PATCH_SITES=	http://github.com/knu/postgresql-plruby/commit/
+PATCH_DIST_STRIP=	-p1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PL/Ruby procedural language for the PostgreSQL database system
@@ -77,9 +75,14 @@ post-install:
 	${CP} -R ${WRKSRC}/test/* ${RUBY_MODEXAMPLESDIR}/
 	${INSTALL_DATA} ${WRKDIR}/createlang.sql ${RUBY_MODEXAMPLESDIR}/
 	${MKDIR} ${RUBY_MODDOCDIR}
-.for f in ${DOCS}
-	${CP} -R ${WRKSRC}/${f} ${RUBY_MODDOCDIR}/
-.endfor
+	@(cd ${WRKSRC}/ && ${COPYTREE_SHARE} ${DOCS} ${RUBY_MODDOCDIR}/)
+
+	@${FIND} -ds ${RUBY_MODDOCDIR} -type f -print | ${SED} -E -e \
+		's,^${PREFIX}/?,,' >> ${TMPPLIST}
+	@${FIND} -ds ${RUBY_MODDOCDIR} -type d -print | ${SED} -E -e \
+		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/share/doc/ruby18/ 2>/dev/null || true" \
+		>> ${TMPPLIST}
 .endif
 	@${CAT} ${PKGMESSAGE}
 
