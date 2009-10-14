@@ -4,13 +4,12 @@
 #			Mikhail Teterin <mi@aldan.algebra.com>
 #			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.7 2009/09/20 03:01:24 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.8 2009/09/20 19:43:21 laffer1 Exp $
 # $FreeBSD: ports/graphics/tiff/Makefile,v 1.61 2006/04/08 20:22:41 dinoex Exp $
 #
 
 PORTNAME=	tiff
-PORTVERSION=	3.8.2
-PORTREVISION=	2
+PORTVERSION=	3.9.1
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://dl1.maptools.org/dl/libtiff/
@@ -23,24 +22,25 @@ LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg
 
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
-CONFIGURE_TARGET=
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 			--with-jpeg-lib-dir=${LOCALBASE}/lib
-LDFLAGS+=	-lcompat
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
+CONFIGURE_TARGET=
 
 .if defined(WITH_X11) && !defined(WITHOUT_X11)
 USE_XORG=	sm ice xmu xi x11
 USE_GL=		glut glu gl
+PLIST_SUB+=	WITH_X11=""
 .else
 CONFIGURE_ARGS+=	--without-x --without-libgl
+PLIST_SUB+=	WITH_X11="@comment "
 .endif
 
 MAN1=	bmp2tiff.1 tiff2pdf.1 fax2ps.1 fax2tiff.1 gif2tiff.1 pal2rgb.1 \
 	ppm2tiff.1 ras2tiff.1 raw2tiff.1 rgb2ycbcr.1 sgi2tiff.1 \
 	thumbnail.1 tiff2bw.1 tiff2ps.1 tiff2rgba.1 tiffcmp.1 tiffcp.1 \
 	tiffdither.1 tiffdump.1 tiffgt.1 tiffinfo.1 tiffmedian.1 \
-	tiffset.1 tiffsplit.1 tiffsv.1
+	tiffset.1 tiffsplit.1 tiffsv.1 tiffcrop.1
 MAN3=	TIFFClose.3tiff TIFFDataWidth.3tiff TIFFError.3tiff TIFFFlush.3tiff \
 	TIFFGetField.3tiff TIFFOpen.3tiff TIFFPrintDirectory.3tiff \
 	TIFFRGBAImage.3tiff TIFFReadDirectory.3tiff \
