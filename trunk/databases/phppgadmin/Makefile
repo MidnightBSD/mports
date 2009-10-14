@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/databases/phppgadmin/Makefile,v 1.2 2008/06/07 21:09:17 laffer1 Exp $
+# $MidnightBSD: mports/databases/phppgadmin/Makefile,v 1.3 2009/03/13 02:35:54 laffer1 Exp $
 
 PORTNAME=	phppgadmin
 PORTVERSION=	4.2.2
 CATEGORIES=	databases www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/phpPgAdmin%20%5Bstable%5D/phpPgAdmin-${PORTVERSION}
 DISTNAME=	phpPgAdmin-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
