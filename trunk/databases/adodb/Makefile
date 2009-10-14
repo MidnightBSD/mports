@@ -2,16 +2,15 @@
 # Date created:		4 May 2001
 # Whom:			abgoeree@uwnet.nl
 #
-# $MidnightBSD: mports/databases/adodb/Makefile,v 1.1 2007/06/08 14:42:25 laffer1 Exp $
+# $MidnightBSD: mports/databases/adodb/Makefile,v 1.2 2007/11/10 23:39:22 laffer1 Exp $
 # $FreeBSD: ports/databases/adodb/Makefile,v 1.46 2007/04/05 13:19:01 mm Exp $
 #
 
 PORTNAME=	adodb
-PORTVERSION=	4.93a
+PORTVERSION=	4.99.1
 CATEGORIES=	databases www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	adodb
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-php-4-and-5/${PORTNAME}-4991-for-php
+DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +20,8 @@ LICENSE=	bsd4
 
 USE_PHP=	pcre
 
+CONFLICTS=	adodb-5.*
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 NO_BUILD=	YES
 
@@ -29,9 +30,7 @@ PLIST_SUB=	ADODB_DIR=${ADODB_DIR}
 
 ADODB_SUBDIRS=	contrib datadict drivers lang pear perf session xsl
 
-.if !defined (WITHOUT_ADODB_OPTIONS)
 OPTIONS=	TESTS "Install tests" off
-.endif
 
 .include <bsd.port.pre.mk>
 
@@ -40,6 +39,9 @@ PLIST_SUB+=	TESTS=
 .else
 PLIST_SUB+=	TESTS="@comment "
 .endif
+
+post-patch:
+	@cd ${WRKSRC}; ${RM} -f cute_icons_for_site/Thumbs.db
 
 do-install:
 	@${MKDIR} ${PREFIX}/${ADODB_DIR}
@@ -66,5 +68,6 @@ post-install:
 	@cd ${WRKSRC}; ${FIND} cute_icons_for_site -type f \
 		-exec ${INSTALL_MAN} ${WRKSRC}/{} ${DOCSDIR}/{} \;
 .endif
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
