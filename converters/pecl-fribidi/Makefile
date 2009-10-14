@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/pecl-fribidi/Makefile,v 1.3 2008/05/16 18:42:01 crash Exp $
+# $MidnightBSD: mports/converters/pecl-fribidi/Makefile,v 1.4 2009/09/20 03:50:51 laffer1 Exp $
 
 PORTNAME=	fribidi
 PORTVERSION=	1.0
@@ -18,5 +18,6 @@ USE_PHP=	yes
 USE_PHPEXT=	yes
 
 CONFIGURE_ARGS=	--with-fribidi=${LOCALBASE}
+BROKEN=       needs update to work with fribidi-0.19.2
 
 .include <bsd.port.mk>
