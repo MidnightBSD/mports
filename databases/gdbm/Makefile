@@ -1,14 +1,8 @@
-# New ports collection makefile for: gdbm
-# Date created:		8 Apr 1996
-# Whom:			Brent J. Nordquist <bjn@visi.com>
-#
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.6 2008/06/26 19:54:50 laffer1 Exp $
-# $FreeBSD: ports/databases/gdbm/Makefile,v 1.35 2006/12/08 13:46:26 gabor Exp $
-#
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.7 2009/09/20 00:32:18 laffer1 Exp $
 
 PORTNAME=	gdbm
 PORTVERSION=	1.8.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
