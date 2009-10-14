@@ -2,11 +2,11 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.2 2008/11/07 17:21:10 ctriv Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.3 2009/09/20 00:42:28 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
-PORTVERSION=	1.2.26
+PORTVERSION=	1.3.8
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -15,25 +15,41 @@ COMMENT=	Round Robin Database Tools
 LICENSE=	gpl2
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
-		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
-		png.5:${PORTSDIR}/graphics/png
+		cairo.2:${PORTSDIR}/graphics/cairo \
+		png.5:${PORTSDIR}/graphics/png \
+		xml2.5:${PORTSDIR}/textproc/libxml2 \
+		pangocairo-1\.0.0:${PORTSDIR}/x11-toolkits/pango
+
+CONFLICTS=	rrdtool-1.0*
 
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 WANT_PERL=	yes
+USE_GNOME=	gnomehack intltool
 
-CONFIGURE_ARGS=	--disable-tcl
+CONFIGURE_ARGS=	--disable-tcl --program-prefix=""
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \
+			--host=${ARCH}-portbld-freebsd6.1 \
+			--target=${ARCH}-portbld-freebsd6.1
+PORTDOCS=	*
+PORTEXAMPLES=	4charts.pl bigtops.pl cgi-demo.cgi minmax.pl piped-demo.pl \
+		perftest.pl shared-demo.pl stripes.pl
 
 OPTIONS=	PYTHON_MODULE	"Build PYTHON bindings" off \
 		RUBY_MODULE	"Build RUBY bindings" off \
-		PERL_MODULE	"Build PERL module" on
+		PERL_MODULE	"Build PERL module" on \
+		DEJAVU		"Use DejaVu fonts (requires X11)" off \
+		MMAP		"Use mmap in rrd_update" on
 
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_PYTHON_MODULE)
 USE_PYTHON=	yes
+INSTALLS_EGGINFO=yes
+PYDISTUTILS_EGGINFO=py_rrdtool-0.2.1-${PYTHON_VERSION:S/thon//}.egg-info
+extensions+=	python
 PLIST_SUB+=	WITH_PYTHON=""
 CONFIGURE_ARGS+=	--enable-python
 .else
@@ -43,6 +59,7 @@ PLIST_SUB+=	WITH_PYTHON="@comment "
 
 .if defined(WITH_RUBY_MODULE)
 USE_RUBY=	yes
+extensions+=	ruby
 PLIST_SUB+=	WITH_RUBY=""
 CONFIGURE_ARGS+=	--enable-ruby
 .else
@@ -59,10 +76,15 @@ CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=	WITH_PERL="@comment "
 .endif
 
-.include <bsd.port.pre.mk>
+.if defined(WITHOUT_MMAP)
+CONFIGURE_ARGS+=	--disable-mmap
+.endif
 
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libart-2.0 -I${LOCALBASE}/include/freetype2
+.if exists(${LOCALBASE}/lib/X11/fonts/dejavu) || defined(WITH_DEJAVU)
+RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+.endif
+
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS:=	${CFLAGS:N-ffast-math}
 CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
@@ -74,10 +96,7 @@ MAN1=		bin_dec_hex.1 cdeftutorial.1 rpntutorial.1 rrd-beginners.1 \
 		rrdthreads.1 rrdtool.1 rrdtune.1 rrdtutorial.1 rrdupdate.1 \
 		rrdxport.1 rrdlastupdate.1
 
-.if !defined(WITHOUT_PERL_MODULE)
-MAN3=		RRDp.3 RRDs.3
-MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VERSION}
-.endif
+.include <bsd.port.pre.mk>
 
 post-extract:
 .if defined(NOPORTDOCS)
@@ -85,11 +104,9 @@ post-extract:
 		-e 's/^	cd .* rrdtool.html index.html/	#/' \
 		${WRKSRC}/doc/Makefile.in
 .endif
-
-post-install:
-.if !defined(BATCH)
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "# See ${PREFIX}/share/examples/rrdtool for some demonstration code        #"
+.if defined(NOPORTEXAMPLES)
+	@${REINPLACE_CMD} -e 's|SUBDIRS = $$(PO) src examples doc bindings|SUBDIRS = $$(PO) src doc bindings|' \
+		${WRKSRC}/Makefile.in
 .endif
 
 .include <bsd.port.post.mk>
