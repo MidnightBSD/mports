@@ -2,14 +2,14 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.2 2007/03/25 03:09:40 ctriv Exp $
+# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.3 2007/08/07 21:59:45 laffer1 Exp $
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
 
 PORTNAME=	linux-realplayer
-DISTVERSION=	10.0.8.805-20060718
+DISTVERSION=	10.0.9.809-20070726
 CATEGORIES=	multimedia audio linux
-MASTER_SITES=	https://helixcommunity.org/download.php/2152/:player \
+MASTER_SITES=	https://helixcommunity.org/download.php/2479/:player \
 		http://ftp.nluug.nl/ftp/pub/os/Linux/distr/pardusrepo/sources/:playeralt \
 		ftp://fr2.rpmfind.net/linux/sourceforge/m/mp/mplayer-tru/:codecs
 DISTFILES=	RealPlayer-${DISTVERSION}.i586.rpm:player,playeralt \
@@ -30,6 +30,8 @@ USE_LINUX=	yes
 USE_XLIB=	yes
 RESTRICTED=	Redistribution not allowed
 NO_BUILD=	yes
+WANT_GNOME=	yes
+FETCH_ARGS=	-pRr
 
 RADIR=		${PREFIX}/lib/RealPlayer
 PLUGINSDIR=	${PREFIX}/lib/linux-mozilla/plugins
@@ -38,28 +40,24 @@ RABINDIR=	${PREFIX}/bin
 .if defined(WITHOUT_NLS)
 PLIST_SUB+=	NLS="@comment "
 .else
-PLIST_SUB+=	NLS=""
+PLIST_SUB+=	NLS="" LINUXBASE="${LINUXBASE}"
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if exists(${X11BASE}/share/icons)
-#WITH_ICONS=	yes
+.if exists(${LOCALBASE}/share/icons)
+WITH_ICONS=	yes
 PLIST_SUB+=	ICONS=""
 .else
 PLIST_SUB+=	ICONS="@comment "
 .endif
 
-.if exists(${X11BASE}/share/gnome)
-#WITH_GNOME=	yes
+.if ${HAVE_GNOME:Mgnomehier}!=""
+WITH_GNOME=	yes
 PLIST_SUB+=	GNOME=""
 .else
 PLIST_SUB+=	GNOME="@comment "
 .endif
-
-ICONS="@comment "
-GNOME="@comment "
-X11="@comment "
 
 .if defined(WITH_ICONS) || defined(WITH_GNOME)
 PLIST_SUB+=	X11=""
@@ -98,8 +96,12 @@ do-install:
 
 .if !defined(WITHOUT_NLS)
 	@${MKDIR} ${RADIR}/share/locale
-	${CP} -R ${WRKSRC}/share/locale/* ${RADIR}/share/locale
+	${CP} -Rp ${WRKSRC}/share/locale/* ${RADIR}/share/locale
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${RADIR}/share/locale
+.for c in de es fr hi it ja ko pl pt_BR zh_CN zh_TW
+	${LN} -sf ${RADIR}/share/locale/${c}/player.mo \
+		${LINUXBASE}/usr/share/locale/${c}/LC_MESSAGES/realplay.mo
+.endfor
 .endif
 
 	@${MKDIR} ${PLUGINSDIR}
@@ -110,32 +112,33 @@ do-install:
 
 .if defined(WITH_ICONS)
 . for size in 16x16 32x32 48x48 192x192
-	@${MKDIR} ${X11BASE}/share/icons/hicolor/${size}/apps
+	@${MKDIR} ${LOCALBASE}/share/icons/hicolor/${size}/apps
 	${INSTALL_DATA} ${WRKSRC}/share/icons/realplay_${size}.png \
-		${X11BASE}/share/icons/hicolor/${size}/apps
+		${LOCALBASE}/share/icons/hicolor/${size}/apps
 . endfor
 . for size in 48x48 192x192
-	@${MKDIR} ${X11BASE}/share/icons/hicolor/${size}/mimetypes
+	@${MKDIR} ${LOCALBASE}/share/icons/hicolor/${size}/mimetypes
 	${INSTALL_DATA} ${WRKSRC}/share/icons/mime-*_${size}.png \
-		${X11BASE}/share/icons/hicolor/${size}/mimetypes
+		${LOCALBASE}/share/icons/hicolor/${size}/mimetypes
 . endfor
 .endif
 
 .if defined(WITH_GNOME)
-	@${MKDIR} ${X11BASE}/share/gnome/pixmaps
-	${INSTALL_DATA} ${WRKSRC}/share/realplay.png ${X11BASE}/share/gnome/pixmaps
+	@${MKDIR} ${LOCALBASE}/share/pixmaps
+	${INSTALL_DATA} ${WRKSRC}/share/realplay.png \
+		${LOCALBASE}/share/pixmaps
 
-	@${MKDIR} ${X11BASE}/share/gnome/applications
+	@${MKDIR} ${LOCALBASE}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.desktop \
-		${X11BASE}/share/gnome/applications
+		${LOCALBASE}/share/applications
 
-	@${MKDIR} ${X11BASE}/share/gnome/application-registry
+	@${MKDIR} ${LOCALBASE}/share/application-registry
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.applications \
-		${X11BASE}/share/gnome/application-registry
+		${LOCALBASE}/share/application-registry
 
-	@${MKDIR} ${X11BASE}/share/gnome/mime-info
+	@${MKDIR} ${LOCALBASE}/share/mime-info
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.keys ${WRKSRC}/share/realplay.mime \
-		${X11BASE}/share/gnome/mime-info
+		${LOCALBASE}/share/mime-info
 .endif
 
 .include <bsd.port.post.mk>
