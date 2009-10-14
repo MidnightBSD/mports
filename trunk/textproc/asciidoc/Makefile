@@ -1,10 +1,4 @@
-# New ports collection makefile for:   asciidoc
-# Date created:        9 Feb 2006
-# Whom:                anholt@FreeBSD.org
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/asciidoc/Makefile,v 1.4 2007/05/25 16:47:18 anholt Exp $
-#
+# $MidnightBSD: mports/textproc/asciidoc/Makefile,v 1.1 2008/06/01 20:24:28 archite Exp $
 
 PORTNAME=	asciidoc
 PORTVERSION= 	8.1.0
@@ -14,6 +8,7 @@ MASTER_SITES=	http://www.methods.co.nz/asciidoc/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A text document format for writing short documents and man pages
+LICENSE=	gpl2
 
 USE_PYTHON=	yes
 
