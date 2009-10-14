@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/dns/Makefile,v 1.18 2009/04/14 03:05:27 laffer1 Exp $
+# $MidnightBSD: mports/dns/Makefile,v 1.19 2009/08/01 20:58:58 laffer1 Exp $
 
 COMMENT = Domain Name Service tools
 
 SUBDIR += ares
-SUBDIR += bind95
 SUBDIR += bind96
 SUBDIR += bindgraph
 SUBDIR += c-ares
