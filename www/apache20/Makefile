@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache20/Makefile,v 1.10 2009/06/06 21:13:44 laffer1 Exp $
+# $MidnightBSD: mports/www/apache20/Makefile,v 1.11 2009/09/19 23:55:28 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 
@@ -40,12 +40,12 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 USE_ICONV=		yes
 USE_AUTOTOOLS=		autoconf:262 libtool:22
 USE_PERL5=		yes
-USE_RC_SUBR=		yes
+USE_RC_SUBR=		apache2.sh
+SUB_LIST+=		RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
 USE_GNOME=		pkgconfig
 USE_APACHE=		common20
 LIBTOOLFILES=		configure
-INSTALLS_SHLIB=		yes
-LDCONFIG_DIRS=		${PREFIX}/lib/apache2
+USE_LDCONFIG=		${PREFIX}/lib/apache2
 USE_BZIP2=		yes
 
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
@@ -137,7 +137,6 @@ CONFIGURE_ARGS+=	--enable-threads
 .     if ${ARCH} == i386
 CONFIGURE_ARGS+=	--enable-nonportable-atomics
 .     endif
-#CFLAGS+=		-DFREEBSD_THREAD_HACK
 .endif
 
 CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM:L} ${CONFIGURE_TARGET}
@@ -170,10 +169,6 @@ pre-everything::
 
 post-patch:
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/apache.sh > ${WRKDIR}/apache2.sh
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/apache2libs.sh > ${WRKDIR}/apache2libs.sh
 	@${RM} -f ${WRKSRC}/docs/manual/index.html.ko.euc-kr
 	@${RM} -f ${WRKSRC}/docs/conf/highperformance-std.conf
 	@${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' \
@@ -195,18 +190,7 @@ post-configure:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," \
 			${WRKSRC}/support/envvars-std
 
-pre-fake:
-.if !exists(${WRKDIR}/apache2libs.sh) || !exists(${WRKDIR}/apache2.sh)
-	@${MKDIR} ${WRKDIR}
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/apache.sh > ${WRKDIR}/apache2.sh
-	@${SED} ${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/apache2libs.sh > ${WRKDIR}/apache2libs.sh
-.endif
-
 post-install:
-	${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2libs.sh ${PREFIX}/etc/rc.d/000.apache2libs.sh
-	${INSTALL_SCRIPT} -m 555 ${WRKDIR}/apache2.sh ${PREFIX}/etc/rc.d/apache2.sh
 	@${MKDIR} ${PREFIX}/etc/apache2/envvars.d
 	@${MKDIR} ${PREFIX}/etc/apache2/Includes
 .if !defined(NOPORTDOCS)
