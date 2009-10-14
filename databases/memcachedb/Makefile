@@ -1,16 +1,9 @@
-# New ports collection makefile for:	memcachedb
-# Date created:		2007-09-22
-# Whom:			Gea-Suan Lin <gslin@gslin.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/databases/memcachedb/Makefile,v 1.9 2008/03/29 23:16:04 miwi Exp $
-#
+# $MidnightBSD: mports/databases/memcachedb/Makefile,v 1.1 2008/08/02 19:09:52 laffer1 Exp $
 
 PORTNAME=	memcachedb
-PORTVERSION=	1.0.3
+PORTVERSION=	1.2.0
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
-		http://freebsd.csie.nctu.edu.tw/~gslin/files/
+MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed storage system designed for persistent
@@ -25,7 +18,7 @@ CONFIGURE_ENV=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 GNU_CONFIGURE=	yes
 LDFLAGS=	-l"${BDB_LIB_NAME}" -L"${LOCALBASE}/lib"
 MCDBDIR?=	/var/db/memcachedb
-USE_BDB=	46+
+USE_BDB=	47+
 USE_RC_SUBR=	${PORTNAME}
 
 post-install:
