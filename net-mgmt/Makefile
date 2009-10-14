@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.14 2008/06/20 22:13:20 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.15 2008/08/22 14:17:51 laffer1 Exp $
 #
 
     COMMENT = Network management tools
@@ -18,7 +18,6 @@
     SUBDIR += p5-SNMP_Session
     SUBDIR += php5-snmp
     SUBDIR += net-snmp
-    SUBDIR += net-snmp53
     SUBDIR += nipper
     SUBDIR += softflowd
     SUBDIR += subcalc
