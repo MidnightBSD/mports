@@ -2,7 +2,7 @@
 # Date created:				June 17th 1997
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.2 2007/08/10 15:59:02 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.3 2008/05/23 18:46:10 crash Exp $
 # $FreeBSD: ports/databases/p5-DBD-Pg/Makefile,v 1.69 2006/05/14 17:19:16 leeym Exp $
 #
 
@@ -16,6 +16,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides access to PostgreSQL databases through the DBI
 LICENSE=        gpl3
+
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
