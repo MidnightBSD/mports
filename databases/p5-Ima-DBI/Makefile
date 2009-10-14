@@ -1,15 +1,9 @@
-# New ports collection makefile for:	Ima-DBI
-# Date created:		17 Dec 2001
-# Whom:			Sergey Skvortsov <skv@protey.ru>
-#
-# $FreeBSD: ports/databases/p5-Ima-DBI/Makefile,v 1.11 2007/06/13 20:29:02 skv Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/databases/p5-Ima-DBI/Makefile,v 1.1 2007/09/02 02:41:58 ctriv Exp $
 
 PORTNAME=	Ima-DBI
 PORTVERSION=	0.35
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/P/PE/PERRIN
 PKGNAMEPREFIX=	p5-
 
