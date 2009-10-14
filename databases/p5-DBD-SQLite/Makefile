@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-DBD-SQLite
-# Date created:				2002/03/30
-# Whom:					nork@cityfujisawa.ne.jp
-#
-# $FreeBSD: ports/databases/p5-DBD-SQLite/Makefile,v 1.32 2006/09/12 13:29:00 mat Exp $
-# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.2 2007/08/07 20:56:09 ctriv Exp $
-#
+# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.3 2008/06/13 13:45:54 laffer1 Exp $
 
 PORTNAME=	DBD-SQLite
-PORTVERSION=	1.14
+PORTVERSION=	1.25
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -33,7 +27,7 @@ PERL_CONFIGURE=	yes
 CONFIGURE_ARGS+=	USE_LOCAL_SQLITE=0 
 CONFIGURE_ARGS+=	SQLITE_LOCATION=${SQLITE_LOCATION}
 
-MAN3=		DBD::SQLite.3
+MAN3=		DBD::SQLite.3 DBD::SQLite::Cookbook.3
 
 .include <bsd.port.pre.mk>
 
