@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.8 2009/09/20 02:03:29 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.9 2009/09/23 13:05:27 laffer1 Exp $
 
 PORTNAME=	libgcrypt
 PORTVERSION=	1.4.4
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose crypto library based on code used in GnuPG
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gpg-error.5:${PORTSDIR}/security/libgpg-error
+LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool:22
