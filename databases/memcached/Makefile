@@ -2,11 +2,11 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.3 2008/08/21 17:28:46 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.4 2009/03/13 02:41:06 laffer1 Exp $
 #
 
 PORTNAME=	memcached
-PORTVERSION=	1.2.6
+PORTVERSION=	1.2.8
 CATEGORIES=	databases
 MASTER_SITES=	http://www.danga.com/memcached/dist/ \
 		${MASTER_SITE_GENTOO}
@@ -40,7 +40,7 @@ PORTDOCS=	memory_management.txt protocol.txt
 PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE}
 PATCH_SITE_SUBDIR=	repcached
 PATCH_DIST_STRIP+=	-p1
-PATCHFILES+=		repcached-2.2-1.2.6.patch.gz
+PATCHFILES+=		repcached-2.2-1.2.8.patch.gz
 CONFIGURE_ARGS+=	--enable-replication --disable-threads
 .else
 CONFIGURE_ARGS+=	--enable-threads
