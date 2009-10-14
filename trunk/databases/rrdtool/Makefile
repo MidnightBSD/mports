@@ -2,7 +2,7 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.3 2009/09/20 00:42:28 laffer1 Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.4 2009/10/14 13:35:01 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
@@ -49,7 +49,7 @@ OPTIONS=	PYTHON_MODULE	"Build PYTHON bindings" off \
 USE_PYTHON=	yes
 INSTALLS_EGGINFO=yes
 PYDISTUTILS_EGGINFO=py_rrdtool-0.2.1-${PYTHON_VERSION:S/thon//}.egg-info
-extensions+=	python
+EXTENSIONS+=	python
 PLIST_SUB+=	WITH_PYTHON=""
 CONFIGURE_ARGS+=	--enable-python
 .else
@@ -59,9 +59,10 @@ PLIST_SUB+=	WITH_PYTHON="@comment "
 
 .if defined(WITH_RUBY_MODULE)
 USE_RUBY=	yes
-extensions+=	ruby
+EXTENSIONS+=	ruby
 PLIST_SUB+=	WITH_RUBY=""
 CONFIGURE_ARGS+=	--enable-ruby
+CFLAGS+= -L/usr/local/lib
 .else
 CONFIGURE_ARGS+=	--disable-ruby
 PLIST_SUB+=	WITH_RUBY="@comment "
