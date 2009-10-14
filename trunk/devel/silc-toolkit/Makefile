@@ -1,19 +1,14 @@
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.5 2009/03/25 22:42:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.6 2009/09/20 00:57:53 laffer1 Exp $
 
 PORTNAME=	silc
-PORTVERSION=	1.1.7
+PORTVERSION=	1.1.10
 CATEGORIES=	devel ipv6 net security
 MASTER_SITES=	http://www.silcnet.org/download/%SUBDIR%/ \
 		http://ftp.silcnet.org/%SUBDIR%/ \
 		http://www.nic.funet.fi/pub/mirrors/ftp.silcnet.org/silc/%SUBDIR%/ \
-		http://www.fi.silcnet.org/download/%SUBDIR%/ \
-		http://munitions.vipul.net/software/mirrors/silc/%SUBDIR%/ \
-		http://www.pl.silcnet.org/download/%SUBDIR%/ \
 		http://ftp.sunet.se/pub/network/silc/%SUBDIR%/ \
 		ftp://ftp.silcnet.org/silc/%SUBDIR%/ \
-		ftp://ftp.au.silcnet.org/pub/silcnet/%SUBDIR%/ \
 		ftp://ftp.funet.fi/pub/mirrors/ftp.silcnet.org/silc/%SUBDIR%/ \
-		ftp://ftp.pl.silcnet.org/pub/silc/%SUBDIR%/ \
 		ftp://ftp.sunet.se/pub/network/silc/%SUBDIR%/
 MASTER_SITE_SUBDIR=	toolkit/sources
 PKGNAMESUFFIX=	-toolkit
@@ -28,7 +23,7 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
-USE_GNOME=    glib12
+#USE_GNOME=    glib12
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX} \
 		--with-simdir=${PREFIX}/lib/silcsim \
@@ -39,9 +34,10 @@ CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX} \
 CONFIGURE_ENV=	CFLAGS+="${CFLAGS}" \
 		CPPFLAGS+="${CPPFLAGS}"
 USE_LDCONFIG=	yes
-PLIST_SUB=	INSTALL_DIR="${INSTALL_DIR}"
 
-INSTALL_DIR?=	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m 755
+.if defined(NOPORTDOCS)
+PLIST_SUB+=	PORTDOCS="@comment "
+.endif
 
 .ifndef(WITH_PTHREADS)
 CONFIGURE_ARGS+=	--without-pthreads
@@ -80,8 +76,9 @@ CONFIGURE_ARGS+=	--disable-asm
 .endif
 
 post-patch:
-.ifndef(WITH_OPTIMIZED_CFLAGS)
-	@${PERL} -pi -e 's/ ?(-g)? -O2//' ${WRKSRC}/${CONFIGURE_SCRIPT}
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -E -e 's|^(install-data-hook:).*|\1|' \
+		${WRKSRC}/doc/Makefile.in ${WRKSRC}/lib/Makefile.in
 .endif
 	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/lib/Makefile.in
