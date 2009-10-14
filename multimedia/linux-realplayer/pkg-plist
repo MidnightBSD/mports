@@ -179,3 +179,82 @@ lib/linux-mozilla/plugins/nphelix.xpt
 @dirrm lib/RealPlayer
 @dirrmtry lib/linux-mozilla/plugins
 @dirrmtry lib/linux-mozilla
+%%X11%%@cwd %%LOCALBASE%%
+%%GNOME%%share/application-registry/realplay.applications
+%%GNOME%%share/applications/realplay.desktop
+%%GNOME%%share/mime-info/realplay.keys
+%%GNOME%%share/mime-info/realplay.mime
+%%GNOME%%share/pixmaps/realplay.png
+%%ICONS%%share/icons/hicolor/16x16/apps/realplay_16x16.png
+%%ICONS%%share/icons/hicolor/192x192/apps/realplay_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-generic_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-ogg_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-ram_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-rm_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-rpm_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-smil_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-aiff_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-au_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-generic_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-mp3_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-mp4_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-ogg_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-ra_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-audio-wav_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-text-realtext_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-avi_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-generic_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-mov_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-ogg_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-rv_192x192.png
+%%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-video-swf_192x192.png
+%%ICONS%%share/icons/hicolor/32x32/apps/realplay_32x32.png
+%%ICONS%%share/icons/hicolor/48x48/apps/realplay_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-generic_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-ogg_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-ram_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-rpm_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-rm_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-application-smil_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-aiff_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-au_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-generic_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-mp3_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-mp4_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-ogg_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-ra_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-audio-wav_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-text-realtext_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-avi_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-generic_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-mov_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-ogg_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-rv_48x48.png
+%%ICONS%%share/icons/hicolor/48x48/mimetypes/mime-video-swf_48x48.png
+%%GNOME%%@dirrmtry share/application-registry
+%%GNOME%%@dirrmtry share/applications
+%%GNOME%%@dirrmtry share/mime-info
+%%GNOME%%@dirrmtry share/pixmaps
+%%ICONS%%@dirrmtry share/icons/hicolor/48x48/apps
+%%ICONS%%@dirrmtry share/icons/hicolor/48x48/mimetypes
+%%ICONS%%@dirrmtry share/icons/hicolor/48x48
+%%ICONS%%@dirrmtry share/icons/hicolor/32x32/apps
+%%ICONS%%@dirrmtry share/icons/hicolor/32x32
+%%ICONS%%@dirrmtry share/icons/hicolor/192x192/apps
+%%ICONS%%@dirrmtry share/icons/hicolor/192x192/mimetypes
+%%ICONS%%@dirrmtry share/icons/hicolor/192x192
+%%ICONS%%@dirrmtry share/icons/hicolor/16x16/apps
+%%ICONS%%@dirrmtry share/icons/hicolor/16x16
+%%ICONS%%@dirrmtry share/icons/hicolor
+@cwd %%LINUXBASE%%
+%%NLS%%usr/share/locale/de/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/es/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/fr/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/hi/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/it/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/ja/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/ko/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/pl/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/pt_BR/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/zh_CN/LC_MESSAGES/realplay.mo
+%%NLS%%usr/share/locale/zh_TW/LC_MESSAGES/realplay.mo
