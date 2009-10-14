@@ -1,16 +1,9 @@
-# New ports collection makefile for:	py-MySQLdb
-# Date created:				04 April 2000
-# Whom:                 		Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/databases/py-MySQLdb/Makefile,v 1.35 2007/07/30 09:41:03 alexbl Exp $
-#
+# $MidnightBSD: mports/databases/py-MySQLdb/Makefile,v 1.1 2008/09/19 15:20:06 laffer1 Exp $
 
 PORTNAME=	MySQLdb
 DISTVERSION=	1.2.2
 CATEGORIES=	databases python
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	mysql-python
+MASTER_SITES=	SF/mysql-python/mysql-python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	MySQL-python-${DISTVERSION}
 
