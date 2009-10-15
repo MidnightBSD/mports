@@ -1,13 +1,7 @@
-# New ports collection makefile for:	php5-extensions
-# Date created:			7 Jul 2004
-# Whom:				Alex Dupre <ale@FreeBSD.org>
-#
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.5 2007/10/15 05:38:04 laffer1 Exp $
-# $FreeBSD: ports/lang/php5-extensions/Makefile,v 1.17 2007/02/10 19:09:33 ale Exp $
-#
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.6 2009/01/01 23:49:20 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 CATEGORIES=	lang
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
