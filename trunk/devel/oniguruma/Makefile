@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/oniguruma/Makefile,v 1.1 2009/08/31 18:56:05 laffer1 Exp $
 
 PORTNAME=	oniguruma
 PORTVERSION=	2.5.8
@@ -18,6 +18,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 NO_LATEST_LINK=	yes
 CONFLICTS=	oniguruma-4.*
+
+FAKE_OPTS=	prefixhack
 
 USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
