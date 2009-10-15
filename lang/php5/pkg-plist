@@ -104,6 +104,7 @@ include/php/ext/standard/php_assert.h
 include/php/ext/standard/php_browscap.h
 include/php/ext/standard/php_crypt.h
 include/php/ext/standard/php_dir.h
+include/php/ext/standard/php_dns.h
 include/php/ext/standard/php_ext_syslog.h
 include/php/ext/standard/php_filestat.h
 include/php/ext/standard/php_fopen_wrappers.h
