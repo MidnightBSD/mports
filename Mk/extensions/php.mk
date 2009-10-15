@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.3 2009/03/14 15:54:36 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.4 2009/05/21 01:02:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -227,10 +227,10 @@ php-ini:
 # Extensions
 .if ${USE_PHP:L} != "yes"
 # non-version specific components
-_USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dbase \
-		exif fileinfo filepro fribidi ftp gd gettext gmp \
+_USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba dbase \
+		exif fileinfo fribidi ftp gd gettext gmp hash \
 		iconv imap interbase json ldap mbstring mcrypt \
-		memcache mhash ming mssql mysql ncurses odbc \
+		memcache mhash mssql mysql ncurses odbc \
 		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
 		sockets sybase_ct sysvmsg sysvsem sysvshm \
@@ -240,6 +240,7 @@ _USE_PHP_VER5=	${_USE_PHP_ALL} dom filter ming mysqli oci8 pdo pdo_sqlite \
 		simplexml soap spl sqlite \
 		tidy xmlreader xmlwriter xsl
 
+apc_DEPENDS=	www/pecl-APC
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 bitset_DEPENDS=	math/pecl-bitset
 bz2_DEPENDS=	archivers/php${PHP_VER}-bz2
@@ -262,6 +263,7 @@ ftp_DEPENDS=	ftp/php${PHP_VER}-ftp
 gd_DEPENDS=	graphics/php${PHP_VER}-gd
 gettext_DEPENDS=devel/php${PHP_VER}-gettext
 gmp_DEPENDS=	math/php${PHP_VER}-gmp
+hash_DEPENDS=	security/php${PHP_VER}-hash
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
@@ -288,6 +290,7 @@ pcntl_DEPENDS=	devel/php${PHP_VER}-pcntl
 pcre_DEPENDS=	devel/php${PHP_VER}-pcre
 pdf_DEPENDS=	print/pecl-pdflib
 pdo_DEPENDS=	databases/php${PHP_VER}-pdo
+pdo_mysql_DEPENDS=	databases/php${PHP_VER}-pdo_mysql
 pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pfpro_DEPENDS=	finance/php${PHP_VER}-pfpro
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
