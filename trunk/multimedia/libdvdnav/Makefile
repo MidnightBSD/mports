@@ -2,7 +2,7 @@
 # Date created:         21 May 2002
 # Whom:                 MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.2 2008/03/26 00:45:45 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.3 2009/09/20 01:43:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdvdnav/Makefile,v 1.26 2007/09/30 04:47:08 linimon Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The library for the xine-dvdnav plugin
 LICENSE=	gpl2
 
-LIB_DEPENDS=	dvdread.5:${PORTSDIR}/multimedia/libdvdread
+LIB_DEPENDS=	dvdread.4:${PORTSDIR}/multimedia/libdvdread
 
 CONFIGURE_ENV=	THREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		THREAD_LIBS="${PTHREAD_LIBS}"
