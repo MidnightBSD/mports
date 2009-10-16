@@ -1,14 +1,8 @@
-# New ports collection makefile for:    libdvdnav
-# Date created:         21 May 2002
-# Whom:                 MANTANI Nobutaka <nobutaka@nobutaka.com>
-#
-# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.3 2009/09/20 01:43:36 laffer1 Exp $
-# $FreeBSD: ports/multimedia/libdvdnav/Makefile,v 1.26 2007/09/30 04:47:08 linimon Exp $
-#
+# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.4 2009/10/16 13:01:18 laffer1 Exp $
 
 PORTNAME=	libdvdnav
 PORTVERSION=	0.1.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	dvd
