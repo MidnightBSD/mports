@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.6 2009/08/09 21:42:38 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.7 2009/08/20 18:33:58 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.1
@@ -58,7 +58,9 @@ OPTIONS=	THREADS "Enable thread support" on \
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 3000
-BROKEN=		ctype module is not building
+PLIST_SUB+=	CTYPE="@comment "
+.else
+PLIST_SUB+=	CTYPE=""
 .endif
 
 SEM_MSG=	"@comment "
