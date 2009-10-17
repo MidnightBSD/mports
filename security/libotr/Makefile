@@ -1,7 +1,4 @@
-# ex:ts=8
-#
-# $MidnightBSD: mports/security/libotr/Makefile,v 1.3 2009/10/03 04:04:30 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/libotr/Makefile,v 1.4 2009/10/03 04:06:00 laffer1 Exp $
 
 PORTNAME=	libotr
 PORTVERSION=	3.2.0
@@ -16,8 +13,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The portable OTR Messaging Library and toolkit
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gpg-error.5:${PORTSDIR}/security/libgpg-error \
-		gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error \
+		gcrypt.16:${PORTSDIR}/security/libgcrypt
 
 USE_GNOME=	pkgconfig
 USE_AUTOTOOLS=	autoconf:262 libtool:22
