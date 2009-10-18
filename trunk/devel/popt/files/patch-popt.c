@@ -1,15 +1,12 @@
-
-$FreeBSD: ports/devel/popt/files/patch-popt.c,v 1.1 2001/02/09 17:49:10 sobomax Exp $
-
---- popt.c	2001/01/31 09:50:38	1.1
-+++ popt.c	2001/01/31 09:51:08
-@@ -5,6 +5,9 @@
- #include "system.h"
- 
+--- popt.c.old	2009-05-07 15:44:42.000000000 -0500
++++ popt.c	2009-05-07 15:47:12.000000000 -0500
+@@ -22,6 +22,9 @@
+ #include <float.h>
+ #endif
  #include <math.h>
 +#ifdef __FreeBSD__
 +#include <machine/float.h>
 +#endif
  
- #include "findme.h"
  #include "poptint.h"
+
