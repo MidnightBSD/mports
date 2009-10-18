@@ -2,13 +2,13 @@
 # Date Created:			14 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.4 2008/06/14 14:44:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.5 2008/08/21 18:09:31 laffer1 Exp $
 # $FreeBSD: ports/devel/libbonobo/Makefile,v 1.54 2007/03/19 05:13:31 marcus Exp $
 #    $MCom: ports/devel/libbonobo/Makefile,v 1.58 2007/03/12 17:59:36 marcus Exp $
 #
 
 PORTNAME=	libbonobo
-PORTVERSION=	2.22.0
+PORTVERSION=	2.24.1
 PORTREVISION?=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -23,7 +23,8 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
+LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
+                dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GMAKE=	yes
 USE_BISON=	build
@@ -34,7 +35,7 @@ USE_PERL5=	yes
 USE_GNOME=	gnomehack intlhack libxml2 orbit2 referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc \
-		--mandir=${PREFIX}/man
+
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 MAKE_ENV=	gnomelocaledir=${PREFIX}/share/locale
