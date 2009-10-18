@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.6 2008/10/07 01:18:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.7 2009/09/20 01:11:33 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
-PORTVERSION=	2.14.14
+PORTVERSION=	2.14.17
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -27,8 +27,7 @@ USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack libidl ltverhack referencehack
-CONFIGURE_ARGS=	--disable-indent \
-		--with-html-dir=${PREFIX}/share/doc \
+CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
