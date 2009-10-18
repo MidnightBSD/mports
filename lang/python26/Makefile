@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.7 2009/08/20 18:33:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.8 2009/10/17 23:19:40 laffer1 Exp $
 
 PORTNAME=	python26
-PORTVERSION=	2.6.1
+PORTVERSION=	2.6.3
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -33,8 +33,8 @@ PLIST=		${WRKDIR}/PLIST
 PLIST_TEMPLATE?=${PKGDIR}/pkg-plist
 PLIST_SUB=	PYVER=${PYTHON_VERSION:S/python//} \
 		PYVER_WITHPAT=${PORTVERSION:S/.c/c/}
-DEMODIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
-TOOLSDIR=	${PREFIX}/share/${PYTHON_VERSION}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
+DATADIR=	${PREFIX}/share/${PYTHON_VERSION}
 
 PLATFORMS=	plat-freebsd4 plat-freebsd5 plat-freebsd6 \
 		plat-freebsd7 
@@ -65,8 +65,8 @@ PLIST_SUB+=	CTYPE=""
 
 SEM_MSG=	"@comment "
 
-SUB_FILES=      pkg-message
-SUB_LIST=       SEM=${SEM_MSG}
+SUB_FILES=	pkg-message
+SUB_LIST=	SEM=${SEM_MSG}
 
 .if ${PYTHON_VERSION} == ${PYTHON_DEFAULT_VERSION}
 MLINKS=		${PYTHON_VERSION}.1 python.1
@@ -239,13 +239,15 @@ post-install:
 	done
 .endif
 
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${TOOLSDIR}
+.if !defined(NOPORTDATA)
+	@${MKDIR} ${DATADIR}
 	@cd ${PYTHON_WRKSRC}; ${TAR} -cf - Tools | \
-		(cd ${TOOLSDIR}; ${TAR} -xf -)
-	@${MKDIR} ${DEMODIR}
+		(cd ${DATADIR}; ${TAR} -xf -)
+.endif
+.if !defined(NOPORTEXAMPLES)
+	@${MKDIR} ${EXAMPLESDIR}
 	@cd ${PYTHON_WRKSRC}/Demo; ${TAR} -cf - * | \
-		(cd ${DEMODIR}; ${TAR} -xf -)
+		(cd ${EXAMPLESDIR}; ${TAR} -xf -)
 .endif
 
 .include <bsd.port.post.mk>
