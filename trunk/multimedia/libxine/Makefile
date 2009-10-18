@@ -3,12 +3,12 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.16 2009/03/02 03:18:50 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.17 2009/09/20 01:48:40 laffer1 Exp $
 #
 
 PORTNAME=	xine
 PORTVERSION=	1.1.15
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -24,7 +24,7 @@ LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
 		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
 		png.5:${PORTSDIR}/graphics/png \
-		dvdread.5:${PORTSDIR}/multimedia/libdvdread \
+		dvdread.4:${PORTSDIR}/multimedia/libdvdread \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fame-0.9.1:${PORTSDIR}/multimedia/libfame \
 		cdio.8:${PORTSDIR}/sysutils/libcdio \
