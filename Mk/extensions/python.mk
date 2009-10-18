@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.3 2009/05/08 16:40:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.4 2009/05/22 20:44:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -384,9 +384,9 @@ PYTHON_VER=			3.0
 
 # Python-2.6
 .elif ${PYTHON_VERSION} == "python2.6"
-PYTHON_PORTVERSION?=2.6.1
+PYTHON_PORTVERSION?=2.6.3
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python26
-PYTHON_REL=			261
+PYTHON_REL=			263
 PYTHON_SUFFIX=		26
 PYTHON_VER=			2.6
 
