@@ -2,7 +2,7 @@
 # Date created:				19 Oct 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/openmpi/Makefile,v 1.1 2007/10/19 20:40:10 laffer1 Exp $
+# $MidnightBSD: mports/net/openmpi/Makefile,v 1.2 2008/02/27 22:25:27 laffer1 Exp $
 #
 
 # TODO:
@@ -16,6 +16,7 @@ MASTER_SITES=	http://www.open-mpi.org/software/ompi/v1.2/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A High Performance Message Passing Library
+LICENSE=	bsd3
 
 LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo
 
