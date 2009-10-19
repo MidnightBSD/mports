@@ -2,13 +2,13 @@
 # Date created:				28th June 2000
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.5 2008/06/05 18:15:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/gnome-vfs/Makefile,v 1.6 2009/09/20 00:23:35 laffer1 Exp $
 # $FreeBSD: ports/devel/gnome-vfs/Makefile,v 1.123 2007/04/11 14:52:49 marcus Exp $
 #   $MCom: ports/devel/gnome-vfs/Makefile,v 1.167 2007/03/13 13:02:20 ahze Exp $
 #
 
 PORTNAME=	gnome-vfs
-PORTVERSION=	2.22.0
+PORTVERSION=	2.24.1
 PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	hal.1:${PORTSDIR}/sysutils/hal
+
 RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info
 
 USE_GMAKE=	yes
@@ -36,7 +36,6 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-openssl \
 		--disable-gnutls \
 		--disable-howl \
-		--enable-hal \
 		--with-hal-mount=/sbin/mount \
 		--with-hal-umount=/sbin/umount
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${LOCALBASE}/include -DPTHREAD_LIB=\"${PTHREAD_LIBS}\""
@@ -50,7 +49,8 @@ GCONF_SCHEMAS=	desktop_default_applications.schemas \
 		system_http_proxy.schemas system_smb.schemas
 
 OPTIONS=	SAMBA "Enable SMB volume support" on \
-		MDNS "Enable Bonjour/Rendezvous support" on
+		MDNS "Enable Bonjour/Rendezvous support" on \
+                HAL "Enable HAL support" on
 
 .include <bsd.port.pre.mk>
 
@@ -61,6 +61,14 @@ USE_FAM=	yes
 .if exists(${LOCALBASE}/lib/libkrb5.so)
 LIB_DEPENDS+=	krb5:${PORTSDIR}/security/heimdal
 .endif
+
+.if !defined(WITHOUT_HAL)
+CONFIGURE_ARGS+=--enable-hal
+LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
+.else
+CONFIGURE_ARGS+=--disable-hal
+.endif
+
 
 .if !defined(WITHOUT_SAMBA)
 LIB_DEPENDS+=	smbclient.0:${PORTSDIR}/net/samba-libsmbclient
@@ -75,6 +83,7 @@ LIB_DEPENDS+=	avahi-client:${PORTSDIR}/net/avahi-app
 .else
 CONFIGURE_ARGS+=--disable-avahi
 .endif
+
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@PTHREAD_LIB@|${PTHREAD_LIBS}|' \
