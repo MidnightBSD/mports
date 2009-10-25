@@ -1,29 +1,24 @@
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.7 2008/10/29 19:59:36 ctriv Exp $
+# $MidnightBSD$
 
 PORTNAME=	qemu
-PORTVERSION=	0.9.1
-PORTREVISION=	5
+PORTVERSION=	0.10.6
 CATEGORIES=	emulators
-MASTER_SITES=	http://bellard.org/qemu/:release \
-		http://qemu.org/:release \
-		http://people.freebsd.org/~maho/qemu/:misc
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:release
+MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
+		http://bellard.org/qemu/
+MASTER_SITE_SUBDIR=	qemu
 DIST_SUBDIR=	qemu
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QEMU CPU Emulator
-LICENSE=        gpl2
+LICENSE=	gpl2
 
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_PERL5=	yes
-PATCH_STRIP=	-lp1
-CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
+PATCH_STRIP=	-p1
 MAKE_ENV+=	BSD_MAKE="${MAKE}" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 MAN1=		qemu.1 qemu-img.1
 ONLY_FOR_ARCHS=	amd64 i386
-CONFLICTS=	qemu-devel-[0-9]*
 MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	KQEMU "Build with (alpha!) accelerator module" Off \
@@ -31,29 +26,43 @@ OPTIONS=	KQEMU "Build with (alpha!) accelerator module" Off \
 		SAMBA "samba dependency (for -smb)" Off \
 		SDL "SDL/X dependency (graphical output)" On \
 		GNUTLS "gnutls dependency (vnc encryption)" On \
-		CDROM_DMA "IDE CDROM DMA" On
+		PCAP "pcap dependency (networking with bpf)" On \
+		CDROM_DMA "IDE CDROM DMA" On \
+		PHYS_CDROM "Physical CDROM fixes" On \
+		ADD_AUDIO "Emulate more audio hardware (experimental!)" Off \
+		ALL_TARGETS "Also build non-x86 targets" On
 
 .include <bsd.mport.options.mk>
+
+.if defined(WITHOUT_ALL_TARGETS)
+CONFIGURE_ARGS+=       --target-list=i386-softmmu,x86_64-softmmu
+PLIST_SUB+=    ALLTARGETS="@comment "
+.else
+PLIST_SUB+=    ALLTARGETS=""
+.endif
+
+WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
+CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
+CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 
 .if defined(WITHOUT_SDL)
 CONFIGURE_ARGS+=	--disable-sdl --disable-gfx-check
 .else
-USE_SDL=	sdl
+USE_SDL=	yes
 .endif
 
-.include <bsd.port.pre.mk>
-
-WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
-CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
-
 .if defined(WITHOUT_GNUTLS)
-CONFIGURE_ARGS+=       --disable-vnc-tls
+CONFIGURE_ARGS+=	--disable-vnc-tls
 .else
 LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
 .endif
 
-.if defined (WITH_HACKS_CIRRUS) || defined (WITH_HACKS)
-DISTFILES+=	patch3_cirrus:misc
+.if defined(WITH_PCAP)
+CONFIGURE_ARGS+=	--enable-pcap
+.endif
+
+.if defined(WITH_ADD_AUDIO)
+CONFIGURE_ARGS+=	--audio-card-list=ac97,es1370,sb16,cs4231a,adlib,gus
 .endif
 
 .if defined(WITH_SAMBA)
@@ -61,7 +70,7 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/smbd:${PORTSDIR}/net/samba3
 .endif
 
 .if defined(WITH_KQEMU)
-BUILD_DEPENDS+=	kqemu-kmod>=1.3.0pre5:${PORTSDIR}/emulators/kqemu-kmod
+BUILD_DEPENDS+=	kqemu-kmod-devel>=1.4.0pre1:${PORTSDIR}/emulators/kqemu-kmod-devel
 .else
 CONFIGURE_ARGS+=	--disable-kqemu
 .endif
@@ -75,6 +84,8 @@ BUILD_DEPENDS+=	texi2html:${PORTSDIR}/textproc/texi2html
 .if ${ARCH} == "amd64"
 MAKE_ARGS+=	ARCH=x86_64
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-extract:
 	@${MKDIR} ${WRKSRC}/kqemu
@@ -90,17 +101,26 @@ post-patch:
 .if defined(WITH_RTL8139_TIMER)
 	@cd ${WRKSRC} && ${PATCH} --quiet < ${FILESDIR}/rtl8139-re-patch
 .endif
+.if defined(WITH_PCAP)
+	@cd ${WRKSRC} && ${PATCH} --quiet < ${FILESDIR}/pcap-patch
+.endif
 .if defined(WITHOUT_CDROM_DMA)
 	@cd ${WRKSRC} && ${PATCH} --quiet < ${FILESDIR}/cdrom-dma-patch
 .endif
+.if defined(WITH_PHYS_CDROM)
+	@cd ${WRKSRC} && ${PATCH} -p1 --quiet < ${FILESDIR}/phys-cdrom-freebsd-patch
+.endif
 	@${REINPLACE_CMD} -E \
-		-e "s,^(CFLAGS=).*,\1${CFLAGS} -fno-strict-aliasing," \
-		-e "s,^(LDFLAGS=).*,\1${LDFLAGS}," \
+		-e "s|^(CFLAGS=).*|\1${CFLAGS} -fno-strict-aliasing|" \
+		-e "s|^(LDFLAGS=).*|\1${LDFLAGS}|" \
 		${WRKSRC}/Makefile.target
 	@${REINPLACE_CMD} -E \
-		-e "s,^(CFLAGS=).*,\1${CFLAGS} -fno-strict-aliasing -I.," \
-		-e "s,^(LDFLAGS=).*,\1${LDFLAGS}," \
+		-e "s|^(CFLAGS=).*|\1${CFLAGS} -fno-strict-aliasing -I.|" \
+		-e "s|^(LDFLAGS=).*|\1${LDFLAGS}|" \
 		${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -E \
+		-e "1s|^(#! )/usr/bin/perl|\1${PERL}|" \
+		${WRKSRC}/texi2pod.pl
 
 post-install:
 	@${INSTALL_SCRIPT} ${FILESDIR}/qemu-ifup.sample ${PREFIX}/etc
