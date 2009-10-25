@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.8 2009/10/25 18:57:08 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.6
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Flash movie player
 LICENSE=	gpl3
 
-LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost \
+LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
 		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		curl.5:${PORTSDIR}/ftp/curl \
 		ungif.5:${PORTSDIR}/graphics/libungif
@@ -224,7 +224,6 @@ pre-everything::
 .endif
 
 post-patch:
-	${MKDIR} ${WRKDIR}/etc
 	@${REINPLACE_CMD} -e '/^PTHREAD_[LC][IF]*=/ d; s|-lpthread|${PTHREAD_LIBS}|' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g; \
@@ -237,17 +236,9 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-#.for conf in ${CONFIG_FILES}
-#	@${INSTALL_DATA} ${WRKDIR}/etc/${conf} ${PREFIX}/etc/${conf}.dist
-#	if [ ! -f ${PREFIX}/etc/${conf} ]; then \
-#		${INSTALL_DATA} ${PREFIX}/etc/${conf}.dist \
-#			${PREFIX}/etc/${conf}; \
-#	fi
-#.endfor
-
 .if !defined(WITHOUT_PLUGIN)
 .if !defined(WITHOUT_GTK)
-	${MKDIR} ${WEBPLUGINS_DIR}
+	${MKDIR} ${FAKE_DESTDIR}/${TRUE_PREFIX}/${WEBPLUGINS_DIR}
 	@cd ${INSTALL_WRKSRC}/plugin && \
 		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} install-plugin
 .endif
