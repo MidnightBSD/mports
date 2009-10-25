@@ -1,14 +1,8 @@
-# New ports collection makefile for:	smpeg
-# Date created:		2 Feb 2000
-# Whom:			Chris Piazza <cpiazza@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.1 2006/10/06 20:23:02 wintellect Exp $
-# $FreeBSD: ports/multimedia/smpeg/Makefile,v 1.39 2006/07/23 02:45:23 acm Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	ftp://sunsite.auc.dk/pub/os/linux/loki/open-source/smpeg/ \
 		${MASTER_SITE_GENTOO}
@@ -18,13 +12,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free MPEG1 video player library with sound support
 LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:22
 WANT_GNOME=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl
-INSTALLS_SHLIB=	yes
-CONFIGURE_ENV=	GLBASE="${X11BASE}" \
-		CPPFLAGS="-I${X11BASE}/include" \
+USE_LDCONFIG=	yes
+CONFIGURE_ENV=	GLBASE="${LOCALBASE}" \
+		CPPFLAGS="-I${LOCALBASE}/include" \
 		CC="${CXX}" REAL_CC="${CC}"
 
 #If you want to try the opengl player (which doesn't seem to work)
