@@ -1,14 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.10 2009/10/27 02:11:00 laffer1 Exp $
-#
-# Tunables:
-# APR_UTIL_WITHOUT_THREADS:	disable threads support
-# APR_UTIL_WITH_GDBM:		force dependency on the GNU dbm
-# APR_UTIL_WITHOUT_GDBM:	unconditionally disable the use of GNU dbm
-# APR_UTIL_WITH_BERKELEY_DB:	force dependency on Sleepycat's Berkeley DB 4.2
-# APR_UTIL_WITHOUT_BERKELEY_DB:	unconditionally disable the use of db4.2
-# (the database bindings are detected and recorded automatically if these
-# switches are not set)
-# APR_UTIL_WITH_LDAP:		force dependency on OpenLDAP
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.11 2009/10/27 02:17:30 laffer1 Exp $
 
 PORTNAME?=	apr
 PORTVERSION=	1.3.8
@@ -24,64 +14,80 @@ LICENSE=	apache2
 
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
+MAKE_JOBS_SAFE=	yes
 USE_ICONV=	yes
 USE_AUTOTOOLS=	automake:19 autoconf:262 libtool:22:env
-USE_PERL5=	yes
+USE_PERL5_BUILD=	yes
 USE_GMAKE=	yes
 USE_PYTHON_BUILD=yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}
-MAKE_JOBS_SAFE=	yes
 
 APR_UTIL_CONF_ARGS=	--with-apr=../apr-${PORTVERSION} \
 			--with-expat=${PREFIX} \
 			--with-iconv=${PREFIX}
 
-.include <bsd.port.pre.mk>
+OPTIONS=	THREADS "Enable Threads in apr"		         on \
+		IPV6    "Enable IPV6 Support in apr"             on \
+		GDBM    "Enable GNU dbm support in apr-util"     on \
+		BDB     "Enable Berkley BDB support in apr-util" on \
+		NDBM    "Enable NDBM support in apr-util"        off \
+		LDAP    "Enable LDAP support in apr-util"        off \
+		MYSQL   "Enable MySQL suport in apr-util"        off \
+		PGSQL   "Enable Postgresql suport in apr-util"   off
 
-.if defined(PACKAGE_BUILDING)
-.if !defined(APR_SLAVE_PORT)
-APR_UTIL_WITHOUT_BERKELEY_DB=yes
-APR_UTIL_WITHOUT_GDBM=yes
-.endif
-.endif
+.include <bsd.mport.options.mk>
 
-.if defined(APR_UTIL_WITHOUT_THREADS)
-CONFIGURE_ARGS+=	--disable-threads
-APR_UTIL_CONF_ARGS+=	--disable-threads
+.if defined(WITHOUT_THREADS)
+APR_CONF_ARGS+=	--disable-threads
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-nothr
 .else
 PKGNAMESUFFIX=	-nothr
 .endif
 .else
-CONFIGURE_ARGS+=	--enable-threads
+APR_CONF_ARGS+=	--enable-threads
 .endif
 
-.if defined(APR_UTIL_WITHOUT_GDBM)
-APR_UTIL_CONF_ARGS+=	--without-gdbm
-.elif defined(APR_UTIL_WITH_GDBM) || exists(${LOCALBASE}/lib/libgdbm.so.3)
+.if defined(WITHOUT_IPV6)
+APR_CONF_ARGS+=	--disable-ipv6
+.else
+APR_CONF_ARGS+=	--enable-ipv6
+.if defined(PKGNAMESUFFIX)
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-ipv6
+.else
+PKGNAMESUFFIX=	-ipv6
+.endif
+.endif
+
+######### APR-Util Options
+.if defined(WITHOUT_GDBM)
+PLIST_SUB+=	GDBM="@comment "
+APU_CONF_ARGS+=	--without-gdbm
+.elif defined(WITH_GDBM)
+PLIST_SUB+=	GDBM=""
+APU_EXTRAS=	yes
 LIB_DEPENDS+=	gdbm.3:${PORTSDIR}/databases/gdbm
-APR_UTIL_CONF_ARGS+=	--with-gdbm=${LOCALBASE}
+APU_CONF_ARGS+=	--with-gdbm=${LOCALBASE}
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-gdbm
 .else
 PKGNAMESUFFIX=	-gdbm
 .endif
 .else
+PLIST_SUB+=	GDBM="@comment "
 APR_UTIL_CONF_ARGS+=	--without-gdbm
 .endif
 
-.if defined(WITH_BDB)
-APR_UTIL_WITH_BERKELEY_DB=	yes
-.endif
-
-.if defined(APR_UTIL_WITHOUT_BERKELEY_DB)
-APR_UTIL_CONF_ARGS+=	--without-berkeley-db
-.elif defined(APR_UTIL_WITH_BERKELEY_DB) || exists(${LOCALBASE}/lib/libdb-4.2.so.2)
-USE_BDB=	42
-APR_UTIL_CONF_ARGS+=	--with-berkeley-db=${BDB_INCLUDE_DIR}:${BDB_LIB_DIR}
+.if defined(WITHOUT_BDB)
+PLIST_SUB+=	BDB="@comment "
+APU_CONF_ARGS+=	--without-berkeley-db
+.elif defined(WITH_BDB)
+APU_EXTRAS=	yes
+PLIST_SUB+=	BDB=""
+USE_BDB=	42+
+APU_CONF_ARGS+=	--with-berkeley-db=${BDB_INCLUDE_DIR}:${BDB_LIB_DIR}
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
 .else
@@ -89,51 +95,74 @@ PKGNAMESUFFIX=	-${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
 .endif
 .endif
 
-.if defined(APR_UTIL_WITH_LDAP)
+.if defined(WITHOUT_NDBM)
+PLIST_SUB+=	NDBM="@comment "
+APU_CONF_ARGS+=	--without-ndbm
+.elif defined(WITH_NDBM)
+APU_EXTRAS=	yes
+PLIST_SUB+=	NDBM=""
+APU_CONF_ARGS+=	--with-ndbm=/usr
+.if defined(PKGNAMESUFFIX)
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-ndbm
+.else
+PKGNAMESUFFIX=	-ndbm
+.endif
+.endif
+
+.if defined(WITH_LDAP)
+APU_EXTRAS=	yes
+PLIST_SUB+=	LDAP=""
 USE_OPENLDAP=	yes
-APR_UTIL_CONF_ARGS+=	--with-ldap-include=${PREFIX}/include \
-	--with-ldap-lib=${PREFIX}/lib --with-ldap=ldap
+APU_CONF_ARGS+=	--with-ldap-include=${LOCALBASE}/include \
+	--with-ldap-lib=${LOCALBASE}/lib --with-ldap=ldap
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-ldap
 .else
 PKGNAMESUFFIX=	-ldap
 .endif
+.else
+PLIST_SUB+=	LDAP="@comment "
 .endif
 
-pre-extract:
-	@${ECHO_MSG} ""
-.if defined(APR_UTIL_WITHOUT_THREADS)
-	@${ECHO_MSG} "apr library will be built without threads support."
+.if defined(WITH_MYSQL)
+APU_EXTRAS=	yes
+PLIST_SUB+=	MYSQL=""
+USE_MYSQL=	YES
+APU_CONF_ARGS+=	--with-mysql=${LOCALBASE}
+CONFIGURE_ENV+=	LIBS="${LIBS}"
+CFLAGS+=	-I${LOCALBASE}/include/mysql -DHAVE_MYSQL_H
+LDFLAGS+=	-L${LOCALBASE}/lib/mysql
+.if defined(PKGNAMESUFFIX)
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-mysql
 .else
-	@${ECHO_MSG} "apr library will be built with threads support."
-	@${ECHO_MSG} "All programs which use apr must be linked with threads too."
-	@${ECHO_MSG} "You can disable threads by defining APR_UTIL_WITHOUT_THREADS."
+PKGNAMESUFFIX=	-mysql
 .endif
-	@${ECHO_MSG} ""
-.if defined(APR_UTIL_WITHOUT_GDBM)
-	@${ECHO_MSG} "GDBM support is disabled."
-.elif defined(APR_UTIL_WITH_GDBM)
-	@${ECHO_MSG} "GDBM support is forced."
-.elif exists(${LOCALBASE}/lib/libgdbm.so.3)
-	@${ECHO_MSG} "GDBM support is enabled."
-	@${ECHO_MSG} "You can disable GDBM support by defining APR_UTIL_WITHOUT_GDBM."
 .else
-	@${ECHO_MSG} "GDBM was not found."
-	@${ECHO_MSG} "You can force GDBM support by defining APR_UTIL_WITH_GDBM."
+PLIST_SUB+=	MYSQL="@comment "
 .endif
-	@${ECHO_MSG} ""
-.if defined(APR_UTIL_WITHOUT_BERKELEY_DB)
-	@${ECHO_MSG} "Berkeley DB support is disabled."
-.elif defined(APR_UTIL_WITH_BERKELEY_DB)
-	@${ECHO_MSG} "Berkeley DB support forced."
-.elif exists(${LOCALBASE}/lib/libdb-4.2.so.2)
-	@${ECHO_MSG} "Berkeley db4.2 support is enabled."
-	@${ECHO_MSG} "You can disable Berkeley db4.2 support by defining APR_UTIL_WITHOUT_BERKELEY_DB."
+
+.if defined(WITH_PGSQL)
+APU_EXTRAS=	yes
+PLIST_SUB+=	PGSQL=""
+USE_PGSQL=	YES
+APU_CONF_ARGS+=	--with-pgsql=${LOCALBASE}
+CONFIGURE_ENV+=	ac_cv_path_PGSQL_CONFIG=""
+.if defined(PKGNAMESUFFIX)
+PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-pgsql
 .else
-	@${ECHO_MSG} "Berkeley DB was not found."
-	@${ECHO_MSG} "You can force Berkeley DB support by defining APR_UTIL_WITH_BERKELEY_DB."
+PKGNAMESUFFIX=	-pgsql
 .endif
-	@${ECHO_MSG} ""
+.else
+PLIST_SUB+=	PGSQL="@comment "
+.endif
+
+.if defined(APU_EXTRAS)
+PLIST_SUB+=	APU_EXTRAS=""
+.else
+PLIST_SUB+=	APU_EXTRAS="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	${REINPLACE_CMD} -e 's/OSVERSION/'${OSVERSION}'/g' \
@@ -175,15 +204,15 @@ do-install:
 	cd ${WRKDIR}/apr-util-${PORTVERSION}; ${SETENV} ${MAKE_ENV} ${GMAKE}  ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
 debug_autoconf:
-	@echo "LIBTOOL: ${LIBTOOL_VERSION}"
-	@echo "AUTOCONF: dev ${dev_acver} cur ${cur_acver} use ${use_acver}"
-	@echo "AUTOMAKE: dev ${dev_amver} cur ${cur_amver} use ${use_amver}"
-	@echo "AUTOCONF_DIR: ${AUTOCONF_DIR}"
-	@echo "BUILD_DEPENDS: ${BUILD_DEPENDS}"
-	@echo "ACLOCAL_DIR: ${ACLOCAL_DIR}"
-	@echo "LIBTOOLFILES: ${LIBTOOLFILES}"
-	@echo "LIBTOOL_SHAREDIR: ${LIBTOOL_SHAREDIR}"
-	@echo "LIBTOOL_LIBEXECDIR: ${LIBTOOL_LIBEXECDIR}"
-	@echo "LIBTOOL_M4: ${LIBTOOL_M4}"
+	@${ECHO} "LIBTOOL: ${LIBTOOL_VERSION}"
+	@${ECHO} "AUTOCONF: dev ${dev_acver} cur ${cur_acver} use ${use_acver}"
+	@${ECHO} "AUTOMAKE: dev ${dev_amver} cur ${cur_amver} use ${use_amver}"
+	@${ECHO} "AUTOCONF_DIR: ${AUTOCONF_DIR}"
+	@${ECHO} "BUILD_DEPENDS: ${BUILD_DEPENDS}"
+	@${ECHO} "ACLOCAL_DIR: ${ACLOCAL_DIR}"
+	@${ECHO} "LIBTOOLFILES: ${LIBTOOLFILES}"
+	@${ECHO} "LIBTOOL_SHAREDIR: ${LIBTOOL_SHAREDIR}"
+	@${ECHO} "LIBTOOL_LIBEXECDIR: ${LIBTOOL_LIBEXECDIR}"
+	@${ECHO} "LIBTOOL_M4: ${LIBTOOL_M4}"
 
 .include <bsd.port.post.mk>
