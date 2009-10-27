@@ -2,20 +2,24 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.3 2008/10/16 15:46:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.4 2009/03/25 16:56:02 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.1.2
+PORTVERSION=	1.3.1
 CATEGORIES=	devel python
-MASTER_SITES=	http://www.selenic.com/mercurial/release/
+MASTER_SITES=	http://mercurial.selenic.com/release/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast, lightweight source control management system
 LICENSE=	gpl2
 
-USE_PYTHON=	2.3+
+USE_GETTEXT=	yes
+USE_PYTHON=	2.4+
 USE_PYDISTUTILS=yes
+PYDISTUTILS_PKGNAME=    ${PORTNAME}
+PYDISTUTILS_PKGVERSION= ${PORTVERSION}
+PYDISTUTILS_EGGINFO=    ${PORTNAME}-${PORTVERSION}-${PYTHON_VERSION:S/thon//}.egg-info
 
 CONTRIB_FILES=	bash_completion \
 		convert-repo \
@@ -63,6 +67,8 @@ post-install:
 	for f in ${DOCS}; do \
 		${INSTALL_MAN} ${WRKSRC}/$${f} ${DOCSDIR}; \
 	done
+.endif
+.if !defined(NOPORTDATA)
 	${MKDIR} ${DATADIR}
 	${MKDIR} ${DATADIR}/contrib
 	${MKDIR} ${DATADIR}/contrib/git-viz
@@ -73,6 +79,9 @@ post-install:
 	done
 	${MKDIR} ${DATADIR}/www
 	${INSTALL_MAN} ${WRKSRC}/*.cgi ${DATADIR}/www
+	${INSTALL_MAN} ${WRKSRC}/contrib/hgwebdir.fcgi ${DATADIR}/www
+	${INSTALL_MAN} ${WRKSRC}/contrib/hgwebdir.wsgi ${DATADIR}/www
 .endif
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
