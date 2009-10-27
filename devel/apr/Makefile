@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.12 2009/10/27 02:45:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.13 2009/10/27 02:57:28 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -8,7 +8,7 @@ MASTER_SITE_SUBDIR=	apr
 DISTFILES=	apr-${APR_VERSION}.tar.gz apr-util-${APU_VERSION}.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	The Apache Group's Portability Library
+COMMENT?=	Apache Portability Library
 LICENSE=	apache2
 
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
