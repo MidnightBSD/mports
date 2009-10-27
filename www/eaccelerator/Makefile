@@ -1,15 +1,10 @@
-# New ports collection makefile for:	eaccelerator
-# Date created:			Sat Mar 1 13:55:55 CET 2003
-# Whom:				Alex Dupre <sysadmin@alexdupre.com>
-#
-# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.1 2008/10/15 21:40:29 laffer1 Exp $
-# $FreeBSD: ports/www/eaccelerator/Makefile,v 1.39 2008/06/18 12:26:58 ale Exp $
-#
+# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.2 2008/10/16 21:17:39 laffer1 Exp $
 
 PORTNAME=	eaccelerator
-PORTVERSION=	0.9.5.3
+PORTVERSION=	0.9.6
 CATEGORIES=	www
 MASTER_SITES=	http://bart.eaccelerator.net/source/${PORTVERSION}/
+DISTNAME=	eaccelerator-0.9.6-rc1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opcode cache for PHP with loader
@@ -33,10 +28,6 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
-
-post-build:
-	@${SED} "s|%%LOCALBASE%%|${LOCALBASE}|g; s|0777|0755|g" \
-		${WRKSRC}/encoder.php > ${WRKSRC}/encoder
 
 do-install:
 	@${MKDIR} ${PREFIX}/lib/php/${PHP_EXT_DIR}
