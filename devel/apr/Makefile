@@ -1,9 +1,4 @@
-# New ports collection makefile for: apr
-# Date created:		19 February 2002
-# Whom:			Garrett Rooney <rooneg@electricjellyfish.net>
-#
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.8 2008/10/13 18:01:59 laffer1 Exp $
-# $FreeBSD: ports/devel/apr/Makefile,v 1.65 2006/05/29 13:12:35 rodrigc Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.9 2009/09/20 01:12:49 laffer1 Exp $
 #
 # Tunables:
 # APR_UTIL_WITHOUT_THREADS:	disable threads support
@@ -16,8 +11,8 @@
 # APR_UTIL_WITH_LDAP:		force dependency on OpenLDAP
 
 PORTNAME?=	apr
-PORTVERSION=	1.2.12
-PORTREVISION=	1
+PORTVERSION=	1.3.8
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	apr
