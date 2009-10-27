@@ -2,16 +2,17 @@
 # Date created:				9th February 2001
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.5 2008/05/31 22:21:25 crash Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.6 2009/05/31 03:02:46 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 #
 
 PORTNAME=	libxslt
-PORTVERSION=	1.1.24
-PORTREVISION=	1
+PORTVERSION=	1.1.26
+PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	ftp://xmlsoft.org/libxslt/ \
-		ftp://fr.rpmfind.net/pub/libxml/
+MASTER_SITES=	ftp://fr.rpmfind.net/pub/libxml/ \
+		ftp://gd.tuwien.ac.at/pub/libxml/ \
+		ftp://xmlsoft.org/libxml2/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -35,7 +36,8 @@ _SLAVE_PORT=	yes
 MAN3=		libexslt.3 libxslt.3
 MAN1=		xsltproc.1
 
-OPTIONS=	MEM_DEBUG "Enable memory debugging" off
+OPTIONS=	MEM_DEBUG "Enable memory debugging" off \
+		CRYPTO "Enable crypto support for exslt" on
 .endif
 
 .include <bsd.port.pre.mk>
@@ -44,21 +46,10 @@ OPTIONS=	MEM_DEBUG "Enable memory debugging" off
 CONFIGURE_ARGS+=	--with-mem-debug
 .endif
 
-.if !defined(_SLAVE_PORT)
-.if exists(${LOCALBASE}/lib/libgcrypt.so)
-WITH_GCRYPT=	yes
-.endif
-
-.if defined(WITH_GCRYPT)
+.if defined(WITH_CRYPTO)
 LIB_DEPENDS+=	gcrypt.16:${PORTSDIR}/security/libgcrypt
-.endif
-
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "Libxslt has the following additional tunables:"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "	WITH_GCRYPT=yes			Turns on libgcrypt support"
-	@${ECHO_MSG} ""
+.else
+CONFIGURE_ARGS+=--without-crypto
 .endif
 
 post-patch:
