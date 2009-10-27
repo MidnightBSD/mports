@@ -1,3 +1,4 @@
-MD5 (scons-0.98.5.tar.gz) = 640dfc99a29523a06dbeaac299a3e0a0
-SHA256 (scons-0.98.5.tar.gz) = d240fd15070bb1dece54293343f0054e966c0b85548763c40faf4d9ee74dca77
-SIZE (scons-0.98.5.tar.gz) = 539709
+MD5 (scons-1.2.0.d20090223.tar.gz) = 79b55937be8efc7ff1409a8ca9f9823d
+SHA256 (scons-1.2.0.d20090223.tar.gz) = 6332a7e70204dd2a17aaad536448f0c98340cbcd6a9fa8e7ebe29867798af1a5
+RMD160 (scons-1.2.0.d20090223.tar.gz) = f421295223721bd532da4ec801af12c96ef0f12b
+SIZE (scons-1.2.0.d20090223.tar.gz) = 579539
