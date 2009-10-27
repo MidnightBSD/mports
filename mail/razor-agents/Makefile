@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.3 2009/04/16 04:05:12 laffer1 Exp $
+# $MidnightBSD: mports/mail/razor-agents/Makefile,v 1.4 2009/09/24 02:01:24 laffer1 Exp $
 
 PORTNAME=	razor-agents
 PORTVERSION=	2.84
 CATEGORIES=	mail
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	razor
+MASTER_SITES=	SF/razor/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A distributed, collaborative, spam detection and filtering network
@@ -31,10 +30,4 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f | ${XARGS} ${PERL} -pi -e 's|/etc/razor|${PREFIX}/etc|g'
 	@${PERL} -pi -e 's,share/man,man,g' ${WRKSRC}/${CONFIGURE_SCRIPT}
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500800
-BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Time/HiRes.pm:${PORTSDIR}/devel/p5-Time-HiRes
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
