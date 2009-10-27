@@ -1,16 +1,9 @@
-# New ports collection makefile for:	ZThread
-# Date created:				23 May 2001
-# Whom:					pvh@egenetics.com
-#
-# $MidnightBSD: mports/devel/zthread/Makefile,v 1.2 2007/05/05 05:23:33 ctriv Exp $
-# $FreeBSD: ports/devel/zthread/Makefile,v 1.21 2006/06/19 20:06:51 shaun Exp $
-#
+# $MidnightBSD: mports/devel/zthread/Makefile,v 1.3 2008/10/16 21:56:26 laffer1 Exp $
 
 PORTNAME=	zthread
 PORTVERSION=	2.3.2
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/ZThread/${PORTVERSION}
 DISTNAME=	ZThread-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
