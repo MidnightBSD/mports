@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.9 2009/09/20 01:12:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.10 2009/10/27 02:11:00 laffer1 Exp $
 #
 # Tunables:
 # APR_UTIL_WITHOUT_THREADS:	disable threads support
@@ -24,14 +24,15 @@ LICENSE=	apache2
 
 LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
-USE_ICONV=		yes
-USE_AUTOTOOLS=		automake:19 autoconf:262 libtool:22:env
-USE_PERL5=		yes
-USE_GMAKE=		yes
-USE_PYTHON_BUILD=	yes
-USE_LDCONFIG=		yes
-GNU_CONFIGURE=		yes
-WRKSRC=			${WRKDIR}
+USE_ICONV=	yes
+USE_AUTOTOOLS=	automake:19 autoconf:262 libtool:22:env
+USE_PERL5=	yes
+USE_GMAKE=	yes
+USE_PYTHON_BUILD=yes
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+WRKSRC=		${WRKDIR}
+MAKE_JOBS_SAFE=	yes
 
 APR_UTIL_CONF_ARGS=	--with-apr=../apr-${PORTVERSION} \
 			--with-expat=${PREFIX} \
