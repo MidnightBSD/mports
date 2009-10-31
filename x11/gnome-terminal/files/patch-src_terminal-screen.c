@@ -1,82 +1,98 @@
---- src/terminal-screen.c.orig	Wed Oct 18 15:50:28 2006
-+++ src/terminal-screen.c	Wed Oct 18 15:49:42 2006
-@@ -244,6 +244,10 @@
-       GtkAllocation *allocation)
+--- src/terminal-screen.c.orig	2009-04-12 15:40:23.000000000 +0200
++++ src/terminal-screen.c	2009-05-06 00:30:39.000000000 +0200
+@@ -18,6 +18,15 @@
+ 
+ #include <config.h>
+ 
++#ifdef __FreeBSD__
++#include <sys/types.h>
++#include <sys/sysctl.h>
++#include <sys/param.h>
++#include <sys/user.h>
++#ifdef HAVE_KINFO_GETFILE
++#include <libutil.h>
++#endif
++#endif
+ #include <string.h>
+ #include <stdlib.h>
+ #include <unistd.h>
+@@ -1744,10 +1753,22 @@
+ char*
+ terminal_screen_get_current_dir (TerminalScreen *screen)
  {
-   GtkWidget *child;
-+  GtkAllocation old_allocation;
-+
-+  old_allocation.width = widget->allocation.width;
-+  old_allocation.height = widget->allocation.height;
++#ifndef __FreeBSD__
+   static const char patterns[][18] = {
+     "/proc/%d/cwd",         /* Linux */
+     "/proc/%d/path/cwd",    /* Solaris >= 10 */
+   };
++#else
++#if __FreeBSD_version > 800018 || (__FreeBSD_version < 800000 && __FreeBSD_version >= 700104)
++  struct kinfo_file *freep, *kif;
++#ifndef HAVE_KINFO_GETFILE
++  size_t len;
++  int name[4];
++#else
++  int cnt;
++#endif /* HAVE_KINFO_GETFILE */
++#endif /* __FreeBSD_version > 800018 || (__FreeBSD_version < 800000 && __FreeBSD_version >= 700104) */
++#endif /* __FreeBSD__ */
+   TerminalScreenPrivate *priv = screen->priv;
+   int fgpid;
+   guint i;
+@@ -1767,6 +1788,7 @@
+   if (fgpid == -1)
+     return g_strdup (priv->initial_working_directory);
  
-   widget->allocation = *allocation;
- 
-@@ -251,6 +255,13 @@
-   g_assert (child != NULL);
- 
-   gtk_widget_size_allocate (child, allocation);
-+
-+  if (old_allocation.width != allocation->width ||
-+      old_allocation.height != allocation->height)
-+    {
-+      GtkWidget *term = TERMINAL_SCREEN (widget)->priv->term;
-+      gtk_widget_queue_resize_no_redraw (term);
-+    }
- }
- 
- static void
-@@ -278,22 +289,22 @@
- #define URLPATH   "/[" PATHCHARS "]*[^]'.}>) \t\r\n,\\\"]"
- 
-   terminal_widget_match_add (screen->priv->term,
--			     "\\<" SCHEME "//(" USER "@)?[" HOSTCHARS ".]+"
--			     "(:[0-9]+)?(" URLPATH ")?\\>/?", FLAVOR_AS_IS);
-+			     "[[:<:]]" SCHEME "//(" USER "@)?[" HOSTCHARS ".]+"
-+			     "(:[0-9]+)?(" URLPATH ")?[[:>:]]/?", FLAVOR_AS_IS);
- 
-   terminal_widget_match_add (screen->priv->term,
--			     "\\<(www|ftp)[" HOSTCHARS "]*\\.[" HOSTCHARS ".]+"
--			     "(:[0-9]+)?(" URLPATH ")?\\>/?",
-+			     "[[:<:]](www|ftp)[" HOSTCHARS "]*\\.[" HOSTCHARS ".]+"
-+			     "(:[0-9]+)?(" URLPATH ")?[[:>:]]/?",
- 			     FLAVOR_DEFAULT_TO_HTTP);
- 
-   terminal_widget_match_add (screen->priv->term,
--			     "\\<(mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9]"
--			     "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+\\>",
-+			     "[[:<:]](mailto:)?[a-z0-9][a-z0-9.-]*@[a-z0-9]"
-+			     "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+[[:>:]]",
- 			     FLAVOR_EMAIL);
- 
-   terminal_widget_match_add (screen->priv->term,
--			     "\\<news:[-A-Z\\^_a-z{|}~!\"#$%&'()*+,./0-9;:=?`]+"
--			     "@[" HOSTCHARS ".]+(:[0-9]+)?\\>", FLAVOR_AS_IS);
-+			     "[[:<:]]news:[-A-Z\\^_a-z{|}~!\"#$%&'()*+,./0-9;:=?`]+"
-+			     "@[" HOSTCHARS ".]+(:[0-9]+)?[[:>:]]", FLAVOR_AS_IS);
- 
-   terminal_screen_setup_dnd (screen);
- 
-@@ -548,7 +559,6 @@
-        */
-       terminal_screen_update_scrollbar (screen);
-       terminal_window_update_icon (screen->priv->window);
--      terminal_window_update_geometry (screen->priv->window);
++#ifndef __FreeBSD__
+   /* Try to get the working directory using various OS-specific mechanisms */
+   for (i = 0; i < G_N_ELEMENTS (patterns); ++i)
+     {
+@@ -1804,6 +1826,48 @@
+             return working_dir;
+         }
      }
-   
-   if (GTK_WIDGET_REALIZED (screen->priv->term))
-@@ -909,7 +919,6 @@
-   
-   terminal_widget_set_allow_bold (term,
-                                   terminal_profile_get_allow_bold (profile));
--  terminal_window_set_size (screen->priv->window, screen, TRUE);
- }
++#else
++#if __FreeBSD_version > 800018 || (__FreeBSD_version < 800000 && __FreeBSD_version >= 700104)
++#ifndef HAVE_KINFO_GETFILE
++  name[0] = CTL_KERN;
++  name[1] = KERN_PROC;
++  name[2] = KERN_PROC_FILEDESC;
++  name[3] = fgpid;
++
++  if (sysctl (name, 4, NULL, &len, NULL, 0) < 0)
++    return g_strdup (priv->initial_working_directory);
++  freep = kif = g_malloc (len);
++  if (sysctl (name, 4, kif, &len, NULL, 0) < 0)
++    {
++      g_free (freep);
++      return g_strdup (priv->initial_working_directory);
++    }
++#else
++  freep = kinfo_getfile (fgpid, &cnt);
++#endif /* HAVE_KINFO_GETFILE */
++
++#ifndef HAVE_KINFO_GETFILE
++  for (i = 0; i < len / sizeof (*kif); i++, kif++)
++    {
++      if (kif->kf_structsize != sizeof (*kif))
++        continue;
++#else
++  for (i = 0; i < cnt; i++)
++    {
++      kif = &freep[i];
++#endif /* HAVE_KINFO_GETFILE */
++      if (kif->kf_fd == KF_FD_TYPE_CWD)
++        {
++          char *working_dir;
++
++          working_dir = g_strdup (kif->kf_path);
++          g_free (freep);
++          return working_dir;
++        }
++    }
++  g_free (freep);
++#endif /* __FreeBSD_version > 800018 || (__FreeBSD_version < 800000 && __FreeBSD_version >= 700104) */
++#endif /* __FreeBSD__ */
  
- static void
-@@ -1019,6 +1028,7 @@
- GtkWidget*
- terminal_screen_get_widget (TerminalScreen *screen)
- {
-+  if (screen == NULL) return NULL;
-   return screen->priv->term;
+   return g_strdup (priv->initial_working_directory);
  }
- 
