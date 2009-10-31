@@ -1,15 +1,7 @@
-# New ports collection makefile for:	gucharmap
-# Date created:				02 Mar 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.3 2008/05/31 21:54:23 crash Exp $
-# $FreeBSD: ports/deskutils/gucharmap/Makefile,v 1.33 2007/07/29 19:16:38 kris Exp $
-#   $MCom: ports/deskutils/gucharmap/Makefile,v 1.35 2007/03/13 00:40:44 mezz Exp $
-#
+# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.4 2008/06/19 22:48:08 laffer1 Exp $
 
 PORTNAME=	gucharmap
-PORTVERSION=	2.22.1
-PORTREVISION=	1
+PORTVERSION=	2.26.3.1
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
