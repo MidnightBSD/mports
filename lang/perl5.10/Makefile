@@ -1,18 +1,16 @@
-#
-# $MidnightBSD: mports/lang/perl5.10/Makefile,v 1.2 2008/09/24 18:02:42 ctriv Exp $
-#
+# $MidnightBSD: mports/lang/perl5.10/Makefile,v 1.3 2008/10/11 19:15:33 laffer1 Exp $
 
 PORTNAME=	perl
-PORTVERSION=	5.10.0
-PORTREVISION=	2
+PORTVERSION=	5.10.1
+PORTREVISION=	0
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../src
 LATEST_LINK=	perl
 
 MAINTAINER=	ctriv@MidnightBSD.org
-LICENSE=	perl
 COMMENT=	Practical Extraction and Report Language
+LICENSE=	perl
 
 PERL_VERSION=	${PORTVERSION}
 PERL_VER=	${PORTVERSION} 
@@ -20,6 +18,7 @@ PERL_VER=	${PORTVERSION}
 PERL_NO_DEPENDS=	yes
 USE_PERL5=		yes
 
+MAKE_JOBS_SAFE=		yes
 HAS_CONFIGURE=		yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
