@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.3 2008/03/11 23:25:52 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.4 2009/09/19 23:43:33 laffer1 Exp $
 
 PORTNAME=	at-poke
 PORTVERSION=	0.2.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
