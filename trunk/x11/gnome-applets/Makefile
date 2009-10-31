@@ -1,15 +1,7 @@
-# New ports collection makefile for:	gnomeapplets2
-# Date created:				26th May 2000
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.6 2008/11/10 21:08:32 ctriv Exp $
-# $FreeBSD: ports/x11/gnome-applets/Makefile,v 1.113 2008/04/19 17:54:22 miwi Exp $
-#   $MCom: ports/x11/gnome-applets/Makefile,v 1.175 2008/03/10 20:03:41 mezz Exp $
-#
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.7 2008/11/20 22:18:56 ctriv Exp $
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.22.3
-PORTREVISION=	0
+PORTVERSION=	2.26.3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,7 +15,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${POR
 LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop \
 		gweather.1:${PORTSDIR}/net/libgweather \
 		xklavier.12:${PORTSDIR}/x11/libxklavier \
-		gucharmap.6:${PORTSDIR}/deskutils/gucharmap
+		gucharmap.7:${PORTSDIR}/deskutils/gucharmap
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${PORTSDIR}/sysutils/system-tools-backends \
 		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 
@@ -34,13 +26,13 @@ GNOME_DESKTOP_VERSION=2
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomepanel \
-		gail gnomedocutils libgnomekbd
+USE_GNOME=	gnomeprefix gnomehack intlhack gnomepanel gnomedocutils \
+		libgnomekbd
 WANT_GNOME=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gstreamer=0.10 \
-		--enable-stickynotes
+		--enable-mixer-applet
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		OS_SYS="/usr/include"
