@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.14 2008/10/09 19:56:04 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/Makefile,v 1.15 2008/12/13 02:08:22 ctriv Exp $
 #
     COMMENT = Ports to help disabled users
 
@@ -7,8 +7,6 @@
     SUBDIR += at-spi-reference
     SUBDIR += atk
     SUBDIR += atk-reference
-    SUBDIR += gail
-    SUBDIR += gail-reference
     SUBDIR += gnome-mag
     SUBDIR += gnome-speech
     SUBDIR += gok
