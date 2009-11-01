@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.73 2009/05/27 16:30:01 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.74 2009/11/01 21:56:21 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -79,6 +79,7 @@
     SUBDIR += sound-juicer
     SUBDIR += speex
     SUBDIR += taglib
+    SUBDIR += timidity
     SUBDIR += twolame
     SUBDIR += vorbis-tools
     SUBDIR += wavpack
