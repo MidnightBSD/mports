@@ -2,16 +2,15 @@
 # Date created:		17 October 1994
 # Whom:			jmz
 #
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.6 2008/10/01 00:09:10 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.7 2008/10/02 01:02:39 laffer1 Exp $
 # $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
 #
 
 PORTNAME=	unzip
 PORTVERSION=	5.52
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES?=	archivers
-MASTER_SITES= ${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	infozip
+MASTER_SITES=	SF/infozip/UnZip%205.x%20and%20earlier/${PORTVERSION}
 DISTNAME=	${PORTNAME}552
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -20,17 +19,25 @@ LICENSE=	infozip
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 MAKEFILE=	unix/Makefile
-MAKE_ENV=	LOCAL_UNZIP="${CFLAGS} -DUSE_UNSHRINK"
-PLIST_FILES=	bin/unzip bin/funzip bin/unzipsfx bin/zipgrep bin/zipinfo
+.if defined(INSTALL_AS_INFOUNZIP)
+UNZIP_NAME=	info-unzip
+.else
+UNZIP_NAME=	unzip
+.endif
+PLIST_FILES=	bin/${UNZIP_NAME} bin/funzip bin/unzipsfx bin/zipgrep bin/zipinfo
 PORTDOCS=	README WHERE
-MAN1=		funzip.1 unzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
-CFLAGS+=      -D_FILE_OFFSET_BITS=64
+MAN1=		${UNZIP_NAME}.1 funzip.1 unzipsfx.1 zipgrep.1 zipinfo.1
+
+CFLAGS+=	-D_FILE_OFFSET_BITS=64
+LOCAL_UNZIP=	${CFLAGS} -DACORN_FTYPE_NFS -DWILD_STOP_AT_DIR
 
 .if defined(WITH_UNZIP_UNREDUCE)
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} unreduce_full.zip
-EXTRACT_ONLY=	${PORTNAME}552${EXTRACT_SUFX}
-MAKE_ENV=	LOCAL_UNZIP="${CFLAGS} -DUSE_UNSHRINK -DUSE_SMITH_CODE"
+EXTRACT_ONLY=	${PORTNAME}552.tar.gz
+LOCAL_UNZIP+=	-DUSE_SMITH_CODE
 .endif
+
+MAKE_ENV=	LOCAL_UNZIP="${LOCAL_UNZIP}"
 
 .ifdef USE_UNZIP
 .error You have `USE_UNZIP' variable defined either in environment or in make(1) arguments. Please undefine and try again.
@@ -44,6 +51,13 @@ ALL_TARGET=	freebsd
 ALL_TARGET=	bsd
 .endif
 
+.if !defined(INSTALL_AS_INFOUNZIP)
+pre-fetch:
+	@${ECHO} ""
+	@${ECHO} "Use INSTALL_AS_INFOUNZIP=yes to install Info Unzip as ${PREFIX}/bin/info-unzip"
+	@${ECHO} ""
+.endif
+
 .if defined(WITH_UNZIP_UNREDUCE)
 pre-build:
 	@(cd ${BUILD_WRKSRC}; ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} unzip)
@@ -54,12 +68,14 @@ pre-build:
 .endif
 
 do-install:
-.for file in funzip unzip unzipsfx
+	${INSTALL_PROGRAM} ${WRKSRC}/unzip ${PREFIX}/bin/${UNZIP_NAME}
+.for file in funzip unzipsfx
 	${INSTALL_PROGRAM} ${WRKSRC}/${file} ${PREFIX}/bin
 .endfor
-	${LN} -sf unzip ${PREFIX}/bin/zipinfo
+	${LN} -sf ${UNZIP_NAME} ${PREFIX}/bin/zipinfo
 	${INSTALL_SCRIPT} ${WRKSRC}/unix/zipgrep ${PREFIX}/bin
-.for f in ${MAN1}
+	${INSTALL_MAN} ${WRKSRC}/man/unzip.1 ${MAN1PREFIX}/man/man1/${UNZIP_NAME}.1
+.for f in ${MAN1:Nunzip.1:Ninfo-unzip.1}
 	${INSTALL_MAN} ${WRKSRC}/man/${f} ${MAN1PREFIX}/man/man1
 .endfor
 .if !defined(NOPORTDOCS)
