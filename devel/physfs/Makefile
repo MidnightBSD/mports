@@ -1,23 +1,30 @@
-# New ports collection makefile for:	physfs
-# Date Created:		26 July 2003
-# Whom:			Oliver Lehmann <oliver@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/physfs/Makefile,v 1.3 2008/10/16 21:50:11 laffer1 Exp $
-# $FreeBSD: ports/devel/physfs/Makefile,v 1.11 2006/02/23 10:36:10 ade Exp $
-#
+# $MidnightBSD: mports/devel/physfs/Makefile,v 1.4 2009/09/20 00:52:48 laffer1 Exp $
 
 PORTNAME=	physfs
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	2.0.0
 CATEGORIES=	devel
-MASTER_SITES=	http://offload1.icculus.org/${PORTNAME}/downloads/
+MASTER_SITES=	http://offload1.icculus.org:9090/${PORTNAME}/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library to provide abstract access to various archives
 LICENSE=	other
 
-USE_GNOME=	gnometarget
+USE_CMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
+
+patch-autotools:
+	@${DO_NADA}
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's|CHECK_INCLUDE_FILE(sys/ucred.h HAVE_UCRED_H|& "-include sys/param.h"|g; \
+		 s|CHECK_INCLUDE_FILE(readline/readline.h HAVE_READLINE_H|& "-include stdio.h"|g; \
+		 s|CHECK_INCLUDE_FILE(readline/history.h HAVE_HISTORY_H|& "-include stdio.h"|g; \
+		 s|CHECK_LIBRARY_EXISTS("readline" "history.*|SET(HAVE_LIBHISTORY TRUE)|g; \
+		 s|" " \(readline curses\)|\1|' ${WRKSRC}/CMakeLists.txt
+
+	@${REINPLACE_CMD} -e 's|\(define SIZEOF_INT\) 4|\1 (LONG_BIT/8)|g' \
+		${WRKSRC}/platform/unix.c
 
 .include <bsd.port.mk>
