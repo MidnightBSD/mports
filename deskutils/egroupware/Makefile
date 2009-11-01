@@ -1,41 +1,44 @@
-# New ports collection makefile for:	egroupware
-# Date created:        27 March 2001
-# Whom:                Jimmy Olgeni <olgeni@uli.it>
-#
-# $MidnightBSD: mports/deskutils/egroupware/Makefile,v 1.1 2008/12/08 19:34:46 laffer1 Exp $
-# $FreeBSD: ports/deskutils/egroupware/Makefile,v 1.31 2008/07/12 05:03:55 kuriyama Exp $
+# $MidnightBSD$
 
-PORTNAME=	eGroupWare
-PORTVERSION=	1.4.004
+PORTNAME=	eGroupware
+PORTVERSION=	1.6.002
 CATEGORIES=	deskutils
-MASTER_SITES=	SF
-DISTNAME=	${PORTNAME}-${PORTVERSION}-2
+MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/${PORTNAME}-${PORTVERSION}
+DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.bz2 \
+		${PORTNAME}-egw-pear-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A web based GroupWare system
 LICENSE=	gpl2
 
+PEARDIR=	${LOCALBASE}/share/pear
 USE_BZIP2=	yes
+USE_PHP=	session
 NO_BUILD=	yes
-
-DEST=		${PREFIX}/www/data-dist/egroupware
-PLIST_SUB=	WWWGRP=${WWWGRP}
+PLIST=		${WRKDIR}/plist
+SUB_FILES=	pkg-message
+SUB_LIST=	EG_DIR=${EG_DIR} \
+		EG_DATA=${EG_DATA}
 
 OPTIONS=	MYSQL "Use MySQL database" on \
 		POSTGRE "Use PostgreSQL Database" off \
 		IMAP "Enable Mail support in eGroupware" on \
 		GD "Enable graphic support (needs xorg-libraries)" off \
-		LDAP "Contacts can be stored using OpenLDAP" off
+		LDAP "Contacts can be stored using OpenLDAP" off \
+		MBSTRING "Support for complete UTF-8 charsets" off
 
-.include <bsd.mport.options.mk>
-
-USE_PHP=	pcre session xml
-
+.include <bsd.port.pre.mk>
 .if defined(WITH_MYSQL)
 USE_PHP+=	mysql
+USE_PHP+=	pdo_mysql
 .endif
 .if defined(WITH_POSTGRE)
 USE_PHP+=	pgsql
+#USE_PHP+=	pdo_pgsql
+RUN_DEPENDS+=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/pdo_pgsql.so:${PORTSDIR}/databases/php5-pdo_pgsql
+.endif
+.if defined(WITH_MBSTRING)
+USE_PHP+=	mbstring
 .endif
 .if defined(WITH_IMAP)
 USE_PHP+=	imap
@@ -47,35 +50,35 @@ USE_PHP+=	gd
 USE_PHP+=	ldap
 .endif
 
-.include <bsd.port.pre.mk>
+WRKSRC=	${WRKDIR}/egroupware
+EG_DIR=	www/eg
+EG_WWWDIR=	${PREFIX}/${EG_DIR}
+EG_DATA=	www/egdata
+EG_DATADIR=	${PREFIX}/www/egdata
 
-do-extract:
-	${MKDIR} ${WRKDIR}
+pre-install:
+	@${FIND} -s -d ${WRKSRC} -type f | ${SED} "s#${WRKSRC}#${EG_DIR}#g" >${PLIST}
+	@${FIND} -s -d ${WRKSRC} -type d  | ${SED} "s#${WRKSRC}#@dirrm ${EG_DIR}#g" >> ${PLIST}
+	@${ECHO} @dirrm ${EG_DATA}/files >> ${PLIST}
+	@${ECHO} @dirrm ${EG_DATA}/backup >> ${PLIST}
+	@${ECHO} @dirrm ${EG_DATA} >> ${PLIST}
 
 do-install:
-	${MKDIR} ${DEST}
-	cd ${DEST}/.. && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${DISTFILES} ${EXTRACT_AFTER_ARGS}
-	@${FIND} ${DEST} -name .svn -type d | ${XARGS} ${RM} -rf
-	${CHMOD} g+w ${DEST} ${DEST}/phpgwapi/images
-	${CHGRP} ${WWWGRP} ${DEST} ${DEST}/phpgwapi/images
-	${MV} ${DEST}/setup/inc/class.setup_process.inc.php ${WRKDIR}
-	${SED} s,/var/lib/,/var/db/, ${WRKDIR}/class.setup_process.inc.php > \
-		${DEST}/setup/inc/class.setup_process.inc.php
+	${MKDIR} ${EG_WWWDIR}
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${EG_WWWDIR}
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${EG_WWWDIR}
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} ${EG_WWWDIR}' \
+		>> ${TMPPLIST}
+	${CHMOD} -R 755 ${EG_WWWDIR}
+	@${ECHO_CMD} '@exec ${CHMOD} -R 755 ${EG_WWWDIR}' >> ${TMPPLIST}
 
-# --- postgresql.conf
-# tcpip_socket = true
-# ports = 5432
-#
-# --- pg_hba.conf
-# local $dbname trust
-# host  $dbname all   127.0.0.1 255.255.255.255 md5
-#
-# --- php.ini
-# memory_limit = 16M (or above)
-#
-# createuser $dbuser -P -A -d
-# createdb -U $dbuser $dbname
-#
-# Open http://localhost/egroupware/setup/index.php
+	${MKDIR} ${EG_DATADIR}
+	${MKDIR} ${EG_DATADIR}/files
+	${MKDIR} ${EG_DATADIR}/backup
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${EG_DATADIR}
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} ${EG_DATADIR}' \
+		>> ${TMPPLIST}
+	${CHMOD} -R 755 ${EG_DATADIR}
+	@${ECHO_CMD} '@exec ${CHMOD} -R 755 ${EG_DATADIR}' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>
