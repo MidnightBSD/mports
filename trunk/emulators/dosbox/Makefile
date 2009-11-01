@@ -1,16 +1,9 @@
-# New ports collection makefile for:   dosbox
-# Date created:        28 July 2002
-# Whom:                Tom Carrick <knyghtmare@knyghtmare.com>
-#
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.5 2007/10/25 17:23:46 laffer1 Exp $
-# $FreeBSD: ports/emulators/dosbox/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
-#
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.6 2008/09/17 22:45:01 laffer1 Exp $
 
 PORTNAME=	dosbox
-PORTVERSION=	0.72
+PORTVERSION=	0.73
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An emulator of a PC with DOS
@@ -19,7 +12,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
-USE_SDL=	sdl net
+USE_SDL=	sdl net sound
 
 MAN1=		dosbox.1
 PKGMESSAGE=	${WRKDIR}/pkg-message
