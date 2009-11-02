@@ -2,7 +2,7 @@
 # Date Created:			08 December 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.5 2009/09/20 01:59:41 laffer1 Exp $
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.6 2009/09/26 03:49:41 laffer1 Exp $
 # $FreeBSD: ports/security/gnome-keyring/Makefile,v 1.32 2008/04/07 04:20:38 marcus Exp $
 #   $MCom: ports/security/gnome-keyring/Makefile,v 1.59 2008/03/09 18:30:40 mezz Exp $
 #
@@ -28,6 +28,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--with-pam-dir="${PREFIX}/lib"
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 GCONF_SCHEMAS=	gnome-keyring.schemas
