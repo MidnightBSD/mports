@@ -34,7 +34,7 @@ lib/libgcr.so.0
 lib/libgnome-keyring.a
 lib/libgnome-keyring.la
 lib/libgnome-keyring.so
-lib/libgnome-keyring.so.1
+lib/libgnome-keyring.so.0
 lib/libgp11.a
 lib/libgp11.la
 lib/libgp11.so
@@ -230,3 +230,4 @@ share/locale/zh_TW/LC_MESSAGES/gnome-keyring.mo
 @dirrmtry share/locale/ast
 @dirrmtry share/locale/as/LC_MESSAGES
 @dirrmtry share/locale/as
+
