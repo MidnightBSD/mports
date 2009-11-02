@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.4 2008/05/22 21:47:14 laffer1 Exp $
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.5 2009/05/01 14:51:24 laffer1 Exp $
 
 PORTNAME=	libtasn1
-PORTVERSION=	1.8
+PORTVERSION=	2.3
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/ \
 		http://josefsson.org/gnutls/releases/libtasn1/
