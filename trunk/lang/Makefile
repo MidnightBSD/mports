@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.54 2009/06/11 19:51:28 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.55 2009/10/13 23:36:44 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -22,6 +22,7 @@ SUBDIR += icc
 SUBDIR += linux-libg2c
 SUBDIR += linux-libperl5.8
 SUBDIR += llvm-gcc4
+SUBDIR += lua
 SUBDIR += mawk
 SUBDIR += mono
 SUBDIR += nawk
