@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/security/nmap/Makefile,v 1.2 2008/05/31 19:42:00 laffer1 Exp $
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.3 2009/09/20 02:11:06 laffer1 Exp $
 
 PORTNAME?=	nmap
 PORTVERSION=	${DISTVERSION:L:C/([a-z])[a-z]+/\1/g:C/[^a-z0-9+]+/./g}
 PORTREVISION=	1
 CATEGORIES=	security ipv6
-MASTER_SITES=	http://download.insecure.org/nmap/dist/ \
+MASTER_SITES=	http://nmap.org/dist/ \
+                http://nmap.ucsd.edu/dist/ \
 		http://www.mirrors.wiretapped.net/security/network-mapping/nmap/ \
 		http://www.mirrorservice.org/sites/ftp.wiretapped.net/pub/security/network-mapping/nmap/ \
 		http://mirror.sg.depaul.edu/pub/security/nmap/
@@ -12,6 +13,7 @@ DISTNAME=	nmap-${DISTVERSION}	# needed for security/nmapfe
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Port scanning utility for large networks
+LICENSE=	gpl2
 
 DISTVERSION=	4.20
 
