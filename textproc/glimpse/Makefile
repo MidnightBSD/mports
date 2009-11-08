@@ -3,7 +3,7 @@
 # Date created:		25 August 1996
 # Whom:			chuckr@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/glimpse/Makefile,v 1.1 2008/06/04 17:01:09 laffer1 Exp $
 # $FreeBSD: ports/textproc/glimpse/Makefile,v 1.29 2007/06/23 03:47:30 beech Exp $
 #
 
@@ -17,6 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text search engine
 LICENSE=	restricted
 
+MAKE_JOBS_UNSAFE=	yes
 PORTDOCS=	README COPYRIGHT
 
 FAKE_OPTS+=	prefixhack
