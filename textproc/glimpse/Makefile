@@ -1,17 +1,9 @@
-# New ports collection makefile for:	glimpse
-# http://webglimpse.org/
-# Date created:		25 August 1996
-# Whom:			chuckr@freebsd.org
-#
-# $MidnightBSD: mports/textproc/glimpse/Makefile,v 1.1 2008/06/04 17:01:09 laffer1 Exp $
-# $FreeBSD: ports/textproc/glimpse/Makefile,v 1.29 2007/06/23 03:47:30 beech Exp $
-#
+# $MidnightBSD: mports/textproc/glimpse/Makefile,v 1.2 2009/11/08 21:39:46 laffer1 Exp $
 
 PORTNAME=	glimpse
 PORTVERSION=	4.13.1
 CATEGORIES=	textproc databases
-MASTER_SITES=	ftp://ftp.polito.it/pub/tools/unix/harvest/ \
-		LOCAL/beech
+MASTER_SITES=	ftp://ftp.polito.it/pub/tools/unix/harvest/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Text search engine
