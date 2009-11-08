@@ -2,14 +2,14 @@
 # Date created:		13 August 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/flex/Makefile,v 1.1 2008/06/22 21:20:46 laffer1 Exp $
 # $FreeBSD: ports/textproc/flex/Makefile,v 1.4 2008/02/28 13:24:48 sat Exp $
 #
 
 PORTNAME=	flex
 PORTVERSION=	2.5.35
 CATEGORIES=	textproc
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast lexical analyzer generator
