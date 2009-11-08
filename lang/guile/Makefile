@@ -1,14 +1,7 @@
-# New ports collection makefile for:	guile
-# Date created:		2 November 1997
-# Whom:			jseger@FreeBSD.org
-#
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.6 2008/10/02 20:45:07 laffer1 Exp $
-# $FreeBSD: ports/lang/guile/Makefile,v 1.60 2006/06/08 15:54:14 lawrance Exp $
-#
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.7 2009/09/20 04:03:31 laffer1 Exp $
 
 PORTNAME=	guile
-PORTVERSION=	1.8.5
-PORTREVISION=	1
+PORTVERSION=	1.8.6
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
@@ -20,8 +13,8 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
 
 USE_AUTOTOOLS=	autoconf:262 libltdl:22
-USE_GETTEXT=	yes
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget
@@ -32,6 +25,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 GUILE_VER=	1.8
 PLIST_SUB=	GUILE_VER=${GUILE_VER}
+
+MAN1=		guile.1
 
 REINPLACE_FILES=	libguile/smob.c libguile/filesys.c libguile/gc.c \
 			libguile/mallocs.c libguile/eval.c libguile/gc-malloc.c \

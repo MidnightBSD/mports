@@ -129,11 +129,12 @@ lib/libguile-srfi-srfi-60-v-2.so.2
 lib/libguile.a
 lib/libguile.la
 lib/libguile.so
-lib/libguile.so.19
+lib/libguile.so.20
 lib/libguilereadline-v-17.a
 lib/libguilereadline-v-17.la
 lib/libguilereadline-v-17.so
 lib/libguilereadline-v-17.so.17
+libdata/pkgconfig/guile-1.8.pc
 share/aclocal/guile.m4
 %%DATADIR%%/%%GUILE_VER%%/guile-procedures.txt
 %%DATADIR%%/%%GUILE_VER%%/ice-9/and-let-star.scm
