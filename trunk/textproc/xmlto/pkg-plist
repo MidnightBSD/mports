@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 @comment $FreeBSD: ports/textproc/xmlto/pkg-plist,v 1.4 2008/05/28 12:40:05 edwin Exp $
 bin/xmlif
 bin/xmlto
