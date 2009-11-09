@@ -1,21 +1,18 @@
-# New ports collection makefile for:	cmps
-# Date created:		11 September 1998
-# Whom:			giffunip
-#
-# $FreeBSD: ports/print/cmpsfont/Makefile,v 1.15 2006/06/29 18:48:32 hrs Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/print/cmpsfont/Makefile,v 1.1 2007/01/24 17:07:24 laffer1 Exp $
 
 PORTNAME=	cmpsfont
 PORTVERSION=	1.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	print x11-fonts
-MASTER_SITES=	ftp://ftp.ams.org/pub/tex/psfonts/cm/
+MASTER_SITES=	http://cvsup.theplanet.com/distfiles/ \
+		http://ftp.ctex.org/pub/tex/fonts/type1/
 DISTNAME=	cmps
 EXTRACT_SUFX=	-unix.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Computer Modern PostScript Fonts (Adobe Type 1 format)
+LICENSE=	other
+# freely available but not exactly public dom
 
 .if !defined(WITHOUT_X11)
 BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
@@ -35,6 +32,7 @@ FONTSDIR=	share/fonts/${PORTNAME}
 
 do-build:
 .if !defined(WITHOUT_X11)
+	${TOUCH} ${WRKSRC}/pfb/fonts.dir
 	(cd ${WRKSRC}/pfb; ${LOCALBASE}/bin/type1inst -nolog -quiet)
 .else
 	@${DO_NADA}

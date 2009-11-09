@@ -11,5 +11,3 @@ $ xset fp rehash
 or by adding it to your X-server configuration file.
 Other utilities, like ghostscript, will probably also need
 configuration.
-
-============================================================
