@@ -1,14 +1,8 @@
-# New ports collection makefile for:	enscript (letter)
-# Date created:			24 Jul, 1997
-# Whom:				kline
-#
-# $FreeBSD: ports/print/enscript-letter/Makefile,v 1.29 2006/06/27 03:58:57 rafan Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/print/enscript-letter/Makefile,v 1.1 2006/11/25 00:43:18 laffer1 Exp $
 
 PORTNAME=	enscript
 PORTVERSION=	1.6.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES+=	print
 MASTER_SITES=	http://www.codento.com/people/mtr/genscript/
 PKGNAMESUFFIX=	-${PAPERSIZE}
@@ -16,6 +10,7 @@ DISTNAME=	enscript-${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	ASCII to PostScript filter
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nls --with-media=${PS}
