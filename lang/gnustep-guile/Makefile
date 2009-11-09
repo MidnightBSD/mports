@@ -1,14 +1,8 @@
-# New ports collection makefile for:    gnustep-guile
-# Date created:         24 April 2001
-# Whom:                 Thomas Gellekum <tg@FreeBSD.org>
-#
-# $FreeBSD: ports/lang/gnustep-guile/Makefile,v 1.49 2006/03/19 04:35:45 dinoex Exp $
-# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.9 2008/10/12 19:29:01 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/gnustep-guile/Makefile,v 1.10 2008/10/12 19:33:21 laffer1 Exp $
 
 PORTNAME=	gnustep-guile
 PORTVERSION=	1.1.4
-PORTREVISION=	4445
+PORTREVISION=	4446
 CATEGORIES=	lang gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -18,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep interface to the GUILE scheme interpreter
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	guile.19:${PORTSDIR}/lang/guile
+LIB_DEPENDS+=	guile.20:${PORTSDIR}/lang/guile
 
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
