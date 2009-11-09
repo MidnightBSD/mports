@@ -1,20 +1,14 @@
-# New ports collection makefile for:	OpenJade
-# Date created:		May 19, 2000
-# Whom:			kuriyama
-#
-# $MidnightBSD$
-# $FreeBSD: ports/textproc/openjade/Makefile,v 1.48 2007/03/23 20:32:10 pav Exp $
-#
+# $MidnightBSD: mports/textproc/openjade/Makefile,v 1.1 2007/08/29 07:09:42 laffer1 Exp $
 
 PORTNAME=	openjade
 PORTVERSION=	1.3.3p1
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.3.3
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/p/-pre/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object-oriented SGML/XML parser toolkit and DSSSL engine
+LICENSE=	mit
 
 LIB_DEPENDS=	osp.5:${PORTSDIR}/textproc/opensp
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
