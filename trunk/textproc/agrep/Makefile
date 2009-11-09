@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  agrep
-# Date created:			  Fri May 23, 1997
-# Whom:				  David O'Brien (obrien@FreeBSD.org)
-#
-# $FreeBSD: ports/textproc/agrep/Makefile,v 1.15 2003/11/20 19:22:15 dinoex Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/textproc/agrep/Makefile,v 1.1 2006/11/01 13:56:18 laffer1 Exp $
 
 PORTNAME=	agrep
 PORTVERSION=	2.04
@@ -17,6 +10,7 @@ EXTRACT_SUFX=	.tar.Z
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Approximate grep (fast approximate pattern-matching tool)
+LICENSE=	restricted
 
 ALL_TARGET=
 MAKE_ARGS=	CFLAGS="${CFLAGS}"
