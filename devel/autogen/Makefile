@@ -1,25 +1,17 @@
-# ex:ts=8
-# New ports collection makefile for:	autogen
-# Date created:		Mar 11, 2001
-# Whom:			Ying-Chieh Liao <ijliao@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/autogen/Makefile,v 1.3 2008/03/26 00:20:55 laffer1 Exp $
-# $FreeBSD: ports/devel/autogen/Makefile,v 1.59 2007/07/30 03:53:29 clsung Exp $
-#
+# $MidnightBSD: mports/devel/autogen/Makefile,v 1.4 2008/08/24 19:22:17 laffer1 Exp $
 
 PORTNAME=	autogen
-PORTVERSION=	5.9.5
+PORTVERSION=	5.9.7
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/${PORTNAME}/AutoGen/AutoGen%20${PORTVERSION} \
 		${MASTER_SITE_GNU:S/$/:gnu/}
-MASTER_SITE_SUBDIR=	${PORTNAME} ${PORTNAME}/rel${PORTVERSION}/:gnu
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:DEFAULT,gnu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Automated Program Generator
 LICENSE=	gpl2
 
-LIB_DEPENDS=	guile.19:${PORTSDIR}/lang/guile
+LIB_DEPENDS=	guile.20:${PORTSDIR}/lang/guile
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget libxml2
