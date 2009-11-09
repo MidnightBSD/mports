@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/teTeX-texmf/Makefile,v 1.1 2007/01/24 17:07:24 laffer1 Exp $
+# $MidnightBSD: mports/print/teTeX-texmf/Makefile,v 1.2 2009/08/24 20:42:05 laffer1 Exp $
 
 PORTNAME=	teTeX-texmf
 PORTVERSION=	3.0
@@ -13,6 +13,7 @@ EXTRACT_ONLY=	dvipsk-jpatch-p1.6a1${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thomas Esser's distribution of TeX & friends (texmf tree)
+LICENSE=	unknown
 
 BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/share/fonts/cmpsfont/README:${PORTSDIR}/print/cmpsfont \

@@ -3,19 +3,20 @@
 # Whom:			giffunip
 #
 # $FreeBSD: ports/print/amspsfnt/Makefile,v 1.14 2006/06/29 18:49:03 hrs Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/print/amspsfnt/Makefile,v 1.1 2007/01/24 17:07:24 laffer1 Exp $
 #
 
 PORTNAME=	amspsfnt
 PORTVERSION=	1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	print x11-fonts
-MASTER_SITES=	ftp://ftp.ams.org/pub/tex/psfonts/ams/
+MASTER_SITES=	ftp://ftp.uni-koeln.de/tex/fonts/amsfonts/ps-type1/
 DISTNAME=	amsps
 EXTRACT_SUFX=	-unix.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	AMSFonts PostScript Fonts (Adobe Type 1 format)
+LICENSE=	other
 
 .if !defined(WITHOUT_X11)
 BUILD_DEPENDS=	${LOCALBASE}/bin/type1inst:${PORTSDIR}/x11-fonts/p5-type1inst
