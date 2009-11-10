@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.9 2009/10/18 00:44:00 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.10 2009/11/02 14:11:00 laffer1 Exp $
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	12
@@ -14,7 +14,7 @@ COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 LICENSE=	lgpl
 
 USE_PERL5=	yes
-USE_XORG=	x11 ice xext sm inputproto xi
+USE_XORG=	x11 ice xext sm inputproto xi xpm
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
