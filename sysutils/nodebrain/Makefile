@@ -2,13 +2,13 @@
 # Date created:		2 January 2007
 # Whom:			Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/nodebrain/Makefile,v 1.1 2007/01/03 11:45:18 wintellect Exp $
 #
 
 PORTNAME=	nodebrain
 PORTVERSION?=	0.6.5
 CATEGORIES?=	sysutils
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	nodebrain
 DISTNAME=	nb-0.6.5-source
 WRKSRC=		${WRKDIR}/nb-0.6.5
