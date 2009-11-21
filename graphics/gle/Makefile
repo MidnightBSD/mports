@@ -2,7 +2,7 @@
 # Date created:				29 August 2000
 # Whom:					David Gilbert <dgilbert@velocet.ca>
 #
-# $MidnightBSD: mports/graphics/gle/Makefile,v 1.4 2009/03/02 22:46:34 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gle/Makefile,v 1.5 2009/09/20 01:29:37 laffer1 Exp $
 # $FreeBSD: ports/graphics/gle/Makefile,v 1.14 2006/08/14 23:06:33 clsung Exp $
 #
 
@@ -10,11 +10,10 @@ PORTNAME=	gle
 PORTVERSION=	3.1.0
 PORTREVISION=   2
 CATEGORIES=	graphics
-MASTER_SITES=	SF \
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION} \
 		http://linas.org/gle/pub/ \
 		http://metalab.unc.edu/pub/Linux/libs/X/ \
 		ftp://tsx-11.mit.edu/pub/linux/sources/libs/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GL Tubing and Extrusion Library
