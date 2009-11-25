@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libvorbis
-# Date created:				18 October 2000
-# Whom:					t.vanklaveren@student.utwente.nl
-#
-# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.5 2009/09/20 00:41:23 laffer1 Exp $
-# $FreeBSD: ports/audio/libvorbis/Makefile,v 1.30 2006/02/23 10:34:37 ade Exp $
-#
+# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.6 2009/11/25 02:29:58 laffer1 Exp $
 
 PORTNAME=	libvorbis
 PORTVERSION=	1.2.3
@@ -17,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Audio compression codec library
 LICENSE=	bsd3
 
-LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	ogg.6:${PORTSDIR}/audio/libogg
 
 USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
