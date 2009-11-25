@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.5 2009/06/04 22:26:54 laffer1 Exp $
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.6 2009/09/20 00:46:27 laffer1 Exp $
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/speex/
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source patent-free voice codec
 LICENSE=	bsd3
 
-LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	ogg.6:${PORTSDIR}/audio/libogg
 
 CONFLICTS=	speex-devel-[0-9]*
 
