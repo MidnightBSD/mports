@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ncurses
-# Date created:				23 September 1997
-# Whom:					Andrey Zakhvatov
-#
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.5 2008/08/21 19:00:43 laffer1 Exp $
-# $FreeBSD: ports/devel/ncurses/Makefile,v 1.49 2008/03/31 07:26:11 rafan Exp $
-#
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.6 2008/10/05 15:18:48 laffer1 Exp $
 
 PORTNAME=	ncurses
 PORTVERSION=	${RELEASE}
@@ -32,6 +26,7 @@ CONFIGURE_ARGS=	--datadir=${PREFIX}/share/misc --disable-overwrite \
 		--without-curses-h --with-termlib --program-prefix= \
 		--enable-rpath --disable-root-environ \
 		--with-manpage-format=gzip --srcdir=../
+MAKE_JOBS_UNSAFE=	yes
 
 # needed by devel/py-ncurses port
 .if defined(WITH_TRACE)
