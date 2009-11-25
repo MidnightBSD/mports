@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.6 2008/10/05 15:18:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.7 2009/11/25 02:51:13 laffer1 Exp $
 
 PORTNAME=	ncurses
 PORTVERSION=	${RELEASE}
-PORTREVISION=	2
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -14,7 +14,7 @@ LICENSE=	mit
 
 CONFLICTS=	ncurses-devel-[0-9]*
 
-RELEASE=	5.6
+RELEASE=	5.7
 
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=../configure
