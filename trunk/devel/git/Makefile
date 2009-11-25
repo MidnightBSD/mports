@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.17 2009/09/16 20:15:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.18 2009/09/17 00:02:06 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.4.3
+PORTVERSION=	1.6.5.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
