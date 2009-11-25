@@ -1,18 +1,18 @@
 #
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.6 2009/01/04 06:02:06 ctriv Exp $
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.7 2009/09/20 00:22:15 laffer1 Exp $
 #
 
 PORTNAME=	flac
 PORTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ogg.5:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	ogg.6:${PORTSDIR}/audio/libogg
 
 USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
@@ -21,6 +21,7 @@ CONFIGURE_ARGS=	--enable-sse \
 		--disable-thorough-tests \
 		--disable-xmms-plugin
 CONFIGURE_ENV=	CPPFLAGS="-I${WRKSRC}/include"
+MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITHOUT_ICONV)
 USE_ICONV=	yes
