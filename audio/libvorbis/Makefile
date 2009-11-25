@@ -2,13 +2,12 @@
 # Date created:				18 October 2000
 # Whom:					t.vanklaveren@student.utwente.nl
 #
-# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.4 2008/04/10 04:00:44 ctriv Exp $
+# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.5 2009/09/20 00:41:23 laffer1 Exp $
 # $FreeBSD: ports/audio/libvorbis/Makefile,v 1.30 2006/02/23 10:34:37 ade Exp $
 #
 
 PORTNAME=	libvorbis
-PORTVERSION=	1.2.0
-PORTREVISION=	1
+PORTVERSION=	1.2.3
 PORTEPOCH=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/vorbis/ \
@@ -25,6 +24,7 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack
 CONFIGURE_ARGS=	--with-ogg=${LOCALBASE}
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 .if defined(NOPORTDOCS)
 MAKE_ENV=	DOC=""
