@@ -1,13 +1,8 @@
-# New ports collection makefile for:	theora
-# Date created:				09 februari 2003
-# Whom:					Koop Mast <kwm@rainbow-runner.nl>
-#
-# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.5 2008/08/13 19:19:54 laffer1 Exp $
-# $FreeBSD: ports/multimedia/libtheora/Makefile,v 1.12 2006/06/29 19:27:59 stefan Exp $
-#
+# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.6 2009/09/20 01:47:24 laffer1 Exp $
 
 PORTNAME=	libtheora
-DISTVERSION=	1.0beta2
+PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xiph.org/releases/theora/ \
 		http://distfiles.master.finkmirrors.net/
@@ -26,11 +21,13 @@ USE_GNOME=	ltverhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		LIBS="${PTHEAD_LIBS}"
-CONFIGURE_ARGS+=	--disable-sdltest \
+CONFIGURE_ARGS+=--disable-sdltest \
 		--enable-shared \
 		--disable-examples
+MAKE_JOBS_SAFE=yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|doc||g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's,  x86_64),  x86_64|amd64),' ${WRKSRC}/configure
 
 .include <bsd.port.mk>
