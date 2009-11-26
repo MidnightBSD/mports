@@ -2,13 +2,13 @@
 # Date created:				12 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.4 2008/05/31 22:04:47 crash Exp $
+# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.5 2009/09/20 02:46:20 smultron Exp $
 # $FreeBSD: ports/x11-toolkits/libwnck/Makefile,v 1.53 2007/07/03 16:51:41 mezz Exp $
 #   $MCom: ports/x11-toolkits/libwnck/Makefile,v 1.85 2007/03/12 23:15:43 marcus Exp $
 #
 
 PORTNAME=	libwnck
-PORTVERSION=	2.22.1
+PORTVERSION=	2.26.2
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
