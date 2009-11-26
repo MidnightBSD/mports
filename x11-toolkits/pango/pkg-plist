@@ -96,6 +96,8 @@ libdata/pkgconfig/pangocairo.pc
 libdata/pkgconfig/pangoft2.pc
 %%X11%%libdata/pkgconfig/pangox.pc
 %%X11%%libdata/pkgconfig/pangoxft.pc
+@exec %D/bin/pango-querymodules > %D/etc/pango/pango.modules
+@unexec rm %D/etc/pango/pango.modules
 @dirrm lib/pango/%%VERSION%%/modules
 @dirrm lib/pango/%%VERSION%%
 @dirrm lib/pango
