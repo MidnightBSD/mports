@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.12 2009/09/20 03:13:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.13 2009/10/18 19:08:56 crash Exp $
 
 PORTNAME=	pango
 PORTVERSION=	1.24.5
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME \
 		ftp://ftp.gtk.org/pub/pango/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
