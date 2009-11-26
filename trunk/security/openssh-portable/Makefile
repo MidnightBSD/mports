@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.9 2008/09/18 14:48:58 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.10 2009/05/01 15:48:07 laffer1 Exp $
 
 PORTNAME=	openssh
-DISTVERSION=	5.1p1
+DISTVERSION=	5.2p1
 CATEGORIES=	security ipv6
 MASTER_SITES=	${MASTER_SITE_OPENBSD}
 MASTER_SITE_SUBDIR=	OpenSSH/portable
