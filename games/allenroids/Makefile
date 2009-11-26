@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/games/cowsay/Makefile,v 1.3 2008/04/04 01:03:02 laffer1 Exp $
+# $MidnightBSD: mports/games/allenroids/Makefile,v 1.1 2009/11/26 22:15:30 laffer1 Exp $
 #
 
 PORTNAME=	allenroids
 PORTVERSION=	1.1
 CATEGORIES=	games
-MASTER_SITES=	http://www.integrity.com/homes/tomandkaren/Allenroids/files/Linux/
+MASTER_SITES=	http://www.integrity.com/homes/tomandkaren/Allenroids/files/Linux/ \
+		http://people.midnightbsd.org/~laffer1/
 DISTFILES=	AllenroidsRyan.tgz
 WRKSRC=		${WRKDIR}/Allenroids
 
