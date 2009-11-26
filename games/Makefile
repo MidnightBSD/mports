@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/games/Makefile,v 1.31 2008/12/14 03:36:59 ctriv Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.32 2008/12/14 04:40:53 ctriv Exp $
 #
 
     COMMENT = Games
 
+    SUBDIR += allenroids
     SUBDIR += bass
     SUBDIR += battalion
     SUBDIR += cowsay
