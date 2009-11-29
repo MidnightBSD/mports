@@ -1,9 +1,8 @@
 #!/bin/sh
 #
-#	$MidnightBSD$
-#	$FreeBSD: ports/mail/dovecot/pkg-install,v 1.10 2007/01/07 23:50:55 pav Exp $
-#
-# ex:ts=4
+# $MidnightBSD$
+
+PKG_PREFIX=${PKG_PREFIX:=/usr/local}
 
 ask() {
 	local question default answer
@@ -86,23 +85,7 @@ create_account() {
 case $2 in
 
 PRE-INSTALL)
-	create_account Dovecot dovecot:${DOVECOT_UID:-143} dovecot:${DOVECOT_GID:-143} "Dovecot User" /var/empty /sbin/nologin
-	;;
-
-POST-INSTALL)
-	base=/var/run/dovecot
-	DIRLIST="${base} ${base}/login"
-	echo "Fixing ownerships and modes in \"${base}\"."
-	for directory in ${DIRLIST}; do
-		if [ ! -d "${directory}" ]; then
-			mkdir -p ${directory}
-			echo "Created directory: ${directory}"
-		fi
-	done
-	chown -R root:wheel   ${base}
-	chmod -R 0755         ${base}
-	chown -R root:dovecot ${base}/login
-	chmod -R 0750         ${base}/login
+	create_account Dovecot dovecot:${DOVECOT_UID:-%%DOVECOT_UID%%} dovecot:${DOVECOT_GID:-%%DOVECOT_GID%%} "Dovecot User" /var/empty /usr/sbin/nologin
 	;;
 
 esac
