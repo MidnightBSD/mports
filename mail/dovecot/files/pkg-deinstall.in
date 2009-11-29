@@ -1,6 +1,8 @@
 #! /bin/sh
 #
-# ex:ts=4
+# $MidnightBSD$
+
+PKG_PREFIX=${PKG_PREFIX:=/usr/local}
 
 ask() {
 	local question default answer
@@ -37,7 +39,8 @@ delete_account() {
 	group=${3%:*}
 	gid=${3#*:}
 
-	echo "If you do not intend to reinstall ${port}, you should manually remove the user '${user}' (uid='${uid}') and the group '${group}' (gid='${gid}')."
+	echo "If you do not intend to reinstall ${port}, you should manually"
+	echo "remove user '${user}' (uid='${uid}') and group '${group}' (gid='${gid}')."
 }
 
 case $2 in
@@ -45,21 +48,16 @@ case $2 in
 DEINSTALL)
 	if ps -axc | grep -qw dovecot; then
 		if yesno "Dovecot is still running. Shall I stop it?" y; then
-			killall dovecot
+			${PKG_PREFIX}/etc/rc.d/dovecot stop
 			sleep 2
 		else
 			echo "OK ... I hope you know what you are doing."
 		fi
 	fi
 
-	delete_account Dovecot dovecot:${DOVECOT_UID:-143} dovecot:${DOVECOT_GID:-143}
+	delete_account Dovecot dovecot:${DOVECOT_UID:-%%DOVECOT_UID%%} dovecot:${DOVECOT_GID:-%%DOVECOT_GID%%}
 
-	base=/var/run/dovecot
-	DIRLIST="${base}/login ${base}"
-	echo "Cleaning up \"${base}\"."
-	for directory in ${DIRLIST}; do
-		rmdir ${directory} 2>/dev/null || :
-	done
+	echo "Also manually 'rm -rf /var/db/dovecot' if anything was stored there."
 	;;
 
 esac
