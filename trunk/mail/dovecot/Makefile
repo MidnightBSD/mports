@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.23 2009/11/29 03:41:16 laffer1 Exp $
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.4
@@ -46,7 +46,6 @@ OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
 		LDA		"LDA support"		on  \
 		MANAGESIEVE	"ManageSieve support"	on  \
 		GSSAPI		"GSSAPI support"	off \
-		VPOPMAIL	"VPopMail support"	off \
 		BDB		"BerkleyDB support"	off \
 		LDAP		"OpenLDAP support"	off \
 		PGSQL		"PostgreSQL support"	off \
@@ -126,16 +125,6 @@ DOCS+=			README.managesieve
 CONFIGURE_ARGS+=	--with-gssapi
 .else
 CONFIGURE_ARGS+=	--without-gssapi
-.endif
-
-## VPopMail Support
-#
-.if defined(WITH_VPOPMAIL) && !defined(WITHOUT_VPOPMAIL)
-VPOPMAIL=		${LOCALBASE}/vpopmail/bin/vchkpw
-BUILD_DEPENDS+=		${VPOPMAIL}:${PORTSDIR}/mail/vpopmail
-CONFIGURE_ARGS+=	--with-vpopmail
-.else
-CONFIGURE_ARGS+=	--without-vpopmail
 .endif
 
 ## BDB Support
