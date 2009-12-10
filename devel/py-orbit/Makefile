@@ -2,12 +2,12 @@
 # Date created:				04 March 2003
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/py-orbit/Makefile,v 1.1 2007/12/28 04:45:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-orbit/Makefile,v 1.2 2008/10/16 21:51:34 laffer1 Exp $
 # $FreeBSD: ports/devel/py-orbit/Makefile,v 1.20 2007/05/28 23:34:38 mezz Exp $
 #   $MCom: ports/devel/py-orbit2/Makefile,v 1.11 2006/04/13 07:52:34 bland Exp $
 
 PORTNAME=	orbit
-PORTVERSION=	2.14.3
+PORTVERSION=	2.24.0
 CATEGORIES=	devel python
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/pyorbit/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
