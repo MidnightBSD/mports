@@ -33,6 +33,7 @@ share/idl/gnome-mag-1.0/GNOME_Magnifier.idl
 share/locale/ang/LC_MESSAGES/gnome-mag.mo
 share/locale/ar/LC_MESSAGES/gnome-mag.mo
 share/locale/as/LC_MESSAGES/gnome-mag.mo
+share/locale/ast/LC_MESSAGES/gnome-mag.mo
 share/locale/az/LC_MESSAGES/gnome-mag.mo
 share/locale/be/LC_MESSAGES/gnome-mag.mo
 share/locale/be@latin/LC_MESSAGES/gnome-mag.mo
@@ -42,6 +43,7 @@ share/locale/bn_IN/LC_MESSAGES/gnome-mag.mo
 share/locale/br/LC_MESSAGES/gnome-mag.mo
 share/locale/bs/LC_MESSAGES/gnome-mag.mo
 share/locale/ca/LC_MESSAGES/gnome-mag.mo
+share/locale/ca@valencia/LC_MESSAGES/gnome-mag.mo
 share/locale/cs/LC_MESSAGES/gnome-mag.mo
 share/locale/cy/LC_MESSAGES/gnome-mag.mo
 share/locale/da/LC_MESSAGES/gnome-mag.mo
@@ -100,7 +102,7 @@ share/locale/sk/LC_MESSAGES/gnome-mag.mo
 share/locale/sl/LC_MESSAGES/gnome-mag.mo
 share/locale/sq/LC_MESSAGES/gnome-mag.mo
 share/locale/sr/LC_MESSAGES/gnome-mag.mo
-share/locale/sr@Latn/LC_MESSAGES/gnome-mag.mo
+share/locale/sr@latin/LC_MESSAGES/gnome-mag.mo
 share/locale/sv/LC_MESSAGES/gnome-mag.mo
 share/locale/ta/LC_MESSAGES/gnome-mag.mo
 share/locale/te/LC_MESSAGES/gnome-mag.mo
@@ -109,6 +111,8 @@ share/locale/tk/LC_MESSAGES/gnome-mag.mo
 share/locale/tr/LC_MESSAGES/gnome-mag.mo
 share/locale/ug/LC_MESSAGES/gnome-mag.mo
 share/locale/uk/LC_MESSAGES/gnome-mag.mo
+share/locale/uz/LC_MESSAGES/gnome-mag.mo
+share/locale/uz@cyrillic/LC_MESSAGES/gnome-mag.mo
 share/locale/vi/LC_MESSAGES/gnome-mag.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-mag.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-mag.mo
@@ -123,10 +127,14 @@ share/locale/zh_TW/LC_MESSAGES/gnome-mag.mo
 @dirrm include/gnome-mag-1.0
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/uz@cyrillic/LC_MESSAGES
+@dirrmtry share/locale/uz@cyrillic
 @dirrmtry share/locale/ug/LC_MESSAGES
 @dirrmtry share/locale/ug
 @dirrmtry share/locale/te/LC_MESSAGES
 @dirrmtry share/locale/te
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
 @dirrmtry share/locale/si/LC_MESSAGES
 @dirrmtry share/locale/si
 @dirrmtry share/locale/rw/LC_MESSAGES
@@ -145,11 +153,16 @@ share/locale/zh_TW/LC_MESSAGES/gnome-mag.mo
 @dirrmtry share/locale/ku
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
+@dirrmtry share/locale/ca@valencia/LC_MESSAGES
+@dirrmtry share/locale/ca@valencia
 @dirrmtry share/locale/bn_IN/LC_MESSAGES
 @dirrmtry share/locale/bn_IN
 @dirrmtry share/locale/be@latin/LC_MESSAGES
 @dirrmtry share/locale/be@latin
+@dirrmtry share/locale/ast/LC_MESSAGES
+@dirrmtry share/locale/ast
 @dirrmtry share/locale/as/LC_MESSAGES
 @dirrmtry share/locale/as
 @dirrmtry share/locale/ang/LC_MESSAGES
 @dirrmtry share/locale/ang
+
