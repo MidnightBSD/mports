@@ -1,16 +1,10 @@
-# New ports collection makefile for:	iperf
-# Date Created:				20 May 2001
-# Whom:					Pete Fritchman <petef@databits.net>
-#
-# $MidnightBSD: mports/benchmarks/iperf/Makefile,v 1.1 2007/07/15 08:03:47 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/iperf/Makefile,v 1.20 2007/03/25 03:54:43 mnag Exp $
-#
+# $MidnightBSD: mports/benchmarks/iperf/Makefile,v 1.2 2008/08/22 14:54:33 laffer1 Exp $
 
 PORTNAME=	iperf
 PORTVERSION=	2.0.4
 PORTREVISION=	0
 CATEGORIES=	benchmarks ipv6
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20source
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to measure maximum TCP and UDP bandwidth
