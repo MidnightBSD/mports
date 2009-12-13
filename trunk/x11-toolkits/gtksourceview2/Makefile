@@ -1,24 +1,19 @@
-# New ports collection makefile for:	gtksourceview
-# Date created:				07 May 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.4 2008/06/13 14:57:02 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/gtksourceview2/Makefile,v 1.2 2007/12/12 04:32:18 mezz Exp $
-#   $MCom: ports-stable/x11-toolkits/gtksourceview2/Makefile,v 1.1 2007/12/01 06:20:10 marcus Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.5 2009/09/20 02:40:00 smultron Exp $
 
 PORTNAME=	gtksourceview2
-PORTVERSION=	2.2.1
-PORTREVISION?=	1
+PORTVERSION=	2.6.2
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A text widget that adds syntax highlighting to the GtkTextView widget
-LICENSE=        gpl2
+LICENSE=	gpl2
+
+USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
