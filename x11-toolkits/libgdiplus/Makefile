@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.1 2008/09/18 19:53:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.2 2009/09/20 02:41:16 smultron Exp $
 
 PORTNAME=	libgdiplus
-PORTVERSION=	1.2.5
+PORTVERSION=	2.4.2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
 
@@ -11,15 +11,13 @@ LICENSE=	x11
 
 LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.5:${PORTSDIR}/graphics/png \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
-		freetype.9:${PORTSDIR}/print/freetype2
+		png.5:${PORTSDIR}/graphics/png
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget glib20
 USE_GMAKE=	yes
-USE_XORG=	x11 xrender
-USE_LDCONFIG=	yes
+USE_XLIB=	yes
+USE_LDCONFIG=   yes
 LIBTOOLFILES=	configure cairo/configure
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
