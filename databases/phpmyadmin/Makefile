@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.20 2009/07/05 15:45:46 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.21 2009/09/22 15:57:07 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.2.2
+DISTVERSION=	3.2.4
 CATEGORIES=	databases www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	phpmyadmin
-DISTNAME=	${PORTNAME}-${PORTVERSION}-all-languages
+MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${PORTVERSION}
+DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to manage MySQL over the web
