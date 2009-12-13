@@ -1,33 +1,21 @@
-# New ports collection makefile for:	textproc/p5-YAML
-# Date created:				01 May 2003
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/p5-YAML/Makefile,v 1.2 2007/07/22 08:11:49 laffer1 Exp $
-# $FreeBSD: ports/textproc/p5-YAML/Makefile,v 1.12 2006/11/28 10:45:22 tobez Exp $
-#
+# $MidnightBSD: mports/textproc/p5-YAML/Makefile,v 1.3 2008/03/27 16:36:40 ctriv Exp $
 
 PORTNAME=	YAML
-PORTVERSION=	0.66
+PORTVERSION=	0.70
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	YAML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	YAML implementation in Perl
 LICENSE=	perl
 
-BUILD_DEPENDS=	\
-	p5-Test-Base>=0.47:${PORTSDIR}/devel/p5-Test-Base
-RUN_DEPENDS=	${BUILD_DEPENDS}
-
 PERL_CONFIGURE=	yes
-CONFIGURE_ARGS+=	</dev/null
 
-MAN1=	ysh.1
 MAN3=	\
 	Test::YAML.3 \
 	YAML.3 \
+	YAML::Any.3 \
 	YAML::Base.3 \
 	YAML::Dumper.3 \
 	YAML::Dumper::Base.3 \
@@ -40,4 +28,3 @@ MAN3=	\
 	YAML::Types.3
 
 .include <bsd.port.mk>
-
