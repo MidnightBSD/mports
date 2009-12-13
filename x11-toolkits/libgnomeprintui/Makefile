@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.4 2009/06/29 04:24:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.5 2009/09/20 03:11:24 laffer1 Exp $
 
 PORTNAME=	libgnomeprintui
 PORTVERSION=	2.18.4
 PORTREVISION=	0
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
