@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.5 2008/09/21 20:03:05 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.6 2009/04/05 19:14:30 laffer1 Exp $
 
 PORTNAME=	gnome-icon-theme
-PORTVERSION=	2.24.0
+PORTVERSION=	2.26.0
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +17,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicol
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack intlhack gnometarget gtk20
+USE_GNOME=	gnomehack intlhack gtk20
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
