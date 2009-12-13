@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ubuntulooks
-# Date created:		2006-04-09
-# Whom:			Phillip Neumann <pneumann@gmail.com>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-themes/ubuntulooks/Makefile,v 1.8 2008/06/06 14:14:40 edwin Exp $
-#
+# $MidnightBSD: mports/x11-themes/ubuntulooks/Makefile,v 1.1 2008/06/14 02:23:03 laffer1 Exp $
 
 PORTNAME=	ubuntulooks
 PORTVERSION=	0.9.12

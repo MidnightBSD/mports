@@ -1,11 +1,4 @@
-# New ports collection makefile for:	clearlooks-metacity
-# Date created:		2005-03-20
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-themes/clearlooks-metacity/Makefile,v 1.1 2008/06/14 02:10:38 laffer1 Exp $
-# $FreeBSD: ports/x11-themes/clearlooks-metacity/Makefile,v 1.14 2008/06/06 14:14:11 edwin Exp $
-#   $MCom: ports/x11-themes/clearlooks-metacity/Makefile,v 1.3 2007/09/10 15:44:29 mezz Exp $
-#
+# $MidnightBSD: mports/x11-themes/clearlooks-metacity/Makefile,v 1.2 2008/08/20 18:45:17 laffer1 Exp $
 
 PORTNAME=	clearlooks-metacity
 PORTVERSION=	2.0

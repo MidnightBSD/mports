@@ -14,9 +14,9 @@ System/Applications/Azalea.app/Resources/themes/Azalea/openbox-3/shade.xbm
 System/Applications/Azalea.app/Resources/themes/Azalea/openbox-3/themerc
 System/Applications/Azalea.app/stamp.make
 System/Tools/Azalea
-@dirrm System/Applications/Azalea.app/Resources/openbox
 @dirrm System/Applications/Azalea.app/Resources/themes/Azalea/openbox-3
 @dirrm System/Applications/Azalea.app/Resources/themes/Azalea
 @dirrm System/Applications/Azalea.app/Resources/themes
+@dirrm System/Applications/Azalea.app/Resources/openbox
 @dirrm System/Applications/Azalea.app/Resources
 @dirrm System/Applications/Azalea.app
