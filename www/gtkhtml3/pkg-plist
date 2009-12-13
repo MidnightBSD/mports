@@ -18,7 +18,7 @@ include/libgtkhtml-%%VERSION%%/gtkhtml/htmltypes.h
 lib/libgtkhtml-%%VERSION%%.a
 lib/libgtkhtml-%%VERSION%%.la
 lib/libgtkhtml-%%VERSION%%.so
-lib/libgtkhtml-%%VERSION%%.so.20
+lib/libgtkhtml-%%VERSION%%.so.19
 lib/libgtkhtml-editor.a
 lib/libgtkhtml-editor.la
 lib/libgtkhtml-editor.so
