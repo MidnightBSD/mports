@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.4 2009/05/26 00:39:08 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.5 2009/09/20 03:07:30 laffer1 Exp $
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
