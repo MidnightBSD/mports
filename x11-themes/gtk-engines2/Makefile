@@ -1,16 +1,9 @@
-# New ports collection makefile for:	gtk-engines2
-# Date Created:				21 May 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-themes/gtk-engines2/Makefile,v 1.67 2007/05/29 03:51:32 mezz Exp $
-#   $MCom: ports/x11-themes/gtk-engines2/Makefile,v 1.37 2007/03/13 12:52:05 ahze Exp $
-#
+# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.1 2007/09/01 04:57:44 laffer1 Exp $
 
 PORTNAME=	gtk-engines2
-PORTVERSION=	2.10.2
+PORTVERSION=	2.18.2
 CATEGORIES=	x11-themes
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	${PORTNAME:S/2$//}-${PORTVERSION}
 DIST_SUBDIR=	gnome2
@@ -24,28 +17,21 @@ CONFLICTS=	gtk-smooth-engine-[0-9]* clearlooks-[0-9]*
 
 USE_GMAKE=	yes
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gtk20
+USE_GNOME=	gnomehack gtk20 intlhack ltasneededhack
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
+
+OPTIONS=	ANIMATION "Enable experimental animated progressbars" off
+
+.include <bsd.port.pre.mk>
 
 .if defined(WITH_ANIMATION)
 CONFIGURE_ARGS+=	--enable-animation
 .endif
 
-pre-everything::
-.if !defined(WITH_ANIMATION)
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} " You can enable experimental animated progressbars"
-	@${ECHO_MSG} " with the clearlooks engine by defining"
-	@${ECHO_MSG} " WITH_ANIMATION"
-	@${ECHO_MSG} ""
-.endif
+post-install:
+	@(cd ${WRKSRC}/po && ${GMAKE} install)
 
-# Disable the gtk1 theme.
-post-patch:
-	@${REINPLACE_CMD} -e 's|gtk gtk-2.0|gtk-2.0|g' \
-		${WRKSRC}/themes/Redmond/Makefile.in
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
