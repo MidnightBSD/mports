@@ -1,17 +1,10 @@
-# New ports collection makefile for:	clearlooks
-# Date created:		2005-02-26
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-themes/clearlooks/Makefile,v 1.30 2008/06/06 14:14:11 edwin Exp $
-#   $MCom: ports/x11-themes/clearlooks/Makefile,v 1.8 2007/08/07 04:34:29 mezz Exp $
-#
+# $MidnightBSD: mports/x11-themes/clearlooks/Makefile,v 1.1 2008/06/14 02:08:53 laffer1 Exp $
 
 PORTNAME?=	clearlooks
 PORTVERSION=	0.6.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-themes
-MASTER_SITES=	SF
+MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GTK+ 2.x engine based on Bluecurve
@@ -25,14 +18,14 @@ INSTALLS_ICONS=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-.if !defined(SLAVEPRT)
+.if defined(PORTNAME) && !defined(PKGNAMESUFFIX)
 OPTIONS+=	ANIMATION "Enable experimental animated progressbars" Off \
 		METACITY "Depend on MetaCity Theme" On
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if !defined(SLAVEPRT)
+.if !defined(PKGNAMESUFFIX)
 CONFLICTS+=	gtk-engines2-[0-9]* clearlooks-themes[0-9]*
 PLIST_SUB+=	ENGINE=""
 .else
@@ -47,7 +40,7 @@ INSTALL_WRKSRC=	${WRKSRC}/themes
 PLIST_SUB+=	ENGINE="@comment "
 .endif
 
-.if !defined(WITHOUT_METACITY) && !defined(SLAVEPRT)
+.if !defined(WITHOUT_METACITY) && !defined(PKGNAMESUFFIX)
 RUN_DEPENDS+=	${LOCALBASE}/share/themes/Clearlooks/metacity-1/metacity-theme-1.xml:${PORTSDIR}/x11-themes/clearlooks-metacity
 .endif
 
@@ -55,7 +48,7 @@ RUN_DEPENDS+=	${LOCALBASE}/share/themes/Clearlooks/metacity-1/metacity-theme-1.x
 CONFIGURE_ARGS+=	--enable-animation
 .endif
 
-.if !defined(SLAVEPRT)
+.if !defined(PKGNAMESUFFIX)
 pre-everything::
 	@if [ -n "`${PKG_INFO} -xI '^gtk-engines2*[0-9]*'`" ]; then \
 		${ECHO_MSG} ; \
