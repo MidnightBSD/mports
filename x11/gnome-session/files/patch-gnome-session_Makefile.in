@@ -1,0 +1,10 @@
+--- gnome-session/Makefile.in.orig	2009-02-21 19:46:07.000000000 +0100
++++ gnome-session/Makefile.in	2009-02-21 19:46:57.000000000 +0100
+@@ -317,6 +317,7 @@
+ 
+ gnome_session_LDADD = \
+ 	libgsmutil.la 				\
++	-lexecinfo				\
+ 	$(top_builddir)/egg/libeggdesktopfile.la \
+ 	$(SM_LIBS)				\
+ 	$(ICE_LIBS)				\
