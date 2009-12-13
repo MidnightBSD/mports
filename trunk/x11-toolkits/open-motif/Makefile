@@ -4,7 +4,7 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.6 2009/06/03 01:15:47 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.7 2009/09/20 03:12:40 laffer1 Exp $
 #
 
 PORTNAME=	open-motif
@@ -20,6 +20,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
 LICENSE=	other
 
+MAKE_JOBS_UNSAFE=	yes
 RUN_DEPENDS=	imake:${X_IMAKE_PORT}
 
 CONFLICTS=	lesstif-*
