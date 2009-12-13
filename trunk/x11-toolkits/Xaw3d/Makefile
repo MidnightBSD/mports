@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.6 2009/05/31 03:36:15 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.7 2009/06/04 15:44:24 laffer1 Exp $
 
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	ftp://ftp.visi.com/users/hawkeyd/X/
+MASTER_SITES=	ftp://ftp.visi.com/users/hawkeyd/X/ \
+		ftp.slackware.com/pub/slackware/slackware_source/x/xaw3d/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3-D Athena Widget set that looks like Motif
@@ -12,7 +13,7 @@ LICENSE=	unknown
 
 WRKSRC=		${WRKDIR}/xc/lib/Xaw3d
 USE_IMAKE=	yes
-USE_XORG=	x11 xt xmu xpm
+USE_XORG=	x11 xext xt xmu sm ice xpm
 USE_LDCONFIG=	yes
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files
