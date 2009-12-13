@@ -2,16 +2,16 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.6 2008/03/22 06:47:57 ctriv Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.7 2008/03/24 18:29:28 ctriv Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
-PORTVERSION=	1.604
+PORTVERSION=	1.60.9
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	DBI
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
+DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
@@ -29,8 +29,7 @@ RUN_DEPENDS+=	${SITE_PERL}/RPC/PlServer.pm:${PORTSDIR}/net/p5-PlRPC
 CONFLICTS=	p5-DBI-1.3*
 PERL_CONFIGURE=	yes
 
-MAN1=		dbiprof.1 dbiproxy.1 dbilogstrip.1
-		
+MAN1=		dbilogstrip.1 dbiprof.1 dbiproxy.1
 MAN3=		Bundle::DBI.3 \
 		DBD::DBM.3 \
 		DBD::File.3 \
@@ -70,13 +69,15 @@ MAN3=		Bundle::DBI.3 \
 		DBI::ProxyServer.3 \
 		DBI::PurePerl.3 \
 		DBI::SQL::Nano.3 \
+		DBI::Util::CacheMemory.3 \
 		DBI::W32ODBC.3 \
 		Roadmap.3 \
+		TASKS.3 \
 		Win32::DBIODBC.3
 
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	Changes README 
+PORTDOCS=	Changes README
 
 post-install:
 	@${MKDIR} ${DOCSDIR}
@@ -85,5 +86,3 @@ post-install:
 .endif
 
 .include <bsd.port.mk>
-
-
