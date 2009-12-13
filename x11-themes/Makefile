@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.18 2008/09/26 18:20:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.19 2008/12/13 05:44:22 ctriv Exp $
 #
     COMMENT = X11 themes
 
@@ -23,6 +23,5 @@
     SUBDIR += midnightbsd-backgrounds
     SUBDIR += ubuntulooks
     SUBDIR += xcursor-themes
-    SUBDIR += xfce4-icon-theme
 
 .include <bsd.port.subdir.mk>

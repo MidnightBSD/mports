@@ -2,18 +2,16 @@
 # Date created:         18 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-themes/etoile-etoilemenus/Makefile,v 1.4 2008/05/21 06:16:05 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-etoilemenus/Makefile,v 1.5 2008/10/08 04:09:55 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/etoile-etoilemenus/Makefile,v 1.6 2007/01/31 18:18:11 dinoex Exp $
 #
 
 PORTNAME=	etoilemenus
-PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTVERSION=	0.4.1
 CATEGORIES=	x11-themes gnustep
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	dinoex
+MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	Etoile-${SNAPSHOT}
+DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project EtoileMenus bundle
@@ -25,10 +23,8 @@ USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-MAKE_ENV+=      GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
-SNAPSHOT=	20061221
-WRKSRC=	${WRKDIR}/Etoile/
+WRKSRC=	${WRKDIR}/Etoile-${PORTVERSION}
 USE_GNUSTEP_MAKE_DIRS+=	Bundles/EtoileWildMenus
 
 .include <bsd.port.mk>
