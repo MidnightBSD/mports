@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.1 2009/09/19 23:57:12 laffer1 Exp $
 
 PORTNAME=	rpm
 PORTVERSION=	4.0.4
@@ -9,6 +9,8 @@ MASTER_SITES=	http://rpm.org/releases/historical/rpm-4.0.x/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The RPM Package Manager
 LICENSE=	gpl2
+
+USE_GCPIO=	yes
 
 LIB_DEPENDS=	db3.3:${PORTSDIR}/databases/db3 \
 		popt.0:${PORTSDIR}/devel/popt
