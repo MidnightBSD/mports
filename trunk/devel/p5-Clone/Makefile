@@ -1,13 +1,7 @@
-# New ports collection makefile for:	devel/p5-Clone
-# Date created:				05 June 2002
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $FreeBSD: ports/devel/p5-Clone/Makefile,v 1.9 2007/08/21 08:20:58 tobez Exp $
-# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.1 2007/09/02 02:49:24 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.2 2008/10/09 21:00:36 laffer1 Exp $
 
 PORTNAME=	Clone
-PORTVERSION=	0.29
+PORTVERSION=	0.31
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
