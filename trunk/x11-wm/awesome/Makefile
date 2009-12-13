@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.4 2009/12/13 21:01:04 laffer1 Exp $
 
 PORTNAME=	awesome
 PORTVERSION=	3.4.1
@@ -32,7 +32,7 @@ CMAKE_USE_PTHREAD=yes
 CMAKE_ARGS+=	-DSYSCONFDIR=${PREFIX}/etc
 USE_EFL=	imlib2
 USE_GNOME=	glib20 pango
-USE_LUA=	5.1+
+#USE_LUA=	5.1+
 USE_XORG=	pixman x11 xau xdmcp xext xft xinerama xrandr xrender xproto
 
 MAN1=	awesome.1 \
