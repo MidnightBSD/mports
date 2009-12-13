@@ -1,3 +1,4 @@
-MD5 (Storable-2.18.tar.gz) = c60a9b6bc2703dd90616b9a570896b72
-SHA256 (Storable-2.18.tar.gz) = 99539bb999e391277ca3ef5985b9b7a7c504dfcc6bce38351ba22fba37fb2222
-SIZE (Storable-2.18.tar.gz) = 177774
+MD5 (Storable-2.21.tar.gz) = 9256904c73d8fe393b90b9b5f219f0a6
+SHA256 (Storable-2.21.tar.gz) = 67f30ac75ed10f79b834d2105f97493dd0d5c91b4b4455f4e2875dabbfa36c9d
+RMD160 (Storable-2.21.tar.gz) = 7f6cc0f262ef492b049a2115fa9829bf54bf754c
+SIZE (Storable-2.21.tar.gz) = 178078
