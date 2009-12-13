@@ -1,16 +1,10 @@
-# New ports collection makefile for:	nano
-# Date created:				12 June 2000
-# Whom:				Philippe Lefebvre <nemesis@balistik.net>
-#
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.5 2008/10/01 19:23:46 laffer1 Exp $
-# $FreeBSD: ports/editors/nano/Makefile,v 1.37 2007/01/31 20:48:39 naddy Exp $
-#
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.6 2009/06/06 00:04:31 laffer1 Exp $
 
 PORTNAME=	nano
-PORTVERSION=	2.0.9
+PORTVERSION=	2.2.1
 CATEGORIES=	editors
-MASTER_SITES=	http://www.nano-editor.org/dist/v2.0/ \
-		http://www.ewtoo.org/~astyanax/nano/dist/v2.0/
+MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
+		http://www.ewtoo.org/~astyanax/nano/dist/v2.2/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
@@ -18,7 +12,7 @@ LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/${INFO_PATH} --mandir=${PREFIX}/man \
-		--enable-all
+		--docdir=${DOCSDIR}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
