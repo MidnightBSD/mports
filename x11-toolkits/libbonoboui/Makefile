@@ -1,18 +1,10 @@
-# New ports collection makefile for:	libbonoboui
-# Date created:				04 April 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.3 2008/05/31 21:32:03 crash Exp $
-# $FreeBSD: ports/x11-toolkits/libbonoboui/Makefile,v 1.57 2007/03/19 05:14:01 marcus Exp $
-#    $MCom: ports/x11-toolkits/libbonoboui/Makefile,v 1.55 2007/03/12 18:11:27 marcus Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.4 2008/08/20 17:57:05 laffer1 Exp $
 
 PORTNAME=	libbonoboui
-PORTVERSION=	2.22.0
+PORTVERSION=	2.24.1
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
