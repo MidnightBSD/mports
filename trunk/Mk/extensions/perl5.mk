@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.5 2009/11/07 20:44:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.6 2009/11/07 20:49:54 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -62,7 +62,11 @@ SITE_PERL?=			${PERL_PREFIX}/${SITE_PERL_REL}
 PERL=				/usr/bin/perl
 CPAN_CMD?= 			/usr/bin/cpan
 _CORE_PERL=			yes
+.if (${ARCH} == "amd64")
+PERL_ARCH?=			${ARCH}-midnightbsd
+.else
 PERL_ARCH?=			${ARCH}-midnightbsd-64int
+.endif
 .else
 PERL=				${PERL_PREFIX}/bin/perl
 CPAN_CMD?=			${PERL_PREFIX}/bin/cpan
