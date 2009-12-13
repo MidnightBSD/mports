@@ -2,15 +2,15 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.1 2008/03/28 05:20:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.2 2009/09/20 02:43:48 smultron Exp $
 # $FreeBSD: ports/x11-toolkits/libgnomeuimm/Makefile,v 1.17 2007/10/04 06:27:13 edwin Exp $
 #
 
 PORTNAME=	libgnomeuimm
 PORTVERSION=	2.0.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	gtkmm
+MASTER_SITES=	SF/gtkmm/OldFiles
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -23,7 +23,6 @@ LIB_DEPENDS=	gnomemm-2.0:${PORTSDIR}/x11/libgnomemm \
 		glademm-2.0:${PORTSDIR}/devel/libglademm
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_X_PREFIX=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libgnomeui
 USE_AUTOTOOLS=	libtool:22
