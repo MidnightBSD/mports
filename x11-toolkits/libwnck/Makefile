@@ -2,17 +2,16 @@
 # Date created:				12 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.5 2009/09/20 02:46:20 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.6 2009/11/26 22:03:19 crash Exp $
 # $FreeBSD: ports/x11-toolkits/libwnck/Makefile,v 1.53 2007/07/03 16:51:41 mezz Exp $
 #   $MCom: ports/x11-toolkits/libwnck/Makefile,v 1.85 2007/03/12 23:15:43 marcus Exp $
 #
 
 PORTNAME=	libwnck
 PORTVERSION=	2.26.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,9 +25,9 @@ USE_BZIP2=	yes
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 USE_GETTEXT=	yes
-USE_XLIB=	yes
+USE_XORG=	xres
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gtk20 ltverhack referencehack
+USE_GNOME=	gnomehack gtk20 ltverhack referencehack intlhack
 USE_BISON=	build
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
