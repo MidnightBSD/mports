@@ -1,9 +1,4 @@
-# New ports collection makefile for:	gnomehier
-# Date created:				2 July 2002
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.6 2007/08/28 19:04:49 laffer1 Exp $
-# $FreeBSD: ports/misc/gnomehier/Makefile,v 1.34 2006/04/30 00:46:57 marcus Exp $
+# $MidnightBSD: mports/misc/gnomehier/Makefile,v 1.7 2008/02/22 03:21:03 laffer1 Exp $
 #
 # !!DON'T BUMP PORTREVISION ON MTREE CHANGES ANYMORE!!
 
