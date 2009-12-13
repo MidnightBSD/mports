@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.1 2009/08/27 16:54:58 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.2 2009/09/20 00:36:07 laffer1 Exp $
 
 PORTNAME=	mysql-gui-tools
 PORTVERSION=	5.0r14
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQLGUITools
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The MySQL Administrator, Query Browser and Workbench GUI tools
 LICENSE=	gpl2
 
-LIB_DEPENDS=	mysqlclient.16:${PORTSDIR}/databases/mysql50-client \
+LIB_DEPENDS=	mysqlclient.15:${PORTSDIR}/databases/mysql50-client \
 		gtkmm-2.4:${PORTSDIR}/x11-toolkits/gtkmm24 \
 		pcre.0:${PORTSDIR}/devel/pcre \
 		xml2.5:${PORTSDIR}/textproc/libxml2
