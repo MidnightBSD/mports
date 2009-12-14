@@ -2,7 +2,7 @@
 # Date created:				2005-11-06
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/x11-toolkits/libsexy/Makefile,v 1.2 2008/06/20 02:49:26 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libsexy/Makefile,v 1.3 2009/09/20 02:45:04 smultron Exp $
 # $FreeBSD: ports/x11-toolkits/libsexy/Makefile,v 1.11 2007/10/09 13:08:28 miwi Exp $
 #
 
@@ -11,7 +11,7 @@ PORTVERSION=	0.1.11
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits devel
 MASTER_SITES=	http://freebsd.unixfreunde.de/sources/ \
-		http://releases.chipx86.com/libsexy/libsexy
+		http://releases.chipx86.com/libsexy/libsexy/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extension widgets for GTK+
