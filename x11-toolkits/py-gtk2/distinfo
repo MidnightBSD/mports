@@ -1,3 +1,4 @@
-MD5 (gnome2/pygtk-2.12.1.tar.bz2) = a816346d750d61e3fa67a200e4292694
-SHA256 (gnome2/pygtk-2.12.1.tar.bz2) = 4100ed4bf295b03106308f1cfb9931cc22910401dab785f8bd3af9935f1fe13d
-SIZE (gnome2/pygtk-2.12.1.tar.bz2) = 2175955
+MD5 (gnome2/pygtk-2.14.1.tar.bz2) = c27a7d21b87910e80605d9135d220592
+SHA256 (gnome2/pygtk-2.14.1.tar.bz2) = 733a5e2e1ca2ca6cf9dae0de9c035d3a428c6ec52774977f60d0618a1a27591a
+RMD160 (gnome2/pygtk-2.14.1.tar.bz2) = ee32b54b5a5b12ca5718cf53505542b89e97347b
+SIZE (gnome2/pygtk-2.14.1.tar.bz2) = 2210535
