@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.4 2009/05/22 20:44:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.5 2009/10/18 00:36:49 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -406,14 +406,6 @@ PYTHON_REL=			245
 PYTHON_SUFFIX=		24
 PYTHON_VER=			2.4
 
-# Python-2.3
-.elif ${PYTHON_VERSION} == "python2.3"
-PYTHON_PORTVERSION?=2.3.7
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python23
-PYTHON_REL=			237
-PYTHON_SUFFIX=		23
-PYTHON_VER=			2.3
-
 # Python versions in development
 .elif defined(FORCE_PYTHON_VERSION)
 PYTHON_PORTSDIR=	# empty
@@ -564,12 +556,7 @@ PYDISTUTILS=	${PYTHON_LIBDIR}/distutils/core.py:${PYTHON_PORTSDIR}
 PYNUMERIC=		${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
 PYNUMPY=		${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
 PYXML=			${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
-
-.if defined(PYTHON_REL) && ${PYTHON_REL} < 232
-PYEXPAT=		${PYTHON_SITELIBDIR}/pyexpat.so:${PORTSDIR}/textproc/py-expat
-.else
 PYEXPAT=		${PYTHON_LIBDIR}/lib-dynload/pyexpat.so:${PYTHON_PORTSDIR}
-.endif
 
 .if defined(PYTHON_REL) && ${PYTHON_REL} < 250
 PYCTYPES=		${PYTHON_SITELIBDIR}/ctypes/__init__.py:${PORTSDIR}/devel/py-ctypes
