@@ -1,13 +1,6 @@
-# New ports collection makefile for:	py-vte
-# Date created:				18 February 2007
-# Whom:					Alexander Nedotsukov <bland@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/x11-toolkits/py-vte/Makefile,v 1.2 2007/05/19 20:31:51 flz Exp $
-#   $MCom: ports/x11-toolkits/py-vte/Makefile,v 1.1 2007/02/18 19:12:57 mezz Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/py-vte/Makefile,v 1.1 2008/03/22 16:42:57 laffer1 Exp $
 
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
