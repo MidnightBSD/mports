@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.5 2009/07/12 16:04:23 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -380,7 +380,7 @@ gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.la \
 gst_neon_DIST=		bad
 
 # ogg
-gst_ogg_LIB_DEPENDS+=	ogg.5:${PORTSDIR}/audio/libogg
+gst_ogg_LIB_DEPENDS+=	ogg.6:${PORTSDIR}/audio/libogg
 gst_ogg_EXTRA_LIBS+=	-lgstriff-${VERSION}
 gst_ogg_PLIST_FILES=	${GST_LIB_DIR}/libgstogg.la \
 		${GST_LIB_DIR}/libgstogg.so
