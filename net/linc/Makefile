@@ -1,21 +1,15 @@
-# New ports collection makefile for:   linc
-# Date Created:			12 February 2002
-# Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $FreeBSD: ports/net/linc/Makefile,v 1.40 2006/05/31 22:18:45 mezz Exp $
-# $MidnightBSD: mports/net/linc/Makefile,v 1.2 2007/05/20 23:55:12 ctriv Exp $
-#
+# $MidnightBSD: mports/net/linc/Makefile,v 1.3 2009/09/20 01:46:08 laffer1 Exp $
 
 PORTNAME=	linc
 PORTVERSION=	1.0.3
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.0
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for writing networked servers & clients
+LICENSE=	gpl2
 
 USE_BZIP2=	yes
 
