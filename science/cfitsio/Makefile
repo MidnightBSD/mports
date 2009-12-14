@@ -1,6 +1,4 @@
-#
-# $MidnightBSD: ports/astro/cfitsio/Makefile,v 1.14 2008/11/01 22:12:48 miwi Exp $
-#
+# $MidnightBSD: mports/science/cfitsio/Makefile,v 1.1 2008/12/20 02:59:49 ctriv Exp $
 
 PORTNAME=	cfitsio
 PORTVERSION=	3.100
@@ -11,6 +9,7 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for reading and writing files in FITS data format
+LICENSE=	publicdom
 
 LIB_DEPENDS=	f2c.2:${PORTSDIR}/lang/f2c
 
