@@ -3,25 +3,23 @@ include/vte/pty.h
 include/vte/reaper.h
 include/vte/vte.h
 include/vte/vteaccess.h
+include/vte/vtetypebuiltins.h
+include/vte/vteversion.h
 lib/libvte.a
 lib/libvte.la
 lib/libvte.so
 lib/libvte.so.9
 lib/vte/decset
 lib/vte/interpret
-lib/vte/iso8859mode
-lib/vte/nativeecho
 lib/vte/osc
 lib/vte/slowcat
-lib/vte/utf8echo
-lib/vte/utf8mode
-lib/vte/vterdb
 lib/vte/window
 libdata/pkgconfig/vte.pc
 libexec/gnome-pty-helper
 share/locale/am/LC_MESSAGES/vte.mo
 share/locale/ang/LC_MESSAGES/vte.mo
 share/locale/ar/LC_MESSAGES/vte.mo
+share/locale/as/LC_MESSAGES/vte.mo
 share/locale/az/LC_MESSAGES/vte.mo
 share/locale/be/LC_MESSAGES/vte.mo
 share/locale/be@latin/LC_MESSAGES/vte.mo
@@ -87,7 +85,7 @@ share/locale/sk/LC_MESSAGES/vte.mo
 share/locale/sl/LC_MESSAGES/vte.mo
 share/locale/sq/LC_MESSAGES/vte.mo
 share/locale/sr/LC_MESSAGES/vte.mo
-share/locale/sr@Latn/LC_MESSAGES/vte.mo
+share/locale/sr@latin/LC_MESSAGES/vte.mo
 share/locale/sv/LC_MESSAGES/vte.mo
 share/locale/ta/LC_MESSAGES/vte.mo
 share/locale/te/LC_MESSAGES/vte.mo
@@ -114,6 +112,8 @@ share/locale/zh_TW/LC_MESSAGES/vte.mo
 @dirrmtry share/locale/ug
 @dirrmtry share/locale/te/LC_MESSAGES
 @dirrmtry share/locale/te
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
 @dirrmtry share/locale/si/LC_MESSAGES
 @dirrmtry share/locale/si
 @dirrmtry share/locale/rw/LC_MESSAGES
@@ -134,5 +134,7 @@ share/locale/zh_TW/LC_MESSAGES/vte.mo
 @dirrmtry share/locale/bn_IN
 @dirrmtry share/locale/be@latin/LC_MESSAGES
 @dirrmtry share/locale/be@latin
+@dirrmtry share/locale/as/LC_MESSAGES
+@dirrmtry share/locale/as
 @dirrmtry share/locale/ang/LC_MESSAGES
 @dirrmtry share/locale/ang
