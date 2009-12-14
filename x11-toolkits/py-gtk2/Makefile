@@ -1,16 +1,9 @@
-# New ports collection makefile for:	py-gtk2
-# Date created:				08/13/2002
-# Whom:					marc@informatik.uni-bremen.de
-#
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.2 2008/04/07 03:14:46 ctriv Exp $
-# $FreeBSD: ports/x11-toolkits/py-gtk2/Makefile,v 1.94 2007/07/10 21:31:06 mezz Exp $
-#   $MCom: ports/x11-toolkits/py-gtk2/Makefile,v 1.49 2006/10/03 20:52:30 ahze Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.3 2008/09/17 19:50:24 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.12.1
+PORTVERSION=	2.14.1
 CATEGORIES=	x11-toolkits python
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pygtk-${PORTVERSION}
@@ -28,7 +21,7 @@ RUN_DEPENDS=	${PYNUMERIC} \
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget libglade2
+USE_GNOME=	gnomehack libglade2
 USE_PYTHON=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
@@ -59,13 +52,15 @@ CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
 .endif
 .endif
 
-.if !defined(NOPORTDOCS)
 post-install:
+.if !defined(NOPORTEXAMPLES)
 	${MKDIR} ${EXAMPLESDIR}
 	${TAR} -C ${EG_SRC_DIR} -cf - . | ${TAR} -C ${EXAMPLESDIR} -xf -
 	${CHOWN} -R ${BINOWN}:${BINGRP} ${EXAMPLESDIR}
 	${FIND} ${EXAMPLESDIR} -type d -print | ${XARGS} ${CHMOD} 0555
 	${FIND} ${EXAMPLESDIR} -type f -print | ${XARGS} ${CHMOD} 0444
+.endif
+.if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/MAPPING ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/THREADS ${DOCSDIR}
