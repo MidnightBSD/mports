@@ -1,17 +1,10 @@
-# New ports collection makefile for:	py-gnome
-# Date created:				09 February 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.1 2007/12/28 04:49:38 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/py-gnome2/Makefile,v 1.93 2007/05/19 20:31:46 flz Exp $
-#   $MCom: ports/x11-toolkits/py-gnome2/Makefile,v 1.41 2007/03/12 19:06:44 mezz Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.2 2008/06/07 09:59:26 crash Exp $
 
 PORTNAME=	gnome
-PORTVERSION=	2.22.0
-PORTREVISION=	1
+PORTVERSION=	2.26.1
+PORTREVISION=	0
 CATEGORIES=	x11-toolkits python gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gnome-python/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	gnome-python-${PORTVERSION}
