@@ -2,11 +2,11 @@
 # Date created:        May 9 2008
 # Whom:                Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/irc/znc/Makefile,v 1.1 2008/05/10 01:23:14 laffer1 Exp $
+# $MidnightBSD: mports/irc/znc/Makefile,v 1.2 2008/11/06 20:54:56 ctriv Exp $
 #
 
 PORTNAME=	znc
-PORTVERSION=	0.054
+PORTVERSION=	0.074
 CATEGORIES=	irc ipv6
 MASTER_SITES=	SF
 
@@ -16,6 +16,9 @@ LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
+USE_GNOME=	gnomehack
+WANT_PERL=	yes
+CONFIGURE_ARGS=	--disable-c-ares
 
 OPTIONS=	DEBUG		"Enable debugging" off \
 		IPV6		"Enable IPv6 support" off \
@@ -58,6 +61,9 @@ PLIST_SUB+=		SASL=""
 .else
 PLIST_SUB+=		SASL="@comment "
 .endif
+
+MANCOMPREEED= yes
+MAN1=         znc.1.gz znc-buildmod.1.gz znc-config.1.gz
 
 .include <bsd.port.pre.mk>
 
