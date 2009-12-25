@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.10 2009/09/19 23:47:21 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.11 2009/10/18 00:20:32 crash Exp $
 
 PORTNAME=	atk
 PORTVERSION=	1.26.0
 PORTREVISION=	1
 CATEGORIES=	accessibility devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
