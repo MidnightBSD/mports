@@ -3,7 +3,7 @@
 # Date created:         23 February 1999
 # Whom:                 Joao Carlos Mendes Luis <jonny@jonny.eng.br>
 #
-# $MidnightBSD: mports/archivers/unace/Makefile,v 1.1 2006/09/18 00:27:26 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unace/Makefile,v 1.2 2008/03/12 01:57:39 laffer1 Exp $
 # $FreeBSD: ports/archivers/unace/Makefile,v 1.10 2006/08/12 13:06:26 erwin Exp $
 #
 
@@ -18,6 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test ACE archives
 LICENSE=	unknown
 
+MAKE_JOBS_UNSAFE=yes
 USE_GMAKE=	yes
 ALL_TARGET=	clean unace
 PLIST_FILES=	bin/unace
