@@ -1,28 +1,23 @@
 bin/file-roller
-lib/nautilus/extensions-2.0/libnautilus-fileroller.a
-lib/nautilus/extensions-2.0/libnautilus-fileroller.la
-lib/nautilus/extensions-2.0/libnautilus-fileroller.so
+%%NAUTILUS%%lib/nautilus/extensions-2.0/libnautilus-fileroller.la
+%%NAUTILUS%%lib/nautilus/extensions-2.0/libnautilus-fileroller.so
 libexec/file-roller/isoinfo.sh
 share/applications/file-roller.desktop
-%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
-%%PORTDOCS%%%%DOCSDIR%%/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/TODO
-%%DATADIR%%/glade/add-options.glade
-%%DATADIR%%/glade/batch-add-files.glade
-%%DATADIR%%/glade/batch-password.glade
-%%DATADIR%%/glade/delete.glade
-%%DATADIR%%/glade/open-with.glade
-%%DATADIR%%/glade/password.glade
-%%DATADIR%%/glade/properties.glade
-%%DATADIR%%/glade/update.glade
 %%DATADIR%%/icons/hicolor/16x16/actions/add-files-to-archive.png
 %%DATADIR%%/icons/hicolor/16x16/actions/add-folder-to-archive.png
 %%DATADIR%%/icons/hicolor/16x16/actions/extract-archive.png
 %%DATADIR%%/icons/hicolor/24x24/actions/add-files-to-archive.png
 %%DATADIR%%/icons/hicolor/24x24/actions/add-folder-to-archive.png
 %%DATADIR%%/icons/hicolor/24x24/actions/extract-archive.png
-%%DATADIR%%/icons/hicolor/24x24/actions/preview-file.png
+%%DATADIR%%/ui/add-options.ui
+%%DATADIR%%/ui/batch-add-files.ui
+%%DATADIR%%/ui/batch-password.ui
+%%DATADIR%%/ui/delete.ui
+%%DATADIR%%/ui/new.ui
+%%DATADIR%%/ui/open-with.ui
+%%DATADIR%%/ui/password.ui
+%%DATADIR%%/ui/properties.ui
+%%DATADIR%%/ui/update.ui
 share/gnome/help/file-roller/C/figures/file-roller_home.png
 share/gnome/help/file-roller/C/figures/file-roller_leftarrow.png
 share/gnome/help/file-roller/C/figures/file-roller_main_window.png
@@ -36,18 +31,42 @@ share/gnome/help/file-roller/bg/figures/file-roller_main_window.png
 share/gnome/help/file-roller/bg/figures/file-roller_rightarrow.png
 share/gnome/help/file-roller/bg/figures/file-roller_uparrow.png
 share/gnome/help/file-roller/bg/file-roller.xml
+share/gnome/help/file-roller/ca/figures/file-roller_home.png
+share/gnome/help/file-roller/ca/figures/file-roller_leftarrow.png
+share/gnome/help/file-roller/ca/figures/file-roller_main_window.png
+share/gnome/help/file-roller/ca/figures/file-roller_rightarrow.png
+share/gnome/help/file-roller/ca/figures/file-roller_uparrow.png
+share/gnome/help/file-roller/ca/file-roller.xml
 share/gnome/help/file-roller/de/figures/file-roller_home.png
 share/gnome/help/file-roller/de/figures/file-roller_leftarrow.png
 share/gnome/help/file-roller/de/figures/file-roller_main_window.png
 share/gnome/help/file-roller/de/figures/file-roller_rightarrow.png
 share/gnome/help/file-roller/de/figures/file-roller_uparrow.png
 share/gnome/help/file-roller/de/file-roller.xml
+share/gnome/help/file-roller/el/figures/file-roller_home.png
+share/gnome/help/file-roller/el/figures/file-roller_leftarrow.png
+share/gnome/help/file-roller/el/figures/file-roller_main_window.png
+share/gnome/help/file-roller/el/figures/file-roller_rightarrow.png
+share/gnome/help/file-roller/el/figures/file-roller_uparrow.png
+share/gnome/help/file-roller/el/file-roller.xml
+share/gnome/help/file-roller/en_GB/figures/file-roller_home.png
+share/gnome/help/file-roller/en_GB/figures/file-roller_leftarrow.png
+share/gnome/help/file-roller/en_GB/figures/file-roller_main_window.png
+share/gnome/help/file-roller/en_GB/figures/file-roller_rightarrow.png
+share/gnome/help/file-roller/en_GB/figures/file-roller_uparrow.png
+share/gnome/help/file-roller/en_GB/file-roller.xml
 share/gnome/help/file-roller/es/figures/file-roller_home.png
 share/gnome/help/file-roller/es/figures/file-roller_leftarrow.png
 share/gnome/help/file-roller/es/figures/file-roller_main_window.png
 share/gnome/help/file-roller/es/figures/file-roller_rightarrow.png
 share/gnome/help/file-roller/es/figures/file-roller_uparrow.png
 share/gnome/help/file-roller/es/file-roller.xml
+share/gnome/help/file-roller/fi/figures/file-roller_home.png
+share/gnome/help/file-roller/fi/figures/file-roller_leftarrow.png
+share/gnome/help/file-roller/fi/figures/file-roller_main_window.png
+share/gnome/help/file-roller/fi/figures/file-roller_rightarrow.png
+share/gnome/help/file-roller/fi/figures/file-roller_uparrow.png
+share/gnome/help/file-roller/fi/file-roller.xml
 share/gnome/help/file-roller/fr/figures/file-roller_home.png
 share/gnome/help/file-roller/fr/figures/file-roller_leftarrow.png
 share/gnome/help/file-roller/fr/figures/file-roller_main_window.png
@@ -90,14 +109,22 @@ share/gnome/help/file-roller/uk/figures/file-roller_main_window.png
 share/gnome/help/file-roller/uk/figures/file-roller_rightarrow.png
 share/gnome/help/file-roller/uk/figures/file-roller_uparrow.png
 share/gnome/help/file-roller/uk/file-roller.xml
+share/gnome/help/file-roller/vi/figures/file-roller_home.png
+share/gnome/help/file-roller/vi/figures/file-roller_leftarrow.png
+share/gnome/help/file-roller/vi/figures/file-roller_main_window.png
+share/gnome/help/file-roller/vi/figures/file-roller_rightarrow.png
+share/gnome/help/file-roller/vi/figures/file-roller_uparrow.png
+share/gnome/help/file-roller/vi/file-roller.xml
 share/icons/hicolor/16x16/apps/file-roller.png
 share/icons/hicolor/22x22/apps/file-roller.png
 share/icons/hicolor/24x24/apps/file-roller.png
 share/icons/hicolor/32x32/apps/file-roller.png
 share/icons/hicolor/scalable/apps/file-roller.svg
+share/locale/af/LC_MESSAGES/file-roller.mo
 share/locale/am/LC_MESSAGES/file-roller.mo
 share/locale/ar/LC_MESSAGES/file-roller.mo
 share/locale/as/LC_MESSAGES/file-roller.mo
+share/locale/ast/LC_MESSAGES/file-roller.mo
 share/locale/az/LC_MESSAGES/file-roller.mo
 share/locale/be/LC_MESSAGES/file-roller.mo
 share/locale/be@latin/LC_MESSAGES/file-roller.mo
@@ -121,6 +148,7 @@ share/locale/eu/LC_MESSAGES/file-roller.mo
 share/locale/fa/LC_MESSAGES/file-roller.mo
 share/locale/fi/LC_MESSAGES/file-roller.mo
 share/locale/fr/LC_MESSAGES/file-roller.mo
+share/locale/fur/LC_MESSAGES/file-roller.mo
 share/locale/ga/LC_MESSAGES/file-roller.mo
 share/locale/gl/LC_MESSAGES/file-roller.mo
 share/locale/gu/LC_MESSAGES/file-roller.mo
@@ -139,6 +167,7 @@ share/locale/ko/LC_MESSAGES/file-roller.mo
 share/locale/ku/LC_MESSAGES/file-roller.mo
 share/locale/lt/LC_MESSAGES/file-roller.mo
 share/locale/lv/LC_MESSAGES/file-roller.mo
+share/locale/mai/LC_MESSAGES/file-roller.mo
 share/locale/mg/LC_MESSAGES/file-roller.mo
 share/locale/mk/LC_MESSAGES/file-roller.mo
 share/locale/ml/LC_MESSAGES/file-roller.mo
@@ -153,6 +182,7 @@ share/locale/oc/LC_MESSAGES/file-roller.mo
 share/locale/or/LC_MESSAGES/file-roller.mo
 share/locale/pa/LC_MESSAGES/file-roller.mo
 share/locale/pl/LC_MESSAGES/file-roller.mo
+share/locale/ps/LC_MESSAGES/file-roller.mo
 share/locale/pt/LC_MESSAGES/file-roller.mo
 share/locale/pt_BR/LC_MESSAGES/file-roller.mo
 share/locale/ro/LC_MESSAGES/file-roller.mo
@@ -163,7 +193,7 @@ share/locale/sk/LC_MESSAGES/file-roller.mo
 share/locale/sl/LC_MESSAGES/file-roller.mo
 share/locale/sq/LC_MESSAGES/file-roller.mo
 share/locale/sr/LC_MESSAGES/file-roller.mo
-share/locale/sr@Latn/LC_MESSAGES/file-roller.mo
+share/locale/sr@latin/LC_MESSAGES/file-roller.mo
 share/locale/sr@ije/LC_MESSAGES/file-roller.mo
 share/locale/sv/LC_MESSAGES/file-roller.mo
 share/locale/ta/LC_MESSAGES/file-roller.mo
@@ -180,9 +210,13 @@ share/locale/zh_CN/LC_MESSAGES/file-roller.mo
 share/locale/zh_HK/LC_MESSAGES/file-roller.mo
 share/locale/zh_TW/LC_MESSAGES/file-roller.mo
 share/omf/file-roller/file-roller-C.omf
+share/omf/file-roller/file-roller-ca.omf
 share/omf/file-roller/file-roller-bg.omf
 share/omf/file-roller/file-roller-de.omf
+share/omf/file-roller/file-roller-el.omf
+share/omf/file-roller/file-roller-en_GB.omf
 share/omf/file-roller/file-roller-es.omf
+share/omf/file-roller/file-roller-fi.omf
 share/omf/file-roller/file-roller-fr.omf
 share/omf/file-roller/file-roller-it.omf
 share/omf/file-roller/file-roller-nl.omf
@@ -190,7 +224,10 @@ share/omf/file-roller/file-roller-oc.omf
 share/omf/file-roller/file-roller-ru.omf
 share/omf/file-roller/file-roller-sv.omf
 share/omf/file-roller/file-roller-uk.omf
+share/omf/file-roller/file-roller-vi.omf
 @dirrm share/omf/file-roller
+@dirrm share/gnome/help/file-roller/vi/figures
+@dirrm share/gnome/help/file-roller/vi
 @dirrm share/gnome/help/file-roller/uk/figures
 @dirrm share/gnome/help/file-roller/uk
 @dirrm share/gnome/help/file-roller/sv/figures
@@ -205,24 +242,31 @@ share/omf/file-roller/file-roller-uk.omf
 @dirrm share/gnome/help/file-roller/it
 @dirrm share/gnome/help/file-roller/fr/figures
 @dirrm share/gnome/help/file-roller/fr
+@dirrm share/gnome/help/file-roller/fi/figures
+@dirrm share/gnome/help/file-roller/fi
 @dirrm share/gnome/help/file-roller/es/figures
 @dirrm share/gnome/help/file-roller/es
+@dirrm share/gnome/help/file-roller/en_GB/figures
+@dirrm share/gnome/help/file-roller/en_GB
+@dirrm share/gnome/help/file-roller/el/figures
+@dirrm share/gnome/help/file-roller/el
 @dirrm share/gnome/help/file-roller/de/figures
 @dirrm share/gnome/help/file-roller/de
+@dirrm share/gnome/help/file-roller/ca/figures
+@dirrm share/gnome/help/file-roller/ca
 @dirrm share/gnome/help/file-roller/bg/figures
 @dirrm share/gnome/help/file-roller/bg
 @dirrm share/gnome/help/file-roller/C/figures
 @dirrm share/gnome/help/file-roller/C
 @dirrm share/gnome/help/file-roller
+@dirrm %%DATADIR%%/ui
 @dirrm %%DATADIR%%/icons/hicolor/24x24/actions
 @dirrm %%DATADIR%%/icons/hicolor/24x24
 @dirrm %%DATADIR%%/icons/hicolor/16x16/actions
 @dirrm %%DATADIR%%/icons/hicolor/16x16
 @dirrm %%DATADIR%%/icons/hicolor
 @dirrm %%DATADIR%%/icons
-@dirrm %%DATADIR%%/glade
 @dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
 @dirrmtry share/applications
 @dirrm libexec/file-roller
 @exec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
@@ -237,27 +281,37 @@ share/omf/file-roller/file-roller-uk.omf
 @dirrmtry share/locale/ur
 @dirrmtry share/locale/te/LC_MESSAGES
 @dirrmtry share/locale/te
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
 @dirrmtry share/locale/sr@ije/LC_MESSAGES
 @dirrmtry share/locale/sr@ije
 @dirrmtry share/locale/si/LC_MESSAGES
 @dirrmtry share/locale/si
 @dirrmtry share/locale/rw/LC_MESSAGES
 @dirrmtry share/locale/rw
+@dirrmtry share/locale/ps/LC_MESSAGES
+@dirrmtry share/locale/ps
 @dirrmtry share/locale/oc/LC_MESSAGES
 @dirrmtry share/locale/oc
 @dirrmtry share/locale/mr/LC_MESSAGES
 @dirrmtry share/locale/mr
 @dirrmtry share/locale/mg/LC_MESSAGES
 @dirrmtry share/locale/mg
+@dirrmtry share/locale/mai/LC_MESSAGES
+@dirrmtry share/locale/mai
 @dirrmtry share/locale/ku/LC_MESSAGES
 @dirrmtry share/locale/ku
 @dirrmtry share/locale/hy/LC_MESSAGES
 @dirrmtry share/locale/hy
+@dirrmtry share/locale/fur/LC_MESSAGES
+@dirrmtry share/locale/fur
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
 @dirrmtry share/locale/bn_IN/LC_MESSAGES
 @dirrmtry share/locale/bn_IN
 @dirrmtry share/locale/be@latin/LC_MESSAGES
 @dirrmtry share/locale/be@latin
+@dirrmtry share/locale/ast/LC_MESSAGES
+@dirrmtry share/locale/ast
 @dirrmtry share/locale/as/LC_MESSAGES
 @dirrmtry share/locale/as
