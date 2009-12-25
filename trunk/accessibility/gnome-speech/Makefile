@@ -1,17 +1,9 @@
-# New ports collection makefile for:	gnomespeech
-# Date created:			11 May 2003
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.5 2008/06/24 21:15:29 crash Exp $
-# $FreeBSD: ports/accessibility/gnome-speech/Makefile,v 1.32 2007/07/30 04:29:12 mezz Exp $
-#   $MCom: ports/accessibility/gnome-speech/Makefile,v 1.21 2006/08/22 00:55:57 ahze Exp $
-#
+# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.6 2009/10/19 18:28:14 crash Exp $
 
 PORTNAME=	gnome-speech
 PORTVERSION=	0.4.25
 CATEGORIES=	accessibility audio gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
