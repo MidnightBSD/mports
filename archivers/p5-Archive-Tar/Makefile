@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.4 2009/03/27 06:15:21 laffer1 Exp $
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	1.46
+PORTVERSION=	1.54
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -16,7 +16,6 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	YES
 
-MAN1=		ptardiff.1 ptar.1
 MAN3=		Archive::Tar.3 Archive::Tar::File.3
 
 OPTIONS=	TEXT_DIFF "Text::Diff support for ptardiff" off
@@ -33,6 +32,19 @@ RUN_DEPENDS+=	p5-Package-Constants>=0:${PORTSDIR}/devel/p5-Package-Constants
 
 .if ${PERL_LEVEL} < 500903
 RUN_DEPENDS+=	p5-IO-Zlib>=1.01:${PORTSDIR}/archivers/p5-IO-Zlib
+.endif
+
+.if ${PERL_LEVEL} >= 501000
+PLIST_SUB+=	EXE_FILES="@comment "
+.else
+PLIST_SUB+=	EXE_FILES=""
+MAN1=		ptardiff.1 ptar.1
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's/5.009/5.666/' ${WRKSRC}/Makefile.PL
+.if ${PERL_LEVEL} >= 501000
+	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
 .endif
 
 .include <bsd.port.post.mk>
