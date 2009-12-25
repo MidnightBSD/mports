@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tnftp
-# Date created:				28 Jan 2004
-# Whom:					Tom McLaughlin <tmclaugh@sdf.lonestar.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/ftp/tnftp/Makefile,v 1.10 2007/08/11 05:32:15 tmclaugh Exp $
-#
+# $MidnightBSD: mports/ftp/tnftp/Makefile,v 1.1 2008/09/30 23:21:39 laffer1 Exp $
 
 PORTNAME=	tnftp
 PORTVERSION=	20070806
