@@ -1,21 +1,27 @@
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.8 2008/09/30 23:46:13 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.9 2009/03/27 05:43:06 laffer1 Exp $
 
 PORTNAME=	tar
 PORTVERSION=	1.22
+PORTREVISION=	1
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 PKGNAMEPREFIX=	g
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	GNU version of the traditional tar archiver
+COMMENT=	GNU version of the traditional tape archiver
 LICENSE=	gpl3
+
+RUN_DEPENDS=	lzop:${PORTSDIR}/archivers/lzop \
+		xz:${PORTSDIR}/archivers/xz
 
 INFO=		tar
 
+USE_AUTOTOOLS=	autoconf:262:env	# autom4te
 USE_BZIP2=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--program-prefix=g --infodir=${PREFIX}/${INFO_PATH}
 CONFIGURE_ENV=	CPPFLAGS='-I${LOCALBASE}/include' \
 		LDFLAGS='-L${LOCALBASE}/lib ${LDSTATIC}' \
@@ -36,11 +42,7 @@ CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
 
-# avoid auto framework rebuilds
-#post-patch:
-#	@${TOUCH} -r ${WRKSRC}/configure.orig ${WRKSRC}/configure
-
-test: build
-	@cd ${WRKSRC} && ${MAKE} check
+regression-test: build
+	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
 .include <bsd.port.mk>
