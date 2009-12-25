@@ -1,13 +1,7 @@
-# New ports collection makefile for:	IO::Zlib
-# Date created:		15 Feb 2002
-# Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
-#
-# $MidnightBSD: mports/archivers/p5-IO-Zlib/Makefile,v 1.6 2008/10/03 19:06:43 laffer1 Exp $
-# $FreeBSD: ports/archivers/p5-IO-Zlib/Makefile,v 1.6 2006/12/03 12:45:57 demon Exp $
-#
+# $MidnightBSD: mports/archivers/p5-IO-Zlib/Makefile,v 1.7 2008/10/10 18:19:10 ctriv Exp $
 
 PORTNAME=	IO-Zlib
-PORTVERSION=	1.09
+PORTVERSION=	1.10
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	IO
