@@ -1,21 +1,16 @@
-# New ports collection makefile for:	ARJ archiver
-# Date created:			9 April 2002
-# Whom:				Konstantin Reznichenko <kot@premierbank.dp.ua>
-#
-# $MidnightBSD: mports/archivers/arj/Makefile,v 1.4 2008/09/30 23:26:58 laffer1 Exp $
-# $FreeBSD: ports/archivers/arj/Makefile,v 1.21 2006/05/03 05:14:00 edwin Exp $
-#
+# $MidnightBSD: mports/archivers/arj/Makefile,v 1.5 2008/09/30 23:28:43 laffer1 Exp $
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.78_3.10%20build%2022
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source ARJ
 LICENSE=	gpl2
+
+MAKE_JOBS_UNSAFE=yes
 
 USE_AUTOTOOLS=	autoconf:262
 USE_GMAKE=	yes
@@ -29,11 +24,12 @@ MAKE_ENV+=	"LOCALE=${LANGUAGE}"
 
 MAN1=		arj-register.1 arj.1 arjdisp.1 rearj.1
 
-post-extract:
+post-patch:
 	@${REINPLACE_CMD} -e 's!/etc!${LOCALBASE}/etc!' \
 		 ${WRKSRC}/arj.c ${WRKSRC}/file_reg.c ${WRKSRC}/rearj.c
 	@${REINPLACE_CMD} -e 's!-O2!!' ${WRKSRC}/gnu/configure.in
 	@${REINPLACE_CMD} -e 's!^static !!' ${WRKSRC}/integr.c
+	@${REINPLACE_CMD} -e 's!strnlen!_strnlen!g' ${WRKSRC}/fardata.c
 
 pre-build:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} prepare)
