@@ -1,17 +1,10 @@
-# New ports collection makefile for:    arc
-# Date created:         31 Dec 1994
-# Whom:                 ache
-#
-# $MidnightBSD: mports/archivers/arc/Makefile,v 1.1 2006/09/17 23:39:10 laffer1 Exp $
-# $FreeBSD: ports/archivers/arc/Makefile,v 1.21 2006/08/23 04:05:08 ache Exp $
-#
+# $MidnightBSD: mports/archivers/arc/Makefile,v 1.2 2008/03/11 23:40:21 laffer1 Exp $
 
 PORTNAME=	arc
 PORTVERSION=	5.21o
 PORTREVISION=	1
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
