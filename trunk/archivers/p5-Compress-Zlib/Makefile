@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/archivers/p5-Compress-Zlib/Makefile,v 1.7 2008/10/10 18:13:28 ctriv Exp $
+# $MidnightBSD: mports/archivers/p5-Compress-Zlib/Makefile,v 1.8 2009/03/27 06:15:22 laffer1 Exp $
 
 PORTNAME=	Compress-Zlib
 PORTVERSION=	2.015
 CATEGORIES=	archivers perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Compress
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
