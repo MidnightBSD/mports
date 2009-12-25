@@ -1,16 +1,9 @@
-# New ports collection makefile for:    zip
-# Date created:		22 Dec 1994
-# Whom:			ache
-#
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/zip/Makefile,v 1.38 2008/08/03 03:23:28 ache Exp $
-#
+# $MidnightBSD: mports/archivers/zip/Makefile,v 1.3 2008/10/02 00:59:58 laffer1 Exp $
 
 PORTNAME=	zip
 PORTVERSION=	3.0
 CATEGORIES=	archivers
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	infozip
+MASTER_SITES=	SF/info${PORTNAME}/Zip%203.x%20%28latest%29/${PORTVERSION}
 DISTFILES=	${PORTNAME}30${EXTRACT_SUFX}
 USE_ZIP=	yes
 
