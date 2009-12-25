@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.7 2009/01/25 19:53:09 crash Exp $
+# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.8 2009/03/27 05:52:18 laffer1 Exp $
 
 PORTNAME=	p7zip
-PORTVERSION=	4.65
+PORTVERSION=	9.04
 CATEGORIES=	archivers
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
@@ -14,6 +14,7 @@ USE_BZIP2=	yes
 MAKEFILE=	makefile
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
 MAN1=		7z.1 7za.1 7zr.1 p7zip.1
+MAKE_JOBS_UNSAFE=	yes
 
 DLLDIR=		${PREFIX}/libexec/p7zip
 PLIST_SUB=	MODULES=""
@@ -47,7 +48,7 @@ post-patch:
 
 do-install:
 	${INSTALL} -d ${DLLDIR}/
-	${INSTALL_PROGRAM} ${7ZBIN:S|^|${WRKSRC}/bin/|} ${DLLDIR}/
+	cd ${WRKSRC}/bin/&&${INSTALL_PROGRAM} ${7ZBIN} ${DLLDIR}/
 	${INSTALL_SCRIPT} ${FILESDIR}/7z ${PREFIX}/bin/
 	${LN} -sf 7z ${PREFIX}/bin/7za
 	${LN} -sf 7z ${PREFIX}/bin/7zr
@@ -58,15 +59,8 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/7z.so ${DLLDIR}/
 .endif
 .if !defined(NOPORTDOCS)
-	@${INSTALL} -d ${DOCSDIR}/
-#	@cd ${WRKSRC}/DOCS/&&${COPYTREE_SHARE} \* ${DOCSDIR}/
-	${PAX} -rw -s,${WRKSRC}/DOCS,, ${WRKSRC}/DOCS ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/DOCS/readme.unix ${DOCSDIR}/readme.unix
-	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
-	${FIND} ${DOCSDIR} -type d | ${XARGS} ${CHMOD} 755
-	${FIND} ${DOCSDIR} -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
-
+	@cd ${WRKSRC}/DOCS/&&${COPYTREE_SHARE} . ${DOCSDIR}/
 .endif
-	${INSTALL_MAN} ${MAN1:S,^,${WRKSRC}/man1/,} ${MAN1PREFIX}/man/man1/
+	@cd ${WRKSRC}/man1/&&${INSTALL_MAN} ${MAN1} ${MAN1PREFIX}/man/man1/
 
 .include <bsd.port.post.mk>
