@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.6 2008/03/21 02:55:01 ctriv Exp $
+# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.7 2009/03/27 06:03:00 laffer1 Exp $
 #
 
 PORTNAME=	unzoo
@@ -17,6 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A zoo archive extractor
 LICENSE=	publicdom
 
+MAKE_JOBS_SAFE=	yes
 EXTRA_DEFINES=	-DSYS_IS_UNIX -DSYS_HAS_MKDIR
 
 MAN1=		unzoo.1
