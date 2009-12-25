@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.5 2009/09/19 23:44:50 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.6 2009/10/18 19:45:54 crash Exp $
 
 PORTNAME=	at-spi
 PORTVERSION=	1.26.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	accessibility x11-toolkits
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -26,7 +25,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-                GCONF_SCHEMAS= at-spi.schemas
+GCONF_SCHEMAS=	at-spi.schemas
+
 post-extract:
 	@${RM} -f ${WRKSRC}/registryd/Accessibility_Registry.server
 
