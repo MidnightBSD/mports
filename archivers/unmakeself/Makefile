@@ -2,7 +2,7 @@
 # Date created:			31 Mar 2005
 # Whom:				Jean-Yves Lefort <jylefort@brutele.be>
 #
-# $MidnightBSD: mports/archivers/unmakeself/Makefile,v 1.1 2007/09/19 18:29:57 laffer1 Exp $
+# $MidnightBSD: mports/archivers/unmakeself/Makefile,v 1.2 2008/10/01 00:03:25 laffer1 Exp $
 # $FreeBSD: ports/archivers/unmakeself/Makefile,v 1.7 2007/08/04 11:40:38 gabor Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract Makeself archives
 LICENSE=	bsd3
 
-LDFLAGS=	-larchive -lbz2 -lz
+LDFLAGS=	-larchive -lbz2 -lz -lcrypto -lmd
 NO_WRKSUBDIR=	yes
 
 PLIST_FILES=	bin/unmakeself
