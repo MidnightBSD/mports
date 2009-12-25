@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.5 2009/06/29 16:51:12 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.6 2009/09/20 01:55:59 laffer1 Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.23
+PORTVERSION=	0.10.24
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/ \
 		GNOME
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
-CFLAGS:=	${CFLAGS} -O2
+CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BISON=	build
 USE_XORG=	x11 xv xext videoproto xextproto
 USE_BZIP2=	yes
@@ -23,10 +23,8 @@ USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--disable-tests \
 		--disable-examples \
-		--disable-docs-build \
 		--disable-failing-tests \
-		--disable-gtk-doc \
-		--mandir=${PREFIX}/man
+		--disable-gtk-doc
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib" \
 		ac_cv_func_register_printf_function="no" \
