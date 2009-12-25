@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/ftp/proftpd/files/proftpd.sh.in,v 1.3 2006/02/20 20:47:00 dougb Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: proftpd
 # REQUIRE: DAEMON
@@ -11,7 +10,8 @@
 #
 # Add the following lines to /etc/rc.conf to enable proftpd:
 #
-#proftpd_enable="YES"
+# proftpd_enable="YES"
+# proftpd_flags="<set as needed>"
 #
 # See proftpd(8) for flags
 #
@@ -35,7 +35,6 @@ stop_postcmd()
 # set defaults
 
 proftpd_enable=${proftpd_enable:-"NO"}
-proftpd_flags=${proftpd_flags:-""}
 
 extra_commands="reload"
 
