@@ -1,11 +1,4 @@
-# ex:ts=8
-# New ports collection makefile for:	zipios
-# Date created:			Jul 23, 2001
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.3 2008/03/22 05:00:20 ctriv Exp $
-# $FreeBSD: ports/archivers/zipios++/Makefile,v 1.14 2006/08/14 09:56:58 clsung Exp $
-#
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.4 2009/06/11 00:13:13 laffer1 Exp $
 
 PORTNAME=	zipios++
 PORTVERSION=	0.1.5.9
@@ -20,7 +13,7 @@ LICENSE=	gpl2
 USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	automake:19:env
+USE_AUTOTOOLS=	automake:110:env
 CONFIGURE_ARGS+=--disable-static
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}+cvs.2004.02.07
