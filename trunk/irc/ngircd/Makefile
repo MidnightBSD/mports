@@ -1,10 +1,4 @@
-# New ports collection makefile for: 	ngircd
-# Date created:        1 May CEST 2003
-# Whom:                Kirill Ponomarew <ponomarew@oberon.net>
-#
-# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.2 2007/08/30 19:11:25 laffer1 Exp $
-# $FreeBSD: ports/irc/ngircd/Makefile,v 1.23 2006/02/13 16:56:11 mnag Exp $
-#
+# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.3 2007/08/30 19:12:13 laffer1 Exp $
 
 PORTNAME=	ngircd
 PORTVERSION=	0.10.1
@@ -18,7 +12,7 @@ LICENSE=	gpl2
 
 USE_RC_SUBR=	ngircd
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
 
