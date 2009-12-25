@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.4 2008/06/14 14:41:22 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.5 2009/09/19 23:54:59 laffer1 Exp $
 
 PORTNAME=	orca
-PORTVERSION=	2.22.2
+PORTVERSION=	2.26.3
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -10,18 +11,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Scriptable screen reader
 LICENSE=	lgpl
 
+BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus
 LIB_DEPENDS=	gnome-mag.2:${PORTSDIR}/accessibility/gnome-mag
-BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus
 
 LATEST_LINK=	gnome-orca
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_PYTHON=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack libgnomeui atspi gnomespeech pygnome2
+USE_GNOME=	gnomeprefix gnomehack libgnomeui atspi gnomespeech pygnome2 \
+		pygnomedesktop
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
