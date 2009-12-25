@@ -2,25 +2,21 @@
 # Date created:				Mon Jan  1 09:33:13 2001
 # Whom:					will
 #
-# $MidnightBSD: mports/archivers/p5-Archive-Zip/Makefile,v 1.3 2008/03/12 01:45:58 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Archive-Zip/Makefile,v 1.4 2008/10/10 18:16:45 ctriv Exp $
 # $FreeBSD: ports/archivers/p5-Archive-Zip/Makefile,v 1.28 2006/12/03 12:45:56 demon Exp $
 #
 
 PORTNAME=	Archive-Zip
-PORTVERSION=	1.23
+PORTVERSION=	1.30
 CATEGORIES=	archivers perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Archive
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module to create, manipulate, read, and write Zip archive files
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Compress/Zlib.pm:${PORTSDIR}/archivers/p5-Compress-Zlib \
-		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp \
-		p5-File-Which>=0:${PORTSDIR}/sysutils/p5-File-Which
+BUILD_DEPENDS=	p5-Compress-Zlib>=1.14:${PORTSDIR}/archivers/p5-Compress-Zlib
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
