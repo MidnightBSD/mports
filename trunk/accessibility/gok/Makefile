@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.4 2008/06/14 14:39:38 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.5 2009/09/19 23:51:10 laffer1 Exp $
 
 PORTNAME=	gok
-PORTVERSION=	1.3.7
-PORTREVISION=	2
+PORTVERSION=	2.26.0
 PORTEPOCH=	1
 CATEGORIES=	accessibility sysutils gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +13,6 @@ LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 INSTALLS_OMF=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack libgnomeui atspi libwnck \
 		gnomespeech
