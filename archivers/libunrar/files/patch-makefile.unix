@@ -39,8 +39,6 @@
 +	@rm -f libunrar.a
 +	$(AR) rc libunrar.a $(OBJECTS) $(LIB_OBJ) $(UNRAR_OBJ)
 +	$(RANLIB) libunrar.a
-
+ 
  install-unrar:
-
-                        install unrar $(DESTDIR)/bin
-
+ 			install unrar $(DESTDIR)/bin

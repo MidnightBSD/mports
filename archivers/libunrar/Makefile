@@ -1,13 +1,7 @@
-# New ports collection makefile for:    unrar
-# Date created:				23 Sep 2005
-# Whom:					samm@os2.kiev.ua
-#
-# $FreeBSD: ports/archivers/libunrar/Makefile,v 1.8 2006/09/28 12:18:55 barner Exp $
-# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.5 2008/12/09 19:41:20 crash Exp $
-#
+# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.6 2009/09/24 21:36:36 crash Exp $
 
 PORTNAME=	libunrar
-PORTVERSION=	3.9.5
+PORTVERSION=	3.9.6
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
