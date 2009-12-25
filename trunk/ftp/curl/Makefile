@@ -1,16 +1,9 @@
-# New ports collection makefile for:	curl
-# Date created:		12 December 1998
-# Whom:			Neil Blakey-Milner <nbm@rucus.ru.ac.za>
-#
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.7 2008/10/29 20:06:08 ctriv Exp $
-# $FreeBSD: ports/ftp/curl/Makefile,v 1.85 2007/03/09 14:45:31 roam Exp $
-#
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.8 2009/03/05 02:34:05 laffer1 Exp $
 
 PORTNAME=	curl
-PORTVERSION=	7.19.4
+PORTVERSION=	7.19.7
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
-		${MASTER_SITE_SOURCEFORGE} \
 		ftp://ftp.sunet.se/pub/www/utilities/curl/ \
 		ftp://ftp.fu-berlin.de/pub/unix/network/curl/ \
 		ftp://crydee.sai.msu.ru/zeus/unix/WWW/tools/mirror/
@@ -52,7 +45,7 @@ PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
 USE_PERL5_BUILD=	yes
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--mandir=${PREFIX}/man
 
 OPTIONS=	CARES "Asynchronous DNS resolution via c-ares" off \
@@ -104,7 +97,7 @@ CONFIGURE_ARGS+=	--without-ssl
 .endif
 
 .if defined(WITH_CARES)
-LIB_DEPENDS+=	cares.1:${PORTSDIR}/dns/c-ares
+LIB_DEPENDS+=	cares.2:${PORTSDIR}/dns/c-ares
 CONFIGURE_ARGS+=	--enable-ares=${LOCALBASE}
 .else
 CONFIGURE_ARGS+=	--disable-ares
