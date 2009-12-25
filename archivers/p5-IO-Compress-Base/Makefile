@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p5-IO-Compress-Base/Makefile,v 1.8 2008/10/10 17:59:28 ctriv Exp $
+# $MidnightBSD: mports/archivers/p5-IO-Compress-Base/Makefile,v 1.9 2009/06/27 15:57:55 laffer1 Exp $
 
 PORTNAME=	IO-Compress-Base
 PORTVERSION=	2.015
@@ -15,5 +15,7 @@ PERL_CONFIGURE=	YES
 MAN3=		IO::Uncompress::AnyUncompress.3 IO::Uncompress::Base.3 \
 		File::GlobMapper.3 IO::Compress::Base.3
 
-.include <bsd.port.mk>
+post-patch:
+	@${REINPLACE_CMD} -e 's/5.009/5.666/' ${WRKSRC}/Makefile.PL
 
+.include <bsd.port.mk>
