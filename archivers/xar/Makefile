@@ -2,14 +2,14 @@
 # Date created:		24 January 2005
 # Whom:			Jeffrey H. Johnson <CPE1704TKS@bellsouth.net>
 #
-# $MidnightBSD: mports/archivers/xar/Makefile,v 1.2 2008/02/22 04:55:43 laffer1 Exp $
+# $MidnightBSD: mports/archivers/xar/Makefile,v 1.3 2008/03/12 01:59:22 laffer1 Exp $
 # $FreeBSD: ports/archivers/xar/Makefile,v 1.3 2006/12/13 12:41:19 roam Exp $
 #
 
 PORTNAME=	xar
 PORTVERSION=	1.5.2
 CATEGORIES=	archivers
-MASTER_SITES=	http://xar.googlecode.com/files/ \
+MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
 
