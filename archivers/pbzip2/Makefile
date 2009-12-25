@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.5 2008/09/30 23:59:52 laffer1 Exp $
+# $MidnightBSD: mports/archivers/pbzip2/Makefile,v 1.6 2009/01/25 20:03:27 crash Exp $
 
 PORTNAME=	pbzip2
 PORTVERSION=	1.0.5
@@ -15,6 +15,8 @@ MAN1=		pbzip2.1
 MLINKS=		pbzip2.1 pbunzip2.1
 
 USE_GMAKE=  YES
+MAKE_JOBS_SAFE=	yes
+
 post-patch:
 	@${REINPLACE_CMD} \
 		-e 's,-pthread -lpthread,${PTHREAD_LIBS},g; \
