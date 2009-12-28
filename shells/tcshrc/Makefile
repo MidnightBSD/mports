@@ -1,26 +1,23 @@
-# New ports collection makefile for:	tcshrc
-# Date created:		2003-09-09
-# Whom:			Sean Chittenden <seanc@FreeBSD.org>
-#
-# $MidnightBSD: mports/shells/tcshrc/Makefile,v 1.1 2006/09/18 19:00:09 laffer1 Exp $
-# $FreeBSD: ports/shells/tcshrc/Makefile,v 1.4 2006/05/13 04:15:22 edwin Exp $
-#
+# $MidnightBSD: mports/shells/tcshrc/Makefile,v 1.2 2007/05/17 18:36:11 ctriv Exp $
 
 PORTNAME=	tcshrc
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.2
 CATEGORIES=	shells
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	tcshrc
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of configuration scripts for the TCSH shell
+LICENSE=	gpl2
+
+WRKSRC=		${WRKDIR}/${PORTNAME}
+
+NO_BUILD=	yes
 
 INSTALL_TARGET=	systeminstall
-MAKE_ARGS=	BIN=${FAKE_DESTDIR}${PREFIX}/bin SHARETCSHRC=${FAKE_DESTDIR}${DATADIR}
+MAKE_ARGS=	BIN=${FAKE_DESTDIR}${LOCALBASE}/bin SHARETCSHRC=${FAKE_DESTDIR}${DATADIR}
 
-WRKSRC=	${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-do-build:
-	${REINPLACE_CMD} -e 's#/usr/share#${PREFIX}/share#g' ${WRKSRC}/tcshrc_config
+post-patch:
+	@${REINPLACE_CMD} -e 's#/usr/share#${PREFIX}/share#g' \
+		${WRKSRC}/tcshrc_config
 
 .include <bsd.port.mk>
