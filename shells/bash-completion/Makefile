@@ -1,14 +1,8 @@
-# New ports collection makefile for:	bash_completion
-# Date created:				29 May 2003
-# Whom:					kirk@strauser.com
-#
-# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.3 2008/04/29 04:57:08 laffer1 Exp $
-# $FreeBSD: ports/shells/bash-completion/Makefile,v 1.14 2006/03/15 14:31:33 mnag Exp $
-#
+# $MidnightBSD: mports/shells/bash-completion/Makefile,v 1.4 2009/03/30 15:10:29 laffer1 Exp $
 
 PORTNAME=	bash-completion
 PORTVERSION=	20060301
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	shells
 MASTER_SITES=	http://www.caliban.org/files/bash/
 
@@ -40,7 +34,8 @@ post-patch:
 		s|/usr/share\(/ssl/openssl.cnf\)|/etc\1|g; \
 		s|/usr/ports|${PORTSDIR}|g; \
 		s|/usr/lib\(/aspell\)|${LOCALBASE}/share\1|g; \
-		s|/usr/share/info|&:${LOCALBASE}/info|g' \
+		s|/usr/share/info|&:${LOCALBASE}/info|g; \
+		s|\(FLAC\)|\1\|flv\|FLV|' \
 		${WRKSRC}/bash_completion
 
 do-install:
