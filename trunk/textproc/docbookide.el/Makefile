@@ -2,7 +2,7 @@
 # Date created:		2 July 2002
 # Whom:			Sean Chittenden <seanc@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbookide.el/Makefile,v 1.1 2006/09/25 16:08:25 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbookide.el/Makefile,v 1.3 2003/03/07 06:11:39 ade Exp $
 #
 
@@ -14,6 +14,7 @@ DISTNAME=	docbookide01
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Emacs lisp modules for editing DocBook documents
+LICENSE=	gpl2
 
 USE_ZIP=	yes
 WRKSRC=		${WRKDIR}/docbookide
