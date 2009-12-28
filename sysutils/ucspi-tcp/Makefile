@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ucspi-tcp
-# Date created:		12 June 1998
-# Whom:			Dom Mitchell <dom@happygiraffe.net>
-#
-# $FreeBSD: ports/sysutils/ucspi-tcp/Makefile,v 1.27 2006/09/03 17:36:37 kris Exp $
-# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.2 2008/06/05 18:26:29 laffer1 Exp $
-#
+# $MidnightBSD: mports/sysutils/ucspi-tcp/Makefile,v 1.3 2008/11/07 17:59:15 ctriv Exp $
 
 PORTNAME=	ucspi-tcp
 PORTVERSION=	0.88
@@ -17,6 +11,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command-line tools for building TCP client-server applications
+LICENSE=	restricted
 
 OPTIONS=	MAN "Install man(1) pages" on \
 		RSS_DIFF "Patch rblsmtpd for qmail users" off \
@@ -24,8 +19,8 @@ OPTIONS=	MAN "Install man(1) pages" on \
 		RBL2SMTPD "Don't drop connection, pass envvar to smtpd" off
 
 RESTRICTED=	Unsure of djb's license
-# '
 
+MAKE_JOBS_SAFE=	yes
 ALL_TARGET=	prog install instcheck
 
 SCRIPTS_ENV=	BINOWN="${BINOWN}" BINGRP="${BINGRP}" BINMODE="${BINMODE}" \
