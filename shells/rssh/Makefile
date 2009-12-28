@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/rssh/Makefile,v 1.2 2007/05/17 18:27:27 ctriv Exp $
+# $MidnightBSD: mports/shells/rssh/Makefile,v 1.3 2009/12/28 20:37:06 laffer1 Exp $
 
 PORTNAME=	rssh
 PORTVERSION=	2.3.2
@@ -7,6 +7,8 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Restricted Secure SHell only for sftp or/and scp
+LICENSE=	other
+# slightly modified bsd license
 
 GNU_CONFIGURE=	yes
 
