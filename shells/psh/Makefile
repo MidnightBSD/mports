@@ -1,10 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/perlsh/Makefile,v 1.4 2009/04/08 21:12:51 laffer1 Exp $
 
-PORTNAME=	perlsh
+PORTNAME=	psh
 PORTVERSION=	1.8
 CATEGORIES=	shells perl5
 MASTER_SITES=	http://www.cpan.org/authors/id/G/GR/GREGOR/
-DISTNAME=	psh-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	New shell made entirely out of a Perl script
