@@ -1,10 +1,4 @@
-# Ports collection Makefile for:	esh
-# Date created:				05/20/1999
-# Whom:					nectar@FreeBSD.org
-#
-# $MidnightBSD: mports/shells/esh/Makefile,v 1.1 2006/09/18 01:40:03 laffer1 Exp $
-# $FreeBSD: ports/shells/esh/Makefile,v 1.18 2005/04/25 17:08:32 vs Exp $
-#
+# $MidnightBSD: mports/shells/esh/Makefile,v 1.2 2007/05/17 17:29:26 ctriv Exp $
 
 PORTNAME=	esh
 PORTVERSION=	0.8.5
@@ -14,6 +8,7 @@ MASTER_SITES=	http://gd.tuwien.ac.at/opsys/linux/gentoo/distfiles/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The "easy shell", a small shell with Lisp-like syntax
+LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/esh
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -I/usr/include/readline"
