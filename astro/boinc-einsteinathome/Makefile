@@ -2,7 +2,7 @@
 # Date created:				20 February 2006
 # Whom:					Rene Ladan <r.c.ladan@student.tue.nl>
 #
-# $MidnightBSD: mports/astro/boinc-einsteinathome/Makefile,v 1.1 2008/10/02 14:35:57 laffer1 Exp $
+# $MidnightBSD: mports/astro/boinc-einsteinathome/Makefile,v 1.2 2008/10/03 19:16:34 laffer1 Exp $
 # $FreeBSD: ports/astro/boinc-einsteinathome/Makefile,v 1.11 2008/06/06 13:02:55 edwin Exp $
 #
 
@@ -19,6 +19,7 @@ LICENSE=	unknown
 .include <bsd.port.pre.mk>
 
 ONLY_FOR_ARCHS=	i386 amd64
+IGNORE=		out of work units.
 
 BUILD_DEPENDS+=	${RUN_DEPENDS}
 LIB_DEPENDS+=	c.5:${PORTSDIR}/misc/compat5x
