@@ -1,16 +1,9 @@
-# New ports collection makefile for:   wapsh
-# Date created:        13 January 2001
-# Whom:                George Reid <greid@ukug.uk.freebsd.org>
-#
-# $MidnightBSD: mports/shells/wapsh/Makefile,v 1.1 2006/09/18 19:45:29 laffer1 Exp $
-# $FreeBSD: ports/shells/wapsh/Makefile,v 1.16 2006/06/19 20:06:57 shaun Exp $
-#
+# $MidnightBSD: mports/shells/wapsh/Makefile,v 1.2 2007/05/17 18:48:19 ctriv Exp $
 
 PORTNAME=	wapsh
 PORTVERSION=	1.0.1
 CATEGORIES=	shells
-MASTER_SITES=	http://www.exolution.de/geschaeft/produkte/wapsh/ \
-		http://mirror.inerd.com/FreeBSD/distfiles/${PORTNAME}/
+MASTER_SITES=	http://www.exolution.de/geschaeft/produkte/wapsh/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
