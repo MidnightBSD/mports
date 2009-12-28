@@ -2,15 +2,15 @@
 # Date created:		2000/08/12
 # Whom:			Marcin Cieslak
 #
-# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.1 2008/10/06 19:13:55 laffer1 Exp $
+# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.2 2008/10/13 17:43:57 laffer1 Exp $
 # $FreeBSD: ports/textproc/xerces-j/Makefile,v 1.24 2008/06/06 14:05:07 edwin Exp $
 #
 
 PORTNAME=	xerces-j
-PORTVERSION=	2.9.0
+PORTVERSION=	2.9.1
 CATEGORIES=	textproc java
-MASTER_SITES=	${MASTER_SITE_APACHE_XML}
-MASTER_SITE_SUBDIR=	xerces-j/source
+MASTER_SITES=	${MASTER_SITE_APACHE}
+MASTER_SITE_SUBDIR=	xerces/j
 DISTFILES=	Xerces-J-src.${PORTVERSION}${EXTRACT_SUFX} Xerces-J-tools.${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
