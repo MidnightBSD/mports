@@ -1,19 +1,14 @@
-# New ports collection makefile for:    memtest
-# Date created:         18 Jun 2000
-# Whom:			Mario S F Ferreira <lioux@linf.unb.br> et al.
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/memtest/Makefile,v 1.12 2006/05/25 01:35:24 clsung Exp $
-#
+# $MidnightBSD: mports/sysutils/memtest/Makefile,v 1.1 2006/10/28 05:33:42 laffer1 Exp $
 
 PORTNAME=	memtest
-PORTVERSION=	4.0.5
+PORTVERSION=	4.0.8
 CATEGORIES=	sysutils
-MASTER_SITES=	http://pyropus.ca/software/${PORTNAME}er/
+MASTER_SITES=	http://pyropus.ca/software/${PORTNAME}er/old-versions/
 DISTNAME=	${PORTNAME}er-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to test for faulty memory subsystem
+LICENSE=	gpl2
 
 MAN8=		${PORTNAME}.8
 PLIST_FILES=	bin/memtest
