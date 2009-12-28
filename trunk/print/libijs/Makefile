@@ -1,10 +1,4 @@
-# New ports collection makefile for:	hpijs
-# Date created:		1 May 2002
-# Whom:			ports@FreeBSD.org
-#
-# $MidnightBSD: mports/print/libijs/Makefile,v 1.1 2007/09/01 08:16:19 laffer1 Exp $
-# $FreeBSD: ports/print/libijs/Makefile,v 1.12 2006/08/15 00:56:23 clsung Exp $
-#
+# $MidnightBSD: mports/print/libijs/Makefile,v 1.2 2009/09/20 02:16:41 laffer1 Exp $
 
 PORTNAME=	libijs
 PORTVERSION=	0.35
@@ -16,7 +10,9 @@ DIST_SUBDIR=	ghostscript
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C library that supports plugin printer driver for Ghostscript
+LICENSE=	mit
 
+MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnometarget lthack pkgconfig
 USE_GMAKE=	yes
