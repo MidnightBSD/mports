@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-#	$FreeBSD: ports/security/cyrus-sasl2-saslauthd/pkg-deinstall,v 1.1 2003/07/20 06:29:25 ume Exp $
-#
+# $MidnightBSD$
 
 PKG_BATCH=${BATCH:=NO}
 PKG_PREFIX=${PKG_PREFIX:=/usr/local}
