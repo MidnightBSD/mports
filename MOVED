@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.5 2009/12/28 17:48:02 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.6 2009/12/28 20:21:41 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -29,3 +29,4 @@ www/firefox|www/browser|2009-06-27|We must ship unbranded firefox.
 security/ca-roots||2009-12-28|Makes certain false security guarantees
 security/cyrus-sasl||2009-12-28|Old, insecure, and dead.
 shells/mudsh||2009-12-28|Project disappeared from the Internet.
+shells/perlsh|shells/psh|2009-12-28|Correct project name
