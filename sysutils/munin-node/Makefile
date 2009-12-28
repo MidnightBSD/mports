@@ -1,14 +1,9 @@
-# New ports collection makefile for:	munin-node
-# Date created:				25 Januar 2004
-# Whom:					Lupe Christoph <lupe@lupe-christoph.de>
-#
-# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.4 2008/06/26 21:25:36 laffer1 Exp $
-#
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.5 2008/07/11 02:58:58 laffer1 Exp $
 
 PORTNAME=	munin
-PORTVERSION=	1.2.5
+PORTVERSION=	1.2.6
 CATEGORIES=	sysutils perl5
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20stable/${PORTVERSION}
 MASTER_SITE_SUBDIR=	munin
 PKGNAMESUFFIX=	-node
 DISTNAME=	${PORTNAME}_${PORTVERSION:S/.r/rc/}
@@ -35,7 +30,7 @@ MAKE_ENV=	LANG=C
 MAN5=		munin-node.conf.5
 MAN8=		munin-node-configure.8 munin-node.8 munin-run.8
 
-SUB_FILES=	pkg-message munin-node.sh
+SUB_FILES=	pkg-message munin-node.sh munin-node-revive.sh
 SUB_LIST=	RC_SUBR=${RC_SUBR}
 USE_RC_SUBR=	YES
 
