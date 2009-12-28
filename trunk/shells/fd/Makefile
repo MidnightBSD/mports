@@ -1,26 +1,20 @@
-# New ports collection makefile for:    FDclone
-# Date created:         20 Feb 1996
-# Whom:                 Nobuhiro Yasutomi <nobu@psrc.isac.co.jp>
-#
-# $MidnightBSD: mports/shells/fd/Makefile,v 1.2 2007/05/17 17:33:02 ctriv Exp $
-# $FreeBSD: ports/shells/fd/Makefile,v 1.80 2006/07/24 09:44:11 knu Exp $
-#
+# $MidnightBSD: mports/shells/fd/Makefile,v 1.3 2008/03/21 23:40:10 laffer1 Exp $
 
 PORTNAME=	fd
-PORTVERSION=	2.09g
-CATEGORIES=	shells
+PORTVERSION=	3.00d
+CATEGORIES=	shells net
 MASTER_SITES=	http://hp.vector.co.jp/authors/VA012337/soft/fd/ \
 		ftp://ftp.unixusers.net/src/fdclone/
-#		ftp://ftp.vector.co.jp/pack/unix/util/file/filer/fd/
 DISTNAME=	FD-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A CUI-based file and directory management tool
+LICENSE=	other
 
 MANLANG=	"" ja
 MAN1=		fd.1 fdsh.1
 MAKE_ENV=	LANG=ja
-MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" CONFDIR="${PREFIX}/etc"
+MAKE_ARGS=	CC="${CC}" CONFDIR="${PREFIX}/etc"
 
 DOCS_EN=	FAQ.eng \
 		LICENSES.eng \
@@ -34,10 +28,15 @@ DOCS_JA=	FAQ \
 		TECHKNOW \
 		ToAdmin
 
-post-patch:
-	${REINPLACE_CMD} -E -e 's|^(#define[[:space:]]+EXTENDCCOPT[[:space:]]+)"-O"$$|\1 "${CFLAGS}"|' ${WRKSRC}/machine.h
+post-configure:
+	${REINPLACE_CMD} -E -e 's|^(#[[:space:]]*define[[:space:]]+EXTENDCCOPT[[:space:]]+"([^"]+ )?)-O(["[:space:]])|\1${CFLAGS}\3|' ${WRKSRC}/machine.h
 
 post-install:
+	@${INSTALL_DATA} ${WRKSRC}/_fdrc.orig ${PREFIX}/etc/fd2rc.dist
+	@${INSTALL_DATA} ${WRKSRC}/_fdrc ${PREFIX}/etc/fd2rc.sample
+	if [ ! -f ${PREFIX}/etc/fd2rc ]; then \
+		${CP} -p ${PREFIX}/etc/fd2rc.sample ${PREFIX}/etc/fd2rc; \
+	fi
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${MKDIR} ${PREFIX}/share/doc/ja/${PORTNAME}
@@ -48,7 +47,5 @@ post-install:
 		${INSTALL_DATA} ${WRKSRC}/$$i ${PREFIX}/share/doc/ja/${PORTNAME}; \
 	done
 .endif
-	@${INSTALL_DATA} ${WRKSRC}/_fdrc.orig ${PREFIX}/etc/fd2rc.dist
-	@${INSTALL_DATA} ${WRKSRC}/_fdrc ${PREFIX}/etc/fd2rc.sample
 
 .include <bsd.port.mk>
