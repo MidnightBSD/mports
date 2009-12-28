@@ -1,14 +1,8 @@
-# New ports collection makefile for:	pdksh
-# Date created:		23 May 1995
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/shells/pdksh/Makefile,v 1.1 2006/09/18 15:24:30 laffer1 Exp $
-# $FreeBSD: ports/shells/pdksh/Makefile,v 1.30 2005/11/02 12:24:30 tg Exp $
-#
+# $MidnightBSD: mports/shells/pdksh/Makefile,v 1.2 2007/05/17 18:06:26 ctriv Exp $
 
 PORTNAME=	pdksh
 PORTVERSION=	5.2.14p2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	shells
 MASTER_SITES=	ftp://ftp.cs.mun.ca/pub/pdksh/ \
 		http://gd.tuwien.ac.at/utils/shells/pdksh/ \
@@ -22,7 +16,9 @@ PATCH_DIST_STRIP= -p2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Public Domain Korn Shell
+LICENSE=	agg
 
+MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	LDSTATIC=-static
 MAN1=		ksh.1
