@@ -1,10 +1,4 @@
-# New ports collection makefile for:	sash
-# Date created:		Jan 22, 2000
-# Whom:			Patrick Gardella <patrick@freebsd.org>
-#
-# $MidnightBSD: mports/shells/sash/Makefile,v 1.1 2006/09/18 15:58:46 laffer1 Exp $
-# $FreeBSD: ports/shells/sash/Makefile,v 1.11 2005/11/25 22:29:22 pav Exp $
-#
+# $MidnightBSD: mports/shells/sash/Makefile,v 1.2 2007/05/17 18:28:31 ctriv Exp $
 
 PORTNAME=	sash
 PORTVERSION=	3.7
@@ -14,6 +8,7 @@ MASTER_SITE_SUBDIR=	~dbell/programs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Stand-Alone shell combining many common utilities
+LICENSE=	publicdom
 
 MAN1=		sash.1
 
