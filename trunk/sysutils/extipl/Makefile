@@ -1,10 +1,4 @@
-# New ports collection makefile for:	extipl
-# Date created:		8 January 2001
-# Whom:			KIMURA Takamichi <takamiti@tsden.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/extipl/Makefile,v 1.8 2007/03/14 08:24:47 linimon Exp $
-#
+# $MidnightBSD: mports/sysutils/extipl/Makefile,v 1.1 2007/03/21 14:31:26 laffer1 Exp $
 
 PORTNAME=	extipl
 PORTVERSION=	5.04
@@ -14,6 +8,7 @@ MASTER_SITES=	ftp://ports.jp.FreeBSD.org/pub/FreeBSD-jp/ports-jp/LOCAL_PORTS/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Partition-selectable boot loader for IBM-PC/AT compatibles
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 

@@ -1,20 +1,15 @@
-# New ports collection makefile for:	cdircmp
-# Date created:				21 Sep 2005
-# Whom:					Emanuel Haupt <ehaupt@critical.ch>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/cdircmp/Makefile,v 1.4 2006/06/01 12:13:51 ehaupt Exp $
-#
+# $MidnightBSD: mports/sysutils/cdircmp/Makefile,v 1.1 2008/03/11 03:06:39 laffer1 Exp $
 
 PORTNAME=	cdircmp
 PORTVERSION=	0.3
 CATEGORIES=	sysutils
-MASTER_SITES=	http://critical.ch/distfiles/ \
-		http://energy.critical.ch/distfiles/
+MASTER_SITES=	CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compare directories and select files to copy
+LICENSE=	gpl2
 
+MAKE_JOBS_SAFE=	yes
 LDFLAGS+=	-lncurses -lform
 
 PLIST_FILES=	bin/cdircmp
