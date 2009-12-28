@@ -1,21 +1,14 @@
-# New ports collection makefile for:	shells/p5-Term-ShellUI
-# Date created:				25 January 2007
-# Whom:					Sergey Matveychuk <sem@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/shells/p5-Term-ShellUI/Makefile,v 1.2 2007/01/29 12:13:01 sem Exp $
-#
+# $MidnightBSD: mports/shells/p5-Term-ShellUI/Makefile,v 1.1 2007/07/19 06:38:39 laffer1 Exp $
 
 PORTNAME=	Term-ShellUI
-PORTVERSION=	0.85
-PORTREVISION=	1
+PORTVERSION=	0.86
 CATEGORIES=	shells perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Term/BRONSON
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fully-featured shell-like command line environment
+LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/Term/ReadLine/Perl.pm:${PORTSDIR}/devel/p5-ReadLine-Perl
 
