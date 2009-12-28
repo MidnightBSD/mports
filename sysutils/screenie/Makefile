@@ -2,7 +2,7 @@
 # Date created:				10 August 2004
 # Whom:					Emanuel Haupt <ehaupt@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/screenie/Makefile,v 1.1 2007/06/25 06:06:00 laffer1 Exp $
 # $FreeBSD: ports/sysutils/screenie/Makefile,v 1.1 2007/03/26 21:20:12 ehaupt Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	screenie
 PORTVERSION=	1.30.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://pubwww.fhzh.ch/~mgloor/data/ \
-		http://critical.ch/distfiles/ \
-		http://energy.critical.ch/distfiles/
+		CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and lightweight screen(1) wrapper
