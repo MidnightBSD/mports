@@ -1,20 +1,15 @@
-# Ports collection makefile for:	xmbmon
-# Date created:				2001/08/30
-# Whom:					kaz@kobe1995.net (NAKAMURA Kauzushi)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/mbmon/Makefile,v 1.23 2006/05/03 19:46:55 jylefort Exp $
-#
+# $MidnightBSD: mports/sysutils/mbmon/Makefile,v 1.1 2007/02/23 20:54:40 laffer1 Exp $
 
 PORTNAME?=	mbmon
 PORTVERSION=	205
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.nt.phys.kyushu-u.ac.jp/shimizu/download/xmbmon/
 DISTNAME=	xmbmon${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	A tty motherboard monitor for LM78/79, W8378x, AS99127F, VT82C686 and ADM9240
+LICENSE=	bsd2
 
 ONLY_FOR_ARCHS=	i386 amd64
 GNU_CONFIGURE=	yes
