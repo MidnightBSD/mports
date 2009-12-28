@@ -1,24 +1,19 @@
-# New ports collection makefile for:	cyrus-sasl2-ldapdb
-# Date created:				May 18 2005
-# Whom:					ume@FreeBSD.org
-#
-# $MidnightBSD$
-# $FreeBSD: ports/security/cyrus-sasl2-ldapdb/Makefile,v 1.2 2006/05/19 20:45:37 ume Exp $
-#
+# $MidnightBSD: mports/security/cyrus-sasl2-ldapdb/Makefile,v 1.1 2006/10/02 16:34:47 laffer1 Exp $
 
 PORTNAME=	ldapdb
-PORTVERSION=	2.1.22
+PORTVERSION=	2.1.23
 #PORTREVISION=	0
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.hanse.de/sites/transit/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
+		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
 PKGNAMEPREFIX=	cyrus-sasl-
 DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SASL LDAPDB auxprop plugin
+LICENSE=	bsd4
 
 LIB_DEPENDS=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 
@@ -27,16 +22,14 @@ MD5_FILE=	${CYRUS_SASL2_DIR}/distinfo
 PATCHDIR=	${CYRUS_SASL2_DIR}/files
 INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/plugins
 
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
+USE_AUTOTOOLS=	libtool:22
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
 .if defined(WITH_OPENLDAP_VER)
 WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
-.endif
-.if defined(WANT_OPENLDAP_VER) && ${WANT_OPENLDAP_VER} == 12
-BROKEN=		"this port requires OpenLDAP >= 2.0"
 .endif
 USE_OPENLDAP=	yes
 
@@ -61,6 +54,7 @@ CONFIGURE_ARGS+=--with-dblib=none \
 CONFIGURE_ARGS+=--enable-ldapdb --with-ldap=${LOCALBASE}
 
 PLIST_FILES=	lib/sasl2/libldapdb.a \
+		lib/sasl2/libldapdb.la \
 		lib/sasl2/libldapdb.so \
 		lib/sasl2/libldapdb.so.2
 

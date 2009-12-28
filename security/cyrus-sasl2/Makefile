@@ -1,18 +1,11 @@
-# New ports collection makefile for:	cyrus-sasl2
-# Date created:				Nov 1 1999
-# Whom:					hetzels@westbend.net
-#
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.4 2008/10/13 20:56:27 laffer1 Exp $
-# $FreeBSD: ports/security/cyrus-sasl2/Makefile,v 1.127 2006/08/15 16:47:37 ume Exp $
-#
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.5 2009/03/18 04:32:49 laffer1 Exp $
 
 PORTNAME=	cyrus-sasl
-PORTVERSION=	2.1.22
-PORTREVISION=	1
+PORTVERSION=	2.1.23
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.hanse.de/sites/transit/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
+		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +14,7 @@ LICENSE=	bsd4
 
 LATEST_LINK=	${PORTNAME}2
 
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2
@@ -56,15 +50,28 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-rc4=openssl \
 		--with-saslauthd=${SASLAUTHD_RUNPATH}
 
-.if defined(WITH_BDB_VER)
-.if ${WITH_BDB_VER} == 4
-USE_BDB=	40
-.elif ${WITH_BDB_VER} != 3 && ${WITH_BDB_VER} != 41 && \
-      ${WITH_BDB_VER} != 42 && ${WITH_BDB_VER} != 43 && ${WITH_BDB_VER} != 44
-IGNORE=		"cannot install: WITH_BDB_VER must be 3, 4, 41, 42, 43 or 44"
-.endif
-USE_BDB?=	${WITH_BDB_VER}
-CONFIGURE_ARGS+=--with-dblib=berkeley --with-bdb-libdir=${LOCALBASE}/lib \
+OPTIONS=	BDB		"Use Berkeley DB"			off \
+		MYSQL		"Use MySQL"				off \
+		PGSQL		"Use PostgreSQL"			off \
+		SQLITE		"Use SQLite"				off \
+		DEV_URANDOM	"Use /dev/urandom"			off \
+		ALWAYSTRUE	"Enable the alwaystrue password verifier" off \
+		KEEP_DB_OPEN	"Keep handle to Berkeley DB open"	off \
+		AUTHDAEMOND	"Enable use of authdaemon"		on \
+		LOGIN		"Enable LOGIN authentication"		on \
+		PLAIN		"Enable PLAIN authentication"		on \
+		CRAM		"Enable CRAM-MD5 authentication"	on \
+		DIGEST		"Enable DIGEST-MD5 authentication"	on \
+		OTP		"Enable OTP authentication"		on \
+		NTLM		"Enable NTLM authentication"		on
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_BDB)
+USE_BDB=	yes
+INVALID_BDB_VER=2
+CONFIGURE_ARGS+=--with-dblib=berkeley \
+		--with-bdb-libdir=${BDB_LIB_DIR} \
 		--with-bdb-incdir=${BDB_INCLUDE_DIR} \
 		--with-bdb=${BDB_LIB_NAME}
 SASLDB_NAME=	sasldb2
@@ -73,12 +80,6 @@ CONFIGURE_ARGS+=--with-dblib=ndbm
 SASLDB_NAME=	sasldb2.db
 .endif
 
-.if defined(WITH_MYSQL_VER)
-WITH_MYSQL=	yes
-.if ${WITH_MYSQL_VER} == 3
-WANT_MYSQL_VER=	323
-.endif
-.endif
 .if defined(WITH_MYSQL)
 USE_MYSQL=	yes
 CONFIGURE_ARGS+=--with-mysql=${LOCALBASE}
@@ -120,6 +121,8 @@ CONFIGURE_ARGS+=--enable-keep-db-open
 
 .if defined(WITHOUT_AUTHDAEMOND)
 CONFIGURE_ARGS+=--with-authdaemond=no
+.else
+CONFIGURE_ARGS+=--with-authdaemond=/var/run/authdaemond/socket
 .endif
 
 .if defined(WITHOUT_LOGIN)
@@ -155,19 +158,22 @@ NTLM=	"@comment "
 CONFIGURE_ARGS+=--enable-ntlm
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.a)
+.if ${ARCH} == "amd64"
+CPPFLAGS+=	-fPIC
+CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}"
+.endif
+.if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
 CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
 .elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
 CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
-.elif !defined(WITHOUT_GSSAPI) && ( defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a) )
+.elif !defined(WITHOUT_GSSAPI) && exists(/usr/lib/libkrb5.a)
 CONFIGURE_ARGS+=--enable-gssapi
 .else
 CONFIGURE_ARGS+=--disable-gssapi
 GSSAPI=	"@comment "
 .endif
 
+# KERBEROS 4 was removed in FreeBSD 5.0-CURRENT
 .if defined(WITH_KERBEROS4)
 LIB_DEPENDS+=	krb.2:${PORTSDIR}/security/krb4
 CONFIGURE_ARGS+=--enable-krb4=${LOCALBASE}/krb4
@@ -175,6 +181,8 @@ CONFIGURE_ARGS+=--enable-krb4=${LOCALBASE}/krb4
 CONFIGURE_ARGS+=--disable-krb4
 EBONES=	"@comment "
 .endif
+
+.include <bsd.port.pre.mk>
 
 .if ${OPENSSLBASE} == /usr
 CONFIGURE_ARGS+=--with-openssl=yes
@@ -233,7 +241,7 @@ post-patch:
 		${.CURDIR}/pkg-message > ${PKGMESSAGE}
 
 # Create Cyrus user and group
-pre-install:
+pre-su-install:
 	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
@@ -251,5 +259,7 @@ post-install:
 .endfor
 	@${INSTALL_DATA} ${FILESDIR}/Sendmail.README ${DOCSDIR}
 .endif
+	@PKG_PREFIX=${PREFIX} BATCH=${BATCH} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
