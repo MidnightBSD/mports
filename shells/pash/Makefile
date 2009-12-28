@@ -1,10 +1,4 @@
-# New ports collection makefile for:   pash
-# Date created:        30 December 2000
-# Whom:                George Reid <greid@ukug.uk.freebsd.org>
-#
-# $MidnightBSD: mports/shells/pash/Makefile,v 1.1 2006/09/18 15:21:50 laffer1 Exp $
-# $FreeBSD: ports/shells/pash/Makefile,v 1.5 2003/11/03 07:28:44 linimon Exp $
-#
+# $MidnightBSD: mports/shells/pash/Makefile,v 1.2 2007/05/17 17:57:32 ctriv Exp $
 
 PORTNAME=	pash
 PORTVERSION=	2.2
@@ -14,6 +8,7 @@ DISTNAME=	pash.sources
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A full-screen shell (commander GUI) for *nix.
+LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
 
