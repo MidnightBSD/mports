@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/Makefile,v 1.3 2008/04/29 04:57:42 laffer1 Exp $
+# $MidnightBSD: mports/shells/Makefile,v 1.4 2009/12/28 20:21:01 laffer1 Exp $
 #
 
     COMMENT = Shells
@@ -17,7 +17,7 @@
     SUBDIR += p5-Term-ShellUI
     SUBDIR += pash
     SUBDIR += pdksh
-    SUBDIR += perlsh
+    SUBDIR += psh
     SUBDIR += rc
     SUBDIR += rssh
     SUBDIR += sash
