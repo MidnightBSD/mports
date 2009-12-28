@@ -1,19 +1,14 @@
-# ex:ts=8
-# Ports collection makefile for:  csh
-# Date created:			  23 January 2000
-# Whom:				  David O'Brien <obrien@NUXI.com>
-#
-# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.1 2006/09/18 19:53:28 laffer1 Exp $
-# $FreeBSD: ports/shells/44bsd-csh/Makefile,v 1.17 2004/04/07 13:26:20 clement Exp $
-#
+# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.2 2007/05/17 17:19:17 ctriv Exp $
+
 PORTNAME=	44bsd-csh
 PORTVERSION=	20001106
 CATEGORIES=	shells
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	cy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The traditional 4.4BSD /bin/csh C-shell
+LICENSE=	bsd4
 
 USE_BZIP2=	yes
 
