@@ -1,9 +1,4 @@
-# Ports collection makefile for:   nologinmsg
-# Whom:                            Richard Rose <freebsd-security@rikrose.net>
-# Date created:                    20020710
-#
-# $MidnightBSD: mports/shells/nologinmsg/Makefile,v 1.1 2006/09/18 13:37:37 laffer1 Exp $
-# $FreeBSD: ports/shells/nologinmsg/Makefile,v 1.4 2006/05/13 04:15:22 edwin Exp $
+# $MidnightBSD: mports/shells/nologinmsg/Makefile,v 1.2 2007/08/16 18:00:00 ctriv Exp $
 #
 # The port is self contained in the src directory
 
