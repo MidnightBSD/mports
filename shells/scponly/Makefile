@@ -1,10 +1,4 @@
-# New ports collection makefile for:	scponly
-# Date created:				2002/07/23
-# Whom:					mcglk@artlogix.com
-#
-# $MidnightBSD: mports/shells/scponly/Makefile,v 1.1 2006/09/18 16:02:23 laffer1 Exp $
-# $FreeBSD: ports/shells/scponly/Makefile,v 1.25 2006/08/06 17:38:15 arved Exp $
-#
+# $MidnightBSD: mports/shells/scponly/Makefile,v 1.2 2007/05/17 18:30:59 ctriv Exp $
 
 # There are many knobs to tune scponly towards your specific wishes
 # and preferences.
@@ -12,7 +6,6 @@
 # "make -DKNOB" or "make KNOB=yes" instead of just "make"
 #
 # A description of the several possibilities is available here:
-#
 #
 # Core funcionality:
 #
@@ -71,23 +64,31 @@
 # to be installed.
 
 PORTNAME=	scponly
-PORTVERSION=	4.6
-PORTREVISION=	1
-CATEGORIES=	shells
+PORTVERSION=	4.8
+CATEGORIES=	shells security
 MASTER_SITES=	http://www.sublimation.org/scponly/ \
-		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	scponly
+		SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tiny shell that only permits scp and sftp
+LICENSE=	bsd2
 
 MAN8=		scponly.8
 
 GNU_CONFIGURE=	yes
-PLIST_SUB+=	SCPONLY_CHROOT="@comment "
 
-PATCH_STRIP=	-p1
+OPTIONS=	SCPONLY_WILDCARDS "wildcards processing" on \
+		SCPONLY_GFTP "gftp compatibility" on \
+		SCPONLY_CHROOT "chroot functionality" off \
+		SCPONLY_RSYNC "rsync compatibility" off \
+		SCPONLY_SCP "vanilla scp compatibility" off \
+		SCPONLY_SFTP_LOGGING "sftp logging compatibility" off \
+		SCPONLY_SVN "subversion compatibility" off \
+		SCPONLY_SVNSERVE "subversion compatibility svn+ssh://" off \
+		SCPONLY_UNISON "unison compatibility" off \
+		SCPONLY_WINSCP "WinSCP compatibility" off
 
 .include <bsd.port.pre.mk>
 
@@ -104,8 +105,11 @@ CONFIGURE_ARGS+=--disable-gftp-compat
 .endif
 
 .if defined(WITH_SCPONLY_CHROOT)
-PLIST_SUB=	SCPONLY_CHROOT=""
+PLIST_SUB+=	SCPONLY_CHROOT=""
 CONFIGURE_ARGS+=--enable-chrooted-binary
+USE_RC_SUBR+=	scponlyc
+.else
+PLIST_SUB+=	SCPONLY_CHROOT="@comment "
 .endif
 
 .if defined(WITH_SCPONLY_RSYNC)
@@ -154,7 +158,16 @@ pre-everything::
 	@${ECHO_MSG} ""
 
 post-install:
+	@${ECHO_MSG} "Updating /etc/shells"
+	@${CP} /etc/shells /etc/shells.bak
+	@(${GREP} -v ${PREFIX}/bin/scponly /etc/shells.bak; \
+	  ${ECHO_CMD} ${PREFIX}/bin/scponly) > /etc/shells
+	@${RM} /etc/shells.bak
 .if defined(WITH_SCPONLY_CHROOT)
+	@${CP} /etc/shells /etc/shells.bak
+	@(${GREP} -v ${PREFIX}/sbin/scponlyc /etc/shells.bak; \
+	  ${ECHO_CMD} ${PREFIX}/sbin/scponlyc) > /etc/shells
+	@${RM} /etc/shells.bak
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_SCRIPT} ${WRKSRC}/setup_chroot.sh ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/config.h ${EXAMPLESDIR}
