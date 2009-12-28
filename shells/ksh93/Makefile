@@ -2,7 +2,7 @@
 # Date created:                2000-12-26
 # Whom:                        Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.3 2008/09/10 06:17:00 archite Exp $
 # $FreeBSD: ports/shells/ksh93/Makefile,v 1.53 2008/08/18 18:36:36 miwi Exp $
 #
 # Make sure that your configuration DOES NOT set AN?Y gcc-related
@@ -26,10 +26,12 @@ DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Official AT&T release of KornShell 93
+LICENSE=	other
+# common public license
 
 MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
 
-VERSION=	2008-07-25
+VERSION=	2009-05-05
 RESTRICTED=	Source recipient must acknowledge license
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
