@@ -1,24 +1,19 @@
-# New ports collection makefile for:	cyrus-sasl2-saslauthd
-# Date created:				May 27 2003
-# Whom:					ume@FreeBSD.org
-#
-# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.2 2007/08/01 20:37:32 laffer1 Exp $
-# $FreeBSD: ports/security/cyrus-sasl2-saslauthd/Makefile,v 1.46 2006/05/19 20:45:37 ume Exp $
-#
+# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.3 2007/08/02 11:08:42 laffer1 Exp $
 
 PORTNAME=	saslauthd
-PORTVERSION=	2.1.22
-PORTREVISION=	0
+PORTVERSION=	2.1.23
+#PORTREVISION=	0
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
-		ftp://ftp.hanse.de/sites/transit/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
+		http://www.transit.hanse.de/mirror/ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. OLD-VERSIONS/sasl
 PKGNAMEPREFIX=	cyrus-sasl-
 DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SASL authentication server for cyrus-sasl2
+LICENSE=	bsd4
 
 LIB_DEPENDS=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 
@@ -27,6 +22,8 @@ MD5_FILE=	${CYRUS_SASL2_DIR}/distinfo
 PATCHDIR=	${CYRUS_SASL2_DIR}/files
 INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/saslauthd
 DOCSDIR=	${PREFIX}/share/doc/cyrus-sasl2
+
+MAN8=		saslauthd.8
 
 USE_RC_SUBR=	saslauthd.sh
 
@@ -44,29 +41,26 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-rc4=openssl \
 		--with-saslauthd=${SASLAUTHD_RUNPATH}
 
-.if defined(WITH_BDB_VER)
-.if ${WITH_BDB_VER} == 4
-USE_BDB=	40
-.elif ${WITH_BDB_VER} != 3 && ${WITH_BDB_VER} != 41 && \
-      ${WITH_BDB_VER} != 42 && ${WITH_BDB_VER} != 43 && ${WITH_BDB_VER} != 44
-IGNORE=		"cannot install: WITH_BDB_VER must be 3, 4, 41, 42, 43 or 44"
-.endif
-USE_BDB?=	${WITH_BDB_VER}
-BDB_SUFFIX?=	${WITH_BDB_VER}
-CONFIGURE_ARGS+=--with-dblib=berkeley --with-bdb-libdir=${LOCALBASE}/lib \
+OPTIONS=	BDB		"Use Berkeley DB"			off \
+		OPENLDAP	"Use OpenLDAP"				off \
+		HTTPFORM	"Enable HTTP form authentication"	off
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_BDB)
+USE_BDB=	yes
+INVALID_BDB_VER=2
+CONFIGURE_ARGS+=--with-dblib=berkeley \
+		--with-bdb-libdir=${BDB_LIB_DIR} \
 		--with-bdb-incdir=${BDB_INCLUDE_DIR} \
 		--with-bdb=${BDB_LIB_NAME}
 .else
 CONFIGURE_ARGS+=--with-dblib=ndbm
 .endif
 
-.if defined(WITH_OPENLDAP_VER)
-WITH_OPENLDAP=		yes
-WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
-.endif
 .if defined(WITH_OPENLDAP)
-.if defined(WANT_OPENLDAP_VER) && ${WANT_OPENLDAP_VER} == 12
-BROKEN=		"this port requires OpenLDAP >= 2.0"
+.if defined(WITH_OPENLDAP_VER)
+WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
 .endif
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
@@ -76,13 +70,11 @@ CONFIGURE_ARGS+=--with-ldap=${LOCALBASE}
 CONFIGURE_ARGS+=--enable-httpform
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.a)
+.if !defined(WITHOUT_GSSAPI) && defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.so)
 CONFIGURE_ARGS+=--enable-gssapi=${KRB5_HOME} --with-gss_impl=mit
 .elif !defined(WITHOUT_GSSAPI) && defined(HEIMDAL_HOME) && exists(${HEIMDAL_HOME}/lib/libgssapi.a)
 CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
-.elif !defined(WITHOUT_GSSAPI) && (defined(MAKE_KERBEROS5) || exists(/usr/lib/libkrb5.a))
+.elif !defined(WITHOUT_GSSAPI) && exists(/usr/lib/libkrb5.a)
 CONFIGURE_ARGS+=--enable-gssapi
 .else
 CONFIGURE_ARGS+=--disable-gssapi
@@ -94,6 +86,8 @@ CONFIGURE_ARGS+=--enable-krb4=${LOCALBASE}/krb4
 .else
 CONFIGURE_ARGS+=--disable-krb4
 .endif
+
+.include <bsd.port.pre.mk>
 
 .if ${OPENSSLBASE} == /usr
 CONFIGURE_ARGS+=--with-openssl=yes
@@ -117,7 +111,6 @@ PLIST_SUB=	PREFIX=${PREFIX} \
 SUB_LIST+=	SASLAUTHD_RUNPATH=${SASLAUTHD_RUNPATH}
 
 do-build:
-	@${RM} -f ${WRKSRC}/saslauthd/saslauthd.8
 	cd ${WRKSRC}/include && ${MAKE}
 	cd ${WRKSRC}/sasldb && ${MAKE}
 	cd ${WRKSRC}/saslauthd && ${MAKE}
@@ -129,11 +122,10 @@ post-install:
 		${PREFIX}/sbin/saslcache
 	@${INSTALL_PROGRAM} ${WRKSRC}/saslauthd/testsaslauthd \
 		${PREFIX}/sbin/testsaslauthd
-	${GZIP_CMD} ${MAN8PREFIX}/man/cat8/saslauthd.8
 .if ${SASLAUTHD_RUNPATH} != /var/run/saslauthd
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "SASLAUTHD_RUNPATH was specified."
-	@${ECHO_MSG} "Make sure to have ${SASLAUTHD_RUNPATH} by yourself."
+	@${ECHO_MSG} "Make sure you create ${SASLAUTHD_RUNPATH}."
 	@${ECHO_MSG} ""
 .else
 	${MKDIR} -m 770 ${SASLAUTHD_RUNPATH}
@@ -145,8 +137,5 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/saslauthd/${file} ${DOCSDIR}/saslauthd
 .endfor
 .endif
-	@PKG_PREFIX=${PREFIX} BATCH=${BATCH} ${SH} ${PKGINSTALL} ${PKGNAME} \
-		POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
