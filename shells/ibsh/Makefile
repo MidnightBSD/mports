@@ -1,19 +1,13 @@
-# New ports collection makefile for:	ibsh
-# Date created:				1 Oct 2005
-# Whom:					Vaida Bogdan
-#
-# $MidnightBSD: mports/shells/ibsh/Makefile,v 1.1 2006/09/18 02:14:27 laffer1 Exp $
-# $FreeBSD: ports/shells/ibsh/Makefile,v 1.2 2006/05/13 04:15:21 edwin Exp $
-#
+# $MidnightBSD: mports/shells/ibsh/Makefile,v 1.2 2007/05/17 17:36:06 ctriv Exp $
 
 PORTNAME=	ibsh
 PORTVERSION=	0.3e
 CATEGORIES=	shells
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Restricted unix shell
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 ALL_TARGET=	ibsh
