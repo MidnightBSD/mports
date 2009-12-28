@@ -2,7 +2,7 @@
 # Date created:				15 August 2004
 # Whom:					Tim Bishop <tim@bishnet.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/openupsd/Makefile,v 1.1 2007/09/01 04:13:57 laffer1 Exp $
 # $FreeBSD: ports/sysutils/openupsd/Makefile,v 1.3 2005/12/01 16:50:07 tdb Exp $
 #
 
@@ -13,6 +13,7 @@ MASTER_SITES=	http://frmb.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A UPS daemon for some Belkin UPS's
+LICENSE=	gpl2
 
 USE_RC_SUBR=	yes
 GNU_CONFIGURE=	yes

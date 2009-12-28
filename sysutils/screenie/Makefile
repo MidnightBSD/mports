@@ -2,7 +2,7 @@
 # Date created:				10 August 2004
 # Whom:					Emanuel Haupt <ehaupt@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/screenie/Makefile,v 1.1 2007/06/25 06:06:00 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/screenie/Makefile,v 1.2 2009/12/28 23:09:04 laffer1 Exp $
 # $FreeBSD: ports/sysutils/screenie/Makefile,v 1.1 2007/03/26 21:20:12 ehaupt Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://pubwww.fhzh.ch/~mgloor/data/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and lightweight screen(1) wrapper
+LICENSE=	gpl2
 
 RUN_DEPENDS=	screen:${PORTSDIR}/sysutils/screen
 

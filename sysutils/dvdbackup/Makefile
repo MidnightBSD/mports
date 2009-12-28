@@ -1,10 +1,4 @@
-# New ports collection makefile for:	dvdbackup
-# Date created:		2004-09-24
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/dvdbackup/Makefile,v 1.8 2007/04/05 06:03:23 koitsu Exp $
-#
+# $MidnightBSD: mports/sysutils/dvdbackup/Makefile,v 1.1 2007/04/27 21:14:50 laffer1 Exp $
 
 PORTNAME=	dvdbackup
 PORTVERSION=	0.1.1
@@ -13,8 +7,9 @@ MASTER_SITES=	http://dvd-create.sourceforge.net/ GENTOO/distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backup content from DVD to hard disk
+LICENSE=	gpl2
 
-LIB_DEPENDS=	dvdread:${PORTSDIR}/multimedia/libdvdread
+LIB_DEPENDS=	dvdread.4:${PORTSDIR}/multimedia/libdvdread
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 PLIST_FILES=	bin/dvdbackup
