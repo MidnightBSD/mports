@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/wapsh/Makefile,v 1.2 2007/05/17 18:48:19 ctriv Exp $
+# $MidnightBSD: mports/shells/wapsh/Makefile,v 1.3 2009/12/28 22:28:54 laffer1 Exp $
 
 PORTNAME=	wapsh
 PORTVERSION=	1.0.1
@@ -8,6 +8,8 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A system to allow remote shell logins via a WAP phone or web browser
+LICENSE=	other
+# older Q public license
 
 USE_RC_SUBR=	htshd.sh
 
