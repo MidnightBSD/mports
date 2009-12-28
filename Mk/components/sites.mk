@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.18 2009/10/03 03:11:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.19 2009/12/13 02:32:24 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -134,6 +134,14 @@ MASTER_SITE_CHEESESHOP+=	\
 MASTER_SITE_COMP_SOURCES+=	\
 	ftp://gatekeeper.dec.com/pub/usenet/comp.sources.%SUBDIR%/ \
 	ftp://ftp.uu.net/usenet/comp.sources.%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_CRITICAL)
+MASTER_SITE_CRITICAL+=  \
+	http://critical.ch/distfiles/%SUBDIR%/ \
+	http://energy.critical.ch/distfiles/%SUBDIR%/ \
+	http://sauerkraut.critical.ch/distfiles/%SUBDIR%/ \
+	http://snow.critical.ch/distfiles/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_CSME)
