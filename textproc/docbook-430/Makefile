@@ -2,7 +2,7 @@
 # Date created:		02 Apr 2004
 # Whom:			hrs
 #
-# $MidnightBSD: mports/textproc/docbook-430/Makefile,v 1.1 2006/09/24 02:58:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-430/Makefile,v 1.2 2007/05/09 15:28:36 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-430/Makefile,v 1.3 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook
@@ -12,6 +12,7 @@ MASTER_SITES=	http://www.oasis-open.org/docbook/sgml/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook/SGML DTD V4.3, designed for technical documentation
+LICENSE=	unknown
 
 RUN_DEPENDS=	${LOCALBASE}/${ISOCAT}:${PORTSDIR}/textproc/iso8879 \
 		${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
