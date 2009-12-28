@@ -1,20 +1,15 @@
-# Ports collection Makefile for:	chroot_safe
-# Date created:				11 Dec 2005
-# Whom:					Gabor Kovesdan
-# $FreeBSD: ports/security/chroot_safe/Makefile,v 1.4 2006/08/06 10:14:56 erwin Exp $
-# $MidnightBSD: mports/security/chroot_safe/Makefile,v 1.1 2006/11/25 17:10:18 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/chroot_safe/Makefile,v 1.2 2007/05/13 14:23:51 ctriv Exp $
 
 PORTNAME=	chroot_safe
 PORTVERSION=	1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security sysutils
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	chrootsafe
+MASTER_SITES=	SF/chrootsafe/${PORTNAME}/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to chroot softwares easily
+LICENSE=	mit
 
 GNU_CONFIGURE=	YES
 
@@ -23,6 +18,9 @@ PLIST_FILES=	sbin/chroot_safe libexec/chroot_safe/chroot_safe.so
 PLIST_DIRS=	libexec/chroot_safe
 
 post-patch:
+	@${REINPLACE_CMD} -e  's|CXX=g++|CXX?=c++|' \
+		-e 's|-o chroot_safe.so|chroot_safe.cpp -o chroot_safe.so|' \
+		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} 's|chroot(1)|chroot(8)|' ${WRKSRC}/chroot_safe.1.in
 	@${REINPLACE_CMD} 's|putenv|unsetenv|' ${WRKSRC}/chroot_safe.cpp
 
