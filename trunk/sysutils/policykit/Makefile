@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.4 2008/05/31 16:59:21 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.5 2009/05/31 20:27:21 laffer1 Exp $
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
@@ -16,8 +16,10 @@ BUILD_DEPENDS=	${LOCALBASE}/share/sgml/docbook/4.1/catalog:${PORTSDIR}/textproc/
 		${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
     		expat.6:${PORTSDIR}/textproc/expat2
+USERS=		polkit
+GROUPS=		polkit
 
-USE_GNOME=	gnomehack gnometarget glib20 intlhack
+USE_GNOME=	gnomehack glib20 intlhack
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
