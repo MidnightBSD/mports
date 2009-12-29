@@ -3,15 +3,14 @@
 # Whom:				arved
 #
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.4 2008/03/26 18:00:18 ctriv Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.5 2009/03/02 23:29:39 laffer1 Exp $
 #
 
 PORTNAME=	jackit
-PORTVERSION=	0.103.0
-PORTREVISION=	1
+PORTVERSION=	0.116.2
+PORTREVISION=	3
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	jackit
+MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,16 +19,17 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
-		FLAC.10:${PORTSDIR}/audio/flac
-
-OPTIONS=	DOCS "Build HTML documentation. Requires doxygen/TeX." off
+		samplerate.1:${PORTSDIR}/audio/libsamplerate \
+		celt.0:${PORTSDIR}/audio/celt
 
 LATEST_LINK=	jack
 CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}" LDFLAGS="-L${LOCALBASE}/lib" \
 		CPPFLAGS="-I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
+CONFIGURE_ARGS+=--enable-portaudio \
+		--with-default-tmpdir=/tmp
 GNU_CONFIGURE=	yes
-USE_GETOPT_LONG=	yes
+USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig gnometarget gnomehack
 
@@ -37,30 +37,14 @@ MAN1=		jackd.1 jackstart.1
 
 .include <bsd.port.pre.mk>
 
-.if exists(${LOCALBASE}/bin/doxygen) && !defined(WITH_GNOKII)
-DOCS_OVERRIDE=	yes
-WITH_DOCS=	yes
-.endif
-
-.if defined(WITH_DOCS) || defined(PACKAGE_BUILDING)
+.if !defined(NOPORTDOCS)
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
-PLIST_SUB+=	DOCS=""
 .else
 CONFIGURE_ENV+=	ac_cv_prog_HAVE_DOXYGEN="false"
-PLIST_SUB+=	DOCS="@comment "
 .endif
 
-.if exists(${LOCALBASE}/lib/libreadline.so.5)
-LIB_DEPENDS+=	readline.5:${PORTSDIR}/devel/readline
-.endif
-
-pre-everything::
-.if defined(DOCS_OVERRIDE)
-	@${ECHO_MSG}
-	@${ECHO_MSG} "**********************************************************"
-	@${ECHO_MSG} "* Doxygen has been detected, documentation will be built *"
-	@${ECHO_MSG} "**********************************************************"
-	@${ECHO_MSG}
+.if exists(${LOCALBASE}/lib/libreadline.so.6)
+LIB_DEPENDS+=	readline.6:${PORTSDIR}/devel/readline
 .endif
 
 post-patch:
@@ -77,6 +61,7 @@ post-patch:
 		${WRKSRC}/example-clients/Makefile.in
 	@${REINPLACE_CMD} -e 's|md5sum|md5 -q|g' \
 		${WRKSRC}/jackd/Makefile.in
+	@${RM} -f ${WRKSRC}/doc/reference/html/*
 
 post-build:
 	@${RM} -f ${WRKSRC}/doc/reference/html/dir__2F*
