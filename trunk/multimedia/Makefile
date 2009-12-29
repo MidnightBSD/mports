@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.49 2008/12/08 20:51:21 ctriv Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.50 2009/01/04 21:03:25 ctriv Exp $
 #
 
     COMMENT = Multimedia software
@@ -48,6 +48,7 @@
     SUBDIR += smpeg
     SUBDIR += streamdvd
     SUBDIR += totem
+    SUBDIR += totem-pl-parser
     SUBDIR += v4l_compat
     SUBDIR += vcdimager
     SUBDIR += win32-codecs
