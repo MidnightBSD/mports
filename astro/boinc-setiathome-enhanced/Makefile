@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.2 2009/12/28 22:50:11 laffer1 Exp $
 
 PORTNAME=	boinc-setiathome-enhanced
 PORTVERSION=	6.08
@@ -17,7 +17,7 @@ RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	fftw3f:${PORTSDIR}/math/fftw3-float
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	autoconf:262:env automake:18:env
+USE_AUTOTOOLS=	autoconf:262:env automake:19:env
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
