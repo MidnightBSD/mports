@@ -2,7 +2,7 @@
 # Date created:		9 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.2 2008/09/26 18:33:37 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.3 2009/03/13 02:54:30 ctriv Exp $
 # $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
 #
 
@@ -51,8 +51,7 @@ PLIST_SUB+=	GDM="@comment "
 
 .if !defined(WITHOUT_EXTRAS)
 .if !defined(WITHOUT_THEMES)
-RUN_DEPENDS+=	${LOCALBASE}/share/xfce4/mime/Rodent.mime.xml:${PORTSDIR}/x11-themes/xfce4-icon-theme \
-		${LOCALBASE}/share/themes/Xfce/xfwm4/themerc:${PORTSDIR}/misc/xfce4-wm-themes
+RUN_DEPENDS+=	${LOCALBASE}/share/themes/Xfce/xfwm4/themerc:${PORTSDIR}/misc/xfce4-wm-themes
 .endif
 
 .if !defined(WITHOUT_PLUGINS)
