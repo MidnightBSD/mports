@@ -4,12 +4,12 @@
 #			Mikhail Teterin <mi@aldan.algebra.com>
 #			Jun-ichiro itojun Itoh <itojun@itojun.org>
 #
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.8 2009/09/20 19:43:21 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.9 2009/10/14 23:47:58 laffer1 Exp $
 # $FreeBSD: ports/graphics/tiff/Makefile,v 1.61 2006/04/08 20:22:41 dinoex Exp $
 #
 
 PORTNAME=	tiff
-PORTVERSION=	3.9.1
+PORTVERSION=	3.9.2
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://dl1.maptools.org/dl/libtiff/
@@ -18,7 +18,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
 LICENSE=	mit
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jbig.1:${PORTSDIR}/graphics/jbigkit
 
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
