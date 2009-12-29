@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.3 2007/11/05 22:52:55 ctriv Exp $
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.4 2009/06/28 00:35:33 laffer1 Exp $
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
