@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-gdata/Makefile,v 1.1 2009/12/29 02:44:40 laffer1 Exp $
 
 PORTNAME=	gdata
 PORTVERSION=	2.0.4
@@ -8,6 +8,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GData Python Client Library
+LICENSE=	apache2
 
 PROJECTHOST=	gdata-python-client
 USE_PYTHON=	yes
