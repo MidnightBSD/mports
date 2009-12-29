@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.301 2009/12/13 18:39:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.302 2009/12/13 21:03:53 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -291,6 +291,7 @@
     SUBDIR += py-dbus
     SUBDIR += py-elementtree
     SUBDIR += py-fileutils
+    SUBDIR += py-gdata
     SUBDIR += py-gobject
     SUBDIR += py-orbit
     SUBDIR += py-subversion
