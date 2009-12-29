@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.2 2008/09/21 19:49:37 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.3 2009/09/20 01:53:00 smultron Exp $
 # $FreeBSD: ports/x11/libgnomemm/Makefile,v 1.18 2007/05/19 20:27:01 flz Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	libgnomemm
 PORTVERSION=	2.0.1
 PORTREVISION=	1
 CATEGORIES=	x11 gnome
-MASTER_SITES=	SF/gtkmm
+MASTER_SITES=	SF/gtkmm/OldFiles
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
