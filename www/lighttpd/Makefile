@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.13 2009/09/20 00:23:20 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.14 2009/10/13 01:38:51 laffer1 Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.23
+PORTVERSION=	1.4.24
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/ \
 		http://mirrors.cat.pdx.edu/lighttpd/
@@ -12,8 +12,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
-#USE_AUTOTOOLS=	aclocal:110 autoconf:262 autoheader:262 automake:110 libtool:22
-USE_AUTOTOOLS=	autoconf:262 libtool:22
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack pkgconfig
 USE_RC_SUBR=	lighttpd.sh
