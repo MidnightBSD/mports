@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/timidity/Makefile,v 1.1 2009/11/01 22:22:30 laffer1 Exp $
 
 PORTNAME=	timidity
 PORTVERSION=	0.2i
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.kiarchive.ru/pub/misc/hardware/soundcard/gus/:tiins \
 		http://www.onicos.com/staff/iz/timidity/dist/:timidity
@@ -27,7 +28,7 @@ post-patch:
 post-install:
 	cd ${PREFIX}/lib/timidity && \
 	${TAR} --no-same-owner --no-same-permissions -zxf ${DISTDIR}/${TIINS} && \
-	${REINPLACE_CMD} -i "" -e 's,dir goemon,dir ${PREFIX}/lib/timidity/goemon,' \
+	${REINPLACE_CMD} -i "" -e 's,dir goemon,dir ${TRUE_PREFIX}/lib/timidity/goemon,' \
 		goemon.cfg
 
 .include <bsd.port.mk>
