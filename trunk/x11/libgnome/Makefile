@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.7 2009/08/09 17:31:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.8 2009/09/20 01:50:25 smultron Exp $
 
 PORTNAME=	libgnome
 PORTVERSION=	2.26.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11 gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -49,6 +48,7 @@ GCONF_SCHEMAS=	desktop_gnome_accessibility_keyboard.schemas \
 		desktop_gnome_peripherals_keyboard.schemas \
 		desktop_gnome_peripherals_mouse.schemas \
 		desktop_gnome_sound.schemas \
+		desktop_gnome_thumbnail_cache.schemas \
 		desktop_gnome_thumbnailers.schemas \
 		desktop_gnome_typing_break.schemas
 
