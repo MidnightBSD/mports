@@ -2,30 +2,31 @@
 # Date created:				31 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.1 2007/10/20 07:01:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.2 2008/05/31 02:27:12 laffer1 Exp $
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
 #   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
 #
 
 PORTNAME=	libxklavier
-PORTVERSION=	3.5
-PORTREVISION=	0
+PORTVERSION=	3.9
 PORTEPOCH=	1
 CATEGORIES=	x11 gnome
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	gswitchit
+MASTER_SITES=	SF/gswitchit/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An utility library to make XKB stuff easier
 LICENSE=	lgpl
 
-RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
+RUN_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
+    		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
 USE_XORG=	x11 xkbfile
+USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gnomehack libxml2 glib20
+USE_GNOME=	gnomehack libxml2 glib20 ltverhack:12
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:22
 CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--disable-doxygen \
 		--with-xkb-base=${LOCALBASE}/share/X11/xkb \
@@ -41,6 +42,5 @@ PLIST_SUB=	VERSION=${PORTVERSION}
 post-patch:
 	@${REINPLACE_CMD} -e 's|== "yes|= "yes|g' \
 		${WRKSRC}/configure
-
 
 .include <bsd.port.mk>
