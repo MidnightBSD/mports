@@ -1,3 +1,4 @@
-MD5 (jack-audio-connection-kit-0.103.0.tar.gz) = 03a0f63b997ce7b83a1eeaa6b80f4388
-SHA256 (jack-audio-connection-kit-0.103.0.tar.gz) = a5d9fd696d7ee4a1c7679b5a688155bc1e0abbdf5f144d6762dbbee874df235f
-SIZE (jack-audio-connection-kit-0.103.0.tar.gz) = 763244
+MD5 (jack-audio-connection-kit-0.116.2.tar.gz) = 9c0ae9880e9b6e081f1a238fe6a28bd5
+SHA256 (jack-audio-connection-kit-0.116.2.tar.gz) = ce6e1f61a3b003137af56b749e5ed4274584167c0877ea9ef2d83f47b11c8d3d
+RMD160 (jack-audio-connection-kit-0.116.2.tar.gz) = ffa9238b6083778b91dfa266524074bfa1592399
+SIZE (jack-audio-connection-kit-0.116.2.tar.gz) = 944106
