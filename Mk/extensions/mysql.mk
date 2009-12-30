@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.15 2008/10/20 17:48:49 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -31,12 +31,11 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				- Detected MySQL version.
 ##
 
-DEFAULT_MYSQL_VER?=	50
+DEFAULT_MYSQL_VER?=	51
 # MySQL client version currently supported.
 MYSQL41_LIBVER=		14
 MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		16
-MYSQL60_LIBVER=		16
 
 # Setting/finding MySQL version we want.
 .if exists(${LOCALBASE}/bin/mysql) && !defined(PACKAGE_BUILDING)
