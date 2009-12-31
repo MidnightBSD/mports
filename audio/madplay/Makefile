@@ -1,17 +1,10 @@
-# New ports collection makefile for:  madplay
-# Date created:        26 November 2003
-# Whom:                Sergey Akifyev <asa@gascom.ru>
-#
-# $MidnightBSD: mports/audio/madplay/Makefile,v 1.1 2006/10/01 02:31:51 archite Exp $
-# $FreeBSD: ports/audio/madplay/Makefile,v 1.9 2006/09/11 12:31:15 yar Exp $
-#
+# $MidnightBSD: mports/audio/madplay/Makefile,v 1.2 2008/04/10 04:54:50 ctriv Exp $
 
 PORTNAME=	madplay
 PORTVERSION=	0.15.2b
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION} \
 		ftp://ftp.mars.org/pub/mpeg/
-MASTER_SITE_SUBDIR=	mad
 
 MAINTAINER=	asa@gascom.ru
 COMMENT=	Madplay MP3 player (part of MAD project)
@@ -20,6 +13,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	mad.2:${PORTSDIR}/audio/libmad \
 		id3tag.0:${PORTSDIR}/audio/libid3tag
 
+MAKE_JOBS_SAFE=	yes
 WANT_GNOME=	yes
 
 GNU_CONFIGURE=	yes
