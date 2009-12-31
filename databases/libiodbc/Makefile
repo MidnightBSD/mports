@@ -2,7 +2,7 @@
 # Date created:				24 Mar 2000
 # Whom:					erikhb@bgnett.no
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/libiodbc/Makefile,v 1.1 2007/08/10 18:15:59 laffer1 Exp $
 # $FreeBSD: ports/databases/libiodbc/Makefile,v 1.28 2007/01/17 17:18:11 itetcu Exp $
 #
 # Note:  The location of ${INIDIR} and the installed name of the "odbctest"
@@ -10,34 +10,32 @@
 #        databases/unixODBC.
 
 PORTNAME=	libiodbc
-PORTVERSION=	3.52.5
+PORTVERSION=	3.52.7
 CATEGORIES=	databases
 MASTER_SITES=	http://www.iodbc.org/downloads/iODBC/ \
-		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	iodbc
+		SF/iodbc/iodbc/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ODBC 3.x driver manager, for universal data source access
-
 LICENSE=	lgpl
 
 CONFLICTS=	unixODBC-[0-9]*
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+MAKE_JOBS_SAFE=	yes
+USE_GNOME=	gnomehack pkgconfig
 USE_GMAKE=	yes
-GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
-CONFIGURE_ARGS=	--with-iodbc-inidir=${INIDIR}
+CONFIGURE_ARGS=	--with-iodbc-inidir=${ETCDIR}
 USE_LDCONFIG=	yes
 
 MAN1=		iodbc-config.1 iodbctest.1 iodbctestw.1
 
 CPPFLAGS=	${PTHREAD_CFLAGS} -D_BSD_WCHAR_T_DEFINED_
 LDFLAGS=	${PTHREAD_LIBS}
-INIDIR=		${PREFIX}/etc/${PORTNAME}
 
 .if defined(WITH_GUI)
-USE_GNOME+=	gtk12
+USE_GNOME+=	gtk20
 MAN1+=		iodbcadm-gtk.1
 PLIST_SUB+=	GUI=""
 .else
@@ -54,8 +52,8 @@ post-patch:
 		's|-ldl||g' ${WRKSRC}/admin/libiodbc.pc.in
 
 post-install:
-	@${MKDIR} ${INIDIR}
-	${INSTALL_DATA} ${WRKSRC}/etc/odbc*.ini.sample ${INIDIR}
+	@${MKDIR} ${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/etc/odbc*.ini.sample ${ETCDIR}
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for f in AUTHORS ChangeLog NEWS README
