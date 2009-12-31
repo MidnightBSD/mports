@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.7 2009/06/27 16:15:32 laffer1 Exp $
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.8 2009/09/20 00:15:12 laffer1 Exp $
 
 PORTNAME=	lirc
 PORTVERSION=	0.8.0
 CATEGORIES=	comms
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	lirc
+MASTER_SITES=	SF/${PORTNAME}/LIRC/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux Infared Remote Control

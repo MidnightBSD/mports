@@ -2,15 +2,14 @@
 # Date created:		1 May 2002
 # Whom:			Andrew Dolgov <fox@furry.spb.ru>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/bforce-kst/Makefile,v 1.1 2008/08/17 21:36:33 laffer1 Exp $
 # $FreeBSD: ports/comms/bforce-kst/Makefile,v 1.15 2006/05/03 23:38:34 edwin Exp $
 #
 
 PORTNAME=	bforce
 PORTVERSION=	0.22.8.7
 CATEGORIES=	comms
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	binkleyforce
+MASTER_SITES=	SF/binkleyforce/${PORTNAME}/0.22.8.kst7
 PKGNAMESUFFIX=	-kst
 DISTNAME=	${PORTNAME}-0.22.8.kst7
 

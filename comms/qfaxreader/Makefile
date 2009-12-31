@@ -2,15 +2,14 @@
 # Date created:				2005-11-18
 # Whom:			Ion-Mihai "IOnut" Tetcu <itetcu@people.tecnik93.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/qfaxreader/Makefile,v 1.1 2008/08/17 22:42:29 laffer1 Exp $
 # $FreeBSD: ports/comms/qfaxreader/Makefile,v 1.8 2007/07/23 09:35:35 rafan Exp $
 #
 
 PORTNAME=	qfaxreader
 DISTVERSION=	0.3.1
 CATEGORIES=	comms graphics print
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mono/color multipage tiff/fax files visualisation/printing utility
