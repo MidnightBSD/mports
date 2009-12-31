@@ -2,7 +2,7 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.8 2008/04/29 16:55:19 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.9 2009/03/04 20:27:10 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
@@ -22,7 +22,7 @@ DISTNAME=	${PORTNAME}-1.7.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
-LICENSE=	isc
+LICENSE=	other
 
 GNU_CONFIGURE=	yes
 
