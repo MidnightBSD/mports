@@ -2,14 +2,13 @@
 # Date created: 20. August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.12 2008/10/02 21:08:22 laffer1 Exp $
+# $MidnightBSD: mports/lang/nwcc/Makefile,v 1.13 2009/07/07 22:25:22 laffer1 Exp $
 #
 
 PORTNAME=	nwcc
 PORTVERSION=	0.7.9
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	nwcc
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
