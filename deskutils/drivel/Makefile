@@ -1,22 +1,16 @@
-# New ports collection makefile for:	drivel
-# Date created:			Thu Feb 26 23:13:12 CET 2004
-# Whom:				Koop Mast <kwm@rainbow-runner.nl>
-#
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.5 2008/09/27 16:19:59 laffer1 Exp $
-# $FreeBSD: ports/deskutils/drivel/Makefile,v 1.33 2007/05/19 20:01:28 flz Exp $
-#
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.6 2009/09/20 00:35:50 laffer1 Exp $
 
 PORTNAME=	drivel
 PORTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/Drivel%20%28stable%29/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blog editor for GNOME
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.4:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
 
 INSTALLS_ICONS=	yes
 USE_XLIB=	yes
