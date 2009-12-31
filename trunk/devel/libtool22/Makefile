@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/libtool22/Makefile,v 1.1 2009/09/19 22:18:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/libtool22/Makefile,v 1.2 2009/09/19 23:30:43 laffer1 Exp $
 
 PORTNAME?=	libtool
-PORTVERSION=	2.2.6a
+PORTVERSION=	2.2.6b
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libtool
