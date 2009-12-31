@@ -3,19 +3,19 @@
 # Whom:			Thierry Thomas <thierry@pompo.net>
 #
 # $FreeBSD: ports/devel/bouml/Makefile,v 1.120 2008/05/11 20:20:03 thierry Exp $
-# $MidnightBSD: mports/devel/bouml/Makefile,v 1.2 2008/05/21 20:13:09 crash Exp $
+# $MidnightBSD: mports/devel/bouml/Makefile,v 1.3 2008/05/26 20:47:52 crash Exp $
 
 PORTNAME=	bouml
 PORTVERSION=	4.3.5
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}	\
+MASTER_SITES=	SF \
 		http://bouml.free.fr/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
 MAINTAINER=	Ports@MidnightBSD.org
 COMMENT=	BOUML, a free UML 2 modeler
 LICENSE=        gpl2
+
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
 USE_QT_VER=	3
