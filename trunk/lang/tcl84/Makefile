@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/lang/tcl84/Makefile,v 1.98 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.4 2007/12/05 23:10:41 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl84/Makefile,v 1.5 2008/05/11 16:19:14 laffer1 Exp $
 #
 
 PORTNAME=	tcl
@@ -11,8 +11,7 @@ PORTVERSION=	8.4.19
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	lang tcl
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	tcl
+MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
 PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
