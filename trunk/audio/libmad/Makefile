@@ -2,7 +2,7 @@
 # Date created:        26 November 2003
 # Whom:                Sergey Akifyev <asa@gascom.ru>
 #
-# $MidnightBSD: mports/audio/libmad/Makefile,v 1.3 2008/04/10 03:36:11 ctriv Exp $
+# $MidnightBSD: mports/audio/libmad/Makefile,v 1.4 2009/09/20 00:31:10 laffer1 Exp $
 # $FreeBSD: ports/audio/libmad/Makefile,v 1.9 2006/02/23 10:34:34 ade Exp $
 #
 
@@ -10,9 +10,8 @@ PORTNAME=	libmad
 PORTVERSION=	0.15.1b
 PORTREVISION=	3
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/mad/${PORTNAME}/${PORTVERSION} \
 		ftp://ftp.mars.org/pub/mpeg/
-MASTER_SITE_SUBDIR=	mad
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libmad library (part of MAD project)
