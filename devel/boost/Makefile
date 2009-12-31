@@ -4,14 +4,13 @@
 # Whom:				  Paul Marquis <pmarquis@pobox.com>
 #
 # $FreeBSD: ports/devel/boost/Makefile,v 1.35 2006/09/22 22:22:19 mi Exp $
-# $MidnightBSD: mports/devel/boost/Makefile,v 1.4 2008/08/21 18:31:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/boost/Makefile,v 1.5 2008/10/03 03:03:13 ctriv Exp $
 #
 
 PORTNAME=	boost
 PORTVERSION=	1.34.1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=${PORTNAME}
+MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
