@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD: ports/databases/memcached/files/memcached.in,v 1.3 2007/04/06 18:27:29 mnag Exp $
 #
 # PROVIDE: memcached
 # REQUIRE: DAEMON

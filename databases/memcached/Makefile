@@ -2,13 +2,13 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.4 2009/03/13 02:41:06 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.5 2009/10/14 00:15:58 laffer1 Exp $
 #
 
 PORTNAME=	memcached
-PORTVERSION=	1.2.8
+PORTVERSION=	1.4.1
 CATEGORIES=	databases
-MASTER_SITES=	http://www.danga.com/memcached/dist/ \
+MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
 
@@ -28,22 +28,23 @@ OPTIONS=	REPCACHED	"Enable data replication feature"	off
 MAN1=		memcached.1
 
 PLIST_FILES=	bin/memcached \
-		bin/memcached-debug \
 		bin/memcached-tool
 
 PORTDOCS=	memory_management.txt protocol.txt
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} >= 800000
+BROKEN=		does not link
+.endif
+
 .if defined(WITH_REPCACHED)
 # WWW: http://repcached.lab.klab.org/
-PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE}
-PATCH_SITE_SUBDIR=	repcached
+BROKEN=			Waiting a new release for this patch.
+PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE:C/%SUBDIR%/repcached\/repcached\/2.2-${PORTVERSION}/}
 PATCH_DIST_STRIP+=	-p1
-PATCHFILES+=		repcached-2.2-1.2.8.patch.gz
+PATCHFILES+=		repcached-2.2-${PORTVERSION}.patch.gz
 CONFIGURE_ARGS+=	--enable-replication --disable-threads
-.else
-CONFIGURE_ARGS+=	--enable-threads
 .endif
 
 post-configure:
