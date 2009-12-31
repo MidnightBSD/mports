@@ -1,16 +1,9 @@
-# New ports collection makefile for:	libmtp
-# Date created:							3 December 2006
-# Whom:								Petar Zhivkov Petrov (pesho.petrov@gmail.com)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/audio/libmtp/Makefile,v 1.10 2008/03/31 07:54:14 rafan Exp $
-#
+# $MidnightBSD: mports/audio/libmtp/Makefile,v 1.1 2008/09/11 05:02:48 laffer1 Exp $
 
 PORTNAME=	libmtp
-PORTVERSION=	0.2.6.1
+PORTVERSION=	0.3.1
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Media Transfer Protocol (MTP) library
