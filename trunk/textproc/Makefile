@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.115 2009/04/08 15:24:42 ctriv Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.116 2009/08/26 22:17:47 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -120,6 +120,7 @@
     SUBDIR += popup
     SUBDIR += py-docutils
     SUBDIR += py-libxml2
+    SUBDIR += py-pygments
     SUBDIR += py-xml
     SUBDIR += qt4-clucene
     SUBDIR += qt4-xml
