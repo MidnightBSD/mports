@@ -2,7 +2,7 @@
 # Date created:		2 January 2007
 # Whom:			Phil Pereira <phil@bsdnexus.com>
 #
-# $MidnightBSD: mports/sysutils/nodebrain/Makefile,v 1.1 2007/01/03 11:45:18 wintellect Exp $
+# $MidnightBSD: mports/sysutils/nodebrain/Makefile,v 1.2 2009/11/10 03:29:12 laffer1 Exp $
 #
 
 PORTNAME=	nodebrain
@@ -15,6 +15,7 @@ WRKSRC=		${WRKDIR}/nb-0.6.5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source Agent for Event Monitoring Applications
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=       --build=${MACHINE_ARCH}-portbld-midnightbsd
