@@ -1,5 +1,5 @@
---- Modules/_ctypes/libffi/configure.orig	2008-05-23 11:06:50 -0400
-+++ Modules/_ctypes/libffi/configure	2009-03-25 17:21:39 -0400
+--- Modules/_ctypes/libffi/configure.orig	2009-07-02 11:37:21 -0400
++++ Modules/_ctypes/libffi/configure	2009-12-30 20:45:57 -0500
 @@ -4511,7 +4511,7 @@
    lt_cv_deplibs_check_method=pass_all
    ;;
@@ -9,6 +9,15 @@
    if echo __ELF__ | $CC -E - | grep __ELF__ > /dev/null; then
      case $host_cpu in
      i*86 )
+@@ -4725,7 +4725,7 @@
+   rm -rf conftest*
+   ;;
+ 
+-x86_64-*kfreebsd*-gnu|x86_64-*linux*|ppc*-*linux*|powerpc*-*linux*| \
++amd64-*-midnightbsd*|x86_64-*kfreebsd*-gnu|x86_64-*linux*|ppc*-*linux*|powerpc*-*linux*| \
+ s390*-*linux*|sparc*-*linux*)
+   # Find out which ABI we are using.
+   echo 'int i;' > conftest.$ac_ext
 @@ -6508,7 +6508,7 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
