@@ -2,23 +2,24 @@
 # Date created:        21 May 2002
 # Whom:                Garrett Rooney <rooneg@electricjellyfish.net>
 #
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.4 2008/08/19 19:02:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.5 2009/09/20 02:53:58 smultron Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 #    $MCom: ports/x11-wm/metacity/Makefile,v 1.101 2007/03/14 04:17:20 marcus Exp $
 #
 
 PORTNAME=	metacity
-PORTVERSION=	2.22.0
+PORTVERSION=	2.26.0
 CATEGORIES=	x11-wm
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A window manager for the adult in you
 LICENSE=	gpl2
 
+BUILD_DEPENDS=  zenity:${PORTSDIR}/x11/zenity
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
+RUN_DEPENDS=    zenity:${PORTSDIR}/x11/zenity
 
 CONFLICTS=	expocity-[0-9]*
 USE_BZIP2=	yes
@@ -26,16 +27,19 @@ USE_XORG=	x11 xcomposite xdamage
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
-USE_GNOME=	gnomeprefix intlhack gnomehack gconf2 ltverhack
+USE_GNOME=	gnomeprefix intlhack gnomehack gconf2 ltverhack gtk20
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-render
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
 
 GCONF_SCHEMAS=	metacity.schemas
 
-MAN1=		metacity-theme-viewer.1 metacity-window-demo.1 \
-		metacity.1
+MAN1=		metacity-message.1 metacity-theme-viewer.1 \
+		metacity-window-demo.1 metacity.1
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-Werror||g' \
+	    	${WRKSRC}/configure
 
 .include <bsd.port.mk>
