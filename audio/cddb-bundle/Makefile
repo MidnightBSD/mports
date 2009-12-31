@@ -2,7 +2,7 @@
 # Date created:         17 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/audio/cddb-bundle/Makefile,v 1.2 2007/11/07 20:20:09 ctriv Exp $
+# $MidnightBSD: mports/audio/cddb-bundle/Makefile,v 1.3 2008/03/24 19:43:39 ctriv Exp $
 # $FreeBSD: ports/audio/cddb-bundle/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	cddb
 PORTVERSION=	0.2
 PORTREVISION=	1
 CATEGORIES=	audio gnustep
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	gsburn
+MASTER_SITES=	SF/gsburn/${PORTNAME}.bundle/${PORTNAME}.bundle-${PORTVERSION}
 PKGNAMESUFFIX=	-bundle${PKGNAMESUFFIX2}
 DISTNAME=	cddb.bundle-${PORTVERSION}
 
