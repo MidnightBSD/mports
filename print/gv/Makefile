@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  gv
-# Date created:			  16 Apr 1996
-# Whom:				  tg@freebsd.org
-#
-# $MidnightBSD: mports/print/gv/Makefile,v 1.1 2007/03/18 17:29:10 laffer1 Exp $
-# $FreeBSD: ports/print/gv/Makefile,v 1.49 2006/11/15 21:48:46 miwi Exp $
-#
+# $MidnightBSD: mports/print/gv/Makefile,v 1.2 2007/03/25 03:37:32 ctriv Exp $
 
 PORTNAME=	gv
 PORTVERSION=	3.6.2
@@ -16,13 +9,13 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A PostScript and PDF previewer
+LICENSE=	gpl2
 
 LIB_DEPENDS=	Xaw3d:${PORTSDIR}/x11-toolkits/Xaw3d
 
 USE_XLIB=	yes
 USE_XPM=	yes
 USE_GHOSTSCRIPT=	yes
-USE_GETOPT_LONG=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
@@ -41,8 +34,5 @@ PLIST_FILES=	bin/gv \
 		lib/X11/gv/gv_user.ad \
 		lib/X11/gv/gv_user_res.dat
 PLIST_DIRS=	lib/X11/gv
-
-post-install:
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
