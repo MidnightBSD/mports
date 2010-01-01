@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.2 2010/01/01 16:55:27 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.3 2006/05/01 19:49:57 sem Exp $
 #
 
@@ -15,7 +15,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 #				specified directly. If version is not specified
 #				(USE_TCL=yes) then the latest version is used
 #				(8.5 currently).
-#				Available values are: 85, 85-thread, 84, 
+#				Available values are: 86, 86-thread, 85, 85-thread, 84, 
 #				84-thread, 83, 82, and 80.
 #
 # USE_TK:		- Depend on tk to run. In case of incompatible APIs of 
@@ -23,7 +23,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 #				specified directly. If version is not specified
 #				(USE_TK=yes) then the latest version is used
 #				(8.5 currently).
-#				Available values are: 85, 84, 83, 82, and 80.
+#				Available values are: 86, 85, 84, 83, 82, and 80.
 # USE_TK_BUILD:		- Build time dependency on tk. Same semantics as USE_TK.
 ##
 # TCL_LIBDIR:		Path where tcl libraries can be found
