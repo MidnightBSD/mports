@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.3 2009/01/21 16:47:02 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.4 2009/06/22 17:10:25 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -20,7 +20,7 @@
 #
 
 #
-# the bsd.apache.mk we inherited from FreeBSD was included twice, but never guarded.  
+# the apache.mk we inherited from FreeBSD was included twice, but never guarded.  
 # we'll do the same, but this is an odd state of affairs.
 #
 

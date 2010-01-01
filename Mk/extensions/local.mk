@@ -5,13 +5,13 @@
 #
 # Created by: Mark Linimon <linimon@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/bsd.local.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/local.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.local.mk,v 1.1 2006/01/21 17:37:01 krion Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Local_Pre_Include)
 
-Local_Pre_Include=		bsd.local.mk
+Local_Pre_Include=		local.mk
 
 #
 # here is where any code that needs to run at bsd.port.pre.mk inclusion
@@ -22,7 +22,7 @@ Local_Pre_Include=		bsd.local.mk
 
 .if defined(_POSTMKINCLUDED) && !defined(Local_Post_Include)
 
-Local_Post_Include=	bsd.local.mk
+Local_Post_Include=	local.mk
 
 #
 # here is where any code that needs to run at bsd.port.post.mk inclusion

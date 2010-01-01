@@ -1,10 +1,10 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.wx.mk,v 1.3 2007/08/02 09:25:18 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.wx.mk,v 1.1 2006/07/05 02:13:12 linimon Exp $
 #
-# bsd.wx.mk - Support for WxWidgets based ports.
+# wx.mk - Support for WxWidgets based ports.
 #
 # Created by: Alejandro Pulver <alepulver@FreeBSD.org>
 #
