@@ -1,12 +1,14 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.1 2009/08/30 18:53:34 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.2 2009/09/20 02:47:26 laffer1 Exp $
 
 PORTNAME=	gegl
 PORTVERSION=	0.0.${GEGL_MINOR}
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.0/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graph based image processing framework
+LICENSE=	gpl3
 
 LIB_DEPENDS=	babl-0.0:${PORTSDIR}/x11/babl
 
@@ -16,11 +18,13 @@ OPTIONS=	CAIRO		"Enable Cairo" on \
 		JPEG		"Enable JPEG format support" on \
 		OPENEXR		"Enable High Dynamic Range (HDR) format support" on \
 		OPENRAW		"Enable RAW camera format support" on \
+		OPTIMIZE	"Enable optimizations autodetection (MMX, SSE)" off \
 		PANGO		"Enable rendering through Pango " on \
 		PNG		"Enable PNG format support" on \
 		RSVG		"Enable RSVG format support" on \
+		SDL		"Enable SDL" on \
 		SPIRO		"Enable Spiro" on \
-		SDL		"Enable SDL" on
+		V4L		"Enable Video4Linux" on
 
 USE_GNOME=	gtk20 glib20 pkgconfig gnomehack
 USE_BZIP2=	yes
@@ -29,10 +33,7 @@ USE_RUBY=	build
 USE_LDCONFIG=	${PREFIX}/lib/gegl-0.0
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		CFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS+=--disable-sse \
-		--disable-mmx
 
 GEGL_MINOR=	22
 PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}"
@@ -72,6 +73,8 @@ CONFIGURE_ARGS+=--without-libjpeg
 PLIST_SUB+=	JPEG="@comment "
 .endif
 
+CONFIGURE_ARGS+=--without-lua
+
 .if !defined(WITHOUT_OPENEXR)
 LIB_DEPENDS+=	IlmImf.6:${PORTSDIR}/graphics/OpenEXR
 PLIST_SUB+=	OPENEXR=""
@@ -86,6 +89,11 @@ PLIST_SUB+=	OPENRAW=""
 .else
 CONFIGURE_ARGS+=--without-libopenraw
 PLIST_SUB+=	OPENRAW="@comment "
+.endif
+
+.if defined(WITHOUT_OPTIMIZE)
+CONFIGURE_ARGS+=--disable-mmx \
+		--disable-sse
 .endif
 
 .if !defined(WITHOUT_PANGO)
@@ -124,6 +132,14 @@ LIB_DEPENDS+=	spiro.0:${PORTSDIR}/graphics/libspiro
 CONFIGURE_ARGS+=--without-libspiro
 .endif
 
+.if !defined(WITHOUT_V4L)
+BUILD_DEPENDS+=	${LOCALBASE}/include/linux/videodev.h:${PORTSDIR}/multimedia/v4l_compat
+PLIST_SUB+=	V4L=""
+.else
+CONFIGURE_ARGS+=--without-libv4l
+PLIST_SUB+=	V4L="@comment "
+.endif
+
 .if !defined(NOPORTDOCS)
 BUILD_DEPENDS+=	a2x:${PORTSDIR}/textproc/asciidoc
 .else
@@ -134,6 +150,7 @@ CONFIGURE_ARGS+=	--disable-docs
 
 post-patch:
 	${REINPLACE_CMD} -e 's|-T||' ${WRKSRC}/docs/Makefile.am ${WRKSRC}/docs/Makefile.in
+	${REINPLACE_CMD} -e 's|\(lua\)\(5\.1\)|\1-\2|g' ${WRKSRC}/configure
 
 post-build:
 .if !defined(NOPORTDOCS)
