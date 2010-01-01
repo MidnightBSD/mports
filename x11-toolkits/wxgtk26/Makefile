@@ -1,16 +1,9 @@
-# New ports collection makefile for:	wxgtk26
-# Date created:         		June 27, 2004
-# Whom:					fjoe@FreeBSD.ORG
-#
-# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.2 2008/06/08 01:04:19 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/wxgtk26/Makefile,v 1.38 2007/11/24 19:58:43 fjoe Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.3 2009/09/20 03:09:38 smultron Exp $
 
 PORTNAME=	wx
-PORTVERSION=	2.6.3
-PORTREVISION=	1
+PORTVERSION=	2.6.4
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	SF/wxwindows
+MASTER_SITES=	SF/wxwindows/wxGTK/${PORTVERSION}
 PKGNAMESUFFIX=	${WXGTK_FLAVOR}
 DISTNAME=	wxGTK-${PORTVERSION}
 
