@@ -1,12 +1,7 @@
-# New ports collection makefile for:	bouml
-# Date created:		14 June 2005
-# Whom:			Thierry Thomas <thierry@pompo.net>
-#
-# $FreeBSD: ports/devel/bouml/Makefile,v 1.120 2008/05/11 20:20:03 thierry Exp $
-# $MidnightBSD: mports/devel/bouml/Makefile,v 1.3 2008/05/26 20:47:52 crash Exp $
+# $MidnightBSD: mports/devel/bouml/Makefile,v 1.4 2009/12/31 23:49:45 laffer1 Exp $
 
 PORTNAME=	bouml
-PORTVERSION=	4.3.5
+PORTVERSION=	4.15
 CATEGORIES=	devel
 MASTER_SITES=	SF \
 		http://bouml.free.fr/
