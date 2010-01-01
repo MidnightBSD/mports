@@ -2,7 +2,7 @@
 # Date created:		September 11, 2002
 # Whom:			Stijn Hoop <stijn@win.tue.nl>
 #
-# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.4 2008/08/19 20:35:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/boxtools/Makefile,v 1.5 2008/08/19 20:36:15 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/boxtools/Makefile,v 1.7 2006/07/04 01:49:04 rafan Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	boxtools
 PORTVERSION=	0.70.1
 PORTREVISION=	1
 CATEGORIES=	x11-wm
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	blackboxwm
+MASTER_SITES=	SF/blackboxwm/blackboxwm/Blackbox%20${PORTVERSION}
 DISTNAME=	blackbox-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
