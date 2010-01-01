@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.9 2008/12/22 19:54:28 laffer1 Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.10 2009/04/14 23:50:57 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -108,7 +108,7 @@ my @files = qw(
 # directories to get out of the tempdir
 my @tempdirs = qw(mnt proc);
 
-run(qq(/usr/bin/tar -cpf $ballname --exclude '*perl*' @files));
+run(qq(/usr/bin/tar -cpf $ballname @files));
 
 mkdir("$tmpdir/$_") for @tempdirs;
 
