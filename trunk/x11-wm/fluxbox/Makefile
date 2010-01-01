@@ -1,14 +1,7 @@
-# New ports collection makefile for:	fluxbox
-# Date created:				29 November 2001
-# Whom:					spn
-#
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.10 2008/06/01 16:13:04 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/fluxbox/Makefile,v 1.45 2007/10/08 21:23:29 mezz Exp $
-#
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.11 2010/01/01 17:25:49 laffer1 Exp $
 
 PORTNAME=	fluxbox
-PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTVERSION=	1.1.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
