@@ -1,10 +1,4 @@
-# New ports collection makefile for:	teTeX
-# Date created:		5 December 1996
-# Whom:			Bernd Rosauer <br@netland.inka.de>
-#
-# $FreeBSD: ports/print/teTeX/Makefile,v 1.71 2006/07/18 18:53:59 hrs Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/print/teTeX/Makefile,v 1.1 2007/01/24 20:59:27 laffer1 Exp $
 
 PORTNAME=	teTeX
 PORTVERSION=	3.0
@@ -16,6 +10,7 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A meta port for teTeX suite
+LICENSE=	agg
 
 RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
