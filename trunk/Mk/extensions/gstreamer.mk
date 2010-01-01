@@ -1,17 +1,17 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# bsd.gstreamer.mk - Support for gstreamer-plugins-based ports.
+# gstreamer.mk - Support for gstreamer-plugins-based ports.
 #
 # Created by: Lucas Holt <luke@midnightbsd.org>
 # Date:		Nov 23 2007
 #
-# $MidnightBSD: mports/Mk/bsd.gstreamer.mk,v 1.4 2008/06/11 03:33:46 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 
 Gstreamer_Include_MAINTAINER=	ports@MidnightBSD.org
-Gstreamer_Pre_Include=		bsd.gstreamer.mk
+Gstreamer_Pre_Include=		gstreamer.mk
 
 .endif
 
@@ -242,7 +242,7 @@ libmms_DEPENDS=	net/gstreamer-plugins-libmms
 pango_DEPENDS=	x11-toolkits/gstreamer-plugins-pango
 
 .if defined(_POSTMKINCLUDED) && !defined(Gstreamer_Post_Include)
-Gstreamer_Post_Include=	bsd.gstreamer.mk
+Gstreamer_Post_Include=	gstreamer.mk
 
 .for ext in ${USE_GSTREAMER}
 ${ext}_GST_PREFIX?=	gstreamer-plugins-

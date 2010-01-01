@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.2 2008/10/29 19:27:15 ctriv Exp $
 #
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
 # QT_DIST			- Package being built is part of the Qt distribution.
@@ -236,7 +236,7 @@ xmlpatterns_run_DEPENDS=	${xmlpatterns_DEPENDS}
 xmlpatterns-tool_run_DEPENDS=	${xmlpatterns-tool_DEPENDS}
 
 .if defined(_POSTMKINCLUDED) && !defined(Qt_Post_Include) && !defined(QT_BUILD_ENV_ONLY)
-Qt_Post_Include= bsd.qt.mk
+Qt_Post_Include= qt.mk
 
 .for component in ${_QT_COMPONENTS_ALL}
 _QT_COMPONENTS_SUFFIXED+=${component} ${component}_build ${component}_run

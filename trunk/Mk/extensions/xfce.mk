@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.4 2009/03/12 04:11:04 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.5 2009/03/12 05:23:35 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)
 
-Xfce_Pre_Include=		bsd.xfce.mk
+Xfce_Pre_Include=		xfce.mk
 Xfce_Include_MAINTAINER=	ports@MidnightBSD.org
 
 XFCE_VERSION=	4.6.0
@@ -51,7 +51,7 @@ libmenu_BUN_DEPENDS=	libxfce4menu>=${XFCE_VERSION}:${PORTSDIR}/x11-toolkits/libx
 
 .if defined(_POSTMKINCLUDED) && !defined(Xfce_Post_Include)
 
-Xfce_Post_Include=		bsd.xfce.mk
+Xfce_Post_Include=		xfce.mk
 
 .for component in ${USE_XFCE}
 BUILD_DEPENDS+=	${${component}_BUILD_DEPENDS}

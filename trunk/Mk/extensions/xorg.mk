@@ -14,13 +14,13 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.5 2009/06/07 16:57:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.6 2009/09/24 00:44:06 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
 
 Xorg_Include_MAINTAINER=	ports@MidnightBSD.org
-Xorg_Pre_Include=		bsd.xorg.mk
+Xorg_Pre_Include=		xorg.mk
 
 #
 # If we're going to build a complete xorg for packages
@@ -159,7 +159,7 @@ USE_XORG+=	pciaccess
 
 .if defined(_POSTMKINCLUDED) && !defined(Xorg_Post_Include)
 
-Xorg_Post_Include=		bsd.xorg.mk
+Xorg_Post_Include=		xorg.mk
 
 # Register all xorg .pc files here.
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.

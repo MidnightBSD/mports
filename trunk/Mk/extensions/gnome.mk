@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.5 2009/10/31 22:07:05 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.6 2009/12/13 22:19:49 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -11,7 +11,7 @@
 # Please make sure all changes to this file are passed through the maintainer.
 # Do not commit them yourself (unless of course you're the Port's Wraith ;).
 Gnome_Include_MAINTAINER=	ports@MidnightBSD.org
-Gnome_Pre_Include=		bsd.gnome.mk
+Gnome_Pre_Include=		gnome.mk
 
 # This section defines possible names of GNOME components and all information
 # necessary for ports to use those components.
@@ -616,10 +616,10 @@ HAVE_GNOME+=	${component}
 
 .if defined(_POSTMKINCLUDED) && !defined(Gnome_Post_Include)
 
-Gnome_Post_Include=		bsd.gnome.mk
+Gnome_Post_Include=		gnome.mk
 
 .if !defined(Gnome_Pre_Include)
-.error The Pre include part of bsd.gnome.mk part is not included. Did you forget WANT_GNOME=yes before bsd.port.pre.mk?
+.error The Pre include part of gnome.mk part is not included. Did you forget WANT_GNOME=yes before bsd.port.pre.mk?
 .endif
 
 .if defined(USE_GNOME)
