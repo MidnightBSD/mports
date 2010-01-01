@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.tcl.mk,v 1.6 2008/05/22 16:47:02 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.3 2006/05/01 19:49:57 sem Exp $
 #
 
@@ -24,6 +24,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 #				(USE_TK=yes) then the latest version is used
 #				(8.5 currently).
 #				Available values are: 85, 84, 83, 82, and 80.
+# USE_TK_BUILD:		- Build time dependency on tk. Same semantics as USE_TK.
 ##
 # TCL_LIBDIR:		Path where tcl libraries can be found
 #
@@ -47,7 +48,7 @@ Tcl_Include_MAINTAINER=	ports@MidnightBSD.org
 
 .if defined(USE_TCL) || defined(USE_TCL_BUILD)
 
-_TCL_VERSIONS=	85 85-thread 84 84-thread 83 82 80
+_TCL_VERSIONS=	86 86-thread 85 85-thread 84 84-thread 83 82 80
 
 .if defined(USE_TCL)
 _RUN=		yes
@@ -87,7 +88,7 @@ IGNORE=		Unknown TCL version specified: ${USE_TCL}
 
 .if defined(USE_TK) || defined(USE_TK_BUILD)
 
-_TK_VERSIONS=	85 84 83 82 80
+_TK_VERSIONS=	86 85 84 83 82 80
 
 .if defined(USE_TK)
 _TK_RUN=	yes
@@ -137,7 +138,7 @@ IGNORE=		Unknown TK version specified: ${USE_TK}
 
 .if defined(_POSTMKINCLUDED) && !defined(Tcl_Post_Include)
 
-Tcl_Post_Include=	bsd.tcl.mk
+Tcl_Post_Include=	tcl.mk
 
 .if defined(PATCH_TCL_SCRIPTS) || defined (PATCH_TK_SCRIPTS)
 .if !target(post-patch)
