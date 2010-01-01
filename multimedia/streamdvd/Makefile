@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/multimedia/streamdvd/Makefile,v 1.2 2009/05/27 21:26:39 crash Exp $
+# $MidnightBSD: mports/multimedia/streamdvd/Makefile,v 1.3 2009/10/16 13:02:31 laffer1 Exp $
 
 PORTNAME=	streamdvd
 PORTVERSION=	0.4
 PORTREVISION=	2
 CATEGORIES=	multimedia
-MASTER_SITES=	http://www.badabum.de/down/
+MASTER_SITES=	ftp://quenix2.dyndns.org/FreeBSD/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast tool to backup Video DVDs 'on the fly'
 LICENSE=        gpl2
+
 LIB_DEPENDS=	dvdread.4:${PORTSDIR}/multimedia/libdvdread
 
 WRKSRC=		${WRKDIR}/StreamDVD-${PORTVERSION}
@@ -22,6 +23,7 @@ post-patch:
 		${WRKSRC}/mplex/mplex.cpp ${WRKSRC}/streamdvd.c
 	@${REINPLACE_CMD} -e 's|<stdint\.h>|<unistd.h>|' \
 		${WRKSRC}/mplex/mjpeg_types.h
+	@${REINPLACE_CMD} -e '48s|ZAlphaStream::||' ${WRKSRC}/mplex/zalphastrm.hpp
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/streamdvd ${PREFIX}/bin
