@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.6 2009/11/07 20:49:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.7 2009/12/13 23:14:52 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -203,7 +203,7 @@ SKIP_FAKE_CHECK= 	.*\.packlist
 .endif      # !defined(_POSTMKINCLUDED) && !defined(Perl_Pre_Include)
 .if defined(_POSTMKINCLUDED) && !defined(Perl_Post_Include)
 
-Perl_Post_Include=	bsd.perl.mk
+Perl_Post_Include=	perl.mk
 
 PLIST_SUB+=		PERL_VERSION=${PERL_VERSION} \
 				PERL_VER=${PERL_VER} \

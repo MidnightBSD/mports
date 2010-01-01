@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.3 2008/12/08 20:29:02 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.4 2008/12/15 19:37:29 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
@@ -115,7 +115,7 @@ CMAKE_SOURCE_PATH=	..
 
 .if defined(_POSTMKINCLUDED) && !defined(Kde_Post_Include)
 
-Kde_Post_Include=	bsd.kde4.mk
+Kde_Post_Include=	kde4.mk
 
 CONFLICTS+= kdelibs-3* kdeutils-3* kdebase-3*
 

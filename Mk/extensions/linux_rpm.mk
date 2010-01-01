@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.linux-rpm.mk,v 1.6 2008/04/14 04:22:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -32,7 +32,7 @@
 .if !defined(_POSTMKINCLUDED) && !defined(Linux_RPM_Pre_Include)
 
 Linux_RPM_Include_MAINTAINER=	ports@MidnightBSD.org
-Linux_RPM_Pre_Include=			bsd.linux-rpm.mk
+Linux_RPM_Pre_Include=			linux-rpm.mk
 
 RPM2CPIO?=			${LOCALBASE}/bin/rpm2cpio
 USE_GCPIO?=		yes
@@ -55,7 +55,7 @@ LINUX_RPM_ARCH?=	${ARCH}
 
 .if defined(_POSTMKINCLUDED) && !defined(Linux_RPM_Post_Include)
 
-Linux_RPM_Post_Include=	bsd.linux-rpm.mk
+Linux_RPM_Post_Include=	linux-rpm.mk
 
 LINUX_DIST?=		fedora
 LINUX_DIST_VER?=	3
