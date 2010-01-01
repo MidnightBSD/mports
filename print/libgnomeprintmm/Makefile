@@ -1,31 +1,24 @@
-# New ports collection makefile for:	libgnomeprintmm
-# Date created:				17 December 2003
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/print/libgnomeprintmm/Makefile,v 1.1 2008/03/04 18:44:43 laffer1 Exp $
-# $FreeBSD: ports/print/libgnomeprintmm/Makefile,v 1.10 2007/05/28 04:39:07 bland Exp $
-#
+# $MidnightBSD: mports/print/libgnomeprintmm/Makefile,v 1.2 2009/09/20 02:15:25 laffer1 Exp $
 
 PORTNAME=	libgnomeprintmm
 PORTVERSION=	2.5.1
+PORTREVISION=	1
 CATEGORIES=	print gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/2.5
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	C++ bindings for the GNOME print support library
+LICENSE=	lgpl
 
 LIB_DEPENDS=	gtkmm-2.4.1:${PORTSDIR}/x11-toolkits/gtkmm24
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
-USE_X_PREFIX=	yes
 USE_GMAKE=	yes
-USE_GCC=	3.4+
 USE_GNOME=	gnomeprefix gnomehack libgnomeprint
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static
 
