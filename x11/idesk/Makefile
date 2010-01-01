@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.4 2008/09/17 21:51:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.5 2009/06/06 21:16:47 laffer1 Exp $
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
 PORTREVISION=	3
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}/
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Place launch icons and background directly on your desktop
