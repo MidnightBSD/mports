@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.54 2009/01/03 22:31:16 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.55 2009/01/05 03:40:37 ctriv Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -100,6 +100,7 @@
     SUBDIR += qt4-qtconfig
     SUBDIR += qt4-qtdemo
     SUBDIR += shared-mime-info
+    SUBDIR += shc
     SUBDIR += susv2
     SUBDIR += susv3
     SUBDIR += tvbrowser
