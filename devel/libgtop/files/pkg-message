@@ -1,3 +1,5 @@
+===============================================================================
+
 In order to use the File System read/write monitor, you must chmod
 /dev/devstat so that all users can open it read-only.  For example:
 
@@ -7,3 +9,5 @@ In order for this to persist across reboots, add the following to
 /etc/devfs.conf:
 
 perm	devstat	0444
+
+===============================================================================
