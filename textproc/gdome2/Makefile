@@ -2,7 +2,7 @@
 # Date created:		7 July 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.2 2007/05/18 04:44:16 ctriv Exp $
+# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.3 2009/09/20 02:11:33 laffer1 Exp $
 # $FreeBSD: ports/textproc/gdome2/Makefile,v 1.28 2007/01/28 09:07:44 kris Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://gdome2.cs.unibo.it/tarball/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome DOM Engine
+LICENSE=	gpl2
 
 LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
 
