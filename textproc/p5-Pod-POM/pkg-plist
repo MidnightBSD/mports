@@ -1,3 +1,4 @@
+bin/pomdump
 bin/pom2
 bin/podlint
 %%SITE_PERL%%/Pod/POM.pm
