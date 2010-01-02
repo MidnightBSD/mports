@@ -3,17 +3,17 @@
 # Whom:			Greg Hewgill <greg@hewgill.com>
 #
 # $FreeBSD: ports/security/zebedee/Makefile,v 1.20 2006/09/05 04:40:06 linimon Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/zebedee/Makefile,v 1.1 2006/11/09 14:09:52 laffer1 Exp $
 #
 
 PORTNAME=	zebedee
 PORTVERSION=	2.5.3
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Encrypted, secure compressed TCP tunnel
+LICENSE=	agg
 
 USE_OPENSSL=	YES
 USE_PERL5_BUILD=YES

@@ -1,10 +1,5 @@
-# New ports collection makefile for:	nvclock
-# Date created:				August 4, 2003
-# Whom:					Samy Al Bahra <samy@kerneled.com>
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.1 2007/08/14 00:30:36 laffer1 Exp $
 # $FreeBSD: ports/sysutils/nvclock/Makefile,v 1.12 2007/07/15 07:15:42 rafan Exp $
-#
 
 PORTNAME=	nvclock
 DISTVERSION=	0.8b2
@@ -15,6 +10,7 @@ DISTNAME=	nvclock${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The nVidia graphic card status and overclocking tool
+LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
