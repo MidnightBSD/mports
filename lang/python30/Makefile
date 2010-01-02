@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/python30/Makefile,v 1.1 2009/05/08 16:43:19 laffer1 Exp $
 
 PORTNAME=	python30
 PORTVERSION=	3.0.1
@@ -111,6 +111,11 @@ PLIST_SUB+=	NO_NIS=""
 CONFIGURE_ARGS+=	--enable-ipv6
 .else
 CONFIGURE_ARGS+=	--disable-ipv6
+.endif
+
+CONFIGURE_ARGS+=        --with-system-ffi
+.if ${ARCH} != i386
+LIB_DEPENDS+=   ffi.5:${PORTSDIR}/devel/libffi
 .endif
 
 .if defined(WITH_FPECTL)
