@@ -2,7 +2,7 @@
 # Date created:			  16 March 2006
 # Whom:				  mnag@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/pecl-gnupg/Makefile,v 1.1 2007/10/12 21:01:41 laffer1 Exp $
 # $FreeBSD: ports/security/pecl-gnupg/Makefile,v 1.7 2007/10/04 06:00:23 edwin Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	PECL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A pecl wrapper around the gpgme library
+LICENSE=	bsd2
 
 LIB_DEPENDS=	gpgme.17:${PORTSDIR}/security/gpgme
 
