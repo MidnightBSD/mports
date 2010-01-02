@@ -2,7 +2,7 @@
 # Date created:		2003-06-05
 # Whom:			Sergei Kolobov <sergei@kolobov.com>
 #
-# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.2 2008/10/13 19:49:52 crash Exp $
+# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.3 2009/11/08 21:54:31 laffer1 Exp $
 # $FreeBSD: ports/textproc/xmlto/Makefile,v 1.18 2008/05/28 12:40:05 edwin Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	https://fedorahosted.org/releases/x/m/xmlto/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Front-end to an XSL toolchain
 LICENSE=        gpl2
+
 BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
 		${GETOPT_CMD}:${PORTSDIR}/misc/getopt \
 		xmllint:${PORTSDIR}/textproc/libxml2 \
@@ -29,7 +30,7 @@ OPTIONS=	PASSIVETEX "Enable PassiveTeX support for DVI/PS/PDF" OFF \
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-bash=${BASH_CMD} --with-getopt=${GETOPT_CMD}
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 BASH_CMD=	${LOCALBASE}/bin/bash
 GETOPT_CMD=	${LOCALBASE}/bin/getopt
