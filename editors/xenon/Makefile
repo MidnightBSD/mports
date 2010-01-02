@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/xenon/Makefile,v 1.2 2008/10/16 22:01:55 laffer1 Exp $
+# $MidnightBSD: mports/editors/xenon/Makefile,v 1.3 2009/06/07 18:56:58 laffer1 Exp $
 
 PORTNAME=	xenon
 PORTVERSION=	1.0.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	editors
 MASTER_SITES=	http://sydney.proximity.com.au/~ben/xenon/dist/ \
 		ftp://yankee.proximitygroup.com/pub/xenon/
@@ -13,6 +13,7 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 USE_XORG=	xpm
+NOPRECIOUSSOFTMAKEVARS=	yes
 MAKEFILE=	${WRKSRC}/makefiles/Makefile.Linux
 
 MAN1=		xe.1
