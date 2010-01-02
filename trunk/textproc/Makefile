@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.116 2009/08/26 22:17:47 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.117 2009/12/31 20:10:20 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -39,6 +39,7 @@
     SUBDIR += expat2
     SUBDIR += fixrtf
     SUBDIR += flex
+    SUBDIR += fop
     SUBDIR += gdome2
     SUBDIR += glimpse
     SUBDIR += gnome-doc-utils
