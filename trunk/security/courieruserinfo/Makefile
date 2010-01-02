@@ -1,10 +1,4 @@
-# New ports collection makefile for:	courieruserinfo
-# Date created:				27th July 2006
-# Whom:					Andrew St. Jean <andrew@arda.homeunix.net>
-#
-# $FreeBSD: ports/security/courieruserinfo/Makefile,v 1.1 2006/07/27 08:07:23 clsung Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/security/courieruserinfo/Makefile,v 1.1 2007/02/18 05:05:39 laffer1 Exp $
 
 PORTNAME=	courieruserinfo
 PORTVERSION=	1.1.2
@@ -13,6 +7,7 @@ MASTER_SITES=	http://www.arda.homeunix.net/store/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User account information retrieval utility
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -23,7 +18,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS='${CPPFLAGS}' LDFLAGS='${LDFLAGS}'
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 MAN8=		courieruserinfo.8
 
