@@ -1,14 +1,10 @@
-# New ports collection makefile for:	vxtools
-# Date created:		10 December 1999
-# Whom:			Martin Hinner
-#
-# $MidnightBSD: mports/emulators/vxtools/Makefile,v 1.1 2007/05/05 05:43:23 laffer1 Exp $
+# $MidnightBSD: mports/emulators/vxtools/Makefile,v 1.2 2008/10/16 22:11:08 laffer1 Exp $
 # $FreeBSD: ports/emulators/vxtools/Makefile,v 1.4 2004/02/04 05:20:09 marcus Exp $
 #
 
 PORTNAME=	vxtools
 PORTVERSION=	0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	ftp://ftp.penguin.cz/pub/users/mhi/vxfs/
 
