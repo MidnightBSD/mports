@@ -2,16 +2,15 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.5 2009/01/02 01:06:29 laffer1 Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.6 2009/03/01 16:42:51 laffer1 Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
 PORTNAME=	pearpc
 PORTVERSION=	0.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}.0
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PowerPC emulator
@@ -87,7 +86,7 @@ post-extract:
 
 pre-configure:
 # Assumes __FreeBSD_version value.  Change when current switches over.
-.if ${OSVERSION} < 600000
+.if ${OSVERSION} < 3000
 	@${REINPLACE_CMD} -e 's|clock_settime\ ()|foobar()|' ${WRKSRC}/configure
 .endif
 
