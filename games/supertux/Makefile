@@ -2,14 +2,15 @@
 # Date created:		22. May 2008
 # Whom:			Stevan Tiefert
 #
-# $MidnightBSD: mports/games/supertux/Makefile,v 1.3 2009/03/30 22:46:06 laffer1 Exp $
+# $MidnightBSD: mports/games/supertux/Makefile,v 1.4 2010/01/02 18:49:36 laffer1 Exp $
 #
 
 PORTNAME=	supertux
 PORTVERSION=	0.1.3
 PORTREVISION=	2
 CATEGORIES=	games
-MASTER_SITES=	http://download.berlios.de/supertux/
+MASTER_SITES=	${MASTER_SITE_BERLIOS}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	stevan_tiefert_midnight@yahoo.de
 COMMENT=	A 2D jump 'n run like Super Mario Bros.
