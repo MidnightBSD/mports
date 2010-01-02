@@ -2,7 +2,7 @@
 # Date created:					September 20th 2000
 # Whom:						eivind
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/cdiff/Makefile,v 1.1 2006/11/02 19:05:27 laffer1 Exp $
 # $FreeBSD: ports/textproc/cdiff/Makefile,v 1.9 2006/09/04 08:17:26 linimon Exp $
 #
 # This port is self contained in the src directory.
@@ -17,6 +17,7 @@ DISTFILES=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Diff readability enhancher for color terminals
+LICENSE=	bsd3
 
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
