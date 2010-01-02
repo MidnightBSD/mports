@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.5 2009/08/24 19:25:59 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.6 2009/09/20 02:12:49 laffer1 Exp $
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.15
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://gtkspell.sourceforge.net/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GTK+ 2 spell checking component
-LICENCE=	gpl2
+LICENSE=	gpl2
 
 .if !defined(REFERENCE_PORT)
 
