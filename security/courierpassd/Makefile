@@ -3,18 +3,19 @@
 # Whom:					Ade Lovett <ade@FreeBSD.org>
 #
 # $FreeBSD: ports/security/courierpassd/Makefile,v 1.9 2006/08/09 06:10:35 ade Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/courierpassd/Makefile,v 1.1 2007/02/23 20:30:08 laffer1 Exp $
 #
 
 PORTNAME=	courierpassd
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
 #MASTER_SITES=	http://www.arda.homeunix.net/store/
-MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ade
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User authentication and password changing daemon utility
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -58,6 +59,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
-	@${CAT}	${PKGMESSAGE}
 
 .include <bsd.port.mk>
