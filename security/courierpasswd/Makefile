@@ -1,18 +1,14 @@
-# New ports collection makefile for:	courierpasswd
-# Date created:				23th April 2006
-# Whom:					Andrew St. Jean <andrew@arda.homeunix.net>
-#
-# $FreeBSD: ports/security/courierpasswd/Makefile,v 1.3 2006/07/27 07:03:34 clsung Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/security/courierpasswd/Makefile,v 1.2 2007/02/18 05:06:13 laffer1 Exp $
 
-PORTNAME=	courierpasswd
+PORTNAME=	courierpassd
 PORTVERSION=	1.1.2
 CATEGORIES=	security mail
-MASTER_SITES=	http://www.arda.homeunix.net/store/
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	ade
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	User authentication and password changing utility
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
@@ -53,6 +49,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
