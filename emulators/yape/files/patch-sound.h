@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/emulators/yape/files/patch-sound.h,v 1.2 2005/10/13 14:44:05 mnag Exp $
+$FreeBSD: ports/emulators/yape/files/patch-sound.h,v 1.3 2009/05/11 19:24:41 dhn Exp $
 
 --- sound.h.orig
 +++ sound.h
@@ -7,8 +7,8 @@ $FreeBSD: ports/emulators/yape/files/patch-sound.h,v 1.2 2005/10/13 14:44:05 mna
  #ifndef _SOUND_H
  #define _SOUND_H
  
--#include "SDL/SDL.h"
-+#include "SDL.h"
+-#include <SDL/SDL.h>
++#include <SDL.h>
+ #include "types.h"
  
- 
- class MEM;
+ extern void init_audio(unsigned int sampleFrq = 48000);
