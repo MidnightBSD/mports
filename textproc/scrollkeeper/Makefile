@@ -2,13 +2,13 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.4 2009/09/20 02:20:26 laffer1 Exp $
+# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.5 2010/01/02 01:04:20 laffer1 Exp $
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 
 PORTNAME=	scrollkeeper
 PORTVERSION=	0.3.14
-PORTREVISION=	8
+PORTREVISION=	9
 PORTEPOCH=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
