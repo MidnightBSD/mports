@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.8 2009/05/01 14:47:59 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.9 2009/09/20 02:02:13 laffer1 Exp $
 
 PORTNAME=	gpgme
 PORTVERSION=	1.1.8
@@ -16,6 +16,7 @@ BUILD_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 RUN_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg
 
+MAKE_JOBS_SAFE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
