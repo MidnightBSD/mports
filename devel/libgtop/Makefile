@@ -2,16 +2,15 @@
 # Date Created:			29 April 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.4 2008/10/03 03:33:43 ctriv Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.5 2009/09/20 00:37:31 laffer1 Exp $
 # $FreeBSD: ports/devel/libgtop/Makefile,v 1.76 2007/07/23 09:35:42 rafan Exp $
 #   $MCom: ports/devel/libgtop/Makefile,v 1.5 2006/10/02 23:26:51 ahze Exp $
 #
 
 PORTNAME=	libgtop
-PORTVERSION=	2.22.2
+PORTVERSION=	2.26.1
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,9 +34,12 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 INFO=		libgtop2
 
+PKGMESSAGE=	${FILESDIR}/pkg-message
+
 .include <bsd.port.pre.mk>
 
-PKGMESSAGE=	${FILESDIR}/pkg-message
+post-patch:
+	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
 
 post-install:
 	@${CHGRP} kmem ${PREFIX}/bin/libgtop_server2
