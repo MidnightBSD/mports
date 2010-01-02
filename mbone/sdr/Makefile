@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/mbone/sdr/Makefile,v 1.2 2008/05/15 08:13:23 laffer1 Exp $
+# $MidnightBSD: mports/mbone/sdr/Makefile,v 1.3 2009/04/16 04:19:25 laffer1 Exp $
 
 PORTNAME=	sdr
 PORTVERSION=	3.0
+PORTREVISION=	1
 CATEGORIES=	mbone tk
 MASTER_SITES=	http://www-mice.cs.ucl.ac.uk/multimedia/software/sdr/3.0/
 
@@ -21,4 +22,10 @@ USE_TK_BUILD=	84
 post-extract:
 	@${CP} ${FILESDIR}/Makefile.freebsd ${WRKSRC}/Makefile.freebsd
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 3000
+MAKE_ARGS+=	"CC=gcc -g -O"
+.endif
+
+.include <bsd.port.post.mk>
