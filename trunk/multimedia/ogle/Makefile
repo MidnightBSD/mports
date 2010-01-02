@@ -1,20 +1,16 @@
-# New ports collection makefile for:	ogle
-# Date created:				Tue Oct 16 18:35:39 BRST 2001
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.7 2009/09/20 03:39:54 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.8 2009/10/19 01:29:36 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
-#
 
 PORTNAME=	ogle
 PORTVERSION=	0.9.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open DVD player that supports DVD menus
 LICENSE=        gpl2
+
 LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 		dvdread.4:${PORTSDIR}/multimedia/libdvdread \
 		jpeg.10:${PORTSDIR}/graphics/jpeg \
@@ -23,7 +19,7 @@ LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 
 USE_AUTOTOOLS=	libtool:22
 USE_SUBMAKE=	yes
-USE_XLIB=	yes
+USE_XORG=	x11 xext sm
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include"
@@ -32,8 +28,9 @@ CONFIGURE_ARGS=	--with-libjpeg=${LOCALBASE} \
 		--with-libmad=${LOCALBASE} \
 		--with-liba52=${LOCALBASE}
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
-DEFAULT_DVD_DEVICE?=	/dev/acd0c
+DEFAULT_DVD_DEVICE?=	/dev/acd0
 
 MAN1=	ogle.1
 MAN5=	oglerc.5
@@ -48,7 +45,7 @@ post-patch:
 	@${REINPLACE_CMD} -E -e "s|(DEFAULT_DVD_DEVICE=\")/dev/acd0c(\")|\1${DEFAULT_DVD_DEVICE}\2|" \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 .endif
-	@${REINPLACE_CMD} -e "s|%%X11BASE%%|${X11BASE}|" ${WRKSRC}/scripts/ogle.in
+	@${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${LOCALBASE}|" ${WRKSRC}/scripts/ogle.in
 # hack to make ogle work with liba52 + djbfft
 # CFLAGS safeness
 	@${REINPLACE_CMD} -E -e 's|(-la52)|\1 ${LIBA52_DEP_LIBS}|; \
