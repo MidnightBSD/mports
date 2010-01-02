@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/gpgme/Makefile,v 1.9 2009/09/20 02:02:13 laffer1 Exp $
+# $MidnightBSD: mports/security/gpgme/Makefile,v 1.10 2010/01/02 00:07:31 laffer1 Exp $
 
 PORTNAME=	gpgme
-PORTVERSION=	1.1.8
+PORTVERSION=	1.2.0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gpgme
