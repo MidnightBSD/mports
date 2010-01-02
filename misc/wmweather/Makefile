@@ -1,31 +1,26 @@
-# New ports collection makefile for:	wmWeather-1.28
-# Date created:		26 January 1998
-# Whom:			Kris Kennaway <kkennawa@physics.adelaide.edu.au>
-#
-# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.2 2007/03/25 01:05:35 ctriv Exp $
+# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.3 2007/03/25 01:07:50 ctriv Exp $
 # $FreeBSD: ports/misc/wmweather/Makefile,v 1.18 2006/12/13 12:41:30 roam Exp $
 
 PORTNAME=	wmweather
 PORTVERSION=	2.4.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.godisch.de/debian/wmweather/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A WMaker dockapp which displays meteorological data for your city
+LICENSE=	gpl2
 
-LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
-BUILD_DEPENDS=	xmessage:${X_CLIENTS_PORT}
-RUN_DEPENDS=	xmessage:${X_CLIENTS_PORT}
+LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
+BUILD_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
+RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
-CFLAGS+=	-I${LOCALBASE}/include -I${X11BASE}/include
+CFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib -L${X11BASE}/lib"
+CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib"
 WRKSRC=		${WRKDIR}/${DISTNAME}/src
 USE_GMAKE=	yes
-USE_GETOPT_LONG=yes
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 
 MAN1=		wmweather.1
 
