@@ -1,27 +1,20 @@
-# New ports collection makefile for:	searchmonkey
-# Date created:		26 August 2006
-# Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.1 2007/04/08 06:12:13 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.2 2008/05/31 19:41:15 laffer1 Exp $
 # $FreeBSD: ports/sysutils/searchmonkey/Makefile,v 1.7 2006/12/05 15:12:57 sat Exp $
-#
 
 PORTNAME=	searchmonkey
-PORTVERSION=	0.7.4
+PORTVERSION=	0.8.1
 CATEGORIES=	sysutils
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20%5Bstable%5D
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Search using regexes for file names and text
+LICENSE=	lgpl
 
 USE_GNOME=	gtk20
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libintl-prefix=${LOCALBASE}
-CONFIGURE_ENV=	CPPFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
-PLIST_FILES=	bin/${PORTNAME} share/pixmaps/${PORTNAME}-32x32.png
-PLIST_DIRS=	share/pixmaps
-CFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=-L${LOCALBASE}/lib
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 .include <bsd.port.mk>
