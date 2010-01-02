@@ -2,13 +2,12 @@
 # Date created:         31.10.2002
 # Whom:                 Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/emulators/yape/Makefile,v 1.1 2007/05/05 05:08:50 laffer1 Exp $
+# $MidnightBSD: mports/emulators/yape/Makefile,v 1.2 2008/05/21 21:17:33 crash Exp $
 # $FreeBSD: ports/emulators/yape/Makefile,v 1.11 2006/09/20 11:20:49 stas Exp $
 #
 
 PORTNAME=	yape
-PORTVERSION=	0.32.4
-PORTREVISION=	1
+PORTVERSION=	0.32.5
 CATEGORIES=	emulators
 MASTER_SITES=	http://yape.homeserver.hu/download/
 DISTNAME=	${PORTNAME}SDL-${PORTVERSION}
@@ -24,8 +23,6 @@ ALL_TARGET=	yape
 PLIST_FILES=	bin/yape
 PORTDOCS=	*
 
-.include <bsd.port.pre.mk>
-
 post-extract:
 	@${FIND} -E ${WRKDIR} -type f -iregex ".*\.(c|cpp|h|txt)" -print0 | \
 		${XARGS} -0 ${REINPLACE_CMD} -e 's/[[:cntrl:]]*$$//'
@@ -33,6 +30,7 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|sdl-config|${SDL_CONFIG}|" ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e "s|TAP::TAP|TAP|" ${WRKSRC}/tape.h
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/yape ${PREFIX}/bin
@@ -43,4 +41,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/README.SDL ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
