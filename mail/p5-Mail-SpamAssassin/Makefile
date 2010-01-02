@@ -1,13 +1,10 @@
-# New ports collection makefile for:	p5-Mail-SpamAssassin
-# Date created:				Nov 26 2001
-# Whom:					Anthony Kim
-#
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.6 2008/06/13 22:50:26 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.7 2008/11/06 20:58:33 ctriv Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
 PORTNAME=	Mail-SpamAssassin
 PORTVERSION=	3.2.5
+PORTREVISION=	1
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
@@ -98,7 +95,7 @@ RUN_DEPENDS+=	razor-agents>=2.84:${PORTSDIR}/mail/razor-agents
 .endif
 
 .if defined(WITH_DKIM)
-RUN_DEPENDS+=	p5-Mail-DKIM>=0.31:${PORTSDIR}/mail/p5-Mail-DKIM
+RUN_DEPENDS+=	p5-Mail-DKIM>=0.34:${PORTSDIR}/mail/p5-Mail-DKIM
 RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/SSL.pm:${PORTSDIR}/security/p5-IO-Socket-SSL
 RUN_DEPENDS+=	p5-Crypt-OpenSSL-RSA>=0.24:${PORTSDIR}/security/p5-Crypt-OpenSSL-RSA
 .endif
@@ -208,7 +205,8 @@ post-patch:
 		-e 's#B_CONFDIR)/v320.pre#B_CONFDIR)/v320.pre.sample#g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
-		@${REINPLACE_CMD} -e '/^CC =/d' ${WRKSRC}/spamc/Makefile.in
+	@${REINPLACE_CMD} -e '/^CC =/d; \
+		s|@SSLCFLAGS@|& $${CFLAGS}|g' ${WRKSRC}/spamc/Makefile.in
 
 .if defined(WITH_RAZOR)
 	${REINPLACE_CMD} -e '/Razor2/s/^#loadplugin/loadplugin/' ${WRKSRC}/rules/v312.pre
