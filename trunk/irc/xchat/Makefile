@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.11 2009/08/24 19:22:44 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.12 2009/12/25 16:24:52 laffer1 Exp $
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.6
+PORTREVISION=	1
 CATEGORIES=	irc gnome ipv6
 MASTER_SITES=	SF \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An X11 IRC client using the GTK+ 2 toolkit
@@ -82,6 +82,7 @@ PLIST_SUB+=	PERL=""
 .endif
 
 .if defined(WITH_PYTHON)
+EXTENSIONS+=	python
 USE_PYTHON=	yes
 CONFIGURE_ARGS+=--enable-python
 PLIST_SUB+=	PYTHON=""
@@ -91,6 +92,7 @@ PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .if defined(WITH_TCL)
+EXTENSIONS+=	tcl
 LIB_DEPENDS+=	tcl84.1:${PORTSDIR}/lang/tcl84
 CONFIGURE_ARGS+=--enable-tcl=${LOCALBASE}/lib/tcl8.4
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS} \
