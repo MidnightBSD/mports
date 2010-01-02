@@ -2,7 +2,7 @@
 # Date created:				04 Feb 2004
 # Whom:					Josef El-Rayes <josef@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/wmbsdbatt/Makefile,v 1.1 2007/03/11 19:38:08 archite Exp $
 # $FreeBSD: ports/sysutils/wmbsdbatt/Makefile,v 1.5 2006/07/27 06:33:44 edwin Exp $
 
 PORTNAME=	wmbsdbatt
@@ -13,8 +13,7 @@ MASTER_SITES=	http://homepage.univie.ac.at/l.ertl/wmbsdbatt/files/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dockapp for battery & temperature monitoring through ACPI
 
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORg=	x11 xpm
 
 PLIST_FILES=	bin/wmbsdbatt
 
