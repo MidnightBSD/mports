@@ -1,33 +1,28 @@
-# Ports collection Makefile for:	PyXML
-# Date created:				04/17/1999
-# Whom:					nectar@FreeBSD.org
-#
-# $MidnightBSD: mports/textproc/py-xml/Makefile,v 1.2 2007/08/31 00:57:26 laffer1 Exp $
-# $FreeBSD: ports/textproc/py-xml/Makefile,v 1.29 2007/07/30 09:42:04 alexbl Exp $
-#
+# $MidnightBSD: mports/textproc/py-xml/Makefile,v 1.3 2008/10/13 20:02:47 crash Exp $
 
-PORTNAME=		xml
-PORTVERSION=		0.8.4
-CATEGORIES=		textproc python
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	pyxml
-PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
-DISTNAME=		PyXML-${PORTVERSION}
+PORTNAME=	xml
+PORTVERSION=	0.8.4
+PORTREVISION=	1
+CATEGORIES=	textproc python
+MASTER_SITES=	SF/py${PORTNAME}/py${PORTNAME}/${PORTVERSION}
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	PyXML-${PORTVERSION}
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		PyXML: Python XML library enhancements
-LICENSE=                other
-USE_GCPIO=		yes
-USE_PYTHON=		2.1+
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_PKGNAME=	PyXML
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	PyXML: Python XML library enhancements
+LICENSE=	other
+
+USE_GCPIO=	yes
+USE_PYTHON=	2.1+
+USE_PYDISTUTILS=yes
+PYDISTUTILS_PKGNAME=PyXML
 
 .include <bsd.port.pre.mk>
 
-CPIOARGS=		--quiet -pdum -R
-DOCSDIR=		${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
-EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
-PLIST_SUB+=		PACKAGE_DIR=_xmlplus
+CPIOARGS=	--quiet -pdum -R
+DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
+PLIST_SUB+=	PACKAGE_DIR=_xmlplus
 
 # PyXML's XPath support for minidom (xml.xpath) is functional and is
 # installed by default, unless WITHOUT_XPATH is defined.
