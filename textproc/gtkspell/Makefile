@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.6 2009/09/20 02:12:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.7 2010/01/02 17:42:33 laffer1 Exp $
 
 PORTNAME=	gtkspell
 PORTVERSION=	2.0.15
@@ -14,6 +14,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant
 
+MAKE_JOBS_SAFE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 intlhack
 USE_GETTEXT=	yes
