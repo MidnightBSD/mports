@@ -2,12 +2,12 @@
 # Date created:		2008-06-23
 # Whom:			Gea-Suan Lin <gslin@gslin.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db47/Makefile,v 1.1 2008/10/20 17:45:45 laffer1 Exp $
 # $FreeBSD: ports/databases/db47/Makefile,v 1.88 2008/06/09 05:59:35 vanilla Exp $
 #
 
 PORTNAME=	db47
-PORTVERSION=	4.7.25.0
+PORTVERSION=	4.7.25.4
 CATEGORIES=	databases
 MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
 		http://download-east.oracle.com/berkeley-db/ \
@@ -15,6 +15,10 @@ MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
 PKGNAMEPREFIX?=
 DISTNAME=	db-${PORTVERSION:R}
 DIST_SUBDIR=	bdb
+
+PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION:R}/
+PATCHFILES=	patch.4.7.25.1 patch.4.7.25.2 patch.4.7.25.3
+PATCH_DIST_STRIP=	-d .. --ignore-whitespace
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.7
@@ -28,6 +32,7 @@ CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 --enable-cxx \
 		--bindir=${PREFIX}/bin/${PORTNAME}
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 INSTALL_TARGET=	install_include install_lib install_utilities
 LIBTOOLFILES=	${CONFIGURE_SCRIPT}
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
