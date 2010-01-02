@@ -1,10 +1,5 @@
-# Ports collection makefile for:  zombiezapper
-# Date created:			  19 Feb 2000
-# Whom:				  Kris Kennaway <kris@FreeBSD.org>
-#
 # $FreeBSD: ports/security/zombiezapper/Makefile,v 1.8 2005/11/14 17:07:05 sem Exp $
-# $MidnightBSD: mports/security/zombiezapper/Makefile,v 1.2 2008/02/28 23:52:10 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/zombiezapper/Makefile,v 1.3 2008/10/04 17:14:32 laffer1 Exp $
 
 PORTNAME=	zombiezapper
 PORTVERSION=	1.2
@@ -16,6 +11,7 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Send a terminate command to Trinoo/TFN/Stacheldracht DDoS agents
+LICENSE=	other
 
 BUILD_DEPENDS=	${LIBNET_CONFIG}:${PORTSDIR}/net/libnet10
 
