@@ -131,3 +131,5 @@ libdata/pkgconfig/xcb-xv.pc
 libdata/pkgconfig/xcb-xvmc.pc
 libdata/pkgconfig/xcb.pc
 @dirrmtry include/xcb
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/tutorial
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
