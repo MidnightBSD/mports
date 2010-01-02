@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.4 2009/03/30 22:39:20 laffer1 Exp $
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.5 2009/10/03 00:44:25 laffer1 Exp $
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	SF
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz \
