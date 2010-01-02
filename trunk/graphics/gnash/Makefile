@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.8 2009/10/25 18:57:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.9 2009/10/25 19:28:51 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.6
+PORTREVISION=	1
 CATEGORIES=	graphics
 # getgnash.org is slow
 MASTER_SITES=	${MASTER_SITE_GNU} \
@@ -17,6 +18,8 @@ LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
 		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		curl.5:${PORTSDIR}/ftp/curl \
 		ungif.5:${PORTSDIR}/graphics/libungif
+
+SKIP_FAKE_CHECK=gtk-gnash
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
