@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.9 2009/10/25 19:28:51 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.10 2010/01/02 18:57:12 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.6
@@ -19,7 +19,7 @@ LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
 		curl.5:${PORTSDIR}/ftp/curl \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
-SKIP_FAKE_CHECK=gtk-gnash
+SKIP_FAKE_CHECK=	*gtk-gnash
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
