@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.23 2009/11/29 03:41:16 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.24 2009/11/29 04:15:00 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	1.2.4
+PORTVERSION=	1.2.8
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
@@ -42,7 +42,6 @@ PROTOCOLS=	imap
 OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
 		SSL		"SSL support"		on  \
 		IPV6		"IPv6 support"		on  \
-		POP3		"POP3 support"		on  \
 		LDA		"LDA support"		on  \
 		MANAGESIEVE	"ManageSieve support"	on  \
 		GSSAPI		"GSSAPI support"	off \
@@ -75,7 +74,7 @@ CONFIGURE_ARGS+=	--with-ioloop=kqueue
 ## SSL support
 #
 .if defined(WITH_SSL) && !defined(WITHOUT_SSL)
-PROTOCOLS+=	imaps
+PROTOCOLS+=	imaps pop3s
 .else
 CONFIGURE_ARGS+=	--without-ssl
 .endif
@@ -84,19 +83,6 @@ CONFIGURE_ARGS+=	--without-ssl
 #
 .if defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--disable-ipv6
-.endif
-
-## POP3 support
-#
-.if defined(WITHOUT_POP3)
-CONFIGURE_ARGS+=	--without-pop3d
-PLIST_SUB+=		POP3="@comment "
-.else
-PROTOCOLS+=		pop3
-.if defined(WITH_SSL) && !defined(WITHOUT_SSL)
-PROTOCOLS+=		pop3s
-.endif
-PLIST_SUB+=		POP3=""
 .endif
 
 ## LDA support
