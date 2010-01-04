@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.13 2009/03/25 01:25:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.14 2009/09/17 02:24:12 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	243
+PORTVERSION=	253
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/ \
 		http://voodoo.bawue.com/download/
