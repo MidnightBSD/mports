@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automoc4/Makefile,v 1.3 2009/04/08 20:40:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/automoc4/Makefile,v 1.4 2009/04/08 20:42:27 laffer1 Exp $
 
 PORTNAME=	automoc4
 PORTVERSION=	0.9.88
@@ -19,5 +19,6 @@ QT_COMPONENTS=	uic moc rcc qmake corelib
 USE_CMAKE=	yes
 CMAKE_VERBOSE=	yes
 CMAKE_USE_PTHREAD=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.mk>
