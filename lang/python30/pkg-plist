@@ -804,8 +804,6 @@ lib/lib%%PYTHON_VERSION%%.a
 %%PYTHON_LIBDIR%%/plat-freebsd6/regen
 %%PYTHON_LIBDIR%%/plat-freebsd7/IN.py
 %%PYTHON_LIBDIR%%/plat-freebsd7/regen
-%%PYTHON_LIBDIR%%/plat-freebsd8/IN.py
-%%PYTHON_LIBDIR%%/plat-freebsd8/regen
 %%PYTHON_LIBDIR%%/platform.py
 %%PYTHON_LIBDIR%%/plistlib.py
 %%PYTHON_LIBDIR%%/poplib.py
@@ -2044,7 +2042,6 @@ lib/lib%%PYTHON_VERSION%%.a
 @dirrm %%PYTHON_LIBDIR%%/sqlite3/test
 @dirrm %%PYTHON_LIBDIR%%/sqlite3
 @dirrm %%PYTHON_LIBDIR%%/site-packages
-@dirrm %%PYTHON_LIBDIR%%/plat-freebsd8
 @dirrm %%PYTHON_LIBDIR%%/plat-freebsd7
 @dirrm %%PYTHON_LIBDIR%%/plat-freebsd6
 @dirrm %%PYTHON_LIBDIR%%/plat-freebsd5
