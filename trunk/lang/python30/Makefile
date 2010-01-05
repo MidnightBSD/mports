@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/python30/Makefile,v 1.1 2009/05/08 16:43:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/python30/Makefile,v 1.2 2010/01/02 23:26:42 laffer1 Exp $
 
 PORTNAME=	python30
 PORTVERSION=	3.0.1
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -18,6 +19,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../configure # must be relative
 CONFIGURE_ENV=	OPT="${CFLAGS}" SVNVERSION="echo freebsd"
 MAKE_ENV=	VPATH="${PYTHON_WRKSRC}"
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	altinstall
 MAN1=		${PYTHON_VERSION}.1
@@ -35,7 +37,7 @@ DEMODIR=	${PREFIX}/share/examples/${PYTHON_VERSION}
 TOOLSDIR=	${PREFIX}/share/${PYTHON_VERSION}
 
 PLATFORMS=	plat-freebsd4 plat-freebsd5 plat-freebsd6 \
-		plat-freebsd7 plat-freebsd8
+		plat-freebsd7
 
 BIN_SCRIPTS=	2to3 idle pydoc smtpd.py
 BIN_FILES=	python python-shared python-config python-shared-config \
