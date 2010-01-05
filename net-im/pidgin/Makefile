@@ -2,11 +2,10 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.15 2009/06/29 16:33:48 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.16 2010/01/05 01:20:47 laffer1 Exp $
 
 PORTNAME=	pidgin
-PORTVERSION=	2.5.9
-PORTREVISION=	1
+PORTVERSION=	2.6.3
 CATEGORIES=	net-im
 MASTER_SITES=   SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=       pidgin-${PORTVERSION}
@@ -35,7 +34,8 @@ CONFIGURE_ARGS+= \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES} \
 		--disable-nm \
-		--disable-doxygen
+		--disable-doxygen \
+		--disable-vv
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
