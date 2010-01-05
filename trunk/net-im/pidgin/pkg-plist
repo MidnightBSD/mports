@@ -1,92 +1,3 @@
-bin/pidgin
-include/pidgin/eggtrayicon.h
-include/pidgin/pidgincombobox.h
-include/pidgin/pidginstock.h
-include/pidgin/gtkaccount.h
-include/pidgin/gtkblist.h
-include/pidgin/gtkcelllayout.h
-include/pidgin/gtkcellrendererexpander.h
-include/pidgin/gtkcellrendererprogress.h
-include/pidgin/gtkcellview.h
-include/pidgin/gtkcellviewmenuitem.h
-include/pidgin/gtkcertmgr.h
-include/pidgin/gtkconn.h
-include/pidgin/gtkconv.h
-include/pidgin/gtkconvwin.h
-include/pidgin/gtkdebug.h
-include/pidgin/gtkdialogs.h
-include/pidgin/gtkdnd-hints.h
-include/pidgin/gtkdocklet.h
-include/pidgin/gtkeventloop.h
-include/pidgin/gtkexpander.h
-include/pidgin/gtkft.h
-include/pidgin/gtkgaim-compat.h
-include/pidgin/gtkidle.h
-include/pidgin/gtkimhtml.h
-include/pidgin/gtkimhtmltoolbar.h
-include/pidgin/gtklog.h
-include/pidgin/gtkmenutray.h
-include/pidgin/gtknickcolors.h
-include/pidgin/gtknotify.h
-include/pidgin/gtkplugin.h
-include/pidgin/gtkpluginpref.h
-include/pidgin/gtkpounce.h
-include/pidgin/gtkprefs.h
-include/pidgin/gtkprivacy.h
-include/pidgin/gtkrequest.h
-include/pidgin/gtkroomlist.h
-include/pidgin/gtksavedstatuses.h
-include/pidgin/gtkscrollbook.h
-include/pidgin/gtksession.h
-include/pidgin/gtksmiley.h
-include/pidgin/gtksound.h
-include/pidgin/gtksourceiter.h
-include/pidgin/gtksourceundomanager.h
-include/pidgin/gtksourceview-marshal.h
-include/pidgin/gtkstatusbox.h
-include/pidgin/gtkthemes.h
-include/pidgin/gtkutils.h
-include/pidgin/gtkwhiteboard.h
-include/pidgin/minidialog.h
-include/pidgin/pidgin.h
-include/pidgin/pidgintooltip.h
-%%CAP%%lib/pidgin/cap.la
-%%CAP%%lib/pidgin/cap.so
-lib/pidgin/convcolors.la
-lib/pidgin/convcolors.so
-lib/pidgin/extplacement.la
-lib/pidgin/extplacement.so
-lib/pidgin/pidginrc.la
-lib/pidgin/pidginrc.so
-lib/pidgin/gestures.la
-lib/pidgin/gestures.so
-%%EVO%%lib/pidgin/gevolution.la
-%%EVO%%lib/pidgin/gevolution.so
-lib/pidgin/gtkbuddynote.la
-lib/pidgin/gtkbuddynote.so
-lib/pidgin/history.la
-lib/pidgin/history.so
-lib/pidgin/iconaway.la
-lib/pidgin/iconaway.so
-lib/pidgin/markerline.la
-lib/pidgin/markerline.so
-%%DBUS%%lib/pidgin/musicmessaging.la
-%%DBUS%%lib/pidgin/musicmessaging.so
-lib/pidgin/notify.la
-lib/pidgin/notify.so
-lib/pidgin/relnot.la
-lib/pidgin/relnot.so
-lib/pidgin/spellchk.la
-lib/pidgin/spellchk.so
-lib/pidgin/ticker.la
-lib/pidgin/ticker.so
-lib/pidgin/timestamp.la
-lib/pidgin/timestamp.so
-lib/pidgin/timestamp_format.la
-lib/pidgin/timestamp_format.so
-lib/pidgin/xmppconsole.la
-lib/pidgin/xmppconsole.so
-libdata/pkgconfig/pidgin.pc
 %%DBUS%%bin/purple-client-example
 %%DBUS%%bin/purple-remote
 %%DBUS%%bin/purple-send
@@ -120,6 +31,10 @@ include/libpurple/gaim-compat.h
 include/libpurple/idle.h
 include/libpurple/imgstore.h
 include/libpurple/log.h
+include/libpurple/marshallers.h
+include/libpurple/media-gst.h
+include/libpurple/media.h
+include/libpurple/mediamanager.h
 include/libpurple/mime.h
 include/libpurple/nat-pmp.h
 include/libpurple/network.h
@@ -140,12 +55,18 @@ include/libpurple/server.h
 include/libpurple/signals.h
 include/libpurple/smiley.h
 include/libpurple/sound.h
+include/libpurple/sound-theme-loader.h
+include/libpurple/sound-theme.h
 include/libpurple/sslconn.h
 include/libpurple/status.h
 include/libpurple/stringref.h
 include/libpurple/stun.h
+include/libpurple/theme-loader.h
+include/libpurple/theme-manager.h
+include/libpurple/theme.h
 include/libpurple/upnp.h
 include/libpurple/util.h
+include/libpurple/valgrind.h
 include/libpurple/value.h
 include/libpurple/version.h
 include/libpurple/whiteboard.h
@@ -175,6 +96,8 @@ lib/purple-2/libjabber.so
 lib/purple-2/libjabber.so.0
 lib/purple-2/libmsn.la
 lib/purple-2/libmsn.so
+@comment lib/purple-2/libmyspace.la
+@comment lib/purple-2/libmyspace.so
 lib/purple-2/libnovell.la
 lib/purple-2/libnovell.so
 lib/purple-2/liboscar.la
@@ -184,14 +107,19 @@ lib/purple-2/liboscar.so.0
 %%SILC%%lib/purple-2/libsilcpurple.so
 lib/purple-2/libqq.la
 lib/purple-2/libqq.so
-%%SAMETIME%%lib/purple-2/libsametime.la
-%%SAMETIME%%lib/purple-2/libsametime.so
+@comment lib/purple-2/libsametime.la
+@comment lib/purple-2/libsametime.so
 lib/purple-2/libsimple.la
 lib/purple-2/libsimple.so
 lib/purple-2/libxmpp.la
 lib/purple-2/libxmpp.so
 lib/purple-2/libyahoo.la
 lib/purple-2/libyahoo.so
+lib/purple-2/libyahoojp.la
+lib/purple-2/libyahoojp.so
+lib/purple-2/libymsg.la
+lib/purple-2/libymsg.so
+lib/purple-2/libymsg.so.0
 lib/purple-2/libzephyr.la
 lib/purple-2/libzephyr.so
 lib/purple-2/log_reader.la
@@ -217,13 +145,14 @@ lib/purple-2/statenotify.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/autosplit.ix
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/Purple.so
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/Purple.bs
+%%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple/.packlist
 %%PERL:%%%%SITE_PERL%%/%%PERL_ARCH%%/Purple.pm
 %%DBUS%%lib/libpurple-client.la
 %%DBUS%%lib/libpurple-client.so
-%%DBUS%%lib/libpurple-client.so.5
+%%DBUS%%lib/libpurple-client.so.6
 lib/libpurple.la
 lib/libpurple.so
-lib/libpurple.so.5
+lib/libpurple.so.6
 libdata/pkgconfig/purple.pc
 share/aclocal/purple.m4
 share/locale/af/LC_MESSAGES/pidgin.mo
@@ -257,16 +186,19 @@ share/locale/gu/LC_MESSAGES/pidgin.mo
 share/locale/he/LC_MESSAGES/pidgin.mo
 share/locale/hi/LC_MESSAGES/pidgin.mo
 share/locale/hu/LC_MESSAGES/pidgin.mo
+share/locale/hy/LC_MESSAGES/pidgin.mo
 share/locale/id/LC_MESSAGES/pidgin.mo
 share/locale/it/LC_MESSAGES/pidgin.mo
 share/locale/ja/LC_MESSAGES/pidgin.mo
 share/locale/ka/LC_MESSAGES/pidgin.mo
 share/locale/ko/LC_MESSAGES/pidgin.mo
+share/locale/km/LC_MESSAGES/pidgin.mo
 share/locale/kn/LC_MESSAGES/pidgin.mo
 share/locale/ku/LC_MESSAGES/pidgin.mo
 share/locale/lo/LC_MESSAGES/pidgin.mo
 share/locale/lt/LC_MESSAGES/pidgin.mo
 share/locale/mk/LC_MESSAGES/pidgin.mo
+share/locale/mn/LC_MESSAGES/pidgin.mo
 share/locale/my_MM/LC_MESSAGES/pidgin.mo
 share/locale/nb/LC_MESSAGES/pidgin.mo
 share/locale/ne/LC_MESSAGES/pidgin.mo
@@ -287,6 +219,7 @@ share/locale/sq/LC_MESSAGES/pidgin.mo
 share/locale/sr/LC_MESSAGES/pidgin.mo
 share/locale/sr@latin/LC_MESSAGES/pidgin.mo
 share/locale/sv/LC_MESSAGES/pidgin.mo
+share/locale/sw/LC_MESSAGES/pidgin.mo
 share/locale/ta/LC_MESSAGES/pidgin.mo
 share/locale/te/LC_MESSAGES/pidgin.mo
 share/locale/th/LC_MESSAGES/pidgin.mo
@@ -298,12 +231,173 @@ share/locale/xh/LC_MESSAGES/pidgin.mo
 share/locale/zh_CN/LC_MESSAGES/pidgin.mo
 share/locale/zh_HK/LC_MESSAGES/pidgin.mo
 share/locale/zh_TW/LC_MESSAGES/pidgin.mo
+share/purple/ca-certs/AOL_Member_CA.pem
+share/purple/ca-certs/America_Online_Root_Certification_Authority_1.pem
+share/purple/ca-certs/CAcert_Class3.pem
+share/purple/ca-certs/CAcert_Root.pem
+share/purple/ca-certs/Entrust.net_Secure_Server_CA.pem
+share/purple/ca-certs/Equifax_Secure_CA.pem
+share/purple/ca-certs/Equifax_Secure_Global_eBusiness_CA-1.pem
+share/purple/ca-certs/GTE_CyberTrust_Global_Root.pem
+share/purple/ca-certs/Microsoft_Internet_Authority.pem
+share/purple/ca-certs/Microsoft_Secure_Server_Authority.pem
+share/purple/ca-certs/StartCom_Certification_Authority.pem
+share/purple/ca-certs/StartCom_Free_SSL_CA.pem
+share/purple/ca-certs/Thawte_Premium_Server_CA.pem
+share/purple/ca-certs/VeriSign_Class3_Extended_Validation_CA.pem
+share/purple/ca-certs/Verisign_Class3_Primary_CA.pem
+share/purple/ca-certs/VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
+share/purple/ca-certs/VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5_2.pem
+share/purple/ca-certs/VeriSign_International_Server_Class_3_CA.pem
+share/purple/ca-certs/Verisign_RSA_Secure_Server_CA.pem
+share/sounds/purple/alert.wav
+share/sounds/purple/login.wav
+share/sounds/purple/logout.wav
+share/sounds/purple/receive.wav
+share/sounds/purple/send.wav
+@dirrm share/sounds/purple
+@dirrm share/purple/ca-certs
+@dirrm share/purple
+%%PERL:%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple
+@dirrmtry share/locale/zh_HK/LC_MESSAGES
+@dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/xh/LC_MESSAGES
+@dirrmtry share/locale/xh
+@dirrmtry share/locale/ur/LC_MESSAGES
+@dirrmtry share/locale/ur
+@dirrmtry share/locale/te/LC_MESSAGES
+@dirrmtry share/locale/te
+@dirrmtry share/locale/sw/LC_MESSAGES
+@dirrmtry share/locale/sw
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
+@dirrmtry share/locale/si/LC_MESSAGES
+@dirrmtry share/locale/si
+@dirrmtry share/locale/ps/LC_MESSAGES
+@dirrmtry share/locale/ps
+@dirrmtry share/locale/oc/LC_MESSAGES
+@dirrmtry share/locale/oc
+@dirrmtry share/locale/my_MM/LC_MESSAGES
+@dirrmtry share/locale/my_MM
+@dirrmtry share/locale/lo/LC_MESSAGES
+@dirrmtry share/locale/lo
+@dirrmtry share/locale/ku/LC_MESSAGES
+@dirrmtry share/locale/ku
+@dirrmtry share/locale/km/LC_MESSAGES
+@dirrmtry share/locale/km
+@dirrmtry share/locale/hy/LC_MESSAGES
+@dirrmtry share/locale/hy
+@dirrmtry share/locale/dz/LC_MESSAGES
+@dirrmtry share/locale/dz
+@dirrmtry share/locale/ca@valencia/LC_MESSAGES
+@dirrmtry share/locale/ca@valencia
+@dirrmtry share/locale/be@latin/LC_MESSAGES
+@dirrmtry share/locale/be@latin
+@dirrm lib/purple-2
+@dirrm include/libpurple
+bin/pidgin
+include/pidgin/eggtrayicon.h
+include/pidgin/pidgincombobox.h
+include/pidgin/pidginstock.h
+include/pidgin/gtkaccount.h
+include/pidgin/gtkblist-theme-loader.h
+include/pidgin/gtkblist-theme.h
+include/pidgin/gtkblist.h
+include/pidgin/gtkcelllayout.h
+include/pidgin/gtkcellrendererexpander.h
+include/pidgin/gtkcellrendererprogress.h
+include/pidgin/gtkcellview.h
+include/pidgin/gtkcellviewmenuitem.h
+include/pidgin/gtkcertmgr.h
+include/pidgin/gtkconn.h
+include/pidgin/gtkconv.h
+include/pidgin/gtkconvwin.h
+include/pidgin/gtkdebug.h
+include/pidgin/gtkdialogs.h
+include/pidgin/gtkdnd-hints.h
+include/pidgin/gtkdocklet.h
+include/pidgin/gtkeventloop.h
+include/pidgin/gtkexpander.h
+include/pidgin/gtkft.h
+include/pidgin/gtkgaim-compat.h
+include/pidgin/gtkicon-theme-loader.h
+include/pidgin/gtkicon-theme.h
+include/pidgin/gtkidle.h
+include/pidgin/gtkimhtml.h
+include/pidgin/gtkimhtmltoolbar.h
+include/pidgin/gtklog.h
+include/pidgin/gtkmedia.h
+include/pidgin/gtkmenutray.h
+include/pidgin/gtknickcolors.h
+include/pidgin/gtknotify.h
+include/pidgin/gtkplugin.h
+include/pidgin/gtkpluginpref.h
+include/pidgin/gtkpounce.h
+include/pidgin/gtkprefs.h
+include/pidgin/gtkprivacy.h
+include/pidgin/gtkrequest.h
+include/pidgin/gtkroomlist.h
+include/pidgin/gtksavedstatuses.h
+include/pidgin/gtkscrollbook.h
+include/pidgin/gtksession.h
+include/pidgin/gtksmiley.h
+include/pidgin/gtksound.h
+include/pidgin/gtksourceiter.h
+include/pidgin/gtksourceundomanager.h
+include/pidgin/gtksourceview-marshal.h
+include/pidgin/gtkstatus-icon-theme.h
+include/pidgin/gtkstatusbox.h
+include/pidgin/gtkthemes.h
+include/pidgin/gtkutils.h
+include/pidgin/gtkwhiteboard.h
+include/pidgin/minidialog.h
+include/pidgin/pidgin.h
+include/pidgin/pidgintooltip.h
+%%CAP%%lib/pidgin/cap.la
+%%CAP%%lib/pidgin/cap.so
+lib/pidgin/convcolors.la
+lib/pidgin/convcolors.so
+lib/pidgin/extplacement.la
+lib/pidgin/extplacement.so
+lib/pidgin/pidginrc.la
+lib/pidgin/pidginrc.so
+lib/pidgin/gestures.la
+lib/pidgin/gestures.so
+%%EVO%%lib/pidgin/gevolution.la
+%%EVO%%lib/pidgin/gevolution.so
+lib/pidgin/gtkbuddynote.la
+lib/pidgin/gtkbuddynote.so
+lib/pidgin/history.la
+lib/pidgin/history.so
+lib/pidgin/iconaway.la
+lib/pidgin/iconaway.so
+lib/pidgin/markerline.la
+lib/pidgin/markerline.so
+%%DBUS%%lib/pidgin/musicmessaging.la
+%%DBUS%%lib/pidgin/musicmessaging.so
+lib/pidgin/notify.la
+lib/pidgin/notify.so
+lib/pidgin/relnot.la
+lib/pidgin/relnot.so
+lib/pidgin/sendbutton.la
+lib/pidgin/sendbutton.so
+lib/pidgin/spellchk.la
+lib/pidgin/spellchk.so
+lib/pidgin/themeedit.la
+lib/pidgin/themeedit.so
+lib/pidgin/ticker.la
+lib/pidgin/ticker.so
+lib/pidgin/timestamp.la
+lib/pidgin/timestamp.so
+lib/pidgin/timestamp_format.la
+lib/pidgin/timestamp_format.so
+lib/pidgin/xmppconsole.la
+lib/pidgin/xmppconsole.so
+lib/pidgin/xmppdisco.la
+lib/pidgin/xmppdisco.so
+libdata/pkgconfig/pidgin.pc
 share/applications/pidgin.desktop
-share/icons/hicolor/16x16/apps/pidgin.png
-share/icons/hicolor/22x22/apps/pidgin.png
-share/icons/hicolor/24x24/apps/pidgin.png
-share/icons/hicolor/32x32/apps/pidgin.png
-share/icons/hicolor/48x48/apps/pidgin.png
+share/icons/hicolor/scalable/apps/pidgin.svg
 share/pixmaps/pidgin/animations/16/connect0.png
 share/pixmaps/pidgin/animations/16/connect1.png
 share/pixmaps/pidgin/animations/16/connect2.png
@@ -356,7 +450,7 @@ share/pixmaps/pidgin/arrow-right.xpm
 share/pixmaps/pidgin/arrow-up.xpm
 share/pixmaps/pidgin/buttons/edit.png
 share/pixmaps/pidgin/buttons/info.png
-share/pixmaps/pidgin/buttons/music.png
+%%DBUS%%share/pixmaps/pidgin/buttons/music.png
 share/pixmaps/pidgin/buttons/pause.png
 share/pixmaps/pidgin/dialogs/16/auth.png
 share/pixmaps/pidgin/dialogs/16/error.png
@@ -371,6 +465,13 @@ share/pixmaps/pidgin/dialogs/64/info.png
 share/pixmaps/pidgin/dialogs/64/mail.png
 share/pixmaps/pidgin/dialogs/64/question.png
 share/pixmaps/pidgin/dialogs/64/warning.png
+share/pixmaps/pidgin/dialogs/scalable/auth.svg
+share/pixmaps/pidgin/dialogs/scalable/cool.svg
+share/pixmaps/pidgin/dialogs/scalable/dialog.svg
+share/pixmaps/pidgin/dialogs/scalable/error.svg
+share/pixmaps/pidgin/dialogs/scalable/info.svg
+share/pixmaps/pidgin/dialogs/scalable/question.svg
+share/pixmaps/pidgin/dialogs/scalable/warning.svg
 share/pixmaps/pidgin/emblems/16/aol-client.png
 share/pixmaps/pidgin/emblems/16/birthday.png
 share/pixmaps/pidgin/emblems/16/blocked.png
@@ -392,6 +493,22 @@ share/pixmaps/pidgin/emblems/16/secure.png
 share/pixmaps/pidgin/emblems/16/unavailable.png
 share/pixmaps/pidgin/emblems/16/video.png
 share/pixmaps/pidgin/emblems/16/voice.png
+share/pixmaps/pidgin/emblems/scalable/aol-client.svg
+share/pixmaps/pidgin/emblems/scalable/blocked.svg
+share/pixmaps/pidgin/emblems/scalable/bot.svg
+share/pixmaps/pidgin/emblems/scalable/external.svg
+share/pixmaps/pidgin/emblems/scalable/female.svg
+share/pixmaps/pidgin/emblems/scalable/free-for-chat.svg
+share/pixmaps/pidgin/emblems/scalable/game.svg
+share/pixmaps/pidgin/emblems/scalable/male.svg
+share/pixmaps/pidgin/emblems/scalable/mobile.svg
+share/pixmaps/pidgin/emblems/scalable/music.svg
+share/pixmaps/pidgin/emblems/scalable/not-authorized.svg
+share/pixmaps/pidgin/emblems/scalable/qq-member.svg
+share/pixmaps/pidgin/emblems/scalable/secure.svg
+share/pixmaps/pidgin/emblems/scalable/unavailable.svg
+share/pixmaps/pidgin/emblems/scalable/video.svg
+share/pixmaps/pidgin/emblems/scalable/voice.svg
 share/pixmaps/pidgin/emotes/default/act-up.png
 share/pixmaps/pidgin/emotes/default/airplane.png
 share/pixmaps/pidgin/emotes/default/alien.png
@@ -585,6 +702,47 @@ share/pixmaps/pidgin/emotes/default/worship.png
 share/pixmaps/pidgin/emotes/default/yawn.png
 share/pixmaps/pidgin/emotes/default/yin-yang.png
 share/pixmaps/pidgin/emotes/none/theme
+share/pixmaps/pidgin/emotes/small/angel.png
+share/pixmaps/pidgin/emotes/small/angry.png
+share/pixmaps/pidgin/emotes/small/beer.png
+share/pixmaps/pidgin/emotes/small/camera.png
+share/pixmaps/pidgin/emotes/small/cigarette.png
+share/pixmaps/pidgin/emotes/small/coffee.png
+share/pixmaps/pidgin/emotes/small/confused.png
+share/pixmaps/pidgin/emotes/small/console.png
+share/pixmaps/pidgin/emotes/small/cool.png
+share/pixmaps/pidgin/emotes/small/cross.png
+share/pixmaps/pidgin/emotes/small/crying.png
+share/pixmaps/pidgin/emotes/small/devil.png
+share/pixmaps/pidgin/emotes/small/dont-know.png
+share/pixmaps/pidgin/emotes/small/grin.png
+share/pixmaps/pidgin/emotes/small/hug-left.png
+share/pixmaps/pidgin/emotes/small/hug-right.png
+share/pixmaps/pidgin/emotes/small/kiss.png
+share/pixmaps/pidgin/emotes/small/love.png
+share/pixmaps/pidgin/emotes/small/meeting.png
+share/pixmaps/pidgin/emotes/small/musical-note.png
+share/pixmaps/pidgin/emotes/small/nerdy.png
+share/pixmaps/pidgin/emotes/small/neutral.png
+share/pixmaps/pidgin/emotes/small/party.png
+share/pixmaps/pidgin/emotes/small/phone.png
+share/pixmaps/pidgin/emotes/small/plate.png
+share/pixmaps/pidgin/emotes/small/question.png
+share/pixmaps/pidgin/emotes/small/sad.png
+share/pixmaps/pidgin/emotes/small/shame.png
+share/pixmaps/pidgin/emotes/small/shock.png
+share/pixmaps/pidgin/emotes/small/sick.png
+share/pixmaps/pidgin/emotes/small/silent.png
+share/pixmaps/pidgin/emotes/small/sleepy.png
+share/pixmaps/pidgin/emotes/small/smile-big.png
+share/pixmaps/pidgin/emotes/small/smile.png
+share/pixmaps/pidgin/emotes/small/theme
+share/pixmaps/pidgin/emotes/small/thinking.png
+share/pixmaps/pidgin/emotes/small/tongue.png
+share/pixmaps/pidgin/emotes/small/tv.png
+share/pixmaps/pidgin/emotes/small/uhm-yeah.png
+share/pixmaps/pidgin/emotes/small/wink.png
+share/pixmaps/pidgin/emotes/small/yawn.png
 share/pixmaps/pidgin/logo.png
 share/pixmaps/pidgin/protocols/16/aim.png
 share/pixmaps/pidgin/protocols/16/bonjour.png
@@ -633,6 +791,21 @@ share/pixmaps/pidgin/protocols/48/silc.png
 share/pixmaps/pidgin/protocols/48/simple.png
 share/pixmaps/pidgin/protocols/48/yahoo.png
 share/pixmaps/pidgin/protocols/48/zephyr.png
+share/pixmaps/pidgin/protocols/scalable/aim.svg
+share/pixmaps/pidgin/protocols/scalable/bonjour.svg
+share/pixmaps/pidgin/protocols/scalable/gadu-gadu.svg
+share/pixmaps/pidgin/protocols/scalable/google-talk.svg
+share/pixmaps/pidgin/protocols/scalable/icq.svg
+share/pixmaps/pidgin/protocols/scalable/irc.svg
+share/pixmaps/pidgin/protocols/scalable/jabber.svg
+share/pixmaps/pidgin/protocols/scalable/meanwhile.svg
+share/pixmaps/pidgin/protocols/scalable/msn.svg
+share/pixmaps/pidgin/protocols/scalable/novell.svg
+share/pixmaps/pidgin/protocols/scalable/qq.svg
+share/pixmaps/pidgin/protocols/scalable/silc.svg
+share/pixmaps/pidgin/protocols/scalable/simple.svg
+share/pixmaps/pidgin/protocols/scalable/yahoo.svg
+share/pixmaps/pidgin/protocols/scalable/zephyr.svg
 share/pixmaps/pidgin/status/11/available.png
 share/pixmaps/pidgin/status/11/away.png
 share/pixmaps/pidgin/status/11/busy.png
@@ -644,6 +817,8 @@ share/pixmaps/pidgin/status/11/log-out.png
 share/pixmaps/pidgin/status/11/offline.png
 share/pixmaps/pidgin/status/11/person.png
 share/pixmaps/pidgin/status/11/rtl/extended-away.png
+share/pixmaps/pidgin/status/11/rtl/log-in.png
+share/pixmaps/pidgin/status/11/rtl/log-out.png
 share/pixmaps/pidgin/status/16/available.png
 share/pixmaps/pidgin/status/16/away.png
 share/pixmaps/pidgin/status/16/busy.png
@@ -693,6 +868,11 @@ share/pixmaps/pidgin/status/48/log-out.png
 share/pixmaps/pidgin/status/48/offline.png
 share/pixmaps/pidgin/status/48/person.png
 share/pixmaps/pidgin/status/48/rtl/extended-away.png
+share/pixmaps/pidgin/status/48/invisible.png
+share/pixmaps/pidgin/status/48/rtl/log-in.png
+share/pixmaps/pidgin/status/48/rtl/log-out.png
+share/pixmaps/pidgin/toolbar/11/message-new.png
+share/pixmaps/pidgin/toolbar/16/audio-call.png
 share/pixmaps/pidgin/toolbar/16/change-bgcolor.png
 share/pixmaps/pidgin/toolbar/16/change-fgcolor.png
 share/pixmaps/pidgin/toolbar/16/emote-select.png
@@ -707,7 +887,14 @@ share/pixmaps/pidgin/toolbar/16/plugins.png
 share/pixmaps/pidgin/toolbar/16/send-file.png
 share/pixmaps/pidgin/toolbar/16/transfer.png
 share/pixmaps/pidgin/toolbar/16/unblock.png
+share/pixmaps/pidgin/toolbar/16/video-call.png
+share/pixmaps/pidgin/toolbar/22/audio-call.png
 share/pixmaps/pidgin/toolbar/22/select-avatar.png
+share/pixmaps/pidgin/toolbar/22/video-call.png
+share/pixmaps/pidgin/toolbar/32/audio-call.png
+share/pixmaps/pidgin/toolbar/32/video-call.png
+share/pixmaps/pidgin/toolbar/48/audio-call.png
+share/pixmaps/pidgin/toolbar/48/video-call.png
 share/pixmaps/pidgin/tray/16/available_4bit.ico
 share/pixmaps/pidgin/tray/16/away_4bit.ico
 share/pixmaps/pidgin/tray/16/busy_4bit.ico
@@ -739,6 +926,7 @@ share/pixmaps/pidgin/tray/32/tray-busy.png
 share/pixmaps/pidgin/tray/32/tray-connecting.png
 share/pixmaps/pidgin/tray/32/tray-extended-away.png
 share/pixmaps/pidgin/tray/32/tray-invisible.png
+share/pixmaps/pidgin/tray/32/tray-message.png
 share/pixmaps/pidgin/tray/32/tray-new-im.png
 share/pixmaps/pidgin/tray/32/tray-offline.png
 share/pixmaps/pidgin/tray/32/tray-online.png
@@ -747,36 +935,25 @@ share/pixmaps/pidgin/tray/48/tray-busy.png
 share/pixmaps/pidgin/tray/48/tray-connecting.png
 share/pixmaps/pidgin/tray/48/tray-extended-away.png
 share/pixmaps/pidgin/tray/48/tray-invisible.png
+share/pixmaps/pidgin/tray/48/tray-message.png
 share/pixmaps/pidgin/tray/48/tray-new-im.png
 share/pixmaps/pidgin/tray/48/tray-offline.png
 share/pixmaps/pidgin/tray/48/tray-online.png
-share/purple/ca-certs/CAcert_Class3.pem
-share/purple/ca-certs/CAcert_Root.pem
-share/purple/ca-certs/Equifax_Secure_CA.pem
-share/purple/ca-certs/GTE_CyberTrust_Global_Root.pem
-share/purple/ca-certs/Microsoft_Secure_Server_Authority.pem
-share/purple/ca-certs/StartCom_Free_SSL_CA.pem
-share/purple/ca-certs/Verisign_Class3_Primary_CA.pem
-share/purple/ca-certs/VeriSign_Class_3_Public_Primary_Certification_Authority_-_G5.pem
-share/purple/ca-certs/Verisign_RSA_Secure_Server_CA.pem
-share/sounds/purple/alert.wav
-share/sounds/purple/login.wav
-share/sounds/purple/logout.wav
-share/sounds/purple/receive.wav
-share/sounds/purple/send.wav
-@dirrm share/sounds/purple
-@dirrm share/purple/ca-certs
-@dirrm share/purple
-@dirrm share/pixmaps/purple/buddy_icons/qq
-@dirrm share/pixmaps/purple/buddy_icons
-@dirrm share/pixmaps/purple
+share/icons/hicolor/16x16/apps/pidgin.png
+share/icons/hicolor/22x22/apps/pidgin.png
+share/icons/hicolor/24x24/apps/pidgin.png
+share/icons/hicolor/32x32/apps/pidgin.png
+share/icons/hicolor/48x48/apps/pidgin.png
 @dirrm share/pixmaps/pidgin/tray/48
 @dirrm share/pixmaps/pidgin/tray/32
 @dirrm share/pixmaps/pidgin/tray/22
 @dirrm share/pixmaps/pidgin/tray/16
 @dirrm share/pixmaps/pidgin/tray
+@dirrm share/pixmaps/pidgin/toolbar/48
+@dirrm share/pixmaps/pidgin/toolbar/32
 @dirrm share/pixmaps/pidgin/toolbar/22
 @dirrm share/pixmaps/pidgin/toolbar/16
+@dirrm share/pixmaps/pidgin/toolbar/11
 @dirrm share/pixmaps/pidgin/toolbar
 @dirrm share/pixmaps/pidgin/status/48/rtl
 @dirrm share/pixmaps/pidgin/status/48
@@ -789,15 +966,19 @@ share/sounds/purple/send.wav
 @dirrm share/pixmaps/pidgin/status/11/rtl
 @dirrm share/pixmaps/pidgin/status/11
 @dirrm share/pixmaps/pidgin/status
+@dirrm share/pixmaps/pidgin/protocols/scalable
 @dirrm share/pixmaps/pidgin/protocols/48
 @dirrm share/pixmaps/pidgin/protocols/22
 @dirrm share/pixmaps/pidgin/protocols/16
 @dirrm share/pixmaps/pidgin/protocols
+@dirrm share/pixmaps/pidgin/emotes/small
 @dirrm share/pixmaps/pidgin/emotes/none
 @dirrm share/pixmaps/pidgin/emotes/default
 @dirrm share/pixmaps/pidgin/emotes
+@dirrm share/pixmaps/pidgin/emblems/scalable
 @dirrm share/pixmaps/pidgin/emblems/16
 @dirrm share/pixmaps/pidgin/emblems
+@dirrm share/pixmaps/pidgin/dialogs/scalable
 @dirrm share/pixmaps/pidgin/dialogs/64
 @dirrm share/pixmaps/pidgin/dialogs/16
 @dirrm share/pixmaps/pidgin/dialogs
@@ -806,36 +987,5 @@ share/sounds/purple/send.wav
 @dirrm share/pixmaps/pidgin/animations
 @dirrm share/pixmaps/pidgin
 @dirrmtry share/applications
-%%PERL:%%@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Purple
-@dirrmtry share/locale/zh_HK/LC_MESSAGES
-@dirrmtry share/locale/zh_HK
-@dirrmtry share/locale/xh/LC_MESSAGES
-@dirrmtry share/locale/xh
-@dirrmtry share/locale/ur/LC_MESSAGES
-@dirrmtry share/locale/ur
-@dirrmtry share/locale/te/LC_MESSAGES
-@dirrmtry share/locale/te
-@dirrmtry share/locale/sr@latin/LC_MESSAGES
-@dirrmtry share/locale/sr@latin
-@dirrmtry share/locale/si/LC_MESSAGES
-@dirrmtry share/locale/si
-@dirrmtry share/locale/ps/LC_MESSAGES
-@dirrmtry share/locale/ps
-@dirrmtry share/locale/oc/LC_MESSAGWS
-@dirrmtry share/locale/oc
-@dirrmtry share/locale/my_MM/LC_MESSAGES
-@dirrmtry share/locale/my_MM
-@dirrmtry share/locale/lo/LC_MESSAGES
-@dirrmtry share/locale/lo
-@dirrmtry share/locale/ku/LC_MESSAGES
-@dirrmtry share/locale/ku
-@dirrmtry share/locale/dz/LC_MESSAGES
-@dirrmtry share/locale/dz
-@dirrmtry share/locale/ca@valencia/LC_MESSAGES
-@dirrmtry share/locale/ca@valencia
-@dirrmtry share/locale/be@latin/LC_MESSAGES
-@dirrmtry share/locale/be@latin
-@dirrm lib/purple-2
-@dirrm lib/pidgin
-@dirrm include/libpurple
+@dirrmtry lib/pidgin
 @dirrm include/pidgin
