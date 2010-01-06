@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.24 2009/11/29 04:15:00 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.25 2010/01/03 20:58:46 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	1.2.8
+PORTVERSION=	1.2.9
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
