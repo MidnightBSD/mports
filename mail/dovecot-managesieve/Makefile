@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/dovecot-managesieve/Makefile,v 1.1 2009/11/29 03:49:21 laffer1 Exp $
 
 PORTNAME=	dovecot-managesieve
-PORTVERSION=	0.11.9
+PORTVERSION=	0.11.10
 CATEGORIES=	mail
 MASTER_SITES=	http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
 DISTNAME=	${PORTNAME:C/-/-${DOVECOTVERSION}-/}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}

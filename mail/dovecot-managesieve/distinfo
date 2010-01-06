@@ -1,3 +1,4 @@
-MD5 (dovecot-1.2-managesieve-0.11.9.tar.gz) = 923d4965e0b357db493f3b2cb106d8d7
-SHA256 (dovecot-1.2-managesieve-0.11.9.tar.gz) = 9aff87fae19b2fc0e11f4b78c0b1415e1141ba3930579c46cbf912e0cda652ff
-SIZE (dovecot-1.2-managesieve-0.11.9.tar.gz) = 396242
+MD5 (dovecot-1.2-managesieve-0.11.10.tar.gz) = ea1e931fd0e4a8b6789a9d671a5a6676
+SHA256 (dovecot-1.2-managesieve-0.11.10.tar.gz) = 502cd9df26f95e53e5dff79b4430050e50b849908a0cb12c6b19ae5410a15681
+RMD160 (dovecot-1.2-managesieve-0.11.10.tar.gz) = b151df06a3f4be86f0a8327390ee8356a9a713c8
+SIZE (dovecot-1.2-managesieve-0.11.10.tar.gz) = 400657
