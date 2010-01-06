@@ -2,13 +2,14 @@
 # Date Created:			29 April 2002
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.5 2009/09/20 00:37:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.6 2010/01/02 01:02:39 laffer1 Exp $
 # $FreeBSD: ports/devel/libgtop/Makefile,v 1.76 2007/07/23 09:35:42 rafan Exp $
 #   $MCom: ports/devel/libgtop/Makefile,v 1.5 2006/10/02 23:26:51 ahze Exp $
 #
 
 PORTNAME=	libgtop
 PORTVERSION=	2.26.1
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -31,6 +32,9 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd7.0 \
+		 --host=${ARCH}-portbld-freebsd7.0 \
+		 --target=${ARCH}-portbld-freebsd7.0
 
 INFO=		libgtop2
 
