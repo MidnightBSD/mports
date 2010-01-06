@@ -1,3 +1,4 @@
-MD5 (dovecot-1.2-sieve-0.1.13.tar.gz) = 6151ab50e24abc0384358b1618c8048f
-SHA256 (dovecot-1.2-sieve-0.1.13.tar.gz) = c12d94d9374f33f72a784b31d9e5ce04c5c4cfcc694ffdeea0422eacd23f2b4a
-SIZE (dovecot-1.2-sieve-0.1.13.tar.gz) = 965393
+MD5 (dovecot-1.2-sieve-0.1.14.tar.gz) = 01a92883fde76a5f985b0343e81b0c3d
+SHA256 (dovecot-1.2-sieve-0.1.14.tar.gz) = 880ee3857150f6154ca2ee4d2a9b1fcb3a42f04184b92a62987d0af1d826a72c
+RMD160 (dovecot-1.2-sieve-0.1.14.tar.gz) = b61c9448c876062f2b1fd3d1cf72cbc430c5a82e
+SIZE (dovecot-1.2-sieve-0.1.14.tar.gz) = 992724
