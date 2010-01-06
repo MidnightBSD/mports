@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/hs-haddock/Makefile,v 1.1 2009/02/18 19:50:39 laffer1 Exp $
 
 PORTNAME=	haddock
 PORTVERSION=	2.1.0
@@ -54,9 +54,6 @@ do-install:
 
 post-install:
 	${STRIP_CMD} ${PREFIX}/bin/haddock
-.if !defined(SLAVE)
-	${INSTALL_SCRIPT} ${WRKSRC}/register.sh ${PREFIX}/${HADDOCK_LIBDIR_REL}/register.sh
-.endif
 	@${RM} -f ${PREFIX}/lib/ghc-${GHC_VERSION}/package.conf.old
 
 .include <bsd.port.mk>
