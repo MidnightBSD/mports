@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.8 2009/08/24 21:11:36 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.9 2009/09/20 02:54:57 laffer1 Exp $
 
 PORTNAME=	wine
-PORTVERSION=    1.1.28
+PORTVERSION=    1.1.35
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SFE \
@@ -21,8 +21,9 @@ LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--datadir=${DATADIR} --verbose --disable-tests \
-                --without-capi --without-gphoto -without-libgsm \
-		--without-sane
+                --without-capi --without-gphoto -without-gsm \
+		--without-mpg123 --without-sane --without-xcursor \
+		--without-openal
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/wine
