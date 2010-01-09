@@ -2,7 +2,7 @@
 # Date created:				20 April 2003
 # Whom:					Kay Lehmann <kay_lehmann@web.de>
 #
-# $MidnightBSD: mports/databases/qt4-mysql-plugin/Makefile,v 1.3 2008/10/11 23:20:04 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-mysql-plugin/Makefile,v 1.4 2008/10/13 17:50:03 ctriv Exp $
 # $FreeBSD: ports/databases/qt4-mysql-plugin/Makefile,v 1.10 2008/08/04 23:30:30 miwi Exp $
 
 PORTNAME=	qt4-${DB}-plugin
@@ -23,6 +23,7 @@ FAKE_OPTS=	trueprefix
 USE_QT_VER=	4
 QT_COMPONENTS=	moc_build sql
 QT_NONSTANDARD=	yes
+MAKE_JOBS_SAFE=	yes
 
 USE_MYSQL=	yes
 DRIVER=		src/sql/drivers/${DB}
@@ -34,7 +35,9 @@ MAKEFILE=	${FILESDIR}/Makefile.bsd
 MAKE_ENV+=	DB="${DB}" DRIVER="${DRIVER}" MOC="${MOC}" \
 		PLUGIN="${PLUGIN}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		QT_INCDIR="${QT_INCDIR}" \
+		QT_LIBDIR="${QT_LIBDIR}"
 PLIST_SUB=	DB=${DB}
 
 pre-fake:
