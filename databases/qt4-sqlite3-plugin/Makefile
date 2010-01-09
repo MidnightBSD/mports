@@ -2,7 +2,7 @@
 # Date created:                         	27 February 2004
 # Whom:                                        	Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.3 2008/10/13 18:03:54 ctriv Exp $
+# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.4 2009/01/02 03:17:31 ctriv Exp $
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.10 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -24,7 +24,7 @@ FAKE_OPTS=	trueprefix
 USE_QT_VER=	4
 QT_COMPONENTS=	moc_build sql
 QT_NONSTANDARD=	yes
-
+MAKE_JOBS_SAFE=	yes
 DRIVER=		src/sql/drivers/${DB}
 PLUGIN=		src/plugins/sqldrivers/${DB}
 EXTRACT_AFTER_ARGS?=| ${TAR} -xf - \
