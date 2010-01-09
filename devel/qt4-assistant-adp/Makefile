@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-assistant-adp/Makefile,v 1.1 2008/10/10 17:20:45 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-assistant-adp/Makefile,v 1.1 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -24,7 +24,7 @@ QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib \
 		gui network xml doc dbus
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first

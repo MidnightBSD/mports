@@ -2,7 +2,7 @@
 # Date created:				Sun May 11 14:43:54 CEST 2008
 # Whom:					danny@ricin.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-help/Makefile,v 1.1 2008/10/10 17:24:39 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-help/Makefile,v 1.1 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -19,9 +19,10 @@ COMMENT=	QtHelp module provides QHelpEngine API and is used by Assistant
 LICENSE=	gpl2
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib clucene gui sql xml
+QT_COMPONENTS=	qmake_build moc_build rcc_build corelib clucene gui sql xml network
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+MAKE_JOBS_SAFE=	yes
 
 RUN_DEPENDS=	${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlite.so:${PORTSDIR}/databases/qt4-sqlite3-plugin
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -36,7 +37,7 @@ MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
 		INSTALL_ROOT=${FAKE_DESTDIR}
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
-		src/dbus src/network src/opengl src/phonon \
+		src/dbus src/opengl src/phonon \
 		src/qt3support src/script src/svg src/testlib \
 		src/tools src/xmlpatterns src/3rdparty/clucene \
 		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit

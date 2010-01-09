@@ -1,10 +1,4 @@
-# New ports collection makefile for:	qt4
-# Date created:		2007-01-25
-# Whom:			Michael Nottebrock <lofi@kiste>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/devel/qt4/Makefile,v 1.15 2008/08/05 11:46:06 miwi Exp $
-#
+# $MidnightBSD: mports/devel/qt4/Makefile,v 1.1 2008/10/03 19:13:04 laffer1 Exp $
 
 PORTNAME=	qt4
 PORTVERSION=	${QT4_VERSION}
@@ -27,16 +21,20 @@ USE_QT_VER=	4
 QT_COMPONENTS=	accessible assistant assistant-adp assistantclient \
 		clucene  corelib dbus designer doc help gui iconengines \
 		imageformats inputmethods network opengl qdbusviewer \
-		qt3support qtestlib qvfb script sql svg webkit xml \
-		xmlpatterns xmlpatterns-tool
+		qt3support qtestlib qvfb script scripttools sql svg webkit \
+		xml xmlpatterns xmlpatterns-tool
 
 NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
 
+.if !defined(WITHOUT_NLS)
+RUN_DEPENDS+=	qt4-l10n>=${QT4_VERSION}:${PORTSDIR}/misc/qt4-l10n
+.endif
+
 .if defined(WITH_TOOLS)
 QT_COMPONENTS+=	help-tools linguist makeqpf moc pixeltool \
-		porting qmake rcc uic uic3
+		porting qmake rcc uic uic3 qdoc3
 .endif
 
 .if defined(WITH_QTCONFIG)
@@ -52,7 +50,7 @@ QT_COMPONENTS+=	codecs-cn codecs-jp codecs-kr codecs-tw
 .endif
 
 .if defined(WITH_SQL_PLUGINS)
-RUN_DEPENDS+=	\
+RUN_DEPENDS+=	${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlibase.so:${PORTSDIR}/databases/qt4-ibase-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlmysql.so:${PORTSDIR}/databases/qt4-mysql-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlodbc.so:${PORTSDIR}/databases/qt4-odbc-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlpsql.so:${PORTSDIR}/databases/qt4-pgsql-plugin \

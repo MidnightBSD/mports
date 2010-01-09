@@ -2,7 +2,7 @@
 # Date created:				Sun May 11 23:30:38 CEST 2008
 # Whom:					danny@ricin.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-help-tools/Makefile,v 1.1 2008/10/16 21:21:13 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-help-tools/Makefile,v 1.1 2008/08/04 23:30:33 miwi Exp $
 #
 
@@ -24,7 +24,7 @@ QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib \
 		gui sql xml doc help
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first

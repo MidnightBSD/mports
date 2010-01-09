@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-qvfb/Makefile,v 1.1 2008/10/10 18:03:21 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-qvfb/Makefile,v 1.12 2008/09/11 15:26:16 gahr Exp $
 #
 
@@ -23,7 +23,7 @@ QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib gui opengl
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 USE_XORG=	xtst
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
