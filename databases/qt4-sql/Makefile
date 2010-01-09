@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/databases/qt4-sql/Makefile,v 1.2 2008/10/09 19:44:34 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-sql/Makefile,v 1.3 2008/10/13 18:51:24 ctriv Exp $
 # $FreeBSD: ports/databases/qt4-sql/Makefile,v 1.12 2008/08/04 23:30:30 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 
