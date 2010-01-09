@@ -2,7 +2,7 @@
 # Date created:                         	5 August 2003
 # Whom:                                        	Lauri Watts <lauri@kde.org>
 #
-# $MidnightBSD: mports/databases/qt4-pgsql-plugin/Makefile,v 1.2 2008/10/11 23:20:05 laffer1 Exp $
+# $MidnightBSD: mports/databases/qt4-pgsql-plugin/Makefile,v 1.3 2008/10/13 17:48:55 ctriv Exp $
 # $FreeBSD: ports/databases/qt4-pgsql-plugin/Makefile,v 1.10 2008/08/04 23:30:31 miwi Exp $
 #
 
@@ -24,6 +24,7 @@ DB=		psql
 USE_QT_VER=	4
 QT_COMPONENTS=	moc_build sql
 QT_NONSTANDARD=	yes
+MAKE_JOBS_SAFE=	yes
 
 USE_PGSQL=	yes
 DRIVER=		src/sql/drivers/${DB}
@@ -35,7 +36,9 @@ MAKEFILE=	${FILESDIR}/Makefile.bsd
 MAKE_ENV+=	DB="${DB}" DRIVER="${DRIVER}" MOC="${MOC}" \
 		PLUGIN="${PLUGIN}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		QT_INCDIR="${QT_INCDIR}" \
+		QT_LIBDIR="${QT_LIBDIR}"
 PLIST_SUB=	DB=${DB}
 
 pre-fake:
