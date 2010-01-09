@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-assistant/Makefile,v 1.1 2008/10/10 17:20:44 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-assistant/Makefile,v 1.15 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -36,7 +36,7 @@ DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
 		src/dbus src/opengl src/phonon \
 		src/qt3support src/script src/svg src/testlib \
 		src/tools src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
+		src/3rdparty/kdebase src/3rdparty/kdelibs
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'

@@ -1,10 +1,4 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
-# $MidnightBSD: mports/devel/qt4-designer/Makefile,v 1.1 2008/10/10 17:24:38 laffer1 Exp $
-# $FreeBSD: ports/devel/qt4-designer/Makefile,v 1.16 2008/08/05 00:46:16 miwi Exp $
-#
+# $MidnightBSD: mports/devel/qt4-designer/Makefile,v 1.2 2008/10/15 04:40:56 ctriv Exp $
 
 PORTNAME=	designer
 PORTVERSION=	${QT4_VERSION}
@@ -23,6 +17,7 @@ QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build assistant_run \
 		qt3support corelib gui network script sql xml webkit
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
@@ -30,10 +25,9 @@ USE_LDCONFIG=	${PREFIX}/lib/qt4
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH 
-
+		PATH=${WRKSRC}/bin:$$PATH
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
-		src/dbus src/opengl src/phonon \
+		src/dbus src/opengl \
 		src/sql src/svg src/testlib \
 		src/xmlpatterns src/3rdparty/clucene \
 		src/3rdparty/kdebase src/3rdparty/kdelibs
@@ -50,6 +44,9 @@ pre-configure:
 	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
 	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=designer-qt4|g' \
 		${WRKSRC}/src/designer/${PORTNAME}.pro
+# fix build when previous version is installed
+	${REINPLACE_CMD} -e '/^CONFIG/s|depend_prl||' \
+		${WRKSRC}/src/components/lib/lib.pro
 	${MKDIR} ${WRKSRC}/../../mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc

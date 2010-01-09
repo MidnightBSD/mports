@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-uic/Makefile,v 1.1 2008/10/09 19:53:58 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-uic/Makefile,v 1.8 2008/08/04 23:30:34 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
@@ -51,5 +51,8 @@ pre-configure:
 		${WRKSRC}/${PORTNAME}.pro
 	${MKDIR} ${WRKSRC}/../../../mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../../bin/qmake
+
+do-build:
+	cd ${CONFIGURE_WRKSRC}/src/tools/bootstrap/ && make
 
 .include <bsd.port.mk>

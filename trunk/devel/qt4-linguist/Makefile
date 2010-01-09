@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-linguist/Makefile,v 1.1 2008/10/10 17:52:47 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-linguist/Makefile,v 1.13 2008/06/06 13:21:50 edwin Exp $
 #
 
@@ -19,10 +19,11 @@ COMMENT=	Qt localisation tool
 LICENSE=	gpl2
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build designer moc_build rcc_build uic_build \
-		assistantclient gui network xml
+QT_COMPONENTS=	qmake_build designer_build moc_build rcc_build uic_build \
+		assistant_run gui network xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 
@@ -32,25 +33,23 @@ MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
 		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
 		INSTALL_ROOT=${FAKE_DESTDIR}
 
-EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
-	--exclude '${DISTNAME}/mkspecs' --exclude '${DISTNAME}/qmake' \
-	--exclude '${DISTNAME}/demos' --exclude '${DISTNAME}/examples' \
-	--exclude '${DISTNAME}/src/opengl' --exclude '${DISTNAME}/src/qt3support' \
-	--exclude '${DISTNAME}/src/sql' --exclude '${DISTNAME}/src/plugins' \
-	--exclude '${DISTNAME}/src/3rdparty' --exclude '${DISTNAME}/src/tools/moc' \
-	--exclude '${DISTNAME}/src/tools/rcc' --exclude '${DISTNAME}/src/tools/uic' \
-	--exclude '${DISTNAME}/src/tools/uic3' --exclude '${DISTNAME}/tools/porting' \
-	--exclude '${DISTNAME}/tools/qtconfig' --exclude '${DISTNAME}/tools/qvfb'
+DO_NOT_EXTRACT=	demos doc examples mkspecs qmake \
+		src/dbus src/opengl src/phonon \
+		src/qt3support src/script src/sql src/svg src/testlib \
+		src/tools src/xmlpatterns src/3rdparty/clucene \
+		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
+EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
+.for dne in ${DO_NOT_EXTRACT}
+EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
+.endfor
+
 WRKSRC=		${WRKDIR}/${DISTNAME}/tools/${PORTNAME}
 CONFIGURE_WRKSRC=${WRKSRC}/../../
 PATCH_WRKSRC=${CONFIGURE_WRKSRC}
 
 pre-configure:
 	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${REINPLACE_CMD} -e 's|target.path.*|target.path=${PREFIX}/bin|g' \
-		-e 's|phrasebooks.path.*|phrasebooks.path=${PREFIX}/share/qt4/phrasebooks|g' \
-		-e 's|linguisttranslations.path.*|linguisttranslations.path=${PREFIX}/share/qt4/translations|g' \
-		-E -e 's|^TARGET[[:blank:]]*=[[:blank:]]*([a-z]+)|TARGET=\1-qt4|g' \
+	${REINPLACE_CMD} -E -e 's|^TARGET[[:blank:]]*=[[:blank:]]*([a-z]+)|TARGET=\1-qt4|g' \
 		${WRKSRC}/${PORTNAME}.pro ${WRKSRC}/${PORTNAME}/${PORTNAME}.pro \
 		${WRKSRC}/lrelease/lrelease.pro ${WRKSRC}/lupdate/lupdate.pro
 	${MKDIR} ${WRKSRC}/../../mkspecs
