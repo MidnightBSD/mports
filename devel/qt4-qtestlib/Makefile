@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-qtestlib/Makefile,v 1.1 2008/10/10 18:01:19 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-qtestlib/Makefile,v 1.13 2008/08/04 23:30:35 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 

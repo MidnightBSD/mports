@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.4 2008/10/13 19:17:18 ctriv Exp $
+# $MidnightBSD: mports/devel/qt4-corelib/Makefile,v 1.5 2009/01/02 01:45:33 ctriv Exp $
 # $FreeBSD: ports/devel/qt4-corelib/Makefile,v 1.17 2008/08/05 00:46:16 miwi Exp $
 #
 
@@ -24,9 +24,11 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
+
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
@@ -49,10 +51,17 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/src/${PORTNAME}
 CONFIGURE_WRKSRC=${WRKSRC}/../../
 PATCH_WRKSRC=${CONFIGURE_WRKSRC}
 
-.include <bsd.port.pre.mk>
+EXTRA_PATCHES=${.CURDIR}/../../devel/qt4/files/extrapatch-configure
+
+.include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
+
+pre-everything::
+	@${CAT} ${PKGMESSAGE}
+
+post-patch:
+	${REINPLACE_CMD} -e '${QT4_OPTIONS_REPLACE}' ${CONFIGURE_WRKSRC}/configure
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
 	${MKDIR} ${WRKSRC}/../../mkspecs
 	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
 	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc
@@ -65,15 +74,6 @@ post-configure:
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 			-E -e 's|(.*location=).*uic|\1${PREFIX}/bin/uic-qt4|g' \
 		${WRKSRC}/../../lib/pkgconfig/QtCore.pc
-	#hack to hard-code the feature part of qconfig.h
-	${HEAD} -n 27 ${WRKSRC}/global/qconfig.h > ${WRKDIR}/qconfig.tmp
-	${CHMOD} 644 ${WRKSRC}/global/qconfig.h
-	${CAT} ${WRKDIR}/qconfig.tmp ${FILESDIR}/qconfig.h.in > ${WRKSRC}/global/qconfig.h
-# this looks to be a newer GCC thing.
-#.if ${OSVERSION} >= 3000
-#	${ECHO_CMD} "#define QT_VISIBILITY_AVAILABLE" >> ${WRKSRC}/global/qconfig.h
-#.endif
-
 
 post-install:
 	${MKDIR} ${PREFIX}/lib/qt4/plugins
@@ -81,4 +81,4 @@ post-install:
 	${TOUCH} ${PREFIX}/lib/qt4/plugins/.keep_me
 	${INSTALL_DATA} ${WRKDIR}/${DISTNAME}/mkspecs/qconfig.pri ${PREFIX}/share/qt4/mkspecs/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
