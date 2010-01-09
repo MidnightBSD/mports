@@ -1,10 +1,4 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.2 2008/10/10 18:39:09 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/qt4-gui/Makefile,v 1.20 2008/09/05 12:15:53 miwi Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.3 2008/12/05 18:46:39 ctriv Exp $
 
 PORTNAME=	gui
 PORTVERSION=	${QT4_VERSION}
@@ -18,8 +12,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt graphical user interface library
 LICENSE=	gpl2
 
-LIB_DEPENDS?=	png:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png:${PORTSDIR}/graphics/png \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
+
+MAKE_JOBS_SAFE=	yes
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib
@@ -34,7 +31,7 @@ USE_XORG=	xrender xrandr xinerama inputproto xfixes \
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
 MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH 
+		PATH=${WRKSRC}/bin:$$PATH
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
 		src/dbus src/network src/opengl src/phonon \
@@ -50,23 +47,35 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/src/${PORTNAME}
 CONFIGURE_WRKSRC=${WRKSRC}/../../
 PATCH_WRKSRC=${CONFIGURE_WRKSRC}
 
-OPTIONS=	CUPS "Enable printing support (requires CUPS)" off \
-		NAS "Enable sound support (requires NAS)" off
+CONFIGURE_ARGS+=	-I../../include/Qt -I../../include
 
-.include <bsd.port.pre.mk>
+FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
+FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
 
-.if !defined(WITHOUT_CUPS) || defined(PACKAGE_BUILDING)
-BUILD_DEPENDS+=	cupsd:${PORTSDIR}/print/cups-base
-CUPS=	-cups -L${LOCALBASE}/lib -I. -I../../include/Qt -I../../include -I${LOCALBASE}/include
-.elif defined(WITHOUT_CUPS)
-CUPS=
+.include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
+
+.if ${QT4_OPTIONS:MCUPS}
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libcups.a:${PORTSDIR}/print/cups-client
+CONFIGURE_ARGS+=-cups -L${LOCALBASE}/lib -I. -I${LOCALBASE}/include
 .endif
 
-.if !defined(WITHOUT_NAS)
+.if ${QT4_OPTIONS:MQGTKSTYLE}
+USE_GNOME=	gtk20
+CONFIGURE_ARGS+=-gtkstyle
+.else
+CONFIGURE_ARGS+=-no-gtkstyle
+.endif
+
+.if ${QT4_OPTIONS:MNAS}
 LIB_DEPENDS+=	audio:${PORTSDIR}/audio/nas
 CONFIGURE_ARGS+=-system-nas-sound
-.elif defined(WITHOUT_NAS)
+.else
 CONFIGURE_ARGS+=-no-nas-sound
+.endif
+
+.if defined(PACKAGE_BUILDING)
+RUN_DEPENDS+=	${FONTSCALE}:${X_FONTS_TTF_PORT} \
+		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT}
 .endif
 
 pre-configure:
@@ -85,4 +94,4 @@ post-configure:
 			-E -e 's|(.*location=).*uic|\1${PREFIX}/bin/uic-qt4|g' \
 		${WRKSRC}/../../lib/pkgconfig/QtGui.pc
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
