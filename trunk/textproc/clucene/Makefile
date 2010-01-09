@@ -2,15 +2,14 @@
 # Date created:		2006-08-09
 # Whom:			Cheng-Lung Sung <clsung@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/clucene/Makefile,v 1.1 2008/10/17 17:35:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/clucene/Makefile,v 1.2 2009/09/20 02:09:01 laffer1 Exp $
 # $FreeBSD: ports/textproc/clucene/Makefile,v 1.8 2008/08/27 02:35:34 clsung Exp $
 #
 
 PORTNAME=	clucene
 PORTVERSION=	0.9.21
 CATEGORIES=	textproc
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-core-stable/${PORTVERSION}
 DISTNAME=	${PORTNAME}-core-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
