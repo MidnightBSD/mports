@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.304 2009/12/31 18:52:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.305 2010/01/01 02:53:49 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -343,6 +343,7 @@
     SUBDIR += viewvc
     SUBDIR += websvn
     SUBDIR += wizardkit
+    SUBDIR += xdg-utils
     SUBDIR += xorg-macros
     SUBDIR += yasm
     SUBDIR += zthread
