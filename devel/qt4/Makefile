@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qt4/Makefile,v 1.1 2008/10/03 19:13:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4/Makefile,v 1.2 2010/01/09 22:53:19 laffer1 Exp $
 
 PORTNAME=	qt4
 PORTVERSION=	${QT4_VERSION}
@@ -50,11 +50,10 @@ QT_COMPONENTS+=	codecs-cn codecs-jp codecs-kr codecs-tw
 .endif
 
 .if defined(WITH_SQL_PLUGINS)
-RUN_DEPENDS+=	${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlibase.so:${PORTSDIR}/databases/qt4-ibase-plugin \
+RUN_DEPENDS+=	\
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlmysql.so:${PORTSDIR}/databases/qt4-mysql-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlodbc.so:${PORTSDIR}/databases/qt4-odbc-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlpsql.so:${PORTSDIR}/databases/qt4-pgsql-plugin \
-		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlite2.so:${PORTSDIR}/databases/qt4-sqlite-plugin \
 		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlite.so:${PORTSDIR}/databases/qt4-sqlite3-plugin
 .endif
 
