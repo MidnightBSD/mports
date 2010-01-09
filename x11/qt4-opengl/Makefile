@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/qt4-opengl/Makefile,v 1.1 2008/10/09 20:15:21 laffer1 Exp $
 # $FreeBSD: ports/x11/qt4-opengl/Makefile,v 1.17 2008/08/05 10:24:39 miwi Exp $
 #
 
@@ -27,6 +27,7 @@ HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 USE_GL=		glu
 USE_XORG=	x11
+MAKE_JOBS_SAFE=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
@@ -46,6 +47,8 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src/${PORTNAME}
 CONFIGURE_WRKSRC=${WRKSRC}/../../
+
+CONFIGURE_ARGS+=        -I../../include/Qt -I../../include
 
 pre-configure:
 	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
