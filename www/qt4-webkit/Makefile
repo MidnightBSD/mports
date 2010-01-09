@@ -2,7 +2,7 @@
 # Date created:				Mon May 12 17:18:19 CEST 2008
 # Whom:					danny@ricin.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.1 2008/10/09 20:47:50 laffer1 Exp $
 # $FreeBSD: ports/www/qt4-webkit/Makefile,v 1.1 2008/08/04 23:30:38 miwi Exp $
 #
 
@@ -19,9 +19,11 @@ COMMENT=	Qt4 webkit engine
 LICENSE=	gpl2
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui network xml
+QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui network xml \
+		dbus phonon phonon-gst
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
@@ -33,10 +35,9 @@ MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
 		INSTALL_ROOT=${FAKE_DESTDIR}
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
-		src/dbus src/opengl src/phonon \
-		src/qt3support src/script src/sql src/svg src/testlib \
-		src/tools src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs
+		src/opengl \
+		src/qt3support src/sql src/svg src/testlib \
+		src/tools src/xmlpatterns src/3rdparty/clucene
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
@@ -44,6 +45,8 @@ EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/src/3rdparty/${PORTNAME}/WebCore
 CONFIGURE_WRKSRC=${WRKSRC}/../../../../
+
+CONFIGURE_ARGS+=	-I../../../../include/Qt -I../../../../include
 
 pre-configure:
 	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
