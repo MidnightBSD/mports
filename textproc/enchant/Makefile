@@ -1,13 +1,7 @@
-# New ports collection makefile for:	enchant
-# Date created:				03 January 2004
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.3 2009/01/02 03:06:56 ctriv Exp $
-# $FreeBSD: ports/textproc/enchant/Makefile,v 1.23 2006/11/30 20:37:18 mezz Exp $
-#
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.4 2009/09/20 02:10:17 laffer1 Exp $
 
 PORTNAME=	enchant
-PORTVERSION=	1.4.0
+PORTVERSION=	1.4.2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
@@ -41,20 +35,6 @@ PLIST_SUB+=	ASPELL="@comment "
 
 .include <bsd.port.pre.mk>
 
-# Disable, it needs hspell 0.9 or above.
-#.if exists(${LOCALBASE}/bin/hspell)
-#WITH_HSPELL=	yes
-#.endif
-#
-#.if defined(WITH_HSPELL)
-#BUILD_DEPENDS+=	hspell:${PORTSDIR}/hebrew/hspell
-#CONFIGURE_ARGS+=--enable-hspell
-#PLIST_SUB+=	HSPELL=""
-#.else
-#CONFIGURE_ARGS+=--disable-hspell
-#PLIST_SUB+=	HSPELL="@comment "
-#.endif
-
 pre-everything::
 .if !defined(WITHOUT_ASPELL) || !defined(WITH_HSPELL)
 	@${ECHO_CMD} '===> The following options are available for this port:'
@@ -62,10 +42,6 @@ pre-everything::
 	@${ECHO_CMD} '===>'
 	@${ECHO_CMD} '===> Define WITHOUT_ASPELL to disable aspell support'
 .endif
-#.if !defined(WITH_HSPELL)
-#	@${ECHO_CMD} '===>'
-#	@${ECHO_CMD} '===> Define WITH_HSPELL to enable hspell (Hebrew) support'
-#.endif
 .endif
 
 post-patch:
