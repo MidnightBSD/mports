@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.2 2008/10/17 14:17:39 laffer1 Exp $
+# $MidnightBSD: mports/misc/qt4-qtdemo/Makefile,v 1.3 2008/10/20 19:24:39 ctriv Exp $
 # $FreeBSD: ports/misc/qt4-qtdemo/Makefile,v 1.13 2008/08/04 23:30:37 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build assistantclient \
 		corelib designer gui network opengl sql svg qtestlib xml \
 		imageformats_run dbus script webkit phonon help assistant_run \
-		phonon-gst
+		phonon-gst scripttools xmlpatterns
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 
