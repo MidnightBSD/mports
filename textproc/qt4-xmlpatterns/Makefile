@@ -2,7 +2,7 @@
 # Date created:				Fri May  9 15:30:23 CEST 2008
 # Whom:					danny@ricin.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/qt4-xmlpatterns/Makefile,v 1.1 2008/10/10 17:17:43 laffer1 Exp $
 # $FreeBSD: ports/textproc/qt4-xmlpatterns/Makefile,v 1.1 2008/08/04 23:30:38 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build corelib network
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 
