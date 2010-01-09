@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/libgweather/Makefile,v 1.2 2009/09/20 01:44:52 laffer1 Exp $
+# $MidnightBSD: mports/net/libgweather/Makefile,v 1.3 2009/09/25 00:15:07 laffer1 Exp $
 
 PORTNAME=	libgweather
 PORTVERSION=	2.26.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 

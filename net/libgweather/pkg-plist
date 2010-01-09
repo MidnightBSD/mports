@@ -10,7 +10,7 @@ include/libgweather/weather.h
 lib/libgweather.a
 lib/libgweather.la
 lib/libgweather.so
-lib/libgweather.so.5
+lib/libgweather.so.1
 libdata/pkgconfig/gweather.pc
 %%DOCSDIR%%/GWeatherLocationEntry.html
 %%DOCSDIR%%/GWeatherTimezoneMenu.html
