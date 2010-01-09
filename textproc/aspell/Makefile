@@ -1,13 +1,7 @@
-# New ports collection makefile for:	aspell
-# Date created:				7 December 1998
-# Whom:					Josh Gilliam <josh@quick.net>
-#
-# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.5 2007/08/17 01:34:08 laffer1 Exp $
-# $FreeBSD: ports/textproc/aspell/Makefile,v 1.81 2006/08/06 21:05:14 thierry Exp $
-#
+# $MidnightBSD: mports/textproc/aspell/Makefile,v 1.6 2007/08/18 23:53:30 ctriv Exp $
 
 PORTNAME=	aspell
-PORTVERSION=	0.60.5
+PORTVERSION=	0.60.6
 CATEGORIES=	textproc
 MASTER_SITES+=		${MASTER_SITE_GNU:S|$|:dicten|}
 MASTER_SITE_SUBDIR+=	aspell/dict/en/:dicten
@@ -89,6 +83,14 @@ INFO=			aspell-dev aspell
 CFLAGS+=		-O
 .endif
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 3000
+CONFIGURE_ARGS+=      --disable-wide-curses
+.else
+CONFIGURE_ARGS+=      --enable-curses=ncursesw
+.endif
+
 pre-everything::
 	@${ECHO_MSG} ""
 .if !defined(WITH_ISPELL)
@@ -129,4 +131,4 @@ inst-dicten:
 		>> ${TMPPLIST}
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
