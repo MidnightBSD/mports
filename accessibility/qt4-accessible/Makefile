@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/qt4-accessible/Makefile,v 1.1 2008/10/09 19:56:05 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/qt4-accessible/Makefile,v 1.2 2009/09/19 23:56:15 laffer1 Exp $
 
 PORTNAME=	accessible
 PORTVERSION=	${QT4_VERSION}
@@ -16,7 +16,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build qt3support corelib gui network sql xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
