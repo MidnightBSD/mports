@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.4 2009/04/04 01:45:45 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.5 2009/09/20 02:10:22 laffer1 Exp $
 
 PORTNAME=	ntfs
-PORTVERSION=	2009.2.1
+PORTVERSION=	2009.2.4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ntfs-3g.org/
 PKGNAMEPREFIX=	fusefs-
