@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/net/qt4-network/Makefile,v 1.1 2008/10/07 01:37:42 laffer1 Exp $
+# $MidnightBSD: mports/net/qt4-network/Makefile,v 1.2 2008/10/10 19:17:25 laffer1 Exp $
 # $FreeBSD: ports/net/qt4-network/Makefile,v 1.12 2008/08/04 23:30:37 miwi Exp $
 #
 
@@ -22,7 +22,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build corelib
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 USE_OPENSSL=	yes
