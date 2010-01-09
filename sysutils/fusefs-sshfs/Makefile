@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.4 2007/07/29 22:09:41 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-sshfs/Makefile,v 1.5 2009/04/04 01:34:23 laffer1 Exp $
 
 PORTNAME=	sshfs
 PORTVERSION=	2.2
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	fuse
+MASTER_SITES=	SF/fuse/${PORTNAME}-fuse/${PORTVERSION}
 PKGNAMEPREFIX=	fusefs-
 DISTNAME=	${PORTNAME}-fuse-${PORTVERSION}
 

@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/sysutils/fusefs-httpfs/Makefile,v 1.2 2007/10/31 04:27:51 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-httpfs/Makefile,v 1.3 2009/04/03 06:20:14 laffer1 Exp $
 
 PORTNAME=	httpfs
 PORTVERSION=	2.06.08.26
 PORTREVISION=	1
 CATEGORIES=	sysutils www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}_with_static_binaries_${PORTVERSION}
 PKGNAMEPREFIX=	fusefs-
 DISTNAME=	${PORTNAME}_with_static_binaries_${PORTVERSION}
 
