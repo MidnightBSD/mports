@@ -1,23 +1,18 @@
-# New ports collection makefile for:	libxml2
-# Date created:				28 September 1998
-# Whom:					Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.5 2009/06/06 23:36:31 laffer1 Exp $
-# $FreeBSD: ports/textproc/libxml2/Makefile,v 1.148 2008/01/22 20:59:41 marcus Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.6 2009/10/18 18:10:16 crash Exp $
 #
 # WITH_THREADS_BREAK enable pthread support (WILL BREAK OTHER PORTS!)
 # WITHOUT_SCHEMA disable XML schema support
 # WITH_MEM_DEBUG enable memory debugging (DEVELOPERS ONLY!)
 # WITH_XMLLINT_HIST enable history for xmllint
 # WITH_THREAD_ALLOC enable per-thread memory (DEVELOPERS ONLY!)
-#
 
 PORTNAME=	libxml2
 PORTVERSION=	2.7.6
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
-		ftp://fr.rpmfind.net/pub/libxml/
+		ftp://fr.rpmfind.net/pub/libxml/ \
+		ftp://gd.tuwien.ac.at/pub/libxml/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
@@ -25,7 +20,6 @@ COMMENT?=	XML parser library for GNOME
 LICENSE=	bsd3
 
 .if !defined(REFERENCE_PORT)
-
 MAKE_JOBS_SAFE=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
