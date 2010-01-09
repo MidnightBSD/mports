@@ -3,10 +3,12 @@ bin/cmake
 bin/cpack
 bin/ctest
 %%DATADIR%%/Modules/AddFileDependencies.cmake
+%%DATADIR%%/Modules/BundleUtilities.cmake
 %%DATADIR%%/Modules/CMake.cmake
 %%DATADIR%%/Modules/CMakeASM-ATTInformation.cmake
 %%DATADIR%%/Modules/CMakeASMCompiler.cmake.in
 %%DATADIR%%/Modules/CMakeASMInformation.cmake
+%%DATADIR%%/Modules/CMakeASM_MASMInformation.cmake
 %%DATADIR%%/Modules/CMakeBackwardCompatibilityC.cmake
 %%DATADIR%%/Modules/CMakeBackwardCompatibilityCXX.cmake
 %%DATADIR%%/Modules/CMakeBorlandFindMake.cmake
@@ -25,6 +27,7 @@ bin/ctest
 %%DATADIR%%/Modules/CMakeDependentOption.cmake
 %%DATADIR%%/Modules/CMakeDetermineASM-ATTCompiler.cmake
 %%DATADIR%%/Modules/CMakeDetermineASMCompiler.cmake
+%%DATADIR%%/Modules/CMakeDetermineASM_MASMCompiler.cmake
 %%DATADIR%%/Modules/CMakeDetermineCCompiler.cmake
 %%DATADIR%%/Modules/CMakeDetermineCXXCompiler.cmake
 %%DATADIR%%/Modules/CMakeDetermineCompilerABI.cmake
@@ -57,6 +60,7 @@ bin/ctest
 %%DATADIR%%/Modules/CMakeSystemSpecificInformation.cmake
 %%DATADIR%%/Modules/CMakeTestASM-ATTCompiler.cmake
 %%DATADIR%%/Modules/CMakeTestASMCompiler.cmake
+%%DATADIR%%/Modules/CMakeTestASM_MASMCompiler.cmake
 %%DATADIR%%/Modules/CMakeTestCCompiler.cmake
 %%DATADIR%%/Modules/CMakeTestCXXCompiler.cmake
 %%DATADIR%%/Modules/CMakeTestForFreeVC.cxx
@@ -77,7 +81,9 @@ bin/ctest
 %%DATADIR%%/Modules/CPack.Description.plist.in
 %%DATADIR%%/Modules/CPack.Info.plist.in
 %%DATADIR%%/Modules/CPack.OSXScriptLauncher.in
+%%DATADIR%%/Modules/CPack.OSXScriptLauncher.rsrc.in
 %%DATADIR%%/Modules/CPack.OSXX11.Info.plist.in
+%%DATADIR%%/Modules/CPack.OSXX11.main.scpt.in
 %%DATADIR%%/Modules/CPack.RuntimeScript.in
 %%DATADIR%%/Modules/CPack.STGZ_Header.sh.in
 %%DATADIR%%/Modules/CPack.VolumeIcon.icns.in
@@ -127,11 +133,14 @@ bin/ctest
 %%DATADIR%%/Modules/FindCABLE.cmake
 %%DATADIR%%/Modules/FindCURL.cmake
 %%DATADIR%%/Modules/FindCVS.cmake
+%%DATADIR%%/Modules/FindCoin3D.cmake
 %%DATADIR%%/Modules/FindCups.cmake
 %%DATADIR%%/Modules/FindCurses.cmake
+%%DATADIR%%/Modules/FindCxxTest.cmake
 %%DATADIR%%/Modules/FindCygwin.cmake
 %%DATADIR%%/Modules/FindDCMTK.cmake
 %%DATADIR%%/Modules/FindDart.cmake
+%%DATADIR%%/Modules/FindDevIL.cmake
 %%DATADIR%%/Modules/FindDoxygen.cmake
 %%DATADIR%%/Modules/FindEXPAT.cmake
 %%DATADIR%%/Modules/FindFLTK.cmake
@@ -169,7 +178,9 @@ bin/ctest
 %%DATADIR%%/Modules/FindMotif.cmake
 %%DATADIR%%/Modules/FindOpenAL.cmake
 %%DATADIR%%/Modules/FindOpenGL.cmake
+%%DATADIR%%/Modules/FindOpenMP.cmake
 %%DATADIR%%/Modules/FindOpenSSL.cmake
+%%DATADIR%%/Modules/FindOpenSceneGraph.cmake
 %%DATADIR%%/Modules/FindOpenThreads.cmake
 %%DATADIR%%/Modules/FindPHP4.cmake
 %%DATADIR%%/Modules/FindPNG.cmake
@@ -187,6 +198,7 @@ bin/ctest
 %%DATADIR%%/Modules/FindQt3.cmake
 %%DATADIR%%/Modules/FindQt4.cmake
 %%DATADIR%%/Modules/FindQuickTime.cmake
+%%DATADIR%%/Modules/FindRTI.cmake
 %%DATADIR%%/Modules/FindRuby.cmake
 %%DATADIR%%/Modules/FindSDL.cmake
 %%DATADIR%%/Modules/FindSDL_image.cmake
@@ -196,6 +208,7 @@ bin/ctest
 %%DATADIR%%/Modules/FindSDL_ttf.cmake
 %%DATADIR%%/Modules/FindSWIG.cmake
 %%DATADIR%%/Modules/FindSelfPackers.cmake
+%%DATADIR%%/Modules/FindSquish.cmake
 %%DATADIR%%/Modules/FindSubversion.cmake
 %%DATADIR%%/Modules/FindTCL.cmake
 %%DATADIR%%/Modules/FindTIFF.cmake
@@ -210,6 +223,7 @@ bin/ctest
 %%DATADIR%%/Modules/FindXMLRPC.cmake
 %%DATADIR%%/Modules/FindZLIB.cmake
 %%DATADIR%%/Modules/Findosg.cmake
+%%DATADIR%%/Modules/FindosgAnimation.cmake
 %%DATADIR%%/Modules/FindosgDB.cmake
 %%DATADIR%%/Modules/FindosgFX.cmake
 %%DATADIR%%/Modules/FindosgGA.cmake
@@ -223,13 +237,19 @@ bin/ctest
 %%DATADIR%%/Modules/FindosgText.cmake
 %%DATADIR%%/Modules/FindosgUtil.cmake
 %%DATADIR%%/Modules/FindosgViewer.cmake
+%%DATADIR%%/Modules/FindosgVolume.cmake
+%%DATADIR%%/Modules/FindosgWidget.cmake
+%%DATADIR%%/Modules/Findosg_functions.cmake
 %%DATADIR%%/Modules/FindwxWidgets.cmake
 %%DATADIR%%/Modules/FindwxWindows.cmake
+%%DATADIR%%/Modules/FortranCInterface.cmake
+%%DATADIR%%/Modules/FortranCInterface.h.in
 %%DATADIR%%/Modules/GetPrerequisites.cmake
 %%DATADIR%%/Modules/ITKCompatibility.cmake
 %%DATADIR%%/Modules/InstallRequiredSystemLibraries.cmake
 %%DATADIR%%/Modules/KDE3Macros.cmake
 %%DATADIR%%/Modules/MacOSXBundleInfo.plist.in
+%%DATADIR%%/Modules/MacOSXFrameworkInfo.plist.in
 %%DATADIR%%/Modules/MacroAddFileDependencies.cmake
 %%DATADIR%%/Modules/NSIS.InstallOptions.ini.in
 %%DATADIR%%/Modules/NSIS.template.in
@@ -255,6 +275,7 @@ bin/ctest
 %%DATADIR%%/Modules/Platform/Generic-SDCC-C.cmake
 %%DATADIR%%/Modules/Platform/Generic.cmake
 %%DATADIR%%/Modules/Platform/HP-UX.cmake
+%%DATADIR%%/Modules/Platform/Haiku.cmake
 %%DATADIR%%/Modules/Platform/IRIX.cmake
 %%DATADIR%%/Modules/Platform/IRIX64.cmake
 %%DATADIR%%/Modules/Platform/Linux-GNU-Fortran.cmake
@@ -310,6 +331,7 @@ bin/ctest
 %%DATADIR%%/Modules/Platform/kFreeBSD.cmake
 %%DATADIR%%/Modules/Platform/syllable.cmake
 %%DATADIR%%/Modules/Platform/xlf.cmake
+%%DATADIR%%/Modules/SquishTestScript.cmake
 %%DATADIR%%/Modules/SystemInformation.cmake
 %%DATADIR%%/Modules/SystemInformation.in
 %%DATADIR%%/Modules/TestBigEndian.cmake

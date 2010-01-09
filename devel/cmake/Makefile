@@ -1,14 +1,7 @@
-# New ports collection makefile for:    cmake
-# Date created:         March 18 2002
-# Whom:                 Kyle Martin <mkm@ieee.org>
-#
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.1 2008/10/17 18:44:19 laffer1 Exp $
-# $FreeBSD: ports/devel/cmake/Makefile,v 1.26 2008/08/26 07:58:40 makc Exp $
-#
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.2 2008/10/20 19:22:15 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.6.1
-PORTREVISION=	1
+PORTVERSION=	2.6.4
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -24,6 +17,11 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir=${DATADIR:S|^${PREFIX}||} \
 		--docdir=${DOCSDIR:S|^${PREFIX}||}
 CONFIGURE_ENV=	MAKE=make
+MAKE_JOBS_SAFE=	yes
+
+.if !defined(WITH_DEBUG)
+INSTALL_TARGET=install/strip
+.endif
 
 MAN1=		ccmake.1 \
 		cmake.1 \
@@ -37,8 +35,14 @@ MAN1=		ccmake.1 \
 		ctest.1
 
 post-patch:
-	@${GREP} -rl '/usr/X11R6' ${WRKSRC}/Modules ${WRKSRC}/Tests | \
-		${XARGS} ${REINPLACE_CMD} -e 's,/usr/X11R6,${LOCALBASE},g'
+	@(${FIND} ${WRKSRC}/Modules -name "*.cmake" -print0; \
+		${FIND} ${WRKSRC}/Tests -name "CMakeLists.txt" -print0 ) | \
+		${XARGS} -0 -n 100 ${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g; \
+			s,/usr/X11R6,${LOCALBASE},g'
+	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
+		${WRKSRC}/Source/cmLocalGenerator.cxx \
+		${WRKSRC}/Source/CPack/cmCPackGenerator.cxx \
+		${WRKSRC}/bootstrap
 	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE}/kde4,g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
 	${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
