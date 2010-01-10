@@ -1,10 +1,4 @@
-# New ports collection makefile for:	yawho
-# Date created:		16 December 2000
-# Whom:			Daniel Harris <dannyboy@FreeBSD.org>
-#
-# $FreeBSD: ports/sysutils/yawho/Makefile,v 1.7 2006/08/18 18:08:54 linimon Exp $
-# $MidnightBSD: mports/sysutils/yawho/Makefile,v 1.1 2006/11/01 03:08:39 laffer1 Exp $
-#
+# $MidnightBSD: mports/sysutils/yawho/Makefile,v 1.2 2007/10/25 02:54:14 laffer1 Exp $
 
 PORTNAME=	yawho
 PORTVERSION=	1.2
@@ -15,6 +9,8 @@ MASTER_SITES=	http://wizard.ae.krakow.pl/~mike/download/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple 'w'-like program; displays connection type and login shell PID
 LICENSE=	gpl2
+
+MAKE_JOBS_SAFE=	yes
 
 PLIST_FILES=	bin/yawho
 
