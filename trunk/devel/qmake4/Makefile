@@ -1,9 +1,10 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.7 2008/10/29 19:29:01 ctriv Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.8 2010/01/10 00:01:52 laffer1 Exp $
 #
 
 PORTNAME=	qmake
 PORTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
@@ -32,7 +33,8 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	'${DISTNAME}/config.tests/unix/padstring' \
 	'${DISTNAME}/mkspecs' \
 	'${DISTNAME}/include/*/*' \
-	'${DISTNAME}/src/*/*.h' '${DISTNAME}/qmake' \
+	'${DISTNAME}/src/*/*.h' \
+	'${DISTNAME}/qmake' \
 	'${DISTNAME}/src/corelib/tools' \
 	'${DISTNAME}/src/corelib/io' \
 	'${DISTNAME}/src/corelib/global' \
@@ -44,7 +46,6 @@ EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	'${DISTNAME}/src/3rdparty/sha1'
 
 post-patch:
-	@${RM} -fr ${WRKSRC}/examples ${WRKSRC}/tutorial
 	@${REINPLACE_CMD} -e 's|-O2|${CXXFLAGS}|' \
 		-e 's|gcc.*|${CC}|' \
 		-e 's|g++.*|${CXX}|' \
@@ -56,7 +57,11 @@ post-patch:
 		-e 's|uic|uic-qt4|' \
 		-e 's|moc|moc-qt4|' \
 		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf \
-		${WRKSRC}/../mkspecs/freebsd-g++34/qmake.conf
+		${WRKSRC}/../mkspecs/freebsd-g++34/qmake.conf \
+		${WRKSRC}/../mkspecs/freebsd-g++40/qmake.conf \
+		${WRKSRC}/../mkspecs/freebsd-icc/qmake.conf
+	@${REINPLACE_CMD} -e 's|include(../common/c++|include(../common/g++.conf)|' \
+		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf 
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
 
 do-configure:
@@ -68,7 +73,7 @@ do-configure:
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "amd64"
+.if ${OSVERSION} < 3000 && ${ARCH} == "amd64"
 CXXFLAGS+=	-fno-gcse
 .endif
 
