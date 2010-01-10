@@ -2,7 +2,7 @@
 # Date created:		8 Nov 1994
 # Whom:			ache
 #
-# $MidnightBSD: mports/sysutils/less/Makefile,v 1.1 2008/08/24 21:38:29 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/less/Makefile,v 1.2 2008/09/15 21:26:31 laffer1 Exp $
 # $FreeBSD: ports/sysutils/less/Makefile,v 1.41 2007/01/29 19:05:06 gabor Exp $
 #
 
@@ -16,6 +16,8 @@ MASTER_SITE_SUBDIR=	less
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A better pager utility
 LICENSE=	gpl2
+
+MAKE_JOBS_SAFE=	yes
 
 PLIST_FILES=	bin/less bin/lesskey bin/lessecho
 
