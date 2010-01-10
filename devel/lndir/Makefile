@@ -2,7 +2,7 @@
 # Date Created:				16 Oct 2007
 # Whom:					Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/devel/lndir/Makefile,v 1.1 2007/10/16 20:17:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/lndir/Makefile,v 1.2 2007/12/06 00:31:13 laffer1 Exp $
 #
 
 PORTNAME=	lndir
@@ -16,6 +16,7 @@ LICENSE=	unknown
 
 BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 
+MAKE_JOBS_SAFE=	yes
 XORG_CAT=	util
 USE_XORG=	xproto
 
