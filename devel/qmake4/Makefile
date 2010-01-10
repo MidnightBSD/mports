@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.8 2010/01/10 00:01:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.9 2010/01/10 00:27:20 laffer1 Exp $
 #
 
 PORTNAME=	qmake
@@ -22,7 +22,7 @@ QT_BUILD_ENV_ONLY=	yes
 REINPLACE_ARGS=	-i ""
 WRKSRC=		${WRKDIR}/${DISTNAME}/qmake
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_ENV+=	FILESDIR="${FILESDIR}" 
+MAKE_ENV+=	FILESDIR="${FILESDIR}"
 
 FAKE_OPTS=	trueprefix
 
@@ -61,7 +61,7 @@ post-patch:
 		${WRKSRC}/../mkspecs/freebsd-g++40/qmake.conf \
 		${WRKSRC}/../mkspecs/freebsd-icc/qmake.conf
 	@${REINPLACE_CMD} -e 's|include(../common/c++|include(../common/g++.conf)|' \
-		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf 
+		${WRKSRC}/../mkspecs/freebsd-g++/qmake.conf
 	@${REINPLACE_CMD} -e 's|@QMAKE_QTOBJS@||g' ${WRKSRC}/Makefile.unix
 
 do-configure:
