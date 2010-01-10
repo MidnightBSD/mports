@@ -2,7 +2,7 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dbus-qt4/Makefile,v 1.1 2008/10/09 20:21:07 laffer1 Exp $
 # $FreeBSD: ports/devel/dbus-qt4/Makefile,v 1.15 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -25,7 +25,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
-
+MAKE_JOBS_UNSAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
 
