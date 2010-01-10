@@ -1,6 +1,6 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.3 2009/06/07 21:13:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.4 2010/01/09 21:49:23 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/hebrew/hspell \
+BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/textproc/hspell \
 		update-mime-database:${PORTSDIR}/misc/shared-mime-info
 LIB_DEPENDS=	searchclient:${PORTSDIR}/deskutils/strigi \
 		soprano.4:${PORTSDIR}/textproc/soprano \
