@@ -2,7 +2,7 @@
 # Date created:                         	27 February 2004
 # Whom:                                        	Michael Nottebrock <lofi@freebsd.org>
 #
-# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.4 2009/01/02 03:17:31 ctriv Exp $
+# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.5 2010/01/09 23:10:44 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.10 2008/08/04 23:30:32 miwi Exp $
 #
 
@@ -47,7 +47,10 @@ LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
 MAKE_ENV+=	DB="${DB}" DRIVER="${DRIVER}" MOC="${MOC}" \
 		PLUGIN="${PLUGIN}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		QT_INCDIR="${QT_INCDIR}" \
+		QT_LIBDIR="${QT_LIBDIR}"
+PLIST_SUB=	DB=${DB}
 
 pre-install:
 	@${MKDIR} ${PREFIX}/lib/qt4/plugins/sqldrivers
