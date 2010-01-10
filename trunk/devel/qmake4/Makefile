@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.6 2008/09/18 21:55:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.7 2008/10/29 19:29:01 ctriv Exp $
 #
 
 PORTNAME=	qmake
@@ -26,6 +26,7 @@ MAKE_ENV+=	FILESDIR="${FILESDIR}"
 FAKE_OPTS=	trueprefix
 
 #USE_BZIP2=	yes
+MAKE_JOBS_SAFE=	yes
 
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - \
 	'${DISTNAME}/config.tests/unix/padstring' \
