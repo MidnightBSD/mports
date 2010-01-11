@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/ruby-deplate/Makefile,v 1.1 2009/08/26 22:17:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/ruby-deplate/Makefile,v 1.2 2009/11/10 03:13:12 laffer1 Exp $
 
 PORTNAME=	deplate
 PORTVERSION=	0.8.5
@@ -13,8 +13,11 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-FAKE_OPTS=	prefixhack
-
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS+=--prefix=${FAKE_DESTDIR}${TRUE_PREFIX} \
+		--mandir=${FAKE_DESTDIR}${TRUE_PREFIX}/man \
+		--bindir=${FAKE_DESTDIR}${TRUE_PREFIX}/bin \
+		--libdir=${FAKE_DESTDIR}${TRUE_PREFIX}/lib
 USE_ZIP=	yes
 USE_RUBY=	yes
 USE_RUBY_SETUP=	yes
