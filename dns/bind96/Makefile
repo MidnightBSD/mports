@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/bind96/Makefile,v 1.4 2009/11/29 04:22:48 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind96/Makefile,v 1.5 2010/01/16 15:48:43 laffer1 Exp $
 
 PORTNAME=	bind96
 PORTVERSION=	9.6.2.0
@@ -41,7 +41,7 @@ ARCH=		x86_64
 .endif
 
 # We are ok by default from 0.3-CURRENT on
-.if ${OSVERSION} < 600000
+.if ${OSVERSION} > 3000
 OPTIONS+=	THREADS	"Compile with thread support" on
 .else
 OPTIONS+=	THREADS	"Compile w/threads (Not Recommended <MidnightBSD 0.3)" off
