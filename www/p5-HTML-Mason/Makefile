@@ -1,13 +1,7 @@
-# New ports collection makefile for:	HTML-Mason
-# Date created:				31 May 2000
-# Whom:					Denis Shaposhnikov <dsh@vlink.ru>
-#
-# $FreeBSD: ports/www/p5-HTML-Mason/Makefile,v 1.58 2007/09/08 01:11:28 linimon Exp $
-# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.1 2007/09/12 02:54:37 ctriv Exp $
-#
+# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.2 2008/07/25 05:44:29 laffer1 Exp $
 
 PORTNAME=	HTML-Mason
-PORTVERSION=	1.39
+PORTVERSION=	1.42
 CATEGORIES=	www perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	HTML
