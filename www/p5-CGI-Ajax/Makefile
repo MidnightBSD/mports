@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/www/p5-CGI-Ajax/Makefile,v 1.2 2008/08/26 19:15:56 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-CGI-Ajax/Makefile,v 1.3 2009/06/27 22:03:23 laffer1 Exp $
 #
 
 PORTNAME=	CGI-Ajax
 PORTVERSION=	0.707
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CGI
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/0$//}
 
