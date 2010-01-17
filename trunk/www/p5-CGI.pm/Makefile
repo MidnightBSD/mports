@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.7 2009/03/11 19:25:09 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.8 2009/06/27 22:04:26 laffer1 Exp $
 
 PORTNAME=	CGI.pm
-PORTVERSION=	3.43
+PORTVERSION=	3.48
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
