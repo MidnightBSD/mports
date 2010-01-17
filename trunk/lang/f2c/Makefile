@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/f2c/Makefile,v 1.1 2008/12/20 02:54:13 ctriv Exp $
+# $MidnightBSD: mports/lang/f2c/Makefile,v 1.2 2009/04/05 19:59:08 laffer1 Exp $
 
 PORTNAME=	f2c
 PORTVERSION=	20060810
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fortran-to-C converter and its run-time libraries
 LICENSE=	other
 
-EXTRACT_DEPENDS=${UNZIP_CMD}:${PORTSDIR}/archivers/unzip
+EXTRACT_DEPENDS=unzip:${PORTSDIR}/archivers/unzip
 
 GUNZIP_CMD=	minigzip -d
 USE_GMAKE=	yes
