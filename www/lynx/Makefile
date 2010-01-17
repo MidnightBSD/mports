@@ -2,7 +2,7 @@
 # Date created:         15 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.6 2008/06/08 23:28:26 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.7 2008/07/03 04:51:31 laffer1 Exp $
 # $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
 #
 
@@ -18,14 +18,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
 LICENSE=	gpl2
 
-CONFLICTS?=	lynx-current*
-
 USE_BZIP2=	yes
 USE_OPENSSL=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}2-8-6
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS+=--with-screen=ncurses --with-zlib --libdir="${L_LIB}" \
+CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies
 
 _FAKE_SETUP += DOCSDIR=${FAKE_DESTDIR}${DOCSDIR}
@@ -36,6 +34,12 @@ OPTIONS=	SSL		"SSL Support" on \
 		IPV6		"IPv6 Support" off
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 3000
+CONFIGURE_ARGS+=	--with-screen=ncurses
+.else
+CONFIGURE_ARGS+=	--with-screen=ncursesw
+.endif
 
 .if defined(WITH_DEFAULT_COLORS)
 CONFIGURE_ARGS+=--enable-default-colors
