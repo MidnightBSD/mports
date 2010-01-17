@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.3 2008/12/05 18:46:39 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.4 2010/01/09 23:32:05 laffer1 Exp $
 
 PORTNAME=	gui
 PORTVERSION=	${QT4_VERSION}
@@ -55,7 +55,7 @@ FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
 
 .if ${QT4_OPTIONS:MCUPS}
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libcups.a:${PORTSDIR}/print/cups-client
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libcups.a:${PORTSDIR}/print/cups-base
 CONFIGURE_ARGS+=-cups -L${LOCALBASE}/lib -I. -I${LOCALBASE}/include
 .endif
 
