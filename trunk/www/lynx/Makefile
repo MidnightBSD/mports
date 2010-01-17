@@ -1,18 +1,12 @@
-# New ports collection makefile for:    lynx
-# Date created:         15 Dec 1994
-# Whom:                 ache
-#
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.7 2008/07/03 04:51:31 laffer1 Exp $
-# $FreeBSD: ports/www/lynx/Makefile,v 1.114 2005/12/12 21:33:23 lawrance Exp $
-#
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.8 2010/01/17 14:56:37 laffer1 Exp $
 
 PORTNAME=	lynx
-PORTVERSION=	2.8.6.5
+PORTVERSION=	2.8.7.1
 PORTREVISION=	0
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/ \
-		ftp://lynx.isc.org/lynx2.8.6/patches/:patches
-DISTNAME=	${PORTNAME}2.8.6rel.5
+		ftp://lynx.isc.org/lynx2.8.7/patches/:patches
+DISTNAME=	${PORTNAME}2.8.7rel.1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
@@ -20,9 +14,9 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_OPENSSL=	yes
-WRKSRC=		${WRKDIR}/${PORTNAME}2-8-6
+WRKSRC=		${WRKDIR}/${PORTNAME}2-8-7
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies
 
