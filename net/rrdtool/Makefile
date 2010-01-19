@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <dima@Chg.RU>
 #
 # $FreeBSD: ports/net/rrdtool/Makefile,v 1.59 2006/08/16 08:38:14 demon Exp $
-# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.2 2007/05/21 20:49:32 ctriv Exp $
+# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.3 2008/12/27 01:50:00 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
@@ -36,7 +36,6 @@ MAN1=		bin_dec_hex.1 cdeftutorial.1 rpntutorial.1 rrd-beginners.1 \
 		rrdgraph_rpn.1 rrdinfo.1 rrdlast.1 rrdresize.1 rrdrestore.1 \
 		rrdthreads.1 rrdtool.1 rrdtune.1 rrdtutorial.1 rrdupdate.1 \
 		rrdxport.1
-MAN3=		RRDp.3 RRDs.3
 MAN3PREFIX=	${TARGETDIR}/lib/perl5/${PERL_VERSION}
 
 post-extract:
