@@ -2,17 +2,16 @@
 # Date created:				11 November 2004
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.3 2008/03/04 02:43:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.4 2008/06/01 19:56:14 crash Exp $
 # $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
 #   $MCom: ports/textproc/gnome-doc-utils/Makefile,v 1.44 2007/03/13 00:37:32 mezz Exp $
 #
 
 PORTNAME=	gnome-doc-utils
-PORTVERSION=	0.12.2
+PORTVERSION=	0.16.1
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
-DISTNAME=	gnome-doc-utils-${PORTVERSION}
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME doc utils
@@ -27,8 +26,9 @@ RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian \
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+MAKE_JOBS_UNSAFE=yes
 USE_GETTEXT=	yes
-USE_GNOME=	gnomehier gnometarget gnomehack libxslt intlhack
+USE_GNOME=	gnomehier gnomehack libxslt intlhack
 USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
