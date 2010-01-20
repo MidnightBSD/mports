@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.4 2009/01/13 01:01:10 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.5 2009/04/28 00:03:31 laffer1 Exp $
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.8.3
+PORTVERSION=	1.8.6
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
