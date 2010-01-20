@@ -196,6 +196,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/action/__init__.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/action/userprofile.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/interwiki.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/auth/cas.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/http.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/openidrp.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/botbouncer.py
@@ -208,6 +209,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/__init__.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/log.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/interwiki.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/auth/cas.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/http.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/openidrp.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/botbouncer.pyc
@@ -215,11 +217,12 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/sslclientcert.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/smb_mount.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/mysql_group.pyc
-%%PYTHON_SITELIBDIR%%/MoinMoin/auth/log.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/_PHPsessionParser.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/php_session.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/__init__.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/auth/log.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/interwiki.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/auth/cas.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/http.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/openidrp.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/auth/botbouncer.pyo
@@ -280,6 +283,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_octet_stream.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_sun_xml_calc.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument_presentation.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_ms_powerpoint.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/__init__.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/image_jpeg.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument.pyc
@@ -301,11 +305,12 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_octet_stream.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_sun_xml_calc.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument_presentation.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_ms_powerpoint.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/__init__.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/image_jpeg.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/filter/EXIF.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/text_html.pyo
-%%PYTHON_SITELIBDIR%%/MoinMoin/filter/EXIF.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_msword.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument_text.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_sun_xml.pyo
@@ -322,6 +327,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_octet_stream.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_sun_xml_calc.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_oasis_opendocument_presentation.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/filter/application_vnd_ms_powerpoint.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/__init__.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/filter/image_jpeg.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/formatter/text_html.py
@@ -423,10 +429,8 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/sv.MoinMoin.po
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/en.MoinMoin.po
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/it.MoinMoin.po
-%%PYTHON_SITELIBDIR%%/MoinMoin/i18n/POTFILES.in
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/hi.MoinMoin.po
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/nl.MoinMoin.po
-%%PYTHON_SITELIBDIR%%/MoinMoin/i18n/POTFILES
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/sr.MoinMoin.po
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/gl.MoinMoin.po
 %%PYTHON_SITELIBDIR%%/MoinMoin/i18n/cs.MoinMoin.po
@@ -723,8 +727,10 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060100.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050400.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060300.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080500.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080100.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050800.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080400.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060800.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/text_moin158_wiki.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080200.py
@@ -740,9 +746,9 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050500.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050300.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060700.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080600.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160a_wiki.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160.py
-%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/wikiutil160a.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060400.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060200.py
@@ -753,6 +759,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060000.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050600.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1070100.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1059998.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/__init__.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160_wiki.py
@@ -762,8 +769,10 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060100.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050400.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060300.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080500.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080100.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050800.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080400.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060800.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/text_moin158_wiki.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080200.pyc
@@ -779,9 +788,9 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050500.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050300.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060700.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080600.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160a_wiki.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160.pyc
-%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/wikiutil160a.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060400.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060200.pyc
@@ -792,6 +801,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060000.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050600.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1070100.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1059998.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/__init__.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160_wiki.pyc
@@ -801,8 +811,10 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060100.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050400.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060300.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080500.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080100.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050800.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080400.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060800.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/text_moin158_wiki.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080200.pyo
@@ -818,9 +830,9 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050500.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050300.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060700.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1080600.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160a_wiki.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160.pyo
-%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/wikiutil160a.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060400.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060200.pyo
@@ -831,6 +843,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1060000.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1050600.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1070100.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/data.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/1059998.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/__init__.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/script/migration/_conv160_wiki.pyo
@@ -1098,6 +1111,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/clock.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/dataset.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/pysupport.py
+%%PYTHON_SITELIBDIR%%/MoinMoin/util/SubProcess.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/filesys.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/lock.py
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/diff_text.py
@@ -1116,6 +1130,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/clock.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/dataset.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/pysupport.pyc
+%%PYTHON_SITELIBDIR%%/MoinMoin/util/SubProcess.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/filesys.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/lock.pyc
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/diff_text.pyc
@@ -1134,6 +1149,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/clock.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/dataset.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/pysupport.pyo
+%%PYTHON_SITELIBDIR%%/MoinMoin/util/SubProcess.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/filesys.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/lock.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/util/diff_text.pyo
@@ -1228,6 +1244,7 @@ bin/moin
 %%PYTHON_SITELIBDIR%%/MoinMoin/log.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/error.pyo
 %%PYTHON_SITELIBDIR%%/MoinMoin/Page.pyo
+%%PYTHON_SITELIBDIR%%/moin-1.8.6-py2.6.egg-info
 share/moin/config/wikiconfig.py
 share/moin/config/logging/README
 share/moin/config/logging/logfile_debug_auth
@@ -1276,6 +1293,7 @@ share/moin/underlay/pages/HelpForBeginners/revisions/00000001
 share/moin/underlay/pages/MissingHomePage/current
 share/moin/underlay/pages/MissingHomePage/revisions/00000001
 share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb/current
+share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb/attachments/servicerunner.py
 share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb/revisions/00000001
 share/moin/underlay/pages/BadContent/current
 share/moin/underlay/pages/BadContent/revisions/00000001
@@ -1496,6 +1514,15 @@ share/moin/underlay/pages/HomepageGroupsTemplate/current
 share/moin/underlay/pages/HomepageGroupsTemplate/revisions/00000001
 share/moin/underlay/pages/HelpOnAdministration/current
 share/moin/underlay/pages/HelpOnAdministration/revisions/00000001
+share/moin/underlay/pages/HelpOnImages/current
+share/moin/underlay/pages/HelpOnImages/attachments/pineapple.jpg
+share/moin/underlay/pages/HelpOnImages/attachments/duckie.png
+share/moin/underlay/pages/HelpOnImages/attachments/button.png
+share/moin/underlay/pages/HelpOnImages/attachments/fish.jpg
+share/moin/underlay/pages/HelpOnImages/attachments/chair.jpg
+share/moin/underlay/pages/HelpOnImages/attachments/clock.jpg
+share/moin/underlay/pages/HelpOnImages/attachments/Grand_Tetons.jpg
+share/moin/underlay/pages/HelpOnImages/revisions/00000001
 share/moin/underlay/pages/WhyWikiWorks/current
 share/moin/underlay/pages/WhyWikiWorks/revisions/00000001
 share/moin/underlay/pages/HelpOnActions/current
@@ -1524,7 +1551,7 @@ share/moin/underlay/pages/SystemPagesSetup/attachments/Persian.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/Turkish.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/Serbian.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/NorwegianBokmal.zip
-share/moin/underlay/pages/SystemPagesSetup/attachments/EuropeanPortuguese.zip
+share/moin/underlay/pages/SystemPagesSetup/attachments/BrazilianPortuguese.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/Lithuanian.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/Ukrainian.zip
 share/moin/underlay/pages/SystemPagesSetup/attachments/all_languages.zip
@@ -1587,8 +1614,6 @@ share/moin/underlay/pages/HelpOnMoinWikiSyntax/current
 share/moin/underlay/pages/HelpOnMoinWikiSyntax/attachments/myexample.draw
 share/moin/underlay/pages/HelpOnMoinWikiSyntax/attachments/myexample.png
 share/moin/underlay/pages/HelpOnMoinWikiSyntax/revisions/00000001
-share/moin/underlay/pages/HelpOnAdmonitions/current
-share/moin/underlay/pages/HelpOnAdmonitions/revisions/00000001
 share/moin/underlay/pages/WikiCourse(2f)15(20)Tables/current
 share/moin/underlay/pages/WikiCourse(2f)15(20)Tables/revisions/00000001
 share/moin/underlay/pages/WikiCourse(2f)14(20)Text(20)styles/current
@@ -1601,6 +1626,8 @@ share/moin/underlay/pages/HelpMiscellaneous(2f)FrequentlyAskedQuestions/current
 share/moin/underlay/pages/HelpMiscellaneous(2f)FrequentlyAskedQuestions/revisions/00000001
 share/moin/underlay/pages/HelpForAdministrators/current
 share/moin/underlay/pages/HelpForAdministrators/revisions/00000001
+share/moin/underlay/pages/HelpOnAdmonitions/current
+share/moin/underlay/pages/HelpOnAdmonitions/revisions/00000001
 share/moin/underlay/pages/HelpOnTables/current
 share/moin/underlay/pages/HelpOnTables/attachments/MiniPage.png
 share/moin/underlay/pages/HelpOnTables/revisions/00000001
@@ -1618,10 +1645,10 @@ share/moin/underlay/pages/HelpOnConfiguration(2f)UserPreferences/current
 share/moin/underlay/pages/HelpOnConfiguration(2f)UserPreferences/revisions/00000001
 share/moin/underlay/pages/HelpOnLogin/current
 share/moin/underlay/pages/HelpOnLogin/revisions/00000001
-share/moin/underlay/pages/HelpOnLists/current
-share/moin/underlay/pages/HelpOnLists/revisions/00000001
 share/moin/underlay/pages/HelpOnXapian/current
 share/moin/underlay/pages/HelpOnXapian/revisions/00000001
+share/moin/underlay/pages/HelpOnLists/current
+share/moin/underlay/pages/HelpOnLists/revisions/00000001
 share/moin/underlay/pages/HelpOnInstalling(2f)ApacheOnWin32withDomainAuthentication/current
 share/moin/underlay/pages/HelpOnInstalling(2f)ApacheOnWin32withDomainAuthentication/revisions/00000001
 share/moin/underlay/pages/HelpOnEditing(2f)SubPages/current
@@ -1634,6 +1661,8 @@ share/moin/underlay/pages/SyntaxReference/current
 share/moin/underlay/pages/SyntaxReference/revisions/00000001
 share/moin/underlay/pages/HelpOnRules/current
 share/moin/underlay/pages/HelpOnRules/revisions/00000001
+share/moin/underlay/pages/HelpOnInstalling(2f)ApacheWithCherryPy/current
+share/moin/underlay/pages/HelpOnInstalling(2f)ApacheWithCherryPy/revisions/00000001
 share/moin/underlay/pages/HelpOnThemes/current
 share/moin/underlay/pages/HelpOnThemes/revisions/00000001
 share/moin/underlay/pages/TitleIndex/current
@@ -2346,6 +2375,7 @@ share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/basexml.p
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/upload.cgi
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/upload_fck.pl
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/io.pl
+share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/config.pl
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/perl/commands.pl
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/aspx/config.ascx
 share/moin/htdocs/applets/FCKeditor/editor/filemanager/connectors/aspx/connector.aspx
@@ -2478,9 +2508,7 @@ share/moin/htdocs/applets/FCKeditor/fckpackager.xml
 share/moin/htdocs/applets/TWikiDrawPlugin/README
 share/moin/htdocs/applets/TWikiDrawPlugin/twikidraw.jar
 share/moin/data/meta
-share/moin/data/event-log
 share/moin/data/intermap.txt
-share/moin/data/edit-log
 share/moin/data/dict/dummy_dict
 share/moin/data/user/README
 share/moin/data/plugin/__init__.py
@@ -2588,6 +2616,7 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/HelpForBeginners
 @dirrm share/moin/underlay/pages/MissingHomePage/revisions
 @dirrm share/moin/underlay/pages/MissingHomePage
+@dirrm share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb/attachments
 @dirrm share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb/revisions
 @dirrm share/moin/underlay/pages/HelpOnInstalling(2f)TwistedWeb
 @dirrm share/moin/underlay/pages/BadContent/revisions
@@ -2808,6 +2837,9 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/HomepageGroupsTemplate
 @dirrm share/moin/underlay/pages/HelpOnAdministration/revisions
 @dirrm share/moin/underlay/pages/HelpOnAdministration
+@dirrm share/moin/underlay/pages/HelpOnImages/attachments
+@dirrm share/moin/underlay/pages/HelpOnImages/revisions
+@dirrm share/moin/underlay/pages/HelpOnImages
 @dirrm share/moin/underlay/pages/WhyWikiWorks/revisions
 @dirrm share/moin/underlay/pages/WhyWikiWorks
 @dirrm share/moin/underlay/pages/HelpOnActions/revisions
@@ -2865,8 +2897,6 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/HelpOnMoinWikiSyntax/attachments
 @dirrm share/moin/underlay/pages/HelpOnMoinWikiSyntax/revisions
 @dirrm share/moin/underlay/pages/HelpOnMoinWikiSyntax
-@dirrm share/moin/underlay/pages/HelpOnAdmonitions/revisions
-@dirrm share/moin/underlay/pages/HelpOnAdmonitions
 @dirrm share/moin/underlay/pages/WikiCourse(2f)15(20)Tables/revisions
 @dirrm share/moin/underlay/pages/WikiCourse(2f)15(20)Tables
 @dirrm share/moin/underlay/pages/WikiCourse(2f)14(20)Text(20)styles/revisions
@@ -2879,6 +2909,8 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/HelpMiscellaneous(2f)FrequentlyAskedQuestions
 @dirrm share/moin/underlay/pages/HelpForAdministrators/revisions
 @dirrm share/moin/underlay/pages/HelpForAdministrators
+@dirrm share/moin/underlay/pages/HelpOnAdmonitions/revisions
+@dirrm share/moin/underlay/pages/HelpOnAdmonitions
 @dirrm share/moin/underlay/pages/HelpOnTables/attachments
 @dirrm share/moin/underlay/pages/HelpOnTables/revisions
 @dirrm share/moin/underlay/pages/HelpOnTables
@@ -2896,10 +2928,10 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/HelpOnConfiguration(2f)UserPreferences
 @dirrm share/moin/underlay/pages/HelpOnLogin/revisions
 @dirrm share/moin/underlay/pages/HelpOnLogin
-@dirrm share/moin/underlay/pages/HelpOnLists/revisions
-@dirrm share/moin/underlay/pages/HelpOnLists
 @dirrm share/moin/underlay/pages/HelpOnXapian/revisions
 @dirrm share/moin/underlay/pages/HelpOnXapian
+@dirrm share/moin/underlay/pages/HelpOnLists/revisions
+@dirrm share/moin/underlay/pages/HelpOnLists
 @dirrm share/moin/underlay/pages/HelpOnInstalling(2f)ApacheOnWin32withDomainAuthentication/revisions
 @dirrm share/moin/underlay/pages/HelpOnInstalling(2f)ApacheOnWin32withDomainAuthentication
 @dirrm share/moin/underlay/pages/HelpOnEditing(2f)SubPages/revisions
@@ -2912,6 +2944,8 @@ share/moin/server/mointwisted.cmd
 @dirrm share/moin/underlay/pages/SyntaxReference
 @dirrm share/moin/underlay/pages/HelpOnRules/revisions
 @dirrm share/moin/underlay/pages/HelpOnRules
+@dirrm share/moin/underlay/pages/HelpOnInstalling(2f)ApacheWithCherryPy/revisions
+@dirrm share/moin/underlay/pages/HelpOnInstalling(2f)ApacheWithCherryPy
 @dirrm share/moin/underlay/pages/HelpOnThemes/revisions
 @dirrm share/moin/underlay/pages/HelpOnThemes
 @dirrm share/moin/underlay/pages/TitleIndex/revisions
