@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tex-texmflocal
-# Date created:		24 Jan 2004
-# Whom:			hrs@FreeBSD.org
-#
-# $FreeBSD: ports/print/tex-texmflocal/Makefile,v 1.12 2005/02/10 17:54:28 hrs Exp $
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.3 2007/04/27 20:45:36 ctriv Exp $
-#
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.4 2008/10/13 20:55:32 laffer1 Exp $
 
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9
