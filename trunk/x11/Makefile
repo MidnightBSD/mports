@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.79 2009/12/13 21:06:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.80 2010/01/21 01:14:26 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -40,6 +40,7 @@ COMMENT = Ports to support the X window system
     SUBDIR += iceauth
     SUBDIR += ico
     SUBDIR += idesk
+    SUBDIR += innerspace
     SUBDIR += inputproto
     SUBDIR += kbproto
     SUBDIR += kde-lite
