@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.81 2010/01/21 01:18:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.82 2010/01/21 01:19:49 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -17,6 +17,7 @@ COMMENT = Ports to support the X window system
     SUBDIR += dri2proto
     SUBDIR += editres
     SUBDIR += etoile
+    SUBDIR += etoile-idle
     SUBDIR += etoile-iterm
     SUBDIR += etoile-xwindowserverkit
     SUBDIR += evieext
