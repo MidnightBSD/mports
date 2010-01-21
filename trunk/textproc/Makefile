@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.119 2010/01/10 20:04:28 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.120 2010/01/21 01:32:09 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -36,6 +36,7 @@
     SUBDIR += enchant
     SUBDIR += etoile-lucenekit
     SUBDIR += etoile-ogrekit
+    SUBDIR += etoile-opmlkit
     SUBDIR += expat2
     SUBDIR += fixrtf
     SUBDIR += flex
