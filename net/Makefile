@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.98 2009/04/25 15:59:58 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.99 2009/08/16 03:20:12 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -95,6 +95,8 @@
     SUBDIR += sixxs-aiccu
     SUBDIR += skype
     SUBDIR += smbldap-tools
+    SUBDIR += tryst
+    SUBDIR += tryst-examples
     SUBDIR += tsocks
     SUBDIR += ulxmlrpcpp
     SUBDIR += vino
