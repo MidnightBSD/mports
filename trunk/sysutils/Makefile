@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.94 2009/11/10 03:14:45 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.95 2010/01/21 01:39:12 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -10,6 +10,7 @@
     SUBDIR += battmond
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdstats
+    SUBDIR += burn
     SUBDIR += cdircmp
     SUBDIR += cdrdao
     SUBDIR += cdrtools
