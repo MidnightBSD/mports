@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.50 2009/01/04 21:03:25 ctriv Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.51 2009/12/29 02:22:47 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -43,6 +43,7 @@
     SUBDIR += mplayer-skins
     SUBDIR += ogle
     SUBDIR += phonon
+    SUBDIR += poe
     SUBDIR += qt4-phonon
     SUBDIR += qt4-phonon-gst
     SUBDIR += smpeg
