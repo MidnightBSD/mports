@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/Makefile,v 1.4 2009/12/28 20:21:01 laffer1 Exp $
+# $MidnightBSD: mports/shells/Makefile,v 1.5 2009/12/28 20:33:43 laffer1 Exp $
 #
 
     COMMENT = Shells
@@ -9,6 +9,7 @@
     SUBDIR += es
     SUBDIR += esh
     SUBDIR += fd
+    SUBDIR += gscommander
     SUBDIR += ibsh
     SUBDIR += ksh93
     SUBDIR += mksh
