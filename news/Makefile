@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/news/Makefile,v 1.3 2008/05/31 02:56:27 laffer1 Exp $
+# $MidnightBSD: mports/news/Makefile,v 1.4 2008/05/31 16:05:45 laffer1 Exp $
 #
 
     COMMENT = Network news
 
     SUBDIR += PicMonger
     SUBDIR += knews
+    SUBDIR += lusernet
     SUBDIR += newsfetch
     SUBDIR += slrn
     SUBDIR += tin
