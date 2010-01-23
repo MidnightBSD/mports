@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.5 2009/09/20 02:10:22 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.6 2010/01/09 18:49:19 laffer1 Exp $
 
 PORTNAME=	ntfs
-PORTVERSION=	2009.2.4
+PORTVERSION=	2009.4.4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ntfs-3g.org/
 PKGNAMEPREFIX=	fusefs-
@@ -16,6 +16,7 @@ BUILD_DEPENDS=	fusefs-libs>=2.7.2:${PORTSDIR}/sysutils/fusefs-libs
 LIB_DEPENDS=	fuse.2:${PORTSDIR}/sysutils/fusefs-libs
 RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
 
+USE_ICONV=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
