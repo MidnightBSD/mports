@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.6 2009/09/26 01:18:10 laffer1 Exp $
 
 PORTNAME=	evolution-data-server
 PORTVERSION=	2.26.3
@@ -58,7 +58,7 @@ PLIST_SUB+=		IMAP4="@comment "
 #.endif
 
 .if defined(WITH_WEATHER)
-LIB_DEPENDS+=		gweather.5:${PORTSDIR}/net/libgweather
+LIB_DEPENDS+=		gweather.1:${PORTSDIR}/net/libgweather
 CONFIGURE_ARGS+=	--with-weather
 PLIST_SUB+=		WEATHER=""
 .else
