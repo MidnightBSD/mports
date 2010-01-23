@@ -2,13 +2,13 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc++/Makefile,v 1.1 2008/02/27 01:57:29 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc++/Makefile,v 1.2 2009/06/11 19:58:05 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc++
 PORTVERSION=	0.7
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	xmlrpcpp
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
