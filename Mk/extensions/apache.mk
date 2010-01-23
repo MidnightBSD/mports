@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.4 2009/06/22 17:10:25 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.5 2010/01/01 17:20:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -30,7 +30,7 @@ USE_APACHE=yes
 
 # Print warnings
 _ERROR_MSG=	: Error from apache.mk.
-APACHE_SUPPORTED_VERSION=	20 22
+APACHE_SUPPORTED_VERSION=	22
 .if ${USE_APACHE:Mcommon*} != ""
 AP_PORT_IS_SERVER=	YES
 .elif ${USE_APACHE:L} == apr
@@ -80,15 +80,6 @@ ${module}_PLIST_SUB=		"@comment "
 
 # Configure
 # dirty hacks to make sure all modules are disabled before we select them
-.if ${USE_APACHE} == common20
-CONFIGURE_ARGS+=	--disable-access --disable-auth \
-			--disable-charset-lite --disable-include \
-			--disable-log-config --disable-env --disable-setenvif \
-			--disable-mime --disable-status --disable-autoindex \
-			--disable-asis --disable-cgid --disable-cgi \
-			--disable-negotiation --disable-dir --disable-imap \
-			--disable-actions --disable-userdir --disable-alias
-.elif ${USE_APACHE} == common22
 CONFIGURE_ARGS+=	--disable-authn-file --disable-authn-default \
 			--disable-authz-host --disable-authz-groupfile \
 			--disable-authz-user --disable-authz-default \
@@ -102,7 +93,6 @@ CONFIGURE_ARGS+=	--disable-authn-file --disable-authn-default \
 			--disable-proxy --disable-proxy-connect \
 			--disable-proxy-ftp --disable-proxy-http \
 			--disable-proxy-ajp --disable-proxy-balancer
-.endif
 
 .if defined(WITH_MODULES)
 _APACHE_MODULES+=	${WITH_MODULES}
@@ -265,21 +255,12 @@ IGNORE?=	PREFIX (${$PREFIX}) must be equal to APXS_PREFIX (${APXS_PREFIX})
 .   endif
 .endif
 
-.if ${APACHE_VERSION} == 20
-AP_BUILDEXT=	la
-APACHEMODDIR=	libexec/apache2
-APACHEINCLUDEDIR=include/apache2
-APACHEETCDIR=	etc/apache2
-APACHEBUILDDIR=	share/apache2/build
-APACHE_PORT?=	www/apache${APACHE_VERSION}
-.else
 AP_BUILDEXT=	la
 APACHEMODDIR=	libexec/apache${APACHE_VERSION}
 APACHEINCLUDEDIR=include/apache${APACHE_VERSION}
 APACHEETCDIR=	etc/apache${APACHE_VERSION}
 APACHEBUILDDIR=	share/apache${APACHE_VERSION}/build
 APACHE_PORT?=	www/apache${APACHE_VERSION}
-.endif
 
 PLIST_SUB+=	APACHEMODDIR="${APACHEMODDIR}" \
 		APACHEINCLUDEDIR="${APACHEINCLUDEDIR}" \
