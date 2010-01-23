@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-rendition/Makefile,v 1.1 2007/10/12 02:54:43 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-rendition/Makefile,v 1.2 2009/03/16 14:49:17 laffer1 Exp $
 
 PORTNAME=	xf86-video-rendition
-PORTVERSION=	4.2.0
+PORTVERSION=	4.2.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
