@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.7 2009/10/13 03:07:55 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.8 2009/10/13 03:38:21 laffer1 Exp $
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.18
@@ -14,6 +14,8 @@ LICENSE=	mpl
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WANT_GNOME=	yes
+WANT_PERL=	yes
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 ALL_TARGET=	default
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
@@ -29,10 +31,9 @@ MOZ_OPTIONS+=	--enable-svg \
 		--enable-application=suite	\
 		--enable-svg-renderer=cairo	\
 		--enable-system-cairo		\
-		--enable-canvas
+		--enable-canvas \
+		--with-system-nss
 MOZ_MK_OPTIONS+=	MOZ_CO_PROJECT=suite
-
-NOT_FOR_ARCHS=	ia64
 
 OPTIONS=MAILNEWS "Enable Mail and News modules" on \
 	COMPOSER "Enable the HTML Composer module" on \
@@ -57,8 +58,8 @@ MOZ_OPTIONS+=	--enable-glitz
 LIB_DEPENDS+=	glitz.1:${PORTSDIR}/graphics/glitz
 .endif
 
-.if ${ARCH}=="sparc64"
-IGNORE=		core dumps on ${ARCH}, need kern.osreldate>=601101
+.if ${ARCH}=="sparc64" && ${OSVERSION} < 3000
+IGNORE=		core dumps on ${ARCH}, need kern.osreldate>=3000
 .endif
 
 .if defined(WITHOUT_MAILNEWS)
