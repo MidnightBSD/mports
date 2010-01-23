@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/www/Makefile,v 1.97 2009/10/15 01:08:35 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.98 2009/12/29 00:08:50 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
 
     SUBDIR += analog
-    SUBDIR += apache20
     SUBDIR += apache22
     SUBDIR += aria2
     SUBDIR += awstats
