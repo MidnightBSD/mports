@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.57 2010/01/09 22:55:39 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.58 2010/01/17 14:29:00 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -24,6 +24,7 @@
     SUBDIR += help2man
     SUBDIR += hicolor-icon-theme
     SUBDIR += iso-codes
+    SUBDIR += jishyo
     SUBDIR += kde-xdg-env
     SUBDIR += kde3-i18n-de
     SUBDIR += kde4-shared-mime-info
