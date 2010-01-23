@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.3 2009/06/22 17:41:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.4 2009/09/20 01:17:54 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
@@ -44,8 +44,11 @@ USE_LDCONFIG=	${LOCALBASE}/lib/${MOZILLA}
 GCONF_SCHEMAS=	devhelp.schemas
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${PTHREAD_LIBS} -L${LOCALBASE}/lib"
+.if ${MOZILLA} == "browser"
+CONFIGURE_ARGS=	--with-gecko=firefox
+.else
 CONFIGURE_ARGS=	--with-gecko=${MOZILLA}
-
+.endif
 OPTIONS=		GEDIT "Enable GEdit plug-in support" off
 
 .include <bsd.port.pre.mk>
