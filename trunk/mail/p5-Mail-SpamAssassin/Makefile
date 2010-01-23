@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.7 2008/11/06 20:58:33 ctriv Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.8 2010/01/02 19:05:28 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
@@ -226,6 +226,7 @@ post-patch:
 .if defined(WITH_SACOMPILE)
 	${REINPLACE_CMD} -e '/Rule2XSBody/s/^# loadplugin/loadplugin/' ${WRKSRC}/rules/v320.pre
 .endif
+	${MKDIR} ${PREFIX}/etc/mail/spamassassin
 
 post-build:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} spamc/libspamc.so)
