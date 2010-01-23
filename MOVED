@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.7 2009/12/28 20:34:26 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.8 2009/12/29 00:09:33 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -31,3 +31,4 @@ security/cyrus-sasl||2009-12-28|Old, insecure, and dead.
 shells/mudsh||2009-12-28|Project disappeared from the Internet.
 shells/perlsh|shells/psh|2009-12-28|Correct project name
 www/joomla||2009-12-28|Joomla 1.0.x is too old and insecure
+www/apache20||2010-01-23|Getting old.
