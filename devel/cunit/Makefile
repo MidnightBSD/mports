@@ -1,10 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cunit/Makefile,v 1.1 2009/02/08 23:08:37 laffer1 Exp $
 
 PORTNAME=	cunit
 DISTVERSION=	2.1-0
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/CUnit/2.1-0
 DISTNAME=	${PORTNAME:S/^cu/CU/}-${DISTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
