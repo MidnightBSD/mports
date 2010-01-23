@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.60 2010/01/02 23:26:42 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.61 2010/01/17 14:26:47 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -50,6 +50,7 @@ SUBDIR += python26
 SUBDIR += python30
 SUBDIR += ruby18
 SUBDIR += ruby19
+SUBDIR += steptalk
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
 SUBDIR += tcl82
