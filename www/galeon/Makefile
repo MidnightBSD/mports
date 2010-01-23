@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/www/galeon/Makefile,v 1.4 2008/10/20 18:54:20 ctriv Exp $
+# $MidnightBSD: mports/www/galeon/Makefile,v 1.5 2009/08/13 19:10:19 laffer1 Exp $
 
 PORTNAME=	galeon
 PORTVERSION=	2.0.7
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A GNOME 2 Web browser based on gecko (the Mozilla rendering engine)
 LICENSE=	gpl2
 
-USE_GECKO=	browser3<->firefox3 browser<->firefox mozilla seamonkey xulrunner
+USE_GECKO=	browser<->firefox mozilla seamonkey xulrunner
 WRKSRC=		${WRKDIR}/${PORTNAME:S/2$//}-${PORTVERSION:S/a$//}
 USE_BZIP2=	yes
 USE_XLIB=	yes
@@ -25,8 +25,7 @@ USE_GNOME=	gnomeprefix intlhack gnomehack libgnomeui desktopfileutils \
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-CONFIGURE_ARGS=	--enable-nautilus-view=no \
-		--with-mozilla=${GECKO}
+CONFIGURE_ARGS=	--enable-nautilus-view=no
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
@@ -34,6 +33,8 @@ MAN1=		galeon.1
 GCONF_SCHEMAS=	galeon.schemas
 
 .include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=        --with-mozilla=${GECKO}
 
 NO_WERROR=	yes
 # allow build with more warnings enabled
