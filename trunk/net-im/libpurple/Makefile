@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.13 2010/01/21 01:56:50 laffer1 Exp $
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.6.3
@@ -47,7 +47,6 @@ OPTIONS=	BONJOUR "Enable mDNS support" on \
 		NSS "Mozilla NSS encryption support" on \
 		SASL "Cyrus SASL support (for jabberd)" off \
 		GSTREAMER "Use GStreamer for playing sounds" on \
-		VV "Enable video and voice support" on \
 		IDN "Enable support for international domains" on \
 		PERL "Perl scripting" off \
 		TCLTK "Tcl/Tk scripting" off \
@@ -98,14 +97,6 @@ PLIST_SUB+=		EVO="@comment not installed: "
 USE_GSTREAMER+=	core good
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
-.endif
-
-.if !defined(WITHOUT_VV)
-LIB_DEPENDS+=	gstfarsight-0.10.0:${PORTSDIR}/net-im/farsight2
-PLIST_SUB+=	VV=""
-.else
-CONFIGURE_ARGS+=--disable-vv
-PLIST_SUB+=	VV="@comment "
 .endif
 
 .if !defined(WITHOUT_IDN)
