@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-dummy/Makefile,v 1.1 2007/10/12 00:32:39 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-dummy/Makefile,v 1.2 2009/03/16 14:17:01 laffer1 Exp $
 
 PORTNAME=	xf86-video-dummy
-PORTVERSION=	0.3.0
+PORTVERSION=	0.3.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
