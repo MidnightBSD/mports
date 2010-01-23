@@ -2,15 +2,14 @@
 # Date created:				Sun Mar  5 16:43:25 EST 2006
 # Whom:					Matthew Will <mwill@spingen.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/cvschangelogbuilder/Makefile,v 1.1 2008/08/22 02:52:07 laffer1 Exp $
 # $FreeBSD: ports/devel/cvschangelogbuilder/Makefile,v 1.6 2008/05/17 12:41:03 miwi Exp $
 #
 
 PORTNAME=	cvschangelogbuilder
-PORTVERSION=	2.3
+PORTVERSION=	2.4
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	cvschangelogb
+MASTER_SITES=	SF/cvschangelogb/CVSChangelogBuilder/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utility to generate changelogs and reports from a CVS repository
