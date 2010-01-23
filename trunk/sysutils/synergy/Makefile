@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/synergy/Makefile,v 1.2 2008/03/21 23:18:36 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/synergy/Makefile,v 1.3 2010/01/02 22:34:55 laffer1 Exp $
 # $FreeBSD: ports/sysutils/synergy/Makefile,v 1.14 2007/07/25 01:25:03 kevlo Exp $
 
 PORTNAME=	synergy
@@ -12,7 +12,7 @@ COMMENT=	Mouse and keyboard sharing utility
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-USE_XORG=	ice xtst x11 sm
+USE_XORG=	ice xtst x11 sm xextproto
 CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
 
