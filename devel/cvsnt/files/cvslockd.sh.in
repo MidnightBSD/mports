@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 # $FreeBSD: ports/devel/cvsnt/files/cvslockd.sh.in,v 1.2 2006/02/20 20:46:54 dougb Exp $
 #
 # PROVIDE: cvslockd
