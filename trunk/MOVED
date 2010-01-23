@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.9 2010/01/23 21:51:35 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.10 2010/01/23 22:21:30 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -33,3 +33,4 @@ shells/perlsh|shells/psh|2009-12-28|Correct project name
 www/joomla||2009-12-28|Joomla 1.0.x is too old and insecure
 www/apache20||2010-01-23|Getting old.
 net/ztelnet||2010-01-23|ztelnet is broken on GCC 4.
+devel/gnome-build||2010-01-23|No longer needed for gnome.
