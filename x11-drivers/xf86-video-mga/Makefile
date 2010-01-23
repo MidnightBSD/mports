@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-mga/Makefile,v 1.1 2007/10/12 00:55:45 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-mga/Makefile,v 1.2 2009/03/16 14:35:31 laffer1 Exp $
 
 PORTNAME=	xf86-video-mga
-PORTVERSION=	1.9.100
+PORTVERSION=	1.4.10
+PORTEPOCH=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
