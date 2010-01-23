@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/py-cairo/Makefile,v 1.2 2008/05/27 13:51:22 crash Exp $
+# $MidnightBSD: mports/graphics/py-cairo/Makefile,v 1.3 2009/08/01 22:25:12 laffer1 Exp $
 
 PORTNAME=	cairo
-PORTVERSION=	1.8.4
+PORTVERSION=	1.8.8
 CATEGORIES=	graphics python
 MASTER_SITES=	http://cairographics.org/releases/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
