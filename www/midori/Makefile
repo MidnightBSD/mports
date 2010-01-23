@@ -1,10 +1,10 @@
 #
-# $MidnightBSD: mports/www/midori/Makefile,v 1.8 2009/06/21 21:40:32 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.9 2009/06/21 21:54:36 laffer1 Exp $
 #
 
 PORTNAME=	midori
 PORTVERSION=	0.1.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://goodies.xfce.org/releases/midori/
 
@@ -12,6 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
 LICENSE=	lgpl
 
+BUILD_DEPENDS=	intltool-merge:${PORTSDIR}/textproc/intltool
 LIB_DEPENDS=	webkit-1.0.9:${PORTSDIR}/www/webkit-gtk2 \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		idn.16:${PORTSDIR}/dns/libidn
