@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.7 2009/06/29 23:23:39 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.8 2009/09/20 01:39:01 smultron Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
 LICENSE=	agg
 
-BUILD_DEPENDS=	mkfontdir:${X_CLIENTS_PORT} \
+BUILD_DEPENDS=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		${LOCALBASE}/share/icons/crystalsvg/.keep_me:${PORTSDIR}/misc/kdehier
 LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
@@ -28,7 +28,7 @@ LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		xslt.2:${PORTSDIR}/textproc/libxslt
-RUN_DEPENDS=	iceauth:${X_CLIENTS_PORT} \
+RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
 		${FONTSCALE}:${X_FONTS_TTF_PORT} \
 		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT} \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
@@ -52,7 +52,7 @@ USE_OPENSSL=	yes
 USE_QT_VER=	3
 PREFIX=		${KDE_PREFIX}
 
-USE_LDCONFIG=	${PREFIX}/lib/kde3
+USE_LDCONFIG=	yes
 
 USE_AUTOTOOLS=  libtool:22
 CONFIGURE_TARGET=# empty
@@ -77,9 +77,6 @@ FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
 LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
 .endif # !exists(/usr/bin/bzip2)
 
-BUILD_DEPENDS+=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
-RUN_DEPENDS+=	iceauth:${PORTSDIR}/x11/iceauth
-
 pre-configure:
 	${REINPLACE_CMD} "s,%%LOCALBASE%%,${LOCALBASE},g" ${WRKSRC}/kdeprint/cups/kmcupsmanager.cpp
 	${REINPLACE_CMD} -e "s,ac_cups_share_test=.*,ac_cups_share_test=\`\$$kde_cups_config --datadir\`,g" \
@@ -102,10 +99,9 @@ post-configure:
 	${TOUCH} ${WRKSRC}/kio/kssl/ksslconfig.h.in
 	${TOUCH} ${WRKSRC}/kjs/global.h.in
 
-
 .if !defined(WITHOUT_CUPS) && !defined(KDE_WITHOUT_CUPS)
 pre-install:
-	${MKDIR} -p ${PREFIX}/share/cups/model
+	${MKDIR} ${PREFIX}/share/cups/model
 .endif
 
 .include <bsd.port.post.mk>
