@@ -1,25 +1,31 @@
-# New ports collection makefile for:	awstats
-# Date created:			May 13, 2002
-# Whom:				Munish Chopra <mchopra@engmail.uwaterloo.ca>
-#
-# $MidnightBSD: mports/www/awstats/Makefile,v 1.2 2008/02/14 22:41:29 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	awstats
-PORTVERSION=	6.7
+PORTVERSION=	6.95
 PORTEPOCH=	1
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free real-time logfile analyzer to get advanced web statistics
-LICENSE=        gpl2
+LICENSE=	gpl2
+
 RUN_DEPENDS=	${SITE_PERL}/Net/XWhois.pm:${PORTSDIR}/net/p5-Net-XWhois
 
 NO_BUILD=	yes
 USE_PERL5_RUN=	yes
-USE_DOS2UNIX=	tools/logresolvemerge.pl
+USE_DOS2UNIX=	tools/*.pl \
+		wwwroot/cgi-bin/awstats.model.conf \
+		wwwroot/cgi-bin/*.pl \
+		wwwroot/cgi-bin/lang/tooltips_f/*.txt \
+		wwwroot/cgi-bin/lang/tooltips_m/*.txt \
+		wwwroot/cgi-bin/lang/tooltips_w/*.txt \
+		wwwroot/cgi-bin/lang/*.txt \
+		wwwroot/cgi-bin/lib/* \
+		wwwroot/cgi-bin/plugins/*.pm \
+		wwwroot/cgi-bin/plugins/example/* \
+		wwwroot/css/* \
+		wwwroot/js/*
 
 SUB_FILES=	pkg-message
 
@@ -30,6 +36,10 @@ OPTIONS=	IPV6 "Enable IPV6 for use with IPv6 Plugin" Off
 .if defined(WITH_IPV6)
 RUN_DEPENDS+=	${SITE_PERL}/Net/IP.pm:${PORTSDIR}/net-mgmt/p5-Net-IP
 RUN_DEPENDS+=	${SITE_PERL}/mach/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS
+.endif
+
+.if ${PERL_LEVEL} < 500800
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
 .endif
 
 post-patch:
@@ -60,14 +70,16 @@ do-install:
 	@${MKDIR} ${PREFIX}/www/awstats/js
 	@${MKDIR} ${PREFIX}/www/awstats/tools
 	@${MKDIR} ${PREFIX}/www/awstats/tools/webmin
+	@${MKDIR} ${PREFIX}/www/awstats/tools/xslt
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_buildstaticpages.pl ${PREFIX}/www/awstats/tools
+	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_configure.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_exportlib.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_updateall.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/awstats_configure.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/logresolvemerge.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/maillogconvert.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/urlaliasbuilder.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_SCRIPT} ${WRKSRC}/tools/webmin/awstats-1.7.wbm ${PREFIX}/www/awstats/tools/webmin
+	${INSTALL_DATA} ${WRKSRC}/tools/webmin/awstats-1.8.wbm ${PREFIX}/www/awstats/tools/webmin
+	${INSTALL_DATA} ${WRKSRC}/tools/xslt/* ${PREFIX}/www/awstats/tools/xslt
 	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awredir.pl ${PREFIX}/www/awstats/cgi-bin
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/awstats.model.conf ${PREFIX}/www/awstats/cgi-bin
 	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awstats.pl ${PREFIX}/www/awstats/cgi-bin
@@ -88,15 +100,16 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/os/* ${PREFIX}/www/awstats/icons/os
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/icon/other/* ${PREFIX}/www/awstats/icons/other
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/js/* ${PREFIX}/www/awstats/js
-	@${ECHO_CMD} ""
-	@${ECHO_CMD} "* Rename ${PREFIX}/www/awstats/cgi-bin/awstats.model.conf to awstats.site.conf to setup awstats"
-	@${ECHO_CMD} "* Documentation has been installed in ${PREFIX}/share/doc/awstats"
-	@${ECHO_CMD} ""
-
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/docs/images/* ${DOCSDIR}/images
 	${INSTALL_DATA} ${WRKSRC}/docs/*.* ${DOCSDIR}
 .endif
+	@${ECHO_CMD} ""
+	@${ECHO_CMD} "* Rename ${PREFIX}/www/awstats/cgi-bin/awstats.model.conf to awstats.site.conf to setup awstats"
+.if !defined(NOPORTDOCS)
+	@${ECHO_CMD} "* Documentation has been installed in ${PREFIX}/share/doc/awstats"
+.endif
+	@${ECHO_CMD} ""
 
 .include <bsd.port.post.mk>
