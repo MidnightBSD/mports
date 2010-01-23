@@ -2,14 +2,14 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.4 2008/06/01 20:01:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.5 2009/09/20 01:58:17 smultron Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
 #   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
 
 PORTNAME=	nautilus
-PORTVERSION=	2.22.2
-PORTREVISION=	0
+PORTVERSION=	2.26.3
+PORTREVISION=	2
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -18,14 +18,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif
+LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
+		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
+		exempi.3:${PORTSDIR}/textproc/exempi
 
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop eel2 \
+USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop \
 		librsvg2 desktopfileutils ltverhack gvfs ltasneededhack
 GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
@@ -41,6 +43,9 @@ MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
 OPTIONS=	TRACKER "Enable Tracker Search (sysutils/tracker)" Off
 
 GCONF_SCHEMAS=	apps_nautilus_preferences.schemas
+
+MAN1=		nautilus-connect-server.1 nautilus-file-management-properties.1 \
+		nautilus.1
 
 .include <bsd.port.pre.mk>
 
