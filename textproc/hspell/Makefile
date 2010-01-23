@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/hspell/Makefile,v 1.1 2010/01/10 20:04:28 laffer1 Exp $
 
 PORTNAME=	hspell
 PORTVERSION=	1.0
-CATEGORIES=	hebrew
+CATEGORIES=	textproc hebrew
 MASTER_SITES=	http://www.ivrix.org.il/projects/spell-checker/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	makc
