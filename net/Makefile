@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.99 2009/08/16 03:20:12 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.100 2010/01/21 01:54:10 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -113,5 +113,5 @@
     SUBDIR += zillion
     SUBDIR += zniper
     SUBDIR += zsync
-    SUBDIR += ztelnet
+
 .include <bsd.port.subdir.mk>
