@@ -2,7 +2,7 @@
 # Date created:		1 May 2004
 # Whom:			Hye-Shik Chang
 #
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.3 2008/08/23 20:58:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.4 2009/04/05 19:52:07 laffer1 Exp $
 # $FreeBSD: ports/devel/cvs2svn/Makefile,v 1.15 2008/03/16 23:05:51 araujo Exp $
 
 PORTNAME=	cvs2svn
@@ -19,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CVS to Subversion Repository Converter
 LICENSE=	other
 
-LIB_DEPENDS=	aprutil-1.2:${PORTSDIR}/devel/apr-svn
+LIB_DEPENDS=	aprutil-1.3:${PORTSDIR}/devel/apr-svn
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/gdbm.so:${PORTSDIR}/databases/py-gdbm
 RUN_DEPENDS=	${LOCALBASE}/bin/svn:${PORTSDIR}/devel/subversion \
 		${LOCALBASE}/bin/git:${PORTSDIR}/devel/git \
