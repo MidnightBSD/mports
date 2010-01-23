@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.26 2008/12/20 18:26:11 ctriv Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.27 2008/12/20 18:39:00 ctriv Exp $
 #
 
     COMMENT = Mathematics
@@ -8,6 +8,7 @@
     SUBDIR += calc
     SUBDIR += cln
     SUBDIR += djbfft
+    SUBDIR += edenmath
     SUBDIR += eigen
     SUBDIR += facile
     SUBDIR += fftw3
@@ -21,6 +22,7 @@
     SUBDIR += ldouble
     SUBDIR += libgmp4
     SUBDIR += libqalculate
+    SUBDIR += matharray
     SUBDIR += mpfr
     SUBDIR += p5-Bit-Vector
     SUBDIR += p5-Math-BigInt

@@ -2,7 +2,7 @@
 # Date created:				Wed May 15 16:29:51 BRT 2002
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/math/djbfft/Makefile,v 1.2 2007/12/05 22:45:20 laffer1 Exp $
+# $MidnightBSD: mports/math/djbfft/Makefile,v 1.3 2008/09/16 19:45:29 laffer1 Exp $
 # $FreeBSD: ports/math/djbfft/Makefile,v 1.16 2006/09/03 17:33:38 kris Exp $
 #
 
@@ -19,6 +19,7 @@ LICENSE=	publicdom
 DISABLE_SIZE=	yes
 ALL_TARGET=
 INSTALL_TARGET=setup check
+MAKE_JOBS_SAFE=	yes
 
 HEADER_FILES=	complex4.h complex8.h fftc4.h fftc8.h fftfreq.h \
 		fftr4.h fftr8.h real4.h real8.h
