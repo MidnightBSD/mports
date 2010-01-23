@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.1 2010/01/21 01:14:27 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
@@ -174,7 +174,7 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	NoteBook:deskutils/gnustep-notebook \
 	HelpViewer:deskutils/helpviewer \
 	Duncan:textproc/duncan \
-	Jishyo:japanese/jishyo \
+	Jishyo:misc/jishyo \
 	GMines:games/gmines \
 	InnerSpace:x11/innerspace \
 	FTP:ftp/gnustep-ftp \
