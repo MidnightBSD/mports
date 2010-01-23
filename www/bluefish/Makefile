@@ -1,18 +1,10 @@
-# New ports collection makefile for:   bluefish
-# Date created:			23 January 2003
-# Whom:				Koop Mast <einekoai@chello.nl>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/www/bluefish/Makefile,v 1.55 2007/10/25 17:15:07 marcus Exp $
-#   $MCom: ports/www/bluefish/Makefile,v 1.6 2007/10/11 03:20:30 mezz Exp $
-#
+# $MidnightBSD: mports/www/bluefish/Makefile,v 1.1 2008/06/07 21:02:08 laffer1 Exp $
 
 PORTNAME=	bluefish
 PORTVERSION=	1.0.7
 PORTREVISION=	0
 CATEGORIES=	www editors
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
