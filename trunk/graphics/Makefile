@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.92 2009/10/25 17:21:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.93 2010/01/23 19:27:06 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -64,6 +64,7 @@
     SUBDIR += libopenraw
     SUBDIR += librsvg2
     SUBDIR += libspiro
+    SUBDIR += libsvg
     SUBDIR += libungif
     SUBDIR += libvisual04
     SUBDIR += libwmf
