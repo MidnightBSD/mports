@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/math/Makefile,v 1.27 2008/12/20 18:39:00 ctriv Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.28 2010/01/23 18:58:33 laffer1 Exp $
 #
 
     COMMENT = Mathematics
 
     SUBDIR += R
+    SUBDIR += atlas
     SUBDIR += blas
     SUBDIR += calc
     SUBDIR += cln
@@ -19,6 +20,7 @@
     SUBDIR += gnumeric
     SUBDIR += gnuplot
     SUBDIR += gsl
+    SUBDIR += lapack
     SUBDIR += ldouble
     SUBDIR += libgmp4
     SUBDIR += libqalculate
