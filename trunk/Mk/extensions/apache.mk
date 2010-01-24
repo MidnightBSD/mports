@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.5 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.6 2010/01/23 21:49:05 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -13,8 +13,8 @@
 #
 # Variables definition
 # USE_APACHE:	Call this script. Values can be:
-#		<version>:2.0/20/2.2/1.3+/2.0+/2.1+/2.2+
-#		common*: common13, common20, common21 and common22
+#		<version>:2.2/2.2+
+#		common*: common22
 #
 #
 #
