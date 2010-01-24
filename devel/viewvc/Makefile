@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.9 2009/12/31 20:10:40 laffer1 Exp $
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.2
@@ -39,7 +39,7 @@ RUN_DEPENDS+=	${PYTHON_LIBDIR}/site-packages/svn/__init__.py:${PORTSDIR}/devel/p
 .endif
 
 .if defined (WITH_APACHE)
-USE_APACHE=	2.0+
+USE_APACHE=	2.2+
 .endif
 
 .if defined(WITH_LIGHTTPD)
