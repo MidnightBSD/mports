@@ -3,7 +3,7 @@
 # Whom:					Lars Eggert <larse@isi.edu>
 #
 # $FreeBSD: ports/www/mod_perl2/Makefile,v 1.56 2007/06/27 20:42:57 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.1 2007/09/13 18:56:06 ctriv Exp $
 #
 
 PORTNAME=	mod_perl
@@ -20,7 +20,7 @@ LICENSE=	apache2
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/BSD/Resource.pm:${PORTSDIR}/devel/p5-BSD-Resource
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-USE_APACHE=	2.0+
+USE_APACHE=	2.2+
 PERL_CONFIGURE=	yes
 GMAKE=		yes
 
