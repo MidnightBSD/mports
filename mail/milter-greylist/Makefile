@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.7 2009/03/18 22:00:53 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.8 2009/09/24 04:21:59 laffer1 Exp $
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.2.3
@@ -8,13 +8,14 @@ DISTNAME=	milter-greylist-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Easy-to-use greylist milter for sendmail
+COMMENT=	Easy-to-use greylist milter for sendmail and postfix
 LICENSE=	bsd4
-# well bsd3 but it's advertising... be conservative
 
-OPTIONS=	LIBSPF2	 "Enable SPF checks" Off \
-		GEOIP	 "Enable GEOIP"  Off \
-		CURL	" Enable CURL for URL checks" Off
+OPTIONS=	LIBSPF2	 "Enable SPF checks" off \
+		GEOIP	 "Enable GEOIP"  off \
+		CURL	 "Enable CURL for URL checks" off \
+		OPENLDAP "Include OpenLDAP support" off \
+		POSTFIX  "Use Postfix instead of Sendmail" off
 
 ##
 # Use the following quirks to choose which sendmail to use (ports or system):
@@ -64,6 +65,18 @@ CONFIGURE_ARGS+=--with-libGeoIP=${LOCALBASE}
 .if defined(WITH_CURL)
 LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=--with-curl=${LOCALBASE}
+.endif
+
+.if defined(WITH_OPENLDAP)
+USE_OPENLDAP=yes
+CONFIGURE_ARGS+=--with-openldap
+.endif
+
+.if defined(WITH_POSTFIX)
+CONFIGURE_ARGS+=--enable-postfix
+.else
+LDFLAGS+=	${SENDMAIL_LDFLAGS}
+LIBS+=		${SENDMAIL_LDADD}
 .endif
 
 CFLAGS+=	${PTHREAD_CFLAGS}
