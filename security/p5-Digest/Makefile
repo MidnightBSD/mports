@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/p5-Digest/Makefile,v 1.1 2006/11/05 16:04:37 laffer1 Exp $ 
+# $MidnightBSD: mports/security/p5-Digest/Makefile,v 1.2 2009/05/01 15:57:51 laffer1 Exp $ 
 
 PORTNAME=	Digest
-PORTVERSION=	1.15
+PORTVERSION=	1.16
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
