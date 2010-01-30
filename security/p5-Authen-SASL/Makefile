@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/p5-Authen-SASL/Makefile,v 1.2 2009/04/08 21:08:13 laffer1 Exp $
+# $MidnightBSD: mports/security/p5-Authen-SASL/Makefile,v 1.3 2009/05/01 15:51:22 laffer1 Exp $
 
 PORTNAME=	Authen-SASL
-PORTVERSION=	2.12
+PORTVERSION=	2.13
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
