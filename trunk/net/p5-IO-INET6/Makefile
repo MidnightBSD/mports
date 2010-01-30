@@ -2,14 +2,14 @@
 # Date created:		02 July 2003
 # Whom:	      		Janos.Mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/net/p5-IO-INET6/Makefile,v 1.1 2007/02/25 00:16:59 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-IO-INET6/Makefile,v 1.2 2008/03/19 01:29:30 laffer1 Exp $
 # $FreeBSD: ports/net/p5-IO-INET6/Makefile,v 1.6 2005/07/30 00:32:52 leeym Exp $
 #
 
 PORTNAME=	IO-Socket-INET6
-PORTVERSION=	2.52
+PORTVERSION=	2.56
 CATEGORIES=	net perl5 ipv6
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	IO
 PKGNAMEPREFIX=	p5-
 
