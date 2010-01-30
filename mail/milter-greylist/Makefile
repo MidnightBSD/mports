@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.8 2009/09/24 04:21:59 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.9 2010/01/30 15:12:46 laffer1 Exp $
 
 PORTNAME=	milter-greylist
 PORTVERSION=	4.2.3
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 DISTNAME=	milter-greylist-${PORTVERSION}
@@ -53,7 +54,7 @@ MILTERBASE?=	${LOCALBASE}
 .endif
 
 .if defined(WITH_LIBSPF2)
-LIB_DEPENDS+=	spf2.2:${PORTSDIR}/mail/libspf2
+LIB_DEPENDS+=	spf2.3:${PORTSDIR}/mail/libspf2
 CONFIGURE_ARGS+=--with-libspf2=${LOCALBASE}
 .endif
 
@@ -90,12 +91,8 @@ CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LIBS="${LIBS} "
 
 ALL_TARGET=	milter-greylist
 
-USE_RC_SUBR=	yes
+USE_RC_SUBR=	milter-greylist
 RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
-
-post-extract:
-	@${SED}	${RC_SCRIPTS_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \
-		${FILESDIR}/milter-greylist.sh > ${WRKSRC}/milter-greylist.sh
 
 do-install:
 	@${MKDIR} ${PREFIX}/etc/mail
