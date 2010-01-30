@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.4 2008/05/04 17:47:49 ctriv Exp $
+# $MidnightBSD: mports/security/p5-Digest-HMAC/Makefile,v 1.5 2009/05/01 15:58:42 laffer1 Exp $
 
 PORTNAME=	Digest-HMAC
-PORTVERSION=	1.01
+PORTVERSION=	1.02
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
