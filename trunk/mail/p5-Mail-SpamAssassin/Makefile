@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.8 2010/01/02 19:05:28 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.9 2010/01/23 22:16:46 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
 PORTNAME=	Mail-SpamAssassin
 PORTVERSION=	3.2.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
