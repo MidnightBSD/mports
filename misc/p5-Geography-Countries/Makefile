@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/p5-Geography-Countries/Makefile,v 1.1 2007/03/21 00:49:06 laffer1 Exp $
+# $MidnightBSD: mports/misc/p5-Geography-Countries/Makefile,v 1.2 2009/04/16 04:32:55 laffer1 Exp $
 
 PORTNAME=	Geography-Countries
-PORTVERSION=	1.4
+PORTVERSION=	2009041301
 CATEGORIES=	misc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
