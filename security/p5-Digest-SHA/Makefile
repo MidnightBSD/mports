@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/p5-Digest-SHA/Makefile,v 1.2 2008/06/04 18:01:08 laffer1 Exp $
+# $MidnightBSD: mports/security/p5-Digest-SHA/Makefile,v 1.3 2009/05/01 15:59:42 laffer1 Exp $
 
 PORTNAME=	Digest-SHA
-PORTVERSION=	5.47
+PORTVERSION=	5.48
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
