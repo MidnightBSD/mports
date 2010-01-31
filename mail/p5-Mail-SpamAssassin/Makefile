@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.9 2010/01/23 22:16:46 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.10 2010/01/30 17:23:47 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.107 2007/06/16 22:17:03 beech Exp $
 #
 
@@ -26,7 +26,7 @@ BUILD_DEPENDS=	p5-Net-DNS>=0.63:${PORTSDIR}/dns/p5-Net-DNS \
 RUN_DEPENDS=	${BUILD_DEPENDS} \
 		${SITE_PERL}/Bundle/LWP.pm:${PORTSDIR}/www/p5-libwww \
 		p5-Archive-Tar>=1.23:${PORTSDIR}/archivers/p5-Archive-Tar \
-		${SITE_PERL}/mach/Encode/Detect.pm:${PORTSDIR}/converters/p5-Encode-Detect
+		${SITE_PERL}/${PERL_ARCH}/Encode/Detect.pm:${PORTSDIR}/converters/p5-Encode-Detect
 
 MAKE_ENV+=    CC="${CC}"
 PERL_CONFIGURE=	yes
@@ -101,7 +101,7 @@ RUN_DEPENDS+=	p5-Crypt-OpenSSL-RSA>=0.24:${PORTSDIR}/security/p5-Crypt-OpenSSL-R
 .endif
 
 .if defined(WITH_SACOMPILE)
-RUN_DEPENDS+=	re2c>=.12.0:${PORTSDIR}/devel/re2c
+RUN_DEPENDS+=	re2c:${PORTSDIR}/devel/re2c
 .endif
 
 .if defined(WITH_RELAY_COUNTRY)
