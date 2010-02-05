@@ -2,13 +2,13 @@
 # Date created:		15 Nov 1998
 # Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.3 2008/06/08 23:56:53 crash Exp $
+# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.4 2008/06/29 22:55:05 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-XML-Parser/Makefile,v 1.26 2006/01/30 23:19:59 kuriyama Exp $
 #
 
 PORTNAME=	XML-Parser
 PORTVERSION=	2.36
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	XML
@@ -52,9 +52,25 @@ post-patch:
 		${CONV_ENC} shift_jis ${XMLPARSER_SJIS}.enc > shift_jis.enc
 	@${ECHO_CMD} Parser/Encodings/Shift_JIS.enc >> ${WRKSRC}/MANIFEST
 .endif
+	@${CP} ${FILESDIR}/*.enc ${WRKSRC}/Parser/Encodings/
+.for e in 1 6 10 11 13 14 15
+	@${ECHO_CMD} Parser/Encodings/iso-8859-${e}.enc >> ${WRKSRC}/MANIFEST
+.endfor
 
 post-configure:
 	@${PERL} -i -pe 's|^(CC = ).*|$$1 ${CC}|;' \
 		-e 's|^(CCFLAGS = ).*|$$1 ${CFLAGS}|' ${WRKSRC}/Expat/Makefile
+
+XE=	${.CURDIR}/../p5-XML-Encoding
+extract-encodings:
+	@cd ${XE}; \
+	${MAKE} patch; \
+	${CHMOD} og+rX `make -VWRKSRC`
+
+build-encodings:
+.for e in 1 6 10 11 13 14 15
+	@cd `cd ${XE}; ${MAKE} -VWRKSRC`; \
+	compile_encoding -o ${FILESDIR}/iso-8859-${e}.enc maps/iso-8859-${e}.xml
+.endfor
 
 .include <bsd.port.mk>
