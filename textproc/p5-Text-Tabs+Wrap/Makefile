@@ -2,12 +2,12 @@
 # Date created:				4 February 2003
 # Whom:					Toby Allsopp <toby@mi6.gen.nz>
 #
-# $MidnightBSD: mports/textproc/p5-Text-Tabs+Wrap/Makefile,v 1.1 2007/03/11 04:34:15 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-Text-Tabs+Wrap/Makefile,v 1.2 2008/06/13 04:23:02 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-Text-Tabs+Wrap/Makefile,v 1.5 2007/01/05 01:45:36 clsung Exp $
 #
 
 PORTNAME=	Text-Tabs+Wrap
-PORTVERSION=	2006.1117
+PORTVERSION=	2009.0305
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
