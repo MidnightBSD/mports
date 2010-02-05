@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/www/apache22/files/apache22.sh.in,v 1.4 2008/09/20 15:18:27 laffer1 Exp $
 # $FreeBSD: ports/www/apache22/files/apache22.sh.in,v 1.5 2007/09/18 20:03:15 clement Exp $
 #
 
@@ -109,6 +109,8 @@ fi
 
 apache22_requirepidfile()
 {
+	apache22_checkconfig
+
 	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
 		echo "${name} not running? (check $pidfile)."
 		exit 1
