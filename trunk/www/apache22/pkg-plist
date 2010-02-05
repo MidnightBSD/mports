@@ -186,6 +186,10 @@ include/apache22/util_xml.h
 %%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.so
 %%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.la
 %%APR_PORTS%%%%SQLITE3%%lib/apr-util-1/apr_dbd_sqlite3.a
+%%APR_PORTS%%%%BDB%%lib/apr-util-1/apr_dbm_db-1.so
+%%APR_PORTS%%%%BDB%%lib/apr-util-1/apr_dbm_db.so
+%%APR_PORTS%%%%BDB%%lib/apr-util-1/apr_dbm_db.la
+%%APR_PORTS%%%%BDB%%lib/apr-util-1/apr_dbm_db.a
 %%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap-1.so
 %%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap.so
 %%APR_PORTS%%%%MOD_LDAP%%lib/apr-util-1/apr_ldap.la
@@ -252,6 +256,7 @@ libexec/apache22/httpd.exp
 %%MOD_PROXY_CONNECT%%libexec/apache22/mod_proxy_connect.so
 %%MOD_PROXY_FTP%%libexec/apache22/mod_proxy_ftp.so
 %%MOD_PROXY_HTTP%%libexec/apache22/mod_proxy_http.so
+%%MOD_PROXY_SCGI%%libexec/apache22/mod_proxy_scgi.so
 %%MOD_REWRITE%%libexec/apache22/mod_rewrite.so
 %%MOD_SETENVIF%%libexec/apache22/mod_setenvif.so
 %%MOD_SPELING%%libexec/apache22/mod_speling.so
