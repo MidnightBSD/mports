@@ -1,5 +1,5 @@
 # $FreeBSD: ports/www/apache22/Makefile.modules,v 1.33 2009/08/02 19:35:56 mezz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/www/apache22/Makefile.modules,v 1.4 2009/10/13 01:26:11 laffer1 Exp $
 
 .if !defined(Module_inc)
 Module_inc=		done
@@ -20,7 +20,7 @@ MISC_MODULES+=		actions alias asis autoindex cern_meta \
 			headers imagemap include info log_config logio mime \
 			mime_magic negotiation rewrite setenvif speling status \
 			unique_id userdir usertrack vhost_alias filter version
-PROXY_MODULES=		proxy proxy_connect proxy_ftp proxy_http proxy_ajp proxy_balancer
+PROXY_MODULES=		proxy proxy_connect proxy_ftp proxy_http proxy_ajp proxy_balancer proxy_scgi
 SSL_MODULES=		ssl
 SUEXEC_MODULES=		suexec
 THREADS_MODULES=	cgid
@@ -69,6 +69,9 @@ PLIST_SUB+=	PREFORK="@comment " WORKER="@comment " EVENT="@comment "
 .if !defined(WITH_DBM)
 .   if defined(WITH_BDB) || defined(WITH_BDB_BASE) || defined(WITH_BERKELEYDB)
 WITH_DBM=bdb
+PLIST_SUB+=	BDB=""
+.   else
+PLIST_SUB+=	BDB="@comment "
 .   endif
 .endif
 
