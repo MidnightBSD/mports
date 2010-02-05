@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.14 2009/10/13 00:58:37 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.15 2009/10/13 01:26:11 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -180,7 +180,7 @@ show-options:
 	@${SED} -ne 's/^##//p' ${APACHEDIR}/Makefile.doc
 
 #optionally enable mod_proxy_connect patch
-.if defined(PATCH_PROXY_CONNECT)
+.if defined(WITH_PATCH_PROXY_CONNECT)
 EXTRA_PATCHES+= ${FILESDIR}/opt-patch-modules:proxy:mod_proxy_connect.c
 .endif
 
