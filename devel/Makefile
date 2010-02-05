@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.309 2010/01/23 22:31:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.310 2010/01/24 16:45:47 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -259,6 +259,7 @@
     SUBDIR += p5-TimeDate
     SUBDIR += p5-UNIVERSAL-moniker
     SUBDIR += p5-UNIVERSAL-require
+    SUBDIR += p5-common-sense
     SUBDIR += p5-subversion
     SUBDIR += p5-threads
     SUBDIR += p5-threads-shared
