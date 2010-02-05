@@ -3,11 +3,11 @@
 # Whom:			Cheng-Lung Sung <clsung@FreeBSD.org>
 #
 # $FreeBSD: ports/converters/p5-JSON-XS/Makefile,v 1.15 2007/10/17 03:46:25 clsung Exp $
-# $MidnightBSD: mports/converters/p5-JSON-XS/Makefile,v 1.2 2008/03/14 00:34:39 laffer1 Exp $
+# $MidnightBSD: mports/converters/p5-JSON-XS/Makefile,v 1.3 2009/03/20 07:44:27 ctriv Exp $
 #
 
 PORTNAME=	JSON-XS
-PORTVERSION=	2.232
+PORTVERSION=	2.26
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/M/ML/MLEHMANN
