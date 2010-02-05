@@ -1,10 +1,9 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $
 bin/json_xs
-%%SITE_PERL%%/%%PERL_ARCH%%/JSON/XS/Boolean.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/JSON/XS.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/XS/XS.so
+%%SITE_PERL%%/%%PERL_ARCH%%/JSON/XS/Boolean.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/XS/XS.bs
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/JSON/XS
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/JSON
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/XS/XS.so
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON/XS
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/JSON
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/JSON/XS
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/JSON
