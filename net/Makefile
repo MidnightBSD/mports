@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.101 2010/01/23 22:20:42 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.102 2010/02/05 00:52:11 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -66,6 +66,7 @@
     SUBDIR += p5-Net-Libdnet
     SUBDIR += p5-Net-Server
     SUBDIR += p5-Net-XWhois
+    SUBDIR += p5-RPC-XML
     SUBDIR += p5-SOAP-Lite
     SUBDIR += p5-Socket6
     SUBDIR += p5-URI
