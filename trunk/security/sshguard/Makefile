@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.5 2008/10/08 17:00:13 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.6 2009/03/08 15:04:18 laffer1 Exp $
 
 PORTNAME=	sshguard
 DISTVERSION=	1.3
 CATEGORIES=	security
-MASTER_SITES=	SF
+MASTER_SITES=	SF/sshguard/sshguard/sshguard-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Protect hosts from brute force attacks against ssh
