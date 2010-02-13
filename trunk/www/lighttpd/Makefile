@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.14 2009/10/13 01:38:51 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.15 2009/12/29 00:07:58 laffer1 Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.24
+PORTVERSION=	1.4.26
 CATEGORIES=	www
-MASTER_SITES=	http://www.lighttpd.net/download/ \
-		http://mirrors.cat.pdx.edu/lighttpd/
+MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A secure, fast, compliant, and very flexible Web Server
