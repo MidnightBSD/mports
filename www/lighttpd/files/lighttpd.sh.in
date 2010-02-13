@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # $MidnightBSD$
-# $FreeBSD: ports/www/lighttpd/files/lighttpd.sh.in,v 1.3 2006/02/06 12:19:17 mnag Exp $
 #
 # PROVIDE: lighttpd
 # REQUIRE: %%REQUIRE%%
@@ -13,6 +12,8 @@
 #				Default is "NO".
 # lighttpd_conf (path):		Set full path to config file.
 #				Default is "%%PREFIX%%/etc/lighttpd.conf".
+# lighttpd_pidfile (path):	Set full path to pid file.
+#				Default is "/var/run/lighttpd.pid".
 #
 
 . %%RC_SUBR%%
@@ -24,13 +25,19 @@ load_rc_config $name
 
 : ${lighttpd_enable="NO"}
 : ${lighttpd_conf="%%PREFIX%%/etc/lighttpd.conf"}
+: ${lighttpd_pidfile="/var/run/${name}.pid"}
 
 command=%%PREFIX%%/sbin/lighttpd
 command_args="-f ${lighttpd_conf}"
-pidfile=/var/run/lighttpd.pid
+pidfile=${lighttpd_pidfile}
 required_files=${lighttpd_conf}
 stop_postcmd=stop_postcmd
 restart_precmd="checkconfig"
+reload_precmd=reload_precmd
+reload_postcmd=reload_postcmd
+sig_reload="-INT"
+check_cmd="checkconfig"
+extra_commands="reload check"
 
 checkconfig()
 {
@@ -41,6 +48,17 @@ checkconfig()
 stop_postcmd()
 {
 	rm -f ${pidfile}
+}
+
+reload_precmd()
+{
+	echo "Stoping ${name} and start gracefully."
+}
+
+reload_postcmd()
+{
+	rm -f ${pidfile}
+	run_rc_command start
 }
 
 run_rc_command "$1"
