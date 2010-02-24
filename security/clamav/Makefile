@@ -1,13 +1,15 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.17 2009/04/27 23:17:09 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.18 2009/07/09 02:39:17 laffer1 Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.95.2
+PORTVERSION=	0.95.3
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
 LICENSE=	agg
+
+BUILD_DEPENDS=	${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
 
 OPTIONS=	ARC "Enable arch archives support" On \
 		ARJ "Enable arj archives support" On \
@@ -43,6 +45,7 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--disable-clamav \
 		--enable-bigstack \
 		--enable-readdir_r \
+                --enable-check \
 		--disable-dependency-tracking
 CPPFLAGS+=	-I${LOCALBASE}/include \
 		${PTHREAD_CFLAGS}
@@ -173,6 +176,9 @@ post-patch:
 		${WRKSRC}/etc/clamav-milter.conf
 	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
 		${WRKSRC}/libclamunrar/unrar.c
+
+post-build:
+	@${MAKE} -C ${WRKSRC} check
 
 pre-su-install:
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
