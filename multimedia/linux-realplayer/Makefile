@@ -2,7 +2,7 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.3 2007/08/07 21:59:45 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.4 2009/10/14 13:48:31 laffer1 Exp $
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
 
@@ -11,7 +11,8 @@ DISTVERSION=	10.0.9.809-20070726
 CATEGORIES=	multimedia audio linux
 MASTER_SITES=	https://helixcommunity.org/download.php/2479/:player \
 		http://ftp.nluug.nl/ftp/pub/os/Linux/distr/pardusrepo/sources/:playeralt \
-		ftp://fr2.rpmfind.net/linux/sourceforge/m/mp/mplayer-tru/:codecs
+		ftp://fr2.rpmfind.net/linux/sourceforge/m/project/mp/mplayer-tru/mplayer-codecs/20040704/:codecs \
+		http://mirror.therek.net/freebsd/distfiles/mplayer/:codecs
 DISTFILES=	RealPlayer-${DISTVERSION}.i586.rpm:player,playeralt \
 		mplayer-codecs-linux-real-20040626-1.i386.rpm:codecs
 
