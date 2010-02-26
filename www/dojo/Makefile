@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/dojo/Makefile,v 1.2 2009/06/27 22:02:15 laffer1 Exp $
+# $MidnightBSD: mports/www/dojo/Makefile,v 1.3 2009/10/15 01:11:27 laffer1 Exp $
 
 PORTNAME=	dojo
-PORTVERSION=	1.3.2
+PORTVERSION=	1.4.1
 CATEGORIES=	www
 MASTER_SITES=	http://download.dojotoolkit.org/release-${PORTVERSION}/ \
 		LOCAL/glarkin
