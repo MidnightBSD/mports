@@ -2,14 +2,13 @@
 # Date created:		Sept 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/dhcp6/Makefile,v 1.1 2008/09/25 01:08:46 laffer1 Exp $
 #
 
 PORTNAME=	dhcp6
 PORTVERSION=	20080615
 CATEGORIES=	net ipv6
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	wide-dhcpv6
+MASTER_SITES=	SF/wide-dhcpv6/wide-dhcpv6/wide-dhcpv6-${PORTVERSION}
 DISTNAME=	wide-dhcpv6-${PORTVERSION}
 
 FAKE_OPTS=	prefixhack
