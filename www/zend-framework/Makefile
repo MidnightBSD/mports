@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.5 2009/08/13 18:58:43 laffer1 Exp $
+# $MidnightBSD: mports/www/zend-framework/Makefile,v 1.6 2009/10/13 02:01:28 laffer1 Exp $
 
 PORTNAME=	ZendFramework
-PORTVERSION=	1.9.2
+PORTVERSION=	1.9.3
 CATEGORIES=	www
 MASTER_SITES=	http://framework.zend.com/releases/${DISTNAME}/ \
 		GENTOO/distfiles
