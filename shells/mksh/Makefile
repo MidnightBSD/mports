@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.19 2009/04/10 02:53:33 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.20 2009/09/24 22:33:42 laffer1 Exp $
 
 PORTNAME=	mksh
-DISTVERSION=	R39
+DISTVERSION=	R39b
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MirBSD enhanced shell based on pdksh
 LICENSE=	bsd4
 
-USE_GCPIO=	yes
+USE_CPIO=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
