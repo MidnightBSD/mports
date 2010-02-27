@@ -1,11 +1,4 @@
-# New ports collection makefile for:	libgtop2
-# Date Created:			29 April 2002
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.6 2010/01/02 01:02:39 laffer1 Exp $
-# $FreeBSD: ports/devel/libgtop/Makefile,v 1.76 2007/07/23 09:35:42 rafan Exp $
-#   $MCom: ports/devel/libgtop/Makefile,v 1.5 2006/10/02 23:26:51 ahze Exp $
-#
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.7 2010/01/06 03:29:31 laffer1 Exp $
 
 PORTNAME=	libgtop
 PORTVERSION=	2.26.1
