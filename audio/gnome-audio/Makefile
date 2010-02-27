@@ -1,14 +1,8 @@
-# New ports collection makefile for:	gnomeaudio2
-# Date created:				10 July 2003
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/gnome-audio/Makefile,v 1.4 2008/06/01 16:43:18 laffer1 Exp $
-# $FreeBSD: ports/audio/gnome-audio/Makefile,v 1.26 2007/05/19 19:58:44 flz Exp $
-#   $MCom: ports/audio/gnome-audio/Makefile,v 1.3 2006/07/22 19:49:20 mezz Exp $
-#
+# $MidnightBSD: mports/audio/gnome-audio/Makefile,v 1.5 2008/09/21 20:00:56 laffer1 Exp $
 
 PORTNAME=	gnome-audio
 PORTVERSION=	2.22.2
+PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 
@@ -19,7 +13,7 @@ LICENSE=	agg
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-USE_GNOME=	gnomehack gnomeprefix gnomehier
+USE_GNOME=	gnomehier
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/share|${PREFIX}/share|' \
