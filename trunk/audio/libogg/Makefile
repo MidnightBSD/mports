@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libogg/Makefile,v 1.5 2009/09/20 00:37:31 laffer1 Exp $
+# $MidnightBSD: mports/audio/libogg/Makefile,v 1.6 2009/11/25 02:32:37 laffer1 Exp $
 
 PORTNAME=	libogg
 PORTVERSION=	1.1.4
@@ -14,6 +14,7 @@ USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 .if defined(NOPORTDOCS)
 MAKE_ENV=	DOC=""
