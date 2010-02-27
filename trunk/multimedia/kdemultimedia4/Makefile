@@ -1,44 +1,54 @@
 #
-# $MidnightBSD: ports/multimedia/kdemultimedia4/Makefile,v 1.143 2008/09/03 13:06:19 miwi Exp $
+# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.1 2009/01/04 21:03:15 ctriv Exp $
 #
 
 PORTNAME=	kdemultimedia
 PORTVERSION=	${KDE4_VERSION}
 CATEGORIES=	multimedia kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/${PORTVERSION}/src
+MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE Multimedia applications
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	audiofile:${PORTSDIR}/audio/libaudiofile \
-		FLAC:${PORTSDIR}/audio/flac \
-		cdda_paranoia:${PORTSDIR}/audio/cdparanoia \
-		ogg:${PORTSDIR}/audio/libogg \
-		tag:${PORTSDIR}/audio/taglib \
-		theora:${PORTSDIR}/multimedia/libtheora \
-		vorbis:${PORTSDIR}/audio/libvorbis \
-		mp3lame:${PORTSDIR}/audio/lame \
+OPTIONS=	PULSEAUDIO "KMix control for PulseAudio" off
+
+LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
+		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia \
+		ogg.6:${PORTSDIR}/audio/libogg \
+		tag.6:${PORTSDIR}/audio/taglib \
+		vorbis.4:${PORTSDIR}/audio/libvorbis \
+		musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \
 		tunepimp.5:${PORTSDIR}/audio/libtunepimp \
 		xine.1:${PORTSDIR}/multimedia/libxine
 RUN_DEPENDS=	oggenc:${PORTSDIR}/audio/vorbis-tools
+.if !defined(PACKAGE_BUILDING)
+RUN_DEPENDS+=	lame:${PORTSDIR}/audio/lame
+.endif
 
 LATEST_LINK=	${PORTNAME}4
 
 USE_BZIP2=	yes
-USE_KDE4=	kdelibs workspace kdeprefix kdehier automoc4
+USE_KDE4=	kdelibs kdeprefix kdehier automoc4 kdeexp
 KDE4_BUILDENV=	yes
 USE_QT_VER=	4
-QT_COMPONENTS=	corelib opengl moc rcc uic dbus qt3support designer network svg qtestlib
+QT_COMPONENTS=	corelib opengl dbus qt3support designer network svg qtestlib \
+		qmake_build moc_build rcc_build uic_build
 USE_OPENLDAP=	yes
+MAKE_JOBS_SAFE=	yes
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 3000
-CMAKE_USE_PTHREAD+= yes
+.if defined(WITH_PULSEAUDIO)
+CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=ON
+LIB_DEPENDS+= pulse.0:${PORTSDIR}/audio/pulseaudio
+.else
+CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=OFF
 .endif
+
+CMAKE_ARGS+=  -DWITH_PulseAudio:BOOL=OFF
 
 post-extract:
 	${MKDIR} ${WRKSRC}
