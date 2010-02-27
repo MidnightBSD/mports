@@ -2,13 +2,13 @@
 # Date created:				2006
 # Whom:					Adam Karim <archite@midnightbsd.org>
 #
-# $MidnightBSD: mports/audio/libao/Makefile,v 1.4 2008/03/19 01:03:12 laffer1 Exp $
+# $MidnightBSD: mports/audio/libao/Makefile,v 1.5 2009/09/20 00:27:20 laffer1 Exp $
 # $FreeBSD: ports/audio/libao/Makefile,v 1.40 2007/07/24 15:10:13 rafan Exp $
 #
 
 PORTNAME=	libao
 PORTVERSION=	0.8.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/ao/
 
@@ -20,7 +20,8 @@ USE_AUTOTOOLS=	libtool:22
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 .if defined(NOPORTDOCS)
 MAKE_ENV=	DOC=""
