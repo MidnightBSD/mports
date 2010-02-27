@@ -1,13 +1,9 @@
-# New ports collection makefile for:	wmmp3
-# Date created:		09 December 1999
-# Whom:			Jim Mock <jim@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.3 2008/02/28 00:18:28 laffer1 Exp $
+# $MidnightBSD: mports/audio/wmmp3/Makefile,v 1.4 2008/04/10 05:07:54 ctriv Exp $
 # $FreeBSD: ports/audio/wmmp3/Makefile,v 1.8 2003/12/15 01:17:26 pav Exp $
 
 PORTNAME=	wmmp3
 PORTVERSION=	0.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio windowmaker
 MASTER_SITES=	http://www.dotfiles.com/software/wmmp3/
 
@@ -18,8 +14,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	mpg123:${PORTSDIR}/audio/mpg123
 
 GNU_CONFIGURE=	yes
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	x11 xpm
 
 post-install:
 	@${ECHO} "===>   Installing sample.wmmp3 in ${PREFIX}/share/examples/wmmp3"
