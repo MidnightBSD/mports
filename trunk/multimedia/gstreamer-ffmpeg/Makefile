@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.2 2009/05/27 21:26:30 crash Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.3 2010/02/27 21:45:50 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.8
@@ -19,9 +19,9 @@ USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
-#CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd6.1 \
-#	  --host=${ARCH}-portbld-freebsd6.1 \
-#		  --target=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd6.1 \
+	  --host=${ARCH}-portbld-freebsd6.1 \
+	  --target=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	PKG_CONFIG=${PKG_CONFIG} \
 		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} -fno-force-addr" \
