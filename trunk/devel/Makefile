@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.310 2010/01/24 16:45:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.311 2010/02/05 01:27:17 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -110,6 +110,7 @@
     SUBDIR += lemon
     SUBDIR += libIDL
     SUBDIR += libbonobo
+    SUBDIR += libburn
     SUBDIR += libcheck
     SUBDIR += libconfuse
     SUBDIR += libdaemon
@@ -125,6 +126,7 @@
     SUBDIR += libgsf-gnome
     SUBDIR += libgtop
     SUBDIR += libical
+    SUBDIR += libisofs
     SUBDIR += libixp
     SUBDIR += libltdl22
     SUBDIR += libnotify
