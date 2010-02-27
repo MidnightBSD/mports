@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.5 2009/07/12 16:04:23 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.6 2009/12/14 00:03:48 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -293,7 +293,7 @@ gst_jack_PLIST_FILES=	${GST_LIB_DIR}/libgstjack.la \
 gst_jack_DIST=	bad
 
 # jpeg
-gst_jpeg_LIB_DEPENDS+=	jpeg.9:${PORTSDIR}/graphics/jpeg
+gst_jpeg_LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
 gst_jpeg_PLIST_FILES=	${GST_LIB_DIR}/libgstjpeg.la \
 			${GST_LIB_DIR}/libgstjpeg.so
 
@@ -468,7 +468,7 @@ gst_vorbis_PLIST_FILES=	${GST_LIB_DIR}/libgstvorbis.la \
 gst_vorbis_DIST=	base
 
 # x264
-gst_x264_LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
+gst_x264_LIB_DEPENDS+=	x264.65:${PORTSDIR}/multimedia/x264
 gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.la \
 		${GST_LIB_DIR}/libgstx264.so \
 		share/gstreamer-${VERSION}/presets/GstX264Enc.prs
