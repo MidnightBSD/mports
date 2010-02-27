@@ -3,7 +3,7 @@
 # Date created:			Mar 23, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.2 2008/08/13 19:05:20 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libfame/Makefile,v 1.3 2009/09/20 01:44:52 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libfame/Makefile,v 1.23 2006/06/09 18:59:19 ahze Exp $
 #
 
@@ -11,8 +11,7 @@ PORTNAME=	libfame
 PORTVERSION=	0.9.1
 PORTREVISION=	3
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	fame
+MASTER_SITES=	SF/fame/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A video encoding library
