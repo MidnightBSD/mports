@@ -1,38 +1,28 @@
-# New ports collection makefile for:	libmpeg2
-# Date created:		Tue Oct 16 17:14:20 BRST 2001
-# Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
-# $FreeBSD: ports/multimedia/libmpeg2/Makefile,v 1.32 2006/09/21 08:07:58 stas Exp $
-# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.3 2008/08/13 19:17:08 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	libmpeg2
-PORTVERSION=	0.4.1
-PORTREVISION=	0
+PORTVERSION=	0.5.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://libmpeg2.sourceforge.net/files/
-DISTNAME=	mpeg2dec-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free library for decoding mpeg-2 and mpeg-1 video streams
 LICENSE=	gpl2
 
-USE_GNOME=	gnometarget
+USE_GNOME=	gnometarget ltverhack
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	--enable-shared \
 		--with-x
 
 MAN1=	extract_mpeg2.1 mpeg2dec.1
 
-PORTDOCS=	libmpeg2.txt README COPYING
-
-OPTIONS=	SDL "Enable SDL support" off
+PORTDOCS=	libmpeg2.txt README
 
 .ifdef(WITH_SDL)
 USE_SDL=	yes
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libvo::configure.incl
 CONFIGURE_ARGS+=	--enable-sdl
 .else
 CONFIGURE_ARGS+=	--disable-sdl
@@ -44,6 +34,16 @@ CONFIGURE_ARGS+=	--disable-warnings
 .endif
 
 .include <bsd.port.pre.mk>
+
+pre-everything::
+	@${ECHO_MSG} "====>"
+.ifndef(WITH_SDL)
+	@${ECHO_MSG} "====> You can enable SDL support by defining WITH_SDL"
+.endif
+.ifndef(WITH_MGA)
+	@${ECHO_MSG} "====> You can enable MGA support by defining WITH_MGA"
+.endif
+	@${ECHO_MSG} "====>"
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O3||;s|<termio.h>|<termios.h>|' ${WRKSRC}/configure
@@ -58,13 +58,12 @@ post-patch:
 		${WRKSRC}/libmpeg2/convert/Makefile.in
 post-install:
 .ifndef(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/libmpeg2.txt ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/libmpeg2.txt ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
-	@${INSTALL_DATA} ${WRKSRC}/libvo/libvo.a ${PREFIX}/lib
-	@${INSTALL_DATA} ${WRKSRC}/include/video_out.h \
+	${INSTALL_DATA} ${WRKSRC}/libvo/libvo.a ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/include/video_out.h \
 		${PREFIX}/include/mpeg2dec
 
 .include <bsd.port.post.mk>
