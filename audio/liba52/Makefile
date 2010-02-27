@@ -2,7 +2,7 @@
 # Date created:				Tue Oct 16 10:43:56 BRST 2001
 # Whom:                 Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/liba52/Makefile,v 1.2 2008/04/01 05:09:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/liba52/Makefile,v 1.3 2009/09/20 00:24:48 laffer1 Exp $
 # $FreeBSD: ports/audio/liba52/Makefile,v 1.21 2007/04/01 07:56:18 lioux Exp $
 #
 
@@ -20,7 +20,8 @@ USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-oss --enable-shared
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITHOUT_DJBFFT) && !defined(PACKAGE_BUILDING)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libdjbfft.a:${PORTSDIR}/math/djbfft
