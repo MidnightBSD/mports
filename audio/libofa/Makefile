@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.2 2009/04/13 18:04:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.3 2009/09/20 00:36:15 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.musicdns.org/files/
 
@@ -10,7 +11,7 @@ COMMENT=	The Open Fingerprint Architecture Library
 LICENSE=	gpl2
 # two licenses, this one i can parse
 
-LIB_DEPENDS=	fftw3.4:${PORTSDIR}/math/fftw3 \
+LIB_DEPENDS=	fftw3.5:${PORTSDIR}/math/fftw3 \
 		expat.6:${PORTSDIR}/textproc/expat2 \
 		curl.5:${PORTSDIR}/ftp/curl
 
