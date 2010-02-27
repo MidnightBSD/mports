@@ -2,15 +2,13 @@
 # Date created:				Nov 24, 2004
 # Whom:					ijliao
 #
-# $MidnightBSD: mports/devel/liboil/Makefile,v 1.3 2008/10/20 01:12:36 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboil/Makefile,v 1.4 2009/09/20 00:41:19 laffer1 Exp $
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
-PORTVERSION=	0.3.15
+PORTVERSION=	0.3.16
 CATEGORIES=	devel
-MASTER_SITES=	http://liboil.freedesktop.org/download/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	ahze
+MASTER_SITES=	http://liboil.freedesktop.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of optimized inner loops
@@ -27,7 +25,7 @@ CFLAGS+=	-O2
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_3DNOW_GCC40)
-USE_GCC=	4.0+
+USE_GCC=	4.2+
 .endif
 
 pre-everything::
