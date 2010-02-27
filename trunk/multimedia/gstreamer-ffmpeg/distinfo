@@ -1,3 +1,4 @@
-MD5 (gst-ffmpeg-0.10.2.tar.bz2) = 3c7fb1cd1308b1972a76b86bb29fc890
-SHA256 (gst-ffmpeg-0.10.2.tar.bz2) = ffa7c89bccab5d1be53b6fcedcf7a5c071d585cf522fee5864add05d350f5842
-SIZE (gst-ffmpeg-0.10.2.tar.bz2) = 2515373
+MD5 (gst-ffmpeg-0.10.8.tar.bz2) = a7177f85c87d404a3c0d511b835129d1
+SHA256 (gst-ffmpeg-0.10.8.tar.bz2) = d9e056793d05bf0b6f4989b27d3107c2f223a14205ee54be403bbe52945c8853
+RMD160 (gst-ffmpeg-0.10.8.tar.bz2) = 0309e74f70f3c30c8419d9606426dd2a7f9de8b9
+SIZE (gst-ffmpeg-0.10.8.tar.bz2) = 3259396
