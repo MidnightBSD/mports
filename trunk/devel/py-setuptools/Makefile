@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.1 2010/01/01 02:53:34 laffer1 Exp $
 
 PORTNAME=	setuptools
 PORTVERSION=	0.6c9
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Download, build, install, upgrade, and uninstall Python packages
 LICENSE=	unknown
 
-BROKEN=		tries to be clever and detect python path for .pth files
+#BROKEN=		tries to be clever and detect python path for .pth files
 
 DIST_SUBDIR=	python
 USE_PYTHON=	2.3+
