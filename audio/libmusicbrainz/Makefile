@@ -2,7 +2,7 @@
 # Date Created:				26 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/audio/libmusicbrainz/Makefile,v 1.1 2007/09/03 19:56:17 laffer1 Exp $
+# $MidnightBSD: mports/audio/libmusicbrainz/Makefile,v 1.2 2008/04/10 03:43:53 ctriv Exp $
 # $FreeBSD: ports/audio/libmusicbrainz/Makefile,v 1.32 2007/06/06 05:59:18 miwi Exp $
 #
 
@@ -26,6 +26,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||g'	${WRKSRC}/${CONFIGURE_SCRIPT}
