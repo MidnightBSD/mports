@@ -1,14 +1,10 @@
-# New ports collection makefile for:	wmsmixer
-# Date created:				2 April 2001
-# Whom:					Konstantinos Konstantinidis <kkonstan@daemon.gr>
-#
-# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.4 2008/03/19 16:40:58 laffer1 Exp $
+# $MidnightBSD: mports/audio/wmsmixer/Makefile,v 1.5 2008/04/10 05:08:21 ctriv Exp $
 # $FreeBSD: ports/audio/wmsmixer/Makefile,v 1.9 2006/05/25 21:57:23 pav Exp $
 #
 
 PORTNAME=	wmsmixer
 PORTVERSION=	0.5.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio windowmaker
 MASTER_SITES=	http://www.hibernaculum.net/download/
 
@@ -17,7 +13,7 @@ COMMENT=	An audio mixer for the WindowMaker dock
 LICENSE=	gpl2
 
 PLIST_FILES=	bin/wmsmixer
-USE_XPM=	YES
+USE_XORG=	xpm
 USE_IMAKE=	YES
 MAKE_ARGS=	CC="${CXX}" CFLAGS="${CXXFLAGS}"
 
