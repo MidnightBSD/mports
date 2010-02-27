@@ -1,14 +1,9 @@
-# New ports collection makefile for:	openal
-# Date created:		25 September 2000
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.3 2008/04/10 04:58:15 ctriv Exp $
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.4 2009/09/20 00:42:38 laffer1 Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
-#
 
 PORTNAME=	openal
 PORTVERSION=	20060211
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	audio
 MASTER_SITES=	http://openal.org/openal_webstf/downloads/
 DISTVERSION=	0.0.8
@@ -25,7 +20,7 @@ CONFIGURE_ARGS=	--enable-capture
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig gnomehack
 WANT_SDL=	yes
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 
 OPTIONS=	ARTS "aRts backend" off \
 		ESD "esd backend" off \
@@ -62,7 +57,7 @@ CONFIGURE_ARGS+=--disable-sdl
 .endif
 
 .if defined(WITH_VORBIS)
-LIB_DEPENDS+=	vorbisfile.5:${PORTSDIR}/audio/libvorbis
+LIB_DEPENDS+=	vorbisfile.6:${PORTSDIR}/audio/libvorbis
 CONFIGURE_ARGS+=--enable-vorbis
 .else
 CONFIGURE_ARGS+=--disable-vorbis
