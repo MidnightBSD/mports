@@ -1,0 +1,12 @@
+--- configure.orig	2010-02-27 17:12:36 -0500
++++ configure	2010-02-27 17:12:52 -0500
+@@ -1529,6 +1529,9 @@
+     freebsd)
+         disable need_memalign
+         ;;
++    midnightbsd)
++	disable need_memalign
++	;;
+     bsd/os)
+         osextralibs="-lpoll -lgnugetopt"
+         strip="strip -d"
