@@ -1,12 +1,8 @@
-# New ports collection makefile for:	amarok
-# Date created:			Tue Feb 24 02:21:14 CET 2004
-# Whom:				Markus Brueffer <markus@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.2 2008/10/07 15:42:09 laffer1 Exp $
-# $FreeBSD: ports/audio/amarok/Makefile,v 1.85 2008/06/20 15:41:47 tabthorpe Exp $
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.3 2009/09/20 00:15:52 laffer1 Exp $
 
 PORTNAME=	amarok
 PORTVERSION=	1.4.10
+PORTREVISION=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src
@@ -54,7 +50,7 @@ CONFIGURE_ARGS+=--without-exscalibar \
 PLIST_SUB+=	GPOD="@comment "
 CONFIGURE_ARGS+=--without-libgpod
 .else
-LIB_DEPENDS+=	gpod.3:${PORTSDIR}/audio/libgpod
+LIB_DEPENDS+=	gpod.5:${PORTSDIR}/audio/libgpod
 CONFIGURE_ARGS+=--with-libgpod
 PLIST_SUB+=	GPOD=""
 .endif
