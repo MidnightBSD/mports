@@ -2,18 +2,17 @@
 # Date created:		2005-05-04
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.3 2007/11/12 01:14:41 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.4 2007/11/12 01:15:40 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gpac-libgpac/Makefile,v 1.13 2006/08/14 23:36:33 ahze Exp $
 #
 
-PORTNAME=	gpac-libgpac
-DISTVERSION=	0.4.4
-PORTREVISION=	1
+PORTNAME=	gpac
+PORTVERSION=	0.4.5
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	gpac
-DISTNAME=	gpac-${DISTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/GPAC/GPAC%20${PORTVERSION}
+PKGNAMESUFFIX=	-libgpac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gpac MPEG-4 Systems library and headers
@@ -23,6 +22,7 @@ WRKSRC=		${WRKDIR}/gpac
 ALL_TARGET=	lib
 USE_GCPIO=	yes
 USE_GMAKE=	yes
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
@@ -30,11 +30,25 @@ BUILD_WRKSRC=	${WRKSRC}/src
 INSTALL_WRKSRC=	${WRKSRC}/bin/gcc
 LIBVER=	1
 
-CONFIGURE_ARGS=	--cc="${CC}" \
-		--extra-cflags="${CFLAGS} ${PTHREAD_CFLAGS} -fPIC" \
-		--extra-ldflags="${LDFLAGS} ${PTHREAD_LIBS}"
+OPTIONS=	IPV6	"IPv6 support"		on \
+		OPENGL	"OpenGL support"	on
+
+CONFIGURE_ARGS=	--cc="${CC}" --X11-path="${X11BASE}" \
+		--extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}" \
+		--enable-pic
+CONFIGURE_ENV+=	LIBVER="${LIBVER}" PTHREAD_LIBS="${PTHREAD_LIBS}"
 
 .include <bsd.port.pre.mk>
+
+.if defined(WITHOUT_IPV6)
+CONFIGURE_ARGS+=	--disable-ipv6
+.endif
+
+.if defined(WITHOUT_OPENGL)
+CONFIGURE_ARGS+=	--disable-opengl
+.else
+USE_GL=		gl glu
+.endif
 
 post-patch:
 	${CHMOD} +x ${WRKSRC}/configure
