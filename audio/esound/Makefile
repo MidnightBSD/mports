@@ -2,7 +2,7 @@
 # Date created:		19 July 1998
 # Whom:			Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/esound/Makefile,v 1.5 2009/09/20 00:18:25 laffer1 Exp $
+# $MidnightBSD: mports/audio/esound/Makefile,v 1.6 2009/10/19 18:36:10 crash Exp $
 # $FreeBSD: ports/audio/esound/Makefile,v 1.62 2007/02/01 02:41:17 kris Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	esound
 PORTVERSION=	0.2.41
 PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/0.2
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
