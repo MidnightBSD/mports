@@ -1,18 +1,12 @@
-# New ports collection makefile for: fftw
-# Date created:		Dec 28 1998
-# Whom:			Lars Koeller <Lars.Koeller@Uni-Bielefeld.DE>
-#
-# $FreeBSD: ports/math/fftw3/Makefile,v 1.46 2006/07/06 06:34:17 ahze Exp $
-#    $MCom: ports-experimental/math/fftw3/Makefile,v 1.1 2006/03/28 00:08:57 ahze Exp $
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.2 2007/11/14 19:03:25 laffer1 Exp $
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.3 2008/10/02 14:39:31 laffer1 Exp $
 #
 
 PORTNAME=	fftw3
-PORTVERSION=	3.1.2
+PORTVERSION=	3.2.2
 PORTREVISION?=	0
 CATEGORIES=	math
-MASTER_SITES=	ftp://ftp.fftw.org/pub/fftw/ 		\
-		http://www.fftw.org/
+MASTER_SITES=	ftp://ftp.fftw.org/pub/fftw/ \
+		ftp://ftp.fftw.org/pub/fftw/old/
 PKGNAMESUFFIX=	${FFTW3_PKGNAMESUFFIX}
 DISTNAME=	fftw-${PORTVERSION}
 
@@ -28,6 +22,8 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_PERL5_BUILD=yes
 USE_LDCONFIG=	yes
+
+ONLY_FOR_ARCHS=	i386 sparc64
 
 CONFIGURE_ARGS=	--enable-shared --enable-threads  --build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPLAGS="${PTHREAD_CFLAGS}" \
@@ -117,9 +113,17 @@ post-patch:
 .endif
 .endif
 
+post-configure:
+	@echo "#define F77_FUNC(name,NAME) name ## _" >>${WRKSRC}/config.h
+	@echo "#define F77_FUNC_(name,NAME) name ## _" >>${WRKSRC}/config.h
+	@echo "#define F77_FUNC_EQUIV 1" >>${WRKSRC}/config.h
+
 .if defined(FFTW3_FLAVOR) && ${FFTW3_FLAVOR}!="default"
 post-install:
 	@${INSTALL_MAN} ${WRKSRC}/tools/fftw${FFTW3_SUFX}-wisdom.1 ${PREFIX}/man/man1
 .endif
+
+regression-test: build
+	@cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE} smallcheck
 
 .include <bsd.port.post.mk>
