@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.78 2010/02/27 19:39:16 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.79 2010/02/27 19:44:46 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -83,6 +83,7 @@
     SUBDIR += sound-juicer
     SUBDIR += speex
     SUBDIR += taglib
+    SUBDIR += teamspeak_server
     SUBDIR += timemachine
     SUBDIR += timidity
     SUBDIR += twolame
