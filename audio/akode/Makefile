@@ -1,20 +1,13 @@
-# New ports collection makefile for:	mpeglib_artsplug
-# Date created:				July 09 2004
-# Whom:					Michael Nottebrock <lofi@FreeBSD.org>
-#
-# $FreeBSD: ports/audio/akode/Makefile,v 1.14 2006/09/17 19:59:21 lofi Exp $
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.5 2008/03/22 05:04:58 ctriv Exp $
-#
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.6 2009/09/20 00:06:59 laffer1 Exp $
 
 PORTNAME=	akode
-PORTVERSION=	2.0.1
-PORTREVISION=	1
+PORTVERSION=	2.0.2
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=distfiles
-DISTNAME=	30375-${PORTNAME}-${PORTVERSION}.tar.bz2
-EXTRACT_SUFX=	# none
+DISTNAME=	30375-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Default KDE audio backend
@@ -22,15 +15,15 @@ LICENSE=	gpl2
 
 CONFLICTS=	kdemultimedia-3.[1-3]*
 
-OPTIONS=	JACK "Jack output plugin" off \
+OPTIONS=	FFMPEG "FFMPEG decoder plugin" off \
+		JACK "Jack output plugin" off \
 		MPC "Monkey's Audio decoder plugin" on \
 		MPEG "MPEG Audio (including mp3) plugin" on \
 		OSS "OSS output plugin" on \
 		RESAMPLER "Resampler processing plugin" on \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
-USE_AUTOTOOLS=	libltdl
-USE_AUTOTOOLS+=  libtool:22 automake:19
+USE_AUTOTOOLS=  libltdl:22 libtool:22 automake:19
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -43,6 +36,10 @@ CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL} \
 		--with-extra-includes=${LOCALBASE}/include
 
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_FFMPEG)
+RUN_DEPENDS+= ${LOCALBASE}/lib/libakode_ffmpeg_decoder.so:${PORTSDIR}/audio/akode-plugins-ffmpeg
+.endif
 
 .if defined(WITH_JACK)
 RUN_DEPENDS+=	${LOCALBASE}/lib/libakode_jack_sink.so:${PORTSDIR}/audio/akode-plugins-jack

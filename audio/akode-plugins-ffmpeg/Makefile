@@ -1,26 +1,27 @@
-# $MidnightBSD: mports/audio/akode-plugins-resampler/Makefile,v 1.4 2009/09/20 00:13:20 laffer1 Exp $
+# $MidnightBSD$
 
-PORTNAME=   akode-plugins-${PORTNAMESUFX}
-PORTVERSION=    2.0.2
-PORTEPOCH=  1
-CATEGORIES= audio kde
-MASTER_SITES=   ${MASTER_SITE_GENTOO}
+PORTNAME=	akode
+PORTVERSION=	2.0.2
+CATEGORIES=	audio kde
+MASTER_SITES=	${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=distfiles
-DISTNAME=   30375-akode-${PORTVERSION}.tar.bz2
-EXTRACT_SUFX=   # none
+PKGNAMESUFFIX=	-plugins-${PORTNAMESUFX}
+DISTNAME=	30375-akode-${PORTVERSION}.tar.bz2
+EXTRACT_SUFX=	# none
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Resampler plugin for akode
+COMMENT=	FFMPEG decoder plugin for akode
 LICENSE=	gpl2
 
-LIB_DEPENDS=	samplerate:${PORTSDIR}/audio/libsamplerate
+LIB_DEPENDS=	avcodec:${PORTSDIR}/multimedia/ffmpeg
 
 CONFLICTS=	kdemultimedia-3.[1-3]*
 
-PLUGIN=		src_resampler
+PLUGIN=		ffmpeg_decoder
 PORTNAMESUFX=	${PLUGIN:S/_sink//:S/_decoder//:S/src_//}
 
-USE_AUTOTOOLS=  libltdl libtool:22
+USE_AUTOTOOLS=	libltdl
+USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}
