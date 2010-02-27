@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.5 2009/08/16 02:35:15 laffer1 Exp $
 
 PORTNAME=	mpg123
-PORTVERSION=	1.6.4
+PORTVERSION=	1.9.1
 CATEGORIES=	audio ipv6
 MASTER_SITES=	SF \
 		http://www.mpg123.de/download/
