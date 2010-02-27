@@ -1,20 +1,14 @@
-bin/cddb-slave2-properties
 bin/gnome-audio-profiles-properties
-bin/gnome-cd
 bin/gnome-sound-recorder
-bin/gnome-volume-control
+%%GVC%%bin/gnome-volume-control
+%%GVC%%bin/gnome-volume-control-applet
 bin/gstreamer-properties
-bin/vumeter
-include/cddb-slave2/cddb-slave-client.h
+%%GVC%%etc/xdg/autostart/gnome-volume-control-applet.desktop
 include/gnome-media/profiles/audio-profile-choose.h
 include/gnome-media/profiles/audio-profile-edit.h
 include/gnome-media/profiles/audio-profile.h
 include/gnome-media/profiles/audio-profiles-edit.h
 include/gnome-media/profiles/gnome-media-profiles.h
-lib/libcddb-slave2.a
-lib/libcddb-slave2.la
-lib/libcddb-slave2.so
-lib/libcddb-slave2.so.0
 lib/libglade/2.0/libgnome-media-profiles.a
 lib/libglade/2.0/libgnome-media-profiles.la
 lib/libglade/2.0/libgnome-media-profiles.so
@@ -22,141 +16,44 @@ lib/libgnome-media-profiles.a
 lib/libgnome-media-profiles.la
 lib/libgnome-media-profiles.so
 lib/libgnome-media-profiles.so.0
-libdata/bonobo/servers/GNOME_Media_CDDBSlave2.server
 libdata/pkgconfig/gnome-media-profiles.pc
-libexec/CDDBSlave2
-libexec/cddb-track-editor
-share/applications/cddb-slave.desktop
-share/applications/gnome-cd.desktop
 share/applications/gnome-sound-recorder.desktop
-share/applications/gnome-volume-control.desktop
+%%GVC%%share/applications/gnome-volume-control.desktop
 share/applications/gstreamer-properties.desktop
-share/applications/reclevel.desktop
-share/applications/vumeter.desktop
 %%DATADIR%%/glade/gnome-audio-profiles.glade2
-%%DATADIR%%/pixmaps/3dsound.png
-%%DATADIR%%/pixmaps/chain-broken.png
-%%DATADIR%%/pixmaps/chain.png
-%%DATADIR%%/pixmaps/headphones.png
-%%DATADIR%%/pixmaps/mixer.png
-%%DATADIR%%/pixmaps/noplay.png
-%%DATADIR%%/pixmaps/norecord.png
-%%DATADIR%%/pixmaps/phone.png
-%%DATADIR%%/pixmaps/play.png
-%%DATADIR%%/pixmaps/record.png
-%%DATADIR%%/pixmaps/tone.png
-%%DATADIR%%/pixmaps/video.png
+%%GVC%%%%DATADIR%%/icons/hicolor/16x16/status/audio-input-microphone-high.png
+%%GVC%%%%DATADIR%%/icons/hicolor/16x16/status/audio-input-microphone-low.png
+%%GVC%%%%DATADIR%%/icons/hicolor/16x16/status/audio-input-microphone-medium.png
+%%GVC%%%%DATADIR%%/icons/hicolor/16x16/status/audio-input-microphone-muted.png
+%%GVC%%%%DATADIR%%/icons/hicolor/22x22/status/audio-input-microphone-high.png
+%%GVC%%%%DATADIR%%/icons/hicolor/22x22/status/audio-input-microphone-low.png
+%%GVC%%%%DATADIR%%/icons/hicolor/22x22/status/audio-input-microphone-medium.png
+%%GVC%%%%DATADIR%%/icons/hicolor/22x22/status/audio-input-microphone-muted.png
+%%GVC%%%%DATADIR%%/icons/hicolor/24x24/status/audio-input-microphone-high.png
+%%GVC%%%%DATADIR%%/icons/hicolor/24x24/status/audio-input-microphone-low.png
+%%GVC%%%%DATADIR%%/icons/hicolor/24x24/status/audio-input-microphone-medium.png
+%%GVC%%%%DATADIR%%/icons/hicolor/24x24/status/audio-input-microphone-muted.png
+%%GVC%%%%DATADIR%%/icons/hicolor/32x32/status/audio-input-microphone-high.png
+%%GVC%%%%DATADIR%%/icons/hicolor/32x32/status/audio-input-microphone-low.png
+%%GVC%%%%DATADIR%%/icons/hicolor/32x32/status/audio-input-microphone-medium.png
+%%GVC%%%%DATADIR%%/icons/hicolor/32x32/status/audio-input-microphone-muted.png
+%%GVC%%%%DATADIR%%/icons/hicolor/scalable/status/audio-input-microphone-high.svg
+%%GVC%%%%DATADIR%%/icons/hicolor/scalable/status/audio-input-microphone-low.svg
+%%GVC%%%%DATADIR%%/icons/hicolor/scalable/status/audio-input-microphone-medium.svg
+%%GVC%%%%DATADIR%%/icons/hicolor/scalable/status/audio-input-microphone-muted.svg
+%%GSTMIX%%%%DATADIR%%/pixmaps/chain-broken.png
+%%GSTMIX%%%%DATADIR%%/pixmaps/chain.png
+%%DATADIR%%/sounds/gnome-sounds-default.xml
 share/gnome-sound-recorder/ui/ui.xml
-share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/C/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/C/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/C/figures/eject_button.png
-share/gnome/help/gnome-cd/C/figures/forward_button.png
-share/gnome/help/gnome-cd/C/figures/next_button.png
-share/gnome/help/gnome-cd/C/figures/pause_button.png
-share/gnome/help/gnome-cd/C/figures/play_button.png
-share/gnome/help/gnome-cd/C/figures/preferences_button.png
-share/gnome/help/gnome-cd/C/figures/previous_button.png
-share/gnome/help/gnome-cd/C/figures/rewind_button.png
-share/gnome/help/gnome-cd/C/figures/stop_button.png
-share/gnome/help/gnome-cd/C/gnome-cd.xml
-share/gnome/help/gnome-cd/C/legal.xml
-share/gnome/help/gnome-cd/ca/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/ca/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/ca/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/ca/figures/eject_button.png
-share/gnome/help/gnome-cd/ca/figures/forward_button.png
-share/gnome/help/gnome-cd/ca/figures/next_button.png
-share/gnome/help/gnome-cd/ca/figures/pause_button.png
-share/gnome/help/gnome-cd/ca/figures/play_button.png
-share/gnome/help/gnome-cd/ca/figures/preferences_button.png
-share/gnome/help/gnome-cd/ca/figures/previous_button.png
-share/gnome/help/gnome-cd/ca/figures/rewind_button.png
-share/gnome/help/gnome-cd/ca/figures/stop_button.png
-share/gnome/help/gnome-cd/ca/gnome-cd.xml
-share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/es/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/es/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/es/figures/eject_button.png
-share/gnome/help/gnome-cd/es/figures/forward_button.png
-share/gnome/help/gnome-cd/es/figures/next_button.png
-share/gnome/help/gnome-cd/es/figures/pause_button.png
-share/gnome/help/gnome-cd/es/figures/play_button.png
-share/gnome/help/gnome-cd/es/figures/preferences_button.png
-share/gnome/help/gnome-cd/es/figures/previous_button.png
-share/gnome/help/gnome-cd/es/figures/rewind_button.png
-share/gnome/help/gnome-cd/es/figures/stop_button.png
-share/gnome/help/gnome-cd/es/gnome-cd.xml
-share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/fr/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/fr/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/fr/figures/eject_button.png
-share/gnome/help/gnome-cd/fr/figures/forward_button.png
-share/gnome/help/gnome-cd/fr/figures/next_button.png
-share/gnome/help/gnome-cd/fr/figures/pause_button.png
-share/gnome/help/gnome-cd/fr/figures/play_button.png
-share/gnome/help/gnome-cd/fr/figures/preferences_button.png
-share/gnome/help/gnome-cd/fr/figures/previous_button.png
-share/gnome/help/gnome-cd/fr/figures/rewind_button.png
-share/gnome/help/gnome-cd/fr/figures/stop_button.png
-share/gnome/help/gnome-cd/fr/gnome-cd.xml
-share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/it/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/it/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/it/figures/eject_button.png
-share/gnome/help/gnome-cd/it/figures/forward_button.png
-share/gnome/help/gnome-cd/it/figures/next_button.png
-share/gnome/help/gnome-cd/it/figures/pause_button.png
-share/gnome/help/gnome-cd/it/figures/play_button.png
-share/gnome/help/gnome-cd/it/figures/preferences_button.png
-share/gnome/help/gnome-cd/it/figures/previous_button.png
-share/gnome/help/gnome-cd/it/figures/rewind_button.png
-share/gnome/help/gnome-cd/it/figures/stop_button.png
-share/gnome/help/gnome-cd/it/gnome-cd.xml
-share/gnome/help/gnome-cd/oc/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/oc/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/oc/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/oc/figures/eject_button.png
-share/gnome/help/gnome-cd/oc/figures/forward_button.png
-share/gnome/help/gnome-cd/oc/figures/next_button.png
-share/gnome/help/gnome-cd/oc/figures/pause_button.png
-share/gnome/help/gnome-cd/oc/figures/play_button.png
-share/gnome/help/gnome-cd/oc/figures/preferences_button.png
-share/gnome/help/gnome-cd/oc/figures/previous_button.png
-share/gnome/help/gnome-cd/oc/figures/rewind_button.png
-share/gnome/help/gnome-cd/oc/figures/stop_button.png
-share/gnome/help/gnome-cd/oc/gnome-cd.xml
-share/gnome/help/gnome-cd/ru/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/ru/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/ru/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/ru/figures/eject_button.png
-share/gnome/help/gnome-cd/ru/figures/forward_button.png
-share/gnome/help/gnome-cd/ru/figures/next_button.png
-share/gnome/help/gnome-cd/ru/figures/pause_button.png
-share/gnome/help/gnome-cd/ru/figures/play_button.png
-share/gnome/help/gnome-cd/ru/figures/preferences_button.png
-share/gnome/help/gnome-cd/ru/figures/previous_button.png
-share/gnome/help/gnome-cd/ru/figures/rewind_button.png
-share/gnome/help/gnome-cd/ru/figures/stop_button.png
-share/gnome/help/gnome-cd/ru/gnome-cd.xml
-share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_button.png
-share/gnome/help/gnome-cd/sv/figures/cdplayer_trackeditor_window.png
-share/gnome/help/gnome-cd/sv/figures/cdplayer_window.png
-share/gnome/help/gnome-cd/sv/figures/eject_button.png
-share/gnome/help/gnome-cd/sv/figures/forward_button.png
-share/gnome/help/gnome-cd/sv/figures/next_button.png
-share/gnome/help/gnome-cd/sv/figures/pause_button.png
-share/gnome/help/gnome-cd/sv/figures/play_button.png
-share/gnome/help/gnome-cd/sv/figures/preferences_button.png
-share/gnome/help/gnome-cd/sv/figures/previous_button.png
-share/gnome/help/gnome-cd/sv/figures/rewind_button.png
-share/gnome/help/gnome-cd/sv/figures/stop_button.png
-share/gnome/help/gnome-cd/sv/gnome-cd.xml
 share/gnome/help/gnome-sound-recorder/C/figures/grecord_window.png
 share/gnome/help/gnome-sound-recorder/C/gnome-sound-recorder.xml
 share/gnome/help/gnome-sound-recorder/C/legal.xml
 share/gnome/help/gnome-sound-recorder/ca/figures/grecord_window.png
 share/gnome/help/gnome-sound-recorder/ca/gnome-sound-recorder.xml
+share/gnome/help/gnome-sound-recorder/de/figures/grecord_window.png
+share/gnome/help/gnome-sound-recorder/de/gnome-sound-recorder.xml
+share/gnome/help/gnome-sound-recorder/en_GB/figures/grecord_window.png
+share/gnome/help/gnome-sound-recorder/en_GB/gnome-sound-recorder.xml
 share/gnome/help/gnome-sound-recorder/es/figures/grecord_window.png
 share/gnome/help/gnome-sound-recorder/es/gnome-sound-recorder.xml
 share/gnome/help/gnome-sound-recorder/fr/figures/grecord_window.png
@@ -171,28 +68,34 @@ share/gnome/help/gnome-sound-recorder/sv/figures/grecord_window.png
 share/gnome/help/gnome-sound-recorder/sv/gnome-sound-recorder.xml
 share/gnome/help/gnome-sound-recorder/uk/figures/grecord_window.png
 share/gnome/help/gnome-sound-recorder/uk/gnome-sound-recorder.xml
-share/gnome/help/gnome-volume-control/C/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/C/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/C/legal.xml
-share/gnome/help/gnome-volume-control/ca/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/ca/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/es/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/es/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/fr/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/fr/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/it/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/it/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/oc/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/oc/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/ru/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/ru/gnome-volume-control.xml
-share/gnome/help/gnome-volume-control/sv/figures/gnome-volume-control_window.png
-share/gnome/help/gnome-volume-control/sv/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/C/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/C/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/C/legal.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/ca/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/ca/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/de/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/de/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/es/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/es/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/fr/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/fr/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/it/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/it/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/oc/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/oc/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/ru/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/ru/gnome-volume-control.xml
+%%GSTMIX%%share/gnome/help/gnome-volume-control/sv/figures/gnome-volume-control_window.png
+%%GSTMIX%%share/gnome/help/gnome-volume-control/sv/gnome-volume-control.xml
 share/gnome/help/gstreamer-properties/C/figures/gstreamer_properties_window.png
 share/gnome/help/gstreamer-properties/C/gstreamer-properties.xml
 share/gnome/help/gstreamer-properties/C/legal.xml
 share/gnome/help/gstreamer-properties/ca/figures/gstreamer_properties_window.png
 share/gnome/help/gstreamer-properties/ca/gstreamer-properties.xml
+share/gnome/help/gstreamer-properties/de/figures/gstreamer_properties_window.png
+share/gnome/help/gstreamer-properties/de/gstreamer-properties.xml
+share/gnome/help/gstreamer-properties/en_GB/figures/gstreamer_properties_window.png
+share/gnome/help/gstreamer-properties/en_GB/gstreamer-properties.xml
 share/gnome/help/gstreamer-properties/es/figures/gstreamer_properties_window.png
 share/gnome/help/gstreamer-properties/es/gstreamer-properties.xml
 share/gnome/help/gstreamer-properties/fr/figures/gstreamer_properties_window.png
@@ -205,14 +108,31 @@ share/gnome/help/gstreamer-properties/ru/figures/gstreamer_properties_window.png
 share/gnome/help/gstreamer-properties/ru/gstreamer-properties.xml
 share/gnome/help/gstreamer-properties/sv/figures/gstreamer_properties_window.png
 share/gnome/help/gstreamer-properties/sv/gstreamer-properties.xml
+share/gnome/help/gstreamer-properties/th/figures/gstreamer_properties_window.png
+share/gnome/help/gstreamer-properties/th/gstreamer-properties.xml
 share/gstreamer-properties/glade/gstreamer-properties.glade
 share/gstreamer-properties/icons/gstreamer-properties.png
-share/icons/hicolor/48x48/apps/gnome-cd.png
-share/icons/hicolor/48x48/apps/gnome-grecord.png
-share/icons/hicolor/48x48/apps/gnome-reclevel.png
-share/icons/hicolor/48x48/apps/gnome-vumeter.png
+share/icons/hicolor/16x16/apps/gnome-sound-recorder.png
+%%GVC%%share/icons/hicolor/16x16/apps/gnome-volume-control.png
+%%GVC%%share/icons/hicolor/16x16/apps/gnome-volume-control.svg
+%%GSTMIX%%share/icons/hicolor/16x16/devices/gvc-3d-sound.png
+%%GSTMIX%%share/icons/hicolor/16x16/devices/gvc-headphones.png
+%%GSTMIX%%share/icons/hicolor/16x16/devices/gvc-line-in.png
+%%GSTMIX%%share/icons/hicolor/16x16/devices/gvc-tone.png
+%%GSTMIX%%share/icons/hicolor/16x16/status/audio-input-microphone-muted.png
+share/icons/hicolor/22x22/apps/gnome-sound-recorder.png
+%%GVC%%share/icons/hicolor/22x22/apps/gnome-volume-control.png
+%%GVC%%share/icons/hicolor/22x22/apps/gnome-volume-control.svg
+share/icons/hicolor/24x24/apps/gnome-sound-recorder.png
+%%GVC%%share/icons/hicolor/24x24/apps/gnome-volume-control.png
+share/icons/hicolor/32x32/apps/gnome-sound-recorder.png
+%%GVC%%share/icons/hicolor/32x32/apps/gnome-volume-control.png
+%%GVC%%share/icons/hicolor/32x32/apps/gnome-volume-control.svg
+share/icons/hicolor/48x48/apps/gnome-sound-recorder.png
+%%GVC%%share/icons/hicolor/48x48/apps/gnome-volume-control.png
 share/icons/hicolor/48x48/apps/gstreamer-properties.png
-share/idl/GNOME_Media_CDDBSlave2.idl
+share/icons/hicolor/scalable/apps/gnome-sound-recorder.svg
+%%GVC%%share/icons/hicolor/scalable/apps/gnome-volume-control.svg
 share/locale/am/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ar/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/as/LC_MESSAGES/gnome-media-2.0.mo
@@ -250,10 +170,12 @@ share/locale/id/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/it/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ja/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ka/LC_MESSAGES/gnome-media-2.0.mo
+share/locale/kn/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ko/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ku/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/lt/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/lv/LC_MESSAGES/gnome-media-2.0.mo
+share/locale/mai/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/mg/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/mk/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ml/LC_MESSAGES/gnome-media-2.0.mo
@@ -278,9 +200,10 @@ share/locale/sk/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/sl/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/sq/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/sr/LC_MESSAGES/gnome-media-2.0.mo
-share/locale/sr@Latn/LC_MESSAGES/gnome-media-2.0.mo
+share/locale/sr@latin/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/sv/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/ta/LC_MESSAGES/gnome-media-2.0.mo
+share/locale/te/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/th/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/tk/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/tr/LC_MESSAGES/gnome-media-2.0.mo
@@ -291,16 +214,10 @@ share/locale/xh/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/zh_CN/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-media-2.0.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-media-2.0.mo
-share/omf/gnome-cd/gnome-cd-C.omf
-share/omf/gnome-cd/gnome-cd-ca.omf
-share/omf/gnome-cd/gnome-cd-es.omf
-share/omf/gnome-cd/gnome-cd-fr.omf
-share/omf/gnome-cd/gnome-cd-it.omf
-share/omf/gnome-cd/gnome-cd-oc.omf
-share/omf/gnome-cd/gnome-cd-ru.omf
-share/omf/gnome-cd/gnome-cd-sv.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-C.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-ca.omf
+share/omf/gnome-sound-recorder/gnome-sound-recorder-de.omf
+share/omf/gnome-sound-recorder/gnome-sound-recorder-en_GB.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-es.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-fr.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-it.omf
@@ -308,79 +225,41 @@ share/omf/gnome-sound-recorder/gnome-sound-recorder-oc.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-ru.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-sv.omf
 share/omf/gnome-sound-recorder/gnome-sound-recorder-uk.omf
-share/omf/gnome-volume-control/gnome-volume-control-C.omf
-share/omf/gnome-volume-control/gnome-volume-control-ca.omf
-share/omf/gnome-volume-control/gnome-volume-control-es.omf
-share/omf/gnome-volume-control/gnome-volume-control-fr.omf
-share/omf/gnome-volume-control/gnome-volume-control-it.omf
-share/omf/gnome-volume-control/gnome-volume-control-oc.omf
-share/omf/gnome-volume-control/gnome-volume-control-ru.omf
-share/omf/gnome-volume-control/gnome-volume-control-sv.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-C.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-ca.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-de.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-es.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-fr.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-it.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-oc.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-ru.omf
+%%GSTMIX%%share/omf/gnome-volume-control/gnome-volume-control-sv.omf
 share/omf/gstreamer-properties/gstreamer-properties-C.omf
 share/omf/gstreamer-properties/gstreamer-properties-ca.omf
+share/omf/gstreamer-properties/gstreamer-properties-de.omf
+share/omf/gstreamer-properties/gstreamer-properties-en_GB.omf
 share/omf/gstreamer-properties/gstreamer-properties-es.omf
 share/omf/gstreamer-properties/gstreamer-properties-fr.omf
 share/omf/gstreamer-properties/gstreamer-properties-it.omf
 share/omf/gstreamer-properties/gstreamer-properties-oc.omf
 share/omf/gstreamer-properties/gstreamer-properties-ru.omf
 share/omf/gstreamer-properties/gstreamer-properties-sv.omf
-share/pixmaps/gnome-cd/disc.png
-share/pixmaps/gnome-cd/once.png
-share/pixmaps/gnome-cd/repeat.png
-share/pixmaps/gnome-cd/themes/None/None.theme
-share/pixmaps/gnome-cd/themes/None/bottom-left.png
-share/pixmaps/gnome-cd/themes/None/bottom-right.png
-share/pixmaps/gnome-cd/themes/None/bottom.png
-share/pixmaps/gnome-cd/themes/None/middle-left.png
-share/pixmaps/gnome-cd/themes/None/middle-right.png
-share/pixmaps/gnome-cd/themes/None/middle.png
-share/pixmaps/gnome-cd/themes/None/top-left.png
-share/pixmaps/gnome-cd/themes/None/top-right.png
-share/pixmaps/gnome-cd/themes/None/top.png
-share/pixmaps/gnome-cd/themes/lcd/bottom-left.png
-share/pixmaps/gnome-cd/themes/lcd/bottom-right.png
-share/pixmaps/gnome-cd/themes/lcd/bottom.png
-share/pixmaps/gnome-cd/themes/lcd/lcd.theme
-share/pixmaps/gnome-cd/themes/lcd/middle-left.png
-share/pixmaps/gnome-cd/themes/lcd/middle-right.png
-share/pixmaps/gnome-cd/themes/lcd/middle.png
-share/pixmaps/gnome-cd/themes/lcd/top-left.png
-share/pixmaps/gnome-cd/themes/lcd/top-right.png
-share/pixmaps/gnome-cd/themes/lcd/top.png
-share/pixmaps/gnome-cd/themes/media/bottom-left.png
-share/pixmaps/gnome-cd/themes/media/bottom-right.png
-share/pixmaps/gnome-cd/themes/media/bottom.png
-share/pixmaps/gnome-cd/themes/media/media.theme
-share/pixmaps/gnome-cd/themes/media/middle-left.png
-share/pixmaps/gnome-cd/themes/media/middle-right.png
-share/pixmaps/gnome-cd/themes/media/middle.png
-share/pixmaps/gnome-cd/themes/media/top-left.png
-share/pixmaps/gnome-cd/themes/media/top-right.png
-share/pixmaps/gnome-cd/themes/media/top.png
-share/pixmaps/gnome-cd/themes/red-lcd/bottom-left.png
-share/pixmaps/gnome-cd/themes/red-lcd/bottom-right.png
-share/pixmaps/gnome-cd/themes/red-lcd/bottom.png
-share/pixmaps/gnome-cd/themes/red-lcd/middle-left.png
-share/pixmaps/gnome-cd/themes/red-lcd/middle-right.png
-share/pixmaps/gnome-cd/themes/red-lcd/middle.png
-share/pixmaps/gnome-cd/themes/red-lcd/red-lcd.theme
-share/pixmaps/gnome-cd/themes/red-lcd/top-left.png
-share/pixmaps/gnome-cd/themes/red-lcd/top-right.png
-share/pixmaps/gnome-cd/themes/red-lcd/top.png
-share/pixmaps/gnome-cd/track.png
-@dirrm share/pixmaps/gnome-cd/themes/red-lcd
-@dirrm share/pixmaps/gnome-cd/themes/media
-@dirrm share/pixmaps/gnome-cd/themes/lcd
-@dirrm share/pixmaps/gnome-cd/themes/None
-@dirrm share/pixmaps/gnome-cd/themes
-@dirrm share/pixmaps/gnome-cd
+share/omf/gstreamer-properties/gstreamer-properties-th.omf
+share/sounds/gnome/default/alerts/bark.ogg
+share/sounds/gnome/default/alerts/drip.ogg
+share/sounds/gnome/default/alerts/glass.ogg
+share/sounds/gnome/default/alerts/sonar.ogg
+@dirrm share/sounds/gnome/default/alerts
+@dirrm share/sounds/gnome/default
+@dirrm share/sounds/gnome
+@dirrm share/omf/gstreamer-properties
+%%GSTMIX%%@dirrm share/omf/gnome-volume-control
+@dirrm share/omf/gnome-sound-recorder
 @dirrm share/gstreamer-properties/icons
 @dirrm share/gstreamer-properties/glade
 @dirrm share/gstreamer-properties
-@dirrm share/omf/gstreamer-properties
-@dirrm share/omf/gnome-volume-control
-@dirrm share/omf/gnome-sound-recorder
-@dirrm share/omf/gnome-cd
+@dirrm share/gnome/help/gstreamer-properties/th/figures
+@dirrm share/gnome/help/gstreamer-properties/th
 @dirrm share/gnome/help/gstreamer-properties/sv/figures
 @dirrm share/gnome/help/gstreamer-properties/sv
 @dirrm share/gnome/help/gstreamer-properties/ru/figures
@@ -393,28 +272,34 @@ share/pixmaps/gnome-cd/track.png
 @dirrm share/gnome/help/gstreamer-properties/fr
 @dirrm share/gnome/help/gstreamer-properties/es/figures
 @dirrm share/gnome/help/gstreamer-properties/es
+@dirrm share/gnome/help/gstreamer-properties/en_GB/figures
+@dirrm share/gnome/help/gstreamer-properties/en_GB
+@dirrm share/gnome/help/gstreamer-properties/de/figures
+@dirrm share/gnome/help/gstreamer-properties/de
 @dirrm share/gnome/help/gstreamer-properties/ca/figures
 @dirrm share/gnome/help/gstreamer-properties/ca
 @dirrm share/gnome/help/gstreamer-properties/C/figures
 @dirrm share/gnome/help/gstreamer-properties/C
 @dirrm share/gnome/help/gstreamer-properties
-@dirrm share/gnome/help/gnome-volume-control/sv/figures
-@dirrm share/gnome/help/gnome-volume-control/sv
-@dirrm share/gnome/help/gnome-volume-control/ru/figures
-@dirrm share/gnome/help/gnome-volume-control/ru
-@dirrm share/gnome/help/gnome-volume-control/oc/figures
-@dirrm share/gnome/help/gnome-volume-control/oc
-@dirrm share/gnome/help/gnome-volume-control/it/figures
-@dirrm share/gnome/help/gnome-volume-control/it
-@dirrm share/gnome/help/gnome-volume-control/fr/figures
-@dirrm share/gnome/help/gnome-volume-control/fr
-@dirrm share/gnome/help/gnome-volume-control/es/figures
-@dirrm share/gnome/help/gnome-volume-control/es
-@dirrm share/gnome/help/gnome-volume-control/ca/figures
-@dirrm share/gnome/help/gnome-volume-control/ca
-@dirrm share/gnome/help/gnome-volume-control/C/figures
-@dirrm share/gnome/help/gnome-volume-control/C
-@dirrm share/gnome/help/gnome-volume-control
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/sv/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/sv
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/ru/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/ru
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/oc/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/oc
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/it/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/it
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/fr/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/fr
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/es/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/es
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/de/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/de
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/ca/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/ca
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/C/figures
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control/C
+%%GSTMIX%%@dirrm share/gnome/help/gnome-volume-control
 @dirrm share/gnome/help/gnome-sound-recorder/uk/figures
 @dirrm share/gnome/help/gnome-sound-recorder/uk
 @dirrm share/gnome/help/gnome-sound-recorder/sv/figures
@@ -429,41 +314,44 @@ share/pixmaps/gnome-cd/track.png
 @dirrm share/gnome/help/gnome-sound-recorder/fr
 @dirrm share/gnome/help/gnome-sound-recorder/es/figures
 @dirrm share/gnome/help/gnome-sound-recorder/es
+@dirrm share/gnome/help/gnome-sound-recorder/en_GB/figures
+@dirrm share/gnome/help/gnome-sound-recorder/en_GB
+@dirrm share/gnome/help/gnome-sound-recorder/de/figures
+@dirrm share/gnome/help/gnome-sound-recorder/de
 @dirrm share/gnome/help/gnome-sound-recorder/ca/figures
 @dirrm share/gnome/help/gnome-sound-recorder/ca
 @dirrm share/gnome/help/gnome-sound-recorder/C/figures
 @dirrm share/gnome/help/gnome-sound-recorder/C
 @dirrm share/gnome/help/gnome-sound-recorder
-@dirrm share/gnome/help/gnome-cd/sv/figures
-@dirrm share/gnome/help/gnome-cd/sv
-@dirrm share/gnome/help/gnome-cd/ru/figures
-@dirrm share/gnome/help/gnome-cd/ru
-@dirrm share/gnome/help/gnome-cd/oc/figures
-@dirrm share/gnome/help/gnome-cd/oc
-@dirrm share/gnome/help/gnome-cd/it/figures
-@dirrm share/gnome/help/gnome-cd/it
-@dirrm share/gnome/help/gnome-cd/fr/figures
-@dirrm share/gnome/help/gnome-cd/fr
-@dirrm share/gnome/help/gnome-cd/es/figures
-@dirrm share/gnome/help/gnome-cd/es
-@dirrm share/gnome/help/gnome-cd/ca/figures
-@dirrm share/gnome/help/gnome-cd/ca
-@dirrm share/gnome/help/gnome-cd/C/figures
-@dirrm share/gnome/help/gnome-cd/C
-@dirrm share/gnome/help/gnome-cd
 @dirrm share/gnome-sound-recorder/ui
 @dirrm share/gnome-sound-recorder
-@dirrm %%DATADIR%%/pixmaps
+@dirrm %%DATADIR%%/sounds
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/scalable/status
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/scalable
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/32x32/status
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/32x32
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/24x24/status
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/24x24
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/22x22/status
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/22x22
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/16x16/status
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor/16x16
+%%GVC%%@dirrm %%DATADIR%%/icons/hicolor
+%%GVC%%@dirrm %%DATADIR%%/icons
+%%GSTMIX%%@dirrm %%DATADIR%%/pixmaps
 @dirrm %%DATADIR%%/glade
 @dirrm %%DATADIR%%
 @dirrmtry share/applications
 @dirrm include/gnome-media/profiles
 @dirrm include/gnome-media
-@dirrm include/cddb-slave2
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
 @dirrmtry share/locale/xh/LC_MESSAGES
 @dirrmtry share/locale/xh
+@dirrmtry share/locale/te/LC_MESSAGES
+@dirrmtry share/locale/te
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
 @dirrmtry share/locale/si/LC_MESSAGES
 @dirrmtry share/locale/si
 @dirrmtry share/locale/rw/LC_MESSAGES
@@ -474,6 +362,8 @@ share/pixmaps/gnome-cd/track.png
 @dirrmtry share/locale/mr
 @dirrmtry share/locale/mg/LC_MESSAGES
 @dirrmtry share/locale/mg
+@dirrmtry share/locale/mai/LC_MESSAGES
+@dirrmtry share/locale/mai
 @dirrmtry share/locale/ku/LC_MESSAGES
 @dirrmtry share/locale/ku
 @dirrmtry share/locale/dz/LC_MESSAGES
