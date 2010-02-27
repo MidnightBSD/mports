@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.4 2010/02/27 22:18:33 laffer1 Exp $
 
 PORTNAME=	ffmpeg
 PORTVERSION=	0.5
@@ -295,7 +295,7 @@ post-patch:
 # faad compat
 	@${REINPLACE_CMD} -e 's|faacD|NeAACD|' ${WRKSRC}/libavcodec/libfaad.c
 # {C,LD}FLAGS safeness
-	@${REINPLACE_CMD} -e 's|$$(LIBDIR)/pkgconfig|${PREFIX}/libdata/pkgconfig|' \
+	@${REINPLACE_CMD} -e 's|$$(LIBDIR)/pkgconfig|${FAKE_DESTDIR}${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/subdir.mak
 	@${REINPLACE_CMD} -e 's|/etc/ffserver.conf|${PREFIX}/etc/ffserver.conf|' \
 		${WRKSRC}/ffserver.c
