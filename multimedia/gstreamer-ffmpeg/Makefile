@@ -1,13 +1,7 @@
-# New ports collection makefile for:	gstreamer ffmpeg
-# Date created:		Thu Feb 26 20:10:39 CET 2004
-# Whom:			Koop Mast <kwm@rainbow-runner.nl>
-#
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.1 2007/11/24 03:08:17 laffer1 Exp $
-#
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.2 2009/05/27 21:26:30 crash Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.2
-PORTREVISION=	1
+PORTVERSION=	0.10.8
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -16,6 +10,7 @@ DISTNAME=	gst-ffmpeg-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 LICENSE=        gpl2
+
 CFLAGS:=	${CFLAGS} -O2
 USE_XLIB=	yes
 USE_BZIP2=	yes
@@ -24,6 +19,9 @@ USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
+#CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd6.1 \
+#	  --host=${ARCH}-portbld-freebsd6.1 \
+#		  --target=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	PKG_CONFIG=${PKG_CONFIG} \
 		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} -fno-force-addr" \
@@ -41,5 +39,6 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|make|${GMAKE}|' \
 		${WRKSRC}/gst-libs/ext/Makefile.in
-
+	${CP} ${FILESDIR}/config.sub ${FILESDIR}/config.guess \
+		${WRKSRC}
 .include <bsd.port.post.mk>
