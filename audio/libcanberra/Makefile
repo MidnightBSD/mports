@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.1 2010/02/27 16:11:42 laffer1 Exp $
 
 PORTNAME=	libcanberra
 PORTVERSION=	0.10
@@ -7,6 +7,7 @@ MASTER_SITES=	http://0pointer.de/lennart/projects/libcanberra/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Implementation of the Freedesktop sound theme spec
+LICENSE=	lgpl
 
 LIB_DEPENDS=	vorbisfile.6:${PORTSDIR}/audio/libvorbis
 
