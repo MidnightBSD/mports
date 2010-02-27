@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.5 2009/08/16 02:35:15 laffer1 Exp $
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.6 2010/02/27 15:42:26 laffer1 Exp $
 
 PORTNAME=	mpg123
 PORTVERSION=	1.9.1
@@ -13,6 +13,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libltdl
 USE_LDCONFIG=	yes
+MAKE_JOBS_SAFE=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-audio=oss \
