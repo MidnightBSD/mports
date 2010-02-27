@@ -1,13 +1,7 @@
-# New ports collection makefile for:	mpeglib_artsplug
-# Date created:				July 09 2004
-# Whom:					Michael Nottebrock <lofi@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.4 2008/03/24 19:38:19 ctriv Exp $
-# $FreeBSD: ports/audio/akode-plugins-xiph/Makefile,v 1.14 2006/09/17 19:59:22 lofi Exp $
-#
+# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.5 2009/09/20 00:14:36 laffer1 Exp $
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
-PORTVERSION=    2.0.1
+PORTVERSION=    2.0.2
 PORTREVISION=	1
 PORTEPOCH=  1
 CATEGORIES= audio kde
@@ -30,8 +24,7 @@ CONFLICTS=	kdemultimedia-3.[1-3]*
 PLUGIN=		xiph_decoder
 PORTNAMESUFX=	${PLUGIN:S/_sink//:S/_decoder//:S/src_//}
 
-USE_AUTOTOOLS=	libltdl
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libltdl:22 libtool:22
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}
