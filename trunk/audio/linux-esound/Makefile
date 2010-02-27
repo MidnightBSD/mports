@@ -2,7 +2,7 @@
 # Date created:		01/09/18
 # Whom:                 taoka@FreeBSD.org
 #
-# $MidnightBSD: mports/audio/linux-esound/Makefile,v 1.1 2007/05/03 06:10:57 laffer1 Exp $
+# $MidnightBSD: mports/audio/linux-esound/Makefile,v 1.2 2008/04/10 04:52:07 ctriv Exp $
 # $FreeBSD: ports/audio/linux-esound/Makefile,v 1.15 2006/11/06 20:58:50 bsam Exp $
 #
 
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${LINUXBASE}/usr/lib/libaudiofile.so.0:${PORTSDIR}/audio/linux-liba
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	4
-INSTALLS_SHLIB=	yes
+USE_LDCONFIG=	yes
 BRANDELF_DIRS=	usr/bin
 PLIST=		pkg-plist.${LINUX_RPM_ARCH}
 PLIST_SUB+=	ESOUND_VERSION="${PORTVERSION}"
