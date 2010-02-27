@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/multimedia/ffmpeg/files/ffserver.in,v 1.1 2007/05/25 17:07:36 ahze Exp $
+# $FreeBSD: ports/multimedia/ffmpeg/files/ffserver.in,v 1.2 2008/09/07 03:31:58 ahze Exp $
 #
 
 # PROVIDE: ffserver
@@ -19,7 +19,7 @@ ffserver_enable="${ffserver_enable-NO}"
 name=ffserver
 rcvar=`set_rcvar`
 
-command=%%PREFIX%%/bin/${name}
+command="%%PREFIX%%/bin/${name} &"
 required_files=%%PREFIX%%/etc/ffserver.conf
 
 load_rc_config ${name}
