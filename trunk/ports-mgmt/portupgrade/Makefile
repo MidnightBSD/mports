@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.11 2009/06/04 01:29:00 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.12 2009/08/24 18:14:03 laffer1 Exp $
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.4.6
 PORTREVISION=	3
 PORTEPOCH=	2
 CATEGORIES=	ports-mgmt
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
-		http://sunner.elcomnet.ru/~sem/
+MASTER_SITES=	SF/${PORTNAME}/pkgtools/${PORTVERSION}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 DISTNAME=	pkgtools-${DISTVERSION}
 
