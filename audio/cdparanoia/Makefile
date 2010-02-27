@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.4 2008/03/24 19:47:10 ctriv Exp $
+# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.5 2009/07/12 15:55:10 laffer1 Exp $
 
 PORTNAME=	cdparanoia
 PORTVERSION=	3.9.8
@@ -15,6 +15,7 @@ LICENSE=	gpl2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 FAKE_OPTS=	prefixhack
 MAN1=		cdparanoia.1
