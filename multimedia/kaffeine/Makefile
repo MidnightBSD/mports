@@ -2,14 +2,13 @@
 # Date created:				Sept 25, 2008
 # Whom:					laffer1
 #
-# $MidnightBSD: mports/multimedia/kaffeine/Makefile,v 1.2 2009/05/14 23:13:09 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/kaffeine/Makefile,v 1.3 2009/09/20 01:57:15 laffer1 Exp $
 
 PORTNAME=	kaffeine
 PORTVERSION=	0.8.7
 PORTREVISION=	1
 CATEGORIES=	multimedia kde
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	kaffeine
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A xine-base multimedia player
