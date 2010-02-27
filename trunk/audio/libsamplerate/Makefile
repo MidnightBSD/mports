@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libsamplerate
-# Date created:				2 February 2003
-# Whom:			<dmagda+libsamplerate@ee.ryerson.ca>
-#
 # $FreeBSD: ports/audio/libsamplerate/Makefile,v 1.15 2006/06/09 18:00:28 ahze Exp $
-# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.3 2008/04/10 03:55:06 ctriv Exp $
-#
+# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.4 2009/09/20 00:38:47 laffer1 Exp $
 
 PORTNAME=	libsamplerate
-PORTVERSION=	0.1.2
-PORTREVISION=	2
+PORTVERSION=	0.1.7
 CATEGORIES=	audio
 MASTER_SITES=	http://www.mega-nerd.com/SRC/
 
@@ -17,7 +11,7 @@ COMMENT=	Secret Rabbit Code: a Sample Rate Converter for audio
 LICENSE=	gpl2
 
 LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile \
-		fftw3.4:${PORTSDIR}/math/fftw3
+		fftw3.5:${PORTSDIR}/math/fftw3
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_AUTOTOOLS=	libtool:22
