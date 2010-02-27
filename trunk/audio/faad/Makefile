@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/audio/faad/Makefile,v 1.4 2009/06/06 21:07:18 laffer1 Exp $
+# $MidnightBSD: mports/audio/faad/Makefile,v 1.5 2009/09/20 00:20:58 laffer1 Exp $
 
 PORTNAME=	faad2
 PORTVERSION=	2.7
 PORTEPOCH=	1
 CATEGORIES=	audio
-MASTER_SITES=	SFE/faac
+MASTER_SITES=	SF/faac/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPEG-2 and MPEG-4 AAC audio decoder
