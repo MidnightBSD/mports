@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/audio/vorbis-tools/Makefile,v 1.1 2009/01/04 19:35:44 ctriv Exp $
+# $MidnightBSD: mports/audio/vorbis-tools/Makefile,v 1.2 2009/04/13 18:06:34 laffer1 Exp $
 #
 
 PORTNAME=	vorbis-tools
@@ -27,6 +27,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+MAKE_JOBS_SAFE=	yes
 
 MAN1=		ogg123.1 oggdec.1 oggenc.1 ogginfo.1 vcut.1 vorbiscomment.1
 
