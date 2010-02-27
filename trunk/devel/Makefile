@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.311 2010/02/05 01:27:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.312 2010/02/27 21:14:43 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -93,6 +93,7 @@
     SUBDIR += gorm
     SUBDIR += gperf
     SUBDIR += gstreamer-plugins-gconf
+    SUBDIR += gstreamer-plugins-gio
     SUBDIR += gstreamer-plugins-gnomevfs
     SUBDIR += gvfs
     SUBDIR += highlighterkit
