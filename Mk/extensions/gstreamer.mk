@@ -6,7 +6,7 @@
 # Created by: Lucas Holt <luke@midnightbsd.org>
 # Date:		Nov 23 2007
 #
-# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.2 2010/01/01 17:20:37 laffer1 Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 
@@ -57,7 +57,7 @@ _USE_GSTREAMER10_ALL=	a52dec aalib annodex bz2 cairo cdaudio cdparanoia dts \
 			gnonlin gsm hal ivorbis jack jpeg ladspa lame \
 			libcaca libmms libpng libvisual mm mp3 mpeg2enc mpeg2dec \
 			musepack nas neon ogg pango pulse python sdl shout2 sidplay \
-			sndfile spc soundtouch soup speex swfdec taglib \
+			sndfile spc soundtouch soup speex taglib \
 			theora vorbis wavpack x264 xvid
 
 # other plugins
@@ -132,7 +132,6 @@ ogg_DEPENDS=	audio/gstreamer-plugins-ogg
 polyp_DEPENDS=	audio/gstreamer-plugins-polyp
 
 pulse_DEPENDS=	audio/gstreamer-plugins-pulse
-pulse_GST_VERSION=	0.9.3
 
 shout_DEPENDS=	audio/gstreamer-plugins-shout
 
@@ -185,8 +184,6 @@ libmng_DEPENDS=	graphics/gstreamer-plugins-libmng
 libpng_DEPENDS=	graphics/gstreamer-plugins-libpng
 
 libvisual_DEPENDS=	graphics/gstreamer-plugins-libvisual
-
-swfdec_DEPENDS=	graphics/gstreamer-plugins-swfdec
 
 # Multimedia Plugins Section
 bad_DEPENDS=	multimedia/gstreamer-plugins-bad
