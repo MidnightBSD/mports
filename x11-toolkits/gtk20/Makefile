@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.20 2009/09/20 03:46:16 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.21 2009/10/13 23:35:34 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.16.6
@@ -24,7 +24,7 @@ LATEST_LINK=	gtk20
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	pango:${PORTSDIR}/x11-toolkits/pango \
+LIB_DEPENDS=	\
 		png.5:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.10:${PORTSDIR}/graphics/jpeg \
