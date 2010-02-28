@@ -211,6 +211,9 @@ bin/tickadj
 %%EXAMPLESDIR%%/beauregard.conf
 %%EXAMPLESDIR%%/grundoon.conf
 %%EXAMPLESDIR%%/malarky.conf
+@unexec if cmp -s %D/%%EXAMPLESDIR%%/ntp.conf.sample %D/etc/ntp.conf; then rm -f %D/etc/ntp.conf; fi
+%%EXAMPLESDIR%%/ntp.conf.sample
+@exec if [ ! -f %D/etc/ntp.conf ]; then cp -p %D/%%EXAMPLESDIR%%/ntp.conf.sample %D/etc/ntp.conf; fi
 %%EXAMPLESDIR%%/pogo.conf
 %%EXAMPLESDIR%%/rackety.conf
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/scripts
