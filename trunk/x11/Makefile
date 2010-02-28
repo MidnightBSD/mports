@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.82 2010/01/21 01:19:49 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.83 2010/01/21 01:22:34 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -32,6 +32,7 @@ COMMENT = Ports to support the X window system
     SUBDIR += gnome-libs
     SUBDIR += gnome-menus
     SUBDIR += gnome-panel
+    SUBDIR += gnome-screensaver
     SUBDIR += gnome-session
     SUBDIR += gnome-terminal
     SUBDIR += gnome2
