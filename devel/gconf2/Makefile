@@ -4,14 +4,14 @@
 #
 # $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
 #   $MCom: ports/devel/gconf2/Makefile,v 1.72 2006/04/13 07:52:32 bland Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.5 2009/09/20 01:23:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.6 2009/10/19 19:11:55 crash Exp $
 #
 
 PORTNAME=	gconf2
 PORTVERSION=	2.26.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
+MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	GConf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
@@ -43,7 +43,7 @@ OPTIONS=        LDAP "Enable LDAP support" off
 
 .if defined(WITH_LDAP)
 USE_OPENLDAP=	yes
-
+CONFIGURE_ARGS+=--with-openldap
 PLIST_SUB+=	LDAP=""
 .else
 CONFIGURE_ARGS+=--without-openldap
