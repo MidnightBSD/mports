@@ -2,7 +2,7 @@
 # Date created:			Feb 14, 2005
 # Whom:				janos.mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.3 2008/05/21 21:22:59 crash Exp $
+# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.4 2008/06/25 15:14:54 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/blogbench/Makefile,v 1.1 2005/02/14 21:04:04 pav Exp $
 #
 
@@ -10,7 +10,8 @@ PORTNAME=	blogbench
 PORTVERSION=	1.0
 PORTREVISION=	1
 CATEGORIES=	benchmarks
-MASTER_SITES=	ftp://ftp.blogbench.pureftpd.org/blogbench/
+MASTER_SITES=	http://download.pureftpd.org/pub/blogbench/ \
+		ftp://ftp.pureftpd.org/pub/pure-ftpd/misc/blogbench/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Performance Test of Filesystem I/O
