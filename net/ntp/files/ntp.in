@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # $FreeBSD: src/etc/rc.d/ntpd,v 1.18 2009/05/30 21:51:38 dougb Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/net/ntp/files/ntp.in,v 1.1 2010/02/28 15:47:27 laffer1 Exp $
 
 # PROVIDE: ntp
 # REQUIRE: DAEMON ntpdate cleanvar devfs
@@ -9,6 +9,9 @@
 # KEYWORD: nojail shutdown
 
 ntp_enable="${ntp_enable-NO}"
+ntp_config="${ntp_config-%%PREFIX%%/etc/ntp.conf}"
+ntp_flags="${ntp_flags-}"
+ntp_sync_on_start="${ntp_sync_on_start-NO}"
 
 . %%RC_SUBR%%
 
