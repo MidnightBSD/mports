@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.13 2009/09/20 01:28:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.14 2009/10/13 03:35:23 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
@@ -33,6 +33,8 @@ USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
 USE_GMAKE=	yes
 USE_PYTHON=	yes
 USE_PERL5=	yes
+MAKE_JOBS_SAFE=	yes
+
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
