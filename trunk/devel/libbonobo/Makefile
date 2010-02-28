@@ -2,7 +2,7 @@
 # Date Created:			14 February 2002
 # Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.5 2008/08/21 18:09:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.6 2009/10/18 18:45:45 crash Exp $
 # $FreeBSD: ports/devel/libbonobo/Makefile,v 1.54 2007/03/19 05:13:31 marcus Exp $
 #    $MCom: ports/devel/libbonobo/Makefile,v 1.58 2007/03/12 17:59:36 marcus Exp $
 #
@@ -11,8 +11,7 @@ PORTNAME=	libbonobo
 PORTVERSION=	2.24.1
 PORTREVISION?=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
