@@ -2,7 +2,7 @@
 # Date created:				30 April 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/pkg-config/Makefile,v 1.4 2008/04/29 16:48:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/pkg-config/Makefile,v 1.5 2009/03/23 01:48:19 ctriv Exp $
 # $FreeBSD: ports/devel/pkg-config/Makefile,v 1.48 2006/09/11 21:34:02 marcus Exp $
 #   $MCom: ports/devel/pkgconfig/Makefile,v 1.6 2005/10/14 20:39:57 adamw Exp $
 #
@@ -18,6 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A utility to retrieve information about installed libraries
 LICENSE=	gpl2
 
+USE_CSTD=	gnu89
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
