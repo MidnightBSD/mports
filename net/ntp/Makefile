@@ -2,13 +2,13 @@
 # Date created:		Di   5 Mai 1998 21:31:03 CEST
 # Whom:			andreas
 #
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.7 2010/02/28 16:02:11 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.8 2010/02/28 16:29:49 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 #
 
 PORTNAME=	ntp
 PORTVERSION=	4.2.6p1.r5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
 		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
