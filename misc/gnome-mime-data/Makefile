@@ -2,7 +2,7 @@
 # Date created:				22 January 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/gnome-mime-data/Makefile,v 1.2 2008/03/13 03:22:07 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-mime-data/Makefile,v 1.3 2008/09/21 20:04:39 laffer1 Exp $
 # $FreeBSD: ports/misc/gnome-mime-data/Makefile,v 1.37 2007/04/03 20:38:53 marcus Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	gnome-mime-data
 PORTVERSION=	2.18.0
 PORTREVISION=	1
 CATEGORIES=	misc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DISTNAME=	gnome-mime-data-${PORTVERSION}
 DIST_SUBDIR=	gnome
 
