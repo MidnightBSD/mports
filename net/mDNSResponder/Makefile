@@ -4,13 +4,13 @@
 # Whom:				  Alfred Perlstein <alfred@freebsd.org>
 #
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.2 2007/04/22 18:31:01 ctriv Exp $
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.3 2008/05/24 06:17:03 laffer1 Exp $
 #
 
 PORTNAME=	mDNSResponder
 PORTVERSION=	108
 CATEGORIES=	net dns
-MASTER_SITES=	http://darwinsource.opendarwin.org/tarballs/apsl/
+MASTER_SITES=	http://www.opensource.apple.com/darwinsource/tarballs/other/
 DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
