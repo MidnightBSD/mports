@@ -1,38 +1,30 @@
-#
-# $MidnightBSD: ports/databases/akonadi/Makefile,v 1.1 2008/08/09 16:52:06 miwi Exp $
+# $MidnightBSD$
 
 PORTNAME=	akonadi
-PORTVERSION=	1.0.0
+PORTVERSION=	1.2.1
 CATEGORIES=	databases kde ipv6
-MASTER_SITES=	http://akonadi.omat.nl/
+MASTER_SITES=	http://download.akonadi-project.org/
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Storage server for kdepim
 LICENSE=	lgpl
 
-BUILD_DEPENDS+=	xsltproc:${PORTSDIR}/textproc/libxslt \
-		${LOCALBASE}/lib/qt4/plugins/sqldrivers/libqsqlmysql.so:${PORTSDIR}/databases/qt4-mysql-plugin \
+LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost \
+		soprano.4:${PORTSDIR}/textproc/soprano
+BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt \
 		${LOCALBASE}/bin/mysqld_safe:${PORTSDIR}/databases/mysql${MYSQL_VER}-server
-RUN_DEPENDS+=	update-mime-database:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/bin/mysqld_safe:${PORTSDIR}/databases/mysql${MYSQL_VER}-server
+RUN_DEPENDS=	${QT_PREFIX}/lib/qt4/plugins/sqldrivers/libqsqlmysql.so:${PORTSDIR}/databases/qt4-mysql-plugin
 
 USE_BZIP2=	yes
 USE_QT_VER=	4
-USE_XORG=	x11
-QT_COMPONENTS=	corelib network qtestlib moc rcc uic qmake dbus
-USE_MYSQL=	yes
+QT_COMPONENTS=	corelib network qtestlib dbus sql \
+		qmake_build moc_build rcc_build uic_build
+USE_MYSQL=	server
 USE_KDE4=	kdeprefix kdehier automoc4 sharedmime
 KDE4_BUILDENV=	yes
-PATCH_WRKSRC=	${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-post-extract:
-	${MKDIR} ${WRKSRC}
 
 post-patch:
-#fix finding automoc when PREFIX is not matched KDE4_PREFIX
-	${REINPLACE_CMD} -e 's|NO_DEFAULT_PATH|${KDE4_PREFIX} NO_DEFAULT_PATH|' \
-		${WRKSRC}/../cmake/modules/FindAutomoc4.cmake
 	${REINPLACE_CMD} -e '/akonadi.pc/s|pkgconfig|../libdata/pkgconfig|' \
 		${PATCH_WRKSRC}/CMakeLists.txt
 	${CP} ${PATCH_WRKSRC}/server/src/storage/entities-header.xsl \
@@ -48,10 +40,13 @@ post-patch:
 		${REINPLACE_CMD} -e 's|include "entities.h"|include <entitiesKDE4.h>|g' \
 				-e 's|include <entities.h>|include <entitiesKDE4.h>|g'
 .endfor
-	${REINPLACE_CMD} -e 's| MYSQLD_EXECUTABLE mysqld | MYSQLD_EXECUTABLE mysqld_safe /usr/local/bin |g' \
+	${REINPLACE_CMD} -e '/find_program/s|mysqld|mysqld_safe ${LOCALBASE}/bin|g' \
 		${PATCH_WRKSRC}/server/CMakeLists.txt
 	#prevent updating mime during build
 	${REINPLACE_CMD} -e '/^update_xdg_mimetypes/d; /SharedMimeInfo/d' \
 		${PATCH_WRKSRC}/CMakeLists.txt
+
+post-install:
+	@-update-mime-database ${KDE4_PREFIX}/share/mime
 
 .include <bsd.port.mk>
