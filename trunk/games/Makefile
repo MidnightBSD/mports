@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/Makefile,v 1.32 2008/12/14 04:40:53 ctriv Exp $
+# $MidnightBSD: mports/games/Makefile,v 1.33 2009/11/26 22:15:29 laffer1 Exp $
 #
 
     COMMENT = Games
@@ -15,6 +15,7 @@
     SUBDIR += fotaq
     SUBDIR += ggz-client-libs
     SUBDIR += goonies
+    SUBDIR += gridlock
     SUBDIR += gtkpool
     SUBDIR += gtypist
     SUBDIR += kdegames3
