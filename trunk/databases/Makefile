@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.74 2009/12/30 19:22:41 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.75 2010/01/01 03:46:25 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -27,6 +27,7 @@
     SUBDIR += gdl2
     SUBDIR += gnats4
     SUBDIR += kmysqladmin
+    SUBDIR += libgda4
     SUBDIR += libiodbc
     SUBDIR += libmemcache
     SUBDIR += memcached
