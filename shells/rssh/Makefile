@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/rssh/Makefile,v 1.3 2009/12/28 20:37:06 laffer1 Exp $
+# $MidnightBSD: mports/shells/rssh/Makefile,v 1.4 2009/12/28 20:38:05 laffer1 Exp $
 
 PORTNAME=	rssh
 PORTVERSION=	2.3.2
@@ -27,5 +27,8 @@ CONFIGURE_ARGS+=--with-rdist=${LOCALBASE}/bin/rdist6
 post-patch:
 	@${REINPLACE_CMD} -E -e 's,(\$$\(DESTDIR\)\$$\(sysconfdir\)/\$$\$$f),\1.dist,g' \
 		${WRKSRC}/Makefile.in
+
+post-install:
+	${MV} ${PREFIX}/etc/rssh.conf.dist.dist ${PREFIX}/etc/rssh.conf.dist
 
 .include <bsd.port.post.mk>
