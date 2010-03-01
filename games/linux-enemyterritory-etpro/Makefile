@@ -1,10 +1,4 @@
-# New ports collection makefile for:	etpro
-# Date created:				7 May 2006
-# Whom:					alepulver
-#
-# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.3 2008/03/22 05:23:48 laffer1 Exp $
-# $FreeBSD: ports/games/linux-enemyterritory-etpro/Makefile,v 1.2 2006/05/31 01:43:25 alepulver Exp $
-#
+# $MidnightBSD: mports/games/linux-enemyterritory-etpro/Makefile,v 1.4 2008/03/22 16:45:42 laffer1 Exp $
 
 PORTNAME=	etpro
 PORTVERSION=	3.2.6
