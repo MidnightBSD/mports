@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.15 2009/12/28 22:33:07 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.16 2010/02/26 01:01:40 laffer1 Exp $
 
 PORTNAME=		bash
 PATCHLEVEL=		37
@@ -32,6 +32,7 @@ OPTIONS=	INCLUDED_FAQ	 "Install the included FAQ." Off \
 		HELP		 "Install builtin help." On \
 		HELPFILES        "Install descrete helpfiles." On
 
+USE_AUTOTOOLS=	autoconf:262
 USE_BISON=	build
 
 .include <bsd.port.pre.mk>
