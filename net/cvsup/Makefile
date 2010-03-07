@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.4 2009/03/11 23:11:19 laffer1 Exp $
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.5 2009/09/23 02:19:49 laffer1 Exp $
 
 PORTNAME=	cvsup
 PORTVERSION?=	16.1h
@@ -13,7 +13,7 @@ COMMENT?=	General network file distribution system optimized for CVS (GUI versio
 
 CONFLICTS?=	cvsup-without-gui-[0-9]*
 ONLY_FOR_ARCHS=	amd64 i386 sparc64
-USE_RC_SUBR=	cvsupd.sh
+USE_RC_SUBR=	cvsupd
 
 .include <bsd.port.pre.mk>
 
