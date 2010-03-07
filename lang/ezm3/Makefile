@@ -3,12 +3,12 @@
 # Whom:			John Polstra <jdp@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.6 2008/10/02 20:35:37 laffer1 Exp $
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.7 2008/10/16 19:20:52 laffer1 Exp $
 #
 
 PORTNAME=	ezm3
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	ftp://ftp.FreeBSD.org/pub/FreeBSD/development/CVSup/ezm3/:src \
 		http://people.freebsd.org/~peter/ezm3-amd64/:amdb \
