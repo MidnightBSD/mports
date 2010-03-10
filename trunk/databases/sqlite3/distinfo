@@ -1,3 +1,4 @@
-MD5 (sqlite-3.6.10.tar.gz) = a03bdc86df4025b6881d58557e4b5bd3
-SHA256 (sqlite-3.6.10.tar.gz) = 2157db34aa0aace8d5a1a5c723280f2840b3383498a225cab36014f0a45faa01
-SIZE (sqlite-3.6.10.tar.gz) = 2763053
+MD5 (sqlite-3.6.12.tar.gz) = 13600865a69a3f54d2ac42a0d6b743db
+SHA256 (sqlite-3.6.12.tar.gz) = 96c23c1e90808f06e4000e1e325f3547da1c38b164a237aab1184fa0da329201
+RMD160 (sqlite-3.6.12.tar.gz) = c455dd7f5dac3ab75b1c0e58ca9a766e7fb19378
+SIZE (sqlite-3.6.12.tar.gz) = 2769510
