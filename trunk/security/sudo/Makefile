@@ -2,28 +2,26 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.9 2009/03/04 20:27:10 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.10 2009/12/31 17:47:16 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.7.0
+PORTVERSION=	1.7.2.5
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://obsd.isc.org/pub/sudo/ \
 		ftp://ftp.uwsg.indiana.edu/pub/security/sudo/ \
 		ftp://boulder.tele.dk/pub/sudo/ \
 		ftp://core.ring.gr.jp/pub/misc/sudo/ \
-		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	tmclaugh/sudo
-                                   
-DISTNAME=	${PORTNAME}-1.7.0
+		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/
+DISTNAME=	${PORTNAME}-1.7.2p5
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
 LICENSE=	other
 
+MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
@@ -38,6 +36,9 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 OPTIONS=	LDAP	"With LDAP support" off \
 		INSULTS "With all insults" off \
 		SHELL_SETS_HOME "Set HOME env to target user in shell mode" off
+
+LOGFAC?=	local2
+CONFIGURE_ARGS+=--with-logfac=${LOGFAC}
 
 .include <bsd.port.pre.mk>
 
@@ -71,7 +72,6 @@ MAN8=		sudo.8 visudo.8
 MLINKS=		sudo.8 sudoedit.8
 
 post-install:
-#	${RM} ${PREFIX}/libexec/sudo_noexec.la
 	${INSTALL_DATA} ${WRKSRC}/sudoers ${PREFIX}/etc/sudoers.default
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
 
@@ -82,6 +82,7 @@ post-install:
 
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/TROUBLESHOOTING ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/UPGRADE ${DOCSDIR}
