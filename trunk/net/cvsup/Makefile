@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/cvsup/Makefile,v 1.5 2009/09/23 02:19:49 laffer1 Exp $
+# $MidnightBSD: mports/net/cvsup/Makefile,v 1.6 2010/03/07 22:30:45 laffer1 Exp $
 
 PORTNAME=	cvsup
 PORTVERSION?=	16.1h
@@ -36,7 +36,7 @@ DESCR=		${PKGDIR}/pkg-descr.nogui
 NO_LATEST_LINK=	yes
 .endif
 .else
-USE_XLIB=	yes
+USE_XORG+=	x11 oldx dmx pixman xaw
 BUILD_DEPENDS=	${PREFIX}/lib/m3/pkg/formsvbt/${TARGET}/libm3formsvbt.a:${PORTSDIR}/lang/ezm3
 .endif
 
