@@ -1,3 +1,4 @@
-MD5 (sudo-1.7.0.tar.gz) = 5fd96bba35fe29b464f7aa6ad255f0a6
-SHA256 (sudo-1.7.0.tar.gz) = 5f7de94287f39c8b3b8d86aed147967e9286f45740412004233858b637391978
-SIZE (sudo-1.7.0.tar.gz) = 744311
+MD5 (sudo-1.7.2p5.tar.gz) = 398f584e831bd75b3c0179e28368c2a3
+SHA256 (sudo-1.7.2p5.tar.gz) = 69981fefeaedd47319d700db4aa335f3e8b30c7805d7aa4b9e8e08d4b989d806
+RMD160 (sudo-1.7.2p5.tar.gz) = 62933775f787315e1eb4afffafce6c88c3d39715
+SIZE (sudo-1.7.2p5.tar.gz) = 772730
