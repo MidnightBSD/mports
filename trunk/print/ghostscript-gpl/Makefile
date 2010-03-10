@@ -1,11 +1,11 @@
 #
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.12 2009/10/03 14:42:15 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.13 2009/10/18 01:01:38 laffer1 Exp $
 #
 
 PORTNAME=	ghostscript
 PORTVERSION=	8.64
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:S/$/:gs_srcs/} \
+MASTER_SITES=	SF/ghostscript/GPL%20Ghostscript/${PORTVERSION}:gs_srcs \
 		ftp://mirror.cs.wisc.edu/pub/mirrors/ghost/GPL/gs${PORTVERSION:S/.//}/:gs_srcs \
 		http://www.humblesoft.com/pub/:epag
 MASTER_SITE_SUBDIR=	ghostscript/:gs_srcs
