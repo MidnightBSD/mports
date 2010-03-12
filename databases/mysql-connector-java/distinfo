@@ -1,3 +1,4 @@
-MD5 (mysql-connector-java-5.1.8.tar.gz) = 8f8cc7dc42f253c88cf1d99b037c0c99
-SHA256 (mysql-connector-java-5.1.8.tar.gz) = 9ed0063cc311ad741457cc266ea917319a4c23be77b07ea323b97fe3035ff1ab
-SIZE (mysql-connector-java-5.1.8.tar.gz) = 3654397
+MD5 (mysql-connector-java-5.1.12.tar.gz) = d2f836c761614a3fdf39f7a6c7c1acb5
+SHA256 (mysql-connector-java-5.1.12.tar.gz) = afc4f84eccbfaed92cd711549581971fc27e93b3318d4fa1f5b53a2f58f8d0f0
+RMD160 (mysql-connector-java-5.1.12.tar.gz) = 43aa29a886c488c985608278b66f746546a4cfd7
+SIZE (mysql-connector-java-5.1.12.tar.gz) = 3740147
