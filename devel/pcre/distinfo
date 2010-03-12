@@ -1,3 +1,4 @@
-MD5 (pcre-7.8.tar.bz2) = 141132d6af14dccc7b08fa797e4fd441
-SHA256 (pcre-7.8.tar.bz2) = 795f3c2ae29339e633a4dac7b596d6cd4d86504befbe951c9d5ff42aca9858ff
-SIZE (pcre-7.8.tar.bz2) = 840922
+MD5 (pcre-8.00.tar.bz2) = caf564aa69d68e965e9bf0ff2a094c65
+SHA256 (pcre-8.00.tar.bz2) = 88576f10eb18e170b151c8c89cff6b26863df01b7f96de33700d2efe825ca5d4
+RMD160 (pcre-8.00.tar.bz2) = e1c74746bd2cdff0471c1a1818992fa9faecbc1d
+SIZE (pcre-8.00.tar.bz2) = 922320

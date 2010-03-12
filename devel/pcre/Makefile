@@ -2,12 +2,12 @@
 # Date created:				08 July 1998
 # Whom:					dom
 #
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.8 2008/05/14 18:14:54 crash Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.9 2008/10/08 17:07:24 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 #
 
 PORTNAME=	pcre
-PORTVERSION=	7.8
+PORTVERSION=	8.00
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
@@ -22,10 +22,15 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-utf8 --enable-unicode-properties
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+
+.include <bsd.port.pre.mk>
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	*
+.endif
+
+.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+CFLAGS+=	-fPIC
 .endif
 
 .if defined(WITH_LINK_SIZE)
@@ -50,15 +55,12 @@ MAN3=		pcre.3 pcre_compile.3 pcre_compile2.3 pcre_config.3 \
 post-patch:
 .if defined(NOPORTDOCS)
 	@${REINPLACE_CMD} -E -e '/^install-data-am/,/^$$/ s,install-(dist_doc|dist_html|html)DATA,,g' \
-	   ${WRKSRC}/Makefile.in
+		${WRKSRC}/Makefile.in
 .endif
+	${REINPLACE_CMD} -e 's/\(pkgconfigdir = \).*/\1$$\(prefix\)\/libdata\/pkgconfig/' \
+		${WRKSRC}/Makefile.in
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/pcregrep ${PREFIX}/bin/pcretest
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR} ${DOCSDIR}/html
-	@cd ${WRKSRC}; ${INSTALL_DATA} ChangeLog NEWS LICENCE doc/*.txt ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/html/*.html ${DOCSDIR}/html
-.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
