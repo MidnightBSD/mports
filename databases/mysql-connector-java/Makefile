@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.5 2009/10/16 12:57:40 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.6 2009/10/16 13:00:06 laffer1 Exp $
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.8
+PORTVERSION=	5.1.12
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-J
