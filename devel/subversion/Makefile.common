@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.4 2009/09/26 21:22:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.5 2010/01/02 00:44:17 laffer1 Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.5.7
@@ -14,6 +14,8 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=		--with-ssl
 WANT_PERL=	yes
+
+MAKE_JOBS_SAFE=	yes
 
 .if defined(SVN_BUILD_BINDINGS)
 # Bindings ports should use the same, as main port
