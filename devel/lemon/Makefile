@@ -1,9 +1,4 @@
-# Ports collection makefile for:  lemon
-# Date created:			  June 4, 2001
-# Whom:				  Mikhail Teterin
-#
-# $FreeBSD: ports/devel/lemon/Makefile,v 1.12 2009/08/04 00:40:45 amdmi3 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	lemon
 PORTVERSION=	1.69
@@ -11,8 +6,9 @@ CATEGORIES=	devel
 MASTER_SITES=	http://tx97.net/pub/distfiles/ \
 		http://mirror.amdmi3.ru/distfiles/
 
-MAINTAINER=	vmagerya@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An LALR(1) parser generator. Similar in function to yacc and bison
+LICENSE=	publicdom
 
 USE_BZIP2=	yes
 
