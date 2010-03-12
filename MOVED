@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.11 2010/01/23 22:32:33 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.12 2010/02/27 22:47:22 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -35,3 +35,4 @@ www/apache20||2010-01-23|Getting old.
 net/ztelnet||2010-01-23|ztelnet is broken on GCC 4.
 devel/gnome-build||2010-01-23|No longer needed for gnome.
 multimedia/libdts|multimedia/libdca|2010-02-28|safer name
+databases/p5-DBD-mysql60||2010-03-12|mysql 6 is gone, so is this
