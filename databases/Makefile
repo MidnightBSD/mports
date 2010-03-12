@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.75 2010/01/01 03:46:25 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.76 2010/03/01 01:36:06 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -53,7 +53,6 @@
     SUBDIR += p5-DBD-mysql41
     SUBDIR += p5-DBD-mysql50
     SUBDIR += p5-DBD-mysql51
-    SUBDIR += p5-DBD-mysql60
     SUBDIR += p5-DBI
     SUBDIR += p5-DBIx-Class
     SUBDIR += p5-DBIx-ContextualFetch
