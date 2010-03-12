@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.9 2010/03/10 04:52:09 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.10 2010/03/10 04:54:26 laffer1 Exp $
 
 PORTNAME=	sqlite
-PORTVERSION=	3.6.13
+PORTVERSION=	3.6.15
 CATEGORIES=	databases lang tcl
 MASTER_SITES=	http://www.sqlite.org/
 .if defined(USE_THOL)
@@ -21,6 +21,7 @@ USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	YES
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=		--prefix=${PREFIX} --with-hints=freebsd.hints
+CONFIGURE_ENV+=		TCLLIBDIR=${PREFIX}/lib/${PORTNAME}
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 
 OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
