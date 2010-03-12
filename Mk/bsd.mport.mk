@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.157 2010/02/27 22:56:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.158 2010/03/12 03:12:26 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -550,7 +550,7 @@ MANCOMPRESSED?=	no
 
 .if defined(PATCHFILES)
 .if ${PATCHFILES:M*.zip}x != x
-PATCH_DEPENDS+=		unzip:${PORTSDIR}/archivers/unzip
+PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 .endif
 .endif
 
