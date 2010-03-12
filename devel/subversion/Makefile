@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.19 2009/04/08 04:09:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.20 2009/05/26 00:57:18 laffer1 Exp $
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
@@ -55,7 +55,7 @@ PLIST_SUB+=	BOOK="@comment "
 .endif
 
 .if defined(WITH_ASVN)
-RUN_DEPENDS=	${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils:install
+RUN_DEPENDS+=	${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils:install
 PLIST_SUB+=	ASVN=""
 .else
 PLIST_SUB+=	ASVN="@comment "
