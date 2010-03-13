@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # svnserve.sh for rc.d usage (c) 2005 Thomas E. Spanjaard.
-# $MidnightBSD$
+# $Id: svnserve.in,v 1.3 2010-03-13 00:20:43 laffer1 Exp $
 
 # PROVIDE: svnserve
 # REQUIRE: DAEMON

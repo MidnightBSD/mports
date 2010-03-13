@@ -1,20 +1,14 @@
---- configure.orig	2007-12-17 23:01:31.000000000 +0100
-+++ configure	2007-12-30 11:12:10.000000000 +0100
-@@ -4004,7 +4004,7 @@
-            test "$svn_allowed_neon" = "any"; then
-             svn_allowed_neon_on_system="yes"
-             SVN_NEON_INCLUDES=`$neon_config --cflags | sed -e 's/-D[^ ]*//g'`
--            NEON_LIBS=`$neon_config --la-file`
-+            NEON_LIBS=`$neon_config --libs`
-             CFLAGS="$CFLAGS `$neon_config --cflags | sed -e 's/-I[^ ]*//g'`"
-             svn_lib_neon="yes"
-             break
-@@ -4345,7 +4345,7 @@
-            test "$svn_allowed_neon" = "any"; then
-             svn_allowed_neon_on_system="yes"
-             SVN_NEON_INCLUDES=`$neon_config --cflags | sed -e 's/-D[^ ]*//g'`
--            NEON_LIBS=`$neon_config --la-file`
-+            NEON_LIBS=`$neon_config --libs`
-             CFLAGS="$CFLAGS `$neon_config --cflags | sed -e 's/-I[^ ]*//g'`"
-             svn_lib_neon="yes"
-             break
+--- configure.orig	2009-07-09 17:23:21.000000000 +0400
++++ configure	2009-07-09 17:25:20.000000000 +0400
+@@ -27683,7 +27683,10 @@
+ 
+ 
+ if test "$RUBY" != "none"; then
+-  if "$RUBY" -r mkmf -e 'exit(have_func("rb_hash_foreach") ? 0 : 1)'; then
++  if [ -z "$PTHREAD_LIBS" ]; then
++    PTHREAD_LIBS=-pthread
++  fi
++  if "$RUBY" -r mkmf -e 'with_ldflags("'"$PTHREAD_LIBS"'") { exit(have_func("rb_hash_foreach") ? 0 : 1) }'; then
+     # Extract the first word of "rdoc", so it can be a program name with args.
+ set dummy rdoc; ac_word=$2
+ { $as_echo "$as_me:$LINENO: checking for $ac_word" >&5
