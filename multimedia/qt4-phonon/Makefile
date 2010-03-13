@@ -2,7 +2,7 @@
 # Date created:				Mon May 12 15:33:12 CEST 2008
 # Whom:					danny@ricin.com
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/qt4-phonon/Makefile,v 1.1 2008/10/09 20:36:57 laffer1 Exp $
 # $FreeBSD: ports/multimedia/qt4-phonon/Makefile,v 1.1 2008/08/04 23:30:37 miwi Exp $
 #
 
@@ -24,6 +24,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build corelib dbus gui xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+USE_KDE4=	#dummy, we need to know KDE4_PREFIX
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/qt4
@@ -44,25 +45,33 @@ EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/src/${PORTNAME}
-CONFIGURE_WRKSRC=${WRKSRC}/../../
+BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
+
+.include <bsd.port.pre.mk>
+
+.if exists(${KDE4_PREFIX}/lib/libphonon.so)
+IGNORE=		conflicts with KDE4 phonon. Please, deinstall multimedia/phonon
+.endif
 
 pre-configure:
 	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${MKDIR} ${WRKSRC}/../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc
+	${MKDIR} ${WRKSRC}/mkspecs
+	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
+	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
 
-post-configure:
+pre-install:
 	${REINPLACE_CMD} \
-		-e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
-		-e 's|.*$$(QMAKE).*||g' \
-		${WRKSRC}/Makefile
+		-e 's|${TRUE_PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
+		${BUILD_WRKSRC}/Makefile
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
-			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
-		${WRKSRC}/../../lib/pkgconfig/phonon.pc
+			-E -e 's|(.*location=).*moc|\1${TRUE_PREFIX}/bin/moc-qt4|g' \
+		${WRKSRC}/lib/pkgconfig/phonon.pc
 
 post-install:
-	${MKDIR} ${PREFIX}/lib/qt4/plugins/phonon_backend
+	${MKDIR} ${QT_PLUGINDIR}/phonon_backend
+	${LN} -sf ${PREFIX}/include/qt4/phonon ${PREFIX}/include/qt4/Phonon
+	${LN} -sf ${PREFIX}/include/qt4/Phonon/phononnamespace.h ${PREFIX}/include/qt4/Phonon/Global
+	${CP} ${WRKSRC}/lib/pkgconfig/phonon.pc ${PREFIX}/libdata/pkgconfig/phonon.pc
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
