@@ -2,16 +2,16 @@
 # Date Created:				2003-06-15
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.5 2007/08/19 20:36:03 laffer1 Exp $
+# $MidnightBSD: mports/www/linuxpluginwrapper/Makefile,v 1.6 2008/10/08 03:58:50 laffer1 Exp $
 # $FreeBSD: ports/www/linuxpluginwrapper/Makefile,v 1.55 2006/06/14 16:04:30 hrs Exp $
 #
 
 PORTNAME=	linuxpluginwrapper
 PORTVERSION=	20051113
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://people.FreeBSD.org/~nork/distfiles/ \
-		${MASTER_SITE_LOCAL}
+		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	nork
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,6 +22,10 @@ OPTIONS=	REALPLAYER	"install linux-realplayer"	off \
 		ACROREAD	"install acroread7"	off
 
 .include <bsd.port.pre.mk>
+
+.if		${OSVERSION} >= 3000
+IGNORE=		doesn't support ELF symbol versioning, yet.
+.endif
 
 # I will remove WITH_PLUGINS knob.
 .if		defined(WITH_REALPLAYER)
