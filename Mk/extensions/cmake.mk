@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.2 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.3 2008/12/08 20:29:02 ctriv Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)
@@ -15,7 +15,7 @@ Cmake_Pre_Include = cmake.mk
 #					compiling/linking
 #					Default: not set
 # CMAKE_BUILD_TYPE	- Type of build (release, debug)
-#					Default: Release
+#					Default: none
 # CMAKE_VERBOSE		- Verbose build
 #					Default: not set
 # CMAKE_SOURCE_PATH	- Path to sourcedir for cmake
@@ -48,12 +48,13 @@ CMAKE_ARGS+=	-DCMAKE_C_COMPILER:STRING="${CC}" \
 				-DCMAKE_C_FLAGS:STRING="${CFLAGS}" \
 				-DCMAKE_CXX_FLAGS:STRING="${CXXFLAGS}" \
 				-DCMAKE_INSTALL_PREFIX:PATH="${CMAKE_INSTALL_PREFIX}" \
-				-DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}"
+				-DCMAKE_BUILD_TYPE:STRING="${CMAKE_BUILD_TYPE}" \
+				-DTHREADS_HAVE_PTHREAD_ARG:BOOL=YES
 
 #
 # Default build type and sourcedir
 #
-CMAKE_BUILD_TYPE?=	Release
+CMAKE_BUILD_TYPE?=	# none
 CMAKE_SOURCE_PATH?=	.
 CMAKE_INSTALL_PREFIX?=	${PREFIX}
 
