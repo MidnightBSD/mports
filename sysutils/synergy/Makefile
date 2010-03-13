@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/sysutils/synergy/Makefile,v 1.3 2010/01/02 22:34:55 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/synergy/Makefile,v 1.4 2010/01/23 22:07:27 laffer1 Exp $
 # $FreeBSD: ports/sysutils/synergy/Makefile,v 1.14 2007/07/25 01:25:03 kevlo Exp $
 
 PORTNAME=	synergy
 PORTVERSION= 	1.3.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/${PORTNAME}2/Sources/${PORTVERSION}
 
