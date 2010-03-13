@@ -1,0 +1,12 @@
+--- Makefile.orig	Sat Jan  4 15:53:01 2003
++++ Makefile	Fri Jun 13 21:20:28 2003
+@@ -1,8 +1,7 @@
+ # Makefile for The PCI Utilities
+ # (c) 1998--2007 Martin Mares <mj@ucw.cz>
+ 
+-OPT=-O2
+-CFLAGS=$(OPT) -Wall -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes
++CFLAGS+=-fPIC -Wall -W -Wno-parentheses -Wstrict-prototypes -Wmissing-prototypes
+ 
+ VERSION=2.2.8
+ DATE=2007-10-19
