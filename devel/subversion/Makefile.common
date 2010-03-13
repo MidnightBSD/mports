@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.5 2010/01/02 00:44:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.6 2010/03/12 14:10:25 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.5.7
+PORTVERSION=	1.6.6
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
@@ -49,6 +49,7 @@ PLIST_SUB+=		SASL="@comment "
 
 # Default us "on"
 .if !defined(WITHOUT_BDB)
+USE_BDB=		42+
 PLIST_SUB+=		BDB=""
 .else
 CONFIGURE_ARGS+=	--without-berkeley-db
