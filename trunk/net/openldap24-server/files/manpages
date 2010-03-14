@@ -1,13 +1,15 @@
 #
-# $FreeBSD: ports/net/openldap24-server/files/manpages,v 1.19 2008/02/24 03:11:56 linimon Exp $
+# $FreeBSD: ports/net/openldap24-server/files/manpages,v 1.23 2009/09/07 09:46:19 delphij Exp $
 #
 
 MAN1+=	ldapcompare.1 \
 	ldapdelete.1 \
+	ldapexop.1 \
 	ldapmodify.1 \
 	ldapmodrdn.1 \
 	ldappasswd.1 \
 	ldapsearch.1 \
+	ldapurl.1 \
 	ldapwhoami.1
 MLINKS+= \
 	ldapmodify.1 ldapadd.1
@@ -201,6 +203,7 @@ MAN5+=	ldap.conf.5 \
 	slapd-ldif.5 \
 	slapd-meta.5 \
 	slapd-monitor.5 \
+	slapd-ndb.5 \
 	slapd-null.5 \
 	slapd-passwd.5 \
 	slapd-perl.5 \
@@ -216,6 +219,7 @@ MAN5+=	ldap.conf.5 \
 	slapo-accesslog.5 \
 	slapo-auditlog.5 \
 	slapo-chain.5 \
+	slapo-collect.5 \
 	slapo-constraint.5 \
 	slapo-dds.5 \
 	slapo-dyngroup.5 \
@@ -227,6 +231,7 @@ MAN5+=	ldap.conf.5 \
 	slapo-retcode.5 \
 	slapo-rwm.5 \
 	slapo-syncprov.5 \
+	slapo-sssvlv.5 \
 	slapo-translucent.5 \
 	slapo-unique.5 \
 	slapo-valsort.5 
@@ -241,4 +246,5 @@ MAN8+=	slapacl.8 \
 	slapdn.8 \
 	slapindex.8 \
 	slappasswd.8 \
+	slapschema.8 \
 	slaptest.8
