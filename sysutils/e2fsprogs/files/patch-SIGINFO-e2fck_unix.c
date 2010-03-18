@@ -1,6 +1,15 @@
---- a/e2fsck/unix.c.orig	2008-04-23 20:56:25.000000000 +0200
-+++ b/e2fsck/unix.c	2008-04-29 09:05:01.000000000 +0200
-@@ -462,6 +462,24 @@
+--- a/e2fsck/unix.c.orig	2009-08-23 04:44:35.000000000 +0200
++++ b/e2fsck/unix.c	2009-10-11 23:12:39.000000000 +0200
+@@ -9,8 +9,6 @@
+  * %End-Header%
+  */
+ 
+-#define _XOPEN_SOURCE 600 /* for inclusion of sa_handler in Solaris */
+-
+ #include <stdio.h>
+ #ifdef HAVE_STDLIB_H
+ #include <stdlib.h>
+@@ -497,6 +495,24 @@
  	return 0;
  }
  
@@ -25,7 +34,7 @@
  #define PATH_SET "PATH=/sbin"
  
  static void reserve_stdio_fds(void)
-@@ -493,6 +511,17 @@
+@@ -528,6 +544,17 @@
  	ctx->progress = e2fsck_update_progress;
  }
  
@@ -43,7 +52,7 @@
  static void signal_progress_off(int sig EXT2FS_ATTR((unused)))
  {
  	e2fsck_t ctx = e2fsck_global_ctx;
-@@ -830,6 +859,8 @@
+@@ -862,6 +889,8 @@
  	sigaction(SIGUSR1, &sa, 0);
  	sa.sa_handler = signal_progress_off;
  	sigaction(SIGUSR2, &sa, 0);
@@ -52,3 +61,4 @@
  #endif
  
  	/* Update our PATH to include /sbin if we need to run badblocks  */
+
