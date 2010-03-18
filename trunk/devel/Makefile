@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.314 2010/03/13 02:59:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.315 2010/03/18 00:28:42 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -152,6 +152,7 @@
     SUBDIR += libunicode
     SUBDIR += libusb
     SUBDIR += libvolume_id
+    SUBDIR += libzvbi
     SUBDIR += linux-allegro
     SUBDIR += linux-glib2
     SUBDIR += linux-libglade
