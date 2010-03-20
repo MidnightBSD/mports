@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.12 2009/09/26 03:32:53 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.13 2009/12/28 23:28:03 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -44,8 +44,6 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_CK_0_3" \
 
 #HALVERSION=	0.5.10
 #SNAPVERSION=	20080218
-USERS=		haldaemon
-GROUPS=		haldaemon
 
 USE_RC_SUBR=	hald
 USE_GNOME_SUBR=	yes
