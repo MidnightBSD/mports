@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.3 2009/08/14 02:37:16 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.4 2009/09/20 02:53:04 laffer1 Exp $
 
 PORTNAME=	browser35
-DISTVERSION=	3.5.2
+DISTVERSION=	3.5.3
 PORTREVISION=	0
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	firefox/releases/${DISTVERSION}/source
-DISTNAME=	firefox-${DISTVERSION}-source
+DISTNAME=	firefox-${DISTVERSION}.source
 WRKSRC=		${WRKDIR}/mozilla-1.9.1
 
 MAINTAINER=	ports@MidnightBSD.org
