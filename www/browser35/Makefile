@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.4 2009/09/20 02:53:04 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.5 2010/03/20 22:50:39 laffer1 Exp $
 
 PORTNAME=	browser35
-DISTVERSION=	3.5.3
+DISTVERSION=	3.5.8
 PORTREVISION=	0
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
