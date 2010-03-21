@@ -1,0 +1,9 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+bin/skipfish
+%%DATADIR%%/dictionaries/extensions-only.wl
+%%DATADIR%%/dictionaries/default.wl
+%%DATADIR%%/dictionaries/README-FIRST
+%%DATADIR%%/dictionaries/minimal.wl
+%%DATADIR%%/dictionaries/complete.wl
+@dirrm %%DATADIR%%/dictionaries
+@dirrm %%DATADIR%%
