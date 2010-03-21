@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.97 2010/01/02 00:03:12 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.98 2010/03/01 01:59:32 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -77,6 +77,7 @@
     SUBDIR += qca-tls
     SUBDIR += saint
     SUBDIR += secpwgen
+    SUBDIR += skipfish
     SUBDIR += smap
     SUBDIR += snort
     SUBDIR += sshguard
