@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.5 2010/03/20 22:50:39 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.6 2010/03/21 01:05:29 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.8
@@ -74,7 +74,6 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-canvas			\
 		--with-system-nss		\
 		--enable-crypto			\
-		--disable-tests			\
 		--enable-default-toolkit=${MOZ_TOOLKIT} \
 		--enable-xft			\
 		--with-pthreads			\
@@ -105,7 +104,7 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-libxul			\
 		--disable-ogg			\
 		--disable-wave			\
-		--disable-svg			\
+		--enable-svg			\
 		--enable-svg-renderer=cairo	\
 		--x-includes=${LOCALBASE}/include \
 		--x-libraries=${LOCALBASE}/lib
