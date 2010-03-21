@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.2 2008/10/20 19:22:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.3 2010/01/09 17:39:24 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.6.4
+PORTVERSION=	2.8.0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=lofi
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A cross-platform make
+COMMENT=	A cross-platform Makefile generator
 LICENSE=	other
 # bsd variant
 
@@ -45,6 +45,7 @@ post-patch:
 		${WRKSRC}/bootstrap
 	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE}/kde4,g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
-	${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
+	@${FIND} ${WRKSRC} -name "*.bak" -delete -o -name "*.orig" -delete
+	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
 
 .include <bsd.port.mk>
