@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/wipe/Makefile,v 1.3 2009/05/01 15:23:37 laffer1 Exp $
+# $MidnightBSD: mports/security/skipfish/Makefile,v 1.1 2010/03/21 20:31:47 laffer1 Exp $
 
 PORTNAME=	skipfish
 PORTVERSION=	1.07b
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://skipfish.googlecode.com/files/
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tgz
@@ -19,8 +20,9 @@ MAKE_JOBS_SAFE=	yes
 .include <bsd.port.pre.mk>
 
 do-install:
-	${INSTALL} ${WRKSRC}/skipfish ${PREFIX}/bin/
-	${MKDIR} ${DATADIR}
-	(cd ${WRKSRC} && ${PAX} -rw  dictionaries ${DATADIR})
+	@${INSTALL} ${WRKSRC}/skipfish ${PREFIX}/bin/
+	@${MKDIR} ${DATADIR}
+	@(cd ${WRKSRC} && ${PAX} -rw dictionaries ${DATADIR})
+	(cd ${WRKSRC} && ${PAX} -rw assets ${DATADIR})
 
 .include <bsd.port.post.mk>
