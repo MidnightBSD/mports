@@ -11,6 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and block device wiping utility
 LICENSE=	apache2
 
+LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn
+
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
 SUB_FILES=	pkg-message
