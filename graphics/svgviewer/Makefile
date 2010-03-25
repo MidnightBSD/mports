@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.1 2010/01/23 19:27:06 laffer1 Exp $
 
 PORTNAME=	svgviewer
 PORTVERSION=	0.2.0
@@ -10,9 +10,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SVG Viewer for GNUstep
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	svg.1:${PORTSDIR}/graphics/libsvg
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	svg.1:${PORTSDIR}/graphics/libsvg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
+		png.5:${PORTSDIR}/graphics/png
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes

@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libopenraw/Makefile,v 1.1 2009/09/20 19:02:15 laffer1 Exp $
 
 PORTNAME=	libopenraw
 PORTVERSION=	0.0.8
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
@@ -12,7 +13,7 @@ LICENSE=	gpl3
 # we only need boost libs, but since most ports use
 # boost-python, go with that for now
 LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
-		jpeg.10:${PORTSDIR}/graphics/jpeg
+		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 MAKE_JOBS_SAFE=	yes
 USE_GNOME=	libxml2

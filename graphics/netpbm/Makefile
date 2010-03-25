@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.4 2009/09/20 02:57:35 laffer1 Exp $
+# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.5 2009/10/14 23:41:05 laffer1 Exp $
 
 PORTNAME=	netpbm
 PORTVERSION=	${NETPBM_PORTVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	# defined later
 PKGNAMESUFFIX=	${NETPBM_SUFFIX}${PKGNAMESUFFIX2}
@@ -17,7 +17,7 @@ COMMENT=	A toolkit for conversion of images between different formats
 LICENSE=	other
 
 LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		jbig.1:${PORTSDIR}/graphics/jbigkit
 #		jasper.4:${PORTSDIR}/graphics/jasper

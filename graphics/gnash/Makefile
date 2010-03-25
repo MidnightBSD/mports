@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.10 2010/01/02 18:57:12 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.11 2010/01/03 20:29:25 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 # getgnash.org is slow
 MASTER_SITES=	${MASTER_SITE_GNU} \
@@ -15,7 +15,7 @@ COMMENT=	GNU Flash movie player
 LICENSE=	gpl3
 
 LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		curl.5:${PORTSDIR}/ftp/curl \
 		ungif.5:${PORTSDIR}/graphics/libungif
 

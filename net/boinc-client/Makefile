@@ -2,13 +2,13 @@
 # Date created:				01 October 2004
 # Whom:					J.R. Oldroyd <fbsd@opal.com>
 #
-# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.2 2008/10/30 16:22:29 ctriv Exp $
+# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.3 2009/12/29 00:50:13 laffer1 Exp $
 # $FreeBSD: ports/net/boinc-client/Makefile,v 1.35 2008/08/06 08:29:56 pav Exp $
 #
 
 PORTNAME=	boinc-client
 PORTVERSION=	6.4.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	pav
@@ -54,7 +54,7 @@ WX_CONF_ARGS=	absolute
 CPPFLAGS+=		-I${LOCALBASE}/include
 
 USE_ICONV=	yes
-LIB_DEPENDS+=	jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 PLIST_SUB+=	BOINC_GUI=""
 .else

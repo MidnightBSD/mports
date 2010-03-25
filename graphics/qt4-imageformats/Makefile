@@ -2,12 +2,13 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.1 2008/10/09 20:31:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.2 2010/01/09 23:15:42 laffer1 Exp $
 # $FreeBSD: ports/graphics/qt4-imageformats/Makefile,v 1.13 2008/08/04 23:30:35 miwi Exp $
 #
 
 PORTNAME=	imageformats
 PORTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	graphics
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
@@ -18,7 +19,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt imageformat plugins for GIF, JPEG, MNG and SVG
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		mng:${PORTSDIR}/graphics/libmng \
 		png:${PORTSDIR}/graphics/png \
 		tiff:${PORTSDIR}/graphics/tiff

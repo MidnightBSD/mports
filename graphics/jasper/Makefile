@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.5 2009/09/20 01:37:14 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.6 2009/09/20 02:55:03 laffer1 Exp $
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ece.uvic.ca/~mdadams/jasper/software/ \
 		${MASTER_SITE_IMAGEMAGICK}
@@ -11,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An implementation of the codec specified in the JPEG-2000 standard
 LICENSE=	other
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	libtool:22
 USE_ZIP=	yes
