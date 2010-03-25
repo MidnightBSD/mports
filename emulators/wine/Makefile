@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.10 2010/01/07 04:12:45 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.11 2010/03/25 01:58:25 laffer1 Exp $
 
 PORTNAME=	wine
 PORTVERSION=    1.1.36
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
 LICENSE=        lgpl3
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/devel/flex
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
