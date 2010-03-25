@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.22 2009/08/09 17:18:18 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.23 2009/09/20 02:39:59 laffer1 Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.3.11
-PORTREVISION=	0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 DESTDIRNAME=	BUILDROOT
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
