@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/R/Makefile,v 1.6 2010/01/23 18:58:33 laffer1 Exp $
 
 PORTNAME=	R
 PORTVERSION=	2.9.2
+PORTREVISION=	1
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/src/base/R-2/ \
 		ftp://cran.r-project.org/pub/R/src/base/R-2/ \
@@ -85,7 +86,7 @@ CONFIGURE_ARGS+=--with-ICU
 .if defined(WITHOUT_JPEG)
 CONFIGURE_ARGS+=--without-jpeglib
 .else
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=--with-jpeglib
 .endif
 
