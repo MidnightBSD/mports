@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.3 2009/09/20 03:29:09 smultron Exp $
+# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.4 2010/03/25 01:34:06 laffer1 Exp $
 
 PORTNAME=	vncreflector
 PORTVERSION=	1.2.4
 PORTREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	SF/vnc-reflector/vnc-reflector/${PORTVERSION
+MASTER_SITES=	SF/vnc-reflector/vnc-reflector/${PORTVERSION}
 DISTNAME=	vnc_reflector-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
