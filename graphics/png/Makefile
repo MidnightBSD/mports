@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.16 2009/03/05 16:32:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.17 2009/03/14 15:34:58 laffer1 Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.2.35
-PORTREVISION=	1
+PORTVERSION=	1.2.43
+PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	lib${PORTNAME}
+MASTER_SITES=	SF/lib${PORTNAME}/03-lib${PORTNAME}-previous/${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 FAKE_OPTS=	trueprefix
@@ -22,6 +21,7 @@ LICENSE=	other
 MAKEFILE=	${WRKSRC}/scripts/makefile.freebsd
 ALL_TARGET=	all libpng-config test
 MAKE_FLAGS=	ccopts="${CFLAGS}" ldopts="${LDFLAGS}" -f
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 SHLIB_VER=	5
 USE_BZIP2=	yes
