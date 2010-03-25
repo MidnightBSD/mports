@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.10 2009/09/20 04:02:15 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.11 2009/11/10 04:02:31 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.5.3-10
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		SF/${PORTNAME:L}/${PORTNAME}/00-6.5.3 \
@@ -135,7 +136,7 @@ CONFIGURE_ARGS+=	--without-djvu
 PLIST_SUB+=		DJVU="@comment "
 
 .if !defined(WITHOUT_IMAGEMAGICK_JPEG)
-LIB_DEPENDS+=		jpeg:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=		jpeg.11:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=		JPEG=""
 .else
 CONFIGURE_ARGS+=	--without-jpeg
@@ -143,7 +144,7 @@ PLIST_SUB+=		JPEG="@comment "
 .endif
 
 .if !defined(WITHOUT_IMAGEMAGICK_PNG)
-LIB_DEPENDS+=		png:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		png.5:${PORTSDIR}/graphics/png
 PLIST_SUB+=		PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
