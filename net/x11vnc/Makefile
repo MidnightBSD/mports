@@ -1,17 +1,15 @@
-# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.4 2009/06/27 23:34:15 laffer1 Exp $
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.5 2009/09/20 03:30:25 smultron Exp $
 
 PORTNAME=	x11vnc
-PORTVERSION=	0.9.6
-PORTREVISION=	1
+PORTVERSION=	0.9.7
 CATEGORIES=	net
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=libvncserver
+MASTER_SITES=	SF/libvncserver/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	VNC server for use with real X displays
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		dbus:${PORTSDIR}/devel/dbus \
 		avahi-common.3:${PORTSDIR}/net/avahi-app
 
