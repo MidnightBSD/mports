@@ -1,10 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.4 2009/04/16 04:47:33 laffer1 Exp $
 
-PORTNAME=		wmweather+
-PORTVERSION=		2.11
-CATEGORIES=		misc windowmaker geography
-MASTER_SITES=		SF
-MASTER_SITE_SUBDIR=	wmweatherplus
+PORTNAME=	wmweather+
+PORTVERSION=	2.11
+PORTREVISION=	1
+CATEGORIES=	misc windowmaker geography
+MASTER_SITES=	SF
+MASTER_SITE_SUBDIR=wmweatherplus
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Displays current conditions and forecasts with icons and text
@@ -15,8 +16,8 @@ LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl \
 		pcre:${PORTSDIR}/devel/pcre \
 		tiff:${PORTSDIR}/graphics/tiff \
 		Hermes:${PORTSDIR}/graphics/Hermes \
-		png:${PORTSDIR}/graphics/png \
-		jpeg:${PORTSDIR}/graphics/jpeg \
+		png.5:${PORTSDIR}/graphics/png \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		ungif:${PORTSDIR}/graphics/libungif
 
 GNU_CONFIGURE=	yes
