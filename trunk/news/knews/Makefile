@@ -1,14 +1,8 @@
-# New ports collection makefile for:	knews
-# Date created:         Sun Apr 14 09:23:59 MET DST 1996
-# Whom:                 Andreas Klemm <andreas@klemm.gtn.com>
-#
-# $MidnightBSD: mports/news/knews/Makefile,v 1.1 2008/05/31 16:05:46 laffer1 Exp $
-# $FreeBSD: ports/news/knews/Makefile,v 1.48 2008/03/29 12:38:04 dinoex Exp $
-#
+# $MidnightBSD: mports/news/knews/Makefile,v 1.2 2009/09/20 02:45:41 laffer1 Exp $
 
 PORTNAME=	knews
 PORTVERSION=	1.0b.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	news
 MASTER_SITES=	http://www.matematik.su.se/~kjj/
 
@@ -16,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A threaded nntp newsreader for X
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		compface:${PORTSDIR}/mail/faces
 RUN_DEPENDS=	newsp:${PORTSDIR}/print/mp-letter
