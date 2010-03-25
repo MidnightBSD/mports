@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.4 2008/09/14 00:30:11 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/rtorrent/Makefile,v 1.5 2009/05/22 17:41:42 laffer1 Exp $
 
 PORTNAME?=	rtorrent
-PORTVERSION?=	0.7.9
+PORTVERSION?=	0.8.6
 PORTREVISION=	1
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
@@ -12,8 +12,8 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	BitTorrent Client written in C++
 LICENSE=	gpl2
 
-BUILD_DEPENDS?=	libtorrent>=0.11.3:${PORTSDIR}/net-p2p/libtorrent
-RUN_DEPENDS?=	libtorrent>=0.11.3:${PORTSDIR}/net-p2p/libtorrent
+BUILD_DEPENDS?=	libtorrent=0.12.6:${PORTSDIR}/net-p2p/libtorrent
+RUN_DEPENDS?=	libtorrent=0.12.6:${PORTSDIR}/net-p2p/libtorrent
 LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
 
 CONFLICTS=	rtorrent-devel-[0-9]*
