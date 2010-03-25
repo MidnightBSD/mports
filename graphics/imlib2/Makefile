@@ -1,12 +1,8 @@
-# New ports collection makefile for:	imlib2
-# Date created:		16 Oct 2000
-# Whom:			Jeremy Norris <ishmael27@home.com>
-#
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.4 2008/05/30 22:41:55 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.5 2009/09/20 02:53:47 laffer1 Exp $
 
 PORTNAME=	imlib2
 PORTVERSION=	1.4.1.000
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/ \
@@ -52,7 +48,7 @@ PLIST_SUB=	X11=""
 .endif
 
 .if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=	JPEG=""
 .else
 CONFIGURE_ARGS+=	--without-jpeg

@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.14 2009/09/20 18:37:32 laffer1 Exp $
 
 PORTNAME=	graphviz
 PORTVERSION=	2.24.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 LICENSE=	other
 
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \

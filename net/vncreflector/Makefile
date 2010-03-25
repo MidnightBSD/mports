@@ -1,17 +1,17 @@
-# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.2 2009/06/27 23:25:31 laffer1 Exp $
+# $MidnightBSD: mports/net/vncreflector/Makefile,v 1.3 2009/09/20 03:29:09 smultron Exp $
 
 PORTNAME=	vncreflector
 PORTVERSION=	1.2.4
+PORTREVISION=	1
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=vnc-reflector
+MASTER_SITES=	SF/vnc-reflector/vnc-reflector/${PORTVERSION
 DISTNAME=	vnc_reflector-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-client VNC proxy server
 LICENSE=	bsd3
 
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_RC_SUBR=	vncreflector.sh
 

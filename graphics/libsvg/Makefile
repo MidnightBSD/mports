@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/libsvg/Makefile,v 1.1 2010/01/23 22:38:07 laffer1 Exp $
 
 PORTNAME=	libsvg
 PORTVERSION=	0.1.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
@@ -11,7 +12,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		png.5:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg
+		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
