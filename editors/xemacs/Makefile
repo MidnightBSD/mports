@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.8 2009/09/20 01:07:09 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.9 2009/09/20 02:53:12 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES+=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS}
 MASTER_SITE_SUBDIR=	xemacs-${XEMACS_REL}
@@ -71,7 +71,7 @@ RUN_DEPENDS+=	${LOCALBASE}/lib/xemacs/xemacs-packages/etc/enriched.doc:${PORTSDI
 .endif
 .if !defined(WITHOUT_X11)
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
 USE_XLIB=	yes
