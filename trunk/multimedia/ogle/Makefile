@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.8 2009/10/19 01:29:36 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.9 2010/01/02 19:17:31 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
 
 PORTNAME=	ogle
 PORTVERSION=	0.9.2
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.dtek.chalmers.se/groups/dvd/dist/
 
@@ -13,7 +13,7 @@ LICENSE=        gpl2
 
 LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 		dvdread.4:${PORTSDIR}/multimedia/libdvdread \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		mad.2:${PORTSDIR}/audio/libmad \
 		xml2.5:${PORTSDIR}/textproc/libxml2
 

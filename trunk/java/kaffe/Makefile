@@ -2,13 +2,13 @@
 # Date created:         4 August 2003
 # Whom:                 Mark Huizer <xaa+ports@timewasters.nl>
 #
-# $MidnightBSD: mports/java/kaffe/Makefile,v 1.2 2008/06/10 02:11:14 laffer1 Exp $
+# $MidnightBSD: mports/java/kaffe/Makefile,v 1.3 2009/09/20 03:25:20 smultron Exp $
 # $FreeBSD: ports/java/kaffe/Makefile,v 1.79 2008/06/06 13:38:47 edwin Exp $
 #
 
 PORTNAME=	kaffe
 PORTVERSION=	1.1.7.r1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	java devel
 #MASTER_SITES=	ftp://ftp.kaffe.org/pub/kaffe/v1.1.x-development/
 MASTER_SITES=	http://www.kaffe.org/~robilad/
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multi-platform Java virtual machine with JIT compiler and AWT package
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		png.5:${PORTSDIR}/graphics/png \
 		gmp.7:${PORTSDIR}/math/libgmp4

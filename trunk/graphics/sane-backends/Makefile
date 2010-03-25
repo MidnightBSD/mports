@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.3 2009/08/13 20:19:55 laffer1 Exp $
+# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.4 2009/09/20 02:58:51 laffer1 Exp $
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.20
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://alioth.debian.org/frs/download.php/3026/ \
 		ftp://ftp.sane-project.org/pub/sane/%SUBDIR%/ \
@@ -15,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	API for access to scanners, digitals camera, frame grabbers etc
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 MAKE_JOBS_UNSAFE=	yes
 

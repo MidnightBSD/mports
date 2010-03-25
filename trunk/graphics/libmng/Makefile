@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.4 2009/06/28 00:35:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.5 2009/12/29 18:13:16 laffer1 Exp $
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiple-image Network Graphics (MNG) reference library
 LICENSE=	bsd3
 
-LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		lcms:${PORTSDIR}/graphics/lcms
 
 OPTIONS=	MNG_OPTIMIZE "Use vendor's new optimization flags" no

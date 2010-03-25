@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/xli/Makefile,v 1.4 2009/05/22 21:08:34 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xli/Makefile,v 1.5 2009/09/20 03:02:40 laffer1 Exp $
 
 PORTNAME=	xli
 PORTVERSION=	1.17.0
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	graphics
 MASTER_SITES=	http://pantransit.reptiles.org/prog/xli/ \
 		${MASTER_SITE_XCONTRIB}
@@ -14,7 +14,7 @@ COMMENT=	Xli, xsetbg, xview, xlito - utilities to display images on X11
 LICENSE=	unknown
 
 LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg
+		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 WRKSRC=		${WRKDIR}/xli-${XLI_SNAPVER}
 FAKE_MAKEARGS+=	DESTDIR=${FAKE_DESTDIR}
