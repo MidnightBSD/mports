@@ -1,20 +1,16 @@
-# ex:ts=8
-#
-# $MidnightBSD: mports/net/libvncserver/Makefile,v 1.1 2009/01/04 03:38:47 ctriv Exp $
-#
+# $MidnightBSD: mports/net/libvncserver/Makefile,v 1.2 2009/09/20 03:41:10 laffer1 Exp $
 
 PORTNAME=	libvncserver
-PORTVERSION=	0.9.1
+PORTVERSION=	0.9.7
 CATEGORIES=	net devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 DISTNAME=	LibVNCServer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provide an easy API to write one's own vnc server
 LICENSE=	gpl2
 
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_GNOME=	gnometarget
 USE_LDCONFIG=	yes
