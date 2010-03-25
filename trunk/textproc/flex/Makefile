@@ -2,12 +2,13 @@
 # Date created:		13 August 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/flex/Makefile,v 1.1 2008/06/22 21:20:46 laffer1 Exp $
+# $MidnightBSD: mports/textproc/flex/Makefile,v 1.2 2009/11/08 21:32:15 laffer1 Exp $
 # $FreeBSD: ports/textproc/flex/Makefile,v 1.4 2008/02/28 13:24:48 sat Exp $
 #
 
 PORTNAME=	flex
 PORTVERSION=	2.5.35
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -21,10 +22,11 @@ BUILD_DEPENDS=	help2man:${PORTSDIR}/misc/help2man \
 USE_BISON=	build
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-nls
+CONFIGURE_ARGS=	--disable-nls --includedir=${PREFIX}/include/flex
 USE_GMAKE=	yes
 MAN1=		flex.1
-PLIST_FILES=	bin/flex include/FlexLexer.h lib/libfl.a lib/libfl_pic.a
+PLIST_FILES=	bin/flex include/flex/FlexLexer.h lib/libfl.a lib/libfl_pic.a
+PLIST_DIRS=	include/flex
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/install-info-recursive//g;s/info-recursive//g' \
