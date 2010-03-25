@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.9 2009/09/20 02:54:57 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.10 2010/01/07 04:12:45 laffer1 Exp $
 
 PORTNAME=	wine
-PORTVERSION=    1.1.35
+PORTVERSION=    1.1.36
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SFE \
@@ -12,9 +12,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Microsoft Windows compatibility layer for Unix-like systems
 LICENSE=        lgpl3
 
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/devel/flex
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		lcms.1:${PORTSDIR}/graphics/lcms \
 		png.5:${PORTSDIR}/graphics/png \
 		xml2:${PORTSDIR}/textproc/libxml2
@@ -25,7 +26,8 @@ CONFIGURE_ARGS=	--datadir=${DATADIR} --verbose --disable-tests \
 		--without-mpg123 --without-sane --without-xcursor \
 		--without-openal
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+		LDFLAGS="-L${LOCALBASE}/lib" \
+		FLEX="${LOCALBASE}/bin/flex"
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/wine
 MAKE_JOBS_SAFE=	yes
 MAN1=		widl.1 wine.1 winebuild.1 winedbg.1 winedump.1 winegcc.1 \
