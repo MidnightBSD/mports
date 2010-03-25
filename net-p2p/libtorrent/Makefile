@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.6 2009/09/20 01:45:47 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.7 2009/10/03 17:28:22 laffer1 Exp $
 
 PORTNAME?=	libtorrent
-PORTVERSION?=	0.12.4
+PORTVERSION?=	0.12.6
 PORTREVISION?=	0
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://libtorrent.rakshasa.no/downloads/ \
