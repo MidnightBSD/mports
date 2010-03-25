@@ -2,12 +2,13 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.6 2009/08/08 20:51:53 laffer1 Exp $
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.7 2009/09/20 02:51:55 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}
+PORTREVISION=	1
 CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -48,7 +49,7 @@ WANT_GNOME=	yes
 .if defined(WITHOUT_GTK)
 LIB_DEPENDS=	Xaw3d.${XAWVER}:${PORTSDIR}/x11-toolkits/Xaw3d
 .endif
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		png.5:${PORTSDIR}/graphics/png
