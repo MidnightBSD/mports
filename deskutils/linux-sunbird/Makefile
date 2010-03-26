@@ -3,11 +3,11 @@
 # Whom:			voisine
 #
 # $FreeBSD: ports/deskutils/linux-sunbird/Makefile,v 1.5 2006/08/03 12:41:58 sat Exp $
-# $MidnightBSD: mports/deskutils/linux-sunbird/Makefile,v 1.4 2007/12/03 05:01:48 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/linux-sunbird/Makefile,v 1.5 2008/06/19 22:48:09 laffer1 Exp $
 #
 
 PORTNAME=	sunbird
-DISTVERSION=	0.8
+DISTVERSION=	0.9
 DISTVERSIONSUFFIX=	.en-US.linux-i686
 CATEGORIES=	deskutils
 PORTEPOCH=	1
