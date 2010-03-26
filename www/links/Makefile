@@ -2,7 +2,7 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.9 2009/09/20 02:55:37 laffer1 Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.10 2010/03/26 00:45:25 laffer1 Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
@@ -47,7 +47,7 @@ OPTIONS_MESG=	"non-X11 graphics support disabled, "
 
 .if !defined(WITHOUT_X11)
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 USE_XLIB=	yes
 CONFIGURE_ARGS+=	--enable-graphics --with-x
