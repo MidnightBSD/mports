@@ -1585,6 +1585,7 @@ diablo-jdk%%JDK_VERSION%%/demo/scripting/jconsole-plugin/src/scripts/verbose.js
 diablo-jdk%%JDK_VERSION%%/include/classfile_constants.h
 diablo-jdk%%JDK_VERSION%%/include/freebsd/jawt_md.h
 diablo-jdk%%JDK_VERSION%%/include/freebsd/jni_md.h
+diablo-jdk%%JDK_VERSION%%/include/midnightbsd
 diablo-jdk%%JDK_VERSION%%/include/jawt.h
 diablo-jdk%%JDK_VERSION%%/include/jdwpTransport.h
 diablo-jdk%%JDK_VERSION%%/include/jni.h
