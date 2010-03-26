@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xscreensaver-gnome/Makefile,v 1.1 2010/03/02 01:10:26 laffer1 Exp $
 
 PORTNAME?=	xscreensaver-gnome
 PORTVERSION=	5.10
@@ -12,7 +12,7 @@ COMMENT=	Save your screen while you entertain your cat (for GNOME users)
 LICENSE=	mit
 
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
-		jpeg.10:${PORTSDIR}/graphics/jpeg
+		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 CONFLICTS?=	xscreensaver-[0-9]* xscreensaver-gnome-hacks-[0-9]*
 

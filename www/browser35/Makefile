@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.6 2010/03/21 01:05:29 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.7 2010/03/21 02:11:49 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	firefox/releases/${DISTVERSION}/source
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nspr>=4.8:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
 		nss3:${PORTSDIR}/security/nss \
