@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.8 2009/12/13 02:52:54 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.9 2010/02/26 23:22:32 laffer1 Exp $
 
 PORTNAME=	browser3
 DISTVERSION=	3.0.18
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 		zip:${PORTSDIR}/archivers/zip
-LIB_DEPENDS=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
 		nss3:${PORTSDIR}/security/nss \

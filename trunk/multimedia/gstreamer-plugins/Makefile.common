@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.6 2009/12/14 00:03:48 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.7 2010/02/27 21:37:07 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -293,7 +293,7 @@ gst_jack_PLIST_FILES=	${GST_LIB_DIR}/libgstjack.la \
 gst_jack_DIST=	bad
 
 # jpeg
-gst_jpeg_LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+gst_jpeg_LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 gst_jpeg_PLIST_FILES=	${GST_LIB_DIR}/libgstjpeg.la \
 			${GST_LIB_DIR}/libgstjpeg.so
 

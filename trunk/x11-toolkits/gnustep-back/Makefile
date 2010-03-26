@@ -2,12 +2,13 @@
 # Date created:				27.October 2002
 # Whom:					dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.9 2008/10/20 01:06:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.10 2009/09/20 03:08:22 smultron Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
 #
 
 PORTNAME=	gnustep-back
 PORTVERSION=	0.14.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -17,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep GUI backend
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg \
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 

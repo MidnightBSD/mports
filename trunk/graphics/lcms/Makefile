@@ -2,13 +2,13 @@
 # Date created:		October 30, 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.3 2008/06/25 16:04:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.4 2009/12/29 00:53:27 laffer1 Exp $
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
 #
 
 PORTNAME=	lcms
 PORTVERSION=	1.18a
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.18 \
@@ -41,7 +41,7 @@ PLIST_SUB+=	TIFFICC="@comment "
 .endif
 
 .if defined(WITH_JPEGICC)
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 PLIST_SUB+=	JPEGICC=""
 MAN1+=		jpegicc.1
 .else

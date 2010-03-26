@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/analog/Makefile,v 1.6 2009/09/20 02:49:16 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.7 2009/09/23 02:18:26 laffer1 Exp $
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	5
+PORTREVISION=	6
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
@@ -21,7 +21,7 @@ COMMENT=	An extremely fast program for analysing WWW logfiles
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png
 
 LIMGDIR?=	www/data/images

@@ -2,7 +2,7 @@
 # Date created:         10 July 1995
 # Whom:                 dom@myrddin.demon.co.uk
 #
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.14 2008/08/24 20:03:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.15 2009/09/20 03:14:43 smultron Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	x11
 BUILD_DEPENDS=	imake:${PORTSDIR}/devel/imake
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.5:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2
 

@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.3 2009/09/20 03:09:38 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.4 2010/01/01 17:54:21 laffer1 Exp $
 
 PORTNAME=	wx
 PORTVERSION=	2.6.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/wxGTK/${PORTVERSION}
 PKGNAMESUFFIX=	${WXGTK_FLAVOR}
@@ -12,7 +13,7 @@ COMMENT?=	The wxWidgets GUI toolkit with GTK+ bindings
 LICENSE=	lgpl
 
 LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png\
-		jpeg.10:${PORTSDIR}/graphics/jpeg\
+		jpeg.11:${PORTSDIR}/graphics/jpeg\
 		tiff.4:${PORTSDIR}/graphics/tiff\
 		expat.6:${PORTSDIR}/textproc/expat2\
 		mspack.1:${PORTSDIR}/archivers/libmspack
