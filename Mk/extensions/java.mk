@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.2 2009/06/07 22:13:31 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -158,12 +158,14 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 __JAVA_VERSION_LIST=	1.3 1.4 1.5 1.6
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/} 1.1+ 1.2+
 _JAVA_OS_LIST=			native linux
-_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown
+_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
-_JAVA_PORT_NATIVE_FREEBSD_JDK_1_6_INFO=         PORT=java/diablo-jdk16                  HOME=${LOCALBASE}/diablo-jdk1.6.0 \
-                                                                                        VERSION=1.6.0   OS=native       VENDOR=freebsd
+_JAVA_PORT_NATIVE_OPENJDK_JDK_1_6_INFO=		PORT=java/openjdk6			HOME=${LOCALBASE}/openjdk6 \
+											VERSION=1.6.0	OS=native	VENDOR=openjdk
+_JAVA_PORT_NATIVE_FREEBSD_JDK_1_6_INFO=		PORT=java/diablo-jdk16			HOME=${LOCALBASE}/diablo-jdk1.6.0 \
+											VERSION=1.6.0	OS=native	VENDOR=freebsd
 _JAVA_PORT_NATIVE_FREEBSD_JDK_1_5_INFO=		PORT=java/diablo-jdk15			HOME=${LOCALBASE}/diablo-jdk1.5.0 \
 											VERSION=1.5.0	OS=native	VENDOR=freebsd
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4_INFO=		PORT=java/jdk14					HOME=${LOCALBASE}/jdk1.4.2 \
@@ -186,8 +188,9 @@ _JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE
 # Verbose description for each VENDOR
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
+_JAVA_VENDOR_openjdk=		"OpenJDK BSD Porting Team"
 _JAVA_VENDOR_blackdown=		Blackdown
-_JAVA_VENDOR_sun=		Sun
+_JAVA_VENDOR_sun=			Sun
 
 # Verbose description for each OS
 _JAVA_OS_native=	Native
@@ -208,6 +211,7 @@ _JAVA_PREFERRED_PORTS+=	JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5
 # List all JDK ports
 __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
 					JAVA_PORT_NATIVE_FREEBSD_JDK_1_5 \
+					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_4 \
