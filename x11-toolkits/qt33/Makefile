@@ -4,11 +4,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.11 2009/06/07 21:04:05 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.12 2009/06/29 19:06:53 laffer1 Exp $
 #
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8
+PORTREVISION=	1
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -21,8 +22,8 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
 LIB_DEPENDS+=	mng:${PORTSDIR}/graphics/libmng \
-		png:${PORTSDIR}/graphics/png \
-		jpeg:${PORTSDIR}/graphics/jpeg
+		png.5:${PORTSDIR}/graphics/png \
+		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 EXTRA_PATCHES=	${PATCHDIR}/0081-format-string-fixes.diff
 

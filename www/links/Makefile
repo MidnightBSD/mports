@@ -2,13 +2,13 @@
 # Date created:		21 January 2000
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
-# $MidnightBSD: mports/www/links/Makefile,v 1.8 2008/10/08 04:46:22 laffer1 Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.9 2009/09/20 02:55:37 laffer1 Exp $
 # $FreeBSD: ports/www/links/Makefile,v 1.47 2006/05/29 14:16:41 demon Exp $
 #
 
 PORTNAME=	links
 PORTVERSION=	2.1.p37
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES?=	www
 MASTER_SITES=	http://links.twibright.com/download/
@@ -18,7 +18,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-javascript --with-ssl
@@ -36,7 +36,7 @@ OPTIONS=	SVGALIB "non-X11 graphics support" off \
 .if defined(WITH_SVGALIB)
 LIB_DEPENDS+=	vga.1:${PORTSDIR}/graphics/svgalib \
 		png.5:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--enable-graphics
 OPTIONS_MESG=	"non-X11 graphics support enabled, "

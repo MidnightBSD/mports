@@ -2,12 +2,13 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.2 2009/03/13 04:26:20 ctriv Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.3 2009/09/20 03:07:06 smultron Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
 PORTNAME=	Thunar
 PORTVERSION=	1.0.0
+PORTREVISION=	1
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -54,7 +55,7 @@ PLIST_SUB+=	WITH_DBUS="@comment "
 .endif
 
 .if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.10:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 CONFIGURE_ARGS+=--enable-jpeg
 .else
 CONFIGURE_ARGS+=--disable-jpeg
