@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.1 2010/03/26 20:00:39 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
 		unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
+		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-base
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
