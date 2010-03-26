@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.1 2009/06/07 22:19:59 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.2 2009/08/20 18:07:02 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -141,5 +141,8 @@ do-install:
 .if defined(WITH_POLICY)
 	${INSTALL_DATA} ${WRKDIR}/jce/*.jar ${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}/jre/lib/security
 .endif
+
+post-install:
+	(cd ${PREFIX}/${PKGNAMEPREFIX}jdk${JDK_VERSION}/include/ && ${LN} -s freebsd midnightbsd)
 
 .include <bsd.port.post.mk>
