@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.1 2010/03/26 20:00:39 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.2 2010/03/26 22:50:19 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
@@ -217,7 +217,7 @@ do-install:
 	${MKDIR} ${PREFIX}/openjdk6-fastdebug/
 	${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}-fastdebug/j2sdk-image/ ${PREFIX}/openjdk6-fastdebug/
 .endif
-	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${PREFIX}/openjdk6/bin/java" >> ${TMPPLIST}
+	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}/openjdk6/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${PREFIX}/openjdk6 -not -type d | \
 		${SED} -e 's#^${PREFIX}/##' >> ${TMPPLIST}
 	@${ECHO} "@exec mkdir ${TRUE_PREFIX}/openjdk6/jre/lib/applet" >> ${TMPPLIST}
@@ -235,10 +235,6 @@ do-install:
 .endif
 
 post-install:
-	# Register the VM
-#	"${LOCALBASE}/bin/registervm" "${PREFIX}/openjdk6/bin/java # OpenJDK6"
-.if defined(WITH_FASTDEBUG)
-#	"${LOCALBASE}/bin/registervm" "${PREFIX}/openjdk6-fastdebug/bin/java # OpenJDK6"
-.endif
+	(cd ${PREFIX}/openjdk6/include/ && ${LN} -s freebsd midnightbsd)
 
 .include <bsd.port.post.mk>
