@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.21 2010/03/10 03:54:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.22 2010/03/12 13:52:33 laffer1 Exp $
 
 PORTNAME=	git
 PORTVERSION=	1.6.6.2
@@ -211,6 +211,8 @@ PLIST_SUB+=	CURL="@comment "
 .endif
 
 .ifdef (WITH_HTMLDOCS)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/asciidoc:${PORTSDIR}/textproc/asciidoc \
+		${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt
 RUN_DEPENDS+=	${LOCALBASE}/bin/asciidoc:${PORTSDIR}/textproc/asciidoc \
 		${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt
 PLIST_SUB+=	HTMLDOCS=""
