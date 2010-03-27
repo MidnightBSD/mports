@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/deskutils/egroupware/Makefile,v 1.3 2009/11/01 15:58:31 laffer1 Exp $
 
 PORTNAME=	eGroupware
-PORTVERSION=	1.6.002
+PORTVERSION=	1.6.003
 CATEGORIES=	deskutils
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/${PORTNAME}-${PORTVERSION}
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.bz2 \
