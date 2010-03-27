@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.22 2010/03/12 13:52:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.23 2010/03/27 14:36:37 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.6.6.2
+PORTVERSION=	1.7.0.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -154,13 +154,17 @@ MAN7=		gitcli.7 \
 		gittutorial-2.7
 
 SUB_FILES=	pkg-message
+PLIST_SUB=     PYTHON_VER=${PYTHON_VER}
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
+USE_PYTHON=     yes
+EXTENSIONS+=    python
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 MAKE_ENV+=	LIBMD_SHA1=yes \
-		V=1
+		V=1 \
+		PYTHON_PATH=${LOCALBASE}/bin/python
 MAKE_ARGS+=	prefix="${PREFIX}"
 USE_OPENSSL=	yes
 USE_RC_SUBR=	git_daemon
@@ -254,9 +258,6 @@ IGNORE=	using GITWEB support requires PERL support
 .endif
 
 .ifdef (WITH_P4)
-USE_PYTHON=	yes
-EXTENSIONS+=	python
-MAKE_ENV+=	PYTHON_PATH=${LOCALBASE}/bin/python
 PLIST_SUB+=	P4=""
 .else
 PLIST_SUB+=	P4="@comment "
@@ -311,7 +312,7 @@ post-install:
 
 .ifdef (WITH_HTMLDOCS)
 	${MKDIR} ${DOCSDIR}
-	${GMAKE} -C ${WRKSRC} install-html ${MAKE_ENV} ${FAKE_MAKEARGS}
+	${GMAKE} -C ${WRKSRC} install-html ${MAKE_ENV} ${FAKE_MAKEARGS} prefix="${TRUE_PREFIX}"
 .endif
 
 	-${RM} -f ${PREFIX}/lib/perl5/${PERL_VERSION}/mach/perllocal.pod
