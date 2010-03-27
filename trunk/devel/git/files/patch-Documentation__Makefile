@@ -1,20 +1,11 @@
---- ./Documentation/Makefile.orig	2009-05-13 02:50:52 -0400
-+++ ./Documentation/Makefile	2009-05-16 12:28:08 -0400
-@@ -12,8 +12,6 @@
- MAN_XML=$(patsubst %.txt,%.xml,$(MAN_TXT))
- MAN_HTML=$(patsubst %.txt,%.html,$(MAN_TXT))
- 
--DOC_HTML=$(MAN_HTML)
--
- ARTICLES = howto-index
- ARTICLES += everyday
- ARTICLES += git-tools
-@@ -29,10 +27,10 @@
+--- Documentation/Makefile.orig	2010-03-07 17:13:40.000000000 -0500
++++ Documentation/Makefile	2010-03-14 12:02:57.551179596 -0400
+@@ -30,10 +30,10 @@
  DOC_MAN5=$(patsubst %.txt,%.5,$(MAN5_TXT))
  DOC_MAN7=$(patsubst %.txt,%.7,$(MAN7_TXT))
  
 -prefix?=$(HOME)
-+prefix?=$(PREFIX)
++prefix?=$(HOME)
  bindir?=$(prefix)/bin
 -htmldir?=$(prefix)/share/doc/git-doc
 -pdfdir?=$(prefix)/share/doc/git-doc
@@ -23,7 +14,7 @@
  mandir?=$(prefix)/share/man
  man1dir=$(mandir)/man1
  man5dir=$(mandir)/man5
-@@ -142,7 +140,7 @@
+@@ -162,7 +162,7 @@
  endif
  endif
  
@@ -31,4 +22,3 @@
 +all: html
  
  html: $(DOC_HTML)
- 
