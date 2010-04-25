@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.5 2009/12/29 18:13:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-devel/${PORTVERSION} \
 		http://www.libmng.com/download/
@@ -16,22 +16,14 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 
 OPTIONS=	MNG_OPTIMIZE "Use vendor's new optimization flags" no
 
-REINPLACE_ARGS=	-i ""
 MAKEFILE=	${FILESDIR}/Makefile.bsd
-MAKE_ARGS+=	-j2 WITH_MNG_OPTIMIZE=${WITH_MNG_OPTIMIZE}
+MAKE_ARGS+=	WITH_MNG_OPTIMIZE=${WITH_MNG_OPTIMIZE}
+MAKE_JOBS_SAFE=	yes
 
 USE_LDCONFIG=	yes
 
 MAN3=		libmng.3
 MAN5=		mng.5 jng.5
-
-post-extract:
-	#
-	# Getting rid of the DOS-style end-of-lines left by the vendor
-	#
-	${FIND} ${WRKSRC} -type f | ${XARGS} ${FILE} |	\
-	    ${AWK} -F: '/CRLF/ { print $$1 }' |	\
-	    ${XARGS} ${REINPLACE_CMD} -Ee 's,[[:space:]]+$$,,'
 
 post-install:
 	cd ${WRKSRC}/doc/man && ${INSTALL_MAN} ${MAN3} ${PREFIX}/man/man3 \
