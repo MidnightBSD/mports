@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.22 2009/12/13 02:25:56 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.23 2010/01/15 02:09:14 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.2.5
+DISTVERSION=	3.3.2
 CATEGORIES=	databases www
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-USE_PHP=	ctype mysql pcre session spl filter
+USE_PHP=	ctype mysql pcre session spl filter mbstring mcrypt
 .endif
 
 SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
@@ -30,9 +30,7 @@ OPTIONS=	BZ2	 "bzip2 library support" on \
 		MYSQLI	 "Improved MySQL support" off \
 		OPENSSL	 "OpenSSL support" on \
 		PDF	 "PDFlib support (implies GD)" on \
-		ZLIB	 "ZLIB support" on \
-		MCRYPT   "MCrypt library support" on \
-		MBSTRING "Multi-byte character-set string support" on
+		ZLIB	 "ZLIB support" on
 
 PORT_DBDIR?=	${DESTDIR}/var/db/ports
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
@@ -66,9 +64,6 @@ PLIST=		${WRKDIR}/plist
 PLIST_SUB+=	MYADMDIR=${MYADMDIR} MYADMGRP=${MYADMGRP}
 
 .SILENT:
-
-do-build:
-	@${DO_NADA}
 
 # When creating a package, empty directories will not be generated
 # from the pkg tarball.  Therefore make sure no directories are empty.
