@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.5 2009/09/20 02:53:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	imlib2
 PORTVERSION=	1.4.1.000
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/ \
@@ -56,7 +56,7 @@ PLIST_SUB+=	JPEG="@comment "
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
