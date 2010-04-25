@@ -2,13 +2,13 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.8 2008/05/10 01:33:50 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.9 2009/08/07 17:04:59 crash Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
 PORTNAME=	irssi
-PORTVERSION=	0.8.14
-PORTREVISION=	1
+PORTVERSION=	0.8.15
+PORTREVISION=	0
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
