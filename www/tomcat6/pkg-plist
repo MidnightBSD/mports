@@ -442,6 +442,8 @@ etc/rc.d/tomcat6.sh
 %%T%%/webapps/host-manager/images/update.gif
 %%T%%/webapps/host-manager/images/add.gif
 %%T%%/webapps/host-manager/manager.xml
+%%T%%/webapps/manager/WEB-INF/jsp/sessionDetail.jsp
+%%T%%/webapps/manager/WEB-INF/jsp/sessionsList.jsp
 %%T%%/webapps/manager/WEB-INF/web.xml
 %%T%%/webapps/manager/images/void.gif
 %%T%%/webapps/manager/images/asf-logo.gif
@@ -453,11 +455,9 @@ etc/rc.d/tomcat6.sh
 %%T%%/webapps/manager/images/update.gif
 %%T%%/webapps/manager/images/add.gif
 %%T%%/webapps/manager/META-INF/context.xml
-%%T%%/webapps/manager/sessionsList.jsp
 %%T%%/webapps/manager/status.xsd
 %%T%%/webapps/manager/xform.xsl
 %%T%%/webapps/manager/401.jsp
-%%T%%/webapps/manager/sessionDetail.jsp
 %%T%%/temp/safeToDelete.tmp
 %%T%%/lib/tomcat-i18n-ja.jar
 %%T%%/lib/catalina-ant.jar
@@ -575,6 +575,7 @@ etc/rc.d/tomcat6.sh
 @dirrm %%T%%/webapps/host-manager/WEB-INF
 @dirrm %%T%%/webapps/host-manager/images
 @dirrm %%T%%/webapps/host-manager
+@dirrm %%T%%/webapps/manager/WEB-INF/jsp
 @dirrm %%T%%/webapps/manager/WEB-INF
 @dirrm %%T%%/webapps/manager/images
 @dirrm %%T%%/webapps/manager/META-INF
