@@ -2,16 +2,16 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/gedit/Makefile,v 1.5 2008/10/20 19:32:50 laffer1 Exp $
+# $MidnightBSD: mports/editors/gedit/Makefile,v 1.6 2008/11/06 22:29:25 ctriv Exp $
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
 #   $MCom: ports-stable/editors/gedit/Makefile,v 1.9 2007/12/02 02:00:32 marcus Exp $
 #
 
 PORTNAME=	gedit
-PORTVERSION=	2.20.4
+PORTVERSION=	2.26.3
+PORTREVISION=	1
 CATEGORIES=	editors gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,15 +22,15 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-
 LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
+USE_XORG=	sm
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-GNU_CONFIGURE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack \
-		libgnomeprintui libgnomeui eel2 gtksourceview2 desktopfileutils
+USE_AUTOTOOLS=	libtool:22
+USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 gtksourceview2 \
+		desktopfileutils gnomedocutils ltasneededhack
 WANT_GNOME=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
@@ -57,15 +57,11 @@ CONFIGURE_ARGS+=--disable-python
 PLIST_SUB+=	PYTHON="@comment "
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|make|${GMAKE}|g' \
-	    	${WRKSRC}/bindings/python/Makefile.in
-
-pre-build:
-	${MKDIR} ${WRKSRC}/bindings/python/.deps
-.for ff in gedit_la-gedit.Plo gedit_la-geditcommands.Plo gedit_la-geditutils.Plo
-	${TOUCH} ${WRKSRC}/bindings/python/.deps/${ff}
-.endfor
+#pre-build:
+#	${MKDIR} ${WRKSRC}/bindings/python/.deps
+#.for ff in gedit_la-gedit.Plo gedit_la-geditcommands.Plo gedit_la-geditutils.Plo
+#	${TOUCH} ${WRKSRC}/bindings/python/.deps/${ff}
+#.endfor
 
 post-install:
 	@-update-desktop-database
