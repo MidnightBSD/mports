@@ -1,6 +1,3 @@
-
-$FreeBSD: ports/editors/manedit/files/patch-Makefile.FreeBSD,v 1.4 2003/08/26 20:24:22 krion Exp $
-
 --- Makefile.FreeBSD.orig	Wed Mar 13 00:02:34 2002
 +++ Makefile.FreeBSD	Tue Jul  2 14:48:15 2002
 @@ -52,7 +52,7 @@
@@ -10,7 +7,7 @@ $FreeBSD: ports/editors/manedit/files/patch-Makefile.FreeBSD,v 1.4 2003/08/26 20
 -CFLAGS += $(GTK_CFLAGS) -O2 -Wall \
 +CFLAGS += -I. $(GTK_CFLAGS) \
            -DPREFIX=\"$(PREFIX)\" \
-           -DLOCALBASE=\"$(LOCALBASE)\" -DX11BASE=\"$(X11BASE)\"
+           -DLOCALBASE=\"$(LOCALBASE)\" -DX11BASE=\"$(LOCALBASE)\"
  
 @@ -116,7 +116,7 @@
  # Build Rules:
