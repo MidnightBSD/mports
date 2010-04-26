@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/Makefile,v 1.32 2009/04/02 23:04:05 laffer1 Exp $
+# $MidnightBSD: mports/editors/Makefile,v 1.33 2009/04/02 23:21:10 laffer1 Exp $
 #
 
     COMMENT = Editors
@@ -23,7 +23,6 @@
     SUBDIR += mousepad
     SUBDIR += nano
     SUBDIR += nvi-devel
-    SUBDIR += pico
     SUBDIR += pico-alpine
     SUBDIR += textedit.app
     SUBDIR += vim
@@ -32,4 +31,5 @@
     SUBDIR += xemacs-packages
     SUBDIR += xenon
     SUBDIR += zile
+
 .include <bsd.port.subdir.mk>
