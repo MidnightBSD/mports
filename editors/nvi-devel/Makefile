@@ -2,13 +2,13 @@
 # Date created:			27 Dec 2007
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/nvi-devel/Makefile,v 1.2 2008/09/09 20:51:59 crash Exp $
+# $MidnightBSD: mports/editors/nvi-devel/Makefile,v 1.3 2009/09/20 01:05:53 laffer1 Exp $
 #
 
 PORTNAME=	nvi
 PORTVERSION=	1.81.6
 CATEGORIES=	editors
-MASTER_SITES=	http://www.kotnet.org/~skimo/nvi/devel/ \
+MASTER_SITES=	http://www.kotnet.org/~skimo/nvi/devel/
                 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development snapshot of the world-renown nvi editor
