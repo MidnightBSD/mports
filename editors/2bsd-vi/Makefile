@@ -2,14 +2,13 @@
 # Date created:			2007-04-27
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/2bsd-vi/Makefile,v 1.1 2007/04/28 00:32:02 laffer1 Exp $
+# $MidnightBSD: mports/editors/2bsd-vi/Makefile,v 1.2 2008/10/16 21:59:00 laffer1 Exp $
 #
 
 PORTNAME=	vi
 PORTVERSION=	050325
 CATEGORIES=	editors
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	ex-vi
+MASTER_SITES=	SF/ex-${PORTNAME}/ex-${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	2bsd-
 DISTNAME=	ex-${PORTVERSION}
 
