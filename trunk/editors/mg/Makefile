@@ -2,20 +2,20 @@
 # Date created:			14 May 2001
 # Whom:				Dima Dorfman <dima@unixfreak.org>
 #
-# $MidnightBSD: mports/editors/mg/Makefile,v 1.3 2008/10/16 22:00:10 laffer1 Exp $
+# $MidnightBSD: mports/editors/mg/Makefile,v 1.4 2009/05/18 21:39:12 crash Exp $
 # $FreeBSD: ports/editors/mg/Makefile,v 1.9 2006/11/19 12:28:48 miwi Exp $
 #
 
 PORTNAME=	mg
-PORTVERSION=    20090107	
+PORTVERSION=	20090107
 CATEGORIES=	editors
-MASTER_SITES=	http://www.xs4all.nl/~hanb/software/mg/
+MASTER_SITES=	http://www.han.dds.nl/software/mg/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small, fast Emacs-like editor
 LICENSE=	publicdom
 
-MAN1=		mg.1
+MAN1=	mg.1
 MANCOMPRESSED=	no
 
 HAS_CONFIGURE=	yes
