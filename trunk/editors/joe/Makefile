@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.8 2008/10/01 19:20:55 laffer1 Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.9 2009/04/02 23:14:13 laffer1 Exp $
 
 PORTNAME=	joe
 PORTVERSION=	3.7
 CATEGORIES=	editors
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}-editor
+MASTER_SITES=	SF/joe-editor/JOE%20sources/joe-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
