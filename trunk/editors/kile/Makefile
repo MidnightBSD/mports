@@ -2,16 +2,15 @@
 # Date created:		21 Jun 2002
 # Whom:			Stefan Jahn <stefan.jahn@nemesis-sektor.de>
 #
-# $MidnightBSD: mports/editors/kile/Makefile,v 1.2 2008/10/21 21:06:10 ctriv Exp $
+# $MidnightBSD: mports/editors/kile/Makefile,v 1.3 2009/09/20 01:03:20 laffer1 Exp $
 # $FreeBSD: ports/editors/kile/Makefile,v 1.30 2007/05/19 20:04:08 flz Exp $
 #
 
 PORTNAME=	kile
-PORTVERSION=	1.9.3
-PORTREVISION=	1
+PORTVERSION=	2.0.3
+PORTREVISION=	0
 CATEGORIES=	editors kde
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_EXTENDED}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A LaTeX source editor for KDE
