@@ -2,12 +2,12 @@
 # Date created:		19 April 2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/mousepad/Makefile,v 1.1 2008/09/26 17:40:53 laffer1 Exp $
 # $FreeBSD: ports/editors/mousepad/Makefile,v 1.9 2008/06/06 13:25:52 edwin Exp $
 #
 
 PORTNAME=	mousepad
-PORTVERSION=	0.2.13
+PORTVERSION=	0.2.16
 CATEGORIES=	editors xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
