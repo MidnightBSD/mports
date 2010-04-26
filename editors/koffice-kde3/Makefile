@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.6 2008/10/21 21:21:02 ctriv Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.7 2009/09/20 01:04:37 laffer1 Exp $
 #
 
 PORTNAME=	koffice
@@ -45,6 +45,7 @@ USE_MYSQL=	yes
 USE_PYTHON=	yes
 USE_RUBY=	yes
 USE_PGSQL=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
