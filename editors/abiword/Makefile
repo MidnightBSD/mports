@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.5 2009/08/09 00:15:54 laffer1 Exp $
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.6 2010/01/23 22:10:56 laffer1 Exp $
 
 PORTNAME=	abiword
 PORTVERSION=	2.6.8
@@ -15,6 +15,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		png.5:${PORTSDIR}/graphics/png \
+		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		wv-1.2:${PORTSDIR}/textproc/wv \
 		fribidi.3:${PORTSDIR}/converters/fribidi \
 		goffice-0.4:${PORTSDIR}/devel/goffice04
