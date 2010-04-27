@@ -3,16 +3,17 @@
 # Whom:			jasone
 #
 # $FreeBSD: ports/editors/zile/Makefile,v 1.58 2008/05/16 14:10:54 miwi Exp $
-# $MidnightBSD: mports/editors/zile/Makefile,v 1.3 2009/01/02 01:46:08 ctriv Exp $
+# $MidnightBSD: mports/editors/zile/Makefile,v 1.4 2009/05/27 16:55:54 crash Exp $
 
 PORTNAME=	zile
-PORTVERSION=	2.3.7
+PORTVERSION=	2.3.13
 CATEGORIES=	editors
 MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small emacs-like text editor
 LICENSE=        gpl3
+
 USE_GMAKE=      yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
