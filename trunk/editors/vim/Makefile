@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.15 2008/10/07 15:17:49 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.16 2009/06/07 18:06:34 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	171
+PATCHLEVEL=	299
 PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
@@ -9,14 +9,19 @@ CATEGORIES?=	editors
 MASTER_SITES=	${MASTER_SITE_VIM}
 DISTFILES=	${RELEASE}${EXTRACT_SUFX}
 
-PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}
+PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}\
+		ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/obrien/:local
 PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=	007 027 030 036 041 049 071 072 074 088 089 093 101 138 150 172 173
+BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260
+#.if !defined(WITH_LANG)
+#BADPATCHES+=
+#.endif
 .for p in ${BADPATCHES}
 PATCHFILES:=	${PATCHFILES:N7.2.${p}}
 .endfor
+PATCHFILES:=	${PATCHFILES:S/041/041^:local/}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Vi "workalike", with many additional features
@@ -55,12 +60,13 @@ MANLANG=	"" ru.KOI8-R ru.UTF-8 pl.ISO8859-2 pl.UTF-8 pl fr.ISO8859-1 \
 		fr.UTF-8 fr it.ISO8859-1 it.UTF-8 it
 
 .if defined(PACKAGE_BUILDING) && !defined(LITE)
-WITH_TCL=	yes
-WITH_PERL=	yes
-WITH_PYTHON=	yes
 WITH_CSCOPE=	yes
 WITH_EXUBERANT_CTAGS=yes
 WITH_LANG=	yes
+WITH_PERL=	yes
+WITH_PYTHON=	yes
+WITH_RUBY=	yes
+WITH_TCL=	yes
 .endif
 
 .if defined(WITH_PYTHON)
@@ -74,7 +80,7 @@ MAKE_ARGS+=	CONF_OPT_RUBY="--enable-rubyinterp"
 .endif
 
 .if defined(WITH_TCL)
-USE_TCL=	80+
+USE_TCL=	82+
 USE_TCL_NO_THREADS=	yes
 .endif
 
@@ -241,13 +247,19 @@ cklatest:
 
 find-bad-patches:
 	@cd ${DISTDIR} ; egrep -l \
-		'(src/if_ole|src/gui_(w32|w48|mac)|src/os_(riscos|cyg|os2|vms|amiga|win32|mswin))|src/Make_(cyg|vms|mvc)'\
+		'(src/if_(ole|mzsch)|src/gui_(w32|w48|mac)|src/os_(riscos|cyg|os2|vms|amiga|win32|mswin))|src(/testdir)?/Make_(dos|cyg|vms|mvc|ming|os2|amiga|mms)'\
 		vim/${PORTVERSION:C/\.[0-9a-z]*$//}*
 
 vim-makesum:
 	${MAKE} WITH_LANG=yes makesum
 
 ckp:
+	${MAKE} -DPATCH_DEBUG clean patch
+
+ckpl:
 	${MAKE} -DPATCH_DEBUG WITH_LANG=yes clean patch
+
+lang:
+	${MAKE} WITH_LANG=yes
 
 .include <bsd.port.post.mk>
