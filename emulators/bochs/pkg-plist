@@ -1,3 +1,4 @@
+@comment $FreeBSD: ports/emulators/bochs/pkg-plist,v 1.30 2009/05/23 14:23:36 miwi Exp $
 bin/bochs
 bin/bxcommit
 bin/bximage
@@ -28,10 +29,8 @@ bin/bximage
 %%PORTDOCS%%%%DOCSDIR%%/TODO
 %%PORTDOCS%%%%DOCSDIR%%/biossums.txt
 %%PORTDOCS%%%%DOCSDIR%%/bochsrc-sample.txt
-%%PORTDOCS%%%%DOCSDIR%%/cvs-structure.txt
-%%PORTDOCS%%%%DOCSDIR%%/html/Linux.html
+%%PORTDOCS%%%%DOCSDIR%%/enh_dbg_user_man.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/cosimulation.html
-%%PORTDOCS%%%%DOCSDIR%%/html/index.html
 %%PORTDOCS%%%%DOCSDIR%%/memory.txt
 %%PORTDOCS%%%%DOCSDIR%%/random.txt
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/html
