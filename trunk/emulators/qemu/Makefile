@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.9 2009/10/25 15:28:15 laffer1 Exp $
 
 PORTNAME=	qemu
 PORTVERSION=	0.10.6
@@ -48,7 +48,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 .if defined(WITHOUT_SDL)
 CONFIGURE_ARGS+=	--disable-sdl --disable-gfx-check
 .else
-USE_SDL=	yes
+USE_SDL=	sdl
 .endif
 
 .if defined(WITHOUT_GNUTLS)
