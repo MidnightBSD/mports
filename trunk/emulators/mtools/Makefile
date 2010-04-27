@@ -2,15 +2,14 @@
 # Date created:         5 October 1994
 # Whom:                 jmz
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/mtools/Makefile,v 1.6 2009/03/01 16:47:02 laffer1 Exp $
 # $FreeBSD: ports/emulators/mtools/Makefile,v 1.62 2009/01/14 09:12:16 miwi Exp $
 
 PORTNAME=	mtools
-PORTVERSION=	4.0.1
+PORTVERSION=	4.0.10
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SUNSITE} \
-		http://mtools.linux.lu/
-MASTER_SITE_SUBDIR=	utils/disk-management
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	mtools
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A collection of tools for manipulating MSDOS files
@@ -51,6 +50,9 @@ MAN1+=		floppyd.1 floppyd_installtest.1
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e \
+		's|^#define MT_SIZE_T size_t|#define MT_SIZE_T off_t|g' \
+		${WRKSRC}/llong.h
 .for file in mformat.c
 	@${REINPLACE_CMD} -e 's|/etc/mtools.conf|${PREFIX}/etc/mtools.conf|g' \
 		${WRKSRC}/${file}
