@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.9 2009/09/20 02:53:12 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.10 2010/03/25 01:16:37 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
@@ -74,9 +74,10 @@ LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
-USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm x11
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps
+
+MAKE_JOBS_SAFE=  yes
 
 #.if !defined(WITHOUT_MOTIF) && !defined(MOTIF_STATIC)
 #USE_MOTIF=	yes
