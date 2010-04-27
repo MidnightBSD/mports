@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.62 2010/01/23 19:01:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.63 2010/01/23 19:03:30 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -40,6 +40,7 @@ SUBDIR += p5-Scalar-List-Utils
 SUBDIR += p5-ePerl
 SUBDIR += pcc
 SUBDIR += perl5.10
+SUBDIR += perl5.12
 SUBDIR += perl5.8
 SUBDIR += php_doc
 SUBDIR += php5
