@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.43 2009/09/26 22:22:45 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.44 2010/01/21 01:48:16 laffer1 Exp $
 #
 
     COMMENT = Desktop publishing
@@ -9,6 +9,7 @@
     SUBDIR += acroread7-de
     SUBDIR += acroread8
     SUBDIR += acroread8-de
+    SUBDIR += acroread9
     SUBDIR += acroreadwrapper
     SUBDIR += adobe-cmaps
     SUBDIR += amspsfnt
