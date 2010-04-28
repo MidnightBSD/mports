@@ -1,4 +1,4 @@
-# $MidnightBSD $
+# $MidnightBSD  mports/print/acroread9/Makefile,v 1.9 2010/04/28 16:39:24 Exp $
 #
 
 PORTNAME=	acroread9
