@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.12 2009/05/01 14:49:02 laffer1 Exp $
+# $MidnightBSD$
+#
 
 PORTNAME=	gnutls
-PORTVERSION=	2.6.6
+PORTVERSION=	2.8.3
 CATEGORIES=	security net
 MASTER_SITES=	${MASTER_SITE_GNU} \
 		${MASTER_SITE_GNUPG}
@@ -9,23 +10,24 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
-LICENSE=        gpl3
+LICENSE=	gpl3
 
 LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
+
+CONFLICTS=	gnutls-devel-[0-9]*
 
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_GNOME=	pkgconfig ltverhack
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -fPIC" LDFLAGS="${LDFLAGS}"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS+=	--with-included-lzo --disable-guile \
-			--infodir="${PREFIX}/info" --mandir="${PREFIX}/man/"
+CONFIGURE_ARGS+=	--disable-guile
 MANCOMPRESSED=	no
 
 .include <bsd.port.pre.mk>
@@ -56,6 +58,10 @@ PLIST_SUB+=		NLS="@comment "
 .else
 USE_GETTEXT=		yes
 PLIST_SUB+=		NLS=""
+.endif
+
+.if defined(WITH_CAMELLIA)
+CONFIGURE_ARGS+=	--enable-camellia
 .endif
 
 .if !defined(NOPORTDOCS)
