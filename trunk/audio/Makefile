@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.80 2010/02/27 20:07:14 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.81 2010/02/27 20:54:48 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -92,6 +92,7 @@
     SUBDIR += vorbis-tools
     SUBDIR += wavpack
     SUBDIR += wmmp3
+    SUBDIR += wmmixer
     SUBDIR += wmsmixer
     SUBDIR += xfce4-mixer
     SUBDIR += xfce4-mpc-plugin
