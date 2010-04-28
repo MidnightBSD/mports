@@ -1,8 +1,4 @@
-# New ports collection makefile for:	acroread9
-# Date created:		28 March 2009
-# Whom:			hrs
-#
-# $FreeBSD: ports/print/acroread9/Makefile,v 1.11 2010/04/18 15:51:41 hrs Exp $
+# $MidnightBSD $
 #
 
 PORTNAME=	acroread9
@@ -13,8 +9,9 @@ MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${PORTVERSI
 DISTNAME=	AdbeRdr${PORTVERSION}-1_i486linux_${ADOBE_LANG:L}
 DIST_SUBDIR=	acroread
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Reader for view, print, and search PDF documents (${ADOBE_LANG})
+LICENSE=	restricted
 
 RUN_DEPENDS=	acroreadwrapper>=0.0.20090328:${PORTSDIR}/print/acroreadwrapper
 
