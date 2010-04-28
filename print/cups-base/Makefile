@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.23 2009/09/20 02:39:59 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.24 2010/03/25 01:37:57 laffer1 Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.3.11
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 DESTDIRNAME=	BUILDROOT
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 CONFLICTS=	LPRng-[0-9]*
