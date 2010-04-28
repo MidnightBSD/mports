@@ -1,4 +1,3 @@
-MD5 (gnutls-2.6.6.tar.bz2) = ca2489e29f9dc313a79b9747bb1090e5
-SHA256 (gnutls-2.6.6.tar.bz2) = 03d85b8b51ca7885740c69b87663963c58fe7c9672da0a43e45732078fabdc9e
-RMD160 (gnutls-2.6.6.tar.bz2) = dc6e717e38741628508208244f07fed8faedb13c
-SIZE (gnutls-2.6.6.tar.bz2) = 5116385
+MD5 (gnutls-2.8.3.tar.bz2) = 72b77092c5d1ae01306cd14c0f22d6e4
+SHA256 (gnutls-2.8.3.tar.bz2) = f08f49d6f0df2618bb4f995e73d2e1fe0ae5a999939b38954b067111da7d7998
+SIZE (gnutls-2.8.3.tar.bz2) = 6198273
