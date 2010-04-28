@@ -1,10 +1,10 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/joomla15/Makefile,v 1.1 2009/10/13 02:25:55 laffer1 Exp $
 # $FreeBSD: ports/www/joomla15/Makefile,v 1.25 2009/08/07 20:07:40 skreuzer Exp $
 
 PORTNAME=	joomla15
-PORTVERSION=	1.5.14
+PORTVERSION=	1.5.15
 CATEGORIES=	www
-MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/10785/42653/ \
+MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/11396/45608/ \
 		http://web.dti.supsi.ch/downloads/
 DISTNAME=	Joomla_${PORTVERSION}-Stable-Full_Package
 
