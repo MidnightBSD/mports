@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.9 2009/09/23 13:05:27 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.10 2009/10/14 23:32:30 laffer1 Exp $
 
 PORTNAME=	libgcrypt
-PORTVERSION=	1.4.4
-PORTREVISION=	1
+PORTVERSION=	1.4.5
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	libgcrypt
