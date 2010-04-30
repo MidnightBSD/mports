@@ -2,7 +2,7 @@
 # Date created:		20 October 2007
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.7 2008/08/28 22:52:21 laffer1 Exp $
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.8 2008/10/13 17:32:24 laffer1 Exp $
 # $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
 #
 
@@ -25,7 +25,7 @@ RUN_DEPENDS=	acroreadwrapper>=0.0.20071020:${PORTSDIR}/print/acroreadwrapper \
 		${LOCALBASE}/lib/linux-nvu/libgtkembedmoz.so:${PORTSDIR}/www/linux-nvu
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
-ONLY_FOR_ARCHS=	i386
+ONLY_FOR_ARCHS=	i386 amd64
 USE_BZIP2=	yes
 USE_LINUX=	yes
 USE_XLIB=	yes
