@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.22 2010/02/28 21:25:36 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.23 2010/03/26 00:53:07 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.16.6
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
@@ -25,7 +25,7 @@ LATEST_LINK=	gtk20
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	\
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		jasper.4:${PORTSDIR}/graphics/jasper
