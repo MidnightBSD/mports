@@ -3,7 +3,7 @@
 # Whom:			Renato Botelho <freebsd@galle.com.br>
 #
 # $FreeBSD: ports/devel/libslang2/Makefile,v 1.20 2008/05/19 20:14:18 garga Exp $
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.2 2008/06/11 01:56:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.3 2008/10/17 17:15:45 ctriv Exp $
 
 PORTNAME=	libslang2
 PORTVERSION=	2.1.4
@@ -53,7 +53,7 @@ PLIST_SUB+=	PCRE="@comment "
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
