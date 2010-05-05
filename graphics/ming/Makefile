@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/ming/Makefile,v 1.2 2009/04/13 18:15:38 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ming/Makefile,v 1.3 2010/05/05 19:48:23 vganji Exp $
 
 PORTNAME=	ming
 PORTVERSION=	0.3.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	${PORTNAME}
