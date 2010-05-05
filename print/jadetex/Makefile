@@ -3,7 +3,7 @@
 # Whom:                 Sean Kelly <kelly@ad1440.net>
 #
 # $FreeBSD: ports/print/jadetex/Makefile,v 1.30 2006/04/15 06:46:10 linimon Exp $
-# $MidnightBSD: mports/print/jadetex/Makefile,v 1.2 2007/11/07 02:19:44 ctriv Exp $
+# $MidnightBSD: mports/print/jadetex/Makefile,v 1.3 2007/11/09 21:28:30 laffer1 Exp $
 #
 
 PORTNAME=		jadetex
@@ -18,7 +18,7 @@ COMMENT=		A TeX backend for Jade, for typesetting SGML documents
 LICENSE=		unknown
 
 BUILD_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS+=		png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		png.6:${PORTSDIR}/graphics/png
 RUN_DEPENDS+=		etex:${PORTSDIR}/print/teTeX-base
 
 TEXMFMAIN=              ${PREFIX}/share/texmf

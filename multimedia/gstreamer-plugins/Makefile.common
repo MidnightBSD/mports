@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.7 2010/02/27 21:37:07 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.8 2010/03/26 00:58:52 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -320,7 +320,7 @@ gst_libmms_PLIST_FILES=	${GST_LIB_DIR}/libgstmms.so \
 gst_libmms_DIST=	bad
 
 # libpng and the snapshot plugin
-gst_libpng_LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+gst_libpng_LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 gst_libpng_GST_PLUGIN_DIR=	ext/libpng
 gst_libpng_PLIST_FILES=	${GST_LIB_DIR}/libgstpng.so \
 		${GST_LIB_DIR}/libgstpng.la

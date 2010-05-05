@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.1 2010/01/23 19:27:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.2 2010/03/25 01:28:09 laffer1 Exp $
 
 PORTNAME=	svgviewer
 PORTVERSION=	0.2.0
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS+=	svg.1:${PORTSDIR}/graphics/libsvg \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes

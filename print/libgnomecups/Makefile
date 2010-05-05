@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.3 2009/09/20 02:12:53 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.4 2010/03/13 00:24:01 laffer1 Exp $
 
 PORTNAME=	libgnomecups
 PORTVERSION=	0.2.3
@@ -21,5 +21,6 @@ USE_LDCONFIG=	yes
 USE_AUTOTOOLS=  libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
+MAKE_JOBS_SAFE=	yes
 
 .include <bsd.port.mk>

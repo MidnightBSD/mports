@@ -3,7 +3,7 @@
 # Whom:			Thomas E. Zander
 #			with lots of help from Vladimir Kushnir
 #
-# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.8 2007/12/06 17:54:42 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mplayer/Makefile,v 1.9 2009/05/27 21:26:37 crash Exp $
 # $FreeBSD: ports/multimedia/mplayer/Makefile,v 1.157 2007/03/13 13:40:15 miwi Exp $
 #
 #
@@ -105,7 +105,7 @@ LICENSE=        lgpl
 PATCH_SITES=	http://www.mplayerhq.hu/MPlayer/patches/
 PATCHFILES+=	asmrules_fix_20061231.diff
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes

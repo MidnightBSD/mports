@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/analog/Makefile,v 1.7 2009/09/23 02:18:26 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.8 2010/03/26 00:44:42 laffer1 Exp $
 
 PORTNAME=	analog
 PORTVERSION=	6.0
@@ -22,7 +22,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 
 LIMGDIR?=	www/data/images
 IMGDIR=		${PREFIX}/${LIMGDIR}
