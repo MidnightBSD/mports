@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.4 2009/09/20 03:00:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/sdl_image/Makefile,v 1.5 2010/03/25 01:28:09 laffer1 Exp $
 
 PORTNAME=	sdl_image
 PORTVERSION=	1.2.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.libsdl.org/projects/SDL_image/release/
 DISTNAME=	SDL_image-${PORTVERSION}
@@ -12,7 +12,7 @@ COMMENT=	A simple library to load images of various formats as SDL surfaces
 LICENSE=	lgpl
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_SDL=	sdl
