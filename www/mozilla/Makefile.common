@@ -3,7 +3,7 @@
 # Date created:		12 Nov 2005
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.6 2009/10/13 03:03:56 laffer1 Exp $
+# $MidnightBSD: mports/www/mozilla/Makefile.common,v 1.7 2010/03/26 00:48:03 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/Makefile.common,v 1.23 2007/02/04 22:37:34 marcus Exp $
 #    $MCom: ports-stable/www/mozilla/Makefile.common,v 1.1 2006/10/18 17:29:07 ahze Exp $
 
@@ -55,7 +55,7 @@
 
 BUILD_DEPENDS+=	zip:${PORTSDIR}/archivers/zip
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		nspr4:${PORTSDIR}/devel/nspr \
 		nss3:${PORTSDIR}/security/nss
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.5 2009/09/20 19:34:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	gimp-app
 DISTVERSION=	2.6.6
@@ -20,7 +20,7 @@ COMMENT=	A GNU Image Manipulation Program
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		lcms.1:${PORTSDIR}/graphics/lcms \

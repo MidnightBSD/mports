@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.8 2008/08/18 16:33:23 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.9 2009/04/17 16:36:14 laffer1 Exp $
 
 PORTNAME=	xine
 PORTVERSION=	0.99.5
@@ -13,7 +13,7 @@ COMMENT=	An X11 multimedia player
 LICENSE=	gpl2
 
 LIB_DEPENDS=	xine.1:${PORTSDIR}/multimedia/libxine \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes

@@ -3,7 +3,7 @@
 # Whom:                 hrs
 #
 # $FreeBSD: ports/print/dvipsk-tetex/Makefile,v 1.7 2005/04/19 13:32:02 hrs Exp $
-# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.1 2007/01/24 20:41:41 laffer1 Exp $
+# $MidnightBSD: mports/print/dvipsk-tetex/Makefile,v 1.2 2007/11/02 03:26:29 ctriv Exp $
 #
 
 PORTNAME=	dvipsk-tetex
@@ -26,7 +26,7 @@ BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		mktexlsr:${PORTSDIR}/print/teTeX-base
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		wwwcore.1:${PORTSDIR}/www/libwww \
 		t1.5:${PORTSDIR}/devel/t1lib
 

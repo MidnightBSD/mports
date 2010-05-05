@@ -2,7 +2,7 @@
 # Date created:         19 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.9 2008/06/14 16:55:37 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.10 2008/10/20 01:03:04 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 #
 
@@ -17,7 +17,7 @@ COMMENT=	GNUstep GUI library
 LICENSE=	gpl3
 
 LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
 

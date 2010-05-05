@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.3 2010/01/01 23:49:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.4 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	gegl
 PORTVERSION=	0.0.${GEGL_MINOR}
@@ -103,7 +103,7 @@ CONFIGURE_ARGS+=--without-pango
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=--without-libpng
