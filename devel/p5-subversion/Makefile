@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-subversion/Makefile,v 1.1 2009/04/08 04:21:06 laffer1 Exp $
 
 PKGNAMEPREFIX=	p5-
 
@@ -11,7 +11,6 @@ PKGDIR=		${.CURDIR}
 
 USE_PERL5=		5.8.0+
 
-MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
 MAN3=			SVN::Base.3 \
 			SVN::Client.3 \
 			SVN::Core.3 \
@@ -28,6 +27,7 @@ SVN_BUILD_BINDINGS=yes
 CATEGORIES+=	perl5
 
 do-build:
+	${MKDIR} ${PREFIX}/lib/perl5/${PERL_VERSION}
 	cd ${WRKSRC} ; ${MAKE} ${FAKE_MAKEARGS} swig-pl-lib ; ${MAKE} ${FAKE_MAKEARGS} swig-pl
 
 do-install:
