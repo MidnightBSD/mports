@@ -2,7 +2,7 @@
 # Date created:		September 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.3 2009/09/20 02:46:10 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.4 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	A graphic library for GTK+
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
