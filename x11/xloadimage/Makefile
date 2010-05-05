@@ -2,7 +2,7 @@
 # Date created:         9 January 1994
 # Whom:                 jmz
 #
-# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.5 2009/09/20 03:13:27 smultron Exp $
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.6 2010/03/26 00:50:00 laffer1 Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
 #
 
@@ -28,7 +28,7 @@ EXTRA_PATCHES=	${WRKSRC}/debian/patches/*.dpatch
 
 USE_XORG=	x11
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 GNU_CONFIGURE=	yes
