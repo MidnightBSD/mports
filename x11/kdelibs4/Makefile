@@ -1,6 +1,6 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.5 2010/01/10 20:05:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.6 2010/03/26 01:00:33 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
@@ -27,7 +27,7 @@ LIB_DEPENDS=	searchclient:${PORTSDIR}/deskutils/strigi \
 		avahi-core:${PORTSDIR}/net/avahi-app \
 		enchant.1:${PORTSDIR}/textproc/enchant \
 		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		idn:${PORTSDIR}/dns/libidn \
 		utempter:${PORTSDIR}/sysutils/libutempter \
