@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.14 2010/01/23 21:17:58 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.15 2010/03/26 00:49:23 laffer1 Exp $
 
 PORTNAME=	slim
 PORTVERSION=	1.3.1
@@ -13,7 +13,7 @@ COMMENT=	Graphical login manager for X11, derived from Login.app
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		freetype:${PORTSDIR}/print/freetype2
 
 USE_XORG=	x11 xft xmu xorg-server xrender
