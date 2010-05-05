@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.2 2009/09/20 02:41:16 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.3 2009/12/13 22:03:38 laffer1 Exp $
 
 PORTNAME=	libgdiplus
 PORTVERSION=	2.4.2
@@ -11,7 +11,7 @@ LICENSE=	x11
 
 LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget glib20
