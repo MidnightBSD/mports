@@ -2,11 +2,11 @@
 # Date created:		September 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.4 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.5 2010/05/05 19:22:06 vganji Exp $
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/0.22
