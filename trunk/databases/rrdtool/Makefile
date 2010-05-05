@@ -2,11 +2,12 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.5 2009/10/14 13:40:51 laffer1 Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.6 2010/01/09 23:12:18 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.3.9
+PORTREVISION=	1
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -16,7 +17,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		cairo.2:${PORTSDIR}/graphics/cairo \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		pangocairo-1\.0.0:${PORTSDIR}/x11-toolkits/pango
 
