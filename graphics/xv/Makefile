@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.5 2009/12/29 00:28:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.6 2010/03/25 01:28:09 laffer1 Exp $
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -21,7 +21,7 @@ LICENSE=	restricted
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		jasper.4:${PORTSDIR}/graphics/jasper
 
 USE_IMAKE=	yes
