@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/libsvg/Makefile,v 1.1 2010/01/23 22:38:07 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libsvg/Makefile,v 1.2 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	libsvg
 PORTVERSION=	0.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
@@ -11,7 +11,7 @@ COMMENT=	A parser for SVG content in files or buffers
 LICENSE=	lgpl
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	libtool:22
