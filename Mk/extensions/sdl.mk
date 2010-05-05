@@ -27,7 +27,7 @@
 #	.include <bsd.port.post.mk>
 # Run "make -V USE_SDL" to see which libs are asked for at the end.
 #
-# $MidnightBSD: mports/Mk/bsd.sdl.mk,v 1.4 2008/04/12 02:25:53 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/sdl.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 
@@ -64,6 +64,7 @@ _REQUIRES_image=sdl
 
 _VERSION_mixer=	2
 _SUBDIR_mixer=	audio
+_LIB_mixer=	SDL_mixer-1.2
 _REQUIRES_mixer=sdl
 
 _VERSION_mm=	8
