@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.158 2010/03/12 03:12:26 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.159 2010/03/12 03:14:43 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -577,7 +577,7 @@ _OPENLDAP_FLAVOUR=
 .if ${WANT_OPENLDAP_VER} == 23
 LIB_DEPENDS+=		ldap-2.3.2:${PORTSDIR}/net/openldap23${_OPENLDAP_FLAVOUR}-client
 .elif ${WANT_OPENLDAP_VER} == 24
-LIB_DEPENDS+=		ldap-2.4.2:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
+LIB_DEPENDS+=		ldap-2.4.7:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
 .else
 IGNORE=			unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
