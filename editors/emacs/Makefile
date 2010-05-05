@@ -2,7 +2,7 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.7 2009/09/20 02:51:55 laffer1 Exp $
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.8 2010/03/25 01:15:16 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
@@ -52,7 +52,7 @@ LIB_DEPENDS=	Xaw3d.${XAWVER}:${PORTSDIR}/x11-toolkits/Xaw3d
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 .endif
 
 .if !defined(WITHOUT_X11)
