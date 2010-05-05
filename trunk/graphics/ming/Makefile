@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ming/Makefile,v 1.1 2007/01/22 10:52:39 wintellect Exp $
+# $MidnightBSD: mports/graphics/ming/Makefile,v 1.2 2009/04/13 18:15:38 laffer1 Exp $
 
 PORTNAME=	ming
 PORTVERSION=	0.3.0
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LGPL'ed Flash 4/5 movie output library with many languages support
 LICENSE=	lgpl
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
 USE_GNOME=	gnometarget
