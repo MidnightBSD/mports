@@ -2,7 +2,7 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.3 2009/09/20 03:07:06 smultron Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.4 2010/03/26 00:54:20 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 file manager
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
