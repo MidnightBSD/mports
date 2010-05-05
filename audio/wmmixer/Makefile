@@ -1,9 +1,4 @@
-# New ports collection makefile for:   wmmixer
-# Date created:        11 July 1998
-# Whom:                Rich Neswold <rneswold@mcs.net>
-#
-# $FreeBSD: ports/audio/wmmixer/Makefile,v 1.17 2008/04/19 17:46:37 miwi Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	wmmixer
 PORTVERSION=	1.0b1
@@ -13,8 +8,9 @@ MASTER_SITES=	ftp://ftp.aranei.com/pub/FreeBSD/distfiles/
 DISTNAME=	${PORTNAME}-1.0-beta1
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An audio mixer for the WindowMaker dock
+LICENSE=	gpl2
 
 PLIST_FILES=		bin/wmmixer
 WRKSRC=			${WRKDIR}/wmmixer
