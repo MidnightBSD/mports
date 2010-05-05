@@ -1,4 +1,4 @@
-libexec/courier-authlib/makedatprog
+@comment libexec/courier-authlib/makedatprog
 sbin/makeuserdb
 sbin/pw2userdb
 sbin/userdb
