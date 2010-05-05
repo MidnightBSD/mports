@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.6 2008/09/17 22:45:01 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.7 2009/11/01 21:54:06 laffer1 Exp $
 
 PORTNAME=	dosbox
 PORTVERSION=	0.73
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An emulator of a PC with DOS
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl net sound
