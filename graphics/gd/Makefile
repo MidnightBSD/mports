@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.8 2010/03/25 01:19:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.9 2010/05/04 22:43:05 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
-PORTREVISION?=	5
+PORTREVISION?=	6
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	http://www.libgd.org/releases/
@@ -32,7 +32,7 @@ WANT_PERL=	yes
 
 OPTIONS=	X11 "X11 Support" off \
 		XPM "XPM color bitmap loading support (requires X11)" off \
-		FONTCONFIG "fontconfig library support (requires X11)" off \
+		FONTCONFIG "fontconfig library support (requires X11)" on \
 		ICONV "iconv support" off
 
 .include <bsd.port.pre.mk>
@@ -46,7 +46,7 @@ LDFLAGS2+=	-L${LOCALBASE}/lib
 FEATURES+=	GD_XPM
 .endif
 
-.if defined(WITH_FONTCONFIG)
+.if !defined(WITHOUT_FONTCONFIG)
 LIB_DEPENDS+=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_LIBFONTCONFIG -DHAVE_PTHREAD ${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib -lfontconfig
