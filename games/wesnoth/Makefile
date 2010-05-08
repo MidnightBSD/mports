@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.6 2009/05/22 23:52:47 laffer1 Exp $
+# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.7 2009/10/25 19:30:47 laffer1 Exp $
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.4.7
 CATEGORIES=	games
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-1.4/${PORTNAME}-${PORTVERSION} \
 		http://www.wesnoth.org/files/
 MASTER_SITE_SUBDIR=	wesnoth
 
@@ -82,6 +82,12 @@ PLIST_SUB+=		TOOLS="@comment "
 CONFIGURE_ARGS+=	--enable-tools
 PLIST_SUB+=		TOOLS=""
 .endif
+
+post-patch:
+	${REINPLACE_CMD} -e 's|libpng12|libpng14|g' ${WRKSRC}/configure
+	${REINPLACE_CMD} -e 's|png_voidp_NULL|NULL|g' \
+ 	                 -e 's|png_error_ptr_NULL|NULL|g' \
+ 	                 ${WRKSRC}/src/tools/exploder_utils.cpp
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|[$$][{]datarootdir[}]/icons|${LOCALBASE}/share/pixmaps|' \
