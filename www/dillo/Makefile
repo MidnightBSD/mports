@@ -2,7 +2,7 @@
 # Date created:        23 February 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD: mports/www/dillo/Makefile,v 1.4 2010/03/26 00:46:44 laffer1 Exp $
+# $MidnightBSD: mports/www/dillo/Makefile,v 1.5 2010/05/05 23:52:16 laffer1 Exp $
 # $FreeBSD: ports/www/dillo/Makefile,v 1.36 2006/06/03 02:01:25 mnag Exp $
 #
 # Tunables:
@@ -12,7 +12,7 @@
 
 PORTNAME=	dillo
 PORTVERSION=	0.8.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.dillo.org/download/
 
