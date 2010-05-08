@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/news/knews/Makefile,v 1.2 2009/09/20 02:45:41 laffer1 Exp $
+# $MidnightBSD: mports/news/knews/Makefile,v 1.3 2010/03/25 01:37:22 laffer1 Exp $
 
 PORTNAME=	knews
 PORTVERSION=	1.0b.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	news
 MASTER_SITES=	http://www.matematik.su.se/~kjj/
 
@@ -11,7 +11,7 @@ COMMENT=	A threaded nntp newsreader for X
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		compface:${PORTSDIR}/mail/faces
 RUN_DEPENDS=	newsp:${PORTSDIR}/print/mp-letter
 
