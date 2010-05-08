@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.11 2010/04/27 13:06:09 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.12 2010/05/05 23:34:30 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
@@ -79,20 +79,11 @@ BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitm
 
 MAKE_JOBS_SAFE=  yes
 
-#.if !defined(WITHOUT_MOTIF) && !defined(MOTIF_STATIC)
-#USE_MOTIF=	yes
-#WITH_SCROLLBARS=	--with-scrollbars=motif
-#WITH_DIALOGS=	--with-dialogs=motif
-#WITH_WIDGETS=	--with-widgets=motif
-#.else
 WITH_SCROLLBARS=	--with-scrollbars=athena
 WITH_DIALOGS=	--with-dialogs=athena
 WITH_WIDGETS=	--with-widgets=athena
-.if defined(WITH_XAW3D)
 LIB_DEPENDS+=	Xaw3d.${XAWVER}:${PORTSDIR}/x11-toolkits/Xaw3d
 CONFIGURE_ARGS+=	--with-athena=3d
-.endif
-#.endif
 .else
 CONFIGURE_ARGS+=	--without-x11
 .endif
