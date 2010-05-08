@@ -2,7 +2,7 @@
 # Date created:         4 August 2003
 # Whom:                 Mark Huizer <xaa+ports@timewasters.nl>
 #
-# $MidnightBSD: mports/java/kaffe/Makefile,v 1.4 2010/03/25 01:28:58 laffer1 Exp $
+# $MidnightBSD: mports/java/kaffe/Makefile,v 1.5 2010/05/08 01:56:06 laffer1 Exp $
 # $FreeBSD: ports/java/kaffe/Makefile,v 1.79 2008/06/06 13:38:47 edwin Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		png.6:${PORTSDIR}/graphics/png \
-		gmp.7:${PORTSDIR}/math/libgmp4
+		gmp.10:${PORTSDIR}/math/gmp
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
 		jikes:${PORTSDIR}/java/jikes
 RUN_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
