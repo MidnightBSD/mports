@@ -3,11 +3,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/misc/kdeutils3/Makefile,v 1.107 2006/09/12 23:26:33 lofi Exp $
-# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.3 2009/05/14 23:02:15 laffer1 Exp $
+# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.4 2009/09/20 01:29:46 laffer1 Exp $
 #
 
 PORTNAME=	kdeutils
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	misc kde
 MASTER_SITES=		${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -17,7 +18,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Utilities for the KDE integrated X11 desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 		netsnmp:${PORTSDIR}/net-mgmt/net-snmp
 RUN_DEPENDS=	gpg:${PORTSDIR}/security/gnupg \
 		gtar:${PORTSDIR}/archivers/gtar
