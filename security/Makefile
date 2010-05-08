@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.98 2010/03/01 01:59:32 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.99 2010/03/21 20:31:47 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -94,7 +94,6 @@
     SUBDIR += webfwlog
     SUBDIR += wipe
     SUBDIR += xinetd
-    SUBDIR += xmlsec
     SUBDIR += xmlsec1
     SUBDIR += xspy
     SUBDIR += yafic
