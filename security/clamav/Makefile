@@ -1,15 +1,13 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.18 2009/07/09 02:39:17 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.19 2010/02/24 00:31:15 crash Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.95.3
+PORTVERSION=	0.96
 CATEGORIES=	security
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Command line virus scanner written entirely in C
 LICENSE=	agg
-
-BUILD_DEPENDS=	${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
 
 OPTIONS=	ARC "Enable arch archives support" On \
 		ARJ "Enable arj archives support" On \
@@ -22,9 +20,12 @@ OPTIONS=	ARC "Enable arch archives support" On \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
 
-GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
 			--host=${ARCH}-portbld-freebsd6.0
+USE_PYTHON_BUILD=	yes
+USE_GMAKE=	yes
+GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	clamav-clamd clamav-freshclam
 CONF_FILES=	clamd freshclam
@@ -45,8 +46,9 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--disable-clamav \
 		--enable-bigstack \
 		--enable-readdir_r \
-                --enable-check \
-		--disable-dependency-tracking
+		--disable-dependency-tracking \
+		--enable-clamdtop \
+		--enable-llvm
 CPPFLAGS+=	-I${LOCALBASE}/include \
 		${PTHREAD_CFLAGS}
 LDFLAGS+=	-L${LOCALBASE}/lib \
@@ -109,6 +111,17 @@ PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 CONFIGURE_ARGS+=	--enable-gethostbyname_r
 .else
 CONFIGURE_ARGS+=	--disable-gethostbyname_r
+.endif
+
+.if ${ARCH} == "i386"
+CFLAGS+=	-march=i486
+.endif
+
+.if ${OSVERSION} >= 3000
+BUILD_DEPENDS+=		${LOCALBASE}/include/check.h:${PORTSDIR}/devel/libcheck
+CONFIGURE_ARGS+=	--enable-check
+.else
+CONFIGURE_ARGS+=	--disable-check
 .endif
 
 .if defined(WITH_ARC)
@@ -177,8 +190,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|0x100000000|0x100000000ULL|g' \
 		${WRKSRC}/libclamunrar/unrar.c
 
+.if ${OSVERSION} >= 3000
 post-build:
 	@${MAKE} -C ${WRKSRC} check
+.endif
 
 pre-su-install:
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
