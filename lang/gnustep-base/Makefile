@@ -2,7 +2,7 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.8 2008/06/14 16:41:34 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.9 2008/10/20 01:01:06 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
 LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
-LIB_DEPENDS+=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 
 ETCDIR=		${LOCALBASE}/etc
 USE_AUTOTOOLS=	autoconf:262

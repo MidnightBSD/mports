@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.7 2009/09/20 04:03:31 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.8 2009/11/08 16:38:24 laffer1 Exp $
 
 PORTNAME=	guile
 PORTVERSION=	1.8.6
+PORTREVISION=	1
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
 LICENSE=	lgpl
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=	autoconf:262 libltdl:22
 USE_GMAKE=	yes

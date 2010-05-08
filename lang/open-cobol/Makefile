@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.4 2009/08/20 18:54:11 laffer1 Exp $
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.5 2009/09/20 01:23:00 laffer1 Exp $
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	SF
 
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source COBOL compiler
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_GNOME=	gnometarget
 USE_BDB=	yes

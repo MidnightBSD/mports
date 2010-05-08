@@ -1,10 +1,8 @@
-# ex:ts=8
-#
-# $MidnightBSD: mports/math/cln/Makefile,v 1.1 2008/12/20 05:52:19 ctriv Exp $
-#
+# $MidnightBSD: mports/math/cln/Makefile,v 1.2 2009/09/20 01:22:30 laffer1 Exp $
 
 PORTNAME=	cln
 PORTVERSION=	1.2.2
+PORTREVISION=	1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.ginac.de/CLN/ \
 		http://www.mirrors.wiretapped.net/security/cryptography/libraries/math/cln/ \
@@ -14,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Class Library for Numbers
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
