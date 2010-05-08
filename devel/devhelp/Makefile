@@ -2,12 +2,13 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.4 2009/09/20 01:17:54 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.5 2010/01/23 23:41:04 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
 PORTNAME=	devhelp
 PORTVERSION=	0.19
+PORTREVISION=	1
 CATEGORIES?=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C,^([[:digit:]]+\.[[:digit:]]+).*,\1,}
@@ -20,10 +21,10 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 RUN_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 
-MOZILLA=	browser
+MOZILLA=	browser35
 
 .if !defined(WITH_MOZILLA)
-MOZILLA=	browser
+MOZILLA=	browser35
 .else
 .if ${WITH_MOZILLA} == "xulrunner"
 MOZILLA=	xulrunner
@@ -44,7 +45,7 @@ USE_LDCONFIG=	${LOCALBASE}/lib/${MOZILLA}
 GCONF_SCHEMAS=	devhelp.schemas
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${PTHREAD_LIBS} -L${LOCALBASE}/lib"
-.if ${MOZILLA} == "browser"
+.if ${MOZILLA} == "browser35"
 CONFIGURE_ARGS=	--with-gecko=firefox
 .else
 CONFIGURE_ARGS=	--with-gecko=${MOZILLA}
