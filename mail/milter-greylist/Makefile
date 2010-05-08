@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.9 2010/01/30 15:12:46 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.10 2010/01/30 15:15:40 laffer1 Exp $
 
 PORTNAME=	milter-greylist
-PORTVERSION=	4.2.3
-PORTREVISION=	1
+PORTVERSION=	4.2.5
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 DISTNAME=	milter-greylist-${PORTVERSION}
@@ -16,6 +15,7 @@ OPTIONS=	LIBSPF2	 "Enable SPF checks" off \
 		GEOIP	 "Enable GEOIP"  off \
 		CURL	 "Enable CURL for URL checks" off \
 		OPENLDAP "Include OpenLDAP support" off \
+		P0F "Include P0F support" off \
 		POSTFIX  "Use Postfix instead of Sendmail" off
 
 ##
@@ -73,6 +73,11 @@ USE_OPENLDAP=yes
 CONFIGURE_ARGS+=--with-openldap
 .endif
 
+.if defined(WITH_P0F)
+RUN_DEPENDS+=	p0f:${PORTSDIR}/net-mgmt/p0f
+CONFIGURE_ARGS+=	--enable-p0f
+.endif
+
 .if defined(WITH_POSTFIX)
 CONFIGURE_ARGS+=--enable-postfix
 .else
@@ -101,11 +106,10 @@ do-install:
 	@${INSTALL_MAN} ${WRKSRC}/milter-greylist.8 ${PREFIX}/man/man8
 	@${INSTALL_DATA} ${WRKSRC}/greylist.conf \
 			${PREFIX}/etc/mail/greylist.conf.sample
-	@${INSTALL_SCRIPT} ${WRKSRC}/milter-greylist.sh ${PREFIX}/etc/rc.d/
 
 post-install:
 	@${MKDIR} /var/milter-greylist
-	@${CHOWN} -R mailnull /var/milter-greylist
+	@${CHOWN} -R mailnull:mailnull /var/milter-greylist
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	@${MKDIR} ${EXAMPLESDIR}
