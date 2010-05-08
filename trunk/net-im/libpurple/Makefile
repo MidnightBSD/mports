@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.13 2010/01/21 01:56:50 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.14 2010/01/23 23:35:03 laffer1 Exp $
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.6.3
@@ -18,7 +18,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//} \
-		--disable-nm
+		--disable-nm \
+		--disable-vv
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
