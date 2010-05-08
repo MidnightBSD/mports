@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.14 2010/05/08 02:01:56 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.15 2010/05/08 02:34:18 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -37,4 +37,6 @@ devel/gnome-build||2010-01-23|No longer needed for gnome.
 multimedia/libdts|multimedia/libdca|2010-02-28|safer name
 databases/p5-DBD-mysql60||2010-03-12|mysql 6 is gone, so is this
 math/libgmp4|math/gmp|2010-05-07|libgmp4 to gmp 5.0
-gcc42-withgcjawt||2010-05-07|broken
+lang/gcc42-withgcjawt||2010-05-07|broken
+www/browser|www/browser3|2010-05-08|security and png 1.4.1 incompatibility
+security/xmlsec||2010-05-08|broken on current for years
