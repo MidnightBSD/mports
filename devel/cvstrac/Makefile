@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/cvstrac/Makefile,v 1.1 2008/04/06 18:02:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvstrac/Makefile,v 1.2 2009/04/13 21:28:07 laffer1 Exp $
 
 PORTNAME?=	cvstrac
 PORTVERSION=	2.0.1
+PORTREVISOIN=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cvstrac.org/
 DISTNAME=	cvstrac-${PORTVERSION}
@@ -16,6 +17,7 @@ WRKSRC=		${WRKDIR}/cvstrac-${PORTVERSION}
 USE_SQLITE=	yes
 USE_GNOME=	pkgconfig
 USE_GMAKE=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 MAKE_ARGS+=	SRCDIR=${WRKSRC} PREFIX=${PREFIX} LOCALBASE=${LOCALBASE}
 
