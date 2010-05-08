@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.5 2010/03/26 00:52:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/wxgtk26/Makefile,v 1.6 2010/05/05 23:47:43 laffer1 Exp $
 
 PORTNAME=	wx
 PORTVERSION=	2.6.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/wxGTK/${PORTVERSION}
 PKGNAMESUFFIX=	${WXGTK_FLAVOR}
@@ -86,7 +86,8 @@ CONFIGURE_ARGS+=--enable-unicode
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|pkg_config_args --cflags|pkg_config_args pangox --cflags|g ; \
-		s|pkg_config_args --libs|pkg_config_args pangox --libs|g' \
+		s|pkg_config_args --libs|pkg_config_args pangox --libs|g ; \
+		s|png_check_sig|png_sig_cmp|g' \
 			${WRKSRC}/configure
 
 .include <bsd.port.mk>
