@@ -2,7 +2,7 @@
 # Date created:         9 January 1994
 # Whom:                 jmz
 #
-# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.6 2010/03/26 00:50:00 laffer1 Exp $
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.7 2010/05/05 23:49:51 laffer1 Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
 #
 
@@ -41,6 +41,8 @@ MLINKS=		xloadimage.1 xsetbg.1 \
 
 post-patch:
 	@${CHMOD} a+rx ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|png_set_gray_1_2_4_to_8|png_set_expand_gray_1_2_4_to_8|' \
+		${WRKSRC}/png.c
 	@cd ${WRKSRC}; ${MV} xloadimage.man xloadimage.man.old; \
 		${SED} -e s:/etc/X11/Xloadimage:${PREFIX}/etc/xloadimagerc: \
 		       -e s:/usr/lib/xloadimagerc:${PREFIX}/etc/xloadimagerc: \
