@@ -3,11 +3,12 @@
 # Whom:					Dmitry Sivachenko <dima@Chg.RU>
 #
 # $FreeBSD: ports/net/rrdtool/Makefile,v 1.59 2006/08/16 08:38:14 demon Exp $
-# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.3 2008/12/27 01:50:00 laffer1 Exp $
+# $MidnightBSD: mports/net/rrdtool/Makefile,v 1.4 2010/01/19 02:45:54 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.2.15
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -17,7 +18,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
-		png.5:${PORTSDIR}/graphics/png
+		png.6:${PORTSDIR}/graphics/png
 
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
