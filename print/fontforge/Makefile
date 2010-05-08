@@ -2,12 +2,13 @@
 # Date created:		25 March 2001
 # Whom:			KANOU Hiroki <kanou@khdd.net>
 #
-# $MidnightBSD: mports/print/fontforge/Makefile,v 1.7 2010/03/25 02:16:21 laffer1 Exp $
+# $MidnightBSD: mports/print/fontforge/Makefile,v 1.8 2010/05/05 23:59:24 laffer1 Exp $
 # $FreeBSD: ports/print/fontforge/Makefile,v 1.78 2006/09/07 12:53:47 pav Exp $
 #
 
 PORTNAME=	fontforge
 PORTVERSION=	20060822
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	fontforge
