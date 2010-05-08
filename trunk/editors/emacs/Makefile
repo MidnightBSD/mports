@@ -2,13 +2,13 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.8 2010/03/25 01:15:16 laffer1 Exp $
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.9 2010/05/05 23:31:23 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
