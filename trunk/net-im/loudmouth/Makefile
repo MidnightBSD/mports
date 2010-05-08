@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.4 2009/05/01 22:55:33 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.5 2009/09/20 01:46:53 laffer1 Exp $
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
+PORTREVISION=	1
 CATEGORIES=	net-im gnome
 MASTER_SITES=	http://ftp.imendio.com/pub/imendio/loudmouth/src/ \
 		${MASTER_SITE_GNOME}
@@ -27,7 +28,7 @@ OPTIONS=	GNUTLS "Enable SSL (via GnuTLS) support" on
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_GNUTLS)
-LIB_DEPENDS+=		gnutls.26:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		gnutls.40:${PORTSDIR}/security/gnutls
 .else
 CONFIGURE_ARGS+=	--without-ssl
 .endif
