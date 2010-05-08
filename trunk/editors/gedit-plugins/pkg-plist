@@ -47,10 +47,6 @@ lib/gedit-2/plugins/showtabbar.gedit-plugin
 %%PYTHON%%lib/gedit-2/plugins/smartspaces.py
 %%PYTHON%%lib/gedit-2/plugins/smartspaces.pyc
 %%PYTHON%%lib/gedit-2/plugins/smartspaces.pyo
-%%PYTHON%%lib/gedit-2/plugins/terminal.gedit-plugin
-%%PYTHON%%lib/gedit-2/plugins/terminal.py
-%%PYTHON%%lib/gedit-2/plugins/terminal.pyc
-%%PYTHON%%lib/gedit-2/plugins/terminal.pyo
 share/gedit-2/plugins/bookmarks/bookmark.png
 share/gedit-2/plugins/drawspaces/drawspaces.ui
 %%PYTHON%%share/gedit-2/plugins/sessionsaver/sessionsaver.ui
