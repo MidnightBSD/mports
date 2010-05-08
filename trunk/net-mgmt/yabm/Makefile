@@ -3,7 +3,7 @@
 # Whom: 				Fredrik Lindberg <fli@shapeshifter.se>
 #
 # $FreeBSD: ports/net-mgmt/yabm/Makefile,v 1.3 2005/07/03 01:45:54 dannyboy Exp $
-# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.1 2006/12/26 01:27:23 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.2 2007/06/06 21:17:26 ctriv Exp $
 #
 
 PORTNAME=	yabm
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another Bandwidth Meter, somewhat resembles the Linux bwbar
 LICENSE=	bsd2
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
 
 USE_RC_SUBR=	yes
 RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
