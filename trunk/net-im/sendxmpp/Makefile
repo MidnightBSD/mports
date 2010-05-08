@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/sendxmpp/Makefile,v 1.2 2007/08/01 20:39:07 laffer1 Exp $
+# $MidnightBSD: mports/net-im/sendxmpp/Makefile,v 1.3 2009/05/01 22:50:37 laffer1 Exp $
 
 PORTNAME=	sendxmpp
 PORTVERSION=	0.0.8
@@ -16,8 +16,7 @@ PERL_CONFIGURE=	yes
 
 MAN1=	sendxmpp.1
 
-PLIST_FILES=	bin/sendxmpp \
-		%%SITE_PERL%%/mach/auto/sendxmpp/.packlist
+PLIST_FILES=	bin/sendxmpp
 PLIST_DIRS=	%%SITE_PERL%%/mach/auto/sendxmpp
 
 .include <bsd.port.mk>
