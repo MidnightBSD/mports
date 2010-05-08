@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.2 2008/06/01 19:37:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.3 2009/08/26 22:01:56 laffer1 Exp $
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
