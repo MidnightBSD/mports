@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.24 2010/03/25 01:37:57 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.25 2010/04/28 16:16:10 vganji Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.3.11
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -68,7 +68,7 @@ CUPSSYSGRP=	wheel
 
 .if !defined(WITHOUT_GNUTLS)
 CONFIGURE_ARGS+=	--enable-gnutls --disable-openssl
-LIB_DEPENDS+=		gnutls-openssl.26:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		gnutls-openssl.40:${PORTSDIR}/security/gnutls
 .else
 EXTENSIONS+=		openssl
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
