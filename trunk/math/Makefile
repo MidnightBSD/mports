@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.29 2010/01/24 16:07:49 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.30 2010/05/08 02:00:14 laffer1 Exp $
 #
 
     COMMENT = Mathematics
@@ -23,7 +23,6 @@
     SUBDIR += gsl
     SUBDIR += lapack
     SUBDIR += ldouble
-    SUBDIR += libgmp4
     SUBDIR += libqalculate
     SUBDIR += matharray
     SUBDIR += mpfr
