@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.3 2009/12/13 22:03:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.4 2010/05/05 23:47:43 laffer1 Exp $
 
 PORTNAME=	libgdiplus
 PORTVERSION=	2.4.2
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
 
@@ -20,11 +21,19 @@ USE_XLIB=	yes
 USE_LDCONFIG=   yes
 LIBTOOLFILES=	configure cairo/configure
 USE_AUTOTOOLS=	libtool:22
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
+		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib" \
+		png_REQUIRES="libpng"
 # Included cairo does not work for us.  Enable below when Mono catches
 # up with our port.  For now, use included but patch out glitz manually.
 #CONFIGURE_ARGS+= --with-cairo=installed
+CPPFLAGS+=	-DPNG_DEPSTRUCT=
+
+post-patch:
+	${REINPLACE_CMD} -e 's|png_set_gray_1_2_4_to_8|png_set_expand_gray_1_2_4_to_8|' \
+		${WRKSRC}/cairo/src/cairo-png.c
+	${REINPLACE_CMD} -e 's|libpng12|libpng14|' \
+		${WRKSRC}/configure
 
 .include <bsd.port.pre.mk>
 
