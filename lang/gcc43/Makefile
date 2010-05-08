@@ -3,7 +3,7 @@
 # Date created:				March 23, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.3 2008/07/14 03:28:19 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc43/Makefile,v 1.4 2008/07/14 03:29:47 laffer1 Exp $
 #
 
 PORTNAME=	gcc
@@ -23,7 +23,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.3
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 		mpfr.2:${PORTSDIR}/math/mpfr
 
 SUFFIX=		43

@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/misc/kdeutils4/Makefile,v 1.119 2008/09/03 13:06:19 miwi Exp $
+# $MidnightBSD: mports/misc/kdeutils4/Makefile,v 1.1 2009/01/05 03:37:49 ctriv Exp $
 #
 
 PORTNAME=	kdeutils
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Utilities for the KDE4 integrated X11 Desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=    gmp.7:${PORTSDIR}/math/libgmp4 \
+LIB_DEPENDS=    gmp.10:${PORTSDIR}/math/gmp \
 		netsnmp:${PORTSDIR}/net-mgmt/net-snmp \
 		qimageblitz.4:${PORTSDIR}/x11/qimageblitz \
 		zip.1:${PORTSDIR}/archivers/libzip

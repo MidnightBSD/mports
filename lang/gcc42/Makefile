@@ -3,7 +3,7 @@
 # Date created:				9 Jan 1998
 # Whom:					John Polstra <jdp@polstra.com>
 #
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.6 2008/06/26 03:47:29 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.7 2008/07/14 03:20:12 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 #
 
@@ -24,7 +24,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	GNU Compiler Collection 4.2
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4 \
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 		mpfr.2:${PORTSDIR}/math/mpfr
 
 CONFLICTS?=	gcc-withfortran-4.2.*

@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.1 2009/02/18 19:55:57 laffer1 Exp $
 
 PORTNAME=	hscolour
 PORTVERSION=	1.10.1
+PORTREVISION=	1
 CATEGORIES=	print haskell
 MASTER_SITES=	ftp://ftp.cs.york.ac.uk/pub/haskell/contrib/ \
 		http://hackage.haskell.org/packages/archive/${PORTNAME}/${PORTVERSION}/
@@ -11,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Colourise Haskell code
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 
 .if !defined(SLAVE)
 BUILD_DEPENDS+=	ghc:${PORTSDIR}/lang/ghc

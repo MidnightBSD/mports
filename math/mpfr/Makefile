@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mpfr
-# Date created:			28 Aug 2005
-# Whom:				Alex Dupre <ale@FreeBSD.org>
-#
-# $MidnightBSD: mports/math/mpfr/Makefile,v 1.2 2008/03/23 19:44:33 laffer1 Exp $
-# $FreeBSD: ports/math/mpfr/Makefile,v 1.7 2006/11/30 21:20:07 ale Exp $
-#
+# $MidnightBSD: mports/math/mpfr/Makefile,v 1.3 2008/10/13 20:52:05 laffer1 Exp $
 
 PORTNAME=	mpfr
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.mpfr.org/mpfr-current/
 DIST_SUBDIR=	mpfr
@@ -16,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for multiple-precision floating-point computations
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.7:${PORTSDIR}/math/libgmp4
+LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
