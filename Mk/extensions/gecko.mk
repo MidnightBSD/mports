@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gecko.mk,v 1.2 2009/06/29 14:56:26 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gecko.mk,v 1.3 2009/08/20 17:55:23 laffer1 Exp $
 # $FreeBSD: ports/www/mozilla/bsd.gecko.mk,v 1.18 2006/11/01 13:20:10 ahze Exp $
 #    $MCom: ports-stable/www/mozilla/bsd.gecko.mk,v 1.3 2006/10/24 17:48:39 ahze Exp $
 #
@@ -67,9 +67,8 @@ Gecko_Post_Include=			gecko.mk
 #  .endif
 
 .if ${ARCH}!="sparc64"
-_GECKO_ALL=	browser browser3 nvu seamonkey thunderbird xulrunner flock browser35
+_GECKO_ALL=	browser3 nvu seamonkey thunderbird xulrunner flock browser35
 .endif
-_GECKO_ALL+=	mozilla
 
 thunderbird_PORTSDIR=	mail
 
