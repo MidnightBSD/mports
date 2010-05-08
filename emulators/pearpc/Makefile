@@ -2,7 +2,7 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.6 2009/03/01 16:42:51 laffer1 Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.7 2010/01/02 18:44:38 laffer1 Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 SUB_FILES=	pkg-message
 
 MAN1=		ppc.1
@@ -31,17 +31,6 @@ CFLAGS+=	-O3 -ffast-math
 .else
 CONFIGURE_ARGS+=	--disable-fpo
 .endif
-
-# GTK and QT ui are broken in this version
-#
-#.if defined(WITH_QT)
-#CONFIGURE_ARGS+=	--enable-ui=qt
-#USE_QT_VER=	3
-#QTDIR?=		${X11BASE}
-#CONFIGURE_ENV+=	QTDIR="${QTDIR}"
-#.else
-#CONFIGURE_ARGS+=	--enable-ui=nogui
-#.endif
 
 .if defined(WITH_SDL)
 CONFIGURE_ARGS+=	--enable-ui=sdl
@@ -57,10 +46,6 @@ CONFIGURE_ARGS+=	--disable-debug
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "ia64"
-BROKEN=			Internal compiler error on ia64
-.endif
 
 # jitc_x86 is avaible only on x86
 .if ${ARCH} == "i386"
@@ -85,8 +70,7 @@ post-extract:
 	@${REINPLACE_CMD} -e 's|-g -O2||;s|-O2||' ${WRKSRC}/configure
 
 pre-configure:
-# Assumes __FreeBSD_version value.  Change when current switches over.
-.if ${OSVERSION} < 3000
+.if ${OSVERSION} > 3000
 	@${REINPLACE_CMD} -e 's|clock_settime\ ()|foobar()|' ${WRKSRC}/configure
 .endif
 
