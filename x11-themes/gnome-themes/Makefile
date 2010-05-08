@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.5 2009/09/20 02:34:55 smultron Exp $
+# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.6 2009/12/13 18:57:38 laffer1 Exp $
 
 PORTNAME=	gnome-themes
 PORTVERSION=	2.26.3.1
+PORTVERSION=	1
 CATEGORIES=	x11-themes gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
