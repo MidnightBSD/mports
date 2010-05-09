@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.7 2010/02/27 20:54:48 laffer1 Exp $
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.12.5
+PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -120,7 +121,7 @@ PLIST_SUB+=	IPOD="@comment "
 .if !defined(WITHOUT_ITMS_PLUGIN)
 USE_WEBPLUGINS=	gecko18
 WEBPLUGINS_FILES=librhythmbox-itms-detection-plugin.so
-.include "${PORTSDIR}/www/browser/Makefile.webplugins"
+.include "${PORTSDIR}/www/browser35/Makefile.webplugins"
 
 CONFIGURE_ARGS+=--enable-browser-plugin
 CONFIGURE_ENV+=	MOZILLA_PLUGINDIR=${WEBPLUGINS_DIR}
