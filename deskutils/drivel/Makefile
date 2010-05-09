@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.6 2009/09/20 00:35:50 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.7 2009/12/31 23:33:16 laffer1 Exp $
 
 PORTNAME=	drivel
 PORTVERSION=	2.0.3
@@ -28,7 +28,7 @@ GCONF_SCHEMAS=	drivel.schemas
 .ifndef(WITHOUT_RHYTHMBOX)
 CONFIGURE_ARGS+=	--with-rhythmbox
 BUILD_DEPENDS+=		rhythmbox:${PORTSDIR}/audio/rhythmbox
-RUN_DEPENDS+=		${BUILD_DEPENDS}
+RUN_DEPENDS+=		rhythmbox:${PORTSDIR}/audio/rhythmbox
 .else
 CONFIGURE_ARGS+=	--without-rhythmbox
 .endif
