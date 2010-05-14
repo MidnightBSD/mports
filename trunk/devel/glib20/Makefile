@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.14 2009/10/13 03:35:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.15 2010/02/28 21:12:42 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
-PORTVERSION=	2.20.5
+PORTVERSION=	2.24.1
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
@@ -29,7 +29,7 @@ LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
+USE_GNOME=	gnomehack pkgconfig ltverhack
 USE_GMAKE=	yes
 USE_PYTHON=	yes
 USE_PERL5=	yes
