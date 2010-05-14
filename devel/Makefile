@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.315 2010/03/18 00:28:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.316 2010/03/18 00:33:16 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -87,6 +87,7 @@
     SUBDIR += gnome-vfs
     SUBDIR += gnustep
     SUBDIR += gnustep-make
+    SUBDIR += gobject-introspection
     SUBDIR += goffice
     SUBDIR += goffice04
     SUBDIR += google-perftools
