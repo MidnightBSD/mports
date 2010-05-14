@@ -1,15 +1,8 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	qt-copy
-# Date created:				2 November 2001
-# Whom:					will@cvs.kde.org
-#
-# $FreeBSD: ports/x11-toolkits/qt33/Makefile,v 1.196 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.13 2010/03/26 01:00:04 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.14 2010/04/28 16:06:15 vganji Exp $
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
