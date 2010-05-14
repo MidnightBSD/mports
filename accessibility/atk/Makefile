@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.11 2009/10/18 00:20:32 crash Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.12 2009/12/25 16:37:47 laffer1 Exp $
 
 PORTNAME=	atk
-PORTVERSION=	1.26.0
-PORTREVISION=	1
+PORTVERSION=	1.30.0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,10 +14,13 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
+BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	gnomehack glib20 ltverhack referencehack
+USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-static \
 		--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
