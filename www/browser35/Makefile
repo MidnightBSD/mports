@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.7 2010/03/21 02:11:49 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.8 2010/03/26 00:43:37 laffer1 Exp $
 
 PORTNAME=	browser35
-DISTVERSION=	3.5.8
+DISTVERSION=	3.5.9
 PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -26,7 +26,7 @@ CONFLICTS=	firefox-[0-9]* browser-2* browser-3.0.[0-9]*
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
 USE_AUTOTOOLS=	autoconf:213
-USE_GNOME+=	gtk20 libidl desktopfileutils
+USE_GNOME+=	gtk20 libidl desktopfileutils gnomelibs
 USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
