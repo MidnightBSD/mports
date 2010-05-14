@@ -1,28 +1,25 @@
---- configure.orig	2008-11-24 13:44:42.000000000 -0600
-+++ configure	2008-11-24 13:50:51.000000000 -0600
-@@ -29576,6 +29576,12 @@
- cat >>conftest.$ac_ext <<_ACEOF
- /* end confdefs.h.  */
- $ac_includes_default
+--- configure.orig	2010-03-03 21:31:46.000000000 -0500
++++ configure	2010-03-03 21:47:47.000000000 -0500
+@@ -714,6 +714,9 @@ ac_includes_default="\
+ #ifdef HAVE_SYS_TYPES_H
+ # include <sys/types.h>
+ #endif
 +#ifdef HAVE_SYS_PARAM_H
-+#include <sys/param.h>
++# include <sys/param.h>
 +#endif
-+#ifdef HAVE_SYS_MOUNT_H
-+#include <sys/mount.h>
-+#endif
- int
- main ()
- {
-@@ -31407,7 +31413,7 @@
+ #ifdef HAVE_SYS_STAT_H
+ # include <sys/stat.h>
+ #endif
+@@ -23020,7 +23023,7 @@ _ACEOF
+ fi
+ done
  
- 
- 
--for ac_func in chown lchown fchmod fchown link statvfs statfs utimes getgrgid getpwuid
-+for ac_func in chown lchown fchmod fchown link statvfs statfs utimes getgrgid getpwuid sysctlbyname
- do
- as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
- { $as_echo "$as_me:$LINENO: checking for $ac_func" >&5
-@@ -36810,6 +36816,8 @@
+-for ac_func in chown lchmod lchown fchmod fchown link statvfs statfs utimes getgrgid getpwuid
++for ac_func in chown lchmod lchown fchmod fchown link statvfs statfs utimes getgrgid getpwuid sysctlbyname
+ do :
+   as_ac_var=`$as_echo "ac_cv_func_$ac_func" | $as_tr_sh`
+ ac_fn_c_check_func "$LINENO" "$ac_func" "$as_ac_var"
+@@ -25631,6 +25634,8 @@ fi
           ;;
      esac
    fi
