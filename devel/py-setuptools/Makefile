@@ -1,23 +1,21 @@
-# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.1 2010/01/01 02:53:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.2 2010/02/27 21:13:43 laffer1 Exp $
 
 PORTNAME=	setuptools
-PORTVERSION=	0.6c9
+PORTVERSION=	0.6c11
 CATEGORIES=	devel python
-MASTER_SITES=	${MASTER_SITE_CHEESESHOP}
-MASTER_SITE_SUBDIR=	source/s/setuptools
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Download, build, install, upgrade, and uninstall Python packages
 LICENSE=	unknown
 
-#BROKEN=		tries to be clever and detect python path for .pth files
-
 DIST_SUBDIR=	python
-USE_PYTHON=	2.3+
+USE_PYTHON=	2.4+
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_NOEGGINFO=	yes # XXX convert easy_install support to python.mk's
 PLIST_SUB=	VERSION=${PORTVERSION} PYVER=${PYTHON_VERSION:S/python//}
+MAKE_ENV+=	PYTHONPATH=${PREFIX}/lib/python2.6/site-packages/
 
 .include <bsd.port.pre.mk>
 
