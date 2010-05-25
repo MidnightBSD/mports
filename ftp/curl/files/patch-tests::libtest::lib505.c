@@ -1,7 +1,11 @@
-diff -urN -x .svn ../../vendor/curl/tests/libtest/lib505.c ./tests/libtest/lib505.c
---- ../../vendor/curl/tests/libtest/lib505.c	2008-09-22 00:15:55.000000000 +0300
-+++ ./tests/libtest/lib505.c	2009-01-21 16:12:24.000000000 +0200
-@@ -56,12 +56,24 @@
+Description: Use fstat() instead of stat() to avoid a race condition.
+Forwarded: not-needed
+Author: Peter Pentchev <roam@FreeBSD.org>
+Last-Update: 2010-03-30
+
+--- tests/libtest/lib505.c
++++ tests/libtest/lib505.c
+@@ -55,12 +55,24 @@
      return -1;
    }
  
@@ -28,7 +32,7 @@ diff -urN -x .svn ../../vendor/curl/tests/libtest/lib505.c ./tests/libtest/lib50
              error, strerror(error));
      fprintf(stderr, "WARNING: cannot open file %s\n", libtest_arg2);
      return -1;
-@@ -72,18 +84,6 @@
+@@ -71,18 +83,6 @@
      return -4;
    }
  
