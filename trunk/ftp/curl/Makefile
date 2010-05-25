@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.8 2009/03/05 02:34:05 laffer1 Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.9 2009/12/25 16:15:42 laffer1 Exp $
 
 PORTNAME=	curl
-PORTVERSION=	7.19.7
+PORTVERSION=	7.20.1
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		ftp://ftp.sunet.se/pub/www/utilities/curl/ \

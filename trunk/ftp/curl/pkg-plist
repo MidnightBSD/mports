@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.135 2009/03/01 16:29:22 laffer1 Exp $
+@comment $MidnightBSD: mports/ftp/curl/pkg-plist,v 1.4 2009/03/05 02:34:05 laffer1 Exp $
 bin/curl
 bin/curl-config
 include/curl/curl.h
@@ -11,7 +11,7 @@ include/curl/multi.h
 include/curl/typecheck-gcc.h
 include/curl/curlbuild.h
 include/curl/curlrules.h
-lib/libcurl.so.5
+lib/libcurl.so.6
 lib/libcurl.so
 lib/libcurl.la
 lib/libcurl.a
