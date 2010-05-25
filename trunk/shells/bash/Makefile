@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.17 2010/03/02 02:13:17 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.18 2010/04/27 13:14:38 laffer1 Exp $
 
 PORTNAME=		bash
-PATCHLEVEL=		38
-PORTVERSION=		4.0.${PATCHLEVEL:S/^0//g}
+PATCHLEVEL=		4
+PORTVERSION=		4.1.${PATCHLEVEL:S/^0//g}
 PORTREVISION=		0
 CATEGORIES=		shells
 MASTER_SITES=		${MASTER_SITE_GNU:S/$/:bash/} \
