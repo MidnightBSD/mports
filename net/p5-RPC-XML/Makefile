@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/p5-RPC-XML/Makefile,v 1.1 2010/02/05 01:13:03 laffer1 Exp $
 
 PORTNAME=	RPC-XML
-PORTVERSION=	0.69
+PORTVERSION=	0.73
 CATEGORIES=	net www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,7 +11,6 @@ COMMENT=	XML-RPC client and server library for Perl
 LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
-		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
 		${SITE_PERL}/LWP/UserAgent.pm:${PORTSDIR}/www/p5-libwww
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
