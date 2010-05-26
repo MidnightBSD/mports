@@ -3,11 +3,11 @@
 # Whom:					ache
 #
 # $FreeBSD: ports/net/p5-URI/Makefile,v 1.37 2004/11/30 16:09:07 tobez Exp $
-# $MidnightBSD: mports/net/p5-URI/Makefile,v 1.1 2006/11/05 15:54:23 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-URI/Makefile,v 1.2 2008/08/25 19:15:11 laffer1 Exp $
 #
 
 PORTNAME=	URI
-PORTVERSION=	1.37
+PORTVERSION=	1.54
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
