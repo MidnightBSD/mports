@@ -39,7 +39,6 @@ bin/pap
 bin/papstatus
 bin/psorder
 bin/showppd
-bin/timeout
 bin/uniconv
 @unexec if cmp -s %D/etc/AppleVolumes.default %D/etc/AppleVolumes.default.dist; then rm -f %D/etc/AppleVolumes.default; fi
 etc/AppleVolumes.default.dist
@@ -53,17 +52,30 @@ etc/afpd.conf.dist
 @unexec if cmp -s %D/etc/atalkd.conf %D/etc/atalkd.conf.dist; then rm -f %D/etc/atalkd.conf; fi
 etc/atalkd.conf.dist
 @exec [ ! -f %B/atalkd.conf ] && cp %B/%f %B/atalkd.conf
+@unexec if cmp -s %D/etc/netatalk.conf %D/etc/netatalk.conf.dist; then rm -f %D/etc/netatalk.conf; fi
+etc/netatalk.conf.dist
+@exec [ ! -f %B/netatalk.conf ] && cp %B/%f %B/netatalk.conf
 @unexec if cmp -s %D/etc/papd.conf %D/etc/papd.conf.dist; then rm -f %D/etc/papd.conf; fi
 etc/papd.conf.dist
 @exec [ ! -f %B/papd.conf ] && cp %B/%f %B/papd.conf
 etc/uams/uams_clrtxt.so
 etc/uams/uams_dhx.so
+etc/uams/uams_dhx2.so
+%%NETATALKPAM%%etc/uams/uams_dhx2_pam.a
+%%NETATALKPAM%%etc/uams/uams_dhx2_pam.la
+%%NETATALKPAM%%etc/uams/uams_dhx2_pam.so
+etc/uams/uams_dhx2_passwd.a
+etc/uams/uams_dhx2_passwd.la
+etc/uams/uams_dhx2_passwd.so
 %%NETATALKPAM%%etc/uams/uams_dhx_pam.a
 %%NETATALKPAM%%etc/uams/uams_dhx_pam.la
 %%NETATALKPAM%%etc/uams/uams_dhx_pam.so
 etc/uams/uams_dhx_passwd.a
 etc/uams/uams_dhx_passwd.la
 etc/uams/uams_dhx_passwd.so
+%%NETATALKKRB5%%etc/uams/uams_gss.a
+%%NETATALKKRB5%%etc/uams/uams_gss.la
+%%NETATALKKRB5%%etc/uams/uams_gss.so
 etc/uams/uams_guest.a
 etc/uams/uams_guest.la
 etc/uams/uams_guest.so
@@ -94,10 +106,12 @@ include/atalk/pap.h
 include/atalk/paths.h
 include/atalk/rtmp.h
 include/atalk/server_child.h
+include/atalk/server_ipc.h
 include/atalk/tdb.h
 include/atalk/uam.h
 include/atalk/unicode.h
 include/atalk/util.h
+include/atalk/volinfo.h
 include/atalk/zip.h
 include/netatalk/aarp.h
 include/netatalk/at.h
