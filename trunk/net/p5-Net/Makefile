@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/net/p5-Net/Makefile,v 1.2 2008/02/27 22:37:31 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-Net/Makefile,v 1.3 2009/05/22 03:47:39 laffer1 Exp $
 
 PORTNAME=	p5-Net
 PORTVERSION=	1.22
 PORTEPOCH=	1
 CATEGORIES=	net perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 DISTNAME=	libnet-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
