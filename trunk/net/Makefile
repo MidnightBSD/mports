@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.102 2010/02/05 00:52:11 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.103 2010/02/05 01:13:03 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -83,7 +83,6 @@
     SUBDIR += qt4-network
     SUBDIR += rdesktop
     SUBDIR += remotedesk
-    SUBDIR += rrdtool
     SUBDIR += rsync
     SUBDIR += samba-libsmbclient
     SUBDIR += samba-nmblookup
