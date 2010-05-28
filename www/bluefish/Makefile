@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/bluefish/Makefile,v 1.1 2008/06/07 21:02:08 laffer1 Exp $
+# $MidnightBSD: mports/www/bluefish/Makefile,v 1.2 2010/01/23 22:02:10 laffer1 Exp $
 
 PORTNAME=	bluefish
-PORTVERSION=	1.0.7
-PORTREVISION=	0
+PORTVERSION=	2.0.0
+PORTREVISION=	1
 CATEGORIES=	www editors
 MASTER_SITES=	SF
 
@@ -13,6 +13,9 @@ LICENSE=	gpl2
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre \
 		aspell.16:${PORTSDIR}/textproc/aspell
 
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
+
 .if !defined(WITHOUT_WEBLINT)
 RUN_DEPENDS+=	weblint:${PORTSDIR}/www/weblint
 .endif
@@ -21,7 +24,7 @@ RUN_DEPENDS+=	tidy:${PORTSDIR}/www/tidy
 .endif
 
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gtk20 gnomevfs2 gnomemimedata desktopfileutils
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
@@ -65,4 +68,18 @@ pre-install:
 USE_GNOME+=	libgnomeui
 .endif
 
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=		NLS="@comment "
+.else
+USE_GETTEXT=		yes
+PLIST_SUB+=		NLS=""
+.endif
+
+post-install:
+.if !defined(NOPORTDOCS)
+	${MKDIR} ${DOCSDIR}
+	${MKDIR} ${DOCSDIR}/bflang
+	${INSTALL_DATA} ${WRKSRC}/data/bflang/sample.bflang2 ${DOCSDIR}/bflang
+.endif
 .include <bsd.port.post.mk>
