@@ -2,15 +2,14 @@
 # Date created:		13 October 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/www/neon28/Makefile,v 1.2 2009/04/08 03:31:16 laffer1 Exp $
+# $MidnightBSD: mports/www/neon28/Makefile,v 1.3 2009/09/20 00:25:52 laffer1 Exp $
 # $FreeBSD: ports/www/neon28/Makefile,v 1.41 2008/06/06 14:07:03 edwin Exp $
 #
 
 PORTNAME=	neon28
-PORTVERSION=	0.28.3
+PORTVERSION=	0.28.6
 CATEGORIES=	www
-MASTER_SITES=	http://www.webdav.org/neon/ \
-		http://keyserver.kjsl.com/~jharris/distfiles/
+MASTER_SITES=	http://www.webdav.org/neon/
 DISTNAME=	neon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
