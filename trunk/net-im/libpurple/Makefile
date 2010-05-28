@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.14 2010/01/23 23:35:03 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.15 2010/05/08 17:31:37 laffer1 Exp $
 
 PORTNAME?=	libpurple
-PORTVERSION=	2.6.3
+PORTVERSION=	2.7.0
 PORTREVISION?=	0
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
