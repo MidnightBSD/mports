@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.2 2009/06/29 16:50:29 laffer1 Exp $
 
 PORTNAME=	pidgin-twitter
-PORTVERSION=	0.8.4
+PORTVERSION=	0.9.1
 CATEGORIES=	net-im
 MASTER_SITES=	http://www.honeyplanet.jp/
 
@@ -13,12 +13,19 @@ BUILD_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
 LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
 RUN_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
 
+
+FAKE_MAKEARGS+=	PIDGIN_PLUGIN_DIR="${FAKE_DESTDIR}${PREFIX}/lib/pidgin"  PIDGIN_DATA_DIR="${FAKE_DESTDIR}${PREFIX}/share"
+
 USE_GNOME=	pkgconfig glib20
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	lib/pidgin/pidgin-twitter.so \
-		${DATADIR_REL}/prefs.ui
-PLIST_DIRS=	${DATADIR_REL}
+		share/pidgin-twitter/prefs.ui
+PLIST_DIRS=	share/pidgin-twitter \
+		lib/pidgin
+
+pre-install:
+	@${MKDIR} ${PREFIX}/lib/pidgin
 
 .include <bsd.port.mk>
