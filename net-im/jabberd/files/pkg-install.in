@@ -1,5 +1,4 @@
 #!/bin/sh
-# $MidnightBSD$
 # $FreeBSD: ports/net-im/jabberd/files/pkg-install.in,v 1.1 2007/07/26 20:00:52 mm Exp $
 
 if [ "$2" != "POST-INSTALL" ]; then
