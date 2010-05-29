@@ -1,9 +1,9 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/www/cherokee/files/cherokee.sh.in,v 1.2 2006/07/19 18:55:37 rafan Exp $
+# $MidnightBSD$
 #
 # PROVIDE: cherokee
-# REQUIRE: %%REQUIRE%%
+# REQUIRE: DAEMON
 # KEYWORD: shutdown
 #
 # Add the following lines to /etc/rc.conf to enable cherokee:
@@ -14,7 +14,7 @@
 #				Default is "%%PREFIX%%/etc/cherokee/cherokee.conf".
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="cherokee"
 rcvar=`set_rcvar`
@@ -25,17 +25,10 @@ load_rc_config $name
 : ${cherokee_conf="%%PREFIX%%/etc/cherokee/cherokee.conf"}
 
 command=%%PREFIX%%/sbin/cherokee
-command_args="-C ${cherokee_conf} -b"
+command_args="-C ${cherokee_conf} -d"
 pidfile=/var/run/cherokee.pid
 required_files=${cherokee_conf}
 stop_postcmd=stop_postcmd
-restart_precmd="checkconfig"
-
-checkconfig()
-{
-	echo "Performing sanity check on ${name} configuration:"
-	eval "${command} ${command_args} -t"
-}
 
 stop_postcmd()
 {
