@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.5 2009/04/05 18:59:21 laffer1 Exp $
+# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.6 2010/02/28 21:23:07 laffer1 Exp $
 
 PORTNAME=	intltool
 PORTVERSION=	0.40.6
@@ -17,7 +17,6 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_PERL5=	yes
-USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir="${PREFIX}/libdata"
 
