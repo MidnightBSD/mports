@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.1 2010/01/23 23:35:01 laffer1 Exp $
 
 PORTNAME=	libnice
-PORTVERSION=	0.0.9
+PORTVERSION=	0.0.12
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://nice.freedesktop.org/releases/
 
