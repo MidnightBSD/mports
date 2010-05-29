@@ -2,28 +2,34 @@
 # Date Created:				January 2004
 # Whom:					Marco Molteni <molter@gufi.org>
 #
-# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.3 2008/02/15 01:55:56 laffer1 Exp $
+# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.4 2008/10/13 19:47:12 crash Exp $
 # $FreeBSD: ports/www/bookmarkbridge/Makefile,v 1.9 2006/02/23 10:39:35 ade Exp $
 #
 
 PORTNAME=	bookmarkbridge
-PORTVERSION=	0.72
-PORTREVISION=   2
+PORTVERSION=	0.76
+PORTREVISION=	2
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	bookmarkbridge
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Synchronize bookmarks between multiple browsers
 LICENSE=        gpl2
 LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
 
-USE_QT_VER=	3
-USE_XLIB=	yes
+USE_PERL5_BUILD=	yes
+USE_XORG=	x11 ice xext
+USE_QT_VER=	4
+QT_COMPONENTS=	corelib gui moc_build rcc_build uic_build qt3support
+USE_GNOME=	gnometarget libxml2
 USE_GMAKE=	yes
-USE_PERL5_BUILD=yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-mt --program-prefix="" \
-		--with-libxml2-include="${LOCALBASE}/include/libxml2"
+USE_AUTOTOOLS=	aclocal:19 automake:19 autoconf:262
+ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 3000
+QTCFGLIBS+=	${PTHREAD_LIBS}
+.endif
+
+.include <bsd.port.post.mk>
