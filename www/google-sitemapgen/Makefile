@@ -1,15 +1,18 @@
-# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.2 2008/10/08 04:47:25 laffer1 Exp $
+# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.3 2009/05/26 00:12:55 laffer1 Exp $
 
 PORTNAME=	google-sitemapgen
-PORTVERSION=	1.4
+PORTVERSION=	1.5
 CATEGORIES=	www devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	goog-sitemapgen
-DISTNAME=	sitemap_gen-${PORTVERSION}
+MASTER_SITES=	GOOGLE_CODE
+DISTNAME=	sitemap_gen_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Script to analyze web server and generate Google Sitemap files
 LICENSE=	bsd3
+
+PROJECTHOST=	sitemap-generators
+
+NO_WRKSUBDIR=
 
 USE_PYTHON=	YES
 USE_PYDISTUTILS=YES
