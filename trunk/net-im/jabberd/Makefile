@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.4 2008/09/13 22:29:25 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.5 2009/04/14 03:31:19 laffer1 Exp $
 
 PORTNAME=	jabberd
-PORTVERSION=	2.2.7.1
+PORTVERSION=	2.2.9
 CATEGORIES=	net-im
-MASTER_SITES=	http://ftp.xiaoka.com/jabberd2/releases/
+MASTER_SITES=	http://codex.xiaoka.com/pub/jabberd2/releases/
 DIST_SUBDIR=	jabber
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,7 +11,6 @@ COMMENT=	Online presence and instant messaging server
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		gsasl.13:${PORTSDIR}/security/gsasl \
 		idn.16:${PORTSDIR}/dns/libidn \
 		udns.0:${PORTSDIR}/dns/udns
 
@@ -25,7 +24,8 @@ OPTIONS=	MYSQL "Support MySQL (storage/auth/reg)" on \
 		ANON "Enable anonymous (auth/reg)" off \
 		FS "Filesystem storage (only for testing)" off \
 		DEBUG "Compile with debug messages" on \
-		REQUIRES "Add backend requires to startup script" off
+		REQUIRES "Add backend requires to startup script" off \
+		CYRUS "Use Cyrus SASL backend (not supported)" off
 
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
@@ -162,6 +162,14 @@ SUB_LIST+=	REQUIRE="${_REQUIRE}"
 SUB_LIST+=	REQUIRE="LOGIN"
 .endif
 
+.if defined(WITH_CYRUS)
+CONFIGURE_ARGS+=	--with-sasl=cyrus
+LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+.else
+CONFIGURE_ARGS+=	--with-sasl=gsasl
+LIB_DEPENDS+=	gsasl.13:${PORTSDIR}/security/gsasl
+.endif
+
 MAN8=		c2s.8 jabberd.8 router.8 s2s.8 sm.8
 
 post-patch:
@@ -169,9 +177,13 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|%%PERL%%|${PERL}|g' \
 		${WRKSRC}/tools/jabberd.in
+.if defined(WITH_CYRUS)
+	@${REINPLACE_CMD} -e '/^#error /d' \
+		${WRKSRC}/sx/sasl_cyrus.c
+.endif
 
 post-install:
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 	@${CHOWN} -R ${JABBER_USER}:${JABBER_GROUP} ${PREFIX}/etc/jabberd
 	@${FIND} ${PREFIX}/etc/jabberd -type d | ${XARGS} ${CHMOD} 750
 	@${FIND} ${PREFIX}/etc/jabberd -type f | ${XARGS} ${CHMOD} 660
