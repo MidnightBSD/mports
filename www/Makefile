@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.99 2010/01/23 21:49:32 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.100 2010/05/08 17:09:18 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -25,7 +25,6 @@
     SUBDIR += fcgi
     SUBDIR += firefox-remote
     SUBDIR += furl
-    SUBDIR += galeon
     SUBDIR += gnustep-ticker
     SUBDIR += google-sitemapgen
     SUBDIR += gtkhtml3
