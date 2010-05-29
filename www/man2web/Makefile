@@ -2,16 +2,15 @@
 # Date created:                2003-04-19
 # Whom:                        Christian Weisgerber <naddy@freebsd.org>
 #
-# $MidnightBSD: mports/www/man2web/Makefile,v 1.1 2007/08/24 04:59:08 laffer1 Exp $
+# $MidnightBSD: mports/www/man2web/Makefile,v 1.2 2008/10/08 04:43:52 laffer1 Exp $
 # $FreeBSD: ports/www/man2web/Makefile,v 1.6 2006/02/08 15:47:23 naddy Exp $
 #
 
 PORTNAME=	man2web
 PORTVERSION=	0.88
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR= ${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Convert man pages to HTML
@@ -24,6 +23,7 @@ CONFIGURE_ARGS=	--bindir="${PREFIX}/${CGIDIR}" \
 		--sysconfdir="${PREFIX}/etc" \
 		--with-manpath=/usr/share/man:${LOCALBASE}/man \
 		--with-distro=freebsd --enable-lynx
+MAKE_JOBS_SAFE=	yes
 
 PLIST_SUB=	CGIDIR="${CGIDIR}"
 CGIDIR=	www/cgi-bin
