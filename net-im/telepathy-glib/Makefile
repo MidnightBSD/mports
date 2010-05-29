@@ -2,11 +2,11 @@
 # Date created:				Apr 19 2007
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/telepathy-glib/Makefile,v 1.1 2008/09/13 22:17:19 laffer1 Exp $
+# $MidnightBSD: mports/net-im/telepathy-glib/Makefile,v 1.2 2009/09/20 01:49:25 laffer1 Exp $
 # $FreeBSD: ports/net-im/telepathy-glib/Makefile,v 1.11 2008/07/06 21:57:45 marcus Exp $
 
 PORTNAME=	telepathy-glib
-PORTVERSION=	0.7.11
+PORTVERSION=	0.10.5
 CATEGORIES=	net-im
 MASTER_SITES=	http://telepathy.freedesktop.org/releases/${PORTNAME}/
 
@@ -27,6 +27,7 @@ USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig glib20 ltverhack
 USE_PYTHON_BUILD=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|\(^pkgconfigdir =\).*|\1 ${PREFIX}/libdata/pkgconfig|' \
