@@ -1,16 +1,16 @@
-# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.2 2008/10/16 21:17:39 laffer1 Exp $
+# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.3 2009/10/27 15:52:05 laffer1 Exp $
 
 PORTNAME=	eaccelerator
 PORTVERSION=	0.9.6
 CATEGORIES=	www
 MASTER_SITES=	http://bart.eaccelerator.net/source/${PORTVERSION}/
-DISTNAME=	eaccelerator-0.9.6-rc1
+#DISTNAME=	eaccelerator-0.9.6-rc1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opcode cache for PHP with loader
 LICENSE=	gpl2
 
-USE_PHP=	session
+USE_PHP=	yes
 USE_PHPIZE=	yes
 USE_PHP_BUILD=	yes
 
