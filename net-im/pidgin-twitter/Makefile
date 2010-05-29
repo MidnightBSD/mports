@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.2 2009/06/29 16:50:29 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.3 2010/05/29 13:52:36 laffer1 Exp $
 
 PORTNAME=	pidgin-twitter
 PORTVERSION=	0.9.1
@@ -13,12 +13,14 @@ BUILD_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
 LIB_DEPENDS=	xml2:${PORTSDIR}/textproc/libxml2
 RUN_DEPENDS=	pidgin:${PORTSDIR}/net-im/pidgin
 
-
-FAKE_MAKEARGS+=	PIDGIN_PLUGIN_DIR="${FAKE_DESTDIR}${PREFIX}/lib/pidgin"  PIDGIN_DATA_DIR="${FAKE_DESTDIR}${PREFIX}/share"
+FAKE_MAKEARGS+=	PIDGIN_PLUGIN_DIR="${FAKE_DESTDIR}${PREFIX}/lib/pidgin" \
+		PIDGIN_DATA_DIR="${FAKE_DESTDIR}${PREFIX}/share"
 
 USE_GNOME=	pkgconfig glib20
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+
+MAKE_JOBS_SAFE=	yes
 
 PLIST_FILES=	lib/pidgin/pidgin-twitter.so \
 		share/pidgin-twitter/prefs.ui
