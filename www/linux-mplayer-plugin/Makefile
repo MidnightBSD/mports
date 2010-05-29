@@ -2,19 +2,20 @@
 # Date Created:		17 June 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-mplayer-plugin/Makefile,v 1.1 2007/04/04 17:09:15 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-mplayer-plugin/Makefile,v 1.2 2007/11/28 21:42:20 ctriv Exp $
 # $FreeBSD: ports/www/linux-mplayer-plugin/Makefile,v 1.6 2007/02/06 00:19:32 sat Exp $
 #
 
 PORTNAME=	mplayerplug-in
-PORTVERSION=	3.35
-PORTREVISION=	1
+PORTVERSION=	3.55
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-1.rh9.rf
 CATEGORIES=	www multimedia
-MASTER_SITES=	ftp://fr2.rpmfind.net/linux/dag/redhat/9/en/i386/dag/RPMS/ \
-		http://apt.sw.be/packages/mplayerplug-in/
+MASTER_SITES=	CENKES http://apt.sw.be/packages/mplayerplug-in/ \
+		ftp://fr2.rpmfind.net/linux/dag/redhat/9/en/i386/dag/RPMS/
 PKGNAMEPREFIX=	linux-
 SRC_DISTFILES=
+DIST_SUBDIR=	rpm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Embed MPlayer into browser
