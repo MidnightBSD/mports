@@ -2,23 +2,21 @@
 # Date created:                  16 April 2002
 # Whom:                          Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jboss4/Makefile,v 1.2 2008/05/01 06:46:39 laffer1 Exp $
 # $FreeBSD: ports/java/jboss4/Makefile,v 1.42 2007/12/13 09:49:10 rafan Exp $
 #
 
 PORTNAME=	${APP_TITLE:L}
-PORTVERSION=	4.2.2.GA
+PORTVERSION=	4.2.3.GA
 PORTEPOCH=	1
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/JBoss/JBoss-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source J2EE application server (4.x family)
 LICENSE=	unknown
 
-USE_GCPIO=	yes
 LATEST_LINK=	jboss4
 USE_JAVA=	yes
 JAVA_VERSION=	1.5
@@ -40,8 +38,7 @@ APP_SHORTNAME=	${UNIQUENAME}
 CONTROL_SCRIPT_NAME=	${APP_SHORTNAME}ctl
 CONTROL_SCRIPT=	${PREFIX}/bin/${CONTROL_SCRIPT_NAME}
 CONTROL_SCRIPT_MANPAGE_TITLE=	${CONTROL_SCRIPT_NAME:U}
-STARTUP_SCRIPT_NAME=	${APP_SHORTNAME}${RC_SUBR_SUFFIX}
-STARTUP_SCRIPT=	${PREFIX}/etc/rc.d/${STARTUP_SCRIPT_NAME}
+STARTUP_SCRIPT=	${PREFIX}/etc/rc.d/${USE_RC_SUBR}
 USER=		www
 GROUP=		www
 STDOUT_LOG=	${LOG_DIR}/stdout.log
