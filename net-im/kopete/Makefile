@@ -2,17 +2,18 @@
 # Date created:		Wed Apr 12 17:51:07 UTC 2006
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.4 2008/05/21 19:45:42 laffer1 Exp $
+# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.5 2009/09/20 01:43:48 laffer1 Exp $
 # $FreeBSD: ports/net-im/kopete/Makefile,v 1.8 2007/07/04 10:24:50 lofi Exp $
 #
 
 PORTNAME=	kopete
-PORTVERSION=	0.12.7
+PORTVERSION=	0.12.8
+PORTREVISION=	5
 CATEGORIES?=	net-im kde
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/3.5.8/src
+MASTER_SITE_SUBDIR=	stable/3.5.10/src
 PKGNAMEPREFIX=	kdenetwork-
-DISTNAME=	kdenetwork-3.5.8
+DISTNAME=	kdenetwork-3.5.10
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,8 +21,11 @@ COMMENT=	KDE multi-protocol instant messenger (IM)
 LICENSE=	gpl2
 
 RUN_DEPENDS=	${QT_PREFIX}/lib/plugins/crypto/libqca-tls.so:${PORTSDIR}/security/qca-tls
+LIB_DEPENDS=	speex:${PORTSDIR}/audio/speex \
+		ilbc:${PORTSDIR}/net/ilbc \
+		ortp:${PORTSDIR}/net/ortp
 
-CONFLICTS=	kdenetwork-3.5.[0-2]* kvirc-[0-9]*
+CONFLICTS=	kvirc-[0-9]*
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
@@ -29,6 +33,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_GNOME=	glib20
 USE_OPENSSL=	yes
+USE_XORG=	xtst
 
 USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
@@ -36,7 +41,16 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-ilbc=${LOCALBASE} \
 		--with-speex=${LOCALBASE} \
 		--with-ssl-dir=${OPENSSLBASE} \
-		--without-external-libgadu
+		--without-external-libgadu \
+		--enable-jingle
+CONFIGURE_ENV=	PKG_CONFIG="${PKG_CONFIG}" \
+		EXPAT_CFLAGS="-I${LOCALBASE}/include" \
+		EXPAT_LIBS="-L${LOCALBASE}/lib -lexpat" \
+		ILBC_CFLAGS="-I${LOCALBASE}/include/ilbc" \
+		ILBC_LIBS="-L${LOCALBASE}/lib -lilbc" \
+		SPEEX_CFLAGS="$$(${PKG_CONFIG} --cflags speex)" \
+		SPEEX_LIBS="$$(${PKG_CONFIG} --libs speex)"
+
 USE_LDCONFIG=	yes
 _NO_KDE_FINAL=	yes
 
@@ -46,19 +60,17 @@ INSTALL_WRKSRC=	${WRKSRC}/kopete
 
 PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
 
+OPTIONS=	WEBCAM "Enable webcamera support" off
+
+.include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
 
-CONFIGURE_ARGS+=--enable-jingle
-LIB_DEPENDS+=	speex:${PORTSDIR}/audio/speex \
-		ilbc:${PORTSDIR}/net/ilbc \
-		ortp:${PORTSDIR}/net/ortp
-CONFIGURE_ENV+=	PKG_CONFIG="${PKG_CONFIG}" \
-		EXPAT_CFLAGS="-I${LOCALBASE}/include" \
-		EXPAT_LIBS="-L${LOCALBASE}/lib -lexpat" \
-		ILBC_CFLAGS="-I${LOCALBASE}/include/ilbc" \
-		ILBC_LIBS="-L${LOCALBASE}/lib -lilbc" \
-		SPEEX_CFLAGS="$$(${PKG_CONFIG} --cflags speex)" \
-		SPEEX_LIBS="$$(${PKG_CONFIG} --libs speex)"
+.if defined(WITH_WEBCAM)
+BUILD_DEPENDS+=	${LOCALBASE}/include/linux/videodev.h:${PORTSDIR}/multimedia/v4l_compat
+EXTRA_PATCHES=	${FILESDIR}/extrapatch-kopete_libkopete_avdevice-videodevice.cpp \
+		${FILESDIR}/extrapatch-kopete_libkopete_avdevice-videodevice.h \
+		${FILESDIR}/extrapatch-kopete_libkopete_avdevice-videodevicepool.cpp
+.endif
 
 post-patch:
 # force usage of gthread for libjingle's benefit
