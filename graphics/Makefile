@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.98 2010/05/30 22:36:54 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.99 2010/05/30 22:39:32 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -46,6 +46,7 @@
     SUBDIR += kdegraphics4
     SUBDIR += kooka
     SUBDIR += kuickshow
+    SUBDIR += laternamagica
     SUBDIR += lcms
     SUBDIR += libGL
     SUBDIR += libGLU
