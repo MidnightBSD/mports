@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.5 2010/05/05 23:47:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.6 2010/05/08 16:02:21 laffer1 Exp $
 
 PORTNAME=	Tk
 DISTVERSION=	804.028_502
@@ -144,7 +144,7 @@ MAN3=		Tie::Watch.3 \
 
 .if defined(WITH_XFT)
 CONFIGURE_ARGS=	XFT=1
-LIB_DEPENDS+=	Xft.2:${PORTSDIR}/x11-fonts/libXft
+USE_XORG+=	xft
 .endif
 
 .if !defined(WITH_XFT)
@@ -157,13 +157,17 @@ pre-everything::
 .endif
 
 post-patch:
-	@${PERL} -i -p -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-		${WRKSRC}/pTk/Makefile.PL
+	@${PERL} -i -p -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/pTk/Makefile.PL \
+		${WRKSRC}/JPEG/Makefile.PL \
+		${WRKSRC}/PNG/Makefile.PL
 
 post-configure:
 	@${PERL} -i -p \
 		-e 's|^(CC = ).*|$$1 ${CC}|;' \
-		-e 's|^(CCFLAGS = ).*|$$1 ${CFLAGS}|' \
+		-e 's|^(CCFLAGS = ).*|$$1 ${CFLAGS}|;' \
+		-e 's|^(LD = ).*|$$1 ${CC} ${CFLAGS} ${LDFLAGS}|;' \
+		-e 's|^(FULL_AR = ).*|$$1 ${AR}|' \
 		`${FIND} ${WRKSRC} -name Makefile`
 
 .include <bsd.port.post.mk>
