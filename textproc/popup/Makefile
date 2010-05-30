@@ -2,7 +2,7 @@
 # Date created:         18 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/textproc/popup/Makefile,v 1.2 2007/11/07 20:20:16 ctriv Exp $
+# $MidnightBSD: mports/textproc/popup/Makefile,v 1.3 2008/10/13 19:58:31 crash Exp $
 # $FreeBSD: ports/textproc/popup/Makefile,v 1.2 2007/01/31 18:18:09 dinoex Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	popup
 PORTVERSION=	0.5
 PORTREVISION=	1
 CATEGORIES=	textproc gnustep
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/Popup-${PORTVERSION}pre1
 DISTNAME=	Popup-${PORTVERSION}pre1
 
 MAINTAINER=	ports@MidnightBSD.org
