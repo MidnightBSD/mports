@@ -2,7 +2,7 @@
 # Date created:		23 oktober 2004
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/libvisual04/Makefile,v 1.1 2008/09/07 19:55:14 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libvisual04/Makefile,v 1.2 2009/09/20 01:56:19 laffer1 Exp $
 # $FreeBSD: ports/graphics/libvisual04/Makefile,v 1.14 2008/06/06 13:34:42 edwin Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	libvisual
 PORTVERSION=	0.4.0
 PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 PKGNAMESUFFIX=	04
 
 MAINTAINER=	ports@MidnightBSD.org
