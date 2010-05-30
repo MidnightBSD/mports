@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gsynaptics/Makefile,v 1.1 2009/05/08 14:07:03 laffer1 Exp $
 
 PORTNAME=	gsynaptics
 PORTVERSION=	0.9.9
@@ -8,6 +8,7 @@ MASTER_SITE_SUBDIR=	gsynaptics/21527
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME Synaptics Touchpad setting tool
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
 
