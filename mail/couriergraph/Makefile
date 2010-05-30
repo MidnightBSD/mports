@@ -3,7 +3,7 @@
 # Whom:				Xavier Beaudouin (kiwi@oav.net)
 #
 # $FreeBSD: ports/mail/couriergraph/Makefile,v 1.3 2006/08/08 15:11:44 clsung Exp $
-# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.3 2007/10/25 01:04:36 laffer1 Exp $
+# $MidnightBSD: mports/mail/couriergraph/Makefile,v 1.4 2008/06/16 21:38:12 stevan Exp $
 #
 
 PORTNAME=	couriergraph
@@ -18,7 +18,7 @@ LICENSE=	gpl
 
 USE_PERL5=	yes
 
-RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/net/rrdtool	\
+RUN_DEPENDS=	${SITE_PERL}/RRDp.pm:${PORTSDIR}/databases/rrdtool	\
 		${SITE_PERL}/File/Tail.pm:${PORTSDIR}/devel/p5-File-Tail
 
 NO_BUILD=	yes
