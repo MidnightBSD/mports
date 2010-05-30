@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.10 2010/02/28 01:06:53 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.26.3
@@ -17,7 +17,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 	 	gnome-dictionary:${PORTSDIR}/deskutils/gnome-utils \
 		eog:${PORTSDIR}/graphics/eog \
 		gconf-editor:${PORTSDIR}/sysutils/gconf-editor \
-		gnect:${PORTSDIR}/games/gnome-games \
 		gedit:${PORTSDIR}/editors/gedit \
 		gnome-terminal:${PORTSDIR}/x11/gnome-terminal \
 		gnome-session:${PORTSDIR}/x11/gnome-session \
