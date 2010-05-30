@@ -1,0 +1,22 @@
+# $MidnightBSD$
+
+PORTNAME=	slideshowkit
+PORTVERSION=	0.0.1
+PORTREVISION=	20050209
+CATEGORIES=	graphics gnustep
+MASTER_SITES=	http://download.gna.org/gsimageapps/
+PKGNAMEPREFIX=	gnustep-
+DISTNAME=	SlideShowKit-${PORTVERSION}
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	SlideShow Framework
+LICENSE=	gpl2
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_PREFIX=	yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+
+.include <bsd.port.mk>
