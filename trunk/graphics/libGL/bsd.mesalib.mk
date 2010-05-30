@@ -14,11 +14,12 @@
 #    - graphics/libGLw
 #    - graphics/dri
 #
-# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.8 2009/06/03 01:06:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGL/bsd.mesalib.mk,v 1.9 2009/08/29 16:28:34 laffer1 Exp $
 
 MESAVERSION=	7.4.4
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
-		ftp://ftp.fu-berlin.de/pub/unix/X11/graphics/Mesa/
+MASTER_SITES=	SF \
+		ftp://ftp.fu-berlin.de/pub/unix/X11/graphics/Mesa/ \
+		ftp://ftp.freedesktop.org/pub/mesa/${MESABASEVERSION}/:mesa,glut,demos
 MASTER_SITE_SUBDIR=	mesa3d
 DISTFILES=	MesaLib-${MESAVERSION}${EXTRACT_SUFX}
 MAINTAINER?=	ports@MidnightBSD.org
