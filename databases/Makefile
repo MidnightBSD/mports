@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.76 2010/03/01 01:36:06 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.77 2010/03/12 12:46:51 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -75,6 +75,7 @@
     SUBDIR += php5-pdo_pgsql
     SUBDIR += php5-pdo_sqlite
     SUBDIR += php5-pgsql
+    SUBDIR += php5-rrdtool
     SUBDIR += php5-sqlite
     SUBDIR += php5-sybase_ct
     SUBDIR += phpmyadmin
