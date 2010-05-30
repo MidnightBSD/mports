@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.85 2010/03/01 01:51:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.86 2010/03/02 01:10:26 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -93,7 +93,6 @@ COMMENT = Ports to support the X window system
     SUBDIR += liboldX
     SUBDIR += libxcb
     SUBDIR += libxdg-basedir
-    SUBDIR += libxfce4mcs
     SUBDIR += libxfce4util
     SUBDIR += libxkbfile
     SUBDIR += libxkbui
