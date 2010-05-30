@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.99 2010/05/30 22:39:32 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.100 2010/05/30 22:41:15 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -36,6 +36,7 @@
     SUBDIR += gstreamer-plugins-jpeg
     SUBDIR += gstreamer-plugins-libpng
     SUBDIR += ilmbase
+    SUBDIR += imageviewer
     SUBDIR += imlib
     SUBDIR += imlib2
     SUBDIR += jasper
