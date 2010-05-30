@@ -3,7 +3,7 @@
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
 # $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.1 2010/01/21 01:14:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.2 2010/01/23 19:16:05 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
@@ -180,7 +180,6 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	FTP:ftp/gnustep-ftp \
 	DictionaryReader:deskutils/etoile-dictionaryreader \
 	batmon:sysutils/batmon \
-	UL:biology/adun \
 	RemoteDesk:net/remotedesk \
 	DisplayCalibrator:deskutils/displaycalibrator \
 	GNUWash:deskutils/gnuwash \
@@ -217,7 +216,6 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	Typewriter:editors/etoile-typewriter \
 	Babbler:multimedia/etoile-babbler \
 	Mollusk:www/etoile-mollusk \
-	BioCocoa:biology/biococoa \
 	Yap:graphics/yap \
 	Sudoku:games/gnustep-sudoku \
 	FontManager:x11-fm/etoile-fontmanager \
