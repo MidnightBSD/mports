@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.25 2010/01/03 20:58:46 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.26 2010/01/06 03:01:41 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	1.2.9
+PORTVERSION=	1.2.11
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
@@ -37,12 +37,10 @@ PORTDOCS=	*.txt wiki ${DOCS}
 DOVECOT_UID?=	143
 DOVECOT_GID?=	143
 
-PROTOCOLS=	imap
+PROTOCOLS=	imap pop3
 
 OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
 		SSL		"SSL support"		on  \
-		IPV6		"IPv6 support"		on  \
-		LDA		"LDA support"		on  \
 		MANAGESIEVE	"ManageSieve support"	on  \
 		GSSAPI		"GSSAPI support"	off \
 		BDB		"BerkleyDB support"	off \
@@ -77,21 +75,6 @@ CONFIGURE_ARGS+=	--with-ioloop=kqueue
 PROTOCOLS+=	imaps pop3s
 .else
 CONFIGURE_ARGS+=	--without-ssl
-.endif
-
-## IPv6 support
-#
-.if defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
-
-## LDA support
-#
-.if defined(WITHOUT_LDA)
-CONFIGURE_ARGS+=	--without-deliver
-PLIST_SUB+=		LDA="@comment "
-.else
-PLIST_SUB+=		LDA=""
 .endif
 
 ## ManageSieve support
