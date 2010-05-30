@@ -1,5 +1,5 @@
---- ./Makefile.orig	Thu Dec 13 22:35:28 2007
-+++ ./Makefile	Sat Mar 22 03:59:10 2008
+--- Makefile.orig	Wed Nov 23 11:58:16 2005
++++ Makefile	Sat Dec 10 17:21:45 2005
 @@ -56,12 +56,11 @@
    CFLAGS += -g -DDEBUG
  else
