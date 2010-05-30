@@ -2,12 +2,13 @@
 # Date created:		10 August 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.3 2008/08/19 18:04:37 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.4 2010/01/02 00:41:25 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
 #
 
 PORTNAME=	icewm
 PORTVERSION=	1.2.37
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-stable/${PORTVERSION}
 
