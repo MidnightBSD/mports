@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.6 2010/01/23 22:10:56 laffer1 Exp $
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.7 2010/04/26 12:59:58 laffer1 Exp $
 
 PORTNAME=	abiword
 PORTVERSION=	2.6.8
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -14,7 +15,7 @@ LICENSE=	gpl2
 # unzip is needed during the installation process
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-		png.5:${PORTSDIR}/graphics/png \
+		png.6:${PORTSDIR}/graphics/png \
 		jpeg.10:${PORTSDIR}/graphics/jpeg \
 		wv-1.2:${PORTSDIR}/textproc/wv \
 		fribidi.3:${PORTSDIR}/converters/fribidi \
