@@ -15,5 +15,7 @@ bin/imgsize
 %%SITE_PERL%%/auto/Image/Size/xbmsize.al
 %%SITE_PERL%%/auto/Image/Size/xpmsize.al
 @dirrm %%SITE_PERL%%/auto/Image/Size
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image/Size
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Image
 @dirrmtry %%SITE_PERL%%/auto/Image
 @dirrmtry %%SITE_PERL%%/Image
