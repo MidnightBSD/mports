@@ -3,7 +3,7 @@
 # Date created:				30 March 2001
 # Whom:					David O'Brien <obrien@NUXI.com>
 #
-# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.2 2008/06/14 21:13:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.3 2009/09/19 23:30:26 laffer1 Exp $
 # $FreeBSD: ports/devel/gdb6/Makefile,v 1.51 2007/06/29 13:14:33 mi Exp $
 #
 
@@ -38,7 +38,7 @@ VER=	${PORTVERSION:S/.//}
 PLIST_SUB=	VER=${VER}
 MAN1=	gdb${VER}.1
 
-#ONLY_FOR_ARCHS=	i386 amd64	# untested elsewhere, might work
+ONLY_FOR_ARCHS=	i386 amd64	# untested elsewhere, might work
 
 .include <bsd.port.pre.mk>
 
