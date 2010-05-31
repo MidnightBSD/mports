@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.3 2009/08/21 02:27:07 laffer1 Exp $
+# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.4 2010/05/31 20:30:18 laffer1 Exp $
 
 PORTNAME=	raptor
-PORTVERSION=	1.4.18
-PORTREVISION=	2
+PORTVERSION=	1.4.21
+PORTREVISION=	0
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/librdf/${PORTNAME}/${PORTVERSION} \
 		http://download.librdf.org/source/
-MASTER_SITE_SUBDIR=	librdf
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
