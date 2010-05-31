@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.2 2009/04/13 17:55:20 laffer1 Exp $
+# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.3 2009/08/21 02:27:07 laffer1 Exp $
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.18
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://download.librdf.org/source/
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDF Parser Toolkit for Redland
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 
 USE_GNOME=	gnomehack gnometarget libxml2
 GNU_CONFIGURE=	yes
