@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.14 2009/09/20 19:52:30 laffer1 Exp $
+# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.15 2009/10/13 02:32:53 laffer1 Exp $
 
 PORTNAME=	webkit
 PORTVERSION=	0.0.45180
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://nightly.webkit.org/files/trunk/src/
 PKGNAMESUFFIX=	-gtk2
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	flex>=2.5.33:${PORTSDIR}/textproc/flex \
 		gtkdocize:${PORTSDIR}/textproc/gtk-doc
 		
 LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
-		curl.5:${PORTSDIR}/ftp/curl \
+		curl.6:${PORTSDIR}/ftp/curl \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		enchant.1:${PORTSDIR}/textproc/enchant
 
