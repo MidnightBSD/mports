@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.3 2009/09/20 00:36:15 laffer1 Exp $
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.4 2010/02/27 19:29:04 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://www.musicdns.org/files/
 
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	fftw3.5:${PORTSDIR}/math/fftw3 \
 		expat.6:${PORTSDIR}/textproc/expat2 \
-		curl.5:${PORTSDIR}/ftp/curl
+		curl.6:${PORTSDIR}/ftp/curl
 
 USE_AUTOTOOLS=	libtool:22
 USE_GNOME=	pkgconfig
