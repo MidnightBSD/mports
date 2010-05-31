@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.3 2009/08/29 20:18:04 laffer1 Exp $
+# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.4 2009/09/20 01:19:28 laffer1 Exp $
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
