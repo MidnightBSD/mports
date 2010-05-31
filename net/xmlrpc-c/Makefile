@@ -2,13 +2,13 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.4 2009/03/09 20:19:29 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.5 2009/09/20 01:53:44 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.06.32
+PORTVERSION=	1.06.39
 CATEGORIES=	net
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
@@ -42,7 +42,7 @@ CFLAGS+=	-DNDEBUG
 .if defined(WITHOUT_CURL)
 CONFIGURE_ARGS+=	--disable-curl-client
 .else
-LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
 OPT_CURL=	yes
 .endif
 
