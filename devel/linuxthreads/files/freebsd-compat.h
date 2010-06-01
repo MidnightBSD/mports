@@ -6,7 +6,7 @@
 #include <sys/time.h>
 
 
-#if __FreeBSD__ >= 5
+#if __MidnightBSD__ >= 0
 #define __libc_accept __sys_accept
 #define __libc_close __sys_close
 #define __libc_connect __sys_connect

@@ -1,6 +1,6 @@
 	.file	"clone.S"
 #include <sys/syscall.h>
-#if __FreeBSD__ >= 5
+#if __MidnightBSD__ >= 0
 #include <machine/asm.h>
 #else		
 #include "DEFS.h"

@@ -13,18 +13,22 @@ diff -ru ../../work/linuxthreads-2.2.3/Examples/Makefile ./Examples/Makefile
 diff -ru ../../work/linuxthreads-2.2.3/Makefile ./Makefile
 --- ../../work/linuxthreads-2.2.3/Makefile	Wed Apr 25 21:50:59 2001
 +++ ./Makefile	Thu Jun  7 23:13:52 2001
-@@ -1,128 +1,143 @@
+@@ -1,128 +1,149 @@
 -# Copyright (C) 1996,1997,1998,1999,2000,2001 Free Software Foundation, Inc.
 -# This file is part of the GNU C Library.
 +LIB=lthread
 +.if defined(LINUXTHREADS_WRAP_API)
-+.if defined(USING_GCC3)
++.if defined(USING_GCC4)
++SHLIB_MAJOR= 7
++.elif defined(USING_GCC3)
 +SHLIB_MAJOR= 5
 +.else
 +SHLIB_MAJOR= 4
 +.endif
 +.else
-+.if defined(USING_GCC3)
++.if defined(USING_GCC4)
++SHLIB_MAJOR= 6
++.elif defined(USING_GCC3)
 +SHLIB_MAJOR= 3
 +.else
 +SHLIB_MAJOR= 2
@@ -98,7 +102,9 @@ diff -ru ../../work/linuxthreads-2.2.3/Makefile ./Makefile
 +	specific.c spinlock.c uthread_file.c wraputhread.c wrapsyscall.c \
 +	barrier.c localtime.c getlogin.c telldir.c ttyname.c strptime.c
 +
-+.if defined(USING_GCC3)
++.if defined(USING_GCC4)
++SOBJS += libgcc_r/unwind-sjlj.o libgcc_r/unwind-dw2.o libgcc_r/unwind-dw2-fde-glibc.o
++.elif defined(USING_GCC3)
 +SOBJS += libgcc_r/unwind-sjlj.o libgcc_r/unwind-dw2.o libgcc_r/unwind-dw2-fde.o
 +.else
 +SOBJS += libgcc_r/frame.o libgcc_r/_eh.o
@@ -311,6 +317,26 @@ diff -ru ../../work/linuxthreads-2.2.3/attr.c ./attr.c
    attr->__inheritsched = PTHREAD_EXPLICIT_SCHED;
    attr->__scope = PTHREAD_SCOPE_SYSTEM;
    attr->__guardsize = ps;
+@@ -283,6 +286,9 @@
+ 
+   attr->__inheritsched = descr->p_inheritsched;
+   attr->__scope = PTHREAD_SCOPE_SYSTEM;
++  if (descr == &__pthread_initial_thread)
++	  attr->__stacksize = 3 * STACK_SIZE;
++  else
+   attr->__stacksize = (char *)(descr + 1) - (char *)descr->p_guardaddr
+ 		      - descr->p_guardsize;
+   attr->__guardsize = descr->p_guardsize;
+@@ -295,6 +301,9 @@
+      otherwise the range of the stack area cannot be computed.  */
+   attr->__stacksize += attr->__guardsize;
+ #endif
++  if (descr == &__pthread_initial_thread)
++  attr->__stackaddr = __pthread_initial_thread_bos + 3 * STACK_SIZE;
++  else
+ #ifndef _STACK_GROWS_UP
+   attr->__stackaddr = (char *)(descr + 1);
+ #else
 diff -ru ../../work/linuxthreads-2.2.3/cancel.c ./cancel.c
 --- ../../work/linuxthreads-2.2.3/cancel.c	Thu Apr 12 23:10:53 2001
 +++ ./cancel.c	Thu Jun  7 22:59:29 2001
