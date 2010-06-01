@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/memtest86/Makefile,v 1.2 2009/06/03 23:57:08 laffer1 Exp $
 
 PORTNAME=	memtest86
 PORTVERSION=	3.5
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Stand alone memory test for x86 architecture computers
 LICENSE=	gpl2
 
-EXTRACT_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
+EXTRACT_DEPENDS=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 ONLY_FOR_ARCHS=	i386
 
