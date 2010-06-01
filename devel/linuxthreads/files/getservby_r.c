@@ -3,8 +3,7 @@
 #include <string.h>
 #include <sys/param.h>
 
-#if (__FreeBSD_version >= 700000 && __FreeBSD_version < 700016) || \
-    __FreeBSD_version < 601103
+#if (__MidnightBSD_version < 3000)
 
 static pthread_mutex_t getservby_mutex = PTHREAD_MUTEX_INITIALIZER;
 
