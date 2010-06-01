@@ -1,14 +1,13 @@
-# $MidnightBSD: mports/x11-drivers/input-wacom/Makefile,v 1.1 2009/04/08 16:53:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/input-wacom/Makefile,v 1.2 2009/05/08 14:26:00 laffer1 Exp $
 
 PORTNAME=	input-wacom
 PORTVERSION=	${KLD_VERSION}.${WACOM_VERSION:C/-/./g}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers kld
-MASTER_SITES=	http://www.chillt.de/bsdwacom/ \
-		SF
-MASTER_SITE_SUBDIR=	linuxwacom
-DISTFILES=	${BSDWACOM}.tbz \
-		${LINUXWACOM}.tar.bz2
+MASTER_SITES=	http://www.chillt.de/bsdwacom/:bsdwacom \
+		SF/linuxwacom/linuxwacom/${WACOM_VERSION}:linuxwacom
+DISTFILES=	${BSDWACOM}.tbz:bsdwacom \
+		${LINUXWACOM}.tar.bz2:linuxwacom
 EXTRACT_ONLY=	${BSDWACOM}.tbz
 
 MAINTAINER=	ports@MidnightBSD.org
