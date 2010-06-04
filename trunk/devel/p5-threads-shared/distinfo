@@ -1,3 +1,4 @@
-MD5 (threads-shared-1.26.tar.gz) = 06d8dc67d3710ca0c985f3f6eca2ce37
-SHA256 (threads-shared-1.26.tar.gz) = 6dff176f61312a6cc61c00c986a01bea3824acf3b0b55e9103bf61d27196ab4c
-SIZE (threads-shared-1.26.tar.gz) = 80598
+MD5 (threads-shared-1.32.tar.gz) = 6998ab46c25caa7515528b61e4446013
+SHA256 (threads-shared-1.32.tar.gz) = a228a01912d9b2b6d1e1fca51966f3a5f40220ecd3287cc8585b499c8eb21c11
+RMD160 (threads-shared-1.32.tar.gz) = c218aab7262dd03ccb9013f5ce1cb547e71f2aff
+SIZE (threads-shared-1.32.tar.gz) = 85833
