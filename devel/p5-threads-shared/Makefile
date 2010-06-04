@@ -2,12 +2,12 @@
 # Date created:		2007-03-18
 # Whom:			Ruben van Staveren
 #
-# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.3 2008/01/05 05:44:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.4 2008/07/19 18:09:14 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-threads-shared/Makefile,v 1.1 2007/04/04 08:57:26 clsung Exp $
 #
 
 PORTNAME=	threads-shared
-PORTVERSION=	1.26
+PORTVERSION=	1.32
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/J/JD/JDHEDDEN
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for sharing data structures between threads
 LICENSE=	perl
 
-RUN_DEPENDS=	p5-threads>=1.70:${PORTSDIR}/devel/p5-threads
+RUN_DEPENDS=	p5-threads>=1.75:${PORTSDIR}/devel/p5-threads
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
