@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/oaf/Makefile,v 1.3 2009/03/25 22:04:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/oaf/Makefile,v 1.4 2009/09/20 00:50:16 laffer1 Exp $
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/oaf/0.6
@@ -16,6 +16,7 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
 USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
+USE_PERL5=	yes
 USE_XORG=	x11
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk12 orbit libxml
