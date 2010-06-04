@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.15 2010/05/08 02:34:18 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.16 2010/05/08 17:24:40 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -40,3 +40,4 @@ math/libgmp4|math/gmp|2010-05-07|libgmp4 to gmp 5.0
 lang/gcc42-withgcjawt||2010-05-07|broken
 www/browser|www/browser3|2010-05-08|security and png 1.4.1 incompatibility
 security/xmlsec||2010-05-08|broken on current for years
+deskutils/egroupware||2010-06-04|deleted
