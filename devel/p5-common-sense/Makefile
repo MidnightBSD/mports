@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-common-sense/Makefile,v 1.1 2010/02/05 01:27:17 laffer1 Exp $
 
 PORTNAME=	common-sense
-PORTVERSION=	2.02
+PORTVERSION=	3.0
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/M/ML/MLEHMANN
