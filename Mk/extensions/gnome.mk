@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.6 2009/12/13 22:19:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.7 2010/01/01 17:20:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -108,7 +108,7 @@ gnomeprefix_USE_GNOME_IMPL=gnomehier
 gnomeprefix_PREFIX=${LOCALBASE}
 .endif
 
-gnometarget_CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+gnometarget_CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 ESD_CONFIG?=		${LOCALBASE}/bin/esd-config
 esound_LIB_DEPENDS=	esd.2:${PORTSDIR}/audio/esound

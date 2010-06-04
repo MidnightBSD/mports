@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.159 2010/03/12 03:14:43 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.160 2010/05/05 23:57:09 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1600,7 +1600,7 @@ PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 
 CONFIGURE_SCRIPT?=	configure
-CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd7.0
 CONFIGURE_LOG?=		config.log
 
 # A default message to print if do-configure fails.
