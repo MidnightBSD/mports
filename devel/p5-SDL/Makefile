@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-SDL/Makefile,v 1.3 2010/01/02 17:55:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-SDL/Makefile,v 1.4 2010/03/25 01:14:39 laffer1 Exp $
 
 PORTNAME=	SDL
 PORTVERSION=	2.1.3
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Bindings for SDL
 LICENSE=	perl
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_PERL5=	yes
