@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/readline/Makefile,v 1.1 2009/12/31 18:52:01 laffer1 Exp $
 
 PORTNAME=	readline
-PORTVERSION=	6.0
+PORTVERSION=	6.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU} \
 		ftp://ftp.cwru.edu/pub/bash/
