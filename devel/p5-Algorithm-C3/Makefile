@@ -3,14 +3,13 @@
 # Whom:		   Lars Balker Rasmussen <lbr@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-Algorithm-C3/Makefile,v 1.9 2007/05/25 08:51:20 lbr Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Algorithm-C3/Makefile,v 1.1 2007/09/01 16:55:37 ctriv Exp $
 #
 
 PORTNAME=	Algorithm-C3
-PORTVERSION=	0.07
+PORTVERSION=	0.08
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Algorithm
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
