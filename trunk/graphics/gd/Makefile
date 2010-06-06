@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.9 2010/05/04 22:43:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.10 2010/05/07 01:22:17 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
@@ -19,6 +19,9 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 
 MAKE_ENV=	WRKSRC="${WRKSRC}" CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 MAKEFILE=	${FILESDIR}/Makefile.bsd
+
+CONFLICTS=	bazaar-1.*
+
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 SCRIPTDIR=	${FILESDIR}
