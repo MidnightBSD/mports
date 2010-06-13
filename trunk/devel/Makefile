@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.317 2010/05/14 02:50:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.318 2010/05/30 23:18:33 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -28,6 +28,7 @@
     SUBDIR += automake19
     SUBDIR += automoc4
     SUBDIR += autotools
+    SUBDIR += binutils
     SUBDIR += bison
     SUBDIR += bisongen
     SUBDIR += boehm-gc
