@@ -1,17 +1,22 @@
-# $MidnightBSD: mports/lang/llvm-gcc4/Makefile,v 1.1 2009/03/25 19:36:25 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	gcc4
-PORTVERSION=	2.5
+PORTVERSION=	2.7
 CATEGORIES=	lang devel
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
 PKGNAMEPREFIX=	llvm-
 DISTNAME=	${PKGNAMEPREFIX}gcc-4.2-${PORTVERSION}.source
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A gcc4 frontend for LLVM
 LICENSE=	agg
 
-BUILD_DEPENDS=	llc:${PORTSDIR}/devel/llvm
+BUILD_DEPENDS+=	llc:${PORTSDIR}/devel/llvm
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+
+CONFLICTS=	llvm-devel-[0-9]* llvm-2.[0-5]*
 
 GNU_CONFIGURE=	yes
 USE_BISON=	build
@@ -21,13 +26,14 @@ USE_ICONV=	yes
 USE_PERL5_BUILD=yes
 
 GCC_VER=	4.2.1
-WRKSRC=		${WRKDIR}/${DISTNAME:S/gcc-/gcc/}/obj
+WRKSRC=		${WRKDIR}/${DISTNAME}/obj
 TARGLIB=	${PREFIX}/lib/llvm-gcc-${PORTVERSION}
 CONFIGURE_SCRIPT=	../configure
 CONFIGURE_ARGS=	--enable-llvm=${LOCALBASE} \
 		--enable-languages=c,c++ \
 		--disable-nls \
 		--with-system-zlib \
+		--with-as=${LOCALBASE}/bin/as \
 		--with-libiconv-prefix=${LOCALBASE} \
 		--program-prefix=llvm- \
 		--libdir=${TARGLIB} \
@@ -50,7 +56,7 @@ MAN1=		llvm-cpp.1 llvm-g++.1 llvm-gcc.1 llvm-gcov.1
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
 CONFIGURE_ARGS+=	--disable-shared
 .endif
 
