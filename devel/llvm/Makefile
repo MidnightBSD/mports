@@ -1,30 +1,28 @@
-# $MidnightBSD: mports/devel/llvm/Makefile,v 1.1 2009/03/25 15:44:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	llvm
-PORTVERSION=	2.5
+PORTVERSION=	2.7
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
+EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Low Level Virtual Machine
 LICENSE=	agg
 
-#.if defined(PACKAGE_BUILDING) || defined(MAINTAINER_MODE)
-#BUILD_DEPENDS=	runtest:${PORTSDIR}/misc/dejagnu
-#.endif
-.if defined(MAINTAINER_MODE)
-BUILD_DEPENDS+=	f2c:${PORTSDIR}/lang/f2c
-.endif
+CONFLICTS=	llvm-devel-2.[0-9]*
 
 GNU_CONFIGURE=	yes
+USE_GCC=	4.2+
 USE_GMAKE=	yes
+USE_LDCONFIG=	yes
 USE_PERL5_BUILD=yes
+MAKE_JOBS_SAFE=	yes
 
-.if defined(MAINTAINER_MODE)
-CONFIGURE_ARGS+=	--with-f2c=${LOCALBASE}
-.else
 CONFIGURE_ARGS+=	--enable-optimized
-.endif
+CONFIGURE_ARGS+=	--enable-bindings=none
+
+OPTIONS=	NO_ASSERTS	"Disable assertions" off
 
 .if defined(NOPORTDOCS)
 DOCSRCDIR=
@@ -32,38 +30,43 @@ DOCSRCDIR=
 DOCSRCDIR=	docs
 .endif
 
-MAN1=		bugpoint.1 llc.1 lli.1 llvm-ar.1 \
-		llvm-as.1 llvm-bcanalyzer.1 llvm-config.1 llvm-db.1 \
+.if !defined(NOPORTDOCS)
+MAN1=		bugpoint.1 lit.1 llc.1 lli.1 llvm-ar.1 \
+		llvm-as.1 llvm-bcanalyzer.1 llvm-config.1 \
 		llvm-dis.1 llvm-extract.1 llvm-ld.1 llvm-link.1 llvm-nm.1 \
 		llvm-prof.1 llvm-ranlib.1 llvmc.1 llvmgcc.1 \
 		llvmgxx.1 opt.1 tblgen.1
+.endif
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "sparc64"
-BROKEN=		Does not compile on sparc64
+.if ${OSVERSION} < 3000 && ${ARCH} == "amd64"
+BROKEN=		does not compile
+.elif ${ARCH} == "sparc64"
+BROKEN=		does not compile on sparc64
+.endif
+
+.if ${ARCH} == "amd64"
+CONFIGURE_ARGS+=	--enable-pic --with-pic
+.endif
+
+.if ${ARCH} == "i386"
+CONFIGURE_ARGS+=	--with-optimize-option=-O2
+.endif
+
+.ifdef(WITH_NO_ASSERTS)
+CONFIGURE_ARGS+=	--disable-assertions
+.else
+CONFIGURE_ARGS+=	--enable-assertions
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e 's|\(PROJ_docsdir.*:=\).*$$|\1${FAKE_DESTDIR}${DOCSDIR}|g' \
+	${REINPLACE_CMD} -e 's|\(PROJ_docsdir.*:=\).*$$|\1${DOCSDIR}|g' \
 	    ${WRKSRC}/Makefile.config.in
-	${REINPLACE_CMD} -e 's|\(PROJ_mandir.*:=\).*$$|\1${FAKE_DESTDIR}${MANPREFIX}/man|g' \
+	${REINPLACE_CMD} -e 's|\(PROJ_mandir.*:=\).*$$|\1${MANPREFIX}/man|g' \
 	    ${WRKSRC}/Makefile.config.in
-	${MKDIR} ${WRKSRC}/${DOCSRCDIR}
-	${REINPLACE_CMD} -e 's|%%DOCSRCDIR%%|${WRKSRC}/${DOCSRCDIR}|' \
+	${REINPLACE_CMD} -e 's|%%DOCSRCDIR%%|${DOCSRCDIR}|' \
 	    ${WRKSRC}/Makefile
-
-post-build:
-	cd ${WRKSRC}/docs/CommandGuide && \
-	    ${GMAKE} man
-
-post-install:
-	cd ${WRKSRC}/docs/CommandGuide && \
-	    ${INSTALL_MAN} ${MAN1} ${MANPREFIX}/man/man1/
-	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||' \
-            ${PREFIX}/bin/gccas \
-	    ${PREFIX}/bin/gccld
-
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} ${GMAKE} check)'
 regression-test: ${BUILD_COOKIE}
@@ -75,29 +78,35 @@ regression-test: ${BUILD_COOKIE}
 	fi
 
 PLIST_FILE_LIST=	bin/bugpoint \
-			bin/gccas \
-			bin/gccld \
 			bin/llc \
 			bin/lli \
 			bin/llvm* \
 			bin/opt \
-			lib/LLVM* \
+			bin/tblgen \
+			lib/libCompilerDriver.a \
+			lib/libEnhancedDisassembly.so \
+			lib/libEnhancedDisassembly.a \
+			lib/libLTO.* \
 			lib/libLLVM* \
-			lib/plugin_llvm*
+			lib/libUnitTestMain.a \
+			lib/libplugin_llvmc* \
+			lib/libprofile_rt.so
 PLIST_DIR_LIST=		include/llvm-c \
 			include/llvm
 build-plist:
-	${RM} ${PLIST}
+	${RM} -f ${PLIST}
 	cd ${PREFIX} && \
 	    (ls ${PLIST_FILE_LIST}; ${FIND} ${PLIST_DIR_LIST} -type f) | \
 	    ${SORT} >> ${PLIST}
-	${FIND} ${DOCSDIR} -type f | \
-	    ${SED} -e 's|${DOCSDIR}|%%PORTDOCS%%%%DOCSDIR%%|' | ${SORT} >> ${PLIST}
+	${FIND} ${DATADIR} ${DOCSDIR} -type f | \
+	    ${SED} -e 's|${DATADIR}|%%DATADIR%%|' \
+	     -e 's|${DOCSDIR}|%%PORTDOCS%%%%DOCSDIR%%|' | ${SORT} >> ${PLIST}
 	cd ${PREFIX} && \
 	    ${FIND} ${PLIST_DIR_LIST} -type d | \
 	    ${SORT} -r | ${SED} -e 's|^|@dirrm |' >> ${PLIST}
 	${FIND} ${DOCSDIR} -type d | ${SORT} -r | \
-	    ${SED} -e 's|^|%%PORTDOCS%%@dirrm |' \
-	    -e 's|${DOCSDIR}|%%DOCSDIR%%|' >> ${PLIST}
+	    ${SED} -e 's|${DATADIR}|%%DATADIR%%|' \
+	     -e 's|${DOCSDIR}|%%DOCSDIR%%|' \
+	     -e 's|^|%%PORTDOCS%%@dirrm |' >> ${PLIST}
 
 .include <bsd.port.post.mk>
