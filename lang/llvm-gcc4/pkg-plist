@@ -10,5 +10,4 @@ bin/llvm-g++
 bin/llvm-gcc
 bin/llvm-gccbug
 bin/llvm-gcov
-@comment info/llvm-gcc/dir
 @comment Insert PLIST.lib here
