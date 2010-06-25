@@ -1,10 +1,13 @@
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.9 2009/06/11 15:11:46 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.10 2010/01/10 19:55:04 laffer1 Exp $
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.4
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,} \
+		ftp://ftp.stikman.com/pub/sendmail/ \
+		ftp://ftp.uni-mainz.de/pub/internet/sendmail/ \
+		ftp://ftp.cs.berkeley.edu/ucb/sendmail/
 PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BERKELEYDB_SUFFIX}${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}.${PORTVERSION}
 
