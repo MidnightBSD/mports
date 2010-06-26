@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.3 2008/12/08 20:29:02 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.4 2010/03/13 23:43:11 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)
@@ -11,15 +11,18 @@ Cmake_Pre_Include = cmake.mk
 #					Default: ${CONFIGURE_ENV}
 # CMAKE_ARGS		- Arguments passed to cmake
 #					Default: see below
-# CMAKE_USE_PTHREAD	- Instruct cmake to use pthreads when 
+# CMAKE_USE_PTHREAD	- Instruct cmake to use pthreads when
 #					compiling/linking
 #					Default: not set
-# CMAKE_BUILD_TYPE	- Type of build (release, debug)
-#					Default: none
+# CMAKE_BUILD_TYPE	- Type of build (cmake predefined build types),
+#					affects on CFLAGS and thus should not be set.
+#					Default: none (which respects CFLAGS)
 # CMAKE_VERBOSE		- Verbose build
 #					Default: not set
+# CMAKE_OUTSOURCE	- Instruct to perform an out-of-source build
+# 					Default: not set
 # CMAKE_SOURCE_PATH	- Path to sourcedir for cmake
-#					Default: .
+#					Default: ${WRKSRC}
 # CMAKE_INSTALL_PREFIX	- prefix for cmake to use for installation.
 #					Default: ${PREFIX}
 
@@ -54,9 +57,14 @@ CMAKE_ARGS+=	-DCMAKE_C_COMPILER:STRING="${CC}" \
 #
 # Default build type and sourcedir
 #
-CMAKE_BUILD_TYPE?=	# none
-CMAKE_SOURCE_PATH?=	.
+CMAKE_SOURCE_PATH?=	${WRKSRC}
+.if defined(CMAKE_OUTSOURCE)
+CONFIGURE_WRKSRC=	${WRKDIR}/.build
+BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
+INSTALL_WRKSRC=		${CONFIGURE_WRKSRC}
+.endif
 CMAKE_INSTALL_PREFIX?=	${PREFIX}
+CMAKE_BUILD_TYPE?=	#none
 
 #
 # Instruct cmake to compile/link with pthreads
@@ -71,10 +79,10 @@ CMAKE_ARGS+=	-DCMAKE_THREAD_LIBS:STRING="${PTHREAD_LIBS}" \
 .endif
 
 #
-# Force DEBUG buildtype if needed
+# Strip binaries
 #
-.if defined(CMAKE_DEBUG) || defined(WITH_DEBUG)
-CMAKE_BUILD_TYPE=DEBUG
+.if !defined(WITH_DEBUG)
+INSTALL_TARGET?=	install/strip
 .endif
 
 #
@@ -89,7 +97,8 @@ CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
 #
 .if !target(do-configure)
 do-configure:
-	@cd ${WRKSRC}; ${SETENV} ${CMAKE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
+	${MKDIR} ${CONFIGURE_WRKSRC}
+	@cd ${CONFIGURE_WRKSRC}; ${SETENV} ${CMAKE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
 .endif
 
 
