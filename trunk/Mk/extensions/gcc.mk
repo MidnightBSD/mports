@@ -12,13 +12,24 @@
 # the version.
 #
 # For example:
-#	USE_GCC=	4.1		# port requires GCC 4.1 to build with.
-#	USE_GCC=	3.4+	# port requires GCC 3.4 or later to build with.
+#   USE_GCC=	4.2+		# port requires GCC 4.2 or later.
+#   USE_GCC=	4.5			# port requires GCC 4.5.
+#
+# If your port needs a Fortran compiler, please specify that with the
+# USE_FORTRAN= knob.  Here is the list of options for that knob:
+#
+#   USE_FORTRAN=	yes		# use gfortran44 (lang/gcc44)
+#   USE_FORTRAN=	g77		# use g77-34 (lang/gcc34; FreeBSD>=7)
+#							# or system f77 (/usr/bin/f77; FreeBSD<=6)
+#   USE_FORTRAN=	ifort	# use the Intel compiler (lang/ifc)
+#
+# Due to object file incompatiblity between Fortran compilers, we strongly
+# recommend to use only one of them on any system.
 #
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.2 2009/01/02 01:35:46 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.3 2009/06/07 17:17:54 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -27,39 +38,26 @@
 Gcc_Post_Include=			gcc.mk
 Gcc_Include_MAINTAINER=		portmgr@MidnightBSD.org
 
-#
-# All GCC versions supported by the ports framework.
-# Please keep them in ascending order.
-#
-GCCVERSIONS=	030402 040200 040300
+# All GCC versions supported by the ports framework.  Keep them in
+# ascending order and in sync with the table below. 
+GCCVERSIONS=	030402 040200 040300 040400 040500 040600
 
-#
-# Versions of GCC shipped.
-# The first field if the OSVERSION in which it appeared in the base system.
-# The second field is the OSVERSION in which it disappeared from
-# the base system.
+# The first field if the OSVERSION in which it appeared in the base.
+# The second field is the OSVERSION in which it disappeared from the base.
 # The third field is the version as USE_GCC would use.
 #
 GCCVERSION_030402=	2000 3004 3.4
 GCCVERSION_040200=	3004 999999 4.2
 GCCVERSION_040300=	999999 999999 4.3
+GCCVERSION_040400=	999999 999999 4.4
+GCCVERSION_040500=	999999 999999 4.5
+GCCVERSION_040600=	999999 999999 4.6
 
 #
 # No configurable parts below this.
 #
 
-#
-# See if we can use a later version
-#
-_USE_GCC:=	${USE_GCC:S/+//}
-.if ${USE_GCC} != ${_USE_GCC}
-_GCC_ORLATER:=	true
-.endif
-
-#
-# Extract the fields from GCCVERSION_ and check if USE_GCC points to a valid
-# version.
-#
+# Extract the fields from GCCVERSION_...
 .for v in ${GCCVERSIONS}
 . for j in ${GCCVERSION_${v}}
 .  if !defined(_GCCVERSION_${v}_L)
@@ -68,9 +66,69 @@ _GCCVERSION_${v}_L=	${j}
 _GCCVERSION_${v}_R=	${j}
 .  elif !defined(_GCCVERSION_${v}_V)
 _GCCVERSION_${v}_V=	${j}
-.   if ${_USE_GCC}==${j}
+.  endif
+. endfor
+.endfor
+
+#
+# gcc.mk can also be used only for FC, F77 settings; in this case we
+# do not define USE_GCC.
+#
+
+.if defined (USE_FORTRAN)
+
+# The default case, with a current lang/gcc port.
+. if ${USE_FORTRAN} == yes
+_USE_GCC:=	4.4
+FC:=	gfortran44
+F77:=	gfortran44
+
+# Intel Fortran compiler from lang/ifc.
+. elif ${USE_FORTRAN} == ifort
+BUILD_DEPENDS+=	${LOCALBASE}/intel_fc_80/bin/ifort:${PORTSDIR}/lang/ifc
+RUN_DEPENDS+=	${LOCALBASE}/intel_fc_80/bin/ifort:${PORTSDIR}/lang/ifc
+FC:=	${LOCALBASE}/intel_fc_80/bin/ifort
+F77:=	${LOCALBASE}/intel_fc_80/bin/ifort
+
+# In some case we want to use g77 from lang/gcc34 (MidnightBSD>=0.3) or f77
+# (MidnightBSD<=0.2.1).
+. elif ${USE_FORTRAN} == g77
+.  if (${OSVERSION} > 3000)
+BUILD_DEPENDS+=	g77-34:${PORTSDIR}/lang/gcc34
+RUN_DEPENDS+=	g77-34:${PORTSDIR}/lang/gcc34
+FC:=	g77-34
+F77:=	g77-34
+CC:=	gcc34
+CXX:=	g++34
+.  else
+F77:=	f77
+FC:=	f77
+CC:=	gcc
+CXX:=	g++
+.  endif
+
+. else
+IGNORE=	specifies unknown value "${USE_FORTRAN}" for USE_FORTRAN
+. endif
+
+CONFIGURE_ENV+=	F77="${F77}" FC="${FC}" FFLAGS="${FFLAGS}"
+MAKE_ENV+=		F77="${F77}" FC="${FC}" FFLAGS="${FFLAGS}"
+.endif
+
+
+.if defined(USE_GCC)
+
+# See if we can use a later version
+_USE_GCC:=	${USE_GCC:S/+//}
+.if ${USE_GCC} != ${_USE_GCC}
+_GCC_ORLATER:=	true
+.endif
+
+# Check if USE_GCC points to a valid version.
+.for v in ${GCCVERSIONS}
+. for j in ${GCCVERSION_${v}}
+.  if ${_USE_GCC}==${j}
 _GCCVERSION_OKAY=	true;
-.   endif
 .  endif
 . endfor
 .endfor
@@ -123,34 +181,24 @@ _GCC_FOUND:=	${_GCCVERSION_${v}_V}
 _USE_GCC:=${_GCC_FOUND}
 .endif
 
-#
-# Determine if the installed OS already has this GCCVERSION, and if not
-# then set BUILD_DEPENDS, CC, CXX, F77, and FC.
-#
+.endif # defined(USE_GCC)
+
+
+.if defined(_USE_GCC)
+# A concrete version has been selected.  Determine if the installed OS 
+# features this version in the base, and if not then set proper ports
+# dependencies, CC, CXX, and flags.
 .for v in ${GCCVERSIONS}
 . if ${_USE_GCC} == ${_GCCVERSION_${v}_V}
 .  if ${OSVERSION} < ${_GCCVERSION_${v}_L} || ${OSVERSION} > ${_GCCVERSION_${v}_R}
-# If Fortran support is requested, regardless of the value of USE_GCC
-# we use lang/gcc43
-.   if defined(WITH_FORTRAN)
-V:=			43
-_GCC_BUILD_DEPENDS:=	gcc43
-_GCC_PORT_DEPENDS:=	gfortran${V}
-.else
 V:=			${_GCCVERSION_${v}_V:S/.//}
 _GCC_BUILD_DEPENDS:=	gcc${V}
 _GCC_PORT_DEPENDS:=	gcc${V}
-.   endif
 CC:=			gcc${V}
 CXX:=			g++${V}
-# Up to GCC 4.0, we had g77, g77-33, g77-34, and the like.  Starting
-# with GCC 4.0, we have gfortran, gfortran40, gfortran41, and the like.
-.   if ${_USE_GCC} < 4.0
-F77:=			g77-${V}
-FC:=			${F77}
-.   else
-FC:=			gfortran${V}
-F77:=			${FC}
+.   if ${_USE_GCC} != 3.4
+CFLAGS+=		-Wl,-rpath=${LOCALBASE}/lib/${_GCC_BUILD_DEPENDS}
+LDFLAGS+=		-Wl,-rpath=${LOCALBASE}/lib/${_GCC_BUILD_DEPENDS}
 .   endif
 .  endif
 . endif
@@ -159,18 +207,23 @@ F77:=			${FC}
 
 .if defined(_GCC_BUILD_DEPENDS)
 BUILD_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_BUILD_DEPENDS}
+. if ${_USE_GCC} != 3.4
+RUN_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_BUILD_DEPENDS}
+. endif
 .endif
+.endif # defined(_USE_GCC)
 
 MAKE_ENV+=	CC="${CC}" CXX="${CXX}" F77="${F77}" FC="${FC}"
 
 test-gcc:
 	@echo USE_GCC=${USE_GCC}
+	@echo USE_FORTRAN=${USE_FORTRAN}
+.if defined(USE_GCC)
 .if defined(_GCC_ORLATER)
 	@echo Port can use later versions.
 .else
 	@echo Port cannot use later versions.
 .endif
-	@echo WITH_FORTRAN=${WITH_FORTRAN}
 .for v in ${GCCVERSIONS}
 	@echo -n "GCC version: ${_GCCVERSION_${v}_V} "
 .if defined(_GCC_FOUND${v})
@@ -184,3 +237,8 @@ test-gcc:
 
 
 .endif
+	@echo CC=${CC} - CXX=${CXX} - CFLAGS=\"${CFLAGS}\"
+	@echo F77=${F77} - FC=${FC} - FFLAGS=\"${FFLAGS}\"
+	@echo LDFLAGS=\"${LDFLAGS}\"
+	@echo "BUILD_DEPENDS=${BUILD_DEPENDS}"
+	@echo "RUN_DEPENDS=${RUN_DEPENDS}"
