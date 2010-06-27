@@ -2,10 +2,10 @@
 # Date created:				October 11, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.4 2009/10/06 20:01:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.5 2009/10/07 00:47:24 laffer1 Exp $
 
 PORTNAME=	bugzilla
-PORTVERSION=	3.4.2
+PORTVERSION=	3.4.7
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
