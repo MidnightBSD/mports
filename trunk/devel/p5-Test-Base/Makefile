@@ -2,12 +2,12 @@
 # Date created:				27 Dec 2005
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-Test-Base/Makefile,v 1.2 2007/07/22 08:53:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Test-Base/Makefile,v 1.3 2008/10/16 21:44:26 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-Base/Makefile,v 1.9 2006/12/02 14:40:56 tobez Exp $
 #
 
 PORTNAME=	Test-Base
-PORTVERSION=	0.54
+PORTVERSION=	0.59
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Test
