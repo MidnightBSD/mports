@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-DateTime-Format-Mail/Makefile,v 1.1 2009/03/21 15:42:13 laffer1 Exp $
 
 PORTNAME=	DateTime-Format-Mail
 PORTVERSION=	0.30.01
@@ -13,7 +13,7 @@ LICENSE=	perl
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Params/Validate.pm:${PORTSDIR}/devel/p5-Params-Validate \
-		${SITE_PERL}/${PERL_ARCH}/DateTime.pm:${PORTSDIR}/devel/p5-DateTime
+		${SITE_PERL}/DateTime.pm:${PORTSDIR}/devel/p5-DateTime
 
 PERL_MODBUILD=	yes
 
