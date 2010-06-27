@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-DateTime-Format-W3CDTF/Makefile,v 1.1 2009/03/21 15:42:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime-Format-W3CDTF/Makefile,v 1.2 2010/06/27 16:01:19 laffer1 Exp $
 
 PORTNAME=	DateTime-Format-W3CDTF
-PORTVERSION=	0.04
+PORTVERSION=	0.05
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
