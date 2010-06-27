@@ -2,12 +2,12 @@
 # Date created:	   10 octobre 2003
 # Whom:		   mat
 #
-# $MidnightBSD: mports/devel/p5-Pod-Coverage/Makefile,v 1.1 2008/03/21 19:59:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Pod-Coverage/Makefile,v 1.2 2008/10/16 21:41:41 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Pod-Coverage/Makefile,v 1.13 2007/10/26 21:46:04 mat Exp $
 #
 
 PORTNAME=	Pod-Coverage
-PORTVERSION=	0.19
+PORTVERSION=	0.20
 CATEGORIES=	devel textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -28,7 +28,7 @@ MAN3=		Pod::Coverage.3 \
 		Pod::Coverage::Overloader.3
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	Changes README
+PORTDOCS=	Changes
 EXAMPLES=	examples/check_installed examples/script-covered
 
 post-install:
