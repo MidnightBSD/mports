@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-DateTime-TimeZone/Makefile,v 1.1 2009/03/21 15:37:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime-TimeZone/Makefile,v 1.2 2009/10/07 00:27:37 laffer1 Exp $
 
 PORTNAME=	DateTime-TimeZone
-PORTVERSION=	0.99
+PORTVERSION=	1.10
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -31,10 +31,4 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500806
-RUN_DEPENDS+=	p5-PathTools>=3:${PORTSDIR}/devel/p5-PathTools
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
