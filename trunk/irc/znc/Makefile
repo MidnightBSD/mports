@@ -2,11 +2,11 @@
 # Date created:        May 9 2008
 # Whom:                Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/irc/znc/Makefile,v 1.2 2008/11/06 20:54:56 ctriv Exp $
+# $MidnightBSD: mports/irc/znc/Makefile,v 1.3 2009/12/25 16:33:09 laffer1 Exp $
 #
 
 PORTNAME=	znc
-PORTVERSION=	0.074
+PORTVERSION=	0.076
 CATEGORIES=	irc ipv6
 MASTER_SITES=	SF
 
