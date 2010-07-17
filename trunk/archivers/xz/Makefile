@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/xz/Makefile,v 1.1 2009/12/25 17:18:03 laffer1 Exp $
 
 PORTNAME=	xz
 PORTVERSION=	4.999.9
@@ -13,9 +13,9 @@ LICENSE=	agg
 CONFLICTS=	lzma-[0-9]* lzmautils-[0-9]* lzmalib-[0-9]*
 
 MAKE_JOBS_SAFE=	yes
-USE_AUTOTOOLS=	autoheader:262 autoconf:262
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack
+GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--enable-dynamic=yes
 CONFIGURE_ARGS+=--disable-nls	# no translations available
@@ -40,10 +40,6 @@ MLINKS=	xz.1 lzcat.1		xzdiff.1 lzcmp.1 \
 
 PORTDOCS=	AUTHORS COPYING COPYING.GPLv2 NEWS README THANKS TODO \
 		faq.txt history.txt lzma-file-format.txt xz-file-format.txt
-
-# no need to (attempt to) run aclocal
-pre-build:
-	@touch -r ${WRKSRC}/configure.ac ${WRKSRC}/aclocal.m4
 
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
