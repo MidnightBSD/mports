@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.5 2008/07/03 20:16:28 smultron Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.6 2009/12/25 16:07:20 laffer1 Exp $
 
 PORTNAME=	wget
-DISTVERSION=	1.11.4
+DISTVERSION=	1.12
 PORTREVISION=	1
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
@@ -19,7 +19,7 @@ CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
 MAKE_JOBS_SAFE=	yes
 
-OPTIONS=	GNUTLS "Support for SSL via GnuTLS" Off \
+OPTIONS=	GNUTLS "Support for SSL via GnuTLS" On \
 		IPV6 "Support for IPv6" On \
 		NLS "Native Language Support with gettext" On \
 		OPENSSL "Support for SSL via OpenSSL" On
@@ -28,7 +28,8 @@ OPTIONS=	GNUTLS "Support for SSL via GnuTLS" Off \
 
 .if !defined(WITHOUT_OPENSSL)
 .if !defined(WITHOUT_GNUTLS)
-IGNORE=		GNUTLS and OPENSSL are mutually exclusive, enable at most one of them
+#IGNORE=	GNUTLS and OPENSSL are mutually exclusive, enable at 
+#most one of them
 .endif
 EXTENSIONS+=	openssl
 CONFIGURE_ARGS+=--with-ssl
@@ -66,8 +67,7 @@ INFO=		wget
 .include <bsd.port.pre.mk>
 
 post-patch:
-	${RM} -f ${WRKSRC}/doc/wget.info* ${WRKSRC}/po/*.mo ${WRKSRC}/po/*.gmo
-	@# eliminate gmakism
+	# eliminate gmakism
 	${REINPLACE_CMD} -e 's,$$<,$$(srcdir)/wget.texi,' \
 		${WRKSRC}/doc/Makefile.in
 	${REINPLACE_CMD} -e 's,/usr/local/etc/wgetrc,${PREFIX}/etc/wgetrc,' \
