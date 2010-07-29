@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.5 2009/03/21 15:48:26 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-XML-RSS/Makefile,v 1.6 2010/07/29 02:32:00 laffer1 Exp $
 # $OpenBSD: Makefile,v 1.14 2003/12/09 18:48:54 jose Exp $
 
 PORTNAME=	XML-RSS
@@ -13,7 +13,7 @@ MAINTAINER=	luke@MidnightBSD.org
 LICENSE=	perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser \
-		${SITE_PERL}/${PERL_ARCH}/DateTime.pm:${PORTSDIR}/devel/p5-DateTime \
+		${SITE_PERL}/DateTime.pm:${PORTSDIR}/devel/p5-DateTime \
 		${SITE_PERL}/DateTime/Format/Mail.pm:${PORTSDIR}/devel/p5-DateTime-Format-Mail \
 		${SITE_PERL}/DateTime/Format/W3CDTF.pm:${PORTSDIR}/devel/p5-DateTime-Format-W3CDTF \
 		p5-HTML-Parser>=0:${PORTSDIR}/www/p5-HTML-Parser
