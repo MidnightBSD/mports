@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.3 2009/09/20 00:15:52 laffer1 Exp $
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.4 2010/02/27 15:59:30 laffer1 Exp $
 
 PORTNAME=	amarok
 PORTVERSION=	1.4.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src
@@ -16,8 +16,6 @@ LIB_DEPENDS=	tag.6:${PORTSDIR}/audio/taglib \
 		mp4v2:${PORTSDIR}/multimedia/mpeg4ip-libmp4v2 \
 		xine.1:${PORTSDIR}/multimedia/libxine
 
-MIN_OPTIONS_VER=	${PORTNAME}-1.4.1
-
 USE_BZIP2=	yes
 USE_KDEBASE_VER=3
 USE_GMAKE=	yes
@@ -26,9 +24,7 @@ USE_GETTEXT=	yes
 USE_SDL=	sdl
 USE_RUBY=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=
 INSTALLS_ICONS=	yes
-USE_GCC=	4.1+
 
 OPTIONS=	GPOD "iPod support" on \
 		NJB "Creative Nomad and Dell support" on \
@@ -38,7 +34,7 @@ OPTIONS=	GPOD "iPod support" on \
 		AMAZON "Amazon cover fetching support" on \
 		MYSQL "Use MySQL as collection backend" off \
 		POSTGRESQL "Use PostgreSQL as collection backend" off \
-		HIDEMENUBAR "Revert the 'Hide Menubar' feature" off \
+		HIDEMENUBAR "Revert the 'Hide Menubar' feature" off
 
 .include <bsd.port.pre.mk>
 
@@ -75,7 +71,6 @@ PLIST_SUB+=	MTP=""
 CONFIGURE_ARGS+=--without-libvisual
 .else
 LIB_DEPENDS+=	visual-0.4:${PORTSDIR}/graphics/libvisual04
-USE_GNOME+=	gnomelibs
 .endif
 
 .if defined(WITHOUT_OPENGL)
@@ -108,7 +103,7 @@ STRIP=		# none
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||g'	${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|LIBS="-ltunepimp  $$LIBS"|LIBS="-ltunepimp -liconv $$LIBS"|g' \
-	${WRKSRC}/${CONFIGURE_SCRIPT}
+		${WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|xx||g' ${WRKSRC}/po/Makefile.in
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${TOUCH}
 
