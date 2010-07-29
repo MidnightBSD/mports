@@ -1,5 +1,12 @@
-@comment $MidnightBSD: mports/textproc/p5-XML-RSS/pkg-plist,v 1.1 2009/03/21 15:05:23 laffer1 Exp $
+@comment $MidnightBSD: mports/textproc/p5-XML-RSS/pkg-plist,v 1.2 2009/03/21 15:09:57 laffer1 Exp $
 %%SITE_PERL%%/XML/RSS.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/Base.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/V2_0.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/V0_9.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/V0_91.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/V1_0.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/Roles/ImageDims.pm
+%%SITE_PERL%%/XML/RSS/Private/Output/Roles/ModulesElems.pm
 share/examples/p5-XML-RSS/1.0/create_rss_1.0.pl
 share/examples/p5-XML-RSS/1.0/update_rss_1.0.pl
 share/examples/p5-XML-RSS/1.0/rss1.0.rdf
@@ -24,6 +31,10 @@ share/examples/p5-XML-RSS/README
 @dirrm lib/perl5/%%PERL_VER%%/man
 @dirrm lib/perl5/%%PERL_VER%%
 @dirrmtry %%SITE_PERL%%/XML
+@dirrmtry %%SITE_PERL%%/XML/RSS/Private/Output/Roles
+@dirrmtry %%SITE_PERL%%/XML/RSS/Private/Output
+@dirrmtry %%SITE_PERL%%/XML/RSS/Private
+@dirrmtry %%SITE_PERL%%/XML/RSS
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/RSS
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
 @dirrm share/examples/p5-XML-RSS/1.0
