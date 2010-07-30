@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.1 2010/07/30 00:32:41 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	4.4.5.20100720
@@ -14,7 +14,7 @@ COMMENT=	GNU Compiler Collection 4.4
 LICENCE=	gpl3
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
-		mpfr.4:${PORTSDIR}/math/mpfr
+		mpfr.2:${PORTSDIR}/math/mpfr
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
