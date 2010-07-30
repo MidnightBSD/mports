@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/binutils/Makefile,v 1.1 2010/06/13 17:57:49 laffer1 Exp $
 
 PORTNAME=	binutils
 PORTVERSION=	2.20.1
@@ -28,6 +28,7 @@ CONFIGURE_ARGS+=	--with-system-zlib \
 			--with-mpfr=${LOCALBASE} \
 			--disable-werror
 
+MANCOMPRESSED=	no
 MAN1=		addr2line.1 \
 		ar.1 \
 		as.1 \
@@ -73,6 +74,7 @@ PLIST_SUB+=	POST7="" PRE7="@comment "
 
 .if ${ARCH} == "amd64"
 ARCH=		x86_64
+CONFIGURE_ARGS+=--build=${ARCH}-portbld-freebsd7.0
 .endif
 
 post-install:
