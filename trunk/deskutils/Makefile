@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.42 2010/03/02 02:11:16 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.43 2010/06/04 23:21:30 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -15,6 +15,7 @@
     SUBDIR += etoile-menuserver
     SUBDIR += etoile-outerspace
     SUBDIR += etoile-panekit
+    SUBDIR += etoile-servicemenulet
     SUBDIR += etoile-scriptservices
     SUBDIR += etoile-servicesbarkit
     SUBDIR += etoile-systemconfig
