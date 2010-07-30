@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.43 2010/06/04 23:21:30 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.44 2010/07/30 02:54:43 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -6,6 +6,7 @@
     SUBDIR += deskbar-applet
     SUBDIR += drivel
     SUBDIR += etoile-addresseskit
+    SUBDIR += etoile-corner
     SUBDIR += etoile-dictionaryreader
     SUBDIR += etoile-distributedview
     SUBDIR += etoile-extendedworkspacekit
