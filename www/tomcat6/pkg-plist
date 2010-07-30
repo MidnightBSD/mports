@@ -254,8 +254,8 @@ etc/rc.d/tomcat6.sh
 %%T%%/webapps/examples/jsp/num/numguess.html
 %%T%%/webapps/examples/jsp/num/numguess.jsp
 %%T%%/webapps/examples/jsp/num/numguess.jsp.html
-%%T%%/webapps/examples/jsp/chat/chat.jsp
-%%T%%/webapps/examples/jsp/chat/chat.jsp.html
+%%T%%/webapps/examples/jsp/chat/index.jsp
+%%T%%/webapps/examples/jsp/chat/index.jsp.html
 %%T%%/webapps/examples/jsp/chat/login.jsp
 %%T%%/webapps/examples/jsp/chat/login.jsp.html
 %%T%%/webapps/examples/jsp/chat/post.jsp
@@ -486,7 +486,7 @@ etc/rc.d/tomcat6.sh
 %%T%%/bin/bootstrap.jar
 %%T%%/bin/catalina-tasks.xml
 %%T%%/bin/commons-daemon.jar
-%%T%%/bin/jsvc.tar.gz
+%%T%%/bin/commons-daemon-native.tar.gz
 %%T%%/bin/tomcat-juli.jar
 %%T%%/bin/catalina.sh
 %%T%%/RUNNING.txt
