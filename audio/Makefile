@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.82 2010/04/28 16:00:57 vganji Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.83 2010/07/30 03:46:54 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -18,6 +18,7 @@
     SUBDIR += celt
     SUBDIR += esound
     SUBDIR += espeak
+    SUBDIR += etoile-melodie
     SUBDIR += etoile-volumecontrolmenulet
     SUBDIR += faac
     SUBDIR += faad
