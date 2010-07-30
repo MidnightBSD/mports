@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.1 2010/07/30 00:32:41 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.2 2010/07/30 02:43:09 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	4.4.5.20100720
@@ -71,13 +71,6 @@ MAN1=		cpp${SUFFIX}.1 \
 		gcc${SUFFIX}.1 \
 		gcov${SUFFIX}.1 \
 		gfortran${SUFFIX}.1
-INFO=		gcc${SUFFIX}/cpp \
-		gcc${SUFFIX}/cppinternals \
-		gcc${SUFFIX}/gcc \
-		gcc${SUFFIX}/gccinstall \
-		gcc${SUFFIX}/gccint \
-		gcc${SUFFIX}/gfortran \
-		gcc${SUFFIX}/libgomp
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
@@ -90,6 +83,8 @@ pre-configure:
 	cd ${SRCDIR} ; contrib/gcc_update --touch
 	@${RM} -f ${SRCDIR}/gcc/*/*.info*
 	@${MKDIR} ${CONFIGURE_WRKSRC}
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/info/gcc44
+	touch ${FAKE_DESTDIR}${PREFIX}/info/gcc44/dir
 
 full-regression-test: build
 	cd ${WRKSRC}; ${GMAKE} -sk check
