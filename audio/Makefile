@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.83 2010/07/30 03:46:54 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.84 2010/07/30 04:49:57 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -23,6 +23,7 @@
     SUBDIR += faac
     SUBDIR += faad
     SUBDIR += flac
+    SUBDIR += freedesktop-sound-theme
     SUBDIR += gnome-audio
     SUBDIR += gnome-media
     SUBDIR += gnustep-cdplayer
