@@ -6,10 +6,11 @@
 # Created by: Edwin Groothuis <edwin@freebsd.org>
 #
 # For port developers:
-# If your port needs a specific version of GCC, you can easily specify
-# that with the "USE_GCC=" statement. If you need a certain minimal version,
-# but don't care if about the upperversion, just the + sign behind
-# the version.
+# If your port needs a specific (minimum) version of GCC, you can easily
+# specify that with a "USE_GCC=" statement.  Unless absolutely necessary
+# do so by specifying "USE_GCC=X.Y+" which requests at least GCC version
+# X.Y.  To request a specific version omit the trailing + sign.  Use of
+# a Fortran compiler is declared by the USE_FORTRAN knob, not USE_GCC.
 #
 # For example:
 #   USE_GCC=	4.2+		# port requires GCC 4.2 or later.
@@ -29,7 +30,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.3 2009/06/07 17:17:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.4 2010/06/26 17:40:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -117,6 +118,11 @@ MAKE_ENV+=		F77="${F77}" FC="${FC}" FFLAGS="${FFLAGS}"
 
 
 .if defined(USE_GCC)
+
+# USE_GCC=4.3 is deprecated...
+.if ${USE_GCC} == "4.3+"
+USE_GCC=4.4+
+.endif
 
 # See if we can use a later version
 _USE_GCC:=	${USE_GCC:S/+//}
@@ -242,3 +248,5 @@ test-gcc:
 	@echo LDFLAGS=\"${LDFLAGS}\"
 	@echo "BUILD_DEPENDS=${BUILD_DEPENDS}"
 	@echo "RUN_DEPENDS=${RUN_DEPENDS}"
+
+.endif
