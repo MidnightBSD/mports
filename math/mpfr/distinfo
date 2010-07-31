@@ -1,3 +1,4 @@
-MD5 (mpfr/mpfr-2.3.1.tar.bz2) = 8352b619e04dcc73411a38b39dd855f6
-SHA256 (mpfr/mpfr-2.3.1.tar.bz2) = d857f9df4a6cf50d0bc57dd11296dd1a8d1ac709442875ea4fcd757a89da8430
-SIZE (mpfr/mpfr-2.3.1.tar.bz2) = 888921
+MD5 (mpfr/mpfr-2.4.2.tar.xz) = f61da10945c3de6962749a5eb70dafd3
+SHA256 (mpfr/mpfr-2.4.2.tar.xz) = d7271bbfbc9ddf387d3919df8318cd7192c67b232919bfa1cb3202d07843da1b
+RMD160 (mpfr/mpfr-2.4.2.tar.xz) = 766e35505919742105260a72a3ad8afeceb1f365
+SIZE (mpfr/mpfr-2.4.2.tar.xz) = 951620
