@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.3 2009/06/22 17:19:34 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.4 2009/12/28 23:40:59 laffer1 Exp $
 
 PORTNAME=	coreutils
 PORTVERSION=	7.5
@@ -16,6 +16,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LIBS="-L${LOCALBASE}/lib"
 
+USE_XZ=		yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 #USE_BISON=	yes
