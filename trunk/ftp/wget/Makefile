@@ -1,17 +1,18 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.6 2009/12/25 16:07:20 laffer1 Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.7 2010/07/19 08:57:55 crash Exp $
 
 PORTNAME=	wget
 DISTVERSION=	1.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
+EXTRACT_SUFX=	.tar.lzma
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP and FTP
 LICENSE=	gpl3
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
