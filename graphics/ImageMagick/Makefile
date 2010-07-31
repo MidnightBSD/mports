@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.12 2010/03/25 01:18:41 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.13 2010/05/05 23:41:02 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.5.3-10
@@ -9,6 +9,7 @@ MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
 		ftp://ftp.nluug.nl/pub/ImageMagick/ \
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/
 #MASTER_SITE_SUBDIR=	imagemagick
+EXTRACT_SUFX=	.tar.lzma
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image processing tools
@@ -16,7 +17,7 @@ LICENSE=	other
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
-USE_BZIP2=	yes
+USE_XZ=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_AUTOTOOLS=	libltdl:22
