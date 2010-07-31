@@ -2,13 +2,14 @@
 # Date created:		15 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.1 2008/11/20 15:54:54 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
 PORTVERSION=	4.6.1
 CATEGORIES=	misc shells
-MASTER_SITES=	${MASTER_SITE_SUNSITE}
+MASTER_SITES=	http://www.midnight-commander.org/downloads/ \
+		${MASTER_SITE_SUNSITE}
 MASTER_SITE_SUBDIR=	utils/file/managers/mc/
 
 MAINTAINER=	ports@MidnightBSD.org
