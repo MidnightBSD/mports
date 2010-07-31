@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.160 2010/05/05 23:57:09 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.161 2010/06/04 22:44:11 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -335,6 +335,8 @@ EXTRACT_DEPENDS+=       gcpio:${PORTSDIR}/archivers/gcpio
 EXTRACT_SUFX?=			.tar.bz2
 .elif defined(USE_ZIP)
 EXTRACT_SUFX?=			.zip
+.elif defined(USE_XZ)
+EXTRACT_SUFX?=			.tar.xz
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
@@ -556,6 +558,9 @@ PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 .if defined(USE_ZIP)
 EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
+.endif
+.if defined(USE_XZ)
+EXTRACT_DEPENDS+=	${LOCALBASE}/bin/xz:${PORTSDIR}/archivers/xz
 .endif
 .if defined(USE_GMAKE)
 BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
@@ -1010,6 +1015,8 @@ EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner
 .endif
 .if defined(USE_BZIP2)
 EXTRACT_CMD?=			${BZIP2_CMD}
+.elif defined(USE_XZ)
+EXTRACT_CMD?=			${XZ_CMD}
 .else
 EXTRACT_CMD?=			${GZIP_CMD}
 .endif
