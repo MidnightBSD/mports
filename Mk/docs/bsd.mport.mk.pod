@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.11 2009/06/04 00:13:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.12 2009/06/04 00:59:27 laffer1 Exp $
 
 =head1 NAME
 
@@ -491,7 +491,7 @@ Suffix for archive names. You never have to set both DISTFILES and
 EXTRACT_SUFX.
 
 Default: .tar.bz2 if USE_BZIP2 is set, .zip if USE_ZIP is set,
-.tar.gz otherwise.
+.tar.xz if USE_XZ is set, .tar.gz otherwise.
 
 =item MASTER_SITES
 
@@ -912,6 +912,10 @@ This would load perl5.mk and python.mk from the extensions directory.
 =item USE_BZIP2
 
 If set, this port tarballs use bzip2, not gzip, for compression.
+
+=item USE_XZ
+
+If set, this port tarballs use xz (lzma), not gzip, for compression.
 
 =item USE_ZIP
 
