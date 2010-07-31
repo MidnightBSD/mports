@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.18 2010/03/25 00:56:56 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.19 2010/04/25 12:08:08 laffer1 Exp $
 
 PORTNAME=	png
 PORTVERSION=	1.4.1
@@ -19,7 +19,7 @@ MAKE_FLAGS=	ccopts="${CFLAGS}" ldopts="${LDFLAGS}" -f
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 SHLIB_VER=	6
-USE_BZIP2=	yes
+USE_XZ=		yes
 
 MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
