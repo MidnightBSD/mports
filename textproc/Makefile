@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.124 2010/02/05 00:54:03 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.125 2010/02/05 01:05:48 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -47,6 +47,7 @@
     SUBDIR += glimpse
     SUBDIR += gnome-doc-utils
     SUBDIR += gnome-spell
+    SUBDIR += gnugrep
     SUBDIR += gsed
     SUBDIR += gtk-doc
     SUBDIR += gtkspell
