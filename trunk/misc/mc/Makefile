@@ -2,15 +2,19 @@
 # Date created:		15 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.1 2008/11/20 15:54:54 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.2 2010/07/31 03:12:35 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
-PORTVERSION=	4.6.1
+PORTVERSION=	4.7.2
+PORTREVISION=	0
 CATEGORIES=	misc shells
 MASTER_SITES=	http://www.midnight-commander.org/downloads/ \
 		${MASTER_SITE_SUNSITE}
-MASTER_SITE_SUBDIR=	utils/file/managers/mc/
+MASTER_SITE_SUBDIR=	utils/file/managers/mc
+DISTNAME=	${PORTNAME}-${PORTVERSION}
+
+PATCH_SITES=	${MASTER_SITES}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
@@ -20,25 +24,22 @@ CONFLICTS=	mc-light-4*
 
 BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 
-USE_GETTEXT=	yes
-USE_ICONV=	yes
 USE_GMAKE=	yes
-.if defined(WITH_GLIB12) || defined(MINIMAL)
-USE_GNOME=	glib12
-.else
 USE_GNOME=	glib20
-.endif
 USE_PERL5=	yes
+USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 
-OPTIONS=	UTF8		"Build with UTF8 support" on \
-		SLANG		"Build with SLang library" on \
+OPTIONS=	SLANG		"Build with SLang library" on \
 		ICONV		"Build with iconv recoding" on \
 		NLS		"Build with NLS support" on \
 		EDIT		"Build with internal editor" on \
 		X11		"Build with X11 library" off \
 		SUBSHELL	"Build with subshell support" on \
 		SAMBA		"Build with Samba support" on
+
+post-patch:
+	${REINPLACE_CMD} -e 's/SUBDIRS = intl/SUBDIRS =/' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.pre.mk>
 
@@ -48,9 +49,10 @@ CONFIGURE_ARGS+=--with-samba --with-configdir=${LOCALBASE}/etc \
 .endif
 
 .if defined(WITH_ICONV) || !(defined(WITHOUT_ICONV) || defined(MINIMAL))
-CONFIGURE_ARGS+=--enable-charset
+USE_ICONV=	yes
 PLIST_SUB=	CHARSETS=""
 .else
+CONFIGURE_ARGS+=--disable-charset
 PLIST_SUB=	CHARSETS="@comment "
 .endif
 
@@ -58,8 +60,10 @@ PLIST_SUB=	CHARSETS="@comment "
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .else
+CONFIGURE_ENV+=	CPPFLAGS=-I${LOCALBASE}/include LDFLAGS=-L${LOCALBASE}/lib
+USE_GETTEXT=	yes
 PLIST_SUB+=	NLS=""
-_MANLANG=	es hu it pl ru.KOI8-R sr
+_MANLANG=	es hu it pl ru sr
 .endif
 
 .if !defined(WITH_X11) || defined(MINIMAL)
@@ -75,24 +79,15 @@ PLIST_SUB+=	EDITOR="@comment "
 PLIST_SUB+=	EDITOR=""
 .endif
 
-.if defined(WITH_UTF8)
-LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
-CONFIGURE_ARGS+=--with-screen-slang
-CONFIGURE_ENV+=	LDFLAGS=-L${PREFIX}/lib
-.elif !defined(WITH_SLANG) && (defined(WITHOUT_SLANG) || defined(MINIMAL))
+.if !defined(WITH_SLANG) && (defined(WITHOUT_SLANG) || defined(MINIMAL))
 CONFIGURE_ARGS+=--with-screen=ncurses
 .else
-CONFIGURE_ARGS+=--with-screen=mcslang
+LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
+CONFIGURE_ARGS+=--with-screen=slang
 .endif
 
 .if !defined(WITH_SUBSHELL) && (defined(WITHOUT_SUBSHELL) || defined(MINIMAL))
 CONFIGURE_ARGS+=--without-subshell
-.endif
-
-.if defined(WITH_PERL_MODULES) || !(defined(WITHOUT_PERL_MODULES) || defined(MINIMAL))
-.if ${PERL_LEVEL} < 500800
-RUN_DEPENDS+=	${SITE_PERL}/File/Temp.pm:${PORTSDIR}/devel/p5-File-Temp
-.endif
 .endif
 
 MAN1=		mc.1 mcedit.1 mcview.1
@@ -100,20 +95,5 @@ _MAN1=		mc.1
 .for lang in ${_MANLANG}
 _MANPAGES+=	${_MAN1:S%^%${MAN1PREFIX}/man/${lang}/man1/%}
 .endfor
-
-post-patch:
-.if !defined(WITH_NLS) && (defined(WITHOUT_NLS) || defined(MINIMAL))
-	@${REINPLACE_CMD} -e '/^LIBFILES_ADD +=/,/[^\\]$$/ s/^/#/'\
-	    ${WRKSRC}/lib/Makefile.in
-.endif
-	@${REINPLACE_CMD} -e 's|/usr/bin/zip|${LOCALBASE}/bin/zip|' \
-		-e 's|/usr/bin/unzip|${LOCALBASE}/bin/unzip|' \
-		${WRKSRC}/configure
-.if defined(WITH_UTF8)
-	cat ${PATCHDIR}/mc-4.6.1-utf8-r2.patch | patch -p1 --silent -d ${WRKSRC}
-.endif
-
-post-install:
-	@${LN} -sf mc ${PREFIX}/bin/midc
 
 .include <bsd.port.post.mk>
