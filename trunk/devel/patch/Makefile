@@ -2,21 +2,23 @@
 # Date created:         24 Apr 2007
 # Whom:                 laffer1
 #
-# $MidnightBSD: mports/devel/patch/Makefile,v 1.1 2007/04/28 03:21:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/patch/Makefile,v 1.2 2008/08/26 19:29:53 laffer1 Exp $
 #
 
 PORTNAME=	patch
-PORTVERSION=	2.5.4
+PORTVERSION=	2.6.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	patch
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU patch utility
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-GNU_CONFIGURE=	yes
+USE_XZ=		yes
+USE_AUTOTOOLS=	autoconf:262 aclocal:110
 CONFIGURE_ARGS=	--program-prefix=g
+USE_GMAKE=	yes
 
 MAN1=		gpatch.1
 PLIST_FILES=	bin/gpatch
