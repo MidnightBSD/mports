@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.5 2009/05/31 20:27:21 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.6 2009/12/28 23:35:04 laffer1 Exp $
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
