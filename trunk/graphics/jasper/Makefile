@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.6 2009/09/20 02:55:03 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.7 2010/03/25 01:28:08 laffer1 Exp $
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ece.uvic.ca/~mdadams/jasper/software/ \
 		${MASTER_SITE_IMAGEMAGICK}
@@ -29,7 +29,8 @@ MASTER_SITE_IMAGEMAGICK=	\
 	ftp://ftp.imagemagick.org/pub/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/&,}
 
-OPTIONS=	OPENGL	"OpenGL support" off
+OPTIONS=	OPENGL	"OpenGL support" off \
+		UUID	"UUID support (required by GDAL)" off
 
 .include <bsd.port.pre.mk>
 
@@ -40,6 +41,10 @@ PLIST_SUB+=	OPENGL=""
 .else
 CONFIGURE_ARGS+=--disable-opengl
 PLIST_SUB+=	OPENGL="@comment "
+.endif
+
+.if defined(WITH_UUID)
+EXTRA_PATCHES+=	${FILESDIR}/uuid.patch
 .endif
 
 .if !defined(NO_INSTALL_MANPAGES)
