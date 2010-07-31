@@ -1,0 +1,15 @@
+@exec /bin/ln -s %%PREFIX%%/bin/grep %%PREFIX%%/bin/bsdgrep
+@exec /bin/ln -s /usr/bin/grep %%PREFIX%%/bin/gnugrep
+bin/bsdgrep
+bin/egrep
+bin/fgrep
+bin/gnugrep
+bin/grep
+bin/zgrep
+bin/zegrep
+bin/zfgrep
+%%NLS%%share/nls/es_ES.ISO8859-1/grep.cat
+%%NLS%%share/nls/hu_HU.ISO8859-2/grep.cat
+%%NLS%%share/nls/pt_BR.ISO8859-1/grep.cat
+%%NLS%%share/nls/gl_ES.ISO8859-1/grep.cat
+%%NLS%%@dirrmtry share/nls/gl_ES.ISO8859-1
