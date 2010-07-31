@@ -2,7 +2,7 @@
 # Date created:		15 Jul 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.2 2010/07/31 03:12:35 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.3 2010/07/31 03:21:10 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
@@ -19,7 +19,7 @@ PATCH_SITES=	${MASTER_SITES}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Midnight Commander, a free Norton Commander Clone
 LICENSE=	gpl2
-
+EXTRACT_SUFX=	.tar.lzma
 CONFLICTS=	mc-light-4*
 
 BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
@@ -27,7 +27,7 @@ BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 USE_GMAKE=	yes
 USE_GNOME=	glib20
 USE_PERL5=	yes
-USE_BZIP2=	yes
+USE_XZ=	yes
 GNU_CONFIGURE=	yes
 
 OPTIONS=	SLANG		"Build with SLang library" on \
