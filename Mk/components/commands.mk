@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/mport.inc/commands.mk,v 1.1 2008/05/16 19:08:42 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.1 2008/10/28 21:01:14 ctriv Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -78,6 +78,8 @@ UNAME?=		/usr/bin/uname
 UNZIP_CMD?=	${LOCALBASE}/bin/unzip
 WHICH?=		/usr/bin/which
 XARGS?=		/usr/bin/xargs
+XMKMF?=		${LOCALBASE}/bin/xmkmf -a
+XZ_CMD?=	${LOCALBASE}/bin/xz
 YACC?=		/usr/bin/yacc
 
 # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
