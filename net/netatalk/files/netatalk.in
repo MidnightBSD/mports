@@ -1,6 +1,5 @@
 #!/bin/sh
 #
-# $MidnightBSD$
 # $FreeBSD: ports/net/netatalk/files/netatalk.in,v 1.3 2010/03/27 00:13:49 dougb Exp $
 #
 # PROVIDE: atalkd papd cnid_metad timelord afpd
