@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.6 2009/10/18 18:10:16 crash Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.7 2010/01/09 17:59:18 laffer1 Exp $
 #
 # WITH_THREADS_BREAK enable pthread support (WILL BREAK OTHER PORTS!)
 # WITHOUT_SCHEMA disable XML schema support
@@ -7,7 +7,7 @@
 # WITH_THREAD_ALLOC enable per-thread memory (DEVELOPERS ONLY!)
 
 PORTNAME=	libxml2
-PORTVERSION=	2.7.6
+PORTVERSION=	2.7.7
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
