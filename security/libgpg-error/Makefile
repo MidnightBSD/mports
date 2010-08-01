@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.8 2009/09/22 19:47:00 laffer1 Exp $
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.9 2009/10/14 00:08:11 laffer1 Exp $
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.7
-PORTREVISION=	2
+PORTVERSION=	1.8
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
