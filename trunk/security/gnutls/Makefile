@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.14 2010/04/28 17:11:24 vganji Exp $
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.15 2010/05/31 20:47:34 laffer1 Exp $
 #
 
 PORTNAME=	gnutls
 PORTVERSION=	2.8.6
+PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	${MASTER_SITE_GNU} \
 		${MASTER_SITE_GNUPG}
@@ -12,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Transport Layer Security library
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 CONFLICTS=	gnutls-devel-[0-9]*
