@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/vpnc/Makefile,v 1.2 2009/05/22 17:42:34 laffer1 Exp $
+# $MidnightBSD: mports/security/vpnc/Makefile,v 1.3 2010/01/02 22:48:26 laffer1 Exp $
 
 PORTNAME=	vpnc
 PORTVERSION=	0.5.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 		CRITICAL
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.16:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
