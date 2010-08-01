@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.5 2009/08/15 19:03:39 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.6 2009/09/20 03:17:45 laffer1 Exp $
 
 PORTNAME=	openbox
-PORTVERSION=	3.4.7.2
+PORTVERSION=	3.4.11.2
+PORTREVISION=	1
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://offload1.icculus.org/openbox/releases/ \
-		http://offload2.icculus.org:9090/openbox/releases/
+MASTER_SITES=	http://openbox.org/dist/openbox/ \
+		http://dougbarton.us/Downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A standards compliant, fast, light-weight, extensible window manager
@@ -18,19 +19,15 @@ USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 ltverhack
 USE_XORG=	x11
 USE_LDCONFIG=	yes
+CONFIGURE_ENV=	CFLAGS+="-I${LOCALBASE}/include" \
+		LDFLAGS+="-L${LOCALBASE}/lib"
+MAN1=		openbox.1 openbox-session.1 obxprop.1 \
+		openbox-gnome-session.1 openbox-kde-session.1
 
-CONFIGURE_ENV=	CFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-MAN1=	openbox.1 openbox-session.1 \
-	openbox-gnome-session.1 openbox-kde-session.1
+PLIST_SUB=	VERSION=${PORTVERSION}
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
-.endif
 
 .if !defined(WITHOUT_PANGO)
 USE_GNOME+=	pango
