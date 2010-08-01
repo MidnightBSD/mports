@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.4 2009/04/14 03:17:22 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.5 2009/05/22 03:32:41 laffer1 Exp $
 
 PORTNAME=	gsasl
-PORTVERSION=	0.2.29
+PORTVERSION=	1.4.0
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
-		http://josefsson.org/${PORTNAME}/releases/
+MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +11,7 @@ COMMENT=	GNU SASL Library
 LICENSE=	gpl3
 
 LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn \
-		gcrypt.16:${PORTSDIR}/security/libgcrypt \
+		gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
