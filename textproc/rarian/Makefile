@@ -1,15 +1,8 @@
-# New ports collection makefile for:	rarian
-# Date created:				02 August 2007
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.2 2008/06/02 20:44:08 crash Exp $
-# $FreeBSD: ports/textproc/rarian/Makefile,v 1.1 2007/10/24 23:37:25 marcus Exp $
-#   $MCom: ports/textproc/rarian/Makefile,v 1.8 2007/10/11 04:04:18 mezz Exp $
-#
+# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.3 2008/06/13 14:20:48 laffer1 Exp $
 
 PORTNAME=	rarian
-PORTVERSION=	0.8.0
-PORTREVISION=	2
+PORTVERSION=	0.8.1
+PORTREVISION=	0
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
