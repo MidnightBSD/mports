@@ -1,5 +1,6 @@
 bin/gnome-panel-control
 bin/gdm-control
+bin/obxprop
 bin/openbox
 bin/openbox-gnome-session
 bin/openbox-kde-session
@@ -7,17 +8,17 @@ bin/openbox-session
 etc/xdg/openbox/autostart.sh
 etc/xdg/openbox/menu.xml
 etc/xdg/openbox/rc.xml
-include/openbox/3.4/openbox/color.h
-include/openbox/3.4/openbox/font.h
-include/openbox/3.4/openbox/geom.h
-include/openbox/3.4/openbox/gradient.h
-include/openbox/3.4/openbox/image.h
-include/openbox/3.4/openbox/instance.h
-include/openbox/3.4/openbox/mask.h
-include/openbox/3.4/openbox/parse.h
-include/openbox/3.4/openbox/render.h
-include/openbox/3.4/openbox/theme.h
-include/openbox/3.4/openbox/version.h
+include/openbox/%%VERSION%%/openbox/color.h
+include/openbox/%%VERSION%%/openbox/font.h
+include/openbox/%%VERSION%%/openbox/geom.h
+include/openbox/%%VERSION%%/openbox/gradient.h
+include/openbox/%%VERSION%%/openbox/image.h
+include/openbox/%%VERSION%%/openbox/instance.h
+include/openbox/%%VERSION%%/openbox/mask.h
+include/openbox/%%VERSION%%/openbox/parse.h
+include/openbox/%%VERSION%%/openbox/render.h
+include/openbox/%%VERSION%%/openbox/theme.h
+include/openbox/%%VERSION%%/openbox/version.h
 lib/libobparser.a
 lib/libobparser.la
 lib/libobparser.so
@@ -29,6 +30,7 @@ lib/libobrender.so.21
 lib/openbox/xdg-autostart
 libdata/pkgconfig/obparser-3.0.pc
 libdata/pkgconfig/obrender-3.0.pc
+share/applications/openbox.desktop
 share/gnome/wm-properties/openbox.desktop
 share/pixmaps/openbox.png
 share/themes/Artwiz-boxed/openbox-3/themerc
@@ -94,18 +96,38 @@ share/xsessions/openbox-kde.desktop
 %%DOCSDIR%%/xbm/shade_toggled.xbm
 %%DOCSDIR%%/xbm/shade.xbm
 %%NLS%%share/locale/ar/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/bn_IN/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/ca/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/da/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/de/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/en@quot/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/en@boldquot/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/es/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/et/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/eu/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/hr/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/it/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/lt/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/lv/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/no/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/pt_BR/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/ru/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/sr/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/sr@latin/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/uk/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/zh_CN/LC_MESSAGES/openbox.mo
+%%NLS%%share/locale/zh_TW/LC_MESSAGES/openbox.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/openbox.mo
 %%NLS%%@dirrmtry share/locale/bn_IN/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/bn_IN
@@ -120,9 +142,9 @@ share/xsessions/openbox-kde.desktop
 @dirrm share/themes/Bear2/openbox-3
 @dirrm share/themes/Bear2
 @dirrm share/themes/Clearlooks/openbox-3
-@dirrm share/themes/Clearlooks
+@dirrmtry share/themes/Clearlooks
 @dirrm share/themes/Clearlooks-Olive/openbox-3
-@dirrm share/themes/Clearlooks-Olive
+@dirrmtry share/themes/Clearlooks-Olive
 @dirrm share/themes/Mikachu/openbox-3
 @dirrm share/themes/Mikachu
 @dirrm share/themes/Natura/openbox-3
@@ -140,10 +162,11 @@ share/xsessions/openbox-kde.desktop
 @dirrmtry share/gnome/wm-properties
 @dirrmtry share/gnome
 @dirrmtry libdata/pkgconfig
-@dirrm include/openbox/3.4/openbox
-@dirrm include/openbox/3.4
+@dirrm include/openbox/%%VERSION%%/openbox
+@dirrm include/openbox/%%VERSION%%
 @dirrm include/openbox
 @dirrm lib/openbox
 @dirrm etc/xdg/openbox
 @dirrmtry etc/xdg
 @dirrmtry share/xsessions
+@dirrmtry share/applications
