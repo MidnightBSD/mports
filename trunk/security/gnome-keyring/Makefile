@@ -1,15 +1,8 @@
-# New ports collection makefile for:   gnomekeyring
-# Date Created:			08 December 2003
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.6 2009/09/26 03:49:41 laffer1 Exp $
-# $FreeBSD: ports/security/gnome-keyring/Makefile,v 1.32 2008/04/07 04:20:38 marcus Exp $
-#   $MCom: ports/security/gnome-keyring/Makefile,v 1.59 2008/03/09 18:30:40 mezz Exp $
-#
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.7 2009/11/02 12:40:08 crash Exp $
 
 PORTNAME=	gnome-keyring
 PORTVERSION=	2.26.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -20,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	hal.1:${PORTSDIR}/sysutils/hal \
 		tasn1.4:${PORTSDIR}/security/libtasn1 \
-    		gcrypt.16:${PORTSDIR}/security/libgcrypt
+    		gcrypt.17:${PORTSDIR}/security/libgcrypt
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk20 ltverhack intlhack gconf2
