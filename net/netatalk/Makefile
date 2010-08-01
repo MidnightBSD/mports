@@ -1,27 +1,29 @@
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.5 2009/09/20 01:47:24 laffer1 Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.6 2010/05/26 00:03:45 laffer1 Exp $
 
 PORTNAME=	netatalk
-PORTVERSION=	2.0.5
+PORTVERSION=	2.1.3
 PORTREVISION=	0
 CATEGORIES=	net print
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	File and print server for AppleTalk networks
+COMMENT=	File server for Mac OS X
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
 
 USE_AUTOTOOLS=	libtool:22
 USE_BZIP2=	yes
 USE_ICONV=	yes
-USE_BDB=	41+
+USE_BDB=	46+
 USE_RC_SUBR=	netatalk
 CONFIGURE_ARGS+=	--with-tcp-wrappers \
 			--with-pkgconfdir=${PREFIX}/etc \
 			--with-libiconv=${LOCALBASE} \
-			--with-libgcrypt-prefix=${LOCALBASE} \
-			--program-prefix=''
+			--with-libgcrypt-dir=${LOCALBASE} \
+			--program-prefix='' \
+                        --with-uams-path=${LOCALBASE}/libexec/netatalk-uams \
+                        --with-bdb=${LOCALBASE}
 
 OPTIONS=	SRVLOC		"Enable Service Location Protocol support" off \
 		PAM		"Enable PAM support" off \
@@ -68,9 +70,9 @@ LINKS=		unbin unhex unsingle hqx2bin single2bin macbinary \
 MAN1=		achfile.1 aecho.1 afile.1 afppasswd.1 getzones.1 \
 		megatron.1 nbp.1 pap.1 psorder.1 hqx2bin.1 macbinary.1 \
 		nbplkup.1 nbprgstr.1 nbpunrgstr.1 papstatus.1 \
-		single2bin.1 unbin.1 unhex.1 unsingle.1 acleandir.1 \
+		single2bin.1 unbin.1 unhex.1 unsingle.1 \
 		netatalk-config.1 apple_cp.1 apple_mv.1 \
-		apple_rm.1 uniconv.1 asip-status.pl.1 cnid_index.1
+		apple_rm.1 uniconv.1 asip-status.pl.1
 MAN3=		atalk_aton.3 nbp_name.3
 MAN4=		atalk.4
 MAN5=		AppleVolumes.default.5 afpd.conf.5 atalkd.conf.5 \
