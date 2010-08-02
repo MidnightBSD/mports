@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/misc/wmcalendar/Makefile,v 1.1 2007/03/09 05:22:05 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmcalendar/Makefile,v 1.2 2010/01/02 19:10:39 laffer1 Exp $
 # $FreeBSD: ports/misc/wmcalendar/Makefile,v 1.12 2007/01/17 06:37:42 xride Exp $
 
 PORTNAME=	wmcalendar
 PORTVERSION=	0.5.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	SF
 
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A dockable calendar with interface to iCalendar based calendars
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ical.43:${PORTSDIR}/devel/libical
+LIB_DEPENDS=	ical.44:${PORTSDIR}/devel/libical
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/Src
 
@@ -23,6 +23,8 @@ MAKE_ARGS=	CC="${CC}" \
 		INCDIR="`pkg-config --cflags gtk+-2.0` -I${LOCALBASE}/include" \
 		LIBDIR="" \
 		LIBS="-lical -lXpm"
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 MAN1=		wmCalendar.1
 PLIST_FILES=	bin/wmCalendar
