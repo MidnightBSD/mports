@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.10 2009/08/21 17:43:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.11 2009/08/21 17:48:39 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -8,7 +8,6 @@
     SUBDIR += xf86-input-digitaledge
     SUBDIR += xf86-input-dmc
     SUBDIR += xf86-input-dynapro
-    SUBDIR += xf86-input-elo2300
     SUBDIR += xf86-input-elographics
     SUBDIR += xf86-input-fpit
     SUBDIR += xf86-input-hyperpen
