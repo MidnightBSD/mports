@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/libical/Makefile,v 1.4 2009/09/20 00:38:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/libical/Makefile,v 1.5 2009/09/24 22:49:49 laffer1 Exp $
 
 PORTNAME=	libical
-PORTVERSION=	0.43
+PORTVERSION=	0.44
 CATEGORIES=	devel
 MASTER_SITES=	SF/freeassociation/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
