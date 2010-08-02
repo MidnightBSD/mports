@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.17 2010/06/04 23:22:31 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.18 2010/07/31 03:20:09 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -43,3 +43,4 @@ security/xmlsec||2010-05-08|broken on current for years
 deskutils/egroupware||2010-06-04|deleted
 lang/gcc43||2010-07-29|GCC 4.4 replaces it.
 lang/gcc-objc||2010-07-30|no longer necessary
+x11-drivers/xf86-input-elo2300||2010-08-01|not maintained upstream
