@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.23 2010/03/25 00:44:50 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.24 2010/04/25 23:22:37 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.46
+PORTVERSION=	5.1.49
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.1
 PKGNAMESUFFIX?=	-server
-DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multithreaded SQL database (server)
@@ -38,13 +37,21 @@ CONFIGURE_ARGS+=--with-charset=${WITH_CHARSET}
 CONFIGURE_ARGS+=--with-extra-charsets=${WITH_XCHARSET}
 .endif
 .if defined(WITH_OPENSSL)
+.if !defined(WITHOUT_YASSL)
 CONFIGURE_ARGS+=--with-ssl=bundled
+.else
+USE_OPENSSL=	yes
+CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE}
+.endif
 .endif
 .if defined(WITH_FAST_MUTEXES)
 CONFIGURE_ARGS+=--with-fast-mutexes
 .endif
 .if defined(BUILD_STATIC)
 CONFIGURE_ARGS+=--with-mysqld-ldflags=-all-static
+PLIST_SUB+=	PLUGINS="@comment "
+.else
+PLIST_SUB+=	PLUGINS=""
 .endif
 .if defined(WITH_NDB)
 CONFIGURE_ARGS+=--with-plugins=max
@@ -86,9 +93,12 @@ WANT_MYSQL_VER=	51
 
 LATEST_LINK=	mysql51-server
 
-CONFLICTS=	mysql-server-4.* mysql-server-5.0.* mysql-server-6.*
+CONFLICTS=	mysql-server-[34].* mysql-server-5.[02-9].*
 
 USE_RC_SUBR=	mysql-server.sh
+
+USERS=		mysql
+GROUPS=		mysql
 
 .if defined(WITH_NDB)
 PLIST_SUB+=	NDB=""
@@ -122,11 +132,12 @@ pre-fetch:
 	@${ECHO} "	WITH_CHARSET=charset	Define the primary built-in charset (latin1)."
 	@${ECHO} "	WITH_XCHARSET=list	Define other built-in charsets (may be 'all')."
 	@${ECHO} "	WITH_COLLATION=collate	Define default collation (latin1_swedish_ci)."
-	@${ECHO} "	WITH_OPENSSL=yes	Enable secure connections."
+	@${ECHO} "	WITH_OPENSSL=yes	Enable secure connections"
+	@${ECHO} "				(define WITHOUT_YASSL for backward compatibility)."
 	@${ECHO} "	WITH_LINUXTHREADS=yes	Use the linuxthreads pthread library."
 	@${ECHO} "	WITH_PROC_SCOPE_PTH=yes	Use process scope threads"
 	@${ECHO} "				(try it if you use libpthread)."
-	@${ECHO} "	WITH_FAST_MUTEXES=yes   Replace mutexes with spinlocks."
+	@${ECHO} "	WITH_FAST_MUTEXES=yes	Replace mutexes with spinlocks."
 	@${ECHO} "	BUILD_OPTIMIZED=yes	Enable compiler optimizations"
 	@${ECHO} "				(use it if you need speed)."
 	@${ECHO} "	BUILD_STATIC=yes	Build a static version of mysqld."
@@ -135,7 +146,7 @@ pre-fetch:
 	@${ECHO} ""
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ sql-common @sql_server_dirs@ libmysql storage scripts @sql_server@ @man_dirs@ @libmysqld_dirs@ support-files|g" ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e "s|SUBDIRS =|SUBDIRS = include @docs_dirs@ sql-common @sql_server_dirs@ libmysql scripts @sql_server@ @man_dirs@ @libmysqld_dirs@ support-files|g" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = @server_scripts@|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = fill_help_tables.sql mysql_system_tables.sql mysql_system_tables_data.sql|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
@@ -158,13 +169,11 @@ post-install:
 .if defined(CLIENT_ONLY)
 LATEST_LINK=	mysql51-client
 
-CONFLICTS=	mysql-client-4.* mysql-client-5.0.* mysql-client-6.*
+CONFLICTS=	mysql-client-[34].* mysql-client-5.[02-9].*
 
 MAN1=		mysql_config.1 mysql_upgrade.1 mysql.1 mysqladmin.1 \
 		mysqlbinlog.1 mysqlbug.1 mysqlcheck.1 \
 		mysqldump.1 mysqlimport.1 mysqlshow.1 mysqlslap.1 mysqltest.1
-
-MAN8=		mysqlmanager.8
 
 USE_LDCONFIG=	${PREFIX}/lib/mysql
 
@@ -175,9 +184,8 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-pkglibLIBRARIES|install-exec-am:|g" ${WRKSRC}/strings/Makefile.in ${WRKSRC}/mysys/Makefile.in ${WRKSRC}/dbug/Makefile.in
 	@${REINPLACE_CMD} -e "s|bin_SCRIPTS =|bin_SCRIPTS = mysql_config mysql_fix_privilege_tables mysqlbug|g" ${WRKSRC}/scripts/Makefile.in
 	@${REINPLACE_CMD} -e "s|dist_pkgdata_DATA =|dist_pkgdata_DATA = mysql_fix_privilege_tables.sql|g" ${WRKSRC}/scripts/Makefile.in
-	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g;s|man8_MANS =|man8_MANS = ${MAN8}|g" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|man1_MANS =|man1_MANS = ${MAN1}|g" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-binPROGRAMS|install-exec-am:|g" ${WRKSRC}/extra/Makefile.in
-	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/mysys/default.c
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/support-files/mysql.m4 ${PREFIX}/share/aclocal/
@@ -215,7 +223,7 @@ post-patch:
 post-extract:
 	@${CP} /usr/include/tcpd.h ${WRKSRC}/include/my_tcpd.h
 
-.if defined(WITH_OPENSSL) && defined(BUILD_STATIC)
+.if defined(WITH_OPENSSL) && defined(WITHOUT_YASSL) && defined(BUILD_STATIC)
 pre-configure:
 	@${ECHO} "You can't use the BUILD_STATIC option when using OpenSSL."
 	@${FALSE}
