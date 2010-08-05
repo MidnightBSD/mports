@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/samba33/Makefile,v 1.3 2009/08/09 17:20:16 laffer1 Exp $
+# $MidnightBSD: mports/net/samba33/Makefile,v 1.4 2010/02/26 02:14:40 laffer1 Exp $
 
 PORTNAME=		samba
-PORTVERSION?=		3.3.8
+PORTVERSION?=		3.3.13
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
