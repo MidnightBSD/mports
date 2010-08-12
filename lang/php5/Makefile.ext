@@ -210,7 +210,7 @@ USE_MYSQL=	yes
 CONFIGURE_ARGS+=--with-mysqli=${LOCALBASE}/bin/mysql_config
 
 USE_MYSQL=	yes
-DEFAULT_MYSQL_VER=	50
+DEFAULT_MYSQL_VER=	51
 
 USE_PHP=	spl
 USE_PHP_BUILD=	yes
