@@ -1,11 +1,5 @@
-# ex:ts=8
-# Ports collection makefile for:	egcs
-# Date created:				9 Jan 1998
-# Whom:					John Polstra <jdp@polstra.com>
-#
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.8 2010/05/08 02:07:48 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.9 2010/07/31 03:16:09 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
-#
 
 PORTNAME=	gcc
 PORTVERSION=	4.2.5
