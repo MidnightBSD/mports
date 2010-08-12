@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.2 2009/12/30 16:53:54 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -16,10 +16,10 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  If no version is given (by the maintainer via the port or
 #				  by the user via defined variable), try to find the
 #				  currently installed version.  Fall back to default if
-#				  necessary (MySQL5.0 = 50).
+#				  necessary (MySQL5.1 = 51).
 # DEFAULT_MYSQL_VER
 #				- MySQL default version. Can be overriden within a port.
-#				  Default: 50.
+#				  Default: 51.
 # WANT_MYSQL_VER
 #				- Maintainer can set an arbitrary version of MySQL by using it.
 # IGNORE_WITH_MYSQL
