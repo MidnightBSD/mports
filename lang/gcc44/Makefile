@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.3 2010/07/30 04:26:24 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.4 2010/07/31 03:16:32 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	4.4.5.20100720
@@ -11,7 +11,7 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.4
-LICENCE=	gpl3
+LICENSE=	gpl3
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 		mpfr.3:${PORTSDIR}/math/mpfr
