@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.4 2008/10/13 20:55:32 laffer1 Exp $
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.5 2010/01/20 01:06:23 laffer1 Exp $
 
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9
@@ -7,7 +7,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Meta-port that creates a site-local $$TEXMF directory
+COMMENT=	Meta-port that creates a site-local TEXMF directory
 LICENSE=	unknown
 
 NO_WRKSUBDIR=	yes
