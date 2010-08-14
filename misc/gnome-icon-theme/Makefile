@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.6 2009/04/05 19:14:30 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.7 2009/12/13 21:36:53 laffer1 Exp $
 
 PORTNAME=	gnome-icon-theme
-PORTVERSION=	2.26.0
+PORTVERSION=	2.30.3
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,7 +11,7 @@ COMMENT=	A collection of icons for the GNOME 2 desktop
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		icon-naming-utils>=0.8.1:${PORTSDIR}/x11-themes/icon-naming-utils
+		icon-naming-utils>=0.8.7:${PORTSDIR}/x11-themes/icon-naming-utils
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
 USE_BZIP2=	yes
@@ -19,16 +19,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack intlhack gtk20
 INSTALLS_ICONS=	yes
-CONFIGURE_ARGS=	CPPFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|[(]datadir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-			${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|@mkdir_p@|mkdir -p|g' \
-		${WRKSRC}/po/Makefile.in.in
-
-pre-install:
-	@${MKDIR} ${PREFIX}/share/icons/gnome/48x48/apps
 
 .include <bsd.port.mk>
