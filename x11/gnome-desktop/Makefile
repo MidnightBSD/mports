@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.5 2009/08/29 22:41:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.6 2009/09/20 01:33:57 smultron Exp $
 
 PORTNAME=	gnome-desktop
-PORTVERSION=	2.26.2
+PORTVERSION=	2.30.2
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
@@ -15,10 +15,10 @@ USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS=	${pygnome2_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome2
+LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 USE_XORG=	xpm
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui gnomedocutils \
+USE_GNOME=	gnomeprefix gnomehack intlhack gnomedocutils gconf2 pygtk2 \
 		ltverhack referencehack
 GNOME_DESKTOP_VERSION=2
 USE_GETTEXT=	yes
