@@ -1,11 +1,11 @@
---- configure.orig	Wed Jan 14 15:54:42 2004
-+++ configure	Wed Jan 14 15:55:13 2004
-@@ -5536,7 +5536,7 @@
+--- configure.orig	2010-01-07 14:47:10.000000000 +0100
++++ configure	2010-01-07 14:47:58.000000000 +0100
+@@ -13318,7 +13318,7 @@
  
- 
- for ac_header in sys/types.h sys/stat.h stdlib.h string.h memory.h strings.h \
--		  inttypes.h stdint.h unistd.h
-+		  inttypes.h stdint.h unistd.h langinfo.h
+         # Find any Python interpreter.
+     if test -z "$PYTHON"; then
+-      for ac_prog in python python2 python3 python3.0 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0
++      for ac_prog in python python2 python3 python3.0 python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0
  do
- as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
- echo "$as_me:$LINENO: checking for $ac_header" >&5
+   # Extract the first word of "$ac_prog", so it can be a program name with args.
+ set dummy $ac_prog; ac_word=$2
