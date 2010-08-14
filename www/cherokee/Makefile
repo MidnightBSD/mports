@@ -211,8 +211,4 @@ post-install:
 	${XARGS} ${PYTHON_CMD} ${PYTHON_LIBDIR}/py_compile.py
 .endif
 
-	@${ECHO_MSG} "==============================================================="
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG} "==============================================================="
-
 .include <bsd.port.post.mk>
