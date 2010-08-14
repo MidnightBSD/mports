@@ -1,14 +1,7 @@
-# New ports collection makefile for:	gnomeuserdocs2
-# Date created:        			07 July 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/misc/gnome-user-docs/Makefile,v 1.3 2008/09/21 20:13:42 laffer1 Exp $
-# $FreeBSD: ports/misc/gnome-user-docs/Makefile,v 1.31 2007/07/03 06:21:50 marcus Exp $
-#   $MCom: ports/misc/gnome-user-docs/Makefile,v 1.33 2007/03/13 00:11:38 marcus Exp $
-#
+# $MidnightBSD: mports/misc/gnome-user-docs/Makefile,v 1.4 2009/12/13 22:11:51 laffer1 Exp $
 
 PORTNAME=	gnome-user-docs
-PORTVERSION=	2.26.2
+PORTVERSION=	2.30.1
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
