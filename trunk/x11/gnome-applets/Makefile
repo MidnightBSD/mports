@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.7 2008/11/20 22:18:56 ctriv Exp $
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.8 2009/10/31 23:49:08 laffer1 Exp $
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.0
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,6 +15,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${POR
 		${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop \
 		gweather.1:${PORTSDIR}/net/libgweather \
+		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit \
 		xklavier.12:${PORTSDIR}/x11/libxklavier \
 		gucharmap.7:${PORTSDIR}/deskutils/gucharmap
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/system-tools-backends-2.0.pc:${PORTSDIR}/sysutils/system-tools-backends \
@@ -32,7 +34,8 @@ WANT_GNOME=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gstreamer=0.10 \
-		--enable-mixer-applet
+		--enable-mixer-applet \
+		--disable-networkmanager
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		OS_SYS="/usr/include"
@@ -59,10 +62,10 @@ LIB_DEPENDS+=	notify:${PORTSDIR}/devel/libnotify
 
 .if ${ARCH} != "i386" && ${ARCH} != "amd64"
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS} -fPIC"
-PLIST_SUB+=	BATTERY="@comment "
+PLIST_SUB=	BATTERY="@comment "
 .else
 GCONF_SCHEMAS+=	battstat.schemas
-PLIST_SUB+=	BATTERY=""
+PLIST_SUB=	BATTERY=""
 .endif
 
 .if ${ARCH} != "i386" && ${ARCH} != "amd64"
