@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/perl5.10/Makefile,v 1.4 2009/10/31 22:46:44 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.12/Makefile,v 1.1 2010/04/27 12:53:33 laffer1 Exp $
 
 PORTNAME=	perl
-PORTVERSION=	5.12.0
+PORTVERSION=	5.12.1
 PORTREVISION=	0
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
