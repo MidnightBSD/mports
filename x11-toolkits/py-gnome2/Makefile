@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.2 2008/06/07 09:59:26 crash Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.3 2009/12/14 00:16:31 laffer1 Exp $
 
 PORTNAME=	gnome
-PORTVERSION=	2.26.1
+PORTVERSION=	2.28.1
 PORTREVISION=	0
 CATEGORIES=	x11-toolkits python gnome
 MASTER_SITES=	GNOME
@@ -22,6 +22,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
+USE_GETTEXT=	yes
 USE_GNOME=	gnomehack libgnomeui pygtk2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
