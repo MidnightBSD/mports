@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.3 2008/09/17 19:50:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.4 2009/12/14 00:19:24 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.14.1
+PORTVERSION=	2.17.0
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -15,7 +16,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
 		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
-RUN_DEPENDS=	${PYNUMERIC} \
+RUN_DEPENDS=	\
 		${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
 		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
 
@@ -36,6 +37,18 @@ EG_SRC_DIR=	${WRKSRC}/examples
 EXAMPLESDIR=	${PREFIX}/share/examples/py-gtk
 
 CONFLICTS=	py*-gtk-0*
+
+OPTIONS=	NUMPY "Enable numpy support (pulls in gcc44)" off
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_NUMPY)
+BUILD_DEPENDS+=	${PYNUMPY}
+RUN_DEPENDS+=	${PYNUMPY}
+CONFIGURE_ARGS+=--enable-numpy
+.else
+CONFIGURE_ARGS+=--disable-numpy
+.endif
 
 #
 # Use the same way as the Python port to determine if we want
@@ -66,4 +79,4 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/THREADS ${DOCSDIR}
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
