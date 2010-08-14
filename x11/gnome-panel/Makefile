@@ -2,14 +2,14 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.5 2009/01/02 03:10:03 ctriv Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.6 2009/09/20 01:36:29 smultron Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
 #
 
 PORTNAME=	gnome-panel
-PORTVERSION=	2.22.2
-PORTREVISION?=	0
+PORTVERSION=	2.30.2
+PORTREVISION?=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,15 +23,16 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	gweather.1:${PORTSDIR}/net/libgweather \
-    		polkit-gnome.0:${PORTSDIR}/sysutils/policykit-gnome
+		canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
+		polkit-gnome.0:${PORTSDIR}/sysutils/policykit-gnome
 
-USE_XORG=	x11
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop librsvg2 \
-		libwnck gnomemenus gnomedocutils ltverhack referencehack
+		libwnck gnomemenus gnomedocutils ltverhack referencehack \
+		libbonoboui
 WANT_GNOME=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
@@ -59,7 +60,7 @@ WITH_GNOME=	yes
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_EVOLUTION) && ${HAVE_GNOME:Mevolutiondataserver}!=""
+.if !defined(WITHOUT_EVOLUTION) && ${HAVE_GNOME:Mevolutiondataserver}!=""
 USE_GNOME+=	evolutiondataserver
 CONFIGURE_ARGS+=--enable-eds
 .else
@@ -70,11 +71,9 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f | \
 		${XARGS} -n 10 ${REINPLACE_CMD} -e \
 		's|"applications.menu"|"gnome-applications.menu"|'
-
-post-install:
-	${MKDIR} ${PREFIX}/share/gnome-panel
-	${INSTALL_DATA} ${FILESDIR}/iso3166.tab \
-	    	${PREFIX}/share/gnome-panel/iso3166.tab
+	@${REINPLACE_CMD} -e 's|xsltproc -o| xsltproc --nonet -o|g' \
+		${WRKSRC}/help/clock/Makefile.in \
+		${WRKSRC}/help/fish/Makefile.in
 
 .include <bsd.port.post.mk>
 
