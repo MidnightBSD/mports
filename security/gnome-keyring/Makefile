@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.7 2009/11/02 12:40:08 crash Exp $
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.8 2010/08/01 05:30:57 laffer1 Exp $
 
 PORTNAME=	gnome-keyring
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.3
 PORTREVISION=	1
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
@@ -11,9 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A program that keeps passwords and other secrets
 LICENSE=	gpl2
 
-LIB_DEPENDS=	hal.1:${PORTSDIR}/sysutils/hal \
-		tasn1.4:${PORTSDIR}/security/libtasn1 \
-    		gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk20 ltverhack intlhack gconf2
