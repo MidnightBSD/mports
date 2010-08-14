@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.100 2010/05/08 17:09:18 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.101 2010/05/29 06:18:29 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -89,7 +89,6 @@
     SUBDIR += spawn-fcgi
     SUBDIR += squid
     SUBDIR += thttpd
-    SUBDIR += thttpd-st
     SUBDIR += tidy
     SUBDIR += tidy-devel
     SUBDIR += tidy-lib
