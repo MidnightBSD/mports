@@ -1,14 +1,7 @@
-# New ports collection makefile for:   libbonobo
-# Date Created:			14 February 2002
-# Whom:				Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.6 2009/10/18 18:45:45 crash Exp $
-# $FreeBSD: ports/devel/libbonobo/Makefile,v 1.54 2007/03/19 05:13:31 marcus Exp $
-#    $MCom: ports/devel/libbonobo/Makefile,v 1.58 2007/03/12 17:59:36 marcus Exp $
-#
+# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.7 2010/02/28 21:14:45 laffer1 Exp $
 
 PORTNAME=	libbonobo
-PORTVERSION=	2.24.1
+PORTVERSION=	2.24.3
 PORTREVISION?=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -19,6 +12,7 @@ COMMENT=	A component and compound document system for GNOME2
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
+MAKE_JOBS_SAFE=	yes
 
 .if !defined(REFERENCE_PORT)
 
