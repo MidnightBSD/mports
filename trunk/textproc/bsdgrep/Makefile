@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/bsdgrep/Makefile,v 1.1 2010/07/31 03:31:11 laffer1 Exp $
 
 PORTNAME=	grep
 PORTVERSION=	20091130
@@ -45,7 +45,7 @@ MAKE_ENV+=	WITHOUT_GNU_COMPAT=yes
 
 pre-install:
 .if defined(WITH_NLS)
-	${MKDIR} -p ${LOCALBASE}/share/nls/gl_ES.ISO8859-1
+	${MKDIR} -p ${PREFIX}/share/nls/gl_ES.ISO8859-1
 .endif
 
 post-install:
