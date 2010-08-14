@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.4 2008/06/14 17:01:00 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.5 2009/09/20 03:03:42 laffer1 Exp $
 
 PORTNAME=	gdl
-PORTVERSION=	2.26.2
+PORTVERSION=	2.30.0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_XORG=	x11
-USE_GNOME=	gnomeprefix gnomehack libgnomeui
+USE_GNOME=	gnomeprefix gnomehack gtk20
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
