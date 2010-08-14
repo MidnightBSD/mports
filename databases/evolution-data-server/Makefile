@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.6 2009/09/26 01:18:10 laffer1 Exp $
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.7 2010/01/23 22:30:14 laffer1 Exp $
 
 PORTNAME=	evolution-data-server
 PORTVERSION=	2.26.3
+PORTREVISION=	1
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,7 +12,7 @@ COMMENT=	The data backends for the Evolution integrated mail/PIM suite
 LICENSE=	lgpl
 
 LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		ical.43:${PORTSDIR}/devel/libical \
+		ical.44:${PORTSDIR}/devel/libical \
 		nss3.1:${PORTSDIR}/security/nss \
 		tasn1.4:${PORTSDIR}/security/libtasn1 \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
