@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.10 2010/02/28 01:06:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.11 2010/05/30 23:14:57 laffer1 Exp $
 
 PORTNAME=	gnome2
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.2
 PORTREVISION?=	0
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
@@ -38,7 +38,7 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 		network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 		vino-passwd:${PORTSDIR}/net/vino \
-		exchange-connector-setup-2.26:${PORTSDIR}/mail/evolution-exchange \
+		exchange-connector-setup-2.30:${PORTSDIR}/mail/evolution-exchange \
 		${LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-plugins-core \
 		${LOCALBASE}/lib/gstreamer-0.10/libgstgconfelements.so:${PORTSDIR}/devel/gstreamer-plugins-gconf \
 		totem:${PORTSDIR}/multimedia/totem \
@@ -62,7 +62,8 @@ USE_PYTHON=	yes
 .endif
 
 .if !defined(GNOME_SLAVE) || ${.CURDIR:T}=="gnome2-lite"
-OPTIONS=	XSCREENSAVER "Use xscreensaver as screen saver app" off
+OPTIONS=	XSCREENSAVER "Use xscreensaver as screen saver app" off \
+		MAPI "Depend on evolution-mapi (pulls in samba4)" on
 .endif
 
 do-install:	# empty
@@ -76,7 +77,6 @@ RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 .endif
 .if ${.CURDIR:T}!="gnome2-lite"
 RUN_DEPENDS+=	empathy:${PORTSDIR}/net-im/empathy \
-		cheese:${PORTSDIR}/multimedia/cheese \
 		gucharmap:${PORTSDIR}/deskutils/gucharmap \
 		sound-juicer:${PORTSDIR}/audio/sound-juicer \
 		zenity:${PORTSDIR}/x11/zenity \
@@ -85,12 +85,17 @@ RUN_DEPENDS+=	empathy:${PORTSDIR}/net-im/empathy \
 		vinagre:${PORTSDIR}/net/vinagre \
 		brasero:${PORTSDIR}/sysutils/brasero \
 		gnome-file-share-properties:${PORTSDIR}/www/gnome-user-share \
-		${LOCALBASE}/lib/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
-		${LOCALBASE}/lib/hamster-applet/hamster-applet:${PORTSDIR}/deskutils/hamster-applet
+		${LOCALBASE}/libexec/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
+		${LOCALBASE}/lib/hamster-applet/hamster-applet:${PORTSDIR}/deskutils/hamster-applet \
+		${LOCALBASE}/lib/gtk-2.0/modules/at-spi-dbus/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi2-atk \
+		gpk-application:${PORTSDIR}/ports-mgmt/gnome-packagekit
 .if ${ARCH} == "i386"
 #RUN_DEPENDS+=	tomboy:${PORTSDIR}/deskutils/tomboy
 .endif
-RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga
+RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga3
+.if defined(WITH_MAPI)
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/libexchangemapi-1.0.pc:${PORTSDIR}/mail/evolution-mapi
+.endif
 .endif
 .endif
 
