@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.5 2009/09/19 23:49:54 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.6 2009/12/10 12:12:50 crash Exp $
 
 PORTNAME=	gnome-mag
-PORTVERSION=	0.15.7
-PORTREVISION=	3
+PORTVERSION=	0.16.1
 CATEGORIES=	accessibility gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
