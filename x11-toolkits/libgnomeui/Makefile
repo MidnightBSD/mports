@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeui/Makefile,v 1.5 2009/04/05 19:05:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeui/Makefile,v 1.6 2009/09/20 02:42:32 smultron Exp $
 
 PORTNAME=	libgnomeui
-PORTVERSION=	2.24.1
+PORTVERSION=	2.24.3
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
