@@ -2,12 +2,13 @@
 # Date created:			Nov 22, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/redland/Makefile,v 1.1 2008/10/17 18:01:53 laffer1 Exp $
 # $FreeBSD: ports/textproc/redland/Makefile,v 1.33 2008/08/10 16:20:02 miwi Exp $
 #
 
 PORTNAME=	redland
 PORTVERSION=	1.0.7
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://librdf.org/dist/source/
@@ -17,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A high-level interface for RDF
 LICENSE=	gpl2
 
-LIB_DEPENDS=	raptor.2:${PORTSDIR}/textproc/raptor
+LIB_DEPENDS=	raptor.3:${PORTSDIR}/textproc/raptor
 
 USE_BDB=	yes
 WITH_BDB_HIGHEST=	yes
