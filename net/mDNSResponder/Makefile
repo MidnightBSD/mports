@@ -1,16 +1,10 @@
-# ex:ts=8
-# Ports collection makefile for:  mDNSResponder
-# Date created:			  Tues Mar 2, 2004
-# Whom:				  Alfred Perlstein <alfred@freebsd.org>
-#
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.3 2008/05/24 06:17:03 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.4 2010/02/28 16:56:50 laffer1 Exp $
 
 PORTNAME=	mDNSResponder
-PORTVERSION=	108
+PORTVERSION=	214
 CATEGORIES=	net dns
-MASTER_SITES=	http://www.opensource.apple.com/darwinsource/tarballs/other/
+MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +12,11 @@ COMMENT=	Apple's mDNSResponder
 LICENSE=	agg
 #bsd3 and apache 2
 
+MAKE_JOBS_UNSAFE=	yes
+
+USE_BISON=	build
 USE_LDCONFIG=	YES
+
 USE_GMAKE=	YES
 USE_RC_SUBR=	mdnsd.sh
 MAKE_ARGS+=	os=freebsd LOCALBASE=${FAKE_DESTDIR}${PREFIX} MANPATH=${FAKE_DESTDIR}${MANPREFIX}/man
