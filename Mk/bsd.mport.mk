@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.161 2010/06/04 22:44:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.162 2010/07/31 00:22:15 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -922,10 +922,8 @@ MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
 # a lot of ports.
 .if !defined(WITHOUT_NO_STRICT_ALIASING)
-.if ${CC} != "icc"
 .if !empty(CFLAGS:M-O[23s]) && empty(CFLAGS:M-fno-strict-aliasing)
 CFLAGS+=       -fno-strict-aliasing
-.endif
 .endif
 .endif
 
