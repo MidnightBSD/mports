@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.67 2010/07/30 00:32:39 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.68 2010/07/31 03:18:45 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -23,7 +23,6 @@ SUBDIR += gnustep-guile
 SUBDIR += gnustep-objc
 SUBDIR += gscheme
 SUBDIR += guile
-SUBDIR += icc
 SUBDIR += linux-libg2c
 SUBDIR += linux-libperl5.8
 SUBDIR += llvm-gcc4
