@@ -1,5 +1,5 @@
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.4 2010/02/28 16:56:50 laffer1 Exp $
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.5 2010/08/18 23:44:54 laffer1 Exp $
 
 PORTNAME=	mDNSResponder
 PORTVERSION=	214
@@ -36,6 +36,10 @@ MAN8=		mdnsd.8 ${EXTRAMAN8}
 CONFLICTS=	avahi-libdns-[0-9]*
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 3011
+IGNORE=	Included in MidnightBSD 0.3
+.endif
 
 post-patch:
 	${MV} ${WRKSRC}/mDNSShared/mDNSResponder.8 \
