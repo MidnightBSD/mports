@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.7 2009/09/20 01:35:57 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.8 2010/05/05 19:25:49 vganji Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
