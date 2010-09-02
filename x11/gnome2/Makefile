@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.11 2010/05/30 23:14:57 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.12 2010/08/14 04:40:30 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.30.2
@@ -76,7 +76,7 @@ RUN_DEPENDS+=	yelp:${PORTSDIR}/x11/yelp \
 		epiphany:${PORTSDIR}/www/epiphany
 .endif
 .if ${.CURDIR:T}!="gnome2-lite"
-RUN_DEPENDS+=	empathy:${PORTSDIR}/net-im/empathy \
+RUN_DEPENDS+=	\
 		gucharmap:${PORTSDIR}/deskutils/gucharmap \
 		sound-juicer:${PORTSDIR}/audio/sound-juicer \
 		zenity:${PORTSDIR}/x11/zenity \
