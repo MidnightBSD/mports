@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-libwww
-# Date created:				September 30th 1996
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.6 2008/10/20 19:08:00 ctriv Exp $
+# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.7 2010/01/17 15:11:28 laffer1 Exp $
 # $FreeBSD: ports/www/p5-libwww/Makefile,v 1.72 2006/12/03 12:45:59 demon Exp $
-#
 
 PORTNAME=	libwww
-PORTVERSION=	5.833
+PORTVERSION=	5.836
 CATEGORIES=	www perl5 devel
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	LWP
