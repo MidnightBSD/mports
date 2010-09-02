@@ -3,12 +3,12 @@
 # Whom:			Bernd Rosauer <br@netland.inka.de>
 #
 # $FreeBSD: ports/print/teTeX-base/Makefile,v 1.93 2006/09/09 15:11:50 hrs Exp $
-# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.3 2007/10/20 17:03:14 ctriv Exp $
+# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.4 2010/05/05 23:58:31 laffer1 Exp $
 #
 
 PORTNAME=	teTeX-base
 PORTVERSION=	3.0
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
