@@ -1,9 +1,5 @@
-# New ports collection makefile for:    gnustep-app
-# Date created:         28 Oct 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
 # $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.2 2010/01/23 19:16:05 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.3 2010/05/30 23:19:18 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
