@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.98 2010/02/27 21:16:09 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.99 2010/03/13 05:48:09 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -74,6 +74,7 @@
     SUBDIR += php5-posix
     SUBDIR += policykit
     SUBDIR += policykit-gnome
+    SUBDIR += polkit
     SUBDIR += screen
     SUBDIR += screenie
     SUBDIR += searchmonkey
