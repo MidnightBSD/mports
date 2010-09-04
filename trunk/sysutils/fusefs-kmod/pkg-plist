@@ -20,6 +20,7 @@ sbin/mount_fusefs
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/kmod/html
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/kmod
 @dirrmtry %%DOCSDIR%%
+@exec mkdir %%KMODDIR%%
 @cwd %%KMODDIR%%
 fuse.ko
 @unexec kldxref %%KMODDIR%%
