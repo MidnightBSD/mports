@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.5 2009/04/03 06:07:00 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.6 2009/08/26 22:14:15 laffer1 Exp $
 
 PORTNAME=	fusefs
 DISTVERSION=	0.3.9-pre1.20080208
+PORTREVISION=	1
 CATEGORIES=	sysutils kld
 MASTER_SITES=	http://mercurial.creo.hu/repos/fuse4bsd-hg/index.cgi/archive/
 PKGNAMESUFFIX=	-kmod
