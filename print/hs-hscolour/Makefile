@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.1 2009/02/18 19:55:57 laffer1 Exp $
+# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.2 2010/05/08 02:08:03 laffer1 Exp $
 
 PORTNAME=	hscolour
 PORTVERSION=	1.10.1
@@ -37,6 +37,7 @@ PLIST_SUB=	GHC_VERSION=${GHC_VERSION} \
 
 do-configure:
 	cd ${WRKSRC} && ${CABAL_CMD} configure --ghc --prefix=${PREFIX}
+	${MKDIR} ${PREFIX}/lib/hscolour-${PORTVERSION}
 
 do-build:
 	cd ${WRKSRC} && ${CABAL_CMD} build
