@@ -1,9 +1,9 @@
 #
-# $MidnightBSD: mports/print/libspectre/Makefile,v 1.1 2009/01/04 00:29:27 ctriv Exp $
+# $MidnightBSD: mports/print/libspectre/Makefile,v 1.2 2009/09/20 02:17:57 laffer1 Exp $
 #    $MCom: ports/print/libspectre/Makefile,v 1.2 2008/03/13 16:30:50 ahze Exp $
 
 PORTNAME=	libspectre
-PORTVERSION=	0.2.2
+PORTVERSION=	0.2.6
 CATEGORIES=	print
 MASTER_SITES=	http://libspectre.freedesktop.org/releases/
 
