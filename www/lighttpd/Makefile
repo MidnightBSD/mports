@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.17 2010/09/04 15:18:39 laffer1 Exp $
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.28
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -43,11 +44,9 @@ OPTIONS=	BZIP2		"Enable Bzip2 support" on \
 		MYSQLAUTH	"Enable mysql auth (requires WITH_MYSQL)" off \
 		NODELAY		"Set TCP_NODELAY on listening sockets" off \
 		OPENLDAP	"Enable LDAP support" off \
-		OPENSSL		"Enable SSL support" off \
+		OPENSSL		"Enable SSL support" on \
 		SPAWNFCGI	"Depend on spawn-fcgi utility" off \
 		WEBDAV		"Enable WebDAV support"	off
-
-.include <bsd.mport.options.mk>
 
 .if !defined(NOPORTDOCS)
 DOCS=		AUTHORS COPYING INSTALL NEWS README
@@ -77,7 +76,7 @@ PLIST_SUB+=		LOGROOT="${LIGHTTPD_LOGROOT}" \
 
 .endif # !defined(_BUILDING_LIGHTTPD_MODULE)
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
 # Default REQUIRE to rc.d script
@@ -173,6 +172,8 @@ CONFIGURE_ARGS+=	--with-webdav-props --with-webdav-locks
 .endif
 
 SUB_LIST+=		REQUIRE="${_REQUIRE}"
+
+.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-std=gnu99||' \
