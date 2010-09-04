@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.12 2010/05/05 23:34:30 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.13 2010/05/08 02:20:17 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES+=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS}
 MASTER_SITE_SUBDIR=	xemacs-${XEMACS_REL}
@@ -74,7 +74,7 @@ LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
-USE_XORG=	xpm x11
+USE_XORG=	xpm x11 xaw
 BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps
 
 MAKE_JOBS_SAFE=  yes
