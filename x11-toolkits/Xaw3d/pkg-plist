@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/x11-toolkits/Xaw3d/pkg-plist,v 1.15 2005/08/29 05:10:53 lesi Exp $
+@exec mkdir -p %D%/include/X11/Xaw3d
 lib/libXaw3d.a
 lib/libXaw3d.so
 lib/libXaw3d.so.%%XAWVER%%

@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.7 2009/06/04 15:44:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Xaw3d/Makefile,v 1.8 2009/12/13 21:48:40 laffer1 Exp $
 
 PORTNAME=	Xaw3d
 PORTVERSION=	1.5E
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	ftp://ftp.visi.com/users/hawkeyd/X/ \
 		ftp.slackware.com/pub/slackware/slackware_source/x/xaw3d/
