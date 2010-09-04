@@ -1,8 +1,9 @@
 # $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.3 2010/05/30 23:19:18 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.4 2010/09/03 00:22:45 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
+PORTREVISION=	1
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -56,12 +57,7 @@ USE_GNUSTEP_LOCAL_LIBS+=	\
 	BookmarkKit:www/etoile-bookmarkkit \
 	IconKit:x11-themes/etoile-iconkit \
 	RSSKit:www/etoile-rsskit \
-	Encore:devel/fortytwo-encore \
-	BDB:databases/fortytwo-bdb \
-	FT:graphics/fortytwo \
-	ObjectiveLib:devel/objectivelib \
 	PopplerKit:graphics/popplerkit \
-	CameraKit:graphics/camerakit \
 	Toolbox:deskutils/toolboxkit \
 	Tryst:net/tryst \
 	OgreKit:textproc/etoile-ogrekit \
@@ -92,7 +88,6 @@ USE_GNUSTEP_LOCAL_BUNDLES+=	\
 	Cddb:audio/cddb-bundle	\
 
 USE_GNUSTEP_LOCAL_BURNS+=	\
-	MP3ToWav:audio/mp3towav-bundle \
 
 USE_GNUSTEP_SYSTEM_THEMES+=	\
 	Camaelon:x11-themes/etoile-camaelon \
@@ -103,36 +98,26 @@ USE_GNUSTEP_LOCAL_THEMES+=	\
 USE_GNUSTEP_LOCAL_MENULETS+=	\
 	PowerMenulet:sysutils/etoile-powermenulet \
 	ServiceMenulet:deskutils/etoile-servicemenulet \
-	VolumeControlMenulet:audio/etoile-volumecontrolmenulet \
 
 USE_GNUSTEP_LOCAL_ASTS+=	\
 	CommentToLog:lang/etoile-lkplugins \
 
 USE_GNUSTEP_SYSTEM_APPS+=	\
 	Gorm:devel/gorm \
-	GShisen:games/gshisen \
 	ProjectCenter:devel/projectcenter.app \
 	Preferences:deskutils/preferences.app \
 	GWorkspace:deskutils/gworkspace \
 	TextEdit:editors/textedit.app \
 	Terminal:x11/terminal.app \
-	Emacs:editors/emacs.app \
 	GSPdf:print/gspdf \
-	SystemPreferences:deskutils/systempreferences \
-	WrapperFactory:deskutils/gnustep-wrapper \
-	GRubik:games/grubik \
 	Azalea:x11-wm/etoile-azalea \
 	AZDock:x11-wm/etoile-azdock \
-	Position:astro/position \
 	AZBackground:x11-themes/etoile-azbackground \
-	ClipBook:deskutils/gworkspace-clipbook \
-	MDFinder:deskutils/gworkspace-gwmetadata \
 	AZSwitch:x11-wm/etoile-azswitch \
 	Login:x11-wm/etoile-login \
 	EtoileMenuServer:deskutils/etoile-menuserver \
 
 USE_GNUSTEP_LOCAL_APPS+=	\
-	Gomoku:games/gomoku.app \
 	GNUMail:mail/gnumail \
 	EasyDiff:textproc/easydiff \
 	Ink:misc/gnustep-examples \
@@ -142,68 +127,46 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	Preview:graphics/preview \
 	oolite:games/oolite \
 	TimeMon:sysutils/timemon \
-	Cenon:graphics/cenon \
 	Gridlock:games/gridlock \
 	PRICE:graphics/price \
 	EdenMath:math/edenmath \
 	Stepulator:math/stepulator \
-	VolumeControl:audio/volumecontrol.app \
-	Cynthiune:audio/cynthiune \
 	TalkSoup:irc/talksoup \
 	Grouch:net-im/grouch \
 	Zipper:archivers/zipper \
-	Camera:graphics/camera \
 	Ladder:games/gnustep-ladder \
-	StepBill:games/stepbill \
-	Charmap:deskutils/charmap \
 	GTAMSAnalyzer:science/gtamsanalyzer \
 	Paje:science/paje \
 	AClock:x11-clocks/aclock \
 	PhotoClip:graphics/photoclip \
-	LapisPuzzle:games/lapispuzzle \
-	Waiho:ftp/waiho \
-	Affiche:deskutils/affiche \
 	ProjectManager:devel/projectmanager \
-	GMastermind2:games/gmastermind \
-	Jigsaw:games/jigsaw \
 	Ticker:www/gnustep-ticker \
 	NoteBook:deskutils/gnustep-notebook \
-	HelpViewer:deskutils/helpviewer \
 	Duncan:textproc/duncan \
 	Jishyo:misc/jishyo \
-	GMines:games/gmines \
 	InnerSpace:x11/innerspace \
 	FTP:ftp/gnustep-ftp \
 	DictionaryReader:deskutils/etoile-dictionaryreader \
 	batmon:sysutils/batmon \
 	RemoteDesk:net/remotedesk \
-	DisplayCalibrator:deskutils/displaycalibrator \
 	GNUWash:deskutils/gnuwash \
 	Poe:multimedia/poe \
-	MPDCon:audio/mpdcon \
-	PlopFolio:deskutils/plopfolio \
 	CDPlayer:audio/gnustep-cdplayer \
 	Burn:sysutils/burn \
 	GScheme:lang/gscheme \
 	Mplayer:multimedia/gnustep-mplayer \
-	MyLibrary:databases/mylibrary \
 	NeXTGo:games/nextgo \
 	iTerm:x11/etoile-iterm \
 	Installer:sysutils/etoile-installer \
 	Hardware:deskutils/etoile-hardware \
 	LookAndBehavior:deskutils/etoile-lookandbehavior \
-	Expense:finance/expense \
 	FreeTar:archivers/freetar \
 	CodeEditor:editors/codeeditor \
 	Localize:textproc/localize \
-	GSBench:benchmarks/gsbench \
 	SVGViewer:graphics/svgviewer \
 	Vindaloo:graphics/vindaloo \
-	Digibux:german/digibux \
 	AppWrapper:deskutils/appwrapper \
 	Pixen:graphics/pixen \
-	MyWiki:deskutils/mywiki \
-	Cartotheque:deskutils/cartotheque \
 	LuserNET:news/lusernet \
 	Popup:textproc/popup \
 	Toolbox:deskutils/toolbox \
@@ -213,16 +176,11 @@ USE_GNUSTEP_LOCAL_APPS+=	\
 	Babbler:multimedia/etoile-babbler \
 	Mollusk:www/etoile-mollusk \
 	Yap:graphics/yap \
-	Sudoku:games/gnustep-sudoku \
 	FontManager:x11-fm/etoile-fontmanager \
 	ScriptServices:deskutils/etoile-scriptservices \
 	Melodie:audio/etoile-melodie \
 	StepChat:net-im/etoile-stepchat \
 	LaternaMagica:graphics/laternamagica \
-	SimpleAgenda:deskutils/simpleagenda \
-
-#	CameraTransfer:graphics/cameratransfer \
-#	Mantella:www/etoile-mantella \
 
 USE_GNUSTEP_SYSTEM_TOOLS+=	\
 	Idle:x11/etoile-idle \
