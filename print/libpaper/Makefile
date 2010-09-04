@@ -1,29 +1,21 @@
-# New ports collection makefile for:    libpaper
-# Date created:         Do 16 Nov 2003 20:00:00 CET
-# Whom:                 lofi@freebsd.org
-#
-# $FreeBSD: ports/print/libpaper/Makefile,v 1.7 2006/09/06 22:03:49 lofi Exp $
-# $MidnightBSD: mports/print/libpaper/Makefile,v 1.1 2007/01/20 16:14:15 laffer1 Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	libpaper
-PORTVERSION=	1.1.14.3
-PORTREVISION=	1
+PORTVERSION=	1.1.24
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_DEBIAN}
 MASTER_SITE_SUBDIR=	pool/main/libp/libpaper
-DISTNAME=	${PORTNAME}_${PORTVERSION:S/.3/-3/}
+DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library providing routines for paper size management
 LICENSE=	gpl2
 
+USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
-INSTALLS_SHLIB=	yes
-USE_GETOPT_LONG=yes
-CONFIGURE_ARGS=	--build=${CONFIGURE_TARGET}
+USE_LDCONFIG=	yes
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.3//}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 MAN1=	paperconf.1
 MAN3=	defaultpapername.3 defaultpapersizefile.3 paperdone.3 paperfirst.3 \
@@ -35,8 +27,12 @@ MAN8=	paperconfig.8
 
 pre-configure:
 	@${TOUCH} ${WRKSRC}/config.sub
+	@${REINPLACE_CMD} -E -e 's|(#!).*/bin/bash|\1/bin/sh|g' \
+			-e 's|==|=|g' \
+		${WRKSRC}/src/paperconfig.in
 
 post-configure:
-	@${REINPLACE_CMD} -e 's|$${prefix}|${PREFIX}|g' ${WRKSRC}/config.h
+	@${REINPLACE_CMD} -e 's|$${prefix}|${PREFIX}|g' ${WRKSRC}/config.h \
+			${WRKSRC}/src/paperconfig
 
 .include <bsd.port.mk>
