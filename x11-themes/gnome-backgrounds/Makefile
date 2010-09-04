@@ -2,13 +2,13 @@
 # Date Created:				12 January 2005
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.3 2008/09/21 18:44:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.4 2009/12/13 19:09:16 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/gnome-backgrounds/Makefile,v 1.17 2007/10/24 23:37:12 marcus Exp $
 #   $MCom: ports/x11-themes/gnome-backgrounds/Makefile,v 1.31 2007/09/18 16:40:37 mezz Exp $
 #
 
 PORTNAME=	gnome-backgrounds
-PORTVERSION=	2.24.1
+PORTVERSION=	2.30.0
 CATEGORIES=	x11-themes graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
