@@ -1,9 +1,4 @@
-# New ports collection makefile for:	cherokee
-# Date created:			01 Jun 2002
-# Whom:				silence <oksala@videotron.ca>
-#
-# $FreeBSD: ports/www/cherokee/Makefile,v 1.80 2010/05/19 06:36:18 wen Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	cherokee
 PORTVERSION=	1.0.1
@@ -34,17 +29,9 @@ MASTER_SITES=	http://www.cherokee-project.com/download/1.0/${PORTVERSION}/ \
 		http://www.feel3.de/mirrors/cherokee/1.0/\${PORTVERSION}/ \
 		http://cherokee.pubcrawler.com/1.0/\${PORTVERSION}/
 
-# Disabled mirrors
-# due to 404
-#		http://cherokee-project.pl/mirror/cherokee/1.0/${PORTVERSION}/ \
-#		http://ftp.saix.net/Cherokee/1.0/${PORTVERSION}/ \
-#		http://sunsite.rediris.es/mirror/cherokee/1.0/\${PORTVERSION}/
-
-# due to site down
-#		http://mirror.apung.web.id/cherokee/1.0/\${PORTVERSION}/ \
-
-MAINTAINER=	dschulz@gmail.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely fast and flexible web server
+LICENSE=	gpl2
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_OPENSSL=	yes
