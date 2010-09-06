@@ -1,26 +1,28 @@
-# New ports collection makefile for:	v4l_compat
-# Date created:				Aug 1 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/v4l_compat/Makefile,v 1.1 2007/05/07 07:54:04 laffer1 Exp $
-# $FreeBSD: ports/multimedia/v4l_compat/Makefile,v 1.2 2007/01/22 12:06:18 flz Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	v4l_compat
 PORTVERSION=	1.0.${DUMMYDATE}
 CATEGORIES=	multimedia
-MASTER_SITES=	# none
-DISTFILES=	# none
-DUMMYDATE=	20060801
+MASTER_SITES=	FREEBSD_LOCAL/kwm
+DUMMYDATE=	20100403
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Video4Linux compatibility header
+COMMENT=	Video4Linux IOCTL header files
 LICENSE=	unknown
 
 NO_BUILD=	yes
+BASE_HEADERS=	videodev.h videodev2.h
+DVB_HEADERS=	audio.h ca.h dmx.h frontend.h net.h osd.h version.h video.h
 
 do-install:
-	${MKDIR} ${PREFIX}/include/linux/
-	${INSTALL_DATA} ${FILESDIR}/videodev.h ${PREFIX}/include/linux/
+	${MKDIR} ${PREFIX}/include/linux/dvb
+.for file in ${BASE_HEADERS}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/include/linux/
+.endfor
+.for file in ${DVB_HEADERS}
+	${INSTALL_DATA} ${WRKSRC}/dvb/${file} ${PREFIX}/include/linux/dvb/
+.endfor
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/COPYING ${DOCSDIR}
 
 .include <bsd.port.mk>
