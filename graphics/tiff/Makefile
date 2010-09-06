@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.10 2009/12/29 00:33:24 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.11 2010/03/25 01:28:09 laffer1 Exp $
 
 PORTNAME=	tiff
-PORTVERSION=	3.9.2
-PORTREVISION=	1
+PORTVERSION=	4.0.0
+DISTVERSION=	4.0.0beta6
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://dl1.maptools.org/dl/libtiff/
