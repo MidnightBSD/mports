@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.12 2010/08/14 04:40:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.13 2010/09/02 23:54:43 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.30.2
@@ -50,7 +50,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
 		${LOCALBASE}/libexec/notification-daemon:${PORTSDIR}/deskutils/notification-daemon \
-		seahorse-agent:${PORTSDIR}/security/seahorse-plugins \
 		mousetweaks:${PORTSDIR}/accessibility/mousetweaks \
 		${LOCALBASE}/share/hal/fdi/information/10freedesktop/10-camera-ptp.fdi:${PORTSDIR}/sysutils/hal-info \
 		${LOCALBASE}/share/sounds/freedesktop/index.theme:${PORTSDIR}/audio/freedesktop-sound-theme
