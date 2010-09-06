@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.19 2010/04/25 12:08:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.20 2010/07/31 03:05:44 laffer1 Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.4.1
+PORTVERSION=	1.4.3
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/01-lib${PORTNAME}-master/${PORTVERSION}
