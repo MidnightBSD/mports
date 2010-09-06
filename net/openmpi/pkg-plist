@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.67 2007/10/13 00:04:57 ctriv Exp $
+@comment $MidnightBSD: mports/net/openmpi/pkg-plist,v 1.1 2007/10/19 20:40:10 laffer1 Exp $
 libdata/ldconfig/openmpi
 mpi/openmpi/include/mpif-common.h
 mpi/openmpi/include/mpi.h
@@ -140,12 +140,12 @@ mpi/openmpi/lib/libopen-rte.la
 mpi/openmpi/lib/libmpi_cxx.so.0
 mpi/openmpi/lib/libmpi_cxx.so
 mpi/openmpi/lib/libmpi_cxx.la
-mpi/openmpi/lib/libmpi_f77.so.0
-mpi/openmpi/lib/libmpi_f77.so
-mpi/openmpi/lib/libmpi_f77.la
-mpi/openmpi/lib/libmpi_f90.so.0
-mpi/openmpi/lib/libmpi_f90.so
-mpi/openmpi/lib/libmpi_f90.la
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f77.so.0
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f77.so
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f77.la
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f90.so.0
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f90.so
+%%FORTRAN%%mpi/openmpi/lib/libmpi_f90.la
 mpi/openmpi/lib/mpi.mod
 mpi/openmpi/lib/libmpi.so.0
 mpi/openmpi/lib/libmpi.so
@@ -180,8 +180,8 @@ mpi/openmpi/share/openmpi/help-mca-bml-r2.txt
 mpi/openmpi/share/openmpi/help-ompi_info.txt
 mpi/openmpi/share/openmpi/mpicc-wrapper-data.txt
 mpi/openmpi/share/openmpi/mpic++-wrapper-data.txt
-mpi/openmpi/share/openmpi/mpif77-wrapper-data.txt
-mpi/openmpi/share/openmpi/mpif90-wrapper-data.txt
+%%FORTRAN%%mpi/openmpi/share/openmpi/mpif77-wrapper-data.txt
+%%FORTRAN%%mpi/openmpi/share/openmpi/mpif90-wrapper-data.txt
 mpi/openmpi/share/openmpi/mpicxx-wrapper-data.txt
 mpi/openmpi/share/openmpi/mpiCC-wrapper-data.txt
 mpi/openmpi/bin/opal_wrapper
@@ -191,8 +191,8 @@ mpi/openmpi/bin/ompi_info
 mpi/openmpi/bin/mpicc
 mpi/openmpi/bin/mpic++
 mpi/openmpi/bin/mpicxx
-mpi/openmpi/bin/mpif77
-mpi/openmpi/bin/mpif90
+%%FORTRAN%%mpi/openmpi/bin/mpif77
+%%FORTRAN%%mpi/openmpi/bin/mpif90
 mpi/openmpi/bin/mpiCC
 mpi/openmpi/bin/mpirun
 mpi/openmpi/bin/mpiexec
