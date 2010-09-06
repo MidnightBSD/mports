@@ -2,7 +2,7 @@
 # Date created:				19 Oct 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/openmpi/Makefile,v 1.2 2008/02/27 22:25:27 laffer1 Exp $
+# $MidnightBSD: mports/net/openmpi/Makefile,v 1.3 2009/10/19 01:36:39 laffer1 Exp $
 #
 
 # TODO:
@@ -10,7 +10,7 @@
 #  - etc/*.sample support
 
 PORTNAME=	openmpi
-DISTVERSION=	1.2.5
+DISTVERSION=	1.2.8
 CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v1.2/downloads/
 
@@ -25,6 +25,7 @@ HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GCC=	4.2+
 
+USE_FORTRAN=	yes
 MPIBASE?=	mpi
 MPIDIR?=	${MPIBASE}/${UNIQUENAME}
 
