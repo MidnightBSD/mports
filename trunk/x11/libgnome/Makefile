@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.8 2009/09/20 01:50:25 smultron Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.9 2009/12/29 00:21:28 laffer1 Exp $
 
 PORTNAME=	libgnome
-PORTVERSION=	2.26.0
-PORTREVISION?=	1
+PORTVERSION=	2.30.0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
