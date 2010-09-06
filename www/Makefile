@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.103 2010/08/14 04:15:00 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.104 2010/09/06 19:59:55 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -53,6 +53,7 @@
     SUBDIR += man2web
     SUBDIR += mediawiki
     SUBDIR += midori
+    SUBDIR += mod_dnssd
     SUBDIR += mod_fastcgi
     SUBDIR += mod_perl2
     SUBDIR += moinmoin
