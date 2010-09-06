@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.4 2009/12/14 00:19:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.5 2010/08/14 03:19:12 laffer1 Exp $
 
-PORTNAME=	gtk
+PORTNAME=	py-gtk
 PORTVERSION=	2.17.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	pygtk-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
