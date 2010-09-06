@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.7 2009/09/20 02:37:19 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.8 2010/03/25 01:13:04 laffer1 Exp $
 
 PORTNAME=	jpeg
-PORTVERSION=	8
+PORTVERSION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		ftp://ftp.uu.net/graphics/jpeg/ \
 		http://sylvana.net/jpegcrop/:exif
-DISTNAME=	jpegsrc.v${PORTVERSION}a
+DISTNAME=	jpegsrc.v${PORTVERSION}b
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		jpegexiforient.c:exif exifautotran.txt:exif
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IJG's jpeg compression utilities
 LICENSE=	other
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}a
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}b
 
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
