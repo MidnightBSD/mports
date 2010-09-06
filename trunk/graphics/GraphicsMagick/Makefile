@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.4 2009/09/20 01:19:28 laffer1 Exp $
+# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.5 2010/05/31 19:22:00 laffer1 Exp $
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
 		ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/1.1/
-MASTER_SITE_SUBDIR=	${PORTNAME:L}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast image processing tools based on ImageMagick
