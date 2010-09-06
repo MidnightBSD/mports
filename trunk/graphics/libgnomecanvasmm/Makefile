@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/graphics/libgnomecanvasmm/Makefile,v 1.2 2009/08/13 19:41:41 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvasmm/Makefile,v 1.3 2009/09/20 01:51:12 laffer1 Exp $
 
 PORTNAME=	libgnomecanvasmm
 PORTVERSION=	2.0.1
 PORTREVISION=	1
 CATEGORIES=	graphics gnome
-MASTER_SITES=	SF/gtkmm
+MASTER_SITES=	SF/gtkmm/OldFiles
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
