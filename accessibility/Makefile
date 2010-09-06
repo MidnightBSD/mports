@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/accessibility/Makefile,v 1.17 2010/07/30 05:34:55 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/Makefile,v 1.18 2010/09/06 19:45:32 laffer1 Exp $
     
 COMMENT = Ports to help disabled users
 
 SUBDIR += at-poke
 SUBDIR += at-spi
 SUBDIR += at-spi-reference
+SUBDIR += at-spi2-atk
+SUBDIR += at-spi2-core
 SUBDIR += atk
 SUBDIR += atk-reference
 SUBDIR += dasher
