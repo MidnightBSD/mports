@@ -1,15 +1,11 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.13 2010/05/05 23:41:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.14 2010/07/31 03:05:13 laffer1 Exp $
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.5.3-10
-PORTREVISION=	1
+DISTVERSION=	6.6.2-10
 CATEGORIES=	graphics perl5
 MASTER_SITES=	ftp://ftp.imagemagick.org/pub/ImageMagick/ \
-		SF/${PORTNAME:L}/${PORTNAME}/00-6.5.3 \
 		ftp://ftp.nluug.nl/pub/ImageMagick/ \
 		ftp://gd.tuwien.ac.at/pub/graphics/ImageMagick/
-#MASTER_SITE_SUBDIR=	imagemagick
-EXTRACT_SUFX=	.tar.lzma
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Image processing tools
@@ -17,7 +13,7 @@ LICENSE=	other
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
-USE_XZ=	yes
+USE_GMAKE=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_AUTOTOOLS=	libltdl:22
@@ -83,8 +79,6 @@ CONFIGURE_ARGS+=	--disable-openmp
 .if !defined(WITHOUT_IMAGEMAGICK_PERL)
 CONFIGURE_ARGS+=	--with-perl=${PERL5}
 PLIST_SUB+=		WITH_PERL=''
-#MAN3=			Image::Magick.3
-#MAN3PREFIX=		${SITE_PERL}
 .else
 CONFIGURE_ARGS+=	--without-perl
 PLIST_SUB+=		WITH_PERL='@comment '
