@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.8 2010/03/25 01:13:04 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.9 2010/09/06 22:51:13 laffer1 Exp $
 
 PORTNAME=	jpeg
-PORTVERSION=	9
+PORTVERSION=	8
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		ftp://ftp.uu.net/graphics/jpeg/ \
