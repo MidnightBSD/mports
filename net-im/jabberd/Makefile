@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.5 2009/04/14 03:31:19 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.6 2010/05/29 08:29:24 laffer1 Exp $
 
 PORTNAME=	jabberd
 PORTVERSION=	2.2.9
@@ -167,7 +167,7 @@ CONFIGURE_ARGS+=	--with-sasl=cyrus
 LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 .else
 CONFIGURE_ARGS+=	--with-sasl=gsasl
-LIB_DEPENDS+=	gsasl.13:${PORTSDIR}/security/gsasl
+LIB_DEPENDS+=	gsasl.14:${PORTSDIR}/security/gsasl
 .endif
 
 MAN8=		c2s.8 jabberd.8 router.8 s2s.8 sm.8
