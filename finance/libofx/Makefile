@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.4 2009/04/14 23:33:59 laffer1 Exp $
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.5 2009/09/20 01:11:46 laffer1 Exp $
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	finance
 MASTER_SITES=	SF
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	OpenSource implementation of the OFX (Open Financial eXchange)
 LICENSE=        gpl2
 
-LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl \
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
 		xml\\+\\+-1.0.1:${PORTSDIR}/textproc/libxml++ \
 		osp.5:${PORTSDIR}/textproc/opensp
 
