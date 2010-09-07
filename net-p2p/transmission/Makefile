@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.4 2008/09/14 00:54:39 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.5 2009/04/13 17:57:49 laffer1 Exp $
 
 PORTNAME=	transmission
 PORTVERSION=	1.21
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MIdnightBSD.org
 COMMENT=	A free BitTorrent client written from scratch in C
 LICENSE=	mit
 
-LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
