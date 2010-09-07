@@ -2,7 +2,7 @@
 # Date Created:				Oct 20 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>	
 #
-# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.2 2007/11/15 00:52:23 laffer1 Exp $
+# $MidnightBSD: mports/games/doomlegacy/Makefile,v 1.3 2009/10/03 00:11:23 laffer1 Exp $
 # $FreeBSD: ports/games/doomlegacy/Makefile,v 1.15 2007/06/07 00:00:30 alepulver Exp $
 
 PORTNAME=	doomlegacy
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DooM Legacy: popular DooM clone!
 LICENSE=	gpl2
 
-EXTRACT_DEPENDS=unzip:${PORTSDIR}/archivers/unzip
+EXTRACT_DEPENDS=${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 USE_GL=		yes
 USE_GMAKE=	yes
