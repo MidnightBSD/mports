@@ -1,21 +1,23 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.6 2009/04/13 18:10:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.7 2009/09/20 01:20:26 laffer1 Exp $
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
+PORTREVISION?=	1
 CATEGORIES?=	devel
-MASTER_SITES=	http://www.gnome.org/~veillard/gamin/sources/
+MASTER_SITES=	http://people.gnome.org/~veillard/gamin/sources/
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A file and directory monitoring system
 LICENSE=	lgpl
 
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 USE_GNOME?=	gnomehack _glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -DHAVE_LINUX" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 
@@ -37,6 +39,9 @@ CPPFLAGS+=	-DUSE_GAMIN_POLLER=1
 
 post-patch:
 	@${REINPLACE_CMD} "s|/etc|${PREFIX}/etc|g" ${WRKSRC}/server/gam_conf.c
+
+post-install:
+	${INSTALL} ${WRKSRC}/server/gam_server ${PREFIX}/libexec/
 
 .if !defined(GAMIN_SLAVE)
 regression-test: build
