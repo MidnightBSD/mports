@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/net/openldap24-server/pkg-plist,v 1.46 2009/07/20 08:13:11 delphij Exp $
 @unexec %%RC_DIR%%/etc/rc.d/slapd%%RC_SUFX%% stop 2>&1 >/dev/null || true
 etc/openldap/schema/README
 etc/openldap/schema/core.ldif
@@ -62,17 +61,10 @@ etc/openldap/DB_CONFIG.example
 %%BACK_SHELL%%libexec/openldap/back_shell-2.4.so.7
 %%BACK_SHELL%%libexec/openldap/back_shell.la
 %%BACK_SHELL%%libexec/openldap/back_shell.so
-%%BACK_SOCK%%libexec/openldap/back_sock-2.4.so
-%%BACK_SOCK%%libexec/openldap/back_sock-2.4.so.7
-%%BACK_SOCK%%libexec/openldap/back_sock.la
-%%BACK_SOCK%%libexec/openldap/back_sock.so
 %%BACK_SQL%%libexec/openldap/back_sql-2.4.so
 %%BACK_SQL%%libexec/openldap/back_sql-2.4.so.7
 %%BACK_SQL%%libexec/openldap/back_sql.la
 %%BACK_SQL%%libexec/openldap/back_sql.so
-%%SMBPWD%%libexec/openldap/smbk5pwd.la
-%%SMBPWD%%libexec/openldap/smbk5pwd.so
-%%SMBPWD%%libexec/openldap/smbk5pwd.so.0
 libexec/slapd
 @dirrmtry libexec/openldap
 sbin/slapacl
