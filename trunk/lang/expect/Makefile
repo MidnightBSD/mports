@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/expect/Makefile,v 1.1 2010/01/17 14:26:47 laffer1 Exp $
 
 PORTNAME=	expect
 PORTVERSION=	5.43.0
+PORTREVISION=	1
 CATEGORIES=	lang tcl tk
 MASTER_SITES=	http://expect.nist.gov/src/
 
@@ -57,5 +58,7 @@ post-patch:
 post-install:
 	${LN} -sf libexpect${LIBEXPECT_VER}.so.1 \
 		${PREFIX}/lib/libexpect${LIBEXPECT_VER}.so
+	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${PREFIX}/bin/expect ${PREFIX}/bin/expectk
 
 .include <bsd.port.mk>
