@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.8 2009/12/31 01:55:00 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.9 2010/01/01 17:20:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -215,7 +215,7 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 
 _PYTHON_PORTBRANCH=		2.6
-_PYTHON_ALLBRANCHES=	2.6 2.5 2.4 3.0 # preferred first
+_PYTHON_ALLBRANCHES=	2.6 2.5 2.4 3.0 3.1 # preferred first
 _ZOPE_PORTBRANCH=		2.7
 _ZOPE_ALLBRANCHES=		2.7 2.8 2.9 2.10 3.2
 
@@ -381,6 +381,13 @@ PYTHON_PORTSDIR=	${PORTSDIR}/lang/python30
 PYTHON_REL=			301
 PYTHON_SUFFIX=		30
 PYTHON_VER=			3.0
+
+.elif ${PYTHON_VERSION} == "python3.1"
+PYTHON_PORTVERSION?=3.1.2
+PYTHON_PORTSDIR=        ${PORTSDIR}/lang/python31
+PYTHON_REL=                     312
+PYTHON_SUFFIX=          31
+PYTHON_VER=                     3.1
 
 # Python-2.6
 .elif ${PYTHON_VERSION} == "python2.6"
