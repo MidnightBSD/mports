@@ -1,14 +1,9 @@
-# New ports collection Makefile for: 	jackit
-# Date created:			14 May 2002
-# Whom:				arved
-#
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.5 2009/03/02 23:29:39 laffer1 Exp $
-#
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.6 2009/12/29 18:12:13 laffer1 Exp $
 
 PORTNAME=	jackit
-PORTVERSION=	0.116.2
-PORTREVISION=	3
+PORTVERSION=	0.118.0
+PORTREVISION=	0
 CATEGORIES=	audio
 MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
@@ -37,6 +32,7 @@ MAN1=		jackd.1 jackstart.1
 
 .include <bsd.port.pre.mk>
 
+NOPORTDOCS=yes
 .if !defined(NOPORTDOCS)
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 .else
