@@ -2,11 +2,11 @@
 # Date Created:				2 Jun 2003
 # Whom:				 	olgeni@FreeBSD.org
 #
-# $MidnightBSD: mports/java/netbeans/Makefile,v 1.3 2008/06/10 00:47:38 laffer1 Exp $
+# $MidnightBSD: mports/java/netbeans61/Makefile,v 1.4 2008/06/10 01:19:27 laffer1 Exp $
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.29 2008/02/12 11:24:13 olgeni Exp $
 #
 
-PORTNAME=	netbeans
+PORTNAME=	netbeans61
 PORTVERSION=	6.1
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.netbeans.org/netbeans/6.1/final/zip/
