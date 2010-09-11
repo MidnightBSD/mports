@@ -2,16 +2,16 @@
 # Date created:				11th Apr 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.1 2008/05/30 20:31:57 laffer1 Exp $
 # $FreeBSD: ports/net/samba4wins/Makefile,v 1.8 2007/12/28 12:11:18 erwin Exp $
 #
 
 PORTNAME=		samba4wins
-PORTVERSION=		1.0.6
-PORTREVISION=		0
+PORTVERSION=		1.0.7
+PORTREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://ftp.sernet.de/pub/samba4WINS/debian/pool/
-DISTNAME=		${PORTNAME}_${PORTVERSION}-1
+DISTNAME=		${PORTNAME}_${PORTVERSION}-2
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		A full featured replicating WINS server for UNIX
@@ -22,7 +22,7 @@ CONFLICTS=		samba-4.* sharity-light-1.*
 USE_ICONV=		yes
 USE_PERL5=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:261 autoheader:261
+USE_AUTOTOOLS=		autoconf:262 autoheader:262
 
 WRKSRC=			${WRKDIR}/${PORTNAME}/source
 
@@ -59,6 +59,8 @@ SUB_LIST+=		S4W_RUNDIR=${S4W_RUNDIR}
 PLIST_SUB+=		S4W_LOGDIR=${S4W_LOGDIR} \
 			S4W_LOCKDIR=${S4W_LOCKDIR}
 
+INSTALL_TARGET=		showlayout installbin installdat installmisc installlib installpc
+
 post-build:
 			@for f in ${WRKSRC}/scripting/bin/*; do \
 			    ${REINPLACE_CMD} -i '' -e 's|smbscript|${PREFIX}/bin/smbscript4|' \
@@ -71,7 +73,7 @@ post-install:
 .if !defined(NOPORTDOCS)
 			@${MKDIR} ${DOCSDIR}
 .	for d in HOWTO.txt NEWS.txt README.txt TODO.txt
-			${INSTALL_DATA} ${WRKDIR}/${PORTNAME}/debian/${PORTNAME}-${PORTVERSION}-${d} ${DOCSDIR}/${d}
+			${INSTALL_DATA} ${WRKDIR}/${PORTNAME}/${PORTNAME}-${d} ${DOCSDIR}/${d}
 .	endfor
 .endif
 
