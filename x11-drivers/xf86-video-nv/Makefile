@@ -1,15 +1,21 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-nv/Makefile,v 1.5 2009/03/16 14:39:43 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	xf86-video-nv
-PORTVERSION=	2.1.13
+PORTVERSION=	2.1.17
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org nv display driver
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	driver
 USE_XORG=	videoproto xextproto
 MAN4=		nv.4x
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 3000
+USE_GCC=	4.2+
+.endif
+
+.include <bsd.port.post.mk>
