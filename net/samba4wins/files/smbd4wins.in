@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/samba4wins/files/smbd4wins.in,v 1.1 2006/08/31 18:04:20 pav Exp $
+# $FreeBSD: ports/net/samba4wins/files/smbd4wins.in,v 1.2 2010/03/27 00:13:58 dougb Exp $
 #
 
 # PROVIDE: smbd4wins
@@ -14,7 +14,7 @@
 #smbd4wins_enable="YES"
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="smbd4wins"
 rcvar=`set_rcvar`
