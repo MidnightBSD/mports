@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.8 2009/09/20 01:39:01 smultron Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.9 2010/01/23 21:24:03 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -20,7 +20,6 @@ LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		art_lgpl_2.5:${PORTSDIR}/graphics/libart_lgpl \
 		artsc.0:${PORTSDIR}/audio/arts \
 		aspell:${PORTSDIR}/textproc/aspell \
-		dns_sd:${PORTSDIR}/net/mDNSResponder \
 		idn:${PORTSDIR}/dns/libidn \
 		jasper:${PORTSDIR}/graphics/jasper \
 		pcre:${PORTSDIR}/devel/pcre \
@@ -72,6 +71,10 @@ FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 3015
+LIB_DEPENDS+= dns_sd:${PORTSDIR}/net/mDNSResponder
+.endif
+
 # bzip2 is required as a libdepend for the help: kioslave
 .if !exists(/usr/bin/bzip2)
 LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
@@ -79,7 +82,7 @@ LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
 
 pre-configure:
 	${REINPLACE_CMD} "s,%%LOCALBASE%%,${LOCALBASE},g" ${WRKSRC}/kdeprint/cups/kmcupsmanager.cpp
-	${REINPLACE_CMD} -e "s,ac_cups_share_test=.*,ac_cups_share_test=\`\$$kde_cups_config --datadir\`,g" \
+	${REINPLACE_CMD} -e "s,ac_cups_share_test=.*,ac_cups_share_test=,g" \
 			 -e "s,pcreposix.h,pcre.h,g" ${WRKSRC}/configure
 	${REINPLACE_CMD} -e "s,applications.menu,kde-applications.menu,g" \
 		${WRKSRC}/kded/Makefile.in ${WRKSRC}/kded/kbuildsycoca.cpp
