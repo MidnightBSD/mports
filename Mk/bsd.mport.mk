@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.162 2010/07/31 00:22:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.163 2010/08/21 01:44:13 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1086,6 +1086,8 @@ MPORT_CHECK_FAKE?=	/usr/libexec/mport.check-fake
 MPORT_UPDEPENDS?=	/usr/libexec/mport.updepends
 MPORT_UPDATE?=		/usr/libexec/mport.update
 MPORT_CHECK_OLDER?=	/usr/libexec/mport.check-for-older
+MPORT_INFO?=		/usr/libexec/mport.info
+MPORT_LIST?=		/usr/libexec/mport.list
 
 .if defined(DESTDIR)
 MPORT_INSTALL:=		${CHROOT} ${DESTDIR} ${MPORT_INSTALL}
@@ -1094,6 +1096,8 @@ MPORT_QUERY:=   	${CHROOT} ${DESTDIR} ${MPORT_QUERY}
 MPORT_UPDEPENDS:=	${CHROOT} ${DESTDIR} ${MPORT_UPDEPENDS}
 MPORT_UPDATE:=		${CHROOT} ${DESTDIR} ${MPORT_UPDATE}
 MPORT_CHECK_OLDER:=	${CHROOT} ${DESTDIR} ${MPORT_CHECK_OLDER}
+MPORT_INFO:=		${CHROOT} ${DESTDIR} ${MPORT_INFO}
+MPORT_LIST:=		${CHROOT} ${DESTDIR} ${MPORT_LIST}
 .endif
 
 .if !defined(MPORT_CREATE_ARGS)
