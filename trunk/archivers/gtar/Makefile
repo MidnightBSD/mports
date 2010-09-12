@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.9 2009/03/27 05:43:06 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.10 2009/12/25 17:18:03 laffer1 Exp $
 
 PORTNAME=	tar
-PORTVERSION=	1.22
+PORTVERSION=	1.23
 PORTREVISION=	1
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
