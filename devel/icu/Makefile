@@ -1,16 +1,12 @@
-# New ports collection makefile for:	icu
-# Date created:				22 Jan 2001
-# Whom:					dwm
-#
 # $FreeBSD: ports/devel/icu/Makefile,v 1.27 2008/02/18 17:06:32 mi Exp $
-# $MidnightBSD: mports/devel/icu/Makefile,v 1.3 2008/03/31 15:20:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/icu/Makefile,v 1.4 2008/08/21 18:08:34 laffer1 Exp $
 #
 
 PORTNAME=	icu
 PORTVERSION=	3.8.1
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/ICU4C/${PORTVERSION}
 DISTNAME=	icu4c-${PORTVERSION:S/./_/g}
 EXTRACT_SUFX=	-src.tgz
 
@@ -33,7 +29,7 @@ CONFIGURE_ARGS+=	${OPSYS}
 CONFIGURE_ARGS+=	--enable-shared
 CONFIGURE_ARGS+=	--enable-static
 CONFIGURE_ARGS+=	--enable-samples=no
-ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
+MAKE_JOBS_SAFE=		yes
 
 USE_GMAKE=		yes
 
