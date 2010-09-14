@@ -2,10 +2,10 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.12 2009/11/03 03:36:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.13 2010/05/05 23:11:38 laffer1 Exp $
 
 PORTNAME=	libsoup
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.2
 PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -20,7 +20,8 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-		proxy.0:${PORTSDIR}/net/libproxy 
+		proxy.0:${PORTSDIR}/net/libproxy  \
+		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
 		
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack referencehack gconf2
 USE_LDCONFIG=	yes
@@ -61,6 +62,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g ; \
 	    	s|" == "|" = "|g' \
 		${WRKSRC}/configure
+
+post-install:
+	@${INSTALL_DATA} ${WRKSRC}/libsoup/soup-connection.h \
+	    	${PREFIX}/include/libsoup-2.4/libsoup/soup-connection.h
 
 .include <bsd.port.post.mk>
 
