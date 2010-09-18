@@ -1,5 +1,3 @@
-***********************************************************
-
 Copy
 	%%PREFIX%%/etc/ddclient.conf.sample
 to
@@ -12,4 +10,8 @@ following line to /etc/rc.conf
 
 	ddclient_enable="YES"
 
-***********************************************************
+If you would like to force ddclient to update your account
+daily regardless of IP changes add the following line to 
+your /etc/periodic.conf
+
+	daily_ddclient_force_enable="YES"
