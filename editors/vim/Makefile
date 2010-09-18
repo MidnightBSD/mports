@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.17 2010/04/27 00:44:26 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.18 2010/09/18 21:13:52 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	400
+PATCHLEVEL=	401
 PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
