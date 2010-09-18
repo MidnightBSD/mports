@@ -2,12 +2,12 @@
 # Date Created:				27 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.1 2008/06/07 16:58:36 laffer1 Exp $
+# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.2 2009/03/13 03:58:50 laffer1 Exp $
 # $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
 #
 
 PORTNAME=	pdnsd
-PORTVERSION=	1.2.7
+PORTVERSION=	1.2.8
 CATEGORIES=	dns ipv6
 MASTER_SITES=	http://www.phys.uu.nl/~rombouts/pdnsd/releases/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-par
