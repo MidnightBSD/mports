@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.4 2009/06/21 21:53:22 laffer1 Exp $
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.5 2010/01/09 18:02:11 laffer1 Exp $
 
 PORTNAME=	libidn
-PORTVERSION=	1.15
+PORTVERSION=	1.16
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA} \
 		http://josefsson.org/libidn/releases/
