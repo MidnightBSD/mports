@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# unbound freebsd startup rc.d script, modified from the named script.
+# uses the default unbound installation path and pidfile location.
+# copy this to /etc/rc.d/unbound
+# and put unbound_enable="YES" into rc.conf
+#
+
+# PROVIDE: unbound
+# REQUIRE: SERVERS cleanvar
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="unbound"
+rcvar=`set_rcvar`
+
+command="%%PREFIX%%/sbin/unbound"
+extra_commands="reload"
+
+load_rc_config $name
+
+pidfile=${unbound_pidfile:-"%%PREFIX%%/etc/unbound/unbound.pid"}
+unbound_enable=${unbound_enable:-"NO"}
+
+run_rc_command "$1"
