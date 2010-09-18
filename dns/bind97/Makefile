@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/dns/bind96/Makefile,v 1.7 2010/05/30 23:07:55 laffer1 Exp $
+# $MidnightBSD$
 
-PORTNAME=	bind96
-PORTVERSION=	9.6.2.2
-PORTREVISION=	1
+PORTNAME=	bind97
+PORTVERSION=	9.7.1.2
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -16,23 +15,31 @@ COMMENT=	The BIND DNS suite with updated DNSSEC and threads
 LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
-ISCVERSION=	9.6.2-P2
+ISCVERSION=	9.7.1-P2
 
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
+		--disable-symtable \
 		--with-randomdev=/dev/random
 
-CONFLICTS=	bind9-9.[3457].* bind9-sdb-* host-*
+CONFLICTS=	bind9*-9.[3456].* bind9-sdb-* host-*
 
 OPTIONS=	SSL "Building without OpenSSL removes DNSSEC" on \
+		LINKS "Create conf file symlinks in ${PREFIX}" on \
 		XML "Support for xml statistics output" on \
 		IDN "Add IDN support to dig, host, etc." off \
 		REPLACE_BASE "Replace base BIND with this version" off \
 		LARGE_FILE "64-bit file support" off \
 		SIGCHASE "dig/host/nslookup will do DNSSEC validation" off \
-		IPV6 "IPv6 Support (autodetected by default)" off
+		IPV6 "IPv6 Support (autodetected by default)" off \
+		DLZ_POSTGRESQL "DLZ Postgres driver" off \
+		DLZ_MYSQL "DLZ MySQL driver (single-threaded BIND)" off \
+		DLZ_BDB "DLZ BDB driver" off \
+		DLZ_LDAP "DLZ LDAP driver" off \
+		DLZ_FILESYSTEM "DLZ filesystem driver" off \
+		DLZ_STUB "DLZ stub driver" off
 
 # Just in case
 USE_OPENSSL=	yes
@@ -44,10 +51,10 @@ ARCH=		x86_64
 .endif
 
 # We are ok by default from 0.3-CURRENT on
-.if ${OSVERSION} > 3000
+.if ${OSVERSION} >= 3000
 OPTIONS+=	THREADS	"Compile with thread support" on
 .else
-OPTIONS+=	THREADS	"Compile w/threads (Not Recommended <MidnightBSD 0.3)" off
+OPTIONS+=	THREADS	"Compile w/threads (Not Recommended <MidnightBSD-0.3)" off
 .endif
 
 .if !defined(WITHOUT_SSL)
@@ -66,9 +73,15 @@ CONFIGURE_ARGS+=	--without-libxml2
 
 .if defined(WITH_IDN)
 CONFIGURE_ARGS+=	--with-idn=${LOCALBASE} --with-libiconv=${LOCALBASE}
-BUILD_DEPENDS+=		runidn:${PORTSDIR}/dns/idnkit
+LIB_DEPENDS+=		idnkit.1:${PORTSDIR}/dns/idnkit
 .else
 CONFIGURE_ARGS+=	--without-idn
+.endif
+
+.if !defined(WITHOUT_LINKS) && !defined(WITH_REPLACE_BASE)
+PLIST_SUB+=	LINKS=""
+.else
+PLIST_SUB+=	LINKS="@comment "
 .endif
 
 .if defined(WITH_LARGE_FILE)
@@ -83,6 +96,36 @@ CONFIGURE_ARGS+=	STD_CDEFINES="-DDIG_SIGCHASE=1"
 CONFIGURE_ARGS+=	--enable-ipv6
 .endif
 
+.if defined(WITH_DLZ_POSTGRESQL)
+CONFIGURE_ARGS+=	--with-dlz-postgres=yes
+USE_PGSQL=		yes
+.endif
+
+.if defined(WITH_DLZ_MYSQL)
+CONFIGURE_ARGS+=	--with-dlz-mysql=yes
+USE_MYSQL=		yes
+WITHOUT_THREADS=	yes
+.endif
+
+.if defined(WITH_DLZ_BDB)
+CONFIGURE_ARGS+=	--with-dlz-bdb=yes
+USE_BDB=		yes
+.endif
+
+.if defined(WITH_DLZ_LDAP)
+CONFIGURE_ARGS+=	--with-dlz-ldap=yes
+USE_OPENLDAP=		yes
+.endif
+
+.if defined(WITH_DLZ_FILESYSTEM)
+CONFIGURE_ARGS+=	--with-dlz-filesystem=yes
+.endif
+
+.if defined(WITH_DLZ_STUB)
+CONFIGURE_ARGS+=	--with-dlz-stub=yes
+.endif
+
+# Has to be after the DLZ_MYSQL option
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
 .else
@@ -99,9 +142,9 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX} \
 BIND_DESTETC=	${PREFIX}/etc
 .endif
 
-PLIST_SUB=	BIND_DESTETC="${BIND_DESTETC}"
+PLIST_SUB+=	BIND_DESTETC="${BIND_DESTETC}"
 
-MAN1=	dig.1 host.1 nslookup.1 nsupdate.1
+MAN1=	arpaname.1 dig.1 host.1 isc-config.sh.1 nslookup.1 nsupdate.1
 MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
 	lwres_buffer_back.3 lwres_buffer_clear.3 lwres_buffer_first.3 \
 	lwres_buffer_forward.3 lwres_buffer_getmem.3 lwres_buffer_getuint16.3 \
@@ -136,9 +179,11 @@ MAN3=	lwres.3 lwres_addr_parse.3 lwres_buffer.3 lwres_buffer_add.3 \
 	lwres_packet.3 lwres_resutil.3 lwres_sethostent.3 \
 	lwres_sethostent_r.3 lwres_string_parse.3
 MAN5=	named.conf.5 rndc.conf.5
-MAN8=	dnssec-dsfromkey.8 dnssec-keyfromlabel.8 dnssec-keygen.8 \
-	dnssec-signzone.8 lwresd.8 named-checkconf.8 named-checkzone.8 \
-	named.8 rndc-confgen.8 rndc.8
+MAN8=	ddns-confgen.8 dnssec-dsfromkey.8 dnssec-keyfromlabel.8 \
+	dnssec-keygen.8 dnssec-revoke.8 dnssec-settime.8 dnssec-signzone.8 \
+	genrandom.8 lwresd.8 named-checkconf.8 named-checkzone.8 \
+	isc-hmac-fixup.8 \
+	named-journalprint.8 named.8 nsec3hash.8 rndc-confgen.8 rndc.8
 MLINKS=	named-checkzone.8 named-compilezone.8
 
 verify:	checksum
@@ -152,6 +197,13 @@ post-patch:
 		-e 's#/etc/rndc.conf#${BIND_DESTETC}/rndc.conf#g' \
 		${WRKSRC}/bin/${FILE}.Dist > ${WRKSRC}/bin/${FILE}
 .endfor
+	@${MV} ${WRKSRC}/Makefile.in ${WRKSRC}/Makefile.in.Dist
+	@${SED} -e 's#.*bind\.keys.*##' ${WRKSRC}/Makefile.in.Dist > \
+		${WRKSRC}/Makefile.in
+	@${MV} ${WRKSRC}/bin/named/Makefile.in ${WRKSRC}/bin/named/Makefile.in.Dist
+	@${SED} -e 's/$${PERL}/#/' -e 's/bind.keys.h/#/g' -e 's/bind9.xsl.h/#/g' \
+		${WRKSRC}/bin/named/Makefile.in.Dist > \
+		${WRKSRC}/bin/named/Makefile.in
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
@@ -161,10 +213,16 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${DOCSDIR}/arm
 	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/misc/[a-z]* ${DOCSDIR}/misc
-	${CP} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ \
-	    ${WRKSRC}/NSEC3-NOTES ${WRKSRC}/README ${WRKSRC}/README.idnkit \
-	    ${WRKSRC}/README.pkcs11 \
-	    ${DOCSDIR}/
+	${CP} ${WRKSRC}/CHANGES ${WRKSRC}/COPYRIGHT ${WRKSRC}/FAQ* \
+	    ${WRKSRC}/README* ${DOCSDIR}/
+.endif
+.if !defined(WITHOUT_LINKS) && !defined(WITH_REPLACE_BASE)
+	${MKDIR} /var/named${PREFIX}/etc
+.for DIR in ${PREFIX}/etc /var/named${PREFIX}/etc
+.for FILE in named.conf rndc.key
+	${LN} -sf /etc/namedb/${FILE} ${DIR}/${FILE}
+.endfor
+.endfor
 .endif
 
 .include <bsd.port.post.mk>
