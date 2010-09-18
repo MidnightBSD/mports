@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.16 2009/06/07 18:06:34 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.17 2010/04/27 00:44:26 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	299
+PATCHLEVEL=	400
 PORTVERSION=	7.2.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
@@ -14,7 +14,7 @@ PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}\
 PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260
+BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260 302 320 323 336 352 362 364 365 372 374 377 384 388 399 400 402
 #.if !defined(WITH_LANG)
 #BADPATCHES+=
 #.endif
@@ -29,9 +29,7 @@ LICENSE=	other
 
 SLAVEDIRS=	editors/vim-lite
 
-.if defined(WITH_OPTIONS) || defined(WITH_VIM_OPTIONS)
 .include "${.CURDIR}/../vim/options"
-.endif
 
 CONFLICTS=	vim*-lite
 MAKE_JOBS_UNSAFE= yes
