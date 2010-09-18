@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/dns/ddclient/files/ddclient.in,v 1.1 2006/05/07 00:03:25 mnag Exp $
+# $FreeBSD: ports/dns/ddclient/files/ddclient.in,v 1.2 2010/03/27 00:12:53 dougb Exp $
 #
 # PROVIDE: ddclient
 # REQUIRE: LOGIN
@@ -11,7 +11,7 @@
 # ddclient_enable="YES"
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="ddclient"
 rcvar=${name}_enable
