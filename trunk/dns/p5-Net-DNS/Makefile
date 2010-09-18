@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.8 2008/06/07 16:44:00 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.9 2009/03/13 03:55:59 laffer1 Exp $
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.65
+PORTVERSION=	0.66
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
