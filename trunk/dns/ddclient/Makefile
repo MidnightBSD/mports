@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.4 2008/06/07 16:39:42 laffer1 Exp $
+# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.5 2009/08/01 21:07:16 laffer1 Exp $
 
 PORTNAME=	ddclient
-PORTVERSION=	3.7.3
+PORTVERSION=	3.8.0
 PORTREVISION=	1
 CATEGORIES=	dns
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Update dynamic DNS entries
@@ -19,9 +19,8 @@ USE_PERL5_RUN=	yes
 NO_BUILD=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-SUB_FILES=	pkg-message
+SUB_FILES=	pkg-message ddclient_force
 PKGMESSAGE=	${WRKDIR}/pkg-message
-PLIST_FILES=	etc/ddclient.conf.sample sbin/ddclient
 
 PORTDOCS=	COPYING COPYRIGHT Changelog README README.cisco README.ssl \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
@@ -43,5 +42,9 @@ do-install:
 	@${INSTALL} -d ${DOCSDIR}
 	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 .endif
+
+post-install:
+	${MKDIR} ${PREFIX}/etc/periodic/daily
+	${INSTALL_SCRIPT} ${WRKDIR}/ddclient_force ${PREFIX}/etc/periodic/daily/ddclient_force
 
 .include <bsd.port.mk>
