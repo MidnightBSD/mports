@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.79 2010/09/06 20:58:57 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.80 2010/09/23 23:46:39 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -58,6 +58,7 @@
     SUBDIR += p5-DBIx-ContextualFetch
     SUBDIR += p5-Data-Page
     SUBDIR += p5-Ima-DBI
+    SUBDIR += p5-Pg
     SUBDIR += p5-SQL-Abstract
     SUBDIR += p5-SQL-Abstract-Limit
     SUBDIR += p5-SQL-Statement
