@@ -1,21 +1,15 @@
-# New ports collection makefile for:    p5-DBD-Pg
-# Date created:				June 17th 1997
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.3 2008/05/23 18:46:10 crash Exp $
+# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.4 2009/10/14 13:19:01 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBD-Pg/Makefile,v 1.69 2006/05/14 17:19:16 leeym Exp $
-#
 
 PORTNAME=	DBD-Pg
-PORTVERSION=	1.49
+PORTVERSION=	2.17.1
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	DBD
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides access to PostgreSQL databases through the DBI
-LICENSE=        gpl3
+LICENSE=        perl
 
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/DBI.pm:${PORTSDIR}/databases/p5-DBI
 RUN_DEPENDS=	${BUILD_DEPENDS}
