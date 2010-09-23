@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.database.mk,v 1.15 2008/10/20 17:48:49 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -30,9 +30,10 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				- Detected PostgreSQL version.
 
 
-DEFAULT_PGSQL_VER?=	82
+DEFAULT_PGSQL_VER?=	83
 PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
+PGSQL84_LIBVER=		5
 
 # Setting/finding PostgreSQL version we want.
 .if exists(${LOCALBASE}/bin/pg_config) && !defined(PACKAGE_BUILDING)
