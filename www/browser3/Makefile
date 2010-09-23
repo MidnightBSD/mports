@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.9 2010/02/26 23:22:32 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.10 2010/03/26 00:43:37 laffer1 Exp $
 
 PORTNAME=	browser3
-DISTVERSION=	3.0.18
-PORTREVISION=	1
+DISTVERSION=	3.0.19
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
-MASTER_SITE_SUBDIR=	firefox/releases/${DISTVERSION}/source
+MASTER_SITE_SUBDIR=	firefox/releases/${DISTVERSION}-real-real/source
 DISTNAME=	firefox-${DISTVERSION}-source
 WRKSRC=		${WRKDIR}/mozilla
 
