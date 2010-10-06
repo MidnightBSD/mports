@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.4 2009/05/14 23:18:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.5 2009/09/20 00:31:11 laffer1 Exp $
 
 PORTNAME=	kdevelop
-PORTVERSION=	3.5.3
+PORTVERSION=	3.5.4
 PORTREVISION=	0
 CATEGORIES?=	devel kde
 MASTER_SITES=	${MASTER_SITE_KDE}
