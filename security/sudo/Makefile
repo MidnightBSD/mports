@@ -2,12 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.11 2010/03/10 02:47:16 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.12 2010/04/25 22:59:31 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.7.2.6
+PORTVERSION=	1.7.4.4
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://obsd.isc.org/pub/sudo/ \
@@ -15,7 +15,7 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://boulder.tele.dk/pub/sudo/ \
 		ftp://core.ring.gr.jp/pub/misc/sudo/ \
 		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/
-DISTNAME=	${PORTNAME}-1.7.2p6
+DISTNAME=	${PORTNAME}-1.7.4p4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
@@ -25,7 +25,6 @@ MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
-		--disable-log-wrap \
 		--with-ignore-dot \
 		--with-tty-tickets \
 		--with-env-editor \
@@ -68,30 +67,27 @@ CONFIGURE_ARGS+=--enable-shell-sets-home
 .endif
 
 MAN5=		sudoers.5
-MAN8=		sudo.8 visudo.8
+MAN8=		sudo.8 visudo.8 sudoreplay.8
 MLINKS=		sudo.8 sudoedit.8
 
+post-patch:
+	@${REINPLACE_CMD} '/install-binaries:/,/^$$/s/$$(INSTALL)/& ${STRIP}/' \
+		${WRKSRC}/Makefile.in
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -e 's/$$(DESTDIR)$$(sudoersdir) $$(DESTDIR)$$(docdir)/$$(DESTDIR)$$(sudoersdir)/' \
+		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/for f in ChangeLog/d' ${WRKSRC}/Makefile.in
+.endif
+
 post-install:
-	${INSTALL_DATA} ${WRKSRC}/sudoers ${PREFIX}/etc/sudoers.default
 	${INSTALL_DATA} ${FILESDIR}/pam.conf ${PREFIX}/etc/pam.d/sudo.default
-
-	if [ ! -e ${PREFIX}/etc/pam.d/sudo ]; then \
+	if [ ! -f ${PREFIX}/etc/pam.d/sudo ]; then \
 		${CP} -p ${PREFIX}/etc/pam.d/sudo.default \
-		${PREFIX}/etc/pam.d/sudo ;\
+		${PREFIX}/etc/pam.d/sudo ; \
 	fi
-
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/TROUBLESHOOTING ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/UPGRADE ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/sample.sudoers ${DOCSDIR}
-.if defined(WITH_LDAP)
-	${INSTALL_DATA} ${WRKSRC}/README.LDAP ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/schema.OpenLDAP ${DOCSDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/sudoers2ldif ${DOCSDIR}
-.endif
-.endif
+	if [ ! -f ${PREFIX}/etc/sudoers ]; then \
+		${CP} -p ${PREFIX}/etc/sudoers.sample ${PREFIX}/etc/sudoers; \
+	fi
+	${TOUCH} ${PREFIX}/etc/sudoers.d/.keep-me
 
 .include <bsd.port.post.mk>
