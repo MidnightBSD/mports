@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.19 2010/09/18 21:24:42 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.17 2010/04/27 00:44:26 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	446
-PORTVERSION=	7.2.${PATCHLEVEL}
+PATCHLEVEL=	19
+PORTVERSION=	7.3.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
 CATEGORIES?=	editors
@@ -14,10 +14,7 @@ PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}\
 PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260 302 320 323 336 352 362 364 365 372 374 377 384 388 399 400 402 403
-#.if !defined(WITH_LANG)
-#BADPATCHES+=
-#.endif
+#BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260
 .for p in ${BADPATCHES}
 PATCHFILES:=	${PATCHFILES:N7.2.${p}}
 .endfor
@@ -29,7 +26,9 @@ LICENSE=	other
 
 SLAVEDIRS=	editors/vim-lite
 
+.if defined(WITH_OPTIONS) || defined(WITH_VIM_OPTIONS)
 .include "${.CURDIR}/../vim/options"
+.endif
 
 CONFLICTS=	vim*-lite
 MAKE_JOBS_UNSAFE= yes
@@ -60,7 +59,6 @@ MANLANG=	"" ru.KOI8-R ru.UTF-8 pl.ISO8859-2 pl.UTF-8 pl fr.ISO8859-1 \
 .if defined(PACKAGE_BUILDING) && !defined(LITE)
 WITH_CSCOPE=	yes
 WITH_EXUBERANT_CTAGS=yes
-WITH_LANG=	yes
 WITH_PERL=	yes
 WITH_PYTHON=	yes
 WITH_RUBY=	yes
@@ -70,6 +68,12 @@ WITH_TCL=	yes
 .if defined(WITH_PYTHON)
 USE_PYTHON=	yes
 MAKE_ARGS+=	CONF_OPT_PYTHON="--enable-pythoninterp"
+.endif
+
+.if defined(WITH_LUA)
+USE_LUA=	yes
+MAKE_ARGS+=	CONF_OPT_LUA="--enable-luainterp=dynamic" \
+MAKE_ARGS+=	CONF_OPT_LUA_PREFIX="--with-lua-prefix=${LOCALBASE}"
 .endif
 
 .if defined(WITH_RUBY)
@@ -158,25 +162,11 @@ MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x" ${I18N}
 .else	# LITE
 PKGNAMESUFFIX=	-lite
 MAKE_ARGS+=	CONF_OPT_GUI="--enable-gui=no --without-x --enable-multibyte"
-MAKE_ARGS+=	CONF_OPT_PERL="--disable-perlinterp --disable-pythoninterp --disable-tclinterp --disable-rubyinterp"
+MAKE_ARGS+=	CONF_OPT_PERL="--disable-perlinterp --disable-pythoninterp --disable-tclinterp --disable-rubyinterp --disable-luainterp"
 .endif	# LITE
 
 .if exists(${PREFIX}/lib/libiconv.so)
 USE_ICONV=	yes
-.endif
-
-.if defined(WITH_LANG)
-LANG_FILE=	${RELEASE}-lang.tar.gz
-DISTFILES+=    	${LANG_FILE}:lang_file
-MASTER_SITES+=	${MASTER_SITE_VIM:S|unix/|extra/:lang_file|}
-EXTRACT_ONLY=	${RELEASE}${EXTRACT_SUFX}
-USE_GETTEXT=   	yes
-.endif
-
-post-extract:
-.if defined(WITH_LANG)
-	@${ECHO_MSG} ">>>   extracting ${LANG_FILE} ..."
-	@${TAR} -C ${WRKDIR} -xzf ${DISTDIR}/${DIST_SUBDIR}/${LANG_FILE}
 .endif
 
 .if defined(WITH_EXUBERANT_CTAGS)
@@ -201,6 +191,7 @@ pre-configure:
 		s|/\* #define FEAT_XTERM_SAVE \*/|#define FEAT_XTERM_SAVE|g' \
 		${WRKSRC}/feature.h
 .endif
+	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/icons/hicolor/48x48/apps
 
 #	Clean up junk files to keep them from being installed.
 pre-install:
@@ -248,14 +239,8 @@ find-bad-patches:
 		'(src/if_(ole|mzsch)|src/gui_(w32|w48|mac)|src/os_(riscos|cyg|os2|vms|amiga|win32|mswin))|src(/testdir)?/Make_(dos|cyg|vms|mvc|ming|os2|amiga|mms)'\
 		vim/${PORTVERSION:C/\.[0-9a-z]*$//}*
 
-vim-makesum:
-	${MAKE} WITH_LANG=yes makesum
-
 ckp:
 	${MAKE} -DPATCH_DEBUG clean patch
-
-ckpl:
-	${MAKE} -DPATCH_DEBUG WITH_LANG=yes clean patch
 
 lang:
 	${MAKE} WITH_LANG=yes
