@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.14 2009/10/27 03:25:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.15 2009/11/09 01:00:23 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -24,8 +24,8 @@ OPTIONS=	THREADS "Enable Threads in apr"						on  \
 			MYSQL	"Enable MySQL suport in apr-util"			off \
 			PGSQL	"Enable Postgresql suport in apr-util"		off
 
-APR_VERSION=	1.3.8
-APU_VERSION=	1.3.9
+APR_VERSION=	1.4.2
+APU_VERSION=	1.3.10
 
 USE_ICONV=		yes
 USE_AUTOTOOLS=	automake:19 autoconf:262 libtool:22:env
@@ -41,8 +41,9 @@ NO_WRKSUBDIR=	yes
 APR_WRKDIR=	${WRKDIR}/apr-${APR_VERSION}
 APU_WRKDIR=	${WRKDIR}/apr-util-${APU_VERSION}
 
-PLIST_SUB=	SHLIB_MAJOR="${SHLIB_MAJOR}"
-SHLIB_MAJOR=	3
+PLIST_SUB=	SHLIB_APR_MAJOR="${SHLIB_APR_MAJOR}" SHLIB_APU_MAJOR="${SHLIB_APU_MAJOR}"
+SHLIB_APR_MAJOR=	4
+SHLIB_APU_MAJOR=	3
 
 APR_CONF_ARGS=	--with-installbuilddir=${DATADIR}/build-1
 APU_CONF_ARGS=	--with-apr=${APR_WRKDIR} \
