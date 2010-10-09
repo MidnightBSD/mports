@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.6 2010/01/20 02:42:58 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.7 2010/01/20 14:03:16 laffer1 Exp $
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.9.1
+PORTVERSION=	1.9.3
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
@@ -27,18 +27,20 @@ MOINTYPE?=	CGI
 PKGDEINSTALL=	${PKGINSTALL}
 
 .if ${MOINTYPE} == "STANDALONE"
-MOINSCRIPT=	${MOINDIR}/server/wikiserver.py
+MOINSCRIPT=	${MOINDIR}/server/moin
 .elif ${MOINTYPE} == "FCGI"
-MOINSCRIPT=	${MOINDIR}/server/moin.fcg
+MOINSCRIPT=	${MOINDIR}/server/moin.fcgi
 .elif ${MOINTYPE} == "MOD_PYTHON"
 .elif ${MOINTYPE} == "CGI"
 MOINSCRIPT=	${MOINDIR}/server/moin.cgi
+.elif ${MOINTYPE} == "WSGI"
+MOINSCRIPT=	${MOINDIR}/server/moin.wsgi
 .else
-BROKEN=		MOINTYPE must be a STANDALONE, FCGI, MOD_PYTHON or CGI.
+BROKEN=		MOINTYPE must be a STANDALONE, FCGI, WSGI, MOD_PYTHON or CGI.
 .endif
 
 pre-everything::
-	@${ECHO} "Set MOINTYPE=(CGI|FCGI|STANDALONE) to define"
+	@${ECHO} "Set MOINTYPE=(CGI|FCGI|WSGI|STANDALONE) to define"
 	@${ECHO} "type of installation. Default is CGI."
 	@${ECHO} "Use MOINDEST=/path to modify installation destination."
 	@${ECHO} "Default value for MOINDEST is ${PREFIX}/www/wiki."
