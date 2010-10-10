@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.7 2010/06/04 23:15:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.8 2010/08/14 19:29:34 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.5.4
+PORTVERSION=	1.6.4
 CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
@@ -14,7 +14,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast, lightweight source control management system
 LICENSE=	gpl2
 
+.if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
+PLIST_SUB+=	NLS="@comment "
+.endif
 USE_PYTHON=	2.4+
 USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGNAME=    ${PORTNAME}
@@ -25,7 +30,6 @@ CONTRIB_FILES=	bash_completion \
 		convert-repo \
 		dumprevlog \
 		hg-ssh \
-		hgdiff \
 		hgk \
 		logo-droplets.svg \
 		memory.py \
@@ -35,7 +39,6 @@ CONTRIB_FILES=	bash_completion \
 		perf.py \
 		pylintrc \
 		python-hook-examples.py \
-		rewrite-log \
 		sample.hgrc \
 		shrink-revlog.py \
 		simplemerge \
@@ -44,11 +47,6 @@ CONTRIB_FILES=	bash_completion \
 		tmplrewrite.py \
 		undumprevlog \
 		zsh_completion \
-		git-viz/git-cat-file \
-		git-viz/git-diff-tree \
-		git-viz/git-rev-list \
-		git-viz/git-rev-tree \
-		git-viz/hg-viz \
 		hgsh/Makefile \
 		hgsh/hgsh.c \
 		vim/HGAnnotate.vim \
@@ -64,6 +62,11 @@ MAN5=	hgignore.5 hgrc.5
 
 SUB_FILES=	pkg-message
 
+post-patch:
+.if defined(WITHOUT_NLS)
+	@${REINPLACE_CMD} '/^build.sub_co.*$$/d' ${WRKSRC}/setup.py
+.endif
+
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${PREFIX}/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/doc/*.5 ${PREFIX}/man/man5/
@@ -76,16 +79,15 @@ post-install:
 .if !defined(NOPORTDATA)
 	${MKDIR} ${DATADIR}
 	${MKDIR} ${DATADIR}/contrib
-	${MKDIR} ${DATADIR}/contrib/git-viz
 	${MKDIR} ${DATADIR}/contrib/hgsh
 	${MKDIR} ${DATADIR}/contrib/vim
 	for f in ${CONTRIB_FILES}; do \
 		${CP} -p ${WRKSRC}/contrib/$${f} ${DATADIR}/contrib/$${f}; \
 	done
 	${MKDIR} ${DATADIR}/www
-	${INSTALL_MAN} ${WRKSRC}/*.cgi ${DATADIR}/www
-	${INSTALL_MAN} ${WRKSRC}/contrib/hgwebdir.fcgi ${DATADIR}/www
-	${INSTALL_MAN} ${WRKSRC}/contrib/hgwebdir.wsgi ${DATADIR}/www
+	${INSTALL_DATA} ${WRKSRC}/*.cgi ${DATADIR}/www
+	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.fcgi ${DATADIR}/www
+	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.wsgi ${DATADIR}/www
 .endif
 	@${CAT} ${PKGMESSAGE}
 
