@@ -1,86 +1,33 @@
---- Makefile.orig	2010-03-21 21:35:03 -0400
-+++ Makefile	2010-03-27 14:54:18 -0400
-@@ -234,8 +234,8 @@
- 
- # CFLAGS and LDFLAGS are for the users to override from the command line.
- 
--CFLAGS = -g -O2 -Wall
--LDFLAGS =
-+CFLAGS ?= -g -O2 -Wall
-+LDFLAGS ?=
- ALL_CFLAGS = $(CFLAGS)
- ALL_LDFLAGS = $(LDFLAGS)
- STRIP ?= strip
-@@ -255,12 +255,12 @@
- prefix = $(HOME)
- bindir_relative = bin
- bindir = $(prefix)/$(bindir_relative)
--mandir = share/man
--infodir = share/info
-+mandir = $(prefix)/man
-+infodir = $(prefix)/info
- gitexecdir = libexec/git-core
- sharedir = $(prefix)/share
- template_dir = share/git-core/templates
--htmldir = share/doc/git-doc
-+htmldir = share/doc/git
- ifeq ($(prefix),/usr)
- sysconfdir = /etc
- ETC_GITCONFIG = $(sysconfdir)/gitconfig
-@@ -277,16 +277,16 @@
- 
- export prefix bindir sharedir sysconfdir
- 
--CC = gcc
--AR = ar
--RM = rm -f
--TAR = tar
--FIND = find
--INSTALL = install
--RPMBUILD = rpmbuild
--TCL_PATH = tclsh
--TCLTK_PATH = wish
--PTHREAD_LIBS = -lpthread
-+CC ?= gcc
-+AR ?= ar
-+RM ?= rm -f
-+TAR ?= tar
-+FIND ?= find
-+INSTALL ?= install
-+RPMBUILD ?= rpmbuild
-+TCL_PATH ?= tclsh
-+TCLTK_PATH ?= wish
-+PTHREAD_LIBS ?= -lpthread
- 
- export TCL_PATH TCLTK_PATH
- 
-@@ -354,7 +354,6 @@
+--- Makefile.bak	2010-10-14 12:50:29 -0400
++++ Makefile	2010-10-14 12:52:57 -0400
+@@ -378,7 +378,6 @@
  SCRIPT_PERL += git-cvsserver.perl
  SCRIPT_PERL += git-relink.perl
  SCRIPT_PERL += git-send-email.perl
 -SCRIPT_PERL += git-svn.perl
  
- SCRIPTS = $(patsubst %.sh,%,$(SCRIPT_SH)) \
- 	  $(patsubst %.perl,%,$(SCRIPT_PERL)) \
-@@ -818,7 +817,7 @@
- 	COMPAT_OBJS += compat/cygwin.o
- 	UNRELIABLE_FSTAT = UnfortunatelyYes
+ SCRIPT_PYTHON += git-remote-testgit.py
+ 
+@@ -912,6 +911,22 @@
+ 	PYTHON_PATH = /usr/local/bin/python
+ 	HAVE_PATHS_H = YesPlease
  endif
--ifeq ($(uname_S),FreeBSD)
 +ifeq ($(uname_S),MidnightBSD)
- 	NEEDS_LIBICONV = YesPlease
- 	OLD_ICONV = YesPlease
++        NEEDS_LIBICONV = YesPlease
++        OLD_ICONV = YesPlease
++        NO_MEMMEM = YesPlease
++        BASIC_CFLAGS += -I/usr/local/include
++        BASIC_LDFLAGS += -L/usr/local/lib
++        DIR_HAS_BSD_GROUP_SEMANTICS = YesPlease
++        USE_ST_TIMESPEC = YesPlease
++        ifeq ($(shell expr "$(uname_R)" : '4\.'),2)
++                PTHREAD_LIBS = -pthread
++                NO_UINTMAX_T = YesPlease
++                NO_STRTOUMAX = YesPlease
++        endif
++        PYTHON_PATH = /usr/local/bin/python
++        HAVE_PATHS_H = YesPlease
++endif
+ ifeq ($(uname_S),OpenBSD)
+ 	NO_STRCASESTR = YesPlease
  	NO_MEMMEM = YesPlease
-@@ -1109,9 +1108,9 @@
- endif
- ifndef NO_OPENSSL
- 	OPENSSL_LIBSSL = -lssl
--	ifdef OPENSSLDIR
--		BASIC_CFLAGS += -I$(OPENSSLDIR)/include
--		OPENSSL_LINK = -L$(OPENSSLDIR)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLDIR)/$(lib)
-+	ifdef OPENSSLBASE
-+		BASIC_CFLAGS += -I$(OPENSSLBASE)/include
-+		OPENSSL_LINK = -L$(OPENSSLBASE)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLBASE)/$(lib)
- 	else
- 		OPENSSL_LINK =
- 	endif
