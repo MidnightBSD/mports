@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.26 2010/09/14 23:46:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.27 2010/10/09 20:25:12 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.7.1.2
+PORTVERSION=	1.7.2.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -154,14 +154,14 @@ MAN7=		gitcli.7 \
 		gittutorial-2.7
 
 SUB_FILES=	pkg-message
-PLIST_SUB=     PYTHON_VER=${PYTHON_VER}
+PLIST_SUB=     PYTHON_VER=${PYTHON_VER} PYTHON=
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PYTHON=     yes
 EXTENSIONS+=    python
-CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
+CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib  -DNO_NSE
 MAKE_ENV+=	LIBMD_SHA1=yes \
 		V=1 \
 		PYTHON_PATH=${LOCALBASE}/bin/python
@@ -169,6 +169,7 @@ MAKE_ARGS+=	prefix="${PREFIX}"
 USE_OPENSSL=	yes
 USE_RC_SUBR=	git_daemon
 WANT_PERL=	yes
+GNU_CONFIGURE=	yes
 
 OPTIONS=	GUI "Enable building of GUI tools" on \
 		SVN "Enable required dependencies for SVN tools" off \
@@ -257,6 +258,12 @@ PLIST_SUB+=	GITWEB="@comment "
 IGNORE=	using GITWEB support requires PERL support
 .endif
 
+.ifdef (WITH_CONTRIB)
+PLIST_SUB+=	CONTRIB=""
+.else
+PLIST_SUB+=	CONTRIB="@comment "
+.endif
+
 .ifdef (WITH_P4)
 PLIST_SUB+=	P4=""
 .else
@@ -290,6 +297,10 @@ post-patch:
 .ifndef (WITH_SVN)
 	@${REINPLACE_CMD} -e '/git-svn.perl/d' ${WRKSRC}/Makefile
 .endif
+.ifndef (WITH_GITWEB)
+	@${REINPLACE_CMD} -e '/$$(MAKE) -C gitweb install/d' ${WRKSRC}/Makefile
+.endif
+
 
 post-build:
 .ifdef (WITH_P4)
@@ -337,13 +348,14 @@ post-install:
 .ifdef (WITH_GITWEB)
 	@${ECHO_MSG} "===> Installing gitweb files"
 	${MKDIR} ${EXAMPLESDIR}/gitweb
+	${MKDIR} ${EXAMPLESDIR}/gitweb/static
 	${INSTALL_DATA} ${WRKSRC}/gitweb/INSTALL ${EXAMPLESDIR}/gitweb/
 	${INSTALL_DATA} ${WRKSRC}/gitweb/README ${EXAMPLESDIR}/gitweb/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/git-favicon.png ${EXAMPLESDIR}/gitweb/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/git-logo.png ${EXAMPLESDIR}/gitweb/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/gitweb.css ${EXAMPLESDIR}/gitweb/
+	${INSTALL_DATA} ${WRKSRC}/gitweb/static/git-favicon.png ${EXAMPLESDIR}/gitweb/static/
+	${INSTALL_DATA} ${WRKSRC}/gitweb/static/git-logo.png ${EXAMPLESDIR}/gitweb/static/
+	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.css ${EXAMPLESDIR}/gitweb/static/
+	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.js ${EXAMPLESDIR}/gitweb/static/
 	${INSTALL_SCRIPT} ${WRKSRC}/gitweb/gitweb.cgi ${EXAMPLESDIR}/gitweb/
-	${INSTALL_SCRIPT} ${WRKSRC}/gitweb/gitweb.js ${EXAMPLESDIR}/gitweb/
 .endif
 
 .include <bsd.port.mk>
