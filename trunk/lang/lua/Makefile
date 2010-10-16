@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/lua/Makefile,v 1.1 2009/11/07 23:32:36 laffer1 Exp $
 
 PORTNAME=	lua
 PORTVERSION=	5.1.4
-CATEGORIES=	lang
+PORTREVISION=	1
+CATEGORIES=	lang lua
 MASTER_SITES=	http://www.lua.org/ftp/ \
 		ftp://ftp.tecgraf.puc-rio.br/pub/lua/ \
 		ftp://csg.uwaterloo.ca/pub/lhf/lua/ \
