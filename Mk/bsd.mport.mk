@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.163 2010/08/21 01:44:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.164 2010/09/12 17:32:48 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1565,7 +1565,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad comms converters databases \
 	deskutils devel dns editors elisp emulators finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
-	ipv6 irc japanese java kde kld korean lang linux lisp \
+	ipv6 irc japanese java kde kld korean lang linux lisp lua \
 	mail math mbone misc multimedia net net-im net-mgmt net-p2p news \
 	palm parallel perl5 picobsd plan9 polish portuguese ports-mgmt print \
 	python ruby rubygems russian \
@@ -4083,6 +4083,7 @@ desktop-categories:
 			kde)			c="KDE QT"						;; \
 			lang)			c="Development"					;; \
 			lisp)			c="Development"					;; \
+			lua)			c="Development"				;; \
 			mail)			c="Email Office Network"		;; \
 			mbone)			c="Network AudioVideo"			;; \
 			multimedia)		c="AudioVideo"					;; \
