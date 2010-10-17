@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.5 2009/09/20 02:40:00 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.6 2009/12/13 21:57:55 laffer1 Exp $
 
 PORTNAME=	gtksourceview2
-PORTVERSION=	2.6.2
+PORTVERSION=	2.10.4
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
@@ -21,9 +21,9 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomeprefix gnomehack gtk20 libxml2 intlhack \
+USE_GNOME=	gnomeprefix gnomehack gtk20 gconf2 libxml2 intlhack \
 		ltverhack referencehack
-CONFIGURE_ARGS=	--enable-compile-warnings=no
+CONFIGURE_ARGS=	--enable-compile-warnings=no --enable-glade-catalog=no
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
 
