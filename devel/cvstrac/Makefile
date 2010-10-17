@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/cvstrac/Makefile,v 1.2 2009/04/13 21:28:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvstrac/Makefile,v 1.3 2010/05/08 02:14:51 laffer1 Exp $
 
 PORTNAME?=	cvstrac
 PORTVERSION=	2.0.1
-PORTREVISOIN=	1
+PORTREVISOIN=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cvstrac.org/
 DISTNAME=	cvstrac-${PORTVERSION}
