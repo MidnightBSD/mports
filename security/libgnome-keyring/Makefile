@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libgnome-keyring/Makefile,v 1.1 2010/08/14 03:14:52 laffer1 Exp $
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	2.30.1
@@ -8,6 +8,8 @@ MASTER_SITES=	GNOME
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A program that keeps passwords and other secrets
 LICENSE=	gpl2
+
+BUILD_DEPENDS=	gnome-config:${PORTSDIR}/x11/gnome-libs
 
 LIB_DEPENDS=    tasn1.4:${PORTSDIR}/security/libtasn1 \
                 gcrypt.17:${PORTSDIR}/security/libgcrypt
