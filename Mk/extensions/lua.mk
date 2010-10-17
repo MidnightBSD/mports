@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/lua.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/lua.mk,v 1.2 2009/09/20 19:10:55 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.lua.mk,v 1.13 2007/04/11 03:22:34 alepulver Exp $
 #
 # bsd.lua.mk - Support for Lua based ports.
@@ -38,7 +38,7 @@
 #				  Other components (modules):
 #				  5.0			- app, compat51, dfui, filename, gettext,
 #								  posix, pty, socket.
-#				  5.1			- filename, gettext, posix, pty, socket.
+#				  5.1			- alien, filename, gettext, posix, pty, socket.
 #				  The available dependency types are:
 #				  build			- Requires component for building.
 #				  lib			- Requires component for building and running.
@@ -138,7 +138,7 @@ Lua_Include_MAINTAINER=	portmgr@MidnightBSD.org
 # Global definitions.
 #
 
-.if !defined(_LUA_Definitions_Done)
+#.if !defined(_LUA_Definitions_Done)
 _LUA_Definitions_Done=	yes
 
 # Common variables:
@@ -152,12 +152,13 @@ _LUA_Definitions_Done=	yes
 #
 
 _LUA_COMPS_ALL=			lua tolua toluaxx ruby \
-						app compat51 dfui filename gettext posix pty socket
+				alien app compat51 dfui filename gettext posix \
+				pty socket
 _LUA_DEP_TYPES_ALL=		build lib run
 _LUA_VERS_ALL=			4.0 5.0 5.1
 _LUA_PLIST_ALL=			LUA_VER LUA_VER_SH LUA_VER_STR LUA_PREFIX LUA_SUBDIR
 _LUA_PLIST_DIR_ALL=		LUA_BINDIR LUA_INCDIR LUA_LIBDIR \
-						LUA_MODLIBDIR LUA_MODSHAREDIR
+				LUA_MODLIBDIR LUA_MODSHAREDIR
 _LUA_VERS_LISTS=		WANT_LUA_VER WITH_LUA_VER _LUA_VER_INSTALLED
 
 #
@@ -193,6 +194,7 @@ _LUA_PORT_socket_5.0=	net/lua50-luasocket
 _LUA_PORT_lua_5.1=		lang/lua
 _LUA_DEPTYPE_lua_5.1=	lib
 
+_LUA_PORT_alien_5.1=	devel/lua-alien
 _LUA_PORT_filename_5.1=	devel/lua-filename
 _LUA_PORT_gettext_5.1=	devel/lua-gettext
 _LUA_PORT_posix_5.1=	devel/lua-posix
@@ -227,17 +229,17 @@ _LUA_DEPTYPE_${comp}_${ver}=run
 .			endif
 .		endfor
 .	endfor
-.endif
+#.endif
 
 #
 # Check if we are going to determine the version.
 #
 
-.if !defined(_LUA_Version_Done) && (defined(_POSTMKINCLUDED) || \
-    (defined(LUA_PREMK) && defined(BEFOREPORTMK) && \
-    (defined(USE_LUA) || defined(USE_LUA_NOT))))
+#.if !defined(_LUA_Version_Done) && (defined(_POSTMKINCLUDED) || \
+#    (defined(LUA_PREMK) && defined(BEFOREPORTMK) && \
+#    (defined(USE_LUA) || defined(USE_LUA_NOT))))
 _LUA_Need_Version=			yes
-.endif
+#.endif
 
 #
 # Check for present components.
