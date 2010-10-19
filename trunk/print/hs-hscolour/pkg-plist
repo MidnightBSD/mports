@@ -15,7 +15,6 @@ bin/HsColour
 %%HSCOLOUR_LIBDIR_REL%%/ghc-%%GHC_VERSION%%/libHShscolour-%%HSCOLOUR_VERSION%%.a
 %%HSCOLOUR_LIBDIR_REL%%/register.sh
 %%DOCSDIR%%/LICENCE-GPL
-%%DOCSDIR%%/README
 %%DATADIR%%/hscolour.css
 @dirrm %%DATADIR%%
 @dirrm %%DOCSDIR%%
