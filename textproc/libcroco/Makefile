@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.2 2009/06/12 19:41:21 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libcroco/Makefile,v 1.3 2009/09/20 02:15:21 laffer1 Exp $
 #
 
 PORTNAME=	libcroco
@@ -15,6 +15,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack
+CONFIGURE_ARGS+=	--program-prefix=''
 
 PLIST_SUB=	VERSION="0.6"
 
