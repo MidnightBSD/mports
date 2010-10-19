@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.13 2010/09/02 23:54:43 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.14 2010/09/06 19:41:08 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.30.2
@@ -35,7 +35,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
 		dasher:${PORTSDIR}/accessibility/dasher \
 		evolution:${PORTSDIR}/mail/evolution \
-		${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 		network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 		vino-passwd:${PORTSDIR}/net/vino \
 		exchange-connector-setup-2.30:${PORTSDIR}/mail/evolution-exchange \
@@ -45,7 +44,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
 		${LOCALBASE}/share/gnome-background-properties/gnome-nature.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		evince:${PORTSDIR}/graphics/evince \
-		alacarte:${PORTSDIR}/deskutils/alacarte \
 		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
@@ -80,18 +78,12 @@ RUN_DEPENDS+=	\
 		sound-juicer:${PORTSDIR}/audio/sound-juicer \
 		zenity:${PORTSDIR}/x11/zenity \
 		gnome-nettool:${PORTSDIR}/net/gnome-nettool \
-		swfdec-player:${PORTSDIR}/multimedia/swfdec-gnome \
 		vinagre:${PORTSDIR}/net/vinagre \
 		brasero:${PORTSDIR}/sysutils/brasero \
 		gnome-file-share-properties:${PORTSDIR}/www/gnome-user-share \
 		${LOCALBASE}/libexec/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 		${LOCALBASE}/lib/hamster-applet/hamster-applet:${PORTSDIR}/deskutils/hamster-applet \
-		${LOCALBASE}/lib/gtk-2.0/modules/at-spi-dbus/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi2-atk \
-		gpk-application:${PORTSDIR}/ports-mgmt/gnome-packagekit
-.if ${ARCH} == "i386"
-#RUN_DEPENDS+=	tomboy:${PORTSDIR}/deskutils/tomboy
-.endif
-RUN_DEPENDS+=	ekiga:${PORTSDIR}/net/ekiga3
+		${LOCALBASE}/lib/gtk-2.0/modules/at-spi-dbus/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi2-atk
 .if defined(WITH_MAPI)
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/libexchangemapi-1.0.pc:${PORTSDIR}/mail/evolution-mapi
 .endif
