@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.8 2010/05/05 19:25:49 vganji Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.9 2010/09/02 23:43:35 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -22,8 +22,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gtk12 gnomehack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules \
-		--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
 
