@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.1 2009/03/21 15:37:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.2 2009/10/07 00:30:55 laffer1 Exp $
 
 PORTNAME=	DateTime
-PORTVERSION=	0.50
+PORTVERSION=	0.63
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,17 +10,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A date and time object
 LICENSE=	perl
 
-RUN_DEPENDS=	\
-		${SITE_PERL}/${PERL_ARCH}/Params/Validate.pm:${PORTSDIR}/devel/p5-Params-Validate \
-		${SITE_PERL}/DateTime/TimeZone.pm:${PORTSDIR}/devel/p5-DateTime-TimeZone \
-		${SITE_PERL}/DateTime/Locale.pm:${PORTSDIR}/devel/p5-DateTime-Locale \
-		${SITE_PERL}/Time/Local.pm:${PORTSDIR}/devel/p5-Time-Local
+RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
+		p5-DateTime-TimeZone>=1.09:${PORTSDIR}/devel/p5-DateTime-TimeZone \
+		p5-Params-Validate>=0.76:${PORTSDIR}/devel/p5-Params-Validate
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_CONFIGURE=	yes
+PERL_MODBUILD=	yes
 
 MAN3=		DateTime.3 DateTime::Duration.3 \
-		DateTime::Helpers.3 DateTime::Infinite.3 DateTime::LeapSecond.3
+		DateTime::Infinite.3 \
+		DateTime::LeapSecond.3
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	CREDITS Changes TODO

@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/devel/p5-DateTime/pkg-plist,v 1.8 2006/06/14 12:16:57 mat Exp $
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTime.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTime/Duration.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTime/Helpers.pm
@@ -6,7 +5,6 @@
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTime/LeapSecond.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTimePP.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DateTimePPExtra.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DateTime/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DateTime/DateTime.bs
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DateTime/DateTime.so
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/DateTime
