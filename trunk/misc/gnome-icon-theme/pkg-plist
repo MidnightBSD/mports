@@ -2154,7 +2154,6 @@ share/icons/gnome/24x24/actions/gtk-zoom-out.png
 share/icons/gnome/24x24/actions/help-about.png
 share/icons/gnome/24x24/actions/help-contents.png
 share/icons/gnome/24x24/actions/help-faq.png
-share/icons/gnome/24x24/actions/help.png
 share/icons/gnome/24x24/actions/insert-image.png
 share/icons/gnome/24x24/actions/insert-link.png
 share/icons/gnome/24x24/actions/insert-object.png
@@ -3690,7 +3689,6 @@ share/icons/gnome/32x32/actions/gtk-zoom-out.png
 share/icons/gnome/32x32/actions/help-about.png
 share/icons/gnome/32x32/actions/help-contents.png
 share/icons/gnome/32x32/actions/help-faq.png
-share/icons/gnome/32x32/actions/help.png
 share/icons/gnome/32x32/actions/insert-image.png
 share/icons/gnome/32x32/actions/insert-link.png
 share/icons/gnome/32x32/actions/insert-object.png
