@@ -2,7 +2,7 @@
 # Date created:		2005-05-04
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.4 2007/11/12 01:15:40 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.5 2010/02/27 23:08:35 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gpac-libgpac/Makefile,v 1.13 2006/08/14 23:36:33 ahze Exp $
 #
 
@@ -47,7 +47,7 @@ CONFIGURE_ARGS+=	--disable-ipv6
 .if defined(WITHOUT_OPENGL)
 CONFIGURE_ARGS+=	--disable-opengl
 .else
-USE_GL=		gl glu
+USE_GL=		gl glu glut
 .endif
 
 post-patch:
