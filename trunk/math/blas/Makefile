@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/blas/Makefile,v 1.2 2007/10/25 04:07:02 laffer1 Exp $
+# $MidnightBSD: mports/math/blas/Makefile,v 1.3 2010/10/19 19:20:04 laffer1 Exp $
 # $FreeBSD: ports/math/blas/Makefile,v 1.44 2007/09/10 03:04:20 maho Exp $
 
 PORTNAME=	blas
@@ -52,7 +52,9 @@ PLIST_FILES+=	lib/libblas_p.a
 MAKE_ENV+=	NO_PROFILE=
 .endif
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 	@${CP} ${FILESDIR}/makefile.lib ${WRKSRC}/Makefile
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
