@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.2 2009/05/26 00:52:43 laffer1 Exp $
+# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.3 2009/08/20 21:10:56 laffer1 Exp $
 
 PORTNAME=	ocaml
 PORTVERSION=	3.11.1
@@ -86,12 +86,9 @@ MAN1!=	${CAT} ${FILESDIR}/man1
 MANN!=	${CAT} ${FILESDIR}/mann
 MLINKS!=${CAT} ${FILESDIR}/manlinks
 
-
-
-.if ${ARCH} == sparc64 || ${ARCH} == ia64
+.if ${ARCH} == sparc64
 BROKEN=	ocamlc.opt seg-faults on ${ARCH}, please try to fix
 .endif
-
 
 post-configure:
 # CFLAGS safeness
