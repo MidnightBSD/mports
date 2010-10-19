@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.3 2010/09/04 20:01:16 laffer1 Exp $
+# $MidnightBSD: mports/print/hs-hscolour/Makefile,v 1.4 2010/09/07 23:48:14 laffer1 Exp $
 
 PORTNAME=	hscolour
 PORTVERSION=	1.10.1
@@ -52,8 +52,7 @@ post-install:
 #	${STRIP_CMD} ${PREFIX}/bin/HsColour
 .if !defined(SLAVE)
 	${MKDIR} ${PREFIX}/${HSCOLOUR_LIBDIR_REL}
-	cd ${WRKSRC} && ${INSTALL_SCRIPT} register.sh ${PREFIX}/${HSCOLOUR_LIBDIR_REL}/register.sh  && \
-		${INSTALL_DATA} README ${DOCSDIR}/README
+	cd ${WRKSRC} && ${INSTALL_SCRIPT} register.sh ${PREFIX}/${HSCOLOUR_LIBDIR_REL}/register.sh
 .endif
 	@${RM} -f ${PREFIX}/lib/ghc-${GHC_VERSION}/package.conf.old
 
