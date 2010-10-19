@@ -30,7 +30,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.4 2010/06/26 17:40:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.5 2010/07/30 00:17:42 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -71,10 +71,9 @@ _GCCVERSION_${v}_V=	${j}
 . endfor
 .endfor
 
-#
-# gcc.mk can also be used only for FC, F77 settings; in this case we
-# do not define USE_GCC.
-#
+# bsd.gcc.mk can also be used for primarily requesting a Fortran compiler.
+# If we are using GCC we still define whatever we'd usually do for C and
+# C++ as well.
 
 .if defined (USE_FORTRAN)
 
@@ -95,12 +94,9 @@ F77:=	${LOCALBASE}/intel_fc_80/bin/ifort
 # (MidnightBSD<=0.2.1).
 . elif ${USE_FORTRAN} == g77
 .  if (${OSVERSION} > 3000)
-BUILD_DEPENDS+=	g77-34:${PORTSDIR}/lang/gcc34
-RUN_DEPENDS+=	g77-34:${PORTSDIR}/lang/gcc34
+_USE_GCC:=	3.4
 FC:=	g77-34
 F77:=	g77-34
-CC:=	gcc34
-CXX:=	g++34
 .  else
 F77:=	f77
 FC:=	f77
