@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.2 2010/03/25 01:28:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.3 2010/05/05 23:45:24 laffer1 Exp $
 
 PORTNAME=	svgviewer
 PORTVERSION=	0.2.0
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://web.telia.com/~u42308495/alex/
 DISTNAME=	SVGViewer-${PORTVERSION}
