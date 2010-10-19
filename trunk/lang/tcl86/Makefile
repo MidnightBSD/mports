@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/tcl86/Makefile,v 1.1 2010/01/01 16:49:34 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.6.b.1
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	SF/tcl/Tcl/8.6b1
 PKGNAMESUFFIX?=		${THREADS_SUFFIX}${PKGNAMESUFFIX2}
@@ -43,6 +44,7 @@ LATEST_LINK=	tcl86${THREADS_SUFFIX}
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_TCL_MODULES)
+RUN_DEPENDS+=	${LOCALBASE}/bin/tclsh85:${PORTSDIR}/lang/tcl85
 RUN_DEPENDS+=	${LOCALBASE}/lib/tcl8/8.5/tcltest-2.3.2.tm:${PORTSDIR}/lang/tcl-modules
 .endif
 
