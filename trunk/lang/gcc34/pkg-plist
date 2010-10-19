@@ -22,5 +22,5 @@ libexec/gcc/%%GNU_HOST%%/%%GCC_VER%%/install-tools/mkheaders
 @dirrm libexec/gcc/%%GNU_HOST%%/%%GCC_VER%%
 @dirrmtry libexec/gcc/%%GNU_HOST%%
 @dirrmtry libexec/gcc
-info/gcc%%SUFFIX%%/dir
+@comment info/gcc%%SUFFIX%%/dir
 @comment Insert PLIST.lib here
