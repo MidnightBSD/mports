@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.1 2010/09/06 20:03:57 laffer1 Exp $
 
 PORTNAME=	mod_dnssd
 PORTVERSION=	0.6
@@ -14,6 +14,7 @@ LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
 
 MAKE_JOBS_SAFE=	yes
 
+FAKE_MAKEOPTS=	prefixhack
 USE_GMAKE=	yes
 USE_APACHE=	2.2+
 GNU_CONFIGURE=	yes
