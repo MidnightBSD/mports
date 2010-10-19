@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.7 2009/05/26 00:36:08 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.8 2009/08/26 21:24:31 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	24
-PORTVERSION=	2.16.0
+PORTVERSION=	2.20.3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -22,12 +22,14 @@ LIB_DEPENDS=	glibmm-2.4.3:${PORTSDIR}/devel/glibmm \
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 USE_XLIB=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-USE_GNOME=	gnomehack gtk20
+USE_GNOME=	gnomehack gtk20 ltverhack:1
 CONFIGURE_ARGS=	--disable-demos \
 		--disable-docs \
 		--disable-examples \
