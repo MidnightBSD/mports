@@ -3,13 +3,12 @@
 # Whom:		   Sergey Skvortsov <skv@protey.ru>
 #
 # $FreeBSD: ports/devel/judy/Makefile,v 1.12 2008/05/13 09:36:54 skv Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/judy/Makefile,v 1.1 2008/05/14 17:44:56 crash Exp $
 
 PORTNAME=	Judy
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	devel
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	judy
+MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	General purpose dynamic array
@@ -18,6 +17,9 @@ LICENSE=        lgpl
 GNU_CONFIGURE=	yes
 USE_GMAKE=	YES
 USE_LDCONFIG=	YES
+MAKE_JOBS_UNSAFE=	yes
+
+WRKSRC=	${WRKDIR}/${PORTNAME:L}-${PORTVERSION}
 
 MAN3=	Judy.3 Judy1.3 Judy1_funcs.3 JudyHS.3 JudyHS_funcs.3 \
 	JudyL.3 JudyL_funcs.3 JudySL.3 JudySL_funcs.3
@@ -74,7 +76,7 @@ post-install:
 
 .if ${ARCH} == "i386"
 CONFIGURE_ARGS+=	--enable-32-bit
-.elif ${ARCH} == "amd64" || ${ARCH} == "ia64" || ${ARCH} == "sparc64" || ${ARCH} == "alpha"
+.elif ${ARCH} == "amd64" || ${ARCH} == "sparc64"
 CONFIGURE_ARGS+=	--enable-64-bit
 .endif
 
