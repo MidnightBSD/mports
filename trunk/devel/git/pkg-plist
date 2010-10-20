@@ -179,7 +179,6 @@ libexec/git-core/git-whatchanged
 libexec/git-core/git-write-tree
 %%GUI%%bin/gitk
 %%SITE_PERL%%/Git.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Git/.packlist
 lib/xemacs/site-lisp/git/git.el
 lib/xemacs/site-lisp/git/git-blame.el
 share/emacs/site-lisp/git/git.el
