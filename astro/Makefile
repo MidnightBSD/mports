@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/astro/Makefile,v 1.4 2008/10/02 14:35:57 laffer1 Exp $
+# $MidnightBSD: mports/astro/Makefile,v 1.5 2008/12/16 22:27:54 ctriv Exp $
 #
 
     COMMENT = Astronomical ports
 
-    SUBDIR += boinc-einsteinathome
     SUBDIR += boinc-milkyway
     SUBDIR += boinc-setiathome-enhanced
     SUBDIR += google-earth
