@@ -2,13 +2,13 @@
 # Date created:		14 September 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.4 2008/06/22 18:20:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.5 2008/10/23 13:43:37 laffer1 Exp $
 # $FreeBSD: ports/devel/ruby-gnustep/Makefile,v 1.35 2007/01/31 18:17:57 dinoex Exp $
 #
 
 PORTNAME=	gnustep
 PORTVERSION=	0.2.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel lang ruby gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
@@ -41,7 +41,7 @@ post-patch:
 		${XARGS} ${RUBY} -i -pe 'gsub(/ ruby -/, " ${RUBY} -")'
 
 pre-fake:
-	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/lib/ruby/site_ruby/1.8/i386-freebsd0
+	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/lib/ruby/site_ruby/1.8/${MACHINE_ARCH}-freebsd0
 	${MKDIR} ${FAKE_DESTDIR}/${LOCALBASE}/lib/ruby/site_ruby/1.8/rigs
 
 post-install:
