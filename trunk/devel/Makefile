@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.322 2010/08/07 20:02:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.323 2010/09/03 00:03:30 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -194,6 +194,7 @@
     SUBDIR += p5-Class-Accessor-Chained
     SUBDIR += p5-Class-Accessor-Grouped
     SUBDIR += p5-Class-Adapter
+    SUBDIR += p5-Class-Base
     SUBDIR += p5-Class-C3
     SUBDIR += p5-Class-C3-Componentised
     SUBDIR += p5-Class-C3-XS
