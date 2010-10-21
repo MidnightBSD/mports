@@ -1,8 +1,8 @@
---- examples/Makefile.in.orig	Thu May  3 12:27:17 2007
-+++ examples/Makefile.in	Thu May  3 12:27:41 2007
-@@ -219,7 +219,7 @@
- target_os = @target_os@
- target_vendor = @target_vendor@
+--- examples/Makefile.in.orig	2010-03-23 01:30:04.000000000 +0800
++++ examples/Makefile.in	2010-04-26 03:45:47.000000000 +0800
+@@ -369,7 +369,7 @@
+ top_srcdir = @top_srcdir@
+ SUBDIRS = rrdcached
  EXTRA_DIST = cgi-demo.cgi.in
 -examplesdir = $(pkgdatadir)/examples
 +examplesdir = $(datadir)/examples/rrdtool
