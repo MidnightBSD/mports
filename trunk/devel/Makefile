@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.323 2010/09/03 00:03:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.324 2010/10/21 18:59:17 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -202,6 +202,7 @@
     SUBDIR += p5-Class-Data-Inheritable
     SUBDIR += p5-Class-Factory-Util
     SUBDIR += p5-Class-Inspector
+    SUBDIR += p5-Class-MakeMethods
     SUBDIR += p5-Class-Singleton
     SUBDIR += p5-Class-Trigger
     SUBDIR += p5-Clone
