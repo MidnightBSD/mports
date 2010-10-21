@@ -1,0 +1,5 @@
+%%SITE_PERL%%/OLE/Storage_Lite.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/OLE/Storage_Lite
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/OLE
+@dirrmtry %%SITE_PERL%%/OLE
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/OLE
