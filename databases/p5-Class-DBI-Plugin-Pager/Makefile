@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/databases/p5-Class-DBI-Plugin-Pager/Makefile,v 1.1 2008/03/21 19:05:32 ctriv Exp $
+# $MidnightBSD: mports/databases/p5-Class-DBI-Plugin-Pager/Makefile,v 1.2 2009/10/13 23:31:03 laffer1 Exp $
 
 
 PORTNAME=	Class-DBI-Plugin-Pager
 PORTVERSION=	0.561
 CATEGORIES=	databases perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Class
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	kuriyama@FreeBSD.org
