@@ -2,7 +2,7 @@
 # Date created:				19 May 2006
 # Whom:					Xin LI <delphij@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.6 2010/07/13 23:23:36 laffer1 Exp $
+# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.7 2010/08/05 03:09:12 laffer1 Exp $
 # $FreeBSD: ports/net/openldap24-server/Makefile,v 1.153 2008/05/07 21:20:44 delphij Exp $
 #
 
@@ -34,6 +34,7 @@ LICENSE=		openldap2.8
 UNIQUENAME?=		${PKGNAMEPREFIX}openldap24
 LATEST_LINK?=		${UNIQUENAME}${PKGNAMESUFFIX}
 USE_OPENSSL=		yes
+MAKE_JOBS_SAFE=		yes
 
 WANT_OPENLDAP_VER?=	24
 .if ${WANT_OPENLDAP_VER} != 24
@@ -128,7 +129,7 @@ DESCR=			${PKGDIR}/pkg-descr${OPENLDAP_PKGFILESUFX}
 PLIST=			${PKGDIR}/pkg-plist${OPENLDAP_PKGFILESUFX}
 
 SCHEMATA=		collective corba core cosine duaconf dyngroup \
-			inetorgperson java misc nadf \
+			inetorgperson java misc \
 			nis openldap ppolicy
 
 LDAP_RUN_DIR?=		/var/run/openldap
