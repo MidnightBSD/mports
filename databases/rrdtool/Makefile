@@ -2,12 +2,12 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.6 2010/01/09 23:12:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.7 2010/05/05 23:01:12 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
-PORTVERSION=	1.3.9
-PORTREVISION=	1
+PORTVERSION=	1.4.4
+PORTREVISION=	0
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
