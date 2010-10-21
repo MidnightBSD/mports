@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.3 2008/09/15 18:07:49 crash Exp $
+# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.4 2009/09/20 03:52:08 laffer1 Exp $
 
 PORTNAME=	Encode
-PORTVERSION=	2.37
+PORTVERSION=	2.40
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
