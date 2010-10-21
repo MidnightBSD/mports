@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/freetds/Makefile,v 1.4 2009/06/06 21:26:12 laffer1 Exp $
+# $MidnightBSD: mports/databases/freetds/Makefile,v 1.5 2009/09/20 00:31:03 laffer1 Exp $
 
 PORTNAME=	freetds
 PORTVERSION=	0.64
@@ -23,9 +23,22 @@ USE_LDCONFIG=	yes
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
 MAN1=		datacopy.1 freebcp.1 tsql.1 bsqldb.1 defncopy.1
 
+OPTIONS=	OPENSSL "Use openssl" off       \
+		GNUTLS "Use GNUTLS" off \
+		IODBC   "Use iodbc (Mutually Exclusive)" off    \
+		UNIXODBC "Use unixodbc (Mutually Exclusive)" off        \
+		MSDBLIB "MS SQL Server support (breaks databases/sybtcl)" off
+
+.include <bsd.port.pre.mk>
+
 .if defined(WITH_OPENSSL)
 USE_OPENSSL=	yes
 CONFIGURE_ARGS+=--with-openssl=${OPENSSLBASE}
+.endif
+
+.if defined(WITH_GNUTLS)
+LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
+CONFIGURE_ARGS+=--with-gnutls
 .endif
 
 .if defined(WITH_IODBC)
@@ -62,10 +75,6 @@ post-patch:
 		 s|/locales.conf|/locales.conf.dist|g ; \
 		 s|/pool.conf|/pool.conf.dist|g ; \
 		 s| common.h||g'
-.if defined(NOPORTDOCS)
-	@${REINPLACE_CMD} -e "s|\(install-data-am:\).*|\1 install-man|g" \
-		${WRKSRC}/doc/Makefile.in
-.endif
 
 post-install:
 	@${MKDIR} ${PREFIX}/etc/freetds
@@ -73,4 +82,4 @@ post-install:
 	@${ECHO_CMD} "Sample configuration files have been installed in ${PREFIX}/etc"
 	@${ECHO_CMD} "You should edit them and remove the .dist-suffix from their names"
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
