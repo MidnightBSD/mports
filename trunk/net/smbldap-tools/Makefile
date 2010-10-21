@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.1 2009/04/25 15:59:59 laffer1 Exp $
 
 PORTNAME=	smbldap-tools
 PORTVERSION=	0.9.5
@@ -37,6 +37,7 @@ post-patch:
 do-install:
 	${MKDIR} ${PREFIX}/etc/${PORTNAME}
 	${MKDIR} ${EXAMPLESDIR}/etc
+	${MKDIR} ${FAKE_DESTDIR}${SITE_PERL}
 .for i in smbldap.conf smbldap_bind.conf
 	${INSTALL_DATA} ${WRKSRC}/$i ${EXAMPLESDIR}/etc/$i
 	@[ -f ${PREFIX}/etc/${PORTNAME}/$i ] || ${INSTALL_DATA} ${WRKSRC}/$i ${PREFIX}/etc/${PORTNAME}/$i
@@ -47,7 +48,7 @@ do-install:
 .for i in smbldap-migrate-pwdump-accounts smbldap-migrate-pwdump-groups smbldap-migrate-unix-accounts smbldap-migrate-unix-groups
 	${INSTALL_SCRIPT} ${WRKSRC}/doc/migration_scripts/$i ${PREFIX}/sbin
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/smbldap_tools.pm ${SITE_PERL}/
+	${INSTALL_DATA} ${WRKSRC}/smbldap_tools.pm ${FAKE_DESTDIR}${SITE_PERL}/
 	${INSTALL_DATA} ${WRKSRC}/doc/smb.conf ${EXAMPLESDIR}/
 	${INSTALL_SCRIPT} ${WRKSRC}/configure.pl ${EXAMPLESDIR}/
 
