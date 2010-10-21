@@ -2,22 +2,20 @@
 # Date created:				October 17th 1996
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.7 2008/03/24 18:29:28 ctriv Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.8 2009/12/13 23:21:07 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 #
 
 PORTNAME=	DBI
-PORTVERSION=	1.60.9
+PORTVERSION=	1.613
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
+DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
 LICENSE=	perl
-
-OPTIONS=	PROXY "Enable DBI::Proxy" Off
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable
 BUILD_DEPENDS=	${RUN_DEPENDS}
@@ -33,6 +31,8 @@ MAN1=		dbilogstrip.1 dbiprof.1 dbiproxy.1
 MAN3=		Bundle::DBI.3 \
 		DBD::DBM.3 \
 		DBD::File.3 \
+		DBD::File::Developers.3 \
+		DBD::File::Roadmap.3 \
 		DBD::Gofer.3 \
 		DBD::Gofer::Policy::Base.3 \
 		DBD::Gofer::Policy::classic.3 \
@@ -51,6 +51,7 @@ MAN3=		Bundle::DBI.3 \
 		DBI::Const::GetInfoType.3 \
 		DBI::DBD.3 \
 		DBI::DBD::Metadata.3 \
+		DBI::DBD::SqlEngine.3 \
 		DBI::FAQ.3 \
 		DBI::Gofer::Execute.3 \
 		DBI::Gofer::Request.3 \
@@ -75,6 +76,12 @@ MAN3=		Bundle::DBI.3 \
 		TASKS.3 \
 		Win32::DBIODBC.3
 
+.if !defined(WITH_PROXY)
+pre-everything::
+	@${ECHO_CMD} "If you need DBI::Proxy, try to set WITH_PROXY."
+	@${ECHO_CMD} ""
+	@sleep 1
+.endif
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	Changes README

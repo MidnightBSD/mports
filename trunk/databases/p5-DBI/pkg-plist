@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/databases/p5-DBI/pkg-plist,v 1.36 2007/10/24 04:47:13 chinsan Exp $
 bin/dbilogstrip
 bin/dbiprof
 bin/dbiproxy
@@ -6,6 +5,8 @@ bin/dbiproxy
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/DBM.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/ExampleP.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/File.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBD/File/Roadmap.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/DBD/File/Developers.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer/Policy/Base.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer/Policy/classic.pm
@@ -26,6 +27,7 @@ bin/dbiproxy
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Const/GetInfoType.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/DBD.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/DBD/Metadata.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBI/DBD/SqlEngine.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/FAQ.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Execute.pm
 %%SITE_PERL%%/%%PERL_ARCH%%/DBI/Gofer/Request.pm
@@ -51,7 +53,6 @@ bin/dbiproxy
 %%SITE_PERL%%/%%PERL_ARCH%%/Roadmap.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/TASKS.pod
 %%SITE_PERL%%/%%PERL_ARCH%%/Win32/DBIODBC.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/.packlist
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/DBI.bs
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/DBI.so
 %%SITE_PERL%%/%%PERL_ARCH%%/auto/DBI/DBIXS.h
@@ -78,5 +79,6 @@ bin/dbiproxy
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer/Transport
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer/Policy
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/DBD/Gofer
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/DBD/File
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/DBD
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Bundle
