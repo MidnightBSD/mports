@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.5 2009/08/13 18:16:38 laffer1 Exp $
+# $MidnightBSD: mports/www/youtube_dl/Makefile,v 1.6 2009/10/13 01:37:48 laffer1 Exp $
 
 PORTNAME=	youtube_dl
-PORTVERSION=	2009.06.29
+PORTVERSION=	2010.10.03
 CATEGORIES=	www
 MASTER_SITES=	http://bitbucket.org/rg3/youtube-dl/raw/${PORTVERSION}/
 DISTNAME=	youtube-dl
