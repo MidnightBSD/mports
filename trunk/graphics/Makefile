@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.101 2010/05/30 22:43:35 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.102 2010/05/30 23:17:01 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -91,6 +91,7 @@
     SUBDIR += p5-GD
     SUBDIR += p5-GD-Graph
     SUBDIR += p5-GD-TextUtil
+    SUBDIR += p5-GraphViz
     SUBDIR += p5-Image-Info
     SUBDIR += p5-Image-Magick-Iterator
     SUBDIR += p5-Image-PBMlib
