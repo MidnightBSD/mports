@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.9 2009/04/17 16:36:14 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/xine/Makefile,v 1.10 2010/05/05 23:43:38 laffer1 Exp $
 
 PORTNAME=	xine
 PORTVERSION=	0.99.5
@@ -63,7 +63,7 @@ CONFIGURE_ARGS+=	--disable-xft
 .endif
 
 .if !defined(WITHOUT_CURL)
-LIB_DEPENDS+=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
 .else
 CONFIGURE_ARGS+=	--without-curl
 .endif
