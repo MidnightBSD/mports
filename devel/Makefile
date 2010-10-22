@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.332 2010/10/22 16:32:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.333 2010/10/22 16:36:13 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -244,6 +244,7 @@
     SUBDIR += p5-Net-DBus
     SUBDIR += p5-OLE-Storage_Lite
     SUBDIR += p5-Package-Constants
+    SUBDIR += p5-Packaage-Stash
     SUBDIR += p5-Params-Util
     SUBDIR += p5-Params-Validate
     SUBDIR += p5-Parse-RecDescent
