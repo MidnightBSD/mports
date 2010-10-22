@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.327 2010/10/21 19:06:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.328 2010/10/21 19:22:27 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -186,6 +186,7 @@
     SUBDIR += p5-Algorithm-C3
     SUBDIR += p5-Algorithm-Diff
     SUBDIR += p5-AppConfig
+    SUBDIR += p5-B-Hooks-EndOfScope
     SUBDIR += p5-B-Keywords
     SUBDIR += p5-BSD-Resource
     SUBDIR += p5-Cache-Cache
@@ -257,6 +258,8 @@
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Approx
     SUBDIR += p5-String-Ediff
+    SUBDIR += p5-Sub-Name
+    SUBDIR += p5-Sub-Identity
     SUBDIR += p5-Sub-Uplevel
     SUBDIR += p5-Task-Weaken
     SUBDIR += p5-Term-ANSIColor
@@ -292,6 +295,7 @@
     SUBDIR += php-dbg2
     SUBDIR += php-xdebug
     SUBDIR += php5-gettext
+    SUBDIR += p5-namespace-clean
     SUBDIR += php5-ncurses
     SUBDIR += php5-pcntl
     SUBDIR += php5-readline
