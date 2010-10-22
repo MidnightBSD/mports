@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.331 2010/10/22 16:30:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.332 2010/10/22 16:32:19 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -282,7 +282,9 @@
     SUBDIR += p5-TimeDate
     SUBDIR += p5-UNIVERSAL-moniker
     SUBDIR += p5-UNIVERSAL-require
+    SUBDIR += p5-Variable-Magic
     SUBDIR += p5-common-sense
+    SUBDIR += p5-namespace-clean
     SUBDIR += p5-subversion
     SUBDIR += p5-threads
     SUBDIR += p5-threads-shared
@@ -298,7 +300,6 @@
     SUBDIR += php-dbg2
     SUBDIR += php-xdebug
     SUBDIR += php5-gettext
-    SUBDIR += p5-namespace-clean
     SUBDIR += php5-ncurses
     SUBDIR += php5-pcntl
     SUBDIR += php5-readline
