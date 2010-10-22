@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.328 2010/10/21 19:22:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.329 2010/10/22 16:26:22 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -258,6 +258,7 @@
     SUBDIR += p5-Storable
     SUBDIR += p5-String-Approx
     SUBDIR += p5-String-Ediff
+    SUBDIR += p5-Sub-Exporter
     SUBDIR += p5-Sub-Name
     SUBDIR += p5-Sub-Identity
     SUBDIR += p5-Sub-Uplevel
