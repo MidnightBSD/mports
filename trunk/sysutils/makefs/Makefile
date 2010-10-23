@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/makefs/Makefile,v 1.1 2007/08/27 19:39:22 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/makefs/Makefile,v 1.2 2009/05/22 03:54:47 laffer1 Exp $
 
 PORTNAME=	makefs
 PORTVERSION=	20040704
@@ -13,9 +13,6 @@ MAN8=		makefs.8
 PLIST_FILES=	sbin/makefs
 
 .include <bsd.port.pre.mk>
-
-# This doesn't build with gcc 4
-USE_GCC=	3.4
 
 do-build:
 	cd ${WRKSRC} && ${SH} -xe build.sh
