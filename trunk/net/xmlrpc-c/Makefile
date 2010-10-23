@@ -2,15 +2,15 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.6 2010/05/31 20:28:10 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.7 2010/07/13 23:27:11 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.06.40
+PORTVERSION=	1.06.41
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+#DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
@@ -32,6 +32,7 @@ MAKE_ARGS=	LIBTOOL="${LIBTOOL}" \
 		CFLAGS_COMMON="${CFLAGS}" \
 		CXXFLAGS_COMMON="${CXXFLAGS}"
 USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
