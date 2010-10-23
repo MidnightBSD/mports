@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.82 2010/09/24 00:00:39 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.83 2010/10/21 19:24:24 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -108,6 +108,7 @@
     SUBDIR += ruby-gdbm
     SUBDIR += sqlclient
     SUBDIR += sqlite3
+    SUBDIR += tdb
     SUBDIR += unixODBC
 
 
