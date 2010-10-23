@@ -2,15 +2,15 @@
 # Date created:				02 August 2002
 # Whom:	      				Yen-Ming Lee <leeym@leeym.com>
 #
-# $MidnightBSD: mports/devel/upnp/Makefile,v 1.2 2009/09/19 23:32:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/upnp/Makefile,v 1.3 2010/10/20 18:50:24 laffer1 Exp $
 # $FreeBSD: ports/devel/upnp/Makefile,v 1.24 2008/04/29 12:41:16 miwi Exp $
 #
 
 PORTNAME=	upnp
-PORTVERSION=	1.6.7
+PORTVERSION=	1.6.8
 PORTEPOCH=	1
 CATEGORIES=	devel
-MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/LibUPnP%20${PORTVERSION}
+MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/libUPnP%20${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
