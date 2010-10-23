@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/www/apache22/files/apache22.in,v 1.4 2009/08/02 19:35:57 mezz Exp $
+# $FreeBSD: ports/www/apache22/files/apache22.in,v 1.10 2010/10/21 18:00:15 pgollucci Exp $
 #
 
 # PROVIDE: apache22
@@ -25,7 +25,7 @@
 #                             module on start up and load if not loaded.
 # apache22_fib (str):	      Set an altered default network view for apache
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="apache22"
 rcvar=`set_rcvar`
@@ -41,6 +41,7 @@ command="%%PREFIX%%/sbin/httpd"
 _pidprefix="/var/run/httpd"
 pidfile="${_pidprefix}.pid"
 required_files=%%PREFIX%%/etc/apache22/httpd.conf
+envvars="%%PREFIX%%/sbin/envvars"
 
 [ -z "$apache22_enable" ]       && apache22_enable="NO"
 [ -z "$apache22limits_enable" ] && apache22limits_enable="NO"
@@ -49,12 +50,13 @@ required_files=%%PREFIX%%/etc/apache22/httpd.conf
 [ -z "$apache22_fib" ] && apache22_fib="NO"
 
 apache22_accf() {
-	if checkyesno apache22_http_accept_enable; then
-		/sbin/kldstat -v | grep accf_http > /dev/null 2>&1 || /sbin/kldload accf_http || return ${?}
-		/sbin/kldstat -v | grep accf_data > /dev/null 2>&1 || /sbin/kldload accf_data || return ${?}
-	else
-		apache22_flags="${apache22_flags} -DNOHTTPACCEPT"
-	fi
+
+  if checkyesno apache22_http_accept_enable; then
+    /sbin/kldstat -v | grep accf_http > /dev/null 2>&1 || /sbin/kldload accf_http || return ${?}
+    /sbin/kldstat -v | grep accf_data > /dev/null 2>&1 || /sbin/kldload accf_data || return ${?}
+  else
+    apache22_flags="${apache22_flags} -DNOHTTPACCEPT"
+  fi
 }
 
 load_rc_config $name
@@ -75,11 +77,15 @@ if [ -n "$2" ]; then
 		eval apache22limits_enable="\${apache22limits_${profile}_enable:-${apache22limits_enable}}"
 		eval apache22limits_args="\${apache22limits_${profile}_args:-${apache22limits_args}}"
 		eval apache22_fib="\${apache22_${profile}_fib:-${apache22_fib}}"
+		eval command="\${apache22_${profile}_command:-${command}}"
+		eval pidfile="\${apache22_${profile}_pidfile:-${pidfile}}"
+		eval apache22_envvars="\${apache22_${profile}_envvars:-${envvars}}"
 		apache22_flags="-f ${apache22_configfile} -c \"PidFile ${pidfile}\" ${apache22_flags}"
 	else
 		echo "$0: extra argument ignored"
 	fi
 else
+	eval apache22_envvars=${envvars}
 	if [ "x${apache22_profiles}" != "x" -a "x$1" != "x" ]; then
 		for profile in ${apache22_profiles}; do
 			eval _enable="\${apache22_${profile}_enable}"
@@ -121,6 +127,8 @@ fi
 
 apache22_requirepidfile()
 {
+    apache22_checkconfig
+
 	if [ ! "0`check_pidfile ${pidfile} ${command}`" -gt 1 ]; then
 		echo "${name} not running? (check $pidfile)."
 		exit 1
@@ -129,9 +137,9 @@ apache22_requirepidfile()
 
 apache22_checkconfig()
 {
-	if test -f %%PREFIX%%/sbin/envvars
+	if test -f ${apache22_envvars}
 	then
-		. %%PREFIX%%/sbin/envvars
+		. ${apache22_envvars}
 	fi
 
 	echo "Performing sanity check on apache22 configuration:"
