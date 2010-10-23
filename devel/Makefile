@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.336 2010/10/23 11:38:18 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.337 2010/10/23 11:48:53 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -248,7 +248,7 @@
     SUBDIR += p5-Packaage-Stash
     SUBDIR += p5-Params-Util
     SUBDIR += p5-Params-Validate
-    SUBDIR += p5-Parse-Pidi
+    SUBDIR += p5-Parse-Pidl
     SUBDIR += p5-Parse-RecDescent
     SUBDIR += p5-PatchReader
     SUBDIR += p5-PathTools
