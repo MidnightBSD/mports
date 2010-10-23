@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.335 2010/10/23 10:10:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.336 2010/10/23 11:38:18 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -370,6 +370,7 @@
     SUBDIR += sysconftool
     SUBDIR += t1lib
     SUBDIR += talloc
+    SUBDIR += tevent
     SUBDIR += tmake
     SUBDIR += uclmmbase
     SUBDIR += upnp
