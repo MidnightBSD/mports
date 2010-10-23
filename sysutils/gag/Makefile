@@ -2,14 +2,13 @@
 # Date created:				31 Aug 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/gag/Makefile,v 1.1 2007/09/01 05:20:15 laffer1 Exp $
 #
 
 PORTNAME=	gag
 PORTVERSION=	4.9
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}_${PORTVERSION}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -25,7 +24,6 @@ CONFLICTS=	gag-2*
 NO_LATEST_LINK=	yes
 
 do-install:
-# Data
 	@${MKDIR} ${DATADIR}
 .for f in cdrom.iso disk.dsk
 	@${INSTALL_DATA} ${WRKSRC}/${f} ${DATADIR}
