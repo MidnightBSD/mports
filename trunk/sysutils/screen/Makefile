@@ -2,7 +2,7 @@
 # Date created:         25 Nov 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.6 2007/08/19 06:14:25 ctriv Exp $
+# $MidnightBSD: mports/sysutils/screen/Makefile,v 1.7 2009/12/28 23:25:36 laffer1 Exp $
 # $FreeBSD: ports/sysutils/screen/Makefile,v 1.62 2006/08/05 16:40:17 rafan Exp $
 #
 
@@ -13,8 +13,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.uni-erlangen.de/pub/utilities/screen/ \
 		${MASTER_SITE_GNU} \
 		http://komquats.com/distfiles/ \
-		http://people.freebsd.org/~cy/distfiles/ \
-
+		http://people.freebsd.org/~cy/distfiles/
 MASTER_SITE_SUBDIR=	screen
 
 MAINTAINER=	ports@MidnightBSD.org
