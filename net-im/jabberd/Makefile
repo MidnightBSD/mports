@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.6 2010/05/29 08:29:24 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.7 2010/09/07 23:51:58 laffer1 Exp $
 
 PORTNAME=	jabberd
-PORTVERSION=	2.2.9
+PORTVERSION=	2.2.11
 CATEGORIES=	net-im
 MASTER_SITES=	http://codex.xiaoka.com/pub/jabberd2/releases/
 DIST_SUBDIR=	jabber
