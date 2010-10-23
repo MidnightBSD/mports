@@ -2,18 +2,16 @@
 # Date created:				3 July 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.4 2008/07/14 03:40:10 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.5 2010/03/18 14:17:04 crash Exp $
 # $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
 #
 
 PORTNAME=	e2fsprogs
-PORTVERSION=	1.41.11
+PORTVERSION=	1.41.12
 PORTREVISION?=	0
 CATEGORIES?=	sysutils
 MASTER_SITES=   SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 	
-#MASTER_SITE_SUBDIR=	${PORTNAME}
-
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Utilities & library to manipulate ext2/ext3/ext4 filesystems
 LICENSE=	agg
