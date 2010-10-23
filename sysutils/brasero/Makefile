@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.1 2010/02/27 21:16:09 laffer1 Exp $
 
 PORTNAME=	brasero
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.2
 PORTREVISION=	1
 CATEGORIES=	sysutils audio multimedia gnome
 MASTER_SITES=	GNOME
@@ -12,9 +12,11 @@ COMMENT=	CD/DVD mastering tool for the GNOME desktop
 LICENSE=	gpl2
 
 LIB_DEPENDS=	notify.1:${PORTSDIR}/devel/libnotify \
-		totem-plparser.12:${PORTSDIR}/multimedia/totem-pl-parser
+		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
+		totem-plparser.17:${PORTSDIR}/multimedia/totem-pl-parser \
+		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
 RUN_DEPENDS=	growisofs:${PORTSDIR}/sysutils/dvd+rw-tools \
-    		cdrdao:${PORTSDIR}/sysutils/cdrdao
+		cdrdao:${PORTSDIR}/sysutils/cdrdao
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
@@ -22,6 +24,7 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_XORG=	sm
 USE_GNOME=	intlhack gnomeprefix gnomehack
+USE_LDCONFIG=	yes
 USE_GSTREAMER=	gconf core
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
@@ -54,5 +57,9 @@ PLIST_SUB+=	LIBBURNIA=""
 .else
 PLIST_SUB+=	LIBBURNIA="@comment "
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	    	${WRKSRC}/libbrasero-burn/burn-process.c
 
 .include <bsd.port.post.mk>
