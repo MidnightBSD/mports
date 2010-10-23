@@ -3,25 +3,21 @@
 # Whom:			Michael Vasilenko <acid@stu.cn.ua>
 #
 # $FreeBSD: ports/net-mgmt/trafd/Makefile,v 1.14 2006/05/11 22:49:44 edwin Exp $
-# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.2 2007/06/06 21:11:33 ctriv Exp $
+# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.3 2007/08/01 20:38:28 laffer1 Exp $
 #
 
 PORTNAME=	trafd
-PORTVERSION=	3.0.1
-PORTREVISION=	2
+PORTVERSION=	3.0.2.1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	ftp://ftp.riss-telecom.ru/pub/dev/trafd/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The BPF Traffic Collector
 LICENSE=	bsd3
 
+USE_RC_SUBR=	trafd
+
 CONFLICTS=	bpft-4.*
-
-.include <bsd.port.pre.mk>
-
-RCSUBRBASE=	/etc
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/trafd/trafd ${PREFIX}/bin
@@ -33,10 +29,6 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/trafstatd/trafstatd ${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/traflog/traflog ${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/traflog/traflog.format ${PREFIX}/etc
-	${CP} ${FILESDIR}/trafd.sh.sample ${WRKDIR}
-	${REINPLACE_CMD} -e "s|%%RC_SUBR%%|${RCSUBRBASE}/rc.subr|g;" \
-	    ${WRKDIR}/trafd.sh.sample
-	${INSTALL_SCRIPT} ${WRKDIR}/trafd.sh.sample ${PREFIX}/etc/rc.d
 	@${MKDIR} ${PREFIX}/var/trafd
 	@${MKDIR} ${PREFIX}/var/log
 .if !defined(NOPORTDOCS)
@@ -44,4 +36,4 @@ do-install:
 	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
