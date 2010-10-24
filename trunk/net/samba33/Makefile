@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba33/Makefile,v 1.5 2010/08/05 03:07:28 laffer1 Exp $
+# $MidnightBSD: mports/net/samba33/Makefile,v 1.6 2010/10/14 17:05:27 laffer1 Exp $
 
 PORTNAME=		samba
 PORTVERSION?=		3.3.14
@@ -493,6 +493,6 @@ post-install:
 .endif
 
 test:
-	cd ${WRKSRC} && ${MAKE} test_nss_modules test_pam_modules && ${MAKE} test
+	(cd ${WRKSRC} && ${MAKE} test_nss_modules test_pam_modules && ${MAKE} test)
 
 .include <bsd.port.post.mk>
