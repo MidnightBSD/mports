@@ -2,11 +2,11 @@
 # Date created:				May 17 2008
 # Whom:	      				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.2 2009/01/12 22:31:31 laffer1 Exp $
+# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.3 2009/09/20 01:37:17 laffer1 Exp $
 #
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.4.5
+PORTVERSION=	1.4.6
 CATEGORIES=	net geography
 MASTER_SITES=	http://www.maxmind.com/download/geoip/api/c/ \
 		http://mirror.mcx2.org/
