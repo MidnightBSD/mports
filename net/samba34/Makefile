@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.1 2010/10/23 12:01:07 laffer1 Exp $
 
 PORTNAME=		samba34
 PORTVERSION=		3.4.9
@@ -116,7 +116,7 @@ CONFIGURE_ARGS+=	--disable-cups --disable-fam --without-winbind \
 .else
 # Samba server itself
 USE_RC_SUBR=		samba
-SUB_FILES=		pkg-install pkg-message pkg-deinstall
+SUB_FILES=		pkg-install pkg-message pkg-deinstall smb.conf.sample
 
 PLIST=			${WRKDIR}/.PLIST
 # We don't (yet) have clustered FS for cluster support
@@ -498,9 +498,6 @@ post-install:
 	@${INSTALL_DATA} "${FILESDIR}/README.FreeBSD" "${DOCSDIR}"
 # !NOPORTDOCS
 .endif
-# Run post-install script
-	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CAT} ${PKGMESSAGE}
 
 .if defined(WITH_MAX_DEBUG)
 test:
