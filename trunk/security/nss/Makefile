@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/nss/Makefile,v 1.8 2009/05/01 16:18:36 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.9 2009/10/13 04:08:44 laffer1 Exp $
 
 PORTNAME=	nss
 PORTVERSION=	3.11.9
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
@@ -21,7 +22,7 @@ USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 MAKE_ENV=	BSD_LDOPTS="${PTHREAD_LIBS} -L${LOCALBASE}/lib" \
-		BUILD_OPT=1
+		BUILD_OPT=1 NSS_ENABLE_ECC=1
 ALL_TARGET=	nss_build_all
 CFLAGS+=	-I${LOCALBASE}/include/nspr
 
