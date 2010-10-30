@@ -1,9 +1,4 @@
-# New ports collection makefile for:	fontforge
-# Date created:		25 March 2001
-# Whom:			KANOU Hiroki <kanou@khdd.net>
-#
-# $FreeBSD: ports/print/fontforge/Makefile,v 1.122 2010/08/21 23:04:29 lwhsu Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	fontforge
 PORTVERSION=	20100501
@@ -13,8 +8,9 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-source
 DISTFILES=	${EXTRACT_ONLY}
 EXTRACT_ONLY=	${PORTNAME}_full-${PORTVERSION}.tar.bz2
 
-MAINTAINER=	cyberbotx@cyberbotx.com
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Type 1/TrueType/OpenType/bitmap font editor
+LICENSE=	bsd3
 
 LIB_DEPENDS=	uninameslist.0:${PORTSDIR}/textproc/libuninameslist \
 		tiff.4:${PORTSDIR}/graphics/tiff \
@@ -31,7 +27,6 @@ EXTRACT_ONLY+=	freetype-${FREETYPE_VERSION}.tar.bz2
 .endif
 
 .if !defined(NOPORTDOCS)
-#DOC_VERSION=	${PORTVERSION}
 # This version of Fontforge has a different version number for the docs as opposed to the actual source
 DOC_VERSION=	20100429
 MASTER_SITES+=	SF/${PORTNAME}/${PORTNAME}-docs:docs
