@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.86 2010/10/23 17:54:08 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.87 2010/11/06 13:54:01 laffer1 Exp $
 #
 
     COMMENT = Audio tools
@@ -80,6 +80,7 @@
     SUBDIR += mpg123
     SUBDIR += nas
     SUBDIR += openal
+    SUBDIR += opencore-amr
     SUBDIR += portaudio
     SUBDIR += portaudio2
     SUBDIR += pulseaudio
