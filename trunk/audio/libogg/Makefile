@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/libogg/Makefile,v 1.6 2009/11/25 02:32:37 laffer1 Exp $
+# $MidnightBSD: mports/audio/libogg/Makefile,v 1.7 2010/02/27 19:30:03 laffer1 Exp $
 
 PORTNAME=	libogg
-PORTVERSION=	1.1.4
-PORTEPOCH=	3
+PORTVERSION=	1.2.0
+PORTEPOCH=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/ogg/
 
