@@ -1,3 +1,4 @@
-MD5 (celt-0.7.0.tar.gz) = 0bb72abec367f4ef12551f79dda11b23
-SHA256 (celt-0.7.0.tar.gz) = 65e7df13549b4954b13c13ec57b8844c05ea18843968676f857af46ddfcfbaac
-SIZE (celt-0.7.0.tar.gz) = 423948
+MD5 (celt-0.9.0.tar.gz) = ea35d7bb789ec74eab5134b36f4dc3dc
+SHA256 (celt-0.9.0.tar.gz) = 9d6eccc5b3ff5d280a1c2a04173c4bcbcddb472fa880413cada639e365b6bf92
+RMD160 (celt-0.9.0.tar.gz) = a1734d3c24f861b309d1a06895c5e95638261e18
+SIZE (celt-0.9.0.tar.gz) = 431055
