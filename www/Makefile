@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.104 2010/09/06 19:59:55 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.105 2010/09/06 20:04:27 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -13,6 +13,7 @@
     SUBDIR += browser3
     SUBDIR += browser35
     SUBDIR += cherokee
+    SUBDIR += chromium
     SUBDIR += dillo
     SUBDIR += dummyflash
     SUBDIR += eaccelerator
