@@ -1,13 +1,7 @@
-# New ports collection makefile for:	yabause
-# Date created:		2006-08-23
-# Whom:			Jose Alonso Cardenas Marquez <acm@FreeBSD.org>
-#
-# $MidnightBSD: mports/emulators/yabause/Makefile,v 1.3 2008/03/31 02:06:49 laffer1 Exp $
-# $FreeBSD: ports/emulators/yabause/Makefile,v 1.7 2007/01/16 21:57:13 acm Exp $
-#
+# $MidnightBSD: mports/emulators/yabause/Makefile,v 1.4 2008/10/21 22:45:23 ctriv Exp $
 
 PORTNAME=	yabause
-PORTVERSION=	0.9.2
+PORTVERSION=	0.9.4
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
