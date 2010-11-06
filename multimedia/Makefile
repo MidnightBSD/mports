@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.55 2010/03/01 01:57:32 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.56 2010/09/06 21:21:50 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
 
     SUBDIR += cheese
     SUBDIR += clive
+    SUBDIR += dirac
     SUBDIR += etoile-babbler
     SUBDIR += etoile-mediakit
     SUBDIR += etoile-multimediakit
