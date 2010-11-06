@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.4 2010/02/27 22:18:33 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.5 2010/02/27 22:40:54 laffer1 Exp $
 
 PORTNAME=	ffmpeg
-PORTVERSION=	0.5
+PORTVERSION=	0.6
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -19,22 +19,21 @@ USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
 WANT_SDL=	yes
 
-OPTIONS=	AMR_NB	"AMR Narrow Band encoder" off \
-		AMR_WB	"AMR Wide Band encoder" off \
+OPTIONS=	AMR_NB	"AMR Narrow Band encoder (opencore)" off \
+		AMR_WB	"AMR Wide Band encoder (opencore)" off \
 		DIRAC	"Dirac codec via libdirac" off \
 		FAAC	"FAAC mp4/aac audio encoder" off \
 		FAAD	"FAAD mp4/aac audio decoder" on \
 		FFSERVER "Build and install ffserver" on \
 		GSM	"GSM audio codec" off \
-		IPV6	"IPV6 network support" on \
 		LAME	"LAME MP3 encoder" off \
 		OPENJPEG	"JPEG 2000 decoder" off \
 		OPTIMIZED_CFLAGS "Additional optimizations" off \
 		SCHROEDINGER	"Dirac codec via libschroedinger" on \
 		SDL	"SDL support (build ffplay)" off \
 		SPEEX	"Speex audio decoder" off \
+		SSSE3	"Enable ssse3 support" on \
 		THEORA	"Theora encoder (implies OGG)" on \
-		VHOOK	"Video hook support" off \
 		VORBIS	"Vorbis encoder via libvorbis (implies OGG)" on \
 		X264	"H.264 encoder" on \
 		XVID	"Xvid encoder via xvidcore" on
@@ -72,7 +71,6 @@ CONFIGURE_ARGS+=--prefix="${PREFIX}" \
 		--mandir="${PREFIX}/man" \
 		--enable-shared \
 		--enable-gpl \
-		--enable-swscale \
 		--enable-postproc \
 		--enable-avfilter \
 		--enable-avfilter-lavf \
@@ -88,34 +86,42 @@ SHLIB_VER=	1
 PLIST_SUB=	SHLIB_VER=${SHLIB_VER}
 USE_LDCONFIG=	yes
 
-DOC_FILES=	Changelog COPYING.GPL COPYING.LGPL \
-		CREDITS INSTALL MAINTAINERS README
+DOC_FILES=	Changelog COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1 \
+		COPYING.LGPLv3 CREDITS INSTALL LICENSE MAINTAINERS README \
+		RELEASE
 # under doc subdirectory
-DOC_DOCFILES=	APIchanges avutil.txt faq.html ffmpeg-doc.html \
+DOC_DOCFILES=	APIchanges TODO avutil.txt developer.html faq.html \
 		ffmpeg_powerpc_performance_evaluation_howto.txt \
-		ffplay-doc.html ffserver-doc.html general.html \
-		issue_tracker.txt optimization.txt \
-		snow.txt soc.txt swscale.txt TODO
+		ffmpeg-doc.html ffplay-doc.html ffprobe-doc.html \
+		ffserver-doc.html general.html issue_tracker.txt \
+		libavfilter.html optimization.txt rate_distortion.txt \
+		snow.txt soc.txt swscale.txt tablegen.txt viterbi.txt
 PORTDOCS=	*
+
+.if !defined(WITHOUT_SSSE3)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+CONFIGURE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+.endif
 
 .ifndef(WITHOUT_FFSERVER)
 USE_RC_SUBR=	ffserver
 .endif
 
 # sse hardware vector support
-.if (defined(MACHINE_CPU) && ${MACHINE_CPU:Msse} == "sse")
+.if defined(MACHINE_CPU) && (${MACHINE_CPU:Msse} == "sse" || ${MACHINE_CPU:Mamd64} == "amd64")
 WITH_BUILTIN_VECTOR=	yes
 .else
 CONFIGURE_ARGS+=	--disable-sse
 .endif
 
 # mmx support
-.if ${MACHINE_CPU:Mmmx} == ""
+.if defined(MACHINE_CPU) && ${MACHINE_CPU:Mmmx} == "" && ${MACHINE_CPU:Mamd64} == ""
 CONFIGURE_ARGS+=	--disable-mmx
 WITHOUT_BUILTIN_VECTOR=	yes
 .endif
 
-# builtin vector, requires mmx
+# builtin vector, requires mmx and sse
 .if !defined(WITHOUT_BUILTIN_VECTOR) && defined(WITH_BUILTIN_VECTOR)
 FFMPEG_CFLAGS+=		-msse
 .endif
@@ -123,33 +129,32 @@ FFMPEG_CFLAGS+=		-msse
 # PORTDOCS
 .ifndef(NOPORTDOCS)
 BUILD_DEPENDS+=		texi2html:${PORTSDIR}/textproc/texi2html
-MAN1+=		ffmpeg.1
+MAN1+=		ffmpeg.1 ffprobe.1
 . ifndef(WITHOUT_FFSERVER)
 MAN1+=		ffserver.1
 . endif
 .endif
 
 # optimizations
-.ifdef(WITH_OPTIMIZED_CFLAGS)
-CFLAGS:=	${CFLAGS:N-O*} -O3 -ffast-math -fno-finite-math-only -fomit-frame-pointer
-.else
-CFLAGS:=	${CFLAGS:N-O0} -O2
-DEBUG_FLAGS+=	-O2
+.if defined(WITH_OPTIMIZED_CFLAGS)
+CFLAGS+=	-O3 -ffast-math -fno-finite-math-only -fomit-frame-pointer
 .endif
 
 # amr
+.if defined(WITH_AMR_NB) || defined (WITH_AMR_WB)
+LIB_DEPENDS+=	opencore-amrnb.0:${PORTSDIR}/audio/opencore-amr
+.endif
+
 .ifdef(WITH_AMR_NB)
-LIB_DEPENDS+=	amrnb.3:${PORTSDIR}/audio/libamrnb
-CONFIGURE_ARGS+=	--enable-libamr-nb --enable-nonfree
+CONFIGURE_ARGS+=	--enable-libopencore-amrnb --enable-version3
 .else
-CONFIGURE_ARGS+=	--disable-libamr-nb
+CONFIGURE_ARGS+=	--disable-libopencore-amrnb
 .endif
 
 .ifdef(WITH_AMR_WB)
-LIB_DEPENDS+=	amrwb.3:${PORTSDIR}/audio/libamrwb
-CONFIGURE_ARGS+=	--enable-libamr-wb --enable-nonfree
+CONFIGURE_ARGS+=	--enable-libopencore-amrwb --enable-version3
 .else
-CONFIGURE_ARGS+=	--disable-libamr-wb
+CONFIGURE_ARGS+=	--disable-libopencore-amrwb
 .endif
 
 # dirac
@@ -163,7 +168,7 @@ CONFIGURE_ARGS+=	--disable-libdirac
 # faac
 .ifdef(WITH_FAAC)
 LIB_DEPENDS+=	faac.0:${PORTSDIR}/audio/faac
-CONFIGURE_ARGS+=	--enable-libfaac
+CONFIGURE_ARGS+=	--enable-libfaac --enable-nonfree
 .else
 CONFIGURE_ARGS+=	--disable-libfaac
 .endif
@@ -191,23 +196,6 @@ LIB_DEPENDS+=	gsm.1:${PORTSDIR}/audio/gsm
 CONFIGURE_ARGS+=	--enable-libgsm
 .else
 CONFIGURE_ARGS+=	--disable-libgsm
-.endif
-
-# vhook
-.if defined(WITH_VHOOK)
-USE_EFL=		imlib2
-LIB_DEPENDS+=		freetype.9:${PORTSDIR}/print/freetype2
-PLIST_SUB+=	VHOOK=""
-.else
-CONFIGURE_ARGS+=	--disable-vhook
-PLIST_SUB+=	VHOOK="@comment "
-.endif
-
-# ipv6
-.ifndef(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 # mp3
@@ -270,9 +258,11 @@ FFMPEG_CFLAGS+=		-I${LOCALBASE}/include/vorbis
 CONFIGURE_ARGS+=	--disable-libvorbis
 .endif
 
+CONFIGURE_ARGS+=	--disable-libvpx
+
 # x264
 .ifndef(WITHOUT_X264)
-LIB_DEPENDS+=	x264.65:${PORTSDIR}/multimedia/x264
+LIB_DEPENDS+=	x264.50:${PORTSDIR}/multimedia/x264
 CONFIGURE_ARGS+=	--enable-libx264
 .else
 CONFIGURE_ARGS+=	--disable-libx264
@@ -302,7 +292,8 @@ post-patch:
 	@${REINPLACE_CMD} -E \
 		-e "s|(EXTRALIBS[[:space:]]*=)|\1-L${LOCALBASE}/lib |g; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g; \
-		s|-pthread|${PTHREAD_LIBS}|g" \
+		s|-pthread|${PTHREAD_LIBS}|g; \
+		s|gsm/gsm.h|gsm.h|g" \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|-ldl||; s|$$(LIBMAJOR)|${SHLIB_VER}|g;' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
