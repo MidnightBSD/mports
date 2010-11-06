@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.19 2010/09/02 23:15:11 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.20 2010/10/23 13:30:49 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.17
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -34,6 +34,7 @@ USE_BZIP2=		yes
 USE_ICONV=		yes
 USE_AUTOTOOLS=		autoconf:262 libtool:22
 USE_PERL5=		yes
+USE_PYTHON=		yes
 USE_RC_SUBR=		apache22.sh htcacheclean.sh
 SUB_LIST+=		RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
 LIBTOOLFILES=		configure
