@@ -1,9 +1,8 @@
-#
-# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.1 2009/01/04 21:03:15 ctriv Exp $
-#
+# $MidnightBSD: mports/multimedia/kdemultimedia4/Makefile,v 1.2 2010/02/27 23:18:39 laffer1 Exp $
 
 PORTNAME=	kdemultimedia
 PORTVERSION=	${KDE4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	multimedia kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
@@ -17,7 +16,7 @@ OPTIONS=	PULSEAUDIO "KMix control for PulseAudio" off
 
 LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
 		cdda_paranoia.0:${PORTSDIR}/audio/cdparanoia \
-		ogg.6:${PORTSDIR}/audio/libogg \
+		ogg.7:${PORTSDIR}/audio/libogg \
 		tag.6:${PORTSDIR}/audio/taglib \
 		vorbis.4:${PORTSDIR}/audio/libvorbis \
 		musicbrainz.4:${PORTSDIR}/audio/libmusicbrainz \

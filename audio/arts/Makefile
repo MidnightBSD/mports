@@ -4,11 +4,12 @@
 # Whom:					will@cvs.kde.org
 #
 # $FreeBSD: ports/audio/arts/Makefile,v 1.51 2006/09/12 23:26:13 lofi Exp $
-# $MidnightBSD: mports/audio/arts/Makefile,v 1.5 2009/05/02 15:15:57 laffer1 Exp $
+# $MidnightBSD: mports/audio/arts/Makefile,v 1.6 2009/09/20 00:17:08 laffer1 Exp $
 #
 
 PORTNAME=	arts
 PORTVERSION=	1.5.10
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_KDE}
