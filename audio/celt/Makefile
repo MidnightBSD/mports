@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/celt/Makefile,v 1.1 2009/12/31 18:45:42 laffer1 Exp $
 
 PORTNAME=	celt
 PORTVERSION=	0.7.0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/celt/
 
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The CELT ultra-low delay audio codec
 LICENSE=	bsd3
 
-LIB_DEPENDS=	ogg.6:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ogg=${LOCALBASE}

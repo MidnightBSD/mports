@@ -1,10 +1,8 @@
-#
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.7 2009/09/20 00:22:15 laffer1 Exp $
-#
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.8 2009/11/25 02:42:05 laffer1 Exp $
 
 PORTNAME=	flac
 PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-src/${PORTNAME}-${PORTVERSION}-src
 
@@ -12,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free lossless audio codec
 LICENSE=	gpl2
 
-LIB_DEPENDS=	ogg.6:${PORTSDIR}/audio/libogg
+LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
 
 USE_AUTOTOOLS=	libtool:22
 GNU_CONFIGURE=	yes
