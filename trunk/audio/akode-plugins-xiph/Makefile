@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.6 2010/02/27 15:58:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode-plugins-xiph/Makefile,v 1.7 2010/10/17 01:06:10 laffer1 Exp $
 
 PORTNAME=	akode-plugins-${PORTNAMESUFX}
 PORTVERSION=    2.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	${MASTER_SITE_GENTOO}
