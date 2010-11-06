@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.9 2010/01/23 21:06:29 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.10 2010/08/02 23:52:19 laffer1 Exp $
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.19
+PORTREVISION=	1
 CATEGORIES?=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	seamonkey/releases/${DISTVERSION}
@@ -129,5 +130,5 @@ do-install:
 	${MKDIR} ${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKDIR}/seamonkey.desktop ${PREFIX}/share/applications
 
-.include "${PORTSDIR}/www/mozilla/Makefile.common"
+.include "Makefile.common"
 .include <bsd.port.post.mk>
