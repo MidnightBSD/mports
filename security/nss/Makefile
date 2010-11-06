@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/nss/Makefile,v 1.10 2010/10/30 19:40:01 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.11 2010/10/30 20:58:07 laffer1 Exp $
 
 PORTNAME=	nss
 PORTVERSION=	3.12.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
@@ -18,7 +18,7 @@ LIB_DEPENDS=	nspr4.1:${PORTSDIR}/devel/nspr
 WRKSRC=		${WRKDIR}/${DISTNAME}/mozilla/security/nss
 
 MAKE_JOBS_UNSAFE=	yes
-USE_LDCONFIG=	yes
+USE_LDCONFIG=	${TRUE_PREFIX}/lib/nss
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 MAKE_ENV=	BSD_LDOPTS="${PTHREAD_LIBS} -L${LOCALBASE}/lib" \
