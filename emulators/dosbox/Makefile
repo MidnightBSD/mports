@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.7 2009/11/01 21:54:06 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.8 2010/05/05 23:35:01 laffer1 Exp $
 
 PORTNAME=	dosbox
-PORTVERSION=	0.73
-PORTREVISION=	1
+PORTVERSION=	0.74
+PORTREVISION=	0
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
