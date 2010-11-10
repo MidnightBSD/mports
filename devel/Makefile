@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.343 2010/11/10 19:41:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.344 2010/11/10 19:45:15 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -209,6 +209,7 @@
     SUBDIR += p5-Clone
     SUBDIR += p5-Config-General
     SUBDIR += p5-Config-Tiny
+    SUBDIR += p5-Context-Preserve
     SUBDIR += p5-Data-Dumper
     SUBDIR += p5-Data-Dumper-Concise
     SUBDIR += p5-Data-OptList
