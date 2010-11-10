@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.8 2009/08/26 21:24:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.9 2010/10/19 21:03:59 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	24
@@ -41,8 +41,6 @@ PLIST_SUB=	VERSION="2.4" API_VERSION="2.4"
 post-patch:
 	@${REINPLACE_CMD} -e '/^SUBDIRS =/s/tests//' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|demo[$$][(]EXEEXT[)]|gtkmm-demo$$(EXEEXT)|g' \
-	    	${WRKSRC}/demos/gtk-demo/Makefile.in
 
 .include <bsd.port.mk>
 
