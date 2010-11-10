@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.11 2009/05/16 15:31:38 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.12 2009/09/24 02:50:02 laffer1 Exp $
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.20.r2
+PORTVERSION=	1.4.21
 CATEGORIES=	mail www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION:S/.r/-RC/}:squirrelmail \
 		SF/${PORTNAME}/locales/1.4.18-20090526:locales
