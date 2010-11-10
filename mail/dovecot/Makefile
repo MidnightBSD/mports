@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.27 2010/05/30 23:01:14 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.28 2010/10/09 20:31:14 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	1.2.14
+PORTVERSION=	1.2.16
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
-		http://www.rename-it.nl/dovecot/${DOVECOTVERSION}/
+		http://www.rename-it.nl/dovecot/1.2.14/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
@@ -82,7 +82,7 @@ CONFIGURE_ARGS+=	--without-ssl
 .if defined(WITH_MANAGESIEVE) && !defined(WITHOUT_MANAGESIEVE)
 MANAGESIEVEVERSION!=	${MAKE} -C ${.CURDIR}/../dovecot-managesieve -V PORTVERSION
 PATCH_SITES!=		${MAKE} -C ${.CURDIR}/../dovecot-managesieve -V MASTER_SITES
-PATCHFILES+=		dovecot-${PORTVERSION}-managesieve-${MANAGESIEVEVERSION}.diff.gz
+PATCHFILES+=		dovecot-1.2.14-managesieve-${MANAGESIEVEVERSION}.diff.gz
 PATCH_DIST_STRIP=	-p1
 PROTOCOLS+=		managesieve
 DOCS+=			README.managesieve
