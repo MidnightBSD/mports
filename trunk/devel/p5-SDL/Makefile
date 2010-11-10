@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/p5-SDL/Makefile,v 1.4 2010/03/25 01:14:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-SDL/Makefile,v 1.5 2010/06/04 22:52:47 laffer1 Exp $
 
 PORTNAME=	SDL
 PORTVERSION=	2.1.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../authors/id/D/DG/DGOEHRIG
@@ -13,6 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl Bindings for SDL
 LICENSE=	perl
 
+BUILD_DEPENDS=  p5-YAML>=0.62:${PORTSDIR}/textproc/p5-YAML
 LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
