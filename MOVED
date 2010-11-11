@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.19 2010/08/02 23:04:18 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.20 2010/08/14 01:50:19 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -45,3 +45,4 @@ lang/gcc43||2010-07-29|GCC 4.4 replaces it.
 lang/gcc-objc||2010-07-30|no longer necessary
 x11-drivers/xf86-input-elo2300||2010-08-01|not maintained upstream
 www/thttpd-st||2010-08-13|broken on current
+databases/pecl-PDO|php5-pdo|2010-11-10|part of php now
