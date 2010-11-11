@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/Makefile,v 1.7 2008/03/15 21:41:28 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/Makefile,v 1.8 2009/01/04 22:53:42 laffer1 Exp $
 #
 
     COMMENT = peer-to-peer network applications
@@ -10,7 +10,6 @@
     SUBDIR += gift-gnutella
     SUBDIR += giftcurs
     SUBDIR += libtorrent
-    SUBDIR += limewire
     SUBDIR += mutella
     SUBDIR += rtorrent
     SUBDIR += transmission
