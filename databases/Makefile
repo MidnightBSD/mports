@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.83 2010/10/21 19:24:24 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.84 2010/10/23 11:46:36 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -63,7 +63,7 @@
     SUBDIR += p5-SQL-Abstract-Limit
     SUBDIR += p5-SQL-Statement
     SUBDIR += p5-SQL-Translator
-    SUBDIR += pecl-PDO
+    SUBDIR += pecl-memcache
     SUBDIR += php5-dba
     SUBDIR += php5-dbase
     SUBDIR += php5-mssql
