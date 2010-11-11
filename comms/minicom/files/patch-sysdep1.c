@@ -52,4 +52,4 @@
 +  ioctl(fd, TIOCMSET, &m_word);
  #endif
  }
-
+ 
