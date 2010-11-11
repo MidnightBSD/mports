@@ -3,45 +3,43 @@
 # Date created:			  Fri Dec 01, 1995
 # Whom:				  obrien@cs.ucdavis.edu
 #
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.3 2007/11/11 00:18:21 laffer1 Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.4 2008/09/13 22:29:58 crash Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
 #
 
 PORTNAME=	minicom
-PORTVERSION=	2.3
+PORTVERSION=	2.4
 CATEGORIES=	comms
-MASTER_SITES=	http://alioth.debian.org/frs/download.php/2332/ \
-                ftp://ftp.nuug.no/pub/anders/distfiles/ \
-		http://atreides.freenix.no/~anders/
+MASTER_SITES=	http://alioth.debian.org/frs/download.php/3195/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
 LICENSE=	gpl2
 
-RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz \
-		lsz:${PORTSDIR}/comms/lrzsz
+RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz
 
-WRKSRC=		${WRKDIR}/${DISTNAME:S/.src//}
 .if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-nls
+CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .else
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_GETTEXT=	yes
-CONFIGURE_ARGS+=	--with-libiconv-prefix=${LOCALBASE} \
-			--without-included-gettext
 PLIST_SUB+=	NLS=""
 .endif
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-dfl-baud=57600 \
 			--sysconfdir=${PREFIX}/etc/minicom \
-			--enable-lock-dir=/var/spool/lock
+			--enable-lock-dir=/var/spool/lock \
+			--enable-dfl-port=${MINICOM_DEFAULT_PORT} \
+			CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+
+MAN1=		minicom.1 runscript.1 ascii-xfr.1 xminicom.1
 
 .include <bsd.port.pre.mk>
 
 MINICOM_DEFAULT_PORT?=	/dev/cuad0
-CONFIGURE_ARGS+=	--enable-dfl-port=${MINICOM_DEFAULT_PORT}
-
-MAN1=		minicom.1 runscript.1 ascii-xfr.1 xminicom.1
 
 post-patch:
 	${REINPLACE_CMD} -e "s@/usr/local/bin/@${LOCALBASE}/bin/@; \
@@ -54,9 +52,6 @@ post-install:
 	${CHOWN} uucp:dialer ${PREFIX}/bin/minicom
 	${CHMOD} 4511 ${PREFIX}/bin/minicom
 	${INSTALL} -d -o root -g wheel -m 0755 ${PREFIX}/etc/minicom
-.if !exists(${PREFIX}/etc/minicom/minicom.users)
-	${INSTALL_DATA} ${WRKSRC}/doc/minicom.users ${PREFIX}/etc/minicom/
-.endif
 	${CHOWN} uucp ${PREFIX}/etc/minicom
 .if !defined(NOPORTDOCS)
 	${INSTALL} -d -o root -g wheel -m 0755 ${DOCSDIR}
