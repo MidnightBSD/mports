@@ -3,7 +3,7 @@
 # Date created:			  Fri Dec 01, 1995
 # Whom:				  obrien@cs.ucdavis.edu
 #
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.4 2008/09/13 22:29:58 crash Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.5 2010/11/11 01:23:55 laffer1 Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
 #
 
@@ -17,6 +17,8 @@ COMMENT=	An MS-DOS Telix serial communication program "workalike"
 LICENSE=	gpl2
 
 RUN_DEPENDS=	lrz:${PORTSDIR}/comms/lrzsz
+
+MAKE_JOBS_SAFE=	yes
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=--disable-nls
