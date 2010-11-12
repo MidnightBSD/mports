@@ -2,13 +2,12 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.4 2010/03/26 00:54:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.5 2010/05/05 23:48:15 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
 PORTNAME=	Thunar
-PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -27,6 +26,7 @@ USE_GMAKE=	yes
 USE_GNOME=	desktopfileutils glib20 gnomehack gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libexo libutil
+CFLAGS+=	-DHAVE_SYS_MOUNT_H
 
 OPTIONS=	DBUS		"Enable D-BUS support"				on  \
 		JPEG		"Enable JPEG support"				on  \
