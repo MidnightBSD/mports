@@ -2,12 +2,12 @@
 # Date created:				22 July 2003
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/p5-Device-Modem/Makefile,v 1.1 2008/08/18 16:20:49 laffer1 Exp $
 # $FreeBSD: ports/comms/p5-Device-Modem/Makefile,v 1.10 2008/04/17 14:24:14 araujo Exp $
 #
 
 PORTNAME=	Device-Modem
-PORTVERSION=	1.48
+PORTVERSION=	1.51
 CATEGORIES=	comms perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
