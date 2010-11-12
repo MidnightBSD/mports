@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.4 2008/06/19 22:48:08 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/gucharmap/Makefile,v 1.5 2009/10/31 23:48:42 laffer1 Exp $
 
 PORTNAME=	gucharmap
-PORTVERSION=	2.26.3.1
+PORTVERSION=	2.30.2
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
