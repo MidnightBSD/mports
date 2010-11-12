@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/p5-Email-Address/Makefile,v 1.2 2008/06/04 18:15:19 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Email-Address/Makefile,v 1.3 2009/09/24 04:09:52 laffer1 Exp $
 
 PORTNAME=	Email-Address
-PORTVERSION=	1.88.9
+PORTVERSION=	1.89.2
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
