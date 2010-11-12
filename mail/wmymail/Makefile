@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/mail/wmymail/Makefile,v 1.2 2007/03/22 04:29:57 ctriv Exp $
+# $MidnightBSD: mports/mail/wmymail/Makefile,v 1.3 2009/04/16 04:08:29 laffer1 Exp $
 
 PORTNAME=	wmymail
 PORTVERSION=	0.2
 PORTREVISION=	2
 CATEGORIES=	mail x11
-MASTER_SITES=	http://dockapps.org/files/65/96/
+MASTER_SITES=	http://dockapps.org/files/65/96/ \
+		http://yath.mine.nu/wmymail/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Check inbox using a WindowMaker DockApp
