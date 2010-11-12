@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.3 2007/03/25 01:07:50 ctriv Exp $
+# $MidnightBSD: mports/misc/wmweather/Makefile,v 1.4 2010/01/02 19:14:14 laffer1 Exp $
 # $FreeBSD: ports/misc/wmweather/Makefile,v 1.18 2006/12/13 12:41:30 roam Exp $
 
 PORTNAME=	wmweather
 PORTVERSION=	2.4.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.godisch.de/debian/wmweather/
 
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A WMaker dockapp which displays meteorological data for your city
 LICENSE=	gpl2
 
-LIB_DEPENDS=	curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 BUILD_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
