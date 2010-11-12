@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.4 2009/03/27 06:15:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.5 2009/12/25 17:25:39 laffer1 Exp $
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	1.54
+PORTVERSION=	1.68
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
