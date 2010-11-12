@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/www/joomla15/Makefile,v 1.2 2010/04/28 00:36:40 laffer1 Exp $
+# $MidnightBSD: mports/www/joomla15/Makefile,v 1.3 2010/10/09 15:41:52 laffer1 Exp $
 # $FreeBSD: ports/www/joomla15/Makefile,v 1.25 2009/08/07 20:07:40 skreuzer Exp $
 
 PORTNAME=	joomla15
-PORTVERSION=	1.5.18
+PORTVERSION=	1.5.22
 CATEGORIES=	www
-MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/12350/51109/ \
-		http://web.dti.supsi.ch/downloads/
+#MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/13105/57240/ 
 DISTNAME=	Joomla_${PORTVERSION}-Stable-Full_Package
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,7 +12,7 @@ COMMENT=	A dynamic web content management system (CMS)
 LICENSE=	gpl2
 
 FETCH_CMD=	fetch -Rr
-USE_BZIP2=	yes
+USE_ZIP=	yes
 NO_BUILD=	yes
 USE_MYSQL=	yes
 USE_PHP=	mysql pcre xml zlib session gd pdf
