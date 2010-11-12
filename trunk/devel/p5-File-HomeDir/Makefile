@@ -2,24 +2,42 @@
 # Date created:				3 March 2005
 # Whom:					Yen-Ming Lee <leeym@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-File-HomeDir/Makefile,v 1.1 2007/03/11 03:52:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-File-HomeDir/Makefile,v 1.2 2008/10/16 21:37:02 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-File-HomeDir/Makefile,v 1.11 2007/01/10 06:27:25 leeym Exp $
 #
 
 PORTNAME=	File-HomeDir
-PORTVERSION=	0.63
+PORTVERSION=	0.91
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	File
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Get home directory for self or other users
 LICENSE=	perl
 
-PERL_CONFIGURE=	yes
+RUN_DEPENDS=	p5-File-Which>=0:${PORTSDIR}/sysutils/p5-File-Which
+BUILD_DEPENDS=	${RUN_DEPENDS}
 
-MAN3=		File::HomeDir.3 File::HomeDir::Darwin.3 File::HomeDir::Unix.3 \
+PERL_CONFIGURE=	5.8.0+
+
+MAN3=		File::HomeDir.3 \
+		File::HomeDir::Darwin.3 \
+		File::HomeDir::Darwin::Carbon.3 \
+		File::HomeDir::Darwin::Cocoa.3 \
+		File::HomeDir::FreeDesktop.3 \
+		File::HomeDir::Test.3 \
+		File::HomeDir::Unix.3 \
 		File::HomeDir::Windows.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 500808
+RUN_DEPENDS+=	p5-PathTools>=3.12:${PORTSDIR}/devel/p5-PathTools
+.endif
+
+.if ${PERL_LEVEL} < 500809
+RUN_DEPENDS+=	p5-File-Temp>=0.19:${PORTSDIR}/devel/p5-File-Temp
+.endif
+
+.include <bsd.port.post.mk>
