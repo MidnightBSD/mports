@@ -2,15 +2,14 @@
 # Date created:		13 March 2001
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
-# $MidnightBSD: mports/devel/p5-File-Temp/Makefile,v 1.1 2007/03/11 03:45:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-File-Temp/Makefile,v 1.2 2007/09/02 02:43:54 ctriv Exp $
 # $FreeBSD: ports/devel/p5-File-Temp/Makefile,v 1.20 2007/02/01 07:02:02 leeym Exp $
 #
 
 PORTNAME=	File-Temp
-PORTVERSION=	0.18
+PORTVERSION=	0.22
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	File
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
