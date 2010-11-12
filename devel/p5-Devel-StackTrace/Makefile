@@ -4,23 +4,21 @@
 # Whom:	      			ijliao
 #
 # $FreeBSD: ports/devel/p5-Devel-StackTrace/Makefile,v 1.21 2007/04/29 14:46:47 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Devel-StackTrace/Makefile,v 1.1 2007/09/12 02:09:45 ctriv Exp $
 #
 
 PORTNAME=	Devel-StackTrace
-PORTVERSION=	1.15
+PORTVERSION=	1.25
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Devel
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Stack trace and stack trace frame objects
 LICENSE=	perl
 
-PERL_MODBUILD=	yes
+PERL_CONFIGURE=	yes
 
-MAN3=		Devel::StackTrace.3
+MAN3=		Devel::StackTrace.3 Devel::StackTrace::Frame.3
 
 .include <bsd.port.mk>
-
