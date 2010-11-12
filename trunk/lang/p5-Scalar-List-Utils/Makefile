@@ -3,15 +3,14 @@
 # Whom:					Anton Berezin <tobez@FreeBSD.org>
 #
 # $FreeBSD: ports/lang/p5-Scalar-List-Utils/Makefile,v 1.9 2005/12/04 15:56:04 tobez Exp $
-# $MidnightBSD: mports/lang/p5-Scalar-List-Utils/Makefile,v 1.1 2006/10/31 20:07:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/p5-Scalar-List-Utils/Makefile,v 1.2 2008/01/04 16:31:24 laffer1 Exp $
 #
 
 PORTNAME=	Scalar-List-Utils
-PORTVERSION=	1.19
+PORTVERSION=	1.23
 PORTEPOCH=	1
 CATEGORIES=	lang perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Scalar
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,6 +19,6 @@ LICENSE=	perl
 
 PERL_CONFIGURE=	yes
 
-MAN3=		List::Util.3 Scalar::Util.3
+MAN3=		List::Util.3 Scalar::Util.3 List::Util::XS.3
 
 .include <bsd.port.mk>
