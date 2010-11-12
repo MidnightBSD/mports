@@ -1,33 +1,33 @@
-# New ports collection makefile for:    etoile-foundation
-# Date created:         22 Dec 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/devel/etoile-foundation/Makefile,v 1.5 2007/10/25 22:56:34 laffer1 Exp $
-# $FreeBSD: ports/devel/etoile-foundation/Makefile,v 1.4 2007/01/31 18:17:55 dinoex Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	foundation
-PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	2
+PORTVERSION=	0.4.1
 CATEGORIES=	devel gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
-LICENSE=        bsd3
 PKGNAMEPREFIX=	etoile-
-DISTNAME=	etoile-0.2
+DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project EtoileFoundation framework
+LICENSE=	bsd3
 
+USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
-DEFAULT_LIBVERSION=	0.1
 USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
 
-SNAPSHOT=       20070728
-WRKSRC=	${WRKDIR}/Etoile-0.2/
+DEFAULT_LIBVERSION=	0.2
+WRKSRC=	${WRKDIR}/Etoile-${PORTVERSION}
 USE_GNUSTEP_MAKE_DIRS+=	Frameworks/EtoileFoundation
+DEFAULT_LIBVERSION2=	0.1
+PLIST_SUB+=	LIBVERSION2=${DEFAULT_LIBVERSION2}
+PLIST_SUB+=	MAJORLIBVERSION2=${DEFAULT_LIBVERSION2:C/([0-9]).*/\1/1}
+
+do-configure:
+	${REINPLACE_CMD} -e 's|ADDITIONAL_OBJCFLAGS += -march=i586||' \
+		${WRKSRC}/Frameworks/EtoileFoundation/GNUmakefile
+	${REINPLACE_CMD} -e 's|-Werror||' ${WRKSRC}/etoile.make
 
 .include <bsd.port.mk>
