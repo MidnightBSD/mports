@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-B-Keywords
-# Date created:	   7 july 2003
-# Whom:		   Mathieu Arnold <m@absolight.net>
-#
-# $MidnightBSD: mports/devel/p5-B-Keywords/Makefile,v 1.1 2008/03/21 20:19:45 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-B-Keywords/Makefile,v 1.10 2007/10/27 06:26:15 mat Exp $
-#
+# $MidnightBSD: mports/devel/p5-B-Keywords/Makefile,v 1.2 2008/10/16 21:29:48 laffer1 Exp $
 
 PORTNAME=	B-Keywords
-PORTVERSION=	1.08
+PORTVERSION=	1.09
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
