@@ -4,16 +4,17 @@
 # Whom:				ijliao
 #
 # $FreeBSD: ports/www/nanoblogger/Makefile,v 1.12 2008/06/15 18:46:30 jadawin Exp $
-# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.4 2009/03/18 03:56:57 laffer1 Exp $
+# $MidnightBSD: mports/www/nanoblogger/Makefile,v 1.5 2009/10/15 01:13:28 laffer1 Exp $
 
 PORTNAME=	nanoblogger
-PORTVERSION=	3.4
+PORTVERSION=	3.4.2
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/Version%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small weblog engine written in Bash for the command line
 LICENSE=        gpl2
+
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 NO_BUILD=	yes
