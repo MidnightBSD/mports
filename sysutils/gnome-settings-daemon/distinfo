@@ -1,3 +1,4 @@
-MD5 (gnome-settings-daemon-2.22.2.1.tar.bz2) = f4dd22b68ffd7cb0b6f6ebd570ad4365
-SHA256 (gnome-settings-daemon-2.22.2.1.tar.bz2) = 72cb9aee096019a2925fb5b99a5e880d01f7d529d4c9e75dfbbea1b1f654d7a9
-SIZE (gnome-settings-daemon-2.22.2.1.tar.bz2) = 1139262
+MD5 (gnome2/gnome-settings-daemon-2.30.2.tar.bz2) = b945b1f542167c201a11f0ba1e1a4739
+SHA256 (gnome2/gnome-settings-daemon-2.30.2.tar.bz2) = 7cd22dab52f52900ee13a5bc0c1a186e91d33e77f5333c4622f84d85e4eb71f4
+RMD160 (gnome2/gnome-settings-daemon-2.30.2.tar.bz2) = a4547cdb13c2c5dc8f690cf198853129514adaab
+SIZE (gnome2/gnome-settings-daemon-2.30.2.tar.bz2) = 1250365
