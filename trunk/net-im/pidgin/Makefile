@@ -2,7 +2,7 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.18 2010/03/19 01:42:43 crash Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.19 2010/10/19 19:48:19 laffer1 Exp $
 
 PORTNAME=	pidgin
 PORTVERSION=	2.6.6
@@ -36,7 +36,8 @@ CONFIGURE_ARGS+= \
 		--with-dynamic_prpls=${PRPL_MODULES} \
 		--disable-nm \
 		--disable-doxygen \
-		--disable-vv
+		--disable-vv \
+		--disable-screensaver
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
