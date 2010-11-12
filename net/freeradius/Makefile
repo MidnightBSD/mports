@@ -2,12 +2,12 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.7 2008/11/10 18:53:11 ctriv Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.8 2009/09/20 01:39:48 laffer1 Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
 PORTNAME=	freeradius
-PORTVERSION=	1.1.7
+PORTVERSION=	1.1.8
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/%SUBDIR%/ \
 		ftp://ftp.ntua.gr/pub/net/radius/freeradius/%SUBDIR%/ \
