@@ -2,16 +2,16 @@
 # Date created:			Mon Sep  1 17:03:41 CEST 1997
 # Whom:				Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD: mports/devel/p5-TimeDate/Makefile,v 1.1 2007/03/11 04:17:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-TimeDate/Makefile,v 1.2 2008/10/16 21:46:57 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-TimeDate/Makefile,v 1.20 2003/10/24 12:02:16 ijliao Exp $
 #
 
 PORTNAME=	TimeDate
-PORTVERSION=	1.16
+PORTVERSION=	1.20
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Date
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=Date
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -21,6 +21,8 @@ LICENSE=	perl
 PERL_CONFIGURE=	YES
 
 MAN3=		Date::Format.3 \
+		Date::Language.3 \
+		Date::Language::Hungarian.3 \
 		Date::Parse.3 \
 		Time::Zone.3
 
