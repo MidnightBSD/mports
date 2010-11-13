@@ -2,23 +2,23 @@
 # Date created:		Sat Feb 26 06:16:50 CST 2005
 # Whom:				Jin-Shan Tseng <tjs@cdpa.nsysu.edu.tw>
 #
-# $MidnightBSD: mports/www/pmwiki/Makefile,v 1.1 2007/11/20 19:12:36 laffer1 Exp $
+# $MidnightBSD: mports/www/pmwiki/Makefile,v 1.2 2007/11/20 19:13:59 laffer1 Exp $
 # $FreeBSD: ports/www/pmwiki/Makefile,v 1.18 2006/12/16 11:49:55 miwi Exp $
 #
 
 PORTNAME=	pmwiki
-PORTVERSION=	2.1.27
+PORTVERSION=	2.2.17
 PORTEPOCH=	1
 CATEGORIES=	www
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	MASTER_SITES= http://pmwiki.org/pub/pmwiki/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A WikiWikiWeb clone using PHP
 LICENSE=	gpl2
 
-USE_PHP=	mbstring
+USE_GCPIO=	yes
+USE_PHP=	mbstring session
 WANT_PHP_WEB=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
