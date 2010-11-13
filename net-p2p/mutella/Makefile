@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/net-p2p/mutella/Makefile,v 1.2 2008/09/14 00:53:50 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/mutella/Makefile,v 1.3 2009/06/22 17:31:55 laffer1 Exp $
 
 PORTNAME=	mutella
 PORTVERSION=	0.4.5
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net-p2p
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	mutella
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A command line Gnutella client
