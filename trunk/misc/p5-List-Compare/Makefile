@@ -3,14 +3,13 @@
 # Whom:					Dmitry Morozovsky <marck@FreeBSD.org>
 #
 # $FreeBSD: ports/misc/p5-List-Compare/Makefile,v 1.3 2006/05/29 13:45:51 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/p5-List-Compare/Makefile,v 1.1 2007/10/12 14:10:15 ctriv Exp $
 #
 
 PORTNAME=		List-Compare
-PORTVERSION=		0.33
+PORTVERSION=	0.37
 CATEGORIES=		misc perl5
-MASTER_SITES=		${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	List
+MASTER_SITES=		CPAN
 PKGNAMEPREFIX=		p5-
 
 MAINTAINER=		ports@MidnightBSD.org
@@ -30,6 +29,7 @@ PORTDOCS=	Changes README
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	@${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${DOCSDIR}
+	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
 .include <bsd.port.mk>
