@@ -1,14 +1,8 @@
-# New ports collection makefile for: netperf
-# Date created:		19 July 1996
-# Whom:			koshy
-#
 # $FreeBSD: ports/benchmarks/netperf/Makefile,v 1.24 2005/10/14 03:33:07 jkoshy Exp $
-# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.2 2008/10/10 19:35:31 laffer1 Exp $
-#
+# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.3 2008/10/10 19:41:15 laffer1 Exp $
 
 PORTNAME=	netperf
-PORTVERSION=	2.4.4
-PORTREVISION=	1
+PORTVERSION=	2.4.5
 CATEGORIES=	benchmarks ipv6
 MASTER_SITES=	ftp://ftp.netperf.org/netperf/
 
