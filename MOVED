@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.21 2010/11/11 01:16:55 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.22 2010/11/11 13:10:07 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -47,3 +47,4 @@ x11-drivers/xf86-input-elo2300||2010-08-01|not maintained upstream
 www/thttpd-st||2010-08-13|broken on current
 databases/pecl-PDO|php5-pdo|2010-11-10|part of php now
 net-p2p/limewire||2010-11-11|dead software, use frostwire
+devel/cvstrac||2010-11-13|hasn't worked for a long time
