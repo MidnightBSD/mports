@@ -2,14 +2,13 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.2 2009/06/27 23:42:15 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-epi/Makefile,v 1.3 2009/09/20 01:55:00 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-epi
 PORTVERSION=	0.54
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	MASTER_SITES= SF/${PORTNAME}/${PORTNAME}-base/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A general purpose implementation of the xmlrpc specification in C
