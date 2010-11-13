@@ -2,23 +2,23 @@
 # Date created:				2002/09/25
 # Whom:					nork@FreeBSD.org
 #
-# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.4 2008/05/14 18:31:11 crash Exp $
+# $MidnightBSD: mports/net/liveMedia/Makefile,v 1.5 2008/06/06 12:12:51 crash Exp $
 # $FreeBSD: ports/net/liveMedia/Makefile,v 1.264 2008/01/04 14:54:13 nork Exp $
 #
 
 PORTNAME=	liveMedia
-PORTVERSION=	2008.06.05
+PORTVERSION=	2010.06.22
 PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	net devel
 MASTER_SITES=	http://www.live555.com/liveMedia/public/
-MASTER_SITES+=	${MASTER_SITE_LOCAL}
+MASTER_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	nork
 DISTNAME=	live.${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	LIVE.COM Streaming Media
-LICENSE=	restricted
+LICENSE=	gpl2
 
 NO_CDROM=	'dated material'
 
@@ -26,6 +26,7 @@ WRKSRC=		${WRKDIR}/live
 PLIST=		${WRKDIR}/pkg-plist
 
 HAS_CONFIGURE=	YES
+MAKE_JOBS_SAFE=	YES
 
 CONFIGURE_SCRIPT=	genMakefiles
 CONFIGURE_ARGS=		fixed-${OPSYS:L}
@@ -81,6 +82,10 @@ liveMedia=		\
 		liveMedia/include/DarwinInjector.hh \
 		liveMedia/include/DeviceSource.hh \
 		liveMedia/include/DigestAuthentication.hh \
+		liveMedia/include/DVVideoFileServerMediaSubsession.hh \
+		liveMedia/include/DVVideoRTPSink.hh \
+		liveMedia/include/DVVideoRTPSource.hh \
+		liveMedia/include/DVVideoStreamFramer.hh \
 		liveMedia/include/FileServerMediaSubsession.hh \
 		liveMedia/include/FileSink.hh \
 		liveMedia/include/FramedFileSource.hh \
@@ -175,7 +180,7 @@ liveMedia=		\
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "amd64"
+.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
 CFLAGS+=	-fPIC
 .else
 CFLAGS+=	-fpic
@@ -186,7 +191,8 @@ BROKEN=		Does not compile
 .endif
 
 post-extract:
-	@${CP} ${FILESDIR}/config.fixed-${OPSYS:L} ${WRKSRC}/
+	@${SED} -e "s|%%CFLAGS%%|${CFLAGS}|" \
+		${FILESDIR}/config.fixed-${OPSYS:L} > ${WRKSRC}/config.fixed-${OPSYS:L}
 
 post-build:
 	@${RM} -f ${PLIST}
@@ -243,5 +249,8 @@ do-install:
 .for file in ${liveMedia}
 	@${INSTALL_DATA} ${WRKSRC}/${file} ${PREFIX}/live/liveMedia/include/
 .endfor
+
+post-install:
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
