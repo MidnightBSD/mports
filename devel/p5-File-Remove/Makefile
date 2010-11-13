@@ -2,15 +2,14 @@
 # Date created:				16th March 2001
 # Whom: 				Justin Stanford <jus@security.za.net>
 #
-# $MidnightBSD: mports/devel/p5-File-Remove/Makefile,v 1.1 2008/03/21 20:18:18 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-File-Remove/Makefile,v 1.2 2008/10/16 21:37:28 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-File-Remove/Makefile,v 1.13 2008/02/14 07:46:26 ade Exp $
 #
 
 PORTNAME=	File-Remove
-PORTVERSION=	0.39
+PORTVERSION=	1.42
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	File
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
