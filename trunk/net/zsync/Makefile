@@ -1,42 +1,29 @@
-# $MidnightBSD: mports/net/zsync/Makefile,v 1.1 2008/02/27 02:06:39 laffer1 Exp $
+# $MidnightBSD: mports/net/zsync/Makefile,v 1.2 2009/06/27 23:45:05 laffer1 Exp $
 
 PORTNAME=	zsync
-PORTVERSION=	0.4.2
+PORTVERSION=	0.6.1
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	http://zsync.moria.org.uk/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A file transfer program
 LICENSE=	artistic2
 
+USE_BZIP2=	yes
+GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/zsync \
 		bin/zsyncmake
-
-.if !defined(NOPORTDOCS)
-PORTDOCS=	COPYING \
-		README
-.endif
-
+BINS=		zsync zsyncmake
+PORTDOCS=	COPYING INSTALL NEWS README
 MAN1=		zsync.1 \
 		zsyncmake.1
 
-GNU_CONFIGURE=	yes
-
 do-install:
-.for FILE in zsync zsyncmake
-	${INSTALL_PROGRAM} ${WRKSRC}/${FILE} ${PREFIX}/bin
-.endfor
-
-.for FILE in ${MAN1}
-	${INSTALL_MAN} ${WRKSRC}/doc/${FILE} ${MAN1PREFIX}/man/man1
-.endfor
-
+	${INSTALL_PROGRAM} ${BINS:S,^,${WRKSRC}/,} ${PREFIX}/bin
+	${INSTALL_MAN} ${MAN1:S,^,${WRKSRC}/doc/,} ${MAN1PREFIX}/man/man1
 .if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.for FILE in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
-.endfor
+	@${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
