@@ -3,17 +3,17 @@
 # Whom:					trevor
 # based on the OpenBSD port
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/mcrypt/Makefile,v 1.4 2008/03/26 01:46:24 laffer1 Exp $
 #
 
 PORTNAME=	mcrypt
-PORTVERSION=	2.6.7
+PORTVERSION=	2.6.8
+PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF/${PORTNAME}/MCrypt/${PORTVERSION} \
 		ftp://argeas.cs-net.gr/pub/unix/mcrypt/attic/ \
 		ftp://ftp.ntua.gr/pub/security/mcrypt/ \
 		ftp://mcrypt.hellug.gr/pub/mcrypt/attic/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Replacement for crypt(1)
