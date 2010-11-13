@@ -1,36 +1,43 @@
-# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.4 2009/10/16 13:01:18 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	libdvdnav
-PORTVERSION=	0.1.10
-PORTREVISION=	2
+PORTVERSION=	4.1.4.r1217
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	dvd
+# Svn repository URL : svn://svn.mplayerhq.hu/dvdnav/trunk/libdvdnav
+MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
+		http://www1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		http://www2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		http://www3.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		http://www4.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		http://www5.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		ftp://ftp1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		ftp://ftp2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
+		LOCAL/makc
+DISTNAME=	${PORTNAME}-${PORTVERSION:S,r,,}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The library for the xine-dvdnav plugin
+COMMENT=	MPlayer version of the libdvdnav project
 LICENSE=	gpl2
 
 LIB_DEPENDS=	dvdread.4:${PORTSDIR}/multimedia/libdvdread
 
-CONFIGURE_ENV=	THREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		THREAD_LIBS="${PTHREAD_LIBS}"
-CONFIGURE_ARGS=	--program-transform-name=''
+USE_BZIP2=	yes
+HAS_CONFIGURE=	yes
+CONFIGURE_SCRIPT=	configure2
+CONFIGURE_ARGS=	--prefix="${PREFIX}" \
+		--libdir="${PREFIX}/lib" \
+		--libdatadir="${PREFIX}/libdata/pkgconfig" \
+		--shlibdir="${PREFIX}/lib" \
+		--incdir="${PREFIX}/include/dvdnav" \
+		--disable-opts \
+		--disable-debug \
+		--cc="${CC}"
+USE_GMAKE=	yes
+CONFLICTS=	libdvdnav-mplayer-[0-9]*
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22 autoconf:261 automake:16
-GNU_CONFIGURE=	yes
 
 post-patch:
-	${REINPLACE_CMD} -e \
-		's|THREAD_LIBS="[^"]*"$$|THREAD_LIBS="\$$THREAD_LIBS"|g ; \
-		 s|THREAD_CFLAGS=.*$$|THREAD_CFLAGS="\$$THREAD_CFLAGS"|g ; \
-		 s|-L/usr/local/lib|-L${LOCALBASE}/lib|g ; \
-		 s|-I/usr/local/include|-I${LOCALBASE}/include|g' \
-		 ${WRKSRC}/configure ${WRKSRC}/configure.ac \
-		 ${WRKSRC}/missing ${WRKSRC}/aclocal.m4 ${WRKSRC}/autogen.sh
-
-post-configure:
-	${REINPLACE_CMD} -e 's|automake[0-9][0-9]|${TRUE}|' \
-		`${FIND} ${WRKSRC} -type f -name Makefile`
+	@${REINPLACE_CMD} -e 's|^threadlib="-lpthread"|threadlib="${PTHREAD_LIBS}"|g' \
+		${WRKSRC}/configure2
 
 .include <bsd.port.mk>
