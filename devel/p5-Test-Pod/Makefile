@@ -2,26 +2,24 @@
 # Date created:	   2 july 2003
 # Whom:		   Mathieu Arnold <m@absolight.net>
 #
-# $MidnightBSD: mports/devel/p5-Test-Pod/Makefile,v 1.1 2008/03/21 19:58:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Test-Pod/Makefile,v 1.2 2008/10/16 21:45:17 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Test-Pod/Makefile,v 1.16 2007/09/08 00:59:11 linimon Exp $
 #
 
 PORTNAME=	Test-Pod
-PORTVERSION=	1.26
+PORTVERSION=	1.44
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Test
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Check for POD errors in files
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/Test/Builder/Tester.pm:${PORTSDIR}/devel/p5-Test-Simple \
-		${SITE_PERL}/Pod/Simple.pm:${PORTSDIR}/textproc/p5-Pod-Simple
+BUILD_DEPENDS=	${SITE_PERL}/Pod/Simple.pm:${PORTSDIR}/textproc/p5-Pod-Simple
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
-PERL_CONFIGURE=	yes
+PERL_MODBUILD=	yes
 
 MAN3=		Test::Pod.3
 
