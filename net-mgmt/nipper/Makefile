@@ -2,14 +2,15 @@
 # Date created:		3 May 2007
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-mgmt/nipper/Makefile,v 1.1 2008/02/28 14:25:11 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/nipper/Makefile,v 1.2 2008/05/10 22:37:53 crash Exp $
 # $FreeBSD: ports/net-mgmt/nipper/Makefile,v 1.16 2008/02/27 20:37:48 sat Exp $
 #
 
 PORTNAME=	nipper
-PORTVERSION=	0.11.7
+PORTVERSION=	0.11.10
+PORTEPOCH=	1
 CATEGORIES=	net-mgmt
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/Nipper%20${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
