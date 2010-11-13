@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/tcl86/Makefile,v 1.1 2010/01/01 16:49:34 laffer1 Exp $
+# $MidnightBSD: mports/lang/tcl86/Makefile,v 1.2 2010/10/19 15:31:01 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.6.b.1
@@ -33,7 +33,7 @@ EXTRACT_AFTER_ARGS=|${TAR} -xpf - --exclude compat/
 .if !defined(BUILDING_TCL_THREADS)
 OPTIONS=	TCL86_MAN "Install tcl 8.6 function manpages" off \
 		TZDATA "Install tcl timezone data" off \
-		TCL_MODULES "Install tcl common modules" on
+		TCL_MODULES "Install tcl common modules" off
 .else
 USE_TCL=	${SHORT_TCL_VER}
 PLIST=		${PKGDIR}/pkg-plist.threads
@@ -44,7 +44,6 @@ LATEST_LINK=	tcl86${THREADS_SUFFIX}
 .include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_TCL_MODULES)
-RUN_DEPENDS+=	${LOCALBASE}/bin/tclsh85:${PORTSDIR}/lang/tcl85
 RUN_DEPENDS+=	${LOCALBASE}/lib/tcl8/8.5/tcltest-2.3.2.tm:${PORTSDIR}/lang/tcl-modules
 .endif
 
