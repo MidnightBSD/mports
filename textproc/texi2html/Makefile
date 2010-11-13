@@ -2,17 +2,16 @@
 # Date created:				5 Nov 1997
 # Whom:					Ian Vaudrey <i.vaudrey@bigfoot.com>
 #
-# $MidnightBSD: mports/textproc/texi2html/Makefile,v 1.1 2006/09/25 16:11:04 laffer1 Exp $
+# $MidnightBSD: mports/textproc/texi2html/Makefile,v 1.2 2008/05/12 18:45:56 crash Exp $
 # $FreeBSD: ports/textproc/texi2html/Makefile,v 1.22 2005/02/14 22:05:53 roam Exp $
 #
 
 PORTNAME=	texi2html
-PORTVERSION=	1.76
-PORTREVISION=	1
+PORTVERSION=	1.82
 PORTEPOCH=	1
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	hrs
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Texinfo to HTML converter
@@ -40,7 +39,9 @@ pre-everything::
 	@${ECHO} ""
 
 post-patch:
-	sleep 2
 	${TOUCH} ${WRKSRC}/translations.pl
+.if defined(NOPORTDOCS)
+	${REINPLACE_CMD} -e 's| install-texinfohtmlDATA||g' ${WRKSRC}/doc/Makefile.in
+.endif
 
 .include <bsd.port.mk>
