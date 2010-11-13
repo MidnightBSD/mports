@@ -1,19 +1,12 @@
-# $MidnightBSD: mports/databases/db43/Makefile,v 1.3 2007/11/11 00:43:24 laffer1 Exp $
+# $MidnightBSD: mports/databases/db43/Makefile,v 1.4 2009/03/03 23:59:26 laffer1 Exp $
 
 PORTNAME=	db43
 PORTVERSION=	4.3.29
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
-MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
-		http://download-east.oracle.com/berkeley-db/ \
-		http://download-uk.oracle.com/berkeley-db/
-PKGNAMESUFFIX?=
-DISTNAME?=	db-${PORTVERSION}
+MASTER_SITES=	http://download.oracle.com/berkeley-db/ 
+DISTNAME=	db-${PORTVERSION}
 DIST_SUBDIR=	bdb
-
-PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION}/
-PATCHFILES=	patch.${PORTVERSION}.1
-PATCH_DIST_STRIP=	-d ..
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Berkeley DB package, revision 4.3
@@ -50,7 +43,7 @@ pre-configure:
 	${CHMOD} u+w ${WRKSRC}/../dist/configure
 
 post-configure:
-	@${REINPLACE_CMD} -e '/^extern  void db_rpc_serverprog/ d;' ${WRKSRC}/db_server.h
+	${REINPLACE_CMD} -e '/^extern  void db_rpc_serverprog/ d;' ${WRKSRC}/db_server.h
 
 post-install:
 .for i in libdb libdb_cxx
