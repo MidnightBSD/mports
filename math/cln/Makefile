@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/math/cln/Makefile,v 1.2 2009/09/20 01:22:30 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	cln
-PORTVERSION=	1.2.2
-PORTREVISION=	1
+PORTVERSION=	1.3.1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.ginac.de/CLN/ \
 		http://www.mirrors.wiretapped.net/security/cryptography/libraries/math/cln/ \
@@ -25,6 +24,7 @@ MAKE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	yes
 
 INFO=		cln
+MAN1=		pi.1
 
 STRIP=		# none
 
@@ -34,8 +34,8 @@ LDFLAGS=	-L${LOCALBASE}/lib
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "sparc64" || ${ARCH} == "ia64"
-BROKEN=		Does not compile on sparc64 or ia64
+.if ${ARCH} == "sparc64"
+BROKEN=		Does not compile on sparc64
 .endif
 
 post-patch:
@@ -44,16 +44,6 @@ post-patch:
 pre-build:
 .if exists(${LOCALBASE}/lib/libcln.so.3)
 BROKEN=		Does not compile when older version is installed. Please pkg_delete old cln first
-.endif
-
-post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}/dvi
-	${INSTALL_DATA} ${WRKSRC}/doc/*.dvi ${DOCSDIR}/dvi/
-	@${MKDIR} ${DOCSDIR}/html
-	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${DOCSDIR}/html/
-	@${MKDIR} ${DOCSDIR}/html/cln
-	${INSTALL_DATA} ${WRKSRC}/doc/cln/*.html ${DOCSDIR}/html/cln/
 .endif
 
 .include <bsd.port.post.mk>
