@@ -2,13 +2,13 @@
 # Date created:				12 August 2002
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.9 2008/10/01 20:09:06 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-blackdown-jdk14/Makefile,v 1.10 2008/10/01 20:15:13 laffer1 Exp $
 # $FreeBSD: ports/java/linux-blackdown-jdk14/Makefile,v 1.15 2006/09/03 17:28:33 kris Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	java lang
 MASTER_SITES=	http://www.mirrorservice.org/sites/ftp.blackdown.org/java-linux/JDK-1.4.2/i386/03/ \
 		ftp://ftp.gwdg.de/pub/languages/java/linux/JDK-1.4.2/i386/03/ \
@@ -22,7 +22,8 @@ COMMENT=	Blackdown Java Development Kit 1.4 for Linux
 LICENSE=	restricted
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper
-RUN_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	${LOCALBASE}/bin/javavm:${PORTSDIR}/java/javavmwrapper \
+		
 
 EXTRACT_CMD=		${TAIL}
 EXTRACT_BEFORE_ARGS=	+592
@@ -48,6 +49,10 @@ PACKED_JARS=	lib/tools.jar jre/lib/rt.jar jre/lib/jsse.jar jre/lib/charsets.jar 
 UNPACK_CMD=	${APP_HOME}/lib/unpack
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 3000
+LIB_DEPENDS=	z.3:${PORTSDIR}/misc/compat6x
+.endif
 
 post-fetch:
 	@${CHMOD} +x ${DISTDIR}/${DISTFILES}
