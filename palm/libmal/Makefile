@@ -1,12 +1,12 @@
 #
 #
-# $MidnightBSD: ports/palm/libmal/Makefile,v 1.14 2008/04/16 11:13:00 gahr Exp $
+# $MidnightBSD: mports/palm/libmal/Makefile,v 1.1 2009/01/04 23:29:40 ctriv Exp $
 #
 
 PORTNAME=	libmal
-PORTVERSION=	0.44
+PORTVERSION=	0.44.1
 CATEGORIES=	palm
-MASTER_SITES=	http://jasonday.home.att.net/code/libmal/
+MASTER_SITES=	http://www.jlogday.com/code/libmal/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library encapsulating malsync
