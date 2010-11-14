@@ -4,14 +4,13 @@
 # Whom:	      			ijliao
 #
 # $FreeBSD: ports/devel/p5-Exception-Class/Makefile,v 1.25 2006/07/15 08:22:10 erwin Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Exception-Class/Makefile,v 1.1 2007/09/12 02:14:20 ctriv Exp $
 #
 
 PORTNAME=	Exception-Class
-PORTVERSION=	1.23
+PORTVERSION=	1.32
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Exception
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
@@ -24,7 +23,7 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=		Exception::Class.3
+MAN3=		Exception::Class.3 Exception::Class::Base.3
 
 .include <bsd.port.mk>
 
