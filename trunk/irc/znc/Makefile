@@ -2,7 +2,7 @@
 # Date created:        May 9 2008
 # Whom:                Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/irc/znc/Makefile,v 1.5 2010/07/03 17:01:10 laffer1 Exp $
+# $MidnightBSD: mports/irc/znc/Makefile,v 1.6 2010/10/23 10:47:08 laffer1 Exp $
 #
 
 PORTNAME=	znc
@@ -18,6 +18,8 @@ GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack pkgconfig
 WANT_PERL=	yes
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
+			--host=${ARCH}-portbld-freebsd7.0
 
 OPTIONS=	DEBUG		"Enable debugging" off \
 		IPV6		"Enable IPv6 support" off \
@@ -99,6 +101,4 @@ PLIST_SUB+=		EXTRA="@comment "
 MANCOMPREEED= yes
 MAN1=         znc.1.gz znc-buildmod.1.gz znc-config.1.gz
 
-.include <bsd.port.pre.mk>
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
