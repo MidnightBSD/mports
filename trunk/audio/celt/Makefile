@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/audio/celt/Makefile,v 1.2 2010/11/06 13:57:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/celt/Makefile,v 1.3 2010/11/06 23:09:47 laffer1 Exp $
 
 PORTNAME=	celt
-PORTVERSION=	0.9.0
+PORTVERSION=	0.9.1
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.us.xiph.org/releases/celt/
 
