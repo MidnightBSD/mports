@@ -2,15 +2,14 @@
 # Date created:		28 Sep 2004
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.4 2009/01/04 20:18:30 ctriv Exp $
+# $MidnightBSD: mports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.5 2009/09/20 01:49:56 laffer1 Exp $
 # $FreeBSD: ports/multimedia/mpeg4ip-libmp4v2/Makefile,v 1.15 2007/01/27 07:54:19 kris Exp $
 #
 
 PORTNAME=	mpeg4ip
 PORTVERSION=	1.5.0.1
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 PKGNAMESUFFIX=	-libmp4v2
 
 MAINTAINER=	ports@MidnightBSD.org
