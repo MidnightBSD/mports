@@ -1,11 +1,12 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/celtenc
 bin/celtdec
 include/celt/celt.h
 include/celt/celt_types.h
 include/celt/celt_header.h
-lib/libcelt.so.0
-lib/libcelt.so
-lib/libcelt.la
-lib/libcelt.a
+lib/libcelt0.so.1
+lib/libcelt0.so
+lib/libcelt0.la
+lib/libcelt0.a
 libdata/pkgconfig/celt.pc
 @dirrm include/celt
