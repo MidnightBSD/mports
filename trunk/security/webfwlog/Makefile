@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/webfwlog/Makefile,v 1.3 2010/11/13 19:17:23 laffer1 Exp $
 
 PORTNAME=	webfwlog
 PORTVERSION=	0.94
@@ -28,7 +28,7 @@ PORTDOCS=	AUTHORS COPYING CREDITS ChangeLog INSTALL \
 		README ReleaseNotes
 PORTEXAMPLES=	*
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_MYSQL)
 USE_PHP+=	mysql
