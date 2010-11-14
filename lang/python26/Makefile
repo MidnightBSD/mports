@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.13 2010/10/22 16:17:57 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.14 2010/11/10 15:45:35 laffer1 Exp $
 
 PORTNAME=	python26
 PORTVERSION=	2.6.5
@@ -61,7 +61,7 @@ OPTIONS=	THREADS "Enable thread support" on \
 PLIST_SUB+=	CTYPE="@comment "
 .else
 CONFIGURE_ARGS+=	--with-system-ffi
-.if ${ARCH} != i386 && ${ARCH} != amd64
+.if ${ARCH} != i386
 LIB_DEPENDS+=	ffi.5:${PORTSDIR}/devel/libffi
 .endif
 PLIST_SUB+=	CTYPE=""
