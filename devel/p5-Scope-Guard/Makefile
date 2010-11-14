@@ -1,15 +1,11 @@
-# New ports collection makefile for:   Scope-Guard
-# Date created:           29 December 2006
-# Whom:                   Craig Manley
-#
 # $FreeBSD: ports/devel/p5-Scope-Guard/Makefile,v 1.2 2007/02/09 05:32:02 rafan Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Scope-Guard/Makefile,v 1.1 2007/09/01 16:50:15 ctriv Exp $
 #
 
 PORTNAME=	Scope-Guard
-PORTVERSION=	0.03
+PORTVERSION=	0.20
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
+MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/C/CH/CHOCOLATE
 PKGNAMEPREFIX=	p5-
 
