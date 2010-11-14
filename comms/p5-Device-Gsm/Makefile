@@ -2,12 +2,12 @@
 # Date created:				09 May 2006
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/p5-Device-Gsm/Makefile,v 1.1 2008/08/18 16:22:41 laffer1 Exp $
 # $FreeBSD: ports/comms/p5-Device-Gsm/Makefile,v 1.5 2008/04/17 14:24:13 araujo Exp $
 #
 
 PORTNAME=	Device-Gsm
-PORTVERSION=	1.48
+PORTVERSION=	1.55
 CATEGORIES=	comms perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
