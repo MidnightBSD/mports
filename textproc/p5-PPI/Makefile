@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/p5-PPI/Makefile,v 1.3 2009/12/13 18:39:41 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-PPI/Makefile,v 1.4 2010/11/14 18:38:58 laffer1 Exp $
 
 PORTNAME=	PPI
 PORTVERSION=	1.213
