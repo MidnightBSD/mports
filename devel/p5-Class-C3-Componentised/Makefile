@@ -3,11 +3,11 @@
 # Whom:		   Lars Balker Rasmussen <lbr@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-Class-C3-Componentised/Makefile,v 1.1 2007/08/12 22:13:41 lbr Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Class-C3-Componentised/Makefile,v 1.1 2007/09/01 17:05:16 ctriv Exp $
 #
 
 PORTNAME=	Class-C3-Componentised
-PORTVERSION=	1.0001
+PORTVERSION=	1.0006
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
