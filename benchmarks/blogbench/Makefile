@@ -2,13 +2,12 @@
 # Date created:			Feb 14, 2005
 # Whom:				janos.mohacsi@bsd.hu
 #
-# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.4 2008/06/25 15:14:54 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.5 2010/02/28 21:30:21 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/blogbench/Makefile,v 1.1 2005/02/14 21:04:04 pav Exp $
 #
 
 PORTNAME=	blogbench
-PORTVERSION=	1.0
-PORTREVISION=	1
+PORTVERSION=	1.1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://download.pureftpd.org/pub/blogbench/ \
 		ftp://ftp.pureftpd.org/pub/pure-ftpd/misc/blogbench/
