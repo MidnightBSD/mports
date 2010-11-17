@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.3 2010/01/09 17:39:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.4 2010/03/21 21:08:42 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.0
+PORTVERSION=	2.8.1
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=lofi
+MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A cross-platform Makefile generator
