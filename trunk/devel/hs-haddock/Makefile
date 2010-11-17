@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/hs-haddock/Makefile,v 1.1 2009/02/18 19:50:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/hs-haddock/Makefile,v 1.2 2010/01/06 03:26:51 laffer1 Exp $
 
 PORTNAME=	haddock
 PORTVERSION=	2.1.0
@@ -9,6 +9,8 @@ PKGNAMEPREFIX=	hs-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A documentation tool for Haskell
 LICENSE=	bsd2
+
+#FAKE_OPTS=	prefixhack
 
 .if !defined(SLAVE)
 BUILD_DEPENDS=	ghc:${PORTSDIR}/lang/ghc
@@ -41,7 +43,7 @@ PLIST_SUB=	GHC_VERSION=${GHC_VERSION} \
 .SILENT:
 
 do-configure:
-	cd ${WRKSRC} && ${CABAL_CMD} configure --ghc --prefix=${PREFIX}
+	cd ${WRKSRC} && ${CABAL_CMD} configure --ghc --prefix=${TRUE_PREFIX}
 
 do-build:
 	cd ${WRKSRC} && ${CABAL_CMD} build --ghc-option="-package process-1.0.0.1"
@@ -53,7 +55,7 @@ do-install:
 	cd ${WRKSRC} && ${CABAL_CMD} install
 
 post-install:
-	${STRIP_CMD} ${PREFIX}/bin/haddock
-	@${RM} -f ${PREFIX}/lib/ghc-${GHC_VERSION}/package.conf.old
+	${STRIP_CMD} ${TRUE_PREFIX}/bin/haddock
+	${RM} -f ${PREFIX}/lib/ghc-${GHC_VERSION}/package.conf.old
 
 .include <bsd.port.mk>
