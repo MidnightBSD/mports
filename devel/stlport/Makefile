@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.4 2010/01/02 18:00:41 laffer1 Exp $
 
 PORTNAME=	stlport
 PORTVERSION=	5.1.5
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/STLport/STLport%20${PORTVERSION}
 PKGNAMESUFFIX=	-${COMPILER}
@@ -69,6 +70,7 @@ pre-configure:
 		${PATCH_WRKSRC}/build/Makefiles/gmake/${sdir}/gcc.mak
 . endfor
 .endif
+	cpdup ${WRKSRC}/build/Makefiles/gmake/freebsd  ${WRKSRC}/build/Makefiles/gmake/midnightbsd
 
 do-install:
 	${MKDIR} "${PREFIX}/include/stlport/"
