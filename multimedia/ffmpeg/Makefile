@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.5 2010/02/27 22:40:54 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.6 2010/11/06 16:05:39 laffer1 Exp $
 
 PORTNAME=	ffmpeg
 PORTVERSION=	0.6
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -35,7 +36,7 @@ OPTIONS=	AMR_NB	"AMR Narrow Band encoder (opencore)" off \
 		SSSE3	"Enable ssse3 support" on \
 		THEORA	"Theora encoder (implies OGG)" on \
 		VORBIS	"Vorbis encoder via libvorbis (implies OGG)" on \
-		X264	"H.264 encoder" on \
+		X264	"H.264 encoder" off \
 		XVID	"Xvid encoder via xvidcore" on
 
 COMPAT_HEADERS=libavcodec/avcodec.h \
