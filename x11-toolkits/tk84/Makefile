@@ -3,7 +3,7 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/x11-toolkits/tk84/Makefile,v 1.93 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.4 2008/05/11 16:40:20 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.5 2008/06/13 12:56:51 laffer1 Exp $
 #
 
 PORTNAME=	tk
@@ -43,6 +43,7 @@ DATADIR=	${PREFIX}/share/${PORTNAME}${TK_VER}
 CONFIGURE_ARGS+=	--enable-threads
 CONFIGURE_ENV+=		PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"
 THREADS_SUFFIX=		-threads
+LATEST_LINK=            tk84${THREADS_SUFFIX}
 TCL84_PORT?=		lang/tcl84-thread
 .else
 THREADS_SUFFIX=	
