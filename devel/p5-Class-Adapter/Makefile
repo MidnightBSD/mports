@@ -2,12 +2,12 @@
 # Date created:		2006-08-13
 # Whom:			Tsung-Han Yeh <snowfly@yuntech.edu.tw>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Class-Adapter/Makefile,v 1.1 2008/08/17 22:33:48 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Class-Adapter/Makefile,v 1.4 2008/02/20 13:24:37 miwi Exp $
 #
 
 PORTNAME=	Class-Adapter
-PORTVERSION=	1.04
+PORTVERSION=	1.07
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
