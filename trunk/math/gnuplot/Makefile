@@ -2,16 +2,15 @@
 # Date created:         19 April 1998
 # Whom:                 chuckr
 #
-# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.9 2008/11/07 18:56:18 ctriv Exp $
+# $MidnightBSD: mports/math/gnuplot/Makefile,v 1.10 2008/11/12 20:04:43 ctriv Exp $
 # $FreeBSD: ports/math/gnuplot/Makefile,v 1.62 2006/05/10 22:37:08 edwin Exp $
 #
 
 PORTNAME=	gnuplot
-PORTVERSION=	4.2.3
+PORTVERSION=	4.2.6
 PORTREVISION=	2
 CATEGORIES=	math graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A command-driven interactive function plotting program
