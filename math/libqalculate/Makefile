@@ -1,11 +1,11 @@
 #
-# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.1 2008/12/20 18:25:29 ctriv Exp $
+# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.2 2009/09/20 01:26:18 laffer1 Exp $
 #
 
 PORTNAME=	libqalculate
 PORTVERSION=	0.9.6
 CATEGORIES=	math
-MASTER_SITES=	SF/qalculate
+MASTER_SITES=	SF/qalculate/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A a multi-purpose desktop calculator (backend library)
