@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/irc/irssi-scripts/pkg-plist,v 1.6 2009/08/11 08:11:56 jadawin Exp $
 share/irssi/scripts/8-ball.pl
 share/irssi/scripts/UNIBG-autoident.pl
 share/irssi/scripts/accent.pl
@@ -54,6 +53,7 @@ share/irssi/scripts/bitlbee_typing_notice.pl
 share/irssi/scripts/blowjob.pl
 share/irssi/scripts/bmi.pl
 share/irssi/scripts/calc.pl
+share/irssi/scripts/cap_sasl.pl
 share/irssi/scripts/callerid.pl
 share/irssi/scripts/centericq.pl
 share/irssi/scripts/cgrep.pl
@@ -167,7 +167,6 @@ share/irssi/scripts/len.pl
 share/irssi/scripts/leodict.pl
 share/irssi/scripts/licq.pl
 share/irssi/scripts/linkchan.pl
-share/irssi/scripts/linkshort.pl
 share/irssi/scripts/listen.pl
 share/irssi/scripts/loadavg.pl
 share/irssi/scripts/localize.pl
@@ -303,6 +302,7 @@ share/irssi/scripts/tracknick.pl
 share/irssi/scripts/trigger.pl
 share/irssi/scripts/trustweb.pl
 share/irssi/scripts/tvmusor.pl
+share/irssi/scripts/twirssi.pl
 share/irssi/scripts/twprompt.pl
 share/irssi/scripts/twsocials.pl
 share/irssi/scripts/twtopic.pl
