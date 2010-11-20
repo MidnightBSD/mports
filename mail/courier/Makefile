@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.6 2009/09/24 02:23:24 laffer1 Exp $
 
 PORTNAME=	courier
-PORTVERSION=	0.62.0
+PORTVERSION=	0.63.0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF
 
