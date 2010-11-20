@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.5 2009/09/20 03:07:30 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.6 2009/12/13 22:04:13 laffer1 Exp $
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF
 DIST_SUBDIR=	gnome2
@@ -18,5 +18,10 @@ USE_GL=		yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-DGTK_DISABLE_DEPRECATED||g' \
+		-e 's|-DGDK_DISABLE_DEPRECATED||g' \
+		${WRKSRC}/examples/Makefile.in ${WRKSRC}/gtk/Makefile.in 
 
 .include <bsd.port.mk>
