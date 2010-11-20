@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.9 2009/12/25 16:19:16 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.10 2010/05/05 20:46:37 vganji Exp $
 
 PORTNAME=	bitlbee
-PORTVERSION=	1.2.4
-PORTREVISION=	1
+PORTVERSION=	1.2.5
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
