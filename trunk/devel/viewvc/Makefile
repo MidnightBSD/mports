@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.9 2009/12/31 20:10:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.10 2010/01/24 16:04:06 laffer1 Exp $
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.7
 CATEGORIES=	devel python
-MASTER_SITES=	http://viewvc.tigris.org/files/documents/3330/46489/
+MASTER_SITES=	http://www.viewvc.org/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
@@ -19,7 +19,9 @@ NO_BUILD=	yes
 USE_PYTHON=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	INSTDIR="${PREFIX}/${INSTDIR}" \
-			PYTHON_CMD=${PYTHON_CMD}
+		PYTHON_CMD=${PYTHON_CMD} \
+		ECHO=${ECHO} EGREP=${EGREP} TOUCH=${TOUCH} \
+		CHOWN=${CHOWN} RM=${RM}
 
 INSTDIR?=	${PORTNAME}
 PLIST_SUB=	INSTDIR=${INSTDIR}
