@@ -1,13 +1,8 @@
-# New ports collection makefile for:	irssi-scripts
-# Date created:				Jul 14 2005
-# Whom:					Alexey Mikhailov <karma@ez.pereslavl.ru>
-#
-# $MidnightBSD: mports/irc/irssi-scripts/Makefile,v 1.4 2008/05/10 01:29:54 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi-scripts/Makefile,v 1.5 2009/12/25 16:22:19 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi-scripts/Makefile,v 1.4 2007/02/27 00:04:45 linimon Exp $
-#
 
 PORTNAME=	irssi-scripts
-PORTVERSION=	20090810
+PORTVERSION=	20100512
 CATEGORIES=	irc
 MASTER_SITES=	http://ftp.debian.org/debian/pool/main/i/${PORTNAME}/
 DISTFILES=	${PORTNAME}_${PORTVERSION}${EXTRACT_SUFX}
@@ -18,7 +13,7 @@ LICENSE=	unknown
 
 RUN_DEPENDS=	irssi:${PORTSDIR}/irc/irssi
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USE_PERL5=	yes
 NO_BUILD=	yes
