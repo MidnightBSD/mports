@@ -2,15 +2,15 @@
 # Date created:			  Sat Apr 08, 2006
 # Whom:				  John Hein (jhein@timing.com)
 #
-# $MidnightBSD: mports/finance/opentaxsolver/Makefile,v 1.2 2010/11/20 03:23:42 laffer1 Exp $
+# $MidnightBSD: mports/finance/opentaxsolver/Makefile,v 1.3 2010/11/20 03:25:41 laffer1 Exp $
 # $FreeBSD: ports/finance/opentaxsolver/Makefile,v 1.7 2008/02/26 11:26:18 miwi Exp $
 #
 
 PORTNAME=	${UPPORTNAME:L}
-PORTVERSION=	6.04
+PORTVERSION=	7.07
 CATEGORIES=	finance
-MASTER_SITES=	SF/${PORTNAME}/OTS_2008/v${PORTVERSION}
-DISTNAME=	${UPPORTNAME}2008_${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/OTS_2009/v${PORTVERSION}
+DISTNAME=	${UPPORTNAME}2009_${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
