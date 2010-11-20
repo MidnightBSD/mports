@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.11 2010/11/20 03:54:21 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.12 2010/11/20 03:56:24 laffer1 Exp $
 
 PORTNAME=	bitlbee
 PORTVERSION=	1.2.8
@@ -29,7 +29,8 @@ OPTIONS=	DEBUG "Enable debug support" Off \
 		MSN "Enable MSN protocol support" On \
 		JABBER "Enable Jabber (XMPP) protocol support" On \
 		OSCAR "Enable OSCAR (ICQ, AIM) protocol support" On \
-		YAHOO "Enable Yahoo! protocol support" On
+		YAHOO "Enable Yahoo! protocol support" On \
+		TWITTER "Enable Twitter protocol support" On
 
 CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0
 
@@ -94,6 +95,12 @@ CONFIGURE_ARGS+=--oscar=0
 CONFIGURE_ARGS+=--yahoo=1
 .else
 CONFIGURE_ARGS+=--yahoo=0
+.endif
+
+.if defined(WITH_TWITTER)
+CONFIGURE_ARGS+=--twitter=1
+.else
+CONFIGURE_ARGS+=--twitter=0
 .endif
 
 post-patch:
