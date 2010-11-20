@@ -1,16 +1,10 @@
-# New ports collection makefile for:	libopensync
-# Date created:		2005-06-19
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libopensync022/Makefile,v 1.1 2007/12/31 05:50:16 laffer1 Exp $
 # $FreeBSD: ports/devel/libopensync022/Makefile,v 1.18 2007/07/04 10:00:00 lofi Exp $
-#
 
 PORTNAME=	libopensync
 PORTVERSION=	0.22
 CATEGORIES=	devel
-MASTER_SITES=	http://www.opensync.org/attachment/wiki/download/
-EXTRACT_SUFX=	.tar.bz2\?rev=\&format=raw
+MASTER_SITES=	http://www.opensync.org/download/releases/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Freedesktop synchronization framework
