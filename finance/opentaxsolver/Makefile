@@ -2,15 +2,14 @@
 # Date created:			  Sat Apr 08, 2006
 # Whom:				  John Hein (jhein@timing.com)
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/finance/opentaxsolver/Makefile,v 1.1 2008/04/29 02:17:26 laffer1 Exp $
 # $FreeBSD: ports/finance/opentaxsolver/Makefile,v 1.7 2008/02/26 11:26:18 miwi Exp $
 #
 
 PORTNAME=	${UPPORTNAME:L}
-PORTVERSION=	5.05
+PORTVERSION=	5.07
 CATEGORIES=	finance
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	opentaxsolver
+MASTER_SITES=	SF/opentaxsolver
 DISTNAME=	${UPPORTNAME}2007_${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
@@ -18,14 +17,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	US tax prep software
 LICENSE=	gpl2
 
-USE_XLIB=	yes
+USE_XORG=	x11 xmu xext
 USE_GL=		yes
 UPPORTNAME=	OpenTaxSolver
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/%%PREFIX%%/${PREFIX:C,/,\/,g}/' \
 	${WRKSRC}/src/GUI/ots_gui.c
-	@${REINPLACE_CMD} -e 's|/usr/X11R6|${X11BASE}|' \
+	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|' \
 	${WRKSRC}/src/GUI/Makefile.linux
 
 # 4.07 distfile has pre-built (linux) binaries we must whack.
