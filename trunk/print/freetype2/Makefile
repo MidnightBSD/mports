@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.13 2010/11/21 16:14:11 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.14 2010/11/21 16:16:37 laffer1 Exp $
 
 PORTNAME=	freetype2
 PORTVERSION=	2.3.11
@@ -29,9 +29,7 @@ CONFIGURE_ARGS=	--disable-nls
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
-.if !defined(WITHOUT_TTF_BYTECODE_ENABLED)
 CFLAGS+=	-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
-.endif
 
 .if defined(WITH_LCD_FILTERING)
 CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
@@ -46,17 +44,6 @@ CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
 .endif
 
 pre-everything::
-.if !defined(WITHOUT_TTF_BYTECODE_ENABLED)
-	@${ECHO_MSG} "You may want not to compile a bytecode interpreter into the"
-	@${ECHO_MSG} "TrueType driver. Without this you will only compile the code"
-	@${ECHO_MSG} "necessary to load TrueType glyphs without hinting."
-	@${ECHO_MSG}
-	@${ECHO_MSG} "Hit Ctrl-C now and use \"make WITHOUT_TTF_BYTECODE_ENABLED=yes\""
-	@${ECHO_MSG}
-	@${ECHO_MSG} "Note that there are important patent issues related to the"
-	@${ECHO_MSG} "use of the interpreter."
-	@${ECHO_MSG}
-.endif
 .if !defined(WITH_LCD_FILTERING)
 	@${ECHO_MSG} "You may want to enable LCD filtering."
 	@${ECHO_MSG}
@@ -69,10 +56,8 @@ pre-everything::
 pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/builds/unix/install.mk
-.if !defined(WITHOUT_TTF_BYTECODE_ENABLED)
 	@${REINPLACE_CMD} -e '/#define TT_CONFIG_OPTION_BYTECODE_INTERPRETER/s,/\* \(.*\) \*/,\1,; /#define TT_CONFIG_OPTION_UNPATENTED_HINTING/s,^\(.*\),/* \1 \*/,' \
 		${WRKSRC}/include/freetype/config/ftoption.h
-.endif
 
 post-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
