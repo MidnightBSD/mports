@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.14 2010/11/21 16:16:37 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.15 2010/11/21 16:52:05 laffer1 Exp $
 
 PORTNAME=	freetype2
-PORTVERSION=	2.3.11
+PORTVERSION=	2.4.3
 CATEGORIES=	print
 MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype2/ \
@@ -23,24 +23,14 @@ USE_GMAKE=	yes
 MAKE_ENV=	TOP=""
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnometarget pkgconfig
+USE_GNOME=	gnometarget pkgconfig ltverhack:9
 LIBTOOLFILES=	builds/unix/configure
 CONFIGURE_ARGS=	--disable-nls
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-
-CFLAGS+=	-DTT_CONFIG_OPTION_BYTECODE_INTERPRETER
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 .if defined(WITH_LCD_FILTERING)
 CFLAGS+=	-DFT_CONFIG_OPTION_SUBPIXEL_RENDERING
-.endif
-
-.if defined(WITH_CJK)
-#PATCH_SITES+=	http://lwj-hinet.myweb.hinet.net/ \
-#		ftp://local-distfiles.freebsd.org.cn/pub/china-ports/hamigua/ \
-#		http://bsdchat.com/dist/firefly-cjk-patchset/
-#PATCHFILES+=	cjk-freetype-2.1.10-20051219.patch.gz
-#PATCH_DIST_STRIP+=	-p1
 .endif
 
 pre-everything::
@@ -56,8 +46,10 @@ pre-everything::
 pre-patch:
 	@${REINPLACE_CMD} -e 's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/builds/unix/install.mk
-	@${REINPLACE_CMD} -e '/#define TT_CONFIG_OPTION_BYTECODE_INTERPRETER/s,/\* \(.*\) \*/,\1,; /#define TT_CONFIG_OPTION_UNPATENTED_HINTING/s,^\(.*\),/* \1 \*/,' \
-		${WRKSRC}/include/freetype/config/ftoption.h
+
+pre-configure:
+	@${REINPLACE_CMD} -e '/^LIBTOOL/s|LIBTOOL := $$(FT_LIBTOOL_DIR)/libtool|LIBTOOL := ${WRKDIR}/gnome-libtool|' \
+		${WRKSRC}/builds/unix/unix-cc.in
 
 post-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} setup)
