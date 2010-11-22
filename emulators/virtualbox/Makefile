@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/virtualbox/Makefile,v 1.2 2009/06/29 03:59:39 laffer1 Exp $
 
 PORTNAME=	virtualbox
 DISTVERSION=	2.2.51.r20457
@@ -19,8 +19,8 @@ BUILD_DEPENDS=	yasm:${PORTSDIR}/devel/yasm \
 		as86:${PORTSDIR}/devel/dev86 \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
 		kmk:${PORTSDIR}/devel/kBuild
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
-		curl.5:${PORTSDIR}/ftp/curl
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+		curl.6:${PORTSDIR}/ftp/curl
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_XORG=	xcursor xmu
