@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.10 2010/01/24 16:04:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.11 2010/11/20 03:10:19 laffer1 Exp $
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.7
@@ -72,6 +72,10 @@ do-install:
 		${PREFIX}/viewvc/bin/standalone.py \
 		${PREFIX}/viewvc/bin/loginfo-handler \
 		${PREFIX}/viewvc/bin/cvsdbadmin \
-		${PREFIX}/viewvc/bin/svndbadmin
+		${PREFIX}/viewvc/bin/svndbadmin \
+		${PREFIX}/viewvc/wsgi/query.fcgi \
+		${PREFIX}/viewvc/wsgi/query.wsgi \
+		${PREFIX}/viewvc/wsgi/viewvc.fcgi \
+		${PREFIX}/viewvc/wsgi/viewvc.wsgi
 
 .include <bsd.port.mk>
