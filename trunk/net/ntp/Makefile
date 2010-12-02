@@ -2,19 +2,19 @@
 # Date created:		Di   5 Mai 1998 21:31:03 CEST
 # Whom:			andreas
 #
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.8 2010/02/28 16:29:49 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.9 2010/02/28 16:50:42 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 #
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.6p1.r5
-PORTREVISION=	4
+PORTVERSION?=	4.2.6p2
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
 		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
 		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ \
 		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-RC/}
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/P/p/:S/.r/-RC/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Network Time Protocol Distribution
@@ -39,11 +39,13 @@ OPTIONS=	NTPSNMPD "Build and install ntpsnmpd" OFF \
 		RAWDCF "Enable RAWDCF option" OFF \
 		SSL "Enable SSL" ON
 
-.if defined(ENABLE_RAWDCF)
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_RAWDCF)
 CONFIGURE_ARGS+=	--enable-RAWDCF
 .endif
 
-.if defined(WITHOUT_SSL)
+.if !defined(WITH_SSL)
 CONFIGURE_ARGS+=	--without-crypto
 PLIST_SUB+=		SSL="@comment "
 .else
@@ -61,8 +63,6 @@ RUN_DEPENDS+=		${LOCALBASE}/include/net-snmp/net-snmp-config.h:${PORTSDIR}/net-m
 .else
 CONFIGURE_ARGS+=	--without-ntpsnmpd
 .endif
-
-.include <bsd.port.pre.mk>
 
 pre-configure:
 	@cd ${WRKSRC} && ./bootstrap
