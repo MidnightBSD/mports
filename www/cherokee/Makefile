@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.11 2010/09/04 01:49:15 laffer1 Exp $
 
 PORTNAME=	cherokee
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	www
 MASTER_SITES=	http://www.cherokee-project.com/download/1.0/${PORTVERSION}/ \
 		http://cherokee.osuosl.org/1.0/${PORTVERSION}/ \
