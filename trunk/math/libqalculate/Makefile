@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.3 2010/11/20 04:34:16 laffer1 Exp $
+# $MidnightBSD: mports/math/libqalculate/Makefile,v 1.4 2010/11/20 04:43:30 laffer1 Exp $
 #
 
 PORTNAME=	libqalculate
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A a multi-purpose desktop calculator (backend library)
 LICENSE=	gpl2
 
-LIB_DEPENDS=	cln.5:${PORTSDIR}/math/cln
+LIB_DEPENDS=	cln.6:${PORTSDIR}/math/cln
 
 USE_GNOME=	glib20 gnomehack gnometarget intlhack libxml2
 USE_GETTEXT=	yes
