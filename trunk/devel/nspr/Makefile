@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/nspr/Makefile,v 1.7 2009/10/13 22:45:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/nspr/Makefile,v 1.8 2010/10/30 20:19:51 laffer1 Exp $
 
 PORTNAME=	nspr
 PORTVERSION=	4.8.6
@@ -39,9 +39,9 @@ post-patch:
 do-install:
 	${MKDIR} ${PREFIX}/include/nspr
 	${TAR} -C ${WRKSRC}/dist/include --dereference -cf - . | \
-		${TAR} -C ${PREFIX}/include -xf -
+		${TAR} -C ${PREFIX}/include -xof -
 	${TAR} -C ${WRKSRC}/dist/lib --dereference -cf - . | \
-		${TAR} -C ${PREFIX}/lib -xf -
+		${TAR} -C ${PREFIX}/lib -xof -
 	${INSTALL_SCRIPT} ${WRKSRC}/config/nspr-config ${PREFIX}/bin
 	${MKDIR} ${PREFIX}/libdata/pkgconfig
 	${INSTALL_DATA} ${WRKSRC}/config/nspr.pc ${PREFIX}/libdata/pkgconfig
