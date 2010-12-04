@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/misc/wmtunlo/Makefile,v 1.4 2010/01/02 19:12:11 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmtunlo/Makefile,v 1.5 2010/11/12 00:32:51 laffer1 Exp $
 # $FreeBSD: ports/misc/wmtunlo/Makefile,v 1.7 2004/05/16 23:45:05 adamw Exp $
 #
 
 PORTNAME=	wmtunlo
 PORTVERSION=	0.1.3
-PORTREVISION=   2
+PORTREVISION=	2
 CATEGORIES=	misc windowmaker
 MASTER_SITES=	http://www.gnu-darwin.org/distfiles/ \
 		http://cvsup.theplanet.com/distfiles/
