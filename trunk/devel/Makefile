@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.347 2010/11/11 00:45:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.348 2010/11/13 16:38:06 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -258,6 +258,7 @@
     SUBDIR += p5-Path-Class
     SUBDIR += p5-PathTools
     SUBDIR += p5-Pod-Coverage
+    SUBDIR += p5-Proc-WaitStat
     SUBDIR += p5-ReadLine-Perl
     SUBDIR += p5-Readonly
     SUBDIR += p5-Return-Value
