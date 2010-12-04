@@ -1,7 +1,6 @@
 DISTFILES+=	BitchX.theme
 DISTFILES+=	IamCyan.theme
 DISTFILES+=	agon.theme
-DISTFILES+=	ardchoille.theme
 DISTFILES+=	artificial-soul.theme
 DISTFILES+=	ash.theme
 DISTFILES+=	asyura.theme
