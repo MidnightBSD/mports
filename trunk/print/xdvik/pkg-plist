@@ -1,8 +1,6 @@
-@comment $MidnightBSD: ports/print/xdvik/pkg-plist,v 1.9 2005/09/13 18:04:35 hrs Exp $
 bin/oxdvi
 bin/xdvi
-bin/xdvi-motif.bin
-bin/xdvizilla
+bin/xdvi-motif
 %%TEXMFDIR%%/xdvi/XDvi
 %%TEXMFDIR%%/xdvi/xdvi.cfg
 %%TEXMFDIR%%/xdvi/pixmaps/toolbar.xpm
