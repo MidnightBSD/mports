@@ -2,14 +2,14 @@
 # Date created:				August 4, 2006
 # Whom:					Jeroen Schot <schot@a-eskwadraat.nl>
 #
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.9 2008/09/06 21:15:14 crash Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.10 2009/03/26 22:19:39 ctriv Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 #
 
 PORTNAME=	dmenu
 PORTVERSION=	3.8
 CATEGORIES=	x11
-MASTER_SITES=	http://code.suckless.org/dl/tools/ \
+MASTER_SITES=	http://dl.suckless.org/tools/ \
 		http://schot.a-eskwadraat.nl/files/
 
 MAINTAINER=	ports@MidnightBSD.org
