@@ -2,15 +2,14 @@
 # Date created:				28th Aug 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.1 2008/05/30 19:08:42 laffer1 Exp $
 # $FreeBSD: ports/net/samba-pdbsql/Makefile,v 1.6 2008/05/01 13:06:37 timur Exp $
 #
 
 PORTNAME=		pdbsql
 PORTVERSION=		0.3.1
 CATEGORIES=		net
-MASTER_SITES=		${MASTER_SITE_SOURCEFORGE_EXTENDED}
-MASTER_SITE_SUBDIR=	pdbsql
+MASTER_SITES=		SF
 PKGNAMEPREFIX=		samba-
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
