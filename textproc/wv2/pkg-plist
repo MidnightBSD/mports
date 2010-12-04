@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 bin/wv2-config
 include/wv2/associatedstrings.h
 include/wv2/convert.h
@@ -23,9 +22,14 @@ include/wv2/utilities.h
 include/wv2/word95_generated.h
 include/wv2/word97_generated.h
 include/wv2/word_helper.h
+include/wv2/wv2version.h
 include/wv2/wvlog.h
-lib/libwv2.a
+include/wv2/zcodec.hxx
 lib/libwv2.la
 lib/libwv2.so
-lib/libwv2.so.1
+lib/libwv2.so.4
+lib/libwv2.so.4.0.1
+lib/wvWare/wv2.cmake
+lib/wvWare/wv2-noconfig.cmake
+@dirrm lib/wvWare
 @dirrm include/wv2
