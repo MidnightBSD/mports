@@ -2,17 +2,14 @@
 # Date created:				Sun Nov 18 19:42:02 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.6 2009/09/20 03:27:53 smultron Exp $
+# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.7 2010/03/25 01:31:30 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 #
 
 PORTNAME=	libdv
-PORTVERSION=	0.104
-PORTREVISION=	6
+PORTVERSION=	1.0.0
 CATEGORIES=	multimedia
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTNAME=	libdv-${PORTVERSION:C/\.(.)$/\1/}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quasar DV codec (libdv): software codec for DV video encoding format
@@ -21,12 +18,8 @@ LICENSE=	lgpl
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		popt.0:${PORTSDIR}/devel/popt
 
-USE_GNOME=	gnometarget
-WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-gtk-prefix="${LOCALBASE}" \
-		--x-includes="${LOCALBASE}/include" \
-		--x-libraries="${LOCALBASE}/lib"
+CONFIGURE_ARGS+=	--disable-gtk --program-prefix=''
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${LOCALBASE}/libdata/pkgconfig
@@ -34,27 +27,12 @@ USE_LDCONFIG=	yes
 
 MAN1=	dubdv.1 dvconnect.1 encodedv.1
 
-PORTDOCS=      AUTHORS COPYING COPYRIGHT ChangeLog NEWS README \
+PORTDOCS=	AUTHORS COPYING COPYRIGHT ChangeLog NEWS README \
 		README.dvconnect README.encoder TODO
 
-OPTIONS=	SDL "SDL Support" on
-
-.include <bsd.mport.options.mk>
-
-.ifndef(WITHOUT_SDL)
-USE_SDL=	sdl
-CONFIGURE_ARGS+= --enable-sdl
-.endif
+OPTIONS+=	SDL	"Add SDL support" off
 
 .include <bsd.port.pre.mk>
-
-.if ${HAVE_GNOME:Mgtk12}!=""
-USE_GNOME+=	gtk12
-MAN1+=		playdv.1
-PLIST_FILES+=	bin/playdv
-.else
-CONFIGURE_ARGS+=--disable-gtk
-.endif
 
 # XXX - work around compiler bug
 # Optimizations -O{1,s,2,3} work
@@ -62,15 +40,15 @@ CONFIGURE_ARGS+=--disable-gtk
 # Therefore, make sure we have AT LEAST -O and avoid -O0
 CONFIGURE_ENV+=	CFLAGS="-O ${CFLAGS:N-O0}"
 
+.if defined(WITH_SDL)
+USE_SDL=	sdl
+CONFIGURE_ARGS+=	--enable-sdl
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -E \
 		-e 's|(pkgconfigdir =).+(/pkgconfig)|\1 ${PREFIX}/libdata\2|' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -E -e 's|(-lXv)|\1 -lXext -L${LOCALBASE}/lib|; \
-		/objformat=/s|=.*|=elf|; \
-		s@(PKG_CONFIG --(cflags|libs) )"\$$REQUIRES"@\1 gtk@' \
-		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${REINPLACE_CMD} -e 's|stdint.h|sys/types.h|' \
 		${WRKSRC}/libdv/dv.h \
 		${WRKSRC}/libdv/dv_types.h \
@@ -84,10 +62,6 @@ post-patch:
 # protect popt from prefix changes
 	@${REINPLACE_CMD} -E -e 's|(@REQUIRES_NOPKGCONFIG@)|-L${LOCALBASE}/include \1|' \
 		${WRKSRC}/libdv.pc.in
-
-pre-configure:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|' \
-		${WRKSRC}/configure
 
 post-install:
 .if !defined(NOPORTDOCS)
