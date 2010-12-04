@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.7 2010/01/02 17:42:33 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtkspell/Makefile,v 1.8 2010/01/02 17:43:59 laffer1 Exp $
 
 PORTNAME=	gtkspell
-PORTVERSION=	2.0.15
+PORTVERSION=	2.0.16
 PORTREVISION?=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://gtkspell.sourceforge.net/download/
