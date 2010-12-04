@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.7 2010/09/07 23:51:58 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.8 2010/10/23 18:02:57 laffer1 Exp $
 
 PORTNAME=	jabberd
 PORTVERSION=	2.2.11
@@ -183,8 +183,7 @@ post-patch:
 .endif
 
 post-install:
-#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	@${CHOWN} -R ${JABBER_USER}:${JABBER_GROUP} ${PREFIX}/etc/jabberd
+	${CHOWN} -R jabber:jabber ${PREFIX}/etc/jabberd
 	@${FIND} ${PREFIX}/etc/jabberd -type d | ${XARGS} ${CHMOD} 750
 	@${FIND} ${PREFIX}/etc/jabberd -type f | ${XARGS} ${CHMOD} 660
 .if !defined(NOPORTDOCS)
