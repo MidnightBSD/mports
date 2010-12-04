@@ -2,7 +2,7 @@
 # Date created:		19.04.2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.5 2010/05/05 23:48:15 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.6 2010/11/12 00:45:56 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 #
 
@@ -27,21 +27,22 @@ USE_GNOME=	desktopfileutils glib20 gnomehack gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libexo libutil
 CFLAGS+=	-DHAVE_SYS_MOUNT_H
+CONFIGURE_ARGS+=	--program-prefix=''
 
 OPTIONS=	DBUS		"Enable D-BUS support"				on  \
 		JPEG		"Enable JPEG support"				on  \
-		FAM		"Enable FAM support"				off \
-		HAL		"Enable HAL support"				on \
+		FAM		"Enable FAM support"				on  \
+		HAL		"Enable HAL support"				on  \
 		GCONF		"Enable GCONF support"				off \
 		STARTUP		"Enable startup notification support"		on  \
-		PLUG_APR	"Thunar Advanced Properties plugin"		on \
+		PLUG_APR	"Thunar Advanced Properties plugin"		on  \
 		PLUG_APR_EXIF	"Exif support for the APR plugin"		off \
-		PLUG_SBR	"Thunar Simple Builtin Renamers plugin"		on \
+		PLUG_SBR	"Thunar Simple Builtin Renamers plugin"		on  \
 		PLUG_SBR_PCRE	"Regular expression support for the SBR plugin"	off \
-		PLUG_TPA	"Thunar Trash Panel Applet plugin"		on \
-		PLUG_UCA	"Thunar User Customizable Actions plugin"	on
+		PLUG_TPA	"Thunar Trash Panel Applet plugin"		on  \
+		PLUG_UCA	"Thunar User Customizable Actions plugin"	on  \
+		PLUG_WALL	"Thunar Wallpaper plugin"			on
 
-MAN1=		Thunar.1
 
 .include  <bsd.port.pre.mk>
 
@@ -120,6 +121,14 @@ PLIST_SUB+=	PLUGIN_UCA=""
 .else
 CONFIGURE_ARGS+=--disable-uca-plugin
 PLIST_SUB+=	PLUGIN_UCA="@comment "
+.endif
+
+.if !defined(WITHOUT_PLUG_WALL)
+CONFIGURE_ARGS+=--enable-wallpaper-plugin
+PLIST_SUB+=	PLUGIN_WALL=""
+.else
+CONFIGURE_ARGS+=--disable-wallpaper-plugin
+PLIST_SUB+=	PLUGIN_WALL="@comment "
 .endif
 
 .if !defined(WITHOUT_STARTUP)
