@@ -3,15 +3,14 @@
 # Whom:                Kentaro Inagaki <JBD01226@niftyserve.ne.jp>
 #
 # $FreeBSD: ports/print/xdvik/Makefile,v 1.24 2005/09/13 18:04:35 hrs Exp $
-# $MidnightBSD: mports/print/xdvik/Makefile,v 1.1 2007/01/24 20:59:27 laffer1 Exp $
+# $MidnightBSD: mports/print/xdvik/Makefile,v 1.2 2007/11/02 03:59:46 ctriv Exp $
 #
 
 PORTNAME=	xdvik
-PORTVERSION=	22.84.10
-PORTREVISION=	1
+PORTVERSION=	22.84.16
+PORTREVISION=	2
 CATEGORIES=	print
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	xdvi
+MASTER_SITES=	SF/xdvi/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	-tetex
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -47,7 +46,7 @@ CONFLICTS=	xdvi-[0-9]* xdvi-*-[0-9]* \
 		*-xdvi-[0-9]* xdvi-*-[0-9]* \
 		*-xdvik-[0-9]* ja-ptex-tetex-[0-9]*
 
-MAN1=		xdvi.1 xdvizilla.1
+MAN1=		xdvi.1
 MLINKS=		xdvi.1 oxdvi.1
 
 TEXMFDIR=	share/texmf
