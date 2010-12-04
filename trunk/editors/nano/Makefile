@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.10 2010/09/04 08:02:16 crash Exp $
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.11 2010/09/18 22:01:39 laffer1 Exp $
 
 PORTNAME=	nano
-PORTVERSION=	2.2.5
+PORTVERSION=	2.2.6
 CATEGORIES=	editors
 MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
 		http://www.ewtoo.org/~astyanax/nano/dist/v2.2/ \
