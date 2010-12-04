@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.129 2010/10/21 19:19:16 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.130 2010/10/23 12:03:45 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -80,6 +80,8 @@
     SUBDIR += opensp
     SUBDIR += p5-HTML-Tidy
     SUBDIR += p5-PPI
+    SUBDIR += p5-PPIx-Regexp
+    SUBDIR += p5-PPIx-Utilities
     SUBDIR += p5-Parse-Syslog
     SUBDIR += p5-Perl-Critic
     SUBDIR += p5-Pod-Escapes
