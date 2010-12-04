@@ -3,15 +3,14 @@
 # Date created:			Sep 14, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/textproc/py-docutils/Makefile,v 1.1 2007/09/01 04:06:37 laffer1 Exp $
+# $MidnightBSD: mports/textproc/py-docutils/Makefile,v 1.2 2008/10/13 19:57:42 crash Exp $
 # $FreeBSD: ports/textproc/py-docutils/Makefile,v 1.11 2006/02/12 03:21:11 mnag Exp $
 #
 
 PORTNAME=	docutils
-PORTVERSION=	0.4
+PORTVERSION=	0.7
 CATEGORIES=	textproc python
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
