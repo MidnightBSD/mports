@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.3 2008/10/02 14:39:31 laffer1 Exp $
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.4 2010/02/27 19:27:16 laffer1 Exp $
 #
 
 PORTNAME=	fftw3
 PORTVERSION=	3.2.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	math
 MASTER_SITES=	ftp://ftp.fftw.org/pub/fftw/ \
 		ftp://ftp.fftw.org/pub/fftw/old/
@@ -22,8 +22,6 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_PERL5_BUILD=yes
 USE_LDCONFIG=	yes
-
-ONLY_FOR_ARCHS=	i386 sparc64
 
 CONFIGURE_ARGS=	--enable-shared --enable-threads  --build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPLAGS="${PTHREAD_CFLAGS}" \
