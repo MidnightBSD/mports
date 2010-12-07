@@ -2,7 +2,7 @@
 # Date created:		2004-09-02
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/math/ldouble/Makefile,v 1.1 2008/10/03 19:00:25 laffer1 Exp $
 # $FreeBSD: ports/math/ldouble/Makefile,v 1.12 2008/04/19 17:51:56 miwi Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	unknown
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 sparc64
+#ONLY_FOR_ARCHS=	i386 sparc64
 
 PLIST_FILES=	lib/libml.a \
 		lib/libml.so \
