@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/security/aide/Makefile,v 1.5 2009/03/19 14:47:30 laffer1 Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.6 2009/03/19 14:53:51 laffer1 Exp $
 
 PORTNAME=	aide
 PORTVERSION=	0.13.1
 PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
+MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
-MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A replacement and extension for Tripwire
