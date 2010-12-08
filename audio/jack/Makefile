@@ -1,9 +1,9 @@
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.6 2009/12/29 18:12:13 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.7 2010/09/11 16:38:40 laffer1 Exp $
 
 PORTNAME=	jackit
 PORTVERSION=	0.118.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
 		samplerate.1:${PORTSDIR}/audio/libsamplerate \
-		celt.0:${PORTSDIR}/audio/celt
+		celt0.1:${PORTSDIR}/audio/celt
 
 LATEST_LINK=	jack
 CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}" LDFLAGS="-L${LOCALBASE}/lib" \
