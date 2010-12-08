@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/logcheck/Makefile,v 1.2 2010/11/13 19:14:46 laffer1 Exp $
+# $MidnightBSD: mports/security/logcheck/Makefile,v 1.3 2010/12/08 14:19:09 laffer1 Exp $
 
 PORTNAME=	logcheck
 PORTVERSION=	1.3.13
@@ -90,7 +90,6 @@ do-install:
 	${CHOWN} -R root:${LOGCHECK_GROUP} ${DATADIR}
 	@${ECHO_CMD} '@exec ${CHOWN} -R root:${LOGCHECK_GROUP} \
 		${DATADIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
-#	@PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 	@${INSTALL_MAN} ${WRKSRC}/docs/*.8 ${MAN8PREFIX}/man/man8
 
 post-install:
