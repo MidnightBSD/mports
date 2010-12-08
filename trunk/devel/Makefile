@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.350 2010/12/04 15:20:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.351 2010/12/07 00:47:25 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -279,6 +279,7 @@
     SUBDIR += p5-Term-ReadKey
     SUBDIR += p5-Test-Base
     SUBDIR += p5-Test-ClassAPI
+    SUBDIR += p5-Test-Differences
     SUBDIR += p5-Test-Exception
     SUBDIR += p5-Test-Harness
     SUBDIR += p5-Test-Manifest
