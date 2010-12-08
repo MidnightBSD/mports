@@ -3,12 +3,11 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.3 2007/11/07 23:12:59 ctriv Exp $
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.4 2010/12/08 00:39:42 laffer1 Exp $
 #
 
 PORTNAME=	gocr
-PORTVERSION=	0.40
-PORTREVISION=	2
+PORTVERSION=	0.48
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
@@ -20,6 +19,7 @@ BUILD_DEPENDS=	latex:${PORTSDIR}/print/teTeX
 LIB_DEPENDS=	netpbm.1:${PORTSDIR}/graphics/netpbm
 
 USE_GMAKE=	yes
+USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-netpbm=${LOCALBASE}
 
@@ -31,12 +31,13 @@ PLIST_FILES+=	bin/gocr.tcl
 MAN1=		gocr.1
 
 PORTDOCS=	examples.txt gocr.html unicode.txt
-PLIST_FILES+=	bin/gocr include/gocr.h lib/libPgm2asc.a
+PLIST_FILES+=	bin/gocr
 
 # This port doesn't understand what DESTDIR is supposed to do.
 FAKE_MAKEARGS=	${DESTDIRNAME}=${FAKE_DESTDIR}${PREFIX} mandir=/man ${MAKE_ARGS}
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|@LIBS@|-L${LOCALBASE}/lib @LIBS@|g' ${WRKSRC}/src/Makefile.in
 .if defined(WITHOUT_X11)
 	@${REINPLACE_CMD} -e '/gocr.tcl/d' ${WRKSRC}/src/Makefile.in
 .else
