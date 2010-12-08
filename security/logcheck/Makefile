@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/logcheck/Makefile,v 1.2 2010/11/13 19:14:46 laffer1 Exp $
 
 PORTNAME=	logcheck
-PORTVERSION=	1.3.12
+PORTVERSION=	1.3.13
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -14,15 +14,13 @@ RUN_DEPENDS=	mime-construct:${PORTSDIR}/mail/mime-construct \
 		lockfile:${PORTSDIR}/mail/procmail \
 		bash:${PORTSDIR}/shells/bash
 
-PORTSCOUT=	limit:^1\.2\.
-
 LOGCHECK_USER=	logcheck
 LOGCHECK_UID=	915
-LOGCHECK_GROUP=	${LOGCHECK_USER}
-LOGCHECK_GID=	${LOGCHECK_UID}
+LOGCHECK_GROUP=	logcheck
+LOGCHECK_GID=	915
 
 # Enable Perl dependency for logtail script
-USE_PERL5=	5.8.0+
+USE_PERL5=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 BINMODE=	755
@@ -92,7 +90,7 @@ do-install:
 	${CHOWN} -R root:${LOGCHECK_GROUP} ${DATADIR}
 	@${ECHO_CMD} '@exec ${CHOWN} -R root:${LOGCHECK_GROUP} \
 		${DATADIR:S|^${PREFIX}/|%D/|}' >> ${TMPPLIST}
-	@PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+#	@PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 	@${INSTALL_MAN} ${WRKSRC}/docs/*.8 ${MAN8PREFIX}/man/man8
 
 post-install:
@@ -101,6 +99,5 @@ post-install:
 	@cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
 	@${CHMOD} 644 ${DOCSDIR}/*
 .endif
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
