@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.1 2008/10/28 21:01:14 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.2 2010/07/31 00:22:15 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -27,7 +27,6 @@ CHOWN?=		/usr/sbin/chown
 CHROOT?=	/usr/sbin/chroot
 COMM?=		/usr/bin/comm
 CP?=		/bin/cp
-GCPIO?=		${LOCALBASE}/bin/gcpio
 CPIO?=		/usr/bin/cpio
 CUT?=		/usr/bin/cut
 DC?=		/usr/bin/dc
@@ -39,7 +38,10 @@ EXPR?=		/bin/expr
 FALSE?=		false				# Shell builtin
 FILE?=		/usr/bin/file
 FIND?=		/usr/bin/find
+FLEX?=		/usr/bin/flex
 FMT?=		/usr/bin/fmt
+GCPIO?=		${LOCALBASE}/bin/gcpio
+GMAKE?=		${LOCALBASE}/bin/gmake
 GREP?=		/usr/bin/grep
 GUNZIP_CMD?=	/usr/bin/gunzip -f
 GZCAT?=		/usr/bin/gzcat
@@ -59,6 +61,7 @@ OBJDUMP?=	/usr/bin/objdump
 PASTE?=		/usr/bin/paste
 PAX?=		/bin/pax
 PRINTF?=	/usr/bin/printf
+PW?=		/usr/sbin/pw
 REALPATH?=	/bin/realpath
 RM?=		/bin/rm
 RMDIR?=		/bin/rmdir
@@ -75,11 +78,13 @@ TEST?=		test				# Shell builtin
 TR?=		LANG=C /usr/bin/tr
 TRUE?=		true				# Shell builtin
 UNAME?=		/usr/bin/uname
+UNMAKESELF_CMD?=	${LOCALBASE}/bin/unmakeself
 UNZIP_CMD?=	${LOCALBASE}/bin/unzip
 WHICH?=		/usr/bin/which
 XARGS?=		/usr/bin/xargs
 XMKMF?=		${LOCALBASE}/bin/xmkmf -a
-XZ_CMD?=	${LOCALBASE}/bin/xz
+XZ?=		-Mmax
+XZ_CMD?=	${LOCALBASE}/bin/xz ${XZ}
 YACC?=		/usr/bin/yacc
 
 # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
@@ -88,6 +93,6 @@ YACC?=		/usr/bin/yacc
 ECHO_CMD?=	echo				# Shell builtin
 
 # Used to print all the '===>' style prompts - override this to turn them off.
-ECHO_MSG?=		${ECHO_CMD}
+ECHO_MSG?=	${ECHO_CMD}
 
 .endif
