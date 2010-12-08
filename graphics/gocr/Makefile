@@ -3,15 +3,14 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.2 2007/04/29 02:29:57 ctriv Exp $
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.3 2007/11/07 23:12:59 ctriv Exp $
 #
 
 PORTNAME=	gocr
 PORTVERSION=	0.40
 PORTREVISION=	2
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	jocr
+MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GOCR/JOCR is an OCR (Optical Character Recognition) program
