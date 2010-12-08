@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.11 2010/11/20 03:10:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.12 2010/12/02 01:30:30 laffer1 Exp $
 
 PORTNAME=	viewvc
 PORTVERSION=	1.1.7
@@ -73,9 +73,9 @@ do-install:
 		${PREFIX}/viewvc/bin/loginfo-handler \
 		${PREFIX}/viewvc/bin/cvsdbadmin \
 		${PREFIX}/viewvc/bin/svndbadmin \
-		${PREFIX}/viewvc/wsgi/query.fcgi \
-		${PREFIX}/viewvc/wsgi/query.wsgi \
-		${PREFIX}/viewvc/wsgi/viewvc.fcgi \
-		${PREFIX}/viewvc/wsgi/viewvc.wsgi
+		${PREFIX}/viewvc/bin/wsgi/query.fcgi \
+		${PREFIX}/viewvc/bin/wsgi/query.wsgi \
+		${PREFIX}/viewvc/bin/wsgi/viewvc.fcgi \
+		${PREFIX}/viewvc/bin/wsgi/viewvc.wsgi
 
 .include <bsd.port.mk>
