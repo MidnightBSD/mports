@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-SQL-Translator/Makefile,v 1.1 2010/10/21 19:24:24 laffer1 Exp $
 
 PORTNAME=	SQL-Translator
 PORTVERSION=	0.11006
@@ -15,6 +15,7 @@ BUILD_DEPENDS=	p5-Class-Base>=0:${PORTSDIR}/devel/p5-Class-Base \
 		p5-Class-MakeMethods>=0:${PORTSDIR}/devel/p5-Class-MakeMethods \
 		p5-Carp-Clan>=0:${PORTSDIR}/devel/p5-Carp-Clan \
 		p5-File-ShareDir>=1:${PORTSDIR}/devel/p5-File-ShareDir \
+		p5-Test-Differences>=0:${PORTSDIR}/devel/p5-Test-Differences \
 		p5-Digest-SHA1>=2.0:${PORTSDIR}/security/p5-Digest-SHA1 \
 		p5-Parse-RecDescent>=1.962.2:${PORTSDIR}/devel/p5-Parse-RecDescent \
 		p5-Class-Accessor>=0:${PORTSDIR}/devel/p5-Class-Accessor \
