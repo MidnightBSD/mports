@@ -142,7 +142,6 @@ DISTFILES+=	sux.theme
 DISTFILES+=	swehack.theme
 DISTFILES+=	swift.theme
 DISTFILES+=	syntax.theme
-DISTFILES+=	synto.theme
 DISTFILES+=	tanke.theme
 DISTFILES+=	telix.theme
 DISTFILES+=	thirdeye.theme
