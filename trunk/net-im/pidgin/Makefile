@@ -2,7 +2,7 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.19 2010/10/19 19:48:19 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.20 2010/11/12 00:47:21 laffer1 Exp $
 
 PORTNAME=	pidgin
 PORTVERSION=	2.6.6
@@ -26,7 +26,7 @@ WITHOUT_GSTREAMER=	yes
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_XORG=	xext
+USE_XORG=	xext sm
 USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 libxml2
 WANT_GNOME=	yes
 INSTALL_ICONS=	yes
