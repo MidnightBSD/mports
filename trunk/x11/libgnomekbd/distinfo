@@ -1,3 +1,4 @@
-MD5 (gnome2/libgnomekbd-2.26.0.tar.bz2) = aee58c088c4fd980e1bf813ea813c156
-SHA256 (gnome2/libgnomekbd-2.26.0.tar.bz2) = 26a53552f3eaeda8d386e31622ba605944eb97dfe5ffa834dc0708761811364f
-SIZE (gnome2/libgnomekbd-2.26.0.tar.bz2) = 413560
+MD5 (gnome2/libgnomekbd-2.30.2.tar.bz2) = 2fe73ebfd40801655e0aa3f85cefa873
+SHA256 (gnome2/libgnomekbd-2.30.2.tar.bz2) = 3270d8470f5bd4d7e867f22330180a4429ae0f1d685db0bfa4c126699309e1a6
+RMD160 (gnome2/libgnomekbd-2.30.2.tar.bz2) = fc1d96bf48283cbe0379a019d2aa3307f77e4f13
+SIZE (gnome2/libgnomekbd-2.30.2.tar.bz2) = 405388

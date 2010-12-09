@@ -2,14 +2,13 @@
 # Date created:		2006-11-07
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.3 2009/09/20 01:51:41 smultron Exp $
+# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.4 2009/12/29 00:15:47 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnomekbd/Makefile,v 1.7 2007/05/28 23:22:29 mezz Exp $
 #    $MCom: ports/x11/libgnomekbd/Makefile,v 1.5 2007/03/12 01:37:17 mezz Exp $
 #
 
 PORTNAME=	libgnomekbd
-PORTVERSION=	2.26.0
-PORTREVISION=	1
+PORTVERSION=	2.30.2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -18,11 +17,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME keyboard shared library
 LICENSE=	lgpl
 
-LIB_DEPENDS=	xklavier.12:${PORTSDIR}/x11/libxklavier \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	xklavier.12:${PORTSDIR}/x11/libxklavier
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomeprefix gnomehack ltverhack gconf2 libglade2
+USE_GNOME=	gnomeprefix gnomehack ltverhack gconf2
 USE_AUTOTOOLS=	libtool:22
 INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
