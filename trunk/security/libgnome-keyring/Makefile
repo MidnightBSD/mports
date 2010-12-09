@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libgnome-keyring/Makefile,v 1.2 2010/10/17 01:02:10 laffer1 Exp $
+# $MidnightBSD: mports/security/libgnome-keyring/Makefile,v 1.3 2010/12/02 00:44:01 laffer1 Exp $
 
 PORTNAME=	libgnome-keyring
 PORTVERSION=	2.30.1
@@ -13,7 +13,8 @@ BUILD_DEPENDS=	gnome-config:${PORTSDIR}/x11/gnome-libs
 
 LIB_DEPENDS=    tasn1.4:${PORTSDIR}/security/libtasn1 \
                 gcrypt.17:${PORTSDIR}/security/libgcrypt \
-		dbus-1.3:${PORTSDIR}/devel/dbus
+		dbus-1.3:${PORTSDIR}/devel/dbus \
+		eggdbus-1.0:${PORTSDIR}/devel/eggdbus
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix ltverhack intlhack gconf2
