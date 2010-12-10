@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.22 2010/10/06 13:38:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.23 2010/10/21 15:32:16 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1492,6 +1492,7 @@ MASTER_SITE_XCONTRIB+=	\
 	ftp://ftp2.x.org/contrib/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,X/opengroup/contrib/&,} \
 	ftp://ftp.mirrorservice.org/sites/ftp.x.org/contrib/%SUBDIR%/ \
+	ftp://sunsite.org.uk/sites/ftp.x.org/contrib/%SUBDIR%/ \
 	ftp://ftp.chg.ru/pub/X11/x.org/contrib/%SUBDIR%/
 .endif
 
@@ -1523,11 +1524,11 @@ MASTER_SITE_XEMACS+= \
 
 .if !defined(IGNORE_MASTER_SITE_XFCE)
 MASTER_SITE_XFCE+= \
-	http://mocha.xfce.org/archive/%SUBDIR%/src/ \
-	http://www.us.xfce.org/archive/%SUBDIR%/src/ \
-	http://www.de.xfce.org/archive/%SUBDIR%/src/ \
+	http://archive.xfce.org/%SUBDIR%/ \
+	http://mocha.xfce.org/archive/%SUBDIR%/ \
+	http://www.tx-us.xfce.org/archive/%SUBDIR%/ \
 	http://www.ca-us.xfce.org/archive/%SUBDIR%/src/ \
-	http://www.p0llux.be/xfce/%SUBDIR%/src/
+	http://www.p0llux.be/xfce/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XFREE)
@@ -1585,6 +1586,7 @@ MASTER_SITE_KERNEL_ORG+= \
 MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN \
 			SF:SOURCEFORGE \
 			SFJP:SOURCEFORGE_JP \
+			RG:RUBYGEMS \
 			RF:RUBYFORGE
 MASTER_SITES_SUBDIRS=	\
 			APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
