@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.2 2010/07/31 00:22:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.3 2010/12/08 14:17:01 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -55,6 +55,9 @@ LN?=		/bin/ln
 LS?=		/bin/ls
 MKDIR?=		/bin/mkdir -p
 MKTEMP?=	/usr/bin/mktemp
+MOUNT?=		/sbin/mount
+MOUNT_DEVFS?=	${MOUNT} -t devfs devfs
+MOUNT_NULLFS?=	/sbin/mount_nullfs
 MV?=		/bin/mv
 OBJCOPY?=	/usr/bin/objcopy
 OBJDUMP?=	/usr/bin/objdump
@@ -77,6 +80,7 @@ TAIL?=		/usr/bin/tail
 TEST?=		test				# Shell builtin
 TR?=		LANG=C /usr/bin/tr
 TRUE?=		true				# Shell builtin
+UMOUNT?=	/sbin/umount
 UNAME?=		/usr/bin/uname
 UNMAKESELF_CMD?=	${LOCALBASE}/bin/unmakeself
 UNZIP_CMD?=	${LOCALBASE}/bin/unzip
