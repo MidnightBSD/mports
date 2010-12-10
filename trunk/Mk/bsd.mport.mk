@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.166 2010/10/19 19:43:19 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.167 2010/11/19 14:11:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -700,7 +700,7 @@ RUN_DEPENDS+=	${LINUX_BASE_PORT}
 .endif
 
 .if defined(USE_MOTIF)
-USE_XPM=			yes
+USE_XORG+=			xpm
 .if defined(WANT_LESSTIF)
 LIB_DEPENDS+=		Xm:${PORTSDIR}/x11-toolkits/lesstif
 NO_OPENMOTIF=		yes
@@ -755,10 +755,8 @@ CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
 .endif
 .endif
 
-
-
 .if defined(USE_XPM)
-USE_XORG+=			xpm
+IGNORE=		USE_XPM is deprecated.  use USE_XORG=xpm instead.
 .endif
 
 XAWVER=				8
