@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.11 2009/03/22 16:02:52 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.12 2010/12/10 01:31:18 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -12,9 +12,6 @@
 #		to be stripped.  This is to be used when building your
 #		own install script so that the entire system can be made
 #		stripped/not-stripped using a single knob. [-s]
-#
-# ECHO_MSG	Used to print all the '===>' style prompts - override this
-#		to turn them off [echo].
 #
 # OPSYS		Get the operating system type [`uname -s`]
 #
@@ -76,8 +73,6 @@ PKGINSTALLVER!=	${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.*: //'
 .if !defined(OPSYS)
 OPSYS!=	${DESTDIR}/usr/bin/uname -s
 .endif
-
-ECHO_MSG?=	echo
 
 # local customization of the ports tree
 .if exists(${.CURDIR}/Makefile.local)
