@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.12 2010/12/10 01:31:18 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.13 2010/12/10 02:20:18 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -276,7 +276,7 @@ README=	${TEMPLATES}/README.top
 README=	${TEMPLATES}/README.category
 .endif
 COMMENTFILE?=	${.CURDIR}/pkg/COMMENT
-DESCR?=		${.CURDIR}/pkg/DESCR
+DESCR?=		${.CURDIR}/pkg-descr
 INDEXDIR?=	${PORTSDIR}
 INDEXFILE?=	INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
