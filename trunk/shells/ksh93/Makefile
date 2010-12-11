@@ -2,7 +2,7 @@
 # Date created:                2000-12-26
 # Whom:                        Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.4 2009/12/28 22:41:39 laffer1 Exp $
+# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.5 2010/03/06 03:02:21 laffer1 Exp $
 # $FreeBSD: ports/shells/ksh93/Makefile,v 1.53 2008/08/18 18:36:36 miwi Exp $
 #
 # Make sure that your configuration DOES NOT set AN?Y gcc-related
@@ -31,7 +31,7 @@ LICENSE=	other
 
 MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
 
-VERSION=	2010-03-01
+VERSION=	2010-03-09
 RESTRICTED=	Source recipient must acknowledge license
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
