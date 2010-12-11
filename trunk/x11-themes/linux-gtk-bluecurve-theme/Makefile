@@ -2,7 +2,7 @@
 # Date created:			19 Jun 2004
 # Whom:				Jean-Yves lefort
 #
-# $MidnightBSD: mports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.1 2008/06/14 02:15:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.2 2008/06/17 15:30:58 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/linux-gtk-bluecurve-theme/Makefile,v 1.14 2008/04/29 05:11:44 linimon Exp $
 #
 
@@ -18,6 +18,7 @@ LICENSE=	unknown
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
+LINUX_DIST_VER=	3
 PLIST=		${WRKDIR}/.plist
 
 # GTK+ 1.x theme engine
