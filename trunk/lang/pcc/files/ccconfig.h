@@ -1,5 +1,5 @@
-/* $FreeBSD: ports/lang/pcc/files/ccconfig.h,v 1.3 2007/12/14 17:36:00 obrien Exp $ */
-/*	$Id: ccconfig.h,v 1.1 2008-05-13 03:24:43 laffer1 Exp $	*/
+/* $FreeBSD: ports/lang/pcc/files/ccconfig.h,v 1.5 2009/09/23 09:20:17 pav Exp $ */
+/*	$Id: ccconfig.h,v 1.2 2010-12-11 18:44:07 laffer1 Exp $	*/
 
 /*
  * Copyright (c) 2007 David O'Brien
@@ -34,15 +34,20 @@
  */
 
 /* common cpp predefines */
-#define CPPADD	{ "-D__FreeBSD__", "-D__ELF__", "-D__unix__=1", "-D__unix=1", "-D__STDC__=1", NULL, }
+#define CPPADD	{ "-D__FreeBSD__=7", "-D__ELF__", "-D__unix__=1", "-D__unix=1", "-D__STDC__=1", NULL, }
 #define DYNLINKER { "-dynamic-linker", "/libexec/ld-elf.so.1", NULL }
 #define CRT0FILE "/usr/lib/crt1.o"
 #define STARTFILES { "/usr/lib/crti.o", "/usr/lib/crtbegin.o", NULL }
 #define	ENDFILES { "/usr/lib/crtend.o", "/usr/lib/crtn.o", NULL }
 #define STARTLABEL "_start"
 
+/*
+ * XXX multitargets ?
+ */
 #if defined(mach_i386) || defined(mach_x86)
 #define	CPPMDADD { "-D__i386__", "-D__i386", NULL, }
+#elif defined(mach_amd64)
+#define CPPMDADD { "-D__x86_64__", NULL, }
 #else
 #error defines for arch missing
 #endif
