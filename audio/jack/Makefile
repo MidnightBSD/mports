@@ -1,9 +1,9 @@
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.8 2010/12/08 00:23:01 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.9 2010/12/11 01:38:59 laffer1 Exp $
 
 PORTNAME=	jackit
 PORTVERSION=	0.118.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://jackaudio.org/downloads/
 DISTNAME=	jack-audio-connection-kit-${PORTVERSION}
@@ -15,14 +15,15 @@ LICENSE=	gpl2
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
 		samplerate.1:${PORTSDIR}/audio/libsamplerate \
-		asound.2:${PORTSDIR}/audio/alsa-lib \
-		celt0.1:${PORTSDIR}/audio/celt
+		asound.2:${PORTSDIR}/audio/alsa-lib
+#		celt0.1:${PORTSDIR}/audio/celt
 
 LATEST_LINK=	jack
 CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}" LDFLAGS="-L${LOCALBASE}/lib" \
 		CPPFLAGS="-I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}"
 CONFIGURE_ARGS+=--enable-portaudio \
+		--disable-cellt \
 		--with-default-tmpdir=/tmp
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
