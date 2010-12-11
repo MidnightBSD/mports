@@ -2,7 +2,7 @@
 # Date created:		19 Jun 1999
 # Whom:			Will Andrews <andrews@technologist.com>
 #
-# $MidnightBSD: mports/finance/wmstock/Makefile,v 1.1 2007/09/20 02:53:38 laffer1 Exp $
+# $MidnightBSD: mports/finance/wmstock/Makefile,v 1.2 2008/05/21 21:13:34 crash Exp $
 # $FreeBSD: ports/finance/wmstock/Makefile,v 1.16 2007/05/19 20:04:58 flz Exp $
 #
 
@@ -14,9 +14,11 @@ MASTER_SITES=	http://mattfischer.com/wmstock/src/
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WindowMaker Dockapp that shows stock ticker(s)
 LICENSE=        gpl2
-USE_XLIB=	yes
-USE_X_PREFIX=	yes
-USE_XPM=	yes
+
+BUILD_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+RUN_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+
+USE_XORG=	xpm
 
 WRKSRC=		${WRKDIR}/wmstock/src
 USE_GMAKE=	yes
