@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.167 2010/11/19 14:11:46 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.168 2010/12/10 05:03:23 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -763,8 +763,8 @@ XAWVER=				8
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 PLIST_SUB+=			XAWVER=${XAWVER}
 
-
 _GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
+_GL_glew_LIB_DEPENDS=           GLEW.1:${PORTSDIR}/graphics/glew
 _GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
 _GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
 _GL_glut_LIB_DEPENDS=		glut.3:${PORTSDIR}/graphics/libglut
