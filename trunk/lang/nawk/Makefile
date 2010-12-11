@@ -1,14 +1,8 @@
-# ex:ts=8
-# Ports collection makefile for:  nawk
-# Date created:			  29 April 1998
-# Whom:				  Josh Gilliam <josh@quick.net>
-#
-# $MidnightBSD: mports/lang/nawk/Makefile,v 1.3 2008/07/18 20:26:37 crash Exp $
+# $MidnightBSD: mports/lang/nawk/Makefile,v 1.4 2008/07/19 03:33:28 laffer1 Exp $
 # $FreeBSD: ports/lang/nawk/Makefile,v 1.33 2005/12/01 11:21:05 flz Exp $
-#
 
 PORTNAME=	nawk
-PORTVERSION=	20071023
+PORTVERSION=	20100209
 CATEGORIES=	lang
 MASTER_SITES=	http://www.cs.princeton.edu/~bwk/btl.mirror/
 DISTNAME=	awk
