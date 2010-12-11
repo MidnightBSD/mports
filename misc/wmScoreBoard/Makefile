@@ -2,7 +2,7 @@
 # Date created:				Sun Jun 24 17:08:15 EDT 2001
 # Whom:					Patrick Li <pat@databits.net>
 #
-# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.3 2007/10/31 01:23:54 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmScoreBoard/Makefile,v 1.4 2009/04/05 19:33:04 laffer1 Exp $
 # $FreeBSD: ports/misc/wmScoreBoard/Makefile,v 1.6 2006/04/14 22:53:07 linimon Exp $
 #
 
@@ -22,7 +22,7 @@ RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/src
 USE_GMAKE=	yes
 USE_XLIB=	yes
-USE_XPM=	yes
+USE_XORG=	xpm
 
 post-install:
 .ifndef(NOPORTDOCS)
