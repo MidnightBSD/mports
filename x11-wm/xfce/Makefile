@@ -2,14 +2,14 @@
 # Date created:		September 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-wm/xfce/Makefile,v 1.1 2008/09/24 23:59:37 laffer1 Exp $
 #
 
 PORTNAME=	xfce
 PORTVERSION=	3.8.18
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	x11-wm xfce
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-3%20%28old%29/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CDE like desktop with GTK
@@ -17,7 +17,6 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	audiofile.0:${PORTSDIR}/audio/libaudiofile
 
-USE_GCC=	4.1
 USE_XORG=	x11 xpm
 USE_GETTEXT=	yes
 USE_GNOME=	gdkpixbuf
