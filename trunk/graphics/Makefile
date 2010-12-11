@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.103 2010/10/21 19:08:34 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.104 2010/11/06 15:50:36 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -26,6 +26,7 @@
     SUBDIR += giblib
     SUBDIR += gimp-app
     SUBDIR += gle
+    SUBDIR += glew
     SUBDIR += glitz
     SUBDIR += gnash
     SUBDIR += gnustep-slideshow
