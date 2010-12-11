@@ -3,7 +3,7 @@
 # Whom:			Pankov Pavel <pankov_p@mail.ru>
 #
 # $FreeBSD: ports/security/vnccrack/Makefile,v 1.1 2006/08/20 12:09:31 itetcu Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/security/vnccrack/Makefile,v 1.1 2006/11/09 14:56:44 laffer1 Exp $
 #
 
 PORTNAME=	vnccrack
@@ -15,9 +15,9 @@ EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast offline password cracker for VNC passwords
+LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-USE_GCC=	3.2+
 USE_OPENSSL=	yes
 
 SUB_FILES+=	pkg-message
