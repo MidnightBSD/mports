@@ -1,5 +1,5 @@
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.7 2010/09/11 16:38:40 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.8 2010/12/08 00:23:01 laffer1 Exp $
 
 PORTNAME=	jackit
 PORTVERSION=	0.118.0
@@ -15,6 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	portaudio.0:${PORTSDIR}/audio/portaudio \
 		sndfile.1:${PORTSDIR}/audio/libsndfile \
 		samplerate.1:${PORTSDIR}/audio/libsamplerate \
+		asound.2:${PORTSDIR}/audio/alsa-lib \
 		celt0.1:${PORTSDIR}/audio/celt
 
 LATEST_LINK=	jack
