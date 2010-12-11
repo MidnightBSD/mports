@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/misc/kdeedu4/Makefile,v 1.42 2008/09/03 13:06:18 miwi Exp $
+# $MidnightBSD: mports/misc/kdeedu4/Makefile,v 1.1 2008/12/22 01:10:22 ctriv Exp $
 #
 
 PORTNAME=	kdeedu
@@ -21,7 +21,7 @@ LIB_DEPENDS=	usb-0.1:${PORTSDIR}/devel/libusb \
 		nova:${PORTSDIR}/astro/libnova \
 		openbabel.3:${PORTSDIR}/science/openbabel \
 		cfitsio.0:${PORTSDIR}/science/cfitsio \
-		qalculate.4:${PORTSDIR}/math/libqalculate \
+		qalculate.5:${PORTSDIR}/math/libqalculate \
 		gsl.12:${PORTSDIR}/math/gsl
 
 LATEST_LINK=	${PORTNAME}4
