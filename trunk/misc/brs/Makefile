@@ -1,17 +1,10 @@
-# New ports collection makefile for:	brs
-# Date created:				10 July 2000
-# Whom:					Kim Scarborough <user@unknown.nu>
-#
-# $MidnightBSD: mports/misc/brs/Makefile,v 1.1 2006/11/04 19:11:16 wintellect Exp $
+# $MidnightBSD: mports/misc/brs/Makefile,v 1.2 2007/11/12 01:07:50 laffer1 Exp $
 # $FreeBSD: ports/misc/brs/Makefile,v 1.10 2005/10/20 20:13:42 vs Exp $
-#
 
 PORTNAME=	brs
 PORTVERSION=	4.03
 CATEGORIES=	misc
-MASTER_SITES=	http://mirrors.playboy.com/misc/ \
-		http://www.unknown.nu/ports/ \
-		ftp://mirrors.playboy.com/misc/
+MASTER_SITES=	http://www.unknown.nu/ports/
 DISTFILES=	bible.data.tar.bz2 bible.tar.bz2
 DIST_SUBDIR=	brs
 
