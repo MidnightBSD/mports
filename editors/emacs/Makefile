@@ -2,7 +2,7 @@
 # Date created:		11 October 2001
 # Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
 #
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.9 2010/05/05 23:31:23 laffer1 Exp $
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.10 2010/05/08 02:18:02 laffer1 Exp $
 # $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
 #
 
@@ -61,7 +61,7 @@ USE_GNOME=	gtk20
 .else
 USE_XLIB=	yes
 .endif
-USE_XPM=	yes
+USE_XORG+=	xpm
 .endif
 
 CONFIGURE_TARGET=	${MACHINE_ARCH}-freebsd
