@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/expect/Makefile,v 1.1 2010/01/17 14:26:47 laffer1 Exp $
+# $MidnightBSD: mports/lang/expect/Makefile,v 1.2 2010/09/07 23:43:51 laffer1 Exp $
 
 PORTNAME=	expect
 PORTVERSION=	5.43.0
@@ -11,6 +11,8 @@ COMMENT=	A sophisticated scripter based on tcl/tk
 LICENSE=	unknown
 
 FAKE_OPTS+=	prefixhack
+
+OPTIONS=      X11 "Enable X11 support" on
 
 .if !defined(WITHOUT_X11)
 LIB_DEPENDS?=	tk84.1:${PORTSDIR}/x11-toolkits/tk84
