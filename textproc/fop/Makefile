@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/fop/Makefile,v 1.1 2010/01/02 20:07:06 laffer1 Exp $
 
 PORTNAME=	fop
 PORTVERSION=	0.95
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Print formatter driven by XSL formatting
 LICENSE=	apache2
 
-EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
+EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
