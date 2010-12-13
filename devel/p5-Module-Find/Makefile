@@ -3,11 +3,11 @@
 # Whom:		   Lars Balker Rasmussen <lbr@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-Module-Find/Makefile,v 1.3 2006/05/01 13:51:47 lbr Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-Module-Find/Makefile,v 1.1 2007/09/01 17:07:49 ctriv Exp $
 #
 
 PORTNAME=	Module-Find
-PORTVERSION=	0.05
+PORTVERSION=	0.06
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Module
