@@ -5,7 +5,7 @@
  # so the date is newer then the files in HTML_FILES
  FIXXREF = xsl/fixxref.py
 -TARGET_DIR = $(datadir)/gtk-doc/html/pygobject
-+TARGET_DIR = $(prefix)/share/doc/pygobject
++TARGET_DIR = ${DESTDIR}$(prefix)/share/doc/pygobject
  CSSdir = $(TARGET_DIR)
  CSS_DATA = $(CSS_FILES)
  XSLdir = $(datadir)/pygobject/xsl
