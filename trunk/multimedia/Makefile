@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.56 2010/09/06 21:21:50 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.57 2010/11/06 15:55:01 laffer1 Exp $
 #
 
     COMMENT = Multimedia software
@@ -58,7 +58,6 @@
     SUBDIR += vcdimager
     SUBDIR += win32-codecs
     SUBDIR += x264
-    SUBDIR += x264-gtk
     SUBDIR += xanim
     SUBDIR += xine
     SUBDIR += xmms
