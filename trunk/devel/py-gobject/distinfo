@@ -1,3 +1,4 @@
-MD5 (gnome2/pygobject-2.16.1.tar.bz2) = 8e26f2572e6b72dbd2591677055f8d30
-SHA256 (gnome2/pygobject-2.16.1.tar.bz2) = ee229c642759470a242c7f6ce3bd969a7484496f95570a8783859b03d6d79cc5
-SIZE (gnome2/pygobject-2.16.1.tar.bz2) = 522347
+MD5 (gnome2/pygobject-2.21.1.tar.bz2) = c12eef0cd6725dc7245c3db78ef85d2d
+SHA256 (gnome2/pygobject-2.21.1.tar.bz2) = e6ae6c70966899d2040c82ae4e1590cf941ebf121a3ec61e80bf517ce8d9be0a
+RMD160 (gnome2/pygobject-2.21.1.tar.bz2) = 8ac9c84ee4f5c07e13788dd05a3897f91d4c3539
+SIZE (gnome2/pygobject-2.21.1.tar.bz2) = 681795
