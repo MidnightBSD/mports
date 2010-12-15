@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.7 2010/04/26 12:59:58 laffer1 Exp $
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.8 2010/05/30 22:32:46 laffer1 Exp $
 
 PORTNAME=	abiword
 PORTVERSION=	2.6.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -13,10 +13,10 @@ COMMENT=	An open-source, cross-platform WYSIWYG word processor
 LICENSE=	gpl2
 
 # unzip is needed during the installation process
-BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
+BUILD_DEPENDS=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		png.6:${PORTSDIR}/graphics/png \
-		jpeg.10:${PORTSDIR}/graphics/jpeg \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		wv-1.2:${PORTSDIR}/textproc/wv \
 		fribidi.3:${PORTSDIR}/converters/fribidi \
 		goffice-0.4:${PORTSDIR}/devel/goffice04
