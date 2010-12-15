@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.9 2010/10/19 21:03:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.10 2010/11/10 14:09:41 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	24
@@ -16,7 +16,7 @@ LATEST_LINK=	gtkmm24
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	glibmm-2.4.3:${PORTSDIR}/devel/glibmm \
+LIB_DEPENDS=	glibmm-2.4.1:${PORTSDIR}/devel/glibmm \
 		cairomm-1.0.1:${PORTSDIR}/graphics/cairomm \
 		pangomm-1.4.1:${PORTSDIR}/x11-toolkits/pangomm
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
