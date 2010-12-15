@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.10 2010/09/08 22:28:55 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.11 2010/10/19 19:30:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -374,15 +374,8 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 # Propagate the chosen python version to submakes.
 .MAKEFLAGS:	PYTHON_VERSION=python${_PYTHON_VERSION}
 
-# Python-3.0
-.if ${PYTHON_VERSION} == "python3.0"
-PYTHON_PORTVERSION?=3.0.1
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python30
-PYTHON_REL=			301
-PYTHON_SUFFIX=		30
-PYTHON_VER=			3.0
-
-.elif ${PYTHON_VERSION} == "python3.1"
+# Python-3.1
+.if ${PYTHON_VERSION} == "python3.1"
 PYTHON_PORTVERSION?=3.1.2
 PYTHON_PORTSDIR=        ${PORTSDIR}/lang/python31
 PYTHON_REL=                     312
