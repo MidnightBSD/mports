@@ -2,14 +2,14 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.5 2009/09/20 01:58:17 smultron Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.6 2010/01/23 21:08:44 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
 #   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
 
 PORTNAME=	nautilus
-PORTVERSION=	2.26.3
-PORTREVISION=	2
+PORTVERSION=	2.30.1
+PORTREVISION=	1
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -35,12 +35,8 @@ USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
 		LIBPNG="-L${LOCALBASE}/lib -lpng -lz"
-CONFIGURE_ARGS=	--with-freetype2-lib-place=${LOCALBASE}/lib \
-		--with-freetype2-include-place=${LOCALBASE}/include/freetype2 \
-		--enable-static
+CONFIGURE_ARGS=	--enable-static --disable-packagekit
 MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
-
-OPTIONS=	TRACKER "Enable Tracker Search (sysutils/tracker)" Off
 
 GCONF_SCHEMAS=	apps_nautilus_preferences.schemas
 
@@ -48,14 +44,6 @@ MAN1=		nautilus-connect-server.1 nautilus-file-management-properties.1 \
 		nautilus.1
 
 .include <bsd.port.pre.mk>
-
-.if defined(WITH_TRACKER)
-#RUN_DEPENDS+=	tracker-applet:${PORTSDIR}/sysutils/tracker-gnome		
-LIB_DEPENDS+=	trackerclient.0:${PORTSDIR}/sysutils/tracker-client \
-		tracker-gtk.0:${PORTSDIR}/sysutils/tracker-libtrackergtk
-.else
-CONFIGURE_ARGS+=--disable-tracker
-.endif
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/nautilus/extensions-2.0
