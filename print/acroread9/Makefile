@@ -36,6 +36,8 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 WRKSRC=		${WRKDIR}/AdobeReader
 
+SKIP_FAKE_CHECK=.*\.config
+
 LANGCODE=	chs:zh_CN cht:zh_TW dan:da_DK deu:de_DE enu:en_US \
 		esp:es_ES fra:fr_FR ita:it_IT jpn:ja_JP kor:ko_KR \
 		nld:nl_NL nor:nb_NO ptb:pt_BR suo:fi_FI sve:sv_SE
