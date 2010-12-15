@@ -17,6 +17,7 @@ lib/libnautilus-extension.a
 lib/libnautilus-extension.la
 lib/libnautilus-extension.so
 lib/libnautilus-extension.so.1
+libexec/nautilus-convert-metadata
 libdata/pkgconfig/libnautilus-extension.pc
 share/applications/nautilus-autorun-software.desktop
 share/applications/nautilus-browser.desktop
@@ -75,6 +76,7 @@ share/locale/da/LC_MESSAGES/nautilus.mo
 share/locale/de/LC_MESSAGES/nautilus.mo
 share/locale/dz/LC_MESSAGES/nautilus.mo
 share/locale/el/LC_MESSAGES/nautilus.mo
+share/locale/en@shaw/LC_MESSAGES/nautilus.mo
 share/locale/en_CA/LC_MESSAGES/nautilus.mo
 share/locale/en_GB/LC_MESSAGES/nautilus.mo
 share/locale/eo/LC_MESSAGES/nautilus.mo
@@ -117,6 +119,7 @@ share/locale/mn/LC_MESSAGES/nautilus.mo
 share/locale/mr/LC_MESSAGES/nautilus.mo
 share/locale/ms/LC_MESSAGES/nautilus.mo
 share/locale/nb/LC_MESSAGES/nautilus.mo
+share/locale/nds/LC_MESSAGES/nautilus.mo
 share/locale/ne/LC_MESSAGES/nautilus.mo
 share/locale/nl/LC_MESSAGES/nautilus.mo
 share/locale/nn/LC_MESSAGES/nautilus.mo
@@ -262,6 +265,8 @@ share/pixmaps/nautilus/thumbnail_frame.png
 @dirrmtry share/locale/oc
 @dirrmtry share/locale/nso/LC_MESSAGES
 @dirrmtry share/locale/nso
+@dirrmtry share/locale/nds/LC_MESSAGES
+@dirrmtry share/locale/nds
 @dirrmtry share/locale/mr/LC_MESSAGES
 @dirrmtry share/locale/mr
 @dirrmtry share/locale/mi/LC_MESSAGES
@@ -284,6 +289,8 @@ share/pixmaps/nautilus/thumbnail_frame.png
 @dirrmtry share/locale/ha
 @dirrmtry share/locale/fur/LC_MESSAGES
 @dirrmtry share/locale/fur
+@dirrmtry share/locale/en@shaw/LC_MESSAGES
+@dirrmtry share/locale/en@shaw
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
 @dirrmtry share/locale/crh/LC_MESSAGES
