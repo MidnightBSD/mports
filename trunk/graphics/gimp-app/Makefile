@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.7 2010/05/05 23:45:24 laffer1 Exp $
 
 PORTNAME=	gimp-app
 DISTVERSION=	2.6.6
@@ -150,7 +150,7 @@ CONFIGURE_ARGS+=	--disable-mp
 .endif
 
 .if defined(WITH_POPPLER)
-LIB_DEPENDS+=		poppler-glib.4:${PORTSDIR}/graphics/poppler-gtk
+LIB_DEPENDS+=		poppler-glib.2:${PORTSDIR}/graphics/poppler-gtk
 PLIST_SUB+=		POPPLER=""
 .else
 CONFIGURE_ARGS+=	--without-poppler
