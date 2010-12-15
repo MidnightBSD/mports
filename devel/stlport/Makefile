@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/stlport/Makefile,v 1.4 2010/01/02 18:00:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.5 2010/11/17 13:57:59 laffer1 Exp $
 
 PORTNAME=	stlport
 PORTVERSION=	5.1.5
@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	-${COMPILER}
 DISTNAME=	STLport-${PORTVERSION:S/.b/-b/}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Adaptation of SGI\'s Standard Template Library
+COMMENT=	Adaptation of SGI Standard Template Library
 LICENSE=	other
 
 USE_BZIP2=	yes
@@ -70,7 +70,7 @@ pre-configure:
 		${PATCH_WRKSRC}/build/Makefiles/gmake/${sdir}/gcc.mak
 . endfor
 .endif
-	cpdup ${WRKSRC}/build/Makefiles/gmake/freebsd  ${WRKSRC}/build/Makefiles/gmake/midnightbsd
+	cpdup ${WRKSRC}/../Makefiles/gmake/freebsd  ${WRKSRC}/../Makefiles/gmake/midnightbsd
 
 do-install:
 	${MKDIR} "${PREFIX}/include/stlport/"
