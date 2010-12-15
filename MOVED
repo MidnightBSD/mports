@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.24 2010/11/13 19:19:01 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.25 2010/12/15 00:26:36 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -50,3 +50,4 @@ net-p2p/limewire||2010-11-11|dead software, use frostwire
 devel/cvstrac||2010-11-13|hasn't worked for a long time
 shells/tcsh-bofh||2010-11-13|files not available anymore
 multimedia/x264-gtk||2010-12-14|no longer valid
+lang/python30||2010-12-14|removed.  not backwards compatible and broken
