@@ -1,23 +1,22 @@
-
-$FreeBSD: ports/security/nmap/files/patch-configure,v 1.8 2006/02/02 08:13:19 krion Exp $
-
---- configure.orig
-+++ configure
-@@ -1395,7 +1395,7 @@
- if test -z "$ac_cv_prog_CC"; then
-   ac_ct_CC=$CC
-   # Extract the first word of "gcc", so it can be a program name with args.
--set dummy gcc; ac_word=$2
-+set dummy $CXX; ac_word=$2
- echo "$as_me:$LINENO: checking for $ac_word" >&5
- echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
- if test "${ac_cv_prog_ac_ct_CC+set}" = set; then
-@@ -3552,7 +3552,7 @@
+--- configure.orig	2009-06-24 23:35:54.000000000 +0200
++++ configure	2009-07-03 19:35:52.000000000 +0200
+@@ -2047,7 +2047,7 @@
+ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+ if test -n "$ac_tool_prefix"; then
+   # Extract the first word of "${ac_tool_prefix}gcc", so it can be a program name with args.
+-set dummy ${ac_tool_prefix}gcc; ac_word=$2
++set dummy ${ac_tool_prefix}$CXX; ac_word=$2
+ { $as_echo "$as_me:$LINENO: checking for $ac_word" >&5
+ $as_echo_n "checking for $ac_word... " >&6; }
+ if test "${ac_cv_prog_CC+set}" = set; then
+@@ -7878,8 +7878,8 @@
+     no_lua="yes"
+   ;;
+   *)
+-    CPPFLAGS="-I$with_liblua/include $CPPFLAGS"
+-    LDFLAGS="-L$with_liblua/lib $LDFLAGS"
++    CPPFLAGS="-I${LUA_INCDIR} $CPPFLAGS"
++    LDFLAGS="-L${LUA_LIBDIR} $LDFLAGS"
+   ;;
+   esac
  
- 
- 
--for ac_header in string.h getopt.h strings.h memory.h sys/param.h sys/sockio.h bstring.h sys/time.h sys/stat.h fcntl.h termios.h pwd.h unistd.h
-+for ac_header in string.h strings.h memory.h sys/param.h sys/sockio.h bstring.h sys/time.h sys/stat.h fcntl.h termios.h pwd.h unistd.h
- do
- as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
- if eval "test \"\${$as_ac_Header+set}\" = set"; then
