@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/devel/pear/Makefile,v 1.4 2009/01/05 04:11:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/pear/Makefile,v 1.5 2009/04/17 16:44:42 laffer1 Exp $
 
 PORTNAME=	pear
 PORTVERSION=	1.7.2
 PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	http://freebsd.unixfreunde.de/sources/
+MASTER_SITES=	http://cvsup13.tw.freebsd.org/pub/FreeBSD/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	PEAR framework for PHP
