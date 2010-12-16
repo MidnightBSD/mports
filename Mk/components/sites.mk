@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.24 2010/12/10 01:05:31 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.25 2010/12/10 01:12:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -32,6 +32,11 @@ MASTER_SITE_LOCAL+= \
 	ftp://ftp.se.midnightbsd.org/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
+
+# Not distributable dist files for Magus
+.if defined(MAGUS)
+MASTER_SITE_LOCAL+=	ftp://10.1.10.251/pub/
+.endif
 
 MASTER_SITE_PORTS_JP+=	\
 	ftp://ports.jp.FreeBSD.org/pub/FreeBSD-jp/ports-jp/LOCAL_PORTS/%SUBDIR%/ \
