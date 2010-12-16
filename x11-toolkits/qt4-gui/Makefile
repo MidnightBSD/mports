@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.4 2010/01/09 23:32:05 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.5 2010/01/17 00:37:25 laffer1 Exp $
 
 PORTNAME=	gui
 PORTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
