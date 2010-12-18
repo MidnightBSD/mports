@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.3 2009/12/29 00:35:17 laffer1 Exp $
+# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.4 2010/03/26 00:57:32 laffer1 Exp $
 
 PORTNAME=	boinc-setiathome-enhanced
 PORTVERSION=	6.08
@@ -13,7 +13,8 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
 		${LOCALBASE}/include/boinc/std_fixes.h:${PORTSDIR}/net/boinc-client \
-		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
+		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash \
+		${LOCALBASE}/bin/m4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	fftw3f:${PORTSDIR}/math/fftw3-float
 
