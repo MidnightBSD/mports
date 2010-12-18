@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.12 2010/08/02 23:03:26 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.13 2010/10/24 19:14:34 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -30,7 +30,6 @@
     SUBDIR += xf86-video-ati
     SUBDIR += xf86-video-chips
     SUBDIR += xf86-video-cirrus
-    SUBDIR += xf86-video-cyrix
     SUBDIR += xf86-video-dummy
     SUBDIR += xf86-video-fbdev
     SUBDIR += xf86-video-glint
