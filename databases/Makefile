@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.84 2010/10/23 11:46:36 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.85 2010/11/11 01:15:00 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -43,6 +43,9 @@
     SUBDIR += mysql51-client
     SUBDIR += mysql51-scripts
     SUBDIR += mysql51-server
+    SUBDIR += mysql55-client
+    SUBDIR += mysql55-scripts
+    SUBDIR += mysql55-server
     SUBDIR += oracle8-client
     SUBDIR += p5-Class-DBI
     SUBDIR += p5-Class-DBI-AbstractSearch
@@ -53,6 +56,7 @@
     SUBDIR += p5-DBD-mysql41
     SUBDIR += p5-DBD-mysql50
     SUBDIR += p5-DBD-mysql51
+    SUBDIR += p5-DBD-mysql55
     SUBDIR += p5-DBI
     SUBDIR += p5-DBIx-Class
     SUBDIR += p5-DBIx-ContextualFetch
