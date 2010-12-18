@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.7 2010/01/09 17:59:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.8 2010/08/01 05:56:30 laffer1 Exp $
 #
-# WITH_THREADS_BREAK enable pthread support (WILL BREAK OTHER PORTS!)
+# WITHOUT_THREADS disables threading support
 # WITHOUT_SCHEMA disable XML schema support
 # WITH_MEM_DEBUG enable memory debugging (DEVELOPERS ONLY!)
 # WITH_XMLLINT_HIST enable history for xmllint
@@ -8,7 +8,7 @@
 
 PORTNAME=	libxml2
 PORTVERSION=	2.7.7
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
 		ftp://fr.rpmfind.net/pub/libxml/ \
@@ -38,9 +38,7 @@ MAN1=		xml2-config.1 xmllint.1 xmlcatalog.1
 MAN3=		libxml.3
 .endif
 
-.if defined(WITH_THREADS_BREAK)
-CONFIGURE_ARGS+=	--with-threads=phtread
-.else
+.if defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--without-threads
 .endif
 
