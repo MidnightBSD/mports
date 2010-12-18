@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/astro/boinc-milkyway/Makefile,v 1.4 2009/12/28 22:52:05 laffer1 Exp $
 
 PORTNAME=	boinc-milkyway
 PORTVERSION=	0.18d
@@ -50,9 +50,9 @@ post-patch:
 .endif
 
 do-install:
-	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${BOINC_HOME}/projects
-	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${BOINC_HOME}/projects/${MILKYWAY_SITE}
-	${INSTALL_DATA} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKDIR}/app_info.xml ${BOINC_HOME}/projects/${MILKYWAY_SITE}
-	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/milkyway_${PORTVERSION:S/d//}_x86_64-pc-linux-gnu ${BOINC_HOME}/projects/${MILKYWAY_SITE}/${MILKYWAY_BINARY}
+	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${FAKE_DESTDIR}${BOINC_HOME}/projects
+	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${FAKE_DESTDIR}${BOINC_HOME}/projects/${MILKYWAY_SITE}
+	${INSTALL_DATA} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKDIR}/app_info.xml ${FAKE_DESTDIR}${BOINC_HOME}/projects/${MILKYWAY_SITE}
+	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/milkyway_${PORTVERSION:S/d//}_x86_64-pc-linux-gnu ${FAKE_DESTDIR}${BOINC_HOME}/projects/${MILKYWAY_SITE}/${MILKYWAY_BINARY}
 
 .include <bsd.port.post.mk>
