@@ -2,12 +2,13 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-assistant/Makefile,v 1.1 2008/10/10 17:20:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/qt4-assistant/Makefile,v 1.2 2010/01/09 22:53:19 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-assistant/Makefile,v 1.15 2008/08/04 23:30:32 miwi Exp $
 #
 
 PORTNAME=	assistant
 PORTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
@@ -20,7 +21,7 @@ LICENSE=	gpl2
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build qt3support corelib \
-		gui network sql xml doc help
+		gui network sql xml doc help webkit
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 
