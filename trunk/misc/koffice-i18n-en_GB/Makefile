@@ -2,7 +2,7 @@
 # Date created:                         27 April 2003
 # Whom:                                 Michael Nottebrock <michaelnottebrock@gmx.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/koffice-i18n-en_GB/Makefile,v 1.1 2007/12/30 17:10:43 laffer1 Exp $
 # $FreeBSD: ports/misc/koffice-i18n-en_GB/Makefile,v 1.27 2007/10/29 23:47:59 lofi Exp $
 #
 
@@ -16,6 +16,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	British messages and documentation for koffice
+LICENSE=	unknown
 
 BUILD_DEPENDS=	xgettext:${PORTSDIR}/devel/gettext
 
