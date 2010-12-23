@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.4 2009/01/04 18:53:33 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.5 2009/06/06 18:46:31 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
@@ -12,9 +12,6 @@ EXTRACT_SUFX=	.tar.bz2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Java Runtime Environment ${JRE_VERSION}_${RELEASE_VERSION}.${BUILD_VERSION}
 LICENSE=	restricted
-
-# must fetch yourself
-IS_INTERACTIVE= yes
 
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
