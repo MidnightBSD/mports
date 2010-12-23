@@ -1,13 +1,9 @@
-# New ports collection makefile for:	mpeglib_artsplug
-# Date created:				July 09 2004
-# Whom:					Michael Nottebrock <lofi@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.4 2008/01/10 18:55:25 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.5 2009/09/20 02:51:25 smultron Exp $
 
 PORTNAME=	kompmgr
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-wm kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -25,6 +21,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool:22
 USE_GMAKE=	yes
+USE_XORG=	x11 xrender xfixes xdamage xcomposite
 WRKSRC=		${WRKDIR}/kdebase-${PORTVERSION}
 USE_LDCONFIG=	yes
 
