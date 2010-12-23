@@ -2,13 +2,12 @@
 # Date created:				2006
 # Whom:					Adam Karim <archite@midnightbsd.org>
 #
-# $MidnightBSD: mports/audio/libao/Makefile,v 1.5 2009/09/20 00:27:20 laffer1 Exp $
+# $MidnightBSD: mports/audio/libao/Makefile,v 1.6 2010/02/27 15:46:52 laffer1 Exp $
 # $FreeBSD: ports/audio/libao/Makefile,v 1.40 2007/07/24 15:10:13 rafan Exp $
 #
 
 PORTNAME=	libao
-PORTVERSION=	0.8.8
-PORTREVISION=	2
+PORTVERSION=	1.0.0
 CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/ao/
 
@@ -72,7 +71,7 @@ PLIST_SUB+=	$m="@comment "
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/libao.conf|${PREFIX}&|' \
-		${WRKSRC}/libao.conf.5 ${WRKSRC}/src/ao_private.h \
+		${WRKSRC}/libao.conf.5 ${WRKSRC}/include/ao/ao_private.h \
 		${WRKSRC}/doc/config.html
 
 .include <bsd.port.post.mk>
