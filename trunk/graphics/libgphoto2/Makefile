@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.3 2009/08/13 20:03:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.4 2009/09/20 01:52:28 laffer1 Exp $
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.4.5
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	gphoto
+MASTER_SITES=	SF/gphoto/libgphoto/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A universal digital camera picture control tool
