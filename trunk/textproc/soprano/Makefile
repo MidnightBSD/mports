@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.4 2008/12/08 21:35:07 ctriv Exp $
+# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.5 2010/01/09 17:43:23 laffer1 Exp $
 #
 
 PORTNAME=	soprano
@@ -12,7 +12,7 @@ COMMENT=	QT4 RDF framework
 LICENSE=	gpl2
 
 LIB_DEPENDS=	clucene.0:${PORTSDIR}/textproc/clucene \
-		raptor.2:${PORTSDIR}/textproc/raptor
+		raptor.3:${PORTSDIR}/textproc/raptor
 
 OPTIONS=	REDLAND "Use Redland as storage backend" on \
 		SESAME2 "Use Sesame2 as storage backend (requires Java)" off
