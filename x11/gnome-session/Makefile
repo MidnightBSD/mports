@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.6 2009/12/13 21:11:40 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.7 2010/12/15 02:37:51 laffer1 Exp $
 
 PORTNAME=	gnome-session
 PORTVERSION=	2.30.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
