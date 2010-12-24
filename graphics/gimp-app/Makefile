@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.7 2010/05/05 23:45:24 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.8 2010/12/15 00:59:54 laffer1 Exp $
 
 PORTNAME=	gimp-app
 DISTVERSION=	2.6.6
@@ -35,7 +35,7 @@ USE_XORG=	xpm xmu xext
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 USE_GNOME+=	gnomehack intltool intlhack gtk20 libartlgpl2 ltverhack \
-		desktopfileutils
+		desktopfileutils gnomelibs
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 LIBTOOLFLAGS=	--disable-ltlibs --release-ignore
