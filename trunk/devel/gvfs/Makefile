@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.8 2009/04/05 16:12:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.9 2009/06/28 01:02:23 laffer1 Exp $
 
 PORTNAME=	gvfs
-PORTVERSION=	1.2.3
+PORTVERSION=	1.6.3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
