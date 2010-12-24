@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.12 2009/06/27 22:06:11 laffer1 Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.13 2010/05/08 17:12:24 laffer1 Exp $
 
 PORTNAME=	epiphany
 PORTVERSION=	2.22.3
@@ -48,7 +48,7 @@ WITH_GNOME=	yes
 .include <bsd.port.pre.mk>
 
 .if defined(EPHY_SLAVE) && ${EPHY_SLAVE}=="webkit"
-LIB_DEPENDS+=	webkit-1.0.1:${PORTSDIR}/www/webkit-gtk2
+LIB_DEPENDS+=	webkit-1.0.9:${PORTSDIR}/www/webkit-gtk2
 CONFIGURE_ARGS+=	--with-engine=webkit
 EXTRA_CFLAGS+=	`pkg-config --cflags WebKitGtk` -I${LOCALBASE}/include/WebKit/webkit
 EXTRA_LIBS+=	`pkg-config --libs WebKitGtk`
