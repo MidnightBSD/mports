@@ -2,13 +2,13 @@
 # Date created:			3 July 1999
 # Whom:				Espen Skoglund <esk@ira.uka.de>
 #
-# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.5 2009/05/27 21:26:40 crash Exp $
+# $MidnightBSD: mports/multimedia/xmms/Makefile,v 1.6 2010/12/04 15:39:05 laffer1 Exp $
 # $FreeBSD: ports/multimedia/xmms/Makefile,v 1.81 2006/04/15 21:47:42 arved Exp $
 #
 
 PORTNAME=	xmms
-PORTVERSION=	1.2.10
-PORTREVISION=	8
+PORTVERSION=	1.2.11
+PORTREVISION=	0
 CATEGORIES+=	multimedia audio ipv6
 # http://www.xmms.org/files/1.2.x/
 MASTER_SITES=	ftp://ftp.swin.edu.au/slackware/slackware-10.0/source/xap/xmms/
