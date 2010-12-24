@@ -2,7 +2,7 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.4 2007/10/17 13:59:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.5 2008/06/16 00:58:24 stevan Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
@@ -10,11 +10,12 @@ PORTNAME=	aspell
 PORTVERSION=	0.50.4.1
 PORTREVISION=	1
 CATEGORIES=	textproc linux
-MASTER_SITES=	ftp://sunsite.cnlab-switch.ch/mirror/ximian/ximian-evolution/redhat-80-i386/ \
-		ftp://ftp.ntua.gr/pub/X11/ximian/ximian-evolution/redhat-80-i386/ \
-		ftp://ftp.icm.edu.pl/vol/rzm8/ximian/ximian-evolution/redhat-80-i386/ \
-		ftp://ftp.chg.ru/.7/X11/ximian/ximian-evolution/redhat-80-i386/ \
-		ftp://ftp.is.co.za/mirror/ftp.ximian.com/ximian-evolution/redhat-80-i386/
+MASTER_SITES=	\
+		ftp://ftp.pbone.net/mirror/ftp.ximian.com/pub/ximian-evolution/redhat-80-i386/ \
+		ftp://ftp.pbone.net/mirror/ftp.ximian.com/pub/ximian-evolution/redhat-80-i386/source/ \
+		ftp://ftp.is.co.za/mirror/ftp.ximian.com/ximian-evolution/redhat-80-i386/ \
+		ftp://ftp.chg.ru/pub/X11/ximian/ximian-evolution/redhat-80-i386/
+
 PKGNAMEPREFIX=	linux-
 DISTFILES=	${PORTNAME}-${PORTVERSION}-0.ximian.5.1.i386.rpm # needed for slave ports / options
 EXTRACT_ONLY=
