@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/Makefile,v 1.45 2010/07/30 05:24:04 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/Makefile,v 1.46 2010/09/06 21:01:04 laffer1 Exp $
 
     COMMENT = Things that used to be on the desktop before computers were invented
 
@@ -50,7 +50,6 @@
     SUBDIR += strigi
     SUBDIR += toolbox
     SUBDIR += toolboxkit
-    SUBDIR += twitter
     SUBDIR += xpad
     SUBDIR += xpostit
 
