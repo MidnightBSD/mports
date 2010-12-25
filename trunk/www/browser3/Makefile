@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.10 2010/03/26 00:43:37 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.11 2010/09/23 15:09:47 laffer1 Exp $
 
 PORTNAME=	browser3
 DISTVERSION=	3.0.19
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -19,7 +19,6 @@ BUILD_DEPENDS=	nspr>=4.7:${PORTSDIR}/devel/nspr \
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
-		nss3:${PORTSDIR}/security/nss \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	firefox-[0-9]* browser-2*
@@ -73,7 +72,6 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-system-cairo		\
 		--disable-official-branding	\
 		--enable-canvas			\
-		--with-system-nss		\
 		--enable-crypto			\
 		--disable-tests			\
 		--enable-default-toolkit=${MOZ_TOOLKIT} \
