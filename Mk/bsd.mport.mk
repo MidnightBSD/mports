@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.168 2010/12/10 05:03:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.169 2010/12/11 04:27:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -162,10 +162,13 @@ IGNORE= you need a kernel with compiled-in IA32 compatibility to use this port.
 .elif !defined(HAVE_COMPAT_IA32_LIBS)
 IGNORE= you need the 32-bit libraries installed under /usr/lib32 to use this port.
 .endif
+_LDCONFIG_FLAGS=-32
+LIB32DIR=	lib32
 .else
 IGNORE= you have to use i386 (or compatible) platform to use this port.
 .endif
 .endif
+PLIST_SUB+=     LIB32DIR=${LIB32DIR}
 
 # If they exist, include Makefile.inc, then architecture/operating
 # system specific Makefiles, then local Makefile.local.
@@ -3479,11 +3482,7 @@ lib-depends:
 .if defined(LIB_DEPENDS) && !defined(NO_DEPENDS)
 	@for i in ${LIB_DEPENDS}; do \
 		lib=$${i%%:*}; \
-		case $$lib in \
-			*.*.*)	pattern="`${ECHO_CMD} $$lib | ${SED} -e 's/\./\\\\./g'`" ;;\
-			*.*)	pattern="$${lib%%.*}\.$${lib#*.}" ;;\
-			*)	pattern="$$lib" ;;\
-		esac; \
+		pattern="`${ECHO_CMD} $$lib | ${SED} -E -e 's/\./\\\\./g' -e 's/(\\\\)?\+/\\\\+/g'`"\
 		dir=$${i#*:}; \
 		target=$${i##*:}; \
 		if ${TEST} $$dir = $$target; then \
@@ -3494,7 +3493,7 @@ lib-depends:
 		fi; \
 		if [ -z "${DESTDIR}" ] ; then \
 			${ECHO_MSG} -n "===>   ${PKGNAME} depends on shared library: $$lib"; \
-			if ${LDCONFIG} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
+			if ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
 				${ECHO_MSG} " - found"; \
 				if [ ${_DEPEND_ALWAYS} = 1 ]; then \
 					${ECHO_MSG} "       (but building it anyway)"; \
@@ -3508,7 +3507,7 @@ lib-depends:
 			fi; \
 		else \
 			${ECHO_MSG} -n "===>   ${PKGNAME} depends on shared library in ${DESTDIR}: $$lib"; \
-			if ${CHROOT} ${DESTDIR} ${LDCONFIG} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
+			if ${CHROOT} ${DESTDIR} ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
 				${ECHO_MSG} " - found"; \
 				if [ ${_DEPEND_ALWAYS} = 1 ]; then \
 					${ECHO_MSG} "       (but building it anyway)"; \
@@ -3524,10 +3523,10 @@ lib-depends:
 		if [ $$notfound != 0 ]; then \
 			${ECHO_MSG} "===>    Verifying $$target for $$lib in $$dir"; \
 			if [ ! -d "$$dir" ]; then \
-				${ECHO_MSG} "     => No directory for $$lib.  Skipping.."; \
+				${ECHO_MSG} "     => No directory for $$lib.  Skipping..."; \
 			else \
 				${_INSTALL_DEPENDS} \
-				if ! ${LDCONFIG} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
+				if ! ${LDCONFIG} ${_LDCONFIG_FLAGS} -r | ${GREP} -vwF -e "${PKGCOMPATDIR}" | ${GREP} -qwE -e "-l$$pattern"; then \
 					${ECHO_MSG} "Error: shared library \"$$lib\" does not exist"; \
 					${FALSE}; \
 				fi; \
