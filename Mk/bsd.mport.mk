@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.169 2010/12/11 04:27:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.170 2010/12/25 12:44:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1343,10 +1343,14 @@ PATCH_SITES_TMP=
 
 # The primary backup site.
 MASTER_SITE_BACKUP?=	\
+	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/${DIST_SUBDIR}/
 	ftp://ftp.freeBSD.org/pub/FreeBSD/ports/distfiles/${DIST_SUBDIR}/
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
+# Include private dist files that we can't redistribute for Magus.
+.if defined(MAGUS)
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
-	ftp://ftp.midnightbsd.org/pub/MidnightBSD/mports/distfiles/${DIST_SUBDIR}/
+			ftp://10.1.10.251/pub/
+.end
 
 # If the user has MASTER_SITE_FREEBSD set, go to the FreeBSD repository
 # for everything, but don't search it twice by appending it to the end.
