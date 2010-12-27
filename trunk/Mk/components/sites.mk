@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.26 2010/12/16 02:40:46 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.27 2010/12/27 14:01:11 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -452,7 +452,6 @@ MASTER_SITE_GCC+=	\
 MASTER_SITE_GENTOO+=	\
 	http://ftp.roedu.net/pub/mirrors/gentoo.org/%SUBDIR%/ \
 	http://distro.ibiblio.org/pub/linux/distributions/gentoo/%SUBDIR%/ \
-	http://csociety-ftp.ecn.purdue.edu/pub/gentoo/%SUBDIR%/ \
 	http://gentoo.mirrors.pair.com/%SUBDIR%/ \
 	http://gentoo.chem.wisc.edu/gentoo/%SUBDIR%/ \
 	http://adelie.polymtl.ca/%SUBDIR%/ \
@@ -472,7 +471,6 @@ MASTER_SITE_GENTOO+=	\
 	http://gentoo.gg3.net/%SUBDIR%/ \
 	http://gentoo.kems.net/%SUBDIR%/ \
 	ftp://ftp.gtlib.cc.gatech.edu/pub/gentoo/%SUBDIR%/ \
-	ftp://csociety-ftp.ecn.purdue.edu/pub/gentoo/%SUBDIR%/ \
 	ftp://mirror.iawnet.sandia.gov/pub/gentoo/%SUBDIR%/ \
 	ftp://ftp.ussg.iu.edu/pub/linux/gentoo/%SUBDIR%/ \
 	ftp://ftp.ucsb.edu/pub/mirrors/linux/gentoo/%SUBDIR%/ \
@@ -916,7 +914,6 @@ MASTER_SITE_PERL_CPAN+=	\
 	ftp://ftp.sunet.se/pub/lang/perl/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://mirror.hiwaay.net/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://csociety-ftp.ecn.purdue.edu/pub/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.cs.colorado.edu/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
 	http://at.cpan.org/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
