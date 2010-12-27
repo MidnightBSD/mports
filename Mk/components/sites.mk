@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.25 2010/12/10 01:12:46 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.26 2010/12/16 02:40:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -32,11 +32,6 @@ MASTER_SITE_LOCAL+= \
 	ftp://ftp.se.midnightbsd.org/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp3.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/ \
 	ftp://ftp1.MidnightBSD.org/pub/MidnightBSD/mports/distfiles/%SUBDIR%/
-
-# Not distributable dist files for Magus
-.if defined(MAGUS)
-MASTER_SITE_LOCAL+=	ftp://10.1.10.251/pub/
-.endif
 
 MASTER_SITE_PORTS_JP+=	\
 	ftp://ports.jp.FreeBSD.org/pub/FreeBSD-jp/ports-jp/LOCAL_PORTS/%SUBDIR%/ \
@@ -922,7 +917,6 @@ MASTER_SITE_PERL_CPAN+=	\
 	ftp://mirror.hiwaay.net/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://csociety-ftp.ecn.purdue.edu/pub/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.isu.net.sa/pub/CPAN/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.cs.colorado.edu/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
 	http://at.cpan.org/modules/by-module/%SUBDIR%/ \
 	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
@@ -1224,7 +1218,6 @@ MASTER_SITE_SUSE+= 	\
 	ftp://ftp.icm.edu.pl/packages/linux-suse/%SUBDIR%/ \
 	http://ftp.iasi.roedu.net/pub/mirrors/ftp.suse.com/pub/suse/%SUBDIR%/ \
 	http://ftp.idilis.ro/mirrors/ftp.suse.com/pub/suse/%SUBDIR%/ \
-	http://ftp.isu.net.sa/pub/mirrors/ftp.suse.com/%SUBDIR%/ \
 	ftp://ftp.sunet.se/pub/Linux/distributions/suse/suse/%SUBDIR%/ \
 	ftp://ftp.solnet.ch/mirror/SuSE/%SUBDIR%/ \
 	ftp://sunsite.cnlab-switch.ch/mirror/SuSE/suse/%SUBDIR%/ \
