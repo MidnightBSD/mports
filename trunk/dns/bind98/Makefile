@@ -1,19 +1,20 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/bind98/Makefile,v 1.1 2010/12/23 00:33:37 laffer1 Exp $
 # $FreeBSD: ports/dns/bind98/Makefile,v 1.3 2010/12/18 09:50:45 dougb Exp $
 
 PORTNAME=	bind98
 PORTVERSION=	9.8.0.a1
-PKGNAMESUFFIX=	-devel
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
+PKGNAMESUFFIX=	-devel
 DISTNAME=	bind-${ISCVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The BIND DNS suite with updated DNSSEC and DNS64
+LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
 ISCVERSION=	9.8.0a1
@@ -25,7 +26,7 @@ CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 		--disable-symtable \
 		--with-randomdev=/dev/random
 
-CONFLICTS=	bind9*-9.[4567].* bind9-sdb-* host-* bind-tools-9.*
+CONFLICTS=	bind9*-9.[4567].* bind9-sdb-[0-9]* host-[0-9]* bind-tools-9.*
 
 OPTIONS=	SSL "Building without OpenSSL removes DNSSEC" on \
 		XML "Support for xml statistics output" on \
