@@ -54,7 +54,6 @@ lib/libjackserver.so
 lib/libjackserver.so.0
 libdata/pkgconfig/jack.pc
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/annotated.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/classes.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/deprecated.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/doxygen.css
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/doxygen.png
@@ -91,21 +90,16 @@ libdata/pkgconfig/jack.pc
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/index.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/inprocess_8c.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/intclient_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/intclient_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/jack_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/jack_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/mainpage_8dox.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/midiport_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/midiport_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/modules.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/pages.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/porting-guide.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/porting_8dox.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/ringbuffer_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/ringbuffer_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/simple__client_8c.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/statistics_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/statistics_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/struct__jack__midi__event.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/structjack__position__t.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/structjack__ringbuffer__data__t.html
@@ -113,13 +107,10 @@ libdata/pkgconfig/jack.pc
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/structjack__transport__info__t.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/structport__pair__t.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/thread_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/thread_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/transport-design.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/transport_8dox.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/transport_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/transport_8h_source.html
 %%PORTDOCS%%share/jack-audio-connection-kit/reference/html/types_8h.html
-%%PORTDOCS%%share/jack-audio-connection-kit/reference/html/types_8h_source.html
 %%PORTDOCS%%@dirrm share/jack-audio-connection-kit/reference/html
 %%PORTDOCS%%@dirrm share/jack-audio-connection-kit/reference
 %%PORTDOCS%%@dirrm share/jack-audio-connection-kit
