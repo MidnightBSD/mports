@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-SQL-Translator/Makefile,v 1.1 2010/10/21 19:24:24 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-SQL-Translator/Makefile,v 1.2 2010/12/08 00:34:15 laffer1 Exp $
 
 PORTNAME=	SQL-Translator
 PORTVERSION=	0.11006
@@ -28,7 +28,8 @@ BUILD_DEPENDS=	p5-Class-Base>=0:${PORTSDIR}/devel/p5-Class-Base \
 		p5-Spreadsheet-ParseExcel>=0.41:${PORTSDIR}/textproc/p5-Spreadsheet-ParseExcel \
 		p5-Text-RecordParser>=0.02:${PORTSDIR}/textproc/p5-Text-RecordParser \
 		p5-XML-Writer>=0.500:${PORTSDIR}/textproc/p5-XML-Writer \
-		p5-YAML>=0.66:${PORTSDIR}/textproc/p5-YAML
+		p5-YAML>=0.66:${PORTSDIR}/textproc/p5-YAML \
+		p5-Test-Exception>=0:${PORTSDIR}/devel/p5-Test-Exception
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
