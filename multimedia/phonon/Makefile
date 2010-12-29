@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/multimedia/phonon/Makefile,v 1.1 2008/08/09 16:52:20 miwi Exp $
+# $MidnightBSD: mports/multimedia/phonon/Makefile,v 1.1 2008/12/08 20:50:12 ctriv Exp $
 #
 
 PORTNAME=	phonon
@@ -21,14 +21,10 @@ KDE4_BUILDENV=	yes
 USE_QT_VER=	4
 QT_COMPONENTS=	corelib opengl moc rcc uic dbus qt3support designer network svg qtestlib
 USE_GSTREAMER=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/${PORTNAME}
 
 post-extract:
 	${MKDIR} ${WRKSRC}
-
-post-patch:
-#fix finding automoc when PREFIX is not matched KDE4_PREFIX
-	${REINPLACE_CMD} -e 's|NO_DEFAULT_PATH|${KDE4_PREFIX} NO_DEFAULT_PATH|' \
-		${WRKSRC}/../cmake/FindAutomoc4.cmake
 
 pre-configure:
 	${REINPLACE_CMD} -e '/phonon.pc/s|pkgconfig|../libdata/pkgconfig|' \
