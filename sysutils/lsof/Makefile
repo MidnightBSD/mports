@@ -1,18 +1,14 @@
-# ex:ts=8
-# Ports collection makefile for:  lsof
-# Date created:			  Sat July 20, 1996
-# Whom:				  David O'Brien (obrien@FreeBSD.org)
-#
-# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.1 2008/03/31 02:43:05 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.2 2008/03/31 02:55:37 laffer1 Exp $
 # $FreeBSD: ports/sysutils/lsof/Makefile,v 1.158 2008/01/26 22:28:53 wxs Exp $
-#
 
 PORTNAME=	lsof
-PORTVERSION=	4.79H
+PORTVERSION=	4.84A
 CATEGORIES=	sysutils
-MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
+MASTER_SITES=	http://www.SpringDaemons.com/stas/ \
+		http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/NEW/ \
+		http://www.lerctr.org/lsof/ \
 		ftp://ftp.ayamura.org/pub/lsof/ \
 		ftp://ftp.ayamura.org/pub/lsof/NEW/ \
 		ftp://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
@@ -23,16 +19,15 @@ MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://ftp.sunet.se/pub/unix/admin/lsof/NEW/ \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/  \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/NEW/ \
-		ftp://ftp.tau.ac.il/pub/unix/admin/ \
-		${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	wxs
+		ftp://ftp.tau.ac.il/pub/unix/admin/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists information about open files (similar to fstat(1))
 LICENSE=	other
 #very bsdish
 
-FIXUP_RELEASE=yes
+#Please leave the below line in for the next clean up.
+FIXUP_RELEASE=	YES
 .if defined(FIXUP_RELEASE)
 DISTNAME=	${PORTNAME}_${PORTVERSION}.freebsd
 .else
@@ -82,22 +77,10 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/* ${PREFIX}/share/lsof
 	@${CHMOD} 0444 ${PREFIX}/share/lsof/00*
 
-.include <bsd.port.pre.mk>
-
-pre-configure:
-	@${ECHO} ""
-	@${ECHO} "*                      W a r n i n g                       *"
-	@${ECHO} "* A more capable version of LSOF is built if you have      *"
-	@${ECHO} "* the complete kernel source installed.                    *"
-	@${ECHO} "* If your kernel sources are somewhere other than          *"
-	@${ECHO} "* /usr/src/sys, you may set the FREEBSD_SYS variable       *"
-	@${ECHO} "* to the correct path.                                     *"
-	@${ECHO} ""
-
 post-install:
 	cd ${PREFIX} && \
 	    ${FIND} -s share/lsof -type f -o -type l >>${TMPPLIST} ;\
 	    ${FIND} -d share/lsof -type d \
 	        | ${SED} -e 's/^/@dirrm /g' >>${TMPPLIST}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
