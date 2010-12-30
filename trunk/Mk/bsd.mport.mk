@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.172 2010/12/27 14:09:02 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.173 2010/12/29 00:48:25 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2562,6 +2562,7 @@ check-umask:
 .endif
 
 
+.if !defined(DISABLE_SECURITY_CHECK)
 .if !target(security-check)
 .if !defined(OLD_SECURITY_CHECK)
 
@@ -2723,6 +2724,11 @@ security-check:
 	fi
 .endif # !defined(OLD_SECURITY_CHECK)
 .endif
+.else # i.e. defined(DISABLE_SECURITY_CHECK)
+security-check:
+	@${ECHO_MSG} "      WARNING: Security check has been disabled."
+.endif # !defined(DISABLE_SECURITY_CHECK)
+
 
 ################################################################
 # Skeleton targets start here
