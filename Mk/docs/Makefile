@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/docs/Makefile,v 1.1 2008/11/12 18:30:49 ctriv Exp $
+# $MidnightBSD: mports/Mk/docs/Makefile,v 1.2 2008/11/12 20:16:25 ctriv Exp $
 #
 
 #
@@ -8,7 +8,7 @@
 # 
 
 
-POD2MAN=	/usr/local/bin/pod2man
+POD2MAN=	/usr/bin/pod2man
 
 .if !exists(${POD2MAN}) 
 .error "pod2man not found.  Perhaps you don't have perl installed?"
@@ -22,12 +22,10 @@ MANS=	${MAN5}
 all: ${MANS}
 
 .for SEC in "1 2 3 4 5 6 7 8"
-.  if defined(MAN${SEC})
 .    for PAGE in ${MAN${SEC}:S/.${SEC}//g}
 ${PAGE}.${SEC}: ${PAGE}.pod
 	${POD2MAN} -r MidnightBSD -c "MidnightBSD File Formats Manual" -n ${PAGE} -s ${SEC} ${PAGE}.pod > ${PAGE}.${SEC}
 .    endfor
-.  endif
 .endfor
 
 .PHONY: clean
