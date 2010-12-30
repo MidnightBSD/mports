@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.13 2010/07/31 00:22:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.14 2010/12/10 05:03:23 laffer1 Exp $
 
 =head1 NAME
 
@@ -578,6 +578,11 @@ If set, only use ${MASTER_SITE_BACKUP} for MASTER_SITES.
 
 List of CDROM mountpoints to look for distfiles under. This variable
 supercedes CD_MOUNTPT, which is obsolete.
+
+=item DISABLE_SECURITY_CHECK
+
+Speed up port installation on old hardware by not running security checks.
+Not recommended.
 
 =back
 
