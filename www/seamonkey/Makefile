@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.10 2010/08/02 23:52:19 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.11 2010/11/06 16:14:54 laffer1 Exp $
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
 MASTER_SITE_SUBDIR=	seamonkey/releases/${DISTVERSION}
@@ -32,7 +32,7 @@ MOZ_OPTIONS+=	--enable-svg \
 		--enable-application=suite	\
 		--enable-svg-renderer=cairo	\
 		--enable-system-cairo		\
-		--enable-canvas \
+		--enable-canvas 		\
 		--with-system-nss
 MOZ_MK_OPTIONS+=	MOZ_CO_PROJECT=suite
 
@@ -104,6 +104,10 @@ post-patch:
 		${WRKDIR}/seamonkey.desktop
 	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD`${UNAME} -r`.mk
 	${LN} -s ${WRKSRC}/security/coreconf/MidnightBSD.mk ${WRKSRC}/security/coreconf/MidnightBSD${OSREL}.mk
+
+post-configure:
+	${REINPLACE_CMD} -e 's|@MAJOR@||g' \
+		${WRKSRC}/config/autoconf.mk
 
 pre-install:
 	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \
