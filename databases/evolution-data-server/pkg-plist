@@ -340,15 +340,15 @@ lib/libebackend-%%EVO_VERSION%%.so.0
 lib/libebook-%%EVO_VERSION%%.a
 lib/libebook-%%EVO_VERSION%%.la
 lib/libebook-%%EVO_VERSION%%.so
-lib/libebook-%%EVO_VERSION%%.so.12
+lib/libebook-%%EVO_VERSION%%.so.9
 lib/libecal-%%EVO_VERSION%%.a
 lib/libecal-%%EVO_VERSION%%.la
 lib/libecal-%%EVO_VERSION%%.so
-lib/libecal-%%EVO_VERSION%%.so.9
+lib/libecal-%%EVO_VERSION%%.so.7
 lib/libedata-book-%%EVO_VERSION%%.a
 lib/libedata-book-%%EVO_VERSION%%.la
 lib/libedata-book-%%EVO_VERSION%%.so
-lib/libedata-book-%%EVO_VERSION%%.so.6
+lib/libedata-book-%%EVO_VERSION%%.so.2
 lib/libedata-cal-%%EVO_VERSION%%.a
 lib/libedata-cal-%%EVO_VERSION%%.la
 lib/libedata-cal-%%EVO_VERSION%%.so
@@ -360,7 +360,7 @@ lib/libedataserver-%%EVO_VERSION%%.so.11
 lib/libedataserverui-%%EVO_VERSION%%.a
 lib/libedataserverui-%%EVO_VERSION%%.la
 lib/libedataserverui-%%EVO_VERSION%%.so
-lib/libedataserverui-%%EVO_VERSION%%.so.9
+lib/libedataserverui-%%EVO_VERSION%%.so.8
 lib/libegroupwise-%%EVO_VERSION%%.a
 lib/libegroupwise-%%EVO_VERSION%%.la
 lib/libegroupwise-%%EVO_VERSION%%.so
