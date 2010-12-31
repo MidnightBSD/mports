@@ -1,13 +1,18 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.107 2008/06/06 00:09:50 laffer1 Exp $
+bin/gnome-eject
 bin/gnome-mount
 bin/gnome-umount
-bin/gnome-eject
-etc/gconf/schemas/gnome-mount.schemas
 libdata/pkgconfig/gnome-mount.pc
+%%DATADIR%%/gnome-mount-properties.glade
 share/locale/ar/LC_MESSAGES/gnome-mount.mo
+share/locale/be/LC_MESSAGES/gnome-mount.mo
+share/locale/be@latin/LC_MESSAGES/gnome-mount.mo
+share/locale/ca/LC_MESSAGES/gnome-mount.mo
 share/locale/da/LC_MESSAGES/gnome-mount.mo
+share/locale/dz/LC_MESSAGES/gnome-mount.mo
+share/locale/el/LC_MESSAGES/gnome-mount.mo
 share/locale/en_GB/LC_MESSAGES/gnome-mount.mo
 share/locale/es/LC_MESSAGES/gnome-mount.mo
+share/locale/fi/LC_MESSAGES/gnome-mount.mo
 share/locale/fr/LC_MESSAGES/gnome-mount.mo
 share/locale/hu/LC_MESSAGES/gnome-mount.mo
 share/locale/it/LC_MESSAGES/gnome-mount.mo
@@ -15,142 +20,22 @@ share/locale/ja/LC_MESSAGES/gnome-mount.mo
 share/locale/lv/LC_MESSAGES/gnome-mount.mo
 share/locale/mk/LC_MESSAGES/gnome-mount.mo
 share/locale/nb/LC_MESSAGES/gnome-mount.mo
+share/locale/oc/LC_MESSAGES/gnome-mount.mo
 share/locale/pa/LC_MESSAGES/gnome-mount.mo
+share/locale/pl/LC_MESSAGES/gnome-mount.mo
+share/locale/pt/LC_MESSAGES/gnome-mount.mo
 share/locale/pt_BR/LC_MESSAGES/gnome-mount.mo
 share/locale/ru/LC_MESSAGES/gnome-mount.mo
 share/locale/sv/LC_MESSAGES/gnome-mount.mo
 share/locale/vi/LC_MESSAGES/gnome-mount.mo
-share/locale/be/LC_MESSAGES/gnome-mount.mo
-share/locale/be@latin/LC_MESSAGES/gnome-mount.mo
-share/locale/ca/LC_MESSAGES/gnome-mount.mo
-share/locale/dz/LC_MESSAGES/gnome-mount.mo
-share/locale/el/LC_MESSAGES/gnome-mount.mo
-share/locale/fi/LC_MESSAGES/gnome-mount.mo
-share/locale/oc/LC_MESSAGES/gnome-mount.mo
-share/locale/pl/LC_MESSAGES/gnome-mount.mo
-share/locale/pt/LC_MESSAGES/gnome-mount.mo
 share/locale/zh_HK/LC_MESSAGES/gnome-mount.mo
 share/locale/zh_TW/LC_MESSAGES/gnome-mount.mo
-share/gnome-mount/gnome-mount-properties.glade
-@dirrm etc/CORBA/servers
-@dirrm etc/CORBA
-@dirrm etc/X11/serverconfig
-@dirrm etc/X11/starthere
-@dirrm etc/X11/sysconfig
-@dirrm etc/X11
-@dirrm etc/gconf/gconf.xml.defaults
-@dirrm etc/gconf/gconf.xml.mandatory
-@dirrm etc/gconf/schemas
-@dirrm etc/gconf
-@dirrm etc/gnome/config
-@dirrm etc/gnome
-@dirrm etc/gnome-vfs-2.0/modules
-@dirrm etc/gnome-vfs-2.0
-@dirrm etc/sound/events
-@dirrm etc/sound
-@dirrm etc/vfs/modules
-@dirrm etc/vfs
-@dirrm include/gconf
-@dirrm include/gdkcardimage
-@dirrm include/gnome-1.0
-@dirrm lib/GConf
-@dirrm lib/bonobo/monikers
-@dirrm lib/bonobo/plugin
-@dirrm lib/bonobo
-@dirrm lib/gnome-vfs-2.0/modules
-@dirrm lib/gnome-vfs-2.0
-@dirrm lib/vfs/modules
-@dirrm lib/vfs
-@dirrm libdata/bonobo/servers
-@dirrm libdata/bonobo
-@dirrm share/doc/libgda
-@dirrm share/locale/be/LC_MESSAGES
-@dirrm share/locale/be
-@dirrm share/locale/be@latin/LC_MESSAGES
-@dirrm share/locale/be@latin
-@dirrm share/locale/ca/LC_MESSAGES
-@dirrm share/locale/ca
-@dirrm share/locale/dz/LC_MESSAGES
-@dirrm share/locale/dz
-@dirrm share/locale/el/LC_MESSAGES
-@dirrm share/locale/el
-@dirrm share/locale/fi/LC_MESSAGES
-@dirrm share/locale/fi
-@dirrm share/locale/oc/LC_MESSAGES
-@dirrm share/locale/oc
-@dirrm share/locale/pl/LC_MESSAGES
-@dirrm share/locale/pl
-@dirrm share/locale/pt/LC_MESSAGES
-@dirrm share/locale/pt
-@dirrm share/locale/zh_HK/LC_MESSAGES
-@dirrm share/locale/zh_HK
-@dirrm share/locale/zh_TW/LC_MESSAGES
-@dirrm share/locale/zh_TW
-@dirrm share/sgml/docbook/gnome-customization-0.1
-@dirrm share/sgml/docbook
-@dirrm share/applets/Amusements
-@dirrm share/applets/Clocks
-@dirrm share/applets/Monitors
-@dirrm share/applets/Multimedia
-@dirrm share/applets/Network
-@dirrm share/applets/Utility
-@dirrm share/applets
-@dirrm share/application-registry
-@dirrm share/capplets
-@dirrm share/control-center/Desktop
-@dirrm share/control-center/Documents
-@dirrm share/control-center/Peripherals
-@dirrm share/control-center/Session
-@dirrm share/control-center/capplets
-@dirrm share/control-center/keybindings
-@dirrm share/control-center
-@dirrm share/control-center-2.0/capplets
-@dirrm share/control-center-2.0
-@dirrm share/games
-@dirrm share/gnome/apps/Applications
-@dirrm share/gnome/apps/Audio
-@dirrm share/gnome/apps/Development
-@dirrm share/gnome/apps/Games
-@dirrm share/gnome/apps/Graphics
-@dirrm share/gnome/apps/Internet
-@dirrm share/gnome/apps/Multimedia
-@dirrm share/gnome/apps/Settings/Desktop
-@dirrm share/gnome/apps/Settings/Documents
-@dirrm share/gnome/apps/Settings/Peripherals
-@dirrm share/gnome/apps/Settings/Session
-@dirrm share/gnome/apps/Settings
-@dirrm share/gnome/apps/System
-@dirrm share/gnome/apps/Utilities
-@dirrm share/gnome/apps
-@dirrm share/gnome/autostart
-@dirrm share/gnome/help/fdl/C
-@dirrm share/gnome/help/fdl
-@dirrm share/gnome/help/gpl/C
-@dirrm share/gnome/help/gpl
-@dirrm share/gnome/help/lgpl/C
-@dirrm share/gnome/help/lgpl
-@dirrm share/gnome/help
-@dirrm share/gnome/panel
-@dirrm share/gnome/ui
-@dirrm share/gnome/wm-properties
-@dirrm share/gnome
-@dirrm share/gnome-2.0/ui
-@dirrm share/gnome-2.0
-@dirrm share/gnome-about
-@dirrm share/gnome-control-center/keybindings
-@dirrm share/gnome-control-center
-@dirrm share/images
-@dirrm share/mc/templates
-@dirrm share/mc
-@dirrm share/mime-info
-@dirrm share/oaf
-@dirrm share/omf
-@dirrm share/pixmaps/document-icons
-@dirrm share/pixmaps/splash
-@dirrm share/pixmaps
-@dirrm share/sounds
-@dirrm share/vala/vapi
-@dirrm share/vala
-@dirrm share/vfolders
-@dirrm share/xmodmap
-@dirrm share/gnome-mount
+@dirrmtry share/locale/zh_HK/LC_MESSAGES
+@dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/oc/LC_MESSAGES
+@dirrmtry share/locale/oc
+@dirrmtry share/locale/dz/LC_MESSAGES
+@dirrmtry share/locale/dz
+@dirrmtry share/locale/be@latin/LC_MESSAGES
+@dirrmtry share/locale/be@latin
+@dirrm %%DATADIR%%
