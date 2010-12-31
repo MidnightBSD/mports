@@ -1,5 +1,5 @@
---- config/Xsession.in.orig	2008-05-12 20:25:54.000000000 -0400
-+++ config/Xsession.in	2008-06-09 01:29:59.000000000 -0400
+--- data/Xsession.in.orig	2008-05-12 20:25:54.000000000 -0400
++++ data/Xsession.in	2008-06-09 01:29:59.000000000 -0400
 @@ -231,12 +231,31 @@ if [ "x$command" = "xdefault" ] ; then
    fi
  fi

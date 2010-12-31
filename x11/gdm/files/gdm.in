@@ -1,5 +1,6 @@
 #!/bin/sh
-# $MidnightBSD$
+# $FreeBSD: ports/x11/gdm/files/gdm.in,v 1.20 2010/07/25 19:35:05 kwm Exp $
+#    $MCom: ports-stable/x11/gdm/files/gdm.in,v 1.5 2010/07/21 13:50:46 kwm Exp $
 
 # PROVIDE: gdm
 # REQUIRE: LOGIN cleanvar moused syscons dbus
@@ -9,14 +10,16 @@
 # gdm_enable="YES"
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 . %%GNOME_SUBR%%
 
 gdm_enable=${gdm_enable-${gnome_enable}}
+gdm_preserve_base_pam_conf=${gdm_preserve_base_pam_conf-NO}
+gdm_lang=${gdm_lang-${LANG}}
 
 export PATH=/bin:/sbin:/usr/bin:/usr/sbin:%%LOCALBASE%%/bin:%%LOCALBASE%%/sbin
 
-name=gdm
+name="gdm"
 rcvar=`set_rcvar`
 command="%%PREFIX%%/sbin/${name}"
 pidfile="/var/run/${name}.pid"
@@ -30,6 +33,12 @@ gdm_start()
     fi
     echo "Starting ${name}."
 
+    # make sure there is no pam configuration for gdm service in base system
+    if ! checkyesno gdm_preserve_base_pam_conf && [ -f /etc/pam.d/gdm ]; then
+	cp -p /etc/pam.d/gdm /etc/pam.d/gdm_disabled
+    	rm -f /etc/pam.d/gdm
+    fi
+
     ( iter=0
     while ! ps -axoargs | grep "^/usr/libexec/getty " | grep -qv grep >/dev/null 2>&1; do
 	if [ ${iter} -eq 60 ]; then
@@ -38,7 +47,15 @@ gdm_start()
 	sleep 1
 	iter=$(expr ${iter} + 1)
     done
-    ${command} ) &
+    iter=0
+    while ! %%LOCALBASE%%/bin/lshal >/dev/null 2>&1 ; do
+	if [ ${iter} -eq 60 ]; then
+	    break
+	fi
+	sleep 1
+	iter=$(expr ${iter} + 1)
+    done
+    LANG=${gdm_lang} ${command} ${gdm_flags} ) &
 }
 
 load_rc_config ${name}
