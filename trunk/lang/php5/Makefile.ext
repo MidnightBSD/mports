@@ -20,13 +20,7 @@ PHP_HEADER_DIRS=libbcmath libbcmath/src
 .endif
 
 .if ${PHP_MODNAME} == "bz2"
-.if exists(/usr/bin/bzip2)
-BZ2BASE=	/usr
-.else
-BZ2BASE=	${LOCALBASE}
-LIB_DEPENDS+=	bz2.1:${PORTSDIR}/archivers/bzip2
-.endif
-CONFIGURE_ARGS+=--with-bz2=${BZ2BASE}
+CONFIGURE_ARGS+=--with-bz2=/usr
 .endif
 
 .if ${PHP_MODNAME} == "calendar"
@@ -56,10 +50,6 @@ OPTIONS=	CDB "cdb database support" on \
 PHP_HEADER_DIRS=	libcdb libflatfile libinifile
 .endif
 
-.if ${PHP_MODNAME} == "dbase"
-CONFIGURE_ARGS+=--enable-dbase
-.endif
-
 .if ${PHP_MODNAME} == "dom"
 CONFIGURE_ARGS+=--enable-dom \
 		--with-libxml-dir=${LOCALBASE}
@@ -72,6 +62,13 @@ USE_PHP_BUILD=	yes
 
 .if ${PHP_MODNAME} == "exif"
 CONFIGURE_ARGS+=--enable-exif
+.endif
+
+.if ${PHP_MODNAME} == "fileinfo"
+CONFIGURE_ARGS+=--enable-fileinfo \
+		--with-pcre-dir=${LOCALBASE}
+
+PHP_HEADER_DIRS=	libmagic
 .endif
 
 .if ${PHP_MODNAME} == "filter"
@@ -123,12 +120,12 @@ CONFIGURE_ARGS+=--with-gmp=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "hash"
-CONFIGURE_ARGS+=--enable-hash
+CONFIGURE_ARGS+=--enable-hash \
+		--with-mhash
 .endif
 
 .if ${PHP_MODNAME} == "iconv"
-CONFIGURE_ARGS+=--with-iconv=${LOCALBASE} \
-		--with-iconv-dir=${LOCALBASE}
+CONFIGURE_ARGS+=--with-iconv=${LOCALBASE}
 
 USE_ICONV=	yes
 .endif
@@ -170,7 +167,7 @@ CONFIGURE_ARGS+=--enable-mbstring
 
 OPTIONS=	REGEX "Enable multibyte regex support" on
 
-PHP_HEADER_DIRS=libmbfl libmbfl/filters libmbfl/mbfl libmbfl/nls oniguruma
+PHP_HEADER_DIRS=libmbfl libmbfl/filters libmbfl/mbfl libmbfl/nls
 .endif
 
 .if ${PHP_MODNAME} == "mcrypt"
@@ -181,18 +178,6 @@ CONFIGURE_ARGS+=--with-mcrypt=${LOCALBASE}
 USE_AUTOTOOLS=	libltdl:22
 .endif
 
-.if ${PHP_MODNAME} == "mhash"
-LIB_DEPENDS+=	mhash.2:${PORTSDIR}/security/mhash
-
-CONFIGURE_ARGS+=--with-mhash=${LOCALBASE}
-.endif
-
-.if ${PHP_MODNAME} == "ming"
-LIB_DEPENDS+=	ming.4:${PORTSDIR}/graphics/ming
-
-CONFIGURE_ARGS+=--with-ming=${LOCALBASE}
-.endif
-
 .if ${PHP_MODNAME} == "mssql"
 LIB_DEPENDS+=	sybdb.5:${PORTSDIR}/databases/freetds-msdblib
 
@@ -200,32 +185,11 @@ CONFIGURE_ARGS+=--with-mssql=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "mysql"
-CONFIGURE_ARGS+=--with-mysql=${LOCALBASE} \
-		--with-zlib-dir=/usr
-
-USE_MYSQL=	yes
+OPTIONS=	MYSQLND "Use MySQL Native Driver" off
 .endif
 
 .if ${PHP_MODNAME} == "mysqli"
-CONFIGURE_ARGS+=--with-mysqli=${LOCALBASE}/bin/mysql_config
-
-USE_MYSQL=	yes
-DEFAULT_MYSQL_VER=	51
-
-USE_PHP=	spl
-USE_PHP_BUILD=	yes
-.endif
-
-.if ${PHP_MODNAME} == "ncurses"
-CONFIGURE_ARGS+=--with-ncurses=/usr
-.endif
-
-.if ${PHP_MODNAME} == "oci8"
-BUILD_DEPENDS+=	${LOCALBASE}/oracle8-client/lib/libclntsh.a:${PORTSDIR}/databases/oracle8-client
-
-RUN_DEPENDS+=	${BUILD_DEPENDS}
-
-CONFIGURE_ARGS+=--with-oci8=${LOCALBASE}/oracle8-client
+OPTIONS=	MYSQLND "Use MySQL Native Driver" off
 .endif
 
 .if ${PHP_MODNAME} == "odbc"
@@ -268,21 +232,7 @@ USE_FIREBIRD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "pdo_mysql"
-CONFIGURE_ARGS+=--with-pdo-mysql=${LOCALBASE} \
-		--with-zlib-dir=/usr
-
-USE_MYSQL=	yes
-
-USE_PHP=	pdo
-USE_PHP_BUILD=	yes
-.endif
-
-.if ${PHP_MODNAME} == "pdo_oci"
-BUILD_DEPENDS+=	${LOCALBASE}/oracle8-client/lib/libclntsh.a:${PORTSDIR}/databases/oracle8-client
-
-RUN_DEPENDS+=	${BUILD_DEPENDS}
-
-CONFIGURE_ARGS+=--with-pdo-oci=${LOCALBASE}/oracle8-client
+OPTIONS=	MYSQLND "Use MySQL Native Driver" off
 
 USE_PHP=	pdo
 USE_PHP_BUILD=	yes
@@ -313,7 +263,6 @@ USE_PHP=	pdo
 USE_PHP_BUILD=	yes
 PHP_HEADER_DIRS=sqlite/src
 .endif
-
 
 .if ${PHP_MODNAME} == "pgsql"
 USE_PGSQL=	yes
@@ -367,8 +316,6 @@ CONFIGURE_ARGS+=--with-snmp=${LOCALBASE} \
 
 LDFLAGS+=       -L${OPENSSLLIB} -lcrypto -lssl
 USE_OPENSSL=    yes
-
-OPTIONS=	SNMP4 "Use old UCD SNMP instead of the new NET SNMP" off
 .endif
 
 .if ${PHP_MODNAME} == "soap"
@@ -378,16 +325,6 @@ CONFIGURE_ARGS+=--enable-soap \
 USE_GNOME=	libxml2
 
 USE_PHP=	session
-USE_PHP_BUILD=	yes
-.endif
-
-.if ${PHP_MODNAME} == "spl"
-CONFIGURE_ARGS+=--enable-spl \
-		--with-libxml-dir=${LOCALBASE}
-
-USE_GNOME=	libxml2
-
-USE_PHP=	simplexml
 USE_PHP_BUILD=	yes
 .endif
 
@@ -401,9 +338,6 @@ CONFIGURE_ARGS+=--with-sqlite
 USE_PHP=	session
 USE_PHP_BUILD=	yes
 PHP_HEADER_DIRS=libsqlite/src
-
-USE_PHP=	spl
-USE_PHP_BUILD=	yes
 
 OPTIONS=	UTF8 "Enable UTF-8 support" off
 .endif
@@ -508,33 +442,10 @@ CONFIGURE_ARGS+=--with-zlib=/usr
 CONFIGURE_ARGS+=--without-cdb
 .	endif
 .	if defined(WITH_DB4)
-WITH_DB4_VER?=	46
-.		if ${WITH_DB4_VER} == 45
-LIB_DEPENDS+=	db-4.5.0:${PORTSDIR}/databases/db45
-.		else
-.		if ${WITH_DB4_VER} == 44
-LIB_DEPENDS+=	db-4.4.0:${PORTSDIR}/databases/db44
-.		else
-.		if ${WITH_DB4_VER} == 43
-LIB_DEPENDS+=	db-4.3.0:${PORTSDIR}/databases/db43
-.		else
-.		if ${WITH_DB4_VER} == 42
-LIB_DEPENDS+=	db-4.2.2:${PORTSDIR}/databases/db42
-.		else
-.		if ${WITH_DB4_VER} == 41
-LIB_DEPENDS+=	db41.1:${PORTSDIR}/databases/db41
-.		else
-.		if ${WITH_DB4_VER} == 4
-LIB_DEPENDS+=	db4.0:${PORTSDIR}/databases/db4
-.		else
-LIB_DEPENDS+=	db-4.6.0:${PORTSDIR}/databases/db46
-.		endif
-.		endif
-.		endif
-.		endif
-.		endif
-.		endif
 CONFIGURE_ARGS+=--with-db4=${LOCALBASE}
+
+USE_BDB=		40+
+WITH_BDB_HIGHEST=	yes
 .	endif
 .	if defined(WITH_GDBM)
 LIB_DEPENDS+=	gdbm.3:${PORTSDIR}/databases/gdbm
@@ -571,21 +482,37 @@ CONFIGURE_ARGS+=--enable-gd-jis-conv
 .if ${PHP_MODNAME} == "mbstring"
 .	if defined(WITHOUT_REGEX)
 CONFIGURE_ARGS+=--disable-mbregex
+.	else
+LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
+CONFIGURE_ARGS+=--with-onig=${LOCALBASE}
+.	endif
+.endif
+
+.if ${PHP_MODNAME} == "mysql"
+.	if defined(WITH_MYSQLND)
+CONFIGURE_ARGS+=--with-mysql=mysqlnd
+.	else
+CONFIGURE_ARGS+=--with-mysql=${LOCALBASE} \
+		--with-zlib-dir=/usr
+
+USE_MYSQL=	yes
+.	endif
+.endif
+
+.if ${PHP_MODNAME} == "mysqli"
+.	if defined(WITH_MYSQLND)
+CONFIGURE_ARGS+=--with-mysqli=mysqlnd
+.	else
+CONFIGURE_ARGS+=--with-mysqli=${LOCALBASE}/bin/mysql_config
+
+USE_MYSQL=	yes
+BROKEN_WITH_MYSQL=	323 40
 .	endif
 .endif
 
 .if ${PHP_MODNAME} == "openssl"
 post-extract:
 	@${MV} ${WRKSRC}/config0.m4 ${WRKSRC}/config.m4
-.endif
-
-.if ${PHP_MODNAME} == "oci8" || ${PHP_MODNAME} == "pdo_oci"
-pre-configure:
-	@cd ${WRKSRC}; \
-	for lib in ${LOCALBASE}/oracle8-client/lib/libclntsh /usr/lib/libpthread; do \
-		/usr/bin/ar x $${lib}.a; \
-	done; \
-	/usr/bin/ar rcs liboci8.a *.o
 .endif
 
 .if ${PHP_MODNAME} == "pdo_dblib"
@@ -596,8 +523,17 @@ LIB_DEPENDS+=	ct.4:${PORTSDIR}/databases/freetds
 .endif
 .endif
 
-.if ${PHP_MODNAME} == "snmp"
-LIB_DEPENDS+=   netsnmp.16:${PORTSDIR}/net-mgmt/net-snmp
+.if ${PHP_MODNAME} == "pdo_mysql"
+.	if defined(WITH_MYSQLND)
+CONFIGURE_ARGS+=--with-pdo-mysql=mysqlnd
+
+USE_PHP+=	mysql
+.	else
+CONFIGURE_ARGS+=--with-pdo-mysql=${LOCALBASE} \
+		--with-zlib-dir=/usr
+
+USE_MYSQL=	yes
+.	endif
 .endif
 
 .if ${PHP_MODNAME} == "sqlite"
