@@ -453,6 +453,7 @@ share/icons/HighContrast-SVG/scalable/actions/gtk-goto-first-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-goto-last-ltr.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-goto-last-rtl.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-goto-top.svg
+share/icons/HighContrast-SVG/scalable/actions/gtk-help.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-home.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-indent-ltr.svg
 share/icons/HighContrast-SVG/scalable/actions/gtk-indent-rtl.svg
@@ -506,6 +507,7 @@ share/icons/HighContrast-SVG/scalable/actions/gtk-zoom-out.svg
 share/icons/HighContrast-SVG/scalable/actions/help-about.svg
 share/icons/HighContrast-SVG/scalable/actions/help-contents.svg
 share/icons/HighContrast-SVG/scalable/actions/help-faq.svg
+share/icons/HighContrast-SVG/scalable/actions/help.svg
 share/icons/HighContrast-SVG/scalable/actions/history-view.svg
 share/icons/HighContrast-SVG/scalable/actions/insert-image.svg
 share/icons/HighContrast-SVG/scalable/actions/insert-object.svg
@@ -574,6 +576,7 @@ share/icons/HighContrast-SVG/scalable/actions/stock_down.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_file-properites.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_first.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_fullscreen.svg
+share/icons/HighContrast-SVG/scalable/actions/stock_help.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_home.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_last.svg
 share/icons/HighContrast-SVG/scalable/actions/stock_leave-fullscreen.svg
@@ -667,6 +670,7 @@ share/icons/HighContrast-SVG/scalable/apps/accessories-calculator.svg
 share/icons/HighContrast-SVG/scalable/apps/accessories-character-map.svg
 share/icons/HighContrast-SVG/scalable/apps/accessories-text-editor.svg
 share/icons/HighContrast-SVG/scalable/apps/arts.svg
+share/icons/HighContrast-SVG/scalable/apps/brasero.svg
 share/icons/HighContrast-SVG/scalable/apps/bug-buddy.svg
 share/icons/HighContrast-SVG/scalable/apps/calc.svg
 share/icons/HighContrast-SVG/scalable/apps/config-language.svg
@@ -681,10 +685,8 @@ share/icons/HighContrast-SVG/scalable/apps/gnome-monitor.svg
 share/icons/HighContrast-SVG/scalable/apps/gnome-settings-accessibility-technologies.svg
 share/icons/HighContrast-SVG/scalable/apps/gnome-settings-font.svg
 share/icons/HighContrast-SVG/scalable/apps/gnome-terminal.svg
-share/icons/HighContrast-SVG/scalable/apps/gtk-help.svg
 share/icons/HighContrast-SVG/scalable/apps/gucharmap.svg
 share/icons/HighContrast-SVG/scalable/apps/help-browser.svg
-share/icons/HighContrast-SVG/scalable/apps/help.svg
 share/icons/HighContrast-SVG/scalable/apps/internet-group-chat.svg
 share/icons/HighContrast-SVG/scalable/apps/internet-mail.svg
 share/icons/HighContrast-SVG/scalable/apps/internet-news-reader.svg
@@ -711,13 +713,15 @@ share/icons/HighContrast-SVG/scalable/apps/preferences-system-network-proxy.svg
 share/icons/HighContrast-SVG/scalable/apps/preferences-system-session.svg
 share/icons/HighContrast-SVG/scalable/apps/preferences-system-windows.svg
 share/icons/HighContrast-SVG/scalable/apps/redhat-filemanager.svg
+share/icons/HighContrast-SVG/scalable/apps/rhythmbox.svg
 share/icons/HighContrast-SVG/scalable/apps/screensaver.svg
-share/icons/HighContrast-SVG/scalable/apps/stock_help.svg
+share/icons/HighContrast-SVG/scalable/apps/sound-juicer.svg
 share/icons/HighContrast-SVG/scalable/apps/susehelpcenter.svg
 share/icons/HighContrast-SVG/scalable/apps/system-file-manager.svg
 share/icons/HighContrast-SVG/scalable/apps/terminal.svg
 share/icons/HighContrast-SVG/scalable/apps/text-editor.svg
 share/icons/HighContrast-SVG/scalable/apps/tomboy.svg
+share/icons/HighContrast-SVG/scalable/apps/totem.svg
 share/icons/HighContrast-SVG/scalable/apps/utilities-system-monitor.svg
 share/icons/HighContrast-SVG/scalable/apps/utilities-terminal.svg
 share/icons/HighContrast-SVG/scalable/apps/volume-knob.svg
@@ -878,7 +882,6 @@ share/icons/HighContrast-SVG/scalable/emblems/emblem-readonly.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-symbolic-link.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-system.svg
 share/icons/HighContrast-SVG/scalable/emblems/emblem-unreadable.svg
-share/icons/HighContrast-SVG/scalable/emblems/stock_mail-priority-high.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-cool.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-plain.svg
 share/icons/HighContrast-SVG/scalable/emotes/face-sad.svg
@@ -895,6 +898,12 @@ share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-5.svg
 share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-6.svg
 share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-7.svg
 share/icons/HighContrast-SVG/scalable/emotes/stock_smiley-8.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.ms-excel.sheet.macroEnabled.12.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.ms-powerpoint.presentation.macroEnabled.12.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.ms-word.document.macroEnabled.12.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.openxmlformats-officedocument.presentationml.presentation.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.openxmlformats-officedocument.spreadsheetml.sheet.svg
+share/icons/HighContrast-SVG/scalable/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/application-x-executable.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/ascii.svg
 share/icons/HighContrast-SVG/scalable/mimetypes/audio-x-generic.svg
@@ -1094,6 +1103,10 @@ share/icons/HighContrast-SVG/scalable/status/messagebox_warning.svg
 share/icons/HighContrast-SVG/scalable/status/network-offline.svg
 share/icons/HighContrast-SVG/scalable/status/network-online.svg
 share/icons/HighContrast-SVG/scalable/status/nm-no-connection.svg
+share/icons/HighContrast-SVG/scalable/status/nm-signal-100.svg
+share/icons/HighContrast-SVG/scalable/status/nm-signal-25.svg
+share/icons/HighContrast-SVG/scalable/status/nm-signal-50.svg
+share/icons/HighContrast-SVG/scalable/status/nm-signal-75.svg
 share/icons/HighContrast-SVG/scalable/status/printer-printing.svg
 share/icons/HighContrast-SVG/scalable/status/software-update-available.svg
 share/icons/HighContrast-SVG/scalable/status/software-update-urgent.svg
@@ -1175,12 +1188,14 @@ share/icons/HighContrastLargePrint/48x48/apps/access.png
 share/icons/HighContrastLargePrint/48x48/apps/accessibility-directory.png
 share/icons/HighContrastLargePrint/48x48/apps/accessories-calculator.png
 share/icons/HighContrastLargePrint/48x48/apps/accessories-character-map.png
+share/icons/HighContrastLargePrint/48x48/apps/accessories-dictionary.png
 share/icons/HighContrastLargePrint/48x48/apps/accessories-text-editor.png
 share/icons/HighContrastLargePrint/48x48/apps/advanced-directory.png
 share/icons/HighContrastLargePrint/48x48/apps/applets-screenshooter.png
 share/icons/HighContrastLargePrint/48x48/apps/arts.png
 share/icons/HighContrastLargePrint/48x48/apps/ax-applet.png
 share/icons/HighContrastLargePrint/48x48/apps/background.png
+share/icons/HighContrastLargePrint/48x48/apps/brasero.png
 share/icons/HighContrastLargePrint/48x48/apps/calc.png
 share/icons/HighContrastLargePrint/48x48/apps/charpick.png
 share/icons/HighContrastLargePrint/48x48/apps/clock.png
@@ -1191,8 +1206,8 @@ share/icons/HighContrastLargePrint/48x48/apps/evince.png
 share/icons/HighContrastLargePrint/48x48/apps/evolution.png
 share/icons/HighContrastLargePrint/48x48/apps/file-manager.png
 share/icons/HighContrastLargePrint/48x48/apps/file-roller.png
+share/icons/HighContrastLargePrint/48x48/apps/firefox-icon.png
 share/icons/HighContrastLargePrint/48x48/apps/fonts.png
-share/icons/HighContrastLargePrint/48x48/apps/gdict.png
 share/icons/HighContrastLargePrint/48x48/apps/ghex.png
 share/icons/HighContrastLargePrint/48x48/apps/gimp.png
 share/icons/HighContrastLargePrint/48x48/apps/gkb.png
@@ -1215,6 +1230,7 @@ share/icons/HighContrastLargePrint/48x48/apps/gnome-mailcheck.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-mini-commander.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-mixer-applet.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-mixer.png
+share/icons/HighContrastLargePrint/48x48/apps/gnome-monitor.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-panel.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-searchtool-animation-rest.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-searchtool-animation.png
@@ -1234,10 +1250,8 @@ share/icons/HighContrastLargePrint/48x48/apps/gnome-window-manager.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-windows.png
 share/icons/HighContrastLargePrint/48x48/apps/gnome-workspace.png
 share/icons/HighContrastLargePrint/48x48/apps/gok.png
-share/icons/HighContrastLargePrint/48x48/apps/gtk-help.png
 share/icons/HighContrastLargePrint/48x48/apps/gucharmap.png
 share/icons/HighContrastLargePrint/48x48/apps/help-browser.png
-share/icons/HighContrastLargePrint/48x48/apps/help.png
 share/icons/HighContrastLargePrint/48x48/apps/kcalc.png
 share/icons/HighContrastLargePrint/48x48/apps/kcharselect.png
 share/icons/HighContrastLargePrint/48x48/apps/kcmkwm.png
@@ -1248,6 +1262,7 @@ share/icons/HighContrastLargePrint/48x48/apps/kfm.png
 share/icons/HighContrastLargePrint/48x48/apps/khelpcenter.png
 share/icons/HighContrastLargePrint/48x48/apps/knotify.png
 share/icons/HighContrastLargePrint/48x48/apps/konsole.png
+share/icons/HighContrastLargePrint/48x48/apps/ksysguard.png
 share/icons/HighContrastLargePrint/48x48/apps/kwin.png
 share/icons/HighContrastLargePrint/48x48/apps/launcher-program.png
 share/icons/HighContrastLargePrint/48x48/apps/locale.png
@@ -1270,16 +1285,18 @@ share/icons/HighContrastLargePrint/48x48/apps/preferences-desktop-wallpaper.png
 share/icons/HighContrastLargePrint/48x48/apps/preferences-system-session.png
 share/icons/HighContrastLargePrint/48x48/apps/preferences-system-windows.png
 share/icons/HighContrastLargePrint/48x48/apps/redhat-filemanager.png
+share/icons/HighContrastLargePrint/48x48/apps/rhythmbox.png
 share/icons/HighContrastLargePrint/48x48/apps/session-properties.png
 share/icons/HighContrastLargePrint/48x48/apps/smc.png
 share/icons/HighContrastLargePrint/48x48/apps/sound-juicer.png
 share/icons/HighContrastLargePrint/48x48/apps/star.png
-share/icons/HighContrastLargePrint/48x48/apps/stock_help.png
 share/icons/HighContrastLargePrint/48x48/apps/style.png
 share/icons/HighContrastLargePrint/48x48/apps/susehelpcenter.png
 share/icons/HighContrastLargePrint/48x48/apps/system-file-manager.png
 share/icons/HighContrastLargePrint/48x48/apps/terminal.png
 share/icons/HighContrastLargePrint/48x48/apps/text-editor.png
+share/icons/HighContrastLargePrint/48x48/apps/totem.png
+share/icons/HighContrastLargePrint/48x48/apps/utilities-system-monitor.png
 share/icons/HighContrastLargePrint/48x48/apps/utilities-terminal.png
 share/icons/HighContrastLargePrint/48x48/apps/volume-knob.png
 share/icons/HighContrastLargePrint/48x48/apps/wallpaper.png
@@ -1421,7 +1438,6 @@ share/icons/HighContrastLargePrint/48x48/emblems/emblem-noread.png
 share/icons/HighContrastLargePrint/48x48/emblems/emblem-personal.png
 share/icons/HighContrastLargePrint/48x48/emblems/emblem-special.png
 share/icons/HighContrastLargePrint/48x48/emblems/emblem-unreadable.png
-share/icons/HighContrastLargePrint/48x48/emblems/stock_mail-priority-high.png
 share/icons/HighContrastLargePrint/48x48/mimetypes/application-x-executable.png
 share/icons/HighContrastLargePrint/48x48/mimetypes/ascii.png
 share/icons/HighContrastLargePrint/48x48/mimetypes/audio-x-generic.png
@@ -1554,13 +1570,32 @@ share/icons/HighContrastLargePrint/48x48/status/audio-volume-high.png
 share/icons/HighContrastLargePrint/48x48/status/audio-volume-low.png
 share/icons/HighContrastLargePrint/48x48/status/audio-volume-medium.png
 share/icons/HighContrastLargePrint/48x48/status/audio-volume-muted.png
+share/icons/HighContrastLargePrint/48x48/status/connect_creating.png
+share/icons/HighContrastLargePrint/48x48/status/connect_established.png
+share/icons/HighContrastLargePrint/48x48/status/connect_no.png
 share/icons/HighContrastLargePrint/48x48/status/edittrash.png
 share/icons/HighContrastLargePrint/48x48/status/folder-drag-accept.icon
 share/icons/HighContrastLargePrint/48x48/status/folder-drag-accept.png
 share/icons/HighContrastLargePrint/48x48/status/gnome-fs-directory-accept.icon
 share/icons/HighContrastLargePrint/48x48/status/gnome-fs-directory-accept.png
 share/icons/HighContrastLargePrint/48x48/status/gnome-fs-trash-full.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-disconn.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-error.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-idle.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-rx.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-tx.png
+share/icons/HighContrastLargePrint/48x48/status/gnome-netstatus-txrx.png
 share/icons/HighContrastLargePrint/48x48/status/gnome-stock-trash-full.png
+share/icons/HighContrastLargePrint/48x48/status/network-error.png
+share/icons/HighContrastLargePrint/48x48/status/network-idle.png
+share/icons/HighContrastLargePrint/48x48/status/network-offline.png
+share/icons/HighContrastLargePrint/48x48/status/network-receive.png
+share/icons/HighContrastLargePrint/48x48/status/network-transmit-receive.png
+share/icons/HighContrastLargePrint/48x48/status/network-transmit.png
+share/icons/HighContrastLargePrint/48x48/status/nm-adhoc.png
+share/icons/HighContrastLargePrint/48x48/status/nm-device-wired.png
+share/icons/HighContrastLargePrint/48x48/status/nm-device-wireless.png
+share/icons/HighContrastLargePrint/48x48/status/nm-no-connection.png
 share/icons/HighContrastLargePrint/48x48/status/stock_trash_full.png
 share/icons/HighContrastLargePrint/48x48/status/stock_volume-0.png
 share/icons/HighContrastLargePrint/48x48/status/stock_volume-max.png
@@ -1614,12 +1649,14 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/access.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/accessibility-directory.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/accessories-calculator.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/accessories-character-map.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/accessories-dictionary.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/accessories-text-editor.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/advanced-directory.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/applets-screenshooter.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/arts.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/ax-applet.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/background.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/brasero.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/calc.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/charpick.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/clock.png
@@ -1630,8 +1667,8 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/evince.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/evolution.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/file-manager.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/file-roller.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/firefox-icon.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/fonts.png
-share/icons/HighContrastLargePrintInverse/48x48/apps/gdict.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/ghex.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gimp.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gkb.png
@@ -1654,6 +1691,7 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-mailcheck.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-mini-commander.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-mixer-applet.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-mixer.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-monitor.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-panel.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-searchtool-animation-rest.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-searchtool-animation.png
@@ -1673,10 +1711,8 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-window-manager.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-windows.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gnome-workspace.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gok.png
-share/icons/HighContrastLargePrintInverse/48x48/apps/gtk-help.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/gucharmap.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/help-browser.png
-share/icons/HighContrastLargePrintInverse/48x48/apps/help.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/kcalc.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/kcharselect.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/kcmkwm.png
@@ -1687,6 +1723,7 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/kfm.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/khelpcenter.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/knotify.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/konsole.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/ksysguard.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/kwin.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/launcher-program.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/locale.png
@@ -1709,16 +1746,18 @@ share/icons/HighContrastLargePrintInverse/48x48/apps/preferences-desktop-wallpap
 share/icons/HighContrastLargePrintInverse/48x48/apps/preferences-system-session.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/preferences-system-windows.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/redhat-filemanager.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/rhythmbox.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/session-properties.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/smc.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/sound-juicer.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/star.png
-share/icons/HighContrastLargePrintInverse/48x48/apps/stock_help.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/style.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/susehelpcenter.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/system-file-manager.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/terminal.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/text-editor.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/totem.png
+share/icons/HighContrastLargePrintInverse/48x48/apps/utilities-system-monitor.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/utilities-terminal.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/volume-knob.png
 share/icons/HighContrastLargePrintInverse/48x48/apps/wallpaper.png
@@ -1862,7 +1901,10 @@ share/icons/HighContrastLargePrintInverse/48x48/emblems/emblem-noread.png
 share/icons/HighContrastLargePrintInverse/48x48/emblems/emblem-personal.png
 share/icons/HighContrastLargePrintInverse/48x48/emblems/emblem-special.png
 share/icons/HighContrastLargePrintInverse/48x48/emblems/emblem-unreadable.png
-share/icons/HighContrastLargePrintInverse/48x48/emblems/stock_mail-priority-high.png
+share/icons/HighContrastLargePrintInverse/48x48/mimetypes/application-vnd.ms-powerpoint.presentation.macroEnabled.12.png
+share/icons/HighContrastLargePrintInverse/48x48/mimetypes/application-vnd.ms-word.document.macroEnabled.12.png
+share/icons/HighContrastLargePrintInverse/48x48/mimetypes/application-vnd.openxmlformats-officedocument.presentationml.presentation.png
+share/icons/HighContrastLargePrintInverse/48x48/mimetypes/application-vnd.openxmlformats-officedocument.wordprocessingml.document.png
 share/icons/HighContrastLargePrintInverse/48x48/mimetypes/application-x-executable.png
 share/icons/HighContrastLargePrintInverse/48x48/mimetypes/ascii.png
 share/icons/HighContrastLargePrintInverse/48x48/mimetypes/audio-x-generic.png
@@ -2031,15 +2073,34 @@ share/icons/HighContrastLargePrintInverse/48x48/status/audio-volume-medium.png
 share/icons/HighContrastLargePrintInverse/48x48/status/audio-volume-muted.png
 share/icons/HighContrastLargePrintInverse/48x48/status/battery-caution.png
 share/icons/HighContrastLargePrintInverse/48x48/status/battery-low.png
+share/icons/HighContrastLargePrintInverse/48x48/status/connect_creating.png
+share/icons/HighContrastLargePrintInverse/48x48/status/connect_established.png
+share/icons/HighContrastLargePrintInverse/48x48/status/connect_no.png
 share/icons/HighContrastLargePrintInverse/48x48/status/edittrash.png
 share/icons/HighContrastLargePrintInverse/48x48/status/folder-drag-accept.icon
 share/icons/HighContrastLargePrintInverse/48x48/status/folder-drag-accept.png
 share/icons/HighContrastLargePrintInverse/48x48/status/gnome-fs-directory-accept.icon
 share/icons/HighContrastLargePrintInverse/48x48/status/gnome-fs-directory-accept.png
 share/icons/HighContrastLargePrintInverse/48x48/status/gnome-fs-trash-full.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-disconn.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-error.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-idle.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-rx.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-tx.png
+share/icons/HighContrastLargePrintInverse/48x48/status/gnome-netstatus-txrx.png
 share/icons/HighContrastLargePrintInverse/48x48/status/gnome-stock-trash-full.png
 share/icons/HighContrastLargePrintInverse/48x48/status/media-playlist-repeat.png
 share/icons/HighContrastLargePrintInverse/48x48/status/media-playlist-shuffle.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-error.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-idle.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-offline.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-receive.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-transmit-receive.png
+share/icons/HighContrastLargePrintInverse/48x48/status/network-transmit.png
+share/icons/HighContrastLargePrintInverse/48x48/status/nm-adhoc.png
+share/icons/HighContrastLargePrintInverse/48x48/status/nm-device-wired.png
+share/icons/HighContrastLargePrintInverse/48x48/status/nm-device-wireless.png
+share/icons/HighContrastLargePrintInverse/48x48/status/nm-no-connection.png
 share/icons/HighContrastLargePrintInverse/48x48/status/printer-error.png
 share/icons/HighContrastLargePrintInverse/48x48/status/printer-printing.png
 share/icons/HighContrastLargePrintInverse/48x48/status/stock_repeat.png
@@ -2222,6 +2283,7 @@ share/icons/Mist/scalable/status/folder_open.svg
 share/icons/Mist/scalable/status/gnome-fs-directory-accept.svg
 share/icons/Mist/scalable/status/gnome-fs-directory-visiting.svg
 share/icons/Mist/scalable/status/stock_open.svg
+share/locale/af/LC_MESSAGES/gnome-themes.mo
 share/locale/am/LC_MESSAGES/gnome-themes.mo
 share/locale/ar/LC_MESSAGES/gnome-themes.mo
 share/locale/as/LC_MESSAGES/gnome-themes.mo
@@ -2232,6 +2294,7 @@ share/locale/be@latin/LC_MESSAGES/gnome-themes.mo
 share/locale/bg/LC_MESSAGES/gnome-themes.mo
 share/locale/bn/LC_MESSAGES/gnome-themes.mo
 share/locale/bn_IN/LC_MESSAGES/gnome-themes.mo
+share/locale/br/LC_MESSAGES/gnome-themes.mo
 share/locale/bs/LC_MESSAGES/gnome-themes.mo
 share/locale/ca/LC_MESSAGES/gnome-themes.mo
 share/locale/ca@valencia/LC_MESSAGES/gnome-themes.mo
@@ -2242,6 +2305,7 @@ share/locale/da/LC_MESSAGES/gnome-themes.mo
 share/locale/de/LC_MESSAGES/gnome-themes.mo
 share/locale/dz/LC_MESSAGES/gnome-themes.mo
 share/locale/el/LC_MESSAGES/gnome-themes.mo
+share/locale/en@shaw/LC_MESSAGES/gnome-themes.mo
 share/locale/en_CA/LC_MESSAGES/gnome-themes.mo
 share/locale/en_GB/LC_MESSAGES/gnome-themes.mo
 share/locale/es/LC_MESSAGES/gnome-themes.mo
@@ -2270,6 +2334,7 @@ share/locale/ky/LC_MESSAGES/gnome-themes.mo
 share/locale/li/LC_MESSAGES/gnome-themes.mo
 share/locale/lt/LC_MESSAGES/gnome-themes.mo
 share/locale/lv/LC_MESSAGES/gnome-themes.mo
+share/locale/mai/LC_MESSAGES/gnome-themes.mo
 share/locale/mg/LC_MESSAGES/gnome-themes.mo
 share/locale/mk/LC_MESSAGES/gnome-themes.mo
 share/locale/ml/LC_MESSAGES/gnome-themes.mo
@@ -2277,6 +2342,7 @@ share/locale/mn/LC_MESSAGES/gnome-themes.mo
 share/locale/mr/LC_MESSAGES/gnome-themes.mo
 share/locale/ms/LC_MESSAGES/gnome-themes.mo
 share/locale/nb/LC_MESSAGES/gnome-themes.mo
+share/locale/nds/LC_MESSAGES/gnome-themes.mo
 share/locale/ne/LC_MESSAGES/gnome-themes.mo
 share/locale/nl/LC_MESSAGES/gnome-themes.mo
 share/locale/nn/LC_MESSAGES/gnome-themes.mo
@@ -2858,16 +2924,22 @@ share/themes/Simple/gtk-2.0/gtkrc
 @dirrmtry share/locale/rw
 @dirrmtry share/locale/oc/LC_MESSAGES
 @dirrmtry share/locale/oc
+@dirrmtry share/locale/nds/LC_MESSAGES
+@dirrmtry share/locale/nds
 @dirrmtry share/locale/mr/LC_MESSAGES
 @dirrmtry share/locale/mr
 @dirrmtry share/locale/mg/LC_MESSAGES
 @dirrmtry share/locale/mg
+@dirrmtry share/locale/mai/LC_MESSAGES
+@dirrmtry share/locale/mai
 @dirrmtry share/locale/ky/LC_MESSAGES
 @dirrmtry share/locale/ky
 @dirrmtry share/locale/ku/LC_MESSAGES
 @dirrmtry share/locale/ku
 @dirrmtry share/locale/fur/LC_MESSAGES
 @dirrmtry share/locale/fur
+@dirrmtry share/locale/en@shaw/LC_MESSAGES
+@dirrmtry share/locale/en@shaw
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
 @dirrmtry share/locale/crh/LC_MESSAGES
