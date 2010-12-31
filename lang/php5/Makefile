@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.32 2010/11/10 14:05:18 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.33 2010/12/22 14:59:25 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.2.16
+PORTVERSION=	5.3.4
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
@@ -21,15 +21,14 @@ USE_AUTOTOOLS=	autoconf:262
 MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	\
-		--enable-versioning \
-		--enable-memory-limit \
 		--with-layout=GNU \
+		--localstatedir=/var \
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--enable-libxml \
 		--with-libxml-dir=${LOCALBASE} \
+		--with-zlib-dir=/usr \
 		--with-pcre-regex=yes \
-		--enable-reflection \
 		--program-prefix=""
 
 DESTDIRNAME=	INSTALL_ROOT
@@ -37,23 +36,24 @@ USE_GNOME=	libxml2
 
 OPTIONS=	CLI "Build CLI version" on \
 		CGI "Build CGI version" on \
+		FPM "Build FPM version (experimental)" off \
 		APACHE "Build Apache module" off \
+		AP2FILTER " Use Apache 2.x filter interface (experimental)" off \
 		DEBUG "Enable debug" off \
-		SUHOSIN "Enable Suhosin protection system (not for jails)" on \
-		MAILHEAD "Enable mail header patch" off \
+		SUHOSIN "Enable Suhosin protection system" on \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
-		REDIRECT "Enable force-cgi-redirect support (CGI only)" off \
-		DISCARD "Enable discard-path support (CGI only)" off \
-		FASTCGI "Enable fastcgi support (CGI only)" on \
-		PATHINFO "Enable path-info-check support (CGI only)" on
+		MAILHEAD "Enable mail header patch" off \
+		LINKTHR "Link thread lib (for threaded extensions)" off
+
+CONFLICTS=	php4-4* php5-pcre-* php5-spl-*
 
 MAN1=		php-config.1 phpize.1
 
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-5.2.14-0.9.7.patch.gz:suhosin
+PATCHFILES+=	suhosin-patch-${PORTVERSION}-0.9.10.patch.gz:suhosin
 PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
@@ -62,7 +62,7 @@ PLIST_SUB+=	SUHOSIN="@comment "
 .endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-5.2.10-mail-header.patch:mail
+PATCHFILES+=	php-${PORTVERSION}-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
@@ -78,21 +78,21 @@ CONFIGURE_ARGS+=--disable-cli
 .if !defined(WITHOUT_CGI)
 PHP_SAPI+=	cgi
 PLIST_SUB+=	CGI=""
-.if defined(WITH_REDIRECT)
-CONFIGURE_ARGS+=--enable-force-cgi-redirect
-.endif
-.if defined(WITH_DISCARD)
-CONFIGURE_ARGS+=--enable-discard-path
-.endif
-.if !defined(WITHOUT_FASTCGI)
-CONFIGURE_ARGS+=--enable-fastcgi
-.endif
-.if defined(WITHOUT_PATHINFO)
-CONFIGURE_ARGS+=--disable-path-info-check
-.endif
 .else
 PLIST_SUB+=	CGI="@comment "
 CONFIGURE_ARGS+=--disable-cgi
+.endif
+
+.if defined(WITH_FPM)
+PHP_SAPI+=	fpm
+MAN8+=		php-fpm.8
+USE_RC_SUBR+=	php-fpm
+CONFIGURE_ARGS+=--enable-fpm \
+		--with-fpm-user=${WWWOWN} \
+		--with-fpm-group=${WWWGRP}
+PLIST_SUB+=	FPM=""
+.else
+PLIST_SUB+=	FPM="@comment "
 .endif
 
 .if defined(WITH_APACHE)
@@ -126,9 +126,12 @@ CONFIGURE_ARGS+=--with-zend-vm=GOTO
 CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 		ac_cv_pthreads_cflags="" \
 		pthreads_working="yes" \
-		lt_cv_path_SED="sed"
+		lt_cv_path_SED="sed" \
+		PHP_MYSQLND_ENABLED="yes"
 
-MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
+.if defined(WITH_LINKTHR)
+CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}"
+.endif
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=--enable-debug
@@ -147,6 +150,10 @@ CONFIGURE_ARGS+=--disable-ipv6
 post-patch:
 	@${TOUCH} ${WRKSRC}/ext/php_config.h
 	@${REINPLACE_CMD} "s|^\(extension_dir\)|; \1|" ${WRKSRC}/php.ini-*
+.if defined(WITH_FPM)
+	@${REINPLACE_CMD} -e "s|^;\(pid\)|\1|;s|^;\(pm\.[a-z_]*_servers\)|\1|" \
+		${WRKSRC}/sapi/fpm/php-fpm.conf.in
+.endif
 
 pre-configure:
 	@${CAT} ${WRKSRC}/acinclude.m4 ${WRKSRC}/build/libtool.m4 > ${WRKSRC}/aclocal.m4
@@ -159,13 +166,19 @@ post-build:
 	@${ECHO_CMD} "PHP_VER=5" > ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_VERSION=${PORTVERSION}" >> ${WRKDIR}/php.conf
 	@${ECHO_CMD} "PHP_SAPI=${PHP_SAPI}" >> ${WRKDIR}/php.conf
-	@${ECHO_CMD} "PHP_EXT_INC=pcre" >> ${WRKDIR}/php.conf
+	@${ECHO_CMD} "PHP_EXT_INC=pcre spl" >> ${WRKDIR}/php.conf
+
+test: build
+	@(cd ${WRKSRC} && ${MAKE} test)
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/php.ini-dist ${PREFIX}/etc
-	@${INSTALL_DATA} ${WRKSRC}/php.ini-recommended ${PREFIX}/etc
+	@${INSTALL_DATA} ${WRKSRC}/php.ini-development ${PREFIX}/etc
+	@${INSTALL_DATA} ${WRKSRC}/php.ini-production ${PREFIX}/etc
 	@${INSTALL_DATA} ${WRKDIR}/php.conf ${PREFIX}/etc
 	@${TOUCH} ${PREFIX}/include/php/ext/php_config.h
+.if defined(WITH_FPM)
+	@${CP} -n ${PREFIX}/etc/php-fpm.conf.default ${PREFIX}/etc/php-fpm.conf
+.endif
 
 .else
 .include "${MASTERDIR}/Makefile.ext"
