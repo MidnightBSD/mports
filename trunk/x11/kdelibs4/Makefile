@@ -1,6 +1,6 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.6 2010/03/26 01:00:33 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.7 2010/05/05 23:49:51 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
@@ -83,7 +83,9 @@ MAN8=	kbuildsycoca4.8 \
 LIB_DEPENDS+=	avahi-qt4:${PORTSDIR}/net/avahi-qt4 \
 		dns_sd:${PORTSDIR}/net/avahi-libdns
 .else
+.if ${OSVERSION} < 3015
 LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/mDNSResponder
+.endif
 .endif
 
 post-patch:
