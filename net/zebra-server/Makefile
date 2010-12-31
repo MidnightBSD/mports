@@ -2,12 +2,13 @@
 # Date created:				14 Nov 2000
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/zebra-server/Makefile,v 1.2 2008/08/24 19:34:37 laffer1 Exp $
 # $FreeBSD: ports/net/zebra-server/Makefile,v 1.18 2008/04/04 21:36:10 pav Exp $
 #
 
 PORTNAME=	zebra-server
 PORTVERSION=	2.0.28
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/zebra/
 DISTNAME=	idzebra-${PORTVERSION}
@@ -17,7 +18,7 @@ COMMENT=	Z39.50/SR server software
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		yaz.3:${PORTSDIR}/net/yaz
+		yaz.4:${PORTSDIR}/net/yaz
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-yaz=${LOCALBASE}/bin \
