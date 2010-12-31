@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/net/libgweather/Makefile,v 1.3 2009/09/25 00:15:07 laffer1 Exp $
+# $MidnightBSD: mports/net/libgweather/Makefile,v 1.4 2010/01/09 18:49:40 laffer1 Exp $
 
 PORTNAME=	libgweather
-PORTVERSION=	2.26.2.1
-PORTREVISION=	2
+PORTVERSION=	2.30.2
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 
@@ -10,12 +9,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library to accessing online weather informations
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
 LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup
+RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 gnomevfs2 ltverhack
+USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 ltverhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
