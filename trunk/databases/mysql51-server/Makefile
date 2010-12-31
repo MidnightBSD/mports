@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.26 2010/10/05 04:24:23 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql51-server/Makefile,v 1.27 2010/10/07 13:27:05 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.1.51
+PORTVERSION=	5.1.54
 PORTREVISION=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -101,6 +101,7 @@ USERS=		mysql
 GROUPS=		mysql
 
 .if defined(WITH_NDB)
+USE_LDCONFIG=	${PREFIX}/lib/mysql
 PLIST_SUB+=	NDB=""
 .else
 PLIST_SUB+=	NDB="@comment "
