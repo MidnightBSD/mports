@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.27 2010/09/14 23:20:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.28 2010/11/10 18:08:12 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
 DISTVERSION=	3.3.8
@@ -15,6 +15,7 @@ NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
 USE_PHP=	ctype mysql pcre session spl filter mbstring mcrypt
 .endif
+USE_MYSQL=	yes
 
 SUB_LIST+=	"MYADMDIR=${MYADMDIR}" \
 		"PKGNAME=${PKGNAME}"
@@ -27,10 +28,12 @@ WANT_PHP_WEB=	yes
 
 OPTIONS=	BZ2	 "bzip2 library support" on \
 		GD	 "GD library support" on \
+		MCRYPT   "MCrypt library support" on \
 		MYSQLI	 "Improved MySQL support" off \
 		OPENSSL	 "OpenSSL support" on \
 		PDF	 "PDFlib support (implies GD)" on \
-		ZLIB	 "ZLIB support" on
+		ZLIB	 "ZLIB support" on \
+		ZIP	 "ZIP support" on
 
 PORT_DBDIR?=	${DESTDIR}/var/db/ports
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
