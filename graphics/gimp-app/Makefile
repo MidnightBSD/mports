@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.8 2010/12/15 00:59:54 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.9 2010/12/24 18:11:20 laffer1 Exp $
 
 PORTNAME=	gimp-app
-DISTVERSION=	2.6.6
-PORTREVISION?=	1
+DISTVERSION=	2.6.10
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
@@ -24,7 +24,8 @@ LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		lcms.1:${PORTSDIR}/graphics/lcms \
-		gegl-0.0.22:${PORTSDIR}/graphics/gegl
+		gegl-0.0.22:${PORTSDIR}/graphics/gegl \
+		babl-0.1:${PORTSDIR}/x11/babl
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
 CONFLICTS=	gimp-app-devel-[0-9]*
@@ -186,7 +187,7 @@ post-patch:
 		s|%%GIMP_THUMB_LIBS%%|${GIMP_THUMB_LIBS}|; \
 		s|%%GIMP_UI_LIBS%%|${GIMP_UI_LIBS}|' \
 			${WRKSRC}/plug-ins/pygimp/Makefile.in
-	@${REINPLACE_CMD} -e 's|"libpng"|"libpng12"|' \
+	@${REINPLACE_CMD} -e 's|"libpng"|"libpng14"|' \
 	    	-e 's|x86_64|amd64|g' \
 		${WRKSRC}/configure
 
