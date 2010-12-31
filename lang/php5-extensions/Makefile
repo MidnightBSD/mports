@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.6 2009/01/01 23:49:20 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.7 2009/10/15 01:28:09 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	1.2
+PORTVERSION=	1.3
 CATEGORIES=	lang
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
@@ -71,6 +71,7 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		PCRE            "Perl Compatible Regular Expression support" on \
 		PDF             "PDFlib support (implies GD)" off \
 		PDO             "PHP Data Objects Interface (PDO)" on \
+		PDO_MYSQL       "PDO mysql driver" on \
 		PDO_SQLITE      "PDO sqlite driver" on \
 		PGSQL           "PostgreSQL database support" off \
 		POSIX           "POSIX-like functions" on \
@@ -112,8 +113,8 @@ OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA DBASE \
 		DOM EXIF FILEINFO FILTER FRIBIDI FTP GD GETTEXT \
 		GMP HASH ICONV IMAP JSON LDAP MBSTRING MCRYPT \
-		MHASH MING MSSQL MYSQL MYSQLI NCURSES \
-		ODBC OPENSSL PCNTL PCRE PDF PDO PDO_SQLITE PGSQL POSIX \
+		MHASH MING MSSQL MYSQL MYSQLI NCURSES ODBC OPENSSL \
+		PCNTL PCRE PDF PDO PDO_SQLITE PDO_MYSQL PGSQL POSIX \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
 		SOCKETS SPL SQLITE SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
 		TIDY TOKENIZER WDDX XML XMLREADER XMLRPC XMLWRITER XSL \
