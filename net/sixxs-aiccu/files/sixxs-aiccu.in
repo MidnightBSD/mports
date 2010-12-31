@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/sixxs-aiccu/files/sixxs-aiccu.in,v 1.1 2006/12/30 20:00:45 ehaupt Exp $
+# $FreeBSD: ports/net/sixxs-aiccu/files/sixxs-aiccu.in,v 1.4 2010/08/13 10:15:27 dinoex Exp $
 #
 
 # PROVIDE: sixxs-aiccu
-# REQUIRE: NETWORKING
+# REQUIRE: NETWORKING ldconfig
 
 #
 # Add the following lines to /etc/rc.conf to enable sixxs-aiccu:
@@ -12,19 +12,29 @@
 #sixxs_aiccu_enable="YES"
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
-name=sixxs_aiccu
+name="sixxs_aiccu"
 rcvar=`set_rcvar`
 
 command="%%PREFIX%%/sbin/sixxs-aiccu"
-command_args=%%PREFIX%%/etc/aiccu.conf
-start_cmd="%%PREFIX%%/sbin/sixxs-aiccu start $command_args"
-stop_cmd="%%PREFIX%%/sbin/sixxs-aiccu stop $command_args"
-required_files=%%PREFIX%%/etc/aiccu.conf
-
-# set default
-sixxs_aiccu_enable=${sixxs_aiccu_enable:-"NO"}
 
 load_rc_config ${name}
+
+# set default
+: ${sixxs_aiccu_enable="NO"}
+: ${sixxs_aiccu_config="%%PREFIX%%/etc/aiccu.conf"}
+
+command_args="${sixxs_aiccu_config}"
+required_files="${sixxs_aiccu_config}"
+start_cmd="${command} start $command_args"
+stop_cmd="${command} stop $command_args"
+brokers_cmd="${command} brokers"
+tunnels_cmd="${command} tunnels $command_args"
+test_cmd="${command} test $command_args"
+autotest_cmd="${command} autotest $command_args"
+license_cmd="${command} license"
+version_cmd="${command} version"
+extra_commands="brokers tunnels test autotest license version"
+
 run_rc_command "$1"
