@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.101 2010/12/15 02:45:39 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.102 2010/12/31 12:19:37 laffer1 Exp $
 #
 
     COMMENT = System utilities
@@ -70,7 +70,7 @@
     SUBDIR += openupsd
     SUBDIR += p5-File-Which
     SUBDIR += p5-Sys-Hostname-Long
-    SUBDIR += pecl-fileinfo
+    SUBDIR += php5-fileinfo
     SUBDIR += php5-posix
     SUBDIR += policykit
     SUBDIR += policykit-gnome
