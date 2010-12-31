@@ -55,9 +55,6 @@ CONFIGURE_ARGS+=--enable-dom \
 		--with-libxml-dir=${LOCALBASE}
 
 USE_GNOME=	libxml2
-
-USE_PHP=	spl
-USE_PHP_BUILD=	yes
 .endif
 
 .if ${PHP_MODNAME} == "exif"
@@ -72,7 +69,8 @@ PHP_HEADER_DIRS=	libmagic
 .endif
 
 .if ${PHP_MODNAME} == "filter"
-CONFIGURE_ARGS+=--enable-filter
+CONFIGURE_ARGS+=--enable-filter \
+		--with-pcre-dir=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "ftp"
@@ -133,7 +131,8 @@ USE_ICONV=	yes
 .if ${PHP_MODNAME} == "imap"
 LIB_DEPENDS+=	c-client4.9:${PORTSDIR}/mail/cclient
 
-CONFIGURE_ARGS+=--with-imap=${LOCALBASE}
+CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
+		--with-pcre-dir=${LOCALBASE}
 .if !defined(WITHOUT_SSL)
 CONFIGURE_ARGS+=--with-imap-ssl=${OPENSSLBASE}
 
@@ -163,7 +162,9 @@ CONFIGURE_ARGS+=--with-ldap-sasl
 .endif
 
 .if ${PHP_MODNAME} == "mbstring"
-CONFIGURE_ARGS+=--enable-mbstring
+
+CONFIGURE_ARGS+=--enable-mbstring \
+		--with-pcre-dir=${LOCALBASE}
 
 OPTIONS=	REGEX "Enable multibyte regex support" on
 
@@ -175,7 +176,7 @@ LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
 
 CONFIGURE_ARGS+=--with-mcrypt=${LOCALBASE}
 
-USE_AUTOTOOLS=	libltdl:22
+USE_AUTOTOOLS=	libltdl
 .endif
 
 .if ${PHP_MODNAME} == "mssql"
@@ -314,8 +315,9 @@ CONFIGURE_ARGS+=--with-snmp=${LOCALBASE} \
 		--with-openssl-dir=${OPENSSLBASE} \
 		--enable-ucd-snmp-hack
 
-LDFLAGS+=       -L${OPENSSLLIB} -lcrypto -lssl
-USE_OPENSSL=    yes
+LIB_DEPENDS+=   netsnmp.20:${PORTSDIR}/net-mgmt/net-snmp
+LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
+USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "soap"
@@ -428,7 +430,8 @@ USE_PHP_BUILD=	yes
 
 .if ${PHP_MODNAME} == "zip"
 CONFIGURE_ARGS+=--enable-zip \
-		--with-zlib-dir=/usr
+		--with-zlib-dir=/usr \
+		--with-pcre-dir=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "zlib"
