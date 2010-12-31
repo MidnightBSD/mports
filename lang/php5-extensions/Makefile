@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.7 2009/10/15 01:28:09 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.8 2010/12/31 13:53:39 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	1.3
+PORTVERSION=	1.4
 CATEGORIES=	lang
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
@@ -23,13 +23,11 @@ WITH_FILTER=	yes
 WITH_HASH=	yes
 WITH_ICONV=	yes
 WITH_JSON=	yes
-WITH_PCRE=	yes
 WITH_PDO=	yes
 WITH_PDO_SQLITE=yes
 WITH_POSIX=	yes
 WITH_SESSION=	yes
 WITH_SIMPLEXML=	yes
-WITH_SPL=	yes
 WITH_SQLITE=	yes
 WITH_TOKENIZER=	yes
 WITH_XML=	yes
@@ -42,7 +40,6 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		CTYPE           "ctype functions" on \
 		CURL            "CURL support" off \
 		DBA             "dba support" off \
-		DBASE           "dBase library support" off \
 		DOM             "DOM support" on \
 		EXIF            "EXIF support" off \
 		FILEINFO        "fileinfo support" off \
@@ -59,19 +56,14 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		LDAP            "OpenLDAP support" off \
 		MBSTRING        "multibyte string support" off \
 		MCRYPT          "Encryption support" off \
-		MHASH           "Crypto-hashing support" off \
-		MING            "ming shockwave flash support" off \
 		MSSQL           "MS-SQL database support" off \
 		MYSQL           "MySQL database support" off \
 		MYSQLI          "MySQLi database support" off \
-		NCURSES         "ncurses support (CLI only)" off \
 		ODBC            "unixODBC support" off \
 		OPENSSL         "OpenSSL support" off \
 		PCNTL           "pcntl support (CLI only)" off \
-		PCRE            "Perl Compatible Regular Expression support" on \
 		PDF             "PDFlib support (implies GD)" off \
 		PDO             "PHP Data Objects Interface (PDO)" on \
-		PDO_MYSQL       "PDO mysql driver" on \
 		PDO_SQLITE      "PDO sqlite driver" on \
 		PGSQL           "PostgreSQL database support" off \
 		POSIX           "POSIX-like functions" on \
@@ -84,7 +76,6 @@ OPTIONS=	BCMATH          "bc style precision math functions" off \
 		SNMP            "SNMP support" off \
 		SOAP            "SOAP support" off \
 		SOCKETS         "sockets support" off \
-		SPL             "Standard PHP Library" on \
 		SQLITE          "sqlite support" on \
 		SYBASE_CT       "Sybase database support" off \
 		SYSVMSG         "System V message support" off \
@@ -110,13 +101,13 @@ OPTIONSFILE?=	${PORT_DBDIR}/${LATEST_LINK}/options
 .include "${OPTIONSFILE}"
 .endif
 
-ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA DBASE \
+ALL_OPTIONS=	BCMATH BZ2 CALENDAR CTYPE CURL DBA \
 		DOM EXIF FILEINFO FILTER FRIBIDI FTP GD GETTEXT \
 		GMP HASH ICONV IMAP JSON LDAP MBSTRING MCRYPT \
-		MHASH MING MSSQL MYSQL MYSQLI NCURSES ODBC OPENSSL \
-		PCNTL PCRE PDF PDO PDO_SQLITE PDO_MYSQL PGSQL POSIX \
+		MSSQL MYSQL MYSQLI \
+		ODBC OPENSSL PCNTL PDF PDO PDO_SQLITE PGSQL POSIX \
 		PSPELL READLINE RECODE SESSION SHMOP SIMPLEXML SNMP SOAP \
-		SOCKETS SPL SQLITE SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
+		SOCKETS SQLITE SYBASE_CT SYSVMSG SYSVSEM SYSVSHM \
 		TIDY TOKENIZER WDDX XML XMLREADER XMLRPC XMLWRITER XSL \
 		YAZ ZIP ZLIB
 
