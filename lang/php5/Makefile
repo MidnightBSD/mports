@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.33 2010/12/22 14:59:25 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.34 2010/12/31 13:52:40 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.3.4
@@ -16,9 +16,11 @@ LICENSE?=	php
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 USE_BZIP2=	yes
+MAKE_JOBS_SAFE=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf:262
-MAKE_JOBS_SAFE=	yes
+
+LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 
 CONFIGURE_ARGS=	\
 		--with-layout=GNU \
@@ -27,8 +29,8 @@ CONFIGURE_ARGS=	\
 		--disable-all \
 		--enable-libxml \
 		--with-libxml-dir=${LOCALBASE} \
+		--with-pcre-regex=${LOCALBASE} \
 		--with-zlib-dir=/usr \
-		--with-pcre-regex=yes \
 		--program-prefix=""
 
 DESTDIRNAME=	INSTALL_ROOT
@@ -111,8 +113,6 @@ PLIST_SUB+=	APACHE="@comment "
 CONFIGURE_ARGS+=--with-regex=php
 .elif defined(WITH_REGEX_TYPE) && ${WITH_REGEX_TYPE} == "system"
 CONFIGURE_ARGS+=--with-regex=system
-.elif defined(WITH_REGEX_TYPE) && ${WITH_REGEX_TYPE} == "apache"
-CONFIGURE_ARGS+=--with-regex=apache
 .endif
 
 .if !defined(WITH_ZEND_VM) || ${WITH_ZEND_VM} == "CALL"
