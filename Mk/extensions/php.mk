@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.5 2009/10/15 01:02:34 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.6 2010/12/31 12:53:59 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -101,7 +101,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_CGI)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mcgi} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcgi} == "" && ${PHP_SAPI:Mfpm} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the CGI version of PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without CGI."
@@ -110,7 +110,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_CLI)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mcli} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcli} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the CLI version of PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without CLI."
@@ -119,7 +119,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_MOD)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mmod} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mmod} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the Apache Module for PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without the Apache Module."
@@ -177,6 +177,11 @@ do-install:
 	@${RM} -f ${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
 	@${GREP} "#define \(COMPILE\|HAVE\|USE\)_" ${WRKSRC}/config.h \
 		> ${PREFIX}/include/php/ext/${PHP_MODNAME}/config.h
+	@${ECHO_CMD} \#include \"ext/${PHP_MODNAME}/config.h\" \
+		>> ${PREFIX}/include/php/ext/php_config.h
+	@${MKDIR} ${PREFIX}/etc/php
+	@${ECHO_CMD} extension=${PHP_MODNAME}.so \
+		>> ${PREFIX}/etc/php/extensions.ini
 
 add-plist-info: add-plist-phpext
 add-plist-phpext:
@@ -228,9 +233,9 @@ php-ini:
 .if ${USE_PHP:L} != "yes"
 # non-version specific components
 _USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba \
-		exif fileinfo fribidi ftp gd gettext gmp hash \
-		iconv imap interbase json ldap mbstring mcrypt \
-		memcache mhash mssql mysql ncurses odbc \
+		exif fileinfo fribidi ftp gd gettext gmp \
+		hash iconv imap interbase json ldap mbstring mcrypt \
+		memcache mssql mysql odbc \
 		openssl pcntl pcre pdf pgsql posix \
 		pspell radius readline recode session shmop snmp \
 		sockets sybase_ct sysvmsg sysvsem sysvshm \
@@ -256,7 +261,7 @@ dio_DEPENDS=	devel/php${PHP_VER}-dio
 dom_DEPENDS=	textproc/php${PHP_VER}-dom
 domxml_DEPENDS=	textproc/php${PHP_VER}-domxml
 exif_DEPENDS=	graphics/php${PHP_VER}-exif
-fileinfo_DEPENDS=	sysutils/pecl-fileinfo
+fileinfo_DEPENDS=	sysutils/php${PHP_VER}-fileinfo
 filepro_DEPENDS=databases/php${PHP_VER}-filepro
 filter_DEPENDS=	security/php${PHP_VER}-filter
 fribidi_DEPENDS=converters/pecl-fribidi
