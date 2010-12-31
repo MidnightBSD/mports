@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.85 2010/11/11 01:15:00 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.86 2010/12/18 06:40:41 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -44,7 +44,6 @@
     SUBDIR += mysql51-scripts
     SUBDIR += mysql51-server
     SUBDIR += mysql55-client
-    SUBDIR += mysql55-scripts
     SUBDIR += mysql55-server
     SUBDIR += oracle8-client
     SUBDIR += p5-Class-DBI
