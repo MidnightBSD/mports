@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.4 2009/05/21 01:02:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.5 2009/10/15 01:02:34 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -91,7 +91,7 @@ check-makevars::
 		@${ECHO_CMD} "or WANT_PHP_MOD. Use only one of them."
 		@${FALSE}
 .	else
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcgi} == "" && ${PHP_SAPI:Mmod} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcgi} == "" && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mmod} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the Apache Module or the CGI version of PHP, but you have"
 		@${ECHO_CMD} "already installed a PHP port without them."
@@ -101,7 +101,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_CGI)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcgi} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mcgi} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the CGI version of PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without CGI."
@@ -110,7 +110,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_CLI)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mcli} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mcli} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the CLI version of PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without CLI."
@@ -119,7 +119,7 @@ check-makevars::
 .else
 
 .if defined(WANT_PHP_MOD)
-.	if defined(PHP_VERSION) && ${PHP_SAPI:Mmod} == ""
+.	if defined(PHP_VERSION) && ${PHP_SAPI:Mfpm} == "" && ${PHP_SAPI:Mmod} == ""
 check-makevars::
 		@${ECHO_CMD} "This port requires the Apache Module for PHP, but you have already"
 		@${ECHO_CMD} "installed a PHP port without the Apache Module."
@@ -227,7 +227,7 @@ php-ini:
 # Extensions
 .if ${USE_PHP:L} != "yes"
 # non-version specific components
-_USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba dbase \
+_USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba \
 		exif fileinfo fribidi ftp gd gettext gmp hash \
 		iconv imap interbase json ldap mbstring mcrypt \
 		memcache mhash mssql mysql ncurses odbc \
@@ -236,7 +236,8 @@ _USE_PHP_ALL=	apc bcmath bitset bz2 calendar ctype curl dba dbase \
 		sockets sybase_ct sysvmsg sysvsem sysvshm \
 		tokenizer wddx xml xmlrpc yaz zip zlib
 # version specific components
-_USE_PHP_VER5=	${_USE_PHP_ALL} dom filter ming mysqli oci8 pdo pdo_sqlite \
+_USE_PHP_VER5=	${_USE_PHP_ALL} dbase dom filter mysqli oci8 pdo \
+		pdo_mysql pdo_pgsql pdo_sqlite \
 		simplexml soap spl sqlite \
 		tidy xmlreader xmlwriter xsl
 
@@ -267,7 +268,7 @@ hash_DEPENDS=	security/php${PHP_VER}-hash
 iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
-json_DEPENDS=	devel/pecl-json
+json_DEPENDS=	devel/php${PHP_VER}-json
 ldap_DEPENDS=	net/php${PHP_VER}-ldap
 mbstring_DEPENDS=	converters/php${PHP_VER}-mbstring
 mcal_DEPENDS=	misc/php${PHP_VER}-mcal
@@ -275,8 +276,6 @@ mcrypt_DEPENDS=	security/php${PHP_VER}-mcrypt
 mcve_DEPENDS=	devel/php${PHP_VER}-mcve
 memcache_DEPENDS=	databases/pecl-memcache
 mhash_DEPENDS=	security/php${PHP_VER}-mhash
-ming_DEPENDS=	graphics/php${PHP_VER}-ming
-mnogosearch_DEPENDS=	www/php${PHP_VER}-mnogosearch
 mssql_DEPENDS=	databases/php${PHP_VER}-mssql
 mysql_DEPENDS=	databases/php${PHP_VER}-mysql
 mysqli_DEPENDS=	databases/php${PHP_VER}-mysqli
@@ -291,6 +290,7 @@ pcre_DEPENDS=	devel/php${PHP_VER}-pcre
 pdf_DEPENDS=	print/pecl-pdflib
 pdo_DEPENDS=	databases/php${PHP_VER}-pdo
 pdo_mysql_DEPENDS=	databases/php${PHP_VER}-pdo_mysql
+pdo_pgsql_DEPENDS=	databases/php${PHP_VER}-pdo_pgsql
 pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pfpro_DEPENDS=	finance/php${PHP_VER}-pfpro
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
@@ -322,7 +322,7 @@ xsl_DEPENDS=	textproc/php${PHP_VER}-xsl
 xslt_DEPENDS=	textproc/php${PHP_VER}-xslt
 yaz_DEPENDS=	net/pecl-yaz
 yp_DEPENDS=	net/php${PHP_VER}-yp
-zip_DEPENDS=	archivers/pecl-zip
+zip_DEPENDS=	archivers/php${PHP_VER}-zip
 zlib_DEPENDS=	archivers/php${PHP_VER}-zlib
 
 .	for extension in ${USE_PHP}
