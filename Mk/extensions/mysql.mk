@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.3 2010/08/12 22:12:30 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.4 2010/12/18 05:21:36 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -64,6 +64,10 @@ IGNORE=	cannot install: MySQL versions mismatch: mysql${_MYSQL_VER}-client is in
 .endif
 .endif
 
+.if (${USE_MYSQL} == "embedded")
+IGNORE_WITH_MYSQL=	41
+.endif
+
 # And now we are checking if we can use it
 .if defined(MYSQL${MYSQL_VER}_LIBVER)
 # compatability shim
@@ -77,7 +81,14 @@ IGNORE=		cannot install: doesn't work with MySQL version : ${MYSQL_VER} (Doesn't
 .		endif
 .	endfor
 .endif # IGNORE_WITH_MYSQL
+.if (${USE_MYSQL} == "server" || ${USE_MYSQL} == "embedded")
+RUN_DEPENDS+=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql${MYSQL_VER}-server
+.if (${USE_MYSQL} == "embedded")
+BUILD_DEPENDS+=	${LOCALBASE}/libexec/mysqld:${PORTSDIR}/databases/mysql${MYSQL_VER}-server
+.endif
+.else
 LIB_DEPENDS+=	mysqlclient.${MYSQL${MYSQL_VER}_LIBVER}:${PORTSDIR}/databases/mysql${MYSQL_VER}-client
+.endif
 .else
 IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
 .endif # Check for correct libs
