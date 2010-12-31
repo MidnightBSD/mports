@@ -1,14 +1,8 @@
-# New ports collection makefile for:	zebra-server
-# Date created:				14 Nov 2000
-# Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/zebra-server/Makefile,v 1.2 2008/08/24 19:34:37 laffer1 Exp $
+# $MidnightBSD: mports/net/zebra-server/Makefile,v 1.3 2010/12/31 13:05:31 laffer1 Exp $
 # $FreeBSD: ports/net/zebra-server/Makefile,v 1.18 2008/04/04 21:36:10 pav Exp $
-#
 
 PORTNAME=	zebra-server
-PORTVERSION=	2.0.28
-PORTREVISION=	1
+PORTVERSION=	2.0.43
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/zebra/
 DISTNAME=	idzebra-${PORTVERSION}
@@ -27,7 +21,7 @@ CONFIGURE_ARGS=	--with-yaz=${LOCALBASE}/bin \
 
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
-USE_TCL=	84
+USE_TCL=	84+
 
 MAN1=		idzebra-config-2.0.1 zebraidx-2.0.1
 MAN8=		zebrasrv-2.0.8
