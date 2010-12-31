@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.2 2010/09/23 23:40:03 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -30,7 +30,7 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				- Detected PostgreSQL version.
 
 
-DEFAULT_PGSQL_VER?=	83
+DEFAULT_PGSQL_VER?=	84
 PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
 PGSQL84_LIBVER=		5
