@@ -1,21 +1,24 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.4 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/graphics/gegl/Makefile,v 1.18 2010/06/21 12:07:51 gahr Exp $
 
 PORTNAME=	gegl
-PORTVERSION=	0.0.${GEGL_MINOR}
-PORTREVISION=	2
+PORTVERSION=	0.1.2
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.0/
+MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graph based image processing framework
 LICENSE=	gpl3
 
-LIB_DEPENDS=	babl-0.0:${PORTSDIR}/x11/babl
+LIB_DEPENDS=	babl-0.1:${PORTSDIR}/x11/babl \
+    		execinfo.1:${PORTSDIR}/devel/libexecinfo
 
 OPTIONS=	CAIRO		"Enable Cairo" on \
-		FFMPEG		"Enable videos through ffmpeg" on \
+		ENSCRIPT	"Enable Enscript" on \
+		FFMPEG		"Enable videos through ffmpeg (BROKEN)" off \
 		GRAPHVIZ	"Enable Graphviz" on \
 		JPEG		"Enable JPEG format support" on \
+		LUA		"Enable LUA" on \
 		OPENEXR		"Enable High Dynamic Range (HDR) format support" on \
 		OPENRAW		"Enable RAW camera format support" on \
 		OPTIMIZE	"Enable optimizations autodetection (MMX, SSE)" off \
@@ -26,16 +29,20 @@ OPTIONS=	CAIRO		"Enable Cairo" on \
 		SPIRO		"Enable Spiro" on \
 		V4L		"Enable Video4Linux" on
 
+# Disable docs until I fix the problem with graphviz's dot
+NOPORTDOCS=	yes
+
 USE_GNOME=	gtk20 glib20 pkgconfig gnomehack
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_RUBY=	build
-USE_LDCONFIG=	${PREFIX}/lib/gegl-0.0
+USE_RUBY=	yes
+RUBY_NO_RUN_DEPENDS=	yes
+USE_LDCONFIG=	${PREFIX}/lib/gegl-0.1
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+		LDFLAGS="-L${LOCALBASE}/lib -lexecinfo"
 
-GEGL_MINOR=	22
+GEGL_MINOR=	101
 PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}"
 
 EXAMPLES=	2geglbuffer gegl-paint geglbuffer-add-image \
@@ -51,7 +58,12 @@ CONFIGURE_ARGS+=--without-cairo
 PLIST_SUB+=	CAIRO="@comment "
 .endif
 
+.if !defined(WITHOUT_ENSCRIPT)
+BUILD_DEPENDS+=	enscript:${PORTSDIR}/print/enscript-a4
+.endif
+
 .if !defined(WITHOUT_FFMPEG)
+BROKEN=	ffmpeg support is currently broken
 LIB_DEPENDS+=	avformat.1:${PORTSDIR}/multimedia/ffmpeg
 PLIST_SUB+=	FFMPEG=""
 .else
@@ -73,7 +85,11 @@ CONFIGURE_ARGS+=--without-libjpeg
 PLIST_SUB+=	JPEG="@comment "
 .endif
 
+.if !defined(WITHOUT_LUA)
+USE_LUA=	5.1
+.else
 CONFIGURE_ARGS+=--without-lua
+.endif
 
 .if !defined(WITHOUT_OPENEXR)
 LIB_DEPENDS+=	IlmImf.6:${PORTSDIR}/graphics/OpenEXR
@@ -119,7 +135,7 @@ PLIST_SUB+=	RSVG="@comment "
 .endif
 
 .if !defined(WITHOUT_SDL)
-USE_SDL=	yes
+USE_SDL=	sdl
 PLIST_SUB+=	SDL=""
 .else
 CONFIGURE_ARGS+=--without-sdl
@@ -149,8 +165,12 @@ CONFIGURE_ARGS+=	--disable-docs
 .include <bsd.port.pre.mk>
 
 post-patch:
+.if defined(NOPORTDOCS)
+	${REINPLACE_CMD} -e '11,13d' ${WRKSRC}/Makefile.am
+.endif
 	${REINPLACE_CMD} -e 's|-T||' ${WRKSRC}/docs/Makefile.am ${WRKSRC}/docs/Makefile.in
 	${REINPLACE_CMD} -e 's|\(lua\)\(5\.1\)|\1-\2|g' ${WRKSRC}/configure
+	${REINPLACE_CMD} -e 's|/usr/bin/ruby|/usr/bin/env ruby|' ${WRKSRC}/tools/gobj2dot.rb
 
 post-build:
 .if !defined(NOPORTDOCS)
