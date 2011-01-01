@@ -1,14 +1,9 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	KDE3 Graphics
-# Date created:				Saturday 2 September 2000
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.3 2008/08/26 19:10:44 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.4 2009/09/20 01:41:02 laffer1 Exp $
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	graphics kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -23,7 +18,6 @@ LIB_DEPENDS=	art_lgpl_2:${PORTSDIR}/graphics/libart_lgpl \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype:${PORTSDIR}/print/freetype2 \
 		fribidi:${PORTSDIR}/converters/fribidi \
-		glut:${PORTSDIR}/graphics/libglut \
 		lcms:${PORTSDIR}/graphics/lcms \
 		paper:${PORTSDIR}/print/libpaper \
 		poppler-qt:${PORTSDIR}/graphics/poppler-qt
@@ -34,10 +28,12 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=	libtool:22
 USE_GMAKE=	yes
+USE_GL=		glut
 WANT_GNOME=	yes
 USE_GHOSTSCRIPT=yes
+MAKE_JOBS_SAFE=	yes
 
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
