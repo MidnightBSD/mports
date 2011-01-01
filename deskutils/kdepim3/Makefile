@@ -2,13 +2,13 @@
 # Date created:				2 March 2001
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
-# $MidnightBSD: mports/deskutils/kdepim3/Makefile,v 1.2 2008/06/19 22:48:09 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/kdepim3/Makefile,v 1.3 2009/09/20 00:40:54 laffer1 Exp $
 # $FreeBSD: ports/deskutils/kdepim3/Makefile,v 1.78 2007/11/01 03:45:59 linimon Exp $
 #
 
 PORTNAME=	kdepim
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	deskutils mail news palm kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -19,7 +19,6 @@ COMMENT=	Personal Information Management tools for KDE
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gpgme:${PORTSDIR}/security/gpgme \
-		opensync.0:${PORTSDIR}/devel/libopensync022 \
 		pisock:${PORTSDIR}/palm/pilot-link \
 		sasl2:${PORTSDIR}/security/cyrus-sasl2
 
@@ -40,10 +39,19 @@ CONFIGURE_ARGS=	--with-gpg=${LOCALBASE}/bin/gpg \
 		--with-gpgsm=${LOCALBASE}/bin/gpgsm \
 		--with-ssl-dir=${OPENSSLBASE}
 
-OPTIONS=	GNOKII "KAdressbook import/export for Nokia phones" off
+OPTIONS=	GNOKII "KAdressbook import/export for Nokia phones" off \
+		KITCHENSYNC "PIM synchronization utility" off
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_KITCHENSYNC)
+LIB_DEPENDS+=	opensync.0:${PORTSDIR}/devel/libopensync022
+PLIST_SUB+=	KITCHENSYNC=""
+.else
+PLIST_SUB+=	KITCHENSYNC="@comment "
+DO_NOT_COMPILE+=kitchensync
+.endif
 
 .if exists(${LOCALBASE}/bin/gnokii)
 .	if !defined(WITH_GNOKII)
