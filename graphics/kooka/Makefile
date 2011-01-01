@@ -1,10 +1,5 @@
-# New ports collection makefile for:	kooka
-# Date created:				July 09 2004
-# Whom:					Michael Nottebrock <lofi@FreeBSD.org>
-#
 # $FreeBSD: ports/graphics/kooka/Makefile,v 1.14 2006/09/12 23:26:18 lofi Exp $
-# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.2 2008/03/21 22:52:19 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.3 2009/09/20 01:42:19 laffer1 Exp $
 
 PORTNAME=	kooka
 PORTVERSION=	${KDE_VERSION}
@@ -17,6 +12,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Raster image scan program for KDE
+LICENSE=	gpl2
 
 LIB_DEPENDS=	sane.1:${PORTSDIR}/graphics/sane-backends
 RUN_DEPENDS=	${LOCALBASE}/bin/gocr:${PORTSDIR}/graphics/gocr
