@@ -1,10 +1,5 @@
-# New ports collection makefile for:	kamera
-# Date created:				July 09 2004
-# Whom:					Michael Nottebrock <lofi@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.2 2008/03/21 22:51:10 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.3 2009/09/20 01:39:46 laffer1 Exp $
 # $FreeBSD: ports/graphics/kamera/Makefile,v 1.15 2006/09/12 23:26:17 lofi Exp $
-#
 
 PORTNAME=	kamera
 PORTVERSION=	${KDE_VERSION}
@@ -17,6 +12,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Digital camera support for KDE
+LICENSE=	gpl2
 
 LIB_DEPENDS+=	gphoto2:${PORTSDIR}/graphics/libgphoto2
 
