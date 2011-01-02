@@ -1,11 +1,5 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	kdetoys3
-# Date created:				14 May 2000 02:45:53
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-clocks/kdetoys3/Makefile,v 1.64 2006/09/12 23:26:50 lofi Exp $
-# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.3 2009/04/13 17:47:08 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-clocks/kdetoys3/Makefile,v 1.4 2009/09/20 01:55:56 smultron Exp $
 
 PORTNAME=	kdetoys
 PORTVERSION=	${KDE_VERSION}
@@ -28,6 +22,4 @@ USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
-.include <bsd.port.pre.mk>
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
