@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.5 2009/06/06 18:46:31 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.6 2010/12/23 00:47:21 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -32,6 +32,9 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}16
 WRKSRC=		${WRKDIR}/${PKGNAMEPREFIX}jre${JRE_VERSION}_${RELEASE_VERSION}
 NO_BUILD=	yes
 
+OPTIONS=	POLICY	"Install the Unlimited Strength Policy Files"	off \
+		TZUPDATE	"Update the time zone data"	on
+
 SUB_FILES+=	pkg-install \
 		pkg-deinstall
 SUB_LIST+=	ARCH="${ARCH}" \
@@ -59,6 +62,27 @@ PLIST_SUB+=	CLIENTVM=""
 PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
+.if defined(WITH_POLICY) || !defined(WITHOUT_TZUPDATE)
+EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
+.endif
+
+POLICYFILE=	jce_policy-6.zip
+.if defined(WITH_POLICY)
+DISTFILES+=	${POLICYFILE}
+.endif
+
+TZUPDATE_VERSION=	1_3_34
+TZUPDATE_TZVERSION=	2010o
+TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
+.if !defined(WITHOUT_TZUPDATE)
+DISTFILES+=		${TZUPDATEFILE}
+PLIST_SUB+=		TZORIGINAL="@comment "
+PLIST_SUB+=		TZUPDATE=""
+.else
+PLIST_SUB+=		TZORIGINAL=""
+PLIST_SUB+=		TZUPDATE="@comment "
+.endif
+
 .if !exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
 DISTFILE_INSTRUCTIONS=\n\
 Because of licensing restrictions, you must fetch the distribution\n\
@@ -70,6 +94,20 @@ Please access\n\
 with a web browser and \"Accept\" the End User License Agreement for\n\
 \"Latte Diablo ${JRE_VERSION}\".  Please place the downloaded\n\
 ${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
+.if defined(WITH_POLICY) && !exists(${DISTDIR}/${POLICYFILE})#{
+DISTFILE_INSTRUCTIONS+=Please open\n\n\
+\ \ \ \ http://java.sun.com/javase/downloads/\n\n\
+in a web browser and follow the \"Download\" link for \"Java\n\
+Cryptography Extension (JCE) Unlimited Strength Jurisdiction\n\
+Policy Files 6\" to obtain the JCE policy file, ${POLICYFILE}.\n\n
+.endif#}
+.if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})#{
+DISTFILE_INSTRUCTIONS += Please open http://java.sun.com/javase/downloads/index.jsp\n\
+in a web browser and follow the \"Download\" link for\n\
+\"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
+time zone update file, ${TZUPDATEFILE}.\n\n
+.endif#}
+DISTFILE_INSTRUCTIONS+=Please place the downloaded file(s) in ${DISTDIR}.\n\n
 .endif
 
 pre-fetch:
@@ -78,9 +116,32 @@ pre-fetch:
 	@exit 1
 .endif
 
+post-extract:
+.if defined(WITH_POLICY)
+	@${UNZIP_CMD} -qo ${DISTDIR}/${POLICYFILE} -d ${WRKDIR}
+.endif
+.if !defined(WITHOUT_TZUPDATE)
+	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/tzupdater.jar -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/
+	@${MKDIR} ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/data/tzdata${TZUPDATE_TZVERSION}.zip -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+
+pre-install:
+	@${ECHO_CMD} -n "Updating time zones..."
+	@${RM} -rf ${WRKSRC}/lib/zi
+	@${MV} -f ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi ${WRKSRC}/lib/
+	@${ECHO_CMD} "done"
+	@-${RM} -rf ${WRKSRC}/lib/zi.tzdata*
+.endif
+
 do-install:
 	${MKDIR} "${INSTALL_DIR}"
 	cd "${WRKSRC}" && ${FIND} . \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} "${INSTALL_DIR}"
+	${INSTALL_DATA} ${FILESDIR}/cacerts \
+		${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}/lib/security/cacerts
+.if defined(WITH_POLICY)
+	${INSTALL_DATA} ${WRKDIR}/jce/*.jar ${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}/lib/security
+.endif
 
 .include <bsd.port.post.mk>
