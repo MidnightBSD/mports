@@ -280,13 +280,16 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Jujuy
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/La_Rioja
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Mendoza
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Rio_Gallegos
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Salta
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/San_Juan
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/San_Luis
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Tucuman
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Argentina/Ushuaia
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Aruba
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Asuncion
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Atikokan
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Bahia
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Bahia_Banderas
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Barbados
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Belem
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Belize
@@ -348,6 +351,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Maceio
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Managua
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Manaus
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Martinique
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Matamoros
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Mazatlan
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Menominee
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Merida
@@ -365,6 +369,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Nome
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Noronha
 diablo-jre%%JRE_VERSION%%/lib/zi/America/North_Dakota/Center
 diablo-jre%%JRE_VERSION%%/lib/zi/America/North_Dakota/New_Salem
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Ojinaga
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Panama
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Pangnirtung
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Paramaribo
@@ -379,6 +384,8 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Recife
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Regina
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Resolute
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Rio_Branco
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Santa_Isabel
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/America/Santarem
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Santiago
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Santo_Domingo
 diablo-jre%%JRE_VERSION%%/lib/zi/America/Sao_Paulo
@@ -403,6 +410,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/America/Yellowknife
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/Casey
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/Davis
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/DumontDUrville
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/Macquarie
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/Mawson
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/McMurdo
 diablo-jre%%JRE_VERSION%%/lib/zi/Antarctica/Palmer
@@ -423,7 +431,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Bangkok
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Beirut
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Bishkek
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Brunei
-diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Calcutta
+%%TZORIGINAL%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Calcutta
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Choibalsan
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Chongqing
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Colombo
@@ -434,6 +442,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Dubai
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Dushanbe
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Gaza
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Harbin
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Ho_Chi_Minh
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Hong_Kong
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Hovd
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Irkutsk
@@ -444,7 +453,9 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kabul
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kamchatka
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Karachi
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kashgar
-diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Katmandu
+%%TZORIGINAL%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Katmandu
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kathmandu
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kolkata
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Krasnoyarsk
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kuala_Lumpur
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Kuching
@@ -455,6 +466,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Makassar
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Manila
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Muscat
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Nicosia
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Novokuznetsk
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Novosibirsk
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Omsk
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Oral
@@ -468,7 +480,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Riyadh
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Riyadh87
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Riyadh88
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Riyadh89
-diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Saigon
+%%TZORIGINAL%%diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Saigon
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Sakhalin
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Samarkand
 diablo-jre%%JRE_VERSION%%/lib/zi/Asia/Seoul
@@ -606,6 +618,7 @@ diablo-jre%%JRE_VERSION%%/lib/zi/PST8PDT
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Apia
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Auckland
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Chatham
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Chuuk
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Easter
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Efate
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Enderbury
@@ -631,14 +644,15 @@ diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Noumea
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Pago_Pago
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Palau
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Pitcairn
-diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Ponape
+%%TZORIGINAL%%diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Ponape
+%%TZUPDATE%%diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Pohnpei
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Port_Moresby
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Rarotonga
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Saipan
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Tahiti
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Tarawa
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Tongatapu
-diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Truk
+%%TZORIGINAL%%diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Truk
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Wake
 diablo-jre%%JRE_VERSION%%/lib/zi/Pacific/Wallis
 diablo-jre%%JRE_VERSION%%/lib/zi/SystemV/AST4
