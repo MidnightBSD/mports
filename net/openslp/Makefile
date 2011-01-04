@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/net/openslp/Makefile,v 1.3 2009/06/13 04:43:20 laffer1 Exp $
+# $MidnightBSD: mports/net/openslp/Makefile,v 1.4 2009/09/20 01:51:12 laffer1 Exp $
 
 PORTNAME=	openslp
 PORTVERSION=	1.2.1
 PORTREVISION=	3
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	openslp
+MASTER_SITES=	SF/${PORTNAME}/OpenSLP/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open-source implementation of the Service Location Protocol
