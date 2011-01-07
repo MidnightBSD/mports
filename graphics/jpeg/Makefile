@@ -1,23 +1,26 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.9 2010/09/06 22:51:13 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.10 2010/09/07 01:58:10 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		ftp://ftp.uu.net/graphics/jpeg/ \
 		http://sylvana.net/jpegcrop/:exif
-DISTNAME=	jpegsrc.v${PORTVERSION}b
+DISTNAME=	jpegsrc.v${DISTVERSION2}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		jpegexiforient.c:exif exifautotran.txt:exif
+DIST_SUBDIR=	${PORTNAME}${DISTVERSION2}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	IJG's jpeg compression utilities
 LICENSE=	other
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}b
+CONFLICTS=	libjpeg-turbo-[0-9]*
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
+DISTVERSION2=	8b
 USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
@@ -33,8 +36,8 @@ CONFIGURE_ARGS+=	--enable-maxmem=${J_MAXMEM}
 MAN1=		cjpeg.1 djpeg.1 jpegtran.1 rdjpgcom.1 wrjpgcom.1
 
 post-extract:
-	@${CP} ${DISTDIR}/jpegexiforient.c ${WRKSRC}/
-	@${CP} ${DISTDIR}/exifautotran.txt ${WRKSRC}/exifautotran
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/jpegexiforient.c ${WRKSRC}/
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/exifautotran.txt ${WRKSRC}/exifautotran
 
 post-build:
 	@cd ${WRKSRC} && ${CC} ${CFLAGS} -o jpegexiforient jpegexiforient.c
