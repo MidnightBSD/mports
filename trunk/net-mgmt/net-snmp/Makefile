@@ -1,11 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net-mgmt/net-snmp/Makefile,v 1.7 2009/06/30 13:13:39 laffer1 Exp $
 
 PORTNAME=	snmp
-PORTVERSION=	5.4.2.1
-PORTREVISION=	5
+PORTVERSION=	5.5
 CATEGORIES=	net-mgmt ipv6
-MASTER_SITES=	SF
-MASTER_SITE_SUBDIR=	net-snmp
+MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	net-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 
@@ -17,8 +15,8 @@ OPTIONS=	IPV6 "Build with IPv6 support" on \
 		MFD_REWRITES "Build with 64-bit Interface Counters" off \
 		PERL "Install additional perl modules" on \
 		PERL_EMBEDDED "Build embedded perl" on \
-		TKMIB "Install graphical MIB browser" off \
 		DUMMY "Enable dummy values as placeholders" on \
+		TKMIB "Install graphical MIB browser" off \
 		DMALLOC "Enable dmalloc debug memory allocator" off
 
 MAKE_JOBS_UNSAFE=	yes
@@ -30,19 +28,20 @@ USE_LDCONFIG=	yes
 
 CONFIGURE_ENV+=	PERLPROG="${PERL}" PSPROG="${PS_CMD}" SED="${SED}"
 CONFIGURE_ARGS+=--enable-shared --enable-internal-md5 \
-		--with-mib-modules="${_NET_SNMP_MIB_MODULES}" \
 		--with-default-snmp-version="${DEFAULT_SNMP_VERSION}" \
 		--with-sys-contact="${NET_SNMP_SYS_CONTACT}" \
 		--with-sys-location="${NET_SNMP_SYS_LOCATION}" \
 		--with-logfile="${NET_SNMP_LOGFILE}" \
 		--with-persistent-directory="${NET_SNMP_PERSISTENTDIR}" \
-		--with-gnu-ld --with-libwrap --with-libs="-lm -lkvm -ldevstat"
+		--with-mib-modules="host disman/event-mib smux mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio" \
+		--with-gnu-ld --with-libwrap --with-ldflags="-lm -lkvm -ldevstat"
 
 .if defined(BATCH)
 CONFIGURE_ARGS+=--with-defaults
 .endif
 
 .include <bsd.port.pre.mk>
+CONFIGURE_ARGS+=	--with-openssl="${OPENSSLBASE}"
 
 .if defined(WITH_DUMMY)
 CONFIGURE_ARGS+=--with-dummy-values
@@ -61,13 +60,16 @@ USE_PERL5=	yes
 CONFIGURE_ARGS+=--with-perl-modules
 .if defined(WITHOUT_PERL_EMBEDDED)
 CONFIGURE_ARGS+=--disable-embedded-perl
+PLIST_SUB+=	WITH_PERL_EMBEDDED="@comment "
 .else
 CONFIGURE_ARGS+=--enable-embedded-perl
+PLIST_SUB+=	WITH_PERL_EMBEDDED=""
 .endif
 PLIST_SUB+=	WITH_PERL=""
 .else
 USE_PERL5_BUILD=yes
 CONFIGURE_ARGS+=--disable-embedded-perl --without-perl-modules
+PLIST_SUB+=	WITH_PERL_EMBEDDED="@comment "
 PLIST_SUB+=	WITH_PERL="@comment "
 .endif
 
@@ -84,7 +86,7 @@ PLIST_SUB+=	WITH_IPV6=""
 PLIST_SUB+=	WITH_IPV6="@comment "
 .endif
 
-SHLIB_VERSION=	16
+SHLIB_VERSION=	20
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION}
 SCRIPTS_SUB=	PREFIX=${PREFIX} PERL=${PERL}
 
@@ -93,9 +95,6 @@ NET_SNMP_SYS_CONTACT?=	nobody@nowhere.invalid
 NET_SNMP_SYS_LOCATION?=	somewhere
 NET_SNMP_LOGFILE?=	/var/log/snmpd.log
 NET_SNMP_PERSISTENTDIR?=/var/net-snmp
-NET_SNMP_MIB_MODULES?=	${NET_SNMP_MIB_MODULE_LIST}
-
-NET_SNMP_MIB_MODULE_LIST=host disman/event-mib smux mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio
 
 .if ${OSVERSION} >= 700028
 NET_SNMP_MIB_MODULE_LIST+=	sctp-mib
@@ -106,41 +105,26 @@ CONFIGURE_ARGS+=--enable-mfd-rewrites
 NET_SNMP_MIB_MODULE_LIST+=	if-mib
 .endif
 
-_NET_SNMP_MIB_MODULES=
-.for module1 in ${NET_SNMP_MIB_MODULE_LIST}
-_module1=${module1}
-_define=false
-. for module2 in ${NET_SNMP_MIB_MODULES}
-_module2=${module2}
-.  if ${_module1} == ${_module2}
-_define=true
-.  endif
-. endfor
-. if ${_define} == true
-_NET_SNMP_MIB_MODULES+=${module1}
-PLIST_SUB+=	WITH_${module1:C|.*/||:U}=""
-. else
-PLIST_SUB+=	WITH_${module1:C|.*/||:U}="@comment "
-. endif
-.endfor
-
 MAN1=		encode_keychange.1 fixproc.1 mib2c.1 mib2c-update.1 \
-		net-snmp-config.1 \
+		net-snmp-config.1 net-snmp-create-v3-user.1 \
 		snmpbulkget.1 snmpbulkwalk.1 snmpcmd.1 snmpconf.1 \
 		snmpdelta.1 snmpdf.1 snmpget.1 snmpgetnext.1 snmpinform.1 \
 		snmpnetstat.1 snmpset.1 snmpstatus.1 snmptable.1 snmptest.1 \
 		snmptranslate.1 snmptrap.1 snmpusm.1 snmpvacm.1 snmpwalk.1 \
 		tkmib.1 traptoemail.1
 MAN3=		add_mibdir.3 add_module_replacement.3 \
-		config_perror.3 config_pwarn.3 \
+		config_perror.3 config_pwarn.3 config_api.3 \
 		default_store.3 fprint_description.3 \
 		fprint_objid.3 fprint_value.3 fprint_variable.3 \
 		get_module_node.3 init_mib.3 init_mib_internals.3 mib_api.3 \
-		netsnmp_Container_iterator.3 \
+		netsnmp_access_multiplexer.3 \
+		netsnmp_agent_handler.h.3 \
 		netsnmp_agent.3 \
 		netsnmp_baby_steps.3 \
 		netsnmp_bulk_to_next.3 \
 		netsnmp_cache_handler.3 netsnmp_container.3 \
+		netsnmp_container_iterator.3 \
+		netsnmp_container_iterator.h.3 \
 		netsnmp_debug.3 \
 		netsnmp_ds_get_boolean.3 netsnmp_ds_get_int.3 \
 		netsnmp_ds_get_string.3 \
@@ -153,6 +137,8 @@ MAN3=		add_mibdir.3 add_module_replacement.3 \
 		netsnmp_leaf.3 netsnmp_library.3 \
 		netsnmp_mib_handler_methods.3 netsnmp_mib_utilities.3 \
 		netsnmp_mode_end_call.3 netsnmp_multiplexer.3 \
+		netsnmp_netsnmp_monitor_callback_header_s.3 \
+		netsnmp_null_container.3 \
 		netsnmp_old_api.3 netsnmp_read_only.3 \
 		netsnmp_row_merge.3 \
 		netsnmp_scalar.3 \
@@ -162,8 +148,11 @@ MAN3=		add_mibdir.3 add_module_replacement.3 \
 		netsnmp_table.3 netsnmp_table_array.3 \
 		netsnmp_table_data.3 netsnmp_table_dataset.3 \
 		netsnmp_table_iterator.3 \
+		netsnmp_table_row.3 \
+		netsnmp_tools.h.3 \
 		netsnmp_utilities.3 \
 		netsnmp_watcher.3 \
+		pdu_api.3 \
 		print_description.3 print_mib.3 print_objid.3 print_value.3 \
 		print_variable.3 read_all_mibs.3 \
 		read_config.3 read_configs.3 read_config_print_usage.3 \
@@ -173,11 +162,12 @@ MAN3=		add_mibdir.3 add_module_replacement.3 \
 		register_config_handler.3 register_mib_handlers.3 \
 		register_premib_handler.3 \
 		send_easy_trap.3 send_trap_vars.3 send_v2trap.3 \
+		session_api.3 \
 		shutdown_mib.3 \
 		snmp_agent_api.3 \
 		snmp_alarm.3 snmp_alarm_register.3 \
 		snmp_alarm_register_hr.3 snmp_alarm_unregister.3 \
-		snmp_api.3 snmp_api_errstring.3 snmp_close.3 \
+		snmp_api_errstring.3 snmp_close.3 \
 		snmp_error.3 snmp_free_pdu.3 snmp_open.3 snmp_perror.3 \
 		snmp_read.3 snmp_select_info.3 \
 		snmp_send.3 snmp_sess_api.3 snmp_sess_async_send.3 \
@@ -190,7 +180,9 @@ MAN3=		add_mibdir.3 add_module_replacement.3 \
 		snprint_objid.3 snprint_value.3 snprint_variable.3 \
 		sprint_realloc_objid.3 sprint_realloc_value.3 \
 		sprint_realloc_variable.3 \
-		unregister_app_config_handler.3 \unregister_config_handler.3
+		unregister_app_config_handler.3 \
+		unregister_config_handler.3 \
+		varbind_api.3
 
 .if defined(WITH_PERL)
 MAN3PERL=	NetSNMP::ASN.3 NetSNMP::OID.3 NetSNMP::agent.3 \
@@ -236,9 +228,6 @@ pre-everything::
 	@${ECHO_MSG} "				Default log file location for snmpd."
 	@${ECHO_MSG} "NET_SNMP_PERSISTENTDIR=\"${NET_SNMP_PERSISTENTDIR}\""
 	@${ECHO_MSG} "				Default directory for persistent data storage."
-	@${ECHO_MSG} "NET_SNMP_MIB_MODULES=\"${NET_SNMP_MIB_MODULE_LIST}\""
-	@${ECHO_MSG} "				Optional mib modules that can be built into the"
-	@${ECHO_MSG} "				agent"
 	@${ECHO_MSG}
 
 post-patch:
