@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/pecl-APC/Makefile,v 1.1 2009/10/15 01:08:35 laffer1 Exp $
 
 PORTNAME=	APC
-DISTVERSION=	3.0.19
+DISTVERSION=	3.1.4
 CATEGORIES=	www
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
@@ -20,6 +20,7 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 CONFIGURE_ARGS=	--enable-apc
+CFLAGS=		-I${LOCALBASE}/include
 
 OPTIONS=	MMAP		"Enable mmap memory support (default: IPC shm)"	off \
 		SEMAPHORES	"Enable sysv IPC semaphores (default: fcntl())"	off \
