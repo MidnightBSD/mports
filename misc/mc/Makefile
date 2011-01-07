@@ -1,12 +1,8 @@
-# New ports collection makefile for:	mc
-# Date created:		15 Jul 1995
-# Whom:			torstenb@FreeBSD.org
-#
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.3 2010/07/31 03:21:10 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.4 2010/07/31 03:23:30 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
-PORTVERSION=	4.7.2
+PORTVERSION=	4.7.4
 PORTREVISION=	0
 CATEGORIES=	misc shells
 MASTER_SITES=	http://www.midnight-commander.org/downloads/ \
