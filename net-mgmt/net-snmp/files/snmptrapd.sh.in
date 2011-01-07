@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net-mgmt/net-snmp/files/snmptrapd.sh.in,v 1.1 2006/05/08 05:00:27 clsung Exp $
+# $FreeBSD: ports/net-mgmt/net-snmp/files/snmptrapd.sh.in,v 1.2 2010/03/27 00:14:24 dougb Exp $
 #
 # PROVIDE: snmptrapd
 # REQUIRE: DAEMON
@@ -13,7 +13,7 @@
 snmptrapd_enable=${snmptrapd_enable-"NO"}
 snmptrapd_flags=${snmptrapd_flags-"-p /var/run/snmptrapd.pid"}
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 load_rc_config net_snmptrapd
 
