@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.4 2010/12/23 00:47:41 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.5 2011/01/02 17:54:56 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
@@ -76,6 +76,7 @@ TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 DISTFILES+=		${TZUPDATEFILE}
 PLIST_SUB+=		TZORIGINAL="@comment "
 PLIST_SUB+=		TZUPDATE=""
+DISTFILES+=		${TZUPDATEFILE}
 .else
 PLIST_SUB+=		TZORIGINAL=""
 PLIST_SUB+=		TZUPDATE="@comment "
