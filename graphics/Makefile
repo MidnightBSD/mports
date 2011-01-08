@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.104 2010/11/06 15:50:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.105 2010/12/11 04:27:02 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -103,7 +103,6 @@
     SUBDIR += photoclip
     SUBDIR += php5-exif
     SUBDIR += php5-gd
-    SUBDIR += php5-ming
     SUBDIR += pixen
     SUBDIR += plotutils
     SUBDIR += png
