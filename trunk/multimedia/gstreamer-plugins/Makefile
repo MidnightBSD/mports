@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.12 2010/02/27 21:37:07 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.13 2010/11/06 14:05:18 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
@@ -21,21 +21,20 @@ LICENSE?=	gpl2
 
 BUILD_DEPENDS+=	v4l_compat>=1.0.20060801:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
-		popt.0:${PORTSDIR}/devel/popt \
-		oil-0.3.0:${PORTSDIR}/devel/liboil
+		orc-0.4.0:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
-BASE_PORTVERSION=	0.10.24
+BASE_PORTVERSION=	0.10.30
 BASE_DISTNAME=		gst-plugins-base-${BASE_PORTVERSION}
 BASE_DISTFILE=		${BASE_DISTNAME}${EXTRACT_SUFX}
-BAD_PORTVERSION=	0.10.14
+BAD_PORTVERSION=	0.10.20
 BAD_DISTNAME=		gst-plugins-bad-${BAD_PORTVERSION}
 BAD_DISTFILE=		${BAD_DISTNAME}${EXTRACT_SUFX}
-GOOD_PORTVERSION=	0.10.16
+GOOD_PORTVERSION=	0.10.25
 GOOD_DISTNAME=		gst-plugins-good-${GOOD_PORTVERSION}
 GOOD_DISTFILE=		${GOOD_DISTNAME}${EXTRACT_SUFX}
-UGLY_PORTVERSION=	0.10.12
+UGLY_PORTVERSION=	0.10.16
 UGLY_DISTNAME=		gst-plugins-ugly-${UGLY_PORTVERSION}
 UGLY_DISTFILE=		${UGLY_DISTNAME}${EXTRACT_SUFX}
 DIST?=		good
@@ -50,7 +49,7 @@ USE_GNOME+=	gnomehack gnometarget pkgconfig ltverhack ltasneededhack
 USE_AUTOTOOLS=	libtool:22
 GST_PLUGIN?=	base
 
-CONFIGURE_ARGS+=--mandir=${PREFIX}/man
+CONFIGURE_ARGS=	--disable-option-checking --mandir=${PREFIX}/man
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
 		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}"
@@ -128,20 +127,27 @@ post-patch:
 	's|$$(top_builddir)/gst-libs/gst/tag/libgsttag-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgsttag-@GST_MAJORMINOR@.la|; \
 	s|$$(top_builddir)/gst-libs/gst/audio/libgstaudio-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstaudio-@GST_MAJORMINOR@.la|; \
 	s|$$(top_builddir)/gst-libs/gst/riff/libgstriff-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstriff-@GST_MAJORMINOR@.la|; \
+	s|$$(top_builddir)/gst-libs/gst/signalprocessor/libgstsignalprocessor-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstsignalprocessor-@GST_MAJORMINOR@.la|; \
+	s|$$(top_builddir)/gst-libs/gst/video/libgstbasevideo-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstbasevideo-@GST_MAJORMINOR@.la|; \
+	s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstvideo-@GST_MAJORMINOR@.la|; \
 	s|$$(top_builddir)/gst-libs/gst/cdda/libgstcdda-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgstcdda-@GST_MAJORMINOR@.la|'
 	@${FIND} ${WRKSRC} -type f | \
 	${XARGS} -n 10 ${REINPLACE_CMD} -e \
-	's|malloc\.h|stdlib.h|; \
-	 s|<stdint\.h|<inttypes.h|; \
+	 's|<stdint\.h|<inttypes.h|; \
 	 s|%%VERSION%%|${VERSION}|'
 	 @${FIND} ${WRKSRC}/ext -name Makefile.in | \
 	 ${XARGS} -n 10 ${REINPLACE_CMD} -e \
 	 's|$$(top_builddir)/gst-libs/gst/tag/libgsttag-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgsttag-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/audio/libgstaudio-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstaudio-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/riff/libgstriff-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstriff-@GST_MAJORMINOR@.la|; \
+	  s|$$(top_builddir)/gst-libs/gst/signalprocessor/libgstsignalprocessor-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstsignalprocessor-@GST_MAJORMINOR@.la|; \
+	  s|$$(top_builddir)/gst-libs/gst/video/libgstbasevideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstbasevideo-@GST_MAJORMINOR@.la|; \
+	  s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstvideo-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/cdda/libgstcdda-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstcdda-@GST_MAJORMINOR@.la|'
 	@${REINPLACE_CMD} -e 's|DEFAULT_AUDIOSINK="alsasink"|DEFAULT_AUDIOSINK="${DEFAULT_AUDIOSINK}"|; \
 		s|DEFAULT_AUDIOSRC="alsasrc"|DEFAULT_AUDIOSRC="${DEFAULT_AUDIOSRC}"|' \
+		-e 's|libpng12.pc|libpng14.pc|g' \
+        	-e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
