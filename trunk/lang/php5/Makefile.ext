@@ -262,7 +262,6 @@ CONFIGURE_ARGS+=--with-pdo-sqlite
 
 USE_PHP=	pdo
 USE_PHP_BUILD=	yes
-PHP_HEADER_DIRS=sqlite/src
 .endif
 
 .if ${PHP_MODNAME} == "pgsql"
