@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.6 2010/12/23 00:47:21 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre16/Makefile,v 1.7 2011/01/02 18:07:54 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
@@ -33,7 +33,7 @@ WRKSRC=		${WRKDIR}/${PKGNAMEPREFIX}jre${JRE_VERSION}_${RELEASE_VERSION}
 NO_BUILD=	yes
 
 OPTIONS=	POLICY	"Install the Unlimited Strength Policy Files"	off \
-		TZUPDATE	"Update the time zone data"	on
+		TZUPDATE	"Update the time zone data"	off
 
 SUB_FILES+=	pkg-install \
 		pkg-deinstall
