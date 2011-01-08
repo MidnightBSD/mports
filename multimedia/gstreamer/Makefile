@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.6 2009/09/20 01:55:59 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.7 2009/12/25 19:06:37 laffer1 Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.24
+PORTVERSION=	0.10.30
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/ \
 		GNOME
@@ -9,8 +9,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development framework for creating media applications
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
+		g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+RUN_DEPENDS=	${LOCALBASE}/share/gir-1.0/GLib-2.0.gir:${PORTSDIR}/devel/gobject-introspection
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BISON=	build
@@ -40,12 +41,21 @@ MAN1=	gst-feedback-${GST_VERSION}.1 gst-inspect-${GST_VERSION}.1 \
 
 .include <bsd.port.pre.mk>
 
+# workaround a gcc bug on 0.2
+.if ${OSVERSION} < 3000
+CONFIGURE_ENV+=	gst_cv_uint128_t="no"
+.endif
+
 .if (exists(${LOCALBASE}/lib/libcheck.a) || defined(WITH_CHECK))
 LIB_DEPENDS+=	check.0:${PORTSDIR}/devel/libcheck
 PLIST_SUB+=	CHECK=""
 .else
-CONFIGURE_ARGS+=--without-check
+CONFIGURE_ARGS+=--disable-check
 PLIST_SUB+=	CHECK="@comment "
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
+		${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
