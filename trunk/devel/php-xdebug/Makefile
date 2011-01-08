@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/php-xdebug/Makefile,v 1.1 2009/02/18 21:58:36 laffer1 Exp $
 
 PORTNAME=	xdebug
-DISTVERSION=	2.0.2
+DISTVERSION=	2.1.0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.xdebug.org/files/
 PKGNAMEPREFIX=	php-
