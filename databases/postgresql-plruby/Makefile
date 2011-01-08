@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.3 2008/04/06 19:10:26 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql-plruby/Makefile,v 1.4 2009/10/14 00:02:01 laffer1 Exp $
 
 PORTNAME=	plruby
-PORTVERSION=	0.5.3
+PORTVERSION=	0.5.4
+PORTREVISION=	1
 CATEGORIES=	databases ruby
-MASTER_SITES=	${MASTER_SITE_RUBYFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	RF/${PORTNAME} \
+		ftp://ftp.iDaemons.org/pub/distfiles/
 PKGNAMEPREFIX=	postgresql-
 DIST_SUBDIR=	ruby
 
-PATCHFILES=	3b3cc0786b0814eaa792cec65cedd54e1e43e9bd.diff
+PATCHFILES=	df2c4d39cdda35e1cb842106b22aaa10df2760e6.diff
 PATCH_SITES=	http://github.com/knu/postgresql-plruby/commit/
 PATCH_DIST_STRIP=	-p1
 
@@ -19,6 +20,7 @@ LICENSE=	unknown
 BUILD_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
 RUN_DEPENDS=	postgres:${PORTSDIR}/${POSTGRESQL_PORT}
 
+USE_BZIP2=	yes
 USE_PGSQL=	yes
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
@@ -28,10 +30,8 @@ POSTGRESQL_PORT?=	databases/postgresql${PGSQL_VER}-server
 PGSQL_PORTDIR?=		${PORTSDIR}/${POSTGRESQL_PORT}
 PGSQL_WRKSRC_CMD=	cd ${PGSQL_PORTDIR} && ${MAKE} -V WRKSRC
 
-CONFIGURE_ARGS=		--with-pgsql-version="${PGSQL_VER}" \
-			--with-pgsql-srcinc="`${PGSQL_WRKSRC_CMD}`/src/include" \
-			--with-pgsql-include="${LOCALBASE}/include" \
-			--with-pgsql-lib="${LOCALBASE}/lib"
+CONFIGURE_ARGS=		--with-pg-config="${LOCALBASE}/bin/pg_config" \
+			--with-pgsql-srcinc="`${PGSQL_WRKSRC_CMD}`/src/include"
 #CONFIGURE_ARGS+=	--with-safe-level=0
 #CONFIGURE_ARGS+=	--with-main-safe-level=0
 #CONFIGURE_ARGS+=	--with-timeout=30
@@ -40,13 +40,6 @@ INSTALL_TARGET=	site-install
 DOCS=		Changes README.en plruby.html plruby.rd docs/doc
 
 PKGMESSAGE=	${WRKDIR}/createlang.sql
-
-post-extract:
-	${FIND} ${WRKSRC} -name '*~' -delete
-
-post-patch:
-	${RUBY} -i -pe 'gsub /test_mklang\.sql/, "../createlang.sql"' \
-		${WRKSRC}/test/*/runtest
 
 pre-configure:
 	cd ${PGSQL_PORTDIR} && ${MAKE} -DBATCH patch
@@ -59,20 +52,10 @@ post-build:
 .endif
 
 .include <bsd.port.pre.mk>
-# Setting/finding PostgreSQL version we want.
-.if exists(${LOCALBASE}/bin/postmaster)
-PGSQL_VER!=	${LOCALBASE}/bin/postmaster -V | \
-		${SED} -n 's/.*PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1\2/p'
-.elif exists(${LOCALBASE}/bin/pg_config)
-PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | ${SED} -n 's/PostgreSQL[^0-9]*\([0-9][0-9]*\)\.\([0-9][0-9]*\)\..*/\1\2/p'
-.else
-PGSQL_VER=	${DEFAULT_PGSQL_VER}
-.endif
 
 post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${RUBY_MODEXAMPLESDIR}/
-	${CP} -R ${WRKSRC}/test/* ${RUBY_MODEXAMPLESDIR}/
 	${INSTALL_DATA} ${WRKDIR}/createlang.sql ${RUBY_MODEXAMPLESDIR}/
 	${MKDIR} ${RUBY_MODDOCDIR}
 	@(cd ${WRKSRC}/ && ${COPYTREE_SHARE} ${DOCS} ${RUBY_MODDOCDIR}/)
