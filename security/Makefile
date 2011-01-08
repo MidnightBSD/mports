@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.100 2010/05/08 17:23:02 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.101 2010/08/14 03:14:52 laffer1 Exp $
 #
 
     COMMENT = Security tools
@@ -41,7 +41,6 @@
     SUBDIR += mcrypt
     SUBDIR += mhash
     SUBDIR += nmap
-    SUBDIR += nmapfe
     SUBDIR += nss
     SUBDIR += oinkmaster
     SUBDIR += opencdk
@@ -71,7 +70,6 @@
     SUBDIR += php5-filter
     SUBDIR += php5-hash
     SUBDIR += php5-mcrypt
-    SUBDIR += php5-mhash
     SUBDIR += php5-openssl
     SUBDIR += pinentry
     SUBDIR += qca-ossl
