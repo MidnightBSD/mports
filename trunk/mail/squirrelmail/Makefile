@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.12 2009/09/24 02:50:02 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.13 2010/11/10 17:01:19 laffer1 Exp $
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.21
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A webmail system which accesses mail over IMAP
 LICENSE=	gpl2
 
-USE_PHP=	session mhash gettext mbstring pcre openssl xml
+USE_PHP=	session hash gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
 USE_BZIP2=	yes
