@@ -2,15 +2,15 @@
 # Date created:               13 December 2000
 # Whom:                       mwest@uct.ac.za
 #
-# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.4 2008/05/04 18:02:09 ctriv Exp $
+# $MidnightBSD: mports/net/rdesktop/Makefile,v 1.5 2008/09/17 21:17:38 laffer1 Exp $
 # $FreeBSD: ports/net/rdesktop/Makefile,v 1.41 2007/06/19 08:55:10 pav Exp $
 #
 
 PORTNAME=	rdesktop
 PORTVERSION=	1.6.0
+PORTREVISION?=	1
 CATEGORIES=	net comms ipv6
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RDP client for Windows NT/2000/2003 Terminal Server
@@ -25,6 +25,11 @@ MAN1=		rdesktop.1
 
 .if !defined(WITHOUT_RDESKTOP_IPV6) && !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--with-ipv6
+.endif
+
+.if defined(WITH_ICONV)
+USE_ICONV=	yes
+CONFIGURE_ARGS+=	--with-libiconv-prefix=${LOCALBASE}
 .endif
 
 .if defined(WITH_RDESKTOP_DEBUG)
