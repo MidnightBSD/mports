@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/databases/memcachedb/Makefile,v 1.1 2008/08/02 19:09:52 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcachedb/Makefile,v 1.2 2009/10/14 00:17:46 laffer1 Exp $
 
 PORTNAME=	memcachedb
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
@@ -9,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed storage system designed for persistent
 LICENSE=	bsd3
 
-LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
+LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
 
 CFLAGS=		-I"${BDB_INCLUDE_DIR}"
 CONFIUGRE_ARGS=	--enable-threads --with-bdb="${LOCALBASE}" \
