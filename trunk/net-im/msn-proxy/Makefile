@@ -1,13 +1,9 @@
-# New ports collection makefile for:	msn-proxy
-# Date created:			20 January 2008
-# Whom:				Luiz Otavio O Souza <loos.br@gmail.com>
-#
-# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.2 2008/06/13 04:15:34 laffer1 Exp $
+# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.3 2010/05/29 09:17:44 laffer1 Exp $
 # $FreeBSD: ports/net-im/msn-proxy/Makefile,v 1.1 2008/01/21 19:11:20 miwi Exp $
-#
 
 PORTNAME=	msn-proxy
 PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -16,7 +12,7 @@ COMMENT=	Messenger proxy/control daemon
 LICENSE=	other
 #almost mit/bsd ish in nature.
 
-LIB_DEPENDS=	event-1.3e:${PORTSDIR}/devel/libevent
+LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
