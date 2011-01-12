@@ -2,13 +2,14 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libevent/Makefile,v 1.2 2008/06/13 04:11:54 laffer1 Exp $
 #
 
 PORTNAME=	libevent
-PORTVERSION=	1.3e
+PORTVERSION=	1.4.14b
 CATEGORIES=	devel
 MASTER_SITES=	http://monkey.org/~provos/
+DISTNAME=	${PORTNAME}-${DISTVERSION}-stable
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Provides an API to execute callback functions on certain events
@@ -86,7 +87,11 @@ MLINKS=	event.3 event_init.3 \
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,CFLAGS =,CFLAGS +=,' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/LIBS/s/-lrt//g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|<stdint.h>|<inttypes.h>|' \
 		${WRKSRC}/epoll.c ${WRKSRC}/epoll_sub.c ${WRKSRC}/evdns.c
+
+regression-test: build
+	@(${SH} ${WRKSRC}/test/regress)
 
 .include <bsd.port.mk>
