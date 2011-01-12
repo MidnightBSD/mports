@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.9 2010/06/27 15:54:54 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBD-mysql/Makefile,v 1.10 2010/12/18 06:40:41 laffer1 Exp $
 
 PORTNAME=	DBD-mysql
-PORTVERSION=	4.017
+PORTVERSION=	4.018
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/00$//}
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
