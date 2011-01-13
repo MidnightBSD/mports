@@ -34,7 +34,6 @@ include/tk%%TK_VER%%/unix/tkUnixInt.h
 include/tk%%TK_VER%%/unix/tkUnixPort.h
 lib/libtk%%SHORT_TK_VER%%.a
 lib/libtk%%SHORT_TK_VER%%.so
-lib/libtk%%SHORT_TK_VER%%.so.1
 lib/libtkstub%%TK_VER%%.a
 lib/tk%%TK_VER%%/bgerror.tcl
 lib/tk%%TK_VER%%/button.tcl
