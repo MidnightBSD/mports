@@ -2,7 +2,7 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.6 2009/09/20 01:36:29 smultron Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.7 2010/08/14 04:38:29 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
 #
@@ -24,7 +24,8 @@ USE_BZIP2=	yes
 
 LIB_DEPENDS=	gweather.1:${PORTSDIR}/net/libgweather \
 		canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		polkit-gnome.0:${PORTSDIR}/sysutils/policykit-gnome
+		polkit-gnome.0:${PORTSDIR}/sysutils/policykit-gnome \
+                polkit.2:${PORTSDIR}/sysutils/policykit
 
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
