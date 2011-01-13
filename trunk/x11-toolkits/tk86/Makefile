@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/tk86/Makefile,v 1.1 2010/01/01 17:11:21 laffer1 Exp $
 
 PORTNAME=	tk
 PORTVERSION=	8.6.b.1
@@ -23,9 +23,9 @@ CONFIGURE_ENV=	PORTSDIR=${PORTSDIR} TK_LIB_FILE=libtk${SHORT_TK_VER}.so.1
 MAKE_ENV=	SHORT_TK_VER=${SHORT_TK_VER}
 PLIST_SUB=	TK_VER=${TK_VER} SHORT_TK_VER=${SHORT_TK_VER}
 NOPRECIOUSMAKEVARS=	yes # Otherwise 'make readmes' is broken
-MANCOMPRESSED=	no
 DATADIR=	${PREFIX}/share/${PORTNAME}${TK_VER}
 SUB_FILES=	pkgIndex.tcl
+NO_INSTALL_MANPAGES=yes
 
 .if !defined(BUILDING_TK_THREADS)
 USE_TCL=	${SHORT_TK_VER}
@@ -96,23 +96,6 @@ MAN3=	3DBorder.3 AddOption.3 BindTable.3 CanvPsY.3 CanvTkwin.3 \
 	Tk_Init.3 Tk_Main.3 TkInitStubs.3 WindowId.3 ttk_Geometry.3 \
 	ttk_Theme.3
 
-MANN=	bell.n bind.n bindtags.n bitmap.n button.n busy.n canvas.n \
-	checkbutton.n chooseColor.n chooseDirectory.n clipboard.n colors.n \
-	console.n cursors.n destroy.n dialog.n entry.n event.n focus.n \
-	focusNext.n font.n fontchooser.n frame.n getOpenFile.n grab.n grid.n \
-	keysyms.n image.n label.n labelframe.n listbox.n loadTk.n lower.n \
-	menu.n menubar.n menubutton.n message.n messageBox.n option.n \
-	optionMenu.n options.n pack-old.n pack.n panedwindow.n palette.n \
-	photo.n place.n popup.n radiobutton.n raise.n scale.n scrollbar.n \
-	selection.n send.n spinbox.n text.n tk.n tkerror.n tkvars.n tkwait.n \
-	toplevel.n winfo.n wm.n ttk_button.n ttk_checkbutton.n ttk_combobox.n \
-	ttk_entry.n ttk_frame.n ttk_image.n ttk_intro.n ttk_label.n \
-	ttk_labelframe.n ttk_menubutton.n ttk_notebook.n ttk_panedwindow.n \
-	ttk_progressbar.n ttk_radiobutton.n ttk_scrollbar.n ttk_separator.n \
-	ttk_scale.n ttk_sizegrip.n ttk_spinbox.n ttk_style.n ttk_treeview.n \
-	ttk_vsapi.n ttk_widget.n
-
-# MLINKS generated via  awk '/ln/ {print "\t" $2,$3,"\\"}' unix/mkLinks
 MLINKS=	3DBorder.3 Tk_Alloc3DBorderFromObj.3 \
 	3DBorder.3 Tk_Get3DBorder.3 \
 	3DBorder.3 Tk_Get3DBorderFromObj.3 \
@@ -446,7 +429,7 @@ post-install:
 	${MKDIR} ${MANPREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/../doc/wish.1 ${MANPREFIX}/man/man1/wish${TCL_VER}${THREADS_SUFFIX}.1
 .if !defined(BUILDING_TK_THREADS) && defined(WITH_TK85_MAN)
-. for mp in ${MAN3} ${MANN}
+. for mp in ${MAN3} 
 	@${REINPLACE_CMD} -e 's|^.so man.macros|.so ${DATADIR}/man.macros|'	\
 		${WRKSRC}/../doc/${mp}
 . endfor
