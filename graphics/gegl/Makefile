@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.6 2011/01/01 16:25:51 laffer1 Exp $
 # $FreeBSD: ports/graphics/gegl/Makefile,v 1.18 2010/06/21 12:07:51 gahr Exp $
 
 PORTNAME=	gegl
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graph based image processing framework
 LICENSE=	gpl3
 
-LIB_DEPENDS=	babl-0.1:${PORTSDIR}/x11/babl \
+LIB_DEPENDS=	babl-0.0:${PORTSDIR}/x11/babl \
     		execinfo.1:${PORTSDIR}/devel/libexecinfo
 
 OPTIONS=	CAIRO		"Enable Cairo" on \
