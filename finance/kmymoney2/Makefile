@@ -1,17 +1,11 @@
-# New ports collection makefile for:	KMyMoney
-# Date created:				21 June 2004
-# Whom:					Alexander Novitsky
-#
-# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.1 2008/04/29 03:32:12 laffer1 Exp $
+# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.2 2009/09/20 01:10:30 laffer1 Exp $
 # $FreeBSD: ports/finance/kmymoney2/Makefile,v 1.17 2007/10/04 00:50:27 edwin Exp $
-#
 
 PORTNAME=	kmymoney2
 PORTVERSION=	0.8.7
 PORTREVISION=	1
 CATEGORIES=	finance
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/KMyMoney/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE-based personal finance assistant
