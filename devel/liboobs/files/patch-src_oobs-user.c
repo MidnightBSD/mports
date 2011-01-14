@@ -1,11 +1,14 @@
---- oobs/oobs-user.c.orig	2007-10-30 09:16:53.406333206 -0400
-+++ oobs/oobs-user.c	2007-10-30 09:40:02.560797530 -0400
-@@ -18,12 +18,18 @@
-  * Authors: Carlos Garnacho Parro  <carlosg@gnome.org>
+--- oobs/oobs-user.c.orig	2010-01-31 17:36:52.000000000 +0000
++++ oobs/oobs-user.c	2010-01-31 17:40:21.000000000 +0000
+@@ -19,13 +19,24 @@
+  *          Milan Bouchet-Valat <nalimilan@club.fr>.
   */
  
-+#if defined(HAVE_CONFIG_H)
-+#include <config.h>
++#ifdef __FreeBSD__
++# include <sys/param.h>
++# if __FreeBSD_version >= 900007
++#  define HAVE_UTMPX_H
++# endif
 +#endif
 +
  #include <glib-object.h>
@@ -16,20 +19,27 @@
 +#ifdef HAVE_CRYPT_H
  #include <crypt.h>
 +#endif
- #include <utmp.h>
++#ifdef HAVE_UTMPX_H
+ #include <utmpx.h>
++#endif
  
+ #include "oobs-object-private.h"
  #include "oobs-usersconfig.h"
-@@ -852,6 +858,7 @@
- 
-   login = oobs_user_get_login_name (user);
- 
-+#if 0 /* FreeBSD does not have ut_type in utmp */
-   while (!match && (entry = getutent ()) != NULL)
-     {
-       match = (entry->ut_type == USER_PROCESS &&
-@@ -862,4 +869,5 @@
-   endutent ();
+@@ -1252,6 +1263,7 @@ oobs_user_set_locale (OobsUser *user, co
+ gboolean
+ oobs_user_get_active (OobsUser *user)
+ {
++#ifdef HAVE_UTMPX_H
+   struct utmpx *entry;
+   const gchar *login;
+   gboolean match = FALSE;
+@@ -1272,6 +1284,9 @@ oobs_user_get_active (OobsUser *user)
+   endutxent ();
  
    return match;
++#else
++  return FALSE;
 +#endif
  }
+ 
+ /**
