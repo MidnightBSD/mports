@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.4 2010/02/27 22:06:44 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.5 2011/01/13 22:53:30 laffer1 Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.8
+PORTVERSION=	0.10.11
+PORTREVISION=	0
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -11,17 +12,18 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 LICENSE=        gpl2
 
-CFLAGS:=	${CFLAGS} -O2
-USE_XLIB=	yes
+LIB_DEPENDS=	orc-0.4.0:${PORTSDIR}/devel/orc
+
+CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnometarget gnomelibs
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd6.1 \
-	  --host=${ARCH}-portbld-freebsd6.1 \
-	  --target=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0 \
+	  --host=${ARCH}-portbld-freebsd7.0 \
+	  --target=${ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	PKG_CONFIG=${PKG_CONFIG} \
 		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} -fno-force-addr" \
@@ -36,9 +38,16 @@ GST_VERSION=${PORTVERSION:C/..$//}
 .include <bsd.port.pre.mk>
 
 post-patch:
+	${CP} ${FILESDIR}/config.sub ${FILESDIR}/config.guess \
+		${WRKSRC}
 	@${REINPLACE_CMD} -e \
 		's|make|${GMAKE}|' \
 		${WRKSRC}/gst-libs/ext/Makefile.in
-	${CP} ${FILESDIR}/config.sub ${FILESDIR}/config.guess \
-		${WRKSRC}
+	@${REINPLACE_CMD} -e 's|/usr/bin|${LOCALBASE}/bin|g'\
+		${WRKSRC}/gst-libs/ext/ffmpeg/doc/texi2pod.pl
+	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
+		${WRKSRC}/configure
+	@cd ${WRKSRC}/gst-libs/ext/ffmpeg/libavcodec && \
+		${LN} -s x86 i386 && ${LN} -s x86 amd64
+
 .include <bsd.port.post.mk>
