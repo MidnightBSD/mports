@@ -6,7 +6,7 @@
 # Created by: Lucas Holt <luke@midnightbsd.org>
 # Date:		Nov 23 2007
 #
-# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.2 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.3 2010/02/27 21:30:44 laffer1 Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 
@@ -52,13 +52,15 @@ GST_SHLIB_VERSION=	1
 #
 # These are the current supported gstreamer-plugins modules
 #
-_USE_GSTREAMER10_ALL=	a52dec aalib annodex bz2 cairo cdaudio cdparanoia dts \
-			dv dvd esound faac faad ffmpeg flac gconf gio gnomevfs \
-			gnonlin gsm hal ivorbis jack jpeg ladspa lame \
-			libcaca libmms libpng libvisual mm mp3 mpeg2enc mpeg2dec \
-			musepack nas neon ogg pango pulse python sdl shout2 sidplay \
-			sndfile spc soundtouch soup speex taglib \
-			theora vorbis wavpack x264 xvid
+_USE_GSTREAMER10_ALL=	a52dec aalib amrnb amrwbdec annodex bz2 cairo \
+			cdaudio cdparanoia dts dv dvd esound faac faad \
+			ffmpeg flac gconf gio gl gnomevfs gnonlin \
+			gsm hal jack jpeg ladspa lame libcaca libmms \
+			libpng libvisual mm mp3 mpeg2enc mpeg2dec musepack \
+			nas neon ogg pango pulse python resindvd schroedinger \
+			sdl shout2 sidplay sndfile spc soundtouch soup \
+			speex taglib theora twolame v4l2 vorbis vdpau \
+			vp8 wavpack x264 xvid
 
 # other plugins
 OTHER_GSTREAMER_PLUGINS+=bad good ugly core yes ${_USE_GSTREAMER10_ALL} fluendo-mp3 mad
@@ -77,6 +79,10 @@ gconf_DEPENDS=	devel/gstreamer-plugins-gconf
 
 # Audio Plugins Section
 a52dec_DEPENDS=	audio/gstreamer-plugins-a52dec
+
+amrnb_DEPENDS=	audio/gstreamer-plugins-amrnb
+
+amrwbdec_DEPENDS=	audio/gstreamer-plugins-amrwbdec
 
 artsd_DEPENDS=	audio/gstreamer-plugins-artsd
 
@@ -97,8 +103,6 @@ flac_DEPENDS=	audio/gstreamer-plugins-flac
 fluendo-mp3_DEPENDS=	audio/gstreamer-plugins-fluendo-mp3
 
 gsm_DEPENDS=	audio/gstreamer-plugins-gsm
-
-ivorbis_DEPENDS=	audio/gstreamer-plugins-ivorbis
 
 hal_DEPENDS=	sysutils/gstreamer-plugins-hal
 
@@ -151,6 +155,8 @@ speex_DEPENDS=	audio/gstreamer-plugins-speex
 
 taglib_DEPENDS=	audio/gstreamer-plugins-taglib
 
+twolame_DEPENDS=	audio/gstreamer-plugins-twolame
+
 vorbis_DEPENDS=	audio/gstreamer-plugins-vorbis
 
 wavpack_DEPENDS=	audio/gstreamer-plugins-wavpack
@@ -172,6 +178,8 @@ annodex_DEPENDS=	multimedia/gstreamer-plugins-annodex
 cairo_DEPENDS=	graphics/gstreamer-plugins-cairo
 
 gdkpixbuf_DEPENDS=	graphics/gstreamer-plugins-gdkpixbuf
+
+gl_DEPENDS=		graphics/gstreamer-plugins-gl
 
 hermes_DEPENDS=	graphics/gstreamer-plugins-hermes
 
@@ -213,6 +221,10 @@ mpeg2enc_DEPENDS=	multimedia/gstreamer-plugins-mpeg2enc
 
 mplex_DEPENDS=	multimedia/gstreamer-plugins-mplex
 
+v4l2_DEPENDS=	multimedia/gstreamer-plugins-v4l2
+
+vp8_DEPENDS=	multimedia/gstreamer-plugins-vp8
+
 # XXX: This is a quick solution for ports with USE_GSTREAMER=python
 #      but without USE_PYTHON.
 PYTHON_PKGNAMEPREFIX?=	py*-
@@ -222,6 +234,10 @@ python_NAME=	gstreamer
 python_GST_PREFIX=      ${PYTHON_PKGNAMEPREFIX}
 python_GST_SUFX=        # empty
 python_GST_VERSION=     0.10.4
+
+resindvd_DEPENDS=	multimedia/gstreamer-plugins-resindvd
+
+schroedinger_DEPENDS=	multimedia/gstreamer-plugins-schroedinger
 
 theora_DEPENDS=	multimedia/gstreamer-plugins-theora
 
@@ -234,6 +250,10 @@ xvid_DEPENDS=	multimedia/gstreamer-plugins-xvid
 # Net Plugins Section
 
 libmms_DEPENDS=	net/gstreamer-plugins-libmms
+
+# X11 Plugin Section
+
+vdpau_DEPENDS=	x11/gstreamer-plugins-vdpau
 
 # X11-Toolkits Plugins Section
 pango_DEPENDS=	x11-toolkits/gstreamer-plugins-pango
