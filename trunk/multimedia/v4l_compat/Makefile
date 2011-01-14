@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/v4l_compat/Makefile,v 1.3 2010/09/06 21:16:54 laffer1 Exp $
 
 PORTNAME=	v4l_compat
 PORTVERSION=	1.0.${DUMMYDATE}
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	FREEBSD_LOCAL/kwm
 DUMMYDATE=	20100403
