@@ -1,11 +1,5 @@
-# New ports collection makefile for:	gstreamer-plugins-bad
-# Date created:			20 Jan 2006
-# Whom:				Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-plugins-bad/Makefile,v 1.1 2007/10/23 21:12:14 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins-bad/Makefile,v 1.10 2007/06/26 12:37:51 ahze Exp $
-#    $MCom: ports/multimedia/gstreamer-plugins-bad/Makefile,v 1.7 2006/09/14 21:25:16 ahze Exp $
-#
 
 CATEGORIES=	multimedia
 
@@ -16,8 +10,10 @@ GST_PLUGIN_SUFFIX=	-bad
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer-plugins
 
-BUILD_DEPENDS+=	gstreamer-plugins>=${GST_VERSION}${GST_MINOR_VERSION}:${PORTSDIR}/multimedia/gstreamer-plugins
-RUN_DEPENDS+=	gstreamer-plugins>=${GST_VERSION}${GST_MINOR_VERSION}:${PORTSDIR}/multimedia/gstreamer-plugins
+BUILD_DEPENDS+=	gstreamer-plugins>=${GST_VERSION}${GST_MINOR_VERSION}:${PORTSDIR}/multimedia/gstreamer-plugins \
+		v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
+RUN_DEPENDS+=	gstreamer-plugins>=${GST_VERSION}${GST_MINOR_VERSION}:${PORTSDIR}/multimedia/gstreamer-plugins \
+		v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
 
 gst_bad_DIST=	bad
 BAD_GST_DIRS=	gst-libs sys gst po
