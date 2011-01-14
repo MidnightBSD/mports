@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/system-tools-backends/Makefile,v 1.3 2009/09/25 00:50:34 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/system-tools-backends/Makefile,v 1.4 2009/12/28 23:37:07 laffer1 Exp $
 
 PORTNAME=	system-tools-backends
-PORTVERSION=	2.6.1
-PORTREVISION=	1
+PORTVERSION=	2.10.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,7 +11,7 @@ COMMENT=	Backend system admin scripts for gnome-system-tools
 LICENSE=        lgpl
 BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DBus.pm:${PORTSDIR}/devel/p5-Net-DBus
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		polkit-dbus.2:${PORTSDIR}/sysutils/policykit
+		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Net/DBus.pm:${PORTSDIR}/devel/p5-Net-DBus
 
 USE_BZIP2=	yes
