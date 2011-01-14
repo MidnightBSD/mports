@@ -1,11 +1,5 @@
-# New ports collection makefile for:	gstreamer-plugins-good
-# Date created:			20 Jan 2006
-# Whom:				Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/gstreamer-plugins-good/Makefile,v 1.1 2007/10/22 02:58:06 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gstreamer-plugins-good/Makefile,v 1.7 2007/06/19 12:55:04 ahze Exp $
-#    $MCom: ports/multimedia/gstreamer-plugins-good/Makefile,v 1.10 2006/09/14 22:41:06 ahze Exp $
-#
 
 PORTREVISION=	0
 CATEGORIES=	multimedia
