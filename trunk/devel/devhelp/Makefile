@@ -2,13 +2,13 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.5 2010/01/23 23:41:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.6 2010/05/08 17:11:48 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
 PORTNAME=	devhelp
 PORTVERSION=	0.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	devel gnome
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C,^([[:digit:]]+\.[[:digit:]]+).*,\1,}
@@ -21,10 +21,10 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 RUN_DEPENDS=	${LOCALBASE}/lib/${MOZILLA}/components/libwidget_gtk2.so:${PORTSDIR}/www/${MOZILLA}
 
-MOZILLA=	browser35
+MOZILLA=	browser3
 
 .if !defined(WITH_MOZILLA)
-MOZILLA=	browser35
+MOZILLA=	browser3
 .else
 .if ${WITH_MOZILLA} == "xulrunner"
 MOZILLA=	xulrunner
