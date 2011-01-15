@@ -1,7 +1,5 @@
-Index: _autosetup
-===================================================================
---- _autosetup	(revision 429)
-+++ _autosetup	(working copy)
+--- _autosetup.orig	2008-09-09 12:55:19 -0400
++++ _autosetup	2011-01-14 18:12:28 -0500
 @@ -42,7 +42,7 @@
  	    version="0";
  	fi
@@ -11,3 +9,17 @@ Index: _autosetup
  	    if [ -z "$version" ]; then version=0; fi
  	    success=`echo "$version" "$desired" | awk '{ if ($1 >= $2) { print "yes";} else {print "no";}} '`
  	else
+@@ -87,13 +87,6 @@
+       echo >/dev/null
+   else
+       ## solaris m4 works fine
+-      if test -f /usr/ccs/bin/m4 -o "`uname -s`" = "FreeBSD"
+-      then
+-         echo >/dev/null
+-      else 
+-         echo "Couldn't find a new-enough version of 'm4', please install one!";
+-         exit 1;
+-      fi
+       # build_lsc_aux "m4-1.4.1"
+   fi
+ 
