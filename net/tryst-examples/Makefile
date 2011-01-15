@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/tryst-examples/Makefile,v 1.1 2010/01/21 01:54:11 laffer1 Exp $
 
 PORTNAME=	tryst
 PORTVERSION=	1.0.8
@@ -12,8 +12,6 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	TBrowser and TChat
 LICENSE=	lgpl
-
-LIB_DEPENDS=	dns_sd:${PORTSDIR}/net/mDNSResponder
 
 USE_GNUSTEP=	yes
 USE_GNUSTEP_PREFIX=	yes
@@ -31,9 +29,16 @@ TRYST_PORT?=	net/tryst
 MASTER_SITES=	http://gnustep.dyndns.org/Downloads/Frameworks/
 .endif
 
+.include <bsd.port.pre.mk>
+
+.if (${OSVERSION} < 3004)
+LIB_DEPENDS=    dns_sd:${PORTSDIR}/net/mDNSResponder
+.endif
+
+
 # to build on 64bit
 post-patch:
 	${REINPLACE_CMD} -e 's|-Werror||' \
 		${WRKSRC}/Examples/TChat/GNUmakefile.preamble
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
