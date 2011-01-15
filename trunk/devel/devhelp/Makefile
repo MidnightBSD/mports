@@ -2,7 +2,7 @@
 # Date created:				29 May 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.6 2010/05/08 17:11:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/devhelp/Makefile,v 1.7 2011/01/15 04:09:10 laffer1 Exp $
 # $FreeBSD: ports/devel/devhelp/Makefile,v 1.26 2007/09/12 19:25:47 marcus Exp $
 #
 
@@ -45,7 +45,7 @@ USE_LDCONFIG=	${LOCALBASE}/lib/${MOZILLA}
 GCONF_SCHEMAS=	devhelp.schemas
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${PTHREAD_LIBS} -L${LOCALBASE}/lib"
-.if ${MOZILLA} == "browser35"
+.if ${MOZILLA} == "browser3"
 CONFIGURE_ARGS=	--with-gecko=firefox
 .else
 CONFIGURE_ARGS=	--with-gecko=${MOZILLA}
@@ -71,13 +71,5 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gedit-plugin||' \
 		${WRKSRC}/misc/Makefile.in
 .endif
-
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} " By default the port uses www/firefox for html rendering, but you can"
-	@${ECHO_MSG} " change this by defining WITH_MOZILLA to one of the following values:"
-	@${ECHO_MSG}
-	@${ECHO_MSG} "  xulrunner seamonkey      "
-	@${ECHO_MSG} ""
 
 .include <bsd.port.post.mk>
