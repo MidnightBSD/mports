@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/audio/amarok/files/patch-amarok_src_metadata_audible_audibleproperties.h,v 1.1 2006/07/03 14:44:38 mich Exp $
+$FreeBSD: ports/audio/amarok/files/patch-amarok_src_metadata_audible_audibleproperties.h,v 1.2 2009/08/02 19:32:11 mezz Exp $
 
 --- amarok/src/metadata/audible/audibleproperties.h.orig
 +++ amarok/src/metadata/audible/audibleproperties.h
