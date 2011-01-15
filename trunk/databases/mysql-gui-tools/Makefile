@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.2 2009/09/20 00:36:07 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.3 2009/12/13 02:16:39 laffer1 Exp $
 
 PORTNAME=	mysql-gui-tools
 PORTVERSION=	5.0r14
@@ -15,6 +15,8 @@ LIB_DEPENDS=	mysqlclient.15:${PORTSDIR}/databases/mysql50-client \
 		gtkmm-2.4:${PORTSDIR}/x11-toolkits/gtkmm24 \
 		pcre.0:${PORTSDIR}/devel/pcre \
 		xml2.5:${PORTSDIR}/textproc/libxml2
+
+BROKEN=		does not build with newer gnome sources
 
 OPTIONS=	QUERY_BROWSER	"Build the MySQL Query Browser"	on \
 		ADMINISTRATOR	"Build the MySQL Administrator"	on
