@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.12 2010/11/20 03:56:24 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.13 2010/11/20 03:58:53 laffer1 Exp $
 
 PORTNAME=	bitlbee
 PORTVERSION=	1.2.8
@@ -17,7 +17,7 @@ MAN8=		bitlbee.8
 PORTDOCS=	AUTHORS CHANGES CREDITS FAQ README
 PORTEXAMPLES=	bitlbee.conf motd.txt
 
-GNU_CONFIGURE=	yes
+HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20
 USE_RC_SUBR=	bitlbee
@@ -115,6 +115,11 @@ post-patch:
 	@${REINPLACE_CMD} \
 		-e "s:/var/lib/bitlbee:/var/db/bitlbee:" \
 		${WRKSRC}/doc/bitlbee.8
+.if ${OSVERSION} < 3000
+	@${REINPLACE_CMD} \
+		-e "s:-iquote:-I:g" \
+		${WRKSRC}/configure
+.endif
 
 pre-install:
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
