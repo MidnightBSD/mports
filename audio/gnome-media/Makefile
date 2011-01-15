@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.5 2010/02/27 16:09:19 laffer1 Exp $
+# $MidnightBSD: mports/audio/gnome-media/Makefile,v 1.6 2011/01/15 04:22:38 laffer1 Exp $
 
 PORTNAME=	gnome-media
 PORTVERSION=	2.30.0
@@ -46,8 +46,6 @@ PLIST_SUB+=	PULSE="@comment "
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|[$$][(]CDROM_HOST[)]|freebsd|g' \
-		${WRKSRC}/gnome-cd/Makefile.in
 	@${REINPLACE_CMD} -e 's|acd0c|acd0|g ; s|== "xyes|= "xyes|g' \
 		-e 's|have_gladeui=true|have_gladeui=false|g' \
 		${WRKSRC}/configure
