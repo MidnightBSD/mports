@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/audio/amarok/files/patch-amarok_src_metadata_mp4_mp4properties.cpp,v 1.1 2006/07/03 14:44:38 mich Exp $
+$FreeBSD: ports/audio/amarok/files/patch-amarok_src_metadata_mp4_mp4properties.cpp,v 1.2 2009/08/02 19:32:11 mezz Exp $
 
 --- amarok/src/metadata/mp4/mp4properties.cpp.orig
 +++ amarok/src/metadata/mp4/mp4properties.cpp
