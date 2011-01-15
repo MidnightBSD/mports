@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.4 2010/03/26 00:57:32 laffer1 Exp $
+# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.5 2010/12/18 07:41:34 laffer1 Exp $
 
 PORTNAME=	boinc-setiathome-enhanced
 PORTVERSION=	6.08
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	astro
 MASTER_SITES=	ftp://rene-ladan.nl/pub/distfiles/
 DISTNAME=	setiathome-svn-412
@@ -13,8 +13,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/include/fftw3.h:${PORTSDIR}/math/fftw3 \
 		${LOCALBASE}/include/boinc/std_fixes.h:${PORTSDIR}/net/boinc-client \
-		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash \
-		${LOCALBASE}/bin/m4:${PORTSDIR}/devel/m4
+		${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	fftw3f:${PORTSDIR}/math/fftw3-float
 
@@ -77,12 +76,12 @@ pre-configure:
 	(cd ${WRKSRC}; ./_autosetup ; ${REINPLACE_CMD} -E -e "s|/bin/sh|${LOCALBASE}/bin/bash|" ./configure)
 
 do-install:
-	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${BOINC_HOME}/projects
-	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${BOINC_HOME}/projects/${SETI_SITE}
-	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/client/${SETI_BINARY} ${BOINC_HOME}/projects/${SETI_SITE}/
+	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${FAKE_DESTDIR}${BOINC_HOME}/projects
+	${INSTALL} -d -o ${BOINC_USER} -g ${BOINC_GROUP} ${FAKE_DESTDIR}${BOINC_HOME}/projects/${SETI_SITE}
+	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/client/${SETI_BINARY} ${FAKE_DESTDIR}${BOINC_HOME}/projects/${SETI_SITE}/
 .if !defined(WITHOUT_X11)
-	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/client/seti_graphics ${BOINC_HOME}/projects/${SETI_SITE}/
+	${INSTALL_PROGRAM} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKSRC}/client/seti_graphics ${FAKE_DESTDIR}${BOINC_HOME}/projects/${SETI_SITE}/
 .endif
-	${INSTALL_DATA} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKDIR}/app_info.xml ${BOINC_HOME}/projects/${SETI_SITE}/
+	${INSTALL_DATA} -o ${BOINC_USER} -g ${BOINC_GROUP} ${WRKDIR}/app_info.xml ${FAKE_DESTDIR}${BOINC_HOME}/projects/${SETI_SITE}/
 
 .include <bsd.port.post.mk>
