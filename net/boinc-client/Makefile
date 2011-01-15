@@ -1,10 +1,5 @@
-# New ports collection makefile for:	boinc
-# Date created:				01 October 2004
-# Whom:					J.R. Oldroyd <fbsd@opal.com>
-#
-# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.3 2009/12/29 00:50:13 laffer1 Exp $
+# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.4 2010/03/25 01:32:03 laffer1 Exp $
 # $FreeBSD: ports/net/boinc-client/Makefile,v 1.35 2008/08/06 08:29:56 pav Exp $
-#
 
 PORTNAME=	boinc-client
 PORTVERSION=	6.4.5
