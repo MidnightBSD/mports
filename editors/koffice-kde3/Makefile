@@ -1,14 +1,9 @@
-# New ports collection makefile for:	koffice
-# Date created:				Sun May 14 2000 16:33:15
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.8 2010/04/26 13:09:42 laffer1 Exp $
-#
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.9 2010/12/18 08:56:36 laffer1 Exp $
 
 PORTNAME=	koffice
 PORTVERSION=	1.6.3
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	2
 CATEGORIES=	editors kde
 MASTER_SITES=	${MASTER_SITE_KDE}
@@ -35,7 +30,7 @@ LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
 		xslt:${PORTSDIR}/textproc/libxslt
 RUN_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
 
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=	libtool:22
 USE_LDCONFIG=	yes
 PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
@@ -48,11 +43,13 @@ USE_PGSQL=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
-.include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=--with-pgsqlincdir=${LOCALBASE}/include \
 		--with-pgsqllibdir=${LOCALBASE}/lib \
 		--with-pqxx-includes=${LOCALBASE}/include \
 		--with-pqxx-libraries=${LOCALBASE}/lib
 
-.include <bsd.port.post.mk>
+post-patch:
+	${REINPLACE_CMD} -e 's|%%PYTHON_VER%%|${PYTHON_VER}|g' ${WRKSRC}/configure
+
+.include <bsd.port.mk>
