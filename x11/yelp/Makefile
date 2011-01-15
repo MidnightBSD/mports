@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.8 2009/12/13 21:11:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.9 2010/05/08 17:13:57 laffer1 Exp $
 
 PORTNAME=	yelp
 PORTVERSION=	2.26.0
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		rarian.0:${PORTSDIR}/textproc/rarian
 
-USE_GECKO=	browser35<->firefox xulrunner seamonkey
+USE_GECKO=	browser3<->firefox xulrunner seamonkey
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_XORG=	ice
