@@ -1,14 +1,8 @@
-# New ports collection makefile for:   metacity
-# Date created:        21 May 2002
-# Whom:                Garrett Rooney <rooneg@electricjellyfish.net>
-#
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.5 2009/09/20 02:53:58 smultron Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.6 2009/12/31 20:18:49 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
-#    $MCom: ports/x11-wm/metacity/Makefile,v 1.101 2007/03/14 04:17:20 marcus Exp $
-#
 
 PORTNAME=	metacity
-PORTVERSION=	2.26.0
+PORTVERSION=	2.30.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,11 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A window manager for the adult in you
 LICENSE=	gpl2
 
-BUILD_DEPENDS=  zenity:${PORTSDIR}/x11/zenity
-LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
-RUN_DEPENDS=    zenity:${PORTSDIR}/x11/zenity
+BUILD_DEPENDS=	zenity:${PORTSDIR}/x11/zenity
+LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
+		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
+RUN_DEPENDS=	zenity:${PORTSDIR}/x11/zenity
 
-CONFLICTS=	expocity-[0-9]*
 USE_BZIP2=	yes
 USE_XORG=	x11 xcomposite xdamage
 USE_GETTEXT=	yes
@@ -40,6 +34,6 @@ MAN1=		metacity-message.1 metacity-theme-viewer.1 \
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-Werror||g' \
-	    	${WRKSRC}/configure
+		${WRKSRC}/configure
 
 .include <bsd.port.mk>
