@@ -2,7 +2,7 @@
 # Date created:                         27 April 2003
 # Whom:                                 Michael Nottebrock <michaelnottebrock@gmx.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/koffice-i18n-it/Makefile,v 1.1 2007/12/30 17:10:45 laffer1 Exp $
 # $FreeBSD: ports/misc/koffice-i18n-it/Makefile,v 1.27 2007/10/29 23:48:01 lofi Exp $
 #
 
@@ -26,6 +26,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 KDE_I18N=	yes
 
+USE_AUTOTOOLS=	autoconf:262
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 
 .include <bsd.port.mk>
