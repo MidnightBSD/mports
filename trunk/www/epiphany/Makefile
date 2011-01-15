@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.13 2010/05/08 17:12:24 laffer1 Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.14 2010/12/24 20:38:51 laffer1 Exp $
 
 PORTNAME=	epiphany
 PORTVERSION=	2.22.3
@@ -55,7 +55,7 @@ EXTRA_LIBS+=	`pkg-config --libs WebKitGtk`
 CONFLICTS=	epiphany-[1-9]*
 PLIST_SUB+=	GECKO="@comment "
 .else
-USE_GECKO=	browser35<->firefox xulrunner
+USE_GECKO=	browser3<->firefox xulrunner
 CONFIGURE_ARGS+=	--with-gecko=${GECKO} \
 			--with-engine=mozilla
 CONFLICTS=	epiphany-webkit-[1-9]*
