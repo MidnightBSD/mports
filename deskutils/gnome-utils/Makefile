@@ -2,43 +2,43 @@
 # Date created:				06 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/deskutils/gnome-utils/Makefile,v 1.3 2008/06/19 22:48:08 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/gnome-utils/Makefile,v 1.4 2009/09/20 00:38:22 laffer1 Exp $
 # $FreeBSD: ports/deskutils/gnome-utils/Makefile,v 1.93 2007/07/23 09:35:37 rafan Exp $
 #   $MCom: ports/deskutils/gnome-utils/Makefile,v 1.115 2007/03/11 20:46:37 mezz Exp $
 #
 
 PORTNAME=	gnome-utils
-PORTVERSION=	2.20.0.1
+PORTVERSION=	2.30.0
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	deskutils gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 support utilities
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop
+LIB_DEPENDS=	gtop-2.0.7:${PORTSDIR}/devel/libgtop \
+		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 INSTALLS_OMF=	yes
 USE_GMAKE=	yes
 GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomepanel \
-		libgnomeprintui gnomedesktop ltverhack
+USE_GNOME=	gnomeprefix gnomehack intlhack gnomepanel ltverhack
 USE_AUTOTOOLS=	libtool:22
+CONFIGURE_ARGS=	--enable-maintainer-flags=no
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-MAN1=		gnome-dictionary.1 gnome-search-tool.1 gnome-system-log.1 \
-		baobab.1
+MAN1=		gnome-dictionary.1 gnome-screenshot.1 gnome-search-tool.1 \
+		gnome-system-log.1 baobab.1
 GCONF_SCHEMAS=	gnome-dictionary.schemas gnome-screenshot.schemas \
-		gnome-search-tool.schemas logview.schemas baobab.schemas
+		gnome-search-tool.schemas baobab.schemas \
+		gnome-system-log.schemas
 
 .include <bsd.port.mk>
