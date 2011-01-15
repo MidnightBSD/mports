@@ -2,13 +2,13 @@
 # Date created: 5 August 2007
 # Whom: Stevan Tiefert
 #
-# $MidnightBSD: mports/misc/kde3-i18n-de/Makefile,v 1.1 2008/06/14 03:32:43 laffer1 Exp $
+# $MidnightBSD: mports/misc/kde3-i18n-de/Makefile,v 1.2 2008/06/16 22:02:26 stevan Exp $
 #
 
 PORTNAME=	kde3-i18n-de
-DISTNAME=	kde-i18n-de-3.5.8
-PORTVERSION=	3.5.8
-PORTREVISION=	2
+DISTNAME=	kde-i18n-de-3.5.10
+PORTVERSION=	3.5.10
+PORTREVISION=	0
 CATEGORIES=	misc german kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src/kde-i18n
@@ -22,6 +22,6 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 KDE_I18N=	yes
-WRKSRC=		${WRKDIR}/kde-i18n-de-3.5.8
+WRKSRC=		${WRKDIR}/kde-i18n-de-3.5.10
 
 .include <bsd.port.mk>
