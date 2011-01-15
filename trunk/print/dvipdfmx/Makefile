@@ -2,7 +2,7 @@
 # Date created:		8 March 2001
 # Whom:			Shen Chuan-Hsing <statue@freebsd.sinica.edu.tw>
 #
-# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.1 2007/02/25 20:10:36 laffer1 Exp $
+# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.2 2007/11/10 19:28:38 ctriv Exp $
 # $FreeBSD: ports/print/dvipdfmx/Makefile,v 1.24 2006/07/02 11:29:21 matusita Exp $
 #
 
@@ -10,7 +10,7 @@ PORTNAME=	dvipdfmx
 PORTVERSION=	20050831
 PORTREVISION=	3
 CATEGORIES=	print
-MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/current/
+MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/archive/
 DIST_SUBDIR=	dvipdfmx
 
 MAINTAINER=	ports@MidnightBSD.org
