@@ -4,11 +4,11 @@
 #
 # $FreeBSD: ports/www/epiphany-extensions/Makefile,v 1.52 2008/06/06 14:06:51 edwin Exp $
 #   $MCom: ports/www/epiphany-extensions/Makefile,v 1.105 2008/03/11 17:19:08 mezz Exp $
-# $MidnightBSD: mports/www/epiphany-extensions/Makefile,v 1.3 2008/11/07 18:03:13 ctriv Exp $
+# $MidnightBSD: mports/www/epiphany-extensions/Makefile,v 1.4 2010/05/09 18:25:06 laffer1 Exp $
 
 PORTNAME=	epiphany-extensions
 PORTVERSION=	2.22.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,7 +23,7 @@ RUN_DEPENDS=	epiphany:${PORTSDIR}/www/epiphany
 
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
-USE_GECKO=	browser35<->firefox xulrunner
+USE_GECKO=	browser3<->firefox xulrunner
 USE_GNOME=	gnomeprefix gnomehack intlhack gnometarget
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
