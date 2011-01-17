@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.2 2007/08/14 06:48:08 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-XML-Twig/Makefile,v 1.3 2009/05/23 00:07:37 laffer1 Exp $
 
 PORTNAME=	XML-Twig
-PORTVERSION=	3.29
+PORTVERSION=	3.35
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
