@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/liboobs/Makefile,v 1.2 2011/01/14 14:39:54 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboobs/Makefile,v 1.3 2011/01/17 15:13:28 laffer1 Exp $
 # $FreeBSD: ports/devel/liboobs/Makefile,v 1.6 2008/06/06 13:21:28 edwin Exp $
 
 
@@ -25,4 +25,10 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc --with-hal
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|utmpx|utmp|g' \
+		${WRKSRC}/configure
+
+.include <bsd.port.post.mk>
