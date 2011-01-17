@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.130 2010/10/23 12:03:45 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.131 2010/12/04 02:19:40 laffer1 Exp $
 #
 
     COMMENT = Text processing utilities (does not include desktop publishing)
@@ -149,6 +149,7 @@
     SUBDIR += sgmlformat
     SUBDIR += soprano
     SUBDIR += texi2html
+    SUBDIR += tidyp
     SUBDIR += urlview
     SUBDIR += wv
     SUBDIR += wv2
