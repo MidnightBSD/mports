@@ -1,11 +1,6 @@
-# New ports collection makefile for:	liboobs
-# Date created:		2006-06-06
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/liboobs/Makefile,v 1.1 2008/06/13 17:37:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboobs/Makefile,v 1.2 2011/01/14 14:39:54 laffer1 Exp $
 # $FreeBSD: ports/devel/liboobs/Makefile,v 1.6 2008/06/06 13:21:28 edwin Exp $
-#   $MCom: ports/devel/liboobs/Makefile,v 1.35 2008/03/09 18:52:59 mezz Exp $
-#
+
 
 PORTNAME=	liboobs
 PORTVERSION=	2.30.1
