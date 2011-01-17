@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.10 2011/01/15 04:07:35 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.11 2011/01/17 19:48:32 laffer1 Exp $
 
 PORTNAME=	yelp
 PORTVERSION=	2.26.0
@@ -21,9 +21,9 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui gnomedocutils gnomelibs
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/browser" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--with-gecko=${GECKO}
+CONFIGURE_ARGS=	--with-gecko=firefox
 MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
 
 GCONF_SCHEMAS=	yelp.schemas
