@@ -2,7 +2,7 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.7 2010/08/14 04:38:29 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.8 2011/01/13 22:45:10 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
 #
@@ -40,8 +40,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:22
 CONFIGURE_ARGS=	--with-kde-datadir=${LOCALBASE}/share \
 		--with-kde-docdir=${LOCALBASE}/share/doc \
-		--disable-network-manager \
-		--enable-polkit
+		--disable-network-manager
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
