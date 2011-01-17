@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.9 2010/05/08 17:13:57 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.10 2011/01/15 04:07:35 laffer1 Exp $
 
 PORTNAME=	yelp
 PORTVERSION=	2.26.0
@@ -18,7 +18,7 @@ USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_XORG=	ice
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui gnomedocutils
+USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui gnomedocutils gnomelibs
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
