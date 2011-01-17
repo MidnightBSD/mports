@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.27 2010/12/27 14:01:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.28 2010/12/27 14:02:01 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1018,7 +1018,6 @@ MASTER_SITE_QMAIL+= \
 
 .if !defined(IGNORE_MASTER_SITE_QT)
 MASTER_SITE_QT+= \
-	http://mi.mirror.garr.it/mirrors/qt/%SUBDIR%/ \
 	ftp://ftp.heanet.ie/mirrors/trolltech/pub/qt/source/%SUBDIR%/ \
 	http://download.qt.nokia.com/qt/source/%SUBDIR%/ \
 	ftp://ftp.trolltech.com/qt/source/%SUBDIR%/
