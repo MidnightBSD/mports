@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.2 2010/03/26 22:50:19 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.3 2010/03/27 00:18:36 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
@@ -14,7 +14,7 @@ COMMENT=	Sun's java 6 virtual machine release under the GPL v2
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		unzip:${PORTSDIR}/archivers/unzip \
+		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip \
 		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-base
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
