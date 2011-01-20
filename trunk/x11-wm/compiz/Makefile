@@ -1,21 +1,16 @@
-# New ports collection makefile for:	compiz
-# Date created:				Dec 20 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-# 
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.5 2008/11/07 18:20:25 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.6 2009/09/20 02:50:09 smultron Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
-#
 
 PORTNAME=	compiz
 PORTVERSION=	0.6.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 LICENSE=	agg
 
-LIB_DEPENDS=	png.5:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 XORG_CAT=	app
