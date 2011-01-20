@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/epiphany/Makefile,v 1.14 2010/12/24 20:38:51 laffer1 Exp $
+# $MidnightBSD: mports/www/epiphany/Makefile,v 1.15 2011/01/15 04:06:19 laffer1 Exp $
 
 PORTNAME=	epiphany
 PORTVERSION=	2.22.3
@@ -14,7 +14,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
                 notify.1:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes \
-    		${LOCALBASE}/share/themes/LowContrast/index.theme:${PORTSDIR}/x11-themes/gnome-themes
+		${LOCALBASE}/share/icons/HighContrastLargePrint/index.theme:${PORTSDIR}/x11-themes/gnome-themes
 
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
