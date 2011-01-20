@@ -1,3 +1,4 @@
-MD5 (xorg/app/compiz-0.6.2.tar.gz) = 7e6edfdbf0dc46b135313440edae7a53
-SHA256 (xorg/app/compiz-0.6.2.tar.gz) = 89efc2daefd79d28e2421902a6d890145df29e804bf8508773ea5a6eedb53224
-SIZE (xorg/app/compiz-0.6.2.tar.gz) = 1784471
+MD5 (xorg/app/compiz-0.8.4.tar.bz2) = 03fa78ce0c464f3a413b2a3b74f09559
+SHA256 (xorg/app/compiz-0.8.4.tar.bz2) = b02bf0d2ad3ddf5dbf82ff3eb3174f3f9336bde1c5dffd44cfc007fb7e2fe924
+RMD160 (xorg/app/compiz-0.8.4.tar.bz2) = 3ba6606e75f8d4acda669cf633f1eb1dffd8c512
+SIZE (xorg/app/compiz-0.8.4.tar.bz2) = 1131583
