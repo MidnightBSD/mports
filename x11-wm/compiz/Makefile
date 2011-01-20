@@ -1,22 +1,23 @@
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.6 2009/09/20 02:50:09 smultron Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.7 2011/01/20 14:21:34 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 
 PORTNAME=	compiz
-PORTVERSION=	0.6.2
-PORTREVISION=	2
+PORTVERSION=	0.8.4
 CATEGORIES=	x11-wm
+MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 LICENSE=	agg
 
 LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+		gtop-2.0.7:${PORTSDIR}/devel/libgtop \
 		startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
 XORG_CAT=	app
 GNU_CONFIGURE=	yes
-#USE_BZIP2=	yes
-USE_TGZ=	yes
+USE_BZIP2=	yes
+#USE_TGZ=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GL=		glu
@@ -29,6 +30,7 @@ GCONF_SCHEMAS=	gwd.schemas \
 		compiz-annotate.schemas \
 		compiz-blur.schemas \
 		compiz-clone.schemas \
+		compiz-commands.schemas \
 		compiz-core.schemas \
 		compiz-cube.schemas \
 		compiz-dbus.schemas \
@@ -37,12 +39,14 @@ GCONF_SCHEMAS=	gwd.schemas \
 		compiz-fs.schemas \
 		compiz-gconf.schemas \
 		compiz-glib.schemas \
+		compiz-gnomecompat.schemas \
 		compiz-ini.schemas \
 		compiz-inotify.schemas \
+		compiz-kconfig.schemas \
 		compiz-minimize.schemas \
 		compiz-move.schemas \
+		compiz-obs.schemas \
 		compiz-place.schemas \
-		compiz-plane.schemas \
 		compiz-png.schemas \
 		compiz-regex.schemas \
 		compiz-resize.schemas \
@@ -56,6 +60,7 @@ GCONF_SCHEMAS=	gwd.schemas \
 		compiz-wobbly.schemas \
 		compiz-zoom.schemas
 
+CONFIGURE_ARGS=	--disable-kde4
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
@@ -68,8 +73,20 @@ OPTIONS=	RSVG "Enable librsvg2 support" on \
 		FUSEFS "Enable fusefs support" off \
 		KDE "Enable KDE support" off
 
+SUB_FILES=		compiz-manager
+DESKTOP_ENTRIES=	"Compiz Manager" \
+			"A wrapper script for starting compiz" \
+			"" \
+			"compiz-manager" \
+			"Application;Core;" \
+			false
+
 post-patch:
-	@${REINPLACE_CMD} -e 's|libpng|libpng12|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|libpng|libpng14|' -e 's|gnome-desktop-2.0|gnome-desktop-2.0 gconf-2.0|g' \
+		${WRKSRC}/configure
+
+post-install:
+	${INSTALL_SCRIPT} ${WRKDIR}/compiz-manager ${PREFIX}/bin/compiz-manager
 
 .include <bsd.mport.options.mk>
 
@@ -141,6 +158,7 @@ PLIST_SUB+=		FUSEFS="@comment "
 .endif
 
 .if defined(WITH_KDE)
+EXTENSIONS+=	kde
 USE_KDEBASE_VER=	3
 CONFIGURE_ARGS+=	--enable-kde
 PLIST_SUB+=	KDE=""

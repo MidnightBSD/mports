@@ -1,142 +1,176 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.73 2007/11/10 18:29:15 ctriv Exp $
+@comment $FreeBSD: ports/x11-wm/compiz/pkg-plist,v 1.7 2009/11/28 20:06:27 marcus Exp $
 bin/compiz
-bin/gtk-window-decorator
-etc/gconf/schemas/gwd.schemas
-etc/gconf/schemas/compiz-core.schemas
-etc/gconf/schemas/compiz-annotate.schemas
-etc/gconf/schemas/compiz-blur.schemas
-etc/gconf/schemas/compiz-clone.schemas
-etc/gconf/schemas/compiz-cube.schemas
-etc/gconf/schemas/compiz-dbus.schemas
-etc/gconf/schemas/compiz-decoration.schemas
-etc/gconf/schemas/compiz-fade.schemas
-etc/gconf/schemas/compiz-fs.schemas
-etc/gconf/schemas/compiz-gconf.schemas
-etc/gconf/schemas/compiz-glib.schemas
-etc/gconf/schemas/compiz-ini.schemas
-etc/gconf/schemas/compiz-inotify.schemas
-etc/gconf/schemas/compiz-minimize.schemas
-etc/gconf/schemas/compiz-move.schemas
-etc/gconf/schemas/compiz-place.schemas
-etc/gconf/schemas/compiz-plane.schemas
-etc/gconf/schemas/compiz-png.schemas
-etc/gconf/schemas/compiz-regex.schemas
-etc/gconf/schemas/compiz-resize.schemas
-etc/gconf/schemas/compiz-rotate.schemas
-etc/gconf/schemas/compiz-scale.schemas
-etc/gconf/schemas/compiz-screenshot.schemas
-etc/gconf/schemas/compiz-svg.schemas
-etc/gconf/schemas/compiz-switcher.schemas
-etc/gconf/schemas/compiz-video.schemas
-etc/gconf/schemas/compiz-water.schemas
-etc/gconf/schemas/compiz-wobbly.schemas
-etc/gconf/schemas/compiz-zoom.schemas
+bin/compiz-manager
+%%GTK%%bin/gtk-window-decorator
+%%KDE%%bin/kde-window-decorator
 include/compiz/compiz.h
+include/compiz/compiz-common.h
+include/compiz/compiz-core.h
+include/compiz/compiz-cube.h
+include/compiz/compiz-plugin.h
+include/compiz/compiz-scale.h
 include/compiz/decoration.h
-include/compiz/cube.h
-include/compiz/scale.h
-lib/libdecoration.so.0
-lib/libdecoration.so
-lib/libdecoration.la
-lib/libdecoration.a
-lib/compiz/libglib.so
-lib/compiz/libglib.la
-lib/compiz/libglib.a
-lib/compiz/libgconf.so
-lib/compiz/libgconf.la
-lib/compiz/libgconf.a
-lib/compiz/libdecoration.so
-lib/compiz/libdecoration.la
-lib/compiz/libdecoration.a
-lib/compiz/libwobbly.so
-lib/compiz/libwobbly.la
-lib/compiz/libwobbly.a
-lib/compiz/libfade.so
-lib/compiz/libfade.la
-lib/compiz/libfade.a
-lib/compiz/libminimize.so
-lib/compiz/libminimize.la
-lib/compiz/libminimize.a
-lib/compiz/libcube.so
-lib/compiz/libcube.la
-lib/compiz/libcube.a
-lib/compiz/librotate.so
-lib/compiz/librotate.la
-lib/compiz/librotate.a
-lib/compiz/libzoom.so
-lib/compiz/libzoom.la
-lib/compiz/libzoom.a
-lib/compiz/libscale.so
-lib/compiz/libscale.la
-lib/compiz/libscale.a
-lib/compiz/libmove.so
-lib/compiz/libmove.la
-lib/compiz/libmove.a
-lib/compiz/libresize.so
-lib/compiz/libresize.la
-lib/compiz/libresize.a
-lib/compiz/libplace.so
-lib/compiz/libplace.la
-lib/compiz/libplace.a
-lib/compiz/libdbus.so
-lib/compiz/libdbus.la
-lib/compiz/libdbus.a
-lib/compiz/libswitcher.so
-lib/compiz/libswitcher.la
-lib/compiz/libswitcher.a
-lib/compiz/libwater.so
-lib/compiz/libwater.la
-lib/compiz/libwater.a
-lib/compiz/libscreenshot.so
-lib/compiz/libscreenshot.la
-lib/compiz/libscreenshot.a
-lib/compiz/libplane.so
-lib/compiz/libplane.la
-lib/compiz/libplane.a
-lib/compiz/libclone.so
-lib/compiz/libclone.la
-lib/compiz/libclone.a
-lib/compiz/libpng.so
-lib/compiz/libpng.la
-lib/compiz/libpng.a
-lib/compiz/libblur.so
-lib/compiz/libblur.la
-lib/compiz/libblur.a
-lib/compiz/libregex.so
-lib/compiz/libregex.la
-lib/compiz/libregex.a
-lib/compiz/libvideo.so
-lib/compiz/libvideo.la
-lib/compiz/libvideo.a
-lib/compiz/libini.so
-lib/compiz/libini.la
-lib/compiz/libini.a
-lib/compiz/libsvg.so
-lib/compiz/libsvg.la
-lib/compiz/libsvg.a
-lib/compiz/libannotate.so
-lib/compiz/libannotate.la
 lib/compiz/libannotate.a
-lib/window-manager-settings/libcompiz.so
-lib/window-manager-settings/libcompiz.la
-lib/window-manager-settings/libcompiz.a
-libdata/pkgconfig/libdecoration.pc
-libdata/pkgconfig/compiz.pc
+lib/compiz/libannotate.la
+lib/compiz/libannotate.so
+lib/compiz/libblur.a
+lib/compiz/libblur.la
+lib/compiz/libblur.so
+lib/compiz/libclone.a
+lib/compiz/libclone.la
+lib/compiz/libclone.so
+lib/compiz/libcommands.a
+lib/compiz/libcommands.la
+lib/compiz/libcommands.so
+lib/compiz/libcube.a
+lib/compiz/libcube.la
+lib/compiz/libcube.so
+%%DBUS%%lib/compiz/libdbus.a
+%%DBUS%%lib/compiz/libdbus.la
+%%DBUS%%lib/compiz/libdbus.so
+lib/compiz/libdecoration.a
+lib/compiz/libdecoration.la
+lib/compiz/libdecoration.so
+lib/compiz/libfade.a
+lib/compiz/libfade.la
+lib/compiz/libfade.so
+%%FUSEFS%%lib/compiz/libfs.a
+%%FUSEFS%%lib/compiz/libfs.la
+%%FUSEFS%%lib/compiz/libfs.so
+lib/compiz/libgconf.a
+lib/compiz/libgconf.la
+lib/compiz/libgconf.so
+lib/compiz/libglib.a
+lib/compiz/libglib.la
+lib/compiz/libglib.so
+lib/compiz/libgnomecompat.a
+lib/compiz/libgnomecompat.la
+lib/compiz/libgnomecompat.so
+lib/compiz/libini.a
+lib/compiz/libini.la
+lib/compiz/libini.so
+lib/compiz/libminimize.a
+lib/compiz/libminimize.la
+lib/compiz/libminimize.so
+lib/compiz/libmove.a
+lib/compiz/libmove.la
+lib/compiz/libmove.so
+lib/compiz/libobs.a
+lib/compiz/libobs.la
+lib/compiz/libobs.so
+lib/compiz/libplace.a
+lib/compiz/libplace.la
+lib/compiz/libplace.so
+lib/compiz/libpng.a
+lib/compiz/libpng.la
+lib/compiz/libpng.so
+lib/compiz/libregex.a
+lib/compiz/libregex.la
+lib/compiz/libregex.so
+lib/compiz/libresize.a
+lib/compiz/libresize.la
+lib/compiz/libresize.so
+lib/compiz/librotate.a
+lib/compiz/librotate.la
+lib/compiz/librotate.so
+lib/compiz/libscale.a
+lib/compiz/libscale.la
+lib/compiz/libscale.so
+lib/compiz/libscreenshot.a
+lib/compiz/libscreenshot.la
+lib/compiz/libscreenshot.so
+%%RSVG%%lib/compiz/libsvg.a
+%%RSVG%%lib/compiz/libsvg.la
+%%RSVG%%lib/compiz/libsvg.so
+lib/compiz/libswitcher.a
+lib/compiz/libswitcher.la
+lib/compiz/libswitcher.so
+lib/compiz/libvideo.a
+lib/compiz/libvideo.la
+lib/compiz/libvideo.so
+lib/compiz/libwater.a
+lib/compiz/libwater.la
+lib/compiz/libwater.so
+lib/compiz/libwobbly.a
+lib/compiz/libwobbly.la
+lib/compiz/libwobbly.so
+lib/compiz/libzoom.a
+lib/compiz/libzoom.la
+lib/compiz/libzoom.so
+lib/libdecoration.a
+lib/libdecoration.la
+lib/libdecoration.so
+lib/libdecoration.so.0
 libdata/pkgconfig/compiz-cube.pc
-libdata/pkgconfig/compiz-scale.pc
 libdata/pkgconfig/compiz-gconf.pc
+libdata/pkgconfig/compiz-scale.pc
+libdata/pkgconfig/compiz.pc
+libdata/pkgconfig/libdecoration.pc
+%%DATADIR%%/annotate.xml
+%%DATADIR%%/blur.xml
+%%DATADIR%%/clone.xml
+%%DATADIR%%/commands.xml
+%%DATADIR%%/core.xml
+%%DATADIR%%/cube.xml
+%%DATADIR%%/dbus.xml
+%%DATADIR%%/decoration.xml
+%%DATADIR%%/fade.xml
+%%DATADIR%%/freedesktop.png
+%%DATADIR%%/fs.xml
+%%DATADIR%%/gconf.xml
+%%DATADIR%%/glib.xml
+%%DATADIR%%/gnomecompat.xml
+%%DATADIR%%/icon.png
+%%DATADIR%%/ini.xml
+%%DATADIR%%/inotify.xml
+%%DATADIR%%/kconfig.xml
+%%DATADIR%%/minimize.xml
+%%DATADIR%%/move.xml
+%%DATADIR%%/obs.xml
+%%DATADIR%%/place.xml
+%%DATADIR%%/png.xml
+%%DATADIR%%/regex.xml
+%%DATADIR%%/resize.xml
+%%DATADIR%%/rotate.xml
+%%DATADIR%%/scale.xml
+%%DATADIR%%/schemas.xslt
+%%DATADIR%%/screenshot.xml
+%%DATADIR%%/svg.xml
+%%DATADIR%%/switcher.xml
+%%DATADIR%%/video.xml
+%%DATADIR%%/water.xml
+%%DATADIR%%/wobbly.xml
+%%DATADIR%%/zoom.xml
+%%GNOME%%@cwd %%WINDOWSETTINGSDATADIR%%
+%%GNOME%%share/gnome/wm-properties/compiz-wm.desktop
+%%GNOME%%share/gnome-control-center/keybindings/50-compiz-desktop-key.xml
+%%GNOME%%share/gnome-control-center/keybindings/50-compiz-key.xml
+%%GNOME%%@cwd %%WINDOWSETTINGSLIBDIR%%
+%%GNOME%%window-manager-settings/libcompiz.a
+%%GNOME%%window-manager-settings/libcompiz.la
+%%GNOME%%window-manager-settings/libcompiz.so
+%%GNOME%%@cwd
+share/applications/compiz.desktop
 share/locale/af/LC_MESSAGES/compiz.mo
 share/locale/ar/LC_MESSAGES/compiz.mo
 share/locale/bg/LC_MESSAGES/compiz.mo
 share/locale/bn/LC_MESSAGES/compiz.mo
+share/locale/bn_IN/LC_MESSAGES/compiz.mo
 share/locale/bs/LC_MESSAGES/compiz.mo
+share/locale/ca/LC_MESSAGES/compiz.mo
+share/locale/cs/LC_MESSAGES/compiz.mo
 share/locale/cy/LC_MESSAGES/compiz.mo
 share/locale/da/LC_MESSAGES/compiz.mo
 share/locale/de/LC_MESSAGES/compiz.mo
+share/locale/el/LC_MESSAGES/compiz.mo
 share/locale/en_GB/LC_MESSAGES/compiz.mo
+share/locale/en_US/LC_MESSAGES/compiz.mo
 share/locale/es/LC_MESSAGES/compiz.mo
 share/locale/et/LC_MESSAGES/compiz.mo
+share/locale/eu/LC_MESSAGES/compiz.mo
+share/locale/fi/LC_MESSAGES/compiz.mo
 share/locale/fr/LC_MESSAGES/compiz.mo
+share/locale/gl/LC_MESSAGES/compiz.mo
 share/locale/gu/LC_MESSAGES/compiz.mo
 share/locale/he/LC_MESSAGES/compiz.mo
 share/locale/hi/LC_MESSAGES/compiz.mo
@@ -146,119 +180,38 @@ share/locale/id/LC_MESSAGES/compiz.mo
 share/locale/it/LC_MESSAGES/compiz.mo
 share/locale/ja/LC_MESSAGES/compiz.mo
 share/locale/ka/LC_MESSAGES/compiz.mo
-share/locale/lt/LC_MESSAGES/compiz.mo
-share/locale/mk/LC_MESSAGES/compiz.mo
-share/locale/nb/LC_MESSAGES/compiz.mo
-share/locale/nl/LC_MESSAGES/compiz.mo
-share/locale/pa/LC_MESSAGES/compiz.mo
-share/locale/pt_BR/LC_MESSAGES/compiz.mo
-share/locale/ru/LC_MESSAGES/compiz.mo
-share/locale/sv/LC_MESSAGES/compiz.mo
-share/locale/ta/LC_MESSAGES/compiz.mo
-share/locale/tr/LC_MESSAGES/compiz.mo
-share/locale/vi/LC_MESSAGES/compiz.mo
-share/locale/cs/LC_MESSAGES/compiz.mo
-share/locale/fi/LC_MESSAGES/compiz.mo
-share/locale/pl/LC_MESSAGES/compiz.mo
-share/locale/zh_CN/LC_MESSAGES/compiz.mo
-share/locale/zh_TW/LC_MESSAGES/compiz.mo
-share/locale/ca/LC_MESSAGES/compiz.mo
-share/locale/el/LC_MESSAGES/compiz.mo
-share/locale/en_US/LC_MESSAGES/compiz.mo
-share/locale/gl/LC_MESSAGES/compiz.mo
 share/locale/km/LC_MESSAGES/compiz.mo
 share/locale/ko/LC_MESSAGES/compiz.mo
 share/locale/lo/LC_MESSAGES/compiz.mo
+share/locale/lt/LC_MESSAGES/compiz.mo
+share/locale/mk/LC_MESSAGES/compiz.mo
 share/locale/mr/LC_MESSAGES/compiz.mo
+share/locale/nb/LC_MESSAGES/compiz.mo
+share/locale/nl/LC_MESSAGES/compiz.mo
+share/locale/or/LC_MESSAGES/compiz.mo
+share/locale/pa/LC_MESSAGES/compiz.mo
+share/locale/pl/LC_MESSAGES/compiz.mo
 share/locale/pt/LC_MESSAGES/compiz.mo
+share/locale/pt_BR/LC_MESSAGES/compiz.mo
 share/locale/ro/LC_MESSAGES/compiz.mo
+share/locale/ru/LC_MESSAGES/compiz.mo
 share/locale/sk/LC_MESSAGES/compiz.mo
 share/locale/sl/LC_MESSAGES/compiz.mo
 share/locale/sr/LC_MESSAGES/compiz.mo
+share/locale/sv/LC_MESSAGES/compiz.mo
+share/locale/ta/LC_MESSAGES/compiz.mo
+share/locale/tr/LC_MESSAGES/compiz.mo
 share/locale/uk/LC_MESSAGES/compiz.mo
+share/locale/vi/LC_MESSAGES/compiz.mo
 share/locale/xh/LC_MESSAGES/compiz.mo
+share/locale/zh_CN/LC_MESSAGES/compiz.mo
+share/locale/zh_TW/LC_MESSAGES/compiz.mo
 share/locale/zu/LC_MESSAGES/compiz.mo
-share/compiz/icon.png
-share/compiz/freedesktop.png
-share/compiz/core.xml
-share/compiz/annotate.xml
-share/compiz/blur.xml
-share/compiz/clone.xml
-share/compiz/cube.xml
-share/compiz/dbus.xml
-share/compiz/decoration.xml
-share/compiz/fade.xml
-share/compiz/fs.xml
-share/compiz/gconf.xml
-share/compiz/glib.xml
-share/compiz/ini.xml
-share/compiz/inotify.xml
-share/compiz/minimize.xml
-share/compiz/move.xml
-share/compiz/place.xml
-share/compiz/plane.xml
-share/compiz/png.xml
-share/compiz/regex.xml
-share/compiz/resize.xml
-share/compiz/rotate.xml
-share/compiz/scale.xml
-share/compiz/screenshot.xml
-share/compiz/svg.xml
-share/compiz/switcher.xml
-share/compiz/video.xml
-share/compiz/water.xml
-share/compiz/wobbly.xml
-share/compiz/zoom.xml
-share/compiz/schemas.xslt
-share/gnome/wm-properties/compiz.desktop
-@dirrm etc/gconf/gconf.xml.defaults
-@dirrm etc/gconf/schemas
-@dirrm etc/gconf
-@dirrm include/compiz
+@dirrmtry share/applications
+@dirrmtry share/locale/en_US/LC_MESSAGES
+@dirrmtry share/locale/en_US
+@dirrmtry share/locale/lo/LC_MESSAGES
+@dirrmtry share/locale/lo
+@dirrm %%DATADIR%%
 @dirrm lib/compiz
-@dirrm lib/window-manager-settings
-@dirrm share/locale/cs/LC_MESSAGES
-@dirrm share/locale/cs
-@dirrm share/locale/fi/LC_MESSAGES
-@dirrm share/locale/fi
-@dirrm share/locale/pl/LC_MESSAGES
-@dirrm share/locale/pl
-@dirrm share/locale/zh_CN/LC_MESSAGES
-@dirrm share/locale/zh_CN
-@dirrm share/locale/zh_TW/LC_MESSAGES
-@dirrm share/locale/zh_TW
-@dirrm share/locale/ca/LC_MESSAGES
-@dirrm share/locale/ca
-@dirrm share/locale/el/LC_MESSAGES
-@dirrm share/locale/el
-@dirrm share/locale/en_US/LC_MESSAGES
-@dirrm share/locale/en_US
-@dirrm share/locale/gl/LC_MESSAGES
-@dirrm share/locale/gl
-@dirrm share/locale/km/LC_MESSAGES
-@dirrm share/locale/km
-@dirrm share/locale/ko/LC_MESSAGES
-@dirrm share/locale/ko
-@dirrm share/locale/lo/LC_MESSAGES
-@dirrm share/locale/lo
-@dirrm share/locale/mr/LC_MESSAGES
-@dirrm share/locale/mr
-@dirrm share/locale/pt/LC_MESSAGES
-@dirrm share/locale/pt
-@dirrm share/locale/ro/LC_MESSAGES
-@dirrm share/locale/ro
-@dirrm share/locale/sk/LC_MESSAGES
-@dirrm share/locale/sk
-@dirrm share/locale/sl/LC_MESSAGES
-@dirrm share/locale/sl
-@dirrm share/locale/sr/LC_MESSAGES
-@dirrm share/locale/sr
-@dirrm share/locale/uk/LC_MESSAGES
-@dirrm share/locale/uk
-@dirrm share/locale/xh/LC_MESSAGES
-@dirrm share/locale/xh
-@dirrm share/locale/zu/LC_MESSAGES
-@dirrm share/locale/zu
-@dirrm share/compiz
-@dirrm share/gnome/wm-properties
-@dirrm share/gnome
+@dirrm include/compiz
