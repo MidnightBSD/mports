@@ -2,12 +2,12 @@
 # Date created:         Sun Aug 13 12:36:14 CDT 1995
 # Whom:                 erich@rrnet.com
 #
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.12 2010/04/25 22:59:31 laffer1 Exp $
+# $MidnightBSD: mports/security/sudo/Makefile,v 1.13 2010/10/09 21:36:36 laffer1 Exp $
 # $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
 #
 
 PORTNAME=	sudo
-PORTVERSION=	1.7.4.4
+PORTVERSION=	1.7.4.6
 CATEGORIES=	security
 MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://obsd.isc.org/pub/sudo/ \
@@ -15,7 +15,7 @@ MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
 		ftp://boulder.tele.dk/pub/sudo/ \
 		ftp://core.ring.gr.jp/pub/misc/sudo/ \
 		ftp://ftp.wiretapped.net/pub/security/host-security/sudo/
-DISTNAME=	${PORTNAME}-1.7.4p4
+DISTNAME=	${PORTNAME}-1.7.4p6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
