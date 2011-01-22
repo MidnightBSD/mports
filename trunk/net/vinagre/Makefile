@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/vinagre/Makefile,v 1.1 2010/09/06 19:54:53 laffer1 Exp $
 
 PORTNAME=	vinagre
 PORTVERSION=	2.30.2
@@ -11,7 +11,7 @@ COMMENT=	VNC client for the GNOME Desktop
 LICENSE=	gpl3
 
 LIB_DEPENDS=	gtk-vnc-1.0.0:${PORTSDIR}/net/gtk-vnc \
-    		avahi-core.7:${PORTSDIR}/net/avahi-app \
+    		avahi-core.6:${PORTSDIR}/net/avahi-app \
 		avahi-ui.0:${PORTSDIR}/net/avahi-gtk \
 		gnome-keyring:${PORTSDIR}/security/libgnome-keyring
 
