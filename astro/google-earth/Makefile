@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.10 2009/05/26 00:19:47 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.11 2009/05/26 00:25:40 laffer1 Exp $
 
 PORTNAME=	google-earth
-PORTVERSION=	5.0.11337.1968
+PORTVERSION=	5.1.3535.3218
 CATEGORIES=	astro deskutils geography
 MASTER_SITES=	http://dl.google.com/earth/client/current/
 DISTNAME=	GoogleEarthLinux
