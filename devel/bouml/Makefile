@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/bouml/Makefile,v 1.4 2009/12/31 23:49:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/bouml/Makefile,v 1.5 2010/01/01 16:37:19 laffer1 Exp $
 
 PORTNAME=	bouml
-PORTVERSION=	4.15
+PORTVERSION=	4.22.2
 CATEGORIES=	devel
 MASTER_SITES=	SF \
 		http://bouml.free.fr/
@@ -33,9 +33,7 @@ pre-configure:
 post-install:
 	${CHOWN} -R ${SHAREOWN}:${SHAREGRP} ${DATADIR}
 	${CHMOD} -R ${SHAREMODE} ${DATADIR}/xmi/*
+	${CHMOD} ${SHAREMODE} ${DATADIR}/*.lang
 	${FIND} ${DATADIR} -type f -perm 755 | ${XARGS} ${STRIP_CMD}
-	@${ECHO_MSG}
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG}
 
 .include <bsd.port.mk>
