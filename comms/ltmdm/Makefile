@@ -1,16 +1,12 @@
-# New ports collection makefile for:	ltmdm
-# Date Created:				Nov 11, 2001
-# Whom:					Daniel O'Connor <darius@dons.net.au>
-#
 # $FreeBSD: ports/comms/ltmdm/Makefile,v 1.30 2006/03/04 21:31:03 osa Exp $
-# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.5 2008/06/06 09:26:13 crash Exp $
-#
+# $MidnightBSD: mports/comms/ltmdm/Makefile,v 1.6 2009/02/23 18:58:51 laffer1 Exp $
 
 PORTNAME=	ltmdm
 PORTVERSION=	1.4
 PORTREVISION=	21
 CATEGORIES=	comms kld
-MASTER_SITES=	http://www.dons.net.au/~darius/
+MASTER_SITES=	http://people.midnightbsd.org/~laffer1/ \
+		http://www.dons.net.au/~darius/
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
