@@ -2,16 +2,16 @@
 # Date created:        17 January 2002
 # Whom:                des
 #
-# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.3 2008/05/31 17:12:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-xsl/Makefile,v 1.4 2008/05/31 17:15:19 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xsl/Makefile,v 1.39 2006/07/06 17:28:16 linimon Exp $
 #
 
 PORTNAME=	docbook-xsl
 PORTVERSION=	1.71.1
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	docbook
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	SF/docbook/${PORTNAME}/${PORTVERSION}:src \
+ 		SF/docbook/${PORTNAME}-doc/${PORTVERSION}:doc
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XSL DocBook stylesheets
@@ -21,7 +21,7 @@ RUN_DEPENDS=	${XMLDIR}/docbook/4.2/catalog.xml:${PORTSDIR}/textproc/docbook-xml 
 		${XMLDIR}/sdocbook/1.1/catalog:${PORTSDIR}/textproc/sdocbook-xml
 
 .ifndef NOPORTDOCS
-DISTFILES+=	${PORTNAME}-doc-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES+=	${PORTNAME}-doc-${PORTVERSION}${EXTRACT_SUFX}:doc
 .endif
 
 USE_BZIP2=	yes
