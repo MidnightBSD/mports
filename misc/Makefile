@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.58 2010/01/17 14:29:00 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.59 2010/01/23 19:14:13 laffer1 Exp $
 #
 
     COMMENT = Miscellaneous utilities
@@ -56,7 +56,6 @@
     SUBDIR += koffice-i18n-hi
     SUBDIR += koffice-i18n-hsb
     SUBDIR += koffice-i18n-is
-    SUBDIR += koffice-i18n-it
     SUBDIR += koffice-i18n-km
     SUBDIR += koffice-i18n-lo
     SUBDIR += koffice-i18n-lt
