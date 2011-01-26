@@ -1,0 +1,49 @@
+--- scripts/makefile.freebsd.orig	2010-01-03 06:05:38.000000000 +0100
++++ scripts/makefile.freebsd	2010-01-18 13:25:13.000000000 +0100
+@@ -11,17 +11,17 @@
+ LIB=		png
+ SHLIB_MAJOR=	${SHLIB_VER}
+ SHLIB_MINOR=	0
+-NOPROFILE=	YES
+-NOOBJ=          YES
++NO_PROFILE=	YES
++NO_OBJ=		YES
+ 
+ # where make install puts libpng.a and png.h
+-DESTDIR=	${PREFIX}
+-LIBDIR=		/lib
++#DESTDIR=	${PREFIX}
++LIBDIR=		${PREFIX}/lib
+ INCS=		png.h pngconf.h pngpriv.h
+-INCSDIR=	/include/libpng
++INCSDIR=	${PREFIX}/include/libpng
+ INCDIR=		${INCSDIR}		# for 4.x bsd.lib.mk
+ MAN=		libpng.3 libpngpf.3 png.5
+-MANDIR=		/man/man
++MANDIR=		${PREFIX}/man/man
+ SYMLINKS=       libpng/png.h ${INCSDIR}/../png.h \
+ 		libpng/pngconf.h ${INCSDIR}/../pngconf.h
+ LDADD+=         -lm -lz
+@@ -45,4 +45,22 @@
+ writelock:
+ 	chmod a-w *.[ch35] $(DOCS) scripts/*
+ 
++libpng-config:
++	( cat scripts/libpng-config-head.in; \
++	echo prefix=\"${PREFIX}\"; \
++	echo libdir=\"${LIBDIR}\"; \
++	echo ccopts=\"${ccopts}\"; \
++	echo cppflags=\"${cppflags}\"; \
++	echo I_opts=\"-I${INCSDIR}\"; \
++	echo L_opts=\"-L${LIBDIR}\"; \
++	echo libs=\"-lpng -lz -lm\"; \
++	echo ldopts=\"${ldopts}\"; \
++	cat scripts/libpng-config-body.in ) > libpng-config
++	chmod +x libpng-config
++
++beforeinstall: libpng-config
++	${INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
++		libpng-config ${DESTDIR}${PREFIX}/bin
++	ln -sf libpng-config ${DESTDIR}${PREFIX}/bin/libpng14-config
++
+ .include <bsd.lib.mk>

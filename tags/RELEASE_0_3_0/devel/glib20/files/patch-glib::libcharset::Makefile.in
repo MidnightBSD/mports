@@ -1,0 +1,31 @@
+--- glib/libcharset/Makefile.in.orig	2008-06-04 00:03:14.000000000 +0200
++++ glib/libcharset/Makefile.in	2008-06-04 00:05:58.000000000 +0200
+@@ -278,7 +278,7 @@ EXTRA_DIST = README config.charset ref-a
+ 	codeset.m4 update.sh make-patch.sh libcharset-glib.patch
+ TEST_PROGS = 
+ INCLUDES = \
+-	-DLIBDIR=\"$(libdir)\" -I$(top_srcdir)
++	-DLIBDIR=\"$(prefix)/libdata\" -I$(top_srcdir)
+ 
+ noinst_LTLIBRARIES = libcharset.la
+ libcharset_la_SOURCES = \
+@@ -286,8 +286,8 @@ libcharset_la_SOURCES = \
+ 	localcharset.h		\
+ 	localcharset.c
+ 
+-charset_alias = $(DESTDIR)$(libdir)/charset.alias
+-charset_tmp = $(DESTDIR)$(libdir)/charset.tmp
++charset_alias = $(DESTDIR)$(prefix)/libdata/charset.alias
++charset_tmp = $(DESTDIR)$(prefix)/libdata/charset.tmp
+ SUFFIXES = .sed .sin
+ CLEANFILES = charset.alias ref-add.sed ref-del.sed
+ all: all-am
+@@ -498,7 +498,7 @@ install-data-am:
+ 
+ install-dvi: install-dvi-am
+ 
+-install-exec-am: install-exec-local
++install-exec-am: # install-exec-local
+ 
+ install-html: install-html-am
+ 

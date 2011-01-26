@@ -1,0 +1,32 @@
+@comment $FreeBSD: ports/textproc/xmlto/pkg-plist,v 1.4 2008/05/28 12:40:05 edwin Exp $
+bin/xmlif
+bin/xmlto
+%%DATADIR%%/format/docbook/awt
+%%DATADIR%%/format/docbook/dvi
+%%DATADIR%%/format/docbook/fo
+%%DATADIR%%/format/docbook/html
+%%DATADIR%%/format/docbook/html-nochunks
+%%DATADIR%%/format/docbook/xhtml
+%%DATADIR%%/format/docbook/xhtml-nochunks
+%%DATADIR%%/format/docbook/man
+%%DATADIR%%/format/docbook/mif
+%%DATADIR%%/format/docbook/pcl
+%%DATADIR%%/format/docbook/pdf
+%%DATADIR%%/format/docbook/ps
+%%DATADIR%%/format/docbook/svg
+%%DATADIR%%/format/docbook/txt
+%%DATADIR%%/format/docbook/htmlhelp
+%%DATADIR%%/format/docbook/javahelp
+@dirrm %%DATADIR%%/format/docbook
+%%PASSIVETEX%%%%DATADIR%%/format/fo/awt
+%%PASSIVETEX%%%%DATADIR%%/format/fo/dvi
+%%PASSIVETEX%%%%DATADIR%%/format/fo/mif
+%%PASSIVETEX%%%%DATADIR%%/format/fo/pcl
+%%PASSIVETEX%%%%DATADIR%%/format/fo/pdf
+%%PASSIVETEX%%%%DATADIR%%/format/fo/ps
+%%PASSIVETEX%%%%DATADIR%%/format/fo/svg
+%%PASSIVETEX%%%%DATADIR%%/format/fo/txt
+%%PASSIVETEX%%@dirrm %%DATADIR%%/format/fo
+@dirrm %%DATADIR%%/format
+%%DATADIR%%/xmlto.mak
+@dirrm %%DATADIR%%

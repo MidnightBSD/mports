@@ -1,0 +1,7 @@
+MySQL is a very fast, multi-threaded, multi-user and robust SQL
+(Structured Query Language) database server.
+
+This client library allows you to comunicate with a MySQL
+server.
+
+WWW: http://www.mysql.com/

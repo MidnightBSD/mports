@@ -1,0 +1,5 @@
+syscons is not able to provide every needed function to sirc. That means you
+have to run the program in dumb mode. The man page is explaining that.
+
+Or you can run the program with help of the mport sysutils/screen or with
+help of xterm without problems.

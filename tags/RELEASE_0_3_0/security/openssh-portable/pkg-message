@@ -1,0 +1,13 @@
+To enable this port, add openssh_enable="YES" in your rc.conf. To
+prevent conflict with openssh in the base system add sshd_enable="NO"
+in your rc.conf.
+
+'PermitRootLogin no' is the default for the OpenSSH port.
+This now matches the PermitRootLogin configuration of OpenSSH in
+the base system.  Please be aware of this when upgrading your
+OpenSSH port, and if truly necessary, re-enable remote root login
+by readjusting this option in your sshd_config.
+
+Users are encouraged to create single-purpose users with ssh keys
+and very narrowly defined sudo privileges instead of using root
+for automated tasks.

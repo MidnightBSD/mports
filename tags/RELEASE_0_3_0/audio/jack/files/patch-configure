@@ -1,0 +1,195 @@
+--- configure.orig	2010-12-10 21:32:08 -0500
++++ configure	2010-12-10 21:35:37 -0500
+@@ -24528,192 +24528,10 @@
+ # Celt low-latency audio codec. netjack transmission via internet.
+ HAVE_CELT=false
+ 
+-pkg_failed=no
+-{ $as_echo "$as_me:$LINENO: checking for CELT" >&5
+-$as_echo_n "checking for CELT... " >&6; }
+-
+-if test -n "$CELT_CFLAGS"; then
+-    pkg_cv_CELT_CFLAGS="$CELT_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"celt >= 0.7.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "celt >= 0.7.0") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_CELT_CFLAGS=`$PKG_CONFIG --cflags "celt >= 0.7.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-if test -n "$CELT_LIBS"; then
+-    pkg_cv_CELT_LIBS="$CELT_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"celt >= 0.7.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "celt >= 0.7.0") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_CELT_LIBS=`$PKG_CONFIG --libs "celt >= 0.7.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-
+-
+-
+-if test $pkg_failed = yes; then
+-
+-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+-        _pkg_short_errors_supported=yes
+-else
+-        _pkg_short_errors_supported=no
+-fi
+-        if test $_pkg_short_errors_supported = yes; then
+-	        CELT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "celt >= 0.7.0" 2>&1`
+-        else
+-	        CELT_PKG_ERRORS=`$PKG_CONFIG --print-errors "celt >= 0.7.0" 2>&1`
+-        fi
+-	# Put the nasty error message in config.log where it belongs
+-	echo "$CELT_PKG_ERRORS" >&5
+-
+-	{ $as_echo "$as_me:$LINENO: result: no" >&5
+-$as_echo "no" >&6; }
+-                true
+-elif test $pkg_failed = untried; then
+-	true
+-else
+-	CELT_CFLAGS=$pkg_cv_CELT_CFLAGS
+-	CELT_LIBS=$pkg_cv_CELT_LIBS
+-        { $as_echo "$as_me:$LINENO: result: yes" >&5
+-$as_echo "yes" >&6; }
+-	HAVE_CELT=true
+-fi
+-if test x$HAVE_CELT = xfalse; then
+-
+-pkg_failed=no
+-{ $as_echo "$as_me:$LINENO: checking for CELT" >&5
+-$as_echo_n "checking for CELT... " >&6; }
+-
+-if test -n "$CELT_CFLAGS"; then
+-    pkg_cv_CELT_CFLAGS="$CELT_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"celt >= 0.5.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "celt >= 0.5.0") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_CELT_CFLAGS=`$PKG_CONFIG --cflags "celt >= 0.5.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-if test -n "$CELT_LIBS"; then
+-    pkg_cv_CELT_LIBS="$CELT_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
+-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"celt >= 0.5.0\"") >&5
+-  ($PKG_CONFIG --exists --print-errors "celt >= 0.5.0") 2>&5
+-  ac_status=$?
+-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+-  (exit $ac_status); }; then
+-  pkg_cv_CELT_LIBS=`$PKG_CONFIG --libs "celt >= 0.5.0" 2>/dev/null`
+-else
+-  pkg_failed=yes
+-fi
+- else
+-    pkg_failed=untried
+-fi
+-
+-
+-
+-if test $pkg_failed = yes; then
+-
+-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+-        _pkg_short_errors_supported=yes
+-else
+-        _pkg_short_errors_supported=no
+-fi
+-        if test $_pkg_short_errors_supported = yes; then
+-	        CELT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "celt >= 0.5.0" 2>&1`
+-        else
+-	        CELT_PKG_ERRORS=`$PKG_CONFIG --print-errors "celt >= 0.5.0" 2>&1`
+-        fi
+-	# Put the nasty error message in config.log where it belongs
+-	echo "$CELT_PKG_ERRORS" >&5
+-
+-	{ $as_echo "$as_me:$LINENO: result: no" >&5
+-$as_echo "no" >&6; }
+-                true
+-elif test $pkg_failed = untried; then
+-	true
+-else
+-	CELT_CFLAGS=$pkg_cv_CELT_CFLAGS
+-	CELT_LIBS=$pkg_cv_CELT_LIBS
+-        { $as_echo "$as_me:$LINENO: result: yes" >&5
+-$as_echo "yes" >&6; }
+-	HAVE_CELT=true
+-fi
+-	if test x$HAVE_CELT = xfalse; then
+-
+ cat >>confdefs.h <<\_ACEOF
+ #define HAVE_CELT 0
+ _ACEOF
+ 
+-		{ $as_echo "$as_me:$LINENO: result: no" >&5
+-$as_echo "no" >&6; }
+-		{ $as_echo "$as_me:$LINENO: WARNING: *** NetJack will not be built with celt support" >&5
+-$as_echo "$as_me: WARNING: *** NetJack will not be built with celt support" >&2;}
+-	else
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT 1
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT_API_0_5 1
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT_API_0_7 0
+-_ACEOF
+-
+-		{ $as_echo "$as_me:$LINENO: result: yes (0.5)" >&5
+-$as_echo "yes (0.5)" >&6; }
+-		NETJACK_LIBS="$NETJACK_LIBS $CELT_LIBS"
+-	fi
+-else
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT 1
+-_ACEOF
+-
+-	{ $as_echo "$as_me:$LINENO: result: yes (0.7)" >&5
+-$as_echo "yes (0.7)" >&6; }
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT_API_0_5 0
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<\_ACEOF
+-#define HAVE_CELT_API_0_7 1
+-_ACEOF
+-
+-	NETJACK_LIBS="$NETJACK_LIBS $CELT_LIBS"
+-fi
+-
+-
+ 
+ 
+ # Note: A bug in pkg-config causes problems if the first occurence of

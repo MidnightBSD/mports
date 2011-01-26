@@ -1,0 +1,9 @@
+# $FreeBSD: ports/print/ghostscript8/files/Makefile.dmprt,v 1.1 2008/05/05 13:16:25 hrs Exp $
+
+post-install-dmprt:
+	${INSTALL_PROGRAM} ${WRKSRC}/${EPAG_NAME}/ert ${PREFIX}/bin
+	cd ${FILESDIR} && \
+		${INSTALL_DATA} lqx70ch.upp lqx70cl.upp lqx70cm.upp \
+		${DATADIR}/${PORTVERSION}/lib
+
+post-install: post-install-dmprt

@@ -1,0 +1,11 @@
+--- configure.orig	2009-03-01 11:33:36 -0500
++++ configure	2009-03-01 11:33:52 -0500
+@@ -89,7 +89,7 @@
+ check_gcc="yes"
+ 
+ # OS specific
+-targetos=`uname -s`
++targetos="FreeBSD"
+ case $targetos in
+ CYGWIN*)
+ mingw32="yes"

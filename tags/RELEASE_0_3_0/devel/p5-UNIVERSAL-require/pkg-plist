@@ -1,0 +1,4 @@
+%%SITE_PERL%%/UNIVERSAL/require.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/UNIVERSAL/require
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/UNIVERSAL
+@dirrmtry %%SITE_PERL%%/UNIVERSAL

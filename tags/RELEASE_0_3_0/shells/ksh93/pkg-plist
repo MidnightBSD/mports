@@ -1,0 +1,9 @@
+@comment $MidnightBSD$
+@comment $FreeBSD: ports/shells/ksh93/pkg-plist,v 1.8 2006/02/13 09:46:26 garga Exp $
+bin/ksh93
+@exec echo "updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak; echo %D/%F) >/etc/shells; rm -f /etc/shells.bak
+@unexec echo "updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak) >/etc/shells; rm -f /etc/shells.bak
+%%EXAMPLESDIR%%/dirs
+%%EXAMPLESDIR%%/popd
+%%EXAMPLESDIR%%/pushd
+@dirrm %%EXAMPLESDIR%%

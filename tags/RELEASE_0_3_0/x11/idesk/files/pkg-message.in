@@ -1,0 +1,10 @@
+
+Idesk was installed
+
+You need to configure idesk before you can use it. A detailed explanation can 
+be found in the README file which resides in:
+
+%%PREFIX%%/share/doc/idesk
+
+There are example default config files in
+%%PREFIX%%/share/idesk

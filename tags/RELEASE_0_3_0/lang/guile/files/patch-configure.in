@@ -1,0 +1,30 @@
+--- configure.in	2008-07-09 14:38:42.000000000 +0800
++++ configure.in	2008-07-09 14:41:01.000000000 +0800
+@@ -692,12 +692,13 @@
+ #   sys/param.h - not in mingw
+ #   pthread.h - only available with pthreads.  ACX_PTHREAD doesn't
+ #       check this specifically, we need it for the timespec test below.
++#   pthread_np.h - available on FreeBSD
+ #   sethostname - the function itself check because it's not in mingw,
+ #       the DECL is checked because Solaris 10 doens't have in any header
+ #   strncasecmp - on NetBSD 1.6 the symbol is available in libc but the
+ #       declaration cannot be found
+ #
+-AC_CHECK_HEADERS(crypt.h netdb.h pthread.h sys/param.h sys/resource.h sys/file.h)
++AC_CHECK_HEADERS(crypt.h netdb.h pthread.h pthread_np.h sys/param.h sys/resource.h sys/file.h)
+ AC_CHECK_FUNCS(chroot flock getlogin cuserid getpriority setpriority getpass sethostname gethostname)
+ AC_CHECK_DECLS([sethostname, strncasecmp])
+ 
+@@ -1190,9 +1191,11 @@
+     #         all; not present on MacOS X or Solaris 10
+     #     pthread_get_stackaddr_np - "np" meaning "non portable" says it
+     #         all; specific to MacOS X
++    #     pthread_attr_get_np - "np" meaning "non portable" says it
++    #         all; specific to FreeBSD
+     #     pthread_sigmask - not available on mingw
+     #
+-    AC_CHECK_FUNCS(pthread_attr_getstack pthread_getattr_np pthread_get_stackaddr_np pthread_sigmask)
++    AC_CHECK_FUNCS(pthread_attr_getstack pthread_getattr_np pthread_get_stackaddr_np pthread_attr_get_np pthread_sigmask)
+ 
+     # On past versions of Solaris, believe 8 through 10 at least, you
+     # had to write "pthread_once_t foo = { PTHREAD_ONCE_INIT };".

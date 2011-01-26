@@ -1,0 +1,47 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<script>
+	window.onload = function () {
+		if (location.hash.length > 0) {
+			var status = location.hash.substr(1, location.hash.length);
+			showPorts(<TMPL_VAR NAME="id">, status);
+		}
+	};
+</script>
+
+<h2>Run <TMPL_VAR name="id"></h2>
+
+<table class="run-summary">
+<tr>
+	<th>ID</th>
+	<th>OSVersion</th>
+	<th>Arch</th>
+	<th>Status</th>
+	<th>Created</th>
+	<th></th>
+</tr>
+<tr>
+	<td><TMPL_VAR NAME="id"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_VAR NAME="status"></td>
+	<td><TMPL_VAR NAME="created"></td>
+	<td>
+	    <ul class="stats">
+	      <TMPL_LOOP NAME="status_stats">
+		<li>
+		    <a class="<TMPL_VAR NAME="status">" href="#<TMPL_VAR NAME="status">" onclick="showPorts(<TMPL_VAR NAME="id">, '<TMPL_VAR NAME="status">');">	
+			<TMPL_VAR NAME="status"></a>:
+		    <TMPL_VAR NAME="count">
+		</li>
+              </TMPL_LOOP>
+	    </ul>
+	</td>
+</tr>
+<tr>
+	<td colspan="6" id="ports-display" style="display: none">
+	</td>
+</tr>
+</table>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

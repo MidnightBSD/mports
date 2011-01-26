@@ -1,0 +1,4 @@
+bin/yabause
+share/applications/yabause.desktop
+share/pixmaps/yabause.png
+@dirrmtry share/applications

@@ -1,0 +1,33 @@
+--- Makefile.bak	2010-10-14 12:50:29 -0400
++++ Makefile	2010-10-14 12:52:57 -0400
+@@ -378,7 +378,6 @@
+ SCRIPT_PERL += git-cvsserver.perl
+ SCRIPT_PERL += git-relink.perl
+ SCRIPT_PERL += git-send-email.perl
+-SCRIPT_PERL += git-svn.perl
+ 
+ SCRIPT_PYTHON += git-remote-testgit.py
+ 
+@@ -912,6 +911,22 @@
+ 	PYTHON_PATH = /usr/local/bin/python
+ 	HAVE_PATHS_H = YesPlease
+ endif
++ifeq ($(uname_S),MidnightBSD)
++        NEEDS_LIBICONV = YesPlease
++        OLD_ICONV = YesPlease
++        NO_MEMMEM = YesPlease
++        BASIC_CFLAGS += -I/usr/local/include
++        BASIC_LDFLAGS += -L/usr/local/lib
++        DIR_HAS_BSD_GROUP_SEMANTICS = YesPlease
++        USE_ST_TIMESPEC = YesPlease
++        ifeq ($(shell expr "$(uname_R)" : '4\.'),2)
++                PTHREAD_LIBS = -pthread
++                NO_UINTMAX_T = YesPlease
++                NO_STRTOUMAX = YesPlease
++        endif
++        PYTHON_PATH = /usr/local/bin/python
++        HAVE_PATHS_H = YesPlease
++endif
+ ifeq ($(uname_S),OpenBSD)
+ 	NO_STRCASESTR = YesPlease
+ 	NO_MEMMEM = YesPlease

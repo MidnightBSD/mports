@@ -1,0 +1,19 @@
+System/Library/Frameworks/PreferencePanes.framework/Headers
+System/Library/Frameworks/PreferencePanes.framework/Resources
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers/NSPreferencePane.h
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers/PreferencePanes.h
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/PreferencePanes
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/Resources/Info-gnustep.plist
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so.%%MAJORLIBVERSION%%
+System/Library/Frameworks/PreferencePanes.framework/Versions/1/libPreferencePanes.so.%%LIBVERSION%%
+System/Library/Frameworks/PreferencePanes.framework/Versions/Current
+System/Library/Headers/PreferencePanes
+System/Library/Libraries/libPreferencePanes.so
+System/Library/Libraries/libPreferencePanes.so.%%MAJORLIBVERSION%%
+System/Library/Libraries/libPreferencePanes.so.%%LIBVERSION%%
+@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1/Resources
+@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1/Headers
+@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions/1
+@dirrm System/Library/Frameworks/PreferencePanes.framework/Versions
+@dirrm System/Library/Frameworks/PreferencePanes.framework

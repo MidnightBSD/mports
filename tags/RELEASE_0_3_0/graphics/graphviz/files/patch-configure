@@ -1,0 +1,23 @@
+--- configure.orig	2008-10-08 01:54:55.000000000 +0200
++++ configure	2009-02-27 11:12:03.000000000 +0100
+@@ -6481,6 +6481,9 @@
+ 	        *-apple-darwin* )
+ 	            CFLAGS="${CFLAGS} -fno-common -Wall"
+ 	            ;;
++	        *alpha*-freebsd* )
++	            CFLAGS="${CFLAGS} -Wstrict-prototypes -Wpointer-arith -Wall"
++		    ;;
+ 	        *-freebsd* )
+ 	            CFLAGS="${CFLAGS} -Wstrict-prototypes -Wpointer-arith -Wall -ffast-math"
+ 		    ;;
+@@ -26247,7 +26250,9 @@
+ 
+         LUA_INCLUDES=""
+         LUA_LIBS=""
+-        LUA_INSTALL_DIR=""
++	if test -z "$LUA_INSTALL_DIR" ; then
++	        LUA_INSTALL_DIR=""
++	fi
+ 
+         if test -n "$lua_inc"; then
+            CFLAGS="$CFLAGS -I$lua_inc"

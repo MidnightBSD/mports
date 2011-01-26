@@ -1,0 +1,3 @@
+bin/applypatch
+bin/makepatch
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/makepatch

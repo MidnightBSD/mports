@@ -1,0 +1,20 @@
+--- Makefile.in.orig	2008-10-29 11:36:48.000000000 +0100
++++ Makefile.in	2009-02-25 03:35:59.886902862 +0100
+@@ -80,7 +80,7 @@
+ DATA = $(pkgconfig_DATA)
+ ETAGS = etags
+ CTAGS = ctags
+-DIST_SUBDIRS = lib include doc tests m4 examples
++DIST_SUBDIRS = lib include m4
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -274,7 +274,7 @@
+ 	libtheora.spec libtheora.spec.in \
+ 	theora-uninstalled.pc.in
+ 
+-pkgconfigdir = $(libdir)/pkgconfig
++pkgconfigdir = $(prefix)/libdata/pkgconfig
+ pkgconfig_DATA = theora.pc theoradec.pc theoraenc.pc
+ all: config.h
+ 	$(MAKE) $(AM_MAKEFLAGS) all-recursive

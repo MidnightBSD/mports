@@ -1,0 +1,7 @@
+%%SITE_PERL%%/Config/General.pm
+%%SITE_PERL%%/Config/General/Extended.pm
+%%SITE_PERL%%/Config/General/Interpolated.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Config/General
+@dirrm %%SITE_PERL%%/Config/General
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Config
+@dirrmtry %%SITE_PERL%%/Config

@@ -1,0 +1,11 @@
+--- lib/xmltok_impl.c.orig	2009-12-13 20:16:41 -0500
++++ lib/xmltok_impl.c	2009-12-13 20:16:59 -0500
+@@ -1744,7 +1744,7 @@
+                        const char *end,
+                        POSITION *pos)
+ {
+-  while (ptr != end) {
++  while (ptr < end) {
+     switch (BYTE_TYPE(enc, ptr)) {
+ #define LEAD_CASE(n) \
+     case BT_LEAD ## n: \

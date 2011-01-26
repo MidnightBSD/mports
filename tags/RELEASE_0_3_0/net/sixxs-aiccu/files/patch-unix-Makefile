@@ -1,0 +1,27 @@
+--- unix-console/Makefile.orig	2009-08-15 23:14:57 -0400
++++ unix-console/Makefile	2009-08-15 23:15:36 -0400
+@@ -53,22 +53,14 @@
+ LDFLAGS	+= -lpthread -lresolv
+ endif
+ 
+-# FreeBSD
+-ifeq ($(shell uname | grep -c "FreeBSD"),1)
++# MidnightBSD
++ifeq ($(shell uname | grep -c "MidnightBSD"),1)
+ CFLAGS	+= -D_FREEBSD
+ 
+-# FreeBSD 4.x
+-ifeq ($(shell uname -r | cut -c 1),4)
+-CFLAGS	+= -D AICCU_TYPE="\"freebsd4\""
+-SRCS	+= ../common/aiccu_freebsd4.c
+-OBJS	+= ../common/aiccu_freebsd4.o
+-else
+-# FreeBSD 5.x/6.x/7.x
+ CFLAGS	+= -D NEED_IFHEAD -D AICCU_TYPE="\"kame\""
+ SRCS	+= ../common/aiccu_kame.c
+ OBJS	+= ../common/aiccu_kame.o
+ endif
+-endif
+ 
+ # DragonFlyBSD
+ ifeq ($(shell uname | grep -c "DragonFly"),1)

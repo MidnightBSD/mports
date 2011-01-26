@@ -1,0 +1,13 @@
+@comment $MidnightBSD: mports/lang/nwcc/pkg-plist,v 1.3 2007/11/23 19:57:18 laffer1 Exp $
+bin/nwcc
+bin/nwcc1
+etc/nwcc.conf.sample
+lib/libnwcc.o
+nwcc/bin/nwcc1
+nwcc/bin/nwcc
+nwcc/bin/snake
+nwcc/lib/dynlibnwcc.o
+nwcc/lib/libnwcc.o
+@dirrm nwcc/bin
+@dirrm nwcc/lib
+@dirrm nwcc

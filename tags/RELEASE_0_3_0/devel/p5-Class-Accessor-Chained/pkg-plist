@@ -1,0 +1,5 @@
+%%SITE_PERL%%/Class/Accessor/Chained.pm
+%%SITE_PERL%%/Class/Accessor/Chained/Fast.pm
+@dirrm %%SITE_PERL%%/Class/Accessor/Chained
+@dirrmtry %%SITE_PERL%%/Class/Accessor
+@dirrmtry %%SITE_PERL%%/Class

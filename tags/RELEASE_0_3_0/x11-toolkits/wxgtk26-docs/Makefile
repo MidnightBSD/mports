@@ -1,0 +1,37 @@
+# New ports collection makefile for:	wxgtk_doc_26
+# Date created:				November, 15th 2005
+# Whom:					Matthias Sund <m.sund@arcor.de>
+#
+# $MidnightBSD: mports/x11-toolkits/wxgtk26-docs/Makefile,v 1.2 2008/08/20 17:34:05 laffer1 Exp $
+# $FreeBSD: ports/x11-toolkits/wxgtk26-docs/Makefile,v 1.4 2006/04/02 11:06:58 fjoe Exp $
+#
+
+PORTNAME=	wxgtk_doc
+PORTVERSION=	2.6.4
+CATEGORIES=	x11-toolkits
+MASTER_SITES=	SF/wxwindows/Documents/${PORTVERSION}
+DISTNAME=	wxWidgets-${PORTVERSION}-HTML
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	wxWidgets ${PORTVERSION} HTML documentation
+LICENSE=	unknown
+
+LATEST_LINK=	wxgtk26_doc
+
+NO_BUILD=	YES
+
+WXGTKDOCDIR=	share/doc/${PORTNAME}_26
+WRKSRC=		${WRKDIR}/wxWidgets-${PORTVERSION}/docs
+
+do-install:
+	@${MKDIR} ${PREFIX}/${WXGTKDOCDIR}
+	@(cd ${WRKSRC} && ${FIND} html -type d -exec ${MKDIR} ${PREFIX}/${WXGTKDOCDIR}/{} \;)
+	@(cd ${WRKSRC} && ${FIND} html -type f -exec ${INSTALL_MAN} {} ${PREFIX}/${WXGTKDOCDIR}/{} \;)
+
+post-install:
+	@(cd ${WRKSRC} && ${FIND} html -type f -exec ${ECHO} ${WXGTKDOCDIR}/{} >> ${TMPPLIST} \;)
+	@(cd ${WRKSRC} && ${FIND} html/* -type d -exec ${ECHO} @dirrm ${WXGTKDOCDIR}/{} >> ${TMPPLIST} \;)
+	@${ECHO} @dirrm ${WXGTKDOCDIR}/html >> ${TMPPLIST}
+	@${ECHO} @dirrm ${WXGTKDOCDIR} >> ${TMPPLIST}
+
+.include <bsd.port.mk>

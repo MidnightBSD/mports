@@ -1,0 +1,11 @@
+--- ./Commander/GNUmakefile.orig	Fri Aug  3 15:41:53 2007
++++ ./Commander/GNUmakefile	Fri Aug  3 15:42:16 2007
+@@ -23,7 +23,7 @@
+ BUNDLE_NAME = Commander
+ BUNDLE_EXTENSION = .toolbox
+ 
+-BUNDLE_INSTALL_DIR = $(GNUSTEP_INSTALLATION_DIR)/Library/Toolbox
++BUNDLE_INSTALL_DIR = $(GNUSTEP_LIBRARY)/Toolbox
+ 
+ Commander_RESOURCE_FILES = CommanderInfo.plist \
+                            Commander.tiff \

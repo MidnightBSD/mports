@@ -1,0 +1,5 @@
+# $MidnightBSD$
+
+GS_VERSION=	8.54
+GS_REVISION=	1
+GS_EPOCH=	1

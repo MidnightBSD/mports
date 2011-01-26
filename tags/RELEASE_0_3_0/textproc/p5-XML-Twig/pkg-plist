@@ -1,0 +1,12 @@
+@comment $FreeBSD: ports/textproc/p5-XML-Twig/pkg-plist,v 1.6 2006/01/22 02:54:57 edwin Exp $
+bin/xml_grep
+bin/xml_merge
+bin/xml_pp
+bin/xml_spellcheck
+bin/xml_split
+%%SITE_PERL%%/XML/Twig.pm
+%%SITE_PERL%%/XML/Twig/XPath.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Twig
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
+@dirrm %%SITE_PERL%%/XML/Twig
+@dirrmtry %%SITE_PERL%%/XML

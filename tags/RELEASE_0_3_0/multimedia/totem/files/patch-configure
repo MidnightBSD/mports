@@ -1,0 +1,12 @@
+--- configure.orig	2008-08-30 08:23:22.000000000 +0200
++++ configure	2008-08-30 08:24:20.000000000 +0200
+@@ -25171,7 +25171,9 @@
+ _ACEOF
+ 
+ 
++if [ -z "${BROWSER_PLUGIN_DIR}" ]; then
+ 	BROWSER_PLUGIN_DIR="${BROWSER_PLUGIN_DIR:-"\${libdir}/mozilla/plugins"}"
++fi
+ 
+ 
+ 

@@ -1,0 +1,6 @@
+Multiplatform C++ Standard Library (STL implementation). Many
+compilers and operational environments supported. Standard (ISO/IEC
+14882) compliance. Maximum efficiency. Exception and thread
+safety. Debug mode.
+
+WWW: http://stlport.sourceforge.net/

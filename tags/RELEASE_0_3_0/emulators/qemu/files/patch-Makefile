@@ -1,0 +1,28 @@
+Index: qemu/Makefile
+@@ -19,7 +19,11 @@
+ LDFLAGS += -static
+ endif
+ ifdef BUILD_DOCS
++ifdef NOPORTDOCS
++DOCS=qemu.1 qemu-img.1 qemu-nbd.8
++else
+ DOCS=qemu-doc.html qemu-tech.html qemu.1 qemu-img.1 qemu-nbd.8
++endif
+ else
+ DOCS=
+ endif
+@@ -221,12 +225,12 @@
+ 
+ install-doc: $(DOCS)
++ifndef NOPORTDOCS
+ 	mkdir -p "$(DESTDIR)$(docdir)"
+ 	$(INSTALL) -m 644 qemu-doc.html  qemu-tech.html "$(DESTDIR)$(docdir)"
++endif
+ ifndef CONFIG_WIN32
+ 	mkdir -p "$(DESTDIR)$(mandir)/man1"
+ 	$(INSTALL) -m 644 qemu.1 qemu-img.1 "$(DESTDIR)$(mandir)/man1"
+-	mkdir -p "$(DESTDIR)$(mandir)/man8"
+-	$(INSTALL) -m 644 qemu-nbd.8 "$(DESTDIR)$(mandir)/man8"
+ endif
+ 
+ install: all $(if $(BUILD_DOCS),install-doc)

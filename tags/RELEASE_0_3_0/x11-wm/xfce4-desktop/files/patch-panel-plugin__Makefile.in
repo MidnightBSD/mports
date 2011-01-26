@@ -1,0 +1,10 @@
+--- ./panel-plugin/Makefile.in.orig	Wed Feb 25 17:40:28 2009
++++ ./panel-plugin/Makefile.in	Thu Mar 12 19:03:52 2009
+@@ -341,6 +341,7 @@
+ 	$(LIBX11_LIBS) \
+ 	$(LIBXFCEGUI4_LIBS) \
+ 	$(LIBXFCE4PANEL_LIBS) \
++	$(LIBXFCE4MENU_LIBS) \
+ 	$(THUNAR_VFS_LIBS)
+ 
+ @HAVE_CYGWIN_TRUE@xfce4_menu_plugin_LDFLAGS = \

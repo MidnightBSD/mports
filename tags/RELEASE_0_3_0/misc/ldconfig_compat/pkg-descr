@@ -1,0 +1,3 @@
+This port installs a compatibility script that enable old
+systems to use ldconfig local directories.
+

@@ -1,0 +1,31 @@
+--- ../configure.orig	2009-05-08 15:12:31.000000000 +0200
++++ ../configure	2009-06-17 09:18:56.000000000 +0200
+@@ -3508,7 +3508,7 @@
+     CFLAGS="$CFLAGS $(DSO_CFLAGS) -ansi -Wall"
+     MOZ_OBJFORMAT=`test -x /usr/bin/objformat && /usr/bin/objformat || echo elf`
+     if test "$MOZ_OBJFORMAT" = "elf"; then
+-        DLL_SUFFIX=so
++        DLL_SUFFIX=so.1
+     else
+         DLL_SUFFIX=so.1.0
+     fi
+@@ -5649,11 +5649,6 @@
+ #define _THREAD_SAFE 1
+ EOF
+ 
+-	    	    if test "$ac_cv_have_dash_pthread" = "yes"; then
+-	        _PTHREAD_LDFLAGS="-pthread"
+-	    else
+-	        _PTHREAD_LDFLAGS="-lc_r"
+-	    fi
+ 	    ;;
+     *-netbsd*)
+ 	    if test "$ac_cv_have_dash_pthread" = "yes"; then
+@@ -6037,6 +6032,7 @@
+ config/nsprincl.mk
+ config/nsprincl.sh
+ config/nspr-config
++config/nspr.pc
+ lib/Makefile 
+ lib/ds/Makefile 
+ lib/libc/Makefile 

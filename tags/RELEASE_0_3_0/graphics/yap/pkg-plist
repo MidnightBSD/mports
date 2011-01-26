@@ -1,0 +1,13 @@
+@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.134 2009/01/04 03:19:34 ctriv Exp $
+Local/Applications/Yap.app/Yap
+Local/Applications/Yap.app/Resources/Info-gnustep.plist
+Local/Applications/Yap.app/Resources/GPSText.tiff
+Local/Applications/Yap.app/Resources/Yap.desktop
+Local/Applications/Yap.app/Resources/GPSText.tiff.old
+Local/Applications/Yap.app/Resources/Yap.tiff
+Local/Applications/Yap.app/stamp.make
+Local/Tools/Yap
+@dirrm Local/Applications/Yap.app/Resources
+@dirrm Local/Applications/Yap.app
+@dirrm Local/Applications
+@dirrm Local/Tools

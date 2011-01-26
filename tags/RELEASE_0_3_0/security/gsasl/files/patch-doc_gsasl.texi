@@ -1,0 +1,20 @@
+
+$FreeBSD: ports/security/gsasl/files/patch-doc_gsasl.texi,v 1.2 2009/10/23 12:31:44 krion Exp $
+
+--- doc/gsasl.texi.orig
++++ doc/gsasl.texi
+@@ -198,14 +198,6 @@
+ applications and the library through the official API is illustrated
+ below.
+ 
+-@float Illustration,fig:abstraction
+-@image{abstraction,10cm,5cm}
+-
+-@caption{Logical overview showing how applications use authentication
+-mechanisms through an abstract interface.}
+-
+-@end float
+-
+ @node Features
+ @section Features
+ 

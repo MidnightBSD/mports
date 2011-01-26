@@ -1,0 +1,12 @@
+bin/whiptail
+%%PYTHONOPT%%lib/%%PYTHON_VERSION%%/site-packages/_snack.so
+%%PYTHONOPT%%lib/%%PYTHON_VERSION%%/site-packages/snack.py
+%%PYTHONOPT%%lib/%%PYTHON_VERSION%%/site-packages/snack.pyc
+%%TCLOPT%%lib/whiptcl.so
+lib/libnewt.a
+lib/libnewt.so
+lib/libnewt.so.%%SOVERSION%%
+include/newt.h
+%%PORTDOCS%%%%PYTHONOPT%%%%EXAMPLESDIR%%/peanuts.py
+%%PORTDOCS%%%%PYTHONOPT%%%%EXAMPLESDIR%%/popcorn.py
+%%PORTDOCS%%%%PYTHONOPT%%@dirrm %%EXAMPLESDIR%%

@@ -1,0 +1,79 @@
+#!/bin/sh
+#
+# $FreeBSD: ports/sysutils/hal/files/hald.in,v 1.8 2009/07/15 16:56:05 dougb Exp $
+#   $MCom: ports/sysutils/hal/files/hald.in,v 1.14 2008/08/21 16:04:48 mezz Exp $
+#
+# PROVIDE: hald
+# REQUIRE: DAEMON usbd devd dbus moused
+#
+# Add the following line to /etc/rc.conf to enable the HAL daemon:
+#
+# hald_enable="YES"
+# hald_flags="<set as needed>"
+
+. %%RC_SUBR%%
+. %%GNOME_SUBR%%
+
+hald_enable=${hald_enable-${gnome_enable}}
+
+name=hald
+rcvar=`set_rcvar`
+
+command="%%PREFIX%%/sbin/hald"
+pidfile="/var/run/${name}/${name}.pid"
+
+stop_postcmd="hald_postcmd"
+start_precmd="hald_precmd"
+start_cmd="hald_start"
+
+local_force_depend()
+{
+    _depend="$1"
+    if [ -f %%LOCALBASE%%/etc/rc.d/${_depend}.sh ]; then
+	_depend="${_depend}.sh"
+    fi
+
+    if ! %%LOCALBASE%%/etc/rc.d/${_depend} forcestatus 1>/dev/null 2>&1 &&
+       ! %%LOCALBASE%%/etc/rc.d/${_depend} forcestart; then
+       return 1
+   fi
+   return 0
+}
+
+hald_precmd()
+{
+    if ! checkyesno dbus_enable
+    then
+	local_force_depend dbus || return 1
+    fi
+
+    chmod 0755 /var/cache
+
+    mkdir -p $(dirname $pidfile)
+}
+
+hald_postcmd()
+{
+    rm -f $pidfile
+}
+
+hald_start()
+{
+    if ! checkyesno hald_enable ; then
+	return 0
+    fi
+    echo "Starting ${name}."
+
+    ( iter=0
+    while ! ps -axoargs | grep "^/usr/libexec/getty " | grep -qv grep >/dev/null 2>&1; do
+	if [ ${iter} -eq 60 ]; then
+	    break
+	fi
+	sleep 1
+	iter=$(expr ${iter} + 1)
+    done
+    ${command} ${hald_flags} ) &
+}
+
+load_rc_config ${name}
+run_rc_command "$1"

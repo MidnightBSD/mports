@@ -1,0 +1,108 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<h2><TMPL_VAR name="port"></h2>
+
+<div class="right">
+<h3>Links</h3>
+<ul class="depends">
+<li><a href="http://cvsweb.midnightbsd.org/mports/<TMPL_VAR NAME=port>/" target="_blank">CVSWeb</a></li>
+<TMPL_IF NAME="www">
+<li><a title="<TMPL_VAR NAME="www">" href="<TMPL_VAR NAME="www">" target="_blank">Homepage</a></li>
+<TMPL_ELSE>
+<li>Website: <em>None</em></li>
+</TMPL_IF>
+<li><a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="port">">All <TMPL_VAR NAME="port"> results</a></li>
+</ul>
+
+<h3>Depends On</h3>
+
+<TMPL_IF NAME="depends">
+<ul class="depends">
+    <TMPL_LOOP NAME="depends">
+	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
+    </TMPL_LOOP>
+</ul>
+<TMPL_ELSE>
+<i>Nothing</i>
+</TMPL_IF>	
+
+<h3>Depend Of</h3>
+
+<TMPL_IF NAME="depends_of">
+<ul class="depends">
+    <TMPL_LOOP NAME="depends_of">
+	<li><a class="<TMPL_VAR NAME="status">" href="<TMPL_VAR NAME=port_root>/<TMPL_VAR NAME=id>"><TMPL_VAR NAME="port"></a></li>
+    </TMPL_LOOP>
+</ul>
+<TMPL_ELSE>
+<i>Nothing</i>
+</TMPL_IF>	
+
+<h3>Categories</h3>
+
+<ul class="depends">
+    <TMPL_LOOP NAME="cats">
+	<li><a href="<TMPL_VAR NAME=browse_root>/<TMPL_VAR NAME=category>"><TMPL_VAR NAME="category"></a></li>
+    </TMPL_LOOP>
+</ul>
+
+</div>
+
+<div class="left">
+<p style="margin-bottom: 2em"><TMPL_VAR NAME="desc"></p>
+<table class="port-results">
+<tr>
+	<th>Version</th>
+	<th>Run</th>
+	<th>OSVersion</th>
+	<th>Arch</th>
+	<th>License</th>
+	<th>Status</th>
+	<th></th>
+</tr>
+<tr class="<TMPL_VAR NAME=status>">
+	<td><TMPL_VAR NAME="version"></td>
+	<td><a href="<TMPL_VAR NAME="run_root">/<TMPL_VAR NAME="run">"><TMPL_VAR NAME="run"></a></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="arch"></td>
+	<td><TMPL_IF NAME="license"><TMPL_VAR NAME="license"><TMPL_ELSE><em>No License</em></TMPL_IF></td>
+	<td><TMPL_VAR NAME="status"></td>
+	<td>
+	  <TMPL_IF NAME="can_reset">
+	    (<a onclick="return confirm_reset()" href="/magus/auth/reset_port.cgi?id=<TMPL_VAR NAME=id>">Reset Port</a>)
+	  </TMPL_IF>
+	</td> 
+</tr>
+</table>
+
+
+<TMPL_IF name="events">
+<h3>Events</h3>
+<table class="event-list">
+<tr>
+	<th>Machine</th>
+	<th>Type</th>
+	<th>Time</th>
+	<th>Message</th>
+</tr>
+
+<TMPL_LOOP name="events">
+<tr class="<TMPL_VAR NAME=type><TMPL_UNLESS NAME=__odd__> even</TMPL_UNLESS>">
+	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+	<td><TMPL_VAR NAME="type"></td> 
+	<td style="white-space: nowrap; font-size: smaller"><TMPL_VAR NAME="time"></td>
+	<td><TMPL_VAR NAME="msg"></td>
+</tr>
+</TMPL_LOOP>
+</table>
+</TMPL_IF>
+
+<TMPL_IF NAME="log">
+<h3>Log</h3>
+<pre class="log"><TMPL_VAR NAME="log"></pre>
+</TMPL_IF>
+
+
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

@@ -1,0 +1,6 @@
+Dictionary files are installed in
+%%DATADIR%%/dictionaries
+
+You must run the program from 
+%%DATADIR%% 
+for it to find all of the resources it needs.

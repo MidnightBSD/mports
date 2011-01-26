@@ -1,0 +1,6 @@
+%%SITE_PERL%%/IO/Socket/INET6.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Socket/INET6
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Socket
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO
+@dirrmtry %%SITE_PERL%%/IO/Socket
+@dirrmtry %%SITE_PERL%%/IO

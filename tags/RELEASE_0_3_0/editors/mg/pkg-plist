@@ -1,0 +1,4 @@
+bin/mg
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/tutorial
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

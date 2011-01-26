@@ -1,0 +1,18 @@
+# $MidnightBSD$
+
+PORTNAME=	xinput
+PORTVERSION=	1.4.1
+CATEGORIES=	x11
+
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Very useful utility for configuring and testing XInput devices
+LICENSE=	x11
+
+XORG_CAT=	app
+USE_XORG=	inputproto x11 xi xext
+
+PLIST_FILES=	bin/xinput
+
+MAN1=		xinput.1
+
+.include <bsd.port.mk>

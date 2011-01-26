@@ -1,0 +1,24 @@
+System/Library/Frameworks/XWindowServerKit.framework/Headers
+System/Library/Frameworks/XWindowServerKit.framework/Resources
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Headers/XFunctions.h
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Headers/XScreen.h
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Headers/XWindow.h
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Headers/gnustep.h
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Resources/Info-gnustep.plist
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Resources/ScriptingInfo.plist
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/XWindowServerKit
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/libXWindowServerKit.so
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/libXWindowServerKit.so.%%MAJORLIBVERSION%%
+System/Library/Frameworks/XWindowServerKit.framework/Versions/0/libXWindowServerKit.so.%%LIBVERSION%%
+System/Library/Frameworks/XWindowServerKit.framework/Versions/Current
+System/Library/Frameworks/XWindowServerKit.framework/XWindowServerKit
+System/Library/Frameworks/XWindowServerKit.framework/libXWindowServerKit.so
+System/Library/Headers/XWindowServerKit
+System/Library/Libraries/libXWindowServerKit.so
+System/Library/Libraries/libXWindowServerKit.so.%%MAJORLIBVERSION%%
+System/Library/Libraries/libXWindowServerKit.so.%%LIBVERSION%%
+@dirrm System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Headers
+@dirrm System/Library/Frameworks/XWindowServerKit.framework/Versions/0/Resources
+@dirrm System/Library/Frameworks/XWindowServerKit.framework/Versions/0
+@dirrm System/Library/Frameworks/XWindowServerKit.framework/Versions
+@dirrm System/Library/Frameworks/XWindowServerKit.framework

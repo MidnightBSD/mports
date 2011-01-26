@@ -1,0 +1,26 @@
+--- config/Makefile.in.orig	2010-04-22 07:59:53.000000000 +0000
++++ config/Makefile.in	2010-05-20 20:21:51.000000000 +0000
+@@ -590,19 +590,15 @@
+ 
+ uninstall-local:
+ 	for f in $(CONFFILES) $(GENFILES); do \
+-		echo rm -f $(DESTDIR)$(pkgconfdir)/$$f; \
+-		rm -f $(DESTDIR)$(pkgconfdir)/$$f; \
++		echo rm -f $(DESTDIR)$(pkgconfdir)/$$f.dist; \
++		rm -f $(DESTDIR)$(pkgconfdir)/$$f.dist; \
+ 	done
+ 
+ install-config-files: $(CONFFILES) $(GENFILES)
+ 	$(mkinstalldirs) $(DESTDIR)$(pkgconfdir)
+ 	for f in $(CONFFILES) $(GENFILES); do \
+-		if test "x$(OVERWRITE_CONFIG)" = "xyes" -o ! -f $(DESTDIR)$(pkgconfdir)/$$f; then \
+-			echo "$(INSTALL_DATA) $$f $(DESTDIR)$(pkgconfdir)"; \
+-			$(INSTALL_DATA) $$f $(DESTDIR)$(pkgconfdir); \
+-		else \
+-			echo "not overwriting $$f"; \
+-		fi; \
++		echo "$(INSTALL_DATA) $$f $(DESTDIR)$(pkgconfdir)/$$f.dist"; \
++		$(INSTALL_DATA) $$f $(DESTDIR)$(pkgconfdir)/$$f.dist; \
+ 	done
+ 
+ install-webmin:

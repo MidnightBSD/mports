@@ -1,0 +1,186 @@
+Local/Applications/DBModeler.app/DBModeler
+Local/Applications/DBModeler.app/Resources/AdvancedEntityInspector.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/AdvancedEntityInspector.gorm/data.info
+Local/Applications/DBModeler.app/Resources/AdvancedEntityInspector.gorm/objects.gorm
+Local/Applications/DBModeler.app/Resources/AllowsNull_Header.tiff
+Local/Applications/DBModeler.app/Resources/AllowsNull_On.tiff
+Local/Applications/DBModeler.app/Resources/AttributeInspector.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/AttributeInspector.gorm/data.info
+Local/Applications/DBModeler.app/Resources/AttributeInspector.gorm/objects.gorm
+Local/Applications/DBModeler.app/Resources/ClassProperty_Diagram.tiff
+Local/Applications/DBModeler.app/Resources/ClassProperty_Header.tiff
+Local/Applications/DBModeler.app/Resources/ClassProperty_On.tiff
+Local/Applications/DBModeler.app/Resources/ConsistencyResults.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/ConsistencyResults.gorm/data.info
+Local/Applications/DBModeler.app/Resources/ConsistencyResults.gorm/objects.gorm
+Local/Applications/DBModeler.app/Resources/DBModeler.desktop
+Local/Applications/DBModeler.app/Resources/DBModeler.tiff
+Local/Applications/DBModeler.app/Resources/Info-gnustep.plist
+Local/Applications/DBModeler.app/Resources/Key_Diagram.tiff
+Local/Applications/DBModeler.app/Resources/Key_Header.tiff
+Local/Applications/DBModeler.app/Resources/Key_On.tiff
+Local/Applications/DBModeler.app/Resources/Locking_Diagram.tiff
+Local/Applications/DBModeler.app/Resources/Locking_Header.tiff
+Local/Applications/DBModeler.app/Resources/Locking_On.tiff
+Local/Applications/DBModeler.app/Resources/ModelDrag.tiff
+Local/Applications/DBModeler.app/Resources/Preferences.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/Preferences.gorm/data.info
+Local/Applications/DBModeler.app/Resources/Preferences.gorm/objects.gorm
+Local/Applications/DBModeler.app/Resources/RelationshipInspector.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/RelationshipInspector.gorm/data.info
+Local/Applications/DBModeler.app/Resources/RelationshipInspector.gorm/objects.gorm
+Local/Applications/DBModeler.app/Resources/RelationshipInspector.tiff
+Local/Applications/DBModeler.app/Resources/SQLGenerator.gorm/data.classes
+Local/Applications/DBModeler.app/Resources/SQLGenerator.gorm/data.info
+Local/Applications/DBModeler.app/Resources/SQLGenerator.gorm/objects.gorm
+Local/Applications/DBModeler.app/stamp.make
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/GDL2
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2ConnectionInspector.gorm/data.classes
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2ConnectionInspector.gorm/data.info
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2ConnectionInspector.gorm/objects.gorm
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2DisplayGroupInspector.gorm/data.classes
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2DisplayGroupInspector.gorm/data.info
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2DisplayGroupInspector.gorm/objects.gorm
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2Palette.tiff
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/Info-gnustep.plist
+Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/palette.table
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Headers
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/PostgreSQLEOAdaptor
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Resources
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Headers/PostgreSQLAdaptor.h
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Headers/PostgreSQLChannel.h
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Headers/PostgreSQLContext.h
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Headers/PostgreSQLExpression.h
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/PostgreSQLEOAdaptor
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/Info-gnustep.plist
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle/LoginPanel
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle/Resources/Info-gnustep.plist
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle/Resources/postgreslogo.tif
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle/stamp.make
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/libPostgreSQLEOAdaptor.so
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/libPostgreSQLEOAdaptor.so.%%MAJORVERSION%%
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/libPostgreSQLEOAdaptor.so.%%VERSION%%
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/Current
+Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/libPostgreSQLEOAdaptor.so
+Local/Library/Headers/EOAccess/EOAccess.h
+Local/Library/Headers/EOAccess/EOAccessFault.h
+Local/Library/Headers/EOAccess/EOAdaptor.h
+Local/Library/Headers/EOAccess/EOAdaptorChannel.h
+Local/Library/Headers/EOAccess/EOAdaptorContext.h
+Local/Library/Headers/EOAccess/EOAttribute.h
+Local/Library/Headers/EOAccess/EODatabase.h
+Local/Library/Headers/EOAccess/EODatabaseChannel.h
+Local/Library/Headers/EOAccess/EODatabaseContext.h
+Local/Library/Headers/EOAccess/EODatabaseDataSource.h
+Local/Library/Headers/EOAccess/EODatabaseOperation.h
+Local/Library/Headers/EOAccess/EODefines.h
+Local/Library/Headers/EOAccess/EODeprecated.h
+Local/Library/Headers/EOAccess/EOEntity.h
+Local/Library/Headers/EOAccess/EOJoin.h
+Local/Library/Headers/EOAccess/EOModel.h
+Local/Library/Headers/EOAccess/EOModelGroup.h
+Local/Library/Headers/EOAccess/EOPropertyListEncoding.h
+Local/Library/Headers/EOAccess/EORelationship.h
+Local/Library/Headers/EOAccess/EOSQLExpression.h
+Local/Library/Headers/EOAccess/EOSQLQualifier.h
+Local/Library/Headers/EOAccess/EOSchemaGeneration.h
+Local/Library/Headers/EOAccess/EOSchemaSynchronization.h
+Local/Library/Headers/EOAccess/EOStoredProcedure.h
+Local/Library/Headers/EOAccess/EOUtilities.h
+Local/Library/Headers/EOControl/EOAggregateEvent.h
+Local/Library/Headers/EOControl/EOArrayDataSource.h
+Local/Library/Headers/EOControl/EOClassDescription.h
+Local/Library/Headers/EOControl/EOControl.h
+Local/Library/Headers/EOControl/EODataSource.h
+Local/Library/Headers/EOControl/EODebug.h
+Local/Library/Headers/EOControl/EODefines.h
+Local/Library/Headers/EOControl/EODeprecated.h
+Local/Library/Headers/EOControl/EODetailDataSource.h
+Local/Library/Headers/EOControl/EOEditingContext.h
+Local/Library/Headers/EOControl/EOEvent.h
+Local/Library/Headers/EOControl/EOEventCenter.h
+Local/Library/Headers/EOControl/EOFault.h
+Local/Library/Headers/EOControl/EOFetchSpecification.h
+Local/Library/Headers/EOControl/EOGenericRecord.h
+Local/Library/Headers/EOControl/EOGlobalID.h
+Local/Library/Headers/EOControl/EOKeyGlobalID.h
+Local/Library/Headers/EOControl/EOKeyValueArchiver.h
+Local/Library/Headers/EOControl/EOKeyValueCoding.h
+Local/Library/Headers/EOControl/EOMultiReaderLock.h
+Local/Library/Headers/EOControl/EONSAddOns.h
+Local/Library/Headers/EOControl/EONull.h
+Local/Library/Headers/EOControl/EOObjectStore.h
+Local/Library/Headers/EOControl/EOObjectStoreCoordinator.h
+Local/Library/Headers/EOControl/EOObserver.h
+Local/Library/Headers/EOControl/EOQualifier.h
+Local/Library/Headers/EOControl/EOSharedEditingContext.h
+Local/Library/Headers/EOControl/EOSortOrdering.h
+Local/Library/Headers/EOInterface/EOActionAssociation.h
+Local/Library/Headers/EOInterface/EOActionInsertionAssociation.h
+Local/Library/Headers/EOInterface/EOAspectConnector.h
+Local/Library/Headers/EOInterface/EOAssociation.h
+Local/Library/Headers/EOInterface/EOColumnAssociation.h
+Local/Library/Headers/EOInterface/EOComboBoxAssociation.h
+Local/Library/Headers/EOInterface/EOControlAssociation.h
+Local/Library/Headers/EOInterface/EODetailSelectionAssociation.h
+Local/Library/Headers/EOInterface/EODisplayGroup.h
+Local/Library/Headers/EOInterface/EOInterface.h
+Local/Library/Headers/EOInterface/EOMasterCopyAssociation.h
+Local/Library/Headers/EOInterface/EOMasterDetailAssociation.h
+Local/Library/Headers/EOInterface/EOMatrixAssociation.h
+Local/Library/Headers/EOInterface/EOPickTextAssociation.h
+Local/Library/Headers/EOInterface/EOPopUpAssociation.h
+Local/Library/Headers/EOInterface/EORadioMatrixAssociation.h
+Local/Library/Headers/EOInterface/EORecursiveBrowserAssociation.h
+Local/Library/Headers/EOInterface/EOTextAssociation.h
+Local/Library/Headers/EOModeler/EODefines.h
+Local/Library/Headers/EOModeler/EOMInspector.h
+Local/Library/Headers/EOModeler/EOMInspectorController.h
+Local/Library/Headers/EOModeler/EOModelExtensions.h
+Local/Library/Headers/EOModeler/EOModelerApp.h
+Local/Library/Headers/EOModeler/EOModelerDocument.h
+Local/Library/Headers/EOModeler/EOModelerEditor.h
+Local/Library/Headers/PostgreSQLEOAdaptor
+Local/Library/Libraries/libEOAccess.so
+Local/Library/Libraries/libEOAccess.so.%%MAJORVERSION%%
+Local/Library/Libraries/libEOAccess.so.%%VERSION%%
+Local/Library/Libraries/libEOControl.so
+Local/Library/Libraries/libEOControl.so.%%MAJORVERSION%%
+Local/Library/Libraries/libEOControl.so.%%VERSION%%
+Local/Library/Libraries/libEOInterface.so
+Local/Library/Libraries/libEOInterface.so.%%MAJORVERSION%%
+Local/Library/Libraries/libEOInterface.so.%%VERSION%%
+Local/Library/Libraries/libEOModeler.so
+Local/Library/Libraries/libEOModeler.so.%%MAJORVERSION%%
+Local/Library/Libraries/libEOModeler.so.%%VERSION%%
+Local/Library/Libraries/libPostgreSQLEOAdaptor.so
+Local/Library/Libraries/libPostgreSQLEOAdaptor.so.%%VERSION%%
+Local/Library/Libraries/libPostgreSQLEOAdaptor.so.%%MAJORVERSION%%
+Local/Tools/DBModeler
+Local/Tools/eoutil
+Local/Tools/gdlgsdoc
+System/Library/Makefiles/Auxiliary/gdl2.make
+@dirrm Local/Library/Headers/EOModeler
+@dirrm Local/Library/Headers/EOInterface
+@dirrm Local/Library/Headers/EOControl
+@dirrm Local/Library/Headers/EOAccess
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle/Resources
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources/LoginPanel.bundle
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Resources
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%/Headers
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions/%%MAJORVERSION%%
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework/Versions
+@dirrm Local/Library/Frameworks/PostgreSQLEOAdaptor.framework
+@dirrm Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2DisplayGroupInspector.gorm
+@dirrm Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources/GDL2ConnectionInspector.gorm
+@dirrm Local/Library/ApplicationSupport/Palettes/GDL2.palette/Resources
+@dirrm Local/Library/ApplicationSupport/Palettes/GDL2.palette
+@dirrm Local/Library/ApplicationSupport/Palettes
+@dirrm Local/Applications/DBModeler.app/Resources/SQLGenerator.gorm
+@dirrm Local/Applications/DBModeler.app/Resources/RelationshipInspector.gorm
+@dirrm Local/Applications/DBModeler.app/Resources/Preferences.gorm
+@dirrm Local/Applications/DBModeler.app/Resources/ConsistencyResults.gorm
+@dirrm Local/Applications/DBModeler.app/Resources/AttributeInspector.gorm
+@dirrm Local/Applications/DBModeler.app/Resources/AdvancedEntityInspector.gorm
+@dirrm Local/Applications/DBModeler.app/Resources
+@dirrm Local/Applications/DBModeler.app

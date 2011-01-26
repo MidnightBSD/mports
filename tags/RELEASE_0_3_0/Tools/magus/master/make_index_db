@@ -1,0 +1,13 @@
+#!/usr/bin/perl
+# 
+# $MidnightBSD: mports/Tools/magus/master/make_index_db,v 1.1 2007/10/20 22:35:33 ctriv Exp $
+#
+
+use strict;
+use warnings;
+use lib qw(/usr/mports/Tools/lib);
+use Magus;
+
+
+Magus::Index->build;	
+

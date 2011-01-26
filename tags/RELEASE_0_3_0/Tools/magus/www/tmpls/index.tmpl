@@ -1,0 +1,98 @@
+<TMPL_INCLUDE NAME="header.tmpl">
+
+<div class="right" style="width: 35%">
+<TMPL_IF NAME="locks">
+<h3>Currently Building</h3>
+<table class="locks">
+<thead>
+<tr>
+	<th>Port</th>
+	<th>Machine</th>
+	<th>Arch</th>
+	<th>OSVersion</th>
+	<th>Run</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP NAME="locks">
+<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+	<td>(<a onclick="return confirm_reset()" href="/magus/auth/delete_lock.cgi?id=<TMPL_VAR NAME=id>">X</a>)
+	     <a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+	<td><a href="<TMPL_VAR NAME="machine_root">/<TMPL_VAR NAME="machine_id">"><TMPL_VAR NAME="machine"></a></td>
+	<td><TMPL_VAR name="arch"></td>
+	<td><TMPL_VAR NAME="osversion"></td>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+
+<TMPL_IF name="runs">
+<h3>Active Runs</h3>
+<table class="locks">
+<thead> 
+<tr>
+        <th>Run</th>
+        <th>Arch</th>
+        <th>OSVersion</th>
+	<th>Created</th>
+</tr>
+</thead>
+
+<tbody>
+<TMPL_LOOP NAME="runs">
+<tr<TMPL_UNLESS name="__odd__">class="even"</TMPL_UNLESS>>
+	<td><a href="<TMPL_VAR name=run_root>/<TMPL_VAR NAME=run>"><TMPL_VAR NAME="run"></a></td>
+        <td><TMPL_VAR name="arch"></td>
+        <td><TMPL_VAR NAME="osversion"></td>
+	<td><TMPL_VAR NAME="created"></td>
+</tr>
+</TMPL_LOOP>
+</tbody>
+</table>
+</TMPL_IF>
+
+<TMPL_IF name="cats">
+<h3>Browse</h3>
+
+<p class="cats">
+<TMPL_LOOP NAME="cats">
+	<a href="<TMPL_VAR NAME="browse_root">/<TMPL_VAR NAME="category">"><TMPL_VAR NAME="category"></a>
+	<TMPL_UNLESS NAME="__last__">&middot;</TMPL_UNLESS>
+</TMPL_LOOP>
+</p>
+</TMPL_IF>
+
+
+</div>
+
+<div class="left" style="width: 60%">
+
+<h3>Latest Results</h3>
+<table class="result-list">
+	<thead>
+	<tr>
+		<th>Port</th>
+		<th>Version</th>
+		<th>Summary</th>
+		<th>OSVersion</th>
+		<th>Arch</th>
+	</tr>
+	</thead>
+	<tbody>
+	<TMPL_LOOP NAME=results>
+	<tr class="<TMPL_VAR NAME=summary><TMPL_UNLESS NAME="__odd__"> even</TMPL_UNLESS>">
+		<td><a href="<TMPL_VAR name=port_root>/<TMPL_VAR NAME=port_id>"><TMPL_VAR NAME="port"></a></td>
+		<td><TMPL_VAR NAME=version></td>
+		<td><TMPL_VAR NAME=summary></td>
+		<td><TMPL_VAR NAME=osversion></td>
+		<td><TMPL_VAR NAME=arch></td>
+	</tr>
+	</TMPL_LOOP>
+	</tbody>
+</table>
+</div>
+
+<TMPL_INCLUDE NAME="footer.tmpl">

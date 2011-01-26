@@ -1,0 +1,42 @@
+--- configure.orig	2008-06-28 22:13:45.000000000 -0500
++++ configure	2008-06-28 22:13:45.000000000 -0500
+@@ -10049,6 +10049,12 @@
+       fi
+       ;;
+ 
++     freebsd* | kfreebsd*-gnu | dragonfly*)
++	archive_cmds='$CC -shared -o $lib $libobjs $deplibs $compiler_flags'
++	hardcode_direct=no
++	hardcode_minus_L=yes
++	;;
++
+     netbsd* | netbsdelf*-gnu)
+       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
+ 	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
+@@ -22431,7 +22437,7 @@
+                     if test -z "$haveit"; then
+                       LIBICONV="${LIBICONV}${LIBICONV:+ }-L$found_dir"
+                     fi
+-                    if test "$hardcode_minus_L" != no; then
++                    if test "$hardcode_minus_L" = no; then
+                                                                                         LIBICONV="${LIBICONV}${LIBICONV:+ }$found_so"
+                     else
+                                                                                                                                                                                 LIBICONV="${LIBICONV}${LIBICONV:+ }-l$name"
+@@ -37670,6 +37676,8 @@
+       fi
+        CFLAGS="$ac_save_CFLAGS"
+        LIBS="$ac_save_LIBS"
++else
++no_theora=yes
+   fi
+ 
+   if test "x$no_libFLAC" = "x" ; then
+@@ -50370,7 +50378,7 @@
+ 
+ xinelibdir='${libdir}/xine'
+ xinedatadir='${datadir}/xine'
+-pkgconfigdir='${libdir}/pkgconfig'
++pkgconfigdir='${prefix}/libdata/pkgconfig'
+ 
+ 
+ 
