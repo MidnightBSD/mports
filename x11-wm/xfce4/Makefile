@@ -1,13 +1,9 @@
-# New ports collection makefile for:	xfce4
-# Date created:		9 June 2003
-# Whom:			James Earl <jdearl@telus.net>
-#
-# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.3 2009/03/13 02:54:30 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/xfce4/Makefile,v 1.4 2009/12/29 02:15:59 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4/Makefile,v 1.108 2008/06/06 14:17:20 edwin Exp $
-#
 
 PORTNAME=	xfce
 PORTVERSION=	${XFCE_VERSION}
+PKGNAMESUFFIX=	4
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	# empty
 DISTFILES=	# empty
