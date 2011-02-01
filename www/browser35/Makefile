@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.11 2010/09/24 00:00:59 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.12 2010/12/03 22:54:37 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.15
@@ -39,7 +39,8 @@ MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/'
 
 WANT_GNOME=	yes
 ALL_TARGET=	default
-CONFIGURE_ENV=	LOCALBASE=${LOCALBASE}
+CONFIGURE_ENV=	LOCALBASE=${LOCALBASE} CPPFLAGS="-I${LOCALBASE}/include/cairo" \
+		ac_cv_func__Unwind_Backtrace=no
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
 			--target=${ARCH}-portbld-freebsd7.0 \
 			--host=${ARCH}-portbld-freebsd7.0
