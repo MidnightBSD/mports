@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.11 2010/11/06 16:14:54 laffer1 Exp $
+# $MidnightBSD: mports/www/seamonkey/Makefile,v 1.12 2010/12/31 04:22:23 laffer1 Exp $
 
 PORTNAME=	seamonkey
 DISTVERSION=	1.1.19
@@ -21,9 +21,9 @@ HAS_CONFIGURE=	yes
 ALL_TARGET=	default
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 MAKE_ENV=	LD_LIBRARY_PATH=${WRKSRC}/dist/bin
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/cairo" CXXFLAGS="-lc"
-
-CONFIGURE_ENV+=	LOCALBASE=${LOCALBASE}
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/cairo" CXXFLAGS="-lc" \
+		ac_cv_func__Unwind_Backtrace=no \
+		LOCALBASE=${LOCALBASE}
 
 FAKE_OPTS=	trueprefix
 
