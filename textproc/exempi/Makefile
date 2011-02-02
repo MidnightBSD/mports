@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/exempi/Makefile,v 1.1 2010/01/24 15:58:39 laffer1 Exp $
 
 PORTNAME=	exempi
 PORTVERSION=	2.1.1
@@ -11,7 +11,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack gnomehack gnometarget
 CONFIGURE_ARGS=	--enable-unittest=no
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

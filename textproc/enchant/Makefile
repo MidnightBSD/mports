@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.4 2009/09/20 02:10:17 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.5 2010/01/09 17:57:20 laffer1 Exp $
 
 PORTNAME=	enchant
 PORTVERSION=	1.4.2
@@ -13,7 +13,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget glib20 ltverhack
 CONFIGURE_ARGS=	--disable-hspell \
