@@ -3,7 +3,7 @@
 # Whom:                Thawatchai Piyawat <piyawat@usablelabs.com>
 #
 # $FreeBSD: ports/devel/libthai/Makefile,v 1.3 2006/03/31 10:01:33 garga Exp $
-# $MidnightBSD: mports/devel/libthai/Makefile,v 1.8 2009/06/11 20:01:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/libthai/Makefile,v 1.9 2009/09/20 00:46:28 laffer1 Exp $
 #
 
 PORTNAME=	libthai
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	automake:15 autoconf:262 libtool:22
+USE_AUTOTOOLS=	automake autoconf libtool
 MAKE_JOBS_UNSAFE=	yes
 
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen

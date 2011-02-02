@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gamin/Makefile,v 1.7 2009/09/20 01:20:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/gamin/Makefile,v 1.8 2010/09/07 02:06:03 laffer1 Exp $
 
 PORTNAME=	gamin
 PORTVERSION=	0.1.10
@@ -10,7 +10,7 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A file and directory monitoring system
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GNOME?=	gnomehack _glib20

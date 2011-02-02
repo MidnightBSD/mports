@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gconf/Makefile,v 1.5 2009/09/20 01:21:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf/Makefile,v 1.6 2009/11/09 01:04:46 laffer1 Exp $
 
 PORTNAME=	gconf
 PORTVERSION=	1.0.9
@@ -17,7 +17,7 @@ LIB_DEPENDS=	guile.20:${PORTSDIR}/lang/guile
 
 MAKE_JOBS_UNSAFE=yes
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_XLIB=	yes

@@ -2,7 +2,7 @@
 # Date created:				20 February 2001
 # Whom:					Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD: mports/devel/fam/Makefile,v 1.1 2008/09/25 19:03:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/fam/Makefile,v 1.2 2009/09/20 01:19:10 laffer1 Exp $
 # $FreeBSD: ports/devel/fam/Makefile,v 1.35 2008/08/20 00:56:36 ade Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 CFLAGS+=	-Wno-deprecated
 
-USE_AUTOTOOLS=	aclocal:19 automake:19 autoconf:262 libtool:22
+USE_AUTOTOOLS=	aclocal automake autoconf libtool
 AUTOMAKE_ARGS=	-c -a
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget

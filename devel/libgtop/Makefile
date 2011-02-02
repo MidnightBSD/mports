@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.9 2010/11/17 13:57:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.10 2011/01/08 15:10:00 laffer1 Exp $
 
 PORTNAME=	libgtop
 PORTVERSION=	2.28.1
@@ -20,7 +20,7 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20 ltverhack intlhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

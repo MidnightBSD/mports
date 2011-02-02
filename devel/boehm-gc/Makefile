@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.2 2008/10/03 02:59:26 ctriv Exp $
+# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.3 2009/09/20 01:14:05 laffer1 Exp $
 
 PORTNAME=	boehm-gc
 PORTVERSION=	6.8
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Garbage collection and memory leak detection for C and C++
 LICENSE=	other
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnometarget
 USE_LDCONFIG=	yes

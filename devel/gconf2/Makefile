@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
 #   $MCom: ports/devel/gconf2/Makefile,v 1.72 2006/04/13 07:52:32 bland Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.6 2009/10/19 19:11:55 crash Exp $
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.7 2010/02/28 21:10:52 laffer1 Exp $
 #
 
 PORTNAME=	gconf2
@@ -29,7 +29,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehier gnomehack orbit2 gtk20 libxml2 ltverhack referencehack intlhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 #		--enable-gconf-source=${PREFIX}/etc/gconf/schemas \

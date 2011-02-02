@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.1 2010/05/14 02:51:00 laffer1 Exp $
 
 PORTNAME=	gobject-introspection
 PORTVERSION=	0.6.10
@@ -22,7 +22,7 @@ USE_GNOME=	gnomehack glib20
 USE_PYTHON=	yes
 USE_BISON=	both
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

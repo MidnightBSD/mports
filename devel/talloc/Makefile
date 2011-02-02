@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/talloc/Makefile,v 1.1 2010/08/07 20:02:08 laffer1 Exp $
 
 PORTNAME=		talloc
 PORTVERSION=		2.0.1
@@ -19,7 +19,7 @@ CONFLICTS=		samba-3.3*
 USE_GMAKE=		yes
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 MAKE_JOBS_SAFE=		yes
 
 IPATHS=			-I${WRKSRC}/libreplace

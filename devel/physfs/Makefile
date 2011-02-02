@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/physfs/Makefile,v 1.4 2009/09/20 00:52:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/physfs/Makefile,v 1.5 2009/11/01 22:11:02 laffer1 Exp $
 
 PORTNAME=	physfs
 PORTVERSION=	2.0.0
@@ -10,7 +10,7 @@ COMMENT=	A library to provide abstract access to various archives
 LICENSE=	other
 
 USE_CMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 patch-autotools:

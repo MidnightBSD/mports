@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.15 2010/02/28 21:12:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.16 2010/05/14 03:46:58 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
@@ -27,7 +27,7 @@ USE_BZIP2=	yes
 LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
 
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig ltverhack
 USE_GMAKE=	yes

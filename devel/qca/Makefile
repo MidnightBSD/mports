@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/qca/Makefile,v 1.1 2009/01/04 00:39:16 ctriv Exp $
+# $MidnightBSD: mports/devel/qca/Makefile,v 1.2 2009/09/20 00:55:21 laffer1 Exp $
 #
 
 PORTNAME=	qca
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform crypto API for QT
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_CMAKE=	yes
 CMAKE_USE_PTHREAD=	yes

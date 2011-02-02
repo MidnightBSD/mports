@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.8 2009/09/02 01:13:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.9 2009/09/20 01:16:38 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION?=	1.2.4.6
@@ -15,7 +15,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_GNOME?=	gnomehack gnometarget libxml2 ltverhack
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=--localstatedir=/var \
 	        --with-test-socket-dir=${WRKDIR} \

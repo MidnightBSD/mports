@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gconfmm/Makefile,v 1.1 2008/03/28 05:07:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconfmm/Makefile,v 1.2 2009/09/20 01:24:16 laffer1 Exp $
 
 PORTNAME=	gconfmm
 PORTVERSION=	2.0.2
@@ -14,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.0:${PORTSDIR}/x11-toolkits/gtkmm20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_X_PREFIX=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack lthack gconf2

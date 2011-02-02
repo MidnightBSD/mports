@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.6 2008/10/03 03:26:54 ctriv Exp $
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.7 2009/09/20 00:36:15 laffer1 Exp $
 #
 
 PORTNAME=	libgsf
@@ -28,7 +28,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_GNOME?=	gnomehack glib20 libxml2 gconf2 ltverhack intlhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc --without-gnome --with-bz2 \
 		--mandir=${PREFIX}/man \

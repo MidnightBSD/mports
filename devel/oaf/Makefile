@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/oaf/Makefile,v 1.4 2009/09/20 00:50:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/oaf/Makefile,v 1.5 2010/06/04 22:46:48 laffer1 Exp $
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_PERL5=	yes
 USE_XORG=	x11

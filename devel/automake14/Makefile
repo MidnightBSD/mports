@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automake14/Makefile,v 1.5 2008/03/28 03:10:00 ctriv Exp $
+# $MidnightBSD: mports/devel/automake14/Makefile,v 1.6 2009/06/06 21:39:16 laffer1 Exp $
 
 PORTNAME=	automake
 PKGNAMESUFFIX=	14
@@ -16,7 +16,7 @@ LICENSE=	gpl2
 RUN_DEPENDS=	${AUTOCONF_DEPENDS} \
 		automake-wrapper:${PORTSDIR}/devel/automake-wrapper
 
-USE_AUTOTOOLS=	autoconf:262:env
+USE_AUTOTOOLS=	autoconf:env
 BUILD_VERSION=	1.4
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 LATEST_LINK=	automake14
