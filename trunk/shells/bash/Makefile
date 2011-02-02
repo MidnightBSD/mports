@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.21 2010/11/03 11:14:59 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.22 2011/02/02 21:21:44 laffer1 Exp $
 
 PORTNAME=		bash
 PATCHLEVEL=		9
@@ -34,6 +34,7 @@ OPTIONS=	INCLUDED_FAQ	 "Install the included FAQ." Off \
 
 USE_AUTOTOOLS=	autoconf
 USE_BISON=	build
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
