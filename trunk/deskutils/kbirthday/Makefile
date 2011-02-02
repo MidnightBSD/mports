@@ -2,7 +2,7 @@
 # Date created:                         2003/04/12
 # Whom:                                 Heiner <h.eichmann@gmx.de>
 #
-# $MidnightBSD: mports/deskutils/kbirthday/Makefile,v 1.2 2008/06/19 22:48:09 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/kbirthday/Makefile,v 1.3 2009/09/20 00:39:38 laffer1 Exp $
 # $FreeBSD: ports/deskutils/kbirthday/Makefile,v 1.15 2007/05/19 20:01:40 flz Exp $
 
 PORTNAME=	kbirthday
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE kicker-applet that reminds you of birthdays and anniversaries
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_KDELIBS_VER=3
 USE_LDCONFIG=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.7 2009/12/31 23:33:16 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/drivel/Makefile,v 1.8 2010/05/09 18:23:09 laffer1 Exp $
 
 PORTNAME=	drivel
 PORTVERSION=	2.0.3
@@ -19,7 +19,7 @@ USE_GNOME=	gnomeprefix gnomehack libgnomeui intlhack gtksourceview
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 INSTALLS_OMF=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
