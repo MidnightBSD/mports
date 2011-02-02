@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/orc/Makefile,v 1.1 2011/01/08 04:15:33 laffer1 Exp $
 # $FreeBSD: ports/devel/orc/Makefile,v 1.6 2010/09/05 08:02:21 mm Exp $
 
 PORTNAME=	orc
@@ -11,7 +11,7 @@ COMMENT=	Library and toolset to operate arrays of data
 LICENSE=	bsd3
 
 USE_GNOME=	pkgconfig
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 

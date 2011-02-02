@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.8 2009/10/18 00:25:49 crash Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.9 2010/02/28 15:58:27 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack libidl ltverhack referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc

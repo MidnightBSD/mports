@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.2 2009/06/04 03:30:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.3 2009/06/06 21:50:51 laffer1 Exp $
 
 PORTNAME=	kBuild
 PORTVERSION=	0.1.5
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	gsed:${PORTSDIR}/textproc/gsed
 CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0 \
 		  --host=${ARCH}-portbld-freebsd7.0 \
 		  --target=${ARCH}-portbld-freebsd7.0
-USE_AUTOTOOLS=	automake:19 autoconf:262
+USE_AUTOTOOLS=	automake autoconf
 USE_GMAKE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-p1

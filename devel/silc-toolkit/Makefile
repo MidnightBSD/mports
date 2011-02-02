@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.6 2009/09/20 00:57:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.7 2009/10/14 13:40:36 laffer1 Exp $
 
 PORTNAME=	silc
 PORTVERSION=	1.1.10
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure Internet Live Conferencing (SILC) network toolkit
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes

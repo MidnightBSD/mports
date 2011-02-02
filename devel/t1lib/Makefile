@@ -3,7 +3,7 @@
 # Date created:			13, May, 1999
 # Whom:				Ying-Chieh Liao <ijliao@csie.nctu.edu.tw>
 #
-# $MidnightBSD: mports/devel/t1lib/Makefile,v 1.3 2009/09/20 01:00:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/t1lib/Makefile,v 1.4 2010/06/04 22:57:20 laffer1 Exp $
 # $FreeBSD: ports/devel/t1lib/Makefile,v 1.33 2006/08/14 22:55:17 clsung Exp $
 #
 
@@ -20,7 +20,7 @@ COMMENT=	A Type 1 Rasterizer Library for UNIX/X11
 LICENSE=	gpl2
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 ALL_TARGET=	without_doc
 USE_LDCONFIG=	yes
 

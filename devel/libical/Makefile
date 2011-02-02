@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libical/Makefile,v 1.5 2009/09/24 22:49:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/libical/Makefile,v 1.6 2010/08/02 23:10:28 laffer1 Exp $
 
 PORTNAME=	libical
 PORTVERSION=	0.44
@@ -10,7 +10,7 @@ COMMENT=	An implementation of the IETF's Calendaring and Scheduling protocols
 LICENSE=	lgpl
 
 USE_GNOME=	gnomehack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes

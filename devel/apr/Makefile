@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.15 2009/11/09 01:00:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.16 2010/10/09 17:38:13 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -28,7 +28,7 @@ APR_VERSION=	1.4.2
 APU_VERSION=	1.3.10
 
 USE_ICONV=		yes
-USE_AUTOTOOLS=	automake:19 autoconf:262 libtool:22:env
+USE_AUTOTOOLS=	automake autoconf libtool:env
 USE_GMAKE=		yes
 USE_PERL5_BUILD=	yes
 USE_PYTHON_BUILD=	yes

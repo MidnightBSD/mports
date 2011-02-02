@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.4 2008/03/28 02:35:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/sysconftool/Makefile,v 1.5 2009/04/08 05:08:25 laffer1 Exp $
 
 PORTNAME=	sysconftool
 PORTVERSION=	0.15
@@ -15,7 +15,7 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 HAS_CONFIGURE=	yes
 
-USE_AUTOTOOLS=	automake:19 aclocal:19 autoconf:262
+USE_AUTOTOOLS=	automake aclocal autoconf
 
 MAN1=	sysconftool.1 sysconftoolcheck.1
 MAN7=	sysconftool.7

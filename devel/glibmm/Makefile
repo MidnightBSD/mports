@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.10 2009/09/20 01:29:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/glibmm/Makefile,v 1.11 2010/12/04 01:52:36 laffer1 Exp $
 
 PORTNAME=	glibmm
 PORTVERSION=	2.24.2
@@ -25,7 +25,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehack glib20 ltverhack
 USE_PERL5=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static --disable-documentation
 

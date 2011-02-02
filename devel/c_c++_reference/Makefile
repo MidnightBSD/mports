@@ -2,7 +2,7 @@
 # Date created:        8 March 2000
 # Whom:                imura@af.airnet.ne.jp
 #
-# $MidnightBSD: mports/devel/c_c++_reference/Makefile,v 1.2 2008/08/24 20:53:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/c_c++_reference/Makefile,v 1.3 2009/09/20 01:15:22 laffer1 Exp $
 # $FreeBSD: ports/devel/c_c++_reference/Makefile,v 1.18 2007/05/19 20:02:12 flz Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	unknown
 RUN_DEPENDS=	kdevelop:${PORTSDIR}/devel/kdevelop
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_KDELIBS_VER=	3
 USE_GMAKE=	yes
 CONFIGURE_TARGET=
