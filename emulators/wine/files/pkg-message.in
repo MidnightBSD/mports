@@ -1,5 +1,3 @@
-Wine requires MidnightBSD 0.3 or above
-
 Some ZFS tuning guides recommend setting KVA_PAGES=512 in your kernel
 configuration.  This is incompatible with Wine.  The maximum possible
 is KVA_PAGES=500, which should still be enough for ZFS.
