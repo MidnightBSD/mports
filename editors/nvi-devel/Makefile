@@ -2,7 +2,7 @@
 # Date created:			27 Dec 2007
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/nvi-devel/Makefile,v 1.3 2009/09/20 01:05:53 laffer1 Exp $
+# $MidnightBSD: mports/editors/nvi-devel/Makefile,v 1.4 2010/04/26 13:13:44 laffer1 Exp $
 #
 
 PORTNAME=	nvi
@@ -19,7 +19,7 @@ LIB_DEPENDS=	db3.3:${PORTSDIR}/databases/db3
 
 USE_BZIP2=		yes
 WRKSRC=			${WRKDIR}/${DISTNAME}/build.unix
-USE_AUTOTOOLS=		libtool:22
+USE_AUTOTOOLS=		libtool
 USE_LDCONFIG=		yes
 CONFIGURE_ARGS+=        --with-db-prefix=${LOCALBASE} \
   	                         --program-prefix=n

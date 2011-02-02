@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.13 2010/05/08 02:20:17 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.14 2010/09/04 15:57:24 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
@@ -23,7 +23,7 @@ XEMACS_ARCH=	${CONFIGURE_TARGET}
 USE_BZIP2=	yes
 WANT_GNOME=	yes
 STRIP=
-USE_AUTOTOOLS=	autoconf:213
+USE_AUTOTOOLS=	autoconf213
 CONFIGURE_TARGET=${MACHINE_ARCH}--freebsd
 
 CONFIGURE_ARGS?=--with-clash-detection \
