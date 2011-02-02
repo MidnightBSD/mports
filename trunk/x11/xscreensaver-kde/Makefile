@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.6 2009/09/20 03:02:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver-kde/Makefile,v 1.7 2011/01/08 03:30:28 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver-kde/Makefile,v 1.22 2006/12/19 21:19:53 lofi Exp $
 
 PORTNAME=	xscreensaver-kde
@@ -19,7 +19,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdeartwork-${PORTVERSION}
 

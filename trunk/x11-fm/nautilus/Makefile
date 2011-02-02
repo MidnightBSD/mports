@@ -2,7 +2,7 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.6 2010/01/23 21:08:44 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.7 2010/12/15 02:26:32 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
 #   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
@@ -31,7 +31,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop \
 		librsvg2 desktopfileutils ltverhack gvfs ltasneededhack
 GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
 		LIBPNG="-L${LOCALBASE}/lib -lpng -lz"

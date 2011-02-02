@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.2 2009/12/13 19:03:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.3 2010/12/31 13:03:30 laffer1 Exp $
 
 PORTNAME=	gtk-engines2
 PORTVERSION=	2.20.1
@@ -20,7 +20,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack gtk20 intlhack ltasneededhack
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 
 OPTIONS=	ANIMATION "Enable experimental animated progressbars" off

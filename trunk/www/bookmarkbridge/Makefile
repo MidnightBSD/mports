@@ -2,7 +2,7 @@
 # Date Created:				January 2004
 # Whom:					Marco Molteni <molter@gufi.org>
 #
-# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.4 2008/10/13 19:47:12 crash Exp $
+# $MidnightBSD: mports/www/bookmarkbridge/Makefile,v 1.5 2010/05/29 05:58:19 laffer1 Exp $
 # $FreeBSD: ports/www/bookmarkbridge/Makefile,v 1.9 2006/02/23 10:39:35 ade Exp $
 #
 
@@ -23,7 +23,7 @@ USE_QT_VER=	4
 QT_COMPONENTS=	corelib gui moc_build rcc_build uic_build qt3support
 USE_GNOME=	gnometarget libxml2
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	aclocal:19 automake:19 autoconf:262
+USE_AUTOTOOLS=	aclocal automake autoconf
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
 .include <bsd.port.pre.mk>

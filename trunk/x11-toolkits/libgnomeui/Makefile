@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeui/Makefile,v 1.6 2009/09/20 02:42:32 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeui/Makefile,v 1.7 2010/08/14 02:57:57 laffer1 Exp $
 
 PORTNAME=	libgnomeui
 PORTVERSION=	2.24.3
@@ -24,7 +24,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gnomehier libbonoboui ltverhack \
 		referencehack gvfs
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BISON=	build
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"

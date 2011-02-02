@@ -2,7 +2,7 @@
 # Date created:				31 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.3 2009/12/29 00:18:15 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.4 2010/12/13 00:53:21 laffer1 Exp $
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
 #   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
 #
@@ -26,7 +26,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libxml2 glib20 ltverhack:12
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--disable-doxygen \
 		--with-xkb-base=${LOCALBASE}/share/X11/xkb \

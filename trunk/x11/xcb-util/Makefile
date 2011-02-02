@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xcb-util/Makefile,v 1.2 2009/09/20 02:00:36 smultron Exp $
+# $MidnightBSD: mports/x11/xcb-util/Makefile,v 1.3 2010/01/02 00:33:53 laffer1 Exp $
 
 PORTNAME=	xcb-util
 PORTVERSION=	0.3.6
@@ -16,7 +16,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_XORG=	xau xdmcp
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	GPERF="${LOCALBASE}/bin/gperf"

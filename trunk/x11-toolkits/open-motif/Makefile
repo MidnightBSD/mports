@@ -4,7 +4,7 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.7 2009/09/20 03:12:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.8 2009/12/13 22:08:40 laffer1 Exp $
 #
 
 PORTNAME=	open-motif
@@ -25,7 +25,7 @@ RUN_DEPENDS=	imake:${X_IMAKE_PORT}
 
 CONFLICTS=	lesstif-*
 
-USE_AUTOTOOLS=        libtool:22
+USE_AUTOTOOLS=        libtool
 USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_XORG=	xaw xbitmaps

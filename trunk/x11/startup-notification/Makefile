@@ -2,7 +2,7 @@
 # Date created:				14 November 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.6 2009/09/20 01:59:20 smultron Exp $
+# $MidnightBSD: mports/x11/startup-notification/Makefile,v 1.7 2010/01/19 02:50:52 laffer1 Exp $
 # $FreeBSD: ports/x11/startup-notification/Makefile,v 1.20 2006/02/23 10:39:59 ade Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	xcb-aux.0:${PORTSDIR}/x11/xcb-util
 
 USE_XORG=	x11
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 GNU_CONFIGURE=	yes

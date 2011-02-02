@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.6 2009/12/13 21:43:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.7 2010/08/14 02:59:15 laffer1 Exp $
 
 PORTNAME=	libgnomeprintui
 PORTVERSION=	2.18.5
@@ -21,7 +21,7 @@ USE_GNOME=	gnomeprefix gnomehack libgnomeprint libgnomecanvas \
 		intlhack ltverhack
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BISON=	build
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

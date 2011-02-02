@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.24 2010/05/03 15:54:36 vganji Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.25 2010/08/01 04:17:09 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.20.1
@@ -35,7 +35,7 @@ RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack atk pango ltverhack
 USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \

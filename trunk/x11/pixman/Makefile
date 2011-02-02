@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.7 2009/09/22 19:34:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/pixman/Makefile,v 1.8 2009/10/14 00:05:11 laffer1 Exp $
 
 PORTNAME=	pixman
 PORTVERSION=	0.16.0 
@@ -9,7 +9,7 @@ COMMENT=	Low-level pixel manipulation library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_PERL5_BUILD=yes
 USE_GNOME=	ltverhack
 

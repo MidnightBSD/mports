@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.2 2009/09/20 02:43:48 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.3 2009/12/13 21:46:18 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libgnomeuimm/Makefile,v 1.17 2007/10/04 06:27:13 edwin Exp $
 #
 
@@ -25,7 +25,7 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libgnomeui
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static
 

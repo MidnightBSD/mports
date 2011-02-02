@@ -2,7 +2,7 @@
 # Date created:		2006-11-07
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.4 2009/12/29 00:15:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.5 2010/12/09 00:52:51 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnomekbd/Makefile,v 1.7 2007/05/28 23:22:29 mezz Exp $
 #    $MCom: ports/x11/libgnomekbd/Makefile,v 1.5 2007/03/12 01:37:17 mezz Exp $
 #
@@ -21,7 +21,7 @@ LIB_DEPENDS=	xklavier.12:${PORTSDIR}/x11/libxklavier
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomeprefix gnomehack ltverhack gconf2
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes

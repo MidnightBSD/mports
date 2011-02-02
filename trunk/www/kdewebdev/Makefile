@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.4 2009/05/14 22:53:39 laffer1 Exp $
+# $MidnightBSD: mports/www/kdewebdev/Makefile,v 1.5 2009/09/20 00:19:30 laffer1 Exp $
 
 PORTNAME=	kdewebdev
 PORTVERSION=	${KDE_VERSION}
@@ -23,7 +23,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_XORG=	xpm
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 
 .include <${.CURDIR}/../../x11/kde3/Makefile.kde>
 .include <bsd.port.mk>

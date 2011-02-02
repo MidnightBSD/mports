@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.6 2009/12/31 20:18:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.7 2011/01/15 03:54:32 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 
 PORTNAME=	metacity
@@ -20,7 +20,7 @@ USE_BZIP2=	yes
 USE_XORG=	x11 xcomposite xdamage
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomeprefix intlhack gnomehack gconf2 ltverhack gtk20
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

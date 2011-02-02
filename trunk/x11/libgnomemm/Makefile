@@ -2,7 +2,7 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.3 2009/09/20 01:53:00 smultron Exp $
+# $MidnightBSD: mports/x11/libgnomemm/Makefile,v 1.4 2009/12/29 00:14:23 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnomemm/Makefile,v 1.18 2007/05/19 20:27:01 flz Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.0:${PORTSDIR}/x11-toolkits/gtkmm20
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack libgnome
 GNU_CONFIGURE=	yes

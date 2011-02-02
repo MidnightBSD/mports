@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.4 2009/05/08 22:17:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/kdeartwork3/Makefile,v 1.5 2009/09/20 02:53:21 laffer1 Exp $
 
 PORTNAME=	kdeartwork
 PORTVERSION=	${KDE_VERSION}
@@ -20,7 +20,7 @@ USE_GL=		yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib/kde3
 

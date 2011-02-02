@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.4 2009/05/08 21:59:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdebase3/Makefile,v 1.5 2009/09/20 01:37:45 smultron Exp $
 
 PORTNAME=	kdebase
 PORTVERSION=	${KDE_VERSION}
@@ -40,7 +40,7 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 PKGINSTALL=	${WRKDIR}/pkg-install
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 

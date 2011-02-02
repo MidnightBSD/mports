@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.20 2010/10/23 13:30:49 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.21 2010/11/06 22:00:58 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
@@ -32,7 +32,7 @@ SCRIPTS_ENV+=		LIBTOOL=${LIBTOOL} LIBTOOLIZE=${LIBTOOLIZE} \
 USE_APACHE=		common22
 USE_BZIP2=		yes
 USE_ICONV=		yes
-USE_AUTOTOOLS=		autoconf:262 libtool:22
+USE_AUTOTOOLS=		autoconf libtool
 USE_PERL5=		yes
 USE_PYTHON=		yes
 USE_RC_SUBR=		apache22.sh htcacheclean.sh
