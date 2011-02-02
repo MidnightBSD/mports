@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.1 2010/10/23 11:46:36 laffer1 Exp $
 
 PORTNAME=		tdb
 PORTVERSION=		1.2.0
@@ -19,7 +19,7 @@ USE_GMAKE=		yes
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
 USE_GNOME=		pkgconfig
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 
 IPATHS=			-I${WRKSRC}/libreplace
 AUTOHEADER_ARGS=	${IPATHS}

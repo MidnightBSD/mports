@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/libgda4/Makefile,v 1.1 2010/03/01 01:36:06 laffer1 Exp $
 
 PORTNAME=	libgda4
 PORTVERSION?=	4.0.5
@@ -22,7 +22,7 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
     		soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		json-glib-1.0.0:${PORTSDIR}/devel/json-glib
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack glib20 libxslt intlhack referencehack

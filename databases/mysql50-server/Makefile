@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.14 2009/11/25 04:09:52 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.15 2010/08/04 23:23:32 laffer1 Exp $
 
 PORTNAME?=	mysql
 PORTVERSION=	5.0.90
@@ -13,7 +13,7 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql50-client databases/mysql50-scripts
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
