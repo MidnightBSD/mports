@@ -2,7 +2,7 @@
 # Date created:				28 April, 2005
 # Whom:					Adam Weinberger, based off kiesel's ximian-exchange port
 #
-# $MidnightBSD: mports/mail/evolution-exchange/Makefile,v 1.1 2008/06/23 20:18:23 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution-exchange/Makefile,v 1.2 2009/09/20 01:24:05 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution-exchange/Makefile,v 1.42 2008/05/26 21:06:08 mezz Exp $
 #
 
@@ -21,7 +21,7 @@ RUN_DEPENDS=	evolution:${PORTSDIR}/mail/evolution
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_BDB=	41
 USE_OPENLDAP=	yes

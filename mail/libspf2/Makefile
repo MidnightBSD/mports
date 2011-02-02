@@ -2,7 +2,7 @@
 # Date created:        May 17 2008
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.2 2009/03/18 21:55:07 laffer1 Exp $
+# $MidnightBSD: mports/mail/libspf2/Makefile,v 1.3 2009/09/20 01:25:21 laffer1 Exp $
 #
 
 PORTNAME=	libspf2
@@ -17,7 +17,7 @@ COMMENT=	Sender Rewriting Scheme 2 C Implementation
 LICENSE=	bsd2
 # dual license
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
