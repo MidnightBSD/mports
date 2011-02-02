@@ -3,7 +3,7 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/games/kdegames3/Makefile,v 1.96 2006/09/12 23:26:16 lofi Exp $
-# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.3 2008/03/22 19:48:18 laffer1 Exp $
+# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.4 2009/09/20 01:13:45 laffer1 Exp $
 #
 
 PORTNAME=	kdegames
@@ -22,7 +22,7 @@ PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib
