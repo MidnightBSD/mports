@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.1 2010/12/28 14:25:49 laffer1 Exp $
 # $FreeBSD: ports/dns/idnkit/Makefile,v 1.14 2009/08/02 19:33:39 mezz Exp $
 
 PORTNAME=	idnkit
@@ -12,7 +12,7 @@ COMMENT=	A library to handle internationalized domain names
 LICENSE=	other
 #bsd 4 ish
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libiconv=${LOCALBASE} \
