@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.5 2009/10/03 00:44:25 laffer1 Exp $
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.6 2010/01/02 18:51:16 laffer1 Exp $
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
@@ -18,7 +18,7 @@ USE_SDL=	mixer sdl
 USE_GL=		gl
 USE_XORG=	x11 xt xmu xi
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	automake:14 autoconf:262
+USE_AUTOTOOLS=	automake14 autoconf
 AUTOMAKE_ARGS=	-a
 CONFIGURE_ENV=	THREAD_LIB="${PTHREAD_LIBS}"
 MAKE_ENV=	${CONFIGURE_ENV}

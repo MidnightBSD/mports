@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/moon-buggy/Makefile,v 1.1 2008/07/21 23:22:15 laffer1 Exp $
+# $MidnightBSD: mports/games/moon-buggy/Makefile,v 1.2 2009/06/06 21:31:11 laffer1 Exp $
 
 PORTNAME=	moon-buggy
 PORTVERSION=	1.0.51
@@ -20,7 +20,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	esd:${PORTSDIR}/audio/esound:install
 .endif
 
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--sharedstatedir=/var/games\
 		--with-setgid=games
