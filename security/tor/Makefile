@@ -2,10 +2,10 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/tor/Makefile,v 1.6 2009/06/29 17:25:06 laffer1 Exp $
+# $MidnightBSD: mports/security/tor/Makefile,v 1.7 2011/01/12 14:06:29 laffer1 Exp $
 
 PORTNAME=	tor
-PORTVERSION=	0.2.0.35
+PORTVERSION=	0.2.1.29
 PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	http://www.torproject.org/dist/ \
