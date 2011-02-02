@@ -2,14 +2,14 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.8 2008/03/28 03:10:00 ctriv Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.9 2009/04/05 19:51:42 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.62 2007/07/28 06:33:44 ade Exp $
 #
 
 PORTNAME=	autoconf
 PKGNAMESUFFIX=	213
 PORTVERSION=	2.13.000227
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ade/gnu
@@ -31,7 +31,7 @@ LATEST_LINK=	autoconf213
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4
+CONFIGURE_ENV=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4 AWK=${AWK}
 CONFIGURE_ARGS=	--program-suffix=-${BUILD_VERSION}
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 WRKSRC=		${WRKDIR}/autoconf

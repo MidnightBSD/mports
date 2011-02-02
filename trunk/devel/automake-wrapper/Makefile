@@ -1,10 +1,5 @@
-# New ports collection makefile for:	automake-wrapper
-# Date created:				2007-04-04
-# Whom:					des
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/automake-wrapper/Makefile,v 1.1 2008/03/23 20:32:39 laffer1 Exp $
 # $FreeBSD: ports/devel/automake-wrapper/Makefile,v 1.1 2007/07/28 06:33:45 ade Exp $
-#
 
 PORTNAME=	automake-wrapper
 
