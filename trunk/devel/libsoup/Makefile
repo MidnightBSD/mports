@@ -2,7 +2,7 @@
 # Date created:				7 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.13 2010/05/05 23:11:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.14 2010/09/14 23:49:38 laffer1 Exp $
 
 PORTNAME=	libsoup
 PORTVERSION=	2.30.2
@@ -25,7 +25,7 @@ LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack referencehack gconf2
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_SQLITE=	yes
 

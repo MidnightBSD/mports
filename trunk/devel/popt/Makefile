@@ -2,7 +2,7 @@
 # Date Created:				29 Dec 1999
 # Whom:					Yuan-Chen Cheng <ycheng@sinica.edu.tw>
 #
-# $MidnightBSD: mports/devel/popt/Makefile,v 1.3 2007/10/13 02:21:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/popt/Makefile,v 1.4 2009/10/18 01:15:20 crash Exp $
 
 PORTNAME=	popt
 PORTVERSION=	1.14
@@ -19,7 +19,7 @@ CONFIGURE_ARGS=	--with-libiconv-prefix=${LOCALBASE} \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 MAN3=		popt.3

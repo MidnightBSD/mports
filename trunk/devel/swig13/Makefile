@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/swig13/Makefile,v 1.2 2008/10/08 04:34:21 ctriv Exp $
+# $MidnightBSD: mports/devel/swig13/Makefile,v 1.3 2009/09/20 00:59:10 laffer1 Exp $
 
 PORTNAME=	swig
 PORTVERSION=	1.3.36
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simplified Wrapper and Interface Generator
 LICENSE=	bsd2
 
-USE_AUTOTOOLS=	autoconf:262:env libtool:22
+USE_AUTOTOOLS=	autoconf:env libtool
 
 VER=		${PORTVERSION:R}
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}

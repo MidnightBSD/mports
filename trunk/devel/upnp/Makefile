@@ -2,7 +2,7 @@
 # Date created:				02 August 2002
 # Whom:	      				Yen-Ming Lee <leeym@leeym.com>
 #
-# $MidnightBSD: mports/devel/upnp/Makefile,v 1.3 2010/10/20 18:50:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/upnp/Makefile,v 1.4 2010/10/23 10:16:08 laffer1 Exp $
 # $FreeBSD: ports/devel/upnp/Makefile,v 1.24 2008/04/29 12:41:16 miwi Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	bsd3
 
 CONFLICTS=	upnp-1.0.*
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes

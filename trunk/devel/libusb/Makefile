@@ -3,7 +3,7 @@
 # Whom:					John Reynolds <johnjen@reynoldsnet.org>
 #
 # $FreeBSD: ports/devel/libusb/Makefile,v 1.21 2006/08/26 17:27:35 garga Exp $
-# $MidnightBSD: mports/devel/libusb/Makefile,v 1.2 2008/05/17 09:45:29 crash Exp $
+# $MidnightBSD: mports/devel/libusb/Makefile,v 1.3 2010/06/04 23:02:54 laffer1 Exp $
 #
 
 PORTNAME=	libusb
@@ -32,9 +32,9 @@ CONFIGURE_ARGS=	--disable-build-docs
 PLIST_SUB=	SGML="@comment "
 .endif
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|{libdir}/pkgconfig|{prefix}/libdata/pkgconfig|g' ${WRKSRC}/configure

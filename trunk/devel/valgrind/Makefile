@@ -2,7 +2,7 @@
 # Date created:				June 27, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.3 2009/04/08 04:39:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.4 2009/04/08 05:07:28 laffer1 Exp $
 #
 
 PORTNAME=	valgrind
@@ -21,7 +21,7 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS+=	autoconf:262 aclocal:19 automake:19
+USE_AUTOTOOLS+=	autoconf aclocal automake
 CONFIGURE_ARGS+=--enable-maintainer-mode
 USE_PERL5_BUILD=yes
 USE_GCC=	3.4

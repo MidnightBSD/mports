@@ -2,7 +2,7 @@
 # Date created:		27 August 2003
 # Whom:			Tijl Coosemans <tijl@ulyssis.org>
 #
-# $MidnightBSD: mports/devel/libticalcs/Makefile,v 1.2 2008/10/08 04:55:26 ctriv Exp $
+# $MidnightBSD: mports/devel/libticalcs/Makefile,v 1.3 2009/09/20 00:47:44 laffer1 Exp $
 # $FreeBSD: ports/devel/libticalcs/Makefile,v 1.15 2006/10/05 15:18:42 clsung Exp $
 #
 
@@ -21,7 +21,7 @@ LIB_DEPENDS=	ticables.12:${PORTSDIR}/comms/libticables \
 
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehack pkgconfig
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 

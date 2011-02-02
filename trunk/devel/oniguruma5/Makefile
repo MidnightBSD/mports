@@ -2,7 +2,7 @@
 # Date created:	18. September 2007
 # Whom:		Stevan Tiefert
 #
-# $MidnightBSD: mports/devel/oniguruma5/Makefile,v 1.2 2008/10/13 21:00:59 ctriv Exp $
+# $MidnightBSD: mports/devel/oniguruma5/Makefile,v 1.3 2009/09/20 00:51:32 laffer1 Exp $
 #
 
 PORTNAME=	oniguruma
@@ -11,9 +11,9 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/
 DISTNAME=	onig-${PORTVERSION}
 WRKSRC=		${WRKDIR}/onig-5.9.0
-USE_AUTOTOOLS=	automake:19
-USE_AUTOTOOLS=	aclocal:19
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	automake
+USE_AUTOTOOLS=	aclocal
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes

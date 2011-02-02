@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/cunit/Makefile,v 1.1 2009/02/08 23:08:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/cunit/Makefile,v 1.2 2010/01/23 22:39:13 laffer1 Exp $
 
 PORTNAME=	cunit
 DISTVERSION=	2.1-0
@@ -14,7 +14,7 @@ WRKSRC=	${WRKDIR}/${PORTNAME:S/^cu/CU/}-${DISTVERSION}
 DOCSDIR=	${PREFIX}/share/doc/CUnit
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	autoheader:262
+USE_AUTOTOOLS=	autoheader
 USE_LDCONFIG=	yes
 
 MAN3=	CUnit.3

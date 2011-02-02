@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.4 2009/09/20 01:07:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.5 2010/09/11 20:53:47 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION=	0.86
@@ -17,7 +17,7 @@ USE_GNOME=	gnomehack glib20 ltverhack
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
 		--disable-doxygen-docs \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kdbg/Makefile,v 1.2 2009/09/20 00:28:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/kdbg/Makefile,v 1.3 2010/12/18 08:06:23 laffer1 Exp $
 
 PORTNAME=	kdbg
 PORTVERSION=	2.2.0
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 USE_KDELIBS_VER=	3
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	--with-kde-version=3

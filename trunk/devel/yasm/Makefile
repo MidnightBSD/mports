@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.5 2009/09/20 04:00:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/yasm/Makefile,v 1.6 2009/10/27 03:31:56 laffer1 Exp $
 
 PORTNAME=	yasm
 PORTVERSION=	0.8.0
@@ -11,7 +11,7 @@ LICENSE=	agg
 # mostly bsd2 with bsd3 and lgpl
 
 USE_ICONV=	yes
-USE_AUTOTOOLS=	autoconf:262 libltdl:22
+USE_AUTOTOOLS=	autoconf libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

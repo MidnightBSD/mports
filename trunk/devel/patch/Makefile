@@ -2,7 +2,7 @@
 # Date created:         24 Apr 2007
 # Whom:                 laffer1
 #
-# $MidnightBSD: mports/devel/patch/Makefile,v 1.2 2008/08/26 19:29:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/patch/Makefile,v 1.3 2010/07/31 03:03:39 laffer1 Exp $
 #
 
 PORTNAME=	patch
@@ -16,7 +16,7 @@ COMMENT=	GNU patch utility
 LICENSE=	gpl3
 
 USE_XZ=		yes
-USE_AUTOTOOLS=	autoconf:262 aclocal:110
+USE_AUTOTOOLS=	autoconf aclocal
 CONFIGURE_ARGS=	--program-prefix=g
 USE_GMAKE=	yes
 

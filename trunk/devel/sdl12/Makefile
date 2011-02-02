@@ -2,7 +2,7 @@
 # Date created:				1 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.5 2008/04/11 00:21:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.6 2009/09/20 00:56:37 laffer1 Exp $
 # $FreeBSD: ports/devel/sdl12/Makefile,v 1.106 2007/05/19 20:03:46 flz Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes

@@ -3,7 +3,7 @@
 # Whom:					Dmitry Sivachenko <demon@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/kdesdk3/Makefile,v 1.57 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.3 2008/10/03 03:14:44 ctriv Exp $
+# $MidnightBSD: mports/devel/kdesdk3/Makefile,v 1.4 2009/09/20 00:29:55 laffer1 Exp $
 #
 
 PORTNAME=	kdesdk
@@ -29,7 +29,7 @@ PREFIX=		${KDE_PREFIX}
 USE_PERL5=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 
 USE_LDCONFIG=	${PREFIX}/lib ${PREFIX}/lib/kde3
 

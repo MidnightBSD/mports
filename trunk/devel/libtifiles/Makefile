@@ -2,7 +2,7 @@
 # Date created:		27 August 2003
 # Whom:			Tijl Coosemans <tijl@ulyssis.org>
 #
-# $MidnightBSD: mports/devel/libtifiles/Makefile,v 1.2 2008/10/08 19:45:19 ctriv Exp $
+# $MidnightBSD: mports/devel/libtifiles/Makefile,v 1.3 2009/09/20 00:49:00 laffer1 Exp $
 # $FreeBSD: ports/devel/libtifiles/Makefile,v 1.14 2006/10/06 02:31:27 clsung Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	gpl2
 
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehack pkgconfig
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 
