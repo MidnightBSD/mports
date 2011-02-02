@@ -2,7 +2,7 @@
 # Date created:				24 Mar 2000
 # Whom:					erikhb@bgnett.no
 #
-# $MidnightBSD: mports/databases/libiodbc/Makefile,v 1.1 2007/08/10 18:15:59 laffer1 Exp $
+# $MidnightBSD: mports/databases/libiodbc/Makefile,v 1.2 2009/12/31 23:28:24 laffer1 Exp $
 # $FreeBSD: ports/databases/libiodbc/Makefile,v 1.28 2007/01/17 17:18:11 itetcu Exp $
 #
 # Note:  The location of ${INIDIR} and the installed name of the "odbctest"
@@ -24,7 +24,7 @@ CONFLICTS=	unixODBC-[0-9]*
 MAKE_JOBS_SAFE=	yes
 USE_GNOME=	gnomehack pkgconfig
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--with-iodbc-inidir=${ETCDIR}
 USE_LDCONFIG=	yes

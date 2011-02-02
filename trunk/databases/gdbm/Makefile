@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.7 2009/09/20 00:32:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.8 2009/10/14 00:06:31 laffer1 Exp $
 
 PORTNAME=	gdbm
 PORTVERSION=	1.8.3
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU database manager
 LICENSE=        gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0

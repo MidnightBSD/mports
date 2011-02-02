@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.7 2010/01/23 22:30:14 laffer1 Exp $
+# $MidnightBSD: mports/databases/evolution-data-server/Makefile,v 1.8 2010/08/14 06:19:40 laffer1 Exp $
 
 PORTNAME=	evolution-data-server
 PORTVERSION=	2.26.3
@@ -13,7 +13,6 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
 		ical.44:${PORTSDIR}/devel/libical \
-		nss3.1:${PORTSDIR}/security/nss \
 		tasn1.4:${PORTSDIR}/security/libtasn1 \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		gnome-keyring.0:${PORTSDIR}/security/gnome-keyring
@@ -25,7 +24,7 @@ USE_GETTEXT=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack libgnomeui ltverhack \
 		ltasneededhack
 USE_OPENLDAP=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BDB=	41+
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static \

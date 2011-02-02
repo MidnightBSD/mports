@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/lirc/Makefile,v 1.8 2009/09/20 00:15:12 laffer1 Exp $
+# $MidnightBSD: mports/comms/lirc/Makefile,v 1.9 2009/12/31 23:24:32 laffer1 Exp $
 
 PORTNAME=	lirc
 PORTVERSION=	0.8.0
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux Infared Remote Control
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_XORG=	x11
 USE_GMAKE=	yes

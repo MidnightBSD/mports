@@ -2,7 +2,7 @@
 # Date created:		2006-12-19
 # Whom:			Stefan Ehmann <shoesoft@gmx.net>
 #
-# $MidnightBSD: mports/comms/kmobiletools/Makefile,v 1.1 2008/08/17 22:14:13 laffer1 Exp $
+# $MidnightBSD: mports/comms/kmobiletools/Makefile,v 1.2 2009/09/20 00:12:40 laffer1 Exp $
 # $FreeBSD: ports/comms/kmobiletools/Makefile,v 1.2 2007/05/19 20:00:55 flz Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	gpl2
 USE_KDELIBS_VER=3
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 
 .include <bsd.port.mk>

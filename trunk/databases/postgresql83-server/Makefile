@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/postgresql83-server/Makefile,v 1.1 2009/03/14 15:03:05 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql83-server/Makefile,v 1.2 2009/03/18 06:04:44 laffer1 Exp $
 
 PORTNAME?=	postgresql
 DISTVERSION?=	8.3.7
@@ -101,7 +101,7 @@ OPTIONS+=	DEBUG "Builds with debugging symbols" off
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 
 #.  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-#USE_AUTOTOOLS=	autoconf:262
+#USE_AUTOTOOLS=	autoconf
 #CONFIGURE_ARGS+=--with-icu
 #LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
 #PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu

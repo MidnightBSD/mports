@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/comms/aldo/Makefile,v 1.2 2009/06/06 21:22:29 laffer1 Exp $
+# $MidnightBSD: mports/comms/aldo/Makefile,v 1.3 2009/09/20 00:11:24 laffer1 Exp $
 
 PORTNAME=	aldo
 PORTVERSION=	0.7.5
@@ -14,7 +14,7 @@ LIB_DEPENDS=	ao:${PORTSDIR}/audio/libao
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:262 automake:110 libtool:22 aclocal:110
+USE_AUTOTOOLS=	autoconf automake libtool aclocal
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 		--libdir="${LOCALBASE}/lib"

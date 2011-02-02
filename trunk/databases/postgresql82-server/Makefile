@@ -2,7 +2,7 @@
 # Date created:		15 Oct 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.3 2008/06/07 20:58:38 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql82-server/Makefile,v 1.4 2009/10/13 23:55:34 laffer1 Exp $
 #
 
 PORTNAME?=	postgresql
@@ -98,7 +98,7 @@ OPTIONS+=	DEBUG "Builds with debugging symbols" off
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" off
 
 # .  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
-# USE_AUTOTOOLS=	autoconf:262
+# USE_AUTOTOOLS=	autoconf
 # CONFIGURE_ARGS+=--with-icu
 # LIB_DEPENDS=	icudata:${PORTSDIR}/devel/icu
 # PATCH_SITES+=	http://people.freebsd.org/~girgen/postgresql-icu/:icu

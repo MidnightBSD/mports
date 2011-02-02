@@ -2,7 +2,7 @@
 # Date created:				May 9 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.7 2010/05/05 23:01:12 laffer1 Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.8 2010/10/21 19:40:56 laffer1 Exp $
 #
 
 PORTNAME=	rrdtool
@@ -23,7 +23,7 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 
 CONFLICTS=	rrdtool-1.0*
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes

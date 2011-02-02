@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.3 2009/12/13 02:16:39 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.4 2011/01/15 02:01:52 laffer1 Exp $
 
 PORTNAME=	mysql-gui-tools
 PORTVERSION=	5.0r14
@@ -21,7 +21,7 @@ BROKEN=		does not build with newer gnome sources
 OPTIONS=	QUERY_BROWSER	"Build the MySQL Query Browser"	on \
 		ADMINISTRATOR	"Build the MySQL Administrator"	on
 
-USE_AUTOTOOLS=	autoconf:262 libtool:22 automake:110
+USE_AUTOTOOLS=	autoconf libtool automake
 USE_GNOME=	gnomelibs libglade2 gtkhtml3 libgnomeprint intlhack gtksourceview
 USE_GL=		gl glut
 USE_GMAKE=	yes
