@@ -25,9 +25,8 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 #
+# $FreeBSD: ports/devel/autoconf-wrapper/files/autotools-wrapper.sh,v 1.4 2010/12/04 07:31:01 ade Exp $
 # $MidnightBSD$
-# $FreeBSD: ports/devel/autoconf-wrapper/files/autotools-wrapper.sh,v 1.3 2007/11/09 14:47:27 des Exp $
-#
 
 bindir=%%PREFIX%%/bin
 tool=$(basename $0)
@@ -51,11 +50,7 @@ if [ -n "${AUTOTOOLS_DEBUG}" -a -n "${%%TOOL%%_VERSION}" ] ; then
 fi
 
 #
-# Identify available versions.  Most of the complexity here stems from
-# the fact that some versions are installed as "toolXYZ" while some
-# are installed as "tool-X.YZ".  The latter is the canonical form,
-# i.e. the one intended by the authors and expected by the tools
-# themselves.
+# Identify available versions.
 #
 # The double sort is necessary to correctly identify 1.10 as newer
 # than 1.9.
@@ -65,12 +60,10 @@ fi
 # measures to handle this case.
 #
 /usr/bin/find ${bindir}/ -name "${tool}*[0-9]" | /usr/bin/sed -E \
-    -e "s@^.*/${tool}-([0-9])\\.([0-9]+)\$@\1 \2 -\1.\2@" \
-    -e "s@^.*/${tool}([0-9])([0-9]+)\$@\1 \2 \1\2@" | \
+    -e "s@^.*/${tool}-([0-9])\\.([0-9]+)\$@\1 \2 \1.\2@" | \
     /usr/bin/sort -n -k1 | /usr/bin/sort -n -s -k2 | {
 while read maj min suffix ; do
-	selected_version="$maj$min"
-	selected_suffix=$suffix
+	selected_version=$suffix
 	if [ -n "${%%TOOL%%_VERSION}" -a \
 	    "x${%%TOOL%%_VERSION}" = x${selected_version} ] ; then
 		break
@@ -89,8 +82,8 @@ fi
 
 if [ -n "${AUTOTOOLS_DEBUG}" ] ; then
 	echo "Selecting ${tool} version ${selected_version}" \
-	    "(${bindir}/${tool}${selected_suffix})" 1>&2
+	    "(${bindir}/${tool}-${selected_version})" 1>&2
 fi
 
-exec ${bindir}/${tool}${selected_suffix} "$@"
+exec ${bindir}/${tool}-${selected_version} "$@"
 }

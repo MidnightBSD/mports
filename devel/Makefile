@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.357 2011/01/08 04:44:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.358 2011/01/26 00:37:24 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -12,20 +12,12 @@
     SUBDIR += apache-ant
     SUBDIR += apr
     SUBDIR += apr-svn
+    SUBDIR += autoconf
     SUBDIR += autoconf-wrapper
     SUBDIR += autoconf213
-    SUBDIR += autoconf253
-    SUBDIR += autoconf259
-    SUBDIR += autoconf261
-    SUBDIR += autoconf262
-    SUBDIR += autoconf263
     SUBDIR += autogen
     SUBDIR += automake-wrapper
-    SUBDIR += automake110
     SUBDIR += automake14
-    SUBDIR += automake15
-    SUBDIR += automake16
-    SUBDIR += automake19
     SUBDIR += automoc4
     SUBDIR += autotools
     SUBDIR += binutils
@@ -132,7 +124,7 @@
     SUBDIR += libgtop
     SUBDIR += libical
     SUBDIR += libixp
-    SUBDIR += libltdl22
+    SUBDIR += libltdl
     SUBDIR += libnotify
     SUBDIR += liboil
     SUBDIR += liboobs
@@ -150,7 +142,7 @@
     SUBDIR += libthai
     SUBDIR += libticalcs
     SUBDIR += libtifiles
-    SUBDIR += libtool22
+    SUBDIR += libtool
     SUBDIR += libublio
     SUBDIR += libunicode
     SUBDIR += libusb
