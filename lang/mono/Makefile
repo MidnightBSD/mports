@@ -2,7 +2,7 @@
 # Date created:        22 August 2007
 # Whom:                Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.7 2009/01/02 02:37:44 ctriv Exp $
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.8 2009/09/20 01:21:44 laffer1 Exp $
 # $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
 #
 
@@ -19,7 +19,7 @@ USE_BZIP2=	yes
 USE_BISON=	yes
 USE_GNOME=	gnomehack glib20
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 LIBTOOLFILES=	configure libgc/configure
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

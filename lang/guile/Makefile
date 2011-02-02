@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.8 2009/11/08 16:38:24 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.9 2010/05/08 02:07:54 laffer1 Exp $
 
 PORTNAME=	guile
 PORTVERSION=	1.8.6
@@ -13,7 +13,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
-USE_AUTOTOOLS=	autoconf:262 libltdl:22
+USE_AUTOTOOLS=	autoconf libltdl
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes

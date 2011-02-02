@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ghc/Makefile,v 1.4 2009/06/04 00:48:38 laffer1 Exp $
+# $MidnightBSD: mports/lang/ghc/Makefile,v 1.5 2010/05/08 02:07:52 laffer1 Exp $
 
 PORTNAME=	ghc
 PORTVERSION=	6.8.3
@@ -17,7 +17,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 GHC_VERSION=	${PORTVERSION}
 
-USE_AUTOTOOLS=	autoconf:262:env
+USE_AUTOTOOLS=	autoconf:env
 USE_BZIP2=	yes
 LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 
