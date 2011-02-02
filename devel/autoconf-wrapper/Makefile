@@ -1,13 +1,8 @@
-# New ports collection makefile for:	autoconf-wrapper
-# Date created:				4th April 2007
-# Whom:					des
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/autoconf-wrapper/Makefile,v 1.1 2008/03/23 20:32:39 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf-wrapper/Makefile,v 1.3 2007/11/09 14:47:26 des Exp $
-#
 
 PORTNAME?=	autoconf-wrapper
-PORTVERSION=	20071109
+PORTVERSION=	20101119
 CATEGORIES=	devel
 MASTER_SITES=	# none
 DISTFILES=	# none
