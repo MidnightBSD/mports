@@ -2,7 +2,7 @@
 # Date created:				21 August 2001
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/converters/psiconv/Makefile,v 1.1 2007/12/28 04:23:42 laffer1 Exp $
+# $MidnightBSD: mports/converters/psiconv/Makefile,v 1.2 2009/09/20 00:27:07 laffer1 Exp $
 # $FreeBSD: ports/converters/psiconv/Makefile,v 1.15 2007/02/01 02:41:22 kris Exp $
 #
 
@@ -16,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A conversion utility to convert Psion 5(MX) files into other formats
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GETOPT_LONG=yes
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes

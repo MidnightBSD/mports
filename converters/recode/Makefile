@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/recode/Makefile,v 1.5 2009/09/20 00:28:24 laffer1 Exp $
+# $MidnightBSD: mports/converters/recode/Makefile,v 1.6 2009/09/20 03:57:34 laffer1 Exp $
 
 PORTNAME=	recode
 PORTVERSION=	3.6
@@ -12,7 +12,7 @@ COMMENT=	Converts files between character sets and usages
 LICENSE=	gpl2
 
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--without-included-gettext

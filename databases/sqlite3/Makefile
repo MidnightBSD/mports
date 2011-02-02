@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.10 2010/03/10 04:54:26 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.11 2010/03/12 13:05:01 laffer1 Exp $
 
 PORTNAME=	sqlite
 PORTVERSION=	3.6.15
@@ -17,7 +17,7 @@ SLAVEDIRS=      databases/sqlite3-threads
 
 USE_GMAKE=	YES
 USE_GNOME=	pkgconfig
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	YES
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=		--prefix=${PREFIX} --with-hints=freebsd.hints
