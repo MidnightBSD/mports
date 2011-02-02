@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.12 2009/12/25 16:37:47 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.13 2010/05/14 03:25:02 laffer1 Exp $
 
 PORTNAME=	atk
 PORTVERSION=	1.30.0
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack glib20 ltverhack referencehack
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-static \

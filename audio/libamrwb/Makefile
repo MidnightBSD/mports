@@ -2,7 +2,7 @@
 # Date created:	7 Jun 2007
 # Whom:		Tatsuki Makino <tatsuki_makino@hotmail.com>
 #
-# $MidnightBSD: mports/audio/libamrwb/Makefile,v 1.1 2008/09/25 03:38:45 laffer1 Exp $
+# $MidnightBSD: mports/audio/libamrwb/Makefile,v 1.2 2009/09/20 00:26:04 laffer1 Exp $
 # $FreeBSD: ports/audio/libamrwb/Makefile,v 1.5 2008/06/01 20:31:01 miwi Exp $
 #
 
@@ -25,7 +25,7 @@ RESTRICTED=	license prohibits redistribution
 RESTRICTED_FILES=	${SRC3GPP}
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 PORTDOCS=	AUTHORS COPYING ChangeLog NEWS README TODO readme.txt
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes

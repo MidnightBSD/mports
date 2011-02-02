@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.6 2009/09/20 00:06:59 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.7 2010/02/27 15:58:03 laffer1 Exp $
 
 PORTNAME=	akode
 PORTVERSION=	2.0.2
@@ -23,7 +23,7 @@ OPTIONS=	FFMPEG "FFMPEG decoder plugin" off \
 		RESAMPLER "Resampler processing plugin" on \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
-USE_AUTOTOOLS=  libltdl:22 libtool:22 automake:19
+USE_AUTOTOOLS=  libltdl libtool automake
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

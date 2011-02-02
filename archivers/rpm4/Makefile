@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.1 2009/09/19 23:57:12 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.2 2009/12/13 22:21:28 laffer1 Exp $
 
 PORTNAME=	rpm
 PORTVERSION=	4.0.4
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 BUILD_DEPENDS+=	${LOCALBASE}/bin/doxygen:${PORTSDIR}/devel/doxygen
 .endif
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 LIBTOOLFILES=	configure db3/configure db/dist/configure popt/configure \
 		beecrypt/configure
 USE_GMAKE=	yes

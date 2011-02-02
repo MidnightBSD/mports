@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.7 2009/11/25 02:32:38 laffer1 Exp $
+# $MidnightBSD: mports/audio/libvorbis/Makefile,v 1.8 2010/11/06 14:01:45 laffer1 Exp $
 
 PORTNAME=	libvorbis
 PORTVERSION=	1.3.1
@@ -12,7 +12,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack
 CONFIGURE_ARGS=	--with-ogg=${LOCALBASE} \

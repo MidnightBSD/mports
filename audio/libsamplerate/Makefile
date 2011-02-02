@@ -1,5 +1,5 @@
 # $FreeBSD: ports/audio/libsamplerate/Makefile,v 1.15 2006/06/09 18:00:28 ahze Exp $
-# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.5 2010/02/27 19:37:25 laffer1 Exp $
+# $MidnightBSD: mports/audio/libsamplerate/Makefile,v 1.6 2010/12/07 00:34:24 laffer1 Exp $
 
 PORTNAME=	libsamplerate
 PORTVERSION=	0.1.7
@@ -15,7 +15,7 @@ LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile \
 		fftw3.5:${PORTSDIR}/math/fftw3
 
 USE_GNOME=	gnomehack pkgconfig
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

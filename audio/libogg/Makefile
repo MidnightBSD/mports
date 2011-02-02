@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libogg/Makefile,v 1.7 2010/02/27 19:30:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/libogg/Makefile,v 1.8 2010/11/06 13:56:31 laffer1 Exp $
 
 PORTNAME=	libogg
 PORTVERSION=	1.2.0
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Ogg bitstream library
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack
 USE_LDCONFIG=	yes

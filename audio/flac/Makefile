@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/flac/Makefile,v 1.8 2009/11/25 02:42:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/flac/Makefile,v 1.9 2010/11/06 13:58:57 laffer1 Exp $
 
 PORTNAME=	flac
 PORTVERSION=	1.2.1
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-sse \
 		--with-ogg="${LOCALBASE}" \
