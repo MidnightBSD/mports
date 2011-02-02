@@ -2,7 +2,7 @@
 # Date created:		7 July 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.3 2009/09/20 02:11:33 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gdome2/Makefile,v 1.4 2010/01/02 19:26:32 laffer1 Exp $
 # $FreeBSD: ports/textproc/gdome2/Makefile,v 1.28 2007/01/28 09:07:44 kris Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	glib20 gnomehack
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	GLIB_CONFIG="${LOCALBASE}/bin/pkg-config glib-2.0" \

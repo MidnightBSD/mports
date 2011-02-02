@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/wv/Makefile,v 1.3 2009/09/20 02:21:42 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.4 2010/12/04 02:02:35 laffer1 Exp $
 
 PORTNAME=	wv
 PORTVERSION=	1.2.7
@@ -15,7 +15,7 @@ RUN_DEPENDS=	lynx:${PORTSDIR}/www/lynx
 
 USE_GNOME=	gnometarget libgsf
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" MKDIR_P="${MKDIR}"
