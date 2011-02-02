@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/opencdk/Makefile,v 1.5 2009/09/20 02:12:22 laffer1 Exp $
+# $MidnightBSD: mports/security/opencdk/Makefile,v 1.6 2010/08/01 06:18:22 laffer1 Exp $
 
 PORTNAME=	opencdk
 PORTVERSION=	0.6.6
@@ -17,7 +17,7 @@ LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GNOME=	pkgconfig ltverhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-libgcrypt-prefix=${LOCALBASE}

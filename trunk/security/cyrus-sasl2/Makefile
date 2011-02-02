@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.5 2009/03/18 04:32:49 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.6 2009/12/28 17:40:41 laffer1 Exp $
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.23
@@ -14,7 +14,7 @@ LICENSE=	bsd4
 
 LATEST_LINK=	${PORTNAME}2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}2

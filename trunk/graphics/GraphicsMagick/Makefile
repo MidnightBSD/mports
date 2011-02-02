@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.5 2010/05/31 19:22:00 laffer1 Exp $
+# $MidnightBSD: mports/graphics/GraphicsMagick/Makefile,v 1.6 2010/09/06 23:02:06 laffer1 Exp $
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.1.15
@@ -26,7 +26,7 @@ OPTIONS=	Q8BIT "Use 8-bit pixels (speed) instead of 16 (quality)" off \
 		TESTS "Run bundled self-tests after build" on
 
 USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GHOSTSCRIPT=yes
 GNU_CONFIGURE=	yes

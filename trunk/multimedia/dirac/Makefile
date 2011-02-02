@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/dirac/Makefile,v 1.1 2010/11/06 15:55:01 laffer1 Exp $
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Open source video codec from the BBC
 LICENSE=	mpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes

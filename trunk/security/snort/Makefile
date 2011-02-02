@@ -3,7 +3,7 @@
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
 # $FreeBSD: ports/security/snort/Makefile,v 1.98 2008/06/09 06:16:02 clsung Exp $
-# $MidnightBSD: mports/security/snort/Makefile,v 1.2 2008/09/24 13:58:42 laffer1 Exp $
+# $MidnightBSD: mports/security/snort/Makefile,v 1.3 2009/09/20 02:13:39 laffer1 Exp $
 
 PORTNAME=	snort
 PORTVERSION=	2.8.2.1
@@ -56,7 +56,7 @@ LIBNET_LIBDIR=	${LIBNET_LIBS:M-L*:S/-L//}
 .endif
 
 .if !defined(WITHOUT_DYNAMIC)
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=	--enable-dynamicplugin
 PLIST_SUB+=	DYNAMIC=""

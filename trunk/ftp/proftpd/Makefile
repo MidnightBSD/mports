@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.5 2009/12/25 16:00:02 laffer1 Exp $
 
 PORTNAME=	proftpd
 PORTVERSION=	1.3.2b
@@ -47,7 +47,7 @@ PORTEXAMPLES=	ASCII.html CreateHome.html Filters.html SQL.html Umask.html \
 
 USE_GMAKE=	yes
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 
 USE_RC_SUBR=	proftpd.sh

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/libgweather/Makefile,v 1.4 2010/01/09 18:49:40 laffer1 Exp $
+# $MidnightBSD: mports/net/libgweather/Makefile,v 1.5 2010/12/31 14:11:15 laffer1 Exp $
 
 PORTNAME=	libgweather
 PORTVERSION=	2.30.2
@@ -18,7 +18,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 ltverhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

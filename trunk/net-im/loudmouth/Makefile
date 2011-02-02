@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.7 2010/05/29 09:10:24 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.8 2010/09/11 21:13:46 laffer1 Exp $
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
@@ -16,7 +16,7 @@ LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 ltverhack
 CONFIGURE_ARGS=	--disable-gtk-doc

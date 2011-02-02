@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.9 2010/12/24 18:11:20 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gimp-app/Makefile,v 1.10 2010/12/31 03:28:16 laffer1 Exp $
 
 PORTNAME=	gimp-app
 DISTVERSION=	2.6.10
@@ -24,7 +24,7 @@ LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		lcms.1:${PORTSDIR}/graphics/lcms \
-		gegl-0.0.22:${PORTSDIR}/graphics/gegl \
+		gegl-0.1:${PORTSDIR}/graphics/gegl \
 		babl-0.1:${PORTSDIR}/x11/babl
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
@@ -34,7 +34,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XORG=	xpm xmu xext
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME+=	gnomehack intltool intlhack gtk20 libartlgpl2 ltverhack \
 		desktopfileutils gnomelibs
 USE_LDCONFIG=	yes

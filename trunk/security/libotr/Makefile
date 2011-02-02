@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libotr/Makefile,v 1.5 2009/10/17 23:06:14 laffer1 Exp $
+# $MidnightBSD: mports/security/libotr/Makefile,v 1.6 2010/08/01 06:17:34 laffer1 Exp $
 
 PORTNAME=	libotr
 PORTVERSION=	3.2.0
@@ -17,7 +17,7 @@ LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		gcrypt.17:${PORTSDIR}/security/libgcrypt
 
 USE_GNOME=	pkgconfig
-USE_AUTOTOOLS=	autoconf:262 libtool:22
+USE_AUTOTOOLS=	autoconf libtool
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 

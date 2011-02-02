@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.1 2008/11/20 15:58:21 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.2 2009/04/03 06:16:08 laffer1 Exp $
 
 PORTNAME=	apachetop
 PORTVERSION=	0.12.6
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apache RealTime log stats
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	autoconf:262:env
+USE_AUTOTOOLS=	autoconf:env
 GNU_CONFIGURE=	yes
 
 MAN1=		apachetop.1

@@ -2,7 +2,7 @@
 # Date created:		Fri Nov 16 02:47:45 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.4 2008/09/14 00:44:03 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/gift/Makefile,v 1.5 2009/09/20 03:42:26 laffer1 Exp $
 # $FreeBSD: ports/net-p2p/gift/Makefile,v 1.25 2007/01/27 08:16:35 kris Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 
-USE_AUTOTOOLS=	libltdl:22 libtool:22
+USE_AUTOTOOLS=	libltdl libtool
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes

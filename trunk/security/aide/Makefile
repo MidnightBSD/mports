@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/aide/Makefile,v 1.6 2009/03/19 14:53:51 laffer1 Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.7 2010/12/07 00:52:21 laffer1 Exp $
 
 PORTNAME=	aide
 PORTVERSION=	0.13.1
@@ -15,7 +15,7 @@ LIB_DEPENDS=	mhash.2:${PORTSDIR}/security/mhash
 
 USE_GMAKE=	yes
 USE_BISON=	build
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \

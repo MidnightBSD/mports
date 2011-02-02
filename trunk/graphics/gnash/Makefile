@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.12 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.13 2010/12/02 02:13:21 laffer1 Exp $
 
 PORTNAME=	gnash
-PORTVERSION=	0.8.6
-PORTREVISION=	3
+PORTVERSION=	0.8.7
+PORTREVISION=	0
 CATEGORIES=	graphics
 # getgnash.org is slow
 MASTER_SITES=	${MASTER_SITE_GNU} \
@@ -30,7 +30,7 @@ USE_GCC=	4.2+	# triggers compiler error on gcc 3.4
 WANT_GSTREAMER=	yes
 USE_GNOME=	pkgconfig libxml2
 USE_XORG=	x11 xau xdmcp xext xi xinerama ice sm
-USE_AUTOTOOLS=	libltdl:22
+USE_AUTOTOOLS=	libltdl
 MAKE_JOBS_SAFE=	yes
 
 WEBPLUGINS_DIR=	lib/browser_plugins

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.8 2010/08/01 05:30:57 laffer1 Exp $
+# $MidnightBSD: mports/security/gnome-keyring/Makefile,v 1.9 2010/08/14 03:14:52 laffer1 Exp $
 
 PORTNAME=	gnome-keyring
 PORTVERSION=	2.30.3
@@ -17,7 +17,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnomeprefix gtk20 ltverhack intlhack gconf2
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-pam-dir="${PREFIX}/lib"
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

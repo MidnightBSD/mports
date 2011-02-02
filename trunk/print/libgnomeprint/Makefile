@@ -2,7 +2,7 @@
 # Date created:				15 Jan 1999
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.3 2008/06/01 21:01:41 crash Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.4 2009/09/20 02:14:09 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
 #
 
@@ -31,7 +31,7 @@ USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier glib20 pango libxml2 \
 USE_GETTEXT=	yes
 USE_XLIB=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

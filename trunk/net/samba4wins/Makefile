@@ -2,7 +2,7 @@
 # Date created:				11th Apr 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.1 2008/05/30 20:31:57 laffer1 Exp $
+# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.2 2010/09/11 21:36:14 laffer1 Exp $
 # $FreeBSD: ports/net/samba4wins/Makefile,v 1.8 2007/12/28 12:11:18 erwin Exp $
 #
 
@@ -22,7 +22,7 @@ CONFLICTS=		samba-4.* sharity-light-1.*
 USE_ICONV=		yes
 USE_PERL5=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 
 WRKSRC=			${WRKDIR}/${PORTNAME}/source
 

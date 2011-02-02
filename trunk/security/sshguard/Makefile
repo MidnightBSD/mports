@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.6 2009/03/08 15:04:18 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.7 2010/02/06 02:29:07 laffer1 Exp $
 
 PORTNAME=	sshguard
 DISTVERSION=	1.3
@@ -16,7 +16,7 @@ PLIST_FILES=	sbin/sshguard
 
 MAN8=		sshguard.8
 MANCOMPRESSED=	no
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 USE_BZIP2=	yes
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
 HAS_CONFIGURE=	yes

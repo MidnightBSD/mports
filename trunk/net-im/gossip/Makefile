@@ -2,16 +2,16 @@
 # Date created:				08 July 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/net-im/gossip/Makefile,v 1.1 2008/06/25 14:33:01 laffer1 Exp $
+# $MidnightBSD: mports/net-im/gossip/Makefile,v 1.2 2008/09/13 22:11:43 laffer1 Exp $
 # $FreeBSD: ports/net-im/gossip/Makefile,v 1.54 2008/06/06 13:51:45 edwin Exp $
 #   $MCom: ports/net-im/gossip/Makefile,v 1.10 2007/07/30 20:30:21 mezz Exp $
 #
 
 PORTNAME=	gossip
-PORTVERSION=	0.26
+PORTVERSION=	0.31
+PORTREVISION=	4
 CATEGORIES=	net-im gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -29,7 +29,8 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gnomepanel gnomedocutils
+USE_GNOME=	gnomeprefix intlhack gnomehack gnomepanel gnomedocutils \
+		libgnomeui
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	--enable-dbus=yes
@@ -39,7 +40,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 GCONF_SCHEMAS=	gossip.schemas
 
 OPTIONS=	NOTIFY "Enable libnotify support" on \
-		TELEPATHY "Enable telepathy support" off
+		TELEPATHY "Enable telepathy support" off \
+		EBOOK "Enable Evolution integration" off
 
 .include <bsd.port.pre.mk>
 
@@ -54,6 +56,12 @@ LIB_DEPENDS+=		telepathy.2:${PORTSDIR}/net-im/libtelepathy
 CONFIGURE_ARGS+=	--enable-telepathy=yes
 .else
 CONFIGURE_ARGS+=	--enable-telepathy=no
+.endif
+
+.if defined(WITH_EBOOK)
+USE_GNOME+=	evolutiondataserver
+.else
+CONFIGURE_ARGS+=	--enable-ebook=no
 .endif
 
 .include <bsd.port.post.mk>

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.9 2010/09/02 23:43:35 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.10 2010/10/19 16:02:54 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
@@ -15,7 +15,7 @@ LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_XORG=	sm xext x11
 USE_BZIP2=	yes
 USE_GMAKE=	yes

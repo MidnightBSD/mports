@@ -2,7 +2,7 @@
 # Date created:        7 Nov 2007
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/gnet2/Makefile,v 1.4 2008/09/17 21:13:53 laffer1 Exp $
+# $MidnightBSD: mports/net/gnet2/Makefile,v 1.5 2009/09/20 01:41:04 laffer1 Exp $
 #
 
 PORTNAME=	gnet
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple network library built upon Glib-2
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/goom/Makefile,v 1.3 2009/04/15 00:08:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/goom/Makefile,v 1.4 2009/09/20 01:32:09 laffer1 Exp $
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0
@@ -13,7 +13,7 @@ COMMENT=	Visual effects library
 LICENSE=	lgpl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION:S|.|-|}
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack gnometarget
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

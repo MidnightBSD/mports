@@ -1,5 +1,5 @@
 # $FreeBSD: ports/graphics/kooka/Makefile,v 1.14 2006/09/12 23:26:18 lofi Exp $
-# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.3 2009/09/20 01:42:19 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kooka/Makefile,v 1.4 2011/01/01 16:34:02 laffer1 Exp $
 
 PORTNAME=	kooka
 PORTVERSION=	${KDE_VERSION}
@@ -23,7 +23,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
 USE_LDCONFIG=	yes

@@ -2,7 +2,7 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/librsvg2/Makefile,v 1.4 2008/10/20 18:45:49 ctriv Exp $
+# $MidnightBSD: mports/graphics/librsvg2/Makefile,v 1.5 2009/09/20 01:53:47 laffer1 Exp $
 # $FreeBSD: ports/graphics/librsvg2/Makefile,v 1.59 2007/07/27 15:50:29 mezz Exp $
 #   $MCom: ports/graphics/librsvg2/Makefile,v 1.109 2006/10/02 04:52:51 bland Exp $
 #
@@ -29,7 +29,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_XLIB=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack gnomeprefix libgsf gtk20 ltverhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

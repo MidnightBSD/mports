@@ -3,7 +3,7 @@
 # Whom:                Peter Schmiedeskamp
 #
 # $FreeBSD: ports/graphics/libexif/Makefile,v 1.25 2006/03/29 06:54:33 pav Exp $
-# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.3 2009/09/20 01:48:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libexif/Makefile,v 1.4 2010/11/12 14:26:17 laffer1 Exp $
 #
 
 PORTNAME=	libexif
@@ -19,7 +19,7 @@ LICENSE=	lgpl
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack ltverhack pkgconfig
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--disable-docs

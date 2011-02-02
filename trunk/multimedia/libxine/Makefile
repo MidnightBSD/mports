@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.18 2009/10/18 00:55:16 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.19 2010/05/05 23:43:38 laffer1 Exp $
 #
 
 PORTNAME=	xine
@@ -46,7 +46,7 @@ USE_GL=		gl glu
 USE_SDL=	sdl
 USE_LDCONFIG=	yes
 # built in libtool is very old and doesn't work with fake.
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -fno-force-addr -I${LOCALBASE}/include -I${LOCALBASE}/include/dvdread -I${X11BASE}/include" \
 		CPPFLAGS="-I${LOCALBASE}/include -I${X11BASE}/include" \

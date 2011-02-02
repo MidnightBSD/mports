@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.4 2009/03/13 03:44:38 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ilmbase/Makefile,v 1.5 2009/09/20 01:34:41 laffer1 Exp $
 
 PORTNAME=	ilmbase
 PORTVERSION=	1.0.1
@@ -16,7 +16,7 @@ OPTIONS=	THREAD	"Enable multithreaded file I/O support"	on
 USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 regression test check:	build
 	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)

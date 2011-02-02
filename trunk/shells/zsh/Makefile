@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.12 2009/04/14 03:14:16 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.13 2009/09/25 00:34:17 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -28,7 +28,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 ZSH_VER=	${PORTVERSION}
 
-USE_AUTOTOOLS=	autoconf:262 autoheader:262
+USE_AUTOTOOLS=	autoconf autoheader
 USE_BZIP2=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
