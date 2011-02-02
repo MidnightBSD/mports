@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.4 2009/09/20 02:38:44 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.5 2009/12/13 22:04:13 laffer1 Exp $
 
 PORTNAME=	gtksourceview
 PORTVERSION=	1.8.5
@@ -18,7 +18,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomeprefix gnomehack libgnome libgnomeprintui intlhack \
 		ltverhack referencehack

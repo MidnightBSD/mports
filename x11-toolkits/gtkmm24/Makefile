@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.11 2010/12/15 02:18:16 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.12 2010/12/31 03:43:20 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	24
@@ -25,7 +25,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_GNOME=	gnomehack gtk20 ltverhack:1

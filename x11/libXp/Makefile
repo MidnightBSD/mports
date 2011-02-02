@@ -3,7 +3,7 @@
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/libXp/Makefile,v 1.10 2007/05/19 20:26:52 flz Exp $
-# $MidnightBSD: mports/x11/libXp/Makefile,v 1.1 2007/10/03 20:25:34 ctriv Exp $
+# $MidnightBSD: mports/x11/libXp/Makefile,v 1.2 2009/09/20 01:45:22 smultron Exp $
 #
 
 PORTNAME=	libXp
@@ -16,7 +16,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto xau printproto:both
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
 

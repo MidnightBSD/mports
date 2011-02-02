@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xscreensaver-gnome-hacks/Makefile,v 1.1 2010/03/02 01:10:26 laffer1 Exp $
 
 PORTNAME=	xscreensaver-gnome-hacks
 PORTREVISION=	0
@@ -27,7 +27,7 @@ MAN1=		xscreensaver-getimage-desktop.1 xscreensaver-getimage-file.1 \
 
 post-build:
 	@cd ${WRKSRC}/driver && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
-		Makefile ${MAKE_ARGS} xscreensaver-getimage
+		Makefile ${MAKE_ARGS} ${FAKE_MAKEARGS} xscreensaver-getimage
 
 post-install-slave:
 	${MKDIR} ${PREFIX}/bin

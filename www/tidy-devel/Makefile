@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.5 2009/09/20 00:27:08 laffer1 Exp $
+# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.6 2009/10/13 02:07:38 laffer1 Exp $
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs
@@ -25,7 +25,7 @@ USE_GMAKE=	yes
 PLIST_SUB=	SHLIB="@comment " NSHLIB=""
 CONFLICTS=	tidy-20000804* tidy-lib-[0-9]*
 .else
-USE_AUTOTOOLS=	automake:15 autoconf:262 libtool:22
+USE_AUTOTOOLS=	automake autoconf libtool
 AUTOMAKE_ARGS+=	-a -c --foreign
 CONFIGURE_TARGET=	--target=${MACHINE_ARCH}-portbld-freebsd6.1 \
 			--host=${MACHINE_ARCH}-portbld-freebsd6.1 \

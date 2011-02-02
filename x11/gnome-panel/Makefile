@@ -2,7 +2,7 @@
 # Date created:				27 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.9 2011/01/17 19:52:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.10 2011/01/20 14:19:53 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 #   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
 #
@@ -39,7 +39,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop librsvg2 \
 WANT_GNOME=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-kde-datadir=${LOCALBASE}/share \
 		--with-kde-docdir=${LOCALBASE}/share/doc \
 		--disable-network-manager

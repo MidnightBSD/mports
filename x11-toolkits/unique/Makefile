@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.1 2010/01/24 15:56:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.2 2010/08/14 03:07:42 laffer1 Exp $
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6
@@ -18,7 +18,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gtk20 gnomeprefix ltverhack:2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-maintainer-flags

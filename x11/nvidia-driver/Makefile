@@ -1,66 +1,80 @@
 # $MidnightBSD$
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	169.12
-PORTREVISION?=	0			# For consistency with slave ports
+DISTVERSION?=	195.36.15
+PORTREVISION?=	0
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
-MASTER_SITE_SUBDIR=	freebsd/${DISTVERSION}
-DISTNAME=	NVIDIA-FreeBSD-x86-${DISTVERSION}
+ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
+# MASTER_SITE_SUBDIR has to be set later because it depends on NVVERSION
+DISTNAME=	NVIDIA-FreeBSD-x86${ARCH_SUFX}-${DISTVERSION}
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	luke@midnightbsd.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 LICENSE=	restricted
 
-ONLY_FOR_ARCHS=	i386
-
-NO_PACKAGE=	should be recompiled for a particular BSD kernel
 USE_GL=		gl
 USE_LDCONFIG=	yes
 SUB_FILES+=	pkg-message
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
+MODULESDIR=	lib/xorg/modules
 PORTDOCS=	*
 
-OPTIONS=	FREEBSD_AGP	"Use BSD AGP GART driver" off \
-		VM86_INT10CALL	"Use VM86 interface for video BIOS calls" off \
-		ACPI		"Enable support for ACPI Power Management" off \
-		LINUX		"Build with support for Linux compatibility" on
+FAKE_OPTS+=	trueprefix
 
-# Starting with version 7667, NVidia has dropped support for numerous
+# Starting with version 1.0-7667, NVidia has dropped support for numerous
 # "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
 # you need to use legacy driver version and install one of corresponding
-# `x11/nvidia-driver-71xx' or `x11/nvidia-driver-96xx' slave ports.
+# `x11/nvidia-driver-71', `x11/nvidia-driver-96', or `x11/nvidia-driver-173'
+# slave ports.
 #
-# NVidia played it tricky with their versioning scheme once again.  To make
-# stable and legacy versions comparable, employ some sad ugly hackery: assign
-# NVVERSION for slave ports independently of master.  Hopefully, this is a
-# temporary measure and will go away soon.
+# XXX Until NVidia starts to name their releases consistently, employ this
+# ugly hack below to derive NVVERSION. XXX
 #
-NVVERSION?=	${DISTVERSION:S/.//g}00
+.if ${DISTVERSION:C/[0-9]+//g} == ".."			# major.minor.update
+NVVERSION=	${DISTVERSION:S/.//g}
+.else							# major.minor
+NVVERSION=	${DISTVERSION:S/.//g}00
+.endif
+
+.if ${NVVERSION} >= 1952200
+MASTER_SITE_SUBDIR=	XFree86/FreeBSD-x86${ARCH_SUFX}/${DISTVERSION}
+ONLY_FOR_ARCHS=	i386 amd64
+.else
+MASTER_SITE_SUBDIR=	freebsd/${DISTVERSION}
+ONLY_FOR_ARCHS=	i386
+.endif
+
+OPTIONS=	FREEBSD_AGP	"Use FreeBSD AGP GART driver" off \
+		ACPI_PM		"Enable support for ACPI Power Management" off \
+		LINUX		"Build with support for Linux compatibility" on
+.if ${NVVERSION} >= 1952200
+OPTIONS+=	WBINVD		"Enable heavy-weight cache-flush logic" off
+.endif
 
 .include <bsd.port.pre.mk>
 
-MODULESDIR=	lib/xorg/modules
-XORG_SUB=	""
-XFREE86_SUB=	"@comment "
-
-# XXX Should use ${PKG_INFO} XXX
+# XXX Should use ${PKG_INFO} but it does not expand for some reason XXX
 #
-XSERVVERSION!=	/usr/sbin/pkg_info -O x11-servers/xorg-server 2>/dev/null | ${GREP} server- || /usr/sbin/pkg_info -qO x11-servers/xorg-server-snap 2>/dev/null || true
-XLIBVERSION!=	/usr/sbin/pkg_info -O graphics/libGL 2>/dev/null | ${GREP} libGL- || true
+.if defined(USE_MPORT_TOOLS)
+XSERVVERSION!=  /usr/libexec/mport.info -qo x11-servers/xorg-server 2>/dev/null || true
+LIBGLVERSION!=  /usr/libexec/mport.info -qo graphics/libGL 2>/dev/null || true
+.else
+XSERVVERSION!=	/usr/sbin/pkg_info -qO x11-servers/xorg-server 2>/dev/null || true
+LIBGLVERSION!=	/usr/sbin/pkg_info -qO graphics/libGL 2>/dev/null || true
+.endif
 
 .if empty(XSERVVERSION)
 IGNORE=		needs an X server implementation installed
 .endif
 
-PLIST_SUB+=	XSERVVERSION=${XSERVVERSION} XLIBVERSION=${XLIBVERSION} \
+PLIST_SUB+=	XSERVVERSION=${XSERVVERSION} LIBGLVERSION=${LIBGLVERSION} \
 		LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
-		MODULESDIR=${MODULESDIR} XORG=${XORG_SUB} XFREE86=${XFREE86_SUB}
+		MODULESDIR=${MODULESDIR}
 
 .if !defined(WITHOUT_LINUX)
-# Add explicit X11 libraries dependency since USE_LINUX causes the port to
-# RUN_DEPEND on the Linux libraries rather than LIB_DEPEND on native ones
-LIB_DEPENDS+=	X11.6:${X_LIBRARIES_PORT}
+CONFLICTS=	linux-dri-[0-9]* linux-f10-dri-[0-9]* linux-f8-dri-[0-9]* \
+		linux_dri-[0-9]* linux_dri-devel-[0-9]*
 USE_LINUX=	yes
 PLIST_SUB+=	LINUX=""
 .else
@@ -69,30 +83,32 @@ PLIST_SUB+=	LINUX="@comment "
 MAKE_ENV+=	WITHOUT_LINUX=yes
 .endif
 
+.if ${OSVERSION} < 4001 && ${NVVERSION} >= 1952200
+IGNORE=		requires fairly recent CURRENT
+.endif
+
+.if ${NVVERSION} < 1952200
 LIB_DEPENDS+=	m.3:${PORTSDIR}/misc/compat5x
+.endif
 
 post-patch: .SILENT
+	${MKDIR} ${FAKE_DESTDIR}/boot/kernel
+	${MKDIR} ${FAKE_DESTDIR}/boot/modules
+	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${MODULESDIR}/extensions
 # We should support -CURRENT: kill the check
 	${REINPLACE_CMD} '24,26d' ${WRKSRC}/src/nv-freebsd.h
-# Building with -Werror requires prototype for suser() which was moved
-.if ${OSVERSION} >= 3000
-	${REINPLACE_CMD} -e '15s,^,#include <sys/priv.h>,' \
-		${WRKSRC}/src/nvidia_os.c
-.endif
-# Correct prototypes to fix the build with FreeBSD AGP support
-.if ${NVVERSION} >= 1690700
-	${REINPLACE_CMD} -e '337,338s/(/(nv_stack_t *, /' \
-		${WRKSRC}/src/nv-freebsd.h
+# Adjust for updated d_mmap() in recent -CURRENT
+.if ${OSVERSION} > 900005 && ${NVVERSION} < 1952200
+	${REINPLACE_CMD} 's/vm_offset_t offset/vm_ooffset_t offset/ ; \
+		s/vm_offset_t \*address/vm_paddr_t *address/ ; \
+		s/int nprot/&, vm_memattr_t *memattr/' \
+			${WRKSRC}/src/nvidia_dev.c
 .endif
 .if defined(WITH_FREEBSD_AGP)
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_OS_AGP)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-.if defined(WITH_VM86_INT10CALL)
-	${REINPLACE_CMD} -E 's/undef (NV_USE_OS_VM86_INT10CALL)/define \1/' \
-		${WRKSRC}/src/nv-freebsd.h
-.endif
-.if defined(WITH_ACPI)
+.if defined(WITH_ACPI_PM)
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_ACPI_PM)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
@@ -100,8 +116,12 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's/define (NV_SUPPORT_LINUX_COMPAT)/undef \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-# Don't build any binaries (nvidia-settings and nvidia-xconfig)
-.if ${NVVERSION} < 974600
+.if defined(WITH_WBINVD)
+	${REINPLACE_CMD} -E 's/undef (NV_USE_WBINVD)/define \1/' \
+		${WRKSRC}/src/nv-freebsd.h
+.endif
+# Don't build any binaries (nvidia-settings and nvidia-xconfig) and manuals
+.if ${NVVERSION} < 974600 || ${NVVERSION} >= 1952200
 	${REINPLACE_CMD} -E 's/(extension).*/\1/' ${WRKSRC}/x11/Makefile
 .else
 	${REINPLACE_CMD} -E 's/(lib).*/\1/' ${WRKSRC}/x11/Makefile
@@ -115,26 +135,30 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -e 's/afterinstall/dontexecute/' ${WRKSRC}/Makefile
 
 pre-su-install:
-# XXX This port silently assumes PREFIX == X11BASE XXX
+# XXX This port silently assumes PREFIX == LOCALBASE XXX
 	@${MKDIR} ${PREFIX}/${MODULESDIR}/drivers
-# xorg-server-1.4 installs its own ${X11BASE}/lib/xorg/modules/libwfb.so,
-# so back it up so it can be later restored similarly to what NVidia does:
-.if ${NVVERSION} >= 974600
-	@${MV} -f ${PREFIX}/${MODULESDIR}/libwfb.so \
-		${PREFIX}/${MODULESDIR}/XXX-libwfb.so.%%.${XSERVVERSION}
-.endif
 
 post-install:
-# pkg-plist is already overbloated, so use this hack instead of PLIST_SUB's
+	${MKDIR} ${FAKE_DESTDIR}/boot/kernel
+	${MKDIR} ${FAKE_DESTDIR}/boot/modules
+	${MV} ${FAKE_DESTDIR}/boot/kernel/nvidia.ko ${FAKE_DESTDIR}/boot/modules/nvidia.ko
+# pkg-plist is already overbloated, so use these hacks instead of PLIST_SUB's
 .if ${NVVERSION} < 817400
 	@${REINPLACE_CMD} '/libnvidia-cfg/d' ${TMPPLIST}
-.else
-	@${REINPLACE_CMD} '/nvidia_drv\.o/d' ${TMPPLIST}
 .endif
-.if ${NVVERSION} < 974600
+.if ${NVVERSION} < 974600 || ${NVVERSION} >= 1952200
 	@${REINPLACE_CMD} '/wfb/d' ${TMPPLIST}
 .endif
+.if ${NVVERSION} < 1802900
+	@${REINPLACE_CMD} '/vdpau/d' ${TMPPLIST}
+.else
+	@${MKDIR} ${PREFIX}/include/vdpau
+	@${LN} -sf ${DOCSDIR}/vdpau*.h ${PREFIX}/include/vdpau
+.endif
+.if ${NVVERSION} < 1851829
+	@${REINPLACE_CMD} '/libcuda/d' ${TMPPLIST}
+.endif
+# Some applications need this symlink (see PR ports/72877)
 	@${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
-	@${ECHO_MSG}
 
 .include <bsd.port.post.mk>

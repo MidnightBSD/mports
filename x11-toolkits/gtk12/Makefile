@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.10 2009/11/02 14:11:00 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.11 2009/11/10 03:10:58 laffer1 Exp $
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	12
@@ -17,7 +17,7 @@ USE_PERL5=	yes
 USE_XORG=	x11 ice xext sm inputproto xi xpm
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/gtk12 --with-native-locale \
 		--with-xinput=xfree
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

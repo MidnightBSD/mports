@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.9 2010/01/23 21:24:03 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.10 2010/09/11 20:48:14 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
@@ -53,7 +53,7 @@ PREFIX=		${KDE_PREFIX}
 
 USE_LDCONFIG=	yes
 
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 CONFIGURE_TARGET=# empty
 CONFIGURE_ARGS+=--disable-ltdl-install	\
 		--disable-as-needed \

@@ -2,7 +2,7 @@
 # Date created:				12 April 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.7 2009/12/13 22:06:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.8 2010/08/14 03:01:19 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libwnck/Makefile,v 1.53 2007/07/03 16:51:41 mezz Exp $
 #   $MCom: ports/x11-toolkits/libwnck/Makefile,v 1.85 2007/03/12 23:15:43 marcus Exp $
 #
@@ -32,7 +32,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomehack gtk20 ltverhack referencehack intlhack
 USE_BISON=	build
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

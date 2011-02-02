@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.9 2009/09/20 02:32:21 smultron Exp $
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.10 2009/09/23 02:16:18 laffer1 Exp $
 
 PORTNAME=	fontconfig
 PORTVERSION=	2.6.0
@@ -18,7 +18,7 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack gnometarget pkgconfig ltverhack
 CONFIGURE_ARGS=	--with-confdir=${PREFIX}/etc/fonts \
 		--with-expat-includes=${LOCALBASE}/include \

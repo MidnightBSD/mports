@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.6 2009/12/13 21:57:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview2/Makefile,v 1.7 2010/10/17 00:52:16 laffer1 Exp $
 
 PORTNAME=	gtksourceview2
 PORTVERSION=	2.10.4
@@ -19,7 +19,7 @@ USE_BZIP2=	yes
 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 gconf2 libxml2 intlhack \
 		ltverhack referencehack
