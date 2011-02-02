@@ -2,7 +2,7 @@
 # Date created:				19 September 2003
 # Whom:					Adam Weinberger <adamw@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/gedit-plugins/Makefile,v 1.4 2008/11/10 16:00:45 ctriv Exp $
+# $MidnightBSD: mports/editors/gedit-plugins/Makefile,v 1.5 2010/01/23 22:12:12 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit-plugins/Makefile,v 1.21 2007/10/24 23:35:36 marcus Exp $
 #   $MCom: ports/editors/gedit-plugins/Makefile,v 1.24 2007/09/30 17:15:47 mezz Exp $
 #
@@ -27,7 +27,7 @@ USE_BZIP2=	yes
 USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack gnomeprefix intlhack gnomevfs2
 WANT_GNOME=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

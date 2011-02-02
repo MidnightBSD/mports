@@ -1,5 +1,5 @@
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.9 2010/12/18 08:56:36 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.10 2011/01/15 03:14:20 laffer1 Exp $
 
 PORTNAME=	koffice
 PORTVERSION=	1.6.3
@@ -30,7 +30,7 @@ LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
 		xslt:${PORTSDIR}/textproc/libxslt
 RUN_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
