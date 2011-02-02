@@ -2,7 +2,7 @@
 # Date created:				2006
 # Whom:					Adam Karim <archite@midnightbsd.org>
 #
-# $MidnightBSD: mports/audio/libao/Makefile,v 1.6 2010/02/27 15:46:52 laffer1 Exp $
+# $MidnightBSD: mports/audio/libao/Makefile,v 1.7 2010/12/23 15:58:02 laffer1 Exp $
 # $FreeBSD: ports/audio/libao/Makefile,v 1.40 2007/07/24 15:10:13 rafan Exp $
 #
 
@@ -15,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable audio output library
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 # Date created:		Sun Apr 11 13:06:01 PDT 1999
 # Whom:			Michael Haro <mharo@area51.fremont.ca.us>
 #
-# $MidnightBSD: mports/audio/libmikmod/Makefile,v 1.3 2008/04/10 03:40:29 ctriv Exp $
+# $MidnightBSD: mports/audio/libmikmod/Makefile,v 1.4 2009/09/20 00:32:26 laffer1 Exp $
 # $FreeBSD: ports/audio/libmikmod/Makefile,v 1.42 2006/05/03 05:14:20 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ LICENSE=	lgpl
 WANT_GNOME=	yes
 USE_GNOME=	gnometarget lthack
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 MAKE_ENV=	SHELL=/bin/sh

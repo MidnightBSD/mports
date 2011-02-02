@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.2 2010/02/27 16:19:01 laffer1 Exp $
+# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.3 2011/01/15 03:57:54 laffer1 Exp $
 
 PORTNAME=	libcanberra
 PORTVERSION=	0.25
@@ -14,7 +14,7 @@ LIB_DEPENDS=	vorbisfile.6:${PORTSDIR}/audio/libvorbis
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 ltverhack gconf2
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22 libltdl:22
+USE_AUTOTOOLS=	libtool libltdl
 CONFIGURE_ARGS=	--disable-lynx --disable-tdb --disable-gtk3
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

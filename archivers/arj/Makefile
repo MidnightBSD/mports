@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/archivers/arj/Makefile,v 1.5 2008/09/30 23:28:43 laffer1 Exp $
+# $MidnightBSD: mports/archivers/arj/Makefile,v 1.6 2009/12/25 16:49:49 laffer1 Exp $
 
 PORTNAME=	arj
 PORTVERSION=	3.10.22
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.78_3.10%20build%2022
 
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 MAKE_JOBS_UNSAFE=yes
 
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 USE_GMAKE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_WRKSRC=	${WRKSRC}/gnu

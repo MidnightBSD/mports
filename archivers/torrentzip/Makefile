@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/torrentzip/Makefile,v 1.1 2009/11/01 15:51:07 laffer1 Exp $
 
 PORTNAME=	torrentzip
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	SF/trrntzip/trrntzip/TorrentZip%20v${PORTVERSION}
 DISTNAME=	trrntzip_v${PORTVERSION:S/.//}_src
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Efficient way to prepare zipfiles for BitTorrent
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	aclocal:19 automake:19 autoheader:262
+USE_AUTOTOOLS=	aclocal automake autoheader
 AUTOMAKE_ARGS=		-a
 
 WRKSRC=		${WRKDIR}/trrntzip

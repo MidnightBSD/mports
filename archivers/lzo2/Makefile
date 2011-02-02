@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.5 2008/05/30 20:20:38 crash Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.6 2009/09/19 23:47:02 laffer1 Exp $
 
 PORTNAME=	lzo2
 PORTVERSION=	2.03
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		http://fresh.t-systems-sfr.com/unix/src/misc/ \
@@ -14,7 +14,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Portable speedy, lossless data compression library
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--enable-shared

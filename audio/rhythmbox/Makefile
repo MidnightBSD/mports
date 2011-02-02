@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.7 2010/02/27 20:54:48 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.8 2010/05/09 18:29:03 laffer1 Exp $
 
 PORTNAME=	rhythmbox
 PORTVERSION=	0.12.5
@@ -28,7 +28,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack gnomeprefix gtk20 nautilus2
 WANT_GNOME=	yes
 USE_GSTREAMER=	flac mp3 gnomevfs gconf jpeg
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-vala --with-libbrasero-media \
 		--without-libnautilus-burn
 INSTALLS_ICONS=	yes

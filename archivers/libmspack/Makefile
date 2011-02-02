@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.5 2009/03/27 05:52:36 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.6 2009/09/19 23:44:31 laffer1 Exp $
 
 PORTNAME=	libmspack
 PORTVERSION=	0.0.20060920
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for Microsoft compression formats
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=  yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 USE_LDCONFIG=	yes

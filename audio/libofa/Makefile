@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.4 2010/02/27 19:29:04 laffer1 Exp $
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.5 2010/05/31 19:13:46 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
@@ -15,7 +15,7 @@ LIB_DEPENDS=	fftw3.5:${PORTSDIR}/math/fftw3 \
 		expat.6:${PORTSDIR}/textproc/expat2 \
 		curl.6:${PORTSDIR}/ftp/curl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
