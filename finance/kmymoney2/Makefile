@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.2 2009/09/20 01:10:30 laffer1 Exp $
+# $MidnightBSD: mports/finance/kmymoney2/Makefile,v 1.3 2011/01/14 14:45:51 laffer1 Exp $
 # $FreeBSD: ports/finance/kmymoney2/Makefile,v 1.17 2007/10/04 00:50:27 edwin Exp $
 
 PORTNAME=	kmymoney2
@@ -32,7 +32,7 @@ PLIST_SUB+=	OFXPLUGIN=${OFXPLUGIN}
 USE_KDELIBS_VER=	3
 USE_GMAKE=		yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_PERL5=		yes
 USE_BZIP2=		yes
 USE_LDCONFIG=	yes
