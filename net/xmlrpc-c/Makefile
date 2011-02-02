@@ -2,7 +2,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.7 2010/07/13 23:27:11 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.8 2010/10/23 13:29:01 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
@@ -25,7 +25,7 @@ CONFLICTS=	xmlrpc-epi-0.*
 USE_GNOME=	gnometarget
 USE_PERL5=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22:env
+USE_AUTOTOOLS=	libtool:env
 GNU_CONFIGURE=	yes
 MAKEFILE=	GNUmakefile
 MAKE_ARGS=	LIBTOOL="${LIBTOOL}" \

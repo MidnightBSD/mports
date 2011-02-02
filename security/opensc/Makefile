@@ -2,7 +2,7 @@
 # Date created:		10 September 2002
 # Whom:			Bruce M Simpson
 #
-# $MidnightBSD: mports/security/opensc/Makefile,v 1.3 2009/05/01 15:13:54 laffer1 Exp $
+# $MidnightBSD: mports/security/opensc/Makefile,v 1.4 2009/09/20 04:09:53 laffer1 Exp $
 # $FreeBSD: ports/security/opensc/Makefile,v 1.30 2008/04/19 17:53:27 miwi Exp $
 #
 
@@ -20,7 +20,7 @@ OPTIONS=	OPENCT "Enable direct OpenCT backend support" on \
 		PCSC "Enable PC/SC backend support" off \
 		SIGNER "Enable signer browser plugin" off
 
-USE_AUTOTOOLS=	libltdl:22
+USE_AUTOTOOLS=	libltdl
 USE_ICONV=	yes
 USE_OPENSSL=	yes
 USE_GMAKE=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.10 2010/09/07 01:58:10 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.11 2011/01/07 05:10:37 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	8
@@ -21,7 +21,7 @@ CONFLICTS=	libjpeg-turbo-[0-9]*
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
 DISTVERSION2=	8b
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \

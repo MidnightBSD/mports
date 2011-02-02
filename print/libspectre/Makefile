@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/print/libspectre/Makefile,v 1.2 2009/09/20 02:17:57 laffer1 Exp $
+# $MidnightBSD: mports/print/libspectre/Makefile,v 1.3 2010/09/04 19:52:04 laffer1 Exp $
 #    $MCom: ports/print/libspectre/Makefile,v 1.2 2008/03/13 16:30:50 ahze Exp $
 
 PORTNAME=	libspectre
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnomeprefix ltverhack
 USE_GHOSTSCRIPT=yes

@@ -2,7 +2,7 @@
 # Date created:		8 July 2001
 # Whom:			Hye-Shik Chang <perky@python.or.kr>
 # 
-# $MidnightBSD: mports/graphics/libart_lgpl/Makefile,v 1.5 2009/09/20 01:46:07 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libart_lgpl/Makefile,v 1.6 2010/02/28 21:18:59 laffer1 Exp $
 # $FreeBSD: ports/graphics/libart_lgpl/Makefile,v 1.34 2006/05/28 13:37:05 pav Exp $
 #
 
@@ -18,7 +18,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for high-performance 2D graphics
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig

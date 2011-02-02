@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libgnomeprintmm/Makefile,v 1.2 2009/09/20 02:15:25 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomeprintmm/Makefile,v 1.3 2010/01/01 23:56:02 laffer1 Exp $
 
 PORTNAME=	libgnomeprintmm
 PORTVERSION=	2.5.1
@@ -14,7 +14,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	gtkmm-2.4.1:${PORTSDIR}/x11-toolkits/gtkmm24
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack libgnomeprint

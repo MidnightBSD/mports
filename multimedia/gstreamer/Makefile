@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.7 2009/12/25 19:06:37 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.8 2011/01/08 04:04:39 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.30
@@ -21,7 +21,7 @@ USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_GNOME=	gnomehack glib20 libxml2 ltverhack ltasneededhack
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-tests \
 		--disable-examples \
 		--disable-failing-tests \

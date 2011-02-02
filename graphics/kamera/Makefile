@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.3 2009/09/20 01:39:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kamera/Makefile,v 1.4 2011/01/01 16:33:37 laffer1 Exp $
 # $FreeBSD: ports/graphics/kamera/Makefile,v 1.15 2006/09/12 23:26:17 lofi Exp $
 
 PORTNAME=	kamera
@@ -22,7 +22,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/kdegraphics-${PORTVERSION}
 

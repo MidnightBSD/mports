@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.4 2009/09/20 01:52:28 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.5 2010/12/24 21:31:45 laffer1 Exp $
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.4.5
@@ -16,7 +16,7 @@ MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnometarget pkgconfig ltverhack
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22 libltdl:22
+USE_AUTOTOOLS=	libtool libltdl
 LIBTOOLFILES=	configure libgphoto2_port/configure
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	LTDLINCL="-I${LOCALBASE}/include" LIBLTDL="-L${LOCALBASE}/lib -lltdl"

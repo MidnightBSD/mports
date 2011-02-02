@@ -3,7 +3,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.2 2009/06/27 23:22:58 laffer1 Exp $
+# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.3 2009/09/20 01:52:28 laffer1 Exp $
 #
 
 PORTNAME=	ulxmlrpcpp
@@ -24,7 +24,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget
 USE_ICONV=	yes
 USE_OPENSSL=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"

@@ -2,7 +2,7 @@
 # Date created:				Jul 29, 2005
 # Whom:					rafan@infor.org
 #
-# $MidnightBSD: mports/print/freetype-tools/Makefile,v 1.2 2007/11/10 19:11:17 ctriv Exp $
+# $MidnightBSD: mports/print/freetype-tools/Makefile,v 1.3 2009/09/20 01:57:32 laffer1 Exp $
 # $FreeBSD: ports/print/freetype-tools/Makefile,v 1.8 2006/11/13 13:28:02 rafan Exp $
 #
 
@@ -29,7 +29,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/libkpathsea.a:${PORTSDIR}/print/teTeX-base \
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-nls --enable-static --enable-shared
 CFLAGS+=	-L${PREFIX}/lib
 

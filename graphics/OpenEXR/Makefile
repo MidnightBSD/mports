@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.4 2009/03/15 19:00:32 laffer1 Exp $
+# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.5 2009/09/20 01:22:00 laffer1 Exp $
 
 PORTNAME=	OpenEXR
 PORTVERSION=	1.6.1
@@ -16,7 +16,7 @@ LIB_DEPENDS=	Half.6:${PORTSDIR}/graphics/ilmbase
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=--enable-imfexamples

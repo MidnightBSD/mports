@@ -2,7 +2,7 @@
 # Date created:			11 January 2004
 # Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
 #
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.4 2008/06/01 16:33:21 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.5 2009/09/20 01:47:23 laffer1 Exp $
 #
 
 PORTNAME=	libcaca
@@ -17,7 +17,7 @@ LICENSE=	unknown
 
 USE_GNOME=	gnomehack gnometarget ltverhack pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lm -lncurses"
 CONFIGURE_ARGS=	--disable-doc \

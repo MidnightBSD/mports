@@ -2,7 +2,7 @@
 # Date created:		Di   5 Mai 1998 21:31:03 CEST
 # Whom:			andreas
 #
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.9 2010/02/28 16:50:42 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.10 2010/12/02 01:58:49 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 #
 
@@ -25,7 +25,7 @@ LATEST_LINK=	${PORTNAME}
 USE_GCPIO=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
-USE_AUTOTOOLS=	automake:110 libtool:22
+USE_AUTOTOOLS=	automake:110 libtool
 
 USE_RC_SUBR=    ntp
 

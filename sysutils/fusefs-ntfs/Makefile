@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.8 2010/09/04 19:22:45 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-ntfs/Makefile,v 1.9 2011/01/08 14:48:58 laffer1 Exp $
 
 PORTNAME=	ntfs
 PORTVERSION=	2010.3.6
@@ -18,7 +18,7 @@ RUN_DEPENDS=	${LOCALBASE}/modules/fuse.ko:${PORTSDIR}/sysutils/fusefs-kmod
 
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--exec-prefix=${PREFIX} --prefix=${PREFIX} --mandir=${PREFIX}/man
 

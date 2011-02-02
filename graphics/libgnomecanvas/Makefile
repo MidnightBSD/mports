@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.8 2009/10/29 10:02:02 crash Exp $
+# $MidnightBSD: mports/graphics/libgnomecanvas/Makefile,v 1.9 2010/09/06 21:51:30 laffer1 Exp $
 
 PORTNAME=	libgnomecanvas
 PORTVERSION=	2.30.1
@@ -19,7 +19,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_XORG=	x11
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack libglade2 libartlgpl2 ltverhack referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--enable-glade \

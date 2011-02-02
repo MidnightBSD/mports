@@ -1,5 +1,5 @@
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.4 2009/09/20 01:41:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.5 2011/01/01 16:11:05 laffer1 Exp $
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE_VERSION}
@@ -28,7 +28,7 @@ USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GL=		glut
 WANT_GNOME=	yes

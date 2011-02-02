@@ -1,5 +1,5 @@
 # $FreeBSD: ports/misc/kdeutils3/Makefile,v 1.107 2006/09/12 23:26:33 lofi Exp $
-# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.7 2011/01/06 00:47:32 laffer1 Exp $
+# $MidnightBSD: mports/misc/kdeutils3/Makefile,v 1.8 2011/01/07 01:05:00 laffer1 Exp $
 
 PORTNAME=	kdeutils
 PORTVERSION=	${KDE_VERSION}
@@ -27,7 +27,7 @@ PREFIX=		${KDE_PREFIX}
 USE_PYTHON=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 DO_NOT_COMPILE+=klaptopdaemon kmilo superkaramba
 CONFIGURE_ENV+=	DO_NOT_COMPILE="${DO_NOT_COMPILE}"
 CONFIGURE_ARGS+=--with-pythondir=${LOCALBASE}

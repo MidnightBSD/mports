@@ -2,7 +2,7 @@
 # Date created:         May 9 2002
 # Whom:                 Brian Somers <brian@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.8 2009/09/20 01:39:48 laffer1 Exp $
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.9 2010/11/12 14:11:10 laffer1 Exp $
 # $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
 #
 
@@ -42,7 +42,7 @@ CONFLICTS+=	freeradius-mysql-[0-9].* freeradius-[02-9].*
 .endif
 
 USE_RC_SUBR=	radiusd.sh
-USE_AUTOTOOLS=	libltdl:22 libtool:22 autoconf:262
+USE_AUTOTOOLS=	libltdl libtool autoconf
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 DESTDIRNAME=	R
@@ -221,7 +221,7 @@ pre-configure:
 		${REINPLACE_CMD} -e "s:-pthread:${PTHREAD_LIBS}:g" {} \;
 # Force the rebuild of some configures from configure.in, as we're patching
 # the configure.in
-# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf:262 is
+# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf is
 # added to USE_AUTOTOOLS
 	@cd ${WRKSRC}/src/modules/rlm_ldap && ${AUTOCONF} -I ${WRKSRC}
 	@cd ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_mysql \

@@ -2,7 +2,7 @@
 # Date created:				28th Aug 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.1 2008/05/30 19:08:42 laffer1 Exp $
+# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.2 2010/12/04 20:30:36 laffer1 Exp $
 # $FreeBSD: ports/net/samba-pdbsql/Makefile,v 1.6 2008/05/01 13:06:37 timur Exp $
 #
 
@@ -21,7 +21,7 @@ USE_BZIP2=		yes
 USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
 # Add a build dependency for Samba port
-USE_AUTOTOOLS=		autoconf:261 autoheader:261
+USE_AUTOTOOLS=		autoconf autoheader
 WRKSRC=                 ${WRKDIR}/${DISTNAME}-samba
 
 SAMBA_PORT=		net/samba3

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/totem/Makefile,v 1.4 2009/09/20 01:52:28 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/totem/Makefile,v 1.5 2009/12/29 02:31:03 laffer1 Exp $
 
 PORTNAME=	totem
 PORTVERSION=	2.26.3
@@ -27,7 +27,7 @@ GNOME_DESKTOP_VERSION=2
 WANT_GSTREAMER=	yes
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 INSTALLS_OMF=	yes
 PKGMESSAGE=	${WRKDIR}/pkg-message

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.5 2009/09/24 02:12:09 laffer1 Exp $
 
 PORTNAME=	courier-authlib
 PORTVERSION=	0.62.4
@@ -31,7 +31,7 @@ OPTIONS+=	GDBM	"Use gdbm instead of system bdb"	off
 
 .else	# !defined(PKGNAMESUFFIX)
 
-USE_AUTOTOOLS=	libltdl:22
+USE_AUTOTOOLS=	libltdl
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/cyrus-sasl2-ldapdb/Makefile,v 1.1 2006/10/02 16:34:47 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2-ldapdb/Makefile,v 1.2 2009/12/28 17:41:02 laffer1 Exp $
 
 PORTNAME=	ldapdb
 PORTVERSION=	2.1.23
@@ -24,7 +24,7 @@ INSTALL_WRKSRC=	${WRKDIR}/${DISTNAME}/plugins
 
 USE_LDCONFIG=	yes
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 

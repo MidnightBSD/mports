@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.15 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.16 2010/05/05 23:45:24 laffer1 Exp $
 
 PORTNAME=	graphviz
 PORTVERSION=	2.24.0
@@ -19,7 +19,7 @@ LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 
 USE_BISON=	build
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libltdl:22 libtool:22
+USE_AUTOTOOLS=	libltdl libtool
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/fontforge/Makefile,v 1.11 2010/10/30 19:04:31 laffer1 Exp $
 
 PORTNAME=	fontforge
 PORTVERSION=	20100501
@@ -61,7 +61,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="${LDFLAGS} -L${LOCALBA
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 MAN1=		fontforge.1 fontimage.1 fontlint.1 sfddiff.1
 

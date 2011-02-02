@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.7 2009/10/03 17:28:22 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/libtorrent/Makefile,v 1.8 2010/03/25 23:17:47 crash Exp $
 
 PORTNAME?=	libtorrent
 PORTVERSION?=	0.12.6
@@ -18,7 +18,7 @@ CONFLICTS?=	libtorrent-devel-[0-9]* \
 		rblibtorrent-[0-9]* \
 		rblibtorrent-devel-[0-9]*
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	pkgconfig gnomehack
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes

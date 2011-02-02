@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/cln/Makefile,v 1.4 2010/11/13 18:50:50 laffer1 Exp $
 
 PORTNAME=	cln
 PORTVERSION=	1.3.1
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_GMAKE=	yes

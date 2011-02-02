@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/samba4-devel/Makefile,v 1.1 2010/10/23 11:49:34 laffer1 Exp $
 
 PORTNAME?=		${SAMBA_PORTNAME}
 PORTVERSION?=		${SAMBA_VERSION}
@@ -36,7 +36,7 @@ USE_ICONV=		yes
 GNU_CONFIGURE=		yes
 USE_GNOME=		pkgconfig
 USE_LDCONFIG=		${SAMBA_LIBDIR}
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 # Flags
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib

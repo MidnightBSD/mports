@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.13 2009/11/26 21:11:59 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.14 2010/05/03 15:52:05 vganji Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.8.8
@@ -22,7 +22,7 @@ CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--enable-pdf \
 		--enable-ps
 USE_GNOME=	gnomehack ltverhack referencehack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS}" \

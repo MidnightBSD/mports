@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.5 2009/09/20 01:48:09 laffer1 Exp $
+# $MidnightBSD: mports/net-im/meanwhile/Makefile,v 1.6 2010/01/23 22:19:46 laffer1 Exp $
 
 PORTNAME=	meanwhile
 PORTVERSION=	1.0.2
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Source implementation of the Lotus Sametime protocol
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes

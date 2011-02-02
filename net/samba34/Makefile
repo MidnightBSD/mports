@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.1 2010/10/23 12:01:07 laffer1 Exp $
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.2 2010/10/24 15:07:18 laffer1 Exp $
 
 PORTNAME=		samba34
 PORTVERSION=		3.4.9
@@ -28,7 +28,7 @@ AUTOCONF_ARGS=		${IPATHS}
 USE_GMAKE=		yes
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 # directories
 VARDIR?=		/var
 SAMBA_SPOOL?=		${VARDIR}/spool/${PORTNAME}

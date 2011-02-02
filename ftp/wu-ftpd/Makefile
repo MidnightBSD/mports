@@ -2,7 +2,7 @@
 # Date created:		18 Oct 1994
 # Whom:			torstenb
 #
-# $MidnightBSD: mports/ftp/wu-ftpd/Makefile,v 1.1 2007/04/02 01:34:27 laffer1 Exp $
+# $MidnightBSD: mports/ftp/wu-ftpd/Makefile,v 1.2 2008/06/06 00:40:20 laffer1 Exp $
 # $FreeBSD: ports/ftp/wu-ftpd/Makefile,v 1.58 2006/05/27 00:27:22 ache Exp $
 #
 # REMINDER: to use ftpaccess(5) you need to specify -a in command line,
@@ -28,7 +28,7 @@ LICENSE=	other
 
 CONFLICTS=	wu-ftpd+ipv6-[0-9]* heimdal-[0-9]*
 
-USE_AUTOTOOLS=	autoconf:213
+USE_AUTOTOOLS=	autoconf213
 CONFIGURE_ARGS=	--enable-rfc931 --disable-pasvip \
 		--enable-noop --disable-numericuid  --enable-nlst-dirs \
 		--prefix=${PREFIX} --with-etc-dir=${PREFIX}/etc

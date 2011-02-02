@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.6 2009/09/20 01:47:24 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libtheora/Makefile,v 1.7 2009/11/25 02:36:28 laffer1 Exp $
 
 PORTNAME=	libtheora
 PORTVERSION=	1.0
@@ -16,7 +16,7 @@ LIB_DEPENDS=	vorbis.4:${PORTSDIR}/audio/libvorbis
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include " \
 		LDFLAGS="-L${LOCALBASE}/lib" \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.9 2010/01/02 19:17:31 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ogle/Makefile,v 1.10 2010/03/25 01:31:30 laffer1 Exp $
 # $FreeBSD: ports/multimedia/ogle/Makefile,v 1.38 2007/10/04 02:01:28 edwin Exp $
 
 PORTNAME=	ogle
@@ -17,7 +17,7 @@ LIB_DEPENDS=	a52.0:${PORTSDIR}/audio/liba52 \
 		mad.2:${PORTSDIR}/audio/libmad \
 		xml2.5:${PORTSDIR}/textproc/libxml2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_SUBMAKE=	yes
 USE_XORG=	x11 xext sm
 USE_GMAKE=	yes
