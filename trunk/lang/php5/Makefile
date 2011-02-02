@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.35 2010/12/31 14:17:11 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.36 2011/01/08 00:20:42 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.3.5
@@ -18,7 +18,7 @@ LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 USE_BZIP2=	yes
 MAKE_JOBS_SAFE=	yes
 .if !defined(PKGNAMESUFFIX)
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
 

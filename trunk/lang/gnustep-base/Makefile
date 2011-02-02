@@ -2,7 +2,7 @@
 # Date created:         17 April 2001
 # Whom:                 Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.9 2008/10/20 01:01:06 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.10 2010/05/08 02:07:53 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 #
 
@@ -21,7 +21,7 @@ LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
 LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
 
 ETCDIR=		${LOCALBASE}/etc
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-procfs --with-config-file=${PREFIX}/GNUstep.conf
 CFLAGS+=	-rpath=/usr/local/lib:/usr/lib

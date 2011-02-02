@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.8 2009/08/20 19:23:59 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.9 2009/09/20 01:24:16 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -22,7 +22,7 @@ CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
 		--enable-shared --with-openssl-include=${OPENSSLINC}
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	aclocal:110 autoconf:262
+USE_AUTOTOOLS=	aclocal autoconf
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 
