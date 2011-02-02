@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/ldns/Makefile,v 1.1 2010/09/18 18:08:27 laffer1 Exp $
 
 PORTNAME=	ldns
 PORTVERSION=	1.6.5
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for programs conforming to DNS RFCs and drafts
 LICENSE=	bsd3
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
