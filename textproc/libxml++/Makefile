@@ -3,7 +3,7 @@
 # Date created:			Feb 26, 2001
 # Whom:				Ying-Chieh Liao <ijliao@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/libxml++/Makefile,v 1.1 2007/08/29 03:46:36 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml++/Makefile,v 1.2 2009/09/20 02:19:10 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxml++/Makefile,v 1.36 2007/01/28 09:07:45 kris Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML API for C++
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack gnometarget libxml2 pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

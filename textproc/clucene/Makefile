@@ -2,7 +2,7 @@
 # Date created:		2006-08-09
 # Whom:			Cheng-Lung Sung <clsung@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/clucene/Makefile,v 1.2 2009/09/20 02:09:01 laffer1 Exp $
+# $MidnightBSD: mports/textproc/clucene/Makefile,v 1.3 2010/01/09 18:00:13 laffer1 Exp $
 # $FreeBSD: ports/textproc/clucene/Makefile,v 1.8 2008/08/27 02:35:34 clsung Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	apache2
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 .include <bsd.port.pre.mk>
 
