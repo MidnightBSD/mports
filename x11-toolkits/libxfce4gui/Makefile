@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.3 2009/03/12 02:50:20 ctriv Exp $
+# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.4 2009/09/20 02:47:36 smultron Exp $
 # $FreeBSD: ports/x11-toolkits/libxfce4gui/Makefile,v 1.43 2008/08/30 05:26:23 kan Exp $
 #
 
@@ -17,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 widget library required by xfce4 and xfwm4
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes

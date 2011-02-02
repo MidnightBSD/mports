@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.8 2010/05/30 21:49:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.9 2010/12/31 04:08:42 laffer1 Exp $
 
 PORTNAME=	gnome-themes
 PORTVERSION=	2.30.2
@@ -18,7 +18,7 @@ CONFLICTS=	clearlooks-metacity-0.*
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack metacity gtk20

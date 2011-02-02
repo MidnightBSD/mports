@@ -2,7 +2,7 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.7 2009/12/13 22:04:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/eel/Makefile,v 1.8 2010/10/17 00:57:07 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/eel/Makefile,v 1.33 2007/07/03 17:08:19 mezz Exp $
 #   $MCom: ports/x11-toolkits/eel/Makefile,v 1.51 2007/03/12 15:59:00 ahze Exp $
 #
@@ -24,7 +24,7 @@ USE_GMAKE=	yes
 USE_XORG=	xrender
 GNOME_DESKTOP_VERSION=2
 USE_GNOME=	gnomeprefix gnomehack gnomedesktop ltverhack intlhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

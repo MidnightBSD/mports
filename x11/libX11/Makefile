@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libX11/Makefile,v 1.5 2009/09/20 01:41:33 smultron Exp $
+# $MidnightBSD: mports/x11/libX11/Makefile,v 1.6 2009/09/24 00:38:23 laffer1 Exp $
 
 PORTNAME=	libX11
 PORTVERSION=	1.2.1
@@ -17,7 +17,7 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xcb.pc:${PORTSDIR}/x11/libxcb
 XORG_CAT=	lib
 USE_XORG=	bigreqsproto xau xcmiscproto xdmcp xextproto xtrans \
 		kbproto:both inputproto xf86bigfontproto xproto:both
-USE_AUTOTOOLS=	aclocal:110 autoheader:262 automake:110 autoconf:262 libtool:22
+USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
 ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
 AUTOMAKE_ARGS=	--add-missing
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \

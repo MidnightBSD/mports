@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/libXprintUtil/Makefile,v 1.1 2007/05/19 20:26:54 flz Exp $
-# $MidnightBSD: mports/x11/libXprintUtil/Makefile,v 1.1 2007/10/04 21:39:07 ctriv Exp $
+# $MidnightBSD: mports/x11/libXprintUtil/Makefile,v 1.2 2009/09/20 01:47:54 smultron Exp $
 #
 
 PORTNAME=	libXprintUtil
@@ -16,7 +16,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	printproto:both x11 xau xp xt
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd${OSREL}
 

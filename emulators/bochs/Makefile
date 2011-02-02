@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.7 2010/04/27 13:14:13 laffer1 Exp $
+# $MidnightBSD: mports/emulators/bochs/Makefile,v 1.8 2011/01/17 16:12:35 laffer1 Exp $
 
 PORTNAME=	bochs
 PORTVERSION=	2.4.5
@@ -11,7 +11,7 @@ COMMENT=	An IA-32 (x86) PC emulator that runs DOS, Win 95, and more
 LICENSE=	lgpl
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--disable-docbook
 

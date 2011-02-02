@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.5 2009/12/13 23:14:06 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.6 2010/10/17 00:22:24 laffer1 Exp $
 
 PORTNAME=	awesome
-PORTVERSION=	3.4.5
+PORTVERSION=	3.4.8
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://awesome.naquadah.org/download/ \
 		http://redundancy.redundancy.org/mirror/
@@ -15,6 +15,7 @@ BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
 		gperf>=3.0.3:${PORTSDIR}/devel/gperf \
 		pango>=1.19.3:${PORTSDIR}/x11-toolkits/pango \
 		xmlto:${PORTSDIR}/textproc/xmlto \
+		xcb-util>=0.3.6:${PORTSDIR}/x11/xcb-util \
 		xproto>=7.0.11:${PORTSDIR}/x11/xproto \
 		lua:${PORTSDIR}/lang/lua
 LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.17 2010/09/04 15:18:39 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.18 2010/09/04 15:22:23 laffer1 Exp $
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.28
@@ -16,7 +16,7 @@ LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	lthack
-USE_AUTOTOOLS=	autoconf:262 autoheader:262 aclocal:110 automake:110 libtool:22
+USE_AUTOTOOLS=	autoconf autoheader aclocal automake libtool
 ACLOCAL_ARGS=	-I m4
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static

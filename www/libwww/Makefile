@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/libwww/Makefile,v 1.2 2008/08/21 17:24:31 laffer1 Exp $
+# $MidnightBSD: mports/www/libwww/Makefile,v 1.3 2009/09/20 00:22:03 laffer1 Exp $
 
 PORTNAME=	libwww
 PORTVERSION=	5.4.0
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The W3C Reference Library
 LICENSE=	other
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static --with-zlib 

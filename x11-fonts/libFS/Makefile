@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/libFS/Makefile,v 1.2 2009/03/15 20:42:33 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/libFS/Makefile,v 1.3 2009/09/20 02:33:39 smultron Exp $
 
 PORTNAME=	libFS
 PORTVERSION=	1.0.1
@@ -10,7 +10,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	fontsproto:both xproto:both xtrans
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.12 2010/12/03 22:54:37 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.13 2011/02/01 14:04:01 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.15
@@ -18,14 +18,13 @@ BUILD_DEPENDS=	nspr>=4.8:${PORTSDIR}/devel/nspr \
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		cairo.2:${PORTSDIR}/graphics/cairo \
 		nspr4:${PORTSDIR}/devel/nspr \
-		nss3:${PORTSDIR}/security/nss \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 CONFLICTS=	firefox-[0-9]* browser-2* browser-3.0.[0-9]*
 
 USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 
-USE_AUTOTOOLS=	autoconf:213
+USE_AUTOTOOLS=	autoconf213:env
 USE_GNOME+=	gtk20 libidl desktopfileutils gnomelibs
 USE_ICONV=	yes
 USE_PERL5=	yes
@@ -73,7 +72,6 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-system-cairo		\
 		--disable-official-branding	\
 		--enable-canvas			\
-		--with-system-nss		\
 		--enable-crypto			\
 		--enable-default-toolkit=${MOZ_TOOLKIT} \
 		--enable-xft			\
@@ -104,7 +102,7 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-xinerama		\
 		--enable-libxul			\
 		--disable-ogg			\
-		--disable-wave			\
+		--enable-wave			\
 		--enable-svg			\
 		--enable-svg-renderer=cairo	\
 		--x-includes=${LOCALBASE}/include \
@@ -199,6 +197,9 @@ post-extract:
 	@${SED} -e 's|@FIREFOX_ICON@|${FIREFOX_ICON}|' -e 's|@MOZILLA@|${MOZILLA}|' \
 		-e 's|@MOZILLA_NAME@|${MOZILLA_NAME}|' \
 		<${FILESDIR}/firefox.desktop.in >${WRKDIR}/${MOZILLA}.desktop
+
+pre-configure:
+	(cd ${WRKSRC} && ${AUTOCONF})
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS:C/-pthread/${GECKO_PTHREAD_LIBS}/}|' \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.15 2010/07/31 21:51:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.16 2010/08/14 02:51:44 laffer1 Exp $
 
 PORTNAME=	pango
 PORTVERSION=	1.28.1
@@ -27,7 +27,7 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack glib20 ltverhack referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--enable-static

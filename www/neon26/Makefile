@@ -2,7 +2,7 @@
 # Date created:		13 October 2000
 # Whom:			Mikhail Teterin <mi@aldan.algebra.com>
 #
-# $MidnightBSD: mports/www/neon26/Makefile,v 1.1 2008/06/08 21:04:42 laffer1 Exp $
+# $MidnightBSD: mports/www/neon26/Makefile,v 1.2 2009/09/20 00:24:35 laffer1 Exp $
 # $FreeBSD: ports/www/neon26/Makefile,v 1.42 2008/06/06 14:07:02 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 CONFLICTS=	neon28-[0-9]* neon-[0-9]*
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 .if defined(WITHOUT_NLS)

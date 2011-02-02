@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/privoxy/Makefile,v 1.3 2008/10/08 04:34:26 laffer1 Exp $
+# $MidnightBSD: mports/www/privoxy/Makefile,v 1.4 2009/03/02 00:04:10 laffer1 Exp $
 
 PORTNAME=	privoxy
 PORTVERSION=	3.0.11
@@ -16,7 +16,7 @@ LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 
 USE_RC_SUBR=	privoxy
 SUB_FILES=	pkg-message

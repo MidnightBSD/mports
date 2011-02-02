@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.4 2009/09/20 00:18:14 laffer1 Exp $
+# $MidnightBSD: mports/www/gtkhtml3/Makefile,v 1.5 2010/12/15 02:50:45 laffer1 Exp $
 
 PORTNAME=	gtkhtml3
 PORTVERSION=	3.30.3
@@ -25,7 +25,7 @@ USE_XORG=	xinerama xi xrandr xcursor xcomposite xdamage
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack libglade2 ltverhack
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm20/Makefile,v 1.6 2009/09/20 03:10:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm20/Makefile,v 1.7 2009/12/13 22:04:13 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PKGNAMESUFFIX=	20
@@ -20,7 +20,7 @@ LATEST_LINK=	gtkmm2
 LIB_DEPENDS=	sigc-1.2.5:${PORTSDIR}/devel/libsigc++12
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_XORG=	x11
 GNU_CONFIGURE=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/chromium/Makefile,v 1.1 2010/11/06 14:40:18 laffer1 Exp $
 
 PORTNAME=	chromium
 DISTVERSIONPREFIX=	courgette-redacted-
@@ -83,6 +83,7 @@ BUILDTYPE=	Debug
 MAKE_ENV+=	BUILDTYPE=${BUILDTYPE}
 MAKE_JOBS_SAFE=	yes
 STRIP=
+CFLAGS+=-I${LOCALBASE}/freetype2
 
 pre-everything::
 	@${ECHO_MSG}
