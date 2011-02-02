@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/amarok/Makefile,v 1.4 2010/02/27 15:59:30 laffer1 Exp $
+# $MidnightBSD: mports/audio/amarok/Makefile,v 1.5 2010/07/29 23:58:09 laffer1 Exp $
 
 PORTNAME=	amarok
 PORTVERSION=	1.4.10
@@ -19,7 +19,7 @@ LIB_DEPENDS=	tag.6:${PORTSDIR}/audio/taglib \
 USE_BZIP2=	yes
 USE_KDEBASE_VER=3
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_GETTEXT=	yes
 USE_SDL=	sdl
 USE_RUBY=	yes

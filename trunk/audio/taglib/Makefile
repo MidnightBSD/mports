@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/taglib/Makefile,v 1.4 2008/09/07 20:37:19 laffer1 Exp $
+# $MidnightBSD: mports/audio/taglib/Makefile,v 1.5 2009/09/20 00:47:43 laffer1 Exp $
 
 PORTNAME=	taglib
 PORTVERSION=	1.5
@@ -9,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library for manipulating ID3 tags and Ogg comments
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes

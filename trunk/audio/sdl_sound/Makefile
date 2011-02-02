@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/sdl_sound/Makefile,v 1.2 2009/11/01 21:59:26 laffer1 Exp $
+# $MidnightBSD: mports/audio/sdl_sound/Makefile,v 1.3 2009/11/01 22:20:12 laffer1 Exp $
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A SDL audio library and player for some popular sound file formats
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_SDL=	sdl
 CONFIGURE_ARGS=	--program-prefix=""

@@ -2,7 +2,7 @@
 # Date created:				16 July 2006
 # Whom:					adrianm
 #
-# $MidnightBSD: mports/audio/libnjb/Makefile,v 1.1 2008/09/11 05:05:53 laffer1 Exp $
+# $MidnightBSD: mports/audio/libnjb/Makefile,v 1.2 2009/09/20 00:34:59 laffer1 Exp $
 # $FreeBSD: ports/audio/libnjb/Makefile,v 1.7 2008/03/20 13:29:31 gahr Exp $
 #
 
@@ -17,7 +17,7 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"

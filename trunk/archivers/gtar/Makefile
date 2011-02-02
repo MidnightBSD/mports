@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.10 2009/12/25 17:18:03 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.11 2010/09/12 22:39:58 laffer1 Exp $
 
 PORTNAME=	tar
 PORTVERSION=	1.23
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -17,7 +17,7 @@ RUN_DEPENDS=	lzop:${PORTSDIR}/archivers/lzop \
 
 INFO=		tar
 
-USE_AUTOTOOLS=	autoconf:262:env	# autom4te
+USE_AUTOTOOLS=	autoconf:env	# autom4te
 USE_BZIP2=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes

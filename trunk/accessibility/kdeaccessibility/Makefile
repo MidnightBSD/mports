@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.4 2009/05/08 22:14:33 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.5 2009/09/19 23:52:26 laffer1 Exp $
 
 PORTNAME=	kdeaccessibility
 PORTVERSION=	${KDE_VERSION}
@@ -16,7 +16,7 @@ PREFIX=		${KDE_PREFIX}
 
 USE_XORG=	xtst
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 

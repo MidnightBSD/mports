@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/akode-plugins-mpc/Makefile,v 1.4 2009/09/20 00:09:32 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode-plugins-mpc/Makefile,v 1.5 2010/02/27 15:58:03 laffer1 Exp $
 
 PORTNAME=   akode-plugins-${PORTNAMESUFX}
 PORTVERSION=    2.0.2
@@ -19,7 +19,7 @@ CONFLICTS=	kdemultimedia-3.[1-3]*
 PLUGIN=		mpc_decoder
 PORTNAMESUFX=	${PLUGIN:S/_sink//:S/_decoder//:S/src_//}
 
-USE_AUTOTOOLS=  libltdl libtool:22
+USE_AUTOTOOLS=  libltdl libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/akode-${PORTVERSION}

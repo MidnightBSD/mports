@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/sdl_mixer/Makefile,v 1.5 2010/02/27 21:18:18 laffer1 Exp $
 
 PORTNAME=	sdl_mixer
 PORTVERSION=	1.2.8
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A sample multi-channel audio mixer library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_SDL=	sdl
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

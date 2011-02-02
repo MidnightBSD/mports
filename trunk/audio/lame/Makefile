@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.4 2009/09/20 00:23:32 laffer1 Exp $
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.5 2009/09/28 23:35:01 laffer1 Exp $
 
 PORTNAME=	lame
 PORTVERSION=	3.98.2
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
 LICENSE=	restricted
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=  yes
 USE_GMAKE=	yes

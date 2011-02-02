@@ -2,7 +2,7 @@
 # Date created:				22 Dec 1998
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.4 2009/09/20 00:28:38 laffer1 Exp $
+# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.5 2010/02/27 16:20:33 laffer1 Exp $
 # $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	gpl2
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 
 CONFLICTS=	osalp-0.7.*

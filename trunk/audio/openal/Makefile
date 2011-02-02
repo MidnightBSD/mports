@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.4 2009/09/20 00:42:38 laffer1 Exp $
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.5 2010/02/27 20:10:32 laffer1 Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 
 PORTNAME=	openal
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3D positional spatialized sound library
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"

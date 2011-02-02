@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.4 2009/06/11 00:13:13 laffer1 Exp $
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.5 2009/12/25 17:57:49 laffer1 Exp $
 
 PORTNAME=	zipios++
 PORTVERSION=	0.1.5.9
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	automake:110:env
+USE_AUTOTOOLS=	automake:env
 CONFIGURE_ARGS+=--disable-static
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}+cvs.2004.02.07

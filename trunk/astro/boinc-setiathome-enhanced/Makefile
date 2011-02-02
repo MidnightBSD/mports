@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.5 2010/12/18 07:41:34 laffer1 Exp $
+# $MidnightBSD: mports/astro/boinc-setiathome-enhanced/Makefile,v 1.6 2011/01/15 02:17:22 laffer1 Exp $
 
 PORTNAME=	boinc-setiathome-enhanced
 PORTVERSION=	6.08
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	astro
 MASTER_SITES=	ftp://rene-ladan.nl/pub/distfiles/
 DISTNAME=	setiathome-svn-412
@@ -18,7 +18,7 @@ RUN_DEPENDS=	boinc_client:${PORTSDIR}/net/boinc-client
 LIB_DEPENDS=	fftw3f:${PORTSDIR}/math/fftw3-float
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	autoconf:262:env automake:19:env
+USE_AUTOTOOLS=	autoconf:env automake:env
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
