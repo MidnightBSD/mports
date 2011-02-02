@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.6 2009/09/24 02:23:24 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.7 2010/11/20 04:23:48 laffer1 Exp $
 
 PORTNAME=	courier
 PORTVERSION=	0.63.0
@@ -56,7 +56,7 @@ CALENDIR=	/var/spool/calendar
 MIMETYPES=	${LOCALBASE}/etc/mime.types
 WITH_TRANSPORT=	local esmtp dsn
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_FAM=	yes
 USE_GETTEXT=	yes

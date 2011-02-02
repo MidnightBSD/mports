@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/evolution/Makefile,v 1.9 2009/09/26 01:35:54 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution/Makefile,v 1.10 2009/09/26 02:56:31 laffer1 Exp $
 
 PORTNAME=	evolution
 PORTVERSION=	2.26.3
@@ -19,7 +19,7 @@ USE_BISON=	build
 USE_GETTEXT=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack evolutiondataserver gtkhtml3 \
 		desktopfileutils gnomedocutils ltasneededhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
