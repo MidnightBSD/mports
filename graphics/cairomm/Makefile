@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.3 2009/08/01 22:19:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.4 2009/09/20 01:25:48 laffer1 Exp $
 
 PORTNAME=	cairomm
 PORTVERSION=	1.8.0
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 LIB_DEPENDS=	xml\\+\\+-2.6:${PORTSDIR}/textproc/libxml++26 \
 		cairo.2:${PORTSDIR}/graphics/cairo
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnometarget ltverhack

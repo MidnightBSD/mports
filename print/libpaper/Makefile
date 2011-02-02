@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/libpaper/Makefile,v 1.3 2010/09/04 20:11:58 laffer1 Exp $
 
 PORTNAME=	libpaper
 PORTVERSION=	1.1.24
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library providing routines for paper size management
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

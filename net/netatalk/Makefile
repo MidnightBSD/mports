@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.7 2010/08/01 05:21:56 laffer1 Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.8 2010/08/01 05:25:46 laffer1 Exp $
 
 PORTNAME=	netatalk
 PORTVERSION=	2.1.3
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BDB=	46+
 USE_BZIP2=	yes
 USE_ICONV=	yes

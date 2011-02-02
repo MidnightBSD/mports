@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/samba33/Makefile,v 1.6 2010/10/14 17:05:27 laffer1 Exp $
+# $MidnightBSD: mports/net/samba33/Makefile,v 1.7 2010/10/24 15:03:50 laffer1 Exp $
 
 PORTNAME=		samba
 PORTVERSION?=		3.3.14
@@ -17,7 +17,7 @@ CONFLICTS?=		*samba-3.[02].* sharity-light-1.* tdb-1.0.*
 USE_GMAKE=		yes
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
-USE_AUTOTOOLS=		autoconf:262 autoheader:262
+USE_AUTOTOOLS=		autoconf autoheader
 AUTOHEADER_ARGS=	-I${WRKSRC}/m4 -I${WRKSRC}/lib/replace
 AUTOCONF_ARGS=		-I${WRKSRC}/m4 -I${WRKSRC}/lib/replace
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.7 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.8 2010/07/31 21:16:25 laffer1 Exp $
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
@@ -14,7 +14,7 @@ LICENSE=	other
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_ZIP=	yes
 USE_GNOME=	gnometarget lthack
 GNU_CONFIGURE=	yes

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.3 2008/08/13 19:02:44 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.4 2009/09/20 01:33:41 laffer1 Exp $
 
 PORTNAME=	libdvdcss
 PORTVERSION=	1.2.10
@@ -13,7 +13,7 @@ LICENSE=	restricted
 
 NO_CDROM=	CSS code may violate the DMCA
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

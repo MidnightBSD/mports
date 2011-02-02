@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/smpeg/Makefile,v 1.3 2009/10/25 16:38:39 laffer1 Exp $
 
 PORTNAME=	smpeg
 PORTVERSION=	0.4.4
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free MPEG1 video player library with sound support
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 WANT_GNOME=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

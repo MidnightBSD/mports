@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.4 2009/08/29 20:23:53 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.5 2009/09/20 01:20:44 laffer1 Exp $
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast pixel formats conversion library
 LICENSE=	gpl2
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

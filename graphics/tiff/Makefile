@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.11 2010/03/25 01:28:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.12 2010/09/06 22:56:25 laffer1 Exp $
 
 PORTNAME=	tiff
 PORTVERSION=	4.0.0
@@ -15,7 +15,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		jbig.1:${PORTSDIR}/graphics/jbigkit
 
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 			--with-jpeg-lib-dir=${LOCALBASE}/lib
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"

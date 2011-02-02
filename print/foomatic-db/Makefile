@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/foomatic-db/Makefile,v 1.1 2009/09/26 22:22:45 laffer1 Exp $
+# $MidnightBSD: mports/print/foomatic-db/Makefile,v 1.2 2010/09/04 20:01:51 laffer1 Exp $
 
 PORTNAME=	db
 PORTVERSION=	20090530
@@ -20,7 +20,7 @@ LIB_DEPENDS=	xml2.5:${PORTSDIR}/textproc/libxml2 \
 PROJECTHOST=	bsdistfiles
 USE_GMAKE=	yes
 USE_PERL5=	yes
-USE_AUTOTOOLS=	automake:15:env autoconf:262
+USE_AUTOTOOLS=	automake:env autoconf
 
 GNU_CONFIGURE=	yes
 

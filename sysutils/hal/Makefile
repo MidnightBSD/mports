@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.13 2009/12/28 23:28:03 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.14 2010/03/20 14:51:30 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.11
@@ -18,7 +18,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack ltverhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_PYTHON=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \

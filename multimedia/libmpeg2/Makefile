@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libmpeg2/Makefile,v 1.5 2010/02/27 22:44:56 laffer1 Exp $
 
 PORTNAME=	libmpeg2
 PORTVERSION=	0.5.1
@@ -10,7 +10,7 @@ COMMENT=	A free library for decoding mpeg-2 and mpeg-1 video streams
 LICENSE=	gpl2
 
 USE_GNOME=	gnometarget ltverhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 

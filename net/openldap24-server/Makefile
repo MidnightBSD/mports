@@ -2,7 +2,7 @@
 # Date created:				19 May 2006
 # Whom:					Xin LI <delphij@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.7 2010/08/05 03:09:12 laffer1 Exp $
+# $MidnightBSD: mports/net/openldap24-server/Makefile,v 1.8 2010/10/21 19:49:11 laffer1 Exp $
 # $FreeBSD: ports/net/openldap24-server/Makefile,v 1.153 2008/05/07 21:20:44 delphij Exp $
 #
 
@@ -123,7 +123,7 @@ CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-sasl-client-2.*
 
 .endif
 
-USE_AUTOTOOLS=		libtool:22
+USE_AUTOTOOLS=		libtool
 
 DESCR=			${PKGDIR}/pkg-descr${OPENLDAP_PKGFILESUFX}
 PLIST=			${PKGDIR}/pkg-plist${OPENLDAP_PKGFILESUFX}
@@ -175,7 +175,7 @@ USE_RC_SUBR=		slapd.sh
 EXTRA_PATCHES+=		${FILESDIR}/extrapatch-Makefile.in
 
 .if defined(WITH_MODULES) || !defined(WITHOUT_DYNAMIC_BACKENDS) || defined(WITH_SLAPI)
-USE_AUTOTOOLS+=		libltdl:22
+USE_AUTOTOOLS+=		libltdl
 CONFIGURE_ARGS+=	--enable-modules
 PLIST_SUB+=		MODULES=""
 .else

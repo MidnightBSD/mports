@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.4 2009/05/08 22:05:21 laffer1 Exp $
+# $MidnightBSD: mports/net/kdenetwork3/Makefile,v 1.5 2009/09/20 01:43:36 laffer1 Exp $
 
 PORTNAME=	kdenetwork
 PORTVERSION=	${KDE_VERSION}
@@ -24,7 +24,7 @@ USE_GMAKE=	yes
 USE_XORG=	xtst
 USE_OPENSSL=	yes
 
-USE_AUTOTOOLS=  libtool:22
+USE_AUTOTOOLS=  libtool
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 DO_NOT_COMPILE+=kopete lanbrowsing filesharing

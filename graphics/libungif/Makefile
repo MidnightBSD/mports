@@ -2,7 +2,7 @@
 # Date created:		03 May 1997
 # Whom:			Thomas Gellekum <tg@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/libungif/Makefile,v 1.4 2008/10/13 20:43:58 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libungif/Makefile,v 1.5 2009/09/20 01:55:03 laffer1 Exp $
 # $FreeBSD: ports/graphics/libungif/Makefile,v 1.34 2006/08/14 23:06:35 clsung Exp $
 #
 
@@ -19,7 +19,7 @@ COMMENT=	Tools and library routines for working with GIF images
 LICENSE=	mit
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_LDCONFIG=	yes

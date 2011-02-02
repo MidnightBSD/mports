@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/pdflib/Makefile,v 1.10 2009/09/20 02:19:13 laffer1 Exp $
+# $MidnightBSD: mports/print/pdflib/Makefile,v 1.11 2009/09/22 20:54:13 laffer1 Exp $
 
 PORTNAME=	pdflib
 PORTVERSION=	7.0.4
@@ -14,7 +14,7 @@ RESTRICTED=	many odd restrictions on usage and distribution
 
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-java=no --with-py=no --with-ruby=no --with-tcl=no \
 		--enable-shared=yes --enable-static=yes

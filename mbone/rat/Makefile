@@ -2,7 +2,7 @@
 # Date created:			      3 July 1999
 # Whom:				      O.Hodson@cs.ucl.ac.uk (Orion Hodson)
 #
-# $MidnightBSD: mports/mbone/rat/Makefile,v 1.3 2007/11/07 21:49:00 ctriv Exp $
+# $MidnightBSD: mports/mbone/rat/Makefile,v 1.4 2008/05/22 16:36:50 laffer1 Exp $
 # $FreeBSD: ports/mbone/rat/Makefile,v 1.37 2007/03/03 18:32:58 kris Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	bsd4
 TCLTK_VERSION=	8.3
 LIB_DEPENDS=	tk83.1:${PORTSDIR}/x11-toolkits/tk83
 
-USE_AUTOTOOLS=	autoconf:213
+USE_AUTOTOOLS=	autoconf213
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.3 2009/08/29 21:11:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.4 2009/09/20 01:23:16 laffer1 Exp $
 
 PORTNAME=	aalib
 PORTVERSION=	1.4.r5
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An ascii art library
 LICENSE=	lgpl
 
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.4.0
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

@@ -2,7 +2,7 @@
 # Date created:				21 September 2001
 # Whom:					David <ddavid_3@yahoo.com>
 #
-# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.3 2008/09/30 21:22:08 laffer1 Exp $
+# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.4 2009/09/20 01:10:12 laffer1 Exp $
 # $FreeBSD: ports/ftp/kwebget/Makefile,v 1.14 2006/05/07 11:09:19 edwin Exp $
 #
 
@@ -24,7 +24,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USE_BZIP2=	yes
 USE_KDELIBS_VER=3
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||g ; \

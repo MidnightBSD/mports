@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/linc/Makefile,v 1.3 2009/09/20 01:46:08 laffer1 Exp $
+# $MidnightBSD: mports/net/linc/Makefile,v 1.4 2009/12/14 23:45:50 laffer1 Exp $
 
 PORTNAME=	linc
 PORTVERSION=	1.0.3
@@ -18,7 +18,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack glib20
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

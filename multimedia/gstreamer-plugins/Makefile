@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.14 2011/01/08 04:20:34 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.15 2011/01/14 14:32:16 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
@@ -46,7 +46,7 @@ WANT_GSTREAMER=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME+=	gnomehack gnometarget pkgconfig ltverhack ltasneededhack
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 GST_PLUGIN?=	base
 
 CONFIGURE_ARGS=	--disable-option-checking --mandir=${PREFIX}/man

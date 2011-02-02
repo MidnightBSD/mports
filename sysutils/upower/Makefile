@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.1 2010/12/15 02:45:39 laffer1 Exp $
 # $FreeBSD: ports/sysutils/upower/Makefile,v 1.4 2010/07/25 19:35:04 kwm Exp $
 
 PORTNAME=	upower
@@ -19,7 +19,7 @@ USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack intlhack ltverhack glib20
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_PYTHON=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/agg/Makefile,v 1.1 2009/10/25 17:21:40 laffer1 Exp $
 
 PORTNAME=	agg
 PORTVERSION=	2.5
@@ -20,7 +20,7 @@ USE_GNOME=	pkgconfig gnomehack
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 ACLOCAL_ARGS+=	-I ${LOCALBASE}/share/aclocal
-USE_AUTOTOOLS=	autoconf:262:env automake:15:env libtool:22:env
+USE_AUTOTOOLS=	autoconf:env automake:env libtool:env
 MAKE_ENV=	C="${CC}" AGGCXXFLAGS="${CXXFLAGS}"
 CXXFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -I../include -L./
 
