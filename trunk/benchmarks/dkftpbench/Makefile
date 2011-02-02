@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.3 2008/03/23 20:23:31 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.4 2009/06/06 21:18:56 laffer1 Exp $
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45
@@ -15,6 +15,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0 \
 			--host=${MACHINE_ARCH}-portbld-freebsd6.0
 
-USE_AUTOTOOLS=	automake:14 autoconf:262
+USE_AUTOTOOLS=	automake14 autoconf
 
 .include <bsd.port.mk>
