@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.359 2011/02/02 19:48:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.360 2011/02/03 04:36:02 laffer1 Exp $
 #
 
     COMMENT = Development utilities
@@ -136,6 +136,7 @@
     SUBDIR += libsigc++
     SUBDIR += libsigc++12
     SUBDIR += libsigc++20
+    SUBDIR += libsigsegv
     SUBDIR += libslang
     SUBDIR += libslang2
     SUBDIR += libsoup
