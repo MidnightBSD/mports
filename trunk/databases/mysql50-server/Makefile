@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.15 2010/08/04 23:23:32 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.16 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.0.90
+PORTVERSION=	5.0.92
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
