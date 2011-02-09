@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/sysutils/xfce4-utils/Makefile,v 1.1 2008/09/25 15:43:41 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/xfce4-utils/Makefile,v 1.2 2009/03/12 05:26:36 ctriv Exp $
 # $FreeBSD: ports/sysutils/xfce4-utils/Makefile,v 1.42 2008/06/06 14:03:25 edwin Exp $
 #
 
@@ -23,7 +23,7 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui libutil xfconf panel
+USE_XFCE=	configenv libgui libutil panel
 
 OPTIONS=	DBUS	"Enable D-BUS support"			on
 
