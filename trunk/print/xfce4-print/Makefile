@@ -2,14 +2,16 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.1 2008/09/26 18:16:39 laffer1 Exp $
+# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.2 2009/03/12 05:41:27 ctriv Exp $
 # $FreeBSD: ports/print/xfce4-print/Makefile,v 1.50 2008/06/06 13:58:00 edwin Exp $
 #
 
 PORTNAME=	xfce4-print
-PORTVERSION=	${XFCE_VERSION}
+PORTVERSION=	4.6.1
+PORTREVISION=	0
 CATEGORIES=	print xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=xfce/4.6.1/src
 DISTNAME=	xfprint-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
@@ -28,7 +30,7 @@ USE_XFCE=	configenv libgui libutil xfconf
 
 OPTIONS=	LPR	"Use lpr as printing system"		on \
 		CUPS	"Use cups as printing system"		off \
-		LETTER	"Use letter paper format instead of A4" on
+		LETTER	"Use letter paper format instead of A4" off
 
 .include <bsd.port.pre.mk>
 
@@ -50,7 +52,7 @@ PLIST_SUB+=	LPR=""
 .endif
 
 .if defined(WITHOUT_LPR) && !defined(WITH_CUPS)
-IGNORE=		you have to define WITH_CUPS or undefine WITHOUT_LPR in order to install this port.
+IGNORE=		You have to define WITH_CUPS or undefine WITHOUT_LPR in order to install this port.
 .endif
 
 .if defined(WITH_LETTER)
