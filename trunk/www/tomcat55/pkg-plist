@@ -1,4 +1,3 @@
-@comment $MidnightBSD$
 @unexec if cmp -s %D/%%T%%/conf/Catalina/localhost/host-manager.xml %D/%%T%%/conf/Catalina/localhost/host-manager.xml.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/Catalina/localhost/host-manager.xml; else echo If permanently deleting this package, %D/%%T%%/conf/Catalina/localhost/host-manager.xml must be removed manually; fi
 @unexec if cmp -s %D/%%T%%/conf/Catalina/localhost/manager.xml %D/%%T%%/conf/Catalina/localhost/manager.xml.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/Catalina/localhost/manager.xml; else echo If permanently deleting this package, %D/%%T%%/conf/Catalina/localhost/manager.xml must be removed manually; fi
 @unexec if cmp -s %D/%%T%%/conf/catalina.policy %D/%%T%%/conf/catalina.policy.%%CONF_EXT%%; then rm -f %D/%%T%%/conf/catalina.policy; else echo If permanently deleting this package, %D/%%T%%/conf/catalina.policy must be removed manually; fi
@@ -17,12 +16,11 @@
 %%T%%/bin/catalina-tasks.xml
 %%T%%/bin/catalina.sh
 %%T%%/bin/commons-daemon.jar
+%%T%%/bin/commons-daemon-native.tar.gz
 %%T%%/bin/commons-logging-api-1.1.1.jar
 %%T%%/bin/digest.sh
 %%JAVA14%%%%T%%/bin/jmx.jar
-%%T%%/bin/jkstatus-tasks.xml
 %%T%%/bin/jmxaccessor-tasks.xml
-%%T%%/bin/jsvc.tar.gz
 %%T%%/bin/setclasspath.sh
 %%T%%/bin/shutdown.sh
 %%T%%/bin/startup.sh
@@ -47,15 +45,25 @@
 %%T%%/common/lib/servlet-api.jar
 %%T%%/common/lib/tools.jar
 %%T%%/conf/Catalina/localhost/host-manager.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/Catalina/localhost/host-manager.xml ]; then cp %D/%%T%%/conf/Catalina/localhost/host-manager.xml.%%CONF_EXT%% %D/%%T%%/conf/Catalina/localhost/host-manager.xml; fi
 %%T%%/conf/Catalina/localhost/manager.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/Catalina/localhost/manager.xml ]; then cp %D/%%T%%/conf/Catalina/localhost/manager.xml.%%CONF_EXT%% %D/%%T%%/conf/Catalina/localhost/manager.xml; fi
 %%T%%/conf/catalina.policy.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/catalina.policy ]; then cp %D/%%T%%/conf/catalina.policy.%%CONF_EXT%% %D/%%T%%/conf/catalina.policy;fi
 %%T%%/conf/catalina.properties.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/catalina.properties ]; then cp %D/%%T%%/conf/catalina.properties.%%CONF_EXT%% %D/%%T%%/conf/catalina.properties;fi
 %%T%%/conf/context.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/context.xml ]; then cp %D/%%T%%/conf/context.xml.%%CONF_EXT%% %D/%%T%%/conf/context.xml;fi
 %%T%%/conf/logging.properties.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/logging.properties ]; then cp %D/%%T%%/conf/logging.properties.%%CONF_EXT%% %D/%%T%%/conf/logging.properties;fi
 %%T%%/conf/server-minimal.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/server-minimal.xml ]; then cp %D/%%T%%/conf/server-minimal.xml.%%CONF_EXT%% %D/%%T%%/conf/server-minimal.xml;fi
 %%T%%/conf/server.xml.%%CONF_EXT%%
+@exec [ -f %D/%%T%%/conf/server.xml ] || cp %D/%%T%%/conf/server.xml.%%CONF_EXT%% %D/%%T%%/conf/server.xml
 %%T%%/conf/tomcat-users.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/tomcat-users.xml ];then cp %D/%%T%%/conf/tomcat-users.xml.%%CONF_EXT%% %D/%%T%%/conf/tomcat-users.xml;fi
 %%T%%/conf/web.xml.%%CONF_EXT%%
+@exec if [ ! -f %D/%%T%%/conf/web.xml ];then cp %D/%%T%%/conf/web.xml.%%CONF_EXT%% %D/%%T%%/conf/web.xml;fi
 %%T%%/logs/stderr.log
 %%T%%/logs/stdout.log
 %%T%%/server/lib/catalina-ant-jmx.jar
@@ -74,7 +82,6 @@
 %%T%%/server/lib/tomcat-apr.jar
 %%T%%/server/lib/tomcat-coyote.jar
 %%T%%/server/lib/tomcat-http.jar
-%%T%%/server/lib/tomcat-jkstatus-ant.jar
 %%T%%/server/lib/tomcat-util.jar
 %%T%%/server/webapps/host-manager/WEB-INF/lib/catalina-host-manager.jar
 %%T%%/server/webapps/host-manager/WEB-INF/web.xml
@@ -91,6 +98,7 @@
 %%T%%/server/webapps/host-manager/manager.xml
 %%T%%/server/webapps/manager/WEB-INF/lib/catalina-manager.jar
 %%T%%/server/webapps/manager/WEB-INF/lib/commons-fileupload-1.2.jar
+%%T%%/server/webapps/manager/WEB-INF/lib/commons-io-1.4.jar
 %%T%%/server/webapps/manager/WEB-INF/web.xml
 %%T%%/server/webapps/manager/html-manager-howto.html
 %%T%%/server/webapps/manager/images/add.gif
@@ -546,11 +554,13 @@
 %%T%%/webapps/tomcat-docs/config/printer/resources.html
 %%T%%/webapps/tomcat-docs/config/printer/server.html
 %%T%%/webapps/tomcat-docs/config/printer/service.html
+%%T%%/webapps/tomcat-docs/config/printer/systemprops.html
 %%T%%/webapps/tomcat-docs/config/printer/valve.html
 %%T%%/webapps/tomcat-docs/config/realm.html
 %%T%%/webapps/tomcat-docs/config/resources.html
 %%T%%/webapps/tomcat-docs/config/server.html
 %%T%%/webapps/tomcat-docs/config/service.html
+%%T%%/webapps/tomcat-docs/config/systemprops.html
 %%T%%/webapps/tomcat-docs/config/valve.html
 %%T%%/webapps/tomcat-docs/connectors.html
 %%T%%/webapps/tomcat-docs/default-servlet.html
@@ -840,12 +850,12 @@
 %%T%%/webapps/webdav/tomcat.gif
 @exec mkdir %D/%%T%%/work || true
 @exec mkdir %D/%%T%%/webapps/balancer/images || true
-@exec mkdir %D/%%T%%/temp || true
 @exec mkdir %D/%%T%%/shared || true
 @exec mkdir %D/%%T%%/shared/lib || true
 @exec mkdir %D/%%T%%/shared/classes || true
 @exec mkdir %D/%%T%%/server/classes || true
-@exec mkdir %D/%%T%%/common/endorsed ||true
+@exec mkdir %D/%%T%%/common/endorsed || true
+@exec mkdir %D/%%T%%/common/classes || true
 @exec chown -R %%WWWOWN%%:%%WWWGRP%% %D/%%T%%/conf %D/%%T%%/logs %D/%%T%%/temp %D/%%T%%/work
 @dirrm %%T%%/work
 @dirrm %%T%%/webapps/webdav/WEB-INF
