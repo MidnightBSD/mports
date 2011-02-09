@@ -2,41 +2,87 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/sysutils/xfce4-utils/Makefile,v 1.2 2009/03/12 05:26:36 ctriv Exp $
-# $FreeBSD: ports/sysutils/xfce4-utils/Makefile,v 1.42 2008/06/06 14:03:25 edwin Exp $
+# $FreeBSD: ports/sysutils/xfce4-settings/Makefile,v 1.11 2010/05/31 15:34:47 oliver Exp $
 #
 
 PORTNAME=	xfce4-settings
-PORTVERSION=	${XFCE_VERSION}
+PORTVERSION=	4.6.5
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
-DISTNAME=	xfce4-settings-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 essential utilities and scripts
 LICENSE=	gpl2
 
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS= yes
-USE_BZIP2=	yes
-USE_GETTEXT=	yes
-USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig gtk20 glib20 libwnck libglade2
-USE_XFCE=	configenv libexo libutil libgui xfconf
-USE_XORG=	xi x11 xcursor xrandr
+LIB_DEPENDS=	wnck-1.22:${PORTSDIR}/x11-toolkits/libwnck \
+		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
-OPTIONS=	DBUS	"Enable D-BUS support"			on
+OPTIONS=	XKLAVIER	"Keyboard layout settings"		off \
+		XCURSOR		"Enable cursor themes support"		on \
+		XRANDR		"Enable Xrandr support"			on \
+		NOTIFY		"Enable notification support"		on \
+		NLS		"Enable Native Language Support"	on
+
+CONFIGURE_ARGS=	--disable-sound-settings --disable-debug
+USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
+INSTALLS_ICONS=	yes
+USE_BZIP2=	yes
+USE_GMAKE=	yes
+USE_GNOME=	gnometarget glib20 gtk20 desktopfileutils intltool intlhack \
+		libglade2 pkgconfig
+USE_XFCE=	configenv libexo libgui libutil xfconf
+USE_XORG=	x11 xi
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITHOUT_DBUS)
-LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
-CONFIGURE_ARGS+=--enable-dbus
-PLIST_SUB+=	WITH_DBUS=""
+.if defined(WITH_XKLAVIER)
+LIB_DEPENDS+=	xklavier.12:${PORTSDIR}/x11/libxklavier
+CONFIGURE_ARGS+=--enable-libxklavier
 .else
-CONFIGURE_ARGS+=--disable-dbus
-PLIST_SUB+=	WITH_DBUS="@comment "
+CONFIGURE_ARGS+=--disable-libxklavier
 .endif
+
+.if defined(WITH_XCURSOR)
+USE_XORG+=	xcursor
+CONFIGURE_ARGS+=--enable-xcursor
+.else
+CONFIGURE_ARGS+=--disable-xcursor
+.endif
+
+.if defined(WITH_XRANDR)
+USE_XORG+=	xrandr
+CONFIGURE_ARGS+=--enable-xrandr
+PLIST_SUB+=	XRANDR=""
+.else
+CONFIGURE_ARGS+=--disable-xrandr
+PLIST_SUB+=	XRANDR="@comment "
+.endif
+
+.if defined(WITH_NOTIFY)
+LIB_DEPENDS+=	notify.1:${PORTSDIR}/devel/libnotify
+CONFIGURE_ARGS+=--enable-libnotify
+.else
+CONFIGURE_ARGS+=--disable-libnotify
+.endif
+
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+CONFIGURE_ARGS+=--enable-nls
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+post-patch:
+	# until xfce4-icon-theme is back we rely on Tango
+	@${REINPLACE_CMD} -e 's|Rodent|Tango|g' \
+		${WRKSRC}/dialogs/appearance-settings/main.c \
+		${WRKSRC}/xfsettingsd/xsettings.xml
+	@${REINPLACE_CMD} -e 's|xkl_config_registry_load (settings->priv->xkl_registry)|xkl_config_registry_load (settings->priv->xkl_registry, FALSE)|g; \
+		s|xkl_engine_stop_listen (settings->priv->xkl_engine)|xkl_engine_stop_listen (settings->priv->xkl_engine, FALSE)|g' \
+		${WRKSRC}/dialogs/keyboard-settings/xfce-keyboard-settings.c
 
 .include <bsd.port.post.mk>
