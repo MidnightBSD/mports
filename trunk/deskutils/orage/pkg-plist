@@ -1,13 +1,20 @@
-@comment $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.137 2009/03/12 04:09:25 ctriv Exp $
-bin/orage
 bin/globaltime
+bin/orage
 libexec/xfce4/panel-plugins/orageclock
+share/applications/xfcalendar.desktop
+share/applications/xfce-xfcalendar-settings.desktop
+share/dbus-1/services/org.xfce.calendar.service
+share/dbus-1/services/org.xfce.orage.service
+share/icons/hicolor/48x48/apps/xfcalendar.png
+share/icons/hicolor/scalable/apps/xfcalendar.svg
 share/locale/am/LC_MESSAGES/orage.mo
 share/locale/ar/LC_MESSAGES/orage.mo
 share/locale/az/LC_MESSAGES/orage.mo
 share/locale/bg/LC_MESSAGES/orage.mo
 share/locale/da/LC_MESSAGES/orage.mo
 share/locale/de/LC_MESSAGES/orage.mo
+share/locale/dz/LC_MESSAGES/orage.mo
+share/locale/en_AU/LC_MESSAGES/orage.mo
 share/locale/en_GB/LC_MESSAGES/orage.mo
 share/locale/eo/LC_MESSAGES/orage.mo
 share/locale/es/LC_MESSAGES/orage.mo
@@ -23,6 +30,7 @@ share/locale/id/LC_MESSAGES/orage.mo
 share/locale/it/LC_MESSAGES/orage.mo
 share/locale/ja/LC_MESSAGES/orage.mo
 share/locale/ka/LC_MESSAGES/orage.mo
+share/locale/ku/LC_MESSAGES/orage.mo
 share/locale/lt/LC_MESSAGES/orage.mo
 share/locale/lv/LC_MESSAGES/orage.mo
 share/locale/mk/LC_MESSAGES/orage.mo
@@ -30,34 +38,57 @@ share/locale/ms/LC_MESSAGES/orage.mo
 share/locale/nl/LC_MESSAGES/orage.mo
 share/locale/pa/LC_MESSAGES/orage.mo
 share/locale/pt_BR/LC_MESSAGES/orage.mo
-share/locale/pt_PT/LC_MESSAGES/orage.mo
+share/locale/pt/LC_MESSAGES/orage.mo
 share/locale/ru/LC_MESSAGES/orage.mo
 share/locale/sq/LC_MESSAGES/orage.mo
 share/locale/sv/LC_MESSAGES/orage.mo
 share/locale/ta/LC_MESSAGES/orage.mo
 share/locale/tr/LC_MESSAGES/orage.mo
+share/locale/ur/LC_MESSAGES/orage.mo
 share/locale/vi/LC_MESSAGES/orage.mo
 share/locale/be/LC_MESSAGES/orage.mo
-share/locale/bn_IN/LC_MESSAGES/orage.mo
 share/locale/ca/LC_MESSAGES/orage.mo
 share/locale/cs/LC_MESSAGES/orage.mo
-share/locale/dz/LC_MESSAGES/orage.mo
 share/locale/el/LC_MESSAGES/orage.mo
-share/locale/en_AU/LC_MESSAGES/orage.mo
 share/locale/fi/LC_MESSAGES/orage.mo
 share/locale/gl/LC_MESSAGES/orage.mo
-share/locale/hy/LC_MESSAGES/orage.mo
 share/locale/ko/LC_MESSAGES/orage.mo
-share/locale/ku/LC_MESSAGES/orage.mo
-share/locale/mr/LC_MESSAGES/orage.mo
-share/locale/nb_NO/LC_MESSAGES/orage.mo
 share/locale/pl/LC_MESSAGES/orage.mo
 share/locale/ro/LC_MESSAGES/orage.mo
 share/locale/sk/LC_MESSAGES/orage.mo
 share/locale/uk/LC_MESSAGES/orage.mo
-share/locale/ur/LC_MESSAGES/orage.mo
 share/locale/zh_CN/LC_MESSAGES/orage.mo
 share/locale/zh_TW/LC_MESSAGES/orage.mo
+share/locale/mr/LC_MESSAGES/orage.mo
+share/locale/bn_IN/LC_MESSAGES/orage.mo
+share/locale/nb/LC_MESSAGES/orage.mo
+share/locale/hy/LC_MESSAGES/orage.mo
+share/orage/doc/C/images/default_calendar.png
+share/orage/doc/C/images/orage_eventlist.png
+share/orage/doc/C/images/orage_appointment.png
+share/orage/doc/C/images/orage_appointment_alarm.png
+share/orage/doc/C/images/orage_appointment_recurrence.png
+share/orage/doc/C/images/orage_calendar_edit_menu.png
+share/orage/doc/C/images/orage_calendar_file_menu.png
+share/orage/doc/C/images/orage_calendar_help_menu.png
+share/orage/doc/C/images/orage_calendar_view_menu.png
+share/orage/doc/C/images/orage_desktop_menuitem.png
+share/orage/doc/C/images/orage_preferences_display.png
+share/orage/doc/C/images/orage_daylist.png
+share/orage/doc/C/images/orage_exchange_impexp.png
+share/orage/doc/C/images/orage_exchange_oragefiles.png
+share/orage/doc/C/images/orage_exchange_foreign.png
+share/orage/doc/C/images/orage_preferences_main.png
+share/orage/doc/C/images/orage_preferences_extra.png
+share/orage/doc/C/orage.html
+share/orage/sounds/Boiling.wav
+share/orage/sounds/KDE_Beep_Digital_1.ogg
+share/orage/sounds/KDE_Beep_Digital_2.ogg
+share/orage/sounds/Knock.wav
+share/orage/sounds/Phone.wav
+share/orage/sounds/Spo.wav
+share/orage/sounds/Tear.wav
+share/orage/sounds/Wall_c.wav
 share/orage/zoneinfo/Africa/Abidjan.ics
 share/orage/zoneinfo/Africa/Accra.ics
 share/orage/zoneinfo/Africa/Addis_Ababa.ics
@@ -110,6 +141,11 @@ share/orage/zoneinfo/Africa/Timbuktu.ics
 share/orage/zoneinfo/Africa/Tripoli.ics
 share/orage/zoneinfo/Africa/Tunis.ics
 share/orage/zoneinfo/Africa/Windhoek.ics
+share/orage/zoneinfo/America/Argentina/Buenos_Aires.ics
+share/orage/zoneinfo/America/Argentina/Catamarca.ics
+share/orage/zoneinfo/America/Argentina/Cordoba.ics
+share/orage/zoneinfo/America/Argentina/Jujuy.ics
+share/orage/zoneinfo/America/Argentina/Mendoza.ics
 share/orage/zoneinfo/America/Adak.ics
 share/orage/zoneinfo/America/Anchorage.ics
 share/orage/zoneinfo/America/Anguilla.ics
@@ -154,19 +190,21 @@ share/orage/zoneinfo/America/Guadeloupe.ics
 share/orage/zoneinfo/America/Guatemala.ics
 share/orage/zoneinfo/America/Guayaquil.ics
 share/orage/zoneinfo/America/Guyana.ics
+share/orage/zoneinfo/America/Halifax.ics
+share/orage/zoneinfo/America/Havana.ics
+share/orage/zoneinfo/America/Hermosillo.ics
 share/orage/zoneinfo/America/Indiana/Indianapolis.ics
 share/orage/zoneinfo/America/Indiana/Knox.ics
 share/orage/zoneinfo/America/Indiana/Marengo.ics
 share/orage/zoneinfo/America/Indiana/Vevay.ics
-share/orage/zoneinfo/America/Halifax.ics
-share/orage/zoneinfo/America/Havana.ics
-share/orage/zoneinfo/America/Hermosillo.ics
 share/orage/zoneinfo/America/Indianapolis.ics
 share/orage/zoneinfo/America/Inuvik.ics
 share/orage/zoneinfo/America/Iqaluit.ics
 share/orage/zoneinfo/America/Jamaica.ics
 share/orage/zoneinfo/America/Jujuy.ics
 share/orage/zoneinfo/America/Juneau.ics
+share/orage/zoneinfo/America/Kentucky/Louisville.ics
+share/orage/zoneinfo/America/Kentucky/Monticello.ics
 share/orage/zoneinfo/America/La_Paz.ics
 share/orage/zoneinfo/America/Lima.ics
 share/orage/zoneinfo/America/Los_Angeles.ics
@@ -225,13 +263,6 @@ share/orage/zoneinfo/America/Whitehorse.ics
 share/orage/zoneinfo/America/Winnipeg.ics
 share/orage/zoneinfo/America/Yakutat.ics
 share/orage/zoneinfo/America/Yellowknife.ics
-share/orage/zoneinfo/America/Argentina/Buenos_Aires.ics
-share/orage/zoneinfo/America/Argentina/Catamarca.ics
-share/orage/zoneinfo/America/Argentina/Cordoba.ics
-share/orage/zoneinfo/America/Argentina/Jujuy.ics
-share/orage/zoneinfo/America/Argentina/Mendoza.ics
-share/orage/zoneinfo/America/Kentucky/Louisville.ics
-share/orage/zoneinfo/America/Kentucky/Monticello.ics
 share/orage/zoneinfo/Antarctica/Casey.ics
 share/orage/zoneinfo/Antarctica/Davis.ics
 share/orage/zoneinfo/Antarctica/DumontDUrville.ics
@@ -437,44 +468,19 @@ share/orage/zoneinfo/Pacific/Wake.ics
 share/orage/zoneinfo/Pacific/Wallis.ics
 share/orage/zoneinfo/Pacific/Yap.ics
 share/orage/zoneinfo/zones.tab
-share/orage/doc/C/images/default_calendar.png
-share/orage/doc/C/images/orage_calendar_edit_menu.png
-share/orage/doc/C/images/orage_calendar_file_menu.png
-share/orage/doc/C/images/orage_calendar_help_menu.png
-share/orage/doc/C/images/orage_calendar_view_menu.png
-share/orage/doc/C/images/orage_daylist.png
-share/orage/doc/C/images/orage_desktop_menuitem.png
-share/orage/doc/C/images/orage_eventlist.png
-share/orage/doc/C/images/orage_exchange_impexp.png
-share/orage/doc/C/images/orage_exchange_oragefiles.png
-share/orage/doc/C/images/orage_exchange_foreign.png
-share/orage/doc/C/images/orage_appointment.png
-share/orage/doc/C/images/orage_appointment_alarm.png
-share/orage/doc/C/images/orage_appointment_recurrence.png
-share/orage/doc/C/images/orage_preferences_display.png
-share/orage/doc/C/images/orage_preferences_main.png
-share/orage/doc/C/images/orage_preferences_extra.png
-share/orage/doc/C/orage.html
-share/orage/sounds/KDE_Beep_Digital_1.ogg
-share/orage/sounds/KDE_Beep_Digital_2.ogg
-share/orage/sounds/Boiling.wav
-share/orage/sounds/Knock.wav
-share/orage/sounds/Phone.wav
-share/orage/sounds/Spo.wav
-share/orage/sounds/Tear.wav
-share/orage/sounds/Wall_c.wav
-share/icons/hicolor/48x48/apps/xfcalendar.png
-share/icons/hicolor/scalable/apps/xfcalendar.svg
 share/xfce4/panel-plugins/orageclock.desktop
-share/applications/xfce-xfcalendar-settings.desktop
-share/applications/xfcalendar.desktop
-share/dbus-1/services/org.xfce.calendar.service
-share/dbus-1/services/org.xfce.orage.service
 @dirrmtry libexec/xfce4/panel-plugins
 @dirrmtry libexec/xfce4
+@dirrmtry share/applications
+@dirrmtry share/locale/ku/LC_MESSAGES
+@dirrmtry share/locale/ku
+@dirrm share/orage/doc/C/images
+@dirrm share/orage/doc/C
+@dirrm share/orage/doc
+@dirrm share/orage/sounds
 @dirrm share/orage/zoneinfo/Africa
-@dirrm share/orage/zoneinfo/America/Indiana
 @dirrm share/orage/zoneinfo/America/Argentina
+@dirrm share/orage/zoneinfo/America/Indiana
 @dirrm share/orage/zoneinfo/America/Kentucky
 @dirrm share/orage/zoneinfo/America
 @dirrm share/orage/zoneinfo/Antarctica
@@ -486,11 +492,8 @@ share/dbus-1/services/org.xfce.orage.service
 @dirrm share/orage/zoneinfo/Indian
 @dirrm share/orage/zoneinfo/Pacific
 @dirrm share/orage/zoneinfo
-@dirrm share/orage/doc/C/images
-@dirrm share/orage/doc/C
-@dirrm share/orage/doc
-@dirrm share/orage/sounds
 @dirrm share/orage
 @dirrmtry share/xfce4/panel-plugins
 @dirrmtry share/xfce4
-@dirrm share/applications
+@dirrmtry share/icons/hicolor/scalable/apps
+@dirrmtry share/icons/hicolor/scalable
