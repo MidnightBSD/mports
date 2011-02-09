@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.2 2010/12/31 22:54:37 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql55-server/Makefile,v 1.269 2010/12/28 06:49:39 ale Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.5.8
+PORTVERSION=	5.5.9
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
