@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/www/tomcat55/files/tomcat55.sh.in,v 1.7 2007/09/30 22:04:02 alepulver Exp $
+# $FreeBSD: ports/www/tomcat55/files/tomcat55.sh.in,v 1.10 2010/10/07 21:17:37 ohauer Exp $
 #
 
 # PROVIDE: tomcat%%TOMCAT_VERSION%%
@@ -69,7 +69,7 @@ tomcat%%TOMCAT_VERSION%%_stdout_log="${tomcat%%TOMCAT_VERSION%%_stdout_log:-"%%S
 tomcat%%TOMCAT_VERSION%%_stderr_log="${tomcat%%TOMCAT_VERSION%%_stderr_log:-"%%STDERR_LOG%%"}"
 tomcat%%TOMCAT_VERSION%%_stop_timeout="${tomcat%%TOMCAT_VERSION%%_stop_timeout:-"10"}"
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="tomcat%%TOMCAT_VERSION%%"
 rcvar=`set_rcvar`
@@ -109,7 +109,7 @@ log_args=">> ${tomcat%%TOMCAT_VERSION%%_stdout_log} \
 if [ -f $pidfile ]; then
   read rc_pid junk < $pidfile
   if [ ! -z "$rc_pid" ]; then
-    procname=`ps -o ucomm= -p $rc_pid`
+    procname=`ps -o command= -p $rc_pid | cut -f 1 -d ' '`
   fi
 fi
 if [ -z "$procname" ]; then
@@ -123,6 +123,7 @@ flags="-p ${pidfile} ${java_command} start ${tomcat%%TOMCAT_VERSION%%_flags} ${l
 
 start_precmd=pid_touch
 stop_cmd="tomcat%%TOMCAT_VERSION%%_stop"
+status_cmd="tomcat%%TOMCAT_VERSION%%_status"
 
 pid_touch ()
 {
@@ -133,9 +134,9 @@ pid_touch ()
 tomcat%%TOMCAT_VERSION%%_stop() {
 	rc_pid=$(check_pidfile $pidfile $procname)
 
-	if [ -z "$rc_pid" ]; then
-		[ -n "$rc_fast" ] && return 0
-		if [ -n "$pidfile" ]; then
+	if [ -z `cat $pidfile` ]; then
+		[ -n `cat $pidfile` ] && return 0
+		if [ -n `cat $pidfile` ]; then
 			echo "${name} not running? (check $pidfile)."
 		else
 			echo "${name} not running?"
@@ -145,9 +146,22 @@ tomcat%%TOMCAT_VERSION%%_stop() {
 	
 	echo "Stopping ${name}."
 	${java_command} stop
-	tomcat_wait_max_for_pid ${tomcat%%TOMCAT_VERSION%%_stop_timeout} ${rc_pid}
+	tomcat_wait_max_for_pid ${tomcat%%TOMCAT_VERSION%%_stop_timeout} `cat $pidfile`
 	kill -KILL ${rc_pid} 2> /dev/null && echo "Killed."
 	echo -n > ${pidfile}
+}
+
+tomcat%%TOMCAT_VERSION%%_status() {
+	if [ ! -f $pidfile ]; then
+          pid_touch
+        fi
+
+	if [ -z `cat $pidfile` ]; then
+	  echo "${name} is not running."
+	  return 1
+	else
+	  echo "${name} is running as pid `cat $pidfile`."
+	fi
 }
 
 tomcat_wait_max_for_pid() {
