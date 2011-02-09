@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mpc plugin for xfce4
-# Date created:				12 July 2006
-# Whom:					Martin Wilke (miwi@FreeBSD.org)
-#
-# $MidnightBSD: mports/audio/xfce4-mpc-plugin/Makefile,v 1.1 2008/09/26 15:46:07 laffer1 Exp $
+# $MidnightBSD: mports/audio/xfce4-mpc-plugin/Makefile,v 1.2 2010/02/27 21:26:16 laffer1 Exp $
 # $FreeBSD: ports/audio/xfce4-mpc-plugin/Makefile,v 1.11 2008/06/06 13:07:10 edwin Exp $
-#
 
 PORTNAME=	xfce4-mpc-plugin
-PORTVERSION=	0.3.4
+PORTVERSION=	0.3.5
 CATEGORIES=	audio xfce
 MASTER_SITES=	http://archive.xfce.org/src/panel-plugins/${PORTNAME}/0.3/
 
