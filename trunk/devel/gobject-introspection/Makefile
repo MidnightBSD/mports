@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.1 2010/05/14 02:51:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.2 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	gobject-introspection
-PORTVERSION=	0.6.10
+PORTVERSION=	0.6.14
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
