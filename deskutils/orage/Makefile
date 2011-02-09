@@ -2,12 +2,13 @@
 # Date created:		2003-01-14
 # Whom:			Matt Lancereau <matt@rimasec.net>
 #
-# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.1 2008/09/26 15:58:25 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.2 2009/03/12 05:54:12 ctriv Exp $
 # $FreeBSD: ports/deskutils/orage/Makefile,v 1.12 2008/06/06 13:18:27 edwin Exp $
 #
 
 PORTNAME=	orage
-PORTVERSION=	${XFCE_VERSION}
+PORTVERSION=	4.6.1
+PORTREVISION=	0
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -22,12 +23,14 @@ USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
-USE_XFCE=	configenv libgui xfconf panel
+USE_XFCE=	configenv libgui panel
 USE_XORG=	xext xrender xinerama xi xrandr xcursor xcomposite xdamage x11 \
 		xfixes
 
 OPTIONS=	BDB	"Enable BDB support"		off \
 		ICAL	"Enable libical support"	off
+
+MAN1=		globaltime.1 orage.1
 
 .include <bsd.port.pre.mk>
 
@@ -39,7 +42,7 @@ CONFIGURE_ARGS+=--with-bdb4=no
 .endif
 
 .if defined(WITH_ICAL)
-LIB_DEPENDS+=	ical.27:${PORTSDIR}/devel/libical
+LIB_DEPENDS+=	ical.44:${PORTSDIR}/devel/libical
 .endif
 
 post-patch:
