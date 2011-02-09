@@ -2,7 +2,7 @@
 # Date created:		August 14, 2002
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-wm/xfce4-wm/Makefile,v 1.1 2008/09/25 13:59:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4-wm/Makefile,v 1.2 2009/03/11 22:31:55 ctriv Exp $
 # $FreeBSD: ports/x11-wm/xfce4-wm/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
 #
 
@@ -25,10 +25,11 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv xfconf libutil libgui panel
+USE_XFCE=	configenv libutil libgui panel xfconf
 
 OPTIONS=	COMPOSITE	"Support the experimental X11 Composite extension"	on \
 		STARTUP 	"Enable startup notification support"			on \
+		REVMOUSE	"Reverse mouse workspace changing direction"		off
 
 .include <bsd.port.pre.mk>
 
@@ -43,6 +44,10 @@ LIB_DEPENDS+=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 CONFIGURE_ARGS+=--enable-startup-notification
 .else
 CONFIGURE_ARGS+=--disable-startup-notification
+.endif
+
+.if defined(WITH_REVMOUSE)
+EXTRA_PATCHES=  ${FILESDIR}/extrapatch-src__events.c
 .endif
 
 post-patch:
