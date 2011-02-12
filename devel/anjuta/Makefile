@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.8 2010/01/24 15:55:02 laffer1 Exp $
 
 PORTNAME=	anjuta
 PORTVERSION=	2.26.2.2
@@ -23,7 +23,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		autogen:${PORTSDIR}/devel/autogen \
 		neato:${PORTSDIR}/graphics/graphviz \
 		p5-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext \
-		libtool:${PORTSDIR}/devel/libtool22 \
+		libtool:${PORTSDIR}/devel/libtool \
 		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme \
 		exctags:${PORTSDIR}/devel/ctags
 
