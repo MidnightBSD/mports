@@ -1,10 +1,5 @@
-# New ports collection makefile for:	thunar
-# Date created:		19.04.2006
-# Whom:			Oliver Lehmann <oliver@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.6 2010/11/12 00:45:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.7 2010/12/04 02:29:34 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
-#
 
 PORTNAME=	Thunar
 PORTVERSION=	1.0.2
