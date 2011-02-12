@@ -2,11 +2,11 @@
 # Date created:		23 October 2004
 # Whom:			Matt Lancereau <ports@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libexo/Makefile,v 1.2 2008/11/07 18:24:16 ctriv Exp $
+# $MidnightBSD: mports/x11/libexo/Makefile,v 1.3 2009/03/11 22:10:06 ctriv Exp $
 # $FreeBSD: ports/x11/libexo/Makefile,v 1.28 2008/06/06 14:09:03 edwin Exp $
 
 PORTNAME=	libexo
-PORTVERSION=	0.3.100
+PORTVERSION=	0.3.107
 CATEGORIES=	x11 xfce
 DISTNAME=	exo-${PORTVERSION}
 MASTER_SITES=	${MASTER_SITE_XFCE}
@@ -24,20 +24,26 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
-USE_XFCE=	configenv xfconf
+USE_XFCE=	configenv libutil
+
+CONFIGURE_ARGS=	--enable-gtk-doc-html=no \
+		--enable-gtk-doc=no \
+		--disable-debug
+
+PLIST_SUB=	VERSION="${PORTVERSION:R}"
 
 OPTIONS=	HAL	"Enable HAL support"			on \
 		NOTIFY  "Enable notification support"		on \
-		PYTHON	"Enable Python support"			off 
+		PYTHON	"Enable Python support"			off \
+		NLS	"Enable Native Language Support"	on
 
 MAN1=		exo-csource.1 exo-open.1
 
-.include <bsd.mport.options.mk>
+.include <bsd.port.pre.mk>
 
 .if !defined(WITHOUT_HAL)
 CONFIGURE_ARGS+=--enable-hal
@@ -56,20 +62,28 @@ PLIST_SUB+=	NOTIFY="@comment "
 .endif
 
 .if defined(WITH_PYTHON)
-CONFIGURE_ARGS+=--enable-python
 USE_PYTHON=	yes
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/pygtk.py:${PORTSDIR}/x11-toolkits/py-gtk2
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/pygtk.py:${PORTSDIR}/x11-toolkits/py-gtk2
+CONFIGURE_ARGS+=--enable-python
+.include "${PORTSDIR}/Mk/bsd.python.mk"
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gtk>=2:${PORTSDIR}/x11-toolkits/py-gtk2
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gtk>=2:${PORTSDIR}/x11-toolkits/py-gtk2
 PLIST_SUB+=	PYTHON=""
 .else
 CONFIGURE_ARGS+=--disable-python
 PLIST_SUB+=	PYTHON="@comment "
 .endif
 
-.include <bsd.port.pre.mk>
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+CONFIGURE_ARGS+=--enable-nls
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|FALSE;;|FALSE;|' ${WRKSRC}/exo/exo-icon-view.c
-	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' ${WRKSRC}/configure
+post-install:
+	${FIND} ${WRKSRC}/docs/reference -type f -regex '.*\.1' \
+	-exec ${INSTALL_MAN} "{}" "${MANPREFIX}/man/man1" \;
 
 .include <bsd.port.post.mk>
