@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.7 2009/08/01 21:09:30 laffer1 Exp $
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.8 2010/09/18 18:16:45 laffer1 Exp $
 
 PORTNAME=	c-ares
-PORTVERSION=	1.7.2
+PORTVERSION=	1.7.4
 CATEGORIES=	dns
 MASTER_SITES=	http://c-ares.haxx.se/
 
@@ -47,8 +47,8 @@ MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_ARGS=	--enable-shared --disable-werror
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 MAN3=	ares_cancel.3 \
 	ares_destroy.3 ares_dup.3 \
