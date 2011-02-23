@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/ldns/Makefile,v 1.1 2010/09/18 18:08:27 laffer1 Exp $
+# $MidnightBSD: mports/dns/ldns/Makefile,v 1.2 2011/02/02 20:18:22 laffer1 Exp $
 
 PORTNAME=	ldns
-PORTVERSION=	1.6.5
+PORTVERSION=	1.6.8
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/
 
@@ -13,6 +13,7 @@ USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--disable-gost
 
 OPTIONS=	DOCS "With documentation" Off \
 		EXAMPLES "With example programs" Off
@@ -227,7 +228,7 @@ MAN1=	ldns-chaos.1 ldns-compare-zones.1 ldns-dpa.1 ldns-key2ds.1 \
 post-configure:
 	@(cd ${WRKSRC}/examples; ./configure --prefix=${PREFIX} \
 		--infodir=${PREFIX}/${INFO_PATH} --mandir=${MANPREFIX}/man \
-		--build=${CONFIGURE_TARGET})
+		--build=${CONFIGURE_TARGET} )
 
 post-build:
 	@(cd ${WRKSRC}/examples; ${GMAKE})
@@ -238,7 +239,7 @@ post-install:
 PLIST_SUB+=		EXAMPLES="@comment "
 .endif
 
-.if ${OSVERSION} < 700000
+.if ${OSVERSION} < 3000
 CONFIGURE_ARGS+=	"--disable-sha2"
 .endif
 
