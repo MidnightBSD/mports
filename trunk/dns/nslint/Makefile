@@ -2,11 +2,11 @@
 # Date created:		10 Nov 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/dns/nslint/Makefile,v 1.3 2009/08/01 21:12:36 laffer1 Exp $
+# $MidnightBSD: mports/dns/nslint/Makefile,v 1.4 2010/09/18 18:10:51 laffer1 Exp $
 #
 
 PORTNAME=	nslint
-PORTVERSION=	3.0.a2
+PORTVERSION=	3.1
 CATEGORIES=	dns
 MASTER_SITES=	ftp://ftp.ee.lbl.gov/ \
 		CRITICAL
