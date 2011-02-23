@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/Makefile,v 1.23 2010/12/23 00:33:37 laffer1 Exp $
+# $MidnightBSD: mports/dns/Makefile,v 1.24 2010/12/28 14:25:49 laffer1 Exp $
 
 COMMENT = Domain Name Service tools
 
@@ -14,6 +14,7 @@ SUBDIR += ez-ipupdate
 SUBDIR += idnkit
 SUBDIR += inadyn
 SUBDIR += ldns
+SUBDIR += libbind
 SUBDIR += libidn
 SUBDIR += mdnsd
 SUBDIR += nslint
