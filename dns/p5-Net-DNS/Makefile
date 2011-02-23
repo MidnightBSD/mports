@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.9 2009/03/13 03:55:59 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.10 2010/09/18 18:22:24 laffer1 Exp $
 
 PORTNAME=	Net-DNS
 PORTVERSION=	0.66
@@ -9,6 +9,8 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
 LICENSE=	perl
+
+MAKE_JOBS_SAFE=	yes
 
 # Warnings during build are harmless, the port does not need these to build
 RUN_DEPENDS=	ipcount:${PORTSDIR}/net-mgmt/p5-Net-IP \
