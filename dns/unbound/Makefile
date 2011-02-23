@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/unbound/Makefile,v 1.1 2010/09/18 18:08:27 laffer1 Exp $
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.6
+PORTVERSION=	1.4.8
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
@@ -12,7 +12,8 @@ LICENSE=	bsd3
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
+CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE} --disable-gost \
+			--with-ldns-builtin
 USE_LDCONFIG=	yes
 
 USE_RC_SUBR=	unbound
@@ -71,11 +72,7 @@ post-patch:
 	@${MKDIR} ${WRKSRC}/balancer
 	@${RM} ${WRKSRC}/util/configlexer.c
 
-pre-install:
-#	@${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
-
 post-install:
-#	@${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}; \
 	for f in ${PORTDOCS}; do \
