@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.1 2011/02/26 00:35:59 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.2 2011/02/26 13:50:35 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -57,6 +57,7 @@ main(int argc, char *argv[])
     char *ln;
     int runid;
     sqlite3 *db;
+    sqlite3_stmt *stmt;
 
     if (argc != 4)
     {
@@ -90,7 +91,7 @@ main(int argc, char *argv[])
       "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.tbz'), version  from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
       runid);
 
-    if (mysql_exec_sql(&mysql, query_def)==0)/*success*/
+    if (mysql_exec_sql(&mysql, query_def) == 0)
     {
         printf( "%ld Record Found\n",(long) mysql_affected_rows(&mysql));
         result = mysql_store_result(&mysql);
@@ -103,16 +104,13 @@ main(int argc, char *argv[])
             num_fields = mysql_num_fields(result);
             while ((row = mysql_fetch_row(result))) 
             { 
-               if (row[2] == NULL)
-			printf("license missing for %s\n", row[0]);
                if (num_fields == 6 && row[0] && row[1] && row[2] && row[3] && row[4])
                {
                    asprintf(&ln, "%s: %s %s %s %s %s", row[0], row[1], row[2], row[3], row[5], row[4]);
                    if (ln) 
                    {
-                      sqlite3_stmt *stmt;
                       if (sqlite3_prepare_v2(db, 
-                       "INSERT INTO packages (pkg, version, license, comment, www, bundlefile) VALUES(?,?,?,?,?,?)",
+                       "INSERT INTO packages (pkg, version, license, comment, bundlefile) VALUES(?,?,?,?,?)",
                        -1, &stmt, 0) != SQLITE_OK)
                        {
                           errx(1, "Could not prepare statement");
@@ -121,8 +119,7 @@ main(int argc, char *argv[])
                        sqlite3_bind_text(stmt, 2, row[5], strlen(row[5]), SQLITE_TRANSIENT);
                        sqlite3_bind_text(stmt, 3, row[2], strlen(row[2]), SQLITE_TRANSIENT);
                        sqlite3_bind_text(stmt, 4, row[3], strlen(row[3]), SQLITE_TRANSIENT);
-                       sqlite3_bind_text(stmt, 5, "", 1, SQLITE_STATIC);
-                       sqlite3_bind_text(stmt, 6, row[4], strlen(row[4]), SQLITE_TRANSIENT);
+                       sqlite3_bind_text(stmt, 5, row[4], strlen(row[4]), SQLITE_TRANSIENT);
 
                        if (sqlite3_step(stmt) != SQLITE_DONE)
                           errx(1,"Could not execute query");
@@ -152,6 +149,32 @@ main(int argc, char *argv[])
             }
             mysql_free_result(result);
 
+            sprintf(query_def, "SELECT * FROM mirrors order by country");
+            if (mysql_exec_sql(&mysql, query_def) == 0)
+            {
+                result = mysql_store_result(&mysql);
+                if (result)
+                {
+                    while ((row = mysql_fetch_row(result)))
+                    {
+                         if (sqlite3_prepare_v2(db,
+                          "INSERT INTO mirrors (country, mirror) VALUES(?,?)",
+                           -1, &stmt, 0) != SQLITE_OK)
+                         {
+                             errx(1, "Could not prepare statement");
+                         }
+                         sqlite3_bind_text(stmt, 1, row[1], strlen(row[1]), SQLITE_TRANSIENT);
+                         sqlite3_bind_text(stmt, 2, row[2], strlen(row[2]), SQLITE_TRANSIENT);
+
+                         if (sqlite3_step(stmt) != SQLITE_DONE)
+                             errx(1,"Could not execute query");
+                         sqlite3_reset(stmt);
+                         sqlite3_finalize(stmt);
+                    }
+                    mysql_free_result(result);
+                }
+            }
+
             close_indexdb(db);
         }
         else
@@ -162,7 +185,7 @@ main(int argc, char *argv[])
         fprintf( stderr, "Failed to find any records and caused an error: %s\n", mysql_error(&mysql));
     
     mysql_close(&mysql);
-
+   
     return 0;
 }
 
@@ -233,8 +256,7 @@ create_indexdb(sqlite3 *db)
 {
     exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
     exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-    exec_indexdb(db, "INSERT INTO mirrors (country, mirror) VALUES('us', 'http://www.midnightbsd.org/ftp/MidnightBSD/mports/packages/i386/0.3-release/All/')");
-    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, www text NOT NULL, bundlefile text NOT NULL)");
+    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL)");
     exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
     exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 }
