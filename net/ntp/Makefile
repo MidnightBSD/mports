@@ -1,14 +1,9 @@
-# New ports collection makefile for:	ntp
-# Date created:		Di   5 Mai 1998 21:31:03 CEST
-# Whom:			andreas
-#
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.10 2010/12/02 01:58:49 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.11 2011/02/02 21:14:15 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
-#
 
 PORTNAME=	ntp
 PORTVERSION?=	4.2.6p2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
 		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ \
@@ -25,7 +20,7 @@ LATEST_LINK=	${PORTNAME}
 USE_GCPIO=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
-USE_AUTOTOOLS=	automake:110 libtool
+USE_AUTOTOOLS=	automake libtool
 
 USE_RC_SUBR=    ntp
 
