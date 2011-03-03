@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.6 2010/12/31 12:53:59 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.7 2010/12/31 14:02:57 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -146,7 +146,7 @@ SUB_LIST+=	PHP_EXT_DIR=${PHP_EXT_DIR}
 .if defined(USE_PHPIZE) || defined(USE_PHPEXT)
 BUILD_DEPENDS+=	phpize:${PHP_PORT}
 GNU_CONFIGURE=	YES
-USE_AUTOTOOLS+=	autoconf:262:env
+USE_AUTOTOOLS+=	autoconf:env
 CONFIGURE_ARGS+=--with-php-config=${LOCALBASE}/bin/php-config
 
 # PECL uses INSTALL_ROOT
