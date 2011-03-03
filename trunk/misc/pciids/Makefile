@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.5 2009/03/15 18:40:46 laffer1 Exp $
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.6 2011/01/07 03:08:48 laffer1 Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20101124
+PORTVERSION=	20110206
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	sunpoet
