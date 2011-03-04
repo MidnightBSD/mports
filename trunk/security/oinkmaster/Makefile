@@ -2,15 +2,14 @@
 # Date created:			September 24, 2008
 # Whom:				laffer1
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/oinkmaster/Makefile,v 1.1 2008/09/24 14:03:59 laffer1 Exp $
 # $FreeBSD: ports/security/oinkmaster/Makefile,v 1.14 2008/06/06 14:00:58 edwin Exp $
 #
 
 PORTNAME=	oinkmaster
 PORTVERSION=	2.0
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Help you update your snort rules after each update
