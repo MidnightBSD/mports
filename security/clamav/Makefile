@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.21 2010/10/09 20:43:13 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.22 2010/12/11 19:28:47 laffer1 Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.96.5
+PORTVERSION=	0.97
 CATEGORIES=	security
 MASTER_SITES=	SF
 
