@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.36 2011/01/08 00:20:42 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.37 2011/02/02 21:06:52 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.3.5
@@ -156,6 +156,9 @@ post-patch:
 .endif
 
 pre-configure:
+	@${REINPLACE_CMD} -E 's:^((m4_)?divert)[(]([0-9]*)[)]:\1(600\3):' \
+		${WRKSRC}/configure.in `${FIND} ${WRKSRC} -name '*.m4'`
+	@${RM} ${WRKSRC}/configure
 	@${CAT} ${WRKSRC}/acinclude.m4 ${WRKSRC}/build/libtool.m4 > ${WRKSRC}/aclocal.m4
 .if defined(WITH_APACHE)
 	${MKDIR} ${FAKE_DESTDIR}${LOCALBASE}/${APACHEETCDIR}
