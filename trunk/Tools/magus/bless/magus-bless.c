@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.2 2011/02/26 13:50:35 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.3 2011/02/26 14:09:51 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -88,12 +88,12 @@ main(int argc, char *argv[])
         fprintf(stderr, "Failed to connect to Database: Error: %s\n", mysql_error(&mysql));
     
     sprintf(query_def,
-      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.tbz'), version  from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
+      "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version  from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
       runid);
 
     if (mysql_exec_sql(&mysql, query_def) == 0)
     {
-        printf( "%ld Record Found\n",(long) mysql_affected_rows(&mysql));
+        printf("%ld Record Found\n",(long) mysql_affected_rows(&mysql));
         result = mysql_store_result(&mysql);
     
         if (result)
