@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.11 2010/09/18 22:01:39 laffer1 Exp $
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.12 2010/12/04 19:16:42 crash Exp $
 
 PORTNAME=	nano
 PORTVERSION=	2.2.6
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
 		http://www.ewtoo.org/~astyanax/nano/dist/v2.2/ \
@@ -16,7 +17,7 @@ CONFIGURE_ARGS=	--infodir=${PREFIX}/${INFO_PATH} --mandir=${PREFIX}/man \
 		--docdir=${DOCSDIR}
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITHOUT_NLS)
