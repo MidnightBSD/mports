@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.14 2010/12/10 04:43:28 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.15 2011/03/08 18:22:04 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -73,6 +73,8 @@ PKGINSTALLVER!=	${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.*: //'
 .if !defined(OPSYS)
 OPSYS!=	${DESTDIR}/usr/bin/uname -s
 .endif
+
+ECHO_MSG?=	echo
 
 # local customization of the ports tree
 .if exists(${.CURDIR}/Makefile.local)
@@ -428,8 +430,8 @@ _PORTSEARCH=	\
 	    } \
 	  } \
 	  { \
-	    if (match($$2, "^/usr/mports/[^/]*[^/]*$$") > 0) \
-	      sub("^/usr/mports", "${PORTSDIR}", $$2); \
+            if (match($$2, "^/usr/mports/[^/]*/[^/]*$$") > 0) \
+              sub("^/usr/mports", "${PORTSDIR}", $$2); \
 	    if (substr($$2, 1, therelen) != there) \
 	      next; \
 	    for (i in parms) \
