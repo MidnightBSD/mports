@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.3 2010/12/08 14:17:01 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.4 2010/12/10 01:01:12 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -88,7 +88,11 @@ WHICH?=		/usr/bin/which
 XARGS?=		/usr/bin/xargs
 XMKMF?=		${LOCALBASE}/bin/xmkmf -a
 XZ?=		-Mmax
+.if exists(/usr/bin/xz)
+XZ_CMD?=	/usr/bin/xz
+.else
 XZ_CMD?=	${LOCALBASE}/bin/xz ${XZ}
+.endif
 YACC?=		/usr/bin/yacc
 
 # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
