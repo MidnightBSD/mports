@@ -1,14 +1,11 @@
-# New ports collection makefile for:	docbook-xml-450
-# Date created:				2006-10-31
-# Whom:					alepulver
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/docbook-xml-450/Makefile,v 1.1 2008/05/31 17:34:25 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml-450/Makefile,v 1.1 2006/10/31 19:43:38 alepulver Exp $
 
 PORTNAME=	docbook-xml
 PORTVERSION=	4.5
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.oasis-open.org/docbook/xml/${PORTVERSION}/
+PKGNAMESUFFIX=	450
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook/XML DTD V4.5, designed for technical documentation

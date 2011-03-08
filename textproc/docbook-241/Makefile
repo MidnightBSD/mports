@@ -1,10 +1,4 @@
-# New ports collection makefile for:	docbook
-# Date created:		7 April 1997
-# Whom:			nik
-#
-# Based heavily on work by jfieber.
-#
-# $MidnightBSD: mports/textproc/docbook-241/Makefile,v 1.2 2007/05/09 15:22:04 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-241/Makefile,v 1.3 2007/09/06 13:50:12 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-241/Makefile,v 1.18 2006/04/15 06:46:10 linimon Exp $
 #
 
@@ -15,6 +9,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.ora.com/pub/davenport/
 DISTFILES=	docbk241.tar.Z
 EXTRACT_ONLY=	# empty
+PKGNAMESUFFIX=	241
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V2.4.1 of the DocBook DTD, designed for technical documentation
