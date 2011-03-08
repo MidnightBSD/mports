@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql55-client/Makefile,v 1.2 2010/12/31 22:54:37 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql55-client/Makefile,v 1.104 2010/12/28 06:49:38 ale Exp $
 
 PORTNAME=	mysql
@@ -16,7 +16,7 @@ LATEST_LINK=	mysql55-client
 
 CONFLICTS=	mysql-client-[4].* mysql-client-5.[0-46-9].*
 
-CMAKE_ARGS=	-DWITHOUT_SERVER=1
+CMAKE_ARGS=	-DWITHOUT_SERVER=1 -DENABLE_DTRACE:BOOL=OFF
 
 USE_LDCONFIG=	yes
 
