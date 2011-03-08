@@ -1,14 +1,11 @@
-# New ports collection makefile for:	docbook-430
-# Date created:		02 Apr 2004
-# Whom:			hrs
-#
-# $MidnightBSD: mports/textproc/docbook-430/Makefile,v 1.2 2007/05/09 15:28:36 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-430/Makefile,v 1.3 2009/12/28 23:11:48 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-430/Makefile,v 1.3 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook
 PORTVERSION=	4.3
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.oasis-open.org/docbook/sgml/${PORTVERSION}/
+PKGNAMESUFFIX=	430
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook/SGML DTD V4.3, designed for technical documentation
