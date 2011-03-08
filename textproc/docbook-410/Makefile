@@ -4,7 +4,7 @@
 #
 # Based on nik's docbook-310 port
 #
-# $MidnightBSD: mports/textproc/docbook-410/Makefile,v 1.2 2007/05/09 15:25:23 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-410/Makefile,v 1.3 2007/09/06 13:47:14 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-410/Makefile,v 1.11 2005/06/01 19:54:03 glewis Exp $
 #
 
@@ -15,6 +15,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	http://www.docbook.org/sgml/4.1/
 DISTNAME=	docbk41
 EXTRACT_ONLY=	# empty
+PKGNAMESUFFIX=	410
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V4.1 of the DocBook DTD, designed for technical documentation

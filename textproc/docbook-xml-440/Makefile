@@ -2,7 +2,7 @@
 # Date created:		16 April 2005
 # Whom:			Sergey Skvortsov <skv@protey.ru>
 #
-# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.3 2008/05/31 17:37:15 laffer1 Exp $
+# $MidnightBSD: mports/textproc/docbook-xml-440/Makefile,v 1.4 2008/06/02 17:56:25 laffer1 Exp $
 # $FreeBSD: ports/textproc/docbook-xml-440/Makefile,v 1.2 2006/01/22 06:28:52 edwin Exp $
 
 PORTNAME=	docbook-xml
@@ -10,6 +10,7 @@ PORTVERSION=	4.4
 PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.oasis-open.org/docbook/xml/${PORTVERSION}/
+PKGNAMESUFFIX=	440
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DocBook/XML DTD V4.4, designed for technical documentation

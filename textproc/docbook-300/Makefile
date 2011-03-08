@@ -1,12 +1,5 @@
-# New ports collection makefile for:	docbook-300
-# Date created:		7 April 1999
-# Whom:			nik
-#
-# Based heavily on work by jfieber
-#
-# $MidnightBSD: mports/textproc/docbook-300/Makefile,v 1.2 2007/05/09 15:22:44 ctriv Exp $
+# $MidnightBSD: mports/textproc/docbook-300/Makefile,v 1.3 2007/09/06 13:53:21 ctriv Exp $
 # $FreeBSD: ports/textproc/docbook-300/Makefile,v 1.19 2006/04/15 06:46:10 linimon Exp $
-#
 
 PORTNAME=	docbook
 PORTVERSION=	3.0
@@ -15,6 +8,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.ora.com/pub/davenport/
 DISTFILES=	docbk30.tar.Z
 EXTRACT_ONLY=	# empty
+PKGNAMESUFFIX=	300
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	V3.0 of the DocBook DTD, designed for technical documentation
