@@ -90,3 +90,15 @@ function sendAsycQuery(url, callback) {
 function confirm_reset() {
 	return confirm('Are you sure?')
 }
+
+/*
+function edit_this(e) {
+	var class = e.getAttribute("magusclass");
+	var id    = e.getAttribute("uid");
+	var value = e.firstChild.nodeValue;
+
+	var pop_up = document.createElement("div");
+	pop_up.className = 'edit-popup';
+}
+
+*/

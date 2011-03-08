@@ -183,3 +183,17 @@ ul.stats a.fail {
 ul.stats a.skip {
 	color: #bbb;
 }
+
+/* stuff for the edit mojo */
+a.edit {
+	color: #777;
+	text-decoration: none;
+	padding-bottom: 0px;
+	border-bottom: #777 dashed 1px;
+}
+
+a.edit:after {
+	content: url(/magus/elements/pencil-icon.gif);
+	position: relative;
+	top: 3px;
+}
