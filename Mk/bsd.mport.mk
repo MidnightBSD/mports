@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.176 2010/12/31 03:41:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.177 2011/03/08 13:44:12 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -833,6 +833,9 @@ USE_SUBMAKE=	yes
 # These componenets include targets that may have been overwritten by the 
 # above extentions, so they are loaded here.
 #
+.if (${OSVERSION} > 4003)
+USE_MPORT_TOOLS=	yes
+.endif
 .if !defined(USE_MPORT_TOOLS)
 .include "${PORTSDIR}/Mk/components/old_pkg_tools.mk"
 .endif
