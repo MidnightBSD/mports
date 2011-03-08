@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.15 2011/03/08 18:22:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.16 2011/03/08 20:04:41 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -48,9 +48,7 @@ STRIP?=	-s
 .if !defined(ARCH)
 ARCH!=	${DESTDIR}/usr/bin/uname -p
 .endif
-.if !defined(OSREL)
-OSREL!=	${DESTDIR}/usr/bin/uname -r | sed -e 's/[-(].*//'
-.endif
+
 .if !defined(OSVERSION)
 OSVERSION!= /sbin/sysctl -n kern.osreldate
 .endif
@@ -59,8 +57,31 @@ PORTOBJFORMAT?= elf
 .endif
 .endif
 
+.if !defined(_OSRELEASE)
+_OSRELEASE!=	uname -r
+.endif
+.if !defined(OSREL)
+OSREL=	${_OSRELEASE:C/[-(].*//}
+.endif
+
+.if !defined(OPSYS)
+OPSYS!=	${UNAME} -s
+.endif
+
+.if ${ARCH} == "amd64"
+.if !defined(HAVE_COMPAT_IA32_KERN)
+HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
+.endif
+.endif
+
+.if !defined(CONFIGURE_MAX_CMD_LEN)
+CONFIGURE_MAX_CMD_LEN!= ${SYSCTL} -n kern.argmax
+.endif
+
 ID?=	${DESTDIR}/usr/bin/id
+.if !defined(UID)
 UID!=	${ID} -u
+.endif
 LOCALBASE?=	${DESTDIR}${LOCALBASE_REL}
 .if exists(${LOCALBASE}/sbin/pkg_info)
 PKG_INFO?=	${LOCALBASE}/sbin/pkg_info
@@ -69,10 +90,6 @@ PKG_INFO?=	${DESTDIR}/usr/sbin/pkg_info
 .endif
 SED?=		${DESTDIR}/usr/bin/sed
 PKGINSTALLVER!=	${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.*: //'
-
-.if !defined(OPSYS)
-OPSYS!=	${DESTDIR}/usr/bin/uname -s
-.endif
 
 ECHO_MSG?=	echo
 
@@ -334,7 +351,9 @@ README.html:
 	OSVERSION="${OSVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	PORTOBJFORMAT="${PORTOBJFORMAT:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	UID="${UID:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	PKGINSTALLVER="${PKGINSTALLVER:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}"
+	PKGINSTALLVER="${PKGINSTALLVER:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
+	HAVE_COMPAT_IA32_KERN="${HAVE_COMPAT_IA32_KERN}" \
+	CONFIGURE_MAX_CMD_LEN="${CONFIGURE_MAX_CMD_LEN}"
 .endif
 
 PORTSEARCH_DISPLAY_FIELDS?=name,path,info,maint,index,bdeps,rdeps,www
