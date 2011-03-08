@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.12 2009/08/24 18:14:03 laffer1 Exp $
+# $MidnightBSD: mports/ports-mgmt/portupgrade/Makefile,v 1.13 2010/02/27 19:19:54 laffer1 Exp $
 
 PORTNAME=	portupgrade
 PORTVERSION=	2.4.6
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	2
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	SF/${PORTNAME}/pkgtools/${PORTVERSION}
@@ -50,6 +50,10 @@ INSTALL_TARGET+=	install-doc
 
 .include <bsd.port.pre.mk>
 .include "${PORTSDIR}/misc/ldconfig_compat/bsd.ldconfig.mk"
+
+.if ${OSVERSION} > 4003
+IGNORE=	not compatible with mport tools
+.endif
 
 RUN_DEPENDS+=	${RUBY_SITEARCHLIBDIR}/bdb.so:${PORTSDIR}/databases/ruby-bdb
 
