@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.3 2011/02/26 14:09:51 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.4 2011/03/06 03:10:29 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -30,6 +30,9 @@ $MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.3 2011/02/26 14:09:51 l
 #include <string.h>
 #include <unistd.h>
 #include <err.h>
+
+#include <sys/types.h>
+#include <sha256.h>
 
 #include "mysql.h"
 #include "sqlite3.h"
@@ -58,10 +61,12 @@ main(int argc, char *argv[])
     int runid;
     sqlite3 *db;
     sqlite3_stmt *stmt;
+    char *fileHash;
+    char *filePath;
 
-    if (argc != 4)
+    if (argc != 5)
     {
-        fprintf( stderr, "Usage: %s <run id> <mysql_user> <mysql_pass>\n", argv[0] );
+        fprintf( stderr, "Usage: %s <run id> <mysql_user> <mysql_pass> <files>\n", argv[0] );
         exit(1);
     }
 
@@ -93,7 +98,7 @@ main(int argc, char *argv[])
 
     if (mysql_exec_sql(&mysql, query_def) == 0)
     {
-        printf("%ld Record Found\n",(long) mysql_affected_rows(&mysql));
+        //printf("%ld Record Found\n",(long) mysql_affected_rows(&mysql));
         result = mysql_store_result(&mysql);
     
         if (result)
@@ -107,10 +112,19 @@ main(int argc, char *argv[])
                if (num_fields == 6 && row[0] && row[1] && row[2] && row[3] && row[4])
                {
                    asprintf(&ln, "%s: %s %s %s %s %s", row[0], row[1], row[2], row[3], row[5], row[4]);
+                   asprintf(&filePath, "%s/%s", argv[4], row[4]);
+                   fileHash = SHA256_File(filePath, NULL);
+                   if (fileHash == NULL)
+                   {
+                       fprintf(stderr, "Could not locate file %s\n", filePath);
+                       free(ln);
+                       free(filePath);
+                       continue;
+                   }
                    if (ln) 
                    {
                       if (sqlite3_prepare_v2(db, 
-                       "INSERT INTO packages (pkg, version, license, comment, bundlefile) VALUES(?,?,?,?,?)",
+                       "INSERT INTO packages (pkg, version, license, comment, bundlefile, hash) VALUES(?,?,?,?,?,?)",
                        -1, &stmt, 0) != SQLITE_OK)
                        {
                           errx(1, "Could not prepare statement");
@@ -120,11 +134,14 @@ main(int argc, char *argv[])
                        sqlite3_bind_text(stmt, 3, row[2], strlen(row[2]), SQLITE_TRANSIENT);
                        sqlite3_bind_text(stmt, 4, row[3], strlen(row[3]), SQLITE_TRANSIENT);
                        sqlite3_bind_text(stmt, 5, row[4], strlen(row[4]), SQLITE_TRANSIENT);
+                       sqlite3_bind_text(stmt, 6, fileHash, strlen(fileHash), SQLITE_TRANSIENT);
 
                        if (sqlite3_step(stmt) != SQLITE_DONE)
                           errx(1,"Could not execute query");
                        sqlite3_reset(stmt);
                        sqlite3_finalize(stmt);
+                       free(filePath);
+                       free(fileHash);
 
                       if (sqlite3_prepare_v2(db,
                        "INSERT INTO aliases (alias, pkg) VALUES(?,?)",
@@ -206,6 +223,7 @@ open_indexdb(int runid)
     {
          errx(1, "Could not malloc filename");
     }
+    unlink(filename);
     sqlite3_open(filename, &db);
     free(filename);
     return db;
@@ -256,7 +274,7 @@ create_indexdb(sqlite3 *db)
 {
     exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
     exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL)");
+    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL)");
     exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
     exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
 }
