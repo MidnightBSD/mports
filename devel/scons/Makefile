@@ -1,13 +1,9 @@
-# New ports collection makefile for:	scons
-# Date created:				16 December 2001
-# Whom:					Peter Haight <peterh@sapros.com>
-#
-# $MidnightBSD: mports/devel/scons/Makefile,v 1.3 2009/10/27 03:59:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/scons/Makefile,v 1.4 2010/06/04 23:10:24 laffer1 Exp $
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
-#
 
 PORTNAME=	scons
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -27,4 +23,11 @@ PYDISTUTILS_EGGINFODIR=	${PREFIX}/lib/scons-${PORTVERSION}
 
 PLIST_SUB+=	SCONS_VER=${PORTVERSION}
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if defined (NO_INSTALL_MANPAGES)
+PYDISTUTILS_INSTALLARGS+=     --no-install-man
+.endif
+
+.include <bsd.port.post.mk>
+
