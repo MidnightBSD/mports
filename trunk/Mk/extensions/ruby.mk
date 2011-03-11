@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.2 2009/08/20 19:21:41 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -201,7 +201,7 @@ RUBY19=			"@comment "
 RUBY_RELVERSION=	1.9.1
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	129
+RUBY_PATCHLEVEL=	430
 
 RUBY_VERSION?=		${RUBY_RELVERSION}.${RUBY_PATCHLEVEL}
 RUBY_DISTVERSION?=	${RUBY_RELVERSION}-p${RUBY_PATCHLEVEL}
