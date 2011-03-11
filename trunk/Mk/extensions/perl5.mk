@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.7 2009/12/13 23:14:52 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.8 2010/01/01 17:20:37 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -50,13 +50,13 @@ Perl_Include_MAINTAINER=	ctriv@MidnightBSD.org
 #
 
 PERL_BRANCH?=		${PERL_VERSION:C/\.[0-9]+$//}
-PERL_PORT?=			perl${PERL_BRANCH}
+PERL_PORT?=		perl${PERL_BRANCH}
 # use true_prefix so that PERL will be right in faked targets.
 # this is historical.
 
 PERL_PREFIX?=		${LOCALBASE}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
-SITE_PERL?=			${PERL_PREFIX}/${SITE_PERL_REL}
+SITE_PERL?=		${PERL_PREFIX}/${SITE_PERL_REL}
 
 .if exists(/usr/lib/perl5)
 PERL=				/usr/bin/perl
