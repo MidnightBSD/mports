@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.7 2011/02/02 21:31:39 laffer1 Exp $
+# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.8 2011/03/12 21:53:24 laffer1 Exp $
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs
@@ -86,7 +86,7 @@ post-patch:
 . endfor
 .endif
 
-patch-autotools::
+patch-autotools-libtool::
 .if defined(WITH_SHLIB)
 	(cd ${WRKSRC}				\
 	&& ${LIBTOOLIZE} --force --copy		\
