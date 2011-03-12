@@ -1,13 +1,8 @@
-# New ports collection makefile for:   doxygen
-# Date created:        20 March 1998
-# Whom:                Joep Grooten <joep@di.nl>
-#
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.2 2008/08/14 14:30:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.3 2008/08/21 18:18:12 laffer1 Exp $
 # $FreeBSD: ports/devel/doxygen/Makefile,v 1.53 2006/06/27 14:14:17 mi Exp $
-#
 
 PORTNAME=	doxygen
-PORTVERSION=	1.5.6
+PORTVERSION=	1.7.1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -75,6 +70,7 @@ PLIST_FILES+= bin/doxywizard
 pre-configure:
 	@cd ${WRKSRC};for pro in src/*.pro.in addon/doxywizard/doxywizard.pro.in;do \
 		${ECHO} "unix:LIBS += -liconv" >> $$pro; done
+	${REINPLACE_CMD} -e 's/FreeBSD/MidnightBSD/g;' -e  's/freebsd/midnightbsd/g;' ${WRKSRC}/configure
 	@${CHMOD} +x ${WRKSRC}/configure
 
 post-configure:
