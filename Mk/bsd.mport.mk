@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.177 2011/03/08 13:44:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.178 2011/03/08 13:46:29 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -911,9 +911,9 @@ RMD160?=                ${LOCALBASE_REL}/sbin/rmd160
 RMD160?=                NO
 .endif
 
-CHECKSUM_ALGORITHMS?= md5 sha256 rmd160
+CHECKSUM_ALGORITHMS?= sha256 rmd160
 
-MD5_FILE?=		${MASTERDIR}/distinfo
+HASH_FILE?=		${MASTERDIR}/distinfo
 
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
@@ -2123,10 +2123,10 @@ do-fetch:
 				${ECHO_MSG} "=> Please correct this problem and try again."; \
 				exit 1; \
 			fi ; \
-			if [ -f ${MD5_FILE} -a "x${NO_CHECKSUM}" = "x" ]; then \
-				if ! ${GREP} -q "^MD5 ($$pattern)" ${MD5_FILE}; then \
-					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is not in ${MD5_FILE}."; \
-					${ECHO_MSG} "=> Either ${MD5_FILE} is out of date, or"; \
+			if [ -f ${HASH_FILE} -a "x${NO_CHECKSUM}" = "x" ]; then \
+				if ! ${GREP} -q "^MD5 ($$pattern)" ${HASH_FILE}; then \
+					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is not in ${HASH_FILE}."; \
+					${ECHO_MSG} "=> Either ${HASH_FILE} is out of date, or"; \
 					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is spelled incorrectly."; \
 					exit 1; \
 				fi; \
@@ -2152,7 +2152,7 @@ do-fetch:
 			for site in `eval $$SORTED_MASTER_SITES_CMD_TMP ${_RANDOMIZE_SITES}`; do \
 			    ${ECHO_MSG} "=> Attempting to fetch from $${site}."; \
 				DIR=${DIST_SUBDIR}; \
-				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				case $${file} in \
 				*/*)	${MKDIR} $${file%/*}; \
 						args="-o $${file} $${site}$${file}";; \
@@ -2206,7 +2206,7 @@ do-fetch:
 			    ${ECHO_MSG} "=> Attempting to fetch from $${site}."; \
 				DIR=${DIST_SUBDIR}; \
 				pattern="$${DIR:+$$DIR/}`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
-				CKSIZE=`${GREP} "^SIZE ($$pattern)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+				CKSIZE=`${GREP} "^SIZE ($$pattern)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				case $${file} in \
 				*/*)	${MKDIR} $${file%/*}; \
 						args="-o $${file} $${site}$${file}";; \
@@ -3079,7 +3079,7 @@ fetch-list:
 					fi; \
 				fi; \
 				DIR=${DIST_SUBDIR}; \
-				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				case $${file} in \
 				*/*)	args="-o $${file} $${site}$${file}";; \
 				*)		args=$${site}$${file};; \
@@ -3111,7 +3111,7 @@ fetch-list:
 			fi ; \
 			for site in `eval $$SORTED_PATCH_SITES_CMD_TMP ${_RANDOMIZE_SITES}`; do \
 				DIR=${DIST_SUBDIR}; \
-				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+				CKSIZE=`${GREP} "^SIZE ($${DIR:+$$DIR/}$$file)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				case $${file} in \
 				*/*)	args="-o $${file} $${site}$${file}";; \
 				*)		args=$${site}$${file};; \
@@ -3151,7 +3151,7 @@ checksum_init=\
 makesum: check-checksum-algorithms
 	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} fetch NO_CHECKSUM=yes \
 		DISABLE_SIZE=yes
-	@if [ -f ${MD5_FILE} ]; then ${CAT} /dev/null > ${MD5_FILE}; fi
+	@if [ -f ${HASH_FILE} ]; then ${CAT} /dev/null > ${HASH_FILE}; fi
 	@( \
 		cd ${DISTDIR}; \
 		\
@@ -3162,17 +3162,17 @@ makesum: check-checksum-algorithms
 				eval alg_executable=\$$$$alg; \
 				\
 				if [ $$alg_executable != "NO" ]; then \
-					$$alg_executable $$file >> ${MD5_FILE}; \
+					$$alg_executable $$file >> ${HASH_FILE}; \
 				fi; \
 			done; \
 			if [ -z "${NO_SIZE}" ]; then \
-				${ECHO_CMD} "SIZE ($$file) = "`${LS} -ALln $$file | ${AWK} '{print $$5}'` >> ${MD5_FILE}; \
+				${ECHO_CMD} "SIZE ($$file) = "`${LS} -ALln $$file | ${AWK} '{print $$5}'` >> ${HASH_FILE}; \
 			fi; \
 		done \
 	)
 	@for file in ${_IGNOREFILES}; do \
 		for alg in ${CHECKSUM_ALGORITHMS:U}; do \
-			${ECHO_CMD} "$$alg ($$file) = IGNORE" >> ${MD5_FILE}; \
+			${ECHO_CMD} "$$alg ($$file) = IGNORE" >> ${HASH_FILE}; \
 		done; \
 	done
 .endif
@@ -3183,7 +3183,7 @@ checksum: fetch check-checksum-algorithms
 	\
 	${checksum_init} \
 	\
-	if [ -f ${MD5_FILE} ]; then \
+	if [ -f ${HASH_FILE} ]; then \
 	(	cd ${DISTDIR}; OK=""; \
 		for file in ${_CKSUMFILES}; do \
 			pattern="`${ECHO_CMD} $$file | ${SED} -e 's/\./\\\\./g'`"; \
@@ -3195,7 +3195,7 @@ checksum: fetch check-checksum-algorithms
 				\
 				if [ $$alg_executable != "NO" ]; then \
 					MKSUM=`$$alg_executable < $$file`; \
-					CKSUM=`${GREP} "^$$alg ($$pattern)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+					CKSUM=`${GREP} "^$$alg ($$pattern)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				else \
 					ignore="true"; \
 				fi; \
@@ -3249,7 +3249,7 @@ checksum: fetch check-checksum-algorithms
 				eval alg_executable=\$$$$alg; \
 				\
 				if [ $$alg_executable != "NO" ]; then \
-					CKSUM=`${GREP} "^$$alg ($$pattern)" ${MD5_FILE} | ${AWK} '{print $$4}'`; \
+					CKSUM=`${GREP} "^$$alg ($$pattern)" ${HASH_FILE} | ${AWK} '{print $$4}'`; \
 				else \
 					ignore="true"; \
 				fi; \
@@ -3289,7 +3289,7 @@ checksum: fetch check-checksum-algorithms
 		\
 		if [ "$$OK" != "true" -a ${FETCH_REGET} -eq 0 ]; then \
 			${ECHO_MSG} "===>  Giving up on fetching files: $$refetchlist"; \
-			${ECHO_MSG} "Make sure the Makefile and distinfo file (${MD5_FILE})"; \
+			${ECHO_MSG} "Make sure the Makefile and distinfo file (${HASH_FILE})"; \
 			${ECHO_MSG} "are up to date.  If you are absolutely sure you want to override this"; \
 			${ECHO_MSG} "check, type \"make NO_CHECKSUM=yes [other args]\"."; \
 			exit 1; \
@@ -3299,7 +3299,7 @@ checksum: fetch check-checksum-algorithms
 		fi \
 	); \
 	elif [ -n "${_CKSUMFILES:M*}" ]; then \
-		${ECHO_MSG} "=> No checksum file (${MD5_FILE})."; \
+		${ECHO_MSG} "=> No checksum file (${HASH_FILE})."; \
 	fi
 .endif
 

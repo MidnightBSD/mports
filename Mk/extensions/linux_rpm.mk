@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.2 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.3 2010/09/23 23:18:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -99,7 +99,7 @@ EXTRACT_CMD?=			${RPM2CPIO}
 EXTRACT_BEFORE_ARGS?=
 EXTRACT_AFTER_ARGS?=	| ${CPIO} -id --quiet
 
-MD5_FILE?=				${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
+HASH_FILE?=				${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 
 BRANDELF_DIRS?=
 BRANDELF_FILES?=
