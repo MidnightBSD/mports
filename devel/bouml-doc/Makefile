@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/devel/bouml-doc/Makefile,v 1.2 2009/07/12 15:47:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/bouml-doc/Makefile,v 1.3 2009/12/31 23:48:55 laffer1 Exp $
 
 PORTNAME=	bouml-doc
-PORTVERSION=	4.12.4
+PORTVERSION=	4.23
 CATEGORIES=	devel
-MASTER_SITES=	SF/bouml/bouml%20documentation/reference%20manual%20${PORTVERSION}	\
-		http://bouml.free.fr/
+MASTER_SITES=	SF/bouml/doc/${PORTVERSION}_ultimate/
 
 DISTNAME=	doc${PORTVERSION}
 

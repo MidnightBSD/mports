@@ -12,7 +12,6 @@
 %%DOCSDIR%%/bouml.html
 %%DOCSDIR%%/bouml_title.html
 %%DOCSDIR%%/browseritems.html
-%%DOCSDIR%%/c.html
 %%DOCSDIR%%/class.html
 %%DOCSDIR%%/classdiagram.html
 %%DOCSDIR%%/classinstance.html
@@ -24,6 +23,7 @@
 %%DOCSDIR%%/content.html
 %%DOCSDIR%%/cppgenerator.html
 %%DOCSDIR%%/cppreverse.html
+%%DOCSDIR%%/cpproundtrip.html
 %%DOCSDIR%%/cpputil.html
 %%DOCSDIR%%/deploy.html
 %%DOCSDIR%%/deploymentdiagram.html
@@ -588,6 +588,7 @@
 %%DOCSDIR%%/figs/classmenu1a.png
 %%DOCSDIR%%/figs/classmenu2.png
 %%DOCSDIR%%/figs/classpictmenu.png
+%%DOCSDIR%%/figs/classpictmenu2.png
 %%DOCSDIR%%/figs/classsettings.png
 %%DOCSDIR%%/figs/classsettings2.png
 %%DOCSDIR%%/figs/classstereotypes.png
@@ -732,6 +733,8 @@
 %%DOCSDIR%%/figs/globalchange1.png
 %%DOCSDIR%%/figs/gpro.png
 %%DOCSDIR%%/figs/iconbar.png
+%%DOCSDIR%%/figs/imagedialog.png
+%%DOCSDIR%%/figs/imagemenu.png
 %%DOCSDIR%%/figs/interruptibleactivityregion.png
 %%DOCSDIR%%/figs/interruptiblemenu.png
 %%DOCSDIR%%/figs/interruptibleregion1.png
@@ -751,12 +754,15 @@
 %%DOCSDIR%%/figs/linegeo4.png
 %%DOCSDIR%%/figs/mark_menu.png
 %%DOCSDIR%%/figs/merge.png
+%%DOCSDIR%%/figs/messagestereotypes.png
 %%DOCSDIR%%/figs/misc_style_menu.png
 %%DOCSDIR%%/figs/misc_style_menu1.png
 %%DOCSDIR%%/figs/misc_style_menu2.png
 %%DOCSDIR%%/figs/multipleselectionmenu.png
 %%DOCSDIR%%/figs/multipleselectionmenu1.png
+%%DOCSDIR%%/figs/multipleselectionmenu1bis.png
 %%DOCSDIR%%/figs/multipleselectionmenu2.png
+%%DOCSDIR%%/figs/multipleselectionmenu3.png
 %%DOCSDIR%%/figs/nodedrawing.png
 %%DOCSDIR%%/figs/nodedrawing_100.png
 %%DOCSDIR%%/figs/nodeedit1.png
@@ -943,6 +949,7 @@
 %%DOCSDIR%%/figs/relationstereotypes.png
 %%DOCSDIR%%/figs/required.bmp
 %%DOCSDIR%%/figs/required_button.xpm
+%%DOCSDIR%%/figs/revroundsettings.png
 %%DOCSDIR%%/figs/ro_free_package.png
 %%DOCSDIR%%/figs/ro_other_package.png
 %%DOCSDIR%%/figs/ro_protected_package.png
@@ -991,6 +998,7 @@
 %%DOCSDIR%%/figs/stateactionpictmenu.png
 %%DOCSDIR%%/figs/stateactionstereotypes.png
 %%DOCSDIR%%/figs/stateactivity.png
+%%DOCSDIR%%/figs/statedecompindic.png
 %%DOCSDIR%%/figs/statediagram.png
 %%DOCSDIR%%/figs/statediagramdrawingsettings.png
 %%DOCSDIR%%/figs/statediagramdrawingsettings1.png
@@ -1000,6 +1008,7 @@
 %%DOCSDIR%%/figs/statedrawingsettings.png
 %%DOCSDIR%%/figs/statedrawingsettings1.png
 %%DOCSDIR%%/figs/stateedit1.png
+%%DOCSDIR%%/figs/stateedit1bis.png
 %%DOCSDIR%%/figs/stateedit2.png
 %%DOCSDIR%%/figs/stateedit3.png
 %%DOCSDIR%%/figs/stateedit4.png
@@ -1031,6 +1040,7 @@
 %%DOCSDIR%%/figs/usecasedrawingsettings5.png
 %%DOCSDIR%%/figs/usecasedrawingsettings6.png
 %%DOCSDIR%%/figs/usecasedrawingsettings7.png
+%%DOCSDIR%%/figs/usecasedrawingsettings8.png
 %%DOCSDIR%%/figs/usecaseedit.png
 %%DOCSDIR%%/figs/usecasemenu.png
 %%DOCSDIR%%/figs/usecasepictmenu.png
@@ -1046,6 +1056,7 @@
 %%DOCSDIR%%/figs/usecaseviewdrawingsettings5.png
 %%DOCSDIR%%/figs/usecaseviewdrawingsettings6.png
 %%DOCSDIR%%/figs/usecaseviewdrawingsettings7.png
+%%DOCSDIR%%/figs/usecaseviewdrawingsettings8.png
 %%DOCSDIR%%/figs/usecaseviewedit.png
 %%DOCSDIR%%/figs/usecaseviewmenu.png
 %%DOCSDIR%%/figs/usecasewizard.png
@@ -1088,6 +1099,7 @@
 %%DOCSDIR%%/index_componentview.html
 %%DOCSDIR%%/index_cppgenerator.html
 %%DOCSDIR%%/index_cppreverse.html
+%%DOCSDIR%%/index_cpproundtrip.html
 %%DOCSDIR%%/index_cpputil.html
 %%DOCSDIR%%/index_deploy.html
 %%DOCSDIR%%/index_deploymentdiagram.html
