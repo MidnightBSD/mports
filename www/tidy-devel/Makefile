@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.6 2009/10/13 02:07:38 laffer1 Exp $
+# $MidnightBSD: mports/www/tidy-devel/Makefile,v 1.7 2011/02/02 21:31:39 laffer1 Exp $
 
 PORTNAME?=	tidy
 DISTVERSION=	090315-cvs
@@ -19,6 +19,8 @@ USE_BZIP2=	yes
 
 SLAVEDIRS=	www/tidy-lib
 WRKSRC=		${WRKDIR}/${PORTNAME}
+
+MAKE_JOBS_UNSAFE=	yes
 
 .if !defined(WITH_SHLIB)
 USE_GMAKE=	yes
