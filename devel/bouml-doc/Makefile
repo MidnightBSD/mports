@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/devel/bouml-doc/Makefile,v 1.3 2009/12/31 23:48:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/bouml-doc/Makefile,v 1.4 2011/03/12 03:30:33 laffer1 Exp $
 
 PORTNAME=	bouml-doc
 PORTVERSION=	4.23
 CATEGORIES=	devel
-MASTER_SITES=	SF/bouml/doc/${PORTVERSION}_ultimate/
 
 DISTNAME=	doc${PORTVERSION}
 
