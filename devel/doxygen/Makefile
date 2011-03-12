@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.3 2008/08/21 18:18:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.4 2011/03/12 20:00:37 laffer1 Exp $
 # $FreeBSD: ports/devel/doxygen/Makefile,v 1.53 2006/06/27 14:14:17 mi Exp $
 
 PORTNAME=	doxygen
@@ -23,6 +23,8 @@ EXTRACT_AFTER_ARGS=|${TAR} -xpf - --exclude '*/libmd5'	\
 	--exclude '*/libpng' --exclude '*/tmake'
 
 CONFIGURE_ENV+=	CXX="${CXX}"
+MAKE_JOBS_UNSAFE=	yes
+
 .if !defined(NOPORTDOCS)
 ALL_TARGET+=	docs
 USE_PYTHON_BUILD=	yes
