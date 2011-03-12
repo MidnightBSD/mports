@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/devel/bouml/Makefile,v 1.5 2010/01/01 16:37:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/bouml/Makefile,v 1.6 2011/01/25 14:26:14 laffer1 Exp $
 
 PORTNAME=	bouml
 PORTVERSION=	4.22.2
 CATEGORIES=	devel
-MASTER_SITES=	SF \
-		http://bouml.free.fr/
+MASTER_SITES=	\
+		http://bouml.free.fr/files/
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
 MAINTAINER=	Ports@MidnightBSD.org
