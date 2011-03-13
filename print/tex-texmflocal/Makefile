@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.5 2010/01/20 01:06:23 laffer1 Exp $
+# $MidnightBSD: mports/print/tex-texmflocal/Makefile,v 1.6 2010/08/14 02:33:42 laffer1 Exp $
 
 PORTNAME=	tex-texmflocal
 PORTVERSION=	1.9
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -36,21 +37,17 @@ LSRMAGIC=( ${ECHO_CMD} "% ls-R -- filename database for kpathsea; do not change 
 	${ECHO_CMD} ""; )
 
 pre-fake:
-	(${ECHO_CMD} "bin/tetex-modesw"; \
+	@(${ECHO_CMD} "bin/tetex-modesw"; \
 	for dir in ${DIRS}; do \
-		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFDIR}/$${dir} > /dev/null 2>&1 || true"; \
-		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFLOCALDIR}/$${dir} > /dev/null 2>&1 || true"; \
-		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFVARDIR}/$${dir} > /dev/null 2>&1 || true"; \
-		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFCONFIGDIR}/$${dir} > /dev/null 2>&1 || true"; \
-		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFDIR}/$${dir}"; \
-		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFLOCALDIR}/$${dir}"; \
-		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFVARDIR}/$${dir}"; \
-		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFCONFIGDIR}/$${dir}"; \
+		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFDIR}/$${dir} %D/${TEXMFLOCALDIR}/$${dir} > /dev/null 2>&1 || true"; \
+		${ECHO_CMD} "@unexec ${RMDIR} %D/${TEXMFVARDIR}/$${dir} %D/${TEXMFCONFIGDIR}/$${dir} > /dev/null 2>&1 || true"; \
+		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFDIR}/$${dir} %D/${TEXMFLOCALDIR}/$${dir}"; \
+		${ECHO_CMD} "@exec ${MKDIR} %D/${TEXMFVARDIR}/$${dir} %D/${TEXMFCONFIGDIR}/$${dir}"; \
 	done; \
-	${ECHO_CMD} '@exec ${LSRMAGIC:S,%,%%,g} > ${TEXMF_LSR} && ${CHMOD} 0644 ${TEXMF_LSR}'; \
-	${ECHO_CMD} '@exec ${LSRMAGIC:S,%,%%,g} > ${TEXMFLOCAL_LSR} && ${CHMOD} 0644 ${TEXMFLOCAL_LSR}'; \
-	${ECHO_CMD} '@exec ${LSRMAGIC:S,%,%%,g} > ${TEXMFVAR_LSR} && ${CHMOD} 0644 ${TEXMFVAR_LSR}'; \
-	${ECHO_CMD} '@exec ${LSRMAGIC:S,%,%%,g} > ${TEXMFCONFIG_LSR} && ${CHMOD} 0644 ${TEXMFCONFIG_LSR}'; \
+	${ECHO_CMD} '${TEXMFDIR}/ls-R'; \
+	${ECHO_CMD} '${TEXMFLOCALDIR}/ls-R'; \
+	${ECHO_CMD} '${TEXMFVARDIR}/ls-R'; \
+	${ECHO_CMD} '${TEXMFCONFIGDIR}/ls-R'; \
 	${ECHO_CMD} '@unexec ${RM} -f ${TEXMF_LSR} > /dev/null 2>&1 || true'; \
 	${ECHO_CMD} '@unexec ${RM} -f ${TEXMFLOCAL_LSR} > /dev/null 2>&1 || true'; \
 	${ECHO_CMD} '@unexec ${RM} -f ${TEXMFVAR_LSR} > /dev/null 2>&1 || true'; \
@@ -64,11 +61,11 @@ pre-fake:
 	) > ${PLIST}
 
 do-install:
-	${INSTALL_SCRIPT} ${FILESDIR}/tetex-modesw.in ${PREFIX}/bin/tetex-modesw
+	@${INSTALL_SCRIPT} ${FILESDIR}/tetex-modesw.in ${PREFIX}/bin/tetex-modesw
 .for D in TEXMF TEXMFLOCAL TEXMFVAR TEXMFCONFIG
-	${MKDIR} ${DIRS:S,^,${PREFIX}/${${D}DIR}/,}
-	${LSRMAGIC} > ${${D}_LSR}
-	${CHMOD} 0644 ${${D}_LSR}
+	@${MKDIR} ${DIRS:S,^,${PREFIX}/${${D}DIR}/,}
+	@${LSRMAGIC} > ${${D}_LSR}
+	@${CHMOD} 0644 ${${D}_LSR}
 .endfor
 
 post-install: make-tmpplist
