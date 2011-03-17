@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.16 2010/11/21 16:59:19 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.17 2011/02/02 21:18:50 laffer1 Exp $
 
 PORTNAME=	freetype2
-PORTVERSION=	2.4.3
+PORTVERSION=	2.4.4
 CATEGORIES=	print
 MASTER_SITES=	SF/freetype/${PORTNAME}/${PORTVERSION} \
 		http://sunsite.cnlab-switch.ch/ftp/mirror/freetype/freetype2/ \
