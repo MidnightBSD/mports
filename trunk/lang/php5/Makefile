@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.37 2011/02/02 21:06:52 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.38 2011/03/05 16:03:51 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.3.5
+PORTVERSION=	5.3.6
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
