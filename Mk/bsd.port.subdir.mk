@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.16 2011/03/08 20:04:41 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.17 2011/03/08 20:23:32 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -65,17 +65,17 @@ OSREL=	${_OSRELEASE:C/[-(].*//}
 .endif
 
 .if !defined(OPSYS)
-OPSYS!=	${UNAME} -s
+OPSYS!=	uname -s
 .endif
 
 .if ${ARCH} == "amd64"
 .if !defined(HAVE_COMPAT_IA32_KERN)
-HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
+HAVE_COMPAT_IA32_KERN!= if sysctl -n compat.ia32.maxvmem >/dev/null 2>&1; then echo YES; fi
 .endif
 .endif
 
 .if !defined(CONFIGURE_MAX_CMD_LEN)
-CONFIGURE_MAX_CMD_LEN!= ${SYSCTL} -n kern.argmax
+CONFIGURE_MAX_CMD_LEN!= sysctl -n kern.argmax
 .endif
 
 ID?=	${DESTDIR}/usr/bin/id
