@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.7 2010/02/27 15:58:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.8 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	akode
 PORTVERSION=	2.0.2
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio kde
-MASTER_SITES=	${MASTER_SITE_GENTOO}
+MASTER_SITES=	ftp://anduin.linuxfromscratch.org/BLFS/svn/a/ \
+		http://pkgs.fedoraproject.org/repo/pkgs/akode/30375-akode-2.0.2.tar.bz2/659ced0c9c735cb3e55b9138ff02342c/
 MASTER_SITE_SUBDIR=distfiles
 DISTNAME=	30375-${PORTNAME}-${PORTVERSION}
 
@@ -23,7 +24,7 @@ OPTIONS=	FFMPEG "FFMPEG decoder plugin" off \
 		RESAMPLER "Resampler processing plugin" on \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
-USE_AUTOTOOLS=  libltdl libtool automake
+USE_AUTOTOOLS=  libltdl libtool aclocal automake
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
