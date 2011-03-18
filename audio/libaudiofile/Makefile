@@ -1,13 +1,8 @@
-# New ports collection makefile for:	libaudiofile
-# Date created:				22 Dec 1998
-# Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
-#
-# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.5 2010/02/27 16:20:33 laffer1 Exp $
+# $MidnightBSD: mports/audio/libaudiofile/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
 # $FreeBSD: ports/audio/libaudiofile/Makefile,v 1.38 2004/03/07 04:35:35 marcus Exp $
-#
 
 PORTNAME=	libaudiofile
-PORTVERSION=	0.2.6
+PORTVERSION=	0.2.7
 CATEGORIES=	audio
 MASTER_SITES=	http://www.68k.org/~michael/audiofile/ \
 		ftp://oss.sgi.com/projects/audiofile/download/ \
