@@ -35,11 +35,11 @@
 # found to be violating any laws, please email archite@midnightbsd.org and
 # we will add it to our LEGAL file.
 #
-# $MidnightBSD: mports/Tools/scripts/legal-packages.sh,v 1.1 2006/09/26 20:50:35 archite Exp $
+# $MidnightBSD: mports/Tools/scripts/legal-packages.sh,v 1.2 2007/03/13 17:47:03 archite Exp $
 #
 
 PORTS_DIR=/usr/mports
-PKGS_DIR=/usr/mports/packages
+PKGS_DIR=/usr/mports/Packages
 
 cd ${PKGS_DIR}/All
 for PKG in *; do
