@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.32 2011/03/20 15:25:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.33 2011/03/20 15:26:47 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -784,6 +784,7 @@ MASTER_SITE_MOZILLA_EXTENDED+=	\
 
 .if !defined(IGNORE_MASTER_SITE_MYSQL)
 MASTER_SITE_MYSQL+=	\
+	http://mirror.facebook.net/mysql/Downloads/%SUBDIR%/ \
 	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
 	http://mysql.mirrors.cybercity.dk/Downloads/%SUBDIR%/ \
 	ftp://ftp.fh-wolfenbuettel.de/pub/database/mysql/Downloads/%SUBDIR%/ \
