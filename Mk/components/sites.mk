@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.29 2011/01/17 18:30:43 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.30 2011/03/20 15:15:59 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -909,22 +909,49 @@ MASTER_SITE_PACKETSTORM+= \
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_PERL_CPAN)
-MASTER_SITE_PERL_CPAN+=	\
-	ftp://ftp.cpan.org/pub/CPAN/modules/by-module/%SUBDIR%/ \
-	http://www.cpan.dk/modules/by-module/%SUBDIR%/ \
-	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,lang/perl/CPAN/modules/by-module/&,} \
-	ftp://ftp.kddlabs.co.jp/lang/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	http://ftp.jaist.ac.jp/pub/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.dti.ad.jp/pub/lang/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.sunet.se/pub/lang/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://mirror.hiwaay.net/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.mirrorservice.org/sites/ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.cs.colorado.edu/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	http://at.cpan.org/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	http://backpan.cpan.org/modules/by-module/%SUBDIR%/ \
-	ftp://ftp.funet.fi/pub/languages/perl/CPAN/modules/by-module/%SUBDIR%/ \
-	http://cpan.nctu.edu.tw/modules/by-module/%SUBDIR%/
+
+# Regulate the mode of obtain. By default using modules/by-module symlink and if
+# new method using authors/id/ in action.
+_PERL_CPAN_SORT?= modules/by-module
+
+# Please add URI to MASTER_SITE_PERL_CPAN_BY instead of this one.
+MASTER_SITE_PERL_CPAN?=
+
+# Actual list of MASTER SITES for CPAN
+MASTER_SITE_PERL_CPAN_BY+= \
+	http://mirror.facebook.net/cpan/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.cpan.org/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://www.cpan.dk/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.kddlabs.co.jp/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://ftp.jaist.ac.jp/pub/CPAN/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.dti.ad.jp/pub/lang/CPAN/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.sunet.se/pub/lang/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://ring.nict.go.jp/archives/CPAN/%CPANSORT%/%SUBDIR%/ \
+	ftp://mirror.hiwaay.net/CPAN/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.mirrorservice.org/sites/ftp.funet.fi/pub/languages/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://at.cpan.org/%CPANSORT%/%SUBDIR%/ \
+	http://ring.riken.jp/archives/CPAN/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.auckland.ac.nz/pub/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://backpan.cpan.org/%CPANSORT%/%SUBDIR%/ \
+	ftp://ftp.funet.fi/pub/languages/perl/CPAN/%CPANSORT%/%SUBDIR%/ \
+	http://cpan.nctu.edu.tw/%CPANSORT%/%SUBDIR%/
+
+# Contain CPAN keyword otherwise empty
+_PERL_CPAN_FLAG = ${MASTER_SITE_SUBDIR:C/(CPAN):.*$/\1/}
+
+# Convert author ID into L2 cache hierarchy.
+# For example FLORA -> F/FL/FLORA, GRUBER -> G/GR/GRUBER
+_PERL_CPAN_ID = ${MASTER_SITE_SUBDIR:C/^CPAN:(.)(.)(.*)$/\1\/\1\2\/\1\2\3/}
+
+# If found CPAN keyword inside MASTER_SITE_SUBDIR must use new logic.
+# Also with new logic where no need in %SUBDIR%
+.if !empty(_PERL_CPAN_ID) && ${_PERL_CPAN_FLAG:L} == "cpan"
+	_PERL_CPAN_SORT= authors/id/${_PERL_CPAN_ID}
+	MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/:S/%SUBDIR%\///}
+.else
+	MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/}
+.endif
+
 .endif
 
 #
@@ -1120,8 +1147,8 @@ MASTER_SITE_SAVANNAH+= \
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
 .for mirror in heanet sunet iweb switch surfnet kent freefr \
-		voxel jaist osdn nchc transact softlayer \
-		internode ufpr
+		voxel jaist osdn nchc ncu transact softlayer \
+		internode ufpr waix
 #		garr dfn ovh (redirect as of 2009-Sep-02)
 MASTER_SITE_SOURCEFORGE+= \
 	http://${mirror}.dl.sourceforge.net/project/%SUBDIR%/
