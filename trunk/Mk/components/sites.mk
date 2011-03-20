@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.28 2010/12/27 14:02:01 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.29 2011/01/17 18:30:43 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -119,7 +119,6 @@ MASTER_SITE_CHEESESHOP+=	\
 	http://pypi.d9t.de/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.inqbus.de/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.it.uwosh.edu/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
-	http://pypi.netsight.co.uk/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.python.jp/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.websushi.org/${DISTNAME:S/${DISTVERSION}//:S/-//}/ \
 	http://pypi.zopyx.com/${DISTNAME:S/${DISTVERSION}//:S/-//}/
@@ -136,7 +135,10 @@ MASTER_SITE_CRITICAL+=  \
 	http://critical.ch/distfiles/%SUBDIR%/ \
 	http://energy.critical.ch/distfiles/%SUBDIR%/ \
 	http://sauerkraut.critical.ch/distfiles/%SUBDIR%/ \
-	http://snow.critical.ch/distfiles/%SUBDIR%/
+	http://snow.critical.ch/distfiles/%SUBDIR%/ \
+	http://www.bluestop.org/distfiles/%SUBDIR%/ \
+	http://fneu.fr/distfiles/%SUBDIR%/ \
+	ftp://ftp.c.saper.info/distfiles/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_CSME)
@@ -214,6 +216,13 @@ MASTER_SITE_ECLIPSE+= \
 
 .if !defined(IGNORE_MASTER_SITE_EXIM)
 MASTER_SITE_EXIM+=	\
+	http://sunsite.icm.edu.pl/pub/unix/mail/exim/exim/%SUBDIR%/ \
+ 	ftp://ftp.is.co.za/networking/mail/mta/exim/ftp/exim/%SUBDIR%/ \
+ 	ftp://mirrors.dominios.pt/pub/ftp.exim.org/exim/%SUBDIR%/ \
+	ftp://mirror.switch.ch/mirror/exim/exim/%SUBDIR%/ \
+ 	http://mirror.switch.ch/ftp/mirror/exim/exim/%SUBDIR%/ \
+ 	ftp://ftp.reaper.org/pub/exim/exim/%SUBDIR%/ \
+ 	ftp://sunsite.cnlab-switch.ch/mirror/exim/exim/%SUBDIR%/ \
 	ftp://ftp.csx.cam.ac.uk/pub/software/email/exim/%SUBDIR%/ \
 	ftp://ftp.exim.org/pub/exim/%SUBDIR%/ \
 	ftp://ftp.easynet.be/exim/exim/%SUBDIR%/ \
@@ -231,9 +240,6 @@ MASTER_SITE_EXIM+=	\
 	ftp://sunsite.uio.no/pub/mail/exim/exim/%SUBDIR%/ \
 	http://www.no.exim.org/ftp/exim/%SUBDIR%/ \
 	http://sunsite.icm.edu.pl/pub/unix/mail/exim/exim/%SUBDIR%/ \
-	ftp://ftp.is.co.za/networking/mail/mta/exim/%SUBDIR%/ \
-	ftp://ftp.reaper.org/pub/exim/exim/%SUBDIR%/ \
-	ftp://sunsite.cnlab-switch.ch/mirror/exim/exim/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.csx.cam.ac.uk/pub/software/email/exim/%SUBDIR%/ \
 	ftp://ftp.demon.co.uk/pub/mirrors/exim/%SUBDIR%/ \
 	ftp://ftp.fsckit.net/pub/exim/exim/%SUBDIR%/
@@ -375,7 +381,6 @@ MASTER_SITE_FEDORA_LINUX+= \
 	http://mirror.anl.gov/pub/fedora-linux-core/%SUBDIR%/ \
 	ftp://mirror.anl.gov/pub/fedora-linux-core/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Linux/fedora/linux/core/%SUBDIR%/ \
-	ftp://ftp.software.umn.edu/linux/fedora/core/%SUBDIR%/ \
 	ftp://ftp.applios.net/pub/fedora/linux/core/%SUBDIR%/ \
 	http://mirror.steadfast.net/fedora/core/%SUBDIR%/ \
 	http://mirror.eas.muohio.edu/fedora/linux/core/%SUBDIR%/ \
