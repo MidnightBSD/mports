@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/physfs/Makefile,v 1.5 2009/11/01 22:11:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/physfs/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	physfs
 PORTVERSION=	2.0.0
@@ -14,6 +14,9 @@ USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 
 patch-autotools:
+	@${DO_NADA}
+
+patch-autotools-libtool::
 	@${DO_NADA}
 
 post-patch:
