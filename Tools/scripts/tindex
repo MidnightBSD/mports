@@ -30,7 +30,7 @@ export SRCDIR01=${BASEDIR}/src.01
 export SRCDIR02=${BASEDIR}/src.02
 
 # SSH key to use for copying INDEXes to www host (if non-default)
-export SSHKEY="-i /home/kris/.ssh/id_dsa-index"
+export SSHKEY="-i /home/laffer1/.ssh/id_dsa-index"
 
 # --------------------------------------------------------
 
