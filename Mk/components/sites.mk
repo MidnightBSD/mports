@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.31 2011/03/20 15:25:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.32 2011/03/20 15:25:47 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1397,11 +1397,14 @@ MASTER_SITE_XEMACS+= \
 
 .if !defined(IGNORE_MASTER_SITE_XFCE)
 MASTER_SITE_XFCE+= \
-	http://archive.xfce.org/%SUBDIR%/ \
-	http://mocha.xfce.org/archive/%SUBDIR%/ \
-	http://www.tx-us.xfce.org/archive/%SUBDIR%/ \
-	http://www.ca-us.xfce.org/archive/%SUBDIR%/src/ \
-	http://www.p0llux.be/xfce/%SUBDIR%/
+	http://slackware.dreamhost.com/xfce/%SUBDIR%/ \
+	http://mirror.perldude.de/archive.xfce.org/%SUBDIR%/ \
+	http://archive.be.xfce.org/%SUBDIR%/ \
+	http://archive.be2.xfce.org/%SUBDIR%/ \
+	http://xfce.ozgurkuru.net/%SUBDIR%/ \
+	http://archive.se.xfce.org/%SUBDIR%/ \
+	http://archive.in-us.xfce.org/%SUBDIR%/ \
+	http://mirrors.tummy.com/pub/archive.xfce.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XFREE)
