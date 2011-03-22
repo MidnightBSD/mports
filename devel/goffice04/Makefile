@@ -1,8 +1,4 @@
-# New ports collection makefile for:	goffice
-# Date created:				07 June 2005
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/goffice04/Makefile,v 1.3 2009/09/20 00:26:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/goffice04/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
 # $FreeBSD: ports/devel/goffice04/Makefile,v 1.23 2008/06/06 13:21:16 edwin Exp $
 #   $MCom: ports/devel/goffice/Makefile,v 1.32 2007/09/06 05:01:28 marcus Exp $
 #
@@ -11,8 +7,9 @@
 PORTNAME=	goffice
 PORTVERSION=	0.4.3
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	 sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	04
+DISTFILES=	goffice-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
