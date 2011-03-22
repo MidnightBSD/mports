@@ -1,11 +1,12 @@
 # $FreeBSD: ports/devel/goffice/Makefile,v 1.25 2008/05/14 18:29:01 mezz Exp $
 #   $MCom: ports/devel/goffice/Makefile,v 1.32 2007/09/06 05:01:28 marcus Exp $
-# $MidnightBSD: mports/devel/goffice06/Makefile,v 1.5 2011/03/22 13:36:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/goffice06/Makefile,v 1.6 2011/03/22 13:40:34 laffer1 Exp $
 
-PORTNAME=	goffice
-PORTVERSION=	0.6.4
+PORTNAME=	goffice06
+PORTVERSION=	0.6.6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
+DISTFILES=	goffice-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
