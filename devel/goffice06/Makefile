@@ -1,11 +1,12 @@
 # $FreeBSD: ports/devel/goffice/Makefile,v 1.25 2008/05/14 18:29:01 mezz Exp $
 #   $MCom: ports/devel/goffice/Makefile,v 1.32 2007/09/06 05:01:28 marcus Exp $
-# $MidnightBSD: mports/devel/goffice06/Makefile,v 1.6 2011/03/22 13:40:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/goffice06/Makefile,v 1.7 2011/03/22 22:43:07 laffer1 Exp $
 
-PORTNAME=	goffice06
+PORTNAME=	goffice
 PORTVERSION=	0.6.6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
+PKGNAMESUFFIX=	06
 DISTFILES=	goffice-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
