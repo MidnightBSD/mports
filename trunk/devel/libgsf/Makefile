@@ -4,15 +4,14 @@
 #
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
 #   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.7 2009/09/20 00:36:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.8 2011/02/02 20:17:33 laffer1 Exp $
 #
 
 PORTNAME=	libgsf
-PORTVERSION=	1.14.8
+PORTVERSION=	1.14.19
 PORTREVISION?=	0
 CATEGORIES?=	devel
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,18 +26,33 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_GNOME?=	gnomehack glib20 libxml2 gconf2 ltverhack intlhack
+USE_GNOME?=	gnomehack gnomeprefix glib20 libxml2 ltverhack intlhack
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
-		--disable-gtk-doc --without-gnome --with-bz2 \
-		--mandir=${PREFIX}/man \
-		--with-gconf-source=${GCONF_CONFIG_SOURCE}
+CONFIGURE_ARGS?=--without-gnome-vfs --without-python --with-gio \
+		--without-bonobo
 CONFIGURE_ENV?=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 .if !defined(GSF_SLAVE)
-GCONF_SCHEMAS=	gsf-office-thumbnailer.schemas
-MAN1=		gsf-office-thumbnailer.1
+MAN1=		gsf.1 gsf-office-thumbnailer.1 gsf-vba-dump.1
 .endif
 
-.include <bsd.port.mk>
+.if !defined(WITHOUT_GCONF) || exists(${LOCALBASE}/bin/gconftool-2)
+USE_GNOME+=	gconf2
+PLIST_SUB+=	THUMB=""
+. if !defined(GSF_SLAVE)
+GCONF_SCHEMAS=	gsf-office-thumbnailer.schemas
+. endif
+.else
+PLIST_SUB+=	THUMB="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if defined(GSF_SLAVE)
+.if ${OSVERSION} < 3000
+BROKEN=		does not configure on 0.2
+.endif
+.endif
+
+.include <bsd.port.post.mk>
