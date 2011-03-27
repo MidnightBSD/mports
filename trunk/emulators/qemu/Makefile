@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.9 2009/10/25 15:28:15 laffer1 Exp $
+# $MidnightBSD: mports/emulators/qemu/Makefile,v 1.10 2010/04/27 13:16:38 laffer1 Exp $
 
 PORTNAME=	qemu
-PORTVERSION=	0.10.6
+PORTVERSION=	0.11.1
 CATEGORIES=	emulators
 MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
 		http://bellard.org/qemu/
@@ -14,9 +14,9 @@ LICENSE=	gpl2
 
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_PERL5=	yes
+USE_PERL5_BUILD=	yes
 PATCH_STRIP=	-p1
-MAKE_ENV+=	BSD_MAKE="${MAKE}" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+MAKE_ENV+=	BSD_MAKE="${MAKE}" LDFLAGS="${LDFLAGS}"
 MAN1=		qemu.1 qemu-img.1
 ONLY_FOR_ARCHS=	amd64 i386
 MAKE_JOBS_SAFE=	yes
@@ -26,19 +26,19 @@ OPTIONS=	KQEMU "Build with (alpha!) accelerator module" Off \
 		SAMBA "samba dependency (for -smb)" Off \
 		SDL "SDL/X dependency (graphical output)" On \
 		GNUTLS "gnutls dependency (vnc encryption)" On \
+		CURL "libcurl dependency (remote images)" On \
 		PCAP "pcap dependency (networking with bpf)" On \
 		CDROM_DMA "IDE CDROM DMA" On \
-		PHYS_CDROM "Physical CDROM fixes" On \
 		ADD_AUDIO "Emulate more audio hardware (experimental!)" Off \
 		ALL_TARGETS "Also build non-x86 targets" On
 
 .include <bsd.mport.options.mk>
 
 .if defined(WITHOUT_ALL_TARGETS)
-CONFIGURE_ARGS+=       --target-list=i386-softmmu,x86_64-softmmu
-PLIST_SUB+=    ALLTARGETS="@comment "
+CONFIGURE_ARGS+=	--target-list=i386-softmmu,x86_64-softmmu
+PLIST_SUB+=	ALLTARGETS="@comment "
 .else
-PLIST_SUB+=    ALLTARGETS=""
+PLIST_SUB+=	ALLTARGETS=""
 .endif
 
 WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
@@ -46,7 +46,7 @@ CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 
 .if defined(WITHOUT_SDL)
-CONFIGURE_ARGS+=	--disable-sdl --disable-gfx-check
+CONFIGURE_ARGS+=	--disable-sdl
 .else
 USE_SDL=	sdl
 .endif
@@ -57,6 +57,12 @@ CONFIGURE_ARGS+=	--disable-vnc-tls
 LIB_DEPENDS+=	gnutls:${PORTSDIR}/security/gnutls
 .endif
 
+.if defined(WITHOUT_CURL)
+CONFIGURE_ARGS+=	--disable-curl
+.else
+LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+.endif
+
 .if defined(WITH_PCAP)
 CONFIGURE_ARGS+=	--enable-pcap
 .endif
@@ -65,12 +71,16 @@ CONFIGURE_ARGS+=	--enable-pcap
 CONFIGURE_ARGS+=	--audio-card-list=ac97,es1370,sb16,cs4231a,adlib,gus
 .endif
 
+# XXX
+CONFIGURE_ARGS+=	--disable-bsd-user
+
 .if defined(WITH_SAMBA)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/smbd:${PORTSDIR}/net/samba3
 .endif
 
 .if defined(WITH_KQEMU)
 BUILD_DEPENDS+=	kqemu-kmod-devel>=1.4.0pre1:${PORTSDIR}/emulators/kqemu-kmod-devel
+RUN_DEPENDS+=	kqemu-kmod-devel>=1.4.0pre1:${PORTSDIR}/emulators/kqemu-kmod-devel
 .else
 CONFIGURE_ARGS+=	--disable-kqemu
 .endif
@@ -106,9 +116,6 @@ post-patch:
 .endif
 .if defined(WITHOUT_CDROM_DMA)
 	@cd ${WRKSRC} && ${PATCH} --quiet < ${FILESDIR}/cdrom-dma-patch
-.endif
-.if defined(WITH_PHYS_CDROM)
-	@cd ${WRKSRC} && ${PATCH} -p1 --quiet < ${FILESDIR}/phys-cdrom-freebsd-patch
 .endif
 	@${REINPLACE_CMD} -E \
 		-e "s|^(CFLAGS=).*|\1${CFLAGS} -fno-strict-aliasing|" \
