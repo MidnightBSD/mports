@@ -1,17 +1,12 @@
-# New ports collection makefile for:	BasiliskII
-# Date created:				17 April 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.4 2008/10/21 22:44:01 ctriv Exp $
+# $MidnightBSD: mports/emulators/basiliskII/Makefile,v 1.5 2010/04/27 13:20:58 laffer1 Exp $
 # $FreeBSD: ports/emulators/basiliskII/Makefile,v 1.30 2007/01/23 19:08:20 miwi Exp $
-#
 
 PORTNAME=	basiliskII
 PORTVERSION=	1.0
 PORTREVISION=	6
 CATEGORIES=	emulators
-MASTER_SITES=	http://gwenole.beauchesne.info/projects/basilisk2/files/
-MASTER_SITE_SUBDIR=	basilisk
+#MASTER_SITES=	http://gwenole.beauchesne.info/projects/basilisk2/files/
+#MASTER_SITE_SUBDIR=	basilisk
 DISTNAME=	BasiliskII_src_01052006
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -38,6 +33,5 @@ CFLAGS=		-fpermissive
 .if ${ARCH} == amd64
 BROKEN=	does not compile on AMD64 architectures
 .endif
-
 
 .include <bsd.port.post.mk>
