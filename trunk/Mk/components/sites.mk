@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.34 2011/03/20 15:28:10 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.35 2011/03/20 15:43:30 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -948,10 +948,10 @@ _PERL_CPAN_ID = ${MASTER_SITE_SUBDIR:C/^CPAN:(.)(.)(.*)$/\1\/\1\2\/\1\2\3/}
 # If found CPAN keyword inside MASTER_SITE_SUBDIR must use new logic.
 # Also with new logic where no need in %SUBDIR%
 .if !empty(_PERL_CPAN_ID) && ${_PERL_CPAN_FLAG:L} == "cpan"
-	_PERL_CPAN_SORT= authors/id/${_PERL_CPAN_ID}
-	MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/:S/%SUBDIR%\///}
+    _PERL_CPAN_SORT= authors/id/${_PERL_CPAN_ID}
+    MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/:S/%SUBDIR%\///}
 .else
-	MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/}
+    MASTER_SITE_PERL_CPAN=${MASTER_SITE_PERL_CPAN_BY:S/%CPANSORT%/${_PERL_CPAN_SORT}/}
 .endif
 
 .endif
