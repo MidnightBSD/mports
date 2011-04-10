@@ -1,13 +1,9 @@
-# New ports collection makefile for:    bonnie
-# Date created:         26 September 1994
-# Whom:                 se
-#
-# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.1 2007/05/20 01:51:43 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.2 2008/06/25 15:14:23 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/bonnie/Makefile,v 1.15 2006/08/12 15:16:45 se Exp $
-#
 
 PORTNAME=	bonnie
 PORTVERSION=	2.0.6
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.acnc.com/benchmarks/ \
 		http://www.textuality.com/bonnie/
