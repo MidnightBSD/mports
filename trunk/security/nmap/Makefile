@@ -1,14 +1,11 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.5 2010/12/16 04:14:56 laffer1 Exp $
 # $FreeBSD: ports/security/nmap/Makefile,v 1.122 2010/09/03 21:16:38 ohauer Exp $
 
 PORTNAME=	nmap
-DISTVERSION=	5.35DC1
+PORTVERSION=	5.51
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://nmap.org/dist/ \
-		http://nmap.ucsd.edu/dist/ \
-		http://www.mirrors.wiretapped.net/security/network-mapping/nmap/ \
-		http://www.mirrorservice.org/sites/ftp.wiretapped.net/pub/security/network-mapping/nmap/ \
-		http://mirror.sg.depaul.edu/pub/security/nmap/
+		LOCAL/ohauer
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Port scanning utility for large networks
@@ -31,8 +28,6 @@ CONFIGURE_ENV=	LUA_INCDIR="${LUA_INCDIR}" LUA_LIBDIR="${LUA_LIBDIR}"
 MANLANG=	"" de es fr hr hu it jp pl pt_BR pt_PT ro ru sk zh
 MAN1=		nmap.1
 MAN1_EN=	ncat.1 nping.1
-PLIST_SUB+=	NCATDATADIR=share/ncat \
-		NPINGDIR=share/nping
 
 .ifndef WITHOUT_SSL
 USE_OPENSSL=	yes
@@ -40,12 +35,17 @@ CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
 CONFIGURE_ENV+=		CFLAGS="${CFLAGS} -I${OPENSSLINC}"
 PLIST_SUB+=		WITHSSL=""
 .else
+PKGNAMESUFFIX=		-nossl
 CONFIGURE_ARGS+=	--without-openssl
 PLIST_SUB+=		WITHSSL="@comment "
 .endif
 
+PORTDOCS=	CHANGELOG HACKING
+EXAMPLES=	docs/sample-script.nse
+PORTEXAMPLES=	${EXAMPLES:T}
+
 # XXX limit results if we do a grep in the sources!
-post-patch:
+post-extract:
 	@${RM} -rf ${WRKSRC}/mswin32
 
 post-configure:
@@ -54,9 +54,15 @@ post-configure:
 post-install:
 .ifndef NOPORTDOCS
 	@${MKDIR} ${DOCSDIR}
-	@for doc in CHANGELOG HACKING docs/nmap.dtd; do \
-		${INSTALL_DATA} ${WRKSRC}/$${doc} ${DOCSDIR}; \
-	done
+.	for i in ${PORTDOCS}
+		@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
+.	endfor
+.endif
+.ifndef NOPORTEXAMPLES
+	@${MKDIR} ${EXAMPLESDIR}
+.	for i in ${EXAMPLES}
+		@${INSTALL_DATA} ${WRKSRC}/${i} ${EXAMPLESDIR}
+.	endfor
 .endif
 
 .include <bsd.port.mk>
