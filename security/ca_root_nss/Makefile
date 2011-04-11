@@ -2,7 +2,7 @@
 # Date created:				Mon Oct 1 5:39:39 EST 2007
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.1 2007/10/01 09:42:15 laffer1 Exp $
+# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.2 2008/05/22 22:00:53 laffer1 Exp $
 # $FreeBSD: ports/security/ca_root_nss/Makefile,v 1.2 2007/07/11 17:07:13 brooks Exp $
 #
 
@@ -16,16 +16,17 @@ DISTFILES=	${NSS_FILE} ${MODSSL_FILE}:mod_ssl
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The root certificate bundle from the Mozilla Project
-LICENSE=	unknown
+LICENSE=	mpl
+
+OPTIONS=	ETCSYMLINK "Add symlink to /etc/ssl/cert.pem" off
 
 USE_PERL5_BUILD=	yes
 NO_WRKSUBDIR=	yes
 
 CERTDIR?=	share/certs
-PLIST_DIRS=	${CERTDIR}
-PLIST_FILES=	${CERTDIR}/ca-root-nss.crt
+PLIST_SUB+=	CERTDIR=${CERTDIR}
 
-VERSION_NSS=	3.11.9
+VERSION_NSS=	3.12.9
 VERSION_APACHE=	1.3.41
 VERSION_MODSSL=	2.8.31
 MASTER_SITES_MODSSL=	http://www.modssl.org/source/ \
@@ -38,6 +39,15 @@ NSS_FILE=	nss-${VERSION_NSS}${EXTRACT_SUFX}
 CERTDATA_TXT_PATH=	nss-${VERSION_NSS}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt
 CA_BUNDLE_PL_PATH=	mod_ssl-${VERSION_MODSSL}-${VERSION_APACHE}/pkg.sslcfg/ca-bundle.pl
 
+.include <bsd.port.pre.mk>
+
+.if !defined(WITHOUT_ETCSYMLINK)
+PLIST_SUB+=	ETCSYMLINK=
+CONFLICTS=	ca-roots-[0-9]*
+.else
+PLIST_SUB+=	ETCSYMLINK="@comment "
+.endif
+
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@${TAR} -C ${WRKDIR} -xf ${DISTDIR}/${MODSSL_FILE} \
@@ -49,6 +59,10 @@ do-extract:
 	@${RM} -rf ${WRKDIR}/mod_ssl-${VERSION_MODSSL}-${VERSION_APACHE} \
 	    ${WRKDIR}/nss-${VERSION_NSS}
 
+post-patch:
+	@${PERL} -pi -e 's,%%VERSION_NSS%%,${VERSION_NSS},g;' \
+	    ${WRKDIR}/ca-bundle.pl
+
 do-build:
 	@${PERL} ${WRKDIR}/ca-bundle.pl < ${WRKDIR}/certdata.txt > \
 	    ${WRKDIR}/ca-root-nss.crt
@@ -56,5 +70,8 @@ do-build:
 do-install:
 	${MKDIR} ${PREFIX}/${CERTDIR}
 	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${PREFIX}/${CERTDIR}
+.if !defined(WITHOUT_ETCSYMLINK)
+	${LN} -s ${PREFIX}/${CERTDIR}/ca-root-nss.crt /etc/ssl/cert.pem
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
