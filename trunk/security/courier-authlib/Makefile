@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.5 2009/09/24 02:12:09 laffer1 Exp $
+# $MidnightBSD: mports/security/courier-authlib/Makefile,v 1.6 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	courier-authlib
-PORTVERSION=	0.62.4
+PORTVERSION=	0.63.0
 CATEGORIES?=	security mail
 .if defined(PKGNAMESUFFIX)
 MASTER_SITES=	SF/courier/authlib/${PORTVERSION}
@@ -37,8 +37,9 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5=	yes
 USE_SUBMAKE=	yes
-USE_LDCONFIG=	yes
-LDCONFIG_DIRS=	%%PREFIX%%/lib/${PORTNAME}
+USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+#slave ports should have different UNIQUENAME, it is utilized by USE_LDCONFIG
+UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
 MAILOWN=	courier
 MAILGRP=	courier
