@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.3 2007/08/02 11:08:42 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2-saslauthd/Makefile,v 1.4 2009/12/28 17:46:07 laffer1 Exp $
 
 PORTNAME=	saslauthd
 PORTVERSION=	2.1.23
-#PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
@@ -39,7 +39,8 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--enable-login \
 		--enable-auth-sasldb \
 		--with-rc4=openssl \
-		--with-saslauthd=${SASLAUTHD_RUNPATH}
+		--with-saslauthd=${SASLAUTHD_RUNPATH} \
+		--disable-krb4
 
 OPTIONS=	BDB		"Use Berkeley DB"			off \
 		OPENLDAP	"Use OpenLDAP"				off \
@@ -78,13 +79,6 @@ CONFIGURE_ARGS+=--enable-gssapi=${HEIMDAL_HOME} --with-gss_impl=heimdal
 CONFIGURE_ARGS+=--enable-gssapi
 .else
 CONFIGURE_ARGS+=--disable-gssapi
-.endif
-
-.if defined(WITH_KERBEROS4)
-LIB_DEPENDS+=	krb.2:${PORTSDIR}/security/krb4
-CONFIGURE_ARGS+=--enable-krb4=${LOCALBASE}/krb4
-.else
-CONFIGURE_ARGS+=--disable-krb4
 .endif
 
 .include <bsd.port.pre.mk>
