@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.9 2009/10/16 22:55:58 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.10 2010/08/01 05:20:38 laffer1 Exp $
 
 PORTNAME=	libksba
-PORTVERSION=	1.0.8
+PORTVERSION=	1.2.0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KSBA is an X.509 Library
@@ -14,7 +16,6 @@ LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_TARGET=
 CONFIGURE_ARGS+=--enable-static
