@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/xclock/Makefile,v 1.1 2007/10/04 21:26:40 ctriv Exp $
+# $MidnightBSD: mports/x11-clocks/xclock/Makefile,v 1.1 2009/05/04 01:52:40 laffer1 Exp $
 
 PORTNAME=	xclock
-PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-clocks
 
 MAINTAINER=	ports@MidnightBSD.org
