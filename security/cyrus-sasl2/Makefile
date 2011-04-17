@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.6 2009/12/28 17:40:41 laffer1 Exp $
+# $MidnightBSD: mports/security/cyrus-sasl2/Makefile,v 1.7 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	cyrus-sasl
 PORTVERSION=	2.1.23
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/%SUBDIR%/ \
 		ftp://ftp.westbend.net/pub/cyrus-mail/%SUBDIR%/ \
@@ -48,7 +49,8 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--enable-static \
 		--enable-auth-sasldb \
 		--with-rc4=openssl \
-		--with-saslauthd=${SASLAUTHD_RUNPATH}
+		--with-saslauthd=${SASLAUTHD_RUNPATH} \
+		--disable-krb4
 
 OPTIONS=	BDB		"Use Berkeley DB"			off \
 		MYSQL		"Use MySQL"				off \
@@ -173,14 +175,7 @@ CONFIGURE_ARGS+=--disable-gssapi
 GSSAPI=	"@comment "
 .endif
 
-# KERBEROS 4 was removed in FreeBSD 5.0-CURRENT
-.if defined(WITH_KERBEROS4)
-LIB_DEPENDS+=	krb.2:${PORTSDIR}/security/krb4
-CONFIGURE_ARGS+=--enable-krb4=${LOCALBASE}/krb4
-.else
-CONFIGURE_ARGS+=--disable-krb4
 EBONES=	"@comment "
-.endif
 
 .include <bsd.port.pre.mk>
 
