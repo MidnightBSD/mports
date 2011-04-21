@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.178 2011/03/08 13:46:29 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.179 2011/03/12 20:10:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2124,7 +2124,7 @@ do-fetch:
 				exit 1; \
 			fi ; \
 			if [ -f ${HASH_FILE} -a "x${NO_CHECKSUM}" = "x" ]; then \
-				if ! ${GREP} -q "^MD5 ($$pattern)" ${HASH_FILE}; then \
+				if ! ${GREP} -q "^SHA256 ($$pattern)" ${HASH_FILE}; then \
 					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is not in ${HASH_FILE}."; \
 					${ECHO_MSG} "=> Either ${HASH_FILE} is out of date, or"; \
 					${ECHO_MSG} "=> $${DIR:+$$DIR/}$$file is spelled incorrectly."; \
