@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.12 2011/02/02 20:03:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/gtar/Makefile,v 1.13 2011/03/18 19:54:19 laffer1 Exp $
 
 PORTNAME=	gtar
-PORTVERSION=	1.25
+PORTVERSION=	1.26
 PORTREVISION=	0
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
@@ -13,6 +13,8 @@ COMMENT=	GNU version of the traditional tape archiver
 LICENSE=	gpl3
 
 RUN_DEPENDS=	lzop:${PORTSDIR}/archivers/lzop
+
+WRKSRC=	${WRKDIR}/tar-${PORTVERSION}
 
 INFO=		tar
 
@@ -40,6 +42,8 @@ PLIST_SUB+=	NLS=""
 CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
+
+CONFIGURE_ENV+=	gl_cv_func_mknod_works=no
 
 .include <bsd.port.pre.mk>
 
