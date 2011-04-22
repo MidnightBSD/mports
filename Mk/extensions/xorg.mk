@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.6 2009/09/24 00:44:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.7 2010/01/01 17:20:37 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -79,6 +79,8 @@ IGNORE=		is for sparc64 only
 
 . if ${XORG_CAT} == "font"
 FONTDIR?=	${PORTNAME:C/.*-//g:S/type/Type/:S/ttf/TTF/:S/speedo/Speedo/}
+CONFIGURE_ARGS+=	--with-fontrootdir=${PREFIX}/lib/X11/fonts
+CONFIGURE_ENV+=	FONTROOTDIR=${PREFIX}/lib/X11/fonts
 NEED_MKFONTFOO=	yes
 
 .  if ${PORTNAME:M*type1*}x != x
@@ -115,8 +117,8 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 post-install:
 .  if ${INSTALLS_TTF} == "yes"
 .   for _fontdir in ${FONTDIR}
-	@${ECHO_CMD} "@exec fc-cache -v %D/lib/X11/fonts/${_fontdir} 2>/dev/null || true" >> ${TMPPLIST}
-	@${ECHO_CMD} "@unexec fc-cache -v %D/lib/X11/fonts/${_fontdir} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@exec fc-cache -s %D/lib/X11/fonts/${_fontdir} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec fc-cache -s %D/lib/X11/fonts/${_fontdir} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/lib/X11/fonts/${_fontdir} 2>/dev/null || true" >> ${TMPPLIST}
 .   endfor
 .  endif
@@ -268,7 +270,7 @@ BUILD_DEPENDS+=			${LIB_PC_DEPENDS}
 .if !target(check-latest)
 check-latest:
 	@AVAIL_VER=`fetch -qo - http://xorg.freedesktop.org/releases/individual/${XORG_CAT}/ | sed -ne 's/.*${PORTNAME}-\(.*\).tar.bz2\".*/\1/p'` && \
-		${ECHO_CMD} "Available versions for ${PORTNAME} are: " && ${ECHO_CMD} "$${AVAIL_VER}" && \
+		${ECHO_CMD} "Available versions for ${PORTNAME} are: $${AVAIL_VER}." && \
 		for ver in $${AVAIL_VER}; do \
 			if [ `pkg_version -t $$ver ${PORTVERSION}` = ">" ]; then \
 				${ECHO_CMD} "${PORTNAME} $$ver is newer than current version."; \
