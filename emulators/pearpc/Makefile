@@ -2,13 +2,13 @@
 # Date created:				22 May 2004
 # Whom:					Roman Bogorodskiy
 #
-# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.7 2010/01/02 18:44:38 laffer1 Exp $
+# $MidnightBSD: mports/emulators/pearpc/Makefile,v 1.8 2010/05/08 02:22:54 laffer1 Exp $
 # $FreeBSD: ports/emulators/pearpc/Makefile,v 1.22 2006/09/20 11:20:47 stas Exp $
 #
 
 PORTNAME=	pearpc
 PORTVERSION=	0.4
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}.0
 
