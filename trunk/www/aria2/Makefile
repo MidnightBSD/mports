@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/aria2/Makefile,v 1.9 2010/05/28 23:08:40 laffer1 Exp $
+# $MidnightBSD: mports/www/aria2/Makefile,v 1.10 2010/05/28 23:21:16 laffer1 Exp $
 
 PORTNAME=	aria2
-PORTVERSION=	1.9.3
+PORTVERSION=	1.9.4
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION}
 
