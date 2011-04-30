@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.5 2009/05/27 20:54:21 crash Exp $
+# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.6 2009/09/24 04:18:45 laffer1 Exp $
 
 PORTNAME=	msmtp
-PORTVERSION=	1.4.17
+PORTVERSION=	1.4.18
 CATEGORIES=	mail ipv6
 MASTER_SITES=	SF
 
