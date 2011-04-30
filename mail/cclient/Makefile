@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/cclient/Makefile,v 1.4 2007/12/05 22:56:04 laffer1 Exp $
+# $MidnightBSD: mports/mail/cclient/Makefile,v 1.5 2009/09/24 00:55:17 laffer1 Exp $
 
 PORTNAME=	cclient
 PORTVERSION=	2007e
@@ -35,6 +35,8 @@ MAKE_ARGS+=	SSLTYPE=unix
 MAKE_ARGS+=	SSLTYPE=unix.nopwd
 .endif
 .endif
+
+MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
