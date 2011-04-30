@@ -1,0 +1,2 @@
+APPENDDEF(`bld_dkim_filter_INCDIRS',`-I%%LOCALBASE%%/include')
+APPENDDEF(`bld_dkim_filter_LIBDIRS', `-L%%LOCALBASE%%/lib')
