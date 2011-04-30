@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/mail/gmime2/Makefile,v 1.3 2008/06/23 20:14:24 laffer1 Exp $
+# $MidnightBSD: mports/mail/gmime2/Makefile,v 1.4 2009/09/24 04:35:14 laffer1 Exp $
 
 PORTNAME=	gmime
-PORTVERSION=	2.2.23
+PORTVERSION=	2.2.24
 PORTREVISION?=	0
 CATEGORIES?=	mail
-MASTER_SITES=	http://spruce.sourceforge.net/gmime/sources/v${PORTVERSION:C/([0-9]\.[0-9]).*/\1/}/
+MASTER_SITES=	GNOME
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Library (written in C) for parsing and creating messages using MIME
