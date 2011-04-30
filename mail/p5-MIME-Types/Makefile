@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.5 2008/10/13 20:49:12 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-MIME-Types/Makefile,v 1.6 2009/09/24 03:38:07 laffer1 Exp $
 
 PORTNAME=	MIME-Types
-PORTVERSION=	1.28
+PORTVERSION=	1.31
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
