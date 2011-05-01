@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/babl/Makefile,v 1.4 2011/01/22 17:04:42 laffer1 Exp $
+# $MidnightBSD: mports/x11/babl/Makefile,v 1.5 2011/02/02 21:35:01 laffer1 Exp $
 
 PORTNAME=	babl
-PORTVERSION=	0.1.2
+PORTVERSION=	0.1.4
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
@@ -15,6 +15,8 @@ MASTER_SITE_SUBDIR=	babl/${PORTVERSION:R}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dynamic pixel format conversion library
 LICENSE=	gpl3
+
+BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
