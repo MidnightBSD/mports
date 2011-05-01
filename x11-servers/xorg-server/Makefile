@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.13 2009/05/08 14:02:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.14 2009/05/08 20:07:55 laffer1 Exp $
 
 PORTNAME=	xorg-server
-PORTVERSION=	1.6.1
-PORTREVISION=	0
+PORTVERSION=	1.7.7
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/
@@ -17,6 +16,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard
 
 XORG_CAT=	xserver
 
+USE_GMAKE=	yes
 USE_GL=		gl
 USE_XORG=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		xmu xt xpm xext randrproto renderproto fixesproto damageproto \
@@ -26,15 +26,34 @@ USE_XORG=	xf86driproto glproto xdmcp x11 xkbfile xxf86misc xxf86vm xaw7 \
 		videoproto compositeproto trapproto recordproto xineramaproto \
 		xinerama evieproto xfont fontenc xkbui pixman pciaccess
 
+MAKE_JOBS_UNSAFE=	yes
 USE_OPENSSL=	yes
 USE_PERL5_BUILD=yes
-CONFIGURE_ARGS=	--disable-dmx --disable-xvfb --disable-xnest --disable-xprint \
+CONFIGURE_ARGS=	--disable-dmx --disable-xvfb --disable-xnest \
 		--localstatedir=/var --without-dtrace --disable-xephyr \
-		--enable-record=yes --enable-xtrap=yes
+		--enable-record=yes
 
-OPTIONS=	HAL     "Compile with HAL config support" on \
-		AIGLX   "Compile with Accelerated Indirect GLX support" on \
-		SUID    "Install the Xorg server with setuid bit set" on
+MAN1=		Xorg.1 \
+		Xserver.1 \
+		cvt.1 \
+		gtf.1
+MAN4=		exa.4 \
+		fbdevhw.4
+MAN5=		xorg.conf.5
+
+NOT_FOR_ARCHS=	alpha
+
+.if !defined(ARCH)
+ARCH!=	/usr/bin/uname -p
+.endif
+
+OPTIONS=	AIGLX	"Compile with Accelerated Indirect GLX support" on \
+		SUID	"Install the Xorg server with setuid bit set" on
+.if ${ARCH} == sparc64
+OPTIONS+=	HAL	"Compile with HAL config support" off
+.else
+OPTIONS+=	HAL	"Compile with HAL config support" on
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -64,26 +83,12 @@ CONFIGURE_ARGS+=--enable-install-setuid=yes
 CONFIGURE_ARGS+=--enable-install-setuid=no
 .endif
 
-MAN1=		Xorg.1 \
-		Xserver.1 \
-		cvt.1 \
-		gtf.1
-MAN4=		exa.4 \
-		fbdevhw.4
-MAN5=		xorg.conf.5
-
 .if ${ARCH} == sparc64
 PLIST_SUB+=	SPARC64=""
 PLIST_SUB+=	SPARC64_NA="@comment "
 .else
 PLIST_SUB+=	SPARC64="@comment "
 PLIST_SUB+=	SPARC64_NA=""
-.endif
-
-.if ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH} == sparc64
-PLIST_SUB+=	AMD64_I386_SPARC64=""
-.else
-PLIST_SUB+=	AMD64_I386_SPARC64="@comment "
 .endif
 
 .if !defined(WITHOUT_SUID) && (!defined(NO_SUID_XSERVER) || ${NO_SUID_XSERVER} == NO)
