@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-servers/xephyr/Makefile,v 1.1 2009/05/08 14:02:20 laffer1 Exp $
 
 PORTNAME=	xephyr
-PORTVERSION=	1.6.1
+PORTVERSION=	1.7.7
 CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
