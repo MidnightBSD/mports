@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.3 2009/03/12 06:14:14 ctriv Exp $
+# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.4 2011/02/09 13:25:45 laffer1 Exp $
 # $FreeBSD: ports/x11/Terminal/Makefile,v 1.19 2008/06/06 14:08:50 edwin Exp $
 
 PORTNAME=	Terminal
-PORTVERSION=	0.4.5
+PORTVERSION=	0.4.6
 CATEGORIES=	x11 xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/apps/${PORTNAME:L}/${PORTVERSION:R}
