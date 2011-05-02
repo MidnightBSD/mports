@@ -1,13 +1,8 @@
-# New ports collection makefile for:	beforelight
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/beforelight/Makefile,v 1.1 2007/05/19 20:25:52 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/beforelight/Makefile,v 1.1 2007/10/03 20:39:17 ctriv Exp $
 
 PORTNAME=	beforelight
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
