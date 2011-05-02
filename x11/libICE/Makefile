@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libICE/Makefile,v 1.1 2007/10/03 19:42:39 ctriv Exp $
+# $MidnightBSD: mports/x11/libICE/Makefile,v 1.2 2009/03/15 20:32:42 laffer1 Exp $
 
 PORTNAME=	libICE
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.7
 PORTREVISION=	1
 CATEGORIES=	x11
 
