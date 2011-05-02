@@ -1,13 +1,8 @@
-# New ports collection makefile for:	iceauth
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/iceauth/Makefile,v 1.2 2007/09/13 19:44:58 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/iceauth/Makefile,v 1.1 2007/10/04 05:06:00 ctriv Exp $
 
 PORTNAME=	iceauth
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
