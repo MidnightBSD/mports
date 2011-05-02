@@ -1,13 +1,8 @@
-# New ports collection makefile for:	bitmap
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/bitmap/Makefile,v 1.1 2007/05/19 20:25:54 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/bitmap/Makefile,v 1.1 2007/10/03 20:51:12 ctriv Exp $
 
 PORTNAME=	bitmap
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
