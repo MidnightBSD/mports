@@ -1,13 +1,8 @@
-# New ports collection makefile for:	editres
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/editres/Makefile,v 1.1 2007/05/19 20:26:09 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/editres/Makefile,v 1.1 2007/10/03 20:55:56 ctriv Exp $
 
 PORTNAME=	editres
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
