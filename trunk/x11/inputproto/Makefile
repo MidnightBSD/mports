@@ -1,13 +1,8 @@
-# New ports collection makefile for:	inputproto
-# Date Created:				08 Aug 2005
-# Whom:					Dejan Lesjak <lesi@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/inputproto/Makefile,v 1.2 2007/09/13 19:44:58 flz Exp $
-# $MidnightBSD: mports/x11/inputproto/Makefile,v 1.1 2007/10/02 20:53:32 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/inputproto/Makefile,v 1.2 2009/03/14 22:16:58 laffer1 Exp $
 
 PORTNAME=	inputproto
-PORTVERSION=	1.5.0
+PORTVERSION=	2.0.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
