@@ -1,13 +1,8 @@
-# New ports collection makefile for:	fstobdf
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/fstobdf/Makefile,v 1.1 2007/05/19 20:26:19 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/fstobdf/Makefile,v 1.1 2007/10/03 21:15:06 ctriv Exp $
 
 PORTNAME=	fstobdf
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
