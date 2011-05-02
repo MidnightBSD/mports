@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libSM/Makefile,v 1.5 2009/09/20 01:40:17 smultron Exp $
+# $MidnightBSD: mports/x11/libSM/Makefile,v 1.6 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libSM
-PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTVERSION=	1.1.1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
