@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libX11/Makefile,v 1.6 2009/09/24 00:38:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/libX11/Makefile,v 1.7 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libX11
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTVERSION=	1.3.6
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -17,15 +16,10 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xcb.pc:${PORTSDIR}/x11/libxcb
 XORG_CAT=	lib
 USE_XORG=	bigreqsproto xau xcmiscproto xdmcp xextproto xtrans \
 		kbproto:both inputproto xf86bigfontproto xproto:both
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
-ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
-AUTOMAKE_ARGS=	--add-missing
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
-			--with-xcb=yes
-
-post-install:
-	${INSTALL_DATA} ${WRKSRC}/x11-xcb.pc ${PREFIX}/libdata/pkgconfig/
-	${INSTALL_DATA} ${WRKSRC}/x11.pc ${PREFIX}/libdata/pkgconfig/
+			--with-xcb=yes \
+			--disable-specs
+CONFIGURE_ENV+=	ac_cv_path_PS2PDF=""
 
 .include "${.CURDIR}/manpages"
 .include <bsd.port.mk>
