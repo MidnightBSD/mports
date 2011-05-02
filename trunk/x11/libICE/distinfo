@@ -1,3 +1,3 @@
-MD5 (xorg/lib/libICE-1.0.4.tar.bz2) = 4ab4e67e0b8845aa201e984153087f4a
-SHA256 (xorg/lib/libICE-1.0.4.tar.bz2) = 13055e2f4c645cbd135ce97a7974a5866f9ba3ed8988e686b552f55c30514f04
-SIZE (xorg/lib/libICE-1.0.4.tar.bz2) = 252304
+SHA256 (xorg/lib/libICE-1.0.7.tar.bz2) = a8b1692f151a473cee8733df9aefe98f7e5f64dfe6d4213cb6231d7bf855b901
+RMD160 (xorg/lib/libICE-1.0.7.tar.bz2) = c7de88091897017869eb5859bae4fabcdef1b2a1
+SIZE (xorg/lib/libICE-1.0.7.tar.bz2) = 323808
