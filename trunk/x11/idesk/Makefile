@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.5 2009/06/06 21:16:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.6 2010/01/01 17:24:35 laffer1 Exp $
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -17,7 +17,7 @@ USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	autoconf:262
+USE_AUTOTOOLS=	autoconf
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 CXXFLAGS+=	`imlib2-config --cflags` `freetype-config --cflags`
