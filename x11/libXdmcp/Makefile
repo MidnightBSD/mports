@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libXdmcp/Makefile,v 1.3 2009/03/27 23:56:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXdmcp/Makefile,v 1.4 2009/05/05 01:08:04 laffer1 Exp $
 
 PORTNAME=	libXdmcp
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
