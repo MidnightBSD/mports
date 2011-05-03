@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXcursor
-# Date Created:			22 Nov, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libXcursor/Makefile,v 1.22 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.1 2007/10/03 03:52:12 ctriv Exp $
 
 PORTNAME=	libXcursor
-PORTVERSION=	1.1.9
+PORTVERSION=	1.1.11
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,7 +10,8 @@ COMMENT=	X client-side cursor loading library
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	xrender x11 xfixes renderproto fixesproto xproto:both
+USE_XORG=	xrender x11 xfixes fixesproto xproto:both \
+		xextproto
 
 CONFIGURE_ARGS=	--with-icondir=${PREFIX}/lib/X11/icons
 
