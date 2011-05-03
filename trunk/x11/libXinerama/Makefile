@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXinerama/Makefile,v 1.3 2009/09/20 01:44:05 smultron Exp $
+# $MidnightBSD: mports/x11/libXinerama/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libXinerama
-PORTVERSION=	1.0.3
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +12,7 @@ XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto xineramaproto:both
 USE_AUTOTOOLS=	libtool
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 
 MAN3=		Xinerama.3 \
 		XineramaQueryExtension.3 \
