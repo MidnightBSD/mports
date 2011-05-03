@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXext
-# Date Created:			29 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libXfixes/Makefile,v 1.14 2007/05/19 20:26:51 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXfixes/Makefile,v 1.1 2007/10/02 22:31:23 ctriv Exp $
 
 PORTNAME=	libXfixes
-PORTVERSION=	4.0.3
+PORTVERSION=	4.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
