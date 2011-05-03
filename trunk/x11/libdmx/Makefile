@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libdmx
-# Date Created:			8 Feb 2006
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libdmx/Makefile,v 1.2 2007/06/04 18:07:59 lesi Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libdmx/Makefile,v 1.1 2007/10/05 19:56:19 ctriv Exp $
 
 PORTNAME=	libdmx
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
