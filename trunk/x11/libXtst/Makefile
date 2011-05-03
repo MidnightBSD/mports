@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.3 2009/09/20 01:49:10 smultron Exp $
+# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libXtst
-PORTVERSION=	1.0.3
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,21 +9,8 @@ COMMENT=	X Test extension
 LICENSE=	x11
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext recordproto:both xextproto inputproto
+USE_XORG=	x11 xext recordproto:both xextproto inputproto:both \
+		xi
 USE_AUTOTOOLS=	libtool
-
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
-
-MAN3=		XTestQueryExtension.3 \
-		XTestCompareCursorWithWindow.3 \
-		XTestCompareCurrentCursorWithWindow.3 \
-		XTestFakeKeyEvent.3 \
-		XTestFakeButtonEvent.3 \
-		XTestFakeMotionEvent.3 \
-		XTestFakeRelativeMotionEvent.3 \
-		XTestGrabControl.3 \
-		XTestSetGContextOfGC.3 \
-		XTestSetVisualIDOfVisual.3 \
-		XTestDiscard.3
 
 .include <bsd.port.mk>
