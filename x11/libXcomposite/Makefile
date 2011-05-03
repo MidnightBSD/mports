@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXext
-# Date Created:			29 Oct, 2003
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libXcomposite/Makefile,v 1.15 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.1 2007/10/05 17:26:16 ctriv Exp $
 
 PORTNAME=	libXcomposite
-PORTVERSION=	0.4.0
+PORTVERSION=	0.4.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
