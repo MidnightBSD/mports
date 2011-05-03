@@ -1,4 +1,3 @@
-MD5 (xorg/lib/libXdmcp-1.0.2.tar.bz2) = 10facf2bc7cbd5e5c1a698b8a210a582
-SHA256 (xorg/lib/libXdmcp-1.0.2.tar.bz2) = f3e50c1847599145c22784a2f15818821960652ee91d21d905817fb7c10f96a8
-RMD160 (xorg/lib/libXdmcp-1.0.2.tar.bz2) = b1172f757623bd5f3671692d0ae920205404792b
-SIZE (xorg/lib/libXdmcp-1.0.2.tar.bz2) = 220946
+SHA256 (xorg/lib/libXdmcp-1.0.3.tar.bz2) = d8033a2fae20fed6de4f16b73ad69ca1c511e7da31c88e9bc6e75976187378cb
+RMD160 (xorg/lib/libXdmcp-1.0.3.tar.bz2) = eac931ccea5e2eb88f3f86afbdfd8efc01c3fd50
+SIZE (xorg/lib/libXdmcp-1.0.3.tar.bz2) = 256963
