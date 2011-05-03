@@ -1,3 +1,3 @@
-MD5 (xorg/lib/libXinerama-1.0.3.tar.bz2) = cd9f7c46439ac40e0517a302d2434d2c
-SHA256 (xorg/lib/libXinerama-1.0.3.tar.bz2) = 07b3564cd56154c20580b56230b7a95d74fe6582c80cedf0550d8d7955181219
-SIZE (xorg/lib/libXinerama-1.0.3.tar.bz2) = 236386
+SHA256 (xorg/lib/libXinerama-1.1.1.tar.bz2) = bbe2b4a0e8ccf01a40f02c429c8418bd1fe652fd2c6f05d487e1319599d6779f
+RMD160 (xorg/lib/libXinerama-1.1.1.tar.bz2) = f0f49a96f6bb323ca4504f085a032cc1d10ff520
+SIZE (xorg/lib/libXinerama-1.1.1.tar.bz2) = 266086
