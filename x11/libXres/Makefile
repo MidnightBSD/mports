@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libXres/Makefile,v 1.1 2007/10/05 15:13:37 ctriv Exp $
+# $MidnightBSD: mports/x11/libXres/Makefile,v 1.2 2009/03/14 20:30:17 laffer1 Exp $
 
 PORTNAME=	libXres
-PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
