@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXxf86misc
-# Date Created:			8 Feb 2006
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libXxf86misc/Makefile,v 1.1 2007/05/19 20:26:58 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXxf86misc/Makefile,v 1.1 2007/10/05 18:23:11 ctriv Exp $
 
 PORTNAME=	libXxf86misc
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
