@@ -1,3 +1,3 @@
-MD5 (xorg/lib/libXau-1.0.4.tar.bz2) = 0f2b88d857e0a3f5898e4759c541af46
-SHA256 (xorg/lib/libXau-1.0.4.tar.bz2) = 10d3ffa5f00d0c0a4083309ba68bdfa01dfdf912ef4cf2141e3f260b2edeb22c
-SIZE (xorg/lib/libXau-1.0.4.tar.bz2) = 227753
+SHA256 (xorg/lib/libXau-1.0.6.tar.bz2) = ee84415ffedcc1c0d39b3a39c35d0596c89907bba93d22bf85e24d21f90170fc
+RMD160 (xorg/lib/libXau-1.0.6.tar.bz2) = 4af9e97d242546e2ee61e0fc3cceeda2b8cfa082
+SIZE (xorg/lib/libXau-1.0.6.tar.bz2) = 261501
