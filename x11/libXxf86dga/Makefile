@@ -1,13 +1,8 @@
-# New ports collection makefile for:   libXxf86dga
-# Date Created:			8 Feb 2006
-# Whom:				Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/libXxf86dga/Makefile,v 1.2 2007/09/13 19:45:00 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/libXxf86dga/Makefile,v 1.1 2007/10/05 18:19:56 ctriv Exp $
 
 PORTNAME=	libXxf86dga
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
