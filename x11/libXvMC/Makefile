@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/libXvMC/Makefile,v 1.1 2007/10/05 17:55:47 ctriv Exp $
+# $MidnightBSD: mports/x11/libXvMC/Makefile,v 1.2 2009/03/14 20:16:58 laffer1 Exp $
 
 PORTNAME=	libXvMC
-PORTVERSION=	1.0.4
-PORTREVISION=	1
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
