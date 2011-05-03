@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libXext/Makefile,v 1.3 2008/03/28 07:35:55 ctriv Exp $
+# $MidnightBSD: mports/x11/libXext/Makefile,v 1.4 2009/03/15 03:57:12 laffer1 Exp $
 
 PORTNAME=	libXext
-PORTVERSION=	1.0.5
+PORTVERSION=	1.1.2
 PORTEPOCH=	1
 CATEGORIES=	x11
 
