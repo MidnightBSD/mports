@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xev/Makefile,v 1.1 2007/10/07 16:48:36 ctriv Exp $
+# $MidnightBSD: mports/x11/xev/Makefile,v 1.2 2009/05/04 02:40:02 laffer1 Exp $
 
 PORTNAME=	xev
-PORTVERSION=	1.0.3
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
