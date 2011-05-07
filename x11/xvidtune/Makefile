@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/xvidtune/Makefile,v 1.1 2007/10/08 16:03:53 ctriv Exp $
+# $MidnightBSD: mports/x11/xvidtune/Makefile,v 1.2 2009/03/25 01:21:59 laffer1 Exp $
 
 PORTNAME=	xvidtune
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
