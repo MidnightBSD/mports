@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/pixman/Makefile,v 1.8 2009/10/14 00:05:11 laffer1 Exp $
+# $MidnightBSD: mports/x11/pixman/Makefile,v 1.9 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	pixman
-PORTVERSION=	0.16.0 
+PORTVERSION=	0.21.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
