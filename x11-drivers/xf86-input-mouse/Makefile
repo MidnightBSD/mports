@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-mouse/Makefile,v 1.4 2009/05/08 14:26:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-mouse/Makefile,v 1.5 2009/08/30 05:43:38 laffer1 Exp $
 
 PORTNAME=	xf86-input-mouse
-PORTVERSION=	1.4.0
-PORTREVISION=	2
+PORTVERSION=	1.6.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
