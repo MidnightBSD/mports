@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xkill
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xkill/Makefile,v 1.1 2007/05/19 20:27:58 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xkill/Makefile,v 1.1 2007/10/08 14:05:27 ctriv Exp $
 
 PORTNAME=	xkill
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

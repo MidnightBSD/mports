@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xkbcomp
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xkbcomp/Makefile,v 1.1 2007/05/19 20:27:55 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xkbcomp/Makefile,v 1.1 2007/10/08 05:27:42 ctriv Exp $
 
 PORTNAME=	xkbcomp
-PORTVERSION=	1.0.3
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

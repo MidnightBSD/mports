@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xinput/Makefile,v 1.1 2009/05/04 01:47:01 laffer1 Exp $
 
 PORTNAME=	xinput
-PORTVERSION=	1.4.1
+PORTVERSION=	1.5.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
