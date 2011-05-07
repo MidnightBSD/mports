@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xrdb/Makefile,v 1.1 2007/10/08 15:46:03 ctriv Exp $
+# $MidnightBSD: mports/x11/xrdb/Makefile,v 1.2 2009/03/25 01:33:51 laffer1 Exp $
 
 PORTNAME=	xrdb
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
