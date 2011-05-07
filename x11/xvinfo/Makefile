@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xvinfo
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xvinfo/Makefile,v 1.2 2007/09/13 19:45:07 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xvinfo/Makefile,v 1.1 2007/10/08 16:06:26 ctriv Exp $
 
 PORTNAME=	xvinfo
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
