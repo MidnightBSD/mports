@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/yelp/Makefile,v 1.12 2011/01/17 19:51:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/yelp/Makefile,v 1.13 2011/04/17 19:45:56 laffer1 Exp $
 
 PORTNAME=	yelp
-PORTVERSION=	2.30.1
+PORTVERSION=	2.30.2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,7 +14,7 @@ LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
 		startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
     		rarian.0:${PORTSDIR}/textproc/rarian
 
-USE_GECKO=	xulrunner browser3<->firefox xulrunner seamonkey
+USE_GECKO=	browser3<->firefox xulrunner seamonkey
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
 USE_XORG=	ice
