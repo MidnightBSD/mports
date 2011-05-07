@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.5 2009/08/20 17:50:17 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.6 2010/01/02 00:38:15 laffer1 Exp $
 
 PORTNAME=	libxcb
-PORTVERSION=	1.4
+PORTVERSION=	1.7
 CATEGORIES=	x11 python
 #MASTER_SITES=	XORG/current/src/extras
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
@@ -17,14 +17,14 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libcheck.a:${PORTSDIR}/devel/libcheck \
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xcb-proto.pc:${PORTSDIR}/x11/xcb-proto \
 		${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:${PORTSDIR}/devel/libpthread-stubs
 
-CONFIGURE_ARGS+=	--disable-build-docs --without-doxygen
+CONFIGURE_ARGS+=	--disable-build-docs --without-doxygen --enable-xinput
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_PYTHON=	2.5+
 USE_XORG=	xau xdmcp
+USE_PYTHON_BUILD=	2.5-2.7
 
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
