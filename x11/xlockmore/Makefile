@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.7 2009/04/14 02:30:58 laffer1 Exp $
+# $MidnightBSD: mports/x11/xlockmore/Makefile,v 1.8 2009/08/21 17:35:15 laffer1 Exp $
 
 PORTNAME=	xlockmore
-PORTVERSION=	5.27
-PORTREVISION=	0
-CATEGORIES?=	x11
+PORTVERSION=	5.31
+CATEGORIES=	x11
 MASTER_SITES=	ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
+		http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
 		CRITICAL
 
 MAINTAINER?=	ports@MidnightBSD.org
