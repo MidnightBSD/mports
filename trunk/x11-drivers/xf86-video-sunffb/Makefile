@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-sunffb/Makefile,v 1.2 2007/11/09 22:01:01 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-sunffb/Makefile,v 1.3 2009/03/16 15:36:42 laffer1 Exp $
 
 PORTNAME=	xf86-video-sunffb
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
