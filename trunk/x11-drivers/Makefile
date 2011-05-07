@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.16 2011/05/07 20:57:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.17 2011/05/07 21:05:58 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -13,10 +13,7 @@
     SUBDIR += xf86-input-mouse
     SUBDIR += xf86-input-mutouch
     SUBDIR += xf86-input-penmount
-    SUBDIR += xf86-input-spaceorb
-    SUBDIR += xf86-input-summa
     SUBDIR += xf86-input-synaptics
-    SUBDIR += xf86-input-tek4957
     SUBDIR += xf86-input-vmmouse
     SUBDIR += xf86-input-void
     SUBDIR += xf86-video-apm
