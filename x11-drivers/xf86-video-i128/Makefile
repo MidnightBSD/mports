@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-i128/Makefile,v 1.1 2007/10/12 00:40:00 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-i128/Makefile,v 1.2 2009/03/16 14:24:20 laffer1 Exp $
 
 PORTNAME=	xf86-video-i128
-PORTVERSION=	1.3.1
+PORTVERSION=	1.3.4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
