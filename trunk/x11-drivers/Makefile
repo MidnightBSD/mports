@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/Makefile,v 1.17 2011/05/07 21:05:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/Makefile,v 1.18 2011/05/07 21:10:02 laffer1 Exp $
 
     COMMENT = X11 drivers
 
@@ -26,7 +26,6 @@
     SUBDIR += xf86-video-glint
     SUBDIR += xf86-video-i128
     SUBDIR += xf86-video-i740
-    SUBDIR += xf86-video-imstt
     SUBDIR += xf86-video-intel
     SUBDIR += xf86-video-mach64
     SUBDIR += xf86-video-mga
