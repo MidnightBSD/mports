@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.6 2007/10/05 20:08:10 ctriv Exp $
+# $MidnightBSD: mports/x11/xorg-libraries/Makefile,v 1.7 2009/03/15 20:22:27 laffer1 Exp $
 
 PORTNAME=	xorg-libraries
-PORTVERSION=	7.4
+PORTVERSION=	7.5.1
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
