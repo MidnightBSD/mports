@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-video-mach64/Makefile,v 1.1 2009/03/15 20:52:21 laffer1 Exp $
 
 PORTNAME=	xf86-video-mach64
-PORTVERSION=	6.8.0
+PORTVERSION=	6.8.2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
