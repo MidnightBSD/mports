@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.7 2009/08/30 05:37:47 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.8 2009/11/26 20:27:32 laffer1 Exp $
 
 PORTNAME=	xf86-video-radeonhd
 PORTVERSION=	1.3.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
