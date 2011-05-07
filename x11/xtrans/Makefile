@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xtrans/Makefile,v 1.1 2007/10/02 21:35:37 ctriv Exp $
+# $MidnightBSD: mports/x11/xtrans/Makefile,v 1.2 2009/03/14 19:06:18 laffer1 Exp $
 
 PORTNAME=	xtrans
-PORTVERSION=	1.2.3
+PORTVERSION=	1.2.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
