@@ -1,4 +1,3 @@
-MD5 (xorg/driver/xf86-video-voodoo-1.2.1.tar.bz2) = ed4ce3a5406ca7958865d39558259726
-SHA256 (xorg/driver/xf86-video-voodoo-1.2.1.tar.bz2) = a2ea804932ea47dd3d9e4b6ea4475b768305e5041dc1899393004ece558b3cda
-RMD160 (xorg/driver/xf86-video-voodoo-1.2.1.tar.bz2) = 5d3eade3fa6dcccaa623d02437f266ed28aeff12
-SIZE (xorg/driver/xf86-video-voodoo-1.2.1.tar.bz2) = 258827
+SHA256 (xorg/driver/xf86-video-voodoo-1.2.4.tar.bz2) = f00238bbcf61dba726deedcd4d7416923844e3b0116671a1b1df8bf43d224741
+RMD160 (xorg/driver/xf86-video-voodoo-1.2.4.tar.bz2) = 82ee5c28a42d37d4aad7d26855ec59ed358070c6
+SIZE (xorg/driver/xf86-video-voodoo-1.2.4.tar.bz2) = 274523
