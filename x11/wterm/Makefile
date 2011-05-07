@@ -1,16 +1,11 @@
-# New ports collection makefile for:   wterm
-# Date created:		25 February 1999
-# Whom:		 	Chris Piazza <cpiazza@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/wterm/Makefile,v 1.4 2007/04/17 17:49:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/wterm/Makefile,v 1.5 2008/08/20 20:29:14 laffer1 Exp $
 # $FreeBSD: ports/x11/wterm/Makefile,v 1.26 2006/11/30 22:44:28 dougb Exp $
-#
 
 PORTNAME=	wterm
 PORTVERSION=	6.2.9
 PORTREVISION=	3
 CATEGORIES=	x11 windowmaker
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}.tar.gz
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	A color vt102 terminal emulator with transparency support
