@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-s3virge/Makefile,v 1.1 2007/10/12 02:59:27 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-s3virge/Makefile,v 1.2 2009/03/16 15:31:21 laffer1 Exp $
 
 PORTNAME=	xf86-video-s3virge
-PORTVERSION=	1.10.2
+PORTVERSION=	1.10.4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
