@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-neomagic/Makefile,v 1.1 2007/10/12 00:58:22 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-neomagic/Makefile,v 1.2 2009/03/16 14:38:18 laffer1 Exp $
 
 PORTNAME=	xf86-video-neomagic
-PORTVERSION=	1.2.2
+PORTVERSION=	1.2.5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
