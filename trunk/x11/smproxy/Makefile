@@ -1,13 +1,8 @@
-# New ports collection makefile for:	smproxy
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/smproxy/Makefile,v 1.1 2007/05/19 20:27:20 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/smproxy/Makefile,v 1.1 2007/10/04 19:21:42 ctriv Exp $
 
 PORTNAME=	smproxy
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
