@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xlogo
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xlogo/Makefile,v 1.1 2007/05/19 20:27:59 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xlogo/Makefile,v 1.1 2007/10/08 15:05:36 ctriv Exp $
 
 PORTNAME=	xlogo
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
