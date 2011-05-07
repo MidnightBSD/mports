@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xauth/Makefile,v 1.1 2007/10/04 20:58:01 ctriv Exp $
+# $MidnightBSD: mports/x11/xauth/Makefile,v 1.2 2009/05/04 02:19:01 laffer1 Exp $
 
 PORTNAME=	xauth
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
