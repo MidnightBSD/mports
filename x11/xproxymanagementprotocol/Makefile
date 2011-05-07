@@ -1,13 +1,8 @@
-# New ports collection makefile for:   xproxymanagementprotocol
-# Date Created:			Jun 21 2006
-# Whom:				Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xproxymanagementprotocol/Makefile,v 1.1 2007/05/19 20:28:10 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xproxymanagementprotocol/Makefile,v 1.1 2007/10/07 16:34:04 ctriv Exp $
 
 PORTNAME=	xproxymanagementprotocol
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
