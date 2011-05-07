@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/xcb-util/Makefile,v 1.3 2010/01/02 00:33:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcb-util/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	xcb-util
 PORTVERSION=	0.3.6
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
