@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.6 2009/05/08 15:57:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xorg-drivers/Makefile,v 1.7 2009/08/21 17:51:22 laffer1 Exp $
 
 PORTNAME=	xorg-drivers
-PORTVERSION=	7.4
-PORTREVISION=	2
+PORTVERSION=	7.5.1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -43,13 +42,13 @@ VIDEO_OFF=	apm ark \
 		dummy \
 		fbdev \
 		glint \
-		i128 i740 imstt \
+		i128 i740 \
 		mga \
-		neomagic newport nsc \
+		neomagic newport \
 		rendition \
 		s3 s3virge savage siliconmotion	sis \
 		tdfx tga trident tseng \
-		via vmware voodoo
+		vmware voodoo
 
 VIDEO_EXCL=	via:openchrome
 
@@ -57,18 +56,17 @@ INPUT_ON=	mouse \
 		keyboard
 INPUT_OFF=	acecad \
 		citron \
-		digitaledge dmc	dynapro \
+		dynapro \
 		elo2300	elographics \
 		fpit \
 		hyperpen \
-		jamstudio joystick \
-		magellan microtouch mutouch \
+		joystick \
+		mutouch \
 		palmax penmount \
-		spaceorb summa synaptics \
-		tek4957 \
+		synaptics \
 		vmmouse void
 
-QUIRKS=		keyboard:kbd jamstudio:js_x
+QUIRKS=		keyboard:kbd
 
 .if defined(XORG_COMPLETE)
 . for type in input video
