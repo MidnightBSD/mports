@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/luit/Makefile,v 1.1 2007/10/04 05:24:44 ctriv Exp $
+# $MidnightBSD: mports/x11/luit/Makefile,v 1.2 2009/03/13 03:19:51 laffer1 Exp $
 
 PORTNAME=	luit
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -10,6 +10,8 @@ LICENSE=	x11
 
 XORG_CAT=	app
 USE_XORG=	x11 fontenc
+
+CONFIGURE_ARGS=	--datadir=${LOCALBASE}/lib
 
 PLIST_FILES=	bin/luit
 
