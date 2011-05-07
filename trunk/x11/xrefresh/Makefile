@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xrefresh/Makefile,v 1.1 2007/10/08 15:48:28 ctriv Exp $
+# $MidnightBSD: mports/x11/xrefresh/Makefile,v 1.2 2009/05/08 14:09:15 laffer1 Exp $
 
 PORTNAME=	xrefresh
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

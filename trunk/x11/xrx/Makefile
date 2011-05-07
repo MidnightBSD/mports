@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/xrx/Makefile,v 1.3 2009/09/20 02:01:52 smultron Exp $
+# $MidnightBSD: mports/x11/xrx/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	xrx
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	1.0.3
+PORTREVISION=	0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
