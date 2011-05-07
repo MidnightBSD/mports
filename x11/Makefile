@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.90 2011/02/09 14:36:04 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.91 2011/02/09 14:38:22 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -105,7 +105,6 @@ COMMENT = Ports to support the X window system
     SUBDIR += nvidia-driver
     SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
-    SUBDIR += oclock
     SUBDIR += pixman
     SUBDIR += printproto
     SUBDIR += qimageblitz
