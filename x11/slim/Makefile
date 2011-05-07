@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.15 2010/03/26 00:49:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.16 2010/05/05 23:49:51 laffer1 Exp $
 
 PORTNAME=	slim
-PORTVERSION=	1.3.1
-PORTREVISION=	6
+PORTVERSION=	1.3.2
+PORTREVISION=	0
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
 		http://depot.fsck.ch/mirror/distfiles/
@@ -14,10 +14,12 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.6:${PORTSDIR}/graphics/png \
-		freetype:${PORTSDIR}/print/freetype2
+		freetype:${PORTSDIR}/print/freetype2 \
+		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 
 USE_XORG=	x11 xft xmu xorg-server xrender
 USE_RC_SUBR=	slim.sh
+SUB_FILES=	pkg-message
 
 MAN1=		slim.1
 
@@ -25,12 +27,9 @@ MAKEFILE=	Makefile.freebsd
 
 .include <bsd.port.pre.mk>
 
-pre-build:
-	@${REINPLACE_CMD} \
-			-e 's|%%X11BASE%%|${X11BASE}|g' \
-			-e 's|%%LOCALBASE%%|${PREFIX}|g' \
-			${WRKSRC}/Makefile.freebsd \
-			${WRKSRC}/slim.conf
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+			${WRKSRC}/${PORTNAME}.conf
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
