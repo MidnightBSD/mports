@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-acecad/Makefile,v 1.4 2009/04/07 15:26:21 crash Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-acecad/Makefile,v 1.5 2009/05/08 14:26:01 laffer1 Exp $
 
 PORTNAME=	xf86-input-acecad
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	1.4.0
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
