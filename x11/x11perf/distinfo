@@ -1,4 +1,3 @@
-MD5 (xorg/app/x11perf-1.5.tar.bz2) = 31283bfc3c78718ac1bd71e510d4e774
-SHA256 (xorg/app/x11perf-1.5.tar.bz2) = 4729da53dde0b7e1748db4bb771f9b7aaf2e2b1e67293a3a5b96d54043ce1233
-RMD160 (xorg/app/x11perf-1.5.tar.bz2) = 90a95faaea513aaed3b5db2254c812b6e8a1aae8
-SIZE (xorg/app/x11perf-1.5.tar.bz2) = 142378
+SHA256 (xorg/app/x11perf-1.5.3.tar.bz2) = 394d7355afe7f3b054ce6f30db78794c6305c6593d48b7fb86a9c89d9d9e21bd
+RMD160 (xorg/app/x11perf-1.5.3.tar.bz2) = d638a4401081188e37a1100fdafb216654e0d22b
+SIZE (xorg/app/x11perf-1.5.3.tar.bz2) = 161309
