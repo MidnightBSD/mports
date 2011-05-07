@@ -1,14 +1,8 @@
-# New ports collection makefile for:	xcursorgen
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xcursorgen/Makefile,v 1.2 2007/09/13 19:45:02 flz Exp $
-# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.1 2007/10/03 03:55:38 ctriv Exp $
-#
+# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.2 2010/04/29 20:23:50 vganji Exp $
 
 PORTNAME=	xcursorgen
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
