@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libxkbfile/Makefile,v 1.1 2007/10/04 05:55:50 ctriv Exp $
+# $MidnightBSD: mports/x11/libxkbfile/Makefile,v 1.2 2009/03/14 19:41:24 laffer1 Exp $
 
 PORTNAME=	libxkbfile
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
