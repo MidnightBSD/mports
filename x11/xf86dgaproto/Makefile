@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xf86bigfontproto
-# Date Created:				06 Feb 2006
-# Whom:					Eric Anholt <anholt@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xf86dgaproto/Makefile,v 1.2 2007/09/13 19:45:03 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xf86dgaproto/Makefile,v 1.1 2007/10/05 18:17:43 ctriv Exp $
 
 PORTNAME=	xf86dgaproto
-PORTVERSION=	2.0.3
+PORTVERSION=	2.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
