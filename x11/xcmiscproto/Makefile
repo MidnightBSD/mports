@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/x11/xcmiscproto/Makefile,v 1.1 2007/10/02 20:45:36 ctriv Exp $
+# $MidnightBSD: mports/x11/xcmiscproto/Makefile,v 1.2 2009/03/27 23:54:58 laffer1 Exp $
 #
 
 PORTNAME=	xcmiscproto
-PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTVERSION=	1.2.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
