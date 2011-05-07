@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libxdg-basedir/Makefile,v 1.1 2009/12/13 21:06:55 laffer1 Exp $
 
 PORTNAME=	libxdg-basedir
-PORTVERSION=	1.0.1
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 MASTER_SITES=	http://n.ethz.ch/student/nevillm/download/libxdg-basedir/
 
