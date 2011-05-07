@@ -1,4 +1,3 @@
-MD5 (libxcb-1.4.tar.bz2) = b00fd506c717dea01f595e8da31f6914
-SHA256 (libxcb-1.4.tar.bz2) = 07b6e2d3dde4beb06dc8310daec1c5c82d67022e3c9aec35f3783e63aad3209e
-RMD160 (libxcb-1.4.tar.bz2) = c8ce1e1670c09ded64c9a1642c8ed26403ef9986
-SIZE (libxcb-1.4.tar.bz2) = 306116
+SHA256 (libxcb-1.7.tar.bz2) = e776dc35e2a66094e7308ce2e045fb4e27cf3ca30ab1813a8fc08538140724df
+RMD160 (libxcb-1.7.tar.bz2) = f6748b9751e339c2669a6b9322b421abbbff7afb
+SIZE (libxcb-1.7.tar.bz2) = 318619
