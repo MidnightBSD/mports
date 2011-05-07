@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-vmware/Makefile,v 1.1 2007/10/12 03:49:25 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-vmware/Makefile,v 1.2 2009/03/16 15:47:04 laffer1 Exp $
 
 PORTNAME=	xf86-video-vmware
-PORTVERSION=	10.16.5
+PORTVERSION=	11.0.3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
