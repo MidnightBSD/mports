@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-tseng/Makefile,v 1.1 2007/10/12 03:43:52 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-tseng/Makefile,v 1.2 2009/03/16 15:41:40 laffer1 Exp $
 
 PORTNAME=	xf86-video-tseng
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.4
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
