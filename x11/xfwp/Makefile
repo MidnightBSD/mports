@@ -1,13 +1,9 @@
-# New ports collection makefile for:	xfwp
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xfwp/Makefile,v 1.1 2007/05/19 20:27:53 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xfwp/Makefile,v 1.1 2007/10/08 04:59:52 ctriv Exp $
 
 PORTNAME=	xfwp
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
