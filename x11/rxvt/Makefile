@@ -1,8 +1,4 @@
-# New ports collection Makefile for: rxvt
-# Date created:         5th December 1994
-# Whom:                 gpalmer@FreeBSD.org
-#
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.5 2008/04/04 01:43:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.6 2008/08/20 20:37:47 laffer1 Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -11,7 +7,7 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES+=	x11
 MASTER_SITES=	SF
 
@@ -19,79 +15,89 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A low memory usage xterm replacement that supports color
 LICENSE=	gpl2
 
-OPTIONS=	XIM "XIM (X Input Method) protocol support" On \
-		XGETDEFAULT "Enable XGetDefault() resource checking" Off \
-		BIG5 "BIG5 Chinese characters support" Off \
-		GB "GB Chinese characters support" Off \
-		KANJI "Kanji characters support" Off \
-		GREEK_KEYBOARD "Greek keyboard support" Off \
-		HALF_SHADOW "Use half width/height shadows" Off \
-		MENUBAR "Enable menu bar system" Off \
-		NEXT_SCROLLBAR "Enable NeXT'ish scrollbars" Off \
-		XTERM_SCROLLBAR "Enable Xterm'ish scrollbars" Off \
-		CLEARTEXTPASSWD "Use cleartext passwords" Off
-
 USE_XORG=	xpm
 GNU_CONFIGURE=	yes
+
+OPTIONS=	BIG5		"Build with BIG5 support" off \
+		GB		"Build with GB support" off \
+		GREEK 		"Build with greek keyboard support" off \
+		HALF_SHADOW	"Build with half shadows support" off \
+		KANJI		"Build with Kanji support" off \
+		MENUBAR		"Build with menubar support" off \
+		NEXT		"Build with NeXT scrollbar" off \
+		TRANSPARENCY	"Build with transparency support" off \
+		XGETDEFAULT	"Build with XGetDefault() support" off \
+		XIM		"Build with XIM support" off \
+		XTERM		"Build with Xterm scrollbar" off
+
 CONFIGURE_ARGS=	--enable-utmp --enable-wtmp --enable-ttygid \
-		--with-xpm --enable-xpm-background --enable-transparency \
+		--with-xpm --enable-xpm-background \
 		--with-xpm-includes=${LOCALBASE}/include/X11 \
 		--with-xpm-library=${LOCALBASE}/lib
 MAN1=		rxvt.1
 PLIST_FILES=	bin/rxvt
 
+.include <bsd.port.pre.mk>
+
 # enable big5 support
 .if defined(WITH_BIG5)
 CONFIGURE_ARGS+=	--enable-big5
-.endif # WITH_BIG5
-#
+.endif
+
 # enable gb support
 .if defined(WITH_GB)
 CONFIGURE_ARGS+=	--enable-gb
-.endif # WITH_GB
-#
+.endif
+
 # enable greek keyboard support
-.if defined(WITH_GREEK_KEYBOARD)
+.if defined(WITH_GREEK)
 CONFIGURE_ARGS+=	--enable-greek
-.endif # WITH_GREEK_KEYBOARD
-#
+.endif
+
 # enable half width/height shadows scrollbar
 .if defined(WITH_HALF_SHADOW)
 CONFIGURE_ARGS+=	--enable-half-shadow
 .endif
-#
+
 # enable kanji support
 .if defined(WITH_KANJI)
 CONFIGURE_ARGS+=	--enable-kanji
-.endif # WITH_KANJI
-#
+.endif
+
 # enable menubar
 .if defined(WITH_MENUBAR)
 CONFIGURE_ARGS+=	--enable-menubar
-.endif # WITH_MENUBAR
-#
+.endif
+
 # enable NeXT style scrollbar
-.if defined(WITH_NEXT_SCROLLBAR)
+.if defined(WITH_NEXT)
 CONFIGURE_ARGS+=	--enable-next-scroll
 .endif
-#
+
+# enable transparency support
+.if defined(WITH_TRANSPARENCY)
+CONFIGURE_ARGS+=	--enable-transparency
+.endif
+
 # make resources checking via XGetDefault()
 .if defined(WITH_XGETDEFAULT)
 CONFIGURE_ARGS+=	--enable-xgetdefault
-.endif # WITH_XGETDEFAULT
-#
+.endif
+
 # XIM (X Input Method) protocol support
-.ifndef(WITHOUT_XIM)
+.if defined(WITH_XIM)
 CONFIGURE_ARGS+=	--enable-xim
-.endif # WITH_XIM
-#
+.endif
+
 # enable Xterm style scrollbar
-.if defined(WITH_XTERM_SCROLLBAR)
+.if defined(WITH_XTERM)
 CONFIGURE_ARGS+=	--enable-xterm-scroll
-.endif # WITH_XTERM_SCROLLBAR
-#
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|getpt()|posix_openpt(0)|' ${WRKSRC}/configure
 
 post-install:
 	@${CHMOD} 4711 ${PREFIX}/bin/rxvt
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
