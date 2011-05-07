@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.7 2008/06/01 20:54:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.8 2009/05/05 01:21:19 laffer1 Exp $
 
 PORTNAME=	xorg
-PORTVERSION=	7.4
+PORTVERSION=	7.5.1
 CATEGORIES=	x11
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -13,7 +13,7 @@ LICENSE=	agg
 
 NO_BUILD=	yes
 
-RUN_DEPENDS+=	${LOCALBASE}/lib/dri/r128_dri.so:${PORTSDIR}/graphics/dri
+RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:${PORTSDIR}/graphics/dri
 
 # data
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps \

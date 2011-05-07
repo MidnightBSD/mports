@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xmodmap
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xmodmap/Makefile,v 1.2 2007/09/13 19:45:04 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xmodmap/Makefile,v 1.1 2007/10/08 15:20:57 ctriv Exp $
 
 PORTNAME=	xmodmap
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
