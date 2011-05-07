@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-mga/Makefile,v 1.2 2009/03/16 14:35:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-mga/Makefile,v 1.3 2010/01/23 21:10:23 laffer1 Exp $
 
 PORTNAME=	xf86-video-mga
-PORTVERSION=	1.4.10
+PORTVERSION=	1.4.11
 PORTEPOCH=	2
 CATEGORIES=	x11-drivers
 
