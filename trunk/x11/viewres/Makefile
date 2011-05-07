@@ -1,13 +1,8 @@
-# New ports collection makefile for:	viewres
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/viewres/Makefile,v 1.1 2007/05/19 20:27:25 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/viewres/Makefile,v 1.1 2007/10/04 19:26:41 ctriv Exp $
 
 PORTNAME=	viewres
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
