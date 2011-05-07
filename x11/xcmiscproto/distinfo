@@ -1,4 +1,3 @@
-MD5 (xorg/proto/xcmiscproto-1.1.2.tar.bz2) = fde0b050901f024b19159cdacdcfbd20
-SHA256 (xorg/proto/xcmiscproto-1.1.2.tar.bz2) = b2807e96a9d632b7bbf1782a43095de51f3feae3d2e25374d3df00c6c68792ab
-RMD160 (xorg/proto/xcmiscproto-1.1.2.tar.bz2) = 375efab5b1ba235687cc3cfa58d33fb690f76028
-SIZE (xorg/proto/xcmiscproto-1.1.2.tar.bz2) = 36750
+SHA256 (xorg/proto/xcmiscproto-1.2.0.tar.bz2) = de17c06b7005c5e9ab469e324e76c5c3b8baa2dfc3c1dc7e93438c197facf68e
+RMD160 (xorg/proto/xcmiscproto-1.2.0.tar.bz2) = b66ac94e7eb966889136dcae61395b5917fa70f6
+SIZE (xorg/proto/xcmiscproto-1.2.0.tar.bz2) = 48697
