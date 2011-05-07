@@ -1,14 +1,9 @@
-# New ports collection makefile for:    xloadimage
-# Date created:         9 January 1994
-# Whom:                 jmz
-#
-# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.8 2010/05/08 16:09:44 laffer1 Exp $
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.9 2010/10/19 15:15:26 laffer1 Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
-#
 
 VERSION=	4.1
 REVISION=	16
-PORTREVISION=	3
+PORTREVISION=	4
 
 PORTNAME=	xloadimage
 PORTVERSION=	${VERSION}.${REVISION}

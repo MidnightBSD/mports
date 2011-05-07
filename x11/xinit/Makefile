@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xinit/Makefile,v 1.1 2007/10/08 05:23:22 ctriv Exp $
+# $MidnightBSD: mports/x11/xinit/Makefile,v 1.2 2009/03/25 01:42:54 laffer1 Exp $
 
 PORTNAME=	xinit
-PORTVERSION=	1.1.1
+PORTVERSION=	1.2.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
