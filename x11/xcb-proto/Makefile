@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xcb-proto/Makefile,v 1.3 2009/05/04 02:23:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcb-proto/Makefile,v 1.4 2009/08/20 17:44:53 laffer1 Exp $
 
 PORTNAME=	xcb-proto
-PORTVERSION=	1.5
+PORTVERSION=	1.6
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
@@ -15,7 +15,7 @@ USE_BZIP2=	yes
 USE_GNOME=	gnomehack
 USE_PYTHON=	2.5+
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 
 DATADIR=	${PREFIX}/share/xcb
 
