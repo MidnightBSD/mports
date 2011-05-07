@@ -1,4 +1,3 @@
-MD5 (xorg/driver/xf86-input-mouse-1.4.0.tar.bz2) = e7dc0759c14a9bfd373917a49e5f7c7d
-SHA256 (xorg/driver/xf86-input-mouse-1.4.0.tar.bz2) = e6e1dbd64d41c826619a5881c5aeed46095bfdcb87c3e27d65292fc12a5bb7c7
-RMD160 (xorg/driver/xf86-input-mouse-1.4.0.tar.bz2) = 17985f0493711a25ffa8fdeae4d741d7f602ca4e
-SIZE (xorg/driver/xf86-input-mouse-1.4.0.tar.bz2) = 292626
+SHA256 (xorg/driver/xf86-input-mouse-1.6.0.tar.bz2) = c7ae245e5168276346145f196d1d1faed618f41d5174a2031c71fab6e1a2fbdb
+RMD160 (xorg/driver/xf86-input-mouse-1.6.0.tar.bz2) = 1144d62f093bb102e6e5990fa73c18daab0b6d41
+SIZE (xorg/driver/xf86-input-mouse-1.6.0.tar.bz2) = 316953
