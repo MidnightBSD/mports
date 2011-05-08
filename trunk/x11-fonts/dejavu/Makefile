@@ -4,7 +4,7 @@
 #
 # $FreeBSD: ports/x11-fonts/dejavu/Makefile,v 1.40 2008/05/27 05:35:26 ahze Exp $
 #    $MCom: ports/x11-fonts/dejavu/Makefile,v 1.1 2006/10/13 23:29:09 ahze Exp $
-# $MidnightBSD: mports/x11-fonts/dejavu/Makefile,v 1.2 2008/10/03 04:48:09 crash Exp $ 
+# $MidnightBSD: mports/x11-fonts/dejavu/Makefile,v 1.3 2011/05/08 01:42:17 laffer1 Exp $ 
 
 PORTNAME=	dejavu
 DISTVERSION=	2.28
@@ -26,22 +26,19 @@ MSG_FILE=	${PKGDIR}/pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 FONTNAME=	${PORTNAME}
 FONTSDIR?=	${PREFIX}/lib/X11/fonts/${FONTNAME}
+INSTALLS_TTF=	yes
 
 post-patch:
-	${SED} 's|%%FONTSDIR%%|${FONTSDIR}|g' ${MSG_FILE} > ${PKGMESSAGE}
+	@${SED} 's|%%FONTSDIR%%|${FONTSDIR}|g' ${MSG_FILE} > ${PKGMESSAGE}
 
 do-install:
-	${MKDIR} ${FONTSDIR}
-	${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${FONTSDIR}
+	@${MKDIR} ${FONTSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/ttf/*.ttf ${FONTSDIR}
 .if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 .endif
-
-post-install:
-	@${ECHO_MSG} "===> Running fc-cache"
-	-${LOCALBASE}/bin/fc-cache -f -v ${FONTSDIR}
 
 .include <bsd.port.mk>
