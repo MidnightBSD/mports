@@ -4,10 +4,10 @@
 #
 # $FreeBSD: ports/x11-fonts/dejavu/Makefile,v 1.40 2008/05/27 05:35:26 ahze Exp $
 #    $MCom: ports/x11-fonts/dejavu/Makefile,v 1.1 2006/10/13 23:29:09 ahze Exp $
-# $MidnightBSD$ 
+# $MidnightBSD: mports/x11-fonts/dejavu/Makefile,v 1.2 2008/10/03 04:48:09 crash Exp $ 
 
 PORTNAME=	dejavu
-DISTVERSION=	2.27
+DISTVERSION=	2.28
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
@@ -43,8 +43,5 @@ do-install:
 post-install:
 	@${ECHO_MSG} "===> Running fc-cache"
 	-${LOCALBASE}/bin/fc-cache -f -v ${FONTSDIR}
-	@${ECHO_MSG}
-	${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG}
 
 .include <bsd.port.mk>
