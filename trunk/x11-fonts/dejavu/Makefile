@@ -4,10 +4,10 @@
 #
 # $FreeBSD: ports/x11-fonts/dejavu/Makefile,v 1.40 2008/05/27 05:35:26 ahze Exp $
 #    $MCom: ports/x11-fonts/dejavu/Makefile,v 1.1 2006/10/13 23:29:09 ahze Exp $
-# $MidnightBSD: mports/x11-fonts/dejavu/Makefile,v 1.3 2011/05/08 01:42:17 laffer1 Exp $ 
+# $MidnightBSD: mports/x11-fonts/dejavu/Makefile,v 1.4 2011/05/08 13:42:42 laffer1 Exp $ 
 
 PORTNAME=	dejavu
-DISTVERSION=	2.28
+DISTVERSION=	2.33
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
@@ -15,6 +15,7 @@ DISTNAME=	${PORTNAME}-fonts-ttf-${DISTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Bitstream Vera Fonts clone with a wider range of characters
 LICENSE=        other
+
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
 USE_BZIP2=	yes
