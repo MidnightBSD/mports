@@ -1,13 +1,8 @@
-# New ports collection makefile for:    encodings
-# Date created:				Oct 29 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-fonts/encodings/Makefile,v 1.1 2007/05/19 20:29:09 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/encodings/Makefile,v 1.1 2007/10/09 15:44:02 ctriv Exp $
 
 PORTNAME=	encodings
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
