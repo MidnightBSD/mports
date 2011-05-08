@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/Makefile,v 1.9 2008/06/26 17:56:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/Makefile,v 1.10 2009/02/09 07:42:12 laffer1 Exp $
 #
 
     COMMENT = X11 fonts and font utilities
@@ -59,7 +59,6 @@
     SUBDIR += linux-fontconfig
     SUBDIR += mkfontdir
     SUBDIR += mkfontscale
-    SUBDIR += mozilla-fonts
     SUBDIR += p5-type1inst
     SUBDIR += showfont
     SUBDIR += webfonts
