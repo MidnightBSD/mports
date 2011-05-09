@@ -1,13 +1,8 @@
-# New ports collection makefile for:	fonttosfnt
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-fonts/fonttosfnt/Makefile,v 1.1 2007/05/19 20:29:25 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/fonttosfnt/Makefile,v 1.1 2007/10/03 21:03:33 ctriv Exp $
 
 PORTNAME=	fonttosfnt
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
