@@ -1,13 +1,8 @@
-# New ports collection makefile for:	fslsfonts
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-fonts/fslsfonts/Makefile,v 1.1 2007/05/19 20:29:26 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/fslsfonts/Makefile,v 1.1 2007/10/03 21:11:12 ctriv Exp $
 
 PORTNAME=	fslsfonts
-PORTVERSION=	1.0.1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
