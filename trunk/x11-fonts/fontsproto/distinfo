@@ -1,4 +1,3 @@
-MD5 (xorg/proto/fontsproto-2.0.2.tar.bz2) = c946f166107b016a21cc7a02e1132724
-SHA256 (xorg/proto/fontsproto-2.0.2.tar.bz2) = 83bd547131aa11a232717a0f06d3c6cd58a0b2f6d541660bbe9ebf43073a8b7b
-RMD160 (xorg/proto/fontsproto-2.0.2.tar.bz2) = ca0f656316425d4ed85a7486c7917defb2242910
-SIZE (xorg/proto/fontsproto-2.0.2.tar.bz2) = 45202
+SHA256 (xorg/proto/fontsproto-2.1.1.tar.bz2) = 9c9abc81e2927e6b6ffc6eece1f3fbc7559f506a2848673a21e72c0ae4d639bc
+RMD160 (xorg/proto/fontsproto-2.1.1.tar.bz2) = 5c7b646dbfec1bf4ee1a38d490d9885c08ada0dd
+SIZE (xorg/proto/fontsproto-2.1.1.tar.bz2) = 131040
