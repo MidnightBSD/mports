@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/dns/bind98/Makefile,v 1.3 2011/02/08 14:36:28 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind98/Makefile,v 1.4 2011/02/23 21:09:38 laffer1 Exp $
 # $FreeBSD: ports/dns/bind98/Makefile,v 1.3 2010/12/18 09:50:45 dougb Exp $
 
 PORTNAME=	bind98
-PORTVERSION=	9.8.0.rc1
+PORTVERSION=	9.8.0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
-PKGNAMESUFFIX=	-devel
 DISTNAME=	bind-${ISCVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -17,7 +16,7 @@ COMMENT=	The BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
-ISCVERSION=	9.8.0rc1
+ISCVERSION=	9.8.0
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -26,7 +25,7 @@ CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 		--disable-symtable \
 		--with-randomdev=/dev/random
 
-CONFLICTS=	bind9*-9.[4567].* bind9-sdb-[0-9]* host-[0-9]* bind-tools-9.*
+CONFLICTS=	bind9*-9.[45679].* bind9-sdb-[0-9]* host-[0-9]* bind-tools-9.*
 
 OPTIONS=	SSL "Building without OpenSSL removes DNSSEC" on \
 		XML "Support for xml statistics output" on \
