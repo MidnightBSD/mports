@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.5 2008/08/20 17:10:44 crash Exp $
+# $MidnightBSD: mports/x11-fonts/libXft/Makefile,v 1.6 2009/09/23 02:22:32 laffer1 Exp $
 
 PORTNAME=	libXft
-PORTVERSION=	2.1.13
-PORTREVISION=	1
+PORTVERSION=	2.1.14
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
