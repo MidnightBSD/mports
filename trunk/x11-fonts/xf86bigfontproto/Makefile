@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/xf86bigfontproto/Makefile,v 1.1 2007/10/02 21:06:45 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/xf86bigfontproto/Makefile,v 1.2 2009/05/05 01:02:29 laffer1 Exp $
 
 PORTNAME=	xf86bigfontproto
-PORTVERSION=	1.1.2
+PORTVERSION=	1.2.0
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org

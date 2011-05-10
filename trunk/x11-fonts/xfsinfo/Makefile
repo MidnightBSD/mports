@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/xfsinfo/Makefile,v 1.1 2007/10/07 17:10:49 ctriv Exp $
+# $MidnightBSD: mports/x11-fonts/xfsinfo/Makefile,v 1.2 2009/06/06 18:42:14 laffer1 Exp $
 
 PORTNAME=	xfsinfo
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org

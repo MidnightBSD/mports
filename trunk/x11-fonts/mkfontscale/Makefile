@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mkfontscale
-# Date Created:				28 Aug 2005
-# Whom:					Pawel Worach
-#
 # $FreeBSD: ports/x11-fonts/mkfontscale/Makefile,v 1.1 2007/05/19 20:29:33 flz Exp $
-# $MidnightBSD: mports/x11-fonts/mkfontscale/Makefile,v 1.1 2007/10/03 18:55:05 ctriv Exp $
-#
+# $MidnightBSD: mports/x11-fonts/mkfontscale/Makefile,v 1.2 2010/05/30 22:01:59 laffer1 Exp $
 
 PORTNAME=	mkfontscale
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.8
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org

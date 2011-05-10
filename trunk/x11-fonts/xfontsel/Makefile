@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xfontsel
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11-fonts/xfontsel/Makefile,v 1.1 2007/05/19 20:29:38 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11-fonts/xfontsel/Makefile,v 1.1 2007/10/07 17:01:21 ctriv Exp $
 
 PORTNAME=	xfontsel
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
