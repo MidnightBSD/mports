@@ -1,3 +1,3 @@
-MD5 (xorg/lib/libXfont-1.3.4.tar.bz2) = 788371ee566ef97ed4ca0794873b38cf
-SHA256 (xorg/lib/libXfont-1.3.4.tar.bz2) = b09f23f1fd758fe25336d084455229e6847fab9dcaec839846431f0f4fe7d9f0
-SIZE (xorg/lib/libXfont-1.3.4.tar.bz2) = 571087
+SHA256 (xorg/lib/libXfont-1.4.3.tar.bz2) = f79245652901d20092092e942155d32b8dde15527637db3c09a1adc83672e9cc
+RMD160 (xorg/lib/libXfont-1.4.3.tar.bz2) = f1ad5b5f5e6d4c28aaaeedbe46f284408f267705
+SIZE (xorg/lib/libXfont-1.4.3.tar.bz2) = 438358
