@@ -1,4 +1,3 @@
-MD5 (xorg/lib/libfontenc-1.0.4.tar.bz2) = 5cd16a2e51ca7b96a3081c7486ff98b9
-SHA256 (xorg/lib/libfontenc-1.0.4.tar.bz2) = b993aa3d17e845a12a49160b5d96993059ce919c7ba902005b910b867b6258c8
-RMD160 (xorg/lib/libfontenc-1.0.4.tar.bz2) = 7a20977bb2cf382a22873053be98bcc9f0e76438
-SIZE (xorg/lib/libfontenc-1.0.4.tar.bz2) = 224063
+SHA256 (xorg/lib/libfontenc-1.1.0.tar.bz2) = 348a1b0142f61afeaafc9497e997d6f10074affed8682e202d019f10170b9cbf
+RMD160 (xorg/lib/libfontenc-1.1.0.tar.bz2) = c83603e38f012ea709c996ebf0ee66e208c5c68a
+SIZE (xorg/lib/libfontenc-1.1.0.tar.bz2) = 268872
