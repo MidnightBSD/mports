@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/libofa/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD: mports/audio/libofa/Makefile,v 1.7 2011/03/17 17:52:25 laffer1 Exp $
 
 PORTNAME=	libofa
 PORTVERSION=	0.9.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	GOOGLE_CODE
 
@@ -17,17 +17,11 @@ LIB_DEPENDS=	fftw3.5:${PORTSDIR}/math/fftw3 \
 PROJECTHOST=	musicip-libofa
 USE_DOS2UNIX=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	pkgconfig
+USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
-.include <bsd.port.pre.mk>
-
-post-configure:
-	@${REINPLACE_CMD} -e "s|pcdir =.*|pcdir = ${PREFIX}/libdata/pkgconfig|g" \
-		${WRKSRC}/Makefile
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
