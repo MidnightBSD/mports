@@ -1,15 +1,14 @@
-# $MidnightBSD: mports/math/mpfr/Makefile,v 1.4 2010/05/08 02:07:58 laffer1 Exp $
+# $MidnightBSD: mports/math/mpfr/Makefile,v 1.5 2010/07/31 03:09:07 laffer1 Exp $
 
 PORTNAME=	mpfr
-PORTVERSION=	2.4.2
-PORTREVISION=	1
+PORTVERSION=	3.0.0
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.mpfr.org/mpfr-current/
 DIST_SUBDIR=	mpfr
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for multiple-precision floating-point computations
-LICENSE=	gpl2
+LICENSE=	lgpl
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
