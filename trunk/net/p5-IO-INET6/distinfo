@@ -1,4 +1,3 @@
-MD5 (IO-Socket-INET6-2.61.tar.gz) = feba41c2aeea718b2a33ad34615a1dd5
-SHA256 (IO-Socket-INET6-2.61.tar.gz) = a0a40b138f16e16acccd433d36430fca9b0b465db9d9882f01ef033b78cf2e6d
-RMD160 (IO-Socket-INET6-2.61.tar.gz) = fc7c455f81a9158bfd0a83ed617c31145af686fb
-SIZE (IO-Socket-INET6-2.61.tar.gz) = 16341
+SHA256 (IO-Socket-INET6-2.67.tar.gz) = dd90e417cbd37047b71469ec99e79fe89a3bb5103769fc9c76b3c87d8cb019b2
+RMD160 (IO-Socket-INET6-2.67.tar.gz) = 68186996e1c75724a33eb383e24f8761440dc3a6
+SIZE (IO-Socket-INET6-2.67.tar.gz) = 18096
