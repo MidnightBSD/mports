@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/audio/akode/Makefile,v 1.8 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD: mports/audio/akode/Makefile,v 1.9 2011/03/18 20:09:10 laffer1 Exp $
 
 PORTNAME=	akode
 PORTVERSION=	2.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	audio kde
-MASTER_SITES=	ftp://anduin.linuxfromscratch.org/BLFS/svn/a/ \
+MASTER_SITES=	${MASTER_SITE_GENTOO} \
+		ftp://anduin.linuxfromscratch.org/BLFS/svn/a/ \
 		http://pkgs.fedoraproject.org/repo/pkgs/akode/30375-akode-2.0.2.tar.bz2/659ced0c9c735cb3e55b9138ff02342c/
 MASTER_SITE_SUBDIR=distfiles
 DISTNAME=	30375-${PORTNAME}-${PORTVERSION}
@@ -24,14 +25,14 @@ OPTIONS=	FFMPEG "FFMPEG decoder plugin" off \
 		RESAMPLER "Resampler processing plugin" on \
 		XIPH "FLAC/Speex/Vorbis decoder plugin" on
 
-USE_AUTOTOOLS=  libltdl libtool aclocal automake
+USE_AUTOTOOLS=  libltdl libtool
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_LDCONFIG=	yes
 PLIST_SUB+=	MACHINE_ARCH=${MACHINE_ARCH}
 
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL} \
+CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd7.0 \
 		--program-transform-name= \
 		--with-extra-libs=${LOCALBASE}/lib \
 		--with-extra-includes=${LOCALBASE}/include
@@ -73,8 +74,8 @@ post-patch:
 	$$(all_libraries) ${PTHREAD_LIBS}|g' \
 		${WRKSRC}/akode/akodeplay/Makefile.in
 
-do-build:
-	cd ${WRKSRC}/akode && ${GMAKE}
+#do-build:
+#	cd ${WRKSRC}/akode && ${GMAKE}
 
 do-install:
 	cd ${WRKSRC}/akode && ${GMAKE} ${FAKE_MAKEARGS} install
