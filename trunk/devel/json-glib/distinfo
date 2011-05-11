@@ -1,4 +1,3 @@
-MD5 (json-glib-0.6.2.tar.gz) = d98f5580035ad0b37fa11896053a57af
-SHA256 (json-glib-0.6.2.tar.gz) = 7befca7f7d7d65cbb260eacd86eff2c1dcae8d859ae2c3e3002e2536d02b2c49
-RMD160 (json-glib-0.6.2.tar.gz) = 3e0f9748d64e6372609fdf106f49cf6c25133507
-SIZE (json-glib-0.6.2.tar.gz) = 453865
+SHA256 (json-glib-0.12.0.tar.bz2) = e22978aadbe92a12e4cef2f494eb3571ac5c983ad05cff4256328157f1112842
+RMD160 (json-glib-0.12.0.tar.bz2) = c08f0a1bda25187296b51ccbf5596dfe3609ec76
+SIZE (json-glib-0.12.0.tar.bz2) = 417623
