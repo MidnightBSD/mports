@@ -3,14 +3,17 @@
 # Whom:					Lars Eggert <larse@isi.edu>
 #
 # $FreeBSD: ports/www/mod_perl2/Makefile,v 1.56 2007/06/27 20:42:57 erwin Exp $
-# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.1 2007/09/13 18:56:06 ctriv Exp $
+# $MidnightBSD: mports/www/mod_perl2/Makefile,v 1.2 2010/01/24 16:05:15 laffer1 Exp $
 #
 
 PORTNAME=	mod_perl
-PORTVERSION=	2.0.3
+PORTVERSION=	2.0.4
+PORTREVISION=	2
+PORTEPOCH=	3
 CATEGORIES=	www perl5
 MASTER_SITES=	http://perl.apache.org/dist/ \
 		http://perl.apache.org/dist/old/
+PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	2
 
 MAINTAINER=	ctriv@MidnightBSD.org
@@ -40,7 +43,7 @@ MAN3=		APR.3 APR::Base64.3 APR::Brigade.3 APR::Bucket.3 \
 		Apache2::Directive.3 Apache2::Filter.3 Apache2::FilterRec.3 \
 		Apache2::HookRun.3 Apache2::Log.3 Apache2::MPM.3 \
 		Apache2::Module.3 Apache2::PerlSections.3 Apache2::Process.3 \
-		Apache2::Reload.3 Apache2::RequestIO.3 Apache2::RequestRec.3 \
+		Apache2::RequestIO.3 Apache2::RequestRec.3 \
 		Apache2::RequestUtil.3 Apache2::Resource.3 \
 		Apache2::Response.3 Apache2::ServerRec.3 \
 		Apache2::ServerUtil.3 Apache2::SizeLimit.3 Apache2::Status.3 \
@@ -49,7 +52,7 @@ MAN3=		APR.3 APR::Base64.3 APR::Brigade.3 APR::Bucket.3 \
 		Apache::Test.3 Apache::TestConfig.3 Apache::TestMB.3 \
 		Apache::TestMM.3 Apache::TestReport.3 Apache::TestRequest.3 \
 		Apache::TestRun.3 Apache::TestRunPHP.3 Apache::TestRunPerl.3 \
-		Apache::TestSmoke.3 Apache::TestTrace.3 Apache::TestUtil.3 \
+		Apache::TestServer.3 Apache::TestSmoke.3 Apache::TestTrace.3 Apache::TestUtil.3 \
 		Bundle::Apache2.3 Bundle::ApacheTest.3 ModPerl::BuildMM.3 \
 		ModPerl::CScan.3 ModPerl::Code.3 ModPerl::Config.3 \
 		ModPerl::Const.3 ModPerl::Global.3 ModPerl::MM.3 \
@@ -57,19 +60,23 @@ MAN3=		APR.3 APR::Base64.3 APR::Brigade.3 APR::Bucket.3 \
 		ModPerl::PerlRunPrefork.3 ModPerl::Registry.3 \
 		ModPerl::RegistryBB.3 ModPerl::RegistryCooker.3 \
 		ModPerl::RegistryLoader.3 ModPerl::RegistryPrefork.3 \
-		ModPerl::Util.3 mod_perl2.3 Apache2::ConnectionUtil.3
+		ModPerl::Util.3 mod_perl2.3 Apache2::ConnectionUtil.3 \
+		APR::ThreadRWLock.3
 
 .include <bsd.port.pre.mk>
 
-.if ${APACHE_VERSION} >= 21
-PLIST_SUB=	THREADMUTEX=""
-.else
-PLIST_SUB=	THREADMUTEX="@comment "
-.endif
+#.if ${APACHE_VERSION} >= 21
+#PLIST_SUB=	THREADMUTEX=""
+#PLIST_SUB+=	THREADRWLOCK=""
+#.else
+PLIST_SUB+=	THREADMUTEX="@comment "
+PLIST_SUB+=	THREADRWLOCK="@comment "
+#.endif
 
 
 pre-configure:
-	${RM} ${WRKSRC}/ModPerl-Registry/lib/ModPerl/RegistryCooker.pm.orig
+	${RM} ${WRKSRC}/lib/ModPerl/BuildMM.pm.orig
+	${RM} ${WRKSRC}/lib/Apache2/Status.pm.orig
 
 post-install:
 	${MKDIR} ${PREFIX}/${APACHEINCLUDEDIR}/modules/perl
