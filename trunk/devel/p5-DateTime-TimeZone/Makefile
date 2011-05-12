@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-DateTime-TimeZone/Makefile,v 1.3 2010/06/27 16:09:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime-TimeZone/Makefile,v 1.4 2010/06/27 16:11:24 laffer1 Exp $
 
 PORTNAME=	DateTime-TimeZone
-PORTVERSION=	1.15
+PORTVERSION=	1.32
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,11 +10,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Time zone object base class and factory
 LICENSE=	perl
 
-RUN_DEPENDS=	p5-Class-Singleton>=1.03:${PORTSDIR}/devel/p5-Class-Singleton \
+RUN_DEPENDS=	p5-Class-Load>0:${PORTSDIR}/devel/p5-Class-Load \
+		p5-Class-Singleton>=1.03:${PORTSDIR}/devel/p5-Class-Singleton \
 		p5-Params-Validate>=0.72:${PORTSDIR}/devel/p5-Params-Validate
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-PERL_MODBUILD=	yes
+PERL_CONFIGURE=	yes
 
 MAN3=		DateTime::TimeZone.3 DateTime::TimeZone::Floating.3 \
 		DateTime::TimeZone::Local.3 DateTime::TimeZone::Local::Unix.3 \
@@ -31,4 +32,14 @@ post-install:
 	@${ECHO_MSG} "===> Documentation installed in ${DOCSDIR}."
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} < 500806
+RUN_DEPENDS+=	p5-PathTools>=3:${PORTSDIR}/devel/p5-PathTools
+.endif
+
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	p5-parent>=0.223:${PORTSDIR}/devel/p5-parent
+.endif
+
+.include <bsd.port.post.mk>
