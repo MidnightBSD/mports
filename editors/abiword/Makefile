@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.8 2010/05/30 22:32:46 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME=	abiword
-PORTVERSION=	2.6.8
-PORTREVISION=	2
+PORTVERSION=	2.8.4
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -12,82 +11,76 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open-source, cross-platform WYSIWYG word processor
 LICENSE=	gpl2
 
-# unzip is needed during the installation process
-BUILD_DEPENDS=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		png.6:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		wv-1.2:${PORTSDIR}/textproc/wv \
+		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		fribidi.3:${PORTSDIR}/converters/fribidi \
-		goffice-0.4:${PORTSDIR}/devel/goffice04
+		psiconv.10:${PORTSDIR}/converters/psiconv \
+		goffice-0.8.8:${PORTSDIR}/devel/goffice
+RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
-USE_GNOME=	gnomehack libglade2 libxml2 libgnomeprintui desktopfileutils
+USE_GETTEXT=	yes
+USE_GNOME=	gnomehack libxml2 gtk20 desktopfileutils librsvg2
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-popt=${LOCALBASE} \
-		--with-zlib=${LOCALBASE} \
-		--with-libpng=${LOCALBASE} \
-		--with-libiconv=${LOCALBASE} \
-		--with-libjpeg-prefix=${LOCALBASE} \
-		--disable-peer-config
-MAKEFILE=	GNUmakefile
-GNOME_MAKEFILEIN=GNUmakefile.in
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--without-gnomevfs --disable-collab-backend-xmpp \
+		--disable-collab-backend-sugar
+USE_LDCONFIG=	yes
+INSTALLS_ICONS=	yes
 
-ABIVERSION=	2.6
+ABIVERSION=	2.8
 PLIST_SUB+=	ABIVERSION=${ABIVERSION}
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug \
-			--enable-symbols
-.endif
+MAN1=		abiword.1
 
-.ifndef(WITHOUT_GTKSPELL)
-LIB_DEPENDS+=		enchant.1:${PORTSDIR}/textproc/enchant
-CONFIGURE_ARGS+=	--enable-spellcheck
-PLIST_SUB+=		DICT:=""
-.else
-CONFIGURE_ARGS+=	--disable-spellcheck
-PLIST_SUB+=		DICT:="@comment "
-.endif
+OPTIONS=	DEBUG "Enable debug" off \
+		BOOST "Build with boost" on \
+		SPELLCHECK "Enable spell checking support" on \
+		CLIPART "Install clipart" on \
+		TEMPLATES "Install additional templates" on
 
 .include <bsd.port.pre.mk>
 
-#.if ${HAVE_GNOME:Mlibgnomeui}!=""
-#USE_GNOME+=		libgnomeui
-#CONFIGURE_ARGS+=	--enable-gnomeui
-#PKGNAMESUFFIX:=		-gnome
-#.else
-#CONFIGURE_ARGS+=	--disable-gnomeui
-#.endif
-
-.if (defined(WITH_GUCHARMAP) || \
-	exists(${LOCALBASE}/libdata/pkgconfig/gucharmap.pc)) && \
-	!defined(WITHOUT_GUCHARMAP)
-LIB_DEPENDS+=		gucharmap.6:${PORTSDIR}/deskutils/gucharmap
-CONFIGURE_ARGS+=	--enable-gucharmap
-.else
-CONFIGURE_ARGS+=	--disable-gucharmap
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug --enable-symbols
 .endif
 
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "AbiWord2 has the following tunable option(s):"
-	@${ECHO_MSG} "	WITH_DEBUG=yes		Enable debug."
-	@${ECHO_MSG} "	WITH_GUCHARMAP=yes	Enable use of Gucharmap as the symbol insertion tool (default: auto)"
-	@${ECHO_MSG} "	WITHOUT_GTKSPELL=yes	Don't use Enchant, but still enable spellchecking and install the dictionary."
-	@${ECHO_MSG} ""
+.if defined(WITH_BOOST)
+CONFIGURE_ARGS+=	--with-boost
+LIB_DEPENDS+=		boost_thread.4:${PORTSDIR}/devel/boost-python
+.else
+CONFIGURE_ARGS+=	--without-boost
+.endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|-ansi||g ; s|-pedantic||g ; \
-		s|/usr/X11R6|${LOCALBASE}|g' \
-			${WRKSRC}/configure
-	@${FIND} ${WRKSRC}/src/config/platforms -name "*.mk" | ${XARGS} \
-		${REINPLACE_CMD} 's|-ansi||g ; s|-pedantic||g'
-	@${FIND} ${WRKSRC} -name GNUmakefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-		's|[(]libdir[)]/@PACKAGE@|(datadir)/@PACKAGE@|g ; \
-		s|[(]datadir[)]/icons|(datadir)/pixmaps|g'
+.if defined(WITH_SPELLCHECK)
+LIB_DEPENDS+=		enchant.1:${PORTSDIR}/textproc/enchant
+CONFIGURE_ARGS+=	--enable-spell
+PLIST_SUB+=		DICT=""
+.else
+CONFIGURE_ARGS+=	--disable-spell
+PLIST_SUB+=		DICT="@comment "
+.endif
+
+.if defined(WITH_TEMPLATES)
+CONFIGURE_ARGS+=	--enable-templates
+PLIST_SUB+=		TEMPLATES=""
+.else
+CONFIGURE_ARGS+=	--disable-templates
+PLIST_SUB+=		TEMPLATES="@comment "
+.endif
+
+.if defined(WITH_CLIPART)
+CONFIGURE_ARGS+=	--enable-clipart
+PLIST_SUB+=		CLIPART=""
+.else
+CONFIGURE_ARGS+=	--disable-clipart
+PLIST_SUB+=		CLIPART="@comment "
+.endif
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/${PORTNAME}-${ABIVERSION}/plugins
