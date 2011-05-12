@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.3 2008/09/30 23:15:43 laffer1 Exp $
+# $MidnightBSD: mports/ftp/ncftpd/Makefile,v 1.4 2009/08/21 17:34:30 laffer1 Exp $
 
 PORTNAME=	ncftpd
-PORTVERSION=	2.8.6
+PORTVERSION=	2.8.7
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ncftp.com/ncftpd/${PORTVERSION}/ \
 		ftp://ftp.nl.uu.net/pub/unix/ftp/ncftpd/${PORTVERSION}/ \
