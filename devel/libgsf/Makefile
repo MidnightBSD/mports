@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libgsf
-# Date created:				11 September 2002
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
 # $FreeBSD: ports/devel/libgsf/Makefile,v 1.31 2006/05/13 07:37:04 marcus Exp $
-#   $MCom: ports/devel/libgsf/Makefile,v 1.22 2006/04/23 22:42:46 mezz Exp $
-# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.8 2011/02/02 20:17:33 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/libgsf/Makefile,v 1.9 2011/03/23 00:05:31 laffer1 Exp $
 
 PORTNAME=	libgsf
-PORTVERSION=	1.14.19
+PORTVERSION=	1.14.20
 PORTREVISION?=	0
 CATEGORIES?=	devel
 MASTER_SITES=	GNOME
