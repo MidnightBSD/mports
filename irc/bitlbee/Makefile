@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.13 2010/11/20 03:58:53 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.14 2011/01/15 02:47:43 laffer1 Exp $
 
 PORTNAME=	bitlbee
 PORTVERSION=	1.2.8
@@ -12,8 +12,8 @@ COMMENT=	An IRC to other chat networks gateway
 LICENSE=	gpl2
 
 SUB_FILES=	pkg-message
-MAN5=		bitlbee.conf.5
-MAN8=		bitlbee.8
+#MAN5=		bitlbee.conf.5
+#MAN8=		bitlbee.8
 PORTDOCS=	AUTHORS CHANGES CREDITS FAQ README
 PORTEXAMPLES=	bitlbee.conf motd.txt
 
