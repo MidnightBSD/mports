@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.10 2010/08/12 22:24:13 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.11 2011/05/11 14:17:23 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 
 PORTNAME=	gcc
@@ -20,7 +20,6 @@ LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
-NOT_FOR_ARCHS=	powerpc
 USE_BISON=	build
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -53,7 +52,8 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--with-ld=/usr/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
-		--with-system-zlib
+		--with-system-zlib \
+		--with-info-dir=${PREFIX}/${INFO_PATH}/gcc${SUFFIX}
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 ALL_TARGET=	bootstrap-lean
 USE_LDCONFIG=	${TARGLIB}
@@ -82,6 +82,9 @@ pre-configure:
 	cd ${SRCDIR} ; contrib/gcc_update --touch
 	@${RM} -f ${SRCDIR}/gcc/*/*.info*
 	@${MKDIR} ${CONFIGURE_WRKSRC}
+
+pre-install:
+	${MKDIR} ${PREFIX}/${INFO_PATH}/gcc${SUFFIX}
 
 post-install:
 	${RM} -f ${PREFIX}/man/man7/fsf-funding.7 \
