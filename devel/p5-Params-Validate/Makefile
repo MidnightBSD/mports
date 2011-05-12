@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.1 2007/09/12 02:04:43 ctriv Exp $
+# $MidnightBSD: mports/devel/p5-Params-Validate/Makefile,v 1.2 2009/10/07 00:50:04 laffer1 Exp $
 
 PORTNAME=	Params-Validate
-PORTVERSION=	0.91
+PORTVERSION=	0.95
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
