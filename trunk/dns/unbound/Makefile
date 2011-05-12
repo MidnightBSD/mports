@@ -1,13 +1,15 @@
-# $MidnightBSD: mports/dns/unbound/Makefile,v 1.1 2010/09/18 18:08:27 laffer1 Exp $
+# $MidnightBSD: mports/dns/unbound/Makefile,v 1.2 2011/02/23 21:22:47 laffer1 Exp $
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.8
+PORTVERSION=	1.4.9
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A validating, recursive, and caching DNS resolver
 LICENSE=	bsd3
+
+LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
@@ -21,7 +23,7 @@ USE_RC_SUBR=	unbound
 MAN1=		unbound-host.1
 MAN3=		libunbound.3
 MAN5=		unbound.conf.5
-MAN8=		unbound.8 unbound-control.8 unbound-checkconf.8
+MAN8=		unbound.8 unbound-anchor.8 unbound-control.8 unbound-checkconf.8
 
 PORTDOCS=	CREDITS Changelog FEATURES LICENSE README README.svn \
 		README.tests TODO control_proto_spec.txt ietf67-design-02.odp \
