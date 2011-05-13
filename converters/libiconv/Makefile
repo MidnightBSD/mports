@@ -1,12 +1,8 @@
-# New ports collection makefile for:	libiconv
-# Date created:				17 July 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.8 2009/09/20 03:33:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.9 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=	libiconv
 PORTVERSION=	1.13.1
+PORTREVISION=	1
 CATEGORIES=	converters devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -33,7 +29,7 @@ MAN1=		iconv.1
 MAN3=		iconv.3 iconv_open.3 iconv_open_into.3 iconv_close.3 iconvctl.3
 
 OPTIONS=	EXTRA_ENCODINGS	"Include extra character sets" on \
-		EXTRA_PATCHES	"Apply patches to fix CP932 add EUCJP-MS" off
+		EXTRA_PATCHES	"Apply patches to fix CP932, add EUCJP-MS" off
 
 .ifdef USE_ICONV
 .error USE_ICONV is defined as an environment variable, or in the arguments \
