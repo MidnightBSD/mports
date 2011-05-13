@@ -1,14 +1,8 @@
-# New ports collection makefile for:	www/mediawiki
-# Date created:				February 1st 2005
-# Whom:	      				Gerrit Beine <tux@pinguru.net>
-#
-# $MidnightBSD: mports/www/mediawiki/Makefile,v 1.2 2010/05/29 07:00:24 laffer1 Exp $
+# $MidnightBSD: mports/www/mediawiki/Makefile,v 1.3 2011/05/13 13:34:32 laffer1 Exp $
 # $FreeBSD: ports/www/mediawiki/Makefile,v 1.48 2008/10/05 11:24:08 miwi Exp $
-#
 
 PORTNAME=	mediawiki
-PORTVERSION=	1.16.2
-PORTREVISION=	1
+PORTVERSION=	1.16.5
 CATEGORIES=	www
 MASTER_SITES=	http://dumps.wikimedia.org/mediawiki/${PORTVERSION:R}/
 
