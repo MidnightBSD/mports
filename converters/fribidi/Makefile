@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/fribidi/Makefile,v 1.3 2009/09/20 03:41:06 laffer1 Exp $
 
 PORTNAME=	fribidi
 PORTVERSION=	0.19.2
+PORTREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	http://fribidi.org/download/
 
@@ -10,6 +11,7 @@ COMMENT=	A Free Implementation of the Unicode Bidirectional Algorithm
 LICENSE=	lgpl
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--without-glib
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack pkgconfig
 USE_LDCONFIG=	yes
@@ -33,7 +35,7 @@ MAN3=		fribidi_charset_to_unicode.3 fribidi_debug_status.3 \
 .include <bsd.port.pre.mk>
 
 .if !defined(WITH_DEBUG)
-CONFIGURE_ARGS=	--disable-debug
+CONFIGURE_ARGS+=	--disable-debug
 .endif
 
 post-patch:
