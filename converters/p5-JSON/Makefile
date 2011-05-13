@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/converters/p5-JSON/Makefile,v 1.5 2010/10/21 18:47:41 laffer1 Exp $
 
 PORTNAME=	JSON
-PORTVERSION=	2.25
+PORTVERSION=	2.51
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,10 +14,9 @@ CONFLICTS=	p5-JSON-1.*
 PERL_CONFIGURE=	yes
 
 MAN3=		JSON.3 \
-		JSON::PP.3 \
-		JSON::PP56.3 \
-		JSON::PP58.3 \
-		JSON::PP::Boolean.3 \
-		JSON::PP5005.3
+		JSON::backportPP.3 \
+		JSON::backportPP::Boolean.3 \
+		JSON::backportPP::Compat5005.3 \
+		JSON::backportPP::Compat5006.3
 
 .include <bsd.port.mk>
