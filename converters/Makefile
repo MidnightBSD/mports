@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.23 2009/05/21 14:54:15 laffer1 Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.24 2010/10/21 18:47:41 laffer1 Exp $
 
 COMMENT = Character code converters
 
@@ -10,6 +10,8 @@ SUBDIR += p5-Convert-BinHex
 SUBDIR += p5-Encode
 SUBDIR += p5-Encode-Detect
 SUBDIR += p5-JSON
+SUBDIR += p5-JSON-Any
+SUBDIR += p5-JSON-XS
 SUBDIR += p5-JSON1
 SUBDIR += p5-Jcode
 SUBDIR += p5-MIME-Base32
