@@ -2,11 +2,12 @@
 # Date created:				31.08.2004
 # Whom:					Roman Y. Bogdanov <sam@brj.pp.ru>
 #
-# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.1 2008/11/20 15:54:54 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.2 2008/12/09 19:27:14 laffer1 Exp $
 # $FreeBSD: ports/misc/mc-light/Makefile,v 1.14 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc-light
 PORTVERSION=	4.1.40.p9
+PORTREVISION=	1
 CATEGORIES=	misc shells
 MASTER_SITES=	http://mc.linuxinside.com/Releases/
 DISTNAME=	mc-${PORTVERSION:S/.p9/-pre9/}
@@ -17,7 +18,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS+=	gawk:${PORTSDIR}/lang/gawk
 
-CONFLICTS=	mc-4.6*
+CONFLICTS=	mc-4.7*
 
 OPTIONS=	\
 		SUBSHELL "Build with subshell support (only for bash!)" off \
