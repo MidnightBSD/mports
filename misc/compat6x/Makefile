@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/compat6x/Makefile,v 1.1 2009/01/03 22:31:16 laffer1 Exp $
 
 PORTNAME=	compat6x
 PORTVERSION=	6.4.604000.200810
@@ -15,7 +15,7 @@ LICENSE=	agg
 
 USE_BZIP2=	yes
 NO_BUILD=	yes
-ONLY_FOR_ARCHS=	i386 amd64 sparc64
+ONLY_FOR_ARCHS=	i386 amd64
 PLIST=		${PKGDIR}/pkg-plist.${ARCH}
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS=	%%PREFIX%%/lib/compat
