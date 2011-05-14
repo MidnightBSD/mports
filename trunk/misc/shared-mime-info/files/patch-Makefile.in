@@ -1,24 +1,14 @@
---- Makefile.in.orig	2009-02-23 00:08:21.000000000 -0500
-+++ Makefile.in	2009-02-23 00:09:39.000000000 -0500
-@@ -937,7 +937,11 @@ $(pkgconfig_DATA): config.status
- @INTLTOOL_DESKTOP_RULE@
+--- Makefile.in.orig	2010-11-26 22:55:49.000000000 -0500
++++ Makefile.in	2010-11-26 22:56:47.000000000 -0500
+@@ -1036,6 +1036,11 @@ $(pkgconfig_DATA): config.status
  
- install-data-hook: 
--@ENABLE_UPDATE_MIMEDB_TRUE@	$(DESTDIR)"$(bindir)/update-mime-database" -V "$(DESTDIR)$(datadir)/mime"
-+@ENABLE_UPDATE_MIMEDB_TRUE@	for mdir in /usr/local/share/mime  /usr/local/gnome2/shared-mime-info/share/mime; do \
+ install-data-hook: install-binPROGRAMS
+ @ENABLE_UPDATE_MIMEDB_TRUE@	$(DESTDIR)"$(bindir)/update-mime-database" -V "$(DESTDIR)$(datadir)/mime"
++@ENABLE_UPDATE_MIMEDB_TRUE@	for mdir in /usr/local/share/mime  /usr/loca/gnome2/shared-mime-info/share/mime; do \
 +@ENABLE_UPDATE_MIMEDB_TRUE@		if [ -d $${mdir} ]; then \
-+@ENABLE_UPDATE_MIMEDB_TRUE@			$(DESTDIR)"$(bindir)/update-mime-database" "$${mdir}" ; \
++@ENABLE_UPDATE_MIMEDB_TRUE@			$(DESTDIR)"$(bindir)/update-mime-database" -V "$${mdir}" ; \
 +@ENABLE_UPDATE_MIMEDB_TRUE@		fi; \
 +@ENABLE_UPDATE_MIMEDB_TRUE@	done
  
  uninstall-hook:
  	for media in text application image audio inode video message model multipart x-epoc x-content; do rm -f "$(DESTDIR)$(datadir)/mime/$${media}/"*.xml; done
-@@ -956,7 +960,7 @@ uninstall-hook:
- 	rm -f "$(DESTDIR)$(datadir)/mime/types"
- 
- all: check
--	make -C po shared-mime-info.pot
-+	$(MAKE) -C po shared-mime-info.pot
- 
- check: freedesktop.org.xml
- 	if test -n $(XMLLINT) ; then \
