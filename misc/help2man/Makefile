@@ -3,38 +3,49 @@
 # Date created:			Jan 30, 2002
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.3 2008/05/04 18:03:55 ctriv Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.4 2008/09/21 20:21:25 laffer1 Exp $
 # $FreeBSD: ports/misc/help2man/Makefile,v 1.18 2006/04/30 21:54:34 arved Exp $
 #
 
 PORTNAME=	help2man
-PORTVERSION=	1.36.4
-PORTREVISION=	2
+PORTVERSION=	1.39.2
 CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically generating simple manual pages from program output
-LICENSE=	gpl2
 
-.if !defined(WITHOUT_NLS)
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
+LICENSE=	gpl3
 
-MANLANG=	"" pl fr fi sv
-PLIST_SUB+=	NLS=""
-USE_GETTEXT=	yes
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
+CFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_PERL5=	yes
 
-MAN1=		help2man.1
-INFO=		help2man
+INFO=		${PORTNAME}
+MAN1=		${PORTNAME}.1
+PLIST_FILES=	bin/${PORTNAME}
+
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS=	--disable-nls
+.else
+BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
+RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
+
+CFLAGS+=	-lintl
+MANLANG=	"" ${LANGS}
+USE_GETTEXT=	yes
+
+LANGS=		de el eo fi fr it pl pt_BR ru sv uk vi
+
+PLIST_FILES+=	lib/bindtextdomain.so
+.for lang in ${LANGS}
+PLIST_FILES+=	share/locale/${lang}/LC_MESSAGES/${PORTNAME}.mo
+PLIST_DIRSTRY+=	man/${lang}/man1 man/${lang}
+.endfor
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e '/^pkglibdir/ s|/${PORTNAME}$$||' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
