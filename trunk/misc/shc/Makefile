@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/shc/Makefile,v 1.1 2010/01/01 17:03:49 laffer1 Exp $
 
 PORTNAME=	shc
-PORTVERSION=	3.8.6
+PORTVERSION=	3.8.7
 CATEGORIES=	misc
 MASTER_SITES=	http://www.datsi.fi.upm.es/~frosal/sources/ \
 		CRITICAL
