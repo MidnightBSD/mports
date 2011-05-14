@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1999
 # Whom:                 dbaker
 #
-# $MidnightBSD: mports/misc/dnetc/Makefile,v 1.1 2008/04/17 17:45:39 crash Exp $
+# $MidnightBSD: mports/misc/dnetc/Makefile,v 1.2 2008/04/20 19:53:27 laffer1 Exp $
 # $FreeBSD: ports/misc/dnetc/Makefile,v 1.58 2007/10/27 17:49:48 tdb Exp $
 #
 
@@ -23,7 +23,7 @@ LICENSE=        unknown
 
 # These are architecture dependent
 WRKSRC=		${WRKDIR}/dnetc${PORTVERSION:E}-freebsd-${ARCH:S/i386/x86/}-elf
-MD5_FILE=	${MASTERDIR}/distinfo.${ARCH}
+DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 
 ONLY_FOR_ARCHS=	i386 sparc64 amd64
 
