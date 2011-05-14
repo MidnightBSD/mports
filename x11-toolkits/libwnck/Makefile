@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libwnck
-# Date created:				12 April 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.8 2010/08/14 03:01:19 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libwnck/Makefile,v 1.9 2011/02/02 21:38:58 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libwnck/Makefile,v 1.53 2007/07/03 16:51:41 mezz Exp $
-#   $MCom: ports/x11-toolkits/libwnck/Makefile,v 1.85 2007/03/12 23:15:43 marcus Exp $
-#
 
 PORTNAME=	libwnck
-PORTVERSION=	2.30.2
+PORTVERSION=	2.30.6
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
