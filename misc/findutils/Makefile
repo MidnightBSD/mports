@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/findutils/Makefile,v 1.3 2008/03/24 22:07:49 laffer1 Exp $
+# $MidnightBSD: mports/misc/findutils/Makefile,v 1.4 2010/08/14 04:03:55 laffer1 Exp $
 
 PORTNAME=	findutils
-PORTVERSION=	4.5.9
+PORTVERSION=	4.5.10
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA}
 MASTER_SITE_SUBDIR=	findutils
