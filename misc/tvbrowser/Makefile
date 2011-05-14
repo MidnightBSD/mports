@@ -2,15 +2,14 @@
 # Date Created:				24 May 2005
 # Whom:					Lars Engels <lars.engels@0x20.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/tvbrowser/Makefile,v 1.1 2008/06/13 02:41:37 laffer1 Exp $
 # $FreeBSD: ports/misc/tvbrowser/Makefile,v 1.15 2008/06/06 13:45:38 edwin Exp $
 #
 
 PORTNAME=	tvbrowser
-PORTVERSION=	2.6.3
-PORTREVISION=	0
+PORTVERSION=	2.7.6
 CATEGORIES=	misc java
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28older%20Java%205%29/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A digital TV guide
