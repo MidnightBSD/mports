@@ -1,3 +1,4 @@
+@comment $MidnightBSD$
 @exec mkdir -p %D%/include/X11/Xaw3d
 lib/libXaw3d.a
 lib/libXaw3d.so
