@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mime-support
-# Date created:		7 March 2003
-# Whom:			Simon 'corecode' Schubert <corecode@corecode.ath.cx>
-#
-# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.4 2008/06/11 01:59:38 laffer1 Exp $
+# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.5 2008/09/21 20:18:23 laffer1 Exp $
 # $FreeBSD: ports/misc/mime-support/Makefile,v 1.12 2006/07/20 15:03:43 oliver Exp $
-#
 
 PORTNAME=	mime-support
-PORTVERSION=	3.44.1
+PORTVERSION=	3.51.1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION:C/([0-9]*\.[0-9]*)\.(.*)/\1-\2/}
