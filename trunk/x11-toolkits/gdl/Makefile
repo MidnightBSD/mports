@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.5 2009/09/20 03:03:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gdl/Makefile,v 1.6 2010/08/14 03:04:03 laffer1 Exp $
 
 PORTNAME=	gdl
-PORTVERSION=	2.30.0
+PORTVERSION=	2.30.1
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 
