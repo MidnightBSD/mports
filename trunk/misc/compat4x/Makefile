@@ -2,7 +2,7 @@
 # Date created:		01 Aug 2001
 # Whom:			Scot W. Hetzel
 #
-# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.4 2007/11/12 01:08:43 laffer1 Exp $
+# $MidnightBSD: mports/misc/compat4x/Makefile,v 1.5 2009/04/05 19:31:56 laffer1 Exp $
 # $FreeBSD: ports/misc/compat4x/Makefile,v 1.33 2006/08/15 00:56:13 clsung Exp $
 #
 
@@ -48,7 +48,7 @@ PLIST_SUB+=		LIBDIR="lib32"
 COMPAT4X_DISTFILES=	${PORTNAME}.aa \
 			${PORTNAME}.ab
 .else
-IGNORE=			in unsupported (FreeBSD 4.x did not run on this architecture)
+IGNORE=			is unsupported (FreeBSD 4.x did not run on this architecture)
 .endif
 
 .if ${COMPAT4X_ARCH} == i386
