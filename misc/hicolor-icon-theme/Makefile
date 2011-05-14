@@ -1,8 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/hicolor-icon-theme/Makefile,v 1.6 2009/04/05 19:12:40 laffer1 Exp $
 
 PORTNAME=	hicolor-icon-theme
-PORTVERSION=	0.10
-PORTREVISION=	2
+PORTVERSION=	0.12
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://icon-theme.freedesktop.org/releases/
 
@@ -21,7 +20,7 @@ PLIST=	${WRKDIR}/pkg-plist
 
 # Update the below from Makefile.in each release
 ICON_SIZES=	16x16 22x22 24x24 32x32 36x36 48x48 64x64 72x72 96x96 \
-		128x128 192x192 scalable
+		128x128 192x192 256x256 scalable
 ICON_CONTEXTS=	actions animations apps categories devices emblems emotes \
 		filesystems intl mimetypes places status stock
 STOCK_SUBS=	chart code data form image io media navigation net object table text
