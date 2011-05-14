@@ -1,10 +1,7 @@
-# ex:ts=8
-#
-# $MidnightBSD: ports/misc/chmlib/Makefile,v 1.22 2007/12/21 01:26:23 kevlo Exp $
-#
+# $MidnightBSD: mports/misc/chmlib/Makefile,v 1.1 2009/01/03 02:23:12 ctriv Exp $
 
 PORTNAME=	chmlib
-PORTVERSION=	0.39
+PORTVERSION=	0.40
 CATEGORIES=	misc
 MASTER_SITES=	http://www.jedrea.com/chmlib/
 
