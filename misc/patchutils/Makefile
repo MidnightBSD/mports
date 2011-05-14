@@ -2,10 +2,10 @@
 # Date created:			Oct 11, 2008
 # Whom:				Lucas Holt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.1 2008/10/11 20:23:35 laffer1 Exp $
 
 PORTNAME=	patchutils
-PORTVERSION=	0.3.0
+PORTVERSION=	0.3.2
 CATEGORIES=	misc
 MASTER_SITES=	http://cyberelk.net/tim/data/patchutils/stable/
 
