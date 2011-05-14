@@ -1,15 +1,15 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/dejagnu/Makefile,v 1.1 2010/01/17 14:29:00 laffer1 Exp $
 
 PORTNAME=	dejagnu
-PORTVERSION=	1.4.4
+PORTVERSION=	1.5
 CATEGORIES=	misc tcl tk
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automated program/system tester
-LICENSE=	gpl2
+LICENSE=	gpl3
 
+BUILD_DEPENDS=	expect:${PORTSDIR}/lang/expect
 RUN_DEPENDS=	expect:${PORTSDIR}/lang/expect
 
 USE_GMAKE=	yes
