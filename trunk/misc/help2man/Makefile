@@ -1,11 +1,5 @@
-# ex:ts=8
-# Ports collection makefile for:	help2man
-# Date created:			Jan 30, 2002
-# Whom:				ijliao
-#
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.4 2008/09/21 20:21:25 laffer1 Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.5 2011/05/14 21:43:55 laffer1 Exp $
 # $FreeBSD: ports/misc/help2man/Makefile,v 1.18 2006/04/30 21:54:34 arved Exp $
-#
 
 PORTNAME=	help2man
 PORTVERSION=	1.39.2
@@ -14,7 +8,6 @@ MASTER_SITES=	GNU/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Automatically generating simple manual pages from program output
-
 LICENSE=	gpl3
 
 CFLAGS+=	-L${LOCALBASE}/lib
