@@ -3,7 +3,7 @@
 # Whom:                 wosch
 #
 # $FreeBSD: ports/german/manpages/Makefile,v 1.23 2005/02/16 16:21:28 wosch Exp $
-# $MidnightBSD: mports/german/manpages/Makefile,v 1.2 2007/11/11 00:26:26 laffer1 Exp $
+# $MidnightBSD: mports/misc/manpages-de/Makefile,v 1.1 2008/06/14 03:41:01 laffer1 Exp $
 
 PORTNAME=	manpages-de
 PORTVERSION=	0.4
@@ -24,7 +24,7 @@ manpages=	${PORTNAME}-${PORTVERSION}
 
 do-build:
 	makewhatis ${WRKSRC}/${manpages}
-.if !defined(NOMANCOMPRESS)
+.if !defined(NO_MANCOMPRESS)
 	${GZIP_CMD} -r ${WRKSRC}/${manpages}/man* || exit 0
 .endif
 
