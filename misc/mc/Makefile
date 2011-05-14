@@ -1,14 +1,12 @@
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.4 2010/07/31 03:23:30 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.5 2011/01/07 02:56:26 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
-PORTVERSION=	4.7.4
-PORTREVISION=	0
+PORTVERSION=	4.7.5
 CATEGORIES=	misc shells
 MASTER_SITES=	http://www.midnight-commander.org/downloads/ \
 		${MASTER_SITE_SUNSITE}
 MASTER_SITE_SUBDIR=	utils/file/managers/mc
-DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 PATCH_SITES=	${MASTER_SITES}
 
@@ -25,6 +23,8 @@ USE_GNOME=	glib20
 USE_PERL5=	yes
 USE_XZ=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	ZIP=${LOCALBASE}/bin/zip UNZIP=${LOCALBASE}/bin/unzip
+USE_AUTOTOOLS=	autoconf automake
 
 OPTIONS=	SLANG		"Build with SLang library" on \
 		ICONV		"Build with iconv recoding" on \
@@ -40,7 +40,7 @@ post-patch:
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_SAMBA) || !(defined(WITHOUT_SAMBA) || defined(MINIMAL))
-CONFIGURE_ARGS+=--with-samba --with-configdir=${LOCALBASE}/etc \
+CONFIGURE_ARGS+=--enable-vfs-smb --with-configdir=${LOCALBASE}/etc\
 		--with-codepagedir=${LOCALBASE}/etc/codepages
 .endif
 
@@ -62,7 +62,7 @@ PLIST_SUB+=	NLS=""
 _MANLANG=	es hu it pl ru sr
 .endif
 
-.if !defined(WITH_X11) || defined(MINIMAL)
+.if !defined(WITH_X11) || (defined(WITHOUT_X11) || defined(MINIMAL))
 CONFIGURE_ARGS+=--without-x
 .else
 USE_XORG=	x11 xext
@@ -79,7 +79,7 @@ PLIST_SUB+=	EDITOR=""
 CONFIGURE_ARGS+=--with-screen=ncurses
 .else
 LIB_DEPENDS+=	slang.2:${PORTSDIR}/devel/libslang2
-CONFIGURE_ARGS+=--with-screen=slang
+CONFIGURE_ARGS+=--with-screen=slang --with-slang-includes=${LOCALBASE}/include
 .endif
 
 .if !defined(WITH_SUBSHELL) && (defined(WITHOUT_SUBSHELL) || defined(MINIMAL))
