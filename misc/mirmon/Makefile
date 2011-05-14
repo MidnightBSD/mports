@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/mirmon/Makefile,v 1.4 2010/11/13 18:54:16 laffer1 Exp $
 
 PORTNAME=	mirmon
-PORTVERSION=	2.3
+PORTVERSION=	2.4
 CATEGORIES=	misc
 MASTER_SITES=	http://people.cs.uu.nl/henkp/mirmon/
 
