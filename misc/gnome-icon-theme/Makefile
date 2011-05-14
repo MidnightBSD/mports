@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.7 2009/12/13 21:36:53 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-icon-theme/Makefile,v 1.8 2010/08/14 03:39:27 laffer1 Exp $
 
 PORTNAME=	gnome-icon-theme
-PORTVERSION=	2.30.3
+PORTVERSION=	2.31.0
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
