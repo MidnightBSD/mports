@@ -1,15 +1,30 @@
---- cpuid.c.orig	Tue Nov 14 10:17:30 2006
-+++ cpuid.c	Tue Nov 14 11:24:57 2006
-@@ -10,6 +10,8 @@
+--- cpuid.c
++++ cpuid.c
+@@ -3,34 +3,56 @@
+  * Updated 24 Apr 2001 to latest Intel CPUID spec
+  * Updated 22 Dec 2001 to decode Intel flag 28, hyper threading
+  * Updated 1 Jan 2002 to cover AMD Duron, Athlon
++ * Updated 24 Aug 2009 to decode additional Intel flags
++ * Updated 23 May 2010 to decode additional Intel flags
+  * May be used under the terms of the GNU Public License (GPL)
+ 
+  * Reference documents:
+- * ftp://download.intel.com/design/pro/applnots/24161809.pdf  (AP-485)
++ * http://www.intel.com/Assets/PDF/appnote/241618.pdf (AN-485 August 2009)
   * http://developer.intel.com/design/Pentium4/manuals/24547103.pdf
   * http://developer.intel.com/design/pentiumiii/applnots/24512501.pdf (AP-909)
   * http://www.amd.com/us-en/assets/content_type/white_papers_and_tech_docs/20734.pdf
+- * 
 + * http://www.amd.com/us-en/assets/content_type/white_papers_and_tech_docs/24594.pdf
 + * http://www.amd.com/us-en/assets/content_type/white_papers_and_tech_docs/25481.pdf
-  * 
++ *
   */
  
-@@ -20,17 +22,34 @@
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ void decode_intel_tlb(int);
+ void decode_cyrix_tlb(int);
  void dointel(int),doamd(int),docyrix(int);
  void printregs(int eax,int ebx,int ecx,int edx);
  
@@ -50,7 +65,7 @@
  };
  
  #define cpuid(in,a,b,c,d)\
-@@ -89,7 +108,7 @@
+@@ -89,7 +110,7 @@
    exit(0);
  }
  
@@ -59,29 +74,45 @@
    "FPU    Floating Point Unit",
    "VME    Virtual 8086 Mode Enhancements",
    "DE     Debugging Extensions",
-@@ -124,6 +143,49 @@
-   "31     reserved",
- };
- 
+@@ -121,7 +142,64 @@
+   "HT     Hyper Threading",
+   "TM     Thermal monitor",
+   "30     reserved",
+-  "31     reserved",
++  "31     Pending Break Enable"
++};
++
 +char *Intel_feature_flags2[32] = {
-+  "SSE3    SSE3 extensions",
++  "SSE3     SSE3 extensions",
++  "PCLMULDQ PCLMULDQ instruction",
++  "DTES64   64-bit debug store",
++  "MONITOR  MONITOR/MWAIT instructions",
++  "DS-CPL   CPL Qualified Debug Store",
++  "VMX      Virtual Machine Extensions",
++  "SMX      Safer Mode Extension",
++  "EST      Enhanced Intel SpeedStep Technology",
++  "TM2      Thermal Monitor 2",
++  "SSSE3    Supplemental Streaming SIMD Extension 3",
++  "CNXT-ID  L1 Context ID",
 +  NULL,
 +  NULL,
-+  "MONITOR MONITOR/MWAIT instructions",
-+  "DS-CPL  CPL Qualified Debug Store",
++  "CX16     CMPXCHG16B",
++  "xTPR     Send Task Priority messages",
++  "PDCM     Perfmon and debug capability",
 +  NULL,
 +  NULL,
-+  "EST     Enhanced Intel SpeedStep Technology",
-+  "TM2     Thermal Monitor 2",
++  "DCA      Direct Cache Access",
++  "SSE4.1   Streaming SIMD Extension 4.1",
++  "SSE4.2   Streaming SIMD Extension 4.2",
++  "x2APIC   Extended xAPIC support",
++  "MOVBE    MOVBE instruction",
++  "POPCNT   POPCNT instruction",
 +  NULL,
-+  "CID     Context ID",
-+  NULL,
-+  NULL,
-+  "CX16    CMPXCHG16B",
-+  "xTPR    Send Task Priority messages",
-+  NULL,
-+  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-+  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
++  "AESNI    AES Instruction set",
++  "XSAVE    XSAVE/XSTOR states",
++  "OSXSAVE  OS-enabled extended state managerment",
++  "AVX      AVX extensions",
++  NULL, NULL, NULL
 +};
 +
 +char *Intel_ext_feature_flags[32] = {
@@ -92,42 +123,55 @@
 +  NULL, NULL, NULL, NULL,
 +  "XD-bit    Execution Disable bit",
 +  NULL, NULL, NULL,
-+  NULL, NULL, NULL, NULL, NULL,
++  NULL, NULL,
++  "1GBP      1 GByte pages are available",
++  "RDTSCP    RDTSCP and IA32_TSC_AUX are available",
++  NULL,
 +  "EM64T     Intel Extended Memory 64 Technology",
 +  NULL, NULL
 +};
 +
 +char *Intel_ext_feature_flags2[32] = {
-+  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-+  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-+  NULL, NULL, NULL, NULL, 
 +  "LAHF      LAHF/SAHF available in IA-32e mode",
-+  NULL, NULL, NULL,
++  NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 +  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-+};
-+
++  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
++  NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+ };
+ 
  /* Intel-specific information */
- void dointel(int maxi){
-   printf("Intel-specific functions:\n");
-@@ -131,12 +193,15 @@
+@@ -131,22 +209,31 @@
    if(maxi >= 1){
      /* Family/model/type etc */
      int clf,apic_id,feature_flags;
+-    int extended_model = -1,extended_family = -1;
+-    unsigned long eax,ebx,edx,unused;
+-    int stepping,model,family,type,reserved,brand,siblings;
 +    int feature_flags2 = 0;
 +    int ext_feature_flags = 0;
 +    int ext_feature_flags2 = 0;
-     int extended_model = -1,extended_family = -1;
--    unsigned long eax,ebx,edx,unused;
++    int basic_family, extended_family, basic_model, extended_model;
++    int family, model;
 +    unsigned long eax,ebx,ecx,edx;
-     int stepping,model,family,type,reserved,brand,siblings;
++    int stepping,type,reserved,brand,siblings;
      int i;
  
 -    cpuid(1,eax,ebx,unused,edx);
 +    cpuid(1,eax,ebx,ecx,edx);
      printf("Version %08lx:\n",eax);
      stepping = eax & 0xf;
-     model = (eax >> 4) & 0xf;
-@@ -147,6 +212,7 @@
+-    model = (eax >> 4) & 0xf;
+-    family = (eax >> 8) & 0xf;
++    basic_family = (eax >> 8) & 0xf;
++    extended_family = (eax >> 20) & 0xff;
++    family = basic_family + extended_family;
++    basic_model = (eax >> 4) & 0xf;
++    extended_model = (eax >> 16) & 0xf;
++    model = (extended_model << 4) | basic_model;
+     type = (eax >> 12) & 0x3;
+-    reserved = eax >> 14;
++    reserved = eax & 0xf000c000l;
+     clf = (ebx >> 8) & 0xff;
      apic_id = (ebx >> 24) & 0xff;
      siblings = (ebx >> 16) & 0xff;
      feature_flags = edx;
@@ -135,7 +179,18 @@
  
      printf("Type %d - ",type);
      switch(type){
-@@ -253,9 +319,25 @@
+@@ -183,10 +270,6 @@
+       printf("Pentium 4");
+     }
+     printf("\n");
+-    if(family == 15){
+-      extended_family = (eax >> 20) & 0xff;
+-      printf("Extended family %d\n",extended_family);
+-    }
+     printf("Model %d - ",model);
+     switch(family){
+     case 3:
+@@ -253,33 +336,72 @@
        case 8:
  	printf("Pentium III/Pentium III Xeon - internal L2 cache");
  	break;
@@ -151,17 +206,46 @@
 +      case 13:
 +	printf("Intel Pentium M processor model D");
 +	break;
++      case 14:
++	printf("Intel Core family processor, 65nm");
++	break;
++      case 15:
++	printf("Intel Core2 family processor, 65nm");
++	break;
++      case 21:
++	printf("Intel EP80579 integrated processor");
++	break;
++      case 22:
++	printf("Intel Celeron processor model 16h, 65nm");
++	break;
++      case 23:
++	printf("Intel Core2 Extreme or Xeon processor, 45nm");
++	break;
++      case 28:
++	printf("Intel Atom processor, 45nm");
++	break;
++      case 30:
++	printf("Intel Corei7 or Xeon processor, 45nm");
++	break;
++      case 31:
++	printf("Intel Xeon processor MP, 45nm");
++	break;
        }
        break;
      case 15:
-+      extended_model = (eax >> 16) & 0xf;
-+      if (extended_model == 0) {
-+	printf("Intel Pentium 4 processor (generic) or newer");
-+      }
++      printf("Intel Pentium 4 processor (generic) or newer");
        break;
      }
      printf("\n");
-@@ -270,16 +352,22 @@
+-    if(model == 15){
+-      extended_model = (eax >> 16) & 0xf;
+-      printf("Extended model %d\n",extended_model);
+-    }
+     printf("Stepping %d\n",stepping);
+ 
+-    printf("Reserved %d\n\n",reserved);
++    printf("Reserved %x\n\n",reserved);
+ 
      brand = ebx & 0xff;
      if(brand > 0){
        printf("Brand index: %d [",brand);
@@ -186,7 +270,7 @@
        if(maxe >= 0x80000004){
  	int i;
  
-@@ -303,12 +391,48 @@
+@@ -303,12 +425,48 @@
        printf("Hyper threading siblings: %d\n",siblings);
      }
  
@@ -236,10 +320,34 @@
      printf("\n");
    }
    if(maxi >= 2){
-@@ -408,6 +532,33 @@
+@@ -396,18 +554,66 @@
+   case 0x4:
+     printf("Data TLB: 4MB pages, 4-way set assoc, 8 entries\n");
+     break;
++  case 0x5:
++    printf("Data TLB: 4MB pages, 4-way set assoc, 32 entries\n");
++    break;
+   case 0x6:
+     printf("1st-level instruction cache: 8KB, 4-way set assoc, 32 byte line size\n");
+     break;
+   case 0x8:
+     printf("1st-level instruction cache: 16KB, 4-way set assoc, 32 byte line size\n");
+     break;
++  case 0x9:
++    printf("1st-level instruction cache: 32KB, 4-way set assoc, 64 byte line size\n");
++    break;
+   case 0xa:
+     printf("1st-level data cache: 8KB, 2-way set assoc, 32 byte line size\n");
+     break;
    case 0xc:
      printf("1st-level data cache: 16KB, 4-way set assoc, 32 byte line size\n");
      break;
++  case 0xd:
++    printf("1st-level data cache: 16KB, 4-way set assoc, 64 byte line size, ECC\n");
++    break;
++  case 0x21:
++    printf("256-KB L2 (MLC), 8-way set associative, 64 byte line size\n");
++    break;
 +  case 0x22:
 +    printf("3rd-level cache: 512 KB, 4-way set associative, sectored cache, 64-byte line size\n");
 +    break;
@@ -261,16 +369,25 @@
 +  case 0x39:
 +    printf("2nd-level cache: 128-KB, 4-way set associative, sectored cache, 64-byte line size\n");
 +    break;
++  case 0x3a:
++    printf("2nd-level cache: 192-KB, 6-way set associative, sectored cache, 64-byte line size\n");
++    break;
 +  case 0x3b:
 +    printf("2nd-level cache: 128-KB, 2-way set associative, sectored cache, 64-byte line size\n");
 +    break;
 +  case 0x3c:
 +    printf("2nd-level cache: 256-KB, 4-way set associative, sectored cache, 64-byte line size\n");
 +    break;
++  case 0x3d:
++    printf("2nd-level cache: 384-KB, 6-way set associative, sectored cache, 64-byte line size\n");
++    break;
++  case 0x3e:
++    printf("2nd-level cache: 512-KB, 4-way set associative, sectored cache, 64-byte line size\n");
++    break;
    case 0x40:
      printf("No 2nd-level cache, or if 2nd-level cache exists, no 3rd-level cache\n");
      break;
-@@ -426,6 +577,12 @@
+@@ -426,23 +632,67 @@
    case 0x45:
      printf("2nd-level cache: 2MB, 4-way set assoc, 32 byte line size\n");
      break;
@@ -280,53 +397,114 @@
 +  case 0x47:
 +    printf("3rd-level cache: 8MB, 8-way set associative, 64-byte line size\n");
 +    break;
++  case 0x48:
++    printf("2nd-level cache: 3MB, 12-way set associative, 64-byte line size, unified on die\n");
++    break;
++  case 0x49:
++    /* TODO The code needs to be slightly restructured so we can check family and model here */
++    printf("3rd-level cache: 4MB, 16-way set associative, 64-byte line size (Intel Xeon MP, Family 0Fh, Model 06h\n");
++    printf("OR 2nd-level cache: 4MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0x4a:
++    printf("3rd-level cache: 6MB, 12-way set associative, 64-byte line size\n");
++    break;
++  case 0x4b:
++    printf("3rd-level cache: 8MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0x4c:
++    printf("3rd-level cache: 12MB, 12-way set associative, 64-byte line size\n");
++    break;
++  case 0x4d:
++    printf("3rd-level cache: 16MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0x4e:
++    printf("3rd-level cache: 6MB, 24-way set associative, 64-byte line size\n");
++    break;
    case 0x50:
-     printf("Instruction TLB: 4KB and 2MB or 4MB pages, 64 entries\n");
+-    printf("Instruction TLB: 4KB and 2MB or 4MB pages, 64 entries\n");
++    printf("Instruction TLB: 4KB, 2MB or 4MB pages, fully assoc., 64 entries\n");
      break;
-@@ -436,13 +593,16 @@
-     printf("Instruction TLB: 4KB and 2MB or 4MB pages, 256 entries\n");
+   case 0x51:
+-    printf("Instruction TLB: 4KB and 2MB or 4MB pages, 128 entries\n");
++    printf("Instruction TLB: 4KB, 2MB or 4MB pages, fully assoc., 128 entries\n");
+     break;
+   case 0x52:
+-    printf("Instruction TLB: 4KB and 2MB or 4MB pages, 256 entries\n");
++    printf("Instruction TLB: 4KB, 2MB or 4MB pages, fully assoc., 256 entries\n");
++    break;
++  case 0x55:
++    printf("Instruction TLB: 2MB or 4MB pages, fully assoc., 7 entries\n");
++    break;
++  case 0x56:
++    printf("Data TLB: 4MB pages, 4-way set associative, 16 entries\n");
++    break;
++  case 0x57:
++    printf("Data TLB: 4KB pages, 4-way set associative, 16 entries\n");
++    break;
++  case 0x5a:
++    printf("Data TLB: 2MB or 4MB pages, 4-way set associative, 32 entries\n");
      break;
    case 0x5b:
 -    printf("Data TLB: 4KB and 4MB pages, 64 entries\n");
-+    printf("Data TLB: 4KB and 4MB pages, fully assoc., 64 entries\n");
++    printf("Data TLB: 4KB or 4MB pages, fully assoc., 64 entries\n");
      break;
    case 0x5c:
 -    printf("Data TLB: 4KB and 4MB pages, 128 entries\n");
-+    printf("Data TLB: 4KB and 4MB pages, fully assoc., 128 entries\n");
++    printf("Data TLB: 4KB or 4MB pages, fully assoc., 128 entries\n");
      break;
    case 0x5d:
 -    printf("Data TLB: 4KB and 4MB pages, 256 entries\n");
-+    printf("Data TLB: 4KB and 4MB pages, fully assoc., 256 entries\n");
++    printf("Data TLB: 4KB or 4MB pages, fully assoc., 256 entries\n");
 +    break;
 +  case 0x60:
 +    printf("1st-level data cache: 16-KB, 8-way set associative, sectored cache, 64-byte line size\n");
      break;
    case 0x66:
      printf("1st-level data cache: 8KB, 4-way set assoc, 64 byte line size\n");
-@@ -462,6 +622,9 @@
-   case 0x72:
-     printf("Trace cache: 32K-micro-op, 4-way set assoc\n");
+@@ -454,25 +704,37 @@
+     printf("1st-level data cache: 32KB, 4-way set assoc, 64 byte line size\n");
      break;
+   case 0x70:
+-    printf("Trace cache: 12K-micro-op, 4-way set assoc\n");
++    printf("Trace cache: 12K-micro-op, 8-way set assoc\n");
+     break;
+   case 0x71:
+-    printf("Trace cache: 16K-micro-op, 4-way set assoc\n");
++    printf("Trace cache: 16K-micro-op, 8-way set assoc\n");
+     break;
+   case 0x72:
+-    printf("Trace cache: 32K-micro-op, 4-way set assoc\n");
++    printf("Trace cache: 32K-micro-op, 8-way set assoc\n");
++    break;
++  case 0x73:
++    printf("Trace cache: 64K-micro-op, 8-way set assoc\n");
++    break;
 +  case 0x78:
 +    printf("2nd-level cache: 1MB, 4-way set assoc, 64 byte line size\n");
-+    break;
+     break;
    case 0x79:
      printf("2nd-level cache: 128KB, 8-way set assoc, sectored, 64 byte line size\n");
      break;
-@@ -474,6 +637,12 @@
-   case 0x7c:
-     printf("2nd-level cache: 1MB, 8-way set assoc, sectored, 64 byte line size\n");    
+   case 0x7a:
+-    printf("2nd-level cache: 256KB, 8-way set assoc, sectored, 64 byte line size\n");    
++    printf("2nd-level cache: 256KB, 8-way set assoc, sectored, 64 byte line size\n");
      break;
+   case 0x7b:
+     printf("2nd-level cache: 512KB, 8-way set assoc, sectored, 64 byte line size\n");
+     break;
+   case 0x7c:
+-    printf("2nd-level cache: 1MB, 8-way set assoc, sectored, 64 byte line size\n");    
++    printf("2nd-level cache: 1MB, 8-way set assoc, sectored, 64 byte line size\n");
++    break;
 +  case 0x7d:
-+    printf("2nd-level cache: 2-MB, 8-way set associative, 64-byte line size\n");    
++    printf("2nd-level cache: 2-MB, 8-way set associative, 64-byte line size\n");
 +    break;
 +  case 0x7f:
-+    printf("2nd-level cache: 512KB, 2-way set assoc, 64 byte line size\n");    
-+    break;
++    printf("2nd-level cache: 512KB, 2-way set assoc, 64 byte line size\n");
+     break;
    case 0x82:
      printf("2nd-level cache: 256KB, 8-way set assoc, 32 byte line size\n");
-     break;
-@@ -486,44 +655,97 @@
+@@ -486,44 +748,189 @@
    case 0x85:
      printf("2nd-level cache: 2MB, 8-way set assoc, 32 byte line size\n");
      break;
@@ -339,8 +517,65 @@
 +  case 0xB0:
 +    printf("Instruction TLB: 4-KB Pages, 4-way set associative, 128 entries\n");
 +    break;
++  case 0xB1:
++    printf("Instruction TLB: 2MB Pages (8 entries) or 4MB pages (4 entries), 4-way set associative\n");
++    break;
++  case 0xB2:
++    printf("Instruction TLB: 4-KB Pages, 4-way set associative, 64 entries\n");
++    break;
 +  case 0xB3:
 +    printf("Data TLB: 4-KB Pages, 4-way set associative, 128 entries\n");
++    break;
++  case 0xB4:
++    printf("Data TLB: 4-KB Pages, 4-way set associative, 256 entries\n");
++    break;
++  case 0xCA:
++    printf("Shared 2nd-level TLB: 4-KB Pages, 4-way set associative, 512 entries\n");
++    break;
++  case 0xD0:
++    printf("3rd-level cache: 512KB, 4-way set associative, 64-byte line size\n");
++    break;
++  case 0xD1:
++    printf("3rd-level cache: 1MB, 4-way set associative, 64-byte line size\n");
++    break;
++  case 0xD2:
++    printf("3rd-level cache: 2MB, 4-way set associative, 64-byte line size\n");
++    break;
++  case 0xD6:
++    printf("3rd-level cache: 1MB, 8-way set associative, 64-byte line size\n");
++    break;
++  case 0xD7:
++    printf("3rd-level cache: 2MB, 8-way set associative, 64-byte line size\n");
++    break;
++  case 0xD8:
++    printf("3rd-level cache: 4MB, 8-way set associative, 64-byte line size\n");
++    break;
++  case 0xDC:
++    printf("3rd-level cache: 1.5MB, 12-way set associative, 64-byte line size\n");
++    break;
++  case 0xDD:
++    printf("3rd-level cache: 3MB, 12-way set associative, 64-byte line size\n");
++    break;
++  case 0xDE:
++    printf("3rd-level cache: 6MB, 12-way set associative, 64-byte line size\n");
++    break;
++  case 0xE2:
++    printf("3rd-level cache: 2MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0xE3:
++    printf("3rd-level cache: 4MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0xE4:
++    printf("3rd-level cache: 8MB, 16-way set associative, 64-byte line size\n");
++    break;
++  case 0xEA:
++    printf("3rd-level cache: 12MB, 24-way set associative, 64-byte line size\n");
++    break;
++  case 0xEB:
++    printf("3rd-level cache: 18MB, 24-way set associative, 64-byte line size\n");
++    break;
++  case 0xEC:
++    printf("3rd-level cache: 24MB, 24-way set associative, 64-byte line size\n");
 +    break;
 +  case 0xF0:
 +    printf("64-byte prefetching\n");
@@ -447,16 +682,51 @@
 +  "MMX    MMX instructions",
 +  "FXSR   Fast FP/MMX Streaming SIMD Extensions save/restore",
 +  "FFXSR  FXSAVE and FXRSTOR instruction optimizations",
-+  "26     Reserved",
++  "Pge1GB 1GB Page Support",
 +  "RDTSCP RDTSCP instruction",
 +  "28     Reserved",
 +  "LM     64 bit long mode",
 +  "3DNowE 3DNow! instruction extensions",
 +  "3DNow  3DNow! instructions",
++};
++
++char *AMD_feature_flags3[] = {
++  "LhfSaf LAHF and SAHF instructions in 65-bit mode",
++  "CmpLeg Core Multi-Processing mode",
++  "SVM    Secure Virtual Machine",
++  "XAPSPC Extended APIC Register Space",
++  "AltMC8 LOCK MOV CR0 means MOV CR8",
++  "ABM    Advanced Bit Manipulation",
++  "SSE4A  EXTRQ, INSERTQ, MOVNTSS, and MOVNTSD support",
++  "MASSE  Misaligned SSE mode",
++  "3DNPFC PREFETCH and PREFETCHW support",
++  "OSVW   OS Visible Workaround support",
++  "10     Reserved",
++  "11     Reserved",
++  "SKINIT SKINIT, STGI, and DEV support",
++  "WDT    Watchdog Timer support"
++  "14     Reserved",
++  "15     Reserved",
++  "16     Reserved",
++  "17     Reserved",
++  "18     Reserved",
++  "19     Reserved",
++  "20     Reserved",
++  "21     Reserved",
++  "22     Reserved",
++  "23     Reserved",
++  "24     Reserved",
++  "25     Reserved",
++  "26     Reserved",
++  "27     Reserved",
++  "28     Reserved",
++  "29     Reserved",
++  "30     Reserved",
++  "31     Reserved",
  };
  
  char *Assoc[] = {
-@@ -657,7 +879,7 @@
+@@ -657,10 +1064,16 @@
  	printf("Global Paging Extensions\n");
        } else {
  	if(edx & (1<<i)){
@@ -465,3 +735,12 @@
  	}
        }
      }
++    printf("\nExtended Miscellaneous feature flags %08lx:\n", ecx);
++    for(i=0;i<32;i++){
++      if(ecx & (1<<i)){
++        printf("%s\n",AMD_feature_flags3[i]);
++      }
++    }
+   }
+   printf("\n");
+   if(maxei >= 0x80000002){
