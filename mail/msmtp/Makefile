@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.6 2009/09/24 04:18:45 laffer1 Exp $
+# $MidnightBSD: mports/mail/msmtp/Makefile,v 1.7 2011/04/30 18:04:29 laffer1 Exp $
 
 PORTNAME=	msmtp
 PORTVERSION=	1.4.18
@@ -40,7 +40,7 @@ CONFIGURE_ARGS+=	--without-gsasl
 .endif
 
 .if !defined(WITHOUT_IDN)
-LIB_DEPENDS+=	idn.16:${PORTSDIR}/dns/libidn
+LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
 CONFIGURE_ARGS+=	--with-libidn
 .else
 CONFIGURE_ARGS+=	--without-libidn
