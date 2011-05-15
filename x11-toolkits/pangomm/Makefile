@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.2 2009/08/01 22:50:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.3 2010/12/11 19:57:57 laffer1 Exp $
 
 PORTNAME=	pangomm
-PORTVERSION=	2.26.2
+PORTVERSION=	2.26.3
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
