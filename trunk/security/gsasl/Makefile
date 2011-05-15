@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.5 2009/05/22 03:32:41 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.6 2010/08/01 06:16:25 laffer1 Exp $
 
 PORTNAME=	gsasl
 PORTVERSION=	1.4.0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU SASL Library
 LICENSE=	gpl3
 
-LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn \
+LIB_DEPENDS=	idn.17:${PORTSDIR}/dns/libidn \
 		gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
