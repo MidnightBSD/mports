@@ -1,4 +1,3 @@
-MD5 (gnome2/gtkmm-2.20.3.tar.bz2) = c35f236091b4f96fe45c53b4107400a9
-SHA256 (gnome2/gtkmm-2.20.3.tar.bz2) = 311d2156f15cdbdce22cb2af6e606a3f621d7dfebea6f7b1be0132e81af90585
-RMD160 (gnome2/gtkmm-2.20.3.tar.bz2) = b0f26cb06443e642e43435cec9ff66a5972fc8d7
-SIZE (gnome2/gtkmm-2.20.3.tar.bz2) = 12554334
+SHA256 (gnome2/gtkmm-2.22.0.tar.bz2) = 8478d80d8d4793c2e1c459a71bad6a767a43eaf2664da06a9bd65a2b98bb07b1
+RMD160 (gnome2/gtkmm-2.22.0.tar.bz2) = 5eacf79b3c2acd09ba36a3e8643da90282cec579
+SIZE (gnome2/gtkmm-2.22.0.tar.bz2) = 11496369
