@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.4 2010/10/19 20:46:11 laffer1 Exp $
+# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.5 2010/10/19 20:49:13 laffer1 Exp $
 
 PORTNAME=	ocaml
-PORTVERSION=	3.11.2
+PORTVERSION=	3.12.0
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/distrib/${DISTNAME:R}/ \
 		ftp://ftp.inria.fr/INRIA/caml-light/${DISTNAME:R}/ \
