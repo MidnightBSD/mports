@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.8 2011/01/20 14:31:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.9 2011/02/02 21:39:27 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 
 PORTNAME=	compiz
 PORTVERSION=	0.8.4
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
