@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.56 2010/01/24 15:56:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.57 2011/02/09 14:02:37 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -6,6 +6,7 @@
     SUBDIR += Xaw3d
     SUBDIR += eel
     SUBDIR += gdl
+    SUBDIR += gir-repository-vte
     SUBDIR += gnustep-art
     SUBDIR += gnustep-back
     SUBDIR += gnustep-cairo

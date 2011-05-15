@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.25 2010/08/01 04:17:09 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.26 2011/02/02 21:38:57 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.20.1
-PORTREVISION?=	0
+PORTVERSION=	2.22.1
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
@@ -34,35 +34,31 @@ RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=	yes
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack atk pango ltverhack
+USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack
 USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
-
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes --with-libjasper
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
 			  -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-GTK_VERSION=	2.10.0
-PLIST_SUB=	GTK_VERSION="${GTK_VERSION}"
 
-gdk_pixbuf_MAN=	gdk-pixbuf-query-loaders.1
-gtk_MAN=	gtk-query-immodules-2.0.1 gtk-update-icon-cache.1
-
-MAN1=		${gdk_pixbuf_MAN} ${gtk_MAN}
-
-SUB_FILES= 	pkg-install
+MAN1=		gtk-query-immodules-2.0.1 gtk-update-icon-cache.1
+SUB_FILES=	pkg-install
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug=yes
 .endif
 
+OPTIONS=	CUPS "Enable cups printing support" on
+
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)
+.if defined(WITH_CUPS)
 LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
 CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS:=""
@@ -76,10 +72,6 @@ post-patch:
 		${XARGS} ${REINPLACE_CMD} -e 's|-lgmodule|@GMODULE_LIBS@|g'
 	@${REINPLACE_CMD} -e 's|[{]libdir[}]/locale|{datadir}/locale|g' \
 		${WRKSRC}/configure
-# GnomeVFS needs pthread; gtk-demo may use GnomeVFS (via GtkFileChooser)
-	@${REINPLACE_CMD} -e 's|@CFLAGS@|& ${PTHREAD_CFLAGS}|; \
-		s|@LDFLAGS@|& ${PTHREAD_LIBS}|' \
-		${WRKSRC}/demos/gtk-demo/Makefile.in
 	@${REINPLACE_CMD} -e 's|@LN_S@|${LN} -sf|' ${WRKSRC}/gtk/Makefile.in
 	@${REINPLACE_CMD} -e 's|file,cups|file,cups,lpr|' \
 		${WRKSRC}/gtk/Makefile.in
@@ -89,10 +81,9 @@ pre-build:
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/modules
-	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK_VERSION}/engines
-	${INSTALL_MAN} ${gdk_pixbuf_MAN:S|^|${WRKSRC}/docs/reference/gdk-pixbuf/|} \
-		${PREFIX}/man/man1
-	${INSTALL_MAN} ${gtk_MAN:S|^|${WRKSRC}/docs/reference/gtk/|} \
+	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/engines
+	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/loaders
+	${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/docs/reference/gtk/|} \
 		${PREFIX}/man/man1
 
 .include <bsd.port.post.mk>
