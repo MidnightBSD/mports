@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.2 2010/05/29 09:08:14 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.3 2011/02/02 21:16:29 laffer1 Exp $
 
 PORTNAME=	libnice
-PORTVERSION=	0.0.12
+PORTVERSION=	0.0.13
+PORTREVISION=	0
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://nice.freedesktop.org/releases/
 
@@ -11,6 +12,7 @@ LICENSE=	lgpl
 # dual.. mpl or lgpl
 
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig glib20 ltverhack gnometarget
 USE_GSTREAMER=	yes
@@ -27,5 +29,10 @@ post-patch:
 	    	's|-Wno-missing-field-initializers|#|g'
 	@${REINPLACE_CMD} -e 's|-Wno-missing-field-initializers|#|g' \
 	    	${WRKSRC}/common.mk
+
+post-configure:
+	@${TOUCH} -f ${WRKSRC}/config.h ${WRKSRC}/aclocal.m4 \
+	    	${WRKSRC}/configure ${WRKSRC}/Makefile.in \
+		${WRKSRC}/Makefile
 
 .include <bsd.port.mk>
