@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.5 2009/12/13 22:04:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtksourceview/Makefile,v 1.6 2011/02/02 21:38:58 laffer1 Exp $
 
 PORTNAME=	gtksourceview
 PORTVERSION=	1.8.5
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
