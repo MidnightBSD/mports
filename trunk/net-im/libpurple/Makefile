@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.15 2010/05/08 17:31:37 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.16 2010/05/28 22:30:15 laffer1 Exp $
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.7.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -101,7 +101,7 @@ CONFIGURE_ARGS+=--disable-gstreamer
 .endif
 
 .if !defined(WITHOUT_IDN)
-LIB_DEPENDS+=	idn.16:${PORTSDIR}/dns/libidn
+LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
 .else
 CONFIGURE_ARGS+=--disable-idn
 .endif

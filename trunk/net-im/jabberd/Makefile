@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.8 2010/10/23 18:02:57 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.9 2010/12/04 20:29:44 laffer1 Exp $
 
 PORTNAME=	jabberd
 PORTVERSION=	2.2.11
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	http://codex.xiaoka.com/pub/jabberd2/releases/
 DIST_SUBDIR=	jabber
@@ -11,7 +12,7 @@ COMMENT=	Online presence and instant messaging server
 LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		idn.16:${PORTSDIR}/dns/libidn \
+		idn.17:${PORTSDIR}/dns/libidn \
 		udns.0:${PORTSDIR}/dns/udns
 
 OPTIONS=	MYSQL "Support MySQL (storage/auth/reg)" on \
