@@ -2,7 +2,7 @@
 # Date created:		June 15, 1998
 # Whom:			Brian Handy <handy@physics.montana.edu>
 #
-# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.6 2008/08/19 20:37:10 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/blackbox/Makefile,v 1.7 2010/01/01 17:32:09 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/blackbox/Makefile,v 1.46 2006/05/13 05:00:41 edwin Exp $
 #
 
@@ -16,14 +16,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small and fast window manager for X11R6
 LICENSE=	mit
 
-LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
-
 CONFLICTS=	boxtools-*
 
 PORTDOCS=	AUTHORS COMPLIANCE ChangeLog LICENSE README RELNOTES TODO
 MAN1=		blackbox.1
 
-USE_XORG=	x11
+USE_XORG=	x11 xft
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
 USE_ICONV=	yes
