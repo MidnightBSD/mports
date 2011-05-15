@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.11 2010/01/01 17:25:49 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.12 2010/01/01 17:31:04 laffer1 Exp $
 
 PORTNAME=	fluxbox
-PORTVERSION=	1.1.1
+PORTVERSION=	1.3.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
@@ -20,9 +20,25 @@ WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 
 DOCS=		AUTHORS COPYING ChangeLog NEWS README TODO
-MAN1=		fbrun.1 fbsetbg.1 fbsetroot.1 fluxbox.1 fluxstyle.1 \
-		startfluxbox.1
+MAN1=		fbrun.1 fbsetbg.1 fbsetroot.1 fluxbox.1 \
+		startfluxbox.1 fluxbox-remote.1
+MAN5=		fluxbox-apps.5 fluxbox-keys.5 fluxbox-menu.5 \
+		fluxbox-style.5
 DOCSVERSION=	20060629
+
+OPTIONS=	DOCHTML "Install html documentation" off \
+		DOCPDF "Install pdf documentation" off \
+		DEBUG "Enable debugging support" off \
+		GNOME "Enable GNOME support" off \
+		IMLIB2 "Enable imlib2 support" off \
+		XINERAMA "Enable xinerama support" off \
+		XRENDER "Enable xrender support" on \
+		NLS "Native language support" on \
+		SLIT "Enable slit feature" on \
+		REMEMBER "Enable remember feature" on \
+		TOOLBAR "Enable toolbar feature" on
+
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug
@@ -54,12 +70,6 @@ LIB_DEPENDS+=		Imlib2.5:${PORTSDIR}/graphics/imlib2
 CONFIGURE_ARGS+=	--enable-imlib2
 .else
 CONFIGURE_ARGS+=	--disable-imlib2
-.endif
-
-.if defined(WITH_KDE) || defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=	--enable-kde
-.else
-CONFIGURE_ARGS+=	--disable-kde
 .endif
 
 .if defined(WITH_XINERAMA) || defined(PACKAGE_BUILDING)
@@ -113,51 +123,10 @@ CONFIGURE_ARGS+=	--enable-gnome
 CONFIGURE_ARGS+=	--disable-gnome
 .endif
 
-pre-everything::
-	@${ECHO_CMD} ""
-	@${ECHO_CMD} "Definable build options"
-	@${ECHO_CMD} "-----------------------"
-.if !defined(WITH_DEBUG)
-	@${ECHO_CMD} "WITH_DEBUG=yes		Build with debugging symbols"
-.endif
-.if !defined(WITH_DOCHTML)
-	@${ECHO_CMD} "WITH_DOCHTML=yes	Install the HTML documentation"
-.endif
-.if !defined(WITH_DOCPDF)
-	@${ECHO_CMD} "WITH_DOCPDF=yes		Install the PDF documentation"
-.endif
-.if !defined(WITH_GNOME)
-	@${ECHO_CMD} "WITH_GNOME=yes		Enable GNOME support"
-.endif
-.if !defined(WITH_IMLIB2)
-	@${ECHO_CMD} "WITH_IMLIB2=yes		Enable Imlib2 (pixmap themes) support"
-.endif
-.if !defined(WITH_KDE)
-	@${ECHO_CMD} "WITH_KDE=yes		Enable KDE slit support"
-.endif
-.if !defined(WITH_XINERAMA)
-	@${ECHO_CMD} "WITH_XINERAMA=yes	Enable Xinerama support"
-.endif
-.if !defined(WITHOUT_NLS)
-	@${ECHO_CMD} "WITHOUT_NLS=yes		Disable NLS support"
-.endif
-.if !defined(WITHOUT_REMEMBER)
-	@${ECHO_CMD} "WITHOUT_REMEMBER=yes	Disable remembering attributes support"
-.endif
-.if !defined(WITHOUT_SLIT)
-	@${ECHO_CMD} "WITHOUT_SLIT=yes	Disable slit"
-.endif
-.if !defined(WITHOUT_TOOLBAR)
-	@${ECHO_CMD} "WITHOUT_TOOLBAR=yes	Disable toolbar"
-.endif
-.if !defined(WITHOUT_XRENDER)
-	@${ECHO_CMD} "WITHOUT_XRENDER=yes	Disable Xrender (transparent) support"
-.endif
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/util/fluxbox-generate_menu.in
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/util/fbsetbg
 .if defined(WITHOUT_NLS)
 	@${REINPLACE_CMD} -e 's|HAVE_ICONV=yes|HAVE_ICONV=no|g' \
