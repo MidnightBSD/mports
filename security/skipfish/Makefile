@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/skipfish/Makefile,v 1.1 2010/03/21 20:31:47 laffer1 Exp $
+# $MidnightBSD: mports/security/skipfish/Makefile,v 1.3 2010/03/21 22:09:23 laffer1 Exp $
 
 PORTNAME=	skipfish
 PORTVERSION=	1.07b
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://skipfish.googlecode.com/files/
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tgz
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File and block device wiping utility
 LICENSE=	apache2
 
-LIB_DEPENDS=	idn.16:${PORTSDIR}/dns/libidn
+LIB_DEPENDS=	idn.17:${PORTSDIR}/dns/libidn
 
 USE_GMAKE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}
