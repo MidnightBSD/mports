@@ -1,4 +1,3 @@
-MD5 (xorg/lib/libXt-1.0.5.tar.bz2) = f3bdd67785ace8cd0b23249e9d8c9975
-SHA256 (xorg/lib/libXt-1.0.5.tar.bz2) = 43c472ada59a04428a463225cd4cd42cb81bc43eb687cc1890f2f1c81a3e9cf4
-RMD160 (xorg/lib/libXt-1.0.5.tar.bz2) = 7e5ef9e03dc860bf5b64b85a897dd1d2ae1ed0bf
-SIZE (xorg/lib/libXt-1.0.5.tar.bz2) = 500502
+SHA256 (xorg/lib/libXt-1.0.9.tar.bz2) = eab91b594b801f7f07a20f936dda70a629028858cbcf541becf94f2786ae6b01
+RMD160 (xorg/lib/libXt-1.0.9.tar.bz2) = 49ff4b80c3cb6d05e049cda00caa906fda096a2a
+SIZE (xorg/lib/libXt-1.0.9.tar.bz2) = 685981
