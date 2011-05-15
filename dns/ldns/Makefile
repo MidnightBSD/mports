@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/ldns/Makefile,v 1.2 2011/02/02 20:18:22 laffer1 Exp $
+# $MidnightBSD: mports/dns/ldns/Makefile,v 1.3 2011/02/23 21:35:31 laffer1 Exp $
 
 PORTNAME=	ldns
-PORTVERSION=	1.6.8
+PORTVERSION=	1.6.9
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/
 
