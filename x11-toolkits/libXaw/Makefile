@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/libXaw/Makefile,v 1.2 2009/03/15 20:40:08 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libXaw/Makefile,v 1.3 2009/05/05 01:03:48 laffer1 Exp $
 
 PORTNAME=	libXaw
-PORTVERSION=	1.0.5
-PORTREVISION=	1
+PORTVERSION=	1.0.8
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,6 +10,8 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	printproto:both x11 xau xext xextproto xmu xp xpm xproto:both xt
+
+USE_GMAKE=	yes
 
 MAN3=		Xaw.3
 
