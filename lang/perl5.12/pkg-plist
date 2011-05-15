@@ -1,4 +1,4 @@
-%%GDBM%%$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+%%GDBM%%$MidnightBSD: mports/lang/perl5.12/pkg-plist,v 1.1 2010/04/27 12:53:33 laffer1 Exp $
 bin/perl%%PERL_VER%%
 bin/perl
 bin/a2p
@@ -1932,6 +1932,9 @@ lib/perl5/%%PERL_VER%%/pod/perl5113delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5114delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5115delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5120delta.pod
+lib/perl5/%%PERL_VER%%/pod/perl5121delta.pod
+lib/perl5/%%PERL_VER%%/pod/perl5122delta.pod
+lib/perl5/%%PERL_VER%%/pod/perl5123delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl561delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl56delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl570delta.pod
