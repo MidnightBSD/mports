@@ -1,10 +1,5 @@
-# New ports collection makefile for:   gtoolkit
-# Date created:        13 Jan 2002
-# Whom:                Miguel Mendez <flynn@energyhq.homeip.net>
-#
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.6 2008/10/12 20:04:07 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.7 2008/10/13 17:33:07 laffer1 Exp $
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5
@@ -14,7 +9,7 @@ MASTER_SITES=	ftp://ftp.inf.uos.de/pub/elmar/gtk/objc-gtoolkit/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Obj-C wrapper for gtk, a x11 graphics library
-LICENSE=	gpl2
+LICENSE=	lgpl
 
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
