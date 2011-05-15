@@ -2,13 +2,13 @@
 # Date created:         22 May 2003
 # Whom:                 Alexander Nedotsukov <bland@mail.ru>
 #
-# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.3 2009/12/13 21:46:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeuimm/Makefile,v 1.4 2011/02/02 21:38:58 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libgnomeuimm/Makefile,v 1.17 2007/10/04 06:27:13 edwin Exp $
 #
 
 PORTNAME=	libgnomeuimm
 PORTVERSION=	2.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	SF/gtkmm/OldFiles
 DIST_SUBDIR=	gnome2
