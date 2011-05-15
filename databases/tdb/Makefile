@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.1 2010/10/23 11:46:36 laffer1 Exp $
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.2 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=		tdb
-PORTVERSION=		1.2.0
+PORTVERSION=		1.2.1
 CATEGORIES=		databases
 MASTER_SITES=		ftp://ftp.samba.org/pub/%SUBDIR%/ \
 			ftp://ca.samba.org/pub/%SUBDIR%/ \
