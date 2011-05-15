@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.6 2010/10/17 00:22:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.7 2011/02/02 21:39:27 laffer1 Exp $
 
 PORTNAME=	awesome
-PORTVERSION=	3.4.8
+PORTVERSION=	3.4.9
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://awesome.naquadah.org/download/ \
 		http://redundancy.redundancy.org/mirror/
