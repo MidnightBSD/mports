@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.105 2010/12/11 04:27:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.106 2011/01/08 04:45:36 laffer1 Exp $
 #
 
     COMMENT = Graphics tools and libraries
@@ -25,6 +25,8 @@
     SUBDIR += gegl
     SUBDIR += giblib
     SUBDIR += gimp-app
+    SUBDIR += gir-repository-goocanvas
+    SUBDIR += gir-repository-poppler
     SUBDIR += gle
     SUBDIR += glew
     SUBDIR += glitz
