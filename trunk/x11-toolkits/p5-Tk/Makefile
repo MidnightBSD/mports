@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.6 2010/05/08 16:02:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.7 2010/05/30 21:44:06 laffer1 Exp $
 
 PORTNAME=	Tk
-DISTVERSION=	804.028_502
+DISTVERSION=	804.029
 CATEGORIES=	x11-toolkits tk perl5
 MASTER_SITES=	CPAN/Tk/SREZIC
 PKGNAMEPREFIX=	p5-
