@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-citron/Makefile,v 1.1 2007/10/11 21:44:46 ctriv Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-citron/Makefile,v 1.2 2009/08/21 17:44:33 laffer1 Exp $
 
 PORTNAME=	xf86-input-citron
 PORTVERSION=	2.2.2
@@ -10,5 +10,7 @@ LICENSE=	x11
 
 XORG_CAT=	driver
 MAN4=		citron.4x
+
+BROKEN=		does not compile
 
 .include <bsd.port.mk>
