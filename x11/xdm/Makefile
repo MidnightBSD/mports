@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/xdm/Makefile,v 1.3 2009/05/04 02:33:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.4 2011/05/07 02:55:11 laffer1 Exp $
 
 PORTNAME=	xdm
 PORTVERSION=	1.1.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -35,5 +35,6 @@ post-install:
 .for f in ${CFFILES}
 	${CP} -n ${EXAMPLESDIR}/$f ${PREFIX}/lib/X11/xdm/$f
 .endfor
+	(cd ${PREFIX}/lib/X11/xdm && ${LN} -sf /var/lib/xdm/authdir authdir)
 
 .include <bsd.port.mk>
