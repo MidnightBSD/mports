@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/libpciaccess/Makefile,v 1.2 2009/05/05 00:32:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/libpciaccess/Makefile,v 1.3 2009/05/08 13:49:38 laffer1 Exp $
 
 PORTNAME=	libpciaccess
-PORTVERSION=	0.10.6
+PORTVERSION=	0.12.1
 PORTREVISION=	1
 CATEGORIES=	devel
 
