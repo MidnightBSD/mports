@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.6 2008/08/20 20:37:47 laffer1 Exp $
+# $MidnightBSD: mports/x11/rxvt/Makefile,v 1.7 2011/05/07 02:22:02 laffer1 Exp $
 # $FreeBSD: ports/x11/rxvt/Makefile,v 1.61 2006/12/09 05:06:13 rafan Exp $
 #
 # If possible, please consider updating the simple ports/x11-clocks/rclock
@@ -7,7 +7,7 @@
 
 PORTNAME=	rxvt
 PORTVERSION=	2.6.4
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES+=	x11
 MASTER_SITES=	SF
 
