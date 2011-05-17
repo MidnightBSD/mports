@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libGL/Makefile,v 1.2 2009/03/15 19:00:33 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGL/Makefile,v 1.3 2009/03/15 19:52:54 laffer1 Exp $
 
 PORTNAME=	libGL
 PORTVERSION=	${MESAVERSION}
@@ -14,8 +14,8 @@ LIB_DEPENDS+=	drm:${PORTSDIR}/graphics/libdrm \
 USE_XORG=	glproto x11 xext xxf86vm xdamage xfixes dri2proto:both
 
 do-install:
-	${RM} ${WRKSRC}/include/GL/glu*.h
+	${RM} -f ${WRKSRC}/include/GL/glu*.h
 	cd ${WRKSRC}/src/mesa; ${GMAKE} ${FAKE_MAKEARGS} install-libgl
 
-.include "${.CURDIR}/../../graphics/libGL/bsd.mesalib.mk"
+.include "${.CURDIR}/bsd.mesalib.mk"
 .include <bsd.port.mk>
