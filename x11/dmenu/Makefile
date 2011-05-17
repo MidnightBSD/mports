@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.11 2010/12/04 02:33:55 laffer1 Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.12 2011/05/02 13:43:50 laffer1 Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 
 PORTNAME=	dmenu
@@ -18,7 +18,7 @@ FAKE_OPTS=	trueprefix
 MAN1=		dmenu.1
 PLIST_FILES=	bin/dmenu bin/dmenu_path bin/dmenu_run
 
-EXTRA_FAKE_MAKEARGS= MANPREFIX=${PREFIX}/man
+EXTRA_FAKE_MAKEARGS= MANPREFIX=${PREFIX}
 
 post-patch:
 	@${GREP} -Rl '%%[[:alpha:]]\+%%' ${WRKSRC}|${XARGS} ${REINPLACE_CMD} \
