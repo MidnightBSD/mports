@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.10 2010/01/10 19:55:04 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.11 2010/06/25 18:14:54 laffer1 Exp $
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.4
+PORTVERSION=	8.14.5
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
 		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,} \
