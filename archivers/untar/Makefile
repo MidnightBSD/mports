@@ -1,10 +1,5 @@
-# New ports collection makefile for:    untar
-# Date created:         14 Jul 2002
-# Whom:                 KIMURA<LEE> Shigekazu <spbz6f99@utopia.ocn.ne.jp>
-
-# $MidnightBSD: mports/archivers/untar/Makefile,v 1.1 2008/04/14 22:12:41 crash Exp $
+# $MidnightBSD: mports/archivers/untar/Makefile,v 1.2 2008/10/01 00:06:16 laffer1 Exp $
 # $FreeBSD: ports/archivers/untar/Makefile,v 1.9 2007/08/04 11:40:38 gabor Exp $
-#
 
 PORTNAME=	untar
 PORTVERSION=	1.4
@@ -23,7 +18,7 @@ MAKEFILE=	/usr/share/mk/bsd.prog.mk
 NO_WRKSUBDIR=	yes
 PLIST_FILES=	bin/untar
 
-MAKE_ENV+=	PROG=untar NOMAN=yes
+MAKE_ENV+=	PROG=untar NO_MAN=yes
 MAKE_ARGS+=	CFLAGS="${CFLAGS} -D_POSIX_SOURCE" \
 		LDFLAGS="${LDFLAGS} -static"
 
