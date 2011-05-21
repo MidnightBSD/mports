@@ -1,10 +1,5 @@
-# ports collection makefile for:	fam
-# Date created:				20 February 2001
-# Whom:					Jeremy Norris <ishmael27@home.com>
-#
-# $MidnightBSD: mports/devel/fam/Makefile,v 1.2 2009/09/20 01:19:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/fam/Makefile,v 1.3 2011/02/02 20:17:32 laffer1 Exp $
 # $FreeBSD: ports/devel/fam/Makefile,v 1.35 2008/08/20 00:56:36 ade Exp $
-#
 
 PORTNAME=	fam
 PORTVERSION=	2.6.10
