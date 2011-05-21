@@ -1,12 +1,8 @@
-# New ports collection makefile for:	liboil
-# Date created:				Nov 24, 2004
-# Whom:					ijliao
-#
-# $MidnightBSD: mports/devel/liboil/Makefile,v 1.5 2010/02/27 22:21:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboil/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
-PORTVERSION=	0.3.16
+PORTVERSION=	0.3.17
 CATEGORIES=	devel
 MASTER_SITES=	http://liboil.freedesktop.org/download/
 
