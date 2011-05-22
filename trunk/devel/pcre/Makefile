@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.11 2010/10/23 17:34:08 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.12 2011/01/15 05:00:13 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 
 PORTNAME=	pcre
-PORTVERSION=	8.11
+PORTVERSION=	8.12
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
