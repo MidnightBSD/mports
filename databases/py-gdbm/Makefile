@@ -1,10 +1,5 @@
-# New ports collection makefile for:    py-gdbm
-# Date created:         03 October 2000
-# Whom:                 Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/databases/py-gdbm/Makefile,v 1.1 2008/04/02 20:47:21 laffer1 Exp $
+# $MidnightBSD: mports/databases/py-gdbm/Makefile,v 1.2 2009/10/14 00:19:56 laffer1 Exp $
 # $FreeBSD: ports/databases/py-gdbm/Makefile,v 1.13 2007/07/30 09:41:05 alexbl Exp $
-#
 
 PORTNAME=	gdbm
 PORTVERSION=	${PYTHON_PORTVERSION}
@@ -26,7 +21,7 @@ USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGVERSION=	0.0.0
 WRKSRC=		${PYTHON_WRKSRC}/Modules
-MD5_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
+DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 
 .include <bsd.port.pre.mk>
 
