@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.5 2010/12/31 22:38:39 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.6 2011/05/27 02:02:43 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -19,7 +19,7 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  necessary (MySQL5.1 = 51).
 # DEFAULT_MYSQL_VER
 #				- MySQL default version. Can be overriden within a port.
-#				  Default: 51.
+#				  Default: 55.
 # WANT_MYSQL_VER
 #				- Maintainer can set an arbitrary version of MySQL by using it.
 # IGNORE_WITH_MYSQL
@@ -31,7 +31,7 @@ Mysql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				- Detected MySQL version.
 ##
 
-DEFAULT_MYSQL_VER?=	51
+DEFAULT_MYSQL_VER?=	55
 # MySQL client version currently supported.
 MYSQL41_LIBVER=		14
 MYSQL50_LIBVER=		15
