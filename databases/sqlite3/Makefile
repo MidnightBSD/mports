@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.12 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.13 2011/05/27 01:51:09 laffer1 Exp $
 
 PORTNAME=	sqlite
 PORTVERSION=	3.6.19
@@ -28,7 +28,8 @@ OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
 		RAMTABLE	"Store temporary tables in RAM"		off \
 		TCLWRAPPER	"Enable TCL wrapper"			off \
 		METADATA	"Enable column metadata"		on \
-		THREADSAFE	"Build thread-safe library"		on
+		THREADSAFE	"Build thread-safe library"		on \
+		EXTENSION	"Allow loadable extensions"		off
 
 .include <bsd.port.pre.mk>
 
@@ -70,6 +71,12 @@ CONFIGURE_ARGS+=	--enable-threadsafe \
 			--enable-threads-override-locks
 .else
 CONFIGURE_ARGS+=	--disable-threadsafe
+.endif
+
+.if !defined(WITHOUT_EXTENSION)
+CONFIGURE_ARGS+=	--enable-load-extension
+.else
+CONFIGURE_ARGS+=	--disable-load-extension
 .endif
 
 .if defined(WITH_TCLWRAPPER)
