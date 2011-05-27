@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.4 2010/12/18 05:21:36 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/mysql.mk,v 1.5 2010/12/31 22:38:39 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -36,7 +36,7 @@ DEFAULT_MYSQL_VER?=	51
 MYSQL41_LIBVER=		14
 MYSQL50_LIBVER=		15
 MYSQL51_LIBVER=		16
-MYSQL55_LIBVER=		16
+MYSQL55_LIBVER=		18
 
 # Setting/finding MySQL version we want.
 .if exists(${LOCALBASE}/bin/mysql) && !defined(PACKAGE_BUILDING)
