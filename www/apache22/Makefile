@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.21 2010/11/06 22:00:58 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.22 2011/02/02 21:31:38 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
-PORTVERSION=	2.2.17
-PORTREVISION=	1
+PORTVERSION=	2.2.19
+PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -17,6 +17,7 @@ COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
+		apr-1:${PORTSDIR}/devel/apr \
 		pcre.0:${PORTSDIR}/devel/pcre
 
 MAKE_JOBS_SAFE=	yes
@@ -35,11 +36,10 @@ USE_ICONV=		yes
 USE_AUTOTOOLS=		autoconf libtool
 USE_PERL5=		yes
 USE_PYTHON=		yes
-USE_RC_SUBR=		apache22.sh htcacheclean.sh
-SUB_LIST+=		RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
+USE_RC_SUBR=		apache22 htcacheclean
 LIBTOOLFILES=		configure
 
-MPM_ITK_VERSION?=	20090414-00
+MPM_ITK_VERSION?=	20110321-01
 
 # for slave ports
 .if !defined(MASTERDIR)
@@ -49,15 +49,22 @@ APACHEDIR=	${MASTERDIR}
 .endif
 
 .if !defined(WITHOUT_APACHE_OPTIONS)
-OPTIONS= \
-	APR_FROM_PORTS "Use devel/apr as APR (preferred)" Off \
-	THREADS "Enable threads support in APR" Off \
-	MYSQL "Enable MySQL support for apr-dbd" Off \
-	PGSQL "Enable PostgreSQL support for apr-dbd" Off \
-	SQLITE "Enable SQLite support for apr-dbd" Off \
-	IPV6 "Enable IPv6 support" On \
-	BDB "Enable BerkeleyDB dbm" Off
+OPTIONS=	\
+	THREADS 		"Enable threads support in APR" 		Off \
+	MYSQL 			"Enable MySQL support for apr-dbd" 		Off \
+	PGSQL 			"Enable PostgreSQL support for apr-dbd" Off \
+	SQLITE 			"Enable SQLite support for apr-dbd" 	Off \
+	IPV6 			"Enable IPv6 support" 					On  \
+	BDB 			"Enable BerkeleyDB dbm" 				Off
 .include "${APACHEDIR}/Makefile.options"
+.endif
+
+.if defined(WITH_SUEXEC_RSRCLIMIT)
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-suexec_rsrclimit
+.if !defined(WITH_SUEXEC)
+IGNORE=         suEXEC resource limit patch requires mod_suexec.\
+		Please (re)run 'make config' and choose SUEXEC option also
+.endif
 .endif
 
 CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
@@ -67,16 +74,21 @@ CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--with-expat=${LOCALBASE} \
 		--with-iconv=${LOCALBASE} \
 		--enable-http \
-		--with-pcre=${LOCALBASE}
+		--with-pcre=${LOCALBASE} \
+		--with-apr=${LOCALBASE}/bin/apr-1-config \
+		--with-apr-util=${LOCALBASE}/bin/apu-1-config
 
-CONFIGURE_ENV=	CC="${CC}" CPPFLAGS="${CPPFLAGS}" \
-		CFLAGS="${CFLAGS}" \
-		LDFLAGS="${LDFLAGS}" CONFIG_SHELL="${SH}" \
+CONFIGURE_ENV= \
+		CC="${CC}" \
+		CPPFLAGS="${CPPFLAGS}" \
+		LDFLAGS="${LDFLAGS}" \
+		CONFIG_SHELL="${SH}" \
 		LOCALBASE="${LOCALBASE}"
 
 PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
 
-MAKE_ENV+=	EXPR_COMPAT=yes
+MAKE_ENV+=	EXPR_COMPAT=yes \
+		INSTALL_MAN="${INSTALL_MAN}"
 
 WITH_MPM?=	prefork # or worker, event, itk
 
@@ -113,31 +125,11 @@ WITH_LDAP=	yes
 .include "${PORTSDIR}/Mk/extensions/openssl.mk"
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
-
-.endif
-
-.if defined(WITH_APR_FROM_PORTS)
-PLIST_SUB+=	APR_PORTS="@comment "
-LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
-CONFIGURE_ARGS+=	--with-apr=${LOCALBASE}/bin/apr-1-config \
-			--with-apr-util=${LOCALBASE}/bin/apu-1-config
-CONFIGURE_ENV+=		LTFLAGS="--tag=CXX"
-.else
-USE_LDCONFIG=	yes
-PLIST_SUB+=	APR_PORTS=""
-CONFLICTS+=	apr-1.* apr-db4[0-9]-1.*
-CONFIGURE_ENV+=	USE_BUNDLED_APR=YES
-.endif
-
-# When using apr_mysql_db we _must_ rebuild makefiles
-.if defined(WITH_FULLBUILD)
-BUILD_DEPENDS=	python:${PORTSDIR}/lang/python
-SCRIPTS_ENV+=	FULLBUILD=on
 .endif
 
 .if defined (WITH_LDAP) || defined (WITH_LDAP_MODULES)
-USE_OPENLDAP=		YES
-CONFIGURE_ARGS+=	--with-ldap \
+USE_OPENLDAP=		yes
+CONFIGURE_ARGS+=	--enable-ldap=shared --with-ldap --enable-authnz-ldap \
 			--with-ldap-lib="${LOCALBASE}/lib" \
 			--with-ldap-include="${LOCALBASE}/include"
 .endif
@@ -160,7 +152,14 @@ CONFIGURE_ARGS+=	--enable-nonportable-atomics
 .   endif
 .endif
 
-CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM:L} ${CONFIGURE_TARGET}
+.if defined(WITH_AUTH_DIGEST)
+WITH_DEVRANDOM=	yes
+.endif
+.if defined(WITH_DEVRANDOM)
+CONFIGURE_ARGS+=	--with-devrandom
+.endif
+
+CONFIGURE_ARGS+=	--with-mpm=${WITH_MPM:L}
 
 pre-everything::
 	@${ECHO_MSG}	""
@@ -180,11 +179,6 @@ pre-everything::
 show-options:
 	@${SED} -ne 's/^##//p' ${APACHEDIR}/Makefile.doc
 
-#optionally enable mod_proxy_connect patch
-.if defined(WITH_PATCH_PROXY_CONNECT)
-EXTRA_PATCHES+= ${FILESDIR}/opt-patch-modules:proxy:mod_proxy_connect.c
-.endif
-
 post-patch:
 	@${RM} -f ${WRKSRC}/docs/docroot/*.bak
 	@${REINPLACE_CMD} -e 's," PLATFORM ",MidnightBSD,' \
@@ -193,18 +187,11 @@ post-patch:
 			${WRKSRC}/srclib/apr/build/apr_hints.m4
 	@${INSTALL_DATA} ${WRKSRC}/NOTICE ${WRKSRC}/docs/manual
 
-pre-configure:
-	@cd ${WRKSRC}; ${SETENV} ${SCRIPTS_ENV} ./buildconf
-
 post-configure:
 	@FTPUSERS=`${EGREP} -v '^#' /etc/ftpusers| ${TR} -s "\n" " "` ;\
-	${REINPLACE_CMD} -e "s,%%FTPUSERS%%,$$FTPUSERS," \
-			${WRKSRC}/docs/conf/extra/httpd-userdir.conf
-	@${REINPLACE_CMD} -e "s,%%WWWOWN%%,${WWWOWN}, ; \
-			s,%%WWWGRP%%,${WWWGRP}," \
-			${WRKSRC}/docs/conf/httpd.conf
-	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," \
-			${WRKSRC}/support/envvars-std
+	${REINPLACE_CMD} -e "s,%%FTPUSERS%%,$${FTPUSERS}," ${WRKSRC}/docs/conf/extra/httpd-userdir.conf
+	@${REINPLACE_CMD} -e "s,%%WWWOWN%%,${WWWOWN}," -e  "s,%%WWWGRP%%,${WWWGRP}," ${WRKSRC}/docs/conf/httpd.conf
+	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/support/envvars-std
 
 pre-install:
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
@@ -213,6 +200,9 @@ post-install:
 	@${MKDIR} ${PREFIX}/etc/apache22/envvars.d
 	@${MKDIR} ${PREFIX}/etc/apache22/Includes
 	@${INSTALL_DATA} ${FILESDIR}/no-accf.conf ${PREFIX}/etc/apache22/Includes
+.if defined(WITH_LOG_FORENSIC)
+	@${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${PREFIX}/sbin
+.endif
 .if !defined(NOPORTDOCS)
 .for dir in style/lang style/xsl/util style/xsl
 	@[ -d ${DOCSDIR}/${dir}/ ] && ${TOUCH} ${DOCSDIR}/${dir}/.keepme
