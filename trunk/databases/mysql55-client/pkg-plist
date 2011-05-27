@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $MidnightBSD: mports/databases/mysql55-client/pkg-plist,v 1.2 2011/02/09 00:52:09 laffer1 Exp $
 bin/mysql_waitpid
 bin/mysql
 bin/mysqlcheck
@@ -63,12 +63,12 @@ include/mysql/mysql/client_plugin.h
 include/mysql/mysql/plugin_auth.h
 lib/libmysqlclient.a
 lib/libmysqlclient_r.a
-lib/libmysqlclient.so.16.0.0
-lib/libmysqlclient.so.16
+lib/libmysqlclient.so.18.0.0
+lib/libmysqlclient.so.18
 lib/libmysqlclient.so
 lib/libmysqlclient_r.so
-lib/libmysqlclient_r.so.16
-lib/libmysqlclient_r.so.16.0.0
+lib/libmysqlclient_r.so.18
+lib/libmysqlclient_r.so.18.0.0
 lib/libmysqlservices.a
 share/aclocal/mysql.m4
 @dirrm include/mysql/mysql/psi
