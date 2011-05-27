@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/bdb.mk,v 1.1 2008/10/23 22:55:44 ctriv Exp $ 
+# $MidnightBSD: mports/Mk/extensions/bdb.mk,v 1.2 2010/01/01 03:50:50 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 #
 
@@ -41,9 +41,8 @@ Bdb_Include_MAINTAINER=	ports@MidnightBSD.org
 # BDB_VER		- Detected Berkeley DB version.
 
 
-_DB_PORTS=	2 3 40 41 42 43 44 45 46 47 48 3+ 40+ 41+ 42+ 43+ 44+ 45+ 46+ 47+
+_DB_PORTS=	3 40 41 42 43 44 45 46 47 48 3+ 40+ 41+ 42+ 43+ 44+ 45+ 46+ 47+
 # Dependence lines for different db versions
-db2_DEPENDS=	db2.0:${PORTSDIR}/databases/db2
 db3_DEPENDS=	db3.3:${PORTSDIR}/databases/db3
 db40_DEPENDS=	db4.0:${PORTSDIR}/databases/db4
 db41_DEPENDS=	db41.1:${PORTSDIR}/databases/db41
