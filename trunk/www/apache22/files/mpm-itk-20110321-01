@@ -1,53 +1,51 @@
-diff -Nur server/mpm/config.m4 server/mpm/config.m4
---- server/mpm/config.m4	2005-10-30 18:05:26.000000000 +0100
-+++ server/mpm/config.m4	2006-10-30 12:32:44.000000000 +0100
-@@ -1,7 +1,7 @@
- AC_MSG_CHECKING(which MPM to use)
- AC_ARG_WITH(mpm,
- APACHE_HELP_STRING(--with-mpm=MPM,Choose the process model for Apache to use.
--                          MPM={beos|event|worker|prefork|mpmt_os2}),[
-+                          MPM={beos|event|worker|prefork|mpmt_os2|itk}),[
-   APACHE_MPM=$withval
- ],[
-   if test "x$APACHE_MPM" = "x"; then
-@@ -23,7 +23,7 @@
- 
- ap_mpm_is_experimental ()
- {
--    if test "$apache_cv_mpm" = "event" ; then
-+    if test "$apache_cv_mpm" = "event" -o "$apache_cv_mpm" = "itk" ; then
-         return 0
-     else
-         return 1
-@@ -63,6 +63,8 @@
- if ap_mpm_is_experimental; then
-   AC_MSG_WARN(You have selected an EXPERIMENTAL MPM.  Be warned!)
-   MPM_SUBDIR_NAME=experimental/$MPM_NAME
-+
-+  AC_CHECK_LIB(cap, cap_init)
- else
-   MPM_SUBDIR_NAME=$MPM_NAME
- fi
-diff -Nur server/mpm/experimental/itk/Makefile.in server/mpm/experimental/itk/Makefile.in
---- server/mpm/experimental/itk/Makefile.in	1970-01-01 01:00:00.000000000 +0100
-+++ server/mpm/experimental/itk/Makefile.in	2006-10-30 12:32:44.000000000 +0100
+vim: syntax=diff
+
+Monolithic mpm-itk patch version 2.2.17-01 updated 2011-03-21
+
+The Apache 2 ITK MPM
+
+apache2-mpm-itk (just mpm-itk for short) is an MPM (Multi-Processing Module)
+for the Apache web server. mpm-itk allows you to run each of your vhost
+under a separate uid and gid . in short, the scripts and configuration files
+for one vhost no longer have to be readable for all the other vhosts.
+
+mpm-itk is based on the traditional prefork MPM, which means it's
+non-threaded; in short, this means you can run non-thread-aware code (like
+many PHP extensions) without problems. On the other hand, you lose out to
+any performance benefit you'd get with threads, of course; you'd have to
+decide for yourself if that's worth it or not. You will also take an
+additional performance hit over prefork, since there's an extra fork per
+request.
+
+Licensing:
+ mpm-itk is licensed under the Apache License, version 2.0,
+ like the rest of Apache.
+
+For more Informations and Instructions please visit the official webpage.
+
+WWW: http://mpm-itk.sesse.net/
+
+===========================================================================
+unchanged:
+--- server/mpm/experimental/itk/Makefile.in
++++ server/mpm/experimental/itk/Makefile.in
 @@ -0,0 +1,5 @@
 +
 +LTLIBRARY_NAME    = libitk.la
 +LTLIBRARY_SOURCES = itk.c
 +
 +include $(top_srcdir)/build/ltlib.mk
-diff -Nur server/mpm/experimental/itk/config.m4 server/mpm/experimental/itk/config.m4
---- server/mpm/experimental/itk/config.m4	1970-01-01 01:00:00.000000000 +0100
-+++ server/mpm/experimental/itk/config.m4	2006-10-30 12:32:44.000000000 +0100
+unchanged:
+--- server/mpm/experimental/itk/config.m4
++++ server/mpm/experimental/itk/config.m4
 @@ -0,0 +1,3 @@
 +if test "$MPM_NAME" = "itk" ; then
 +    APACHE_FAST_OUTPUT(server/mpm/$MPM_SUBDIR_NAME/Makefile)
 +fi
-diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
---- server/mpm/experimental/itk/itk.c	1970-01-01 01:00:00.000000000 +0100
-+++ server/mpm/experimental/itk/itk.c	2006-10-30 12:48:20.000000000 +0100
-@@ -0,0 +1,1650 @@
+unchanged:
+--- server/mpm/experimental/itk/itk.c
++++ server/mpm/experimental/itk/itk.c
+@@ -0,0 +1,1757 @@
 +/* Licensed to the Apache Software Foundation (ASF) under one or more
 + * contributor license agreements.  See the NOTICE file distributed with
 + * this work for additional information regarding copyright ownership.
@@ -62,8 +60,11 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 + * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 + * See the License for the specific language governing permissions and
 + * limitations under the License.
++ * 
++ * Portions copyright 2005-2009 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Licensed under the same terms as the rest of Apache.
 + *
-+ * Portions copyright 2005-2006 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Portions copyright 2008 Knut Auvor Grythe <knut@auvor.no>.
 + * Licensed under the same terms as the rest of Apache.
 + */
 +
@@ -75,8 +76,8 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +
 +# define _DBG(text,par...) \
 +    ap_log_error(APLOG_MARK, APLOG_WARNING, 0, NULL, \
-+                "(itkmpm: pid=%d uid=%d) %s(): " text, \
-+                getpid(), getuid(), __FUNCTION__, par)
++                "(itkmpm: pid=%d uid=%d, gid=%d) %s(): " text, \
++                getpid(), getuid(), getgid(), __FUNCTION__, par)
 +
 +#define APR_WANT_STDIO
 +#define APR_WANT_STRFUNC
@@ -99,7 +100,7 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +#include "http_config.h"
 +#include "http_core.h"          /* for get_remote_host */
 +#include "http_connection.h"
-+#include "http_protocol.h"      /* for ap_hook_post_read_request */
++#include "http_request.h"       /* for ap_hook_post_perdir_config */
 +#include "scoreboard.h"
 +#include "ap_mpm.h"
 +#include "unixd.h"
@@ -203,12 +204,19 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +
 +static volatile int die_now = 0;
 +
++#define UNSET_NICE_VALUE 100
++
 +typedef struct
 +{
-+	uid_t uid;
-+	gid_t gid;
-+	char *username;
-+	int max_clients_vhost;
++    uid_t uid;
++    gid_t gid;
++    char *username;
++    int nice_value;
++} itk_per_dir_conf;
++
++typedef struct
++{
++    int max_clients_vhost;
 +} itk_server_conf;
 +
 +module AP_MODULE_DECLARE_DATA mpm_itk_module;
@@ -546,15 +554,17 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +    apr_pollset_t *pollset;
 +    ap_sb_handle_t *sbh;
 +    apr_bucket_alloc_t *bucket_alloc;
++    int last_poll_idx = 0;
++
 +#if HAVE_LIBCAP
 +    cap_t caps;
 +    cap_value_t suidcaps[] = {
 +        CAP_SETUID,
-+        CAP_SETGID
++        CAP_SETGID,
++	CAP_DAC_READ_SEARCH,
++        CAP_SYS_NICE,
 +    };
 +#endif    
-+
-+    int last_poll_idx = 0;
 +
 +    mpm_state = AP_MPMQ_STARTING; /* for benefit of any hooks that run as this
 +                                   * child initializes
@@ -594,8 +604,12 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +    (void) ap_update_child_status(sbh, SERVER_READY, (request_rec *) NULL);
 +
 +    /* Set up the pollfd array */
-+    /* ### check the status */
-+    (void) apr_pollset_create(&pollset, num_listensocks, pchild, 0);
++    status = apr_pollset_create(&pollset, num_listensocks, pchild, 0);
++    if (status != APR_SUCCESS) {
++        ap_log_error(APLOG_MARK, APLOG_EMERG, status, ap_server_conf,
++                     "Couldn't create pollset in child; check system or user limits");
++        clean_child_exit(APEXIT_CHILDSICK); /* assume temporary resource issue */
++    }
 +
 +    for (lr = ap_listeners, i = num_listensocks; i--; lr = lr->next) {
 +        apr_pollfd_t pfd = { 0 };
@@ -629,7 +643,10 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +
 +    bucket_alloc = apr_bucket_alloc_create(pchild);
 +
-+    while (!die_now) {
++    /* die_now is set when AP_SIG_GRACEFUL is received in the child;
++     * shutdown_pending is set when SIGTERM is received when running
++     * in single process mode.  */
++    while (!die_now && !shutdown_pending) {
 +        conn_rec *current_conn;
 +        void *csd;
 +
@@ -663,13 +680,27 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +                apr_int32_t numdesc;
 +                const apr_pollfd_t *pdesc;
 +
-+                /* timeout == -1 == wait forever */
-+                status = apr_pollset_poll(pollset, -1, &numdesc, &pdesc);
++                /* check for termination first so we don't sleep for a while in
++                 * poll if already signalled
++                 */
++                if (one_process && shutdown_pending) {
++                    SAFE_ACCEPT(accept_mutex_off());
++                    return;
++                }
++                else if (die_now) {
++                    /* In graceful stop/restart; drop the mutex
++                     * and terminate the child. */
++                    SAFE_ACCEPT(accept_mutex_off());
++                    clean_child_exit(0);
++                }
++                /* timeout == 10 seconds to avoid a hang at graceful restart/stop
++                 * caused by the closing of sockets by the signal handler
++                 */
++                status = apr_pollset_poll(pollset, apr_time_from_sec(10), 
++                                          &numdesc, &pdesc);
 +                if (status != APR_SUCCESS) {
-+                    if (APR_STATUS_IS_EINTR(status)) {
-+                        if (one_process && shutdown_pending) {
-+                            return;
-+                        }
++                    if (APR_STATUS_IS_TIMEUP(status) ||
++                        APR_STATUS_IS_EINTR(status)) {
 +                        continue;
 +                    }
 +                    /* Single Unix documents select as returning errnos
@@ -680,6 +711,7 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +                     */
 +                    ap_log_error(APLOG_MARK, APLOG_ERR, status,
 +                                 ap_server_conf, "apr_pollset_poll: (listen)");
++                    SAFE_ACCEPT(accept_mutex_off());
 +                    clean_child_exit(1);
 +                }
 +
@@ -727,15 +759,16 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +         * We now have a connection, so set it up with the appropriate
 +         * socket options, file descriptors, and read/write buffers.
 +         */
++
 +        {
-+            pid_t pid = fork();
++            pid_t pid = fork(), child_pid;
 +            int status;
 +            switch (pid) {
 +            case -1:
 +                ap_log_error(APLOG_MARK, APLOG_ERR, errno, NULL, "fork: Unable to fork new process");
 +                break;
 +            case 0: /* child */
-+	        apr_proc_mutex_child_init(&accept_mutex, ap_lock_fname, pchild); 
++                apr_proc_mutex_child_init(&accept_mutex, ap_lock_fname, pchild);
 +                current_conn = ap_run_create_connection(ptrans, ap_server_conf, csd, my_child_num, sbh, bucket_alloc);
 +                if (current_conn) {
 +                    ap_process_connection(current_conn, csd);
@@ -743,7 +776,11 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +                }
 +                exit(0);
 +            default: /* parent; just wait for child to be done */
-+                if (waitpid(pid, &status, 0) != pid || !WIFEXITED(status)) {
++                do {
++                    child_pid = waitpid(pid, &status, 0);
++                } while (child_pid == -1 && errno == EINTR);
++
++                if (child_pid != pid || !WIFEXITED(status)) {
 +                    if (WIFSIGNALED(status)) {
 +                        ap_log_error(APLOG_MARK, APLOG_ERR, 0, ap_server_conf, "child died with signal %u", WTERMSIG(status));
 +                    } else if (WEXITSTATUS(status) != 0) {
@@ -777,6 +814,11 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +        if (getuid())
 +            die_now = 1;
 +    }
++    /* This apr_pool_clear call is redundant, should be redundant, but compensates
++     * a flaw in the apr reslist code.  This should be removed once that flaw has
++     * been addressed.
++     */
++    apr_pool_clear(ptrans);
 +    clean_child_exit(0);
 +}
 +
@@ -1104,7 +1146,7 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +
 +    ap_log_error(APLOG_MARK, APLOG_NOTICE, 0, ap_server_conf,
 +                "%s configured -- resuming normal operations",
-+                ap_get_server_version());
++                ap_get_server_description());
 +    ap_log_error(APLOG_MARK, APLOG_INFO, 0, ap_server_conf,
 +                "Server built: %s", ap_get_server_built());
 +#ifdef AP_MPM_WANT_SET_ACCEPT_LOCK_MECH
@@ -1247,7 +1289,7 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +        for (index = 0; index < ap_daemons_limit; ++index) {
 +            if (ap_scoreboard_image->servers[index][0].status != SERVER_DEAD) {
 +                /* Ask each child to close its listeners. */
-+                kill(MPM_CHILD_PID(index), AP_SIG_GRACEFUL);
++                ap_mpm_safe_kill(MPM_CHILD_PID(index), AP_SIG_GRACEFUL);
 +                active_children++;
 +            }
 +        }
@@ -1285,12 +1327,10 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +
 +            active_children = 0;
 +            for (index = 0; index < ap_daemons_limit; ++index) {
-+                if (MPM_CHILD_PID(index) != 0) {
-+                    if (kill(MPM_CHILD_PID(index), 0) == 0) {
-+                            active_children = 1;
-+                            /* Having just one child is enough to stay around */
-+                            break;
-+                    }
++                if (ap_mpm_safe_kill(MPM_CHILD_PID(index), 0) == APR_SUCCESS) {
++                    active_children = 1;
++                    /* Having just one child is enough to stay around */
++                    break;
 +                }
 +            }
 +        } while (!shutdown_pending && active_children &&
@@ -1342,7 +1382,7 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +                 * piped loggers, etc. They almost certainly won't handle
 +                 * it gracefully.
 +                 */
-+                kill(ap_scoreboard_image->parent[index].pid, AP_SIG_GRACEFUL);
++                ap_mpm_safe_kill(ap_scoreboard_image->parent[index].pid, AP_SIG_GRACEFUL);
 +            }
 +        }
 +    }
@@ -1440,12 +1480,13 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +    return OK;
 +}
 +
-+static int itk_post_read(request_rec *r)
++static int itk_post_perdir_config(request_rec *r)
 +{
 +    uid_t wanted_uid;
 +    gid_t wanted_gid;
 +    const char *wanted_username;
-+
++    int err = 0;
++    
 +    itk_server_conf *sconf =
 +        (itk_server_conf *) ap_get_module_config(r->server->module_config, &mpm_itk_module);
 +
@@ -1466,43 +1507,51 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +        }
 +    }
 +
++    itk_per_dir_conf *dconf =
++        (itk_per_dir_conf *) ap_get_module_config(r->per_dir_config, &mpm_itk_module);
++
 +    strncpy(ap_scoreboard_image->servers[my_child_num][0].vhost, r->server->server_hostname, 31);
 +    ap_scoreboard_image->servers[my_child_num][0].vhost[31] = 0;
 +
-+    wanted_uid = sconf->uid;
-+    wanted_gid = sconf->gid;
-+    wanted_username = sconf->username;
++    if (dconf->nice_value != UNSET_NICE_VALUE &&
++        setpriority(PRIO_PROCESS, 0, dconf->nice_value)) {
++        _DBG("setpriority(): %s", strerror(errno));
++        err = 1;
++    }
++
++    wanted_uid = dconf->uid;
++    wanted_gid = dconf->gid;
++    wanted_username = dconf->username;
 +
 +    if (wanted_uid == -1 || wanted_gid == -1) {
 +        wanted_uid = unixd_config.user_id;
 +        wanted_gid = unixd_config.group_id;
 +        wanted_username = unixd_config.user_name;
 +    }
-+   
-+    if (wanted_uid != -1 && wanted_gid != -1 && (getuid() != wanted_uid || getgid() != wanted_gid)) {
-+        int err = 0;
++
++    if (!err && wanted_uid != -1 && wanted_gid != -1 && (getuid() != wanted_uid || getgid() != wanted_gid)) {
 +        if (setgid(wanted_gid)) {
-+            _DBG("setgid(): %s", strerror(errno));
++            _DBG("setgid(%d): %s", wanted_gid, strerror(errno));
 +            err = 1;
 +        } else if (initgroups(wanted_username, wanted_gid)) {
-+            _DBG("initgroups(): %s", strerror(errno));
++            _DBG("initgroups(%s, %d): %s", wanted_username, wanted_gid, strerror(errno));
 +            err = 1;
 +        } else if (setuid(wanted_uid)) {
-+            _DBG("setuid(): %s", strerror(errno));
++            _DBG("setuid(%d): %s", wanted_uid, strerror(errno));
 +            err = 1;
 +        }
++    }
 +
-+        /*
-+         * Most likely a case of switching uid/gid within a persistent
-+         * connection; the RFCs allow us to just close the connection
-+         * at anytime, so we excercise our right. :-)
-+         */
-+        if (err) {
-+            ap_log_error(APLOG_MARK, APLOG_WARNING, 0, NULL, \
-+                "Couldn't set uid/gid, closing connection.");
-+            ap_lingering_close(r->connection);
-+            exit(0);
-+        }
++    /*
++     * Most likely a case of switching uid/gid within a persistent
++     * connection; the RFCs allow us to just close the connection
++     * at anytime, so we excercise our right. :-)
++     */
++    if (err) {
++        ap_log_error(APLOG_MARK, APLOG_WARNING, 0, NULL, \
++            "Couldn't set uid/gid/priority, closing connection.");
++        ap_lingering_close(r->connection);
++        exit(0);
 +    }
 +    return OK;
 +}
@@ -1525,8 +1574,8 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +     */
 +    ap_hook_pre_config(itk_pre_config, NULL, NULL, APR_HOOK_REALLY_FIRST);
 +
-+    /* set the uid as fast as possible */
-+    ap_hook_post_read_request(itk_post_read, NULL, NULL, APR_HOOK_REALLY_FIRST);
++    /* set the uid as fast as possible, but not before merging per-dit config */
++    ap_hook_header_parser(itk_post_perdir_config, NULL, NULL, APR_HOOK_REALLY_FIRST);
 +}
 +
 +static const char *set_daemons_to_start(cmd_parms *cmd, void *dummy, const char *arg)
@@ -1639,15 +1688,14 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +    return NULL;
 +}
 +
-+static const char *assign_user_id (cmd_parms *cmd, void *dummy, const char *user_name, const char *group_name)   
++static const char *assign_user_id (cmd_parms *cmd, void *ptr, const char *user_name, const char *group_name)
 +{
-+    itk_server_conf *sconf =
-+        (itk_server_conf *) ap_get_module_config(cmd->server->module_config, &mpm_itk_module);
-+    sconf->username = strdup(user_name);
-+    sconf->uid = ap_uname2id(user_name);
-+    sconf->gid = ap_gname2id(group_name);
++    itk_per_dir_conf *dconf = (itk_per_dir_conf *) ptr;
++    dconf->username = apr_pstrdup(cmd->pool, user_name);
++    dconf->uid = ap_uname2id(user_name);
++    dconf->gid = ap_gname2id(group_name);
 +    return NULL;
-+}   
++}
 +
 +static const char *set_max_clients_vhost (cmd_parms *cmd, void *dummy, const char *arg)   
 +{
@@ -1655,7 +1703,28 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +        (itk_server_conf *) ap_get_module_config(cmd->server->module_config, &mpm_itk_module);
 +    sconf->max_clients_vhost = atoi(arg);
 +    return NULL;
-+}  
++}
++
++static const char *set_nice_value (cmd_parms *cmd, void *ptr, const char *arg)
++{
++    itk_per_dir_conf *dconf = (itk_per_dir_conf *) ptr;
++    int nice_value = atoi(arg);
++
++    if (nice_value < -20) {
++        ap_log_error(APLOG_MARK, APLOG_STARTUP, 0, NULL,
++                     "WARNING: NiceValue of %d is below -20, increasing NiceValue to -20.",
++                     nice_value);
++        nice_value = -20;
++    }
++    else if (nice_value > 19) {
++        ap_log_error(APLOG_MARK, APLOG_STARTUP, 0, NULL,
++                     "WARNING: NiceValue of %d is above 19, lowering NiceValue to 19.",
++                     nice_value);
++        nice_value = 19;
++    }
++    dconf->nice_value = nice_value;
++    return NULL;
++}
 +
 +static const command_rec itk_cmds[] = {
 +UNIX_DAEMON_COMMANDS,
@@ -1670,20 +1739,56 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +              "Maximum number of children alive at the same time"),
 +AP_INIT_TAKE1("ServerLimit", set_server_limit, NULL, RSRC_CONF,
 +              "Maximum value of MaxClients for this run of Apache"),
-+AP_INIT_TAKE2("AssignUserID", assign_user_id, NULL, RSRC_CONF,
++AP_INIT_TAKE2("AssignUserID", assign_user_id, NULL, RSRC_CONF|ACCESS_CONF,
 +              "Tie a virtual host to a specific child process."),
 +AP_INIT_TAKE1("MaxClientsVHost", set_max_clients_vhost, NULL, RSRC_CONF,
 +              "Maximum number of children alive at the same time for this virtual host."),
++AP_INIT_TAKE1("NiceValue", set_nice_value, NULL, RSRC_CONF|ACCESS_CONF,
++              "Set nice value for the given vhost, from -20 (highest priority) to 19 (lowest priority)."),
 +AP_GRACEFUL_SHUTDOWN_TIMEOUT_COMMAND,
 +{ NULL }
 +};
 +
++/* == allocate a private per-dir config structure == */
++static void *itk_create_dir_config(apr_pool_t *p, char *dummy)
++{
++    itk_per_dir_conf *c = (itk_per_dir_conf *)
++        apr_pcalloc(p, sizeof(itk_per_dir_conf));
++    c->uid = c->gid = -1;
++    c->nice_value = UNSET_NICE_VALUE;
++    return c;
++}
++
++/* == merge the parent per-dir config structure into ours == */
++static void *itk_merge_dir_config(apr_pool_t *p, void *parent_ptr, void *child_ptr)
++{
++    itk_per_dir_conf *c = (itk_per_dir_conf *)
++        itk_create_dir_config(p, NULL);
++    itk_per_dir_conf *parent = (itk_per_dir_conf *) parent_ptr;
++    itk_per_dir_conf *child = (itk_per_dir_conf *) child_ptr;
++
++    if (child->username != NULL) {
++      c->username = child->username;
++      c->uid = child->uid;
++      c->gid = child->gid;
++    } else {
++      c->username = parent->username;
++      c->uid = parent->uid;
++      c->gid = parent->gid;
++    }
++    if (child->nice_value != UNSET_NICE_VALUE) {
++      c->nice_value = child->nice_value;
++    } else {
++      c->nice_value = parent->nice_value;
++    }
++    return c;
++}
++
 +/* == allocate a private server config structure == */
-+static void *itk_create_config(apr_pool_t *p, server_rec *s)
++static void *itk_create_server_config(apr_pool_t *p, server_rec *s)
 +{
 +    itk_server_conf *c = (itk_server_conf *)
 +        apr_pcalloc(p, sizeof(itk_server_conf));
-+    c->uid = c->gid = -1;
 +    c->max_clients_vhost = -1;
 +    return c;
 +}
@@ -1691,17 +1796,17 @@ diff -Nur server/mpm/experimental/itk/itk.c server/mpm/experimental/itk/itk.c
 +module AP_MODULE_DECLARE_DATA mpm_itk_module = {
 +    MPM20_MODULE_STUFF,
 +    ap_mpm_rewrite_args,        /* hook to run before apache parses args */
-+    NULL,                       /* create per-directory config structure */
-+    NULL,                       /* merge per-directory config structures */
-+    itk_create_config,          /* create per-server config structure */
++    itk_create_dir_config,      /* create per-directory config structure */
++    itk_merge_dir_config,       /* merge per-directory config structures */
++    itk_create_server_config,   /* create per-server config structure */
 +    NULL,                       /* merge per-server config structures */
-+    itk_cmds,               /* command apr_table_t */
-+    itk_hooks,              /* register hooks */
++    itk_cmds,                   /* command apr_table_t */
++    itk_hooks,                  /* register hooks */
 +};
-diff -Nur server/mpm/experimental/itk/mpm.h server/mpm/experimental/itk/mpm.h
---- server/mpm/experimental/itk/mpm.h	1970-01-01 01:00:00.000000000 +0100
-+++ server/mpm/experimental/itk/mpm.h	2006-10-30 12:32:44.000000000 +0100
-@@ -0,0 +1,65 @@
+unchanged:
+--- server/mpm/experimental/itk/mpm.h
++++ server/mpm/experimental/itk/mpm.h
+@@ -0,0 +1,68 @@
 +/* Licensed to the Apache Software Foundation (ASF) under one or more
 + * contributor license agreements.  See the NOTICE file distributed with
 + * this work for additional information regarding copyright ownership.
@@ -1717,7 +1822,10 @@ diff -Nur server/mpm/experimental/itk/mpm.h server/mpm/experimental/itk/mpm.h
 + * See the License for the specific language governing permissions and
 + * limitations under the License.
 + *
-+ * Portions copyright 2005-2006 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Portions copyright 2005-2009 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Licensed under the same terms as the rest of Apache.
++ *
++ * Portions copyright 2008 Knut Auvor Grythe <knut@auvor.no>.
 + * Licensed under the same terms as the rest of Apache.
 + */
 +
@@ -1767,10 +1875,10 @@ diff -Nur server/mpm/experimental/itk/mpm.h server/mpm/experimental/itk/mpm.h
 +extern server_rec *ap_server_conf;
 +#endif /* APACHE_MPM_ITK_H */
 +/** @} */
-diff -Nur server/mpm/experimental/itk/mpm_default.h server/mpm/experimental/itk/mpm_default.h
---- server/mpm/experimental/itk/mpm_default.h	1970-01-01 01:00:00.000000000 +0100
-+++ server/mpm/experimental/itk/mpm_default.h	2006-10-30 12:32:44.000000000 +0100
-@@ -0,0 +1,77 @@
+unchanged:
+--- server/mpm/experimental/itk/mpm_default.h
++++ server/mpm/experimental/itk/mpm_default.h
+@@ -0,0 +1,80 @@
 +/* Licensed to the Apache Software Foundation (ASF) under one or more
 + * contributor license agreements.  See the NOTICE file distributed with
 + * this work for additional information regarding copyright ownership.
@@ -1785,14 +1893,17 @@ diff -Nur server/mpm/experimental/itk/mpm_default.h server/mpm/experimental/itk/
 + * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 + * See the License for the specific language governing permissions and
 + * limitations under the License.
-+ *
-+ * Portions copyright 2005-2006 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * 
++ * Portions copyright 2005-2009 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Licensed under the same terms as the rest of Apache.
++ * 
++ * Portions copyright 2008 Knut Auvor Grythe <knut@auvor.no>.
 + * Licensed under the same terms as the rest of Apache.
 + */
 +
 +/**
 + * @file  itk/mpm_default.h
-+ * @brief Prefork MPM defaults
++ * @brief ITK MPM defaults
 + *
 + * @addtogroup APACHE_MPM_ITK
 + * @{
@@ -1848,3 +1959,154 @@ diff -Nur server/mpm/experimental/itk/mpm_default.h server/mpm/experimental/itk/
 +
 +#endif /* AP_MPM_DEFAULT_H */
 +/** @} */
+unchanged:
+--- server/mpm/config.m4
++++ server/mpm/config.m4
+@@ -1,7 +1,7 @@
+ AC_MSG_CHECKING(which MPM to use)
+ AC_ARG_WITH(mpm,
+ APACHE_HELP_STRING(--with-mpm=MPM,Choose the process model for Apache to use.
+-                          MPM={beos|event|worker|prefork|mpmt_os2}),[
++                          MPM={beos|event|worker|prefork|mpmt_os2|itk}),[
+   APACHE_MPM=$withval
+ ],[
+   if test "x$APACHE_MPM" = "x"; then
+@@ -23,7 +23,7 @@
+ 
+ ap_mpm_is_experimental ()
+ {
+-    if test "$apache_cv_mpm" = "event" ; then
++    if test "$apache_cv_mpm" = "event" -o "$apache_cv_mpm" = "itk" ; then
+         return 0
+     else
+         return 1
+@@ -66,6 +66,11 @@
+ else
+   MPM_SUBDIR_NAME=$MPM_NAME
+ fi
++
++if test "$apache_cv_mpm" = "itk" ; then
++  AC_CHECK_LIB(cap, cap_init)
++fi
++
+ MPM_DIR=server/mpm/$MPM_SUBDIR_NAME
+ MPM_LIB=$MPM_DIR/lib${MPM_NAME}.la
+ 
+unchanged:
+--- include/http_request.h
++++ include/http_request.h
+@@ -12,6 +12,12 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ * 
++ * Portions copyright 2005-2009 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Licensed under the same terms as the rest of Apache.
++ * 
++ * Portions copyright 2008 Knut Auvor Grythe <knut@auvor.no>.
++ * Licensed under the same terms as the rest of Apache.
+  */
+ 
+ /**
+@@ -350,6 +356,15 @@
+  */
+ AP_DECLARE_HOOK(void,insert_filter,(request_rec *r))
+ 
++/**
++ * This hook allows modules to affect the request immediately after the
++ * per-directory configuration for the request has been generated. This allows
++ * modules to make decisions based upon the current directory configuration
++ * @param r The current request
++ * @return OK or DECLINED
++ */
++AP_DECLARE_HOOK(int,post_perdir_config,(request_rec *r))
++ 
+ AP_DECLARE(int) ap_location_walk(request_rec *r);
+ AP_DECLARE(int) ap_directory_walk(request_rec *r);
+ AP_DECLARE(int) ap_file_walk(request_rec *r);
+unchanged:
+--- server/request.c
++++ server/request.c
+@@ -12,6 +12,12 @@
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
++ * 
++ * Portions copyright 2005-2009 Steinar H. Gunderson <sgunderson@bigfoot.com>.
++ * Licensed under the same terms as the rest of Apache.
++ * 
++ * Portions copyright 2008 Knut Auvor Grythe <knut@auvor.no>.
++ * Licensed under the same terms as the rest of Apache.
+  */
+ 
+ /*
+@@ -61,6 +67,7 @@
+     APR_HOOK_LINK(auth_checker)
+     APR_HOOK_LINK(insert_filter)
+     APR_HOOK_LINK(create_request)
++    APR_HOOK_LINK(post_perdir_config)
+ )
+ 
+ AP_IMPLEMENT_HOOK_RUN_FIRST(int,translate_name,
+@@ -80,6 +87,8 @@
+ AP_IMPLEMENT_HOOK_VOID(insert_filter, (request_rec *r), (r))
+ AP_IMPLEMENT_HOOK_RUN_ALL(int, create_request,
+                           (request_rec *r), (r), OK, DECLINED)
++AP_IMPLEMENT_HOOK_RUN_ALL(int,post_perdir_config,
++                          (request_rec *r), (r), OK, DECLINED)
+ 
+ 
+ static int decl_die(int status, char *phase, request_rec *r)
+@@ -158,6 +167,13 @@
+         return access_status;
+     }
+ 
++    /* First chance to handle the request after per-directory configuration is
++     * generated 
++     */
++    if ((access_status = ap_run_post_perdir_config(r))) {
++        return access_status;
++    }
++
+     /* Only on the main request! */
+     if (r->main == NULL) {
+         if ((access_status = ap_run_header_parser(r))) {
+only in patch2:
+unchanged:
+--- server/config.c
++++ server/config.c
+@@ -1840,6 +1840,34 @@ AP_CORE_DECLARE(int) ap_parse_htaccess(a
+         else {
+             if (!APR_STATUS_IS_ENOENT(status)
+                 && !APR_STATUS_IS_ENOTDIR(status)) {
++#ifdef ITK_MPM
++                /*
++                 * If we are in a persistent connection, we might end up in a state
++                 * where we can no longer read .htaccess files because we have already
++                 * setuid(). This can either be because the previous request was for
++                 * another vhost (basically the same problem as when setuid() fails in
++                 * itk.c), or it can be because a .htaccess file is readable only by
++                 * root.
++                 *
++                 * In any case, we don't want to give out a 403, since the request has
++                 * a very real chance of succeeding on a fresh connection (where
++                 * presumably uid=0). Thus, we give up serving the request on this
++                 * TCP connection, and do a hard close of the socket. As long as we're
++                 * in a persistent connection (and there _should_ not be a way this
++                 * would happen on the first request in a connection, save for subrequests,
++                 * which we special-case), this is allowed, as it is what happens on
++                 * a timeout. The browser will simply open a new connection and try
++                 * again (there's of course a performance hit, though, both due to
++                 * the new connection setup and the fork() of a new server child).
++                 */
++                if (r->main == NULL && getuid() != 0) {
++                    ap_log_rerror(APLOG_MARK, APLOG_WARNING, status, r,
++                                  "Couldn't read %s, closing connection.",
++                                  filename);
++                    ap_lingering_close(r->connection);
++                    exit(0);
++                }
++#endif          
+                 ap_log_rerror(APLOG_MARK, APLOG_CRIT, status, r,
+                               "%s pcfg_openfile: unable to check htaccess file, "
+                               "ensure it is readable",
