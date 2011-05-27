@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.13 2011/05/27 01:51:09 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.14 2011/05/27 01:52:17 laffer1 Exp $
 
 PORTNAME=	sqlite
-PORTVERSION=	3.6.19
+PORTVERSION=	3.6.23.1
 CATEGORIES=	databases lang tcl
 MASTER_SITES=	http://www.sqlite.org/
 DISTNAME=	sqlite-${PORTVERSION}
@@ -21,6 +21,8 @@ CONFIGURE_ENV+=		TCLSH_CMD="${TCLSH}" \
 			TCLLIBDIR=${PREFIX}/lib/${PORTNAME} \
 			ac_cv_search_pthread_create=""
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
+
+MAN1=		sqlite3.1
 
 OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
 		FTS3		"Enable FTS3 (Full Text Search) module"	off \
@@ -79,11 +81,14 @@ CONFIGURE_ARGS+=	--enable-load-extension
 CONFIGURE_ARGS+=	--disable-load-extension
 .endif
 
-.if defined(WITH_TCLWRAPPER)
 post-install:
+.if defined(WITH_TCLWRAPPER)
 	@${INSTALL_PROGRAM} ${WRKSRC}/.libs/tclsqlite3 ${PREFIX}/bin
 	@${MKDIR} ${EXAMPLESDIR}
 	@${INSTALL_DATA} ${FILESDIR}/example.tcl ${EXAMPLESDIR}
+.endif
+.if !defined(NO_INSTALL_MANPAGES)
+	@${INSTALL_MAN} ${WRKSRC}/sqlite3.1 ${MANPREFIX}/man/man1
 .endif
 
 .include <bsd.port.post.mk>
