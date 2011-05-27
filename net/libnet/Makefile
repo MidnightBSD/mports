@@ -1,18 +1,15 @@
-# Ports collection makefile for:  libnet
-# Date created:			Sun Feb 3, 1999
-# Whom:				shipley@dis.org
-#
-# $MidnightBSD: mports/net/libnet/Makefile,v 1.2 2008/09/17 21:27:00 laffer1 Exp $
+# $MidnightBSD: mports/net/libnet/Makefile,v 1.3 2008/10/14 15:51:00 laffer1 Exp $
 # $FreeBSD: ports/net/libnet/Makefile,v 1.16 2005/11/14 17:07:01 sem Exp $
-#
 
 PORTNAME=	libnet
 PORTVERSION=	1.1.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	11
-MASTER_SITES=	http://www.packetfactory.net/libnet/dist/
+MASTER_SITES=	http://www.packetfactory.net/libnet/dist/ \
+		${MASTER_SITE_GENTOO}
+MASTER_SITE_SUBDIR=	distfiles
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for creating IP packets
@@ -22,6 +19,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
 		--host=${ARCH}-portbld-freebsd6.0 \
 		--target=${ARCH}-portbld-freebsd6.0
+CFLAGS+=	-fPIC
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
