@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.4 2011/03/08 21:21:27 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.5 2011/03/12 18:31:42 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql55-server/Makefile,v 1.269 2010/12/28 06:49:39 ale Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.5.9
-PORTREVISION?=	1
+PORTVERSION=	5.5.12
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQL-5.5
@@ -38,7 +38,9 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DCMAKE_THREAD_LIBS="" \
 		-DCMAKE_USE_PTHREADS=1 \
 		-DCMAKE_EXE_LINKER_FLAGS="${PTHREAD_LIBS}" \
-		-DENABLE_DTRACE:BOOL=OFF
+		-DENABLE_DTRACE:BOOL=OFF \
+		-DWITH_LIBEDIT=0 \
+		-DWITH_LIBWRAP=1
 
 .ifdef USE_MYSQL
 .error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
