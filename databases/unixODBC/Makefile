@@ -1,13 +1,8 @@
-# New ports collection makefile for:    unixODBC
-# Date created:         May 11, 2000
-# Whom:                 Nick Sayer <nsayer@FreeBSD.org>
-#
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.4 2009/09/20 00:45:00 laffer1 Exp $
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.5 2011/02/02 20:09:16 laffer1 Exp $
 # $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
-#
 
 PORTNAME=	unixODBC
-PORTVERSION=	2.2.12
+PORTVERSION=	2.3.0
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
 
@@ -17,36 +12,19 @@ LICENSE=	lgpl
 
 CONFLICTS=	libiodbc-[0-9]*
 
-USE_GNOME=	gnomehack gnometarget
 USE_ICONV=	yes
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static --enable-shared \
 		--with-libiconv-prefix=${LOCALBASE}
 USE_LDCONFIG=	yes
 
-.if defined(WITH_GUI)
-USE_QT_VER=	3
-QT_NONSTANDARD=	yes
-CONFIGURE_ENV=	MOC="${MOC}" \
-		QTINC="${QT_PREFIX}/include" \
-		QTLIB="${QT_PREFIX}/lib" \
-		USER_INCLUDES="${QTCPPFLAGS}" \
-		USER_LDFLAGS="${QTCFGLIBS}"
-CONFIGURE_ARGS+=	--enable-gui
-PLIST_SUB=	GUI:=""
-.else
-CONFIGURE_ARGS+=	--disable-gui
-PLIST_SUB=	GUI:="@comment "
-.endif
-
-.if !defined(WITHOUT_THREADS) || defined(WITH_GUI)
-CONFIGURE_ARGS+=	--enable-threads=yes
-.else
-CONFIGURE_ARGS+=	--enable-threads=no
-.endif
+PORTDOCS=	*
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,@MSQL_TRUE@lib_LTLIBRARIES,#@MSQL_TRUE@lib_LTLIBRARIES,' ${WRKSRC}/Drivers/MiniSQL/Makefile.in
+	@${REINPLACE_CMD} 's,$$LIBS $$THREADLIB,$$LIBS,;s,$$CFLAGS -pthread,$$CFLAGS,' \
+		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's,@MSQL_TRUE@lib_LTLIBRARIES,#&,' \
+		${WRKSRC}/Drivers/MiniSQL/Makefile.in
 
 post-install:
 .if !defined(NOPORTDOCS)
@@ -59,10 +37,5 @@ post-install:
 	${FIND} ${DOCSDIR} -type f -print0 | ${XARGS} -0 ${CHMOD} 644
 .endif
 .endif
-.for conffile in odbc.ini odbcinst.ini
-	@if [ ! -f ${PREFIX}/etc/${conffile} ]; then \
-		${CP} -p ${PREFIX}/etc/${conffile}.sample ${PREFIX}/etc/${conffile} ; \
-	fi
-.endfor
 
 .include <bsd.port.mk>
