@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.14 2011/05/27 01:52:17 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.15 2011/05/27 01:55:46 laffer1 Exp $
 
 PORTNAME=	sqlite
 PORTVERSION=	3.6.23.1
@@ -31,7 +31,7 @@ OPTIONS=	DEBUG		"Enable debugging & verbose explain"	off \
 		TCLWRAPPER	"Enable TCL wrapper"			off \
 		METADATA	"Enable column metadata"		on \
 		THREADSAFE	"Build thread-safe library"		on \
-		EXTENSION	"Allow loadable extensions"		off
+		EXTENSION	"Allow loadable extensions"		on
 
 .include <bsd.port.pre.mk>
 
