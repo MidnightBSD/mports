@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.7 2010/08/14 04:26:50 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.8 2011/02/02 21:35:01 laffer1 Exp $
 
 PORTNAME=	gnome-desktop
-PORTVERSION=	2.30.2
+PORTVERSION=	2.32.1
 PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME

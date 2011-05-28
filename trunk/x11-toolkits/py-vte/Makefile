@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/x11-toolkits/py-vte/Makefile,v 1.1 2008/03/22 16:42:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-vte/Makefile,v 1.2 2009/12/14 00:21:38 laffer1 Exp $
 
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -17,6 +17,7 @@ PLIST=		${.CURDIR}/pkg-plist
 USE_GNOME=	gnomehack gnometarget vte pygtk2
 USE_PYTHON=	yes
 CONFIGURE_ARGS=	--enable-python \
-		--disable-freetypetest
+		--disable-freetypetest \
+		--disable-Bsymbolic
 
 .include "${MASTERDIR}/Makefile"

@@ -1,13 +1,8 @@
-# New ports collection makefile for:	vte
-# Date created:				05 October 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.8 2010/08/14 03:28:14 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/vte/Makefile,v 1.9 2011/02/02 21:38:58 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/vte/Makefile,v 1.58 2006/05/31 22:18:51 mezz Exp $
-#
 
 PORTNAME=	vte
-PORTVERSION=	0.24.3
+PORTVERSION=	0.26.2
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
@@ -31,6 +26,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 #		BSD_PTHREAD_LIBS="${PTHREAD_LIBS}"
 CONFIGURE_ARGS?=--disable-python \
+		--disable-Bsymbolic \
 		--disable-freetypetest
 
 .if !defined(MASTERDIR)

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.6 2010/08/14 03:02:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.7 2011/05/15 19:15:02 laffer1 Exp $
 
 PORTNAME=	libbonoboui
 PORTVERSION=	2.24.4
@@ -16,7 +16,6 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomeprefix gnomehack gnomehier intlhack \

@@ -1,14 +1,8 @@
-# New ports collection makefile for:	gnome-menus
-# Date created:				30 November 2004
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.6 2010/08/14 04:40:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.7 2011/02/02 21:35:01 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
-#   $MCom: ports/x11/gnome-menus/Makefile,v 1.50 2007/03/12 22:36:46 marcus Exp $
-#
 
 PORTNAME=	gnome-menus
-PORTVERSION=	2.30.2
+PORTVERSION=	2.30.5
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2

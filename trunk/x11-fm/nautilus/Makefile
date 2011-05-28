@@ -2,13 +2,13 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.7 2010/12/15 02:26:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.8 2011/02/02 21:36:48 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
 #   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
 
 PORTNAME=	nautilus
-PORTVERSION=	2.30.1
+PORTVERSION=	2.32.2.1
 PORTREVISION=	1
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME
@@ -18,11 +18,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File manager for the GNOME desktop
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	g-ir-compiler:${PORTSDIR}/devel/gobject-introspection
 LIB_DEPENDS=	exif.12:${PORTSDIR}/graphics/libexif \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
 		exempi.3:${PORTSDIR}/textproc/exempi
 
-USE_XORG=	x11
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes

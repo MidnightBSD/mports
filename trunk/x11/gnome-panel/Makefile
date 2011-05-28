@@ -1,15 +1,9 @@
-# New ports collection makefile for:	gnomepanel
-# Date created:				27 April 2002
-# Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.10 2011/01/20 14:19:53 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.11 2011/02/02 21:35:01 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
-#   $MCom: ports/x11/gnome-panel/Makefile,v 1.177 2008/03/23 06:13:12 marcus Exp $
-#
 
 PORTNAME=	gnome-panel
-PORTVERSION=	2.30.2
-PORTREVISION?=	1
+PORTVERSION=	2.32.1
+PORTREVISION?=	0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,26 +17,22 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	gweather.1:${PORTSDIR}/net/libgweather \
-		canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
-		polkit-gnome.0:${PORTSDIR}/sysutils/policykit-gnome \
-                polkit.2:${PORTSDIR}/sysutils/policykit \
-		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit \
-		polkit-gtk-1.0:${PORTSDIR}/sysutils/polkit-gnome
+		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
+		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
 
 USE_GETTEXT=	yes
+USE_XORG=	ice sm x11 xau xrandr
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop librsvg2 \
-		libwnck gnomemenus gnomedocutils ltverhack referencehack \
-		libbonoboui
+USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop libwnck gnomemenus \
+		gnomedocutils ltverhack referencehack librsvg2
 WANT_GNOME=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ARGS=	--with-kde-datadir=${LOCALBASE}/share \
-		--with-kde-docdir=${LOCALBASE}/share/doc \
-		--disable-network-manager
+CONFIGURE_ARGS=	--disable-network-manager \
+		--enable-polkit
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -53,7 +43,8 @@ GCONF_SCHEMAS=	clock.schemas fish.schemas \
 		panel-toplevel.schemas window-list.schemas \
 		workspace-switcher.schemas
 
-OPTIONS=	EVOLUTION "use the Evolution calendar if installed" on
+OPTIONS=	EVOLUTION "use the Evolution calendar if installed" on \
+		BONOBO "Support for bonobo applets aka Gnome 2 applets" on
 
 .if defined(PACKAGE_BUILDING)
 .undef WITHOUT_GNOME
@@ -64,9 +55,18 @@ WITH_GNOME=	yes
 
 .if !defined(WITHOUT_EVOLUTION) && ${HAVE_GNOME:Mevolutiondataserver}!=""
 USE_GNOME+=	evolutiondataserver
-CONFIGURE_ARGS+=--enable-eds
+#CONFIGURE_ARGS+=--enable-eds
 .else
 CONFIGURE_ARGS+=--disable-eds
+.endif
+
+.if defined(WITH_BONOBO)
+USE_GNOME+=	libbonoboui
+CONFIGURE_ARGS+=--enable-bonobo
+PLIST_SUB+=	BONOBO=""
+.else
+CONFIGURE_ARGS+=--disable-bonobo
+PLIST_SUB+=	BONOBO="@comment "
 .endif
 
 post-patch:
@@ -76,6 +76,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|xsltproc -o| xsltproc --nonet -o|g' \
 		${WRKSRC}/help/clock/Makefile.in \
 		${WRKSRC}/help/fish/Makefile.in
+
+post-install:
+	@${MKDIR} ${PREFIX}/lib/gnome-panel/modules
 
 .include <bsd.port.post.mk>
 
