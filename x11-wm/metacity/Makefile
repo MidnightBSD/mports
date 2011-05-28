@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.7 2011/01/15 03:54:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/metacity/Makefile,v 1.8 2011/02/02 21:39:27 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/metacity/Makefile,v 1.57 2007/06/19 04:38:36 marcus Exp $
 
 PORTNAME=	metacity
-PORTVERSION=	2.30.1
+PORTVERSION=	2.30.3
 CATEGORIES=	x11-wm
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
