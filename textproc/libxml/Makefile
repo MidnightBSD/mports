@@ -1,17 +1,11 @@
-# New ports collection makefile for:	libxml
-# Date created:				28 September 1998
-# Whom:					Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.3 2009/09/20 02:17:53 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.4 2011/02/02 21:23:47 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxml/Makefile,v 1.57 2007/01/28 09:07:45 kris Exp $
-#
 
 PORTNAME=	libxml
 PORTVERSION=	1.8.17
 PORTREVISION=	4
 CATEGORIES=	textproc gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/libxml/1.8
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML parser library for GNOME
@@ -22,6 +16,7 @@ USE_GMAKE=	yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 pre-patch:
 	@${FIND} ${WRKSRC} -name "*.[ch]" | ${XARGS} ${REINPLACE_CMD} -e \
