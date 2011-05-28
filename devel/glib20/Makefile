@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.16 2010/05/14 03:46:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.17 2011/02/02 20:17:32 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
-PORTVERSION=	2.24.1
+PORTVERSION=	2.26.1
 PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
