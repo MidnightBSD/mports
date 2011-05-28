@@ -1,14 +1,9 @@
-# New ports collection makefile for:   gdm2
-# Date created:        20 May 2002
-# Whom:                Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/x11/gdm/Makefile,v 1.4 2008/06/14 01:19:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/gdm/Makefile,v 1.5 2010/12/31 13:44:17 laffer1 Exp $
 # $FreeBSD: ports/x11/gdm/Makefile,v 1.93 2007/08/27 20:12:05 marcus Exp $
-#   $MCom: ports/x11/gdm/Makefile,v 1.58 2007/03/12 16:56:06 marcus Exp $
-#
 
 PORTNAME=	gdm
 PORTVERSION=	2.30.5
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -45,7 +40,8 @@ USE_GNOME=	gnomehack intlhack gnomehier gconf2 librsvg2 \
 		gnomedocutils gnomeprefix gnomepanel
 GCONF_SCHEMAS=	gdm-simple-greeter.schemas
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-working-directory=${PREFIX}/etc/gdm/home
+CONFIGURE_ARGS=	--with-working-directory=${PREFIX}/etc/gdm/home \
+		--with-at-spi-registryd-directory=${LOCALBASE}/libexec
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAS_SA_LEN" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		LIBS="-lm" \
@@ -66,7 +62,7 @@ OPTIONS=	IPV6 "Enable IPv6 support" off \
 .if defined(WITHOUT_KEYRING)
 SUB_LIST+=	PAM_KEYRING=\#
 .else
-RUN_DEPENDS+=	${LOCALBASE}/lib/pam_gnome_keyring.so:${PORTSDIR}/security/gnome-keyring
+LIB_DEPENDS+=	gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring
 SUB_LIST+=	PAM_KEYRING=
 .endif
 

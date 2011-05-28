@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.14 2010/09/06 19:41:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.15 2010/10/19 20:58:36 laffer1 Exp $
 
 PORTNAME=	gnome2
-PORTVERSION=	2.30.2
-PORTREVISION?=	0
+PORTVERSION=	2.32.1
+PORTREVISION?=	2
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -26,7 +26,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/sbin/gdm:${PORTSDIR}/x11/gdm \
 		${LOCALBASE}/share/gnome/help/user-guide/C/user-guide.xml:${PORTSDIR}/misc/gnome-user-docs \
 		${LOCALBASE}/share/sounds/question.wav:${PORTSDIR}/audio/gnome-audio \
-		${LOCALBASE}/libdata/pkgconfig/libgail-gnome.pc:${PORTSDIR}/x11-toolkits/libgail-gnome \
 		file-roller:${PORTSDIR}/archivers/file-roller \
 		${LOCALBASE}/share/themes/HighContrast/gtk-2.0/gtkrc:${PORTSDIR}/x11-themes/gnome-themes \
 		gok:${PORTSDIR}/accessibility/gok \
@@ -35,15 +34,17 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		${LOCALBASE}/libexec/gnome-netstatus-applet:${PORTSDIR}/net/gnome-netstatus \
 		dasher:${PORTSDIR}/accessibility/dasher \
 		evolution:${PORTSDIR}/mail/evolution \
+		${LOCALBASE}/libexec/evolution-webcal:${PORTSDIR}/www/evolution-webcal \
 		network-admin:${PORTSDIR}/sysutils/gnome-system-tools \
 		vino-passwd:${PORTSDIR}/net/vino \
-		exchange-connector-setup-2.30:${PORTSDIR}/mail/evolution-exchange \
+		exchange-connector-setup-2.32:${PORTSDIR}/mail/evolution-exchange \
 		${LOCALBASE}/lib/gstreamer-0.10/.gstreamer-plugins-core.keep:${PORTSDIR}/multimedia/gstreamer-plugins-core \
 		${LOCALBASE}/lib/gstreamer-0.10/libgstgconfelements.so:${PORTSDIR}/devel/gstreamer-plugins-gconf \
 		totem:${PORTSDIR}/multimedia/totem \
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
 		${LOCALBASE}/share/gnome-background-properties/gnome-nature.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		evince:${PORTSDIR}/graphics/evince \
+		alacarte:${PORTSDIR}/deskutils/alacarte \
 		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
@@ -83,7 +84,8 @@ RUN_DEPENDS+=	\
 		gnome-file-share-properties:${PORTSDIR}/www/gnome-user-share \
 		${LOCALBASE}/libexec/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 		${LOCALBASE}/lib/hamster-applet/hamster-applet:${PORTSDIR}/deskutils/hamster-applet \
-		${LOCALBASE}/lib/gtk-2.0/modules/at-spi-dbus/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi2-atk
+		${LOCALBASE}/lib/gtk-2.0/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi \
+		ekiga:${PORTSDIR}/net/ekiga3
 .if defined(WITH_MAPI)
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/libexchangemapi-1.0.pc:${PORTSDIR}/mail/evolution-mapi
 .endif

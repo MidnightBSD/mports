@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.2 2010/08/14 03:07:42 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.3 2011/02/02 21:38:58 laffer1 Exp $
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/lib${PORTNAME}/${PORTVERSION:R}/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}

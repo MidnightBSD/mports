@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gnome-screensaver/Makefile,v 1.1 2010/02/28 01:10:25 laffer1 Exp $
 
 PORTNAME=	gnome-screensaver
-PORTVERSION=	2.26.1
+PORTVERSION=	2.30.2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2

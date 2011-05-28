@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.6 2009/10/31 23:55:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.7 2010/12/15 02:42:01 laffer1 Exp $
 
 PORTNAME=	gnome-terminal
-PORTVERSION=	2.30.2
+PORTVERSION=	2.32.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -25,7 +25,8 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 
 GCONF_SCHEMAS=	gnome-terminal.schemas
 
-post-configure:
-		@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
+post-patch:
+	@${TOUCH} ${WRKSRC}/aclocal.m4 ${WRKSRC}/Makefile.in \
+		${WRKSRC}/configure ${WRKSRC}/config.h.in
 
 .include <bsd.port.mk>
