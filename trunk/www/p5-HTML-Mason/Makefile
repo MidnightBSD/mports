@@ -1,23 +1,23 @@
-# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.2 2008/07/25 05:44:29 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-HTML-Mason/Makefile,v 1.3 2010/01/17 15:05:52 laffer1 Exp $
 
 PORTNAME=	HTML-Mason
-PORTVERSION=	1.42
+PORTVERSION=	1.45
 CATEGORIES=	www perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	HTML
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	High-performance, dynamic web site authoring system
 LICENSE=	perl
 
-BUILD_DEPENDS=	p5-Module-Build>=0.28:${PORTSDIR}/devel/p5-Module-Build
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Params/Validate.pm:${PORTSDIR}/devel/p5-Params-Validate \
-		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/Exception/Class.pm:${PORTSDIR}/devel/p5-Exception-Class \
-		${SITE_PERL}/Class/Container.pm:${PORTSDIR}/devel/p5-Class-Container \
-		${SITE_PERL}/Cache/Cache.pm:${PORTSDIR}/devel/p5-Cache-Cache \
-		${SITE_PERL}/${PERL_ARCH}/HTML/Entities.pm:${PORTSDIR}/www/p5-HTML-Parser
+BUILD_DEPENDS=	p5-Class-Container>=0.7:${PORTSDIR}/devel/p5-Class-Container \
+		p5-HTML-Parser>0:${PORTSDIR}/www/p5-HTML-Parser
+RUN_DEPENDS=	p5-Cache-Cache>=1:${PORTSDIR}/devel/p5-Cache-Cache \
+		p5-Class-Container>=0.7:${PORTSDIR}/devel/p5-Class-Container \
+		p5-Exception-Class>=1.15:${PORTSDIR}/devel/p5-Exception-Class \
+		p5-Log-Any>=0.08:${PORTSDIR}/devel/p5-Log-Any \
+		p5-Params-Validate>=0.07:${PORTSDIR}/devel/p5-Params-Validate \
+		p5-HTML-Parser>0:${PORTSDIR}/www/p5-HTML-Parser
 
 PERL_MODBUILD=	yes
 CONFIGURE_ARGS+=	--noprompts
@@ -54,7 +54,8 @@ MAN3=		Bundle::HTML::Mason.3 \
 		HTML::Mason::Tools.3 \
 		HTML::Mason::Utils.3
 
-OPTIONS=	MOD_PERL "with mod_perl dependency" off
+OPTIONS=	MOD_PERL "with mod_perl dependency" off \
+		APACHE2 "with mod_perl for Apache 2" off
 
 post-build:
 	${MV} -f ${WRKSRC}/bin ${WRKSRC}/bin.orig
@@ -66,7 +67,11 @@ post-install:
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_MOD_PERL)
+.if defined(WITH_APACHE2)
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Apache2/Request.pm:${PORTSDIR}/www/p5-libapreq2
+.else
+RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Apache/libapreq.pm:${PORTSDIR}/www/p5-libapreq
+.endif
 .endif
 
 .include <bsd.port.post.mk>
