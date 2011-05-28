@@ -2,7 +2,6 @@ bin/gtk-builder-convert
 bin/gtk-demo
 bin/gtk-query-immodules-2.0
 bin/gtk-update-icon-cache
-etc/gtk-2.0/gtk.immodules
 etc/gtk-2.0/im-multipress.conf
 include/gail-1.0/gail/gailwidget.h
 include/gail-1.0/libgail-util/gail-util.h
