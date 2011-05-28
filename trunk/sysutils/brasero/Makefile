@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.1 2010/02/27 21:16:09 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.2 2010/10/23 17:51:48 laffer1 Exp $
 
 PORTNAME=	brasero
-PORTVERSION=	2.30.2
-PORTREVISION=	1
+PORTVERSION=	2.32.1
 CATEGORIES=	sysutils audio multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -23,20 +22,24 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_XORG=	sm
-USE_GNOME=	intlhack gnomeprefix gnomehack
+USE_GNOME=	intlhack gnomeprefix gnomehack gnomedocutils
+GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	gconf core
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
-CONFIGURE_ARGS=	--disable-inotify --with-html-dir=${PREFIX}/share/doc
+CONFIGURE_ARGS=	--disable-inotify --with-html-dir=${PREFIX}/share/doc \
+		--enable-gtk3=no --enable-introspection=yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_CAM_LIB_H=1" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
 MAN1=		brasero.1
-GCONF_SCHEMAS=	brasero.schemas
+GLIB_SCHEMAS=	org.gnome.brasero.gschema.xml
 
 OPTIONS=	NAUTILUS "Enable Nautilus extension" on \
 		LIBBURNIA "Enable libburnia plug-ins" off
+
+PLIST_SUB=	FULL_VERSION=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
@@ -61,5 +64,7 @@ PLIST_SUB+=	LIBBURNIA="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 	    	${WRKSRC}/libbrasero-burn/burn-process.c
+	@${REINPLACE_CMD} -e 's|" == "|" = "|g' \
+		${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
