@@ -1,15 +1,9 @@
-# New ports collection makefile for:	gnome-doc-utils
-# Date created:				11 November 2004
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.5 2010/01/19 02:56:23 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gnome-doc-utils/Makefile,v 1.6 2010/10/23 12:03:45 laffer1 Exp $
 # $FreeBSD: ports/textproc/gnome-doc-utils/Makefile,v 1.17 2007/05/19 20:23:55 flz Exp $
-#   $MCom: ports/textproc/gnome-doc-utils/Makefile,v 1.44 2007/03/13 00:37:32 mezz Exp $
-#
 
 PORTNAME=	gnome-doc-utils
-PORTVERSION=	0.20.1
-PORTREVISION=	1
+PORTVERSION=	0.20.3
+PORTREVISION=	0
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
