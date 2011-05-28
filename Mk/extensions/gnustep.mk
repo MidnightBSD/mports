@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.3 2009/06/07 17:31:55 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.4 2009/06/07 17:34:05 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -266,7 +266,7 @@ RUN_DEPENDS+=	${GNUSTEP_SYSTEM_LIBRARIES}/libgnustep-gui.so:${PORTSDIR}/${GNUSTE
 # using any backend
 #
 .if defined(USE_GNUSTEP_BACK)
-BACKSUFFIX?=   -014
+BACKSUFFIX?=   -017
 .if defined(WITH_GNUSTEP_XDPS)
 GNUSTEP_WITH_XDPS=yes
 .elif defined(WITH_GNUSTEP_LIBART)
