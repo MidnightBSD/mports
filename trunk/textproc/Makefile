@@ -1,7 +1,6 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.133 2011/04/30 16:52:25 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/Makefile,v 1.134 2011/05/28 05:10:48 laffer1 Exp $
 
-    COMMENT = Text processing utilities (does not include desktop publishing)
+COMMENT = Text processing utilities (does not include desktop publishing)
 
 SUBDIR += agrep
 SUBDIR += alt-aspell-de
@@ -149,6 +148,7 @@ SUBDIR += scrollkeeper
 SUBDIR += sdocbook-xml
 SUBDIR += sgmlformat
 SUBDIR += soprano
+SUBDIR += sphinxsearch
 SUBDIR += texi2html
 SUBDIR += tidyp
 SUBDIR += urlview
