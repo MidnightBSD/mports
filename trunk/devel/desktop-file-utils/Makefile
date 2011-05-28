@@ -1,14 +1,9 @@
-# New ports collection makefile for:	desktop-file-utils
-# Date created:			11 Jun 2004
-# Whom:				Jean-Yves Lefort <jylefort@brutele.be>
-#
-# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.5 2008/06/01 19:58:29 crash Exp $
+# $MidnightBSD: mports/devel/desktop-file-utils/Makefile,v 1.6 2008/08/21 18:02:17 laffer1 Exp $
 # $FreeBSD: ports/devel/desktop-file-utils/Makefile,v 1.16 2006/05/04 21:40:31 edwin Exp $
-#
 
 PORTNAME=	desktop-file-utils
 PORTVERSION=	0.15
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/releases/
 
@@ -16,6 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A couple of command line utilities for working with desktop entries
 LICENSE=	gpl2
 
+USE_GETTEXT=	yes
 USE_GNOME=	glib20
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
