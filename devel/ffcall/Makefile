@@ -2,7 +2,7 @@
 # Date created:        21 February 2001
 # Whom:                jagapen@home.com
 #
-# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.1 2006/09/20 16:42:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.2 2008/04/14 04:28:41 laffer1 Exp $
 # $FreeBSD: ports/devel/ffcall/Makefile,v 1.22 2006/07/08 05:15:07 dinoex Exp $
 #
 
@@ -20,6 +20,7 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 MAN3=		avcall.3 callback.3 trampoline.3 trampoline_r.3 vacall.3
 MANCOMPRESSED=	no
