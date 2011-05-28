@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.7 2009/12/25 16:36:54 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-spi/Makefile,v 1.8 2010/08/14 02:34:38 laffer1 Exp $
 
 PORTNAME=	at-spi
-PORTVERSION=	1.30.1
-PORTREVISION?=	1
+PORTVERSION=	1.32.0
 CATEGORIES=	accessibility x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
