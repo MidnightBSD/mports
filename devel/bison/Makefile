@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.5 2009/03/25 21:57:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.6 2009/09/20 04:02:43 laffer1 Exp $
 
 PORTNAME=	bison
-PORTVERSION=	2.4.1
+PORTVERSION=	2.4.3
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
