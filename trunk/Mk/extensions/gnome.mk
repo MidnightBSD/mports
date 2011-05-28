@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.10 2010/09/04 19:55:38 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.11 2011/02/09 12:50:38 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -26,22 +26,30 @@ Gnome_Pre_Include=		gnome.mk
 # and MAKE_ENV defined.
 #
 #
-# GCONF_SCHEMAS		- Set the following to list of all schema files
-#					  that your port installs. These schema files and
-#					  %gconf.xml files will be automatically added to
-#					  ${PLIST}. For example, if your port has
-#					  "etc/gconf/schemas/(foo.schemas and bar.schemas)",
-#					  add the following to your Makefile:
-#					  "GCONF_SCHEMAS=foo.schemas bar.schemas".
+# GCONF_SCHEMAS	- Set the following to list of all the gconf schema files
+#				that your port installs. These schema files and
+#				%gconf.xml files will be automatically added to
+#				the ${PLIST}. For example, if your port has
+#				"etc/gconf/schemas/(foo.schemas and bar.schemas)",
+#				add the following to your Makefile:
+#				"GCONF_SCHEMAS=foo.schemas bar.schemas".
+#
+# GLIB_SCHEMAS		- Set the following to list of all gsettings schema files
+#				(*.gschema.xml) that your ports installs. The
+#				schema files will be automatically added to
+#				the ${PLIST}. For example, if your port has
+#				"share/glib-2.0/schemas/(foo.gschema.xml and bar.gschema.xml)",
+#				add the following to your Makefile:
+#				"GLIB_SCHEMAS=foo.gschema.xml bar.gschema.xml".
 #
 # INSTALLS_OMF		- If set, bsd.gnome.mk will automatically scan pkg-plist
-#					  file and add apropriate @exec/@unexec directives for
-#					  each .omf file found to track OMF registration database.
+#				file and add apropriate @exec/@unexec directives for
+#				each .omf file found to track OMF registration database.
 #
 # INSTALLS_ICONS	- If your port installs Freedesktop-style icons to
-#					  ${LOCALBASE}/share/icons, then you should use this
-#					  macro. If the icons are not cached, they will not be
-#					  displayed.
+#				${LOCALBASE}/share/icons, then you should use this
+#				macro. If the icons are not cached, they will not be
+#				displayed.
 #
 
 # non-version specific components
@@ -50,13 +58,12 @@ _USE_GNOME_ALL= esound intlhack intltool ltasneededhack lthack ltverhack \
 		gnometarget pkgconfig
 
 # GNOME 1 components
-_USE_GNOME_ALL+= bonobo gal gconf gdkpixbuf glib12 glibwww \
+_USE_GNOME_ALL+= bonobo gal gconf gdkpixbuf glib12 \
 		gnomecanvas gnomedb gnomelibs gnomeprint gnomevfs gtk12 \
-		gtkhtml libcapplet libgda libghttp libglade libxml imlib \
-		oaf orbit pygnome pygtk
+		libgda libghttp libglade libxml imlib oaf orbit pygtk
 
 # GNOME 2 components
-_USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver gal2 \
+_USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver gal2 gdkpixbuf2 \
 		gconf2 _glib20 glib20 gnomecontrolcenter2 gnomedesktop gnomedesktopsharp20 \
 		gnomedocutils gnomemenus gnomepanel gnomesharp20 gnomespeech gnomevfs2 gtk20 \
 		gtkhtml3 gtksharp10 gtksharp20 gtksourceview gtksourceview2 gvfs \
@@ -65,7 +72,10 @@ _USE_GNOME_ALL+= atk atspi desktopfileutils eel2 evolutiondataserver gal2 \
 		libgnomeprintui libgnomeui libgsf libgsf_gnome libgtkhtml libidl \
 		librsvg2 libwnck libxml2 libxslt libzvt linc metacity nautilus2 \
 		nautiluscdburner orbit2 pango pygnome2 pygnomedesktop pygnomeextras \
-		pygtk2 pygtksourceview vte
+		pygobject pygtk2 pygtksourceview vte
+
+# GNOME 3 components
+_USE_GNOME_ALL+= dconf
 
 GNOME_MAKEFILEIN?=	Makefile.in
 SCROLLKEEPER_DIR=	/var/db/rarian
@@ -198,10 +208,6 @@ gnomevfs_MAKE_ENV=	GNOME_VFS_CONFIG="${GNOME_VFS_CONFIG}"
 gnomevfs_DETECT=	${GNOME_VFS_CONFIG}
 gnomevfs_USE_GNOME_IMPL=gnomemimedata gconf gnomelibs
 
-libcapplet_LIB_DEPENDS=	capplet.5:${PORTSDIR}/x11/libcapplet
-libcapplet_DETECT=	${LOCALBASE}/etc/cappletConf.sh
-libcapplet_USE_GNOME_IMPL=gnomelibs
-
 gnomeprint_LIB_DEPENDS=	gnomeprint.16:${PORTSDIR}/print/gnome-print
 gnomeprint_DETECT=	${LOCALBASE}/etc/printConf.sh
 gnomeprint_USE_GNOME_IMPL=gnomelibs gnomecanvas
@@ -235,23 +241,10 @@ gal_LIB_DEPENDS=	gal.23:${PORTSDIR}/x11-toolkits/gal
 gal_DETECT=		${LOCALBASE}/etc/galConf.sh
 gal_USE_GNOME_IMPL=	libglade
 
-glibwww_LIB_DEPENDS=	glibwww.1:${PORTSDIR}/www/glibwww
-glibwww_DETECT=		${LOCALBASE}/etc/glibwwwConf.sh
-glibwww_USE_GNOME_IMPL=	gnomelibs
-
-gtkhtml_LIB_DEPENDS=	gtkhtml-1.1.3:${PORTSDIR}/www/gtkhtml
-gtkhtml_DETECT=		${LOCALBASE}/etc/gtkhtmlConf.sh
-gtkhtml_USE_GNOME_IMPL=	glibwww gal libghttp libcapplet
-
 pygtk_DETECT=			${LOCALBASE}/bin/pygtk-codegen-1.2
 pygtk_BUILD_DEPENDS=	${pygtk_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk
 pygtk_RUN_DEPENDS=		${pygtk_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk
 pygtk_USE_GNOME_IMPL=	gnomelibs gdkpixbuf libglade
-
-pygnome_DETECT=			${LOCALBASE}/share/pygtk/1.2/defs/applet.defs
-pygnome_BUILD_DEPENDS=	${pygnome_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome
-pygnome_RUN_DEPENDS=	${pygnome_DETECT}:${PORTSDIR}/x11-toolkits/py-gnome
-pygnome_USE_GNOME_IMPL=	gtkhtml pygtk
 
 _glib20_LIB_DEPENDS=	glib-2.0.0:${PORTSDIR}/devel/glib20
 _glib20_DETECT=		${LOCALBASE}/libdata/pkgconfig/glib-2.0.pc
@@ -265,9 +258,17 @@ atk_LIB_DEPENDS=	atk-1.0.0:${PORTSDIR}/accessibility/atk
 atk_DETECT=		${LOCALBASE}/libdata/pkgconfig/atk.pc
 atk_USE_GNOME_IMPL=	glib20
 
+dconf_LIB_DEPENDS=	dconf.0:${PORTSDIR}/devel/dconf
+dconf_DETECT=		${LOCALBASE}/libdata/pkgconfig/dconf.pc
+dconf_USE_GNOME_IMPL=	glib20
+
 pango_LIB_DEPENDS=	pango-1.0.0:${PORTSDIR}/x11-toolkits/pango
 pango_DETECT=		${LOCALBASE}/libdata/pkgconfig/pango.pc
 pango_USE_GNOME_IMPL=	glib20
+
+gdkpixbuf2_LIB_DEPENDS=	gdk_pixbuf-2.0.0:${PORTSDIR}/graphics/gdk-pixbuf2
+gdkpixbuf2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gdk-pixbuf-2.0.pc
+gdkpixbuf2_USE_GNOME_IMPL=glib20
 
 gtk20_LIB_DEPENDS=	gtk-x11-2.0.0:${PORTSDIR}/x11-toolkits/gtk20
 gtk20_DETECT=		${LOCALBASE}/libdata/pkgconfig/gtk+-x11-2.0.pc
@@ -276,7 +277,7 @@ GTK2_VERSION=		2.10.0
 
 linc_LIB_DEPENDS=	linc.1:${PORTSDIR}/net/linc
 linc_DETECT=		${LOCALBASE}/libdata/pkgconfig/linc.pc
-linc_USE_GNOME_IMPL=glib20
+linc_USE_GNOME_IMPL=	glib20
 
 libidl_LIB_DEPENDS=	IDL-2.0:${PORTSDIR}/devel/libIDL
 libidl_DETECT=		${LOCALBASE}/libdata/pkgconfig/libIDL-2.0.pc
@@ -382,7 +383,7 @@ eel2_USE_GNOME_IMPL=	gnomedesktop
 
 gnomepanel_LIB_DEPENDS=	panel-applet-2.0:${PORTSDIR}/x11/gnome-panel
 gnomepanel_DETECT=	${LOCALBASE}/libdata/pkgconfig/libpanelapplet-2.0.pc
-gnomepanel_USE_GNOME_IMPL=gnomedesktop libwnck gnomemenus gnomedocutils librsvg2 libbonoboui
+gnomepanel_USE_GNOME_IMPL=gnomedesktop libwnck gnomemenus gnomedocutils librsvg2
 gnomepanel_GNOME_DESKTOP_VERSION=2
 
 nautilus2_LIB_DEPENDS=	nautilus-extension.1:${PORTSDIR}/x11-fm/nautilus
@@ -410,7 +411,7 @@ libgda3_LIB_DEPENDS=	gda-3.0.3:${PORTSDIR}/databases/libgda3
 libgda3_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgda-3.0.pc
 libgda3_USE_GNOME_IMPL=	glib20 libxslt
 
-libgda4_LIB_DEPENDS=	gda-4.0.4:${PORTSDIR}/databases/libgda4
+libgda4_LIB_DEPENDS=	gda-4.0.5:${PORTSDIR}/databases/libgda4
 libgda4_DETECT=			 ${LOCALBASE}/libdata/pkgconfig/libgda-4.0.pc
 libgda4_USE_GNOME_IMPL=	glib20 libxslt
 
@@ -437,6 +438,11 @@ libgsf_USE_GNOME_IMPL=		glib20 libxml2
 libgsf_gnome_LIB_DEPENDS=	gsf-gnome-1.114:${PORTSDIR}/devel/libgsf-gnome
 libgsf_gnome_DETECT=		${LOCALBASE}/libdata/pkgconfig/libgsf-gnome-1.pc
 libgsf_gnome_USE_GNOME_IMPL=	gconf2 libgsf gnomevfs2
+
+pygobject_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygobject-2.0.pc
+pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
+pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
+pygobject_USE_GNOME_IMPL=	glib20
 
 pygtk2_DETECT=			${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc
 pygtk2_BUILD_DEPENDS=	${pygtk2_DETECT}:${PORTSDIR}/x11-toolkits/py-gtk2
@@ -466,7 +472,7 @@ gnomespeech_LIB_DEPENDS=gnomespeech.7:${PORTSDIR}/accessibility/gnome-speech
 gnomespeech_DETECT=		${LOCALBASE}/libdata/pkgconfig/gnome-speech-1.0.pc
 gnomespeech_USE_GNOME_IMPL=libbonobo
 
-evolutiondataserver_LIB_DEPENDS=edataserver-1.2.11:${PORTSDIR}/databases/evolution-data-server
+evolutiondataserver_LIB_DEPENDS=edataserverui-1.2.11:${PORTSDIR}/databases/evolution-data-server
 evolutiondataserver_DETECT=		${LOCALBASE}/libdata/pkgconfig/evolution-data-server-1.2.pc
 evolutiondataserver_USE_GNOME_IMPL=gconf2 libxml2
 
@@ -651,7 +657,8 @@ _USE_GNOME+=	${${component}_USE_GNOME_IMPL} ${component}
 
 # Setup the GTK+ API version for pixbuf loaders, input method modules,
 # and theme engines.
-PLIST_SUB+=			GTK2_VERSION="${GTK2_VERSION}"
+PLIST_SUB+=			GTK2_VERSION="${GTK2_VERSION}" \
+				GTK3_VERSION="${GTK3_VERSION}"
 
 # Then handle the ltverhack component (it has to be done here, because
 # we rely on some bsd.autotools.mk variables, and bsd.autotools.mk is
@@ -694,6 +701,11 @@ ltasneededhack_PRE_PATCH=	if [ -f ${WRKDIR}/gnome-libtool ]; then \
 									/^archive_expsym_cmds=/s/-shared/-shared -Wl,--as-needed/' \
 									${WRKDIR}/gnome-libtool; \
 							fi
+
+# Set USE_CSTD for all ports that depend on glib12
+.if defined(_USE_GNOME) && !empty(_USE_GNOME:Mglib12)
+USE_CSTD=	gnu89
+.endif
 
 # Then traverse through all components, check which of them
 # exist in ${_USE_GNOME} and set variables accordingly
@@ -763,13 +775,13 @@ CONFIGURE_FAIL_MESSAGE= "Report the build failure to the GNOME team at ${MAINTAI
 .endif
 
 .if defined(GCONF_SCHEMAS) || defined(INSTALLS_OMF) || defined(INSTALLS_ICONS) \
-	|| (defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="")
+	|| defined(GLIB_SCHEMAS) || (defined(_USE_GNOME) && ${_USE_GNOME:Mgnomehier}!="")
 pre-install: gnome-pre-install
 post-install: gnome-post-install
 
 gnome-pre-install:
-.if defined(_USE_GNOME) && ${_USE_GNOME:Mgnomeprefix}!="" && !defined(NO_MTREE)
-	@${MTREE_CMD} ${MTREE_ARGS:S/${MTREE_FILE}/${GNOME_MTREE_FILE}/} ${TARGETDIR}/ >/dev/null
+.if defined(_USE_GNOME) && ${_USE_GNOME:Mgnomehier}!="" && !defined(NO_MTREE)
+	@${MTREE_CMD} ${MTREE_ARGS:S/${MTREE_FILE}/${GNOME_MTREE_FILE}/} ${PREFIX}/ >/dev/null
 .endif
 .if defined(GCONF_SCHEMAS)
 	@${MKDIR} ${TARGETDIR}/etc/gconf/gconf.xml.defaults/
@@ -787,6 +799,18 @@ gnome-post-install:
 			>> ${TMPPLIST}; \
 	done
 .  endif
+
+# we put the @unexec behind the plist schema entry, because it compiles files
+# in the directory. So we should remove the port file first before recompiling.
+.  if defined(GLIB_SCHEMAS)
+	@for i in ${GLIB_SCHEMAS}; do \
+		${ECHO_CMD} "share/glib-2.0/schemas/$${i}" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@exec glib-compile-schemas %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
+			>> ${TMPPLIST}; \
+		${ECHO_CMD} "@unexec glib-compile-schemas --uninstall %D/share/glib-2.0/schemas > /dev/null || /usr/bin/true" \
+			>> ${TMPPLIST}; \
+	done
+.endif
 
 .  if defined(INSTALLS_OMF)
 	@for i in `${GREP} "\.omf$$" ${TMPPLIST}`; do \
