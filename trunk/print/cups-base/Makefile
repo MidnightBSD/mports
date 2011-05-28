@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.25 2010/04/28 16:16:10 vganji Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.26 2010/05/08 15:19:34 laffer1 Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.3.11
-PORTREVISION=	2
+PORTREVISION=	3
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -48,7 +48,7 @@ OPTIONS=	GNUTLS		"Build with GNUTLS library" on \
 		PHP		"Build PHP support" off \
 		PYTHON		"Build PYTHON support" off \
 		LIBPAPER	"Build with libpaper support" off \
-		DNSSD		"Build with DNS_SD (avahi) support" on \
+		DNSSD		"Build with DNS_SD support" on \
 		PAM		"Build with PAM support" off \
 		LDAP		"Build with LDAP support" off \
 		DBUS		"Build with DBUS support" off \
@@ -94,10 +94,7 @@ LIB_DEPENDS+=		paper.2:${PORTSDIR}/print/libpaper
 .endif
 
 .if defined(WITH_DNSSD)
-CONFIGURE_ARGS+=	--enable-dnssd \
-			--with-dnssd-libs=${LOCALBASE}/lib/ \
-			--with-dnssd-includes=${LOCALBASE}/include/avahi-compat-libdns_sd/
-LIB_DEPENDS+=		dns_sd:${PORTSDIR}/net/avahi-libdns
+CONFIGURE_ARGS+=	--enable-dnssd
 .else
 CONFIGURE_ARGS+=	--disable-dnssd
 .endif
