@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-themes/clearlooks-metacity/Makefile,v 1.2 2008/08/20 18:45:17 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/clearlooks-metacity/Makefile,v 1.3 2009/12/13 21:01:03 laffer1 Exp $
 
 PORTNAME=	clearlooks-metacity
 PORTVERSION=	2.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://www.stellingwerff.com/
 #MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
