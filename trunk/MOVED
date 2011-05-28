@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.27 2010/12/18 06:16:54 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.28 2011/05/28 18:22:31 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -53,3 +53,4 @@ multimedia/x264-gtk||2010-12-14|no longer valid
 lang/python30||2010-12-14|removed.  not backwards compatible and broken
 x11-drivers/xf86-video-cyrix||2010-12-17|Not compatible with current x.org
 net/zniper||2011-05-28|Dead upstream.
+dns/bind96||2011-05-28|Security vulnerability, EOL
