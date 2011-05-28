@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.6 2011/01/01 16:25:51 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.7 2011/01/13 22:50:26 laffer1 Exp $
 # $FreeBSD: ports/graphics/gegl/Makefile,v 1.18 2010/06/21 12:07:51 gahr Exp $
 
 PORTNAME=	gegl
-PORTVERSION=	0.1.2
+PORTVERSION=	0.1.6
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.1/
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graph based image processing framework
 LICENSE=	gpl3
 
-LIB_DEPENDS=	babl-0.0:${PORTSDIR}/x11/babl \
+LIB_DEPENDS=	babl-0.1:${PORTSDIR}/x11/babl \
     		execinfo.1:${PORTSDIR}/devel/libexecinfo
 
 OPTIONS=	CAIRO		"Enable Cairo" on \
@@ -42,7 +42,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lexecinfo"
 
-GEGL_MINOR=	101
+GEGL_MINOR=	105
 PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}"
 
 EXAMPLES=	2geglbuffer gegl-paint geglbuffer-add-image \
@@ -56,6 +56,21 @@ PLIST_SUB+=	CAIRO=""
 .else
 CONFIGURE_ARGS+=--without-cairo
 PLIST_SUB+=	CAIRO="@comment "
+.endif
+
+.if !defined(WITHOUT_PANGO)
+USE_GNOME+=	pango
+PLIST_SUB+=	PANGO=""
+.else
+CONFIGURE_ARGS+=--without-pango
+PLIST_SUB+=	PANGO="@comment "
+.endif
+
+.if !defined(WITHOUT_PANGO) && !defined(WITHOUT_CAIRO)
+PLIST_SUB+=	PANGOCAIRO=""
+.else
+CONFIGURE_ARGS+=--without-pangocairo
+PLIST_SUB+=	PANGOCAIRO="@comment "
 .endif
 
 .if !defined(WITHOUT_ENSCRIPT)
@@ -112,12 +127,6 @@ CONFIGURE_ARGS+=--disable-mmx \
 		--disable-sse
 .endif
 
-.if !defined(WITHOUT_PANGO)
-USE_GNOME+=	pango
-.else
-CONFIGURE_ARGS+=--without-pango
-.endif
-
 .if !defined(WITHOUT_PNG)
 LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
@@ -162,8 +171,6 @@ BUILD_DEPENDS+=	a2x:${PORTSDIR}/textproc/asciidoc
 CONFIGURE_ARGS+=	--disable-docs
 .endif
 
-.include <bsd.port.pre.mk>
-
 post-patch:
 .if defined(NOPORTDOCS)
 	${REINPLACE_CMD} -e '11,13d' ${WRKSRC}/Makefile.am
@@ -195,4 +202,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
