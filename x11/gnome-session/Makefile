@@ -1,13 +1,10 @@
-# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.7 2010/12/15 02:37:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-session/Makefile,v 1.8 2010/12/24 21:13:33 laffer1 Exp $
 
 PORTNAME=	gnome-session
-PORTVERSION=	2.30.2
-PORTREVISION=	2
+PORTVERSION=	2.32.1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	gnome2
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Session component for the GNOME 2 desktop
@@ -26,7 +23,7 @@ RUN_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gno
 INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
 USE_BZIP2=	yes
-USE_XORG=	ice sm xau xext xrandr
+USE_XORG=	ice sm xau xrandr
 USE_GNOME=	gnomeprefix gnomehack intlhack gconf2
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes

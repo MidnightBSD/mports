@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.3 2009/06/29 04:26:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.4 2010/08/14 03:05:11 laffer1 Exp $
 
 PORTNAME=	libgail-gnome
 PORTVERSION=	1.20.3
@@ -12,7 +12,6 @@ LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_XLIB=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 GNOME_DESKTOP_VERSION=2

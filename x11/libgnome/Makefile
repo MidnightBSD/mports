@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.10 2010/09/06 21:46:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.11 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libgnome
-PORTVERSION=	2.30.0
+PORTVERSION=	2.32.0
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,6 +15,7 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_GETTEXT=	yes

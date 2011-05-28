@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.8 2009/10/31 23:49:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-applets/Makefile,v 1.9 2010/08/14 04:30:20 laffer1 Exp $
 
 PORTNAME=	gnome-applets
-PORTVERSION=	2.30.0
-PORTREVISION=	3
+PORTVERSION=	2.32.1.1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -33,8 +33,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gnomepanel gnomedocutils \
 WANT_GNOME=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-gstreamer=0.10 \
-		--enable-mixer-applet \
+CONFIGURE_ARGS=	--enable-mixer-applet \
 		--disable-networkmanager
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
@@ -78,9 +77,9 @@ GCONF_SCHEMAS+=	cpufreq-applet.schemas
 .if defined(WITH_MINI_COMMANDER)
 CONFIGURE_ARGS+=	--enable-mini-commander
 GCONF_SCHEMAS+=	mini-commander-global.schemas mini-commander.schemas
-PLIST_SUB+=	COMMANDER=""
+PLIST_SUB+=	COMMANDER="" OLDCOMMANDER="@comment "
 .else
-PLIST_SUB+=	COMMANDER="@comment "
+PLIST_SUB+=	COMMANDER="@comment " OLDCOMMANDER=""
 .endif
 
 .if ( exists(${pygnomedesktop_DETECT}) ) || \
