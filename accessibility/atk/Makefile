@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.13 2010/05/14 03:25:02 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.14 2011/02/02 20:03:21 laffer1 Exp $
 
 PORTNAME=	atk
-PORTVERSION=	1.30.0
+PORTVERSION=	1.32.0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
