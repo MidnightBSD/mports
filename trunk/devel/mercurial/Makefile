@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.8 2010/08/14 19:29:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.9 2010/10/10 19:45:19 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.6.4
+PORTVERSION=	1.8.2
 CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
@@ -20,17 +20,24 @@ PLIST_SUB+=	NLS=""
 .else
 PLIST_SUB+=	NLS="@comment "
 .endif
-USE_PYTHON=	2.4+
+USE_PYTHON=	2.5+
 USE_PYDISTUTILS=yes
-PYDISTUTILS_PKGNAME=    ${PORTNAME}
-PYDISTUTILS_PKGVERSION= ${PORTVERSION}
-PYDISTUTILS_EGGINFO=    ${PORTNAME}-${PORTVERSION}-${PYTHON_VERSION:S/thon//}.egg-info
+PYDISTUTILS_PKGNAME=	${PORTNAME}
+PYDISTUTILS_PKGVERSION=	${PORTVERSION}
+PYDISTUTILS_EGGINFO=	${PORTNAME}-${PORTVERSION}-${PYTHON_VERSION:S/thon//}.egg-info
 
 CONTRIB_FILES=	bash_completion \
 		convert-repo \
+		debugshell.py \
 		dumprevlog \
 		hg-ssh \
+		hgfixes/__init__.py \
+		hgfixes/fix_bytes.py \
+		hgfixes/fix_bytesmod.py \
+		hgfixes/fix_leftover_imports.py \
 		hgk \
+		hgsh/Makefile \
+		hgsh/hgsh.c \
 		logo-droplets.svg \
 		memory.py \
 		mercurial.el \
@@ -40,6 +47,7 @@ CONTRIB_FILES=	bash_completion \
 		pylintrc \
 		python-hook-examples.py \
 		sample.hgrc \
+		setup3k.py \
 		shrink-revlog.py \
 		simplemerge \
 		tcsh_completion \
@@ -52,6 +60,7 @@ CONTRIB_FILES=	bash_completion \
 		vim/HGAnnotate.vim \
 		vim/hg-menu.vim \
 		vim/hgcommand.vim \
+		vim/hgtest.vim \
 		vim/patchreview.txt \
 		vim/patchreview.vim
 
@@ -79,6 +88,7 @@ post-install:
 .if !defined(NOPORTDATA)
 	${MKDIR} ${DATADIR}
 	${MKDIR} ${DATADIR}/contrib
+	${MKDIR} ${DATADIR}/contrib/hgfixes
 	${MKDIR} ${DATADIR}/contrib/hgsh
 	${MKDIR} ${DATADIR}/contrib/vim
 	for f in ${CONTRIB_FILES}; do \
