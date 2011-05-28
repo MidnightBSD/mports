@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.3 2009/04/05 19:16:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/icon-naming-utils/Makefile,v 1.4 2009/12/13 20:24:51 laffer1 Exp $
 
 PORTNAME=	icon-naming-utils
-PORTVERSION=	0.8.7
+PORTVERSION=	0.8.90
 CATEGORIES=	x11-themes
 MASTER_SITES=	http://tango.freedesktop.org/releases/
 
