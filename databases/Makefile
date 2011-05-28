@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.88 2011/01/08 00:16:10 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.89 2011/05/27 02:09:43 laffer1 Exp $
 #
 
     COMMENT = Databases
@@ -94,6 +94,9 @@
     SUBDIR += postgresql84-client
     SUBDIR += postgresql84-contrib
     SUBDIR += postgresql84-server
+    SUBDIR += postgresql90-client
+    SUBDIR += postgresql90-contrib
+    SUBDIR += postgresql90-server
     SUBDIR += py-MySQLdb
     SUBDIR += py-gdbm
     SUBDIR += py-sqlite3
