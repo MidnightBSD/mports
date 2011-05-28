@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.8 2010/08/01 05:56:30 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.9 2010/12/18 07:53:15 laffer1 Exp $
 #
 # WITHOUT_THREADS disables threading support
 # WITHOUT_SCHEMA disable XML schema support
@@ -7,7 +7,7 @@
 # WITH_THREAD_ALLOC enable per-thread memory (DEVELOPERS ONLY!)
 
 PORTNAME=	libxml2
-PORTVERSION=	2.7.7
+PORTVERSION=	2.7.8
 PORTREVISION?=	1
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://xmlsoft.org/libxml2/ \
