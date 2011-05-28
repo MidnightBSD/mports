@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.3 2010/12/31 13:03:30 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gtk-engines2/Makefile,v 1.4 2011/02/02 21:38:09 laffer1 Exp $
 
 PORTNAME=	gtk-engines2
-PORTVERSION=	2.20.1
+PORTVERSION=	2.20.2
 CATEGORIES=	x11-themes
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}

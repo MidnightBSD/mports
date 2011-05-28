@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-themes/clearlooks/Makefile,v 1.1 2008/06/14 02:08:53 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/clearlooks/Makefile,v 1.2 2009/12/13 20:30:44 laffer1 Exp $
 
 PORTNAME?=	clearlooks
 PORTVERSION=	0.6.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-themes
 MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
