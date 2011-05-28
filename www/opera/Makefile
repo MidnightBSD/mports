@@ -1,119 +1,104 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.26 2009/01/03 22:40:51 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	0
 CATEGORIES=	www ipv6
-MASTER_SITES=	ftp://ftp.opera.com/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		ftp://opera.inode.at/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://gd.tuwien.ac.at/infosys/browsers/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://ftp.ucr.ac.cr/WWW/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://www.microrpm.ca/pub/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://opera.eurenet.net/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		ftp://opera.ftp.fu-berlin.de/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://ftp.ntua.gr/pub/www/Opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		ftp://ftp.wayne.edu/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://mirrors.dedipower.com/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		ftp://ftp.mirror.ac.uk/sites/ftp.opera.com/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		http://opera.nedmirror.nl/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		ftp://ftp.tiscali.nl/pub/mirrors/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/unix/freebsd/${OPERA_VER:S/.//}${OPERA_MINVER}/en/${OPERA_ARCH}/${OPERA_LIB}/&,} \
+MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
+		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
+		http://gd.tuwien.ac.at/infosys/browsers/opera/${MASTER_SITES_VER_PATH}/ \
+		http://ftp.ucr.ac.cr/WWW/opera/${MASTER_SITES_VER_PATH}/ \
+		http://www.microrpm.ca/pub/opera/${MASTER_SITES_VER_PATH}/ \
+		http://opera.eurenet.net/${MASTER_SITES_VER_PATH}/ \
+		ftp://opera.ftp.fu-berlin.de/${MASTER_SITES_VER_PATH}/ \
+		http://ftp.ntua.gr/pub/www/Opera/${MASTER_SITES_VER_PATH}/ \
+		ftp://ftp.wayne.edu/opera/${MASTER_SITES_VER_PATH}/ \
+		http://mirrors.dedipower.com/opera/${MASTER_SITES_VER_PATH}/ \
+		ftp://ftp.mirror.ac.uk/sites/ftp.opera.com/${MASTER_SITES_VER_PATH}/ \
+		http://opera.nedmirror.nl/${MASTER_SITES_VER_PATH}/ \
+		ftp://ftp.tiscali.nl/pub/mirrors/opera/${MASTER_SITES_VER_PATH}/ \
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/${MASTER_SITES_VER_PATH}&,}/ \
 		http://T32.TecNik93.com/FreeBSD/others_ports/${PORTNAME}${PKGNAMESUFFIX}/sources/
-DISTNAME=	${PORTNAME}-${OPERA_VER}-freebsd${OPERA_TYPE}-shared-qt3.${ARCH}
+DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.${ARCH}.freebsd
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A blazingly fast, full-featured, standards-compliant browser
+COMMENT=	Blazingly fast, full-featured, standards-compliant browser
 LICENSE=	opera
 
-OPERA_VER=	9.64
-OPERA_MINVER=	
-OPERA_REL=	final
-OPERA_DATE=	20081215
-OPERA_BUILD=	2480
+LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
+		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
+RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-DATADIR=	${PREFIX}/share/${PORTNAME}
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}
+OPERA_VER=	11.01
+OPERA_BUILD=	1190
+MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
-USE_BZIP2=	yes
-WANT_GNOME=	yes
-USE_XLIB=	yes
-ONLY_FOR_ARCHS=	i386 amd64
-WRKSRC=		${WRKDIR}/${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.freebsd${OPERA_TYPE}-shared-qt3.${ARCH}
+USE_XZ=		yes
+USE_XORG=	x11 xext sm ice xft xrender
+USE_GNOME=	desktopfileutils
+INSTALLS_ICONS=	yes
 
-MAN1=		opera.1
+MAN1=		opera.1 opera-widget-manager.1
+MANCOMPRESSED=	yes
+
 NO_BUILD=	yes
 
-OPTIONS=	ASPELL	"Use the aspell library for spell checking"	on
+OPTIONS=	CUPS	"Enable support for printing (requires CUPS)"		on \
+		VIDEO	"Enable support for HTML5 video (requires GStreamer)"	on \
+		GTK	"Use GTK backend"	off \
+		KDE4	"Use KDE4 backend"	off
 
-.if exists(${LOCALBASE}/lib/libqt-mt.prl)
-QT_PRESENT=	on
-.else
-QT_PRESENT=	off
+.include <bsd.mport.options.mk>
+
+.if !defined(WITHOUT_CUPS)
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+.endif
+
+.if !defined(WITHOUT_VIDEO)
+USE_GSTREAMER+=	vorbis ogg theora good
+.endif
+
+.if defined(WITH_GTK)
+USE_GNOME+=	gtk20
+.endif
+
+.if defined(WITH_KDE4)
+USE_KDE4+=	kdelibs
 .endif
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == amd64
-OPERA_ARCH=	amd64
-.else
-OPERA_ARCH=	intel
+ONLY_FOR_ARCHS=	i386 amd64
+
+OPERA_ARCH=	${ARCH:S,i386,intel,}
+
+.if ${OSVERSION} < 4006
+IGNORE=		Only for MidnightBSD 0.4+
 .endif
 
-.if ${OSVERSION} >= 3000
-#OPERA_TYPE=	7 switch after GCC 4 migration
-LIB_DEPENDS+=	c.6:${PORTSDIR}/misc/compat6x
-OPERA_TYPE=	6
-.else
-OPERA_TYPE=	6
-.endif
-
-.if !defined(WITHOUT_ASPELL)
-LIB_DEPENDS+=	aspell.16:${PORTSDIR}/textproc/aspell
-.endif
-
-OPERA_LIB=	shared
-LIB_DEPENDS+=	qt-mt:${PORTSDIR}/x11-toolkits/qt33
-
-.if ${HAVE_GNOME:Mgnomehier}!=""
-PLIST_SUB+=	GNOME=""
-.else
-PLIST_SUB+=	GNOME="@comment "
-.endif
-
-.if exists(${LOCALBASE}/bin/kde-config)
-PLIST_SUB+=	KDE=""
-.else
-PLIST_SUB+=	KDE="@comment "
-.endif
-
-post-extract::
-	@${SED} -e 's|@PREFIX@|${LOCALBASE}|g' ${FILESDIR}/opera.desktop.in >${WRKDIR}/opera.desktop
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g ; s|%%X11BASE%%|${X11BASE}|g' \
-			${WRKSRC}/usr/local/etc/opera6rc
-	@${FIND} ${WRKSRC} -name '*.orig' -delete
-	@${FIND} ${WRKSRC} -name '*.bak' -delete
+post-extract:
+	@${MV} ${WRKSRC}/share/man ${WRKSRC}/man
 
 do-install:
-	@(cd ${WRKSRC} && ./install.sh --prefix=${TRUE_PREFIX} --DESTDIR=${FAKE_DESTDIR})
-	@${MKDIR} ${PREFIX}/share/bin
-	@${CP} ${WRKSRC}/usr/lib/opera/${OPERA_VER}/operapluginwrapper ${PREFIX}/share/opera/bin/operapluginwrapper.midnightbsd
-	@${INSTALL_SCRIPT} ${PATCHDIR}/operapluginwrapper ${PREFIX}/share/opera/bin
-	@${MKDIR} ${PREFIX}/share/apps/Internet
-	@${MKDIR} ${PREFIX}/share/pixmaps
-	@${MKDIR} ${PREFIX}/share/applnk/Internet
-	@${MKDIR} ${PREFIX}/share/icons/hicolor/16x16/apps
-	@${MKDIR} ${PREFIX}/share/icons/hicolor/22x22/apps
-	@${MKDIR} ${PREFIX}/share/icons/hicolor/32x32/apps
-	@${MKDIR} ${PREFIX}/share/icons/hicolor/48x48/apps
-	@${INSTALL_DATA} ${WRKSRC}/usr/share/pixmaps/opera.xpm ${PREFIX}/share/pixmaps/opera.xpm
-	@${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/16x16/apps/opera.png ${PREFIX}/share/icons/hicolor/16x16/apps/opera.png
-	@${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/22x22/apps/opera.png ${PREFIX}/share/icons/hicolor/22x22/apps/opera.png
-	@${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/32x32/apps/opera.png ${PREFIX}/share/icons/hicolor/32x32/apps/opera.png
-	@${INSTALL_DATA} ${WRKSRC}/usr/share/icons/hicolor/48x48/apps/opera.png ${PREFIX}/share/icons/hicolor/48x48/apps/opera.png
-	@${INSTALL_DATA} ${WRKDIR}/opera.desktop ${PREFIX}/share/apps/Internet/
-	@${INSTALL_DATA} ${WRKDIR}/opera.desktop ${PREFIX}/share/applnk/Internet/
+	@${MKDIR} ${DATADIR}/defaults
+	@${INSTALL_MAN} ${WRKSRC}/man/man1/${PORTNAME}.1.gz ${MANPREFIX}/man/man1/
+	@${INSTALL_MAN} ${WRKSRC}/man/man1/${PORTNAME}-widget-manager.1.gz ${MANPREFIX}/man/man1/
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/install
+	@${REINPLACE_CMD} -e 's|share/man|man|g' ${WRKSRC}/install
+	@(cd ${WRKSRC} && ./install --text --system --unattended)
+#	@${REINPLACE_CMD} -e 's|/usr/X11R6/lib/browser_plugins|${LOCALBASE}/lib/browser_plugins/symlinks/opera|g' \
+#		${DATADIR}/defaults/pluginpath.ini
+#	@${RM} ${DATADIR}/defaults/pluginpath.ini.bak
+	${CP} ${PREFIX}/lib/opera/operapluginwrapper ${PREFIX}/lib/opera/operapluginwrapper.freebsd
+	@${INSTALL_SCRIPT} ${PATCHDIR}/operapluginwrapper ${PREFIX}/lib/opera/
+#	-${LOCALBASE}/bin/update-desktop-database
+#	-${LOCALBASE}/bin/update-mime-database ${LOCALBASE}/share/mime
+	${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g;'    ${PREFIX}/bin/opera \
+		${PREFIX}/bin/opera-widget-manager \
+		${PREFIX}/bin/uninstall-opera \
+		${PREFIX}/share/applications/opera-browser.desktop \
+		${PREFIX}/share/applications/opera-widget-installer.desktop \
+    		${PREFIX}/share/applications/opera-widget-manager.desktop
 
 .include <bsd.port.post.mk>
