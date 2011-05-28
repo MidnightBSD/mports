@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.363 2011/05/15 21:46:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.364 2011/05/28 04:53:09 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -237,6 +237,7 @@ SUBDIR += p5-IPC-Run
 SUBDIR += p5-IPC-ShareLite
 SUBDIR += p5-IPC-Signal
 SUBDIR += p5-Locale-gettext
+SUBDIR += p5-Log-Any
 SUBDIR += p5-MRO-Compat
 SUBDIR += p5-Module-Build
 SUBDIR += p5-Module-Find
