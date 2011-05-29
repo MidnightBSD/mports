@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.4 2010/07/31 03:16:32 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.5 2010/08/12 22:23:39 laffer1 Exp $
 
 PORTNAME=	gcc
-PORTVERSION=	4.4.5.20100720
+PORTVERSION=	4.4.7.20110503
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
@@ -14,7 +14,7 @@ COMMENT=	GNU Compiler Collection 4.4
 LICENSE=	gpl3
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
-		mpfr.3:${PORTSDIR}/math/mpfr
+		mpfr.4:${PORTSDIR}/math/mpfr
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
@@ -59,6 +59,7 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--with-ld=${LOCALBASE}/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
+		--with-pkgversion="MidnightBSD" \
 		--with-system-zlib
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 ALL_TARGET=	bootstrap-lean
@@ -74,10 +75,6 @@ MAN1=		cpp${SUFFIX}.1 \
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|\(const char version_string.*\)";|\1 [MidnightBSD]";|' \
-	    ${SRCDIR}/gcc/version.c
 
 pre-configure:
 	cd ${SRCDIR} ; contrib/gcc_update --touch
