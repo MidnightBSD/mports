@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.6 2009/12/25 16:45:51 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.7 2010/08/14 02:34:38 laffer1 Exp $
 
 PORTNAME=	orca
-PORTVERSION=	2.30.2
+PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,10 +12,12 @@ COMMENT=	Scriptable screen reader
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
-    		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi
+		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi \
+		${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg
 LIB_DEPENDS=	gnome-mag.2:${PORTSDIR}/accessibility/gnome-mag
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/_dbus_bindings.so:${PORTSDIR}/devel/py-dbus \
-    		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi
+		${PYTHON_SITELIBDIR}/pyatspi/__init__.py:${PORTSDIR}/accessibility/at-spi \
+		${PYTHON_SITELIBDIR}/xdg/__init__.py:${PORTSDIR}/devel/py-xdg
 
 LATEST_LINK=	gnome-orca
 
