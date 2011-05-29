@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/math/mpfr/Makefile,v 1.5 2010/07/31 03:09:07 laffer1 Exp $
+# $MidnightBSD: mports/math/mpfr/Makefile,v 1.6 2011/05/11 14:09:34 laffer1 Exp $
 
 PORTNAME=	mpfr
-PORTVERSION=	3.0.0
+PORTVERSION=	3.0.1
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.mpfr.org/mpfr-current/
 DIST_SUBDIR=	mpfr
