@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.1 2010/09/06 19:45:32 laffer1 Exp $
 
 PORTNAME=	mousetweaks
-PORTVERSION=	2.30.2
+PORTVERSION=	2.32.1
 CATEGORIES=	accessibility
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -12,7 +12,7 @@ LICENSE=	gpl3
 
 USE_XORG=	x11 xfixes xcursor xtst
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnomeprefix gnomepanel intlhack atspi
+USE_GNOME=	gnomehack gnomeprefix gnomepanel intlhack
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
