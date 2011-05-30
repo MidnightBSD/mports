@@ -1,41 +1,37 @@
 include/check.h
-info/check.info
 lib/libcheck.so.0
 lib/libcheck.so
 lib/libcheck.la
 lib/libcheck.a
-lib/pkgconfig/check.pc
-@dirrm lib/pkgconfig
+libdata/pkgconfig/check.pc
 share/aclocal/check.m4
-%%EXAMPLESDIR%%/Makefile.am
-%%EXAMPLESDIR%%/README
-%%EXAMPLESDIR%%/configure.ac
-%%EXAMPLESDIR%%/src/Makefile.am
-%%EXAMPLESDIR%%/src/main.c
-%%EXAMPLESDIR%%/src/money.c
-%%EXAMPLESDIR%%/src/money.h
-%%EXAMPLESDIR%%/src/money.1.h
-%%EXAMPLESDIR%%/src/money.2.h
-%%EXAMPLESDIR%%/src/money.1.c
-%%EXAMPLESDIR%%/src/money.3.c
-%%EXAMPLESDIR%%/src/money.4.c
-%%EXAMPLESDIR%%/src/money.5.c
-%%EXAMPLESDIR%%/src/money.6.c
-@dirrm %%EXAMPLESDIR%%/src
-%%EXAMPLESDIR%%/tests/Makefile.am
-%%EXAMPLESDIR%%/tests/check_money.c
-%%EXAMPLESDIR%%/tests/check_money.1.c
-%%EXAMPLESDIR%%/tests/check_money.2.c
-%%EXAMPLESDIR%%/tests/check_money.3.c
-%%EXAMPLESDIR%%/tests/check_money.6.c
-%%EXAMPLESDIR%%/tests/check_money.7.c
-@dirrm %%EXAMPLESDIR%%/tests
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/Makefile.am
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/README
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/configure.ac
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/Makefile.am
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/main.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.h
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.1.h
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.2.h
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.1.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.3.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.4.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.5.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/src/money.6.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/Makefile.am
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.1.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.2.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.3.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.6.c
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/tests/check_money.7.c
 %%PORTDOCS%%%%DOCSDIR%%/SVNChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLogOld
 %%PORTDOCS%%%%DOCSDIR%%/NEWS
 %%PORTDOCS%%%%DOCSDIR%%/README
-@dirrm %%PORTDOCS%%%%DOCSDIR%%
-share/nls/POSIX
-share/nls/en_US.US-ASCII
-@dirrm %%EXAMPLESDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/src
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/tests
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
