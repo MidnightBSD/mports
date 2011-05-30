@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.7 2010/02/28 21:14:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/libbonobo/Makefile,v 1.8 2010/08/14 19:27:19 laffer1 Exp $
 
 PORTNAME=	libbonobo
-PORTVERSION=	2.24.3
-PORTREVISION?=	1
+PORTVERSION=	2.32.0
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -16,8 +16,7 @@ MAKE_JOBS_SAFE=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-                dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
 USE_GMAKE=	yes
 USE_BISON=	build
@@ -27,7 +26,7 @@ GNU_CONFIGURE=	yes
 USE_PERL5=	yes
 USE_GNOME=	gnomehack intlhack libxml2 orbit2 referencehack
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
-		--disable-gtk-doc \
+		--disable-gtk-doc
 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
