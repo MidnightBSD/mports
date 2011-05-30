@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.9 2009/06/28 01:02:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/gvfs/Makefile,v 1.10 2010/12/24 21:26:15 laffer1 Exp $
 
 PORTNAME=	gvfs
-PORTVERSION=	1.6.3
+PORTVERSION=	1.6.6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -25,7 +25,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS=	--disable-obexftp --disable-http
+CONFIGURE_ARGS=	--disable-obexftp
 OPTIONS=	FUSE "Enable fuse" on \
 		SAMBA "Enable Samba" on \
 		GPHOTO2 "Enable Gphoto 2 camera support" on \
