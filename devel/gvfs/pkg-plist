@@ -38,8 +38,11 @@ libexec/gvfsd-archive
 libexec/gvfsd-burn
 %%CDDA%%libexec/gvfsd-cdda
 libexec/gvfsd-computer
+libexec/gvfsd-dav
 libexec/gvfsd-dnssd
+libexec/gvfsd-ftp
 %%GPHOTO2%%libexec/gvfsd-gphoto2
+libexec/gvfsd-http
 libexec/gvfsd-localtest
 libexec/gvfsd-metadata
 libexec/gvfsd-network
@@ -55,8 +58,12 @@ share/gvfs/mounts/archive.mount
 share/gvfs/mounts/burn.mount
 %%CDDA%%share/gvfs/mounts/cdda.mount
 share/gvfs/mounts/computer.mount
+share/gvfs/mounts/dav.mount
+share/gvfs/mounts/dav+sd.mount
 share/gvfs/mounts/dns-sd.mount
+share/gvfs/mounts/ftp.mount
 %%GPHOTO2%%share/gvfs/mounts/gphoto2.mount
+share/gvfs/mounts/http.mount
 share/gvfs/mounts/localtest.mount
 share/gvfs/mounts/network.mount
 share/gvfs/mounts/sftp.mount
@@ -65,6 +72,7 @@ share/gvfs/mounts/sftp.mount
 share/gvfs/mounts/trash.mount
 %%GPHOTO2%%share/gvfs/remote-volume-monitors/gphoto2.monitor
 share/gvfs/remote-volume-monitors/hal.monitor
+share/locale/af/LC_MESSAGES/gvfs.mo
 share/locale/ar/LC_MESSAGES/gvfs.mo
 share/locale/as/LC_MESSAGES/gvfs.mo
 share/locale/ast/LC_MESSAGES/gvfs.mo
@@ -125,6 +133,7 @@ share/locale/ta/LC_MESSAGES/gvfs.mo
 share/locale/te/LC_MESSAGES/gvfs.mo
 share/locale/th/LC_MESSAGES/gvfs.mo
 share/locale/tr/LC_MESSAGES/gvfs.mo
+share/locale/ug/LC_MESSAGES/gvfs.mo
 share/locale/uk/LC_MESSAGES/gvfs.mo
 share/locale/vi/LC_MESSAGES/gvfs.mo
 share/locale/zh_CN/LC_MESSAGES/gvfs.mo
@@ -138,6 +147,8 @@ share/locale/zh_TW/LC_MESSAGES/gvfs.mo
 @dirrmtry etc/profile.d
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/ug/LC_MESSAGES
+@dirrmtry share/locale/ug
 @dirrmtry share/locale/te/LC_MESSAGES
 @dirrmtry share/locale/te
 @dirrmtry share/locale/sr@latin/LC_MESSAGES
