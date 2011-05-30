@@ -2,13 +2,12 @@
 # Date created:				18 May 2002
 # Whom:					Anders Nordby <anders@FreeBSD.org>
 #
-# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.6 2008/09/30 23:39:12 laffer1 Exp $
+# $MidnightBSD: mports/archivers/file-roller/Makefile,v 1.7 2009/12/25 16:52:14 laffer1 Exp $
 # $FreeBSD: ports/archivers/file-roller/Makefile,v 1.65 2007/07/03 06:38:06 marcus Exp $
 #
 
 PORTNAME=	file-roller
-PORTVERSION=	2.26.3
-PORTREVISION=	1
+PORTVERSION=	2.32.1
 PORTEPOCH=	1
 CATEGORIES=	archivers gnome
 MASTER_SITES=	GNOME
@@ -20,7 +19,8 @@ LICENSE=	gpl2
 
 OPTIONS=	NAUTILUS	"Enable Nautilus extension"	on
 
-RUN_DEPENDS=	${LOCALBASE}/bin/gtar:${PORTSDIR}/archivers/gtar
+RUN_DEPENDS=	${LOCALBASE}/bin/gtar:${PORTSDIR}/archivers/gtar \
+    		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 
 USE_LDCONFIG=	yes
 USE_BZIP2=	yes
@@ -30,10 +30,12 @@ INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack desktopfileutils gnomedocutils \
 		gtk20 gconf2
+GNOME_DESKTOP_VERSION=2
 USE_XORG=	sm
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--disable-packagekit
 
 PORTDOCS=	AUTHORS NEWS README TODO ChangeLog
 GCONF_SCHEMAS=	file-roller.schemas
@@ -49,8 +51,9 @@ CONFIGURE_ARGS+=	--disable-nautilus-actions
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-		${WRKSRC}/src/fr-command-tar.c
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		${WRKSRC}/src/fr-command-tar.c \
+		${WRKSRC}/src/fr-command-zip.c
 
 post-install:
 	@-update-desktop-database
