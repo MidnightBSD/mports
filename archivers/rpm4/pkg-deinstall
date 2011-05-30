@@ -1,4 +1,5 @@
 #!/bin/sh
+# $FreeBSD: ports/archivers/rpm4/pkg-deinstall,v 1.1 2004/03/05 02:26:10 glewis Exp $
 
 # The RPM database directory
 RPM_DATABASE_DIR=/var/lib/rpm
