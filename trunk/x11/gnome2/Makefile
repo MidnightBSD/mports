@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.15 2010/10/19 20:58:36 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.16 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.32.1
@@ -84,8 +84,7 @@ RUN_DEPENDS+=	\
 		gnome-file-share-properties:${PORTSDIR}/www/gnome-user-share \
 		${LOCALBASE}/libexec/deskbar-applet/deskbar-applet:${PORTSDIR}/deskutils/deskbar-applet \
 		${LOCALBASE}/lib/hamster-applet/hamster-applet:${PORTSDIR}/deskutils/hamster-applet \
-		${LOCALBASE}/lib/gtk-2.0/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi \
-		ekiga:${PORTSDIR}/net/ekiga3
+		${LOCALBASE}/lib/gtk-2.0/modules/libatk-bridge.so:${PORTSDIR}/accessibility/at-spi
 .if defined(WITH_MAPI)
 RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/libexchangemapi-1.0.pc:${PORTSDIR}/mail/evolution-mapi
 .endif
