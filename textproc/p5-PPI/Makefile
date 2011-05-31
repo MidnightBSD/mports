@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/textproc/p5-PPI/Makefile,v 1.4 2010/11/14 18:38:58 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-PPI/Makefile,v 1.5 2010/11/14 18:39:09 laffer1 Exp $
 
 PORTNAME=	PPI
-PORTVERSION=	1.213
+PORTVERSION=	1.215
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/A/AD/ADAMK
