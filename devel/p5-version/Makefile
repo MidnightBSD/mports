@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.6 2010/02/05 01:28:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.7 2010/06/04 22:34:41 laffer1 Exp $
 
 PORTNAME=	version
-PORTVERSION=	0.82
+PORTVERSION=	0.88
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/J/JP/JPEACOCK
