@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-DBI
-# Date created:				October 17th 1996
-# Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
-#
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.8 2009/12/13 23:21:07 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.9 2010/10/21 18:50:48 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
-#
 
 PORTNAME=	DBI
-PORTVERSION=	1.613
+PORTVERSION=	1.616
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -72,8 +67,6 @@ MAN3=		Bundle::DBI.3 \
 		DBI::SQL::Nano.3 \
 		DBI::Util::CacheMemory.3 \
 		DBI::W32ODBC.3 \
-		Roadmap.3 \
-		TASKS.3 \
 		Win32::DBIODBC.3
 
 .if !defined(WITH_PROXY)
