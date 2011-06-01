@@ -1,15 +1,10 @@
-# Ports collection makefile for:				py-elementtree
-# Date created:							Feb 28, 2005
-# Whom:								barner
-#
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-elementtree/Makefile,v 1.1 2008/06/14 00:14:52 laffer1 Exp $
 # $FreeBSD: ports/devel/py-elementtree/Makefile,v 1.3 2007/07/30 09:41:12 alexbl Exp $
-#
 
 PORTNAME=	elementtree
 PORTVERSION=	1.2.6
 CATEGORIES=	devel python
-MASTER_SITES=	http://effbot.org/downloads/
+MASTER_SITES=	http://effbot.org/media/downloads/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-20050316
 
