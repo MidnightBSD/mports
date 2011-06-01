@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/nawk/Makefile,v 1.4 2008/07/19 03:33:28 laffer1 Exp $
+# $MidnightBSD: mports/lang/nawk/Makefile,v 1.5 2010/12/11 18:46:56 laffer1 Exp $
 # $FreeBSD: ports/lang/nawk/Makefile,v 1.33 2005/12/01 11:21:05 flz Exp $
 
 PORTNAME=	nawk
-PORTVERSION=	20100209
+PORTVERSION=	20110506
 CATEGORIES=	lang
 MASTER_SITES=	http://www.cs.princeton.edu/~bwk/btl.mirror/
 DISTNAME=	awk
