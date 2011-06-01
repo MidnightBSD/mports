@@ -1,5 +1,4 @@
-@comment $FreeBSD: ports/print/cmpsfont/pkg-plist,v 1.8 2006/06/29 18:48:32 hrs Exp $
-share/fonts/cmpsfont/README
+share/fonts/cmpsfont/READ.ME
 share/fonts/cmpsfont/cmsample.tex
 share/fonts/cmpsfont/afm/cmb10.afm
 share/fonts/cmpsfont/afm/cmbsy10.afm
