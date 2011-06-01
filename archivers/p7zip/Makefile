@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.9 2009/12/25 17:47:58 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p7zip/Makefile,v 1.10 2011/05/21 21:46:17 laffer1 Exp $
 
 PORTNAME=	p7zip
 PORTVERSION=	9.20.1
@@ -8,6 +8,7 @@ DISTNAME=	${PORTNAME}_${DISTVERSION}_src_all
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver with high compression ratio
+LICENSE=	agg
 
 OPTIONS=	MINIMAL	"Support only .7z file format" off \
 		MODULES	"Build modules" on
