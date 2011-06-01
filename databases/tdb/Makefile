@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/tdb/Makefile,v 1.3 2011/05/15 22:22:11 laffer1 Exp $
+# $MidnightBSD: mports/databases/tdb/Makefile,v 1.4 2011/05/27 02:43:48 laffer1 Exp $
 
 PORTNAME=		tdb
 PORTVERSION=		1.2.1
@@ -10,7 +10,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Trivial Database
-LICENSE=		lgpl
+LICENSE=		gpl3
 
 CONFLICTS=		*samba-3.*
 
@@ -31,6 +31,12 @@ PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 PYTHON_SITELIBDIR_REL?=	${PYTHONPREFIX_SITELIBDIR:S|^${PREFIX}/||}
 
+CONFIGURE_ENV+=		XSLTPROC="/usr/bin/true"
+
+MAN8=			tdbbackup.8 \
+			tdbdump.8 \
+			tdbtool.8
+
 PLIST_FILES=		bin/tdbbackup \
 			bin/tdbdump \
 			bin/tdbtool \
@@ -40,6 +46,11 @@ PLIST_FILES=		bin/tdbbackup \
 			lib/libtdb.so.1 \
 			${PKGCONFIGDIR_REL}/tdb.pc \
 			${PYTHON_SITELIBDIR_REL}/tdb.so
+
+pre-install:
+.for man in ${MAN8}
+			@${INSTALL_MAN} ${FILESDIR}/${man} ${WRKSRC}/manpages
+.endfor
 
 post-install:
 			@${LN} -sf libtdb.so.1 ${PREFIX}/lib/libtdb.so
