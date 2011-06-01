@@ -2,18 +2,17 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.1 2007/08/25 05:25:32 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.2 2008/10/23 14:49:52 laffer1 Exp $
 # $FreeBSD: ports/graphics/libggi/Makefile,v 1.28 2007/05/19 20:09:47 flz Exp $
 #
 
 PORTNAME=	libggi
 PORTVERSION=	2.2.2
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.ggi-project.org/ftp/ggi/v2.2/ \
-		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	ggi
+		SF/ggi/ggi-core/${PORTNAME}-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -121,7 +120,7 @@ MLINKS=		ggi-demo.1 demo.1 \
 		- ggidev-gt0_3.3 \
 		- ggidev-le0_3.3 \
 		- ggidev-lt0_3.3
-
+CONFIGURE_ARGS=	--disable-directfb
 .if exists(/usr/include/dev/kgi/kgi.h)
 CONFIGURE_ARGS+=	--enable-kgi --with-extra-includes=/usr/include/dev
 .endif
