@@ -1,16 +1,10 @@
-# ex:ts=8
-# Ports collection makefile for:  minicom
-# Date created:			  Fri Dec 01, 1995
-# Whom:				  obrien@cs.ucdavis.edu
-#
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.5 2010/11/11 01:23:55 laffer1 Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.6 2010/11/11 01:25:47 laffer1 Exp $
 # $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
-#
 
 PORTNAME=	minicom
-PORTVERSION=	2.4
+PORTVERSION=	2.5
 CATEGORIES=	comms
-MASTER_SITES=	http://alioth.debian.org/frs/download.php/3195/
+MASTER_SITES=	http://alioth.debian.org/frs/download.php/3487/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
