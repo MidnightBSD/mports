@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.7 2010/03/13 00:20:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.8 2010/10/09 17:53:50 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.6.13
+PORTVERSION=	1.6.16
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
@@ -11,7 +11,7 @@ DIST_SUBDIR=	subversion
 EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
 USE_BZIP2=	yes
-USE_AUTOTOOLS=	libtool:22
+USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=		--with-ssl
 WANT_PERL=	yes
 
@@ -63,6 +63,7 @@ PLIST_SUB+=	MOD_DAV_SVN=""
 SVNGROUP?=	www
 SVNUSER?=	www
 .else
+CONFIGURE_ARGS+=	--with-apxs=no
 PLIST_SUB+=	MOD_DAV_SVN="@comment "
 PKGDEINSTALL=	NONEXISTENT
 SVNGROUP?=	svn
