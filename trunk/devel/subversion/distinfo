@@ -1,4 +1,3 @@
-MD5 (subversion/subversion-1.6.13.tar.bz2) = 7ae1c827689f21cf975804005be30aeb
-SHA256 (subversion/subversion-1.6.13.tar.bz2) = 3a30327bdb04109f369586196ee4a6993cdab2cfa85c3134549f02c229bf0d15
-RMD160 (subversion/subversion-1.6.13.tar.bz2) = 1a21227da118eefd705d7208d8fff71f6f90035b
-SIZE (subversion/subversion-1.6.13.tar.bz2) = 5513370
+SHA256 (subversion/subversion-1.6.16.tar.bz2) = dce4897d62d0dc29ab03834ed1d66ede95c07702e32a0042f96c24c6f1213386
+RMD160 (subversion/subversion-1.6.16.tar.bz2) = f12d7eb31372486290e08143ec1afda029767d34
+SIZE (subversion/subversion-1.6.16.tar.bz2) = 5509729
