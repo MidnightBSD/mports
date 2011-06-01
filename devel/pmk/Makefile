@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/pmk/Makefile,v 1.5 2009/04/08 20:49:45 laffer1 Exp $
 
 PORTNAME=	pmk
 PORTVERSION=	0.10.4
 CATEGORIES=	devel
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Pre Make Kit, a sane replacement for autoconf
