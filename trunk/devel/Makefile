@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.364 2011/05/28 04:53:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.365 2011/05/28 22:52:58 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -40,7 +40,6 @@ SUBDIR += cvs2svn
 SUBDIR += cvsbook
 SUBDIR += cvschangelogbuilder
 SUBDIR += cvsgraph
-SUBDIR += cvsnt
 SUBDIR += cvsps
 SUBDIR += cvsps-devel
 SUBDIR += cvsweb3
