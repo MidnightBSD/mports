@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/graphics/goom/Makefile,v 1.4 2009/09/20 01:32:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/goom/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	goom
 PORTVERSION=	2k4.0
 PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}2k4/0
 DISTNAME=	${PORTNAME}-${PORTVERSION:S|.|-|}-src
 
 MAINTAINER=	ports@MidnightBSD.org
