@@ -3,7 +3,7 @@
 # Whom:					matthias.andree@gmx.de
 #
 # $FreeBSD: ports/databases/db42-nocrypto/Makefile,v 1.2 2004/01/09 09:45:37 pav Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db42-nocrypto/Makefile,v 1.1 2006/11/05 14:34:54 laffer1 Exp $
 #
 
 PKGNAMESUFFIX=	-nocrypto
@@ -12,6 +12,6 @@ DISTNAME=	db-${PORTVERSION}.NC
 MAINTAINER=	ports@MidnightBSD.org
 
 MASTERDIR=	${.CURDIR}/../db42
-MD5_FILE=	${.CURDIR}/distinfo
+DISTINFO_FILE=	${.CURDIR}/distinfo
 
 .include "${MASTERDIR}/Makefile"
