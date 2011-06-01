@@ -2,14 +2,14 @@
 # Date created:			19 May 2005
 # Whom:				dikshie <dikshie@lapi.itb.ac.id>
 #
-# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.1 2007/07/15 06:54:10 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.2 2008/10/10 19:48:55 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/pathrate/Makefile,v 1.2 2006/08/22 08:08:58 miwi Exp $
 #
 
 PORTNAME=	pathrate
 PORTVERSION=	2.4.1
 CATEGORIES=	benchmarks
-MASTER_SITES=	http://www-static.cc.gatech.edu/fac/Constantinos.Dovrolis/
+MASTER_SITES=	http://www.cc.gatech.edu/fac/Constantinos.Dovrolis/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
