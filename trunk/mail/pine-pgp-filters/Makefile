@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.9 2008/07/14 03:12:11 laffer1 Exp $
+# $MidnightBSD: mports/mail/pine-pgp-filters/Makefile,v 1.10 2009/04/02 23:23:10 laffer1 Exp $
 
 PORTNAME=	pine-pgp-filters
-PORTVERSION=	1.6
-PORTREVISION=	5
+PORTVERSION=	1.8
 CATEGORIES=	mail security
-MASTER_SITES=	http://dougbarton.us/PGP/scripts/ppf/ \
+MASTER_SITES=	http://dougbarton.us/PGP/ppf/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dougb
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
