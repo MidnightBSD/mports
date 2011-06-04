@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/print/teTeX-texmf/pkg-plist,v 1.7 2006/06/29 18:50:58 hrs Exp $
 %%TEXMFDISTDIR%%/ChangeLog
 %%TEXMFDISTDIR%%/LICENSE.texmf
 %%TEXMFDISTDIR%%/aliases
