@@ -2,11 +2,12 @@
 # Date created:		January 21, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.1 2008/01/21 21:15:54 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.2 2008/03/22 04:34:25 ctriv Exp $
 #
 
 PORTNAME=	LPRng
 PORTVERSION=	3.8.32
+PORTREVISION=	1
 CATEGORIES=	sysutils print
 MASTER_SITES=	ftp://ftp.lprng.com/pub/%SUBDIR%/ \
 		ftp://ftp.cise.ufl.edu/pub/mirrors/%SUBDIR%/ \
