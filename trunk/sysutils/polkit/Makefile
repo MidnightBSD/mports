@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/polkit/Makefile,v 1.1 2010/09/03 00:19:29 laffer1 Exp $
 
 PORTNAME=	polkit
-PORTVERSION=	0.96
+PORTVERSION=	0.99
 PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
