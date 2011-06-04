@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/teTeX-texmf/Makefile,v 1.2 2009/08/24 20:42:05 laffer1 Exp $
+# $MidnightBSD: mports/print/teTeX-texmf/Makefile,v 1.3 2009/11/09 00:53:59 laffer1 Exp $
 
 PORTNAME=	teTeX-texmf
 PORTVERSION=	3.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -16,10 +16,10 @@ COMMENT=	Thomas Esser's distribution of TeX & friends (texmf tree)
 LICENSE=	unknown
 
 BUILD_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
-		${LOCALBASE}/share/fonts/cmpsfont/README:${PORTSDIR}/print/cmpsfont \
+		${LOCALBASE}/share/fonts/cmpsfont/READ.ME:${PORTSDIR}/print/cmpsfont \
 		${LOCALBASE}/share/fonts/amspsfont/READ.ME:${PORTSDIR}/print/amspsfnt
 RUN_DEPENDS=	${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
-		${LOCALBASE}/share/fonts/cmpsfont/README:${PORTSDIR}/print/cmpsfont \
+		${LOCALBASE}/share/fonts/cmpsfont/READ.ME:${PORTSDIR}/print/cmpsfont \
 		${LOCALBASE}/share/fonts/amspsfont/READ.ME:${PORTSDIR}/print/amspsfnt
 
 CONFLICTS=	latex2e-[0-9]* tex-[0-9]* dvips-[0-9]* xdvi-[0-9]* \
