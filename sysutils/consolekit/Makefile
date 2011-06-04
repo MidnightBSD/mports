@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.2 2009/09/25 00:32:57 laffer1 Exp $
 
 PORTNAME=	consolekit
-PORTVERSION=	0.3.0
+PORTVERSION=	0.4.3
 CATEGORIES=	sysutils gnome
-MASTER_SITES=	http://people.freedesktop.org/~mccann/dist/
+MASTER_SITES=	http://www.freedesktop.org/software/ConsoleKit/dist/
 DISTFILES=	ConsoleKit-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,10 +11,11 @@ COMMENT=	Framework for defining and tracking users
 LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-    		polkit.2:${PORTSDIR}/sysutils/policykit
+    		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit
 
 WRKSRC=		${WRKDIR}/ConsoleKit-${PORTVERSION}
 USE_BZIP2=	yes
+USE_GETTEXT=	yes
 USE_XORG=	x11
 USE_GNOME=	gnomehack
 USE_GMAKE=	yes
