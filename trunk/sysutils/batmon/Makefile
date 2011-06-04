@@ -2,14 +2,15 @@
 # Date created:         05 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/batmon/Makefile,v 1.1 2008/10/12 18:35:28 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/batmon/Makefile,v 1.2 2010/10/23 17:56:43 laffer1 Exp $
 # $FreeBSD: ports/sysutils/batmon/Makefile,v 1.6 2008/07/08 19:21:30 dinoex Exp $
 #
 
 PORTNAME=	batmon
 PORTVERSION=	0.5
 CATEGORIES=	sysutils gnustep
-MASTER_SITES=	http://download.savannah.gnu.org/releases/gap/
+MASTER_SITES= ${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=   gap
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep battery monitor for laptops
