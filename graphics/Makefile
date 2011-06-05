@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.108 2011/05/28 05:10:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.109 2011/05/28 21:18:36 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -34,6 +34,7 @@ SUBDIR += gnash
 SUBDIR += gnustep-slideshow
 SUBDIR += gnustep-slideshowkit
 SUBDIR += gocr
+SUBDIR += goocanvas
 SUBDIR += goom
 SUBDIR += gozer
 SUBDIR += graphviz
