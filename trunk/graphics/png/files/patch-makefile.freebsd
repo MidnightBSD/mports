@@ -42,7 +42,7 @@
 +	chmod +x libpng-config
 +
 +beforeinstall: libpng-config
-+	${INSTALL} -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} \
++	${BSD_INSTALL_SCRIPT} \
 +		libpng-config ${DESTDIR}${PREFIX}/bin
 +	ln -sf libpng-config ${DESTDIR}${PREFIX}/bin/libpng14-config
 +
