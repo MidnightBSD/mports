@@ -1,0 +1,6 @@
+A command-line interface to the KDE Wallet, for KDE 3 and KDE 4 both 
+(so shell scripts, Python, etc. do not need to use DCOP or D-Bus directly 
+to access it to store passwords, instead being able to call this 
+convenient wrapper).
+
+WWW: https://www.mirbsd.org/kwalletcli.htm
