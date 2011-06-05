@@ -3,14 +3,13 @@
 # Whom:	      				James FitzGibbon <jfitz@FreeBSD.org>
 #
 # $FreeBSD: ports/devel/p5-BSD-Resource/Makefile,v 1.32 2006/05/29 10:03:04 tobez Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-BSD-Resource/Makefile,v 1.1 2007/09/12 15:25:15 ctriv Exp $
 #
 
 PORTNAME=	BSD-Resource
-PORTVERSION=	1.28
+PORTVERSION=	1.2904
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	BSD
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
