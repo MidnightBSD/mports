@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/xspy/Makefile,v 1.1 2006/11/09 14:34:32 laffer1 Exp $
+# $MidnightBSD: mports/security/xspy/Makefile,v 1.2 2009/05/01 15:22:40 laffer1 Exp $
 
 PORTNAME=	xspy
 PORTVERSION=	1.0c
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.acm.vt.edu/~jmaxwell/programs/xspy/
 
