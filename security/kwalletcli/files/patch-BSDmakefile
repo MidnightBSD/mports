@@ -1,0 +1,15 @@
+--- BSDmakefile	2011/04/09 21:45:58	1.14
++++ BSDmakefile	2011/06/05 15:52:49	1.15
+@@ -47,6 +47,7 @@ afterinstall:
+ 
+ .include <bsd.prog.mk>
+ 
++.if make(htman)
+ # HTML manpage generation code (currently assumes the basenames
+ # of all manpages to be generated are unique, unlike man(1, 7).
+ HTMANMODE?=	local		# one of local or sectioned
+@@ -75,3 +76,4 @@ ${_t:R}.htm: ${_s:R}.htm
+ 
+ CLEANFILES+=	${HTMANS}
+ htman: .PHONY ${HTMANS}
++.endif
