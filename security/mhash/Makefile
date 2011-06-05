@@ -1,13 +1,8 @@
-# New ports collection makefile for:	mhash
-# Date created:		Mon Jun 28 17:59:13 PDT 1999
-# Whom:			nsayer@freebsd.org
-#
-# $MidnightBSD: mports/security/mhash/Makefile,v 1.1 2006/10/27 14:49:52 wintellect Exp $
+# $MidnightBSD: mports/security/mhash/Makefile,v 1.2 2008/03/26 01:52:02 laffer1 Exp $
 # $FreeBSD: ports/security/mhash/Makefile,v 1.29 2006/09/20 16:33:24 garga Exp $
-#
 
 PORTNAME=	mhash
-PORTVERSION=	0.9.9
+PORTVERSION=	0.9.9.9
 CATEGORIES=	security
 MASTER_SITES=	SF
 
