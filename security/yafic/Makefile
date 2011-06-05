@@ -1,10 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/yafic/Makefile,v 1.2 2009/04/08 21:11:34 laffer1 Exp $
 
 PORTNAME=	yafic
 PORTVERSION=	1.2.2
 CATEGORIES=	security
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
