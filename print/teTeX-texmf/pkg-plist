@@ -14700,9 +14700,5 @@
 @dirrm %%TEXMFDISTDIR%%/bibtex/bib
 @dirrm %%TEXMFDISTDIR%%/bibtex
 @unexec rm -f %D/%%TEXMFDISTDIR%%/ls-R
-@exec echo '%% ls-R -- filename database for kpathsea; do not change this line.' > %D/%%TEXMFDISTDIR%%/ls-R;
-@exec echo './:' >> %D/%%TEXMFDISTDIR%%/ls-R
-@exec echo 'ls-R' >> %D/%%TEXMFDISTDIR%%/ls-R
-@exec echo '' >> %D/%%TEXMFDISTDIR%%/ls-R
 @exec if [ -x %%MKTEXLSR%% ]; then %%MKTEXLSR%% %D/%%TEXMFDISTDIR%%; fi
 @dirrm %%TEXMFDISTDIR%%
