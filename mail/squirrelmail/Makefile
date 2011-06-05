@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.14 2011/01/08 04:42:42 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.15 2011/04/30 17:58:41 laffer1 Exp $
 
 PORTNAME=	squirrelmail
 PORTVERSION=	1.4.21
+PORTREVISION=	1
 CATEGORIES=	mail www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION:S/.r/-RC/}:squirrelmail \
 		SF/${PORTNAME}/locales/1.4.18-20090526:locales
@@ -14,7 +15,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A webmail system which accesses mail over IMAP
 LICENSE=	gpl2
 
-USE_PHP=	session mhash gettext mbstring pcre openssl xml
+USE_PHP=	session gettext mbstring pcre openssl xml
 WANT_PHP_WEB=	yes
 
 USE_BZIP2=	yes
@@ -97,15 +98,15 @@ do-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${FILESDIR}/111.clean-squirrelmail ${PREFIX}/etc/periodic/daily
 	${MKDIR} ${SQUIRRELDIR}
-	${CP} -pv ${WRKSRC}/index.php ${SQUIRRELDIR}
-	${CP} -pv ${WRKSRC}/configure ${SQUIRRELDIR}
+	@${CP} -pv ${WRKSRC}/index.php ${SQUIRRELDIR}
+	@${CP} -pv ${WRKSRC}/configure ${SQUIRRELDIR}
 .for DIR in class config data functions help images include locale plugins po src themes
-	${CP} -rpv ${WRKSRC}/${DIR} ${SQUIRRELDIR}
+	@${CP} -rpv ${WRKSRC}/${DIR} ${SQUIRRELDIR}
 .endfor
 	${CHOWN} -R ${WWWOWN}:${WWWGRP} ${SQUIRRELDIR}/data
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-	${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
+	@${CP} -Rv ${WRKSRC}/doc/* ${DOCSDIR}
 .endif
 
 .include <bsd.port.mk>
