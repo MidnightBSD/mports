@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/nss/Makefile,v 1.11 2010/10/30 20:58:07 laffer1 Exp $
+# $MidnightBSD: mports/security/nss/Makefile,v 1.12 2010/11/06 13:30:19 laffer1 Exp $
 
 PORTNAME=	nss
-PORTVERSION=	3.12.8
-PORTREVISION=	1
+PORTVERSION=	3.12.9
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	security/nss/releases/NSS_${PORTVERSION:S/./_/g}_RTM/src
