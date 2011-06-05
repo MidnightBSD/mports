@@ -1,6 +1,6 @@
---- pkcs11/rpc-layer/gck-rpc-dispatch.c.orig	2009-12-16 23:37:26.000000000 -0500
-+++ pkcs11/rpc-layer/gck-rpc-dispatch.c	2009-12-16 23:38:10.000000000 -0500
-@@ -783,7 +783,7 @@ rpc_C_Finalize (CallState *cs)
+--- pkcs11/rpc-layer/gkm-rpc-dispatch.c.orig	2010-09-04 12:06:44.000000000 +0200
++++ pkcs11/rpc-layer/gkm-rpc-dispatch.c	2010-09-04 12:07:12.000000000 +0200
+@@ -784,7 +784,7 @@ rpc_C_Finalize (CallState *cs)
  {
  	CK_SLOT_ID_PTR slots;
  	CK_ULONG n_slots, i;
