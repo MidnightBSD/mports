@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.4 2011/03/12 20:00:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.5 2011/03/12 20:02:37 laffer1 Exp $
 # $FreeBSD: ports/devel/doxygen/Makefile,v 1.53 2006/06/27 14:14:17 mi Exp $
 
 PORTNAME=	doxygen
-PORTVERSION=	1.7.1
+PORTVERSION=	1.7.3
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -18,12 +18,29 @@ LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
 USE_BISON=	yes
 USE_ICONV=	yes
 ALL_TARGET=	all
-
-EXTRACT_AFTER_ARGS=|${TAR} -xpf - --exclude '*/libmd5'	\
-	--exclude '*/libpng' --exclude '*/tmake'
-
-CONFIGURE_ENV+=	CXX="${CXX}"
+USE_PERL5=	yes
+HAS_CONFIGURE=	yes
+USE_GMAKE=	yes
+QT_NONSTANDARD=	yes	# non-standard configure arguments
+CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
+		--install "${INSTALL}"
 MAKE_JOBS_UNSAFE=	yes
+
+EXTRACT_AFTER_ARGS=|${TAR} -xpf - \
+		--exclude '*/libmd5'	\
+		--exclude '*/libpng'	\
+		--exclude '*/tmake'
+
+PLIST=		${WRKDIR}/plist
+TMPDOCDEST=	${WRKDIR}/tmpdocdest
+
+PLIST_FILES=	bin/doxygen \
+		bin/doxytag
+
+OPTIONS=	DOXYWIZARD "Enable doxywizard" on \
+		LATEX "Enable LaTeX support" on
+
+.include <bsd.mport.options.mk>
 
 .if !defined(NOPORTDOCS)
 ALL_TARGET+=	docs
@@ -40,34 +57,22 @@ MAKE_ARGS+=	HAVE_LATEX=yes
 .endif # !defined(NOPORTDOCS)
 
 .if !defined(WITHOUT_DOXYWIZARD)
-USE_QT_VER=	3
-QT_INC=		${LOCALBASE}/include
-QTNAME=		qt-mt
-QT_OPENGL=
-THREADLIBS=	${PTHREAD_LIBS}
-CFLAGS+=	${PTHREAD_CFLAGS}
+USE_QT_VER=	4
+QT_COMPONENTS=	corelib gui xml qmake_build moc_build rcc_build
 
 # Need this in env for build
 QTDIR?=		${QT_PREFIX}
-CONFIGURE_ENV+=	QTDIR="${QTDIR}"
+CONFIGURE_ENV=	QTDIR="${QTDIR}"
 CONFIGURE_ARGS+=--with-doxywizard
-.endif # !WITHOUT_DOXYWIZARD
+.endif # !defined(WITHOUT_DOXYWIZARD)
 
-USE_PERL5=	yes
-HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
-QT_NONSTANDARD=	yes	# non-standard configure arguments
-CONFIGURE_ARGS+=--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
-		--install "${INSTALL}"
-PLIST=		${WRKDIR}/plist
-TMPDOCDEST=	${WRKDIR}/tmpdocdest
-
-PLIST_FILES=	bin/doxygen \
-		bin/doxytag
-
-.ifndef WITHOUT_DOXYWIZARD
-PLIST_FILES+= bin/doxywizard
+.if ${MACHINE_ARCH:L} == alpha
+CONFIGURE_ARGS+=	--enable-langs no
 .endif
+
+.if !defined(WITHOUT_DOXYWIZARD)
+PLIST_FILES+=	bin/doxywizard
+.endif # !defined(WITHOUT_DOXYWIZARD)
 
 pre-configure:
 	@cd ${WRKSRC};for pro in src/*.pro.in addon/doxywizard/doxywizard.pro.in;do \
@@ -88,7 +93,7 @@ post-build:
 pre-install:
 	${RM} -rf ${TMPDOCDEST} ${PLIST}
 	${TOUCH} ${PLIST}
-.ifndef NOPORTDOCS
+.if !defined(NOPORTDOCS)
 	${MKDIR} ${TMPDOCDEST}/doxygen
 	${RM} -f ${WRKSRC}/examples/diagrams/html/*.md5 \
 		 ${WRKSRC}/examples/diagrams/html/*.map
@@ -96,32 +101,32 @@ pre-install:
 		| ${TAR} -C ${TMPDOCDEST}/doxygen --unlink -xf -
 	${TAR} -C ${WRKSRC} --exclude '*/Makefile*' --exclude '*.dot' \
 		-cf - examples \
-	    | ${TAR} -C ${TMPDOCDEST}/doxygen --unlink -xf -
-.ifndef WITHOUT_LATEX
+		| ${TAR} -C ${TMPDOCDEST}/doxygen --unlink -xf -
+.if !defined(WITHOUT_LATEX)
 	${INSTALL_DATA} ${WRKSRC}/latex/doxygen_manual.dvi \
 			${WRKSRC}/latex/doxygen_manual.pdf \
 			${WRKSRC}/latex/doxygen_manual.ps \
 			${WRKSRC}/latex/archoverview.eps \
 			${WRKSRC}/latex/doxygen_logo.eps \
 			${TMPDOCDEST}/doxygen
-.endif # WITHOUT_LATEX
+.endif # !defined(WITHOUT_LATEX)
 	@cd ${TMPDOCDEST} \
 	&& ${FIND} -s * -type f -o -type l \
 		| ${SED} -e 's|^|share/doc/|'>> ${PLIST} \
 	&& ${FIND} -d * -type d \
 		| ${SED} -e 's|^|@dirrm share/doc/|' >> ${PLIST}
-.endif # ! NOPORTDOCS
+.endif # !defined(NOPORTDOCS)
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxygen ${PREFIX}/bin/
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxytag ${PREFIX}/bin/
-.ifndef WITHOUT_DOXYWIZARD
+.if !defined(WITHOUT_DOXYWIZARD)
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/doxywizard ${PREFIX}/bin/
-.endif
-.ifndef NOPORTDOCS
+.endif # !defined(WITHOUT_DOXYWIZARD)
+.if !defined(NOPORTDOCS)
 	${MKDIR} ${PREFIX}/share/doc/doxygen
 	${TAR} -C ${TMPDOCDEST} -cf - doxygen \
 		| ${TAR} -C ${PREFIX}/share/doc --unlink -xf -
-.endif # ! NOPORTDOCS
+.endif # !defined(NOPORTDOCS)
 
 .include <bsd.port.mk>
