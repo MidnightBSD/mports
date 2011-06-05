@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.21 2010/02/26 00:51:21 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.22 2010/03/12 01:01:15 laffer1 Exp $
 
 PORTNAME=	mksh
 DISTVERSION=	R39c
@@ -10,7 +10,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}.cpio.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MirBSD enhanced shell based on pdksh
-LICENSE=	bsd4
+LICENSE=	agg
 
 USE_CPIO=	yes
 
