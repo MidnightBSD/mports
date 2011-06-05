@@ -2,7 +2,7 @@
 # Date created:         6/5/2011
 # Whom:                 Lucas Holt <luke@foolishgames.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/kwalletcli/Makefile,v 1.1 2011/06/05 15:34:09 laffer1 Exp $
 
 PORTNAME=	kwalletcli
 PORTVERSION=	2.11
@@ -22,6 +22,11 @@ WRKSRC=	${WRKDIR}/${PORTNAME}
 MAKEFILE=	GNUmakefile
 USE_GMAKE=	yes
 USE_KDELIBS_VER=3
+
+MAN1=	kwalletaskpass.1 \
+	kwalletcli.1 \
+	kwalletcli_getpin.1 \
+	pinentry-kwallet.1
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 
