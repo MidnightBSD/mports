@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.20 2010/07/31 03:05:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.21 2010/09/06 22:48:48 laffer1 Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.4.3
-PORTREVISION=	0
+PORTVERSION=	1.4.5
 CATEGORIES=	graphics
-MASTER_SITES=	SF/lib${PORTNAME}/01-lib${PORTNAME}-master/${PORTVERSION}
+MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}14/${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 FAKE_OPTS=	trueprefix
 
@@ -30,9 +30,23 @@ MANCOMPRESSED=	maybe
 
 .include <bsd.port.pre.mk>
 
+.if defined(WITH_APNG) || make(makesum) || defined(FETCH_ALL)
+MASTER_SITES+=	SF/vdubapngmod/lib${PORTNAME}-apng-patch/${PORTVERSION}:apng \
+		http://littlesvr.ca/apng/diff/:apng
+DISTFILES+=	${DISTNAME}-apng.patch:apng
+EXTRACT_ONLY=   ${DISTNAME}${EXTRACT_SUFX}
+.endif
+.if defined(WITH_APNG)
+USE_DOS2UNIX=	${DISTNAME}-apng.patch
+EXTRA_PATCHES=	${WRKSRC}/${DISTNAME}-apng.patch
+.endif
+
 post-extract:
 # Please don't delete the following line - this link used by ghostscript* ports
 	@${LN} -sf ${WRKSRC} ${WRKDIR}/libpng
+.if defined(WITH_APNG)
+	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}-apng.patch ${WRKSRC}
+.endif
 
 pre-install:
 	@${MKDIR} ${PREFIX}/include/libpng
