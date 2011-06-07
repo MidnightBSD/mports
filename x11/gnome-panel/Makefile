@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.11 2011/02/02 21:35:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.12 2011/05/28 06:23:34 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 
 PORTNAME=	gnome-panel
@@ -26,7 +26,7 @@ INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop libwnck gnomemenus \
-		gnomedocutils ltverhack referencehack librsvg2
+		gnomedocutils ltverhack referencehack librsvg2 gconf2
 WANT_GNOME=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
