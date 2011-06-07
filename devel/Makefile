@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.365 2011/05/28 22:52:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.366 2011/06/01 01:29:56 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -47,6 +47,7 @@ SUBDIR += dbus
 SUBDIR += dbus-glib
 SUBDIR += dbus-qt3
 SUBDIR += dbus-qt4
+SUBDIR += dconf
 SUBDIR += desktop-file-utils
 SUBDIR += dev86
 SUBDIR += devhelp
@@ -117,6 +118,7 @@ SUBDIR += libev
 SUBDIR += libevent
 SUBDIR += libexecinfo
 SUBDIR += libffi
+SUBDIR += libgee
 SUBDIR += libgii
 SUBDIR += libglade2
 SUBDIR += libglademm
