@@ -2,7 +2,7 @@ PORTNAME=	gir-repository
 PORTVERSION=	0.6.5
 PORTREVISION?=	5
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 
 GIRDIR=		${LOCALBASE}/share/gir-1.0
 
