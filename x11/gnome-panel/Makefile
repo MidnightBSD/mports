@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.12 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-panel/Makefile,v 1.13 2011/06/07 02:50:31 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-panel/Makefile,v 1.90 2008/04/20 00:42:32 marcus Exp $
 
 PORTNAME=	gnome-panel
@@ -22,6 +22,7 @@ LIB_DEPENDS=	gweather.1:${PORTSDIR}/net/libgweather \
 
 USE_GETTEXT=	yes
 USE_XORG=	ice sm x11 xau xrandr
+USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
@@ -31,8 +32,7 @@ WANT_GNOME=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ARGS=	--disable-network-manager \
-		--enable-polkit
+CONFIGURE_ARGS=	--disable-network-manager
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -76,6 +76,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|xsltproc -o| xsltproc --nonet -o|g' \
 		${WRKSRC}/help/clock/Makefile.in \
 		${WRKSRC}/help/fish/Makefile.in
+	@${REINPLACE_CMD} -e 's|python.* python2\.0|${PYTHON_VERSION}|g' \
+		${WRKSRC}/configure
 
 post-install:
 	@${MKDIR} ${PREFIX}/lib/gnome-panel/modules
