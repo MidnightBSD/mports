@@ -1,10 +1,5 @@
-# New ports collection makefile for:	gir-repository
-# Date created:				14 Aug 2009
-# Whom:					Pawel Worach <pawel.worach@gmail.com>
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/gir-repository/Makefile,v 1.5 2010/11/20 16:06:47 kwm Exp $
-#   $MCom: ports/devel/gir-repository/Makefile,v 1.21 2010/10/24 16:26:19 avl Exp $
-#
 
 MASTER_SITES=	# Empty
 DISTFILES=	# None
@@ -13,6 +8,7 @@ PATCHDIR=	# None
 CATEGORIES=	devel gnome
 
 COMMENT=	Introspection information for various libraries
+LICENSE=	agg
 
 NO_BUILD=	yes
 
