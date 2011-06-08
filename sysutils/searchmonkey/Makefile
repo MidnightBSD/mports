@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.3 2010/01/02 22:37:31 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/searchmonkey/Makefile,v 1.4 2011/06/08 03:31:57 laffer1 Exp $
 # $FreeBSD: ports/sysutils/searchmonkey/Makefile,v 1.7 2006/12/05 15:12:57 sat Exp $
 
 PORTNAME=	searchmonkey
@@ -9,7 +9,7 @@ DISTNAME=	${PORTNAME}_v${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Search using regexes for file names and text
-LICENSE=	lgpl
+LICENSE=	gpl3
 
 USE_ZIP=	yes
 USE_QT_VER=	4
