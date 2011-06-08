@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.1 2010/12/15 02:45:39 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.2 2011/02/02 21:22:47 laffer1 Exp $
 # $FreeBSD: ports/sysutils/upower/Makefile,v 1.4 2010/07/25 19:35:04 kwm Exp $
 
 PORTNAME=	upower
-PORTVERSION=	0.9.5
+PORTVERSION=	0.9.7
 CATEGORIES=	sysutils
 MASTER_SITES=	http://upower.freedesktop.org/releases/
 
