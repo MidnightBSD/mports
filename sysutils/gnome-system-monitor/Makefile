@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/sysutils/gnome-system-monitor/Makefile,v 1.3 2010/12/31 04:00:31 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/gnome-system-monitor/Makefile,v 1.4 2011/01/15 02:20:33 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gnome-system-monitor/Makefile,v 1.78 2007/05/29 02:31:24 mezz Exp $
 
 PORTNAME=	gnome-system-monitor
-PORTVERSION=	2.28.1
-PORTREVISION=	1
+PORTVERSION=	2.28.2
+PORTREVISION=	0
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
