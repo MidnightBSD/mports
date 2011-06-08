@@ -2,11 +2,11 @@
 # Date created:		2006-05-01
 # Whom:			Michael Nottebrock <lofi@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/poppler-utils/Makefile,v 1.1 2007/10/22 00:03:58 laffer1 Exp $
 # $FreeBSD: ports/graphics/poppler-utils/Makefile,v 1.3 2007/07/03 11:14:36 ahze Exp $
 #    $MCom: ports/graphics/poppler-utils/Makefile,v 1.1 2007/06/20 17:12:04 ahze Exp $
 
-PORTREVISION=	2
+PORTREVISION=	0
 PKGNAMESUFFIX=	-utils
 
 MAINTAINER=	ports@MidnightBSD.org
