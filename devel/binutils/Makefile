@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/binutils/Makefile,v 1.1 2010/06/13 17:57:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/binutils/Makefile,v 1.2 2010/07/30 01:54:50 laffer1 Exp $
 
 PORTNAME=	binutils
-PORTVERSION=	2.20.1
+PORTVERSION=	2.21
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_SOURCEWARE}
 MASTER_SITE_SUBDIR=	binutils/releases
