@@ -2,13 +2,13 @@
 # Date created:				14 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/gedit/Makefile,v 1.7 2010/04/26 13:04:02 laffer1 Exp $
+# $MidnightBSD: mports/editors/gedit/Makefile,v 1.8 2011/02/02 20:19:25 laffer1 Exp $
 # $FreeBSD: ports/editors/gedit/Makefile,v 1.66 2007/12/12 04:36:21 marcus Exp $
 #   $MCom: ports-stable/editors/gedit/Makefile,v 1.9 2007/12/02 02:00:32 marcus Exp $
 #
 
 PORTNAME=	gedit
-PORTVERSION=	2.26.3
+PORTVERSION=	2.30.4
 PORTREVISION=	1
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
@@ -19,7 +19,8 @@ COMMENT=	A small but powerful text editor for GNOME 2 Desktop Environment
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
-LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant
+LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant \
+		soup-2.4.1:${PORTSDIR}/devel/libsoup
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:${PORTSDIR}/misc/iso-codes
 
 USE_XORG=	sm
@@ -31,6 +32,7 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 gtksourceview2 \
 		desktopfileutils gnomedocutils ltasneededhack
+GNOME_DESKTOP_VERSION=2
 WANT_GNOME=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
