@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.13 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkmm24/Makefile,v 1.14 2011/05/15 16:09:14 laffer1 Exp $
 
 PORTNAME=	gtkmm
 PORTVERSION=	2.22.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
