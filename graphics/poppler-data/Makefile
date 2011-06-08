@@ -1,13 +1,8 @@
-# New ports collection makefile for:	poppler-data
-# Date created:		2006-09-30
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/poppler-data/Makefile,v 1.1 2007/10/21 23:55:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler-data/Makefile,v 1.2 2008/10/13 20:48:39 laffer1 Exp $
 # $FreeBSD: ports/graphics/poppler-data/Makefile,v 1.1 2006/09/30 04:52:39 ahze Exp $
-#
 
 PORTNAME=	poppler-data
-PORTVERSION=	0.1
+PORTVERSION=	0.4.4
 CATEGORIES=	graphics
 MASTER_SITES=	http://poppler.freedesktop.org/
 
