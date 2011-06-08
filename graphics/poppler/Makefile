@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.7 2008/10/29 20:19:22 ctriv Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.8 2009/04/27 23:24:02 laffer1 Exp $
 
 PORTNAME=	poppler
-PORTVERSION=	0.6.4
-PORTREVISION=	1
+PORTVERSION=	0.14.5
+PORTREVISION?=	0
 CATEGORIES=	graphics print
 MASTER_SITES=	http://poppler.freedesktop.org/
 
@@ -10,41 +10,51 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	A PDF rendering library
 LICENSE=	gpl2
 
-LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
+		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
+		lcms.1:${PORTSDIR}/graphics/lcms
 RUN_DEPENDS=	poppler-data>0:${PORTSDIR}/graphics/poppler-data
 
 USE_GMAKE=	yes
-GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack gnometarget libxml2
+USE_GNOME=	gnomehack gnometarget libxml2 ltverhack
+USE_AUTOTOOLS=	libtool
+MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-zlib \
 		--enable-xpdf-headers \
 		--with-html-dir=${DOCSDIR}
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2 ${PTHREAD_CFLAGS}" \
-		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CPPFLAGS=-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2 ${PTHREAD_CFLAGS}
+LDFLAGS=-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
+		LDFLAGS="${LDFLAGS}"
 
 .if !defined(SLAVEPORT)
-OPTIONS=	CAIRO "Enable cairo output backend" on
+OPTIONS=	CAIRO "Enable cairo output backend" on \
+		OPENJPEG "Enable JPEG 2000 support" on
 .endif
 
 .include <bsd.mport.options.mk>
 
 .if defined(SLAVEPORT)
-LIB_DEPENDS+=	poppler.2:${PORTSDIR}/graphics/poppler
+LIB_DEPENDS+=	poppler.6:${PORTSDIR}/graphics/poppler
+
 .if ${SLAVEPORT}=="gtk"
 CONFIGURE_ARGS+=--enable-poppler-glib
 USE_GNOME+=	gtk20
 BUILD_WRKSRC=	${WRKSRC}/glib
 INSTALL_WRKSRC=	${WRKSRC}/glib
 .else
-CONFIGURE_ARGS+=--disable-poppler-glib
-.endif 
+CONFIGURE_ARGS+=--disable-poppler-glib \
+		--disable-gdk \
+		--disable-gtk-test
+.endif
 
 .if ${SLAVEPORT}=="qt"
 CONFIGURE_ARGS+=--enable-poppler-qt
 USE_QT_VER+=	3
 BUILD_WRKSRC=	${WRKSRC}/qt
 INSTALL_WRKSRC=	${WRKSRC}/qt
+EXTENSIONS+=	kde
 .else
 CONFIGURE_ARGS+=--disable-poppler-qt
 .endif
@@ -52,7 +62,10 @@ CONFIGURE_ARGS+=--disable-poppler-qt
 .if ${SLAVEPORT}=="qt4"
 CONFIGURE_ARGS+=--enable-poppler-qt4
 USE_QT_VER+=	4
-QT_COMPONENTS=	gui corelib xml qtestlib
+QT_COMPONENTS=	gui corelib xml qtestlib moc_build
+# It requires poppler/splash to be built unless you disable splash backend
+# support to allow you use BUILD_WRKSRC here. It seems that splash backend
+# can read more PDF files than without, tested with demos's poppler_qt4viewer.
 #BUILD_WRKSRC=	${WRKSRC}/qt4
 INSTALL_WRKSRC=	${WRKSRC}/qt4
 .else
@@ -64,30 +77,47 @@ CONFIGURE_ARGS+=--enable-utils
 CONFLICTS=	xpdf-[0-9]*
 BUILD_WRKSRC=	${WRKSRC}/utils
 INSTALL_WRKSRC=	${WRKSRC}/utils
-MAN1=	pdffonts.1 pdfimages.1 pdfinfo.1 \
-	pdftohtml.1  pdftops.1 pdftotext.1 pdftoppm.1
-.else 
+MAN1=		pdffonts.1 pdfimages.1 pdfinfo.1 \
+		pdftohtml.1  pdftops.1 pdftotext.1 pdftoppm.1
+.else
 CONFIGURE_ARGS+=--disable-utils
 .endif
 
 .else
 CONFIGURE_ARGS+=--disable-poppler-glib --disable-poppler-qt \
-		--disable-poppler-qt4 --disable-utils
+		--disable-poppler-qt4 --disable-utils --disable-gdk \
+		--disable-gtk-test
+
 .if defined(WITHOUT_CAIRO)
-CONFIGURE_ARGS+=	--disable-cairo-output
+CONFIGURE_ARGS+=--disable-cairo-output
+PLIST_SUB+=	CAIRO="@comment "
 .else
-LIB_DEPENDS+=		cairo.2:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS+=	cairo.2:${PORTSDIR}/graphics/cairo
+PLIST_SUB+=	CAIRO=""
+.endif
+
+.if defined(WITHOUT_OPENJPEG)
+CONFIGURE_ARGS+=--disable-libopenjpeg
+.else
+CONFIGURE_ARGS+=--enable-libopenjpeg
+LIB_DEPENDS+=	openjpeg.2:${PORTSDIR}/graphics/openjpeg
 .endif
 .endif
 
 .include <bsd.port.pre.mk>
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|7:0:0|6:0:0|' ${WRKSRC}/poppler/Makefile.in
+
 .if defined(SLAVEPORT) && ${SLAVEPORT}=="qt"
-	@${REINPLACE_CMD} -e 's|/usr/local/qt/include|${PREFIX}/include|; \
-		s|/usr/local/qt/lib|${PREFIX}/lib|' \
+	@${REINPLACE_CMD} -e 's|/usr/local/qt/include|${LOCALBASE}/include|; \
+		s|$$QTDIR|${QT_PREFIX}|; \
+		s|/usr/local/qt/lib|${LOCALBASE}/lib|' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|$$QTDIR|${PREFIX}|' ${WRKSRC}/configure
+.endif
+.if defined(SLAVEPORT) && ${SLAVEPORT}=="qt4"
+	@${REINPLACE_CMD} -e 's|MOCQT4=`.*|MOCQT4="${LOCALBASE}/bin/moc-qt4"|' \
+		${WRKSRC}/configure
 .endif
 
 post-install:
