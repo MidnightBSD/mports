@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/eog/Makefile,v 1.5 2009/08/29 22:20:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/eog/Makefile,v 1.6 2010/11/06 16:24:29 laffer1 Exp $
 
 PORTNAME=	eog
-PORTVERSION=	2.30.2
+PORTVERSION=	2.32.1
+PORTREVISION=	2
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -10,13 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Eye Of Gnome image viewer
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
-RUN_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme
+BUILD_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme \
+		update-mime-database:${PORTSDIR}/misc/shared-mime-info
+RUN_DEPENDS=	${LOCALBASE}/share/icons/gnome/index.theme:${PORTSDIR}/misc/gnome-icon-theme \
+		update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack librsvg2 desktopfileutils \
-		gnomedesktop
+		gconf2 gnomedesktop
 WANT_GNOME=	yes
 INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
@@ -54,8 +57,8 @@ PLIST_SUB+=	EXIFEXEMPI=""
 PLIST_SUB+=	EXIFEXEMPI="@comment "
 .endif
 
-.if ${HAVE_GNOME:Mpygnome2}!=""
-USE_GNOME+=	pygnome2
+.if ${HAVE_GNOME:Mpygtk2}!=""
+USE_GNOME+=	pygtk2
 CONFIGURE_ARGS+=--enable-python
 .else
 CONFIGURE_ARGS+=--disable-python
