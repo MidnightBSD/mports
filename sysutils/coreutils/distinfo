@@ -1,4 +1,3 @@
-MD5 (coreutils-7.5.tar.xz) = ca9219c5b7efa533d552f61a3880f458
-SHA256 (coreutils-7.5.tar.xz) = 9590b921559999c483d3db668b9839fb83c1c7a7a7683a8ceea1f1e54b1e63fd
-RMD160 (coreutils-7.5.tar.xz) = f84bca636c1cb87294ebfb3608414ce953f08de9
-SIZE (coreutils-7.5.tar.xz) = 4499412
+SHA256 (coreutils-8.5.tar.xz) = 5aa855caa08b94ccd632510d9ab265646d2ee11498c7efff205b27c2437dec5a
+RMD160 (coreutils-8.5.tar.xz) = 0c0332eab892f7ae157aab1e25a67c8d1e994971
+SIZE (coreutils-8.5.tar.xz) = 4531488
