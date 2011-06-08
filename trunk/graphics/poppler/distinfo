@@ -1,4 +1,3 @@
-MD5 (poppler-0.6.4.tar.gz) = 13d12ca4e349574cfbbcf4a9b2b3ae52
-SHA256 (poppler-0.6.4.tar.gz) = 54269075e4d611a61792a374986e920744c8ca39c2df45911233873c7e714354
-RMD160 (poppler-0.6.4.tar.gz) = 5ece435aeac5b6cbf4e73f89c1096932a051f23e
-SIZE (poppler-0.6.4.tar.gz) = 1294481
+SHA256 (poppler-0.14.5.tar.gz) = c805317c4c1a7080098ae8c7c2a1c1b8e2c784858fc2e04941878eeb8164814c
+RMD160 (poppler-0.14.5.tar.gz) = 80d4441912b02d89777405ce03f8e175c4ccfa9e
+SIZE (poppler-0.14.5.tar.gz) = 1798194
