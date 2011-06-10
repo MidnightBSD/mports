@@ -2,10 +2,10 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.22 2010/12/11 02:57:33 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.23 2010/12/15 01:03:19 laffer1 Exp $
 
 PORTNAME=	pidgin
-PORTVERSION=	2.6.6
+PORTVERSION=	2.8.0
 CATEGORIES=	net-im
 MASTER_SITES=   SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=       pidgin-${PORTVERSION}
@@ -31,6 +31,7 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gtk20 libxml2 gnomelibs
 WANT_GNOME=	yes
 INSTALL_ICONS=	yes
 GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	automake
 CONFIGURE_ARGS+= \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES} \
@@ -44,7 +45,7 @@ CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
 
-PRPL_MODULES=	gg,irc,jabber,msn,novell,oscar,qq,simple,yahoo,zephyr
+PRPL_MODULES=	gg,irc,jabber,msn,novell,oscar,simple,yahoo,zephyr
 
 OPTIONS=	SILC "Secure Internet Live Conferencing support" off \
 		GNUTLS "GNUTLS encryption support" on \
