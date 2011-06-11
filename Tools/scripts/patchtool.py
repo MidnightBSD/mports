@@ -14,13 +14,13 @@
 # Maxim Sobolev
 # ----------------------------------------------------------------------------
 #
-# $FreeBSD: ports/Tools/scripts/patchtool.py,v 1.14 2005/01/09 10:21:17 krion Exp $
+# $FreeBSD: ports/Tools/scripts/patchtool.py,v 1.15 2009/11/21 00:40:59 sobomax Exp $
 #
 # MAINTAINER= sobomax@FreeBSD.org <- any unapproved commits to this file are
 #				     highly discouraged!!!
 #
 
-import os, os.path, popen2, sys, getopt, glob, errno, types
+import os, os.path, subprocess, sys, getopt, glob, errno, types
 
 # Some global variables used as constants
 True = 1
@@ -34,7 +34,7 @@ False = 0
 # will force script to use "FooOS" as a CVS_ID instead of "FreeBSD" and
 # "/usr/local/bin/mydiff" as a command to generate diffs.
 class Vars:
-	CVS_ID = 'FreeBSD'
+	CVS_ID = 'MidnightBSD'
 
 	DIFF_ARGS = '-du'
 	DIFF_SUFX = '.orig'
@@ -129,12 +129,12 @@ def querymakevar(varname, path = 'Makefile', strict = False, cache = {}):
 	dir = os.path.dirname(path)
 	CMDLINE = '%s %s && %s -f %s -V %s' % (Vars.CD_CMD, dir, Vars.MAKE_CMD, \
       path, varname)
-	pipe = popen2.popen3(CMDLINE)
+	devnull = open('/dev/null', 'a')
+	pipe = subprocess.Popen(CMDLINE, shell = True, stdin = subprocess.PIPE, \
+            stdout = subprocess.PIPE, stderr = devnull, close_fds = True)
 	retval = ''
-	for line in pipe[0].readlines():
+	for line in pipe.stdout.readlines():
 		retval = retval + line.strip() + ' '
-	for fd in pipe:
-		fd.close()
 	retval = retval[:-1]
 	if strict == True and retval.strip() == '':
 		raise MakeVarError(path, varname)
@@ -197,11 +197,11 @@ def gendiff(path, wrksrc, outfile = ''):
 
 	savedir = os.getcwd()
 	os.chdir(wrksrc)
-	pipe = popen2.Popen3(cmdline, True)
-	outbuf = pipe.fromchild.readlines()
-	for stream in (pipe.fromchild, pipe.tochild):
-		stream.close()
-	exitval = os.WEXITSTATUS(pipe.wait())
+	devnull = open('/dev/null', 'a')
+	pipe = subprocess.Popen(cmdline, shell = True, stdin = subprocess.PIPE, \
+            stdout = subprocess.PIPE, stderr = devnull, close_fds = True)
+	outbuf = pipe.stdout.readlines()
+	exitval = pipe.wait()
 	if exitval == 0:    # No differences were found
 		retval = False
 		retmsg = 'no differencies found between original and current ' \
@@ -290,7 +290,7 @@ Usage: %s [-afi] file ...
 #
 # Simple custom exception
 #
-class MyError:
+class MyError(Exception):
 	msg = 'error'
 
 	def __init__(self, file, msg=''):
@@ -353,9 +353,9 @@ class Patch:
 			# Not reached #
 
 		self.fullpath = path
-		file = open(path)
+		filedes = open(path)
 
-		for line in file.readlines():
+		for line in filedes.readlines():
 			if self.minus3file == '':
 				if line[:len(MINUS3_DELIM)] == MINUS3_DELIM:
 					lineparts = line.split()
@@ -374,7 +374,7 @@ class Patch:
 					# Not reached #
 				break
 
-		file.close()
+		filedes.close()
 
 		if self.minus3file == '' or self.plus3file == '':
 			raise PatchError(path)
@@ -436,13 +436,13 @@ class PatchesCollection:
 			raise IOError(errno.ENOENT, patchdir)
 			# Not reached #
 
-		for file in glob.glob(os.path.join(patchdir, Vars.PATCH_PREFIX + '*')):
+		for filename in glob.glob(os.path.join(patchdir, Vars.PATCH_PREFIX + '*')):
 			for sufx in Vars.PATCH_IGN_SUFX:
-				if file[-len(sufx):] == sufx:
-					write_msg('WARNING: patchfile "%s" ignored\n' % file)
+				if filename[-len(sufx):] == sufx:
+					write_msg('WARNING: patchfile "%s" ignored\n' % filename)
 					break
 			else:
-				self.addpatchfile(file, wrksrc)
+				self.addpatchfile(filename, wrksrc)
 
 	def addpatchfile(self, path, wrksrc):
 		path = os.path.abspath(path)
@@ -558,7 +558,7 @@ def generate(args, automatic, force, ignoremtime):
 
 		relpath = getrelpath(filepath, wrksrc)
 
-		if automatic == True:
+		if automatic:
 			patchdir = querymakevar('PATCHDIR', portdir, True)
 
 			if os.path.isdir(patchdir):
