@@ -1,8 +1,8 @@
-bin/purple-client-example
-bin/purple-remote
-bin/purple-send
-bin/purple-send-async
-bin/purple-url-handler
+%%DBUS%%bin/purple-client-example
+%%DBUS%%bin/purple-remote
+%%DBUS%%bin/purple-send
+%%DBUS%%bin/purple-send-async
+%%DBUS%%bin/purple-url-handler
 bin/pidgin
 etc/gconf/schemas/purple.schemas
 include/libpurple/account.h
@@ -16,7 +16,7 @@ include/libpurple/cmds.h
 include/libpurple/connection.h
 include/libpurple/conversation.h
 include/libpurple/core.h
-include/libpurple/dbus-maybe.h
+%%DBUS%%include/libpurple/dbus-maybe.h
 include/libpurple/debug.h
 include/libpurple/desktopitem.h
 include/libpurple/eventloop.h
@@ -67,12 +67,12 @@ include/libpurple/whiteboard.h
 include/libpurple/purple.h
 include/libpurple/version.h
 include/libpurple/marshallers.h
-include/libpurple/dbus-bindings.h
-include/libpurple/dbus-purple.h
-include/libpurple/dbus-server.h
-include/libpurple/dbus-useful.h
-include/libpurple/dbus-define-api.h
-include/libpurple/dbus-types.h
+%%DBUS%%include/libpurple/dbus-bindings.h
+%%DBUS%%include/libpurple/dbus-purple.h
+%%DBUS%%include/libpurple/dbus-server.h
+%%DBUS%%include/libpurple/dbus-useful.h
+%%DBUS%%include/libpurple/dbus-define-api.h
+%%DBUS%%include/libpurple/dbus-types.h
 include/libpurple/media/backend-iface.h
 include/libpurple/media/candidate.h
 include/libpurple/media/codec.h
@@ -127,10 +127,18 @@ include/pidgin/gtkwhiteboard.h
 include/pidgin/minidialog.h
 include/pidgin/pidgintooltip.h
 include/pidgin/pidgin.h
+%%PERL:%%lib/purple-2/perl/auto/Purple/Purple.so
+%%PERL:%%lib/purple-2/perl/auto/Purple/Purple.bs
+%%PERL:%%lib/purple-2/perl/auto/Purple/autosplit.ix
+%%PERL:%%lib/purple-2/perl/Purple.pm
+%%PERL:%%lib/purple-2/perl.so
+%%PERL:%%lib/purple-2/perl.la
 lib/purple-2/ssl.so
 lib/purple-2/ssl.la
 lib/purple-2/ssl-gnutls.so
 lib/purple-2/ssl-gnutls.la
+%%NSS%%lib/purple-2/ssl-nss.so
+%%NSS%%lib/purple-2/ssl-nss.la
 lib/purple-2/autoaccept.so
 lib/purple-2/autoaccept.la
 lib/purple-2/buddynote.so
@@ -149,8 +157,8 @@ lib/purple-2/psychic.so
 lib/purple-2/psychic.la
 lib/purple-2/statenotify.so
 lib/purple-2/statenotify.la
-lib/purple-2/dbus-example.so
-lib/purple-2/dbus-example.la
+%%DBUS%%lib/purple-2/dbus-example.so
+%%DBUS%%lib/purple-2/dbus-example.la
 lib/purple-2/libgg.so
 lib/purple-2/libgg.la
 lib/purple-2/libirc.so
@@ -182,8 +190,13 @@ lib/purple-2/libyahoojp.so
 lib/purple-2/libyahoojp.la
 lib/purple-2/libzephyr.so
 lib/purple-2/libzephyr.la
+%%SILC%%lib/purple-2/libsilcpurple.so
+%%SILC%%lib/purple-2/libsilcpurple.la
 lib/purple-2/libbonjour.so
 lib/purple-2/libbonjour.la
+%%SAMETIME%%lib/purple-2/libsametime.so
+%%SAMETIME%%lib/purple-2/libsametime.la
+%%PERL:%%lib/perl5/%%PERL_ARCH%%/perllocal.pod
 lib/libpurple.so.8
 lib/libpurple.so
 lib/libpurple.la
@@ -198,6 +211,9 @@ lib/pidgin/gestures.so
 lib/pidgin/gestures.la
 lib/pidgin/musicmessaging.so
 lib/pidgin/musicmessaging.la
+%%PERL:%%lib/pidgin/perl/auto/Pidgin/Pidgin.so
+%%PERL:%%lib/pidgin/perl/auto/Pidgin/Pidgin.bs
+%%PERL:%%lib/pidgin/perl/Pidgin.pm
 lib/pidgin/xmppdisco.so
 lib/pidgin/xmppdisco.la
 lib/pidgin/ticker.so
@@ -972,8 +988,16 @@ share/purple/ca-certs/VeriSign_International_Server_Class_3_CA.pem
 @dirrm lib/gnome-vfs-2.0
 @dirrm lib/vfs/modules
 @dirrm lib/vfs
+%%PERL:%%@dirrm lib/purple-2/perl/auto/Purple
+%%PERL:%%@dirrm lib/purple-2/perl/auto
+%%PERL:%%@dirrm lib/purple-2/perl
 @dirrm lib/purple-2
+%%PERL:%%@dirrm lib/perl5/%%PERL_ARCH%%
+%%PERL:%%@dirrm lib/perl5
 @dirrm lib/pkgconfig
+%%PERL:%%@dirrm lib/pidgin/perl/auto/Pidgin
+%%PERL:%%@dirrm lib/pidgin/perl/auto
+%%PERL:%%@dirrm lib/pidgin/perl
 @dirrm lib/pidgin
 @dirrm libdata/bonobo/servers
 @dirrm libdata/bonobo
