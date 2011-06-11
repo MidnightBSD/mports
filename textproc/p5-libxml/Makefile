@@ -2,15 +2,14 @@
 # Date created:		13 March 2001
 # Whom:	      		Johann Visagie <johann@egenetics.com>
 #
-# $MidnightBSD: mports/textproc/p5-libxml/Makefile,v 1.1 2007/03/19 16:36:31 laffer1 Exp $
+# $MidnightBSD: mports/textproc/p5-libxml/Makefile,v 1.2 2008/08/25 19:12:30 laffer1 Exp $
 # $FreeBSD: ports/textproc/p5-libxml/Makefile,v 1.7 2005/01/21 09:27:22 tobez Exp $
 #
 
 PORTNAME=	libxml
 PORTVERSION=	0.08
 CATEGORIES=	textproc perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	XML
+MASTER_SITES=	CPAN/XML
 PKGNAMEPREFIX=	p5-
 DISTNAME=	libxml-perl-${PORTVERSION}
 
