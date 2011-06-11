@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.179 2011/03/12 20:10:45 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.180 2011/04/21 23:00:13 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -692,7 +692,11 @@ USE_LINUX=	${OVERRIDE_LINUX_BASE_PORT}
 LINUX_BASE_PORT=	${LINUXBASE}/bin/sh:${PORTSDIR}/emulators/linux_base-${USE_LINUX}
 .	else
 .			if ${USE_LINUX:L} == "yes"
+.				if (${OSVERSION} > 4003)
+LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-f8
+.				else
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-fc4
+.				endif
 .			else
 IGNORE=	There is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_LINUX or OVERRIDE_LINUX_BASE_PORT.
 .		endif
