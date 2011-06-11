@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.107 2010/11/06 16:14:54 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.108 2011/05/28 05:10:49 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -59,8 +59,8 @@ SUBDIR += mod_fastcgi
 SUBDIR += mod_perl2
 SUBDIR += moinmoin
 SUBDIR += nanoblogger
-SUBDIR += neon26
 SUBDIR += neon28
+SUBDIR += neon29
 SUBDIR += nspluginwrapper
 SUBDIR += opera
 SUBDIR += p5-CGI-Ajax
