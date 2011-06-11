@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/www/chromium/Makefile,v 1.1 2010/11/06 14:40:18 laffer1 Exp $
+# $MidnightBSD: mports/www/chromium/Makefile,v 1.2 2011/02/02 21:31:38 laffer1 Exp $
 
 PORTNAME=	chromium
 DISTVERSIONPREFIX=	courgette-redacted-
 DISTVERSION=	5.0.375.127
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://chromium.hybridsource.org/old/ports/ \
 		CRITICAL
@@ -84,6 +85,10 @@ MAKE_ENV+=	BUILDTYPE=${BUILDTYPE}
 MAKE_JOBS_SAFE=	yes
 STRIP=
 CFLAGS+=-I${LOCALBASE}/freetype2
+
+.if ${PERL_LEVEL} >= 501400
+BUILD_DEPENDS+=		p5-Switch>=0:${PORTSDIR}/lang/p5-Switch
+.endif
 
 pre-everything::
 	@${ECHO_MSG}
