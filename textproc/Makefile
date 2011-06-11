@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.135 2011/05/28 21:58:51 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.136 2011/05/28 22:38:16 laffer1 Exp $
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 
@@ -54,6 +54,7 @@ SUBDIR += gtkspell
 SUBDIR += hspell
 SUBDIR += html
 SUBDIR += html2text
+SUBDIR += ibus
 SUBDIR += intltool
 SUBDIR += iso8879
 SUBDIR += ispell
