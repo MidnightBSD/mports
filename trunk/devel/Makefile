@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.367 2011/06/07 02:34:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.368 2011/06/11 02:08:02 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -330,6 +330,7 @@ SUBDIR += py-elementtree
 SUBDIR += py-fileutils
 SUBDIR += py-gdata
 SUBDIR += py-gobject
+SUBDIR += py-notify
 SUBDIR += py-orbit
 SUBDIR += py-setuptools
 SUBDIR += py-simplejson
