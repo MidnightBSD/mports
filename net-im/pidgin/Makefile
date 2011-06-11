@@ -2,7 +2,7 @@
 # Date created:			16 Oct 2007
 # Whom:				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.23 2010/12/15 01:03:19 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin/Makefile,v 1.24 2011/06/10 23:45:45 laffer1 Exp $
 
 PORTNAME=	pidgin
 PORTVERSION=	2.8.0
@@ -112,7 +112,7 @@ CONFIGURE_ARGS+=	--enable-cyrus-sasl
 .endif
 
 .if defined(WITH_SILC)
-LIB_DEPENDS+=		silcclient-1.0.4:${PORTSDIR}/devel/silc-toolkit
+LIB_DEPENDS+=		silcclient-1.1.3:${PORTSDIR}/devel/silc-toolkit
 CONFIGURE_ARGS+=	--with-silc-includes=${LOCALBASE}/include/silc \
 			--with-silc-libs=${LOCALBASE}/lib
 PLIST_SUB+=		SILC=""
@@ -140,21 +140,7 @@ CONFIGURE_ARGS+=	--disable-meanwhile
 PLIST_SUB+=	SAMETIME="@comment not installed: "
 .endif
 
-.if defined(WITH_TCLTK)
-TCLTK_VER?=		8.4	# user can override it
-TCLTK_VER_NODOT=	${TCLTK_VER:S/.//}
-.if ${TCLTK_VER} != 8.3 && ${TCLTK_VER} != 8.4
-.error Currently Pidgin can only use Tcl/Tk 8.3 or 8.4
-.endif
-LIB_DEPENDS+=		tk${TCLTK_VER_NODOT}:${PORTSDIR}/x11-toolkits/tk${TCLTK_VER_NODOT}
-CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCLTK_VER} \
-			--with-tkconfig=${LOCALBASE}/lib/tk${TCLTK_VER}
-CFLAGS+=		-I${LOCALBASE}/include/tk${TCLTK_VER} -I${LOCALBASE}/include/tcl${TCLTK_VER}
-PLIST_SUB+=		TCL:=""
-.else
 CONFIGURE_ARGS+=	--disable-tcl
-PLIST_SUB+=		TCL:="@comment not installed: "
-.endif
 
 .if !defined(WITHOUT_DBUS)
 LIB_DEPENDS+=		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
