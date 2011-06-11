@@ -1,13 +1,8 @@
-# New ports collection makefile for:   py-dbus
-# Date Created:			25 July 2004
-# Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.3 2009/09/20 00:54:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.4 2011/02/02 20:17:34 laffer1 Exp $
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
-#    $MCom: ports/devel/py-dbus/Makefile,v 1.8 2007/03/01 05:52:46 marcus Exp $
 
 PORTNAME=	dbus
-PORTVERSION=	0.80.2
+PORTVERSION=	0.83.2
 CATEGORIES=	devel gnome python
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,21 +14,38 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
+USE_GETTEXT=	yes
 USE_GNOME=	gnomehack gnometarget
 USE_PYTHON=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
+CONFIGURE_ENV=	CPPFLAGS="-I${PYTHON_INCLUDEDIR}"
+CONFIGURE_ARGS=	--docdir=${DOCSDIR} \
+		--disable-api-docs
 
 DOCSDIR=	${PREFIX}/share/doc/py-${PORTNAME}
 EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
 
-post-install:
-.if defined(NOPORTDOCS)
-	@${RM} -rf ${PREFIX}/share/doc/dbus-python
+.include <bsd.port.pre.mk>
+
+.if exists(${LOCALBASE}/bin/rst2html) && !defined(NOPORTDOCS)
+PLIST_SUB+=	HTML=""
 .else
-	@${MV} ${PREFIX}/share/doc/dbus-python ${DOCSDIR} && \
-		${MKDIR} ${EXAMPLESDIR} && \
+CONFIGURE_ARGS+=--disable-html-docs
+PLIST_SUB+=	HTML="@comment "
+.endif
+
+post-patch:
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -e 's|HEADERS install-dist_docDATA|HEADERS|g ; \
+		s|PYTHON install-nodist_docDATA|PYTHON|g' \
+			${WRKSRC}/Makefile.in
+.endif
+
+post-install:
+.if !defined(NOPORTEXAMPLES)
+	${MKDIR} ${EXAMPLESDIR} && \
 		${INSTALL_DATA} ${WRKSRC}/examples/*.py ${EXAMPLESDIR}
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
