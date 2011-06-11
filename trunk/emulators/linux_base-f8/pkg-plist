@@ -1,3 +1,4 @@
+@exec mkdir -p /compat/linux
 bin/basename
 bin/bash
 bin/cat
