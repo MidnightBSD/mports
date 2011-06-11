@@ -7,21 +7,21 @@
 #
 
 #
-# Small tool to find distinfo with missing MD5/SHA256/SIZE statements,
-# based on the assumption that if there is one of the MD5/SHA256/SIZE
+# Small tool to find distinfo with missing RMD160/SHA256/SIZE statements,
+# based on the assumption that if there is one of the RMD160/SHA256/SIZE
 # statements, then there should be all of them (except for SIZE
-# when MD5/SHA256 is set to IGNORE).
+# when RMD160/SHA256 is set to IGNORE).
 #
 # Usage: distinfochecker [-v] [-d directory]
 # -v	- verbose (print)
-# -d	- use directory instead of /usr/ports
+# -d	- use directory instead of /usr/mports
 #
 
 use Getopt::Std;
 use strict;
 use Data::Dumper;
 
-my $UP="/usr/ports";
+my $UP="/usr/mports";
 my $verbose=0;
 
 my %opts=();
@@ -54,17 +54,17 @@ while (my $c=readdir(DHUP)) {
 	chomp(@lines);
 	close(FIN);
 
-	my %MD5=();
+	my %RMD160=();
 	my %SHA256=();
 	my %SIZE=();
 
 	foreach my $line (@lines) {
-	    if ($line=~/^MD5 \((.+?)\) = (.+?)$/) {
-		if (defined $MD5{$1}) {
-		    print "$c/$p - Duplicate MD5 for $1\n";
+	    if ($line=~/^RMD160 \((.+?)\) = (.+?)$/) {
+		if (defined $RMD160{$1}) {
+		    print "$c/$p - Duplicate RMD160 for $1\n";
 		    $errors++;
 		}
-		$MD5{$1}=$2;
+		$RMD160{$1}=$2;
 	    }
 	    if ($line=~/^SHA256 \((.+?)\) = (.+?)$/) {
 		if (defined $SHA256{$1}) {
@@ -82,13 +82,13 @@ while (my $c=readdir(DHUP)) {
 	    }
 	}
 
-	foreach my $f (sort(keys(%MD5))) {
+	foreach my $f (sort(keys(%RMD160))) {
 	    if (!defined ($SHA256{$f})) {
 		print "$c/$p - Missing SHA256 for $f\n";
 		$SHA256{$f}="missing";
 		$errors++;
 	    }
-	    if ($MD5{$f} ne "IGNORE") {
+	    if ($RMD160{$f} ne "IGNORE") {
 		if (!defined ($SIZE{$f})) {
 		    print "$c/$p - Missing SIZE for $f\n";
 		    $SIZE{$f}="missing";
@@ -99,9 +99,9 @@ while (my $c=readdir(DHUP)) {
 	}
 
 	foreach my $f (sort(keys(%SHA256))) {
-	    if (!defined ($MD5{$f})) {
-		print "$c/$p - Missing MD5 for $f\n";
-		$MD5{$f}="missing";
+	    if (!defined ($RMD160{$f})) {
+		print "$c/$p - Missing RMD160 for $f\n";
+		$RMD160{$f}="missing";
 		$errors++;
 	    }
 	    if ($SHA256{$f} ne "IGNORE") {
@@ -114,9 +114,9 @@ while (my $c=readdir(DHUP)) {
 	}
 
 	foreach my $f (sort(keys(%SIZE))) {
-	    if (!defined ($MD5{$f})) {
-		print "$c/$p - Missing MD5 for $f\n";
-		$MD5{$f}="missing";
+	    if (!defined ($RMD160{$f})) {
+		print "$c/$p - Missing RMD160 for $f\n";
+		$RMD160{$f}="missing";
 		$errors++;
 	    }
 	    if (!defined ($SHA256{$f})) {
