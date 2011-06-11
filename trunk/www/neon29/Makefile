@@ -1,29 +1,41 @@
-# New ports collection makefile for: neon
-# Date created:		13 October 2000
-# Whom:			Mikhail Teterin <mi@aldan.algebra.com>
-#
-# $MidnightBSD: mports/www/neon26/Makefile,v 1.2 2009/09/20 00:24:35 laffer1 Exp $
-# $FreeBSD: ports/www/neon26/Makefile,v 1.42 2008/06/06 14:07:02 edwin Exp $
-#
+# $MidnightBSD$
+# $FreeBSD: ports/www/neon29/Makefile,v 1.56 2011/05/13 11:45:09 lev Exp $
 
-PORTNAME=	neon26
-PORTVERSION=	0.26.4
-PORTREVISION=	0
+PORTNAME=	neon29
+PORTVERSION=	0.29.6
 CATEGORIES=	www
-MASTER_SITES=	http://www.webdav.org/neon/ \
-		http://keyserver.kjsl.com/~jharris/distfiles/
+MASTER_SITES=	http://www.webdav.org/neon/
 DISTNAME=	neon-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An HTTP and WebDAV client library for Unix systems
 LICENSE=	lgpl
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
-
-CONFLICTS=	neon28-[0-9]* neon-[0-9]*
+CONFLICTS=	neon2[6|8]-[0-9]*
 
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
+
+USE_GNOME=	gnomehack ltverhack
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-shared \
+		--with-libs=${LOCALBASE}:${PREFIX}
+
+# expat is default unless WITH_XML is choosen
+.if !defined(WITHOUT_EXPAT) && !defined(WITH_XML)
+CONFIGURE_ARGS+=	--with-expat
+LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
+.endif
+
+.if defined(WITH_XML)
+CONFIGURE_ARGS+=--with-libxml2
+LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
+.endif
+
+.ifndef WITHOUT_OPENSSL
+USE_OPENSSL=	yes
+CONFIGURE_ARGS+=--with-ssl
+.endif
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=--disable-nls
@@ -33,30 +45,24 @@ USE_GETTEXT=	yes
 PLIST_SUB+=	NLS=""
 .endif
 
-.ifndef WITHOUT_OPENSSL
-USE_OPENSSL=	yes
+.if defined(WITHOUT_GSSAPI)
+CONFIGURE_ARGS+=--without-gssapi
 .endif
-
-USE_GNOME=	gnomehack gnometarget
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-ssl \
-		--enable-xml \
-		--enable-shared \
-		--with-expat \
-		--with-libs=${PREFIX}
 
 MAN1=	neon-config.1
 MAN3=	ne_add_request_header.3 ne_addr_resolve.3 ne_buffer.3 \
 	ne_buffer_append.3 ne_buffer_clear.3 ne_buffer_create.3 \
 	ne_buffer_destroy.3 ne_get_error.3 ne_get_response_header.3 \
-	ne_get_status.3 ne_i18n_init.3 ne_iaddr_make.3 ne_has_support.3 \
+	ne_get_status.3 ne_i18n_init.3 ne_iaddr_make.3 ne_iaddr_parse.3 \
+	ne_iaddr_raw.3 ne_iaddr_reverse.3 ne_has_support.3 \
 	ne_malloc.3 ne_request_create.3 ne_session_create.3 \
-	ne_set_request_body_buffer.3 ne_set_request_expect100.3 \
+	ne_set_request_body_buffer.3 ne_get_request_flag.3 \
+	ne_get_session_flag.3 ne_set_request_flag.3 ne_set_session_flag.3 \
 	ne_set_server_auth.3 ne_set_useragent.3 ne_shave.3 ne_sock_init.3 \
 	ne_ssl_cert_cmp.3 ne_ssl_cert_identity.3 ne_ssl_cert_read.3 \
 	ne_ssl_clicert_read.3 ne_ssl_readable_dname.3 ne_ssl_set_verify.3 \
 	ne_ssl_trust_cert.3 ne_status.3 ne_token.3 ne_version_match.3 \
-	ne_xml_create.3 neon.3
+	ne_xml_create.3 neon.3 ne_set_connect_timeout.3
 MLINKS=	ne_add_request_header.3 ne_print_request_header.3 \
 	ne_addr_resolve.3 ne_addr_destroy.3 \
 	ne_addr_resolve.3 ne_addr_error.3 \
@@ -113,21 +119,21 @@ MLINKS=	ne_add_request_header.3 ne_print_request_header.3 \
 	ne_xml_create.3 ne_xml_destroy.3
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
+DOCSDIR=	${PREFIX}/share/doc/neon
 
 .include <bsd.port.pre.mk>
 
-#DOCSDIR:=	${DOCSDIR:S/26//}
-DOCSDIR= ${PREFIX}/share/doc/neon
-
-pre-fake:
-	${MKDIR} ${FAKE_DESTDIR}${DOCSDIR}
+pre-everything::
+.if defined(WITH_EXPAT) && defined(WITH_XML)
+	@${ECHO_CMD} "please choose between expat and libxml2 not both"
+	@${FALSE}
+.endif
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 ${MANPREFIX}/man/man1
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.3 ${MANPREFIX}/man/man3
 .ifndef NOPORTDOCS
-	(cd ${WRKSRC} ; ${MAKE} install-html ${FAKE_MAKEARGS} )
-	${INSTALL_DATA} ${WRKSRC}/doc/using-neon.txt ${DOCSDIR}
+	(cd ${WRKSRC} ; ${MAKE} ${FAKE_MAKEARGS} install-html)
 .endif
 
 .include <bsd.port.post.mk>
