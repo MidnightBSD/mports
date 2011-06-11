@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/libmusicbrainz3/Makefile,v 1.1 2010/02/27 20:54:48 laffer1 Exp $
 
 PORTNAME=	libmusicbrainz3
-PORTVERSION=	3.0.2
+PORTVERSION=	3.0.3
 CATEGORIES=	audio
 MASTER_SITES=	ftp://ftp.musicbrainz.org/pub/musicbrainz/ \
     		http://uk.musicbrainz.org/pub/musicbrainz/ \
@@ -13,7 +13,7 @@ COMMENT=	MusicBrainz client library for audio metadata lookup
 LICENSE=	lgpl
 
 LIB_DEPENDS=	discid:${PORTSDIR}/audio/libdiscid \
-		neon.28:${PORTSDIR}/www/neon28
+		neon.27:${PORTSDIR}/www/neon29
 
 USE_CMAKE=	yes
 USE_GNOME=	pkgconfig
