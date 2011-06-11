@@ -2,7 +2,7 @@
 # Date created:		Dec 2, 2003
 # Whom:			nectar
 #
-# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.2 2008/03/27 23:44:00 laffer1 Exp $
+# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.3 2008/04/04 05:01:25 ctriv Exp $
 # $FreeBSD: ports/textproc/xhtml-basic/Makefile,v 1.3 2006/03/24 05:44:38 linimon Exp $
 #
 
@@ -15,7 +15,7 @@ DISTNAME=	${PORTNAME}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	W3C's XHTML Basic DTD #'
+COMMENT=	W3C's XHTML Basic DTD
 LICENSE=	unknown
 
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr \
