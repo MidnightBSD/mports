@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.8 2010/10/09 17:53:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.9 2011/06/01 12:29:16 laffer1 Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.6.16
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES+=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.5/:book
@@ -30,7 +30,7 @@ CONFIGURE_ARGS+=	--without-swig
 
 # Default is "on"
 .if !defined(WITHOUT_NEON)
-LIB_DEPENDS+=	neon.28:${PORTSDIR}/www/neon28
+LIB_DEPENDS+=	neon.27:${PORTSDIR}/www/neon29
 CONFIGURE_ARGS+=	--with-neon=${LOCALBASE}
 PLIST_SUB+=		NEON=""
 .else
