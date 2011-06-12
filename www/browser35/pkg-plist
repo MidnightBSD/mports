@@ -3537,7 +3537,6 @@ include/browser/unstable/nsIIdleService.h
 include/browser/unstable/nsWidgetSupport.h
 include/browser/unstable/nsGTKToolkit.h
 include/browser/unstable/nsIImageToPixbuf.h
-include/browser/unstable/mozdrawingarea.h
 include/browser/unstable/mozcontainer.h
 include/browser/unstable/nsICanvasRenderingContextInternal.h
 include/browser/unstable/nsICanvasElement.h
