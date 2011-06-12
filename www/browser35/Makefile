@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.13 2011/02/01 14:04:01 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.14 2011/02/02 21:31:38 laffer1 Exp $
 
 PORTNAME=	browser35
-DISTVERSION=	3.5.15
+DISTVERSION=	3.5.19
 PORTREVISION=	0
 CATEGORIES=	www ipv6
 MASTER_SITES=	${MASTER_SITE_MOZILLA_EXTENDED}
@@ -30,7 +30,7 @@ USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XORG=	printproto sm xt xi xext x11 xinerama ice xproto
-MAKE_JOBS_SAFE=	yes
+#MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
@@ -102,7 +102,7 @@ MOZ_OPTIONS+=	--enable-application=browser	\
 		--enable-xinerama		\
 		--enable-libxul			\
 		--disable-ogg			\
-		--enable-wave			\
+		--disable-wave			\
 		--enable-svg			\
 		--enable-svg-renderer=cairo	\
 		--x-includes=${LOCALBASE}/include \
