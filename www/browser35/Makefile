@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.14 2011/02/02 21:31:38 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.15 2011/06/12 01:53:26 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.19
@@ -30,7 +30,7 @@ USE_ICONV=	yes
 USE_PERL5=	yes
 USE_PERL5_BUILD=yes
 USE_XORG=	printproto sm xt xi xext x11 xinerama ice xproto
-#MAKE_JOBS_SAFE=	yes
+MAKE_JOBS_SAFE=	yes
 
 MOZILLA=	browser
 MOZILLA_NAME=	Browser
