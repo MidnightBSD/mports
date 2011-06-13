@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.23 2011/06/05 16:18:50 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.24 2011/06/12 19:31:04 laffer1 Exp $
 
 PORTNAME=	mksh
 DISTVERSION=	R40
@@ -31,7 +31,7 @@ do-extract:
 		${GZCAT} ${DISTDIR}/${DISTFILES} | ${CPIO} -id
 
 do-build:
-	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r
+	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r -c lto
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/mksh ${PREFIX}/bin
