@@ -1,0 +1,6 @@
+SHA256 (clang-2.8.tgz) = ed83481553e6a39a8a2953e89630d881d87833506f096a90f18d93ec2bdee0c1
+RMD160 (clang-2.8.tgz) = f00956b6de29cc09f3992aeabd140f2189c6cf39
+SIZE (clang-2.8.tgz) = 5666777
+SHA256 (llvm-2.8.tgz) = 25addb742f1c6cc12877ed0ee924dda962d848368ee095be8e48342ae613d43b
+RMD160 (llvm-2.8.tgz) = 3f5a71d07e105a7cf46eafc7a9006a927035012c
+SIZE (llvm-2.8.tgz) = 9112527
