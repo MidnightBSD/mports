@@ -2,12 +2,12 @@
 # Date created:		2006-03-25
 # Whom:			Nicola Vitale	<nivit@email.it>
 #
-# $MidnightBSD: mports/audio/espeak/Makefile,v 1.1 2008/01/01 20:55:30 laffer1 Exp $
+# $MidnightBSD: mports/audio/espeak/Makefile,v 1.2 2009/12/31 21:00:01 laffer1 Exp $
 # $FreeBSD: ports/audio/espeak/Makefile,v 1.15 2007/08/06 13:33:16 nivit Exp $
 #
 
 PORTNAME=	espeak
-PORTVERSION=	1.41.01
+PORTVERSION=	1.45.03
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
