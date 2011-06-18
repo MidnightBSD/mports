@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.180 2011/04/21 23:00:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.181 2011/06/11 21:05:04 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -318,7 +318,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # This is the order that we used before the extensions where refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
-_ALL_EXT=	linux_rpm xorg fortran gcc local perl5 openssl emacs gnustep php python java ruby \
+_ALL_EXT=	linux_rpm linux_apps xorg fortran gcc local perl5 openssl emacs gnustep php python java ruby \
 			tcl apache kde qt autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
 			pgsql bdb sqlite gecko scons ocaml
 
@@ -670,6 +670,10 @@ USE_LINUX?=	yes
 
 .if defined(USE_LINUX)
 
+.  if !defined(LINUX_OSRELEASE)
+LINUX_OSRELEASE!=       ${ECHO_CMD} `${SYSCTL} -n compat.linux.osrelease 2>/dev/null`
+.  endif
+
 # install(1) also does a brandelf on strip, so don't strip with FreeBSD tools.
 STRIP=
 .	if exists(${LINUXBASE}/usr/bin/strip)
@@ -693,7 +697,7 @@ LINUX_BASE_PORT=	${LINUXBASE}/bin/sh:${PORTSDIR}/emulators/linux_base-${USE_LINU
 .	else
 .			if ${USE_LINUX:L} == "yes"
 .				if (${OSVERSION} > 4003)
-LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-f8
+LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-f10
 .				else
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-fc4
 .				endif
