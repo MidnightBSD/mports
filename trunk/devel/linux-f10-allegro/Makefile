@@ -1,9 +1,5 @@
-# New ports collection makefile for:	devel/linux-f10-allegro
-# Date created:				2009-05-03
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-f10-allegro/Makefile,v 1.16 2011/03/07 15:08:17 ehaupt Exp $
-#
 
 PORTNAME=	allegro
 PORTVERSION=	4.2.2
@@ -12,10 +8,11 @@ MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform game programming library (Linux Fedora 10)
+LICENSE=	other
 
-CONFLICTS=	linux-allegro-[0-9]* linux-f8-allegro-[0-9]*
+CONFLICTS=	linux-allegro-[0-9]*
 
 USE_LINUX_RPM=		yes
 USE_LINUX_APPS=		xorglibs
