@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.89 2011/05/28 04:51:32 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.90 2011/06/18 02:44:05 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -24,6 +24,7 @@ SUBDIR += etoile-volumecontrolmenulet
 SUBDIR += faac
 SUBDIR += faad
 SUBDIR += flac
+SUBDIR += freealut
 SUBDIR += freedesktop-sound-theme
 SUBDIR += gnome-audio
 SUBDIR += gnome-media
@@ -74,11 +75,21 @@ SUBDIR += linux-esound
 SUBDIR += linux-f10-alsa-lib
 SUBDIR += linux-f10-arts
 SUBDIR += linux-f10-esound
+SUBDIR += linux-f10-freealut
+SUBDIR += linux-f10-libaudiofile
+SUBDIR += linux-f10-libogg
+SUBDIR += linux-f10-libvorbis
+SUBDIR += linux-f10-mikmod
+SUBDIR += linux-f10-nas-libs
+SUBDIR += linux-f10-openal
+SUBDIR += linux-f10-openal-soft
+SUBDIR += linux-f10-sdl_mixer
 SUBDIR += linux-libaudiofile
 SUBDIR += linux-libogg
 SUBDIR += linux-libvorbis
 SUBDIR += linux-shoutcast
 SUBDIR += madplay
+SUBDIR += mikmod
 SUBDIR += mpg123
 SUBDIR += nas
 SUBDIR += openal
