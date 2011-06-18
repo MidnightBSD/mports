@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.6 2011/06/18 01:22:40 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.7 2011/06/18 01:27:14 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -94,12 +94,21 @@ IGNORE=		linux_rpm.mk test failed: the port should be used with defined OVERRIDE
 DIST_SUBDIR?=	rpm/${LINUX_RPM_ARCH}/${LINUX_DIST}/${LINUX_DIST_VER}
 
 .    if ${LINUX_DIST} == "fedora"
+# we do not want to define MASTER_SITES and MASTER_SITE_* if they are already defined
+# ex.: MASTER_SITES=file:///...
 .      ifndef MASTER_SITES
-MASTER_SITES?=			${MASTER_SITE_FEDORA_LINUX}
+MASTER_SITES=			${MASTER_SITE_FEDORA_LINUX}
+.        if ${LINUX_DIST_VER} == 10
+MASTER_SITE_SUBDIR?=	../releases/${LINUX_DIST_VER}/Everything/${LINUX_RPM_ARCH}/os/Packages \
+			../updates/${LINUX_DIST_VER}/${LINUX_RPM_ARCH}
+MASTER_SITE_SRC_SUBDIR?=	../releases/${LINUX_DIST_VER}/Everything/source/SRPMS \
+				../updates/${LINUX_DIST_VER}/SRPMS
+.        else
 MASTER_SITE_SUBDIR?=	${LINUX_DIST_VER}/${LINUX_RPM_ARCH}/os/Fedora/RPMS \
 			updates/${LINUX_DIST_VER}/${LINUX_RPM_ARCH}
 MASTER_SITE_SRC_SUBDIR?=	${LINUX_DIST_VER}/SRPMS \
 				updates/${LINUX_DIST_VER}/SRPMS
+.        endif
 .      endif
 .    else
 IGNORE=	unknown LINUX_DIST in port Makefile
@@ -134,6 +143,20 @@ HASH_FILE?=				${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
 BRANDELF_DIRS?=
 BRANDELF_FILES?=
 
+# For ports that define PORTDOCS, be sure not to install
+# documentation if NOPORTDOCS is defined
+.  if defined(PORTDOCS) && defined(NOPORTDOCS)
+pre-patch: linux-rpm-clean-portdocs
+
+.    if !target(linux-rpm-clean-portdocs)
+linux-rpm-clean-portdocs:
+.      for x in ${PORTDOCS}
+	@${RM} -f ${WRKDIR}/${DOCSDIR_REL}/${x}
+.      endfor
+	@${RMDIR} ${WRKDIR}/${DOCSDIR_REL}
+.    endif
+.  endif
+
 do-extract:
 	@${MKDIR} -p ${WRKSRC}
 	@for file in ${EXTRACT_ONLY}; do \
@@ -149,6 +172,15 @@ do-extract:
 
 
 .  if defined(AUTOMATIC_PLIST)
+
+.    if ${USE_LINUX} == "fc4" || ${USE_LINUX:L} == "yes"
+_LINUX_BASE_SUFFIX=		fc4
+.    elif ${USE_LINUX} == "f10"
+_LINUX_BASE_SUFFIX=		f10
+.    else
+# other linux_base ports do not provide a pkg-plist file
+IGNORE=					uses AUTOMATIC_PLIST with an unsupported USE_LINUX, \"${USE_LINUX}\". Supported values are \"yes\", \"fc4\" and \"f10\"
+.    endif
 
 PLIST?=					${WRKDIR}/.PLIST.linux-rpm
 
