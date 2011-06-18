@@ -1,9 +1,5 @@
-# New ports collection makefile for:	devel/linux-f10-sdl12
-# Date created:				2009-05-03
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-f10-sdl12/Makefile,v 1.24 2011/03/07 15:08:17 ehaupt Exp $
-#
 
 PORTNAME=	sdl
 PORTVERSION=	1.2.13
@@ -12,10 +8,11 @@ MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${LINUX_NAME}-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cross-platform multi-media development API (Linux Fedora 10)
+LICENSE=	lgpl
 
-CONFLICTS=	linux-sdl12-[0-9]* linux-f8-sdl12-[0-9]*
+CONFLICTS=	linux-sdl12-[0-9]*
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes

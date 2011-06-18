@@ -1,9 +1,5 @@
-# New ports collection makefile for:	devel/linux-f10-nspr
-# Date created:				2009-05-04
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-f10-nspr/Makefile,v 1.6 2011/03/03 09:26:38 ehaupt Exp $
-#
 
 PORTNAME=	nspr
 PORTVERSION=	4.7.6
@@ -12,10 +8,9 @@ MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Netscape Portable Runtime (Linux Fedora 10)
-
-CONFLICTS=	linux-f8-nspr-[0-9]*
+LICENSE=	agg
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	10

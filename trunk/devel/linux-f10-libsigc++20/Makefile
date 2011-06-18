@@ -1,9 +1,5 @@
-# New ports collection makefile for:	devel/linux-f10-libsigc++20
-# Date created:				2009-05-03
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-f10-libsigc++20/Makefile,v 1.8 2011/03/07 15:08:17 ehaupt Exp $
-#
 
 PORTNAME=		libsigc++20
 PORTVERSION=		2.2.2
@@ -12,10 +8,11 @@ MASTER_SITES=		CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=		linux-f10-
 DISTNAME=		${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=		emulation@FreeBSD.org
+MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Callback Framework for C++ (Linux Fedora 10)
+LICENSE=		lgpl
 
-CONFLICTS=		linux-libsigc++20-[0-9]* linux-f8-libsigc++20-[0-9]*
+CONFLICTS=		linux-libsigc++20-[0-9]* 
 
 ONLY_FOR_ARCHS=		i386 amd64
 USE_LINUX_RPM=		yes
