@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.41 2010/12/31 12:32:52 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.42 2011/05/28 04:50:04 laffer1 Exp $
 
 COMMENT = Archivers
 
@@ -19,6 +19,10 @@ SUBDIR += lha-ac
 SUBDIR += libmspack
 SUBDIR += libunrar
 SUBDIR += libzip
+SUBDIR += linux-f10-ucl
+SUBDIR += linux-f10-upx
+SUBDIR += linux-ucl
+SUBDIR += linux-upx
 SUBDIR += lzo
 SUBDIR += lzo2
 SUBDIR += lzop
@@ -41,6 +45,7 @@ SUBDIR += rpm
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
 SUBDIR += torrentzip
+SUBDIR += ucl
 SUBDIR += unace
 SUBDIR += unarj
 SUBDIR += unmakeself
@@ -48,6 +53,7 @@ SUBDIR += unrar
 SUBDIR += untar
 SUBDIR += unzip
 SUBDIR += unzoo
+SUBDIR += upx
 SUBDIR += xar
 SUBDIR += xz
 SUBDIR += zip
