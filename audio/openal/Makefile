@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.5 2010/02/27 20:10:32 laffer1 Exp $
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.6 2011/02/02 20:03:23 laffer1 Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 
 PORTNAME=	openal
 PORTVERSION=	20060211
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	http://openal.org/openal_webstf/downloads/
 DISTVERSION=	0.0.8
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--enable-capture
 USE_GMAKE=	yes
@@ -70,6 +70,13 @@ CONFIGURE_ARGS+=--enable-smpeg
 CONFIGURE_ARGS+=--disable-smpeg
 .endif
 
+.if ${ARCH} == "i386"
+OPTIONS+=	X86_ASM "Enable x86 assembly code" on
+.if !defined(WITHOUT_X86_ASM)
+BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
+.endif
+.endif
+
 NOT_FOR_ARCHS=	ia64
 NOT_FOR_ARCHS_REASON_ia64=	does not compile
 
@@ -85,6 +92,9 @@ post-patch:
 		s|Libs: |&${PTHREAD_LIBS} |;\
 		s|Cflags: |&${PTHREAD_CFLAGS} |' \
 		${WRKSRC}/admin/pkgconfig/openal.pc.in
+.if defined(WITHOUT_X86_ASM)
+	@${REINPLACE_CMD} -e '/^NASM=/ s|=.*|=no|' ${WRKSRC}/configure
+.endif
 
 post-install:
 	@${CAT} ${PKGMESSAGE}
