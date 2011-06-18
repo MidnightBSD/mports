@@ -1960,6 +1960,9 @@ usr/share/man/man8/tune2fs.8.gz
 usr/tmp
 var/mail
 var/cache/ldconfig/aux-cache
+@cwd %%LOCALBASE%%
+etc/mtree/bsd.linux-compat.mtree
+@cwd %%TARGETDIR%%
 @exec /bin/mkdir -p %D/var/yp
 @exec /bin/mkdir -p %D/var/spool/mail
 @exec /bin/mkdir -p %D/var/spool/lpd
