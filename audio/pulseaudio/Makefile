@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.3 2010/02/27 20:49:29 laffer1 Exp $
+# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.4 2011/02/02 20:03:23 laffer1 Exp $
 
 PORTNAME=	pulseaudio
-PORTVERSION=	0.9.19
+PORTVERSION=	0.9.22
 CATEGORIES=	audio
 MASTER_SITES=	http://0pointer.de/lennart/projects/${PORTNAME}/
 
@@ -13,7 +13,8 @@ LIB_DEPENDS=	samplerate.1:${PORTSDIR}/audio/libsamplerate \
 		speexdsp.1:${PORTSDIR}/audio/speex \
 		dbus-1.3:${PORTSDIR}/devel/dbus \
 		gdbm.3:${PORTSDIR}/databases/gdbm \
-		execinfo:${PORTSDIR}/devel/libexecinfo
+		execinfo:${PORTSDIR}/devel/libexecinfo \
+		ck-connector.0:${PORTSDIR}/sysutils/consolekit
 
 USE_GNOME=	gnometarget gnomehack glib20 intltool ltverhack
 USE_XORG=	x11 sm xtst ice
@@ -34,6 +35,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-database=gdbm \
 		--disable-lirc # untested
+
 USERS=		pulse
 GROUPS=		pulse pulse-access pulse-rt
 
@@ -51,9 +53,11 @@ MAN5=		default.pa.5 pulse-client.conf.5 pulse-daemon.conf.5
 
 .include <bsd.port.pre.mk>
 
-EXTRA_PATCHES+=${FILESDIR}/extra-patch-src_daemon_main.c \
-               ${FILESDIR}/extra-patch-src_daemon_start-pulseaudio-x11.in \
-               ${FILESDIR}/extra-patch-src_pulse_context.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_daemon_main.c \
+		${FILESDIR}/extra-patch-src_daemon_start-pulseaudio-x11.in \
+		${FILESDIR}/extra-patch-src_pulse_context.c
+
+CONFIGURE_ARGS+=	--without-caps
 
 .if defined(WITH_JACK)
 LIB_DEPENDS+=	jack.0:${PORTSDIR}/audio/jack
@@ -75,8 +79,7 @@ PLIST_SUB+=	AVAHI="@comment "
 LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
 PLIST_SUB+=	HAL=""
 .else
-CONFIGURE_ARGS+=--disable-hal \
-		--disable-polkit
+CONFIGURE_ARGS+=--disable-hal
 PLIST_SUB+=	HAL="@comment "
 .endif
 
@@ -91,7 +94,7 @@ PLIST_SUB+=	GCONF="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/src/daemon/default.pa.in
-.if ${OSVERSION} < 700042
+.if ${OSVERSION} < 3000
 	@${REINPLACE_CMD} -e 's|-Wl,-no-undefined||' \
 	    	${WRKSRC}/src/Makefile.in
 .endif
@@ -99,9 +102,14 @@ post-patch:
 		${WRKSRC}/configure
 
 post-install:
+	${MKDIR} ${PREFIX}/etc/pulse
 .for ii in default.pa daemon.conf client.conf system.pa
 	${INSTALL_DATA} ${WRKSRC}/src/${ii} \
 		${PREFIX}/etc/pulse/${ii}-dist
+. if !exists(${PREFIX}/etc/pulse/${II})
+	${INSTALL_DATA} ${WRKSRC}/src/${ii} \
+		${PREFIX}/etc/pulse/${ii}
+. endif
 .endfor
 
 .include <bsd.port.post.mk>
