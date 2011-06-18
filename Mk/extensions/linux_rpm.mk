@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.5 2011/06/18 01:12:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.6 2011/06/18 01:22:40 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -67,6 +67,28 @@ LINUX_DIST_VER?=	10
 IGNORE=		linux_rpm.mk test failed: default package building at OSVERSION>=4004 was changed to linux-f10 ports, please define OVERRIDE_LINUX_NONBASE_PORTS to build other linux infrastructure ports
 .   endif
 . endif
+
+# linux Fedora 10 infrastructure ports should be used with compat.linux.osrelease=2.6.16,
+# linux_base-f10 (or greater) port
+.  if ${LINUX_DIST_VER} == 10
+# let's check for apropriate compat.linux.osrelease
+.    if (${LINUX_OSRELEASE} != "2.6.16")
+IGNORE=		linux_rpm.mk test failed: the port should be used with compat.linux.osrelease=2.6.16, which is supported at 0.4-CURRENT
+.    endif
+# the default for OSVERSION < 4004
+.    if ${OSVERSION} < 4004
+# let's check if an apropriate linux base port is used
+.      if ${USE_LINUX} != f10
+IGNORE=		linux_rpm.mk test failed: the port should be used with at least linux_base-f10
+.      endif
+# let's check if OVERRIDE_LINUX_NONBASE_PORTS is defined
+.      ifndef(OVERRIDE_LINUX_NONBASE_PORTS)
+IGNORE=		linux_rpm.mk test failed: the port should be used with defined OVERRIDE_LINUX_NONBASE_PORTS
+.      endif
+# the default for OSVERSION >= 4004
+#.      else
+.    endif # ${OSVERSION} < 4004
+.  endif
 
 .  if defined(LINUX_DIST)
 DIST_SUBDIR?=	rpm/${LINUX_RPM_ARCH}/${LINUX_DIST}/${LINUX_DIST_VER}
