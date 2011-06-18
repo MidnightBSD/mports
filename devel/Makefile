@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.368 2011/06/11 02:08:02 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.369 2011/06/11 02:33:00 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -153,6 +153,14 @@ SUBDIR += libusb
 SUBDIR += libvolume_id
 SUBDIR += libzvbi
 SUBDIR += linux-allegro
+SUBDIR += linux-f10-allegro
+SUBDIR += linux-f10-dbus-glib
+SUBDIR += linux-f10-dbus-libs
+SUBDIR += linux-f10-libglade
+SUBDIR += linux-f10-libglade2
+SUBDIR += linux-f10-libsigc++20
+SUBDIR += linux-f10-nspr
+SUBDIR += linux-f10-sdl12
 SUBDIR += linux-glib2
 SUBDIR += linux-libglade
 SUBDIR += linux-sdl12
