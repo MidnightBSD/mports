@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/Makefile,v 1.26 2009/05/27 16:26:00 laffer1 Exp $
+# $MidnightBSD: mports/emulators/Makefile,v 1.27 2011/05/28 05:10:22 laffer1 Exp $
 
 COMMENT = Emulators for other operating systems
 
@@ -13,6 +13,7 @@ SUBDIR += ia64sim
 SUBDIR += kqemu-kmod
 SUBDIR += kqemu-kmod-devel
 SUBDIR += linux_base-f8
+SUBDIR += linux_base-f10
 SUBDIR += linux_base-fc4
 SUBDIR += mtools
 SUBDIR += pearpc
