@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.4 2011/03/12 20:10:45 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/linux_rpm.mk,v 1.5 2011/06/18 01:12:17 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.linux-rpm.mk,v 1.9 2006/07/30 22:34:30 sat Exp $
 #
 
@@ -58,7 +58,15 @@ LINUX_RPM_ARCH?=	${ARCH}
 Linux_RPM_Post_Include=	linux-rpm.mk
 
 LINUX_DIST?=		fedora
+. if ${OSVERSION} < 4004 || ${LINUX_OSRELEASE} == "2.4.2"
 LINUX_DIST_VER?=	4
+. else
+LINUX_DIST_VER?=	10
+.   if  !defined(OVERRIDE_LINUX_NONBASE_PORTS) && \
+	${LINUX_DIST_VER} != 10
+IGNORE=		linux_rpm.mk test failed: default package building at OSVERSION>=4004 was changed to linux-f10 ports, please define OVERRIDE_LINUX_NONBASE_PORTS to build other linux infrastructure ports
+.   endif
+. endif
 
 .  if defined(LINUX_DIST)
 DIST_SUBDIR?=	rpm/${LINUX_RPM_ARCH}/${LINUX_DIST}/${LINUX_DIST_VER}
