@@ -1,9 +1,5 @@
-# New ports collection makefile for:	devel/linux-f10-libglade
-# Date created:				2009-05-03
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/linux-f10-libglade/Makefile,v 1.20 2011/03/07 15:08:17 ehaupt Exp $
-#
 
 PORTNAME=	libglade
 PORTVERSION=	0.17
@@ -12,10 +8,11 @@ MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=	emulation@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of libglade (Linux Fedora 10)
+LICENSE=	lgpl
 
-CONFLICTS=	linux-libglade-[0-9]* linux-f8-libglade-[0-9]*
+CONFLICTS=	linux-libglade-[0-9]*
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	10
