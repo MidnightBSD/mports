@@ -1,16 +1,17 @@
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.18 2009/06/27 21:37:09 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-seamonkey/Makefile,v 1.19 2010/03/18 00:42:55 laffer1 Exp $
 
 PORTNAME=	seamonkey
-PORTVERSION=	1.1.19
-DISTVERSIONSUFFIX=	.en-US.linux-i686
+PORTVERSION=	2.0.13
 CATEGORIES=	www
-MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${PORTVERSION}
+MASTER_SITE_SUBDIR=	${PORTNAME}/releases/${PORTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The open source, standards compliant web browser
 LICENSE=	mpl
 
-USE_GCPIO=	yes
+USE_BZIP2=	yes
+
+USE_LINUX_APPS=	dbusglib dbuslibs alsalib
 
 .include "${.CURDIR}/Makefile.common"
 .include <bsd.port.mk>
