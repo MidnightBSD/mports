@@ -1,14 +1,16 @@
-# $MidnightBSD: mports/graphics/linux-ungif/Makefile,v 1.1 2006/09/23 22:21:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux-ungif/Makefile,v 1.2 2009/03/21 16:07:29 laffer1 Exp $
 
 PORTNAME=	ungif
 PORTVERSION=	4.1.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics linux
 DISTNAME=	libungif-${PORTVERSION}-3.fc4.2
 
 MAINTAINTER=	ports@MidnightBSD.org
 COMMENT=	RPM of the ungif lib
 LICENSE=	unknown
+
+CONFLICTS=	linux-f10-ungif-[0-9]*
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_LINUX_RPM=	yes
