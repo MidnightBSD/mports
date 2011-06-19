@@ -1,23 +1,21 @@
-# New ports collection makefile for: linux-esound
-# Date created:		01/09/18
-# Whom:                 taoka@FreeBSD.org
-#
-# $MidnightBSD: mports/audio/linux-esound/Makefile,v 1.2 2008/04/10 04:52:07 ctriv Exp $
+# $MidnightBSD: mports/audio/linux-esound/Makefile,v 1.3 2010/02/27 20:08:47 laffer1 Exp $
 # $FreeBSD: ports/audio/linux-esound/Makefile,v 1.15 2006/11/06 20:58:50 bsam Exp $
-#
 
 PORTNAME=	esound
-CATEGORIES=	audio linux
 PORTVERSION=	0.2.36
+PORTREVISION=	1
+CATEGORIES=	audio linux
+MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-0.fc4.1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of esound
 LICENSE=	gpl2
 
-RUN_DEPENDS=	${LINUXBASE}/usr/lib/libaudiofile.so.0:${PORTSDIR}/audio/linux-libaudiofile
+CONFLICTS=	linux-f10-esound-[0-9]*
 
 USE_LINUX_RPM=	yes
+USE_LINUX_APPS=	libaudiofile
 LINUX_DIST_VER=	4
 USE_LDCONFIG=	yes
 BRANDELF_DIRS=	usr/bin
