@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.90 2011/06/18 02:44:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.91 2011/06/18 14:28:44 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -71,6 +71,7 @@ SUBDIR += libsamplerate
 SUBDIR += libsndfile
 SUBDIR += libtunepimp
 SUBDIR += libvorbis
+SUBDIR += linux-alsa-lib
 SUBDIR += linux-esound
 SUBDIR += linux-f10-alsa-lib
 SUBDIR += linux-f10-arts
