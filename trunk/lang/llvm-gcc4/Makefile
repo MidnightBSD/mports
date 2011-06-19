@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/llvm-gcc4/Makefile,v 1.3 2010/06/13 18:23:11 laffer1 Exp $
 
 PORTNAME=	gcc4
-PORTVERSION=	2.7
+PORTVERSION=	2.8
 CATEGORIES=	lang devel
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
 PKGNAMEPREFIX=	llvm-
