@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.111 2011/05/28 05:10:40 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.112 2011/05/28 18:21:43 laffer1 Exp $
 
     COMMENT = Networking tools
 
@@ -45,6 +45,9 @@ SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += libvncserver
 SUBDIR += linc
+SUBDIR += linux-f10-openldap
+SUBDIR += linux-nx-client
+SUBDIR += linuxigd
 SUBDIR += liveMedia
 SUBDIR += mDNSResponder
 SUBDIR += netatalk
