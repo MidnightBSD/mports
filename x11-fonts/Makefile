@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/Makefile,v 1.11 2011/05/08 01:26:16 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/Makefile,v 1.12 2011/05/28 05:10:53 laffer1 Exp $
 #
 
     COMMENT = X11 fonts and font utilities
@@ -56,6 +56,7 @@ SUBDIR += libXfontcache
 SUBDIR += libXft
 SUBDIR += liberation-fonts-ttf
 SUBDIR += libfontenc
+SUBDIR += linux-f10-fontconfig
 SUBDIR += linux-fontconfig
 SUBDIR += mkfontdir
 SUBDIR += mkfontscale
