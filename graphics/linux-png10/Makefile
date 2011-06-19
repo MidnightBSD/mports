@@ -1,13 +1,17 @@
-# $MidnightBSD: mports/graphics/linux-png10/Makefile,v 1.1 2006/09/23 22:21:45 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux-png10/Makefile,v 1.2 2009/03/21 16:02:20 laffer1 Exp $
 
 PORTNAME=	png
 PORTVERSION=	1.0.18
+PORTREVISION=	1
 CATEGORIES=	graphics linux
+MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 DISTNAME=	libpng10-${PORTVERSION}-2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RPM of the PNG lib (old 1.0 version)
 LICENSE=	other
+
+CONFLICTS=	linux-f10-png10-[0-9]*
 
 LATEST_LINK=	linux-png10
 
