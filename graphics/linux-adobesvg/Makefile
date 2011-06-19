@@ -1,14 +1,9 @@
-# New ports collection makefile for:	linux-adobesvg
-# Date created:				18 Feb 2006
-# Whom:					Jean-Yves Lefort <jylefort@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/linux-adobesvg/Makefile,v 1.2 2007/03/25 03:07:34 ctriv Exp $
+# $MidnightBSD: mports/graphics/linux-adobesvg/Makefile,v 1.3 2009/03/04 00:28:53 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-adobesvg/Makefile,v 1.1 2006/02/18 09:50:32 jylefort Exp $
-#
 
 PORTNAME=	linux-adobesvg
 DISTVERSION=	3.01x88
-PORTREVISION=   1
+PORTREVISION=   2
 CATEGORIES=	graphics www linux
 MASTER_SITES=	http://download.adobe.com/pub/adobe/magic/svgviewer/linux/3.x/${DISTVERSION}/en/
 DISTNAME=	adobesvg-${DISTVERSION:C|x.*$||}
@@ -19,7 +14,7 @@ COMMENT=	The Adobe SVG browser plugin (Linux version)
 LICENSE=	restricted
 
 ONLY_FOR_ARCHS=	i386 amd64
-USE_XLIB=	yes
+USE_LINUX_APPS=	xorglibs
 USE_LINUX=	yes
 
 RESTRICTED=	"Redistribution prohibited"
