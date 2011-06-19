@@ -1,19 +1,17 @@
-# New ports collection makefile for:	linux-expat
-# Date created:				2003-07-05
-# Whom:					trevor
-#
-# $MidnightBSD: mports/textproc/linux-expat/Makefile,v 1.3 2007/10/17 14:00:03 laffer1 Exp $
+# $MidnightBSD: mports/textproc/linux-expat/Makefile,v 1.4 2009/06/12 19:36:24 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-expat/Makefile,v 1.14 2006/07/09 21:01:45 bsam Exp $
-#
 
 PORTNAME=	expat
 PORTVERSION=	1.95.8
 CATEGORIES=	textproc linux
+MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux/i386 binary port of Expat XML-parsing library
 LICENSE=	other
+
+CONFLICTS=	linux-f10-expat-[0-9]*
 
 BRANDELF_DIRS=	usr/bin
 
