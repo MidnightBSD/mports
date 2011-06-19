@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.109 2011/06/11 13:00:26 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.110 2011/06/11 13:05:28 laffer1 Exp $
 #
 
     COMMENT = Ports related to the World Wide Web
@@ -39,6 +39,7 @@ SUBDIR += libwww
 SUBDIR += lighttpd
 SUBDIR += links
 SUBDIR += links1
+SUBDIR += linux-f10-flashplugin10
 SUBDIR += linux-firefox
 SUBDIR += linux-firefox-devel
 SUBDIR += linux-flashplugin7
