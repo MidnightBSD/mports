@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.4 2010/05/05 20:36:50 vganji Exp $
+# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	plotutils
-PORTVERSION=	2.5.1
-PORTREVISION=	1
+PORTVERSION=	2.6
 CATEGORIES=	graphics
 MASTER_SITES=	GNU
 
@@ -22,7 +21,7 @@ USE_LDCONFIG=	yes
 MAN1=		ode.1 plot.1 plotfont.1 spline.1 tek2plot.1
 INFO=		libxmi plotutils
 
-CPPFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
