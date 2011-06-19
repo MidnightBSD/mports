@@ -1,13 +1,8 @@
-# New ports collection makefile for:    gnustep-base
-# Date created:         17 April 2001
-# Whom:                 Thomas Gellekum <tg@FreeBSD.org>
-#
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.10 2010/05/08 02:07:53 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.11 2011/02/02 21:06:52 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
-#
 
 PORTNAME=	gnustep-base
-PORTVERSION=	1.16.3
+PORTVERSION=	1.19.3
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
