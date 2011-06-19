@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/linux-f10-openssl/Makefile,v 1.1 2011/06/19 19:26:22 laffer1 Exp $
 # $FreeBSD: ports/security/linux-f10-openssl/Makefile,v 1.9 2011/03/03 09:26:42 ehaupt Exp $
 
 PORTNAME=	openssl
@@ -21,6 +21,5 @@ BRANDELF_FILES=	usr/bin/openssl
 USE_LDCONFIG=	yes
 
 PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
-DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 .include <bsd.port.mk>

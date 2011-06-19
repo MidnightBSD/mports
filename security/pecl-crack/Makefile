@@ -2,11 +2,12 @@
 # Date created:			  12 Oct 2007
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/pecl-crack/Makefile,v 1.1 2007/10/12 17:10:05 laffer1 Exp $
 #
 
 PORTNAME=	crack
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	security www
 MASTER_SITES=	http://www.osuweb.net/~ahaning/
 PKGNAMEPREFIX=	pecl-
