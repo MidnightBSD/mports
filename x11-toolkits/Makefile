@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.58 2011/05/15 21:47:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.59 2011/05/28 05:10:55 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -34,6 +34,7 @@ SUBDIR += libgnomeuimm
 SUBDIR += libsexy
 SUBDIR += libwnck
 SUBDIR += libxfce4gui
+SUBDIR += linux-f10-blt
 SUBDIR += linux-gtk
 SUBDIR += linux-gtk2
 SUBDIR += linux-pango
