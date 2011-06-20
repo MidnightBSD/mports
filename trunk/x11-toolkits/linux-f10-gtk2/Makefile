@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/linux-f10-gtk2/Makefile,v 1.1 2011/06/20 00:27:35 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-f10-gtk2/Makefile,v 1.35 2011/03/07 15:08:24 ehaupt Exp $
 
 PORTNAME=	gtk2
@@ -44,7 +44,7 @@ SRC_DISTFILES=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}.src.rpm \
 		jasper-1.900.1-8.fc9.src.rpm
 
 post-install:
-	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
-	@chroot ${PREFIX} /usr/bin/gdk-pixbuf-query-loaders-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+#	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+#	@chroot ${PREFIX} /usr/bin/gdk-pixbuf-query-loaders-32 > ${PREFIX}/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
 
 .include <bsd.port.mk>
