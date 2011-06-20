@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/linux-f10-pango/Makefile,v 1.1 2011/06/20 00:29:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/linux-f10-pango/Makefile,v 1.2 2011/06/20 00:30:14 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-f10-pango/Makefile,v 1.25 2011/03/07 15:08:24 ehaupt Exp $
 
 PORTNAME=	pango
@@ -28,6 +28,6 @@ USE_LDCONFIG=	yes
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr
 
 post-install:
-	@${PREFIX}/usr/bin/pango-querymodules-32 > ${PREFIX}/etc/pango/i686-pc-linux-gnu/pango.modules
+#	@${PREFIX}/usr/bin/pango-querymodules-32 > ${PREFIX}/etc/pango/i686-pc-linux-gnu/pango.modules
 
 .include <bsd.port.mk>
