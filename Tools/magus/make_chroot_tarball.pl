@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.11 2010/01/01 02:23:34 laffer1 Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.12 2011/06/20 22:51:11 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -115,8 +115,8 @@ run(qq(/usr/bin/tar -cpf $ballname @files));
 mkdir("$tmpdir/$_") for @tempdirs;
 
 run(qq(tar -C $tmpdir -rpf $ballname @tempdirs));
-run(qq(bzip2 $ballname));
-run(qq(/bin/ls -hl $ballname.bz2));
+run(qq(xz $ballname));
+run(qq(/bin/ls -hl $ballname.xz));
 
 
 sub run {
