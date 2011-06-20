@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.34 2011/05/28 05:10:32 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.35 2011/06/19 15:50:34 laffer1 Exp $
 
 COMMENT = Mathematics
 
@@ -31,6 +31,7 @@ SUBDIR += p5-Graph
 SUBDIR += p5-Math-Base36
 SUBDIR += p5-Math-BigInt
 SUBDIR += p5-Math-BigRat
+SUBDIR += p5-Math-Round
 SUBDIR += p5-Set-IntSpan
 SUBDIR += p5-bignum
 SUBDIR += php5-bcmath
