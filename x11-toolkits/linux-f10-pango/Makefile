@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-toolkits/linux-f10-pango/Makefile,v 1.1 2011/06/20 00:29:31 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/linux-f10-pango/Makefile,v 1.25 2011/03/07 15:08:24 ehaupt Exp $
 
 PORTNAME=	pango
@@ -12,7 +12,7 @@ PKGNAMEPREFIX=	linux-f10-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The pango library (Linux Fedora 10)
-LICENSE=	gpl2
+LICENSE=	lgpl
 
 CONFLICTS=	linux-pango-[0-9]*
 
