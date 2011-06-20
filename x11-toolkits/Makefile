@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.60 2011/06/20 00:13:23 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.61 2011/06/20 00:27:35 laffer1 Exp $
 #
 
     COMMENT = X11 toolkits
@@ -38,6 +38,7 @@ SUBDIR += linux-f10-blt
 SUBDIR += linux-f10-gtk
 SUBDIR += linux-f10-gtk2
 SUBDIR += linux-f10-openmotif
+SUBDIR += linux-f10-pango
 SUBDIR += linux-gtk
 SUBDIR += linux-gtk2
 SUBDIR += linux-pango
