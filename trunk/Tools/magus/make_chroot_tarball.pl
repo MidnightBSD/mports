@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.10 2009/04/14 23:50:57 laffer1 Exp $
+# $MidnightBSD: mports/Tools/magus/make_chroot_tarball.pl,v 1.11 2010/01/01 02:23:34 laffer1 Exp $
 #
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -43,6 +43,7 @@ my $tmpdir = tempdir('/tmp/magusXXXXXXXX', CLEANUP => 1);
 # list of files and dirs that are passed to tar normally.
 my @files = qw(
   /.cshrc
+  /.mkshrc
   /.profile
   /bin
   /boot/beastie.4th
@@ -74,6 +75,7 @@ my @files = qw(
   /root/.cshrc
   /root/.k5login
   /root/.login
+  /root/.mkshrc
   /root/.profile
   /sbin
   /usr/bin
