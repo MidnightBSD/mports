@@ -21,7 +21,7 @@
  lib: $(ALLEGRO_LIB_TARGETS)
 +	@for l in alleg alld allp; do \
 +	  if test -f $(LIBDIR)/lib$${l}.so.$(shared_version); then \
-+	    ln -sf lib$${l}.so.$(shared_version) $(LIBDIR)/lib$${l}.so; \
++	    ln -sf lib$${l}.so.$(shared_version) $(DESTDIR)$(LIBDIR)/lib$${l}.so; \
 +	  fi; \
 +	done
  
@@ -35,8 +35,8 @@
 -	    echo Installing $(LIBDIR)/lib$${l}-$(shared_version).so to $(DESTDIR)$(libdir); \
 -	    $(INSTALL_PROGRAM) $(LIBDIR)/lib$${l}-$(shared_version).so $(DESTDIR)$(libdir)/; \
 +	  if test -f $(LIBDIR)/lib$${l}.so.$(shared_version); then \
-+	    echo Installing $(LIBDIR)/lib$${l}.so.$(shared_version) to $(libdir); \
-+	    $(INSTALL_PROGRAM) $(LIBDIR)/lib$${l}.so.$(shared_version) $(libdir)/; \
++	    echo Installing $(LIBDIR)/lib$${l}.so.$(shared_version) to $(DESTDIR)$(libdir); \
++	    $(INSTALL_PROGRAM) $(LIBDIR)/lib$${l}.so.$(shared_version) $(DESTDIR)$(libdir)/; \
  	    $(INSTALL_DATA) $(LIBDIR)/lib$${l}_unsharable.a $(DESTDIR)$(libdir)/; \
  	  fi; \
  	done
