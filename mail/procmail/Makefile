@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/mail/procmail/Makefile,v 1.3 2009/06/22 17:55:41 laffer1 Exp $
+# $MidnightBSD: mports/mail/procmail/Makefile,v 1.4 2009/09/24 02:09:11 laffer1 Exp $
 
 PORTNAME=	procmail
 PORTVERSION=	3.22
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.procmail.org/pub/procmail/ \
 		ftp://ftp.psg.com/pub/unix/procmail/ \
