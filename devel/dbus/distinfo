@@ -1,4 +1,3 @@
-MD5 (dbus-1.2.4.6permissive.tar.gz) = 1a158fe326b078d1377a977121888496
-SHA256 (dbus-1.2.4.6permissive.tar.gz) = a2da2c9da52be6de6c6f1e1c3c3f3a960992b0c82d47661606c11d7aef76f7b1
-RMD160 (dbus-1.2.4.6permissive.tar.gz) = 05d1c5fae8ae763a9beb8c7d6f390f3ff54e9c30
-SIZE (dbus-1.2.4.6permissive.tar.gz) = 1575270
+SHA256 (dbus-1.4.6.tar.gz) = 753e1e64df2de518ec93bdee9a813a85b3c147a363615412818c3c095cb8a567
+RMD160 (dbus-1.4.6.tar.gz) = c751630654225b729512d7a996e5ad70dbfc59fc
+SIZE (dbus-1.4.6.tar.gz) = 1835214
