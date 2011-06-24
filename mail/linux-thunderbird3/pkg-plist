@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $MidnightBSD: mports/mail/linux-thunderbird3/pkg-plist,v 1.1 2011/06/24 00:51:12 laffer1 Exp $
 bin/%%APP_NAME%%
 lib/%%APP_NAME%%/dictionaries/en-US.dic
 lib/%%APP_NAME%%/dictionaries/en-US.aff
@@ -429,6 +429,6 @@ share/applications/%%APP_NAME%%.desktop
 @dirrm lib/%%APP_NAME%%/modules
 @dirrm lib/%%APP_NAME%%/icons
 @dirrm lib/%%APP_NAME%%
-@dirrm share/applications
+@dirrmtry share/applications
 @cwd /compat/linux
 @cwd %%TARGETDIR%%
