@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.181 2011/06/11 21:05:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.182 2011/06/18 02:00:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -209,7 +209,7 @@ LDCONFIG32_DIR=	libdata/ldconfig32
 .if defined(LATEST_LINK)
 UNIQUENAME?=	${LATEST_LINK}
 .else
-UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}
+UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 .endif
 
 .include "${MPORTCOMPONENTS}/options.mk"
