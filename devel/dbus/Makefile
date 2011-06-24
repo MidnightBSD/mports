@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.9 2009/09/20 01:16:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.10 2011/02/02 20:17:32 laffer1 Exp $
 
 PORTNAME=	dbus
-PORTVERSION?=	1.2.4.6
+PORTVERSION?=	1.4.6
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
-DISTNAME=	dbus-${PORTVERSION}permissive
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A message bus system for inter-application communication
@@ -13,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
-USE_GNOME?=	gnomehack gnometarget libxml2 ltverhack
+USE_GNOME?=	gnomehack libxml2 ltverhack
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
@@ -49,14 +48,14 @@ CONFIGURE_ARGS+=--without-x
 .include <bsd.port.pre.mk>
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${LOCALBASE}|' \
-		${WRKSRC}/bus/system.conf.in
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
-	    	s|/usr/X11R6|${LOCALBASE}|g' \
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/dbus/dbus-sysdeps-unix.c
 	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
 		${WRKSRC}/dbus/Makefile.in \
 		${WRKSRC}/tools/Makefile.in
+	@${REINPLACE_CMD} -e 's|THREAD_LIBS -lrt|THREAD_LIBS|g ; \
+		s|dummy man2html|dummy man2html_disable|g' \
+			${WRKSRC}/configure
 
 .if !defined(DBUS_SLAVE)
 post-install:
