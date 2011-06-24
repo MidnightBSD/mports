@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.22 2010/03/18 00:43:46 laffer1 Exp $
+# $MidnightBSD: mports/mail/linux-thunderbird3/Makefile,v 1.1 2011/06/24 00:51:12 laffer1 Exp $
 
 PORTNAME=	thunderbird
 PORTVERSION=	3.0.11
@@ -15,6 +15,7 @@ CONFLICTS=	linux-thunderbird-2*
 USE_BZIP2=	yes
 USE_GCPIO=	yes
 
+LINUX_DIST_VER= 10
 USE_LINUX_APPS= dbusglib dbuslibs alsalib
 
 .include "${.CURDIR}/../../www/linux-seamonkey/Makefile.common"
