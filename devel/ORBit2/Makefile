@@ -1,14 +1,10 @@
-# New ports collection makefile for:   orbit2
-# Date Created:			16 Aug 1998
-# Whom:				Chia-liang Kao <clkao@CirX.ORG>
-#
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.9 2010/02/28 15:58:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.10 2011/02/02 20:17:32 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
-PORTVERSION=	2.14.17
+PORTVERSION=	2.14.19
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -23,6 +19,7 @@ USE_BZIP2=	yes
 .if !defined(REFERENCE_PORT)
 
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack libidl ltverhack referencehack
