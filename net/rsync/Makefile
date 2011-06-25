@@ -1,17 +1,14 @@
 # Ports collection makefile for:  rsync
-# Date created:			  Sat Aug 3, 1996
-# Whom:				  David O'Brien (obrien@cs.ucdavis.edu)
 #
-# $MidnightBSD: mports/net/rsync/Makefile,v 1.10 2009/01/12 22:38:05 laffer1 Exp $
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.11 2009/09/26 17:07:00 laffer1 Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.131 2008/04/08 19:24:06 ehaupt Exp $
 #
 
 PORTNAME=	rsync
-PORTVERSION=	3.0.6
+PORTVERSION=	3.0.8
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
-		ftp://sunsite.auc.dk/pub/unix/%SUBDIR%/  \
 		ftp://ftp.sunet.se/pub/unix/admin/%SUBDIR%/  \
 		ftp://ftp.fu-berlin.de/pub/unix/network/%SUBDIR%/ \
 		http://www.mirrorservice.org/sites/rsync.samba.org/ \
