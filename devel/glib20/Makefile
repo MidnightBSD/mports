@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.17 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.18 2011/05/28 21:08:26 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
 PORTVERSION=	2.26.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
@@ -68,6 +68,9 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/glib/gutils.c
+	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
+		${WRKSRC}/gio/gdbusaddress.c ${WRKSRC}/gio/gdbusprivate.c \
+		${WRKSRC}/po/*.po
 
 .include <bsd.port.post.mk>
 
