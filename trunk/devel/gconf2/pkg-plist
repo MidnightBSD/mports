@@ -1,8 +1,13 @@
 bin/gconf-merge-tree
 bin/gconftool-2
+bin/gsettings-data-convert
+bin/gsettings-schema-convert
+@exec mkdir etc/gconf/gconf.xml.mandatory
+@exec mkdir etc/gconf/gconf.xml.system
 etc/dbus-1/system.d/org.gnome.GConf.Defaults.conf
 %%LDAP%%etc/gconf/2/evoldap.conf
 etc/gconf/2/path
+etc/xdg/autostart/gsettings-data-convert.desktop
 include/gconf/2/gconf/gconf-changeset.h
 include/gconf/2/gconf/gconf-client.h
 include/gconf/2/gconf/gconf-engine.h
@@ -22,6 +27,10 @@ lib/GConf/2/libgconfbackend-oldxml.so
 lib/GConf/2/libgconfbackend-xml.a
 lib/GConf/2/libgconfbackend-xml.la
 lib/GConf/2/libgconfbackend-xml.so
+lib/girepository-1.0/GConf-2.0.typelib
+lib/gio/modules/libgsettingsgconfbackend.a
+lib/gio/modules/libgsettingsgconfbackend.la
+lib/gio/modules/libgsettingsgconfbackend.so
 lib/libgconf-2.a
 lib/libgconf-2.la
 lib/libgconf-2.so
@@ -31,12 +40,13 @@ libexec/gconf-sanity-check-2
 libexec/gconfd-2
 %%LDAP%%share/GConf/schema/evoldap.schema
 share/aclocal/gconf-2.m4
-share/PolicyKit/policy/org.gnome.gconf.defaults.policy
 share/dbus-1/system-services/org.gnome.GConf.Defaults.service
 share/dbus-1/services/org.gnome.GConf.service
+share/gir-1.0/GConf-2.0.gir
 share/locale/am/LC_MESSAGES/GConf2.mo
 share/locale/ar/LC_MESSAGES/GConf2.mo
 share/locale/as/LC_MESSAGES/GConf2.mo
+share/locale/ast/LC_MESSAGES/GConf2.mo
 share/locale/az/LC_MESSAGES/GConf2.mo
 share/locale/be/LC_MESSAGES/GConf2.mo
 share/locale/bg/LC_MESSAGES/GConf2.mo
@@ -44,12 +54,14 @@ share/locale/bn/LC_MESSAGES/GConf2.mo
 share/locale/bn_IN/LC_MESSAGES/GConf2.mo
 share/locale/bs/LC_MESSAGES/GConf2.mo
 share/locale/ca/LC_MESSAGES/GConf2.mo
+share/locale/ca@valencia/LC_MESSAGES/GConf2.mo
 share/locale/cs/LC_MESSAGES/GConf2.mo
 share/locale/cy/LC_MESSAGES/GConf2.mo
 share/locale/da/LC_MESSAGES/GConf2.mo
 share/locale/de/LC_MESSAGES/GConf2.mo
 share/locale/dz/LC_MESSAGES/GConf2.mo
 share/locale/el/LC_MESSAGES/GConf2.mo
+share/locale/en@shaw/LC_MESSAGES/GConf2.mo
 share/locale/en_CA/LC_MESSAGES/GConf2.mo
 share/locale/en_GB/LC_MESSAGES/GConf2.mo
 share/locale/es/LC_MESSAGES/GConf2.mo
@@ -65,6 +77,7 @@ share/locale/he/LC_MESSAGES/GConf2.mo
 share/locale/hi/LC_MESSAGES/GConf2.mo
 share/locale/hr/LC_MESSAGES/GConf2.mo
 share/locale/hu/LC_MESSAGES/GConf2.mo
+share/locale/hy/LC_MESSAGES/GConf2.mo
 share/locale/id/LC_MESSAGES/GConf2.mo
 share/locale/is/LC_MESSAGES/GConf2.mo
 share/locale/it/LC_MESSAGES/GConf2.mo
@@ -113,6 +126,7 @@ share/locale/yi/LC_MESSAGES/GConf2.mo
 share/locale/zh_CN/LC_MESSAGES/GConf2.mo
 share/locale/zh_HK/LC_MESSAGES/GConf2.mo
 share/locale/zh_TW/LC_MESSAGES/GConf2.mo
+share/polkit-1/actions/org.gnome.gconf.defaults.policy
 share/sgml/gconf/gconf-1.0.dtd
 @dirrm share/sgml/gconf
 %%LDAP%%@dirrm share/GConf/schema
@@ -121,6 +135,8 @@ share/sgml/gconf/gconf-1.0.dtd
 @dirrm include/gconf/2/gconf
 @dirrm include/gconf/2
 @dirrm etc/gconf/2
+@dirrm etc/gconf/gconf.xml.mandatory
+@dirrm etc/gconf/gconf.xml.system
 @dirrmtry share/locale/zh_HK/LC_MESSAGES
 @dirrmtry share/locale/zh_HK
 @dirrmtry share/locale/yi/LC_MESSAGES
@@ -145,12 +161,19 @@ share/sgml/gconf/gconf-1.0.dtd
 @dirrmtry share/locale/mai
 @dirrmtry share/locale/ku/LC_MESSAGES
 @dirrmtry share/locale/ku
+@dirrmtry share/locale/hy/LC_MESSAGES
+@dirrmtry share/locale/hy
+@dirrmtry share/locale/en@shaw/LC_MESSAGES
+@dirrmtry share/locale/en@shaw
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
+@dirrmtry share/locale/ca@valencia/LC_MESSAGES
+@dirrmtry share/locale/ca@valencia
 @dirrmtry share/locale/bn_IN/LC_MESSAGES
 @dirrmtry share/locale/bn_IN
+@dirrmtry share/locale/ast/LC_MESSAGES
+@dirrmtry share/locale/ast
 @dirrmtry share/locale/as/LC_MESSAGES
 @dirrmtry share/locale/as
-
-
-
+@exec %D/bin/gio-querymodules %D/lib/gio/modules 2>/dev/null || /usr/bin/true
+@unexec %D/bin/gio-querymodules %D/lib/gio/modules 2>/dev/null || /usr/bin/true
