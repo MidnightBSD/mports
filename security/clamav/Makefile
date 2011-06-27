@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.22 2010/12/11 19:28:47 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.23 2011/03/04 15:09:00 laffer1 Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.97
+PORTVERSION=	0.97.1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -58,7 +58,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib \
 # force to use -lthr until it's not fixed.
 PTHREAD_LIBS=	-lthr
 
-MAN1=		clamconf.1 \
+MAN1=		clambc.1 \
+		clamconf.1 \
 		clamscan.1 \
 		freshclam.1 \
 		sigtool.1 \
