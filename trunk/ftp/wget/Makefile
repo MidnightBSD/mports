@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.7 2010/07/19 08:57:55 crash Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.8 2010/07/31 00:28:03 laffer1 Exp $
 
 PORTNAME=	wget
 DISTVERSION=	1.12
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
@@ -20,7 +20,7 @@ CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
 MAKE_JOBS_SAFE=	yes
 
-OPTIONS=	GNUTLS "Support for SSL via GnuTLS" On \
+OPTIONS=	GNUTLS "Support for SSL via GnuTLS" Off \
 		IPV6 "Support for IPv6" On \
 		NLS "Native Language Support with gettext" On \
 		OPENSSL "Support for SSL via OpenSSL" On
@@ -29,8 +29,7 @@ OPTIONS=	GNUTLS "Support for SSL via GnuTLS" On \
 
 .if !defined(WITHOUT_OPENSSL)
 .if !defined(WITHOUT_GNUTLS)
-#IGNORE=	GNUTLS and OPENSSL are mutually exclusive, enable at 
-#most one of them
+IGNORE=	GNUTLS and OPENSSL are mutually exclusive, enable at most one of them
 .endif
 EXTENSIONS+=	openssl
 CONFIGURE_ARGS+=--with-ssl
