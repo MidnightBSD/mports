@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.16 2011/07/03 03:02:37 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.82 2010/12/04 07:31:19 ade Exp $
 
 PORTNAME=	libsoup
@@ -60,14 +60,14 @@ post-patch:
 
 .if defined(SOUP_SLAVE)
 do-build:
-	cd ${WRKSRC}/libsoup && ${GMAKE} libsoup-gnome-2.4.la
+	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} libsoup-gnome-2.4.la
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.a ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.la ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
-	cd ${WRKSRC}/libsoup && ${GMAKE} install-libsoupgnomeincludeHEADERS
+	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} install-libsoupgnomeincludeHEADERS
 .endif
 
 post-install:
