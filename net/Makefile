@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/net/Makefile,v 1.112 2011/05/28 18:21:43 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.113 2011/06/19 19:11:53 laffer1 Exp $
 
-    COMMENT = Networking tools
+COMMENT = Networking tools
 
 SUBDIR += 44bsd-rdist
 SUBDIR += GeoIP
@@ -44,6 +44,7 @@ SUBDIR += libpcap
 SUBDIR += libpcapnav
 SUBDIR += libproxy
 SUBDIR += libvncserver
+SUBDIR += liferea
 SUBDIR += linc
 SUBDIR += linux-f10-openldap
 SUBDIR += linux-nx-client
