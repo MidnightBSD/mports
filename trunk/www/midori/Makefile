@@ -1,32 +1,83 @@
-#
-# $MidnightBSD: mports/www/midori/Makefile,v 1.10 2010/01/23 21:57:20 laffer1 Exp $
-#
+# $MidnightBSD: mports/www/midori/Makefile,v 1.11 2011/05/15 22:07:22 laffer1 Exp $
 
 PORTNAME=	midori
-PORTVERSION=	0.1.7
-PORTREVISION=	3
-CATEGORIES=	www
-MASTER_SITES=	http://goodies.xfce.org/releases/midori/
+PORTVERSION=	0.3.3
+CATEGORIES=	www xfce
+MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=	src/apps/${PORTNAME}/${PORTVERSION:R}
+DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	intltool-merge:${PORTSDIR}/textproc/intltool
-LIB_DEPENDS=	webkit-1.0.9:${PORTSDIR}/www/webkit-gtk2 \
-		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		idn.17:${PORTSDIR}/dns/libidn
+LIB_DEPENDS=	webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2 \
+		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
+		notify.1:${PORTSDIR}/devel/libnotify
+BUILD_DEPENDS=	rsvg-convert:${PORTSDIR}/graphics/librsvg2 \
+		valac:${PORTSDIR}/lang/vala
+RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/WebKit/webkit -I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS+=--disable-libidn \
+		--enable-libnotify \
+		--enable-addons \
+		--enable-docs \
+		--jobs=${MAKE_JOBS_NUMBER}
 
-CONFIGURE_ARGS=	--enable-sqlite \
-		--enable-libidn
-
+MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
-USE_GMAKE=	yes
+USE_PYTHON_BUILD=	yes
 USE_BZIP2=	yes
-USE_PYTHON=	yes
-USE_SQLITE=	yes
+USE_GNOME=	glib20 gtk20 intltool libxml2 pkgconfig desktopfileutils
+USE_XORG=	xscrnsaver
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+.endif
 
-.include <bsd.port.mk>
+PLIST_SUB=	VERSION="${PORTVERSION:R}"
+
+OPTIONS=	NLS "Enable Native Language support" on \
+		APIDOCS "Build api documentation" off \
+		UNIQUE "Enable single instance support" off
+
+.include <bsd.port.pre.mk>
+
+# WAF needs that
+CONFIGURE_ENV+=	CC="${CC}"
+
+.if !defined(WITHOUT_NLS)
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if defined(WITH_APIDOCS)
+BUILD_DEPENDS+=	gtkdoc-scan:${PORTSDIR}/textproc/gtk-doc
+CONFIGURE_ARGS+=--enable-apidocs
+PLIST_SUB+=	APIDOCS=""
+.else
+CONFIGURE_ARGS+=--disable-apidocs
+PLIST_SUB+=	APIDOCS="@comment "
+.endif
+
+.if defined(WITH_UNIQUE)
+LIB_DEPENDS+=	unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
+CONFIGURE_ARGS+=--enable-unique
+.else
+CONFIGURE_ARGS+=--disable-unique
+.endif
+
+post-install:
+.if defined(WITH_APIDOCS)
+	${MKDIR} ${DOCSDIR}/api/katze/html
+	${MKDIR} ${DOCSDIR}/api/midori/html
+	(cd ${WRKSRC}/_build_/docs/api/katze/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/katze/html)
+	(cd ${WRKSRC}/_build_/docs/api/midori/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/midori/html)
+.endif
+
+.include <bsd.port.post.mk>
