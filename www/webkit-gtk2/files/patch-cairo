@@ -1,0 +1,11 @@
+--- WebCore/platform/graphics/BitmapImage.cpp.orig	2009-03-04 03:34:16.000000000 +0800
++++ WebCore/platform/graphics/BitmapImage.cpp	2009-05-19 15:09:51.000000000 +0800
+@@ -202,7 +202,7 @@ bool BitmapImage::isSizeAvailable()
+ NativeImagePtr BitmapImage::frameAtIndex(size_t index)
+ {
+     if (index >= frameCount())
+-        return 0;
++        return NULL;
+ 
+     if (index >= m_frames.size() || !m_frames[index].m_frame)
+         cacheFrame(index);
