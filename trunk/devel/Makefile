@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.371 2011/06/18 15:12:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.372 2011/07/03 17:42:54 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -377,6 +377,7 @@ SUBDIR += readline
 SUBDIR += ruby-gnustep
 SUBDIR += scons
 SUBDIR += sdl12
+SUBDIR += seed
 SUBDIR += silc-toolkit
 SUBDIR += splint
 SUBDIR += st
