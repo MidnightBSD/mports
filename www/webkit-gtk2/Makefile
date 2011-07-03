@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/webkit-gtk2/Makefile,v 1.16 2010/05/31 20:29:41 laffer1 Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/www/webkit-gtk2/Makefile,v 1.40 2011/06/09 10:11:24 kwm Exp $
 
 PORTNAME=	webkit
-PORTVERSION=	1.1.9
-PORTREVISION=	0
+PORTVERSION=	1.2.7
 CATEGORIES=	www
 MASTER_SITES=	http://webkitgtk.org/
 PKGNAMESUFFIX=	-gtk2
@@ -11,62 +11,86 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opensource browser engine
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	flex>=2.5.33:${PORTSDIR}/textproc/flex \
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
 		g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-		
-LIB_DEPENDS=	icutu.38:${PORTSDIR}/devel/icu \
+LIB_DEPENDS=	enchant.1:${PORTSDIR}/textproc/enchant \
 		curl.6:${PORTSDIR}/ftp/curl \
+		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 		soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		enchant.1:${PORTSDIR}/textproc/enchant
+		icutu.46:${PORTSDIR}/devel/icu
 
 USE_GETTEXT=	yes
-USE_SQLITE=	yes
+WANT_GSTREAMER=	yes
+MAKE_JOBS_UNSAFE=	yes
+USE_XORG=	xt
 USE_BISON=	build
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 libxslt
-USE_XORG=	xt
+USE_AUTOTOOLS=	libtool
+USE_GNOME=	gtk20 libxslt ltverhack:13
 USE_PERL5=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	autoconf automake libtool autoreconf aclocal
-USE_GSTREAMER=	yes
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
-		FLEX="${LOCALBASE}/bin/flex" 
-		
-CONFIGURE_ARGS=	--with-webkit-target=x11 \
-		--enable-icon-database \
+		ac_cv_path_FLEX="${LOCALBASE}/bin/flex" \
+		ac_cv_path_DOLT_BASH=""
+CONFIGURE_ARGS=	--enable-icon-database \
 		--enable-svg \
 		--enable-svg-fonts \
-		--with-unicode-backend=icu \
-		--enable-fast-malloc \
-		--enable-wml \
-		--enable-channel-messaging \
-		--disable-video \
-		--enable-jit \
-		--enable-static \
-		--disable-debug \
 		--enable-introspection
-
-DATADIR=	${PREFIX}/share/webkit-1.0
-BROWSER_PLUGINS_DIR?= ${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk2
-		
 MAKEFILE=	GNUmakefile
 
+BROWSER_PLUGINS_DIR?=	${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk2
+#_BROWSER_PLUGINS_DIR=	${BROWSER_PLUGINS_DIR:S|^/|"|:S|/|", "|g}",
+
+OPTIONS=	VIDEO "Enable video support" on \
+		DEBUG "Build with debug support" off \
+		STATIC "Enable building static library" off
+
 .include <bsd.port.pre.mk>
+
+.if defined(WITH_VIDEO)
+USE_GSTREAMER+=	yes
+CONFIGURE_ARGS+=--enable-video
+.else
+CONFIGURE_ARGS+=--disable-video
+.endif
+
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=--enable-debug
+.else
+CONFIGURE_ARGS+=--disable-debug
+.endif
+
+.if defined(WITH_STATIC)
+CONFIGURE_ARGS+=--enable-static
+PLIST_SUB+=	STATIC=""
+.else
+PLIST_SUB+=	STATIC="@comment "
+.endif
+
+.if ${OSVERSION} < 3000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-JavaScriptCore_yarr_RegexJIT.h \
+		${FILESDIR}/extra-patch-JavaScriptCore_assembler_MacroAssemblerCodeRef.h
+BROKEN=		does not compile on 0.3
+.endif
+
+.if ${PERL_LEVEL} >= 501400
+BUILD_DEPENDS+= p5-Switch>0:${PORTSDIR}/lang/p5-Switch
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%BROWSER_PLUGINS_DIR%%|${BROWSER_PLUGINS_DIR}|' \
 		${WRKSRC}/WebCore/plugins/PluginDatabase.cpp
-	@${FIND} ${WRKSRC} -name GNUmakefile.am | ${XARGS} ${REINPLACE_CMD} -e \
+	@${FIND} ${WRKSRC} -name GNUmakefile.* | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g'
+.if !defined(WITH_STATIC)
+	@${REINPLACE_CMD} -e 's|^build_old_libs=yes|build_old_libs=no|' \
+		${WRKDIR}/gnome-libtool
+.endif
 	@${REINPLACE_CMD} -e 's|/usr/bin/gcc|${CC}|' \
 		${WRKSRC}/WebCore/dom/make_names.pl \
 		${WRKSRC}/WebCore/css/make-css-file-arrays.pl \
 		${WRKSRC}/WebCore/bindings/scripts/IDLParser.pm
-
-post-install:
-# Install compat pkg-config file so we don't have to patch ports
-	${CP} ${PREFIX}/libdata/pkgconfig/webkit-1.0.pc \
-		${PREFIX}/libdata/pkgconfig/WebKitGtk.pc
 
 .include <bsd.port.post.mk>
