@@ -2,15 +2,15 @@
 # Date created:		May 20 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/jupp/Makefile,v 1.3 2009/10/11 15:10:41 laffer1 Exp $
+# $MidnightBSD: mports/editors/jupp/Makefile,v 1.4 2010/04/26 13:07:29 laffer1 Exp $
 #
 
 PORTNAME=	jupp
-PORTVERSION=	3.1.14
+PORTVERSION=	3.1.15
 CATEGORIES=	editors
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/jupp/ \
 		http://pub.allbsd.org/MirOS/dist/jupp/
-DISTFILES=	joe-3.1jupp14.cpio.gz
+DISTFILES=	joe-3.1jupp15.cpio.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The editor which sucks less.
