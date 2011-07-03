@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.370 2011/06/18 15:07:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.371 2011/06/18 15:12:04 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -82,6 +82,7 @@ SUBDIR += glib20
 SUBDIR += glib20-reference
 SUBDIR += glibmm
 SUBDIR += gmake
+SUBDIR += gnome-js-common
 SUBDIR += gnome-vfs
 SUBDIR += gnustep
 SUBDIR += gnustep-make
@@ -143,6 +144,7 @@ SUBDIR += libsigsegv
 SUBDIR += libslang
 SUBDIR += libslang2
 SUBDIR += libsoup
+SUBDIR += libsoup-gnome
 SUBDIR += libsoup22
 SUBDIR += libthai
 SUBDIR += libticalcs
