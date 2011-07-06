@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/bind97/Makefile,v 1.3 2011/02/23 21:05:16 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind97/Makefile,v 1.4 2011/05/28 18:06:49 laffer1 Exp $
 
 PORTNAME=	bind97
-PORTVERSION=	9.7.3.1
+PORTVERSION=	9.7.3.3
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -15,7 +15,7 @@ COMMENT=	The BIND DNS suite with updated DNSSEC and threads
 LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
-ISCVERSION=	9.7.3-P1
+ISCVERSION=	9.7.3-P3
 
 MAKE_JOBS_UNSAFE=	yes
 
