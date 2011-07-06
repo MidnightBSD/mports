@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/dns/bind98/Makefile,v 1.6 2011/05/09 13:17:00 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind98/Makefile,v 1.7 2011/05/28 18:07:38 laffer1 Exp $
 # $FreeBSD: ports/dns/bind98/Makefile,v 1.3 2010/12/18 09:50:45 dougb Exp $
 
 PORTNAME=	bind98
-PORTVERSION=	9.8.0.2
+PORTVERSION=	9.8.0.4
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC} \
 		http://dougbarton.us/Downloads/%SUBDIR%/
@@ -16,7 +16,7 @@ COMMENT=	The BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	mit
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
-ISCVERSION=	9.8.0-P2
+ISCVERSION=	9.8.0-P4
 
 MAKE_JOBS_UNSAFE=	yes
 
