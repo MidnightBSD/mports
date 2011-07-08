@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser35/Makefile,v 1.15 2011/06/12 01:53:26 laffer1 Exp $
+# $MidnightBSD: mports/www/browser35/Makefile,v 1.16 2011/06/12 05:22:43 laffer1 Exp $
 
 PORTNAME=	browser35
 DISTVERSION=	3.5.19
@@ -218,12 +218,12 @@ post-patch:
 	(cd ${WRKSRC}/xpcom/reflect/xptcall/src/md/unix && \
           ${LN} -s xptcstubs_asm_sparc64_openbsd.s xptcstubs_asm_sparc64_midnightbsd.s && \
           ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_midnightbsd.cpp && \
-          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_midnightbsd.cpp) && \
+          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_midnightbsd.cpp && \
           ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_midnightbsd.s)
         (cd ${WRKSRC}/xpcom/reflect/xptcall/src/md/unix && \
           ${LN} -s xptcstubs_asm_sparc64_openbsd.s xptcstubs_asm_sparc64_freebsd.s && \
           ${LN} -s xptcstubs_sparc64_openbsd.cpp xptcstubs_sparc64_freebsd.cpp && \
-          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_freebsd.cpp) && \
+          ${LN} -s xptcinvoke_sparc64_openbsd.cpp xptcinvoke_sparc64_freebsd.cpp && \
           ${LN} -s xptcinvoke_asm_sparc64_openbsd.s xptcinvoke_asm_sparc64_freebsd.s)
 .endif
 	@${REINPLACE_CMD} -e  's/%{idldir}/%idldir%/g ; \
