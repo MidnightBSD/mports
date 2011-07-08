@@ -1,8 +1,12 @@
-diff -urN -x .svn ../../vendor/curl/Makefile.in ./Makefile.in
---- ../../vendor/curl/Makefile.in	2008-11-05 14:00:46.000000000 +0200
-+++ ./Makefile.in	2009-01-21 16:12:08.000000000 +0200
-@@ -273,9 +273,9 @@
-  libcurl.pc.in vc6curl.dsw
+Description: Build and install the documentation as usual, no special handling.
+Forwarded: https://sourceforge.net/tracker/?func=detail&aid=2897155&group_id=976&atid=100976
+Author: Peter Pentchev <roam@FreeBSD.org>
+Last-Update: 2010-12-18
+
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -311,9 +311,9 @@
+  libcurl.pc.in vc6curl.dsw MacOSX-Framework Android.mk $(CMAKE_DIST)
  
  bin_SCRIPTS = curl-config
 -SUBDIRS = lib src
@@ -14,7 +18,7 @@ diff -urN -x .svn ../../vendor/curl/Makefile.in ./Makefile.in
  pkgconfig_DATA = libcurl.pc
  all: all-recursive
  
-@@ -835,12 +835,10 @@
+@@ -874,12 +874,10 @@
  # We extend the standard install with a custom hook:
  install-data-hook:
  	cd include && $(MAKE) install
