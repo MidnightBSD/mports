@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/opera/Makefile,v 1.28 2011/05/28 19:18:01 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -30,8 +30,8 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-OPERA_VER=	11.01
-OPERA_BUILD=	1190
+OPERA_VER=	11.10
+OPERA_BUILD=	2092
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
 USE_XZ=		yes
@@ -73,7 +73,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 OPERA_ARCH=	${ARCH:S,i386,intel,}
 
-.if ${OSVERSION} < 4006
+.if ${OSVERSION} < 4004
 IGNORE=		Only for MidnightBSD 0.4+
 .endif
 
