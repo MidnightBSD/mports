@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.28 2011/05/28 19:18:01 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.29 2011/07/08 02:07:13 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -73,7 +73,7 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 OPERA_ARCH=	${ARCH:S,i386,intel,}
 
-.if ${OSVERSION} < 4004
+.if ${OSVERSION} < 4006
 IGNORE=		Only for MidnightBSD 0.4+
 .endif
 
