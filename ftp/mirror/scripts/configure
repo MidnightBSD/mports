@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-# $FreeBSD: ports/ftp/mirror/scripts/configure,v 1.2 1999/08/29 11:18:09 peter Exp $
-#
-
-mv ${WRKSRC}/mirror.pl ${WRKSRC}/mirror.pl.bak
-sed <${WRKSRC}/mirror.pl.bak >${WRKSRC}/mirror.pl s+!!PREFIX!!+$PREFIX+g
