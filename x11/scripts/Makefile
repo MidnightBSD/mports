@@ -1,10 +1,5 @@
-# New ports collection makefile for:	scripts
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/scripts/Makefile,v 1.1 2007/05/19 20:27:17 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/scripts/Makefile,v 1.1 2007/10/04 05:45:04 ctriv Exp $
 
 PORTNAME=	scripts
 PORTVERSION=	1.0.1
