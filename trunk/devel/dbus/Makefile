@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.10 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.11 2011/06/24 12:42:46 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION?=	1.4.6
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -61,7 +61,7 @@ post-patch:
 post-install:
 	${MKDIR} ${PREFIX}/etc/dbus-1/system.d
 	${MKDIR} ${PREFIX}/share/dbus-1/services
-	${MKDIR} ${PREFIX}/share/dbus-1/interface
+	${MKDIR} ${PREFIX}/share/dbus-1/interfaces
 .endif
 
 .include <bsd.port.post.mk>
