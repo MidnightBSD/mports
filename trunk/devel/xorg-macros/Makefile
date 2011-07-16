@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/xorg-macros/Makefile,v 1.1 2009/03/14 22:28:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/xorg-macros/Makefile,v 1.2 2011/05/17 03:41:59 laffer1 Exp $
 
 PORTNAME=	xorg-macros
 PORTVERSION=	1.11.0
@@ -7,7 +7,7 @@ DISTNAME=	util-macros-$(PORTVERSION)
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org development aclocal macros
-LICENSE=	unknown
+LICENSE=	mit
 
 XORG_CAT=	util
 
