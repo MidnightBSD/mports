@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.6 2010/01/02 00:38:15 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.7 2011/05/07 00:25:06 laffer1 Exp $
 
 PORTNAME=	libxcb
 PORTVERSION=	1.7
+PORTREVISION=	1
 CATEGORIES=	x11 python
-#MASTER_SITES=	XORG/current/src/extras
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,8 +27,7 @@ USE_XORG=	xau xdmcp
 USE_PYTHON_BUILD=	2.5-2.7
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
-CONFIGURE_ARGS+=	--with-check=${LOCALBASE}
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 .for f in XPROTO_CFLAGS XPROTO_LIBS XDMCP_CFLAGS XDMCP_LIBS NEEDED_CFLAGS NEEDED_LIBS
 CONFIGURE_ARGS+=${f}="${${f}}"
 .endfor
@@ -47,7 +46,8 @@ XPROTO_LIBS=	-L${LOCALBASE}/lib
 
 post-install:
 .if !defined(NOPORTDOCS)
-	${MAKE} -C ${WRKSRC}/doc ${INSTALL_TARGET}
+	@${MKDIR} ${DOCSDIR}
+	@${MAKE} ${FAKE_MAKEARGS} -C ${WRKSRC}/doc ${INSTALL_TARGET}
 .endif
 
 .include <bsd.port.post.mk>
