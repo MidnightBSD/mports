@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXTrap/Makefile,v 1.3 2009/09/20 01:42:49 smultron Exp $
+# $MidnightBSD: mports/x11/libXTrap/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	libXTrap
 PORTVERSION=	1.0.0
@@ -12,6 +12,6 @@ XORG_CAT=	lib
 USE_XORG=	trapproto:both x11 xext xextproto xt
 USE_AUTOTOOLS=	libtool
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 
 .include <bsd.port.mk>
