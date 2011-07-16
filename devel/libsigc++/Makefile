@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.5 2009/09/20 00:42:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsigc++/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	libsigc++
 PORTVERSION=	1.0.4
 PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S/$/:gnome/} \
-		${MASTER_SITE_SOURCEFORGE:S/$/:sf/}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.0/:gnome \
-		libsigc/:sf
+		SF/libsigc/OldFiles:sf
+MASTER_SITE_SUBDIR=	sources/${PORTNAME}/1.0/:gnome
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:sf,gnome
 
 MAINTAINER=	ports@MidnightBSD.org
