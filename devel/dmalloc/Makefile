@@ -1,10 +1,5 @@
-# New ports collection makefile for:	dmalloc
-# Date created:			7 December 2000
-# Whom:				Jeremy Shaffner <jeremy@external.org>
-#
 # $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
-# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.3 2007/08/19 02:23:12 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.4 2008/05/30 20:24:57 laffer1 Exp $
 
 PORTNAME=	dmalloc
 PORTVERSION=	5.5.2
@@ -21,6 +16,7 @@ CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--enable-threads --enable-shlib
 CFLAGS+=	-fPIC
 USE_LDCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
 
 ALL_TARGET=	all heavy
 INSTALL_TARGET=	install
