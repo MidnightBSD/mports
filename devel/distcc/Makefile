@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/distcc/Makefile,v 1.1 2009/06/06 02:17:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/distcc/Makefile,v 1.2 2010/11/11 01:34:42 laffer1 Exp $
 
 PORTNAME=	distcc
 PORTVERSION=	3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
@@ -46,7 +46,7 @@ CONFIGURE_ARGS+=	--enable-rfc2553
 .if defined(WITH_COMPILER_LINKS)
 CCLINKDIR?=		libexec/distcc
 PLIST_DIRS=		${CCLINKDIR}
-GNU_COMPILERS=		34 42 43 44 -ooo
+GNU_COMPILERS=		34 42 44 -ooo
 DISTCC_COMPILERS=	cc c++ gcc g++ ${GNU_COMPILERS:S|^|gcc|} ${GNU_COMPILERS:S|^|g++|}
 .if ${ARCH} == "i386"
 DISTCC_COMPILERS+=	icc icpc
