@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/extensions/kde4.mk,v 1.6 2010/01/05 02:01:43 laffer1 Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Kde_Pre_Include)
 
@@ -26,13 +26,15 @@ Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 # kdebase	- Basic KDE applications (Konqueror, Dolphin)
 # kdeexp	- experimental libraries (with non-stable ABI/API)
 # kdehier	- Provides common KDE directories
-# kdelibs	- The base set of KDE4 libraries
+# kdelibs	- The base set of KDE libraries
 # kdeprefix	- If set, port will be installed into ${KDE4_PREFIX} instead of ${LOCALBASE}
 # oxygen	- icon themes
-# pimlibs	- KDE4 PIM libraries
-# pimruntime	- KDE4 PIM runtime services
+# pimlibs	- KDE PIM libraries
+# pimruntime	- KDE PIM runtime services
+# pykde4	- Python bindings for KDE
+# pykdeuic4	- User Interface Compiler for PyKDE
 # runtime	- More KDE applications
-# sharedmime	- share-mime-info wrapper for KDE4 ports
+# sharedmime	- share-mime-info wrapper for KDE ports
 # workspace	- More KDE applications (Plasma, kwin, etc.)
 #
 # These read-only variables can be used in port Makefile:
@@ -43,8 +45,18 @@ Kde_Include_MAINTAINER=	ports@MidnightBSD.org
 #		distfiles from different sites.
 # KDE4_PREFIX	- The place where KDE4 ports live.
 
-KDE4_VERSION=		4.3.1
+KDE4_VERSION=		4.6.2
 KDE4_BRANCH?=		stable
+KDEPIM4_VERSION=	4.4.10
+KDEPIM4_BRANCH?=	stable
+KOFFICE2_VERSION=	2.3.1
+KOFFICE2_BRANCH?=	stable
+KDEVELOP_VERSION=	4.2.2
+KDEVELOP_BRANCH?=	stable
+
+#
+# KDE4 is not installed into its own prefix and conflicts with KDE3
+#
 KDE4_PREFIX?=		${LOCALBASE}
 
 #
@@ -61,16 +73,15 @@ MASTER_SITE_KDE_kde=	${kmaster:S@%SUBDIR%/@${ksub}/@g}
 #
 # KDE4 modules
 #
-_USE_KDE4_ALL=	akonadi automoc4 kdebase kdeexp kdehier kdelibs kdeprefix \
-		oxygen pimlibs pimruntime runtime sharedmime workspace
+_USE_KDE4_ALL=	akonadi automoc4 kdebase kdehier kdelibs kdeprefix \
+		oxygen pimlibs pimruntime pykde4 pykdeuic4 runtime \
+		sharedmime workspace
 
 akonadi_LIB_DEPENDS=		akonadiprotocolinternals.1:${PORTSDIR}/databases/akonadi
 
 automoc4_BUILD_DEPENDS=		${LOCALBASE}/bin/automoc4:${PORTSDIR}/devel/automoc4
 
 kdebase_LIB_DEPENDS=		konq.7:${PORTSDIR}/x11/kdebase4
-
-kdeexp_LIB_DEPENDS=		knotificationitem-1.1:${PORTSDIR}/x11/kdelibs4-experimental
 
 kdehier_RUN_DEPENDS=		kdehier4>=1:${PORTSDIR}/misc/kdehier4
 
@@ -84,6 +95,10 @@ pimlibs_LIB_DEPENDS=		kpimutils.5:${PORTSDIR}/deskutils/kdepimlibs4
 
 pimruntime_LIB_DEPENDS=		kdepim-copy.5:${PORTSDIR}/deskutils/kdepim4-runtime
 
+pykde4_RUN_DEPENDS=		${KDE4_PYTHON_SITELIBDIR}/PyKDE4/kdeui.so:${PORTSDIR}/devel/kdebindings4-python-pykde4
+
+pykdeuic4_RUN_DEPENDS=		${LOCALBASE}/bin/pykdeuic4:${PORTSDIR}/devel/kdebindings4-python-pykdeuic4
+
 runtime_BUILD_DEPENDS=		${KDE4_PREFIX}/bin/kdebugdialog:${PORTSDIR}/x11/kdebase4-runtime
 runtime_RUN_DEPENDS=		${KDE4_PREFIX}/bin/kdebugdialog:${PORTSDIR}/x11/kdebase4-runtime
 
@@ -94,6 +109,8 @@ workspace_LIB_DEPENDS=		kscreensaver.5:${PORTSDIR}/x11/kdebase4-workspace
 
 
 PLIST_SUB+=	KDE4_PREFIX="${KDE4_PREFIX}"
+
+KDE4_PYTHON_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${KDE4_PREFIX};}
 
 #
 # Common build related stuff for kde4 ports. It's not intended for usage
@@ -110,20 +127,18 @@ WITH_DEBUG=yes
 .endif
 
 .if defined(WITH_DEBUG)
-CMAKE_BUILD_TYPE=	debug
-.else
-CMAKE_BUILD_TYPE=	release
+CMAKE_BUILD_TYPE=	DebugFull
 .endif
 
-PLIST_SUB+=	KDE4_VERSION="${KDE4_VERSION}" \
-		KDE4_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
+PLIST_SUB+=	KDE4_VERSION="${KDE4_VERSION}"
 
 USE_LDCONFIG=	yes
 
 USE_CMAKE=	yes
+USE_GMAKE=	yes
 CMAKE_SOURCE_PATH=	${WRKSRC}
-CONFIGURE_WRKSRC?=	${BUILD_WRKSRC}
-BUILD_WRKSRC?=		${WRKSRC}/build
+CONFIGURE_WRKSRC=	${CMAKE_SOURCE_PATH}/build
+BUILD_WRKSRC=		${CONFIGURE_WRKSRC}
 INSTALL_WRKSRC?=	${BUILD_WRKSRC}
 
 post-extract:	kde-create-builddir
