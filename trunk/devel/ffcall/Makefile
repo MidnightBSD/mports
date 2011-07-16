@@ -1,10 +1,5 @@
-# New ports collection makefile for:   ffcall
-# Date created:        21 February 2001
-# Whom:                jagapen@home.com
-#
-# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.2 2008/04/14 04:28:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/ffcall/Makefile,v 1.3 2011/05/28 21:13:54 laffer1 Exp $
 # $FreeBSD: ports/devel/ffcall/Makefile,v 1.22 2006/07/08 05:15:07 dinoex Exp $
-#
 
 PORTNAME=	ffcall
 PORTVERSION=	1.10
@@ -29,9 +24,9 @@ CFLAGS+=	-fPIC
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 .endif
 
 .include <bsd.port.post.mk>
