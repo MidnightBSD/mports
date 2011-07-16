@@ -1,4 +1,3 @@
-MD5 (pciutils-2.2.8.tar.gz) = c0b742521a13ef624b9a0a237f46c1c8
-SHA256 (pciutils-2.2.8.tar.gz) = 8bdbcac28a80e05799c3e788bbb24417059537aff53b8bf16c7c8e08b3979fa2
-RMD160 (pciutils-2.2.8.tar.gz) = a041fe7b65e0e60b6baeeca1daf77257fa84c30a
-SIZE (pciutils-2.2.8.tar.gz) = 232602
+SHA256 (pciutils-3.1.7.tar.gz) = 0f39818eabd793bb48d5b98ca52141d8247306a85876482c0075d0c95aeccea2
+RMD160 (pciutils-3.1.7.tar.gz) = 2d81a6a7fdf06889f7d5954dff716bb0516ffd20
+SIZE (pciutils-3.1.7.tar.gz) = 320603

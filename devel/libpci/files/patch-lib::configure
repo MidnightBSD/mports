@@ -1,11 +1,11 @@
---- lib/configure.orig	2010-03-12 21:53:28 -0500
-+++ lib/configure	2010-03-12 21:53:56 -0500
-@@ -22,7 +22,7 @@
- else
- 	cpu=`uname -m | sed 's/^i.86$/i386/;s/^sun4u$/sparc64/;s/^i86pc$/i386/'`
- fi
--if [ "$sys" = "GNU/kFreeBSD" -o "$sys" = "DragonFly" ]
-+if [ "$sys" = "GNU/kFreeBSD" -o "$sys" = "DragonFly" -o "$sys" = "MidnightBSD" ]
- then
- 	sys=freebsd
- fi
+--- lib/configure.orig	2009-07-04 12:11:04 -0400
++++ lib/configure	2011-07-16 11:00:03 -0400
+@@ -32,7 +32,7 @@
+ 	else
+ 		cpu=`uname -m | sed 's/^i.86$/i386/;s/^sun4u$/sparc64/;s/^i86pc$/i386/'`
+ 	fi
+-	if [ "$sys" = "GNU/kFreeBSD" -o "$sys" = "DragonFly" ]
++	if [ "$sys" = "GNU/kFreeBSD" -o "$sys" = "DragonFly" -o "$sys" = "MidnightBSD" ]
+ 	then
+ 		sys=freebsd
+ 	fi
