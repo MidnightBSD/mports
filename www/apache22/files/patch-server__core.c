@@ -39,7 +39,7 @@
  {
      return server_description ? server_description :
 -        AP_SERVER_BASEVERSION " (" PLATFORM ")";
-+        AP_SERVER_BASEVERSION " (FreeBSD)";
++        AP_SERVER_BASEVERSION " (MidnightBSD)";
  }
  
  AP_DECLARE(const char *) ap_get_server_banner(void)
@@ -48,7 +48,7 @@
      }
      else {
 -        ap_add_version_component(pconf, AP_SERVER_BASEVERSION " (" PLATFORM ")");
-+        ap_add_version_component(pconf, AP_SERVER_BASEVERSION " (FreeBSD)");
++        ap_add_version_component(pconf, AP_SERVER_BASEVERSION " (MidnightBSD)");
      }
  
      /*
@@ -57,7 +57,7 @@
          banner_locked++;
      }
 -    server_description = AP_SERVER_BASEVERSION " (" PLATFORM ")";
-+    server_description = AP_SERVER_BASEVERSION " (FreeBSD)";
++    server_description = AP_SERVER_BASEVERSION " (MidnightBSD)";
  }
  
  static const char *set_serv_tokens(cmd_parms *cmd, void *dummy,
