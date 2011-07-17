@@ -1,13 +1,14 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $
-%%SITE_PERL%%/Test/Builder/Tester/Color.pm
+%%SITE_PERL%%/Test/Builder.pm
+%%SITE_PERL%%/Test/Builder/IO/Scalar.pm
 %%SITE_PERL%%/Test/Builder/Module.pm
 %%SITE_PERL%%/Test/Builder/Tester.pm
-%%SITE_PERL%%/Test/Builder.pm
-%%SITE_PERL%%/Test/Simple.pm
+%%SITE_PERL%%/Test/Builder/Tester/Color.pm
 %%SITE_PERL%%/Test/More.pm
+%%SITE_PERL%%/Test/Simple.pm
 %%SITE_PERL%%/Test/Tutorial.pod
-@dirrm %%SITE_PERL%%/Test/Builder/Tester
-@dirrm %%SITE_PERL%%/Test/Builder
-@dirrmtry %%SITE_PERL%%/Test
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/Simple
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Test
+@dirrmtry %%SITE_PERL%%/Test/Builder/Tester
+@dirrmtry %%SITE_PERL%%/Test/Builder/IO
+@dirrmtry %%SITE_PERL%%/Test/Builder
+@dirrmtry %%SITE_PERL%%/Test
