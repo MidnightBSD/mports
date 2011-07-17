@@ -1,64 +1,56 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
-# $MidnightBSD: mports/devel/qt4-libqtassistantclient/Makefile,v 1.1 2008/10/10 17:42:43 laffer1 Exp $
-# $FreeBSD: ports/devel/qt4-libqtassistantclient/Makefile,v 1.11 2008/08/04 23:30:33 miwi Exp $
-#
+# $MidnightBSD$
+# $FreeBSD: ports/devel/qt4-libqtassistantclient/Makefile,v 1.18 2010/12/02 19:47:08 makc Exp $
 
 PORTNAME=	libQtAssistantClient
-PORTVERSION=	${QT4_VERSION}
+PORTVERSION=	4.6.3
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
+DISTNAME=	qt-assistant-qassistantclient-library-compat-src-${PORTVERSION}
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt documentation browser integration library
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui network
-QT_NONSTANDARD=	yes
-QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
-HAS_CONFIGURE=	yes
-USE_LDCONFIG=	yes
+
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 ALL_TARGET=	first
-CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
 
-DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
-		src/dbus src/opengl src/phonon \
-		src/qt3support src/script src/sql src/svg src/testlib \
-		src/tools src/xml src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
-.for dne in ${DO_NOT_EXTRACT}
-EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
-.endfor
-
-WRKSRC=		${WRKDIR}/${DISTNAME}/tools/assistant/compat/lib
-CONFIGURE_WRKSRC=${WRKSRC}/../../../../
+WRKSRC=		${WRKDIR}/${DISTNAME:C/src/version/}
+BUILD_WRKSRC=	${WRKSRC}/lib
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${REINPLACE_CMD} -E -e 's|"(.*)assistant"|"\1assistant-qt4"|g' \
-		${WRKSRC}/qassistantclient.cpp
-	${MKDIR} ${WRKSRC}/../../../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../../../bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../../../bin/moc
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/../../../../bin/rcc
+	${REINPLACE_CMD} -e 's|$$$$\[QT_INSTALL_HEADERS]|${PREFIX}/${QT_INCDIR_REL}|g' \
+		-e 's|$$$$\[QT_INSTALL_LIBS]|${PREFIX}/${QT_LIBDIR_REL}|g' \
+		${BUILD_WRKSRC}/lib.pro
+
+do-configure:
+	@cd ${BUILD_WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
+		${QMAKE} -spec ${QMAKESPEC} CONFIG+="create_prl link_prl" \
+		VERSION="${PORTVERSION}" ${QMAKEFLAGS}
 
 post-configure:
 	${REINPLACE_CMD} -e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
-			-e 's|.*$$(QMAKE).*||g' ${WRKSRC}/Makefile
+			-e 's|.*$$(QMAKE).*||g' ${BUILD_WRKSRC}/Makefile
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
-		${WRKSRC}/../../../../lib/pkgconfig/QtAssistantClient.pc
+		${BUILD_WRKSRC}/lib/pkgconfig/QtAssistantClient.pc
+
+pre-build:
+	${MKDIR} ${BUILD_WRKSRC}/QtAssistant
+	${CP} ${BUILD_WRKSRC}/qassistantclient_global.h \
+		${BUILD_WRKSRC}/QtAssistant
+
+post-install:
+	${INSTALL_DATA} ${FILESDIR}/QAssistantClient ${PREFIX}/${QT_INCDIR_REL}/QtAssistant
+	${INSTALL_DATA} ${FILESDIR}/QtAssistant ${PREFIX}/${QT_INCDIR_REL}/QtAssistant
+	${MKDIR} ${PREFIX}/share/qt4/mkspecs/features
+	${INSTALL_DATA} ${WRKSRC}/features/assistant.prf ${PREFIX}/share/qt4/mkspecs/features
 
 .include <bsd.port.mk>
