@@ -2,57 +2,39 @@
 # Date created:				Wed Jun 29 11:49:42 CEST 2005
 # Whom:					lofi@freebsd.org
 #
-# $MidnightBSD: mports/devel/qt4-assistant-adp/Makefile,v 1.1 2008/10/10 17:20:45 laffer1 Exp $
-# $FreeBSD: ports/devel/qt4-assistant-adp/Makefile,v 1.1 2008/08/04 23:30:32 miwi Exp $
+# $FreeBSD: ports/devel/qt4-assistant-adp/Makefile,v 1.8 2010/12/02 19:47:07 makc Exp $
 #
 
 PORTNAME=	assistant
-PORTVERSION=	${QT4_VERSION}
+PORTVERSION=	4.6.3
 CATEGORIES?=	devel
 MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
 PKGNAMESUFFIX=	-adp
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
+DISTNAME=	qt-assistant-qassistantclient-library-compat-src-${PORTVERSION}
 DIST_SUBDIR=	KDE
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt documentation browser, adp compat version
-LICENSE=	gpl2
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build corelib \
 		gui network xml doc dbus
-QT_NONSTANDARD=	yes
-QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
-HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
-CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
 
-DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
-		src/opengl src/phonon \
-		src/qt3support src/script src/sql src/svg src/testlib \
-		src/tools src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
-EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
-.for dne in ${DO_NOT_EXTRACT}
-EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
-.endfor
+WRKSRC=		${WRKDIR}/${DISTNAME:C/src/version/}
 
-WRKSRC=${WRKDIR}/${DISTNAME}/tools/${PORTNAME}/compat
-CONFIGURE_WRKSRC=${WRKSRC}/../../../
-PATCH_WRKSRC=${CONFIGURE_WRKSRC}
+PLIST_FILES=	bin/assistant_adp
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${MKDIR} ${WRKSRC}/../../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../../bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../../bin/moc
-	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/../../../bin/uic
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/../../../bin/rcc
+	${REINPLACE_CMD} -e 's|$$$$\[QT_INSTALL_BINS]|${PREFIX}/bin|g' \
+		${WRKSRC}/compat.pro
+
+do-configure:
+	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
+		${QMAKE} -spec ${QMAKESPEC} QT_CONFIG+="dbus" \
+		QT_PRODUCT="OpenSource" ${QMAKEFLAGS}
 
 .include <bsd.port.mk>

@@ -1,0 +1,56 @@
+--- ./configure.orig	2011-03-05 18:49:09.908552467 +0100
++++ ./configure	2011-03-05 18:51:40.918572488 +0100
+@@ -796,7 +796,7 @@
+ CFG_SILENT=no
+ CFG_GRAPHICS_SYSTEM=default
+ CFG_RUNTIME_SYSTEM=
+-CFG_ALSA=auto
++CFG_ALSA=no
+ CFG_PULSEAUDIO=auto
+ CFG_COREWLAN=auto
+ CFG_ICD=auto
+@@ -2445,11 +2445,6 @@
+         fi
+     done
+ 
+-    # symlink the mkspecs directory
+-    mkdir -p "$outpath/mkspecs"
+-    rm -rf "$outpath"/mkspecs/*
+-    ln -s "$relpath"/mkspecs/* "$outpath/mkspecs"
+-    rm -f "$outpath/mkspecs/default"
+ 
+     ShadowMkspecs()
+     {
+@@ -2495,7 +2490,7 @@
+ # find a make command
+ if [ -z "$MAKE" ]; then
+     MAKE=
+-    for mk in gmake make; do
++    for mk in make; do
+         if "$WHICH" $mk >/dev/null 2>&1; then
+             MAKE=`"$WHICH" $mk`
+             break
+@@ -4596,7 +4591,7 @@
+ }
+ 
+ # build qmake
+-if true; then ###[ '!' -f "$outpath/bin/qmake" ];
++if false; then ###[ '!' -f "$outpath/bin/qmake" ];
+     echo "Creating qmake. Please wait..."
+ 
+     OLD_QCONFIG_H=
+@@ -5564,14 +5559,6 @@
+         X11TESTS_FLAGS="$X11TESTS_FLAGS -fpermissive"
+     fi
+ 
+-    # Check we actually have X11 :-)
+-    "$unixtests/compile.test" "$XQMAKESPEC" "$QMAKE_CONFIG" $OPT_VERBOSE "$relpath" "$outpath" config.tests/x11/xlib "XLib" $L_FLAGS $I_FLAGS $l_FLAGS $X11TESTS_FLAGS
+-    if [ $? != "0" ]; then
+-        echo "Basic XLib functionality test failed!"
+-        echo " You might need to modify the include and library search paths by editing"
+-        echo " QMAKE_INCDIR_X11 and QMAKE_LIBDIR_X11 in ${XQMAKESPEC}."
+-        exit 1
+-    fi
+ fi
+ 
+ # X11/MINGW OpenGL

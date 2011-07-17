@@ -1,54 +1,54 @@
-#
-# $MidnightBSD: mports/devel/qt4-moc/Makefile,v 1.2 2008/10/14 20:31:52 ctriv Exp $
-#
+# $MidnightBSD$
+# $FreeBSD: ports/devel/qt4-moc/Makefile,v 1.13 2010/12/02 19:47:09 makc Exp $
 
 PORTNAME=	moc
-PORTVERSION=	${QT4_VERSION}
-PORTREVISION=0
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	devel
-MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
-DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt meta object compiler
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
+
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH 
+MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
+		PATH=${WRKSRC}/bin:$$PATH
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
-		src/dbus src/gui src/network src/opengl \
-		src/phonon src/qt3support src/script src/sql src/svg \
-		src/testlib src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
+		src/activeqt src/dbus src/gui src/multimedia src/network \
+		src/opengl src/openvg src/phonon src/qt3support \
+		src/s60installs src/s60main src/script src/scripttools src/sql \
+		src/svg src/testlib src/winmain src/xmlpatterns \
+		src/3rdparty/clucene src/3rdparty/freetype \
+		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
+		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/src/tools/${PORTNAME}
-CONFIGURE_WRKSRC=${WRKSRC}/../../../
+BUILD_WRKSRC=	${WRKSRC}/src/tools/${PORTNAME}
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
+
+EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
 	${REINPLACE_CMD} -e 's|target.path.*|target.path=${PREFIX}/bin|g' \
 			-e 's|^TARGET.*|TARGET=moc-qt4|g' \
-		${WRKSRC}/${PORTNAME}.pro
-	${MKDIR} ${WRKSRC}/../../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../../bin/qmake
+		${BUILD_WRKSRC}/${PORTNAME}.pro
+	${MKDIR} ${WRKSRC}/mkspecs
+	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
 
-do-build:
-	cd ${CONFIGURE_WRKSRC}/src/tools/bootstrap/ && make
+pre-build:
+	cd ${BUILD_WRKSRC}/../bootstrap && ${MAKE}
 
 .include <bsd.port.mk>
