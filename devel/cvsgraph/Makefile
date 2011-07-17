@@ -1,14 +1,8 @@
-# New ports collection makefile for:	cvsgraph
-# Date created:				2001-02-21
-# Whom:					trevor
-#
 # $FreeBSD: ports/devel/cvsgraph/Makefile,v 1.25 2006/07/10 01:15:03 clsung Exp $
-# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.2 2007/04/30 02:40:29 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.3 2008/08/21 17:56:59 laffer1 Exp $
 
 PORTNAME=	cvsgraph
-PORTVERSION=	1.6.1
-PORTREVISION=	1
+PORTVERSION=	1.7.0
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
 
@@ -24,15 +18,16 @@ MAN1=		cvsgraph.1
 MAN5=		cvsgraph.conf.5
 
 DOCDIR=		share/doc/${PORTNAME}
-DOCS=		ChangeLog LICENSE README
-EXAMPLES=	cvsgraphwrapper.php3 mkimage.php3
+DOCS=		ChangeLog README
+EXAMPLES=	cvsgraphwrapper.php mkimage.php
 MORE_EXAMPLES=	README.Automatic_documentation checkoutlist commit_action.sh \
 		commitinfo cvswrappers tag_action.sh taginfo
 PLIST=		${WRKDIR}/pkg-plist
 SUB_FILES=	pkg-message
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gd-inc=${LOCALBASE}/include \
-		--with-gd-lib=${LOCALBASE}/lib
+		--with-gd-lib=${LOCALBASE}/lib CFLAGS="-I${LOCALBASE}/include" \
+		LDFLAGS="-L${PREFIX}/lib"
 REINPLACE_ARGS=	-i ""
 
 pre-patch:
@@ -76,5 +71,8 @@ do-install:
 .endfor
 .endif
 
+post-install:
+	@${ECHO_CMD} " "
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
