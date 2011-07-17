@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.112 2011/07/09 16:40:41 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.113 2011/07/09 21:19:39 laffer1 Exp $
 
 COMMENT = Ports related to the World Wide Web
 
@@ -72,6 +72,7 @@ SUBDIR += p5-HTML-Mason
 SUBDIR += p5-HTML-Pager
 SUBDIR += p5-HTML-Parser
 SUBDIR += p5-HTML-Scrubber
+SUBDIR += p5-HTML-Strip
 SUBDIR += p5-HTML-Table
 SUBDIR += p5-HTML-Tagset
 SUBDIR += p5-HTML-Template
