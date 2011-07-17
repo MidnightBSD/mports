@@ -1,22 +1,14 @@
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
-# $MidnightBSD: mports/devel/qt4-linguist/Makefile,v 1.1 2008/10/10 17:52:47 laffer1 Exp $
-# $FreeBSD: ports/devel/qt4-linguist/Makefile,v 1.13 2008/06/06 13:21:50 edwin Exp $
-#
+# $MidnightBSD$
+# $FreeBSD: ports/devel/qt4-linguist/Makefile,v 1.21 2010/12/02 19:47:08 makc Exp $
 
 PORTNAME=	linguist
-PORTVERSION=	${QT4_VERSION}
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	devel
-MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
-DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt localisation tool
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build designer_build moc_build rcc_build uic_build \
@@ -29,33 +21,35 @@ HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
+		PATH=${WRKSRC}/bin:$$PATH
 
-DO_NOT_EXTRACT=	demos doc examples mkspecs qmake \
-		src/dbus src/opengl src/phonon \
-		src/qt3support src/script src/sql src/svg src/testlib \
-		src/tools src/xmlpatterns src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
+DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
+		src/activeqt src/dbus src/multimedia src/network src/opengl \
+		src/openvg src/phonon src/qt3support src/s60installs \
+		src/s60main src/script src/scripttools src/sql src/svg \
+		src/testlib src/tools src/winmain src/xmlpatterns \
+		src/3rdparty/clucene src/3rdparty/freetype \
+		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
+		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/tools/${PORTNAME}
-CONFIGURE_WRKSRC=${WRKSRC}/../../
-PATCH_WRKSRC=${CONFIGURE_WRKSRC}
+BUILD_WRKSRC=	${WRKSRC}/tools/${PORTNAME}
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
+
+EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
 	${REINPLACE_CMD} -E -e 's|^TARGET[[:blank:]]*=[[:blank:]]*([a-z]+)|TARGET=\1-qt4|g' \
-		${WRKSRC}/${PORTNAME}.pro ${WRKSRC}/${PORTNAME}/${PORTNAME}.pro \
-		${WRKSRC}/lrelease/lrelease.pro ${WRKSRC}/lupdate/lupdate.pro
-	${MKDIR} ${WRKSRC}/../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../bin/moc
-	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/../../bin/uic
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/../../bin/rcc
+		${BUILD_WRKSRC}/${PORTNAME}.pro ${BUILD_WRKSRC}/${PORTNAME}/${PORTNAME}.pro \
+		${BUILD_WRKSRC}/lrelease/lrelease.pro ${BUILD_WRKSRC}/lupdate/lupdate.pro
+	${MKDIR} ${WRKSRC}/mkspecs
+	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
+	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
+	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
+	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
 
 .include <bsd.port.mk>
