@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.374 2011/07/17 15:22:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.375 2011/07/17 19:45:32 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -298,6 +298,7 @@ SUBDIR += p5-Test-Pod
 SUBDIR += p5-Test-Pod-Coverage
 SUBDIR += p5-Test-Simple
 SUBDIR += p5-Test-SubCalls
+SUBDIR += p5-Test-Taint
 SUBDIR += p5-Tie-IxHash
 SUBDIR += p5-Time-HiRes
 SUBDIR += p5-Time-Local
