@@ -2,14 +2,16 @@
 # Date created:				20 Feb 2004
 # Whom:                			Mathieu Arnold <mat@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/p5-ExtUtils-CBuilder/Makefile,v 1.3 2008/10/11 06:36:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-ExtUtils-CBuilder/Makefile,v 1.4 2008/10/11 07:00:38 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-ExtUtils-CBuilder/Makefile,v 1.16 2006/04/11 14:51:54 mat Exp $
 #
 
 PORTNAME=	ExtUtils-CBuilder
-PORTVERSION=	0.24
+PORTVERSION=	0.2802
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	devel perl5
-MASTER_SITES=	CPAN
+MASTER_SITES=	CPAN/../../authors/id/D/DA/DAGOLDEN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -32,8 +34,8 @@ post-install:
 .include <bsd.port.pre.mk>
 
 .if ${PERL_LEVEL} < 501000
-BUILD_DEPENDS+=  ${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
-RUN_DEPENDS+=    ${BUILD_DEPENDS}
+BUILD_DEPENDS+=	p5-IPC-Cmd>=0:${PORTSDIR}/devel/p5-IPC-Cmd
+RUN_DEPENDS+=	p5-IPC-Cmd>=0:${PORTSDIR}/devel/p5-IPC-Cmd
 .endif
 
 .include <bsd.port.post.mk>
