@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.61 2011/06/19 15:53:52 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.62 2011/07/17 14:54:44 laffer1 Exp $
 
 COMMENT = Multimedia software
 
@@ -23,6 +23,7 @@ SUBDIR += gstreamer-plugins-good
 SUBDIR += gstreamer-plugins-mpeg2dec
 SUBDIR += gstreamer-plugins-theora
 SUBDIR += gstreamer-plugins-ugly
+SUBDIR += gstreamer-plugins-v4l2
 SUBDIR += gstreamer-plugins-xvid
 SUBDIR += gstreamer-qt4
 SUBDIR += kaffeine
@@ -49,6 +50,7 @@ SUBDIR += mplayer-skins
 SUBDIR += ogle
 SUBDIR += phonon
 SUBDIR += poe
+SUBDIR += qt4-multimedia
 SUBDIR += qt4-phonon
 SUBDIR += qt4-phonon-gst
 SUBDIR += schroedinger
