@@ -1,22 +1,24 @@
 # $MidnightBSD$
+# $FreeBSD: ports/misc/qt4-l10n/Makefile,v 1.7 2010/12/02 19:47:12 makc Exp $
 
 PORTNAME=	l10n
-PORTVERSION=	${QT4_VERSION}
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	misc
-MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
-DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt translations messages
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT_VER=	4
-QT_COMPONENTS=	#dummy
-NO_BUILD=	yes
+QT_COMPONENTS=	linguist_build
+QT_DIST=	yes
+QT_NONSTANDARD=	yes
 
 EXTRACT_AFTER_ARGS+=	| ${TAR} -xf - --include '${DISTNAME}/translations'
+
+do-build:
+	${LOCALBASE}/bin/lrelease-qt4 ${WRKSRC}/translations/*.ts
 
 do-install:
 	${MKDIR} ${PREFIX}/share/qt4/translations
