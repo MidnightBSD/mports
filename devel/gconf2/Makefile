@@ -1,15 +1,9 @@
-# New ports collection makefile for:	gconf2
-# Date created:				28th June 2000
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
 # $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
-#   $MCom: ports/devel/gconf2/Makefile,v 1.72 2006/04/13 07:52:32 bland Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.8 2011/02/02 20:17:32 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.9 2011/06/26 14:48:16 laffer1 Exp $
 
 PORTNAME=	gconf2
 PORTVERSION=	2.32.0
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -54,9 +48,6 @@ PLIST_SUB+=	LDAP=""
 CONFIGURE_ARGS+=--without-openldap
 PLIST_SUB+=	LDAP="@comment "
 .endif
-
-post-install:
-	-${LOCALBASE}/bin/gio-querymodules ${PREFIX}/lib/gio/modules
 
 .include <bsd.port.post.mk>
 
