@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.94 2011/06/08 12:17:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.95 2011/06/19 23:50:05 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -109,6 +109,7 @@ SUBDIR += nvidia-xconfig
 SUBDIR += pixman
 SUBDIR += printproto
 SUBDIR += qimageblitz
+SUBDIR += qt4-graphicssystems-opengl
 SUBDIR += qt4-inputmethods
 SUBDIR += qt4-opengl
 SUBDIR += randrproto
