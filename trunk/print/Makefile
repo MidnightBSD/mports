@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/print/Makefile,v 1.46 2011/05/11 14:08:58 laffer1 Exp $
-#
+# $MidnightBSD: mports/print/Makefile,v 1.47 2011/05/28 05:10:44 laffer1 Exp $
 
-    COMMENT = Desktop publishing
+COMMENT = Desktop publishing
 
 SUBDIR += a2ps-a4
 SUBDIR += a2ps-letter
-SUBDIR += acroread7
 SUBDIR += acroread8
 SUBDIR += acroread8-de
 SUBDIR += acroread9
