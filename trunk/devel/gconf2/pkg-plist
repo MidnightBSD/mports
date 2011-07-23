@@ -2,8 +2,8 @@ bin/gconf-merge-tree
 bin/gconftool-2
 bin/gsettings-data-convert
 bin/gsettings-schema-convert
-@exec mkdir etc/gconf/gconf.xml.mandatory
-@exec mkdir etc/gconf/gconf.xml.system
+@exec mkdir -p etc/gconf/gconf.xml.mandatory
+@exec mkdir -p etc/gconf/gconf.xml.system
 etc/dbus-1/system.d/org.gnome.GConf.Defaults.conf
 %%LDAP%%etc/gconf/2/evoldap.conf
 etc/gconf/2/path
