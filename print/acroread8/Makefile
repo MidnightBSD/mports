@@ -2,13 +2,13 @@
 # Date created:		20 October 2007
 # Whom:			hrs
 #
-# $MidnightBSD: mports/print/acroread8/Makefile,v 1.8 2008/10/13 17:32:24 laffer1 Exp $
+# $MidnightBSD: mports/print/acroread8/Makefile,v 1.9 2010/04/30 16:23:56 vganji Exp $
 # $FreeBSD: ports/print/acroread8/Makefile,v 1.2 2008/01/07 14:02:37 hrs Exp $
 #
 
 PORTNAME=	acroread8
-PORTVERSION?=	8.1.2
-PORTREVISION=	2
+PORTVERSION=	8.1.7
+PORTREVISION=	3
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/ \
 		ftp://ftp.adobe.com/pub/adobe/reader/unix/8.x/${PORTVERSION}/${ADOBE_LANG:L}/
@@ -19,16 +19,14 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Reader for view, print, and search PDF documents (${ADOBE_LANG})
 LICENSE=	restricted
 
-RUN_DEPENDS=	acroreadwrapper>=0.0.20071020:${PORTSDIR}/print/acroreadwrapper \
-		${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/linux-gtk2 \
-		${LINUXBASE}/usr/lib/libpango-1.0.so.0:${PORTSDIR}/x11-toolkits/linux-pango \
-		${LOCALBASE}/lib/linux-nvu/libgtkembedmoz.so:${PORTSDIR}/www/linux-nvu
+RUN_DEPENDS=	acroreadwrapper>=0.0.20100806:${PORTSDIR}/print/acroreadwrapper
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
-ONLY_FOR_ARCHS=	i386 amd64
-USE_BZIP2=	yes
+ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
-USE_XLIB=	yes
+USE_LINUX_APPS=	gtk2 pango
+USE_BZIP2=	yes
+USE_LDCONFIG=	yes
 #USE_GNOME=	desktopfileutils
 NO_BUILD=	yes
 PLIST_SUB=	ACRODIR=${ACRODIR} \
@@ -78,6 +76,7 @@ pre-install:
 		${WRKDIR}/bin
 do-install:
 	@${ECHO_CMD} Installing...
+	@${MKDIR} ${PREFIX}/share/desktop-directories
 	@${MKDIR} ${INSTALLDIR}
 	@cd ${WRKSRC} && ${SETENV} PATH=${WRKDIR}/bin:${PATH} ${INSTALLEXEC} > /dev/null
 
