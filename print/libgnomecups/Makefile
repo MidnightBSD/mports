@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.5 2010/05/05 23:58:31 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.6 2011/02/02 21:18:50 laffer1 Exp $
 
 PORTNAME=	libgnomecups
 PORTVERSION=	0.2.3
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	print gnome
 MASTER_SITES=	GNOME
