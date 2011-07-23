@@ -1,6 +1,5 @@
 #!/bin/sh
-# $MidnightBSD: mports/print/acroreadwrapper/files/acroread.in,v 1.3 2008/06/25 15:06:01 laffer1 Exp $
-# $FreeBSD: ports/print/acroreadwrapper/files/acroread.in,v 1.6 2008/04/13 18:27:25 hrs Exp $
+# $MidnightBSD: ports/print/acroreadwrapper/files/acroread.in,v 1.9 2010/08/08 04:16:02 hrs Exp $
 
 # environment variables:
 #
@@ -10,8 +9,8 @@
 #
 # ADOBE_VER:
 #     Set this if you want to invoke a specific version of
-#     Adobe Reader by "acroread".  Currently "7" and "8" are valid.
-#     When this script is invoked as "acroread7" and "acroread8",
+#     Adobe Reader by "acroread".  Currently only "8" or "9" is valid.
+#     When this script is invoked as "acroread8" or "acroread9",
 #     ADOBE_VER is automatically set.
 #
 # ADOBE_DISABLEIMMODULEHACK:
@@ -80,31 +79,26 @@ case ${ADOBE_VER} in
 	BN=${0##*/}
 	VN=${BN#????????}
 	case ${VN} in
-	[78])	ADOBE_VER=${VN} ;;
+	8|9)	ADOBE_VER=${VN} ;;
 	*)
-		if [ -d %%PREFIX%%/%%ACROBASE7%% ]; then ADOBE_VER=7; fi
 		if [ -d %%PREFIX%%/%%ACROBASE8%% ]; then ADOBE_VER=8; fi
-		if [ -d %%PREFIX%%/%%ACROBASE8%% ]; then ADOBE_VER=9; fi
+		if [ -d %%PREFIX%%/%%ACROBASE9%% ]; then ADOBE_VER=9; fi
 	;;
 	esac
 ;;
 esac
 
 case ${ADOBE_VER} in
-7)
-	ACROBASE=%%ACROBASE7%%
-	BINPREFIX=bin
-;;
 8)
 	ACROBASE=%%ACROBASE8%%
 	BINPREFIX=Adobe/Reader8/bin
-	MOZILLA_COMP_PATH=/../%%PREFIX%%/lib/linux-nvu
+	MOZILLA_COMP_PATH=/../%%PREFIX%%/lib/linux-libgtkembedmoz
 	export MOZILLA_COMP_PATH
 ;;
 9)
-	ACROBASE=%%ACROBASE8%%
+	ACROBASE=%%ACROBASE9%%
 	BINPREFIX=Adobe/Reader9/bin
-	MOZILLA_COMP_PATH=/../%%PREFIX%%/lib/linux-nvu
+	MOZILLA_COMP_PATH=/../%%PREFIX%%/lib/linux-libgtkembedmoz
 	export MOZILLA_COMP_PATH
 ;;
 esac
@@ -116,39 +110,18 @@ case ${ADOBE_DISABLEIMMODULEHACK} in
 	*:""|*:xim)
 		GTK_IM_MODULE=xim; export GTK_IM_MODULE
 	;;
-	7:scim)
-		GTK_IM_MODULE=xim; export GTK_IM_MODULE
-		XMODIFIERS="@im=SCIM"; export XMODIFIERS
-	;; 
 	8:scim)
 		GTK_IM_MODULE=scim; export GTK_IM_MODULE
 		XMODIFIERS="@im=SCIM"; export XMODIFIERS
-	;; 
+	;;
 	9:scim)
 		GTK_IM_MODULE=scim; export GTK_IM_MODULE
 		XMODIFIERS="@im=SCIM"; export XMODIFIERS
-	;;
+	;; 
 	*)
 		XMODIFIERS="@im=${GTK_IM_MODULE}"; export XMODIFIERS
 	;;
 	esac
-;;
-esac
-
-case $1 in
---install-plugin)
-	echo "installing PDF plugin..."
-	echo "%%PREFIX%%/${ACROBASE}/${ADOBE_LANG}/Browser/intellinux/nppdf.so -> %%PREFIX%%/%%PLUGINDIR%%/nppdf.so"
-	mkdir -p %%PREFIX%%/%%PLUGINDIR%%
-	ln -s -f %%PREFIX%%/${ACROBASE}/${ADOBE_LANG}/${BINPREFIX}/../Browser/intellinux/nppdf.so \
-	%%PREFIX%%/%%PLUGINDIR%%/nppdf.so
-	exit 0
-;;
---deinstall-plugin)
-	echo "deinstalling PDF plugin..."
-	rm -f %%PREFIX%%/%%PLUGINDIR%%/nppdf.so
-	rmdir %%PREFIX%%/%%PLUGINDIR%% > /dev/null 2>&1 || true
-	exit 0
 ;;
 esac
 
