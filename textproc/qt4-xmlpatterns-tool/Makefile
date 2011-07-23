@@ -1,54 +1,50 @@
-# New ports collection makefile for:	qt4-xmlpatterns-tool
-# Date created:				Sat May 10 23:17:08 CEST 2008
-# Whom:					danny@ricin.com
-#
-# $MidnightBSD: mports/textproc/qt4-xmlpatterns-tool/Makefile,v 1.1 2008/10/10 17:17:43 laffer1 Exp $
-# $FreeBSD: ports/textproc/qt4-xmlpatterns-tool/Makefile,v 1.1 2008/08/04 23:30:38 miwi Exp $
-#
+# $MidnightBSD$
+# $FreeBSD: ports/textproc/qt4-xmlpatterns-tool/Makefile,v 1.6 2010/12/02 19:47:15 makc Exp $
 
 PORTNAME=	xmlpatterns-tool
-PORTVERSION=	${QT4_VERSION}
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	textproc
-MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
-DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt4 command line utility for running XQueries
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build xmlpatterns
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
+
 HAS_CONFIGURE=	yes
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
+		PATH=${WRKSRC}/bin:$$PATH
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake translations \
-		src/dbus src/gui src/network src/opengl src/phonon \
-		src/qt3support src/script src/sql src/svg src/testlib \
-		src/tools src/xml src/3rdparty/clucene \
-		src/3rdparty/kdebase src/3rdparty/kdelibs src/3rdparty/webkit
+		src/activeqt src/dbus src/gui src/multimedia src/network \
+		src/opengl src/openvg src/phonon src/qt3support \
+		src/s60installs src/s60main src/script src/scripttools \
+		src/sql src/svg src/testlib src/tools src/winmain src/xml \
+		src/3rdparty/clucene src/3rdparty/freetype \
+		src/3rdparty/libjpeg src/3rdparty/libmng src/3rdparty/libpng \
+		src/3rdparty/libtiff src/3rdparty/phonon src/3rdparty/webkit
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/tools/xmlpatterns
-CONFIGURE_WRKSRC=${WRKSRC}/../../
+BUILD_WRKSRC=	${WRKSRC}/tools/xmlpatterns
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
+
+EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${MKDIR} ${WRKSRC}/../../mkspecs
+	${MKDIR} ${WRKSRC}/mkspecs
 #	${REINPLACE_CMD} -e 's|^TARGET.*|TARGET=xmlpatterns|g' \
-#		${WRKSRC}/xmlpatterns.pro
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../bin/qmake
+#		${BUILD_WRKSRC}/xmlpatterns.pro
+	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
 
 .include <bsd.port.mk>
