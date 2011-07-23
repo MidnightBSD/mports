@@ -2,16 +2,14 @@
 # Date created:				15 Jan 1999
 # Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
 #
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.4 2009/09/20 02:14:09 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.5 2011/02/02 21:18:50 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
 #
 
 PORTNAME=	libgnomeprint
-PORTVERSION=	2.18.4
-PORTREVISION?=	0
+PORTVERSION=	2.18.8
 CATEGORIES=	print gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -40,7 +38,7 @@ PLIST_SUB=	VERSION=${PORTVERSION} \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)
+.if (defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)) && !defined(WITHOUT_CUPS)
 CONFIGURE_ARGS+=	--with-cups
 LIB_DEPENDS+=		gnomecups-1.0:${PORTSDIR}/print/libgnomecups
 PLIST_SUB+=		CUPS:=""
