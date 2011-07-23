@@ -1,26 +1,20 @@
-# New ports collection makefile for:	qt4-webkit
-# Date created:				Mon May 12 17:18:19 CEST 2008
-# Whom:					danny@ricin.com
-#
-# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.1 2008/10/09 20:47:50 laffer1 Exp $
-# $FreeBSD: ports/www/qt4-webkit/Makefile,v 1.1 2008/08/04 23:30:38 miwi Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/www/qt4-webkit/Makefile,v 1.10 2010/12/02 19:47:15 makc Exp $
 #
 
 PORTNAME=	webkit
-PORTVERSION=	${QT4_VERSION}
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	www
-MASTER_SITES=	${MASTER_SITE_QT}
 PKGNAMEPREFIX=	qt4-
-DISTNAME=	qt-x11-opensource-src-${PORTVERSION}
-DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Qt4 webkit engine
-LICENSE=	gpl2
+COMMENT=	Qt4 WebKit engine
+LICENSE=	gpl3
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui network xml \
-		dbus phonon phonon-gst
+QT_COMPONENTS=	qmake_build moc_build rcc_build corelib declarative gui \
+		network xml dbus phonon phonon-gst script scripttools \
+		xmlpatterns
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_SAFE=	yes
@@ -30,39 +24,48 @@ USE_LDCONFIG=	${PREFIX}/lib/qt4
 
 ALL_TARGET=	first
 CONFIGURE_ENV?=	QTDIR=${WRKSRC} PATH=${WRKSRC}/bin:$$PATH
-MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib \
-		PATH=${WRKSRC}/bin:$$PATH ${FAKE_MAKEARGS} destdir=${FAKE_DESTDIR} \
-		INSTALL_ROOT=${FAKE_DESTDIR}
+MAKE_ENV?=	QTDIR=${WRKSRC} LD_LIBRARY_PATH=${WRKSRC}/lib:$$LD_LIBRARY_PATH \
+		PATH=${WRKSRC}/bin:$$PATH MAKEOBJDIR=.
 
 DO_NOT_EXTRACT=	demos doc examples mkspecs qmake tools translations \
-		src/opengl \
-		src/qt3support src/sql src/svg src/testlib \
-		src/tools src/xmlpatterns src/3rdparty/clucene
+		src/activeqt src/dbus src/opengl src/openvg src/qt3support \
+		src/s60installs src/s60main src/scripttools src/sql src/svg \
+		src/testlib src/tools src/winmain src/3rdparty/clucene \
+		src/3rdparty/freetype src/3rdparty/libjpeg src/3rdparty/libmng \
+		src/3rdparty/libpng src/3rdparty/libtiff
 EXTRACT_AFTER_ARGS=	| ${TAR} -xf -
 .for dne in ${DO_NOT_EXTRACT}
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/${dne}'
 .endfor
 
-WRKSRC=		${WRKDIR}/${DISTNAME}/src/3rdparty/${PORTNAME}/WebCore
-CONFIGURE_WRKSRC=${WRKSRC}/../../../../
+BUILD_WRKSRC=	${WRKSRC}/src/3rdparty/${PORTNAME}
+INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 CONFIGURE_ARGS+=	-I../../../../include/Qt -I../../../../include
 
+EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
+
 pre-configure:
-	${CP} ${.CURDIR}/../../devel/qt4/files/configure ${CONFIGURE_WRKSRC}
-	${MKDIR} ${WRKSRC}/../../../../mkspecs
-	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/../../../../bin/qmake
-	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/../../../../bin/moc
-	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/../../../../bin/rcc
-	${MKDIR} ${FAKE_DESTDIR}${PREFIX}/share/qt4/mkspecs
+	${MKDIR} ${WRKSRC}/mkspecs
+	${LN} -sf ${LOCALBASE}/bin/qmake-qt4 ${WRKSRC}/bin/qmake
+	${LN} -sf ${LOCALBASE}/bin/moc-qt4 ${WRKSRC}/bin/moc
+	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
+	${REINPLACE_CMD} -e '/WebKit\/qt\/tests/ d' \
+		${BUILD_WRKSRC}/WebKit.pro
 
 post-configure:
 	${REINPLACE_CMD} \
 		-e 's|${PREFIX}/lib/qt4/pkgconfig|${PREFIX}/libdata/pkgconfig|g' \
 		-e 's|.*$$(QMAKE).*||g' \
-		${WRKSRC}/Makefile
+		-e '/^CFLAGS/ s|-I${LOCALBASE}/include ||g' \
+		-e '/^CXXFLAGS/ s|-I${LOCALBASE}/include ||g' \
+		${BUILD_WRKSRC}/WebCore/Makefile
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
-		${WRKSRC}/../../../../lib/pkgconfig/QtWebKit.pc
+		${WRKSRC}/lib/pkgconfig/QtWebKit.pc
+#QtWebKit is statically linked with jscore, remove the latest
+	${REINPLACE_CMD} -e 's|-L../JavaScriptCore/release||;s|-ljscore||' \
+		${WRKSRC}/lib/pkgconfig/QtWebKit.pc \
+		${WRKSRC}/lib/libQtWebKit.la
 
 .include <bsd.port.mk>
