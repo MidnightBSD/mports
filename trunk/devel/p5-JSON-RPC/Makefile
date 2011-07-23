@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/p5-JSON-RPC/Makefile,v 1.1 2011/07/17 19:46:01 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-JSON-RPC/Makefile,v 1.3 2010/01/28 23:45:30 kuriyama Exp $
 
 PORTNAME=	JSON-RPC
@@ -9,7 +9,7 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl implementation of JSON-RPC 1.1 protocol
-LICENSE=	1
+LICENSE=	perl
 
 RUN_DEPENDS=	p5-JSON>=2.0:${PORTSDIR}/converters/p5-JSON \
 		p5-libwww>=0:${PORTSDIR}/www/p5-libwww
