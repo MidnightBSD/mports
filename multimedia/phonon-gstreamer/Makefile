@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/phonon-gstreamer/Makefile,v 1.1 2011/07/23 16:01:16 laffer1 Exp $
 # $FreeBSD: ports/multimedia/phonon-gstreamer/Makefile,v 1.13 2011/03/25 10:14:53 avilla Exp $
 
 PORTNAME=	phonon
@@ -39,10 +39,10 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|{QT_INCLUDES}|{QT_INCLUDES} ${LOCALBASE}/include|'\
 		${PATCH_WRKSRC}/CMakeLists.txt
 
-pre-su-install:
-	${MKDIR} ${QT_PLUGINDIR}/phonon_backend
+pre-install:
+	${MKDIR} ${FAKE_DESTDIR}${QT_PLUGINDIR}/phonon_backend
 
 post-install:
-	${LN} -sf ${PREFIX}/lib/kde4/plugins/phonon_backend/phonon_gstreamer.so ${QT_PLUGINDIR}/phonon_backend/libphonon_gstreamer.so
+	cd  ${PREFIX}/lib && ${LN} -sf kde4/plugins/phonon_backend/phonon_gstreamer.so qt4/plugins/phonon_backend/libphonon_gstreamer.so
 
 .include <bsd.port.mk>
