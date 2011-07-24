@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.62 2011/06/20 00:29:31 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.63 2011/06/20 00:33:42 laffer1 Exp $
 
-    COMMENT = X11 toolkits
+COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
+SUBDIR += attica
 SUBDIR += eel
 SUBDIR += gdl
 SUBDIR += gir-repository-vte
