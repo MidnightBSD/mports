@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/qt4-designer/Makefile,v 1.4 2011/07/17 15:22:02 laffer1 Exp $
 # $FreeBSD: ports/devel/qt4-designer/Makefile,v 1.24 2010/12/02 19:47:08 makc Exp $
 
 PORTNAME=	designer
@@ -55,7 +55,7 @@ pre-configure:
 	${LN} -sf ${LOCALBASE}/bin/uic-qt4 ${WRKSRC}/bin/uic
 	${LN} -sf ${LOCALBASE}/bin/rcc ${WRKSRC}/bin/rcc
 
-pre-install:
+pre-fake:
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 			-E -e 's|(.*location=).*uic|\1${PREFIX}/bin/uic-qt4|g' \
@@ -66,5 +66,6 @@ pre-install:
 		${BUILD_WRKSRC}/src/lib/Makefile \
 		${BUILD_WRKSRC}/src/uitools/Makefile \
 		${BUILD_WRKSRC}/src/components/lib/Makefile
+	${MKDIR} ${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>
