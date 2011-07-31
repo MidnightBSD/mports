@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/phonon/Makefile,v 1.4 2011/07/23 16:00:46 laffer1 Exp $
 # $FreeBSD: ports/multimedia/phonon/Makefile,v 1.17 2011/04/07 11:48:18 avilla Exp $
 
 PORTNAME=	phonon
 PORTVERSION=	4.5.0
+PORTREVISION=	1
 CATEGORIES=	multimedia kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${PHONON_BRANCH}/${PORTNAME}/${PORTVERSION}/src/
@@ -73,8 +74,8 @@ post-install:
 	cd ${PREFIX}/include && ${LN} -sf KDE/Phonon phonon/Phonon
 	${MKDIR} ${FAKE_DESTDIR}${QT_LIBDIR}
 .for lib in phonon phononexperimental
-	cd ${PREFIX}/lib && ${LN} -sf lib${lib}.so.4.5.0 qt4/lib${lib}.so
-	cd ${PREFIX}/lib && ${LN} -sf lib${lib}.so.4.5.0 qt4/lib${lib}.so.4
+	cd ${PREFIX}/lib && ${LN} -sf ../lib${lib}.so.4.5.0 qt4/lib${lib}.so
+	cd ${PREFIX}/lib && ${LN} -sf ../lib${lib}.so.4.5.0 qt4/lib${lib}.so.4
 .endfor
 
 .include <bsd.port.mk>
