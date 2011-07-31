@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/Makefile,v 1.115 2011/07/23 22:03:20 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.116 2011/07/23 22:04:30 laffer1 Exp $
 
 COMMENT = Ports related to the World Wide Web
 
@@ -33,6 +33,7 @@ SUBDIR += gtkhtml3
 SUBDIR += joomla15
 SUBDIR += kdewebdev
 SUBDIR += kdewebdev4
+SUBDIR += kwebkitpart
 SUBDIR += libgtkhtml
 SUBDIR += libwww
 SUBDIR += libxul
