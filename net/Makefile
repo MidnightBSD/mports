@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.113 2011/06/19 19:11:53 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.114 2011/07/03 20:17:48 laffer1 Exp $
 
 COMMENT = Networking tools
 
@@ -28,6 +28,7 @@ SUBDIR += gtk-vnc
 SUBDIR += hinfo
 SUBDIR += hping
 SUBDIR += htpdate
+SUBDIR += hupnp
 SUBDIR += ilbc
 SUBDIR += ipw-firmware
 SUBDIR += iwi-firmware
