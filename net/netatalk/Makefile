@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.8 2010/08/01 05:25:46 laffer1 Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.9 2011/02/02 21:14:15 laffer1 Exp $
 
 PORTNAME=	netatalk
-PORTVERSION=	2.1.3
+PORTVERSION=	2.1.4
 PORTREVISION=	0
 CATEGORIES=	net print
 MASTER_SITES=	SF
