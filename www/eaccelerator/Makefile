@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.4 2010/05/29 06:14:56 laffer1 Exp $
+# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.5 2010/05/29 06:15:18 laffer1 Exp $
 
 PORTNAME=	eaccelerator
-PORTVERSION=	0.9.6
+PORTVERSION=	0.9.6.1
 CATEGORIES=	www
-MASTER_SITES=	http://bart.eaccelerator.net/source/${PORTVERSION}/
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/eAccelerator%20${PORTVERSION}/ \
+		http://bart.eaccelerator.net/source/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An opcode cache for PHP with loader
@@ -18,7 +19,8 @@ CONFIGURE_ARGS=	--enable-eaccelerator=shared \
 		--with-eaccelerator-sessions \
 		--with-eaccelerator-content-caching \
 		--with-eaccelerator-userid=80 \
-		--without-eaccelerator-encoder
+		--without-eaccelerator-encoder \
+		--without-eaccelerator-use-inode
 
 USE_BZIP2=	yes
 SUB_FILES=	pkg-message
