@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.29 2011/05/28 18:23:14 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.30 2011/07/09 21:17:13 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -54,4 +54,7 @@ lang/python30||2010-12-14|removed.  not backwards compatible and broken
 x11-drivers/xf86-video-cyrix||2010-12-17|Not compatible with current x.org
 net/zniper||2011-05-28|Dead upstream.
 dns/bind96||2011-05-28|Security vulnerability, EOL
-mail/linux-thunderbird3|mail/linux-thunderbird5|Security update
+mail/linux-thunderbird3|mail/linux-thunderbird5|2011-08-01|Security update
+net/samba3|net/samba34|2011-08-07|EOL
+net/samba33|net/samba34|2011-08-07|EOL
+
