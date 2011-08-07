@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.2 2010/10/24 15:07:18 laffer1 Exp $
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.3 2011/02/02 21:14:16 laffer1 Exp $
 
 PORTNAME=		samba34
-PORTVERSION=		3.4.9
+PORTVERSION=		3.4.14
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -128,7 +128,8 @@ CONFIGURE_ARGS+=	--with-pam --with-readline=/usr \
 			--without-libsmbclient \
 			--without-libaddns \
 			--without-libnetapi \
-			--without-libsmbsharemodes
+			--without-libsmbsharemodes \
+			--disable-pie
 
 .if !defined(WITHOUT_LDAP)
 SAMBA_WANT_LDAP=	yes
