@@ -2,29 +2,26 @@
 # Date created:				28th Aug 2006
 # Whom:					Timur I. Bakeyev <timur@gnu.org>
 #
-# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.2 2010/12/04 20:30:36 laffer1 Exp $
+# $MidnightBSD: mports/net/samba-pdbsql/Makefile,v 1.3 2011/02/02 21:14:15 laffer1 Exp $
 # $FreeBSD: ports/net/samba-pdbsql/Makefile,v 1.6 2008/05/01 13:06:37 timur Exp $
 #
 
 PORTNAME=		pdbsql
-PORTVERSION=		0.3.1
+PORTVERSION=		34
 CATEGORIES=		net
-MASTER_SITES=		SF
+MASTER_SITES=		SF/${PORTNAME}/${PORTNAME}_${PORTVERSION}/
 PKGNAMEPREFIX=		samba-
-DISTNAME=		${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=		ports@MidnightBSD.org
 COMMENT=		Multiplexor, MySQL and PostgeSQL passdb backends for Samba3
 LICENSE=		gpl2
 
-USE_BZIP2=		yes
 USE_GMAKE=		yes
 GNU_CONFIGURE=		yes
 # Add a build dependency for Samba port
 USE_AUTOTOOLS=		autoconf autoheader
-WRKSRC=                 ${WRKDIR}/${DISTNAME}-samba
 
-SAMBA_PORT=		net/samba3
+SAMBA_PORT=		net/samba34
 
 OPTIONS=		MYSQL	"With MySQL passdb backend"		on \
 			PGSQL	"With PostgreSQL passdb backend"	on
@@ -46,6 +43,9 @@ BUILD_DEPENDS+=		${NONEXISTENT}:${PORTSDIR}/${SAMBA_PORT}:configure
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--libdir=${SAMBA_PDBDIR} \
 			--with-samba-dir=${SAMBA_WRKSRC}
+
+PLIST_SUB+=		SAMBA_PDBDIR=${SAMBA_PDBDIR:S/${PREFIX}\///} \
+			SAMBA_MODULEDIR=${SAMBA_MODULEDIR:S/${PREFIX}\///}
 
 .if exists(${LOCALBASE}/bin/mysql)
 WITH_MYSQL=		yes
@@ -91,10 +91,6 @@ do-install:
 .	for f in pgsql.dump smb.conf.pgsql
 			@${INSTALL_DATA} ${WRKSRC}/docs/${f} ${EXAMPLESDIR}
 .	endfor
-.endif
-.if !defined(NOPORTDOCS)
-			@${MKDIR} ${DOCSDIR}
-			@${INSTALL_DATA} ${WRKSRC}/docs/pdb_mysql.xml ${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>
