@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.9 2011/02/12 00:20:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.10 2011/06/11 13:02:31 laffer1 Exp $
 
 PORTNAME=	anjuta
 PORTVERSION=	2.32.1.1
@@ -24,7 +24,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		p5-Locale-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext \
 		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme \
 		exctags:${PORTSDIR}/devel/ctags \
-		gdb66:${PORTSDIR}/devel/gdb66 \
+		gdb6:${PORTSDIR}/devel/gdb6 \
 		yelp:${PORTSDIR}/x11/yelp
 
 USE_BZIP2=	yes
