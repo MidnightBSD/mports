@@ -1,18 +1,14 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
+# $MidnightBSD$
 # $FreeBSD: ports/databases/qt4-sql/Makefile,v 1.18 2010/12/02 19:47:03 makc Exp $
-#
 
 PORTNAME=	sql
 DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	databases
 PKGNAMEPREFIX=	qt4-
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt SQL library
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build corelib
