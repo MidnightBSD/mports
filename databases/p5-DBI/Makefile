@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.9 2010/10/21 18:50:48 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.10 2011/05/31 00:13:54 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 
 PORTNAME=	DBI
@@ -27,6 +27,7 @@ MAN3=		Bundle::DBI.3 \
 		DBD::DBM.3 \
 		DBD::File.3 \
 		DBD::File::Developers.3 \
+		DBD::File::HowTo.3 \
 		DBD::File::Roadmap.3 \
 		DBD::Gofer.3 \
 		DBD::Gofer::Policy::Base.3 \
@@ -47,6 +48,8 @@ MAN3=		Bundle::DBI.3 \
 		DBI::DBD.3 \
 		DBI::DBD::Metadata.3 \
 		DBI::DBD::SqlEngine.3 \
+		DBI::DBD::SqlEngine::HowTo.3 \
+		DBI::DBD::SqlEngine::Developers.3 \
 		DBI::FAQ.3 \
 		DBI::Gofer::Execute.3 \
 		DBI::Gofer::Request.3 \
@@ -55,6 +58,7 @@ MAN3=		Bundle::DBI.3 \
 		DBI::Gofer::Serializer::Base.3 \
 		DBI::Gofer::Serializer::Storable.3 \
 		DBI::Gofer::Transport::Base.3 \
+		DBD::Gofer::Transport::corostream.3 \
 		DBI::Gofer::Transport::pipeone.3 \
 		DBI::Gofer::Transport::stream.3 \
 		DBI::Profile.3 \
