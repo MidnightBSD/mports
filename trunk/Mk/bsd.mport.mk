@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.184 2011/07/11 03:12:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.185 2011/07/31 16:51:22 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -590,6 +590,83 @@ LIB_DEPENDS+=		ldap-2.4.7:${PORTSDIR}/net/openldap24${_OPENLDAP_FLAVOUR}-client
 IGNORE=			unknown OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 .endif
+
+.if defined(USE_OPENAL)
+_OPENAL_ALL=	al si soft alut
+_OPENAL_LIBS=	si soft
+# Default choice.
+_DEFAULT_OPENAL=	soft
+
+_OPENAL_SOFT=	openal.1:${PORTSDIR}/audio/openal-soft
+_OPENAL_SI=	openal.0:${PORTSDIR}/audio/openal
+_OPENAL_ALUT=	alut.1:${PORTSDIR}/audio/freealut
+
+.if exists(${LOCALBASE}/lib/libopenal.a)
+_HAVE_OPENAL=	si
+.elif exists(${LOCALBASE}/bin/openal-info)
+_HAVE_OPENAL=	soft
+.endif
+
+.if ${USE_OPENAL} == "yes"
+# Be friendly.
+USE_OPENAL=	${_DEFAULT_OPENAL}
+.endif
+
+__USED_OPENAL=
+_USE_OPENAL=
+.for component in ${USE_OPENAL}
+.if ${__USED_OPENAL:M${component}} == ""
+__USED_OPENAL+= ${component}
+
+.if ${_OPENAL_ALL:M${component}} == ""
+BROKEN= OPENAL mismatch: unknown component ${component}
+.elif ${_OPENAL_ALL:M${component}} == "al"
+
+# Check if the user wish matches the found OpenAL system.
+.if defined(WANT_OPENAL) && defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${WANT_OPENAL}
+BROKEN= OPENAL mismatch: ${_HAVE_OPENAL} is installed, but ${WANT_OPENAL} desired
+.endif # WANT_OPENAL
+
+.if defined(_HAVE_OPENAL)
+_OPENAL_SYSTEM= ${_HAVE_OPENAL}
+.elif defined(WANT_OPENAL)
+_OPENAL_SYSTEM= ${WANT_OPENAL}
+.else
+_OPENAL_SYSTEM= ${_DEFAULT_OPENAL}
+.endif # _HAVE_OPENAL
+
+_USE_OPENAL+= ${_OPENAL_${_OPENAL_SYSTEM:U}}
+
+.else # ${_OPENAL_ALL:M${component}} == ""
+
+.if ${_OPENAL_LIBS:M${component}} == ${component}
+# Check for the system implementation to use.
+.if defined(WANT_OPENAL) && ${WANT_OPENAL} != ${component}
+BROKEN= OPENAL mismatch: wants to use ${component}, while you wish to use ${WANT_OPENAL}
+.endif
+.if defined(_OPENAL_SYSTEM)
+BROKEN= OPENAL mismatch: cannot use ${component} and al together.
+.endif
+.if defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${component}
+BROKEN= OPENAL mismatch: wants to use ${component}, but ${_HAVE_OPENAL} is installed
+.endif
+
+_OPENAL_SYSTEM= ${component}
+
+.endif # ${_OPENAL_LIBS:M${component}} == ${component}
+
+_USE_OPENAL+=	${_OPENAL_${component:U}}
+
+.endif # ${_OPENAL_ALL:M${component}} == ""
+
+.endif # ${__USED_OPENAL:M${component} == ""
+.endfor # component in ${USE_OPENAL}
+
+.for dep in ${_USE_OPENAL}
+LIB_DEPENDS+=	${dep}
+.endfor
+
+.endif # USE_OPENAL
 
 .if defined(USE_FAM)
 DEFAULT_FAM_SYSTEM=	gamin
