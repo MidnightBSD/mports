@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/databases/mysql55-client/pkg-plist,v 1.2 2011/02/09 00:52:09 laffer1 Exp $
+@comment $MidnightBSD: mports/databases/mysql55-client/pkg-plist,v 1.3 2011/05/27 01:59:56 laffer1 Exp $
 bin/mysql_waitpid
 bin/mysql
 bin/mysqlcheck
@@ -59,6 +59,7 @@ include/mysql/mysql/psi/psi.h
 include/mysql/mysql/psi/mysql_file.h
 include/mysql/mysql/plugin.h
 include/mysql/mysql/services.h
+include/mysql/mysql/thread_pool_priv.h
 include/mysql/mysql/client_plugin.h
 include/mysql/mysql/plugin_auth.h
 lib/libmysqlclient.a
