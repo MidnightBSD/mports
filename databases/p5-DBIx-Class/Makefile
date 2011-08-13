@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/p5-DBIx-Class/Makefile,v 1.3 2010/10/21 19:24:24 laffer1 Exp $
 
 PORTNAME=	DBIx-Class
-PORTVERSION=	0.08123
+PORTVERSION=	0.08127
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -26,7 +26,7 @@ RUN_DEPENDS=	p5-Carp-Clan>=6.0:${PORTSDIR}/devel/p5-Carp-Clan \
 		p5-Scope-Guard>=0.03:${PORTSDIR}/devel/p5-Scope-Guard \
 		p5-Context-Preserve>=0.01:${PORTSDIR}/devel/p5-Context-Preserve \
 		p5-Try-Tiny>=0.04:${PORTSDIR}/lang/p5-Try-Tiny \
-		p5-namespace-clean>=0.14:${PORTSDIR}/devel/p5-namespace-clean \
+		p5-namespace-clean>=0.20:${PORTSDIR}/devel/p5-namespace-clean \
 		p5-Math-Base36>=0.07:${PORTSDIR}/math/p5-Math-Base36
 
 OPTIONS=	SQLT "SQL::Translator (generate DDL from schema)" Off
@@ -67,6 +67,7 @@ MAN3=	DBIx::Class.3 \
 	DBIx::Class::Manual::DocMap.3 \
 	DBIx::Class::Manual::Example.3 \
 	DBIx::Class::Manual::FAQ.3 \
+	DBIx::Class::Manual::Features.3 \
 	DBIx::Class::Manual::Glossary.3 \
 	DBIx::Class::Manual::Intro.3 \
 	DBIx::Class::Manual::Joining.3 \
@@ -94,8 +95,6 @@ MAN3=	DBIx::Class.3 \
 	DBIx::Class::ResultSourceHandle.3 \
 	DBIx::Class::ResultSourceProxy::Table.3 \
 	DBIx::Class::Row.3 \
-	DBIx::Class::SQLAHacks::Oracle.3 \
-	DBIx::Class::SQLAHacks::OracleJoins.3 \
 	DBIx::Class::Schema.3 \
 	DBIx::Class::Schema::Versioned.3 \
 	DBIx::Class::Serialize::Storable.3 \
@@ -129,7 +128,6 @@ MAN3=	DBIx::Class.3 \
 	DBIx::Class::Storage::DBI::Replicated::Pool.3 \
 	DBIx::Class::Storage::DBI::Replicated::Replicant.3 \
 	DBIx::Class::Storage::DBI::Replicated::WithDSN.3 \
-	DBIx::Class::Storage::DBI::Role::QueryCounter.3 \
 	DBIx::Class::Storage::DBI::SQLAnywhere.3 \
 	DBIx::Class::Storage::DBI::SQLite.3 \
 	DBIx::Class::Storage::DBI::Sybase.3 \
@@ -142,6 +140,9 @@ MAN3=	DBIx::Class.3 \
 	DBIx::Class::Storage::DBI::mysql.3 \
 	DBIx::Class::Storage::Statistics.3 \
 	DBIx::Class::Storage::TxnScopeGuard.3 \
+	DBIx::Class::SQLMaker::OracleJoins.3 \
+	DBIx::Class::SQLMaker::LimitDialects.3 \
+	DBIx::Class::SQLMaker.3 \
 	DBIx::Class::UTF8Columns.3 \
 	SQL::Translator::Parser::DBIx::Class.3 \
 	SQL::Translator::Producer::DBIx::Class::File.3

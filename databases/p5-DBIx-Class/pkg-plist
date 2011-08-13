@@ -1,6 +1,4 @@
-@comment $FreeBSD: ports/databases/p5-DBIx-Class/pkg-plist,v 1.27 2010/06/08 05:57:51 az Exp $
 bin/dbicadmin
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBIx/Class/.packlist
 %%SITE_PERL%%/DBIx/Class.pm
 %%SITE_PERL%%/DBIx/Class/AccessorGroup.pm
 %%SITE_PERL%%/DBIx/Class/Admin.pm
@@ -50,6 +48,7 @@ bin/dbicadmin
 %%SITE_PERL%%/DBIx/Class/Manual/DocMap.pod
 %%SITE_PERL%%/DBIx/Class/Manual/Example.pod
 %%SITE_PERL%%/DBIx/Class/Manual/FAQ.pod
+%%SITE_PERL%%/DBIx/Class/Manual/Features.pod
 %%SITE_PERL%%/DBIx/Class/Manual/Glossary.pod
 %%SITE_PERL%%/DBIx/Class/Manual/Intro.pod
 %%SITE_PERL%%/DBIx/Class/Manual/Joining.pod
@@ -88,6 +87,13 @@ bin/dbicadmin
 %%SITE_PERL%%/DBIx/Class/ResultSourceProxy.pm
 %%SITE_PERL%%/DBIx/Class/ResultSourceProxy/Table.pm
 %%SITE_PERL%%/DBIx/Class/Row.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/SQLite.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/MySQL.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/LimitDialects.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/OracleJoins.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/MSSQL.pm
+%%SITE_PERL%%/DBIx/Class/SQLMaker/Oracle.pm
 %%SITE_PERL%%/DBIx/Class/SQLAHacks.pm
 %%SITE_PERL%%/DBIx/Class/SQLAHacks/MSSQL.pm
 %%SITE_PERL%%/DBIx/Class/SQLAHacks/MySQL.pm
@@ -130,7 +136,6 @@ bin/dbicadmin
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/Replicated/Replicant.pm
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/Replicated/Types.pm
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/Replicated/WithDSN.pm
-%%SITE_PERL%%/DBIx/Class/Storage/DBI/Role/QueryCounter.pm
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/SQLAnywhere.pm
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/SQLite.pm
 %%SITE_PERL%%/DBIx/Class/Storage/DBI/Sybase.pm
@@ -156,7 +161,6 @@ bin/dbicadmin
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Sybase/Microsoft_SQL_Server
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Sybase/ASE
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Sybase
-@dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Role
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Replicated/Balancer
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Replicated
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Storage/DBI/Oracle
@@ -167,6 +171,7 @@ bin/dbicadmin
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Serialize
 @dirrmtry %%SITE_PERL%%/DBIx/Class/Schema
 @dirrmtry %%SITE_PERL%%/DBIx/Class/SQLAHacks
+@dirrmtry %%SITE_PERL%%/DBIx/Class/SQLMaker
 @dirrmtry %%SITE_PERL%%/DBIx/Class/ResultSourceProxy
 @dirrmtry %%SITE_PERL%%/DBIx/Class/ResultSource
 @dirrmtry %%SITE_PERL%%/DBIx/Class/ResultClass
