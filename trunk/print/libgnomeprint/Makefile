@@ -1,10 +1,5 @@
-# New ports collection makefile for:	libgnomeprint
-# Date created:				15 Jan 1999
-# Whom:					Vanilla I. Shu <vanilla@FreeBSD.org>
-#
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.5 2011/02/02 21:18:50 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.6 2011/07/23 16:05:17 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
-#
 
 PORTNAME=	libgnomeprint
 PORTVERSION=	2.18.8
@@ -15,6 +10,7 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gnome print support library
 LICENSE=        gpl2
+
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
@@ -27,7 +23,6 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier glib20 pango libxml2 \
 		libartlgpl2 ltverhack
 USE_GETTEXT=	yes
-USE_XLIB=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -38,7 +33,7 @@ PLIST_SUB=	VERSION=${PORTVERSION} \
 
 .include <bsd.port.pre.mk>
 
-.if (defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)) && !defined(WITHOUT_CUPS)
+.if defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)
 CONFIGURE_ARGS+=	--with-cups
 LIB_DEPENDS+=		gnomecups-1.0:${PORTSDIR}/print/libgnomecups
 PLIST_SUB+=		CUPS:=""
