@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.4 2010/01/09 22:02:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.5 2011/07/17 15:45:35 laffer1 Exp $
 #
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
 # QT_DIST		- Package being built is part of the Qt distribution.
@@ -145,7 +145,7 @@ QTCGFLIBS?=
 # QT4 version
 # Don't forget to update ${PORTSDIR}/devel/qt4/files/patch-configure !
 #
-QT4_VERSION?=		4.7.2
+QT4_VERSION?=		4.7.3
 
 _QT_COMPONENTS_ALL=	accessible assistant assistant-adp assistantclient \
 			clucene codecs-cn codecs-jp codecs-kr codecs-tw corelib \
