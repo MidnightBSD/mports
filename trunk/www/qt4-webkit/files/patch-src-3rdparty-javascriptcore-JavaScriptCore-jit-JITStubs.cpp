@@ -5,7 +5,7 @@
  #endif
  
 -#if OS(LINUX) && CPU(X86_64)
-+#if (OS(LINUX) || OS(FREEBSD)) && CPU(X86_64)
++#if (OS(LINUX) || OS(FREEBSD) || OS(MIDNIGHTBSD)) && CPU(X86_64)
  #define SYMBOL_STRING_RELOCATION(name) #name "@plt"
  #else
  #define SYMBOL_STRING_RELOCATION(name) SYMBOL_STRING(name)
