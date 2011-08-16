@@ -4,10 +4,10 @@
      #define ENABLE_JIT 1
  #elif CPU(ARM_TRADITIONAL) && OS(LINUX)
      #define ENABLE_JIT 1
-+#elif CPU(X86) && OS(FREEBSD) && GCC_VERSION >= 40100
++#elif CPU(X86) && (OS(FREEBSD) || OS(MIDNIGHTBSD)) && GCC_VERSION >= 40100
 +    #define ENABLE_JIT 1
 +    #define WTF_USE_JIT_STUB_ARGUMENT_VA_LIST 1
-+#elif CPU(X86_64) && OS(FREEBSD) && GCC_VERSION >= 40100
++#elif CPU(X86_64) && (OS(FREEBSD) || OS(MIDNIGHTBSD)) && GCC_VERSION >= 40100
 +    #define ENABLE_JIT 1
  #endif
  #endif /* PLATFORM(QT) */
@@ -16,8 +16,8 @@
      || (CPU(X86_64) && OS(LINUX) && GCC_VERSION >= 40100) \
      || (CPU(ARM_TRADITIONAL) && OS(LINUX)) \
      || (CPU(MIPS) && OS(LINUX)) \
-+    || (CPU(X86) && OS(FREEBSD) && GCC_VERSION >= 40100) \
-+    || (CPU(X86_64) && OS(FREEBSD) && GCC_VERSION >= 40100) \
++    || (CPU(X86) && (OS(FREEBSD) || OS(MIDNIGHTBSD)) && GCC_VERSION >= 40100) \
++    || (CPU(X86_64) && (OS(FREEBSD) || OS(MIDNIGHTBSD)) && GCC_VERSION >= 40100) \
      || (CPU(X86) && OS(DARWIN)) \
      || (CPU(X86_64) && OS(DARWIN))
  #define ENABLE_YARR 1
