@@ -1,4 +1,3 @@
-MD5 (KDE/qt-x11-opensource-src-4.5.2.tar.gz) = d8bcc070a58db25c228b7729ffad4550
-SHA256 (KDE/qt-x11-opensource-src-4.5.2.tar.gz) = 4e4c8619335cac14ba0c52d1555fab549a562fb774c1c08dcbd2be9de38120a2
-RMD160 (KDE/qt-x11-opensource-src-4.5.2.tar.gz) = 9a136db317aca6168f0a0a76684db603c45ce8b3
-SIZE (KDE/qt-x11-opensource-src-4.5.2.tar.gz) = 125803421
+SHA256 (KDE/qt-everywhere-opensource-src-4.7.3.tar.gz) = d02b6fd69d089c01f4a787aa18175d074ccaecf8980a5956e328c2991905937e
+RMD160 (KDE/qt-everywhere-opensource-src-4.7.3.tar.gz) = ab9c11c85898430fa74e5e07894f8da5e5936645
+SIZE (KDE/qt-everywhere-opensource-src-4.7.3.tar.gz) = 213659173
