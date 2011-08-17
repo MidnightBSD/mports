@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.6 2011/07/16 17:26:41 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.7 2011/08/17 22:15:48 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -111,7 +111,6 @@
 Gnustep_Pre_Include=		gnustep.mk
 Gnustep_Include_MAINTAINER=	ports@MidnightBSD.org
 
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libcallback.a:${PORTSDIR}/devel/ffcall
 .if !defined(GNUSTEP_WITHOUT_LIBOBJC)
 .if !defined(GNUSTEP_WITH_BASE_GCC)
 BUILD_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
