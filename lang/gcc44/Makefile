@@ -1,13 +1,11 @@
-# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.5 2010/08/12 22:23:39 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.6 2011/05/29 16:58:02 laffer1 Exp $
 
 PORTNAME=	gcc
-PORTVERSION=	4.4.7.20110503
+PORTVERSION=	4.4.7.20110628
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
-DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
-		gcc-fortran-${VERSIONSTRING}${EXTRACT_SUFX} \
-		gcc-g++-${VERSIONSTRING}${EXTRACT_SUFX}
+DISTNAME=	gcc-${VERSIONSTRING}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.4
@@ -60,7 +58,8 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-ld=${LOCALBASE}/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
 		--with-pkgversion="MidnightBSD" \
-		--with-system-zlib
+		--with-system-zlib \
+		--enable-languages=c,c++,fortran,objc,obj-c++
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 ALL_TARGET=	bootstrap-lean
 USE_LDCONFIG=	${TARGLIB}
