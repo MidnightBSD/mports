@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.7 2011/08/17 22:15:48 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.8 2011/08/17 22:16:27 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -192,12 +192,6 @@ GNUSTEP_LOCAL_LIBRARIES=	${GNUSTEP_LOCAL_ROOT}/Library/Libraries
 GNUSTEP_LOCAL_APPS=		${GNUSTEP_LOCAL_ROOT}/Applications
 GNUSTEP_LOCAL_TOOLS=		${GNUSTEP_LOCAL_ROOT}/Tools
 GNUSTEP_LOCAL_SERVICES=		${GNUSTEP_LOCAL_ROOT}/Library/Services
-
-# Obsolete, for compatibility only
-SYSTEMDIR=	${GNUSTEP_SYSTEM_ROOT}
-SYSMAKEDIR=	${GNUSTEP_MAKEFILES}
-SYSLIBDIR=	${GNUSTEP_SYSTEM_LIBRARIES}
-LOCALLIBDIR=	${GNUSTEP_LOCAL_LIBRARIES}
 
 .if defined(WITH_GNUSTEP_DEVEL)
 PKGNAMESUFFIX?=	-devel${PKGNAMESUFFIX2}
