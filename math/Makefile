@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.35 2011/06/19 15:50:34 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.36 2011/06/20 22:10:32 laffer1 Exp $
 
 COMMENT = Mathematics
 
@@ -25,6 +25,7 @@ SUBDIR += ldouble
 SUBDIR += libqalculate
 SUBDIR += linux-relview
 SUBDIR += matharray
+SUBDIR += mpc
 SUBDIR += mpfr
 SUBDIR += p5-Bit-Vector
 SUBDIR += p5-Graph
