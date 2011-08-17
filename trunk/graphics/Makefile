@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.110 2011/06/05 05:17:59 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.111 2011/06/19 13:51:43 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -24,6 +24,7 @@ SUBDIR += gdk-pixbuf
 SUBDIR += gdk-pixbuf2
 SUBDIR += gegl
 SUBDIR += giblib
+SUBDIR += giflib
 SUBDIR += gimp-app
 SUBDIR += gir-repository-goocanvas
 SUBDIR += gir-repository-poppler
