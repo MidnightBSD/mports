@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.8 2011/08/17 22:16:27 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.9 2011/08/17 22:25:00 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
 #
 # This file contains some variable definitions that are supposed to
@@ -111,6 +111,11 @@
 Gnustep_Pre_Include=		gnustep.mk
 Gnustep_Include_MAINTAINER=	ports@MidnightBSD.org
 
+.if !defined(GNUSTEP_WITH_GCC44) && !defined(GNUSTEP_WITH_GCC42)
+GNUSTEP_WITH_BASE_GCC=	yes
+GNUSTEP_WITHOUT_LIBOBJC=	yes
+.endif
+
 .if !defined(GNUSTEP_WITHOUT_LIBOBJC)
 .if !defined(GNUSTEP_WITH_BASE_GCC)
 BUILD_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
@@ -207,7 +212,6 @@ PLIST_SUB+=	MAJORVERSION=${PORTVERSION:C/([0-9]).*/\1/1}
 PLIST_SUB+=	LIBVERSION=${DEFAULT_LIBVERSION}
 PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 
-# Set base version
 .if !defined(GNUSTEP_WITH_BASE_GCC)
 .if !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC44)
 GNUSTEP_WITH_GCC44=	yes
