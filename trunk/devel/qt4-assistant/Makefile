@@ -1,18 +1,14 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	qt40
-# Date created:				Wed Jun 29 11:49:42 CEST 2005
-# Whom:					lofi@freebsd.org
-#
+# $MidnightBSD$
 # $FreeBSD: ports/devel/qt4-assistant/Makefile,v 1.22 2010/12/02 19:47:07 makc Exp $
-#
 
 PORTNAME=	assistant
 DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	devel
 PKGNAMEPREFIX=	qt4-
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt documentation browser
+LICENSE=	gpl3
 
 USE_QT_VER=	4
 QT_COMPONENTS=	qmake_build moc_build rcc_build uic_build qt3support corelib \
