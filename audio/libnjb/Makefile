@@ -1,13 +1,9 @@
-# New ports collection makefile for:	libnjb
-# Date created:				16 July 2006
-# Whom:					adrianm
-#
-# $MidnightBSD: mports/audio/libnjb/Makefile,v 1.2 2009/09/20 00:34:59 laffer1 Exp $
+# $MidnightBSD: mports/audio/libnjb/Makefile,v 1.3 2011/02/02 20:03:22 laffer1 Exp $
 # $FreeBSD: ports/audio/libnjb/Makefile,v 1.7 2008/03/20 13:29:31 gahr Exp $
-#
 
 PORTNAME=	libnjb
 PORTVERSION=	2.2.6
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
