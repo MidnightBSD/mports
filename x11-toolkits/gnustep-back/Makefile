@@ -1,14 +1,8 @@
-# New ports collection makefile for:	gnustep-back
-# Date created:				27.October 2002
-# Whom:					dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.10 2009/09/20 03:08:22 smultron Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-back/Makefile,v 1.11 2010/03/26 00:53:42 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-back/Makefile,v 1.55 2006/08/31 05:37:04 dinoex Exp $
-#
 
 PORTNAME=	gnustep-back
-PORTVERSION=	0.14.0
-PORTREVISION=	1
+PORTVERSION=	0.17.1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -33,7 +27,6 @@ CONFIGURE_ARGS+=	--with-jpeg-include=${LOCALBASE}/include
 CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}"
 USE_GMAKE=		yes
 USE_GNUSTEP=		yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_GUI=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
@@ -85,13 +78,14 @@ CONFLICTS?=		gunstep-back-xdps-0.* gunstep-back-art-0.* gunstep-back-cairo-0.*
 TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_OBJC_PORT} && make -V TARGLIB)
 
 ADDITIONAL_LDFLAGS+=	-L${TARGLIB}
-MAKE_ENV+=		ADDITIONAL_LDFLAGS="${ADDITIONAL_LDFLAGS}"
+MAKE_ENV+=		ADDITIONAL_LDFLAGS="${ADDITIONAL_LDFLAGS}" \
+			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 MAKE_FLAGS+=		messages=yes
 PLIST_SUB+=		BACKVERSION=${PORTVERSION:C/([0-9])*[.]([0-9]*).*/\1\2/1}
 
 pre-configure:
 .for file in config.guess config.sub install-sh
-	@${CP} ${PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
+	@${CP} ${GNUSTEP_PREFIX}/System/Library/Makefiles/${file} ${WRKSRC}
 .endfor
 
 .include <bsd.port.post.mk>
