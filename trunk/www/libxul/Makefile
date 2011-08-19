@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/libxul/Makefile,v 1.1 2011/07/09 16:40:42 laffer1 Exp $
 # $FreeBSD: ports/www/libxul/Makefile,v 1.28 2011/04/29 15:44:33 flo Exp $
 
 PORTNAME=	libxul
@@ -105,9 +105,9 @@ pre-configure:
 	(cd ${WRKSRC}/js/src/ && ${AUTOCONF})
 
 post-build:
-	@${REINPLACE_CMD} -e "s|\(Libs:.*\)\($$\)|\1 -Wl,-rpath,${PREFIX}/lib/${MOZ_RPATH}\2| ; \
+	@${REINPLACE_CMD} -e "s|\(Libs:.*\)\($$\)|\1 -Wl,-rpath,${TRUE_PREFIX}/lib/${MOZ_RPATH}\2| ; \
 	    	s|%sdkdir%|%sdkdir%/sdk|g ; \
-		s|%%MOZ_LIBDIR%%|${PREFIX}/lib/${MOZILLA}|g" \
+		s|%%MOZ_LIBDIR%%|${TRUE_PREFIX}/lib/${MOZILLA}|g" \
 	    	${WRKSRC}/xulrunner/installer/*.pc.in || ${TRUE}
 
 .include <bsd.port.post.mk>
