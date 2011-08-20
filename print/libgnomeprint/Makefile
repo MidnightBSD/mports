@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.6 2011/07/23 16:05:17 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.7 2011/08/13 16:44:04 laffer1 Exp $
 # $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
 
 PORTNAME=	libgnomeprint
@@ -14,6 +14,8 @@ LICENSE=        gpl2
 USE_BZIP2=	yes
 
 .if !defined(REFERENCE_PORT)
+
+OPTIONS=	CUPS "Enable CUPS printing system" on
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		popt.0:${PORTSDIR}/devel/popt
@@ -33,20 +35,13 @@ PLIST_SUB=	VERSION=${PORTVERSION} \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_CUPS) || exists(${LOCALBASE}/lib/libcups.so)
+.if defined(WITH_CUPS)
 CONFIGURE_ARGS+=	--with-cups
 LIB_DEPENDS+=		gnomecups-1.0:${PORTSDIR}/print/libgnomecups
 PLIST_SUB+=		CUPS:=""
 .else
 CONFIGURE_ARGS+=	--without-cups
 PLIST_SUB+=		CUPS:="@comment "
-.endif
-
-pre-everything::
-.if !defined(WITH_CUPS)
-	@${ECHO_MSG} " Enable cups support by defining"
-	@${ECHO_MSG} " WITH_CUPS"
-	@${ECHO_MSG} ""
 .endif
 
 post-patch:
