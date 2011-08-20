@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/gnome-user-docs/Makefile,v 1.4 2009/12/13 22:11:51 laffer1 Exp $
+# $MidnightBSD: mports/misc/gnome-user-docs/Makefile,v 1.5 2010/08/14 03:44:25 laffer1 Exp $
 
 PORTNAME=	gnome-user-docs
-PORTVERSION=	2.30.1
+PORTVERSION=	2.32.0
 CATEGORIES=	misc gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
