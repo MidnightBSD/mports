@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/lzo/Makefile,v 1.4 2009/09/19 23:45:47 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzo/Makefile,v 1.5 2011/02/02 20:03:21 laffer1 Exp $
 
 PORTNAME=	lzo
 PORTVERSION=	1.08
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=  yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--enable-shared
 USE_LDCONFIG=	yes
 
