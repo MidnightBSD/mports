@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.16 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.17 2011/05/31 00:24:46 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.32.1
@@ -44,7 +44,6 @@ RUN_DEPENDS?=	${LOCALBASE}/libexec/gweather-applet-2:${PORTSDIR}/x11/gnome-apple
 		gnome-control-center:${PORTSDIR}/sysutils/gnome-control-center \
 		${LOCALBASE}/share/gnome-background-properties/gnome-nature.xml:${PORTSDIR}/x11-themes/gnome-backgrounds \
 		evince:${PORTSDIR}/graphics/evince \
-		alacarte:${PORTSDIR}/deskutils/alacarte \
 		gnome-power-manager:${PORTSDIR}/sysutils/gnome-power-manager \
 		orca:${PORTSDIR}/accessibility/orca \
 		gnome-mount:${PORTSDIR}/sysutils/gnome-mount \
