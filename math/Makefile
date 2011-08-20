@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.36 2011/06/20 22:10:32 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.37 2011/08/17 22:36:57 laffer1 Exp $
 
 COMMENT = Mathematics
 
@@ -10,6 +10,7 @@ SUBDIR += cln
 SUBDIR += djbfft
 SUBDIR += edenmath
 SUBDIR += eigen
+SUBDIR += eigen2
 SUBDIR += facile
 SUBDIR += fftw3
 SUBDIR += fftw3-float
