@@ -2,7 +2,7 @@
 # Date created:		7 October 1995
 # Whom:			torstenb@FreeBSD.org
 #
-# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.9 2009/04/05 19:51:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf213/Makefile,v 1.10 2011/02/02 19:48:21 laffer1 Exp $
 # $FreeBSD: ports/devel/autoconf213/Makefile,v 1.62 2007/07/28 06:33:44 ade Exp $
 #
 
@@ -33,7 +33,7 @@ USE_PERL5=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4 AWK=${AWK}
 CONFIGURE_ARGS=	--program-suffix=-${BUILD_VERSION}
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 WRKSRC=		${WRKDIR}/autoconf
 INFO=		autoconf-${BUILD_VERSION}
 
