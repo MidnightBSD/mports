@@ -2,7 +2,7 @@
 # Date created:         26 Dec 1994
 # Whom:                 ache
 #
-# $MidnightBSD: mports/archivers/lha/Makefile,v 1.4 2007/09/18 01:04:38 stevan Exp $
+# $MidnightBSD: mports/archivers/lha/Makefile,v 1.5 2008/03/12 01:45:57 laffer1 Exp $
 # $FreeBSD: ports/archivers/lha/Makefile,v 1.32 2004/09/22 06:16:54 dinoex Exp $
 #
 
@@ -24,7 +24,7 @@ NO_CDROM=	requires advanced notification for cdrom distribution
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 MAN1=		lha.1
 MANLANG=	ja
