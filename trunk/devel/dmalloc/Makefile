@@ -1,5 +1,5 @@
 # $FreeBSD: ports/devel/dmalloc/Makefile,v 1.15 2006/08/14 22:55:06 clsung Exp $
-# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.4 2008/05/30 20:24:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/dmalloc/Makefile,v 1.5 2011/07/16 15:23:59 laffer1 Exp $
 
 PORTNAME=	dmalloc
 PORTVERSION=	5.5.2
@@ -12,7 +12,7 @@ COMMENT=	Portable debug memory allocation library
 LICENSE=	other
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--enable-threads --enable-shlib
 CFLAGS+=	-fPIC
 USE_LDCONFIG=	yes

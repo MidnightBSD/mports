@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.5 2009/05/22 03:50:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/zziplib/Makefile,v 1.6 2009/10/27 03:28:57 laffer1 Exp $
 
 PORTNAME=	zziplib
 PORTVERSION=	0.13.58
@@ -13,7 +13,7 @@ USE_PYTHON_BUILD=	yes
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 USE_LDCONFIG=	yes
 
 PORTSCOUT=	limit:^0\.
