@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/sdl_sound/Makefile,v 1.3 2009/11/01 22:20:12 laffer1 Exp $
+# $MidnightBSD: mports/audio/sdl_sound/Makefile,v 1.4 2011/02/02 20:03:23 laffer1 Exp $
 
 PORTNAME=	sdl_sound
 PORTVERSION=	1.0.3
@@ -16,9 +16,8 @@ USE_LDCONFIG=	yes
 USE_SDL=	sdl
 CONFIGURE_ARGS=	--program-prefix=""
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd6.1 \
-		 --host=${ARCH}-portbld-freebsd6.1 \
-		 --target=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+
 OPTIONS=	FLAC "Enable flac support" on \
 		MIKMOD "Enable mikmod support" on \
 		PHYSFS "Enable physfs support" on \
