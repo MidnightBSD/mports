@@ -11,7 +11,7 @@ USE_LDCONFIG=		yes
 USE_AUTOTOOLS=		libtool
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
-CONFIGURE_TARGET=	--target=${ARCH}-portbld-freebsd6.1 --build=${ARCH}-portbld-freebsd6.1 --host=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 BDBVER=			${PORTVERSION:R}
 BDBMINOR=		${BDBVER:E:S/^\.//}
 BDBDIR=			BerkeleyDB.${BDBVER}

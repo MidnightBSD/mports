@@ -1,10 +1,10 @@
 # ports collection makefile for:	Berkeley DB v4.2
 #
-# $MidnightBSD: mports/databases/db42/Makefile,v 1.4 2008/07/04 19:31:41 laffer1 Exp $
+# $MidnightBSD: mports/databases/db42/Makefile,v 1.5 2009/03/03 23:04:25 laffer1 Exp $
 
 PORTNAME=	db42
 PORTVERSION=	4.2.52
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	databases
 PKGNAMESUFFIX?=
 
