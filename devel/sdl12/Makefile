@@ -2,7 +2,7 @@
 # Date created:				1 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.6 2009/09/20 00:56:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.7 2011/02/02 20:17:34 laffer1 Exp $
 # $FreeBSD: ports/devel/sdl12/Makefile,v 1.106 2007/05/19 20:03:46 flz Exp $
 #
 
@@ -31,8 +31,7 @@ CONFIGURE_ENV=	NASM="${LOCALBASE}/bin/nasm"		\
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"	\
 		PTHREAD_LIBS="${PTHREAD_LIBS}"		\
 		LDFLAGS="${LDFLAGS}"
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CFLAGS+=	${PTHREAD_CFLAGS} -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

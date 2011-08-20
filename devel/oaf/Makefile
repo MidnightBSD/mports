@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/oaf/Makefile,v 1.5 2010/06/04 22:46:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/oaf/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	oaf
 PORTVERSION=	0.6.10
@@ -27,7 +27,7 @@ CONFIGURE_ARGS= --enable-static --enable-shared \
 		--disable-more-warnings
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -lintl"
-CONFIGURE_TARGET=	--target=${MACHINE_ARCH}-unknown-freebsd6.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-unknown-freebsd7.0
 
 MAN1=	oafd.1
 

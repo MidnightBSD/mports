@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.10 2011/01/08 15:10:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.11 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	libgtop
 PORTVERSION=	2.28.1
@@ -25,9 +25,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib -lgeom -ldevstat"
-CONFIGURE_TARGET=--build=${ARCH}-portbld-freebsd7.0 \
-		 --host=${ARCH}-portbld-freebsd7.0 \
-		 --target=${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CFLAGS+=	-D__FreeBSD_version=700055
 
 INFO=		libgtop2

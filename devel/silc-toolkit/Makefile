@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.7 2009/10/14 13:40:36 laffer1 Exp $
+# $MidnightBSD: mports/devel/silc-toolkit/Makefile,v 1.8 2011/02/02 20:17:34 laffer1 Exp $
 
 PORTNAME=	silc
 PORTVERSION=	1.1.10
@@ -22,7 +22,7 @@ USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_PERL5=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 #USE_GNOME=    glib12
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--with-etcdir=${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX} \

@@ -3,7 +3,7 @@
 # Whom:					Ralf S. Engelschall <rse@gnu.org>
 #
 # $FreeBSD: ports/devel/pth/Makefile,v 1.81 2006/06/19 09:06:13 vd Exp $
-# $MidnightBSD: mports/devel/pth/Makefile,v 1.1 2007/01/24 19:28:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/pth/Makefile,v 1.2 2008/06/13 06:22:00 laffer1 Exp $
 #
 
 PORTNAME=	pth
@@ -18,7 +18,7 @@ LICENSE=	lgpl
 
 USE_LDCONFIG=	${PREFIX}/lib/pth
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--enable-optimize \
 		--enable-batch \
 		--includedir="${PREFIX}/include/pth" \

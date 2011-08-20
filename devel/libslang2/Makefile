@@ -3,7 +3,7 @@
 # Whom:			Renato Botelho <freebsd@galle.com.br>
 #
 # $FreeBSD: ports/devel/libslang2/Makefile,v 1.20 2008/05/19 20:14:18 garga Exp $
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.3 2008/10/17 17:15:45 ctriv Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.4 2010/05/04 22:44:59 laffer1 Exp $
 
 PORTNAME=	libslang2
 PORTVERSION=	2.1.4
@@ -21,7 +21,7 @@ LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 CONFLICTS=	libslang-[0-9]* libslang-1.*.j[0-9]
 
