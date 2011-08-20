@@ -1,5 +1,5 @@
 # $FreeBSD: ports/audio/portaudio2/Makefile,v 1.16 2009/03/04 18:02:45 thierry Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/portaudio2/Makefile,v 1.4 2010/02/27 20:13:00 laffer1 Exp $
 
 PORTNAME=	portaudio
 DISTVERSION=	19_20071207
@@ -15,7 +15,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-alsa	\
 		--libdir=${PREFIX}/lib/${PORTNAME}2 --includedir=${PREFIX}/include/${PORTNAME}2
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}2
 
 LATEST_LINK=	${PORTNAME}2
