@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.7 2010/02/27 15:43:50 laffer1 Exp $
+# $MidnightBSD: mports/audio/mpg123/Makefile,v 1.8 2011/05/13 13:28:42 laffer1 Exp $
 
 PORTNAME=	mpg123
 PORTVERSION=	1.13.3
@@ -19,7 +19,7 @@ MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-audio=oss \
 		--with-default-audio=oss
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CONFIG_SHELL=${SH} CFLAGS="${CFLAGS} -I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 
 MAN1=		mpg123.1
