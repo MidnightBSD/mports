@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/openal/Makefile,v 1.6 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD: mports/audio/openal/Makefile,v 1.7 2011/06/18 02:44:05 laffer1 Exp $
 # $FreeBSD: ports/audio/openal/Makefile,v 1.41 2006/09/20 11:20:34 stas Exp $
 
 PORTNAME=	openal
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--enable-capture
 USE_GMAKE=	yes
