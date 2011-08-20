@@ -2,7 +2,7 @@
 # Date created: 	9 September 1996
 # Whom:			moeding
 #
-# $MidnightBSD: mports/devel/splint/Makefile,v 1.1 2006/10/03 20:18:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/splint/Makefile,v 1.2 2007/11/15 15:21:09 laffer1 Exp $
 # $FreeBSD: ports/devel/splint/Makefile,v 1.23 2006/05/04 21:41:07 edwin Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 MAN1=		splint.1
 

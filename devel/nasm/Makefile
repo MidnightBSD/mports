@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.11 2009/10/27 03:43:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.12 2010/06/01 23:18:29 laffer1 Exp $
 
 PORTNAME=	nasm
 PORTVERSION=	2.08.01
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 DESTDIRNAME=  INSTALLROOT
 INSTALL_TARGET=	install install_rdf
 MAKE_JOBS_UNSAFE=	yes

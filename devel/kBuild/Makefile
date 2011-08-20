@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.3 2009/06/06 21:50:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/kBuild/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	kBuild
 PORTVERSION=	0.1.5
@@ -13,9 +13,7 @@ LICENSE=	gpl3
 
 BUILD_DEPENDS=	gsed:${PORTSDIR}/textproc/gsed
 
-CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0 \
-		  --host=${ARCH}-portbld-freebsd7.0 \
-		  --target=${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
 USE_AUTOTOOLS=	automake autoconf
 USE_GMAKE=	yes
 

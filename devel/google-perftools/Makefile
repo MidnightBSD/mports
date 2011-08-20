@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.3 2009/04/08 19:03:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/google-perftools/Makefile,v 1.4 2009/06/07 16:43:21 laffer1 Exp $
 
 PORTNAME=	google-perftools
 PORTVERSION=	1.0
@@ -12,8 +12,7 @@ COMMENT=	Fast, multi-threaded malloc() and nifty performance analysis tools
 LICENSE=	bsd3
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=i386-portbld-freebsd7.0 \
-		--host=i386-portbld-freebsd7.0
+CONFIGURE_TARGET=	i386-portbld-freebsd7.0
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
 

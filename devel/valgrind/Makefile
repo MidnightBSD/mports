@@ -2,7 +2,7 @@
 # Date created:				June 27, 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.4 2009/04/08 05:07:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/valgrind/Makefile,v 1.5 2011/02/02 20:17:34 laffer1 Exp $
 #
 
 PORTNAME=	valgrind
@@ -29,16 +29,16 @@ USE_GCC=	3.4
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 600000
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=-	${MACHINE_ARCH}-portbld-freebsd6.0
 PLIST_SUB+=   RELENG_6=""
 PLIST_SUB+=   RELENG_7="@comment "
 .elif ${OSVERSION} < 3000
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd6.1
 PLIST_SUB+=   RELENG_6=""
 PLIST_SUB+=   RELENG_7="@comment "
 .else
 BROKEN=		doesn't work on current, missing symbols.
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 PLIST_SUB+=	RELENG_6="@comment "
 PLIST_SUB+=	RELENG_7=""
 .endif

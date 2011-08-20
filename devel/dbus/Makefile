@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.11 2011/06/24 12:42:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.12 2011/07/16 15:08:46 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION?=	1.4.6
@@ -26,8 +26,7 @@ CONFIGURE_ARGS=--localstatedir=/var \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
-CONFIGURE_TARGET+=	--build=${MACHINE_ARCH}-portbld-freebsd6.1 \
-			--host=${MACHINE_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET+=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 .if !defined(DBUS_SLAVE)
 USE_RC_SUBR=	dbus

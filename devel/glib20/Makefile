@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.18 2011/05/28 21:08:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.19 2011/06/25 22:16:16 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
@@ -57,7 +57,7 @@ GLIB_ARCH=	x86_64
 .else
 GLIB_ARCH=	${ARCH}
 .endif
-CONFIGURE_TARGET=	--build=${GLIB_ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${GLIB_ARCH}-portbld-freebsd7.0
 
 .if defined(WITH_COLLATION_FIX)
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
