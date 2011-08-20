@@ -1,16 +1,17 @@
-# $MidnightBSD: mports/audio/nas/Makefile,v 1.9 2008/03/19 16:38:36 laffer1 Exp $
+# $MidnightBSD: mports/audio/nas/Makefile,v 1.10 2009/12/31 23:16:28 laffer1 Exp $
 
 PORTNAME=	nas
-PORTVERSION=	1.9.1
+PORTVERSION=	1.9.2
 CATEGORIES=	audio
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}%20%28stable%29
+#MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}%20%28stable%29
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}/
 EXTRACT_SUFX=	.src.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Network Audio System
 LICENSE=	x11
 
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 USE_IMAKE=	yes
 USE_XORG=	x11 xext xt xau sm ice xp xpm xmu xaw
 USE_LDCONFIG=	yes
