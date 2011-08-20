@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.6 2009/09/19 23:44:31 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libmspack/Makefile,v 1.7 2011/02/02 20:03:21 laffer1 Exp $
 
 PORTNAME=	libmspack
-PORTVERSION=	0.0.20060920
-PORTREVISION=	5
+PORTVERSION=	0.2
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/libmspack/
 DISTNAME=	${PORTNAME}-${PORTVERSION}alpha
@@ -13,11 +12,10 @@ LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=  yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 USE_LDCONFIG=	yes
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,\*this,*self,'\
-		-e 's,@param\( *\)this,@param\1self,' ${WRKSRC}/mspack/mspack.h
+	@${REINPLACE_CMD} -e 's,$$(libdir)/pkgconfig,@prefix@/libdata/pkgconfig,g' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
