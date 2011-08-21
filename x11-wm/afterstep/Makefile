@@ -1,14 +1,12 @@
 # New ports collection makefile for:	afterstep
-# Date created:		October 29th 1996
-# Whom:			jfitz@FreeBSD.org
 #
-# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.7 2010/03/26 00:51:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/afterstep/Makefile,v 1.8 2010/05/30 21:36:49 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/afterstep/Makefile,v 1.55 2007/04/13 12:16:16 dinoex Exp $
 #
 
 PORTNAME=	afterstep
-PORTVERSION=	2.2.8
-PORTREVISION=	2
+PORTVERSION=	2.2.11
+PORTREVISION=	0
 CATEGORIES=	x11-wm afterstep
 MASTER_SITES=	${MASTER_SITE_AFTERSTEP}
 MASTER_SITE_SUBDIR=	stable
