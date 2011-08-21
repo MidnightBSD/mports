@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.7 2008/05/02 19:40:45 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit/Makefile,v 1.8 2009/04/03 05:22:52 laffer1 Exp $
 
 PORTNAME=	jedit
-PORTVERSION=	4.2
-PORTREVISION=	4
+PORTVERSION=	4.3.2
+PORTEPOCH=	1
 CATEGORIES=	editors java
 MASTER_SITES=	SF
-DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}install
+DISTNAME=	${PORTNAME}${PORTVERSION}install
 EXTRACT_SUFX=	.jar
 EXTRACT_ONLY=
 
@@ -16,10 +16,10 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
-CONFLICTS=	jedit-4.3*
+CONFLICTS=	jedit-4.3.p*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.5+
 BUILD_DEPENDS+=         ${DEPEND_JAVA}
 JAVA_RUN=	jre
 
