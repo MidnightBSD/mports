@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/mpc/Makefile,v 1.1 2011/08/17 22:36:57 laffer1 Exp $
 # $FreeBSD: ports/math/mpc/Makefile,v 1.12 2011/02/21 20:06:58 gerald Exp $
 
 PORTNAME=	mpc
@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.multiprecision.org/mpc/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of complex numbers with arbitrarily high precision
-LICENSE=	lgpl21
+LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
 		mpfr.4:${PORTSDIR}/math/mpfr
