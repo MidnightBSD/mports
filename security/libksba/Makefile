@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libksba/Makefile,v 1.10 2010/08/01 05:20:38 laffer1 Exp $
+# $MidnightBSD: mports/security/libksba/Makefile,v 1.11 2011/04/17 19:40:09 laffer1 Exp $
 
 PORTNAME=	libksba
 PORTVERSION=	1.2.0
@@ -17,9 +17,8 @@ LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_TARGET=
 CONFIGURE_ARGS+=--enable-static
-CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 USE_PERL5_BUILD=yes
 
 INFO=	ksba
