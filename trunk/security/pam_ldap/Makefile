@@ -1,13 +1,8 @@
-# New ports collection makefile for:    pam_ldap
-# Date created:				26 May 2001
-# Whom:	      				Joe Clarke <marcus@marcuscom.com>
-#
-# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.3 2007/10/18 22:29:26 laffer1 Exp $
+# $MidnightBSD: mports/security/pam_ldap/Makefile,v 1.4 2008/05/22 22:14:51 laffer1 Exp $
 # $FreeBSD: ports/security/pam_ldap/Makefile,v 1.38 2006/07/09 06:51:06 marcus Exp $
-#
 
 PORTNAME=	pam_ldap
-PORTVERSION=	1.8.4
+PORTVERSION=	1.8.6
 CATEGORIES=	security net
 MASTER_SITES=	http://www.padl.com/download/ \
 		ftp://ftp.padl.com/pub/
@@ -20,21 +15,20 @@ LICENSE=	gpl2
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_OPENLDAP=	yes
+USE_PERL5_BUILD=	yes
 WRKSRC=	${WRKDIR}/${PORTNAME}-${PORTVERSION:S/.//g}
 CONFIGURE_ARGS=	--with-ldap-lib=openldap \
 		--with-ldap-dir=${LOCALBASE} \
 		--with-ldap-conf-file=${PREFIX}/etc/ldap.conf \
 		--with-ldap-secret-file=${PREFIX}/etc/ldap.secret
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-unknown-freebsd6.0 \
-		--host=${MACHINE_ARCH}-unknown-freebsd6.0 \
-		--target=${MACHINE_ARCH}-unknown-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-unknown-freebsd7.0
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 MAN5=		pam_ldap.5
 
-post-extract:
-	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
+#post-extract:
+#	@${FIND} ${WRKSRC} -type f | ${XARGS} ${TOUCH} -f
 
 post-install:
 	@${SED} -e 's|%%PREFIX%%|${TRUE_PREFIX}|g' < ${PKGDIR}/pkg-message \
