@@ -1,17 +1,11 @@
-# New ports collection makefile for:	tk
-# Date created:		19 August 1997
-# Whom:			jkh
-#
-# $MidnightBSD: mports/x11-toolkits/tk83/Makefile,v 1.2 2007/11/06 04:45:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk83/Makefile,v 1.3 2008/05/11 16:24:17 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk83/Makefile,v 1.70 2007/03/13 10:07:55 miwi Exp $
-#
 
 PORTNAME=	tk
 PORTVERSION=	8.3.5
 PORTREVISION=	7
 CATEGORIES=	x11-toolkits tk
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	tcl
+MASTER_SITES=	SF/tcl/Tcl/${PORTVERSION}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,16 +16,15 @@ USE_TCL=	83
 USE_TCL_BUILD=	83
 
 LATEST_LINK=	tk83
-USE_XLIB=	yes
+USE_XORG=	x11
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}/unix
 GNU_CONFIGURE=	yes
 TK_VER=		8.3
 SHORT_TK_VER=	83
 CONFIGURE_ARGS=	--enable-shared --with-tcl=${PREFIX}/lib/tcl${TK_VER} \
-		--includedir=${LOCALBASE}/include/tk${TK_VER} \
-		--build=${ARCH}-portbld-freebsd6.0
-CONFIGURE_TARGET= ${ARCH}-portbld-freebsd6.0
+		--includedir=${LOCALBASE}/include/tk${TK_VER}
+CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	PORTSDIR=${PORTSDIR} TK_LIB_FILE=libtk${SHORT_TK_VER}.so.1
 MAKE_ENV=	SHORT_TK_VER=${SHORT_TK_VER}
 PLIST_SUB=	TK_VER=${TK_VER} SHORT_TK_VER=${SHORT_TK_VER}
@@ -337,6 +330,9 @@ MLINKS=	3DBorder.3 Tk_Alloc3DBorderFromObj.3 \
 .endif
 
 TKBASE?=	${PORTSDIR}/${PKGCATEGORY}/${LATEST_LINK}
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|X11/Intrinsic.h|X11/Xlib.h|g' ${WRKSRC}/configure
 
 post-configure:
 	${REINPLACE_CMD} \
