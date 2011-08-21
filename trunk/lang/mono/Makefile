@@ -2,7 +2,7 @@
 # Date created:        22 August 2007
 # Whom:                Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.8 2009/09/20 01:21:44 laffer1 Exp $
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.9 2011/02/02 21:06:52 laffer1 Exp $
 # $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
 #
 
@@ -28,9 +28,7 @@ CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 CONFIGURE_ARGS=	--program-transform-name=\'\' \
 		--with-gc=included \
 		--with-tls=pthread
-CONFIGURE_TARGET=	--target=${ARCH}-portbld-freebsd6.0 \
-		--build=${ARCH}-portbld-freebsd6.0 \
-		--host=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 MAKE_ARGS=	EXTERNAL_MCS=false
 
 # Set location for .wapi creation.
