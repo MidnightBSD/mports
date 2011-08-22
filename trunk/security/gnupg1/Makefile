@@ -3,12 +3,12 @@
 # Whom:			kuriyama@FreeBSD.org
 #
 # $FreeBSD: ports/security/gnupg1/Makefile,v 1.92 2006/12/25 03:48:59 kuriyama Exp $
-# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.5 2008/05/04 06:39:41 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg1/Makefile,v 1.6 2008/05/04 06:42:42 laffer1 Exp $
 #
 
 PORTNAME=	gnupg
 PORTVERSION=	1.4.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -24,7 +24,7 @@ CONFLICTS=      gnupg-[0-9]*
 USE_BZIP2=	YES
 USE_GMAKE=	YES
 GNU_CONFIGURE=	YES
-CONFIGURE_TARGET=	--build ${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--infodir=${PREFIX}/info --mandir=${PREFIX}/man
 .if ${MACHINE_CPU:Mi586}
 MACHINE_ARCH=	i586
