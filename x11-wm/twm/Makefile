@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-wm/twm/Makefile,v 1.2 2008/05/23 15:02:26 stevan Exp $
+# $MidnightBSD: mports/x11-wm/twm/Makefile,v 1.3 2009/03/21 19:40:43 laffer1 Exp $
 
 PORTNAME=	twm
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.6
 CATEGORIES=	x11-wm
 
 MAINTAINER=	ports@MidnightBSD.org
