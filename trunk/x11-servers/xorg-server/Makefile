@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.14 2009/05/08 20:07:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.15 2011/05/01 19:27:03 laffer1 Exp $
 
 PORTNAME=	xorg-server
 PORTVERSION=	1.7.7
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	http://xorg.freedesktop.org/releases/individual/xserver/
