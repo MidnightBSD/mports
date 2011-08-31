@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/bluefish/Makefile,v 1.2 2010/01/23 22:02:10 laffer1 Exp $
+# $MidnightBSD: mports/www/bluefish/Makefile,v 1.3 2010/05/28 23:36:05 laffer1 Exp $
 
 PORTNAME=	bluefish
-PORTVERSION=	2.0.0
+PORTVERSION=	2.0.2
 PORTREVISION=	1
 CATEGORIES=	www editors
 MASTER_SITES=	SF
@@ -11,17 +11,11 @@ COMMENT=	HTML editor designed for the experienced web designer
 LICENSE=	gpl2
 
 LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre \
-		aspell.16:${PORTSDIR}/textproc/aspell
+		aspell.16:${PORTSDIR}/textproc/aspell \
+		enchant.1:${PORTSDIR}/textproc/enchant
 
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-
-.if !defined(WITHOUT_WEBLINT)
-RUN_DEPENDS+=	weblint:${PORTSDIR}/www/weblint
-.endif
-.if defined(WITH_TIDY)
-RUN_DEPENDS+=	tidy:${PORTSDIR}/www/tidy
-.endif
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -36,36 +30,22 @@ CONFIGURE_ARGS=	--with-freedesktop_org-menu=${PREFIX}/share/applications \
 		--without-gnome2_4-appreg \
 		--with-icon-path=${PREFIX}/share/pixmaps
 
-# Turns debugging output on
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--with-debugging-output
-.endif
-
-.if defined(WITHOUT_SPLASH)
-CONFIGURE_ARGS+=	--disable-splash-screen
-.endif
-
 MAN1=		bluefish.1
 
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "Bluefish  has the following tunable option(s):"
-	@${ECHO_MSG} "  WITH_DEBUG		for debug support"
-	@${ECHO_MSG} "  WITHOUT_WEBLINT	disable the weblint syntax and style checker"
-	@${ECHO_MSG} "  WITH_TIDY		for the tidy html cleanup program"
-	@${ECHO_MSG} "  WITHOUT_SPLASH	disable the splash screen"
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "For Highlighting to work, please enable UTF-8 support in devel/pcre."
-	@${ECHO_MSG} "This will reduce the number of warning in the console when running bluefish."
-	@${ECHO_MSG} ""
-
-pre-install:
-	@${MKDIR} ${PREFIX}/share/mime
+OPTIONS=	DEBUG "Enable debugging output" Off \
+		SPLASH "Show splash screen at startup" On \
+		TIDY "Include Tidy HTML cleanup program" Off \
+		WEBLINT "Include Weblint syntax and style checker" On
 
 .include <bsd.port.pre.mk>
 
 .if ${HAVE_GNOME:Mlibgnomeui}!=""
 USE_GNOME+=	libgnomeui
+.endif
+
+# Turns debugging output on
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--with-debugging-output
 .endif
 
 .if defined(WITHOUT_NLS)
@@ -76,10 +56,25 @@ USE_GETTEXT=		yes
 PLIST_SUB+=		NLS=""
 .endif
 
+.if defined(WITHOUT_SPLASH)
+CONFIGURE_ARGS+=	--disable-splash-screen
+.endif
+
+.if defined(WITH_TIDY)
+RUN_DEPENDS+=	tidy:${PORTSDIR}/www/tidy
+.endif
+.if !defined(WITHOUT_WEBLINT)
+RUN_DEPENDS+=	weblint:${PORTSDIR}/www/weblint
+.endif
+
+pre-install:
+	@${MKDIR} ${PREFIX}/share/mime
+
 post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	${MKDIR} ${DOCSDIR}/bflang
 	${INSTALL_DATA} ${WRKSRC}/data/bflang/sample.bflang2 ${DOCSDIR}/bflang
 .endif
+
 .include <bsd.port.post.mk>
