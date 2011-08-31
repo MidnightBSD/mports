@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/pecl-APC/Makefile,v 1.3 2011/01/08 14:53:09 laffer1 Exp $
 # $FreeBSD: ports/www/pecl-APC/Makefile,v 1.33 2010/12/05 13:55:56 mnag Exp $
 
 PORTNAME=	APC
-DISTVERSION=	3.1.6
+DISTVERSION=	3.1.7
 CATEGORIES=	www
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
