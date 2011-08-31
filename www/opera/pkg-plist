@@ -98,6 +98,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/bg/bookmarks.adr
 %%DATADIR%%/locale/bg/search.ini
 %%DATADIR%%/locale/bg/standard_speeddial.ini
+%%DATADIR%%/locale/bn/bn.lng
 %%DATADIR%%/locale/cs/bookmarks.adr
 %%DATADIR%%/locale/cs/cs.lng
 %%DATADIR%%/locale/cs/search.ini
@@ -148,7 +149,6 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/it/standard_speeddial.ini
 %%DATADIR%%/locale/ja/bookmarks.adr
 %%DATADIR%%/locale/ja/ja.lng
-%%DATADIR%%/locale/ja/license.txt
 %%DATADIR%%/locale/ja/search.ini
 %%DATADIR%%/locale/ja/standard_speeddial.ini
 %%DATADIR%%/locale/ka/ka.lng
@@ -163,6 +163,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/nb/standard_speeddial.ini
 %%DATADIR%%/locale/nl/nl.lng
 %%DATADIR%%/locale/nn/nn.lng
+%%DATADIR%%/locale/pa/pa.lng
 %%DATADIR%%/locale/pl/bookmarks.adr
 %%DATADIR%%/locale/pl/pl.lng
 %%DATADIR%%/locale/pl/search.ini
@@ -189,6 +190,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/sr/sr.lng
 %%DATADIR%%/locale/sr/standard_speeddial.ini
 %%DATADIR%%/locale/sv/sv.lng
+%%DATADIR%%/locale/sw/sw.lng
 %%DATADIR%%/locale/ta/ta.lng
 %%DATADIR%%/locale/te/te.lng
 %%DATADIR%%/locale/th/th.lng
@@ -209,6 +211,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/zh-tw/browser.js
 %%DATADIR%%/locale/zh-tw/turbosettings.xml
 %%DATADIR%%/locale/zh-tw/zh-tw.lng
+%%DATADIR%%/locale/zu/zu.lng
 %%DATADIR%%/mathml.dtd
 %%DATADIR%%/package-id.ini
 %%DATADIR%%/package/lib/binprint.sh
@@ -322,6 +325,7 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/skin
 @dirrm %%DATADIR%%/package/lib
 @dirrm %%DATADIR%%/package
+@dirrm %%DATADIR%%/locale/zu
 @dirrm %%DATADIR%%/locale/zh-tw
 @dirrm %%DATADIR%%/locale/zh-cn
 @dirrm %%DATADIR%%/locale/vi
@@ -332,6 +336,7 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/th
 @dirrm %%DATADIR%%/locale/te
 @dirrm %%DATADIR%%/locale/ta
+@dirrm %%DATADIR%%/locale/sw
 @dirrm %%DATADIR%%/locale/sv
 @dirrm %%DATADIR%%/locale/sr
 @dirrm %%DATADIR%%/locale/sk
@@ -340,6 +345,7 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/pt-BR
 @dirrm %%DATADIR%%/locale/pt
 @dirrm %%DATADIR%%/locale/pl
+@dirrm %%DATADIR%%/locale/pa
 @dirrm %%DATADIR%%/locale/nn
 @dirrm %%DATADIR%%/locale/nl
 @dirrm %%DATADIR%%/locale/nb
@@ -369,6 +375,7 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/de
 @dirrm %%DATADIR%%/locale/da
 @dirrm %%DATADIR%%/locale/cs
+@dirrm %%DATADIR%%/locale/bn
 @dirrm %%DATADIR%%/locale/bg
 @dirrm %%DATADIR%%/locale/be
 @dirrm %%DATADIR%%/locale/az
