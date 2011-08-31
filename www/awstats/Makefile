@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/awstats/Makefile,v 1.4 2010/01/23 20:51:08 laffer1 Exp $
 
 PORTNAME=	awstats
-PORTVERSION=	6.95
+PORTVERSION=	7.0
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
@@ -78,10 +78,9 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/logresolvemerge.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/maillogconvert.pl ${PREFIX}/www/awstats/tools
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/urlaliasbuilder.pl ${PREFIX}/www/awstats/tools
-	${INSTALL_DATA} ${WRKSRC}/tools/webmin/awstats-1.8.wbm ${PREFIX}/www/awstats/tools/webmin
 	${INSTALL_DATA} ${WRKSRC}/tools/xslt/* ${PREFIX}/www/awstats/tools/xslt
 	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awredir.pl ${PREFIX}/www/awstats/cgi-bin
-	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/awstats.model.conf ${PREFIX}/www/awstats/cgi-bin
+	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awstats.model.conf ${PREFIX}/www/awstats/cgi-bin
 	${INSTALL_SCRIPT} ${WRKSRC}/wwwroot/cgi-bin/awstats.pl ${PREFIX}/www/awstats/cgi-bin
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/tooltips_f/*.txt ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_f
 	${INSTALL_DATA} ${WRKSRC}/wwwroot/cgi-bin/lang/tooltips_m/*.txt ${PREFIX}/www/awstats/cgi-bin/lang/tooltips_m
@@ -106,7 +105,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/*.* ${DOCSDIR}
 .endif
 	@${ECHO_CMD} ""
-	@${ECHO_CMD} "* Rename ${PREFIX}/www/awstats/cgi-bin/awstats.model.conf to awstats.site.conf to setup awstats"
+	@${ECHO_CMD} "* Use ${PREFIX}/www/awstats/tools/awstats_configure.pl to setup your hosts."
 .if !defined(NOPORTDOCS)
 	@${ECHO_CMD} "* Documentation has been installed in ${PREFIX}/share/doc/awstats"
 .endif
