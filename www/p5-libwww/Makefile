@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.7 2010/01/17 15:11:28 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-libwww/Makefile,v 1.8 2010/09/02 13:02:04 laffer1 Exp $
 # $FreeBSD: ports/www/p5-libwww/Makefile,v 1.72 2006/12/03 12:45:59 demon Exp $
 
 PORTNAME=	libwww
-PORTVERSION=	5.836
+PORTVERSION=	5.837
 CATEGORIES=	www perl5 devel
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	LWP
