@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/linux-f10-flashplugin10/Makefile,v 1.1 2011/06/19 23:47:59 laffer1 Exp $
 # $FreeBSD: ports/www/linux-f10-flashplugin10/Makefile,v 1.15 2011/03/24 18:40:34 nox Exp $
 
 PORTNAME=	flashplugin
-PORTVERSION=	10.2r153
+PORTVERSION=	10.3r183.7
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/current/:plugin \
 		ftp://ftp.ipt.ru/pub/download/:suplib
@@ -18,6 +18,8 @@ LICENSE=	restricted
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
 USE_LINUX_APPS=	openssl curl cyrus-sasl2 libssh2 nspr nss openldap gtk2
+USE_GNOME=	desktopfileutils
+INSTALLS_ICONS=	yes
 
 RESTRICTED=	Redistribution not allowed
 RESTRICTED_FILES=	${DISTFILES:Nlinux-f10-flashsupport*:C/:[^:]+$//}
@@ -28,10 +30,17 @@ WRKSRC=		${WRKDIR}
 USE_NPAPI=	linux-*
 NPAPI_FILES=	libflashplayer.so
 
-CONFLICTS=	linux-flashplugin-7* linux-flashplugin-9*
+CONFLICTS=	linux-flashplugin-7* linux-flashplugin-9* linux-f8-flashplugin10-*
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' -e '/^NotShowIn=KDE/d' ${WRKDIR}/usr/share/applications/flash-player-properties.desktop
 
 post-install:
 	@${INSTALL_PROGRAM} ${WRKDIR}/libflashsupport.so ${LINUXBASE}/usr/lib
+	@${INSTALL_PROGRAM} ${WRKDIR}/usr/bin/flash-player-properties ${PREFIX}/bin
+	${MKDIR} ${DESKTOPDIR}
+	@${INSTALL_DATA} ${WRKDIR}/usr/share/applications/flash-player-properties.desktop ${DESKTOPDIR}
+	@(cd ${WRKDIR}/usr/share/icons && ${COPYTREE_SHARE} hicolor ${PREFIX}/share/icons)
 
 .include <bsd.port.pre.mk>
 .include "${PORTSDIR}/www/linux-mplayer-plugin/Makefile.npapi"
