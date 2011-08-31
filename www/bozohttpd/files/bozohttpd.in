@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# $FreeBSD: ports/www/bozohttpd/files/bozohttpd.in,v 1.2 2010/03/27 00:15:10 dougb Exp $
+#
 # PROVIDE: bozohttpd
 # REQUIRE: DAEMON
 #
@@ -13,7 +15,7 @@
 #                               The last argument, slashdir, is required.
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="bozohttpd"
 rcvar=`set_rcvar`
