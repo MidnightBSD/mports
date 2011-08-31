@@ -1,5 +1,5 @@
---- configure.orig	Mon Aug 20 16:44:59 2007
-+++ configure	Tue Oct 30 21:48:26 2007
+--- configure.orig	2011-06-30 23:18:57 -0400
++++ configure	2011-08-30 22:54:45 -0400
 @@ -6,13 +6,8 @@
  PACKAGE=nspluginwrapper
  
@@ -16,79 +16,17 @@
  
  TMPC="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.c"
  TMPO="${TMPDIR1}/npw-conf-${RANDOM}-$$-${RANDOM}.o"
-@@ -52,8 +47,8 @@
- sparc64)
-     host_cpu="sparc64"
-     ;;
--x86_64|amd64)
--    host_cpu="x86_64"
-+amd64|amd64)
-+    host_cpu="amd64"
-     ;;
- *)
-     host_cpu="unknown"
-@@ -131,7 +126,7 @@
- # check for biarch build
- if test "$biarch" = "guess"; then
-     case $host_cpu:$target_cpu in
--    x86_64:i386 | ppc64:ppc)
-+    amd64:i386 | ppc64:ppc)
- 	biarch="yes"
- 	;;
-     *)
-@@ -170,7 +165,7 @@
- 	;;
-     esac
-     case $host_cpu:$nspluginwrapper_64bit_output in
--    ppc64:yes | s390x:yes | sparc64:yes | x86_64:yes)
-+    ppc64:yes | s390x:yes | sparc64:yes | amd64:yes)
- 	lib64="lib64"
- 	;;
-     *)
-@@ -325,7 +320,7 @@
- if test -z "$x_base_dirs"; then
-     x_base_dirs="
- 	/usr
--	/usr/X11R6
-+	/usr/local
- 	/usr/local/X11R6
- 	$prefix
-     "
-@@ -516,6 +511,10 @@
-     echo "OS=freebsd" >> $config_mak
-     echo "#define HOST_FREEBSD 1" >> $config_h
-     echo "#define HOST_OS \"freebsd\"" >> $config_h
+@@ -783,10 +778,10 @@
+     echo "OS=dragonfly" >> $config_mak
+     echo "#define HOST_DRAGONFLY 1" >> $config_h
+     echo "#define HOST_OS \"dragonfly\"" >> $config_h
+-elif test "$host_os" = "freebsd"; then
 +elif test "$host_os" = "midnightbsd"; then
-+    echo "OS=freebsd" >> $config_mak
-+    echo "#define HOST_FREEBSD 1" >> $config_h   
-+    echo "#define HOST_OS \"freebsd\"" >> $config_h
+     echo "OS=freebsd" >> $config_mak
+-    echo "#define HOST_FREEBSD 1" >> $config_h
+-    echo "#define HOST_OS \"freebsd\"" >> $config_h
++    echo "#define HOST_MIDNIGHTBSD 1" >> $config_h
++    echo "#define HOST_OS \"mdinightbsd\"" >> $config_h
  elif test "$host_os" = "netbsd"; then
      echo "OS=netbsd" >> $config_mak
      echo "#define HOST_NETBSD 1" >> $config_h
-@@ -528,10 +527,10 @@
-     echo "ARCH=i386" >> $config_mak
-     echo "#define HOST_I386 1" >> $config_h
-     echo "#define HOST_ARCH \"i386\"" >> $config_h
--elif test "$host_cpu" = "x86_64" ; then
--    echo "ARCH=x86_64" >> $config_mak
-+elif test "$host_cpu" = "amd64" ; then
-+    echo "ARCH=amd64" >> $config_mak
-     echo "#define HOST_X86_64 1" >> $config_h
--    echo "#define HOST_ARCH \"x86_64\"" >> $config_h
-+    echo "#define HOST_ARCH \"amd64\"" >> $config_h
- elif test "$host_cpu" = "ppc" ; then
-     echo "ARCH=ppc" >> $config_mak
-     echo "#define HOST_PPC 1" >> $config_h
-@@ -647,9 +646,9 @@
-     echo "TARGET_ARCH=i386" >> $config_mak
-     echo "#define TARGET_ARCH \"i386\"" >> $config_h
-     echo "#define TARGET_I386 1" >> $config_h
--elif test "$target_cpu" = "x86_64" ; then
--    echo "TARGET_ARCH=x86_64" >> $config_mak
--    echo "#define TARGET_ARCH \"x86_64\"" >> $config_h
-+elif test "$target_cpu" = "amd64" ; then
-+    echo "TARGET_ARCH=amd64" >> $config_mak
-+    echo "#define TARGET_ARCH \"amd64\"" >> $config_h
-     echo "#define TARGET_X86_64 1" >> $config_h
- elif test "$target_cpu" = "ppc" ; then
-     echo "TARGET_ARCH=ppc" >> $config_mak
