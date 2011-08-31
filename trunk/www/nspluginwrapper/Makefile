@@ -2,33 +2,35 @@
 # Date created:         30 Oct 2007
 # Whom:                 Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.6 2008/06/20 16:46:29 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.7 2008/10/06 03:19:22 laffer1 Exp $
 # $FreeBSD: ports/www/nspluginwrapper/Makefile,v 1.5 2007/09/01 23:15:12 pav Exp $
 #
 
 PORTNAME=	nspluginwrapper
-PORTVERSION=	1.0.0
+PORTVERSION=	1.4.4
 CATEGORIES=	www linux emulators
-MASTER_SITES=	http://gwenole.beauchesne.info/projects/nspluginwrapper/files/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${RPMFILE}
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	http://nspluginwrapper.org/download/ \
+		FREEBSD_LOCAL/jkim \
+		FREEBSD_LOCAL/jkim:binfile
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${BINFILE}:binfile
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A compatibility plugin for Netscape 4 (NPAPI) plugins
 LICENSE=	gpl2
 
-EXTRACT_DEPENDS=	rpm2cpio:${PORTSDIR}/archivers/rpm
-RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/linux-gtk2
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 
-RPMFILE=	${PORTNAME}-i386-${PORTVERSION}-1.x86_64.rpm
+CONFLICTS=	nspluginwrapper-1.3.*
+
+BINBUILD=	1
+BINFILE=	${PORTNAME}-i386-${PORTVERSION}-${BINBUILD}${EXTRACT_SUFX}
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-USE_XORG=	x11
-USE_BZIP2=	yes
 USE_LINUX=	yes
-USE_XLIB=	yes
-USE_GNOME=	glib20 pkgconfig
+USE_LINUX_APPS=	gtk2
+USE_XORG=	x11 xext xt
+USE_GNOME=	glib20 gtk20 pkgconfig
 
 CFLAGS+=	-std=c99
 
@@ -36,33 +38,35 @@ USE_LDCONFIG=	yes
 USE_GMAKE=	yes
 HAS_CONFIGURE=	yes
 
-CONFIGURE_ARGS=	--prefix=${PREFIX} --target-os=linux --target-cpu=i386 \
-		--with-x11-prefix=${LOCALBASE} --with-cc=${CC} --with-cxx=${CXX} \
-		--host=${ARCH}-portbld-freebsd6.0
+CONFIGURE_ARGS=	--enable-generic --enable-strip --prefix=${PREFIX} \
+		--target-os=linux --target-cpu=i386 \
+		--with-cc=${CC} --with-cxx=${CXX}
 
 LIBDIR=		${PREFIX}/lib/${PORTNAME}
 
-PLIST_SUB=	LIBDIR="${LIBDIR:C/^${PREFIX}\///}" ARCH="${ARCH}"
+PLIST_SUB=	LIBDIR="${LIBDIR:C/^${PREFIX}\///}" HOST_ARCH="${HOST_ARCH}"
 
-# We must manually extract, modify, and install the Linux version of npviewer.
-post-extract:
-	cd ${WRKSRC} &&	rpm2cpio ${DISTDIR}/${RPMFILE} | ${CPIO} -id
-	${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' \
-		${WRKSRC}/usr/lib/nspluginwrapper/i386/linux/npviewer
-	${RM} ${WRKSRC}/usr/lib/nspluginwrapper/i386/linux/npviewer.bak
-
-post-patch:
-	@${REINPLACE_CMD} -e 's,x86_64,amd64,g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's,/usr/X11R6,${LOCALBASE},g' ${WRKSRC}/configure
-
-post-install:
-	${MKDIR} ${LIBDIR}/i386/linux
-	${INSTALL_SCRIPT} ${WRKSRC}/usr/lib/nspluginwrapper/i386/linux/* \
-	     ${LIBDIR}/i386/linux/
+SUB_FILES=	npviewer
+SUB_LIST+=	NSPLUGINWRAPPER="${LIBDIR}"
 
 .include <bsd.port.pre.mk>
 
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
-RUN_DEPENDS+=	${LOCALBASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
+.if ${ARCH} == "amd64"
+HOST_ARCH=	x86_64
+.else
+HOST_ARCH=	${ARCH}
+.endif
+
+post-patch:
+	${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},g' \
+	    ${WRKSRC}/src/npw-config.c
+
+post-install:
+	${MKDIR} ${LIBDIR}/i386/linux
+	${INSTALL_PROGRAM} ${WRKDIR}/usr/lib/nspluginwrapper/i386/linux/*.bin \
+	    ${WRKDIR}/usr/lib/nspluginwrapper/i386/linux/*.so \
+	    ${LIBDIR}/i386/linux/
+	${INSTALL_SCRIPT} ${WRKDIR}/npviewer ${LIBDIR}/i386/linux/
+	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.post.mk>
