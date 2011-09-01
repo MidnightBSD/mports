@@ -1,9 +1,5 @@
-# New ports collection makefile for:	databases/linux-f10-sqlite3
-# Date created:				2009-05-04
-# Whom:					bsam
-#
+# $MidnightBSD$
 # $FreeBSD: ports/databases/linux-f10-sqlite3/Makefile,v 1.7 2011/03/03 09:26:36 ehaupt Exp $
-#
 
 PORTNAME=	sqlite3
 PORTVERSION=	3.5.9
@@ -13,10 +9,9 @@ MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 PKGNAMEPREFIX=	linux-f10-
 DISTNAME=	sqlite-${PORTVERSION}-${RPMVERSION}
 
-MAINTAINER=	emulation@FreeBSD.org
-COMMENT=	The library that implements an embeddable SQL database engine (Linux Fedora 10)
-
-CONFLICTS=	linux-f8-sqlite3-[0-9]*
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	An embeddable SQL database engine (Linux Fedora 10)
+LICENSE=	publicdom
 
 USE_LINUX_RPM=	yes
 LINUX_DIST_VER=	10
