@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.15 2011/09/01 02:09:59 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.16 2011/09/01 02:21:04 laffer1 Exp $
 
 PORTNAME=	cherokee
 PORTVERSION=	1.0.19
@@ -233,9 +233,5 @@ post-install:
 	     CHEROKEE_RRDDIR_USER=${CHEROKEE_USER} \
 	     CHEROKEE_RRDDIR_GROUP=${CHEROKEE_GROUP} \
 	     ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-
-	@${ECHO_MSG} "==============================================================="
-	@${CAT} ${PKGMESSAGE}
-	@${ECHO_MSG} "==============================================================="
 
 .include <bsd.port.post.mk>
