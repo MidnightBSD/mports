@@ -1,6 +1,6 @@
 # Ports collection makefile for:  rsync
 #
-# $MidnightBSD: mports/net/rsync/Makefile,v 1.11 2009/09/26 17:07:00 laffer1 Exp $
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.12 2011/06/25 23:22:06 laffer1 Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.131 2008/04/08 19:24:06 ehaupt Exp $
 #
 
@@ -27,7 +27,7 @@ MAKE_JOBS_SAFE=	yes
 
 CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
 		--with-rsyncd-conf=${PREFIX}/etc/rsyncd.conf
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 .if !defined(NOPORTDOCS)
 PORTDOCS=	NEWS README csprotocol.txt tech_report.tex
