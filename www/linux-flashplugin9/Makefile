@@ -1,13 +1,11 @@
 # New ports collection makefile for:	linux-flashplugin9
-# Date created:				28 May 2004
-# Whom:					Jamie Jones <jamie@bishopston.net>
 #
-# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.7 2010/09/04 15:36:36 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.8 2010/11/12 00:42:33 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flashplugin9/Makefile,v 1.23 2007/03/09 12:14:08 pav Exp $
 #
 
 PORTNAME=	flashplugin
-PORTVERSION=	9.0r283
+PORTVERSION=	9.0r289
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://download.macromedia.com/pub/flashplayer/installers/current/9/:plugin \
 		http://tijl.ulyssis.fm/mirror/:suplib \
@@ -37,7 +35,7 @@ LATEST_LINK=	flash9
 USE_NPAPI=	linux-*
 NPAPI_FILES=	libflashplayer.so
 
-CONFLICTS=	linux-flashplugin-7*
+CONFLICTS=	linux-flashplugin-7* linux-f10-flashplugin-10*
 
 post-install:
 	@${INSTALL_PROGRAM} ${DISTDIR}/${DIST_SUBDIR}/libflashsupport.so ${LINUXBASE}/usr/lib
