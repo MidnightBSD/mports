@@ -1,20 +1,28 @@
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCConfig.h
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCKeyboard.h
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCMonitor.h
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCMouse.h
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers/SCSound.h
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/Resources/Info-gnustep.plist
-Local/Library/Frameworks/SystemConfig.framework/Versions/0/SystemConfig
-Local/Library/Frameworks/SystemConfig.framework/Versions/Current
-Local/Library/Frameworks/SystemConfig.framework/Resources
-Local/Library/Frameworks/SystemConfig.framework/Headers
-Local/Library/Frameworks/SystemConfig.framework/SystemConfig
-Local/Library/Frameworks/SystemConfig.framework/libSystemConfig.so
-Local/Library/Libraries/libSystemConfig.so
-Local/Library/Libraries/libSystemConfig.so.0.0.1
-Local/Library/Headers/SystemConfig
-@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0/Headers
-@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0/Resources
-@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions/0
-@dirrm Local/Library/Frameworks/SystemConfig.framework/Versions
-@dirrm Local/Library/Frameworks/SystemConfig.framework
+@comment $MidnightBSD$
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Headers
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Resources
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/SystemConfig
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCConfig.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCKeyboard.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCMachineInfo.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCMonitor.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCMouse.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCPower.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/SCSound.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers/X11Keyboard.h
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Resources/Info-gnustep.plist
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/SystemConfig
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/libSystemConfig.so
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/libSystemConfig.so.%%MAJORLIBVERSION%%
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/libSystemConfig.so.%%LIBVERSION%%
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/Current
+GNUstep/Local/Library/Frameworks/SystemConfig.framework/libSystemConfig.so
+GNUstep/Local/Library/Headers/SystemConfig
+GNUstep/Local/Library/Libraries/libSystemConfig.so
+GNUstep/Local/Library/Libraries/libSystemConfig.so.%%MAJORLIBVERSION%%
+GNUstep/Local/Library/Libraries/libSystemConfig.so.%%LIBVERSION%%
+@dirrm GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Resources
+@dirrm GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%/Headers
+@dirrm GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions/%%MAJORLIBVERSION%%
+@dirrm GNUstep/Local/Library/Frameworks/SystemConfig.framework/Versions
+@dirrm GNUstep/Local/Library/Frameworks/SystemConfig.framework
