@@ -2,7 +2,7 @@
 # Date created:         17 Nov 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.4 2009/12/31 21:02:29 laffer1 Exp $
+# $MidnightBSD: mports/audio/gnustep-cdplayer/Makefile,v 1.5 2011/09/02 23:59:10 laffer1 Exp $
 # $FreeBSD: ports/audio/gnustep-cdplayer/Makefile,v 1.3 2007/01/31 18:17:49 dinoex Exp $
 #
 
@@ -37,8 +37,8 @@ pre-configure:
 	${LN} -s ${GNUSTEP_SYSTEM_ROOT}/Library/Frameworks/PrefsModule.framework/Versions/A/Headers ${WRKSRC}/AudioCD/AudioCDPrefs/PrefsModule
 
 post-install:
-	${MKDIR} ${GNUSTEP_PREFIX}/Local/Library/Headers/CDPlayer
+	${MKDIR} ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/Local/Library/Headers/CDPlayer
 	${INSTALL_DATA} ${WRKSRC}/CDPlayer/AudioCDProtocol.h \
-		 ${GNUSTEP_PREFIX}/Local/Library/Headers/CDPlayer/
+		 ${FAKE_DESTDIR}${GNUSTEP_PREFIX}/Local/Library/Headers/CDPlayer/
 
 .include <bsd.port.mk>
