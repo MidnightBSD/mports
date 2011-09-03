@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/gnome-user-share/Makefile,v 1.1 2010/09/06 19:59:55 laffer1 Exp $
 
 PORTNAME=	gnome-user-share
-PORTVERSION=	2.30.0
-PORTREVISION=	2
+PORTVERSION=	2.30.1
+PORTREVISION=	0
 CATEGORIES=	www deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
