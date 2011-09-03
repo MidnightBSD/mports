@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.16 2010/10/09 17:38:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.17 2011/02/02 20:17:32 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -216,7 +216,7 @@ do-build:
 
 do-install:
 	cd ${APR_WRKDIR}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
-	cd ${APU_WRKDIR}; ${SETENV} ${MAKE_ENV} ${GMAKE}  ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	cd ${APU_WRKDIR}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
 debug_autoconf:
 	@${ECHO} "LIBTOOL: ${LIBTOOL_VERSION}"
