@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.17 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.18 2011/09/03 00:56:51 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -11,17 +11,17 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	Apache Portability Library
 LICENSE=	apache2
 
-LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 MAKE_JOBS_SAFE=	yes
 
-OPTIONS=	THREADS "Enable Threads in apr"						on  \
-			IPV6	"Enable IPV6 Support in apr"				on	\
+OPTIONS=	THREADS "Enable Threads in apr"					on  \
+			IPV6	"Enable IPV6 Support in apr"			on  \
 			GDBM	"Enable GNU dbm support in apr-util"		on  \
-			BDB		"Enable Berkley BDB support in apr-util"	on  \
-			NDBM	"Enable NDBM support in apr-util"			off \
-			LDAP	"Enable LDAP support in apr-util"			off \
-			MYSQL	"Enable MySQL suport in apr-util"			off \
+			BDB	"Enable Berkley BDB support in apr-util"	on  \
+			NDBM	"Enable NDBM support in apr-util"		off \
+			LDAP	"Enable LDAP support in apr-util"		off \
+			MYSQL	"Enable MySQL suport in apr-util"		off \
 			PGSQL	"Enable Postgresql suport in apr-util"		off
 
 APR_VERSION=	1.4.2
@@ -29,13 +29,13 @@ APU_VERSION=	1.3.10
 
 USE_ICONV=		yes
 USE_AUTOTOOLS=	automake autoconf libtool:env
-USE_GMAKE=		yes
 USE_PERL5_BUILD=	yes
-USE_PYTHON_BUILD=	yes
+USE_PYTHON_BUILD=	-2.7
 USE_LDCONFIG=		yes
 GNU_CONFIGURE=		yes
+CONIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 
-CONFIGURE_ENV=	CC="${CC}" CFLAGS="${CFLAGS}"
+CONFIGURE_ENV=	CC="${CC}"
 
 NO_WRKSUBDIR=	yes
 APR_WRKDIR=	${WRKDIR}/apr-${APR_VERSION}
@@ -47,8 +47,8 @@ SHLIB_APU_MAJOR=	3
 
 APR_CONF_ARGS=	--with-installbuilddir=${DATADIR}/build-1
 APU_CONF_ARGS=	--with-apr=${APR_WRKDIR} \
-			--with-expat=${LOCALBASE} \
-			--with-iconv=${LOCALBASE}
+		--with-expat=${LOCALBASE} \
+		--with-iconv=${LOCALBASE}
 
 .include <bsd.mport.options.mk>
 
@@ -176,7 +176,7 @@ PLIST_SUB+=	APU_EXTRAS="@comment "
 .endif
 
 post-patch:
-	${REINPLACE_CMD} -e 's/OSVERSION/'${OSVERSION}'/g' \
+	${REINPLACE_CMD} -e 's/OSVERSION/${OSVERSION}/g' \
 		${APR_WRKDIR}/build/apr_hints.m4
 	${FIND} ${APR_WRKDIR} ${APU_WRKDIR} -name "Makefile.in*" | ${XARGS} ${REINPLACE_CMD} -e \
 		's|[(]libdir[)]/pkgconfig|(prefix)/libdata/pkgconfig|g'
@@ -189,8 +189,10 @@ pre-configure:
 	${CHMOD} a+rx ${APU_WRKDIR}/build/${f}
 .endfor
 	${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},g' \
-  	   ${APR_WRKDIR}/build/apr_threads.m4 ${APR_WRKDIR}/build/apr_hints.m4 \
-           ${APU_WRKDIR}/build/apu-conf.m4
+		${APR_WRKDIR}/build/apr_threads.m4 ${APR_WRKDIR}/build/apr_hints.m4 \
+		${APU_WRKDIR}/build/apu-conf.m4
+	${REINPLACE_CMD} -e '1 s/python/${PYTHON_VERSION}/' \
+		${APR_WRKDIR}/build/gen-build.py
 
 run-autotools::
 	cd ${APR_WRKDIR} ; \
@@ -200,12 +202,15 @@ run-autotools::
 	cd ${APU_WRKDIR} ; \
 		${SETENV} ${CONFIGURE_ENV} ${SH} ./buildconf \
 		--with-apr=${APR_WRKDIR}
+	${REINPLACE_CMD} -e 's/ gsed//g' \
+		${APR_WRKDIR}/build/libtool.m4 \
+		${APR_WRKDIR}/configure
 	cd ${APR_WRKDIR}; \
 		${SETENV} ${CONFIGURE_ENV} ${SH} \
-		./configure ${CONFIGURE_ARGS} ${APR_CONF_ARGS}
+		./configure ${CONFIGURE_ARGS} ${APR_CONF_ARGS} --build=${ARCH}-portbld-freebsd7.0
 	cd ${APU_WRKDIR}; \
-		${SETENV} ${CONFIGURE_ENV} ${SH} \
-		./configure ${CONFIGURE_ARGS} ${APU_CONF_ARGS}
+		${SETENV} ${CONFIGURE_ENV} CFLAGS="${CFLAGS}" ${SH} \
+		./configure ${CONFIGURE_ARGS} ${APU_CONF_ARGS} --build=${ARCH}-portbld-freebsd7.0
 
 do-configure:
 	${DO_NADA}
@@ -215,8 +220,8 @@ do-build:
 	cd ${APU_WRKDIR}; ${SETENV} ${MAKE_ENV} ${MAKE}
 
 do-install:
-	cd ${APR_WRKDIR}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
-	cd ${APU_WRKDIR}; ${SETENV} ${MAKE_ENV} ${GMAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	cd ${APR_WRKDIR}; ${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
+	cd ${APU_WRKDIR}; ${SETENV} ${MAKE_ENV} ${MAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 
 debug_autoconf:
 	@${ECHO} "LIBTOOL: ${LIBTOOL_VERSION}"
@@ -230,6 +235,6 @@ debug_autoconf:
 	@${ECHO} "LIBTOOL_LIBEXECDIR: ${LIBTOOL_LIBEXECDIR}"
 	@${ECHO} "LIBTOOL_M4: ${LIBTOOL_M4}"
 	@${ECHO} "${SETENV} ${CONFIGURE_ENV} ${SH} ./configure ${CONFIGURE_ARGS} ${APR_CONF_ARGS}"
-	@${ECHO} "${SETENV} ${CONFIGURE_ENV} ${SH} ./configure ${CONFIGURE_ARGS} ${APR_UTIL_CONF_ARGS}"
+	@${ECHO} "${SETENV} ${CONFIGURE_ENV} CFLAGS="${CFLAGS}" ${SH} ./configure ${CONFIGURE_ARGS} ${APR_UTIL_CONF_ARGS}"
 
 .include <bsd.port.mk>
