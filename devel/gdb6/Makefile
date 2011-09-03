@@ -3,7 +3,7 @@
 # Date created:				30 March 2001
 # Whom:					David O'Brien <obrien@NUXI.com>
 #
-# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.4 2010/05/31 19:17:27 laffer1 Exp $
+# $MidnightBSD: mports/devel/gdb6/Makefile,v 1.5 2010/11/17 13:57:59 laffer1 Exp $
 # $FreeBSD: ports/devel/gdb6/Makefile,v 1.51 2007/06/29 13:14:33 mi Exp $
 #
 
@@ -29,9 +29,9 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
 		--enable-target=all \
-		--enable-tui --with-libiconv-prefix=${LOCALBASE}
+		--enable-tui --with-libiconv-prefix=${LOCALBASE} 
 CFLAGS:=	${CFLAGS:C/ +$//}	# blanks at EOL creep in sometimes
-CFLAGS+=	-DRL_NO_COMPAT
+CFLAGS+=	-DRL_NO_COMPAT -Wno-error
 EXCLUDE=	dejagnu expect readline sim texinfo intl
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - ${EXCLUDE:S/^/--exclude /}
 VER=	${PORTVERSION:S/.//}
@@ -72,6 +72,8 @@ PLIST_SUB+=	INSIGHT='@comment '
 
 .if ${ARCH} == "amd64"
 CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+.else
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 .endif
 
 post-patch:
