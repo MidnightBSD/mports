@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.92 2011/06/19 18:49:16 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.93 2011/08/13 18:10:32 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -102,7 +102,6 @@ SUBDIR += pulseaudio
 SUBDIR += rhythmbox
 SUBDIR += sdl_mixer
 SUBDIR += sdl_sound
-SUBDIR += shoutcast
 SUBDIR += sound-juicer
 SUBDIR += speex
 SUBDIR += taglib
