@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.7 2010/01/20 14:03:16 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.8 2010/10/09 15:19:30 laffer1 Exp $
 
 PORTNAME=	moinmoin
 PORTVERSION=	1.9.3
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
 DISTNAME=	moin-${PORTVERSION}
@@ -14,7 +15,8 @@ USE_PYTHON=	yes
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGNAME=	moin
 
-PLIST_SUB+=	PYTHON_SITELIB=${PYTHON_SITELIBDIR:S|^${LOCALBASE}/||}
+PLIST_SUB+=	PYTHON_SITELIB=${PYTHON_SITELIBDIR:S|^${LOCALBASE}/||} \
+		DATADIR=share/moin
 SUB_FILES=	pkg-install
 SUB_LIST=	MOINDIR=${MOINDIR} MOINDEST=${MOINDEST}
 
