@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.2 2010/10/19 20:09:54 laffer1 Exp $
+# $MidnightBSD: mports/www/mod_dnssd/Makefile,v 1.3 2010/12/13 01:22:52 laffer1 Exp $
 
 PORTNAME=	mod_dnssd
 PORTVERSION=	0.6
@@ -9,8 +9,6 @@ PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Apache module that provides DNS-SD capabilities
 LICENSE=	apache2
-
-BROKEN=		possible to manual install, but broken on fake
 
 LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
 
@@ -24,9 +22,15 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		APR_CFLAGS="`${LOCALBASE}/bin/apr-1-config --cflags --cppflags --includes`" \
 		APR_LIBS="`${LOCALBASE}/bin/apr-1-config --ldflags`"
 CONFIGURE_ARGS=	--disable-lynx
+CONFIGURE_ARGS+= MP_APXS=${LOCALBASE}/sbin/apxs PREFIX=${PREFIX}
 
 pre-install:
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
+
+do-install:
+	${INSTALL_LIB} ${WRKSRC}/src/.libs/mod_dnssd.so ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
+	${INSTALL_LIB} ${WRKSRC}/src/.libs/mod_dnssd.a ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
+	${INSTALL_DATA} ${WRKSRC}/src/.libs/mod_dnssd.la ${FAKE_DESTDIR}${TRUE_PREFIX}/${APACHEMODDIR}
 
 post-install:
 .if !defined(NOPORTDOCS)
