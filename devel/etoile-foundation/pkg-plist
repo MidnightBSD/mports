@@ -1,7 +1,6 @@
 GNUstep/Local/Library/Documentation/EtoileThread
 GNUstep/Local/Library/Documentation/EtoileXML
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/EtoileFoundation
-GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/EtoileFoundation.framework
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/Headers
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/Resources
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/Versions/%%MAJORVERSION%%/EtoileFoundation
@@ -47,7 +46,6 @@ GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/Versions/%%MAJORVERS
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/Versions/Current
 GNUstep/Local/Library/Frameworks/EtoileFoundation.framework/libEtoileFoundation.so
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/EtoileThread
-GNUstep/Local/Library/Frameworks/EtoileThread.framework/EtoileThread.framework
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/Headers
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/Resources
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/Versions/%%MAJORLIBVERSION%%/EtoileThread
@@ -63,7 +61,6 @@ GNUstep/Local/Library/Frameworks/EtoileThread.framework/Versions/%%MAJORLIBVERSI
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/Versions/Current
 GNUstep/Local/Library/Frameworks/EtoileThread.framework/libEtoileThread.so
 GNUstep/Local/Library/Frameworks/EtoileXML.framework/EtoileXML
-GNUstep/Local/Library/Frameworks/EtoileXML.framework/EtoileXML.framework
 GNUstep/Local/Library/Frameworks/EtoileXML.framework/Headers
 GNUstep/Local/Library/Frameworks/EtoileXML.framework/Resources
 GNUstep/Local/Library/Frameworks/EtoileXML.framework/Versions/%%MAJORLIBVERSION2%%/EtoileXML
