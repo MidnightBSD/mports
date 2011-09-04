@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.1 2010/02/27 21:13:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.2 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	libdispatch
 PORTVERSION=	174
@@ -77,10 +77,10 @@ IGNORE=	is not supported on this OS version
 .endif
 
 .if !defined(WITHOUT_CLANG)
-#BUILD_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
-#		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
-#RUN_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
-#		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
+BUILD_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
+		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
+RUN_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
+		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
 CONFIGURE_ARGS+=	--with-blocks-runtime=/usr/local/lib
 CONFIGURE_ENV+=	CC="clang"
 MAKE_ENV+=	CC="clang"
