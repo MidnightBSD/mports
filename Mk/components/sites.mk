@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.36 2011/04/10 16:14:14 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.37 2011/05/02 13:38:45 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -886,6 +886,48 @@ MASTER_SITE_OPENBSD+= \
 	ftp://carroll.cac.psu.edu/pub/OpenBSD/%SUBDIR%/ \
 	ftp://openbsd.mirrors.tds.net/pub/OpenBSD/%SUBDIR%/ \
 	http://mirrors.nic.funet.fi/pub/OpenBSD/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_OPENOFFICE)
+MASTER_SITE_OPENOFFICE+=	\
+	http://mirrors.isc.org/pub/openoffice/ \
+	http://ftp.stardiv.de/pub/OpenOffice.org/ \
+	http://openoffice.mirrors.ilisys.com.au/ \
+	ftp://ftp.pucpr.br/openoffice/ \
+	http://www.ibiblio.org/pub/mirrors/openoffice/ \
+	ftp://ftp.ussg.iu.edu/pub/openoffice/ \
+	http://openoffice.mirrors.pair.com/ftp/ \
+	http://gd.tuwien.ac.at/office/openoffice/ \
+	http://ftp.belnet.be/pub/mirror/ftp.openoffice.org/ \
+	ftp://ftp.kulnet.kuleuven.ac.be/pub/mirror/openoffice.org/ \
+	http://ftp.sh.cvut.cz/MIRRORS/OpenOffice/ \
+	ftp://ftp.funet.fi/pub/mirrors/openoffice.org/ \
+	ftp://openoffice.cict.fr/openoffice/ \
+	http://ftp.club-internet.fr/pub/OpenOffice/ \
+	ftp://sunsite.informatik.rwth-aachen.de/pub/mirror/OpenOffice/ \
+	ftp://ftp.tu-chemnitz.de/pub/openoffice/ \
+	ftp://ftp-stud.fht-esslingen.de/pub/Mirrors/ftp.openoffice.org/ \
+	ftp://ftp.join.uni-muenster.de/pub/software/OpenOffice/ \
+	http://ftp.ntua.gr/pub/OpenOffice/ \
+	http://ftp.fsf.hu/OpenOffice.org/ \
+	http://ftp.rhnet.is/pub/OpenOffice/ \
+	http://na.mirror.garr.it/mirrors/openoffice/ \
+	http://vlaai.snt.utwente.nl/pub/software/openoffice/ \
+	http://niihau.student.utwente.nl/openoffice/ \
+	http://borft.student.utwente.nl/openoffice/ \
+	http://ftp.iasi.roedu.net/mirrors/openoffice.org/ \
+	ftp://ftp.arnes.si/packages/OpenOffice.org/ \
+	ftp://ftp.saix.net/pub/OpenOffice.org/ \
+	http://ftp.rediris.es/ftp/mirror/openoffice.org/ \
+	http://ftp.sunet.se/pub/Office/OpenOffice.org/ \
+	ftp://mirror.switch.ch/mirror/OpenOffice/ \
+	http://mirror.pacific.net.au/openoffice/ \
+	http://komo.vlsm.org/openoffice/ \
+	ftp://ftp.kddlabs.co.jp/office/openoffice/ \
+	ftp://ftp.t.ring.gr.jp/pub/misc/openoffice/ \
+	http://mymirror.asiaosc.org/openoffice/ \
+	ftp://ftp.kr.freebsd.org/pub/openoffice/ \
+	http://www.fs.tum.de/~mrauch/OpenOffice/download/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
