@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/etoile-serialize/Makefile,v 1.1 2010/05/30 23:18:33 laffer1 Exp $
 
 PORTNAME=	serialize
 PORTVERSION=	0.4.1
@@ -13,7 +13,6 @@ LICENSE=	bsd2
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
