@@ -1,4 +1,3 @@
-MD5 (libntlm-1.0.tar.gz) = 83dc36023ce36de0f0d2f98294c040c1
-SHA256 (libntlm-1.0.tar.gz) = e7fabcc49530334c9c5f41fe8ec67ca69bfd6196e53d0ebdcab3fdfa5f936f65
-RMD160 (libntlm-1.0.tar.gz) = d73345958b1bf77a7b8a75700944338cc269b078
-SIZE (libntlm-1.0.tar.gz) = 451725
+SHA256 (libntlm-1.2.tar.gz) = 7f5f64e561bf156f918536174c7fc86a20138126c6aaa441d6cd224c52a8db68
+RMD160 (libntlm-1.2.tar.gz) = b7344213f2510c93e30583fc567961a4e6aedd13
+SIZE (libntlm-1.2.tar.gz) = 439103
