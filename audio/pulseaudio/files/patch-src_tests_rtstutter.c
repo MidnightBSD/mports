@@ -16,7 +16,7 @@
  
  static void* work(void *p) {
  #ifdef HAVE_PTHREAD_SETAFFINITY_NP
-+#ifdef __FreeBSD__
++#ifdef __MidnightBSD__
 +    cpuset_t mask;
 +#else
      cpu_set_t mask;

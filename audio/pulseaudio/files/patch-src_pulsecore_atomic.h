@@ -4,7 +4,7 @@
      return __sync_bool_compare_and_swap(&a->value, (long) old_p, (long) new_p);
  }
  
-+#elif defined(__FreeBSD__)
++#elif defined(__MidnightBSD__)
 +
 +#include <sys/cdefs.h>
 +#include <sys/types.h>
