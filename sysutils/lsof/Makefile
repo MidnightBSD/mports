@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.2 2008/03/31 02:55:37 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.3 2010/12/29 01:32:45 laffer1 Exp $
 # $FreeBSD: ports/sysutils/lsof/Makefile,v 1.158 2008/01/26 22:28:53 wxs Exp $
 
 PORTNAME=	lsof
-PORTVERSION=	4.84A
+PORTVERSION=	4.85C
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.SpringDaemons.com/stas/ \
 		http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
@@ -20,6 +20,7 @@ MASTER_SITES=	http://www.SpringDaemons.com/stas/ \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/  \
 		ftp://ftp.cert.dfn.de/pub/tools/admin/lsof/NEW/ \
 		ftp://ftp.tau.ac.il/pub/unix/admin/
+DISTNAME=	${PORTNAME}_${PORTVERSION}${DISTNAME_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lists information about open files (similar to fstat(1))
@@ -29,25 +30,19 @@ LICENSE=	other
 #Please leave the below line in for the next clean up.
 FIXUP_RELEASE=	YES
 .if defined(FIXUP_RELEASE)
-DISTNAME=	${PORTNAME}_${PORTVERSION}.freebsd
+DISTNAME_SUFFIX=.freebsd
 .else
-DISTNAME=	${PORTNAME}_${PORTVERSION}
-.endif
-.if defined(FIXUP_RELEASE)
-WRKSRC=		${WRKDIR}/${DISTNAME}
-.else
+SRCBALL_NAME=	${DISTNAME:S/_W$//}_src
 WRKSRC=		${WRKDIR}/${DISTNAME}/${SRCBALL_NAME}
 .endif
+
 USE_BZIP2=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
-CONFIGURE_ENV=	LSOF_CC="${CC}" LSOF_VERS=6000
-FREEBSD_SYS?=	/usr/src/sys
+CONFIGURE_ENV=	LSOF_CC="${CC}" LSOF_VERS=6000 FREEBSD_SYS="${SRC_BASE}/sys"
 PLIST_FILES=	sbin/lsof
 MAN8=		lsof.8
-
-SRCBALL_NAME=	${DISTNAME:S/_W$//}_src
 
 .if !defined(FIXUP_RELEASE)
 post-extract:
