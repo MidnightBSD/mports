@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.10 2011/05/15 22:03:22 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.11 2011/08/13 17:49:29 laffer1 Exp $
 
 PORTNAME=	jabberd
-PORTVERSION=	2.2.11
+PORTVERSION=	2.2.13
 PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	http://codex.xiaoka.com/pub/jabberd2/releases/
@@ -168,7 +168,7 @@ CONFIGURE_ARGS+=	--with-sasl=cyrus
 LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 .else
 CONFIGURE_ARGS+=	--with-sasl=gsasl
-LIB_DEPENDS+=	gsasl.14:${PORTSDIR}/security/gsasl
+LIB_DEPENDS+=	gsasl.15:${PORTSDIR}/security/gsasl
 .endif
 
 MAN8=		c2s.8 jabberd.8 router.8 s2s.8 sm.8
