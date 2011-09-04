@@ -1,4 +1,3 @@
-MD5 (gsasl-1.4.0.tar.gz) = fc138021ef7cbee04dc1e034faf0b85c
-SHA256 (gsasl-1.4.0.tar.gz) = 01b2167272b740a948885f39fb24ebbf0b265b6e93217b22edfdef8051581afa
-RMD160 (gsasl-1.4.0.tar.gz) = efd219fc3752e7ca25d1f8976890f472ae917ebe
-SIZE (gsasl-1.4.0.tar.gz) = 3771247
+SHA256 (gsasl-1.6.0.tar.gz) = ca8c8f07bae4e5a7ba36d7ee3e0c1987ccf3b5cea1e3381a74cf38e45dee56dd
+RMD160 (gsasl-1.6.0.tar.gz) = e2fc43899a18f19afa1a06d4e97788fe74689dc4
+SIZE (gsasl-1.6.0.tar.gz) = 4611016
