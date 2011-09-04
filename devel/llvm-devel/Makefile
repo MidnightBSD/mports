@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/llvm-devel/Makefile,v 1.2 2010/06/13 16:55:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/llvm-devel/Makefile,v 1.3 2011/03/20 02:48:44 laffer1 Exp $
 
 PORTNAME=	llvm
-DISTVERSION=	2.9.r${SVN_REV}
+DISTVERSION=	3.0.r${SVN_REV}
 CATEGORIES=	devel lang
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	brooks
@@ -133,8 +133,8 @@ PLIST_FILE_LIST=	bin/bugpoint \
 			lib/libEnhancedDisassembly.a \
 			lib/libLTO.* \
 			lib/libLLVM* \
-			lib/libUnitTestMain.a \
-			lib/profile_rt.so
+			lib/libprofile_rt.so \
+			lib/libprofile_rt.a
 PLIST_DIR_LIST=		include/llvm-c \
 			include/llvm
 build-plist:
