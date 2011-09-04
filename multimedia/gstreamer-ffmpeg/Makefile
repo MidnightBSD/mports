@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.5 2011/01/13 22:53:30 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.6 2011/01/14 14:25:35 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 LICENSE=        gpl2
 
-LIB_DEPENDS=	orc-0.4.0:${PORTSDIR}/devel/orc
+LIB_DEPENDS=	orc-0.4.11:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
