@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/libntlm/Makefile,v 1.3 2009/09/20 02:08:34 laffer1 Exp $
+# $MidnightBSD: mports/security/libntlm/Makefile,v 1.4 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	libntlm
-PORTVERSION=	1.0
+PORTVERSION=	1.2
 CATEGORIES=	security
 MASTER_SITES=	http://josefsson.org/${PORTNAME}/releases/
 
