@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.7 2010/01/21 01:10:28 laffer1 Exp $
+# $MidnightBSD: mports/x11/terminal.app/Makefile,v 1.8 2011/05/07 02:35:37 laffer1 Exp $
 
 PORTNAME=	terminal.app
 PORTVERSION=	0.9.7
@@ -13,7 +13,6 @@ COMMENT=	Terminal Emulator for GNUstep
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
