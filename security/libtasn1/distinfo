@@ -1,4 +1,3 @@
-MD5 (libtasn1-2.3.tar.gz) = 4f0918cf8fe8b2b4ba189938772d1dd2
-SHA256 (libtasn1-2.3.tar.gz) = 9328146b9f87a64395d156ee66a45cc939e1aa1aa0f5fbe5072e9aa2ee695f45
-RMD160 (libtasn1-2.3.tar.gz) = 9820c1e5e1d59bbe21b0cd90bbd1877c8782ee0d
-SIZE (libtasn1-2.3.tar.gz) = 1483422
+SHA256 (libtasn1-2.9.tar.gz) = fac46855fac8b08cf6f5a1b60cebad8e090bac1f06c335a044e84110d0b412c4
+RMD160 (libtasn1-2.9.tar.gz) = 690e92882116431bdee66b0b386197445ce1eb62
+SIZE (libtasn1-2.9.tar.gz) = 1883677

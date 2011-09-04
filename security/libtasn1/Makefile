@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.5 2009/05/01 14:51:24 laffer1 Exp $
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.6 2009/11/02 12:28:38 crash Exp $
 
 PORTNAME=	libtasn1
-PORTVERSION=	2.3
+PORTVERSION=	2.9
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.gnutls.org/pub/gnutls/libtasn1/ \
-		http://josefsson.org/gnutls/releases/libtasn1/
-MASTER_SITE_SUBDIR=	alpha/gnutls/libtasn1
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	libtasn1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
@@ -14,7 +13,7 @@ LICENSE=	gpl2
 USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 DOCS=		AUTHORS NEWS README THANKS doc/TODO \
 		doc/libtasn1.html doc/libtasn1.pdf doc/libtasn1.ps
