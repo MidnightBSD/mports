@@ -2,11 +2,11 @@
 # Date created:		September 24, 2008
 # Whom:			laffer1
 #
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.6 2010/05/05 19:22:35 vganji Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.7 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/0.22
@@ -33,9 +33,7 @@ CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib" \
 		BUILD_CANVAS="${BUILD_CANVAS}"
-CONFIGURE_TARGET=	--target=${MACHINE_ARCH}-unknown-freebsd6.0 \
-			--build=${ARCH}-unknown-freebsd6.0 \
-			--host=${ARCH}-unknown-freebsd6.0
+CONFIGURE_TARGET=	${MACHINE_ARCH}-unknown-freebsd7.0
 
 BUILD_CANVAS?=	no
 
