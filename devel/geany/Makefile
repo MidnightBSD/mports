@@ -2,14 +2,14 @@
 # Date Created:				15 Jan 06
 # Whom:					Remington Lang <MrL0Lz@gmail.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/geany/Makefile,v 1.2 2008/08/22 13:51:37 laffer1 Exp $
 # $FreeBSD: ports/devel/geany/Makefile,v 1.10 2008/06/06 13:21:12 edwin Exp $
 #
 
 PORTNAME=	geany
-PORTVERSION=	0.14
-CATEGORIES=	devel
-MASTER_SITES=	SF
+PORTVERSION=	0.19.1
+CATEGORIES=	devel editors
+MASTER_SITES=	http://download.geany.org/ SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fast and lightweight GTK+ IDE
@@ -21,7 +21,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gtk20
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lgnuregex"
+		LDFLAGS="-L${LOCALBASE}/lib"
 
 OPTIONS=	VTE	"Enable Virtual Terminal Emulation support"	on \
 		NLS	"Enable Native Language support"		on
@@ -29,8 +29,6 @@ OPTIONS=	VTE	"Enable Virtual Terminal Emulation support"	on \
 MAN1=		geany.1
 
 .include <bsd.port.pre.mk>
-
-GNU_REGEX_H=	gnu/regex.h
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
@@ -48,10 +46,6 @@ CONFIGURE_ARGS+=--disable-vte
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|gcc|${CC} ${CFLAGS}|' ${WRKSRC}/scintilla/Makefile.in
-.for file in tagmanager/lregex.c src/encodings.c
-	@${REINPLACE_CMD} -e 's|<regex\.h>|<${GNU_REGEX_H}>|g' ${WRKSRC}/${file}
-.endfor
 .if defined(NOPORTDOCS)
 	@${REINPLACE_CMD} -e '/^SUBDIRS/ s|doc||' ${WRKSRC}/Makefile.in
 .endif
