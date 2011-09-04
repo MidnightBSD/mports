@@ -1,14 +1,13 @@
 # New ports collection makefile for:	Berkeley DB Java
 # Date created:		Feb 2, 2005
-# Whom:			Mikhail Teterin
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/berkeley-db/Makefile,v 1.2 2008/06/13 02:16:40 laffer1 Exp $
 # $FreeBSD: ports/java/berkeley-db/Makefile,v 1.15 2008/06/06 13:38:26 edwin Exp $
 #
 
 PORTNAME=	je
 PORTVERSION=	3.2.76
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	java databases
 MASTER_SITES=	http://download.oracle.com/berkeley-db/	\
 		http://download-east.oracle.com/berkeley-db/	\
