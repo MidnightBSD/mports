@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/etoile/Makefile,v 1.9 2010/03/02 01:10:26 laffer1 Exp $
 
 PORTNAME=	etoile
 PORTVERSION=	0.4.1
@@ -14,7 +14,6 @@ LICENSE=	agg
 NO_BUILD=	yes
 NO_INSTALL=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_GUI=	yes
 USE_GNUSTEP_BACK=	yes
