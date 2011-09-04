@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.2 2009/05/22 23:55:28 laffer1 Exp $
+# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.3 2011/09/04 19:59:57 laffer1 Exp $
 
 PORTNAME=	bouncycastle
-PORTVERSION=	1.33
+PORTVERSION=	1.40
 CATEGORIES=	java security
 MASTER_SITES=	http://downloads.bouncycastle.org/java/ \
 		http://polydistortion.net/bc/download/ \
