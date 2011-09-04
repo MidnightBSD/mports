@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.6 2009/11/02 12:28:38 crash Exp $
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.7 2011/09/04 20:21:59 laffer1 Exp $
 
 PORTNAME=	libtasn1
 PORTVERSION=	2.9
@@ -8,7 +8,7 @@ MASTER_SITE_SUBDIR=	libtasn1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ASN.1 structure parser library
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig
