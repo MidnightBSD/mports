@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/linux-f10-sdl_image/Makefile,v 1.1 2011/06/19 13:51:43 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux-f10-sdl_image/Makefile,v 1.18 2011/03/03 09:26:40 ehaupt Exp $
 
 PORTNAME=	sdl_image
@@ -10,6 +10,7 @@ DISTNAME=	${LINUX_NAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A simple library to load images as SDL interfaces (Linux Fedora 10)
+LICENSE=	lgpl
 
 CONFLICTS=	linux-sdl_image-[0-9]*
 
