@@ -1,22 +1,21 @@
 # New ports collection makefile for:	mpeg2codec
-# Date created:		November 25, 1996
-# Whom:			"Philippe Charnier" <charnier@lirmm.fr>
 #
 # $FreeBSD: ports/multimedia/mpeg2codec/Makefile,v 1.12 2005/04/24 08:03:31 ahze Exp $
-# $MidnightBSD: mports/multimedia/mpeg2codec/Makefile,v 1.1 2007/01/20 16:04:57 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/mpeg2codec/Makefile,v 1.2 2009/05/27 21:26:36 crash Exp $
 #
 
 PORTNAME=	mpeg2codec
 PORTVERSION=	1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
-MASTER_SITES=	ftp://ftp.mpeg.org/pub/mpeg/mssg/
+MASTER_SITES=	\
+		http://gd.tuwien.ac.at/graphics/libs/alsolibs/
 DISTFILES=	mpeg2vidcodec_v12.tar.gz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MPEG-2 Encoder and Decoder
 LICENSE=        other
-USE_XLIB=	yes
+USE_XORG=	xext
 WRKSRC=		${WRKDIR}/mpeg2
 DATADIR=	share/mpeg2
 CFLAGS+=-DVERIFY -DVERBOSE -DTRACE
