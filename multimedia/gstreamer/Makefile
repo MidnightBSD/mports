@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.8 2011/01/08 04:04:39 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.9 2011/02/02 21:11:11 laffer1 Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.30
+PORTVERSION=	0.10.32
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/ \
 		GNOME
@@ -40,11 +40,6 @@ MAN1=	gst-feedback-${GST_VERSION}.1 gst-inspect-${GST_VERSION}.1 \
 	gst-xmllaunch-${GST_VERSION}.1
 
 .include <bsd.port.pre.mk>
-
-# workaround a gcc bug on 0.2
-.if ${OSVERSION} < 3000
-CONFIGURE_ENV+=	gst_cv_uint128_t="no"
-.endif
 
 .if (exists(${LOCALBASE}/lib/libcheck.a) || defined(WITH_CHECK))
 LIB_DEPENDS+=	check.0:${PORTSDIR}/devel/libcheck
