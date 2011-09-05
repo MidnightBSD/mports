@@ -4,7 +4,7 @@
 %%DBUS%%bin/purple-send-async
 %%DBUS%%bin/purple-url-handler
 bin/pidgin
-etc/gconf/schemas/purple.schemas
+@comment etc/gconf/schemas/purple.schemas
 include/libpurple/account.h
 include/libpurple/accountopt.h
 include/libpurple/blist.h
