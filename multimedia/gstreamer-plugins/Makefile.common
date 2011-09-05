@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.10 2010/11/10 14:07:38 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.11 2011/01/08 04:20:34 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -48,6 +48,7 @@ BAD_GST_ALL_PLUGINS+= \
 		nas \
 		neon \
 		ofa \
+		opencv \
 		resindvd \
 		rsvg \
 		schro \
@@ -145,6 +146,7 @@ CONFIGURE_ARGS+=--disable-tests \
 		--disable-sunaudio \
 		--disable-wildmidi \
 		--disable-xine \
+		--disable-ivorbis \
 		--enable-x \
 		--enable-xshm \
 		--enable-xvideo
@@ -306,6 +308,12 @@ gst_gio_PLIST_FILES=	${GST_LIB_DIR}/libgstgio.la \
 		${GST_LIB_DIR}/libgstgio.so
 gst_gio_DIST=	base
 
+# gme
+gst_gme_LIB_DEPENDS+=   gme.0:${PORTSDIR}/audio/libgme
+gst_gme_PLIST_FILES=    ${GST_LIB_DIR}/libgstgme.la \
+		${GST_LIB_DIR}/libgstgme.so
+gst_gme_DIST=           bad
+
 # gnomevfs
 gst_gnomevfs_USE_GNOME+=	gnomevfs2
 gst_gnomevfs_CONFIGURE_ARGS+=--enable-gnome_vfs
@@ -328,7 +336,7 @@ gst_hal_PLIST_FILES=	${GST_LIB_DIR}/libgsthalelements.la \
 gst_jack_LIB_DEPENDS+=	jack.0:${PORTSDIR}/audio/jack
 gst_jack_PLIST_FILES=	${GST_LIB_DIR}/libgstjack.la \
 		${GST_LIB_DIR}/libgstjack.so
-gst_jack_DIST=	bad
+gst_jack_DIST=	good
 
 # jpeg
 gst_jpeg_LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
@@ -390,7 +398,7 @@ gst_mpeg2dec_PLIST_FILES=	${GST_LIB_DIR}/libgstmpeg2dec.la \
 gst_mpeg2dec_DIST=	ugly
 
 # musepack
-gst_musepack_LIB_DEPENDS+=	mpcdec.5:${PORTSDIR}/audio/libmpcdec
+gst_musepack_LIB_DEPENDS+=	mpcdec.7:${PORTSDIR}/audio/musepack
 gst_musepack_PLIST_FILES=	${GST_LIB_DIR}/libgstmusepack.la \
 		${GST_LIB_DIR}/libgstmusepack.so
 gst_musepack_DIST=	bad
@@ -420,6 +428,14 @@ gst_ogg_EXTRA_LIBS+=	-lgstriff-${VERSION}
 gst_ogg_PLIST_FILES=	${GST_LIB_DIR}/libgstogg.la \
 		${GST_LIB_DIR}/libgstogg.so
 gst_ogg_DIST=	base
+
+# opencv
+gst_opencv_BUILD_DEPENDS+=opencv<2.2:${PORTSDIR}/graphics/opencv
+gst_opencv_RUN_DEPENDS+=opencv<2.2:${PORTSDIR}/graphics/opencv
+gst_opencv_PLIST_FILES= ${GST_LIB_DIR}/libgstopencv.la \
+			${GST_LIB_DIR}/libgstopencv.a \
+			${GST_LIB_DIR}/libgstopencv.so
+gst_opencv_DIST=	bad
 
 # pango
 gst_pango_USE_GNOME+=	pango
@@ -468,7 +484,7 @@ gst_soundtouch_LIB_DEPENDS+=	SoundTouch.0:${PORTSDIR}/audio/soundtouch
 gst_soundtouch_PLIST_FILES=	${GST_LIB_DIR}/libgstsoundtouch.la \
 		${GST_LIB_DIR}/libgstsoundtouch.so
 gst_soundtouch_DIST=	bad
- 
+
 # souphttpsrc
 gst_soup_LIB_DEPENDS+=	soup-2.4.1:${PORTSDIR}/devel/libsoup
 gst_soup_GST_PLUGIN_DIR=ext/soup
@@ -487,7 +503,7 @@ gst_speex_PLIST_FILES=	${GST_LIB_DIR}/libgstspeex.la \
 			${GST_LIB_DIR}/libgstspeex.so
 
 # schro(edinger)
-gst_schroedinger_LIB_DEPENDS+=	schroedinger-1.0.3:${PORTSDIR}/multimedia/schroedinger
+gst_schroedinger_LIB_DEPENDS+=	schroedinger-1.0.10:${PORTSDIR}/multimedia/schroedinger
 gst_schroedinger_CONFIGURE_ARGS+=--enable-schro
 gst_schroedinger_PLIST_FILES=	${GST_LIB_DIR}/libgstschro.la \
 				${GST_LIB_DIR}/libgstschro.so
@@ -526,7 +542,7 @@ gst_gst_v4l2_GST_PLUGIN_DIR=sys/v4l2
 gst_gst_v4l2_DIST=	good
 
 # vdpau
-gst_vdpau_LIB_DEPENDS+=	vdpau.1:${PORTSDIR}/x11/nvidia-driver
+gst_vdpau_LIB_DEPENDS+=	vdpau.1:${PORTSDIR}/multimedia/libvdpau
 gst_vdpau_GST_PLUGIN_DIR=sys/vdpau
 gst_vdpau_PLIST_FILES=	${GST_INC_DIR}/gst/vdpau/gstvdp.h \
 			${GST_INC_DIR}/gst/vdpau/gstvdpbuffer.h \
@@ -542,9 +558,10 @@ gst_vdpau_PLIST_FILES=	${GST_INC_DIR}/gst/vdpau/gstvdp.h \
 			${GST_INC_DIR}/gst/vdpau/gstvdpvideosrcpad.h \
 			${GST_LIB_DIR}/libgstvdpau.la \
 			${GST_LIB_DIR}/libgstvdpau.so \
-			lib/libgstvdp-0.10.la \
-			lib/libgstvdp-0.10.so \
-			lib/libgstvdp-0.10.so.0
+			lib/libgstvdp-${VERSION}.la \
+			lib/libgstvdp-${VERSION}.so \
+			lib/libgstvdp-${VERSION}.so.0
+gst_vdpau_PLIST_DIRS=	${GST_INC_DIR}/gst/vdpau
 gst_vdpau_DIST=		bad
 
 # vorbis
@@ -563,7 +580,7 @@ gst_vp8_PLIST_FILES=	${GST_LIB_DIR}/libgstvp8.la \
 gst_vp8_DIST=		bad
 
 # x264
-gst_x264_LIB_DEPENDS+=	x264.98:${PORTSDIR}/multimedia/x264
+gst_x264_LIB_DEPENDS+=	x264.110:${PORTSDIR}/multimedia/x264
 gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.la \
 		${GST_LIB_DIR}/libgstx264.so \
 		share/gstreamer-${VERSION}/presets/GstX264Enc.prs
