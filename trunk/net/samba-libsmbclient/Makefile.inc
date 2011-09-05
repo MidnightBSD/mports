@@ -1,5 +1,3 @@
-# Don't check for python presence
-CONFIGURE_ARGS+=	--without-python
 # We WANT shared libs
 CONFIGURE_ARGS+=	--with-libsmbclient
 SAMBA_INSTALL_LIBS=	libsmbclient
@@ -33,15 +31,7 @@ PLIST_SUB+=		NETAPI="@comment "
 
 MAN7=			libsmbclient.7
 
-do-build:
-	cd ${WRKSRC} && ${MAKE} proto bin/.dummy
-	cd ${WRKSRC} && ${MAKE} libsmbclient
-.if !defined(WITHOUT_ADDNS)
-	cd ${WRKSRC} && ${MAKE} libaddns
-.endif
-.if !defined(WITHOUT_SHAREMODES)
-	cd ${WRKSRC} && ${MAKE} libsmbsharemodes
-.endif
+ALL_TARGET=		libtdb ${SAMBA_INSTALL_LIBS}
 
 do-install:
 	-@${MKDIR} ${MAN7PREFIX}/man/man7
