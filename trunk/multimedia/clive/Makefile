@@ -1,74 +1,46 @@
 # New ports collection makefile for:	clive
-# Date created:		2007-02-11
-# Whom:			Nicola Vitale <nivit@FreeBSD.org>
 #
-# $FreeBSD: ports/multimedia/clive/Makefile,v 1.22 2008/05/30 13:52:48 nivit Exp $
-# $MidnightBSD: mports/multimedia/clive/Makefile,v 1.4 2008/08/10 13:04:42 crash Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/multimedia/clive/Makefile,v 1.57 2011/03/06 19:06:32 culot Exp $
 
 PORTNAME=	clive
-PORTVERSION=	0.4.16
+PORTVERSION=	2.2.23
 CATEGORIES=	multimedia
-MASTER_SITES=	http://download.gna.org/clive/0.4/src/ \
-		SF
-PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DIST_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/2.2
 
-MAINTAINER=	Ports@MidnightBSD.org
-COMMENT=	Video extraction utility for YouTube and Google Video
-LICENSE=        gpl2
-# deskutils/ljclive (same executable/manpage/distfile name)
-CONFLICTS=	clive-[0-9]*
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Command line video extraction tool for YouTube and others
+LICENSE=	gpl3
 
-GNU_CONFIGURE=	yes
+RUN_DEPENDS=	p5-HTML-Parser>=3.59:${PORTSDIR}/www/p5-HTML-Parser \
+		p5-WWW-Curl>=4.05:${PORTSDIR}/www/p5-WWW-Curl \
+		p5-Class-Singleton>=1.4:${PORTSDIR}/devel/p5-Class-Singleton \
+		p5-Getopt-ArgvFile>=1.11:${PORTSDIR}/devel/p5-Getopt-ArgvFile \
+		p5-Config-Tiny>=2.12:${PORTSDIR}/devel/p5-Config-Tiny \
+		p5-URI>=1.39:${PORTSDIR}/net/p5-URI
 
-USE_BZIP2=	yes
-USE_PYTHON=	yes
+# deskutils/ljclive, multimedia/clive1 (same executable/manpage/distfile name)
+CONFLICTS=	clive-[0-1]* ljclive-[0-9]*
 
-.if !defined(NO_INSTALL_MANPAGES)
-MAN1=	${PORTNAME}.1
-.else
-CONFIGURE_ARGS=	--with-doc=no
-.endif
+OPTIONS=	CACHE	 "With video page cache" off \
+		SIGWINCH "With resizing progressbar" on
 
-OPTIONS=	FFMPEG	"Install ffmpeg for re-encoding" off \
-		MPLAYER	"Install mplayer as video player" off \
-		NEWT	"Use devel/newt instead of bundled module" off \
-		SQLITE3 "Install sqlite3 for caching visited URLs" off \
-		VLC	"Install vlc as video player" off \
-		XCLIP	"Install xclip (read URLs from clipboard)" off
-OPTIONSFILE=	${PORT_DBDIR}/py-${PORTNAME}/options
+MAN1=		clive.1
+
+PERL_CONFIGURE=	yes
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_FFMPEG)
-RUN_DEPENDS+=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	p5-Digest-SHA>=5.47:${PORTSDIR}/security/p5-Digest-SHA
 .endif
 
-.if defined(WITH_MPLAYER)
-RUN_DEPENDS+=	mplayer:${PORTSDIR}/multimedia/mplayer
+.if defined(WITH_CACHE)
+RUN_DEPENDS+=	p5-BerkeleyDB>=0.36:${PORTSDIR}/databases/p5-BerkeleyDB
 .endif
 
-.if defined(WITH_NEWT)
-PLIST_SUB+=	OPTNEWT="@comment "
-CONFIGURE_ARGS+=	--with-newt=no
-LIB_DEPENDS=	slang.1:${PORTSDIR}/devel/libslang
-RUN_DEPENDS+=	newt${PYTHON_PKGNAMESUFFIX}>=0.51.0_4:${PORTSDIR}/devel/newt
-.else
-PLIST_SUB+=	OPTNEWT=""
-LIB_DEPENDS=	slang.2:${PORTSDIR}/devel/libslang2
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${PYTHON_INCLUDEDIR} $${CPPFLAGS}" LDFLAGS="-L${LOCALBASE}/lib $${LDFLAGS} -L${PYTHON_LIBDIR}" SLANG_LIBS="-lncurses -lslang"
-.endif
-
-.if defined(WITH_SQLITE3)
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlite3>=2.5.2_1:${PORTSDIR}/databases/py-sqlite3
-.endif
-
-.if defined(WITH_VLC)
-RUN_DEPENDS+=	vlc:${PORTSDIR}/multimedia/vlc
-.endif
-
-.if defined(WITH_XCLIP)
-RUN_DEPENDS+=	xclip:${PORTSDIR}/x11/xclip
+.if defined(WITH_SIGWINCH)
+RUN_DEPENDS+=	p5-Term-ReadKey>=2.30:${PORTSDIR}/devel/p5-Term-ReadKey
 .endif
 
 .include <bsd.port.post.mk>
