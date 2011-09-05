@@ -2,12 +2,12 @@
 # Date created:		04 April 2002
 # Whom:			Michael Nottebrock <michaelnottebrock@gmx.net> et al
 #
-# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.2 2009/05/27 21:26:50 crash Exp $
+# $MidnightBSD: mports/multimedia/xvid/Makefile,v 1.3 2009/06/11 19:55:18 laffer1 Exp $
 # $FreeBSD: ports/multimedia/xvid/Makefile,v 1.23 2006/06/26 16:21:35 lofi Exp $
 #
 
 PORTNAME=	xvid
-PORTVERSION=	1.2.1
+PORTVERSION=	1.3.0
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://downloads.xvid.org/downloads/
@@ -20,6 +20,7 @@ LICENSE=	gpl2
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
+CONFIGURE_ENV+=	ac_cv_prog_ac_yasm=no
 
 PLIST_FILES=	include/xvid.h \
 		lib/libxvidcore.a \
@@ -33,10 +34,10 @@ OPTIONS=	OPTIMIZED_CFLAGS "Use XviD's default optimizations" off
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
 .endif
 .if ${ARCH} == "amd64" || ${ARCH} == "i386"
-BUILD_DEPENDS+=	yasm:${PORTSDIR}/devel/yasm
+BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
 .endif
 
 .if defined(WITH_OPTIMIZED_CFLAGS)
