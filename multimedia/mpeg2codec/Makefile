@@ -1,7 +1,7 @@
 # New ports collection makefile for:	mpeg2codec
 #
 # $FreeBSD: ports/multimedia/mpeg2codec/Makefile,v 1.12 2005/04/24 08:03:31 ahze Exp $
-# $MidnightBSD: mports/multimedia/mpeg2codec/Makefile,v 1.2 2009/05/27 21:26:36 crash Exp $
+# $MidnightBSD: mports/multimedia/mpeg2codec/Makefile,v 1.3 2011/09/05 20:01:34 laffer1 Exp $
 #
 
 PORTNAME=	mpeg2codec
@@ -15,6 +15,7 @@ DISTFILES=	mpeg2vidcodec_v12.tar.gz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MPEG-2 Encoder and Decoder
 LICENSE=        other
+
 USE_XORG=	xext
 WRKSRC=		${WRKDIR}/mpeg2
 DATADIR=	share/mpeg2
