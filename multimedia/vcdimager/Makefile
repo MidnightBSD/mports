@@ -2,12 +2,11 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.4 2009/09/20 01:53:46 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.5 2011/02/02 21:11:12 laffer1 Exp $
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager
-PORTVERSION=	0.7.23
-PORTREVISION=	4
+PORTVERSION=	0.7.24
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	vcdimager
@@ -18,7 +17,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		xml2:${PORTSDIR}/textproc/libxml2 \
-		cdio.8:${PORTSDIR}/sysutils/libcdio
+		cdio.12:${PORTSDIR}/sysutils/libcdio
 
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool
