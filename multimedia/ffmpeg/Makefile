@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.6 2010/11/06 16:05:39 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.7 2010/11/18 13:17:57 laffer1 Exp $
 
 PORTNAME=	ffmpeg
-PORTVERSION=	0.6
-PORTREVISION=	1
+PORTVERSION=	0.6.1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
