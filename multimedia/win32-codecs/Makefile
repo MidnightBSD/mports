@@ -3,11 +3,11 @@
 # Whom: 		Holger Lamm
 #
 # $FreeBSD: ports/multimedia/win32-codecs/Makefile,v 1.40 2006/12/05 01:50:03 acm Exp $
-# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.2 2006/12/13 20:44:57 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.3 2008/03/21 02:19:38 ctriv Exp $
 #
 
 PORTNAME=	win32-codecs
-DISTVERSION=	3.${CODEC_MPLAYER_VERSION}
+DISTVERSION=	20110131
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://www1.mplayerhq.hu/MPlayer/releases/codecs/ \
@@ -18,10 +18,10 @@ MASTER_SITES=	http://www1.mplayerhq.hu/MPlayer/releases/codecs/ \
 		ftp://ftp1.mplayerhq.hu/MPlayer/releases/codecs/ \
 		ftp://ftp2.mplayerhq.hu/MPlayer/releases/codecs/ \
 		ftp://ftp.lug.udel.edu/MPlayer/releases/codecs/
-DISTFILES=	all-20061022.tar.bz2 \
+DISTFILES=	all-${DISTVERSION}.tar.bz2 \
 		${ADDITIONAL_CODECS_DISTFILES}
 DIST_SUBDIR=	win32
-EXTRACT_ONLY=	all-20061022.tar.bz2
+EXTRACT_ONLY=	all-${DISTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Huge compilation of Win32 binary video codecs
@@ -32,11 +32,10 @@ RESTRICTED=	Unsure of codec's license			# '
 ONLY_FOR_ARCHS=	i386
 USE_BZIP2=	yes
 NO_BUILD=	yes
-WRKSRC=		${WRKDIR}/w32codec-${CODEC_MPLAYER_VERSION:S/pre7//}
+WRKSRC=		${WRKDIR}/w32codec-${DISTVERSION}
 
 PLIST_SUB=	PKGNAME=${PKGNAME}
 
-CODEC_MPLAYER_VERSION=	1.0rc1
 # Used by other ports to detect if this is installed
 CODEC_DETECTION_FILE=	${LOCALBASE}/lib/win32/${PKGNAME}
 
@@ -50,19 +49,9 @@ ADDITIONAL_CODECS_WRKSRC=	${DISTFILES:S/.tar.bz2//}
 REMOVE_CODECS_FILES=	AvidQTAVUICodec.qtx QuickTimeEssentials.qtx QuickTime.qts \
 			QuickTimeInternetExtras.qtx qtmlClient.dll BeHereiVideo.qtx
 
-OPTIONS=	QUICKTIME	"Install quicktime codec"	off \
-		REALPLAYER	"Install realplayer codec"	on
+OPTIONS=	REALPLAYER	"Install realplayer codec"	on
 
 .include <bsd.port.pre.mk>
-
-.if defined(WITH_QUICKTIME)
-FORBIDDEN=	Remote code execution: http://vuxml.FreeBSD.org/24f6b1eb-43d5-11db-81e1-000e0c2e438a.html
-ADDITIONAL_CODECS_DISTFILES+=	qt63dlls-20050115.tar.bz2 \
-				qtextras-20041107.tar.bz2
-PLIST_SUB+=	QUICKTIME=""
-.else
-PLIST_SUB+=	QUICKTIME="@comment "
-.endif
 
 .if !defined(WITHOUT_REALPLAYER)
 ADDITIONAL_CODECS_DISTFILES+=	rp9codecs-20050115.tar.bz2 \
@@ -73,7 +62,7 @@ PLIST_SUB+=	REALPLAYER="@comment "
 .endif
 
 post-extract:
-	@cd ${WRKDIR}/all-20061022 && \
+	@cd ${WRKDIR}/all-${DISTVERSION} && \
 		${RM} ${REMOVE_CODECS_FILES}
 .for file in ${ADDITIONAL_CODECS_DISTFILES}
 	@cd ${WRKDIR} && ${TAR} xyf \
@@ -85,15 +74,15 @@ post-extract:
 .endfor
 
 do-install:
-	${MKDIR} ${PREFIX}/lib/win32
-	${CHMOD} 0755 ${PREFIX}/lib/win32
+	@${MKDIR} ${PREFIX}/lib/win32
+	@${CHMOD} 0755 ${PREFIX}/lib/win32
 .if !defined(WITHOUT_REALPLAYER)
-	${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/lib/win32
+	@${INSTALL_DATA} ${WRKSRC}/* ${PREFIX}/lib/win32
 .else
-	${INSTALL_DATA} ${WRKSRC}/*[^0] ${PREFIX}/lib/win32
+	@${INSTALL_DATA} ${WRKSRC}/*[^0] ${PREFIX}/lib/win32
 .endif
 # marker file
-	${CP} /dev/null ${PREFIX}/lib/win32/${PKGNAME}
-	${CHMOD} 0444 ${PREFIX}/lib/win32/${PKGNAME}
+	@${CP} /dev/null ${PREFIX}/lib/win32/${PKGNAME}
+	@${CHMOD} 0444 ${PREFIX}/lib/win32/${PKGNAME}
 
 .include <bsd.port.post.mk>
