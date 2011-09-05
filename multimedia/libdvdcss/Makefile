@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.4 2009/09/20 01:33:41 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdcss/Makefile,v 1.5 2011/02/02 21:11:11 laffer1 Exp $
 
 PORTNAME=	libdvdcss
 PORTVERSION=	1.2.10
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
