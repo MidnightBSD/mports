@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/etoile-babbler/Makefile,v 1.2 2007/11/07 20:20:15 ctriv Exp $
+# $MidnightBSD: mports/multimedia/etoile-babbler/Makefile,v 1.3 2009/04/05 21:32:26 laffer1 Exp $
 
 PORTNAME=	babbler
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
@@ -15,12 +15,11 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 USE_GNUSTEP_SYSTEM_LIBS+=	XWindowServerKit:${XWINDOWSERVERKIT_PORT}
-USE_GNUSTEP_LOCAL_LIBS+=        MultimediaKit:${MULTIMEDIAKIT_PORT}
+USE_GNUSTEP_LOCAL_LIBS+=	MultimediaKit:${MULTIMEDIAKIT_PORT}
 
 SNAPSHOT=	20061221
 WRKSRC=	${WRKDIR}/Etoile/
