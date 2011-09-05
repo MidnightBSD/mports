@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.5 2009/10/14 13:55:41 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdvdread/Makefile,v 1.6 2010/11/13 19:02:51 laffer1 Exp $
 
 PORTNAME=	libdvdread
-PORTVERSION=	4.1.4.r1217
+PORTVERSION=	4.1.4.r1219
 CATEGORIES=	multimedia
 # Svn repository URL : svn://svn.mplayerhq.hu/dvdnav/trunk/libdvdread
 MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
@@ -12,8 +12,7 @@ MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
 		http://www5.mplayerhq.hu/MPlayer/releases/dvdnav/ \
 		ftp://ftp1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
 		ftp://ftp2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
-		LOCAL/makc
-DISTNAME=	${PORTNAME}-${PORTVERSION:S,r,,}
+		FREEBSD_LOCAL/martymac
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPlayer version of the libdvdread project
