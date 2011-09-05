@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/etoile-mediakit/Makefile,v 1.1 2010/01/21 02:00:50 laffer1 Exp $
 
 PORTNAME=	mediakit
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	http://download.gna.org/etoile/
 PKGNAMEPREFIX=	etoile-
@@ -15,7 +16,6 @@ LIB_DEPENDS=	avcodec.1:${PORTSDIR}/multimedia/ffmpeg
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
