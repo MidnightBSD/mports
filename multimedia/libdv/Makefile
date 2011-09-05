@@ -2,7 +2,7 @@
 # Date created:				Sun Nov 18 19:42:02 BRST 2001
 # Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
 #
-# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.7 2010/03/25 01:31:30 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libdv/Makefile,v 1.8 2010/12/04 19:50:35 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libdv/Makefile,v 1.36 2006/12/15 13:29:55 nork Exp $
 #
 
@@ -13,7 +13,7 @@ MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Quasar DV codec (libdv): software codec for DV video encoding format
-LICENSE=	lgpl
+LICENSE=	lgpl2.1
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		popt.0:${PORTSDIR}/devel/popt
