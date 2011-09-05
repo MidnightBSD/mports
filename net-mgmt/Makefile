@@ -1,7 +1,6 @@
-# $MidnightBSD: mports/net-mgmt/Makefile,v 1.16 2009/10/14 13:58:29 laffer1 Exp $
-#
+# $MidnightBSD: mports/net-mgmt/Makefile,v 1.17 2011/05/28 05:10:38 laffer1 Exp $
 
-    COMMENT = Network management tools
+COMMENT = Network management tools
 
 SUBDIR += aircrack
 SUBDIR += aircrack-ng
@@ -22,7 +21,6 @@ SUBDIR += nipper
 SUBDIR += softflowd
 SUBDIR += subcalc
 SUBDIR += sysmon
-SUBDIR += tas
 SUBDIR += tcpreplay
 SUBDIR += tcptrack
 SUBDIR += trafd
