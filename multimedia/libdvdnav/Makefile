@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libdvdnav/Makefile,v 1.6 2010/11/13 19:02:51 laffer1 Exp $
 
 PORTNAME=	libdvdnav
-PORTVERSION=	4.1.4.r1217
+PORTVERSION=	4.1.4.r1219
 CATEGORIES=	multimedia
 # Svn repository URL : svn://svn.mplayerhq.hu/dvdnav/trunk/libdvdnav
 MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
@@ -13,7 +13,7 @@ MASTER_SITES=	http://contribs.martymac.org/FreeBSD-ports/distfiles/ \
 		ftp://ftp1.mplayerhq.hu/MPlayer/releases/dvdnav/ \
 		ftp://ftp2.mplayerhq.hu/MPlayer/releases/dvdnav/ \
 		LOCAL/makc
-DISTNAME=	${PORTNAME}-${PORTVERSION:S,r,,}
+#DISTNAME=	${PORTNAME}-${PORTVERSION:S,r,,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MPlayer version of the libdvdnav project
