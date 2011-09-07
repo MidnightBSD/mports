@@ -1,9 +1,9 @@
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.6 2010/12/23 00:53:50 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.7 2011/02/02 21:39:27 laffer1 Exp $
 
 PORTNAME=	kompmgr
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -36,8 +36,8 @@ pre-configure:
 
 do-build:
 	cd ${WRKSRC}/kwin/kompmgr && \
-	${CC} ${CFLAGS} -I${LOCALBASE}/include -L${X11BASE}/lib -lX11 -lXdamage\
-	-lXfixes -lXrender -lXcomposite -lm -o kompmgr kompmgr.c
+	${CC} ${CFLAGS} -I${LOCALBASE}/include -L${LOCALBASE}/lib -lX11 -lXdamage\
+	-lXfixes -lXrender -lXcomposite -lXext -lm -o kompmgr kompmgr.c
 
 do-install:
 	cd ${WRKSRC}/kwin/kompmgr && ${INSTALL_PROGRAM} kompmgr\
