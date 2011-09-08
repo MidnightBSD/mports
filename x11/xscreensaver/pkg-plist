@@ -403,9 +403,6 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/xrayswarm.xml
 %%DATADIR%%/config/xspirograph.xml
 %%DATADIR%%/config/zoom.xml
-%%DATADIR%%/config/xmountains.xml
-%%DATADIR%%/config/xplanet.xml
-%%DATADIR%%/config/xsnow.xml
 %%DATADIR%%/glade/screensaver-cmndln.png
 %%DATADIR%%/glade/screensaver-colorselector.png
 %%DATADIR%%/glade/screensaver-diagnostic.png
