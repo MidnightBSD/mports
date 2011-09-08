@@ -1,13 +1,14 @@
 #
-# $MidnightBSD: ports/security/qca-ossl/Makefile,v 1.1 2008/08/05 00:12:57 miwi Exp $
+# $MidnightBSD: mports/security/qca-ossl/Makefile,v 1.1 2009/01/04 03:43:37 ctriv Exp $
 
 PORTNAME=	qca-ossl
 DISTVERSION=	2.0.0-beta3
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://delta.affinix.com/download/qca/2.0/plugins/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Cross-platform crypto API for QT
+COMMENT=	QCA OpenSLL plugin
 LICENSE=	lgpl
 
 LIB_DEPENDS=	qca.2:${PORTSDIR}/devel/qca
