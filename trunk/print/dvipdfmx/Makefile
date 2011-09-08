@@ -2,15 +2,15 @@
 # Date created:		8 March 2001
 # Whom:			Shen Chuan-Hsing <statue@freebsd.sinica.edu.tw>
 #
-# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.3 2011/01/15 03:23:22 laffer1 Exp $
+# $MidnightBSD: mports/print/dvipdfmx/Makefile,v 1.4 2011/02/02 21:18:50 laffer1 Exp $
 # $FreeBSD: ports/print/dvipdfmx/Makefile,v 1.24 2006/07/02 11:29:21 matusita Exp $
 #
 
 PORTNAME=	dvipdfmx
-PORTVERSION=	20061211
-PORTREVISION=	3
+PORTVERSION=	20100328
 CATEGORIES=	print
-MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/archive/
+MASTER_SITES=	http://project.ktug.or.kr/dvipdfmx/snapshot/latest/ \
+		http://project.ktug.or.kr/dvipdfmx/snapshot/archive/
 DIST_SUBDIR=	dvipdfmx
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,28 +24,27 @@ RUN_DEPENDS=	${ADOBECMAPDIR}/ai0/CMap/Identity-H:${PORTSDIR}/print/adobe-cmaps \
 		kpsepath:${PORTSDIR}/print/teTeX-base
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--datadir=${PREFIX}/${TEXMFDIR}
+CONFIGURE_ARGS=	--datadir=${PREFIX}/share
 PLIST_SUB=	DVIPDFMDIR=${DVIPDFMDIR} \
 		FONTMAPDIR=${FONTMAPDIR} \
+		GLYPHMAPDIR=${GLYPHMAPDIR} \
 		FONTCMAPDIR=${FONTCMAPDIR} \
 		MKTEXLSR=${MKTEXLSR} \
-		ADOBECMAPDIR=${ADOBECMAPDIR}
+		ADOBECMAPDIR=${ADOBECMAPDIR} \
+		DVIPDFMXDIR=${DVIPDFMXDIR}
+
+MAN1=		extractbb.1
 
 TEXMFDIR=	share/texmf
-DVIPDFMDIR=	${TEXMFDIR}/dvipdfm
-FONTMAPDIR=	${TEXMFDIR}/fonts/map/dvipdfm
-FONTCMAPDIR=	${TEXMFDIR}/fonts/cmap/dvipdfm
+DVIPDFMXDIR=	${TEXMFDIR}/dvipdfmx
+FONTMAPDIR=	${TEXMFDIR}/fonts/map/dvipdfmx
+GLYPHMAPDIR=	${TEXMFDIR}/fonts/map/glyphlist
+FONTCMAPDIR=	${TEXMFDIR}/fonts/cmap
 ADOBECMAPDIR=	${LOCALBASE}/share/fonts/adobe-cmaps
 MKTEXLSR=	${LOCALBASE}/bin/mktexlsr
 
-pre-install:
-	${RM} -f ${WRKSRC}/data/config/dvipdfmx.cfg.orig \
-		${WRKSRC}/data/config/cid-x.map
-
 post-install:
 	${MKDIR} ${PREFIX}/${FONTMAPDIR}
-	${MV} ${PREFIX}/${TEXMFDIR}/dvipdfm/config/glyphlist.txt \
-		${PREFIX}/${FONTMAPDIR}/glyphlist.txt
 	${MKDIR} ${PREFIX}/${FONTCMAPDIR}
 	${INSTALL_DATA} ${FILESDIR}/cid-x.map.in \
 		${PREFIX}/${FONTMAPDIR}/cid-x.map
