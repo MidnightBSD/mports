@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/chromium/Makefile,v 1.2 2011/02/02 21:31:38 laffer1 Exp $
+# $MidnightBSD: mports/www/chromium/Makefile,v 1.3 2011/06/11 02:18:12 laffer1 Exp $
 
 PORTNAME=	chromium
 DISTVERSIONPREFIX=	courgette-redacted-
@@ -29,7 +29,8 @@ LIB_DEPENDS=	execinfo.1:${PORTSDIR}/devel/libexecinfo	\
 		freetype.9:${PORTSDIR}/print/freetype2		\
 		nss3.1:${PORTSDIR}/security/nss
 
-RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
+RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins \
+		${LOCALBASE}/lib/X11/fonts/Droid/DroidSans-Bold.ttf:${PORTSDIR}/x11-fonts/droid-fonts-ttf
 
 ONLY_FOR_ARCHS=	i386 amd64
 USE_BZIP2=	yes
