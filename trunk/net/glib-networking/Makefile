@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/glib-networking/Makefile,v 1.1 2011/09/10 20:05:07 laffer1 Exp $
 # $FreeBSD: ports/net/glib-networking/Makefile,v 1.1 2011/08/23 18:15:49 kwm Exp $
 
 PORTNAME=	glib-networking
@@ -14,8 +14,8 @@ LICENSE=	lgpl
 
 BUILD_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss \
 		gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-schemas
-LIB_DEPENDS=	gnutls.47:${PORTSDIR}/security/gnutls \
-		gcrypt.18:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gnutls.42:${PORTSDIR}/security/gnutls \
+		gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		dbus-1.3:${PORTSDIR}/devel/dbus \
 		proxy.1:${PORTSDIR}/net/libproxy
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss \
@@ -31,7 +31,8 @@ CONFIGURE_ARGS=	--with-ca-certificates=${LOCALBASE}/share/certs/ca-root-nss.crt
 CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		CFLAGS="${CPPFLAGS}"
 
 post-patch:
 	@${REINPLACE_CMD} -e' s|-Wmissing-include-dirs||g' ${WRKSRC}/configure
