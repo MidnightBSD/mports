@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/Makefile,v 1.13 2011/06/19 23:54:26 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/Makefile,v 1.14 2011/09/10 21:21:42 laffer1 Exp $
 
 COMMENT = X11 fonts and font utilities
 
@@ -6,6 +6,7 @@ SUBDIR += bdftopcf
 SUBDIR += bitstream-vera
 SUBDIR += cantarell-fonts
 SUBDIR += dejavu
+SUBDIR += droid-fonts-ttf
 SUBDIR += encodings
 SUBDIR += font-adobe-100dpi
 SUBDIR += font-adobe-75dpi
