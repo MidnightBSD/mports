@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.16 2011/07/03 03:02:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.17 2011/07/03 17:07:34 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.82 2010/12/04 07:31:19 ade Exp $
 
 PORTNAME=	libsoup
-PORTVERSION=	2.32.2
+PORTVERSION=	2.34.3
 PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A SOAP (Simple Object Access Protocol) implementation in C
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USE_XZ=		yes
+
+BUILD_DEPENDS=	glib-networking>=2.28.4:${PORTSDIR}/net/glib-networking
+LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt
+RUN_DEPENDS=	glib-networking>=2.28.4:${PORTSDIR}/net/glib-networking
 
 .if !defined(REFERENCE_PORT)
 
@@ -22,8 +26,8 @@ USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS=	-I${LOCALBASE}/include
+CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib"
 
 PLIST_SUB=	VERSION="2.4"
 
@@ -31,43 +35,28 @@ PLIST_SUB=	VERSION="2.4"
 
 .if defined(SOUP_SLAVE)
 LIB_DEPENDS+=	soup-2.4.1:${PORTSDIR}/devel/libsoup \
-		proxy.0:${PORTSDIR}/net/libproxy \
 		gnome-keyring.0:${PORTSDIR}/security/libgnome-keyring \
 		sqlite3.8:${PORTSDIR}/databases/sqlite3
 CONFIGURE_ARGS+=--with-gnome
-USE_GNOME+=	gconf2
 .else
 BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 CONFIGURE_ARGS+=--without-gnome
 .endif
 
-.if !defined(WITHOUT_SSL)
-LIB_DEPENDS+=	gnutls.40:${PORTSDIR}/security/gnutls
-.else
-CONFIGURE_ARGS+=--disable-ssl
-.endif
-
-pre-everything::
-	@${ECHO_MSG} ""
-	@${ECHO_MSG} "libsoup has the following configurable option(s):"
-	@${ECHO_MSG} "  WITHOUT_SSL     Disable GnuTLS SSL support"
-	@${ECHO_MSG} ""
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g ; \
-	    	s|" == "|" = "|g' \
+	@${REINPLACE_CMD} -e 's|-Wmissing-include-dirs||g' \
 		${WRKSRC}/configure
 
 .if defined(SOUP_SLAVE)
 do-build:
-	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} libsoup-gnome-2.4.la
+	cd ${WRKSRC}/libsoup && ${GMAKE} libsoup-gnome-2.4.la
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.a ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.la ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so ${PREFIX}/lib/
 	${INSTALL_DATA} ${WRKSRC}/libsoup/.libs/libsoup-gnome-2.4.so.1 ${PREFIX}/lib/
-	cd ${WRKSRC}/libsoup && ${GMAKE} ${FAKE_MAKEARGS} install-libsoupgnomeincludeHEADERS
+	cd ${WRKSRC}/libsoup && ${GMAKE} install-libsoupgnomeincludeHEADERS
 .endif
 
 post-install:
@@ -78,7 +67,7 @@ post-install:
 .else
 	@${INSTALL_DATA} ${WRKSRC}/libsoup/soup-connection.h \
 	    	${PREFIX}/include/libsoup-2.4/libsoup/soup-connection.h
-.endif	
+.endif
 
 .include <bsd.port.post.mk>
 
