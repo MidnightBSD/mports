@@ -1,9 +1,19 @@
-bin/certtool
-bin/gnutls-cli
-bin/gnutls-cli-debug
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/gnutls-serv
+bin/gnutls-cli
 bin/psktool
+bin/gnutls-cli-debug
+bin/certtool
 bin/srptool
+include/gnutls/x509.h
+include/gnutls/pkcs12.h
+include/gnutls/compat.h
+include/gnutls/openpgp.h
+include/gnutls/crypto.h
+include/gnutls/gnutlsxx.h
+include/gnutls/gnutls.h
+include/gnutls/extra.h
+include/gnutls/openssl.h
 info/gnutls-certificate-user-use-case.png
 info/gnutls-extensions_st.png
 info/gnutls-handshake-state.png
@@ -16,33 +26,33 @@ info/gnutls-internals.png
 info/gnutls-logo.png
 info/gnutls-objects.png
 info/gnutls-x509.png
-include/gnutls/compat.h
-include/gnutls/crypto.h
-include/gnutls/extra.h
-include/gnutls/gnutls.h
-include/gnutls/openpgp.h
-include/gnutls/openssl.h
-include/gnutls/pkcs12.h
-include/gnutls/x509.h
-%%CXX%%include/gnutls/gnutlsxx.h
-%%CXX%%lib/libgnutlsxx.so.40
-%%CXX%%lib/libgnutlsxx.so
-%%CXX%%lib/libgnutlsxx.la
-%%CXX%%lib/libgnutlsxx.a
-lib/libgnutls-extra.a
-lib/libgnutls-extra.la
-lib/libgnutls-extra.so
-lib/libgnutls-extra.so.40
-lib/libgnutls-openssl.a
-lib/libgnutls-openssl.la
-lib/libgnutls-openssl.so
-lib/libgnutls-openssl.so.40
-lib/libgnutls.a
-lib/libgnutls.la
+info/gnutls.info
+info/gnutls.info-1
+info/gnutls.info-2
+info/gnutls.info-3
+info/dir
+lib/libgnutls.so.42
 lib/libgnutls.so
-lib/libgnutls.so.40
-libdata/pkgconfig/gnutls-extra.pc
+lib/libgnutls.la
+lib/libgnutlsxx.so.42
+lib/libgnutlsxx.so
+lib/libgnutlsxx.la
+lib/libgnutls.a
+lib/libgnutlsxx.a
+lib/libgnutls-extra.so.42
+lib/libgnutls-extra.so
+lib/libgnutls-extra.la
+lib/libgnutls-openssl.so.42
+lib/libgnutls-openssl.so
+lib/libgnutls-openssl.la
+lib/libgnutls-extra.a
+lib/libgnutls-openssl.a
 libdata/pkgconfig/gnutls.pc
+libdata/pkgconfig/gnutls-extra.pc
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/README
+%%DOCSDIR%%/THANKS
 %%EXAMPLESDIR%%/ex-alert.c
 %%EXAMPLESDIR%%/ex-cert-select.c
 %%EXAMPLESDIR%%/ex-client-psk.c
@@ -64,16 +74,28 @@ libdata/pkgconfig/gnutls.pc
 %%EXAMPLESDIR%%/ex-verify.c
 %%EXAMPLESDIR%%/ex-x509-info.c
 %%EXAMPLESDIR%%/tcp.c
-%%NLS%%share/locale/cs/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/de/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/en@boldquot/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/en@quot/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/fr/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/ms/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/nl/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/pl/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/sv/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/vi/LC_MESSAGES/libgnutls.mo
-%%NLS%%share/locale/zh_CN/LC_MESSAGES/libgnutls.mo
-@dirrm %%EXAMPLESDIR%%
+share/locale/de/LC_MESSAGES/libgnutls.mo
+share/locale/fr/LC_MESSAGES/libgnutls.mo
+share/locale/it/LC_MESSAGES/libgnutls.mo
+share/locale/ms/LC_MESSAGES/libgnutls.mo
+share/locale/nl/LC_MESSAGES/libgnutls.mo
+share/locale/sv/LC_MESSAGES/libgnutls.mo
+share/locale/vi/LC_MESSAGES/libgnutls.mo
+share/locale/en@boldquot/LC_MESSAGES/libgnutls.mo
+share/locale/en@quot/LC_MESSAGES/libgnutls.mo
+share/locale/cs/LC_MESSAGES/libgnutls.mo
+share/locale/pl/LC_MESSAGES/libgnutls.mo
+share/locale/zh_CN/LC_MESSAGES/libgnutls.mo
 @dirrm include/gnutls
+@dirrm %%DOCSDIR%%
+@dirrm %%EXAMPLESDIR%%
+@dirrm share/locale/en@boldquot/LC_MESSAGES
+@dirrm share/locale/en@boldquot
+@dirrm share/locale/en@quot/LC_MESSAGES
+@dirrm share/locale/en@quot
+@dirrm share/locale/cs/LC_MESSAGES
+@dirrm share/locale/cs
+@dirrm share/locale/pl/LC_MESSAGES
+@dirrm share/locale/pl
+@dirrm share/locale/zh_CN/LC_MESSAGES
+@dirrm share/locale/zh_CN
