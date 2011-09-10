@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/security/gnutls/Makefile,v 1.17 2011/02/02 21:20:53 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/gnutls/Makefile,v 1.18 2011/09/10 21:50:55 laffer1 Exp $
 
 PORTNAME=	gnutls
-PORTVERSION=	2.10.0
+PORTVERSION=	2.10.1
 PORTREVISION=	0
 CATEGORIES=	security net
 MASTER_SITES=	${MASTER_SITE_GNU} \
