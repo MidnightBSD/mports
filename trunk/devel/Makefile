@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.379 2011/09/03 02:00:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.380 2011/09/05 22:21:20 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -94,6 +94,7 @@ SUBDIR += google-perftools
 SUBDIR += gorm
 SUBDIR += gperf
 SUBDIR += grantlee
+SUBDIR += gsettings-desktop-schemas
 SUBDIR += gstreamer-plugins-gconf
 SUBDIR += gstreamer-plugins-gio
 SUBDIR += gstreamer-plugins-gnomevfs
