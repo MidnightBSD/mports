@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fonts/cantarell-fonts/Makefile,v 1.1 2011/09/10 21:21:35 laffer1 Exp $
 # $FreeBSD: ports/x11-fonts/cantarell-fonts/Makefile,v 1.1 2011/07/29 18:23:07 kwm Exp $
 
 PORTNAME=	cantarell-fonts
@@ -8,7 +8,7 @@ MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Cantarell, a Humanist sans-serif font family
-LICENSE=
+LICENSE=	other
 
 LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 
