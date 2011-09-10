@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.15 2011/04/30 17:58:41 laffer1 Exp $
+# $MidnightBSD: mports/mail/squirrelmail/Makefile,v 1.16 2011/06/05 05:00:04 laffer1 Exp $
 
 PORTNAME=	squirrelmail
-PORTVERSION=	1.4.21
-PORTREVISION=	1
+PORTVERSION=	1.4.22
+PORTREVISION=	0
 CATEGORIES=	mail www
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION:S/.r/-RC/}:squirrelmail \
 		SF/${PORTNAME}/locales/1.4.18-20090526:locales
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/-RC/}
+DISTNAME=	${PORTNAME}-webmail-${PORTVERSION:S/.r/-RC/}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:squirrelmail \
 		all_locales-1.4.18-20090526${EXTRACT_SUFX}:locales
 DIST_SUBDIR=	${PORTNAME}
@@ -60,6 +60,7 @@ post-patch:
 		${WRKSRC}/config/config_default.php.orig \
 		${WRKSRC}/functions/global.php.orig \
 		${WRKSRC}/functions/i18n.php.orig \
+		${WRKSRC}/functions/imap_search.php.orig \
 		${WRKSRC}/src/addrbook_search_html.php.orig \
 		${WRKSRC}/src/compose.php.orig
 .endif
