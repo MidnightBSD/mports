@@ -1,0 +1,14 @@
+
+$FreeBSD: ports/editors/emacs/files/patch-src_config.in,v 1.1 2011/05/16 12:27:12 ashish Exp $
+
+--- src/config.in.orig
++++ src/config.in
+@@ -1183,6 +1183,8 @@
+ #endif
+ #ifdef HAVE_ALLOCA_H
+ # include <alloca.h>
++#elif defined __FreeBSD__
++#include <stdlib.h>
+ #elif defined __GNUC__
+ # define alloca __builtin_alloca
+ #elif defined _AIX
