@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/m17n-docs/Makefile,v 1.1 2011/09/15 04:16:11 laffer1 Exp $
 # $FreeBSD: ports/devel/m17n-docs/Makefile,v 1.10 2010/02/04 04:02:35 pgollucci Exp $
 
 PORTNAME=	m17n-docs
@@ -9,6 +9,7 @@ MASTER_SITES=	http://www.m17n.org/m17n-lib-download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The m17n library documentation
+LICENSE=	lgpl2.1
 
 NO_BUILD=	yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/m17n-db/Makefile,v 1.1 2011/09/15 04:16:11 laffer1 Exp $
 # $FreeBSD: ports/devel/m17n-db/Makefile,v 1.25 2011/08/11 19:19:17 kwm Exp $
 
 PORTNAME=	m17n-db
@@ -14,6 +14,7 @@ EXTRACT_ONLY=	${M17N_DISTFILE}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Data files for the m17n library
+LICENSE=	lgpl2.1
 
 USE_GNOME=	pkgconfig
 USE_GMAKE=	yes
