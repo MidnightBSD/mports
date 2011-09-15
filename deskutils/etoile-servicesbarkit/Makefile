@@ -1,14 +1,12 @@
 # New ports collection makefile for:    etoile-servicesbarkit
-# Date created:         18 Nov 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/deskutils/etoile-servicesbarkit/Makefile,v 1.6 2009/04/05 19:49:49 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/etoile-servicesbarkit/Makefile,v 1.7 2011/09/03 00:31:54 laffer1 Exp $
 # $FreeBSD: ports/deskutils/etoile-servicesbarkit/Makefile,v 1.6 2007/01/31 18:17:53 dinoex Exp $
 #
 
 PORTNAME=	servicesbarkit
 PORTVERSION=	0.1.${SNAPSHOT}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	deskutils gnustep
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	dinoex
