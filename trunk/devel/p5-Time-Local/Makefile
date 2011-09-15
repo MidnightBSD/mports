@@ -1,17 +1,15 @@
 # New ports collection makefile for:	p5-Time-Local
-# Date created:	   1 july 2003
-# Whom:		   Mathieu Arnold <m@absolight.net>
 #
-# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.2 2008/01/05 05:49:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Time-Local/Makefile,v 1.3 2008/10/16 21:46:39 laffer1 Exp $
 # $FreeBSD: ports/devel/p5-Time-Local/Makefile,v 1.12 2007/01/26 12:19:14 mat Exp $
 #
 
 PORTNAME=	Time-Local
-PORTVERSION=	1.18
+PORTVERSION=	1.20.00
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Time
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
+DISTNAME=     ${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Efficiently compute time from local and GMT time
