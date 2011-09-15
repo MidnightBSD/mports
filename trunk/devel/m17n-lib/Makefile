@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/m17n-lib/Makefile,v 1.1 2011/09/15 04:16:11 laffer1 Exp $
 # $FreeBSD: ports/devel/m17n-lib/Makefile,v 1.37 2011/08/11 19:19:17 kwm Exp $
 #
 
@@ -10,6 +10,7 @@ MASTER_SITES=	http://www.m17n.org/m17n-lib-download/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for multilingual text handling
+LICENSE=	lgpl2.1
 
 BUILD_DEPENDS=	bison:${PORTSDIR}/devel/bison \
 		m17n-db>=1.6.2:${PORTSDIR}/devel/m17n-db
