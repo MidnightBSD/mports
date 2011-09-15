@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11-wm/kompmgr/Makefile,v 1.12 2006/09/12 23:26:51 lofi Exp $
-# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.8 2011/09/07 22:58:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/kompmgr/Makefile,v 1.9 2011/09/15 02:46:00 laffer1 Exp $
 
 PORTNAME=	kompmgr
 PORTVERSION=	${KDE_VERSION}
@@ -21,7 +21,7 @@ PREFIX=		${KDE_PREFIX}
 USE_BZIP2=	yes
 USE_AUTOTOOLS=  libtool
 USE_GMAKE=	yes
-USE_XORG=	x11 xrender xfixes xdamage xcomposite
+USE_XORG=	x11 xrender xfixes xdamage xcomposite xext xcb
 WRKSRC=		${WRKDIR}/kdebase-${PORTVERSION}
 USE_LDCONFIG=	yes
 
