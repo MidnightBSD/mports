@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/audio/linux-f10-freealut/Makefile,v 1.1 2011/06/18 14:28:44 laffer1 Exp $
 # $FreeBSD: ports/audio/linux-f10-freealut/Makefile,v 1.10 2011/03/03 09:26:35 ehaupt Exp $
 
 PORTNAME=	freealut
@@ -10,6 +10,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-${RPMVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free implementation of OpenAL's ALUT standard (Linux Fedora 10)
+LICENSE=	lgpl
 
 CONFLICTS=	linux-freealut-[0-9]*
 
