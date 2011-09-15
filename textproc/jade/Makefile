@@ -1,14 +1,12 @@
 # New ports collection makefile for:	jade
-# Date created:		June 19, 1997
-# Whom:			jfieber
 #
-# $MidnightBSD: mports/textproc/jade/Makefile,v 1.6 2009/09/20 02:14:05 laffer1 Exp $
+# $MidnightBSD: mports/textproc/jade/Makefile,v 1.7 2011/02/02 21:23:47 laffer1 Exp $
 # $FreeBSD: ports/textproc/jade/Makefile,v 1.50 2006/02/23 10:39:21 ade Exp $
 #
 
 PORTNAME=	jade
 PORTVERSION=	1.2.1
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	textproc
 MASTER_SITES=	ftp://ftp.jclark.com/pub/jade/ \
 		http://dist.bsdlab.org/
@@ -33,6 +31,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog
 PLIST_SUB=	XMLCATMGR=${XMLCATMGR}
 PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
+MAKE_JOBS_UNSAFE=	yes
 FAKE_OPTS=	prefixhack
 
 CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
