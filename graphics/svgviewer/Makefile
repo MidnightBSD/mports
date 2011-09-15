@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.3 2010/05/05 23:45:24 laffer1 Exp $
+# $MidnightBSD: mports/graphics/svgviewer/Makefile,v 1.4 2010/10/19 20:55:48 laffer1 Exp $
 
 PORTNAME=	svgviewer
 PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics gnustep
-MASTER_SITES=	http://web.telia.com/~u42308495/alex/
+MASTER_SITES=	http://gnu.ethz.ch/debian/svgviewer/
 DISTNAME=	SVGViewer-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -16,7 +16,6 @@ LIB_DEPENDS+=	svg.1:${PORTSDIR}/graphics/libsvg \
 		png.6:${PORTSDIR}/graphics/png
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
