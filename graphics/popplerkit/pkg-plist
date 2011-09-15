@@ -1,6 +1,5 @@
 GNUstep/Local/Library/Frameworks/PopplerKit.framework/Headers
 GNUstep/Local/Library/Frameworks/PopplerKit.framework/PopplerKit
-GNUstep/Local/Library/Frameworks/PopplerKit.framework/PopplerKit.framework
 GNUstep/Local/Library/Frameworks/PopplerKit.framework/Resources
 GNUstep/Local/Library/Frameworks/PopplerKit.framework/Versions/%%MAJORVERSION%%/Headers/PopplerCachingRenderer.h
 GNUstep/Local/Library/Frameworks/PopplerKit.framework/Versions/%%MAJORVERSION%%/Headers/PopplerCairoImageRenderer.h
