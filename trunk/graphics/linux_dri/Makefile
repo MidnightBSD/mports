@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.4 2007/09/19 20:12:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/linux_dri/Makefile,v 1.5 2011/06/19 13:56:42 laffer1 Exp $
 # $FreeBSD: ports/graphics/linux_dri/Makefile,v 1.20 2006/08/08 19:19:35 bsam Exp $
 
 PORTNAME=	linux_dri
@@ -41,7 +41,7 @@ MODULELIST=	i810_dri.so \
 		sis_dri.so \
 		tdfx_dri.so \
 		unichrome_dri.so
-LDCONFIG_LINUX=	${LINUXBASE}/sbin/ldconfig
+#LDCONFIG_LINUX=	${LINUXBASE}/sbin/ldconfig
 
 .include <bsd.port.pre.mk>
 
