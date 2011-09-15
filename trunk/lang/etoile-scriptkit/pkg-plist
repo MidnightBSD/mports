@@ -1,7 +1,6 @@
 Local/Library/Frameworks/ScriptKit.framework/Headers
 Local/Library/Frameworks/ScriptKit.framework/Resources
 Local/Library/Frameworks/ScriptKit.framework/ScriptKit
-Local/Library/Frameworks/ScriptKit.framework/ScriptKit.framework
 Local/Library/Frameworks/ScriptKit.framework/Versions/%%MAJORLIBVERSION%%/Headers/ScriptCenter.h
 Local/Library/Frameworks/ScriptKit.framework/Versions/%%MAJORLIBVERSION%%/Headers/Tell.h
 Local/Library/Frameworks/ScriptKit.framework/Versions/%%MAJORLIBVERSION%%/Resources/Info-gnustep.plist
