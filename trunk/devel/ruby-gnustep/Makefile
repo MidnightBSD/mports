@@ -2,7 +2,7 @@
 # Date created:		14 September 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.5 2008/10/23 13:43:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.6 2010/10/21 16:05:48 laffer1 Exp $
 # $FreeBSD: ports/devel/ruby-gnustep/Makefile,v 1.35 2007/01/31 18:17:57 dinoex Exp $
 #
 
@@ -57,4 +57,8 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+.if ${RUBY_VER} == 1.9
+BROKEN=	does not build with ruby 1.9
+.endif
+.include <bsd.port.post.mk>
