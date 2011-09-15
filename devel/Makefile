@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.380 2011/09/05 22:21:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.381 2011/09/10 21:16:45 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -177,6 +177,9 @@ SUBDIR += llvm-devel
 SUBDIR += lndir
 SUBDIR += log4j
 SUBDIR += looks
+SUBDIR += m17n-db
+SUBDIR += m17n-docs
+SUBDIR += m17n-lib
 SUBDIR += m4
 SUBDIR += makedepend
 SUBDIR += mercurial
