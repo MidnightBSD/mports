@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/libsvg/Makefile,v 1.3 2010/05/05 19:27:00 vganji Exp $
+# $MidnightBSD: mports/graphics/libsvg/Makefile,v 1.4 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	libsvg
 PORTVERSION=	0.1.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/snapshots/
 
@@ -16,7 +16,7 @@ LIB_DEPENDS=	fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-USE_GNOME=	libxml2 gnomehack gnometarget
+USE_GNOME=	libxml2 gnomehack
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
 
