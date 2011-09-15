@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/etoile-languagekit/Makefile,v 1.1 2010/01/23 19:12:10 laffer1 Exp $
 
 PORTNAME=	languagekit
 PORTVERSION=	0.4.1
@@ -17,7 +17,6 @@ BUILD_DEPENDS=	llc:${PORTSDIR}/devel/llvm-devel
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
@@ -33,5 +32,8 @@ PLIST_SUB+=	LIBVERSION2=${DEFAULT_LIBVERSION2}
 PLIST_SUB+=	MAJORLIBVERSION2=${DEFAULT_LIBVERSION2:C/([0-9]).*/\1/1}
 
 FOUNDATION_PORT?=	devel/etoile-foundation
+
+post-configure:
+	${REINPLACE_CMD} -e 's|-Werror||' ${WRKSRC}/etoile.make
 
 .include <bsd.port.mk>
