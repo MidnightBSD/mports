@@ -2,13 +2,13 @@
 # Date created:		14 September 2001
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.6 2010/10/21 16:05:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/ruby-gnustep/Makefile,v 1.7 2011/09/15 03:13:24 laffer1 Exp $
 # $FreeBSD: ports/devel/ruby-gnustep/Makefile,v 1.35 2007/01/31 18:17:57 dinoex Exp $
 #
 
 PORTNAME=	gnustep
 PORTVERSION=	0.2.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel lang ruby gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	libs
