@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/m17n-lib/Makefile,v 1.1 2011/09/15 04:16:11 laffer1 Exp $
+# $MidnightBSD: mports/devel/m17n-lib/Makefile,v 1.2 2011/09/15 04:17:16 laffer1 Exp $
 # $FreeBSD: ports/devel/m17n-lib/Makefile,v 1.37 2011/08/11 19:19:17 kwm Exp $
 #
 
@@ -28,19 +28,14 @@ USE_GNOME=	libxml2 pkgconfig
 USE_AUTOTOOLS=	autoconf libtool
 USE_LDCONFIG=	yes
 
-OPTIONS=	ANTHY	"With Anthy support" off \
-		ISPELL	"With Ispell support" off \
+OPTIONS=	ISPELL	"With Ispell support" off \
 		THAI	"With libThai support" off
 
 .include <bsd.port.pre.mk>
 
 CONFIGURE_ARGS+=	--disable-nls
 
-.if defined(WITH_ANTHY)
-LIB_DEPENDS+=	anthy.1:${PORTSDIR}/japanese/anthy
-.else
 CONFIGURE_ARGS+=	--without-anthy
-.endif
 
 .if defined(WITH_ISPELL)
 BUILD_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
