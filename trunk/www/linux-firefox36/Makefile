@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.13 2011/07/03 16:55:40 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox-devel/Makefile,v 1.14 2011/09/05 19:57:48 laffer1 Exp $
 
 PORTNAME=	firefox
-DISTVERSION=	3.6.21
+DISTVERSION=	3.6.22
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
 PKGNAMESUFFIX=		-devel
