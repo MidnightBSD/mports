@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/www/linux-firefox5/Makefile,v 1.3 2011/09/02 13:19:51 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-firefox6/Makefile,v 1.4 2011/09/10 20:08:37 laffer1 Exp $
 
 PORTNAME=	firefox
 DISTVERSION=	6.0.2
 CATEGORIES=	www
 MASTER_SITE_SUBDIR?=	${PORTNAME}/releases/${DISTVERSION}/linux-i686/en-US
-PKGNAMESUFFIX=		-5
+PKGNAMESUFFIX=		-6
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
