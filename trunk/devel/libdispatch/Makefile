@@ -1,18 +1,21 @@
-# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.2 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.3 2011/09/04 01:03:14 laffer1 Exp $
 
 PORTNAME=	libdispatch
-PORTVERSION=	174
+PORTVERSION=	210
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
-DISTNAME=	${PORTNAME}-r${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Grand Central Dispatch API support library
 LICENSE=	apache2
 
+USE_AUTOTOOLS=	aclocal autoconf
+ACLOCAL_ARGS=	-Im4
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
+# This is needed because PIC support check in autoconf could fail for clang otherwise.
+CONFIGURE_ENV=	lt_cv_prog_compiler_pic_works=yes
 
 OPTIONS=	CLANG "Build with LLVM/Clang (required for blocks support)" on
 
