@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.60 2011/06/24 00:51:30 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.61 2011/07/09 21:09:57 laffer1 Exp $
 
 COMMENT = Electronic mail utilities
 
@@ -20,6 +20,7 @@ SUBDIR += evolution-mapi
 SUBDIR += faces
 SUBDIR += fetchmail
 SUBDIR += gmime2
+SUBDIR += gmime24
 SUBDIR += gnumail
 SUBDIR += hashcash
 SUBDIR += libmapi
