@@ -1,4 +1,3 @@
-MD5 (mysql-5.1.55.tar.gz) = e07e79edad557874d0870c914c9c81e1
-SHA256 (mysql-5.1.55.tar.gz) = b9b62e78fc1ceef6b10acc9464b7a816e364820179b810d14056afec49b08616
-RMD160 (mysql-5.1.55.tar.gz) = f4ab2500c5d1f15b343b6bbf798b89081d4d0e7c
-SIZE (mysql-5.1.55.tar.gz) = 23769743
+SHA256 (mysql-5.1.58.tar.gz) = 3c69562399655fc62d1424437e6ef59ef7c1ed225f940f81558f549b803f3fd7
+RMD160 (mysql-5.1.58.tar.gz) = 199729c701c764cd22584c2b952230c07d0f31a6
+SIZE (mysql-5.1.58.tar.gz) = 24333490
