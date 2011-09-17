@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.6 2010/11/27 22:10:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.7 2011/07/16 15:36:45 laffer1 Exp $
 
 PORTNAME=	cmake
 PORTVERSION=	2.8.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/
 
@@ -15,6 +16,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir=${DATADIR:S|^${PREFIX}||} \
 		--docdir=${DOCSDIR:S|^${PREFIX}||}
 CONFIGURE_ENV=	MAKE=make
+
 MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITH_DEBUG)
@@ -43,6 +45,8 @@ post-patch:
 		${WRKSRC}/bootstrap
 	@${REINPLACE_CMD} -e 's,/opt/kde4,${LOCALBASE}/kde4,g' \
 		${WRKSRC}/Modules/FindKDE4.cmake
+	@${REINPLACE_CMD} -e 's,/usr/include,${LOCALBASE}/include,' \
+	   	${WRKSRC}/Modules/FindDCMTK.cmake
 	@${FIND} ${WRKSRC} -name "*.bak" -delete -o -name "*.orig" -delete
 	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
 
