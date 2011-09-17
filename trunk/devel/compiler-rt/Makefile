@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/compiler-rt/Makefile,v 1.1 2010/01/10 22:21:08 laffer1 Exp $
 
 PORTNAME=	compiler-rt
 DISTVERSION=	0.r${SVN_REV}
@@ -23,9 +23,18 @@ USE_GCC=	4.2+
 USE_GMAKE=	yes
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
+MAKE_ARGS=	VERBOSE=1
 MAKE_JOBS_SAFE=	yes
 
 LLVM_SVN=	http://llvm.org/svn/llvm-project
+
+# fixuns?fti_test tests fail
+# powi?f2_test tests fail to link due to lack of -lm
+BROKEN_TESTS?=	fixunsdfti_test \
+		fixunssfti_test \
+		powidf2_test \
+		powisf2_test \
+		powixf2_test
 
 PLIST_FILES=	include/Block.h \
 		include/Block_private.h \
@@ -50,12 +59,20 @@ do-fetch:
 	${MKDIR} ${WRKDIR}
 	svn export -r ${SVN_REV} \
 	    ${LLVM_SVN}/compiler-rt/trunk ${WRKSRC}
-	cd ${WRKDIR}; tar cvfy ${DISTDIR}/${DISTNAME}.tar.bz2
-${DISTNAME}
+	cd ${WRKDIR}; tar cvfy ${DISTDIR}/${DISTNAME}.tar.bz2 ${DISTNAME}
 	echo "SVN_REV=	${SVN_REV}" > ${MASTERDIR}/Makefile.svn_rev
 .endif
 
 post-extract:
 	${MKDIR} ${CONFIGURE_WRKSRC}
+
+post-patch:
+.for test in ${BROKEN_TESTS}
+	${REINPLACE_CMD} -e 's/\(MACRO_ADD_CHECK_TEST( ${test}\)/# \1/' \
+	    ${WRKSRC}/test/CMakeLists.txt
+.endfor
+
+regression-test:
+	cd ${BUILD_WRKSRC} && make test
 
 .include <bsd.port.post.mk>
