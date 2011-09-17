@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.12 2011/01/15 05:00:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.13 2011/05/22 02:29:49 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 
 PORTNAME=	pcre
-PORTVERSION=	8.12
+PORTVERSION=	8.13
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
@@ -54,6 +54,8 @@ post-patch:
 .endif
 	${REINPLACE_CMD} -e 's/\(pkgconfigdir = \).*/\1$$\(prefix\)\/libdata\/pkgconfig/' \
 		${WRKSRC}/Makefile.in
+# work around for a autoconf assumption, to fix c++ linking with clang
+	@${REINPLACE_CMD} -e 's|GREP "\\-L"|GREP "conftest\\.$$objext"|g' ${WRKSRC}/configure
 
 post-install:
 	@${STRIP_CMD} ${PREFIX}/bin/pcregrep ${PREFIX}/bin/pcretest
