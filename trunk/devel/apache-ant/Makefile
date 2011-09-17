@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.3 2009/04/05 19:51:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.4 2009/04/15 23:40:55 laffer1 Exp $
 
 PORTNAME=	apache-ant
-PORTVERSION=	1.7.1
+PORTVERSION=	1.8.2
 PORTREVISION=	0
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
@@ -22,7 +22,7 @@ MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
 MANPAGE_VERSION=	20030908
 USE_BZIP2=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 
 NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
@@ -30,7 +30,7 @@ PLIST_SUB+=	ANT_VERSION="${PORTVERSION}"
 READMES=	LICENSE README WHATSNEW
 
 .if !defined(NOPORTDOCS)
-PORTDOCS=	* .htaccess
+PORTDOCS=	*
 .endif
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
