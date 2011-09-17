@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.8 2010/05/09 18:29:03 laffer1 Exp $
+# $MidnightBSD: mports/audio/rhythmbox/Makefile,v 1.9 2011/02/02 20:03:23 laffer1 Exp $
 
 PORTNAME=	rhythmbox
-PORTVERSION=	0.12.5
+PORTVERSION=	0.12.8
 PORTREVISION=	1
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
