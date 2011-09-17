@@ -1,12 +1,17 @@
 #!/bin/sh
 #
+#-*- mode: Fundamental; tab-width: 4; -*-
+# ex:ts=4
+#
+# MidnightBSD-specific startup script for Apache Ant.
+#
 # See: http://ant.apache.org/
 #
 # $MidnightBSD$
 
 
 DEFAULT_JIKES=false
-DATADIR=${DATADIR:-"%%DATADIR%%"}
+ANT_HOME=${ANT_HOME:-"%%DATADIR%%"}
 
 
 #-----------------------------------------------------------------------------
@@ -27,7 +32,7 @@ fi
 usejikes=${usejikes:-${DEFAULT_JIKES}};
 
 # Set ANT_LIB location
-ANT_LIB="${DATADIR}/lib"
+ANT_LIB="${ANT_HOME}/lib"
 
 #-----------------------------------------------------------------------------
 # Determine CLASSPATH
@@ -40,7 +45,7 @@ else
 	LOCALCLASSPATH=${ANT_LIB}/ant-launcher.jar:${LOCALCLASSPATH}
 fi
 
-# MidnightBSD-specific: Add the .jar files from ${JAVALIBDIR}
+# FreeBSD-specific: Add the .jar files from ${JAVALIBDIR}
 if [ -n "${ANT_INCLUDE_SHARED_JARS}" ]; then
 	CLASSPATH_CMD=%%LOCALBASE%%/bin/classpath
 	if [ -x "${CLASSPATH_CMD}" ]; then
@@ -73,4 +78,4 @@ if [ ! -x "${JAVACMD}" ]; then
 	exit 1
 fi
 
-exec "${JAVACMD}" ${ANT_OPTS} -classpath "${LOCALCLASSPATH}" -Dant.home="${DATADIR}" org.apache.tools.ant.launch.Launcher ${ANT_ARGS} -lib "${CLASSPATH}" "$@"
+exec "${JAVACMD}" ${ANT_OPTS} -classpath "${LOCALCLASSPATH}" -Dant.home="${ANT_HOME}" org.apache.tools.ant.launch.Launcher ${ANT_ARGS} -lib "${CLASSPATH}" "$@"
