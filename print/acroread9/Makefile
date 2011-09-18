@@ -2,24 +2,24 @@
 #
 
 PORTNAME=	acroread9
-PORTVERSION=	9.3.2
+PORTVERSION=	9.4.2
 CATEGORIES?=	print linux
 MASTER_SITES?=	http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${PORTVERSION}/${ADOBE_LANG:L}/ \
 		ftp://ftp.adobe.com/pub/adobe/reader/unix/9.x/${PORTVERSION}/${ADOBE_LANG:L}/
-DISTNAME=	AdbeRdr${PORTVERSION}-1_i486linux_${ADOBE_LANG:L}
+DISTNAME=	AdbeRdr${PORTVERSION:S,.0$,,}-1_i486linux_${ADOBE_LANG:L}
 DIST_SUBDIR=	acroread
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Reader for view, print, and search PDF documents (${ADOBE_LANG})
 LICENSE=	restricted
 
-RUN_DEPENDS=	acroreadwrapper>=0.0.20090328:${PORTSDIR}/print/acroreadwrapper
+RUN_DEPENDS=	acroreadwrapper>=0.0.20110529:${PORTSDIR}/print/acroreadwrapper
 
 RESTRICTED=	Must fill out redistribution form at http://www.adobe.com/products/acrobat/distribute.html
 ONLY_FOR_ARCHS=	amd64 i386
 USE_BZIP2=	yes
 USE_LINUX=	yes
-USE_LINUX_APPS=	gdkpixbuf gtk2 libxml2 pango webauth
+USE_LINUX_APPS=	gdkpixbuf gtk2 libxml2 pango
 USE_LDCONFIG=	yes
 #USE_GNOME=	desktopfileutils
 NO_BUILD=	yes
@@ -77,9 +77,7 @@ do-install:
 	@${MKDIR} ${PREFIX}/share/desktop-directories
 	@cd ${WRKSRC} && ${SETENV} PATH=${WRKDIR}/bin:${PATH} ${INSTALLEXEC} > /dev/null
 
-.if ${ADOBE_LANG:U} != ENU
 post-install:
 	@${CAT} ${PKGMESSAGE}
-.endif
 
 .include <bsd.port.mk>
