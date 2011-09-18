@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.7 2010/11/18 13:17:57 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/ffmpeg/Makefile,v 1.8 2011/09/05 16:08:16 laffer1 Exp $
 
 PORTNAME=	ffmpeg
 PORTVERSION=	0.6.1
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -217,7 +217,7 @@ CONFIGURE_ARGS+=	--disable-libopenjpeg
 
 # schroedinger
 .ifndef(WITHOUT_SCHROEDINGER)
-LIB_DEPENDS+=	schroedinger-1.0.2:${PORTSDIR}/multimedia/schroedinger
+LIB_DEPENDS+=	schroedinger-1.0.10:${PORTSDIR}/multimedia/schroedinger
 CONFIGURE_ARGS+=	--enable-libschroedinger
 .else
 CONFIGURE_ARGS+=	--disable-libschroedinger
