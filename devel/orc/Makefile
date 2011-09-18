@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/orc/Makefile,v 1.2 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/orc/Makefile,v 1.3 2011/06/22 03:10:52 laffer1 Exp $
 # $FreeBSD: ports/devel/orc/Makefile,v 1.6 2010/09/05 08:02:21 mm Exp $
 
 PORTNAME=	orc
-PORTVERSION=	0.4.11
+PORTVERSION=	0.4.14
 CATEGORIES=	devel
 MASTER_SITES=	http://code.entropywave.com/download/orc/
 
@@ -18,6 +18,10 @@ USE_GMAKE=	yes
 CONFIGURE_ARGS+=	--disable-gtk-doc
 
 SUBDIRS=	orc orc-test tools
+
+EXAMPLES_DATA=	example1orc.orc example2orc.orc example3orc.orc \
+		mt19937arorc.orc
+EXAMPLES_EXEC=	example1 example2 example3 mt19937ar volscale
 
 OPTIONS=	DOCS "Include gtk-doc documentation" off \
 		EXAMPLES "Install example files" off
@@ -43,5 +47,16 @@ post-patch:
 		-E -e '/LIBS/s/-lrt(\ )*//; /LIBRT/s/-lrt//' \
 		-e 's|pkgconfigdir=.*|pkgconfigdir=\"\\$$(prefix)/libdata/pkgconfig\"|g' \
 		${WRKSRC}/configure 
+
+post-install:
+.if defined(WITH_EXAMPLES) && !defined(NOPORTEXAMPLES)
+	@${MKDIR} ${EXAMPLESDIR}
+.for FILE in ${EXAMPLES_DATA}
+	@${INSTALL_DATA} ${WRKSRC}/examples/${FILE} ${EXAMPLESDIR}/${FILE}
+.endfor
+.for FILE in ${EXAMPLES_EXEC}
+	@${INSTALL_SCRIPT} ${WRKSRC}/examples/${FILE} ${EXAMPLESDIR}/${FILE}
+.endfor
+.endif
 
 .include <bsd.port.post.mk>
