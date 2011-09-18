@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.11 2011/05/11 14:17:23 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.12 2011/05/12 13:30:19 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
 
 PORTNAME=	gcc
@@ -75,7 +75,7 @@ pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|\(const char version_string.*\)";|\1 [MidnightBSD]";|' \
+	@${REINPLACE_CMD} -e 's|\(#define VERSUFFIX.*\)"|\1 [MidnightBSD Ports Collection]"|' \
 	    ${SRCDIR}/gcc/version.c
 
 pre-configure:
