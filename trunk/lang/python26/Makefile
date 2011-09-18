@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.14 2010/11/10 15:45:35 laffer1 Exp $
+# $MidnightBSD: mports/lang/python26/Makefile,v 1.15 2010/11/14 01:01:45 laffer1 Exp $
 
 PORTNAME=	python26
-PORTVERSION=	2.6.5
+PORTVERSION=	2.6.7
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}

@@ -350,12 +350,15 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/distutils/tests/test_filelist.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_dist.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_install.py
+%%PYTHON_LIBDIR%%/distutils/tests/test_install_lib.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_install_scripts.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_msvc9compiler.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_sysconfig.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_sdist.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_register.py
+%%PYTHON_LIBDIR%%/distutils/tests/test_unixccompiler.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_upload.py
+%%PYTHON_LIBDIR%%/distutils/tests/test_util.py
 %%PYTHON_LIBDIR%%/distutils/tests/test_versionpredicate.py
 %%PYTHON_LIBDIR%%/distutils/text_file.py
 %%PYTHON_LIBDIR%%/distutils/unixccompiler.py
@@ -436,6 +439,8 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/email/test/data/msg_42.txt
 %%PYTHON_LIBDIR%%/email/test/data/msg_43.txt
 %%PYTHON_LIBDIR%%/email/test/data/msg_44.txt
+%%PYTHON_LIBDIR%%/email/test/data/msg_45.txt
+%%PYTHON_LIBDIR%%/email/test/data/msg_46.txt
 %%PYTHON_LIBDIR%%/email/test/test_email.py
 %%PYTHON_LIBDIR%%/email/test/test_email_codecs.py
 %%PYTHON_LIBDIR%%/email/test/test_email_codecs_renamed.py
@@ -692,9 +697,9 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/json/tool.py
 %%PYTHON_LIBDIR%%/keyword.py
 %%PYTHON_LIBDIR%%/lib2to3/Grammar.txt
-%%PYTHON_LIBDIR%%/lib2to3/Grammar2.6.5.final.0.pickle
+%%PYTHON_LIBDIR%%/lib2to3/Grammar2.6.7.final.0.pickle
 %%PYTHON_LIBDIR%%/lib2to3/PatternGrammar.txt
-%%PYTHON_LIBDIR%%/lib2to3/PatternGrammar2.6.5.final.0.pickle
+%%PYTHON_LIBDIR%%/lib2to3/PatternGrammar2.6.7.final.0.pickle
 %%PYTHON_LIBDIR%%/lib2to3/__init__.py
 %%PYTHON_LIBDIR%%/lib2to3/fixer_base.py
 %%PYTHON_LIBDIR%%/lib2to3/fixer_util.py
@@ -706,6 +711,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_dict.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_except.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_exec.py
+%%PYTHON_LIBDIR%%/lib2to3/fixes/fix_exitfunc.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_getcwdu.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_set_literal.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_execfile.py
@@ -730,6 +736,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_next.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_nonzero.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_numliterals.py
+%%PYTHON_LIBDIR%%/lib2to3/fixes/fix_operator.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_paren.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_print.py
 %%PYTHON_LIBDIR%%/lib2to3/fixes/fix_raise.py
@@ -767,6 +774,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/lib2to3/tests/support.py
 %%PYTHON_LIBDIR%%/lib2to3/tests/test_all_fixers.py
 %%PYTHON_LIBDIR%%/lib2to3/tests/test_fixers.py
+%%PYTHON_LIBDIR%%/lib2to3/tests/test_main.py
 %%PYTHON_LIBDIR%%/lib2to3/tests/test_parser.py
 %%PYTHON_LIBDIR%%/lib2to3/tests/test_pytree.py
 %%PYTHON_LIBDIR%%/lib2to3/tests/test_refactor.py
@@ -820,7 +828,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/lib-dynload/fcntl.so
 %%PYTHON_LIBDIR%%/lib-dynload/future_builtins.so
 %%PYTHON_LIBDIR%%/lib-dynload/grp.so
-%%X86_ONLY%%%%PYTHON_LIBDIR%%/lib-dynload/imageop.so
+%%32BIT_ONLY%%%%PYTHON_LIBDIR%%/lib-dynload/imageop.so
 %%PYTHON_LIBDIR%%/lib-dynload/itertools.so
 %%PYTHON_LIBDIR%%/lib-dynload/math.so
 %%PYTHON_LIBDIR%%/lib-dynload/mmap.so
@@ -1162,6 +1170,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/test/inspect_fodder2.py
 %%PYTHON_LIBDIR%%/test/keycert.pem
 %%PYTHON_LIBDIR%%/test/list_tests.py
+%%PYTHON_LIBDIR%%/test/lock_tests.py
 %%PYTHON_LIBDIR%%/test/mapping_tests.py
 %%PYTHON_LIBDIR%%/test/nullcert.pem
 %%PYTHON_LIBDIR%%/test/outstanding_bugs.py
@@ -1182,6 +1191,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/test/sample_doctest.py
 %%PYTHON_LIBDIR%%/test/seq_tests.py
 %%PYTHON_LIBDIR%%/test/sgml_input.html
+%%PYTHON_LIBDIR%%/test/sha256.pem
 %%PYTHON_LIBDIR%%/test/sortperf.py
 %%PYTHON_LIBDIR%%/test/ssl_cert.pem
 %%PYTHON_LIBDIR%%/test/ssl_key.pem
@@ -1454,6 +1464,7 @@ lib/lib%%PYTHON_VERSION%%.so.1
 %%PYTHON_LIBDIR%%/test/test_quopri.py
 %%PYTHON_LIBDIR%%/test/test_random.py
 %%PYTHON_LIBDIR%%/test/test_re.py
+%%PYTHON_LIBDIR%%/test/test_readline.py
 %%PYTHON_LIBDIR%%/test/test_repr.py
 %%PYTHON_LIBDIR%%/test/test_resource.py
 %%PYTHON_LIBDIR%%/test/test_rfc822.py
@@ -2222,7 +2233,7 @@ lib/libpython2.6.a
 @dirrm %%PYTHON_LIBDIR%%/lib2to3/fixes
 @dirrm %%PYTHON_LIBDIR%%/lib2to3
 @dirrm %%PYTHON_LIBDIR%%/lib-tk
-@dirrm %%PYTHON_LIBDIR%%/lib-old
+@dirrmtry %%PYTHON_LIBDIR%%/lib-old
 @dirrm %%PYTHON_LIBDIR%%/lib-dynload
 @dirrm %%PYTHON_LIBDIR%%/json/tests
 @dirrm %%PYTHON_LIBDIR%%/json
