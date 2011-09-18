@@ -6,7 +6,7 @@
 # Created by: Lucas Holt <luke@midnightbsd.org>
 # Date:		Nov 23 2007
 #
-# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.3 2010/02/27 21:30:44 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gstreamer.mk,v 1.4 2011/01/14 14:35:29 laffer1 Exp $
 
 .if !defined(_POSTMKINCLUDED) && !defined(Gstreamer_Pre_Include)
 
@@ -54,16 +54,16 @@ GST_SHLIB_VERSION=	1
 #
 _USE_GSTREAMER10_ALL=	a52dec aalib amrnb amrwbdec annodex bz2 cairo \
 			cdaudio cdparanoia dts dv dvd esound faac faad \
-			ffmpeg flac gconf gio gl gnomevfs gnonlin \
+			ffmpeg flac flite gconf gio gl gme gnomevfs gnonlin \
 			gsm hal jack jpeg ladspa lame libcaca libmms \
 			libpng libvisual mm mp3 mpeg2enc mpeg2dec musepack \
-			nas neon ogg pango pulse python resindvd schroedinger \
+			nas neon ogg opencv pango pulse python resindvd schroedinger \
 			sdl shout2 sidplay sndfile spc soundtouch soup \
 			speex taglib theora twolame v4l2 vorbis vdpau \
 			vp8 wavpack x264 xvid
 
 # other plugins
-OTHER_GSTREAMER_PLUGINS+=bad good ugly core yes ${_USE_GSTREAMER10_ALL} fluendo-mp3 mad
+OTHER_GSTREAMER_PLUGINS+=bad good ugly core yes ${_USE_GSTREAMER10_ALL} fluendo-mp3 mad qt4
 
 _USE_GSTREAMER_ALL+=	${OTHER_GSTREAMER_PLUGINS}
 
@@ -100,7 +100,11 @@ faad_DEPENDS=	audio/gstreamer-plugins-faad
 
 flac_DEPENDS=	audio/gstreamer-plugins-flac
 
+flite_DEPENDS=	audio/gstreamer-plugins-flite
+
 fluendo-mp3_DEPENDS=	audio/gstreamer-plugins-fluendo-mp3
+
+gme_DEPENDS=	audio/gstreamer-plugins-gme
 
 gsm_DEPENDS=	audio/gstreamer-plugins-gsm
 
@@ -193,6 +197,8 @@ libpng_DEPENDS=	graphics/gstreamer-plugins-libpng
 
 libvisual_DEPENDS=	graphics/gstreamer-plugins-libvisual
 
+opencv_DEPENDS=	graphics/gstreamer-plugins-opencv
+
 # Multimedia Plugins Section
 bad_DEPENDS=	multimedia/gstreamer-plugins-bad
 
@@ -221,6 +227,9 @@ mpeg2enc_DEPENDS=	multimedia/gstreamer-plugins-mpeg2enc
 
 mplex_DEPENDS=	multimedia/gstreamer-plugins-mplex
 
+qt4_DEPENDS=	multimedia/gstreamer-qt4
+qt4_GST_PREFIX=	gstreamer-
+
 v4l2_DEPENDS=	multimedia/gstreamer-plugins-v4l2
 
 vp8_DEPENDS=	multimedia/gstreamer-plugins-vp8
@@ -243,6 +252,8 @@ theora_DEPENDS=	multimedia/gstreamer-plugins-theora
 
 ugly_DEPENDS=	multimedia/gstreamer-plugins-ugly
 
+vdpau_DEPENDS=	multimedia/gstreamer-plugins-vdpau
+
 x264_DEPENDS=	multimedia/gstreamer-plugins-x264
 
 xvid_DEPENDS=	multimedia/gstreamer-plugins-xvid
@@ -250,10 +261,6 @@ xvid_DEPENDS=	multimedia/gstreamer-plugins-xvid
 # Net Plugins Section
 
 libmms_DEPENDS=	net/gstreamer-plugins-libmms
-
-# X11 Plugin Section
-
-vdpau_DEPENDS=	x11/gstreamer-plugins-vdpau
 
 # X11-Toolkits Plugins Section
 pango_DEPENDS=	x11-toolkits/gstreamer-plugins-pango
