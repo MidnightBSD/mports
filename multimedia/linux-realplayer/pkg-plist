@@ -185,7 +185,7 @@ lib/linux-mozilla/plugins/nphelix.xpt
 %%GNOME%%share/mime-info/realplay.keys
 %%GNOME%%share/mime-info/realplay.mime
 %%GNOME%%share/pixmaps/realplay.png
-%%ICONS%%share/icons/hicolor/16x16/apps/realplay_16x16.png
+@comment %%ICONS%%share/icons/hicolor/16x16/apps/realplay_16x16.png
 %%ICONS%%share/icons/hicolor/192x192/apps/realplay_192x192.png
 %%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-generic_192x192.png
 %%ICONS%%share/icons/hicolor/192x192/mimetypes/mime-application-ogg_192x192.png
