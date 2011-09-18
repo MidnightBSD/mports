@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/libxul/Makefile,v 1.1 2011/07/09 16:40:42 laffer1 Exp $
+# $MidnightBSD: mports/www/libxul/Makefile,v 1.2 2011/08/19 02:25:09 laffer1 Exp $
 # $FreeBSD: ports/www/libxul/Makefile,v 1.28 2011/04/29 15:44:33 flo Exp $
 
 PORTNAME=	libxul
@@ -109,5 +109,10 @@ post-build:
 	    	s|%sdkdir%|%sdkdir%/sdk|g ; \
 		s|%%MOZ_LIBDIR%%|${TRUE_PREFIX}/lib/${MOZILLA}|g" \
 	    	${WRKSRC}/xulrunner/installer/*.pc.in || ${TRUE}
+
+post-install:
+	cd ${PREFIX}/libdata/pkgconfig/ && ${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' libxul-embedding.pc \
+		mozilla-gtkmozembed-embedding.pc mozilla-js.pc mozilla-plugin.pc libxul.pc mozilla-nss.pc \
+		mozilla-gtkmozembed.pc
 
 .include <bsd.port.post.mk>
