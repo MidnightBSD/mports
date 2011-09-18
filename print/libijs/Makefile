@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/print/libijs/Makefile,v 1.3 2009/12/28 17:18:23 laffer1 Exp $
+# $MidnightBSD: mports/print/libijs/Makefile,v 1.4 2011/02/02 21:18:50 laffer1 Exp $
 
 PORTNAME=	libijs
 PORTVERSION=	0.35
 PORTREVISION=	1
 CATEGORIES=	print
-MASTER_SITES=	http://www.linuxprinting.org/ijs/download/
+MASTER_SITES=	http://www.openprinting.org/download/ijs/download/
 DISTNAME=	ijs-${PORTVERSION}
 DIST_SUBDIR=	ghostscript
 
