@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.11 2011/01/08 04:20:34 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.12 2011/09/05 14:55:17 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -386,7 +386,7 @@ gst_mad_PLIST_FILES=	${GST_LIB_DIR}/libgstmad.la \
 gst_mad_DIST=	ugly
 
 # mpeg2enc
-gst_mpeg2enc_LIB_DEPENDS+=	mjpegutils-1.9.0:${PORTSDIR}/multimedia/mjpegtools
+gst_mpeg2enc_LIB_DEPENDS+=	mjpegutils-2.0.0:${PORTSDIR}/multimedia/mjpegtools
 gst_mpeg2enc_PLIST_FILES=	${GST_LIB_DIR}/libgstmpeg2enc.la \
 		${GST_LIB_DIR}/libgstmpeg2enc.so
 gst_mpeg2enc_DIST=	bad
@@ -430,8 +430,7 @@ gst_ogg_PLIST_FILES=	${GST_LIB_DIR}/libgstogg.la \
 gst_ogg_DIST=	base
 
 # opencv
-gst_opencv_BUILD_DEPENDS+=opencv<2.2:${PORTSDIR}/graphics/opencv
-gst_opencv_RUN_DEPENDS+=opencv<2.2:${PORTSDIR}/graphics/opencv
+gst_opencv_LIB_DEPENDS+=opencv_highgui.2:${PORTSDIR}/graphics/opencv
 gst_opencv_PLIST_FILES= ${GST_LIB_DIR}/libgstopencv.la \
 			${GST_LIB_DIR}/libgstopencv.a \
 			${GST_LIB_DIR}/libgstopencv.so
@@ -580,7 +579,7 @@ gst_vp8_PLIST_FILES=	${GST_LIB_DIR}/libgstvp8.la \
 gst_vp8_DIST=		bad
 
 # x264
-gst_x264_LIB_DEPENDS+=	x264.110:${PORTSDIR}/multimedia/x264
+gst_x264_LIB_DEPENDS+=	x264.115:${PORTSDIR}/multimedia/x264
 gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.la \
 		${GST_LIB_DIR}/libgstx264.so \
 		share/gstreamer-${VERSION}/presets/GstX264Enc.prs
@@ -618,6 +617,7 @@ gst_${GST_PLUGIN}_POSTBUILD_DIR?=
 gst_${GST_PLUGIN}_USE_GNOME?=
 gst_${GST_PLUGIN}_CONFIGURE_ENV?=
 gst_${GST_PLUGIN}_GCONF_SCHEMAS?=
+gst_${GST_PLUGIN}_GLIB_SCHEMAS?=
 gst_${GST_PLUGIN}_CONFIGURE_ARGS?=
 gst_${GST_PLUGIN}_USE_SDL?=
 gst_${GST_PLUGIN}_USE_GSTREAMER?=
@@ -632,6 +632,9 @@ USE_GNOME+=	${gst_${GST_PLUGIN}_USE_GNOME}
 CONFIGURE_ENV+=	${gst_${GST_PLUGIN}_CONFIGURE_ENV}
 .if ${gst_${GST_PLUGIN}_GCONF_SCHEMAS}!=""
 GCONF_SCHEMAS=	${gst_${GST_PLUGIN}_GCONF_SCHEMAS}
+.endif
+.if ${gst_${GST_PLUGIN}_GLIB_SCHEMAS}!=""
+GLIB_SCHEMAS=  ${gst_${GST_PLUGIN}_GLIB_SCHEMAS}
 .endif
 CONFIGURE_ARGS+=${gst_${GST_PLUGIN}_CONFIGURE_ARGS}
 .if ${gst_${GST_PLUGIN}_USE_SDL}!=""
