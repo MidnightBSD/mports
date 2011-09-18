@@ -2,7 +2,7 @@
 # Date created:        23 February 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD: mports/www/dillo/Makefile,v 1.5 2010/05/05 23:52:16 laffer1 Exp $
+# $MidnightBSD: mports/www/dillo/Makefile,v 1.6 2010/05/08 17:17:47 laffer1 Exp $
 # $FreeBSD: ports/www/dillo/Makefile,v 1.36 2006/06/03 02:01:25 mnag Exp $
 #
 # Tunables:
@@ -12,7 +12,7 @@
 
 PORTNAME=	dillo
 PORTVERSION=	0.8.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.dillo.org/download/
 
@@ -32,8 +32,13 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
-CONFIGURE_ARGS=	--enable-cookies --enable-ipv6 --enable-threaded-dns \
+CONFIGURE_ARGS=	--enable-cookies --enable-threaded-dns \
 		--libdir=${PREFIX}/libexec
+.if !defined(WITHOUT_DILLO_IPV6) && !defined(WITHOUT_IPV6)
+CONFIGURE_ARGS+=	--enable-ipv6
+.else
+CONFIGURE_ARGS+=	--disable-ipv6
+.endif
 
 .if defined(WITH_DILLO_SSL)
 CONFIGURE_ARGS+=	--enable-ssl
@@ -52,7 +57,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--disable-dlgui
 .endif
 
-CONFLICTS=	dillo-i18n-*[0-9]*
+CONFLICTS=	dillo-i18n-*[0-9]* \
+		dillo-[2-9]*
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-pthread|${PTHREAD_LIBS}|g ; \
@@ -70,6 +76,11 @@ pre-configure:
 	@${ECHO_CMD} ""
 	@${ECHO_CMD} "   Set WITH_DILLO_DLGUI=yes in your make environment or on the"
 	@${ECHO_CMD} "   commandline to enable a FLTK2 based gui for download operations."
+.endif
+.if !defined(WITHOUT_DILLO_IPV6) && !defined(WITHOUT_IPV6)
+	@${ECHO_CMD} ""
+	@${ECHO_CMD} "   Set WITHOUT_DILLO_IPV6=yes (or WITHOUT_IPV6=yes) in your make"
+	@${ECHO_CMD} "   environment or on the commandline to disable IPv6 support."
 .endif
 	@${ECHO_CMD} ""
 
