@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.3 2011/01/15 03:57:54 laffer1 Exp $
+# $MidnightBSD: mports/audio/libcanberra/Makefile,v 1.4 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	libcanberra
-PORTVERSION=	0.25
+PORTVERSION=	0.28
 CATEGORIES=	audio devel
 MASTER_SITES=	http://0pointer.de/lennart/projects/libcanberra/
 
@@ -15,7 +15,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack gtk20 ltverhack gconf2
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool libltdl
-CONFIGURE_ARGS=	--disable-lynx --disable-tdb --disable-gtk3
+CONFIGURE_ARGS=	--disable-lynx --disable-tdb --disable-gtk3 --disable-als
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
