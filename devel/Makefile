@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.381 2011/09/10 21:16:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.382 2011/09/15 04:15:09 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -124,6 +124,7 @@ SUBDIR += libev
 SUBDIR += libevent
 SUBDIR += libexecinfo
 SUBDIR += libffi
+SUBDIR += libgdata
 SUBDIR += libgee
 SUBDIR += libgii
 SUBDIR += libglade2
