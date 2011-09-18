@@ -1,4 +1,3 @@
-MD5 (gnome2/evolution-data-server-2.26.3.tar.bz2) = 01205605a598253bc227ff360c7c3dad
-SHA256 (gnome2/evolution-data-server-2.26.3.tar.bz2) = ed2698d64dc663900b50f7a461d79c25e310462b7d41b1073257cbf950e75071
-RMD160 (gnome2/evolution-data-server-2.26.3.tar.bz2) = 83f68a464a0cfb50511f33e662d8a24ede42b9e6
-SIZE (gnome2/evolution-data-server-2.26.3.tar.bz2) = 7167764
+SHA256 (gnome2/evolution-data-server-2.32.1.tar.bz2) = de6a724504a9d72ca550a5a157df1e27dbb951a673f281106171c2345912fc79
+RMD160 (gnome2/evolution-data-server-2.32.1.tar.bz2) = 1555b03669c60e70c01e57b35739f2953e7896d9
+SIZE (gnome2/evolution-data-server-2.32.1.tar.bz2) = 4290087
