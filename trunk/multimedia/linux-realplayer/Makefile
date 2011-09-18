@@ -2,11 +2,12 @@
 # Date created:        31 January 1999
 # Whom:                Kris Kennaway <kkennawa@physics.adelaide.edu.au>
 #
-# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.4 2009/10/14 13:48:31 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/linux-realplayer/Makefile,v 1.5 2010/02/26 23:12:20 laffer1 Exp $
 # $FreeBSD: ports/multimedia/linux-realplayer/Makefile,v 1.44 2006/03/27 19:06:35 mnag Exp $
 #
 
 PORTNAME=	linux-realplayer
+PORTREVISION=	1
 DISTVERSION=	10.0.9.809-20070726
 CATEGORIES=	multimedia audio linux
 MASTER_SITES=	https://helixcommunity.org/download.php/2479/:player \
@@ -18,17 +19,15 @@ DISTFILES=	RealPlayer-${DISTVERSION}.i586.rpm:player,playeralt \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Linux RealPlayer 10 from RealNetworks
-
 LICENSE=	restricted
 
 EXTRACT_DEPENDS=	rpm2cpio.pl:${PORTSDIR}/archivers/rpm2cpio
-RUN_DEPENDS=	${LINUXBASE}/usr/lib/libgtk-x11-2.0.so.0:${PORTSDIR}/x11-toolkits/linux-gtk2
 
 WRKSRC=		${WRKDIR}/usr/local/RealPlayer
 ONLY_FOR_ARCHS=	i386 amd64
 USE_GCPIO=	yes
 USE_LINUX=	yes
-USE_XLIB=	yes
+USE_LINUX_APPS=	gtk2 xorglibs
 RESTRICTED=	Redistribution not allowed
 NO_BUILD=	yes
 WANT_GNOME=	yes
@@ -74,11 +73,13 @@ do-extract:
 	done
 
 post-patch:
-	@${SED} 's|/usr/local|${PREFIX}|' \
+	@${SED} 's|/usr/local|${LOCALBASE}|' \
 		< ${FILESDIR}/realplay > ${WRKSRC}/realplay
 
 do-install:
 	@${MKDIR} ${RADIR}
+	${MKDIR} ${PREFIX}/share/icons/hicolor/192x192/apps/
+	${MKDIR} ${PREFIX}/share/icons/hicolor/16x16/apps/
 	${INSTALL_DATA} ${WRKSRC}/LICENSE ${WRKSRC}/README ${RADIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/realplay.bin ${RADIR}
 	${BRANDELF} -t Linux ${RADIR}/realplay.bin
@@ -113,33 +114,33 @@ do-install:
 
 .if defined(WITH_ICONS)
 . for size in 16x16 32x32 48x48 192x192
-	@${MKDIR} ${LOCALBASE}/share/icons/hicolor/${size}/apps
+	${MKDIR} ${PREFIX}/share/icons/hicolor/${size}/apps
 	${INSTALL_DATA} ${WRKSRC}/share/icons/realplay_${size}.png \
-		${LOCALBASE}/share/icons/hicolor/${size}/apps
+		${PREFIX}/share/icons/hicolor/${size}/apps
 . endfor
 . for size in 48x48 192x192
-	@${MKDIR} ${LOCALBASE}/share/icons/hicolor/${size}/mimetypes
+	@${MKDIR} ${PREFIX}/share/icons/hicolor/${size}/mimetypes
 	${INSTALL_DATA} ${WRKSRC}/share/icons/mime-*_${size}.png \
-		${LOCALBASE}/share/icons/hicolor/${size}/mimetypes
+		${PREFIX}/share/icons/hicolor/${size}/mimetypes
 . endfor
 .endif
 
 .if defined(WITH_GNOME)
-	@${MKDIR} ${LOCALBASE}/share/pixmaps
+	${MKDIR} ${PREFIX}/share/pixmaps
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.png \
-		${LOCALBASE}/share/pixmaps
+		${PREFIX}/share/pixmaps
 
-	@${MKDIR} ${LOCALBASE}/share/applications
+	${MKDIR} ${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.desktop \
-		${LOCALBASE}/share/applications
+		${PREFIX}/share/applications
 
-	@${MKDIR} ${LOCALBASE}/share/application-registry
+	${MKDIR} ${PREFIX}/share/application-registry
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.applications \
-		${LOCALBASE}/share/application-registry
+		${PREFIX}/share/application-registry
 
-	@${MKDIR} ${LOCALBASE}/share/mime-info
+	${MKDIR} ${PREFIX}/share/mime-info
 	${INSTALL_DATA} ${WRKSRC}/share/realplay.keys ${WRKSRC}/share/realplay.mime \
-		${LOCALBASE}/share/mime-info
+		${PREFIX}/share/mime-info
 .endif
 
 .include <bsd.port.post.mk>
