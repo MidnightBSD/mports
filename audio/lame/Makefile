@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.5 2009/09/28 23:35:01 laffer1 Exp $
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	lame
-PORTVERSION=	3.98.2
+PORTVERSION=	3.98.4
 CATEGORIES=	audio
-MASTER_SITES=	SF \
-		ftp://ftp.fu-berlin.de/unix/sound/%SUBDIR%/
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//:S/./-/}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
