@@ -2,23 +2,22 @@
 # Date created:        16 March 1998
 # Whom:                Yukihiro Nakai <Nakai@technologist.com>
 #
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.8 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.9 2011/08/20 13:40:57 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 #
 
 PORTNAME=	gettext
-PORTVERSION=	0.17
-PORTREVISION=	1
+PORTVERSION=	0.18.1.1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU gettext package
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 USE_ICONV=	yes
-LIBTOOLFILES=	autoconf-lib-link/configure gettext-runtime/configure \
+LIBTOOLFILES=	gettext-runtime/configure \
 		gettext-runtime/libasprintf/configure gettext-tools/configure
 USE_AUTOTOOLS=	libtool
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
@@ -30,10 +29,11 @@ CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
 		CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		EMACS="no"
-CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp
+CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp \
+		--with-included-gettext --with-included-glib \
+		--with-included-libcroco --with-included-libxml \
+		--without-git
 USE_LDCONFIG=	yes
-
-PLIST_SUB=	VERSION=${PORTVERSION}
 
 MAN1=		autopoint.1 envsubst.1 gettext.1 gettextize.1 msgattrib.1 \
 		msgcat.1 msgcmp.1 msgcomm.1 msgconv.1 msgen.1 msgexec.1 \
