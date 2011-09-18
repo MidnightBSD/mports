@@ -1,40 +1,37 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.17 2011/07/13 01:41:31 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.18 2011/09/05 14:55:17 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	0
+PORTREVISION?=	1
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
 		http://gstreamer.freedesktop.org/src/gst-plugins-bad/:bad \
 		http://gstreamer.freedesktop.org/src/gst-plugins-good/:good \
-		http://gstreamer.freedesktop.org/src/gst-plugins-ugly/:ugly \
-		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:base|} \
-		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:good|} \
-		${MASTER_SITE_LOCAL:S|$|ahze/:bad|} \
-		${MASTER_SITE_FREEBSD_LOCAL:S|$|ahze/:ugly|}
-PKGNAMESUFFIX=	-plugins${GST_PLUGIN_SUFFIX}
+		http://gstreamer.freedesktop.org/src/gst-plugins-ugly/:ugly
+PKGNAMESUFFIX?=	-plugins${GST_PLUGIN_SUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	GStreamer written collection of plugins handling several media types
 LICENSE?=	gpl2
 
-BUILD_DEPENDS+=	v4l_compat>=1.0.20100321:${PORTSDIR}/multimedia/v4l_compat
+BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:${PORTSDIR}/multimedia/v4l_compat \
+		gstreamer>=0.10.34:${PORTSDIR}/multimedia/gstreamer
 LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
-		orc-0.4.11:${PORTSDIR}/devel/orc
+		orc-0.4.14:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
-BASE_PORTVERSION=	0.10.32
+BASE_PORTVERSION=	0.10.35
 BASE_DISTNAME=		gst-plugins-base-${BASE_PORTVERSION}
 BASE_DISTFILE=		${BASE_DISTNAME}${EXTRACT_SUFX}
-BAD_PORTVERSION=	0.10.21
+BAD_PORTVERSION=	0.10.22
 BAD_DISTNAME=		gst-plugins-bad-${BAD_PORTVERSION}
 BAD_DISTFILE=		${BAD_DISTNAME}${EXTRACT_SUFX}
-GOOD_PORTVERSION=	0.10.27
+GOOD_PORTVERSION=	0.10.30
 GOOD_DISTNAME=		gst-plugins-good-${GOOD_PORTVERSION}
 GOOD_DISTFILE=		${GOOD_DISTNAME}${EXTRACT_SUFX}
-UGLY_PORTVERSION=	0.10.17
+UGLY_PORTVERSION=	0.10.18
 UGLY_DISTNAME=		gst-plugins-ugly-${UGLY_PORTVERSION}
 UGLY_DISTFILE=		${UGLY_DISTNAME}${EXTRACT_SUFX}
 DIST?=		good
@@ -45,13 +42,13 @@ VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME+=	gnomehack gnometarget pkgconfig ltverhack ltasneededhack
+USE_GNOME+=	gnomehack pkgconfig ltverhack ltasneededhack
 USE_AUTOTOOLS=	libtool
 GST_PLUGIN?=	base
 
-CONFIGURE_ARGS=	--disable-option-checking --mandir=${PREFIX}/man
+CONFIGURE_ARGS=	--disable-option-checking
+CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
-		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}"
 
 DEFAULT_AUDIOSINK?=	osssink
@@ -69,6 +66,7 @@ PLIST_SUB+=	I386="@comment "
 gst_base_DIST=	base
 NO_GSTREAMER_COMMON=	yes
 USE_LDCONFIG=	yes
+USE_XORG=	x11 xv xext videoproto xextproto
 MAN1=		gst-visualise-0.10.1
 PLIST_SUB+=	VERSION="${VERSION}" \
 		SHLIB_VERSION="${SHLIB_VERSION}"
@@ -122,6 +120,10 @@ DEFAULT_DVD_DEVICE=/dev/acd0
 .endif
 
 post-patch:
+.if ${DIST}=="bad"
+	@${REINPLACE_CMD} -e 's|opencv <= 2.2.0|opencv <= 2.3.9|g' \
+	${WRKSRC}/configure
+.endif
 	@${FIND} ${WRKSRC}/ext -name Makefile.in | \
 	${XARGS} -n 10 ${REINPLACE_CMD} -e \
 	's|$$(top_builddir)/gst-libs/gst/tag/libgsttag-$$(GST_MAJORMINOR).la|${LOCALBASE}/lib/libgsttag-@GST_MAJORMINOR@.la|; \
