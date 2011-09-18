@@ -1,0 +1,204 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+bin/hxplay
+lib/HelixPlayer/LICENSE
+lib/HelixPlayer/README
+lib/HelixPlayer/hxplay.bin
+lib/HelixPlayer/codecs/colorcvt.so
+lib/HelixPlayer/common/clntcore.so
+lib/HelixPlayer/common/clntxres.so
+lib/HelixPlayer/plugins/audplin.so
+lib/HelixPlayer/plugins/aufformat.so
+lib/HelixPlayer/plugins/authmgr.so
+lib/HelixPlayer/plugins/clbascauth.so
+lib/HelixPlayer/plugins/dtdrplin.so
+lib/HelixPlayer/plugins/giffformat.so
+lib/HelixPlayer/plugins/gifrender.so
+lib/HelixPlayer/plugins/h263render.so
+lib/HelixPlayer/plugins/httpfsys.so
+lib/HelixPlayer/plugins/hxrecordengine.so
+lib/HelixPlayer/plugins/hxsdp.so
+lib/HelixPlayer/plugins/hxxml.so
+lib/HelixPlayer/plugins/jpgfformat.so
+lib/HelixPlayer/plugins/jpgrender.so
+lib/HelixPlayer/plugins/memfsys.so
+lib/HelixPlayer/plugins/oggfformat.so
+lib/HelixPlayer/plugins/pcmrend.so
+lib/HelixPlayer/plugins/pngfformat.so
+lib/HelixPlayer/plugins/pngrender.so
+lib/HelixPlayer/plugins/ramfformat.so
+lib/HelixPlayer/plugins/ramrender.so
+lib/HelixPlayer/plugins/rn5auth.so
+lib/HelixPlayer/plugins/rpfformat.so
+lib/HelixPlayer/plugins/rpgifplin.so
+lib/HelixPlayer/plugins/rpjpgplin.so
+lib/HelixPlayer/plugins/rppngplin.so
+lib/HelixPlayer/plugins/rprender.so
+lib/HelixPlayer/plugins/rtfformat.so
+lib/HelixPlayer/plugins/rtrender.so
+lib/HelixPlayer/plugins/sdpplin.so
+lib/HelixPlayer/plugins/smlfformat.so
+lib/HelixPlayer/plugins/smlrender.so
+lib/HelixPlayer/plugins/smplfsys.so
+lib/HelixPlayer/plugins/theorarend.so
+lib/HelixPlayer/plugins/vidsite.so
+lib/HelixPlayer/plugins/vorbisrend.so
+lib/HelixPlayer/plugins/wbmpfformat.so
+lib/HelixPlayer/plugins/wbmprend.so
+lib/HelixPlayer/share/default/clipinfo.png
+lib/HelixPlayer/share/default/congestion.png
+lib/HelixPlayer/share/default/fastforward.png
+lib/HelixPlayer/share/default/next.png
+lib/HelixPlayer/share/default/pause.png
+lib/HelixPlayer/share/default/play.png
+lib/HelixPlayer/share/default/prefs_advanced.png
+lib/HelixPlayer/share/default/prefs_connection.png
+lib/HelixPlayer/share/default/prefs_content.png
+lib/HelixPlayer/share/default/prefs_hardware.png
+lib/HelixPlayer/share/default/prefs_internet.png
+lib/HelixPlayer/share/default/prefs_mediatypes.png
+lib/HelixPlayer/share/default/prefs_playback.png
+lib/HelixPlayer/share/default/prefs_proxy.png
+lib/HelixPlayer/share/default/prefs_raw.png
+lib/HelixPlayer/share/default/prefs_transport.png
+lib/HelixPlayer/share/default/previous.png
+lib/HelixPlayer/share/default/rewind.png
+lib/HelixPlayer/share/default/stop.png
+lib/HelixPlayer/share/default/tactoggle.png
+lib/HelixPlayer/share/default/volume_high.png
+lib/HelixPlayer/share/default/volume_low.png
+lib/HelixPlayer/share/default/volume_mid.png
+lib/HelixPlayer/share/default/volume_mute.png
+lib/HelixPlayer/share/default/volume_off.png
+lib/HelixPlayer/share/default/volume_popup_high.png
+lib/HelixPlayer/share/default/volume_popup_low.png
+lib/HelixPlayer/share/default/volume_popup_mid.png
+lib/HelixPlayer/share/default/volume_popup_mute.png
+lib/HelixPlayer/share/default/volume_popup_off.png
+lib/HelixPlayer/share/hxplay/embedded_logo.png
+lib/HelixPlayer/share/hxplay/icon.png
+lib/HelixPlayer/share/hxplay/logo.png
+lib/HelixPlayer/share/hxplay/playlist_error.png
+lib/HelixPlayer/share/hxplay/prefs_general.png
+lib/HelixPlayer/share/hxplay/setup_title.png
+lib/HelixPlayer/share/hxplay/setup_welcome.png
+lib/HelixPlayer/share/locale/ja/LICENSE
+lib/HelixPlayer/share/locale/ja/README
+lib/HelixPlayer/share/locale/ja/player.mo
+lib/HelixPlayer/share/locale/ja/widget.mo
+lib/HelixPlayer/share/locale/zh_CN/LICENSE
+lib/HelixPlayer/share/locale/zh_CN/README
+lib/HelixPlayer/share/locale/zh_CN/player.mo
+lib/HelixPlayer/share/locale/zh_CN/widget.mo
+lib/HelixPlayer/share/locale/pt_BR/LICENSE
+lib/HelixPlayer/share/locale/pt_BR/README
+lib/HelixPlayer/share/locale/pt_BR/player.mo
+lib/HelixPlayer/share/locale/pt_BR/widget.mo
+lib/HelixPlayer/share/locale/ko/LICENSE
+lib/HelixPlayer/share/locale/ko/README
+lib/HelixPlayer/share/locale/ko/player.mo
+lib/HelixPlayer/share/locale/ko/widget.mo
+lib/HelixPlayer/share/locale/zh_TW/LICENSE
+lib/HelixPlayer/share/locale/zh_TW/README
+lib/HelixPlayer/share/locale/zh_TW/player.mo
+lib/HelixPlayer/share/locale/zh_TW/widget.mo
+lib/HelixPlayer/share/locale/it/LICENSE
+lib/HelixPlayer/share/locale/it/README
+lib/HelixPlayer/share/locale/it/player.mo
+lib/HelixPlayer/share/locale/it/widget.mo
+lib/HelixPlayer/share/locale/fr/LICENSE
+lib/HelixPlayer/share/locale/fr/README
+lib/HelixPlayer/share/locale/fr/player.mo
+lib/HelixPlayer/share/locale/fr/widget.mo
+lib/HelixPlayer/share/locale/es/LICENSE
+lib/HelixPlayer/share/locale/es/README
+lib/HelixPlayer/share/locale/es/player.mo
+lib/HelixPlayer/share/locale/es/widget.mo
+lib/HelixPlayer/share/locale/de/LICENSE
+lib/HelixPlayer/share/locale/de/README
+lib/HelixPlayer/share/locale/de/player.mo
+lib/HelixPlayer/share/locale/de/widget.mo
+lib/linux-mozilla/plugins/nphelix.so
+lib/linux-mozilla/plugins/nphelix.xpt
+share/icons/hicolor/192x192/apps/hxplay_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-application-generic_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-application-ogg_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-application-ram_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-application-rpm_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-application-smil_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-audio-aiff_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-audio-au_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-audio-generic_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-audio-ogg_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-audio-wav_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-text-realtext_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-video-generic_192x192.png
+share/icons/hicolor/192x192/mimetypes/mime-video-ogg_192x192.png
+share/icons/hicolor/16x16/apps/hxplay_16x16.png
+share/icons/hicolor/32x32/apps/hxplay_32x32.png
+share/icons/hicolor/48x48/apps/hxplay_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-application-generic_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-application-ogg_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-application-ram_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-application-rpm_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-application-smil_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-audio-aiff_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-audio-au_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-audio-generic_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-audio-ogg_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-audio-wav_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-text-realtext_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-video-generic_48x48.png
+share/icons/hicolor/48x48/mimetypes/mime-video-ogg_48x48.png
+share/pixmaps/hxplay.png
+share/applications/hxplay.desktop
+share/application-registry/hxplay.applications
+share/mime-info/hxplay.keys
+share/mime-info/hxplay.mime
+@dirrm lib/HelixPlayer/codecs
+@dirrm lib/HelixPlayer/common
+@dirrm lib/HelixPlayer/plugins
+@dirrm lib/HelixPlayer/share/default
+@dirrm lib/HelixPlayer/share/hxplay
+@dirrm lib/HelixPlayer/share/locale/ja
+@dirrm lib/HelixPlayer/share/locale/zh_CN
+@dirrm lib/HelixPlayer/share/locale/pt_BR
+@dirrm lib/HelixPlayer/share/locale/ko
+@dirrm lib/HelixPlayer/share/locale/zh_TW
+@dirrm lib/HelixPlayer/share/locale/it
+@dirrm lib/HelixPlayer/share/locale/fr
+@dirrm lib/HelixPlayer/share/locale/es
+@dirrm lib/HelixPlayer/share/locale/de
+@dirrm lib/HelixPlayer/share/locale
+@dirrm lib/HelixPlayer/share
+@dirrm lib/HelixPlayer
+@dirrm lib/linux-mozilla/plugins
+@dirrm lib/linux-mozilla
+@dirrm share/icons/hicolor/192x192/apps
+@dirrm share/icons/hicolor/192x192/mimetypes
+@dirrm share/icons/hicolor/192x192
+@dirrm share/icons/hicolor/16x16/apps
+@dirrm share/icons/hicolor/16x16
+@dirrm share/icons/hicolor/32x32/apps
+@dirrm share/icons/hicolor/32x32
+@dirrm share/icons/hicolor/48x48/apps
+@dirrm share/icons/hicolor/48x48/mimetypes
+@dirrm share/icons/hicolor/48x48
+@dirrm share/icons/hicolor
+@dirrm share/icons
+@dirrm share/pixmaps
+@dirrm share/applications
+@dirrm share/application-registry
+@dirrm share/mime-info
+@cwd %%LINUXBASE%%
+usr/share/locale/de/LC_MESSAGES/hxplay.mo
+usr/share/locale/es/LC_MESSAGES/hxplay.mo
+usr/share/locale/fr/LC_MESSAGES/hxplay.mo
+usr/share/locale/hi/LC_MESSAGES/hxplay.mo
+usr/share/locale/it/LC_MESSAGES/hxplay.mo
+usr/share/locale/ja/LC_MESSAGES/hxplay.mo
+usr/share/locale/ko/LC_MESSAGES/hxplay.mo
+usr/share/locale/pl/LC_MESSAGES/hxplay.mo
+usr/share/locale/pt_BR/LC_MESSAGES/hxplay.mo
+usr/share/locale/zh_CN/LC_MESSAGES/hxplay.mo
+usr/share/locale/zh_TW/LC_MESSAGES/hxplay.mo
+@cwd %%TARGETDIR%%
