@@ -1,18 +1,17 @@
-# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.5 2009/12/25 17:25:39 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Archive-Tar/Makefile,v 1.6 2010/11/12 13:49:55 laffer1 Exp $
 
 PORTNAME=	Archive-Tar
-PORTVERSION=	1.68
+PORTVERSION=	1.78
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:BINGOS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for creation and manipulation of tar files
 LICENSE=	perl
 
-RUN_DEPENDS=	p5-IO-Compress-Bzip2>=2.012:${PORTSDIR}/archivers/p5-IO-Compress-Bzip2 \
-		p5-IO-String>=0:${PORTSDIR}/devel/p5-IO-String
-BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-IO-String>=0:${PORTSDIR}/devel/p5-IO-String
 
 PERL_CONFIGURE=	YES
 
@@ -31,7 +30,8 @@ RUN_DEPENDS+=	p5-Package-Constants>=0:${PORTSDIR}/devel/p5-Package-Constants
 .endif
 
 .if ${PERL_LEVEL} < 500903
-RUN_DEPENDS+=	p5-IO-Zlib>=1.01:${PORTSDIR}/archivers/p5-IO-Zlib
+RUN_DEPENDS+=	p5-IO-Zlib>=1.01:${PORTSDIR}/archivers/p5-IO-Zlib \
+		p5-IO-Compress>=2.017:${PORTSDIR}/archivers/p5-IO-Compress
 .endif
 
 .if ${PERL_LEVEL} >= 501000
