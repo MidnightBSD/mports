@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/gv/Makefile,v 1.5 2010/12/11 19:09:07 laffer1 Exp $
 # $FreeBSD: ports/print/gv/Makefile,v 1.70 2010/08/06 20:55:27 bf Exp $
 
 PORTNAME=	gv
-PORTVERSION=	3.7.1
+PORTVERSION=	3.7.2
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
