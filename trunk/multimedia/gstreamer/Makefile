@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.9 2011/02/02 21:11:11 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer/Makefile,v 1.10 2011/09/05 14:43:13 laffer1 Exp $
 
 PORTNAME=	gstreamer
-PORTVERSION=	0.10.32
+PORTVERSION=	0.10.35
 CATEGORIES=	multimedia
-MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/ \
-		GNOME
+MASTER_SITES=	http://gstreamer.freedesktop.org/src/gstreamer/
+
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Development framework for creating media applications
 LICENSE=	lgpl
