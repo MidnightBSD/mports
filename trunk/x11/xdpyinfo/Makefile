@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xdpyinfo/Makefile,v 1.2 2009/04/13 17:53:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdpyinfo/Makefile,v 1.3 2011/05/07 02:55:49 laffer1 Exp $
 
 PORTNAME=	xdpyinfo
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
