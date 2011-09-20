@@ -1,9 +1,8 @@
 # $FreeBSD: ports/x11/xcursorgen/Makefile,v 1.2 2007/09/13 19:45:02 flz Exp $
-# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.3 2011/05/07 02:50:23 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcursorgen/Makefile,v 1.4 2011/09/07 23:06:10 laffer1 Exp $
 
 PORTNAME=	xcursorgen
-PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
