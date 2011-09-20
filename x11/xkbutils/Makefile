@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/xkbutils/Makefile,v 1.2 2009/04/13 17:49:38 laffer1 Exp $
+# $MidnightBSD: mports/x11/xkbutils/Makefile,v 1.3 2011/05/07 15:29:46 laffer1 Exp $
 
 PORTNAME=	xkbutils
-PORTVERSION=	1.0.1
-PORTREVISION=	2
+PORTVERSION=	1.0.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
