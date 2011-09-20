@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/x11perf/Makefile,v 1.2 2009/05/04 02:38:42 laffer1 Exp $
+# $MidnightBSD: mports/x11/x11perf/Makefile,v 1.3 2011/05/07 02:40:17 laffer1 Exp $
 
 PORTNAME=	x11perf
-PORTVERSION=	1.5.3
+PORTVERSION=	1.5.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
