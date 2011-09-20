@@ -1,14 +1,13 @@
-# $MidnightBSD: mports/x11-themes/xcursor-themes/Makefile,v 1.2 2009/12/13 21:01:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/xcursor-themes/Makefile,v 1.3 2011/05/28 06:17:06 laffer1 Exp $
 #
 
 PORTNAME=	xcursor-themes
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	x11-themes
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org cursors themes
-LICENSE=	unknown
+LICENSE=	mit
 
 BUILD_DEPENDS=	xcursorgen:${PORTSDIR}/x11/xcursorgen
 

@@ -1,8 +1,8 @@
 # $FreeBSD: ports/x11/xcmsdb/Makefile,v 1.1 2007/05/19 20:27:41 flz Exp $
-# $MidnightBSD: mports/x11/xcmsdb/Makefile,v 1.1 2007/10/04 21:29:59 ctriv Exp $
+# $MidnightBSD: mports/x11/xcmsdb/Makefile,v 1.2 2011/05/07 02:48:44 laffer1 Exp $
 
 PORTNAME=	xcmsdb
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
