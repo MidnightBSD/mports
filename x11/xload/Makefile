@@ -1,13 +1,8 @@
-# New ports collection makefile for:	xload
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xload/Makefile,v 1.2 2007/07/02 17:20:56 lesi Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xload/Makefile,v 1.1 2007/10/08 14:18:40 ctriv Exp $
 
 PORTNAME=	xload
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
