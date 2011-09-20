@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xbitmaps/Makefile,v 1.3 2009/03/25 01:15:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/xbitmaps/Makefile,v 1.4 2011/05/07 02:43:34 laffer1 Exp $
 
 PORTNAME=	xbitmaps
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
