@@ -1,8 +1,8 @@
 # $FreeBSD: ports/x11/xlsclients/Makefile,v 1.1 2007/05/19 20:27:59 flz Exp $
-# $MidnightBSD: mports/x11/xlsclients/Makefile,v 1.1 2007/10/08 15:08:35 ctriv Exp $
+# $MidnightBSD: mports/x11/xlsclients/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
 
 PORTNAME=	xlsclients
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
