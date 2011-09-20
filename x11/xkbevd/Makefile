@@ -1,8 +1,8 @@
 # $FreeBSD: ports/x11/xkbevd/Makefile,v 1.1 2007/05/19 20:27:56 flz Exp $
-# $MidnightBSD: mports/x11/xkbevd/Makefile,v 1.1 2007/10/08 13:57:54 ctriv Exp $
+# $MidnightBSD: mports/x11/xkbevd/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
 
 PORTNAME=	xkbevd
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
