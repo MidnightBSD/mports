@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.1 2010/03/18 00:33:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.2 2010/05/05 23:12:44 laffer1 Exp $
 
 PORTNAME=	libzvbi
 PORTVERSION=	0.2.33
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/zapping/zvbi/${PORTVERSION}
 DISTNAME=	${PORTNAME:S/lib//}-${PORTVERSION}
