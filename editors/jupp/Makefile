@@ -2,7 +2,7 @@
 # Date created:		May 20 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/editors/jupp/Makefile,v 1.5 2011/07/03 17:16:07 laffer1 Exp $
+# $MidnightBSD: mports/editors/jupp/Makefile,v 1.6 2011/07/17 14:40:49 laffer1 Exp $
 #
 
 PORTNAME=	jupp
@@ -23,7 +23,6 @@ CONFLICTS=      joe-[0-9]*
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
