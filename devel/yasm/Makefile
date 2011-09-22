@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.7 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/yasm/Makefile,v 1.8 2011/03/12 16:43:37 laffer1 Exp $
 
 PORTNAME=	yasm
 PORTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 
@@ -9,7 +10,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A complete rewrite of the NASM assembler
 LICENSE=	bsd3
 
-USE_ICONV=	yes
 USE_AUTOTOOLS=	autoconf libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-python --disable-python-bindings
@@ -24,12 +24,11 @@ MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS+=--disable-nls --without-libiconv-prefix --without-libintl-prefix
 .else
 USE_GETTEXT=	yes
+USE_ICONV=	yes
 .endif
 
-.if !defined(NOPORTDOCS)
 INSTALL_TARGET=	install install-man
 MAN1=		yasm.1
 MAN7=		yasm_arch.7 yasm_dbgfmts.7 yasm_objfmts.7 yasm_parsers.7
-.endif
 
 .include <bsd.port.post.mk>
