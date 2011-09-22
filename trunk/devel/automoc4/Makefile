@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/devel/automoc4/Makefile,v 1.5 2010/01/05 01:39:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/automoc4/Makefile,v 1.6 2010/11/11 01:30:51 laffer1 Exp $
 
 PORTNAME=	automoc4
 PORTVERSION=	0.9.88
+PORTREVISION=	1
 CATEGORIES=	devel kde
 MASTER_SITES=	${MASTER_SITE_KDE}
-MASTER_SITE_SUBDIR=	stable/automoc4/0.9.88/
+MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	KDE
 
 MAINTAINER=	ports@MidnightBSD.org
