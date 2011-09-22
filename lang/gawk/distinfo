@@ -1,3 +1,3 @@
-MD5 (gawk-3.1.6.tar.gz) = b237751aef53c9ead9644e376bc53386
-SHA256 (gawk-3.1.6.tar.gz) = 06dd872da7145088ae08475f7b11e5b9e810b8ead7d78d039003e671bb76ec65
-SIZE (gawk-3.1.6.tar.gz) = 2488684
+SHA256 (gawk-4.0.0.tar.xz) = abbef4dbab9db0f159c71b941fd93fd1dcb995f5e8a23396d1c2390801c46edf
+RMD160 (gawk-4.0.0.tar.xz) = a28dd9f95fb0367854ebaa56171b4ff78bce8641
+SIZE (gawk-4.0.0.tar.xz) = 1589204
