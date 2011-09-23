@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.10 2011/05/12 13:51:46 laffer1 Exp $
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.4
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
