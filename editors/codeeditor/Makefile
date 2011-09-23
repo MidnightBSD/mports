@@ -2,13 +2,13 @@
 # Date created:         3 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/editors/codeeditor/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
+# $MidnightBSD: mports/editors/codeeditor/Makefile,v 1.3 2008/05/04 10:23:43 crash Exp $
 # $FreeBSD: ports/editors/codeeditor/Makefile,v 1.2 2007/01/31 18:17:58 dinoex Exp $
 #
 
 PORTNAME=	codeeditor
 PORTVERSION=	0.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors gnustep
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	codeeditor
@@ -16,13 +16,14 @@ DISTNAME=	CodeEditor-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CodeEditor is a text and code editor for GNUstep
-LICENSE=        unknown
+LICENSE=	gpl2
+
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
 
 WRKSRC=		${WRKDIR}/CodeEditor
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
 
 .include <bsd.port.mk>
