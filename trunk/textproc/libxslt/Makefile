@@ -1,14 +1,9 @@
-# New ports collection makefile for:	libxslt
-# Date created:				9th February 2001
-# Whom:					Ade Lovett <ade@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.7 2009/10/27 13:23:13 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.8 2010/08/01 05:01:27 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
-#
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.26
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://fr.rpmfind.net/pub/libxml/ \
 		ftp://gd.tuwien.ac.at/pub/libxml/ \
