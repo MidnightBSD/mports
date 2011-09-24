@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.5 2010/05/29 06:15:18 laffer1 Exp $
+# $MidnightBSD: mports/www/eaccelerator/Makefile,v 1.6 2011/08/07 19:20:10 laffer1 Exp $
 
 PORTNAME=	eaccelerator
 PORTVERSION=	0.9.6.1
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/eAccelerator%20${PORTVERSION}/ \
 		http://bart.eaccelerator.net/source/${PORTVERSION}/
