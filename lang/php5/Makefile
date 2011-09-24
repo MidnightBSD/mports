@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.40 2011/05/17 04:01:36 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.41 2011/08/20 13:41:14 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.3.7
+PORTVERSION=	5.3.8
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
@@ -55,7 +55,7 @@ MAN1=		php-config.1 phpize.1
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-5.3.6-0.9.10.patch.gz:suhosin
+PATCHFILES+=	suhosin-patch-5.3.8-0.9.10.patch.gz:suhosin
 PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
@@ -64,7 +64,7 @@ PLIST_SUB+=	SUHOSIN="@comment "
 .endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-5.3.4-mail-header.patch:mail
+PATCHFILES+=	php-5.3.8-mail-header.patch
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
