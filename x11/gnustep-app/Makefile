@@ -1,9 +1,9 @@
 # $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.4 2010/09/03 00:22:45 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.5 2010/09/04 15:34:36 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
