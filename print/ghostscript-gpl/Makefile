@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.15 2010/03/26 00:55:06 laffer1 Exp $
+# $MidnightBSD: mports/print/ghostscript-gpl/Makefile,v 1.16 2010/04/28 16:11:11 vganji Exp $
 #
 
 PORTNAME=	ghostscript
@@ -73,6 +73,7 @@ MLINKS=		gslp.1 gsbj.1 \
 
 CIDFONTDIR=	${DATADIR}/${PORTVERSION}/Resource
 
+.include <bsd.mport.options.mk>
 .include "Makefile.drivers"
 .include <bsd.port.pre.mk>
 
@@ -131,21 +132,22 @@ LIB_DEPENDS+=	vga.1:${PORTSDIR}/graphics/svgalib
 . undef WITH_GS_x11rg32x
 .endif
 
-.if defined(WITH_GS_x11) \
-	|| defined(WITH_GS_x11alpha) \
-	|| defined(WITH_GS_x11cmyk) \
-	|| defined(WITH_GS_x11cmyk2) \
-	|| defined(WITH_GS_x11cmyk4) \
-	|| defined(WITH_GS_x11cmyk8) \
-	|| defined(WITH_GS_x11gray2) \
-	|| defined(WITH_GS_x11gray4) \
-	|| defined(WITH_GS_x11mono) \
-	|| defined(WITH_GS_x11rg16x) \
-	|| defined(WITH_GS_x11rg32x)
+.if !defined(WITHOUT_X11)
+#.if defined(WITH_GS_x11) \
+#	|| defined(WITH_GS_x11alpha) \
+#	|| defined(WITH_GS_x11cmyk) \
+#	|| defined(WITH_GS_x11cmyk2) \
+#	|| defined(WITH_GS_x11cmyk4) \
+#	|| defined(WITH_GS_x11cmyk8) \
+#	|| defined(WITH_GS_x11gray2) \
+#	|| defined(WITH_GS_x11gray4) \
+#	|| defined(WITH_GS_x11mono) \
+#	|| defined(WITH_GS_x11rg16x) \
+#	|| defined(WITH_GS_x11rg32x)
 USE_XORG=	xt xext
 CONFIGURE_ARGS+=--with-x \
-		--x-includes=${X11BASE}/include \
-		--x-libraries=${X11BASE}/lib
+		--x-includes=${LOCALBASE}/include \
+		--x-libraries=${LOCALBASE}/lib
 CONFLICTS+=	ghostscript8-nox11-[0-9]*
 .else
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-nox11
