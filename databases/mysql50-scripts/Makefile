@@ -1,8 +1,6 @@
 # New ports collection makefile for:    MySQL-scripts
-# Date created:         Mon Feb 23 15:01:35 CET 2004
-# Whom:                 Alex Dupre <ale@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql50-scripts/Makefile,v 1.1 2006/10/03 20:58:54 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql50-scripts/Makefile,v 1.7 2006/03/17 07:06:38 ale Exp $
 #
 
