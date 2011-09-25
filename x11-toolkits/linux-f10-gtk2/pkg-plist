@@ -1,7 +1,5 @@
 @comment file listing
 etc/gtk-2.0/im-multipress.conf
-etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
-@comment etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
 usr/bin/gdk-pixbuf-query-loaders-32
 usr/bin/gtk-query-immodules-2.0-32
 usr/bin/gtk-update-icon-cache
@@ -419,4 +417,6 @@ usr/share/themes/Xfce/gtk-2.0/gtkrc
 @dirrm usr/lib/gtk-2.0
 @dirrm etc/gtk-2.0
 @exec chroot %D /usr/bin/gtk-query-immodules-2.0-32 > %D/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
+@unexec rm %D/etc/gtk-2.0/i386-redhat-linux-gnu/gtk.immodules
 @exec chroot %D /usr/bin/gdk-pixbuf-query-loaders-32 > %D/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
+@unexec rm %D/etc/gtk-2.0/i386-redhat-linux-gnu/gdk-pixbuf.loaders
