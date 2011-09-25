@@ -1,7 +1,4 @@
-# New ports collection makefile for:	teamspeak_server
-# Date created:				22 January 2003
-# Whom:					Daniel O'Connor
-#
+# $MidnightBSD$
 # $FreeBSD: ports/audio/teamspeak_server/Makefile,v 1.13 2009/02/01 06:28:38 rafan Exp $
 #
 
@@ -14,7 +11,7 @@ DISTFILES=	ts2_server_rc2_202319.tar.bz2:0 server_linux:1
 DIST_SUBDIR=	teamspeak
 EXTRACT_ONLY=	ts2_server_rc2_202319.tar.bz2
 
-MAINTAINER=	tremere@cainites.net
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Server side of the TeamSpeak group voice chat system
 LICENSE=	restricted
 
