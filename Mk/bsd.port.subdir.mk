@@ -1,6 +1,6 @@
 #	from: @(#)bsd.subdir.mk	5.9 (Berkeley) 2/1/91
 # $FreeBSD: ports/Mk/bsd.port.subdir.mk,v 1.65 2006/08/04 12:34:41 erwin Exp $
-# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.17 2011/03/08 20:23:32 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.subdir.mk,v 1.18 2011/03/17 17:40:29 laffer1 Exp $
 #
 # The include file <bsd.port.subdir.mk> contains the default targets
 # for building ports subdirectories.
@@ -83,13 +83,7 @@ ID?=	${DESTDIR}/usr/bin/id
 UID!=	${ID} -u
 .endif
 LOCALBASE?=	${DESTDIR}${LOCALBASE_REL}
-.if exists(${LOCALBASE}/sbin/pkg_info)
-PKG_INFO?=	${LOCALBASE}/sbin/pkg_info
-.else
-PKG_INFO?=	${DESTDIR}/usr/sbin/pkg_info
-.endif
 SED?=		${DESTDIR}/usr/bin/sed
-PKGINSTALLVER!=	${PKG_INFO} -P 2>/dev/null | ${SED} -e 's/.*: //'
 
 ECHO_MSG?=	echo
 
@@ -122,7 +116,7 @@ TARGETS+=	package-recursive
 TARGETS+=	realinstall
 TARGETS+=	reinstall
 TARGETS+=	tags
-TARGETS+=   check-license
+TARGETS+=	check-license
 
 .for __target in ${TARGETS}
 .if !target(${__target})
@@ -181,7 +175,7 @@ afterinstall: realinstall
 realinstall: beforeinstall ${SUBDIR:S/^/_/:S/$/.realinstall/}
 .endif
 
-IGNOREDIR=	CVS Mk Packages Templates Tools Distfiles distfiles pkg
+IGNOREDIR=	CVS Mk Packages Templates Tools Distfiles pkg
 
 .if !target(checksubdirs)
 .if defined(PORTSTOP)
@@ -351,7 +345,6 @@ README.html:
 	OSVERSION="${OSVERSION:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	PORTOBJFORMAT="${PORTOBJFORMAT:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	UID="${UID:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
-	PKGINSTALLVER="${PKGINSTALLVER:S/"/"'"'"/g:S/\$/\$\$/g:S/\\/\\\\/g}" \
 	HAVE_COMPAT_IA32_KERN="${HAVE_COMPAT_IA32_KERN}" \
 	CONFIGURE_MAX_CMD_LEN="${CONFIGURE_MAX_CMD_LEN}"
 .endif
