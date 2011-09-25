@@ -60,7 +60,6 @@ include/libpurple/theme-loader.h
 include/libpurple/theme-manager.h
 include/libpurple/upnp.h
 include/libpurple/util.h
-include/libpurple/valgrind.h
 include/libpurple/value.h
 include/libpurple/xmlnode.h
 include/libpurple/whiteboard.h
@@ -197,10 +196,10 @@ lib/purple-2/libbonjour.la
 %%SAMETIME%%lib/purple-2/libsametime.so
 %%SAMETIME%%lib/purple-2/libsametime.la
 %%PERL:%%lib/perl5/%%PERL_ARCH%%/perllocal.pod
-lib/libpurple.so.8
+lib/libpurple.so.10
 lib/libpurple.so
 lib/libpurple.la
-lib/libpurple-client.so.8
+lib/libpurple-client.so.10
 lib/libpurple-client.so
 lib/libpurple-client.la
 lib/pkgconfig/purple.pc
