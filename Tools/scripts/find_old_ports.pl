@@ -34,8 +34,8 @@ recurse_ports {
     return;
   }
   
-  return if $port->{date}->[0] == 2009 
-             || ($port->{date}->[0] == 2008 && $port->{date}->[1] > 5);
+  return if $port->{date}->[0] == 2011
+             || ($port->{date}->[0] == 2010 && $port->{date}->[1] > 8);
     
   push(@oldports, $port);
 };
