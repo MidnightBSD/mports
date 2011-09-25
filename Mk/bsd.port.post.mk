@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/Mk/bsd.port.post.mk,v 1.2 2006/09/17 18:32:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.post.mk,v 1.3 2011/09/25 20:38:26 laffer1 Exp $
 
 AFTERPORTMK=	yes
 
-.include "bsd.port.mk"
+.include "bsd.mport.mk"
 
 .undef AFTERPORTMK
