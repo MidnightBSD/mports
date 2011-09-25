@@ -1,8 +1,6 @@
 # New ports collection makefile for:	MySQL-client
-# Date created:				Fri Apr 11 10:06:26 CET 2003
-# Whom:					Alex Dupre <sysadmin@alexdupre.com>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/mysql50-client/Makefile,v 1.1 2006/10/03 20:52:30 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql50-client/Makefile,v 1.95 2006/03/17 07:06:38 ale Exp $
 #
 
