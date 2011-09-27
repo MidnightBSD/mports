@@ -1,29 +1,29 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/linux-nx-client/Makefile,v 1.1 2011/06/19 19:11:53 laffer1 Exp $
 # $FreeBSD: ports/net/linux-nx-client/Makefile,v 1.15 2010/03/28 06:41:22 dinoex Exp $
 
-PORTNAME=		linux-nx-client
-PORTVERSION=		3.4.0
+PORTNAME=	linux-nx-client
+PORTVERSION=	3.4.0
 PORTREVISION=	1
-CATEGORIES=		net
-MASTER_SITES=		http://web04.nomachine.com/download/${PORTVERSION}/Linux/
+CATEGORIES=	net
+MASTER_SITES=	http://web04.nomachine.com/download/${PORTVERSION}/Linux/
 DISTNAME=		nxclient-${PORTVERSION}-5.i386
 
-MAINTAINER=		ports@MidnightBSD.org
-COMMENT=		The NoMachine NX client
-LICENSE=		gpl2
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	The NoMachine NX client
+LICENSE=	gpl2
 # agg but gpl2 is the worst case
 
-NO_WRKSUBDIR=		yes
-ONLY_FOR_ARCHS=		i386 amd64
-USE_LINUX=		yes
-USE_LINUX_APPS=		libaudiofile jpeg png
-INSTALLS_ICONS=		yes
-USE_LDCONFIG=		yes
+NO_WRKSUBDIR=	yes
+ONLY_FOR_ARCHS=	i386 amd64
+USE_LINUX=	yes
+USE_LINUX_APPS=	libaudiofile jpeg png
+INSTALLS_ICONS=	yes
+USE_LDCONFIG=	yes
 
-NXSRC=			${WRKSRC}/NX
-NXDST=			${PREFIX}/lib/linux-nx-client
+NXSRC=		${WRKSRC}/NX
+NXDST=		${PREFIX}/lib/linux-nx-client
 
-PLIST_SUB+=		PORTVERSION=${PORTVERSION}
+PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 # Patch binary to expect EINVAL (FreeBSD) instead of EOPNOTSUPP (Linux) when
 # trying to set TCP_NODELAY on the X11 unix domain socket.
@@ -65,6 +65,7 @@ do-install:
 	${ECHO_CMD} "#!/bin/sh" > ${WRKSRC}/${f}
 	${ECHO_CMD} "export NXDIR=${NXDST}" >> ${WRKSRC}/${f}
 	${ECHO_CMD} "exec \$$NXDIR/bin/${f} \"\$$@\"" >> ${WRKSRC}/${f}
+	${REINPLACE_CMD} 's|${FAKE_DESTDIR}||g' ${WRKSRC}/${f}
 	${INSTALL_SCRIPT} ${WRKSRC}/${f} ${PREFIX}/bin
 	${BRANDELF} -t Linux ${NXDST}/bin/${f}
 .endfor
