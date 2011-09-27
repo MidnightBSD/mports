@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.7 2011/05/15 22:05:47 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.8 2011/09/04 20:43:40 laffer1 Exp $
 
 PORTNAME=	gsasl
 PORTVERSION=	1.6.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -13,7 +13,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	idn.17:${PORTSDIR}/dns/libidn \
 		gcrypt.17:${PORTSDIR}/security/libgcrypt \
-		gnutls.40:${PORTSDIR}/security/gnutls \
+		gnutls.42:${PORTSDIR}/security/gnutls \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
 USE_GNOME=	gnomehack gnometarget pkgconfig
