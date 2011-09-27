@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.1 2010/09/06 19:54:53 laffer1 Exp $
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.3.10
@@ -10,6 +10,7 @@ COMMENT=	VNC viewer widget for GTK+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
+		gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		sasl2.2:${PORTSDIR}/security/cyrus-sasl2 \
 		gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
 
