@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.14 2011/01/15 02:47:43 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.15 2011/05/12 13:37:11 laffer1 Exp $
 
 PORTNAME=	bitlbee
 PORTVERSION=	1.2.8
+PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -70,7 +71,7 @@ CONFIGURE_ARGS+=--ipv6=0
 CONFIGURE_ARGS+=--ssl=openssl
 .else
 CONFIGURE_ARGS+=--ssl=gnutls
-LIB_DEPENDS+=	gnutls.40:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.42:${PORTSDIR}/security/gnutls
 .endif
 
 .if defined(WITH_MSN)
