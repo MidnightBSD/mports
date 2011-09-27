@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.1 2010/09/06 19:54:53 laffer1 Exp $
+# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.2 2011/09/27 17:18:40 laffer1 Exp $
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.3.10
+PORTREVISION=	1
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 
