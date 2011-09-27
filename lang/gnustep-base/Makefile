@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.12 2011/06/19 15:24:00 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.13 2011/08/17 22:31:27 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 
 PORTNAME=	gnustep-base
@@ -11,10 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNUstep Foundation library
 LICENSE=	gpl3
 
-LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2
-LIB_DEPENDS+=	xslt.2:${PORTSDIR}/textproc/libxslt
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
-LIB_DEPENDS+=	gnutls-openssl.40:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2 \
+		xslt.2:${PORTSDIR}/textproc/libxslt \
+		gmp.10:${PORTSDIR}/math/gmp \
+		gnutls.42:${PORTSDIR}/security/gnutls
 BUILD_DEPENDS+=	pkg-config:${PORTSDIR}/devel/pkg-config
 
 USE_AUTOTOOLS=	autoconf
