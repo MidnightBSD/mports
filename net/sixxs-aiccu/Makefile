@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/sixxs-aiccu/Makefile,v 1.1 2009/08/16 03:20:13 laffer1 Exp $
+# $MidnightBSD: mports/net/sixxs-aiccu/Makefile,v 1.2 2010/12/31 13:10:18 laffer1 Exp $
 
 PORTNAME=	aiccu
 PORTVERSION=	20070115
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://noc.sixxs.net/archive/sixxs/aiccu/unix/ \
 		http://www.sixxs.net/archive/sixxs/aiccu/unix/
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	SixXS IPv6 TIC+ tunnel broker heartbeat client
 LICENSE=	bsd3
 
-LIB_DEPENDS=	gnutls-openssl.40:${PORTSDIR}/security/gnutls
+LIB_DEPENDS=	gnutls.42:${PORTSDIR}/security/gnutls
 
 USE_RC_SUBR=	sixxs-aiccu
 USE_GMAKE=	yes
