@@ -1,14 +1,13 @@
 # New ports collection makefile for:   acfax
 # Date created:        20 February 2002
-# Whom:                Darren <igla@batterybackups.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/comms/acfax/Makefile,v 1.1 2008/08/17 03:06:38 laffer1 Exp $
 # $FreeBSD: ports/comms/acfax/Makefile,v 1.12 2007/12/19 22:18:20 pav Exp $
 #
 
 PORTNAME=	acfax
 PORTVERSION=	0.981011
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
 MASTER_SITES=	ftp://ftp.funet.fi/pub/ham/unix/Linux/misc/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/^0.//}
@@ -23,6 +22,7 @@ PLIST_FILES=	bin/acfax
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USE_IMAKE=	yes
+USE_XORG=	x11 xext xmu xt sm ice
 
 post-extract:
 	@${TOUCH} ${WRKSRC}/acfax.man
