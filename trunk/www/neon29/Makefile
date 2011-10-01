@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/neon29/Makefile,v 1.1 2011/06/11 13:00:26 laffer1 Exp $
 # $FreeBSD: ports/www/neon29/Makefile,v 1.56 2011/05/13 11:45:09 lev Exp $
 
 PORTNAME=	neon29
 PORTVERSION=	0.29.6
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.webdav.org/neon/
 DISTNAME=	neon-${PORTVERSION}
