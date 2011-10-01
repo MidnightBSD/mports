@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.14 2010/03/20 14:51:30 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.15 2011/02/02 21:22:47 laffer1 Exp $
 
 PORTNAME=	hal
-DISTVERSION=	0.5.11
-PORTREVISION=	4
+DISTVERSION=	0.5.14
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -10,6 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Hardware Abstraction Layer for simplifying device access
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS=	polkit.2:${PORTSDIR}/sysutils/policykit \
 		volume_id.0:${PORTSDIR}/devel/libvolume_id \
 		ck-connector.0:${PORTSDIR}/sysutils/consolekit
@@ -38,7 +38,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-pid-file=/var/run/hald/hald.pid \
 		--with-deprecated-keys \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_CK_0_3" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		GTKDOC="false"
 
@@ -70,23 +70,23 @@ OPTIONS=	FIXED_MOUNTPOINTS "use fixed mountpoints" off
 RUN_DEPENDS+=	dmidecode:${PORTSDIR}/sysutils/dmidecode
 .endif
 
-.if ${OSVERSION} <= 3000
-NEEDS_MEDIA=	yes
-PLIST_SUB+=	MEDIA=""
-.else
-PLIST_SUB+=	MEDIA="@comment "
-.endif
-
 .if defined(WITH_FIXED_MOUNTPOINTS)
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-tools_hal-storage-mount.c
 .endif
 
+.if ${OSVERSION} >= 800063
+PLIST_SUB+=	USB2=""
+.else
+PLIST_SUB+=	USB2="@comment "
+.endif
+
 post-patch:
-	@${REINPLACE_CMD} -e '/^scriptdir = /s|libdir|libexecdir|' \
+	@${REINPLACE_CMD} -e '/^scriptdir = /s|[(]libexecdir[)]/scripts|(libexecdir)/hal/scripts|' \
 		${WRKSRC}/tools/Makefile.in \
 		${WRKSRC}/tools/freebsd/Makefile.in
-	@${REINPLACE_CMD} -e 's|[(]libdir[)]/hal/scripts|(libexecdir)/hal/scripts|' \
-		${WRKSRC}/hald/Makefile.in
+	@${REINPLACE_CMD} -e 's|[(]libexecdir[)]/scripts|(libexecdir)/hal/scripts|' \
+		${WRKSRC}/hald/Makefile.in \
+		${WRKSRC}/tools/Makefile.in
 	@${REINPLACE_CMD} -e 's|user="0"|group="operator"|g' \
 		${WRKSRC}/hal.conf.in
 	@${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
@@ -103,9 +103,6 @@ post-install:
 .if !defined(PACKAGE_BUILDING)
 	@${SETENV} PKG_PREFIX=${PREFIX} \
 		${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-.if defined(NEEDS_MEDIA)
-	${MKDIR} /media
-.endif
 .endif
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
