@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.6 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.7 2011/06/24 12:51:57 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION=	0.88
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 PKGNAMESUFFIX=	-glib
