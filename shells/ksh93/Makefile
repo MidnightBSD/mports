@@ -2,7 +2,7 @@
 # Date created:                2000-12-26
 # Whom:                        Christian Weisgerber <naddy@mips.inka.de>
 #
-# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.6 2010/12/11 19:19:58 laffer1 Exp $
+# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.7 2011/02/23 21:55:30 laffer1 Exp $
 # $FreeBSD: ports/shells/ksh93/Makefile,v 1.53 2008/08/18 18:36:36 miwi Exp $
 #
 # Make sure that your configuration DOES NOT set AN?Y gcc-related
@@ -18,6 +18,7 @@
 
 PORTNAME=	ksh93
 PORTVERSION=	${VERSION:S/-//g}
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	http://www.research.att.com/~gsf/download/tgz/
 DISTNAME=	${PORTNAME}-${VERSION}
