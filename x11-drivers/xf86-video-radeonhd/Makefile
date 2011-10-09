@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.8 2009/11/26 20:27:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.9 2011/05/07 21:39:23 laffer1 Exp $
 
 PORTNAME=	xf86-video-radeonhd
 PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,7 +20,7 @@ MAN4=	radeonhd.4x
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_UTILS)
-LIB_DEPENDS+=	pci.2:${PORTSDIR}/devel/libpci
+LIB_DEPENDS+=	pci.3:${PORTSDIR}/devel/libpci
 PLIST_SUB=	UTILS=""
 CONFIGURE_ENV+=	PCIUTILS_CFLAGS="-I${LOCALBASE}/include -lpci -lz" \
 		PCIUTILS_LIBS="-L${LOCALBASE}/lib"
