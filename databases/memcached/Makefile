@@ -2,12 +2,11 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.7 2010/11/11 01:06:45 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.8 2011/01/12 14:04:15 laffer1 Exp $
 #
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.5
-PORTREVISION=	1
+PORTVERSION=	1.4.7
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
@@ -19,10 +18,11 @@ LICENSE=	bsd3
 
 LIB_DEPENDS=	event-1.4:${PORTSDIR}/devel/libevent
 
+CONFLICTS=	memcached-1.2*
+
 USE_RC_SUBR=	memcached
 GNU_CONFIGURE=	YES
-CONFIGURE_ARGS=		--with-libevent=${LOCALBASE} --program-prefix=
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} --program-prefix=
 
 OPTIONS=	REPCACHED	"Enable data replication feature"	off \
 		SASL		"Enable SASL support"			off
@@ -30,18 +30,19 @@ OPTIONS=	REPCACHED	"Enable data replication feature"	off \
 MAN1=		memcached.1
 
 PLIST_FILES=	bin/memcached \
-		bin/memcached-tool
+		bin/memcached-tool \
+		include/memcached/protocol_binary.h
+PLIST_DIRS=	include/memcached /var/run/memcached
 
-PORTDOCS=	protocol.txt threads.txt readme.txt
+PORTDOCS=	protocol.txt readme.txt
 
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_REPCACHED)
 # WWW: http://repcached.lab.klab.org/
-PATCH_SITES+=		${MASTER_SITE_FREEBSD_LOCAL}
-PATCH_SITE_SUBDIR=	mm
+PATCH_SITES+=		http://mdounin.ru/files/
 PATCH_DIST_STRIP+=	-p1
-PATCHFILES+=		repcached-2.2-${PORTVERSION}.patch.gz
+PATCHFILES+=		repcached-2.3.1-${PORTVERSION}.patch.gz
 CONFIGURE_ARGS+=	--enable-replication
 .endif
 
@@ -62,6 +63,8 @@ post-configure:
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/doc/${MAN1} ${MAN1PREFIX}/man/man1
+	@${MKDIR} -p /var/run/memcached
+	@${CHOWN} nobody:nobody /var/run/memcached
 .if !defined(NOPORTDOCS)
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
 	@${MKDIR} ${DOCSDIR}
