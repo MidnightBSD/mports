@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.4 2009/09/20 01:23:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/aalib/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	aalib
 PORTVERSION=	1.4.r5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	aa-project
+MASTER_SITES=	SF/aa-project/aa-lib/1.4rc5
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,6 +12,7 @@ COMMENT=	An ascii art library
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
+USE_NCURSES=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.4.0
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -56,6 +56,9 @@ post-patch:
 		s|MAKEINFO=makeinfo|MAKEINFO="makeinfo --no-split"|g ; \
 		s|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} \
+		-e 's|AC_DEFUN(AM_PATH_AALIB|AC_DEFUN([AM_PATH_AALIB]|g' \
+		${WRKSRC}/aalib.m4
 	@${FIND} ${WRKSRC} \( -name '*.[ch]' \! -name acconfig.h \) \
 		| ${XARGS} ${REINPLACE_CMD} -e 's|<malloc.h>|<stdlib.h>|g'
 
