@@ -1,30 +1,25 @@
-# New ports collection makefile for:	lcms
-# Date created:		October 30, 2000
-# Whom:			Mikhail Teterin <mi@aldan.algebra.com>
-#
-# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.4 2009/12/29 00:53:27 laffer1 Exp $
+# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.5 2010/03/26 00:56:44 laffer1 Exp $
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
-#
 
 PORTNAME=	lcms
-PORTVERSION=	1.18a
-PORTREVISION=	2
+PORTVERSION=	1.19
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.18 \
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.19 \
 		http://www.littlecms.com/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Light Color Management System -- a color management library
 LICENSE=	mit
 
-USE_GNOME=	gnomehack gnometarget lthack
+USE_GNOME=	gnomehack lthack
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
 		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes
-WRKSRC=		${WRKDIR}/lcms-1.18
+WRKSRC=		${WRKDIR}/lcms-1.19
 
 OPTIONS=	TIFFICC "Build color profile applier for tiff" off \
 		JPEGICC "Build color profile applier for JPEG" off
