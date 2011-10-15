@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.10 2011/06/11 13:04:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.11 2011/09/03 15:44:31 laffer1 Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.6.16
@@ -115,11 +115,7 @@ PLIST_SUB+=		SERF="@comment "
 .endif
 
 .if defined(SVN_BUILD_BINDINGS)
-.if defined(WITH_FREEBSD_SUBVERSION)
-LIB_DEPENDS+=	svn_client-1:${PORTSDIR}/devel/subversion-freebsd
-.else
 LIB_DEPENDS+=	svn_client-1:${PORTSDIR}/devel/subversion
-.endif
 EXTRA_PATCHES+=	${PATCHDIR}/bindings-patch-subversion--bindings--swig--perl--native--Makefile.PL.in
 .endif
 
