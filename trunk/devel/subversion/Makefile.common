@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.11 2011/09/03 15:44:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.12 2011/10/15 00:04:47 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.6.16
-PORTREVISION?=	2
+PORTVERSION=	1.6.17
+PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	http://subversion.tigris.org/downloads/:main \
 		http://svnbook.red-bean.com/en/1.5/:book
