@@ -1,4 +1,3 @@
-MD5 (sudo-1.7.4p6.tar.gz) = 1ae12d3d22e7ffedbf2db26f957676f0
-SHA256 (sudo-1.7.4p6.tar.gz) = 20091ef71018698c674c779f4b57178b2ecb4275fa34909b06219d2688ad14d5
-RMD160 (sudo-1.7.4p6.tar.gz) = a6680042cf1836a96552953f546483c238e4ce9c
-SIZE (sudo-1.7.4p6.tar.gz) = 966234
+SHA256 (sudo-1.8.3.tar.gz) = ff1fcc410c5465063ee4912912e29936ea39f017d9a8a57ec76b0ded71b7c3c4
+RMD160 (sudo-1.8.3.tar.gz) = 4ef72b9e0fcf337493df3e1797c55a3ae5578964
+SIZE (sudo-1.8.3.tar.gz) = 1536180
