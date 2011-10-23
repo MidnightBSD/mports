@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.1 2010/02/05 13:23:07 laffer1 Exp $
 
 PORTNAME=	smartmontools
-PORTVERSION=	5.38
+PORTVERSION=	5.41
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
@@ -11,7 +11,9 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-docdir=${DOCSDIR} --enable-sample
+CONFIGURE_ARGS=	--disable-dependency-tracking \
+		--enable-drivedb --enable-sample \
+		--with-docdir=${DOCSDIR} --with-initscriptdir=${PREFIX}/etc/rc.d
 
 SUB_FILES=	pkg-message smart
 USE_RC_SUBR=	smartd
@@ -22,10 +24,11 @@ MAN8=		smartd.8 smartctl.8
 CFLAGS:=	${CFLAGS:S/-O2/-O/} -Wno-write-strings
 
 post-patch:
-	@${REINPLACE_CMD} -e 's| install-initdDATA | |' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's| install-initdDATA| |' ${WRKSRC}/Makefile.in
 
 post-install:
 	${MKDIR} ${PREFIX}/etc/periodic/daily
 	${INSTALL_SCRIPT} ${WRKDIR}/smart ${PREFIX}/etc/periodic/daily/smart
+	${INSTALL_SCRIPT} ${WRKSRC}/smartd.freebsd.initd ${PREFIX}/etc/rc.d/smartd
 
 .include <bsd.port.mk>
