@@ -2,7 +2,7 @@
 # Date created:			14 Apr 1999
 # Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.9 2009/08/07 17:04:59 crash Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.10 2010/04/25 23:22:13 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
 #
 
@@ -17,6 +17,7 @@ COMMENT=	A modular IRC client with many features
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
+USE_SSP=	yes
 USE_GNOME=	glib20
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
