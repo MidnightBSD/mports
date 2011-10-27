@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.1 2010/02/05 13:23:07 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/smartmontools/Makefile,v 1.2 2011/10/23 15:41:15 laffer1 Exp $
 
 PORTNAME=	smartmontools
-PORTVERSION=	5.41
+PORTVERSION=	5.42
 CATEGORIES=	sysutils
 MASTER_SITES=	SF
 
