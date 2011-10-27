@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/analog/Makefile,v 1.8 2010/03/26 00:44:42 laffer1 Exp $
+# $MidnightBSD: mports/www/analog/Makefile,v 1.9 2010/05/05 23:51:00 laffer1 Exp $
 
 PORTNAME=	analog
 PORTVERSION=	6.0
-PORTREVISION=	6
+PORTREVISION=	7
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.analog.cx/ \
