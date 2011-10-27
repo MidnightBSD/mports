@@ -1,11 +1,10 @@
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.5 2010/08/18 23:44:54 laffer1 Exp $
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.6 2010/08/25 22:18:27 laffer1 Exp $
 
 PORTNAME=	mDNSResponder
-PORTVERSION=	214
+PORTVERSION=	320.10
 CATEGORIES=	net dns
 MASTER_SITES=	http://opensource.apple.com/tarballs/mDNSResponder/
-DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Apple's mDNSResponder
@@ -18,7 +17,7 @@ USE_BISON=	build
 USE_LDCONFIG=	YES
 
 USE_GMAKE=	YES
-USE_RC_SUBR=	mdnsd.sh
+USE_RC_SUBR=	mdnsd
 MAKE_ARGS+=	os=freebsd LOCALBASE=${FAKE_DESTDIR}${PREFIX} MANPATH=${FAKE_DESTDIR}${MANPREFIX}/man
 BUILD_WRKSRC=	${WRKSRC}/mDNSPosix
 INSTALL_WRKSRC=	${WRKSRC}/mDNSPosix
@@ -38,12 +37,14 @@ CONFLICTS=	avahi-libdns-[0-9]*
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 3011
-IGNORE=	Included in MidnightBSD 0.3
+IGNORE=	Included in MidnightBSD 0.3+
 .endif
 
 post-patch:
-	${MV} ${WRKSRC}/mDNSShared/mDNSResponder.8 \
+	@${REINPLACE_CMD} -e '/	cc / s|cc|$${CC}|' ${WRKSRC}/Clients/Makefile
+	@${MV} ${WRKSRC}/mDNSShared/mDNSResponder.8 \
 		${WRKSRC}/mDNSShared/mDNSResponderPosix.8
+
 pre-build:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
 		-e 's|mDNSResponder.8|mDNSResponderPosix.8|g' \
