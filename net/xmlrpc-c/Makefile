@@ -2,37 +2,34 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.8 2010/10/23 13:29:01 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.9 2011/02/02 21:14:16 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.06.41
+PORTVERSION=	1.16.36
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
-#DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	XML-RPC library for C and C++
-LICENSE=	agg
+LICENSE=	bsd3
 
 OPTIONS=	DEBUG "Compile with debugging information" off \
 		CURL "Compile with curl support" on \
-		LIBWWW "Compile with libwww support" off
+		LIBWWW "Compile with libwww support" on
 
 CONFLICTS=	xmlrpc-epi-0.*
 
-USE_GNOME=	gnometarget
 USE_PERL5=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool:env
 GNU_CONFIGURE=	yes
 MAKEFILE=	GNUmakefile
 MAKE_ARGS=	LIBTOOL="${LIBTOOL}" \
-		CFLAGS_COMMON="${CFLAGS}" \
-		CXXFLAGS_COMMON="${CXXFLAGS}"
-USE_LDCONFIG=	yes
+		CFLAGS_COMMON="${CFLAGS}"
 MAKE_JOBS_UNSAFE=	yes
+USE_LDCONFIG=	yes
 
 .include <bsd.port.pre.mk>
 
@@ -40,24 +37,18 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-DNDEBUG
 .endif
 
-.if defined(WITHOUT_CURL)
-CONFIGURE_ARGS+=	--disable-curl-client
-.else
+.if defined(WITH_CURL)
 LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
-OPT_CURL=	yes
+CONFIGURE_ARGS+=	--enable-curl-client
+.else
+CONFIGURE_ARGS+=	--disable-curl-client
 .endif
 
 .if defined(WITH_LIBWWW)
 LIB_DEPENDS+=	wwwcore.1:${PORTSDIR}/www/libwww
-OPT_LIBWWW=	yes
+CONFIGURE_ARGS+=	--enable-libwww-client
 .else
 CONFIGURE_ARGS+=	--disable-libwww-client
-.endif
-
-.if !defined(OPT_LIBWWW) && !defined(OPT_CURL)
-PLIST_SUB+=	CLIENT="@comment "
-.else
-PLIST_SUB+=	CLIENT=""
 .endif
 
 post-extract:
@@ -67,5 +58,7 @@ post-extract:
 post-patch:
 	@${GREP} -lR '\-lpthread' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
 		's|-lpthread|${PTHREAD_LIBS}|g'
+	@${REINPLACE_CMD} -e '/#include.*features.h/d' \
+		${WRKSRC}/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
 
 .include <bsd.port.post.mk>
