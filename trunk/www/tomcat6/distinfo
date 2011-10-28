@@ -1,4 +1,3 @@
-MD5 (apache-tomcat-6.0.32.tar.gz) = 928a960268adf610a7d6fe5c4fcd0b20
-SHA256 (apache-tomcat-6.0.32.tar.gz) = 505e649d1ffcf746e66be8295c8244a2949349dedf678e9f2a659c4736968c5e
-RMD160 (apache-tomcat-6.0.32.tar.gz) = f4b2c3c66a040a196d7edbae2c98f3aeb29d3a23
-SIZE (apache-tomcat-6.0.32.tar.gz) = 6507748
+SHA256 (apache-tomcat-6.0.33.tar.gz) = 36d68a81eaeb2accc843501967716e95dfe3e8bbd303ec4cf302be20cdb99517
+RMD160 (apache-tomcat-6.0.33.tar.gz) = 535a9a8dd12efaea69febd7418691b50d846a788
+SIZE (apache-tomcat-6.0.33.tar.gz) = 6531699
