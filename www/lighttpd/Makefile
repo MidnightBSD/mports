@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.18 2010/09/04 15:22:23 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.19 2011/02/02 21:31:38 laffer1 Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.28
-PORTREVISION=	1
+PORTVERSION=	1.4.29
+PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
