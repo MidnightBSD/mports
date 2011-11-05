@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/python25/Makefile,v 1.5 2009/03/25 20:41:17 laffer1 Exp $
+# $MidnightBSD: mports/lang/python25/Makefile,v 1.6 2009/03/25 20:59:42 laffer1 Exp $
 
 PORTNAME=	python25
 PORTVERSION=	2.5.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -56,9 +56,6 @@ PLIST_SUB+=	IF_DEFAULT=""
 .else
 PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
-
-# workaround for a bug in base curses.h.
-CFLAGS+=	-D__wchar_t=wchar_t
 
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--with-threads
