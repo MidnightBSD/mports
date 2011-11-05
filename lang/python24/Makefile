@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/python/Makefile,v 1.8 2009/05/08 16:05:20 laffer1 Exp $
+# $MidnightBSD: mports/lang/python24/Makefile,v 1.1 2009/05/08 16:08:38 laffer1 Exp $
 
 PORTNAME=	python24
 PORTVERSION=	2.4.5
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -46,9 +47,6 @@ OPTIONS=	THREADS "Enable thread support" on \
 		FPECTL "Enable floating point exception handling" off
 
 .include <bsd.port.pre.mk>
-
-# workaround for a bug in base curses.h.
-CFLAGS+=		-D__wchar_t=wchar_t
 
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--with-threads
