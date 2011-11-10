@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/textproc/fop/Makefile,v 1.1 2010/01/02 20:07:06 laffer1 Exp $
+# $MidnightBSD: mports/textproc/fop/Makefile,v 1.2 2010/12/12 21:24:27 laffer1 Exp $
 
 PORTNAME=	fop
-PORTVERSION=	0.95
+PORTVERSION=	1.0
 CATEGORIES=	textproc java
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:fop/} \
 		SF/offo/offo-hyphenation/1.0:hyph
@@ -20,8 +20,11 @@ WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.5+
 USE_ANT=	yes
+
+# Prevent out of memory error during build
+MAKE_ENV+=	"ANT_OPTS=-Xmx512m"
 
 post-extract:
 	@cd ${WRKDIR} && ${UNZIP_CMD} ${DISTDIR}/offo-hyphenation.zip
