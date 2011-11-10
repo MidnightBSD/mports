@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/Makefile,v 1.61 2011/07/09 21:09:57 laffer1 Exp $
+# $MidnightBSD: mports/mail/Makefile,v 1.62 2011/09/17 05:04:08 laffer1 Exp $
 
 COMMENT = Electronic mail utilities
 
@@ -26,7 +26,6 @@ SUBDIR += hashcash
 SUBDIR += libmapi
 SUBDIR += libspf2
 SUBDIR += linux-thunderbird
-SUBDIR += linux-thunderbird5
 SUBDIR += milter-greylist
 SUBDIR += mime-construct
 SUBDIR += msmtp
