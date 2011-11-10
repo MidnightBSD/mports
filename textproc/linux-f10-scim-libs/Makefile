@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/linux-f10-scim-libs/Makefile,v 1.1 2011/06/19 23:42:49 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-f10-scim-libs/Makefile,v 1.11 2011/03/03 09:26:43 ehaupt Exp $
 
 PORTNAME=	scim-libs
@@ -23,8 +23,5 @@ USE_LDCONFIG=	yes
 SRC_DISTFILES=	scim-${PORTVERSION}-${RPMVERSION}.src.rpm
 
 DESCR=		${.CURDIR}/../scim/pkg-descr
-
-post-install:
-	@chroot ${PREFIX} /usr/bin/gtk-query-immodules-2.0-32 > ${PREFIX}/etc/gtk-2.0/${LINUX_RPM_ARCH}-redhat-linux-gnu/gtk.immodules
 
 .include <bsd.port.mk>
