@@ -2,12 +2,12 @@
 # Date created:         04 April 2007
 # Whom:			Max Laier <max@love2party.net>
 #
-# $MidnightBSD: mports/mail/spamd/Makefile,v 1.3 2007/07/16 01:44:28 laffer1 Exp $
+# $MidnightBSD: mports/mail/spamd/Makefile,v 1.4 2007/12/05 22:53:18 laffer1 Exp $
 # $FreeBSD: ports/mail/spamd/Makefile,v 1.13 2007/06/06 16:38:52 miwi Exp $
 #
 
 PORTNAME=	spamd
-PORTVERSION=	4.1.2
+PORTVERSION=	4.9.1
 CATEGORIES=	mail
 MASTER_SITES=	BERLIOS
 MASTER_SITE_SUBDIR=freebsdspamd
