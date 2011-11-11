@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.17 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.18 2011/05/15 19:25:40 laffer1 Exp $
 
 PORTNAME=	pango
-PORTVERSION=	1.28.3
+PORTVERSION=	1.28.4
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME \
