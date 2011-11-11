@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.26 2011/02/02 21:38:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.27 2011/05/15 21:47:31 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.22.1
-PORTREVISION?=	1
+PORTVERSION=	2.24.6
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
@@ -19,36 +19,32 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+LICENSE=	LGPL20
+LICENSE_FILE=	${WRKSRC}/COPYING
+USE_XZ=		yes
 LATEST_LINK=	gtk20
 
 .if !defined(REFERENCE_PORT)
 
 BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		jasper.4:${PORTSDIR}/graphics/jasper
 RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
 USE_GMAKE=	yes
-USE_PERL5_BUILD=	yes
+USE_PERL5_BUILD=yes
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack
+USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
 USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
-CONFIGURE_ARGS=	--enable-static --with-xinput=yes --with-libjasper
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_ARGS=	--enable-static --with-xinput=yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
 			  -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
-MAN1=		gtk-query-immodules-2.0.1 gtk-update-icon-cache.1
-SUB_FILES=	pkg-install
+MAN1=		gtk-query-immodules-2.0.1
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-debug=yes
@@ -56,7 +52,7 @@ CONFIGURE_ARGS+=	--enable-debug=yes
 
 OPTIONS=	CUPS "Enable cups printing support" on
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_CUPS)
 LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
@@ -76,16 +72,24 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|file,cups|file,cups,lpr|' \
 		${WRKSRC}/gtk/Makefile.in
 
+pre-configure:
+.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
+	@${ECHO_CMD} "${PKGNAME}: Needs cairo build with X11 support."
+	@${FALSE}
+.endif
+
 pre-build:
 	@${RM} -rf ${WRKSRC}/docs/gtk.info*
 
 post-install:
+	-@${FIND} ${LOCALBASE}/share/icons -type d -depth 1 -exec \
+		${PREFIX}/bin/gtk-update-icon-cache -q -f {} \; 2>/dev/null
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/modules
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/engines
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/loaders
 	${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/docs/reference/gtk/|} \
 		${PREFIX}/man/man1
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif
