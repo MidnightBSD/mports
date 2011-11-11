@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/py-gobject/Makefile,v 1.5 2010/12/15 00:58:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-gobject/Makefile,v 1.6 2011/05/30 14:26:15 laffer1 Exp $
 # $FreeBSD: ports/devel/py-gobject/Makefile,v 1.5 2006/11/18 20:38:02 marcus Exp $
 
 PORTNAME=	gobject
-PORTVERSION=	2.26.0
+PORTVERSION=	2.28.6
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
