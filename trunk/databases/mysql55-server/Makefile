@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.6 2011/05/27 01:59:56 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.7 2011/08/13 14:21:01 laffer1 Exp $
 # $FreeBSD: ports/databases/mysql55-server/Makefile,v 1.269 2010/12/28 06:49:39 ale Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.5.15
+PORTVERSION=	5.5.17
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -71,12 +71,12 @@ GROUPS=		mysql
 
 INFO=		mysql
 
-MAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1 \
-		mysql.server.1 mysql_convert_table_format.1 mysql_fix_extensions.1 \
-		mysql_install_db.1 mysql_secure_installation.1 mysql_setpermission.1 \
-		mysql_tzinfo_to_sql.1 mysql_upgrade.1 mysql_zap.1 mysqlbug.1 \
-		mysqld_multi.1 mysqld_safe.1 mysqldumpslow.1 mysqlhotcopy.1 mysqlman.1 \
-		mysqltest.1 perror.1 replace.1 resolve_stack_dump.1 resolveip.1
+#MAN1=		my_print_defaults.1 myisam_ftdump.1 myisamchk.1 myisamlog.1 myisampack.1 \
+#		mysql.server.1 mysql_convert_table_format.1 mysql_fix_extensions.1 \
+#		mysql_install_db.1 mysql_plugin.1 mysql_secure_installation.1 mysql_setpermission.1 \
+#		mysql_tzinfo_to_sql.1 mysql_upgrade.1 mysql_zap.1 mysqlbug.1 \
+#		mysqld_multi.1 mysqld_safe.1 mysqldumpslow.1 mysqlhotcopy.1 mysqlman.1 \
+#		mysqltest.1 perror.1 replace.1 resolve_stack_dump.1 resolveip.1
 
 MAN8=		mysqld.8
 
