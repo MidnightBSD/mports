@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.18 2011/09/03 00:56:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.19 2011/09/03 01:17:52 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -41,7 +41,7 @@ NO_WRKSUBDIR=	yes
 APR_WRKDIR=	${WRKDIR}/apr-${APR_VERSION}
 APU_WRKDIR=	${WRKDIR}/apr-util-${APU_VERSION}
 
-PLIST_SUB=	SHLIB_APR_MAJOR="${SHLIB_APR_MAJOR}" SHLIB_APU_MAJOR="${SHLIB_APU_MAJOR}"
+PLIST_SUB+=	SHLIB_APR_MAJOR="${SHLIB_APR_MAJOR}" SHLIB_APU_MAJOR="${SHLIB_APU_MAJOR}"
 SHLIB_APR_MAJOR=	4
 SHLIB_APU_MAJOR=	3
 
@@ -63,7 +63,7 @@ PKGNAMESUFFIX=	-nothr
 APR_CONF_ARGS+=	--enable-threads
 .endif
 
-.if defined(WITHOUT_IPV6)
+.if !defined(WITH_IPV6)
 APR_CONF_ARGS+=	--disable-ipv6
 .else
 APR_CONF_ARGS+=	--enable-ipv6
@@ -75,7 +75,7 @@ PKGNAMESUFFIX=	-ipv6
 .endif
 
 ######### APR-Util Options
-.if defined(WITHOUT_GDBM)
+.if !defined(WITH_GDBM)
 PLIST_SUB+=	GDBM="@comment "
 APU_CONF_ARGS+=	--without-gdbm
 .elif defined(WITH_GDBM)
@@ -93,7 +93,7 @@ PLIST_SUB+=	GDBM="@comment "
 APR_UTIL_CONF_ARGS+=	--without-gdbm
 .endif
 
-.if defined(WITHOUT_BDB)
+.if !defined(WITH_BDB)
 PLIST_SUB+=	BDB="@comment "
 APU_CONF_ARGS+=	--without-berkeley-db
 .elif defined(WITH_BDB)
@@ -108,7 +108,7 @@ PKGNAMESUFFIX=	-${BDB_INCLUDE_DIR:S,^${LOCALBASE}/include/,,}
 .endif
 .endif
 
-.if defined(WITHOUT_NDBM)
+.if !defined(WITH_NDBM)
 PLIST_SUB+=	NDBM="@comment "
 APU_CONF_ARGS+=	--without-ndbm
 .elif defined(WITH_NDBM)
