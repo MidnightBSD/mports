@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.31 2011/06/05 21:59:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.32 2011/06/05 22:21:14 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.7.3.5
+PORTVERSION=	1.7.7.3
 CATEGORIES=	devel
-MASTER_SITES=	http://www.kernel.org/pub/software/scm/git/
+MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+PROJECTHOST=	git-core
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
-		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX} \
-		${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}.sign
+		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 
@@ -44,6 +44,7 @@ MAN1=		git.1 \
 		git-describe.1 \
 		git-diff-files.1 \
 		git-diff-index.1 \
+		git-difftool.1 \
 		git-diff-tree.1 \
 		git-diff.1 \
 		git-fast-export.1 \
@@ -61,6 +62,7 @@ MAN1=		git.1 \
 		git-grep.1 \
 		git-hash-object.1 \
 		git-help.1 \
+		git-http-backend.1 \
 		git-http-fetch.1 \
 		git-http-push.1 \
 		git-imap-send.1 \
@@ -79,13 +81,15 @@ MAN1=		git.1 \
 		git-merge-file.1 \
 		git-merge-index.1 \
 		git-merge-one-file.1 \
+		git-mergetool.1 \
 		git-merge-tree.1 \
 		git-merge.1 \
-		git-mergetool.1 \
+		git-mergetool--lib.1 \
 		git-mktag.1 \
 		git-mktree.1 \
 		git-mv.1 \
 		git-name-rev.1 \
+		git-notes.1 \
 		git-pack-objects.1 \
 		git-pack-redundant.1 \
 		git-pack-refs.1 \
@@ -102,8 +106,13 @@ MAN1=		git.1 \
 		git-receive-pack.1 \
 		git-reflog.1 \
 		git-relink.1 \
+		git-remote-ext.1 \
+		git-remote-fd.1 \
+		git-remote-helpers.1 \
+		git-remote-testgit.1 \
 		git-remote.1 \
 		git-repack.1 \
+		git-replace.1 \
 		git-repo-config.1 \
 		git-request-pull.1 \
 		git-rerere.1 \
@@ -115,12 +124,15 @@ MAN1=		git.1 \
 		git-send-email.1 \
 		git-send-pack.1 \
 		git-sh-setup.1 \
+		git-sh-i18n.1 \
+		git-sh-i18n--envsubst.1 \
 		git-shell.1 \
 		git-shortlog.1 \
 		git-show-branch.1 \
 		git-show-index.1 \
 		git-show-ref.1 \
 		git-show.1 \
+		git-stage.1 \
 		git-stash.1 \
 		git-status.1 \
 		git-stripspace.1 \
@@ -151,13 +163,18 @@ MAN7=		gitcli.7 \
 		gittutorial.7 \
 		gitcore-tutorial.7 \
 		gitdiffcore.7 \
-		gittutorial-2.7
+		gittutorial-2.7 \
+		gitworkflows.7 \
+		gitrevisions.7 \
+		gitnamespaces.7
+
+CONFLICTS?=	git-subversion-[0-9]*
 
 SUB_FILES=	pkg-message
 PLIST_SUB=     PYTHON_VER=${PYTHON_VER} PYTHON=
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-USE_BZIP2=	yes
+#USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_PYTHON=     yes
 EXTENSIONS+=    python
@@ -303,11 +320,12 @@ post-patch:
 
 
 post-build:
-.ifdef (WITH_P4)
+.ifdef (WITH_P4) || defined (WITH_CONTRIB)
 	@${REINPLACE_CMD} -e '1s|#!/usr/bin/python|#!${PYTHON_CMD}|' \
 		${WRKSRC}/contrib/p4import/git-p4import.py
 	@${CP} ${WRKSRC}/contrib/p4import/git-p4import.py \
 		${WRKSRC}/contrib/p4import/git-p4import
+	@${FIND} ${WRKSRC} -name "*.bak" -delete
 .endif
 
 post-install:
@@ -337,6 +355,13 @@ post-install:
 		${PREFIX}/lib/xemacs/site-lisp/git/git.el
 	${LN} -sf ${PREFIX}/share/emacs/site-lisp/git/git-blame.el \
 		${PREFIX}/lib/xemacs/site-lisp/git/git-blame.el
+
+.ifdef (WITH_CONTRIB)
+	@${ECHO_MSG} "===> Installing contributed scripts"
+	${MKDIR} ${PREFIX}/share/git-core/contrib
+	(cd ${WRKSRC}/contrib/ && \
+		${COPYTREE_SHARE} \* ${PREFIX}/share/git-core/contrib)
+.endif
 
 .ifdef (WITH_P4)
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/p4import/git-p4import \
