@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.6 2010/09/07 23:46:04 laffer1 Exp $
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.7 2011/02/02 20:58:25 laffer1 Exp $
 
 PORTNAME=	libofx
 PORTVERSION=	0.9.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	finance
 MASTER_SITES=	SF
 
@@ -14,7 +14,6 @@ LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
 		xml\\+\\+-1.0.1:${PORTSDIR}/textproc/libxml++ \
 		osp.5:${PORTSDIR}/textproc/opensp
 
-USE_GNOME=	gnometarget
 USE_ICONV=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool

@@ -2,7 +2,7 @@
 # Date created:		19 April 2006
 # Whom:			Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/editors/mousepad/Makefile,v 1.1 2008/09/26 17:40:53 laffer1 Exp $
+# $MidnightBSD: mports/editors/mousepad/Makefile,v 1.2 2010/04/26 13:12:56 laffer1 Exp $
 # $FreeBSD: ports/editors/mousepad/Makefile,v 1.9 2008/06/06 13:25:52 edwin Exp $
 #
 
@@ -20,7 +20,7 @@ GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	gtk20 intltool intlhack pkgconfig
 USE_XFCE=	configenv libgui
 
 .include <bsd.port.mk>

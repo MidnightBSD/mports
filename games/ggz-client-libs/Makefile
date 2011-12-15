@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: mports/games/ggz-client-libs/Makefile,v 1.2 2009/09/20 01:12:29 laffer1 Exp $
+# $MidnightBSD: mports/games/ggz-client-libs/Makefile,v 1.3 2011/02/02 21:01:20 laffer1 Exp $
 #
 
 PORTNAME=	ggz-client-libs
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnometarget
+USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--disable-debug --with-libggz-dir="${LOCALBASE}"
