@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/freetype2/Makefile,v 1.18 2011/03/17 04:42:10 laffer1 Exp $
+# $MidnightBSD: mports/print/freetype2/Makefile,v 1.19 2011/09/18 20:53:02 laffer1 Exp $
 
 PORTNAME=	freetype2
 PORTVERSION=	2.4.6
@@ -23,7 +23,7 @@ USE_GMAKE=	yes
 MAKE_ENV=	TOP=""
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnometarget pkgconfig ltverhack:9
+USE_GNOME=	 pkgconfig ltverhack:9
 LIBTOOLFILES=	builds/unix/configure
 CONFIGURE_ARGS=	--disable-nls
 CONFIGURE_WRKSRC=	${WRKSRC}/builds/unix

@@ -2,7 +2,7 @@
 # Date created:				12 October 2004
 # Whom:					Oliver Lehmann <oliver@FreeBSD.org>
 #
-# $MidnightBSD: mports/misc/xfce4-appfinder/Makefile,v 1.2 2009/03/12 04:16:56 ctriv Exp $
+# $MidnightBSD: mports/misc/xfce4-appfinder/Makefile,v 1.3 2011/02/09 13:30:38 laffer1 Exp $
 # $FreeBSD: ports/misc/xfce4-appfinder/Makefile,v 1.17 2008/06/06 13:45:39 edwin Exp $
 #
 
@@ -21,7 +21,7 @@ INSTALLS_ICONS= yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	 gtk20 intltool intlhack pkgconfig
 USE_XFCE=	configenv libgui libmenu libutil thunar xfconf
 
 .include <bsd.port.mk>

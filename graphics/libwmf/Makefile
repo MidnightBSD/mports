@@ -2,7 +2,7 @@
 # Date Created:		22 May 1999
 # Whom:			Chris Piazza <cpiazza@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.7 2010/05/05 19:27:42 vganji Exp $
+# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.8 2011/02/02 21:04:18 laffer1 Exp $
 # $FreeBSD: ports/graphics/libwmf/Makefile,v 1.41 2007/02/01 02:41:41 kris Exp $
 #
 
@@ -22,7 +22,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnometarget libxml2
+USE_GNOME=	 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-sys-gd=no \

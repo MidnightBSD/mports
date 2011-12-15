@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.5 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libxfce4gui/Makefile,v 1.6 2011/02/09 14:02:02 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/libxfce4gui/Makefile,v 1.43 2008/08/30 05:26:23 kan Exp $
 #
 
@@ -23,7 +23,7 @@ INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget gtk20 intltool intlhack libglade2 pkgconfig
+USE_GNOME=	gnomehack  gtk20 intltool intlhack libglade2 pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	libutil xfconf
 USE_XORG=	sm

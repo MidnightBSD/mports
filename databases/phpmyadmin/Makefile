@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.30 2011/01/07 04:38:23 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.31 2011/09/24 01:51:41 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
 DISTVERSION=	3.4.5
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-USE_PHP=	ctype mysql pcre session filter mbstring mcrypt
+#USE_PHP=	ctype mysql pcre session filter mbstring mcrypt
 .endif
 USE_MYSQL=	yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.14 2011/05/14 03:27:43 laffer1 Exp $
+# $MidnightBSD: mports/misc/iso-codes/Makefile,v 1.15 2011/05/14 22:02:00 laffer1 Exp $
 
 PORTNAME=	iso-codes
 PORTVERSION=	3.25
@@ -12,7 +12,7 @@ LICENSE=	lgpl
 BUILD_DEPENDS=	xmlproc_parse:${PORTSDIR}/textproc/py-xml
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack 
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

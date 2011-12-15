@@ -2,7 +2,7 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.2 2009/03/12 05:41:27 ctriv Exp $
+# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.3 2011/02/09 13:27:44 laffer1 Exp $
 # $FreeBSD: ports/print/xfce4-print/Makefile,v 1.50 2008/06/06 13:58:00 edwin Exp $
 #
 
@@ -24,7 +24,7 @@ INSTALLS_ICONS= yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	glib20 gnomehack  gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libgui libutil xfconf
 

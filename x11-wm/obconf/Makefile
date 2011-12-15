@@ -2,7 +2,7 @@
 # Date created:				2002-10-13
 # Whom:					trevor
 #
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.4 2008/07/08 03:40:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.5 2008/08/19 18:54:20 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/obconf/Makefile,v 1.13 2006/09/02 10:02:10 novel Exp $
 #
 
@@ -19,7 +19,7 @@ LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
 		obparser.21:${PORTSDIR}/x11-wm/openbox
 
 USE_XLIB=	yes
-USE_GNOME=	gnomehier gnometarget libglade2
+USE_GNOME=	gnomehier  libglade2
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"

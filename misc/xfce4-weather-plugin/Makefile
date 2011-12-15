@@ -2,7 +2,7 @@
 # Date created:		04 April 2004
 # Whom:			Filippo Natali <filippo@widestore.net>
 #
-# $MidnightBSD: mports/misc/xfce4-weather-plugin/Makefile,v 1.2 2010/12/04 15:25:03 laffer1 Exp $
+# $MidnightBSD: mports/misc/xfce4-weather-plugin/Makefile,v 1.3 2011/02/09 13:32:19 laffer1 Exp $
 # $FreeBSD: ports/misc/xfce4-weather-plugin/Makefile,v 1.27 2008/06/06 13:45:39 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget glib20 gtk20 intltool intlhack libxml2 pkgconfig
+USE_GNOME=	 glib20 gtk20 intltool intlhack libxml2 pkgconfig
 USE_XFCE=	configenv libgui libutil panel
 
 .include <bsd.port.mk>

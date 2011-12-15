@@ -2,7 +2,7 @@
 # Date created:				15 Apr 2000
 # Whom:					will
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/gnome-mud/Makefile,v 1.1 2008/05/31 00:56:36 laffer1 Exp $
 # $FreeBSD: ports/net/gnome-mud/Makefile,v 1.33 2008/03/25 22:44:42 miwi Exp $
 #
 
@@ -18,7 +18,7 @@ COMMENT=	GTK-based MUD client with triggers, aliases, colors, etc
 LICENSE=	gpl2
 
 USE_GETTEXT=	yes
-USE_GNOME=	gnomehack gnometarget gnomeprefix intlhack libgnomeui \
+USE_GNOME=	gnomehack  gnomeprefix intlhack libgnomeui \
 		pygtk2 vte
 USE_PYTHON=	yes
 USE_GMAKE=	yes

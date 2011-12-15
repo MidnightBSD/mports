@@ -2,7 +2,7 @@
 # Date created:				12 Nov 2000
 # Whom:					Jeremy Norris <ishmael27@home.com>
 #
-# $MidnightBSD: mports/graphics/giblib/Makefile,v 1.5 2008/06/01 23:09:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/giblib/Makefile,v 1.6 2008/06/01 23:10:29 laffer1 Exp $
 # $FreeBSD: ports/graphics/giblib/Makefile,v 1.20 2006/05/07 23:46:02 edwin Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	other
 
 LIB_DEPENDS=	Imlib2.5:${PORTSDIR}/graphics/imlib2
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.3 2009/04/14 23:46:34 laffer1 Exp $
+# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.4 2011/06/05 18:01:52 laffer1 Exp $
 
 PORTNAME=	xmlsec1
 PORTVERSION=	1.2.17
@@ -19,7 +19,7 @@ OPTIONS=	GNUTLS	"Enable GNUTLS support"	off	\
 		NSS	"Enable Mozilla's NSS support"	off
 
 USE_OPENSSL=	yes
-USE_GNOME=	gnomehack lthack libxslt gnometarget
+USE_GNOME=	gnomehack lthack libxslt 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

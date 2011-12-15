@@ -2,7 +2,7 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.5 2011/02/02 21:11:12 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.6 2011/09/05 20:18:18 laffer1 Exp $
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager
@@ -23,7 +23,7 @@ GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gnomehack pkgconfig lthack
+USE_GNOME=	 gnomehack pkgconfig lthack
 CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 

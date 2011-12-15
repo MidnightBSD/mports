@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.4 2009/05/31 03:40:54 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.5 2011/02/09 13:25:21 laffer1 Exp $
 
 PORTNAME=	xfce4-session
 PORTVERSION=	4.6.2
@@ -20,7 +20,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	gnomehack  gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libgui libutil xfconf
 USE_XORG=	x11 sm ice

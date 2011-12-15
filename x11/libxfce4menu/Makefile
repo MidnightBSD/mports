@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/libxfce4menu/Makefile,v 1.1 2011/02/09 14:36:04 laffer1 Exp $
 # $FreeBSD: ports/x11/libxfce4menu/Makefile,v 1.8 2010/05/31 15:34:46 oliver Exp $
 
 PORTNAME=	libxfce4menu
@@ -15,7 +15,7 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	glib20 gnomehack  gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_XFCE=	configenv libutil
 

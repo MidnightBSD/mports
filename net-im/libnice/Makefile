@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.3 2011/02/02 21:16:29 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.4 2011/05/15 21:56:49 laffer1 Exp $
 
 PORTNAME=	libnice
 PORTVERSION=	0.0.13
@@ -14,7 +14,7 @@ LICENSE=	lgpl
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack pkgconfig glib20 ltverhack gnometarget
+USE_GNOME=	gnomehack pkgconfig glib20 ltverhack 
 USE_GSTREAMER=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_GETIFADDRS" \

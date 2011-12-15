@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/xfce4-panel/Makefile,v 1.4 2009/03/13 04:13:59 ctriv Exp $
+# $MidnightBSD: mports/x11-wm/xfce4-panel/Makefile,v 1.5 2011/02/09 13:25:21 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/xfce4-panel/Makefile,v 1.46 2008/06/06 14:17:21 edwin Exp $
 
 PORTNAME=	xfce4-panel
@@ -21,7 +21,7 @@ USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	gnomehack  gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
 USE_XFCE=	configenv libexo libgui libutil

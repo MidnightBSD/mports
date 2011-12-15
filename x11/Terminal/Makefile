@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.4 2011/02/09 13:25:45 laffer1 Exp $
+# $MidnightBSD: mports/x11/Terminal/Makefile,v 1.5 2011/05/01 19:26:08 laffer1 Exp $
 # $FreeBSD: ports/x11/Terminal/Makefile,v 1.19 2008/06/06 14:08:50 edwin Exp $
 
 PORTNAME=	Terminal
@@ -17,7 +17,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 glib20 intltool intlhack pkgconfig vte
+USE_GNOME=	 gtk20 glib20 intltool intlhack pkgconfig vte
 USE_XFCE=	configenv libexo
 USE_XORG=	x11
 

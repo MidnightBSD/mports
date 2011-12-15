@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/cln/Makefile,v 1.4 2010/11/13 18:50:50 laffer1 Exp $
+# $MidnightBSD: mports/math/cln/Makefile,v 1.5 2011/02/02 21:08:36 laffer1 Exp $
 
 PORTNAME=	cln
 PORTVERSION=	1.3.1
@@ -15,7 +15,7 @@ LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"

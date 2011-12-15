@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/py-cairo/Makefile,v 1.3 2009/08/01 22:25:12 laffer1 Exp $
+# $MidnightBSD: mports/graphics/py-cairo/Makefile,v 1.4 2010/01/23 19:27:06 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.8.8
@@ -17,7 +17,7 @@ RUN_DEPENDS=	${PYNUMERIC}
 
 USE_PYTHON=	2.6+
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gnomehack
+USE_GNOME=	 gnomehack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-pygtk --build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${X11BASE}/include" \

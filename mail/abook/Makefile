@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/abook/Makefile,v 1.4 2008/06/23 01:53:12 laffer1 Exp $
+# $MidnightBSD: mports/mail/abook/Makefile,v 1.5 2009/09/24 01:02:15 laffer1 Exp $
 
 PORTNAME=	abook
 PORTVERSION=	0.5.6
@@ -11,7 +11,7 @@ COMMENT=	An addressbook program with mutt mail client support
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"

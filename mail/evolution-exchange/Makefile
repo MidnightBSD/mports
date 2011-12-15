@@ -2,7 +2,7 @@
 # Date created:				28 April, 2005
 # Whom:					Adam Weinberger, based off kiesel's ximian-exchange port
 #
-# $MidnightBSD: mports/mail/evolution-exchange/Makefile,v 1.2 2009/09/20 01:24:05 laffer1 Exp $
+# $MidnightBSD: mports/mail/evolution-exchange/Makefile,v 1.3 2011/02/02 21:07:58 laffer1 Exp $
 # $FreeBSD: ports/mail/evolution-exchange/Makefile,v 1.42 2008/05/26 21:06:08 mezz Exp $
 #
 
@@ -25,7 +25,7 @@ USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_BDB=	41
 USE_OPENLDAP=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gnometarget ltasneededhack
+USE_GNOME=	gnomeprefix intlhack gnomehack  ltasneededhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -I${BDB_INCLUDE_DIR}" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--with-openldap=${LOCALBASE} \

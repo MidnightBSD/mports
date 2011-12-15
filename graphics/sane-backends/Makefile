@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.4 2009/09/20 02:58:51 laffer1 Exp $
+# $MidnightBSD: mports/graphics/sane-backends/Makefile,v 1.5 2010/03/25 01:28:09 laffer1 Exp $
 
 PORTNAME=	sane-backends
 PORTVERSION=	1.0.20
@@ -25,7 +25,7 @@ OPTIONS=	USB "USB support" on \
 		AVAHI "avahi support" off \
 		GPHOTO2 "gPhoto2 support" off
 
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

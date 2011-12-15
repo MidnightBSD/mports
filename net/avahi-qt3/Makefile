@@ -2,7 +2,7 @@
 # Date created:				12 April 2007
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-qt3/Makefile,v 1.1 2008/02/17 05:21:09 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-qt3/Makefile,v 1.2 2008/04/11 21:12:39 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-qt3/Makefile,v 1.7 2007/12/23 20:29:49 marcus Exp $
 #    $MCom: ports/net/avahi-qt3/Makefile,v 1.1 2007/07/31 18:24:12 ahze Exp $
 
@@ -23,7 +23,7 @@ DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	qt3
-USE_GNOME=	gnomehack gnometarget ltverhack intltool
+USE_GNOME=	gnomehack  ltverhack intltool
 USE_QT_VER=	3
 AVAHI_PKGCONFIG=	avahi-qt3.pc
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.9 2010/05/08 02:07:54 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.10 2011/02/02 21:06:52 laffer1 Exp $
 
 PORTNAME=	guile
 PORTVERSION=	1.8.6
@@ -18,7 +18,7 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
 			--host=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
