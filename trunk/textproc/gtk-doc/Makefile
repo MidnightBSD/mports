@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/textproc/gtk-doc/Makefile,v 1.2 2011/05/28 06:29:20 laffer1 Exp $
+# $MidnightBSD: mports/textproc/gtk-doc/Makefile,v 1.3 2011/06/01 01:49:03 laffer1 Exp $
 
 PORTNAME=	gtk-doc
 PORTVERSION=	1.15
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
@@ -28,7 +29,7 @@ USE_BZIP2=	yes
 USE_PERL5=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack gnometarget gnomeprefix libxslt gnomedocutils
+USE_GNOME=	gnomehack gnomeprefix libxslt gnomedocutils
 INSTALLS_OMF=	yes
 CONFIGURE_ARGS=	--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
 

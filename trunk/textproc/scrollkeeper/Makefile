@@ -2,13 +2,13 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.6 2010/01/02 01:05:37 laffer1 Exp $
+# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.7 2011/02/02 21:23:47 laffer1 Exp $
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 
 PORTNAME=	scrollkeeper
 PORTVERSION=	0.3.14
-PORTREVISION=	9
+PORTREVISION=	10
 PORTEPOCH=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
@@ -36,7 +36,7 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_BISON=	build
-USE_GNOME=	gnomehack gnomehier gnometarget libxslt intlhack
+USE_GNOME=	gnomehack gnomehier libxslt intlhack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --datadir=${PREFIX}/share \
 		--with-omfdirs=${PREFIX}/share/omf \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.8 2010/08/01 05:01:27 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.9 2011/09/23 02:52:58 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 
 PORTNAME=	libxslt
@@ -19,7 +19,7 @@ LICENSE=	bsd3
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME?=	gnomehack gnometarget libxml2
+USE_GNOME?=	gnomehack libxml2
 CONFIGURE_ARGS?= --with-html-dir=${PREFIX}/share/doc \
 		--without-python
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
