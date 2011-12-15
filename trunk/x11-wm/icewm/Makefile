@@ -2,7 +2,7 @@
 # Date created:		10 August 1997
 # Whom:			Yukihiro Nakai <Nakai@Mlab.t.u-tokyo.ac.jp>
 #
-# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.5 2010/05/30 21:35:55 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/icewm/Makefile,v 1.6 2011/05/15 19:30:13 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/icewm/Makefile,v 1.134 2008/03/23 11:11:23 miwi Exp $
 #
 
@@ -17,7 +17,7 @@ LICENSE=	lgpl
 
 WANT_GNOME=	yes
 USE_XORG=	x11 ice xinerama xext xrandr sm
-USE_GNOME=	gnometarget gtk20 # gdkpixbuf really :-)
+USE_GNOME=	 gtk20 # gdkpixbuf really :-)
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="-L${LOCALBASE}/lib"

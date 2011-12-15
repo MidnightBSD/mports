@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.15 2011/02/02 21:39:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.16 2011/05/28 07:10:46 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.92.0
@@ -23,7 +23,7 @@ MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_XORG=	xpm
 USE_PERL5=	yes
 USE_GETTEXT=	yes

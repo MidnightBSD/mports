@@ -1,6 +1,6 @@
 # ex:ts=8
 #
-# $MidnightBSD: mports/science/openbabel/Makefile,v 1.3 2009/09/20 01:53:47 laffer1 Exp $
+# $MidnightBSD: mports/science/openbabel/Makefile,v 1.4 2011/02/02 21:19:20 laffer1 Exp $
 #
 
 PORTNAME=	openbabel
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python
 
-USE_GNOME=	gnomehack gnometarget libxml2
+USE_GNOME=	gnomehack  libxml2
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 

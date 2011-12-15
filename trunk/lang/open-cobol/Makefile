@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.6 2010/05/08 02:07:55 laffer1 Exp $
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.7 2011/02/02 21:06:52 laffer1 Exp $
 
 PORTNAME=	open-cobol
 PORTVERSION=	1.0
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_BDB=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/dirac/Makefile,v 1.1 2010/11/06 15:55:01 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/dirac/Makefile,v 1.2 2011/02/02 21:11:11 laffer1 Exp $
 
 PORTNAME=	dirac
 PORTVERSION=	1.0.2
@@ -14,7 +14,7 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
-USE_GNOME=	pkgconfig gnomehack gnometarget
+USE_GNOME=	pkgconfig gnomehack 
 USE_LDCONFIG=	yes
 
 CONFIGURE_ENV?=	CPPFLAGS=-I${LOCALBASE}/include \

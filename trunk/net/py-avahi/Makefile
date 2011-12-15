@@ -2,7 +2,7 @@
 # Date Created:			06 May 2006
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/py-avahi/Makefile,v 1.2 2008/09/17 21:08:12 laffer1 Exp $
 # $FreeBSD: ports/net/py-avahi/Makefile,v 1.16 2008/07/03 21:53:55 mezz Exp $
 #
 
@@ -29,7 +29,7 @@ PLIST=		${.CURDIR}/pkg-plist
 
 AVAHI_SLAVE=	python
 
-USE_GNOME=	gnomehack gnometarget pygtk2
+USE_GNOME=	gnomehack  pygtk2
 USE_PYTHON=	yes
 MAN1=		avahi-bookmarks.1 avahi-discover.1
 

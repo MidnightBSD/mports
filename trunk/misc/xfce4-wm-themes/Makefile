@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/xfce4-wm-themes/Makefile,v 1.2 2009/03/12 23:30:46 ctriv Exp $
+# $MidnightBSD: mports/misc/xfce4-wm-themes/Makefile,v 1.3 2011/02/09 13:29:03 laffer1 Exp $
 # $FreeBSD: ports/misc/xfce4-wm-themes/Makefile,v 1.23 2008/02/12 18:10:58 oliver Exp $
 
 PORTNAME=	xfce4-wm-themes
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_XFCE=	configenv	# to get MASTER_SITE_SUBDIR something has to be defined
 
 .include <bsd.port.mk>

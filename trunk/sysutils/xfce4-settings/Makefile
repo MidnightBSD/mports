@@ -30,7 +30,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget glib20 gtk20 desktopfileutils intltool intlhack \
+USE_GNOME=	 glib20 gtk20 desktopfileutils intltool intlhack \
 		libglade2 pkgconfig
 USE_XFCE=	configenv libexo libgui libutil xfconf
 USE_XORG=	x11 xi

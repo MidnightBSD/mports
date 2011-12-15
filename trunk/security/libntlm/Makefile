@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/libntlm/Makefile,v 1.4 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD: mports/security/libntlm/Makefile,v 1.5 2011/09/04 20:40:05 laffer1 Exp $
 
 PORTNAME=	libntlm
 PORTVERSION=	1.2
@@ -10,7 +10,7 @@ COMMENT=	A library that implement Microsoft's NTLM authentication
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

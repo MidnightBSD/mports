@@ -3,7 +3,7 @@
 # Whom:                 alex
 #
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.127 2008/04/08 09:38:56 mich Exp $
-# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.19 2010/05/05 23:43:38 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.20 2011/02/02 21:11:11 laffer1 Exp $
 #
 
 PORTNAME=	xine
@@ -39,7 +39,7 @@ USE_GETTEXT=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack 
 USE_GMAKE=	yes
 USE_XORG=	x11 xv xinerama
 USE_GL=		gl glu

@@ -2,7 +2,7 @@
 # Date created:        23 February 2001
 # Whom:                George Reid <greid@ukug.uk.freebsd.org>
 #
-# $MidnightBSD: mports/www/dillo/Makefile,v 1.6 2010/05/08 17:17:47 laffer1 Exp $
+# $MidnightBSD: mports/www/dillo/Makefile,v 1.7 2011/09/18 17:01:45 laffer1 Exp $
 # $FreeBSD: ports/www/dillo/Makefile,v 1.36 2006/06/03 02:01:25 mnag Exp $
 #
 # Tunables:
@@ -25,7 +25,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.6:${PORTSDIR}/graphics/png
 
 USE_BZIP2=	yes
-USE_GNOME=	gnometarget gtk12
+USE_GNOME=	 gtk12
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

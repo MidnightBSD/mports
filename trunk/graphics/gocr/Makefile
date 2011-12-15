@@ -3,7 +3,7 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.4 2010/12/08 00:39:42 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.5 2010/12/08 13:30:06 laffer1 Exp $
 #
 
 PORTNAME=	gocr
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	latex:${PORTSDIR}/print/teTeX
 LIB_DEPENDS=	netpbm.1:${PORTSDIR}/graphics/netpbm
 
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-netpbm=${LOCALBASE}
 

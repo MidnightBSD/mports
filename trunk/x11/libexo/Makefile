@@ -2,7 +2,7 @@
 # Date created:		23 October 2004
 # Whom:			Matt Lancereau <ports@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libexo/Makefile,v 1.3 2009/03/11 22:10:06 ctriv Exp $
+# $MidnightBSD: mports/x11/libexo/Makefile,v 1.4 2011/02/12 00:09:09 laffer1 Exp $
 # $FreeBSD: ports/x11/libexo/Makefile,v 1.28 2008/06/06 14:09:03 edwin Exp $
 
 PORTNAME=	libexo
@@ -25,7 +25,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS= yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 gnomehack gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	glib20 gnomehack  gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
 USE_XFCE=	configenv libutil

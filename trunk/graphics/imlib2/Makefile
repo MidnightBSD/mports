@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.7 2010/04/25 23:05:16 laffer1 Exp $
 
 PORTNAME=	imlib2
 PORTVERSION=	1.4.1.000
@@ -16,7 +16,7 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack pkgconfig gnometarget
+USE_GNOME=	gnomehack pkgconfig 
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 USE_LDCONFIG=	yes

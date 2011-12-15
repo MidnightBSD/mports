@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.5 2009/04/13 17:57:49 laffer1 Exp $
+# $MidnightBSD: mports/net-p2p/transmission/Makefile,v 1.6 2010/09/07 23:38:44 laffer1 Exp $
 
 PORTNAME=	transmission
 PORTVERSION=	1.21
@@ -14,7 +14,7 @@ LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME?=	gnometarget intlhack pkgconfig
+USE_GNOME?=	 intlhack pkgconfig
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

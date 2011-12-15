@@ -2,7 +2,7 @@
 # Date created:		17 July 1999
 # Whom:			Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.5 2009/09/20 03:16:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/libdockapp/Makefile,v 1.6 2011/02/02 21:39:27 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/libdockapp/Makefile,v 1.26 2006/05/13 05:00:42 edwin Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	mit
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_XORG=	xext xpm
-USE_GNOME=	gnometarget
+USE_GNOME=	
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--without-font --without-examples

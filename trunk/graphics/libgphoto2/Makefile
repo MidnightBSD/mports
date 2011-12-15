@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libgphoto2/Makefile,v 1.7 2011/06/05 15:19:43 laffer1 Exp $
 
 PORTNAME=	libgphoto2
 PORTVERSION=	2.4.10.1
@@ -14,7 +14,7 @@ LIB_DEPENDS=	usb-0.1.8:${PORTSDIR}/devel/libusb \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_BZIP2=	yes
-USE_GNOME=	gnometarget pkgconfig ltverhack
+USE_GNOME=	 pkgconfig ltverhack
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool libltdl
 LIBTOOLFILES=	configure libgphoto2_port/configure

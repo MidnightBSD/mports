@@ -3,7 +3,7 @@
 # Whom:                 Paul Traina <pst@FreeBSD.org>
 #
 # $FreeBSD: ports/palm/pilot-link/Makefile,v 1.79 2006/09/23 08:21:41 ijliao Exp $
-# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.1 2007/01/24 20:29:12 laffer1 Exp $
+# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.2 2009/07/25 09:19:54 crash Exp $
 #
 
 PORTNAME=	pilot-link
@@ -19,7 +19,7 @@ LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_GETOPT_LONG=yes
-USE_GNOME=	gnometarget gnomehack
+USE_GNOME=	 gnomehack
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${WRKSRC}/popt -I${LOCALBASE}/include
 CONFIGURE_ARGS+=--with-libiconv=${LOCALBASE}  --with-included-popt --enable-conduits \

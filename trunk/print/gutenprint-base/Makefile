@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.1 2009/09/26 22:22:46 laffer1 Exp $
+# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.2 2009/09/26 22:33:44 laffer1 Exp $
 
 PORTNAME?=	gutenprint
 PORTVERSION=	5.1.7
@@ -15,7 +15,7 @@ CONFLICTS=	gimp-print-[0-9]*
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget gtk20
+USE_GNOME=	gnomehack  gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=--with-gimp=no --with-gimp2=no

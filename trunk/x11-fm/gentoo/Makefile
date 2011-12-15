@@ -2,7 +2,7 @@
 # Date created:				12 August 2001
 # Whom:					Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.3 2008/08/20 19:03:28 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/gentoo/Makefile,v 1.4 2008/08/24 19:44:14 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/gentoo/Makefile,v 1.52 2006/08/28 12:01:16 miwi Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=	gpl2
 OPTIONS=	NLS "Native Language Support" on \
 		FAM "File Alteration Monitor Support" off
 
-USE_GNOME=	gnometarget gtk12
+USE_GNOME=	 gtk12
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
