@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/science/cfitsio/Makefile,v 1.2 2009/12/14 23:40:12 laffer1 Exp $
+# $MidnightBSD: mports/science/cfitsio/Makefile,v 1.3 2009/12/28 17:22:29 laffer1 Exp $
 
 PORTNAME=	cfitsio
 PORTVERSION=	3.100
@@ -16,7 +16,7 @@ LIB_DEPENDS=	f2c.2:${PORTSDIR}/lang/f2c
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_GNOME=	gnometarget pkgconfig
+USE_GNOME=	 pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	ac_cv_prog_FC="f2c"
 ALL_TARGET=	shared

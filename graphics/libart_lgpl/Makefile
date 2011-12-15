@@ -2,7 +2,7 @@
 # Date created:		8 July 2001
 # Whom:			Hye-Shik Chang <perky@python.or.kr>
 # 
-# $MidnightBSD: mports/graphics/libart_lgpl/Makefile,v 1.6 2010/02/28 21:18:59 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libart_lgpl/Makefile,v 1.7 2011/02/02 21:04:18 laffer1 Exp $
 # $FreeBSD: ports/graphics/libart_lgpl/Makefile,v 1.34 2006/05/28 13:37:05 pav Exp $
 #
 
@@ -21,7 +21,7 @@ LICENSE=	lgpl
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 

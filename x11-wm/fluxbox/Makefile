@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.12 2010/01/01 17:31:04 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/fluxbox/Makefile,v 1.13 2011/05/15 19:24:52 laffer1 Exp $
 
 PORTNAME=	fluxbox
 PORTVERSION=	1.3.1
@@ -15,7 +15,7 @@ RUN_DEPENDS=	xmessage:${PORTSDIR}/x11/xmessage
 
 USE_XORG=	xextproto xft xpm xrandr
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 

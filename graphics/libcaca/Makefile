@@ -2,7 +2,7 @@
 # Date created:			11 January 2004
 # Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
 #
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.5 2009/09/20 01:47:23 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
 #
 
 PORTNAME=	libcaca
@@ -15,7 +15,7 @@ COMMENT=	Graphics library that outputs text instead of pixels
 LICENSE=	unknown
 # this guy has his own license, gpl and lgpl stuff... ?
 
-USE_GNOME=	gnomehack gnometarget ltverhack pkgconfig
+USE_GNOME=	gnomehack  ltverhack pkgconfig
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

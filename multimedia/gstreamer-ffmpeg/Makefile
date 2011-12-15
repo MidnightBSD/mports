@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.7 2011/09/04 20:16:14 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.8 2011/09/18 02:11:48 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
@@ -18,7 +18,7 @@ CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnometarget gnomelibs
+USE_GNOME=	 gnomelibs
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0

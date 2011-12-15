@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.4 2009/09/20 01:25:48 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	cairomm
 PORTVERSION=	1.8.0
@@ -15,7 +15,7 @@ LIB_DEPENDS=	xml\\+\\+-2.6:${PORTSDIR}/textproc/libxml++26 \
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget ltverhack
+USE_GNOME=	gnomehack  ltverhack
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \
 		AUTOMAKE="${TRUE}" AUTOCONF="${TRUE}" DOXYGEN="${TRUE}"

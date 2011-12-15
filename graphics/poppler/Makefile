@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.8 2009/04/27 23:24:02 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler/Makefile,v 1.9 2011/06/08 23:06:19 laffer1 Exp $
 
 PORTNAME=	poppler
 PORTVERSION=	0.14.5
@@ -16,7 +16,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 RUN_DEPENDS=	poppler-data>0:${PORTSDIR}/graphics/poppler-data
 
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget libxml2 ltverhack
+USE_GNOME=	gnomehack  libxml2 ltverhack
 USE_AUTOTOOLS=	libtool
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes

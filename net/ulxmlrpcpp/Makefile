@@ -3,7 +3,7 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.3 2009/09/20 01:52:28 laffer1 Exp $
+# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.4 2011/02/02 21:14:16 laffer1 Exp $
 #
 
 PORTNAME=	ulxmlrpcpp
@@ -21,7 +21,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack 
 USE_ICONV=	yes
 USE_OPENSSL=	yes
 USE_AUTOTOOLS=	libtool

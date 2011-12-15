@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/fftw3/Makefile,v 1.4 2010/02/27 19:27:16 laffer1 Exp $
+# $MidnightBSD: mports/math/fftw3/Makefile,v 1.5 2010/12/07 00:31:35 laffer1 Exp $
 #
 
 PORTNAME=	fftw3
@@ -19,7 +19,7 @@ FFTW3_FLAVOR?=	default
 FFTW3_SUFX=
 
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_PERL5_BUILD=yes
 USE_LDCONFIG=	yes
 

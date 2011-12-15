@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.8 2010/07/31 21:16:25 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jasper/Makefile,v 1.9 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	jasper
 PORTVERSION=	1.900.1
@@ -16,7 +16,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	libtool
 USE_ZIP=	yes
-USE_GNOME=	gnometarget lthack
+USE_GNOME=	 lthack
 GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.4 2010/03/25 01:32:03 laffer1 Exp $
+# $MidnightBSD: mports/net/boinc-client/Makefile,v 1.5 2011/01/15 02:04:09 laffer1 Exp $
 # $FreeBSD: ports/net/boinc-client/Makefile,v 1.35 2008/08/06 08:29:56 pav Exp $
 
 PORTNAME=	boinc-client
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl
 
 USE_BZIP2=	yes
-USE_GNOME=	gnometarget
+USE_GNOME=	
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.16 2011/09/01 02:21:04 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.17 2011/09/01 02:21:47 laffer1 Exp $
 
 PORTNAME=	cherokee
 PORTVERSION=	1.0.19
@@ -34,7 +34,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely fast and flexible web server
 LICENSE=	gpl2
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_GETTEXT=	yes

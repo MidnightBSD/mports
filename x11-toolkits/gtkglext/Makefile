@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.7 2010/11/20 03:50:08 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtkglext/Makefile,v 1.8 2011/02/02 21:38:57 laffer1 Exp $
 
 PORTNAME=	gtkglext
 PORTVERSION=	1.2.0
@@ -12,7 +12,7 @@ COMMENT=	An OpenGL extension to GTK
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnomeprefix gnometarget gtk20
+USE_GNOME=	gnomehack gnomeprefix  gtk20
 USE_XORG=	x11 xt
 USE_GL=		yes
 USE_GMAKE=	yes

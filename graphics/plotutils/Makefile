@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.6 2011/06/19 14:28:44 laffer1 Exp $
 
 PORTNAME=	plotutils
 PORTVERSION=	2.6
@@ -11,7 +11,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
 
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_MOTIF=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/libijs/Makefile,v 1.4 2011/02/02 21:18:50 laffer1 Exp $
+# $MidnightBSD: mports/print/libijs/Makefile,v 1.5 2011/09/18 20:51:33 laffer1 Exp $
 
 PORTNAME=	libijs
 PORTVERSION=	0.35
@@ -14,7 +14,7 @@ LICENSE=	mit
 
 MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
-USE_GNOME=	gnometarget lthack pkgconfig
+USE_GNOME=	 lthack pkgconfig
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes

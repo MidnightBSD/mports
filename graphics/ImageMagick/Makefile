@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.15 2010/09/06 23:14:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ImageMagick/Makefile,v 1.16 2011/02/02 21:04:17 laffer1 Exp $
 
 PORTNAME=	ImageMagick
 DISTVERSION=	6.6.2-10
@@ -15,7 +15,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 USE_GMAKE=	yes
 USE_PERL5=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_AUTOTOOLS=	libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"

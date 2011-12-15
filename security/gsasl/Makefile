@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/gsasl/Makefile,v 1.8 2011/09/04 20:43:40 laffer1 Exp $
+# $MidnightBSD: mports/security/gsasl/Makefile,v 1.9 2011/09/27 17:26:26 laffer1 Exp $
 
 PORTNAME=	gsasl
 PORTVERSION=	1.6.0
@@ -16,7 +16,7 @@ LIB_DEPENDS=	idn.17:${PORTSDIR}/dns/libidn \
 		gnutls.42:${PORTSDIR}/security/gnutls \
 		ntlm.0:${PORTSDIR}/security/libntlm
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	LDFLAGS="${LDFLAGS}"

@@ -2,7 +2,7 @@
 # Date created:				May 17 2008
 # Whom:	      				Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.5 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD: mports/net/GeoIP/Makefile,v 1.6 2011/09/01 02:08:22 laffer1 Exp $
 #
 
 PORTNAME=	GeoIP
@@ -16,7 +16,7 @@ COMMENT=	Find the country that any IP address or hostname originates from
 LICENSE=	gpl2
 # lgpl 2.1 but has a few gpl2 files
 
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 

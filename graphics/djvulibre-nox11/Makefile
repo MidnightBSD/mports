@@ -1,6 +1,6 @@
 # Date Created:		20 July 1999
 #
-# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.2 2009/09/20 02:43:38 laffer1 Exp $
+# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.3 2010/03/25 01:19:22 laffer1 Exp $
 #
 
 PORTNAME=	djvulibre
@@ -18,7 +18,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_ICONV=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	JPEG_CFLAGS="-I${LOCALBASE}/include" \
 		JPEG_LIBS="-L${LOCALBASE}/lib -ljpeg" \
