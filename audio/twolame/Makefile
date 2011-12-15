@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/twolame/Makefile,v 1.4 2009/12/31 23:18:24 laffer1 Exp $
+# $MidnightBSD: mports/audio/twolame/Makefile,v 1.5 2011/06/15 22:21:05 laffer1 Exp $
 
 PORTNAME=	twolame
 PORTVERSION=	0.3.13
@@ -14,7 +14,7 @@ LIB_DEPENDS=	sndfile.1:${PORTSDIR}/audio/libsndfile
 
 MAKE_JOBS_SAFE=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 

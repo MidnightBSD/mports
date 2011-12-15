@@ -1,5 +1,5 @@
 # $FreeBSD: ports/audio/jack/Makefile,v 1.30 2006/07/07 14:52:52 ahze Exp $
-# $MidnightBSD: mports/audio/jack/Makefile,v 1.10 2010/12/11 02:38:46 laffer1 Exp $
+# $MidnightBSD: mports/audio/jack/Makefile,v 1.11 2010/12/18 06:31:29 laffer1 Exp $
 
 PORTNAME=	jackit
 PORTVERSION=	0.118.0
@@ -27,7 +27,7 @@ CONFIGURE_ARGS+=--enable-portaudio \
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	pkgconfig gnometarget gnomehack
+USE_GNOME=	pkgconfig  gnomehack
 
 MAN1=		jackd.1 jackstart.1
 

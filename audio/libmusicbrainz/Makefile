@@ -2,7 +2,7 @@
 # Date Created:				26 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/audio/libmusicbrainz/Makefile,v 1.2 2008/04/10 03:43:53 ctriv Exp $
+# $MidnightBSD: mports/audio/libmusicbrainz/Makefile,v 1.3 2010/02/27 19:20:58 laffer1 Exp $
 # $FreeBSD: ports/audio/libmusicbrainz/Makefile,v 1.32 2007/06/06 05:59:18 miwi Exp $
 #
 
@@ -21,7 +21,7 @@ LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 CONFLICTS=	musicbrainz-1.*
 
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
