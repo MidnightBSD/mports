@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.5 2009/10/03 03:45:52 laffer1 Exp $ 
+# $MidnightBSD: mports/textproc/libuninameslist/Makefile,v 1.6 2011/02/02 21:23:47 laffer1 Exp $ 
 
 PORTNAME=	libuninameslist
 PORTVERSION=	20080409
@@ -13,7 +13,6 @@ LICENSE=	gpl2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USE_GNOME=	gnometarget
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 ALL_TARGET=	both

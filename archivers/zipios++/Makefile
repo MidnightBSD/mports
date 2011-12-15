@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.5 2009/12/25 17:57:49 laffer1 Exp $
+# $MidnightBSD: mports/archivers/zipios++/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	zipios++
 PORTVERSION=	0.1.5.9
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION}+cvs.2004.02.07.orig
@@ -10,7 +11,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A java.util.zip-like C++ library for reading and writing Zip files
 LICENSE=	gpl2
 
-USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	automake:env
