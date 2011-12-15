@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/textproc/exempi/Makefile,v 1.1 2010/01/24 15:58:39 laffer1 Exp $
+# $MidnightBSD: mports/textproc/exempi/Makefile,v 1.2 2011/02/02 21:23:47 laffer1 Exp $
 
 PORTNAME=	exempi
 PORTVERSION=	2.1.1
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://libopenraw.freedesktop.org/download/
 
@@ -12,7 +13,7 @@ LICENSE=	bsd3
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	ltverhack gnomehack gnometarget
+USE_GNOME=	ltverhack gnomehack
 CONFIGURE_ARGS=	--enable-unittest=no
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib" \

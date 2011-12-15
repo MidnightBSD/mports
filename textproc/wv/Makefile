@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/wv/Makefile,v 1.4 2010/12/04 02:02:35 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.5 2011/02/02 21:23:47 laffer1 Exp $
 
 PORTNAME=	wv
 PORTVERSION=	1.2.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.abisource.com/downloads/wv/${PORTVERSION}/
 
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	wmf.2:${PORTSDIR}/graphics/libwmf
 RUN_DEPENDS=	lynx:${PORTSDIR}/www/lynx
 
-USE_GNOME=	gnometarget libgsf
+USE_GNOME=	libgsf
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 CPPFLAGS+=	-I${LOCALBASE}/include

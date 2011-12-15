@@ -2,13 +2,13 @@
 # Date created:			Nov 22, 2001
 # Whom:				ijliao
 #
-# $MidnightBSD: mports/textproc/redland/Makefile,v 1.1 2008/10/17 18:01:53 laffer1 Exp $
+# $MidnightBSD: mports/textproc/redland/Makefile,v 1.2 2010/08/14 06:24:50 laffer1 Exp $
 # $FreeBSD: ports/textproc/redland/Makefile,v 1.33 2008/08/10 16:20:02 miwi Exp $
 #
 
 PORTNAME=	redland
 PORTVERSION=	1.0.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE} \
 		http://librdf.org/dist/source/
@@ -23,7 +23,7 @@ LIB_DEPENDS=	raptor.3:${PORTSDIR}/textproc/raptor
 USE_BDB=	yes
 WITH_BDB_HIGHEST=	yes
 INVALID_BDB_VER=2
-USE_GNOME=	gnomehack gnometarget lthack pkgconfig
+USE_GNOME=	gnomehack lthack pkgconfig
 USE_OPENSSL=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

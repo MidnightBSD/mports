@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/astro/libnova/Makefile,v 1.4 2009/12/28 22:55:44 laffer1 Exp $
+# $MidnightBSD: mports/astro/libnova/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	libnova
 PORTVERSION=	0.13.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/V%20${PORTVERSION}
 
@@ -11,7 +11,7 @@ COMMENT=	Astronomical Calculation Library
 LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnometarget lthack
+USE_GNOME=	lthack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 

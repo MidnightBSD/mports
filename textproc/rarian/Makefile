@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.3 2008/06/13 14:20:48 laffer1 Exp $
+# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.4 2010/08/01 05:38:35 laffer1 Exp $
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -26,7 +26,7 @@ CONFLICTS=	scrollkeeper-[0-9]*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehier gnometarget gnomehack libxslt
+USE_GNOME=	gnomehier gnomehack libxslt
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

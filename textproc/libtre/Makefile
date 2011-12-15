@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/textproc/libtre/Makefile,v 1.1 2011/04/30 16:52:25 laffer1 Exp $
 # $FreeBSD: ports/textproc/libtre/Makefile,v 1.57 2011/03/26 01:39:07 bf Exp $
 
 PORTNAME=	libtre
 PORTVERSION=	0.8.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	http://laurikari.net/tre/ \
 		LOCAL/bf
@@ -13,7 +14,7 @@ COMMENT=	A lightweight fully POSIX compliant regexp matching library
 LICENSE=	bsd2
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack pkgconfig
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS+=	--enable-static
 USE_LDCONFIG=	yes

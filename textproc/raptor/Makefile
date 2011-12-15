@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.4 2010/05/31 20:30:18 laffer1 Exp $
+# $MidnightBSD: mports/textproc/raptor/Makefile,v 1.5 2010/05/31 20:32:18 laffer1 Exp $
 
 PORTNAME=	raptor
 PORTVERSION=	1.4.21
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/librdf/${PORTNAME}/${PORTVERSION} \
 		http://download.librdf.org/source/
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
 
-USE_GNOME=	gnomehack gnometarget libxml2
+USE_GNOME=	gnomehack libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-xml2-config=${LOCALBASE}/bin/xml2-config \
 		--with-curl-config=${LOCALBASE}/bin/curl-config \
