@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.7 2011/07/16 15:36:45 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.8 2011/09/17 01:36:14 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.4
-PORTREVISION=	1
+PORTVERSION=	2.8.6
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/
 
