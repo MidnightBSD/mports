@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# $MidnightBSD$
 # $FreeBSD: ports/databases/postgresql90-server/files/postgresql.in,v 1.4 2010/03/27 00:12:50 dougb Exp $
 #
 # PROVIDE: postgresql
