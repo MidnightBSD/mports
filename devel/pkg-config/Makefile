@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/pkg-config/Makefile,v 1.7 2010/09/06 20:52:07 crash Exp $
+# $MidnightBSD: mports/devel/pkg-config/Makefile,v 1.8 2011/07/16 14:53:12 laffer1 Exp $
 # $FreeBSD: ports/devel/pkg-config/Makefile,v 1.48 2006/09/11 21:34:02 marcus Exp $
 
 PORTNAME=	pkg-config
 PORTVERSION=	0.25
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://pkgconfig.freedesktop.org/releases/
 DIST_SUBDIR=	gnome2
@@ -15,7 +15,6 @@ LICENSE=	gpl2
 USE_CSTD=	gnu89
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnometarget
 
 MAN1=		pkg-config.1
 
