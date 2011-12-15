@@ -2,13 +2,14 @@
 # Date created:		Sun May 22 17:22:53 CEST 2005
 # Whom:			Koop Mast <kwm@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/glade3/Makefile,v 1.6 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/glade3/Makefile,v 1.7 2011/09/03 15:37:10 laffer1 Exp $
 # $FreeBSD: ports/devel/glade3/Makefile,v 1.9 2008/01/13 17:30:53 kwm Exp $
 #   $MCom: ports/devel/glade3/Makefile,v 1.38 2007/09/17 15:59:36 ahze Exp $
 #
 
 PORTNAME=	glade3
 PORTVERSION=	3.7.3
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -20,7 +21,7 @@ LICENSE=	gpl2
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 libxml2 gnomeprefix gnomehack \
+USE_GNOME=	gtk20 libxml2 gnomeprefix gnomehack \
 		gnomedocutils desktopfileutils ltverhack:10
 WANT_GNOME=	yes
 USE_GETTEXT=	yes

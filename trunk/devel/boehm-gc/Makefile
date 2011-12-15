@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.3 2009/09/20 01:14:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/boehm-gc/Makefile,v 1.4 2011/02/02 20:17:32 laffer1 Exp $
 
 PORTNAME=	boehm-gc
 PORTVERSION=	6.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.hpl.hp.com/personal/Hans_Boehm/gc/gc_source/
 DISTNAME=	gc${PORTVERSION:S/.a/alpha/}
@@ -13,7 +13,6 @@ LICENSE=	other
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-USE_GNOME=	gnometarget
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-cplusplus
 OPTIONS=	REDIRECT "Define malloc(3)-family replacements" off \

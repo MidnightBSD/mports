@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/oniguruma/Makefile,v 1.1 2009/08/31 18:56:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/oniguruma/Makefile,v 1.2 2009/10/15 01:33:18 laffer1 Exp $
 
 PORTNAME=	oniguruma
 PORTVERSION=	2.5.8
+PORTREVISION=	1
 CATEGORIES=	devel textproc
 MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/:onig \
 		http://www.SpringDaemons.com/stas/:ruby
@@ -21,7 +22,6 @@ CONFLICTS=	oniguruma-4.*
 
 FAKE_OPTS=	prefixhack
 
-USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 DOCS=		HISTORY README doc/*
 

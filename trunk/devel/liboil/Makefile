@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/devel/liboil/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/liboil/Makefile,v 1.7 2011/05/21 21:33:37 laffer1 Exp $
 # $FreeBSD: ports/devel/liboil/Makefile,v 1.25 2007/03/24 21:50:39 marcus Exp $
 
 PORTNAME=	liboil
 PORTVERSION=	0.3.17
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://liboil.freedesktop.org/download/
 
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Library of optimized inner loops
 LICENSE=	bsd2
 
-USE_GNOME=	pkgconfig gnomehack gnometarget ltverhack
+USE_GNOME=	pkgconfig gnomehack ltverhack
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
