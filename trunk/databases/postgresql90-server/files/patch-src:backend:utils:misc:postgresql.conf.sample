@@ -21,7 +21,7 @@
  #track_functions = none			# none, pl, all
  #track_activity_query_size = 1024 	# (change requires restart)
 +
-+# On FreeBSD, this is a performance hog, so keep it off if you need speed
++# On BSD, this is a performance hog, so keep it off if you need speed
 +update_process_title = off
  #update_process_title = on
  #stats_temp_directory = 'pg_stat_tmp'

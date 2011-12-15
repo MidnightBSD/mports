@@ -60,7 +60,7 @@ You can then start PostgreSQL by running:
 
 For postmaster settings, see ~pgsql/data/postgresql.conf
 
-NB. FreeBSD's PostgreSQL port logs to syslog by default
+NB. BSD's PostgreSQL port logs to syslog by default
     See ~pgsql/data/postgresql.conf for more info
 
 ======================================================================
