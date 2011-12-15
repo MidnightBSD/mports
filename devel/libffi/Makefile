@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/libffi/Makefile,v 1.3 2010/01/06 03:39:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/libffi/Makefile,v 1.4 2011/05/21 21:28:04 laffer1 Exp $
 
 PORTNAME=	libffi
 PORTVERSION=	3.0.9
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://sourceware.org/pub/libffi/
 
@@ -11,7 +12,7 @@ LICENSE=	mit
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack pkgconfig
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 INFO=		libffi

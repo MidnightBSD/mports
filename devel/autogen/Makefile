@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/autogen/Makefile,v 1.4 2008/08/24 19:22:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/autogen/Makefile,v 1.5 2009/11/09 00:57:25 laffer1 Exp $
 
 PORTNAME=	autogen
 PORTVERSION=	5.9.7
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/AutoGen/AutoGen%20${PORTVERSION} \
 		${MASTER_SITE_GNU:S/$/:gnu/}
@@ -14,7 +15,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	guile.20:${PORTSDIR}/lang/guile
 
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack gnometarget libxml2
+USE_GNOME=	gnomehack libxml2
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libguile=yes --with-libxml2=yes --datadir=${PREFIX}/share

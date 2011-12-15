@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/py-notify/Makefile,v 1.1 2011/06/11 02:33:00 laffer1 Exp $
 # $FreeBSD: ports/devel/py-notify/Makefile,v 1.8 2010/03/28 06:33:30 dinoex Exp $
 
 PORTNAME=	notify
 PORTVERSION=	0.1.1
+PORTREVISION=	1
 DISTVERSIONPREFIX=python-
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.galago-project.org/files/releases/source/notify-python/
@@ -16,7 +17,7 @@ LIB_DEPENDS=	notify.1:${PORTSDIR}/devel/libnotify
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnometarget pygtk2
+USE_GNOME=	gnomehack pygtk2
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
 
