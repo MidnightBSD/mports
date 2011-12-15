@@ -1,5 +1,5 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.1 2011/05/28 01:47:03 laffer1 Exp $
 
 PORTNAME?=	postgresql
 DISTVERSION?=	9.0.3
@@ -81,7 +81,6 @@ CONFIGURE_ARGS+=--with-openssl
 .include <bsd.port.pre.mk>
 
 .if !defined(SLAVE_ONLY)
-OPTIONS+=	DTRACE "Build with DTrace probes (server only)" off
 OPTIONS+=	PAM "Build with PAM support (server only)" off
 OPTIONS+=	LDAP "Build with LDAP authentication support" off
 OPTIONS+=	MIT_KRB5 "Build with MIT's kerberos support" off
@@ -109,11 +108,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-icu4
 .  endif
 
 PATCH_DIST_STRIP=-p1
-
-.  if defined(WITH_DTRACE)
-CONFIGURE_ARGS+=--enable-dtrace
-LDFLAGS+=-lelf
-.  endif
 
 .  if defined(WITH_PAM)
 CONFIGURE_ARGS+=--with-pam
