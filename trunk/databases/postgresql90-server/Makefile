@@ -1,5 +1,5 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.2 2011/12/15 00:02:21 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.3 2011/12/15 01:01:04 laffer1 Exp $
 
 PORTNAME?=	postgresql
 DISTVERSION?=	9.0.3
@@ -329,10 +329,7 @@ do-install:
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${DOCSDIR} ;\
-		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${PKGNAMESUFFIX} ;\
-		${ECHO} "======================================================================" ;\
-		${CAT} ${PKGMESSAGE} ;\
-		${ECHO} "======================================================================" ;\
+		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${PKGNAMESUFFIX}
 	fi
 .endif # !NO_BUILD
 
