@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.4 2011/02/02 20:03:23 laffer1 Exp $
+# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.5 2011/06/18 02:44:05 laffer1 Exp $
 
 PORTNAME=	pulseaudio
 PORTVERSION=	0.9.22
@@ -16,7 +16,7 @@ LIB_DEPENDS=	samplerate.1:${PORTSDIR}/audio/libsamplerate \
 		execinfo:${PORTSDIR}/devel/libexecinfo \
 		ck-connector.0:${PORTSDIR}/sysutils/consolekit
 
-USE_GNOME=	gnometarget gnomehack glib20 intltool ltverhack
+USE_GNOME=	 gnomehack glib20 intltool ltverhack
 USE_XORG=	x11 sm xtst ice
 USE_LDCONFIG=	yes
 USE_GETTEXT=	yes

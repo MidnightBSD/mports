@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.6 2009/03/02 03:15:47 laffer1 Exp $
+# $MidnightBSD: mports/audio/libsndfile/Makefile,v 1.7 2010/02/27 19:56:13 laffer1 Exp $
 
 PORTNAME=	libsndfile
 PORTVERSION=	1.0.20
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reading and writing files containing sampled sound (like WAV or AIFF)
 LICENSE=	gpl2
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack  pkgconfig
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 CONFIGURE_ARGS=	--disable-gcc-pipe \

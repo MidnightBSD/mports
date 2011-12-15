@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/speex/Makefile,v 1.8 2010/11/06 14:03:43 laffer1 Exp $
+# $MidnightBSD: mports/audio/speex/Makefile,v 1.9 2011/02/02 20:03:23 laffer1 Exp $
 
 PORTNAME=	speex
 DISTVERSION=	1.2rc1
@@ -17,7 +17,7 @@ CONFLICTS=	speex-devel-[0-9]*
 
 MAKE_JOBS_SAFE=	yes
 
-USE_GNOME=	gnomehack gnometarget ltverhack
+USE_GNOME=	gnomehack  ltverhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
