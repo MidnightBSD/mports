@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.9 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.10 2011/05/13 13:15:03 laffer1 Exp $
 
 PORTNAME=	libiconv
 PORTVERSION=	1.13.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -14,7 +14,6 @@ LICENSE=	lgpl
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_CSTD=	gnu89
-USE_GNOME=	gnometarget
 LIBTOOLFILES=	configure libcharset/configure
 CONFIGURE_ARGS=	--enable-static \
 		--without-libintl-prefix \

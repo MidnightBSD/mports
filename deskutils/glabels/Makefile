@@ -2,7 +2,7 @@
 # Date created:		29 September 2002
 # Whom:			Martin Klaffenboeck <martin.klaffenboeck@gmx.at>
 #
-# $MidnightBSD: mports/deskutils/glabels/Makefile,v 1.6 2009/09/20 00:37:06 laffer1 Exp $
+# $MidnightBSD: mports/deskutils/glabels/Makefile,v 1.7 2011/02/02 20:12:29 laffer1 Exp $
 # $FreeBSD: ports/deskutils/glabels/Makefile,v 1.41 2007/05/19 20:01:34 flz Exp $
 #
 
@@ -17,7 +17,7 @@ COMMENT=	A program to create labels and business cards
 LICENSE=	gpl2
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack gnomeprefix gnometarget libgnomeui \
+USE_GNOME=	gnomehack gnomeprefix  libgnomeui \
 		desktopfileutils intlhack ltverhack
 WANT_GNOME=	yes
 USE_GMAKE=	yes

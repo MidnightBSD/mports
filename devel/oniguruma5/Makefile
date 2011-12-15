@@ -2,7 +2,7 @@
 # Date created:	18. September 2007
 # Whom:		Stevan Tiefert
 #
-# $MidnightBSD: mports/devel/oniguruma5/Makefile,v 1.5 2011/03/08 21:43:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/oniguruma5/Makefile,v 1.6 2011/05/11 14:05:45 laffer1 Exp $
 #
 
 PORTNAME=	oniguruma
@@ -18,7 +18,6 @@ COMMENT=	Oniguruma is a regular expressions library
 LICENSE=	bsd2
 
 CONFLICTS=	oniguruma-2.*
-USE_GNOME=	gnometarget
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 DOCS=		HISTORY README doc/*

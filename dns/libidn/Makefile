@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.6 2010/09/18 18:21:07 laffer1 Exp $
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.7 2011/05/15 22:01:48 laffer1 Exp $
 
 PORTNAME=	libidn
 PORTVERSION=	1.19
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Internationalized Domain Names command line tool
 LICENSE=	gpl3
 
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack pkgconfig
 USE_ICONV=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
