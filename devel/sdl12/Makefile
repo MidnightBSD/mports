@@ -2,12 +2,13 @@
 # Date created:				1 April 2000
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.7 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/sdl12/Makefile,v 1.8 2011/08/20 13:40:57 laffer1 Exp $
 # $FreeBSD: ports/devel/sdl12/Makefile,v 1.106 2007/05/19 20:03:46 flz Exp $
 #
 
 PORTNAME=	sdl
 PORTVERSION=	1.2.13
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.libsdl.org/release/
@@ -23,7 +24,7 @@ USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WANT_GNOME=	yes
-USE_GNOME=	gnomehack gnometarget pkgconfig
+USE_GNOME=	gnomehack pkgconfig
 USE_ICONV=	yes
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --exec-prefix=${PREFIX} \
 			--datadir=${PREFIX}/share

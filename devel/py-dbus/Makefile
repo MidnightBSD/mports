@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.4 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-dbus/Makefile,v 1.5 2011/06/11 02:15:27 laffer1 Exp $
 # $FreeBSD: ports/devel/py-dbus/Makefile,v 1.22 2007/03/20 22:11:54 pav Exp $
 
 PORTNAME=	dbus
 PORTVERSION=	0.83.2
+PORTREVISION=	1
 CATEGORIES=	devel gnome python
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +16,7 @@ LICENSE=	gpl2
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GETTEXT=	yes
-USE_GNOME=	gnomehack gnometarget
+USE_GNOME=	gnomehack
 USE_PYTHON=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool

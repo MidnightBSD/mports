@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/devel/fam/Makefile,v 1.3 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/fam/Makefile,v 1.4 2011/05/21 21:19:50 laffer1 Exp $
 # $FreeBSD: ports/devel/fam/Makefile,v 1.35 2008/08/20 00:56:36 ade Exp $
 
 PORTNAME=	fam
 PORTVERSION=	2.6.10
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://oss.sgi.com/projects/fam/download/
 DIST_SUBDIR=	${PORTNAME}
@@ -16,7 +17,6 @@ CFLAGS+=	-Wno-deprecated
 USE_AUTOTOOLS=	aclocal automake autoconf libtool
 AUTOMAKE_ARGS=	-c -a
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget
 USE_LDCONFIG=	yes
 ACLOCAL_ARGS=	-I "${ACLOCAL_DIR}" -I ${LOCALBASE}/share/aclocal
 SUB_FILES=	pkg-message
