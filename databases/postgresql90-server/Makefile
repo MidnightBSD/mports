@@ -1,5 +1,5 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.1 2011/05/28 01:47:03 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.2 2011/12/15 00:02:21 laffer1 Exp $
 
 PORTNAME?=	postgresql
 DISTVERSION?=	9.0.3
@@ -299,7 +299,7 @@ PKGMESSAGE=	${WRKSRC}/pkg-message${PKGNAMESUFFIX}
 .endif
 
 .if defined(SERVER_ONLY)
-pre-su-install:
+pre-install:
 	@ ${SETENV} PKG_PREFIX=${FAKE_DESTDIR}${PREFIX} PGUSER=${PGUSER} PGGROUP=${PGGROUP} \
 		${SH} ${PKGINSTALL} ${PORTNAME} PRE-INSTALL
 .endif
