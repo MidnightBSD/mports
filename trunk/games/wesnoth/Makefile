@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.7 2009/10/25 19:30:47 laffer1 Exp $
+# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.8 2010/05/08 02:25:37 laffer1 Exp $
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.4.7
@@ -15,7 +15,7 @@ LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 USE_SDL=	image mixer net
-USE_GNOME=	gnometarget
+USE_GNOME=	
 USE_GMAKE=	yes
 WANT_GNOME=	yes
 USE_BZIP2=	yes

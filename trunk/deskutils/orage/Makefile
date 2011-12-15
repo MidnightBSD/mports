@@ -2,7 +2,7 @@
 # Date created:		2003-01-14
 # Whom:			Matt Lancereau <matt@rimasec.net>
 #
-# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.2 2009/03/12 05:54:12 ctriv Exp $
+# $MidnightBSD: mports/deskutils/orage/Makefile,v 1.3 2011/02/09 13:34:18 laffer1 Exp $
 # $FreeBSD: ports/deskutils/orage/Makefile,v 1.12 2008/06/06 13:18:27 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ INSTALLS_ICONS= yes
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnometarget gtk20 intltool intlhack pkgconfig
+USE_GNOME=	 gtk20 intltool intlhack pkgconfig
 USE_XFCE=	configenv libgui panel
 USE_XORG=	xext xrender xinerama xi xrandr xcursor xcomposite xdamage x11 \
 		xfixes
