@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.12 2010/06/01 23:18:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.13 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	nasm
-PORTVERSION=	2.08.01
+PORTVERSION=	2.09.10
 PORTEPOCH=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.nasm.us/pub/nasm/releasebuilds/${PORTVERSION}/
