@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/xdg-utils/Makefile,v 1.1 2010/01/09 23:34:03 laffer1 Exp $
 
 PORTNAME=	xdg-utils
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://portland.freedesktop.org/download/
 EXTRACT_SUFX=	.tgz
