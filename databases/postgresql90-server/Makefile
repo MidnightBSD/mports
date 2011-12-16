@@ -1,8 +1,9 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.3 2011/12/15 01:01:04 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.4 2011/12/15 01:03:29 laffer1 Exp $
 
 PORTNAME?=	postgresql
-DISTVERSION?=	9.0.3
+DISTVERSION?=	9.0.5
+PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${DISTVERSION}
@@ -13,7 +14,9 @@ COMMENT?=	The most advanced open-source database available anywhere
 LICENSE=	mit
 
 CONFLICTS?=	${PORTNAME}-client-[78]* \
-		${PORTNAME}${PKGNAMESUFFIX}-[78]*
+		${PORTNAME}${PKGNAMESUFFIX}-[78]* \
+		${PORTNAME}-client-9.[1-9]* \
+		${PORTNAME}${PKGNAMESUFFIX}-9.[1-9]*
 
 WRKSRC=		${WRKDIR}/postgresql-${DISTVERSION}
 DIST_SUBDIR=	postgresql
@@ -30,16 +33,16 @@ GNU_CONFIGURE=	YES
 .undef GNU_CONFIGURE
 .endif
 
-PGUSER=		pgsql
-PGGROUP=	pgsql
+PG_USER?=	pgsql
+PG_GROUP?=	${PG_USER}
+PG_UID?=	70
 
 LDFLAGS+=	-L${LOCALBASE}/lib
 INCLUDES+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
 		--enable-thread-safety
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}" \
-		INCLUDES="${INCLUDES}" \
+CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
 
@@ -56,7 +59,14 @@ INSTALL_DIRS?=	${BUILD_DIRS}
 SERVER_ONLY=	yes
 USE_RC_SUBR=	postgresql
 USE_PGSQL=	yes
-WANT_PGSQL_VER=	${PORTVERSION:C/([0-9][0-9]*)\.([0-9][0-9]*).*/\1\2/g}
+WANT_PGSQL_VER=	${DISTVERSION:C/([0-9][0-9]*)\.([0-9][0-9]*).*/\1\2/g}
+USERS?=		${PG_USER}
+.if (${USERS} != "pgsql")
+UID_FILES+=	${WRKDIR}/pguid
+GID_FILES+=	${WRKDIR}/pggid
+.endif
+GROUPS?=	${PG_GROUP}
+SUB_FILES+=	502.pgsql
 .endif
 
 .if !defined(SLAVE_ONLY)
@@ -68,18 +78,6 @@ MAKE_ENV=	PATH=${PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 .endif
 
-# Cannot check this with standard OPTION due to a catch-22.
-# USE_OPENSSL must precede bsd.port.pre.mk, but then we don't know
-# what OPTIONS are set.
-#
-# If you *don't* want SSL, set WITHOUT_SSL=YES when making
-.if !defined(WITHOUT_SSL)
-USE_OPENSSL=	yes
-CONFIGURE_ARGS+=--with-openssl
-.endif
-
-.include <bsd.port.pre.mk>
-
 .if !defined(SLAVE_ONLY)
 OPTIONS+=	PAM "Build with PAM support (server only)" off
 OPTIONS+=	LDAP "Build with LDAP authentication support" off
@@ -89,7 +87,7 @@ OPTIONS+=	OPTIMIZED_CFLAGS "Builds with compiler optimizations (-O3)" off
 OPTIONS+=	XML "Build with XML data type (server)" on
 OPTIONS+=	TZDATA "Use internal timezone database (server)" on
 OPTIONS+=	DEBUG "Builds with debugging symbols" off
-OPTIONS+=	GSSAPI "BUild with GSSAPI support" on
+OPTIONS+=	GSSAPI "Build with GSSAPI support" off
 
 # See http://people.freebsd.org/~girgen/postgresql-icu/README.html for more info
 OPTIONS+=	ICU	"Use ICU for unicode collation (server)" off
@@ -97,7 +95,17 @@ OPTIONS+=	ICU	"Use ICU for unicode collation (server)" off
 # See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/76999 for more info
 # (requires dump/restore if modified.)
 OPTIONS+=	INTDATE "Builds with 64-bit date/time type (server)" on
+OPTIONS+=	SSL "Build with OpenSSL support" on
+.endif # !SLAVE_ONLY
 
+.include <bsd.mport.options.mk>
+
+.if !defined(WITHOUT_SSL)
+USE_OPENSSL=  yes
+CONFIGURE_ARGS+=--with-openssl
+.endif
+
+.if !defined(SLAVE_ONLY)
 .  if (defined(SERVER_ONLY) && defined(WITH_ICU)) || make(makesum)
 USE_AUTOTOOLS=	autoconf
 CONFIGURE_ARGS+=--with-icu
@@ -106,6 +114,11 @@ PATCHFILES+=	pg-900-icu-2010-09-19.diff.gz:icu
 LIB_DEPENDS+=	icudata.46:${PORTSDIR}/devel/icu
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-icu4
 .  endif
+.endif # !SLAVE_ONLY
+
+.include <bsd.port.pre.mk>
+
+.if !defined(SLAVE_ONLY)
 
 PATCH_DIST_STRIP=-p1
 
@@ -156,13 +169,22 @@ INSTALL_TARGET=	install
 INSTALL_TARGET=	install-strip
 .  endif
 
-.if (${OSVERSION} >= 700000) && !defined(WITHOUT_GSSAPI)
+.if !defined(WITHOUT_GSSAPI)
 CONFIGURE_ARGS+=--with-gssapi
+.if !defined(WITH_MIT_KRB5) && !defined(WITH_HEIMDAL_KRB5)
+# Kerberos libraries will pull the proper GSSAPI library
+# via linker dependencies, but otherwise we must specify
+# it explicitely: ld --as-needed is used for compilation,
+# so configure's -lgssapi_krb5 won't go.
+LDFLAGS+=	-lgssapi
+.endif
+.else
+CONFIGURE_ARGS+=--without-gssapi
 .endif
 
 .  if defined(WITH_MIT_KRB5)
 .    if exists(/usr/lib/libkrb5.so) || exists(/usr/bin/krb5-config)
-BROKEN=		"You must remove heimdal's /usr/bin/krb5-config and /usr/lib/libkrb5.so*, and set NO_KERBEROS=true in /etc/make.conf to build successfully with MIT-KRB"
+BROKEN=		You must remove heimdal's /usr/bin/krb5-config and /usr/lib/libkrb5.so*, and set NO_KERBEROS=true in /etc/make.conf to build successfully with MIT-KRB
 .    endif
 # Allow defining a home built MIT Kerberos by setting KRB5_HOME
 .    if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.a) && exists(${KRB5_HOME}/bin/krb5-config)
@@ -272,9 +294,14 @@ MAN7=		ABORT.7 ALTER_AGGREGATE.7 ALTER_CONVERSION.7 ALTER_DATABASE.7 \
 		SAVEPOINT.7 VALUES.7 WITH.7
 .endif
 
+PLIST_SUB+=	PG_USER=$(PG_USER)
+SUB_LIST+=	PG_GROUP=$(PG_GROUP) \
+		PG_USER=$(PG_USER) \
+		PG_UID=$(PG_UID)
+
 .if defined(SERVER_ONLY)
 pre-everything::
-	@${SH} ${PKGINSTALL} ${PORTNAME} BACKUPWARNING
+	@${SH} ${PKGINSTALL} ${PORTNAME} PRE-INSTALL
 .endif
 
 .if !defined(NO_BUILD)
@@ -296,12 +323,11 @@ do-build:
 SUB_FILES+=	pkg-message${PKGNAMESUFFIX}
 PKGMESSAGE=	${WRKSRC}/pkg-message${PKGNAMESUFFIX}
 .  endif
-.endif
-
-.if defined(SERVER_ONLY)
-pre-install:
-	@ ${SETENV} PKG_PREFIX=${FAKE_DESTDIR}${PREFIX} PGUSER=${PGUSER} PGGROUP=${PGGROUP} \
-		${SH} ${PKGINSTALL} ${PORTNAME} PRE-INSTALL
+.  if exists(${FILESDIR}/pkg-install${PKGNAMESUFFIX}.in)
+SUB_FILES+=	pkg-install${PKGNAMESUFFIX}
+PLIST_SUB+=	PG_USER=$(PG_USER)
+PKGINSTALL=	${WRKDIR}/pkg-install${PKGNAMESUFFIX}
+.  endif
 .endif
 
 .if !defined(NO_BUILD)
@@ -313,6 +339,12 @@ post-patch:
 		${WRKSRC}/configure.in
 .  endif
 
+.  if defined(SERVER_ONLY) && (${PG_USER} != "pgsql")
+pre-install:
+	@${SED} -n s,pgsql,${PG_USER},gp ${PORTSDIR}/UIDs > ${WRKDIR}/pguid
+	@${SED} -n s,pgsql,${PG_GROUP},gp ${PORTSDIR}/GIDs > ${WRKDIR}/pggid
+.  endif
+
 do-install:
 	@for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
@@ -321,7 +353,7 @@ do-install:
 .  if defined(SERVER_ONLY)
 	@ ${MKDIR} ${PREFIX}/share/postgresql ;\
 	${MKDIR} ${PREFIX}/etc/periodic/daily ;\
-	${INSTALL_SCRIPT} ${FILESDIR}/502.pgsql \
+	${INSTALL_SCRIPT} ${WRKDIR}/502.pgsql \
 			${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
@@ -329,7 +361,7 @@ do-install:
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${DOCSDIR} ;\
-		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${PKGNAMESUFFIX}
+		${INSTALL_DATA} ${PKGMESSAGE} ${DOCSDIR}/README${PKGNAMESUFFIX} ;\
 	fi
 .endif # !NO_BUILD
 
