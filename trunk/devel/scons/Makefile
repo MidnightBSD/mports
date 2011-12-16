@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/scons/Makefile,v 1.4 2010/06/04 23:10:24 laffer1 Exp $
+# $MidnightBSD: mports/devel/scons/Makefile,v 1.5 2011/03/11 22:24:11 laffer1 Exp $
 # $FreeBSD: ports/devel/scons/Makefile,v 1.29 2007/07/30 09:41:26 alexbl Exp $
 
 PORTNAME=	scons
-PORTVERSION=	1.3.0
-PORTREVISION=	1
+PORTVERSION=	2.0.1
+PORTREVISION=	0
 CATEGORIES=	devel python
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
