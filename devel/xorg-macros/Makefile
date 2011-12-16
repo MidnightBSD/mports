@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/xorg-macros/Makefile,v 1.2 2011/05/17 03:41:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/xorg-macros/Makefile,v 1.3 2011/07/16 14:46:48 laffer1 Exp $
 
 PORTNAME=	xorg-macros
-PORTVERSION=	1.11.0
+PORTVERSION=	1.15.0
 CATEGORIES=	devel x11
 DISTNAME=	util-macros-$(PORTVERSION)
 
