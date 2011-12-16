@@ -1,6 +1,6 @@
 #! /bin/sh
 
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql90-server/pkg-install-server,v 1.2 2011/12/15 13:36:43 laffer1 Exp $
 # $FreeBSD: ports/databases/postgresql90-server/pkg-install-server,v 1.7 2008/02/18 12:55:02 girgen Exp $
 
 PATH=/bin:/usr/bin:/usr/sbin
@@ -25,7 +25,7 @@ PRE-INSTALL)
 	backupwarning
 	PGUSER=${PGUSER:-pgsql}
 	PGGROUP=${PGGROUP:-pgsql}
-	DB_DIR=${PKG_PREFIX}/${PGUSER}
+	DB_DIR=/usr/local/${PGUSER}
 	UID=70
 	GID=70
 

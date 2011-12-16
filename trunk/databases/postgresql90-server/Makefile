@@ -1,5 +1,5 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.4 2011/12/15 01:03:29 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.5 2011/12/16 01:56:58 laffer1 Exp $
 
 PORTNAME?=	postgresql
 DISTVERSION?=	9.0.5
@@ -325,7 +325,7 @@ PKGMESSAGE=	${WRKSRC}/pkg-message${PKGNAMESUFFIX}
 .  endif
 .  if exists(${FILESDIR}/pkg-install${PKGNAMESUFFIX}.in)
 SUB_FILES+=	pkg-install${PKGNAMESUFFIX}
-PLIST_SUB+=	PG_USER=$(PG_USER)
+PLIST_SUB+=	PG_USER=$(PG_USER) LOCALBASE=${LOCALBASE}
 PKGINSTALL=	${WRKDIR}/pkg-install${PKGNAMESUFFIX}
 .  endif
 .endif
