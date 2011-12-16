@@ -47,6 +47,10 @@ share/postgresql/recovery.conf.sample
 share/postgresql/sql_features.txt
 share/postgresql/system_views.sql
 %%GETTEXT%%share/locale/cs/LC_MESSAGES/initdb-9.0.mo
+%%GETTEXT%%share/locale/cs/LC_MESSAGES/pg_controldata-9.0.mo
+%%GETTEXT%%share/locale/cs/LC_MESSAGES/pg_ctl-9.0.mo
+%%GETTEXT%%share/locale/cs/LC_MESSAGES/pg_resetxlog-9.0.mo
+%%GETTEXT%%share/locale/cs/LC_MESSAGES/plpgsql-9.0.mo
 %%GETTEXT%%share/locale/de/LC_MESSAGES/initdb-9.0.mo
 %%GETTEXT%%share/locale/de/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/de/LC_MESSAGES/pg_ctl-9.0.mo
@@ -81,6 +85,13 @@ share/postgresql/system_views.sql
 %%GETTEXT%%share/locale/ko/LC_MESSAGES/pg_ctl-9.0.mo
 %%GETTEXT%%share/locale/ko/LC_MESSAGES/pg_resetxlog-9.0.mo
 %%GETTEXT%%share/locale/ko/LC_MESSAGES/plpgsql-9.0.mo
+%%GETTEXT%%share/locale/ko/LC_MESSAGES/postgres-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/initdb-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/pg_controldata-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/pg_ctl-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/pg_resetxlog-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/plpgsql-9.0.mo
+%%GETTEXT%%share/locale/pl/LC_MESSAGES/postgres-9.0.mo
 %%GETTEXT%%share/locale/pt_BR/LC_MESSAGES/initdb-9.0.mo
 %%GETTEXT%%share/locale/pt_BR/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/pt_BR/LC_MESSAGES/pg_ctl-9.0.mo
@@ -92,6 +103,7 @@ share/postgresql/system_views.sql
 %%GETTEXT%%share/locale/ro/LC_MESSAGES/pg_resetxlog-9.0.mo
 %%GETTEXT%%share/locale/ro/LC_MESSAGES/plpgsql-9.0.mo
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/initdb-9.0.mo
+%%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_ctl-9.0.mo
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_resetxlog-9.0.mo
 %%GETTEXT%%share/locale/sv/LC_MESSAGES/initdb-9.0.mo
@@ -148,6 +160,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/Africa/Gaborone
 %%TZDATA%%share/postgresql/timezone/Africa/Harare
 %%TZDATA%%share/postgresql/timezone/Africa/Johannesburg
+%%TZDATA%%share/postgresql/timezone/Africa/Juba
 %%TZDATA%%share/postgresql/timezone/Africa/Kampala
 %%TZDATA%%share/postgresql/timezone/Africa/Khartoum
 %%TZDATA%%share/postgresql/timezone/Africa/Kigali
@@ -262,10 +275,12 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/America/Kentucky/Louisville
 %%TZDATA%%share/postgresql/timezone/America/Kentucky/Monticello
 %%TZDATA%%share/postgresql/timezone/America/Knox_IN
+%%TZDATA%%share/postgresql/timezone/America/Kralendijk
 %%TZDATA%%share/postgresql/timezone/America/La_Paz
 %%TZDATA%%share/postgresql/timezone/America/Lima
 %%TZDATA%%share/postgresql/timezone/America/Los_Angeles
 %%TZDATA%%share/postgresql/timezone/America/Louisville
+%%TZDATA%%share/postgresql/timezone/America/Lower_Princes
 %%TZDATA%%share/postgresql/timezone/America/Maceio
 %%TZDATA%%share/postgresql/timezone/America/Managua
 %%TZDATA%%share/postgresql/timezone/America/Manaus
@@ -276,6 +291,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/America/Mendoza
 %%TZDATA%%share/postgresql/timezone/America/Menominee
 %%TZDATA%%share/postgresql/timezone/America/Merida
+%%TZDATA%%share/postgresql/timezone/America/Metlakatla
 %%TZDATA%%share/postgresql/timezone/America/Mexico_City
 %%TZDATA%%share/postgresql/timezone/America/Miquelon
 %%TZDATA%%share/postgresql/timezone/America/Moncton
@@ -288,6 +304,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/America/Nipigon
 %%TZDATA%%share/postgresql/timezone/America/Nome
 %%TZDATA%%share/postgresql/timezone/America/Noronha
+%%TZDATA%%share/postgresql/timezone/America/North_Dakota/Beulah
 %%TZDATA%%share/postgresql/timezone/America/North_Dakota/Center
 %%TZDATA%%share/postgresql/timezone/America/North_Dakota/New_Salem
 %%TZDATA%%share/postgresql/timezone/America/Ojinaga
@@ -314,6 +331,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/America/Sao_Paulo
 %%TZDATA%%share/postgresql/timezone/America/Scoresbysund
 %%TZDATA%%share/postgresql/timezone/America/Shiprock
+%%TZDATA%%share/postgresql/timezone/America/Sitka
 %%TZDATA%%share/postgresql/timezone/America/St_Barthelemy
 %%TZDATA%%share/postgresql/timezone/America/St_Johns
 %%TZDATA%%share/postgresql/timezone/America/St_Kitts
@@ -753,9 +771,8 @@ share/postgresql/tsearch_data/ispell_sample.dict
 share/postgresql/tsearch_data/synonym_sample.syn
 share/postgresql/tsearch_data/thesaurus_sample.ths
 @dirrmtry share/postgresql/tsearch_data
-@unexec echo "Warning: If you will *NOT* use this package anymore, please remove the pgsql user manually."
 @dirrmtry share/postgresql
 @dirrmtry etc/periodic/daily
 @dirrmtry etc/periodic
 @dirrmtry lib/postgresql
-@dirrmtry pgsql
+@dirrmtry %%PG_USER%%
