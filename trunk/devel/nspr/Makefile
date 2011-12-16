@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/nspr/Makefile,v 1.8 2010/10/30 20:19:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/nspr/Makefile,v 1.9 2010/12/03 22:58:42 laffer1 Exp $
 
 PORTNAME=	nspr
-PORTVERSION=	4.8.6
-PORTREVISION=	1
+PORTVERSION=	4.8.9
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	nspr/releases/v${PORTVERSION}/src
