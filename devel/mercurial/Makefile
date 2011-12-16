@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.9 2010/10/10 19:45:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.10 2011/05/28 07:17:25 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	1.8.2
+PORTVERSION=	2.0
 CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
@@ -28,6 +28,7 @@ PYDISTUTILS_EGGINFO=	${PORTNAME}-${PORTVERSION}-${PYTHON_VERSION:S/thon//}.egg-i
 
 CONTRIB_FILES=	bash_completion \
 		convert-repo \
+		debugcmdserver.py \
 		debugshell.py \
 		dumprevlog \
 		hg-ssh \
@@ -38,8 +39,6 @@ CONTRIB_FILES=	bash_completion \
 		hgk \
 		hgsh/Makefile \
 		hgsh/hgsh.c \
-		logo-droplets.svg \
-		memory.py \
 		mercurial.el \
 		mergetools.hgrc \
 		mq.el \
@@ -47,7 +46,6 @@ CONTRIB_FILES=	bash_completion \
 		pylintrc \
 		python-hook-examples.py \
 		sample.hgrc \
-		setup3k.py \
 		shrink-revlog.py \
 		simplemerge \
 		tcsh_completion \
@@ -55,8 +53,6 @@ CONTRIB_FILES=	bash_completion \
 		tmplrewrite.py \
 		undumprevlog \
 		zsh_completion \
-		hgsh/Makefile \
-		hgsh/hgsh.c \
 		vim/HGAnnotate.vim \
 		vim/hg-menu.vim \
 		vim/hgcommand.vim \
@@ -64,7 +60,7 @@ CONTRIB_FILES=	bash_completion \
 		vim/patchreview.txt \
 		vim/patchreview.vim
 
-DOCS=	CONTRIBUTORS COPYING README doc/*.txt doc/*.html
+DOCS=	CONTRIBUTORS COPYING README
 
 MAN1=	hg.1
 MAN5=	hgignore.5 hgrc.5
@@ -82,7 +78,7 @@ post-install:
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
 	for f in ${DOCS}; do \
-		${INSTALL_MAN} ${WRKSRC}/$${f} ${DOCSDIR}; \
+		${INSTALL_DATA} ${WRKSRC}/$${f} ${DOCSDIR}; \
 	done
 .endif
 .if !defined(NOPORTDATA)
@@ -98,7 +94,8 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/*.cgi ${DATADIR}/www
 	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.fcgi ${DATADIR}/www
 	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.wsgi ${DATADIR}/www
-.endif
+
 	@${CAT} ${PKGMESSAGE}
+.endif
 
 .include <bsd.port.mk>
