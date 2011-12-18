@@ -14,7 +14,7 @@
 #
 # For example:
 #   USE_GCC=	4.2+		# port requires GCC 4.2 or later.
-#   USE_GCC=	4.5			# port requires GCC 4.5.
+#   USE_GCC=	4.7			# port requires GCC 4.7.
 #
 # If your port needs a Fortran compiler, please specify that with the
 # USE_FORTRAN= knob.  Here is the list of options for that knob:
@@ -30,7 +30,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.5 2010/07/30 00:17:42 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.6 2010/10/19 19:30:20 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -41,7 +41,7 @@ Gcc_Include_MAINTAINER=		portmgr@MidnightBSD.org
 
 # All GCC versions supported by the ports framework.  Keep them in
 # ascending order and in sync with the table below. 
-GCCVERSIONS=	030402 040200 040300 040400 040500 040600
+GCCVERSIONS=	030402 040200 040400 040700
 
 # The first field if the OSVERSION in which it appeared in the base.
 # The second field is the OSVERSION in which it disappeared from the base.
@@ -49,10 +49,8 @@ GCCVERSIONS=	030402 040200 040300 040400 040500 040600
 #
 GCCVERSION_030402=	2000 3004 3.4
 GCCVERSION_040200=	3004 999999 4.2
-GCCVERSION_040300=	999999 999999 4.3
 GCCVERSION_040400=	999999 999999 4.4
-GCCVERSION_040500=	999999 999999 4.5
-GCCVERSION_040600=	999999 999999 4.6
+GCCVERSION_040700=	999999 999999 4.7
 
 #
 # No configurable parts below this.
