@@ -2,13 +2,13 @@
 # Date created:				31 March 2008
 # Whom:					Bjoern Koenig
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jamvm/Makefile,v 1.1 2008/07/08 02:39:30 laffer1 Exp $
 # $FreeBSD: ports/java/jamvm/Makefile,v 1.1 2008/04/04 13:14:06 pav Exp $
 
 PORTNAME=	jamvm
-PORTVERSION=	1.5.1
+PORTVERSION=	1.5.4
 CATEGORIES=	java devel
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/JamVM%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A compact Java virtual machine
