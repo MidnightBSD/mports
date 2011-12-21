@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.38 2011/09/04 17:51:52 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.39 2011/12/21 04:16:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -531,10 +531,9 @@ MASTER_SITE_GNOME+=	\
 
 .if !defined(IGNORE_MASTER_SITE_GNU)
 MASTER_SITE_GNU+=	\
+	http://ftp.wayne.edu/pub/gnu/%SUBDIR%/ \
 	http://ftp.gnu.org/gnu/%SUBDIR%/ \
 	ftp://ftp.gnu.org/gnu/%SUBDIR%/ \
-	http://www.gtlib.cc.gatech.edu/pub/gnu/gnu/%SUBDIR%/ \
-	http://mirrors.usc.edu/pub/gnu/%SUBDIR%/ \
 	ftp://ftp.kddlabs.co.jp/GNU/%SUBDIR%/ \
 	ftp://ftp.dti.ad.jp/pub/GNU/%SUBDIR%/ \
 	${MASTER_SITE_RINGSERVER:S,%SUBDIR%,GNU/&,} \
@@ -543,7 +542,9 @@ MASTER_SITE_GNU+=	\
 	ftp://ftp.informatik.hu-berlin.de/pub/gnu/gnu/%SUBDIR%/ \
 	ftp://ftp.informatik.rwth-aachen.de/pub/mirror/ftp.gnu.org/pub/gnu/%SUBDIR%/ \
 	http://ftp.funet.fi/pub/gnu/prep/%SUBDIR%/ \
-	http://mirrors.kernel.org/gnu/%SUBDIR%/
+	http://mirrors.kernel.org/gnu/%SUBDIR%/ \
+	http://mirrors.ecvps.com/gnu/%SUBDIR%/ \
+	http://gnu.mirrorcatalogs.com/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
