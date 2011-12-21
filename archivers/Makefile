@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.46 2011/09/18 20:12:58 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.47 2011/09/18 20:22:08 laffer1 Exp $
 
 COMMENT = Archivers
 
@@ -7,6 +7,7 @@ SUBDIR += arj
 SUBDIR += bzip
 SUBDIR += bzip2
 SUBDIR += cabextract
+SUBDIR += fastjar
 SUBDIR += file-roller
 SUBDIR += freetar
 SUBDIR += gcpio
