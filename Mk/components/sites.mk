@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.37 2011/05/02 13:38:45 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.38 2011/09/04 17:51:52 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -543,7 +543,7 @@ MASTER_SITE_GNU+=	\
 	ftp://ftp.informatik.hu-berlin.de/pub/gnu/gnu/%SUBDIR%/ \
 	ftp://ftp.informatik.rwth-aachen.de/pub/mirror/ftp.gnu.org/pub/gnu/%SUBDIR%/ \
 	http://ftp.funet.fi/pub/gnu/prep/%SUBDIR%/ \
-	http://mirror.facebook.net/gnu/%SUBDIR%/
+	http://mirrors.kernel.org/gnu/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
