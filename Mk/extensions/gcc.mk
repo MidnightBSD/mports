@@ -30,7 +30,7 @@
 # If you are wondering what your port exactly does, use "make test-gcc"
 # to see some debugging.
 #
-# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.6 2010/10/19 19:30:20 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gcc.mk,v 1.7 2011/12/18 17:54:08 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gcc.mk,v 1.8 2006/07/05 02:18:08 linimon Exp $
 # 
 
@@ -196,6 +196,8 @@ _GCC_BUILD_DEPENDS:=	gcc${V}
 _GCC_PORT_DEPENDS:=	gcc${V}
 CC:=			gcc${V}
 CXX:=			g++${V}
+GIJ:=			gij${V}
+GCJ:=			gcj${V}
 .   if ${_USE_GCC} != 3.4
 CFLAGS+=		-Wl,-rpath=${LOCALBASE}/lib/${_GCC_BUILD_DEPENDS}
 LDFLAGS+=		-Wl,-rpath=${LOCALBASE}/lib/${_GCC_BUILD_DEPENDS}
@@ -213,7 +215,7 @@ RUN_DEPENDS+=	${_GCC_PORT_DEPENDS}:${PORTSDIR}/lang/${_GCC_BUILD_DEPENDS}
 .endif
 .endif # defined(_USE_GCC)
 
-MAKE_ENV+=	CC="${CC}" CXX="${CXX}" F77="${F77}" FC="${FC}"
+MAKE_ENV+=	CC="${CC}" CXX="${CXX}" F77="${F77}" FC="${FC}" GIJ="${GIJ}" GCJ="${GCJ}"
 
 test-gcc:
 	@echo USE_GCC=${USE_GCC}
