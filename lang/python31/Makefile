@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/python31/Makefile,v 1.1 2010/12/15 00:48:23 laffer1 Exp $
+# $MidnightBSD: mports/lang/python31/Makefile,v 1.2 2011/11/05 14:39:47 laffer1 Exp $
 
 PORTNAME=	python31
-PORTVERSION=	3.1.2
-PORTREVISION=	1
+PORTVERSION=	3.1.4
+PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -62,6 +62,7 @@ PLIST_SUB+=	IF_DEFAULT="@comment "
 .endif
 
 .if !defined(WITHOUT_THREADS)
+PLIST_SUB+=	THREADS=""
 CONFIGURE_ARGS+=	--with-threads
 CFLAGS+=		${PTHREAD_CFLAGS}
 .if defined(WITHOUT_HUGE_STACK_SIZE)
@@ -71,6 +72,7 @@ CFLAGS+=		-DTHREAD_STACK_SIZE=0x100000
 .endif # defined(WITHOUT_HUGE_STACK_SIZE)
 CONFIGURE_ENV+=		LDFLAGS="${PTHREAD_LIBS} ${LDFLAGS}"
 .else
+PLIST_SUB+=	THREADS="@comment "
 CONFIGURE_ARGS+=	--without-threads
 .if defined(LDFLAGS)
 CONFIGURE_ENV+=		LDFLAGS="${LDFLAGS}"
