@@ -4,7 +4,7 @@
  _expectations['freebsd6'] = _expectations['freebsd4']
  _expectations['freebsd7'] = _expectations['freebsd4']
  _expectations['freebsd8'] = _expectations['freebsd4']
-+_expectations['freebsd9'] = _expectations['freebsd4']
++_expectations['midnightbsd0'] = _expectations['freebsd4']
  
  class _ExpectedSkips:
      def __init__(self):
