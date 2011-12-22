@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/postgresql-jdbc/Makefile,v 1.1 2010/09/23 23:46:39 laffer1 Exp $
 
 PORTNAME=	postgresql
-PORTVERSION=	8.3.603
+PORTVERSION=	9.1.901
 DISTVERSIONSUFFIX=.src
 CATEGORIES=	databases java
 MASTER_SITES=	http://jdbc.postgresql.org/download/
@@ -16,8 +16,8 @@ DIST_SUBDIR=	postgresql
 
 USE_ANT=	yes
 USE_JAVA=	yes
-
-PKGMESSAGE=	${WRKDIR}/.pkg-message
+PORTDOCS=	*
+SUB_FILES=	pkg-message
 
 post-patch:
 	${REINPLACE_CMD} 's,/usr/local/pgsql/share/java,${JAVAJARDIR},' ${WRKSRC}/README
