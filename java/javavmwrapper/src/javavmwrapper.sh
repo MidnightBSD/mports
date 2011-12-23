@@ -25,7 +25,7 @@
 # Greg Lewis
 # ----------------------------------------------------------------------------
 #
-# $MidnightBSD: mports/java/javavmwrapper/src/javavmwrapper.sh,v 1.2 2008/04/30 21:35:49 laffer1 Exp $
+# $MidnightBSD: mports/java/javavmwrapper/src/javavmwrapper.sh,v 1.3 2009/04/04 01:14:33 laffer1 Exp $
 # $FreeBSD: ports/java/javavmwrapper/src/javavmwrapper.sh,v 1.19 2006/06/12 16:57:29 glewis Exp $
 #
 # MAINTAINER=ports@MidnightBSD.org
@@ -190,7 +190,7 @@ sortConfiguration () {
                         JAVAVM=
                         continue
                         ;;
-                    diablo-jre*|jdk*)
+                    diablo-jre*|openjdk*)
                         case "${_VM}" in
                             diablo*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
@@ -203,9 +203,22 @@ sortConfiguration () {
                                 ;;
                         esac
                         ;;
+                    jdk*)
+                        case "${_VM}" in
+                            diablo*|open*)
+                                _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
+                                continue
+                                ;;
+                            *)
+                                _JAVAVMS="${_JAVAVMS}:${JAVAVM}:${_JAVAVM}"
+                                JAVAVM=
+                                continue
+                                ;;
+                        esac
+                        ;;
                     jre*|linux-sun-jdk*)
                         case "${_VM}" in
-                            diablo*|j*)
+                            diablo*|open*|j*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
                                 continue
                                 ;;
@@ -218,7 +231,7 @@ sortConfiguration () {
                         ;;
                     linux-sun-jre*|linux-blackdown-jdk*)
                         case "${_VM}" in
-                            diablo*|j*|linux-sun*)
+                            diablo*|open*|j*|linux-sun*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
                                 continue
                                 ;;
@@ -231,7 +244,7 @@ sortConfiguration () {
                         ;;
                     linux-blackdown-jre*|linux-ibm-jdk*)
                         case "${_VM}" in
-                            diablo*|j*|linux-sun*|linux-blackdown*)
+                            diablo*|open*|j*|linux-sun*|linux-blackdown*)
                                 _JAVAVMS="${_JAVAVMS}:${_JAVAVM}"
                                 continue
                                 ;;
@@ -467,16 +480,16 @@ manualpageVM () {
 #
 setJavaHome() {
     # Use JAVA_HOME if it's set, unless its set to %%PREFIX%%
-    if [ -n "${JAVA_HOME}" -a \
-         "`realpath "${JAVA_HOME}"`" != "`realpath "${_JAVAVM_PREFIX}"`" ]; then
-        if [ -n "${JAVA_HOME}" -a -f "${JAVA_HOME}/bin/${_JAVAVM_PROG}" ]; then
-            _JAVAVM_PROG_PATH="${JAVA_HOME}/bin"
-            return 0
-        elif [ -n "${JAVA_HOME}" -a \
-               -f "${JAVA_HOME}/jre/bin/${_JAVAVM_PROG}" ]; then
-            _JAVAVM_PROG_PATH="${JAVA_HOME}/jre/bin"
-            return 0
-        fi
+    if [ -n "${JAVA_HOME}" ]; then
+        if [ "`realpath "${JAVA_HOME}"`" != "`realpath "${_JAVAVM_PREFIX}"`" ]; then
+	    if [ -f "${JAVA_HOME}/bin/${_JAVAVM_PROG}" ]; then
+		_JAVAVM_PROG_PATH="${JAVA_HOME}/bin"
+		return 0
+	    elif [ -f "${JAVA_HOME}/jre/bin/${_JAVAVM_PROG}" ]; then
+		_JAVAVM_PROG_PATH="${JAVA_HOME}/jre/bin"
+		return 0
+	    fi
+	fi
     fi
 
     unset JAVA_HOME
@@ -520,22 +533,25 @@ setJavaHome() {
         for version in ${JAVA_VERSION}; do
             case "${version}" in
                 1.1+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.1 1.2 1.3 1.4 1.5 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.1 1.2 1.3 1.4 1.5 1.6 1.7"
                     ;;
                 1.2+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.2 1.3 1.4 1.5 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.2 1.3 1.4 1.5 1.6 1.7"
                     ;;
                 1.3+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.3 1.4 1.5 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.3 1.4 1.5 1.6 1.7"
                     ;;
                 1.4+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.4 1.5 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.4 1.5 1.6 1.7"
                     ;;
                 1.5+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.5 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.5 1.6 1.7"
                     ;;
                 1.6+)
-                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6"
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.6 1.7"
+                    ;;
+                1.6+)
+                    _JAVAVM_VERSION="${_JAVAVM_VERSION} 1.7"
                     ;;
                 *)
                     _JAVAVM_VERSION="${_JAVAVM_VERSION} ${version}"
@@ -553,7 +569,8 @@ setJavaHome() {
         # Respect JAVA_VERSION
         if [ -n "${JAVA_VERSION}" ]; then
             _JAVAVM_VERSION=`echo ${_JAVAVM_VM} | \
-                sed -e 's|[^0-9]*\([0-9]\)\.\([0-9]\)\.[0-9]|\1.\2|'`
+                sed -e 's|^[^0-9]*\([0-9]\)\.\([0-9]\)\.[0-9]$|\1.\2|' \
+		    -e 's|^[^0-9]*\([0-9]\)$|1.\1|'`
             for _JAVAVM_REQUESTED_VERSION in ${JAVA_VERSION}; do
                 if [ "${_JAVAVM_VERSION}" = "${_JAVAVM_REQUESTED_VERSION}" ]; then
                     _JAVAVM_VERSION=
@@ -589,17 +606,20 @@ setJavaHome() {
         if [ -n "${JAVA_VENDOR}" ]; then
             _JAVAVM_VENDOR=
             case "${_JAVAVM_VM}" in
+                linux-blackdown*)
+                    _JAVAVM_VENDOR=blackdown
+                    ;;
                 diablo*)
                     _JAVAVM_VENDOR=freebsd
                     ;;
                 j*)
                     _JAVAVM_VENDOR=bsdjava
                     ;;
-                linux-blackdown*)
-                    _JAVAVM_VENDOR=blackdown
-                    ;;
                 linux-ibm*)
                     _JAVAVM_VENDOR=ibm
+                    ;;
+                openjdk*)
+                    _JAVAVM_VENDOR=openjdk
                     ;;
                 linux-sun*)
                     _JAVAVM_VENDOR=sun

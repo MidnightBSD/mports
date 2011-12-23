@@ -89,7 +89,8 @@ Currently allowed vendors are
 .Ql bsdjava ,
 .Ql freebsd ,
 .Ql blackdown ,
-.Ql ibm
+.Ql ibm ,
+.Ql openjdk
 and
 .Ql sun .
 .It Ev JAVA_VERSION
@@ -101,17 +102,16 @@ to a version, the on-line manual pages from any Java VM with a version
 greater than or equal to the given version will be used.
 .Pp
 Currently allowed versions are
-.Ql 1.1 ,
-.Ql 1.1+ ,
-.Ql 1.2 ,
-.Ql 1.2+ ,
-.Ql 1.3 ,
 .Ql 1.3+ ,
 .Ql 1.4 ,
 .Ql 1.4+ ,
-.Ql 1.5
+.Ql 1.5 ,
+.Ql 1.5+ ,
+.Ql 1.6 ,
+.Ql 1.6+ ,
+.Ql 1.7
 and
-.Ql 1.5+ .
+.Ql 1.7+ .
 .It Ev JAVAVM_OPTS
 The contents of this environment variable will be passed to the invoked
 .Nm man
