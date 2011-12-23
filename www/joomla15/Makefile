@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/joomla15/Makefile,v 1.5 2011/09/18 21:00:41 laffer1 Exp $
+# $MidnightBSD: mports/www/joomla15/Makefile,v 1.6 2011/12/23 03:25:28 laffer1 Exp $
 # $FreeBSD: ports/www/joomla15/Makefile,v 1.25 2009/08/07 20:07:40 skreuzer Exp $
 
 PORTNAME=	joomla15
@@ -20,7 +20,7 @@ USE_PHP=	mysql pcre xml zlib session gd pdf
 WANT_PHP_WEB=	yes
 PKGMESSAGE=	${WRKDIR}/pkg-message
 SUB_FILES=	pkg-message
-SUB_LIST+=    PORTVERSION="${PORTVERSION}"
+SUB_LIST+=	PORTVERSION="${PORTVERSION}"
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
