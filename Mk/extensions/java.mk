@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.5 2011/01/20 14:38:51 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.6 2011/12/22 14:11:34 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -159,7 +159,7 @@ SUB_LIST+=		JAVA_OS="${JAVA_OS}"
 __JAVA_VERSION_LIST=	1.3 1.4 1.5 1.6 1.7
 _JAVA_VERSION_LIST=		${__JAVA_VERSION_LIST} ${__JAVA_VERSION_LIST:S/$/+/} 1.1+ 1.2+
 _JAVA_OS_LIST=			native linux
-_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown openjdk jamvm
+_JAVA_VENDOR_LIST=		freebsd bsdjava sun blackdown openjdk
 
 # Set all meta-information about JDK ports:
 # port location, corresponding JAVA_HOME, JDK version, OS, vendor
@@ -177,8 +177,6 @@ _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_5_INFO=		PORT=java/jdk15					HOME=${LOCALBASE}/j
 											VERSION=1.5.0	OS=native	VENDOR=bsdjava
 _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/jdk1.6.0 \
 											VERSION=1.6.0	OS=native	VENDOR=bsdjava
-_JAVA_PORT_NATIVE_JAMVM_JDK_1_5_INFO=		PORT=java/jamvm					HOME=${LOCALBASE} \
-											VERSION=1.5.0	OS=native	VENDOR=jamvm
 _JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4_INFO=	PORT=java/linux-blackdown-jdk14	HOME=${LOCALBASE}/linux-blackdown-jdk1.4.2 \
 											VERSION=1.4.2	OS=linux	VENDOR=blackdown
 _JAVA_PORT_LINUX_SUN_JDK_1_3_INFO=			PORT=java/linux-sun-jdk13		HOME=${LOCALBASE}/linux-sun-jdk1.3.1 \
@@ -195,8 +193,7 @@ _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
 _JAVA_VENDOR_openjdk=		"OpenJDK BSD Porting Team"
 _JAVA_VENDOR_blackdown=		Blackdown
-_JAVA_VENDOR_jamvm=		JamVM
-_JAVA_VENDOR_sun=			Sun
+_JAVA_VENDOR_sun=		Sun
 
 # Verbose description for each OS
 _JAVA_OS_native=	Native
@@ -226,8 +223,7 @@ __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
 					JAVA_PORT_LINUX_SUN_JDK_1_5 \
 					JAVA_PORT_LINUX_SUN_JDK_1_4 \
 					JAVA_PORT_LINUX_SUN_JDK_1_3 \
-					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4 \
-					JAVA_PORT_NATIVE_JAMVM_JDK_1_5
+					JAVA_PORT_LINUX_BLACKDOWN_JDK_1_4
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
 					${__JAVA_PORTS_ALL}
