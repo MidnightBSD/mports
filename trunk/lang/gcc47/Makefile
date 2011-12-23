@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/gcc47/Makefile,v 1.1 2011/12/21 00:26:26 laffer1 Exp $
 # $FreeBSD: ports/lang/gcc47/Makefile,v 1.513 2011/11/15 11:46:26 gerald Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	4.7.0.20111105
+PORTREVISION=	1
 CATEGORIES=	lang java
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
@@ -156,5 +157,10 @@ post-install:
 	@if type ccache-update-links >/dev/null 2>&1; then \
 	    ccache-update-links -v; \
 	fi
+.if ! defined(WITHOUT_JAVA)
+	${REINPLACE_CMD} -e 's|${PREFIX}|${LOCALBASE}|g' \
+		${FAKE_DESTDIR}${LOCALBASE}/bin/gjavah \
+		${FAKE_DESTDIR}${LOCALBASE}/bin/gjar
+.endif
 
 .include <bsd.port.post.mk>
