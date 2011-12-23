@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.6 2008/06/10 00:41:25 laffer1 Exp $
+# $MidnightBSD: mports/java/javavmwrapper/Makefile,v 1.7 2009/04/04 01:14:32 laffer1 Exp $
 #
 # This port is self contained in the src directory.
 
 PORTNAME=	javavmwrapper
-PORTVERSION=	2.3.2
+PORTVERSION=	2.3.5
 CATEGORIES=	java
 MASTER_SITES=	# none
 DISTFILES=	# none
