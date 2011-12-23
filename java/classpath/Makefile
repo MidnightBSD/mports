@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/java/classpath/Makefile,v 1.4 2011/12/15 00:57:48 laffer1 Exp $
+# $MidnightBSD: mports/java/classpath/Makefile,v 1.5 2011/12/22 02:55:44 laffer1 Exp $
 
 PORTNAME=	classpath
 PORTVERSION=	0.98
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_GNU}classpath/:cp \
 		${MASTER_SITE_SAVANNAH}classpath/:cp \
@@ -23,7 +24,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CXXFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" JAVA=${WRKDIR}/bin/gij PATH="${WRKDIR}/bin:${PATH}"
 MAKE_ENV+=	${CONFIGURE_ENV}
-CONFIGURE_ARGS=	--enable-jni --enable-glibj --disable-alsa --disable-dssi --disable-plugin --enable-examples --enable-tools --with-glibj=zip --with-ecj-jar=${DISTDIR}/ecj.jar --with-antlr-jar=${DISTDIR}/antlr-3.4-complete.jar
+CONFIGURE_ARGS=	--enable-jni --enable-glibj --disable-alsa --disable-dssi --disable-plugin --enable-examples --enable-tools --with-glibj=zip --with-ecj-jar=${DISTDIR}/ecj.jar --with-antlr-jar=${DISTDIR}/antlr-3.4-complete.jar --enable-java-home
 USE_GMAKE=	yes
 
 MAN1=		gappletviewer.1 \
@@ -92,5 +93,12 @@ pre-configure:
 	@${LN} -sf ${LOCALBASE}/bin/${GIJ}  ${WRKDIR}/bin/gij
 	${CP} ${FILESDIR}/ecj ${WRKDIR}/bin/ecj
 	${REINPLACE_CMD} -e 's|%%DISTDIR%%|${DISTDIR}|g' ${WRKDIR}/bin/ecj
+
+post-install:
+	cd ${PREFIX}/bin && find . -type f -exec  ${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g' {} +
+	cd ${PREFIX}/bin && rm *.bak
+	cd ${PREFIX}/bin && find . -type f -exec ${REINPLACE_CMD} -e 's|/usr/mports/java/classpath/work/bin/gij|${LOCALBASE}/bin/gij47|g' {} +
+	
+
 
 .include <bsd.port.post.mk>
