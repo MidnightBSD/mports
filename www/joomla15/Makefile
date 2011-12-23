@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/www/joomla15/Makefile,v 1.4 2010/11/12 00:10:49 laffer1 Exp $
+# $MidnightBSD: mports/www/joomla15/Makefile,v 1.5 2011/09/18 21:00:41 laffer1 Exp $
 # $FreeBSD: ports/www/joomla15/Makefile,v 1.25 2009/08/07 20:07:40 skreuzer Exp $
 
 PORTNAME=	joomla15
-PORTVERSION=	1.5.22
+PORTVERSION=	1.5.24
 CATEGORIES=	www
-MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/13105/57238/ \
+MASTER_SITES=	http://joomlacode.org/gf/download/frsrelease/15898/68912/ \
 		http://linux3.dti.supsi.ch/downloads/
 DISTNAME=	Joomla_${PORTVERSION}-Stable-Full_Package
 
@@ -20,6 +20,7 @@ USE_PHP=	mysql pcre xml zlib session gd pdf
 WANT_PHP_WEB=	yes
 PKGMESSAGE=	${WRKDIR}/pkg-message
 SUB_FILES=	pkg-message
+SUB_LIST+=    PORTVERSION="${PORTVERSION}"
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
