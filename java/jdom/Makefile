@@ -2,13 +2,12 @@
 # Date created:		June 1, 2001
 # Whom:			Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/jdom/Makefile,v 1.2 2008/05/09 17:34:46 laffer1 Exp $
+# $MidnightBSD: mports/java/jdom/Makefile,v 1.3 2008/06/18 21:57:37 laffer1 Exp $
 # $FreeBSD: ports/java/jdom/Makefile,v 1.15 2004/12/03 01:01:24 hq Exp $
 #
 
 PORTNAME=	jdom
-PORTVERSION=	1.1
-PORTREVISION=	1
+PORTVERSION=	1.1.1
 PORTEPOCH=	1
 CATEGORIES=	java textproc
 MASTER_SITES=	http://www.jdom.org/dist/source/
@@ -22,7 +21,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:${PORTSDIR}/java/jaxen
 
 USE_GCPIO=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 USE_ANT=	yes
 
 ALL_TARGET=	package
@@ -32,21 +31,29 @@ OTHERDOCS=	README.txt TODO.txt CHANGES.txt COMMITTERS.txt LICENSE.txt
 PORTDOCS=	apidocs ${OTHERDOCS}
 .endif
 
+WRKSRC=		${WRKDIR}/${PORTNAME}
+
 MAKE_ENV+=	CLASSPATH=${JAVALIBDIR}/jaxen-jdom.jar
 
 PLIST_FILES=	%%JAVAJARDIR%%/jdom.jar
 
 do-install:
+	@${ECHO_MSG} -n ">> Installing JAR as ${JAVAJARDIR}/jdom.jar..."
 	@${MKDIR} ${JAVAJARDIR}
 	@${INSTALL_DATA} ${WRKSRC}/build/jdom.jar ${JAVAJARDIR}/
+	@${ECHO_MSG} " [ DONE ]"
 .if !defined(NOPORTDOCS)
+	@${ECHO_MSG} -n ">> Installing samples in ${EXAMPLESDIR}..."
 	@${MKDIR} ${EXAMPLESDIR}
 	@cd ${WRKSRC}/build/samples/ && ${FIND} . \
 	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${EXAMPLESDIR} > /dev/null 2>&1
+	@${ECHO_MSG} " [ DONE ]"
+	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}..."
 	@${MKDIR} ${DOCSDIR}/apidocs
 	@cd ${WRKSRC}/build/ && ${FIND} apidocs \
 	  | ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR} > /dev/null 2>&1
 	@${INSTALL_DATA} ${OTHERDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
+	@${ECHO_MSG} " [ DONE ]"
 .endif
 
 .if !defined(NOPORTDOCS)
