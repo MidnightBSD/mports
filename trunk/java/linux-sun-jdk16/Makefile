@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.4 2008/04/10 17:51:14 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.5 2008/10/12 20:47:19 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -23,8 +23,8 @@ IS_INTERACTIVE=	yes
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
-NO_CDROM=	"License does not allow distribution with fee"
-RESTRICTED=	"Redistribution of repackaged binaries not permitted"
+NO_CDROM=	License does not allow distribution with fee
+RESTRICTED=	Redistribution of repackaged binaries not permitted
 LATEST_LINK=	linux-sun-jdk16
 
 WRKSRC=		${WRKDIR}/jdk${DL_JDK_VERSION}
@@ -33,17 +33,15 @@ PKGINSTALL=	${WRKDIR}/pkg-install
 
 NO_BUILD=	yes
 USE_LINUX=	yes
-USE_GCPIO=	yes
-USE_XLIB=	yes
+USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	07
+JDK_REVISION=	24
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
-DOWNLOAD_URL?=	http://java.sun.com/javase/downloads/index.jsp
-PORTTITLE=	Java 2 Development Kit ${JDK_VERSION}${JDK_REVISION} for Linux
+DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
 APP_HOME=	${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}
-PACKED_JARS=	lib/tools.jar jre/lib/rt.jar jre/lib/jsse.jar jre/lib/charsets.jar jre/lib/deploy.jar jre/lib/ext/localedata.jar jre/lib/plugin.jar jre/lib/javaws.jar
-UNPACK_CMD=	${APP_HOME}/bin/unpack200
+PACKED_JARS=	jre/lib/charsets jre/lib/deploy jre/lib/ext/localedata jre/lib/javaws jre/lib/jsse jre/lib/plugin jre/lib/rt lib/tools
+UNPACK_CMD=	${WRKSRC}/bin/unpack200
 
 .include <bsd.port.pre.mk>
 
@@ -57,9 +55,12 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +556 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +189 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
-	&& ${WRKDIR}/install.sfx > /dev/null
+	&& ${WRKDIR}/install.sfx -o > /dev/null
+.for i in ${PACKED_JARS}
+	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
+.endfor
 
 post-patch:
 	${REINPLACE_CMD} -i.orig -e 's:^#!/bin/bash:#!/bin/sh:' ${WRKSRC}/bin/jcontrol
@@ -71,12 +72,6 @@ do-install:
 	${MKDIR} ${APP_HOME}
 	cd ${WRKSRC} && ${FIND} . -print \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} ${APP_HOME}
-	for i in ${PACKED_JARS}; do \
-	  if [ -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ]; then \
-	    ${UNPACK_CMD} ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ${APP_HOME}/$$i; \
-	    ${RM} -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack; \
-	  fi \
-	done
 
 post-install:
 	${SED} -e "s:%%JRE_HOME%%:${APP_HOME}/jre:g" \
