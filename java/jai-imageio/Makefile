@@ -2,7 +2,7 @@
 # Date created:				2004-01-10
 # Whom:					OISHI Masakuni <yamasa@bsdhouse.org>
 #
-# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.2 2008/05/01 22:58:55 laffer1 Exp $
+# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.3 2008/05/09 17:29:09 laffer1 Exp $
 # $FreeBSD: ports/java/jai-imageio/Makefile,v 1.3 2005/02/13 21:28:05 hq Exp $
 #
 
@@ -20,7 +20,7 @@ LICENSE=	restricted
 IS_INTERACTIVE=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.5+
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	i386
