@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.2 2009/03/02 21:56:55 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.3 2009/08/20 18:24:37 laffer1 Exp $
 
 PORTNAME=	commons-lang
-PORTVERSION=	2.3
-PORTREVISION=	1
+PORTVERSION=	2.6
 CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE_COMMONS_SOURCE}
 MASTER_SITE_SUBDIR=	${PORTNAME:S,commons-,,}
@@ -14,7 +13,7 @@ COMMENT=	Jakarta library with helper utilities for the java.lang API
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 
 USE_ANT=	yes
 USE_JIKES=	no
@@ -40,12 +39,16 @@ MAKE_ARGS+=	-Djdk.javadoc=${JDK_API}
 .endif
 
 do-install:
-	@${INSTALL_DATA} ${WRKSRC}/dist/${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
+	@${ECHO_MSG} -n ">> Installing JAR as ${JAVAJARDIR}/${DESTJARFILE}..."
+	@${INSTALL_DATA} ${WRKSRC}/target/${JARFILE} ${JAVAJARDIR}/${DESTJARFILE}
+	@${ECHO_MSG} " [ DONE ]"
 
 .if !defined(NOPORTDOCS)
-	-cd ${WRKSRC}/dist/docs/api \
+	@${ECHO_MSG} -n ">> Installing documentation in ${DOCSDIR}/..."
+	@cd ${WRKSRC}/target/apidocs \
 	  && ${FIND} . -type d -exec ${MKDIR} ${DOCSDIR}/{} \; \
 	  && ${FIND} . -type f -exec ${INSTALL_DATA} {} ${DOCSDIR}/{} \;
+	@${ECHO_MSG} " [ DONE ]"
 .endif
 
 .include <bsd.port.post.mk>
