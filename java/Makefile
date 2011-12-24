@@ -1,9 +1,7 @@
-# $MidnightBSD: mports/java/Makefile,v 1.24 2010/12/31 04:35:09 laffer1 Exp $
-#
+# $MidnightBSD: mports/java/Makefile,v 1.25 2011/05/28 05:10:29 laffer1 Exp $
 
-    COMMENT = Java 
+COMMENT = Java 
 
-SUBDIR += avalon-logkit
 SUBDIR += berkeley-db
 SUBDIR += bluej
 SUBDIR += bouncycastle
@@ -13,7 +11,6 @@ SUBDIR += diablo-jdk15
 SUBDIR += diablo-jdk16
 SUBDIR += diablo-jre15
 SUBDIR += diablo-jre16
-SUBDIR += gnu-regexp
 SUBDIR += jai
 SUBDIR += jai-imageio
 SUBDIR += jakarta-bcel
