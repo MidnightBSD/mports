@@ -2,7 +2,7 @@
 # Date created:				5 October 2007
 # Whom:					Jung-uk Kim <jkim@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.1 2008/10/12 21:02:51 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.2 2008/10/14 15:40:59 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jre16/Makefile,v 1.1 2007/10/26 20:49:42 jkim Exp $
 #
 
@@ -34,15 +34,15 @@ PKGINSTALL=	${WRKDIR}/pkg-install
 
 NO_BUILD=	yes
 USE_LINUX=	yes
-USE_XLIB=	yes
+USE_LINUX_APPS=	xorglibs
 JRE_VERSION=	1.6.0
-JRE_REVISION=	03
+JRE_REVISION=	24
 DL_JRE_VERSION=	${JRE_VERSION}_${JRE_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
-DOWNLOAD_URL?=	http://java.sun.com/javase/downloads/index.jsp
+DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
 APP_HOME=	${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JRE_VERSION}
-PACKED_JARS=	lib/charsets.jar lib/deploy.jar lib/ext/localedata.jar lib/javaws.jar lib/jsse.jar lib/plugin.jar lib/rt.jar
-UNPACK_CMD=	${APP_HOME}/bin/unpack200
+PACKED_JARS=	lib/charsets lib/deploy lib/ext/localedata lib/javaws lib/jsse lib/plugin lib/rt
+UNPACK_CMD=	${WRKSRC}/bin/unpack200
 
 .include <bsd.port.pre.mk>
 
@@ -56,9 +56,12 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +403 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +162 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
-	&& ${WRKDIR}/install.sfx > /dev/null
+	&& ${WRKDIR}/install.sfx -o > /dev/null
+.for i in ${PACKED_JARS}
+	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
+.endfor
 
 post-patch:
 	${REINPLACE_CMD} -i.orig -e 's:^#!/bin/bash:#!/bin/sh:' ${WRKSRC}/bin/jcontrol
@@ -70,12 +73,6 @@ do-install:
 	${MKDIR} ${APP_HOME}
 	cd ${WRKSRC} && ${FIND} . -print \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} ${APP_HOME}
-	for i in ${PACKED_JARS}; do \
-	  if [ -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ]; then \
-	    ${UNPACK_CMD} ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ${APP_HOME}/$$i; \
-	    ${RM} -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack; \
-	  fi \
-	done
 
 post-install:
 	${SED} -e "s:%%JRE_HOME%%:${APP_HOME}:g" \
