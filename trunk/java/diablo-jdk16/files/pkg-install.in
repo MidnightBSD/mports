@@ -11,7 +11,7 @@ fi
 
 # Attempt to generate shared archives during post-install
 if [ "$2" = "POST-INSTALL" ]; then
-	registervm \
+	/usr/local/bin/registervm \
 		"${PKG_PREFIX}/diablo-jdk1.6.0/bin/java # DiabloCaffe${JDK_VERSION}"
 	# Generate shared class archives.
 	for _vm in client server; do
