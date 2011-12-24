@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.8 2008/03/21 23:08:31 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jre15/Makefile,v 1.9 2008/04/10 17:54:16 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jre15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jre
 PORTVERSION=	${JRE_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -53,12 +53,12 @@ INSTALL_DIR=	${PREFIX}/${PKGNAMEPREFIX}jre${JRE_VERSION}
 
 .include <bsd.port.pre.mk>
 
-JRE_OSREL=freebsd6
+JRE_OSREL=	freebsd6
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1.3.3
-TZUPDATE_TZVERSION=	2007k
+TZUPDATE_VERSION=	1_3_42
+TZUPDATE_TZVERSION=	2011k
 TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
@@ -77,13 +77,12 @@ PLIST_SUB+=	WEB="@comment "
 PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
-.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (!defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
-ECHO_MSG=/usr/bin/printf
-IGNORE=	:\n\
+.if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JRE_OSREL)
+DISTFILE_INSTRUCTIONS=\n\
 Because of licensing restrictions, you must fetch the distribution\n\
-manually.\n
+manually.\n\n
 .if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}))
-IGNORE += Please access\n\
+DISTFILE_INSTRUCTIONS += Please access\n\
 \n\
   ${DOWNLOAD_URL}\n\
 \n\
@@ -91,21 +90,33 @@ with a web browser and \"Accept\" the End User License Agreement for\n\
 \"Latte Diablo ${JRE_VERSION}\".  Please place the downloaded\n\
 ${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
 .endif
-.if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
-IGNORE += Please open http://java.sun.com/javase/downloads/index.jsp\n\
+.if defined(WITH_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
+DISTFILE_INSTRUCTIONS += Please open http://www.oracle.com/technetwork/java/javase/downloads/index.html\n\
 in a web browser and follow the \"Download\" link for\n\
-\"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
+\"JDK DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
 time zone update file, ${TZUPDATEFILE}.\n\n
 .endif
 .endif
 
-.if !defined(WITHOUT_TZUPDATE)
+pre-fetch:
+.if defined(DISTFILE_INSTRUCTIONS)
+	@${PRINTF} "${DISTFILE_INSTRUCTIONS}"
+	@exit 1
+.endif
+
 post-extract:
+.if !defined(WITHOUT_TZUPDATE)
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
-	@# Update time zones
-	@-${WRKSRC}/bin/java -jar \
-		${WRKDIR}/tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}/tzupdater.jar -u -bc
-	@${RM} -rf ${WRKSRC}/lib/zi.tzdata*
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/tzupdater.jar -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/
+	@${MKDIR} ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/data/tzdata${TZUPDATE_TZVERSION}.zip -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+
+pre-install:
+	@${ECHO_CMD} -n "Updating time zones..."
+	@${RM} -rf ${WRKSRC}/lib/zi
+	@${MV} -f ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi ${WRKSRC}/lib/
+	@${ECHO_CMD} "done"
+	@-${RM} -rf ${WRKSRC}/lib/zi.tzdata*
 .endif
 
 do-install:
