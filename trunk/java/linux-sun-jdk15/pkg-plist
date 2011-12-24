@@ -1500,6 +1500,7 @@
 %%T%%/jre/bin/tnameserv
 %%T%%/jre/bin/unpack200
 %%T%%/jre/javaws/javaws
+@exec	mkdir -p %D/%%T%%/jre/lib/applet
 %%T%%/jre/lib/audio/soundbank.gm
 %%T%%/jre/lib/charsets.jar
 %%T%%/jre/lib/classlist
@@ -1510,6 +1511,7 @@
 %%T%%/jre/lib/cmm/sRGB.pf
 %%T%%/jre/lib/content-types.properties
 %%T%%/jre/lib/deploy.jar
+%%T%%/jre/lib/deploy/ffjcext.zip
 %%T%%/jre/lib/ext/dnsns.jar
 %%T%%/jre/lib/ext/localedata.jar
 %%T%%/jre/lib/ext/sunjce_provider.jar
@@ -1606,7 +1608,7 @@
 %%T%%/jre/lib/images/icons/sun-java_HighContrast.png
 %%T%%/jre/lib/images/icons/sun-java_HighContrastInverse.png
 %%T%%/jre/lib/images/icons/sun-java_LowContrast.png
-%%T%%/jre/lib/javaws.pack
+%%T%%/jre/lib/javaws.jar
 %%T%%/jre/lib/javaws/Java1.5.ico
 %%T%%/jre/lib/javaws/messages.properties
 %%T%%/jre/lib/javaws/messages_de.properties
@@ -1657,12 +1659,13 @@
 %%T%%/jre/lib/security/java.security
 %%T%%/jre/lib/security/javaws.policy
 %%T%%/jre/lib/security/local_policy.jar
+%%T%%/jre/lib/servicetag/jdk_header.png
 %%T%%/jre/lib/sound.properties
 %%T%%/jre/lib/zi/Africa/Abidjan
 %%T%%/jre/lib/zi/Africa/Accra
 %%T%%/jre/lib/zi/Africa/Addis_Ababa
 %%T%%/jre/lib/zi/Africa/Algiers
-%%T%%/jre/lib/zi/Africa/Asmera
+%%T%%/jre/lib/zi/Africa/Asmara
 %%T%%/jre/lib/zi/Africa/Bamako
 %%T%%/jre/lib/zi/Africa/Bangui
 %%T%%/jre/lib/zi/Africa/Banjul
@@ -1721,15 +1724,19 @@
 %%T%%/jre/lib/zi/America/Argentina/La_Rioja
 %%T%%/jre/lib/zi/America/Argentina/Mendoza
 %%T%%/jre/lib/zi/America/Argentina/Rio_Gallegos
+%%T%%/jre/lib/zi/America/Argentina/Salta
 %%T%%/jre/lib/zi/America/Argentina/San_Juan
+%%T%%/jre/lib/zi/America/Argentina/San_Luis
 %%T%%/jre/lib/zi/America/Argentina/Tucuman
 %%T%%/jre/lib/zi/America/Argentina/Ushuaia
 %%T%%/jre/lib/zi/America/Aruba
 %%T%%/jre/lib/zi/America/Asuncion
+%%T%%/jre/lib/zi/America/Atikokan
 %%T%%/jre/lib/zi/America/Bahia
 %%T%%/jre/lib/zi/America/Barbados
 %%T%%/jre/lib/zi/America/Belem
 %%T%%/jre/lib/zi/America/Belize
+%%T%%/jre/lib/zi/America/Blanc-Sablon
 %%T%%/jre/lib/zi/America/Boa_Vista
 %%T%%/jre/lib/zi/America/Bogota
 %%T%%/jre/lib/zi/America/Boise
@@ -1741,7 +1748,6 @@
 %%T%%/jre/lib/zi/America/Cayman
 %%T%%/jre/lib/zi/America/Chicago
 %%T%%/jre/lib/zi/America/Chihuahua
-%%T%%/jre/lib/zi/America/Coral_Harbour
 %%T%%/jre/lib/zi/America/Costa_Rica
 %%T%%/jre/lib/zi/America/Cuiaba
 %%T%%/jre/lib/zi/America/Curacao
@@ -1770,7 +1776,11 @@
 %%T%%/jre/lib/zi/America/Indiana/Indianapolis
 %%T%%/jre/lib/zi/America/Indiana/Knox
 %%T%%/jre/lib/zi/America/Indiana/Marengo
+%%T%%/jre/lib/zi/America/Indiana/Petersburg
+%%T%%/jre/lib/zi/America/Indiana/Tell_City
 %%T%%/jre/lib/zi/America/Indiana/Vevay
+%%T%%/jre/lib/zi/America/Indiana/Vincennes
+%%T%%/jre/lib/zi/America/Indiana/Winamac
 %%T%%/jre/lib/zi/America/Inuvik
 %%T%%/jre/lib/zi/America/Iqaluit
 %%T%%/jre/lib/zi/America/Jamaica
@@ -1789,6 +1799,7 @@
 %%T%%/jre/lib/zi/America/Merida
 %%T%%/jre/lib/zi/America/Mexico_City
 %%T%%/jre/lib/zi/America/Miquelon
+%%T%%/jre/lib/zi/America/Moncton
 %%T%%/jre/lib/zi/America/Monterrey
 %%T%%/jre/lib/zi/America/Montevideo
 %%T%%/jre/lib/zi/America/Montreal
@@ -1799,6 +1810,7 @@
 %%T%%/jre/lib/zi/America/Nome
 %%T%%/jre/lib/zi/America/Noronha
 %%T%%/jre/lib/zi/America/North_Dakota/Center
+%%T%%/jre/lib/zi/America/North_Dakota/New_Salem
 %%T%%/jre/lib/zi/America/Panama
 %%T%%/jre/lib/zi/America/Pangnirtung
 %%T%%/jre/lib/zi/America/Paramaribo
@@ -1811,7 +1823,9 @@
 %%T%%/jre/lib/zi/America/Rankin_Inlet
 %%T%%/jre/lib/zi/America/Recife
 %%T%%/jre/lib/zi/America/Regina
+%%T%%/jre/lib/zi/America/Resolute
 %%T%%/jre/lib/zi/America/Rio_Branco
+%%T%%/jre/lib/zi/America/Santarem
 %%T%%/jre/lib/zi/America/Santiago
 %%T%%/jre/lib/zi/America/Santo_Domingo
 %%T%%/jre/lib/zi/America/Sao_Paulo
@@ -1856,7 +1870,6 @@
 %%T%%/jre/lib/zi/Asia/Beirut
 %%T%%/jre/lib/zi/Asia/Bishkek
 %%T%%/jre/lib/zi/Asia/Brunei
-%%T%%/jre/lib/zi/Asia/Calcutta
 %%T%%/jre/lib/zi/Asia/Choibalsan
 %%T%%/jre/lib/zi/Asia/Chongqing
 %%T%%/jre/lib/zi/Asia/Colombo
@@ -1867,6 +1880,7 @@
 %%T%%/jre/lib/zi/Asia/Dushanbe
 %%T%%/jre/lib/zi/Asia/Gaza
 %%T%%/jre/lib/zi/Asia/Harbin
+%%T%%/jre/lib/zi/Asia/Ho_Chi_Minh
 %%T%%/jre/lib/zi/Asia/Hong_Kong
 %%T%%/jre/lib/zi/Asia/Hovd
 %%T%%/jre/lib/zi/Asia/Irkutsk
@@ -1877,7 +1891,8 @@
 %%T%%/jre/lib/zi/Asia/Kamchatka
 %%T%%/jre/lib/zi/Asia/Karachi
 %%T%%/jre/lib/zi/Asia/Kashgar
-%%T%%/jre/lib/zi/Asia/Katmandu
+%%T%%/jre/lib/zi/Asia/Kathmandu
+%%T%%/jre/lib/zi/Asia/Kolkata
 %%T%%/jre/lib/zi/Asia/Krasnoyarsk
 %%T%%/jre/lib/zi/Asia/Kuala_Lumpur
 %%T%%/jre/lib/zi/Asia/Kuching
@@ -1901,7 +1916,6 @@
 %%T%%/jre/lib/zi/Asia/Riyadh87
 %%T%%/jre/lib/zi/Asia/Riyadh88
 %%T%%/jre/lib/zi/Asia/Riyadh89
-%%T%%/jre/lib/zi/Asia/Saigon
 %%T%%/jre/lib/zi/Asia/Sakhalin
 %%T%%/jre/lib/zi/Asia/Samarkand
 %%T%%/jre/lib/zi/Asia/Seoul
@@ -1924,7 +1938,7 @@
 %%T%%/jre/lib/zi/Atlantic/Bermuda
 %%T%%/jre/lib/zi/Atlantic/Canary
 %%T%%/jre/lib/zi/Atlantic/Cape_Verde
-%%T%%/jre/lib/zi/Atlantic/Faeroe
+%%T%%/jre/lib/zi/Atlantic/Faroe
 %%T%%/jre/lib/zi/Atlantic/Madeira
 %%T%%/jre/lib/zi/Atlantic/Reykjavik
 %%T%%/jre/lib/zi/Atlantic/South_Georgia
@@ -1935,6 +1949,7 @@
 %%T%%/jre/lib/zi/Australia/Broken_Hill
 %%T%%/jre/lib/zi/Australia/Currie
 %%T%%/jre/lib/zi/Australia/Darwin
+%%T%%/jre/lib/zi/Australia/Eucla
 %%T%%/jre/lib/zi/Australia/Hobart
 %%T%%/jre/lib/zi/Australia/Lindeman
 %%T%%/jre/lib/zi/Australia/Lord_Howe
@@ -1942,7 +1957,10 @@
 %%T%%/jre/lib/zi/Australia/Perth
 %%T%%/jre/lib/zi/Australia/Sydney
 %%T%%/jre/lib/zi/CET
+%%T%%/jre/lib/zi/CST6CDT
 %%T%%/jre/lib/zi/EET
+%%T%%/jre/lib/zi/EST
+%%T%%/jre/lib/zi/EST5EDT
 %%T%%/jre/lib/zi/Etc/GMT
 %%T%%/jre/lib/zi/Etc/GMT+1
 %%T%%/jre/lib/zi/Etc/GMT+10
@@ -2011,10 +2029,12 @@
 %%T%%/jre/lib/zi/Europe/Vaduz
 %%T%%/jre/lib/zi/Europe/Vienna
 %%T%%/jre/lib/zi/Europe/Vilnius
+%%T%%/jre/lib/zi/Europe/Volgograd
 %%T%%/jre/lib/zi/Europe/Warsaw
 %%T%%/jre/lib/zi/Europe/Zaporozhye
 %%T%%/jre/lib/zi/Europe/Zurich
 %%T%%/jre/lib/zi/GMT
+%%T%%/jre/lib/zi/HST
 %%T%%/jre/lib/zi/Indian/Antananarivo
 %%T%%/jre/lib/zi/Indian/Chagos
 %%T%%/jre/lib/zi/Indian/Christmas
@@ -2027,6 +2047,9 @@
 %%T%%/jre/lib/zi/Indian/Mayotte
 %%T%%/jre/lib/zi/Indian/Reunion
 %%T%%/jre/lib/zi/MET
+%%T%%/jre/lib/zi/MST
+%%T%%/jre/lib/zi/MST7MDT
+%%T%%/jre/lib/zi/PST8PDT
 %%T%%/jre/lib/zi/Pacific/Apia
 %%T%%/jre/lib/zi/Pacific/Auckland
 %%T%%/jre/lib/zi/Pacific/Chatham
@@ -2065,6 +2088,19 @@
 %%T%%/jre/lib/zi/Pacific/Truk
 %%T%%/jre/lib/zi/Pacific/Wake
 %%T%%/jre/lib/zi/Pacific/Wallis
+%%T%%/jre/lib/zi/SystemV/AST4
+%%T%%/jre/lib/zi/SystemV/AST4ADT
+%%T%%/jre/lib/zi/SystemV/CST6
+%%T%%/jre/lib/zi/SystemV/CST6CDT
+%%T%%/jre/lib/zi/SystemV/EST5
+%%T%%/jre/lib/zi/SystemV/EST5EDT
+%%T%%/jre/lib/zi/SystemV/HST10
+%%T%%/jre/lib/zi/SystemV/MST7
+%%T%%/jre/lib/zi/SystemV/MST7MDT
+%%T%%/jre/lib/zi/SystemV/PST8
+%%T%%/jre/lib/zi/SystemV/PST8PDT
+%%T%%/jre/lib/zi/SystemV/YST9
+%%T%%/jre/lib/zi/SystemV/YST9YDT
 %%T%%/jre/lib/zi/WET
 %%T%%/jre/lib/zi/ZoneInfoMappings
 %%T%%/jre/plugin/desktop/sun_java.desktop
@@ -2361,6 +2397,7 @@
 @dirrm %%T%%/jre/plugin/i386
 @dirrm %%T%%/jre/plugin/desktop
 @dirrm %%T%%/jre/plugin
+@dirrm %%T%%/jre/lib/zi/SystemV
 @dirrm %%T%%/jre/lib/zi/Pacific
 @dirrm %%T%%/jre/lib/zi/Indian
 @dirrm %%T%%/jre/lib/zi/Europe
@@ -2376,6 +2413,7 @@
 @dirrm %%T%%/jre/lib/zi/America
 @dirrm %%T%%/jre/lib/zi/Africa
 @dirrm %%T%%/jre/lib/zi
+@dirrm %%T%%/jre/lib/servicetag
 @dirrm %%T%%/jre/lib/security
 @dirrm %%T%%/jre/lib/oblique-fonts
 @dirrm %%T%%/jre/lib/management
@@ -2420,6 +2458,7 @@
 @dirrm %%T%%/jre/lib/i386
 @dirrm %%T%%/jre/lib/fonts
 @dirrm %%T%%/jre/lib/ext
+@dirrm %%T%%/jre/lib/deploy
 @dirrm %%T%%/jre/lib/cmm
 @dirrm %%T%%/jre/lib/audio
 @dirrm %%T%%/jre/lib/applet
