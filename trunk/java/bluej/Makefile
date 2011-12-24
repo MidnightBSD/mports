@@ -1,13 +1,8 @@
-# New ports collection makefile for:	bluej
-# Date created:		27 June 2001
-# Whom:			Jeremy <karlj000@unbc.ca>
-#
-# $MidnightBSD: mports/java/bluej/Makefile,v 1.3 2008/06/13 02:01:34 laffer1 Exp $
+# $MidnightBSD: mports/java/bluej/Makefile,v 1.4 2008/06/13 02:07:44 laffer1 Exp $
 # $FreeBSD: ports/java/bluej/Makefile,v 1.18 2006/06/12 23:44:13 hq Exp $
-#
 
 PORTNAME=	bluej
-PORTVERSION=	2.2.1
+PORTVERSION=	3.0.2
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
@@ -26,7 +21,7 @@ IS_INTERACTIVE=	yes
 NO_BUILD=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.6+
 
 do-install:
 	@${ECHO} Starting BlueJ graphical installer...  Please install to default path of
