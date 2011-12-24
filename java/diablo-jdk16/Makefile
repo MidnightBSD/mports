@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.6 2011/01/07 14:26:28 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk16/Makefile,v 1.7 2011/01/13 22:39:27 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -69,8 +69,8 @@ POLICYFILE=	jce_policy-6.zip
 DISTFILES+=	${POLICYFILE}
 .endif
 
-TZUPDATE_VERSION=	1_3_34
-TZUPDATE_TZVERSION=	2010o
+TZUPDATE_VERSION=	1_3_42
+TZUPDATE_TZVERSION=	2011k
 TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 .if !defined(WITHOUT_TZUPDATE)
 DISTFILES+=		${TZUPDATEFILE}
@@ -94,15 +94,15 @@ with a web browser and \"Accept\" the End User License Agreement for\n\
 .endif#}
 .if defined(WITH_POLICY) && !exists(${DISTDIR}/${POLICYFILE})#{
 DISTFILE_INSTRUCTIONS+=Please open\n\n\
-\ \ \ \ http://java.sun.com/javase/downloads/\n\n\
+\ \ \ \ http://www.oracle.com/technetwork/java/javase/downloads/index.html\n\n\
 in a web browser and follow the \"Download\" link for \"Java\n\
 Cryptography Extension (JCE) Unlimited Strength Jurisdiction\n\
 Policy Files 6\" to obtain the JCE policy file, ${POLICYFILE}.\n\n
 .endif#}
 .if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})#{
-DISTFILE_INSTRUCTIONS += Please open http://java.sun.com/javase/downloads/index.jsp\n\
+DISTFILE_INSTRUCTIONS += Please open http://www.oracle.com/technetwork/java/javase/downloads/index.html\n\
 in a web browser and follow the \"Download\" link for\n\
-\"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
+\"JDK DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
 time zone update file, ${TZUPDATEFILE}.\n\n
 .endif#}
 DISTFILE_INSTRUCTIONS+=Please place the downloaded file(s) in ${DISTDIR}.\n\n
