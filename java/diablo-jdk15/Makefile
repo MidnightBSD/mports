@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.9 2009/01/04 04:01:45 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.10 2009/01/04 04:07:50 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -59,8 +59,8 @@ LIB_DEPENDS=  z.3:${PORTSDIR}/misc/compat6x
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1_3_11
-TZUPDATE_TZVERSION=	2008i
+TZUPDATE_VERSION=	1_3_42
+TZUPDATE_TZVERSION=	2011k
 TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
@@ -80,12 +80,11 @@ PLIST_SUB+=	CLIENTVM="@comment "
 .endif
 
 .if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) || (!defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE}))) && !defined(PACKAGE_BUILDING) && defined(JDK_OSREL)
-ECHO_MSG=/usr/bin/printf
-IGNORE=	:\n\
+DISTFILE_INSTRUCTIONS=\n\
 Because of licensing restrictions, you must fetch the distribution\n\
 manually.\n\n
 .if (!exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}))
-IGNORE += Please access\n\
+DISTFILE_INSTRUCTIONS += Please access\n\
 \n\
   ${DOWNLOAD_URL}\n\
 \n\
@@ -94,20 +93,31 @@ with a web browser and \"Accept\" the End User License Agreement for\n\
 ${DISTNAME}${EXTRACT_SUFX} in ${DISTDIR}.\n\n
 .endif
 .if !defined(WITHOUT_TZUPDATE) && !exists(${DISTDIR}/${TZUPDATEFILE})
-IGNORE += Please open http://java.sun.com/javase/downloads/index.jsp\n\
+DISTFILE_INSTRUCTIONS += Please open http://www.oracle.com/technetwork/java/javase/downloads/index.html\n\
 in a web browser and follow the \"Download\" link for\n\
-\"JDK US DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
+\"JDK DST Timezone Update Tool - ${TZUPDATE_VERSION}\" to obtain the\n\
 time zone update file, ${TZUPDATEFILE}.\n\n
 .endif
 .endif
 
-# "
+pre-fetch:
+.if defined(DISTFILE_INSTRUCTIONS)
+	@${PRINTF} "${DISTFILE_INSTRUCTIONS}"
+	@exit 1
+.endif
+
 .if !defined(WITHOUT_TZUPDATE)
 post-extract:
 	@${UNZIP_CMD} -qo ${DISTDIR}/${TZUPDATEFILE} -d ${WRKDIR}
-	@# Update time zones
-	@-${WRKSRC}/bin/java -jar \
-		${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/tzupdater.jar -u -bc
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/tzupdater.jar -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/
+	@${MKDIR} ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+	@${UNZIP_CMD} -qo ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/data/tzdata${TZUPDATE_TZVERSION}.zip -d ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi
+
+pre-install:
+	@${ECHO_CMD} -n "Updating time zones..."
+	@${RM} -rf ${WRKSRC}/jre/lib/zi
+	@${MV} -f ${WRKDIR}/tzupdater-${TZUPDATE_VERSION:S/_/./g}-${TZUPDATE_TZVERSION}/zi ${WRKSRC}/jre/lib/
+	@${ECHO_CMD} "done"
 	@-${RM} -rf ${WRKSRC}/jre/lib/zi.tzdata*
 .endif
 
