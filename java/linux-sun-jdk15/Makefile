@@ -2,7 +2,7 @@
 # Date created:				24 December 2001
 # Whom:					Ernst de Haan <znerd@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk15/Makefile,v 1.3 2007/08/30 01:24:20 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk15/Makefile,v 1.4 2008/04/10 17:51:53 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jdk15/Makefile,v 1.23 2007/02/25 17:15:02 glewis Exp $
 #
 
@@ -26,8 +26,8 @@ IS_INTERACTIVE= yes
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
-NO_CDROM=	"License does not allow distribution with fee"
-RESTRICTED=	"Redistribution of repackaged binaries not permitted"
+NO_CDROM=	License does not allow distribution with fee
+RESTRICTED=	Redistribution of repackaged binaries not permitted
 LATEST_LINK=	linux-sun-jdk15
 
 WRKSRC=		${WRKDIR}/jdk${DL_JDK_VERSION}
@@ -36,16 +36,15 @@ PKGINSTALL=	${WRKDIR}/pkg-install
 
 NO_BUILD=	yes
 USE_LINUX=	yes
-USE_XLIB=	yes
+USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.5.0
-JDK_REVISION=	11
+JDK_REVISION=	22
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
-DOWNLOAD_URL?=	http://java.sun.com/javase/downloads/index_jdk5.jsp
-PORTTITLE=	Java 2 Development Kit ${DL_JDK_VERSION} for Linux
+DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/archive-139210.html
 APP_HOME=	${PREFIX}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}
-PACKED_JARS=	lib/tools.jar jre/lib/rt.jar jre/lib/jsse.jar jre/lib/charsets.jar jre/lib/deploy.jar jre/lib/ext/localedata.jar jre/lib/plugin.jar jre/javaws/javaws.jar
-UNPACK_CMD=	${APP_HOME}/bin/unpack200
+PACKED_JARS=	jre/lib/charsets jre/lib/deploy jre/lib/ext/localedata jre/lib/javaws jre/lib/jsse jre/lib/plugin jre/lib/rt lib/tools
+UNPACK_CMD=	${WRKSRC}/bin/unpack200
 
 .include <bsd.port.pre.mk>
 
@@ -59,9 +58,12 @@ pre-everything::
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@cd ${WRKDIR} \
-	&& ${TAIL} -n +733 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
+	&& ${TAIL} -n +766 ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} > ${WRKDIR}/install.sfx \
 	&& ${CHMOD} +x ${WRKDIR}/install.sfx \
-	&& ${WRKDIR}/install.sfx > /dev/null
+	&& ${WRKDIR}/install.sfx -o > /dev/null
+.for i in ${PACKED_JARS}
+	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
+.endfor
 
 post-patch:
 	@${FIND} ${WRKSRC} -name '*.orig' -print | ${XARGS} ${RM} -f
@@ -72,12 +74,6 @@ do-install:
 	${MKDIR} ${APP_HOME}
 	cd ${WRKSRC} && ${FIND} . -print \
 	  | ${CPIO} -pdmu -R ${LIBOWN}:${LIBGRP} ${APP_HOME}
-	for i in ${PACKED_JARS}; do \
-	  if [ -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ]; then \
-	    ${UNPACK_CMD} ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack ${APP_HOME}/$$i; \
-	    ${RM} -f ${APP_HOME}/`dirname $$i`/`basename $$i .jar`.pack; \
-	  fi \
-	done
 
 post-install:
 	${LOCALBASE}/bin/registervm "${LOCALBASE}/${PKGNAMEPREFIX}${PORTNAME}${JDK_VERSION}/bin/java # Linux-Sun-JDK${PORTVERSION}"
