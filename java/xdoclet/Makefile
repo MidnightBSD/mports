@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/java/xdoclet/Makefile,v 1.1 2006/10/06 02:14:11 laffer1 Exp $
+# $MidnightBSD: mports/java/xdoclet/Makefile,v 1.2 2009/05/23 00:01:11 laffer1 Exp $
 
 PORTNAME=	xdoclet
 PORTVERSION=	1.2.3
 PORTEPOCH=	1
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-bin-${PORTVERSION}
 DISTFILES=	${DISTNAME}.zip xjavadoc-${XJAVADOC_VER}.zip
 
@@ -16,7 +15,7 @@ LICENSE=	bsd4
 RUN_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 USE_ZIP=	yes
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
