@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.28 2011/12/24 03:39:30 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.29 2011/12/24 04:01:07 laffer1 Exp $
 
 COMMENT = Java 
 
@@ -30,8 +30,6 @@ SUBDIR += jdom
 SUBDIR += jikes
 SUBDIR += junit
 SUBDIR += kaffe
-SUBDIR += linux-blackdown-jdk14
-SUBDIR += linux-sun-jdk14
 SUBDIR += linux-sun-jdk15
 SUBDIR += linux-sun-jdk16
 SUBDIR += linux-sun-jre16
