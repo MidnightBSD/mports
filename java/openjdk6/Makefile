@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.3 2010/03/27 00:18:36 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.4 2011/01/20 14:17:13 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
@@ -35,12 +35,12 @@ USE_GMAKE=	yes
 USE_MOTIF=	yes
 USE_XORG=	xtst xi xt x11
 
-JTREGVERSION=	b03
-JTREGFILE=	jtreg-4_0-bin-${JTREGVERSION}-31_mar_2009.zip
+JTREGVERSION=	b02
+JTREGFILE=	jtreg-4.1-bin-${JTREGVERSION}_21_may_2010.zip
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
-ANTVERSION=	1.7.1
+ANTVERSION=	1.8.2
 ANTFILE=	apache-ant-${ANTVERSION}-bin.tar.bz2
 
 # rely on bsdtar ability to extract .gz, .bz2 and .zip archives
@@ -115,6 +115,7 @@ OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}
 
 .if defined(WITH_TEST)
 DISTFILES+=	${JTREGFILE}:jtreg
+EXTRACT_ONLY+=	${JTREGFILE}
 BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 USE_DISPLAY=	yes
 .endif
