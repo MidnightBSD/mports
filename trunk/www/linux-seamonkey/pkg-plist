@@ -1,143 +1,173 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 bin/%%APP_NAME%%
-share/applications/%%APP_NAME%%.desktop
-lib/%%APP_NAME%%/README
-lib/%%APP_NAME%%/Throbber-small.gif
-lib/%%APP_NAME%%/application.ini
-lib/%%APP_NAME%%/blocklist.xml
-lib/%%APP_NAME%%/chrome.manifest
-lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/abcardWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow16.png
 lib/%%APP_NAME%%/chrome/icons/default/abcardWindow16.png
 lib/%%APP_NAME%%/chrome/icons/default/abcardWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/messengerWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/seamonkey.png
 lib/%%APP_NAME%%/chrome/icons/default/ablistWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/ablistWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/ablistWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/bookmark-window.png
-lib/%%APP_NAME%%/chrome/icons/default/bookmark-window16.png
-lib/%%APP_NAME%%/chrome/icons/default/bookmark-window48.png
-lib/%%APP_NAME%%/chrome/icons/default/default.png
-lib/%%APP_NAME%%/chrome/icons/default/default16.png
-lib/%%APP_NAME%%/chrome/icons/default/default48.png
-lib/%%APP_NAME%%/chrome/icons/default/downloadManager.png
-lib/%%APP_NAME%%/chrome/icons/default/downloadManager16.png
-lib/%%APP_NAME%%/chrome/icons/default/downloadManager48.png
-lib/%%APP_NAME%%/chrome/icons/default/editorWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/editorWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/editorWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/findBookmarkWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow48.png
 lib/%%APP_NAME%%/chrome/icons/default/findBookmarkWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/findBookmarkWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/history-window.png
-lib/%%APP_NAME%%/chrome/icons/default/history-window16.png
-lib/%%APP_NAME%%/chrome/icons/default/history-window48.png
+lib/%%APP_NAME%%/chrome/icons/default/downloadManager.png
+lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/messengerWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/ablistWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/abcardWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/venkman-window16.png
+lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow16.png
 lib/%%APP_NAME%%/chrome/icons/default/main-window.png
+lib/%%APP_NAME%%/chrome/icons/default/ablistWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/venkman-window.png
+lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/bookmark-window16.png
+lib/%%APP_NAME%%/chrome/icons/default/editorWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/downloadManager16.png
+lib/%%APP_NAME%%/chrome/icons/default/default.png
+lib/%%APP_NAME%%/chrome/icons/default/editorWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/history-window48.png
+lib/%%APP_NAME%%/chrome/icons/default/history-window16.png
+lib/%%APP_NAME%%/chrome/icons/default/addressbookWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/findHistoryWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/history-window.png
+lib/%%APP_NAME%%/chrome/icons/default/default48.png
+lib/%%APP_NAME%%/chrome/icons/default/default16.png
+lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/findBookmarkWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/bmPropsWindow48.png
+lib/%%APP_NAME%%/chrome/icons/default/JSConsoleWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/findBookmarkWindow.png
+lib/%%APP_NAME%%/chrome/icons/default/editorWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/venkman-window48.png
 lib/%%APP_NAME%%/chrome/icons/default/main-window16.png
 lib/%%APP_NAME%%/chrome/icons/default/main-window48.png
-lib/%%APP_NAME%%/chrome/icons/default/messengerWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/messengerWindow16.png
+lib/%%APP_NAME%%/chrome/icons/default/downloadManager48.png
+lib/%%APP_NAME%%/chrome/icons/default/bookmark-window.png
+lib/%%APP_NAME%%/chrome/icons/default/bookmark-window48.png
 lib/%%APP_NAME%%/chrome/icons/default/messengerWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow.png
-lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow16.png
-lib/%%APP_NAME%%/chrome/icons/default/msgcomposeWindow48.png
-lib/%%APP_NAME%%/chrome/icons/default/seamonkey.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window16.png
-lib/%%APP_NAME%%/chrome/icons/default/venkman-window48.png
-lib/%%APP_NAME%%/components/binary.manifest
-lib/%%APP_NAME%%/components/libdbusservice.so
+lib/%%APP_NAME%%/distribution/extensions/{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}.xpi
+lib/%%APP_NAME%%/distribution/extensions/inspector@mozilla.org.xpi
+lib/%%APP_NAME%%/distribution/extensions/{f13b157f-b174-47e7-a34d-4815ddfdfeb8}.xpi
 lib/%%APP_NAME%%/components/libmozgnome.so
 lib/%%APP_NAME%%/components/libnkgnomevfs.so
 lib/%%APP_NAME%%/components/libsuite.so
-lib/%%APP_NAME%%/crashreporter
-lib/%%APP_NAME%%/crashreporter-override.ini
-lib/%%APP_NAME%%/crashreporter.ini
+lib/%%APP_NAME%%/components/libdbusservice.so
+lib/%%APP_NAME%%/components/binary.manifest
+lib/%%APP_NAME%%/searchplugins/wikipedia.xml
+lib/%%APP_NAME%%/searchplugins/creativecommons.xml
+lib/%%APP_NAME%%/searchplugins/yahoo.xml
+lib/%%APP_NAME%%/searchplugins/google.xml
+lib/%%APP_NAME%%/dictionaries/en-US.dic
+lib/%%APP_NAME%%/dictionaries/en-US.aff
+lib/%%APP_NAME%%/icons/updater.png
+lib/%%APP_NAME%%/isp/rss.rdf
+lib/%%APP_NAME%%/isp/movemail.rdf
+lib/%%APP_NAME%%/isp/SpamPal.sfd
+lib/%%APP_NAME%%/isp/SpamAssassin.sfd
+lib/%%APP_NAME%%/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+lib/%%APP_NAME%%/extensions/modern@themes.mozilla.org.xpi
 lib/%%APP_NAME%%/defaults/messenger/mailViews.dat
-lib/%%APP_NAME%%/defaults/pref/browser-prefs.js
-lib/%%APP_NAME%%/defaults/pref/channel-prefs.js
 lib/%%APP_NAME%%/defaults/profile/localstore.rdf
 lib/%%APP_NAME%%/defaults/profile/panels.rdf
-lib/%%APP_NAME%%/dependentlibs.list
-lib/%%APP_NAME%%/dictionaries/en-US.aff
-lib/%%APP_NAME%%/dictionaries/en-US.dic
-lib/%%APP_NAME%%/distribution/extensions/inspector@mozilla.org.xpi
-lib/%%APP_NAME%%/distribution/extensions/{59c81df5-4b7a-477b-912d-4e0fdf64e5f2}.xpi
-lib/%%APP_NAME%%/distribution/extensions/{f13b157f-b174-47e7-a34d-4815ddfdfeb8}.xpi
-lib/%%APP_NAME%%/extensions/modern@themes.mozilla.org.xpi
-lib/%%APP_NAME%%/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+lib/%%APP_NAME%%/defaults/pref/channel-prefs.js
+lib/%%APP_NAME%%/defaults/pref/browser-prefs.js
+lib/%%APP_NAME%%/hyphenation/hyph_de-CH.dic
+lib/%%APP_NAME%%/hyphenation/hyph_sv.dic
+lib/%%APP_NAME%%/hyphenation/hyph_la.dic
+lib/%%APP_NAME%%/hyphenation/hyph_uk.dic
+lib/%%APP_NAME%%/hyphenation/hyph_lt.dic
+lib/%%APP_NAME%%/hyphenation/hyph_is.dic
+lib/%%APP_NAME%%/hyphenation/hyph_nn.dic
+lib/%%APP_NAME%%/hyphenation/hyph_cy.dic
+lib/%%APP_NAME%%/hyphenation/hyph_ia.dic
+lib/%%APP_NAME%%/hyphenation/hyph_pt.dic
+lib/%%APP_NAME%%/hyphenation/hyph_et.dic
+lib/%%APP_NAME%%/hyphenation/hyph_sl.dic
+lib/%%APP_NAME%%/hyphenation/hyph_hsb.dic
+lib/%%APP_NAME%%/hyphenation/hyph_es.dic
+lib/%%APP_NAME%%/hyphenation/hyph_nb.dic
+lib/%%APP_NAME%%/hyphenation/hyph_af.dic
+lib/%%APP_NAME%%/hyphenation/hyph_bg.dic
+lib/%%APP_NAME%%/hyphenation/hyph_eo.dic
+lib/%%APP_NAME%%/hyphenation/hyph_kmr.dic
+lib/%%APP_NAME%%/hyphenation/hyph_mn.dic
+lib/%%APP_NAME%%/hyphenation/hyph_fr.dic
+lib/%%APP_NAME%%/hyphenation/hyph_hr.dic
+lib/%%APP_NAME%%/hyphenation/hyph_ca.dic
+lib/%%APP_NAME%%/hyphenation/hyph_da.dic
+lib/%%APP_NAME%%/hyphenation/hyph_fi.dic
+lib/%%APP_NAME%%/hyphenation/hyph_gl.dic
+lib/%%APP_NAME%%/hyphenation/hyph_nl.dic
+lib/%%APP_NAME%%/hyphenation/hyph_ru.dic
+lib/%%APP_NAME%%/hyphenation/hyph_sh.dic
 lib/%%APP_NAME%%/hyphenation/hyph_en_US.dic
-lib/%%APP_NAME%%/icons/updater.png
-lib/%%APP_NAME%%/isp/SpamAssassin.sfd
-lib/%%APP_NAME%%/isp/SpamPal.sfd
-lib/%%APP_NAME%%/isp/movemail.rdf
-lib/%%APP_NAME%%/isp/rss.rdf
-lib/%%APP_NAME%%/libfreebl3.chk
-lib/%%APP_NAME%%/libfreebl3.so
-lib/%%APP_NAME%%/libldap60.so
-lib/%%APP_NAME%%/libldif60.so
-lib/%%APP_NAME%%/libmozalloc.so
-lib/%%APP_NAME%%/libmozsqlite3.so
-lib/%%APP_NAME%%/libnspr4.so
-lib/%%APP_NAME%%/libnss3.so
-lib/%%APP_NAME%%/libnssckbi.so
-lib/%%APP_NAME%%/libnssdbm3.chk
-lib/%%APP_NAME%%/libnssdbm3.so
-lib/%%APP_NAME%%/libnssutil3.so
-lib/%%APP_NAME%%/libplc4.so
-lib/%%APP_NAME%%/libplds4.so
-lib/%%APP_NAME%%/libprldap60.so
-lib/%%APP_NAME%%/libsmime3.so
-lib/%%APP_NAME%%/libsoftokn3.chk
-lib/%%APP_NAME%%/libsoftokn3.so
-lib/%%APP_NAME%%/libssl3.so
+lib/%%APP_NAME%%/hyphenation/hyph_de-1996.dic
+lib/%%APP_NAME%%/hyphenation/hyph_de-1901.dic
 lib/%%APP_NAME%%/libxpcom.so
-lib/%%APP_NAME%%/libxul.so
-lib/%%APP_NAME%%/license.txt
-lib/%%APP_NAME%%/mozilla-xremote-client
-lib/%%APP_NAME%%/omni.jar
-lib/%%APP_NAME%%/platform.ini
-lib/%%APP_NAME%%/plugin-container
-lib/%%APP_NAME%%/precomplete
-lib/%%APP_NAME%%/removed-files
-lib/%%APP_NAME%%/run-mozilla.sh
-lib/%%APP_NAME%%/seamonkey
-lib/%%APP_NAME%%/seamonkey-bin
-lib/%%APP_NAME%%/searchplugins/creativecommons.xml
-lib/%%APP_NAME%%/searchplugins/google.xml
-lib/%%APP_NAME%%/searchplugins/wikipedia.xml
-lib/%%APP_NAME%%/searchplugins/yahoo.xml
+lib/%%APP_NAME%%/crashreporter-override.ini
 lib/%%APP_NAME%%/update.locale
+lib/%%APP_NAME%%/chrome.manifest
+lib/%%APP_NAME%%/libplds4.so
 lib/%%APP_NAME%%/updater
+lib/%%APP_NAME%%/libprldap60.so
+lib/%%APP_NAME%%/crashreporter.ini
+lib/%%APP_NAME%%/plugin-container
+lib/%%APP_NAME%%/removed-files
+lib/%%APP_NAME%%/libfreebl3.so
+lib/%%APP_NAME%%/libsoftokn3.so
+lib/%%APP_NAME%%/Throbber-small.gif
+lib/%%APP_NAME%%/application.ini
+lib/%%APP_NAME%%/libnssdbm3.so
+lib/%%APP_NAME%%/libplc4.so
+lib/%%APP_NAME%%/libsmime3.so
+lib/%%APP_NAME%%/README
+lib/%%APP_NAME%%/libsoftokn3.chk
+lib/%%APP_NAME%%/crashreporter
+lib/%%APP_NAME%%/libnspr4.so
+lib/%%APP_NAME%%/license.txt
+lib/%%APP_NAME%%/libldif60.so
+lib/%%APP_NAME%%/blocklist.xml
+lib/%%APP_NAME%%/libssl3.so
+lib/%%APP_NAME%%/seamonkey-bin
+lib/%%APP_NAME%%/omni.jar
+lib/%%APP_NAME%%/run-mozilla.sh
+lib/%%APP_NAME%%/libnssdbm3.chk
+lib/%%APP_NAME%%/dependentlibs.list
 lib/%%APP_NAME%%/updater.ini
-@exec /bin/cp -R %%LOCALBASE%%/lib/npapi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/plugins/ 2>/dev/null || true
-@exec /bin/cp -R %%LOCALBASE%%/lib/xpi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/extensions/ 2>/dev/null || true
-@unexec /usr/bin/find %D/lib/%%APP_NAME%%/plugins/  -depth 1 -type l -delete 2>/dev/null || true
-@unexec /usr/bin/find %D/lib/%%APP_NAME%%/extensions/  -depth 1 -type l -delete 2>/dev/null || true
-@dirrm lib/%%APP_NAME%%/searchplugins
-@dirrm lib/%%APP_NAME%%/isp
-@dirrm lib/%%APP_NAME%%/icons
-@dirrm lib/%%APP_NAME%%/hyphenation
-@dirrm lib/%%APP_NAME%%/extensions
-@dirrm lib/%%APP_NAME%%/distribution/extensions
-@dirrm lib/%%APP_NAME%%/distribution
-@dirrm lib/%%APP_NAME%%/dictionaries
-@dirrm lib/%%APP_NAME%%/defaults/profile
-@dirrm lib/%%APP_NAME%%/defaults/pref
-@dirrm lib/%%APP_NAME%%/defaults/messenger
-@dirrm lib/%%APP_NAME%%/defaults
-@dirrm lib/%%APP_NAME%%/components
+lib/%%APP_NAME%%/precomplete
+lib/%%APP_NAME%%/libnssutil3.so
+lib/%%APP_NAME%%/libmozsqlite3.so
+lib/%%APP_NAME%%/libfreebl3.chk
+lib/%%APP_NAME%%/libldap60.so
+lib/%%APP_NAME%%/libxul.so
+lib/%%APP_NAME%%/libmozalloc.so
+lib/%%APP_NAME%%/mozilla-xremote-client
+lib/%%APP_NAME%%/seamonkey
+lib/%%APP_NAME%%/libnssckbi.so
+lib/%%APP_NAME%%/libnss3.so
+lib/%%APP_NAME%%/platform.ini
+share/applications/%%APP_NAME%%.desktop
 @dirrm lib/%%APP_NAME%%/chrome/icons/default
 @dirrm lib/%%APP_NAME%%/chrome/icons
 @dirrm lib/%%APP_NAME%%/chrome
+@dirrm lib/%%APP_NAME%%/distribution/extensions
+@dirrm lib/%%APP_NAME%%/distribution
+@dirrm lib/%%APP_NAME%%/components
+@dirrm lib/%%APP_NAME%%/searchplugins
+@dirrm lib/%%APP_NAME%%/dictionaries
+@dirrm lib/%%APP_NAME%%/icons
+@dirrm lib/%%APP_NAME%%/isp
+@dirrm lib/%%APP_NAME%%/extensions
+@dirrm lib/%%APP_NAME%%/defaults/messenger
+@dirrm lib/%%APP_NAME%%/defaults/profile
+@dirrm lib/%%APP_NAME%%/defaults/pref
+@dirrm lib/%%APP_NAME%%/defaults
+@dirrm lib/%%APP_NAME%%/hyphenation
 @dirrm lib/%%APP_NAME%%
-@dirrmtry share/applications
+@dirrm share/applications
+@cwd /compat/linux
+@cwd %%TARGETDIR%%
