@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/www/linux-f10-flashplugin10/Makefile,v 1.1 2011/06/19 23:47:59 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-f10-flashplugin10/Makefile,v 1.2 2011/08/31 02:40:17 laffer1 Exp $
 # $FreeBSD: ports/www/linux-f10-flashplugin10/Makefile,v 1.15 2011/03/24 18:40:34 nox Exp $
 
 PORTNAME=	flashplugin
-PORTVERSION=	10.3r183.7
+PORTVERSION=	10.3r183.11
 CATEGORIES=	www multimedia linux
-MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/current/:plugin \
-		ftp://ftp.ipt.ru/pub/download/:suplib
+MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/pdc/${PORTVERSION:C/r/./}/:plugin \
+		ftp://ftp.ipt.ru/pub/download/:suplib \
+		FREEBSD_LOCAL/nox:suplib
 PKGNAMEPREFIX=	linux-f10-
 DISTFILES=	install_flash_player_10_linux.tar.gz:plugin \
 		linux-f10-flashsupport-9.0.1.i386.tar.gz:suplib
