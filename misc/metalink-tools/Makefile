@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/misc/metalink-tools/Makefile,v 1.1 2012/01/05 18:09:39 laffer1 Exp $
 # $FreeBSD: ports/misc/metalink-tools/Makefile,v 1.9 2011/07/03 11:40:44 swills Exp $
 
 PORTNAME=	metalink
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Metalink generation tool
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt \
+LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt \
 		glibmm-2.4.1:${PORTSDIR}/devel/glibmm \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		sigc-2.0.0:${PORTSDIR}/devel/libsigc++20
