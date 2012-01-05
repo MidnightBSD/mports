@@ -1,11 +1,12 @@
 # New ports collection makefile for:	linux-flashplugin9
 #
-# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.8 2010/11/12 00:42:33 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-flashplugin9/Makefile,v 1.9 2011/09/01 01:27:21 laffer1 Exp $
 # $FreeBSD: ports/www/linux-flashplugin9/Makefile,v 1.23 2007/03/09 12:14:08 pav Exp $
 #
 
 PORTNAME=	flashplugin
 PORTVERSION=	9.0r289
+PORTREVISION=	1
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://download.macromedia.com/pub/flashplayer/installers/current/9/:plugin \
 		http://tijl.ulyssis.fm/mirror/:suplib \
@@ -20,10 +21,9 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Adobe Flash Player NPAPI Plugin
 LICENSE=	restricted
 
-RUN_DEPENDS=	${LINUXBASE}/lib/libssl.so.5:${PORTSDIR}/security/linux-openssl
-
 ONLY_FOR_ARCHS=	amd64 i386
 USE_LINUX=	yes
+USE_LINUX_APPS=	openssl gtk2
 
 RESTRICTED=	Redistribution not allowed
 RESTRICTED_FILES=	${DISTFILES:Nlibflashsupport*:C/:[^:]+$//}
