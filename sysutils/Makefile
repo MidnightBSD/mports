@@ -1,7 +1,6 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.106 2011/05/28 05:10:47 laffer1 Exp $
-#
+# $MidnightBSD: mports/sysutils/Makefile,v 1.107 2011/07/31 16:49:22 laffer1 Exp $
 
-    COMMENT = System utilities
+COMMENT = System utilities
 
 SUBDIR += 915resolution
 SUBDIR += LPRng
@@ -30,6 +29,7 @@ SUBDIR += etoile-powermenulet
 SUBDIR += etoile-system
 SUBDIR += extipl
 SUBDIR += flashback
+SUBDIR += flock
 SUBDIR += fusefs-curlftpfs
 SUBDIR += fusefs-httpfs
 SUBDIR += fusefs-kmod
