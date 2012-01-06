@@ -1,6 +1,0 @@
-Google-perftools requires machdep.tsc_freq sysctl to function.  This is
-typically disabled on multiprocessor systems.  You might be able
-to work around this by building a kernel without acpi/apic/smp for
-use with this application.
-
-You will also need devfs(5) enabled.
