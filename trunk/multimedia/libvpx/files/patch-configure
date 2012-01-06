@@ -1,0 +1,10 @@
+--- configure.orig	2011-05-03 14:04:54.078494804 +0200
++++ configure	2011-05-03 14:05:10.689164730 +0200
+@@ -85,6 +85,7 @@
+ all_platforms="${all_platforms} armv6-linux-gcc"
+ all_platforms="${all_platforms} armv6-none-rvct"
+ all_platforms="${all_platforms} armv6-symbian-gcc"
++all_platforms="${all_platforms} ia64-linux-gcc"
+ all_platforms="${all_platforms} iwmmxt-linux-rvct"
+ all_platforms="${all_platforms} iwmmxt-linux-gcc"
+ all_platforms="${all_platforms} iwmmxt2-linux-rvct"
