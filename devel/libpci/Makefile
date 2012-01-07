@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/devel/libpci/Makefile,v 1.1 2010/03/13 02:59:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/libpci/Makefile,v 1.2 2011/07/16 15:03:58 laffer1 Exp $
 
 PORTNAME=	libpci
-PORTVERSION=	3.1.7
+PORTVERSION=	3.1.8
 CATEGORIES=	devel
 MASTER_SITES=	ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci/ \
-		${MASTER_SITE_KERNEL_ORG} \
-		ftp://metalab.unc.edu/pub/Linux/hardware/
-MASTER_SITE_SUBDIR=	software/utils/pciutils
+		FREEBSD_LOCAL/sunpoet
 DISTNAME=	pciutils-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,20 +13,26 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:${PORTSDIR}/misc/pciids
 
-USE_GMAKE=	yes
-NO_INSTALL_MANPAGES=	yes
-USE_LDCONFIG=	yes
-MAKE_ENV=	LANG=C
 ALL_TARGET=	lib/libpci.a
+MAKE_ENV=	LANG=C
+USE_GMAKE=	yes
+USE_LDCONFIG=	yes
+
+LIBPCI_FILES=	include/pci/config.h include/pci/header.h include/pci/pci.h \
+		include/pci/types.h lib/libpci.a lib/libpci.so \
+		libdata/pkgconfig/libpci.pc
+
+post-patch:
+	@${REINPLACE_CMD} 's|^CC=|CC?=|; s|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/Makefile
+
+post-build:
+	@${REINPLACE_CMD} 's|^#include "|&pci/|' ${WRKSRC}/lib/pci.h
 
 do-install:
-	@(${INSTALL_DATA} ${WRKSRC}/lib/libpci.so ${PREFIX}/lib/libpci.so.3)
-	@(${INSTALL_DATA} ${WRKSRC}/lib/libpci.a ${PREFIX}/lib/libpci.a)
-	@(${LN} -sf ${PREFIX}/lib/libpci.so.3 ${PREFIX}/lib/libpci.so)
-	@(${MKDIR} ${PREFIX}/include/pci)
-	@(${INSTALL_DATA} ${WRKSRC}/lib/config.h ${PREFIX}/include/pci/config.h)
-	@(${INSTALL_DATA} ${WRKSRC}/lib/header.h ${PREFIX}/include/pci/header.h)
-	@(${INSTALL_DATA} ${WRKSRC}/lib/pci.h ${PREFIX}/include/pci/pci.h)
-	@(${INSTALL_DATA} ${WRKSRC}/lib/types.h ${PREFIX}/include/pci/types.h)
+	@${MKDIR} ${PREFIX}/include/pci/
+.for file in ${LIBPCI_FILES}
+	@${INSTALL_DATA} ${WRKSRC}/lib/${file:T} ${PREFIX}/${file}
+.endfor
+	@${LN} -fs libpci.so ${PREFIX}/lib/libpci.so.3
 
 .include <bsd.port.mk>
