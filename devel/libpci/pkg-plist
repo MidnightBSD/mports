@@ -1,3 +1,4 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 include/pci/config.h
 include/pci/header.h
 include/pci/pci.h
@@ -5,4 +6,5 @@ include/pci/types.h
 lib/libpci.a
 lib/libpci.so
 lib/libpci.so.3
+libdata/pkgconfig/libpci.pc
 @dirrm include/pci
