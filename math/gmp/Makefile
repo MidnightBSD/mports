@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/gmp/Makefile,v 1.1 2010/05/08 02:00:15 laffer1 Exp $
 
 PORTNAME=	gmp
 PORTVERSION=	5.0.1
+PORTREVISION=	1
 CATEGORIES=	math devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gmp
@@ -29,12 +30,14 @@ INFO=		gmp
 
 .include <bsd.port.pre.mk>
 
-.if !defined(WITH_CPU_OPTS)
 CONFIGURE_ARGS+=--build=${ARCH}-portbld-freebsd7.0
-.elif ${ARCH:S/64//} != ${ARCH}
+
+.if defined(WITH_CPU_OPTS)
+.if ${ARCH:S/64//} != ${ARCH}
 CONFIGURE_ENV+=	ABI="64"
 .else
 CONFIGURE_ENV+=	ABI="32"
+.endif
 .endif
 
 post-extract:
