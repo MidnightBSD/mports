@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.384 2011/09/18 20:05:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.385 2011/12/21 04:33:29 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -328,7 +328,6 @@ SUBDIR += pccts
 SUBDIR += pcre
 SUBDIR += pcsc-lite
 SUBDIR += pear
-SUBDIR += pecl-json
 SUBDIR += performance
 SUBDIR += perltidy
 SUBDIR += php-xdebug
