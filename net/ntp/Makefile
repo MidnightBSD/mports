@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/ntp/Makefile,v 1.12 2011/03/03 21:20:41 laffer1 Exp $
+# $MidnightBSD: mports/net/ntp/Makefile,v 1.13 2011/05/28 18:14:28 laffer1 Exp $
 # $FreeBSD: ports/net/ntp/Makefile,v 1.50 2008/01/13 04:17:07 cy Exp $
 
 PORTNAME=	ntp
-PORTVERSION?=	4.2.6p3
+PORTVERSION?=	4.2.6p5
 PORTREVISION=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
