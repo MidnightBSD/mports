@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.385 2011/12/21 04:33:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.386 2012/01/25 04:50:51 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -197,6 +197,7 @@ SUBDIR += objcunit
 SUBDIR += oniguruma
 SUBDIR += oniguruma4
 SUBDIR += oniguruma5
+SUBDIR += opengrok
 SUBDIR += orc
 SUBDIR += p5-Algorithm-C3
 SUBDIR += p5-Algorithm-Diff
