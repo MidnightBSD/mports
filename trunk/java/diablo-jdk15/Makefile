@@ -2,13 +2,13 @@
 # Date created:		February 26 2006
 # Whom:			Greg Lewis <glewis@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.10 2009/01/04 04:07:50 laffer1 Exp $
+# $MidnightBSD: mports/java/diablo-jdk15/Makefile,v 1.11 2011/12/24 02:54:36 laffer1 Exp $
 # $FreeBSD: ports/java/diablo-jdk15/Makefile,v 1.8 2007/03/07 17:14:46 glewis Exp $
 #
 
 PORTNAME=	jdk
 PORTVERSION=	${JDK_VERSION}.${RELEASE_VERSION}.${BUILD_VERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	java devel
 MASTER_SITES=	#
 PKGNAMEPREFIX=	diablo-
@@ -59,8 +59,8 @@ LIB_DEPENDS=  z.3:${PORTSDIR}/misc/compat6x
 
 .if !defined(WITHOUT_TZUPDATE)
 EXTRACT_DEPENDS+=	unzip:${PORTSDIR}/archivers/unzip
-TZUPDATE_VERSION=	1_3_42
-TZUPDATE_TZVERSION=	2011k
+TZUPDATE_VERSION=	1_3_45
+TZUPDATE_TZVERSION=	2011n
 TZUPDATEFILE=		tzupdater-${TZUPDATE_VERSION}-${TZUPDATE_TZVERSION}.zip
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${TZUPDATEFILE}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
