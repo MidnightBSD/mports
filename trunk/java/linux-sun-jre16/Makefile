@@ -2,7 +2,7 @@
 # Date created:				5 October 2007
 # Whom:					Jung-uk Kim <jkim@FreeBSD.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.2 2008/10/14 15:40:59 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.3 2011/12/24 04:14:57 laffer1 Exp $
 # $FreeBSD: ports/java/linux-sun-jre16/Makefile,v 1.1 2007/10/26 20:49:42 jkim Exp $
 #
 
@@ -36,7 +36,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JRE_VERSION=	1.6.0
-JRE_REVISION=	24
+JRE_REVISION=	29
 DL_JRE_VERSION=	${JRE_VERSION}_${JRE_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
