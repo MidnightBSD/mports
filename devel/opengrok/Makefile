@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.1 2012/01/27 00:40:45 laffer1 Exp $
 # $FreeBSD: ports/devel/opengrok/Makefile,v 1.5 2011/12/26 17:21:01 jgh Exp $
 
 PORTNAME=	opengrok
@@ -40,9 +40,9 @@ LIBFILES=	ant.jar \
 		swing-layout-0.9.jar
 
 .if defined(WITH_TOMCAT6)
-WEBAPP_DIRS=	apache-tomcat-6.0
-BUILD_DEPENDS+=	${LOCALBASE}/apache-tomcat-6.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat6
-RUN_DEPENDS+=	${LOCALBASE}/apache-tomcat-6.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat6
+WEBAPP_DIRS=	apache-tomcat6.0
+BUILD_DEPENDS+=	${LOCALBASE}/apache-tomcat6.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat6
+RUN_DEPENDS+=	${LOCALBASE}/apache-tomcat6.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat6
 .endif
 
 .if defined(WITH_TOMCAT55)
