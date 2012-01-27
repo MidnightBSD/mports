@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.5 2008/10/12 20:47:19 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.6 2011/12/24 04:13:24 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -35,7 +35,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	24
+JDK_REVISION=	30
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
