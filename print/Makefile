@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.48 2011/07/23 22:02:26 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.49 2011/09/15 04:10:30 laffer1 Exp $
 
 COMMENT = Desktop publishing
 
@@ -14,6 +14,8 @@ SUBDIR += cm-super
 SUBDIR += cmpsfont
 SUBDIR += cups
 SUBDIR += cups-base
+SUBDIR += cups-client
+SUBDIR += cups-image
 SUBDIR += cups-pstoraster
 SUBDIR += dvipdfmx
 SUBDIR += dvipsk-tetex
