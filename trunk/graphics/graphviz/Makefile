@@ -1,14 +1,17 @@
-# $MidnightBSD: mports/graphics/graphviz/Makefile,v 1.16 2010/05/05 23:45:24 laffer1 Exp $
+# New ports collection makefile for:	graphviz
+# Date created:		03 Feb 1998
+# Whom:			Thomas Gellekum <tg@FreeBSD.org>
+#
+# $FreeBSD: ports/graphics/graphviz/Makefile,v 1.137 2011/08/31 12:31:23 kwm Exp $
+#
 
 PORTNAME=	graphviz
-PORTVERSION=	2.24.0
-PORTREVISION=	1
+PORTVERSION=	2.28.0
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
-LICENSE=	other
 
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.6:${PORTSDIR}/graphics/png \
@@ -22,19 +25,18 @@ USE_GMAKE=	yes
 USE_AUTOTOOLS=	libltdl libtool
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.1 \
-			--host=${ARCH}-portbld-freebsd6.1
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 
-MAKE_ENV+=	EXPR_COMPAT=yes MISSING=${TRUE}
-FAKE_MAKEENV+= 	 EXPR_COMPAT=yes MISSING=${TRUE}
+MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE}
 
-MAN1=		acyclic.1 bcomps.1 ccomps.1 dijkstra.1 dot.1 dotty.1 gc.1 \
-		gv2gxl.1 gvgen.1 mm2gv.1 gvcolor.1 gvpack.1 gvpr.1 lneato.1 \
-		nop.1 osage.1 prune.1 sccmap.1 tred.1 unflatten.1
-MAN3=		cdt.3 cgraph.3 graph.3 gvc.3 pathplan.3
+MAN1=		acyclic.1 bcomps.1 ccomps.1 cluster.1 diffimg.1 dijkstra.1 \
+		dot.1 dotty.1 gc.1 gml2gv.1 gv2gxl.1 gvedit.1 gvmap.1 \
+		gvmap.sh.1 gvgen.1 mm2gv.1 gvcolor.1 gvpack.1 gvpr.1 \
+		lneato.1 nop.1 osage.1 patchwork.1 prune.1 sccmap.1 smyrna.1 \
+		tred.1 unflatten.1 vimdot.1
+MAN3=		cdt.3 expr.3 cgraph.3 graph.3 gvc.3 pack.3 pathplan.3 xdot.3
 MAN7=		graphviz.7
 MLINKS=		dot.1 circo.1 \
 		dot.1 fdp.1 \
@@ -68,14 +70,15 @@ OPTIONS=	ICONV "Build with ICONV support" on \
 		XPM "Build with XPM support" on \
 		DIGCOLA "DIGCOLA features in neato layout engine" on \
 		IPSEPCOLA "IPSEPCOLA features in neato layout engine" on \
-		SMYRNA "SMYRNA large graph viewer" off \
 		NLS "Build with gettext support" on \
 		TK "Build with TK support" off \
-		PANGOCAIRO "build with pangocairo support" off \
+		PANGOCAIRO "build with pangocairo support" on \
 		RSVG "build with rsvg library" off \
 		GTK "build with gtk plugin" off \
 		GDK_PIXBUF  "build with gdk pixbuf support" off \
 		GNOMEUI  "build with libgnomeui support" off \
+		SMYRNA "SMYRNA large graph viewer (GTK is required)" off \
+		GVEDIT "gvedit (qt is required)" off \
 		MING "Build with ming plugin" off \
 		DEVIL "Build with devil plugin" off \
 		GHOSTSCRIPT "Build with ghostscript plugin" off \
@@ -86,6 +89,13 @@ OPTIONS=	ICONV "Build with ICONV support" on \
 		LUA "Lua bindings (swig)" off \
 		TCL "TCL bindings (swig)" off \
 		GUILE "Guile bindings (swig)" off
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_GVEDIT)
+USE_QT_VER=		4
+QT_COMPONENTS=		qmake_build moc_build rcc_build uic_build linguist_build
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -146,7 +156,7 @@ CONFIGURE_ARGS+=	--disable-nls
 USE_GETTEXT=		yes
 .endif
 
-.if defined(WITH_PANGOCAIRO)
+.if !defined(WITHOUT_PANGOCAIRO)
 CONFIGURE_ARGS+=	--with-pangocairo
 PLIST_SUB+=		WITH_PANGOCAIRO=""
 USE_GNOME=		pango
@@ -161,7 +171,7 @@ CONFIGURE_ARGS+=	--with-rsvg=yes
 PLIST_SUB+=		WITH_RSVG=""
 USE_GNOME+=		librsvg2
 USE_GL+=		gl glu
-.if !defined(WITH_PANGOCAIRO)
+.if defined(WITHOUT_PANGOCAIRO)
 IGNORE=			option WITH_PANGOCAIRO is required for option WITH_RSVG
 .endif
 .else
@@ -174,7 +184,7 @@ CONFIGURE_ARGS+=	--with-gtk
 PLIST_SUB+=		WITH_GTK=""
 USE_GNOME+=		gtk20
 USE_XORG+=		sm ice xext xinerama xi xrandr xcursor xfixes
-.if !defined(WITH_PANGOCAIRO)
+.if defined(WITHOUT_PANGOCAIRO)
 IGNORE=			option WITH_PANGOCAIRO is required for option WITH_GTK
 .endif
 .else
@@ -206,15 +216,11 @@ CONFIGURE_ARGS+=	--without-gnomeui
 .if defined(WITH_SMYRNA)
 CONFIGURE_ARGS+=	--with-glade=yes
 USE_GNOME+=		gnomelibs libglade2
+.if !defined(WITH_GTK)
+IGNORE=			option WITH_GTK is required for option WITH_SMYRNA
+.endif
 .else
 CONFIGURE_ARGS+=	--without-glade
-.endif
-
-.if defined(USE_GNOME)
-.include "${PORTSDIR}/Mk/extensions/gnome.mk"
-.endif
-.if defined(USE_XORG)
-.include "${PORTSDIR}/Mk/extensions/xorg.mk"
 .endif
 
 .if defined(WITH_SMYRNA)
@@ -261,10 +267,18 @@ PLIST_SUB+=		WITH_SMYRNA="@comment "
 CONFIGURE_ARGS+=	--without-smyrna
 .endif
 
+.if defined(WITH_GVEDIT)
+CONFIGURE_ARGS+=	--with-gvedit=yes
+PLIST_SUB+=		WITH_GVEDIT=""
+.else
+PLIST_SUB+=		WITH_GVEDIT="@comment "
+CONFIGURE_ARGS+=	--with-qt=no
+.endif
+
 .if defined(WITH_MING)
 CONFIGURE_ARGS+=	--with-ming
 PLIST_SUB+=		WITH_MING=""
-LIB_DEPENDS+=		ming.4:${PORTSDIR}/graphics/ming
+LIB_DEPENDS+=		ming.5:${PORTSDIR}/graphics/ming
 .else
 CONFIGURE_ARGS+=	--without-ming
 PLIST_SUB+=		WITH_MING="@comment "
@@ -326,6 +340,7 @@ PLIST_SUB+=		WITH_PYTHON="@comment "
 
 .if defined(WITH_RUBY)
 CONFIGURE_ARGS+=	--enable-ruby
+CONFIGURE_ENV+=		RUBY="${RUBY}"
 PLIST_SUB+=		WITH_RUBY=""
 USE_RUBY=		yes
 .include "${PORTSDIR}/Mk/bsd.ruby.mk"
@@ -362,7 +377,7 @@ PLIST_SUB+=		WITH_TCL="@comment "
 .if defined(WITH_GUILE)
 CONFIGURE_ARGS+=	--enable-guile
 PLIST_SUB+=		WITH_GUILE=""
-LIB_DEPENDS+=		guile.20:${PORTSDIR}/lang/guile
+LIB_DEPENDS+=		guile.21:${PORTSDIR}/lang/guile
 MAN3+=			gv.3guile
 .else
 CONFIGURE_ARGS+=	--disable-guile
@@ -373,6 +388,7 @@ PLIST_SUB+=		WITH_GUILE="@comment "
 USE_GHOSTSCRIPT=	yes
 PLIST_SUB+=		WITH_GHOSTSCRIPT=""
 .else
+CONFIGURE_ARGS+=	--with-ghostscript=no
 PLIST_SUB+=		WITH_GHOSTSCRIPT="@comment "
 .endif
 
@@ -404,16 +420,14 @@ post-patch:
 		-e "s|-lruby|-lruby${RUBY_SUFFIX}|g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|#include "gui.h"|#include "gui/gui.h"|' \
 		${WRKSRC}/cmd/smyrna/tvnodes.h
-	@${REINPLACE_CMD} -e 's|#include "regex_win32.h"|#include <regex.h>|' \
-		${WRKSRC}/cmd/smyrna/btree.c
 .if defined(NOPORTDOCS)
 	@${REINPLACE_CMD} -e 's| install-txtDATA$$||' \
 		${WRKSRC}/Makefile.in
 .endif
 
-post-install:
+post-install: install-ldconfig-file
 	cd ${WRKSRC}/lib/expr && \
-		${MAKE} ${INSTALL_TARGET}
+		${MAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${FIX_INCLUDE} ${PREFIX}/include/graphviz/
 .if !defined(NOPORTDOCS)
