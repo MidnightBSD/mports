@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.11 2010/05/05 23:47:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.12 2011/08/18 00:26:54 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.17.1
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -51,7 +52,7 @@ IGNORE=		requires procfs mounted to build or run, for details see procfs(5)
 .endif
 
 .if !defined(WITHOUT_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
 PLIST_SUB+=	WITH_CUPS=""
 .else
 PLIST_SUB+=	WITH_CUPS="@comment "
