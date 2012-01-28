@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/graphics/p5-GD-Graph/Makefile,v 1.2 2008/10/13 20:46:51 laffer1 Exp $
+# $MidnightBSD: mports/graphics/p5-GD-Graph/Makefile,v 1.3 2010/02/05 01:35:08 laffer1 Exp $
 
 PORTNAME=	GD-Graph
 PORTVERSION=	1.44.01
 DISTVERSION=	${PORTVERSION:C/\.(..)$/_\1/}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../by-authors/id/B/BW/BWARFIELD
