@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/poppler-data/Makefile,v 1.2 2008/10/13 20:48:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/poppler-data/Makefile,v 1.3 2011/06/08 23:19:57 laffer1 Exp $
 # $FreeBSD: ports/graphics/poppler-data/Makefile,v 1.1 2006/09/30 04:52:39 ahze Exp $
 
 PORTNAME=	poppler-data
-PORTVERSION=	0.4.4
+PORTVERSION=	0.4.5
 CATEGORIES=	graphics
 MASTER_SITES=	http://poppler.freedesktop.org/
 
