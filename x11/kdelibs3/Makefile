@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.10 2010/09/11 20:48:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.11 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -40,7 +40,7 @@ CONFIGURE_ARGS+=--disable-cups
 PLIST=		${.CURDIR}/../kdelibs3-nocups/pkg-plist
 .else
 CONFLICTS+=	kdelibs-nocups-[0-9]*
-LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
 .endif
 
 USE_BZIP2=	yes
