@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.6 2011/02/02 21:18:50 laffer1 Exp $
+# $MidnightBSD: mports/print/libgnomecups/Makefile,v 1.7 2011/07/23 16:07:28 laffer1 Exp $
 
 PORTNAME=	libgnomecups
 PORTVERSION=	0.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	print gnome
 MASTER_SITES=	GNOME
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Support library for gnome cups admistration
 LICENSE=	gpl2
 
-LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS=	cups.2:${PORTSDIR}/print/cups-client
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
