@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.2 2009/09/26 22:33:44 laffer1 Exp $
+# $MidnightBSD: mports/print/gutenprint-base/Makefile,v 1.3 2011/12/15 00:57:53 laffer1 Exp $
 
 PORTNAME?=	gutenprint
-PORTVERSION=	5.1.7
+PORTVERSION=	5.2.7
 CATEGORIES=	print
-MASTER_SITES=	SF/gimp-print/gutenprint-5.1/${PORTVERSION}
+MASTER_SITES=	SF/gimp-print/gutenprint-5.2/${PORTVERSION}
 PKGNAMESUFFIX?=	-base
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,14 +15,13 @@ CONFLICTS=	gimp-print-[0-9]*
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack  gtk20
+USE_GNOME=	gnomehack gtk20
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=--with-gimp=no --with-gimp2=no
 USE_LDCONFIG=	yes
 
-CPPFLAGS=	-I${LOCALBASE}/include -I${PREFIX}/include
-LDFLAGS=	-L${LOCALBASE}/lib -L${PREFIX}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include -I${PREFIX}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -L${PREFIX}/lib
 
 .include <bsd.port.pre.mk>
 
@@ -35,8 +34,8 @@ MAN1+=		escputil.1
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="gimp"
-LIB_DEPENDS+=	gimp-2.0:${PORTSDIR}/graphics/gimp-app
-LIB_DEPENDS+=	gutenprint.2:${PORTSDIR}/print/gutenprint-base
+LIB_DEPENDS+=	gimp-2.0:${PORTSDIR}/graphics/gimp-app \
+		gutenprint.2:${PORTSDIR}/print/gutenprint-base
 CONFIGURE_ARGS=--with-gimp2=yes # Override CONFIGURE_ARGS
 BUILD_WRKSRC=	${WRKSRC}/src/gimp2
 INSTALL_WRKSRC=	${WRKSRC}/src/gimp2
@@ -45,13 +44,13 @@ CONFIGURE_ARGS+=--without-gimp2
 .endif
 
 .if defined(GUT_SLAVE) && ${GUT_SLAVE}=="cups"
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client \
+		cupsimage.2:${PORTSDIR}/print/cups-image
 RUN_DEPENDS+=	espgs:${PORTSDIR}/print/cups-pstoraster
 CONFIGURE_ARGS+=	--with-cups=${PREFIX} \
 			--enable-cups-ppds \
 			--enable-cups-level3-ppds
-MAN8+=	cups-calibrate.8 cups-genppd.8 cups-genppdconfig.8 \
-	cups-genppdupdate.8
+MAN8+=	cups-calibrate.8 cups-genppd.8 cups-genppdupdate.8
 BUILD_WRKSRC=	${WRKSRC}/src/cups
 INSTALL_WRKSRC=	${WRKSRC}/src/cups
 .else
@@ -98,6 +97,11 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|= $$(pkglibdir)|= ${PREFIX}/libexec/cups|' \
 		${WRKSRC}/src/cups/Makefile.in
+
+pre-build:
+.if defined(GUT_SLAVE) && (${GUT_SLAVE}=="foomatic" || ${GUT_SLAVE}=="cups")
+	@(cd ${WRKSRC}/src/xml && ${MAKE})
+.endif
 
 post-install:
 .if ${SLAVE_PORT}=="yes"
