@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.15 2010/05/14 00:54:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.16 2010/05/30 21:41:48 laffer1 Exp $
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -104,7 +104,7 @@ CONFIGURE_ARGS+=-disable-opengl
 .endif # WITHOUT_OPENGL
 
 .if !defined(WITHOUT_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
 CUPS=	-cups -L${LOCALBASE}/lib -I${LOCALBASE}/include
 .elif defined(WITHOUT_CUPS)
 CUPS=
