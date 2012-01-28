@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.31 2011/08/31 02:33:11 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.32 2011/08/31 23:59:44 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
+PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -45,7 +46,7 @@ OPTIONS=	CUPS	"Enable support for printing (requires CUPS)"		on \
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
 .endif
 
 .if !defined(WITHOUT_VIDEO)

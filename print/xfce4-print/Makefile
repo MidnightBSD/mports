@@ -2,13 +2,13 @@
 # Date created:		7 June 2003
 # Whom:			James Earl <jdearl@telus.net>
 #
-# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.3 2011/02/09 13:27:44 laffer1 Exp $
+# $MidnightBSD: mports/print/xfce4-print/Makefile,v 1.4 2011/12/15 00:57:53 laffer1 Exp $
 # $FreeBSD: ports/print/xfce4-print/Makefile,v 1.50 2008/06/06 13:58:00 edwin Exp $
 #
 
 PORTNAME=	xfce4-print
 PORTVERSION=	4.6.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	print xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=xfce/4.6.1/src
@@ -36,7 +36,7 @@ OPTIONS=	LPR	"Use lpr as printing system"		on \
 
 .if defined(WITH_CUPS)
 CONFIGURE_ARGS+=--enable-cups
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
 PLIST_SUB+=	CUPS=""
 .else
 CONFIGURE_ARGS+=--disable-cups

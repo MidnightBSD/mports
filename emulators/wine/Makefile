@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/emulators/wine/Makefile,v 1.13 2011/01/25 01:39:58 laffer1 Exp $
+# $MidnightBSD: mports/emulators/wine/Makefile,v 1.14 2011/02/02 21:40:20 laffer1 Exp $
 
 PORTNAME=	wine
 DISTVERSION=	1.3.12
@@ -60,7 +60,7 @@ OPTIONS=	CUPS	"Use CUPS (Common UNIX Printing System)"	Off \
 CONFIGURE_ARGS+=	--without-cups
 .else
 CONFIGURE_ARGS+=	--with-cups
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
 .endif
 
 .ifdef WITH_GNUTLS
