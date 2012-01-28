@@ -1,7 +1,4 @@
-# New ports collection makefile for:	graphviz
-# Date created:		03 Feb 1998
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
+# $MidnightBSD$
 # $FreeBSD: ports/graphics/graphviz/Makefile,v 1.137 2011/08/31 12:31:23 kwm Exp $
 #
 
@@ -10,8 +7,9 @@ PORTVERSION=	2.28.0
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
+LICENSE=	epl
 
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.6:${PORTSDIR}/graphics/png \
@@ -27,9 +25,11 @@ WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
-PLIST_SUB=	PORTVERSION="${PORTVERSION}"
+PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
+SUB_FILES+=	pkg-install
 
 MAKE_ENV=	EXPR_COMPAT=yes MISSING=${TRUE}
+FAKE_MAKEENV+= 	 EXPR_COMPAT=yes MISSING=${TRUE}
 
 MAN1=		acyclic.1 bcomps.1 ccomps.1 cluster.1 diffimg.1 dijkstra.1 \
 		dot.1 dotty.1 gc.1 gml2gv.1 gv2gxl.1 gvedit.1 gvmap.1 \
@@ -425,7 +425,7 @@ post-patch:
 		${WRKSRC}/Makefile.in
 .endif
 
-post-install: install-ldconfig-file
+post-install:
 	cd ${WRKSRC}/lib/expr && \
 		${MAKE} ${FAKE_MAKEARGS} ${INSTALL_TARGET}
 	cd ${WRKSRC} && \

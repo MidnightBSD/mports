@@ -79,7 +79,7 @@ include/graphviz/usershape.h
 include/graphviz/vis.h
 include/graphviz/vispath.h
 include/graphviz/xdot.h
-lib/graphviz/config6
+@comment lib/graphviz/config6
 lib/graphviz/libcdt.so
 lib/graphviz/libcdt.so.5
 lib/graphviz/libcdt.la
