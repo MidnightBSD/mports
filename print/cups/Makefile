@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/cups/Makefile,v 1.6 2010/01/01 23:44:20 laffer1 Exp $
-# $FreeBSD: ports/print/cups/Makefile,v 1.29 2006/12/18 14:21:23 dinoex Exp $
+# $MidnightBSD$
+# $FreeBSD: ports/print/cups/Makefile,v 1.54 2011/10/05 06:02:12 dinoex Exp $
 
 PORTNAME=	cups
-PORTVERSION=	1.3.11
+PORTVERSION=	1.5.0
 CATEGORIES=	print
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -11,8 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Common UNIX Printing System: Metaport to install complete system
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	espgs:${PORTSDIR}/print/cups-pstoraster \
-		cupsd:${PORTSDIR}/print/cups-base
+BUILD_DEPENDS=	espgs:${PORTSDIR}/${PKGCATEGORY}/cups-pstoraster \
+		cupsd:${PORTSDIR}/${PKGCATEGORY}/cups-base
 RUN_DEPENDS=	${BUILD_DEPENDS}
 
 NO_BUILD=	yes
