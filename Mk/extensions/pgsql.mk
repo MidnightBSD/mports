@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.3 2010/12/31 22:58:26 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/pgsql.mk,v 1.4 2011/05/27 22:23:30 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.database.mk,v 1.14 2006/07/05 02:18:08 linimon Exp $
 
 .if defined(_POSTMKINCLUDED) && !defined(Pgsql_Post_Include)
@@ -10,10 +10,10 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 #				  If no version is given (by the maintainer via the port or
 #				  by the user via defined variable), try to find the
 #				  currently installed version.  Fall back to default if
-#				  necessary (PostgreSQL-8.2 = 82).
+#				  necessary (PostgreSQL-8.4 = 84).
 # DEFAULT_PGSQL_VER
 #				- PostgreSQL default version. Can be overridden within a port.
-#				  Default: 82.
+#				  Default: 84.
 # WANT_PGSQL_VER
 #				- Maintainer can set an arbitrary version of PostgreSQL by
 #				  using it.
@@ -27,7 +27,6 @@ Pgsql_Include_MAINTAINER=	ports@MidnightBSD.org
 
 
 DEFAULT_PGSQL_VER?=	84
-PGSQL82_LIBVER=         5
 PGSQL83_LIBVER=		5
 PGSQL84_LIBVER=		5
 PGSQL90_LIBVER=		5
