@@ -1,7 +1,7 @@
 # -*- mode: Makefile; tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.14 2011/12/22 01:38:08 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.15 2011/12/22 01:40:17 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -84,9 +84,9 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYTHON_DEFAULT_VERSION
 #					- Version of the default python binary in your ${PATH}, in
-#					  the format "python2.6". Set this in your /etc/make.conf
+#					  the format "python2.7". Set this in your /etc/make.conf
 #					  in case you want to use an older version as a default.
-#					  default: python2.6
+#					  default: python2.7
 #
 # PYTHON_WRKSRC		- The ${WRKSRC} for your python version. Needed for
 #					  extensions like Tkinter, py-gdbm and py-expat, which
@@ -110,18 +110,6 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYXML				- Dependency line for the XML extension. As of Python-2.0,
 #					  this extension is in the base distribution.
-#
-# PYEXPAT			- Dependency line for the Expat XML Parser. As of Python-2.3.2,
-#					  this module is in the base distribution.
-#
-# PYCTYPES			- Dependency line for the ctypes package. As of Python-2.5,
-#					  this module is in the base distribution.
-#
-# PYHASHLIB			- Dependency line for the hashlib package. As of Python-2.5,
-#					  this module is in the base distribution.
-#
-# PYWSGIREF			- Dependency line for the wsgiref package. As of Python-2.5,
-#					  this module is in the base distribution.
 #
 # USE_PYTHON_PREFIX	- Says that the port installs in ${PYTHONBASE}.
 #
@@ -165,14 +153,14 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # PYDISTUTILS_EGGINFO
 #					- Canonical name for egg-info.
-#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-${PYTHON_VERSION:S/thon//}.egg-info
+#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
 #
 # PYDISTUTILS_NOEGGINFO
 #					- Skip an egg-info entry from plist when defined.
 #
 # PYEASYINSTALL_EGG
 #					- Canonical directory name for easy_install egg packages.
-#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-${PYTHON_VERSION:S/thon//}${PYEASYINSTALL_OSARCH}.egg
+#					  default: ${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
 #
 # PYEASYINSTALL_OSARCH
 #					- Platform identifier for easy_install.
@@ -214,8 +202,8 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #					  specific version of zope.
 #
 
-_PYTHON_PORTBRANCH=		2.6
-_PYTHON_ALLBRANCHES=	2.6 2.5 2.4 3.1 # preferred first
+_PYTHON_PORTBRANCH=		2.7
+_PYTHON_ALLBRANCHES=	2.7 2.6 2.5 2.4 3.1 # preferred first
 _ZOPE_PORTBRANCH=		2.7
 _ZOPE_ALLBRANCHES=		2.7 2.8 2.9 2.10 3.2
 
@@ -269,7 +257,7 @@ _ZOPE_VERSION=	${_ZOPE_PORTBRANCH} # just to avoid version sanity checking.
 
 ZOPE_VERSION?=	${_ZOPE_VERSION}
 
-PYTHON_VERSION=         python2.4
+PYTHON_VERSION=	python2.4
 .endif	# defined(USE_ZOPE)
 
 
@@ -303,7 +291,7 @@ USE_PYTHON=		${USE_PYTHON_BUILD}
 .elif defined(USE_PYTHON_RUN)
 USE_PYTHON=		${USE_PYTHON_RUN}
 .else
-USE_PYTHON=		any
+USE_PYTHON=		yes
 .endif	# defined(USE_PYTHON_BUILD)
 .else
 USE_PYTHON_BUILD=	yes
@@ -377,10 +365,18 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 # Python-3.1
 .if ${PYTHON_VERSION} == "python3.1"
 PYTHON_PORTVERSION?=3.1.4
-PYTHON_PORTSDIR=        ${PORTSDIR}/lang/python31
-PYTHON_REL=                     314
-PYTHON_SUFFIX=          31
-PYTHON_VER=                     3.1
+PYTHON_PORTSDIR=	${PORTSDIR}/lang/python31
+PYTHON_REL=			314
+PYTHON_SUFFIX=		31
+PYTHON_VER=			3.1
+
+# Python-2.7
+.elif ${PYTHON_VERSION} == "python2.7"
+PYTHON_PORTVERSION?=2.7.2
+PYTHON_PORTSDIR=	${PORTSDIR}/lang/python27
+PYTHON_REL=			272
+PYTHON_SUFFIX=		27
+PYTHON_VER=			2.7
 
 # Python-2.6
 .elif ${PYTHON_VERSION} == "python2.6"
@@ -421,18 +417,20 @@ check-makevars::
 	@${ECHO} "Makefile error: bad value for PYTHON_VERSION: ${PYTHON_VERSION}."
 	@${ECHO} "Legal values are:"
 	@${ECHO} "  python2.4"
-	@${ECHO} "  python2.5 (default)"
+	@${ECHO} "  python2.5"
 	@${ECHO} "  python2.6"
-	@${ECHO} "  python3.0"
+	@${ECHO} "  python2.7 (default)"
+	@${ECHO} "  python3.1"
 	@${FALSE}
 .endif
 
 PYTHON_MASTER_SITES=		${MASTER_SITE_PYTHON}
-PYTHON_MASTER_SITE_SUBDIR=	ftp/python/${PYTHON_PORTVERSION:C/.rc[0-9]//}
+PYTHON_MASTER_SITE_SUBDIR=	ftp/python/${PYTHON_PORTVERSION:C/rc[0-9]//}
 PYTHON_DISTFILE=			Python-${PYTHON_PORTVERSION:S/.rc/rc/}.tgz
 PYTHON_WRKSRC=				${WRKDIR}/Python-${PYTHON_PORTVERSION:S/.rc/rc/}
 
-PYTHON_INCLUDEDIR=		${PYTHONBASE}/include/${PYTHON_VERSION}
+PYTHON_ABIVER?=			# empty
+PYTHON_INCLUDEDIR=		${PYTHONBASE}/include/${PYTHON_VERSION}${PYTHON_ABIVER}
 PYTHON_LIBDIR=			${PYTHONBASE}/lib/${PYTHON_VERSION}
 PYTHON_PKGNAMEPREFIX=	py${PYTHON_SUFFIX}-
 PYTHON_PKGNAMESUFFIX=	-py${PYTHON_SUFFIX}
@@ -464,7 +462,7 @@ _OSRELEASE!=					${UNAME} -r
 .endif
 PYEASYINSTALL_OSARCH?=			-${OPSYS:L}-${_OSRELEASE}-${ARCH}
 .endif
-PYEASYINSTALL_EGG?=				${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-${PYTHON_VERSION:S/thon//}${PYEASYINSTALL_OSARCH}.egg
+PYEASYINSTALL_EGG?=				${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}${PYEASYINSTALL_OSARCH}.egg
 PYEASYINSTALL_CMD?=				${LOCALBASE}/bin/easy_install-${PYTHON_VER}
 PYEASYINSTALL_BINDIR?=			${PREFIX}/bin
 PYEASYINSTALL_SITELIBDIR?=		${PYTHONPREFIX_SITELIBDIR}
@@ -472,7 +470,7 @@ PYEASYINSTALL_INSTALLARGS?=		-q -N -S ${PYTHON_SITELIBDIR} \
 								-d ${PYEASYINSTALL_SITELIBDIR} \
 								-s ${PYEASYINSTALL_BINDIR} \
 								${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
-PYEASYINSTALL_UNINSTALLARGS?=	-q -m -S ${PYTHON_SITELIBDIR} \
+PYEASYINSTALL_UNINSTALLARGS?=	-q -N -m -S ${PYTHON_SITELIBDIR} \
 								-d ${PYEASYINSTALL_SITELIBDIR} \
 								-s ${PYEASYINSTALL_BINDIR} \
 								${PYDISTUTILS_PKGNAME}==${PYDISTUTILS_PKGVERSION}
@@ -502,7 +500,7 @@ PYDISTUTILS_BUILDARGS?=
 PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${PREFIX}
 PYDISTUTILS_PKGNAME?=	${PORTNAME}
 PYDISTUTILS_PKGVERSION?=${PORTVERSION}
-PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-${PYTHON_VERSION:S/thon//}.egg-info
+PYDISTUTILS_EGGINFO?=	${PYDISTUTILS_PKGNAME:C/[^A-Za-z0-9.]+/_/g}-${PYDISTUTILS_PKGVERSION:C/[^A-Za-z0-9.]+/_/g}-py${PYTHON_VER}.egg-info
 PYDISTUTILS_EGGINFODIR?=${PYTHONPREFIX_SITELIBDIR}
 
 .if !defined(PYDISTUTILS_NOEGGINFO) && \
@@ -515,7 +513,7 @@ PLIST_FILES+=	${PYDISTUTILS_EGGINFODIR:S;${PREFIX}/;;}/${egg}
 . endfor
 .endif
 
-# Fix for programs that build python from a GNU auto* enviornment
+# Fix for programs that build python from a GNU auto* environment
 CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
 
 # Zope-related variables
@@ -555,25 +553,6 @@ PYDISTUTILS=	${PYTHON_LIBDIR}/distutils/core.py:${PYTHON_PORTSDIR}
 PYNUMERIC=		${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
 PYNUMPY=		${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
 PYXML=			${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
-PYEXPAT=		${PYTHON_LIBDIR}/lib-dynload/pyexpat.so:${PYTHON_PORTSDIR}
-
-.if defined(PYTHON_REL) && ${PYTHON_REL} < 250
-PYCTYPES=		${PYTHON_SITELIBDIR}/ctypes/__init__.py:${PORTSDIR}/devel/py-ctypes
-.else
-PYCTYPES=		${PYTHON_LIBDIR}/ctypes/__init__.py:${PYTHON_PORTSDIR}
-.endif
-
-.if defined(PYTHON_REL) && ${PYTHON_REL} < 250
-PYHASHLIB=		${PYTHON_SITELIBDIR}/hashlib.py:${PORTSDIR}/security/py-hashlib
-.else
-PYHASHLIB=		${PYTHON_LIBDIR}/hashlib.py:${PYTHON_PORTSDIR}
-.endif
-
-.if defined(PYTHON_REL) && ${PYTHON_REL} < 250
-PYWSGIREF=		${PYTHON_SITELIBDIR}/wsgiref/__init__.py:${PORTSDIR}/www/py-wsgiref
-.else
-PYWSGIREF=		${PYTHON_LIBDIR}/wsgiref/__init__.py:${PYTHON_PORTSIDR}
-.endif
 
 # dependencies
 PYTHON_NO_DEPENDS?=		NO
@@ -653,6 +632,7 @@ lore_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/lore/__init__.py:${PORTSDIR}/textproc
 mail_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/mail/__init__.py:${PORTSDIR}/mail/py-twistedMail
 names_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/names/__init__.py:${PORTSDIR}/dns/py-twistedNames
 news_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/news/__init__.py:${PORTSDIR}/news/py-twistedNews
+pair_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/pair/__init__.py:${PORTSDIR}/net/py-twistedPair
 runner_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/runner/__init__.py:${PORTSDIR}/devel/py-twistedRunner
 web2_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web2/__init__.py:${PORTSDIR}/www/py-twistedWeb2
 web_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web/__init__.py:${PORTSDIR}/www/py-twistedWeb
@@ -700,6 +680,9 @@ PYDISTUTILS_BUILD_TARGET?=		build
 PYDISTUTILS_INSTALL_TARGET?=	install
 
 .if defined(USE_PYDISTUTILS)
+LDSHARED?=	${CC} -shared
+MAKE_ENV+=	LDSHARED="${LDSHARED}"
+
 .if !target(do-configure) && !defined(HAS_CONFIGURE) && !defined(GNU_CONFIGURE)
 do-configure:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYSETUP} ${PYDISTUTILS_CONFIGURE_TARGET} ${PYDISTUTILS_CONFIGUREARGS})
