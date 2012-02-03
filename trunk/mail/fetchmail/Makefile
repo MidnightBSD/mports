@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.12 2009/08/08 15:10:12 laffer1 Exp $
+# $MidnightBSD: mports/mail/fetchmail/Makefile,v 1.13 2010/12/13 17:18:01 laffer1 Exp $
 #
 # NOTE:  The fetchmailconf program (an interactive program for
 # writing .fetchmailrc files) requires Python, Tk, X11, etc..
@@ -6,7 +6,7 @@
 # want fetchmailconf to work, define WITH_X11
 
 PORTNAME=	fetchmail
-PORTVERSION=	6.3.19
+PORTVERSION=	6.3.20
 PORTREVISION=	0
 CATEGORIES=	mail ipv6
 MASTER_SITES=	${MASTER_SITE_BERLIOS} \
