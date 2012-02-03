@@ -2,30 +2,53 @@
 # Date created:				9 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/tor/Makefile,v 1.8 2011/02/02 16:14:56 laffer1 Exp $
+# $MidnightBSD: mports/security/tor/Makefile,v 1.9 2011/06/05 18:18:47 laffer1 Exp $
 
 PORTNAME=	tor
-DISTVERSION=	0.2.1.30
+DISTVERSION=	0.2.2.35
 CATEGORIES=	security net ipv6
-MASTER_SITES=	http://www.torproject.org/dist/ \
+MASTER_SITES=	https://www.torproject.org/dist/ \
 		ftp://ftp.bit.nl/mirror/tor/ \
+		ftp://ftp.fodt.it/pub/mirror/tor/dist/ \
+		ftp://key-server.org/tor/dist/ \
 		http://cyberside.net.ee/tor/ \
+		http://ftp.bit.nl/mirror/tor/ \
+		http://mirror.host4site.co.il/torproject.org/dist/ \
+		http://mirror.open-networx.org/torproject.org/dist/ \
+		http://mirror.tor.hu/dist/ \
 		http://mirrors.chaos-darmstadt.de/tor-mirror/dist/ \
-		http://tor-www.5coluna.com/dist/ \
+		http://onion.anonymo.us.org/dist/ \
+		http://theonionrouter.com/dist/ \
 		http://tor.amorphis.eu/dist/ \
 		http://tor.askapache.com/dist/ \
 		http://tor.beme-it.de/dist/ \
-		http://tor.boinc.ch/dist/ \
+		http://tor.blingblingsquad.net/dist/ \
 		http://tor.ccc.de/dist/ \
+		http://tor.cyberarmy.at/dist/ \
+		http://tor.factor.cc/dist/ \
+		http://tor.fodt.it/dist/ \
+		http://tor.freie-re.de/dist/ \
 		http://tor.homosu.net/dist/ \
 		http://tor.idnr.ws/dist/ \
+		http://tor.kamagurka.org/dist/ \
+		http://tor.key-server.org/dist/ \
 		http://tor.searchprivate.com/dist/ \
 		http://tor.taiga-san.net/dist/ \
+		http://tor.vesta.nu/dist/ \
+		http://tordistua.reactor-xg.kiev.ua/ \
 		http://torproj.xpdm.us/dist/ \
+		https://torproject.antagonism.org/dist/ \
+		https://torproject.crypto.is/dist/ \
+		http://torproject.is/dist/ \
 		http://torproject.nwlinux.us/dist/ \
+		http://torua.reactor-xg.kiev.ua/dist/ \
+		https://www.coevoet.nl/tor/dist/ \
 		http://www.oignon.net/dist/ \
+		http://www.torproject.nl/dist/ \
+		http://www.torproject.org.in/dist/ \
 		http://www.torproject.org.nyud.net/dist/ \
-		http://www.torproject.us/dist/
+		http://www.torproject.us/dist/ \
+		http://www.torservers.net/mirrors/torproject.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An anonymizing overlay network for TCP
