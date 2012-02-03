@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.107 2011/07/31 16:49:22 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.108 2012/01/06 03:26:26 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -68,6 +68,7 @@ SUBDIR += nautilus-cd-burner
 SUBDIR += nvclock
 SUBDIR += obliterate
 SUBDIR += openupsd
+SUBDIR += p5-File-Listing
 SUBDIR += p5-File-Which
 SUBDIR += p5-Sys-Hostname-Long
 SUBDIR += php5-fileinfo
