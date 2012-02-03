@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.12 2011/04/30 18:01:21 laffer1 Exp $
+# $MidnightBSD: mports/mail/milter-greylist/Makefile,v 1.13 2011/12/15 00:57:48 laffer1 Exp $
 
 PORTNAME=	milter-greylist
-PORTVERSION=	4.2.6
-PORTREVISION=	1
+PORTVERSION=	4.2.7
+PORTREVISION=	0
 CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.espci.fr/pub/milter-greylist/
 DISTNAME=	milter-greylist-${PORTVERSION}
