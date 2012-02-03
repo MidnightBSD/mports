@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.29 2010/11/10 16:55:23 laffer1 Exp $
+# $MidnightBSD: mports/mail/dovecot/Makefile,v 1.30 2011/05/31 11:56:57 laffer1 Exp $
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.17
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 		http://www.rename-it.nl/dovecot/1.2.14/
@@ -9,6 +10,8 @@ MASTER_SITES=	http://www.dovecot.org/releases/${DOVECOTVERSION}/ \
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Secure and compact IMAP and POP3 servers
 LICENSE=	agg
+
+CONFLICTS=	dovecot-2.*
 
 DOVECOTVERSION=	1.2
 

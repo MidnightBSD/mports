@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# $MidnightBSD$
+
+case $2 in
+DEINSTALL)
+	echo "If you don't intend on reinstalling this port you should manually 'rm -rf /var/db/dovecot' if anything was stored there."
+	;;
+esac
