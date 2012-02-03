@@ -1,13 +1,8 @@
-# ports collection makefile for:	p5-Mail-DKIM
-# Date created:				16 July 2006
-# Whom:					Yoshisato YANAGISAWA
-#
-# $MidnightBSD: mports/mail/p5-Mail-DKIM/Makefile,v 1.4 2008/10/04 16:48:39 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-DKIM/Makefile,v 1.5 2009/09/24 03:05:04 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-DKIM/Makefile,v 1.7 2007/03/16 20:58:23 miwi Exp $
-#
 
 PORTNAME=	Mail-DKIM
-PORTVERSION=	0.37
+PORTVERSION=	0.39
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -17,7 +12,6 @@ COMMENT=	Perl5 module to process and/or create DKIM email
 LICENSE=	perl
 
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Crypt/OpenSSL/RSA.pm:${PORTSDIR}/security/p5-Crypt-OpenSSL-RSA \
-		${SITE_PERL}/${PERL_ARCH}/Digest/SHA.pm:${PORTSDIR}/security/p5-Digest-SHA \
 		${SITE_PERL}/${PERL_ARCH}/Net/DNS.pm:${PORTSDIR}/dns/p5-Net-DNS \
 		${SITE_PERL}/Mail/Address.pm:${PORTSDIR}/mail/p5-Mail-Tools
 BUILD_DEPENDS=	${RUN_DEPENDS}
