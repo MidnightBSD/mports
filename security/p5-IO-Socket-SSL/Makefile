@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/security/p5-IO-Socket-SSL/Makefile,v 1.2 2009/04/02 14:50:14 ctriv Exp $
+# $MidnightBSD: mports/security/p5-IO-Socket-SSL/Makefile,v 1.3 2009/05/01 16:04:25 laffer1 Exp $
 
 PORTNAME=	IO-Socket-SSL
-PORTVERSION=	1.24
+PORTVERSION=	1.53
 CATEGORIES=	security perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	IO
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:SULLR
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,14 +15,29 @@ RUN_DEPENDS=	p5-Net-SSLeay>=1.21:${PORTSDIR}/security/p5-Net-SSLeay
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
+INSTALL_TARGET=	pure_install
 
 MAN3=		IO::Socket::SSL.3
 
-.if !defined(NOPORTDOCS)
+OPTIONS=	IDN "International Domain Names (IDN) support" off \
+		IPV6 "IPv6 support" off
+
+.if !defined(NOPORTEXAMPLES)
+PORTEXAMPLES=	*
 post-install:
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/example/* ${EXAMPLESDIR}
 .endif
 
-.include <bsd.port.mk>
+.if defined(WITH_IDN)
+RUN_DEPENDS+=	p5-Net-LibIDN>=0:${PORTSDIR}/dns/p5-Net-LibIDN
+.endif
 
+.if defined(WITH_IPV6)
+RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-Socket-INET6
+.endif
+
+regression-test:
+	@(cd ${WRKSRC} && ${PERL} ${CONFIGURE_SCRIPT} && ${MAKE} test)
+
+.include <bsd.port.mk>
