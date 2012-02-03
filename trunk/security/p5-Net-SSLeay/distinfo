@@ -1,4 +1,3 @@
-MD5 (Net-SSLeay-1.35.tar.gz) = 1e4ec37a4467eb66a62d3c090ac9029b
-SHA256 (Net-SSLeay-1.35.tar.gz) = 7e9f9e05c0ba320eafb7b0caa4cb4039bcf597b1370285583d563b2daae33fe4
-RMD160 (Net-SSLeay-1.35.tar.gz) = b8f0afb29507624566665f3a835c3c87fd1e7996
-SIZE (Net-SSLeay-1.35.tar.gz) = 132198
+SHA256 (Net-SSLeay-1.42.tar.gz) = b6ca7719cd8568e60204f39027c1c68d19fa690b1f3fd380ed14031a1a70fd9d
+RMD160 (Net-SSLeay-1.42.tar.gz) = c2f2f66b7f9e65daa474fae688e12e44a0591e70
+SIZE (Net-SSLeay-1.42.tar.gz) = 146035
