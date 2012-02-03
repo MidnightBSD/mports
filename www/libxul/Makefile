@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/www/libxul/Makefile,v 1.2 2011/08/19 02:25:09 laffer1 Exp $
+# $MidnightBSD: mports/www/libxul/Makefile,v 1.3 2011/09/18 20:58:17 laffer1 Exp $
 # $FreeBSD: ports/www/libxul/Makefile,v 1.28 2011/04/29 15:44:33 flo Exp $
 
 PORTNAME=	libxul
-DISTVERSION=	1.9.2.17
+DISTVERSION=	1.9.2.24
 CATEGORIES?=	www devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
-MASTER_SITE_SUBDIR=	xulrunner/releases/${DISTVERSION}/source
-DISTNAME=	xulrunner-${DISTVERSION}.source
+MASTER_SITE_SUBDIR=   firefox/releases/3.6.24/source
+DISTNAME=     firefox-3.6.24.source
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Mozilla runtime package that can be used to bootstrap XUL+XPCOM apps
