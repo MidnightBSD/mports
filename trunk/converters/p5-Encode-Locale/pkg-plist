@@ -1,0 +1,4 @@
+%%SITE_PERL%%/Encode/Locale.pm
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Encode/Locale
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Encode
+@dirrmtry %%SITE_PERL%%/Encode

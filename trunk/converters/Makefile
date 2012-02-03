@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/converters/Makefile,v 1.24 2010/10/21 18:47:41 laffer1 Exp $
+# $MidnightBSD: mports/converters/Makefile,v 1.25 2011/05/13 13:05:58 laffer1 Exp $
 
 COMMENT = Character code converters
 
@@ -9,6 +9,7 @@ SUBDIR += p5-Convert-ASN1
 SUBDIR += p5-Convert-BinHex
 SUBDIR += p5-Encode
 SUBDIR += p5-Encode-Detect
+SUBDIR += p5-Encode-Locale
 SUBDIR += p5-JSON
 SUBDIR += p5-JSON-Any
 SUBDIR += p5-JSON-XS
