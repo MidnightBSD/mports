@@ -2,12 +2,12 @@
 # Date created:                         Thu Feb 8 18:46:25 CET 2007
 # Whom:                                 gmc@sonologic.nl
 #
-# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.3 2008/10/11 07:14:25 laffer1 Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SPF/Makefile,v 1.4 2009/09/24 03:03:40 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SPF/Makefile,v 1.1 2007/02/10 16:39:01 miwi Exp $
 #
 
 PORTNAME=	Mail-SPF
-PORTVERSION=	2.006
+PORTVERSION=	2.007
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -23,6 +23,8 @@ RUN_DEPENDS=	${SITE_PERL}/Net/DNS/Resolver/Programmable.pm:${PORTSDIR}/dns/p5-Ne
 		${SITE_PERL}/${PERL_ARCH}/NetAddr/IP.pm:${PORTSDIR}/net-mgmt/p5-NetAddr-IP \
 		${SITE_PERL}/URI.pm:${PORTSDIR}/net/p5-URI
 BUILD_DEPENDS=	${RUN_DEPENDS}
+
+CONFLICTS=	p5-Mail-SPF-Query-[0-9]*
 
 PERL_MODBUILD=	yes
 CONFIGURE_ARGS=	--install_path sbin=${PREFIX}/sbin
