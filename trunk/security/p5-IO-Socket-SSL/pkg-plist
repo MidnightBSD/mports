@@ -1,9 +1,4 @@
-@comment $FreeBSD: ports/security/p5-IO-Socket-SSL/pkg-plist,v 1.6 2006/09/21 23:22:21 leeym Exp $
 %%SITE_PERL%%/IO/Socket/SSL.pm
-%%PORTDOCS%%%%EXAMPLESDIR%%/async_https_server.pl
-%%PORTDOCS%%%%EXAMPLESDIR%%/ssl_client.pl
-%%PORTDOCS%%%%EXAMPLESDIR%%/ssl_server.pl
-%%PORTDOCS%%@dirrm %%EXAMPLESDIR%%
 @dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Socket/SSL
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Socket
 @dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/IO
