@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/net-mgmt/p5-NetAddr-IP/Makefile,v 1.1 2007/07/22 06:52:21 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/p5-NetAddr-IP/Makefile,v 1.2 2009/06/28 00:10:48 laffer1 Exp $
 
 PORTNAME=	NetAddr-IP
-PORTVERSION=	4.02.6
+PORTVERSION=	4.058
 CATEGORIES=	net-mgmt perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	NetAddr
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION:C/.([0-9])$/\1/}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl module for working with IP addresses and blocks thereof
@@ -15,6 +13,7 @@ LICENSE=	perl
 PERL_CONFIGURE=	yes
 
 MAN3=		NetAddr::IP.3 \
+	NetAddr::IP::InetBase.3 \
 	NetAddr::IP::Lite.3 \
 	NetAddr::IP::Util.3 \
 	NetAddr::IP::UtilPP.3
