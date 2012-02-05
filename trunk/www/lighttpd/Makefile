@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.19 2011/02/02 21:31:38 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.20 2011/10/28 13:49:37 laffer1 Exp $
 
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.29
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -11,7 +11,7 @@ COMMENT=	A secure, fast, compliant, and very flexible Web Server
 LICENSE=	bsd3
 
 BUILD_DEPENDS+=	pkg-config:${PORTSDIR}/devel/pkg-config
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes

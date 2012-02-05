@@ -3,17 +3,18 @@
 # Whom:			Dirk Froemberg <dirk@FreeBSD.org>
 #
 # $FreeBSD: ports/security/snort/Makefile,v 1.98 2008/06/09 06:16:02 clsung Exp $
-# $MidnightBSD: mports/security/snort/Makefile,v 1.3 2009/09/20 02:13:39 laffer1 Exp $
+# $MidnightBSD: mports/security/snort/Makefile,v 1.4 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	snort
 PORTVERSION=	2.8.2.1
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.snort.org/dl/current/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight network intrusion detection system
 LICENSE=        gpl2
-LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
 
 OPTIONS=	DYNAMIC "Enable dynamic plugin support" on \
 		FLEXRESP "Flexible response to events" off \
