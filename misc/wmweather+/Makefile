@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.5 2010/03/25 01:30:34 laffer1 Exp $
+# $MidnightBSD: mports/misc/wmweather+/Makefile,v 1.6 2010/10/19 20:15:35 laffer1 Exp $
 
 PORTNAME=	wmweather+
 PORTVERSION=	2.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc windowmaker geography
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=wmweatherplus
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	curl:${PORTSDIR}/ftp/curl \
 		wraster:${PORTSDIR}/x11-wm/windowmaker \
-		pcre:${PORTSDIR}/devel/pcre \
+		pcre.1:${PORTSDIR}/devel/pcre \
 		tiff:${PORTSDIR}/graphics/tiff \
 		Hermes:${PORTSDIR}/graphics/Hermes \
 		png.6:${PORTSDIR}/graphics/png \

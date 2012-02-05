@@ -1,11 +1,11 @@
 # -*-mode: makefile-*-
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.7 2010/05/05 23:49:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.8 2010/12/31 13:13:50 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
@@ -23,7 +23,7 @@ LIB_DEPENDS=	searchclient:${PORTSDIR}/deskutils/strigi \
 		IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		aspell:${PORTSDIR}/textproc/aspell \
 		jasper:${PORTSDIR}/graphics/jasper \
-		pcre:${PORTSDIR}/devel/pcre \
+		pcre.1:${PORTSDIR}/devel/pcre \
 		avahi-core:${PORTSDIR}/net/avahi-app \
 		enchant.1:${PORTSDIR}/textproc/enchant \
 		ungif.5:${PORTSDIR}/graphics/libungif \

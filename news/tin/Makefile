@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/news/tin/Makefile,v 1.3 2007/08/20 03:20:04 laffer1 Exp $
+# $MidnightBSD: mports/news/tin/Makefile,v 1.4 2009/06/28 00:24:30 laffer1 Exp $
 
 PORTNAME=	tin
 PORTVERSION=	1.8.3
+PORTREVISION=	1
 CATEGORIES+=	news ipv6
 MASTER_SITES=	ftp://ftp.tin.org/pub/news/clients/tin/stable/ \
 		ftp://ftp.stikman.com/pub/tin/stable/ \
@@ -12,7 +13,7 @@ COMMENT=	Easy-to-use threaded newsreader with NOV/NNTP support
 LICENSE=	bsd3
 
 LIB_DEPENDS=	uu.3:${PORTSDIR}/converters/uulib \
-		pcre.0:${PORTSDIR}/devel/pcre
+		pcre.1:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 
 USE_BZIP2=	yes

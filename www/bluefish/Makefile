@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/bluefish/Makefile,v 1.3 2010/05/28 23:36:05 laffer1 Exp $
+# $MidnightBSD: mports/www/bluefish/Makefile,v 1.4 2011/08/31 03:28:21 laffer1 Exp $
 
 PORTNAME=	bluefish
 PORTVERSION=	2.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www editors
 MASTER_SITES=	SF
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTML editor designed for the experienced web designer
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre \
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre \
 		aspell.16:${PORTSDIR}/textproc/aspell \
 		enchant.1:${PORTSDIR}/textproc/enchant
 

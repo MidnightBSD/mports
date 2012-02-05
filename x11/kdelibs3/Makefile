@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.11 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs3/Makefile,v 1.12 2012/01/28 04:26:29 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -22,7 +22,7 @@ LIB_DEPENDS=	IlmImf:${PORTSDIR}/graphics/OpenEXR \
 		aspell:${PORTSDIR}/textproc/aspell \
 		idn:${PORTSDIR}/dns/libidn \
 		jasper:${PORTSDIR}/graphics/jasper \
-		pcre:${PORTSDIR}/devel/pcre \
+		pcre.1:${PORTSDIR}/devel/pcre \
 		thai:${PORTSDIR}/devel/libthai \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \

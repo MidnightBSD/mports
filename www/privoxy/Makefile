@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/privoxy/Makefile,v 1.4 2009/03/02 00:04:10 laffer1 Exp $
+# $MidnightBSD: mports/www/privoxy/Makefile,v 1.5 2011/02/02 21:31:39 laffer1 Exp $
 
 PORTNAME=	privoxy
 PORTVERSION=	3.0.11
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
 MASTER_SITE_SUBDIR=	ijbswa
@@ -11,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Privoxy is a web proxy with advanced filtering capabilities
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
 
 WRKSRC=		${WRKDIR}/privoxy-${PORTVERSION}-stable
 
