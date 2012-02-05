@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/goffice04/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/goffice04/Makefile,v 1.5 2011/03/22 22:46:00 laffer1 Exp $
 # $FreeBSD: ports/devel/goffice04/Makefile,v 1.23 2008/06/06 13:21:16 edwin Exp $
 #   $MCom: ports/devel/goffice/Makefile,v 1.32 2007/09/06 05:01:28 marcus Exp $
 #
@@ -6,6 +6,7 @@
 
 PORTNAME=	goffice
 PORTVERSION=	0.4.3
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	04
@@ -15,7 +16,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GLib/GTK+ set of document centric objects and utilities
 LICENSE=	gpl2
 
-LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
 
 NO_LATEST_LINK=	yes
 

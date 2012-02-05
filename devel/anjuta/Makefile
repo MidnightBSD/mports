@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.10 2011/06/11 13:02:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.11 2011/08/07 19:06:41 laffer1 Exp $
 
 PORTNAME=	anjuta
 PORTVERSION=	2.32.1.1
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -13,7 +14,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen \
 		bash:${PORTSDIR}/shells/bash \
 		p5-Locale-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext
-LIB_DEPENDS=	pcre.0:${PORTSDIR}/devel/pcre \
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre \
 		gladeui-1.10:${PORTSDIR}/devel/glade3 \
 		vala-0.10.0:${PORTSDIR}/lang/vala \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \

@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/math/R/Makefile,v 1.7 2010/03/25 01:29:41 laffer1 Exp $
+# $MidnightBSD: mports/math/R/Makefile,v 1.8 2010/11/12 00:34:41 laffer1 Exp $
 
 PORTNAME=	R
 PORTVERSION=	2.9.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/src/base/R-2/ \
 		ftp://cran.r-project.org/pub/R/src/base/R-2/ \
@@ -105,7 +105,7 @@ PLIST_SUB+=	NLS="@comment "
 .if defined(WITHOUT_PCRE_PORT)
 CONFIGURE_ARGS+=--without-system-pcre
 .else
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 CONFIGURE_ARGS+=--with-system-pcre
 .endif
 
