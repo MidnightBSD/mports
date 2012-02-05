@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.43 2012/02/02 01:05:05 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.44 2012/02/05 03:43:51 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.3.9
-PORTREVISION?=	1
+PORTVERSION=	5.3.10
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
 MASTER_SITE_SUBDIR=	distributions/:release
@@ -20,7 +20,7 @@ MAKE_JOBS_SAFE=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
+#LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
 
 CONFIGURE_ARGS=	\
 		--with-layout=GNU \
@@ -28,8 +28,8 @@ CONFIGURE_ARGS=	\
 		--with-config-file-scan-dir=${PREFIX}/etc/php \
 		--disable-all \
 		--enable-libxml \
+		--with-pcre-regex \
 		--with-libxml-dir=${LOCALBASE} \
-		--with-pcre-regex=${LOCALBASE} \
 		--with-zlib-dir=/usr \
 		--program-prefix=""
 
@@ -58,7 +58,7 @@ PATCH_SITES+= ${MASTER_SITE_FREEBSD_LOCAL}
 PATCH_SITE_SUBDIR=    ale
 
 .if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-5.3.9-0.9.10.patch.gz:suhosin
+PATCHFILES+=	suhosin-patch-5.3.10-0.9.10.patch.gz
 PATCH_SITES+=	http://download.suhosin.org/:suhosin
 PATCH_DIST_STRIP=	-p1
 PLIST_SUB+=	SUHOSIN=""
