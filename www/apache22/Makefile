@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.26 2012/02/02 00:21:07 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.27 2012/02/05 03:40:35 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.22
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -17,8 +17,7 @@ COMMENT?=	Version 2.2 of Apache web server with ${WITH_MPM:L} MPM.
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		apr-1:${PORTSDIR}/devel/apr \
-		pcre.1:${PORTSDIR}/devel/pcre
+		apr-1:${PORTSDIR}/devel/apr
 
 MAKE_JOBS_SAFE=	yes
 LATEST_LINK=	apache22
@@ -74,7 +73,6 @@ CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--with-expat=${LOCALBASE} \
 		--with-iconv=${LOCALBASE} \
 		--enable-http \
-		--with-pcre=${LOCALBASE} \
 		--with-apr=${LOCALBASE}/bin/apr-1-config \
 		--with-apr-util=${LOCALBASE}/bin/apu-1-config
 
