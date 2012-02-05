@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.17 2011/09/01 02:21:47 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.18 2011/12/15 00:57:55 laffer1 Exp $
 
 PORTNAME=	cherokee
 PORTVERSION=	1.0.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	http://www.cherokee-project.com/download/1.0/${PORTVERSION}/ \
 		http://cherokee.osuosl.org/1.0/${PORTVERSION}/ \
@@ -148,7 +148,7 @@ PLIST_SUB+=	NLS="@comment "
 .ifdef WITH_INTPCRE
 CONFIGURE_ARGS+=	--enable-internal-pcre
 .else
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 .endif
 
 .ifdef WITH_RRDTOOL

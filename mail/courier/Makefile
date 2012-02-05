@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/mail/courier/Makefile,v 1.7 2010/11/20 04:23:48 laffer1 Exp $
+# $MidnightBSD: mports/mail/courier/Makefile,v 1.8 2011/02/02 21:07:58 laffer1 Exp $
 
 PORTNAME=	courier
 PORTVERSION=	0.63.0
@@ -10,7 +10,7 @@ COMMENT=	Courier SMTP IMAP POP3 HTTP mail server suite
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	courierauthconfig:${PORTSDIR}/security/courier-authlib-base \
 		${LOCALBASE}/share/sysconftool/sysconftool:${PORTSDIR}/devel/sysconftool \
 		${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support \
