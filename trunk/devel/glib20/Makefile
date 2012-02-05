@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.21 2011/09/10 19:59:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.22 2011/09/22 12:56:49 laffer1 Exp $
 
 PORTNAME=	glib
 PKGNAMESUFFIX=	20
 PORTVERSION=	2.28.8
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
@@ -24,7 +24,7 @@ USE_XZ=	yes
 
 .if !defined(REFERENCE_PORT)
 
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool
