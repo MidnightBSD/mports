@@ -1,12 +1,9 @@
-# New ports collection makefile for:	libslang2
-# Date created:		2005-05-16
-# Whom:			Renato Botelho <freebsd@galle.com.br>
-#
 # $FreeBSD: ports/devel/libslang2/Makefile,v 1.20 2008/05/19 20:14:18 garga Exp $
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.4 2010/05/04 22:44:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.5 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	libslang2
 PORTVERSION=	2.1.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
 		ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PORTVERSION:R}/ \
@@ -45,7 +42,7 @@ PORTDOCS=	*
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .if !defined(WITHOUT_PCRE)
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 PLIST_SUB+=	PCRE=""
 .else
 CONFIGURE_ARGS+=	--without-pcre

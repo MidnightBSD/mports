@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.4 2011/01/15 02:01:52 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-gui-tools/Makefile,v 1.5 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=	mysql-gui-tools
 PORTVERSION=	5.0r14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	MySQLGUITools
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	mysqlclient.15:${PORTSDIR}/databases/mysql50-client \
 		gtkmm-2.4:${PORTSDIR}/x11-toolkits/gtkmm24 \
-		pcre.0:${PORTSDIR}/devel/pcre \
+		pcre.1:${PORTSDIR}/devel/pcre \
 		xml2.5:${PORTSDIR}/textproc/libxml2
 
 BROKEN=		does not build with newer gnome sources
