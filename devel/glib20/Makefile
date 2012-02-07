@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.22 2011/09/22 12:56:49 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.23 2012/02/05 03:40:09 laffer1 Exp $
 
 PORTNAME=	glib
-PKGNAMESUFFIX=	20
 PORTVERSION=	2.28.8
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
@@ -31,13 +30,13 @@ USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pkgconfig ltverhack
 USE_GMAKE=	yes
+MAKE_JOBS_SAFE=	yes
 USE_PYTHON=	yes
 USE_PERL5=	yes
-MAKE_JOBS_SAFE=	yes
-
 CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--disable-man --without-xml-catalog \
+		--disable-dtrace \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -63,14 +62,26 @@ CONFIGURE_TARGET=	${GLIB_ARCH}-portbld-freebsd7.0
 LIB_DEPENDS+=	icui18n:${PORTSDIR}/devel/icu
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-glib_Makefile.in \
 		${FILESDIR}/extra-patch-glib_gunicollate.c
+# Disable it until someone can figure why it causes net-im/pidgin crashed.
+#CONFIGURE_ENV+=	CFLAGS="-D__STDC_ISO_10646__"
+.endif
+
+.if defined(WITH_DEBUG)
+CONFIGURE_ARGS+=	--enable-debug=yes
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/glib/gutils.c
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g ; \
+		s|/usr/share/locale/locale|${LOCALBASE}/share/locale/locale|g' \
+			${WRKSRC}/glib/gutils.c
 	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
 		${WRKSRC}/gio/gdbusaddress.c ${WRKSRC}/gio/gdbusprivate.c \
 		${WRKSRC}/po/*.po
+	@${REINPLACE_CMD} -e 's|inotify_support=yes|inotify_support=no| ; \
+		s|#define HAVE_SYS_INOTIFY_H 1||' ${WRKSRC}/configure
+
+post-install:
+	@${MKDIR} ${PREFIX}/share/GConf/gsettings
 
 .include <bsd.port.post.mk>
 
