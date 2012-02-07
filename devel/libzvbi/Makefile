@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.2 2010/05/05 23:12:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.3 2011/09/22 23:04:19 laffer1 Exp $
 
 PORTNAME=	libzvbi
 PORTVERSION=	0.2.33
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	SF/zapping/zvbi/${PORTVERSION}
 DISTNAME=	${PORTNAME:S/lib//}-${PORTVERSION}
@@ -25,6 +25,9 @@ CONFIGURE_ENV= CFLAGS="${CFLAGS} -I${LOCALBASE}/include" LIBS="-L${LOCALBASE}/li
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|#cpu (\([^)]*\))|defined(__\1__)|g' \
+		${WRKSRC}/src/misc.h \
+		${WRKSRC}/src/exp-gfx.c
 	@${REINPLACE_CMD} -e 's|zvbi-atsc-cc$$(EXEEXT)||g; \
 		s|zvbi-atsc-cc\.1||g' ${WRKSRC}/contrib/Makefile.in
 
