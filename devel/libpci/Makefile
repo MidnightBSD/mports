@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/libpci/Makefile,v 1.2 2011/07/16 15:03:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/libpci/Makefile,v 1.3 2012/01/07 14:19:43 laffer1 Exp $
 
 PORTNAME=	libpci
-PORTVERSION=	3.1.8
+PORTVERSION=	3.1.9
 CATEGORIES=	devel
 MASTER_SITES=	ftp://atrey.karlin.mff.cuni.cz/pub/linux/pci/ \
 		FREEBSD_LOCAL/sunpoet
