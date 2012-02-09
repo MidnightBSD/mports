@@ -24,7 +24,7 @@ package Magus::Config;
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.7 2008/09/22 18:27:25 ctriv Exp $
+# $MidnightBSD: mports/Tools/lib/Magus/Config.pm,v 1.8 2008/10/02 23:32:03 ctriv Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -59,7 +59,7 @@ sub load_config {
   $Config{SlaveDataDir}     ||= "$Magus::Root/slave-data";
   $Config{SlaveMportsDir}   ||= "$Config{SlaveDataDir}/mports";
   $Config{SlaveChrootsDir}  ||= "$Config{SlaveDataDir}/chroots"; 
-  $Config{LostDBWaitPeriod} ||= 300;
+  $Config{LostDBWaitPeriod} ||= 120;
 }
 
 BEGIN { load_config("$Magus::Root/config.yaml") };
