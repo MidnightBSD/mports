@@ -1,9 +1,9 @@
 #
-# $MidnightBSD: ports/math/gmm++/Makefile,v 1.2 2008/09/24 08:44:08 miwi Exp $
+# $MidnightBSD: mports/math/gmm++/Makefile,v 1.1 2008/12/16 22:23:23 ctriv Exp $
 #
 
 PORTNAME=	gmm++
-PORTVERSION=	3.1
+PORTVERSION=	4.1
 CATEGORIES=	math
 MASTER_SITES=	http://download.gna.org/getfem/stable/
 DISTNAME=	${PORTNAME:S/+//g}-${PORTVERSION}
