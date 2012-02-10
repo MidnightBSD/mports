@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/netcat/Makefile,v 1.1 2006/10/01 16:49:13 laffer1 Exp $
+# $MidnightBSD: mports/net/netcat/Makefile,v 1.2 2009/06/27 22:36:00 laffer1 Exp $
 
 PORTNAME=	netcat
 PORTVERSION=	1.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net ipv6
 MASTER_SITES=	ftp://coast.cs.purdue.edu/pub/tools/unix/netutils/netcat/  \
 		ftp://ftp.cuhk.edu.hk/pub/packages/security/purdue/netutils/netcat/  \
@@ -25,9 +25,9 @@ OPTIONS=	IPV6 "enable IPv6 support" on \
 		TELNET "enable TELNET support" on \
 		GAPING "enable GAPING_SECURITY_HOLE support" on
 
-PLIST_FILES=	bin/nc
+PLIST_FILES=	bin/netcat
 PORTDOCS=	README
-MAN1=		nc.1
+MAN1=		netcat.1
 
 .include <bsd.port.pre.mk>
 
@@ -43,11 +43,14 @@ XFLAGS+=	-DTELNET
 XFLAGS+=	-DGAPING_SECURITY_HOLE
 .endif
 
-MAKE_ENV=	XFLAGS="$(XFLAGS)"
+MAKE_ENV=	XFLAGS="${XFLAGS}"
+
+post-patch:
+	${SED} -e 's|%%DOCSDIR%%|${DOCSDIR}|g' ${FILESDIR}/nc.1 > ${WRKDIR}/${PORTNAME}.1
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/nc ${PREFIX}/bin
-	${INSTALL_MAN} ${FILESDIR}/nc.1 ${PREFIX}/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/nc ${PREFIX}/bin/${PORTNAME}
+	${INSTALL_MAN} ${WRKDIR}/${PORTNAME}.1 ${PREFIX}/man/man1
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
