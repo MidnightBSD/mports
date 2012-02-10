@@ -2,11 +2,11 @@
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.9 2011/02/02 21:14:16 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.10 2011/10/28 14:04:19 laffer1 Exp $
 #
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.16.36
+PORTVERSION=	1.16.39
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
