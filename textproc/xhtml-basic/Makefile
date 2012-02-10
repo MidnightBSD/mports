@@ -1,10 +1,5 @@
-# New ports collection makefile for:	xhtml-basic
-# Date created:		Dec 2, 2003
-# Whom:			nectar
-#
-# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.3 2008/04/04 05:01:25 ctriv Exp $
+# $MidnightBSD: mports/textproc/xhtml-basic/Makefile,v 1.4 2011/06/11 22:12:52 laffer1 Exp $
 # $FreeBSD: ports/textproc/xhtml-basic/Makefile,v 1.3 2006/03/24 05:44:38 linimon Exp $
-#
 
 PORTNAME=	xhtml-basic
 PORTVERSION=	1.0.${RECDATE}
@@ -70,8 +65,6 @@ pre-fake:
 	${ECHO} '@unexec rmdir %D share/xml/dtd 2>/dev/null || true' >> \
 	    ${PLIST}
 	${ECHO} "@dirrm ${dir_DOC}" >> ${PLIST}
-
-pre-fake:
 
 do-install:
 	@${MKDIR} ${PREFIX}/${dir_DTD}
