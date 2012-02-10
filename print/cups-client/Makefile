@@ -1,12 +1,10 @@
-# New ports collection makefile for:	cups-client
-# Date created:		07.May 2009
-# Whom:			dirk.meyer@dinoex.sub.org
-#
+# $MidnightBSD$
 # $FreeBSD: ports/print/cups-client/Makefile,v 1.4 2011/08/25 14:53:02 dinoex Exp $
 
 CATEGORIES=	print
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.ORG
+LICENSE=	gpl2
 
 MASTERDIR?=	${.CURDIR}/../cups-base
  
