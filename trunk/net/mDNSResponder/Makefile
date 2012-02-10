@@ -1,5 +1,5 @@
 # $FreeBSD: ports/net/mDNSResponder/Makefile,v 1.18 2006/09/13 03:21:37 alexbl Exp $
-# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.7 2011/10/27 16:23:09 laffer1 Exp $
+# $MidnightBSD: mports/net/mDNSResponder/Makefile,v 1.8 2012/02/10 02:07:34 laffer1 Exp $
 
 PORTNAME=	mDNSResponder
 PORTVERSION=	333.10
@@ -36,9 +36,9 @@ CONFLICTS=	avahi-libdns-[0-9]*
 
 .include <bsd.port.pre.mk>
 
-#.if ${OSVERSION} >= 3011
-#IGNORE=	Included in MidnightBSD 0.3+
-#.endif
+.if ${OSVERSION} >= 3011
+IGNORE=	Included in MidnightBSD 0.3+
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/	cc / s|cc|$${CC}|' ${WRKSRC}/Clients/Makefile
