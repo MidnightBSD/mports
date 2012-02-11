@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/net/sixxs-aiccu/Makefile,v 1.2 2010/12/31 13:10:18 laffer1 Exp $
+# $MidnightBSD: mports/net/sixxs-aiccu/Makefile,v 1.3 2011/09/27 17:20:17 laffer1 Exp $
 
 PORTNAME=	aiccu
 PORTVERSION=	20070115
 PORTREVISION=	2
 CATEGORIES=	net ipv6
-MASTER_SITES=	http://noc.sixxs.net/archive/sixxs/aiccu/unix/ \
-		http://www.sixxs.net/archive/sixxs/aiccu/unix/
+MASTER_SITES=	http://www.sixxs.net/archive/sixxs/aiccu/unix/
 PKGNAMEPREFIX=	sixxs-
 DISTNAME=	aiccu_20070115
 
@@ -52,7 +51,7 @@ do-install:
 .endif
 	${INSTALL_DATA} ${WRKSRC}/doc/aiccu.conf ${PREFIX}/etc/aiccu.conf.sample
 .if !exists(${PREFIX}/etc/aiccu.conf)
-	${INSTALL_DATA} ${WRKSRC}/doc/aiccu.conf ${PREFIX}/etc/aiccu.conf
+	${INSTALL_DATA} -m 0644 ${WRKSRC}/doc/aiccu.conf ${PREFIX}/etc/aiccu.conf
 .endif
 
 .include <bsd.port.post.mk>
