@@ -1,13 +1,11 @@
-# ex:ts=8
 # Ports collection makefile for:	ulxmlrpcpp
 # Date created:			Feb 26, 2008
 # Whom:				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.4 2011/02/02 21:14:16 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/ulxmlrpcpp/Makefile,v 1.5 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTNAME=	ulxmlrpcpp
-PORTVERSION=	1.7.4
+PORTVERSION=	1.7.5
 CATEGORIES=	net devel
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
