@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.10 2010/08/01 05:23:59 laffer1 Exp $
+# $MidnightBSD: mports/security/libgpg-error/Makefile,v 1.11 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	libgpg-error
-PORTVERSION=	1.8
+PORTVERSION=	1.10
 CATEGORIES=	security devel
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -15,7 +15,7 @@ USE_AUTOTOOLS=	libtool
 USE_GNOME=	ltverhack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
 MAKE_JOBS_UNSAFE=yes
 
 .if defined(WITHOUT_NLS)

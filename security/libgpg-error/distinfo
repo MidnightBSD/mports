@@ -1,4 +1,3 @@
-MD5 (libgpg-error-1.8.tar.bz2) = 1d2005268a2f096db28cf9cf77b3229a
-SHA256 (libgpg-error-1.8.tar.bz2) = bdfbf2677147239d2d26d4e37f44635d9fd97c133c9ef9fd9793a12a059508c5
-RMD160 (libgpg-error-1.8.tar.bz2) = 65d2c96bced82af76d9a68c416bfb9ea183ab087
-SIZE (libgpg-error-1.8.tar.bz2) = 435341
+SHA256 (libgpg-error-1.10.tar.bz2) = 520629b4568b5c29b1991c8ffc267c8bdee5f223c7333c42a651b56f9b1c5431
+RMD160 (libgpg-error-1.10.tar.bz2) = 435fcf1c748ae6877b5de7f133a741cd55dc1140
+SIZE (libgpg-error-1.10.tar.bz2) = 439213
