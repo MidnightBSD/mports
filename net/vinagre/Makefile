@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/vinagre/Makefile,v 1.1 2010/09/06 19:54:53 laffer1 Exp $
+# $MidnightBSD: mports/net/vinagre/Makefile,v 1.2 2011/01/22 16:48:39 laffer1 Exp $
 
 PORTNAME=	vinagre
-PORTVERSION=	2.30.2
+PORTVERSION=	2.30.3
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -13,6 +13,7 @@ LICENSE=	gpl3
 LIB_DEPENDS=	gtk-vnc-1.0.0:${PORTSDIR}/net/gtk-vnc \
     		avahi-core.6:${PORTSDIR}/net/avahi-app \
 		avahi-ui.0:${PORTSDIR}/net/avahi-gtk \
+		gdbm.4:${PORTSDIR}/databases/gdbm \
 		gnome-keyring:${PORTSDIR}/security/libgnome-keyring
 
 USE_BZIP2=	yes
