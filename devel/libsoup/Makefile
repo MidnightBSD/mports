@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.18 2011/09/10 21:17:56 laffer1 Exp $
+# $MidnightBSD: mports/devel/libsoup/Makefile,v 1.19 2011/09/27 17:40:25 laffer1 Exp $
 # $FreeBSD: ports/devel/libsoup/Makefile,v 1.82 2010/12/04 07:31:19 ade Exp $
 
 PORTNAME=	libsoup
 PORTVERSION=	2.34.3
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 USE_XZ=		yes
 
 BUILD_DEPENDS=	glib-networking>=2.28.4:${PORTSDIR}/net/glib-networking
-LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt
 RUN_DEPENDS=	glib-networking>=2.28.4:${PORTSDIR}/net/glib-networking
 
 .if !defined(REFERENCE_PORT)
