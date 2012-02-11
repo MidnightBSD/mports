@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/zebra-server/Makefile,v 1.3 2010/12/31 13:05:31 laffer1 Exp $
+# $MidnightBSD: mports/net/zebra-server/Makefile,v 1.4 2010/12/31 13:06:33 laffer1 Exp $
 # $FreeBSD: ports/net/zebra-server/Makefile,v 1.18 2008/04/04 21:36:10 pav Exp $
 
 PORTNAME=	zebra-server
-PORTVERSION=	2.0.43
+PORTVERSION=	2.0.45
 CATEGORIES=	net
 MASTER_SITES=	http://ftp.indexdata.dk/pub/zebra/
 DISTNAME=	idzebra-${PORTVERSION}
