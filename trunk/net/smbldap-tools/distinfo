@@ -1,4 +1,3 @@
-MD5 (smbldap-tools-0.9.5.tgz) = 2a9a84c657af35b9c9734a5b1bc5fe8f
-SHA256 (smbldap-tools-0.9.5.tgz) = 9c69c8245af90e1c2e3d53283ad2188b1b27e88bf86516c3b8f37ae7ac1e0e33
-RMD160 (smbldap-tools-0.9.5.tgz) = 055d7dc059d19ad153412c449d1448858c1fe42c
-SIZE (smbldap-tools-0.9.5.tgz) = 303131
+SHA256 (smbldap-tools-0.9.7.tar.gz) = f2401bf8ee2301e37dd351319f7ebc2aaf50d35d4d9941b737c677898b143378
+RMD160 (smbldap-tools-0.9.7.tar.gz) = 452b90e5d4d63849170be9ddca7f505500726522
+SIZE (smbldap-tools-0.9.7.tar.gz) = 334488

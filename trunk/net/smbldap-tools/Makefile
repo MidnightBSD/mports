@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.1 2009/04/25 15:59:59 laffer1 Exp $
+# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.2 2010/10/21 20:24:03 laffer1 Exp $
 
 PORTNAME=	smbldap-tools
-PORTVERSION=	0.9.5
+PORTVERSION=	0.9.7
 CATEGORIES=	net
-MASTER_SITES=	http://download.gna.org/smbldap-tools/packages/ \
-		http://download.gna.org/smbldap-tools/packages/old-Idealx-release/
-EXTRACT_SUFX=	.tgz
+MASTER_SITES=	http://download.gna.org/smbldap-tools/sources/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Samba-LDAP management and support tools
@@ -13,48 +11,65 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${SITE_PERL}/Net/LDAP.pm:${PORTSDIR}/net/p5-perl-ldap \
 		${SITE_PERL}/Crypt/SmbHash.pm:${PORTSDIR}/security/p5-Crypt-SmbHash \
-		${SITE_PERL}/${PERL_ARCH}/Digest/MD5.pm:${PORTSDIR}/security/p5-Digest-MD5 \
 		${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1 \
 		${SITE_PERL}/${PERL_ARCH}/Unicode/Map8.pm:${PORTSDIR}/converters/p5-Unicode-MapUTF8
-RUN_DEPENDS=	${BUILD_DEPENDS}
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/a//}
 
 USE_PERL5=	yes
-NO_BUILD=	yes
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
+ALL_TARGET=	build
+
+PORTDOCS=	*
+
+OPTIONS=	MIGRATION_SCRIPTS	"Install migration scripts"	off \
+		PDF_DOC			"Install PDF documentation"	off
+
+CONFIGURE_ARGS+=	--with-samba-sysconfdir=${LOCALBASE}/etc \
+			--with-samba-bindir=${LOCALBASE}/bin \
+			--with-perl=${PERL} \
+			--with-perl-libdir=sitelib
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_MIGRATION_SCRIPTS)
+PLIST_SUB+=	MIGRATION_SCRIPTS=""
+.else
+PLIST_SUB+=	MIGRATION_SCRIPTS="@comment "
+.endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/configure.pl
-	@${PERL} -pi -e 's#/etc/samba#${PREFIX}/etc#' ${WRKSRC}/configure.pl \
-							${WRKSRC}/doc/smb.conf \
-							${WRKSRC}/smbldap_tools.pm
-	@${PERL} -pi -e 's#/etc/smb/#${PREFIX}/etc/smb/#' ${WRKSRC}/configure.pl \
-							${WRKSRC}/smbldap.conf \
-							${WRKSRC}/smbldap_tools.pm
-	@${PERL} -pi -e 's#/etc/opt/IDEALX#${PREFIX}/etc#' ${WRKSRC}/smbldap_tools.pm
-	@${PERL} -pi -e 's#/usr/sbin#${LOCALBASE}/sbin#' ${WRKSRC}/smbldap-passwd
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+			${WRKSRC}/smbldap-config.pl
 
-do-install:
-	${MKDIR} ${PREFIX}/etc/${PORTNAME}
-	${MKDIR} ${EXAMPLESDIR}/etc
-	${MKDIR} ${FAKE_DESTDIR}${SITE_PERL}
+post-install:
+	@${MKDIR} ${PREFIX}/etc/smbldap-tools
 .for i in smbldap.conf smbldap_bind.conf
-	${INSTALL_DATA} ${WRKSRC}/$i ${EXAMPLESDIR}/etc/$i
-	@[ -f ${PREFIX}/etc/${PORTNAME}/$i ] || ${INSTALL_DATA} ${WRKSRC}/$i ${PREFIX}/etc/${PORTNAME}/$i
+	${INSTALL_DATA} ${WRKSRC}/$i ${PREFIX}/etc/smbldap-tools/$i.sample
+	@[ -f ${PREFIX}/etc/smbldap-tools/$i ] || ${INSTALL_DATA} ${WRKSRC}/$i ${PREFIX}/etc/smbldap-tools/$i
 .endfor
-.for i in smbldap-groupadd smbldap-groupdel smbldap-groupmod smbldap-groupshow smbldap-useradd smbldap-userdel smbldap-userlist smbldap-usermod smbldap-usershow smbldap-passwd smbldap-populate
-	${INSTALL_SCRIPT} ${WRKSRC}/$i ${PREFIX}/sbin
-.endfor
-.for i in smbldap-migrate-pwdump-accounts smbldap-migrate-pwdump-groups smbldap-migrate-unix-accounts smbldap-migrate-unix-groups
-	${INSTALL_SCRIPT} ${WRKSRC}/doc/migration_scripts/$i ${PREFIX}/sbin
-.endfor
-	${INSTALL_DATA} ${WRKSRC}/smbldap_tools.pm ${FAKE_DESTDIR}${SITE_PERL}/
-	${INSTALL_DATA} ${WRKSRC}/doc/smb.conf ${EXAMPLESDIR}/
-	${INSTALL_SCRIPT} ${WRKSRC}/configure.pl ${EXAMPLESDIR}/
+
+.if defined(WITH_MIGRATION_SCRIPTS)
+. for i in smbldap-migrate-pwdump-accounts smbldap-migrate-pwdump-groups \
+smbldap-migrate-unix-accounts smbldap-migrate-unix-groups
+	@${SED} -e 's|/usr/bin/perl|${PERL}|g' \
+		${WRKSRC}/doc/migration_scripts/$i > ${PREFIX}/sbin/$i
+. endfor
+.endif
 
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/smbldap-config.cmd ${DOCSDIR}/smbldap-config
+	${INSTALL_SCRIPT} ${WRKSRC}/smbldap-upgrade-0.9.6.cmd ${DOCSDIR}/smbldap-upgrade-0.9.6
+.for file in CONTRIBUTORS COPYING ChangeLog FILES INFRA INSTALL README TODO
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}/
+.endfor
+	${INSTALL_DATA} ${WRKSRC}/doc/smbldap-tools.html ${DOCSDIR}/smbldap-tools.html
+.if defined(WITH_PDF_DOC)
 	${INSTALL_DATA} ${WRKSRC}/doc/smbldap-tools.pdf ${DOCSDIR}/smbldap-tools.pdf
 .endif
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
