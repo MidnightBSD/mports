@@ -1,11 +1,11 @@
 # Ports collection makefile for:  rsync
 #
-# $MidnightBSD: mports/net/rsync/Makefile,v 1.12 2011/06/25 23:22:06 laffer1 Exp $
+# $MidnightBSD: mports/net/rsync/Makefile,v 1.13 2011/09/01 02:12:41 laffer1 Exp $
 # $FreeBSD: ports/net/rsync/Makefile,v 1.131 2008/04/08 19:24:06 ehaupt Exp $
 #
 
 PORTNAME=	rsync
-PORTVERSION=	3.0.8
+PORTVERSION=	3.0.9
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://rsync.samba.org/ftp/%SUBDIR%/ \
 		ftp://ftp.samba.org/pub/%SUBDIR%/ \
