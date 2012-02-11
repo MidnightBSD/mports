@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/netatalk/Makefile,v 1.10 2011/08/07 18:09:01 laffer1 Exp $
+# $MidnightBSD: mports/net/netatalk/Makefile,v 1.11 2011/08/07 18:10:21 laffer1 Exp $
 
 PORTNAME=	netatalk
 PORTVERSION=	2.1.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net print
 MASTER_SITES=	SF
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File server for Mac OS X
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt
 
 USE_AUTOTOOLS=	libtool
 USE_BDB=	46+
