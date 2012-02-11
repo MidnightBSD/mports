@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.118 2011/09/10 20:05:07 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.119 2012/02/03 03:51:22 laffer1 Exp $
 
 COMMENT = Networking tools
 
@@ -111,7 +111,6 @@ SUBDIR += tsocks
 SUBDIR += ulxmlrpcpp
 SUBDIR += vinagre
 SUBDIR += vino
-SUBDIR += vnc2swf
 SUBDIR += vncreflector
 SUBDIR += x11vnc
 SUBDIR += xferstats
