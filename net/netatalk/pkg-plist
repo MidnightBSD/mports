@@ -1,20 +1,13 @@
-bin/achfile
-bin/ad
-bin/add_netatalk_printer
 bin/adv1tov2
-bin/aecho
-bin/afile
+%%APPLETALK%%bin/aecho
+bin/afpldaptest
 bin/afppasswd
-bin/apple_cp
 bin/apple_dump
-bin/apple_mv
-bin/apple_rm
 bin/binheader
 bin/asip-status.pl
 bin/cnid2_create
 bin/dbd
-bin/getzones
-bin/logger_test
+%%APPLETALK%%bin/getzones
 bin/macusers
 bin/megatron
 @exec cd %B && ln -s megatron hqx2bin
@@ -31,15 +24,13 @@ bin/megatron
 @unexec rm -f %B/unbin
 @unexec rm -f %B/unhex
 @unexec rm -f %B/unsingle
-bin/nbplkup
-bin/nbprgstr
-bin/nbpunrgstr
-bin/netacnv
+%%APPLETALK%%bin/nbplkup
+%%APPLETALK%%bin/nbprgstr
+%%APPLETALK%%bin/nbpunrgstr
 bin/netatalk-config
-bin/pap
-bin/papstatus
-bin/psorder
-bin/showppd
+%%APPLETALK%%bin/pap
+%%APPLETALK%%bin/papstatus
+%%APPLETALK%%bin/psorder
 bin/uniconv
 @unexec if cmp -s %D/etc/AppleVolumes.default %D/etc/AppleVolumes.default.dist; then rm -f %D/etc/AppleVolumes.default; fi
 etc/AppleVolumes.default.dist
@@ -50,15 +41,18 @@ etc/AppleVolumes.system.dist
 @unexec if cmp -s %D/etc/afpd.conf %D/etc/afpd.conf.dist; then rm -f %D/etc/afpd.conf; fi
 etc/afpd.conf.dist
 @exec [ ! -f %B/afpd.conf ] && cp %B/%f %B/afpd.conf
-@unexec if cmp -s %D/etc/atalkd.conf %D/etc/atalkd.conf.dist; then rm -f %D/etc/atalkd.conf; fi
-etc/atalkd.conf.dist
-@exec [ ! -f %B/atalkd.conf ] && cp %B/%f %B/atalkd.conf
+@unexec if cmp -s %D/etc/afp_ldap.conf %D/etc/afp_ldap.conf.dist; then rm -f %D/etc/afp_ldap.conf; fi
+etc/afp_ldap.conf.dist
+@exec [ ! -f %B/afp_ldap.conf ] && cp %B/%f %B/afp_ldap.conf
+%%APPLETALK%%@unexec if cmp -s %D/etc/atalkd.conf %D/etc/atalkd.conf.dist; then rm -f %D/etc/atalkd.conf; fi
+%%APPLETALK%%etc/atalkd.conf.dist
+%%APPLETALK%%@exec [ ! -f %B/atalkd.conf ] && cp %B/%f %B/atalkd.conf
 @unexec if cmp -s %D/etc/netatalk.conf %D/etc/netatalk.conf.dist; then rm -f %D/etc/netatalk.conf; fi
 etc/netatalk.conf.dist
 @exec [ ! -f %B/netatalk.conf ] && cp %B/%f %B/netatalk.conf
 @unexec if cmp -s %D/etc/papd.conf %D/etc/papd.conf.dist; then rm -f %D/etc/papd.conf; fi
-etc/papd.conf.dist
-@exec [ ! -f %B/papd.conf ] && cp %B/%f %B/papd.conf
+%%APPLETALK%%etc/papd.conf.dist
+%%APPLETALK%%@exec [ ! -f %B/papd.conf ] && cp %B/%f %B/papd.conf
 libexec/netatalk-uams/uams_clrtxt.so
 libexec/netatalk-uams/uams_dhx.so
 libexec/netatalk-uams/uams_dhx2.so
@@ -108,6 +102,7 @@ include/atalk/list.h
 include/atalk/logger.h
 include/atalk/nbp.h
 include/atalk/netddp.h
+include/atalk/queue.h
 include/atalk/pap.h
 include/atalk/paths.h
 include/atalk/rtmp.h
@@ -132,37 +127,14 @@ include/netatalk/endian.h
 include/netatalk/phase2.h
 lib/libatalk.a
 lib/libatalk.la
-libexec/etc2ps.sh
-libexec/ifmpap
-libexec/ifmpaprev
-libexec/ifpap
-libexec/ifpaprev
-libexec/ifwmpap
-libexec/ifwmpaprev
-libexec/ifwpap
-libexec/ifwpaprev
-libexec/ofmpap
-libexec/ofpap
-libexec/ofwmpap
-libexec/ofwpap
-libexec/psa
-libexec/psf
-libexec/tfmpap
-libexec/tfmpaprev
-libexec/tfpap
-libexec/tfpaprev
-libexec/tfwmpap
-libexec/tfwmpaprev
-libexec/tfwpap
-libexec/tfwpaprev
+%%APPLETALK%%libexec/psf
 sbin/afpd
-sbin/atalkd
+%%APPLETALK%%sbin/atalkd
 sbin/cnid_dbd
 sbin/cnid_metad
-sbin/papd
+%%APPLETALK%%sbin/papd
 %%TIMELORD%%sbin/timelord
 share/aclocal/netatalk.m4
-%%DATADIR%%/pagecount.ps
 @dirrm share/netatalk
 @dirrm include/netatalk
 @dirrm include/atalk
