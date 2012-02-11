@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.8 2011/06/21 01:39:22 laffer1 Exp $
+# $MidnightBSD: mports/net/x11vnc/Makefile,v 1.9 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTNAME=	x11vnc
-PORTVERSION=	0.9.12
+PORTVERSION=	0.9.13
 CATEGORIES=	net
 MASTER_SITES=	SF/libvncserver/${PORTNAME}/${PORTVERSION}
 
@@ -22,7 +22,9 @@ USE_XORG=	x11 xdamage xfixes xrandr xinerama xext xtst xau xrender xdmcp recordp
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_OPENSSL=	yes
 USE_ICONV=	yes
+.if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
+.endif
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include"
 
