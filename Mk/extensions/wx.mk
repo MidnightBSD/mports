@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.2 2010/01/01 17:20:37 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.wx.mk,v 1.1 2006/07/05 02:13:12 linimon Exp $
 #
 # wx.mk - Support for WxWidgets based ports.
@@ -48,7 +48,7 @@
 #				  It determines the type of parameters that have to be passed
 #				  to the configure script. In the first case it adds
 #				  "--with-wx-config=${WX_CONFIG}" (absolute path of WX_CONFIG),
-#				  and in second one "--with-wx=${X11BASE}" and
+#				  and in second one "--with-wx=${LOCALBASE}" and
 #				  "--with-wx-config=${WX_CONFIG:T} (prefix and name).
 # WX_UNICODE	- Set to "yes" (or anything) if the port needs the Unicode
 #				  version of the WxWidgets library and/or contributed
@@ -143,8 +143,8 @@ _WX_Definitions_Done=	yes
 
 _WX_COMPS_ALL=			wx contrib python mozilla svg
 _WX_DEP_TYPES_ALL=		build lib run
-_WX_VERS_ALL=			2.4 2.6
-_WX_VERS_UC_ALL=		2.6
+_WX_VERS_ALL=			2.4 2.6 2.8
+_WX_VERS_UC_ALL=		2.6 2.8
 _WX_CHANGE_VARS=		USE_WX USE_WX_NOT WX_UNICODE
 _WX_LISTS_ORDER=		_WX_VER_FINAL WANT_WX_VER WITH_WX_VER
 _WX_AUTO_VARS=			USE_WX WX_CONFIG
@@ -169,8 +169,9 @@ _WX_FILE_python_2.4=	${PYTHON_SITELIBDIR}/wx/__init__.py
 _WX_PORT_mozilla_2.4=	wxmozilla
 _WX_LIB_mozilla_2.4=	wxmozilla_gtk2-2.4
 
-_WX_PORT_wx_2.6=		wxgtk26${_WX_UCL}
-_WX_LIB_wx_2.6=			wx_base${_WX_UC}-2.6
+# wxgtk 2.6
+_WX_PORT_wx_2.6=	wxgtk26${_WX_UCL}
+_WX_LIB_wx_2.6=		wx_base${_WX_UC}-2.6
 
 _WX_PORT_contrib_2.6=	wxgtk26${_WX_UCL}-contrib
 _WX_LIB_contrib_2.6=	wx_gtk2${_WX_UC}_animate-2.6
@@ -178,8 +179,22 @@ _WX_LIB_contrib_2.6=	wx_gtk2${_WX_UC}_animate-2.6
 _WX_PORT_python_2.6=	py-wxPython26${_WX_UCL}
 _WX_FILE_python_2.6=	${PYTHON_SITELIBDIR}/wx-2.6-gtk2${_WX_PYSUFX}/wx/__init__.py
 
-_WX_PORT_svg_2.6=		wxsvg
-_WX_LIB_svg_2.6=		wxsvg
+_WX_PORT_svg_2.6=	wxsvg
+_WX_LIB_svg_2.6=	wxsvg
+
+# wxgtk 2.8
+_WX_PORT_wx_2.8=	wxgtk28${_WX_UCL}
+_WX_LIB_wx_2.8=		wx_base${_WX_UC}-2.8
+
+_WX_PORT_contrib_2.8=	wxgtk28${_WX_UCL}-contrib
+_WX_LIB_contrib_2.8=	wx_gtk2${_WX_UC}_fl-2.8
+
+_WX_PORT_python_2.8=	py-wxPython28${_WX_UCL}
+_WX_FILE_python_2.8=	${PYTHON_SITELIBDIR}/wx-2.8-gtk2${_WX_PYSUFX}/wx/__init__.py
+
+_WX_PORT_svg_2.8=	wxsvg
+_WX_LIB_svg_2.8=	wxsvg
+
 
 # Set _WX_SHVER_comp_ver to 0 and _WX_FILE_comp_ver for libs appropiately.
 
@@ -187,7 +202,7 @@ _WX_LIB_svg_2.6=		wxsvg
 .	for ver in ${_WX_VERS_ALL}
 .		if defined(_WX_LIB_${comp}_${ver})
 _WX_SHVER_${comp}_${ver}=	0
-_WX_FILE_${comp}_${ver}=	${X11BASE}/lib/lib${_WX_LIB_${comp}_${ver}}.so.${_WX_SHVER_${comp}_${ver}}
+_WX_FILE_${comp}_${ver}=	${LOCALBASE}/lib/lib${_WX_LIB_${comp}_${ver}}.so.${_WX_SHVER_${comp}_${ver}}
 .		endif
 .	endfor
 .endfor
@@ -429,7 +444,7 @@ _WX_VER=				${ver}
 #
 
 WX_VERSION=				${_WX_VER}
-WX_CONFIG?=				${X11BASE}/bin/wxgtk2${_WX_UC}-${_WX_VER}-config
+WX_CONFIG?=				${LOCALBASE}/bin/wxgtk2${_WX_UC}-${_WX_VER}-config
 
 # Define old values for detecting changes.
 
@@ -532,7 +547,7 @@ CONFIGURE_ENV+=			WX_CONFIG=${WX_CONFIG}
 .	if ${WX_CONF_ARGS:L} == "absolute"
 CONFIGURE_ARGS+=		--with-wx-config=${WX_CONFIG}
 .	elif ${WX_CONF_ARGS:L} == "relative"
-CONFIGURE_ARGS+=		--with-wx=${X11BASE} \
+CONFIGURE_ARGS+=		--with-wx=${LOCALBASE} \
 						--with-wx-config=${WX_CONFIG:T}
 .	else
 IGNORE?=				selected an invalid WxWidgets configure argument type: ${WX_CONF_ARGS}
