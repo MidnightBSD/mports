@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.13 2011/08/17 22:31:27 laffer1 Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.14 2011/09/27 17:17:09 laffer1 Exp $
 # $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
 
 PORTNAME=	gnustep-base
 PORTVERSION=	1.19.3
+PORTREVISION=	1
 CATEGORIES=	lang devel gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
