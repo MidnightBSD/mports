@@ -1,5 +1,5 @@
 # $FreeBSD: ports/editors/koffice-kde3/Makefile,v 1.93 2006/09/12 23:26:15 lofi Exp $
-# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.10 2011/01/15 03:14:20 laffer1 Exp $
+# $MidnightBSD: mports/editors/koffice-kde3/Makefile,v 1.11 2011/02/02 20:19:26 laffer1 Exp $
 
 PORTNAME=	koffice
 PORTVERSION=	1.6.3
@@ -13,6 +13,8 @@ DIST_SUBDIR=	KDE/koffice
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Office Suite for KDE3
 LICENSE=	gpl2
+
+BROKEN=		poppler-qt was removed
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libpqxx.a:${PORTSDIR}/databases/postgresql-libpqxx
 LIB_DEPENDS=	GraphicsMagick++:${PORTSDIR}/graphics/GraphicsMagick \
