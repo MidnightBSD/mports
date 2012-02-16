@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.16 2011/05/28 07:10:46 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.17 2011/12/15 00:57:58 laffer1 Exp $
 
 PORTNAME=	windowmaker
-PORTVERSION=	0.92.0
-PORTREVISION=	10
+PORTVERSION=	0.95.2
+PORTREVISION=	0
 CATEGORIES=	x11-wm windowmaker
-MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
-		http://dougbarton.us/Downloads/
+MASTER_SITES=	${MASTER_SITE_WINDOWMAKER}
 MASTER_SITE_SUBDIR=	source/release
 DISTNAME=	WindowMaker-${PORTVERSION}
 
@@ -22,15 +21,14 @@ RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDI
 MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool
-USE_BZIP2=	yes
 USE_GNOME=	gnomehack  pkgconfig
 USE_XORG=	xpm
 USE_PERL5=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_SYS_SELECT_H" \
+		LDFLAGS="-L${LOCALBASE}/lib -lintl"
 CONFIGURE_ARGS=	--with-pixmapdir=${PREFIX}/include/X11/pixmaps \
 		--with-nlsdir=${PREFIX}/share/locale \
 		--with-libs-from="-L${LOCALBASE}/lib" \
@@ -47,7 +45,6 @@ MAN1=		geticonset.1x getstyle.1x seticons.1x setstyle.1x wdwrite.1x \
 
 OPTIONS=	XINERAMA "Enable xinerama support" off \
 		XKB_STATUS "XKB keyboard language status support" off \
-		WM_SINGLE_CLICK "Add single-click option to WPrefs menu" on \
 		WM_LINGUAS "Enable support for additional locales" off \
 		DOCKHOTKEYS "Enable support for hotkeys on docks" off
 
@@ -63,10 +60,6 @@ CONFIGURE_ARGS+=	--enable-xinerama
 
 .if defined(WITH_XKB_STATUS) || defined(PACKAGE_BUILDING)
 CONFIGURE_ARGS+=	--enable-modelock
-.endif
-
-.if !defined(WITHOUT_WM_SINGLE_CLICK) || defined(PACKAGE_BUILDING)
-EXTRA_PATCHES+=		${WRKSRC}/contrib/single_click.diff
 .endif
 
 .if defined(WITH_WM_LINGUAS) || defined(PACKAGE_BUILDING)
