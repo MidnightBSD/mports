@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.39 2011/12/21 04:16:10 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.40 2011/12/21 04:22:51 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1395,9 +1395,8 @@ MASTER_SITE_VIM+= \
 
 .if !defined(IGNORE_MASTER_SITE_WINDOWMAKER)
 MASTER_SITE_WINDOWMAKER+= \
-	ftp://ftp.windowmaker.info/pub/%SUBDIR%/ \
-	ftp://ftp.uvsq.fr/pub/X11/window-managers/windowmaker/%SUBDIR%/ \
-	ftp://ftp.dti.ad.jp/pub/X/WindowMaker/%SUBDIR%/
+	http://www.midnightbsd.org/ftp/MidnightBSD/distfiles/ \
+	ftp://windowmaker.org/pub/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XCONTRIB)
