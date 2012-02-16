@@ -4,11 +4,12 @@
 # Whom:					Will Andrews <will@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD: mports/x11/kde3/Makefile,v 1.4 2007/12/31 21:14:07 laffer1 Exp $
+# $MidnightBSD: mports/x11/kde3/Makefile,v 1.5 2008/09/17 21:45:53 laffer1 Exp $
 #
 
 PORTNAME?=	kde
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -116,9 +117,6 @@ RUN_DEPENDS+=	kjumpingcube:${PORTSDIR}/games/kdegames3
 .endif
 .if !defined(WITHOUT_KDEUTILS)
 RUN_DEPENDS+=	kdessh:${PORTSDIR}/misc/kdeutils3
-.endif
-.if !defined(WITHOUT_KOFFICE)
-RUN_DEPENDS+=	kword:${PORTSDIR}/editors/koffice-kde3
 .endif
 .if !defined(WITHOUT_KDENETWORK)
 RUN_DEPENDS+=	kppp:${PORTSDIR}/net/kdenetwork3
