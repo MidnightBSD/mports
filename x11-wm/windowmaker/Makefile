@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.19 2012/02/20 15:20:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.20 2012/02/20 15:21:32 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.95.2
@@ -65,6 +65,15 @@ post-patch:
 	@(for file in `grep -rl windowmaker\.org ${WRKSRC}`; do \
 	${REINPLACE_CMD} -e "s|windowmaker\.org|windowmaker\.info|g" $$file; \
 	done)
+	@${REINPLACE_CMD} -e '/\/usr\/X11R6\/include\/X11\/pixmaps/d' \
+	    -e '/\/usr\/share\/pixmaps/d' \
+	    -e "s#\"/usr/local/share/pixmaps\",#\"${PREFIX}/share/pixmaps\"#" \
+	    -e "s#/usr/share/icons#${PREFIX}/share/icons#" \
+	    ${WRKSRC}/WindowMaker/Defaults/WindowMaker.in
+	@${REINPLACE_CMD} -e "s#/usr/include/X11#${PREFIX}/share#" \
+	    ${WRKSRC}/WPrefs.app/Paths.c
+	@${REINPLACE_CMD} -e "s#WPrefs#${PREFIX}/GNUstep/Applications/WPrefs.app/WPrefs#" \
+	    ${WRKSRC}/util/wmgenmenu.c
 
 post-install:
 	@${MKDIR} ${PREFIX}/share/WindowMaker/Sounds
