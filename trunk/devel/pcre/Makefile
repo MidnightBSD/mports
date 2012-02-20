@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.14 2011/09/17 01:07:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.15 2012/02/07 21:24:50 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 
 PORTNAME=	pcre
 PORTVERSION=	8.30
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
@@ -19,6 +20,16 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-utf8 --enable-unicode-properties
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_LIBEDIT)
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libedit
+CONFIGURE_ARGS+=	--enable-pcretest-libedit
+GNOME_MAKEFILEIN+=	Makefile.am
+USE_AUTOTOOLS+=	aclocal autoconf autoheader automake libtool libtoolize
+ACLOCAL_ARGS+=	#undefined
+.endif
 
 .include <bsd.port.pre.mk>
 
