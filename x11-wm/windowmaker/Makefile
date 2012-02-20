@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.17 2011/12/15 00:57:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.18 2012/02/16 19:40:02 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.95.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11-wm windowmaker
-MASTER_SITES=	${MASTER_SITE_WINDOWMAKER}
+MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
+		http://dougbarton.us/Downloads/
 MASTER_SITE_SUBDIR=	source/release
 DISTNAME=	WindowMaker-${PORTVERSION}
 
@@ -34,6 +35,8 @@ CONFIGURE_ARGS=	--with-pixmapdir=${PREFIX}/include/X11/pixmaps \
 		--with-libs-from="-L${LOCALBASE}/lib" \
 		--with-incs-from="-I${LOCALBASE}/include" \
 		--with-gnustepdir="${PREFIX}/GNUstep" \
+		--enable-modelock --enable-xrandr \
+		--enable-xinerama --enable-usermenu \
 		--disable-debug
 USE_LDCONFIG=	yes
 
@@ -43,36 +46,15 @@ MANLANG=	"" sk
 MAN1=		geticonset.1x getstyle.1x seticons.1x setstyle.1x wdwrite.1x \
 		wmaker.1x wmsetbg.1x wxcopy.1x wxpaste.1x
 
-OPTIONS=	XINERAMA "Enable xinerama support" off \
-		XKB_STATUS "XKB keyboard language status support" off \
-		WM_LINGUAS "Enable support for additional locales" off \
-		DOCKHOTKEYS "Enable support for hotkeys on docks" off
-
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64
 CONFIGURE_ENV+=	ac_cv_c_inline_asm=no
 .endif
 
-.if defined(WITH_XINERAMA) || defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=	--enable-xinerama
-.endif
-
-.if defined(WITH_XKB_STATUS) || defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=	--enable-modelock
-.endif
-
-.if defined(WITH_WM_LINGUAS) || defined(PACKAGE_BUILDING)
-LINGUAS!=	${CAT} ${FILESDIR}/LINGUAS
 CONFIGURE_ENV+=	LINGUAS="${LINGUAS}"
-PLIST_SUB=	WM_LINGUAS=""
-.else
-PLIST_SUB=	WM_LINGUAS="@comment "
-.endif
-
-.if defined(WITH_DOCKHOTKEYS)
-EXTRA_PATCHES+=	${FILESDIR}/extra_dockhotkeys.patch
-.endif
+PLIST_SUB=+	WM_LINGUAS=""
+LINGUAS=	be bg bs ca cs da de el es et fi fr gl hr hu hy it ja ko ms nl no pl pt ro ru sk sv tr zh_CN zh_TW
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|g" ${WRKSRC}/WPrefs.app/Paths.c
