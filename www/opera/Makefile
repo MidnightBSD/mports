@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.32 2011/08/31 23:59:44 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.33 2012/01/28 05:06:37 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -24,14 +24,13 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-OPERA_VER?=	11.51
-OPERA_BUILD?=	1087
+OPERA_VER?=	11.52
+OPERA_BUILD?=	1100
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
 USE_XZ=		yes
 USE_XORG=	x11 xext sm ice xft xrender
 USE_GNOME=	desktopfileutils
-INSTALLS_ICONS=	yes
 
 MAN1=		opera.1 opera-widget-manager.1
 MANCOMPRESSED=	yes
@@ -54,6 +53,7 @@ USE_GSTREAMER+=	vorbis ogg theora good
 .endif
 
 .if defined(WITH_GTK)
+INSTALLS_ICONS=	yes
 USE_GNOME+=	gtk20
 .endif
 
