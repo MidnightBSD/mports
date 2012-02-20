@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.27 2012/01/27 04:40:38 laffer1 Exp $
+# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.28 2012/02/03 02:43:13 laffer1 Exp $
 
 PORTNAME=	thunderbird
-PORTVERSION=	10.0
+PORTVERSION=	10.0.1
 CATEGORIES=	mail
-MASTER_SITE_SUBDIR?=	thunderbird/releases/${PORTVERSION}-real/linux-i686/en-US
+MASTER_SITE_SUBDIR?=	thunderbird/releases/${PORTVERSION}/linux-i686/en-US
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mozilla Thunderbird is standalone mail and news that stands above
