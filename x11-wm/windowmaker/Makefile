@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.18 2012/02/16 19:40:02 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.19 2012/02/20 15:20:03 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.95.2
@@ -15,15 +15,14 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	ungif.5:${PORTSDIR}/graphics/libungif \
 		png.6:${PORTSDIR}/graphics/png \
-		tiff.4:${PORTSDIR}/graphics/tiff \
-		Xft.2:${PORTSDIR}/x11-fonts/libXft
+		tiff.4:${PORTSDIR}/graphics/tiff
 RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
 
 MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack  pkgconfig
-USE_XORG=	xpm
+USE_XORG=	xft xinerama xmu xpm xrandr
 USE_PERL5=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
@@ -37,7 +36,8 @@ CONFIGURE_ARGS=	--with-pixmapdir=${PREFIX}/include/X11/pixmaps \
 		--with-gnustepdir="${PREFIX}/GNUstep" \
 		--enable-modelock --enable-xrandr \
 		--enable-xinerama --enable-usermenu \
-		--disable-debug
+		--disable-debug \
+		--with-x
 USE_LDCONFIG=	yes
 
 CONFLICTS=	libwraster-0.*
