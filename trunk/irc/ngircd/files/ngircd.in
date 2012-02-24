@@ -1,7 +1,6 @@
 #!/bin/sh
 #
 # $MidnightBSD$
-# $FreeBSD: ports/irc/ngircd/files/ngircd.in,v 1.1 2006/02/13 16:56:11 mnag Exp $
 #
 # PROVIDE: ngircd
 # REQUIRE: DAEMON
@@ -16,19 +15,18 @@
 #				Default is empty "".
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="ngircd"
-rcvar=`set_rcvar`
+rcvar="ngircd_enable"
 
 load_rc_config $name
 
 : ${ngircd_enable="NO"}
 : ${ngircd_conf="%%PREFIX%%/etc/ngircd.conf"}
-: ${ngircd_flags=""}
 
 required_files="${ngircd_conf}"
 command=%%PREFIX%%/sbin/ngircd
-command_args="-f ${ngircd_conf} ${ngircd_flags}"
+command_args="-f ${ngircd_conf}"
 
 run_rc_command "$1"
