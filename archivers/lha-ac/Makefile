@@ -1,14 +1,10 @@
-# New ports collection makefile for:    lha-autoconf
-# Date created:         24 Sep 2004
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/archivers/lha-ac/Makefile,v 1.1 2007/05/01 23:43:40 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lha-ac/Makefile,v 1.2 2008/02/22 04:30:04 laffer1 Exp $
 # $FreeBSD: ports/archivers/lha-ac/Makefile,v 1.4 2006/09/05 05:01:47 dinoex Exp $
 #
 
 PORTNAME=	lha
 PORTVERSION=	1.14i
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	archivers
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP} \
 		http://qgpop.dl.sourceforge.jp/%SUBDIR%/ \
@@ -30,9 +26,9 @@ GNU_CONFIGURE=	yes
 RESTRICTED=	no permission to redistribute
 
 .if !defined(WITHOUT_NLS)
-CONFIGURE_ARGGS+=	--disable-multibyte-filename
+CONFIGURE_ARGS+=	--disable-multibyte-filename
 .else
-CONFIGURE_ARGGS+=	--enable-multibyte-filename=auto
+CONFIGURE_ARGS+=	--enable-multibyte-filename=auto
 .endif
 
 do-install:
