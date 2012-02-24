@@ -2,42 +2,36 @@
 # Date created:				14 May 2004
 # Whom:					Mezz <mezz@FreeBSD.org>
 #
-# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.5 2008/06/16 00:58:24 stevan Exp $
+# $MidnightBSD: mports/textproc/linux-aspell/Makefile,v 1.6 2010/12/24 21:42:16 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-aspell/Makefile,v 1.9 2006/12/12 15:52:45 roam Exp $
 #
 
 PORTNAME=	aspell
 PORTVERSION=	0.50.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc linux
-MASTER_SITES=	\
-		ftp://ftp.pbone.net/mirror/ftp.ximian.com/pub/ximian-evolution/redhat-80-i386/ \
+MASTER_SITES=	ftp://ftp.pbone.net/mirror/ftp.ximian.com/pub/ximian-evolution/redhat-80-i386/ \
 		ftp://ftp.pbone.net/mirror/ftp.ximian.com/pub/ximian-evolution/redhat-80-i386/source/ \
 		ftp://ftp.is.co.za/mirror/ftp.ximian.com/ximian-evolution/redhat-80-i386/ \
 		ftp://ftp.chg.ru/pub/X11/ximian/ximian-evolution/redhat-80-i386/
-
-PKGNAMEPREFIX=	linux-
-DISTFILES=	${PORTNAME}-${PORTVERSION}-0.ximian.5.1.i386.rpm # needed for slave ports / options
-EXTRACT_ONLY=
+DISTNAME=	${PORTNAME}-${PORTVERSION}-0.ximian.5.1
+DISTFILES=	${DISTNAME}.i386.rpm	# needed for slave ports / options
+EXTRACT_SUFX=	.i386.rpm
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Spelling checker with better logic than ispell (linux version)
 LICENSE=	lgpl
 
-BUILD_DEPENDS=	rpm:${PORTSDIR}/archivers/rpm
+CONFLICTS=	linux-f10-aspell-[0-9]*
 
-USE_GCPIO=		yes	
-NO_BUILD=		yes
-ONLY_FOR_ARCHS=		i386 amd64
-USE_LINUX=		yes
-USE_LINUX_PREFIX=	yes
-USE_GMAKE=		yes
-LDCONFIG_LINUX=		${LINUXBASE}/sbin/ldconfig
-
-DBPATH=		/var/lib/rpm
-#RPMDIR=	${DISTDIR}/${DIST_SUBDIR}
-RPMFLAGS=	--ignoreos --root ${PREFIX} --dbpath ${DBPATH} \
-		--nodeps --replacepkgs
+USE_LINUX_RPM=	yes
+ONLY_FOR_ARCHS=	i386 amd64
+LINUX_DIST_VER=	4
+USE_GMAKE=	yes
+DISTINFO_FILE=	${MASTERDIR}/distinfo
+DIST_SUBDIR=	rpm
+BRANDELF_DIRS=	usr/bin
 
 FAKE_LIB_ENV= 	LD_LIBRARY_PATH="${PREFIX}/usr/lib"
 CONF_DICT_ENV=	ASPELL="${PREFIX}/usr/bin/aspell" \
@@ -65,7 +59,7 @@ DICTVER_GV=	0.50-0
 DICTVER_HR=	0.51-0
 DICTVER_IA=	0.50-1
 DICTVER_ID=	0.50.1-0
-DICTVER_IS=	0.51-0
+DICTVER_IS=	0.51.1-0
 DICTVER_IT=	0.53-0
 DICTVER_MI=	0.50-0
 DICTVER_MS=	0.50-0
@@ -97,6 +91,7 @@ DEF_DICT=	nn
 . endif
 .endif
 DEF_DICT?=	en
+DICO_WRKDIR=	${WRKDIR}_DICO
 
 pre-everything::
 .if defined(ASPELL_NO)
@@ -182,11 +177,11 @@ DISTFILES+=	aspell-${DICO}-${DICTVERSION}${DICT_SUFFIX}:dict${DICO}
 post-extract:
 .for DICO in ${DICTS}
 . if (${SPECDICTS:M${DICO}*} != "")
-	@cd ${WRKDIR} && \
-	 ${TAR} -xjf ${DISTDIR}/aspell-${DICO}-${DICTVER_${DICO:U}}${DICT_SUFFIX}
+	@${MKDIR} -p ${DICO_WRKDIR} && cd ${DICO_WRKDIR} && \
+	 ${TAR} -xjf ${DISTDIR}/${DIST_SUBDIR}/aspell-${DICO}-${DICTVER_${DICO:U}}${DICT_SUFFIX}
 . else
-	@cd ${WRKDIR} && \
-	 ${TAR} -xjf ${DISTDIR}/aspell-${DICO}-${DICTVERSION}${DICT_SUFFIX}
+	@${MKDIR} -p ${DICO_WRKDIR} && cd ${DICO_WRKDIR} && \
+	 ${TAR} -xjf ${DISTDIR}/${DIST_SUBDIR}/aspell-${DICO}-${DICTVERSION}${DICT_SUFFIX}
 . endif
 .endfor
 
@@ -195,34 +190,31 @@ post-patch:
 . if (${SPECDICTS:M${DICO}*} != "")
 	@${REINPLACE_CMD} -e 's|$${dictdir}|${PREFIX}$${dictdir}|g ; \
 		s|$${datadir}|${PREFIX}$${datadir}|g' \
-			${WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}}/Makefile.pre
+			${DICO_WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}}/Makefile.pre
 . else
 	@${REINPLACE_CMD} -e 's|$${dictdir}|${PREFIX}$${dictdir}|g ; \
 		s|$${datadir}|${PREFIX}$${datadir}|g' \
-			${WRKDIR}/aspell-${DICO}-${DICTVERSION}/Makefile.pre
+			${DICO_WRKDIR}/aspell-${DICO}-${DICTVERSION}/Makefile.pre
 . endif
 .endfor
-
-do-install:
-	@${LOCALBASE}/bin/rpm -U ${RPMFLAGS} \
-		${DISTDIR}/${PORTNAME}-${PORTVERSION}-0.ximian.5.1.i386.rpm
-	@${FIND} ${LINUXBASE} -name lib -type d | ${SED} 's|${LINUXBASE}||g' \
-		> ${LINUXBASE}/etc/ld.so.conf
 
 post-install:
 .for DICO in ${DICTS}
 	@${ECHO_MSG} "===>   Installing for ${DICO} dictionaries"
 . if (${SPECDICTS:M${DICO}*} != "")
-	cd ${WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}} && \
-	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/usr/share/aspell" && \
-	 ${SETENV} ${FAKE_LIB_ENV} ${GMAKE} install
+	@cd ${DICO_WRKDIR}/aspell-${DICO}-${DICTVER_${DICO:U}} &&	\
+	 ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} &&		\
+	 ${GMAKE} install
 . else
-	cd ${WRKDIR}/aspell-${DICO}-${DICTVERSION} && \
-	 ${SETENV} ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT} --vars DESTDIR=${FAKE_DESTDIR} ASPELL_FLAGS="--data-dir=${PREFIX}/usr/share/aspell" && \
-	 ${SETENV} ${FAKE_LIB_ENV} ${GMAKE} install
+	@cd ${DICO_WRKDIR}/aspell-${DICO}-${DICTVERSION} &&		\
+	 ${CONF_DICT_ENV} ./${CONFIGURE_SCRIPT}  &&		\
+	 ${GMAKE} install
 . endif
 	@${CAT} ${MASTERDIR}/pkg-plist.${DICO} >> ${TMPPLIST}
 .endfor
 	@${CAT} ${MASTERDIR}/pkg-plist.dirrm >> ${TMPPLIST}
+
+post-clean:
+	@${RM} -rf ${DICO_WRKDIR} || ${TRUE}
 
 .include <bsd.port.post.mk>
