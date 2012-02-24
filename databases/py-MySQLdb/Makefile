@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/py-MySQLdb/Makefile,v 1.1 2008/09/19 15:20:06 laffer1 Exp $
+# $MidnightBSD: mports/databases/py-MySQLdb/Makefile,v 1.2 2009/10/14 00:20:50 laffer1 Exp $
 
 PORTNAME=	MySQLdb
-DISTVERSION=	1.2.2
+DISTVERSION=	1.2.3
 CATEGORIES=	databases python
 MASTER_SITES=	SF/mysql-python/mysql-python/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,11 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Access a MySQL database through Python
 LICENSE=	gpl2
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
+USE_PYTHON=		-2.7
+USE_PYDISTUTILS=	easy_install
 USE_MYSQL=		yes
 PYDISTUTILS_PKGNAME=	MySQL-python
-PYDISTUTILS_PKGVERSION=	1.2.2
+PYEASYINSTALL_ARCHDEP=	yes
 
 CONFLICTS=	py*-MySQLdb-devel-[0-9]*
 
