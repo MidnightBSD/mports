@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.5 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.6 2011/05/27 22:18:15 laffer1 Exp $
 # $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
 
 PORTNAME=	unixODBC
-PORTVERSION=	2.3.0
+PORTVERSION=	2.3.1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.unixodbc.org/
 
