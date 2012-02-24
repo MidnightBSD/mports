@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/archivers/arc/Makefile,v 1.2 2008/03/11 23:40:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/arc/Makefile,v 1.3 2009/12/25 16:47:02 laffer1 Exp $
 
 PORTNAME=	arc
-PORTVERSION=	5.21o
-PORTREVISION=	1
+PORTVERSION=	5.21p
+PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Create & extract files from DOS .ARC files
