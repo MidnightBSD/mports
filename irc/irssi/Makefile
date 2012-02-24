@@ -1,14 +1,11 @@
 # New ports collection makefile for:	irssi
-# Date created:			14 Apr 1999
-# Whom:				Jim Mock <jim@FreeBSD.org>
 #
-# $MidnightBSD: mports/irc/irssi/Makefile,v 1.11 2011/10/27 16:17:50 laffer1 Exp $
+# $MidnightBSD: mports/irc/irssi/Makefile,v 1.12 2012/02/21 18:18:15 laffer1 Exp $
 # $FreeBSD: ports/irc/irssi/Makefile,v 1.91 2006/09/10 15:11:53 vanilla Exp $
-#
 
 PORTNAME=	irssi
 PORTVERSION=	0.8.15
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	irc
 MASTER_SITES=	http://mirror.irssi.org/
 
@@ -67,6 +64,8 @@ CONFIGURE_ARGS+=	--with-socks
 .if !defined(WITHOUT_IPV6)
 CONFIGURE_ARGS+=	--enable-ipv6
 CATEGORIES+=	ipv6
+.else
+CONFIGURE_ARGS+=	--disable-ipv6
 .endif
 
 .if defined(WITH_BOT)
