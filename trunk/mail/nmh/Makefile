@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/nmh/Makefile,v 1.1 2011/05/07 15:28:54 laffer1 Exp $
 # $FreeBSD: ports/mail/nmh/Makefile,v 1.51 2010/12/09 20:15:13 erwin Exp $
 #
 # Makefile variables of interest:
@@ -49,7 +49,7 @@
 #
 
 PORTNAME=	nmh
-PORTVERSION=	1.2
+PORTVERSION=	1.3
 CATEGORIES=	mail
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	nmh
@@ -116,7 +116,7 @@ MAN5=	mh-alias.5 mh-draft.5 mh-format.5 mh-mail.5 mh-profile.5 \
 
 MLINKS=	mh-profile.5 mh_profile.5
 
-MAN8=	ap.8 conflict.8 dp.8 fmtdump.8 mh-mts.8 post.8
+MAN8=	ap.8 conflict.8 dp.8 fmtdump.8 post.8
 CONFLICTS=	ja-mh-[0-9]*
 
 post-patch:
