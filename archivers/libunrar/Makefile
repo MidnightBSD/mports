@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.6 2009/09/24 21:36:36 crash Exp $
+# $MidnightBSD: mports/archivers/libunrar/Makefile,v 1.7 2009/12/25 17:23:13 laffer1 Exp $
 
 PORTNAME=	libunrar
-PORTVERSION=	3.9.6
+PORTVERSION=	3.9.10
 PORTEPOCH=	1
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
