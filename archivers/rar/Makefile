@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/archivers/rar/Makefile,v 1.10 2010/12/12 21:23:33 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rar/Makefile,v 1.11 2011/05/30 14:47:46 laffer1 Exp $
 
 PORTNAME=	rar
-PORTVERSION=	4.0.0
+PORTVERSION=	4.0.1
 PORTEPOCH=	2
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.rarlab.com/rar/
-DISTNAME=	rarbsd-4.0.0
+DISTNAME=	rarbsd-4.0.1
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	File archiver (binary port)
