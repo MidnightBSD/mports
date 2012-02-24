@@ -1,0 +1,13 @@
+@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+bin/zipcmp
+bin/zipmerge
+bin/ziptorrent
+include/zip.h
+lib/libzip.so.3
+lib/libzip.so
+lib/libzip.la
+lib/libzip.a
+lib/libzip/include/zipconf.h
+libdata/pkgconfig/libzip.pc
+@dirrm lib/libzip/include
+@dirrm lib/libzip
