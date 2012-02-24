@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.32 2011/12/15 00:57:43 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.33 2012/02/05 04:09:37 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.4.9
+DISTVERSION=	3.4.10
 CATEGORIES=	databases www
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 USE_BZIP2=	yes
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
-#USE_PHP=	ctype mysql pcre session filter mbstring mcrypt
+USE_PHP=	ctype session filter mbstring json
 .endif
 USE_MYSQL=	yes
 
@@ -29,11 +29,18 @@ WANT_PHP_WEB=	yes
 OPTIONS=	BZ2	 "bzip2 library support" on \
 		GD	 "GD library support" on \
 		MCRYPT   "MCrypt library support" on \
-		MYSQLI	 "Improved MySQL support" off \
+		MYSQL    "MySQL support via mysql client" off \
+		MYSQLI	 "Improved MySQL support" on \
 		OPENSSL	 "OpenSSL support" on \
 		PDF	 "PDFlib support (implies GD)" on \
 		ZLIB	 "ZLIB support" on \
 		ZIP	 "ZIP support" on
+
+.include <bsd.mport.options.mk>
+
+.if !defined(WITH_MYSQL) && !defined(WITH_MYSQLI)
+BROKEN=	${PKGNAME} needs at least one of WITH_MYSQL or WITH_MYSQLI in order to work
+.endif 
 
 PORT_DBDIR?=	${DESTDIR}/var/db/ports
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
@@ -78,7 +85,7 @@ post-patch:
 	done
 	${CP} ${FILESDIR}/${CFGFILE}.sample ${WRKSRC}/${CFGFILE}.sample
 	cd ${WRKSRC} ; \
-	${FIND} . ! -type d ! -name ${CFGFILE}.sample | ${SORT} | \
+	${FIND} . ! -type d ! -name ${CFGFILE}.sample ! -name '*.bak' | ${SORT} | \
 	    ${SED} -e "s,^\.,%%MYADMDIR%%,"           >${PLIST} ; \
 	${CAT} ${PKGDIR}/pkg-plist-chunk             >>${PLIST} ; \
 	${FIND} . -type d | ${SORT} -r | ${SED} \
@@ -89,7 +96,7 @@ do-install: install-app install-conf
 
 install-app:
 	cd ${WRKSRC} ; \
-	for src in $$( ${FIND} . ! -name .cvsignore ) ; do \
+	for src in $$( ${FIND} . ! -name .cvsignore ! -name '*.bak') ; do \
 	    dst=${TARGETDIR}/${MYADMDIR}$${src#.} ; \
 	    if ${TEST} -d $$src ; then \
 	        ${MKDIR} $$dst ; \
