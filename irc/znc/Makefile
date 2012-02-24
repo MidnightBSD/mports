@@ -2,13 +2,13 @@
 # Date created:        May 9 2008
 # Whom:                Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/irc/znc/Makefile,v 1.6 2010/10/23 10:47:08 laffer1 Exp $
+# $MidnightBSD: mports/irc/znc/Makefile,v 1.7 2010/11/14 20:50:03 laffer1 Exp $
 #
 
 PORTNAME=	znc
-PORTVERSION=	0.094
+PORTVERSION=	0.204
 CATEGORIES=	irc ipv6
-MASTER_SITES=	SF
+MASTER_SITES=	http://znc.in/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An advanced IRC bouncer
@@ -22,14 +22,15 @@ CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
 			--host=${ARCH}-portbld-freebsd7.0
 
 OPTIONS=	DEBUG		"Enable debugging" off \
-		IPV6		"Enable IPv6 support" off \
+		IPV6		"Enable IPv6 support" on \
 		CARES		"Use c-ares resolver library" off \
 		OPENSSL		"Enable OpenSSL support" on \
 		EXTRA		"Build extra modules" off \
 		PERL		"Enable Perl module support" on \
 		TCL		"Enable TCL module support" off \
 		TCLALLOWALL	"Allow non-admin users to load TCL module" off \
-		SASL		"Enable SASL module support" off
+		PYTHON		"Enable Python module support" off \
+		SASL		"Enable SASL module support (requires EXTRA)" off
 
 .include <bsd.mport.options.mk>
 
@@ -59,6 +60,7 @@ PLIST_SUB+=		OPENSSL="@comment "
 .if defined(WITH_PERL)
 USE_PERL5=		yes
 PLIST_SUB+=		PERL=""
+BUILD_DEPENDS+=		swig>=1.3.40:${PORTSDIR}/devel/swig13
 .else
 CONFIGURE_ARGS+=	--disable-perl
 PLIST_SUB+=		PERL="@comment "
@@ -76,12 +78,25 @@ PLIST_SUB+=		TCL="@comment "
 
 .if defined(WITH_TCLALLOWALL)
 .if defined(WITHOUT_TCL)
-IGNORE=			tcl allow all support requires TCL. Please re-rerun 'make config' and enable TCL
+IGNORE=			tcl allow all support requires TCL. Please re-run 'make config' and enable TCL
 .endif
 CXXFLAGS+=		-DMOD_MODTCL_ALLOW_EVERYONE
 .endif
 
+.if defined(WITH_PYTHON)
+USE_PYTHON=	3.1
+USE_PERL5_BUILD=	yes
+PLIST_SUB+=	PYTHON=""
+CONFIGURE_ARGS+=	--enable-python=python-${PYTHON_VER}
+BUILD_DEPENDS+=	swig>=1.3.40:${PORTSDIR}/devel/swig13
+.else
+PLIST_SUB+=	PYTHON="@comment "
+.endif
+
 .if defined(WITH_SASL)
+.if defined(WITHOUT_EXTRA)
+IGNORE=			sasl module requires EXTRA. Please re-run 'make config' and enable EXTRA
+.endif
 LIB_DEPENDS+=		sasl2.2:${PORTSDIR}/security/cyrus-sasl2
 CONFIGURE_ARGS+=	--enable-sasl
 CONFIGURE_ENV+=		LDFLAGS="-L${LOCALBASE}/lib"
@@ -98,7 +113,7 @@ PLIST_SUB+=		EXTRA=""
 PLIST_SUB+=		EXTRA="@comment "
 .endif
 
-MANCOMPREEED= yes
-MAN1=         znc.1.gz znc-buildmod.1.gz znc-config.1.gz
+MANCOMPRESSED=	yes
+MAN1=		znc.1 znc-buildmod.1 znc-config.1
 
 .include <bsd.port.mk>
