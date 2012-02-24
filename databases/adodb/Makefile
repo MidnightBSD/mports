@@ -2,14 +2,14 @@
 # Date created:		4 May 2001
 # Whom:			abgoeree@uwnet.nl
 #
-# $MidnightBSD: mports/databases/adodb/Makefile,v 1.2 2007/11/10 23:39:22 laffer1 Exp $
+# $MidnightBSD: mports/databases/adodb/Makefile,v 1.3 2009/10/14 00:24:13 laffer1 Exp $
 # $FreeBSD: ports/databases/adodb/Makefile,v 1.46 2007/04/05 13:19:01 mm Exp $
 #
 
 PORTNAME=	adodb
-PORTVERSION=	4.99.1
+PORTVERSION=	4.99.2
 CATEGORIES=	databases www
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-php-4-and-5/${PORTNAME}-4991-for-php
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-php-4-and-5/${PORTNAME}-${PORTVERSION:S/.//g}-for-php
 DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}
 EXTRACT_SUFX=	.tgz
 
