@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.4 2009/10/14 13:08:47 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBD-SQLite/Makefile,v 1.5 2011/08/13 14:42:20 laffer1 Exp $
 
 PORTNAME=	DBD-SQLite
-PORTVERSION=	1.31
+PORTVERSION=	1.35
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
