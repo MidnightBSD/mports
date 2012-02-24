@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/devel/swig13/Makefile,v 1.3 2009/09/20 00:59:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/swig13/Makefile,v 1.4 2011/02/02 20:17:34 laffer1 Exp $
 
 PORTNAME=	swig
 PORTVERSION=	1.3.36
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simplified Wrapper and Interface Generator
