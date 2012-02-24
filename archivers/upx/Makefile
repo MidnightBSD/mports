@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/archivers/upx/Makefile,v 1.1 2011/06/18 02:36:22 laffer1 Exp $
 # $FreeBSD: ports/archivers/upx/Makefile,v 1.12 2010/09/09 07:39:48 fjoe Exp $
 
 PORTNAME=	upx
-PORTVERSION=	3.07
+PORTVERSION=	3.08
 CATEGORIES=	archivers
 MASTER_SITES=	http://upx.sourceforge.net/download/\
 		SF/sevenzip/7-Zip/${LZMA_VER}:lzma
