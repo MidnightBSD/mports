@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.3 2007/08/30 19:12:13 laffer1 Exp $
+# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.4 2009/12/25 16:23:21 laffer1 Exp $
 
 PORTNAME=	ngircd
-PORTVERSION=	0.10.1
-CATEGORIES=	irc
-MASTER_SITES=	${MASTER_SITE_BERLIOS}
+PORTVERSION=	0.18
+CATEGORIES=	irc ipv6
+MASTER_SITES=	ftp://ftp.berlios.de/pub/%SUBDIR%/ \
+		http://arthur.barton.de/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}
+DISTVERSION=	${PORTVERSION:S/0.//}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free open source daemon for Internet Relay Chat (IRC)
@@ -22,6 +24,9 @@ MAN8=		ngircd.8
 OPTIONS=	TCP_WRAPPERS	"Enable TCP wrappers support"	on \
 		SYSLOG		"Enable SYSLOG support"		on \
 		ZLIB		"Enable ZLIB compression"	on \
+		IPV6		"Enable IPV6"			on \
+		OPENSSL		"Enable OpenSSL support"	off \
+		GNUTLS		"Enable GnuTLS support"		off \
 		IRCPLUS		"Enable IRC+ protocol"		on \
 		IDENT		"Enable IDENT (AUTH) protocol support"	off \
 		SNIFFER		"Enable IRC traffic sniffer"	off \
@@ -41,6 +46,19 @@ CONFIGURE_ARGS+=	--without-syslog
 CONFIGURE_ARGS+=	--without-zlib
 .endif
 
+.if defined(WITH_IPV6)
+CONFIGURE_ARGS+=	--enable-ipv6
+.endif
+
+.if defined(WITH_OPENSSL)
+CONFIGURE_ARGS+=	--with-openssl
+.endif
+
+.if defined(WITH_GNUTLS)
+CONFIGURE_ARGS+=	--with-gnutls
+USE_OPENSSL=yes
+.endif
+
 .if defined(WITHOUT_IRCPLUS)
 CONFIGURE_ARGS+=	--disable-ircplus
 .endif
@@ -58,10 +76,8 @@ CONFIGURE_ARGS+=	--enable-sniffer
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
-post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+.if defined(NOPORTDOCS)
+MAKE_ARGS+=		NOPORTDOCS=yes
 .endif
 
 .include <bsd.port.post.mk>
