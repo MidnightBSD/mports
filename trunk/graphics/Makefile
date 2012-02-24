@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.115 2012/02/24 18:27:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.116 2012/02/24 18:33:21 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -125,7 +125,7 @@ SUBDIR += plotutils
 SUBDIR += png
 SUBDIR += poppler
 SUBDIR += poppler-data
-SUBDIR += poppler-gtk
+SUBDIR += poppler-glib
 SUBDIR += poppler-qt
 SUBDIR += poppler-qt4
 SUBDIR += poppler-utils
