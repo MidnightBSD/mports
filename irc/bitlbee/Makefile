@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.15 2011/05/12 13:37:11 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.16 2011/09/27 17:14:24 laffer1 Exp $
 
 PORTNAME=	bitlbee
-PORTVERSION=	1.2.8
-PORTREVISION=	1
+PORTVERSION=	3.0.2
+PORTREVISION=	0
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
 		${MASTER_SITE_FREEBSD_LOCAL}
@@ -27,13 +27,14 @@ PKGMESSAGE=	${WRKDIR}/pkg-message
 OPTIONS=	DEBUG "Enable debug support" Off \
 		IPV6 "Enable IPv6 support" On \
 		OPENSSL "Use OpenSSL rather than GnuTLS" Off \
+		OTR "Enable OTR encryption support" Off \
 		MSN "Enable MSN protocol support" On \
 		JABBER "Enable Jabber (XMPP) protocol support" On \
 		OSCAR "Enable OSCAR (ICQ, AIM) protocol support" On \
 		YAHOO "Enable Yahoo! protocol support" On \
 		TWITTER "Enable Twitter protocol support" On
 
-CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0
+CONFIGURE_ARGS=	--config=/var/db/bitlbee --strip=0 --purple=0
 
 BITLBEEUSER?=	bitlbee
 BITLBEEGROUP?=	bitlbee
@@ -71,7 +72,15 @@ CONFIGURE_ARGS+=--ipv6=0
 CONFIGURE_ARGS+=--ssl=openssl
 .else
 CONFIGURE_ARGS+=--ssl=gnutls
-LIB_DEPENDS+=	gnutls.42:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.42:${PORTSDIR}/security/gnutls \
+		gcrypt.18:${PORTSDIR}/security/libgcrypt
+.endif
+
+.if defined(WITH_OTR)
+CONFIGURE_ARGS+=--otr=1
+LIB_DEPENDS+= otr.4:${PORTSDIR}/security/libotr
+.else
+CONFIGURE_ARGS+=--otr=0
 .endif
 
 .if defined(WITH_MSN)
