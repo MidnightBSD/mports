@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.7 2011/02/02 20:03:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.8 2011/08/20 14:57:16 laffer1 Exp $
 
 PORTNAME=	lzo2
-PORTVERSION=	2.04
+PORTVERSION=	2.06
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
 		http://ftp.uni-koeln.de/util/arc/
