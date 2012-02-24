@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.3 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.4 2011/05/30 18:17:42 laffer1 Exp $
 
 PORTNAME=	rpm
-PORTVERSION=	4.8.1
+PORTVERSION=	4.9.1
 PORTREVISION=	0
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm.org/releases/rpm-${PORTVERSION:R}.x/ \
@@ -30,7 +30,11 @@ CONFLICTS=	rpm-3.*
 CPPFLAGS+=	-I${LOCALBASE}/include/nspr -I${LOCALBASE}/include/nss/nss \
 		-I${BDB_INCLUDE_DIR} -I${LUA_INCDIR}
 LDFLAGS+=	-L${LOCALBASE}/lib/nss -L${BDB_LIB_DIR} -L${LUA_LIBDIR}
-CONFIGURE_ARGS+=--with-external-db
+CONFIGURE_ARGS+=--with-external-db \
+		LUA_CFLAGS=-I${LUA_INCDIR} \
+		LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER} -lm"
+PLIST_SUB+=   VERSION=${PORTVERSION}
+
 
 .include <bsd.mport.options.mk>
 
