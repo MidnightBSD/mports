@@ -1,24 +1,24 @@
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.7 2010/04/25 23:05:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.8 2011/12/15 00:57:47 laffer1 Exp $
 
 PORTNAME=	imlib2
-PORTVERSION=	1.4.1.000
-PORTREVISION=	2
+PORTVERSION=	1.4.5
 PORTEPOCH=	2
 CATEGORIES=	graphics
-MASTER_SITES=	ftp://ftp.springdaemons.com/pub/snapshots/e17/ \
-		http://download.enlightenment.org/snapshots/2008-01-25/
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITE_SUBDIR=	enlightenment/imlib2-src/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The next generation graphic library for enlightenment package
+COMMENT=	The next generation graphics library for Enlightenment
 LICENSE=	unknown
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack pkgconfig 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+USE_GNOME=	gnomehack pkgconfig
+USE_EFL=	libtool_hack
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	yes
 
 OPTIONS=	JPEG	"Enable jpeg image support"	on \
@@ -30,12 +30,16 @@ OPTIONS=	JPEG	"Enable jpeg image support"	on \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_MMX) && (${ARCH} == "i386")
+.if ${ARCH} == "i386" && !empty(MACHINE_CPU:Mmmx)
 CONFIGURE_ARGS+=	--enable-mmx
+.else
+CONFIGURE_ARGS+=	--disable-mmx
 .endif
 
-.if (${ARCH} == "amd64")
+.if ${ARCH} == "amd64"
 CONFIGURE_ARGS+=	--enable-amd64
+.else
+CONFIGURE_ARGS+=	--disable-amd64
 .endif
 
 .if defined(WITHOUT_X11)
@@ -72,8 +76,13 @@ PLIST_SUB+=	TIFF="@comment "
 .endif
 
 .if !defined(WITHOUT_GIF)
+. if exists(${LOCALBASE}/lib/libgif.so)
+LIB_DEPENDS+=	gif.5:${PORTSDIR}/graphics/giflib
+PLIST_SUB+=	GIF=""
+. else
 LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
 PLIST_SUB+=	GIF=""
+. endif
 .else
 CONFIGURE_ARGS+=	--without-gif
 PLIST_SUB+=	GIF="@comment "
