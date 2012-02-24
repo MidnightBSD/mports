@@ -1,4 +1,3 @@
-MD5 (libzip-0.8.tar.gz) = b0087c2a12b312f8ec2df1052b2acb4f
-SHA256 (libzip-0.8.tar.gz) = 5a1b231d002b1a87ecab26874491ec6bea36b108f5f37769a2dc79b10623c047
-RMD160 (libzip-0.8.tar.gz) = 634a2dfb593806e08e5b61c55a4a97ed146ee4a6
-SIZE (libzip-0.8.tar.gz) = 414095
+SHA256 (libzip-0.10.tar.gz) = b7afa964e2115cf9d72e90537b7fb4928232f2c3173439fa5e04814f28ebd7d2
+RMD160 (libzip-0.10.tar.gz) = 84a9f0602dba2c2a75d6b9dc52c0000c103f4429
+SIZE (libzip-0.10.tar.gz) = 849790
