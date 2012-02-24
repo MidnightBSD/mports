@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/swig13/Makefile,v 1.4 2011/02/02 20:17:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/swig13/Makefile,v 1.5 2012/02/24 15:13:21 laffer1 Exp $
 
 PORTNAME=	swig
-PORTVERSION=	1.3.36
+PORTVERSION=	1.3.40
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
