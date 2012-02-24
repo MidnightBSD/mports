@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.15 2011/05/27 01:55:46 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.16 2011/05/27 01:56:49 laffer1 Exp $
 
 PORTNAME=	sqlite
-PORTVERSION=	3.6.23.1
+PORTVERSION=	3.7.3
 CATEGORIES=	databases lang tcl
 MASTER_SITES=	http://www.sqlite.org/
 DISTNAME=	sqlite-${PORTVERSION}
