@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/irc/talksoup/Makefile,v 1.1 2010/01/23 19:17:58 laffer1 Exp $
 
 PORTNAME=	talksoup
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	irc gnustep
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}alpha
 DISTNAME=	TalkSoup-${PORTVERSION}alpha
@@ -11,7 +12,6 @@ COMMENT=	IRC client for GNUstep
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
