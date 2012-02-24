@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.47 2011/09/18 20:22:08 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.48 2011/12/21 04:26:45 laffer1 Exp $
 
 COMMENT = Archivers
 
@@ -24,7 +24,6 @@ SUBDIR += linux-f10-ucl
 SUBDIR += linux-f10-upx
 SUBDIR += linux-ucl
 SUBDIR += linux-upx
-SUBDIR += lzo
 SUBDIR += lzo2
 SUBDIR += lzop
 SUBDIR += p5-Archive-Tar
