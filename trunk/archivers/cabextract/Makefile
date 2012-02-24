@@ -1,13 +1,8 @@
-# New ports collection makefile for:	cabextract
-# Date Created:				30 November 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/archivers/cabextract/Makefile,v 1.3 2008/09/30 23:35:55 laffer1 Exp $
+# $MidnightBSD: mports/archivers/cabextract/Makefile,v 1.4 2010/09/04 09:01:12 crash Exp $
 # $FreeBSD: ports/archivers/cabextract/Makefile,v 1.18 2007/08/07 18:21:25 sobomax Exp $
-#
 
 PORTNAME=	cabextract
-PORTVERSION=	1.3
+PORTVERSION=	1.4
 CATEGORIES=	archivers
 MASTER_SITES=	http://www.cabextract.org.uk/
 
