@@ -2,12 +2,12 @@
 # Date created:				Sun Mar  5 16:43:25 EST 2006
 # Whom:					Matthew Will <mwill@spingen.com>
 #
-# $MidnightBSD: mports/devel/cvschangelogbuilder/Makefile,v 1.1 2008/08/22 02:52:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvschangelogbuilder/Makefile,v 1.2 2010/01/23 22:40:26 laffer1 Exp $
 # $FreeBSD: ports/devel/cvschangelogbuilder/Makefile,v 1.6 2008/05/17 12:41:03 miwi Exp $
 #
 
 PORTNAME=	cvschangelogbuilder
-PORTVERSION=	2.4
+PORTVERSION=	2.5
 CATEGORIES=	devel
 MASTER_SITES=	SF/cvschangelogb/CVSChangelogBuilder/${PORTVERSION}
 
