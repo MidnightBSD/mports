@@ -2,14 +2,15 @@
 # Date created:		1 May 2004
 # Whom:			Hye-Shik Chang
 #
-# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.5 2010/01/23 23:37:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvs2svn/Makefile,v 1.6 2010/11/17 13:57:58 laffer1 Exp $
 # $FreeBSD: ports/devel/cvs2svn/Makefile,v 1.15 2008/03/16 23:05:51 araujo Exp $
 
 PORTNAME=	cvs2svn
 PORTVERSION=	2.3.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
-MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/46528/
+MASTER_SITES=	http://www.sourcehosting.net/freebsd/distfiles/ \
+		FREEBSD_LOCAL/glarkin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CVS to Subversion Repository Converter
@@ -21,7 +22,7 @@ RUN_DEPENDS=	${BUILD_DEPENDS}
 
 MAKE_JOBS_SAFE=	yes
 
-USE_PYTHON=	2.4+
+USE_PYTHON=	2.5+
 USE_PYDISTUTILS=	yes
 
 OPTIONS=	SUBVERSION "Build with subversion support" on \
