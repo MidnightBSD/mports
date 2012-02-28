@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/linux-f10-scim-libs/Makefile,v 1.1 2011/06/19 23:42:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/linux-f10-scim-libs/Makefile,v 1.2 2011/11/10 21:06:35 laffer1 Exp $
 # $FreeBSD: ports/textproc/linux-f10-scim-libs/Makefile,v 1.11 2011/03/03 09:26:43 ehaupt Exp $
 
 PORTNAME=	scim-libs
@@ -21,7 +21,5 @@ LINUX_DIST_VER=	10
 RPMVERSION=	35.fc10
 USE_LDCONFIG=	yes
 SRC_DISTFILES=	scim-${PORTVERSION}-${RPMVERSION}.src.rpm
-
-DESCR=		${.CURDIR}/../scim/pkg-descr
 
 .include <bsd.port.mk>
