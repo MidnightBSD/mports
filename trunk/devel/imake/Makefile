@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/imake/Makefile,v 1.5 2009/05/26 00:47:26 laffer1 Exp $
+# $MidnightBSD: mports/devel/imake/Makefile,v 1.6 2009/05/31 16:48:47 laffer1 Exp $
 
 PORTNAME=	imake
-PORTVERSION=	1.0.2
-PORTREVISION=	3
+PORTVERSION=	1.0.4
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	devel
 
