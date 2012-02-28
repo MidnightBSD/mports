@@ -1,2 +1,3 @@
-SHA256 (gnome2/gdk-pixbuf-2.22.1.tar.bz2) = 6ce87eda24af9362307b2593c154d0b660f4e26d0abf2e71d46d0ddd55fd953d
-SIZE (gnome2/gdk-pixbuf-2.22.1.tar.bz2) = 1543273
+SHA256 (gnome2/gdk-pixbuf-2.23.5.tar.bz2) = 16171a1d6c85cafb64328066c3726c08b1c6621d4aba8990f97b26a2c8a6463a
+RMD160 (gnome2/gdk-pixbuf-2.23.5.tar.bz2) = 0e7ef2ab672d51f9e6f9ae1b0e64b7219be2881c
+SIZE (gnome2/gdk-pixbuf-2.23.5.tar.bz2) = 1585679
