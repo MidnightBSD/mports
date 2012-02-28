@@ -2,11 +2,11 @@
 # Date created:		July 4, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.6 2011/01/15 04:05:40 laffer1 Exp $
+# $MidnightBSD: mports/misc/midnightbsd-desktop/Makefile,v 1.7 2011/08/07 18:22:16 laffer1 Exp $
 #
 
 PORTNAME=	midnightbsd-desktop
-PORTVERSION=	1.5
+PORTVERSION=	1.6
 CATEGORIES=	misc
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -21,7 +21,6 @@ LICENSE=	agg
 
 RUN_DEPENDS=	startkde:${PORTSDIR}/x11/kde-lite \
 		bash:${PORTSDIR}/shells/bash \
-		kword:${PORTSDIR}/editors/koffice-kde3 \
 		smbd:${PORTSDIR}/net/samba34 \
 		cupsd:${PORTSDIR}/print/cups-base \
 		pidgin:${PORTSDIR}/net-im/pidgin \
