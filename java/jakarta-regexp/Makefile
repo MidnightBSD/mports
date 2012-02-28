@@ -2,7 +2,7 @@
 # Date created:         2000/12/01
 # Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
 #
-# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.2 2008/05/01 23:26:45 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.3 2009/06/09 20:32:34 crash Exp $
 # $FreeBSD: ports/java/jakarta-regexp/Makefile,v 1.11 2005/10/10 04:43:53 linimon Exp $
 #
 
@@ -19,7 +19,7 @@ LICENSE=        apache2
 BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 
 PLIST=	${WRKDIR}/PLIST
 
