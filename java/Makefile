@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.30 2011/12/24 04:02:21 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.31 2012/02/28 01:00:49 laffer1 Exp $
 
 COMMENT = Java 
 
@@ -23,6 +23,7 @@ SUBDIR += jakarta-oro
 SUBDIR += jakarta-regexp
 SUBDIR += jakarta-struts
 SUBDIR += jamvm
+SUBDIR += javamail
 SUBDIR += javavmwrapper
 SUBDIR += jaxen
 SUBDIR += jboss5
