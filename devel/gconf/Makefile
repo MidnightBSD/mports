@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gconf/Makefile,v 1.7 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf/Makefile,v 1.8 2011/12/15 00:34:35 laffer1 Exp $
 
 PORTNAME=	gconf
 PORTVERSION=	1.0.9
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/1.0
@@ -13,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A configuration database system for GNOME
 LICENSE=	lgpl
 
-LIB_DEPENDS=	guile.20:${PORTSDIR}/lang/guile
+LIB_DEPENDS=	guile.21:${PORTSDIR}/lang/guile
 
 MAKE_JOBS_UNSAFE=yes
 
