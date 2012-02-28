@@ -2,7 +2,7 @@
 # Date created:		2006-12-09
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/tracker/Makefile,v 1.1 2008/04/01 05:17:08 laffer1 Exp $
 # $FreeBSD: ports/sysutils/tracker/Makefile,v 1.16 2007/10/24 23:36:41 marcus Exp $
 #   $MCom: ports/sysutils/tracker/Makefile,v 1.8 2007/10/05 16:55:59 mezz Exp $
 #
@@ -15,9 +15,10 @@ MASTER_SITES=	http://www.gnome.org/~jamiemcc/tracker/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Object database, tag/metadata database, search tool and indexer
+LICENSE=	gpl2
 
 LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		poppler-glib.2:${PORTSDIR}/graphics/poppler-gtk \
+		poppler-glib.8:${PORTSDIR}/graphics/poppler-glib \
 		exif.12:${PORTSDIR}/graphics/libexif \
 		wv-1.2.3:${PORTSDIR}/textproc/wv \
 		gmime-2.0.4:${PORTSDIR}/mail/gmime2 \
