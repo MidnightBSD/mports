@@ -2,16 +2,17 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD: mports/devel/libgii/Makefile,v 1.1 2007/08/25 05:16:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgii/Makefile,v 1.2 2008/10/03 03:16:22 ctriv Exp $
 # $FreeBSD: ports/devel/libgii/Makefile,v 1.28 2007/05/19 20:03:05 flz Exp $
 #
 
 PORTNAME=	libgii
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.ggi-project.org/ftp/ggi/v2.2/ \
-		${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	ggi
+		SF/ggi/ggi-core/${PORTNAME}-${PORTVERSION}		
+
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -193,7 +194,7 @@ PLIST_SUB+=	KII="@comment "
 .endif
 
 .if !defined(WITHOUT_X11)
-USE_XLIB=	yes
+USE_XORG=	x11
 PLIST_SUB+=	WITH_X=""
 .else
 CONFIGURE_ARGS+=	--disable-x --without-x
