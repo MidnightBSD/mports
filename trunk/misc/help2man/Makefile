@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.5 2011/05/14 21:43:55 laffer1 Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.6 2011/05/14 21:44:28 laffer1 Exp $
 # $FreeBSD: ports/misc/help2man/Makefile,v 1.18 2006/04/30 21:54:34 arved Exp $
 
 PORTNAME=	help2man
-PORTVERSION=	1.39.2
+PORTVERSION=	1.40.6
 CATEGORIES=	misc
 MASTER_SITES=	GNU/${PORTNAME}
 
@@ -26,14 +26,17 @@ BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-
 RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
 
 CFLAGS+=	-lintl
-MANLANG=	"" ${LANGS}
+MANLANG=	"" ${LANGS} ${LANGS_MTREE}
 USE_GETTEXT=	yes
 
-LANGS=		de el eo fi fr it pl pt_BR ru sv uk vi
+LANGS=		de el eo fi fr it pl pt_BR ru sr sv uk vi
+LANGS_MTREE=	ja	# languages that already exist in BSD.local.dist
 
 PLIST_FILES+=	lib/bindtextdomain.so
-.for lang in ${LANGS}
+.for lang in ${LANGS} ${LANGS_MTREE}
 PLIST_FILES+=	share/locale/${lang}/LC_MESSAGES/${PORTNAME}.mo
+.endfor
+.for lang in ${LANGS}
 PLIST_DIRSTRY+=	man/${lang}/man1 man/${lang}
 .endfor
 .endif
