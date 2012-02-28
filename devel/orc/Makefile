@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/orc/Makefile,v 1.3 2011/06/22 03:10:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/orc/Makefile,v 1.4 2011/09/18 01:40:12 laffer1 Exp $
 # $FreeBSD: ports/devel/orc/Makefile,v 1.6 2010/09/05 08:02:21 mm Exp $
 
 PORTNAME=	orc
-PORTVERSION=	0.4.14
+PORTVERSION=	0.4.16
 CATEGORIES=	devel
 MASTER_SITES=	http://code.entropywave.com/download/orc/
 
