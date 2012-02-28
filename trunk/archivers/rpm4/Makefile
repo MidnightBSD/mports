@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.4 2011/05/30 18:17:42 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rpm4/Makefile,v 1.5 2012/02/24 16:15:52 laffer1 Exp $
 
 PORTNAME=	rpm
 PORTVERSION=	4.9.1
@@ -87,13 +87,6 @@ PORTDOCS=	*
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 800502
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-rpmio_rpmsq.c
-.endif
-.if ${OSVERSION} < 700000
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-lib_fs.c
-.endif
 
 .if ${OSVERSION} < 4005
 LIB_DEPENDS+=	lzma:${PORTSDIR}/archivers/xz
