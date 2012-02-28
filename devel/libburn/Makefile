@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/devel/libburn/Makefile,v 1.1 2010/02/27 21:13:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/libburn/Makefile,v 1.2 2010/03/01 01:41:57 laffer1 Exp $
 
 PORTNAME=	libburn
-PORTVERSION=	0.6.8
+PORTVERSION=	1.1.0
 CATEGORIES=	devel
 MASTER_SITES=	http://files.libburnia-project.org/releases/
-DISTFILES=	${PORTNAME}-${PORTVERSION}.pl00${EXTRACT_SUFX}
+DISTFILES=	${PORTNAME}-${PORTVERSION}.pl01${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Libburnia library to read/write optical discs
