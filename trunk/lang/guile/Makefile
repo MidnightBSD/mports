@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.10 2011/02/02 21:06:52 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.11 2011/12/15 00:57:48 laffer1 Exp $
 
 PORTNAME=	guile
-PORTVERSION=	1.8.6
-PORTREVISION=	1
+PORTVERSION=	1.8.8
+PORTREVISION=	0
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
