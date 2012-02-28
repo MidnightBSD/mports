@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.12 2011/07/16 15:08:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.13 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	dbus
-PORTVERSION?=	1.4.6
-PORTREVISION?=	1
+PORTVERSION?=	1.4.14
+PORTREVISION?=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -20,7 +20,7 @@ CONFIGURE_ARGS=--localstatedir=/var \
 	        --with-test-socket-dir=${WRKDIR} \
 		--with-system-pid-file=/var/run/dbus/dbus.pid \
 		--with-system-socket=/var/run/dbus/system_bus_socket \
-		--with-session-socket-dir=/var/tmp \
+		--with-session-socket-dir=/tmp \
 		--disable-doxygen-docs \
 		--disable-xml-docs
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
@@ -38,7 +38,7 @@ MAN1=		dbus-cleanup-sockets.1 dbus-daemon.1 dbus-launch.1 \
 		dbus-monitor.1 dbus-send.1 dbus-uuidgen.1
 
 .if !defined(WITHOUT_X11)
-USE_XORG=	x11
+USE_XORG=	ice sm x11
 .else
 CONFIGURE_ARGS+=--without-x
 .endif
