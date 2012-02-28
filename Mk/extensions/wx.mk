@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.2 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/wx.mk,v 1.3 2012/02/13 17:11:53 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.wx.mk,v 1.1 2006/07/05 02:13:12 linimon Exp $
 #
 # wx.mk - Support for WxWidgets based ports.
@@ -143,8 +143,8 @@ _WX_Definitions_Done=	yes
 
 _WX_COMPS_ALL=			wx contrib python mozilla svg
 _WX_DEP_TYPES_ALL=		build lib run
-_WX_VERS_ALL=			2.4 2.6 2.8
-_WX_VERS_UC_ALL=		2.6 2.8
+_WX_VERS_ALL=			2.4 2.6
+_WX_VERS_UC_ALL=		2.6
 _WX_CHANGE_VARS=		USE_WX USE_WX_NOT WX_UNICODE
 _WX_LISTS_ORDER=		_WX_VER_FINAL WANT_WX_VER WITH_WX_VER
 _WX_AUTO_VARS=			USE_WX WX_CONFIG
