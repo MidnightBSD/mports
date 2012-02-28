@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.9 2011/09/23 02:52:58 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.10 2011/12/15 00:39:56 laffer1 Exp $
 # $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.26
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://fr.rpmfind.net/pub/libxml/ \
 		ftp://gd.tuwien.ac.at/pub/libxml/ \
@@ -42,7 +42,7 @@ CONFIGURE_ARGS+=	--with-mem-debug
 .endif
 
 .if defined(WITH_CRYPTO)
-LIB_DEPENDS+=	gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=	gcrypt.18:${PORTSDIR}/security/libgcrypt
 .else
 CONFIGURE_ARGS+=--without-crypto
 .endif
