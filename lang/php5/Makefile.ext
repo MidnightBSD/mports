@@ -194,7 +194,7 @@ OPTIONS=	MYSQLND "Use MySQL Native Driver" off
 .endif
 
 .if ${PHP_MODNAME} == "odbc"
-LIB_DEPENDS+=	odbc.1:${PORTSDIR}/databases/unixODBC
+LIB_DEPENDS+=	odbc.2:${PORTSDIR}/databases/unixODBC
 
 CONFIGURE_ARGS+=--with-unixODBC=${LOCALBASE}
 .endif
