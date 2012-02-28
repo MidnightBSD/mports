@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/dbus-qt4/Makefile,v 1.3 2011/07/23 23:53:10 laffer1 Exp $
 # $FreeBSD: ports/devel/dbus-qt4/Makefile,v 1.23 2010/12/02 19:47:03 makc Exp $
 
 PORTNAME=	dbus
@@ -13,7 +13,7 @@ LICENSE=	gpl3
 LIB_DEPENDS=	dbus-1.3:${PORTSDIR}/devel/dbus
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib gui xml
+QT_COMPONENTS=	qmake_build moc_build rcc_build corelib xml
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
 MAKE_JOBS_UNSAFE=	yes
@@ -44,6 +44,11 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
 EXTRA_PATCHES=	${.CURDIR}/../../devel/qt4/files/patch-configure
 
+.include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=      --no-gui \
+                      --no-phonon
+
 pre-configure:
 	${REINPLACE_CMD} -e 's|qdbusviewer||g' ${BUILD_WRKSRC}/qdbus.pro
 	${REINPLACE_CMD} -e 's|SUBDIRS = qdbus|SUBDIRS = ../../src/${PORTNAME} qdbus|g' ${BUILD_WRKSRC}/qdbus.pro
@@ -60,4 +65,4 @@ post-configure:
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 		${WRKSRC}/lib/pkgconfig/QtDBus.pc
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
