@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/devel/dbus/files/dbus.in,v 1.17 2010/10/22 22:32:20 kwm Exp $
+# $FreeBSD: ports/devel/dbus/files/dbus.in,v 1.19 2012/01/14 08:55:34 dougb Exp $
 #
 # PROVIDE: dbus
 # REQUIRE: DAEMON
@@ -17,7 +17,7 @@ dbus_enable=${dbus_enable-${gnome_enable}}
 dbus_flags=${dbus_flags-"--system"}
 
 name=dbus
-rcvar=`set_rcvar`
+rcvar=dbus_enable
 
 command="%%PREFIX%%/bin/dbus-daemon"
 pidfile="/var/run/dbus/${name}.pid"
@@ -31,7 +31,7 @@ dbus_prestart()
         mkdir -p /var/db/dbus
     fi
     if [ ! -f /var/db/dbus/machine-id ]; then
-        dbus-uuidgen > /var/db/dbus/machine-id
+        %%PREFIX%%/bin/dbus-uuidgen > /var/db/dbus/machine-id
     fi
 
     mkdir -p $(dirname $pidfile)
