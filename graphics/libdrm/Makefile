@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/libdrm/Makefile,v 1.6 2009/05/31 22:38:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libdrm/Makefile,v 1.7 2009/06/04 02:00:12 laffer1 Exp $
 
 PORTNAME=	libdrm
-PORTVERSION=	2.4.11
+PORTVERSION=	2.4.12
 CATEGORIES=	graphics x11
 MASTER_SITES=	http://dri.freedesktop.org/libdrm/
 
