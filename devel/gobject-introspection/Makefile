@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.4 2011/05/28 21:13:10 laffer1 Exp $
+# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.5 2011/11/11 00:44:11 laffer1 Exp $
 
 PORTNAME=	gobject-introspection
 PORTVERSION=	0.10.8
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -28,7 +29,7 @@ CPPFLAGS=	-I${LOCALBASE}/include
 CONFIGURE_ENV=	LDFLAGS="-L${LOCALBASE}/lib"
 CONFIGURE_ARGS=	--disable-tests
 
-# Force it to put the .cache in ${WRKSRC} instead of ~/.cache. ports/143260
+# Force it to put the .cache in ${WRKSRC} instead of ~/.cache.
 MAKE_ENV=	HOME=${WRKDIR}
 
 MAN1=		g-ir-compiler.1 g-ir-generate.1 g-ir-scanner.1
