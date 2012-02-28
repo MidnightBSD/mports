@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.29 2012/01/28 04:15:49 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups
@@ -68,11 +68,11 @@ CUPSSYSGRP=	wheel
 
 # UNIQUENAME must be set before bsd.port.pre.mk so OPTIONSFILE can be included
 .if defined(CUPS_CLIENT)
-LICENSE=	lgpl21
+LICENSE=	lgpl
 CUPS_SUFFIX=	-client
 .elif defined(CUPS_IMAGE)
 CUPS_SUFFIX=	-image
-LICENSE=	lgpl21
+LICENSE=	lgpl
 .else
 PORTREVISION=	0
 CUPS_SUFFIX=	-base
