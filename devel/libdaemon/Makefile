@@ -1,14 +1,11 @@
 # New ports collection makefile for:	libdaemon
-# Date created:		2005-10-17
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD: mports/devel/libdaemon/Makefile,v 1.6 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/libdaemon/Makefile,v 1.7 2011/12/15 00:34:40 laffer1 Exp $
 # $FreeBSD: ports/devel/libdaemon/Makefile,v 1.5 2006/02/23 10:35:51 ade Exp $
-#
 
 PORTNAME=	libdaemon
-PORTVERSION=	0.12
-PORTREVISION=	1
+PORTVERSION=	0.14
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	http://0pointer.de/lennart/projects/${PORTNAME}/
 
