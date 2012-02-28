@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/hicolor-icon-theme/Makefile,v 1.7 2011/05/14 21:46:53 laffer1 Exp $
+# $MidnightBSD: mports/misc/hicolor-icon-theme/Makefile,v 1.8 2011/12/15 00:57:50 laffer1 Exp $
 
 PORTNAME=	hicolor-icon-theme
 PORTVERSION=	0.12
@@ -9,7 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A high-color icon theme shell from the FreeDesktop project
 LICENSE=	gpl2
 
-USE_GNOME=	
 GNU_CONFIGURE=	yes
 
 ICON_DIR?=	share/icons/hicolor
