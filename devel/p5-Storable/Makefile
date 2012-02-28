@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-Storable/Makefile,v 1.2 2008/08/25 19:17:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Storable/Makefile,v 1.3 2009/12/13 20:53:30 laffer1 Exp $
 
 PORTNAME=	Storable
-PORTVERSION=	2.21
+PORTVERSION=	2.30
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
