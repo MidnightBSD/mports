@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.7 2011/06/24 12:51:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.8 2011/10/01 01:16:01 laffer1 Exp $
 
 PORTNAME=	dbus
-PORTVERSION=	0.88
-PORTREVISION=	1
+PORTVERSION=	0.94
+PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 PKGNAMESUFFIX=	-glib
@@ -21,8 +21,6 @@ GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
-		--disable-doxygen-docs \
-		--disable-xml-docs \
 		--disable-gtk-doc \
 		--program-prefix='' \
 		--with-html-dir=${PREFIX}/share/doc
