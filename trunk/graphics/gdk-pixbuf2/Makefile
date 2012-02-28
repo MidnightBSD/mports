@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gdk-pixbuf2/Makefile,v 1.1 2011/05/28 21:18:36 laffer1 Exp $
 # $FreeBSD: ports/graphics/gdk-pixbuf2/Makefile,v 1.2 2010/12/04 07:31:56 ade Exp $
 
 PORTNAME=	gdk-pixbuf
-PORTVERSION=	2.22.1
+PORTVERSION=	2.23.5
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/${PORTVERSION:R}
