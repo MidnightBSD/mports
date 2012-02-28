@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.29 2011/12/24 04:01:07 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.30 2011/12/24 04:02:21 laffer1 Exp $
 
 COMMENT = Java 
 
@@ -11,6 +11,7 @@ SUBDIR += diablo-jdk15
 SUBDIR += diablo-jdk16
 SUBDIR += diablo-jre15
 SUBDIR += diablo-jre16
+SUBDIR += jaf
 SUBDIR += jai
 SUBDIR += jai-imageio
 SUBDIR += jakarta-bcel
