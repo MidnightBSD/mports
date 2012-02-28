@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.3 2011/09/04 01:03:14 laffer1 Exp $
+# $MidnightBSD: mports/devel/libdispatch/Makefile,v 1.4 2011/09/17 00:29:41 laffer1 Exp $
 
 PORTNAME=	libdispatch
 PORTVERSION=	210
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
 
@@ -80,9 +81,9 @@ IGNORE=	is not supported on this OS version
 .endif
 
 .if !defined(WITHOUT_CLANG)
-BUILD_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
+BUILD_DEPENDS+=	clang:${PORTSDIR}/lang/clang \
 		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
-RUN_DEPENDS+=	clang:${PORTSDIR}/devel/llvm-devel \
+RUN_DEPENDS+=	clang:${PORTSDIR}/lang/clang \
 		${LOCALBASE}/lib/libBlocksRuntime.so:${PORTSDIR}/devel/compiler-rt
 CONFIGURE_ARGS+=	--with-blocks-runtime=/usr/local/lib
 CONFIGURE_ENV+=	CC="clang"
