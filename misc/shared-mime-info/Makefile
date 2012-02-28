@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.6 2009/04/11 20:29:04 laffer1 Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.7 2011/05/14 22:30:47 laffer1 Exp $
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	0.80
+PORTVERSION=	0.90
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
