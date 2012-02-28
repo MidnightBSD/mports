@@ -2,12 +2,12 @@
 # Date created:				9 Decemeber 2003
 # Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
 #
-# $MidnightBSD: mports/java/jaxen/Makefile,v 1.2 2008/05/01 23:05:45 laffer1 Exp $
+# $MidnightBSD: mports/java/jaxen/Makefile,v 1.3 2011/12/24 03:24:21 laffer1 Exp $
 # $FreeBSD: ports/java/jaxen/Makefile,v 1.5 2004/09/01 13:41:33 hq Exp $
 
 PORTNAME=	jaxen
 PORTVERSION=	1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	java textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1-0-FCS
 DISTNAME=	${PORTNAME}-${PORTVERSION}-FCS
@@ -18,7 +18,7 @@ LICENSE=	bsd4
 
 USE_GCPIO=	YES
 USE_JAVA=	YES
-JAVA_VERSION=	1.3+
+JAVA_VERSION=	1.5+
 NO_BUILD=	YES
 
 JARFILES=	jaxen-core.jar jaxen-dom.jar jaxen-dom4j.jar jaxen-exml.jar jaxen-full.jar jaxen-jdom.jar lib/saxpath.jar
