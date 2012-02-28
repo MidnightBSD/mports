@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.386 2012/01/25 04:50:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.387 2012/01/27 00:40:45 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -104,7 +104,6 @@ SUBDIR += highlighterkit
 SUBDIR += hs-haddock
 SUBDIR += icu
 SUBDIR += imake
-SUBDIR += imake-6
 SUBDIR += json-glib
 SUBDIR += judy
 SUBDIR += kBuild
