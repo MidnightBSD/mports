@@ -1,9 +1,9 @@
 # $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.9 2011/06/26 14:48:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.10 2011/07/23 15:07:46 laffer1 Exp $
 
 PORTNAME=	gconf2
 PORTVERSION=	2.32.0
-PORTREVISION?=	4
+PORTREVISION?=	5
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
