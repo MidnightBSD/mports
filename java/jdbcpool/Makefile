@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jdbcpool/Makefile,v 1.1 2006/10/04 20:18:28 laffer1 Exp $
+# $MidnightBSD: mports/java/jdbcpool/Makefile,v 1.2 2009/05/22 23:58:01 laffer1 Exp $
 
 PORTNAME=	jdbcpool
 PORTVERSION=	0.99
@@ -11,7 +11,7 @@ COMMENT=	JDBC connection pool
 LICENSE=	other
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 NO_BUILD=	yes
 
 PORTDOCS=	CHANGES LICENSE README

@@ -2,7 +2,7 @@
 # Date created:         2000/12/01
 # Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
 #
-# $MidnightBSD: mports/java/jakarta-oro/Makefile,v 1.2 2008/05/01 23:20:28 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-oro/Makefile,v 1.3 2011/12/24 03:18:38 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-oro/Makefile,v 1.11 2005/10/10 04:43:52 linimon Exp $
 #
 
@@ -18,7 +18,7 @@ LICENSE=	apache1.1
 BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.2+
+JAVA_VERSION=	1.5+
 
 PLIST=	${WRKDIR}/PLIST
 
