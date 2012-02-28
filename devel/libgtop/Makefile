@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.11 2011/02/02 20:17:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/libgtop/Makefile,v 1.12 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	libgtop
-PORTVERSION=	2.28.1
+PORTVERSION=	2.28.2
 PORTREVISION=	0
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
@@ -11,6 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME 2 top library
 LICENSE=	gpl2
 
+BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 RUN_DEPENDS=	lsof:${PORTSDIR}/sysutils/lsof
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
@@ -23,7 +24,7 @@ USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_NET_IF_VAR_H" \
 		LDFLAGS="-L${LOCALBASE}/lib -lgeom -ldevstat"
 CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CFLAGS+=	-D__FreeBSD_version=700055
