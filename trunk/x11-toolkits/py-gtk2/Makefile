@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.7 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.8 2012/02/29 03:00:23 laffer1 Exp $
 
 PORTNAME=	py-gtk
 PORTVERSION=	2.24.0
@@ -12,14 +12,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of Python bindings for GTK+
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
-		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
-		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
+BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack libglade2
+USE_GNOME=	gnomehack libglade2 pygobject
 USE_PYTHON=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
