@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.5 2011/07/17 15:45:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/qt.mk,v 1.6 2011/08/16 22:49:06 laffer1 Exp $
 #
 # QT_NONSTANDARD	- Suppress modification of configure and make environment.
 # QT_DIST		- Package being built is part of the Qt distribution.
@@ -55,13 +55,16 @@ CONFIGURE_ARGS+=-fast -platform ${QMAKESPEC} \
 		-translationdir ${PREFIX}/share/qt4/translations \
 		-sysconfdir ${PREFIX}/etc/xdg \
 		-examplesdir ${PREFIX}/share/examples/qt4/examples \
-		-demosdir ${PREFIX}/share/examples/qt4/demos
+		-demosdir ${PREFIX}/share/examples/qt4/demos \
+		-phonon \
+		-no-phonon-backend
 
 PLIST_SUB+=	SHLIB_VER=${QT4_VERSION:C/-.*//} \
 		SHLIB_SHVER=${QT4_VERSION:R}
 
 .if defined(PACKAGE_BUILDING)
-CONFIGURE_ARGS+=-no-mmx -no-3dnow -no-sse -no-sse2
+CONFIGURE_ARGS+=-no-mmx -no-3dnow -no-sse -no-sse2 -no-sse3 \
+		-no-ssse3 -no-sse4.1 -no-sse4.2
 .endif #defined(PACKAGE_BUILDING)
 
 # .if defined(PORTNAME) && ${PORTNAME} != "xmlpatterns"
@@ -107,7 +110,7 @@ QMAKEFLAGS+=	QMAKE_CC="${CC}" QMAKE_CXX="${CXX}" \
 #
 # Translate `c++` to its real name and select the appropriate mkspec.
 #
-QMAKE_BASE_COMPILER!=	cc --version | head -1 | sed -E 's/.+\(([^)]+)\).+/\1/' | cut -d " " -f 1
+QMAKE_BASE_COMPILER!=	cc --version 2> /dev/null | ${AWK} 'NR == 1 { gsub(/[()]/, "", $$2); print $$2 }'
 .if ${QMAKE_BASE_COMPILER:L} == "gcc"
 QMAKE_BASE_COMPILER=	g++
 .endif
@@ -132,20 +135,15 @@ QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_COMPILER}
 QMAKESPEC?=	${QT_PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_BASE_COMPILER}
 .endif
 
-.if ${OSVERSION} < 700042 && ${ARCH} == "amd64"
-QTCPPFLAGS?=	-fno-gcse
-.else
 QTCPPFLAGS?=
-.endif
 QTCGFLIBS?=
 
 .endif # !defined(_POSTMKINCLUDED) && !defined(Qt_Pre_Include)
 
 #
 # QT4 version
-# Don't forget to update ${PORTSDIR}/devel/qt4/files/patch-configure !
 #
-QT4_VERSION?=		4.7.3
+QT4_VERSION?=		4.7.4
 
 _QT_COMPONENTS_ALL=	accessible assistant assistant-adp assistantclient \
 			clucene codecs-cn codecs-jp codecs-kr codecs-tw corelib \
