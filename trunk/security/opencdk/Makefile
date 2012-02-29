@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/opencdk/Makefile,v 1.6 2010/08/01 06:18:22 laffer1 Exp $
+# $MidnightBSD: mports/security/opencdk/Makefile,v 1.7 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	opencdk
 PORTVERSION=	0.6.6
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES= http://josefsson.org/gnutls/releases/opencdk/
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Open Crypto Development Kit
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt
 
 GNU_CONFIGURE=	yes
 USE_BZIP2=	yes
