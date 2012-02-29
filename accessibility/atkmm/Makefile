@@ -1,9 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/atkmm/Makefile,v 1.1 2011/05/15 16:08:52 laffer1 Exp $
 # $FreeBSD: ports/accessibility/atkmm/Makefile,v 1.2 2010/11/27 06:01:37 marcus Exp $
 #
 
 PORTNAME=	atkmm
-PORTVERSION=	2.22.1
+PORTVERSION=	2.22.5
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 
