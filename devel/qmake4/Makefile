@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.10 2010/01/10 00:28:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.11 2011/07/23 15:09:12 laffer1 Exp $
 
 PORTNAME=	qmake
 DISTVERSION=	${QT4_VERSION}
@@ -55,6 +55,11 @@ post-patch:
 	@${CP} ${WRKSRC}/../mkspecs/common/g++.conf ${WRKSRC}/../mkspecs/common/clang.conf
 	@${REINPLACE_CMD} -e 's|gcc|clang|g' -e 's|g++|clang++|g' \
 		${WRKSRC}/../mkspecs/common/clang.conf
+
+	# FIXME: This is ugly
+	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++/*.orig
+	@${RM} ${WRKSRC}/../mkspecs/freebsd-g++40/*.orig
+
 .for c in clang llvm
 	@${CP} -PpR ${WRKSRC}/../mkspecs/freebsd-g++ ${WRKSRC}/../mkspecs/freebsd-${c}
 	@${REINPLACE_CMD} -e 's|g++|${c}|g' \
