@@ -1,16 +1,19 @@
-# $MidnightBSD: mports/security/libssh2/Makefile,v 1.2 2009/05/01 16:22:49 laffer1 Exp $
+# $MidnightBSD: mports/security/libssh2/Makefile,v 1.3 2011/04/11 13:45:36 laffer1 Exp $
 
 PORTNAME=	libssh2
-PORTVERSION=	1.2.7
+PORTVERSION=	1.4.0
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	security devel
-MASTER_SITES=	http://www.libssh2.org/download/
+MASTER_SITES=	http://www.libssh2.org/download/ \
+		${MASTER_SITE_LOCAL:S,%SUBDIR%,sbz,}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library implementing the SSH2 protocol
 LICENSE=	bsd3
 
 USE_OPENSSL=	yes
+USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
@@ -61,6 +64,7 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_channel_forward_listen.3 \
 	libssh2_channel_forward_listen_ex.3 \
 	libssh2_channel_free.3 \
+	libssh2_channel_get_exit_signal.3 \
 	libssh2_channel_get_exit_status.3 \
 	libssh2_channel_handle_extended_data.3 \
 	libssh2_channel_handle_extended_data2.3 \
@@ -75,8 +79,8 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_channel_receive_window_adjust2.3 \
 	libssh2_channel_request_pty.3 \
 	libssh2_channel_request_pty_ex.3 \
-	libssh2_channel_request_pty_size_ex.3 \
 	libssh2_channel_request_pty_size.3 \
+	libssh2_channel_request_pty_size_ex.3 \
 	libssh2_channel_send_eof.3 \
 	libssh2_channel_set_blocking.3 \
 	libssh2_channel_setenv.3 \
@@ -95,23 +99,23 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_channel_x11_req.3 \
 	libssh2_channel_x11_req_ex.3 \
 	libssh2_exit.3 \
-	libssh2_free_host_entry.3 \
-	libssh2_host_entry_match.3 \
+	libssh2_free.3 \
 	libssh2_hostkey_hash.3 \
 	libssh2_init.3 \
+	libssh2_keepalive_config.3 \
+	libssh2_keepalive_send.3 \
 	libssh2_knownhost_add.3 \
 	libssh2_knownhost_addc.3 \
 	libssh2_knownhost_check.3 \
 	libssh2_knownhost_checkp.3 \
 	libssh2_knownhost_del.3 \
-	libssh2_knownhost_get.3 \
 	libssh2_knownhost_free.3 \
+	libssh2_knownhost_get.3 \
 	libssh2_knownhost_init.3 \
 	libssh2_knownhost_readfile.3 \
 	libssh2_knownhost_readline.3 \
 	libssh2_knownhost_writefile.3 \
 	libssh2_knownhost_writeline.3 \
-	libssh2_new_host_entry.3 \
 	libssh2_poll.3 \
 	libssh2_poll_channel_read.3 \
 	libssh2_publickey_add.3 \
@@ -127,6 +131,8 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_scp_send64.3 \
 	libssh2_scp_send_ex.3 \
 	libssh2_session_abstract.3 \
+	libssh2_session_banner_get.3 \
+	libssh2_session_banner_set.3 \
 	libssh2_session_block_directions.3 \
 	libssh2_session_callback_set.3 \
 	libssh2_session_disconnect.3 \
@@ -134,6 +140,7 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_session_flag.3 \
 	libssh2_session_free.3 \
 	libssh2_session_get_blocking.3 \
+	libssh2_session_get_timeout.3 \
 	libssh2_session_hostkey.3 \
 	libssh2_session_init.3 \
 	libssh2_session_init_ex.3 \
@@ -142,22 +149,25 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_session_method_pref.3 \
 	libssh2_session_methods.3 \
 	libssh2_session_set_blocking.3 \
+	libssh2_session_set_timeout.3 \
 	libssh2_session_startup.3 \
+	libssh2_session_supported_algs.3 \
 	libssh2_sftp_close.3 \
-	libssh2_sftp_closedir.3 \
 	libssh2_sftp_close_handle.3 \
+	libssh2_sftp_closedir.3 \
 	libssh2_sftp_fsetstat.3 \
 	libssh2_sftp_fstat.3 \
 	libssh2_sftp_fstat_ex.3 \
 	libssh2_sftp_fstatvfs.3 \
+	libssh2_sftp_get_channel.3 \
 	libssh2_sftp_init.3 \
 	libssh2_sftp_last_error.3 \
 	libssh2_sftp_lstat.3 \
 	libssh2_sftp_mkdir.3 \
 	libssh2_sftp_mkdir_ex.3 \
 	libssh2_sftp_open.3 \
-	libssh2_sftp_opendir.3 \
 	libssh2_sftp_open_ex.3 \
+	libssh2_sftp_opendir.3 \
 	libssh2_sftp_read.3 \
 	libssh2_sftp_readdir.3 \
 	libssh2_sftp_readdir_ex.3 \
@@ -169,6 +179,7 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_sftp_rmdir.3 \
 	libssh2_sftp_rmdir_ex.3 \
 	libssh2_sftp_seek.3 \
+	libssh2_sftp_seek64.3 \
 	libssh2_sftp_setstat.3 \
 	libssh2_sftp_shutdown.3 \
 	libssh2_sftp_stat.3 \
@@ -191,9 +202,15 @@ MAN3=	libssh2_agent_connect.3 \
 	libssh2_userauth_list.3 \
 	libssh2_userauth_password.3 \
 	libssh2_userauth_password_ex.3 \
+	libssh2_userauth_publickey.3 \
 	libssh2_userauth_publickey_fromfile.3 \
 	libssh2_userauth_publickey_fromfile_ex.3 \
 	libssh2_version.3
+
+# allow maintainer to generate MAN3 manpages list (make extract is required before)
+x-generate-man3:
+	@(cd ${WRKSRC}/docs && ${LS} -1F *.3 | ${SORT} | ${CUT} -d '/' -f4 \
+		| ${GREP} -v template)
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|' \
