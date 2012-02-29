@@ -2,12 +2,11 @@
 # Date created:		14 Nov 2007
 # Whom:			ports@MidnightBSD.org
 #
-# $MidnightBSD: mports/security/pinentry/Makefile,v 1.4 2008/06/13 15:07:38 laffer1 Exp $
+# $MidnightBSD: mports/security/pinentry/Makefile,v 1.5 2010/08/01 06:19:30 laffer1 Exp $
 #
 
 PORTNAME=	pinentry
-PORTVERSION=	0.7.3
-PORTREVISION=	3
+PORTVERSION=	0.8.1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	pinentry
@@ -16,66 +15,93 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	A collection of simple PIN or passphrase entry dialogs
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gcrypt.17:${PORTSDIR}/security/libgcrypt \
-		ksba.17:${PORTSDIR}/security/libksba
+LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt \
+		ksba.19:${PORTSDIR}/security/libksba
 
 CONFLICTS?=	pinentry-[a-z]*-[0.9]*
 
 USE_ICONV=	yes
-WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_LDCONFIG=	yes
 INFO=		pinentry
 
-CONFIGURE_ARGS+=--with-libiconv-prefix=${LOCALBASE}
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-.if defined(PINENTRY_QT) || defined(PINENTRY_GTK) || defined(PINENTRY_GTK2) || defined(PINENTRY_CURSES)
-.if defined(PINENTRY_QT)
-USE_QT_VER=	3
-PLIST_SUB+=	WITH_QT=""
-
-pre-configure:
-	@${REINPLACE_CMD} -e "s@-lpthread@${PTHREAD_LIBS}@g" \
-		${WRKSRC}/acinclude.m4 ${WRKSRC}/configure
-
+.if !defined(PINENTRY_SLAVE)
+OPTIONS=	NCURSES "Curses frontend" on \
+		GTK "Gtk+1 frontend" on \
+		GTK2 "Gtk+2 frontend" on \
+		QT3 "Qt3 frontend" on \
+		QT4 "Qt4 frontend" on
 .else
-CONFIGURE_ARGS+=--disable-pinentry-qt
-PLIST_SUB+=	WITH_QT="@comment "
+PKGNAMESUFFIX=	${PINENTRY_SLAVE}
 .endif
 
-.if defined(PINENTRY_GTK)
+.include <bsd.mport.options.mk>
+
+.if !(defined(WITH_NCURSES) || defined(WITH_GTK) || defined(WITH_GTK2) || defined(WITH_QT3) || defined(WITH_QT4))
+IGNORE=	requires at least one frontend. Please rerun 'make config'
+.endif
+
+.if defined(WITH_QT3)
+USE_QT_VER=	3
+PLIST_SUB+=	WITH_QT3=""
+MOC3=		${LOCALBASE}/bin/moc
+.else
+CONFIGURE_ARGS+=--disable-pinentry-qt
+PLIST_SUB+=	WITH_QT3="@comment "
+.endif
+
+.if defined(WITH_QT4)
+#USE_QT_VER=	4
+#QT_COMPONENTS=	gui moc_build
+EXTENSIONS+=	qt
+BUILD_DEPENDS+=	moc-qt4:${PORTSDIR}/devel/qt4-moc
+LIB_DEPENDS+=	QtGui.4:${PORTSDIR}/x11-toolkits/qt4-gui
+PLIST_SUB+=	WITH_QT4=""
+MOC4=		${LOCALBASE}/bin/moc-qt4
+LDFLAGS+=	${PTHREAD_LIBS}
+.else
+CONFIGURE_ARGS+=--disable-pinentry-qt4
+PLIST_SUB+=	WITH_QT4="@comment "
+.endif
+
+.if defined(WITH_GTK)
 USE_GNOME+=	gtk12
 PLIST_SUB+=	WITH_GTK=""
-CONFIGURE_ENV+=	CFLAGS=-I${LOCALBASE}/include
 .else
 CONFIGURE_ARGS+=--disable-pinentry-gtk
 PLIST_SUB+=	WITH_GTK="@comment "
 .endif
 
-.if defined(PINENTRY_GTK2)
+.if defined(WITH_GTK2)
 USE_GNOME+=	gtk20
 PLIST_SUB+=	WITH_GTK2=""
-CONFIGURE_ENV+=	CFLAGS=-I${LOCALBASE}/include
 .else
 CONFIGURE_ARGS+=--disable-pinentry-gtk2
 PLIST_SUB+=	WITH_GTK2="@comment "
 .endif
 
-.if defined(PINENTRY_CURSES)
-PLIST_SUB+=	WITH_CURSES=""
-CONFIGURE_ENV+=	CFLAGS=-I${LOCALBASE}/include LDFLAGS=-L${LOCALBASE}/lib
+.if defined(WITH_NCURSES)
+USE_NCURSES=	yes
+PLIST_SUB+=	WITH_NCURSES=""
 .else
 CONFIGURE_ARGS+=--disable-pinentry-curses
-PLIST_SUB+=	WITH_CURSES="@comment "
+PLIST_SUB+=	WITH_NCURSES="@comment "
 .endif
-.else
-USE_QT_VER=	3
-USE_GNOME+=	gtk12 gtk20
-PLIST_SUB+=	WITH_QT=""
-PLIST_SUB+=	WITH_GTK=""
-PLIST_SUB+=	WITH_GTK2=""
-PLIST_SUB+=	WITH_CURSES=""
+
+pre-configure:
+	${REINPLACE_CMD} -e "s@-lpthread@${PTHREAD_LIBS}@g" \
+		${WRKSRC}/m4/qt.m4 ${WRKSRC}/configure
+.if defined(WITH_QT3)
+	${REINPLACE_CMD} -e "/^MOC/s,@MOC@,${MOC3}," \
+		${WRKSRC}/qt/Makefile.in
+.endif
+.if defined(WITH_QT4)
+	cd ${WRKSRC}/qt4 && \
+		${MOC4} pinentrydialog.h > pinentrydialog.moc && \
+		${MOC4} qsecurelineedit.h > qsecurelineedit.moc
 .endif
 
 .include <bsd.port.mk>
