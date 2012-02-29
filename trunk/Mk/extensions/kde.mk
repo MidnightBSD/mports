@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.3 2009/05/02 15:15:36 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/kde.mk,v 1.4 2010/06/04 22:44:11 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.kde.mk,v 1.63 2006/09/12 23:26:10 lofi Exp $
 #
 # Please view me with 4 column tabs!
@@ -18,7 +18,8 @@ Kde_Include_Maintainer= 	ports@MidnightBSD.org
 # XXX: Write HAVE_ definitions sometime.
 
 # USE_QT_VER		- Says that the port uses the Qt toolkit.  Possible values:
-#					  3; each specify the major version of Qt to use.
+#					  3, 4; each specify the major version of Qt to use.
+#					  Note: 4 is handled by qt.mk.
 # USE_KDELIBS_VER	- Says that the port uses KDE libraries.  Possible values:
 #					  3 specifies the major version of KDE to use.
 #					  This implies USE_QT of the appropriate version.
@@ -38,11 +39,11 @@ MASTER_SITE_KDE_kde=	${kmaster:S@%SUBDIR%/@${ksub}/@g}
 # USE_KDEBASE_VER section
 .if defined(USE_KDEBASE_VER)
 .if ${USE_KDEBASE_VER} == CVS
-LIB_DEPENDS+=	kfontinst:${PORTSDIR}/x11/kdebase
+LIB_DEPENDS+=	kfontinst.0:${PORTSDIR}/x11/kdebase
 USE_KDELIBS_VER=CVS
 .elif ${USE_KDEBASE_VER} == 3
 # kdebase 3.x common stuff
-LIB_DEPENDS+=	kfontinst:${PORTSDIR}/x11/kdebase3
+LIB_DEPENDS+=	kfontinst.0:${PORTSDIR}/x11/kdebase3
 USE_KDELIBS_VER=3
 .endif # ${USE_KDEBASE_VER} == 3
 .endif # defined(USE_KDEBASE_VER)
@@ -68,12 +69,12 @@ CONFIGURE_ARGS+=--build=${MACHINE_ARCH}-portbld-freebsd7.0 \
 .endif
 
 .if ${USE_KDELIBS_VER} == CVS
-LIB_DEPENDS+=	kimproxy:${PORTSDIR}/x11/kdelibs
+LIB_DEPENDS+=	kimproxy.0:${PORTSDIR}/x11/kdelibs
 USE_QT_VER=		CVS
 PREFIX=			${KDE_CVS_PREFIX}
 .elif ${USE_KDELIBS_VER} == 3
 # kdelibs 3.x common stuff
-LIB_DEPENDS+=	kimproxy:${PORTSDIR}/x11/kdelibs3
+LIB_DEPENDS+=	kimproxy.0:${PORTSDIR}/x11/kdelibs3
 USE_QT_VER=		3
 PREFIX=			${KDE_PREFIX}
 .else
