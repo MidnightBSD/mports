@@ -27,7 +27,7 @@
 #	.include <bsd.port.post.mk>
 # Run "make -V USE_SDL" to see which libs are asked for at the end.
 #
-# $MidnightBSD: mports/Mk/extensions/sdl.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
+# $MidnightBSD: mports/Mk/extensions/sdl.mk,v 1.2 2010/05/05 23:40:10 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sdl.mk,v 1.10 2006/07/05 02:18:09 linimon Exp $
 #
 
@@ -75,6 +75,7 @@ _REQUIRES_mm=	sdl
 
 _VERSION_net=	0
 _SUBDIR_net=	net
+_LIB_net=	SDL_net-1.2
 _REQUIRES_net=	sdl
 
 _VERSION_sdl=	11
