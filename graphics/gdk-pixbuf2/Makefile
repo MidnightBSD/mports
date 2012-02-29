@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/gdk-pixbuf2/Makefile,v 1.1 2011/05/28 21:18:36 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf2/Makefile,v 1.2 2012/02/28 03:26:30 laffer1 Exp $
 # $FreeBSD: ports/graphics/gdk-pixbuf2/Makefile,v 1.2 2010/12/04 07:31:56 ade Exp $
 
 PORTNAME=	gdk-pixbuf
@@ -20,7 +20,7 @@ LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		jasper.4:${PORTSDIR}/graphics/jasper
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_GMAKE=	yes
 USE_XORG=	xt xi x11
 USE_AUTOTOOLS=	libtool
