@@ -2,35 +2,27 @@
 # Date created:				12 Oct 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/cracklib/Makefile,v 1.1 2007/10/12 17:05:54 laffer1 Exp $
+# $MidnightBSD: mports/security/cracklib/Makefile,v 1.2 2009/05/01 15:15:51 laffer1 Exp $
 #
 
 PORTNAME=	cracklib
-PORTVERSION=	2.7
+PORTVERSION=	2.8.18
 CATEGORIES=	security
-MASTER_SITES=	http://www.crypticide.com/users/alecm/security/
-DISTNAME=	${PORTNAME},${PORTVERSION}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Password-checking library
-LICENSE=	other
+LICENSE=	lgpl
 
 MAN3=		cracklib.3
 MLINKS=		cracklib.3 FascistCheck.3
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+CONFIGURE_ARGS=	--with-default-dict=${PREFIX}/libdata/${PORTNAME}
 
-pre-su-install:
-	${INSTALL_DATA} ${WRKSRC}/cracklib/libcrack.a ${DESTDIR}${PREFIX}/lib
-	${INSTALL_DATA} ${WRKSRC}/cracklib/libcrack.so.1 ${DESTDIR}${PREFIX}/lib
-	${LN} -sf libcrack.so.1 ${DESTDIR}${PREFIX}/lib/libcrack.so
-	${INSTALL_DATA} ${WRKSRC}/cracklib/packer.h ${DESTDIR}${PREFIX}/include
-	${INSTALL_SCRIPT} ${WRKSRC}/util/mkdict ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/util/packer ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/util/testlib ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/util/testnum ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/util/teststr ${DESTDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/util/unpacker ${DESTDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${FILESDIR}/cracklib.3 ${MAN3PREFIX}/man/man3
-	${MKDIR} ${DESTDIR}${PREFIX}/libdata/cracklib
+post-install:
+	${INSTALL_MAN} ${FILESDIR}/cracklib.3 ${MAN3PREFIX}/man/man3/
+	@${MKDIR} ${PREFIX}/libdata/${PORTNAME}
+	${INSTALL_DATA} ${FILESDIR}/pw_dict* ${PREFIX}/libdata/${PORTNAME}/
 
 .include <bsd.port.mk>
