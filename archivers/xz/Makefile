@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/archivers/xz/Makefile,v 1.3 2011/05/28 05:47:45 laffer1 Exp $
+# $MidnightBSD: mports/archivers/xz/Makefile,v 1.4 2011/09/15 02:14:21 laffer1 Exp $
 
 PORTNAME=	xz
 PORTVERSION=	5.0.3
+PORTREVISION=	1
 CATEGORIES=	archivers
 #MASTER_SITES=	http://tukaani.org/xz/
 # tukaani.org doesn't interop with fetch(1) as of 2011-02-28
@@ -48,10 +49,4 @@ PORTDOCS=	AUTHORS COPYING COPYING.GPLv2 NEWS README THANKS TODO \
 regression-test: build
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} check
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} >= 4008
-IGNORE=	is already in the base system
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
