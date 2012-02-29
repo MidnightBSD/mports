@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.29 2012/01/28 04:15:49 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.30 2012/02/28 03:39:17 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-source
 CATEGORIES=	print
 MASTER_SITES=	EASYSW/${PORTNAME}/${DISTVERSION}
@@ -124,7 +125,7 @@ CONFIGURE_ARGS+=	--with-printcap=${PREFIX}/etc/printcap
 .if defined(WITH_GNUTLS)
 CONFIGURE_ARGS+=	--disable-openssl --enable-gnutls
 CONFIGURE_ENV+=		PKGCONFIG="${LOCALBASE}/bin/pkg-config"
-LIB_DEPENDS+=		gcrypt.17:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=		gcrypt.18:${PORTSDIR}/security/libgcrypt
 LIB_DEPENDS+=		gnutls.42:${PORTSDIR}/security/gnutls
 BUILD_DEPENDS+=		pkg-config:${PORTSDIR}/devel/pkg-config
 .else
