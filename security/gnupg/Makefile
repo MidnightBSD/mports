@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/gnupg/Makefile,v 1.14 2010/08/01 05:36:57 laffer1 Exp $
+# $MidnightBSD: mports/security/gnupg/Makefile,v 1.15 2011/05/11 13:46:10 laffer1 Exp $
 
 PORTNAME=	gnupg
-PORTVERSION=	2.0.17
+PORTVERSION=	2.0.18
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -13,7 +13,7 @@ COMMENT=	The GNU Privacy Guard
 LICENSE=	gpl3
 
 LIB_DEPENDS=	assuan.0:${PORTSDIR}/security/libassuan \
-		gcrypt.17:${PORTSDIR}/security/libgcrypt \
+		gcrypt.18:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		ksba.19:${PORTSDIR}/security/libksba \
 		pth.20:${PORTSDIR}/devel/pth
