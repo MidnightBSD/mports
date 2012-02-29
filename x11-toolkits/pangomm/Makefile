@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.3 2010/12/11 19:57:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pangomm/Makefile,v 1.4 2011/05/15 19:29:39 laffer1 Exp $
 
 PORTNAME=	pangomm
-PORTVERSION=	2.26.3
+PORTVERSION=	2.28.2
 PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
@@ -20,7 +20,6 @@ LIB_DEPENDS=	glibmm-2.4.1:${PORTSDIR}/devel/glibmm \
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
 USE_GMAKE=	yes
-USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack pango
