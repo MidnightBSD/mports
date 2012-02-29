@@ -1,7 +1,7 @@
 #-*- mode: Makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.scons.mk,v 1.2 2006/09/17 18:36:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/scons.mk,v 1.1 2008/10/24 20:33:51 ctriv Exp $
 # $FreeBSD: ports/Mk/bsd.scons.mk,v 1.6 2006/08/04 12:34:41 erwin Exp $
 #
 # bsd.scons.mk - Python-based SCons build system interface.
@@ -40,19 +40,19 @@ SCONS_PORT=	${PORTSDIR}/devel/scons
 CCFLAGS?=	${CFLAGS}
 LINKFLAGS?=	${LDFLAGS}
 PKGCONFIGDIR?=	${LOCALBASE}/libdata/pkgconfig
-LIBPATH?=	${LOCALBASE}/lib ${X11BASE}/lib
-CPPPATH?=	${LOCALBASE}/include ${X11BASE}/include
+LIBPATH?=	${LOCALBASE}/lib
+CPPPATH?=	${LOCALBASE}/include
 
 #
 # SCONS_ENV is where we pass all the stuff that should be the
 # same for any scons port to scons. Things like CCFLAGS, and LINKFLAGS
 # go here.
 #
-# SCONS_ARG is where you pass port specific scons flags to the scons
-# enviornment.
+# SCONS_ARGS is where you pass port specific scons flags to the scons
+# environment.
 #
 # SCONS_BUILDENV is where you pass variables you want to be in the
-# System Enviornment instead of the SCons Enviornment.
+# System Environment instead of the SCons Environment.
 #
 # SCONS_TARGET is the same as MAKE_TARGET it is passed as the last
 # argument to scons.
@@ -78,15 +78,15 @@ BUILD_DEPENDS+=	${SCONS_BIN}:${SCONS_PORT}
 
 .if !target(do-build)
 do-build:
-	@cd ${WRKSRC} && \
-	${SETENV} ${SCONS_BUILDENV} ${SCONS_BIN} ${SCONS_ENV} ${SCONS_ARGS} \
-	${SCONS_TARGET}
+	@cd ${BUILD_WRKSRC} && \
+	${SETENV} ${SCONS_BUILDENV} ${SCONS_BIN} ${SCONS_ENV} ${_MAKE_JOBS} \
+	${SCONS_ARGS} ${SCONS_TARGET}
 .endif
 
 .if !target(do-install)
 do-install:
-	@cd ${WRKSRC} && ${SETENV} ${SCONS_BUILDENV} ${SCONS_BIN} ${SCONS_ENV} \
-	${SCONS_ARGS} ${SCONS_INSTALL_TARGET}
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${SCONS_BUILDENV} ${SCONS_BIN} \
+	${SCONS_ENV} ${SCONS_ARGS} ${SCONS_INSTALL_TARGET}
 .endif
 
 
