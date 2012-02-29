@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/games/libggz/Makefile,v 1.6 2011/12/15 00:51:03 laffer1 Exp $
+# $MidnightBSD: mports/games/libggz/Makefile,v 1.7 2012/02/11 00:26:13 laffer1 Exp $
 
 PORTNAME=	libggz
 PORTVERSION=	${GGZ_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,7 +24,7 @@ CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 LDFLAGS=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 
 .if defined(WITH_GNUTLS)
-LIB_DEPENDS+=	gnutls.40:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=	gnutls.42:${PORTSDIR}/security/gnutls
 CONFIGURE_ARGS+=	--with-tls=GnuTLS
 .else
 USE_OPENSSL=	yes

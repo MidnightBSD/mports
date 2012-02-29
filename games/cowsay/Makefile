@@ -1,16 +1,11 @@
-# New ports collection makefile for:	cowsay
-# Date created:		01 Sep 2000
-# Whom:			Kris Kennaway <kris@FreeBSD.org>
-#
-# $MidnightBSD: mports/games/cowsay/Makefile,v 1.2 2008/03/22 18:24:27 laffer1 Exp $
+# $MidnightBSD: mports/games/cowsay/Makefile,v 1.3 2008/04/04 01:03:02 laffer1 Exp $
 # $FreeBSD: ports/games/cowsay/Makefile,v 1.6 2004/12/09 03:01:44 kris Exp $
-#
 
 PORTNAME=	cowsay
 PORTVERSION=	3.03
 PORTREVISION=	1
 CATEGORIES=	games
-MASTER_SITES=	ftp://ftp.nog.net/pub/tony/cowsay/
+MASTER_SITES=	http://www.nog.net/~tony/warez/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Configurable talking characters in ASCII art

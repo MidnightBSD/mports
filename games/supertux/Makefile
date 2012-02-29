@@ -2,7 +2,7 @@
 # Date created:		22. May 2008
 # Whom:			Stevan Tiefert
 #
-# $MidnightBSD: mports/games/supertux/Makefile,v 1.4 2010/01/02 18:49:36 laffer1 Exp $
+# $MidnightBSD: mports/games/supertux/Makefile,v 1.5 2010/01/02 18:50:16 laffer1 Exp $
 #
 
 PORTNAME=	supertux
@@ -13,7 +13,7 @@ MASTER_SITES=	${MASTER_SITE_BERLIOS}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	stevan_tiefert_midnight@yahoo.de
-COMMENT=	A 2D jump 'n run like Super Mario Bros.
+COMMENT=	Super Tux is a side-scroller similar to Super Mario Brothers
 LICENSE=	gpl2
 
 USE_BZIP2=	yes

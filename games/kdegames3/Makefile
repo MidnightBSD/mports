@@ -1,13 +1,9 @@
-# New ports collection makefile for:	kdegames3
-# Date created:				Sun 14 May 2000 02:47:57
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
 # $FreeBSD: ports/games/kdegames3/Makefile,v 1.96 2006/09/12 23:26:16 lofi Exp $
-# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.4 2009/09/20 01:13:45 laffer1 Exp $
-#
+# $MidnightBSD: mports/games/kdegames3/Makefile,v 1.5 2011/02/02 21:01:20 laffer1 Exp $
 
 PORTNAME=	kdegames
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	games kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
