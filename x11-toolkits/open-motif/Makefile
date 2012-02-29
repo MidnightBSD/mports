@@ -4,37 +4,35 @@
 # Whom:			asami
 #
 # $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.8 2009/12/13 22:08:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.9 2011/02/02 21:38:58 laffer1 Exp $
 #
 
 PORTNAME=	open-motif
-PORTVERSION=	2.2.3
-PORTREVISION=	6
+PORTVERSION=	2.3.3
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	ftp://ftp.ics.com/openmotif/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/${PORTVERSION}/src/
-DISTNAME=	openMotif-${PORTVERSION}
-EXTRACT_SUFX=	.tar.gz
+MASTER_SITES=	ftp://ftp.ics.com/openmotif/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/${PORTVERSION}/
+DISTNAME=	openmotif-${PORTVERSION}
 DIST_SUBDIR=	openmotif
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
 LICENSE=	other
 
+LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+		jpeg.11:${PORTSDIR}/graphics/jpeg
+
 MAKE_JOBS_UNSAFE=	yes
-RUN_DEPENDS=	imake:${X_IMAKE_PORT}
+CONFLICTS=	lesstif-[0-9]*
 
-CONFLICTS=	lesstif-*
-
-USE_AUTOTOOLS=        libtool
-USE_XLIB=	yes
+USE_AUTOTOOLS=	libtool
+USE_ICONV=	yes
 USE_GMAKE=	yes
-USE_XORG=	xaw xbitmaps
+USE_XORG=	xaw xbitmaps xft
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI"
-CONFIGURE_ARGS=	--build=${MACHINE_ARCH}-portbld-freebsd6.0 
 USE_LDCONFIG=	yes
 MAKE_ENV=	LANG=C
-CFLAGS+=	-fno-strict-aliasing
+CPPFLAGS+=	-DCSRG_BASED -DXUSE_MTSAFE_API -DXNO_MTSAFE_PWDAPI
+USE_CSTD=	gnu89
 
 DEMOS_SRC=	${WRKSRC}/demos/programs
 
@@ -90,6 +88,9 @@ post-patch:
 	@${FIND} ${WRKSRC}/doc/man/man5 -name '*.5' -maxdepth 1 | \
 		${XARGS} ${REINPLACE_CMD} -e 's|special file|5| ; \
 		 s|file formats|5|'
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+		-e '/-dumpversion/{ s/==/=/; s/gcc/$$CC/; }' \
+		${WRKSRC}/configure
 
 post-install:
 .if defined(WITH_OPENMOTIF_DEMOS)
