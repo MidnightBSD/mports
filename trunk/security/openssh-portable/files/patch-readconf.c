@@ -1,6 +1,6 @@
---- readconf.c.orig	Fri Sep  1 02:38:37 2006
-+++ readconf.c	Sat Sep 30 10:38:05 2006
-@@ -1112,7 +1122,7 @@
+--- readconf.c.orig	2010-08-03 00:04:46.000000000 -0600
++++ readconf.c	2010-09-14 16:14:12.000000000 -0600
+@@ -1169,7 +1169,7 @@
  	if (options->batch_mode == -1)
  		options->batch_mode = 0;
  	if (options->check_host_ip == -1)
