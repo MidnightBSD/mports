@@ -2,15 +2,15 @@
 # Date created:				Tue Sep  2 23:34:32 BST 2003
 # Whom:				Alex Trull <freebsd.alex@trull.org>
 #
-# $MidnightBSD: mports/games/scummvm/Makefile,v 1.3 2008/10/21 22:52:27 ctriv Exp $
+# $MidnightBSD: mports/games/scummvm/Makefile,v 1.4 2009/10/03 00:39:17 laffer1 Exp $
 # $FreeBSD: ports/games/scummvm/Makefile,v 1.34 2006/09/20 11:21:25 stas Exp $
 #
 
 PORTNAME=	scummvm
-PORTVERSION=	0.13.0
-PORTREVISION=	1
+DISTVERSION=	1.4.1
 CATEGORIES=	games emulators
 MASTER_SITES=	SF
+MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphical Adventure Game Virtual Machine
@@ -23,31 +23,44 @@ USE_SDL=	sdl
 
 MAKE_JOBS_SAFE=	yes
 
-CONFIGURE_ARGS=--with-sdl-prefix=${LOCALBASE} \
+CONFIGURE_ARGS=	--prefix=${PREFIX} \
+		--with-sdl-prefix=${LOCALBASE} \
 		--disable-alsa \
 		--with-zlib-prefix=/usr \
 		--disable-debug \
+		--disable-nasm \
 		--disable-tremor
-CONFIGURE_ENV=	CXX="${CXX}"
+LDFLAGS+=	${PTHREAD_LIBS}
 
-OPTIONS=	VORBIS "Enable Ogg Vorbis support" off \
-		MAD "Enable mad (MP3) support" on \
-		MPEG2 "Enable MPEG2 support (implies VORBIS)" off \
-		FLAC "Enable FLAC support" off
+OPTIONS=	VORBIS "Enable Ogg Vorbis support" on \
+		MP3 "Enable MP3 support" on \
+		FLAC "Enable FLAC support" off \
+		FLUIDSYNTH "Enable FluidSynth MIDI synthesizer" off \
+ 		MT32EMU "Enable MT-32 emulator" on \
 
 MAN6=		scummvm.6
 
-PORTDOCS=	NEWS README TODO
-PLIST_FILES=	bin/scummvm
+PORTDOCS=	AUTHORS NEWS README TODO COPYRIGHT
+ENGINEDATA=	drascula.dat \
+		hugo.dat \
+		kyra.dat \
+		lure.dat \
+		queen.tbl \
+		sky.cpt \
+		toon.dat \
+		teenagent.dat
+
+PLIST_FILES=	bin/scummvm \
+		%%DATADIR%%/scummvm.svg \
+		%%DATADIR%%/scummmodern.zip \
+		%%DATADIR%%/translations.dat \
+		$(ENGINEDATA:S/^/%%DATADIR%%\/$$/)
+PLIST_DIRS=	%%DATADIR%%
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_MPEG2)
-WITH_VORBIS=	yes
-.endif
-
 .if defined(WITH_VORBIS)
-LIB_DEPENDS+=	ogg.6:${PORTSDIR}/audio/libogg \
+LIB_DEPENDS+=	ogg.7:${PORTSDIR}/audio/libogg \
 		vorbis.4:${PORTSDIR}/audio/libvorbis
 CONFIGURE_ARGS+=--with-ogg-prefix=${LOCALBASE} \
 		--with-vorbis-prefix=${LOCALBASE}
@@ -55,19 +68,11 @@ CONFIGURE_ARGS+=--with-ogg-prefix=${LOCALBASE} \
 CONFIGURE_ARGS+=--disable-vorbis
 .endif
 
-.if !defined(WITHOUT_MAD)
+.if defined(WITH_MP3)
 LIB_DEPENDS+=	mad.2:${PORTSDIR}/audio/libmad
 CONFIGURE_ARGS+=--with-mad-prefix=${LOCALBASE}
 .else
 CONFIGURE_ARGS+=--disable-mad
-.endif
-
-.if defined(WITH_MPEG2)
-WITH_VORBIS=	yes
-LIB_DEPENDS+=	mpeg2.0:${PORTSDIR}/multimedia/libmpeg2
-CONFIGURE_ARGS+=--with-mpeg2-prefix=${LOCALBASE}
-.else
-CONFIGURE_ARGS+=--disable-mpeg2
 .endif
 
 .if defined(WITH_FLAC)
@@ -77,20 +82,31 @@ CONFIGURE_ARGS+=--with-flac-prefix=${LOCALBASE}
 CONFIGURE_ARGS+=--disable-flac
 .endif
 
+.if defined(WITH_FLUIDSYNTH)
+LIB_DEPENDS+=	fluidsynth.4:${PORTSDIR}/audio/fluidsynth
+CONFIGURE_ARGS+=--with-fluidsynth-prefix=${LOCALBASE}
+.else
 CONFIGURE_ARGS+=--disable-fluidsynth
+.endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's/-O//' ${WRKSRC}/Makefile
-	@${REINPLACE_CMD} -e 's/-lfluidsynth/& ${PTHREAD_LIBS}/' ${WRKSRC}/configure
+.if defined(WITHOUT_MT32EMU)
+CONFIGURE_ARGS+=--disable-mt32emu
+.endif
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/scummvm ${PREFIX}/bin
 	@${INSTALL_MAN} ${WRKSRC}/dists/scummvm.6 ${PREFIX}/man/man6
-
+	@${MKDIR} ${DATADIR}
+	@${INSTALL_DATA} ${WRKSRC}/icons/scummvm.svg ${DATADIR}
+	@${INSTALL_DATA} ${WRKSRC}/gui/themes/scummmodern.zip ${DATADIR}
+	@${INSTALL_DATA} ${WRKSRC}/gui/themes/translations.dat ${DATADIR}
+.for i in ${ENGINEDATA}
+	@${INSTALL_DATA} ${WRKSRC}/dists/engine-data/${i} ${DATADIR}
+.endfor
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for doc in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
+.for i in ${PORTDOCS}
+	@${INSTALL_DATA} ${WRKSRC}/${i} ${DOCSDIR}
 .endfor
 .endif
 
