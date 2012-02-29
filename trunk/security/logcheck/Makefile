@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/logcheck/Makefile,v 1.3 2010/12/08 14:19:09 laffer1 Exp $
+# $MidnightBSD: mports/security/logcheck/Makefile,v 1.4 2010/12/08 14:19:42 laffer1 Exp $
 
 PORTNAME=	logcheck
-PORTVERSION=	1.3.13
+PORTVERSION=	1.3.14
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -22,7 +22,7 @@ LOGCHECK_GID=	915
 # Enable Perl dependency for logtail script
 USE_PERL5=	yes
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 BINMODE=	755
 SHAREMODE=	640
 SUB_LIST+=	LOGCHECK_USER=${LOGCHECK_USER} \
