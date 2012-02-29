@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.15 2012/02/07 21:24:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.16 2012/02/20 15:26:57 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 
 PORTNAME=	pcre
@@ -19,7 +19,9 @@ OPTIONS=	JIT "Enable Just-In-Time compiling support" on
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-utf8 --enable-unicode-properties
+USE_GNOME=	gnomehack
+CONFIGURE_ARGS=	--enable-utf8 --enable-unicode-properties \
+		--enable-pcre8 --enable-pcre16
 
 .include <bsd.mport.options.mk>
 
