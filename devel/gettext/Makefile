@@ -1,13 +1,9 @@
-# New ports collection makefile for:   gettext
-# Date created:        16 March 1998
-# Whom:                Yukihiro Nakai <Nakai@technologist.com>
-#
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.9 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.10 2011/09/18 21:04:06 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
-#
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -26,9 +22,9 @@ CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
 		AUTOMAKE="${TRUE}" \
 		AUTOHEADER="${TRUE}" \
 		MAKEINFO="makeinfo --no-split" \
-		CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
 		EMACS="no"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-csharp --disable-threads --disable-openmp \
 		--with-included-gettext --with-included-glib \
 		--with-included-libcroco --with-included-libxml \
