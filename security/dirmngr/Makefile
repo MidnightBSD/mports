@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.9 2010/08/01 05:28:31 laffer1 Exp $
+# $MidnightBSD: mports/security/dirmngr/Makefile,v 1.10 2011/04/17 19:40:09 laffer1 Exp $
 #
 
 PORTNAME=	dirmngr
 PORTVERSION=	1.1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	dirmngr
@@ -15,7 +15,7 @@ COMMENT=	A client for managing and downloading certificate revocation lists
 LICENSE=	gpl2
 
 LIB_DEPENDS=	assuan.0:${PORTSDIR}/security/libassuan \
-		gcrypt.17:${PORTSDIR}/security/libgcrypt \
+		gcrypt.18:${PORTSDIR}/security/libgcrypt \
 		gpg-error.0:${PORTSDIR}/security/libgpg-error \
 		ksba.19:${PORTSDIR}/security/libksba \
 		pth:${PORTSDIR}/devel/pth
