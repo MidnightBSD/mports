@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/net/linux-nx-client/Makefile,v 1.1 2011/06/19 19:11:53 laffer1 Exp $
+# $MidnightBSD: mports/net/linux-nx-client/Makefile,v 1.2 2011/09/27 18:45:58 laffer1 Exp $
 # $FreeBSD: ports/net/linux-nx-client/Makefile,v 1.15 2010/03/28 06:41:22 dinoex Exp $
 
 PORTNAME=	linux-nx-client
 PORTVERSION=	3.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://web04.nomachine.com/download/${PORTVERSION}/Linux/
 DISTNAME=		nxclient-${PORTVERSION}-5.i386
@@ -49,16 +49,16 @@ do-install:
 	${MKDIR} ${NXDST}/share/images
 	${INSTALL_DATA} ${NXSRC}/share/images/* ${NXDST}/share/images
 
-	${MKDIR} ${LOCALBASE}/share/pixmaps
-	${INSTALL_DATA} ${NXSRC}/share/icons/48x48/*.png ${LOCALBASE}/share/pixmaps
-	${MKDIR} ${LOCALBASE}/share/icons/crystalsvg/48x48 \
-		${LOCALBASE}/share/icons/crystalsvg/32x32 \
-		${LOCALBASE}/share/icons/crystalsvg/22x22 \
-		${LOCALBASE}/share/icons/crystalsvg/16x16
+	${MKDIR} ${PREFIX}/share/pixmaps
+	${INSTALL_DATA} ${NXSRC}/share/icons/48x48/*.png ${PREFIX}/share/pixmaps
+	${MKDIR} ${PREFIX}/share/icons/crystalsvg/48x48 \
+		${PREFIX}/share/icons/crystalsvg/32x32 \
+		${PREFIX}/share/icons/crystalsvg/22x22 \
+		${PREFIX}/share/icons/crystalsvg/16x16
 .for x in 16x16 22x22 32x32 48x48
-	${MKDIR} ${LOCALBASE}/share/icons/crystalsvg/${x}
+	${MKDIR} ${PREFIX}/share/icons/crystalsvg/${x}
 	${INSTALL_DATA} ${NXSRC}/share/icons/${x}/* \
-		${LOCALBASE}/share/icons/crystalsvg/${x}
+		${PREFIX}/share/icons/crystalsvg/${x}
 .endfor
 
 .for f in nxclient nxesd nxkill nxservice nxssh
