@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.23 2012/02/05 03:40:09 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.24 2012/02/07 21:57:35 laffer1 Exp $
 
 PORTNAME=	glib
 PORTVERSION=	2.28.8
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
@@ -39,10 +39,10 @@ CONFIGURE_ARGS=	--enable-static --with-libiconv=gnu \
 		--disable-dtrace \
 		--with-pcre=system \
 		--disable-fam
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lintl" \
-		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
 OPTIONS=	COLLATION_FIX "fix string collation" off
 
