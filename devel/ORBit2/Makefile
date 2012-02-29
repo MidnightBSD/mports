@@ -1,11 +1,11 @@
 # $FreeBSD: ports/devel/ORBit2/Makefile,v 1.121 2006/09/04 18:54:14 marcus Exp $
 #    $MCom: ports/devel/ORBit2/Makefile,v 1.50 2006/04/13 07:52:31 bland Exp $
-# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.10 2011/02/02 20:17:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/ORBit2/Makefile,v 1.11 2011/06/24 12:47:57 laffer1 Exp $
 #
 
 PORTNAME=	ORBit2
 PORTVERSION=	2.14.19
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
