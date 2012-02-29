@@ -2,11 +2,11 @@
 # Date created:		08 Oct 2000
 # Whom:			George Reid <services@nevernet.net>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/security/vlock/Makefile,v 1.3 2009/01/02 01:19:13 laffer1 Exp $
 # $FreeBSD: ports/security/vlock/Makefile,v 1.9 2008/06/19 19:35:54 pav Exp $
 
 PORTNAME=	vlock
-PORTVERSION=	2.2.2
+PORTVERSION=	2.2.3
 CATEGORIES=	security
 MASTER_SITES=	http://cthulhu.c3d2.de/~toidinamai/vlock/archive/
 
