@@ -1,12 +1,10 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/openjpeg/Makefile,v 1.1 2010/11/06 15:50:36 laffer1 Exp $
 
 PORTNAME=	openjpeg
 PORTVERSION=	1.3
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.openjpeg.org/ \
-		http://openjpeg.googlecode.com/files/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	trasz
+		http://openjpeg.googlecode.com/files/
 DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
