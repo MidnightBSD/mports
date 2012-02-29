@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.6 2010/09/06 21:07:22 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gtk2/Makefile,v 1.7 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	py-gtk
-PORTVERSION=	2.22.0
+PORTVERSION=	2.24.0
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/pygtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -14,8 +14,7 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
 		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
-RUN_DEPENDS=	\
-		${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cairo/__init__.py:${PORTSDIR}/graphics/py-cairo \
 		${PYTHON_SITELIBDIR}/gtk-2.0/gobject/_gobject.so:${PORTSDIR}/devel/py-gobject
 
 USE_BZIP2=	yes
