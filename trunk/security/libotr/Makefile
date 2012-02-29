@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/security/libotr/Makefile,v 1.6 2010/08/01 06:17:34 laffer1 Exp $
+# $MidnightBSD: mports/security/libotr/Makefile,v 1.7 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	libotr
 PORTVERSION=	3.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://www.cypherpunks.ca/otr/ \
 		http://dougbarton.us/Downloads/
@@ -14,7 +14,7 @@ COMMENT=	The portable OTR Messaging Library and toolkit
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error \
-		gcrypt.17:${PORTSDIR}/security/libgcrypt
+		gcrypt:${PORTSDIR}/security/libgcrypt
 
 USE_GNOME=	pkgconfig
 USE_AUTOTOOLS=	autoconf libtool
