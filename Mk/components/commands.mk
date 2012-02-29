@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.4 2010/12/10 01:01:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.5 2011/03/08 13:40:08 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -89,11 +89,15 @@ XARGS?=		/usr/bin/xargs
 XMKMF?=		${LOCALBASE}/bin/xmkmf -a
 XZ?=		-Mmax
 .if exists(/usr/bin/xz)
-XZ_CMD?=	/usr/bin/xz
+XZ_CMD?=	/usr/bin/xz ${XZ}
 .else
 XZ_CMD?=	${LOCALBASE}/bin/xz ${XZ}
 .endif
 YACC?=		/usr/bin/yacc
+
+MD5?=		/sbin/md5
+RMD160?=	/sbin/rmd160
+SHA256?=	/sbin/sha256
 
 # ECHO is defined in /usr/share/mk/sys.mk, which can either be "echo",
 # or "true" if the make flag -s is given.  Use ECHO_CMD where you mean
