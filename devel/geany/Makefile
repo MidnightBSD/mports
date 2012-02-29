@@ -2,12 +2,12 @@
 # Date Created:				15 Jan 06
 # Whom:					Remington Lang <MrL0Lz@gmail.com>
 #
-# $MidnightBSD: mports/devel/geany/Makefile,v 1.2 2008/08/22 13:51:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/geany/Makefile,v 1.3 2011/09/04 17:39:36 laffer1 Exp $
 # $FreeBSD: ports/devel/geany/Makefile,v 1.10 2008/06/06 13:21:12 edwin Exp $
 #
 
 PORTNAME=	geany
-PORTVERSION=	0.19.1
+PORTVERSION=	0.21
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
