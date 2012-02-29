@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.10 2009/05/01 15:48:07 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.11 2009/11/26 16:01:20 laffer1 Exp $
 
 PORTNAME=	openssh
-DISTVERSION=	5.2p1
+DISTVERSION=	5.8p2
 CATEGORIES=	security ipv6
 MASTER_SITES=	${MASTER_SITE_OPENBSD}
 MASTER_SITE_SUBDIR=	OpenSSH/portable
-PKGNAMESUFFIX=	${PORTABLE_SUFFIX}${GSSAPI_SUFFIX}${BASE_SUFFIX}
+PKGNAMESUFFIX=	${PORTABLE_SUFFIX}${BASE_SUFFIX}
 DISTNAME=	# empty
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,18 +18,17 @@ WRKSRC=			${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAN1=	sftp.1 ssh-add.1 ssh-agent.1 ssh-keygen.1 ssh-keyscan.1 scp.1 ssh.1
 MLINKS=	ssh.1 slogin.1
-MAN5=	ssh_config.5 sshd_config.5
-MAN8=	sftp-server.8 sshd.8 ssh-keysign.8
+MAN5=	moduli.5 ssh_config.5 sshd_config.5
+MAN8=	sftp-server.8 sshd.8 ssh-keysign.8 ssh-pkcs11-helper.8
 
 CONFLICTS?=		ssh-1.* ssh2-3.*
 
-USE_OPENSSL=		yes
+USE_PERL5=		yes
 USE_PERL5_BUILD=	yes
+USE_OPENSSL=		yes
 GNU_CONFIGURE=		yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ARGS=		--prefix=${PREFIX} --mandir=${MANPREFIX}/man \
-			--with-md5-passwords --without-zlib-version-check \
-			--with-ssl-engine
+CONFIGURE_ARGS=		--prefix=${PREFIX} --with-md5-passwords \
+			--without-zlib-version-check --with-ssl-engine
 PRECIOUS=		ssh_config sshd_config ssh_host_key ssh_host_key.pub \
 			ssh_host_rsa_key ssh_host_rsa_key.pub ssh_host_dsa_key \
 			ssh_host_dsa_key.pub
@@ -39,21 +38,30 @@ PORTABLE_SUFFIX=	-portable
 SUDO?=		# empty
 MAKE_ENV+=	SUDO="${SUDO}"
 
-OPTIONS=	PAM		"Enable pam(3) support"			on \
-		TCP_WRAPPERS	"Enable tcp_wrappers support"		on \
-		LIBEDIT		"Enable readline support to sftp(1)"	on \
-		KERBEROS	"Enable kerberos (autodetection)"	on \
-		SUID_SSH	"Enable suid SSH (Recommended off)"	off \
-		GSSAPI		"Enable GSSAPI support"			off \
-		OPENSSH_CHROOT	"Enable CHROOT support"			off \
-		OPENSC		"Enable OpenSC smartcard support"	off \
-		OPENSCPINPATCH	"Enable OpenSC PIN patch"		off \
-		HPN		"Enable HPN-SSH patch"			off \
-		OVERWRITE_BASE	"OpenSSH overwrite base"		off
+OPTIONS=	PAM		"Enable pam(3) support"				on \
+		TCP_WRAPPERS	"Enable tcp_wrappers support"			on \
+		LIBEDIT		"Enable readline support to sftp(1)"		on \
+		SUID_SSH	"Enable suid SSH (Recommended off)"		off \
+		BSM		"Enable OpenBSM Auditing"			off \
+		KERBEROS	"Enable kerberos (autodetection)"		off \
+		KERB_GSSAPI	"Enable Kerberos/GSSAPI patch (req: GSSAPI)"	off \
+		OPENSSH_CHROOT	"Enable CHROOT support"				off \
+		HPN		"Enable HPN-SSH patch"				off \
+		LPK		"Enable LDAP Public Key (LPK) patch"		off \
+		X509		"Enable x509 certificate patch"			off \
+		FILECONTROL	"Enable file control patch (broken)"		off \
+		OVERWRITE_BASE	"OpenSSH overwrite base"			off
 
 .include <bsd.port.pre.mk>
 
-# Preserve deprecated OPENSSH_OVERWRITE_BASE settings
+.if defined(WITH_X509) && defined(WITH_HPN)
+BROKEN=		X509 patches and HPN patches do not apply cleanly together
+.endif
+
+.if defined(WITH_X509) && defined(WITH_KERB_GSSAPI)
+BROKEN=		X509 patch incompatible with KERB_GSSAPI patch
+.endif
+
 .if defined(OPENSSH_OVERWRITE_BASE)
 WITH_OVERWRITE_BASE=	yes
 .endif
@@ -74,23 +82,21 @@ CONFIGURE_ARGS+=	--with-libedit
 CONFIGURE_ARGS+=	--disable-suid-ssh
 .endif
 
-.if !defined(WITHOUT_KERBEROS)
-.if defined(KRB5_HOME) && exists(${KRB5_HOME}) || defined(WITH_GSSAPI)
-PORTABLE_SUFFIX=	# empty
-GSSAPI_SUFFIX=		-gssapi
-CONFLICTS+=		openssh-portable-*-[0-9]*
-CONFIGURE_ARGS+=	--with-kerberos5=${KRB5_HOME}
+.if defined(WITH_BSM)
+CONFIGURE_ARGS+=	--with-audit=bsm
+.endif
+
+.if defined(WITH_KERBEROS)
+CONFIGURE_ARGS+=	--with-kerberos5
+LIB_DEPENDS+=		krb5.3:${PORTSDIR}/security/krb5
+.if defined(WITH_KERB_GSSAPI)
+PATCH_SITES+=		http://www.sxw.org.uk/computing/patches/
+PATCHFILES+=		openssh-5.7p1-gsskex-all-20110125.patch
+PATCH_DIST_STRIP=
+.endif
 .if ${OPENSSLBASE} == "/usr"
 CONFIGURE_ARGS+=	--without-rpath
 LDFLAGS=		# empty
-.endif
-.else
-CONFLICTS+=		openssh-gssapi-*-[0-9]*
-CONFIGURE_ARGS+=	--with-rpath=${OPENSSLRPATH}
-.if exists(/usr/include/krb5.h)
-CONFIGURE_ARGS+=	--with-kerberos5
-EXTRA_PATCHES+=		${FILESDIR}/gss-serv.c.patch
-.endif
 .endif
 .endif
 
@@ -102,64 +108,81 @@ CONFIGURE_ARGS+=	--with-ssl-dir=${OPENSSLBASE}
 CFLAGS+=		-DCHROOT
 .endif
 
-.if defined(WITH_OPENSC)
-LIB_DEPENDS+=		opensc.2:${PORTSDIR}/security/opensc
-CONFIGURE_ARGS+=	--with-opensc=${LOCALBASE}
-.endif
-
-# See http://bugzilla.mindrot.org/show_bug.cgi?id=608
-.if defined(WITH_OPENSCPINPATCH)
-EXTRA_PATCHES+=		${FILESDIR}/scardpin.patch
-.endif
-
 .if defined(WITH_HPN)
-PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=		http://www.psc.edu/networking/projects/hpn-ssh/
-PATCHFILES+=		openssh-5.1p1-hpn13v5.diff.gz
+PATCHFILES+=		${PORTNAME}-5.8p1-hpn13v11.diff.gz
+PATCH_DIST_STRIP=
+.endif
+
+# See http://code.google.com/p/openssh-lpk/wiki/Main
+# and svn repo described here:
+# http://code.google.com/p/openssh-lpk/source/checkout
+.if defined(WITH_LPK)
+EXTRA_PATCHES+=		${FILESDIR}/openssh-lpk-5.8p2.patch
+USE_OPENLDAP=		yes
+CPPFLAGS+=		-I${LOCALBASE}/include
+CONFIGURE_ARGS+=	--with-ldap=yes \
+			--with-libs='-lldap' \
+			--with-ldflags='-L${LOCALBASE}/lib' \
+			--with-cppflags='${CPPFLAGS}'
+.endif
+
+# See http://www.roumenpetrov.info/openssh/
+.if defined(WITH_X509)
+PATCH_SITES+=		http://www.roumenpetrov.info/openssh/x509-7.0/
+PATCHFILES+=		${PORTNAME}-5.8p1+x509-7.0.diff.gz
+PATCH_DIST_STRIP=	-p1
+PLIST_SUB+=		X509=""
+MAN5+=			ssh_engine.5
+.else
+PLIST_SUB+=		X509="@comment "
+.endif
+
+# See http://sftpfilecontrol.sourceforge.net/
+.if defined(WITH_FILECONTROL)
+# Latest sftpfilecontrol patch is against 5.4p1 which does not apply
+# cleanly against 5.8p2, but it's close.
+BROKEN=			latest upstream sftp file control public key patch is not up to date for OpenSSH 5.8p2
+EXTRA_PATCHES+=		${FILESDIR}/openssh-${DISTVERSION}.sftpfilecontrol-v1.3.patch
 .endif
 
 .if defined(WITH_OVERWRITE_BASE)
 WITH_OPENSSL_BASE=	yes
-BASE_SUFFIX=		-overwrite-base
 CONFIGURE_ARGS+=	--localstatedir=/var
 EMPTYDIR=		/var/empty
 PREFIX=			/usr
 ETCSSH=			/etc/ssh
 USE_RC_SUBR=		yes
 SUB_FILES+=		openssh
-SUB_LIST+=		ETCSSH="${ETCSSH}"
 PLIST_SUB+=		NOTBASE="@comment "
 PLIST_SUB+=		BASE=""
 PLIST_SUB+=		BASEPREFIX="${PREFIX}"
+PLIST_SUB+=		ERASEEMPTY="@comment "
 .else
 .if exists(/var/empty)
 EMPTYDIR=		/var/empty
+PLIST_SUB+=		ERASEEMPTY="@comment "
 .else
 EMPTYDIR=		${PREFIX}/empty
+PLIST_SUB+=		ERASEEMPTY=""
 .endif
 ETCSSH=			${PREFIX}/etc/ssh
 USE_RC_SUBR=		openssh
-SUB_LIST+=		ETCSSH="${ETCSSH}"
 PLIST_SUB+=		NOTBASE=""
 PLIST_SUB+=		BASE="@comment "
 .endif
 
 # After all
+SUB_LIST+=		ETCSSH="${ETCSSH}"
 PLIST_SUB+=		EMPTYDIR="${EMPTYDIR}"
 CONFIGURE_ARGS+=	--sysconfdir=${ETCSSH} --with-privsep-path=${EMPTYDIR}
 
-# Sync this with bsd.port.mk
 RC_SCRIPT_NAME=		openssh
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-ldes|-lcrypto|g' ${WRKSRC}/configure
-.if defined(WITH_OVERWRITE_BASE)
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${LOCALBASE}|' \
 		-e 's|%%RC_SCRIPT_NAME%%|${RC_SCRIPT_NAME}|' ${WRKSRC}/sshd.8
-.else
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' \
-		-e 's|%%RC_SCRIPT_NAME%%|${RC_SCRIPT_NAME}|' ${WRKSRC}/sshd.8
-.endif
 	@${REINPLACE_CMD} -E -e 's|SSH_VERSION|TMP_SSH_VERSION|' \
 		-e 's|.*SSH_RELEASE.*||' ${WRKSRC}/version.h
 	@${ECHO_CMD} '#define FREEBSD_PORT_VERSION	" FreeBSD-${PKGNAME}"' >> \
@@ -173,12 +196,8 @@ post-patch:
 		${WRKSRC}/version.h
 .endif
 
-pre-install:
-.if defined(WITH_OVERWRITE_BASE)
+pre-su-install:
 	@${MKDIR} ${EMPTYDIR}
-.else
-	@${MKDIR} ${PREFIX}/empty
-.endif
 	if ! pw groupshow sshd; then pw groupadd sshd -g 22; fi
 	if ! pw usershow sshd; then pw useradd sshd -g sshd -u 22 \
 		-h - -d ${EMPTYDIR} -s /nonexistent -c "sshd privilege separation"; fi
