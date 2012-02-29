@@ -1,12 +1,13 @@
-# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.7 2011/02/02 21:01:20 laffer1 Exp $
+# $MidnightBSD: mports/games/tuxracer/Makefile,v 1.8 2011/07/23 20:42:35 laffer1 Exp $
 
 PORTNAME=	tuxracer
 PORTVERSION=	0.61
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	games
-MASTER_SITES=	SF
-DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz \
-		${PORTNAME}-data-${PORTVERSION}.tar.gz
+MASTER_SITES=	SF \
+		SF/${PORTNAME}/${PORTNAME}-data/${PORTVERSION}:data
+DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
+		${PORTNAME}-data-${PORTVERSION}${EXTRACT_SUFX}:data
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A 3d penguin racing game using OpenGL
@@ -28,15 +29,12 @@ CONFIGURE_ARGS=	--with-tcl-inc="${LOCALBASE}/include/tcl8.5" \
 		--with-gl-inc="${LOCALBASE}/include" \
 		--with-data-dir=${PREFIX}/share/tuxracer
 
-WORKDATA=	${WRKDIR}/${PORTNAME}-data-${PORTVERSION}
-COURSEDIRS=	1 2 3 4 5 6 7 8 9 10 11
-
 post-extract:
 	@${RM} ${WRKSRC}/missing
 
 post-install:
 	@${MKDIR} ${DATADIR}
-	@(${CHMOD} -R o+r ${WORKDATA} && cd ${WORKDATA} && ${TAR} -c -f - *) | \
-		(cd ${DATADIR} && ${TAR} -x -f - )
+	@(cd ${WORKDATA} ${WRKDIR}/${PORTNAME}-data-${PORTVERSION} \
+		&& ${COPYTREE_SHARE} . ${DATADIR})
 
 .include <bsd.port.mk>

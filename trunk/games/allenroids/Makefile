@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/allenroids/Makefile,v 1.1 2009/11/26 22:15:30 laffer1 Exp $
+# $MidnightBSD: mports/games/allenroids/Makefile,v 1.2 2009/11/26 22:26:45 laffer1 Exp $
 #
 
 PORTNAME=	allenroids
@@ -9,7 +9,7 @@ MASTER_SITES=	http://www.integrity.com/homes/tomandkaren/Allenroids/files/Linux/
 DISTFILES=	AllenroidsRyan.tgz
 WRKSRC=		${WRKDIR}/Allenroids
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Asteroids clone by Allen Smith
 LICENSE=	other
 
