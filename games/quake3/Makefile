@@ -2,7 +2,7 @@
 # Date created:				23 August 2005
 # Whom:					pypt
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/games/quake3/Makefile,v 1.1 2008/05/01 07:04:28 laffer1 Exp $
 # $FreeBSD: ports/games/quake3/Makefile,v 1.18 2007/11/07 00:37:19 pav Exp $
 #
 
@@ -14,6 +14,7 @@ MASTER_SITES=	http://www.proarena.com/p/ftpx/x8524/quake_3_arena/ \
 		http://www.teamdarkside.net/ \
 		http://0day.icculus.org/mirrors/quake3/ \
 		http://www.olpainless.net/files/ \
+		http://ftp.mancubus.net/pub/idgames/idstuff/source/ \
 		${MASTER_SITE_IDSOFTWARE:S|$|source/|}
 DISTNAME=	${PORTNAME}-${REALVERSION}-source
 

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/games/nextgo/Makefile,v 1.4 2008/10/23 13:50:37 laffer1 Exp $
+# $MidnightBSD: mports/games/nextgo/Makefile,v 1.5 2009/04/05 15:43:49 laffer1 Exp $
 
 PORTNAME=	nextgo
 PORTVERSION=	3.0
@@ -13,7 +13,6 @@ COMMENT=	classic Go game for OPENSTEP/GNUstep
 LICENSE=	gpl
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
