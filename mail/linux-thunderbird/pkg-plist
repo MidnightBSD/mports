@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $MidnightBSD: mports/mail/linux-thunderbird/pkg-plist,v 1.10 2012/02/03 02:43:13 laffer1 Exp $
 bin/%%APP_NAME%%
 lib/%%APP_NAME%%/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/icon.png
 lib/%%APP_NAME%%/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}/install.rdf
@@ -86,6 +86,6 @@ share/applications/%%APP_NAME%%.desktop
 @dirrm lib/%%APP_NAME%%/components
 @dirrm lib/%%APP_NAME%%/isp
 @dirrm lib/%%APP_NAME%%
-@dirrm share/applications
+@dirrmtry share/applications
 @cwd /compat/linux
 @cwd %%TARGETDIR%%
