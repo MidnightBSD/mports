@@ -1,6 +1,6 @@
---- servconf.c.orig	Fri Aug 18 11:23:15 2006
-+++ servconf.c	Sat Sep 30 21:54:26 2006
-@@ -129,7 +129,7 @@
+--- servconf.c.orig	2010-06-25 17:38:45.000000000 -0600
++++ servconf.c	2010-09-14 16:14:12.000000000 -0600
+@@ -139,7 +139,7 @@
  {
  	/* Portable-specific options */
  	if (options->use_pam == -1)
@@ -9,7 +9,7 @@
  
  	/* Standard Options */
  	if (options->protocol == SSH_PROTO_UNKNOWN)
-@@ -159,7 +159,7 @@
+@@ -170,7 +170,7 @@
  	if (options->key_regeneration_time == -1)
  		options->key_regeneration_time = 3600;
  	if (options->permit_root_login == PERMIT_NOT_SET)
@@ -18,7 +18,7 @@
  	if (options->ignore_rhosts == -1)
  		options->ignore_rhosts = 1;
  	if (options->ignore_user_known_hosts == -1)
-@@ -169,7 +169,7 @@
+@@ -180,7 +180,7 @@
  	if (options->print_lastlog == -1)
  		options->print_lastlog = 1;
  	if (options->x11_forwarding == -1)
@@ -27,7 +27,7 @@
  	if (options->x11_display_offset == -1)
  		options->x11_display_offset = 10;
  	if (options->x11_use_localhost == -1)
-@@ -207,7 +207,11 @@
+@@ -218,7 +218,11 @@
  	if (options->gss_cleanup_creds == -1)
  		options->gss_cleanup_creds = 1;
  	if (options->password_authentication == -1)
