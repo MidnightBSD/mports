@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.187 2011/08/16 23:21:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.188 2011/10/27 16:10:38 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -41,6 +41,7 @@ X11BASE:=		${DESTDIR}${X11BASE_REL}
 LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
 DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
+SRC_BASE?=		/usr/src
 INDEXDIR?=		${PORTSDIR}
 # XXX Can we just call it 'INDEX' ?
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
@@ -124,14 +125,11 @@ OSREL!=	${UNAME} -r | ${SED} -e 's/[-(].*//'
 .if !defined(OSVERSION)
 .if exists(${DESTDIR}/usr/include/sys/param.h)
 OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${DESTDIR}/usr/include/sys/param.h
+.elif exists(${SRC_BASE}/sys/sys/param.h)
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__MidnightBSD_version/ {print $$3}' < ${SRC_BASE}/sys/sys/param.h
 .else
 OSVERSION!=	${SYSCTL} -n kern.osreldate
 .endif
-.endif
-
-# Get the object format.
-.if !defined(PORTOBJFORMAT)
-PORTOBJFORMAT?=	elf
 .endif
 
 MASTERDIR?=	${.CURDIR}
@@ -202,9 +200,17 @@ USE_SUBMAKE=	yes
 # where 'make config' records user configuration options
 PORT_DBDIR?=	${DESTDIR}/var/db/ports
 
+UID_FILES?=	${PORTSDIR}/UIDs
+GID_FILES?=	${PORTSDIR}/GIDs
+UID_OFFSET?=	0
+GID_OFFSET?=	0
+
+# predefined accounts from src/etc/master.passwd
+# alpha numeric sort order
+USERS_BLACKLIST=	_dhcp _pflogd bin bind daemon games kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
+
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
-
 
 .if defined(LATEST_LINK)
 UNIQUENAME?=	${LATEST_LINK}
@@ -259,10 +265,10 @@ _SUF2=	,${PORTEPOCH}
 # check for old, crufty, makefile types, part 2.  The "else" case
 # should have been handled in part 1, above.
 PKGVERSION?=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
-PKGBASE?=		${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
-PKGSUBNAME=		${PKGBASE}
-PKGNAME?=		${PKGBASE}-${PKGVERSION}
-DISTNAME?=		${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
+PKGBASE?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+PKGSUBNAME=	${PKGBASE}
+PKGNAME?=	${PKGBASE}-${PKGVERSION}
+DISTNAME?=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 
 
 
@@ -533,10 +539,8 @@ PLIST_SUB+=	PORTDATA=""
 CONFIGURE_SHELL?=	${SH}
 MAKE_SHELL?=	${SH}
 
-CONFIGURE_ENV+=	SHELL=${SH} CONFIG_SHELL=${SH} PORTOBJFORMAT=${PORTOBJFORMAT}
-SCRIPTS_ENV+=	PORTOBJFORMAT=${PORTOBJFORMAT}
-MAKE_ENV+=		SHELL=${SH} PORTOBJFORMAT=${PORTOBJFORMAT} NO_LINT=YES
-PLIST_SUB+=		PORTOBJFORMAT=${PORTOBJFORMAT}
+CONFIGURE_ENV+=	SHELL=${SH} CONFIG_SHELL=${SH}
+MAKE_ENV+=		SHELL=${SH} NO_LINT=YES
 
 
 
@@ -566,6 +570,9 @@ EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 .endif
 .if defined(USE_XZ) && (${OSVERSION} < 4003)
 EXTRACT_DEPENDS+=	${LOCALBASE}/bin/xz:${PORTSDIR}/archivers/xz
+.endif
+.if defined(USE_MAKESELF)
+EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
 .endif
 .if defined(USE_GMAKE)
 BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
@@ -618,7 +625,7 @@ __USED_OPENAL=
 _USE_OPENAL=
 .for component in ${USE_OPENAL}
 .if ${__USED_OPENAL:M${component}} == ""
-__USED_OPENAL+= ${component}
+__USED_OPENAL+=	${component}
 
 .if ${_OPENAL_ALL:M${component}} == ""
 BROKEN= OPENAL mismatch: unknown component ${component}
@@ -630,27 +637,27 @@ BROKEN= OPENAL mismatch: ${_HAVE_OPENAL} is installed, but ${WANT_OPENAL} desire
 .endif # WANT_OPENAL
 
 .if defined(_HAVE_OPENAL)
-_OPENAL_SYSTEM= ${_HAVE_OPENAL}
+_OPENAL_SYSTEM=	${_HAVE_OPENAL}
 .elif defined(WANT_OPENAL)
-_OPENAL_SYSTEM= ${WANT_OPENAL}
+_OPENAL_SYSTEM=	${WANT_OPENAL}
 .else
-_OPENAL_SYSTEM= ${_DEFAULT_OPENAL}
+_OPENAL_SYSTEM=	${_DEFAULT_OPENAL}
 .endif # _HAVE_OPENAL
 
-_USE_OPENAL+= ${_OPENAL_${_OPENAL_SYSTEM:U}}
+_USE_OPENAL+=	${_OPENAL_${_OPENAL_SYSTEM:U}}
 
 .else # ${_OPENAL_ALL:M${component}} == ""
 
 .if ${_OPENAL_LIBS:M${component}} == ${component}
 # Check for the system implementation to use.
 .if defined(WANT_OPENAL) && ${WANT_OPENAL} != ${component}
-BROKEN= OPENAL mismatch: wants to use ${component}, while you wish to use ${WANT_OPENAL}
+BROKEN=	OPENAL mismatch: wants to use ${component}, while you wish to use ${WANT_OPENAL}
 .endif
 .if defined(_OPENAL_SYSTEM)
-BROKEN= OPENAL mismatch: cannot use ${component} and al together.
+BROKEN=	OPENAL mismatch: cannot use ${component} and al together.
 .endif
 .if defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${component}
-BROKEN= OPENAL mismatch: wants to use ${component}, but ${_HAVE_OPENAL} is installed
+BROKEN=	OPENAL mismatch: wants to use ${component}, but ${_HAVE_OPENAL} is installed
 .endif
 
 _OPENAL_SYSTEM= ${component}
@@ -684,7 +691,7 @@ _HAVE_FAM_SYSTEM=	fam
 
 .if defined(WANT_FAM_SYSTEM)
 .if defined(WITH_FAM_SYSTEM) && ${WITH_FAM_SYSTEM}!=${WANT_FAM_SYSTEM}
-IGNORE=	The port wants to use ${WANT_FAM_SYSTEM} as its FAM system and you wish to use ${WITH_FAM_SYSTEM}
+IGNORE=	wants to use ${WANT_FAM_SYSTEM} as its FAM system and you wish to use ${WITH_FAM_SYSTEM}
 .endif
 FAM_SYSTEM=	${WANT_FAM_SYSTEM}
 .elif defined(WITH_FAM_SYSTEM)
@@ -735,14 +742,18 @@ LIB_DEPENDS+=	iconv.3:${PORTSDIR}/converters/libiconv
 .endif
 
 .if defined(USE_GETTEXT)
-.	if ${USE_GETTEXT:L} == "yes"
+.	if ${USE_GETTEXT:L} == "build"
+BUILD_DEPENDS+=	xgettext:${PORTSDIR}/devel/gettext
+.	elif ${USE_GETTEXT:L} == "run"
+RUN_DEPENDS+=	xgettext:${PORTSDIR}/devel/gettext
+.	elif ${USE_GETTEXT:L} == "yes"
 LIB_DEPENDS+=	intl:${PORTSDIR}/devel/gettext
 .	else
-LIB_DEPENDS+=	intl.${USE_GETTEXT}:${PORTSDIR}/devel/gettext
+IGNORE=	USE_GETTEXT can be only one of build, run, or yes
 .	endif
 .endif
 
-.if defined(USE_LINUX_PREFIX) && (defined(INSTALLS_SHLIB) || defined(USE_LDCONFIG))
+.if defined(USE_LINUX_PREFIX) && defined(USE_LDCONFIG)
 # we need ${LINUXBASE}/sbin/ldconfig
 USE_LINUX?=	yes
 .endif
@@ -750,7 +761,7 @@ USE_LINUX?=	yes
 .if defined(USE_LINUX)
 
 .  if !defined(LINUX_OSRELEASE)
-LINUX_OSRELEASE!=       ${ECHO_CMD} `${SYSCTL} -n compat.linux.osrelease 2>/dev/null`
+LINUX_OSRELEASE!=	${ECHO_CMD} `${SYSCTL} -n compat.linux.osrelease 2>/dev/null`
 .  endif
 
 # install(1) also does a brandelf on strip, so don't strip with FreeBSD tools.
@@ -796,7 +807,7 @@ LIB_DEPENDS+=		Xm:${PORTSDIR}/x11-toolkits/lesstif
 NO_OPENMOTIF=		yes
 .endif
 .if !defined(NO_OPENMOTIF)
-LIB_DEPENDS+=		Xm.3:${PORTSDIR}/x11-toolkits/open-motif
+LIB_DEPENDS+=		Xm.4:${PORTSDIR}/x11-toolkits/open-motif
 .endif
 .endif
 
@@ -820,7 +831,6 @@ X_FONTS_CYRILLIC_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-cyrillic
 X_FONTS_TTF_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-truetype
 X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
 X_FONTS_ALIAS_PORT=	${PORTSDIR}/x11-fonts/font-alias
-X_MANUALS_PORT=		${PORTSDIR}/x11/xorg-manpages
 
 .if defined(USE_IMAKE)
 BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
@@ -854,17 +864,17 @@ PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 PLIST_SUB+=			XAWVER=${XAWVER}
 
 _GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
-_GL_glew_LIB_DEPENDS=           GLEW.1:${PORTSDIR}/graphics/glew
+_GL_glew_LIB_DEPENDS=		GLEW.1:${PORTSDIR}/graphics/glew
 _GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
 _GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
 _GL_glut_LIB_DEPENDS=		glut.3:${PORTSDIR}/graphics/libglut
 _GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
 
 .if defined(USE_GL)
-.  if ${USE_GL:L} == "yes"
+. if ${USE_GL:L} == "yes"
 USE_GL=		glu
-.  endif
-.  for _component in ${USE_GL}
+. endif
+. for _component in ${USE_GL}
 .   if !defined(_GL_${_component}_LIB_DEPENDS) && \
 		!defined(_GL_${_component}_RUN_DEPENDS)
 IGNORE=		uses unknown GL component
@@ -872,7 +882,7 @@ IGNORE=		uses unknown GL component
 LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
 RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 .   endif
-.  endfor
+. endfor
 .endif
 
 
@@ -978,25 +988,6 @@ NONEXISTENT?=	/nonexistent
 # Miscellaneous overridable commands:
 GMAKE?=			gmake
 XMKMF?=			xmkmf -a
-.if exists(/sbin/md5)
-MD5?=			/sbin/md5
-.else
-MD5?=			md5
-.endif
-.if exists(/sbin/sha256)
-SHA256?=		/sbin/sha256
-.elif exists(${LOCALBASE_REL}/sbin/sha256)
-SHA256?=		${LOCALBASE_REL}/sbin/sha256
-.else
-SHA256?=		NO
-.endif
-.if exists(/sbin/rmd160)
-RMD160?=                /sbin/rmd160
-.elif exists(${LOCALBASE_REL}/sbin/rmd160)
-RMD160?=                ${LOCALBASE_REL}/sbin/rmd160
-.else
-RMD160?=                NO
-.endif
 
 CHECKSUM_ALGORITHMS?= sha256 rmd160
 
@@ -1006,8 +997,13 @@ MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 			LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
-			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" CFLAGS="${CFLAGS}" \
-			CXXFLAGS="${CXXFLAGS}" MANPREFIX="${MANPREFIX}"
+			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" \
+			CC="${CC}" CFLAGS="${CFLAGS}" \
+			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
+			LDFLAGS="${LDFLAGS}" \
+			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
+			MANPREFIX="${MANPREFIX}"
+
 
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
@@ -1038,15 +1034,18 @@ PTHREAD_CFLAGS?=
 PTHREAD_LIBS?=		-pthread
 
 .if exists(/usr/bin/fetch)
-FETCH_CMD?=		/usr/bin/fetch -ApRr
+FETCH_BINARY?=	/usr/bin/fetch
+FETCH_ARGS?=	-AFpr
 FETCH_REGET?=	1
 .if !defined(DISABLE_SIZE)
 FETCH_BEFORE_ARGS+=	$${CKSIZE:+-S $$CKSIZE}
 .endif
 .else
-FETCH_CMD?=		/usr/bin/ftp
+FETCH_BINARY?=	/usr/bin/ftp
+FETCH_ARGS?=	-R
 FETCH_REGET?=	0
 .endif
+FETCH_CMD?=	${FETCH_BINARY} ${FETCH_ARGS}
 
 .if defined(RANDOMIZE_MASTER_SITES) && exists(/usr/games/random)
 RANDOM_CMD?=	/usr/games/random
@@ -1095,12 +1094,16 @@ TAR?=	/usr/bin/tar
 EXTRACT_CMD?=		${UNZIP_CMD}
 EXTRACT_BEFORE_ARGS?=	-qo
 EXTRACT_AFTER_ARGS?=	-d ${WRKDIR}
+.elif defined(USE_MAKESELF)
+EXTRACT_CMD?=		${UNMAKESELF_CMD}
+EXTRACT_BEFORE_ARGS?=
+EXTRACT_AFTER_ARGS?=
 .else
 EXTRACT_BEFORE_ARGS?=	-dc
 .if defined(EXTRACT_PRESERVE_OWNERSHIP)
 EXTRACT_AFTER_ARGS?=	| ${TAR} -xf -
 .else
-EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner
+EXTRACT_AFTER_ARGS?=	| ${TAR} -xf - --no-same-owner --no-same-permissions
 .endif
 .if defined(USE_BZIP2)
 EXTRACT_CMD?=			${BZIP2_CMD}
@@ -1113,6 +1116,9 @@ EXTRACT_CMD?=			${GZIP_CMD}
 
 
 # Determine whether or not we can use rootly owner/group functions.
+.if !defined(UID)
+UID!=	${ID} -u
+.endif
 .if ${UID} == 0
 _BINOWNGRP=	-o ${BINOWN} -g ${BINGRP}
 _SHROWNGRP=	-o ${SHAREOWN} -g ${SHAREGRP}
@@ -1138,15 +1144,14 @@ INSTALL_MAN= \
 	${INSTALL} ${COPY} ${_MANOWNGRP} -m ${MANMODE}
 
 INSTALL_MACROS=	BSD_INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
+			BSD_INSTALL_LIB="${INSTALL_LIB}" \
 			BSD_INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 			BSD_INSTALL_DATA="${INSTALL_DATA}" \
 			BSD_INSTALL_MAN="${INSTALL_MAN}"
 MAKE_ENV+=	${INSTALL_MACROS}
 SCRIPTS_ENV+=	${INSTALL_MACROS}
 
-
-
-# Macro for coping entire directory tree with correct permissions
+# Macro for copying entire directory tree with correct permissions
 .if ${UID} == 0
 COPYTREE_BIN=	${SH} -c '(${FIND} -d $$0 $$2 | ${CPIO} -dumpl $$1 >/dev/null \
 					2>&1) && \
@@ -1211,7 +1216,7 @@ MPORT_CREATE_ARGS+=	-C "${CONFLICTS}"
 
 PKG_SUFX?=	.mport
 
-MOTIFLIB?=	-L${X11BASE}/lib -lXm -lXp
+MOTIFLIB?=	-L${LOCALBASE}/lib -lXm -lXp
 
 ALL_TARGET?=		all
 INSTALL_TARGET?=	install
@@ -1249,7 +1254,7 @@ _PATCH_SITES_DEFAULT?=
 # Organize _{MASTER,PATCH}_SITES_{DEFAULT,[^/:]+} according to grouping
 # rules (:something)
 .for _S in ${MASTER_SITES}
-_S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
+_S_TEMP=	${_S:S/^${_S:C@/?:[^/:]+$@/@}//:S/^://}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
@@ -1674,12 +1679,10 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 
 check-categories:
 .for cat in ${CATEGORIES}
-	@if ${ECHO_CMD} ${VALID_CATEGORIES} | ${GREP} -wq ${cat}; then \
-		${TRUE}; \
-	else \
-		${ECHO_MSG} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
-		${FALSE}; \
-	fi
+.	if empty(VALID_CATEGORIES:M${cat})
+		@${ECHO_MSG} "${PKGNAME}: Makefile error: category ${cat} not in list of valid categories."; \
+		${FALSE};
+.	endif
 .endfor
 .endif
 
@@ -1787,12 +1790,7 @@ check-makevars::
 	@${FALSE}
 .endif
 _MLINKS=	${_MLINKS_PREPEND}
-# XXX 20040119 This next line should read:
-# .for lang in ${MANLANG:S%^%man/%:S%^man/""$%man%}
-# but there is currently a bug in make(1) that prevents the double-quote
-# substitution from working correctly.  Once that problem is addressed,
-# and has had a enough time to mature, this hack should be removed.
-.for lang in ${MANLANG:S%^%man/%:S%^man/""$%man%:S%^man/"$%man%}
+.for lang in ${MANLANG:S%^%man/%:S%^man/""$%man%}
 .for ___pmlinks in ${__pmlinks}
 .for __lang in ${lang}
 _MLINKS+=	${___pmlinks:S// /g}
@@ -1874,13 +1872,6 @@ _DESKTOPDIR_REL=	${DESKTOPDIR:S,^${PREFIX}/,,}/
 _DESKTOPDIR_REL=
 .endif
 
-# Put this as far down as possible so it will catch all PLIST_SUB definitions.
-
-.if defined(INSTALLS_SHLIB)
-LDCONFIG_DIRS?=	%%PREFIX%%/lib
-USE_LDCONFIG!=	${ECHO_CMD} ${LDCONFIG_DIRS} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
-.endif
-
 .MAIN: all
 
 #
@@ -1922,11 +1913,11 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 fdl1.1 fdl1.2 fdl1.3 bsd4 bsd3
 .if defined(ONLY_FOR_ARCHS)
 .for __ARCH in ${ONLY_FOR_ARCHS}
 .if ${ARCH:M${__ARCH}} != ""
-__ARCH_OK?=     1
+__ARCH_OK?=	1
 .endif
 .endfor
 .else
-__ARCH_OK?=     1
+__ARCH_OK?=	1
 .endif
 
 .if defined(NOT_FOR_ARCHS)
@@ -2121,8 +2112,6 @@ package:
 
 # Pre-everything
 
-# XXX MCL suggests deprecating this in favor of something
-# less likely to be abused by overloading
 pre-everything::
 	@${DO_NADA}
 
@@ -2297,7 +2286,7 @@ do-fetch:
 				SORTED_PATCH_SITES_CMD_TMP="${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} $${__PATCH_SITES_TMP} | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}" ; \
 			else \
 				SORTED_PATCH_SITES_CMD_TMP="${SORTED_PATCH_SITES_DEFAULT_CMD}" ; \
-			fi ; \
+			fi; \
 			for site in `eval $$SORTED_PATCH_SITES_CMD_TMP`; do \
 			    ${ECHO_MSG} "=> Attempting to fetch from $${site}."; \
 				DIR=${DIST_SUBDIR}; \
@@ -2315,7 +2304,7 @@ do-fetch:
 			${ECHO_MSG} "=> Couldn't fetch it - please try to retrieve this";\
 			${ECHO_MSG} "=> port manually into ${_DISTDIR} and try again."; \
 			exit 1; \
-	    fi \
+	    fi; \
 	 done)
 .endif
 .endif
@@ -2331,10 +2320,10 @@ do-extract:
 		if ! (cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
 		then \
 			exit 1; \
-		fi \
+		fi; \
 	done
 .if !defined(EXTRACT_PRESERVE_OWNERSHIP)
-	@if [ `${ID} -u` = 0 ]; then \
+	@if [ ${UID} = 0 ]; then \
 		${CHMOD} -R ug-s ${WRKDIR}; \
 		${CHOWN} -R 0:0 ${WRKDIR}; \
 	fi
@@ -2481,10 +2470,12 @@ run-configure:
 .endif
 .if defined(HAS_CONFIGURE)
 	@(cd ${CONFIGURE_WRKSRC} && ${INTUIT_LATE_CONFIGURE_ARGS} \
-		if ! ${SETENV} CC="${CC}" CXX="${CXX}" \
-	    CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+	    LDFLAGS="${LDFLAGS}" \
 	    INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
 	    INSTALL_DATA="${INSTALL_DATA}" \
+	    INSTALL_LIB="${INSTALL_LIB}" \
 	    INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 	    INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 	    ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS}; then \
