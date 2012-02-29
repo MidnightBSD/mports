@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.189 2012/02/29 20:55:34 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.190 2012/02/29 20:59:54 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3078,15 +3078,15 @@ do-clean:
 .if !target(clean)
 clean:
 .if !defined(NOCLEANDEPENDS)
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} clean-depends
+	@cd ${.CURDIR} && ${MAKE} limited-clean-depends
 .endif
 	@${ECHO_MSG} "===>  Cleaning for ${PKGNAME}"
 .if target(pre-clean)
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} pre-clean
+	@cd ${.CURDIR} && ${MAKE} pre-clean
 .endif
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} do-clean
+	@cd ${.CURDIR} && ${MAKE} do-clean
 .if target(post-clean)
-	@cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} post-clean
+	@cd ${.CURDIR} && ${MAKE} post-clean
 .endif
 .endif
 
@@ -3707,7 +3707,14 @@ ALL-DEPENDS-LIST= \
 
 .if !target(clean-depends)
 clean-depends:
-	@for dir in $$(${ALL-DEPENDS-LIST}); do \
+	@for dir in $$(${CLEAN-DEPENDS-FULL}); do \
+		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
+	done
+.endif
+
+.if !target(limited-clean-depends)
+limited-clean-depends:
+	@for dir in $$(${CLEAN-DEPENDS-LIMITED}); do \
 		(cd $$dir; ${MAKE} NOCLEANDEPENDS=yes clean); \
 	done
 .endif
@@ -4004,28 +4011,30 @@ add-plist-docs:
 .if !target(add-plist-info)
 add-plist-info:
 # Process GNU INFO files at package install/deinstall time
-.	if defined(INFO)
-.		for i in ${INFO}
-			@${ECHO_CMD} "@unexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-				>> ${TMPPLIST}
-			@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
-			@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
-				>> ${TMPPLIST}
-			@if [ "`${DIRNAME} $i`" != "." ]; then \
-				${ECHO_CMD} "@dirrmtry info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
-			fi
-.		endfor
+.if defined(INFO)
+.for i in ${INFO}
+	@${ECHO_CMD} "@unexec install-info --quiet --delete %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
+		>> ${TMPPLIST}
+	@${ECHO_CMD} ${INFO_PATH}/$i.info >> ${TMPPLIST}
+	@${ECHO_CMD} "@exec install-info --quiet %D/${INFO_PATH}/$i.info %D/${INFO_PATH}/dir" \
+		>> ${TMPPLIST}
+	@if [ "`${DIRNAME} $i`" != "." ]; then \
+		${ECHO_CMD} "@dirrmtry info/`${DIRNAME} $i`" >> ${TMPPLIST}; \
+	fi
+.endfor
+.if defined(INFO_SUBDIR)
+	@${ECHO_CMD} "@unexec ${RMDIR} %D/${INFO_PATH}/${INFO_SUBDIR} 2> /dev/null || true" >> ${TMPPLIST}
+.endif
+.if (${PREFIX} != "/usr")
+	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir \
+		 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
 
-.		if (${PREFIX} != "/usr")
-			@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir \
-				 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
+	@${ECHO_CMD} "@dirrmtry rmdir info/" >> ${TMPPLIST}
+.endif
 
-.			if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
-				@${ECHO_CMD} "@dirrmtry rmdir info/" >> ${TMPPLIST}
-.			endif
-
-.		endif
-.	endif
+.endif
+.endif
 .endif
 
 # If we're installing into a non-standard PREFIX, we need to remove that directory at
