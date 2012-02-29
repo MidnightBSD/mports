@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.190 2012/02/29 20:59:54 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.191 2012/02/29 21:31:35 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2041,17 +2041,20 @@ all: build
 .endif
 
 .if !defined(DEPENDS_TARGET)
-.	if make(reinstall)
-DEPENDS_TARGET=	reinstall
-.	else
-DEPENDS_TARGET=	cached-install
-.	endif
-.	if defined(DEPENDS_CLEAN)
+.if defined(DEPENDS_PRECLEAN)
+DEPENDS_TARGET=	clean
+DEPENDS_ARGS=	NOCLEANDEPENDS=yes
+.endif
+.if make(reinstall)
+DEPENDS_TARGET+=	reinstall
+.else
+DEPENDS_TARGET+=	cached-install
+.endif
+.if defined(DEPENDS_CLEAN)
 DEPENDS_TARGET+=	clean
 DEPENDS_ARGS+=	NOCLEANDEPENDS=yes
-.	endif
 .endif
-
+.endif
 
 ################################################################
 #
