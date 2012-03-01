@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/audio/lame/Makefile,v 1.6 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD: mports/audio/lame/Makefile,v 1.7 2011/09/18 01:55:42 laffer1 Exp $
 
 PORTNAME=	lame
-PORTVERSION=	3.98.4
+PORTVERSION=	3.99.4
 CATEGORIES=	audio
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME:L}/3.99
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ISO code based fast MP3 encoder kit
@@ -11,7 +11,7 @@ LICENSE=	restricted
 
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-GNU_CONFIGURE=  yes
+GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
 CONFIGURE_ARGS=	--enable-nasm --enable-mp3rtp --disable-gtktest
@@ -25,13 +25,13 @@ DOC_FILES=	API LICENSE README TODO USAGE
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "i386"
-BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
+BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
 .endif
 
 post-patch:
- 	# Fix parallel builds
+# Fix parallel builds
 	@${REINPLACE_CMD} -e 's,test -d \.libs || mkdir,mkdir -p,' \
- 		${WRKSRC}/libmp3lame/i386/Makefile.in
+		${WRKSRC}/libmp3lame/i386/Makefile.in
 
 .if defined(NOPORTDOCS)
 do-install:
