@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.5 2009/09/20 01:22:00 laffer1 Exp $
+# $MidnightBSD: mports/graphics/OpenEXR/Makefile,v 1.6 2011/02/02 21:04:17 laffer1 Exp $
 
 PORTNAME=	OpenEXR
 PORTVERSION=	1.6.1
@@ -20,7 +20,10 @@ USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS+=--enable-imfexamples
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
+
+# must be explicitely linked with -l{thr|pthread}
+LDFLAGS+=	${PTHREAD_LIBS}
+PTHREAD_LIBS+= `${CC} -dumpspecs | ${SED} -ne '/%{\!pg: %{pthread:/s/^.*%{\!pg: %{pthread:\([^}]*\)}.*$$/\1/p' || ${TRUE}`
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
@@ -38,5 +41,6 @@ test check:	build
 #.endif
 #.endif
 #.endif
+
 
 .include <bsd.port.post.mk>
