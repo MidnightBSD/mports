@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/qt4-webkit/Makefile,v 1.3 2011/07/23 22:38:24 laffer1 Exp $
 # $FreeBSD: ports/www/qt4-webkit/Makefile,v 1.10 2010/12/02 19:47:15 makc Exp $
 #
 
@@ -12,11 +12,11 @@ COMMENT=	Qt4 WebKit engine
 LICENSE=	gpl3
 
 USE_QT_VER=	4
-QT_COMPONENTS=	qmake_build moc_build rcc_build corelib declarative gui \
-		network xml dbus phonon phonon-gst script scripttools \
-		xmlpatterns
+QT_COMPONENTS=	corelib declarative gui network phonon \
+		qmake_build moc_build rcc_build
 QT_NONSTANDARD=	yes
 QT_DIST=	yes
+USE_XORG=	xrender
 MAKE_JOBS_SAFE=	yes
 
 HAS_CONFIGURE=	yes
@@ -63,7 +63,7 @@ post-configure:
 	${REINPLACE_CMD} -E -e 's|-L.[^[:space:]]*qt-x11-opensource.[^[:space:]]*lib||g' \
 			-E -e 's|(.*location=).*moc|\1${PREFIX}/bin/moc-qt4|g' \
 		${WRKSRC}/lib/pkgconfig/QtWebKit.pc
-#QtWebKit is statically linked with jscore, remove the latest
+# QtWebKit is statically linked with jscore, remove the latest.
 	${REINPLACE_CMD} -e 's|-L../JavaScriptCore/release||;s|-ljscore||' \
 		${WRKSRC}/lib/pkgconfig/QtWebKit.pc \
 		${WRKSRC}/lib/libQtWebKit.la
