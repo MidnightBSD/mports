@@ -1,7 +1,7 @@
 --- Makefile.orig	Tue Apr  9 19:37:13 2002
 +++ Makefile	Tue Apr  9 22:45:53 2002
 @@ -2,13 +2,13 @@
- # $Id: patch-aa,v 1.1 2006-09-27 16:00:05 laffer1 Exp $
+ # $Id: patch-aa,v 1.2 2012-03-01 02:56:42 laffer1 Exp $
  
  # Select an ANSI/ISO C compiler here, GNU gcc is recommended
 -CC = gcc
@@ -36,7 +36,7 @@
  
  clean:
  	rm -f *~ core
-@@ -36,3 +36,27 @@
+@@ -36,3 +36,22 @@
  	  gzip -9f jbigkit-$(VERSION).tar )
  	mv ../jbigkit-$(VERSION).tar.gz $(HOME)/public_html/download/
  	cp CHANGES $(HOME)/public_html/jbigkit/
@@ -57,10 +57,5 @@
 +	${BSD_INSTALL_DATA} libjbig/jbig.h ${PREFIX}/include
 +	mkdir -p ${PREFIX}/lib
 +	${BSD_INSTALL_DATA} libjbig/libjbig.a ${PREFIX}/lib
-+.if ${PORTOBJFORMAT} == elf
 +	${BSD_INSTALL_DATA} libjbig/libjbig.so.1 ${PREFIX}/lib
 +	ln -sf libjbig.so.1 ${PREFIX}/lib/libjbig.so
-+.else
-+	${BSD_INSTALL_DATA} libjbig/libjbig.so.1.1 ${PREFIX}/lib
-+	ln -sf libjbig.so.1.1 ${PREFIX}/lib/libjbig.so
-+.endif

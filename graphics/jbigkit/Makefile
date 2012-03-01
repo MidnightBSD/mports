@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.2 2008/10/13 20:43:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jbigkit/Makefile,v 1.3 2009/08/29 16:35:26 laffer1 Exp $
 
 PORTNAME=	jbigkit
 PORTVERSION=	1.6
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.cl.cam.ac.uk/~mgk25/download/
 
