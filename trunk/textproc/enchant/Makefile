@@ -1,30 +1,36 @@
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.6 2011/02/02 21:23:47 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.7 2011/12/15 00:39:49 laffer1 Exp $
 
 PORTNAME=	enchant
-PORTVERSION=	1.4.2
-PORTREVISION=	1
+PORTVERSION=	1.6.0
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dictionary/spellchecking framework
-LICENSE=	lgpl
-
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack glib20 ltverhack
-CONFIGURE_ARGS=	--disable-hspell \
-		--disable-uspell
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--disable-uspell \
+		--disable-voikko
+MAKE_JOBS_SAFE=	yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		enchant.1
 
-.ifndef(WITHOUT_ASPELL)
+OPTIONS=	ASPELL "Enable Aspell backend" on \
+		HSPELL "Enable Hspell backend" off \
+		HUNSPELL "Enable Hunspell backend" off \
+		ISPELL "Enable Ispell backend" off \
+		ZEMBEREK "Enable zemberek backend (requires DBUS)" off
+
+.include <bsd.port.pre.mk>
+
+.if defined(WITH_ASPELL)
 LIB_DEPENDS+=	pspell.16:${PORTSDIR}/textproc/aspell
 CONFIGURE_ARGS+=--enable-aspell \
 		--with-aspell-prefix=${LOCALBASE}
@@ -34,15 +40,40 @@ CONFIGURE_ARGS+=--disable-aspell
 PLIST_SUB+=	ASPELL="@comment "
 .endif
 
-.include <bsd.port.pre.mk>
-
-pre-everything::
-.if !defined(WITHOUT_ASPELL) || !defined(WITH_HSPELL)
-	@${ECHO_CMD} '===> The following options are available for this port:'
-.if !defined(WITHOUT_ASPELL)
-	@${ECHO_CMD} '===>'
-	@${ECHO_CMD} '===> Define WITHOUT_ASPELL to disable aspell support'
+.if defined(WITH_HSPELL)
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/textproc/hspell
+CONFIGURE_ARGS+=--enable-hspell
+PLIST_SUB+=	HSPELL=""
+.else
+CONFIGURE_ARGS+=--disable-hspell
+PLIST_SUB+=	HSPELL="@comment "
 .endif
+
+.if defined(WITH_HUNSPELL)
+LIB_DEPENDS+=	hunspell-1.3.0:${PORTSDIR}/textproc/hunspell
+CONFIGURE_ARGS+=--enable-myspell
+PLIST_SUB+=	HUNSPELL=""
+.else
+CONFIGURE_ARGS+=--disable-myspell
+PLIST_SUB+=	HUNSPELL="@comment "
+.endif
+
+.if defined(WITH_ISPELL)
+RUN_DEPENDS+=	ispell:${PORTSDIR}/textproc/ispell
+CONFIGURE_ARGS+=--enable-ispell
+PLIST_SUB+=	ISPELL=""
+.else
+CONFIGURE_ARGS+=--disable-ispell
+PLIST_SUB+=	ISPELL="@comment "
+.endif
+
+.if defined(WITH_ZEMBEREK) && !defined(WITHOUT_DBUS)
+LIB_DEPENDS+=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+CONFIGURE_ARGS+=--enable-zemberek
+PLIST_SUB+=	ZEMBEREK=""
+.else
+PLIST_SUB+=	ZEMBEREK="@comment "
+CONFIGURE_ARGS+=--disable-zemberek
 .endif
 
 post-patch:
