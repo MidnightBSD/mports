@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/misc/qt4-doc/Makefile,v 1.2 2008/10/29 20:28:48 ctriv Exp $
+# $MidnightBSD: mports/misc/qt4-doc/Makefile,v 1.3 2011/07/23 23:39:22 laffer1 Exp $
 # $FreeBSD: ports/misc/qt4-doc/Makefile,v 1.8 2008/08/04 23:30:36 miwi Exp $
 
 PORTNAME=	doc
-PORTVERSION=	${QT4_VERSION}
+DISTVERSION=	${QT4_VERSION}
 CATEGORIES?=	misc
 PKGNAMEPREFIX=	qt4-
 
@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Multiplatform C++ application framework
 LICENSE=	gpl3
 
+USE_QT_VER=	4
 QT_DIST=	yes
 NO_BUILD=	yes
 
@@ -25,10 +26,11 @@ QT_BUILD_ENV_ONLY=	yes
 
 EXTRACT_AFTER_ARGS=| ${TAR} -xf - '${DISTNAME}/doc'
 
-DOCSDIR=${PREFIX}/share/doc/qt4
+DOCSDIR=	${PREFIX}/share/doc/qt4
 
 do-install:
 	${MKDIR} ${DOCSDIR} && \
-	${CP} -Rp ${WRKSRC}/doc/html ${WRKSRC}/doc/qch ${DOCSDIR}
+	cd ${WRKSRC}/doc && ${COPYTREE_SHARE} html ${DOCSDIR} && \
+	${COPYTREE_SHARE} qch ${DOCSDIR}
 
 .include <bsd.port.mk>
