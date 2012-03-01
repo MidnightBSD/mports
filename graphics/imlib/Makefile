@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.10 2010/10/19 16:02:54 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.11 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -16,15 +16,15 @@ LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
 USE_AUTOTOOLS=	libtool
-USE_XORG=	sm xext x11
 USE_BZIP2=	yes
+USE_XORG=	sm xext x11
 USE_GMAKE=	yes
 USE_GNOME=	gtk12 gnomehack
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 MAN1=		imlib-config.1 imlib_config.1
 
