@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.20 2012/03/01 04:10:31 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.21 2012/03/01 04:11:26 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	2
+PORTREVISION?=	3
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
