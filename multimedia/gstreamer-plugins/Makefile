@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.19 2011/09/18 01:58:24 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.20 2012/03/01 04:10:31 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
@@ -47,9 +47,9 @@ USE_AUTOTOOLS=	libtool
 GST_PLUGIN?=	base
 
 CONFIGURE_ARGS=	--disable-option-checking
-CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib ${EXTRA_LIBS} ${PTHREAD_LIBS}
+CFLAGS+=	-I${LOCALBASE}/include
 
 DEFAULT_AUDIOSINK?=	osssink
 DEFAULT_AUDIOSRC?=	osssrc
@@ -123,6 +123,9 @@ post-patch:
 .if ${DIST}=="bad"
 	@${REINPLACE_CMD} -e 's|opencv <= 2.2.0|opencv <= 2.3.9|g' \
 	${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|/dev/dvd|${DEFAULT_DVD_DEVICE}|g' \
+	${WRKSRC}/ext/resindvd/resindvdbin.c \
+	${WRKSRC}/ext/resindvd/resindvdsrc.c
 .endif
 	@${FIND} ${WRKSRC}/ext -name Makefile.in | \
 	${XARGS} -n 10 ${REINPLACE_CMD} -e \
