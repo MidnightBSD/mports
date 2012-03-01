@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/multimedia/schroedinger/Makefile,v 1.1 2010/02/27 22:18:33 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/schroedinger/Makefile,v 1.2 2011/09/05 16:09:08 laffer1 Exp $
 
 PORTNAME=	schroedinger
-PORTVERSION=	1.0.10
+PORTVERSION=	1.0.11
 CATEGORIES=	multimedia
 MASTER_SITES=	http://diracvideo.org/download/schroedinger/
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -11,7 +11,7 @@ COMMENT=	High-speed Dirac codec
 LICENSE=	agg
 
 LIB_DEPENDS=	orc-0.4:${PORTSDIR}/devel/orc
-BUILD_DEPENDS=	orc>=0.4.10:${PORTSDIR}/devel/orc
+BUILD_DEPENDS=	orc>=0.4.16:${PORTSDIR}/devel/orc
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
