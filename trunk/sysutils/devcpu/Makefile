@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/devcpu/Makefile,v 1.1 2009/03/20 18:24:46 laffer1 Exp $
 
 PORTNAME=	devcpu
 PORTVERSION=	0.8.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils kld
 MASTER_SITES=	ftp://ftp.SpringDaemons.com/soft/
 
@@ -34,6 +34,10 @@ MAN4=		cpu.4
 MAN8=		cpu_microcode_tool.8
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 4014
+IGNORE=		already included into base system
+.endif
 
 .if defined(WITH_EXTRACTOR)
 RUN_DEPENDS+=	${RUBY_SITEARCHLIBDIR}/mmap.so:${PORTSDIR}/devel/ruby-mmap \
