@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.12 2011/09/05 14:55:17 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile.common,v 1.13 2011/09/18 01:58:24 laffer1 Exp $
 # base
 BASE_GST_ALL_PLUGINS= \
 		alsa \
@@ -223,7 +223,7 @@ gst_cdparanoia_PLIST_FILES=	${GST_LIB_DIR}/libgstcdparanoia.la \
 gst_cdparanoia_DIST=	base
 
 # cdio
-gst_cdio_LIB_DEPENDS+=	cdio.12:${PORTSDIR}/sysutils/libcdio
+gst_cdio_LIB_DEPENDS+=	cdio.13:${PORTSDIR}/sysutils/libcdio
 gst_cdio_PLIST_FILES=	${GST_LIB_DIR}/libgstcdio.la \
 		${GST_LIB_DIR}/libgstcdio.so
 gst_cdio_DIST=		ugly
