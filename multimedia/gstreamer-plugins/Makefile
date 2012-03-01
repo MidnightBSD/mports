@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.18 2011/09/05 14:55:17 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-plugins/Makefile,v 1.19 2011/09/18 01:58:24 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
-PORTREVISION?=	1
+PORTREVISION?=	2
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
@@ -18,7 +18,7 @@ LICENSE?=	gpl2
 BUILD_DEPENDS+=	v4l_compat>=1.0.20110720:${PORTSDIR}/multimedia/v4l_compat \
 		gstreamer>=0.10.34:${PORTSDIR}/multimedia/gstreamer
 LIB_DEPENDS+=	gstreamer-0.10.0:${PORTSDIR}/multimedia/gstreamer \
-		orc-0.4.14:${PORTSDIR}/devel/orc
+		orc-0.4.16:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 
