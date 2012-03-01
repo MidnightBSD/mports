@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.7 2011/12/15 00:39:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.8 2012/03/01 13:49:20 laffer1 Exp $
 
 PORTNAME=	enchant
 PORTVERSION=	1.6.0
@@ -8,6 +8,7 @@ DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Dictionary/spellchecking framework
+LICENSE=	lgpl
 
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
