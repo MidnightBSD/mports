@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/xv/Makefile,v 1.6 2010/03/25 01:28:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/xv/Makefile,v 1.7 2010/05/05 20:43:08 vganji Exp $
 
 PORTNAME=	xv
 PORTVERSION=	3.10a
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES+=	graphics
 MASTER_SITES=	ftp://ftp.cis.upenn.edu/pub/xv/:base \
 		SF/png-mng/XV%20jumbo%20patches/20070520
@@ -60,6 +60,13 @@ post-install:
 	@${INSTALL_DATA} ${WRKSRC}/docs/help ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/docs/bmp.doc ${DOCSDIR}
 	@${INSTALL_DATA} ${WRKSRC}/docs/gif* ${DOCSDIR}
+.endif
+
+
+.if defined(CC) && ${CC:T:Mclang}
+# Optimizer crashes with
+# Assertion failed: (isPtrIV == IndVar->getType()->isPointerTy() && "IndVar type must match IVInit type")
+CFLAGS:= ${CFLAGS:S/-O2//g}
 .endif
 
 .include <bsd.port.mk>
