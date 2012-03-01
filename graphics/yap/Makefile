@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/graphics/yap/Makefile,v 1.2 2007/11/07 20:20:13 ctriv Exp $
+# $MidnightBSD: mports/graphics/yap/Makefile,v 1.3 2009/02/22 23:55:26 laffer1 Exp $
 
 PORTNAME=	yap
 PORTVERSION=	0.2
 PORTREVISION=	4
 CATEGORIES=	graphics gnustep
-MASTER_SITES=	http://www.gnustep.it/marko/GPSText/
+MASTER_SITES=	http://www.gnustep.it/marko/GPSText/ \
+		${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	dinoex
 DISTNAME=	Yap
 EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	repacked/2007-02-15
@@ -16,7 +18,6 @@ LICENSE=	gpl2
 RUN_DEPENDS+=	a2ps:${PORTSDIR}/print/a2ps-${PAPERSIZE}
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
