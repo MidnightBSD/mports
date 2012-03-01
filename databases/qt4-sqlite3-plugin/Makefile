@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/qt4-sqlite3-plugin/Makefile,v 1.7 2011/07/23 23:11:12 laffer1 Exp $
 # $FreeBSD: ports/databases/qt4-sqlite3-plugin/Makefile,v 1.15 2010/12/02 19:47:03 makc Exp $
 
 PORTNAME=	qt4-${DB}-plugin
@@ -11,8 +11,6 @@ LICENSE=	gpl3
 
 DB=		sqlite
 DISTINFO_FILE=	${PORTSDIR}/devel/qt4/distinfo
-
-LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
 
 FAKE_OPTS=	trueprefix
 
