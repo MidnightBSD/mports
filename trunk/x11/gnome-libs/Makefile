@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.4 2010/05/08 02:10:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.5 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -24,8 +24,8 @@ USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-test-gnome
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 MAN1=		dns-helper.1 gconfigger.1 gnome-bug.1 gnome-config.1 \
 		gnome-doc.1 gnome-dump-metadata.1 gnome-gen-mimedb.1 \

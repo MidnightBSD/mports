@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.8 2011/02/02 21:35:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-desktop/Makefile,v 1.9 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome-desktop
 PORTVERSION=	2.32.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -28,10 +28,9 @@ USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ARGS=	--with-gnome-distributor="MidnightBSD" \
-		--with-kde-datadir=${LOCALBASE}/share
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS=	--with-gnome-distributor="MidnightBSD"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=	gnome-about.1
 

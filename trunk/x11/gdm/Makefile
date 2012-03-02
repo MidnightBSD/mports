@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11/gdm/Makefile,v 1.5 2010/12/31 13:44:17 laffer1 Exp $
+# $MidnightBSD: mports/x11/gdm/Makefile,v 1.6 2011/05/28 06:23:34 laffer1 Exp $
 # $FreeBSD: ports/x11/gdm/Makefile,v 1.93 2007/08/27 20:12:05 marcus Exp $
 
 PORTNAME=	gdm
 PORTVERSION=	2.30.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -42,10 +42,10 @@ GCONF_SCHEMAS=	gdm-simple-greeter.schemas
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-working-directory=${PREFIX}/etc/gdm/home \
 		--with-at-spi-registryd-directory=${LOCALBASE}/libexec
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAS_SA_LEN" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		LIBS="-lm" \
+CONFIGURE_ENV=	LIBS="-lm" \
 		GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAS_SA_LEN
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 SUB_FILES+=	gdm.pam
 

@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.17 2011/05/31 00:24:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2/Makefile,v 1.18 2011/08/20 16:10:40 laffer1 Exp $
 
 PORTNAME=	gnome2
 PORTVERSION=	2.32.1
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	# empty
 DISTFILES=	# empty

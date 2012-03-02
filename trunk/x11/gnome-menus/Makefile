@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.7 2011/02/02 21:35:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-menus/Makefile,v 1.8 2011/05/28 06:23:34 laffer1 Exp $
 # $FreeBSD: ports/x11/gnome-menus/Makefile,v 1.13 2007/07/03 06:59:12 marcus Exp $
 
 PORTNAME=	gnome-menus
 PORTVERSION=	2.30.5
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -20,8 +21,8 @@ USE_GNOME=	gnomeprefix gnomehack intlhack glib20 ltverhack
 USE_AUTOTOOLS=	libtool
 USE_PYTHON=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|applications.menu||' \
