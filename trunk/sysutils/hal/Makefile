@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.15 2011/02/02 21:22:47 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/hal/Makefile,v 1.16 2011/10/01 01:09:10 laffer1 Exp $
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -38,12 +39,15 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-pid-file=/var/run/hald/hald.pid \
 		--with-deprecated-keys \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		GTKDOC="false"
+CONFIGURE_ENV=	GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 #HALVERSION=	0.5.10
 #SNAPVERSION=	20080218
+
+USERS=		haldaemon
+GROUPS=		haldaemon
 
 USE_RC_SUBR=	hald
 USE_GNOME_SUBR=	yes
