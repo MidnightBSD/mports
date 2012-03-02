@@ -1,66 +1,74 @@
 # -*-mode: makefile-*-
+# New ports collection makefile for:	KDE libraries 4
+# Date created:				19 January 2008
+# Whom:					arved@FreeBSD.org
 #
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.8 2010/12/31 13:13:50 laffer1 Exp $
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.9 2012/02/05 03:48:33 laffer1 Exp $
 #
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	2
 CATEGORIES=	x11 kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
-PKGNAMESUFFIX?=	# empty
 DIST_SUBDIR=	KDE
 
-MAINTAINER=	ports@MidnightBSD.org
+MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
-LICENSE=	lgpl
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/textproc/hspell \
-		update-mime-database:${PORTSDIR}/misc/shared-mime-info
-LIB_DEPENDS=	searchclient:${PORTSDIR}/deskutils/strigi \
+LIB_DEPENDS=	searchclient.0:${PORTSDIR}/deskutils/strigi \
 		soprano.4:${PORTSDIR}/textproc/soprano \
-		IlmImf:${PORTSDIR}/graphics/OpenEXR \
-		aspell:${PORTSDIR}/textproc/aspell \
-		jasper:${PORTSDIR}/graphics/jasper \
+		IlmImf.6:${PORTSDIR}/graphics/OpenEXR \
+		aspell.16:${PORTSDIR}/textproc/aspell \
+		jasper.4:${PORTSDIR}/graphics/jasper \
 		pcre.1:${PORTSDIR}/devel/pcre \
-		avahi-core:${PORTSDIR}/net/avahi-app \
 		enchant.1:${PORTSDIR}/textproc/enchant \
-		ungif.5:${PORTSDIR}/graphics/libungif \
+		gif.5:${PORTSDIR}/graphics/giflib \
 		png.6:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		idn:${PORTSDIR}/dns/libidn \
-		utempter:${PORTSDIR}/sysutils/libutempter \
 		hal.1:${PORTSDIR}/sysutils/hal \
-		lzma.0:${PORTSDIR}/archivers/xz \
-		smbclient.0:${PORTSDIR}/net/samba-libsmbclient
-RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
-		update-mime-database:${PORTSDIR}/misc/shared-mime-info \
-		showrgb:${PORTSDIR}/x11/rgb \
-		iceauth:${PORTSDIR}/x11/iceauth \
-		xauth:${PORTSDIR}/x11/xauth
+		qca.2:${PORTSDIR}/devel/qca \
+		HUpnp.1:${PORTSDIR}/net/hupnp \
+		attica.0:${PORTSDIR}/x11-toolkits/attica \
+		polkit-qt-core-1.1:${PORTSDIR}/sysutils/polkit-qt \
+		smbclient.0:${PORTSDIR}/net/samba-libsmbclient \
+		dbusmenu-qt.2:${PORTSDIR}/devel/libdbusmenu-qt
 
-CONFLICTS=	kdebase-workspace-4.1.*
+BUILD_DEPENDS=	${LOCALBASE}/lib/libhspell.a:${PORTSDIR}/textproc/hspell \
+		${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
+		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
+		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+
+RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \
+		xauth:${PORTSDIR}/x11/xauth \
+		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml \
+		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
+
+CONFLICTS=	kdebase-runtime-4.5.[0-5]
 
 LATEST_LINK=	${PORTNAME}4
 
-USE_KDE4=	kdeprefix kdehier automoc4 sharedmime
-KDE4_BUILDENV=	yes
 USE_BZIP2=	yes
+USE_FAM=	yes
 USE_GETTEXT=	yes
-USE_BISON=	build
-USE_OPENSSL=	yes
-USE_QT_VER=	4
-QT_COMPONENTS=	corelib dbus gui network opengl qt3support \
-		qtestlib script sql svg xml designer phonon \
-		assistant svg qdbusviewer makeqpf imageformats \
-		qmake_build moc_build rcc_build uic_build
 USE_GNOME=	libxml2 libxslt
+USE_KDE4=	automoc4 kdehier kdeprefix oxygen sharedmime
+KDE4_BUILDENV=	yes
+USE_OPENSSL=	yes
+USE_PERL5=	yes
+USE_QT_VER=	4
+QT_COMPONENTS=	dbus declarative designer gui imageformats_run \
+		network opengl phonon qdbusviewer_run qt3support \
+		qtestlib script sql svg webkit xml \
+		moc_build qmake_build rcc_build uic_build
+USE_XORG=	sm x11 xcursor xext xfixes xrender xtst
 MAKE_JOBS_SAFE=	yes
 
-CMAKE_ARGS+=	-DWITH_FAM:BOOL=Off \
-		-DWITH_ACL:BOOL=Off \
-		-DKDE4_PREFIX:String=${KDE4_PREFIX}
+CMAKE_ARGS+=	-DWITH_ACL:BOOL=Off \
+		-DWITH_FAM:BOOL=On \
+		-DHUPNP_INCLUDE_PATH:PATH="${LOCALBASE}/include" \
+		-D_KDE_DEFAULT_HOME_POSTFIX:STRING="4"
 
 MAN1=	checkXML.1 \
 	kde4-config.1 \
@@ -79,17 +87,14 @@ MAN8=	kbuildsycoca4.8 \
 
 .include <bsd.port.pre.mk>
 
-.if exists(${LOCALBASE}/include/avahi-compat-libdns_sd/dns_sd.h) || defined(WITH_LIBDNS)
-LIB_DEPENDS+=	avahi-qt4:${PORTSDIR}/net/avahi-qt4 \
-		dns_sd:${PORTSDIR}/net/avahi-libdns
-.else
-.if ${OSVERSION} < 3015
-LIB_DEPENDS+=	dns_sd:${PORTSDIR}/net/mDNSResponder
-.endif
+.if ${OSVERSION} < 4004
+LIB_DEPENDS+=	lzma.5:${PORTSDIR}/archivers/xz
 .endif
 
+LIB_DEPENDS+=	utempter:${PORTSDIR}/sysutils/libutempter
+
 post-patch:
-	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
+	${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
 		${PATCH_WRKSRC}/kde3support/kdeui/k3sconfig.cpp \
 		${PATCH_WRKSRC}/kdecore/network/k3socks.cpp \
 		${PATCH_WRKSRC}/kdecore/kernel/kstandarddirs.cpp \
@@ -98,9 +103,15 @@ post-patch:
 		${PATCH_WRKSRC}/kio/kssl/kopenssl.cpp \
 		${PATCH_WRKSRC}/kio/kio/ksambashare.cpp \
 		${PATCH_WRKSRC}/kjsembed/qtonly/FindQJSInternal.cmake
-#Fix rgb named colors database path.
+# Fix rgb named colors database path.
 	${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|g' \
 		${PATCH_WRKSRC}/kdeui/colors/kcolordialog.cpp
+# Ports fails to locate pimlibs and workspace when PREFIX!=KDE4_PREFIX.
+# More search paths resolve the problem.
+.for module in KdepimLibs KDE4Workspace
+	${REINPLACE_CMD} -e '/find_package/s,PATHS,PATHS ${KDE4_PREFIX}/lib/cmake/${module},' \
+		${PATCH_WRKSRC}/cmake/modules/Find${module}.cmake
+.endfor
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
@@ -108,19 +119,18 @@ pre-configure:
 		${PATCH_WRKSRC}/cmake/modules/*.cmake \
 		${PATCH_WRKSRC}/ConfigureChecks.cmake \
 		${PATCH_WRKSRC}/doc/api/doxygen.sh
-#	FindBerkeleyDB.cmake should be rewritten to support multiple version
-#	provided by ports, instead of hardcoding one of them
-# 	${REINPLACE_CMD} -e 's|/usr/local/include/db4|${BDB_INCLUDE_DIR}|' \
-# 		-e 's|NAMES db|NAMES ${BDB_LIB_NAME} ${LOCALBASE}/lib|' \
-# 		${PATCH_WRKSRC}/cmake/modules/FindBerkeleyDB.cmake
-#	prevent updating mime during build
-#	${REINPLACE_CMD} -e '/^update_xdg_mimetypes/d; /SharedMimeInfo/d' \
-#		${PATCH_WRKSRC}/mimetypes/CMakeLists.txt
-#	default KDEHOME dir
-	${REINPLACE_CMD} -e '/KDE_DEFAULT_HOME/s|.kde|.kde4|' \
+#	${REINPLACE_CMD} -e 's|/usr/include|${LOCALBASE}/include|g' \
+#		${PATCH_WRKSRC}/cmake/modules/FindDNSSD.cmake
+	${REINPLACE_CMD} -e 's|soprano/cmake|cmake/Modules|g' \
+		${PATCH_WRKSRC}/cmake/modules/FindSoprano.cmake
+# FindBerkeleyDB.cmake should be rewritten to support multiple version
+# provided by ports, instead of hardcoding one of them
+#	${REINPLACE_CMD} -e 's|/usr/local/include/db4|${BDB_INCLUDE_DIR}|' \
+#		-e 's|NAMES db|NAMES ${BDB_LIB_NAME} ${LOCALBASE}/lib|' \
+#		${PATCH_WRKSRC}/cmake/modules/FindBerkeleyDB.cmake
+# When XSync (xext) is found, xscreensaver is just used as a fallback,
+# then we can disable it.
+	${REINPLACE_CMD} -e '/macro_bool_to_01/ s|^.*X11_Xscreensaver.*$$|set(HAVE_XSCREENSAVER 0)|' \
 		${PATCH_WRKSRC}/CMakeLists.txt
-
-post-install:
-	@-update-mime-database ${PREFIX}/share/mime
 
 .include <bsd.port.post.mk>
