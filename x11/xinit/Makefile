@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xinit/Makefile,v 1.2 2009/03/25 01:42:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/xinit/Makefile,v 1.3 2011/05/07 15:29:45 laffer1 Exp $
 
 PORTNAME=	xinit
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -15,5 +15,9 @@ PLIST_FILES=	bin/startx bin/xinit lib/X11/xinit/xinitrc
 PLIST_DIRS=	lib/X11/xinit
 
 MAN1=		startx.1 xinit.1
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|hexdump|/usr/bin/hexdump|' ${WRKSRC}/startx.cpp
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/man/xinit.man
 
 .include <bsd.port.mk>
