@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/libX11/Makefile,v 1.7 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libX11/Makefile,v 1.8 2011/05/02 23:56:37 laffer1 Exp $
 
 PORTNAME=	libX11
-PORTVERSION=	1.3.6
+PORTVERSION=	1.4.4
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -17,9 +17,14 @@ XORG_CAT=	lib
 USE_XORG=	bigreqsproto xau xcmiscproto xdmcp xextproto xtrans \
 		kbproto:both inputproto xf86bigfontproto xproto:both
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
-			--with-xcb=yes \
+			--without-xmlto \
 			--disable-specs
 CONFIGURE_ENV+=	ac_cv_path_PS2PDF=""
 
 .include "${.CURDIR}/manpages"
+
+post-patch:
+	@${REINPLACE_CMD} '/^install-data-am:/,/^$$/ \
+		s/install-specDATA//' ${WRKSRC}/nls/Makefile.in
+
 .include <bsd.port.mk>
