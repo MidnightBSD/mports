@@ -1,10 +1,10 @@
 #
-# $MidnightBSD: mports/misc/kde4-shared-mime-info/Makefile,v 1.1 2008/12/05 19:48:21 ctriv Exp $
+# $MidnightBSD: mports/misc/kde4-shared-mime-info/Makefile,v 1.2 2009/04/11 20:20:01 laffer1 Exp $
 #
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	1.0
-PORTREVISION=	1
+PORTVERSION=	1.1
+PORTREVISION=	0
 CATEGORIES=	misc kde
 MASTER_SITES=	# none
 PKGNAMEPREFIX=	kde4-
@@ -17,7 +17,7 @@ LICENSE=	unknown
 
 RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-USE_KDE4=	kdeprefix
+USE_KDE4=	kdeprefix kdehier
 
 NO_BUILD=	yes
 NO_WRKSUBDIR=	yes
