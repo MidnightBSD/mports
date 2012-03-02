@@ -1,13 +1,9 @@
-# New ports collection makefile for:	getopt
-# Date created:	2003-06-05
-# Whom:		Sergei Kolobov <sergei@kolobov.com>
-#
-# $MidnightBSD: mports/misc/getopt/Makefile,v 1.1 2008/01/01 21:54:42 laffer1 Exp $
+# $MidnightBSD: mports/misc/getopt/Makefile,v 1.2 2008/09/21 20:29:23 laffer1 Exp $
 # $FreeBSD: ports/misc/getopt/Makefile,v 1.6 2005/11/21 13:15:48 sergei Exp $
-#
 
 PORTNAME=	getopt
 PORTVERSION=	1.1.4
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://software.frodo.looijaard.name/getopt/files/
 
@@ -22,10 +18,13 @@ USE_GMAKE=		yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
-MAKE_ENV=	LIBCGETOPT=0 CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
+MAKE_ENV=	LIBCGETOPT=0
 
 MAN1=		getopt.1
 DOCS=		Changelog README
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|CC=gcc|CC=${CC}|' ${WRKSRC}/Makefile
 
 .if !defined(NOPORTDOCS)
 post-install:
