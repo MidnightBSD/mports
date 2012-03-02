@@ -1,35 +1,47 @@
-# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.12 2011/05/02 13:43:50 laffer1 Exp $
+# $MidnightBSD: mports/x11/dmenu/Makefile,v 1.13 2011/05/17 03:33:51 laffer1 Exp $
 # $FreeBSD: ports/x11/dmenu/Makefile,v 1.4 2006/10/08 10:32:05 erwin Exp $
 
 PORTNAME=	dmenu
-PORTVERSION=	4.2.1
+PORTVERSION=	4.5
 CATEGORIES=	x11
 MASTER_SITES=	http://dl.suckless.org/tools/ \
 		http://schot.a-eskwadraat.nl/files/
 
+PATCH_SITES=	http://tools.suckless.org/dmenu/patches/ \
+		http://schot.a-eskwadraat.nl/files/
+PATCH_DIST_STRIP=-p1
+
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	X11 menu application (not only) for the dwm window manager
+COMMENT=	X11 menu application designed for the dwm window manager
 LICENSE=	mit
 
-USE_XORG=	x11 xinerama
+OPTIONS=	XINERAMA	"Enable Xinerama support"	On \
+		XFT		"Enable Xft support"		Off
 
-FAKE_OPTS=	trueprefix
+USE_XORG=	x11
 
-MAN1=		dmenu.1
-PLIST_FILES=	bin/dmenu bin/dmenu_path bin/dmenu_run
+MAN1=		dmenu.1 stest.1
+PLIST_FILES=	bin/dmenu bin/dmenu_run bin/stest
 
-EXTRA_FAKE_MAKEARGS= MANPREFIX=${PREFIX}
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_XINERAMA)
+USE_XORG+=	xinerama
+.endif
+
+.if defined(WITH_XFT)
+USE_XORG+=	xft
+PATCHFILES+=	${PORTNAME}-${PORTVERSION}-xft.diff
+.endif
 
 post-patch:
 	@${GREP} -Rl '%%[[:alpha:]]\+%%' ${WRKSRC}|${XARGS} ${REINPLACE_CMD} \
-		-e "s,%%PREFIX%%,${PREFIX},g" \
-		-e "s,%%LOCALBASE%%,${LOCALBASE},g" \
-		-e "s,%%MANPREFIX%%,${MANPREFIX},g"
+	         -e "s,%%PREFIX%%,${PREFIX},g" \
+	         -e "s,%%LOCALBASE%%,${LOCALBASE},g" \
+	         -e "s,%%MANPREFIX%%,${MANPREFIX},g"
 .if defined(WITHOUT_XINERAMA)
 	@${REINPLACE_CMD} -e 's,$${XINERAMALIBS},,g' \
-		-e 's,$${XINERAMAFLAGS},,g' ${WRKSRC}/config.mk
+	         -e 's,$${XINERAMAFLAGS},,g' ${WRKSRC}/config.mk
 .endif
 
-
 .include <bsd.port.mk>
-
