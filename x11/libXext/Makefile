@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/libXext/Makefile,v 1.4 2009/03/15 03:57:12 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXext/Makefile,v 1.5 2011/05/03 00:14:21 laffer1 Exp $
 
 PORTNAME=	libXext
-PORTVERSION=	1.1.2
+PORTVERSION=	1.3.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -11,6 +12,7 @@ LICENSE=	x11
 
 XORG_CAT=	lib
 USE_XORG=	xproto x11 xextproto:both xau
+CONFIGURE_ARGS+=--disable-specs --without-xmlto
 
 MAN3=		DBE.3 \
 		DPMSCapable.3 \
