@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/babl/Makefile,v 1.5 2011/02/02 21:35:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/babl/Makefile,v 1.6 2011/05/01 19:26:08 laffer1 Exp $
 
 PORTNAME=	babl
-PORTVERSION=	0.1.4
+PORTVERSION=	0.1.6
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
