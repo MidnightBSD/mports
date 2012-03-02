@@ -1,4 +1,3 @@
-MD5 (xorg/proto/printproto-1.0.4.tar.bz2) = 7321847a60748b4d2f1fa16db4b6ede8
-SHA256 (xorg/proto/printproto-1.0.4.tar.bz2) = f059a93188e7143dbb6cc55e31ccf81b976776aa3023bfa57f47501fd1bfd3be
-RMD160 (xorg/proto/printproto-1.0.4.tar.bz2) = ab23d31e5b13fd7260f2a10d789f5d8e89bf775f
-SIZE (xorg/proto/printproto-1.0.4.tar.bz2) = 49579
+SHA256 (xorg/proto/printproto-1.0.5.tar.bz2) = 1298316cf43b987365ab7764d61b022a3d7f180b67b423eed3456862d155911a
+RMD160 (xorg/proto/printproto-1.0.5.tar.bz2) = 8a4f72eb4f21c3297a68381c5254fc7aea26a4ed
+SIZE (xorg/proto/printproto-1.0.5.tar.bz2) = 222559
