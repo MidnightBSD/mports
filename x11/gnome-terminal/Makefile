@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.7 2010/12/15 02:42:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-terminal/Makefile,v 1.8 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome-terminal
 PORTVERSION=	2.32.1
@@ -20,8 +20,8 @@ USE_XORG=	sm
 USE_GNOME=	gnomeprefix gnomehack intlhack gconf2 vte gnomedocutils \
 		libgnome
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	gnome-terminal.schemas
 

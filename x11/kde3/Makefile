@@ -1,15 +1,9 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	KDE3
-# Date created:				Sun May 14 2000 00:50:02
-# Whom:					Will Andrews <will@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/kde3/Makefile,v 1.92 2006/09/25 07:19:57 lofi Exp $
-# $MidnightBSD: mports/x11/kde3/Makefile,v 1.5 2008/09/17 21:45:53 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11/kde3/Makefile,v 1.6 2012/02/16 19:46:49 laffer1 Exp $
 
 PORTNAME?=	kde
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 kde
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -37,7 +31,7 @@ CONFIG_FILE=	${LOCALBASE}/etc/kde-meta.conf
 ## arts, kdebase and kdelibs
 
 ALL_MODULES=	KDEACCESSIBILITY KDEADMIN KDEARTWORK KDEVELOP KDEEDU\
-		KDEGAMES KDEGRAPHICS KDENETWORK KOFFICE KDEPIM\
+		KDEGAMES KDEGRAPHICS KDENETWORK KDEPIM\
 		KDESDK KDETOYS KDEUTILS KDEWEBDEV 
 
 # we have to avoid a few for now  KDEMULTIMEDIA

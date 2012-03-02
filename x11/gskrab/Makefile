@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/gskrab/Makefile,v 1.1 2010/01/21 01:19:49 laffer1 Exp $
 
 PORTNAME=	gskrab
 PORTVERSION=	0.0.1
@@ -11,7 +11,6 @@ COMMENT=	GNUstep Keyboard Grabber
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes

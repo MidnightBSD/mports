@@ -2,10 +2,10 @@
 # Date created:		Sun Nov  4 11:17:58 EST 2007
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.6 2010/02/28 00:26:10 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome2-lite/Makefile,v 1.7 2010/08/14 04:40:30 laffer1 Exp $
 #
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 PKGNAMESUFFIX=	-lite
 
