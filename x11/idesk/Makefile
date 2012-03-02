@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/idesk/Makefile,v 1.6 2010/01/01 17:24:35 laffer1 Exp $
+# $MidnightBSD: mports/x11/idesk/Makefile,v 1.7 2011/05/02 23:47:21 laffer1 Exp $
 
 PORTNAME=	idesk
 PORTVERSION=	0.7.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -13,7 +13,6 @@ LICENSE=	bsd3
 BUILD_DEPENDS=	imlib2-config:${PORTSDIR}/graphics/imlib2
 LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
-USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes

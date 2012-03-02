@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-screensaver/Makefile,v 1.1 2010/02/28 01:10:25 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-screensaver/Makefile,v 1.2 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome-screensaver
 PORTVERSION=	2.30.2
+PORTREVISION=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -10,8 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME screen saver and locker
 LICENSE=	gpl2
 
-LIB_DEPENDS=	notify.1:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	notify.4:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS=	xscreensaver-gl-helper:${PORTSDIR}/x11/xscreensaver-gnome-hacks
+
+CONFLICTS=	gnome-screensaver-3.[0-9]*
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
@@ -23,8 +26,8 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gnomemenus libgnomekbd \
 CONFIGURE_ARGS=	--with-gdm-config=${LOCALBASE}/etc/gdm/custom.conf \
 		--with-xscreensaverdir=${XSCREENSAVER_DIR} \
 		--with-xscreensaverhackdir=${LOCALBASE}/bin/xscreensaver-hacks
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	gnome-screensaver.schemas
 MAN1=		gnome-screensaver-command.1 gnome-screensaver-preferences.1 \
@@ -73,20 +76,20 @@ post-patch:
 
 pre-install:
 	@${CAT} ${.CURDIR}/pkg-plist > ${PLIST}
-	@cd ${XSCREENSAVER_DIR} && ${FIND} -s * -maxdepth 1 -type f -name "*.xml" | \
-		${GREP} -Ev ${XSCREENSAVER_EXCLUDE} | \
-		${SED} -e 's:^:${SCREENSAVER_DIR}/:' | \
-		${SED} -e 's:[.]xml$$:.desktop:' >> ${PLIST}
+#	@cd ${FAKE_DESTDIR}${XSCREENSAVER_DIR} && ${FIND} -s * -maxdepth 1 -type f -name "*.xml" | \
+#		${GREP} -Ev ${XSCREENSAVER_EXCLUDE} | \
+#		${SED} -e 's:^:${SCREENSAVER_DIR}/:' | \
+#		${SED} -e 's:[.]xml$$:.desktop:' >> ${PLIST}
 	@${ECHO_CMD} @dirrm ${SCREENSAVER_DIR} >> ${PLIST}
 
 post-install:
 	${CHOWN} root ${PREFIX}/libexec/gnome-screensaver-dialog
 	${CHMOD} +s ${PREFIX}/libexec/gnome-screensaver-dialog
 	${MKDIR} ${PREFIX}/${SCREENSAVER_DIR}
-	cd ${PREFIX}/${SCREENSAVER_DIR} && \
-		${FIND} -s ${XSCREENSAVER_DIR} -maxdepth 1 -type f -name "*.xml" | \
-			${GREP} -Ev ${XSCREENSAVER_EXCLUDE} | \
-			${XARGS} ${WRKSRC}/data/migrate-xscreensaver-config.sh
+#	cd ${PREFIX}/${SCREENSAVER_DIR} && \
+#		${FIND} -s ${XSCREENSAVER_DIR} -maxdepth 1 -type f -name "*.xml" | \
+#			${GREP} -Ev ${XSCREENSAVER_EXCLUDE} | \
+#			${XARGS} ${WRKSRC}/data/migrate-xscreensaver-config.sh
 .if defined(WITH_PAM)
 	${INSTALL_DATA} ${WRKDIR}/gnome-screensaver.pam ${PREFIX}/etc/pam.d/gnome-screensaver
 .endif
