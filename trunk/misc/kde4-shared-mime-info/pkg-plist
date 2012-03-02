@@ -10,7 +10,7 @@
 %%HACK%%share/mime/video/.keep_me
 %%HACK%%share/mime/x-content/.keep_me
 %%HACK%%share/mime/x-epoc/.keep_me
-@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime > /dev/null || /usr/bin/true
+%%HACK%%@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime > /dev/null || /usr/bin/true
 %%HACK%%@unexec [ -f %D/share/mime/XMLnamespaces ] && rm -f %D/share/mime/XMLnamespaces || true
 %%HACK%%@unexec [ -f %D/share/mime/aliases ] && rm -f %D/share/mime/aliases || true
 %%HACK%%@unexec [ -f %D/share/mime/generic-icons ] && rm -f %D/share/mime/generic-icons || true
@@ -35,4 +35,3 @@
 %%HACK%%@dirrmtry share/mime/audio
 %%HACK%%@dirrmtry share/mime/application
 %%HACK%%@dirrmtry share/mime
-%%HACK%%@dirrmtry share
