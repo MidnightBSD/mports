@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: ports/x11/kde4/Makefile,v 1.100 2008/08/09 16:52:23 miwi Exp $
+# $MidnightBSD: mports/x11/kde4/Makefile,v 1.1 2009/01/05 07:47:33 ctriv Exp $
 #
 
 PORTNAME?=	kde4
@@ -13,70 +13,90 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT?=	The "meta-port" for KDE
 LICENSE=	agg
 
-OPTIONS=	KDEACCESSIBILITY "Accessibility applications" on \
-		KDEADMIN "KDE Administration applications" on \
-    		KDEARTWORK "Additional themes, sounds, etc" on \
-		KDEGAMES "Games like kolf, patience, atlantik, etc" on \
-		KDEEDU "Educational applications" on \
-		KDEGRAPHICS "Graphics utilities like kview, kpaint, etc" on \
-		KDENETWORK "Network-related programs like kopete, etc" on \
-		KDEMULTIMEDIA "Multimedia utilities like noatun, etc" on \
-		KDEPIM "Personal Information Management: mail, etc" on \
-		KDEPLASMA "Extra plasmoids for KDE" on \
-		KDESDK "KDE software development kit" on \
-		KDETOYS "Miscellaneous small applications" on \
-		KDEUTILS "Utilities like kcalc, kcharselect, etc" on \
-		KDEWEBDEV "Website development environment" on
+LATEST_LINK=	kde4
 
-USE_KDE4=	kdelibs kdebase pimlibs workspace kdeprefix runtime
+OPTIONS=	KDEACCESSIBILITY "Accessibility applications" on \
+		KDEADMIN "Administration utilities" on \
+    		KDEARTWORK "Additional screensavers and wallpapers" on \
+		KDEBINDINGS "Bindings for programming languages" off \
+		KDEEDU "Entertaining, educational programs" on \
+		KDEGAMES "Collection of games" on \
+		KDEGRAPHICS "Graphics utilities" on \
+		KDEMULTIMEDIA "Multimedia applications" on \
+		KDENETWORK "Network-related programs" on \
+		KDEPIM "Personal information management" on \
+		KDEPLASMA "Extra plasmoids and plugins for Plasma" on \
+		KDESDK "Software development kit" on \
+		KDETOYS "Miscellaneous small applications" on \
+		KDEUTILS "Set of generic utilities" on \
+		KDEWEBDEV "Web development environment" on
+
+USE_KDE4=	baseapps kdelibs kdeprefix oxygen pimlibs runtime workspace
 NO_BUILD=	yes
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if !defined(WITHOUT_KDEACCESSIBILITY)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kmag:${PORTSDIR}/accessibility/kdeaccessibility4
+.ifndef(WITHOUT_KDEACCESSIBILITY)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kmag:${PORTSDIR}/accessibility/kdeaccessibility4
 .endif
-.if !defined(WITHOUT_KDEADMIN)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kuser:${PORTSDIR}/sysutils/kdeadmin4
+
+.ifndef(WITHOUT_KDEADMIN)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kuser:${PORTSDIR}/sysutils/kdeadmin4
 .endif
-.if !defined(WITHOUT_KDEARTWORK)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kbanner.kss:${PORTSDIR}/x11-themes/kdeartwork4
+
+.ifndef(WITHOUT_KDEARTWORK)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kxsconfig:${PORTSDIR}/x11-themes/kdeartwork4
 .endif
-.if !defined(WITHOUT_KDEGAMES)
-RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kjumpingcube:${PORTSDIR}/games/kdegames4
+
+.ifdef(WITH_KDEBINDINGS)
+RUN_DEPENDS+=	kdebindings>=4.1.0:${PORTSDIR}/devel/kdebindings4
 .endif
-.if !defined(WITHOUT_KDEEDU)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/khangman:${PORTSDIR}/misc/kdeedu4
+
+.ifndef(WITHOUT_KDEEDU)
+RUN_DEPENDS+=	kdeedu>=4.1.0:${PORTSDIR}/misc/kdeedu4
 .endif
-.if !defined(WITHOUT_KDEGRAPHICS)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/gwenview:${PORTSDIR}/graphics/kdegraphics4
+
+.ifndef(WITHOUT_KDEGAMES)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kmines:${PORTSDIR}/games/kdegames4
 .endif
-.if !defined(WITHOUT_KDENETWORK)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kppp:${PORTSDIR}/net/kdenetwork4
+
+.ifndef(WITHOUT_KDEGRAPHICS)
+RUN_DEPENDS+=	kdegraphics>=4.1.0:${PORTSDIR}/graphics/kdegraphics4
 .endif
-.if !defined(WITHOUT_KDEMULTIMEDIA)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kmix:${PORTSDIR}/multimedia/kdemultimedia4
+
+.ifndef(WITHOUT_KDEMULTIMEDIA)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kmix:${PORTSDIR}/multimedia/kdemultimedia4
 .endif
-.if !defined(WITHOUT_KDEPIM)
-RUN_DEPENDS+=	${KDE4_PREFIX}/bin/korganizer:${PORTSDIR}/deskutils/kdepim4
+
+.ifndef(WITHOUT_KDENETWORK)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kget:${PORTSDIR}/net/kdenetwork4
 .endif
-.if !defined(WITHOUT_KDEPLASMA)
-RUN_DEPENDS+=	kdeplasma-addons>=4:${PORTSDIR}/deskutils/kdeplasma-addons
+
+.ifndef(WITHOUT_KDEPIM)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kmail:${PORTSDIR}/deskutils/kdepim4
 .endif
-.if !defined(WITHOUT_KDETOYS)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/amor:${PORTSDIR}/x11-clocks/kdetoys4
+
+.ifndef(WITHOUT_KDEPLASMA)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/lancelot:${PORTSDIR}/deskutils/kdeplasma-addons
 .endif
-.if !defined(WITHOUT_KDESDK)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/cervisia:${PORTSDIR}/devel/kdesdk4
+
+.ifndef(WITHOUT_KDESDK)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kompare:${PORTSDIR}/devel/kdesdk4
 .endif
-.if !defined(WITHOUT_KDEUTILS)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kdessh:${PORTSDIR}/misc/kdeutils4
+
+.ifndef(WITHOUT_KDETOYS)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kteatime:${PORTSDIR}/x11-clocks/kdetoys4
 .endif
-.if !defined(WITHOUT_KDEWEBDEV)
-RUN_DEPENDS+=   ${KDE4_PREFIX}/bin/kommander:${PORTSDIR}/www/kdewebdev4
+
+.ifndef(WITHOUT_KDEUTILS)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/kcalc:${PORTSDIR}/misc/kdeutils4
+.endif
+
+.ifndef(WITHOUT_KDEWEBDEV)
+RUN_DEPENDS+=	${KDE4_PREFIX}/bin/klinkstatus:${PORTSDIR}/www/kdewebdev4
 .endif
 
 do-install:
 	${DO_NADA}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
