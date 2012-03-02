@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.7 2011/05/14 22:30:47 laffer1 Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.8 2012/02/28 00:54:07 laffer1 Exp $
 
 PORTNAME=	shared-mime-info
 PORTVERSION=	0.90
@@ -14,8 +14,10 @@ GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 intltool gnomehack intlhack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_JOBS_UNSAFE=	yes
+
 MAN1=		update-mime-database.1
 
 PKGINSTALL=	${WRKDIR}/pkg-install
