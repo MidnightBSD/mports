@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.10 2011/02/02 21:38:09 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-themes/Makefile,v 1.11 2011/05/28 06:20:57 laffer1 Exp $
 
 PORTNAME=	gnome-themes
 PORTVERSION=	2.32.1
@@ -22,7 +22,7 @@ USE_AUTOTOOLS=	libtool
 INSTALLS_ICONS=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomehack gnomeprefix intlhack metacity gtk20
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
