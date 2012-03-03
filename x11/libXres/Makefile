@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/x11/libXres/Makefile,v 1.2 2009/03/14 20:30:17 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXres/Makefile,v 1.3 2011/05/03 00:25:57 laffer1 Exp $
 
 PORTNAME=	libXres
-PORTVERSION=	1.0.4
+PORTVERSION=	1.0.5
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Resource usage library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto resourceproto xproto
+USE_XORG=	x11 xext xextproto resourceproto xproto:both
 
 MAN3=		XRes.3 \
 		XResQueryClients.3 \

@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/xkeyboard-config/Makefile,v 1.4 2007/07/27 09:51:19 pav Exp $
-# $MidnightBSD: mports/x11/xkeyboard-config/Makefile,v 1.1 2007/10/11 20:06:21 ctriv Exp $
+# $MidnightBSD: mports/x11/xkeyboard-config/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
 
 PORTNAME=	xkeyboard-config
 PORTVERSION=	1.8
@@ -9,7 +9,7 @@ DISTNAME=	xkeyboard-config-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Keyboard Configuration Database
-LICENSE=	x11
+LICENSE=	mit
 
 BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
 

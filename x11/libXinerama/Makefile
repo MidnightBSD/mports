@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXinerama/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXinerama/Makefile,v 1.5 2011/05/03 00:20:37 laffer1 Exp $
 
 PORTNAME=	libXinerama
 PORTVERSION=	1.1.1
@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 Xinerama library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto xineramaproto:both

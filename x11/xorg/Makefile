@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xorg/Makefile,v 1.8 2009/05/05 01:21:19 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg/Makefile,v 1.9 2011/05/07 16:17:51 laffer1 Exp $
 
 PORTNAME=	xorg
 PORTVERSION=	7.5.1
@@ -21,7 +21,7 @@ RUN_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmap
 
 # doc
 .if !defined(NOPORTDOCS)
-RUN_DEPENDS+=	${LOCALBASE}/share/X11/doc/hardcopy/BDF/bdf.PS.gz:${PORTSDIR}/x11/xorg-docs
+RUN_DEPENDS+=	${LOCALBASE}/share/doc/xorg-docs/README.xml:${PORTSDIR}/x11/xorg-docs
 .endif
 
 # app, lib, font, driver

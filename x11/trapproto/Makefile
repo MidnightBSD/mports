@@ -3,7 +3,7 @@
 # Whom:					Eric Anholt <anholt@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/trapproto/Makefile,v 1.1 2007/05/19 20:27:24 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/trapproto/Makefile,v 1.1 2007/10/05 15:15:33 ctriv Exp $
 #
 
 PORTNAME=	trapproto
@@ -12,7 +12,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DEC-XTRAP extension headers
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	proto
 

@@ -1,18 +1,13 @@
-# New ports collection makefile for:	xdbedizzy
-# Date Created:				17 Feb 2006
-# Whom:					Florent Thoumie <flz@FreeBSD.org>
-#
 # $FreeBSD: ports/x11/xdbedizzy/Makefile,v 1.1 2007/05/19 20:27:45 flz Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/x11/xdbedizzy/Makefile,v 1.1 2007/10/04 21:40:04 ctriv Exp $
 
 PORTNAME=	xdbedizzy
-PORTVERSION=	1.0.2
+PORTVERSION=	1.1.0
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Demo of DBE creating a double buffered spinning scene
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xp xext xprintutil xp xau xext

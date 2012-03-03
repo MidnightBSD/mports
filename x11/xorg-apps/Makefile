@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xorg-apps/Makefile,v 1.5 2011/05/08 13:45:59 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-apps/Makefile,v 1.6 2011/05/13 14:35:21 laffer1 Exp $
 
 PORTNAME=	xorg-apps
 PORTVERSION=	7.5.1
@@ -19,7 +19,7 @@ COMPONENTS=	appres bitmap xf86dga:dga iceauth luit \
 		xhost xinput xkbcomp xkbevd xkbutils:xkbvleds xkill \
 		xlsatoms xlsclients xmodmap xpr xprop xrandr xrdb \
 		xrefresh xset xsetmode xsetroot xvinfo xwd xwininfo \
-		xwud x11-fonts/xfontsel xmessage
+		xwud xmessage
 
 # These three are added for convenience purposes only.
 COMPONENTS+=	x11-wm/twm:twm x11-clocks/xclock:xclock xinit xterm

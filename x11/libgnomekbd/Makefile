@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.6 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnomekbd/Makefile,v 1.7 2011/05/28 06:23:34 laffer1 Exp $
 # $FreeBSD: ports/x11/libgnomekbd/Makefile,v 1.7 2007/05/28 23:22:29 mezz Exp $
 
 PORTNAME=	libgnomekbd
@@ -20,9 +20,13 @@ INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	desktop_gnome_peripherals_keyboard_xkb.schemas
+
+#post-patch:
+#	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
+#	    	's|-Werror||g'
 
 .include <bsd.port.mk>
