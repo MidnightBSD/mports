@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.9 2011/05/07 21:39:23 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-radeonhd/Makefile,v 1.10 2011/10/09 20:02:11 laffer1 Exp $
 
 PORTNAME=	xf86-video-radeonhd
 PORTVERSION=	1.3.0
@@ -7,7 +7,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org ati RadeonHD display driver
-LICENSE=	x11
+LICENSE=	mit
 
 OPTIONS=	UTILS "Install rhd_conntest and rhd_dump utilities" off
 
