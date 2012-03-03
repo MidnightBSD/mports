@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.15 2011/05/01 19:27:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-server/Makefile,v 1.16 2011/08/27 19:49:56 laffer1 Exp $
 
 PORTNAME=	xorg-server
 PORTVERSION=	1.7.7
@@ -10,7 +10,7 @@ DISTFILES=	xorg-server-${PORTVERSION}.tar.bz2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org X server and related programs
-LICENSE=	x11
+LICENSE=	mit
 
 LIB_DEPENDS=	drm:${PORTSDIR}/graphics/libdrm
 RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base.xml:${PORTSDIR}/x11/xkeyboard-config
