@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-mach64/Makefile,v 1.1 2009/03/15 20:52:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-mach64/Makefile,v 1.2 2011/05/07 21:26:23 laffer1 Exp $
 
 PORTNAME=	xf86-video-mach64
 PORTVERSION=	6.8.2
@@ -6,7 +6,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org mach64 display driver
-LICENSE=	x11
+LICENSE=	mit
 
 USE_GL=		gl
 
