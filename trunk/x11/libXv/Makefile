@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11/libXv/Makefile,v 1.2 2009/03/14 20:19:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXv/Makefile,v 1.3 2011/05/03 13:36:04 laffer1 Exp $
 
 PORTNAME=	libXv
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.6
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Video Extension library
-LICENSE=	x11	
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext xextproto videoproto:both xproto:both

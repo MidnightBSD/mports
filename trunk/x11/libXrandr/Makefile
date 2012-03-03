@@ -3,16 +3,16 @@
 # Whom:				Eric Anholt <anholt@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/libXrandr/Makefile,v 1.13 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXrandr/Makefile,v 1.2 2009/03/14 20:37:15 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXrandr/Makefile,v 1.3 2009/05/04 02:15:03 laffer1 Exp $
 #
 
 PORTNAME=	libXrandr
-PORTVERSION=	1.3.0
+PORTVERSION=	1.3.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Resize and Rotate extension library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 randrproto:both xext xextproto xrender renderproto xproto:both

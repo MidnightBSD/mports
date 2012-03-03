@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/wrapper/Makefile,v 1.1 2009/05/08 14:13:40 laffer1 Exp $
 
 PORTNAME=	wrapper
 PORTVERSION=	1.0
@@ -7,7 +7,7 @@ DISTNAME=	# intentionally left blank
 EXTRACT_SUFX=	# intentionally left blank
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Wrapper for xorg server
+COMMENT=	Wrapper for X.org server
 LICENSE=	agg
 
 RUN_DEPENDS=	Xorg:${PORTSDIR}/x11-servers/xorg-server

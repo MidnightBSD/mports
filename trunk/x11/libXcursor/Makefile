@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/libXcursor/Makefile,v 1.22 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.2 2011/05/03 00:08:48 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXcursor/Makefile,v 1.3 2011/09/20 23:30:11 laffer1 Exp $
 
 PORTNAME=	libXcursor
 PORTVERSION=	1.1.12
@@ -7,7 +7,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X client-side cursor loading library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	xrender x11 xfixes fixesproto xproto:both \

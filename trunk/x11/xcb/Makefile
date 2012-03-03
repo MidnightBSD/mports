@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/x11/xcb/Makefile,v 1.5 2009/09/20 03:01:10 laffer1 Exp $
+# $MidnightBSD: mports/x11/xcb/Makefile,v 1.6 2011/05/07 02:45:04 laffer1 Exp $
 
 PORTNAME=	xcb
 PORTVERSION=	2.4
 PORTREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	http://www.goof.com/pcg/marc/data/
+MASTER_SITES=	http://oldhome.schmorp.de/marc/data/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool for managing x11 cut-buffers
