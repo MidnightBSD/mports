@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.10 2010/05/29 14:03:12 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.11 2011/05/07 21:14:56 laffer1 Exp $
 
 PORTNAME=	xf86-video-ati
-PORTVERSION=	6.14.1
+PORTVERSION=	6.14.3
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org ati display driver
-LICENSE=	x11
+LICENSE=	mit
 
 USE_GL=		gl
 
