@@ -3,7 +3,7 @@
 # Whom:					Florent Thoumie <flz@FreeBSD.org>
 #
 # $FreeBSD: ports/x11/xplsprinters/Makefile,v 1.1 2007/05/19 20:28:08 flz Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xplsprinters/Makefile,v 1.1 2007/10/08 15:30:45 ctriv Exp $
 #
 
 PORTNAME=	xplsprinters
@@ -12,7 +12,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Shows a list of Xprint printers
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	xp xprintutil x11

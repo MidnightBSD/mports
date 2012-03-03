@@ -1,13 +1,13 @@
 # $FreeBSD: ports/x11/libXxf86misc/Makefile,v 1.1 2007/05/19 20:26:58 flz Exp $
-# $MidnightBSD: mports/x11/libXxf86misc/Makefile,v 1.1 2007/10/05 18:23:11 ctriv Exp $
+# $MidnightBSD: mports/x11/libXxf86misc/Makefile,v 1.2 2011/05/03 13:39:38 laffer1 Exp $
 
 PORTNAME=	libXxf86misc
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X XF86-Misc Extension
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	xproto x11 xextproto xext xf86miscproto:both

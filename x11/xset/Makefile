@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xset/Makefile,v 1.2 2009/05/04 02:07:57 laffer1 Exp $
+# $MidnightBSD: mports/x11/xset/Makefile,v 1.3 2011/05/07 20:38:26 laffer1 Exp $
 
 PORTNAME=	xset
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.2
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -9,7 +9,8 @@ COMMENT=	User preference utility for X
 LICENSE=	x11
 
 XORG_CAT=	app
-USE_XORG=	xmuu
+USE_XORG=	xmuu xproto x11 xext xfontcache
+CONFIGURE_ARGS=	--without-xf86misc
 
 PLIST_FILES=	bin/xset
 

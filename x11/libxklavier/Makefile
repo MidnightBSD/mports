@@ -2,7 +2,7 @@
 # Date created:				31 May 2002
 # Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.4 2010/12/13 00:53:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxklavier/Makefile,v 1.5 2011/02/02 21:35:02 laffer1 Exp $
 # $FreeBSD: ports/x11/libxklavier/Makefile,v 1.35 2007/05/19 20:27:03 flz Exp $
 #   $MCom: ports/x11/libxklavier/Makefile,v 1.32 2007/02/24 21:00:46 mezz Exp $
 #
@@ -34,8 +34,7 @@ CONFIGURE_ARGS=	--disable-doxygen \
 		--with-xmodmap-base=${LOCALBASE}/share/xmodmap \
 		--disable-gtk-doc \
 		--with-html-dir=${GNOME_HTML_DIR}
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 

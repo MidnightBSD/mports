@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXau/Makefile,v 1.3 2009/03/15 20:27:09 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXau/Makefile,v 1.4 2011/05/03 00:05:18 laffer1 Exp $
 
 PORTNAME=	libXau
 PORTVERSION=	1.0.6
@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Authentication Protocol library for X11
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	xproto:both

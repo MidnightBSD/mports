@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.5 2011/05/03 13:34:08 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXtst/Makefile,v 1.6 2012/03/02 01:44:53 laffer1 Exp $
 
 PORTNAME=	libXtst
 PORTVERSION=	1.2.0
@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Test extension
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	x11 xext recordproto:both xextproto inputproto:both \

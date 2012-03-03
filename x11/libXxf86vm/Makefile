@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11/libXxf86vm/Makefile,v 1.2 2009/03/14 20:15:13 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXxf86vm/Makefile,v 1.3 2011/05/03 13:40:29 laffer1 Exp $
 
 PORTNAME=	libXxf86vm
-PORTVERSION=	1.1.0
+PORTVERSION=	1.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Vidmode Extension
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	xproto x11 xextproto xext xf86vidmodeproto:both

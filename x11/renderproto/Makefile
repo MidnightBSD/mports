@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/renderproto/Makefile,v 1.2 2009/06/04 01:46:24 laffer1 Exp $
+# $MidnightBSD: mports/x11/renderproto/Makefile,v 1.3 2011/05/07 02:17:38 laffer1 Exp $
 
 PORTNAME=	renderproto
-PORTVERSION=	0.11
+PORTVERSION=	0.11.1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org

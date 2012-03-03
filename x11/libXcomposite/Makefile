@@ -1,5 +1,5 @@
 # $FreeBSD: ports/x11/libXcomposite/Makefile,v 1.15 2007/09/13 19:44:59 flz Exp $
-# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.1 2007/10/05 17:26:16 ctriv Exp $
+# $MidnightBSD: mports/x11/libXcomposite/Makefile,v 1.2 2011/05/03 00:06:30 laffer1 Exp $
 
 PORTNAME=	libXcomposite
 PORTVERSION=	0.4.3
@@ -7,7 +7,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Composite extension library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	compositeproto:both x11 xfixes xext fixesproto xproto:both

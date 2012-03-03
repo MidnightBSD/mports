@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/libXext/Makefile,v 1.5 2011/05/03 00:14:21 laffer1 Exp $
+# $MidnightBSD: mports/x11/libXext/Makefile,v 1.6 2012/03/02 01:54:48 laffer1 Exp $
 
 PORTNAME=	libXext
 PORTVERSION=	1.3.0
@@ -8,7 +8,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X11 Extension library
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	lib
 USE_XORG=	xproto x11 xextproto:both xau

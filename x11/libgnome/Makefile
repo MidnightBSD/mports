@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.11 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/libgnome/Makefile,v 1.12 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	libgnome
 PORTVERSION=	2.32.0
+PORTREVISION?=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -26,8 +27,8 @@ USE_BISON=	build
 USE_XORG=	xpm
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 SUB_FILES=	pkg-deinstall
 

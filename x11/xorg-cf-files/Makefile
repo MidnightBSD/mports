@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/x11/xorg-cf-files/Makefile,v 1.5 2009/05/31 18:31:14 laffer1 Exp $
+# $MidnightBSD: mports/x11/xorg-cf-files/Makefile,v 1.6 2011/05/07 16:17:51 laffer1 Exp $
 
 PORTNAME=	xorg-cf-files
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.org cf files for use with imake builds
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	util
 
