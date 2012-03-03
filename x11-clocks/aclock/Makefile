@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/x11-clocks/aclock/Makefile,v 1.1 2010/01/21 01:30:13 laffer1 Exp $
+# $MidnightBSD: mports/x11-clocks/aclock/Makefile,v 1.2 2011/04/17 19:56:32 laffer1 Exp $
 
 PORTNAME=	aclock
-PORTVERSION=	0.3
+PORTVERSION=	0.4.0
 CATEGORIES=	x11-clocks gnustep
-MASTER_SITES=	http://gnu.ethz.ch/linuks.mine.nu/aclock/ \
-		${MASTER_SITE_GNUSTEP_CH}
-DISTNAME=	aclock-${PORTVERSION}
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
+DISTNAME=	AClock-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analog Clock for GNUstep
