@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-glint/Makefile,v 1.2 2009/03/16 14:24:28 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-glint/Makefile,v 1.3 2011/05/07 21:20:04 laffer1 Exp $
 
 PORTNAME=	xf86-video-glint
 PORTVERSION=	1.2.5
@@ -6,7 +6,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org glint display driver
-LICENSE=	x11
+LICENSE=	mit
 
 USE_GL=		gl
 
