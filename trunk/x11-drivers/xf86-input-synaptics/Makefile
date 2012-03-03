@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-synaptics/Makefile,v 1.1 2009/05/21 15:58:19 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-synaptics/Makefile,v 1.2 2011/05/07 21:09:35 laffer1 Exp $
 
 PORTNAME=	xf86-input-synaptics
 PORTVERSION=	1.2.1
@@ -6,7 +6,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org synaptics input driver
-LICENSE=	x11
+LICENSE=	mit
 
 CONFLICTS=	synaptics-[0-9]*
 

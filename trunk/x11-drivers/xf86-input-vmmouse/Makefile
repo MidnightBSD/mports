@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-vmmouse/Makefile,v 1.3 2009/05/08 20:14:10 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-vmmouse/Makefile,v 1.4 2011/05/07 21:11:25 laffer1 Exp $
 
 PORTNAME=	xf86-input-vmmouse
 PORTVERSION=	12.6.9
@@ -6,10 +6,10 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org vmmouse input driver
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	driver
-CONFIGURE_ARGS= --with-hal-callouts-dir=${PREFIX}/libexec/hal/scripts
+CONFIGURE_ARGS=	--with-hal-callouts-dir=${PREFIX}/libexec/hal/scripts
 
 MAN1=		vmmouse_detect.1
 MAN4=		vmmouse.4x
