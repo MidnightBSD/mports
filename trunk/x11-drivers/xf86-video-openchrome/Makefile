@@ -1,13 +1,14 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-openchrome/Makefile,v 1.3 2009/03/16 14:47:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-openchrome/Makefile,v 1.4 2011/05/07 21:33:07 laffer1 Exp $
 
 PORTNAME=	xf86-video-openchrome
 PORTVERSION=	0.2.904
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 MASTER_SITES=	http://www.openchrome.org/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org openChrome display driver
-LICENSE=	x11
+LICENSE=	mit
 
 USE_GL=		gl
 
