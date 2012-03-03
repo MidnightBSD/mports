@@ -2,7 +2,7 @@
 # Date created:         Sat Aug 19 20:36:34 CEST 2000
 # Whom:                 olgeni@uli.it
 #
-# $MidnightBSD: mports/x11-fonts/jmk-x11-fonts/Makefile,v 1.6 2008/04/04 01:33:43 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/jmk-x11-fonts/Makefile,v 1.7 2008/04/10 18:04:08 laffer1 Exp $
 # $FreeBSD: ports/x11-fonts/jmk-x11-fonts/Makefile,v 1.9 2007/05/19 20:29:29 flz Exp $
 #
 
@@ -22,7 +22,6 @@ BUILD_DEPENDS+=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
 		fc-cache:${PORTSDIR}/x11-fonts/fontconfig 
 RUN_DEPENDS+=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 
-USE_XLIB=	yes
 USE_IMAKE=	yes
 
 do-install:
