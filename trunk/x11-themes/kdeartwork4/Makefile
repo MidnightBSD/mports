@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/x11-themes/kdeartwork4/Makefile,v 1.1 2008/12/13 05:43:40 ctriv Exp $
+# $MidnightBSD: mports/x11-themes/kdeartwork4/Makefile,v 1.2 2011/07/31 17:07:45 laffer1 Exp $
 #
 
 PORTNAME=	kdeartwork
@@ -12,23 +12,26 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE Artworks Themes
 
+LIB_DEPENDS=	kexiv2.10:${PORTSDIR}/graphics/libkexiv2-kde4
+
 BUILD_DEPENDS=	eigen>=2.0.b1:${PORTSDIR}/math/eigen2
 
-CONFLICTS=	kdebase-workspace-4.5.[0-5]
+CONFLICTS=	kdeaccessibility-4.[0-6].* kdebase-workspace-4.5.[0-5]
 
 LATEST_LINK=	${PORTNAME}4
 
 USE_BZIP2=	yes
-USE_KDE4=	kdelibs workspace kdeprefix kdehier automoc4
+USE_KDE4=	automoc4 kdehier kdelibs kdeprefix workspace
 KDE4_BUILDENV=	yes
 USE_QT_VER=	4
-QT_COMPONENTS=	opengl gui svg qt3support \
-		qmake_build moc_build rcc_build uic_build
+QT_COMPONENTS=	gui opengl \
+		moc_build qmake_build rcc_build uic_build
+USE_XORG=	x11 xt
 MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	GNOME "Use Gnome screensavers" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_GNOME)
 BUILD_DEPENDS+=	${LOCALBASE}/share/applications/xscreensaver-properties.desktop:${PORTSDIR}/x11/xscreensaver-gnome
@@ -70,4 +73,4 @@ post-patch:
 	    ${PATCH_WRKSRC}/${item}
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
