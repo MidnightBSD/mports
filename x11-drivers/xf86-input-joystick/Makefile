@@ -1,12 +1,13 @@
-# $MidnightBSD: mports/x11-drivers/xf86-input-joystick/Makefile,v 1.4 2009/05/08 03:36:18 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-input-joystick/Makefile,v 1.5 2011/05/07 21:00:40 laffer1 Exp $
 
 PORTNAME=	xf86-input-joystick
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org joystick input driver
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	driver
 
