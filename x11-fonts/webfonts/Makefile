@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.4 2009/06/06 18:39:11 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/webfonts/Makefile,v 1.5 2011/08/21 18:07:41 laffer1 Exp $
 
 PORTNAME=	webfonts
 PORTVERSION=	0.30
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-fonts
 MASTER_SITES=	SF/corefonts/the%20fonts/final:group1 \
 		ftp://ftp.botik.ru/rented/znamensk/distributions/ftp.vsu.ru/pub/tex/font-packs/mscore/:group1 \
@@ -20,8 +20,6 @@ LICENSE=	restricted
 EXTRACT_DEPENDS=cabextract:${PORTSDIR}/archivers/cabextract
 BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-
-USE_XLIB=	yes
 
 NO_BUILD=	yes
 RESTRICTED=	Restrictive license - cannot sell for profit or distribute in modified form

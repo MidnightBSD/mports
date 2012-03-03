@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-fonts/xfs/Makefile,v 1.4 2010/05/30 22:04:10 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/xfs/Makefile,v 1.5 2011/05/10 13:51:07 laffer1 Exp $
 
 PORTNAME=	xfs
 PORTVERSION=	1.1.1
@@ -7,7 +7,7 @@ CATEGORIES=	x11-fonts
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X.Org font server
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_GMAKE=	yes
