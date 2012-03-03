@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/xdm/Makefile,v 1.4 2011/05/07 02:55:11 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdm/Makefile,v 1.5 2011/05/17 13:42:46 laffer1 Exp $
 
 PORTNAME=	xdm
-PORTVERSION=	1.1.8
-PORTREVISION=	3
+PORTVERSION=	1.1.11
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,6 +17,19 @@ MAN1=		xdm.1
 
 CFFILES=	GiveConsole TakeConsole Xaccess Xreset Xresources \
 		Xservers Xsession Xsetup_0 Xstartup Xwilling xdm-config
+
+OPTIONS=	XDMSHELL "Install xdmshell" off
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_XDMSHELL)
+CONFIGURE_ARGS+=--enable-xdmshell
+MAN1+=		xdmshell.1
+PLIST_SUB+=	XDMSHELL=""
+.else
+CONFIGURE_ARGS+=--disable-xdmshell
+PLIST_SUB+=	XDMSHELL="@comment "
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|XDMCONFIGDIR/|${PREFIX}/lib/X11/xdm/|" \
