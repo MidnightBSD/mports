@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.28 2011/11/11 00:54:03 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.29 2012/01/28 04:28:03 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.6
@@ -40,9 +40,9 @@ USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
-			  -I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
+		-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		gtk-query-immodules-2.0.1
 
