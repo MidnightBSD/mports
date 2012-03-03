@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.9 2009/05/08 14:02:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-dmx/Makefile,v 1.10 2011/05/01 19:27:03 laffer1 Exp $
 
 PORTNAME=	xorg-dmx
 PORTVERSION=	1.7.7
@@ -7,7 +7,7 @@ CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed Multihead X from X.Org
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	xserver
 
