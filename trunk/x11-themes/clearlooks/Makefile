@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-themes/clearlooks/Makefile,v 1.2 2009/12/13 20:30:44 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/clearlooks/Makefile,v 1.3 2011/05/28 06:20:57 laffer1 Exp $
 
 PORTNAME?=	clearlooks
 PORTVERSION=	0.6.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-themes
 MASTER_SITES=	SF/clearlooks/clearlooks/clearlooks%20${PORTVERSION}
 
@@ -15,8 +15,8 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20
 INSTALLS_ICONS=	yes
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(PORTNAME) && !defined(PKGNAMESUFFIX)
 OPTIONS+=	ANIMATION "Enable experimental animated progressbars" Off \
