@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.5 2010/09/04 15:24:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/gnome-backgrounds/Makefile,v 1.6 2011/05/28 06:20:57 laffer1 Exp $
 # $FreeBSD: ports/x11-themes/gnome-backgrounds/Makefile,v 1.17 2007/10/24 23:37:12 marcus Exp $
 
 PORTNAME=	gnome-backgrounds
@@ -16,7 +16,7 @@ USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-	       	LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
