@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.7 2009/05/08 14:02:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/xorg-nestserver/Makefile,v 1.8 2011/05/01 19:27:03 laffer1 Exp $
 
 PORTNAME=	xorg-nestserver
 PORTVERSION=	1.7.7
@@ -7,7 +7,7 @@ CATEGORIES=	x11-servers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nesting X server from X.Org
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	xserver
 
