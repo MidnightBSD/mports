@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/etoile-camaelon/Makefile,v 1.5 2008/08/20 18:43:38 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/etoile-camaelon/Makefile,v 1.6 2009/12/13 21:01:04 laffer1 Exp $
 
 PORTNAME=	camaelon
 PORTVERSION=	0.4.1
@@ -9,11 +9,10 @@ DISTNAME=	etoile-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Etoile Project Camaelon bundle
-LICENSE=	unknown
+LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
