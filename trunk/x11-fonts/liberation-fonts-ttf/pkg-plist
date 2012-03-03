@@ -1,8 +1,5 @@
-@comment $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
+@comment $FreeBSD: ports/x11-fonts/liberation-fonts-ttf/pkg-plist,v 1.6 2010/12/22 18:27:05 thierry Exp $
 %%FONTDIR%%/AUTHORS
-%%FONTDIR%%/License.txt
-%%FONTDIR%%/fonts.dir
-%%FONTDIR%%/fonts.scale
 %%FONTDIR%%/LiberationMono-Bold.ttf
 %%FONTDIR%%/LiberationMono-BoldItalic.ttf
 %%FONTDIR%%/LiberationMono-Italic.ttf
@@ -19,5 +16,7 @@
 %%FONTDIR%%/LiberationSerif-BoldItalic.ttf
 %%FONTDIR%%/LiberationSerif-Italic.ttf
 %%FONTDIR%%/LiberationSerif-Regular.ttf
+%%FONTDIR%%/fonts.dir
+%%FONTDIR%%/fonts.scale
 @unexec rm %D/%%FONTDIR%%/fonts.cache-1 2>/dev/null || /usr/bin/true
 @dirrm %%FONTDIR%%
