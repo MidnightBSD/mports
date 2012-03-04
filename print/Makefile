@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.49 2011/09/15 04:10:30 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.50 2012/01/28 04:17:02 laffer1 Exp $
 
 COMMENT = Desktop publishing
 
@@ -55,6 +55,7 @@ SUBDIR += teTeX
 SUBDIR += teTeX-base
 SUBDIR += teTeX-texmf
 SUBDIR += tex-texmflocal
+SUBDIR += texinfo
 SUBDIR += ttf2pt1
 SUBDIR += wmlpq
 SUBDIR += xdvik
