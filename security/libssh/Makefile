@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/security/libssh/Makefile,v 1.1 2012/03/04 04:17:07 laffer1 Exp $
 # $FreeBSD: ports/security/libssh/Makefile,v 1.18 2011/07/03 11:40:47 swills Exp $
 
 PORTNAME=	libssh
@@ -23,7 +23,7 @@ INSTALL_WRKSRC?=	${BUILD_WRKSRC}
 CMAKE_ARGS+=	-DWITH_STATIC_LIB:BOOL=ON
 USE_LDCONFIG=	yes
 
-.include <bsd.port.options.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_GCRYPT)
 LIB_DEPENDS+=	gcrypt.18:${PORTSDIR}/security/libgcrypt
