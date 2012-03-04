@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.7 2010/05/30 21:44:06 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.8 2011/05/15 19:24:35 laffer1 Exp $
 
 PORTNAME=	Tk
-DISTVERSION=	804.029
+PORTVERSION=	804.030
 CATEGORIES=	x11-toolkits tk perl5
-MASTER_SITES=	CPAN/Tk/SREZIC
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -13,19 +13,20 @@ LICENSE=	perl
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		png.6:${PORTSDIR}/graphics/png
 
-PERL_CONFIGURE=	5.8.0+
-USE_XORG=	x11
-CONFIGURE_ARGS=	X11LIB=${LOCALBASE}/lib X11INC=${LOCALBASE}/include
-WRKSRC=		${WRKDIR}/${DISTNAME}
+OPTIONS=	XFT	"Client-side fonts via libXft (experimental)" off
+
+CONFIGURE_ARGS=	X11INC=${LOCALBASE}/include X11LIB=${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
+PERL_CONFIGURE=	yes
+USE_XORG=	x11
 
 MAN1=		ptked.1 \
 		ptksh.1 \
 		tkjpeg.1 \
 		widget.1
-
 MAN3=		Tie::Watch.3 \
 		Tk.3 \
+		Tk::804delta.3 \
 		Tk::Adjuster.3 \
 		Tk::Animation.3 \
 		Tk::Balloon.3 \
@@ -65,8 +66,8 @@ MAN3=		Tie::Watch.3 \
 		Tk::Labelframe.3 \
 		Tk::Listbox.3 \
 		Tk::MainWindow.3 \
-		Tk::Menu::Item.3 \
 		Tk::Menu.3 \
+		Tk::Menu::Item.3 \
 		Tk::Menubutton.3 \
 		Tk::Message.3 \
 		Tk::MsgBox.3 \
@@ -114,6 +115,8 @@ MAN3=		Tie::Watch.3 \
 		Tk::chooseColor.3 \
 		Tk::chooseDirectory.3 \
 		Tk::composite.3 \
+		Tk::demos::widget_lib::slide.3 \
+		Tk::demos::widget_lib::trace2.3 \
 		Tk::event.3 \
 		Tk::exit.3 \
 		Tk::fileevent.3 \
@@ -135,39 +138,27 @@ MAN3=		Tie::Watch.3 \
 		Tk::send.3 \
 		Tk::tixWm.3 \
 		Tk::tkvars.3 \
-		Tk::widgets.3 \
-		Tk::804delta.3 \
-		Tk::demos::widget_lib::slide.3 \
-		Tk::demos::widget_lib::trace2.3
+		Tk::widgets.3
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_XFT)
 CONFIGURE_ARGS=	XFT=1
 USE_XORG+=	xft
 .endif
 
-.if !defined(WITH_XFT)
-pre-everything::
-	@${ECHO_MSG} "===>"
-	@${ECHO_MSG} "===> An experimental implementation of client side fonts"
-	@${ECHO_MSG} "===> and anti-aliased fonts via Xft"
-	@${ECHO_MSG} "===> can be enabled by defining WITH_XFT"
-	@${ECHO_MSG} "===>"
-.endif
-
 post-patch:
-	@${PERL} -i -p -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		${WRKSRC}/pTk/Makefile.PL \
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/JPEG/Makefile.PL \
-		${WRKSRC}/PNG/Makefile.PL
+		${WRKSRC}/PNG/Makefile.PL \
+		${WRKSRC}/pTk/Makefile.PL
 
 post-configure:
-	@${PERL} -i -p \
-		-e 's|^(CC = ).*|$$1 ${CC}|;' \
-		-e 's|^(CCFLAGS = ).*|$$1 ${CFLAGS}|;' \
-		-e 's|^(LD = ).*|$$1 ${CC} ${CFLAGS} ${LDFLAGS}|;' \
-		-e 's|^(FULL_AR = ).*|$$1 ${AR}|' \
+	@${REINPLACE_CMD} \
+		-e '/^CC = / s|.*|CC = ${CC}|' \
+		-e '/^CCFLAGS = / s|.*|CCFLAGS = ${CFLAGS}|' \
+		-e '/^LD = / s|.*|LD = ${CC} ${CFLAGS} ${LDFLAGS}|' \
+		-e '/^FULL_AR = / s|.*|FULL_AR = ${AR}|' \
 		`${FIND} ${WRKSRC} -name Makefile`
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
