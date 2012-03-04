@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.118 2012/02/28 00:50:16 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.119 2012/03/04 05:27:46 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -105,6 +105,8 @@ SUBDIR += linux_dri
 SUBDIR += mesa-demos
 SUBDIR += ming
 SUBDIR += netpbm
+SUBDIR += opencv
+SUBDIR += opencv-core
 SUBDIR += openjpeg
 SUBDIR += p5-GD
 SUBDIR += p5-GD-Graph
