@@ -1,28 +1,16 @@
---- configure.orig	2008-06-28 22:13:45.000000000 -0500
-+++ configure	2008-06-28 22:13:45.000000000 -0500
-@@ -10049,6 +10049,12 @@
-       fi
-       ;;
+--- ./configure.orig	2010-03-06 22:36:24.000000000 +0300
++++ ./configure	2010-06-19 02:21:36.862142625 +0400
+@@ -17061,9 +17061,6 @@
  
-+     freebsd* | kfreebsd*-gnu | dragonfly*)
-+	archive_cmds='$CC -shared -o $lib $libobjs $deplibs $compiler_flags'
-+	hardcode_direct=no
-+	hardcode_minus_L=yes
-+	;;
-+
-     netbsd* | netbsdelf*-gnu)
-       if echo __ELF__ | $CC -E - | grep __ELF__ >/dev/null; then
- 	archive_cmds='$LD -Bshareable $libobjs $deplibs $linker_flags -o $lib'
-@@ -22431,7 +22437,7 @@
-                     if test -z "$haveit"; then
-                       LIBICONV="${LIBICONV}${LIBICONV:+ }-L$found_dir"
-                     fi
--                    if test "$hardcode_minus_L" != no; then
-+                    if test "$hardcode_minus_L" = no; then
-                                                                                         LIBICONV="${LIBICONV}${LIBICONV:+ }$found_so"
-                     else
-                                                                                                                                                                                 LIBICONV="${LIBICONV}${LIBICONV:+ }-l$name"
-@@ -37670,6 +37676,8 @@
+ done
+ 
+-   if test "$ac_cv_header_ffmpeg_avutil_h" = "yes" && test "$ac_cv_header_libavutil_avutil_h" = "yes"; then
+-     as_fn_error "old & new ffmpeg headers found - you need to clean up!" "$LINENO" 5
+-   fi
+ 
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: using external ffmpeg" >&5
+ $as_echo "using external ffmpeg" >&6; }
+@@ -23234,6 +23231,8 @@
        fi
         CFLAGS="$ac_save_CFLAGS"
         LIBS="$ac_save_LIBS"
@@ -31,7 +19,7 @@
    fi
  
    if test "x$no_libFLAC" = "x" ; then
-@@ -50370,7 +50378,7 @@
+@@ -29752,7 +29751,7 @@
  
  xinelibdir='${libdir}/xine'
  xinedatadir='${datadir}/xine'

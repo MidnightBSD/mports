@@ -33,6 +33,7 @@ include/xine/video_overlay.h
 include/xine/vo_scale.h
 include/xine/xine_buffer.h
 include/xine/xine_internal.h
+include/xine/xine_mmx.h
 include/xine/xine_plugin.h
 include/xine/xineintl.h
 include/xine/xineutils.h
@@ -91,6 +92,7 @@ lib/libxine.so.1
 %%PLUGINSDIR%%/xineplug_decode_spucc.so
 %%PLUGINSDIR%%/xineplug_decode_spucmml.so
 %%PLUGINSDIR%%/xineplug_decode_spudvb.so
+%%PLUGINSDIR%%/xineplug_decode_spuhdmv.so
 %%PLUGINSDIR%%/xineplug_decode_sputext.so
 %%PLUGINSDIR%%/xineplug_decode_theora.so
 %%PLUGINSDIR%%/xineplug_decode_vorbis.so
@@ -144,6 +146,8 @@ lib/libxine.so.1
 %%PLUGINSDIR%%/xineplug_vo_out_raw.so
 %%PLUGINSDIR%%/xineplug_vo_out_sdl.so
 %%WITH_VIDIX%%%%PLUGINSDIR%%/xineplug_vo_out_vidix.so
+%%PLUGINSDIR%%/xineplug_vo_out_xcbshm.so
+%%PLUGINSDIR%%/xineplug_vo_out_xcbxv.so
 %%PLUGINSDIR%%/xineplug_vo_out_xshm.so
 %%PLUGINSDIR%%/xineplug_vo_out_xv.so
 %%WITH_XVMC%%%%PLUGINSDIR%%/xineplug_vo_out_xvmc.so
@@ -175,17 +179,18 @@ share/aclocal/xine.m4
 %%DOCSDIR%%/hackersguide/library.png
 %%DOCSDIR%%/hackersguide/overlays.png
 %%DOCSDIR%%/hackersguide/post_frame.png
-share/locale/cs/LC_MESSAGES/libxine1.mo
-share/locale/de/LC_MESSAGES/libxine1.mo
-share/locale/eo/LC_MESSAGES/libxine1.mo
-share/locale/es/LC_MESSAGES/libxine1.mo
-share/locale/eu/LC_MESSAGES/libxine1.mo
-share/locale/fr/LC_MESSAGES/libxine1.mo
-share/locale/it/LC_MESSAGES/libxine1.mo
-share/locale/pl/LC_MESSAGES/libxine1.mo
-share/locale/pt_BR/LC_MESSAGES/libxine1.mo
-share/locale/sk/LC_MESSAGES/libxine1.mo
-share/locale/tr/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/cs/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/de/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/en_US/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/eo/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/es/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/eu/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/it/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/pl/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/pt_BR/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/sk/LC_MESSAGES/libxine1.mo
+%%NLS%%share/locale/tr/LC_MESSAGES/libxine1.mo
 %%DATADIR%%/libxine1/fonts/cc-16.xinefont.gz
 %%DATADIR%%/libxine1/fonts/cc-20.xinefont.gz
 %%DATADIR%%/libxine1/fonts/cc-24.xinefont.gz
@@ -222,16 +227,25 @@ share/locale/tr/LC_MESSAGES/libxine1.mo
 %%DATADIR%%/libxine1/fonts/serif-32.xinefont.gz
 %%DATADIR%%/libxine1/fonts/serif-48.xinefont.gz
 %%DATADIR%%/libxine1/fonts/serif-64.xinefont.gz
+%%VDPAU%%include/xine/vdr.h
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_vo_out_vdpau.so
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_dmx_vc1_es.so
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_decode_vdpau_h264.so
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_decode_vdpau_mpeg12.so
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_decode_vdpau_vc1.so
+%%VDPAU%%%%PLUGINSDIR%%/xineplug_vdr.so
 @dirrm include/xine
 @dirrm %%PLUGINSDIR%%/vidix
 @dirrm %%PLUGINSDIR%%/post
-@dirrm %%PLUGINSDIR%%
-@dirrm lib/xine/plugins
-@dirrm lib/xine
+@dirrmtry %%PLUGINSDIR%%
+@dirrmtry lib/xine/plugins
+@dirrmtry lib/xine
 @dirrm %%DOCSDIR%%/hackersguide
 @dirrm %%DOCSDIR%%
-@dirrmtry share/locale/pl_PL/LC_MESSAGES
-@dirrmtry share/locale/pl_PL
+%%NLS%%@dirrmtry share/locale/pl_PL/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/pl_PL
+%%NLS%%@dirrmtry share/locale/en_US/LC_MESSAGES
+%%NLS%%@dirrmtry share/locale/en_US
 @dirrm %%DATADIR%%/libxine1/fonts
 @dirrm %%DATADIR%%/libxine1
-@dirrm %%DATADIR%%
+@dirrmtry %%DATADIR%%
