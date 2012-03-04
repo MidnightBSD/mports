@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.5 2010/06/26 17:44:47 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/cmake.mk,v 1.6 2012/02/04 05:21:59 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Cmake_Pre_Include)
@@ -102,7 +102,7 @@ CMAKE_ARGS+=	-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
 #
 .if !target(do-configure)
 do-configure:
-	${MKDIR} ${CONFIGURE_WRKSRC}
+	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@cd ${CONFIGURE_WRKSRC}; ${SETENV} ${CMAKE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} ${CMAKE_SOURCE_PATH}
 .endif
 
