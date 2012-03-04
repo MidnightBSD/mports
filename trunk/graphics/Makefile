@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.117 2012/02/24 18:45:39 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.118 2012/02/28 00:50:16 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -18,6 +18,7 @@ SUBDIR += etoile-distributedview
 SUBDIR += evince
 SUBDIR += exiv2
 SUBDIR += feh
+SUBDIR += frei0r
 SUBDIR += gd
 SUBDIR += gdchart
 SUBDIR += gdk-pixbuf
@@ -26,8 +27,6 @@ SUBDIR += gegl
 SUBDIR += giblib
 SUBDIR += giflib
 SUBDIR += gimp-app
-SUBDIR += gir-repository-goocanvas
-SUBDIR += gir-repository-poppler
 SUBDIR += gle
 SUBDIR += glew
 SUBDIR += glitz
