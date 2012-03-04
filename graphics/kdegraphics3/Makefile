@@ -1,9 +1,9 @@
 # $FreeBSD: ports/graphics/kdegraphics3/Makefile,v 1.111 2006/09/12 23:26:17 lofi Exp $
-# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.5 2011/01/01 16:11:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/kdegraphics3/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
 
 PORTNAME=	kdegraphics
 PORTVERSION=	${KDE_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -19,24 +19,23 @@ LIB_DEPENDS=	art_lgpl_2:${PORTSDIR}/graphics/libart_lgpl \
 		freetype:${PORTSDIR}/print/freetype2 \
 		fribidi:${PORTSDIR}/converters/fribidi \
 		lcms:${PORTSDIR}/graphics/lcms \
-		paper:${PORTSDIR}/print/libpaper \
-		poppler-qt:${PORTSDIR}/graphics/poppler-qt
+		paper:${PORTSDIR}/print/libpaper
 
 CONFLICTS=	kolourpaint-[0-9]*
 
 USE_KDELIBS_VER=3
 PREFIX=		${KDE_PREFIX}
 
+USE_GL=		glut
 USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
+CONFIGURE_ARGS=	--without-poppler
 USE_GMAKE=	yes
-USE_GL=		glut
 WANT_GNOME=	yes
 USE_GHOSTSCRIPT=yes
 MAKE_JOBS_SAFE=	yes
 
 USE_LDCONFIG=	yes
-LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 DO_NOT_COMPILE+=kooka kuickshow libkscan
 
 OPTIONS=	IMLIB "Build Kuickshow, a fast and versatile image viewer" off \
