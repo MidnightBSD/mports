@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/Makefile,v 1.66 2011/09/18 01:33:24 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/Makefile,v 1.67 2012/01/06 01:01:14 laffer1 Exp $
 
 COMMENT = Multimedia software
 
@@ -38,6 +38,7 @@ SUBDIR += libkate
 SUBDIR += libmpeg2
 SUBDIR += libtheora
 SUBDIR += libv4l
+SUBDIR += libvdpau
 SUBDIR += libvpx
 SUBDIR += libxine
 SUBDIR += linux-divx4linux
