@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/math/Makefile,v 1.37 2011/08/17 22:36:57 laffer1 Exp $
+# $MidnightBSD: mports/math/Makefile,v 1.38 2011/08/20 16:09:58 laffer1 Exp $
 
 COMMENT = Mathematics
 
@@ -39,6 +39,7 @@ SUBDIR += p5-bignum
 SUBDIR += php5-bcmath
 SUBDIR += php5-gmp
 SUBDIR += py-numeric
+SUBDIR += qhull
 SUBDIR += stepulator
 
 .include <bsd.port.subdir.mk>
