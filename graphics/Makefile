@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.119 2012/03/04 05:27:46 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.120 2012/03/04 05:37:37 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -16,6 +16,7 @@ SUBDIR += dri
 SUBDIR += eog
 SUBDIR += etoile-distributedview
 SUBDIR += evince
+SUBDIR += exif
 SUBDIR += exiv2
 SUBDIR += feh
 SUBDIR += frei0r
