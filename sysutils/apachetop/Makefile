@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.3 2011/02/02 21:22:46 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/apachetop/Makefile,v 1.4 2011/06/04 15:05:48 laffer1 Exp $
 
 PORTNAME=	apachetop
 PORTVERSION=	0.12.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.webta.org/apachetop/
 
@@ -34,7 +34,7 @@ CONFIGURE_ARGS+=--with-fam=${LOCALBASE}
 .endif
 
 .if defined(WITH_PCRE)
-LIB_DEPENDS+=	pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
 CONFIGURE_ARGS+=--with-pcre=${LOCALBASE}
 .endif
 
