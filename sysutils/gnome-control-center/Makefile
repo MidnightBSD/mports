@@ -2,14 +2,13 @@
 # Date created:				04 May 2002
 # Whom:					Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/gnome-control-center/Makefile,v 1.3 2008/05/31 16:38:24 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/gnome-control-center/Makefile,v 1.4 2010/12/31 03:53:55 laffer1 Exp $
 # $FreeBSD: ports/sysutils/gnome-control-center/Makefile,v 1.106 2008/04/23 09:11:52 pav Exp $
 #   $MCom: ports/sysutils/gnome-control-center/Makefile,v 1.172 2008/03/10 21:50:24 mezz Exp $
 #
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	2.30.1
-PORTREVISION=	2
+PORTVERSION=	2.32.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -19,6 +18,8 @@ COMMENT=	Control center for GNOME 2 project
 LICENSE=	gpl2
 
 LIB_DEPENDS=	canberra-gtk.0:${PORTSDIR}/audio/libcanberra \
+		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
+		polkit-gobject-1.0:${PORTSDIR}/sysutils/polkit \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
 BUILD_DEPENDS=	${LOCALBASE}/libexec/gnome-settings-daemon:${PORTSDIR}/sysutils/gnome-settings-daemon
 RUN_DEPENDS=	gnome-eject:${PORTSDIR}/sysutils/gnome-mount \
@@ -31,13 +32,12 @@ GNOME_DESKTOP_VERSION=2
 USE_GSTREAMER=	good
 WANT_GNOME=	yes
 USE_GNOME=	gnomeprefix gnomehack intlhack metacity gnomemenus \
-		desktopfileutils libgnomekbd gnomedesktop librsvg2
+		desktopfileutils libgnomekbd gnomedesktop librsvg2 gconf2
 USE_XORG=	xscrnsaver
 GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--enable-gstreamer=0.10
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LDFLAGS="-L${LOCALBASE}/lib"
 
@@ -63,6 +63,8 @@ PLIST_SUB+=	ABOUTME="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 	    	${WRKSRC}/capplets/common/gnome-theme-info.c
+	@${REINPLACE_CMD} -e 's|/usr/sbin|${PREFIX}/sbin|g' \
+		${WRKSRC}/capplets/display/org.gnome.randr.policy.in
 
 post-install:
 	@-update-desktop-database
