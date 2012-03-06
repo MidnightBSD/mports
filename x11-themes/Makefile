@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.22 2011/06/18 02:20:03 laffer1 Exp $
-#
-    COMMENT = X11 themes
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.23 2011/07/31 17:08:24 laffer1 Exp $
+
+COMMENT = X11 themes
 
 SUBDIR += clearlooks
 SUBDIR += clearlooks-metacity
@@ -15,6 +15,8 @@ SUBDIR += gnome-themes
 SUBDIR += gtk-engines2
 SUBDIR += gtk-xfce-engine
 SUBDIR += icon-naming-utils
+SUBDIR += icons-tango
+SUBDIR += icons-tango-extras
 SUBDIR += irssi-themes
 SUBDIR += kdeartwork3
 SUBDIR += kdeartwork4
