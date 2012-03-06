@@ -1,11 +1,10 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/915resolution/Makefile,v 1.2 2009/08/29 16:14:20 laffer1 Exp $
 
 PORTNAME=	915resolution
 PORTVERSION=	0.5.3
 PORTEPOCH=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.geocities.com/stomljen/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	ehaupt
 
 MAINTAINER=	ports@MidnightBSD.org
