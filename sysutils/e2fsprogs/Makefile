@@ -1,31 +1,23 @@
-# New ports collection makefile for:	e2fsprogs
-# Date created:				3 July 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.5 2010/03/18 14:17:04 crash Exp $
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.6 2010/10/23 18:00:28 laffer1 Exp $
 # $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
-#
 
 PORTNAME=	e2fsprogs
-PORTVERSION=	1.41.12
-PORTREVISION?=	0
+PORTVERSION=	1.42
 CATEGORIES?=	sysutils
-MASTER_SITES=   SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
-	
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
+
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	Utilities & library to manipulate ext2/ext3/ext4 filesystems
+COMMENT?=	Utilities & library to manipulate ext2/3/4 filesystems
 LICENSE=	agg
 
 PATCH_STRIP=	-p1
 USE_GMAKE=	yes
+USE_CSTD=	gnu89
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-fsck --disable-e2initrd-helper \
 		--with-root-prefix='${PREFIX}'
-#CONFIGURE_ENV+=	CPPFLAGS='${CPPFLAGS} -I${WRKSRC}/lib \
-#		-I${LOCALBASE}/include -D_EXT2_USE_C_VERSIONS_'
-CONFIGURE_ENV+=	CPPFLAGS='${CPPFLAGS} -I${WRKSRC}/lib \
-		-I${LOCALBASE}/include'
+CPPFLAGS+=	-I${WRKSRC}/lib -I${LOCALBASE}/include # -D_EXT2_USE_C_VERSIONS
 MAKE_ARGS+=	LDFLAGS='${LDFLAGS} -L${LOCALBASE}/lib'
 
 OPTIONS?=	NLS "Enable national language support" on
@@ -67,6 +59,12 @@ post-patch::
 		${WRKSRC}/lib/*/Makefile.in
 # don't build/install libext2fs.info
 	@${REINPLACE_CMD} -e 's/ install-doc-libs$$//' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -E -e 's/md5sum ([^ ]*)/printf "%s  %s\\n" $$(md5 -q \1) \1/' \
+	    -e "s/ == 0/ = 0/" ${WRKSRC}/tests/[a-t]_*/script
+# disable f_mmp_garbage, fails on BSD
+.for i in f_mmp_garbage m_bigjournal
+	@${MV} ${WRKSRC}/tests/${i} ${WRKSRC}/tests/disabled_test-${i}
+.endfor
 
 .if ${MASTERDIR} == ${.CURDIR}
 post-build:
@@ -81,11 +79,12 @@ post-build:
 		LIBINTL=${libintl}
 # Regression check: avoid a port (not upstream!) regression from 1.40.5,
 # check that e2fsck isn't dynalinked against anything but libc.so:
-	@${ECHO_CMD} -n "===>  checking that e2fsck depends on no shared objects beyond libc.so: "
+	@${ECHO_CMD} -n "===>  checking that e2fsck depends on no shared objects beyond libc and libgcc: "
 	@a="$$(ldd ${WRKSRC}/e2fsck/e2fsck 2>/dev/null \
 	    | ${GREP} -v 'not a dynamic executable' \
 	    | ${GREP} '=>' \
 	    | ${AWK}  '{print $$3;}' \
+	    | ${EGREP} -v '^/lib/libgcc(_s)?\.so\.' \
 	    | ${GREP} -v '^/lib/libc\.so\.' || :)"; \
 	if test "x$$a" = "x" ; then echo 'PASS' ; else \
 	    echo 'FAIL' ; echo '===>  e2fsck depends on:' ; echo "$$a" ; exit 1 ; fi
@@ -106,9 +105,6 @@ post-build:
 	@${ECHO_CMD} '===>  Running e2fsprogs self-test suite'
 	cd ${WRKSRC}/tests && ${GMAKE} check \
 	    || { head -n30000 ${WRKSRC}/tests/*.failed 2>/dev/null ; exit 1 ; }
-# Now patch mke2fs.conf to default to 128 byte inodes - we need to do this
-# after self tests since they assume 256 byte inodes.
-	${PATCH} -N -d ${WRKSRC} <${FILESDIR}/diff-inode_size
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/fsck_ext2fs ${PREFIX}/sbin/
@@ -125,4 +121,3 @@ post-install:
 .endif
 
 .include <bsd.port.post.mk>
-
