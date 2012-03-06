@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.126 2012/03/06 02:34:15 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.127 2012/03/06 02:35:50 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -54,6 +54,7 @@ SUBDIR += jbigkit
 SUBDIR += jpeg
 SUBDIR += kamera
 SUBDIR += kamera-kde4
+SUBDIR += kcolorchooser
 SUBDIR += kdegraphics3
 SUBDIR += kdegraphics4
 SUBDIR += kdegraphics4-mobipocket
