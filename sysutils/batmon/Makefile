@@ -1,13 +1,10 @@
 # New ports collection makefile for:    batmon
-# Date created:         05 Nov 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/sysutils/batmon/Makefile,v 1.2 2010/10/23 17:56:43 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/batmon/Makefile,v 1.3 2011/06/04 15:13:34 laffer1 Exp $
 # $FreeBSD: ports/sysutils/batmon/Makefile,v 1.6 2008/07/08 19:21:30 dinoex Exp $
-#
 
 PORTNAME=	batmon
-PORTVERSION=	0.5
+PORTVERSION=	0.6
 CATEGORIES=	sysutils gnustep
 MASTER_SITES= ${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=   gap
