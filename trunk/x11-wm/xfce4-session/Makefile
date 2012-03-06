@@ -1,9 +1,11 @@
-# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.5 2011/02/09 13:25:21 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/xfce4-session/Makefile,v 1.6 2011/12/15 00:57:58 laffer1 Exp $
 
 PORTNAME=	xfce4-session
-PORTVERSION=	4.6.2
+PORTVERSION=	4.8.2
+PORTREVISION=	2
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -11,23 +13,37 @@ COMMENT=	Session manager for the Xfce 4 desktop environment
 LICENSE=	lgpl
 
 BUILD_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth
-RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth
+RUN_DEPENDS=	iceauth:${PORTSDIR}/x11/iceauth \
+		console-kit-daemon:${PORTSDIR}/sysutils/consolekit
 LIB_DEPENDS=	wnck-1.22:${PORTSDIR}/x11-toolkits/libwnck \
-		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
+		upower-glib.1:${PORTSDIR}/sysutils/upower \
+		polkit.2:${PORTSDIR}/sysutils/policykit
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack  gtk20 intltool intlhack pkgconfig
+USE_GNOME=	gnomehack gtk20 intltool intlhack pkgconfig
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libgui libutil xfconf
+USE_XFCE=	configenv libmenu libutil panel xfconf
 USE_XORG=	x11 sm ice
+
+CONFIGURE_ARGS+=	--enable-panel-plugin \
+		--enable-session-screenshots \
+		--enable-legacy-sm \
+		--disable-gnome \
+		--disable-libgnome-keyring
+
+OPTIONS=	NLS	"Enable Native Language Support"	on  \
+		HAL	"Enable HAL Support"			off
+
+.include <bsd.mport.options.mk>
 
 MAN1=		xfce4-session.1 xfce4-session-logout.1
 
-PLIST_SUB=	VERSION="${PORTVERSION:R}"
+PLIST_SUB=	VERSION="4.6"
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
@@ -37,5 +53,13 @@ PLIST_SUB+=	NLS=""
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
 .endif
+.if !defined(WITHOUT_HAL)
+LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
+.else
+CONFIGURE_ARGS+=--disable-hal
+.endif
+
+post-install:
+	@${SED} 's|%%LOCALBASE%%|${LOCALBASE}|g' ${PKGMESSAGE}
 
 .include <bsd.port.mk>
