@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/burn/Makefile,v 1.1 2010/01/21 01:40:41 laffer1 Exp $
 
 PORTNAME=	burn
 PORTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	sysutils gnustep
 MASTER_SITES=	SF/gs${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -14,7 +15,6 @@ RUN_DEPENDS+=	cdrdao:${PORTSDIR}/sysutils/cdrdao
 
 USE_CDRTOOLS=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
