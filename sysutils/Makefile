@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.109 2012/02/03 03:37:38 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.110 2012/03/02 01:34:32 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -38,6 +38,7 @@ SUBDIR += fusefs-ntfs
 SUBDIR += fusefs-sshfs
 SUBDIR += fusefs-unionfs
 SUBDIR += gag
+SUBDIR += garcon
 SUBDIR += gconf-editor
 SUBDIR += gnome-control-center
 SUBDIR += gnome-mount
