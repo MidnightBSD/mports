@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.121 2012/03/04 20:58:23 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.122 2012/03/04 21:03:16 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -52,6 +52,11 @@ SUBDIR += jpeg
 SUBDIR += kamera
 SUBDIR += kdegraphics3
 SUBDIR += kdegraphics4
+SUBDIR += kdegraphics4-mobipocket
+SUBDIR += kdegraphics4-strigi-analyzer
+SUBDIR += kdegraphics4-svgpart
+SUBDIR += kdegraphics4-thumbnailers
+SUBDIR += kolourpaint
 SUBDIR += kooka
 SUBDIR += kuickshow
 SUBDIR += laternamagica
@@ -107,6 +112,7 @@ SUBDIR += linux_dri
 SUBDIR += mesa-demos
 SUBDIR += ming
 SUBDIR += netpbm
+SUBDIR += okular
 SUBDIR += opencv
 SUBDIR += opencv-core
 SUBDIR += openjpeg
