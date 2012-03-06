@@ -1,13 +1,12 @@
-# $MidnightBSD: mports/x11-fm/Makefile,v 1.6 2010/01/21 01:28:24 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-fm/Makefile,v 1.7 2011/05/28 05:10:52 laffer1 Exp $
 
-    COMMENT = X11 file managers
+COMMENT = X11 file managers
 
 SUBDIR += FSViewer
 SUBDIR += etoile-fontmanager
 SUBDIR += gentoo
 SUBDIR += nautilus
 SUBDIR += thunar
-SUBDIR += workplace
+SUBDIR += thunar-vfs
 
 .include <bsd.port.subdir.mk>

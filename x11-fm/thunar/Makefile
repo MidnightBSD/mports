@@ -1,43 +1,49 @@
-# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.7 2010/12/04 02:29:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/thunar/Makefile,v 1.8 2011/02/12 00:06:52 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar/Makefile,v 1.17 2008/06/06 14:12:22 edwin Exp $
 
 PORTNAME=	Thunar
-PORTVERSION=	1.0.2
+PORTVERSION=	1.3.0
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
+MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME:L}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XFce 4 file manager
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	tumbler-1.0:${PORTSDIR}/deskutils/xfce4-tumbler
 
 GNU_CONFIGURE=	yes
-INSTALLS_ICONS= yes
+INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
-USE_GETTEXT=	yes
+USE_PERL5=	yes
 USE_GMAKE=	yes
-USE_GNOME=	desktopfileutils glib20 gnomehack gtk20 intltool intlhack pkgconfig
+USE_GNOME=	desktopfileutils gnomehack gtk20 intltool intlhack pkgconfig gdkpixbuf2
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libexo libutil
-CFLAGS+=	-DHAVE_SYS_MOUNT_H
-CONFIGURE_ARGS+=	--program-prefix=''
+USE_XFCE=	configenv libexo libmenu libutil
+USE_XORG=	sm x11
 
 OPTIONS=	DBUS		"Enable D-BUS support"				on  \
-		JPEG		"Enable JPEG support"				on  \
-		FAM		"Enable FAM support"				on  \
-		HAL		"Enable HAL support"				on  \
-		GCONF		"Enable GCONF support"				off \
+		NLS		"Enable Native Language Support"		on  \
 		STARTUP		"Enable startup notification support"		on  \
+		NOTIFY		"Enable mount notifications support"		on  \
+		APIDOCS		"Install api documentation"			on  \
 		PLUG_APR	"Thunar Advanced Properties plugin"		on  \
 		PLUG_APR_EXIF	"Exif support for the APR plugin"		off \
 		PLUG_SBR	"Thunar Simple Builtin Renamers plugin"		on  \
 		PLUG_SBR_PCRE	"Regular expression support for the SBR plugin"	off \
 		PLUG_TPA	"Thunar Trash Panel Applet plugin"		on  \
 		PLUG_UCA	"Thunar User Customizable Actions plugin"	on  \
-		PLUG_WALL	"Thunar Wallpaper plugin"			on
+		PLUG_WALL	"Thunar Wallpaper plugin"			on \
+		GVFS		"Add support for remote access"			on
 
+CONFIGURE_ARGS+=	--disable-debug \
+		--enable-gio-unix \
+		--disable-gudev
+CONFIGURE_ENV+=	ac_cv_prog_AWK="${AWK}"
+
+MAN1=		Thunar.1
 
 .include  <bsd.port.pre.mk>
 
@@ -50,27 +56,28 @@ CONFIGURE_ARGS+=--disable-dbus
 PLIST_SUB+=	WITH_DBUS="@comment "
 .endif
 
-.if !defined(WITHOUT_JPEG)
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
-CONFIGURE_ARGS+=--enable-jpeg
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+CONFIGURE_ARGS+=--enable-nls
+PLIST_SUB+=	NLS=""
 .else
-CONFIGURE_ARGS+=--disable-jpeg
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
 .endif
 
-.if !defined(WITHOUT_HAL)
-LIB_DEPENDS+=	hal.1:${PORTSDIR}/sysutils/hal
-.endif
-
-.if defined(WITH_FAM)
-USE_FAM=	yes
-WANT_FAM_SYSTEM=gamin
-.endif
-
-.if defined(WITH_GCONF)
-USE_GNOME+=	gconf2
-CONFIGURE_ARGS+=--enable-gconf
+.if !defined(WITHOUT_NOTIFY)
+LIB_DEPENDS+=	notify.4:${PORTSDIR}/devel/libnotify
+CONFIGURE_ARGS+=--enable-notifications
 .else
-CONFIGURE_ARGS+=--disable-gconf
+CONFIGURE_ARGS+=--disable-notifications
+.endif
+
+.if defined(WITHOUT_APIDOCS)
+CONFIGURE_ARGS+=	--without-html-dir
+PLIST_SUB+=	APIDOCS="@comment "
+.else
+CONFIGURE_ARGS+=	--with-html-dir=${PREFIX}/share/gtk-doc/html
+PLIST_SUB+=	APIDOCS=""
 .endif
 
 .if !defined(WITHOUT_PLUG_APR)
@@ -133,16 +140,18 @@ CONFIGURE_ARGS+=--enable-startup-notification
 CONFIGURE_ARGS+=--disable-startup-notification
 .endif
 
+.if defined(WITH_GVFS)
+USE_GNOME+=gvfs
+.endif
+
+.if (${OSVERSION} < 701000)
+CFLAGS+=	-DHAVE_SYS_MOUNT_H
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|docdir = .*|docdir = ${DOCSDIR}|' \
 		${WRKSRC}/docs/Makefile.in
 	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' ${WRKSRC}/configure
-.if !defined(WITH_FAM)
-	@${REINPLACE_CMD} -e 's|gamin|no-gamin|g; s|fam|no-fam|g' ${WRKSRC}/configure
-.endif
-.if !defined(WITH_HAL)
-	@${REINPLACE_CMD} -e 's|hal-storage|no-hal-storage|g' ${WRKSRC}/configure
-.endif
 	@${REINPLACE_CMD} -e 's|enable_val|enableval|g' ${WRKSRC}/configure
 
 .include <bsd.port.post.mk>
