@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.123 2012/03/06 02:27:04 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.124 2012/03/06 02:29:24 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -142,6 +142,7 @@ SUBDIR += popplerkit
 SUBDIR += preview
 SUBDIR += price
 SUBDIR += py-cairo
+SUBDIR += py-clutter-gtk
 SUBDIR += qt4-iconengines
 SUBDIR += qt4-imageformats
 SUBDIR += qt4-pixeltool
