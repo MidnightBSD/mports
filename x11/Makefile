@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.101 2012/03/06 00:22:36 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.102 2012/03/06 00:59:03 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -50,7 +50,7 @@ SUBDIR += kde3
 SUBDIR += kde4
 SUBDIR += kde4-baseapps
 SUBDIR += kde4-runtime
-SUBDIR += kdd4-workspace
+SUBDIR += kde4-workspace
 SUBDIR += kdebase3
 SUBDIR += kdelibs3
 SUBDIR += kdelibs3-nocups
