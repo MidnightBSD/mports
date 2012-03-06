@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/sysutils/extipl/Makefile,v 1.1 2007/03/21 14:31:26 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/extipl/Makefile,v 1.2 2009/12/28 23:04:00 laffer1 Exp $
 
 PORTNAME=	extipl
 PORTVERSION=	5.04
 CATEGORIES=	sysutils
-MASTER_SITES=	ftp://ports.jp.FreeBSD.org/pub/FreeBSD-jp/ports-jp/LOCAL_PORTS/ \
-		http://www.tsden.org/takamiti/extipl/archs/
+MASTER_SITES=	SFJP/${PORTNAME}/2166
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Partition-selectable boot loader for IBM-PC/AT compatibles
