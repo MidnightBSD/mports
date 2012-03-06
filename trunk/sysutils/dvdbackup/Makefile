@@ -1,29 +1,45 @@
-# $MidnightBSD: mports/sysutils/dvdbackup/Makefile,v 1.1 2007/04/27 21:14:50 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/dvdbackup/Makefile,v 1.2 2009/12/28 23:03:05 laffer1 Exp $
 
 PORTNAME=	dvdbackup
-PORTVERSION=	0.1.1
-CATEGORIES=	sysutils
-MASTER_SITES=	http://dvd-create.sourceforge.net/ GENTOO/distfiles
+PORTVERSION=	0.4.1
+CATEGORIES=	sysutils multimedia
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Backup content from DVD to hard disk
-LICENSE=	gpl2
+LICENSE=	gpl3
 
 LIB_DEPENDS=	dvdread.4:${PORTSDIR}/multimedia/libdvdread
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
-PLIST_FILES=	bin/dvdbackup
-PORTDOCS=	README
+GNU_CONFIGURE=	yes
+USE_GMAKE=	yes
 
-do-build:
-	${CC} -o ${WRKSRC}/dvdbackup ${CFLAGS} -I${LOCALBASE}/include \
-		-L${LOCALBASE}/lib -ldvdread ${WRKSRC}/src/dvdbackup.c
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/dvdbackup ${PREFIX}/bin
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+MAN1=		dvdbackup.1
+PORTDOCS=	NEWS README
+
+DEFAULT_DVD_DEVICE?=	/dev/acd0
+
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+CONFIGURE_ARGS+=	--enable-nls
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} "s|/dev/dvd|${DEFAULT_DVD_DEVICE}|g" \
+		${WRKSRC}/src/main.c ${WRKSRC}/po/*.po ${WRKSRC}/po/*.pot \
+		${WRKSRC}/README ${WRKSRC}/man/dvdbackup.1
+
+pre-configure:
+.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} 's|^install-data-am: .*|install-data-am: |' \
+		${WRKSRC}/Makefile.in
 .endif
 
 .include <bsd.port.mk>
