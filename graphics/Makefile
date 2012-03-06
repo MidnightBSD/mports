@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.124 2012/03/06 02:29:24 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.125 2012/03/06 02:30:50 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -43,6 +43,8 @@ SUBDIR += graphviz
 SUBDIR += gstreamer-plugins-jpeg
 SUBDIR += gstreamer-plugins-libpng
 SUBDIR += gtk-update-icon-cache
+SUBDIR += gwenview
+SUBDIR += gwenview-kde4
 SUBDIR += ilmbase
 SUBDIR += imageviewer
 SUBDIR += imlib
