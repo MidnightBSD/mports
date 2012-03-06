@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.1 2012/03/03 01:52:52 laffer1 Exp $
 # $FreeBSD: ports/x11/kde4-workspace/Makefile,v 1.263 2012/02/16 15:57:30 ashish Exp $
 
 PORTNAME=	kde-workspace
@@ -6,7 +6,7 @@ PORTVERSION=	${KDE4_VERSION}
 PORTREVISION=	1
 CATEGORIES=	x11 kde
 MASTER_SITES=	${MASTER_SITE_KDE_kde} \
-		${MASTER_SITE_LOCAL} \
+		${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.FreeBSD.org/~avilla/distfiles/
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src/:kde \
 			avilla/
