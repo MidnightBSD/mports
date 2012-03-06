@@ -2,7 +2,7 @@
 # Date created:         		28th August 2000
 # Whom:                 		ade, archie
 #
-# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.8 2011/02/02 21:36:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-fm/nautilus/Makefile,v 1.9 2011/05/28 06:23:34 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/nautilus/Makefile,v 1.83 2008/04/19 17:54:58 miwi Exp $
 #   $MCom: ports-stable/x11-fm/nautilus/Makefile,v 1.2 2008/03/31 00:51:45 ahze Exp $
 #
@@ -32,9 +32,9 @@ USE_GNOME=	gnomeprefix gnomehack intlhack gnomedesktop \
 GNOME_DESKTOP_VERSION=2
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
+CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS} -L${LOCALBASE}/lib -liconv" \
 		LIBPNG="-L${LOCALBASE}/lib -lpng -lz"
+CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--enable-static --disable-packagekit
 MAKE_ENV=	G_CHARSET_ALIAS="${LOCALBASE}/libdata/charset.alias"
 
