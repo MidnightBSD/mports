@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.6 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xfce.mk,v 1.7 2011/02/09 14:06:01 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xfce_Pre_Include)
@@ -6,43 +6,47 @@
 Xfce_Pre_Include=		xfce.mk
 Xfce_Include_MAINTAINER=	ports@MidnightBSD.org
 
-XFCE_VERSION=	4.6.2
-
 # This file contains some variable definitions that are supposed to
 # make your life easier when dealing with ports related to the Xfce
 # desktop environment. It's automatically included when USE_XFCE
 # is defined in the ports' makefile.
 
-_USE_XFCE_ALL=			configenv libexo libgui libmenu libutil panel \
-				thunar wm xfconf xfdev
+_USE_XFCE_ALL=			configenv garcon libexo libgui libmenu libutil panel \
+				thunar thunarvfs wm xfconf xfdev
 
-MASTER_SITE_SUBDIR?=		xfce/${XFCE_VERSION}/src
+MASTER_SITE_SUBDIR?=		xfce/4.8/src
 
 configenv_CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include -L${LOCALBASE}/lib"
 
-libexo_BUILD_DEPENDS=		libexo>=0.3.107:${PORTSDIR}/x11/libexo
-libexo_RUN_DEPENDS=		libexo>=0.3.107:${PORTSDIR}/x11/libexo
+garcon_BUILD_DEPENDS=		garcon>=0.1.9:${PORTSDIR}/sysutils/garcon
+garcon_RUN_DEPENDS=		garcon>=0.1.9:${PORTSDIR}/sysutils/garcon
 
-libgui_BUILD_DEPENDS=		libxfce4gui>=4.6.4:${PORTSDIR}/x11-toolkits/libxfce4gui
-libgui_RUN_DEPENDS=		libxfce4gui>=4.6.4:${PORTSDIR}/x11-toolkits/libxfce4gui
+libexo_BUILD_DEPENDS=		libexo>=0.6.2:${PORTSDIR}/x11/libexo
+libexo_RUN_DEPENDS=		libexo>=0.6.2:${PORTSDIR}/x11/libexo
 
-libmenu_BUILD_DEPENDS=		libxfce4menu>=4.6.2:${PORTSDIR}/x11/libxfce4menu
-libmenu_RUN_DEPENDS=		libxfce4menu>=4.6.2:${PORTSDIR}/x11/libxfce4menu
+libgui_BUILD_DEPENDS=		libxfce4gui>=4.8.1:${PORTSDIR}/x11-toolkits/libxfce4gui
+libgui_RUN_DEPENDS=		libxfce4gui>=4.8.1:${PORTSDIR}/x11-toolkits/libxfce4gui
 
-libutil_BUILD_DEPENDS=		libxfce4util>=4.6.2:${PORTSDIR}/x11/libxfce4util
-libutil_RUN_DEPENDS=		libxfce4util>=4.6.2:${PORTSDIR}/x11/libxfce4util
+libmenu_BUILD_DEPENDS=		libxfce4menu>=4.8.0:${PORTSDIR}/x11/libxfce4menu
+libmenu_RUN_DEPENDS=		libxfce4menu>=4.8.0:${PORTSDIR}/x11/libxfce4menu
 
-panel_BUILD_DEPENDS=		xfce4-panel>=4.6.4:${PORTSDIR}/x11-wm/xfce4-panel
-panel_RUN_DEPENDS=		xfce4-panel>=4.6.4:${PORTSDIR}/x11-wm/xfce4-panel
+libutil_BUILD_DEPENDS=		libxfce4util>=4.8.2:${PORTSDIR}/x11/libxfce4util
+libutil_RUN_DEPENDS=		libxfce4util>=4.8.2:${PORTSDIR}/x11/libxfce4util
 
-thunar_BUILD_DEPENDS=		Thunar>=1.0.2:${PORTSDIR}/x11-fm/thunar
-thunar_RUN_DEPENDS=		Thunar>=1.0.2:${PORTSDIR}/x11-fm/thunar
+panel_BUILD_DEPENDS=		xfce4-panel>=4.8.6:${PORTSDIR}/x11-wm/xfce4-panel
+panel_RUN_DEPENDS=		xfce4-panel>=4.8.6:${PORTSDIR}/x11-wm/xfce4-panel
 
-wm_BUILD_DEPENDS=		xfce4-wm>=4.6.2:${PORTSDIR}/x11-wm/xfce4-wm
-wm_RUN_DEPENDS=			xfce4-wm>=4.6.2:${PORTSDIR}/x11-wm/xfce4-wm
+thunar_BUILD_DEPENDS=		Thunar>=1.2.3:${PORTSDIR}/x11-fm/thunar
+thunar_RUN_DEPENDS=		Thunar>=1.2.3:${PORTSDIR}/x11-fm/thunar
 
-xfconf_BUILD_DEPENDS=		xfce4-conf>=4.6.2:${PORTSDIR}/x11/xfce4-conf
-xfconf_RUN_DEPENDS=		xfce4-conf>=4.6.2:${PORTSDIR}/x11/xfce4-conf
+thunarvfs_BUILD_DEPENDS=	thunar-vfs>=1.2.0:${PORTSDIR}/x11-fm/thunar-vfs
+thunarvfs_RUN_DEPENDS=		thunar-vfs>=1.2.0:${PORTSDIR}/x11-fm/thunar-vfs
+
+wm_BUILD_DEPENDS=		xfce4-wm>=4.8.2:${PORTSDIR}/x11-wm/xfce4-wm
+wm_RUN_DEPENDS=			xfce4-wm>=4.8.2:${PORTSDIR}/x11-wm/xfce4-wm
+
+xfconf_BUILD_DEPENDS=		xfce4-conf>=4.8.0:${PORTSDIR}/x11/xfce4-conf
+xfconf_RUN_DEPENDS=		xfce4-conf>=4.8.0:${PORTSDIR}/x11/xfce4-conf
 
 xfdev_RUN_DEPENDS=		xfce4-dev-tools:${PORTSDIR}/devel/xfce4-dev-tools
 
