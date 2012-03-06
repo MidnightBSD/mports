@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.7 2011/02/02 21:39:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/awesome/Makefile,v 1.8 2011/05/15 19:15:43 laffer1 Exp $
 
 PORTNAME=	awesome
-PORTVERSION=	3.4.9
+PORTVERSION=	3.4.11
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://awesome.naquadah.org/download/ \
-		http://redundancy.redundancy.org/mirror/
+MASTER_SITES=	http://awesome.naquadah.org/download/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A highly configurable, next generation framework window manager
@@ -15,24 +14,26 @@ BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
 		gperf>=3.0.3:${PORTSDIR}/devel/gperf \
 		pango>=1.19.3:${PORTSDIR}/x11-toolkits/pango \
 		xmlto:${PORTSDIR}/textproc/xmlto \
-		xcb-util>=0.3.6:${PORTSDIR}/x11/xcb-util \
+		xcb-util>=0.3.8:${PORTSDIR}/x11/xcb-util \
 		xproto>=7.0.11:${PORTSDIR}/x11/xproto \
-		lua:${PORTSDIR}/lang/lua
+		${LOCALBASE}/share/xml/docbook/4.5/docbookx.dtd:${PORTSDIR}/textproc/docbook-450
 LIB_DEPENDS=	cairo.2:${PORTSDIR}/graphics/cairo \
-		ev.3:${PORTSDIR}/devel/libev \
+		ev.4:${PORTSDIR}/devel/libev \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
-		xdg-basedir.1:${PORTSDIR}/x11/libxdg-basedir \
+		xdg-basedir.2:${PORTSDIR}/x11/libxdg-basedir \
 		xcb.2:${PORTSDIR}/x11/libxcb \
-		xcb-event.1:${PORTSDIR}/x11/xcb-util \
-		execinfo.1:${PORTSDIR}/devel/libexecinfo \
-		Imlib2.5:${PORTSDIR}/graphics/imlib2
+		xcb-util.0:${PORTSDIR}/x11/xcb-util \
+		xcb-image.0:${PORTSDIR}/x11/xcb-util-image \
+		xcb-keysyms.1:${PORTSDIR}/x11/xcb-util-keysyms \
+		xcb-icccm.4:${PORTSDIR}/x11/xcb-util-wm \
+		execinfo.1:${PORTSDIR}/devel/libexecinfo
 
 USE_BZIP2=	yes
 USE_ICONV=	yes
 USE_CMAKE=	yes
-CMAKE_USE_PTHREAD=yes
 CMAKE_ARGS+=	-DSYSCONFDIR=${PREFIX}/etc
+USE_EFL=	imlib2
 USE_GNOME=	glib20 pango
 USE_LUA=	5.1
 USE_XORG=	pixman x11 xau xdmcp xext xft xinerama xrandr xrender xproto
@@ -41,6 +42,7 @@ MAN1=	awesome.1 \
 	awesome-client.1 \
 	awsetbg.1
 MAN5=	awesomerc.5
+MANLANG=	"" de es fr
 MANCOMPRESSED=	yes
 PORTDOCS=	AUTHORS BUGS LICENSE README
 
