@@ -2,13 +2,12 @@
 # Date created:				2005-08-06
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/devel/libnotify/Makefile,v 1.4 2011/06/05 04:53:28 laffer1 Exp $
+# $MidnightBSD: mports/devel/libnotify/Makefile,v 1.5 2011/12/15 00:34:42 laffer1 Exp $
 # $FreeBSD: ports/devel/libnotify/Makefile,v 1.19 2007/05/19 20:03:08 flz Exp $
 #
 
 PORTNAME=	libnotify
-PORTVERSION=	0.5.2
-PORTREVISION=	1
+PORTVERSION=	0.7.3
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 
@@ -16,7 +15,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for desktop notifications
 LICENSE=	lgpl
 
-LIB_DEPENDS=	dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
+BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+RUN_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack intlhack glib20 gtk20 ltverhack
