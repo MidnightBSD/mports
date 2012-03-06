@@ -1,13 +1,10 @@
 # New ports collection makefile for:	battmond
-# Date created:				16 June 2006
-# Whom:					ntarmos@ceid.upatras.gr
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/battmond/Makefile,v 1.1 2008/01/21 16:23:37 laffer1 Exp $
 # $FreeBSD: ports/sysutils/battmond/Makefile,v 1.2 2006/09/07 08:16:21 pav Exp $
-#
 
 PORTNAME=	battmond
-PORTVERSION=	0.2
+PORTVERSION=	0.3
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ntarmos.dyndns.org/Software/FreeBSD/
 
