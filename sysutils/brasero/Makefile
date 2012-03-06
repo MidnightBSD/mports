@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.2 2010/10/23 17:51:48 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/brasero/Makefile,v 1.3 2011/05/28 06:49:51 laffer1 Exp $
 
 PORTNAME=	brasero
 PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	sysutils audio multimedia gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -10,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CD/DVD mastering tool for the GNOME desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	notify.1:${PORTSDIR}/devel/libnotify \
+LIB_DEPENDS=	notify.4:${PORTSDIR}/devel/libnotify \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
 		totem-plparser.17:${PORTSDIR}/multimedia/totem-pl-parser \
 		canberra-gtk.0:${PORTSDIR}/audio/libcanberra
@@ -30,8 +31,8 @@ INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 CONFIGURE_ARGS=	--disable-inotify --with-html-dir=${PREFIX}/share/doc \
 		--enable-gtk3=no --enable-introspection=yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_CAM_LIB_H=1" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_CAM_LIB_H=1
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		brasero.1
 GLIB_SCHEMAS=	org.gnome.brasero.gschema.xml
@@ -66,5 +67,6 @@ post-patch:
 	    	${WRKSRC}/libbrasero-burn/burn-process.c
 	@${REINPLACE_CMD} -e 's|" == "|" = "|g' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|/proc/self/fd/0|/dev/fd/0|g' ${WRKSRC}/po/*.po
 
 .include <bsd.port.post.mk>
