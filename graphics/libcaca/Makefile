@@ -2,34 +2,33 @@
 # Date created:			11 January 2004
 # Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
 #
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.7 2011/12/15 00:57:47 laffer1 Exp $
 #
 
 PORTNAME=	libcaca
-DISTVERSION=	0.99.beta13
+DISTVERSION=	0.99.beta17
+PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	http://libcaca.zoy.org/files/
+MASTER_SITES=	http://caca.zoy.org/raw-attachment/wiki/libcaca/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Graphics library that outputs text instead of pixels
 LICENSE=	unknown
 # this guy has his own license, gpl and lgpl stuff... ?
 
-USE_GNOME=	gnomehack  ltverhack pkgconfig
+USE_GNOME=	gnomehack ltverhack pkgconfig
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lm -lncurses"
 CONFIGURE_ARGS=	--disable-doc \
 		--enable-ncurses \
+		--disable-java \
 		--disable-csharp \
 		--disable-ruby
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 DOCS=		AUTHORS COPYING COPYING.GPL COPYING.LGPL ChangeLog NEWS \
-		NOTES README THANKS TODO
-MAN1=		caca-config.1 cacafire.1 cacaplay.1 cacaserver.1 cacaview.1 \
-		img2txt.1
+		NOTES README THANKS
+MAN1=		caca-config.1 cacademo.1 cacafire.1 cacaplay.1 cacaserver.1 \
+		cacaview.1 img2txt.1
 
 .if defined(WITHOUT_X11)
 CONFIGURE_ARGS+=--disable-x11
@@ -40,7 +39,7 @@ USE_XORG=	x11
 .if defined(WITHOUT_IMLIB2)
 CONFIGURE_ARGS+=--disable-imlib2
 .else
-LIB_DEPENDS+=	Imlib2.5:${PORTSDIR}/graphics/imlib2
+USE_EFL+=	imlib2
 .endif
 
 .include <bsd.port.pre.mk>
@@ -55,8 +54,8 @@ CONFIGURE_ARGS+=--disable-slang
 post-patch:
 	@${REINPLACE_CMD} -e 's|-g -O2 ||g ; s| -fomit-frame-pointer||g ; \
 		s|arpa\/inet.h ||g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|: install-docDATA|:|g' \
-		${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|: install-docDATA|:|g ; s| csharp||g' \
+			${WRKSRC}/Makefile.in
 
 .ifndef (NOPORTDOCS)
 post-install:
