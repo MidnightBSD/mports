@@ -1,5 +1,5 @@
 #
-# $MidnightBSD: mports/devel/kdesdk4/Makefile,v 1.1 2009/01/05 02:33:24 ctriv Exp $
+# $MidnightBSD: mports/devel/kdesdk4/Makefile,v 1.2 2012/03/06 02:13:23 laffer1 Exp $
 #
 
 PORTNAME=	kdesdk
@@ -14,7 +14,7 @@ COMMENT=	KDE Software Development Kit
 LICENSE=	gpl2
 
 LIB_DEPENDS=	svn_client-1.0:${PORTSDIR}/devel/subversion \
-		boost_thread.4:${PORTSDIR}/devel/boost-libs \
+		boost_thread.4:${PORTSDIR}/devel/boost-python \
 		hunspell-1.3.0:${PORTSDIR}/textproc/hunspell \
 		searchclient.0:${PORTSDIR}/deskutils/strigi \
 		qca.2:${PORTSDIR}/devel/qca
