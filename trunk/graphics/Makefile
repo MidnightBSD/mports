@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.128 2012/03/06 02:38:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.129 2012/03/06 02:40:05 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -10,6 +10,7 @@ SUBDIR += aalib
 SUBDIR += agg
 SUBDIR += cairo
 SUBDIR += cairomm
+SUBDIR += clutter
 SUBDIR += clutter-gtk
 SUBDIR += dia
 SUBDIR += djvulibre-nox11
