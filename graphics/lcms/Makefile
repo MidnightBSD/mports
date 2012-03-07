@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.5 2010/03/26 00:56:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/lcms/Makefile,v 1.6 2011/10/10 02:45:27 laffer1 Exp $
 # $FreeBSD: ports/graphics/lcms/Makefile,v 1.23 2006/08/10 20:59:53 miwi Exp $
 
 PORTNAME=	lcms
 PORTVERSION=	1.19
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.19 \
@@ -15,9 +15,9 @@ LICENSE=	mit
 
 USE_GNOME=	gnomehack lthack
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
-		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=	-I${LOCALBASE}/include
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/lcms-1.19
 
