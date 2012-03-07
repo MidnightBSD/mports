@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libmng/Makefile,v 1.7 2010/04/25 12:29:12 laffer1 Exp $
 
 PORTNAME=	libmng
 PORTVERSION=	1.0.10
@@ -14,7 +14,7 @@ LICENSE=	bsd3
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		lcms:${PORTSDIR}/graphics/lcms
 
-OPTIONS=	MNG_OPTIMIZE "Use vendor's new optimization flags" no
+OPTIONS=	MNG_OPTIMIZE "Use vendor's new optimization flags" off
 
 MAKEFILE=	${FILESDIR}/Makefile.bsd
 MAKE_ARGS+=	WITH_MNG_OPTIMIZE=${WITH_MNG_OPTIMIZE}
