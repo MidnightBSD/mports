@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/lua/Makefile,v 1.1 2009/11/07 23:32:36 laffer1 Exp $
+# $MidnightBSD: mports/lang/lua/Makefile,v 1.2 2010/10/16 23:57:48 laffer1 Exp $
 
 PORTNAME=	lua
 PORTVERSION=	5.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang lua
 MASTER_SITES=	http://www.lua.org/ftp/ \
 		ftp://ftp.tecgraf.puc-rio.br/pub/lua/ \
@@ -10,11 +10,14 @@ MASTER_SITES=	http://www.lua.org/ftp/ \
 		ftp://ftp.ntua.gr/pub/lang/lua/ \
 		ftp://ftp.uni-trier.de/pub/languages/lua/ \
 		ftp://ftp.gwdg.de/pub/languages/lua/
+PATCH_SITES=	http://www.lua.org/ftp/
+PATCHFILES=	patch-lua-5.1.4-3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
 LICENSE=	mit
 
+PATCH_WRKSRC=	${WRKSRC}/src
 USE_LUA=	5.1
 LUA_COMPS=	# only define variables
 ALL_TARGET=	freebsd
@@ -59,8 +62,8 @@ LUA_TEST=	README bisect.lua cf.lua echo.lua env.lua factorial.lua \
 post-patch:
 	@${REINPLACE_CMD} -Ee \
 		'/^INSTALL_.*=/s/INSTALL_TOP/prefix/ ; \
-		 s|^(CC=).*|\1 ${CC}| ; \
-		 s|^(CFLAGS=)|\1 ${CFLAGS}| ; \
+		 s|^(CC\|AR\|RANLIB)=|\1?=| ; \
+		 /^CFLAGS=/ { s/=/+=/; s/-O2//; } ; \
 		 s|/usr/local|${PREFIX}|' \
 		 ${WRKSRC}/Makefile ${WRKSRC}/src/Makefile
 	@${REINPLACE_CMD} -i '' -Ee \
@@ -75,6 +78,8 @@ post-patch:
 		${WRKSRC}/etc/lua.pc
 	@${REINPLACE_CMD} -e 's,rand *(,random(,g' \
 		${WRKSRC}/src/lmathlib.c
+	@${REINPLACE_CMD} -e '/LUA_ROOT/s|/usr/local|${TRUE_PREFIX}|' \
+		${WRKSRC}/src/luaconf.h
 
 post-build:
 	@${RM} -f ${WRKSRC}/test/lua ${WRKSRC}/test/luac
