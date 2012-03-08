@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/shells/Makefile,v 1.7 2010/11/13 19:18:19 laffer1 Exp $
-#
+# $MidnightBSD: mports/shells/Makefile,v 1.8 2011/05/28 05:10:46 laffer1 Exp $
 
-    COMMENT = Shells
+COMMENT = Shells
 
 SUBDIR += 44bsd-csh
 SUBDIR += bash
 SUBDIR += bash-completion
+SUBDIR += cvs-server
 SUBDIR += es
 SUBDIR += esh
 SUBDIR += fd
