@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.7 2010/07/31 21:43:44 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/policykit/Makefile,v 1.8 2011/06/04 14:06:02 laffer1 Exp $
 
 PORTNAME=	policykit
 PORTVERSION=	0.9
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 DISTNAME=	PolicyKit-${PORTVERSION}
@@ -27,9 +27,9 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--localstatedir=/var \
 		--with-polkit-user=polkit \
 		--with-polkit-group=polkit
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		GTKDOC="false"
+CONFIGURE_ENV=	GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(NO_INSTALL_MANPAGES)
 CONFIGURE_ARGS+=--disable-man-pages
