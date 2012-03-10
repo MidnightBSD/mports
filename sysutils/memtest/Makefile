@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/memtest/Makefile,v 1.2 2009/12/28 23:06:41 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/memtest/Makefile,v 1.3 2010/10/23 17:45:18 laffer1 Exp $
 
 PORTNAME=	memtest
-PORTVERSION=	4.2.0
+PORTVERSION=	4.2.2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://pyropus.ca/software/${PORTNAME}er/old-versions/
 DISTNAME=	${PORTNAME}er-${PORTVERSION}
@@ -15,7 +15,7 @@ PLIST_FILES=	bin/memtest
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|cc|${CC}|' \
-		${WRKSRC}/conf-cc
+		${WRKSRC}/conf-*
 	@${MV} ${WRKSRC}/${PORTNAME}er.8 ${WRKSRC}/${MAN8}
 	@${REINPLACE_CMD} -e 's|${PORTNAME}er |${PORTNAME} |g' \
 			  -e 's| ${PORTNAME}er| ${PORTNAME}|' \
