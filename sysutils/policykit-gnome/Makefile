@@ -2,7 +2,7 @@
 # Date Created:			20 January 2008
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/sysutils/policykit-gnome/Makefile,v 1.3 2010/12/31 12:21:40 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/policykit-gnome/Makefile,v 1.4 2011/12/15 00:57:54 laffer1 Exp $
 # $FreeBSD: ports/sysutils/policykit-gnome/Makefile,v 1.3 2008/05/01 00:57:08 marcus Exp $
 #   $MCom: ports/sysutils/policykit-gnome/Makefile,v 1.4 2008/02/15 16:48:08 mezz Exp $
 #
@@ -24,13 +24,13 @@ LIB_DEPENDS=	polkit.2:${PORTSDIR}/sysutils/policykit
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
-USE_GNOME=	gnomehack  intlhack gnomedocutils gconf2
+USE_GNOME=	gnomehack intlhack gnomedocutils gconf2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	polkit-gnome.schemas
 
