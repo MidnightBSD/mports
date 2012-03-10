@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.2 2011/02/02 21:22:47 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/upower/Makefile,v 1.3 2011/06/08 03:27:31 laffer1 Exp $
 # $FreeBSD: ports/sysutils/upower/Makefile,v 1.4 2010/07/25 19:35:04 kwm Exp $
 
 PORTNAME=	upower
@@ -25,9 +25,9 @@ USE_PYTHON=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-backend=freebsd \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		GTKDOC="false"
+CONFIGURE_ENV=	GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(NO_INSTALL_MANPAGES)
 CONFIGURE_ARGS+=--disable-man-pages
