@@ -2,13 +2,12 @@
 # Date created:		2 September 2002
 # Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
 #
-# $MidnightBSD: mports/sysutils/libchk/Makefile,v 1.1 2006/10/28 05:27:21 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/libchk/Makefile,v 1.2 2007/12/06 00:00:34 laffer1 Exp $
 # $FreeBSD: ports/sysutils/libchk/Makefile,v 1.10 2006/05/25 20:30:08 pav Exp $
 #
 
 PORTNAME=	libchk
-PORTVERSION=	1.9
-PORTREVISION=	1
+PORTVERSION=	1.10.3
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.iDaemons.org/pub/distfiles/ \
 		${MASTER_SITE_LOCAL}
