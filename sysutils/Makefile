@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.111 2012/03/06 01:08:28 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.112 2012/03/10 06:10:53 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -79,6 +79,7 @@ SUBDIR += policykit
 SUBDIR += policykit-gnome
 SUBDIR += polkit
 SUBDIR += polkit-gnome
+SUBDIR += polkit-kde
 SUBDIR += polkit-qt
 SUBDIR += qzeitgeist
 SUBDIR += screen
