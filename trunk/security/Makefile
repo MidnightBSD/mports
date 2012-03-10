@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/Makefile,v 1.108 2012/02/29 01:08:47 laffer1 Exp $
+# $MidnightBSD: mports/security/Makefile,v 1.109 2012/03/04 04:17:07 laffer1 Exp $
 
 COMMENT = Security tools
 
@@ -72,6 +72,7 @@ SUBDIR += p5-GSSAPI
 SUBDIR += p5-IO-Socket-SSL
 SUBDIR += p5-Net-SSLeay
 SUBDIR += pam_helper
+SUBDIR += pam_kde
 SUBDIR += pam_ldap
 SUBDIR += pecl-crack
 SUBDIR += pecl-gnupg
