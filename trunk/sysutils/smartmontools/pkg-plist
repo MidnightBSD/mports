@@ -1,5 +1,4 @@
-@unexec /bin/echo "===>" Stopping smartd ...
-@unexec /usr/bin/killall smartd 2>/dev/null || true
+@stopdaemon smartd
 etc/periodic/daily/smart
 etc/smartd.conf.sample
 sbin/smartctl
