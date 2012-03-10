@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.2 2009/09/25 00:32:57 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/consolekit/Makefile,v 1.3 2011/06/04 21:52:16 laffer1 Exp $
 
 PORTNAME=	consolekit
 PORTVERSION=	0.4.3
@@ -21,8 +21,8 @@ USE_GNOME=	gnomehack
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-pid-file=/var/run/${PORTNAME}.pid \
 		--localstatedir=/var
 
