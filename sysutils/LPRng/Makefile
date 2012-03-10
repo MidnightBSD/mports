@@ -2,11 +2,12 @@
 # Date created:		January 21, 2008
 # Whom:			Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.3 2011/06/04 15:08:52 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/LPRng/Makefile,v 1.4 2012/03/06 01:14:15 laffer1 Exp $
 #
 
 PORTNAME=	LPRng
 PORTVERSION=	3.8.35
+PORTREVISION=	1
 CATEGORIES=	sysutils print
 MASTER_SITES=	ftp://ftp.lprng.com/pub/%SUBDIR%/ \
 		ftp://ftp.cise.ufl.edu/pub/mirrors/%SUBDIR%/ \
@@ -20,7 +21,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An Enhanced Printer Spooler
 LICENSE=	perl
 
-LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS=	gdbm.4:${PORTSDIR}/databases/gdbm
 
 CONFLICTS=	cups-base-1.[2-9]*
 
