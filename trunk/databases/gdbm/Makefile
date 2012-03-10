@@ -1,20 +1,20 @@
-# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.8 2009/10/14 00:06:31 laffer1 Exp $
+# $MidnightBSD: mports/databases/gdbm/Makefile,v 1.9 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=	gdbm
-PORTVERSION=	1.8.3
-PORTREVISION=	5
+PORTVERSION=	1.9.1
+PORTREVISION=	0
 CATEGORIES=	databases
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNU database manager
 LICENSE=        gpl2
 
+FAKE_OPTS+=	prefixhack
+
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 USE_LDCONFIG=	yes
 DESTDIRNAME=	INSTALL_ROOT
 
