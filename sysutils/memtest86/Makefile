@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/memtest86/Makefile,v 1.3 2010/06/01 23:05:43 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/memtest86/Makefile,v 1.4 2011/01/25 14:14:45 laffer1 Exp $
 
 PORTNAME=	memtest86
-PORTVERSION=	3.5
-PORTREVISION=	1
+PORTVERSION=	4.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.memtest86.com/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}.iso.zip
@@ -19,7 +18,7 @@ ONLY_FOR_ARCHS=	i386
 NO_BUILD=	yes
 
 PORTDOCS=	README
-PLIST_FILES=	%%DATADIR%%/floppy.bin %%DATADIR%%/Memtest86-3.5.iso
+PLIST_FILES=	%%DATADIR%%/floppy.bin %%DATADIR%%/Memtest86_4.0.iso
 PLIST_DIRS=	%%DATADIR%%
 
 SUB_FILES=	pkg-message
@@ -31,7 +30,7 @@ do-install:
 	@${MKDIR} ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/precomp.bin ${DATADIR}/floppy.bin
 	${INSTALL_DATA} ${WRKSRC}/Memtest86_${PORTVERSION}.iso \
-			${DATADIR}/Memtest86-${PORTVERSION}.iso
+			${DATADIR}/Memtest86_${PORTVERSION}.iso
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 .for i in ${PORTDOCS}
