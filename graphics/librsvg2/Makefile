@@ -2,17 +2,16 @@
 # Date created:         		8th May 2001
 # Whom:                 		Ade Lovett <ade@FreeBSD.org>
 #
-# $MidnightBSD: mports/graphics/librsvg2/Makefile,v 1.5 2009/09/20 01:53:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/librsvg2/Makefile,v 1.6 2011/02/02 21:04:18 laffer1 Exp $
 # $FreeBSD: ports/graphics/librsvg2/Makefile,v 1.59 2007/07/27 15:50:29 mezz Exp $
 #   $MCom: ports/graphics/librsvg2/Makefile,v 1.109 2006/10/02 04:52:51 bland Exp $
 #
 
 PORTNAME=	librsvg2
-PORTVERSION=	2.22.2
-PORTREVISION=	1
+PORTVERSION=	2.34.1
 CATEGORIES=	graphics gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME:S/2$//}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
+MASTER_SITE_SUBDIR=	sources/librsvg/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	librsvg-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -25,46 +24,22 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		croco-${CROCO_VERSION}.3:${PORTSDIR}/textproc/libcroco
 RUN_DEPENDS=	gtk-engines2>=2.7.5_1:${PORTSDIR}/x11-themes/gtk-engines2
 
-USE_BZIP2=	yes
+USE_XZ=		yes
+USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_XLIB=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack gnomeprefix libgsf gtk20 ltverhack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+USE_GNOME=	gnomehack gnomeprefix libgsf ltverhack gtk20
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-svgz \
-		--disable-gtk-doc \
-		--without-gimp \
 		--with-croco \
-		--disable-gnome-vfs \
-		--enable-gtk-theme \
-		--disable-gnome-print
-
+		--enable-gtk-theme
 CROCO_VERSION=	0.6
-
 MAN1=		rsvg.1
 
-OPTIONS=	MOZILLA_PLUGIN "Enable the SVG browser plug-in" no
-
-.include <bsd.port.pre.mk>
-
-.if defined(WITH_MOZILLA_PLUGIN)
-USE_GECKO=	browser<->firefox mozilla seamonkey xulrunner firefox15
-CONFIGURE_ENV+=	MOZILLA_CONFIG=no
-CONFIGURE_ARGS+=--enable-mozilla-plugin=yes
-
-PLIST_SUB+=	PLUGIN=""
-.else
-CONFIGURE_ARGS+=--enable-mozilla-plugin=no
-
-PLIST_SUB+=	PLUGIN="@comment "
-.endif
-
 post-patch:
-.if defined(WITH_MOZILLA_PLUGIN)
-	@${REINPLACE_CMD} -e 's|mozilla-plugin|${GECKO}-plugin|g' \
+	@${REINPLACE_CMD} -e 's|GTK3_REQUIRED=2.90.0|GTK3_REQUIRED=9.90.0|g' \
 		${WRKSRC}/configure
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
