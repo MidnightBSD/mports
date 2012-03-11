@@ -1,14 +1,12 @@
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.8 2009/05/31 02:59:35 laffer1 Exp $
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.9 2009/05/31 17:09:23 laffer1 Exp $
 
 PORTNAME=	xearth
 PORTVERSION=	1.1
 PORTREVISION=	1
 CATEGORIES=	astro geography
-MASTER_SITES=	ftp://cag.lcs.mit.edu/pub/tuna/ \
-		${MASTER_SITE_XCONTRIB:S/$/:xcontrib/} \
-		${MASTER_SITE_FREEBSD_LOCAL:S/$/:local/}
-MASTER_SITE_SUBDIR=	applications/:xcontrib simon/:local
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:xcontrib,local
+MASTER_SITES=	XCONTRIB/applications \
+		http://seis.bris.ac.uk/~mexas/ \
+		FREEBSD_LOCAL/simon
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the root window to the image of earth
