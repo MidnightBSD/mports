@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/python26/Makefile,v 1.17 2011/11/05 14:39:15 laffer1 Exp $
+# $MidnightBSD: mports/lang/python27/Makefile,v 1.1 2012/02/02 08:53:12 laffer1 Exp $
 
 PORTNAME=	python27
 PORTVERSION=	2.7.2
+PORTREVISION=	1
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -145,8 +146,6 @@ CONFIGURE_ARGS+=	--with-fpectl
 .endif
 
 pre-patch:
-	${CP} -r ${PATCH_WRKSRC}/Lib/plat-freebsd8 \
-		${PATCH_WRKSRC}/Lib/plat-freebsd9
 	${CP} -r ${PATCH_WRKSRC}/Lib/plat-freebsd7 \
 		${PATCH_WRKSRC}/Lib/plat-midnightbsd0
 	${MKDIR} ${WRKSRC} ${SHARED_WRKSRC}/Modules
