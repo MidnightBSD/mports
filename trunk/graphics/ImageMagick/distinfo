@@ -1,4 +1,3 @@
-MD5 (ImageMagick-6.6.2-10.tar.gz) = a6b1cc13cfa539bdf71b25d83353cef4
-SHA256 (ImageMagick-6.6.2-10.tar.gz) = 3ab0b60ac917698fb2a4491b4b44a53f894ab25ca154d9041ba72365a9c0cd44
-RMD160 (ImageMagick-6.6.2-10.tar.gz) = 00f88069860485adcadde410ff0c80c020b99a1e
-SIZE (ImageMagick-6.6.2-10.tar.gz) = 11252890
+SHA256 (ImageMagick-6.7.4-4.tar.xz) = af08ec5f1c4ac325a8e21e8269fba99beeab011949e45b1176d5d26c3e3d19fa
+RMD160 (ImageMagick-6.7.4-4.tar.xz) = 3c6881c4770ba21147ef6e148eacd01b6b656433
+SIZE (ImageMagick-6.7.4-4.tar.xz) = 7619232
