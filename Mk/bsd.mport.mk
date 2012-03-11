@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.191 2012/02/29 21:31:35 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.192 2012/02/29 21:44:15 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -326,7 +326,7 @@ _LOAD_${EXT:U}_EXT=	yes
 # we could go back to the above approach.
 _ALL_EXT=	linux_rpm linux_apps xorg fortran gcc local perl5 openssl emacs gnustep php python java ruby \
 			tcl apache kde qt autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-			pgsql bdb sqlite gecko scons ocaml
+			pgsql bdb sqlite gecko scons ocaml efl
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
@@ -3449,10 +3449,12 @@ _INSTALL_DEPENDS=	\
 					${PKG_ADD} -C ${DESTDIR} $${subpkgfile}; \
 				fi; \
 			else \
-			  (cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
+				(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
+				(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS clean) ; \
 			fi; \
 		else \
 			(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS $$target $$depends_args) ; \
+			(cd $$dir; ${MAKE} -DINSTALLS_DEPENDS clean) ; \
 		fi; \
 		if [ -z "${DESTDIR}" ] ; then \
 			${ECHO_MSG} "===>   Returning to build of ${PKGNAME}"; \
