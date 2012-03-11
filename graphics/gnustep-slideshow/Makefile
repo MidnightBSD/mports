@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gnustep-slideshow/Makefile,v 1.1 2010/05/30 22:25:55 laffer1 Exp $
 
 PORTNAME=	slideshow
 PORTVERSION=	0.3.5
+PORTREVISION=	1
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/gsimageapps/
 PKGNAMEPREFIX=	gnustep-
@@ -13,7 +14,6 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
