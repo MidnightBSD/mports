@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.6 2011/02/02 21:04:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Hermes/Makefile,v 1.7 2012/02/24 18:46:27 laffer1 Exp $
 
 PORTNAME=	Hermes
 PORTVERSION=	1.3.3
 PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.su.se/pub/lunar/source-archive/ \
-		http://www.clanlib.org/download/legacy/ \
 		${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	distfiles
 
