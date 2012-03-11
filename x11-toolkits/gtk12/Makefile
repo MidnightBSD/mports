@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.11 2009/11/10 03:10:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.12 2011/02/02 21:38:57 laffer1 Exp $
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	12
 PORTVERSION=	1.2.10
-PORTREVISION=	18
+PORTREVISION=	11
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/1.2

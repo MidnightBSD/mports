@@ -1,6 +1,6 @@
---- configure.orig	2010-06-15 15:44:30 -0400
-+++ configure	2010-11-06 11:58:50 -0400
-@@ -1469,7 +1469,7 @@
+--- configure.orig	2011-08-10 08:16:41 -0400
++++ configure	2011-09-17 23:36:08 -0400
+@@ -1657,7 +1657,7 @@
  nm_opts='-g'
  
  # machine
@@ -9,7 +9,7 @@
  cpu="generic"
  
  # OS
-@@ -1509,7 +1509,7 @@
+@@ -1698,7 +1698,7 @@
  SLIBSUF=".so"
  SLIBNAME='$(SLIBPREF)$(FULLNAME)$(SLIBSUF)'
  SLIBNAME_WITH_VERSION='$(SLIBNAME).$(LIBVERSION)'
@@ -18,23 +18,25 @@
  LIB_INSTALL_EXTRA_CMD='$$(RANLIB) "$(LIBDIR)/$(LIBNAME)"'
  
  CC_O='-o $@'
-@@ -2176,7 +2176,7 @@
-         oss_indev_extralibs="-lossaudio"
-         oss_outdev_extralibs="-lossaudio"
-         ;;
--    freebsd|dragonfly)
-+    freebsd|dragonfly|midnightbsd)
+@@ -2427,6 +2427,9 @@
+     freebsd)
          enable malloc_aligned
          ;;
++    midnightbsd)
++        enable malloc_aligned
++        ;;
      bsd/os)
-@@ -2185,12 +2185,12 @@
-         ;;
-     darwin)
+         add_extralibs -lpoll -lgnugetopt
+         strip="strip -d"
+@@ -2435,13 +2438,13 @@
          enable malloc_aligned
--        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,$(LIBMAJOR) -Wl,-read_only_relocs,suppress'
-+        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,1 -Wl,-read_only_relocs,suppress'
-         strip="strip -x"
-         FFLDFLAGS="-Wl,-dynamic,-search_paths_first"
+         gas="gas-preprocessor.pl $cc"
+         enabled ppc && add_asflags -force_cpusubtype_ALL
+-        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,$(LIBMAJOR)'
++        SHFLAGS='-dynamiclib -Wl,-single_module -Wl,-install_name,$(SHLIBDIR)/$(SLIBNAME),-current_version,$(LIBVERSION),-compatibility_version,1'
+         enabled x86_32 && append SHFLAGS -Wl,-read_only_relocs,suppress
+         strip="${strip} -x"
+         add_ldflags -Wl,-dynamic,-search_paths_first
          SLIBSUF=".dylib"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME).$(LIBVERSION)$(SLIBSUF)'
 -        SLIBNAME_WITH_MAJOR='$(SLIBPREF)$(FULLNAME).$(LIBMAJOR)$(SLIBSUF)'
@@ -42,7 +44,7 @@
          FFSERVERLDFLAGS=-Wl,-bind_at_load
          objformat="macho"
          enabled x86_64 && objformat="macho64"
-@@ -2215,7 +2215,7 @@
+@@ -2465,7 +2468,7 @@
          SLIBPREF=""
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -51,7 +53,7 @@
          SLIB_EXTRA_CMD='-lib.exe /machine:$(LIBTARGET) /def:$$(@:$(SLIBSUF)=.def) /out:$(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)'
          SLIB_INSTALL_EXTRA_CMD='-install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME:$(SLIBSUF)=.lib)"; \
              install -m 644 $(SUBDIR)$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib) "$(SHLIBDIR)/$(SLIBNAME_WITH_MAJOR:$(SLIBSUF)=.lib)"; \
-@@ -2240,7 +2240,7 @@
+@@ -2487,7 +2490,7 @@
          SLIBPREF="cyg"
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(FULLNAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -60,7 +62,7 @@
          SHFLAGS='-shared -Wl,--enable-auto-image-base'
          objformat="win32"
          enable dos_paths
-@@ -2270,7 +2270,7 @@
+@@ -2520,7 +2523,7 @@
          SLIBPREF=""
          SLIBSUF=".dll"
          SLIBNAME_WITH_VERSION='$(SLIBPREF)$(NAME)-$(LIBVERSION)$(SLIBSUF)'
@@ -69,7 +71,7 @@
          SLIB_CREATE_DEF_CMD='echo LIBRARY $(SLIBNAME_WITH_MAJOR) INITINSTANCE TERMINSTANCE > $(SUBDIR)$(NAME).def; \
            echo PROTMODE >> $(SUBDIR)$(NAME).def; \
            echo CODE PRELOAD MOVEABLE DISCARDABLE >> $(SUBDIR)$(NAME).def; \
-@@ -2515,8 +2515,8 @@
+@@ -2791,8 +2794,8 @@
  
  if check_func dlopen; then
      ldl=
@@ -79,20 +81,26 @@
 +    ldl=
  fi
  
- # Solaris has nanosleep in -lrt, OpenSolaris no longer needs that
-@@ -2611,7 +2611,7 @@
-                       require  libdirac libdirac_encoder/dirac_encoder.h dirac_encoder_init $(pkg-config --libs dirac)
+ if enabled network; then
+@@ -2920,12 +2923,12 @@
+     "dirac_decoder_init dirac_encoder_init"
  enabled libfaac    && require2 libfaac "stdint.h faac.h" faacEncGetVersion -lfaac
- enabled libfaad    && require2 libfaad faad.h faacDecOpen -lfaad
+ enabled libfreetype && require_pkg_config freetype2 "ft2build.h freetype/freetype.h" FT_Init_FreeType
 -enabled libgsm     && require  libgsm gsm/gsm.h gsm_create -lgsm
 +enabled libgsm     && require  libgsm gsm.h gsm_create -lgsm
- enabled libmp3lame && require  libmp3lame lame/lame.h lame_init -lmp3lame -lm
+ enabled libmp3lame && require  "libmp3lame >= 3.98.3" lame/lame.h lame_set_VBR_quality -lmp3lame
  enabled libnut     && require  libnut libnut.h nut_demuxer_init -lnut
- enabled libopencore_amrnb  && require libopencore_amrnb opencore-amrnb/interf_dec.h Decoder_Interface_init -lopencore-amrnb -lm
-@@ -2678,8 +2678,8 @@
-     fi
- fi
+ enabled libopencore_amrnb  && require libopencore_amrnb opencore-amrnb/interf_dec.h Decoder_Interface_init -lopencore-amrnb
+ enabled libopencore_amrwb  && require libopencore_amrwb opencore-amrwb/dec_if.h D_IF_init -lopencore-amrwb
+-enabled libopencv  && require_pkg_config opencv opencv/cxcore.h cvCreateImageHeader
++enabled libopencv  && require_pkg_config opencv-core opencv2/core/core_c.h cvCreateImageHeader
+ enabled libopenjpeg && require libopenjpeg openjpeg.h opj_version -lopenjpeg
+ enabled librtmp    && require_pkg_config librtmp librtmp/rtmp.h RTMP_Socket
+ enabled libschroedinger && require_pkg_config schroedinger-1.0 schroedinger/schro.h schro_init
+@@ -2966,8 +2969,8 @@
+ texi2html -version > /dev/null 2>&1 && enable texi2html || disable texi2html
  
+ check_header linux/fb.h
 -check_header linux/videodev.h
 -check_header linux/videodev2.h
 +#check_header linux/videodev.h
@@ -100,21 +108,21 @@
  check_header sys/videoio.h
  
  check_func_headers "windows.h vfw.h" capCreateCaptureWindow "$vfwcap_indev_extralibs"
-@@ -2986,7 +2986,7 @@
+@@ -3326,7 +3329,7 @@
  SRC_PATH="$source_path"
  SRC_PATH_BARE=$source_path
- BUILD_ROOT="$PWD"
+ CC_IDENT=$cc_ident
 -ARCH=$arch
 +FFMPEG_ARCH=$arch
  CC=$cc
  AS=$as
  LD=$ld
-@@ -3030,7 +3030,7 @@
+@@ -3370,7 +3373,7 @@
  SDL_LIBS=$sdl_libs
  SDL_CFLAGS=$sdl_cflags
  LIB_INSTALL_EXTRA_CMD=$LIB_INSTALL_EXTRA_CMD
 -EXTRALIBS=$extralibs
 +EXTRALIBS=-L/usr/local/lib $extralibs
- INSTALL=install
+ INSTALL=$install
  LIBTARGET=${LIBTARGET}
  SLIBNAME=${SLIBNAME}

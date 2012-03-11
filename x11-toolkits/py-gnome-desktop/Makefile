@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/py-gnome-desktop/Makefile,v 1.4 2010/08/14 03:09:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gnome-desktop/Makefile,v 1.5 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	gnome-desktop
 PORTVERSION=	2.32.0
@@ -31,8 +31,8 @@ USE_GNOME=	gnomehack libgnomeprintui gnomepanel gnomedesktop \
 		evolutiondataserver
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-metacity --disable-nautilusburn
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 EG_SRC_DIR=	${WRKSRC}/examples
 EG_DST_DIR=	${PREFIX}/share/examples/py-gnome

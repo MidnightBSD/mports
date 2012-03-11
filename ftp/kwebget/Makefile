@@ -1,10 +1,5 @@
-# New ports collection makefile for:	kwebget
-# Date created:				21 September 2001
-# Whom:					David <ddavid_3@yahoo.com>
-#
-# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.4 2009/09/20 01:10:12 laffer1 Exp $
+# $MidnightBSD: mports/ftp/kwebget/Makefile,v 1.5 2011/02/02 21:00:01 laffer1 Exp $
 # $FreeBSD: ports/ftp/kwebget/Makefile,v 1.14 2006/05/07 11:09:19 edwin Exp $
-#
 
 PORTNAME=	kwebget
 PORTVERSION=	0.8.1

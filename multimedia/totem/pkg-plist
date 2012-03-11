@@ -2,9 +2,6 @@ bin/totem
 bin/totem-audio-preview
 bin/totem-video-indexer
 bin/totem-video-thumbnailer
-%%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-complex-plugin.a
-%%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-complex-plugin.la
-%%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-complex-plugin.so
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-cone-plugin.a
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-cone-plugin.la
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-cone-plugin.so
@@ -17,18 +14,37 @@ bin/totem-video-thumbnailer
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-narrowspace-plugin.a
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-narrowspace-plugin.la
 %%BROWSER_PLUGINS%%%%WEBPLUGINS_DIR%%/libtotem-narrowspace-plugin.so
-lib/libbaconvideowidget.a
-lib/libbaconvideowidget.la
-lib/libbaconvideowidget.so
-lib/libbaconvideowidget.so.0
 lib/nautilus/extensions-2.0/libtotem-properties-page.a
 lib/nautilus/extensions-2.0/libtotem-properties-page.la
 lib/nautilus/extensions-2.0/libtotem-properties-page.so
+lib/totem/plugins/brasero-disc-recorder/brasero-disc-recorder.totem-plugin
+lib/totem/plugins/brasero-disc-recorder/libbrasero-disc-recorder.a
+lib/totem/plugins/brasero-disc-recorder/libbrasero-disc-recorder.la
+lib/totem/plugins/brasero-disc-recorder/libbrasero-disc-recorder.so
+lib/totem/plugins/coherence_upnp/coherence_upnp.py
+lib/totem/plugins/coherence_upnp/coherence_upnp.pyc
+lib/totem/plugins/coherence_upnp/coherence_upnp.pyo
+lib/totem/plugins/coherence_upnp/coherence_upnp.totem-plugin
+lib/totem/plugins/dbus/dbus-service.py
+lib/totem/plugins/dbus/dbus-service.pyc
+lib/totem/plugins/dbus/dbus-service.pyo
+lib/totem/plugins/dbus/dbus-service.totem-plugin
 %%GALAGO%%lib/totem/plugins/galago/galago.totem-plugin
 %%GALAGO%%lib/totem/plugins/galago/libtgp.a
 %%GALAGO%%lib/totem/plugins/galago/libtgp.la
 %%GALAGO%%lib/totem/plugins/galago/libtgp.so
 lib/totem/plugins/gromit/gromit.totem-plugin
+lib/totem/plugins/iplayer/iplayer.py
+lib/totem/plugins/iplayer/iplayer.pyc
+lib/totem/plugins/iplayer/iplayer.pyo
+lib/totem/plugins/iplayer/iplayer.totem-plugin
+lib/totem/plugins/iplayer/iplayer.ui
+lib/totem/plugins/iplayer/iplayer2.py
+lib/totem/plugins/iplayer/iplayer2.pyc
+lib/totem/plugins/iplayer/iplayer2.pyo
+lib/totem/plugins/iplayer/listparser.py
+lib/totem/plugins/iplayer/listparser.pyc
+lib/totem/plugins/iplayer/listparser.pyo
 lib/totem/plugins/gromit/libgromit.a
 lib/totem/plugins/gromit/libgromit.la
 lib/totem/plugins/gromit/libgromit.so
@@ -36,6 +52,7 @@ lib/totem/plugins/gromit/libgromit.so
 %%LIRC%%lib/totem/plugins/lirc/liblirc.a
 %%LIRC%%lib/totem/plugins/lirc/liblirc.la
 %%LIRC%%lib/totem/plugins/lirc/liblirc.so
+%%LIRC%%lib/totem/plugins/lirc/totem_lirc_default
 lib/totem/plugins/media-player-keys/libmedia_player_keys.a
 lib/totem/plugins/media-player-keys/libmedia_player_keys.la
 lib/totem/plugins/media-player-keys/libmedia_player_keys.so
@@ -44,6 +61,14 @@ lib/totem/plugins/ontop/libontop.a
 lib/totem/plugins/ontop/libontop.la
 lib/totem/plugins/ontop/libontop.so
 lib/totem/plugins/ontop/ontop.totem-plugin
+lib/totem/plugins/opensubtitles/hash.py
+lib/totem/plugins/opensubtitles/hash.pyc
+lib/totem/plugins/opensubtitles/hash.pyo
+lib/totem/plugins/opensubtitles/opensubtitles.py
+lib/totem/plugins/opensubtitles/opensubtitles.pyc
+lib/totem/plugins/opensubtitles/opensubtitles.pyo
+lib/totem/plugins/opensubtitles/opensubtitles.totem-plugin
+lib/totem/plugins/opensubtitles/opensubtitles.ui
 %%PUBLISH%%lib/totem/plugins/publish/libpublish.a
 %%PUBLISH%%lib/totem/plugins/publish/libpublish.la
 %%PUBLISH%%lib/totem/plugins/publish/libpublish.so
@@ -57,6 +82,12 @@ lib/totem/plugins/screensaver/libscreensaver.a
 lib/totem/plugins/screensaver/libscreensaver.la
 lib/totem/plugins/screensaver/libscreensaver.so
 lib/totem/plugins/screensaver/screensaver.totem-plugin
+lib/totem/plugins/screenshot/gallery.ui
+lib/totem/plugins/screenshot/gnome-screenshot.ui
+lib/totem/plugins/screenshot/libscreenshot.a
+lib/totem/plugins/screenshot/libscreenshot.la
+lib/totem/plugins/screenshot/libscreenshot.so
+lib/totem/plugins/screenshot/screenshot.totem-plugin
 lib/totem/plugins/skipto/libskipto.a
 lib/totem/plugins/skipto/libskipto.la
 lib/totem/plugins/skipto/libskipto.so
@@ -73,9 +104,9 @@ lib/totem/plugins/thumbnail/thumbnail.totem-plugin
 lib/totem/plugins/totem/__init__.py
 lib/totem/plugins/totem/__init__.pyc
 lib/totem/plugins/totem/__init__.pyo
-lib/totem/plugins/youtube/youtube.py
-lib/totem/plugins/youtube/youtube.pyc
-lib/totem/plugins/youtube/youtube.pyo
+lib/totem/plugins/youtube/libyoutube.a
+lib/totem/plugins/youtube/libyoutube.la
+lib/totem/plugins/youtube/libyoutube.so
 lib/totem/plugins/youtube/youtube.totem-plugin
 lib/totem/plugins/youtube/youtube.ui
 %%BROWSER_PLUGINS%%libexec/totem-plugin-viewer
@@ -86,18 +117,23 @@ share/applications/totem.desktop
 %%DOCSDIR%%/TotemObject.html
 %%DOCSDIR%%/TotemPlugin.html
 %%DOCSDIR%%/TotemVideoList.html
+%%DOCSDIR%%/annotation-glossary.html
 %%DOCSDIR%%/api-index-deprecated.html
 %%DOCSDIR%%/api-index-full.html
 %%DOCSDIR%%/core-api.html
 %%DOCSDIR%%/home.png
 %%DOCSDIR%%/index.html
 %%DOCSDIR%%/index.sgml
+%%DOCSDIR%%/ix02.html
+%%DOCSDIR%%/ix03.html
 %%DOCSDIR%%/left.png
 %%DOCSDIR%%/right.png
 %%DOCSDIR%%/style.css
 %%DOCSDIR%%/totem-Interface.html
 %%DOCSDIR%%/totem.devhelp
 %%DOCSDIR%%/totem.devhelp2
+%%DOCSDIR%%/totem-plugins.html
+%%DOCSDIR%%/tutorials.html
 %%DOCSDIR%%/up.png
 %%DOCSDIR%%/widget-api.html
 share/gnome/help/totem/C/figures/totem_next_button.png
@@ -110,8 +146,14 @@ share/gnome/help/totem/C/figures/totem_volume_maximum_button.png
 share/gnome/help/totem/C/figures/totem_volume_mute_button.png
 share/gnome/help/totem/C/legal.xml
 share/gnome/help/totem/C/totem.xml
+share/gnome/help/totem/bg/figures/totem_next_button.png
+share/gnome/help/totem/bg/figures/totem_pause_button.png
+share/gnome/help/totem/bg/figures/totem_play_button.png
+share/gnome/help/totem/bg/figures/totem_previous_button.png
+share/gnome/help/totem/bg/figures/totem_show_playlist_button.png
 share/gnome/help/totem/bg/figures/totem_start_window.png
-share/gnome/help/totem/bg/legal.xml
+share/gnome/help/totem/bg/figures/totem_volume_maximum_button.png
+share/gnome/help/totem/bg/figures/totem_volume_mute_button.png
 share/gnome/help/totem/bg/totem.xml
 share/gnome/help/totem/ca/figures/totem_next_button.png
 share/gnome/help/totem/ca/figures/totem_pause_button.png
@@ -185,6 +227,15 @@ share/gnome/help/totem/eu/figures/totem_start_window.png
 share/gnome/help/totem/eu/figures/totem_volume_maximum_button.png
 share/gnome/help/totem/eu/figures/totem_volume_mute_button.png
 share/gnome/help/totem/eu/totem.xml
+share/gnome/help/totem/fi/figures/totem_next_button.png
+share/gnome/help/totem/fi/figures/totem_pause_button.png
+share/gnome/help/totem/fi/figures/totem_play_button.png
+share/gnome/help/totem/fi/figures/totem_previous_button.png
+share/gnome/help/totem/fi/figures/totem_show_playlist_button.png
+share/gnome/help/totem/fi/figures/totem_start_window.png
+share/gnome/help/totem/fi/figures/totem_volume_maximum_button.png
+share/gnome/help/totem/fi/figures/totem_volume_mute_button.png
+share/gnome/help/totem/fi/totem.xml
 share/gnome/help/totem/fr/figures/totem_next_button.png
 share/gnome/help/totem/fr/figures/totem_pause_button.png
 share/gnome/help/totem/fr/figures/totem_play_button.png
@@ -275,6 +326,15 @@ share/gnome/help/totem/uk/figures/totem_start_window.png
 share/gnome/help/totem/uk/figures/totem_volume_maximum_button.png
 share/gnome/help/totem/uk/figures/totem_volume_mute_button.png
 share/gnome/help/totem/uk/totem.xml
+share/gnome/help/totem/zh_CN/figures/totem_next_button.png
+share/gnome/help/totem/zh_CN/figures/totem_pause_button.png
+share/gnome/help/totem/zh_CN/figures/totem_play_button.png
+share/gnome/help/totem/zh_CN/figures/totem_previous_button.png
+share/gnome/help/totem/zh_CN/figures/totem_show_playlist_button.png
+share/gnome/help/totem/zh_CN/figures/totem_start_window.png
+share/gnome/help/totem/zh_CN/figures/totem_volume_maximum_button.png
+share/gnome/help/totem/zh_CN/figures/totem_volume_mute_button.png
+share/gnome/help/totem/zh_CN/totem.xml
 share/gnome/help/totem/zh_HK/figures/totem_next_button.png
 share/gnome/help/totem/zh_HK/figures/totem_pause_button.png
 share/gnome/help/totem/zh_HK/figures/totem_play_button.png
@@ -317,6 +377,7 @@ share/locale/bn/LC_MESSAGES/totem.mo
 share/locale/bn_IN/LC_MESSAGES/totem.mo
 share/locale/br/LC_MESSAGES/totem.mo
 share/locale/ca/LC_MESSAGES/totem.mo
+share/locale/ca@valencia/LC_MESSAGES/totem.mo
 share/locale/crh/LC_MESSAGES/totem.mo
 share/locale/cs/LC_MESSAGES/totem.mo
 share/locale/cy/LC_MESSAGES/totem.mo
@@ -324,6 +385,7 @@ share/locale/da/LC_MESSAGES/totem.mo
 share/locale/de/LC_MESSAGES/totem.mo
 share/locale/dz/LC_MESSAGES/totem.mo
 share/locale/el/LC_MESSAGES/totem.mo
+share/locale/en@shaw/LC_MESSAGES/totem.mo
 share/locale/en_CA/LC_MESSAGES/totem.mo
 share/locale/en_GB/LC_MESSAGES/totem.mo
 share/locale/es/LC_MESSAGES/totem.mo
@@ -344,6 +406,7 @@ share/locale/is/LC_MESSAGES/totem.mo
 share/locale/it/LC_MESSAGES/totem.mo
 share/locale/ja/LC_MESSAGES/totem.mo
 share/locale/ka/LC_MESSAGES/totem.mo
+share/locale/kk/LC_MESSAGES/totem.mo
 share/locale/kn/LC_MESSAGES/totem.mo
 share/locale/ko/LC_MESSAGES/totem.mo
 share/locale/ku/LC_MESSAGES/totem.mo
@@ -363,7 +426,6 @@ share/locale/oc/LC_MESSAGES/totem.mo
 share/locale/or/LC_MESSAGES/totem.mo
 share/locale/pa/LC_MESSAGES/totem.mo
 share/locale/pl/LC_MESSAGES/totem.mo
-share/locale/ps/LC_MESSAGES/totem.mo
 share/locale/pt/LC_MESSAGES/totem.mo
 share/locale/pt_BR/LC_MESSAGES/totem.mo
 share/locale/ro/LC_MESSAGES/totem.mo
@@ -398,6 +460,7 @@ share/omf/totem/totem-el.omf
 share/omf/totem/totem-en_GB.omf
 share/omf/totem/totem-es.omf
 share/omf/totem/totem-eu.omf
+share/omf/totem/totem-fi.omf
 share/omf/totem/totem-fr.omf
 share/omf/totem/totem-it.omf
 share/omf/totem/totem-ja.omf
@@ -408,6 +471,7 @@ share/omf/totem/totem-pt_BR.omf
 share/omf/totem/totem-ru.omf
 share/omf/totem/totem-sv.omf
 share/omf/totem/totem-uk.omf
+share/omf/totem/totem-zh_CN.omf
 share/omf/totem/totem-zh_HK.omf
 share/omf/totem/totem-zh_TW.omf
 %%DATADIR%%/filmholes-big-left.png
@@ -419,7 +483,6 @@ share/omf/totem/totem-zh_TW.omf
 %%DATADIR%%/plugins.ui
 %%DATADIR%%/properties.ui
 %%DATADIR%%/totem.ui
-%%DATADIR%%/totem_logo.png
 %%DATADIR%%/uri.ui
 %%DATADIR%%/video-list.ui
 share/vala/vapi/totem.deps
@@ -430,6 +493,8 @@ share/vala/vapi/totem.vapi
 @dirrm share/gnome/help/totem/zh_TW
 @dirrm share/gnome/help/totem/zh_HK/figures
 @dirrm share/gnome/help/totem/zh_HK
+@dirrm share/gnome/help/totem/zh_CN/figures
+@dirrm share/gnome/help/totem/zh_CN
 @dirrm share/gnome/help/totem/uk/figures
 @dirrm share/gnome/help/totem/uk
 @dirrm share/gnome/help/totem/sv/figures
@@ -450,6 +515,8 @@ share/vala/vapi/totem.vapi
 @dirrm share/gnome/help/totem/it
 @dirrm share/gnome/help/totem/fr/figures
 @dirrm share/gnome/help/totem/fr
+@dirrm share/gnome/help/totem/fi/figures
+@dirrm share/gnome/help/totem/fi
 @dirrm share/gnome/help/totem/eu/figures
 @dirrm share/gnome/help/totem/eu
 @dirrm share/gnome/help/totem/es/figures
@@ -479,14 +546,20 @@ share/vala/vapi/totem.vapi
 %%TRACKER%%@dirrm lib/totem/plugins/tracker
 @dirrm lib/totem/plugins/thumbnail
 @dirrm lib/totem/plugins/skipto
+@dirrm lib/totem/plugins/screenshot
 @dirrm lib/totem/plugins/screensaver
 %%PUBLISH%%@dirrm lib/totem/plugins/publish
 @dirrm lib/totem/plugins/properties
+@dirrm lib/totem/plugins/opensubtitles
 @dirrm lib/totem/plugins/ontop
 @dirrm lib/totem/plugins/media-player-keys
 %%LIRC%%@dirrm lib/totem/plugins/lirc
+@dirrm lib/totem/plugins/iplayer
 @dirrm lib/totem/plugins/gromit
 %%GALAGO%%@dirrm lib/totem/plugins/galago
+@dirrm lib/totem/plugins/dbus
+@dirrm lib/totem/plugins/coherence_upnp
+@dirrm lib/totem/plugins/brasero-disc-recorder
 @dirrm lib/totem/plugins
 @dirrm lib/totem
 %%BROWSER_PLUGINS%%@dirrmtry %%WEBPLUGINS_DIR%%
@@ -506,8 +579,6 @@ share/vala/vapi/totem.vapi
 @dirrmtry share/locale/si
 @dirrmtry share/locale/rw/LC_MESSAGES
 @dirrmtry share/locale/rw
-@dirrmtry share/locale/ps/LC_MESSAGES
-@dirrmtry share/locale/ps
 @dirrmtry share/locale/oc/LC_MESSAGES
 @dirrmtry share/locale/oc
 @dirrmtry share/locale/mr/LC_MESSAGES
@@ -518,10 +589,16 @@ share/vala/vapi/totem.vapi
 @dirrmtry share/locale/mai
 @dirrmtry share/locale/ku/LC_MESSAGES
 @dirrmtry share/locale/ku
+@dirrmtry share/locale/kk/LC_MESSAGES
+@dirrmtry share/locale/kk
+@dirrmtry share/locale/en@shaw/LC_MESSAGES
+@dirrmtry share/locale/en@shaw
 @dirrmtry share/locale/dz/LC_MESSAGES
 @dirrmtry share/locale/dz
 @dirrmtry share/locale/crh/LC_MESSAGES
 @dirrmtry share/locale/crh
+@dirrmtry share/locale/ca@valencia/LC_MESSAGES
+@dirrmtry share/locale/ca@valencia
 @dirrmtry share/locale/bn_IN/LC_MESSAGES
 @dirrmtry share/locale/bn_IN
 @dirrmtry share/locale/be@latin/LC_MESSAGES

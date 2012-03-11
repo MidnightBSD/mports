@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.4 2009/09/19 23:43:33 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.5 2009/10/31 23:43:58 laffer1 Exp $
 
 PORTNAME=	at-poke
 PORTVERSION=	0.2.3
@@ -15,7 +15,7 @@ USE_XORG=	x11
 USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix libglade2 libgailgnome
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
