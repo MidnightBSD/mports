@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.5 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairomm/Makefile,v 1.6 2011/12/15 00:57:45 laffer1 Exp $
 
 PORTNAME=	cairomm
-PORTVERSION=	1.8.0
+PORTVERSION=	1.10.0
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
 
@@ -15,16 +15,14 @@ LIB_DEPENDS=	xml\\+\\+-2.6:${PORTSDIR}/textproc/libxml++26 \
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack  ltverhack
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		AUTOMAKE="${TRUE}" AUTOCONF="${TRUE}" DOXYGEN="${TRUE}"
+USE_GNOME=	gnomehack ltverhack
+CONFIGURE_ENV=	AUTOMAKE="${TRUE}" AUTOCONF="${TRUE}" DOXYGEN="${TRUE}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(NOPORTDOCS)
-CONFIGURE_ARGS+=	--disable-docs
+CONFIGURE_ARGS+=	--disable-documentation
 
-post-patch:
-	@${REINPLACE_CMD} -E '/^SUBDIRS = /s/(docs|examples)//g' ${WRKSRC}/Makefile.in
 .else
 post-configure:
 	@${TOUCH} -f ${WRKSRC}/docs/reference/html/index.html
