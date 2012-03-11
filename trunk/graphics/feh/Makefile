@@ -1,55 +1,41 @@
-# $MidnightBSD: mports/graphics/feh/Makefile,v 1.2 2007/03/22 03:54:18 ctriv Exp $
+# $MidnightBSD: mports/graphics/feh/Makefile,v 1.3 2009/03/04 00:17:30 laffer1 Exp $
 
 PORTNAME=	feh
-PORTVERSION=	1.3.4
-PORTREVISION=	2
+PORTVERSION=	2.3
 CATEGORIES=	graphics
-MASTER_SITES=	http://linuxbrit.co.uk/downloads/
+MASTER_SITES=	http://feh.finalrewind.org/ \
+		${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	uqs
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An image viewer that utilizes Imlib2
 LICENSE=	mit
 
-LIB_DEPENDS=	giblib.1:${PORTSDIR}/graphics/giblib
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
+		giblib.1:${PORTSDIR}/graphics/giblib
 
 USE_XORG=	x11 xt xinerama
-USE_PERL5=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+USE_PERL5_RUN=	yes
+USE_GMAKE=	yes
+USE_BZIP2=	yes
 
-MAN1=		feh.1
+MAN1=		feh.1 feh-cam.1 gen-cam-menu.1
 
-CPPFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include -std=c99
+LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
 
 post-patch:
-	@${PERL} -pi.bak -e \
-		's|^CFLAGS="-I|#CFLAGS="-I|g ; \
-		 s|^LIBS="-L|#LIBS="-L|g' ${WRKSRC}/configure
-	@${PERL} -pi.bak -e \
-		's|-man install-docsDATA|-man|g' ${WRKSRC}/Makefile.in
-	@${PERL} -pi.bak -e \
-		's|^#!/bin|#!${LOCALBASE}/bin|g' ${WRKSRC}/cam/gen_cam_menu.sh
-	@${PERL} -pi.bak -e \
-		's|^LDFLAGS.*$$|LDFLAGS = \@LDFLAGS\@|g ; \
-		 s|-I/usr/X11R6/include||g ; \
-		 s|-I/usr/local/include/libpng||g ; \
-		 s| getopt\.[cho]||g ; \
-		 s| getopt1\.[co]||g ; \
-		 s|^getopt|#getopt|g' ${WRKSRC}/src/Makefile.in
-	@${PERL} -pi.bak -e \
-		's|"getopt\.h"|<getopt.h>|g' ${WRKSRC}/src/feh.h
-	@${PERL} -pi.bak -e \
-		's|wprintf|weprintf|g' ${WRKSRC}/src/support.c
+	@${REINPLACE_CMD} 's#share/man#man#' ${WRKSRC}/config.mk
+	@${REINPLACE_CMD} 's#install-man install-doc install-bin#install-doc#' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} 's#/bin/bash#/bin/sh#' ${WRKSRC}/cam/gen-cam-menu
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-.for file in AUTHORS ChangeLog README TODO
-	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
-.endfor
-.endif
+	${INSTALL_PROGRAM} ${WRKSRC}/src/feh ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/cam/feh-cam ${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/cam/gen-cam-menu ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/man/feh.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/feh-cam.1 ${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/man/gen-cam-menu.1 ${PREFIX}/man/man1
 
 .include <bsd.port.mk>
