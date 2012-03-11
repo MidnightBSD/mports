@@ -3,11 +3,11 @@
 # Whom:					Kay Lehmann
 #
 # $FreeBSD: ports/graphics/gocr/Makefile,v 1.7 2006/05/07 23:46:04 edwin Exp $
-# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.5 2010/12/08 13:30:06 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gocr/Makefile,v 1.6 2011/12/15 00:57:47 laffer1 Exp $
 #
 
 PORTNAME=	gocr
-PORTVERSION=	0.48
+PORTVERSION=	0.49
 CATEGORIES=	graphics
 MASTER_SITES=	http://www-e.uni-magdeburg.de/jschulen/ocr/
 
