@@ -1,11 +1,12 @@
-# $MidnightBSD: mports/graphics/gd/Makefile,v 1.11 2010/06/06 21:15:23 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gd/Makefile,v 1.12 2010/06/06 21:20:23 laffer1 Exp $
 
 PORTNAME=	gd
 PORTVERSION=	2.0.35
 PORTREVISION?=	7
 PORTEPOCH=	1
 CATEGORIES+=	graphics
-MASTER_SITES=	http://www.libgd.org/releases/
+MASTER_SITES=	http://www.libgd.org/releases/ \
+		${MASTER_SITE_RINGSERVER}
 MASTER_SITE_SUBDIR=	graphics/gd
 PKGNAMESUFFIX?=	${NOX11_SUFFIX}${PKGNAMESUFFIX2}
 
