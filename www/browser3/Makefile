@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/browser3/Makefile,v 1.11 2010/09/23 15:09:47 laffer1 Exp $
+# $MidnightBSD: mports/www/browser3/Makefile,v 1.12 2010/12/25 11:55:53 laffer1 Exp $
 
 PORTNAME=	browser3
 DISTVERSION=	3.0.19
@@ -272,6 +272,7 @@ pre-install:
 	${ECHO_CMD} "pref(\"browser.link.open_external\", 3);" \
 		>> ${SYSTEM_PREFS}
 .endif # !defined(WITHOUT_NEWTAB)
+	${MKDIR} ${PREFIX}/lib/pkgconfig
 
 #do-install:
 #	if [ ! -L ${PREFIX}/lib/browser_plugins/libjavaplugin_oji.so ]; then \

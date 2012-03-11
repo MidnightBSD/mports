@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.4 2010/08/14 03:05:11 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.5 2011/05/28 06:23:34 laffer1 Exp $
 
 PORTNAME=	libgail-gnome
 PORTVERSION=	1.20.3
@@ -16,8 +16,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 GNOME_DESKTOP_VERSION=2
 USE_GNOME=	gnomeprefix gnomehack gnomepanel libgnomeui atspi
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_FILES=	lib/gtk-2.0/modules/libgail-gnome.la \
 		lib/gtk-2.0/modules/libgail-gnome.so \
 		libdata/pkgconfig/libgail-gnome.pc

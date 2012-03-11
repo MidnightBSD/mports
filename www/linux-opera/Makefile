@@ -2,7 +2,7 @@
 # Date created:					December 6th 2000
 # Whom:						des
 #
-# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.13 2009/01/04 02:24:49 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-opera/Makefile,v 1.14 2009/03/18 03:52:31 laffer1 Exp $
 # $FreeBSD: ports/www/linux-opera/Makefile,v 1.78 2006/12/18 18:46:27 mezz Exp $
 #
 
@@ -26,12 +26,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A blazingly fast, full-featured, standards-compliant browser
 LICENSE=	opera
 
-RUN_DEPENDS=	${LINUXBASE}/usr/lib/libaspell.so.15:${PORTSDIR}/textproc/linux-aspell
-
 WRKSRC=		${WRKDIR}/${DISTNAME:S/.gcc/-${OPERA_BUILD}.gcc/}
 USE_XLIB=	yes
 USE_BZIP2=	yes
 USE_LINUX=	yes
+USE_LINUX_APPS= aspell naslibs png xorglibs
 ONLY_FOR_ARCHS=	i386 amd64
 
 NO_BUILD=	yes

@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/midori/Makefile,v 1.11 2011/05/15 22:07:22 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.12 2011/07/03 16:49:39 laffer1 Exp $
 
 PORTNAME=	midori
-PORTVERSION=	0.3.3
+PORTVERSION=	0.4.0
 CATEGORIES=	www xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/apps/${PORTNAME}/${PORTVERSION:R}
