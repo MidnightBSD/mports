@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.7 2011/01/13 22:50:26 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gegl/Makefile,v 1.8 2011/05/28 21:56:40 laffer1 Exp $
 # $FreeBSD: ports/graphics/gegl/Makefile,v 1.18 2010/06/21 12:07:51 gahr Exp $
 
 PORTNAME=	gegl
-PORTVERSION=	0.1.6
+PORTVERSION=	0.1.8
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.gimp.org/pub/gegl/0.1/
 
@@ -10,6 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graph based image processing framework
 LICENSE=	gpl3
 
+BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 LIB_DEPENDS=	babl-0.1:${PORTSDIR}/x11/babl \
     		execinfo.1:${PORTSDIR}/devel/libexecinfo
 
@@ -35,18 +36,18 @@ NOPORTDOCS=	yes
 USE_GNOME=	gtk20 glib20 pkgconfig gnomehack
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_RUBY=	yes
-RUBY_NO_RUN_DEPENDS=	yes
 USE_LDCONFIG=	${PREFIX}/lib/gegl-0.1
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lexecinfo"
+CONFIGURE_ARGS+=--without-vala
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo
 
-GEGL_MINOR=	105
+GEGL_MINOR=	107
 PLIST_SUB+=	GEGL_MINOR="${GEGL_MINOR}"
 
-EXAMPLES=	2geglbuffer gegl-paint geglbuffer-add-image \
-		geglbuffer-clock hello-world hello-world-video
+EXAMPLES=	2geglbuffer csugar float-lookup \
+		gegl-convert gegl-slicer geglbuffer-add-image \
+		geglbuffer-clock hello-world-video hello-world
 
 .include <bsd.mport.options.mk>
 
@@ -78,7 +79,7 @@ BUILD_DEPENDS+=	enscript:${PORTSDIR}/print/enscript-a4
 .endif
 
 .if !defined(WITHOUT_FFMPEG)
-BROKEN=	ffmpeg support is currently broken
+#BROKEN=	ffmpeg support is currently broken
 LIB_DEPENDS+=	avformat.1:${PORTSDIR}/multimedia/ffmpeg
 PLIST_SUB+=	FFMPEG=""
 .else
@@ -87,7 +88,7 @@ PLIST_SUB+=	FFMPEG="@comment "
 .endif
 
 .if !defined(WITHOUT_GRAPHVIZ)
-LIB_DEPENDS+=	graph.4:${PORTSDIR}/graphics/graphviz
+LIB_DEPENDS+=	graph:${PORTSDIR}/graphics/graphviz
 .else
 CONFIGURE_ARGS+=--without-graphviz
 .endif
@@ -173,7 +174,7 @@ CONFIGURE_ARGS+=	--disable-docs
 
 post-patch:
 .if defined(NOPORTDOCS)
-	${REINPLACE_CMD} -e '11,13d' ${WRKSRC}/Makefile.am
+	${REINPLACE_CMD} -e '10s|\\||; 11,13d' ${WRKSRC}/Makefile.am
 .endif
 	${REINPLACE_CMD} -e 's|-T||' ${WRKSRC}/docs/Makefile.am ${WRKSRC}/docs/Makefile.in
 	${REINPLACE_CMD} -e 's|\(lua\)\(5\.1\)|\1-\2|g' ${WRKSRC}/configure
