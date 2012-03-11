@@ -1,13 +1,13 @@
 # Date Created:		20 July 1999
 #
-# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.3 2010/03/25 01:19:22 laffer1 Exp $
+# $MidnightBSD: mports/graphics/djvulibre-nox11/Makefile,v 1.4 2011/12/15 00:57:45 laffer1 Exp $
 #
 
 PORTNAME=	djvulibre
-PORTVERSION=	3.5.21
-PORTREVISION=	1
+PORTVERSION=	3.5.24
+PORTREVISION=	0
 CATEGORIES=	graphics www
-MASTER_SITES=	SF/djvu
+MASTER_SITES=	SF/djvu/DjVuLibre/${PORTVERSION}
 PKGNAMESUFFIX=	-nox11
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,7 @@ LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_ICONV=	yes
-USE_GNOME=	gnomehack 
+USE_GNOME=	gnomehack
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	JPEG_CFLAGS="-I${LOCALBASE}/include" \
 		JPEG_LIBS="-L${LOCALBASE}/lib -ljpeg" \
@@ -26,8 +26,7 @@ CONFIGURE_ENV=	JPEG_CFLAGS="-I${LOCALBASE}/include" \
 		TIFF_LIBS="-L${LOCALBASE}/lib -ltiff" \
 		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}" \
-		LOCALBASE="${LOCALBASE}" \
-		CXX="${CXX}"
+		LOCALBASE="${LOCALBASE}"
 CONFIGURE_ARGS=	--enable-threads=pthread --enable-shared
 USE_LDCONFIG=	yes
 
@@ -68,12 +67,13 @@ post-patch:
 		 s|/netscape/|/djvulibre/|g ; \
 		 s|eucjp|eucJP|g ; \
 		 s|_PROGRAM} -m|} -m|g'
+
 .if !defined(WITH_ANY2DJVU)
 	@${REINPLACE_CMD} -e 's,any2djvu,,' ${WRKSRC}/tools/Makefile.in
 .endif
 
-
 post-install:
+
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/doc/,} ${DOCSDIR}/
