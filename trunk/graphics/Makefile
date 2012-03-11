@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.138 2012/03/11 01:19:11 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.139 2012/03/11 01:20:07 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -88,6 +88,7 @@ SUBDIR += libkexiv2-kde4
 SUBDIR += libkipi
 SUBDIR += libkipi-kde4
 SUBDIR += libksane
+SUBDIR += liblqr-1
 SUBDIR += libmng
 SUBDIR += libopenraw
 SUBDIR += libqrencode
