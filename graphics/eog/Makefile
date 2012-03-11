@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/eog/Makefile,v 1.6 2010/11/06 16:24:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/eog/Makefile,v 1.7 2011/06/08 03:16:58 laffer1 Exp $
 
 PORTNAME=	eog
 PORTVERSION=	2.32.1
@@ -26,8 +26,8 @@ USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
 GNOME_DESKTOP_VERSION=2
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	eog.schemas
 

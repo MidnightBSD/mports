@@ -2,13 +2,13 @@
 # Date created:         4 June 2001
 # Whom:                 Anders Nordby <anders@fix.no>
 #
-# $MidnightBSD: mports/graphics/gdchart/Makefile,v 1.1 2008/06/12 20:36:56 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdchart/Makefile,v 1.2 2010/03/25 01:28:08 laffer1 Exp $
 # $FreeBSD: ports/graphics/gdchart/Makefile,v 1.18 2007/05/19 20:09:09 flz Exp $
 #
 
 PORTNAME=	gdchart
 PORTVERSION=	0.11.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.fred.net/brv/chart/ \
 		ftp://ftp.nuug.no/pub/anders/distfiles/
@@ -19,7 +19,7 @@ COMMENT=	Easy to use, fast C API for creating charts and graphs
 LICENSE=	other
 
 LIB_DEPENDS=	gd.4:${PORTSDIR}/graphics/gd \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
+		jpeg:${PORTSDIR}/graphics/jpeg \
 		freetype:${PORTSDIR}/print/freetype2
 
 MAKEFILE=	${FILESDIR}/Makefile
@@ -50,12 +50,14 @@ post-patch:
 		-e 's/^#include "gdc\.h"/#include "gdchart.h"/' \
 			${WRKSRC}/gdc_pie_samp.c
 
-.if !defined(NOPORTDOCS)
 post-install:
+.if !defined(NOPORTDOCS)
 .for f in ${DOCS}
 	${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
 .endfor
+.endif
+.if !defined(NOPORTEXAMPLES)
 .for f in ${EXAMPLES}
 	${MKDIR} ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${EXAMPLESDIR}/
