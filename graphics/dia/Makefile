@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/dia/Makefile,v 1.2 2008/03/21 22:46:40 laffer1 Exp $
+# $MidnightBSD: mports/graphics/dia/Makefile,v 1.3 2009/05/09 20:46:57 laffer1 Exp $
 
 PORTNAME=	dia
-DISTVERSION=	0.96.1
-PORTREVISION=	1
+DISTVERSION=	0.97.1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -13,49 +13,63 @@ COMMENT=	Diagram creation program, similar to Visio
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
-RUN_DEPENDS=	${BUILD_DEPENDS}
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt
 
 USE_BZIP2=	yes
-USE_XLIB=	yes
 USE_GMAKE=	yes
 USE_GNOME=	gtk20 gnomehack gnomeprefix libxslt libartlgpl2 intlhack \
 		desktopfileutils
 WANT_GNOME=	yes
+INSTALLS_ICONS=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -lintl" \
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -lintl" \
 		LOCALBASE="${LOCALBASE}"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 MAN1=		dia.1
+MANLANG=	"" fr
 
 .if !defined(WITHOUT_PYTHON)
 USE_PYTHON=	yes
 USE_GNOME+=	pygtk2
 CONFIGURE_ARGS=	--with-python
-PLIST_SUB=	PYTHON:=""
+PLIST_SUB+=	PYTHON=""
 .else
-PLIST_SUB=	PYTHON:="@comment "
+PLIST_SUB+=	PYTHON="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
 
+.if ${ARCH} == "i386"
+LIB_DEPENDS+=		EMF.1:${PORTSDIR}/graphics/libemf
+CONFIGURE_ARGS+=	--enable-libemf
+PLIST_SUB+=		WMF=""
+.else
+CONFIGURE_ARGS+=	--disable-libemf
+PLIST_SUB+=		WMF="@comment "
+.endif
+
 .if ${HAVE_GNOME:Mlibgnomeui}!=""
 USE_GNOME+=		libgnomeui
-CONFIGURE_ARGS+=	--enable-gnome --enable-bonobo
-GNOME_ENABLED=		yes
+INSTALLS_OMF=		yes
+CONFIGURE_ARGS+=	--enable-gnome
 PKGNAMESUFFIX=		-gnome
+GNOME_ENABLED=		yes
+PLIST_SUB+=		GNOME=""
 .else
-CONFIGURE_ARGS+=      --disable-gnome --disable-bonobo
+CONFIGURE_ARGS+=	--disable-gnome
+PLIST_SUB+=		GNOME="@comment "
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/lib/intl.c
-	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
-		's|[(]pkgdatadir[)]/help|(datadir)/gnome/help/dia|g ; \
-		s|[(]datadir[)]/help|(datadir)/gnome/help|g'
+.if defined(NOPORTDOCS)
+	@${FIND} ${WRKSRC}/doc -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
+		's|$$(examples)||g ; s|$$(mkinstalldirs) $$(sysdoc)/examples||g ; \
+		s|$$(mkinstalldirs) $$(sysdoc)||g'
+.endif
 .ifndef (GNOME_ENABLED)
 	@${FIND} ${WRKSRC} -name Makefile.in | \
 		${XARGS} ${REINPLACE_CMD} -e \
@@ -65,11 +79,10 @@ post-patch:
 
 pre-configure:
 	@${REINPLACE_CMD} -e 's|http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl|${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl| ; \
-	    	s|echo aout|echo elf|g' \
+		s|echo aout|echo elf|g ; s|/usr/include/libEMF|${LOCALBASE}/include/libEMF|g' \
 		${WRKSRC}/configure
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/dia.xpm ${PREFIX}/share/dia/
 	@-update-desktop-database
 
 .include <bsd.port.post.mk>
