@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/astro/libnova/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
+# $MidnightBSD: mports/astro/libnova/Makefile,v 1.6 2011/12/15 00:41:26 laffer1 Exp $
 
 PORTNAME=	libnova
-PORTVERSION=	0.13.0
+PORTVERSION=	0.14.0
 PORTREVISION=	2
 CATEGORIES=	astro
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/V%20${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v%20${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Astronomical Calculation Library
