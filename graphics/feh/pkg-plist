@@ -1,26 +1,25 @@
-@comment $FreeBSD: ports/graphics/feh/pkg-plist,v 1.7 2004/10/12 10:01:08 krion Exp $
-bin/cam
 bin/feh
-bin/gen_cam_menu.sh
-%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
-%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
-%%PORTDOCS%%%%DOCSDIR%%/README
-%%PORTDOCS%%%%DOCSDIR%%/TODO
+bin/feh-cam
+bin/gen-cam-menu
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/ChangeLog
+%%DOCSDIR%%/README
+%%DOCSDIR%%/TODO
+%%DOCSDIR%%/examples/buttons
+%%DOCSDIR%%/examples/keys
+%%DOCSDIR%%/examples/themes
 %%DATADIR%%/fonts/black.style
 %%DATADIR%%/fonts/menu.style
 %%DATADIR%%/fonts/yudit.ttf
-%%DATADIR%%/images/about.png
+%%DATADIR%%/images/logo.svg
 %%DATADIR%%/images/menubg_aluminium.png
 %%DATADIR%%/images/menubg_aqua.png
 %%DATADIR%%/images/menubg_black.png
-%%DATADIR%%/images/menubg_britney.png
 %%DATADIR%%/images/menubg_brushed.png
-%%DATADIR%%/images/menubg_chrome.png
 %%DATADIR%%/images/menubg_default.png
-%%DATADIR%%/images/menubg_pastel.png
 %%DATADIR%%/images/menubg_sky.png
-%%DATADIR%%/images/menubg_wood.png
 @dirrm %%DATADIR%%/images
 @dirrm %%DATADIR%%/fonts
 @dirrm %%DATADIR%%
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrm %%DOCSDIR%%/examples
+@dirrm %%DOCSDIR%%
