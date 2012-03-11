@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-themes/Makefile,v 1.23 2011/07/31 17:08:24 laffer1 Exp $
+# $MidnightBSD: mports/x11-themes/Makefile,v 1.24 2012/03/06 00:15:09 laffer1 Exp $
 
 COMMENT = X11 themes
 
@@ -21,6 +21,7 @@ SUBDIR += irssi-themes
 SUBDIR += kdeartwork3
 SUBDIR += kdeartwork4
 SUBDIR += kde4-icons-oxygen
+SUBDIR += kde4-wallpapers
 SUBDIR += linux-f10-hicolor-icon-theme
 SUBDIR += linux-f10-qtcurve-gtk2
 SUBDIR += linux-gtk-bluecurve-theme
