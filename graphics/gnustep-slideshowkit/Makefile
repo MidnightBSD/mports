@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/gnustep-slideshowkit/Makefile,v 1.1 2010/05/30 23:17:01 laffer1 Exp $
 
 PORTNAME=	slideshowkit
 PORTVERSION=	0.0.1
@@ -13,7 +13,6 @@ COMMENT=	SlideShow Framework
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
