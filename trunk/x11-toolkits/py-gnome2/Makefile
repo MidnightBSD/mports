@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.3 2009/12/14 00:16:31 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/py-gnome2/Makefile,v 1.4 2010/08/14 03:17:02 laffer1 Exp $
 
 PORTNAME=	gnome
 PORTVERSION=	2.28.1
-PORTREVISION=	0
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits python gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gnome-python/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -25,9 +25,9 @@ USE_LDCONFIG=	yes
 USE_GETTEXT=	yes
 USE_GNOME=	gnomehack libgnomeui pygtk2
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib" \
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 EG_SRC_DIR=	${WRKSRC}/examples
 EG_DST_DIR=	${PREFIX}/share/examples/py-gnome

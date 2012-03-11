@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.8 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgnomeprintui/Makefile,v 1.9 2011/05/15 19:18:58 laffer1 Exp $
 
 PORTNAME=	libgnomeprintui
 PORTVERSION=	2.18.6
@@ -23,8 +23,8 @@ USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_BISON=	build
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 

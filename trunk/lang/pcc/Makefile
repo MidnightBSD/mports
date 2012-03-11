@@ -1,10 +1,8 @@
-# ex:ts=8
 # Ports collection makefile for:  pcc
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/pcc/Makefile,v 1.4 2010/12/11 18:44:07 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/pcc/Makefile,v 1.5 2011/04/26 04:29:05 laffer1 Exp $
 
 PORTNAME=	pcc
 PORTVERSION=	1.0.0
@@ -17,7 +15,7 @@ DISTNAME=	pcc-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	S.C.Johnson's Portable C Compiler
+COMMENT=	The Portable C Compiler
 LICENSE=	bsd4
 #it's a mix of several BSD licenses, and we'll go worst case.
 

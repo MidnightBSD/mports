@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.3 2011/02/02 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.4 2011/05/28 06:23:35 laffer1 Exp $
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/lib${PORTNAME}/${PORTVERSION:R}/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
@@ -22,8 +22,8 @@ USE_AUTOTOOLS=	libtool
 USE_GNOME=	gtk20 gnomeprefix ltverhack:2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-maintainer-flags
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|libdir)/pkgconfig|prefix)/libdata/pkgconfig|g' \

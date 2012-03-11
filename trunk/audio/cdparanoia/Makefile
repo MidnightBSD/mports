@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.5 2009/07/12 15:55:10 laffer1 Exp $
+# $MidnightBSD: mports/audio/cdparanoia/Makefile,v 1.6 2010/02/27 16:01:23 laffer1 Exp $
 
 PORTNAME=	cdparanoia
 PORTVERSION=	3.9.8
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	audio sysutils
 MASTER_SITES=	http://www.xiph.org/paranoia/download/
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/^3\./III-alpha/}
