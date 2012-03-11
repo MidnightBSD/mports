@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/glew/Makefile,v 1.1 2010/12/11 04:27:02 laffer1 Exp $
 # $FreeBSD: ports/graphics/glew/Makefile,v 1.26 2010/08/03 11:29:34 mva Exp $
 
 PORTNAME=	glew
-PORTVERSION=	1.5.5
+PORTVERSION=	1.7.0
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 EXTRACT_SUFX=	.tgz
@@ -25,9 +25,13 @@ do-install:
 
 	${INSTALL_PROGRAM} ${WRKSRC}/lib/libGLEW.so.${PORTVERSION} \
 		${PREFIX}/lib/libGLEW.so.1
-	${LN} -sf ${PREFIX}/lib/libGLEW.so.1 ${PREFIX}/lib/libGLEW.so
-	${INSTALL_DATA} ${WRKSRC}/lib/libGLEW.a ${PREFIX}/lib
+	${INSTALL_PROGRAM} ${WRKSRC}/lib/libGLEWmx.so.${PORTVERSION} \
+		${PREFIX}/lib/libGLEWmx.so.1
 	${MKDIR} ${PREFIX}/include/GL
+	${LN} -sf ${PREFIX}/lib/libGLEW.so.1 ${PREFIX}/lib/libGLEW.so
+	${LN} -sf ${PREFIX}/lib/libGLEWmx.so.1 ${PREFIX}/lib/libGLEWmx.so
+	${INSTALL_DATA} ${WRKSRC}/lib/libGLEW.a ${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/lib/libGLEWmx.a ${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/include/GL/*.h ${PREFIX}/include/GL
 	${INSTALL_DATA} ${WRKSRC}/glew.pc ${PREFIX}/libdata/pkgconfig
 
