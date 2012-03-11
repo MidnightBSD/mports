@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.140 2012/03/11 03:23:09 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.141 2012/03/11 03:28:28 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -173,6 +173,7 @@ SUBDIR += svgalib
 SUBDIR += svgviewer
 SUBDIR += tiff
 SUBDIR += vindaloo
+SUBDIR += webp
 SUBDIR += wmicons
 SUBDIR += xli
 SUBDIR += xv
