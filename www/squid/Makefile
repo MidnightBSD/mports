@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/squid/Makefile,v 1.6 2009/01/02 03:08:17 ctriv Exp $
+# $MidnightBSD: mports/www/squid/Makefile,v 1.7 2009/10/13 02:14:51 laffer1 Exp $
 # $FreeBSD: ports/www/squid/Makefile,v 1.209 2008/04/05 00:46:55 beech Exp $
 #
 # Tunables not (yet) configurable via 'make config':
@@ -114,7 +114,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	HTTP Caching Proxy
 LICENSE=	gpl2
 
-SQUID_STABLE_VER=	7
+SQUID_STABLE_VER=	8
 
 CONFLICTS=	squid-2.[^7]* squid-3.* cacheboy-[0-9]*
 GNU_CONFIGURE=	yes
