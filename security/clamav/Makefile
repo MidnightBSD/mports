@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/clamav/Makefile,v 1.25 2011/08/07 06:12:57 laffer1 Exp $
+# $MidnightBSD: mports/security/clamav/Makefile,v 1.26 2011/10/26 14:46:43 laffer1 Exp $
 
 PORTNAME=	clamav
-PORTVERSION=	0.97.3
+PORTVERSION=	0.97.4
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -20,8 +20,8 @@ OPTIONS=	ARC "Enable arch archives support" On \
 		STDERR "Print logs to stderr instead of stdout" Off \
 		EXPERIMENTAL "Build experimental code" Off
 
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0
+CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0 \
+			--host=${ARCH}-portbld-freebsd7.0
 USE_PYTHON_BUILD=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
