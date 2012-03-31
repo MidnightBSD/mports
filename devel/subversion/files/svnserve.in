@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # svnserve.sh for rc.d usage (c) 2005 Thomas E. Spanjaard.
-# $Id: svnserve.in,v 1.3 2010-03-13 00:20:43 laffer1 Exp $
+# $Id: svnserve.in,v 1.4 2012-03-31 16:40:44 laffer1 Exp $
 
 # PROVIDE: svnserve
 # REQUIRE: DAEMON
@@ -22,7 +22,7 @@
 # If you want svnserve binding at ipv4 address, you have
 # to use option 'svnserve_flags' with --listen-host parameter
 
-. "%%RC_SUBR%%"
+. /etc/rc.subr
 
 # Set some defaults
 svnserve_enable=${svnserve_enable:-"NO"}
@@ -32,7 +32,7 @@ svnserve_user=${svnserve_user:-"svn"}
 svnserve_group=${svnserve_group:-"svn"}
 
 name=svnserve
-rcvar=`set_rcvar`
+rcvar=svnserve_enable
 load_rc_config $name
 command=%%PREFIX%%/bin/svnserve%%SVNSERVE_BIN_EXT%%
 command_args="-r ${svnserve_data}"
