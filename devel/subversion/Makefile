@@ -1,16 +1,17 @@
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.20 2009/05/26 00:57:18 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.21 2010/03/12 14:07:16 laffer1 Exp $
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
-LICENSE=	other
+LICENSE=	apache2
 
 USE_RC_SUBR=	svnserve
 
-MAN1=		svn.1 svnadmin.1 svnlook.1 svndumpfilter.1 svnsync.1 svnversion.1
+MAN1=		svn.1 svnadmin.1 svnlook.1 svndumpfilter.1 svnrdump.1 \
+		svnsync.1 svnversion.1
 MAN5=		svnserve.conf.5
 MAN8=		svnserve.8
 
-TXT_DOCS=	BUGS CHANGES COMMITTERS COPYING HACKING INSTALL README
+TXT_DOCS=	BUGS CHANGES COMMITTERS INSTALL README
 
 OPTIONS=	MOD_DAV_SVN	"mod_dav_svn module for Apache 2.X" off \
 		APACHE2_APR	"Use APR from Apache 2.X" off \
@@ -18,7 +19,6 @@ OPTIONS=	MOD_DAV_SVN	"mod_dav_svn module for Apache 2.X" off \
 		SERF		"WebDAV/Delta-V repo access module (serf)" off \
 		SASL		"SASL2 authorization support" off \
 		BDB		"db4 repository backend" off \
-		ASVN		"Build and install Archive SVN (asvn)" off \
 		MAINTAINER_DEBUG	"Build debug version" off \
 		SVNSERVE_WRAPPER	"Enable svnserve wrapper" off \
 		BOOK		"Install the Subversion Book" off
@@ -27,6 +27,9 @@ OPTIONS=	MOD_DAV_SVN	"mod_dav_svn module for Apache 2.X" off \
 
 SVNREPOS?=	/home/svn/repos
 SVNFSTYPE?=	fsfs
+
+SUB_FILES=	pkg-install \
+		pkg-deinstall
 
 .if make(repository)
 WITH_REPOSITORY_CREATION=	yes
@@ -39,7 +42,7 @@ MKREPOS_TARGET=	_mkrepos
 .if defined(WITH_SVNSERVE_WRAPPER)
 PLIST_SUB+=	SVNSERVE_WRAPPER=""
 SUB_LIST+=	SVNSERVE_BIN_EXT=".bin"
-EXTRA_PATCHES=	${PATCHDIR}/build-outputs.mk.patch
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-svnserve-wrapper
 .else
 PLIST_SUB+=	SVNSERVE_WRAPPER="@comment "
 SUB_LIST+=	SVNSERVE_BIN_EXT=""
@@ -54,12 +57,12 @@ PLIST_SUB+=	BOOK=""
 PLIST_SUB+=	BOOK="@comment "
 .endif
 
-.if defined(WITH_ASVN)
-RUN_DEPENDS+=	${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils:install
-PLIST_SUB+=	ASVN=""
-.else
+#.if defined(WITH_ASVN)
+#RUN_DEPENDS+=	${LOCALBASE}/bin/gfind:${PORTSDIR}/misc/findutils:install
+#PLIST_SUB+=	ASVN=""
+#.else
 PLIST_SUB+=	ASVN="@comment "
-.endif
+#.endif
 
 SCRIPTS=
 
@@ -74,9 +77,9 @@ pre-everything::
 .endif
 	@${ECHO_MSG} ""
 .if defined(WITH_BDB)
-	@${ECHO_MSG} "db4 repository backend enabled."
+	@${ECHO_MSG} "Berkeley DB (4 or 5) repository backend enabled."
 .else
-	@${ECHO_MSG} "db4 repository backend disabled."
+	@${ECHO_MSG} "Berkeley DB (4 or 5) repository backend disabled."
 .endif
 	@${ECHO_MSG} ""
 .if defined(WITH_MAINTAINER_DEBUG)
@@ -159,7 +162,7 @@ pre-install:
 post-install:	${MKREPOS_TARGET}
 	@${MKDIR} ${DATADIR}
 	cd ${WRKSRC}/tools ; \
-	  ${TAR} --exclude '*.in' -cf - * | ${TAR} -C ${DATADIR} -xf -
+	  ${TAR} --exclude '*.in' --exclude '.libs' --exclude '*.o' --exclude '*.lo' -cf - * | ${TAR} -C ${DATADIR} -xf -
 	@${CHMOD} -R a-st,o+rX ${DATADIR}
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
@@ -180,7 +183,10 @@ post-install:	${MKREPOS_TARGET}
 
 repository:	_mkrepos
 
-_SVNGRPFILES=	dav db locks locks/db.lock locks/db-logs.lock
+_SVNGRPFILES=	db locks locks/db.lock locks/db-logs.lock
+.if defined(WITH_MOD_DAV_SVN)
+_SVNGRPFILES+=	dav
+.endif
 SVNGRPFILES=	${_SVNGRPFILES:S,^,${SVNREPOS}/,}
 
 _mkrepos:	.USE
@@ -214,6 +220,9 @@ _mkrepos:	.USE
 	@${MKDIR} ${SVNREPOS}
 	@${PREFIX}/bin/svnadmin create --fs-type ${SVNFSTYPE} ${SVNREPOS}
 .if defined(WITH_SVNSERVE_WRAPPER)
+.if defined(WITH_MOD_DAV_SVN)
+	@${MKDIR} ${SVNREPOS}/dav
+.endif
 	@${CHOWN} ${SVNUSER}:${SVNGROUP} ${SVNGRPFILES}
 	@${CHMOD} g+w ${SVNGRPFILES}
 	@for i in ${SVNREPOS}/db/* ; do \
