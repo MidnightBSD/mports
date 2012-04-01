@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libffi/Makefile,v 1.4 2011/05/21 21:28:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/libffi/Makefile,v 1.5 2011/12/15 00:34:41 laffer1 Exp $
 
 PORTNAME=	libffi
-PORTVERSION=	3.0.9
-PORTREVISION=	1
+PORTVERSION=	3.0.10
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	ftp://sourceware.org/pub/libffi/
 
