@@ -1,4 +1,3 @@
-MD5 (libffi-3.0.9.tar.gz) = 1f300a7a7f975d4046f51c3022fa5ff1
-SHA256 (libffi-3.0.9.tar.gz) = 589d25152318bc780cd8919b14670793f4971d9838dab46ed38c32b3ee92c452
-RMD160 (libffi-3.0.9.tar.gz) = 11ff9aeb62f4fbe1fecf09e6f9814a72bfedb37a
-SIZE (libffi-3.0.9.tar.gz) = 731719
+SHA256 (libffi-3.0.10.tar.gz) = f01eb9027e9eb56aeaeef636649877756d475d714ef8b47f627f65bc5f3b492f
+RMD160 (libffi-3.0.10.tar.gz) = 4a53046e966e5d875ecb1017f5ff1950cdf5253c
+SIZE (libffi-3.0.10.tar.gz) = 753346
