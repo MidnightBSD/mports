@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.12 2011/04/26 00:25:09 laffer1 Exp $
 # $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.137 2010/12/16 02:33:56 glarkin Exp $
 
 PORTNAME=	Mail-SpamAssassin
-PORTVERSION=	3.3.1
+PORTVERSION=	3.3.2
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
@@ -15,17 +15,15 @@ LICENSE=	apache2
 
 RUN_DEPENDS=	p5-NetAddr-IP>=4.00.7:${PORTSDIR}/net-mgmt/p5-NetAddr-IP \
 		p5-Net-DNS>=0.63:${PORTSDIR}/dns/p5-Net-DNS \
-		p5-HTML-Parser>=3.43:${PORTSDIR}/www/p5-HTML-Parser \
+		p5-HTML-Parser>=3.46:${PORTSDIR}/www/p5-HTML-Parser \
 		${SITE_PERL}/Bundle/LWP.pm:${PORTSDIR}/www/p5-libwww \
 		${SITE_PERL}/${PERL_ARCH}/Encode/Detect.pm:${PORTSDIR}/converters/p5-Encode-Detect \
 		${SITE_PERL}/Mail/Internet.pm:${PORTSDIR}/mail/p5-Mail-Tools
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
-CONFLICTS=	ja-p5-Mail-SpamAssassin-[0-9]*
-
 PERL_CONFIGURE=	yes
-USE_PERL5_RUN=	5.8.8+
+USE_PERL5_RUN=	5.12+
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	SYSCONFDIR="${PREFIX}/etc" \
 	       	CONTACT_ADDRESS="${CONTACT_ADDRESS}" \
@@ -52,16 +50,6 @@ USE_OPENSSL=	yes
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} < 500903
-RUN_DEPENDS+=	p5-IO-Compress>=2.017:${PORTSDIR}/archivers/p5-IO-Compress
-.endif
-
-.if ${PERL_LEVEL} < 501000
-RUN_DEPENDS+=	p5-Archive-Tar>=1.23:${PORTSDIR}/archivers/p5-Archive-Tar \
-		p5-IO-Zlib>=1.04:${PORTSDIR}/archivers/p5-IO-Zlib \
-		p5-Test-Harness>=3.16:${PORTSDIR}/devel/p5-Test-Harness
-.endif
 
 .if defined (WITH_SPAMC)
 CONFIGURE_ARGS+=	BUILD_SPAMC=yes
