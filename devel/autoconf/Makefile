@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.1 2011/02/02 19:48:21 laffer1 Exp $
 
 PORTNAME=	autoconf
-PORTVERSION=	2.68
+PORTVERSION=	2.69
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	autoconf
@@ -16,10 +16,9 @@ BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
 		autoconf-wrapper:${PORTSDIR}/devel/autoconf-wrapper
 
-BUILD_VERSION=	2.68
+BUILD_VERSION=	2.69
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
-LATEST_LINK=	autoconf268
-USE_BZIP2=	yes
+LATEST_LINK=	autoconf269
 USE_GMAKE=	yes
 USE_PERL5=	yes
 INFO=		autoconf-${BUILD_VERSION}
