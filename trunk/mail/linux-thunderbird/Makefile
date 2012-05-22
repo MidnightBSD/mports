@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.32 2012/03/19 20:56:24 laffer1 Exp $
+# $MidnightBSD: mports/mail/linux-thunderbird/Makefile,v 1.33 2012/04/26 13:16:45 laffer1 Exp $
 
 PORTNAME=	thunderbird
-PORTVERSION=	12.0
+PORTVERSION=	12.0.1
 CATEGORIES=	mail
 MASTER_SITE_SUBDIR?=	thunderbird/releases/${PORTVERSION}/linux-i686/en-US
 
