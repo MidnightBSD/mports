@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #
-# $MidnightBSD: mports/lang/perl5.10/files/pkg-glue.in,v 1.1 2008/04/11 04:45:00 ctriv Exp $
+# $MidnightBSD: mports/lang/perl5.14/files/pkg-glue.in,v 1.1 2011/05/15 02:09:11 laffer1 Exp $
 
 
 PERL_VERSION='%%PERL_VERSION%%'
