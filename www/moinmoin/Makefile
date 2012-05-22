@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.9 2011/09/03 15:45:13 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.10 2012/05/22 00:54:34 laffer1 Exp $
 
 PORTNAME=	moinmoin
 PORTVERSION=	1.9.4
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Python clone of WikiWiki
 LICENSE=	gpl2
 
-USE_PYTHON=	yes
+USE_PYTHON=	2.5+
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGNAME=	moin
 
