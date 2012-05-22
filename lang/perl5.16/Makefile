@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/lang/perl5.10/Makefile,v 1.3 2008/10/11 19:15:33 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.3 2011/11/06 01:19:59 laffer1 Exp $
 
 PORTNAME=	perl
-PORTVERSION=	5.10.1
+PORTVERSION=	5.16.0
 PORTREVISION=	0
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../src
 LATEST_LINK=	perl
 
-MAINTAINER=	ctriv@MidnightBSD.org
+MAINTAINER=	luke@MidnightBSD.org
 COMMENT=	Practical Extraction and Report Language
 LICENSE=	perl
 
@@ -80,7 +80,6 @@ CONFIGURE_ARGS+=	-Ui_gdbm
 PLIST_SUB+=		GDBM="@comment "
 .endif
 
-
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	-Dusethreads=y
 PKGNAMESUFFIX=		-threaded
@@ -99,7 +98,6 @@ CONFIGURE_ARGS+=	-Dusemymalloc=n
 .if !defined(WITHOUT_PERL_64BITINT)
 CONFIGURE_ARGS+=	-Duse64bitint
 .endif
-
 
 
 post-install:
