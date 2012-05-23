@@ -3,15 +3,14 @@
 # Whom:			jkh
 #
 # $FreeBSD: ports/x11-toolkits/tk84/Makefile,v 1.93 2007/01/17 04:49:29 clsung Exp $
-# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.5 2008/06/13 12:56:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk84/Makefile,v 1.6 2010/11/19 00:49:09 laffer1 Exp $
 #
 
 PORTNAME=	tk
 PORTVERSION=	8.4.19
 PORTEPOCH=	2
 CATEGORIES=	x11-toolkits tk
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	tcl
+MASTER_SITES=	SF/tcl/Tcl/8.4.19
 PKGNAMESUFFIX?=	${THREADS_SUFFIX}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
