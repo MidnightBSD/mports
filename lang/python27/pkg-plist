@@ -2367,6 +2367,7 @@ lib/libpython2.7.a
 @dirrm %%PYTHON_LIBDIR%%/pydoc_data
 @dirrm %%PYTHON_LIBDIR%%/plat-freebsd7
 @dirrm %%PYTHON_LIBDIR%%/plat-freebsd6
+@dirrm %%PYTHON_LIBDIR%%/plat-midnightbsd0
 @dirrm %%PYTHON_LIBDIR%%/multiprocessing/dummy
 @dirrm %%PYTHON_LIBDIR%%/multiprocessing
 @dirrm %%PYTHON_LIBDIR%%/logging
@@ -2405,5 +2406,5 @@ lib/libpython2.7.a
 @dirrm %%PYTHON_LIBDIR%%/compiler
 @dirrm %%PYTHON_LIBDIR%%/bsddb/test
 @dirrm %%PYTHON_LIBDIR%%/bsddb
-@dirrm %%PYTHON_LIBDIR%%
+@dirrmtry %%PYTHON_LIBDIR%%
 @dirrm %%PYTHON_INCLUDEDIR%%
