@@ -2,7 +2,7 @@
 # Date created:		17 January 2007
 # Whom:			Martin Matuska <mm@FreeBSD.org>
 #
-# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.5 2008/10/12 14:45:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/tk85/Makefile,v 1.6 2008/10/12 16:00:34 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/tk85/Makefile,v 1.18 2008/04/02 12:02:41 mm Exp $
 #
 
@@ -10,8 +10,7 @@ PORTNAME=	tk
 PORTVERSION=	8.5.4
 PORTREVISION=	1
 CATEGORIES=	x11-toolkits tk
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	tcl
+MASTER_SITES=	SF/tcl/Tcl/8.5.4
 PKGNAMESUFFIX?=	${THREADS_SUFFIX}
 DISTNAME=	${PORTNAME}${PORTVERSION}-src
 
