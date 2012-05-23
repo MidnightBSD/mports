@@ -1,4 +1,6 @@
 SHA256 (qhull-2003.1.tar.gz) = 68725c96603a426da748d38d0f83e7a9dd6a0bfc483525debe04001846475b0b
+RMD160 (qhull-2003.1.tar.gz) = 6c82ad27601f9aa12498e3bc08f06c7b777a5f4d
 SIZE (qhull-2003.1.tar.gz) = 724313
 SHA256 (poly.c-qh_gethash.patch) = fb42b86fa80e1d4e671043a07ff3bdf4ad641094f93630241877fce096916737
+RMD160 (poly.c-qh_gethash.patch) = 2371bc23e9feb782f6d285d1738f6f21d60c5971
 SIZE (poly.c-qh_gethash.patch) = 684
