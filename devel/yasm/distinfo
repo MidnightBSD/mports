@@ -1,4 +1,3 @@
-MD5 (yasm-1.1.0.tar.gz) = 8392e5f2235c2c2a981e1a633f2698cb
-SHA256 (yasm-1.1.0.tar.gz) = e5d56b582f3d0c30ed5c4fc221063e4175602307ea645520889458133671c232
-RMD160 (yasm-1.1.0.tar.gz) = 93e9ee40319ca02a3a8fff7f85af216d37fb1d06
-SIZE (yasm-1.1.0.tar.gz) = 1409438
+SHA256 (yasm-1.2.0.tar.gz) = 768ffab457b90a20a6d895c39749adb547c1b7cb5c108e84b151a838a23ccf31
+RMD160 (yasm-1.2.0.tar.gz) = 6d2baf27a45d6dbe250f972f18fb6627f50394d9
+SIZE (yasm-1.2.0.tar.gz) = 1436502
