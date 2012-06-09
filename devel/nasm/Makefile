@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.13 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.14 2011/12/16 02:00:49 laffer1 Exp $
 
 PORTNAME=	nasm
 PORTVERSION=	2.09.10
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.nasm.us/pub/nasm/releasebuilds/${PORTVERSION}/
@@ -16,7 +17,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 DESTDIRNAME=  INSTALLROOT
 INSTALL_TARGET=	install install_rdf
-MAKE_JOBS_UNSAFE=	yes
+# Fixes parallel builds
+USE_GMAKE=    yes 
 
 MAN1=		ldrdf.1 nasm.1 ndisasm.1 rdf2bin.1 rdf2com.1 rdf2ihx.1 \
 		rdf2ith.1 rdf2srec.1 rdfdump.1 rdflib.1 rdx.1
