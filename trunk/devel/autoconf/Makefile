@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.1 2011/02/02 19:48:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.2 2012/04/26 13:07:23 laffer1 Exp $
 
 PORTNAME=	autoconf
 PORTVERSION=	2.69
@@ -8,7 +8,7 @@ MASTER_SITE_SUBDIR=	autoconf
 DISTNAME=	autoconf-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Automatically configure source code on many Un*x platforms (2.68)
+COMMENT=	Automatically configure source code on many Un*x platforms
 LICENSE=	gpl3
 
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
