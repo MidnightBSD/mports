@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.2 2012/04/26 13:07:23 laffer1 Exp $
+# $MidnightBSD: mports/devel/autoconf/Makefile,v 1.3 2012/06/09 20:26:30 laffer1 Exp $
 
 PORTNAME=	autoconf
 PORTVERSION=	2.69
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	autoconf
@@ -18,13 +19,14 @@ RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4 \
 
 BUILD_VERSION=	2.69
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
-LATEST_LINK=	autoconf269
+USE_XZ=		yes
 USE_GMAKE=	yes
 USE_PERL5=	yes
-INFO=		autoconf-${BUILD_VERSION}
+INFO=		autoconf
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4 AWK=${AWK}
+CONFIGURE_ENV+=	CONFIG_SHELL=${SH} M4=${LOCALBASE}/bin/gm4 AWK=${AWK} \
+		ac_cv_prog_TEST_EMACS=no
 CONFIGURE_ARGS=	--program-suffix=-${BUILD_VERSION} --without-lispdir
 
 GENERIC_TOOLS=	config.guess config.sub	elisp-comp install-sh mdate-sh missing
@@ -40,9 +42,7 @@ post-patch:
 			${REINPLACE_CMD} -E 's,([^-]auto)(conf|make|reconf|update|header|scan),\1\2-${BUILD_VERSION},g ; \
 						s,(config\.guess|config\.sub|ifnames),\1-${BUILD_VERSION},g' $$file ; \
 		done)
-	@(cd ${WRKSRC}/doc && \
-		${RM} -f *.info && \
-		${MV} autoconf.texi autoconf-${BUILD_VERSION}.texi)
+	@(cd ${WRKSRC}/doc && ${RM} -f *.info)
 	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} ${REINPLACE_CMD} -e \
 		's|@PACKAGE@$$|@PACKAGE@-@VERSION@|'
 
