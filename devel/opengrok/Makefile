@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.2 2012/01/27 01:06:33 laffer1 Exp $
+# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.3 2012/02/28 02:33:19 laffer1 Exp $
 # $FreeBSD: ports/devel/opengrok/Makefile,v 1.5 2011/12/26 17:21:01 jgh Exp $
 
 PORTNAME=	opengrok
-PORTVERSION=	0.11
+PORTVERSION=	0.11.1
 CATEGORIES=	devel java
 MASTER_SITES=	http://hub.opensolaris.org/bin/download/Project+opengrok/files/
 
