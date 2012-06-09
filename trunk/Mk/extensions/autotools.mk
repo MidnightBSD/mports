@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.6 2009/10/10 01:56:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/autotools.mk,v 1.7 2011/02/02 19:49:01 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.autotools.mk,v 1.28 2007/03/27 01:23:56 linimon Exp $
 #
 # Please view me with 4 column tabs!
@@ -162,8 +162,8 @@ GNU_CONFIGURE=				yes
 .endif
 
 .if defined(_AUTOTOOL_automake)
-AUTOMAKE_VERSION=	1.11
-AUTOMAKE_APIVER=	1.11.1
+AUTOMAKE_VERSION=	1.12
+AUTOMAKE_APIVER=	1.12
 AUTOMAKE_PORT=		devel/automake
 
 . if ${_AUTOTOOL_automake} == "yes"
@@ -222,7 +222,7 @@ GNU_CONFIGURE?=				yes
 .endif
 
 .if defined(_AUTOTOOL_autoconf)
-AUTOCONF_VERSION=	2.68
+AUTOCONF_VERSION=	2.69
 AUTOCONF_PORT=		devel/autoconf
 
 . if ${_AUTOTOOL_autoconf} == "yes"
@@ -285,7 +285,7 @@ LIB_DEPENDS+=		ltdl.7:${PORTSDIR}/devel/libltdl
 #---------------------------------------------------------------------------
 
 .if defined(_AUTOTOOL_libtool) || defined(_AUTOTOOL_libtoolize)
-LIBTOOL_VERSION=	2.2.10
+LIBTOOL_VERSION=	2.4
 LIBTOOL_PORT=		devel/libtool
 
 . if defined(_AUTOTOOL_libtool) && ${_AUTOTOOL_libtool} == "yes"
@@ -322,7 +322,7 @@ LIBTOOLFILES?=		aclocal.m4
 LIBTOOLFILES?=		${CONFIGURE_SCRIPT}
 . endif
 
-LIBTOOL_DEPENDS=	libtool>=2.2:${PORTSDIR}/${LIBTOOL_PORT}
+LIBTOOL_DEPENDS=	libtool>=2.4:${PORTSDIR}/${LIBTOOL_PORT}
 BUILD_DEPENDS+=		${LIBTOOL_DEPENDS}
 .endif
 
