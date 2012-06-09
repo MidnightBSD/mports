@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.11 2011/05/18 14:52:04 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.12 2012/05/22 00:40:40 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -108,9 +108,9 @@ _DEFAULT_PERL_VERSION= 5.14.0
 .elif ${OSVERSION} < 3000 || ${OSVERSION} > 4002
 _DEFAULT_PERL_VERSION= 5.10.1
 .else
-_DEFAULT_PERL_VERSION= 5.12.3
+_DEFAULT_PERL_VERSION= 5.16.0
 .endif
-_DEFAULT_PERL_BRANCH= 5.12
+_DEFAULT_PERL_BRANCH= 5.16
 
 .if !defined(PERL_VERSION)
 .	if exists(${PERL}) && !defined(PACKAGE_BUILDING)
