@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.8 2011/03/12 16:43:37 laffer1 Exp $
+# $MidnightBSD: mports/devel/yasm/Makefile,v 1.9 2011/09/22 23:03:05 laffer1 Exp $
 
 PORTNAME=	yasm
-PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTVERSION=	1.2.0
+PORTREVISION=	0
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 
