@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.7 2009/11/25 02:51:13 laffer1 Exp $
+# $MidnightBSD: mports/devel/ncurses/Makefile,v 1.8 2009/11/25 02:59:06 laffer1 Exp $
 
 PORTNAME=	ncurses
 PORTVERSION=	${RELEASE}
@@ -14,13 +14,16 @@ LICENSE=	mit
 
 CONFLICTS=	ncurses-devel-[0-9]*
 
-RELEASE=	5.7
+RELEASE=	5.9
+
+WITHOUT_WIDEC=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=../configure
 CONFIGURE_ARGS=	--datadir=${PREFIX}/share/misc --disable-overwrite \
 		--enable-termcap --enable-bsdpad --enable-getcap \
 		--enable-colorfgbg --disable-home-terminfo \
+		--with-pkg-config=no \
 		--includedir=${PREFIX}/include/ncurses \
 		--with-shared \
 		--without-curses-h --with-termlib --program-prefix= \
@@ -28,10 +31,7 @@ CONFIGURE_ARGS=	--datadir=${PREFIX}/share/misc --disable-overwrite \
 		--with-manpage-format=gzip --srcdir=../
 MAKE_JOBS_UNSAFE=	yes
 
-# needed by devel/py-ncurses port
-.if defined(WITH_TRACE)
-CONFIGURE_ARGS+=	--with-trace
-.endif
+OPTIONS=	EXTCOLORS "Enable 256-color support (only for ncursesw)" off
 
 CONFIGURE_ENV=	gnat_exists="no"
 
@@ -47,7 +47,15 @@ CONFIGURE_WRKSRC=	${NOWIDEC_WRKSRC}
 BUILD_WRKSRC=	${NOWIDEC_WRKSRC}
 INSTALL_WRKSRC=	${NOWIDEC_WRKSRC}
 
-PLIST_SUB+=	PORTVERSION=${RELEASE} \
+NCURSES_ABI_VER=	5
+NCURSES_REL_VER=	${RELEASE}
+NCURSESW_ABI_VER=	${NCURSES_ABI_VER}
+NCURSESW_REL_VER=	${NCURSES_REL_VER}
+
+PLIST_SUB+=	ABI_VER=${NCURSES_ABI_VER} \
+		REL_VER=${NCURSES_REL_VER} \
+		ABI_VER_WIDEC=${NCURSESW_ABI_VER} \
+		REL_VER_WIDEC=${NCURSESW_REL_VER} \
 		WIDEC_EXAMPLESDIR=${WIDEC_EXAMPLESDIR:S,${PREFIX}/,,} \
 		NOWIDEC_EXAMPLESDIR=${NOWIDEC_EXAMPLESDIR:S,${PREFIX}/,,}
 
@@ -74,6 +82,18 @@ EXAMPLES_CPP=	Makefile NEWS PROBLEMS README-first cursesapp.cc \
 
 .include "${.CURDIR}/Makefile.man"
 
+CONFIGURE_ARGS_WIDEC=--enable-widec
+.if defined(WITH_EXTCOLORS)
+CONFIGURE_ARGS_WIDEC+=--enable-ext-colors
+NCURSESW_ABI_VER=	6
+NCURSESW_REL_VER=	6.0
+.endif
+
+# needed by devel/py-ncurses port
+.if defined(WITH_TRACE)
+CONFIGURE_ARGS+=	--with-trace
+.endif
+
 .if !defined(WITHOUT_PROFILE) && !defined(NO_PROFILE) && !defined(NOPROFILE)
 CONFIGURE_ARGS+=--with-profile
 PLIST_SUB+=	PROFILE=""
@@ -98,7 +118,6 @@ CONFIGURE_ARGS+=--disable-database
 PLIST_SUB+=	TERMINFO="@comment "
 .endif
 
-WITHOUT_WIDEC=yes
 .if !defined(WITHOUT_WIDEC)
 PLIST_SUB+=	WIDEC=""
 EXAMPLES_TARGETS+=	WIDEC
@@ -117,14 +136,14 @@ post-configure:
 .if !defined(WITHOUT_WIDEC)
 	cd ${.CURDIR} && \
 	    ${MAKE} ${.MAKEFLAGS} CONFIGURE_WRKSRC=${WIDEC_WRKSRC} \
-	    CONFIGURE_ARGS="${CONFIGURE_ARGS} --enable-widec" \
+	    CONFIGURE_ARGS="${CONFIGURE_ARGS} ${CONFIGURE_ARGS_WIDEC}" \
 	    do-configure
 .endif
 .for d in test c++
 .if !defined(WITHOUT_WIDEC)
-	${CP} ${WRKSRC}/${d}/* ${WIDEC_WRKSRC}/${d}/
+	${CP} -R ${WRKSRC}/${d}/* ${WIDEC_WRKSRC}/${d}/
 .endif
-	${CP} ${WRKSRC}/${d}/* ${NOWIDEC_WRKSRC}/${d}/
+	${CP} -R ${WRKSRC}/${d}/* ${NOWIDEC_WRKSRC}/${d}/
 .endfor
 
 post-build:
@@ -153,8 +172,7 @@ post-install:
 .endif
 
 .if !defined(WITHOUT_TERMINFO)
-	${FIND} ${PREFIX}/share/misc -name "*.terminfo" -print0	|	\
-		${XARGS} -0 ${PREFIX}/bin/tic
+	${FIND} ${PREFIX}/share/misc -name "*.terminfo" -exec ${PREFIX}/bin/tic {} \;
 .endif
 
 .if !defined(NOPORTDOCS)
