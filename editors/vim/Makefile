@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/vim/Makefile,v 1.22 2010/10/21 16:03:25 laffer1 Exp $
+# $MidnightBSD: mports/editors/vim/Makefile,v 1.23 2011/03/08 02:36:16 laffer1 Exp $
 
 PORTNAME?=	vim
-PATCHLEVEL=	40
+PATCHLEVEL=	538
 PORTVERSION=	7.3.${PATCHLEVEL}
 RELEASE=	vim-${PORTVERSION:C/\.[0-9a-z]*$//}
 PORTREVISION?=	0
@@ -14,11 +14,10 @@ PATCH_SITES=	${MASTER_SITES:S|unix|patches/${PORTVERSION:C/\.[0-9a-z]*$//}|}\
 PATCHFILES!=	/usr/bin/jot -s " " -w ${PORTVERSION:C/\.[0-9]*$//}.%03d  \
 			${PATCHLEVEL} 1 ${PATCHLEVEL}
 #	bits to remove
-#BADPATCHES=	007 036 049 071 072 074 088 089 093 101 138 150 172 191 194 204 205 212 216 219 233 247 248 249 250 260
+BADPATCHES=	122 225 235 246 247 252 253 336 386 387 400 434 487 491 527
 .for p in ${BADPATCHES}
-PATCHFILES:=	${PATCHFILES:N7.2.${p}}
+PATCHFILES:=	${PATCHFILES:N7.3.${p}}
 .endfor
-PATCHFILES:=	${PATCHFILES:S/041/041^:local/}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Vi "workalike", with many additional features
