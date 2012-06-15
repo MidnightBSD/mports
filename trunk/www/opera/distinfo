@@ -1,3 +1,4 @@
-SHA256 (opera-11.61-1250.amd64.freebsd.tar.xz) = 659e2686ca2766766a226e0a95bce1066e748cebb87fb8a3cb1ea243bd99de8c
-RMD160 (opera-11.61-1250.amd64.freebsd.tar.xz) = 312fac7b0fcfa5cd880c5e0b66db96b778a3224c
-SIZE (opera-11.61-1250.amd64.freebsd.tar.xz) = 12101656
+SHA256 (opera-11.64-1403.i386.freebsd.tar.xz) = 09c5e7a058161fc5a8cca2190f8056a656e4a766e425912d436e516fbf49392f
+SIZE (opera-11.64-1403.i386.freebsd.tar.xz) = 11544224
+SHA256 (opera-11.64-1403.amd64.freebsd.tar.xz) = 54b080fd9ec998d5172b49649cffc0df9e0133b168ef5167d9bfa1455f9e2ad8
+SIZE (opera-11.64-1403.amd64.freebsd.tar.xz) = 12108252
