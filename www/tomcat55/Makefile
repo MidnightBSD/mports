@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.11 2011/06/10 03:33:27 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.12 2011/10/28 13:42:20 laffer1 Exp $
 
 PORTNAME=	tomcat
-PORTVERSION=	5.5.34
+PORTVERSION=	5.5.35
 PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
@@ -13,7 +13,7 @@ COMMENT=	Open-source Java web server by Apache, 5.5.x branch
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.5+
 NO_BUILD=	YES
 
 USE_RC_SUBR=	tomcat55.sh
