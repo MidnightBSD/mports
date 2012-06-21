@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/log4j/Makefile,v 1.2 2008/10/13 20:53:44 ctriv Exp $
+# $MidnightBSD: mports/devel/log4j/Makefile,v 1.3 2009/09/17 00:06:20 laffer1 Exp $
 
 PORTNAME=	log4j
-PORTVERSION=	1.2.15
+PORTVERSION=	1.2.16
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	logging/${PORTNAME}/${PORTVERSION}
