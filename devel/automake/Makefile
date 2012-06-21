@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/automake/Makefile,v 1.1 2011/02/02 19:48:21 laffer1 Exp $
+# $MidnightBSD: mports/devel/automake/Makefile,v 1.2 2012/06/09 21:01:39 laffer1 Exp $
 # $FreeBSD: ports/devel/automake/Makefile,v 1.38 2010/12/08 19:58:44 ade Exp $
 
 PORTNAME=	automake
@@ -32,7 +32,7 @@ MAN1=		aclocal-${BUILD_VERSION}-${BUILD_VERSION}.1 \
 post-patch:
 	@${RM} ${WRKSRC}/doc/*.info
 
-pre-su-install:
+pre-install:
 	@${RM} -fr ${PREFIX}/share/automake-${BUILD_VERSION}
 	@${MKDIR} ${PREFIX}/share/automake-${BUILD_VERSION}
 	@${MKDIR} ${PREFIX}/share/aclocal-${BUILD_VERSION}
