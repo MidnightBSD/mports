@@ -259,6 +259,9 @@ lib/scons-%%SCONS_VER%%/SCons/Tool/dvipdf.pyo
 lib/scons-%%SCONS_VER%%/SCons/Tool/dvips.py
 lib/scons-%%SCONS_VER%%/SCons/Tool/dvips.pyc
 lib/scons-%%SCONS_VER%%/SCons/Tool/dvips.pyo
+lib/scons-%%SCONS_VER%%/SCons/Tool/f03.py
+lib/scons-%%SCONS_VER%%/SCons/Tool/f03.pyc
+lib/scons-%%SCONS_VER%%/SCons/Tool/f03.pyo
 lib/scons-%%SCONS_VER%%/SCons/Tool/f77.py
 lib/scons-%%SCONS_VER%%/SCons/Tool/f77.pyc
 lib/scons-%%SCONS_VER%%/SCons/Tool/f77.pyo
