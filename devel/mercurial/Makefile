@@ -2,11 +2,11 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.10 2011/05/28 07:17:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.11 2011/12/16 01:22:53 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
-PORTVERSION=	2.0
+PORTVERSION=	2.2.2
 CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
@@ -20,13 +20,15 @@ PLIST_SUB+=	NLS=""
 .else
 PLIST_SUB+=	NLS="@comment "
 .endif
-USE_PYTHON=	2.5+
+USE_PYTHON=	-2.7
 USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGNAME=	${PORTNAME}
 PYDISTUTILS_PKGVERSION=	${PORTVERSION}
 PYDISTUTILS_EGGINFO=	${PORTNAME}-${PORTVERSION}-${PYTHON_VERSION:S/thon//}.egg-info
 
 CONTRIB_FILES=	bash_completion \
+		casesmash.py \
+		check-code.py \
 		convert-repo \
 		debugcmdserver.py \
 		debugshell.py \
