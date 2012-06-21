@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/devel/mercurial/pkg-plist,v 1.43 2011/11/08 08:47:13 roberto Exp $
 bin/hg
 %%PYTHON_SITELIBDIR%%/hgext/__init__.py
 %%PYTHON_SITELIBDIR%%/hgext/__init__.pyc
@@ -69,6 +68,9 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/hgext/extdiff.py
 %%PYTHON_SITELIBDIR%%/hgext/extdiff.pyc
 %%PYTHON_SITELIBDIR%%/hgext/extdiff.pyo
+%%PYTHON_SITELIBDIR%%/hgext/factotum.py
+%%PYTHON_SITELIBDIR%%/hgext/factotum.pyc
+%%PYTHON_SITELIBDIR%%/hgext/factotum.pyo
 %%PYTHON_SITELIBDIR%%/hgext/fetch.py
 %%PYTHON_SITELIBDIR%%/hgext/fetch.pyc
 %%PYTHON_SITELIBDIR%%/hgext/fetch.pyo
@@ -264,6 +266,9 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/fileset.py
 %%PYTHON_SITELIBDIR%%/mercurial/fileset.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/fileset.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/formatter.py
+%%PYTHON_SITELIBDIR%%/mercurial/formatter.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/formatter.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/graphmod.py
 %%PYTHON_SITELIBDIR%%/mercurial/graphmod.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/graphmod.pyo
@@ -285,6 +290,7 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/help/merge-tools.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/multirevs.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/patterns.txt
+%%PYTHON_SITELIBDIR%%/mercurial/help/phases.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/revisions.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/revsets.txt
 %%PYTHON_SITELIBDIR%%/mercurial/help/subrepos.txt
@@ -332,27 +338,6 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/httpclient/socketutil.py
 %%PYTHON_SITELIBDIR%%/mercurial/httpclient/socketutil.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/httpclient/socketutil.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/__init__.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/__init__.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/__init__.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/simple_http_test.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/simple_http_test.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/simple_http_test.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_bogus_responses.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_bogus_responses.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_bogus_responses.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_chunked_transfer.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_chunked_transfer.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_chunked_transfer.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_proxy_support.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_proxy_support.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_proxy_support.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_ssl.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_ssl.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/test_ssl.pyo
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/util.py
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/util.pyc
-%%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests/util.pyo
 %%PYTHON_SITELIBDIR%%/mercurial/httpconnection.py
 %%PYTHON_SITELIBDIR%%/mercurial/httpconnection.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/httpconnection.pyo
@@ -368,6 +353,12 @@ bin/hg
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.py
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.pyc
 %%PYTHON_SITELIBDIR%%/mercurial/keepalive.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/phases.py
+%%PYTHON_SITELIBDIR%%/mercurial/phases.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/phases.pyo
+%%PYTHON_SITELIBDIR%%/mercurial/pvec.py
+%%PYTHON_SITELIBDIR%%/mercurial/pvec.pyc
+%%PYTHON_SITELIBDIR%%/mercurial/pvec.pyo
 %%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/da/LC_MESSAGES/hg.mo
 %%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/de/LC_MESSAGES/hg.mo
 %%NLS%%%%PYTHON_SITELIBDIR%%/mercurial/locale/el/LC_MESSAGES/hg.mo
@@ -658,6 +649,8 @@ bin/hg
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDATA%%%%DATADIR%%/contrib/bash_completion
+%%PORTDATA%%%%DATADIR%%/contrib/casesmash.py
+%%PORTDATA%%%%DATADIR%%/contrib/check-code.py
 %%PORTDATA%%%%DATADIR%%/contrib/convert-repo
 %%PORTDATA%%%%DATADIR%%/contrib/debugcmdserver.py
 %%PORTDATA%%%%DATADIR%%/contrib/debugshell.py
@@ -735,7 +728,6 @@ bin/hg
 %%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW/LC_MESSAGES
 %%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale/zh_TW
 %%NLS%%@dirrm %%PYTHON_SITELIBDIR%%/mercurial/locale
-@dirrm %%PYTHON_SITELIBDIR%%/mercurial/httpclient/tests
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/httpclient
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/help
 @dirrm %%PYTHON_SITELIBDIR%%/mercurial/hgweb
