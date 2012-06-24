@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.3 2011/02/02 21:14:16 laffer1 Exp $
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.4 2011/08/07 18:26:57 laffer1 Exp $
 
 PORTNAME=		samba34
-PORTVERSION=		3.4.14
+PORTVERSION=		3.4.17
 PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -64,7 +64,6 @@ CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
-CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 # pkg-config is used to find talloc
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
