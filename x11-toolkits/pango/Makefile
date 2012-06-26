@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.18 2011/05/15 19:25:40 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/pango/Makefile,v 1.19 2011/11/11 00:59:22 laffer1 Exp $
 
 PORTNAME=	pango
 PORTVERSION=	1.28.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME \
 		ftp://ftp.gtk.org/pub/pango/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
@@ -23,6 +23,7 @@ RUN_DEPENDS=	${FONTSCALE}:${X_FONTS_TTF_PORT} \
 		${FONTENCOD}:${X_FONTS_ENCODINGS_PORT} \
 		${LOCALBASE}/lib/girepository-1.0/GObject-2.0.typelib:${PORTSDIR}/devel/gobject-introspection
 
+SUB_FILES=	pkg-install
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
 MAKE_JOBS_SAFE=	yes
@@ -45,15 +46,15 @@ MAN1=		pango-view.1 pango-querymodules.1
 
 .if defined(WITHOUT_X11)
 CONFIGURE_ARGS+=	--with-x=no
-CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
-				${GLIB2_CFLAGS} -I${LOCALBASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=		-I${LOCALBASE}/include/freetype2 \
+			${GLIB2_CFLAGS} -I${LOCALBASE}/include
+LDFLAGS+=		-L${LOCALBASE}/lib
 PLIST_SUB+=		X11="@comment "
 .else
 USE_XORG+=		xft xrender
-CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
-				${GLIB2_CFLAGS} -I${LOCALBASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=		-I${LOCALBASE}/include/freetype2 \
+			${GLIB2_CFLAGS} -I${LOCALBASE}/include
+LDFLAGS+=		-L${LOCALBASE}/lib
 PLIST_SUB+=		X11=""
 .endif
 
