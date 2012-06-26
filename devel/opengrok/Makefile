@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.3 2012/02/28 02:33:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/opengrok/Makefile,v 1.4 2012/06/09 20:37:16 laffer1 Exp $
 # $FreeBSD: ports/devel/opengrok/Makefile,v 1.5 2011/12/26 17:21:01 jgh Exp $
 
 PORTNAME=	opengrok
@@ -66,7 +66,7 @@ post-extract:
 	@${TAR} xf ${WRKSRC}/lib/source.war -C ${WRKSRC}/lib/${PORTNAME}
 
 do-install:
-	${INSTALL} -d -o ${WWWOWN} -g ${WWWGRP} ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}
+	@${INSTALL} -d -o ${WWWOWN} -g ${WWWGRP} ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}
 	@${MV} ${WRKSRC}/lib/${PORTNAME}/WEB-INF/web.xml ${WRKSRC}/lib/${PORTNAME}/WEB-INF/web.xml.${CONF_EXT}
 	@cd ${WRKSRC}/lib/${PORTNAME} && ${COPYTREE_SHARE} \* ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}
 
@@ -76,15 +76,15 @@ do-install:
 		else \
 			${ECHO_MSG} "	Preserving local configuration file: ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}/WEB-INF/web.xml"; \
 	fi;
-	${INSTALL_DATA} ${WRKSRC}/lib/${PORTNAME}/WEB-INF/web.xml.${CONF_EXT} ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}/WEB-INF
+	@${INSTALL_DATA} ${WRKSRC}/lib/${PORTNAME}/WEB-INF/web.xml.${CONF_EXT} ${PREFIX}/${WEBAPP_DIRS}/webapps/${PORTNAME}/WEB-INF
 
-	${MKDIR} ${DATADIR}/lib
-	${INSTALL_DATA} ${LIBFILES:S,^,${WRKSRC}/lib/lib/,} ${DATADIR}/lib/
-	${INSTALL_DATA} ${WRKSRC}/lib/opengrok.jar ${DATADIR}/
+	@${MKDIR} ${DATADIR}/lib
+	@${INSTALL_DATA} ${LIBFILES:S,^,${WRKSRC}/lib/lib/,} ${DATADIR}/lib/
+	@${INSTALL_DATA} ${WRKSRC}/lib/opengrok.jar ${DATADIR}/
 .if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/doc/,} ${DOCSDIR}/
+	@${MKDIR} ${DOCSDIR}
+	@${INSTALL_DATA} ${DOCS:S,^,${WRKSRC}/doc/,} ${DOCSDIR}/
 .endif
-	${INSTALL_SCRIPT} ${WRKDIR}/opengrok ${PREFIX}/bin
+	@${INSTALL_SCRIPT} ${WRKDIR}/opengrok ${PREFIX}/bin
 
 .include <bsd.port.post.mk>
