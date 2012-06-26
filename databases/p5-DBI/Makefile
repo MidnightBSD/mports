@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.10 2011/05/31 00:13:54 laffer1 Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.11 2011/08/13 14:36:35 laffer1 Exp $
 # $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
 
 PORTNAME=	DBI
-PORTVERSION=	1.616
+PORTVERSION=	1.622
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
