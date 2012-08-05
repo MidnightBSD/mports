@@ -2,11 +2,11 @@
 # Date created:		July 31, 2008
 # Whom:			Lucas Holt <Luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.9 2011/10/10 02:55:29 laffer1 Exp $
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.10 2012/01/29 16:39:54 laffer1 Exp $
 #
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.10
+PORTVERSION=	1.4.13
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
