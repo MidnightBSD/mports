@@ -1,3 +1,3 @@
-SHA256 (memcached-1.4.10.tar.gz) = 2cc3de341b561464da29fc5d5e2a4facc0f6aafc151f0e1d94228705e0758fdf
-RMD160 (memcached-1.4.10.tar.gz) = 67f4677ba644b1b15151a6865a8377966fe19706
-SIZE (memcached-1.4.10.tar.gz) = 311926
+SHA256 (memcached-1.4.13.tar.gz) = cb0b8b87aa57890d2327906a11f2f1b61b8d870c0885b54c61ca46f954f27e29
+RMD160 (memcached-1.4.13.tar.gz) = eb2dc6c034594024522c4880c76f8ea90d3b6bc8
+SIZE (memcached-1.4.13.tar.gz) = 320751
