@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.6 2011/12/22 14:11:34 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.7 2011/12/23 00:49:00 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -248,8 +248,8 @@ DEPEND_JIKES=	${_JIKES_PATH}:${PORTSDIR}/java/jikes
 .		for variable in JAVA_HOME JAVA_PORT JAVA_PORT_VERSION JAVA_PORT_VENDOR JAVA_PORT_OS
 .			if defined(${variable})
 check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Environment error: \"${variable}\" should not be defined."
-	@${FALSE}
+	@${ECHO_CMD} "${PKGNAME}: Environment error: \"${variable}\" should not be defined -- clearing."
+.undef				${variable}
 .			endif
 .		endfor
 
