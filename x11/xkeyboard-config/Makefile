@@ -1,30 +1,32 @@
 # $FreeBSD: ports/x11/xkeyboard-config/Makefile,v 1.4 2007/07/27 09:51:19 pav Exp $
-# $MidnightBSD: mports/x11/xkeyboard-config/Makefile,v 1.2 2011/05/07 15:29:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/xkeyboard-config/Makefile,v 1.3 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xkeyboard-config
-PORTVERSION=	1.8
+PORTVERSION=	2.5.1
 CATEGORIES=	x11
-MASTER_SITES=	http://xlibs.freedesktop.org/xkbdesc/
-DISTNAME=	xkeyboard-config-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	X Keyboard Configuration Database
 LICENSE=	mit
 
-BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp
+BUILD_DEPENDS=	xkbcomp:${PORTSDIR}/x11/xkbcomp \
+		xsltproc:${PORTSDIR}/textproc/libxslt
+XORG_CAT=	data
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	intlhack
+USE_GNOME=	intlhack gnomehack
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-xkb-base=${PREFIX}/share/X11/xkb \
-			--with-xkb-rules-symlink=xorg
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+		--with-xkb-rules-symlink=xorg
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+MAN7=		xkeyboard-config.7
 
 .if defined(WITHOUT_NLS)
-CONFIGURE_ARGS+=	--disable-nls --with-included-gettext
+CONFIGURE_ARGS+=	--disable-nls
 CONFIGURE_ENV+=	MSGFMT="/bin/echo '(GNU '" \
 		XGETTEXT="/bin/echo '(GNU '" \
 		MSGMERGE="/bin/echo '(GNU '"
