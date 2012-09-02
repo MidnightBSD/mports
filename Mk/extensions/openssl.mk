@@ -2,7 +2,7 @@
 # Date created:		31 May 2002
 # Whom:			dinoex
 #
-# $MidnightBSD: mports/Mk/bsd.openssl.mk,v 1.3 2007/08/02 09:25:18 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/openssl.mk,v 1.1 2008/10/24 20:33:50 ctriv Exp $ 
 # $FreeBSD: ports/Mk/bsd.openssl.mk,v 1.31 2006/08/04 12:34:41 erwin Exp $
 #
 # Use of 'USE_OPENSSL=yes' includes this Makefile after bsd.ports.pre.mk
@@ -69,11 +69,8 @@ OPENSSLDIR=		${DESTDIR}/etc/ssl
 .if !exists(${DESTDIR}/usr/lib/libcrypto.so)
 check-depends::
 	@${ECHO_CMD} "Dependency error: this port requires the OpenSSL library, which is part of"
-	@${ECHO_CMD} "the FreeBSD crypto distribution but not installed on your"
-	@${ECHO_CMD} "machine. Please see the \"OpenSSL\" section in the handbook"
-	@${ECHO_CMD} "(at \"http://www.FreeBSD.org/doc/en_US.ISO8859-1/books/handbook/openssl.html\", for instance)"
-	@${ECHO_CMD} "for instructions on how to obtain and install the FreeBSD"
-	@${ECHO_CMD} "OpenSSL distribution."
+	@${ECHO_CMD} "the MidnightBSD crypto distribution but not installed on your"
+	@${ECHO_CMD} "machine."
 	@${FALSE}
 .endif
 .if exists(${LOCALBASE}/lib/libcrypto.so)
