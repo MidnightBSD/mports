@@ -2,7 +2,7 @@
 # Date created:				Mon Oct 1 5:39:39 EST 2007
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.2 2008/05/22 22:00:53 laffer1 Exp $
+# $MidnightBSD: mports/security/ca_root_nss/Makefile,v 1.3 2011/04/11 23:41:40 laffer1 Exp $
 # $FreeBSD: ports/security/ca_root_nss/Makefile,v 1.2 2007/07/11 17:07:13 brooks Exp $
 #
 
@@ -39,7 +39,7 @@ NSS_FILE=	nss-${VERSION_NSS}${EXTRACT_SUFX}
 CERTDATA_TXT_PATH=	nss-${VERSION_NSS}/mozilla/security/nss/lib/ckfw/builtins/certdata.txt
 CA_BUNDLE_PL_PATH=	mod_ssl-${VERSION_MODSSL}-${VERSION_APACHE}/pkg.sslcfg/ca-bundle.pl
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_ETCSYMLINK)
 PLIST_SUB+=	ETCSYMLINK=
@@ -74,4 +74,4 @@ do-install:
 	${LN} -s ${PREFIX}/${CERTDIR}/ca-root-nss.crt /etc/ssl/cert.pem
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
