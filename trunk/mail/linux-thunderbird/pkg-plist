@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/mail/linux-thunderbird/pkg-plist,v 1.11 2012/02/29 21:17:40 laffer1 Exp $
+@comment $MidnightBSD: mports/mail/linux-thunderbird/pkg-plist,v 1.12 2012/02/29 21:20:00 laffer1 Exp $
 bin/%%APP_NAME%%
 share/applications/%%APP_NAME%%.desktop
 lib/%%APP_NAME%%/Throbber-small.gif
@@ -61,13 +61,11 @@ lib/%%APP_NAME%%/searchplugins/amazondotcom.xml
 lib/%%APP_NAME%%/searchplugins/aol-web-search.xml
 lib/%%APP_NAME%%/searchplugins/bing.xml
 lib/%%APP_NAME%%/searchplugins/eBay.xml
-lib/%%APP_NAME%%/searchplugins/google.xml
 lib/%%APP_NAME%%/searchplugins/twitter.xml
 lib/%%APP_NAME%%/searchplugins/wikipedia.xml
 lib/%%APP_NAME%%/searchplugins/yahoo.xml
 lib/%%APP_NAME%%/thunderbird
 lib/%%APP_NAME%%/thunderbird-bin
-lib/%%APP_NAME%%/update.locale
 lib/%%APP_NAME%%/updater
 lib/%%APP_NAME%%/updater.ini
 @exec /bin/cp -R %%LOCALBASE%%/lib/npapi/symlinks/%%APP_NAME%%/  %D/lib/%%APP_NAME%%/plugins/ 2>/dev/null || true
