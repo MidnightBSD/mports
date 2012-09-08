@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.1 2010/12/28 14:25:49 laffer1 Exp $
+# $MidnightBSD: mports/dns/idnkit/Makefile,v 1.2 2011/02/02 20:18:22 laffer1 Exp $
 # $FreeBSD: ports/dns/idnkit/Makefile,v 1.14 2009/08/02 19:33:39 mezz Exp $
 
 PORTNAME=	idnkit
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nic.ad.jp/ja/idn/idnkit/download/sources/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
