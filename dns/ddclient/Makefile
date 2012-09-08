@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.5 2009/08/01 21:07:16 laffer1 Exp $
+# $MidnightBSD: mports/dns/ddclient/Makefile,v 1.6 2010/09/18 18:19:18 laffer1 Exp $
 
 PORTNAME=	ddclient
-PORTVERSION=	3.8.0
-PORTREVISION=	1
+PORTVERSION=	3.8.1
+PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
