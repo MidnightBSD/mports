@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/dns/ldns/Makefile,v 1.3 2011/02/23 21:35:31 laffer1 Exp $
+# $MidnightBSD: mports/dns/ldns/Makefile,v 1.4 2011/05/15 22:12:48 laffer1 Exp $
 
 PORTNAME=	ldns
-PORTVERSION=	1.6.9
+PORTVERSION=	1.6.13
 CATEGORIES=	dns
-MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/
+MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
+		CRITICAL
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A library for programs conforming to DNS RFCs and drafts
@@ -13,10 +14,18 @@ USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-gost
 
 OPTIONS=	DOCS "With documentation" Off \
-		EXAMPLES "With example programs" Off
+		EXAMPLES "With example programs" On \
+		DRILL "With drill program" On \
+		GOST "GOST signatures enabled (requires openssl >= 1.0.0)" Off \
+		PYLDNS "Build python bindings" Off
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_PYLDNS)
+USE_PYTHON=	yes
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -213,34 +222,72 @@ MAN3=	ldns_bget_token.3 ldns_bgetc.3 ldns_bskipcs.3 ldns_buffer.3 \
 	ldns_zone_print.3 ldns_zone_push_rr.3 ldns_zone_push_rr_list.3 \
 	ldns_zone_rr_count.3 ldns_zone_rrs.3 ldns_zone_set_rrs.3 \
 	ldns_zone_set_soa.3 ldns_zone_soa.3 ldns_zone_sort.3
+MAN1+=	ldns-config.1
+.endif
+
+.if defined(WITH_GOST)
+BUILD_DEPENDS+=	openssl>=1.0:${PORTSDIR}/security/openssl
+.else
+NO_GOST=	--disable-gost
+CONFIGURE_ARGS+=${NO_GOST}
+.endif
+
+.if defined(WITH_DRILL)
+PLIST_SUB+=	DRILLPROG=""
+.else
+PLIST_SUB+=	DRILLPROG="@comment "
 .endif
 
 .if defined(WITH_EXAMPLES)
-PLIST_SUB+=		EXAMPLES=""
-NOMANCOMPRESS=	true
+PLIST_SUB+=	EXAMPLES=""
 MANCOMPRESSED=	no
-MAN1=	ldns-chaos.1 ldns-compare-zones.1 ldns-dpa.1 ldns-key2ds.1 \
+MAN1+=	ldns-chaos.1 ldns-compare-zones.1 ldns-dpa.1 \
+	ldns-gen-zone.1 ldns-key2ds.1 \
 	ldns-keyfetcher.1 ldns-keygen.1 ldns-mx.1 ldns-notify.1 \
 	ldns-nsec3-hash.1 ldns-read-zone.1 ldns-resolver.1 ldns-revoke.1 \
 	ldns-rrsig.1 ldns-signzone.1 ldns-testns.1 ldns-update.1 \
 	ldns-verify-zone.1 ldns-version.1 ldns-walk.1 ldns-zcat.1 \
-	ldns-zsplit.1 ldnsd.1
-post-configure:
-	@(cd ${WRKSRC}/examples; ./configure --prefix=${PREFIX} \
-		--infodir=${PREFIX}/${INFO_PATH} --mandir=${MANPREFIX}/man \
-		--build=${CONFIGURE_TARGET} )
-
-post-build:
-	@(cd ${WRKSRC}/examples; ${GMAKE})
-
-post-install:
-	@(cd ${WRKSRC}/examples; ${GMAKE} install)
+	ldns-zsplit.1 ldnsd.1 ldns-test-edns.1
 .else
-PLIST_SUB+=		EXAMPLES="@comment "
+PLIST_SUB+=	EXAMPLES="@comment "
 .endif
 
-.if ${OSVERSION} < 3000
-CONFIGURE_ARGS+=	"--disable-sha2"
+.if defined(WITH_PYLDNS)
+CONFIGURE_ARGS+=--with-pyldns
+BUILD_DEPENDS+=	${LOCALBASE}/bin/swig:${PORTSDIR}/devel/swig13
+INSTALL_TARGET+=install-pyldns
+PLIST_SUB+=	PYLDNS=""
+.else
+PLIST_SUB+=	PYLDNS="@comment "
+.endif
+
+post-configure:
+.if defined(WITH_EXAMPLES)
+	@(cd ${WRKSRC}/examples; ./configure --prefix=${FAKE_DESTDIR}${TRUE_PREFIX} \
+		--infodir=${FAKE_DESTDIR}${TRUE_PREFIX}/${INFO_PATH}  \
+		--mandir=${FAKE_DESTDIR}${TRUE_PREFIX}/man \
+		--build=${CONFIGURE_TARGET} ${NO_GOST} ${NO_SHA2})
+.endif
+.if defined(WITH_DRILL)
+	@(cd ${WRKSRC}/drill; ./configure --prefix=${FAKE_DESTDIR}${TRUE_PREFIX} \
+		--mandir=${FAKE_DESTDIR}${TRUE_PREFIX}/man \
+		--build=${CONFIGURE_TARGET})
+.endif
+
+post-build:
+.if defined(WITH_EXAMPLES)
+	 @(cd ${WRKSRC}/examples; ${GMAKE})
+.endif
+.if defined(WITH_DRILL)
+	 @(cd ${WRKSRC}/drill; ${GMAKE})
+.endif
+
+post-install:
+.if defined(WITH_EXAMPLES)
+	@(cd ${WRKSRC}/examples; ${GMAKE} install)
+.endif
+.if defined(WITH_DRILL)
+	@(cd ${WRKSRC}/drill; ${GMAKE} install)
 .endif
 
 .include <bsd.port.post.mk>

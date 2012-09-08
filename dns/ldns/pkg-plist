@@ -1,6 +1,7 @@
 %%EXAMPLES%%bin/ldns-chaos
 %%EXAMPLES%%bin/ldns-compare-zones
 %%EXAMPLES%%bin/ldns-dpa
+%%EXAMPLES%%bin/ldns-gen-zone
 %%EXAMPLES%%bin/ldns-key2ds
 %%EXAMPLES%%bin/ldns-keyfetcher
 %%EXAMPLES%%bin/ldns-keygen
@@ -20,6 +21,8 @@
 %%EXAMPLES%%bin/ldns-zcat
 %%EXAMPLES%%bin/ldns-zsplit
 %%EXAMPLES%%bin/ldnsd
+%%EXAMPLES%%bin/ldns-test-edns
+%%DRILLPROG%%bin/drill
 include/ldns/buffer.h
 include/ldns/common.h
 include/ldns/dname.h
@@ -27,6 +30,7 @@ include/ldns/dnssec.h
 include/ldns/dnssec_sign.h
 include/ldns/dnssec_verify.h
 include/ldns/dnssec_zone.h
+include/ldns/duration.h
 include/ldns/error.h
 include/ldns/higher.h
 include/ldns/host2str.h
@@ -53,4 +57,10 @@ lib/libldns.a
 lib/libldns.la
 lib/libldns.so
 lib/libldns.so.1
+%%PYLDNS%%%%PYTHON_SITELIBDIR%%/_ldns.so.1
+%%PYLDNS%%%%PYTHON_SITELIBDIR%%/ldns.py
+%%PYLDNS%%%%PYTHON_SITELIBDIR%%/_ldns.so
+%%PYLDNS%%%%PYTHON_SITELIBDIR%%/_ldns.la
+%%PYLDNS%%%%PYTHON_SITELIBDIR%%/_ldns.a
+%%PYLDNS%%@dirrm %%PYTHON_SITELIBDIR%%/ldns
 @dirrm include/ldns
