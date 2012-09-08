@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.21 2012/02/05 03:47:10 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.22 2012/09/08 16:48:53 laffer1 Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.29
-PORTREVISION=	3
+PORTVERSION=	1.4.31
+PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -18,6 +18,7 @@ USE_GNOME=	lthack
 USE_PKGCONFIG=	yes
 USE_AUTOTOOLS=	autoconf autoheader aclocal automake libtool
 ACLOCAL_ARGS=	-I m4
+AUTOMAKE_ARGS=	--add-missing
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
