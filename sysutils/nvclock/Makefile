@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.1 2007/08/14 00:30:36 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/nvclock/Makefile,v 1.2 2010/01/02 22:40:51 laffer1 Exp $
 # $FreeBSD: ports/sysutils/nvclock/Makefile,v 1.12 2007/07/15 07:15:42 rafan Exp $
 
 PORTNAME=	nvclock
-DISTVERSION=	0.8b2
+DISTVERSION=	0.8b4
 CATEGORIES=	sysutils
-MASTER_SITES=	http://www.linuxhardware.org/nvclock/ \
-		http://www.kerneled.com/freebsd/ports/
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/0.8%20%28beta4%29
 DISTNAME=	nvclock${DISTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -14,7 +13,7 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+USE_PKGCONFIG=	yes
 
 CONFIGURE_ARGS+=	--build=${ARCH}-portbld-freebsd6.0 \
 			--host=${ARCH}-portbld-freebsd6.0 \
