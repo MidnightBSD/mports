@@ -1,7 +1,7 @@
 #-*- mode: Fundamental; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.15 2012/02/10 14:28:41 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/gnome.mk,v 1.16 2012/09/08 16:44:46 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.gnome.mk,v 1.132 2006/08/14 13:24:18 erwin Exp $
 #
 # Please view me with 4 column tabs!
@@ -433,8 +433,8 @@ gtksourceview2_DETECT=	${LOCALBASE}/libdata/pkgconfig/gtksourceview-2.0.pc
 gtksourceview2_USE_GNOME_IMPL=gtk20 libxml2
 
 pkgconfig_DETECT=			${LOCALBASE}/bin/pkgconf
-pkgconfig_BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkgconf
-pkgconfig_RUN_DEPENDS=		pkg-config:${PORTSDIR}/devel/pkgconf
+pkgconfig_BUILD_DEPENDS=	pkgconf:${PORTSDIR}/devel/pkgconf
+pkgconfig_RUN_DEPENDS=		pkgconf:${PORTSDIR}/devel/pkgconf
 
 libgsf_LIB_DEPENDS=			gsf-1.114:${PORTSDIR}/devel/libgsf
 libgsf_DETECT=			${LOCALBASE}/libdata/pkgconfig/libgsf-1.pc
