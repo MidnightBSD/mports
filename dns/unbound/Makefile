@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/unbound/Makefile,v 1.2 2011/02/23 21:22:47 laffer1 Exp $
+# $MidnightBSD: mports/dns/unbound/Makefile,v 1.3 2011/05/12 13:29:28 laffer1 Exp $
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.9
+PORTVERSION=	1.4.17
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
@@ -9,14 +9,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A validating, recursive, and caching DNS resolver
 LICENSE=	bsd3
 
-LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2
-
 USE_GMAKE=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE} --disable-gost \
-			--with-ldns-builtin
+CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE}
 USE_LDCONFIG=	yes
+
+USERS=		${PORTNAME}
 
 USE_RC_SUBR=	unbound
 
@@ -28,16 +27,19 @@ MAN8=		unbound.8 unbound-anchor.8 unbound-control.8 unbound-checkconf.8
 PORTDOCS=	CREDITS Changelog FEATURES LICENSE README README.svn \
 		README.tests TODO control_proto_spec.txt ietf67-design-02.odp \
 		ietf67-design-02.pdf requirements.txt
-PKGINSTALL=	${WRKDIR}/pkg-install
-PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 SUB_FILES=	pkg-install pkg-deinstall
 PLIST_SUB+=	PYTHON=${PYTHON}
 
 OPTIONS=	LIBEVENT "is useful when using many (10000) outgoing ports" off \
 		THREADS "build with threads support" on \
-		PYTHON "build python bindings" off
+		PYTHON "build python bindings" off \
+		GOST "build GOST support (requires OpenSSL from ports)" off \
+		ECDSA "build ECDSA (ecliptic curve) support" on
 
 .include <bsd.mport.options.mk>
+
+LIB_DEPENDS+=	expat.6:${PORTSDIR}/textproc/expat2 \
+		ldns:${PORTSDIR}/dns/ldns
 
 .if defined(WITH_PYTHON)
 USE_PYTHON=	yes
@@ -48,15 +50,18 @@ PYTHON=
 PYTHON=		"@comment "
 .endif
 
-.include <bsd.port.pre.mk>
-
-# OpenSSL on 0.2 has no sha256 functions
-.if ${OSVERSION} < 3000
-CONFIGURE_ARGS+=	--disable-sha2
+.if defined(WITH_GOST)
+WITH_OPENSSL_PORT=	yes
+DEPENDS_ARGS+=	WITH_GOST=yes
+.else
+CONFIGURE_ARGS+=	--disable-gost
 .endif
 
-.if ${ARCH} == "sparc64" && ${OSVERSION} < 3000
-BROKEN=		Does not build on sparc64-0.2
+.if defined(WITH_GOST)
+WITH_OPENSSL_PORT=	yes
+DEPENDS_ARGS+=	WITH_ECDSA=yes
+.else
+CONFIGURE_ARGS+=	--disable-ecdsa
 .endif
 
 .if defined(WITH_LIBEVENT)
@@ -82,4 +87,4 @@ post-install:
 	done
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
