@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/dns/libidn/Makefile,v 1.7 2011/05/15 22:01:48 laffer1 Exp $
+# $MidnightBSD: mports/dns/libidn/Makefile,v 1.8 2011/12/15 00:48:59 laffer1 Exp $
 
 PORTNAME=	libidn
-PORTVERSION=	1.19
-PORTREVISION=	1
+PORTVERSION=	1.22
 CATEGORIES=	dns
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,8 +15,8 @@ USE_ICONV=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_PERL5_BUILD=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 INFO=	libidn
 
