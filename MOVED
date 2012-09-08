@@ -1,7 +1,7 @@
 #
 # MOVED - a list of (recently) moved or removed ports
 #
-# $MidnightBSD: mports/MOVED,v 1.33 2011/09/17 01:18:29 laffer1 Exp $
+# $MidnightBSD: mports/MOVED,v 1.34 2011/09/17 01:51:38 laffer1 Exp $
 
 # Each entry consists of a single line containing the following four
 # fields in the order named, separated with the pipe (`|') character:
@@ -60,4 +60,7 @@ net/samba33|net/samba34|2011-08-07|EOL
 net-mgmt/tas||2011-09-5|Not available upstream
 dns/bind97|dns/bind98|2011-09-16|Time to move forward
 www/linux-firefox-devel|www/linux-firefox36|2011-09-16|Move to numbered directory
-www/linux-firefox5|www/linux-firefox6|20111-09-16|it's 6.0 now
+www/linux-firefox5|www/linux-firefox6|2011-09-16|it's 6.0 now
+print/ghostscript-gpl|print/ghostscript8|2012-08-08|use version number
+print/ghostscript-gpl-nox11|print/ghostscript8-nox11|2012-08-08|use version
+print/ghostscript-afpl||2012-08-08|old version, not distributable anyway
