@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/dns/udns/Makefile,v 1.1 2009/04/14 03:05:27 laffer1 Exp $
+# $MidnightBSD: mports/dns/udns/Makefile,v 1.2 2011/05/15 22:10:34 laffer1 Exp $
 
 PORTNAME=	udns
-PORTVERSION=	0.1
+PORTVERSION=	0.2
 CATEGORIES=	dns
 MASTER_SITES=	http://www.corpit.ru/mjt/udns/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS resolver library with sync and async queries
-LICENSE=	lgpl
+LICENSE=	lgpl21
 
 HAS_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
@@ -18,8 +18,6 @@ OPTIONS=	IPV6 "Enable IPv6 support" on
 ALL_TARGET=	staticlib shared
 
 PORTDOCS=	*
-
-CONFIGURE_ENV=	CC="${CC}" CFLAGS="${CFLAGS}"
 
 SHLIB_MAJOR=	0
 
