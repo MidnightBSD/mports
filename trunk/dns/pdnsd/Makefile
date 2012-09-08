@@ -2,20 +2,20 @@
 # Date Created:				27 Oct 2000
 # Whom:					Roman Shterenzon <roman@xpert.com>
 #
-# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.2 2009/03/13 03:58:50 laffer1 Exp $
+# $MidnightBSD: mports/dns/pdnsd/Makefile,v 1.3 2010/09/18 18:12:32 laffer1 Exp $
 # $FreeBSD: ports/dns/pdnsd/Makefile,v 1.22 2007/09/08 14:55:27 gabor Exp $
 #
 
 PORTNAME=	pdnsd
-PORTVERSION=	1.2.8
+PORTVERSION=	1.2.9a
 CATEGORIES=	dns ipv6
-MASTER_SITES=	http://www.phys.uu.nl/~rombouts/pdnsd/releases/
+MASTER_SITES=	http://members.home.nl/p.a.rombouts/pdnsd/releases/ \
+		http://distfiles.pirateparty.in/ashish/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-par
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Caching (permanently, writes to disk on exit) DNS proxy-server
-LICENSE=	gpl2
-# part is bsd2 but that's "compatible"
+LICENSE=	gpl3
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
