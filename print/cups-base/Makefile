@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/cups-base/Makefile,v 1.30 2012/02/28 03:39:17 laffer1 Exp $
+# $MidnightBSD: mports/print/cups-base/Makefile,v 1.31 2012/02/29 04:04:08 laffer1 Exp $
 # $FreeBSD: ports/print/cups-base/Makefile,v 1.167 2011/10/19 17:31:07 dinoex Exp $
 
 PORTNAME=	cups
@@ -124,10 +124,9 @@ CONFIGURE_ARGS+=	--with-printcap=${PREFIX}/etc/printcap
 
 .if defined(WITH_GNUTLS)
 CONFIGURE_ARGS+=	--disable-openssl --enable-gnutls
-CONFIGURE_ENV+=		PKGCONFIG="${LOCALBASE}/bin/pkg-config"
 LIB_DEPENDS+=		gcrypt.18:${PORTSDIR}/security/libgcrypt
 LIB_DEPENDS+=		gnutls.42:${PORTSDIR}/security/gnutls
-BUILD_DEPENDS+=		pkg-config:${PORTSDIR}/devel/pkg-config
+USE_PKGCONFIG=	yes
 .else
 CONFIGURE_ARGS+=	--disable-gnutls --enable-openssl
 EXTENSIONS+=	openssl
