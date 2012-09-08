@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.10 2010/09/18 18:22:24 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.11 2011/02/23 21:48:16 laffer1 Exp $
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.66
+PORTVERSION=	0.68
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,11 +10,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl5 interface to the DNS resolver, and dynamic updates
 LICENSE=	perl
 
-MAKE_JOBS_SAFE=	yes
-
 # Warnings during build are harmless, the port does not need these to build
-RUN_DEPENDS=	ipcount:${PORTSDIR}/net-mgmt/p5-Net-IP \
-		${SITE_PERL}/Digest/HMAC_MD5.pm:${PORTSDIR}/security/p5-Digest-HMAC
+RUN_DEPENDS=	p5-Digest-HMAC>0:${PORTSDIR}/security/p5-Digest-HMAC
+
+TEST_DEPENDS=	p5-Test-Pod>0:${PORTSDIR}/devel/p5-Test-Pod \
+		p5-Digest-BubbleBabble>0:${PORTSDIR}/security/p5-Digest-BubbleBabble
+
+MAKE_JOBS_SAFE=	yes
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--no-online-tests --no-IPv6-tests
@@ -22,8 +24,8 @@ CONFIGURE_ARGS+=	--no-online-tests --no-IPv6-tests
 MAN3=		Net::DNS.3 Net::DNS::Header.3 Net::DNS::Packet.3 \
 		Net::DNS::Question.3 Net::DNS::RR.3 Net::DNS::RR::A.3 \
 		Net::DNS::RR::AFSDB.3 Net::DNS::RR::CNAME.3 \
-		Net::DNS::RR::HINFO.3 Net::DNS::RR::ISDN.3 Net::DNS::RR::MG.3 \
-		Net::DNS::RR::IPSECKEY.3 \
+		Net::DNS::RR::ISDN.3 Net::DNS::RR::MG.3 \
+		Net::DNS::RR::HINFO.3 Net::DNS::RR::IPSECKEY.3 \
 		Net::DNS::RR::MINFO.3 Net::DNS::RR::MR.3 Net::DNS::RR::MX.3 \
 		Net::DNS::RR::NS.3 Net::DNS::RR::PTR.3 Net::DNS::RR::RP.3 \
 		Net::DNS::RR::RT.3 Net::DNS::RR::SOA.3 Net::DNS::RR::SRV.3 \
@@ -38,15 +40,26 @@ MAN3=		Net::DNS.3 Net::DNS::Header.3 Net::DNS::Packet.3 \
 		Net::DNS::Resolver::Win32.3 Net::DNS::RR::SSHFP.3 \
 		Net::DNS::Resolver::Base.3 Net::DNS::Resolver::UNIX.3 \
 		Net::DNS::RR::Unknown.3 Net::DNS::Resolver::Recurse.3 \
+		Net::DNS::RR::APL.3 Net::DNS::RR::APL::ApItem.3 \
+		Net::DNS::RR::DHCID.3 Net::DNS::Domain.3 \
+		Net::DNS::DomainName.3 Net::DNS::Text.3 Net::DNS::Mailbox.3 \
+		Net::DNS::RR::KX.3 Net::DNS::RR::HIP.3 \
 		Net::DNS::Resolver::Cygwin.3 Net::DNS::RR::SPF.3
 
-OPTIONS=	IPV6 "Enable functionality over IPv6 transport" on
+PORTDOCS=	Changes README TODO
 
 .include <bsd.port.pre.mk>
 
+.if ${PERL_LEVEL} < 501000
+RUN_DEPENDS+=	p5-Digest-SHA>=5.47:${PORTSDIR}/security/p5-Digest-SHA
+.endif
+
 .if !defined(WITHOUT_IPV6)
-BUILD_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
 RUN_DEPENDS+=	${SITE_PERL}/IO/Socket/INET6.pm:${PORTSDIR}/net/p5-IO-INET6
+.endif
+
+.if defined(WITH_IDN)
+RUN_DEPENDS+=	p5-Net-LibIDN>0:${PORTSDIR}/dns/p5-Net-LibIDN
 .endif
 
 DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS
@@ -54,9 +67,7 @@ DOCSDIR=	${PREFIX}/share/doc/p5-Net-DNS
 post-install:
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-.for doc in Changes README TODO
-	${INSTALL_DATA} ${WRKSRC}/${doc} ${DOCSDIR}
-.endfor
+	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
 .endif
 
 .include <bsd.port.post.mk>
