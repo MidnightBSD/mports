@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/chromium/Makefile,v 1.3 2011/06/11 02:18:12 laffer1 Exp $
+# $MidnightBSD: mports/www/chromium/Makefile,v 1.4 2011/09/10 21:28:04 laffer1 Exp $
 
 PORTNAME=	chromium
 DISTVERSIONPREFIX=	courgette-redacted-
@@ -16,7 +16,6 @@ LICENSE=	agg
 BUILD_DEPENDS=	flex:${PORTSDIR}/textproc/flex		\
 		gperf:${PORTSDIR}/devel/gperf		\
 		bash:${PORTSDIR}/shells/bash		\
-		pkg-config:${PORTSDIR}/devel/pkg-config	\
 		yasm:${PORTSDIR}/devel/yasm		\
 		nss>=3.12:${PORTSDIR}/security/nss
 
@@ -42,6 +41,7 @@ USE_GCC=	4.2+
 MAN1=		chrome.1
 USE_XORG=	scrnsaverproto
 USE_GNOME=	glib20 gtk20 gconf2
+USE_PKGCONFIG=	yes
 
 ALL_TARGET=	chrome
 
