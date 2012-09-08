@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/Makefile,v 1.143 2012/03/11 04:21:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/Makefile,v 1.144 2012/03/11 04:41:17 laffer1 Exp $
 
 COMMENT = Graphics tools and libraries
 
@@ -51,6 +51,7 @@ SUBDIR += imageviewer
 SUBDIR += imlib
 SUBDIR += imlib2
 SUBDIR += jasper
+SUBDIR += jbig2dec
 SUBDIR += jbigkit
 SUBDIR += jpeg
 SUBDIR += kamera
