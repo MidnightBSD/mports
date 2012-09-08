@@ -1,9 +1,11 @@
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.8 2010/09/18 18:16:45 laffer1 Exp $
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.9 2011/02/23 21:45:12 laffer1 Exp $
 
 PORTNAME=	c-ares
-PORTVERSION=	1.7.4
+PORTVERSION=	1.8.0
 CATEGORIES=	dns
-MASTER_SITES=	http://c-ares.haxx.se/
+MASTER_SITES=	http://c-ares.haxx.se/download/ \
+		http://obsd.isc.org/pub/OpenBSD/distfiles/ \
+		http://mirrors.rit.edu/zi/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An asynchronous DNS resolver library
