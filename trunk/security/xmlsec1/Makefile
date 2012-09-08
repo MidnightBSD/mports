@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.4 2011/06/05 18:01:52 laffer1 Exp $
+# $MidnightBSD: mports/security/xmlsec1/Makefile,v 1.5 2011/12/15 00:57:54 laffer1 Exp $
 
 PORTNAME=	xmlsec1
-PORTVERSION=	1.2.17
+PORTVERSION=	1.2.18
 CATEGORIES=	security
 MASTER_SITES=	http://www.aleksey.com/xmlsec/download/ \
 		ftp://ftp.aleksey.com/pub/xmlsec/releases/ \
@@ -12,7 +12,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML Security Library
 LICENSE=	mit
 
-RUN_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
 OPTIONS=	GNUTLS	"Enable GNUTLS support"	off	\
@@ -21,6 +20,7 @@ OPTIONS=	GNUTLS	"Enable GNUTLS support"	off	\
 USE_OPENSSL=	yes
 USE_GNOME=	gnomehack lthack libxslt 
 GNU_CONFIGURE=	yes
+USE_PKG_CONFIG=	yes
 USE_LDCONFIG=	yes
 
 MAN1=	xmlsec1.1 xmlsec1-config.1
