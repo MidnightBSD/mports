@@ -1,5 +1,4 @@
-# $MidnightSD$
-# $FreeBSD: ports/dns/linux-f10-libasyncns/Makefile,v 1.1 2010/02/04 08:25:54 itetcu Exp $
+# $MidnightBSD$
 
 PORTNAME=	libasyncns
 PORTVERSION=	0.7
