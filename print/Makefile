@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/print/Makefile,v 1.50 2012/01/28 04:17:02 laffer1 Exp $
+# $MidnightBSD: mports/print/Makefile,v 1.51 2012/03/04 16:31:16 laffer1 Exp $
 
 COMMENT = Desktop publishing
 
@@ -28,9 +28,8 @@ SUBDIR += foomatic-db-hpijs
 SUBDIR += freetype
 SUBDIR += freetype-tools
 SUBDIR += freetype2
-SUBDIR += ghostscript-afpl
-SUBDIR += ghostscript-gpl
-SUBDIR += ghostscript-gpl-nox11
+SUBDIR += ghostscript8
+SUBDIR += ghostscript8-nox11
 SUBDIR += gimp-gutenprint
 SUBDIR += gsfonts
 SUBDIR += gspdf
