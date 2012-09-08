@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/dns/ddclient/files/ddclient.in,v 1.2 2010/03/27 00:12:53 dougb Exp $
+# $FreeBSD: ports/dns/ddclient/files/ddclient.in,v 1.5 2012/01/14 08:55:36 dougb Exp $
 #
 # PROVIDE: ddclient
 # REQUIRE: LOGIN
@@ -10,11 +10,14 @@
 #
 # ddclient_enable="YES"
 #
+# By default, ddclient does not daemonize.  To launch ddclient
+# as a daemon, add the -daemon 300 argument to ddclient_flags
+#
 
 . /etc/rc.subr
 
 name="ddclient"
-rcvar=${name}_enable
+rcvar=ddclient_enable
 
 command="%%PREFIX%%/sbin/${name}"
 required_files="%%PREFIX%%/etc/${name}.conf"
@@ -22,6 +25,5 @@ required_files="%%PREFIX%%/etc/${name}.conf"
 load_rc_config ${name}
 
 : ${ddclient_enable="NO"}
-: ${ddclient_flags="-daemon 300"}
 
 run_rc_command "$1"
