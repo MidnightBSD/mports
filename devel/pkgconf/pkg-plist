@@ -1,0 +1,4 @@
+bin/pkgconf
+share/aclocal/pkg.m4
+@exec ln -sf %%PREFIX%%/bin/pkgconf %%PREFIX%%/bin/pkg-config
+@unexec rm %%PREFIX%%/bin/pkg-config
