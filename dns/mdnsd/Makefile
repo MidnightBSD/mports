@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.4 2009/06/07 19:03:50 laffer1 Exp $
+# $MidnightBSD: mports/dns/mdnsd/Makefile,v 1.5 2009/06/07 19:18:17 laffer1 Exp $
 
 PORTNAME=	mdnsd
 PORTVERSION=	0.7G
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://www.cs.cmu.edu/~dpelleg/download/
 
