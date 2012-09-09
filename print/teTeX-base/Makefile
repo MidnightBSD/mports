@@ -1,14 +1,9 @@
-# New ports collection makefile for:	teTeX-base
-# Date created:		5 December 1996
-# Whom:			Bernd Rosauer <br@netland.inka.de>
-#
 # $FreeBSD: ports/print/teTeX-base/Makefile,v 1.93 2006/09/09 15:11:50 hrs Exp $
-# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.4 2010/05/05 23:58:31 laffer1 Exp $
-#
+# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.5 2010/09/02 23:41:51 laffer1 Exp $
 
 PORTNAME=	teTeX-base
 PORTVERSION=	3.0
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
@@ -25,7 +20,7 @@ BUILD_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTe
 RUN_DEPENDS=	${LOCALBASE}/${TEXMFDISTDIR}/LICENSE.texmf:${PORTSDIR}/print/teTeX-texmf \
 		${TEXMFLOCAL_LSR}:${PORTSDIR}/print/tex-texmflocal \
 		texi2html:${PORTSDIR}/textproc/texi2html
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		wwwcore.1:${PORTSDIR}/www/libwww \
 		t1.5:${PORTSDIR}/devel/t1lib \
 		gd.4:${PORTSDIR}/graphics/gd
