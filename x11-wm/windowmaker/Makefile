@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.20 2012/02/20 15:21:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/windowmaker/Makefile,v 1.21 2012/02/20 15:22:41 laffer1 Exp $
 
 PORTNAME=	windowmaker
 PORTVERSION=	0.95.2
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	x11-wm windowmaker
 MASTER_SITES=	${MASTER_SITE_WINDOWMAKER} \
 		http://dougbarton.us/Downloads/
@@ -14,14 +14,16 @@ COMMENT=	GNUstep-compliant NeXTstep window manager clone
 LICENSE=	gpl2
 
 LIB_DEPENDS=	ungif.5:${PORTSDIR}/graphics/libungif \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
+		jbig:${PORTSDIR}/graphics/jbigkit \
 		tiff.4:${PORTSDIR}/graphics/tiff
 RUN_DEPENDS=	${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons
 
 MAKE_JOBS_SAFE=	yes
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack  pkgconfig
+USE_GNOME=	gnomehack
+USE_PKGCONFIG=	yes
 USE_XORG=	xft xinerama xmu xpm xrandr
 USE_PERL5=	yes
 USE_GETTEXT=	yes
