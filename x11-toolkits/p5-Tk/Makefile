@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.8 2011/05/15 19:24:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/p5-Tk/Makefile,v 1.9 2012/03/04 00:17:53 laffer1 Exp $
 
 PORTNAME=	Tk
 PORTVERSION=	804.030
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits tk perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,7 +12,7 @@ COMMENT=	A re-port of a perl5 interface to Tk8.4
 LICENSE=	perl
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png
+		png15:${PORTSDIR}/graphics/png
 
 OPTIONS=	XFT	"Client-side fonts via libXft (experimental)" off
 

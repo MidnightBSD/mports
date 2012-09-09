@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.9 2011/02/02 21:39:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/compiz/Makefile,v 1.10 2011/05/15 19:18:47 laffer1 Exp $
 # $FreeBSD: ports/x11-wm/compiz/Makefile,v 1.7 2007/10/29 19:20:43 flz Exp $
 
 PORTNAME=	compiz
 PORTVERSION=	0.8.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
 
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Compiz Composite/Window Manager
 LICENSE=	agg
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		gtop-2.0.7:${PORTSDIR}/devel/libgtop \
 		startup-notification-1.0:${PORTSDIR}/x11/startup-notification
 
