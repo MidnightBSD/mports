@@ -1,19 +1,17 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.16 2010/05/05 23:49:51 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.17 2011/05/07 02:32:39 laffer1 Exp $
 
 PORTNAME=	slim
 PORTVERSION=	1.3.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11
-MASTER_SITES=	${MASTER_SITE_BERLIOS} \
-		http://depot.fsck.ch/mirror/distfiles/
-MASTER_SITE_SUBDIR=slim
+MASTER_SITES=	http://slim.berlios.de/releases/
 
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		freetype:${PORTSDIR}/print/freetype2 \
 		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 
