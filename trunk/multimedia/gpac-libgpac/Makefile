@@ -1,14 +1,9 @@
-# New ports collection makefile for:	gpac-libm4systems
-# Date created:		2005-05-04
-# Whom:			Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.6 2010/10/19 20:11:01 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gpac-libgpac/Makefile,v 1.7 2010/12/05 21:01:07 laffer1 Exp $
 # $FreeBSD: ports/multimedia/gpac-libgpac/Makefile,v 1.13 2006/08/14 23:36:33 ahze Exp $
-#
 
 PORTNAME=	gpac
 PORTVERSION=	0.4.5
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/GPAC/GPAC%20${PORTVERSION}
@@ -39,7 +34,7 @@ OPTIONS=	IPV6 "IPv6 support"		on \
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-CONFIGURE_ARGS=	--cc="${CC}" --X11-path="${X11BASE}" \
+CONFIGURE_ARGS=	--cc="${CC}" --X11-path="${LOCALBASE}" \
 		--extra-cflags="${CFLAGS}" --extra-ldflags="${LDFLAGS}" \
 		--enable-pic \
 		--use-js=no --use-a52=no --use-faad=no --use-ffmpeg=no \
@@ -74,8 +69,9 @@ CONFIGURE_ARGS+=	--disable-ssl
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--use-png=local
+CFLAGS+=		-I${LOCALBASE}/include/libpng15
 .else
 CONFIGURE_ARGS+=	--use-png=no
 .endif
