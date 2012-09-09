@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/print/fontforge/Makefile,v 1.11 2010/10/30 19:04:31 laffer1 Exp $
+# $MidnightBSD: mports/print/fontforge/Makefile,v 1.12 2011/02/02 21:18:50 laffer1 Exp $
 
 PORTNAME=	fontforge
-PORTVERSION=	20100501
-PORTREVISION=	2
+PORTVERSION=	20110222
 CATEGORIES=	print
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-source
 DISTFILES=	${EXTRACT_ONLY}
@@ -15,20 +14,20 @@ LICENSE=	bsd3
 LIB_DEPENDS=	uninameslist.0:${PORTSDIR}/textproc/libuninameslist \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
-		ungif.5:${PORTSDIR}/graphics/libungif \
+		png15:${PORTSDIR}/graphics/png \
+		gif.5:${PORTSDIR}/graphics/giflib \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		spiro.0:${PORTSDIR}/graphics/libspiro
 
 .if defined(FONTFORGE_WITH_TTF_DEBUGGER)
-FREETYPE_VERSION=	2.4.2
+FREETYPE_VERSION=	2.4.4
 EXTRACT_ONLY+=	freetype-${FREETYPE_VERSION}.tar.bz2
 .endif
 
 .if !defined(NOPORTDOCS)
 # This version of Fontforge has a different version number for the docs as opposed to the actual source
-DOC_VERSION=	20100429
+DOC_VERSION=	20110221
 MASTER_SITES+=	SF/${PORTNAME}/${PORTNAME}-docs:docs
 DOCFILES=	${PORTNAME}_htdocs-${DOC_VERSION}.tar.bz2
 DISTFILES+=	${DOCFILES:C/$/:docs/}
@@ -57,7 +56,8 @@ WITH_FREETYPE_SRC=	--disable-freetype --without-freetype-bytecode \
 
 CONFIGURE_ARGS=	${WITH_MULTILAYER} --enable-devicetables ${WITH_FREETYPE_SRC} \
 		--enable-pasteafter --enable-tilepath
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
@@ -118,6 +118,10 @@ post-extract:
 	for doc in ${DOCFILES} ; \
 		do ${TAR} -xjC ${WRKDIR}/html -f ${DISTDIR}/$${doc} ; \
 	done
+# The 20080607 and up versions of fontforge's documentation doesn't contain the cidmaps,
+#  but I'm leaving this here just in case they are added back in a later version.
+#	${TAR} -xzC ${WRKSRC}/cidmap -f ${WRKDIR}/html/cidmaps.tgz
+#	${RM} ${WRKDIR}/html/cidmaps.tgz
 .endif
 
 post-patch:
@@ -136,7 +140,10 @@ post-install:
 	(cd ${WRKSRC}/plugins; ${INSTALL_DATA} .libs/* ${PREFIX}/share/fontforge/plugins )
 .endif
 .if !defined(NOPORTDOCS)
+# Ditto the above note in post-extract for these comments
+#	${MKDIR} ${DOCSDIR}/flags
 	${INSTALL_DATA} ${WRKDIR}/html/*.* ${DOCSDIR}
+#	${INSTALL_DATA} ${WRKDIR}/html/flags/*.* ${DOCSDIR}/flags
 .endif
 
 .include <bsd.port.mk>
