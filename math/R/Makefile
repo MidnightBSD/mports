@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/math/R/Makefile,v 1.8 2010/11/12 00:34:41 laffer1 Exp $
+# $MidnightBSD: mports/math/R/Makefile,v 1.9 2012/02/05 03:41:29 laffer1 Exp $
 
 PORTNAME=	R
 PORTVERSION=	2.9.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	math lang
 MASTER_SITES=	http://cran.r-project.org/src/base/R-2/ \
 		ftp://cran.r-project.org/pub/R/src/base/R-2/ \
@@ -112,7 +112,7 @@ CONFIGURE_ARGS+=--with-system-pcre
 .if defined(WITHOUT_PNG)
 CONFIGURE_ARGS+=--without-libpng
 .else
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=--with-libpng
 .endif
 
