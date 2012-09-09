@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.16 2010/05/30 21:41:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.17 2012/01/28 04:29:29 laffer1 Exp $
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	qmake:${PORTSDIR}/devel/qmake
 
 LIB_DEPENDS+=	mng:${PORTSDIR}/graphics/libmng \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 EXTRA_PATCHES=	${PATCHDIR}/0081-format-string-fixes.diff

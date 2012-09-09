@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.8 2011/08/07 18:46:59 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt4-gui/Makefile,v 1.9 2012/01/28 04:29:29 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/qt4-gui/Makefile,v 1.35 2011/03/25 09:54:14 avilla Exp $
 
 PORTNAME=	gui
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Qt graphical user interface library
 LICENSE=	gpl3
 
-LIB_DEPENDS=	png:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
