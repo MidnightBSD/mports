@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/multimedia/libxine/Makefile,v 1.22 2012/03/04 05:41:18 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libxine/Makefile,v 1.178 2012/02/16 15:57:16 ashish Exp $
 
 PORTNAME=	xine
@@ -20,7 +20,7 @@ LIB_DEPENDS=	FLAC.10:${PORTSDIR}/audio/flac \
 		vorbis.4:${PORTSDIR}/audio/libvorbis \
 		speex.1:${PORTSDIR}/audio/speex \
 		mng.1:${PORTSDIR}/graphics/libmng \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		dvdread.4:${PORTSDIR}/multimedia/libdvdread \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		fame-0.9.1:${PORTSDIR}/multimedia/libfame \
