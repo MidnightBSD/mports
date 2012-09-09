@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.17 2012/02/29 03:23:41 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.18 2012/03/07 14:05:57 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -15,7 +15,7 @@ LICENSE=	lgpl
 .if !defined(REFERENCE_PORT)
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		pixman-1.0:${PORTSDIR}/x11/pixman
 
