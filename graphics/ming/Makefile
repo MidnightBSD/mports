@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/ming/Makefile,v 1.5 2011/10/10 02:43:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/ming/Makefile,v 1.6 2012/02/29 03:39:37 laffer1 Exp $
 
 PORTNAME=	ming
 PORTVERSION=	0.4.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/Releases/
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Flash 4/5 movie output library with many languages support
 LICENSE=	lgpl
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		ungif.5:${PORTSDIR}/graphics/libungif \
 		freetype.9:${PORTSDIR}/print/freetype2
 
