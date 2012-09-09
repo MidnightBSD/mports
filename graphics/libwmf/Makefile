@@ -1,14 +1,9 @@
-# New ports collection makefile for:	libwmf
-# Date Created:		22 May 1999
-# Whom:			Chris Piazza <cpiazza@FreeBSD.org>
-#
-# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.8 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libwmf/Makefile,v 1.9 2011/12/15 00:57:47 laffer1 Exp $
 # $FreeBSD: ports/graphics/libwmf/Makefile,v 1.41 2007/02/01 02:41:41 kris Exp $
-#
 
 PORTNAME=	libwmf
 PORTVERSION=	0.2.8.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	SF/wvware/${PORTNAME}/${PORTVERSION}
 
@@ -18,11 +13,11 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	freetype-config:${PORTSDIR}/print/freetype2     # XXX
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	 libxml2
+USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--with-sys-gd=no \
