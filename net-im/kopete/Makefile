@@ -1,14 +1,8 @@
-# New ports collection makefile for:	kopete
-# Date created:		Wed Apr 12 17:51:07 UTC 2006
-# Whom:			Mario Sergio Fujikawa Ferreira <lioux@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.6 2010/05/29 09:02:24 laffer1 Exp $
-# $FreeBSD: ports/net-im/kopete/Makefile,v 1.8 2007/07/04 10:24:50 lofi Exp $
-#
+# $MidnightBSD: mports/net-im/kopete/Makefile,v 1.7 2011/02/02 21:16:29 laffer1 Exp $
 
 PORTNAME=	kopete
 PORTVERSION=	0.12.8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES?=	net-im kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/3.5.10/src
@@ -38,13 +32,13 @@ USE_XORG=	xtst
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+USE_PKGCONFIG=	yes
 CONFIGURE_ARGS+=--with-ilbc=${LOCALBASE} \
 		--with-speex=${LOCALBASE} \
 		--with-ssl-dir=${OPENSSLBASE} \
 		--without-external-libgadu \
 		--enable-jingle
-CONFIGURE_ENV=	PKG_CONFIG="${PKG_CONFIG}" \
-		EXPAT_CFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	EXPAT_CFLAGS="-I${LOCALBASE}/include" \
 		EXPAT_LIBS="-L${LOCALBASE}/lib -lexpat" \
 		ILBC_CFLAGS="-I${LOCALBASE}/include/ilbc" \
 		ILBC_LIBS="-L${LOCALBASE}/lib -lilbc" \
@@ -57,8 +51,6 @@ _NO_KDE_FINAL=	yes
 WRKSRC=		${WRKDIR}/${DISTNAME}
 BUILD_WRKSRC=	${WRKSRC}/kopete
 INSTALL_WRKSRC=	${WRKSRC}/kopete
-
-PKG_CONFIG?=	${LOCALBASE}/bin/pkg-config
 
 OPTIONS=	WEBCAM "Enable webcamera support" off
 

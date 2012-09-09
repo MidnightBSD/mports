@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.8 2011/09/18 02:11:48 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.9 2011/12/15 00:57:50 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -18,19 +18,17 @@ CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	 gnomelibs
+USE_GNOME=	gnomelibs
+USE_PKGCONFIG=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
-CONFIGURE_ENV=	PKG_CONFIG=${PKG_CONFIG} \
-		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
+CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 		CFLAGS="${CFLAGS} -fno-force-addr" \
 		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
-PLIST_SUB=	\
-		VERSION="${GST_VERSION}"
+PLIST_SUB=	VERSION="${GST_VERSION}"
 WITHOUT_CPU_CFLAGS=	yes
 
-PKG_CONFIG?="${LOCALBASE}/bin/pkg-config"
 GST_VERSION=${PORTVERSION:C/..$//}
 
 .include <bsd.port.pre.mk>
