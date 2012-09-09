@@ -3,7 +3,7 @@
 # Whom:                 Paul Traina <pst@FreeBSD.org>
 #
 # $FreeBSD: ports/palm/pilot-link/Makefile,v 1.79 2006/09/23 08:21:41 ijliao Exp $
-# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.2 2009/07/25 09:19:54 crash Exp $
+# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.3 2011/12/15 00:57:53 laffer1 Exp $
 #
 
 PORTNAME=	pilot-link
@@ -45,7 +45,7 @@ CONFIGURE_ENV+="LDFLAGS=${LDFLAGS} -L${PREFIX}/lib -lusb"
 .endif
 
 .if defined(WITH_PNG)
-LIB_DEPENDS+=	png.5:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--with-libpng=${PREFIX}
 .else
 CONFIGURE_ARGS+=	--disable-png

@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/multimedia/libkate/Makefile,v 1.1 2010/12/24 14:21:02 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/libkate/Makefile,v 1.2 2012/09/09 00:42:48 laffer1 Exp $
 # $FreeBSD: ports/multimedia/libkate/Makefile,v 1.6 2010/06/06 20:43:57 naddy Exp $
 
 PORTNAME=	libkate
@@ -11,7 +11,7 @@ COMMENT=	Codec for karaoke and text encapsulation for Ogg
 LICENSE=	bsd3
 
 LIB_DEPENDS=	ogg.7:${PORTSDIR}/audio/libogg \
-		png.6:${PORTSDIR}/graphics/png
+		png15:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
