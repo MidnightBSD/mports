@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/opencv/Makefile,v 1.1 2012/03/04 05:37:37 laffer1 Exp $
 # $FreeBSD: ports/graphics/opencv/Makefile,v 1.36 2012/01/16 09:46:55 martymac Exp $
 
 PORTNAME?=	opencv
 PORTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}library/${PORTNAME}-unix/${PORTVERSION}
 DISTNAME=	OpenCV-${DISTVERSION}a
@@ -104,7 +105,7 @@ CMAKE_ARGS+=	-DWITH_OPENEXR:BOOL=Off
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 CMAKE_ARGS+=	-DWITH_PNG:BOOL=On
 .else
 CMAKE_ARGS+=	-DWITH_PNG:BOOL=Off

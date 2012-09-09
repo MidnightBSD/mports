@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/qt4-imageformats/Makefile,v 1.4 2011/07/24 16:40:23 laffer1 Exp $
 # $FreeBSD: ports/graphics/qt4-imageformats/Makefile,v 1.22 2010/12/02 19:47:11 makc Exp $
 
 PORTNAME=	imageformats
@@ -12,7 +12,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
 		mng:${PORTSDIR}/graphics/libmng \
-		png:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		tiff:${PORTSDIR}/graphics/tiff
 
 USE_QT_VER=	4
