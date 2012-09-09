@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.6 2011/06/19 14:28:44 laffer1 Exp $
+# $MidnightBSD: mports/graphics/plotutils/Makefile,v 1.7 2011/12/15 00:57:47 laffer1 Exp $
 
 PORTNAME=	plotutils
 PORTVERSION=	2.6
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GNU
 
@@ -9,12 +10,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A plotting library and toolkit
 LICENSE=	gpl3
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 
 USE_GNOME=	
 USE_MOTIF=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--enable-libplotter --enable-libxmi --with-motif
 USE_LDCONFIG=	yes
 
