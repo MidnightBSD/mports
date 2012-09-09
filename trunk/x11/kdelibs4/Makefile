@@ -1,10 +1,4 @@
-# -*-mode: makefile-*-
-# New ports collection makefile for:	KDE libraries 4
-# Date created:				19 January 2008
-# Whom:					arved@FreeBSD.org
-#
-# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.9 2012/02/05 03:48:33 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11/kdelibs4/Makefile,v 1.10 2012/03/02 02:54:22 laffer1 Exp $
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
@@ -13,8 +7,9 @@ MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${KDE4_BRANCH}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE
 
-MAINTAINER=	kde@FreeBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
+LICENSE=	agg
 
 LIB_DEPENDS=	searchclient.0:${PORTSDIR}/deskutils/strigi \
 		soprano.4:${PORTSDIR}/textproc/soprano \
@@ -24,7 +19,7 @@ LIB_DEPENDS=	searchclient.0:${PORTSDIR}/deskutils/strigi \
 		pcre.1:${PORTSDIR}/devel/pcre \
 		enchant.1:${PORTSDIR}/textproc/enchant \
 		gif.5:${PORTSDIR}/graphics/giflib \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		hal.1:${PORTSDIR}/sysutils/hal \
 		qca.2:${PORTSDIR}/devel/qca \

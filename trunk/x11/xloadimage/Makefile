@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.9 2010/10/19 15:15:26 laffer1 Exp $
+# $MidnightBSD: mports/x11/xloadimage/Makefile,v 1.10 2011/05/07 15:29:46 laffer1 Exp $
 # $FreeBSD: ports/x11/xloadimage/Makefile,v 1.33 2006/04/18 11:25:28 jmz Exp $
 
 VERSION=	4.1
 REVISION=	16
-PORTREVISION=	4
+PORTREVISION=	5
 
 PORTNAME=	xloadimage
 PORTVERSION=	${VERSION}.${REVISION}
@@ -23,7 +23,7 @@ EXTRA_PATCHES=	${WRKSRC}/debian/patches/*.dpatch
 
 USE_XORG=	x11
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 GNU_CONFIGURE=	yes

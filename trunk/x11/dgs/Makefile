@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/dgs/Makefile,v 1.13 2011/02/02 21:35:01 laffer1 Exp $
+# $MidnightBSD: mports/x11/dgs/Makefile,v 1.14 2011/05/02 13:40:02 laffer1 Exp $
 
 PORTNAME=	dgs
 PORTVERSION=	0.5.9.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	../old-gnu/dgs
@@ -12,7 +12,7 @@ COMMENT=	A display ghostscript system
 LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff
 
 USE_GHOSTSCRIPT_RUN=	yes
