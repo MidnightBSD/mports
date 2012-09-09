@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/links/Makefile,v 1.12 2010/04/28 00:30:13 laffer1 Exp $
 
 PORTNAME=	links
 DISTVERSION=	2.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES?=	www
 MASTER_SITES=	http://links.twibright.com/download/
@@ -41,7 +42,7 @@ OPTIONS=	SVGALIB "non-X11 graphics support" off \
 .include <bsd.port.pre.mk>
 
 .ifdef(WITH_SVGALIB) || defined(WITH_X11) || defined(WITH_DIRECTFB)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--enable-graphics

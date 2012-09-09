@@ -1,8 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-fm/thunar-vfs/Makefile,v 1.1 2012/03/06 00:54:12 laffer1 Exp $
 # $FreeBSD: ports/x11-fm/thunar-vfs/Makefile,v 1.3 2011/10/23 11:56:49 rene Exp $
 
 PORTNAME=	thunar-vfs
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 DIST_SUBDIR=	xfce4
@@ -11,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The virtual filesystem for Thunar
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		gamin-1.1:${PORTSDIR}/devel/gamin
