@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.12 2011/08/18 00:26:54 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gnustep-gui/Makefile,v 1.13 2012/01/28 04:27:33 laffer1 Exp $
 # $FreeBSD: ports/x11-toolkits/gnustep-gui/Makefile,v 1.83 2006/08/31 05:37:04 dinoex Exp $
 
 PORTNAME=	gnustep-gui
 PORTVERSION=	0.17.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	core
@@ -14,7 +14,7 @@ LICENSE=	gpl3
 
 LIB_DEPENDS+=	tiff.4:${PORTSDIR}/graphics/tiff
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=	gif.5:${PORTSDIR}/graphics/giflib
 LIB_DEPENDS+=	audiofile:${PORTSDIR}/audio/libaudiofile
 
