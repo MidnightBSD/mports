@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.6 2010/03/25 01:28:08 laffer1 Exp $
+# $MidnightBSD: mports/graphics/netpbm/Makefile,v 1.7 2010/05/04 22:44:02 laffer1 Exp $
 
 PORTNAME=	netpbm
 PORTVERSION=	${NETPBM_PORTVERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	# defined later
 PKGNAMESUFFIX=	${NETPBM_SUFFIX}${PKGNAMESUFFIX2}
@@ -18,7 +18,7 @@ LICENSE=	other
 
 LIB_DEPENDS=	tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		jbig.1:${PORTSDIR}/graphics/jbigkit
 #		jasper.4:${PORTSDIR}/graphics/jasper
 
