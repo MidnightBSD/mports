@@ -2,13 +2,13 @@
 # Date created:         4 August 2003
 # Whom:                 Mark Huizer <xaa+ports@timewasters.nl>
 #
-# $MidnightBSD: mports/java/kaffe/Makefile,v 1.5 2010/05/08 01:56:06 laffer1 Exp $
+# $MidnightBSD: mports/java/kaffe/Makefile,v 1.6 2010/05/08 02:02:37 laffer1 Exp $
 # $FreeBSD: ports/java/kaffe/Makefile,v 1.79 2008/06/06 13:38:47 edwin Exp $
 #
 
 PORTNAME=	kaffe
 PORTVERSION=	1.1.7.r1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel
 #MASTER_SITES=	ftp://ftp.kaffe.org/pub/kaffe/v1.1.x-development/
 MASTER_SITES=	http://www.kaffe.org/~robilad/
@@ -20,7 +20,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
 		ungif.5:${PORTSDIR}/graphics/libungif \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		gmp.10:${PORTSDIR}/math/gmp
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
 		jikes:${PORTSDIR}/java/jikes
