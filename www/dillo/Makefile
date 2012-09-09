@@ -1,18 +1,12 @@
-# New ports collection makefile for:   dillo
-# Date created:        23 February 2001
-# Whom:                George Reid <greid@ukug.uk.freebsd.org>
-#
-# $MidnightBSD: mports/www/dillo/Makefile,v 1.7 2011/09/18 17:01:45 laffer1 Exp $
-# $FreeBSD: ports/www/dillo/Makefile,v 1.36 2006/06/03 02:01:25 mnag Exp $
+# $MidnightBSD: mports/www/dillo/Makefile,v 1.8 2011/12/15 00:57:55 laffer1 Exp $
 #
 # Tunables:
 # WITH_DILLO_SSL: enable experimental SSL support
 # WITH_DILLO_DLGUI: enable experimental FLTK2 based gui for file downloads
-#
 
 PORTNAME=	dillo
 PORTVERSION=	0.8.6
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.dillo.org/download/
 
@@ -22,16 +16,14 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png
+		png15:${PORTSDIR}/graphics/png
 
 USE_BZIP2=	yes
-USE_GNOME=	 gtk12
+USE_GNOME=	gtk12
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--enable-cookies --enable-threaded-dns \
 		--libdir=${PREFIX}/libexec
 .if !defined(WITHOUT_DILLO_IPV6) && !defined(WITHOUT_IPV6)
