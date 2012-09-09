@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.1 2012/03/03 01:52:52 laffer1 Exp $
+# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.2 2012/03/06 02:08:44 laffer1 Exp $
 # $FreeBSD: ports/x11/kde4-workspace/Makefile,v 1.263 2012/02/16 15:57:30 ashish Exp $
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 kde
 MASTER_SITES=	${MASTER_SITE_KDE_kde} \
 		${MASTER_SITE_FREEBSD_LOCAL} \
@@ -31,7 +31,7 @@ LIB_DEPENDS=	qimageblitz.4:${PORTSDIR}/x11/qimageblitz \
 		dbusmenu-qt.2:${PORTSDIR}/devel/libdbusmenu-qt \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 BUILD_DEPENDS=	${LOCALBASE}/share/ontology/core/rdf.ontology:${PORTSDIR}/x11-toolkits/shared-desktop-ontologies \

@@ -1,14 +1,9 @@
-# ex:ts=8
-# New ports collection makefile for:	motif
-# Date created:		5 December 1994
-# Whom:			asami
-#
 # $FreeBSD: ports/x11-toolkits/open-motif/Makefile,v 1.39 2006/05/08 14:49:10 steve Exp $
-# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.9 2011/02/02 21:38:58 laffer1 Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/open-motif/Makefile,v 1.10 2012/02/29 02:46:13 laffer1 Exp $
 
 PORTNAME=	open-motif
 PORTVERSION=	2.3.3
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	ftp://ftp.ics.com/openmotif/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/${PORTVERSION}/
 DISTNAME=	openmotif-${PORTVERSION}
@@ -18,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Motif X11 Toolkit (industry standard GUI (IEEE 1295))
 LICENSE=	other
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
 MAKE_JOBS_UNSAFE=	yes
