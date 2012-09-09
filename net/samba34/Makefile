@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.4 2011/08/07 18:26:57 laffer1 Exp $
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.5 2012/06/24 21:53:37 laffer1 Exp $
 
 PORTNAME=		samba34
 PORTVERSION=		3.4.17
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	. old-versions rc pre
@@ -68,9 +68,7 @@ LDFLAGS+=		-L${LOCALBASE}/lib
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 
-PKG_CONFIG?=		${LOCALBASE}/bin/pkg-config
-CONFIGURE_ENV+=		PKG_CONFIG="${PKG_CONFIG}"
-BUILD_DEPENDS+=		${PKG_CONFIG}:${PORTSDIR}/devel/pkg-config
+USE_PKGCONFIG=		yes
 # Let process generate meaningful backtrace on a core dump
 LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
 # Always use external libtalloc
@@ -135,7 +133,7 @@ SAMBA_WANT_LDAP=	yes
 .endif
 
 .if !defined(WITHOUT_CUPS)
-LIB_DEPENDS+=		cups.2:${PORTSDIR}/print/cups-base
+LIB_DEPENDS+=		cups.2:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=	--enable-cups --enable-iprint
 SUB_LIST+=		CUPS=""
 .else
