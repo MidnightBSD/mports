@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.6 2010/01/23 21:49:05 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/apache.mk,v 1.7 2010/01/24 16:03:21 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.apache.mk,v 1.12 2006/06/20 04:58:12 linimon Exp $
 #
 # apache.mk - Apache related macros.
@@ -30,7 +30,7 @@ USE_APACHE=yes
 
 # Print warnings
 _ERROR_MSG=	: Error from apache.mk.
-APACHE_SUPPORTED_VERSION=	22
+APACHE_SUPPORTED_VERSION=	22 24
 .if ${USE_APACHE:Mcommon*} != ""
 AP_PORT_IS_SERVER=	YES
 .elif ${USE_APACHE:L} == apr
