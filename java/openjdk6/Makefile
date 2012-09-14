@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.4 2011/01/20 14:17:13 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.5 2011/12/24 06:39:37 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk6/promoted/${PORTVERSION}/ \
 		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,} \
@@ -33,14 +34,14 @@ WRKSRC=		${WRKDIR}
 
 USE_GMAKE=	yes
 USE_MOTIF=	yes
-USE_XORG=	xtst xi xt x11
+USE_XORG=	x11 xext xtst xi xt
 
 JTREGVERSION=	b02
 JTREGFILE=	jtreg-4.1-bin-${JTREGVERSION}_21_may_2010.zip
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
-ANTVERSION=	1.8.2
+ANTVERSION=	1.8.3
 ANTFILE=	apache-ant-${ANTVERSION}-bin.tar.bz2
 
 # rely on bsdtar ability to extract .gz, .bz2 and .zip archives
