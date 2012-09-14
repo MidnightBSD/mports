@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.5 2011/12/24 06:39:37 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.6 2012/09/14 03:43:01 laffer1 Exp $
 
 PORTNAME=	openjdk6
 PORTVERSION=	b17
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk6/promoted/${PORTVERSION}/ \
 		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,} \
@@ -11,10 +11,10 @@ DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${ANTFILE}:ant
 
 MAINTAINER=	luke@midnightbsd.org
-COMMENT=	Sun's java 6 virtual machine release under the GPL v2
+COMMENT=	Oracle's Java 6 virtual machine release under the GPL v2
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
+BUILD_DEPENDS=	${LOCALBASE}/bin/zip:${PORTSDIR}/archivers/zip \
 		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip \
 		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-base
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
@@ -34,7 +34,8 @@ WRKSRC=		${WRKDIR}
 
 USE_GMAKE=	yes
 USE_MOTIF=	yes
-USE_XORG=	x11 xext xtst xi xt
+USE_XORG=	x11 xext xi xt xtst
+MAKE_JOBS_UNSAFE=	yes
 
 JTREGVERSION=	b02
 JTREGFILE=	jtreg-4.1-bin-${JTREGVERSION}_21_may_2010.zip
@@ -164,7 +165,7 @@ post-extract:
 		for f in *; do \
 			if [ -f $$f ]; then \
 				t=`echo ${WRKDIR}/$$d/$$f | ${SED} 's/linux/bsd/g; s/Linux/Bsd/g'`; \
-				${SED} 's/linux/bsd/g; s/Linux/Bsd/g' < $$f > $$t; \
+				${SED} 's/linux/bsd/g; s/Linux/Bsd/g; s/LINUX/BSD/g' < $$f > $$t; \
 			fi; \
 		done; \
 	done
