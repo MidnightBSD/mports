@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/www/Makefile,v 1.123 2012/06/15 02:57:34 laffer1 Exp $
+# $MidnightBSD: mports/www/Makefile,v 1.124 2012/09/02 19:44:09 laffer1 Exp $
 
 COMMENT = Ports related to the World Wide Web
 
 SUBDIR += analog
 SUBDIR += apache22
+SUBDIR += apache24
 SUBDIR += aria2
 SUBDIR += awstats
 SUBDIR += bluefish
