@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/apr/Makefile,v 1.19 2011/09/03 01:17:52 laffer1 Exp $
+# $MidnightBSD: mports/devel/apr/Makefile,v 1.20 2011/11/19 16:58:32 laffer1 Exp $
 
 PORTNAME=	apr
 PORTVERSION=	${APR_VERSION}.${APU_VERSION}
@@ -24,8 +24,8 @@ OPTIONS=	THREADS "Enable Threads in apr"					on  \
 			MYSQL	"Enable MySQL suport in apr-util"		off \
 			PGSQL	"Enable Postgresql suport in apr-util"		off
 
-APR_VERSION=	1.4.2
-APU_VERSION=	1.3.10
+APR_VERSION=	1.4.5
+APU_VERSION=	1.3.12
 
 USE_ICONV=		yes
 USE_AUTOTOOLS=	automake autoconf libtool:env
@@ -81,7 +81,7 @@ APU_CONF_ARGS+=	--without-gdbm
 .elif defined(WITH_GDBM)
 PLIST_SUB+=	GDBM=""
 APU_EXTRAS=	yes
-LIB_DEPENDS+=	gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=	gdbm.4:${PORTSDIR}/databases/gdbm
 APU_CONF_ARGS+=	--with-gdbm=${LOCALBASE}
 .if defined(PKGNAMESUFFIX)
 PKGNAMESUFFIX:=	${PKGNAMESUFFIX}-gdbm
