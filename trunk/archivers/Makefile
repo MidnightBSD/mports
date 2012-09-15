@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/Makefile,v 1.50 2012/02/24 18:14:10 laffer1 Exp $
+# $MidnightBSD: mports/archivers/Makefile,v 1.51 2012/03/06 00:17:21 laffer1 Exp $
 
 COMMENT = Archivers
 
@@ -41,6 +41,7 @@ SUBDIR += rar
 SUBDIR += rpm
 SUBDIR += rpm4
 SUBDIR += rpm2cpio
+SUBDIR += snappy
 SUBDIR += squeeze
 SUBDIR += torrentzip
 SUBDIR += ucl
