@@ -1,11 +1,4 @@
-# ex:ts=8
-# Ports collection makefile for:  boost
-# Date Created:			  6 January 2002
-# Whom:				  Paul Marquis <pmarquis@pobox.com>
-#
-# $FreeBSD: ports/devel/boost/Makefile,v 1.35 2006/09/22 22:22:19 mi Exp $
-# $MidnightBSD: mports/devel/boost/Makefile,v 1.5 2008/10/03 03:03:13 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/boost/Makefile,v 1.6 2009/12/31 23:47:05 laffer1 Exp $
 
 PORTNAME=	boost
 PORTVERSION=	1.34.1
@@ -15,7 +8,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION:S/./_/g}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free peer-reviewed portable C++ source libraries
-LICENSE=	x11 # x11 + extra freedom actually...
+LICENSE=	mit
 
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
