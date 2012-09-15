@@ -1,14 +1,25 @@
-# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.6 2012/09/14 03:43:01 laffer1 Exp $
+# $MidnightBSD: mports/java/openjdk6/Makefile,v 1.7 2012/09/14 03:54:28 laffer1 Exp $
 
 PORTNAME=	openjdk6
-PORTVERSION=	b17
-PORTREVISION=	2
+PORTVERSION=	b25
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk6/promoted/${PORTVERSION}/ \
+		http://download.java.net/jaxp/openjdk/jdk6/:jaxp \
+		http://download.java.net/glassfish/components/jax-ws/openjdk/jdk6/:jaxws \
+		https://java.net/downloads/jax-ws/OpenJDK6/:jaf \
+		http://icedtea.classpath.org/builds/icedtea6/src/ \
+		http://icedtea.classpath.org/download/drops/:jaxp \
+		http://icedtea.classpath.org/download/drops/:jaxws \
+		http://icedtea.classpath.org/download/drops/:jaf \
 		${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:ant,} \
-		http://download.java.net/openjdk/jtreg/promoted/${JTREGVERSION}/:jtreg
+		http://download.java.net/openjdk/jtreg/promoted/4.1/${JTREGVERSION}/:jtreg
 DISTNAME=	openjdk-6-src-${PORTVERSION}-${OPENJDK_BUILDDATE}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${ANTFILE}:ant
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		${JAXPFILE}:jaxp \
+		${JAXWSFILE}:jaxws \
+		${JAFFILE}:jaf \
+		${ANTFILE}:ant
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} ${ANTFILE}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	Oracle's Java 6 virtual machine release under the GPL v2
@@ -16,17 +27,18 @@ LICENSE=	gpl2
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/zip:${PORTSDIR}/archivers/zip \
 		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-base
+		${LOCALBASE}/include/cups/cups.h:${PORTSDIR}/print/cups-client
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 
-OPENJDK_BUILDDATE=	14_oct_2009
+OPENJDK_BUILDDATE=	01_may_2012
 
 OPTIONS=	DEBUG "Enable legacy debugging support" off \
 		FASTDEBUG "Include fastdebug build" off \
 		IPV6 "Enable IPv6 support" off \
 		POLICY "Install the Unlimited Strength Policy Files" off \
+		SOUND "Enable sound support" off \
 		TEST "Add support for running regression test" off
 
 # java extracts directly to the cwd
@@ -37,8 +49,15 @@ USE_MOTIF=	yes
 USE_XORG=	x11 xext xi xt xtst
 MAKE_JOBS_UNSAFE=	yes
 
-JTREGVERSION=	b02
-JTREGFILE=	jtreg-4.1-bin-${JTREGVERSION}_21_may_2010.zip
+JAXP_BUILD=	144_03
+JAXPFILE=	jaxp${JAXP_BUILD}.zip
+JAXWS_BUILD=	2_1_6-2011_06_13
+JAXWSFILE=	jdk6-jaxws${JAXWS_BUILD}.zip
+JAF_BUILD=	b20
+JAFFILE=	jdk6-jaf-${JAF_BUILD}.zip
+JTREGVERSION=	b04
+JTREGFILE=	jtreg-4.1-bin-${JTREGVERSION}_14_mar_2012.zip
+UPDATE_VERSION=	32
 
 # do not depend on devel/apache-ant to avoid circular dependency, but
 # use .tar.bz2 distfile to avoid duplicated downloads
@@ -92,10 +111,19 @@ MAKE_ENV=	LANG=C LC_ALL=C \
 		ALT_FREETYPE_LIB_PATH=${LOCALBASE}/lib \
 		ALT_X11_PATH=${LOCALBASE} \
 		ALT_PACKAGE_PATH=${LOCALBASE} \
+		ALT_DROPS_DIR=${DISTDIR} \
 		ANT_HOME=${WRKDIR}/apache-ant-${ANTVERSION} \
 		BUILD_NUMBER=${PORTVERSION} \
 		NO_DOCS=true \
-		MILESTONE=fcs
+		MILESTONE=fcs \
+		JDK_UPDATE_VERSION=${UPDATE_VERSION}
+
+.if defined(WITH_DEBUG)
+ALL_TARGET=	debug_build
+OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}-debug
+.else
+OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}
+.endif
 
 # disable FASTDEBUG_BUILD by default to improve compile time.
 .if defined(WITH_FASTDEBUG)
@@ -108,11 +136,12 @@ MAKE_ENV+=	SKIP_FASTDEBUG_BUILD=true
 MAKE_ENV+=	DONT_ENABLE_IPV6="YES"
 .endif
 
-.if defined(WITH_DEBUG)
-ALL_TARGET=	debug_build
-OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}-debug
+.if defined(WITH_SOUND)
+EXTRA_PATCHES+=	${FILESDIR}/alsa-enable.patch
+LIB_DEPENDS+=	asound.2:${PORTSDIR}/audio/alsa-lib
+RUN_DEPENDS+=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins
 .else
-OPENJDK_OSARCH=	bsd-${ARCH:S/i386/i586/}
+EXTRA_PATCHES+=	${FILESDIR}/alsa-disable.patch
 .endif
 
 .if defined(WITH_TEST)
@@ -122,11 +151,16 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 USE_DISPLAY=	yes
 .endif
 
-BUILD_JOBS_NUMBER!=	${SYSCTL} -n kern.smp.cpus
+.if !defined(DISABLE_MAKE_JOBS)
+.if defined(MAKE_JOBS_NUMBER)
+BUILD_JOBS_NUMBER=	${MAKE_JOBS_NUMBER}
+.else
+BUILD_JOBS_NUMBER=	`${SYSCTL} -n kern.smp.cpus`
+.endif
 MAKE_ENV+=	HOTSPOT_BUILD_JOBS=${BUILD_JOBS_NUMBER}
+.endif
 
 COPYDIRS=	\
-	hotspot/src/os/linux/launcher \
 	hotspot/src/os/linux/vm \
 	hotspot/src/os_cpu/linux_x86/vm \
 	hotspot/agent/src/os/linux \
@@ -190,8 +224,14 @@ post-patch:
 		${WRKSRC}/jdk/make/javax/crypto/Makefile
 .endif
 
-.if defined(WITH_TEST)
 post-build:
+.if defined(WITH_TZUPDATE)
+	@# Update time zones
+	@${RM} -rf ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib/zi
+	@${LN} -s -f ${LOCALBASE}/share/java/zi \
+		${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/jre/lib
+.endif
+.if defined(WITH_TEST)
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "Run \"make test\" to execute regression test (it could take a few hours to complete)."
 .if defined(DISPLAY)
@@ -214,11 +254,12 @@ test: build-depends build
 .endif
 
 do-install:
-	${MKDIR} ${PREFIX}/openjdk6/
-	${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/ ${PREFIX}/openjdk6/
+	@${MKDIR} ${PREFIX}/openjdk6/
+	@${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}/j2sdk-image/ ${PREFIX}/openjdk6/
+	@${INSTALL_DATA} ${WRKSRC}/build/${OPENJDK_OSARCH}/btjars/compilefontconfig.jar ${WRKSRC}/build/${OPENJDK_OSARCH}/btjars/javazic.jar ${PREFIX}/openjdk6/jre/lib/
 .if defined(WITH_FASTDEBUG)
-	${MKDIR} ${PREFIX}/openjdk6-fastdebug/
-	${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}-fastdebug/j2sdk-image/ ${PREFIX}/openjdk6-fastdebug/
+	@${MKDIR} ${PREFIX}/openjdk6-fastdebug/
+	@${CP} -Rp ${WRKSRC}/build/${OPENJDK_OSARCH}-fastdebug/j2sdk-image/ ${PREFIX}/openjdk6-fastdebug/
 .endif
 	@${ECHO_MSG} "@unexec ${LOCALBASE}/bin/unregistervm ${TRUE_PREFIX}/openjdk6/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${PREFIX}/openjdk6 -not -type d | \
