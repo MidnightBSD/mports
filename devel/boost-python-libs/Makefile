@@ -1,8 +1,17 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boost-python-libs/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
 
 PORTNAME=	boost-python-libs
+PORTVERSION=	1.48.0
+PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
+CATEGORIES=	devel
+MASTER_SITES=	SF/boost/boost/${PORTVERSION}
+DISTNAME=	boost_${PORTVERSION:S/./_/g}
+
+MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Framework for interfacing Python and C++
 LICENSE=	mit
+
+CONFLICTS=	boost-python-1* boost-1*
 
 USE_BZIP2=	yes
 USE_PYTHON=	2.5-3.1
@@ -12,7 +21,6 @@ OPTIONS=	VERBOSE_BUILD	"Show compiler messages"	off \
 		OPTIMIZED_CFLAGS "Enable -O3 optimization"	off
 
 .include <bsd.port.pre.mk>
-.include "${PORTSDIR}/devel/boost-all/common.mk"
 .include "${PORTSDIR}/devel/boost-all/compiled.mk"
 
 .if ${ARCH} == "sparc64"

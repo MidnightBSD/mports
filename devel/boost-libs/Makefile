@@ -1,7 +1,16 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
 
 PORTNAME=	boost-libs
+PORTVERSION=	1.48.0
+PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
+CATEGORIES=	devel
+MASTER_SITES=	SF/boost/boost/${PORTVERSION}
+DISTNAME=	boost_${PORTVERSION:S/./_/g}
+
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Free portable C++ libraries (without Boost.Python)
+LICENSE=	mit
+
 USE_BZIP2=	yes
 
 BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
@@ -18,7 +27,6 @@ BOOST_LIBS=	date_time filesystem graph iostreams\
 		wave wserialization
 
 .include <bsd.port.pre.mk>
-.include "${PORTSDIR}/devel/boost-all/common.mk"
 .include "${PORTSDIR}/devel/boost-all/compiled.mk"
 
 .if defined (WITH_ICU)

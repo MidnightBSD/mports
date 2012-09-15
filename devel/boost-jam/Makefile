@@ -1,11 +1,21 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boost-jam/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
 
 PORTNAME=	boost-jam
+PORTVERSION=	1.48.0
+PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
+CATEGORIES=	devel
+MASTER_SITES=	SF/boost/boost/${PORTVERSION}
+DISTNAME=	boost_${PORTVERSION:S/./_/g}
+
+MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Build tool from the boost.org
+LICENSE=	mit
+
+CONFLICTS=	boost-python-1* boost-1*
+
 USE_BZIP2=	yes
 
 .include <bsd.port.pre.mk>
-.include "${PORTSDIR}/devel/boost-all/common.mk"
 
 BJAM=		${WRKSRC}/bjam
 
