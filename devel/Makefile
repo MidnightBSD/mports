@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.395 2012/09/08 16:32:31 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.396 2012/09/08 16:56:00 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -26,8 +26,11 @@ SUBDIR += binutils
 SUBDIR += bison
 SUBDIR += bisongen
 SUBDIR += boehm-gc
-SUBDIR += boost
-SUBDIR += boost-python
+SUBDIR += boost-all
+SUBDIR += boost-docs
+SUBDIR += boost-jam
+SUBDIR += boost-libs
+SUBDIR += boost-python-libs
 SUBDIR += bouml
 SUBDIR += bouml-doc
 SUBDIR += bug-buddy
