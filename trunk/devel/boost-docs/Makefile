@@ -1,7 +1,17 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/boost-docs/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
 
 PORTNAME=	boost-docs
+PORTVERSION=	1.48.0
+PORTVERSUFFIX=	${PORTVERSION:C/\.[0-9]+$//}
+CATEGORIES=	devel
+MASTER_SITES=	SF/boost/boost/${PORTVERSION}
+DISTNAME=	boost_${PORTVERSION:S/./_/g}
+
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Documentation for libraries from boost.org
+LICENSE=	mit
+
+CONFLICTS=	boost-python-1* boost-1*
 
 USE_BZIP2=	yes
 
@@ -11,7 +21,6 @@ UNIQ=		/usr/bin/uniq
 NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
-.include "${PORTSDIR}/devel/boost-all/common.mk"
 
 do-install:
 # Documentation & examples
