@@ -1,9 +1,8 @@
-#
-# $MidnightBSD: ports/deskutils/kdepimlibs4/Makefile,v 1.3 2008/09/05 14:33:09 miwi Exp $
-#
+# $MidnightBSD: mports/deskutils/kdepimlibs4/Makefile,v 1.1 2008/12/10 15:44:43 ctriv Exp $
 
 PORTNAME=	kdepimlibs
 PORTVERSION=	${KDE4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	deskutils kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION}/src
@@ -15,7 +14,7 @@ LICENSE=	lgpl
 
 LIB_DEPENDS=	gpgme:${PORTSDIR}/security/gpgme \
 		sasl2:${PORTSDIR}/security/cyrus-sasl2 \
-		boost_python:${PORTSDIR}/devel/boost-python
+		boost_python:${PORTSDIR}/devel/boost-python-libs
 
 USE_KDE4=	kdelibs akonadi kdeprefix kdehier automoc4
 KDE4_BUILDENV=	yes
