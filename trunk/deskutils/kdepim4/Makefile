@@ -1,8 +1,8 @@
-#
-# $MidnightBSD: ports/deskutils/kdepim4/Makefile,v 1.82 2008/09/03 13:06:07 miwi Exp $
+# $MidnightBSD: mports/deskutils/kdepim4/Makefile,v 1.1 2009/01/05 01:01:07 ctriv Exp $
 
 PORTNAME=	kdepim
 PORTVERSION=	${KDE4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	deskutils kde ipv6
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION}/src
@@ -15,7 +15,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	libassuan>=1.0.4:${PORTSDIR}/security/libassuan
 LIB_DEPENDS=	gpgme:${PORTSDIR}/security/gpgme \
 		sasl2:${PORTSDIR}/security/cyrus-sasl2 \
-		boost_python:${PORTSDIR}/devel/boost-python \
+		boost_python:${PORTSDIR}/devel/boost-python-libs \
 		mal.1:${PORTSDIR}/palm/libmal \
 		pisock.9:${PORTSDIR}/palm/pilot-link
 
