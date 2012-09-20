@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/deskutils/xfce4-tumbler/Makefile,v 1.8 2011/12/18 08:59:25 miwi Exp $
+# $MidnightBSD: mports/deskutils/xfce4-tumbler/Makefile,v 1.1 2012/03/04 20:21:30 laffer1 Exp $
 
 PORTNAME=	tumbler
-PORTVERSION=	0.1.23
+PORTVERSION=	0.1.25
 CATEGORIES=	deskutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/xfce/${PORTNAME}/${PORTVERSION:R}
@@ -13,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Thumbnail service for Xfce desktop
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2 \
 		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib
 
