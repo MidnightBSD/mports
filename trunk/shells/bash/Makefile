@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/bash/Makefile,v 1.25 2012/01/05 22:12:19 laffer1 Exp $
+# $MidnightBSD: mports/shells/bash/Makefile,v 1.26 2012/01/05 22:16:17 laffer1 Exp $
 
 PORTNAME=		bash
-PATCHLEVEL=		20
+PATCHLEVEL=		21
 PORTVERSION=		4.2.${PATCHLEVEL:S/^0//g}
 PORTREVISION=		0
 CATEGORIES=		shells
