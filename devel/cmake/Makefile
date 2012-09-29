@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.10 2011/12/16 01:15:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.11 2012/02/24 18:31:29 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.7
-PORTREVISION=	0
+PORTVERSION=	2.8.8
 CATEGORIES=	devel
 MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/
 
@@ -12,11 +11,10 @@ LICENSE=	other
 # bsd variant
 
 HAS_CONFIGURE=	yes
+CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir=${DATADIR:S|^${PREFIX}||} \
 		--docdir=${DOCSDIR:S|^${PREFIX}||}
-CONFIGURE_ENV=	MAKE=make
-
 MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITH_DEBUG)

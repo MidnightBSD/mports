@@ -3,10 +3,12 @@ bin/cmake
 bin/cpack
 bin/ctest
 share/aclocal/cmake.m4
+@comment share/emacs/site-lisp/cmake-mode.el
 %%DATADIR%%/Modules/.NoDartCoverage
 %%DATADIR%%/Modules/AddFileDependencies.cmake
 %%DATADIR%%/Modules/AutomocInfo.cmake.in
 %%DATADIR%%/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in
+%%DATADIR%%/Modules/BasicConfigVersion-ExactVersion.cmake.in
 %%DATADIR%%/Modules/BasicConfigVersion-SameMajorVersion.cmake.in
 %%DATADIR%%/Modules/BundleUtilities.cmake
 %%DATADIR%%/Modules/CMake.cmake
@@ -15,6 +17,9 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/CMakeASMInformation.cmake
 %%DATADIR%%/Modules/CMakeASM_MASMInformation.cmake
 %%DATADIR%%/Modules/CMakeASM_NASMInformation.cmake
+%%DATADIR%%/Modules/CMakeAddFortranSubdirectory.cmake
+%%DATADIR%%/Modules/CMakeAddFortranSubdirectory/build_mingw.cmake.in
+%%DATADIR%%/Modules/CMakeAddFortranSubdirectory/config_mingw.cmake.in
 %%DATADIR%%/Modules/CMakeAddNewLanguage.txt
 %%DATADIR%%/Modules/CMakeBackwardCompatibilityC.cmake
 %%DATADIR%%/Modules/CMakeBackwardCompatibilityCXX.cmake
@@ -45,6 +50,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/CMakeDetermineRCCompiler.cmake
 %%DATADIR%%/Modules/CMakeDetermineSystem.cmake
 %%DATADIR%%/Modules/CMakeDetermineVSServicePack.cmake
+%%DATADIR%%/Modules/CMakeExpandImportedTargets.cmake
 %%DATADIR%%/Modules/CMakeExportBuildSettings.cmake
 %%DATADIR%%/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake
 %%DATADIR%%/Modules/CMakeFindBinUtils.cmake
@@ -68,6 +74,8 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/CMakeMSYSFindMake.cmake
 %%DATADIR%%/Modules/CMakeMinGWFindMake.cmake
 %%DATADIR%%/Modules/CMakeNMakeFindMake.cmake
+%%DATADIR%%/Modules/CMakeNinjaFindMake.cmake
+%%DATADIR%%/Modules/CMakePackageConfigHelpers.cmake
 %%DATADIR%%/Modules/CMakeParseArguments.cmake
 %%DATADIR%%/Modules/CMakeParseImplicitLinkInfo.cmake
 %%DATADIR%%/Modules/CMakePlatformId.h.in
@@ -117,8 +125,11 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/CPack.distribution.dist.in
 %%DATADIR%%/Modules/CPackBundle.cmake
 %%DATADIR%%/Modules/CPackComponent.cmake
+%%DATADIR%%/Modules/CPackCygwin.cmake
+%%DATADIR%%/Modules/CPackDMG.cmake
 %%DATADIR%%/Modules/CPackDeb.cmake
 %%DATADIR%%/Modules/CPackNSIS.cmake
+%%DATADIR%%/Modules/CPackPackageMaker.cmake
 %%DATADIR%%/Modules/CPackRPM.cmake
 %%DATADIR%%/Modules/CPackZIP.cmake
 %%DATADIR%%/Modules/CTest.cmake
@@ -140,6 +151,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/CheckIncludeFile.cxx.in
 %%DATADIR%%/Modules/CheckIncludeFileCXX.cmake
 %%DATADIR%%/Modules/CheckIncludeFiles.cmake
+%%DATADIR%%/Modules/CheckLanguage.cmake
 %%DATADIR%%/Modules/CheckLibraryExists.cmake
 %%DATADIR%%/Modules/CheckLibraryExists.lists.in
 %%DATADIR%%/Modules/CheckPrototypeDefinition.c.in
@@ -191,6 +203,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Compiler/SunPro-C.cmake
 %%DATADIR%%/Modules/Compiler/SunPro-CXX.cmake
 %%DATADIR%%/Modules/Compiler/SunPro-Fortran.cmake
+%%DATADIR%%/Modules/Compiler/TinyCC-C.cmake
 %%DATADIR%%/Modules/Compiler/VisualAge-C.cmake
 %%DATADIR%%/Modules/Compiler/VisualAge-CXX.cmake
 %%DATADIR%%/Modules/Compiler/VisualAge-Fortran.cmake
@@ -201,6 +214,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Compiler/XL.cmake
 %%DATADIR%%/Modules/Dart.cmake
 %%DATADIR%%/Modules/DartConfiguration.tcl.in
+%%DATADIR%%/Modules/DeployQt4.cmake
 %%DATADIR%%/Modules/Documentation.cmake
 %%DATADIR%%/Modules/DummyCXXFile.cxx
 %%DATADIR%%/Modules/ExternalProject.cmake
@@ -328,7 +342,9 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/FindosgIntrospection.cmake
 %%DATADIR%%/Modules/FindosgManipulator.cmake
 %%DATADIR%%/Modules/FindosgParticle.cmake
+%%DATADIR%%/Modules/FindosgPresentation.cmake
 %%DATADIR%%/Modules/FindosgProducer.cmake
+%%DATADIR%%/Modules/FindosgQt.cmake
 %%DATADIR%%/Modules/FindosgShadow.cmake
 %%DATADIR%%/Modules/FindosgSim.cmake
 %%DATADIR%%/Modules/FindosgTerrain.cmake
@@ -435,6 +451,8 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Platform/Generic-ADSP-Common.cmake
 %%DATADIR%%/Modules/Platform/Generic-SDCC-C.cmake
 %%DATADIR%%/Modules/Platform/Generic.cmake
+%%DATADIR%%/Modules/Platform/GNUtoMS_lib.bat.in
+%%DATADIR%%/Modules/Platform/GNUtoMS_lib.cmake
 %%DATADIR%%/Modules/Platform/HP-UX-GNU-C.cmake
 %%DATADIR%%/Modules/Platform/HP-UX-GNU-CXX.cmake
 %%DATADIR%%/Modules/Platform/HP-UX-GNU-Fortran.cmake
@@ -469,6 +487,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Platform/Linux-PathScale-Fortran.cmake
 %%DATADIR%%/Modules/Platform/Linux-PathScale.cmake
 %%DATADIR%%/Modules/Platform/Linux-SunPro-CXX.cmake
+%%DATADIR%%/Modules/Platform/Linux-TinyCC-C.cmake
 %%DATADIR%%/Modules/Platform/Linux-VisualAge-C.cmake
 %%DATADIR%%/Modules/Platform/Linux-VisualAge-CXX.cmake
 %%DATADIR%%/Modules/Platform/Linux-VisualAge-Fortran.cmake
@@ -478,7 +497,6 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Platform/Linux-como.cmake
 %%DATADIR%%/Modules/Platform/Linux.cmake
 %%DATADIR%%/Modules/Platform/MP-RAS.cmake
-%%DATADIR%%/Modules/Platform/MidnightBSD.cmake
 %%DATADIR%%/Modules/Platform/NetBSD.cmake
 %%DATADIR%%/Modules/Platform/OSF1.cmake
 %%DATADIR%%/Modules/Platform/OpenBSD.cmake
@@ -499,10 +517,15 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Platform/UnixWare.cmake
 %%DATADIR%%/Modules/Platform/Windows-Borland-C.cmake
 %%DATADIR%%/Modules/Platform/Windows-Borland-CXX.cmake
-%%DATADIR%%/Modules/Platform/Windows-Borland.cmake
+%%DATADIR%%/Modules/Platform/Windows-Embarcadero-C.cmake
+%%DATADIR%%/Modules/Platform/Windows-Embarcadero-CXX.cmake
+%%DATADIR%%/Modules/Platform/Windows-Embarcadero.cmake
 %%DATADIR%%/Modules/Platform/Windows-G95-Fortran.cmake
+%%DATADIR%%/Modules/Platform/Windows-GNU-C-ABI.cmake
 %%DATADIR%%/Modules/Platform/Windows-GNU-C.cmake
+%%DATADIR%%/Modules/Platform/Windows-GNU-CXX-ABI.cmake
 %%DATADIR%%/Modules/Platform/Windows-GNU-CXX.cmake
+%%DATADIR%%/Modules/Platform/Windows-GNU-Fortran-ABI.cmake
 %%DATADIR%%/Modules/Platform/Windows-GNU-Fortran.cmake
 %%DATADIR%%/Modules/Platform/Windows-GNU.cmake
 %%DATADIR%%/Modules/Platform/Windows-Intel-ASM.cmake
@@ -631,5 +654,6 @@ share/aclocal/cmake.m4
 @dirrm %%DATADIR%%/Modules/FortranCInterface
 @dirrm %%DATADIR%%/Modules/FindCUDA
 @dirrm %%DATADIR%%/Modules/Compiler
+@dirrm %%DATADIR%%/Modules/CMakeAddFortranSubdirectory
 @dirrmtry %%DATADIR%%/Modules
 @dirrmtry %%DATADIR%%
