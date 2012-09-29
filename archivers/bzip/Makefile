@@ -2,15 +2,14 @@
 # Date created:         Fr  27 Sep 1996 11:47:35 MET DST
 # Whom:                 Andreas Klemm <andreas@klemm.gtn.com>
 #
-# $MidnightBSD: mports/archivers/bzip/Makefile,v 1.4 2012/02/24 01:27:45 laffer1 Exp $
+# $MidnightBSD: mports/archivers/bzip/Makefile,v 1.5 2012/02/24 01:29:04 laffer1 Exp $
 # $FreeBSD: ports/archivers/bzip/Makefile,v 1.29 2006/08/14 12:33:28 jmelo Exp $
 #
 
 PORTNAME=	bzip
 PORTVERSION=	0.21
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.freebsdbrasil.com.br/~jmelo/ \
-		ftp://ftp.42.org/pub/OLD/b/
+MASTER_SITES=	ftp://ftp.42.org/pub/OLD/b/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A block-sorting file compressor
