@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.6 2011/05/27 22:18:15 laffer1 Exp $
+# $MidnightBSD: mports/databases/unixODBC/Makefile,v 1.7 2012/02/24 01:07:16 laffer1 Exp $
 # $FreeBSD: ports/databases/unixODBC/Makefile,v 1.52 2007/07/30 15:30:55 arved Exp $
 
 PORTNAME=	unixODBC
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	ODBC library suite for Unix
 LICENSE=	lgpl
 
-CONFLICTS=	libiodbc-[0-9]*
+CONFLICTS=	libiodbc-[0-9]* virtuoso-*
 
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
