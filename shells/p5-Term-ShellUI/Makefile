@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/p5-Term-ShellUI/Makefile,v 1.1 2007/07/19 06:38:39 laffer1 Exp $
+# $MidnightBSD: mports/shells/p5-Term-ShellUI/Makefile,v 1.2 2009/12/28 20:26:40 laffer1 Exp $
 
 PORTNAME=	Term-ShellUI
-PORTVERSION=	0.86
+PORTVERSION=	0.92
 CATEGORIES=	shells perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -24,12 +24,7 @@ post-install:
 .if !defined(NOPORTDOCS)
 	@${ECHO_MSG} "===>   Installing examples for ${PKGNAME}"
 	@${MKDIR} ${EXAMPLESDIR}
-	@${MKDIR} ${EXAMPLESDIR}/RPC
-	@${MKDIR} ${EXAMPLESDIR}/Term
-	@${INSTALL_DATA} ${SAMPLESDIR}/RPC/Connection.pm	${EXAMPLESDIR}/RPC
-	@${INSTALL_DATA} ${SAMPLESDIR}/Term/ExprUI.pm	${EXAMPLESDIR}/Term
-	@${INSTALL_DATA} ${SAMPLESDIR}/README		${EXAMPLESDIR}
-.for file in fileman-example psh synopsys synopsys-old tui-sample xmlexer
+.for file in fileman-example synopsis synopsis-big tui-sample
 	    @${INSTALL_SCRIPT} ${SAMPLESDIR}/${file}	${EXAMPLESDIR}
 .endfor
 .endif
