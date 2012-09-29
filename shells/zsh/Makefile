@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.14 2011/02/02 21:21:44 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.15 2012/09/29 21:09:20 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -13,13 +13,12 @@
 #			NOTE: does NOT have to be inside ${PREFIX} tree
 
 PORTNAME=	zsh
-PORTVERSION=	4.3.10
-PORTREVISION=	1
+PORTVERSION=	4.3.17
 CATEGORIES=	shells
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-dev/${PORTVERSION}
-.if !defined(NOPORTDOCS)
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-doc${EXTRACT_SUFX}
-.endif
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-dev/${PORTVERSION} \
+		SF/${PORTNAME}/${PORTNAME}-doc-dev/${PORTVERSION}:doc
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+DISTFILES+=   ${DISTNAME}-doc${EXTRACT_SUFX}:doc
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	The Z shell
@@ -65,7 +64,9 @@ MAN1=		zsh.1 zshbuiltins.1 zshcompctl.1 zshcompwid.1 zshcompsys.1 \
 		zshall.1 zshcalsys.1
 DOCS=		LICENCE META-FAQ README Etc/BUGS Etc/CONTRIBUTORS Etc/FAQ \
 		Etc/completion-style-guide Doc/zsh*.html Doc/zsh.dvi
-EXAMPLES=	zlogin zshenv zshrc
+PORTDOCS=	*
+PORTEXAMPLES=	zlogin zshenv zshrc
+SHELLS=		/etc/shells
 
 .include <bsd.port.pre.mk>
 
@@ -112,6 +113,7 @@ CONFIGURE_ARGS+=	--disable-multibyte
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-bsdtar
 
 post-patch:
+	@${REINPLACE_CMD} -e '/LIBS/s/-lrt//' ${WRKSRC}/configure
 	@${SED} -i "" -e "s,link=dynamic,link=either," \
 		${WRKSRC}/Src/Modules/*.mdd
 	@${SED} -i "" -e "s,/etc/,${LOCALBASE}/etc/," \
@@ -136,7 +138,7 @@ post-install:
 	@${MKDIR} ${ZSH_ETCDIR}
 	@${MKDIR} ${ZSH_SITEFNDIR}
 	@${MKDIR} ${EXAMPLESDIR}
-	cd ${WRKSRC}/StartupFiles && ${INSTALL_DATA} ${EXAMPLES} ${EXAMPLESDIR}
+	cd ${WRKSRC}/StartupFiles && ${INSTALL_DATA} ${PORTEXAMPLES} ${EXAMPLESDIR}
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${DOCS} ${DOCSDIR}
