@@ -1,8 +1,8 @@
 # $FreeBSD: ports/databases/postgresql90-server/Makefile,v 1.214 2011/02/01 14:48:17 girgen Exp $
-# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.5 2011/12/16 01:56:58 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql90-server/Makefile,v 1.6 2011/12/16 03:37:14 laffer1 Exp $
 
 PORTNAME?=	postgresql
-DISTVERSION?=	9.0.5
+DISTVERSION?=	9.0.8
 PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
