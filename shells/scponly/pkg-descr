@@ -9,6 +9,4 @@ shell upon login.  (The first argument is the shell itself, and the second is
 -c.)  The only commands allowed are "scp", "sftp-server" and "ls".  Arguments
 to these commands are passed along unmolested.
 
-WWW: http://www.sublimation.org/scponly/
-
----Ken McGlothlen (mcglk@artlogix.com)
+WWW: https://github.com/scponly/scponly/wiki
