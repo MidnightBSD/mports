@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/shells/perlsh/pkg-deinstall,v 1.1 2005/05/04 05:47:17 clsung Exp $
+# $FreeBSD: ports/shells/psh/files/pkg-deinstall.in,v 1.2 2007/08/13 13:28:09 garga Exp $
 #
 
-PSH="${PKG_PREFIX-/usr/local}/bin/psh"
-SHELLS="${PKG_DESTDIR-}/etc/shells"
+PSH="%%PREFIX%%/bin/psh"
+SHELLS="/etc/shells"
 
 case $2 in
 DEINSTALL)
