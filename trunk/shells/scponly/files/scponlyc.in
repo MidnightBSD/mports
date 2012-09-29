@@ -1,7 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/shells/scponly/files/scponlyc.in,v 1.6 2012/01/14 08:56:55 dougb Exp $
-#
+# $MidnightBSD$
 
 # PROVIDE: scponlyc
 # REQUIRE: LOGIN cleanvar
@@ -26,7 +25,7 @@ stop_cmd="scponlyc_stopcmd"
 
 required_files="$scponlyc_shells $scponlyc_passwd"
 
-scponlyc=%%PREFIX%%/sbin/scponlyc
+scponlyc=%%TRUE_PREFIX%%/sbin/scponlyc
 
 make_devfs() {
 	# $1 is the user name whose home directory needs a minimal
