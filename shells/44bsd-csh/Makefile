@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.2 2007/05/17 17:19:17 ctriv Exp $
+# $MidnightBSD: mports/shells/44bsd-csh/Makefile,v 1.3 2009/12/28 19:26:30 laffer1 Exp $
 
 PORTNAME=	44bsd-csh
 PORTVERSION=	20001106
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	cy
@@ -16,7 +17,7 @@ NO_WRKSUBDIR=	yes
 MAN1=		44bsd-csh.1
 PORTDOCS=	paper.ascii.gz
 post-extract:
-	cd ${WRKSRC} ; co RCS/*,v
+	cd ${WRKSRC} ; co RCS/*,v; chmod u+w *
 	cd ${WRKSRC}/USD.doc ; co RCS/*,v
 
 post-build:
