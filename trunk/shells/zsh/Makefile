@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/zsh/Makefile,v 1.13 2009/09/25 00:34:17 laffer1 Exp $
+# $MidnightBSD: mports/shells/zsh/Makefile,v 1.14 2011/02/02 21:21:44 laffer1 Exp $
 
 # The following compile-time options are available:
 # ZSH_ETCDIR=<dir>	directory for zsh system-wide configuration files:
@@ -14,6 +14,7 @@
 
 PORTNAME=	zsh
 PORTVERSION=	4.3.10
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-dev/${PORTVERSION}
 .if !defined(NOPORTDOCS)
@@ -78,7 +79,7 @@ CONFIGURE_TARGET=       --build=${MACHINE_ARCH}-portbld-freebsd6.1 \
 
 .if defined(WITH_ZSH_PCRE)
 CONFIGURE_ARGS+=	--enable-pcre
-LIB_DEPENDS+=		pcre.0:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=		pcre.1:${PORTSDIR}/devel/pcre
 PLIST_SUB+=		PCRE=""
 .else
 CONFIGURE_ARGS+=	--disable-pcre
