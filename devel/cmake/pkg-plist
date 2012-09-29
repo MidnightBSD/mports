@@ -497,6 +497,7 @@ share/aclocal/cmake.m4
 %%DATADIR%%/Modules/Platform/Linux-como.cmake
 %%DATADIR%%/Modules/Platform/Linux.cmake
 %%DATADIR%%/Modules/Platform/MP-RAS.cmake
+%%DATADIR%%/Modules/Platform/MidnightBSD.cmake
 %%DATADIR%%/Modules/Platform/NetBSD.cmake
 %%DATADIR%%/Modules/Platform/OSF1.cmake
 %%DATADIR%%/Modules/Platform/OpenBSD.cmake
