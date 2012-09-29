@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/shells/sash/Makefile,v 1.2 2007/05/17 18:28:31 ctriv Exp $
+# $MidnightBSD: mports/shells/sash/Makefile,v 1.3 2009/12/28 20:39:20 laffer1 Exp $
 
 PORTNAME=	sash
 PORTVERSION=	3.7
 CATEGORIES=	shells
-MASTER_SITES=	http://www.canb.auug.org.au/%SUBDIR%/
-MASTER_SITE_SUBDIR=	~dbell/programs
+MASTER_SITES=	http://members.tip.net.au/~dbell/programs/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Stand-Alone shell combining many common utilities
