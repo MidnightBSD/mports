@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/shells/fd/Makefile,v 1.3 2008/03/21 23:40:10 laffer1 Exp $
+# $MidnightBSD: mports/shells/fd/Makefile,v 1.4 2009/12/28 20:18:08 laffer1 Exp $
 
 PORTNAME=	fd
-PORTVERSION=	3.00d
+PORTVERSION=	3.00k
 CATEGORIES=	shells net
 MASTER_SITES=	http://hp.vector.co.jp/authors/VA012337/soft/fd/ \
 		ftp://ftp.unixusers.net/src/fdclone/
@@ -10,6 +10,8 @@ DISTNAME=	FD-${PORTVERSION}
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A CUI-based file and directory management tool
 LICENSE=	other
+
+MAKE_JOBS_SAFE=	yes
 
 MANLANG=	"" ja
 MAN1=		fd.1 fdsh.1
