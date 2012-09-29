@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/shells/zsh/pkg-plist,v 1.39 2008/05/02 21:13:47 des Exp $
 bin/zsh
 @exec echo "Updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak; echo %D/%F) >/etc/shells; rm -f /etc/shells.bak
 @unexec echo "Updating /etc/shells"; cp /etc/shells /etc/shells.bak; (grep -v %D/%F /etc/shells.bak) >/etc/shells; rm -f /etc/shells.bak
@@ -226,7 +225,6 @@ bin/zsh-%%ZSH_VER%%
 %%ZSH_FNDIR%%/Completion/Linux/_yast
 %%ZSH_FNDIR%%/Completion/Mandriva/_urpmi
 %%ZSH_FNDIR%%/Completion/Redhat/_rpm
-%%ZSH_FNDIR%%/Completion/Redhat/_service
 %%ZSH_FNDIR%%/Completion/Redhat/_yum
 %%ZSH_FNDIR%%/Completion/Unix/_a2ps
 %%ZSH_FNDIR%%/Completion/Unix/_aap
@@ -357,7 +355,6 @@ bin/zsh-%%ZSH_VER%%
 %%ZSH_FNDIR%%/Completion/Unix/_man
 %%ZSH_FNDIR%%/Completion/Unix/_md5sum
 %%ZSH_FNDIR%%/Completion/Unix/_mencal
-%%ZSH_FNDIR%%/Completion/Unix/_mercurial
 %%ZSH_FNDIR%%/Completion/Unix/_metaflac
 %%ZSH_FNDIR%%/Completion/Unix/_mh
 %%ZSH_FNDIR%%/Completion/Unix/_mime_types
