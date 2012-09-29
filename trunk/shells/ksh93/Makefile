@@ -1,9 +1,4 @@
-# New ports collection makefile for:   ksh93
-# Date created:                2000-12-26
-# Whom:                        Christian Weisgerber <naddy@mips.inka.de>
-#
-# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.7 2011/02/23 21:55:30 laffer1 Exp $
-# $FreeBSD: ports/shells/ksh93/Makefile,v 1.53 2008/08/18 18:36:36 miwi Exp $
+# $MidnightBSD: mports/shells/ksh93/Makefile,v 1.8 2011/10/06 03:59:31 laffer1 Exp $
 #
 # Make sure that your configuration DOES NOT set AN?Y gcc-related
 # variables.  ksh93 will not compile if you set even the seemingly
@@ -32,7 +27,7 @@ LICENSE=	other
 
 MANUAL_PACKAGE_BUILD=Doesn't build in tinderbox environment
 
-VERSION=	2011-02-08
+VERSION=	2012-02-29
 RESTRICTED=	Source recipient must acknowledge license
 
 FETCH_ENV=	HTTP_AUTH='basic:*:I accept www.opensource.org/licenses/cpl:.'
