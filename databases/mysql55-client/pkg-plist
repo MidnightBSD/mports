@@ -71,5 +71,5 @@ lib/libmysqlservices.a
 share/aclocal/mysql.m4
 @dirrm include/mysql/mysql/psi
 @dirrm include/mysql/mysql
-@dirrm include/mysql
+@dirrmtry include/mysql
 @dirrmtry lib/mysql
