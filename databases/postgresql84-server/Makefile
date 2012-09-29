@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/postgresql84-server/Makefile,v 1.2 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/databases/postgresql84-server/Makefile,v 1.3 2012/01/29 16:36:06 laffer1 Exp $
 
 PORTNAME?=	postgresql
-DISTVERSION?=	8.4.10
+DISTVERSION?=	8.4.12
 CATEGORIES?=	databases
 MASTER_SITES=	${MASTER_SITE_PGSQL}
 MASTER_SITE_SUBDIR=	source/v${DISTVERSION}
