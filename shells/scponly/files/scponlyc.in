@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD: ports/shells/scponly/files/scponlyc.in,v 1.6 2012/01/14 08:56:55 dougb Exp $
+#
 
 # PROVIDE: scponlyc
 # REQUIRE: LOGIN cleanvar
@@ -18,7 +19,7 @@ scponlyc_shells="${scponlyc_shells:-/etc/shells}"
 scponlyc_passwd="${scponlyc_passwd:-/etc/passwd}"
 
 name="scponlyc"
-rcvar=`set_rcvar`
+rcvar=scponlyc_enable
 
 start_cmd="scponlyc_startcmd"
 stop_cmd="scponlyc_stopcmd"
