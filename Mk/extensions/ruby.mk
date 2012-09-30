@@ -3,7 +3,7 @@
 #
 # Created by: Akinori MUSHA <knu@FreeBSD.org>
 #
-# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.3 2011/03/11 17:07:28 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/ruby.mk,v 1.4 2011/03/11 17:15:25 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.ruby.mk,v 1.154 2006/08/27 09:53:27 sem Exp $
 #
 
@@ -45,8 +45,6 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 #			  build.
 # RUBY_SETUP		- Set to the alternative name of setup.rb
 #			  (default: setup.rb).
-# USE_RUBY_AMSTD	- Says that the port uses amstd for building and
-#			  running.
 # USE_RUBY_RDTOOL	- Says that the port uses rdtool to generate documents.
 # USE_RUBY_RDOC		- Says that the port uses rdoc to generate documents.
 # USE_RUBY_FEATURES	- Says that the port requires some of the following
@@ -106,14 +104,12 @@ Ruby_Include_MAINTAINER=	ports@MidnightBSD.org
 # RUBY_BASE_PORT	- Port path of base ruby without PORTSDIR, without
 #			  suffix except version.
 # RUBY_PORT		- Port path of ruby without PORTSDIR.
-# RUBY_AMSTD_PORT	- Port path of ruby-amstd without PORTSDIR.
 # RUBY_RDTOOL_PORT	- Port path of rdtool without PORTSDIR.
 # RUBY_RDOC_PORT	- Port path of rdoc without PORTSDIR.
 # RUBY_ICONV_PORT	- Port path of ruby-iconv without PORTSDIR.
 #
 # DEPEND_LIBRUBY	- LIB_DEPENDS entry for libruby.
 # DEPEND_RUBY		- BUILD_DEPENDS/RUN_DEPENDS entry for ruby.
-# DEPEND_RUBY_AMSTD	- BUILD_DEPENDS/RUN_DEPENDS entry for ruby-amstd.
 # DEPEND_RUBY_RDTOOL	- BUILD_DEPENDS entry for rdtool.
 # DEPEND_RUBY_RDOC	- BUILD_DEPENDS entry for rdoc.
 # DEPEND_RUBY_ICONV	- BUILD_DEPENDS/RUN_DEPENDS entry for ruby-iconv.
@@ -171,9 +167,9 @@ RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 # Ruby 1.8
 #
 RUBY_RELVERSION=	1.8.7
-RUBY_PORTREVISION=	3
+RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	334
+RUBY_PATCHLEVEL=	358
 
 .  if ${RUBY_PATCHLEVEL} == 0
 RUBY_VERSION?=		${RUBY_RELVERSION}
@@ -208,7 +204,10 @@ RUBY_DISTVERSION?=	${RUBY_RELVERSION}-p${RUBY_PATCHLEVEL}
 
 RUBY_WRKSRC=		${WRKDIR}/ruby-${RUBY_DISTVERSION}
 
-RUBY_CONFIGURE_ARGS+=	--with-rubyhdrdir="${PREFIX}/include/ruby-1.9/"
+RUBY_CONFIGURE_ARGS+=	--with-rubyhdrdir="${PREFIX}/include/ruby-1.9/" \
+			--with-rubylibprefix="${PREFIX}/lib/ruby" \
+			--docdir="${RUBY_DOCDIR}" \
+			--with-soname=ruby19
 
 #
 # PLIST_SUB helpers
@@ -264,12 +263,11 @@ RUBY_MODNAME?=		${PORTNAME}
 
 # Commands
 RUBY_RD2?=		${LOCALBASE}/bin/rd2
-RUBY_RDOC?=		${LOCALBASE}/bin/rdoc
+RUBY_RDOC?=		${LOCALBASE}/bin/rdoc${RUBY_VER:S/.//}
 
 # Ports
 RUBY_BASE_PORT?=	lang/ruby${RUBY_VER:S/.//}
 RUBY_PORT?=		${RUBY_BASE_PORT}
-RUBY_AMSTD_PORT?=	devel/ruby-amstd
 RUBY_RDTOOL_PORT?=	textproc/ruby-rdtool
 RUBY_RDOC_PORT?=	textproc/ruby-rdoc
 RUBY_ICONV_PORT?=	converters/ruby-iconv
@@ -277,7 +275,6 @@ RUBY_ICONV_PORT?=	converters/ruby-iconv
 # Depends
 DEPEND_LIBRUBY?=	${RUBY_NAME}.${RUBY_SHLIBVER}:${PORTSDIR}/${RUBY_PORT}
 DEPEND_RUBY?=		${RUBY}:${PORTSDIR}/${RUBY_PORT}
-DEPEND_RUBY_AMSTD?=	${RUBY_SITELIBDIR}/amstd/version.rb:${PORTSDIR}/${RUBY_AMSTD_PORT}
 DEPEND_RUBY_RDTOOL?=	${RUBY_RD2}:${PORTSDIR}/${RUBY_RDTOOL_PORT}
 DEPEND_RUBY_ICONV=	${RUBY_ARCHLIBDIR}/iconv.so:${PORTSDIR}/${RUBY_ICONV_PORT}
 
@@ -321,6 +318,10 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
 			RUBY18=${RUBY18} \
 			RUBY19=${RUBY19}
+
+.if defined(USE_RUBY_RDOC)
+MAKE_ENV+=	RUBY_RDOC=${RUBY_RDOC}
+.endif
 
 # require check
 .if defined(RUBY_REQUIRE)
@@ -379,10 +380,8 @@ RUBY_FLAGS+=	-d
 #
 .if defined(USE_RUBYGEMS)
 
-. if ${RUBY_VER} == 1.8
 BUILD_DEPENDS+=	${RUBYGEMBIN}:${PORTSDIR}/devel/ruby-gems
-RUN_DEPENDS+=	${BUILD_DEPENDS}
-. endif
+RUN_DEPENDS+=	${RUBYGEMBIN}:${PORTSDIR}/devel/ruby-gems
 
 PKGNAMEPREFIX?=	rubygem-
 EXTRACT_SUFX=	.gem
@@ -425,9 +424,14 @@ GEMFILES=	${DISTFILES:C/:[^:]+$//}
 GEMFILES=	${DISTNAME}${EXTRACT_SUFX}
 . endif
 
+RUBYGEM_ARGS=-l --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gems/${RUBY_VER} 
+.if defined(NOPORTDOCS)
+RUBYGEM_ARGS+=	--no-rdoc
+.endif
+
 do-install:
 .for _D in ${GEMFILES}
-	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install -l --no-update-sources --no-ri --install-dir ${PREFIX}/lib/ruby/gems/${RUBY_VER} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
+	${SETENV} ${GEM_ENV} ${RUBYGEMBIN} install ${RUBYGEM_ARGS} ${DISTDIR}/${DIST_SUBDIR}/${_D} -- --build-args ${CONFIGURE_ARGS}
 .endfor
 
 . if defined(RUBYGEM_AUTOPLIST)
@@ -435,16 +439,20 @@ do-install:
 post-install-script:
 	@${ECHO} ${GEM_CACHE} >> ${TMPPLIST}
 	@${ECHO} ${GEM_SPEC} >> ${TMPPLIST}
+.if !defined(NOPORTDOCS)
 	@${FIND} -ds ${PREFIX}/${GEM_DOC_DIR} -type f -print | ${SED} -E -e \
 		's,^${PREFIX}/?,,' >> ${TMPPLIST}
 	@${FIND} -ds ${PREFIX}/${GEM_DOC_DIR} -type d -print | ${SED} -E -e \
 		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
+.endif
 	@${FIND} -ds ${PREFIX}/${GEM_LIB_DIR} -type f -print | ${SED} -E -e \
 		's,^${PREFIX}/?,,' >> ${TMPPLIST}
 	@${FIND} -ds ${PREFIX}/${GEM_LIB_DIR} -type d -print | ${SED} -E -e \
 		's,^${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/${GEMS_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+.if !defined(NOPORTDOCS)
 	@${ECHO_CMD} "@unexec rmdir %D/${DOC_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+.endif
 	@${ECHO_CMD} "@unexec rmdir %D/${CACHE_DIR} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/${SPEC_DIR} 2>/dev/null || true" >> ${TMPPLIST}
 	@${ECHO_CMD} "@unexec rmdir %D/${GEMS_BASE_DIR} 2>/dev/null || true" >> ${TMPPLIST}
@@ -535,17 +543,8 @@ RUN_DEPENDS+=		${DEPEND_RUBY_ICONV}
 .endif
 
 .if defined(USE_RAKE)
-. if ${RUBY_VER} == 1.8
 BUILD_DEPENDS+=		${LOCALBASE}/bin/rake:${PORTSDIR}/devel/rubygem-rake
-RAKE_BIN=	 ${LOCALBASE}/bin/rake
-. else
-RAKE_BIN=	 ${LOCALBASE}/bin/${RUBY_VER:S/.//}
-. endif
-.endif
-
-.if defined(USE_RUBY_AMSTD)
-BUILD_DEPENDS+=		${DEPEND_RUBY_AMSTD}
-RUN_DEPENDS+=		${DEPEND_RUBY_AMSTD}
+RAKE_BIN=	${LOCALBASE}/bin/rake
 .endif
 
 # documents
