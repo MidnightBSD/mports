@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.9 2009/09/20 01:24:16 laffer1 Exp $
+# $MidnightBSD: mports/lang/ruby18/Makefile,v 1.10 2011/02/02 21:06:52 laffer1 Exp $
 
 PORTNAME=	ruby
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -18,8 +18,11 @@ FAKE_OPTS=	trueprefix
 
 GNU_CONFIGURE=	yes
 WRKSRC=		${RUBY_WRKSRC}
-CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} \
-		--enable-shared --with-openssl-include=${OPENSSLINC}
+CONFIGURE_ARGS=	${RUBY_CONFIGURE_ARGS} --enable-shared
+CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
+		LDFLAGS="-L${OPENSSLLIB} ${LDFLAGS}" \
+		LIBS="-L${OPENSSLLIB} ${LDFLAGS}" \
+		CPPFLAGS="-I${OPENSSLINC} ${CPPFLAGS}"
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	aclocal autoconf
@@ -36,11 +39,10 @@ RUBY_NO_RUN_DEPENDS=	yes
 _RUBY_SYSLIBDIR=	${PREFIX}/lib
 
 OPTIONS=	ONIGURUMA "Build with oniguruma regular expressions lib" off \
-		IPV6 "Enable IPv6 support" on \
 		RDOC "Build and install Rdoc indexes" on \
 		DEBUG "Compile-in debug info" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # PORTEPOCH/PORTREVISION hack
 
@@ -54,9 +56,16 @@ _SUF1=	_${PORTREVISION}
 
 PKGNAMESUFFIX=	#empty
 
+#
+# pthreads in earlier versions has problems with malloc after fork
+#
+.if ${OSVERSION} < 4016
+WITHOUT_PTHREADS=	yes
+.endif
+
 .if defined(WITHOUT_PTHREADS)
 CONFIGURE_ARGS+=--disable-pthread
-PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
+#PKGNAMESUFFIX:=	${PKGNAMESUFFIX}+nopthreads
 .else
 LDFLAGS+=	${PTHREAD_LIBS}
 CONFIGURE_ARGS+=--enable-pthread
@@ -72,11 +81,6 @@ PLIST_SUB+=	ONIGURUMA=""
 PLIST_SUB+=	ONIGURUMA="@comment "
 .endif
 
-.if defined(WITH_DEBUG)
-CFLAGS+=	-g
-STRIP=		# none
-.endif
-
 #
 # Disable doc generation if requested or docs disabled at all
 #
@@ -86,12 +90,7 @@ CONFIGURE_ARGS+=	--enable-install-doc
 CONFIGURE_ARGS+=	--disable-install-doc
 .endif
 
-.if !defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--enable-ipv6
-.endif
-
-CONFIGURE_ENV=	CFLAGS="${CFLAGS}" \
-		LIBS="${LDFLAGS}"
+.include <bsd.port.pre.mk>
 
 .if ${RUBY_VER} == ${RUBY_DEFAULT_VER}
 MLINKS=		${RUBY_NAME}.1 ruby.1
@@ -283,6 +282,7 @@ plist::
 		${SED} 's,^${RUBY_LIBDIR},%%RUBY_LIBDIR%%,' >> pkg-plist
 	@${FIND} -ds ${RUBY_LIBDIR}/ -type d | ${SORT} -r | \
 		${SED} -E -e 's,^${RUBY_LIBDIR}(.*),@dirrm %%RUBY_LIBDIR%%\1,' >> pkg-plist
+
 	@${ECHO_CMD} "%%RUBY_SITEARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "%%RUBY_VENDORARCHLIBDIR%%/.keep_me" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry %%RUBY_SITEARCHLIBDIR%%" >> pkg-plist
@@ -292,6 +292,7 @@ plist::
 	@${ECHO_CMD} "@dirrmtry %%RUBY_VENDORLIBDIR%%" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby/vendor_ruby" >> pkg-plist
 	@${ECHO_CMD} "@dirrmtry lib/ruby" >> pkg-plist
+
 	@${SED} -i "" -E -e "s,${RUBY_ARCH},%%RUBY_ARCH%%,g" pkg-plist
 
 test:
