@@ -106,7 +106,7 @@
  typedef sockaddr_un sockaddr_un_type;
  typedef addrinfo addrinfo_type;
 +#if (defined(__MACH__) && defined(__APPLE__)) || defined(__DragonFly__) || \
-+    defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
++    defined(__MidnightBSD__) || defined(__NetBSD__) || defined(__OpenBSD__)
 +typedef unsigned long ioctl_cmd_type;
 +#else
 +typedef int ioctl_cmd_type;

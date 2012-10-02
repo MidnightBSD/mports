@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.1 2012/09/15 19:26:54 laffer1 Exp $
+# $MidnightBSD: mports/devel/boost-libs/Makefile,v 1.2 2012/09/15 22:18:45 laffer1 Exp $
 
 PORTNAME=	boost-libs
 PORTVERSION=	1.48.0
@@ -13,9 +13,9 @@ LICENSE=	mit
 
 USE_BZIP2=	yes
 
-BUILD_DEPENDS+=	bjam:${PORTSDIR}/devel/boost-jam
+BUILD_DEPENDS=	bjam:${PORTSDIR}/devel/boost-jam
 
-OPTIONS=	VERBOSE_BUILD	"Show compiler messages"	off \
+OPTIONS=	VERBOSE_BUILD	"Show compiler messages"	on \
 		DEBUG		"Build debugging symbols"	off \
 		ICU		"Boost.Regex with ICU unicode support" on \
 		OPTIMIZED_CFLAGS "Enable -O3 optimization"	off
@@ -26,7 +26,9 @@ BOOST_LIBS=	date_time filesystem graph iostreams\
 		serialization signals system thread unit_test_framework\
 		wave wserialization
 
-.include <bsd.port.pre.mk>
+BJAM_OPTIONS+= -with-libraries=${BOOST_LIBS} -DBOOST_CHRONO_THREAD_DISABLED
+
+.include <bsd.mport.options.mk>
 .include "${PORTSDIR}/devel/boost-all/compiled.mk"
 
 .if defined (WITH_ICU)
@@ -38,6 +40,8 @@ BJAM_OPTIONS+=	-sICU_PATH=${LOCALBASE}
 BROKEN=		Does not compile on sparc64: invokes i386 assembler
 .endif
 
+.include <bsd.port.pre.mk>
+
 post-patch: customize-boost-build
 # Remove Boost.Python
 	${RM} -rf ${WRKSRC}/boost/python* ${WRKSRC}/libs/python
@@ -47,12 +51,12 @@ post-patch: customize-boost-build
 do-build:
 # build the library
 	cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_OPTIONS} --prefix=${PREFIX}\
+		${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${BJAM} ${BJAM_OPTIONS} --prefix=${PREFIX}\
 		--toolset=${BOOST_TOOLS}
 
 # build bgl-viz library
 	cd ${WRKSRC}/libs/graph/build && \
-		${SETENV} ${MAKE_ENV} ${BJAM} ${BJAM_OPTIONS} --prefix=${PREFIX}\
+		${SETENV} ${MAKE_ENV} ${FAKE_MAKEENV} ${BJAM} ${BJAM_OPTIONS} --prefix=${PREFIX}\
 		--toolset=${BOOST_TOOLS}
 
 # build random device code
