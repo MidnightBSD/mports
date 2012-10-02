@@ -5,7 +5,7 @@
          # suffix.
          if $(type) = SHARED_LIB &&
 -          ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix ) &&
-+          ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix freebsd ) &&
++          ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix freebsd midnightbsd ) &&
              ! ( [ $(property-set).get <toolset> ] in pgi ) )
          {
              result = $(result).$(BOOST_VERSION)  ;
