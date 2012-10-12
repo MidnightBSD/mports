@@ -62,9 +62,9 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Opcode.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/ops.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/POSIX.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/POSIX.pod
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Socket.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/SDBM_File.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Storable.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Socket.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/attributes.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/mro.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/arybase.pm
@@ -125,12 +125,12 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/Piece/Piece.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/Piece/Piece.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/HiRes/HiRes.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/HiRes/HiRes.so
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/Zlib.bs
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/autosplit.ix
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/Zlib.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Bzip2/autosplit.ix
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Bzip2/Bzip2.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Bzip2/Bzip2.so
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/autosplit.ix
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/Zlib.bs
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib/Zlib.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Cwd/Cwd.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Cwd/Cwd.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/DB_File/autosplit.ix
@@ -162,10 +162,10 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/Util.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/Util.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/FieldHash/FieldHash.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/FieldHash/FieldHash.so
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util/Util.bs
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util/Util.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/MIME/Base64/Base64.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/MIME/Base64/Base64.so
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util/Util.bs
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util/Util.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/NDBM_File/NDBM_File.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/NDBM_File/NDBM_File.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Opcode/Opcode.bs
@@ -174,11 +174,11 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/POSIX/POSIX.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/POSIX/POSIX.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/SDBM_File/SDBM_File.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/SDBM_File/SDBM_File.so
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket/Socket.bs
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket/Socket.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/sdbm/extralibs.ld
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Storable/Storable.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Storable/Storable.so
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket/Socket.bs
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket/Socket.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys/Hostname/Hostname.bs
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys/Hostname/Hostname.so
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys/Syslog/Syslog.bs
@@ -238,8 +238,8 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/CN.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/Symbol.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/JP.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/KR.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/Unicode.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/TW.pm
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/Unicode.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/Alias.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/GSM0338.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/Encoding.pm
@@ -257,13 +257,11 @@ lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/KR/2022_KR.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode/CN/HZ.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Hash/Util.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Hash/Util/FieldHash.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util/XS.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util/PP.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Scalar/Util.pm
-lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Scalar/Util/PP.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/MIME/QuotedPrint.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/MIME/Base64.pm
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util.pm
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util/XS.pm
+lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Scalar/Util.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Sys/Hostname.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Sys/Syslog.pm
 lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/threads/shared.pm
@@ -398,12 +396,12 @@ lib/perl5/%%PERL_VER%%/XSLoader.pm
 lib/perl5/%%PERL_VER%%/Fatal.pm
 lib/perl5/%%PERL_VER%%/autodie.pm
 lib/perl5/%%PERL_VER%%/autouse.pm
-lib/perl5/%%PERL_VER%%/constant.pm
 lib/perl5/%%PERL_VER%%/bignum.pm
 lib/perl5/%%PERL_VER%%/bigrat.pm
 lib/perl5/%%PERL_VER%%/bigint.pm
 lib/perl5/%%PERL_VER%%/base.pm
 lib/perl5/%%PERL_VER%%/fields.pm
+lib/perl5/%%PERL_VER%%/constant.pm
 lib/perl5/%%PERL_VER%%/if.pm
 lib/perl5/%%PERL_VER%%/parent.pm
 lib/perl5/%%PERL_VER%%/perlfaq.pm
@@ -438,9 +436,9 @@ lib/perl5/%%PERL_VER%%/Exporter/Heavy.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Embed.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/typemap
 lib/perl5/%%PERL_VER%%/ExtUtils/Miniperl.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Command.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Constant.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Installed.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Install.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Packlist.pm
@@ -448,6 +446,8 @@ lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_OS2.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_VOS.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_Unix.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/MANIFEST.SKIP
+lib/perl5/%%PERL_VER%%/ExtUtils/Manifest.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Mksymlists.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_Win32.pm
@@ -464,15 +464,17 @@ lib/perl5/%%PERL_VER%%/ExtUtils/Liblist.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_Darwin.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/MM_AIX.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Mkbootstrap.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/MM_QNX.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/MM_NW5.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/MM_Any.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/MANIFEST.SKIP
-lib/perl5/%%PERL_VER%%/ExtUtils/Manifest.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS.pod
+lib/perl5/%%PERL_VER%%/ExtUtils/MM_QNX.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/xsubpp
+lib/perl5/%%PERL_VER%%/ExtUtils/MM_NW5.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/MM_Any.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Constant/ProxySubs.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Constant/XS.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Constant/Utils.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Constant/Base.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Base.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/Windows.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/aix.pm
@@ -485,22 +487,18 @@ lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/dec_osf.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/Windows/GCC.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/Windows/BCC.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/Windows/MSVC.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Constant/ProxySubs.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Constant/XS.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Constant/Utils.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Constant/Base.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/Tutorial.pod
-lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/FAQ.pod
-lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/Config.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Liblist/Kid.pm
-lib/perl5/%%PERL_VER%%/ExtUtils/Command/MM.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps/InputMap.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps/Type.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps/OutputMap.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps/Cmd.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/Tutorial.pod
+lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/FAQ.pod
+lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker/Config.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Liblist/Kid.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS/Utilities.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS/Constants.pm
 lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS/CountLines.pm
+lib/perl5/%%PERL_VER%%/ExtUtils/Command/MM.pm
 lib/perl5/%%PERL_VER%%/File/Basename.pm
 lib/perl5/%%PERL_VER%%/File/Compare.pm
 lib/perl5/%%PERL_VER%%/File/Copy.pm
@@ -508,16 +506,16 @@ lib/perl5/%%PERL_VER%%/File/DosGlob.pm
 lib/perl5/%%PERL_VER%%/File/Find.pm
 lib/perl5/%%PERL_VER%%/File/stat.pm
 lib/perl5/%%PERL_VER%%/File/CheckTree.pm
-lib/perl5/%%PERL_VER%%/File/Temp.pm
 lib/perl5/%%PERL_VER%%/File/Fetch.pm
 lib/perl5/%%PERL_VER%%/File/Path.pm
+lib/perl5/%%PERL_VER%%/File/Temp.pm
 lib/perl5/%%PERL_VER%%/File/GlobMapper.pm
 lib/perl5/%%PERL_VER%%/Getopt/Std.pm
 lib/perl5/%%PERL_VER%%/Getopt/Long.pm
 lib/perl5/%%PERL_VER%%/overload/numbers.pm
 lib/perl5/%%PERL_VER%%/Pod/Escapes.pm
-lib/perl5/%%PERL_VER%%/Pod/LaTeX.pm
 lib/perl5/%%PERL_VER%%/Pod/Html.pm
+lib/perl5/%%PERL_VER%%/Pod/LaTeX.pm
 lib/perl5/%%PERL_VER%%/Pod/InputObjects.pm
 lib/perl5/%%PERL_VER%%/Pod/Select.pm
 lib/perl5/%%PERL_VER%%/Pod/Checker.pm
@@ -774,7 +772,7 @@ lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC118.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC122.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC129.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC130.pl
-lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC133.pl
+lib/perl5/%%PERL_VER%%/unicore/lib/Ccc/CCC132.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Lower/Y.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Lb/AI.pl
 lib/perl5/%%PERL_VER%%/unicore/lib/Lb/AL.pl
@@ -1559,8 +1557,8 @@ lib/perl5/%%PERL_VER%%/User/grent.pm
 lib/perl5/%%PERL_VER%%/User/pwent.pm
 lib/perl5/%%PERL_VER%%/version/Internals.pod
 lib/perl5/%%PERL_VER%%/warnings/register.pm
-lib/perl5/%%PERL_VER%%/Archive/Tar.pm
 lib/perl5/%%PERL_VER%%/Archive/Extract.pm
+lib/perl5/%%PERL_VER%%/Archive/Tar.pm
 lib/perl5/%%PERL_VER%%/Archive/Tar/Constant.pm
 lib/perl5/%%PERL_VER%%/Archive/Tar/File.pm
 lib/perl5/%%PERL_VER%%/Attribute/Handlers.pm
@@ -1580,6 +1578,7 @@ lib/perl5/%%PERL_VER%%/CPAN/CacheMgr.pm
 lib/perl5/%%PERL_VER%%/CPAN/FTP.pm
 lib/perl5/%%PERL_VER%%/CPAN/Queue.pm
 lib/perl5/%%PERL_VER%%/CPAN/Distroprefs.pm
+lib/perl5/%%PERL_VER%%/CPAN/Meta.pm
 lib/perl5/%%PERL_VER%%/CPAN/Kwalify.pm
 lib/perl5/%%PERL_VER%%/CPAN/Module.pm
 lib/perl5/%%PERL_VER%%/CPAN/Author.pm
@@ -1599,9 +1598,7 @@ lib/perl5/%%PERL_VER%%/CPAN/Shell.pm
 lib/perl5/%%PERL_VER%%/CPAN/InfoObj.pm
 lib/perl5/%%PERL_VER%%/CPAN/HandleConfig.pm
 lib/perl5/%%PERL_VER%%/CPAN/Index.pm
-lib/perl5/%%PERL_VER%%/CPAN/Meta.pm
 lib/perl5/%%PERL_VER%%/CPAN/Mirrors.pm
-lib/perl5/%%PERL_VER%%/CPAN/Meta/YAML.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/Prereqs.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/History.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/Validator.pm
@@ -1609,6 +1606,7 @@ lib/perl5/%%PERL_VER%%/CPAN/Meta/Converter.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/Feature.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/Spec.pm
 lib/perl5/%%PERL_VER%%/CPAN/Meta/Requirements.pm
+lib/perl5/%%PERL_VER%%/CPAN/Meta/YAML.pm
 lib/perl5/%%PERL_VER%%/CPAN/FTP/netrc.pm
 lib/perl5/%%PERL_VER%%/CPAN/LWP/UserAgent.pm
 lib/perl5/%%PERL_VER%%/CPAN/Kwalify/distroprefs.yml
@@ -1636,8 +1634,8 @@ lib/perl5/%%PERL_VER%%/CPANPLUS/Dist.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Configure.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Selfupdate.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Error.pm
-lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/Build.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/MM.pm
+lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/Build.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/Sample.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/Autobundle.pm
 lib/perl5/%%PERL_VER%%/CPANPLUS/Dist/Base.pm
@@ -1672,8 +1670,8 @@ lib/perl5/%%PERL_VER%%/Devel/InnerPackage.pm
 lib/perl5/%%PERL_VER%%/Carp/Heavy.pm
 lib/perl5/%%PERL_VER%%/Digest/file.pm
 lib/perl5/%%PERL_VER%%/Digest/base.pm
-lib/perl5/%%PERL_VER%%/HTTP/Tiny.pm
 lib/perl5/%%PERL_VER%%/Filter/Simple.pm
+lib/perl5/%%PERL_VER%%/HTTP/Tiny.pm
 lib/perl5/%%PERL_VER%%/I18N/Collate.pm
 lib/perl5/%%PERL_VER%%/I18N/LangTags.pm
 lib/perl5/%%PERL_VER%%/I18N/LangTags/List.pm
@@ -1709,10 +1707,17 @@ lib/perl5/%%PERL_VER%%/IPC/Cmd.pm
 lib/perl5/%%PERL_VER%%/IPC/Open2.pm
 lib/perl5/%%PERL_VER%%/IPC/Open3.pm
 lib/perl5/%%PERL_VER%%/Compress/Zlib.pm
-lib/perl5/%%PERL_VER%%/Locale/Currency.pod
-lib/perl5/%%PERL_VER%%/Locale/Currency.pm
+lib/perl5/%%PERL_VER%%/JSON/PP.pm
+lib/perl5/%%PERL_VER%%/JSON/PP/Boolean.pm
+lib/perl5/%%PERL_VER%%/Log/Message.pm
+lib/perl5/%%PERL_VER%%/Log/Message/Config.pm
+lib/perl5/%%PERL_VER%%/Log/Message/Handlers.pm
+lib/perl5/%%PERL_VER%%/Log/Message/Item.pm
+lib/perl5/%%PERL_VER%%/Log/Message/Simple.pm
 lib/perl5/%%PERL_VER%%/Locale/Maketext.pod
 lib/perl5/%%PERL_VER%%/Locale/Maketext.pm
+lib/perl5/%%PERL_VER%%/Locale/Currency.pod
+lib/perl5/%%PERL_VER%%/Locale/Currency.pm
 lib/perl5/%%PERL_VER%%/Locale/Country.pod
 lib/perl5/%%PERL_VER%%/Locale/Language.pod
 lib/perl5/%%PERL_VER%%/Locale/Country.pm
@@ -1721,6 +1726,11 @@ lib/perl5/%%PERL_VER%%/Locale/Script.pod
 lib/perl5/%%PERL_VER%%/Locale/Language.pm
 lib/perl5/%%PERL_VER%%/Locale/Script.pm
 lib/perl5/%%PERL_VER%%/Locale/Codes.pm
+lib/perl5/%%PERL_VER%%/Locale/Maketext/Guts.pm
+lib/perl5/%%PERL_VER%%/Locale/Maketext/GutsLoader.pm
+lib/perl5/%%PERL_VER%%/Locale/Maketext/TPJ13.pod
+lib/perl5/%%PERL_VER%%/Locale/Maketext/Cookbook.pod
+lib/perl5/%%PERL_VER%%/Locale/Maketext/Simple.pm
 lib/perl5/%%PERL_VER%%/Locale/Codes/LangExt.pod
 lib/perl5/%%PERL_VER%%/Locale/Codes/Language_Retired.pm
 lib/perl5/%%PERL_VER%%/Locale/Codes/Script.pod
@@ -1753,34 +1763,30 @@ lib/perl5/%%PERL_VER%%/Locale/Codes/Language.pod
 lib/perl5/%%PERL_VER%%/Locale/Codes/Currency.pm
 lib/perl5/%%PERL_VER%%/Locale/Codes/API.pod
 lib/perl5/%%PERL_VER%%/Locale/Codes/Currency_Retired.pm
-lib/perl5/%%PERL_VER%%/Locale/Maketext/Guts.pm
-lib/perl5/%%PERL_VER%%/Locale/Maketext/GutsLoader.pm
-lib/perl5/%%PERL_VER%%/Locale/Maketext/TPJ13.pod
-lib/perl5/%%PERL_VER%%/Locale/Maketext/Cookbook.pod
-lib/perl5/%%PERL_VER%%/Locale/Maketext/Simple.pm
-lib/perl5/%%PERL_VER%%/Log/Message.pm
-lib/perl5/%%PERL_VER%%/Log/Message/Config.pm
-lib/perl5/%%PERL_VER%%/Log/Message/Handlers.pm
-lib/perl5/%%PERL_VER%%/Log/Message/Item.pm
-lib/perl5/%%PERL_VER%%/Log/Message/Simple.pm
-lib/perl5/%%PERL_VER%%/JSON/PP.pm
-lib/perl5/%%PERL_VER%%/JSON/PP/Boolean.pm
-lib/perl5/%%PERL_VER%%/Math/Complex.pm
-lib/perl5/%%PERL_VER%%/Math/Trig.pm
-lib/perl5/%%PERL_VER%%/Math/BigRat.pm
 lib/perl5/%%PERL_VER%%/Math/BigInt.pm
 lib/perl5/%%PERL_VER%%/Math/BigFloat.pm
+lib/perl5/%%PERL_VER%%/Math/BigRat.pm
+lib/perl5/%%PERL_VER%%/Math/Complex.pm
+lib/perl5/%%PERL_VER%%/Math/Trig.pm
 lib/perl5/%%PERL_VER%%/Math/BigInt/CalcEmu.pm
 lib/perl5/%%PERL_VER%%/Math/BigInt/Calc.pm
 lib/perl5/%%PERL_VER%%/Math/BigInt/Trace.pm
 lib/perl5/%%PERL_VER%%/Math/BigFloat/Trace.pm
-lib/perl5/%%PERL_VER%%/Module/Load.pm
+lib/perl5/%%PERL_VER%%/Memoize/ExpireFile.pm
+lib/perl5/%%PERL_VER%%/Memoize/ExpireTest.pm
+lib/perl5/%%PERL_VER%%/Memoize/NDBM_File.pm
+lib/perl5/%%PERL_VER%%/Memoize/AnyDBM_File.pm
+lib/perl5/%%PERL_VER%%/Memoize/Expire.pm
+lib/perl5/%%PERL_VER%%/Memoize/Storable.pm
+lib/perl5/%%PERL_VER%%/Memoize/SDBM_File.pm
 lib/perl5/%%PERL_VER%%/Module/Build.pm
 lib/perl5/%%PERL_VER%%/Module/CoreList.pm
+lib/perl5/%%PERL_VER%%/Module/Load.pm
 lib/perl5/%%PERL_VER%%/Module/CoreList.pod
 lib/perl5/%%PERL_VER%%/Module/Loaded.pm
 lib/perl5/%%PERL_VER%%/Module/Metadata.pm
 lib/perl5/%%PERL_VER%%/Module/Pluggable.pm
+lib/perl5/%%PERL_VER%%/Module/Load/Conditional.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Version.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Notes.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Dumper.pm
@@ -1810,28 +1816,20 @@ lib/perl5/%%PERL_VER%%/Module/Build/Platform/EBCDIC.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Platform/cygwin.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Platform/aix.pm
 lib/perl5/%%PERL_VER%%/Module/Build/Platform/Default.pm
-lib/perl5/%%PERL_VER%%/Module/Load/Conditional.pm
 lib/perl5/%%PERL_VER%%/Module/Pluggable/Object.pm
-lib/perl5/%%PERL_VER%%/Memoize/ExpireFile.pm
-lib/perl5/%%PERL_VER%%/Memoize/ExpireTest.pm
-lib/perl5/%%PERL_VER%%/Memoize/NDBM_File.pm
-lib/perl5/%%PERL_VER%%/Memoize/AnyDBM_File.pm
-lib/perl5/%%PERL_VER%%/Memoize/Expire.pm
-lib/perl5/%%PERL_VER%%/Memoize/Storable.pm
-lib/perl5/%%PERL_VER%%/Memoize/SDBM_File.pm
 lib/perl5/%%PERL_VER%%/inc/latest.pm
 lib/perl5/%%PERL_VER%%/inc/latest/private.pm
 lib/perl5/%%PERL_VER%%/Object/Accessor.pm
 lib/perl5/%%PERL_VER%%/Package/Constants.pm
-lib/perl5/%%PERL_VER%%/Parse/CPAN/Meta.pm
 lib/perl5/%%PERL_VER%%/Params/Check.pm
+lib/perl5/%%PERL_VER%%/Parse/CPAN/Meta.pm
 lib/perl5/%%PERL_VER%%/Perl/OSType.pm
 lib/perl5/%%PERL_VER%%/PerlIO/via/QuotedPrint.pm
 lib/perl5/%%PERL_VER%%/Search/Dict.pm
-lib/perl5/%%PERL_VER%%/Term/Cap.pm
 lib/perl5/%%PERL_VER%%/Term/ANSIColor.pm
-lib/perl5/%%PERL_VER%%/Term/ReadLine.pm
+lib/perl5/%%PERL_VER%%/Term/Cap.pm
 lib/perl5/%%PERL_VER%%/Term/Complete.pm
+lib/perl5/%%PERL_VER%%/Term/ReadLine.pm
 lib/perl5/%%PERL_VER%%/Term/UI.pm
 lib/perl5/%%PERL_VER%%/Term/UI/History.pm
 lib/perl5/%%PERL_VER%%/Test/Harness.pm
@@ -1842,11 +1840,6 @@ lib/perl5/%%PERL_VER%%/Test/Tutorial.pod
 lib/perl5/%%PERL_VER%%/Test/Builder/Module.pm
 lib/perl5/%%PERL_VER%%/Test/Builder/Tester.pm
 lib/perl5/%%PERL_VER%%/Test/Builder/Tester/Color.pm
-lib/perl5/%%PERL_VER%%/Text/Abbrev.pm
-lib/perl5/%%PERL_VER%%/Text/Balanced.pm
-lib/perl5/%%PERL_VER%%/Text/ParseWords.pm
-lib/perl5/%%PERL_VER%%/Text/Tabs.pm
-lib/perl5/%%PERL_VER%%/Text/Wrap.pm
 lib/perl5/%%PERL_VER%%/TAP/Base.pm
 lib/perl5/%%PERL_VER%%/TAP/Parser.pm
 lib/perl5/%%PERL_VER%%/TAP/Object.pm
@@ -1891,6 +1884,11 @@ lib/perl5/%%PERL_VER%%/TAP/Formatter/Console/ParallelSession.pm
 lib/perl5/%%PERL_VER%%/TAP/Formatter/Console/Session.pm
 lib/perl5/%%PERL_VER%%/TAP/Formatter/File/Session.pm
 lib/perl5/%%PERL_VER%%/TAP/Harness/Beyond.pod
+lib/perl5/%%PERL_VER%%/Text/Abbrev.pm
+lib/perl5/%%PERL_VER%%/Text/Balanced.pm
+lib/perl5/%%PERL_VER%%/Text/ParseWords.pm
+lib/perl5/%%PERL_VER%%/Text/Tabs.pm
+lib/perl5/%%PERL_VER%%/Text/Wrap.pm
 lib/perl5/%%PERL_VER%%/Thread/Queue.pm
 lib/perl5/%%PERL_VER%%/Thread/Semaphore.pm
 lib/perl5/%%PERL_VER%%/Version/Requirements.pm
@@ -2006,6 +2004,7 @@ lib/perl5/%%PERL_VER%%/pod/perlcommunity.pod
 lib/perl5/%%PERL_VER%%/pod/perldoc.pod
 lib/perl5/%%PERL_VER%%/pod/perlhist.pod
 lib/perl5/%%PERL_VER%%/pod/perldelta.pod
+lib/perl5/%%PERL_VER%%/pod/perl5161delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5160delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5142delta.pod
 lib/perl5/%%PERL_VER%%/pod/perl5141delta.pod
@@ -2118,8 +2117,8 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/Piece
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time/HiRes
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Time
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Bzip2
+@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw/Zlib
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress/Raw
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Compress
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Cwd
@@ -2139,17 +2138,17 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util/FieldHash
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash/Util
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Hash
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/MIME/Base64
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/MIME
+@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List/Util
+@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/List
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/NDBM_File
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Opcode
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/POSIX
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/SDBM_File
+@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/sdbm
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Storable
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Socket
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys/Hostname
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys/Syslog
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/Sys
@@ -2188,11 +2187,10 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Encode
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Hash/Util
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Hash
+@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/MIME
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List/Util
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/List
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Scalar/Util
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Scalar
-@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/MIME
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/Sys
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/threads
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/CORE
@@ -2203,15 +2201,15 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/Net
 @dirrm lib/perl5/%%PERL_VER%%/DBM_Filter
 @dirrm lib/perl5/%%PERL_VER%%/Exporter
+@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Constant
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform/Windows
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder/Platform
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/CBuilder
-@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Constant
+@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/MakeMaker
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Liblist
-@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Command
-@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Typemaps
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils/ParseXS
+@dirrm lib/perl5/%%PERL_VER%%/ExtUtils/Command
 @dirrm lib/perl5/%%PERL_VER%%/ExtUtils
 @dirrm lib/perl5/%%PERL_VER%%/File
 @dirrm lib/perl5/%%PERL_VER%%/Getopt
@@ -2337,8 +2335,8 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/Devel
 @dirrm lib/perl5/%%PERL_VER%%/Carp
 @dirrm lib/perl5/%%PERL_VER%%/Digest
-@dirrm lib/perl5/%%PERL_VER%%/HTTP
 @dirrm lib/perl5/%%PERL_VER%%/Filter
+@dirrm lib/perl5/%%PERL_VER%%/HTTP
 @dirrm lib/perl5/%%PERL_VER%%/I18N/LangTags
 @dirrm lib/perl5/%%PERL_VER%%/I18N
 @dirrm lib/perl5/%%PERL_VER%%/IO/Uncompress/Adapter
@@ -2352,29 +2350,29 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/IO
 @dirrm lib/perl5/%%PERL_VER%%/IPC
 @dirrm lib/perl5/%%PERL_VER%%/Compress
-@dirrm lib/perl5/%%PERL_VER%%/Locale/Codes
-@dirrm lib/perl5/%%PERL_VER%%/Locale/Maketext
-@dirrm lib/perl5/%%PERL_VER%%/Locale
-@dirrm lib/perl5/%%PERL_VER%%/Log/Message
-@dirrm lib/perl5/%%PERL_VER%%/Log
 @dirrm lib/perl5/%%PERL_VER%%/JSON/PP
 @dirrm lib/perl5/%%PERL_VER%%/JSON
+@dirrm lib/perl5/%%PERL_VER%%/Log/Message
+@dirrm lib/perl5/%%PERL_VER%%/Log
+@dirrm lib/perl5/%%PERL_VER%%/Locale/Maketext
+@dirrm lib/perl5/%%PERL_VER%%/Locale/Codes
+@dirrm lib/perl5/%%PERL_VER%%/Locale
 @dirrm lib/perl5/%%PERL_VER%%/Math/BigInt
 @dirrm lib/perl5/%%PERL_VER%%/Math/BigFloat
 @dirrm lib/perl5/%%PERL_VER%%/Math
+@dirrm lib/perl5/%%PERL_VER%%/Memoize
+@dirrm lib/perl5/%%PERL_VER%%/Module/Load
 @dirrm lib/perl5/%%PERL_VER%%/Module/Build/Platform
 @dirrm lib/perl5/%%PERL_VER%%/Module/Build
-@dirrm lib/perl5/%%PERL_VER%%/Module/Load
 @dirrm lib/perl5/%%PERL_VER%%/Module/Pluggable
 @dirrm lib/perl5/%%PERL_VER%%/Module
-@dirrm lib/perl5/%%PERL_VER%%/Memoize
 @dirrm lib/perl5/%%PERL_VER%%/inc/latest
 @dirrm lib/perl5/%%PERL_VER%%/inc
 @dirrm lib/perl5/%%PERL_VER%%/Object
 @dirrm lib/perl5/%%PERL_VER%%/Package
+@dirrm lib/perl5/%%PERL_VER%%/Params
 @dirrm lib/perl5/%%PERL_VER%%/Parse/CPAN
 @dirrm lib/perl5/%%PERL_VER%%/Parse
-@dirrm lib/perl5/%%PERL_VER%%/Params
 @dirrm lib/perl5/%%PERL_VER%%/Perl
 @dirrm lib/perl5/%%PERL_VER%%/PerlIO/via
 @dirrm lib/perl5/%%PERL_VER%%/PerlIO
@@ -2384,7 +2382,6 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/Test/Builder/Tester
 @dirrm lib/perl5/%%PERL_VER%%/Test/Builder
 @dirrm lib/perl5/%%PERL_VER%%/Test
-@dirrm lib/perl5/%%PERL_VER%%/Text
 @dirrm lib/perl5/%%PERL_VER%%/TAP/Parser/Result
 @dirrm lib/perl5/%%PERL_VER%%/TAP/Parser/Iterator
 @dirrm lib/perl5/%%PERL_VER%%/TAP/Parser/Scheduler
@@ -2396,6 +2393,7 @@ lib/libperl.so
 @dirrm lib/perl5/%%PERL_VER%%/TAP/Formatter
 @dirrm lib/perl5/%%PERL_VER%%/TAP/Harness
 @dirrm lib/perl5/%%PERL_VER%%/TAP
+@dirrm lib/perl5/%%PERL_VER%%/Text
 @dirrm lib/perl5/%%PERL_VER%%/Thread
 @dirrm lib/perl5/%%PERL_VER%%/Version
 @dirrm lib/perl5/%%PERL_VER%%/autodie/exception
