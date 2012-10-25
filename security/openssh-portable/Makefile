@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.11 2009/11/26 16:01:20 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.12 2012/02/29 01:09:44 laffer1 Exp $
 
 PORTNAME=	openssh
 DISTVERSION=	5.8p2
+PORTREVISION=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	${MASTER_SITE_OPENBSD}
 MASTER_SITE_SUBDIR=	OpenSSH/portable
@@ -53,6 +54,15 @@ OPTIONS=	PAM		"Enable pam(3) support"				on \
 		OVERWRITE_BASE	"OpenSSH overwrite base"			off
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 4016
+EXTRA_PATCHES=        ${FILESDIR}/extra-patch-configure
+.endif
+
+.if ${OSVERSION} >= 4016
+CONFIGURE_ARGS+=      --disable-utmp --disable-wtmp --disable-wtmpx --without-
+lastlog
+.endif
 
 .if defined(WITH_X509) && defined(WITH_HPN)
 BROKEN=		X509 patches and HPN patches do not apply cleanly together
