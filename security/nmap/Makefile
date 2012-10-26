@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/security/nmap/Makefile,v 1.7 2012/02/05 03:45:27 laffer1 Exp $
+# $MidnightBSD: mports/security/nmap/Makefile,v 1.8 2012/02/05 03:45:39 laffer1 Exp $
 # $FreeBSD: ports/security/nmap/Makefile,v 1.122 2010/09/03 21:16:38 ohauer Exp $
 
 PORTNAME=	nmap
-PORTVERSION=	5.51
-PORTREVISION=	1
+PORTVERSION=	5.59BETA1
+PORTREVISION=	0
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://nmap.org/dist/ \
 		FREEBSD_LOCAL/ohauer
