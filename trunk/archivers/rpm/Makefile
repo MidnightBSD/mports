@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.4 2009/09/28 23:29:15 laffer1 Exp $
+# $MidnightBSD: mports/archivers/rpm/Makefile,v 1.5 2011/02/02 20:03:22 laffer1 Exp $
 
 PORTNAME=	rpm
 PORTVERSION=	3.0.6
 PORTREVISION=	15
 CATEGORIES=	archivers
 MASTER_SITES=	http://rpm5.org/files/rpm/rpm-3.0/ \
-		http://ftp.tpnet.pl/vol/d4/ftp.rpm.org/rpm/dist/rpm-3.0.x/ \
+		http://rpm.org/releases/historical/rpm-3.0.x/ \
 		http://www.mirrorservice.org/sites/ftp.rpm.org/pub/rpm/dist/rpm-3.0.x/
 
 MAINTAINER=	ports@MidnightBSD.org
