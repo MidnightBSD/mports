@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.8 2010/07/31 00:28:03 laffer1 Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.9 2011/07/01 02:28:05 laffer1 Exp $
 
 PORTNAME=	wget
-DISTVERSION=	1.12
-PORTREVISION=	3
+DISTVERSION=	1.13.4
+PORTREVISION=	0
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
-EXTRACT_SUFX=	.tar.lzma
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Retrieve files from the Net via HTTP and FTP
