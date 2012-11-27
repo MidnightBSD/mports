@@ -1,9 +1,7 @@
-#
-# $MidnightBSD: mports/archivers/libzip/Makefile,v 1.1 2009/01/04 00:55:06 ctriv Exp $
-#
+# $MidnightBSD: mports/archivers/libzip/Makefile,v 1.2 2012/02/24 01:44:54 laffer1 Exp $
 
 PORTNAME=	libzip
-PORTVERSION=	0.10
+PORTVERSION=	0.10.1
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.nih.at/libzip/
 
