@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/archivers/lzop/Makefile,v 1.1 2009/12/25 17:18:03 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzop/Makefile,v 1.2 2012/02/24 01:52:24 laffer1 Exp $
 
 PORTNAME=	lzop
 DISTVERSION=	1.03
 CATEGORIES=	archivers
-MASTER_SITES=	http://www.lzop.org/download/
+MASTER_SITES=	http://www.lzop.org/download/ \
+		FREEBSD_LOCAL/mandree
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast file compressor similar to gzip, using the LZO library
