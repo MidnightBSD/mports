@@ -1,18 +1,16 @@
-# $MidnightBSD: mports/shells/mksh/Makefile,v 1.29 2012/03/25 23:09:12 laffer1 Exp $
+# $MidnightBSD: mports/shells/mksh/Makefile,v 1.30 2012/04/07 15:12:02 laffer1 Exp $
 
 PORTNAME=	mksh
-DISTVERSION=	R40f
+DISTVERSION=	R41
 CATEGORIES=	shells
 MASTER_SITES=	http://www.mirbsd.org/MirOS/dist/mir/mksh/ \
 		http://pub.allbsd.org/MirOS/dist/mir/mksh/
 		
-DISTFILES=	${PORTNAME}-${DISTVERSION}.cpio.gz
+DISTFILES=	${PORTNAME}-${DISTVERSION}.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MirBSD enhanced shell based on pdksh
 LICENSE=	agg
-
-USE_CPIO=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
@@ -24,11 +22,6 @@ PKGINSTALL=	pkg-install
 PKGDEINSTALL=	pkg-deinstall
 
 .include <bsd.port.pre.mk>
-
-do-extract:
-	${MKDIR} ${WRKDIR}
-	cd ${WRKDIR} && \
-		${GZCAT} ${DISTDIR}/${DISTFILES} | ${CPIO} -id
 
 do-build:
 	cd ${WRKSRC} && CFLAGS="${CFLAGS}" CC="${CC}" LDFLAGS="${LDFLAGS}" CPPFLAGS="${CPPFLAGS}" SHELL=${SH} ${SH} ${WRKSRC}/Build.sh -Q -r -c lto
