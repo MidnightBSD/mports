@@ -1,8 +1,9 @@
-# $MidnightBSD: mports/graphics/gdk-pixbuf2/Makefile,v 1.2 2012/02/28 03:26:30 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf2/Makefile,v 1.3 2012/02/29 02:21:19 laffer1 Exp $
 # $FreeBSD: ports/graphics/gdk-pixbuf2/Makefile,v 1.2 2010/12/04 07:31:56 ade Exp $
 
 PORTNAME=	gdk-pixbuf
 PORTVERSION=	2.23.5
+PORTREVISION=	1
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/${PORTVERSION:R}
@@ -15,7 +16,7 @@ COMMENT=	A graphic library for GTK+
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15.15:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		jasper.4:${PORTSDIR}/graphics/jasper
