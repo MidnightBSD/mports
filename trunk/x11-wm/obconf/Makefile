@@ -1,50 +1,37 @@
-# New ports collection makefile for:	obconf
-# Date created:				2002-10-13
-# Whom:					trevor
-#
-# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.5 2008/08/19 18:54:20 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/obconf/Makefile,v 1.13 2006/09/02 10:02:10 novel Exp $
-#
+# $MidnightBSD: mports/x11-wm/obconf/Makefile,v 1.6 2011/12/15 00:57:58 laffer1 Exp $
 
 PORTNAME=	obconf
 PORTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://offload1.icculus.org/openbox/obconf/
+MASTER_SITES=	http://openbox.org/dist/obconf/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Preferences manager for the Openbox window manager
 LICENSE=	gpl2
 
 LIB_DEPENDS=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification \
-		obparser.21:${PORTSDIR}/x11-wm/openbox
+		obrender.27:${PORTSDIR}/x11-wm/openbox
 
-USE_XLIB=	yes
-USE_GNOME=	gnomehier  libglade2
-USE_GMAKE=	yes
+USE_GNOME=	gnomehier libglade2
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+CONFIGURE_ENV=	OPENBOX_CFLAGS="`pkg-config --cflags obrender-3.5 obt-3.5`" \
+		OPENBOX_LIBS="`pkg-config --libs obrender-3.5 obt-3.5`"
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/openbox
+MAKE_ARGS=	mkdir_p='${MKDIR}'
 
-CPPFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 PORTDOCS=	ABOUT-NLS AUTHORS README TODO
-PLIST_FILES=	bin/obconf \
-		share/applications/obconf.desktop \
-		%%DATADIR%%/obconf.glade
-PLIST_DIRS=	%%DATADIR%%
-PLIST=		${WRKDIR}/pkg-plist
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
+PLIST_SUB+=		NLS="@comment "
 .else
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
+USE_GETTEXT=		yes
+PLIST_SUB+=		NLS=""
 .endif
-
-pre-install:
-	@${ECHO_CMD} "@dirrmtry share/applications" > ${PLIST}
 
 post-install:
 .if !defined(NOPORTDOCS)
