@@ -37,8 +37,8 @@ lib/libobt.a
 lib/libobt.la
 lib/libobt.so
 lib/libobt.so.0
-@comment libdata/pkgconfig/obrender-%%VERSION%%.pc
-@comment libdata/pkgconfig/obt-%%VERSION%%.pc
+libdata/pkgconfig/obrender-%%VERSION%%.pc
+libdata/pkgconfig/obt-%%VERSION%%.pc
 libexec/openbox-autostart
 libexec/openbox-xdg-autostart
 share/applications/openbox.desktop
