@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/Makefile,v 1.38 2011/06/05 16:17:11 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/Makefile,v 1.39 2012/03/06 00:18:40 laffer1 Exp $
 
 COMMENT = X11 window managers
 
@@ -21,6 +21,7 @@ SUBDIR += libcompizconfig
 SUBDIR += libdockapp
 SUBDIR += metacity
 SUBDIR += obconf
+SUBDIR += obmenu
 SUBDIR += openbox
 SUBDIR += ratpoison
 SUBDIR += skippy-xd
