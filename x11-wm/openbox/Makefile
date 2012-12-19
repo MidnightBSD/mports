@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.8 2011/02/02 21:39:27 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.9 2012/12/19 02:52:12 laffer1 Exp $
 
 PORTNAME=	openbox
 PORTVERSION=	3.5.0
@@ -13,7 +13,7 @@ LICENSE=        gpl2
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 libxml2 ltverhack
+USE_GNOME=	glib20 libxml2 gnomehack ltverhack
 USE_XORG=	x11 xft
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CFLAGS+="-I${LOCALBASE}/include" \
