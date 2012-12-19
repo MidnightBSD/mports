@@ -1,33 +1,41 @@
-# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.7 2010/08/01 06:49:33 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/openbox/Makefile,v 1.8 2011/02/02 21:39:27 laffer1 Exp $
 
 PORTNAME=	openbox
-PORTVERSION=	3.4.11.2
-PORTREVISION=	1
+PORTVERSION=	3.5.0
+PORTREVISION=	0
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://openbox.org/dist/openbox/ \
-		http://dougbarton.us/Downloads/
+MASTER_SITES=	http://openbox.org/dist/openbox/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A standards compliant, fast, light-weight, extensible window manager
+COMMENT=	Small, fast, standards compliant, extensible window manager
 LICENSE=        gpl2
-
-LIB_DEPENDS=	Xft.2:${PORTSDIR}/x11-fonts/libXft
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20 libxml2 ltverhack
-USE_XORG=	x11
+USE_XORG=	x11 xft
 USE_LDCONFIG=	yes
 CONFIGURE_ENV=	CFLAGS+="-I${LOCALBASE}/include" \
 		LDFLAGS+="-L${LOCALBASE}/lib"
 MAN1=		openbox.1 openbox-session.1 obxprop.1 \
 		openbox-gnome-session.1 openbox-kde-session.1
 
-PLIST_SUB=	VERSION=${PORTVERSION}
+PLIST_SUB=	VERSION=${PORTVERSION:C/.[0-9]+\$//}
 
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
 CONFIGURE_ARGS+=	--disable-nls
 PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if !defined(WITHOUT_IMLIB)
+USE_EFL=	imlib2
+.else
+CONFIGURE_ARGS+=	--disable-imlib2
+.endif
 
 .if !defined(WITHOUT_PANGO)
 USE_GNOME+=	pango
@@ -35,14 +43,13 @@ USE_GNOME+=	pango
 CONFIGURE_ARGS+=	--disable-pango
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
-		${WRKSRC}/Makefile.in
+.if !defined(WITHOUT_STARTUP_NOTIFICATION)
+LIB_DEPENDS+=	startup-notification-1.0:${PORTSDIR}/x11/startup-notification
+.else
+CONFIGURE_ARGS+=	--disable-startup-notification
+.endif
 
 post-configure:
 	@${CHMOD} +x ${WRKSRC}/install-sh
-
-pre-install:
-	@${MKDIR} ${PREFIX}/libdata/ldconfig
 
 .include <bsd.port.mk>
