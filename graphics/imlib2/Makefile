@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.8 2011/12/15 00:57:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib2/Makefile,v 1.9 2012/02/24 18:42:48 laffer1 Exp $
 
 PORTNAME=	imlib2
 PORTVERSION=	1.4.5
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
@@ -60,7 +61,7 @@ PLIST_SUB+=	JPEG="@comment "
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
