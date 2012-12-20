@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.4 2011/09/04 11:50:13 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/lsof/Makefile,v 1.5 2012/03/10 21:23:50 laffer1 Exp $
 # $FreeBSD: ports/sysutils/lsof/Makefile,v 1.158 2008/01/26 22:28:53 wxs Exp $
 
 PORTNAME=	lsof
-PORTVERSION=	4.86A
+PORTVERSION=	4.87A
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
 		ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/  \
@@ -39,7 +39,7 @@ USE_BZIP2=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
-CONFIGURE_ENV=	LSOF_CC="${CC}" LSOF_VERS=6000 FREEBSD_SYS="${SRC_BASE}/sys"
+CONFIGURE_ENV=	LSOF_CC="${CC}"  LSOF_VERS=7042 FREEBSD_SYS="${SRC_BASE}/sys" LSOF_VSTR="7.0-RELEASE"
 PLIST_FILES=	sbin/lsof
 MAN8=		lsof.8
 
