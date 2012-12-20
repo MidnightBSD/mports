@@ -1,10 +1,4 @@
-# New ports collection makefile for:	avahi-autoipd
-# Date created:				31 July 2007
-# Whom:					Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.6 2010/12/04 15:40:20 laffer1 Exp $
-# $FreeBSD: ports/net/avahi-autoipd/Makefile,v 1.3 2007/12/23 20:29:49 marcus Exp $
-#    $MCom: ports/net/avahi-autoipd/Makefile,v 1.1 2007/07/31 18:24:12 ahze Exp $
+# $MidnightBSD: mports/net/avahi-autoipd/Makefile,v 1.7 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTREVISION=	0
 CATEGORIES=	net
@@ -15,6 +9,9 @@ COMMENT=	IPv4LL network address configuration daemon
 LICENSE=	lgpl
 
 BROKEN=		Had problems on MNBSD 0.3+
+
+USERS=		avahi-autoipd
+GROUPS=		${USERS}
 
 LIB_DEPENDS=	avahi-common.3:${PORTSDIR}/net/avahi-app
 

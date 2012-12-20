@@ -1,10 +1,4 @@
-# New ports collection makefile for:	avahi-libdns
-# Date created:				31 July 2007
-# Whom:					Michael Johnson <ahze@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.2 2008/04/11 21:08:02 laffer1 Exp $
-# $FreeBSD: ports/net/avahi-libdns/Makefile,v 1.2 2007/10/27 14:18:24 ahze Exp $
-#
+# $MidnightBSD: mports/net/avahi-libdns/Makefile,v 1.3 2008/05/24 06:18:56 laffer1 Exp $
 
 PORTREVISION=	0
 CATEGORIES=	net
