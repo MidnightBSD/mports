@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.5 2011/06/18 02:44:05 laffer1 Exp $
+# $MidnightBSD: mports/audio/pulseaudio/Makefile,v 1.6 2011/12/15 00:45:51 laffer1 Exp $
 
 PORTNAME=	pulseaudio
 PORTVERSION=	0.9.22
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://0pointer.de/lennart/projects/${PORTNAME}/
 
@@ -12,11 +13,11 @@ LICENSE=	gpl2
 LIB_DEPENDS=	samplerate.1:${PORTSDIR}/audio/libsamplerate \
 		speexdsp.1:${PORTSDIR}/audio/speex \
 		dbus-1.3:${PORTSDIR}/devel/dbus \
-		gdbm.3:${PORTSDIR}/databases/gdbm \
+		gdbm.4:${PORTSDIR}/databases/gdbm \
 		execinfo:${PORTSDIR}/devel/libexecinfo \
 		ck-connector.0:${PORTSDIR}/sysutils/consolekit
 
-USE_GNOME=	 gnomehack glib20 intltool ltverhack
+USE_GNOME=	gnomehack glib20 intltool ltverhack
 USE_XORG=	x11 sm xtst ice
 USE_LDCONFIG=	yes
 USE_GETTEXT=	yes
