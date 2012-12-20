@@ -7,9 +7,13 @@ bin/avahi-resolve
 bin/avahi-resolve-address
 bin/avahi-resolve-host-name
 bin/avahi-set-host-name
-etc/avahi/avahi-daemon.conf
+@unexec if cmp -s %D/etc/avahi/avahi-daemon.conf %D/etc/avahi/avahi-daemon.conf.dist; then rm -f %D/etc/avahi/avahi-daemon.conf; fi
+etc/avahi/avahi-daemon.conf.dist
+@exec [ -f %B/avahi-daemon.conf ] || cp %B/%f %B/avahi-daemon.conf
 etc/avahi/avahi-dnsconfd.action
-etc/avahi/hosts
+@unexec if cmp -s %D/etc/avahi/hosts %D/etc/avahi/hosts.dist; then rm -f %D/etc/avahi/hosts; fi
+etc/avahi/hosts.dist
+@exec [ -f %B/hosts ] || cp %B/%f %B/hosts
 etc/avahi/services/sftp-ssh.service
 etc/avahi/services/ssh.service
 etc/dbus-1/system.d/avahi-dbus.conf
@@ -67,6 +71,8 @@ include/avahi-gobject/ga-record-browser.h
 include/avahi-gobject/ga-service-browser.h
 include/avahi-gobject/ga-service-resolver.h
 lib/avahi/.keep
+lib/girepository-1.0/Avahi-0.6.typelib
+lib/girepository-1.0/AvahiCore-0.6.typelib
 lib/libavahi-client.a
 lib/libavahi-client.la
 lib/libavahi-client.so
@@ -78,7 +84,7 @@ lib/libavahi-common.so.3
 lib/libavahi-core.a
 lib/libavahi-core.la
 lib/libavahi-core.so
-lib/libavahi-core.so.6
+lib/libavahi-core.so.7
 lib/libavahi-glib.a
 lib/libavahi-glib.la
 lib/libavahi-glib.so
@@ -99,17 +105,23 @@ libdata/pkgconfig/avahi-gobject.pc
 sbin/avahi-daemon
 sbin/avahi-dnsconfd
 %%DATADIR%%/avahi-service.dtd
-%%DATADIR%%/introspection/AddressResolver.introspect
-%%DATADIR%%/introspection/DomainBrowser.introspect
-%%DATADIR%%/introspection/EntryGroup.introspect
-%%DATADIR%%/introspection/HostNameResolver.introspect
-%%DATADIR%%/introspection/RecordBrowser.introspect
-%%DATADIR%%/introspection/Server.introspect
-%%DATADIR%%/introspection/ServiceBrowser.introspect
-%%DATADIR%%/introspection/ServiceResolver.introspect
-%%DATADIR%%/introspection/ServiceTypeBrowser.introspect
 %%DATADIR%%/service-types
+share/dbus-1/interfaces/org.freedesktop.Avahi.AddressResolver.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.DomainBrowser.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.EntryGroup.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.HostNameResolver.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.RecordBrowser.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.Server.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceBrowser.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceResolver.xml
+share/dbus-1/interfaces/org.freedesktop.Avahi.ServiceTypeBrowser.xml
+@comment share/dbus-1/system-services/org.freedesktop.Avahi.service
+share/gir-1.0/Avahi-0.6.gir
+share/gir-1.0/AvahiCore-0.6.gir
+share/locale/bg/LC_MESSAGES/avahi.mo
 share/locale/ca/LC_MESSAGES/avahi.mo
+share/locale/cs/LC_MESSAGES/avahi.mo
+share/locale/da/LC_MESSAGES/avahi.mo
 share/locale/de/LC_MESSAGES/avahi.mo
 share/locale/el/LC_MESSAGES/avahi.mo
 share/locale/en_AU/LC_MESSAGES/avahi.mo
@@ -118,24 +130,34 @@ share/locale/en_GB/LC_MESSAGES/avahi.mo
 share/locale/en_NZ/LC_MESSAGES/avahi.mo
 share/locale/es/LC_MESSAGES/avahi.mo
 share/locale/fi/LC_MESSAGES/avahi.mo
+share/locale/fo/LC_MESSAGES/avahi.mo
 share/locale/fr/LC_MESSAGES/avahi.mo
+share/locale/gl/LC_MESSAGES/avahi.mo
+share/locale/he/LC_MESSAGES/avahi.mo
 share/locale/hu/LC_MESSAGES/avahi.mo
+share/locale/id/LC_MESSAGES/avahi.mo
 share/locale/it/LC_MESSAGES/avahi.mo
+share/locale/ja/LC_MESSAGES/avahi.mo
 share/locale/ms/LC_MESSAGES/avahi.mo
+share/locale/nl/LC_MESSAGES/avahi.mo
 share/locale/pl/LC_MESSAGES/avahi.mo
 share/locale/pt_BR/LC_MESSAGES/avahi.mo
+share/locale/ro/LC_MESSAGES/avahi.mo
 share/locale/ru/LC_MESSAGES/avahi.mo
+share/locale/sl/LC_MESSAGES/avahi.mo
 share/locale/sr/LC_MESSAGES/avahi.mo
 share/locale/sv/LC_MESSAGES/avahi.mo
 share/locale/sr@latin/LC_MESSAGES/avahi.mo
+share/locale/uk/LC_MESSAGES/avahi.mo
 share/locale/zh_CN/LC_MESSAGES/avahi.mo
+share/locale/zh_TW/LC_MESSAGES/avahi.mo
 @dirrmtry share/locale/sr@latin/LC_MESSAGES
 @dirrmtry share/locale/sr@latin
+@dirrmtry share/locale/fo/LC_MESSAGES
+@dirrmtry share/locale/fo
 @dirrmtry share/locale/en_NZ/LC_MESSAGES
 @dirrmtry share/locale/en_NZ
-@dirrm %%DATADIR%%/introspection
 @dirrm %%DATADIR%%
-@dirrmtry share/applications
 @dirrm lib/avahi
 @dirrm include/avahi-gobject
 @dirrm include/avahi-glib

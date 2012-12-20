@@ -2,13 +2,13 @@
 # Date created:		18 November 2005
 # Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.8 2011/02/02 21:14:15 laffer1 Exp $
+# $MidnightBSD: mports/net/avahi-app/Makefile,v 1.9 2011/12/15 00:57:52 laffer1 Exp $
 # $FreeBSD: ports/net/avahi-app/Makefile,v 1.7 2007/12/24 19:05:22 marcus Exp $
 #   $MCom: ports/net/avahi-app/Makefile,v 1.6 2007/08/26 06:10:14 marcus Exp $
 #
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.26
+PORTVERSION=	0.6.29
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
@@ -17,10 +17,15 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Service discovery on a local network
 LICENSE=	lgpl
 
+BUILD_DEPENDS?=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
 LIB_DEPENDS?=	expat.6:${PORTSDIR}/textproc/expat2 \
 		daemon.0:${PORTSDIR}/devel/libdaemon \
 		dbus-glib-1.2:${PORTSDIR}/devel/dbus-glib \
-		gdbm.3:${PORTSDIR}/databases/gdbm
+		gdbm.4:${PORTSDIR}/databases/gdbm
+RUN_DEPENDS?=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+
+USERS?=		${PORTNAME}
+GROUPS?=	${USERS}
 
 USE_GNOME?=	gnomehack ltverhack glib20 intltool
 USE_GETTEXT=	yes
@@ -36,10 +41,10 @@ CONFIGURE_ARGS?=--with-distro=freebsd \
 		--disable-doxygen-dot \
 		--localstatedir=/var \
 		--enable-compat-howl
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_KQUEUE" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
+CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_KQUEUE
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if ${AVAHI_SLAVE}=="no"
 CONFLICTS=	howl-[0-9]*
@@ -53,6 +58,8 @@ MLINKS=	avahi-browse.1 avahi-browse-domains.1 \
 	avahi-publish.1 avahi-publish-service.1 \
 	avahi-resolve.1 avahi-resolve-address.1 \
 	avahi-resolve.1 avahi-resolve-host-name.1
+
+DAEMON_CONFIG_FILES=	hosts avahi-daemon.conf
 .endif
 
 USE_RC_SUBR=yes
@@ -68,6 +75,11 @@ CONFIGURE_ARGS+=--disable-autoipd
 CONFIGURE_ARGS+=--enable-gtk
 .else
 CONFIGURE_ARGS+=--disable-gtk
+.endif
+.if ${AVAHI_SLAVE}=="gtk3"
+CONFIGURE_ARGS+=--enable-gtk3
+.else
+CONFIGURE_ARGS+=--disable-gtk3
 .endif
 .if ${AVAHI_SLAVE}=="libdns"
 CONFIGURE_ARGS+=--enable-compat-libdns_sd
@@ -107,16 +119,20 @@ avahi-post-patch:
 		${WRKSRC}/configure \
 		${WRKSRC}/avahi-client/Makefile.in \
 		${WRKSRC}/avahi-daemon/Makefile.in
-	@${REINPLACE_CMD} -e 's|%%RC_SUBR%%|${RC_SUBR}| ; \
+	@${REINPLACE_CMD} -e 's|have_inotify=yes|have_inotify=no|' \
+		${WRKSRC}/configure
+	@${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} \
+	    	${REINPLACE_CMD} -e 's|(LIBINTL)|(INTLLIBS)|g ; \
+		s|(LIBICONV)|(LTLIBICONV)|g'
+	@${REINPLACE_CMD} -e 's|%%RC_SUBR%%|/etc/rc.subr| ; \
 	    	s|%%GNOME_SUBR%%|${GNOME_SUBR}|' \
 		${WRKSRC}/initscript/freebsd/avahi-dnsconfd.sh.in \
 		${WRKSRC}/initscript/freebsd/avahi-daemon.sh.in
 	@${REINPLACE_CMD} -e 's|dbus_connection_disconnect|dbus_connection_close|g' \
-		${WRKSRC}/avahi-client/client.c \
+	    	${WRKSRC}/avahi-client/client.c \
 		${WRKSRC}/avahi-daemon/dbus-protocol.c
 	@${REINPLACE_CMD} -e 's|^_||g' \
- 		${WRKSRC}/avahi-ui/*.desktop.in.in
-
+		${WRKSRC}/avahi-ui/*.desktop.in.in
 
 post-build: avahi-post-build
 
@@ -145,8 +161,20 @@ avahi-post-install:
 .for f in ${AVAHI_PKGCONFIG}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${PREFIX}/libdata/pkgconfig
 .endfor
+	${MKDIR} ${PREFIX}/etc/avahi
+.for f in ${DAEMON_CONFIG_FILES}
+	${INSTALL_DATA} ${WRKSRC}/avahi-daemon/${f} \
+		${PREFIX}/etc/avahi/${f}.dist
+	if [ ! -f ${PREFIX}/etc/avahi/${f} ]; then \
+		${INSTALL_DATA} ${WRKSRC}/avahi-daemon/${f} \
+		${PREFIX}/etc/avahi; \
+	fi
+.endfor
+
 .if !defined(PACKAGE_BUILDING) && (${AVAHI_SLAVE}=="no" || ${AVAHI_SLAVE}=="autoipd")
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+	${INSTALL_DATA} ${FILESDIR}/org.freedesktop.Avahi.service \
+		${LOCALBASE}/share/dbus-1/system-services
 .endif
 
 .include <bsd.port.post.mk>
