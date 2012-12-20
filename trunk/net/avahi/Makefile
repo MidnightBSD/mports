@@ -1,13 +1,7 @@
-# New ports collection makefile for:	avahi
-# Date created:		18 November 2005
-# Whom:			Joe Marcus Clarke <marcus@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/avahi/Makefile,v 1.7 2009/02/28 16:58:20 laffer1 Exp $
-# $FreeBSD: ports/net/avahi/Makefile,v 1.56 2007/12/20 18:23:32 ahze Exp $
-#
+# $MidnightBSD: mports/net/avahi/Makefile,v 1.8 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTNAME=	avahi
-PORTVERSION=	0.6.28
+PORTVERSION=	0.6.29
 PORTREVISION?=	0
 CATEGORIES?=	net dns
 MASTER_SITES=	# empty
