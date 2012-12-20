@@ -1,17 +1,10 @@
-# ex:ts=8
-# Ports collection makefile for:  rdist
-# Date created:			  11 November 2000
-# Whom:				  David O'Brien <obrien@NUXI.com>
-#
-# $MidnightBSD: mports/net/44bsd-rdist/Makefile,v 1.1 2006/10/01 22:58:30 laffer1 Exp $
-# $FreeBSD: ports/net/44bsd-rdist/Makefile,v 1.6 2004/02/27 01:12:27 clement Exp $
-#
+# $MidnightBSD: mports/net/44bsd-rdist/Makefile,v 1.2 2009/06/09 20:46:36 crash Exp $
 
 PORTNAME=	44bsd-rdist
 PORTVERSION=	20001111
 CATEGORIES=	net
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	obrien
+MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
+MASTER_SITE_SUBDIR=	cy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The traditional 4.4BSD rdist
