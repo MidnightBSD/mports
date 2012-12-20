@@ -1,13 +1,8 @@
-# New ports collection makefile for:	libnotify
-# Date created:				2005-08-06
-# Whom:					Andreas Kohn <andreas@syndrom23.de>
-#
-# $MidnightBSD: mports/devel/libnotify/Makefile,v 1.5 2011/12/15 00:34:42 laffer1 Exp $
-# $FreeBSD: ports/devel/libnotify/Makefile,v 1.19 2007/05/19 20:03:08 flz Exp $
-#
+# $MidnightBSD: mports/devel/libnotify/Makefile,v 1.6 2012/03/06 02:11:20 laffer1 Exp $
 
 PORTNAME=	libnotify
 PORTVERSION=	0.7.3
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 
@@ -24,7 +19,8 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
