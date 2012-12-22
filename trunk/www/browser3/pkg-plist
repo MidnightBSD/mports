@@ -1,4 +1,4 @@
-@comment $MidnightBSD: mports/www/browser3/pkg-plist,v 1.3 2009/06/29 16:39:15 laffer1 Exp $
+@comment $MidnightBSD: mports/www/browser3/pkg-plist,v 1.4 2009/08/08 16:11:44 laffer1 Exp $
 bin/browser
 include/browser/stable/nsXPCOMStrings.h
 include/browser/stable/nsEmbedString.h
@@ -520,7 +520,7 @@ include/browser/unstable/system_wrappers/DriverServices.h
 include/browser/unstable/system_wrappers/DriverSynchronization.h
 include/browser/unstable/system_wrappers/DropInPanel.h
 include/browser/unstable/system_wrappers/dvidef.h
-include/browser/unstable/system_wrappers/%%PORTOBJFORMAT%%.h
+include/browser/unstable/system_wrappers/elf.h
 include/browser/unstable/system_wrappers/endian.h
 include/browser/unstable/system_wrappers/Entry.h
 include/browser/unstable/system_wrappers/errno.h
@@ -702,8 +702,8 @@ include/browser/unstable/system_wrappers/LGrafPortView.h
 include/browser/unstable/system_wrappers/mpw/errno.h
 include/browser/unstable/system_wrappers/LHandleStream.h
 include/browser/unstable/system_wrappers/libc_r.h
-include/browser/unstable/system_wrappers/lib%%PORTOBJFORMAT%%.h
-include/browser/unstable/system_wrappers/lib%%PORTOBJFORMAT%%/lib%%PORTOBJFORMAT%%.h
+include/browser/unstable/system_wrappers/libelf.h
+include/browser/unstable/system_wrappers/libelf/libelf.h
 include/browser/unstable/system_wrappers/libgen.h
 include/browser/unstable/system_wrappers/libgnome/gnome-url.h
 include/browser/unstable/system_wrappers/libgnome/libgnome.h
@@ -1016,7 +1016,7 @@ include/browser/unstable/system_wrappers/sys/bitypes.h
 include/browser/unstable/system_wrappers/sys/byteorder.h
 include/browser/unstable/system_wrappers/sys/cdefs.h
 include/browser/unstable/system_wrappers/sys/cfgodm.h
-include/browser/unstable/system_wrappers/sys/%%PORTOBJFORMAT%%.h
+include/browser/unstable/system_wrappers/sys/elf.h
 include/browser/unstable/system_wrappers/sys/endian.h
 include/browser/unstable/system_wrappers/sys/errno.h
 include/browser/unstable/system_wrappers/sys/fault.h
@@ -4688,7 +4688,7 @@ share/pixmaps/browser.xpm
 @dirrm include/browser/unstable/system_wrappers/Kerberos
 @dirrm include/browser/unstable/system_wrappers/kernel
 @dirrm include/browser/unstable/system_wrappers/mpw
-@dirrm include/browser/unstable/system_wrappers/lib%%PORTOBJFORMAT%%
+@dirrm include/browser/unstable/system_wrappers/libelf
 @dirrm include/browser/unstable/system_wrappers/libgnome
 @dirrm include/browser/unstable/system_wrappers/libgnomeui
 @dirrm include/browser/unstable/system_wrappers/libgnomevfs
