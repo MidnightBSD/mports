@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.11 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.12 2012/03/01 13:32:47 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A graphic library for enlightenment package
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
 		ungif.5:${PORTSDIR}/graphics/libungif
 
