@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/sysutils/polkit/Makefile,v 1.1 2010/09/03 00:19:29 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/polkit/Makefile,v 1.2 2011/06/04 14:04:04 laffer1 Exp $
 
 PORTNAME=	polkit
 PORTVERSION=	0.99
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -26,9 +26,9 @@ CONFIGURE_ARGS=	--disable-gtk-doc \
 		--with-os-type=freebsd \
 		--enable-introspection \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib" \
-		GTKDOC="false"
+CONFIGURE_ENV=	GTKDOC="false"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(NO_INSTALL_MANPAGES)
 CONFIGURE_ARGS+=--disable-man-pages
@@ -49,11 +49,11 @@ post-patch:
 post-install:
 	${MKDIR} ${PREFIX}/etc/dbus-1/system.d/
 	if [ ! -f ${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf ]; then \
-	    	${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
+		${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
 			${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf ; \
 	fi
 	${INSTALL_DATA} ${WRKSRC}/data/org.freedesktop.PolicyKit1.conf \
-	    	${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf.dist
+		${PREFIX}/etc/dbus-1/system.d/org.freedesktop.PolicyKit1.conf.dist
 .if !defined(PACKAGE_BUILDING)
 	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 .endif
