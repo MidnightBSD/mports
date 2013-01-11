@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.13 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.14 2012/02/28 01:51:36 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION?=	1.4.14
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
