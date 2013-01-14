@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.192 2012/02/29 21:44:15 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.193 2012/03/11 17:52:41 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -578,6 +578,23 @@ EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
 BUILD_DEPENDS+=		gmake:${PORTSDIR}/devel/gmake
 CONFIGURE_ENV+=		MAKE=${GMAKE}
 _MAKE_CMD=		${GMAKE}
+.endif
+.if defined(USE_PKGCONFIG)
+.if ${USE_PKGCONFIG:L} == yes
+USE_PKGCONFIG=	build
+.endif
+.if ${USE_PKGCONFIG:L} == run
+RUN_DEPENDS+=		pkgconf:${PORTSDIR}/devel/pkgconf
+.endif
+.if ${USE_PKGCONFIG:L} == build
+BUILD_DEPENDS+= 	pkgconf:${PORTSDIR}/devel/pkgconf
+CONFIGURE_ENV+=		PKG_CONFIG=pkgconf
+.endif
+.if ${USE_PKGCONFIG:L} == both
+RUN_DEPENDS+= 		pkgconf:${PORTSDIR}/devel/pkgconf
+BUILD_DEPENDS+=		pkgconf:${PORTSDIR}/devel/pkgconf
+CONFIGURE_ENV+=		PKG_CONFIG=pkgconf
+.endif
 .endif
 
 .if defined(USE_OPENLDAP_VER)
@@ -1877,10 +1894,11 @@ _DESKTOPDIR_REL=
 #
 # LICENSE Setup
 #
-_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 fdl1.1 fdl1.2 fdl1.3 bsd4 bsd3 bsd2 \
-		python ruby x11 guile ilm artistic artistic2 perl \
-		bdb mpl epl npl zlib apache2 apache1.1 apache1 apsl2 apsl1 php openldap2.8 \
-		mit modula3 cddl opera liberation sgi bzip2 iscl infozip owl subversion \
+_LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
+		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
+		bdb bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile ilm infozip iscl \
+		liberation mit modula3 mpl npl nvidia openldap2.8 opera owl \
+		perl php python ruby sgi subversion x11 zlib \
 		publicdom unknown other agg restricted
 
 
