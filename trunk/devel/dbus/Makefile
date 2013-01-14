@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus/Makefile,v 1.14 2012/02/28 01:51:36 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus/Makefile,v 1.15 2013/01/11 00:13:04 laffer1 Exp $
 
 PORTNAME=	dbus
-PORTVERSION?=	1.4.14
-PORTREVISION?=	1
+PORTVERSION=	1.4.14
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus/
 
@@ -12,7 +12,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
 
-USE_GNOME?=	gnomehack libxml2 ltverhack
+USE_GNOME=	gnomehack libxml2 ltverhack
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
@@ -23,12 +23,14 @@ CONFIGURE_ARGS=--localstatedir=/var \
 		--with-session-socket-dir=/tmp \
 		--disable-doxygen-docs \
 		--disable-xml-docs
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
+CONFIGURE_ENV=	PTHREAD_LIBS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 CONFIGURE_TARGET+=	${MACHINE_ARCH}-portbld-freebsd7.0
 
-.if !defined(DBUS_SLAVE)
+USERS=		messagebus
+GROUPS=		messagebus
+
 USE_RC_SUBR=	dbus
 USE_GNOME_SUBR=	yes
 
@@ -42,9 +44,6 @@ USE_XORG=	ice sm x11
 .else
 CONFIGURE_ARGS+=--without-x
 .endif
-.endif
-
-.include <bsd.port.pre.mk>
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
@@ -52,15 +51,14 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/dbus/machine-id|/db/dbus/machine-id|g' \
 		${WRKSRC}/dbus/Makefile.in \
 		${WRKSRC}/tools/Makefile.in
+	@${REINPLACE_CMD} '/^SUBDIRS/,/^$$/ s|test||g' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|THREAD_LIBS -lrt|THREAD_LIBS|g ; \
 		s|dummy man2html|dummy man2html_disable|g' \
 			${WRKSRC}/configure
 
-.if !defined(DBUS_SLAVE)
 post-install:
 	${MKDIR} ${PREFIX}/etc/dbus-1/system.d
 	${MKDIR} ${PREFIX}/share/dbus-1/services
 	${MKDIR} ${PREFIX}/share/dbus-1/interfaces
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

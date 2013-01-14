@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/devel/dbus/files/dbus.in,v 1.19 2012/01/14 08:55:34 dougb Exp $
+# $MidnightBSD$
 #
 # PROVIDE: dbus
 # REQUIRE: DAEMON
