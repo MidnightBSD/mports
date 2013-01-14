@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.9 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME=	nvidia-driver
 DISTVERSION?=	195.36.15
@@ -11,7 +11,7 @@ DISTNAME=	NVIDIA-FreeBSD-x86${ARCH_SUFX}-${DISTVERSION}
 
 MAINTAINER=	luke@midnightbsd.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
-LICENSE=	restricted
+LICENSE=	nvidia
 
 USE_GL=		gl
 USE_LDCONFIG=	yes
