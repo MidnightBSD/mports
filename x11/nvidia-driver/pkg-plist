@@ -1,41 +1,26 @@
-@comment I can't add the below files to the package because pkg_delete
-@comment will complain when removing this package:
-@comment     %%MODULESDIR%%/extensions/XXX-libglx.la.%%%%.%%XSERVVERSION%%
-@comment     %%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%%
-@comment     lib/XXX-libGL.so.1.%%%%.%%LIBGLVERSION%%
-@comment They are however restored when this package is removed:
-@exec mv -f %D/%%MODULESDIR%%/extensions/libglx.la %D/%%MODULESDIR%%/extensions/XXX-libglx.la.%%%%.%%XSERVVERSION%%
-@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libglx.la.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libglx.la
-@exec mv -f %D/%%MODULESDIR%%/extensions/libglx.so %D/%%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%%
-@unexec mv -f %D/%%MODULESDIR%%/extensions/XXX-libglx.so.%%%%.%%XSERVVERSION%% %D/%%MODULESDIR%%/extensions/libglx.so
-@exec cp %D/lib/libGL.so.1 %D/lib/XXX-libGL.so.1.%%%%.%%LIBGLVERSION%%
-@unexec mv -f %D/lib/XXX-libGL.so.1.%%%%.%%LIBGLVERSION%% %D/lib/libGL.so.1
-include/vdpau/vdpau.h
-include/vdpau/vdpau_x11.h
-@dirrm include/vdpau
+lib/.nvidia/libGL.so
+lib/.nvidia/libGL.so.1
+@dirrm lib/.nvidia
 lib/libnvidia-tls.so.1
 lib/libnvidia-tls.so
 lib/libnvidia-cfg.so.1
 lib/libnvidia-cfg.so
 lib/libGLcore.so.1
 lib/libGLcore.so
-lib/libvdpau.so.1
-lib/libvdpau.so
 lib/vdpau/libvdpau_nvidia.so.1
-lib/libvdpau_nvidia.so
-lib/vdpau/libvdpau_trace.so.1
-lib/libvdpau_trace.so
+@comment lib/libvdpau_nvidia.so
 lib/libXvMCNVIDIA.so.1
 lib/libXvMCNVIDIA.so
 lib/libXvMCNVIDIA.a
 lib/libXvMCNVIDIA_dynamic.so.1
-@dirrm lib/vdpau
+@dirrmtry lib/vdpau
 %%MODULESDIR%%/libnvidia-wfb.so.1
 %%MODULESDIR%%/drivers/nvidia_drv.so
-%%MODULESDIR%%/extensions/libglx.so.1
-@exec ln -sf libglx.so.1 %D/%%MODULESDIR%%/extensions/libglx.so
+%%MODULESDIR%%/extensions/.nvidia/libglx.so
+%%MODULESDIR%%/extensions/.nvidia/libglx.so.1
+@dirrm %%MODULESDIR%%/extensions/.nvidia
 @dirrmtry %%MODULESDIR%%/drivers
-@cwd /boot/modules
+@cwd /boot/kernel
 nvidia.ko
 @unexec kldxref %D
 %%LINUX%%@cwd %%LINUXBASE%%
@@ -47,10 +32,6 @@ nvidia.ko
 %%LINUX%%usr/lib/libcuda.so.1
 %%LINUX%%usr/lib/libnvidia-tls.so.%%SHLIB_VERSION%%
 %%LINUX%%usr/lib/libnvidia-tls.so.1
-%%LINUX%%usr/lib/libvdpau.so.%%SHLIB_VERSION%%
-%%LINUX%%usr/lib/libvdpau.so.1
-%%LINUX%%usr/lib/libvdpau_nvidia.so
-%%LINUX%%usr/lib/libvdpau_trace.so
 %%LINUX%%usr/lib/vdpau/libvdpau_nvidia.so.%%SHLIB_VERSION%%
 %%LINUX%%usr/lib/vdpau/libvdpau_nvidia.so.1
 %%LINUX%%usr/lib/vdpau/libvdpau_trace.so.%%SHLIB_VERSION%%
