@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/nvidia-xconfig/Makefile,v 1.5 2010/05/30 22:18:03 laffer1 Exp $
+# $MidnightBSD: mports/x11/nvidia-xconfig/Makefile,v 1.6 2013/01/15 01:16:37 laffer1 Exp $
 
 PORTNAME=	nvidia-xconfig
 PORTVERSION=	310.14
@@ -17,9 +17,10 @@ MAKE_ENV=	NV_VERBOSE= \
 		STRIP_CMD=${TRUE} \
 		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 		INSTALL_MAN="${INSTALL_MAN}" \
-		prefix=${PREFIX}
+		prefix=${TRUE_PREFIX}
 
 MAN1=		nvidia-xconfig.1
+MANCOMPRESSED=	yes
 PLIST_FILES=	bin/nvidia-xconfig
 
 post-patch:   .SILENT
