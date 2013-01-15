@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.9 2011/02/02 21:35:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.10 2013/01/14 23:37:41 laffer1 Exp $
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	195.36.15
+DISTVERSION?=	304.64
 PORTREVISION?=	0
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
@@ -13,9 +13,11 @@ MAINTAINER=	luke@midnightbsd.org
 COMMENT=	NVidia graphics card binary drivers for hardware OpenGL rendering
 LICENSE=	nvidia
 
+USE_XORG=	xorg-server
 USE_GL=		gl
 USE_LDCONFIG=	yes
-SUB_FILES+=	pkg-message
+MAKE_ENV=	NVIDIA_ROOT=${WRKSRC} X11BASE=${LOCALBASE}
+SUB_FILES=	pkg-deinstall pkg-install pkg-message
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0
 MODULESDIR=	lib/xorg/modules
 PORTDOCS=	*
@@ -52,24 +54,21 @@ OPTIONS=	FREEBSD_AGP	"Use FreeBSD AGP GART driver" off \
 OPTIONS+=	WBINVD		"Enable heavy-weight cache-flush logic" off
 .endif
 
+.if ${NVVERSION} <= 1904200
+EXTRA_PATCHES=	${FILESDIR}/legacy-patch-nvidia.lib.mk
+.endif
+
+# Fix recent arbitrary memory access vulnerability in legacy drivers
+.if ${NVVERSION} <= 1905300
+. if ${NVVERSION} != 1731435
+EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-0946
+. endif
+EXTRA_PATCHES+=	${FILESDIR}/security-patch-CVE-2012-4225
+.endif
+
 .include <bsd.port.pre.mk>
 
-# XXX Should use ${PKG_INFO} but it does not expand for some reason XXX
-#
-.if defined(USE_MPORT_TOOLS)
-XSERVVERSION!=  /usr/libexec/mport.info -qo x11-servers/xorg-server 2>/dev/null || true
-LIBGLVERSION!=  /usr/libexec/mport.info -qo graphics/libGL 2>/dev/null || true
-.else
-XSERVVERSION!=	/usr/sbin/pkg_info -qO x11-servers/xorg-server 2>/dev/null || true
-LIBGLVERSION!=	/usr/sbin/pkg_info -qO graphics/libGL 2>/dev/null || true
-.endif
-
-.if empty(XSERVVERSION)
-IGNORE=		needs an X server implementation installed
-.endif
-
-PLIST_SUB+=	XSERVVERSION=${XSERVVERSION} LIBGLVERSION=${LIBGLVERSION} \
-		LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
+PLIST_SUB+=	LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
 		MODULESDIR=${MODULESDIR}
 
 .if !defined(WITHOUT_LINUX)
@@ -96,14 +95,20 @@ post-patch: .SILENT
 	${MKDIR} ${FAKE_DESTDIR}/boot/modules
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/${MODULESDIR}/extensions
 # We should support -CURRENT: kill the check
-	${REINPLACE_CMD} '24,26d' ${WRKSRC}/src/nv-freebsd.h
-# Adjust for updated d_mmap() in recent -CURRENT
+	${REINPLACE_CMD} -e '24,26d' ${WRKSRC}/src/nv-freebsd.h
+# Adjust legacy drivers for updated d_mmap() since early 9.X
 .if ${OSVERSION} > 900005 && ${NVVERSION} < 1952200
-	${REINPLACE_CMD} 's/vm_offset_t offset/vm_ooffset_t offset/ ; \
+	${REINPLACE_CMD} -e 's/vm_offset_t offset/vm_ooffset_t offset/ ; \
 		s/vm_offset_t \*address/vm_paddr_t *address/ ; \
 		s/int nprot/&, vm_memattr_t *memattr/' \
 			${WRKSRC}/src/nvidia_dev.c
 .endif
+# Catch up legacy drivers with FreeBSD src SVN r225617
+.if ${OSVERSION} > 4015 && ${NVVERSION} < 1952200
+	${REINPLACE_CMD} -e '/return/s/ioctl/sys_&/' \
+		${WRKSRC}/src/nvidia_linux.c
+.endif
+# Process OPTIONS
 .if defined(WITH_FREEBSD_AGP)
 	${REINPLACE_CMD} -E 's/undef (NV_SUPPORT_OS_AGP)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
@@ -120,45 +125,70 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's/undef (NV_USE_WBINVD)/define \1/' \
 		${WRKSRC}/src/nv-freebsd.h
 .endif
-# Don't build any binaries (nvidia-settings and nvidia-xconfig) and manuals
+	${REINPLACE_CMD} -e '/exists/s/$$/ \&\& !defined(WITHOUT_LINUX)/' \
+		${WRKSRC}/lib/Makefile
+# Do not install VDPAU libraries which are provided by `multimedia/libvdpau'
+# port for a while now
+.if ${NVVERSION} >= 1802900
+	${REINPLACE_CMD} -e '/libvdpau[[:blank:]_][^n]/d ; \
+		s/name libvdpau/&_nvidia/' ${WRKSRC}/lib/Makefile
+.endif
+# Do not build any binaries (native nvidia-settings and nvidia-xconfig are
+# provided by corresponding ports) and manual pages
 .if ${NVVERSION} < 974600 || ${NVVERSION} >= 1952200
 	${REINPLACE_CMD} -E 's/(extension).*/\1/' ${WRKSRC}/x11/Makefile
 .else
 	${REINPLACE_CMD} -E 's/(lib).*/\1/' ${WRKSRC}/x11/Makefile
 .endif
-	${REINPLACE_CMD} '/bin/d ; /man/d' ${WRKSRC}/x11/Makefile
+	${REINPLACE_CMD} -e '/bin/d ; /man/d' ${WRKSRC}/x11/Makefile
 # Conditionally install documentation (but you generally want it)
 .if defined(NOPORTDOCS)
 	${REINPLACE_CMD} -E 's/(x11).*/\1/ ; /doc/d' ${WRKSRC}/Makefile
 .endif
-# Do not execute afterinstall target (prevent automatic module registration)
+# Adjust installation paths of some conflicting files (shared also between
+# libGL and xorg-server) to ease package manager work
+	${REINPLACE_CMD} -e '/LIBDIR/s:xorg/modules/extensions:&/.nvidia:' \
+		${WRKSRC}/x11/extension/Makefile
+	${REINPLACE_CMD} -e '/LIBDIR/s:lib:&/.nvidia:' \
+		${WRKSRC}/lib/libGL/Makefile
+# Do not execute afterinstall target (prevent automatic module registration
+# and "smart" installation of conflicting files heuristics)
 	${REINPLACE_CMD} -e 's/afterinstall/dontexecute/' ${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's/beforeinstall/dontexecute/' \
+		${WRKSRC}/lib/Makefile ${WRKSRC}/src/Makefile
 
-pre-su-install:
-# XXX This port silently assumes PREFIX == LOCALBASE XXX
-	@${MKDIR} ${PREFIX}/${MODULESDIR}/drivers
+pre-install:
+# While this port silently assumes PREFIX == LOCALBASE, at least try to
+# pretend we support different paths thereof and make sure these directories
+# exist
+	@cd ${PREFIX}/${MODULESDIR} && ${MKDIR} drivers extensions
 
-post-install:
-	${MKDIR} ${FAKE_DESTDIR}/boot/kernel
-	${MKDIR} ${FAKE_DESTDIR}/boot/modules
-	${MV} ${FAKE_DESTDIR}/boot/kernel/nvidia.ko ${FAKE_DESTDIR}/boot/modules/nvidia.ko
+post-install: .SILENT
 # pkg-plist is already overbloated, so use these hacks instead of PLIST_SUB's
 .if ${NVVERSION} < 817400
-	@${REINPLACE_CMD} '/libnvidia-cfg/d' ${TMPPLIST}
+	${REINPLACE_CMD} -e '/libnvidia-cfg/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 974600 || ${NVVERSION} >= 1952200
-	@${REINPLACE_CMD} '/wfb/d' ${TMPPLIST}
+	${REINPLACE_CMD} -e '/wfb/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 1802900
-	@${REINPLACE_CMD} '/vdpau/d' ${TMPPLIST}
-.else
-	@${MKDIR} ${PREFIX}/include/vdpau
-	@${LN} -sf ${DOCSDIR}/vdpau*.h ${PREFIX}/include/vdpau
+	${REINPLACE_CMD} -e '/vdpau/d' ${TMPPLIST}
 .endif
 .if ${NVVERSION} < 1851829
-	@${REINPLACE_CMD} '/libcuda/d' ${TMPPLIST}
+	${REINPLACE_CMD} -e '/libcuda/d' ${TMPPLIST}
+.endif
+.if ${NVVERSION} >= 2565300
+	${REINPLACE_CMD} -E 's/libGLcore/libnvidia-glcore/ ; \
+		/usr.*(glcore|tls).*so\.1$$/d' ${TMPPLIST}
 .endif
 # Some applications need this symlink (see PR ports/72877)
-	@${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+	${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+.if ${NVVERSION} >= 1952200
+. if ${OSVERSION} > 4014
+	${REINPLACE_CMD} -e '/does not support PAE/,+1d' ${PKGMESSAGE}
+. else	# when sed(1) does not support "addr1,+N" ranges, use line numbers
+	${REINPLACE_CMD} -e '26,27d' ${PKGMESSAGE}
+. endif
+.endif
 
 .include <bsd.port.post.mk>
