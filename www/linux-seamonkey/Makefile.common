@@ -2,7 +2,7 @@
 # Date created:		1 May 2006
 # Whom:			Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-seamonkey/Makefile.common,v 1.7 2011/06/18 02:20:27 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-seamonkey/Makefile.common,v 1.8 2011/06/24 01:04:48 laffer1 Exp $
 # $FreeBSD: ports/www/linux-seamonkey/Makefile.common,v 1.7 2006/08/03 13:33:43 sat Exp $
 #
 
@@ -45,6 +45,8 @@ post-extract:
 post-patch:
 	@${ECHO} 'pref("general.useragent.vendor", "'${OPSYS}'");' >> ${PREFS_FILE}
 	@${ECHO} 'pref("general.useragent.vendorSub", "'${ARCH}'");' >> ${PREFS_FILE}
+	# prefer libsydneyaudio (bug780531)
+	${ECHO} 'pref("media.use_cubeb", false);' >> ${PREFS_FILE}
 .endif
 .endif
 
