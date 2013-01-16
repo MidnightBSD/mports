@@ -5,7 +5,7 @@
 # Date created:		27 June 2006
 # Whom:				Andrew Pantyukhin <infofarmer@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/linux-mplayer-plugin/Makefile.npapi,v 1.1 2007/04/04 17:09:15 laffer1 Exp $
+# $MidnightBSD: mports/www/linux-mplayer-plugin/Makefile.npapi,v 1.2 2007/11/28 21:30:06 laffer1 Exp $
 # $FreeBSD: ports/www/linux-mplayer-plugin/Makefile.npapi,v 1.3 2006/08/03 13:50:16 sat Exp $
 #
 
@@ -126,9 +126,7 @@ USE_NPAPI_EXP+=	${_TEMP_APP__}
 .endfor
 
 NPAPI_APPS?=	${USE_NPAPI_EXP:S.^.${LOCALBASE}/lib/.:S.$./plugins.:N*opera*} \
-				${USE_NPAPI_EXP:S.^.${X11BASE}/lib/.:S.$./plugins.:N*opera*} \
-				${USE_NPAPI_EXP:S.^.${LOCALBASE}/share/.:S.$./plugins.:M*/opera*} \
-				${USE_NPAPI_EXP:S.^.${X11BASE}/share/.:S.$./plugins.:M*/opera*}
+				${USE_NPAPI_EXP:S.^.${LOCALBASE}/share/.:S.$./plugins.:M*/opera*}
 NPAPI_SLDIRS_ALL=	${NPAPI_APPS_ALL:S.^.${NPAPI_SLDIR}/.}
 NPAPI_SLDIRS=		${USE_NPAPI_EXP:S.^.${NPAPI_SLDIR}/.}
 NPAPI_LINKFARMS=	${NPAPI_APPS} ${NPAPI_SLDIRS}
