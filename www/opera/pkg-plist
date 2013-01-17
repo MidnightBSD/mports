@@ -1,5 +1,4 @@
 bin/opera
-bin/uninstall-opera
 lib/opera/gstreamer/plugins/libgstoperamatroska.so
 lib/opera/gstreamer/plugins/libgstoperavp8.so
 lib/opera/liboperagtk2.so
@@ -26,7 +25,7 @@ share/icons/hicolor/32x32/mimetypes/opera-extension.png
 share/icons/hicolor/48x48/apps/opera-browser.png
 share/icons/hicolor/48x48/mimetypes/opera-extension.png
 share/icons/hicolor/scalable/mimetypes/opera-extension.svg
-share/mime/application/x-opera-extension.xml
+@comment share/mime/application/x-opera-extension.xml
 share/mime/packages/opera-extension.xml
 %%DATADIR%%/defaults/bookmarks.adr
 %%DATADIR%%/defaults/dictionaries.xml

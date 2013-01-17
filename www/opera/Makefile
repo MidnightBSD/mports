@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.37 2013/01/17 02:36:14 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.38 2013/01/17 02:41:56 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -75,10 +75,11 @@ post-extract:
 
 do-install:
 	@${MKDIR} ${DATADIR}/defaults
+	${MKDIR} ${PREFIX}/share/mime/application
 	@${INSTALL_MAN} ${WRKSRC}/man/man1/${PORTNAME}.1.gz ${MANPREFIX}/man/man1/
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/install
 	@${REINPLACE_CMD} -e 's|share/man|man|g' ${WRKSRC}/install
-	@(cd ${WRKSRC} && ./install --text --system --unattended)
+	@(cd ${WRKSRC} && ./install --prefix ${TRUE_PREFIX} --force --repackage ${FAKE_DESTDIR}${TRUE_PREFIX})
 	@${REINPLACE_CMD} -e 's|/usr/X11R6/lib/browser_plugins|${LOCALBASE}/lib/browser_plugins/symlinks/opera|g' \
 		${DATADIR}/defaults/pluginpath.ini
 	@${RM} ${DATADIR}/defaults/pluginpath.ini.bak
