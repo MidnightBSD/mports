@@ -1,12 +1,11 @@
-# $MidnightBSD: mports/www/lynx/Makefile,v 1.8 2010/01/17 14:56:37 laffer1 Exp $
+# $MidnightBSD: mports/www/lynx/Makefile,v 1.9 2010/01/17 15:01:02 laffer1 Exp $
 
 PORTNAME=	lynx
-PORTVERSION=	2.8.7.1
+PORTVERSION=	2.8.7.2
 PORTREVISION=	0
 CATEGORIES=	www ipv6
-MASTER_SITES=	http://lynx.isc.org/current/ \
-		ftp://lynx.isc.org/lynx2.8.7/patches/:patches
-DISTNAME=	${PORTNAME}2.8.7rel.1
+MASTER_SITES=	http://lynx.isc.org/current/
+DISTNAME=	${PORTNAME}${PORTVERSION:R}rel.${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A non-graphical, text-based World-Wide Web client
@@ -16,7 +15,6 @@ USE_BZIP2=	yes
 USE_OPENSSL=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}2-8-7
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS+=--with-zlib --libdir="${L_LIB}" \
 		--enable-nsl-fork --enable-persistent-cookies
 
