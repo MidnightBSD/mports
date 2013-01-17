@@ -1,224 +1,314 @@
 bin/linux-opera
-share/apps/Internet/linux-opera.desktop
-share/applnk/Internet/linux-opera.desktop
-%%DOCSDIR%%/LGPL
+bin/linux-opera-widget-manager
+lib/linux-opera/gstreamer/plugins/libgstoperamatroska.so
+lib/linux-opera/gstreamer/plugins/libgstoperavp8.so
+lib/linux-opera/liboperakde4.so
+lib/linux-opera/liboperagtk2.so
+lib/linux-opera/liboperagtk3.so
+lib/linux-opera/opera
+lib/linux-opera/operaplugincleaner
+lib/linux-opera/operapluginwrapper
+lib/linux-opera/plugins/README
+share/applications/linux-opera-browser.desktop
+share/applications/linux-opera-widget-installer.desktop
+share/applications/linux-opera-widget-manager.desktop
+%%DOCSDIR%%/LGPL-2
+%%DOCSDIR%%/LGPL-3
 %%DOCSDIR%%/LICENSE
-%%DATADIR%%/bin/missingsyms.so
-%%DATADIR%%/bin/opera
-%%DATADIR%%/bin/operaplugincleaner
-%%DATADIR%%/bin/operapluginwrapper
-%%DATADIR%%/bin/spellcheck.so
-%%DATADIR%%/bin/works
+%%DOCSDIR%%/README.gstreamer
+share/icons/hicolor/128x128/apps/linux-opera-browser.png
+share/icons/hicolor/128x128/apps/linux-opera-widget-manager.png
+share/icons/hicolor/128x128/apps/linux-opera-widget.png
+share/icons/hicolor/128x128/mimetypes/linux-opera-extension.png
+share/icons/hicolor/128x128/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/128x128/mimetypes/linux-opera-widget.png
+share/icons/hicolor/16x16/apps/linux-opera-browser.png
+share/icons/hicolor/16x16/apps/linux-opera-widget-manager.png
+share/icons/hicolor/16x16/apps/linux-opera-widget.png
+share/icons/hicolor/16x16/mimetypes/linux-opera-extension.png
+share/icons/hicolor/16x16/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/16x16/mimetypes/linux-opera-widget.png
+share/icons/hicolor/22x22/apps/linux-opera-browser.png
+share/icons/hicolor/22x22/apps/linux-opera-widget-manager.png
+share/icons/hicolor/22x22/apps/linux-opera-widget.png
+share/icons/hicolor/22x22/mimetypes/linux-opera-extension.png
+share/icons/hicolor/22x22/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/22x22/mimetypes/linux-opera-widget.png
+share/icons/hicolor/24x24/apps/linux-opera-browser.png
+share/icons/hicolor/24x24/apps/linux-opera-widget-manager.png
+share/icons/hicolor/24x24/apps/linux-opera-widget.png
+share/icons/hicolor/24x24/mimetypes/linux-opera-extension.png
+share/icons/hicolor/24x24/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/24x24/mimetypes/linux-opera-widget.png
+share/icons/hicolor/32x32/apps/linux-opera-browser.png
+share/icons/hicolor/32x32/apps/linux-opera-widget-manager.png
+share/icons/hicolor/32x32/apps/linux-opera-widget.png
+share/icons/hicolor/32x32/mimetypes/linux-opera-extension.png
+share/icons/hicolor/32x32/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/32x32/mimetypes/linux-opera-widget.png
+share/icons/hicolor/48x48/apps/linux-opera-browser.png
+share/icons/hicolor/48x48/apps/linux-opera-widget-manager.png
+share/icons/hicolor/48x48/apps/linux-opera-widget.png
+share/icons/hicolor/48x48/mimetypes/linux-opera-extension.png
+share/icons/hicolor/48x48/mimetypes/linux-opera-unite-application.png
+share/icons/hicolor/48x48/mimetypes/linux-opera-widget.png
+share/icons/hicolor/scalable/apps/linux-opera-browser.svg
+share/icons/hicolor/scalable/apps/linux-opera-widget-manager.svg
+share/icons/hicolor/scalable/apps/linux-opera-widget.svg
+share/icons/hicolor/scalable/mimetypes/linux-opera-extension.svg
+share/icons/hicolor/scalable/mimetypes/linux-opera-unite-application.svg
+share/icons/hicolor/scalable/mimetypes/linux-opera-widget.svg
+%%DATADIR%%/defaults/bookmarks.adr
+%%DATADIR%%/defaults/dictionaries.xml
+%%DATADIR%%/defaults/feedreaders.ini
+%%DATADIR%%/defaults/filehandler.ini
+%%DATADIR%%/defaults/handlers-ignore.ini
+%%DATADIR%%/defaults/license.txt
+%%DATADIR%%/defaults/mailproviders.xml
+%%DATADIR%%/defaults/plugin-ignore.ini
+%%DATADIR%%/defaults/pluginpath.ini
+%%DATADIR%%/defaults/public_domains.dat
+%%DATADIR%%/defaults/search.ini
+%%DATADIR%%/defaults/standard_speeddial.ini
+%%DATADIR%%/defaults/standard_trusted_repositories.ini
+%%DATADIR%%/defaults/tips_metadata.ini
+%%DATADIR%%/defaults/webmailproviders.ini
+%%DATADIR%%/defaults/xmlentities.ini
 %%DATADIR%%/encoding.bin
+%%DATADIR%%/extra/missingplugin.svg
+%%DATADIR%%/extra/missingpluginhover.svg
+%%DATADIR%%/extra/svg-mo.dat
+%%DATADIR%%/extra/svg-mobd.dat
+%%DATADIR%%/extra/svg-sa.dat
+%%DATADIR%%/extra/svg-sabd.dat
+%%DATADIR%%/extra/svg-se.dat
+%%DATADIR%%/extra/svg-sebd.dat
+%%DATADIR%%/files.sig
+%%DATADIR%%/files_old.sig
+%%DATADIR%%/html5_entity_init.dat
 %%DATADIR%%/html40_entities.dtd
-%%DATADIR%%/ini/dialog.ini
-%%DATADIR%%/ini/fastforward.ini
-%%DATADIR%%/ini/filehandler.ini
-%%DATADIR%%/ini/font.ini
-%%DATADIR%%/ini/mailproviders.xml
-%%DATADIR%%/ini/pluginpath.ini
-%%DATADIR%%/ini/speeddial_default.ini
-%%DATADIR%%/ini/standard_keyboard.ini
-%%DATADIR%%/ini/standard_keyboard_compat.ini
-%%DATADIR%%/ini/standard_menu.ini
-%%DATADIR%%/ini/standard_mouse.ini
-%%DATADIR%%/ini/standard_toolbar.ini
-%%DATADIR%%/ini/unix_keyboard.ini
-%%DATADIR%%/ini/xmlentities.ini
-%%DATADIR%%/java/opera.jar
-%%DATADIR%%/java/opera.policy
 %%DATADIR%%/lngcode.txt
-%%DATADIR%%/locale/be/byelorussian.lng
-%%DATADIR%%/locale/be/license.txt
-%%DATADIR%%/locale/be/opera6.adr
+%%DATADIR%%/locale/af/af.lng
+%%DATADIR%%/locale/az/az.lng
+%%DATADIR%%/locale/be/be.lng
+%%DATADIR%%/locale/be/bookmarks.adr
 %%DATADIR%%/locale/be/search.ini
-%%DATADIR%%/locale/bg/bulgarian.lng
-%%DATADIR%%/locale/bg/license.txt
-%%DATADIR%%/locale/bg/opera6.adr
+%%DATADIR%%/locale/be/standard_speeddial.ini
+%%DATADIR%%/locale/bg/bg.lng
+%%DATADIR%%/locale/bg/bookmarks.adr
 %%DATADIR%%/locale/bg/search.ini
-%%DATADIR%%/locale/cs/czech.lng
-%%DATADIR%%/locale/cs/license.txt
-%%DATADIR%%/locale/cs/opera6.adr
+%%DATADIR%%/locale/bg/standard_speeddial.ini
+%%DATADIR%%/locale/bn/bn.lng
+%%DATADIR%%/locale/cs/bookmarks.adr
+%%DATADIR%%/locale/cs/cs.lng
 %%DATADIR%%/locale/cs/search.ini
-%%DATADIR%%/locale/da/dansk.lng
-%%DATADIR%%/locale/da/license.txt
-%%DATADIR%%/locale/da/opera6.adr
-%%DATADIR%%/locale/da/search.ini
-%%DATADIR%%/locale/de/deutsch.lng
-%%DATADIR%%/locale/de/license.txt
-%%DATADIR%%/locale/de/opera6.adr
+%%DATADIR%%/locale/cs/standard_speeddial.ini
+%%DATADIR%%/locale/da/da.lng
+%%DATADIR%%/locale/de/bookmarks.adr
+%%DATADIR%%/locale/de/de.lng
 %%DATADIR%%/locale/de/search.ini
-%%DATADIR%%/locale/el/greek.lng
-%%DATADIR%%/locale/el/license.txt
-%%DATADIR%%/locale/el/opera6.adr
-%%DATADIR%%/locale/el/search.ini
-%%DATADIR%%/locale/en-GB/british.lng
-%%DATADIR%%/locale/en-GB/license.txt
-%%DATADIR%%/locale/en-GB/opera6.adr
-%%DATADIR%%/locale/en-GB/search.ini
+%%DATADIR%%/locale/de/standard_speeddial.ini
+%%DATADIR%%/locale/el/el.lng
+%%DATADIR%%/locale/en-GB/en-GB.lng
+%%DATADIR%%/locale/en/en.lng
+%%DATADIR%%/locale/en/en.zip
 %%DATADIR%%/locale/en/license.txt
-%%DATADIR%%/locale/en/opera6.adr
-%%DATADIR%%/locale/en/search.ini
-%%DATADIR%%/locale/english.lng
-%%DATADIR%%/locale/es-ES/espanol-espana.lng
-%%DATADIR%%/locale/es-ES/license.txt
-%%DATADIR%%/locale/es-ES/opera6.adr
+%%DATADIR%%/locale/es-ES/bookmarks.adr
+%%DATADIR%%/locale/es-ES/es-ES.lng
 %%DATADIR%%/locale/es-ES/search.ini
-%%DATADIR%%/locale/es-LA/espanol-america_latina.lng
-%%DATADIR%%/locale/es-LA/license.txt
-%%DATADIR%%/locale/es-LA/opera6.adr
-%%DATADIR%%/locale/es-LA/search.ini
-%%DATADIR%%/locale/et/eesti.lng
-%%DATADIR%%/locale/et/license.txt
-%%DATADIR%%/locale/et/opera6.adr
-%%DATADIR%%/locale/et/search.ini
-%%DATADIR%%/locale/fi/license.txt
-%%DATADIR%%/locale/fi/opera6.adr
-%%DATADIR%%/locale/fi/search.ini
-%%DATADIR%%/locale/fi/suomi.lng
-%%DATADIR%%/locale/fr-CA/francais-canadien.lng
-%%DATADIR%%/locale/fr-CA/license.txt
-%%DATADIR%%/locale/fr-CA/opera6.adr
-%%DATADIR%%/locale/fr-CA/search.ini
-%%DATADIR%%/locale/fr/francais.lng
-%%DATADIR%%/locale/fr/license.txt
-%%DATADIR%%/locale/fr/opera6.adr
+%%DATADIR%%/locale/es-ES/standard_speeddial.ini
+%%DATADIR%%/locale/es-LA/es-LA.lng
+%%DATADIR%%/locale/et/et.lng
+%%DATADIR%%/locale/fi/fi.lng
+%%DATADIR%%/locale/fr-CA/fr-CA.lng
+%%DATADIR%%/locale/fr/bookmarks.adr
+%%DATADIR%%/locale/fr/fr.lng
 %%DATADIR%%/locale/fr/search.ini
-%%DATADIR%%/locale/fy/frisian.lng
-%%DATADIR%%/locale/fy/license.txt
-%%DATADIR%%/locale/fy/opera6.adr
-%%DATADIR%%/locale/fy/search.ini
-%%DATADIR%%/locale/hi/hindi.lng
-%%DATADIR%%/locale/hi/license.txt
-%%DATADIR%%/locale/hi/opera6.adr
-%%DATADIR%%/locale/hi/search.ini
-%%DATADIR%%/locale/hr/croatian.lng
-%%DATADIR%%/locale/hr/license.txt
-%%DATADIR%%/locale/hr/opera6.adr
-%%DATADIR%%/locale/hr/search.ini
-%%DATADIR%%/locale/hu/hungarian.lng
-%%DATADIR%%/locale/hu/license.txt
-%%DATADIR%%/locale/hu/opera6.adr
+%%DATADIR%%/locale/fr/standard_speeddial.ini
+%%DATADIR%%/locale/fy/fy.lng
+%%DATADIR%%/locale/gd/gd.lng
+%%DATADIR%%/locale/hi/hi.lng
+%%DATADIR%%/locale/hr/hr.lng
+%%DATADIR%%/locale/hu/bookmarks.adr
+%%DATADIR%%/locale/hu/hu.lng
 %%DATADIR%%/locale/hu/search.ini
-%%DATADIR%%/locale/id/indonesian.lng
-%%DATADIR%%/locale/id/license.txt
-%%DATADIR%%/locale/id/opera6.adr
-%%DATADIR%%/locale/id/search.ini
-%%DATADIR%%/locale/it/italiano.lng
-%%DATADIR%%/locale/it/license.txt
-%%DATADIR%%/locale/it/opera6.adr
+%%DATADIR%%/locale/hu/standard_speeddial.ini
+%%DATADIR%%/locale/id/id.lng
+%%DATADIR%%/locale/it/bookmarks.adr
+%%DATADIR%%/locale/it/it.lng
 %%DATADIR%%/locale/it/search.ini
-%%DATADIR%%/locale/ja/japanese.lng
-%%DATADIR%%/locale/ja/license.txt
-%%DATADIR%%/locale/ja/opera6.adr
+%%DATADIR%%/locale/it/standard_speeddial.ini
+%%DATADIR%%/locale/ja/bookmarks.adr
+%%DATADIR%%/locale/ja/ja.lng
 %%DATADIR%%/locale/ja/search.ini
-%%DATADIR%%/locale/ka/georgian.lng
-%%DATADIR%%/locale/ka/license.txt
-%%DATADIR%%/locale/ka/opera6.adr
-%%DATADIR%%/locale/ka/search.ini
-%%DATADIR%%/locale/ko/korean.lng
-%%DATADIR%%/locale/ko/license.txt
-%%DATADIR%%/locale/ko/opera6.adr
-%%DATADIR%%/locale/ko/search.ini
-%%DATADIR%%/locale/lt/license.txt
-%%DATADIR%%/locale/lt/lithuanian.lng
-%%DATADIR%%/locale/lt/opera6.adr
-%%DATADIR%%/locale/lt/search.ini
-%%DATADIR%%/locale/mk/license.txt
-%%DATADIR%%/locale/mk/macedonian.lng
-%%DATADIR%%/locale/mk/opera6.adr
-%%DATADIR%%/locale/mk/search.ini
-%%DATADIR%%/locale/nb/license.txt
-%%DATADIR%%/locale/nb/norsk.lng
-%%DATADIR%%/locale/nb/opera6.adr
+%%DATADIR%%/locale/ja/standard_speeddial.ini
+%%DATADIR%%/locale/ka/ka.lng
+%%DATADIR%%/locale/ko/ko.lng
+%%DATADIR%%/locale/lt/lt.lng
+%%DATADIR%%/locale/me/me.lng
+%%DATADIR%%/locale/mk/mk.lng
+%%DATADIR%%/locale/ms/ms.lng
+%%DATADIR%%/locale/nb/bookmarks.adr
+%%DATADIR%%/locale/nb/nb.lng
 %%DATADIR%%/locale/nb/search.ini
-%%DATADIR%%/locale/nl/license.txt
-%%DATADIR%%/locale/nl/nederlands.lng
-%%DATADIR%%/locale/nl/opera6.adr
-%%DATADIR%%/locale/nl/search.ini
-%%DATADIR%%/locale/nn/license.txt
-%%DATADIR%%/locale/nn/nynorsk.lng
-%%DATADIR%%/locale/nn/opera6.adr
-%%DATADIR%%/locale/nn/search.ini
-%%DATADIR%%/locale/pl/license.txt
-%%DATADIR%%/locale/pl/opera6.adr
-%%DATADIR%%/locale/pl/polski.lng
+%%DATADIR%%/locale/nb/standard_speeddial.ini
+%%DATADIR%%/locale/nl/nl.lng
+%%DATADIR%%/locale/nn/nn.lng
+%%DATADIR%%/locale/pa/pa.lng
+%%DATADIR%%/locale/pl/bookmarks.adr
+%%DATADIR%%/locale/pl/pl.lng
 %%DATADIR%%/locale/pl/search.ini
-%%DATADIR%%/locale/pt-BR/brazilportuguese.lng
-%%DATADIR%%/locale/pt-BR/license.txt
-%%DATADIR%%/locale/pt-BR/opera6.adr
+%%DATADIR%%/locale/pl/standard_speeddial.ini
+%%DATADIR%%/locale/pt-BR/bookmarks.adr
+%%DATADIR%%/locale/pt-BR/pt-BR.lng
 %%DATADIR%%/locale/pt-BR/search.ini
-%%DATADIR%%/locale/pt/license.txt
-%%DATADIR%%/locale/pt/opera6.adr
-%%DATADIR%%/locale/pt/portuguese.lng
-%%DATADIR%%/locale/pt/search.ini
-%%DATADIR%%/locale/ru/license.txt
-%%DATADIR%%/locale/ru/opera6.adr
-%%DATADIR%%/locale/ru/russian.lng
+%%DATADIR%%/locale/pt-BR/standard_speeddial.ini
+%%DATADIR%%/locale/pt/pt.lng
+%%DATADIR%%/locale/ro/bookmarks.adr
+%%DATADIR%%/locale/ro/ro.lng
+%%DATADIR%%/locale/ro/search.ini
+%%DATADIR%%/locale/ro/standard_speeddial.ini
+%%DATADIR%%/locale/ru/bookmarks.adr
+%%DATADIR%%/locale/ru/ru.lng
 %%DATADIR%%/locale/ru/search.ini
-%%DATADIR%%/locale/sv/license.txt
-%%DATADIR%%/locale/sv/opera6.adr
-%%DATADIR%%/locale/sv/search.ini
-%%DATADIR%%/locale/sv/svenska.lng
-%%DATADIR%%/locale/ta/license.txt
-%%DATADIR%%/locale/ta/opera6.adr
-%%DATADIR%%/locale/ta/search.ini
-%%DATADIR%%/locale/ta/tamil.lng
-%%DATADIR%%/locale/te/license.txt
-%%DATADIR%%/locale/te/opera6.adr
-%%DATADIR%%/locale/te/search.ini
-%%DATADIR%%/locale/te/telugu.lng
-%%DATADIR%%/locale/tr/license.txt
-%%DATADIR%%/locale/tr/opera6.adr
+%%DATADIR%%/locale/ru/standard_speeddial.ini
+%%DATADIR%%/locale/sk/bookmarks.adr
+%%DATADIR%%/locale/sk/search.ini
+%%DATADIR%%/locale/sk/sk.lng
+%%DATADIR%%/locale/sk/standard_speeddial.ini
+%%DATADIR%%/locale/sr/bookmarks.adr
+%%DATADIR%%/locale/sr/search.ini
+%%DATADIR%%/locale/sr/sr.lng
+%%DATADIR%%/locale/sr/standard_speeddial.ini
+%%DATADIR%%/locale/sv/sv.lng
+%%DATADIR%%/locale/sw/sw.lng
+%%DATADIR%%/locale/ta/ta.lng
+%%DATADIR%%/locale/te/te.lng
+%%DATADIR%%/locale/th/th.lng
+%%DATADIR%%/locale/tl/tl.lng
+%%DATADIR%%/locale/tr/bookmarks.adr
 %%DATADIR%%/locale/tr/search.ini
-%%DATADIR%%/locale/tr/turkce.lng
-%%DATADIR%%/locale/uk/license.txt
-%%DATADIR%%/locale/uk/opera6.adr
+%%DATADIR%%/locale/tr/standard_speeddial.ini
+%%DATADIR%%/locale/tr/tr.lng
+%%DATADIR%%/locale/uk/bookmarks.adr
 %%DATADIR%%/locale/uk/search.ini
-%%DATADIR%%/locale/uk/ukrainian.lng
-%%DATADIR%%/locale/zh-cn/chinese_simp.lng
-%%DATADIR%%/locale/zh-cn/license.txt
-%%DATADIR%%/locale/zh-cn/opera6.adr
+%%DATADIR%%/locale/uk/standard_speeddial.ini
+%%DATADIR%%/locale/uk/uk.lng
+%%DATADIR%%/locale/uz/uz.lng
+%%DATADIR%%/locale/vi/vi.lng
+%%DATADIR%%/locale/zh-cn/bookmarks.adr
 %%DATADIR%%/locale/zh-cn/search.ini
-%%DATADIR%%/locale/zh-tw/chinese.lng
-%%DATADIR%%/locale/zh-tw/license.txt
-%%DATADIR%%/locale/zh-tw/opera6.adr
-%%DATADIR%%/locale/zh-tw/search.ini
-%%DATADIR%%/opera6.adr
-%%DATADIR%%/search.ini
+%%DATADIR%%/locale/zh-cn/standard_speeddial.ini
+%%DATADIR%%/locale/zh-cn/zh-cn.lng
+%%DATADIR%%/locale/zh-tw/zh-tw.lng
+%%DATADIR%%/locale/zu/zu.lng
+%%DATADIR%%/mathml.dtd
+%%DATADIR%%/package-id.ini
+%%DATADIR%%/package/lib/binprint.sh
+%%DATADIR%%/package/lib/layout_common.sh
+%%DATADIR%%/package/lib/layout_deb.sh
+%%DATADIR%%/package/lib/layout_tar.sh
+%%DATADIR%%/package/lib/main.sh
+%%DATADIR%%/package/lib/normalize.sh
+%%DATADIR%%/package/lib/package_deb.sh
+%%DATADIR%%/package/lib/package_rpm.sh
+%%DATADIR%%/package/lib/package_tar.sh
+%%DATADIR%%/package/lib/xml.sh
+%%DATADIR%%/package/main.sh
+%%DATADIR%%/pubsuffix.xml
+%%DATADIR%%/region/cis/en/bookmarks.adr
+%%DATADIR%%/region/cis/en/search.ini
+%%DATADIR%%/region/cis/en/standard_speeddial.ini
+%%DATADIR%%/region/cis/ru/bookmarks.adr
+%%DATADIR%%/region/cis/ru/search.ini
+%%DATADIR%%/region/cis/ru/standard_speeddial.ini
+%%DATADIR%%/region/cn/browser.js
+%%DATADIR%%/region/cn/en/bookmarks.adr
+%%DATADIR%%/region/cn/en/search.ini
+%%DATADIR%%/region/cn/en/standard_speeddial.ini
+%%DATADIR%%/region/cn/turbosettings.xml
+%%DATADIR%%/region/gb/bookmarks.adr
+%%DATADIR%%/region/gb/search.ini
+%%DATADIR%%/region/gb/standard_speeddial.ini
+%%DATADIR%%/region/hk/browser.js
+%%DATADIR%%/region/hk/turbosettings.xml
+%%DATADIR%%/region/id/bookmarks.adr
+%%DATADIR%%/region/id/search.ini
+%%DATADIR%%/region/id/standard_speeddial.ini
+%%DATADIR%%/region/in/bookmarks.adr
+%%DATADIR%%/region/in/search.ini
+%%DATADIR%%/region/in/standard_speeddial.ini
+%%DATADIR%%/region/latin_america/bookmarks.adr
+%%DATADIR%%/region/latin_america/search.ini
+%%DATADIR%%/region/latin_america/standard_speeddial.ini
+%%DATADIR%%/region/middle_east/bookmarks.adr
+%%DATADIR%%/region/middle_east/search.ini
+%%DATADIR%%/region/middle_east/standard_speeddial.ini
+%%DATADIR%%/region/region.ini
+%%DATADIR%%/region/tw/browser.js
+%%DATADIR%%/region/tw/turbosettings.xml
+%%DATADIR%%/region/ua/ru/bookmarks.adr
+%%DATADIR%%/region/ua/ru/search.ini
+%%DATADIR%%/region/ua/ru/standard_speeddial.ini
+%%DATADIR%%/region/us/bookmarks.adr
+%%DATADIR%%/region/us/search.ini
+%%DATADIR%%/region/us/standard_speeddial.ini
 %%DATADIR%%/skin/standard_skin.zip
-%%DATADIR%%/skin/windows_skin.zip
+%%DATADIR%%/skin/unix_skin.zip
 %%DATADIR%%/styles/about.css
 %%DATADIR%%/styles/cache.css
 %%DATADIR%%/styles/certinfo.css
 %%DATADIR%%/styles/config.css
 %%DATADIR%%/styles/contentblock.css
+%%DATADIR%%/styles/debug.css
 %%DATADIR%%/styles/dir.css
 %%DATADIR%%/styles/error.css
+%%DATADIR%%/styles/feed.css
 %%DATADIR%%/styles/history.css
 %%DATADIR%%/styles/im.css
 %%DATADIR%%/styles/image.css
+%%DATADIR%%/styles/images/Opera_256x256.png
+%%DATADIR%%/styles/images/arrow.png
 %%DATADIR%%/styles/images/bar.png
+%%DATADIR%%/styles/images/bkgd-rev.png
+%%DATADIR%%/styles/images/bkgd.png
+%%DATADIR%%/styles/images/bullet.png
 %%DATADIR%%/styles/images/center.png
+%%DATADIR%%/styles/images/container.png
 %%DATADIR%%/styles/images/customize.gif
 %%DATADIR%%/styles/images/darkBox.png
 %%DATADIR%%/styles/images/defaultFavicon.png
+%%DATADIR%%/styles/images/error.png
+%%DATADIR%%/styles/images/file.png
 %%DATADIR%%/styles/images/flag.png
 %%DATADIR%%/styles/images/folder.png
+%%DATADIR%%/styles/images/hanger.png
+%%DATADIR%%/styles/images/opera-icon-red.png
 %%DATADIR%%/styles/images/opera.png
+%%DATADIR%%/styles/images/page-bot.png
 %%DATADIR%%/styles/images/red_center.png
 %%DATADIR%%/styles/images/red_left.png
 %%DATADIR%%/styles/images/red_right.png
 %%DATADIR%%/styles/images/root.png
+%%DATADIR%%/styles/images/search.png
 %%DATADIR%%/styles/images/section.png
 %%DATADIR%%/styles/images/smartGroup.png
+%%DATADIR%%/styles/images/tooltiptail.png
 %%DATADIR%%/styles/images/top.png
+%%DATADIR%%/styles/images/warning.png
 %%DATADIR%%/styles/info.css
+%%DATADIR%%/styles/m2_upgrade_1160.mbs
+%%DATADIR%%/styles/m2_welcome_message.mbs
+%%DATADIR%%/styles/mail.css
 %%DATADIR%%/styles/mathml.css
+%%DATADIR%%/styles/media.css
 %%DATADIR%%/styles/message.css
 %%DATADIR%%/styles/mime.css
+%%DATADIR%%/styles/opera.css
 %%DATADIR%%/styles/plugins.css
+%%DATADIR%%/styles/private.css
 %%DATADIR%%/styles/search.css
+%%DATADIR%%/styles/unstyledxml.css
 %%DATADIR%%/styles/user/accessibility.css
 %%DATADIR%%/styles/user/altdebugger.css
 %%DATADIR%%/styles/user/classid.css
@@ -237,34 +327,79 @@ share/applnk/Internet/linux-opera.desktop
 %%DATADIR%%/styles/user/toc.css
 %%DATADIR%%/styles/warning.css
 %%DATADIR%%/styles/webfeeds.html
+%%DATADIR%%/styles/webstorage.css
 %%DATADIR%%/styles/wml.css
-%%DATADIR%%/svg-mo.dat
-%%DATADIR%%/svg-mobd.dat
-%%DATADIR%%/svg-sa.dat
-%%DATADIR%%/svg-sabd.dat
-%%DATADIR%%/svg-se.dat
-%%DATADIR%%/svg-sebd.dat
-share/pixmaps/linux-opera.xpm
+%%DATADIR%%/ui/dialog.ini
+%%DATADIR%%/ui/dialogs.yaml
+%%DATADIR%%/ui/fastforward.ini
+%%DATADIR%%/ui/standard_keyboard.ini
+%%DATADIR%%/ui/standard_keyboard_compat.ini
+%%DATADIR%%/ui/standard_menu.ini
+%%DATADIR%%/ui/standard_mouse.ini
+%%DATADIR%%/ui/standard_toolbar.ini
+%%DATADIR%%/ui/widgets.yaml
+%%DATADIR%%/ui/unix_keyboard.ini
+%%DATADIR%%/unite/fileSharing.ua
+%%DATADIR%%/unite/fridge.ua
+%%DATADIR%%/unite/home.ua
+%%DATADIR%%/unite/mediaPlayer.ua
+%%DATADIR%%/unite/messenger.ua
+%%DATADIR%%/unite/photoSharing.ua
+%%DATADIR%%/unite/webserver.ua
+share/mime/packages/linux-opera-extension.xml
+share/mime/packages/linux-opera-unite-application.xml
+share/mime/packages/linux-opera-widget.xml
+@dirrm %%DATADIR%%/unite
+@dirrm %%DATADIR%%/ui
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
 @dirrm %%DATADIR%%/styles
 @dirrm %%DATADIR%%/skin
-@dirrm %%DATADIR%%/plugins
+@dirrm %%DATADIR%%/region/us
+@dirrm %%DATADIR%%/region/ua/ru
+@dirrm %%DATADIR%%/region/ua
+@dirrm %%DATADIR%%/region/tw
+@dirrm %%DATADIR%%/region/middle_east
+@dirrm %%DATADIR%%/region/latin_america
+@dirrm %%DATADIR%%/region/in
+@dirrm %%DATADIR%%/region/id
+@dirrm %%DATADIR%%/region/hk
+@dirrm %%DATADIR%%/region/gb
+@dirrm %%DATADIR%%/region/cn/en
+@dirrm %%DATADIR%%/region/cn
+@dirrm %%DATADIR%%/region/cis/ru
+@dirrm %%DATADIR%%/region/cis/en
+@dirrm %%DATADIR%%/region/cis
+@dirrm %%DATADIR%%/region
+@dirrm %%DATADIR%%/package/lib
+@dirrm %%DATADIR%%/package
+@dirrm %%DATADIR%%/locale/zu
 @dirrm %%DATADIR%%/locale/zh-tw
 @dirrm %%DATADIR%%/locale/zh-cn
+@dirrm %%DATADIR%%/locale/vi
+@dirrm %%DATADIR%%/locale/uz
 @dirrm %%DATADIR%%/locale/uk
 @dirrm %%DATADIR%%/locale/tr
+@dirrm %%DATADIR%%/locale/tl
+@dirrm %%DATADIR%%/locale/th
 @dirrm %%DATADIR%%/locale/te
 @dirrm %%DATADIR%%/locale/ta
+@dirrm %%DATADIR%%/locale/sw
 @dirrm %%DATADIR%%/locale/sv
+@dirrm %%DATADIR%%/locale/sr
+@dirrm %%DATADIR%%/locale/sk
 @dirrm %%DATADIR%%/locale/ru
+@dirrm %%DATADIR%%/locale/ro
 @dirrm %%DATADIR%%/locale/pt-BR
 @dirrm %%DATADIR%%/locale/pt
 @dirrm %%DATADIR%%/locale/pl
+@dirrm %%DATADIR%%/locale/pa
 @dirrm %%DATADIR%%/locale/nn
 @dirrm %%DATADIR%%/locale/nl
 @dirrm %%DATADIR%%/locale/nb
+@dirrm %%DATADIR%%/locale/ms
 @dirrm %%DATADIR%%/locale/mk
+@dirrm %%DATADIR%%/locale/me
 @dirrm %%DATADIR%%/locale/lt
 @dirrm %%DATADIR%%/locale/ko
 @dirrm %%DATADIR%%/locale/ka
@@ -274,6 +409,7 @@ share/pixmaps/linux-opera.xpm
 @dirrm %%DATADIR%%/locale/hu
 @dirrm %%DATADIR%%/locale/hr
 @dirrm %%DATADIR%%/locale/hi
+@dirrm %%DATADIR%%/locale/gd
 @dirrm %%DATADIR%%/locale/fy
 @dirrm %%DATADIR%%/locale/fr-CA
 @dirrm %%DATADIR%%/locale/fr
@@ -287,14 +423,45 @@ share/pixmaps/linux-opera.xpm
 @dirrm %%DATADIR%%/locale/de
 @dirrm %%DATADIR%%/locale/da
 @dirrm %%DATADIR%%/locale/cs
+@dirrm %%DATADIR%%/locale/bn
 @dirrm %%DATADIR%%/locale/bg
 @dirrm %%DATADIR%%/locale/be
+@dirrm %%DATADIR%%/locale/az
+@dirrm %%DATADIR%%/locale/af
 @dirrm %%DATADIR%%/locale
-@dirrm %%DATADIR%%/java
-@dirrm %%DATADIR%%/ini
-@dirrm %%DATADIR%%/bin
+@dirrm %%DATADIR%%/extra
+@dirrm %%DATADIR%%/defaults
 @dirrm %%DATADIR%%
+@dirrmtry share/icons/hicolor/scalable/mimetypes
+@dirrmtry share/icons/hicolor/scalable/apps
+@dirrmtry share/icons/hicolor/scalable
+@dirrmtry share/icons/hicolor/48x48/mimetypes
+@dirrmtry share/icons/hicolor/48x48/apps
+@dirrmtry share/icons/hicolor/48x48
+@dirrmtry share/icons/hicolor/32x32/mimetypes
+@dirrmtry share/icons/hicolor/32x32/apps
+@dirrmtry share/icons/hicolor/32x32
+@dirrmtry share/icons/hicolor/24x24/mimetypes
+@dirrmtry share/icons/hicolor/24x24/apps
+@dirrmtry share/icons/hicolor/24x24
+@dirrmtry share/icons/hicolor/22x22/mimetypes
+@dirrmtry share/icons/hicolor/22x22/apps
+@dirrmtry share/icons/hicolor/22x22
+@dirrmtry share/icons/hicolor/16x16/mimetypes
+@dirrmtry share/icons/hicolor/16x16/apps
+@dirrmtry share/icons/hicolor/16x16
+@dirrmtry share/icons/hicolor/128x128/mimetypes
+@dirrmtry share/icons/hicolor/128x128/apps
+@dirrmtry share/icons/hicolor/128x128
+@dirrmtry share/icons/hicolor
+@dirrmtry share/icons
 @dirrm %%DOCSDIR%%
 @dirrmtry share/applications
-@dirrmtry share/apps/Internet
-@dirrmtry share/applnk/Internet
+@dirrm lib/linux-opera/plugins
+@dirrm lib/linux-opera/gstreamer/plugins
+@dirrm lib/linux-opera/gstreamer
+@dirrm lib/linux-opera
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@exec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
+@unexec %%LOCALBASE%%/bin/update-desktop-database > /dev/null || /usr/bin/true
