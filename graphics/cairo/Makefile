@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.18 2012/03/07 14:05:57 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.19 2012/09/09 01:06:58 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
