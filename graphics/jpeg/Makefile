@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.12 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/jpeg/Makefile,v 1.13 2011/10/10 02:39:11 laffer1 Exp $
 
 PORTNAME=	jpeg
 PORTVERSION=	8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.ijg.org/files/ \
 		http://sylvana.net/jpegcrop/:exif
 DISTNAME=	jpegsrc.v${DISTVERSION2}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		jpegexiforient.c:exif exifautotran.txt:exif
-DIST_SUBDIR=	${PORTNAME}${DISTVERSION2}2
+DIST_SUBDIR=	${PORTNAME}${DISTVERSION2}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -19,11 +19,11 @@ LICENSE=	other
 CONFLICTS=	libjpeg-turbo-[0-9]*
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION2}
 
-DISTVERSION2=	8b
+DISTVERSION2=	8d
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-static
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+MAKE_JOBS_SAFE=	yes
 ADDITIONAL_HEADER=	jinclude.h jpegint.h
 
 # define J_MAXMEM like "make J_MAXMEM=32" to limit max processing memory to 32Mb
