@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/devel/pcre/Makefile,v 1.16 2012/02/20 15:26:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/pcre/Makefile,v 1.17 2012/02/29 21:58:47 laffer1 Exp $
 # $FreeBSD: ports/devel/pcre/Makefile,v 1.46 2007/08/04 11:40:49 gabor Exp $
 
 PORTNAME=	pcre
-PORTVERSION=	8.30
-PORTREVISION=	1
+PORTVERSION=	8.32
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.csx.cam.ac.uk/pub/software/programming/%SUBDIR%/ \
 		ftp://ftp.fu-berlin.de/unix/misc/%SUBDIR%/ \
@@ -21,7 +20,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gnomehack
 CONFIGURE_ARGS=	--enable-utf8 --enable-unicode-properties \
-		--enable-pcre8 --enable-pcre16
+		--enable-pcre8 --enable-pcre16 --enable-pcre32
 
 .include <bsd.mport.options.mk>
 
