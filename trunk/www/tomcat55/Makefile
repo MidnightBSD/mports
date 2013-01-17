@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.12 2011/10/28 13:42:20 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat55/Makefile,v 1.13 2012/06/15 03:25:52 laffer1 Exp $
 
 PORTNAME=	tomcat
-PORTVERSION=	5.5.35
+PORTVERSION=	5.5.36
 PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	${MASTER_SITE_APACHE}
