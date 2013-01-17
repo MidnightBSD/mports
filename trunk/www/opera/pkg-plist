@@ -1,66 +1,33 @@
 bin/opera
-bin/opera-widget-manager
 bin/uninstall-opera
 lib/opera/gstreamer/plugins/libgstoperamatroska.so
 lib/opera/gstreamer/plugins/libgstoperavp8.so
 lib/opera/liboperagtk2.so
 lib/opera/liboperakde4.so
 lib/opera/opera
-lib/opera/operaplugincleaner
-lib/opera/operapluginwrapper
-lib/opera/operapluginwrapper.freebsd
 lib/opera/plugins/README
+lib/opera/pluginwrapper/operapluginwrapper
+lib/opera/pluginwrapper/operapluginwrapper-native
+share/applications/opera-browser.desktop
 %%DOCSDIR%%/LGPL-2
 %%DOCSDIR%%/LICENSE
 %%DOCSDIR%%/README.gstreamer
-share/applications/opera-browser.desktop
-share/applications/opera-widget-installer.desktop
-share/applications/opera-widget-manager.desktop
 share/icons/hicolor/128x128/apps/opera-browser.png
-share/icons/hicolor/128x128/apps/opera-widget-manager.png
-share/icons/hicolor/128x128/apps/opera-widget.png
 share/icons/hicolor/128x128/mimetypes/opera-extension.png
-share/icons/hicolor/128x128/mimetypes/opera-unite-application.png
-share/icons/hicolor/128x128/mimetypes/opera-widget.png
 share/icons/hicolor/16x16/apps/opera-browser.png
-share/icons/hicolor/16x16/apps/opera-widget-manager.png
-share/icons/hicolor/16x16/apps/opera-widget.png
 share/icons/hicolor/16x16/mimetypes/opera-extension.png
-share/icons/hicolor/16x16/mimetypes/opera-unite-application.png
-share/icons/hicolor/16x16/mimetypes/opera-widget.png
 share/icons/hicolor/22x22/apps/opera-browser.png
-share/icons/hicolor/22x22/apps/opera-widget-manager.png
-share/icons/hicolor/22x22/apps/opera-widget.png
 share/icons/hicolor/22x22/mimetypes/opera-extension.png
-share/icons/hicolor/22x22/mimetypes/opera-unite-application.png
-share/icons/hicolor/22x22/mimetypes/opera-widget.png
 share/icons/hicolor/24x24/apps/opera-browser.png
-share/icons/hicolor/24x24/apps/opera-widget-manager.png
-share/icons/hicolor/24x24/apps/opera-widget.png
 share/icons/hicolor/24x24/mimetypes/opera-extension.png
-share/icons/hicolor/24x24/mimetypes/opera-unite-application.png
-share/icons/hicolor/24x24/mimetypes/opera-widget.png
+share/icons/hicolor/256x256/apps/opera-browser.png
 share/icons/hicolor/32x32/apps/opera-browser.png
-share/icons/hicolor/32x32/apps/opera-widget-manager.png
-share/icons/hicolor/32x32/apps/opera-widget.png
 share/icons/hicolor/32x32/mimetypes/opera-extension.png
-share/icons/hicolor/32x32/mimetypes/opera-unite-application.png
-share/icons/hicolor/32x32/mimetypes/opera-widget.png
 share/icons/hicolor/48x48/apps/opera-browser.png
-share/icons/hicolor/48x48/apps/opera-widget-manager.png
-share/icons/hicolor/48x48/apps/opera-widget.png
 share/icons/hicolor/48x48/mimetypes/opera-extension.png
-share/icons/hicolor/48x48/mimetypes/opera-unite-application.png
-share/icons/hicolor/48x48/mimetypes/opera-widget.png
-share/icons/hicolor/scalable/apps/opera-browser.svg
-share/icons/hicolor/scalable/apps/opera-widget-manager.svg
-share/icons/hicolor/scalable/apps/opera-widget.svg
 share/icons/hicolor/scalable/mimetypes/opera-extension.svg
-share/icons/hicolor/scalable/mimetypes/opera-unite-application.svg
-share/icons/hicolor/scalable/mimetypes/opera-widget.svg
+share/mime/application/x-opera-extension.xml
 share/mime/packages/opera-extension.xml
-share/mime/packages/opera-unite-application.xml
-share/mime/packages/opera-widget.xml
 %%DATADIR%%/defaults/bookmarks.adr
 %%DATADIR%%/defaults/dictionaries.xml
 %%DATADIR%%/defaults/feedreaders.ini
@@ -86,12 +53,14 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/extra/svg-sabd.dat
 %%DATADIR%%/extra/svg-se.dat
 %%DATADIR%%/extra/svg-sebd.dat
+%%DATADIR%%/extra/unix-opengl.blocklist.json
 %%DATADIR%%/files.sig
 %%DATADIR%%/files_old.sig
 %%DATADIR%%/html40_entities.dtd
 %%DATADIR%%/html5_entity_init.dat
 %%DATADIR%%/lngcode.txt
 %%DATADIR%%/locale/af/af.lng
+%%DATADIR%%/locale/ar/ar.lng
 %%DATADIR%%/locale/az/az.lng
 %%DATADIR%%/locale/be/be.lng
 %%DATADIR%%/locale/be/bookmarks.adr
@@ -122,6 +91,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/es-ES/standard_speeddial.ini
 %%DATADIR%%/locale/es-LA/es-LA.lng
 %%DATADIR%%/locale/et/et.lng
+%%DATADIR%%/locale/fa/fa.lng
 %%DATADIR%%/locale/fi/fi.lng
 %%DATADIR%%/locale/fr-CA/fr-CA.lng
 %%DATADIR%%/locale/fr/bookmarks.adr
@@ -130,6 +100,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/fr/standard_speeddial.ini
 %%DATADIR%%/locale/fy/fy.lng
 %%DATADIR%%/locale/gd/gd.lng
+%%DATADIR%%/locale/he/he.lng
 %%DATADIR%%/locale/hi/hi.lng
 %%DATADIR%%/locale/hr/hr.lng
 %%DATADIR%%/locale/hu/bookmarks.adr
@@ -146,8 +117,10 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/ja/search.ini
 %%DATADIR%%/locale/ja/standard_speeddial.ini
 %%DATADIR%%/locale/ka/ka.lng
+%%DATADIR%%/locale/kk/kk.lng
 %%DATADIR%%/locale/ko/ko.lng
 %%DATADIR%%/locale/lt/lt.lng
+%%DATADIR%%/locale/lv/lv.lng
 %%DATADIR%%/locale/me/me.lng
 %%DATADIR%%/locale/mk/mk.lng
 %%DATADIR%%/locale/ms/ms.lng
@@ -189,14 +162,19 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/te/te.lng
 %%DATADIR%%/locale/th/th.lng
 %%DATADIR%%/locale/tl/tl.lng
+%%DATADIR%%/locale/tr/bookmarks.adr
+%%DATADIR%%/locale/tr/search.ini
+%%DATADIR%%/locale/tr/standard_speeddial.ini
 %%DATADIR%%/locale/tr/tr.lng
 %%DATADIR%%/locale/uk/bookmarks.adr
 %%DATADIR%%/locale/uk/search.ini
 %%DATADIR%%/locale/uk/standard_speeddial.ini
 %%DATADIR%%/locale/uk/uk.lng
+%%DATADIR%%/locale/ur/ur.lng
 %%DATADIR%%/locale/uz/uz.lng
 %%DATADIR%%/locale/vi/vi.lng
 %%DATADIR%%/locale/zh-cn/bookmarks.adr
+%%DATADIR%%/locale/zh-cn/operaprefs_locale.ini
 %%DATADIR%%/locale/zh-cn/search.ini
 %%DATADIR%%/locale/zh-cn/standard_speeddial.ini
 %%DATADIR%%/locale/zh-cn/zh-cn.lng
@@ -204,18 +182,12 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/locale/zu/zu.lng
 %%DATADIR%%/mathml.dtd
 %%DATADIR%%/package-id.ini
-%%DATADIR%%/package/lib/binprint.sh
-%%DATADIR%%/package/lib/layout_common.sh
-%%DATADIR%%/package/lib/layout_deb.sh
-%%DATADIR%%/package/lib/layout_tar.sh
-%%DATADIR%%/package/lib/main.sh
-%%DATADIR%%/package/lib/normalize.sh
-%%DATADIR%%/package/lib/package_deb.sh
-%%DATADIR%%/package/lib/package_rpm.sh
-%%DATADIR%%/package/lib/package_tar.sh
-%%DATADIR%%/package/lib/xml.sh
-%%DATADIR%%/package/main.sh
 %%DATADIR%%/pubsuffix.xml
+%%DATADIR%%/region/ar/bookmarks.adr
+%%DATADIR%%/region/ar/search.ini
+%%DATADIR%%/region/ar/standard_speeddial.ini
+%%DATADIR%%/region/au/bookmarks.adr
+%%DATADIR%%/region/au/standard_speeddial.ini
 %%DATADIR%%/region/cis/en/bookmarks.adr
 %%DATADIR%%/region/cis/en/search.ini
 %%DATADIR%%/region/cis/en/standard_speeddial.ini
@@ -227,6 +199,9 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/region/cn/en/search.ini
 %%DATADIR%%/region/cn/en/standard_speeddial.ini
 %%DATADIR%%/region/cn/turbosettings.xml
+%%DATADIR%%/region/eg/bookmarks.adr
+%%DATADIR%%/region/eg/search.ini
+%%DATADIR%%/region/eg/standard_speeddial.ini
 %%DATADIR%%/region/gb/bookmarks.adr
 %%DATADIR%%/region/gb/search.ini
 %%DATADIR%%/region/gb/standard_speeddial.ini
@@ -244,7 +219,23 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/region/middle_east/bookmarks.adr
 %%DATADIR%%/region/middle_east/search.ini
 %%DATADIR%%/region/middle_east/standard_speeddial.ini
+%%DATADIR%%/region/mx/bookmarks.adr
+%%DATADIR%%/region/mx/search.ini
+%%DATADIR%%/region/mx/standard_speeddial.ini
+%%DATADIR%%/region/my/bookmarks.adr
+%%DATADIR%%/region/my/standard_speeddial.ini
+%%DATADIR%%/region/ng/bookmarks.adr
+%%DATADIR%%/region/ng/standard_speeddial.ini
+%%DATADIR%%/region/ph/bookmarks.adr
+%%DATADIR%%/region/ph/standard_speeddial.ini
+%%DATADIR%%/region/pk/bookmarks.adr
+%%DATADIR%%/region/pk/standard_speeddial.ini
 %%DATADIR%%/region/region.ini
+%%DATADIR%%/region/ru/bookmarks.adr
+%%DATADIR%%/region/ru/search.ini
+%%DATADIR%%/region/ru/standard_speeddial.ini
+%%DATADIR%%/region/se/bookmarks.adr
+%%DATADIR%%/region/se/standard_speeddial.ini
 %%DATADIR%%/region/tw/browser.js
 %%DATADIR%%/region/tw/turbosettings.xml
 %%DATADIR%%/region/ua/ru/bookmarks.adr
@@ -253,6 +244,10 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/region/us/bookmarks.adr
 %%DATADIR%%/region/us/search.ini
 %%DATADIR%%/region/us/standard_speeddial.ini
+%%DATADIR%%/region/vn/bookmarks.adr
+%%DATADIR%%/region/vn/standard_speeddial.ini
+%%DATADIR%%/region/za/bookmarks.adr
+%%DATADIR%%/region/za/standard_speeddial.ini
 %%DATADIR%%/skin/standard_skin.zip
 %%DATADIR%%/skin/unix_skin.zip
 %%DATADIR%%/styles/about.css
@@ -260,10 +255,12 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/styles/certinfo.css
 %%DATADIR%%/styles/config.css
 %%DATADIR%%/styles/contentblock.css
+%%DATADIR%%/styles/cpu.css
 %%DATADIR%%/styles/debug.css
 %%DATADIR%%/styles/dir.css
 %%DATADIR%%/styles/error.css
 %%DATADIR%%/styles/feed.css
+%%DATADIR%%/styles/gpu.css
 %%DATADIR%%/styles/history.css
 %%DATADIR%%/styles/im.css
 %%DATADIR%%/styles/image.css
@@ -330,7 +327,7 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/styles/webstorage.css
 %%DATADIR%%/styles/wml.css
 %%DATADIR%%/ui/dialog.ini
-%%DATADIR%%/ui/dialogs.yaml
+%%DATADIR%%/ui/dialogs.yml
 %%DATADIR%%/ui/fastforward.ini
 %%DATADIR%%/ui/standard_keyboard.ini
 %%DATADIR%%/ui/standard_keyboard_compat.ini
@@ -338,43 +335,46 @@ share/mime/packages/opera-widget.xml
 %%DATADIR%%/ui/standard_mouse.ini
 %%DATADIR%%/ui/standard_toolbar.ini
 %%DATADIR%%/ui/unix_keyboard.ini
-%%DATADIR%%/ui/widgets.yaml
-%%DATADIR%%/unite/fileSharing.ua
-%%DATADIR%%/unite/fridge.ua
-%%DATADIR%%/unite/home.ua
-%%DATADIR%%/unite/mediaPlayer.ua
-%%DATADIR%%/unite/messenger.ua
-%%DATADIR%%/unite/photoSharing.ua
-%%DATADIR%%/unite/webserver.ua
-@dirrm %%DATADIR%%/unite
+%%DATADIR%%/ui/widgets.yml
 @dirrm %%DATADIR%%/ui
 @dirrm %%DATADIR%%/styles/user
 @dirrm %%DATADIR%%/styles/images
 @dirrm %%DATADIR%%/styles
 @dirrm %%DATADIR%%/skin
+@dirrm %%DATADIR%%/region/za
+@dirrm %%DATADIR%%/region/vn
 @dirrm %%DATADIR%%/region/us
 @dirrm %%DATADIR%%/region/ua/ru
 @dirrm %%DATADIR%%/region/ua
 @dirrm %%DATADIR%%/region/tw
+@dirrm %%DATADIR%%/region/se
+@dirrm %%DATADIR%%/region/ru
+@dirrm %%DATADIR%%/region/pk
+@dirrm %%DATADIR%%/region/ph
+@dirrm %%DATADIR%%/region/ng
+@dirrm %%DATADIR%%/region/my
+@dirrm %%DATADIR%%/region/mx
 @dirrm %%DATADIR%%/region/middle_east
 @dirrm %%DATADIR%%/region/latin_america
 @dirrm %%DATADIR%%/region/in
 @dirrm %%DATADIR%%/region/id
 @dirrm %%DATADIR%%/region/hk
 @dirrm %%DATADIR%%/region/gb
+@dirrm %%DATADIR%%/region/eg
 @dirrm %%DATADIR%%/region/cn/en
 @dirrm %%DATADIR%%/region/cn
 @dirrm %%DATADIR%%/region/cis/ru
 @dirrm %%DATADIR%%/region/cis/en
 @dirrm %%DATADIR%%/region/cis
+@dirrm %%DATADIR%%/region/au
+@dirrm %%DATADIR%%/region/ar
 @dirrm %%DATADIR%%/region
-@dirrm %%DATADIR%%/package/lib
-@dirrm %%DATADIR%%/package
 @dirrm %%DATADIR%%/locale/zu
 @dirrm %%DATADIR%%/locale/zh-tw
 @dirrm %%DATADIR%%/locale/zh-cn
 @dirrm %%DATADIR%%/locale/vi
 @dirrm %%DATADIR%%/locale/uz
+@dirrm %%DATADIR%%/locale/ur
 @dirrm %%DATADIR%%/locale/uk
 @dirrm %%DATADIR%%/locale/tr
 @dirrm %%DATADIR%%/locale/tl
@@ -397,8 +397,10 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/ms
 @dirrm %%DATADIR%%/locale/mk
 @dirrm %%DATADIR%%/locale/me
+@dirrm %%DATADIR%%/locale/lv
 @dirrm %%DATADIR%%/locale/lt
 @dirrm %%DATADIR%%/locale/ko
+@dirrm %%DATADIR%%/locale/kk
 @dirrm %%DATADIR%%/locale/ka
 @dirrm %%DATADIR%%/locale/ja
 @dirrm %%DATADIR%%/locale/it
@@ -406,11 +408,13 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/hu
 @dirrm %%DATADIR%%/locale/hr
 @dirrm %%DATADIR%%/locale/hi
+@dirrm %%DATADIR%%/locale/he
 @dirrm %%DATADIR%%/locale/gd
 @dirrm %%DATADIR%%/locale/fy
 @dirrm %%DATADIR%%/locale/fr-CA
 @dirrm %%DATADIR%%/locale/fr
 @dirrm %%DATADIR%%/locale/fi
+@dirrm %%DATADIR%%/locale/fa
 @dirrm %%DATADIR%%/locale/et
 @dirrm %%DATADIR%%/locale/es-LA
 @dirrm %%DATADIR%%/locale/es-ES
@@ -424,15 +428,16 @@ share/mime/packages/opera-widget.xml
 @dirrm %%DATADIR%%/locale/bg
 @dirrm %%DATADIR%%/locale/be
 @dirrm %%DATADIR%%/locale/az
+@dirrm %%DATADIR%%/locale/ar
 @dirrm %%DATADIR%%/locale/af
 @dirrm %%DATADIR%%/locale
 @dirrm %%DATADIR%%/extra
 @dirrm %%DATADIR%%/defaults
 @dirrm %%DATADIR%%
 @dirrmtry share/mime/packages
+@dirrmtry share/mime/application
 @dirrmtry share/mime
 @dirrmtry share/icons/hicolor/scalable/mimetypes
-@dirrmtry share/icons/hicolor/scalable/apps
 @dirrmtry share/icons/hicolor/scalable
 @dirrmtry share/icons/hicolor/48x48/mimetypes
 @dirrmtry share/icons/hicolor/48x48/apps
@@ -440,6 +445,8 @@ share/mime/packages/opera-widget.xml
 @dirrmtry share/icons/hicolor/32x32/mimetypes
 @dirrmtry share/icons/hicolor/32x32/apps
 @dirrmtry share/icons/hicolor/32x32
+@dirrmtry share/icons/hicolor/256x256/apps
+@dirrmtry share/icons/hicolor/256x256
 @dirrmtry share/icons/hicolor/24x24/mimetypes
 @dirrmtry share/icons/hicolor/24x24/apps
 @dirrmtry share/icons/hicolor/24x24
@@ -456,6 +463,7 @@ share/mime/packages/opera-widget.xml
 @dirrmtry share/icons
 @dirrm %%DOCSDIR%%
 @dirrmtry share/applications
+@dirrm lib/opera/pluginwrapper
 @dirrm lib/opera/plugins
 @dirrm lib/opera/gstreamer/plugins
 @dirrm lib/opera/gstreamer
