@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/fam/Makefile,v 1.4 2011/05/21 21:19:50 laffer1 Exp $
+# $MidnightBSD: mports/devel/fam/Makefile,v 1.5 2011/12/15 00:34:34 laffer1 Exp $
 # $FreeBSD: ports/devel/fam/Makefile,v 1.35 2008/08/20 00:56:36 ade Exp $
 
 PORTNAME=	fam
 PORTVERSION=	2.6.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	ftp://oss.sgi.com/projects/fam/download/
 DIST_SUBDIR=	${PORTNAME}
