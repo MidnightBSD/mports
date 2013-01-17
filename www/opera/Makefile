@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.35 2012/03/19 21:19:18 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.36 2012/06/15 02:52:39 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
 PORTVERSION=	${OPERA_VER}
-PORTREVISION=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://opera.inode.at/${MASTER_SITES_VER_PATH}/ \
@@ -12,7 +11,7 @@ MASTER_SITES=	ftp://ftp.opera.com/pub/opera/${MASTER_SITES_VER_PATH}/ \
 		http://ftp.ntua.gr/pub/www/Opera/${MASTER_SITES_VER_PATH}/ \
 		http://mirrors.dedipower.com/opera/${MASTER_SITES_VER_PATH}/ \
 		ftp://ftp.tiscali.nl/pub/mirrors/opera/${MASTER_SITES_VER_PATH}/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/${MASTER_SITES_VER_PATH}&,}/ 
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/${MASTER_SITES_VER_PATH}&,}/
 DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.${ARCH}.freebsd
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -24,15 +23,16 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-OPERA_VER?=	11.64
-OPERA_BUILD?=	1403
+OPERA_VER?=	12.11
+OPERA_BUILD?=	1661
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
 USE_XZ=		yes
 USE_XORG=	x11 xext sm ice xft xrender
 USE_GNOME=	desktopfileutils
+INSTALLS_ICONS=	yes
 
-MAN1=		opera.1 opera-widget-manager.1
+MAN1=		opera.1
 MANCOMPRESSED=	yes
 
 NO_BUILD=	yes
@@ -53,7 +53,6 @@ USE_GSTREAMER+=	vorbis ogg theora good
 .endif
 
 .if defined(WITH_GTK)
-INSTALLS_ICONS=	yes
 USE_GNOME+=	gtk20
 .endif
 
@@ -77,22 +76,17 @@ post-extract:
 do-install:
 	@${MKDIR} ${DATADIR}/defaults
 	@${INSTALL_MAN} ${WRKSRC}/man/man1/${PORTNAME}.1.gz ${MANPREFIX}/man/man1/
-	@${INSTALL_MAN} ${WRKSRC}/man/man1/${PORTNAME}-widget-manager.1.gz ${MANPREFIX}/man/man1/
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/install
 	@${REINPLACE_CMD} -e 's|share/man|man|g' ${WRKSRC}/install
 	@(cd ${WRKSRC} && ./install --text --system --unattended)
-#	@${REINPLACE_CMD} -e 's|/usr/X11R6/lib/browser_plugins|${LOCALBASE}/lib/browser_plugins/symlinks/opera|g' \
-#		${DATADIR}/defaults/pluginpath.ini
-#	@${RM} ${DATADIR}/defaults/pluginpath.ini.bak
-	${CP} ${PREFIX}/lib/opera/operapluginwrapper ${PREFIX}/lib/opera/operapluginwrapper.freebsd
-	@${INSTALL_SCRIPT} ${PATCHDIR}/operapluginwrapper ${PREFIX}/lib/opera/
-#	-${LOCALBASE}/bin/update-desktop-database
-#	-${LOCALBASE}/bin/update-mime-database ${LOCALBASE}/share/mime
-	${REINPLACE_CMD} -e 's|${PREFIX}|${TRUE_PREFIX}|g;'    ${PREFIX}/bin/opera \
-		${PREFIX}/bin/opera-widget-manager \
-		${PREFIX}/bin/uninstall-opera \
-		${PREFIX}/share/applications/opera-browser.desktop \
-		${PREFIX}/share/applications/opera-widget-installer.desktop \
-    		${PREFIX}/share/applications/opera-widget-manager.desktop
+	@${REINPLACE_CMD} -e 's|/usr/X11R6/lib/browser_plugins|${LOCALBASE}/lib/browser_plugins/symlinks/opera|g' \
+		${DATADIR}/defaults/pluginpath.ini
+	@${RM} ${DATADIR}/defaults/pluginpath.ini.bak
+	-${LOCALBASE}/bin/update-desktop-database
+	-${LOCALBASE}/bin/update-mime-database ${LOCALBASE}/share/mime
+
+# target to build distinfo for both arch
+makesum-all:
+	make makesum FETCH_ALL=yes
 
 .include <bsd.port.post.mk>
