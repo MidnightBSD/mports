@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/bison/Makefile,v 1.7 2011/05/28 21:15:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/bison/Makefile,v 1.8 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	bison
-PORTVERSION=	2.4.3
+PORTVERSION=	2.5.1
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
@@ -14,7 +14,7 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 RUN_DEPENDS=	gm4:${PORTSDIR}/devel/m4
 
-USE_BZIP2=	yes
+USE_XZ=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
