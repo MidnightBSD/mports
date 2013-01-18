@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.18 2011/05/07 21:26:52 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.19 2011/07/10 01:47:27 laffer1 Exp $
 # $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
 
 PORTNAME=	xscreensaver
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	imake:${PORTSDIR}/devel/imake
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		freetype.9:${PORTSDIR}/print/freetype2
 
 DESTDIRNAME=	install_prefix
