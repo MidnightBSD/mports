@@ -1,11 +1,10 @@
-.\" $MidnightBSD: mports/devel/portlint/src/portlint.1,v 1.1 2006/11/02 19:01:35 laffer1 Exp $
-.\" $FreeBSD: ports/devel/portlint/src/portlint.1,v 1.21 2006/05/31 04:41:49 marcus Exp $
-.\"  $MCom: portlint/portlint.1,v 1.9 2006/05/30 04:47:45 marcus Exp $
+.\" $MidnightBSD$
+.\"  $MCom: portlint/portlint.1,v 1.11 2010/04/04 18:09:43 marcus Exp $
 .\"
 .\" Copyright (c) 1997 by Jun-ichiro Hagino <itojun@itojun.org>.
 .\" All Rights Reserved.  Absolutely no warranty.
 .\"
-.Dd May 30, 2006
+.Dd April 1, 2010
 .Dt PORTLINT 1
 .Sh NAME
 .Nm portlint
@@ -49,7 +48,7 @@ Some of the committers prefer
 .Pa ${VARIABLE}
 instead of
 .Pa $(VARIABLE) ,
-even though they are semantically same.
+even though they are semantically the same.
 .It Fl c
 Committer flag.
 It will add several checks useful only for committers.
@@ -63,6 +62,8 @@ appropriate).  This option is disabled if
 is specified.
 .It Fl h
 Show the summary of command line options, then exit.
+.It Fl m
+Adds checks for $PORTSDIR/MOVED, $PORTSDIR/UIDs, and $PORTSDIR/GIDs.
 .It Fl v
 Be verbose.
 Show the progress report for items that are being checked.
@@ -72,7 +73,7 @@ Nit pick about use of spaces.
 Turn on all additional checks.
 .It Fl C
 Pedantic committer flag.  This is equivalent to
-.Fl abct .
+.Fl abcmt .
 .It Fl N
 New port flag.
 Adds several checks specific to newly submitted port.
@@ -83,7 +84,7 @@ Print the portlint version and exit.
 .It Fl M Ar ENV
 Set make variables to
 .Pa ENV
-(ex. PORTSDIR=/usr/mports.work).
+(ex. PORTSDIR=/usr/ports.work).
 .It Fl B Ar n
 Set the number of contiguous blank lines allowed in
 .Pa Makefile
@@ -98,7 +99,7 @@ If omitted, check will be performed over the current directory.
 .El
 .Sh DIAGNOSTICS
 Messages will be sent to standard output, not standard error output.
-.Bl -tag -width WARN: foobaa
+.Bl -tag -width "WARN: foobaa"
 .It FATAL: ...
 This type of error message suggests that there is some fatal error
 in the port directory.
@@ -163,7 +164,7 @@ on
 can be overriden by setting the
 .Va PORTSDIR
 environment variable.
-
+.El
 .Sh AUTHORS
 .An Joe Marcus Clarke Aq marcus@FreeBSD.org
 .An Michael Haro Aq mharo@FreeBSD.org
