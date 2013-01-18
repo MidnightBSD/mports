@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/GIDs,v 1.1 2012/02/29 22:00:18 laffer1 Exp $
 # Please keep this file sorted by GID!
 operator:*:5:amanda
 mail:*:6:postfix,clamav
@@ -81,6 +81,7 @@ dovenull:*:144:
 webcamd:*:145:
 ventrilo:*:146:
 kdm:*:147:
+ipv6mon:*:148:
 rbldns:*:153:
 trircd:*:154:
 sfs:*:171:
@@ -107,6 +108,7 @@ shoutcast:*:210:
 git:*:211:
 hg:*:212:
 drizzle:*:213:
+opendnssec:*:215:
 bs:*:220:
 postgrey:*:225:
 sqlgrey:*:226:
@@ -117,6 +119,7 @@ prosody:*:242:
 fcron:*:247:
 _adsuck:*:253:
 _tor:*:256:
+_smtpd:*:257:
 meta1s:*:260:
 meta1q:*:261:
 meta1c:*:262:meta1s
@@ -127,6 +130,7 @@ frontbase:*:276:
 mrtg:*:279:
 xymon:*:280:
 prelude:*:281:
+spread:*:282:
 backuppc:*:300:
 _sphinx:*:312:
 dkfilter:*:325:
@@ -145,6 +149,8 @@ drweb:*:426:
 quasselcore:*:442:
 callweaver:*:444:
 courier:*:465:
+condor:*:466:
+netmon:*:467:
 _bbstored:*:505:
 radmind:*:506:
 skkserv:*:507:
@@ -180,6 +186,7 @@ puppet:*:814:
 jenkins:*:818:
 openacs:*:820:
 dotlrn:*:821:
+polw:*:825:
 netdisco:*:840:
 munin:*:842:
 dahdi:*:843:asterisk
@@ -227,4 +234,16 @@ conquest:*:950:
 openerpd:*:951:
 bitten-slave:*:952:
 _neubot:*:953:
+hadoop:*:955:
+pandora:*:956:
+razorback:*:957:
+gnunet:*:958:
+c_icap:*:959:
+trytond:*:960:
+gearmand:*:961:
+zookeeper:*:962:
+fluentd:*:963:
+git_daemon:*:964:
+elasticsearch:*:965:
+nogroup:*:65533:
 nobody:*:65534:
