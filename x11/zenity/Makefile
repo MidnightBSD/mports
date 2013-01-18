@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.7 2011/05/07 20:50:49 laffer1 Exp $
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.8 2012/03/03 01:52:57 laffer1 Exp $
 
 PORTNAME=	zenity
 PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
