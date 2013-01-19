@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/automake/Makefile,v 1.2 2012/06/09 21:01:39 laffer1 Exp $
+# $MidnightBSD: mports/devel/automake/Makefile,v 1.3 2012/06/21 00:41:19 laffer1 Exp $
 # $FreeBSD: ports/devel/automake/Makefile,v 1.38 2010/12/08 19:58:44 ade Exp $
 
 PORTNAME=	automake
-PORTVERSION=	1.12
+PORTVERSION=	1.12.5
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	automake
