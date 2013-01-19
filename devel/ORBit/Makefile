@@ -1,17 +1,10 @@
-# New ports collection makefile for:   orbit
-# Date Created:			16 Aug 1998
-# Whom:				Chia-liang Kao <clkao@CirX.ORG>
-#
-# $MidnightBSD: mports/devel/ORBit/Makefile,v 1.3 2008/06/13 04:25:59 laffer1 Exp $
-# $FreeBSD: ports/devel/ORBit/Makefile,v 1.82 2006/05/16 04:10:37 mezz Exp $
-#
+# $MidnightBSD: mports/devel/ORBit/Makefile,v 1.4 2011/12/15 00:34:31 laffer1 Exp $
 
 PORTNAME=	ORBit
 PORTVERSION=	0.5.17
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/ORBit/0.5
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -20,13 +13,12 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 USE_GETTEXT=	yes
-USE_GMAKE=	yes
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS= --disable-indent
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 INFO=		libIDL
 
