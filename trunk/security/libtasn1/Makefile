@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.7 2011/09/04 20:21:59 laffer1 Exp $
+# $MidnightBSD: mports/security/libtasn1/Makefile,v 1.8 2011/09/04 20:23:50 laffer1 Exp $
 
 PORTNAME=	libtasn1
-PORTVERSION=	2.9
+PORTVERSION=	2.13
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libtasn1
@@ -13,7 +13,6 @@ LICENSE=	gpl3
 USE_LDCONFIG=	yes
 USE_GNOME=	pkgconfig
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 
 DOCS=		AUTHORS NEWS README THANKS doc/TODO \
 		doc/libtasn1.html doc/libtasn1.pdf doc/libtasn1.ps
