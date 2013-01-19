@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.5 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-libs/Makefile,v 1.6 2012/03/02 02:55:19 laffer1 Exp $
 
 PORTNAME=	gnome-libs
 PORTVERSION=	1.4.2
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES?=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -12,7 +12,7 @@ COMMENT=	Libraries for GNOME, a GNU desktop environment
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
-LIB_DEPENDS=	Imlib.5:${PORTSDIR}/graphics/imlib
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_BZIP2=	yes
@@ -25,7 +25,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-test-gnome
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
 
 MAN1=		dns-helper.1 gconfigger.1 gnome-bug.1 gnome-config.1 \
 		gnome-doc.1 gnome-dump-metadata.1 gnome-gen-mimedb.1 \
