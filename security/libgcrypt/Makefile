@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.13 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD: mports/security/libgcrypt/Makefile,v 1.14 2012/02/11 00:22:18 laffer1 Exp $
 
 PORTNAME=	libgcrypt
 PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,9 +17,8 @@ USE_BZIP2=	yes
 USE_AUTOTOOLS=	libtool
 USE_CSTD=	gnu89
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=      --disable-asm --disable-aesni-support
+CONFIGURE_ARGS+=      --disable-asm
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 USE_LDCONFIG=	yes
 
 DOCS=	AUTHORS COPYING COPYING.LIB ChangeLog INSTALL NEWS README README.SVN \
@@ -29,6 +29,10 @@ INFO=	gcrypt
 
 .if (${OSVERSION} < 2999)
 CONFIGURE_ARGS+=	--disable-padlock-support
+.endif
+
+.if (${OSVERSION} < 4015)
+CONFIGURE_ARGS+=      --disable-aesni-support
 .endif
 
 post-patch:
