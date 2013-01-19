@@ -1,10 +1,4 @@
-# New ports collection makefile for:	looks
-# Date created:		22 May 2005
-# Whom:			Thierry Thomas <thierry@pompo.net>
-#
-# $MidnightBSD: mports/devel/looks/Makefile,v 1.1 2008/01/04 16:25:17 laffer1 Exp $
-# $FreeBSD: ports/devel/looks/Makefile,v 1.14 2008/01/04 13:05:18 des Exp $
-#
+# $MidnightBSD: mports/devel/looks/Makefile,v 1.2 2008/10/13 20:55:04 ctriv Exp $
 
 PORTNAME=	looks
 PORTVERSION=	2.0.4
@@ -18,7 +12,7 @@ LICENSE=	bsd3
 
 USE_ZIP=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.4+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
