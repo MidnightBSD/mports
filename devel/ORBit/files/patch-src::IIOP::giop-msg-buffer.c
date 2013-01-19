@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/ORBit/files/patch-src::IIOP::giop-msg-buffer.c,v 1.5 2002/03/12 21:56:07 sobomax Exp $
+$MidnightBSD$
 
 --- src/IIOP/giop-msg-buffer.c.orig	Mon Mar 11 14:40:02 2002
 +++ src/IIOP/giop-msg-buffer.c	Tue Mar 12 16:43:03 2002
