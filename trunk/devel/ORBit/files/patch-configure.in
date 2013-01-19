@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/ORBit/files/patch-configure.in,v 1.4 2002/03/12 21:56:07 sobomax Exp $
+$MidnightBSD$
 
 --- configure.in	2002/03/12 14:47:33	1.1
 +++ configure.in	2002/03/12 14:47:53

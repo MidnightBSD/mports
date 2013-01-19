@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/ORBit/files/patch-src::orb::Makefile.in,v 1.2 2001/10/29 17:05:04 sobomax Exp $
+$MidnightBSD$
 
 --- src/orb/Makefile.in.orig	Wed Oct  3 10:21:01 2001
 +++ src/orb/Makefile.in	Wed Oct  3 14:43:17 2001
