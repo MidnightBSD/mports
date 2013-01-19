@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.12 2012/03/01 13:32:47 laffer1 Exp $
+# $MidnightBSD: mports/graphics/imlib/Makefile,v 1.13 2013/01/09 21:25:00 laffer1 Exp $
 
 PORTNAME=	imlib
 PORTVERSION=	1.9.15
@@ -13,7 +13,7 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
 		tiff.4:${PORTSDIR}/graphics/tiff \
-		ungif.5:${PORTSDIR}/graphics/libungif
+		gif.5:${PORTSDIR}/graphics/giflib
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
@@ -24,7 +24,7 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/imlib --disable-modules
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
-CPPFLAGS+=	-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
 
 MAN1=		imlib-config.1 imlib_config.1
 
