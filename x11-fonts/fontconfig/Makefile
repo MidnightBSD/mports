@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.11 2011/02/02 21:37:25 laffer1 Exp $
+# $MidnightBSD: mports/x11-fonts/fontconfig/Makefile,v 1.12 2011/05/08 17:37:10 laffer1 Exp $
 
 PORTNAME=	fontconfig
-PORTVERSION=	2.8.0
+PORTVERSION=	2.9.0
 PORTEPOCH?=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.freedesktop.org/software/fontconfig/release/
@@ -22,15 +22,13 @@ USE_GNOME=	gnomehack pkgconfig ltverhack
 CONFIGURE_ARGS=	--with-confdir=${PREFIX}/etc/fonts \
 		--with-expat-includes=${LOCALBASE}/include \
 		--with-expat-lib=${LOCALBASE}/lib \
-		--with-default-fonts=${LOCALBASE}/lib/X11/fonts \
+		--with-default-fonts=${PREFIX}/share/fonts \
+		--with-add-fonts=${LOCALBASE}/lib/X11/fonts \
 		--with-cache-dir=/var/db/fontconfig \
-		--without-add-fonts \
 		--disable-docs
 MAKE_ENV=	LC_ALL=C
-SUB_FILES=	pkg-install
-PKGINSTALL=	${WRKDIR}/pkg-install
-
 MAKE_JOBS_SAFE=	yes
+PKGINSTALL=	${WRKDIR}/pkg-install
 
 MAN1=		fc-cache.1 fc-cat.1 fc-list.1 fc-match.1 fc-query.1 fc-scan.1
 MAN5=		fonts-conf.5
@@ -53,6 +51,9 @@ post-install:
 	else \
 		${INSTALL_DATA} ${WRKSRC}/fonts.conf ${PREFIX}/etc/fonts/fonts.conf.default; \
 	fi
+	@${SED} -e 's|%%PREFIX%%|${PREFIX}| ; \
+		s|%%LOCALBASE%%|${LOCALBASE}|' < ${FILESDIR}/pkg-install.in \
+		> ${PKGINSTALL}
 
 .include <bsd.port.post.mk>
 
