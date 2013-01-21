@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.10 2011/05/13 13:15:03 laffer1 Exp $
+# $MidnightBSD: mports/converters/libiconv/Makefile,v 1.11 2011/12/15 00:47:00 laffer1 Exp $
 
 PORTNAME=	libiconv
-PORTVERSION=	1.13.1
-PORTREVISION=	2
+PORTVERSION=	1.14
 CATEGORIES=	converters devel
-MASTER_SITES=	${MASTER_SITE_GNU}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A character set conversion library
@@ -13,8 +11,7 @@ LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
-USE_CSTD=	gnu89
-LIBTOOLFILES=	configure libcharset/configure
+LIBTOOLFILES=	configure libcharset/configure preload/configure
 CONFIGURE_ARGS=	--enable-static \
 		--without-libintl-prefix \
 		--docdir=${DOCSDIR}
@@ -35,21 +32,21 @@ OPTIONS=	EXTRA_ENCODINGS	"Include extra character sets" on \
 	to "make".  Please unset it and restart the build.
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_EXTRA_ENCODINGS)
 CONFIGURE_ARGS+=	--enable-extra-encodings
 .endif
 
 .if defined(WITH_EXTRA_PATCHES)
-PATCH_SITES+=	http://www2d.biglobe.ne.jp/~msyk/software/libiconv/
-PATCH_SITES+=	${MASTER_SITE_FREEBSD_LOCAL}
-PATCH_SITE_SUBDIR=	nork
-PATCHFILES+=	${DISTNAME:C/1\.13\.1/1.13/}-ja-1.patch.gz
+PATCH_SITES+=	http://apolloron.org/software/libiconv-1.14-ja/
+PATCH_SITES+=	${MASTER_SITE_LOCAL}
+PATCH_SITE_SUBDIR+=	kwm
+PATCHFILES+=	${DISTNAME}-ja-1.patch.gz
 PATCH_DIST_STRIP+=	-p1
 .endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's:ei_ksc5601:ei_euc_kr:g' ${WRKSRC}/lib/aliases.h
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
