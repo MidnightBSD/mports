@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/gettext/Makefile,v 1.10 2011/09/18 21:04:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/gettext/Makefile,v 1.11 2012/02/29 22:20:19 laffer1 Exp $
 # $FreeBSD: ports/devel/gettext/Makefile,v 1.79 2007/07/23 09:35:40 rafan Exp $
 
 PORTNAME=	gettext
 PORTVERSION=	0.18.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gettext
@@ -16,7 +16,6 @@ USE_ICONV=	yes
 LIBTOOLFILES=	gettext-runtime/configure \
 		gettext-runtime/libasprintf/configure gettext-tools/configure
 USE_AUTOTOOLS=	libtool
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CONFIGURE_ENV=	ACLOCAL="${TRUE}" \
 		AUTOCONF="${TRUE}" \
 		AUTOMAKE="${TRUE}" \
