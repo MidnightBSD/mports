@@ -1,16 +1,9 @@
-# New ports collection makefile for:	OpenSP
-# Date created:		Jan 6, 2003
-# Whom:			kuriyama
-#
-# $MidnightBSD: mports/textproc/opensp/Makefile,v 1.1 2007/05/08 21:29:33 laffer1 Exp $
-# $FreeBSD: ports/textproc/opensp/Makefile,v 1.15 2007/01/19 12:37:57 kuriyama Exp $
-#
+# $MidnightBSD: mports/textproc/opensp/Makefile,v 1.2 2008/10/13 21:00:59 laffer1 Exp $
 
 PORTNAME=	OpenSP
 PORTVERSION=	1.5.2
 CATEGORIES=	textproc
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	openjade
+MASTER_SITES=	SF/openjade/${PORTNAME:L}/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	This package is a collection of SGML/XML tools called OpenSP
@@ -25,8 +18,8 @@ USE_PERL5=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${PREFIX}/share/sgml/openjade \
 		--disable-doc-build
-CONFIGURE_ENV=	CFLAGS="${CFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=--disable-nls
