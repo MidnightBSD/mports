@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.8 2011/10/01 01:16:01 laffer1 Exp $
+# $MidnightBSD: mports/devel/dbus-glib/Makefile,v 1.9 2012/02/28 01:54:34 laffer1 Exp $
 
 PORTNAME=	dbus
 PORTVERSION=	0.94
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	http://dbus.freedesktop.org/releases/dbus-glib/
 PKGNAMESUFFIX=	-glib
@@ -24,8 +24,8 @@ CONFIGURE_ARGS=	--with-test-socket-dir=${WRKDIR} \
 		--disable-gtk-doc \
 		--program-prefix='' \
 		--with-html-dir=${PREFIX}/share/doc
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 
 PLIST_SUB=	VERSION="1.0"
 
