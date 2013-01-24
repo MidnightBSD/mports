@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.8 2012/03/01 13:49:20 laffer1 Exp $
+# $MidnightBSD: mports/textproc/enchant/Makefile,v 1.9 2012/03/01 13:49:37 laffer1 Exp $
 
 PORTNAME=	enchant
 PORTVERSION=	1.6.0
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://www.abisource.com/downloads/${PORTNAME}/${PORTVERSION}/
 DIST_SUBDIR=	gnome2
@@ -80,9 +81,11 @@ CONFIGURE_ARGS+=--disable-zemberek
 post-patch:
 	@${REINPLACE_CMD} -e 's|MKDIRPROG-mkdir|MKDIRPROG-mkdir -p|g' \
 		${WRKSRC}/install-sh
+.if ${OSVERSION} < 4015
 	@${REINPLACE_CMD} -E -e "s|-Wunsafe-loop-optimizations ||g" \
 		-e "s|-Wno-missing-field-initializers ||g" \
 		-e "s|-Wno-attributes ||g" \
 			${WRKSRC}/configure
+.endif
 
 .include <bsd.port.post.mk>
