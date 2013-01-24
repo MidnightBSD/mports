@@ -2,7 +2,7 @@
 # Date created:				27 April 2008
 # Whom:					<smultron@midnightbsd.org>
 #
-# $MidnightBSD: mports/games/vitetris/Makefile,v 1.6 2008/10/05 09:50:18 crash Exp $
+# $MidnightBSD: mports/games/vitetris/Makefile,v 1.7 2009/09/24 04:13:21 smultron Exp $
 #
 
 PORTNAME=	vitetris
@@ -19,6 +19,7 @@ ALL_TARGET=	tetris
 USE_XLIB=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-with-x
+MAKE_JOBS_UNSAFE=	yes
 
 do-install:
 	${CP} ${WRKSRC}/tetris ${FAKE_DESTDIR}${LOCALBASE}/bin/
