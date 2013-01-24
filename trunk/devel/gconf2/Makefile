@@ -1,9 +1,8 @@
-# $FreeBSD: ports/devel/gconf2/Makefile,v 1.73 2006/09/04 23:12:28 mezz Exp $
-# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.10 2011/07/23 15:07:46 laffer1 Exp $
+# $MidnightBSD: mports/devel/gconf2/Makefile,v 1.11 2012/02/28 14:06:20 laffer1 Exp $
 
 PORTNAME=	gconf2
 PORTVERSION=	2.32.0
-PORTREVISION?=	5
+PORTREVISION?=	6
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -31,8 +30,8 @@ CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
 #		--enable-gconf-source=${PREFIX}/etc/gconf/schemas \
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 MAN1=		gconftool-2.1 gsettings-data-convert.1 \
 		gsettings-schema-convert.1
 
