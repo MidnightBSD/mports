@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net-im/libpurple/Makefile,v 1.16 2010/05/28 22:30:15 laffer1 Exp $
+# $MidnightBSD$
 
 PORTNAME?=	libpurple
-PORTVERSION=	2.7.0
-PORTREVISION?=	1
+PORTVERSION=	2.10.6
+PORTREVISION?=	0
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -18,11 +18,12 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
 		--disable-consoleui \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//} \
-		--disable-nm \
-		--disable-vv
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
+		--enable-static \
+		--disable-nm
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
 		PTHREAD_LIB="${PTHREAD_LIBS}"
+CFLAGS+=	-D_XOPEN_SOURCE_EXTENDED
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
 
 .if !defined(PIDGIN_SLAVE)
 # Pidgin slave ports that require the following functionality, must explicitly
@@ -44,10 +45,11 @@ PRPL_MODULES=
 
 OPTIONS=	BONJOUR "Enable mDNS support" on \
 		DBUS "Enable DBUS bindings" on \
-		GNUTLS "GNUTLS encryption support" off \
-		NSS "Mozilla NSS encryption support" on \
+		GNUTLS "Use GNUTLS for encryption support" off \
+		NSS "Use Mozilla NSS for encryption support" on \
 		SASL "Cyrus SASL support (for jabberd)" off \
 		GSTREAMER "Use GStreamer for playing sounds" on \
+		VV "Enable video and voice support" on \
 		IDN "Enable support for international domains" on \
 		PERL "Perl scripting" off \
 		TCLTK "Tcl/Tk scripting" off \
@@ -72,11 +74,20 @@ OPTIONS+=	GTKSPELL "Spell checking support" on \
 
 CONFIGURE_ARGS+=--disable-doxygen
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if ${OSVERSION} > 700032 || (${OSVERSION} < 700000 && ${OSVERSION} > 602106)
-CFLAGS+=	-D_XOPEN_SOURCE_EXTENDED
+.if defined(WITH_TCLTK)
+USE_TK=			yes
+CFLAGS+=		-I${LOCALBASE}/include/tk${TK_VER} -I${LOCALBASE}/include/tcl${TCL_VER}
+CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCL_VER} \
+			--with-tkconfig=${LOCALBASE}/lib/tk${TK_VER}
+PLIST_SUB+=		TCL:=""
+.else
+CONFIGURE_ARGS+=	--disable-tcl
+PLIST_SUB+=		TCL:="@comment not installed: "
 .endif
+
+.include <bsd.port.pre.mk>
 
 .if !defined(PIDGIN_SLAVE)
 .if ${HAVE_GNOME:Mgconf2}!="" || exists(${LOCALBASE}/bin/gconftool-2)
@@ -85,20 +96,23 @@ GCONF_SCHEMAS=	purple.schemas
 .endif
 .endif
 
-.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
-USE_GNOME+=		evolutiondataserver
-PLIST_SUB+=		EVO=""
-CONFIGURE_ARGS+=	--enable-gevolution
-.else
+#.if defined(WITH_GTKUI) && ${HAVE_GNOME:Mevolutiondataserver}!=""
+#USE_GNOME+=		evolutiondataserver
+#PLIST_SUB+=		EVO=""
+#CONFIGURE_ARGS+=	--enable-gevolution
+#.else
 CONFIGURE_ARGS+=	--disable-gevolution
 PLIST_SUB+=		EVO="@comment not installed: "
-.endif
+#.endif
 
 .if !defined(WITHOUT_GSTREAMER)
 USE_GSTREAMER+=	core good
 .else
 CONFIGURE_ARGS+=--disable-gstreamer
 .endif
+
+CONFIGURE_ARGS+=--disable-vv
+PLIST_SUB+=	VV="@comment "
 
 .if !defined(WITHOUT_IDN)
 LIB_DEPENDS+=	idn.17:${PORTSDIR}/dns/libidn
@@ -151,22 +165,6 @@ CONFIGURE_ARGS+=--disable-avahi
 PLIST_SUB+=	BONJOUR="@comment not installed: "
 .endif
 
-.if defined(WITH_TCLTK)
-TCLTK_VER?=		8.4	# user can override it
-TCLTK_VER_NODOT=	${TCLTK_VER:S/.//}
-.if ${TCLTK_VER} != 8.3 && ${TCLTK_VER} != 8.4
-.error Currently Pidgin can only use Tcl/Tk 8.3 or 8.4
-.endif
-LIB_DEPENDS+=		tk${TCLTK_VER_NODOT}:${PORTSDIR}/x11-toolkits/tk${TCLTK_VER_NODOT}
-CONFIGURE_ARGS+=	--with-tclconfig=${LOCALBASE}/lib/tcl${TCLTK_VER} \
-			--with-tkconfig=${LOCALBASE}/lib/tk${TCLTK_VER}
-CFLAGS+=		-I${LOCALBASE}/include/tk${TCLTK_VER} -I${LOCALBASE}/include/tcl${TCLTK_VER}
-PLIST_SUB+=		TCL:=""
-.else
-CONFIGURE_ARGS+=	--disable-tcl
-PLIST_SUB+=		TCL:="@comment not installed: "
-.endif
-
 .if defined(WITH_GTKUI) && !defined(WITHOUT_GTKSPELL)
 LIB_DEPENDS+=		gtkspell.0:${PORTSDIR}/textproc/gtkspell
 .else
@@ -190,7 +188,6 @@ USE_PERL5=		yes
 CONFIGURE_ARGS+=	--with-perl-lib=site
 PLIST_SUB+=		PERL:=""
 .if !defined(PIDGIN_SLAVE)
-MAN3PREFIX=		${PREFIX}/lib/perl5/${PERL_VERSION}
 MAN3+=			Purple.3
 .endif
 .else
@@ -266,12 +263,12 @@ PRPL_MODULES:=		oscar,${PRPL_MODULES}
 PLIST_SUB+=		OSCAR="@comment not installed: "
 .endif
 
-.if !defined(WITHOUT_QQ)
-PLIST_SUB+=		QQ=""
-PRPL_MODULES:=		qq,${PRPL_MODULES}
-.else
-PLIST_SUB+=		QQ="@comment not installed: "
-.endif
+#.if !defined(WITHOUT_QQ)
+#PLIST_SUB+=		QQ=""
+#PRPL_MODULES:=		qq,${PRPL_MODULES}
+#.else
+#PLIST_SUB+=		QQ="@comment not installed: "
+#.endif
 
 .if !defined(WITHOUT_SIMPLE)
 PLIST_SUB+=		SIMPLE=""
