@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.9 2011/12/15 00:57:50 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/gstreamer-ffmpeg/Makefile,v 1.10 2012/09/09 00:44:14 laffer1 Exp $
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/
 PKGNAMESUFFIX=	-ffmpeg
@@ -12,7 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GStreamer plug-in for manipulating MPEG video streams
 LICENSE=        gpl2
 
-LIB_DEPENDS=	orc-0.4.11:${PORTSDIR}/devel/orc
+LIB_DEPENDS=	orc-0.4.16:${PORTSDIR}/devel/orc
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
 USE_BZIP2=	yes
@@ -23,15 +23,19 @@ USE_PKGCONFIG=	yes
 USE_GSTREAMER=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_TARGET= ${ARCH}-portbld-freebsd7.0
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
-		CFLAGS="${CFLAGS} -fno-force-addr" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+FFMPEG_CONFIG=        --cc=${CC} \
+              --enable-runtime-cpudetect \
+              --enable-pic
+LDFLAGS+=     -Wl,-Bsymbolic
+CFLAGS+=      -fno-force-addr
 PLIST_SUB=	VERSION="${GST_VERSION}"
 WITHOUT_CPU_CFLAGS=	yes
 
 GST_VERSION=${PORTVERSION:C/..$//}
 
 .include <bsd.port.pre.mk>
+
+CONFIGURE_ARGS+=      --with-ffmpeg-extra-configure="${FFMPEG_CONFIG}"
 
 post-patch:
 	${CP} ${FILESDIR}/config.sub ${FILESDIR}/config.guess \
@@ -46,4 +50,8 @@ post-patch:
 	@cd ${WRKSRC}/gst-libs/ext/ffmpeg/libavcodec && \
 		${LN} -s x86 i386 && ${LN} -s x86 amd64
 
+.if ${OSVERSION} < 4015
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+.endif
 .include <bsd.port.post.mk>
