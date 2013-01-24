@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/multimedia/libvpx/Makefile,v 1.5 2011/05/03 17:29:46 mm Exp $
+# $MidnightBSD: mports/multimedia/libvpx/Makefile,v 1.1 2012/01/06 01:01:14 laffer1 Exp $
 
 PORTNAME=	libvpx
-PORTVERSION=	0.9.6
+PORTVERSION=	1.1.0
 CATEGORIES=	multimedia
 MASTER_SITES=	GOOGLE_CODE
 DISTNAME=	${PORTNAME}-v${PORTVERSION}
@@ -29,7 +28,7 @@ OPTIONS=	DEBUG	"Enable debugging"	OFF \
 		SHARED	"Enable shared-library support"	ON
 
 ALL_TARGET=
-CONFIGURE_ARGS+=	--enable-pic --disable-install-srcs --enable-vp8
+CONFIGURE_ARGS+=	--enable-pic --disable-install-srcs --enable-vp8 --disable-install-docs
 MAKE_ARGS+=	DIST_DIR=${FAKE_DESTDIR}${PREFIX} verbose=yes
 
 .include <bsd.mport.options.mk>
