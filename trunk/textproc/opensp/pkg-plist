@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/textproc/opensp/pkg-plist,v 1.5 2007/01/19 12:37:57 kuriyama Exp $
 bin/onsgmls
 bin/osgmlnorm
 bin/ospam
