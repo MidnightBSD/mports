@@ -1,24 +1,23 @@
-# $MidnightBSD: mports/security/sshguard/Makefile,v 1.7 2010/02/06 02:29:07 laffer1 Exp $
+# $MidnightBSD: mports/security/sshguard/Makefile,v 1.8 2011/02/02 21:20:53 laffer1 Exp $
 
 PORTNAME=	sshguard
-DISTVERSION=	1.3
+DISTVERSION=	1.5
 CATEGORIES=	security
 MASTER_SITES=	SF/sshguard/sshguard/sshguard-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT?=	Protect hosts from brute force attacks against ssh
+COMMENT?=	Protect hosts from brute force attacks against ssh and other services
 LICENSE=	gpl2
 #author says bsdl on site, but can't find it. There seems to be GPL code.
 
 CONFLICTS?=	sshguard-ipfw-1.[0-9]* sshguard-pf-1.[0-9]* sshguard-ipfilter-1.[0-9]*
-
-PLIST_FILES=	sbin/sshguard
 
 MAN8=		sshguard.8
 MANCOMPRESSED=	no
 USE_AUTOTOOLS=	autoconf
 USE_BZIP2=	yes
 MAKE_ARGS+=     ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOMAKE="${TRUE}"
+USE_RC_SUBR=	sshguard
 HAS_CONFIGURE=	yes
 
 # sublist will be set afterward
@@ -51,10 +50,10 @@ SUB_LIST+=	PKGMSG_FWBLOCK=${PKGMSG_FWBLOCK}  PREFIX=${TRUE_PREFIX}
 
 CONFIGURE_ARGS+=	--with-firewall=${SSHGUARDFW}
 
-post-install:
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
+#post-install:
+#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
-pre-deinstall:
-	@PKG_PREFIX=${PREFIX} ${SH} ${PKGDEINSTALL} ${PKGNAME} DEINSTALL
+#pre-deinstall:
+#	@PKG_PREFIX=${PREFIX} ${SH} ${PKGDEINSTALL} ${PKGNAME} DEINSTALL
 
 .include <bsd.port.post.mk>
