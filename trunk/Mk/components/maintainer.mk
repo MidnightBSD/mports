@@ -1,11 +1,13 @@
 #
-# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $
+# $MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $
 #
 # maintainer.mk
 #
 # Targets used by port maintainers.
 #
 
+# Look for ${WRKSRC}/.../*.orig files, and (re-)create
+# ${FILEDIR}/patch-* files from them.
 .if !target(makepatch)
 makepatch:
 	@cd ${.CURDIR} && ${MKDIR} ${FILESDIR}
@@ -35,7 +37,7 @@ makeplist:
 	@${ECHO_MSG} "===>   Generating packing list"
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@${MKDIR} `${DIRNAME} ${GENPLIST}`
-	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.1 2009/03/20 06:44:54 ctriv Exp $$' > ${GENPLIST}
+	@${ECHO_CMD} '@comment $$MidnightBSD: mports/Mk/components/maintainer.mk,v 1.2 2009/03/26 22:19:02 ctriv Exp $$' > ${GENPLIST}
 
 .	if !defined(NO_MTREE)
 		@cd ${FAKE_DESTDIR}${PREFIX}; directories=""; files=""; \
