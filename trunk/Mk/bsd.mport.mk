@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.194 2013/01/14 23:37:11 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.195 2013/01/21 02:16:21 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -31,19 +31,15 @@ MidnightBSD_MAINTAINER=	ctriv@MidnightBSD.org
 # by individual Makefiles or local system make configuration.
 PORTSDIR?=		/usr/mports
 LOCALBASE?=		/usr/local
-X11BASE?=		${LOCALBASE}
 LINUXBASE?=		/compat/linux
 LOCALBASE_REL:=		${LOCALBASE}
-X11BASE_REL:=		${X11BASE}
 LINUXBASE_REL:=		${LINUXBASE}
 LOCALBASE:=		${DESTDIR}${LOCALBASE_REL}
-X11BASE:=		${DESTDIR}${X11BASE_REL}
 LINUXBASE:=		${DESTDIR}${LINUXBASE_REL}
 DISTDIR?=		${PORTSDIR}/Distfiles
 _DISTDIR?=		${DISTDIR}/${DIST_SUBDIR}
 SRC_BASE?=		/usr/src
 INDEXDIR?=		${PORTSDIR}
-# XXX Can we just call it 'INDEX' ?
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]).*/\1/}
 
 TARGETDIR:=		${DESTDIR}${PREFIX}
@@ -52,16 +48,9 @@ MPORTCOMPONENTS?=	${PORTSDIR}/Mk/components
 MPORTEXTENSIONS?=	${PORTSDIR}/Mk/extensions
 
 
-# Set up PREFIX.
-.if defined(USE_X_PREFIX) && ${USE_X_PREFIX} == "no"
-.undef USE_X_PREFIX
-.endif
-
-.if defined(USE_X_PREFIX) || defined(USE_IMAKE)
-PREFIX?=	${X11BASE_REL}
 # sadly, we have to use a little hack here.  Once linux-rpm.mk is loaded, this 
 # will already have been evaluated. XXX - Find a better fix in the future.
-.elif defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
+.if defined(USE_LINUX_PREFIX) || defined(USE_LINUX_RPM)
 PREFIX?=	${LINUXBASE_REL}
 .else
 PREFIX?=	${LOCALBASE_REL}
@@ -92,10 +81,6 @@ MTREE_LINUX_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_LINUX_FILE} -d -e -p
 .if !defined(UID)
 UID!=	${ID} -u
 .endif
-
-
-# Look for ${WRKSRC}/.../*.orig files, and (re-)create
-# ${FILEDIR}/patch-* files from them.
 
 
 # Start of options section.
@@ -207,7 +192,7 @@ GID_OFFSET?=	0
 
 # predefined accounts from src/etc/master.passwd
 # alpha numeric sort order
-USERS_BLACKLIST=	_dhcp _pflogd bin bind daemon games kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
+USERS_BLACKLIST=	_dhcp _pflogd bin bind daemon games hast kmem mailnull man news nobody operator pop proxy root smmsp sshd toor tty uucp www
 
 LDCONFIG_DIR=	libdata/ldconfig
 LDCONFIG32_DIR=	libdata/ldconfig32
@@ -216,6 +201,26 @@ LDCONFIG32_DIR=	libdata/ldconfig32
 UNIQUENAME?=	${LATEST_LINK}
 .else
 UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
+.endif
+
+DOS2UNIX_REGEX?=	.*
+
+# At least KDE needs TMPDIR for the package building,
+# so we're setting it to the known default value.
+.if defined(PACKAGE_BUILDING)
+TMPDIR?=	/tmp
+.endif # defined(PACKAGE_BUILDING)
+
+# Respect TMPDIR passed via make.conf or similar and pass it down
+# to configure and make.
+.if defined(TMPDIR)
+MAKE_ENV+=	TMPDIR="${TMPDIR}"
+CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
+.endif # defined(TMPDIR)
+
+# Reset value from bsd.own.mk.
+.if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
+STRIP=	#none
 .endif
 
 .include "${MPORTCOMPONENTS}/options.mk"
@@ -346,6 +351,8 @@ EXTRACT_SUFX?=			.tar.bz2
 EXTRACT_SUFX?=			.zip
 .elif defined(USE_XZ)
 EXTRACT_SUFX?=			.tar.xz
+.elif defined(USE_MAKESELF)
+EXTRACT_SUFX?=			.run
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
@@ -447,6 +454,9 @@ _POSTMKINCLUDED=	yes
 .endif
 
 WRKDIR?=		${WRKDIRPREFIX}${.CURDIR}/work
+.if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB)
+WRKSRC?=		${WRKDIR}/${GH_ACCOUNT}-${GH_PROJECT}-${GH_COMMIT}
+.endif
 .if defined(NO_WRKSUBDIR)
 WRKSRC?=		${WRKDIR}
 .else
@@ -487,16 +497,20 @@ PKGORIGIN?=		${PKGCATEGORY}/${PORTDIRNAME}
 .include "${MPORTCOMPONENTS}/maintainer.mk"
 
 
-PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
+PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE_REL} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
-SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
+SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE_REL} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR} \
 		DESTDIR=${DESTDIR} TARGETDIR=${TARGETDIR}
 
 PLIST_REINPLACE+=	stopdaemon rmtry
 PLIST_REINPLACE_RMTRY=s!^@rmtry \(.*\)!@unexec rm -f %D/\1 2>/dev/null || true!
-PLIST_REINPLACE_STOPDAEMON=s!^@stopdaemon \(.*\)!@unexec %D/etc/rc.d/\1${RC_SUBR_SUFFIX} forcestop 2>/dev/null || true!
+PLIST_REINPLACE_STOPDAEMON=s!^@stopdaemon \(.*\)!@unexec %D/etc/rc.d/\1 forcestop 2>/dev/null || true!
+
+# kludge to strip trailing whitespace from CFLAGS;
+# sub-configure will not # survive double space
+CFLAGS:=	${CFLAGS:C/ $//}
 
 .if defined(WITHOUT_CPU_CFLAGS)
 .if defined(_CPUCFLAGS)
@@ -542,8 +556,6 @@ MAKE_SHELL?=	${SH}
 CONFIGURE_ENV+=	SHELL=${SH} CONFIG_SHELL=${SH}
 MAKE_ENV+=		SHELL=${SH} NO_LINT=YES
 
-
-
 .if defined(MANCOMPRESSED)
 .if ${MANCOMPRESSED} != yes && ${MANCOMPRESSED} != no && \
 	${MANCOMPRESSED} != maybe
@@ -580,20 +592,15 @@ CONFIGURE_ENV+=		MAKE=${GMAKE}
 _MAKE_CMD=		${GMAKE}
 .endif
 .if defined(USE_PKGCONFIG)
-.if ${USE_PKGCONFIG:L} == yes
-USE_PKGCONFIG=	build
-.endif
-.if ${USE_PKGCONFIG:L} == run
-RUN_DEPENDS+=		pkgconf:${PORTSDIR}/devel/pkgconf
-.endif
-.if ${USE_PKGCONFIG:L} == build
-BUILD_DEPENDS+= 	pkgconf:${PORTSDIR}/devel/pkgconf
-CONFIGURE_ENV+=		PKG_CONFIG=pkgconf
-.endif
-.if ${USE_PKGCONFIG:L} == both
-RUN_DEPENDS+= 		pkgconf:${PORTSDIR}/devel/pkgconf
-BUILD_DEPENDS+=		pkgconf:${PORTSDIR}/devel/pkgconf
-CONFIGURE_ENV+=		PKG_CONFIG=pkgconf
+.if ${USE_PKGCONFIG:L} == yes || ${USE_PKGCONFIG:L} == build
+BUILD_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
+CONFIGURE_ENV+=	PKG_CONFIG=pkgconf
+.elif ${USE_PKGCONFIG:L} == both
+RUN_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
+BUILD_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
+CONFIGURE_ENV+=	PKG_CONFIG=pkgconf
+.elif ${USE_PKGCONFIG:L} == run
+RUN_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
 .endif
 .endif
 
@@ -708,7 +715,7 @@ _HAVE_FAM_SYSTEM=	fam
 
 .if defined(WANT_FAM_SYSTEM)
 .if defined(WITH_FAM_SYSTEM) && ${WITH_FAM_SYSTEM}!=${WANT_FAM_SYSTEM}
-IGNORE=	wants to use ${WANT_FAM_SYSTEM} as its FAM system and you wish to use ${WITH_FAM_SYSTEM}
+IGNORE=		wants to use ${WANT_FAM_SYSTEM} as its FAM system, while you wish to use ${WITH_FAM_SYSTEM}
 .endif
 FAM_SYSTEM=	${WANT_FAM_SYSTEM}
 .elif defined(WITH_FAM_SYSTEM)
@@ -802,13 +809,13 @@ USE_LINUX=	${OVERRIDE_LINUX_BASE_PORT}
 .	if exists(${PORTSDIR}/emulators/linux_base-${USE_LINUX})
 LINUX_BASE_PORT=	${LINUXBASE}/bin/sh:${PORTSDIR}/emulators/linux_base-${USE_LINUX}
 .	else
-.			if ${USE_LINUX:L} == "yes"
+.		if ${USE_LINUX:L} == "yes"
 .				if (${OSVERSION} > 4003)
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-f10
 .				else
 LINUX_BASE_PORT=	${LINUXBASE}/etc/fedora-release:${PORTSDIR}/emulators/linux_base-fc4
 .				endif
-.			else
+.		else
 IGNORE=	There is no emulators/linux_base-${USE_LINUX}, perhaps wrong use of USE_LINUX or OVERRIDE_LINUX_BASE_PORT.
 .		endif
 .	endif
@@ -850,30 +857,40 @@ X_FONTS_TYPE1_PORT=	${PORTSDIR}/x11-fonts/xorg-fonts-type1
 X_FONTS_ALIAS_PORT=	${PORTSDIR}/x11-fonts/font-alias
 
 .if defined(USE_IMAKE)
+CONFIGURE_ENV+=		IMAKECPP="${CPP}"
+MAKE_ENV+=		IMAKECPP="${CPP}"
+MAKE_FLAGS?=		CC="${CC}" CXX="${CXX}"
+# XXX: Drop xorg-cf-files and gccmakedep here?
 BUILD_DEPENDS+=		imake:${X_IMAKE_PORT} \
 			${LOCALBASE}/lib/X11/config/Imake.tmpl:${PORTSDIR}/x11/xorg-cf-files \
 			${LOCALBASE}/bin/gccmakedep:${PORTSDIR}/devel/gccmakedep
 .endif
 
 
+# Drop when USE_XLIB dropped in USE_LINUX
 .if defined(USE_XLIB)
 .	if defined(USE_LINUX)
 RUN_DEPENDS+=	${LINUXBASE}/usr/X11R6/lib/libXrender.so.1:${PORTSDIR}/x11/linux-xorg-libs
-.	else
-BUILD_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
-RUN_DEPENDS+=	${X11BASE}/libdata/xorg/libraries:${X_LIBRARIES_PORT}
 .	endif
 .endif
 
-.if defined(USE_XLIB) || defined(USE_XORG)
+.if defined(USE_XORG)
 # Add explicit X options to avoid problems with false positives in configure
 .if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=--x-libraries=${X11BASE}/lib --x-includes=${X11BASE}/include
+CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .endif
 .endif
 
-.if defined(USE_XPM)
-IGNORE=		USE_XPM is deprecated.  use USE_XORG=xpm instead.
+.if defined(USE_DISPLAY) && !defined(DISPLAY)
+BUILD_DEPENDS+= Xvfb:${X_VFBSERVER_PORT} \
+	${LOCALBASE}/lib/X11/fonts/misc/8x13O.pcf.gz:${X_FONTS_MISC_PORT} \
+	${LOCALBASE}/lib/X11/fonts/misc/fonts.alias:${X_FONTS_ALIAS_PORT} \
+	${LOCALBASE}/share/X11/xkb/rules/base:${PORTSDIR}/x11/xkeyboard-config \
+	xkbcomp:${PORTSDIR}/x11/xkbcomp
+.if !defined(PACKAGE_BUILDING)
+CONFIGURE_ENV+=	DISPLAY="localhost:1001"
+MAKE_ENV+=	DISPLAY="localhost:1001"
+.endif
 .endif
 
 XAWVER=				8
@@ -884,7 +901,7 @@ _GL_gl_LIB_DEPENDS=		GL.1:${PORTSDIR}/graphics/libGL
 _GL_glew_LIB_DEPENDS=		GLEW.1:${PORTSDIR}/graphics/glew
 _GL_glu_LIB_DEPENDS=		GLU.1:${PORTSDIR}/graphics/libGLU
 _GL_glw_LIB_DEPENDS=		GLw.1:${PORTSDIR}/graphics/libGLw
-_GL_glut_LIB_DEPENDS=		glut.3:${PORTSDIR}/graphics/libglut
+_GL_glut_LIB_DEPENDS=		glut.12:${PORTSDIR}/graphics/freeglut
 _GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphics/linux_dri
 
 .if defined(USE_GL)
@@ -907,23 +924,16 @@ RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
 .if defined(USE_BISON)
 _BISON_DEPENDS+=	bison:${PORTSDIR}/devel/bison
 
-# XXX: backwards compatibility
-.	if ${USE_BISON:L} == "yes"
-USE_BISON=	build
-pre-everything::
-	@${ECHO_MSG} "WARNING: USE_BISON=yes deprecated, use build/run/both"
-.	endif
-  	 
-.	if ${USE_BISON:L} == "build"
+.if ${USE_BISON:L} == "build"
 BUILD_DEPENDS+=	${_BISON_DEPENDS}
-.	elif ${USE_BISON:L} == "run"
+.elif ${USE_BISON:L} == "run"
 RUN_DEPENDS+=	${_BISON_DEPENDS}
-.	elif ${USE_BISON:L} == "both"
+.elif ${USE_BISON:L} == "both"
 BUILD_DEPENDS+=	${_BISON_DEPENDS}
 RUN_DEPENDS+=	${_BISON_DEPENDS}
-.	else
+.else
 IGNORE=	uses unknown USE_BISON construct
-.	endif
+.endif
 
 .endif
 
@@ -981,6 +991,12 @@ BUILD_DEPENDS+=	gs:${PORTSDIR}/${GHOSTSCRIPT_PORT}
 RUN_DEPENDS+=	gs:${PORTSDIR}/${GHOSTSCRIPT_PORT}
 .endif
 
+# Set up the cdrtools.
+.if defined(USE_CDRTOOLS)
+BUILD_DEPENDS+=	cdrecord:${PORTSDIR}/sysutils/cdrtools
+RUN_DEPENDS+=	cdrecord:${PORTSDIR}/sysutils/cdrtools
+.endif
+
 # Macro for doing in-place file editing using regexps
 REINPLACE_ARGS?=	-i.bak
 REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
@@ -1013,14 +1029,13 @@ HASH_FILE?=		${MASTERDIR}/distinfo
 MAKE_FLAGS?=	-f
 MAKEFILE?=		Makefile
 MAKE_ENV+=		TARGETDIR=${TARGETDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
-			LOCALBASE=${LOCALBASE_REL} X11BASE=${X11BASE_REL} \
+			LOCALBASE=${LOCALBASE_REL} \
 			MOTIFLIB="${MOTIFLIB}" LIBDIR="${LIBDIR}" \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" \
 			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
 			MANPREFIX="${MANPREFIX}"
-
 
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
@@ -1035,13 +1050,14 @@ CFLAGS+=       -fno-strict-aliasing
 CFLAGS:=	${CFLAGS:N-std=*} -std=${USE_CSTD}
 .endif
 
+# Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
-_MAKE_JOBS=	#
+_MAKE_JOBS=		#
 .else
 .if defined(MAKE_JOBS_SAFE) || defined(FORCE_MAKE_JOBS)
 MAKE_JOBS_NUMBER?=	`${SYSCTL} -n kern.smp.cpus`
-_MAKE_JOBS=	-j${MAKE_JOBS_NUMBER}
-.if defined(FORCE_MAKE_JOBS)
+_MAKE_JOBS?=		-j${MAKE_JOBS_NUMBER}
+.if defined(FORCE_MAKE_JOBS) && !defined(MAKE_JOBS_SAFE)
 BUILD_FAIL_MESSAGE+=	"You have chosen to use multiple make jobs (parallelization) for all mports.  This port was not tested with this setting.  Please remove FORCE_MAKE_JOBS and retry the build before reporting errors to the maintainer"
 .endif
 .endif
@@ -1768,7 +1784,7 @@ SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
 		  WRKDIR=${WRKDIR} WRKSRC=${WRKSRC} PATCHDIR=${PATCHDIR} \
 		  SCRIPTDIR=${SCRIPTDIR} FILESDIR=${FILESDIR} \
 		  PORTSDIR=${PORTSDIR} DEPENDS="${DEPENDS}" \
-		  PREFIX=${PREFIX} LOCALBASE=${LOCALBASE} X11BASE=${X11BASE} \
+		  PREFIX=${PREFIX} LOCALBASE=${LOCALBASE} \
 		  DESTDIR=${DESTDIR} TARGETDIR=${DESTDIR}
 
 .if defined(BATCH)
@@ -2053,8 +2069,7 @@ all:
 	  PATCHDIR=${PATCHDIR} SCRIPTDIR=${SCRIPTDIR} \
 	  FILESDIR=${FILESDIR} PORTSDIR=${PORTSDIR} DESTDIR=${DESTDIR} PREFIX=${PREFIX} \
 	  DEPENDS="${DEPENDS}" BUILD_DEPENDS="${BUILD_DEPENDS}" \
-	  RUN_DEPENDS="${RUN_DEPENDS}" X11BASE=${X11BASE} \
-	  CONFLICTS="${CONFLICTS}" \
+	  RUN_DEPENDS="${RUN_DEPENDS}" CONFLICTS="${CONFLICTS}" \
 	${ALL_HOOK}
 .endif
 
@@ -3052,7 +3067,7 @@ checkpatch:
 .if !target(reinstall)
 reinstall:
 	@${RM} -f ${INSTALL_COOKIE} 
-	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} install
+	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} -DFORCE_PKG_REGISTER install
 .endif
 
 # refake
@@ -3969,9 +3984,6 @@ generate-plist:
 			done
 			@${ECHO_CMD} '@cwd ${PREFIX}' >> ${TMPPLIST}
 .		endif
-		@for i in $$(${ECHO_CMD} ${__MANPAGES} ${_TMLINKS:M${_PREFIX}*:S|^${_PREFIX}/||} ' ' | ${SED} -E -e 's|man([1-9ln])/([^/ ]+) |cat\1/\2 |g'); do \
-			${ECHO_CMD} "@unexec rm -f %D/$${i%.gz} %D/$${i%.gz}.gz" >> ${TMPPLIST}; \
-		done
 .	endfor
 	@if [ -f ${PLIST} ]; then \
 		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${PLIST} >> ${TMPPLIST}; \
@@ -4056,7 +4068,7 @@ add-plist-info:
 	@${ECHO_CMD} "@unexec if [ -f %D/${INFO_PATH}/dir ]; then if sed -e '1,/Menu:/d' %D/${INFO_PATH}/dir \
 		 | grep -q '^[*] '; then true; else rm %D/${INFO_PATH}/dir; fi; fi" >> ${TMPPLIST}
 
-.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
+.if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL})
 	@${ECHO_CMD} "@dirrmtry rmdir info/" >> ${TMPPLIST}
 .endif
 
@@ -4068,7 +4080,7 @@ add-plist-info:
 # deinstall-time
 .if !target(add-plist-post)
 add-plist-post:
-.	if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${X11BASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
+.	if (${PREFIX} != ${LOCALBASE_REL} && ${PREFIX} != ${LINUXBASE_REL} && ${PREFIX} != "/usr")
 		@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
 .	else
 		@${DO_NADA}
