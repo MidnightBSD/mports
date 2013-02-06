@@ -1,5 +1,4 @@
-# $FreeBSD: src/share/mk/bsd.port.mk,v 1.307 2004/07/02 20:47:18 eik Exp $
-# $MidnightBSD: src/share/mk/bsd.port.mk,v 1.6 2007/04/15 04:55:21 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.port.mk,v 1.20 2007/08/07 19:57:41 ctriv Exp $
 
 #
 # This file is a workaround for a bug in the 0.1 release.  /usr/share/mk/bsd.port.mk
