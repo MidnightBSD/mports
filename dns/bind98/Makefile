@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/dns/bind98/Makefile,v 1.13 2012/12/16 00:45:34 laffer1 Exp $
-# $FreeBSD: ports/dns/bind98/Makefile,v 1.3 2010/12/18 09:50:45 dougb Exp $
+# $MidnightBSD: mports/dns/bind98/Makefile,v 1.14 2012/12/16 00:51:51 laffer1 Exp $
 
 PORTNAME=	bind98
 PORTVERSION=	9.8.4.1
 CATEGORIES=	dns net ipv6
-MASTER_SITES=	${MASTER_SITE_ISC} \
-		http://dougbarton.us/Downloads/%SUBDIR%/
+MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
 DISTNAME=	bind-${ISCVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
