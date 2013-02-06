@@ -4,7 +4,7 @@
 # bsd.commands.mk - Common commands used within the ports infrastructure
 #
 # $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.5 2011/03/08 13:40:08 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.6 2012/02/29 20:54:14 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -50,6 +50,7 @@ GZIP_CMD?=	/usr/bin/gzip -nf ${GZIP}
 HEAD?=		/usr/bin/head
 ID?=		/usr/bin/id
 IDENT?=		/usr/bin/ident
+JOT?=		/usr/bin/jot
 LDCONFIG?=	/sbin/ldconfig
 LN?=		/bin/ln
 LS?=		/bin/ls
@@ -72,6 +73,7 @@ SED?=		/usr/bin/sed
 SETENV?=	/usr/bin/env
 SH?=		/bin/sh
 SORT?=		/usr/bin/sort
+STAT?=		/usr/bin/stat
 STRIP_CMD?=	/usr/bin/strip
 SU_CMD?=	/usr/bin/su root -c
 SUDO?=		/usr/bin/sudo
