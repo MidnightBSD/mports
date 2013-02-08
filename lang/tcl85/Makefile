@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tcl8.5
-# Date created:		17 January 2007
-# Whom:			Martin Matuska <mm@FreeBSD.org>
-#
-# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.9 2009/12/31 20:47:14 laffer1 Exp $
-# $FreeBSD: ports/lang/tcl85/Makefile,v 1.16 2008/04/23 06:39:27 mm Exp $
-#
+# $MidnightBSD: mports/lang/tcl85/Makefile,v 1.10 2010/12/04 20:26:57 laffer1 Exp $
 
 PORTNAME=	tcl
 PORTVERSION=	8.5.3
