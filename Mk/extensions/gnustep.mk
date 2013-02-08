@@ -1,6 +1,5 @@
 #
-# $MidnightBSD: mports/Mk/extensions/gnustep.mk,v 1.9 2011/08/17 22:25:00 laffer1 Exp $
-# $FreeBSD: ports/Mk/bsd.gnustep.mk,v 1.42 2007/01/30 04:25:35 kris Exp $
+# $FreeBSD$
 #
 # This file contains some variable definitions that are supposed to
 # make your life easier when dealing with ports related to the GNUstep.
@@ -21,20 +20,18 @@
 # WITH_GNUSTEP_CAIRO=yes
 #	use cairo as backend while build instead of xlib.
 #
-# GNUSTEP_WITH_BASE_GCC=yes
-#	use system compiler (does not work on all architectures).
-#
 # GNUSTEP_WITH_GCC42=yes
-#	use gcc 4.2.x with objective C shared libraries.
+#	use gcc 4.2.x with objective C shared libraries (default).
 #
-# GNUSTEP_WITH_GCC44=yes
-#	use gcc 4.4.x with objective C shared libraries. (default)
+# GNUSTEP_WITH_GCC46=yes
+#	use gcc 4.6.x with objective C shared libraries.
+#
+# GNUSTEP_WITH_CLANG=yes
+#	use clang with objective C shared libraries.
+#
 #
 # Options for a port before include this file:
 # ============================================
-#
-# USE_GNUSTEP_PREFIX=yes
-#   your port installs into the GNUStep prefix
 #
 # USE_GNUSTEP_BASE=yes
 #	your port depends on the gnustep-base port.
@@ -106,25 +103,9 @@
 #	depends on Services installed in Local directrory
 #
 # ---------------------------------------------------------------------------
-.if !defined(_POSTMKINCLUDED) && !defined(Gnustep_Pre_Include)
+.if !defined(_POSTMKINCLUDED)
 
-Gnustep_Pre_Include=		gnustep.mk
-Gnustep_Include_MAINTAINER=	ports@MidnightBSD.org
-
-.if !defined(GNUSTEP_WITH_GCC44) && !defined(GNUSTEP_WITH_GCC42)
-GNUSTEP_WITH_BASE_GCC=	yes
-GNUSTEP_WITHOUT_LIBOBJC=	yes
-.endif
-
-.if !defined(GNUSTEP_WITHOUT_LIBOBJC)
-.if !defined(GNUSTEP_WITH_BASE_GCC)
-BUILD_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
-RUN_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
-.else
-BUILD_DEPENDS+=	${GNUSTEP_SYSTEM_LIBRARIES}/libobjc.so:${PORTSDIR}/${GNUSTEP_OBJC_PORT}
-RUN_DEPENDS+=	${GNUSTEP_SYSTEM_LIBRARIES}/libobjc.so:${PORTSDIR}/${GNUSTEP_OBJC_PORT}
-.endif
-.endif
+GNUstep_Include_MAINTAINER=	ports@FreeBSD.org
 
 .if defined(USE_GNUSTEP_BUILD) || defined(USE_GNUSTEP_MAKE)
 BUILD_DEPENDS+=	${GNUSTEP_MAKEFILES}/GNUstep.sh:${PORTSDIR}/${GNUSTEP_MAKE_PORT}
@@ -134,7 +115,6 @@ RUN_DEPENDS+=	${GNUSTEP_MAKEFILES}/GNUstep.sh:${PORTSDIR}/${GNUSTEP_MAKE_PORT}
 .endif
 
 GNUSTEP_MAKE_PORT?=	devel/gnustep-make
-GNUSTEP_OBJC_PORT?=	lang/gnustep-objc
 GNUSTEP_BASE_PORT?=	lang/gnustep-base
 GNUSTEP_GUI_PORT?=	x11-toolkits/gnustep-gui
 GNUSTEP_BACK_PORT?=	x11-toolkits/gnustep-back
@@ -212,21 +192,56 @@ PLIST_SUB+=	MAJORVERSION=${PORTVERSION:C/([0-9]).*/\1/1}
 PLIST_SUB+=	LIBVERSION=${DEFAULT_LIBVERSION}
 PLIST_SUB+=	MAJORLIBVERSION=${DEFAULT_LIBVERSION:C/([0-9]).*/\1/1}
 
-.if !defined(GNUSTEP_WITH_BASE_GCC)
-.if !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC44)
-GNUSTEP_WITH_GCC44=	yes
+.if !defined(GNUSTEP_WITH_GCC34) && !defined(GNUSTEP_WITH_GCC42) && !defined(GNUSTEP_WITH_GCC46) && !defined(GNUSTEP_WITH_BASE_GCC)
+.if defined(PACKAGE_BUILDING)
+.if ${OSVERSION} > 900035
+GNUSTEP_WITH_GCC42=yes
+.endif
+.endif
+.if !exists(${DESTDIR}/usr/lib/libobjc.so)
+GNUSTEP_WITH_GCC42=yes
+.endif
 .endif
 
+.if defined(GNUSTEP_WITH_CLANG)
+.if defined(CC) && ${CC:T:Mclang}
+# all done
+.else
+.if !exists(${DESTDIR}/usr/bin/clang)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang:${PORTSDIR}/lang/clang
+CC=	clang
+CXX=	clang++
+.else
+# use clang in base
+CC=	clang
+CXX=	clang++
+.endif
+# ignore gcc ports
+GNUSTEP_WITH_BASE_GCC=yes
+.endif
+LIB_DEPENDS+=	objc:${PORTSDIR}/lang/libobjc2
+.else
+.if defined(GNUSTEP_WITH_GCC34) || defined(GNUSTEP_WITH_GCC42) || defined(GNUSTEP_WITH_GCC46)
+.if defined(GNUSTEP_WITH_GCC34)
+GCCSUFFIX=34
+.if ${ARCH} == sparc64
+BROKEN=	gcc34 does not build the required libobjc
+.endif
+.endif
 .if defined(GNUSTEP_WITH_GCC42)
 GCCSUFFIX=42
 .endif
-.if defined(GNUSTEP_WITH_GCC44)
-GCCSUFFIX=44
+.if defined(GNUSTEP_WITH_GCC46)
+GCCSUFFIX=46
 .endif
 CC=		gcc${GCCSUFFIX}
 CXX=		g++${GCCSUFFIX}
 GNUSTEP_GCC_PORT?=	lang/gcc${GCCSUFFIX}
-
+BUILD_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
+RUN_DEPENDS+=	${TARGLIB}/libobjc.so:${PORTSDIR}/${GNUSTEP_GCC_PORT}
+.else
+GNUSTEP_WITH_BASE_GCC=yes
+.endif
 .endif
 
 # ---------------------------------------------------------------------------
@@ -249,7 +264,11 @@ RUN_DEPENDS+=	${GNUSTEP_SYSTEM_LIBRARIES}/libgnustep-gui.so:${PORTSDIR}/${GNUSTE
 # using any backend
 #
 .if defined(USE_GNUSTEP_BACK)
-BACKSUFFIX?=   -017
+.if defined(WITH_GNUSTEP_DEVEL)
+BACKSUFFIX?=	-022
+.else
+BACKSUFFIX?=	-022
+.endif
 .if defined(WITH_GNUSTEP_XDPS)
 GNUSTEP_WITH_XDPS=yes
 .elif defined(WITH_GNUSTEP_LIBART)
@@ -469,6 +488,7 @@ do-configure:
 	@(cd ${CONFIGURE_WRKSRC}; . ${GNUSTEP_MAKEFILES}/GNUstep.sh; \
 	    if ! ${SETENV} CC="${CC}" CXX="${CXX}" \
 		CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" \
+		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}" \
 		INSTALL="/usr/bin/install -c -o ${BINOWN} -g ${BINGRP}" \
 		INSTALL_DATA="${INSTALL} -c" \
 		INSTALL_PROGRAM="${INSTALL} -c" \
@@ -480,9 +500,6 @@ do-configure:
 		    ${FALSE}; \
 	    fi)
 .endif
-
-# Make sure that MAKE_FLAGS ends with -f
-#MAKE_FLAGS+= 	-f
 
 # ---------------------------------------------------------------------------
 # source GNUstep.sh
@@ -527,20 +544,13 @@ TARGLIB!=	(cd ${PORTSDIR}/${GNUSTEP_GCC_PORT} && make -V TARGLIB)
 
 .endif
 
- 
 # ---------------------------------------------------------------------------
-# We don't do anything for ldconfig.  We try to set up the environment 
-# properly (sourcing the gnustep shell includes).  This should do any of the hijinks
-# that used to be done via USE_LDCONFIG for us.
+# run ldconfig for installed shlibs
 #
- 
-.ifdef _POSTMKINCLUDED
-
-# Make sure that MAKE_FLAGS ends with -f.  This is done in port.post.mk,
-# so that any changes made by the port's makefile are included.
-MAKE_FLAGS!=	${ECHO_CMD} '${MAKE_FLAGS}' | ${SED} -e 's/\s+-f\s+//'
-MAKE_FLAGS+=	-f
-
+.if defined(USE_GNUSTEP_LDCONFIG)
+.for i in ${USE_GNUSTEP_LDCONFIG}
+USE_LDCONFIG+=	${i}
+.endfor
 .endif
 
 # eof
