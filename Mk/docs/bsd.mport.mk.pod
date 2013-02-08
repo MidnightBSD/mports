@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.14 2010/12/10 05:03:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/docs/bsd.mport.mk.pod,v 1.15 2010/12/30 02:12:13 laffer1 Exp $
 
 =head1 NAME
 
@@ -346,16 +346,6 @@ You rarely need to redefine any of these except WRKSRC and NO_WRKSUBDIR.
 The path to the environment we are installing to.  This is only used during
 the final package install, at which point mport.install is run chroot'ed
 into the DESTDIR.
-
-=item X11BASE
-
-Where X11 ports install things.  Deprecated.
-
-Default: ${LOCALBASE}
-
-=item USE_X_PREFIX
-
-If set, this port installs in ${X11BASE}.  Deprecated.
 
 =item LOCALBASE	
 
