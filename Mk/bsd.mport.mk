@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.195 2013/01/21 02:16:21 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.196 2013/02/06 03:44:31 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -3893,7 +3893,7 @@ PACKAGE-DEPENDS-LIST?= \
 		version=`(${ECHO_CMD} $$depend | ${CUT} -f 1 -d ':' | ${GREP} -se '[<>]') || ${TRUE}`; \
 		dir=`${ECHO_CMD} $$depend | ${CUT} -f 2 -d ':' | ${XARGS} ${REALPATH}`; \
 		if [ -d $$dir ]; then \
-			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -'`; \
+			meta=`cd $$dir && ${MAKE} -V PKGBASE -V PKGORIGIN | ${PASTE} - -`; \
 			if [ -z "$$version" ]; then \
 				${ECHO_CMD} "$$dir $$meta" | ${AWK} '{print $$2 " " $$1 " " $$3}'; \
 			else \
