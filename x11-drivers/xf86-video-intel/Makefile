@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11-drivers/xf86-video-intel/Makefile,v 1.9 2013/02/09 18:28:00 laffer1 Exp $
 
 PORTNAME=	xf86-video-intel
 PORTVERSION=	${INTEL_VERSION}
@@ -7,6 +7,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Driver for Intel integrated graphics chipsets
+LICENSE=	mit
 
 ONLY_FOR_ARCHS=	amd64 i386
 USE_GL=		gl
