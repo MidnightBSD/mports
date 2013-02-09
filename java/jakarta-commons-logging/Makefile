@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-logging/Makefile,v 1.2 2008/05/01 23:16:22 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-commons-logging/Makefile,v 1.3 2011/12/24 03:16:40 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-commons-logging/Makefile,v 1.11 2006/05/16 15:43:15 hq Exp $
 #
 
@@ -17,7 +17,7 @@ LICENSE=	apache2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>

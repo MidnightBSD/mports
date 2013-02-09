@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jaf/Makefile,v 1.1 2012/02/28 01:00:49 laffer1 Exp $
 # $FreeBSD: ports/java/jaf/Makefile,v 1.19 2012/01/17 01:42:10 jgh Exp $
 #
 
@@ -14,7 +14,7 @@ LICENSE=	restricted
 
 USE_ZIP=	YES
 USE_JAVA=	YES
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 NO_BUILD=	yes

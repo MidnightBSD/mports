@@ -1,10 +1,5 @@
-# New ports collection makefile for:	JAI Image I/O Tools
-# Date created:				2004-01-10
-# Whom:					OISHI Masakuni <yamasa@bsdhouse.org>
-#
-# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.3 2008/05/09 17:29:09 laffer1 Exp $
+# $MidnightBSD: mports/java/jai-imageio/Makefile,v 1.4 2011/12/24 03:11:59 laffer1 Exp $
 # $FreeBSD: ports/java/jai-imageio/Makefile,v 1.3 2005/02/13 21:28:05 hq Exp $
-#
 
 PORTNAME=	jai-imageio
 PORTVERSION=	1.0
@@ -20,7 +15,7 @@ LICENSE=	restricted
 IS_INTERACTIVE=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	i386

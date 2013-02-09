@@ -1,8 +1,4 @@
-# Ports collection makefile for:    Jakarta Regexp
-# Date created:         2000/12/01
-# Whom:                 Dave Glowacki <dglo@ssec.wisc.edu>
-#
-# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.3 2009/06/09 20:32:34 crash Exp $
+# $MidnightBSD: mports/java/jakarta-regexp/Makefile,v 1.4 2012/02/28 02:17:43 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-regexp/Makefile,v 1.11 2005/10/10 04:43:53 linimon Exp $
 #
 
@@ -19,7 +15,7 @@ LICENSE=        apache2
 BUILD_DEPENDS=	${LOCALBASE}/bin/ant:${PORTSDIR}/devel/apache-ant
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 
 PLIST=	${WRKDIR}/PLIST
 

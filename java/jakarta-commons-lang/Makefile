@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.3 2009/08/20 18:24:37 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-commons-lang/Makefile,v 1.4 2011/12/24 03:15:12 laffer1 Exp $
 
 PORTNAME=	commons-lang
 PORTVERSION=	2.6
@@ -13,7 +13,7 @@ COMMENT=	Jakarta library with helper utilities for the java.lang API
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 
 USE_ANT=	yes
 USE_JIKES=	no
