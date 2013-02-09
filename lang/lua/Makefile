@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/lang/lua/Makefile,v 1.2 2010/10/16 23:57:48 laffer1 Exp $
+# $MidnightBSD: mports/lang/lua/Makefile,v 1.3 2012/03/08 03:27:10 laffer1 Exp $
 
 PORTNAME=	lua
-PORTVERSION=	5.1.4
-PORTREVISION=	2
+PORTVERSION=	5.1.5
 CATEGORIES=	lang lua
 MASTER_SITES=	http://www.lua.org/ftp/ \
 		ftp://ftp.tecgraf.puc-rio.br/pub/lua/ \
@@ -10,8 +9,6 @@ MASTER_SITES=	http://www.lua.org/ftp/ \
 		ftp://ftp.ntua.gr/pub/lang/lua/ \
 		ftp://ftp.uni-trier.de/pub/languages/lua/ \
 		ftp://ftp.gwdg.de/pub/languages/lua/
-PATCH_SITES=	http://www.lua.org/ftp/
-PATCHFILES=	patch-lua-5.1.4-3
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
