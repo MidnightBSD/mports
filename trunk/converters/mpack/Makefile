@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/converters/mpack/Makefile,v 1.1 2008/05/31 03:04:55 laffer1 Exp $
+# $MidnightBSD: mports/converters/mpack/Makefile,v 1.2 2011/05/13 13:15:03 laffer1 Exp $
 # $FreeBSD: ports/converters/mpack/Makefile,v 1.20 2006/10/31 15:52:49 dinoex Exp $
 
 PORTNAME=	mpack
 PORTVERSION=	1.6
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	converters mail news
 MASTER_SITES=	ftp://ftp.andrew.cmu.edu/pub/mpack/
 
