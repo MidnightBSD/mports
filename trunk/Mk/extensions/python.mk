@@ -1,7 +1,7 @@
-# -*- mode: Makefile; tab-width: 4; -*-
+# -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.15 2011/12/22 01:40:17 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/python.mk,v 1.16 2012/02/02 08:55:14 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.python.mk,v 1.81 2006/08/04 12:34:41 erwin Exp $
 #
 
@@ -96,12 +96,11 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 # There are PREFIX-clean variants of the PYTHON_*DIR variables above.
 # They are meant to be used in the installation targets.
 #
-# PYTHONPREFIX_INCLUDEDIR:	default: ${PREFIX}/include/${PYTHON_VERSION}
-# PYTHONPREFIX_LIBDIR:		default: ${PREFIX}/lib/${PYTHON_VERSION}
-# PYTHONPREFIX_SITELIBDIR:	default: ${PYTHONPREFIX_LIBDIR}/site-packages
+# PYTHONPREFIX_INCLUDEDIR	default: ${PREFIX}/include/${PYTHON_VERSION}
+# PYTHONPREFIX_LIBDIR		default: ${PREFIX}/lib/${PYTHON_VERSION}
+# PYTHONPREFIX_SITELIBDIR	default: ${PYTHONPREFIX_LIBDIR}/site-packages
 #
-# PYDISTUTILS		- Dependency line for the distutils extension. As of
-#					  Python-2.0, the distutils are in the base distribution.
+# PYGAME			- Dependency line for the Pygame library.
 #
 # PYNUMERIC			- Dependency line for the numeric extension.
 #
@@ -203,9 +202,9 @@ Python_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 
 _PYTHON_PORTBRANCH=		2.7
-_PYTHON_ALLBRANCHES=	2.7 2.6 2.5 2.4 3.1 # preferred first
-_ZOPE_PORTBRANCH=		2.7
-_ZOPE_ALLBRANCHES=		2.7 2.8 2.9 2.10 3.2
+_PYTHON_ALLBRANCHES=	2.7 2.6 3.1	# preferred first
+_ZOPE_PORTBRANCH=		2.13
+_ZOPE_ALLBRANCHES=		2.13
 
 
 # Determine version number of Zope to use
@@ -257,7 +256,7 @@ _ZOPE_VERSION=	${_ZOPE_PORTBRANCH} # just to avoid version sanity checking.
 
 ZOPE_VERSION?=	${_ZOPE_VERSION}
 
-PYTHON_VERSION=	python2.4
+PYTHON_VERSION=	python2.7
 .endif	# defined(USE_ZOPE)
 
 
@@ -269,7 +268,7 @@ PYTHON_DEFAULT_VERSION=		python${_PYTHON_PORTBRANCH}
 .if !defined(PYTHON_DEFAULT_VERSION)
 . if exists(${LOCALBASE}/bin/python)
 _PYTHON_DEFAULT_VERSION!=	(${LOCALBASE}/bin/python -c \
-							'import sys; print sys.version[:3]' 2> /dev/null \
+							'import sys; print(sys.version[:3])' 2> /dev/null \
 							|| ${ECHO_CMD} ${_PYTHON_PORTBRANCH}) | ${TAIL} -1
 . else
 _PYTHON_DEFAULT_VERSION=	${_PYTHON_PORTBRANCH}
@@ -341,7 +340,7 @@ _PYTHON_VERSION=	${_PYTHON_PORTBRANCH} # just to avoid version sanity checking.
 PYTHON_VERSION?=	python${_PYTHON_VERSION}
 PYTHON_CMD?=		${_PYTHON_CMD}
 .if !defined(PYTHONBASE)
-PYTHONBASE!=		(${PYTHON_CMD} -c 'import sys; print sys.prefix' \
+PYTHONBASE!=		(${PYTHON_CMD} -c 'import sys; print(sys.prefix)' \
 						2> /dev/null || ${ECHO_CMD} ${LOCALBASE}) | ${TAIL} -1
 .endif
 DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
@@ -350,8 +349,8 @@ DEPENDS_ARGS+=		PYTHON_VERSION=${PYTHON_VERSION}
 # should point to some other version we have installed, according to the port USE_PYTHON
 # specification
 .if !defined(PYTHON_DEFAULT_PORTVERSION) || (${PYTHON_VERSION} != ${PYTHON_DEFAULT_VERSION})
-_PYTHON_PORTVERSION!=	(${PYTHON_CMD} -c 'import string, sys; \
-							print string.split(sys.version)[0].replace("b",".b")' 2> /dev/null) | ${TAIL} -1
+_PYTHON_PORTVERSION!=	(${PYTHON_CMD} -c 'import sys; \
+							print(sys.version.split()[0].replace("b",".b"))' 2> /dev/null) | ${TAIL} -1
 .if !defined(PYTHON_NO_DEPENDS) && !empty(_PYTHON_PORTVERSION)
 PYTHON_PORTVERSION=	${_PYTHON_PORTVERSION}
 .endif
@@ -362,71 +361,65 @@ PYTHON_PORTVERSION=	${PYTHON_DEFAULT_PORTVERSION}
 # Propagate the chosen python version to submakes.
 .MAKEFLAGS:	PYTHON_VERSION=python${_PYTHON_VERSION}
 
+# Python-3.2
+.if ${PYTHON_VERSION} == "python3.2"
+PYTHON_PORTVERSION?=3.2.3
+PYTHON_PORTSDIR=	${PORTSDIR}/lang/python32
+PYTHON_REL=			323
+PYTHON_SUFFIX=		32
+PYTHON_VER=			3.2
+.if exists(${PYTHON_CMD}-config)
+PYTHON_ABIVER!=		${PYTHON_CMD}-config --abiflags
+.endif
+
 # Python-3.1
-.if ${PYTHON_VERSION} == "python3.1"
-PYTHON_PORTVERSION?=3.1.4
+.elif ${PYTHON_VERSION} == "python3.1"
+PYTHON_PORTVERSION?=3.1.5
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python31
-PYTHON_REL=			314
+PYTHON_REL=			315
 PYTHON_SUFFIX=		31
 PYTHON_VER=			3.1
 
 # Python-2.7
 .elif ${PYTHON_VERSION} == "python2.7"
-PYTHON_PORTVERSION?=2.7.2
+PYTHON_PORTVERSION?=2.7.3
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python27
-PYTHON_REL=			272
+PYTHON_REL=			273
 PYTHON_SUFFIX=		27
 PYTHON_VER=			2.7
 
 # Python-2.6
 .elif ${PYTHON_VERSION} == "python2.6"
-PYTHON_PORTVERSION?=2.6.7
+PYTHON_PORTVERSION?=2.6.8
 PYTHON_PORTSDIR=	${PORTSDIR}/lang/python26
-PYTHON_REL=			267
+PYTHON_REL=			268
 PYTHON_SUFFIX=		26
 PYTHON_VER=			2.6
-
-# Python-2.5
-.elif ${PYTHON_VERSION} == "python2.5"
-PYTHON_PORTVERSION?=2.5.4
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python25
-PYTHON_REL=			254
-PYTHON_SUFFIX=		25
-PYTHON_VER=			2.5
-
-# Python-2.4
-.elif ${PYTHON_VERSION} == "python2.4"
-PYTHON_PORTVERSION?=2.4.5
-PYTHON_PORTSDIR=	${PORTSDIR}/lang/python24
-PYTHON_REL=			245
-PYTHON_SUFFIX=		24
-PYTHON_VER=			2.4
 
 # Python versions in development
 .elif defined(FORCE_PYTHON_VERSION)
 PYTHON_PORTSDIR=	# empty
 PYTHON_NO_DEPENDS=	YES
 PYTHON_REL!=		${PYTHON_CMD} -c 'import sys; h = "%x" % sys.hexversion; \
-						print h[0]+h[2]+h[4]'
+						print(h[0]+h[2]+h[4])'
 PYTHON_SUFFIX!=		${PYTHON_CMD} -c 'import sys; h = "%x" % sys.hexversion; \
-						print h[0]+h[2]'
-PYTHON_VER!=		${PYTHON_CMD} -c 'import sys; print sys.version[:3]'
+						print(h[0]+h[2])'
+PYTHON_VER!=		${PYTHON_CMD} -c 'import sys; print(sys.version[:3])'
 
 .else
 check-makevars::
 	@${ECHO} "Makefile error: bad value for PYTHON_VERSION: ${PYTHON_VERSION}."
 	@${ECHO} "Legal values are:"
-	@${ECHO} "  python2.4"
-	@${ECHO} "  python2.5"
 	@${ECHO} "  python2.6"
 	@${ECHO} "  python2.7 (default)"
 	@${ECHO} "  python3.1"
+	@${ECHO} "  python3.2"
 	@${FALSE}
 .endif
 
 PYTHON_MASTER_SITES=		${MASTER_SITE_PYTHON}
 PYTHON_MASTER_SITE_SUBDIR=	ftp/python/${PYTHON_PORTVERSION:C/rc[0-9]//}
-PYTHON_DISTFILE=			Python-${PYTHON_PORTVERSION:S/.rc/rc/}.tgz
+PYTHON_DISTFILE=		Python-${PYTHON_PORTVERSION:S/.rc/rc/}${EXTRACT_SUFX}
 PYTHON_WRKSRC=				${WRKDIR}/Python-${PYTHON_PORTVERSION:S/.rc/rc/}
 
 PYTHON_ABIVER?=			# empty
@@ -443,8 +436,13 @@ PYTHONPREFIX_SITELIBDIR=	${PYTHON_SITELIBDIR:S;${PYTHONBASE};${PREFIX};}
 
 # setuptools support
 .if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
+.if ${PYTHON_SUFFIX} < 30
 BUILD_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-setuptools
 RUN_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-setuptools
+.else
+BUILD_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
+RUN_DEPENDS+=		${PYEASYINSTALL_CMD}:${PORTSDIR}/devel/py-distribute
+.endif
 
 PYDISTUTILS_BUILD_TARGET?=		bdist_egg
 PYDISTUTILS_INSTALL_TARGET?=	easy_install
@@ -507,7 +505,7 @@ PYDISTUTILS_EGGINFODIR?=${PYTHONPREFIX_SITELIBDIR}
 	(defined(INSTALLS_EGGINFO) ||	\
 		(defined(USE_PYDISTUTILS) && \
 		 ${USE_PYDISTUTILS} != "easy_install")) && \
-	 defined(PYTHON_REL) && ${PYTHON_REL} >= 250
+	 defined(PYTHON_REL)
 . for egg in ${PYDISTUTILS_EGGINFO}
 PLIST_FILES+=	${PYDISTUTILS_EGGINFODIR:S;${PREFIX}/;;}/${egg}
 . endfor
@@ -518,30 +516,12 @@ CONFIGURE_ENV+=	PYTHON="${PYTHON_CMD}"
 
 # Zope-related variables
 .if defined(USE_ZOPE)
-.if ${ZOPE_VERSION} == "3.2"
-SZOPEBASEDIR?=			www/Zope3
-ZOPE_PORTSDIR=			${PORTSDIR}/www/zope3
-ZOPESKELDIR=			${ZOPEBASEDIR}/zopeskel
-.elif ${ZOPE_VERSION} == "2.10"
-SZOPEBASEDIR?=			www/Zope210
-ZOPE_PORTSDIR=			${PORTSDIR}/www/zope210
-ZOPESKELDIR=			${ZOPEBASEDIR}/skel
-.elif ${ZOPE_VERSION} == "2.9"
-SZOPEBASEDIR?=			www/Zope29
-ZOPE_PORTSDIR=			${PORTSDIR}/www/zope29
-ZOPESKELDIR=			${ZOPEBASEDIR}/skel
-.elif ${ZOPE_VERSION} == "2.8"
-SZOPEBASEDIR?=			www/Zope28
-ZOPE_PORTSDIR=			${PORTSDIR}/www/zope28
-ZOPESKELDIR=			${ZOPEBASEDIR}/skel
-.elif ${ZOPE_VERSION} == "2.7"
-SZOPEBASEDIR?=			www/Zope
-ZOPE_PORTSDIR=			${PORTSDIR}/www/zope
-ZOPESKELDIR=			${ZOPEBASEDIR}/skel
+.if ${ZOPE_VERSION} == "2.13"
+ZOPE_DEPENDS=	zope213>0:${PORTSDIR}/www/zope213
 .else
 check-makevars::
 	@${ECHO} "Makefile error: bad value for ZOPE_VERSION: ${ZOPE_VERSION}."
-	@${ECHO} "Legal values are:	2.7 (default), 2.8, 2.9, 2.10, 3.2"
+	@${ECHO} "Legal values are: 2.13 (default)"
 	@${FALSE}
 .endif
 ZOPEBASEDIR?=			${PREFIX}/${SZOPEBASEDIR}
@@ -549,7 +529,7 @@ ZOPEPRODUCTDIR?=		Products
 .endif
 
 # Python 3rd-party modules
-PYDISTUTILS=	${PYTHON_LIBDIR}/distutils/core.py:${PYTHON_PORTSDIR}
+PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
 PYNUMERIC=		${PYTHON_SITELIBDIR}/Numeric/Numeric.py:${PORTSDIR}/math/py-numeric
 PYNUMPY=		${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy
 PYXML=			${PYTHON_SITELIBDIR}/_xmlplus/__init__.py:${PORTSDIR}/textproc/py-xml
@@ -567,7 +547,7 @@ RUN_DEPENDS+=	${PYTHON_CMD}:${PYTHON_PORTSDIR}
 .endif		# ${PYTHON_NO_DEPENDS} == "NO"
 
 .if defined(USE_ZOPE)
-RUN_DEPENDS+=	${ZOPESKELDIR}/bin/zopectl.in:${ZOPE_PORTSDIR}
+RUN_DEPENDS+=	${ZOPE_DEPENDS}
 .endif
 
 # set $PREFIX as Python's one
@@ -664,6 +644,17 @@ RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/twisted/__init__.py:${PORTSDIR}/devel/py-twis
 
 # XXX Hm, should I export some of the variables above to *_ENV?
 
+# If multiple Python versions are installed and cmake is used, it might
+# happen that a cmake-enabled port using find_package(PythonLibs) and
+# find_package(PythonInterp) detects different Python versions.
+# This in turn might cause it to link against version X while using the
+# includes of version Y, leading to a broken port.
+# Enforce a certain Python version by using PYTHON_VER for cmake.
+.if defined(USE_CMAKE)
+CMAKE_ARGS+=	-DPythonLibs_FIND_VERSION:STRING="${PYTHON_VER}" \
+		-DPythonInterp_FIND_VERSION:STRING="${PYTHON_VER}"
+.endif
+
 .endif		# !defined(_POSTMKINCLUDED) && !defined(Python_Pre_Include)
 
 .if defined(_POSTMKINCLUDED) && !defined(Python_Post_Include)
@@ -681,7 +672,7 @@ PYDISTUTILS_INSTALL_TARGET?=	install
 
 .if defined(USE_PYDISTUTILS)
 LDSHARED?=	${CC} -shared
-MAKE_ENV+=	LDSHARED="${LDSHARED}"
+MAKE_ENV+=	LDSHARED="${LDSHARED}" PYTHONDONTWRITEBYTECODE= PYTHONOPTIMIZE=
 
 .if !target(do-configure) && !defined(HAS_CONFIGURE) && !defined(GNU_CONFIGURE)
 do-configure:
