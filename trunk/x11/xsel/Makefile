@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/x11/xsel/Makefile,v 1.1 2011/06/08 12:17:55 laffer1 Exp $
 # $FreeBSD: ports/x11/xsel/Makefile,v 1.9 2009/01/23 16:28:24 flz Exp $
 #
 
@@ -16,7 +16,7 @@ CONFLICTS=	xsel-conrad-[0-9]*
 USE_BZIP2=	yes
 USE_XORG=	xmu xaw xt xproto xkbfile
 CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib -lXt -lXaw
+LDFLAGS+=	-L${LOCALBASE}/lib -lXt -lXaw
 MAN1=		${PORTNAME}.1
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	${PORTNAME}.html
