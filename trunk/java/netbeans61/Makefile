@@ -1,15 +1,12 @@
-# New ports collection makefile for:	netbeans
-# Date Created:				2 Jun 2003
-# Whom:				 	olgeni@FreeBSD.org
-#
-# $MidnightBSD: mports/java/netbeans61/Makefile,v 1.4 2008/06/10 01:19:27 laffer1 Exp $
+# $MidnightBSD: mports/java/netbeans61/Makefile,v 1.5 2010/09/11 16:46:46 laffer1 Exp $
 # $FreeBSD: ports/java/netbeans/Makefile,v 1.29 2008/02/12 11:24:13 olgeni Exp $
-#
 
 PORTNAME=	netbeans61
 PORTVERSION=	6.1
+PORTREVISION=	1
 CATEGORIES=	java devel
-MASTER_SITES=	http://download.netbeans.org/netbeans/6.1/final/zip/
+MASTER_SITES=	http://download.netbeans.org/netbeans/6.1/final/zip/ \
+		http://dlc.sun.com.edgesuite.net/netbeans/6.1/final/zip/
 DISTNAME=	netbeans-${PORTVERSION}-200805300101-ml
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +15,7 @@ LICENSE=	agg
 
 USE_ZIP=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/netbeans

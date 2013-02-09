@@ -1,7 +1,7 @@
 # New ports collection makefile for:	Berkeley DB Java
 # Date created:		Feb 2, 2005
 #
-# $MidnightBSD: mports/java/berkeley-db/Makefile,v 1.2 2008/06/13 02:16:40 laffer1 Exp $
+# $MidnightBSD: mports/java/berkeley-db/Makefile,v 1.3 2011/09/04 19:56:06 laffer1 Exp $
 # $FreeBSD: ports/java/berkeley-db/Makefile,v 1.15 2008/06/06 13:38:26 edwin Exp $
 #
 
@@ -22,7 +22,7 @@ OPTIONS=	TEST "Run the self-tests after building automatically" off
 BUILD_DEPENDS=	${JAVALIBDIR}/junit.jar:${PORTSDIR}/java/junit
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 USE_ANT=	yes
 MAKE_ENV+=	JAVALIBDIR="${JAVALIBDIR}"
 MAKE_ARGS+=	-cp ${JAVALIBDIR}/junit.jar

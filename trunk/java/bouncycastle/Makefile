@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.4 2011/09/04 20:14:04 laffer1 Exp $
+# $MidnightBSD: mports/java/bouncycastle/Makefile,v 1.5 2011/12/24 02:48:27 laffer1 Exp $
 
 PORTNAME=	bouncycastle
 PORTVERSION=	1.45
@@ -20,7 +20,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf \
 		${JAVALIBDIR}/mail.jar:${PORTSDIR}/java/javamail
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 JDKMVERSION=	${JAVA_PORT_VERSION:C/^([0-9]\.[0-9])(.*)$/\1/}
 JDKNVERSION=	${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1\2/}
 USE_ANT=	yes

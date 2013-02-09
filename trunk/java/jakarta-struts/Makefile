@@ -1,8 +1,4 @@
-# New ports collection makefile for:    Struts framework
-# Date created:		Thu Jun 26 15:50:28 EEST 2003
-# Whom:			Anton Yudin <toha@toha.org.ua>
-#
-# $MidnightBSD: mports/java/jakarta-struts/Makefile,v 1.1 2008/09/26 14:10:43 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-struts/Makefile,v 1.2 2012/02/28 02:17:43 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-struts/Makefile,v 1.7 2008/06/06 13:38:40 edwin Exp $
 #
 
@@ -18,7 +14,7 @@ COMMENT=	Struts framework
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	YES
 USE_ZIP=	YES
 
