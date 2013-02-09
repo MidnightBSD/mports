@@ -2,11 +2,11 @@
 # Date created:				May 30, 2008
 # Whom:	      				Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/converters/p5-Convert-ASN1/Makefile,v 1.1 2008/05/30 21:05:47 laffer1 Exp $
+# $MidnightBSD: mports/converters/p5-Convert-ASN1/Makefile,v 1.2 2009/09/20 03:46:37 laffer1 Exp $
 #
 
 PORTNAME=	Convert-ASN1
-PORTVERSION=	0.22
+PORTVERSION=	0.26
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
