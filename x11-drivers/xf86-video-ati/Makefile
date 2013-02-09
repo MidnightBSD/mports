@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.11 2011/05/07 21:14:56 laffer1 Exp $
+# $MidnightBSD: mports/x11-drivers/xf86-video-ati/Makefile,v 1.12 2012/03/03 22:00:15 laffer1 Exp $
 
 PORTNAME=	xf86-video-ati
 PORTVERSION=	6.14.3
+PORTREVISION=	1
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	ports@MidnightBSD.org
