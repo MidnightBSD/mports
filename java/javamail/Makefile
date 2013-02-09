@@ -1,8 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/javamail/Makefile,v 1.1 2012/02/28 01:03:05 laffer1 Exp $
 # $FreeBSD: ports/java/javamail/Makefile,v 1.28 2011/02/18 10:11:12 ale Exp $
 
 PORTNAME=	javamail
-PORTVERSION=	1.4.4
+PORTVERSION=	1.4.5
 CATEGORIES=	java mail
 MASTER_SITES=	http://kenai.com/downloads/javamail/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -16,7 +16,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/activation.jar:${PORTSDIR}/java/jaf
 
 USE_ZIP=	YES
 USE_JAVA=	YES
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 USE_ANT=	YES
 MAKE_ENV=	ANT_INCLUDE_SHARED_JARS=YES
 
