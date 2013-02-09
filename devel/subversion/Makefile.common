@@ -1,14 +1,15 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.14 2012/03/31 16:40:44 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.15 2012/06/21 01:03:07 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.7.4
-PORTREVISION?=	0
+PORTVERSION=	1.7.7
+PORTREVISION?=	1
 CATEGORIES+=	devel
-MASTER_SITES=	${MASTER_SITE_APACHE}:main \
-		http://svnbook.red-bean.com/en/1.7/:book
-DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}:main
+MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
+		${MASTER_SITE_LOCAL:S/$/:book/}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main
 DIST_SUBDIR=	subversion17
-MASTER_SITE_SUBDIR=subversion/:main
+MASTER_SITE_SUBDIR=	subversion/:main \
+			lev/:book
 
 MAKE_JOBS_SAFE=	yes
 USE_BZIP2=	yes
