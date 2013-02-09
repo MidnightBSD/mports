@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/java/jboss5/Makefile,v 1.1 2011/12/24 03:39:30 laffer1 Exp $
 # $FreeBSD: ports/java/jboss5/Makefile,v 1.52 2011/03/21 15:02:21 fluffy Exp $
 #
 
@@ -14,7 +14,7 @@ LICENSE=	unknown
 
 LATEST_LINK=	jboss5
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 JAVA_OS=	native
 ANT_HOME=	${WRKSRC}/tools
 ANT=		${WRKSRC}/tools/bin/ant

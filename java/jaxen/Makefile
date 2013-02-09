@@ -1,8 +1,4 @@
-# Ports collection makefile for:	Jaxen
-# Date created:				9 Decemeber 2003
-# Whom:					Herve Quiroz <herve.quiroz@esil.univ-mrs.fr>
-#
-# $MidnightBSD: mports/java/jaxen/Makefile,v 1.3 2011/12/24 03:24:21 laffer1 Exp $
+# $MidnightBSD: mports/java/jaxen/Makefile,v 1.4 2012/02/28 02:06:17 laffer1 Exp $
 # $FreeBSD: ports/java/jaxen/Makefile,v 1.5 2004/09/01 13:41:33 hq Exp $
 
 PORTNAME=	jaxen
@@ -18,7 +14,7 @@ LICENSE=	bsd4
 
 USE_GCPIO=	YES
 USE_JAVA=	YES
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	YES
 
 JARFILES=	jaxen-core.jar jaxen-dom.jar jaxen-dom4j.jar jaxen-exml.jar jaxen-full.jar jaxen-jdom.jar lib/saxpath.jar

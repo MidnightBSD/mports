@@ -1,8 +1,4 @@
-# New ports collection makefile for:	JDOM
-# Date created:		June 1, 2001
-# Whom:			Ernst de Haan <znerd@FreeBSD.org>
-#
-# $MidnightBSD: mports/java/jdom/Makefile,v 1.3 2008/06/18 21:57:37 laffer1 Exp $
+# $MidnightBSD: mports/java/jdom/Makefile,v 1.4 2011/12/24 03:40:58 laffer1 Exp $
 # $FreeBSD: ports/java/jdom/Makefile,v 1.15 2004/12/03 01:01:24 hq Exp $
 #
 
@@ -21,7 +17,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/jaxen-jdom.jar:${PORTSDIR}/java/jaxen
 
 USE_GCPIO=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 USE_ANT=	yes
 
 ALL_TARGET=	package

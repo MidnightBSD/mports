@@ -1,10 +1,5 @@
-# New ports collection makefile for:	Jakarta Commons CLI
-# Date created:				November 14, 2002
-# Whom:					Ernst de Haan <znerd@FreeBSD.org>
-#
-# $MidnightBSD: mports/java/jakarta-commons-cli/Makefile,v 1.1 2008/09/10 23:53:57 laffer1 Exp $
+# $MidnightBSD: mports/java/jakarta-commons-cli/Makefile,v 1.2 2011/12/24 03:14:05 laffer1 Exp $
 # $FreeBSD: ports/java/jakarta-commons-cli/Makefile,v 1.13 2008/02/27 15:10:52 ehaupt Exp $
-#
 
 PORTNAME=	commons-cli
 PORTVERSION=	1.2
@@ -20,7 +15,7 @@ COMMENT=	Java library for command line arguments and options
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
