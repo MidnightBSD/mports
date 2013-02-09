@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/java/junit/Makefile,v 1.2 2009/02/28 16:45:09 laffer1 Exp $
+# $MidnightBSD: mports/java/junit/Makefile,v 1.3 2011/12/24 02:30:39 laffer1 Exp $
 
 PORTNAME=	junit
-PORTVERSION=	4.8.2
+PORTVERSION=	4.10
 CATEGORIES=	java devel
 MASTER_SITES=	http://cloud.github.com/downloads/KentBeck/junit/
 DISTNAME=	${PORTNAME}${PORTVERSION}
