@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/bluej/Makefile,v 1.4 2008/06/13 02:07:44 laffer1 Exp $
+# $MidnightBSD: mports/java/bluej/Makefile,v 1.5 2011/12/24 02:36:22 laffer1 Exp $
 # $FreeBSD: ports/java/bluej/Makefile,v 1.18 2006/06/12 23:44:13 hq Exp $
 
 PORTNAME=	bluej
-PORTVERSION=	3.0.2
+PORTVERSION=	3.0.7
 CATEGORIES=	java editors
 MASTER_SITES=	http://www.bluej.org/download/files/ \
 		ftp://ftp.bluej.org/pub/bluej/
