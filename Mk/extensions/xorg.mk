@@ -1,4 +1,4 @@
-#-*- mode: Fundamental; tab-width: 4; -*-
+#-*- tab-width: 4; -*-
 # ex:ts=4
 #
 # bsd.xorg.mk - Support for USE_XORG variable. (XXX - this comment sucks)
@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.7 2010/01/01 17:20:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.8 2011/04/22 03:01:31 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -66,7 +66,7 @@ USE_GNOME+=	pkgconfig
 USE_XORG+=	xorg-server xproto randrproto xi
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 .  if ${PORTNAME:M*input*}x != x
-USE_XORG+=	inputproto
+USE_XORG+=	inputproto renderproto
 .  elif ${PORTNAME:M*video*}x != x
 USE_XORG+=	fontsproto renderproto
 .  else
@@ -157,6 +157,10 @@ USE_XORG+=	pciaccess
 
 .endif
 
+.endif
+
+.if exists(${LOCALBASE}/bin/X)
+XSERVER_VER!=	${LOCALBASE}/bin/X -version 2>&1 | sed -n 's;^X\.Org X Server \([^ ]*\).*;\1;p'
 .endif
 
 .if defined(_POSTMKINCLUDED) && !defined(Xorg_Post_Include)
