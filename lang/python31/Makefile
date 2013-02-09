@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/python31/Makefile,v 1.2 2011/11/05 14:39:47 laffer1 Exp $
+# $MidnightBSD: mports/lang/python31/Makefile,v 1.3 2011/12/22 04:09:25 laffer1 Exp $
 
 PORTNAME=	python31
-PORTVERSION=	3.1.4
+PORTVERSION=	3.1.5
 PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
@@ -25,6 +25,7 @@ INSTALL_TARGET=	altinstall
 MAN1=		${PYTHON_VERSION}.1
 
 USE_PYTHON=	yes
+USE_XZ=		yes
 PYTHON_VERSION=	python3.1
 PYTHON_NO_DEPENDS=	yes
 
