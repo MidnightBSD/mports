@@ -2,7 +2,7 @@
 # Date created:				18 August 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.6 2011/12/24 04:13:24 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.7 2012/01/27 00:59:12 laffer1 Exp $
 #
 
 PORTNAME=	jdk
@@ -23,6 +23,8 @@ IS_INTERACTIVE=	yes
 EXTRACT_DEPENDS=${LINUX_BASE_PORT}
 BUILD_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 
+OPTIONS=	DEMO "Install demos and samples" on
+
 NO_CDROM=	License does not allow distribution with fee
 RESTRICTED=	Redistribution of repackaged binaries not permitted
 LATEST_LINK=	linux-sun-jdk16
@@ -35,7 +37,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	30
+JDK_REVISION=	37
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -47,6 +49,16 @@ UNPACK_CMD=	${WRKSRC}/bin/unpack200
 
 .if !exists(${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}) && !defined(PACKAGE_BUILDING)
 IGNORE?=You must manually fetch the J2SE SDK self-extracting file for the Linux platform (${DISTNAME}${EXTRACT_SUFX}) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
+.endif
+
+.if defined(WITH_DEMO)
+.if !exists(${DISTDIR}/${DISTNAME}-demos.tar.gz) && !defined(PACKAGE_BUILDING)
+IGNORE?=You must manually fetch the J2SE demos and samples for the Linux platform (${DISTNAME}-demos.tar.gz) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
+.endif
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-demos.tar.gz
+PLIST_SUB+=	DEMO=""
+.else
+PLIST_SUB+=	DEMO="@comment "
 .endif
 
 pre-everything::
@@ -61,10 +73,14 @@ do-extract:
 .for i in ${PACKED_JARS}
 	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
 .endfor
+.if defined(WITH_DEMO)
+	@${TAR} -x -f ${DISTDIR}/${DISTNAME}-demos.tar.gz -C ${WRKDIR}
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -i.orig -e 's:^#!/bin/bash:#!/bin/sh:' ${WRKSRC}/bin/jcontrol
-	@${FIND} ${WRKSRC} -name '*.orig' -print | ${XARGS} ${RM} -f
+	@${FIND} ${WRKSRC} -name '*.orig' -delete
+	@(cd ${WRKSRC}/include; ${LN} -s linux freebsd)
 
 # XXX: This is missing a "${BRANDELF} -t Linux <executables>".
 
