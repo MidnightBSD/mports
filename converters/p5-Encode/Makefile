@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.6 2011/05/13 13:14:22 laffer1 Exp $
+# $MidnightBSD: mports/converters/p5-Encode/Makefile,v 1.7 2012/02/03 04:05:36 laffer1 Exp $
 
 PORTNAME=	Encode
-PORTVERSION=	2.44
+PORTVERSION=	2.47
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/D/DA/DANKOGAI
