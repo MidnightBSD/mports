@@ -1,11 +1,11 @@
---- configure.orig	2011-06-11 11:46:28 -0400
-+++ configure	2012-02-02 02:46:17 -0500
-@@ -4927,12 +4927,12 @@
+--- configure.orig	2012-04-09 23:07:36.000000000 +0000
++++ configure	2013-02-08 21:56:39.000000000 +0000
+@@ -4920,12 +4920,12 @@
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
  	  INSTSONAME="$LDLIBRARY".$SOVERSION
            ;;
--    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*)
-+    Linux*|GNU*|NetBSD*|FreeBSD*|MidnightBSD*|DragonFly*)
+-    Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*|OpenBSD*)
++    Linux*|GNU*|NetBSD*|FreeBSD*|MidnightBSD*|DragonFly*|OpenBSD*)
  	  LDLIBRARY='libpython$(VERSION).so'
  	  BLDLIBRARY='-L. -lpython$(VERSION)'
  	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
