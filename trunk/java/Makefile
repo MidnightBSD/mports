@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/Makefile,v 1.34 2012/02/28 02:17:43 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.35 2013/02/09 01:16:15 laffer1 Exp $
 
 COMMENT = Java 
 
@@ -7,9 +7,7 @@ SUBDIR += bluej
 SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
-SUBDIR += diablo-jdk15
 SUBDIR += diablo-jdk16
-SUBDIR += diablo-jre15
 SUBDIR += diablo-jre16
 SUBDIR += jaf
 SUBDIR += jai
