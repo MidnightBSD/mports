@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/python27/Makefile,v 1.2 2012/03/11 15:05:06 laffer1 Exp $
+# $MidnightBSD: mports/lang/python27/Makefile,v 1.3 2012/05/23 02:30:29 laffer1 Exp $
 
 PORTNAME=	python27
-PORTVERSION=	2.7.2
-PORTREVISION=	2
+PORTVERSION=	2.7.3
+PORTREVISION=	0
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	${PYTHON_MASTER_SITES}
 MASTER_SITE_SUBDIR=	${PYTHON_MASTER_SITE_SUBDIR}
@@ -27,6 +27,7 @@ INSTALL_TARGET=	altinstall
 MAN1=		${PYTHON_VERSION}.1
 
 USE_PYTHON=	yes
+USE_XZ=		yes
 PYTHON_VERSION=	python2.7
 PYTHON_NO_DEPENDS=	yes
 
