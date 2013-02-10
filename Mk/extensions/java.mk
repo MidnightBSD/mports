@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.8 2012/08/15 17:51:24 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.9 2013/02/09 01:31:29 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -20,8 +20,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVA_VERSION		List of space-separated suitable java versions for the
 #					port. An optional "+" allows you to specify a range of
-#					versions. (allowed values: 1.5[+] 1.6[+]
-#					1.7[+])
+#					versions. (allowed values: 1.5[+] 1.6[+] 1.7[+])
 #
 # JAVA_OS			List of space-separated suitable JDK port operating systems
 #					for the port. (allowed values: native linux)
@@ -34,9 +33,6 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #
 # JAVA_RUN			This variable works exactly the same as JAVA_BUILD but
 #					regarding run dependencies.
-#
-# USE_JIKES			Whether the port should or should not use jikes(1) to build.
-#					See Stage 6 header for further detail.
 #
 # USE_ANT			Should be defined when the port uses Apache Ant. Ant is thus
 #					considered to be the sub-make command. When no 'do-build'
@@ -107,9 +103,6 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 # JAVALIBDIR		The directory where JAR files installed by other ports
 #					are located.
 #
-# HAVE_JIKES		Defined and set to "yes" whenever the port will effectively
-#					use Jikes. See stage 6 header for further detail.
-#
 #-------------------------------------------------------------------------------
 # Porter's hints
 #
@@ -126,7 +119,7 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 # Stage 4: Add any dependencies if necessary
 # Stage 5: Define all settings for the port to use
 #
-
+.	if defined(USE_JAVA)
 
 #-------------------------------------------------------------------------------
 # Stage 1: Define constants
@@ -202,6 +195,7 @@ __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_7 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
+					JAVA_PORT_LINUX_SUN_JDK_1_7 \
 					JAVA_PORT_LINUX_SUN_JDK_1_6 \
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
@@ -210,10 +204,6 @@ _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 # Set the name of the file that indicates that a JDK is indeed installed, as a
 # relative path within the JAVA_HOME directory.
 _JDK_FILE=bin/javac
-
-# Set the path to Jikes and define the Jikes dependency
-_JIKES_PATH=	${LOCALBASE}/bin/jikes
-DEPEND_JIKES=	${_JIKES_PATH}:${PORTSDIR}/java/jikes
 
 
 #-------------------------------------------------------------------------------
@@ -351,41 +341,6 @@ JAVA_PORT_OS_DESCRIPTION:=		${JAVA_PORT_OS:S/^/\${_JAVA_OS_/:S/$/}/}
 # Stage 4: Add any dependencies if necessary
 #
 
-# Jikes support: If USE_JIKES is set to YES, then use Jikes. If USE_JIKES is
-# set to NO, then don't use it. If it is set to a different value, then fail
-# with an error message. Otherwise USE_JIKES is not set, in which case it is
-# checked if Jikes is already installed. If it is, then it will be used,
-# otherwise it will not be used.
-#
-# As a result, HAVE_JIKES is defined and set to "yes" when Jikes is used by the
-# port according to the above policy.
-
-.		undef HAVE_JIKES
-
-# Enforce USE_JIKES=NO if not defined and using Java 1.5+
-# XXX: This is a temporary fix to be removed when Jikes supports Java 1.5
-.		if (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.5") || \
-           (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.6") || \
-           (${JAVA_PORT_VERSION:C/^([0-9])\.([0-9])(.*)$/\1.\2/} == "1.7")
-USE_JIKES?=		NO
-.		endif
-# First test if USE_JIKES has a valid value
-.		if defined(USE_JIKES) && !(${USE_JIKES:U} == "YES") && !(${USE_JIKES:U} == "NO")
-check-makevars::
-	@${ECHO_CMD} "${PKGNAME}: Makefile error: \"${USE_JIKES}\" is not a valid value for USE_JIKES. It should be YES or NO, or it should be undefined.";
-	@${FALSE}
-.		endif
-# Then test if jikes is needed or available: -> HAVE_JIKES=yes
-.		if (exists(${_JIKES_PATH}) && (!defined(USE_JIKES) || (${USE_JIKES:U} == "YES"))) \
-			|| (defined(USE_JIKES) && (${USE_JIKES:U} == "YES"))
-HAVE_JIKES=		yes
-.		endif
-
-# Add jikes port to the dependencies if needed
-.		if !defined(NO_BUILD) && defined(HAVE_JIKES)
-BUILD_DEPENDS+=	${DEPEND_JIKES}
-.		endif
-
 # Ant Support: USE_ANT --> JAVA_BUILD=jdk
 .		if defined(USE_ANT)
 JAVA_BUILD=		jdk
@@ -412,9 +367,6 @@ RUN_DEPENDS+=		${DEPEND_JAVA}
 .		if defined(USE_ANT)
 ANT?=				${LOCALBASE}/bin/ant
 MAKE_ENV+=			JAVA_HOME=${JAVA_HOME}
-.			if defined(HAVE_JIKES)
-MAKE_ARGS+=			-Dbuild.compiler=jikes
-.			endif
 BUILD_DEPENDS+=		${ANT}:${PORTSDIR}/devel/apache-ant
 ALL_TARGET?=
 .			if !target(do-build)
@@ -429,22 +381,15 @@ do-build:
 #
 # At this stage both JAVA_HOME and JAVA_PORT are definitely given a value.
 #
-# Define the location of the Java compiler. If HAVE_JIKES is defined, then
-# use Jikes.
+# Define the location of the Java compiler.
 
-# Only define JAVAC if a JDK is needed or USE_JIKES=yes
+# Only define JAVAC if a JDK is needed
 .		undef JAVAC
 
 # Then test if a JAVAC has to be set (JAVA_BUILD==jdk)
 .		if defined(JAVA_BUILD)
 .			if (${JAVA_BUILD:U} == "JDK") && !defined(JAVAC)
-# Use jikes if available and not explicitly forbidden (see Stage 6)
-.				if defined(HAVE_JIKES)
-JAVAC?=			${_JIKES_PATH} -bootclasspath ${JAVA_CLASSES}
-# Otherwise use 'javac'
-.				else
 JAVAC?=			${JAVA_HOME}/bin/javac
-.				endif
 .			endif
 .		endif
 
@@ -499,4 +444,5 @@ java-debug:
 	@${ECHO_CMD} "JAVAC=                          ${JAVAC}"
 	@${ECHO_CMD} "JAVA_CLASSES=                   ${JAVA_CLASSES}"
 
+.	endif
 .endif
