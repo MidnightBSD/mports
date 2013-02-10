@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.10 2011/08/16 22:43:45 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql-connector-java/Makefile,v 1.11 2012/06/17 20:30:00 laffer1 Exp $
 
 PORTNAME=	mysql-connector-java
-PORTVERSION=	5.1.20
+PORTVERSION=	5.1.22
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-J
@@ -14,16 +14,14 @@ CONFLICTS=	mysql-connector-java*-5.0.*
 
 RUN_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j
 
-USE_ZIP=	yes
-
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 BUILDDIR=	${WRKDIR}/${DISTNAME}
 APIDOCSDIR=	${DOCSDIR}/javadoc
 SRCDIR=		${WRKDIR}/${DISTNAME}/src
 JAVADOCDIR=	${WRKDIR}/${DISTNAME}/javadoc
 DESTJARFILE=	${PORTNAME}.jar
-EXTRADOCS=	README CHANGES docs/connector-j.html docs/connector-j.pdf
+EXTRADOCS=	CHANGES docs/connector-j.html docs/connector-j.pdf
 JARFILE=	${DISTNAME}-bin.jar
 JDCLASSPATH=	${SRCDIR}:${CLASSPATH}
 
