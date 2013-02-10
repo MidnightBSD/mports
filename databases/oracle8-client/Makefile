@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/oracle8-client/Makefile,v 1.1 2009/12/30 19:22:41 laffer1 Exp $
 
 PORTNAME=	oracle8-client
 PORTVERSION=	0.2.0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	fjoe
