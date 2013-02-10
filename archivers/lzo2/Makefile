@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.8 2011/08/20 14:57:16 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzo2/Makefile,v 1.9 2012/02/24 01:47:51 laffer1 Exp $
 
 PORTNAME=	lzo2
 PORTVERSION=	2.06
 CATEGORIES=	archivers devel
 MASTER_SITES=	http://www.oberhumer.com/opensource/lzo/download/ \
-		http://ftp.uni-koeln.de/util/arc/
-MASTER_SITE_SUBDIR=	libs/compression
+		FREEBSD_LOCAL/mandree
 DISTNAME=	lzo-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
 MAINTAINER=	ports@MidnightBSD.org
