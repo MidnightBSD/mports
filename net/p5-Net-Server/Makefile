@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.3 2008/02/27 22:47:55 laffer1 Exp $
+# $MidnightBSD: mports/net/p5-Net-Server/Makefile,v 1.4 2009/06/27 22:26:50 laffer1 Exp $
 
 PORTNAME=	Net-Server
-PORTVERSION=	0.97
+PORTVERSION=	0.99
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,6 +15,7 @@ PERL_CONFIGURE=	yes
 MAN3=		Net::Server.3 \
 		Net::Server::Daemonize.3\
 		Net::Server::Fork.3 \
+		Net::Server::HTTP.3 \
 		Net::Server::INET.3 \
 		Net::Server::MultiType.3 \
 		Net::Server::Multiplex.3 \
@@ -22,6 +23,7 @@ MAN3=		Net::Server.3 \
 		Net::Server::PreForkSimple.3\
 		Net::Server::Proto.3\
 		Net::Server::Proto::SSL.3\
+		Net::Server::Proto::SSLEAY.3\
 		Net::Server::Proto::TCP.3\
 		Net::Server::Proto::UDP.3\
 		Net::Server::Proto::UNIX.3\
