@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.10 2011/05/16 00:23:05 laffer1 Exp $
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.11 2013/02/10 20:37:33 laffer1 Exp $
 
 PORTNAME=	rrdtool
-PORTVERSION=	1.4.5
+PORTVERSION=	1.4.7
 PORTREVISION=	1
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
