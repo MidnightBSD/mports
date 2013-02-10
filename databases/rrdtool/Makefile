@@ -1,13 +1,8 @@
-# New ports collection makefile for:	rrdtool
-# Date created:				May 9 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.9 2011/02/02 20:09:16 laffer1 Exp $
-#
+# $MidnightBSD: mports/databases/rrdtool/Makefile,v 1.10 2011/05/16 00:23:05 laffer1 Exp $
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.4.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -17,8 +12,8 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 		cairo.2:${PORTSDIR}/graphics/cairo \
-		png.6:${PORTSDIR}/graphics/png \
-		xml2.5:${PORTSDIR}/textproc/libxml2 \
+		png15:${PORTSDIR}/graphics/png \
+		xml2:${PORTSDIR}/textproc/libxml2 \
 		pangocairo-1\.0.0:${PORTSDIR}/x11-toolkits/pango
 
 CONFLICTS=	rrdtool-1.0*
@@ -89,7 +84,6 @@ RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS:=	${CFLAGS:N-ffast-math}
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
 MAN1=		bin_dec_hex.1 cdeftutorial.1 rpntutorial.1 rrd-beginners.1 \
 		rrdbuild.1 rrdcgi.1 rrdcreate.1 rrddump.1 rrdfetch.1 rrdfirst.1 \
