@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/libzip/Makefile,v 1.2 2012/02/24 01:44:54 laffer1 Exp $
+# $MidnightBSD: mports/archivers/libzip/Makefile,v 1.3 2012/11/27 02:36:43 laffer1 Exp $
 
 PORTNAME=	libzip
 PORTVERSION=	0.10.1
@@ -9,6 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A C library for reading, creating, and modifying zip archives
 LICENSE=	bsd3
 
+USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_ENV=	LC_ALL="C"
