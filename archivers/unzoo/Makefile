@@ -1,10 +1,8 @@
-#
-# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.7 2009/03/27 06:03:00 laffer1 Exp $
-#
+# $MidnightBSD: mports/archivers/unzoo/Makefile,v 1.8 2009/12/25 17:53:51 laffer1 Exp $
 
 PORTNAME=	unzoo
 PORTVERSION=	4.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	archivers
 MASTER_SITES=	CRITICAL
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
