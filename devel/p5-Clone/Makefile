@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.2 2008/10/09 21:00:36 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-Clone/Makefile,v 1.3 2009/12/13 18:41:17 laffer1 Exp $
 
 PORTNAME=	Clone
-PORTVERSION=	0.31
+PORTVERSION=	0.34
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
