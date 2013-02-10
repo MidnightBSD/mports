@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.5 2010/09/23 23:50:19 laffer1 Exp $
-# $FreeBSD: ports/databases/p5-DBD-Pg/Makefile,v 1.69 2006/05/14 17:19:16 leeym Exp $
+# $MidnightBSD: mports/databases/p5-DBD-Pg/Makefile,v 1.6 2011/08/13 14:40:40 laffer1 Exp $
 
 PORTNAME=	DBD-Pg
-PORTVERSION=	2.18.1
+PORTVERSION=	2.19.3
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
