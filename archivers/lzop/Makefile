@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/lzop/Makefile,v 1.2 2012/02/24 01:52:24 laffer1 Exp $
+# $MidnightBSD: mports/archivers/lzop/Makefile,v 1.3 2012/11/27 02:37:55 laffer1 Exp $
 
 PORTNAME=	lzop
 DISTVERSION=	1.03
@@ -19,8 +19,8 @@ LIB_DEPENDS=	lzo.1:${PORTSDIR}/archivers/lzo
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=""
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		lzop.1
 PLIST_FILES=	bin/lzop
