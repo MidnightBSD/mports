@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.11 2011/08/13 14:36:35 laffer1 Exp $
-# $FreeBSD: ports/databases/p5-DBI/Makefile,v 1.63 2006/08/14 18:34:26 mat Exp $
+# $MidnightBSD: mports/databases/p5-DBI/Makefile,v 1.12 2012/06/26 00:36:39 laffer1 Exp $
 
 PORTNAME=	DBI
-PORTVERSION=	1.622
+PORTVERSION=	1.623
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
-DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The perl5 Database Interface.  Required for DBD::* modules
