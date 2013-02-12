@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/db43/Makefile,v 1.5 2010/11/13 19:27:18 laffer1 Exp $
+# $MidnightBSD: mports/databases/db43/Makefile,v 1.6 2011/08/21 15:38:11 laffer1 Exp $
 
 PORTNAME=	db43
 PORTVERSION=	4.3.29
@@ -18,7 +18,6 @@ USE_LDCONFIG=		yes
 GNU_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	../dist/configure
 LIBTOOLFILES=		${CONFIGURE_SCRIPT}
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 BDBVER=			${PORTVERSION:R}
 BDBMINOR=		${BDBVER:E:S/^\.//}
 BDBDIR=			BerkeleyDB.${BDBVER}
