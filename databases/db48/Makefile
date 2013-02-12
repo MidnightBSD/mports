@@ -1,11 +1,9 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/databases/db48/Makefile,v 1.1 2010/01/01 03:46:25 laffer1 Exp $
 
 PORTNAME=	db48
-PORTVERSION=	4.8.24.0
+PORTVERSION=	4.8.30.0
 CATEGORIES=	databases
-MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
-		http://download-east.oracle.com/berkeley-db/ \
-		http://download-uk.oracle.com/berkeley-db/
+MASTER_SITES=	http://download.oracle.com/berkeley-db/ 
 PKGNAMEPREFIX?=
 DISTNAME=	db-${PORTVERSION:R}
 DIST_SUBDIR=	bdb
