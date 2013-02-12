@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.12 2012/06/17 16:00:11 laffer1 Exp $
-# $FreeBSD: ports/databases/mysql55-server/Makefile,v 1.269 2010/12/28 06:49:39 ale Exp $
+# $MidnightBSD: mports/databases/mysql55-server/Makefile,v 1.13 2012/09/29 16:39:21 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.5.27
+PORTVERSION=	5.5.30
 PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -35,10 +34,6 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_SHAREDIR="share" \
 		-DINSTALL_SQLBENCHDIR="share/mysql" \
 		-DINSTALL_SUPPORTFILESDIR="share/mysql" \
-		-DCMAKE_THREAD_LIBS="" \
-		-DCMAKE_USE_PTHREADS=1 \
-		-DCMAKE_EXE_LINKER_FLAGS="${PTHREAD_LIBS}" \
-		-DENABLE_DTRACE:BOOL=OFF \
 		-DWITH_LIBEDIT=0 \
 		-DWITH_LIBWRAP=1
 
@@ -47,6 +42,13 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 .endif
 
 .include <bsd.mport.options.mk>
+
+#.if ${OSVERSION} < 4015
+CMAKE_ARGS+=	-DCMAKE_THREAD_LIBS="" \
+		-DCMAKE_USE_PTHREADS=1 \
+		-DCMAKE_EXE_LINKER_FLAGS="${PTHREAD_LIBS}" \
+		-DENABLE_DTRACE:BOOL=OFF
+#.endif
 
 .if !defined(WITHOUT_OPENSSL)
 CMAKE_ARGS+=	-DWITH_SSL=bundled
@@ -64,7 +66,7 @@ LATEST_LINK=	mysql55-server
 
 CONFLICTS=	mysql-server-[4].* mysql-server-5.[0-46-9].*
 
-USE_RC_SUBR=	mysql-server.sh
+USE_RC_SUBR=	mysql-server
 
 USERS=		mysql
 GROUPS=		mysql
