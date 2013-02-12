@@ -1,16 +1,14 @@
-# $MidnightBSD: mports/databases/db46/Makefile,v 1.4 2009/06/03 23:28:27 laffer1 Exp $
+# $MidnightBSD: mports/databases/db46/Makefile,v 1.5 2009/06/04 00:49:58 laffer1 Exp $
 
 PORTNAME=	db46
 PORTVERSION=	4.6.21.4
 CATEGORIES=	databases
-MASTER_SITES=	http://download-west.oracle.com/berkeley-db/ \
-		http://download-east.oracle.com/berkeley-db/ \
-		http://download-uk.oracle.com/berkeley-db/
+MASTER_SITES=	http://download.oracle.com/berkeley-db/ \
 PKGNAMEPREFIX?=
 DISTNAME=	db-${PORTVERSION:R}
 DIST_SUBDIR=	bdb
 
-PATCH_SITES=	http://www.oracle.com/technology/products/berkeley-db/db/update/${PORTVERSION:R}/
+PATCH_SITES=	http://download.oracle.com/berkeley-db/patches/db/${PORTVERSION:R}/
 PATCHFILES=	patch.4.6.21.1 patch.4.6.21.2 patch.4.6.21.3 patch.4.6.21.4
 PATCH_DIST_STRIP=	-d .. -l
 # * patch.4.6.21.1: -----------------------------------------------------------
@@ -39,6 +37,7 @@ CONFIGURE_ARGS=	--enable-compat185 --enable-dump185 --enable-cxx \
 		--bindir=${PREFIX}/bin/${PORTNAME}
 CONFIGURE_SCRIPT=	../dist/configure
 GNU_CONFIGURE=	yes
+MAKE_JOBS_SAFE=	yes
 INSTALL_TARGET=	install_include install_lib install_utilities
 LIBTOOLFILES=	${CONFIGURE_SCRIPT}
 WRKSRC=		${WRKDIR}/${DISTNAME}/build_unix
