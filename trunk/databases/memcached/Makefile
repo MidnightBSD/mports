@@ -1,12 +1,7 @@
-# New ports collection makefile for:	memcached
-# Date created:		July 31, 2008
-# Whom:			Lucas Holt <Luke@MidnightBSD.org>
-#
-# $MidnightBSD: mports/databases/memcached/Makefile,v 1.10 2012/01/29 16:39:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/databases/memcached/Makefile,v 1.11 2012/08/05 15:23:59 laffer1 Exp $
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.13
+PORTVERSION=	1.4.15
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
