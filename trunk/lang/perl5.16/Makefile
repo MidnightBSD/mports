@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/perl5.16/Makefile,v 1.2 2012/10/12 04:31:04 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.16/Makefile,v 1.3 2013/01/25 01:51:45 laffer1 Exp $
 
 PORTNAME=	perl
 PORTVERSION=	5.16.2
@@ -72,7 +72,7 @@ PLIST_SUB+=		ENABLE_SUIDPERL="@comment "
 
 .if defined(WITH_GDBM)
 CONFIGURE_ARGS+=	-Di_gdbm
-LIB_DEPENDS+=		gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=		gdbm.4:${PORTSDIR}/databases/gdbm
 PLIST_SUB+=		GDBM=""
 MAN3+=	GDBM_File.3
 .else
@@ -83,6 +83,7 @@ PLIST_SUB+=		GDBM="@comment "
 .if defined(WITH_THREADS)
 CONFIGURE_ARGS+=	-Dusethreads=y
 PKGNAMESUFFIX=		-threaded
+WITH_PTHREAD=		yes
 # it seems perl malloc has problems with threaded perl 
 .undef WITH_PERL_MALLOC
 .else
