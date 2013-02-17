@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.13 2012/06/09 20:34:34 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.14 2013/02/10 17:32:09 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -167,9 +167,10 @@ RUN_DEPENDS+=	${PERL5}:${PORTSDIR}/lang/${PERL_PORT}
 .if defined(PERL_CONFIGURE) || defined(PERL_MODBUILD)
 CONFIGURE_ARGS+=	CC="${CC}" CCFLAGS="${CFLAGS}" 
 
-.if !defined(_CORE_PERL)
-MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
-.endif
+# XXX do we really want to store man pages here?
+#.if !defined(_CORE_PERL)
+#MAN3PREFIX?= ${TARGETDIR}/lib/perl5/${PERL_VERSION}
+#.endif
 
 .undef HAS_CONFIGURE
 
