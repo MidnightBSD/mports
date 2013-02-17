@@ -2178,9 +2178,6 @@ lib/perl5/%%PERL_VER%%/warnings.pm
 lib/perl5/%%PERL_VER%%/warnings/register.pm
 %%GDBM%%lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/GDBM_File/GDBM_File.so
 %%GDBM%%lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/GDBM_File.pm
-@dirrm lib/perl5/%%PERL_VER%%/BSDPAN/BSDPAN
-@dirrm lib/perl5/%%PERL_VER%%/BSDPAN/ExtUtils
-@dirrm lib/perl5/%%PERL_VER%%/BSDPAN
 @unexec find %D/%%SITE_PERL%%/%%PERL_ARCH%%/ -name '*.ph' -delete 2>/dev/null || true
 %%GDBM%%@dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/auto/GDBM_File
 @dirrm lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/threads
