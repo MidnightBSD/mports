@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.196 2013/02/06 03:44:31 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.197 2013/02/08 13:29:24 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -329,9 +329,10 @@ _LOAD_${EXT:U}_EXT=	yes
 # This is the order that we used before the extensions where refactored. 
 # in the future if things could be fixed to work when loaded alphabetacally, then
 # we could go back to the above approach.
-_ALL_EXT=	linux_rpm linux_apps xorg fortran gcc local perl5 openssl emacs gnustep php python java ruby \
-			tcl apache kde qt autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
-			pgsql bdb sqlite gecko scons ocaml efl
+_ALL_EXT=	linux_rpm linux_apps xorg fortran gcc local perl5 openssl \
+		emacs gnustep php python java ruby tcl apache kde qt \
+		autotools gnome lua wx gstreamer sdl xfce kde4 cmake mysql \
+		pgsql bdb sqlite gecko scons ocaml efl
 
 .for EXT in ${_ALL_EXT:U} 
 .	if defined(USE_${EXT}) || defined(USE_${EXT}_RUN) || defined(USE_${EXT}_BUILD) || defined(WANT_${EXT}) || defined(_LOAD_${EXT}_EXT)
