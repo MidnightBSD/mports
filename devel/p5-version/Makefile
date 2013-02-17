@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.9 2012/06/26 02:08:20 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-version/Makefile,v 1.10 2013/02/10 17:35:22 laffer1 Exp $
 
 PORTNAME=	version
-PORTVERSION=	0.99
+PORTVERSION=	0.99.01
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../by-authors/id/J/JP/JPEACOCK
 PKGNAMEPREFIX=	p5-
+DISTNAME=	${PORTNAME}-${PORTVERSION:R}${PORTVERSION:E}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension for Version Objects
