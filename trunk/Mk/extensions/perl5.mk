@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.16 2013/02/17 21:25:05 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.17 2013/02/17 21:47:29 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -59,21 +59,21 @@ SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=		${PERL_PREFIX}/${SITE_PERL_REL}
 
 .if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/perl)
-PERL=				/usr/bin/perl
-CPAN_CMD?= 			/usr/bin/cpan
-_CORE_PERL=			yes
-.if (${ARCH} == "amd64")
-PERL_ARCH?=			${ARCH}-midnightbsd
+PERL=			/usr/bin/perl
+CPAN_CMD?= 		/usr/bin/cpan
+_CORE_PERL=		yes
 .else
-PERL_ARCH?=			${ARCH}-midnightbsd-64int
-.endif
-.else
-PERL=				${PERL_PREFIX}/bin/perl
-CPAN_CMD?=			${PERL_PREFIX}/bin/cpan
-PERL_ARCH?=			mach
+PERL=			${PERL_PREFIX}/bin/perl
+CPAN_CMD?=		${PERL_PREFIX}/bin/cpan
 .endif
 
-PERL5=				${PERL}${PERL_VERSION}
+.if (${ARCH} == "amd64")
+PERL_ARCH?=		${ARCH}-midnightbsd
+.else
+PERL_ARCH?=		${ARCH}-midnightbsd-64int
+.endif
+
+PERL5=			${PERL}${PERL_VERSION}
 PERL_TEST_TARGET?=	test
 
 
