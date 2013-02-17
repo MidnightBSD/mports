@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.15 2013/02/17 20:42:44 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.16 2013/02/17 21:25:05 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -58,7 +58,7 @@ PERL_PREFIX?=		${LOCALBASE}
 SITE_PERL_REL?=		lib/perl5/site_perl/${PERL_VER}
 SITE_PERL?=		${PERL_PREFIX}/${SITE_PERL_REL}
 
-.if exists(/usr/lib/perl5)
+.if exists(/usr/lib/perl5) && !exists(${PERL_PREFIX}/bin/perl)
 PERL=				/usr/bin/perl
 CPAN_CMD?= 			/usr/bin/cpan
 _CORE_PERL=			yes
