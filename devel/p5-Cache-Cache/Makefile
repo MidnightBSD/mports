@@ -1,13 +1,7 @@
-# New ports collection makefile for:	devel/p5-Cache-Cache
-# Date created:				29 April 2001
-# Whom:					Anton Berezin <tobez@tobez.org>
-#
-# $FreeBSD: ports/devel/p5-Cache-Cache/Makefile,v 1.13 2006/05/28 18:47:46 aaron Exp $
-# $MidnightBSD$
-#
+# $MidnightBSD: mports/devel/p5-Cache-Cache/Makefile,v 1.1 2007/09/12 02:45:26 ctriv Exp $
 
 PORTNAME=	Cache-Cache
-PORTVERSION=	1.05
+PORTVERSION=	1.06
 CATEGORIES=	devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	Cache
