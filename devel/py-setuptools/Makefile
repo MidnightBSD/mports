@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.2 2010/02/27 21:13:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/py-setuptools/Makefile,v 1.3 2010/05/16 16:15:57 laffer1 Exp $
 
 PORTNAME=	setuptools
 PORTVERSION=	0.6c11
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,21 +12,17 @@ COMMENT=	Download, build, install, upgrade, and uninstall Python packages
 LICENSE=	unknown
 
 DIST_SUBDIR=	python
-USE_PYTHON=	2.4+
+USE_PYTHON=	-2.7
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_NOEGGINFO=	yes # XXX convert easy_install support to python.mk's
 PLIST_SUB=	VERSION=${PORTVERSION} PYVER=${PYTHON_VERSION:S/python//}
-MAKE_ENV+=	PYTHONPATH=${PREFIX}/lib/python2.6/site-packages/
 
 .include <bsd.port.pre.mk>
 
-.if ${PYTHON_SUFFIX} < 25
-PLIST_SUB+=	PYTHON_CURRENT="@comment "
-PLIST_SUB+=	PYTHON_OLD=""
-.else
-PLIST_SUB+=	PYTHON_CURRENT=""
-PLIST_SUB+=	PYTHON_OLD="@comment "
-.endif
+SUB_FILES=	pkg-install
+SUB_LIST=	EASYINSTALL_PTH=${EASYINSTALL_PTH}
+
+EASYINSTALL_PTH=	${PYTHON_SITELIBDIR}/easy-install.pth
 
 pre-install:
 	${MKDIR} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
@@ -36,6 +33,7 @@ post-install:
 	${PYTHON_CMD} ${opt} -m compileall -l -x \
 		'^[^s][^i]?[^t]?[^e]?[^.][^p][^y]$$' ${PYTHON_SITELIBDIR}
 .endfor
+	${CP} ${EASYINSTALL_PTH} ${EASYINSTALL_PTH}.dist
 
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
