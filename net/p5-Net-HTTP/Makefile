@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/net/p5-Net-HTTP/Makefile,v 1.5 2011/11/28 12:52:49 culot Exp $
+# $MidnightBSD: mports/net/p5-Net-HTTP/Makefile,v 1.1 2012/02/03 03:51:22 laffer1 Exp $
 
 PORTNAME=	Net-HTTP
-PORTVERSION=	6.02
+PORTVERSION=	6.05
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
