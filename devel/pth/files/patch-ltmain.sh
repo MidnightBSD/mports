@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/pth/files/patch-ltmain.sh,v 1.4 2001/12/20 06:18:58 sobomax Exp $
+$MidnightBSD$
 
 --- ltmain.sh	2001/08/27 09:51:26	1.1
 +++ ltmain.sh	2001/08/27 09:51:42
