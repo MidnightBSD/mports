@@ -1,8 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/astro/gpsd/Makefile,v 1.33 2012/01/15 16:20:02 amdmi3 Exp $
+# $MidnightBSD: mports/astro/gpsd/Makefile,v 1.1 2012/03/11 04:28:17 laffer1 Exp $
 
 PORTNAME=	gpsd
-PORTVERSION=	3.4
+PORTVERSION=	3.6
 CATEGORIES=	astro geography
 MASTER_SITES=	SAVANNAH
 
@@ -11,8 +10,7 @@ COMMENT=	Daemon that monitors one or more GPSes attached to a host computer
 LICENSE=	bsd4
 
 BUILD_DEPENDS=	docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
-		xsltproc:${PORTSDIR}/textproc/libxslt \
-		chrpath:${PORTSDIR}/devel/chrpath
+		xsltproc:${PORTSDIR}/textproc/libxslt
 
 USE_GNOME=	pkgconfig
 USE_SCONS=	yes
@@ -23,7 +21,8 @@ PYDISTUTILS_EGGINFO=	gps-${PORTVERSION}.egg-info
 MAKE_JOBS_SAFE=	yes
 
 SCONS_BUILDENV=	${SCONS_ENV}
-SCONS_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig"
+SCONS_ARGS=	prefix="${PREFIX}" mandir="man" pkgconfig="libdata/pkgconfig" \
+		chrpath=no
 
 MAN1=	cgps.1 gegps.1 gps.1 gpscat.1 gpsctl.1 gpsdecode.1 \
 	gpsfake.1  gpspipe.1 gpsprof.1 xgps.1 xgpsspeed.1 \
@@ -78,7 +77,10 @@ OPTIONS=	AIVDM "Aivdm support" on \
 
 .include <bsd.mport.options.mk>
 
+# Requires libusb.h available in 0.4
+.if ${OSVERSION} < 4015
 WITHOUT_USB=	yes
+.endif
 
 # Options related to GPS protocols
 .if defined(WITHOUT_NMEA)
@@ -185,6 +187,10 @@ SCONS_ARGS+=	ntpshm=no
 
 .if defined(WITHOUT_PPS)
 SCONS_ARGS+=	pps=no
+.else
+.	if defined(WITHOUT_NTPSHM)
+IGNORE=		PPS requires NTPSHM
+.	endif
 .endif
 
 .if defined(WITH_PPSONCTS)
@@ -262,6 +268,9 @@ PLIST_SUB+=	CURSES=""
 .if defined(WITH_PROFILING)
 SCONS_ARGS+=	profiling=yes
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/Qgpsmm.pc.in
 
 # generates .py[co] files for installed modules
 # if that's not done, ${PYTHON_SITELIBDIR}/gps will be polluted
