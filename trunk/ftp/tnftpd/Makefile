@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/ftp/tnftpd/Makefile,v 1.1 2008/09/30 23:24:30 laffer1 Exp $
-# $FreeBSD: ports/ftp/tnftpd/Makefile,v 1.13 2008/08/23 20:13:18 beech Exp $
+# $MidnightBSD: mports/ftp/tnftpd/Makefile,v 1.2 2011/07/08 02:57:37 laffer1 Exp $
 
 PORTNAME=	tnftpd
 PORTVERSION=	20100324
+PORTREVISION=	1
 CATEGORIES=	ftp ipv6
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
@@ -11,11 +11,16 @@ COMMENT=	Enhanced ftp server from NetBSD
 LICENSE=	bsd4
 
 USE_AUTOTOOLS=	aclocal automake libtool
+AUTOMAKE_ARGS=	--add-missing
 ACLOCAL_ARGS=	-I ${LOCALBASE}/share/aclocal
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} >= 4016
+CFLAGS+=	-DSUPPORT_UTMPX
+.else
 CFLAGS+=	-DSUPPORT_UTMP
+.endif
 
 MAN5=		ftpd.conf.5 ftpusers.5
 MAN8=		tnftpd.8
