@@ -2,7 +2,7 @@
 # Date created:				14 Nov 2007
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/ftp/ftpcopy/Makefile,v 1.1 2007/11/14 21:00:07 laffer1 Exp $
 # $FreeBSD: ports/ftp/ftpcopy/Makefile,v 1.24 2004/08/13 16:52:19 krion Exp $
 #
 
@@ -19,7 +19,6 @@ USE_PERL5_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/web/${DISTNAME}
 
-NO_SIZE=	yes
 MAN1=		ftpcopy.1 ftpcp.1 ftpls.1
 
 pre-build:
