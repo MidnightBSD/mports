@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.16 2011/09/27 17:14:24 laffer1 Exp $
+# $MidnightBSD: mports/irc/bitlbee/Makefile,v 1.17 2012/02/24 14:59:37 laffer1 Exp $
 
 PORTNAME=	bitlbee
-PORTVERSION=	3.0.2
+PORTVERSION=	3.0.6
 PORTREVISION=	0
 CATEGORIES=	irc
 MASTER_SITES=	http://get.bitlbee.org/src/ \
@@ -21,6 +21,7 @@ PORTEXAMPLES=	bitlbee.conf motd.txt
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20
+USE_PKGCONFIG=	build
 USE_RC_SUBR=	bitlbee
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
