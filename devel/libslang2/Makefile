@@ -1,14 +1,11 @@
-# $FreeBSD: ports/devel/libslang2/Makefile,v 1.20 2008/05/19 20:14:18 garga Exp $
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.5 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.6 2012/02/05 03:43:29 laffer1 Exp $
 
 PORTNAME=	libslang2
-PORTVERSION=	2.1.4
-PORTREVISION=	1
+PORTVERSION=	2.2.4
 CATEGORIES=	devel
 MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
 		ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PORTVERSION:R}/ \
-		ftp://ftp.ntua.gr/pub/lang/slang/slang/v${PORTVERSION:R}/ \
-		ftp://ftp.plig.org/pub/slang/v${PORTVERSION:R}/
+		ftp://ftp.ntua.gr/pub/lang/slang/slang/v${PORTVERSION:R}/
 DISTNAME=	slang-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +15,8 @@ LICENSE=        gpl2
 USE_BZIP2=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
+MAKE_JOBS_UNSAFE=	yes
+PLIST_SUB+=	SHLIB_VERSION=${PORTVERSION}
 
 CONFLICTS=	libslang-[0-9]* libslang-1.*.j[0-9]
 
@@ -42,7 +40,7 @@ PORTDOCS=	*
 PLIST_SUB+=	VERSION=${PORTVERSION}
 
 .if !defined(WITHOUT_PCRE)
-LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 PLIST_SUB+=	PCRE=""
 .else
 CONFIGURE_ARGS+=	--without-pcre
@@ -50,7 +48,7 @@ PLIST_SUB+=	PCRE="@comment "
 .endif
 
 .if !defined(WITHOUT_PNG)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
 CONFIGURE_ARGS+=	--without-png
@@ -66,7 +64,7 @@ PLIST_SUB+=	ICONV="@comment "
 .endif
 
 .if defined(WITH_ONIG)
-LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
+LIB_DEPENDS+=	onig:${PORTSDIR}/devel/oniguruma4
 PLIST_SUB+=	ONIG=""
 .else
 CONFIGURE_ARGS+=	--without-onig
