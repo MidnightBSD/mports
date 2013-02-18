@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/dns/udns/Makefile,v 1.2 2011/05/15 22:10:34 laffer1 Exp $
+# $MidnightBSD: mports/dns/udns/Makefile,v 1.3 2012/09/08 21:21:35 laffer1 Exp $
 
 PORTNAME=	udns
 PORTVERSION=	0.2
@@ -7,7 +7,7 @@ MASTER_SITES=	http://www.corpit.ru/mjt/udns/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	DNS resolver library with sync and async queries
-LICENSE=	lgpl21
+LICENSE=	lgpl2.1
 
 HAS_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
