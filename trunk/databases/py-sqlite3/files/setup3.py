@@ -3,7 +3,7 @@
 #       python setup.py install
 #
 
-__version__ = "$FreeBSD: ports/databases/py-sqlite3/files/setup3.py,v 1.1 2009/06/30 21:51:53 lwhsu Exp $"
+__version__ = "$MidnightBSD$"
 
 try:
     import distutils
@@ -30,6 +30,12 @@ sqlite_srcs = [
 '_sqlite/row.c',
 '_sqlite/statement.c',
 '_sqlite/util.c']
+
+try:
+    import ctypes
+    ctypes.CDLL('libsqlite3.so').sqlite3_load_extension
+except AttributeError:
+    macros.append(('SQLITE_OMIT_LOAD_EXTENSION', '1'))
 
 setup(name = "_sqlite3",
       description = "SQLite 3 extension to Python",
