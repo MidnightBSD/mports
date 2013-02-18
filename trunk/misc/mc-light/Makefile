@@ -2,7 +2,7 @@
 # Date created:				31.08.2004
 # Whom:					Roman Y. Bogdanov <sam@brj.pp.ru>
 #
-# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.3 2011/05/14 22:25:54 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc-light/Makefile,v 1.4 2011/12/15 00:57:50 laffer1 Exp $
 # $FreeBSD: ports/misc/mc-light/Makefile,v 1.14 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc-light
@@ -26,7 +26,7 @@ OPTIONS=	\
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
-USE_GNOME=	pkgconfig 
+USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-included-slang \
 		--with-gettext \
