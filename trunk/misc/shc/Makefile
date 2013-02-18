@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/misc/shc/Makefile,v 1.1 2010/01/01 17:03:49 laffer1 Exp $
+# $MidnightBSD: mports/misc/shc/Makefile,v 1.2 2011/05/14 22:32:30 laffer1 Exp $
 
 PORTNAME=	shc
-PORTVERSION=	3.8.7
+PORTVERSION=	3.8.9
 CATEGORIES=	misc
 MASTER_SITES=	http://www.datsi.fi.upm.es/~frosal/sources/ \
 		CRITICAL
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A shell script "encoder"
+COMMENT=	A generic script compiler
 LICENSE=	gpl2
 
 MAKE_JOBS_SAFE=	yes
@@ -17,7 +17,7 @@ MAN1=		shc.1
 PLIST_FILES=	bin/shc
 
 do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/shc ${WRKSRC}/shc.c
+	${CC} ${CFLAGS} -o ${WRKSRC}/shc ${WRKSRC}/${PORTNAME}-${PORTVERSION}.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/shc ${PREFIX}/bin
