@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.5 2009/12/25 16:00:02 laffer1 Exp $
+# $MidnightBSD: mports/ftp/proftpd/Makefile,v 1.6 2011/02/02 21:00:01 laffer1 Exp $
 
 PORTNAME=	proftpd
-PORTVERSION=	1.3.2b
+PORTVERSION=	1.3.4b
 CATEGORIES?=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		ftp://ftp.fastorama.com/mirrors/ftp.proftpd.org/distrib/source/ \
@@ -46,7 +46,6 @@ PORTEXAMPLES=	ASCII.html CreateHome.html Filters.html SQL.html Umask.html \
 		FXP.html Regex.html Tracing.html
 
 USE_GMAKE=	yes
-USE_BZIP2=	yes
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 
