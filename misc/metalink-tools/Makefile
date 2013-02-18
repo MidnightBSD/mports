@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/misc/metalink-tools/Makefile,v 1.2 2012/01/05 18:38:17 laffer1 Exp $
-# $FreeBSD: ports/misc/metalink-tools/Makefile,v 1.9 2011/07/03 11:40:44 swills Exp $
+# $MidnightBSD: mports/misc/metalink-tools/Makefile,v 1.3 2012/02/11 00:26:45 laffer1 Exp $
 
 PORTNAME=	metalink
 PORTVERSION=	0.3.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 MASTER_SITES=	SF/metalinks/Metalink%20commandline/${PORTVERSION}
 PKGNAMESUFFIX?=	-tools
@@ -19,9 +18,9 @@ LIB_DEPENDS=	gcrypt.18:${PORTSDIR}/security/libgcrypt \
 
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	AWK="${AWK}" \
-		CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${LDFLAGS} -L${LOCALBASE}/lib"
+CONFIGURE_ENV+=	AWK="${AWK}"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_JOBS_SAFE=	yes
 
 # Documents to install
