@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.198 2013/02/17 21:25:05 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.199 2013/02/17 21:38:58 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -971,17 +971,9 @@ USE_MPORT_TOOLS=	yes
 # Set the default for the installation of Postscript(TM)-
 # compatible functionality.
 .if !defined(WITHOUT_X11)
-.if defined(WITH_GHOSTSCRIPT_AFPL)
-GHOSTSCRIPT_PORT?=	print/ghostscript-afpl
+GHOSTSCRIPT_PORT?=	print/ghostscript8
 .else
-GHOSTSCRIPT_PORT?=	print/ghostscript-gpl
-.endif
-.else
-.if defined(WITH_GHOSTSCRIPT_AFPL)
-GHOSTSCRIPT_PORT?=	print/ghostscript-afpl-nox11
-.else
-GHOSTSCRIPT_PORT?=	print/ghostscript-gpl-nox11
-.endif
+GHOSTSCRIPT_PORT?=	print/ghostscript8-nox11
 .endif
 
 # Set up the ghostscript dependencies.
