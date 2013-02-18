@@ -2,7 +2,7 @@
 # Date created:				May 20 2008
 # Whom:					Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.12 2012/06/21 00:48:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.13 2013/02/18 03:06:47 laffer1 Exp $
 #
 
 PORTNAME=	mercurial
@@ -11,7 +11,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A fast, lightweight source control management system
+COMMENT=	Fast lightweight source control management system
 LICENSE=	gpl2
 
 .if !defined(WITHOUT_NLS)
