@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.8 2012/02/28 00:54:07 laffer1 Exp $
+# $MidnightBSD: mports/misc/shared-mime-info/Makefile,v 1.9 2012/03/02 01:09:23 laffer1 Exp $
 
 PORTNAME=	shared-mime-info
-PORTVERSION=	0.90
+PORTVERSION=	1.0
 CATEGORIES=	misc gnome
 MASTER_SITES=	http://people.freedesktop.org/~hadess/
 
@@ -9,11 +9,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A MIME type database from the FreeDesktop project
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USE_XZ=	yes
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 USE_GMAKE=	yes
-USE_GNOME=	glib20 libxml2 intltool gnomehack intlhack
+USE_GNOME=	glib20 libxml2 intltool gnomehack intlhack pkgconfig
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_JOBS_UNSAFE=	yes
