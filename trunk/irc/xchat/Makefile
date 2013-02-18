@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/irc/xchat/Makefile,v 1.13 2010/01/02 17:51:43 laffer1 Exp $
+# $MidnightBSD: mports/irc/xchat/Makefile,v 1.14 2011/01/15 02:53:12 laffer1 Exp $
 
 PORTNAME=	xchat
 PORTVERSION=	2.8.8
 CATEGORIES=	irc gnome ipv6
-MASTER_SITES=	SF/${PORTNAME} \
+MASTER_SITES=	SF/${PORTNAME}/ \
 		http://xchat.org/files/source/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/
 
 MAINTAINER=	ports@MidnightBSD.org
