@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.45 2012/02/05 04:02:49 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.46 2012/03/08 03:19:21 laffer1 Exp $
 
 PORTNAME=	php5
 PORTVERSION=	5.3.10
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
 MASTER_SITE_SUBDIR=	distributions/:release
@@ -20,7 +20,7 @@ MAKE_JOBS_SAFE=	yes
 .if !defined(PKGNAMESUFFIX)
 USE_AUTOTOOLS=	autoconf
 
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 
 CONFIGURE_ARGS=	\
 		--with-layout=GNU \
