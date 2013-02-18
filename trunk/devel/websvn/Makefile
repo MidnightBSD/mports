@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/devel/websvn/Makefile,v 1.1 2008/08/22 02:09:00 laffer1 Exp $
+# $MidnightBSD: mports/devel/websvn/Makefile,v 1.2 2009/04/08 03:16:38 laffer1 Exp $
 
 PORTNAME=	websvn
-PORTVERSION=	2.1.0
+PORTVERSION=	2.3.3
 CATEGORIES=	devel www
-MASTER_SITES=	http://websvn.tigris.org/files/documents/1380/44451/
+MASTER_SITES=	http://websvn.tigris.org/files/documents/1380/49056/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Subversion repository web frontend
@@ -17,20 +17,20 @@ PLIST=		${WRKDIR}/pkg-plist
 
 SUB_FILES=	pkg-message
 SUB_LIST+=	WEBSVNDIR="${WEBSVNDIR}"
-
-pre-install:
-	@cd ${WRKSRC} && ${RMDIR} temp www
-	@cd ${WRKSRC} && ${FIND} -s * -type f | \
-		${SED} -e 's|^|${WEBSVNDIR}/|' > ${PLIST} \
-		&& ${FIND} -d * -type d | \
-		${SED} -e 's|^|@dirrm ${WEBSVNDIR}/|' >> ${PLIST} \
-		&& ${ECHO_CMD} @dirrm ${WEBSVNDIR} >> ${PLIST} \
-		&& ${ECHO_CMD} @dirrmtry www/data >> ${PLIST}
+PLIST_SUB+=	WEBSVNDIR="${WEBSVNDIR}"
 
 do-install:
 	${MKDIR} ${PREFIX}/${WEBSVNDIR}
-	${CP} -R ${WRKSRC}/* ${PREFIX}/${WEBSVNDIR}
+	(cd ${WRKSRC} \
+	    && ${COPYTREE_SHARE} \* ${PREFIX}/${WEBSVNDIR})
 	${CHOWN} -R www:www ${PREFIX}/${WEBSVNDIR}
-	${FIND} ${PREFIX}/${WEBSVNDIR} -type f | ${XARGS} ${CHMOD} 644
+	${FIND} ${PREFIX}/${WEBSVNDIR} -type f -exec ${CHMOD} 644 '{}' +
+
+post-install:
+	@${CAT} ${PKGMESSAGE}
+	@[ -f ${PREFIX}/${WEBSVNDIR}/include/config.php ] \
+	    || ${INSTALL_DATA} \
+	    ${PREFIX}/${WEBSVNDIR}/include/distconfig.php \
+	    ${PREFIX}/${WEBSVNDIR}/include/config.php
 
 .include <bsd.port.mk>
