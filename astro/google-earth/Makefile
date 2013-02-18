@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.12 2011/01/25 14:23:41 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.13 2012/03/11 04:31:36 laffer1 Exp $
 
 PORTNAME=	google-earth
 PORTVERSION=	5.2.1.1588
@@ -44,14 +44,18 @@ IGNORE=	BSD>=0.3+ is needed with Linux emulation 2.6.x
 IGNORE=	needs non-default linux ports (define OVERRIDE_LINUX_BASE_PORT=f10 and OVERRIDE_LINUX_NONBASE_PORTS=f10)
 .endif
 
+.if ${OSVERSION} >= 4015 && ${ARCH} == "amd64"
+BROKEN=	seems to crash on >= 0.4/amd64
+.endif
+
 do-extract:
 	@${MKDIR} ${WRKSRC}
+	@${MKDIR} ${PREFIX}/share/mime/packages/
+	@${MKDIR} ${PREFIX}/share/applications/
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${_DISTFILES} ${WRKSRC}
 	@cd ${WRKSRC} && ${UNMAKESELF} ${_DISTFILES} && ${RM} -f ${_DISTFILES}
 	@cd ${WRKSRC} && ${TAR} xf googleearth-data.tar && ${RM} -f googleearth-data.tar
 	@cd ${WRKSRC} && ${TAR} xf googleearth-linux-x86.tar && ${RM} -f googleearth-linux-x86.tar
-	${MKDIR} ${PREFIX}/share/mime/packages/
-	${MKDIR} ${PREFIX}/share/applications/
 
 post-patch:
 	@${REINPLACE_CMD} -i "" -e 's|^# Set the home.*|GOOGLEEARTH_DATA_PATH=${DATADIR}|' ${WRKSRC}/bin/googleearth
