@@ -2,11 +2,12 @@
 # Date created:		May 30, 2008
 # Whom:			Lucas Holt <luke@Midnightbsd.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/sharity-light/Makefile,v 1.1 2008/05/30 20:50:05 laffer1 Exp $
 #
 
 PORTNAME=	sharity-light
 PORTVERSION=	1.3
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.obdev.at/ftp/pub/Products/Sharity-Light/
 DISTNAME=	Sharity-Light.1.3
@@ -20,10 +21,17 @@ MAN8=		smbmount.8
 PLIST_FILES=	sbin/shlight sbin/unshlight
 PORTDOCS=	*
 
+.include <bsd.port.pre.mk>
+
 post-extract:
 	@${MKDIR} ${WRKDIR}/unshlight
 	@${CP} ${FILESDIR}/unshlight.c ${WRKDIR}/unshlight
 	@${CP} ${FILESDIR}/Makefile.unshlight ${WRKDIR}/unshlight/Makefile
+
+post-patch:
+.if ${OSVERSION} >= 4015
+	${REINPLACE_CMD} -e "s,#.*include <nfs/rpcv2.h>,," ${WRKSRC}/nfs/syscalls.c
+.endif
 
 post-build:
 	cd ${WRKDIR}/unshlight && make
@@ -38,4 +46,4 @@ do-install:
 .endif
 	${INSTALL_MAN} ${WRKSRC}/smbmount.8 ${PREFIX}/man/man8
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
