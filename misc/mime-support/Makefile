@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.5 2008/09/21 20:18:23 laffer1 Exp $
+# $MidnightBSD: mports/misc/mime-support/Makefile,v 1.6 2011/05/14 03:33:27 laffer1 Exp $
 # $FreeBSD: ports/misc/mime-support/Makefile,v 1.12 2006/07/20 15:03:43 oliver Exp $
 
 PORTNAME=	mime-support
-PORTVERSION=	3.51.1
+PORTVERSION=	3.52.2
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_DEBIAN_POOL}
 DISTNAME=	${PORTNAME}_${PORTVERSION:C/([0-9]*\.[0-9]*)\.(.*)/\1-\2/}
@@ -11,7 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	MIME Media Types list
 LICENSE=        gpl2
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/\.2$//}
+
 NO_BUILD=	yes
 PLIST_FILES=	bin/run-mailcap etc/mime.types
 MAN1=		run-mailcap.1
