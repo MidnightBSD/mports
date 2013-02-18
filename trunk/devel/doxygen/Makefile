@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.5 2011/03/12 20:02:37 laffer1 Exp $
-# $FreeBSD: ports/devel/doxygen/Makefile,v 1.53 2006/06/27 14:14:17 mi Exp $
+# $MidnightBSD: mports/devel/doxygen/Makefile,v 1.6 2011/06/05 04:49:11 laffer1 Exp $
 
 PORTNAME=	doxygen
-PORTVERSION=	1.7.3
+PORTVERSION=	1.8.2
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -13,9 +12,9 @@ COMMENT=	A documentation system for C, C++ and other languages
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
-LIB_DEPENDS=	png:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 
-USE_BISON=	yes
+USE_BISON=	build
 USE_ICONV=	yes
 ALL_TARGET=	all
 USE_PERL5=	yes
@@ -25,6 +24,7 @@ QT_NONSTANDARD=	yes	# non-standard configure arguments
 CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
 		--install "${INSTALL}"
 MAKE_JOBS_UNSAFE=	yes
+REINPLACE_ARGS=	-i ''
 
 EXTRACT_AFTER_ARGS=|${TAR} -xpf - \
 		--exclude '*/libmd5'	\
@@ -34,8 +34,7 @@ EXTRACT_AFTER_ARGS=|${TAR} -xpf - \
 PLIST=		${WRKDIR}/plist
 TMPDOCDEST=	${WRKDIR}/tmpdocdest
 
-PLIST_FILES=	bin/doxygen \
-		bin/doxytag
+PLIST_FILES=	bin/doxygen
 
 OPTIONS=	DOXYWIZARD "Enable doxywizard" on \
 		LATEX "Enable LaTeX support" on
