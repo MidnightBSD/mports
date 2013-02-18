@@ -1,26 +1,24 @@
-# $MidnightBSD: mports/astro/xearth/Makefile,v 1.9 2009/05/31 17:09:23 laffer1 Exp $
+# $MidnightBSD: mports/astro/xearth/Makefile,v 1.10 2012/03/11 04:36:15 laffer1 Exp $
 
 PORTNAME=	xearth
-PORTVERSION=	1.1
-PORTREVISION=	1
+PORTVERSION=	1.2
+PORTREVISION=	0
 CATEGORIES=	astro geography
-MASTER_SITES=	XCONTRIB/applications \
-		http://seis.bris.ac.uk/~mexas/ \
-		FREEBSD_LOCAL/simon
+MASTER_SITES=	http://seis.bris.ac.uk/~mexas/ \
+		FREEBSD_LOCAL/madpilot/xearth
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Set the root window to the image of earth
 LICENSE=	restricted
 #patents?
 
-MAKE_ENV+=	OSREL=6.1
-
 USE_XORG=	x11 xext sm ice xt
-USE_IMAKE=	yes
-
+USE_XZ=		yes
 MAN1=		xearth.1
 
-post-configure:
-	${REINPLACE_CMD} -e 's/-lxpg4//g' ${WRKSRC}/Makefile
+do-install:
+	@${INSTALL_PROGRAM} ${WRKSRC}/xearth ${PREFIX}/bin
+	@${INSTALL_MAN} ${WRKSRC}/xearth.man ${MANPREFIX}/man/man1/xearth.1
+	@${MKDIR} ${PREFIX}/lib/X11/xearth
 
 .include <bsd.port.mk>
