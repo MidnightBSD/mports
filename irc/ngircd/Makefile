@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.4 2009/12/25 16:23:21 laffer1 Exp $
+# $MidnightBSD: mports/irc/ngircd/Makefile,v 1.5 2012/02/24 15:08:22 laffer1 Exp $
 
 PORTNAME=	ngircd
-PORTVERSION=	0.18
+PORTVERSION=	0.19.2
 CATEGORIES=	irc ipv6
 MASTER_SITES=	ftp://ftp.berlios.de/pub/%SUBDIR%/ \
 		http://arthur.barton.de/pub/%SUBDIR%/
