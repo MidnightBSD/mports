@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/net/p5-IO-INET6/Makefile,v 1.4 2010/05/26 01:28:07 laffer1 Exp $
-# $FreeBSD: ports/net/p5-IO-INET6/Makefile,v 1.6 2005/07/30 00:32:52 leeym Exp $
+# $MidnightBSD: mports/net/p5-IO-INET6/Makefile,v 1.5 2011/05/11 14:14:35 laffer1 Exp $
 
 PORTNAME=	IO-Socket-INET6
-PORTVERSION=	2.67
+PORTVERSION=	2.69
 CATEGORIES=	net perl5 ipv6
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	IO
