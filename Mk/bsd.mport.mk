@@ -1,7 +1,7 @@
 #-*- mode: makefile; tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.199 2013/02/17 21:38:58 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.200 2013/02/18 13:11:12 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2316,15 +2316,20 @@ patch-dos2unix:
 .if defined(USE_DOS2UNIX)
 .if ${USE_DOS2UNIX:U}=="YES"
 	@${ECHO_MSG} "===>   Converting DOS text files to UNIX text files"
-	@${FIND} ${WRKSRC} -type f -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/
-$$//'
+	@${FIND} -E ${WRKSRC} -type f -iregex '${DOS2UNIX_REGEX}' -print0 | \
+			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/^M$$//'
+.else
+	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
+.if ${USE_DOS2UNIX:M*/*}
+.for f in ${USE_DOS2UNIX}
+	@${REINPLACE_CMD} -i '' -e 's/^M$$//' ${WRKSRC}/${f}
+.endfor
 .else
 .for f in ${USE_DOS2UNIX}
-	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
-	@${REINPLACE_CMD} -i '' -e 's/
-$$//' ${WRKSRC}/${f}
+	@${FIND} ${WRKSRC} -type f -name '${f}' -print0 | \
+			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/^M$$//'
 .endfor
+.endif
 .endif
 .else
 	@${DO_NADA}
