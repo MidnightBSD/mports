@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.4 2009/04/15 23:40:55 laffer1 Exp $
+# $MidnightBSD: mports/devel/apache-ant/Makefile,v 1.5 2011/09/17 04:15:22 laffer1 Exp $
 
 PORTNAME=	apache-ant
-PORTVERSION=	1.8.2
-PORTREVISION=	0
+PORTVERSION=	1.8.4
 CATEGORIES=	devel java
 MASTER_SITES=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/binaries/:bin,} \
-		${MASTER_SITE_FREEBSD_LOCAL:S,%SUBDIR%/,hq/:man,} \
-		http://www.esil.univ-mrs.fr/~hquiroz/:man
+		FREEBSD_LOCAL/hq:man
 DISTFILES=	${ANT_DISTFILE}:bin \
 		${MANPAGE_DISTFILE}:man
 EXTRACT_ONLY=	${ANT_DISTFILE}
@@ -22,14 +20,16 @@ MANPAGE_DISTFILE=	${PORTNAME}-manpage-${MANPAGE_VERSION}.tgz
 MANPAGE_VERSION=	20030908
 USE_BZIP2=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 
 NO_BUILD=	YES
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-PLIST_SUB+=	ANT_VERSION="${PORTVERSION}"
+
 READMES=	LICENSE README WHATSNEW
 
 .if !defined(NOPORTDOCS)
+DISTFILES+=	${PORTNAME}-${PORTVERSION}-manual.tar.bz2:doc
+MASTER_SITES+=	${MASTER_SITE_APACHE:S,%SUBDIR%/,ant/manual/:doc,}
 PORTDOCS=	*
 .endif
 
@@ -55,8 +55,7 @@ do-install:
 
 .for d in etc lib
 	@${ECHO_MSG} -n ">> Installing data directory '${d}'..."
-	@cd ${WRKSRC} && ${FIND} ${d} -type d -exec ${MKDIR} ${DATADIR}/\{} \;
-	@cd ${WRKSRC} && ${FIND} ${d} -type f -exec ${INSTALL_DATA} \{} ${DATADIR}/\{} \;
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${DATADIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endfor
 
@@ -73,8 +72,7 @@ do-install:
 	@${ECHO_MSG} " [ DONE ]"
 
 	@${ECHO_MSG} -n ">> Installing documentation files..."
-	@cd ${WRKSRC}/docs && ${FIND} . -type d -exec ${MKDIR} ${DOCSDIR}/\{} \;
-	@cd ${WRKSRC}/docs && ${FIND} . -type f -exec ${INSTALL_DATA} \{} ${DOCSDIR}/\{} \;
+	@cd ${WRKSRC} && ${COPYTREE_SHARE} manual ${DOCSDIR}/
 	@${ECHO_MSG} " [ DONE ]"
 .endif
 

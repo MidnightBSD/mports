@@ -1,4 +1,3 @@
-@comment $FreeBSD: ports/devel/apache-ant/pkg-plist,v 1.28 2011/02/25 12:27:48 ale Exp $
 bin/ant
 %%DATADIR%%/bin/antRun
 %%DATADIR%%/etc/ant-bootstrap.jar
