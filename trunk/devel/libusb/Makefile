@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libusb
-# Date created:				27 January 2001
-# Whom:					John Reynolds <johnjen@reynoldsnet.org>
-#
-# $FreeBSD: ports/devel/libusb/Makefile,v 1.21 2006/08/26 17:27:35 garga Exp $
-# $MidnightBSD: mports/devel/libusb/Makefile,v 1.3 2010/06/04 23:02:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/libusb/Makefile,v 1.4 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	libusb
 PORTVERSION=	0.1.12
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-0.1%20%28LEGACY%29/${PORTVERSION}
 
@@ -19,6 +13,10 @@ LICENSE=        lgpl
 OPTIONS=	SGML "Install developer guide from SGML" off
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} >= 4015
+IGNORE=		has been already included into base system
+.endif
 
 .if defined(WITH_SGML)
 BUILD_DEPENDS+=	${LOCALBASE}/share/sgml/jade/catalog:${PORTSDIR}/textproc/jade \
