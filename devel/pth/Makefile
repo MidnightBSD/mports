@@ -1,13 +1,8 @@
-# New ports collection makefile for:	GNU Pth
-# Date Created:				23 May 1999
-# Whom:					Ralf S. Engelschall <rse@gnu.org>
-#
-# $FreeBSD: ports/devel/pth/Makefile,v 1.81 2006/06/19 09:06:13 vd Exp $
-# $MidnightBSD: mports/devel/pth/Makefile,v 1.2 2008/06/13 06:22:00 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/pth/Makefile,v 1.3 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	pth
@@ -16,9 +11,10 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Portable Threads
 LICENSE=	lgpl
 
+MAKE_JOBS_UNSAFE=	yes
+
 USE_LDCONFIG=	${PREFIX}/lib/pth
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS=	--enable-optimize \
 		--enable-batch \
 		--includedir="${PREFIX}/include/pth" \
