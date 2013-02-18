@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/localedata/Makefile,v 1.3 2008/09/21 20:28:38 laffer1 Exp $
+# $MidnightBSD: mports/misc/localedata/Makefile,v 1.4 2009/04/05 19:31:06 laffer1 Exp $
 
 PORTNAME=	localedata
 PORTVERSION=	5.4
@@ -23,7 +23,7 @@ post-extract:
 	cd ${WRKDIR}/ia64; ${MV} usr/share/locale .
 
 do-install:
-	${MKDIR} ${TARGET_DIR}
-	${PAX} -rw -s${WRKSRC} ${WRKSRC}/locale ${TARGET_DIR}
+	@${MKDIR} ${TARGET_DIR}
+	@${PAX} -rw -s,${WRKSRC},, ${WRKSRC}/locale ${TARGET_DIR}
 
 .include <bsd.port.post.mk>
