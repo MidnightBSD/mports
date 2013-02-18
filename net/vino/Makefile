@@ -1,9 +1,9 @@
 # $FreeBSD: ports/net/vino/Makefile,v 1.28 2008/05/29 22:04:10 marcus Exp $
-# $MidnightBSD: mports/net/vino/Makefile,v 1.1 2008/06/08 21:26:34 crash Exp $
+# $MidnightBSD: mports/net/vino/Makefile,v 1.2 2011/09/27 17:24:00 laffer1 Exp $
 
 PORTNAME=	vino
 PORTVERSION=	2.32.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -30,7 +30,7 @@ CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 GCONF_SCHEMAS=	vino-server.schemas
 
 .if !defined(WITHOUT_NOTIFY)
-LIB_DEPENDS+=	notify.1:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=	notify.4:${PORTSDIR}/devel/libnotify
 CONFIGURE_ARGS+=--enable-libnotify=yes
 .else
 CONFIGURE_ARGS+=--enable-libnotify=no
