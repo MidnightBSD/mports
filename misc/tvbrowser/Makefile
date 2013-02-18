@@ -1,36 +1,32 @@
-# New ports collection makefile for:	tvbrowser
-# Date Created:				24 May 2005
-# Whom:					Lars Engels <lars.engels@0x20.net>
-#
-# $MidnightBSD: mports/misc/tvbrowser/Makefile,v 1.1 2008/06/13 02:41:37 laffer1 Exp $
-# $FreeBSD: ports/misc/tvbrowser/Makefile,v 1.15 2008/06/06 13:45:38 edwin Exp $
-#
+# $MidnightBSD: mports/misc/tvbrowser/Makefile,v 1.2 2011/05/14 22:34:31 laffer1 Exp $
 
 PORTNAME=	tvbrowser
-PORTVERSION=	2.7.6
+PORTVERSION=	3.2.1
 CATEGORIES=	misc java
-MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28older%20Java%205%29/${PORTVERSION}/
+MASTER_SITES=	SF/${PORTNAME}/TV-Browser%20Releases%20%28Java%206%20and%20higher%29/${PORTVERSION}/
+DISTNAME=	${PORTNAME}_${PORTVERSION}_bin
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A digital TV guide
 LICENSE=	gpl2
 
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_LDCONFIG=	yes
 NO_BUILD=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 SUB_FILES=	tvbrowser
 
 DESKTOP_ENTRIES="TV-Browser" \
 		"A digital TV guide" \
 		"${DATADIR}/imgs/tvbrowser128.png" \
 		"tvbrowser" \
-		"Application;TV;" \
-		false
+		"Application;Video;AudioVideo;TV;" \
+		true
 
 do-install:
-	cd ${WRKSRC} && ${FIND} . -type d -exec ${MKDIR} "${DATADIR}/{}" \;
-	cd ${WRKSRC} && ${FIND} . -type f -exec ${INSTALL_DATA} "{}" "${DATADIR}/{}" \;
-	${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${PREFIX}/bin
+	@cd ${WRKSRC} && ${FIND} . -type d -exec ${MKDIR} "${DATADIR}/{}" \;
+	@cd ${WRKSRC} && ${FIND} . -type f -exec ${INSTALL_DATA} "{}" "${DATADIR}/{}" \;
+	@${INSTALL_SCRIPT} ${WRKDIR}/tvbrowser ${PREFIX}/bin
 
 .include <bsd.port.mk>
