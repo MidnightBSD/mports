@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/findutils/Makefile,v 1.4 2010/08/14 04:03:55 laffer1 Exp $
+# $MidnightBSD: mports/misc/findutils/Makefile,v 1.5 2011/05/14 03:41:03 laffer1 Exp $
 
 PORTNAME=	findutils
 PORTVERSION=	4.5.10
@@ -14,8 +14,8 @@ LICENSE=	gpl3
 
 SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 USE_GMAKE=	yes
 
 .if !defined(WITHOUT_NLS)
