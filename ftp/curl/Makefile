@@ -1,19 +1,20 @@
-# $MidnightBSD: mports/ftp/curl/Makefile,v 1.12 2011/07/08 02:39:28 laffer1 Exp $
+# $MidnightBSD: mports/ftp/curl/Makefile,v 1.13 2011/10/28 13:56:05 laffer1 Exp $
 
 PORTNAME=	curl
-PORTVERSION=	7.21.5
+PORTVERSION=	7.24.0
+PORTREVISION=	0
 CATEGORIES=	ftp ipv6 www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		ftp://ftp.sunet.se/pub/www/utilities/curl/ \
 		ftp://ftp.fu-berlin.de/pub/unix/network/curl/ \
 		ftp://crydee.sai.msu.ru/zeus/unix/WWW/tools/mirror/
 MASTER_SITE_SUBDIR=	curl
+EXTRACT_SUFX=	.tar.lzma
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Non-interactive tool to get files from FTP, GOPHER, HTTP(S) servers
 LICENSE=	mit
 
-PATCH_STRIP=	-p1
 
 MAN1=		curl.1 curl-config.1
 MAN3=		curl_easy_cleanup.3 curl_easy_duphandle.3 \
@@ -45,7 +46,8 @@ MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
 
 USE_PERL5_BUILD=	yes
-USE_BZIP2=	yes
+USE_GNOME=		gnomehack
+USE_XZ=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--enable-pop3 --enable-smtp --enable-imap --enable-rtsp \
 		--disable-threaded-resolver --disable-werror
@@ -210,6 +212,7 @@ DOCS=		BINDINGS BUGS CONTRIBUTE DISTRO-DILEMMA FAQ FEATURES \
 		index.html
 
 post-install:
+	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${PREFIX}/share/aclocal
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
 	${INSTALL_DATA} ${DOCS:S@^@${WRKSRC}/docs/@} ${DOCSDIR}
