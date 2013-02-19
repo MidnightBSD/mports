@@ -1,9 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/graphics/gtk-update-icon-cache/Makefile,v 1.2 2011/09/01 12:31:37 kwm Exp $
+# $MidnightBSD: mports/graphics/gtk-update-icon-cache/Makefile,v 1.1 2011/11/11 00:37:43 laffer1 Exp $
 
 PORTNAME=	gtk-update-icon-cache
 PORTVERSION=	2.24.6
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
@@ -22,9 +21,10 @@ LICENSE=	lgpl
 
 USE_XZ=		yes
 
-BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection
+BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
+		${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc:${PORTSDIR}/graphics/cairo
 RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme 
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
@@ -37,9 +37,9 @@ USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 PATCHDIR=	${.CURDIR}/../../x11-toolkits/gtk20/files
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include/freetype2 \
-			  -I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
+		-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_FILES=	bin/gtk-update-icon-cache
 
 MAN1=		gtk-update-icon-cache.1
@@ -47,10 +47,10 @@ MAN1=		gtk-update-icon-cache.1
 .include <bsd.port.pre.mk>
 
 pre-configure:
-.if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo build with X11 support."
-	@${FALSE}
-.endif
+	@if [ ! -f ${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc ]; then \
+		${ECHO_CMD} "${PKGNAME}: Needs cairo built with X11 support."; \
+		${FALSE}; \
+	fi
 
 do-build:
 	@cd ${WRKSRC}/gtk && ${GMAKE} gtk-update-icon-cache
