@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/audio/Makefile,v 1.94 2011/09/03 00:16:41 laffer1 Exp $
+# $MidnightBSD: mports/audio/Makefile,v 1.95 2013/01/16 01:19:09 laffer1 Exp $
 
 COMMENT = Audio tools
 
@@ -89,7 +89,6 @@ SUBDIR += linux-f10-sdl_mixer
 SUBDIR += linux-libaudiofile
 SUBDIR += linux-libogg
 SUBDIR += linux-libvorbis
-SUBDIR += linux-shoutcast
 SUBDIR += madplay
 SUBDIR += mikmod
 SUBDIR += mpg123
