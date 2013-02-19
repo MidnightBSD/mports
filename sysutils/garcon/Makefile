@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.1 2012/03/06 01:08:28 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/garcon/Makefile,v 1.2 2013/02/19 12:23:38 laffer1 Exp $
 
 PORTNAME=	garcon
-PORTVERSION=	0.1.9
-PORTREVISION=	1
+PORTVERSION=	0.2.0
 CATEGORIES=	sysutils xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=/src/xfce/${PORTNAME}/${PORTVERSION:R}
