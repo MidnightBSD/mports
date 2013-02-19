@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/midori/Makefile,v 1.12 2011/07/03 16:49:39 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.13 2012/03/11 18:41:51 laffer1 Exp $
 
 PORTNAME=	midori
-PORTVERSION=	0.4.0
+PORTVERSION=	0.4.7
 CATEGORIES=	www xfce
 MASTER_SITES=	${MASTER_SITE_XFCE}
 MASTER_SITE_SUBDIR=	src/apps/${PORTNAME}/${PORTVERSION:R}
@@ -11,40 +11,48 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight web browser using WebKit browser engine
 LICENSE=	lgpl
 
-LIB_DEPENDS=	webkit-1.0.13:${PORTSDIR}/www/webkit-gtk2 \
-		sqlite3.8:${PORTSDIR}/databases/sqlite3 \
-		notify.1:${PORTSDIR}/devel/libnotify
+LICENSE=	LGPL21
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 BUILD_DEPENDS=	rsvg-convert:${PORTSDIR}/graphics/librsvg2 \
 		valac:${PORTSDIR}/lang/vala
+LIB_DEPENDS=	webkitgtk-1:${PORTSDIR}/www/webkit-gtk2 \
+		sqlite3:${PORTSDIR}/databases/sqlite3 \
+		notify:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_ARGS+=--disable-libidn \
-		--enable-libnotify \
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS+=--enable-libnotify \
 		--enable-addons \
 		--enable-docs \
-		--jobs=${MAKE_JOBS_NUMBER}
+		--disable-gtk3
+
+# if user has set DISABLE_MAKE_JOBS, then MAKE_JOBS_NUMBER is undefined
+.if defined(DISABLE_MAKE_JOBS)
+CONFIGURE_ARGS+=--jobs=1
+.else
+CONFIGURE_ARGS+=--jobs=${MAKE_JOBS_NUMBER}
+.endif
 
 MAKE_JOBS_SAFE=	yes
 HAS_CONFIGURE=	yes
 USE_PYTHON_BUILD=	yes
 USE_BZIP2=	yes
-USE_GNOME=	glib20 gtk20 intltool libxml2 pkgconfig desktopfileutils
+USE_GNOME=	glib20 gtk20 intltool libxml2 desktopfileutils
 USE_XORG=	xscrnsaver
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-.endif
+USE_PKGCONFIG=	build
 
-PLIST_SUB=	VERSION="${PORTVERSION:R}"
+PLIST_SUB=	VERSION="${PORTVERSION:R}" \
+	PORTVERSION="${PORTVERSION}"
 
 OPTIONS=	NLS "Enable Native Language support" on \
 		APIDOCS "Build api documentation" off \
 		UNIQUE "Enable single instance support" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 # WAF needs that
 CONFIGURE_ENV+=	CC="${CC}"
@@ -65,19 +73,23 @@ CONFIGURE_ARGS+=--disable-apidocs
 PLIST_SUB+=	APIDOCS="@comment "
 .endif
 
-.if defined(WITH_UNIQUE)
-LIB_DEPENDS+=	unique-1.0.2:${PORTSDIR}/x11-toolkits/unique
+.if ${PORT_OPTIONS:MUNIQUE}
+LIB_DEPENDS+=	unique-1:${PORTSDIR}/x11-toolkits/unique
 CONFIGURE_ARGS+=--enable-unique
 .else
 CONFIGURE_ARGS+=--disable-unique
 .endif
 
+pre-patch:
+# Disable HTTP Strict Transport Security (hsts)
+	@cd ${WRKSRC}/katze && ${RM} midori-hsts.vala
+
 post-install:
 .if defined(WITH_APIDOCS)
 	${MKDIR} ${DOCSDIR}/api/katze/html
 	${MKDIR} ${DOCSDIR}/api/midori/html
-	(cd ${WRKSRC}/_build_/docs/api/katze/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/katze/html)
-	(cd ${WRKSRC}/_build_/docs/api/midori/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/midori/html)
+	(cd ${WRKSRC}/_build/docs/api/katze/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/katze/html)
+	(cd ${WRKSRC}/_build/docs/api/midori/html && ${COPYTREE_SHARE} \* ${DOCSDIR}/api/midori/html)
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

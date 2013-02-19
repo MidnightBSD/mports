@@ -2,7 +2,7 @@
 # Date created:		Tue Mar 27 14:56:08 CEST 2001
 # Whom:			Adrian Chadd <adrian@FreeBSD.org>
 #
-# $MidnightBSD: mports/www/squid/Makefile,v 1.8 2012/03/19 21:23:40 laffer1 Exp $
+# $MidnightBSD: mports/www/squid/Makefile,v 1.9 2012/03/19 21:24:17 laffer1 Exp $
 # $FreeBSD: ports/www/squid/Makefile,v 1.209 2008/04/05 00:46:55 beech Exp $
 #
 # Tunables not (yet) configurable via 'make config':
@@ -79,19 +79,19 @@ PORTNAME=	squid
 PORTVERSION=	2.7.${SQUID_STABLE_VER}
 CATEGORIES=	www
 MASTER_SITES=	ftp://ftp.squid-cache.org/pub/%SUBDIR%/ \
-		ftp://mirrors.24-7-solutions.net/pub/squid/%SUBDIR%/ \
-		ftp://ftp.belnet.be/packages/squid/pub/%SUBDIR%/ \
-		ftp://ftp.nl.uu.net/pub/unix/www/squid/%SUBDIR%/ \
-		ftp://ftp.mirrorservice.org/sites/ftp.squid-cache.org/pub/%SUBDIR%/ \
-		ftp://ftp.ntua.gr/pub/www/Squid/%SUBDIR%/ \
-		ftp://ftp.ccs.neu.edu/pub/mirrors/squid.nlanr.net/pub/%SUBDIR%/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/squid/&,} \
+		http://mirrors.ccs.neu.edu/Squid/ \
+		ftp://ftp.fu-berlin.de/unix/www/squid/squid/ \
+		ftp://ftp.nl.uu.net/pub/unix/www/squid/ \
+		ftp://ftp.solnet.ch/mirror/squid/ \
+		ftp://ftp.ntua.gr/pub/www/Squid/squid/ \
+		http://mirror.aarnet.edu.au/pub/squid/squid/ \
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/squid,} \
 		http://www.squid-cache.org/Versions/v2/2.7/ \
-		http://www3.us.squid-cache.org/Versions/v2/2.7/ \
+		http://www2.us.squid-cache.org/Versions/v2/2.7/ \
 		http://www1.at.squid-cache.org/Versions/v2/2.7/ \
-		http://www2.nl.squid-cache.org/Versions/v2/2.7/ \
-		http://www1.ru.squid-cache.org/Versions/v2/2.7/ \
-		http://www1.uk.squid-cache.org/Versions/v2/2.7/ \
+		http://www2.de.squid-cache.org/Versions/v2/2.7/ \
+		http://www.eu.squid-cache.org/Versions/v2/2.7/ \
+		http://www1.ie.squid-cache.org/Versions/v2/2.7/ \
 		http://www1.jp.squid-cache.org/Versions/v2/2.7/ \
 		http://www2.tw.squid-cache.org/Versions/v2/2.7/
 MASTER_SITE_SUBDIR=	squid
@@ -99,11 +99,11 @@ DISTNAME=	squid-2.7.STABLE${SQUID_STABLE_VER}
 DIST_SUBDIR=	squid2.7
 
 PATCH_SITES=	http://www.squid-cache.org/%SUBDIR%/ \
-		http://www3.us.squid-cache.org/%SUBDIR%/ \
+		http://www2.us.squid-cache.org/%SUBDIR%/ \
 		http://www1.at.squid-cache.org/%SUBDIR%/ \
-		http://www2.nl.squid-cache.org/%SUBDIR%/ \
-		http://www1.ru.squid-cache.org/%SUBDIR%/ \
-		http://www1.uk.squid-cache.org/%SUBDIR%/ \
+		http://www2.de.squid-cache.org/%SUBDIR%/ \
+		http://www.eu.squid-cache.org/%SUBDIR%/ \
+		http://www1.ie.squid-cache.org/%SUBDIR%/ \
 		http://www1.jp.squid-cache.org/%SUBDIR%/ \
 		http://www2.tw.squid-cache.org/%SUBDIR%/
 PATCH_SITE_SUBDIR=	Versions/v2/2.7/changesets
@@ -227,7 +227,7 @@ external_acl+=	ldap_group
 libexec+=	digest_ldap_auth squid_ldap_auth squid_ldap_group
 .endif
 .if defined(WITH_SQUID_SASL_AUTH)
-LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
 CFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

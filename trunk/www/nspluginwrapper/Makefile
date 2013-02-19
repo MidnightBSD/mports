@@ -1,10 +1,4 @@
-# New ports collection makefile for: nspluginwrapper
-# Date created:         30 Oct 2007
-# Whom:                 Lucas Holt <luke@MidnightBSD.org>
-#
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.7 2008/10/06 03:19:22 laffer1 Exp $
-# $FreeBSD: ports/www/nspluginwrapper/Makefile,v 1.5 2007/09/01 23:15:12 pav Exp $
-#
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.8 2011/08/31 02:57:37 laffer1 Exp $
 
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4
@@ -15,7 +9,7 @@ MASTER_SITES=	http://nspluginwrapper.org/download/ \
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${BINFILE}:binfile
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A compatibility plugin for Netscape 4 (NPAPI) plugins
+COMMENT=	A compatibility plugin for Mozilla (NPAPI) plugins
 LICENSE=	gpl2
 
 LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl

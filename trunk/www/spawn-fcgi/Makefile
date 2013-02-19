@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/www/spawn-fcgi/Makefile,v 1.1 2009/10/13 01:27:24 laffer1 Exp $
 
 PORTNAME=	spawn-fcgi
-PORTVERSION=	1.6.2
+PORTVERSION=	1.6.3
 CATEGORIES=	www
 MASTER_SITES=	http://www.lighttpd.net/download/
 
@@ -11,7 +11,7 @@ LICENSE=	bsd3
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USE_RC_SUBR=	spawn-fcgi.sh
+USE_RC_SUBR=	spawn-fcgi
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
