@@ -1,14 +1,8 @@
-# New ports collection makefile for:	motor
-# Date created:				20 February 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/motor/Makefile,v 1.3 2007/08/22 10:18:38 laffer1 Exp $
-# $FreeBSD: ports/devel/motor/Makefile,v 1.24 2006/08/18 17:16:36 delphij Exp $
-#
+# $MidnightBSD: mports/devel/motor/Makefile,v 1.4 2008/10/13 20:59:02 ctriv Exp $
 
 PORTNAME=	motor
 PORTVERSION=	3.4.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://thekonst.net/download/
 
@@ -32,10 +26,10 @@ PLIST_SUB=	NLS="@comment "
 
 MAN1=		motor.1
 
-.include <bsd.port.pre.mk>
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|zxvf|&o|' ${WRKSRC}/share/Makefile.in
+	@${REINPLACE_CMD} -e 's|strndup|my_strndup|' ${WRKSRC}/parser/src/parser.c \
+		${WRKSRC}/parser/src/strfn.c ${WRKSRC}/parser/include/strfn.h
 
 .if !defined(NOPORTDOCS)
 post-install:
@@ -43,4 +37,4 @@ post-install:
 	@(cd ${WRKSRC} ; ${INSTALL_DATA} FAQ README ${DOCSDIR})
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

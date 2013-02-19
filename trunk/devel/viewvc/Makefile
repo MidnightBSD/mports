@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.16 2012/02/28 03:48:35 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.17 2012/06/21 00:44:34 laffer1 Exp $
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.14
+PORTVERSION=	1.1.17
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/
 
@@ -16,7 +16,7 @@ OPTIONS=\
 		MYSQL 		"enable experimental MYSQL support" 	off
 
 NO_BUILD=	yes
-USE_PYTHON=	yes
+USE_PYTHON=	2.5-2.7
 SUB_FILES=	pkg-message
 SUB_LIST=	INSTDIR="${PREFIX}/${INSTDIR}" \
 		PYTHON_CMD=${PYTHON_CMD} \

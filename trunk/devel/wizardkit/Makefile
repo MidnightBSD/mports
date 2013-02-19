@@ -1,10 +1,4 @@
-# New ports collection makefile for:	wizardkit
-# Date created:         28 Oct 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $FreeBSD: ports/devel/wizardkit/Makefile,v 1.1 2006/10/31 05:53:29 dinoex Exp $
-# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.3 2007/11/07 20:20:12 ctriv Exp $
-#
+# $MidnightBSD: mports/devel/wizardkit/Makefile,v 1.4 2008/10/20 19:31:22 laffer1 Exp $
 
 PORTNAME=	wizardkit
 PORTVERSION=	0.1
@@ -19,7 +13,6 @@ LICENSE=	agg
 
 USE_BZIP2=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes

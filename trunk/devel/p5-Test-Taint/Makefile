@@ -1,9 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/p5-Test-Taint/Makefile,v 1.1 2010/04/16 07:04:22 skv Exp $
-#
+# $MidnightBSD: mports/devel/p5-Test-Taint/Makefile,v 1.1 2011/07/17 19:47:29 laffer1 Exp $
 
 PORTNAME=	Test-Taint
-PORTVERSION=	1.04
+PORTVERSION=	1.06
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

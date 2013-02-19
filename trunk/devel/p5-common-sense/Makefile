@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/devel/p5-common-sense/Makefile,v 1.2 2010/06/04 22:38:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-common-sense/Makefile,v 1.3 2011/03/05 16:24:33 laffer1 Exp $
 
 PORTNAME=	common-sense
-PORTVERSION=	3.4
+PORTVERSION=	3.6
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../../authors/id/M/ML/MLEHMANN
+MASTER_SITE_SUBDIR=	CPAN:MLEHMANN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org

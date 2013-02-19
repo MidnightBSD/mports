@@ -1,22 +1,27 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/yajl/Makefile,v 1.7 2011/11/27 19:36:58 crees Exp $
+# $MidnightBSD: mports/devel/yajl/Makefile,v 1.1 2012/03/01 13:20:54 laffer1 Exp $
 
 PORTNAME=	yajl
-PORTVERSION=	2.0.1
+PORTVERSION=	2.0.4
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	FREEBSD_LOCAL/bapt \
-		http://files.etoilebsd.net/yajl/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Portable JSON parsing and serialization library in ANSI C
 LICENSE=	bsd2
 
-GITREF=		f4b2b1a
-DISTNAME=	lloyd-${PORTNAME}-${PORTVERSION}-g${GITREF}
-WRKSRC=		${WRKDIR}/lloyd-${PORTNAME}-${GITREF}
-PLIST_SUB=	VERSION=${PORTVERSION}
+USE_GITHUB=	yes
+GH_ACCOUNT=	lloyd
+GH_COMMIT=	fee1ebe
+
+
 
 USE_LDCONFIG=	yes
 USE_CMAKE=	yes
+
+PLIST_SUB=	VERSION=${PORTVERSION}
+
+post-patch:
+	@${REINPLACE_CMD} -e "s,share/pkgconfig,libdata/pkgconfig,g" \
+		${WRKSRC}/src/CMakeLists.txt
 
 .include <bsd.port.mk>

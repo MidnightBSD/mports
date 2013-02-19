@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-threads-shared
-# Date created:		2007-03-18
-# Whom:			Ruben van Staveren
-#
-# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.5 2010/06/04 22:37:26 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-threads-shared/Makefile,v 1.1 2007/04/04 08:57:26 clsung Exp $
-#
+# $MidnightBSD: mports/devel/p5-threads-shared/Makefile,v 1.6 2010/06/04 22:37:57 laffer1 Exp $
 
 PORTNAME=	threads-shared
-PORTVERSION=	1.33
+PORTVERSION=	1.40
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/J/JD/JDHEDDEN
@@ -22,6 +16,6 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	yes
 
-MAN3=	threads::shared.3
+MAN3=		threads::shared.3
 
 .include <bsd.port.mk>

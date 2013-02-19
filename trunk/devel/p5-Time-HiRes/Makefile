@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-Time-HiRes
-# Date created:			13 June 1999
-# Whom:				Stephen J. Roznowski <sjr@home.net>
-#
-# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.2 2008/01/05 05:48:30 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-Time-HiRes/Makefile,v 1.43 2007/03/20 18:09:29 tobez Exp $
-#
+# $MidnightBSD: mports/devel/p5-Time-HiRes/Makefile,v 1.3 2008/06/04 18:04:24 laffer1 Exp $
 
 PORTNAME=	Time-HiRes
-PORTVERSION=	1.9715
+PORTVERSION=	1.9725
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN

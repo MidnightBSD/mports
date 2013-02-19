@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/stlport/Makefile,v 1.5 2010/11/17 13:57:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/stlport/Makefile,v 1.6 2010/12/15 03:03:50 laffer1 Exp $
 
 PORTNAME=	stlport
-PORTVERSION=	5.1.5
-PORTREVISION=	1
+PORTVERSION=	5.1.7
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/STLport/STLport%20${PORTVERSION}
 PKGNAMESUFFIX=	-${COMPILER}
