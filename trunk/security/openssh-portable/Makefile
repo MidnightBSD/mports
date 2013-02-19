@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.12 2012/02/29 01:09:44 laffer1 Exp $
+# $MidnightBSD: mports/security/openssh-portable/Makefile,v 1.13 2012/10/25 03:13:35 laffer1 Exp $
 
 PORTNAME=	openssh
 DISTVERSION=	5.8p2
@@ -60,8 +60,7 @@ EXTRA_PATCHES=        ${FILESDIR}/extra-patch-configure
 .endif
 
 .if ${OSVERSION} >= 4016
-CONFIGURE_ARGS+=      --disable-utmp --disable-wtmp --disable-wtmpx --without-
-lastlog
+CONFIGURE_ARGS+=      --disable-utmp --disable-wtmp --disable-wtmpx --without-lastlog
 .endif
 
 .if defined(WITH_X509) && defined(WITH_HPN)
