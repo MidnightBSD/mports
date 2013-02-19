@@ -1,10 +1,4 @@
-# New ports collection makefile for:	p5-AppConfig
-# Date created:				23 October 1999
-# Whom:					Igor Vinokurov <igor@zynaps.ru>
-#
-# $MidnightBSD: mports/devel/p5-AppConfig/Makefile,v 1.1 2007/03/11 03:54:38 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-AppConfig/Makefile,v 1.10 2007/01/07 20:45:26 lth Exp $
-#
+# $MidnightBSD: mports/devel/p5-AppConfig/Makefile,v 1.2 2008/04/29 04:24:01 laffer1 Exp $
 
 PORTNAME=	AppConfig
 PORTVERSION=	1.66
@@ -15,9 +9,6 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Perl module for reading configuration files
 LICENSE=	perl
-
-RUN_DEPENDS=	p5-File-HomeDir>=0.61:${PORTSDIR}/devel/p5-File-HomeDir
-BUILD_DEPENDS=	${RUN_DEPENDS}
 
 PERL_CONFIGURE=	YES
 

@@ -1,13 +1,7 @@
-# New ports collection makefile for:    p5-Test-Exception
-# Date created:				January 27th 2003
-# Whom:	      				Erwin Lansing <erwin@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/p5-Test-Exception/Makefile,v 1.1 2008/03/21 19:54:55 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-Test-Exception/Makefile,v 1.17 2008/02/21 19:14:43 erwin Exp $
-#
+# $MidnightBSD: mports/devel/p5-Test-Exception/Makefile,v 1.2 2008/10/16 21:45:00 laffer1 Exp $
 
 PORTNAME=	Test-Exception
-PORTVERSION=	0.27
+PORTVERSION=	0.31
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

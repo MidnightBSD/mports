@@ -1,6 +1,4 @@
-# $FreeBSD: ports/devel/p5-Class-Accessor/Makefile,v 1.11 2007/07/27 05:24:53 skv Exp $
-# $MidnightBSD: mports/devel/p5-Class-Accessor/Makefile,v 1.2 2008/08/13 14:57:49 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/p5-Class-Accessor/Makefile,v 1.3 2010/12/02 01:14:02 laffer1 Exp $
 
 PORTNAME=	Class-Accessor
 PORTVERSION=	0.34

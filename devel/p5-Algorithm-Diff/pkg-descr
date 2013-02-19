@@ -5,6 +5,3 @@ one used by classical Unix diff(1).  It is guaranteed to find the
 *smallest possible* set of differences.
 
 WWW: http://search.cpan.org/dist/Algorithm-Diff/
-Author: Ned Konz <perl@bike-nomad.com>
-
---will

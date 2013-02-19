@@ -1,13 +1,7 @@
-# New ports collection makefile for:	devel/p5-Carp-Clan
-# Date created:				02 November 2004
-# Whom:					Anton Berezin <tobez@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/p5-Carp-Clan/Makefile,v 1.1 2007/03/11 04:00:06 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-Carp-Clan/Makefile,v 1.4 2006/10/09 18:20:49 clsung Exp $
-#
+# $MidnightBSD: mports/devel/p5-Carp-Clan/Makefile,v 1.2 2008/10/09 21:03:21 laffer1 Exp $
 
 PORTNAME=	Carp-Clan
-PORTVERSION=	6.00
+PORTVERSION=	6.04
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

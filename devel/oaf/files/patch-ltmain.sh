@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/oaf/files/patch-ltmain.sh,v 1.5 2006/10/14 08:52:47 marcus Exp $
+$MidnightBSD$
 
 --- ltmain.sh	2001/08/27 09:51:26	1.1
 +++ ltmain.sh	2001/08/27 09:51:42

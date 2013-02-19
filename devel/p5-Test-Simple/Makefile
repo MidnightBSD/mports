@@ -1,10 +1,10 @@
-# $FreeBSD: ports/devel/p5-Test-Simple/Makefile,v 1.26 2006/07/16 14:14:32 clsung Exp $
-# $MidnightBSD: mports/devel/p5-Test-Simple/Makefile,v 1.3 2009/03/20 21:51:49 ctriv Exp $
+# $MidnightBSD: mports/devel/p5-Test-Simple/Makefile,v 1.4 2011/07/17 19:30:40 laffer1 Exp $
 
 PORTNAME=	Test-Simple
 PORTVERSION=	0.98
 CATEGORIES=	devel perl5
-MASTER_SITES=	CPAN/../../authors/id/M/MS/MSCHWERN
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:MSCHWERN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org

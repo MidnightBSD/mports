@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/oaf/files/patch-configure,v 1.2 2006/10/14 08:52:46 marcus Exp $
+$MidnightBSD$
 
 --- configure	2001/09/25 15:22:02	1.1
 +++ configure	2001/09/25 15:22:25
