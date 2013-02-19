@@ -1,28 +1,19 @@
-# New ports collection makefile for:	ispell
-# Date created:				6 November 1994
-# Whom:					jmz
-#
-# $FreeBSD: ports/textproc/ispell/Makefile,v 1.104 2006/12/04 11:38:15 jmz Exp $
-# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.6 2008/06/14 15:30:47 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/ispell/Makefile,v 1.7 2008/10/13 20:59:44 laffer1 Exp $
 
 PORTNAME?=	ispell
-PORTVERSION?=	3.2.06
-PORTREVISION?=	16
+PORTVERSION?=	3.3.02
 CATEGORIES?=	textproc
-MASTER_SITES=	http://fmg-www.cs.ucla.edu/geoff/tars/ \
-		http://distfiles.opendarwin.org/
-DISTNAME=	ispell-3.2.06		# needed for slave ports / options
-DISTFILES=	ispell-3.2.06.tar.gz    # needed for slave ports / options
+MASTER_SITES=	http://www.lasr.cs.ucla.edu/geoff/tars/
+DISTNAME=	ispell-3.3.02		# needed for slave ports / options
+DISTFILES=	ispell-3.3.02.tar.gz    # needed for slave ports / options
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	An interactive spelling checker for multiple languages
 LICENSE=	other
 
-ISPELL_FILES= 	ispell-3.2.06.tar.gz
+ISPELL_FILES= 	ispell-3.3.02.tar.gz
 
 MAN1=		ispell.1
-MAN4=		ispell.4 english.4
 MLINKS=		ispell.1 buildhash.1 \
 		ispell.1 findaffix.1 \
 		ispell.1 munchlist.1 \
