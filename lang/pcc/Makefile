@@ -2,7 +2,7 @@
 # Date created:			  May 12, 2008
 # Whom:				  Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/lang/pcc/Makefile,v 1.5 2011/04/26 04:29:05 laffer1 Exp $
+# $MidnightBSD: mports/lang/pcc/Makefile,v 1.6 2012/03/11 18:41:51 laffer1 Exp $
 
 PORTNAME=	pcc
 PORTVERSION=	1.0.0
@@ -24,8 +24,8 @@ ONLY_FOR_ARCHS=	i386 amd64
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	YACC=${YACC}
-CONFIGURE_TARGET= --build=${ARCH}-portbld-freebsd7.0
 USE_GMAKE=	yes
+CONFIGURE_ARGS+=--mandir=${PREFIX}/man
 
 PLIST_FILES=	bin/pcc libexec/ccom libexec/cpp \
 		man/man1/pcc.1 man/man1/cpp.1 man/man1/ccom.1
