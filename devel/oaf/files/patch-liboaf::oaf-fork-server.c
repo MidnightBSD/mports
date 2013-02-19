@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/devel/oaf/files/patch-liboaf::oaf-fork-server.c,v 1.4 2006/10/14 08:52:47 marcus Exp $
+$MidnightBSD$
 
 --- liboaf/oaf-fork-server.c	2002/02/14 01:44:13	1.1
 +++ liboaf/oaf-fork-server.c	2002/02/14 01:44:39

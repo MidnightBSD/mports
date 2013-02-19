@@ -1,16 +1,9 @@
-# New ports collection makefile for:	p5-Test-Pod-Coverage
-# Date created:				20 november 2004
-# Whom:					Lars Thegler <lth@FreeBSD.org>
-#
-# $MidnightBSD: mports/devel/p5-Test-Pod-Coverage/Makefile,v 1.1 2008/03/21 19:58:15 laffer1 Exp $
-# $FreeBSD: ports/devel/p5-Test-Pod-Coverage/Makefile,v 1.6 2007/09/08 00:59:11 linimon Exp $
-#
+# $MidnightBSD: mports/devel/p5-Test-Pod-Coverage/Makefile,v 1.2 2008/10/16 21:45:35 laffer1 Exp $
 
 PORTNAME=	Test-Pod-Coverage
 PORTVERSION=	1.08
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Test
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org

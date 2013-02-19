@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/p5-subversion/Makefile,v 1.1 2009/04/08 04:21:06 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-subversion/Makefile,v 1.2 2010/05/05 23:30:49 laffer1 Exp $
 
 PKGNAMEPREFIX=	p5-
 
@@ -9,16 +9,16 @@ LICENSE=	other
 MASTERDIR=	${.CURDIR}/../../devel/subversion
 PKGDIR=		${.CURDIR}
 
-USE_PERL5=		5.8.0+
+USE_PERL5=	yes
 
-MAN3=			SVN::Base.3 \
-			SVN::Client.3 \
-			SVN::Core.3 \
-			SVN::Delta.3 \
-			SVN::Fs.3 \
-			SVN::Ra.3 \
-			SVN::Repos.3 \
-			SVN::Wc.3
+MAN3=		SVN::Base.3 \
+		SVN::Client.3 \
+		SVN::Core.3 \
+		SVN::Delta.3 \
+		SVN::Fs.3 \
+		SVN::Ra.3 \
+		SVN::Repos.3 \
+		SVN::Wc.3
 
 SVN_BUILD_BINDINGS=yes
 

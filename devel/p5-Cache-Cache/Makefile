@@ -1,23 +1,20 @@
-# $MidnightBSD: mports/devel/p5-Cache-Cache/Makefile,v 1.1 2007/09/12 02:45:26 ctriv Exp $
+# $MidnightBSD: mports/devel/p5-Cache-Cache/Makefile,v 1.2 2013/02/17 23:27:46 laffer1 Exp $
 
 PORTNAME=	Cache-Cache
 PORTVERSION=	1.06
 CATEGORIES=	devel perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Cache
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ctriv@MidnightBSD.org
 COMMENT=	Cache::Cache -- Perl Cache interface
 LICENSE=	perl
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/IPC/ShareLite.pm:${PORTSDIR}/devel/p5-IPC-ShareLite \
-		${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools \
-		${SITE_PERL}/${PERL_ARCH}/Digest/MD5.pm:${PORTSDIR}/security/p5-Digest-MD5 \
-		${SITE_PERL}/${PERL_ARCH}/Storable.pm:${PORTSDIR}/devel/p5-Storable \
-		${SITE_PERL}/Error.pm:${PORTSDIR}/lang/p5-Error \
-		${SITE_PERL}/${PERL_ARCH}/Digest/SHA1.pm:${PORTSDIR}/security/p5-Digest-SHA1
-RUN_DEPENDS=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	p5-Cache>=0:${PORTSDIR}/devel/p5-Cache \
+		p5-Digest-SHA1>=2.02:${PORTSDIR}/security/p5-Digest-SHA1 \
+		p5-Error>=0.15:${PORTSDIR}/lang/p5-Error \
+		p5-IPC-ShareLite>=0.09:${PORTSDIR}/devel/p5-IPC-ShareLite
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 PERL_CONFIGURE=	yes
 

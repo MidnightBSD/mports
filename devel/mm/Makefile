@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/mm/Makefile,v 1.2 2009/03/25 22:02:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/mm/Makefile,v 1.3 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	mm
 PORTVERSION=	1.4.2
@@ -12,7 +12,6 @@ LICENSE=	bsd4
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	 ${MACHINE_ARCH}-portbld-freebsd7.0
 
 MAN1=		mm-config.1
 MAN3=		mm.3

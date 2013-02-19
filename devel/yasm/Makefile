@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/yasm/Makefile,v 1.9 2011/09/22 23:03:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/yasm/Makefile,v 1.10 2012/06/09 21:10:30 laffer1 Exp $
 
 PORTNAME=	yasm
 PORTVERSION=	1.2.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.tortall.net/projects/yasm/releases/
 
@@ -13,8 +13,8 @@ LICENSE=	bsd3
 USE_AUTOTOOLS=	autoconf libltdl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-python --disable-python-bindings
-CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAKE_JOBS_SAFE=	yes
 
