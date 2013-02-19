@@ -1,18 +1,12 @@
-# $MidnightBSD: mports/www/links/Makefile,v 1.12 2010/04/28 00:30:13 laffer1 Exp $
+# $MidnightBSD: mports/www/links/Makefile,v 1.13 2012/09/09 02:09:35 laffer1 Exp $
 
 PORTNAME=	links
-DISTVERSION=	2.2
-PORTREVISION=	1
+DISTVERSION=	2.7
 PORTEPOCH=	1
-CATEGORIES?=	www
-MASTER_SITES=	http://links.twibright.com/download/
+CATEGORIES=	www ipv6
+MASTER_SITES=	http://links.twibright.com/download/ LOCAL/bf
 
-PATCH_SITES=	ftp://ftp.linux.ee/pub/gentoo/distfiles/distfiles/ \
-		ftp://ftp.osuosl.org/pub/blfs/conglomeration/links/ \
-		ftp://ftp.ntua.gr/pub/linux/gentoo/distfiles/
-PATCH_DIST_STRIP=-p1
-
-MAINTAINER?=	ports@MidnightBSD.org
+MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lynx-like text WWW browser
 LICENSE=	gpl2
 
@@ -20,8 +14,8 @@ CONFLICTS=	links-0*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-ssl --without-pmshell --without-atheos \
-			--without-gpm --without-fb
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include"
+			--without-gpm --without-fb --without-windows
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 USE_OPENSSL=	yes
@@ -36,10 +30,13 @@ DESKTOP_ENTRIES="links" \
 
 OPTIONS=	SVGALIB "non-X11 graphics support" off \
 		X11 "X11 graphics support" on \
-		UTF8 "With gentoo utf-8 patch" on \
 		TRANS "Hack for background transparency" off
 
 .include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 4015
+LIB_DEPENDS+= lzma:${PORTSDIR}/archivers/xz
+.endif
 
 .ifdef(WITH_SVGALIB) || defined(WITH_X11) || defined(WITH_DIRECTFB)
 LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png \
@@ -64,12 +61,6 @@ USE_XORG=	x11 xproto
 CONFIGURE_ARGS+=	--with-x
 .else
 CONFIGURE_ARGS+=	--without-x
-.endif
-
-.if defined(WITH_UTF8)
-PATCHFILES=	links-2.1pre33-utf8.diff.bz2
-pre-configure:
-		pwd && cd ${WRKSRC}/intl && ./gen-intl && ./synclang && cd ..
 .endif
 
 .if defined(WITH_TRANS)
