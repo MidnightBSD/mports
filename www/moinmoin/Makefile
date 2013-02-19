@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.10 2012/05/22 00:54:34 laffer1 Exp $
+# $MidnightBSD: mports/www/moinmoin/Makefile,v 1.11 2012/05/22 00:58:51 laffer1 Exp $
 
 PORTNAME=	moinmoin
-PORTVERSION=	1.9.4
+PORTVERSION=	1.9.5
 PORTREVISION=	0
 CATEGORIES=	www python
 MASTER_SITES=	http://static.moinmo.in/files/
@@ -11,14 +11,15 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Python clone of WikiWiki
 LICENSE=	gpl2
 
-USE_PYTHON=	2.5+
+USE_PYTHON=	yes
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_PKGNAME=	moin
 
 PLIST_SUB+=	PYTHON_SITELIB=${PYTHON_SITELIBDIR:S|^${LOCALBASE}/||} \
 		DATADIR=share/moin
 SUB_FILES=	pkg-install
-SUB_LIST=	MOINDIR=${MOINDIR} MOINDEST=${MOINDEST}
+SUB_LIST=	MOINDIR=${MOINDIR} MOINDEST=${MOINDEST} \
+		HTDOCS=${PYTHON_SITELIBDIR}/MoinMoin/web/static/htdocs
 
 CGIUSER?=	www
 CGIGROUP?=	www

@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.18 2011/12/15 00:57:55 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.19 2012/02/05 03:46:37 laffer1 Exp $
 
 PORTNAME=	cherokee
-PORTVERSION=	1.0.19
-PORTREVISION=	2
+PORTVERSION=	1.2.101
+PORTREVISION=	0
 CATEGORIES=	www
 MASTER_SITES=	http://www.cherokee-project.com/download/1.0/${PORTVERSION}/ \
 		http://cherokee.osuosl.org/1.0/${PORTVERSION}/ \
@@ -38,7 +38,7 @@ USE_GNOME=	gnomehack  pkgconfig
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_GETTEXT=	yes
-USE_RC_SUBR=	cherokee.sh
+USE_RC_SUBR=	cherokee
 SUB_FILES=	pkg-install pkg-message
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
@@ -148,7 +148,7 @@ PLIST_SUB+=	NLS="@comment "
 .ifdef WITH_INTPCRE
 CONFIGURE_ARGS+=	--enable-internal-pcre
 .else
-LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 .endif
 
 .ifdef WITH_RRDTOOL

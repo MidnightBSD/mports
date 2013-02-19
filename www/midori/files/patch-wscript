@@ -1,12 +1,27 @@
---- wscript.orig	2011-03-13 23:03:35.000000000 +0100
-+++ wscript	2011-03-14 06:45:15.000000000 +0100
-@@ -248,8 +248,7 @@
-     if not conf.env['HAVE_UNIQUE']:
-         if Options.platform == 'win32':
-             conf.check (lib='ws2_32')
--        check_pkg ('openssl', mandatory=False)
--        conf.define ('USE_SSL', [0,1][conf.env['HAVE_OPENSSL'] == 1])
-+        conf.define ('HAVE_OPENSSL', [0,1][conf.check (header_name='openssl/opensslv.h')])
-         conf.define ('HAVE_NETDB_H', [0,1][conf.check (header_name='netdb.h')])
-         conf.check (header_name='sys/wait.h')
-         conf.check (header_name='sys/select.h')
+--- ./wscript.orig	2012-09-19 21:17:43.000000000 +0000
++++ ./wscript	2012-09-20 06:32:04.000000000 +0000
+@@ -106,8 +106,8 @@
+     conf.check_tool ('compiler_cc')
+     conf.check_tool ('vala')
+     conf.check_tool ('glib2')
+-    if not check_version (conf.env['VALAC_VERSION'], 0, 14, 0):
+-        Utils.pprint ('RED', 'Vala 0.14.0 or later is required.')
++    if not check_version (conf.env['VALAC_VERSION'], 0, 12, 0):
++        Utils.pprint ('RED', 'Vala 0.12.0 or later is required.')
+         sys.exit (1)
+ 
+     if option_enabled ('nls'):
+@@ -184,11 +184,8 @@
+         return conf.env['HAVE_' + var]
+ 
+     if option_enabled ('gtk3'):
+-        gcr_pkg = 'gcr-3'
+-    else:
+-        gcr_pkg = 'gcr-3-gtk2'
+-    check_pkg (gcr_pkg, '2.32', mandatory=False)
+-    conf.define ('GCR_VERSION', ['No',conf.check_cfg(modversion=gcr_pkg)][conf.env['HAVE_GCR'] == 1])
++        check_pkg ('gcr-3', '2.32', mandatory=False)
++        conf.define ('GCR_VERSION', ['No',conf.check_cfg(modversion='gcr-3')][conf.env['HAVE_GCR'] == 1])
+ 
+     if option_enabled ('unique'):
+         if option_enabled('gtk3'): unique_pkg = 'unique-3.0'

@@ -2,7 +2,7 @@
 # Date Created:				June 16 2004
 # Whom:					Daniel O'Connor <darius@dons.net.au>
 #
-# $MidnightBSD: mports/www/dummyflash/Makefile,v 1.2 2008/10/09 15:39:01 laffer1 Exp $
+# $MidnightBSD: mports/www/dummyflash/Makefile,v 1.3 2010/05/29 06:11:55 laffer1 Exp $
 # $FreeBSD: ports/www/dummyflash/Makefile,v 1.5 2006/10/19 18:00:56 pav Exp $
 #
 
@@ -30,7 +30,7 @@ WEBPLUGINS_FILES=dummyflash.so
 .include "${PORTSDIR}/www/browser35/Makefile.webplugins"
 
 do-install:
-	${MKDIR} ${WEBPLUGINS_DIR}
+	@${MKDIR} ${WEBPLUGINS_DIR}
 	${INSTALL_DATA} ${BUILD_WRKSRC}/dummyflash.so ${WEBPLUGINS_DIR}
 
 .include <bsd.port.post.mk>

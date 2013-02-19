@@ -1,16 +1,9 @@
-# New ports collection makefile for:   polipo
-# Date created:        2005-01-25
-# Whom:                Frank Behrens <frank@pinky.sax.de>
-#
-# $MidnightBSD: mports/www/polipo/Makefile,v 1.2 2008/05/01 03:44:17 laffer1 Exp $
-# $FreeBSD: ports/www/polipo/Makefile,v 1.15 2008/01/10 23:19:14 miwi Exp $
-#
+# $MidnightBSD: mports/www/polipo/Makefile,v 1.3 2008/05/01 03:59:54 laffer1 Exp $
 
 PORTNAME=	polipo
-PORTVERSION=	1.0.4
-PORTREVISION=	2
+PORTVERSION=	1.0.4.1
 CATEGORIES=	www
-MASTER_SITES=	http://www.pps.jussieu.fr/~jch/software/files/polipo/ \
+MASTER_SITES=	http://freehaven.net/~chrisd/polipo/ \
 		http://www.sax.de/~frank/polipo4bsd/files/
 
 MAINTAINER=	ports@MidnightBSD.org
