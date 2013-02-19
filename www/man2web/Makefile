@@ -1,10 +1,4 @@
-# New ports collection makefile for:   man2web
-# Date created:                2003-04-19
-# Whom:                        Christian Weisgerber <naddy@freebsd.org>
-#
-# $MidnightBSD: mports/www/man2web/Makefile,v 1.2 2008/10/08 04:43:52 laffer1 Exp $
-# $FreeBSD: ports/www/man2web/Makefile,v 1.6 2006/02/08 15:47:23 naddy Exp $
-#
+# $MidnightBSD: mports/www/man2web/Makefile,v 1.3 2010/05/29 06:57:22 laffer1 Exp $
 
 PORTNAME=	man2web
 PORTVERSION=	0.88
@@ -18,7 +12,6 @@ LICENSE=	agg
 # gpl2 + gnu free doc license
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET= --build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--bindir="${PREFIX}/${CGIDIR}" \
 		--sysconfdir="${PREFIX}/etc" \
 		--with-manpath=/usr/share/man:${LOCALBASE}/man \

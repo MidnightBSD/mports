@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/www/neon29/Makefile,v 1.2 2011/10/01 03:40:47 laffer1 Exp $
-# $FreeBSD: ports/www/neon29/Makefile,v 1.56 2011/05/13 11:45:09 lev Exp $
+# $MidnightBSD: mports/www/neon29/Makefile,v 1.3 2013/02/09 01:58:06 laffer1 Exp $
 
 PORTNAME=	neon29
 PORTVERSION=	0.29.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://www.webdav.org/neon/
 DISTNAME=	neon-${PORTVERSION}
@@ -48,6 +47,13 @@ PLIST_SUB+=	NLS=""
 
 .if defined(WITHOUT_GSSAPI)
 CONFIGURE_ARGS+=--without-gssapi
+.endif
+
+.if defined(WITH_PROXY)
+CONFIGURE_ARGS+=--with-libproxy
+LIB_DEPENDS+=	proxy.1:${PORTSDIR}/net/libproxy
+.else
+CONFIGURE_ARGS+=--without-libproxy
 .endif
 
 MAN1=	neon-config.1

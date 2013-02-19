@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/www/mediawiki/Makefile,v 1.3 2011/05/13 13:34:32 laffer1 Exp $
-# $FreeBSD: ports/www/mediawiki/Makefile,v 1.48 2008/10/05 11:24:08 miwi Exp $
+# $MidnightBSD: mports/www/mediawiki/Makefile,v 1.4 2011/05/13 13:35:44 laffer1 Exp $
 
 PORTNAME=	mediawiki
-PORTVERSION=	1.16.5
+PORTVERSION=	1.19.3
 CATEGORIES=	www
 MASTER_SITES=	http://dumps.wikimedia.org/mediawiki/${PORTVERSION:R}/
 
