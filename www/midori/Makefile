@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/midori/Makefile,v 1.13 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD: mports/www/midori/Makefile,v 1.14 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	midori
 PORTVERSION=	0.4.7
@@ -73,7 +73,7 @@ CONFIGURE_ARGS+=--disable-apidocs
 PLIST_SUB+=	APIDOCS="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MUNIQUE}
+.if defined(UNIQUE}
 LIB_DEPENDS+=	unique-1:${PORTSDIR}/x11-toolkits/unique
 CONFIGURE_ARGS+=--enable-unique
 .else
