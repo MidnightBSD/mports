@@ -1,18 +1,18 @@
-# $MidnightBSD: mports/devel/autogen/Makefile,v 1.5 2009/11/09 00:57:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/autogen/Makefile,v 1.6 2011/12/15 00:34:32 laffer1 Exp $
 
 PORTNAME=	autogen
-PORTVERSION=	5.9.7
-PORTREVISION=	1
+PORTVERSION=	5.12
 CATEGORIES=	devel
-MASTER_SITES=	SF/${PORTNAME}/AutoGen/AutoGen%20${PORTVERSION} \
-		${MASTER_SITE_GNU:S/$/:gnu/}
+MASTER_SITES=	GNU
+MASTER_SITE_SUBDIR=	${PORTNAME}/rel${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:DEFAULT,gnu
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Automated Program Generator
-LICENSE=	gpl2
+LICENSE=	gpl3
 
-LIB_DEPENDS=	guile.20:${PORTSDIR}/lang/guile
+BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	guile.21:${PORTSDIR}/lang/guile
 
 USE_BZIP2=	yes
 USE_GNOME=	gnomehack libxml2
