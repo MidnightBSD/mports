@@ -1,40 +1,18 @@
-# $MidnightBSD: mports/www/cherokee/Makefile,v 1.19 2012/02/05 03:46:37 laffer1 Exp $
+# $MidnightBSD: mports/www/cherokee/Makefile,v 1.20 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	cherokee
 PORTVERSION=	1.2.101
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
-MASTER_SITES=	http://www.cherokee-project.com/download/1.0/${PORTVERSION}/ \
-		http://cherokee.osuosl.org/1.0/${PORTVERSION}/ \
-		http://mirror.its.uidaho.edu/pub/cherokee/1.0/\${PORTVERSION}/ \
-		http://www.gtlib.gatech.edu/pub/cherokee/1.0/\${PORTVERSION}/ \
-		ftp://mirrors.secution.com/cherokee/1.0/${PORTVERSION}/ \
-		ftp://ftp.easynet.be/cherokee/1.0/${PORTVERSION}/ \
-		http://ftp.heanet.ie/mirrors/cherokee/1.0/${PORTVERSION}/ \
-		http://www.ftp.ne.jp/infosystems/cherokee/1.0/${PORTVERSION}/ \
-		http://www.ring.gr.jp/archives/net/cherokee/1.0/${PORTVERSION}/ \
-		http://ftp.nluug.nl/pub/internet/cherokee/1.0/${PORTVERSION}/ \
-		http://ftp.surfnet.nl/pub/internet/cherokee/1.0/${PORTVERSION}/ \
-		http://mirror.is.co.za/mirrors/cherokee/1.0/${PORTVERSION}/ \
-		http://mirror.aarnet.edu.au/pub/cherokee/1.0/\${PORTVERSION}/ \
-		http://ftp.ntua.gr/pub/www/cherokee/1.0/\${PORTVERSION}/ \
-		http://ftp.cc.uoc.gr/mirrors/cherokee/1.0/\${PORTVERSION}/ \
-		http://cherokee.mirror.garr.it/mirrors/cherokee/1.0/\${PORTVERSION}/ \
-		http://ftp.yz.yamagata-u.ac.jp/pub/network/cherokee/1.0/\${PORTVERSION}/ \
-		http://ftp.icm.edu.pl/packages/cherokee/1.0/\${PORTVERSION}/ \
-		ftp://download.srv.ro/pub/cherokee/1.0/\${PORTVERSION}/ \
-		http://mirror.yandex.ru/mirrors/cherokee-project.com/1.0/\${PORTVERSION}/ \
-		http://cherokee.hyperial.com/1.0/\${PORTVERSION}/ \
-		http://cherokee.labs.itb.ac.id/1.0/\${PORTVERSION}/ \
-		http://mirror.cpsc.ucalgary.ca/mirror/cherokee/1.0/\${PORTVERSION}/ \
-		http://www.feel3.de/mirrors/cherokee/1.0/\${PORTVERSION}/ \
-		http://cherokee.pubcrawler.com/1.0/\${PORTVERSION}/
+MASTER_SITES=	${MASTER_SITE_SAMBA}
+MASTER_SITE_SUBDIR=cherokee/1.2/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extremely fast and flexible web server
 LICENSE=	gpl2
 
-USE_GNOME=	gnomehack  pkgconfig
+USE_GNOME=	gnomehack
+USE_PKGCONFIG=	build
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USE_GETTEXT=	yes
@@ -42,9 +20,8 @@ USE_RC_SUBR=	cherokee
 SUB_FILES=	pkg-install pkg-message
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CPPFLAGS=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
 
 CHEROKEE_VARDIR?=	/var
 CHEROKEE_LOGDIR?=	${CHEROKEE_VARDIR}/log
@@ -189,15 +166,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
 		${WRKSRC}/contrib/tracelor.py
 	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
-		${WRKSRC}/gitlog2changelog.py
-	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
 		${WRKSRC}/po/po_stats.py
 	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
 		${WRKSRC}/qa/fcgi.py
 	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
 		${WRKSRC}/qa/run-tests.py
-	@${REINPLACE_CMD} -e 's|/usr/bin/env python|/usr/local/bin/python|' \
-		${WRKSRC}/svnlog2changelog.py
 
 post-install:
 	@${INSTALL} -d ${CONFSUBDIRS:S|^|${PREFIX}/etc/cherokee/|}
