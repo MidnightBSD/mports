@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/guile/Makefile,v 1.11 2011/12/15 00:57:48 laffer1 Exp $
+# $MidnightBSD: mports/lang/guile/Makefile,v 1.12 2012/02/28 03:15:15 laffer1 Exp $
 
 PORTNAME=	guile
 PORTVERSION=	1.8.8
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang scheme
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	guile
@@ -18,11 +18,9 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+USE_NCURSES=	yes
+LDFLAGS+=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 GUILE_VER=	1.8
 PLIST_SUB=	GUILE_VER=${GUILE_VER}
@@ -44,8 +42,6 @@ post-extract:
 post-patch:
 	@cd ${WRKSRC} ; \
 	  ${REINPLACE_CMD} -e 's|<malloc\.h>|<stdlib.h>|g' ${REINPLACE_FILES}
-	@${REINPLACE_CMD} -e 's|%%X11BASE%%|${LOCALBASE}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/libguile/load.c
-	@${REINPLACE_CMD} -e 's|2.61|2.62|g' ${WRKSRC}/aclocal.m4
+	@${REINPLACE_CMD} -e 's|2.63|%%AUTOCONF_VERSION%%|g' ${WRKSRC}/aclocal.m4
 
 .include <bsd.port.post.mk>
