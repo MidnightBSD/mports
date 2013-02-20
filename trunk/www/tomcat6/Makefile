@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.10 2012/06/15 03:17:43 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat6/Makefile,v 1.11 2013/01/17 03:39:42 laffer1 Exp $
 
 PORTNAME=	apache-tomcat
 PORTVERSION=	6.0.36
@@ -11,7 +11,7 @@ COMMENT=	Open-source Java web server by Apache, 6.x branch
 LICENSE=	apache2
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	YES
 
 USE_RC_SUBR=	tomcat6.sh
