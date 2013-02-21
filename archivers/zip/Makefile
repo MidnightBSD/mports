@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/archivers/zip/Makefile,v 1.3 2008/10/02 00:59:58 laffer1 Exp $
+# $MidnightBSD: mports/archivers/zip/Makefile,v 1.4 2009/12/25 17:55:25 laffer1 Exp $
 
 PORTNAME=	zip
 PORTVERSION=	3.0
@@ -15,6 +15,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}30
 MAKEFILE=	unix/Makefile
 ALL_TARGET=	generic
 MAN1=		zip.1 zipcloak.1 zipnote.1 zipsplit.1
+
+MAKE_JOBS_SAFE=	yes
 
 do-install:
 .for file in zip zipcloak zipnote zipsplit
