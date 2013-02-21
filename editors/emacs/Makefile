@@ -1,10 +1,4 @@
-# New ports collection makefile for:	GNU emacs
-# Date created:		11 October 2001
-# Whom:			MANTANI Nobutaka <nobutaka@nobutaka.com>
-#
-# $MidnightBSD: mports/editors/emacs/Makefile,v 1.11 2010/12/11 18:30:34 laffer1 Exp $
-# $FreeBSD: ports/editors/emacs/Makefile,v 1.71 2007/07/24 15:10:13 rafan Exp $
-#
+# $MidnightBSD: mports/editors/emacs/Makefile,v 1.12 2011/09/15 04:08:09 laffer1 Exp $
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}
@@ -12,30 +6,29 @@ PORTREVISION=	0
 CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
-DISTNAME=	${PORTNAME}-${PORTVERSION}a
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU editing macros
 LICENSE=	gpl3
 
-MAKE_JOBS_UNSAFE=	yes
+MAKE_JOBS_SAFE=	yes
 
-CONFLICTS=	emacs-19.* emacs-21.* emacs-22.* emacs-24.* \
+CONFLICTS=	emacs-19.* emacs-21.* emacs-22.* emacs-23.* \
 		xemacs-[0-9]* xemacs-devel-[0-9]* \
-		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]* \
-		emacs-nox11-[0-9]*
+		xemacs-mule-[0-9]* xemacs-devel-mule-[0-9]*
 
-EMACS_VER=	23.3
+EMACS_VER=	24.2
 GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_BZIP2=	yes
-CPPFLAGS=	"-I${LOCALBASE}/include"
-CONFIGURE_ENV+=	LDFLAGS="-L${LOCALBASE}/lib"
+USE_NCURSES=	yes
+USE_XZ=		yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--localstatedir=/var
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-MAN1=		b2m.1 ctags.1 ebrowse.1 emacs.1 emacsclient.1 etags.1 \
-		grep-changelog.1 rcs-checkin.1
+#MAN1=		ctags.1 ebrowse.1 emacs.1 emacsclient.1 etags.1 \
+#		grep-changelog.1 rcs-checkin.1
 PLIST_SUB=	EMACS_VER=${EMACS_VER}
 
 EMACS_DIRS=	${DATADIR}/${EMACS_VER}/leim ${DATADIR}/${EMACS_VER}/lisp ${DATADIR}/${EMACS_VER}/src \
@@ -44,8 +37,8 @@ EMACS_DIRS=	${DATADIR}/${EMACS_VER}/leim ${DATADIR}/${EMACS_VER}/lisp ${DATADIR}
 MAKE_ENV=	LC_ALL=C
 
 INFO=		ada-mode auth autotype calc ccmode cl dbus dired-x \
-		ebrowse ede ediff edt efaq eieio eintr elisp emacs-mime emacs epa \
-		erc eshell eudc flymake forms gnus idlwave info \
+		ebrowse ede ediff edt efaq eieio eintr elisp emacs-mime emacs-gnutls emacs epa \
+		erc ert eshell eudc flymake forms gnus idlwave info \
 		mairix-el message mh-e newsticker nxml-mode \
 		org pcl-cvs pgg rcirc reftex remember sasl sc semantic ses sieve \
 		smtpmail speedbar tramp url vip viper widget woman
@@ -150,7 +143,7 @@ LIB_DEPENDS+=	ungif.5:${PORTSDIR}/graphics/libungif
 .if defined(WITHOUT_PNG)
 CONFIGURE_ARGS+=	--without-png
 .else
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 .endif
 
 .if defined(WITHOUT_XPM)
@@ -256,7 +249,6 @@ PLIST_SUB+=	SOURCES="@comment "
 .endif
 
 pre-everything::
-	@${ECHO_MSG}
 .if !defined(WITHOUT_X11)
 	@${ECHO_MSG} "====> To disable X11 support, define: WITHOUT_X11."
 .endif

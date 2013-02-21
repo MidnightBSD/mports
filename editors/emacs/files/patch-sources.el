@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/editors/emacs/files/patch-sources.el,v 1.3 2009/12/20 20:19:17 bsam Exp $
+$FreeBSD$
 
 --- /dev/null
 +++ sources.el

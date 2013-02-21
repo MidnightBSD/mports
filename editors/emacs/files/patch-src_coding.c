@@ -1,9 +1,9 @@
 
-$FreeBSD: ports/editors/emacs/files/patch-src_coding.c,v 1.1 2011/09/07 20:20:25 ashish Exp $
+$FreeBSD$
 
 --- src/coding.c.orig
 +++ src/coding.c
-@@ -3853,8 +3853,20 @@
+@@ -3717,8 +3717,20 @@
  	      else
  		charset = CHARSET_FROM_ID (charset_id_2);
  	      ONE_MORE_BYTE (c1);
@@ -26,7 +26,7 @@ $FreeBSD: ports/editors/emacs/files/patch-src_coding.c,v 1.1 2011/09/07 20:20:25
  	      break;
  
  	    case 'O':		/* invocation of single-shift-3 */
-@@ -3867,8 +3879,20 @@
+@@ -3731,8 +3743,20 @@
  	      else
  		charset = CHARSET_FROM_ID (charset_id_3);
  	      ONE_MORE_BYTE (c1);
