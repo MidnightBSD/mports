@@ -1,13 +1,12 @@
-# $FreeBSD: ports/print/teTeX-base/Makefile,v 1.93 2006/09/09 15:11:50 hrs Exp $
-# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.5 2010/09/02 23:41:51 laffer1 Exp $
+# $MidnightBSD: mports/print/teTeX-base/Makefile,v 1.6 2012/09/09 02:37:42 laffer1 Exp $
 
 PORTNAME=	teTeX-base
 PORTVERSION=	3.0
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	print
 MASTER_SITES=	${MASTER_SITE_TEX_CTAN} \
 		ftp://ftp.ascii.co.jp/pub/TeX/ascii-ptex/dvips/:1
-MASTER_SITE_SUBDIR=	systems/unix/teTeX/3.0/distrib
+MASTER_SITE_SUBDIR=	obsolete/systems/unix/teTeX/3.0/distrib
 DISTNAME=	${TETEX_SRC}
 DIST_SUBDIR=	teTeX
 
@@ -46,8 +45,8 @@ CONFIGURE_ARGS=	--disable-multiplatform \
 		--without-xdvik --without-oxdvik
 CONFIGURE_ENV=	INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
 		INSTALL_DATA="${INSTALL_DATA}" \
-		INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
-		CFLAGS="${CFLAGS} -I${LOCALBASE}/include"
+		INSTALL_PROGRAM="${INSTALL_PROGRAM}"
+CFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
 CONFLICTS=	ja-ptex-base-[0-9]* latex2e-[0-9]* \
 		tex-[0-9]* dvips-[0-9]* xdvi-[0-9]*
 
@@ -106,7 +105,7 @@ PLIST_SUB?=
 
 .if !defined(WITHOUT_X11)
 PLIST_SUB+=	X11BITS=""
-USE_XLIB=	yes
+USE_XORG=	x11 xt
 .else
 FLAVOR+=	nox11
 CONFIGURE_ARGS+=--without-x11
@@ -139,7 +138,7 @@ PLIST_SUB+=	TEXMFDIR=${TEXMFDIR} \
 		UPDMAP_SYS=${UPDMAP_SYS} \
 		UPDMAPDIR=${UPDMAPDIR} \
 		SETENV=${SETENV}
-SUB_FILES=	pkg-install pkg-message texdoctk.wrapper updmap.wrapper
+SUB_FILES=	pkg-message texdoctk.wrapper updmap.wrapper
 SUB_LIST=	TEXMFDIR=${TEXMFDIR} \
 		TEXMFDISTDIR=${TEXMFDISTDIR} \
 		UPDMAPDIR=${UPDMAPDIR} \
