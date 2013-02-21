@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/editors/jedit/Makefile,v 1.8 2009/04/03 05:22:52 laffer1 Exp $
+# $MidnightBSD: mports/editors/jedit/Makefile,v 1.9 2011/08/21 18:14:27 laffer1 Exp $
 
 PORTNAME=	jedit
-PORTVERSION=	4.3.2
+PORTVERSION=	4.5.2
 PORTEPOCH=	1
 CATEGORIES=	editors java
 MASTER_SITES=	SF
@@ -19,9 +19,7 @@ RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper
 CONFLICTS=	jedit-4.3.p*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
-BUILD_DEPENDS+=         ${DEPEND_JAVA}
-JAVA_RUN=	jre
+JAVA_VERSION=	1.6+
 
 USE_XORG=	x11
 NO_BUILD=	yes
