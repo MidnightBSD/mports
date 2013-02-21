@@ -1,9 +1,4 @@
-# New ports collection makefile for:	Sun Linux JDK 1.6.x
-# Date created:				18 August 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.7 2012/01/27 00:59:12 laffer1 Exp $
-#
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.8 2013/02/09 01:09:18 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${DL_JDK_VERSION:S/_/./g}
@@ -37,7 +32,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	37
+JDK_REVISION=	39
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html

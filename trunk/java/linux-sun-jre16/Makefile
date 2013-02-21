@@ -1,10 +1,4 @@
-# New ports collection makefile for:	Sun Linux JRE 1.6.x
-# Date created:				5 October 2007
-# Whom:					Jung-uk Kim <jkim@FreeBSD.org>
-#
-# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.4 2012/01/27 01:00:21 laffer1 Exp $
-# $FreeBSD: ports/java/linux-sun-jre16/Makefile,v 1.1 2007/10/26 20:49:42 jkim Exp $
-#
+# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.5 2013/02/09 01:10:41 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${DL_JRE_VERSION:S/_/./g}
@@ -36,7 +30,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JRE_VERSION=	1.6.0
-JRE_REVISION=	37
+JRE_REVISION=	39
 DL_JRE_VERSION=	${JRE_VERSION}_${JRE_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
