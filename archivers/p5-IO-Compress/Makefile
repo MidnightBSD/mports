@@ -1,9 +1,7 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/p5-IO-Compress/Makefile,v 1.8 2011/08/17 12:10:00 sunpoet Exp $
-#
+# $MidnightBSD: mports/archivers/p5-IO-Compress/Makefile,v 1.1 2011/09/18 20:07:12 laffer1 Exp $
 
 PORTNAME=	IO-Compress
-PORTVERSION=	2.037
+PORTVERSION=	2.060
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PMQS
@@ -27,6 +25,7 @@ MAN3=		Compress::Zlib.3 \
 		IO::Compress::Base.3 \
 		IO::Compress::Bzip2.3 \
 		IO::Compress::Deflate.3 \
+		IO::Compress::FAQ.3 \
 		IO::Compress::Gzip.3 \
 		IO::Compress::RawDeflate.3 \
 		IO::Compress::Zip.3 \
@@ -39,4 +38,18 @@ MAN3=		Compress::Zlib.3 \
 		IO::Uncompress::RawInflate.3 \
 		IO::Uncompress::Unzip.3
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} >= 501600
+PLIST_SUB+=	EXE_FILES="@comment "
+.else
+MAN1+=		zipdetails.1
+PLIST_SUB+=	EXE_FILES=""
+.endif
+
+post-patch:
+.if ${PERL_LEVEL} >= 501600
+	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
+.endif
+
+.include <bsd.port.post.mk>

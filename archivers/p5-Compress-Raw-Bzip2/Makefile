@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.6 2009/12/25 17:28:21 laffer1 Exp $
+# $MidnightBSD: mports/archivers/p5-Compress-Raw-Bzip2/Makefile,v 1.7 2011/09/18 20:11:18 laffer1 Exp $
 
 PORTNAME=	Compress-Raw-Bzip2
-PORTVERSION=	2.037
+PORTVERSION=	2.060
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:PMQS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
