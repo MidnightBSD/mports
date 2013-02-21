@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.84 2013/01/26 16:02:16 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.85 2013/02/09 02:30:52 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -63,14 +63,10 @@ SUBDIR += spidermonkey
 SUBDIR += steptalk
 SUBDIR += tcl-modules
 SUBDIR += tcl-wrapper
-SUBDIR += tcl82
 SUBDIR += tcl83
 SUBDIR += tcl84
-SUBDIR += tcl84-thread
 SUBDIR += tcl85
-SUBDIR += tcl85-thread
 SUBDIR += tcl86
-SUBDIR += tcl86-thread
 SUBDIR += vala
 SUBDIR += yabasic
 
