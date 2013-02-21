@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/editors/abiword/Makefile,v 1.10 2011/05/12 13:51:46 laffer1 Exp $
+# $MidnightBSD: mports/editors/abiword/Makefile,v 1.11 2011/09/23 02:02:29 laffer1 Exp $
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -13,7 +13,7 @@ COMMENT=	An open-source, cross-platform WYSIWYG word processor
 LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-		png.6:${PORTSDIR}/graphics/png \
+		png15:${PORTSDIR}/graphics/png \
 		wv-1.2:${PORTSDIR}/textproc/wv \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		fribidi.3:${PORTSDIR}/converters/fribidi \
@@ -53,7 +53,7 @@ CONFIGURE_ARGS+=	--enable-debug --enable-symbols
 
 .if defined(WITH_BOOST)
 CONFIGURE_ARGS+=	--with-boost
-LIB_DEPENDS+=		boost_thread.4:${PORTSDIR}/devel/boost-python
+LIB_DEPENDS+=		boost_system:${PORTSDIR}/devel/boost-libs
 .else
 CONFIGURE_ARGS+=	--without-boost
 .endif
