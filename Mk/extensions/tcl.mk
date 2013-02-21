@@ -1,7 +1,7 @@
-# -*- mode: Makefile; tab-width: 4; -*-
+# -*- tab-width: 4; -*-
 # ex: ts=4
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/Mk/extensions/tcl.mk,v 1.4 2010/01/01 17:12:17 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.tcl.mk,v 1.11 2009/07/07 07:34:31 mm Exp $
 #
 
@@ -13,7 +13,7 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 # USE_TCL		- Add library dependency on Tcl. If no version is given by the maintainer
 #			  via the port or by the user via defined variable try to find the highest
 #			  stable installed version.
-#			  Available values: yes 86+ 85+ 84+ 83+ 82+ 85 84 83 82
+#			  Available values: yes 86+ 85+ 84+ 83+ 85 84 83
 #			  NOTE: - default value 85 is used in case of USE_TCL=yes
 #
 # USE_TCL_BUILD		- Add buildtime dependency on Tcl (tclsh).
@@ -39,20 +39,13 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 #			  NOTE: INVALID_TCL_VER takes precedence
 # <UNIQUENAME>_WITH_TCL_VER	- User defined port specific variable to set Tcl version
 ##
-# USE_TCL_THREADS	- If defined, Tcl a threaded version of tcl is required.
-#			  NOTE: support for threaded builds starts with version 84
-# USE_TCL_NO_THREADS	- If defined, port may not use a threaded Tcl, even if requested via
-#			  USE_TCL_THREADS or WITH_TCL_THREADS
-# WITH_TCL_THREADS	- User defined variable to use Tcl with threads
-# <UNIQUENAME>_WITH_TCL_THREADS	- User defined port specific variable to require Tcl with threads
-##
-# TCL_VER		- Detected by tcl.mk. Contains the version number of Tcl to be used.
+# TCL_VER		- Detected by bsd.tcl.mk. Contains the version number of Tcl to be used.
 #
 ##
 # USE_TK		- Add library dependency on Tk. If no version is given by the maintainer
 #			  via the port or by the user via defined variable try to find the highest
 #			  stable installed version.
-#			  Avaliable values: yes 86+ 85+ 84+ 83+ 82+ 85 84 83 82
+#			  Avaliable values: yes 86+ 85+ 84+ 83+ 85 84 83
 #			  NOTE: - overrides USE_TCL
 #			        - default value 85 is used in case of USE_TK=yes
 #
@@ -80,14 +73,6 @@ Tcl_Include_MAINTAINER=		ports@MidnightBSD.org
 # <UNIQUENAME>_WITH_TK_VER	- User defined port specific variable to set Tk version
 #			  NOTE: overrides <UNIQUENAME>_WITH_TCL_VER.
 ##
-# USE_TK_THREADS	- Tk has to obey tcl in threads. A threaded Tk requires
-#			  a threaded Tcl and a non-threaded Tcl requires a non-threaded Tk.
-#			  This variable defines USE_TCL_THREADS
-# USE_TK_NO_THREADS	- If defined, port may not use a threaded Tk, even if requested via
-#			  USE_TK_THREADS or WITH_TK_THREADS. Defines USE_TCL_NO_THREADS
-# WITH_TK_THREADS	- User defined variable to use Tk with threads
-# <UNIQUENAME>_WITH_TK_THREADS	- User defined port specific variable to require Tk with threads
-###
 # TCL_LIBDIR		- Path where tcl libraries can be found
 #
 # TCL_INCLUDEDIR	- Path where tcl C headers can be found
@@ -143,24 +128,6 @@ _TK_BUILD_DEPENDS=	yes
 . endif
 .endif
 
-# Set WITH_TCL_THREADS or WITH_TK_THREADS if port-specific define
-. if defined(${UNIQUENAME:U:S,-,_,}_WITH_TCL_THREADS)
-WITH_TCL_THREADS=	yes
-. endif
-. if defined(${UNIQUENAME:U:S,-,_,}_WITH_TK_THREADS)
-WITH_TK_THREADS=	yes
-.endif
-
-# If a threaded Tcl or Tk is requested we require a threaded Tcl
-. if !defined(USE_TK_NO_THREADS) && !defined(USE_TCL_NO_THREADS)
-.  if defined(USE_TCL_THREADS) || defined(USE_TK_THREADS)
-USE_TCL_THREADS=	yes
-.  endif
-.  if defined(WITH_TK_THREADS)
-WITH_TCL_THREADS=	${WITH_TK_THREADS}
-.  endif
-. endif
-
 # Override the global WITH_TCL_VER or WITH_TK_VER with the
 # port specific <UNIQUENAME>_WITH_TCL_VER or <UNIQUENAME>_WITH_TK_VER
 . if defined(${UNIQUENAME:U:S,-,_,}_WITH_TCL_VER)
@@ -192,13 +159,10 @@ INVALID_TCL_VER:=	${INVALID_TK_VER}
 . if defined(USE_TCL)
 
 _TCL_DEFAULT_VERSION=		85
-_TCL_VERSIONS=			86 85 84 83 82
-_TCL_THREADS_VERSIONS=		86 85 84
-_TCL_RANGE_VERSIONS= 		86+ 85+ 84+ 83+ 82+
-_TCL_THREADS_RANGE_VERSIONS=	86+ 85+ 84+
+_TCL_VERSIONS=			86 85 84 83
+_TCL_RANGE_VERSIONS= 		86+ 85+ 84+ 83+
 
 # For specifying [85, 84, ..]+
-_TCL_82P=	82 83 84 85 86
 _TCL_83P=	83 84 85 86
 _TCL_84P=	84 85 86
 _TCL_85P=	85 86
@@ -208,47 +172,6 @@ _TCL_86P=	86
 .  if ${USE_TCL} == "yes"
 USE_TCL=	${_TCL_DEFAULT_VERSION}
 .  endif
-
-# Support for obsolete 84-thread and 85-thread definitions
-.  if ${USE_TCL} == "84-thread" || ${USE_TCL} == "85-thread"
-USE_TCL:=		${USE_TCL:S/-thread//}
-USE_TCL_THREADS=	yes
-.  endif
-
-# Ignore WITH_TCL_THREADS if USE_TCL is
-# not in _TCL_THREADS_VERSIONS or _TCL_RANGE_VERSIONS
-.  if defined(WITH_TCL_THREADS)
-.   for ver in ${_TCL_THREADS_VERSIONS} ${_TCL_RANGE_VERSIONS}
-.    if ${USE_TCL} == "${ver}"
-USE_TCL_THREADS=	yes
-.    endif
-.   endfor
-.  endif
-
-# Check if a build with threads is required
-.  if !defined(USE_TCL_NO_THREADS) && !defined(USE_TK_NO_THREADS) && !defined(BUILDING_TCL_THREADS) && !defined(BUILDING_TK_THREADS)
-.   if defined(USE_TCL_THREADS)
-_TCL_THREADS_PORT=	-thread
-_TCL_THREADS_SUFFIX=	-threads
-
-# Threaded Tcl/Tk accepts only ranges starting with 84+
-# reset the range to 84+ if the value is lower
-.    for ver in ${_TCL_RANGE_VERSIONS}
-.     if ${USE_TCL} == "${ver}"
-_TCL_T_BAD_RANGE=	yes
-.      for tver in ${_TCL_THREADS_RANGE_VERSIONS}
-.       if ${USE_TCL} == "${tver}"
-_TCL_T_BAD_RANGE=	no
-.       endif
-.      endfor
-.     endif
-.    endfor
-.    if defined(_TCL_T_BAD_RANGE) && ${_TCL_T_BAD_RANGE} == "yes"
-USE_TCL=	84+
-.    endif
-
-.   endif
-. endif
 
 _TCL_VER=	no
 
@@ -345,38 +268,26 @@ _FOUND=		yes
 .   endif
 .  endfor
 
-.  if ${_FOUND} == "yes" && defined(USE_TCL_THREADS)
-_FOUND=		no
-_THREADED_NOT_FOUND=	yes
-.   for ver in ${_TCL_THREADS_VERSIONS}
-.    if ${USE_TCL} == "${ver}" && ${_FOUND} == "no"
-_FOUND=		yes
-.    endif
-.   endfor
-.  endif
-
 .  if ${_FOUND} == "yes"
 
 TCL_INCLUDEDIR=		${LOCALBASE}/include/tcl${TCL_VER}
-TCL_LIBDIR=		${LOCALBASE}/lib/tcl${TCL_VER}${_TCL_THREADS_SUFFIX}
-TCLSH=			${LOCALBASE}/bin/tclsh${TCL_VER}${_TCL_THREADS_SUFFIX}
+TCL_LIBDIR=		${LOCALBASE}/lib/tcl${TCL_VER}
+TCLSH=			${LOCALBASE}/bin/tclsh${TCL_VER}
 
 # Add dependencies
 .   if !defined(_TK_ONLY)
 .    if !defined(_TCL_RUN_DEPENDS) && !defined(_TCL_BUILD_DEPENDS)
-LIB_DEPENDS+=	tcl${USE_TCL}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/lang/tcl${USE_TCL}${_TCL_THREADS_PORT}
+LIB_DEPENDS+=	tcl${USE_TCL}:${PORTSDIR}/lang/tcl${USE_TCL}
 .    else
 .     if defined(_TCL_BUILD_DEPENDS)
-BUILD_DEPENDS+=	tclsh${TCL_VER}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/lang/tcl${USE_TCL}${_TCL_THREADS_PORT}
+BUILD_DEPENDS+=	tclsh${TCL_VER}:${PORTSDIR}/lang/tcl${USE_TCL}
 .     endif
 .     if defined(_TCL_RUN_DEPENDS)
-RUN_DEPENDS+=	tclsh${TCL_VER}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/lang/tcl${USE_TCL}${_TCL_THREADS_PORT}
+RUN_DEPENDS+=	tclsh${TCL_VER}:${PORTSDIR}/lang/tcl${USE_TCL}
 .     endif
 .    endif
 .   endif
 
-.  elif defined(_THREADED_NOT_FOUND) && !defined(IGNORE)
-IGNORE=		the defined version of Tcl/Tk does not support threads: ${USE_TCL}
 .  elif !defined(IGNORE)
 IGNORE=		unknown Tcl/Tk version specified: ${USE_TCL}
 .  endif
@@ -391,19 +302,19 @@ USE_TK:=	${USE_TCL}
 TK_VER:=	${USE_TCL:S/8/8./}
 
 .   if !defined(_TK_RUN_DEPENDS) && !defined(_TK_BUILD_DEPENDS)
-LIB_DEPENDS+=	tk${USE_TK}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/x11-toolkits/tk${USE_TK}${_TCL_THREADS_PORT}
+LIB_DEPENDS+=	tk${USE_TK}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
 .   else
 .    if defined(_TK_BUILD_DEPENDS)
-BUILD_DEPENDS+=	wish${TK_VER}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/x11-toolkits/tk${USE_TK}${_TCL_THREADS_PORT}
+BUILD_DEPENDS+=	wish${TK_VER}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
 .    endif
 .    if defined(_TK_RUN_DEPENDS)
-RUN_DEPENDS+=	wish${TK_VER}${_TCL_THREADS_SUFFIX}:${PORTSDIR}/x11-toolkits/tk${USE_TK}${_TCL_THREADS_PORT}
+RUN_DEPENDS+=	wish${TK_VER}:${PORTSDIR}/x11-toolkits/tk${USE_TK}
 .    endif
 .   endif
 
 TK_INCLUDEDIR=		${LOCALBASE}/include/tk${TK_VER}
-TK_LIBDIR=		${LOCALBASE}/lib/tk${TK_VER}${_TCL_THREADS_SUFFIX}
-WISH=			${LOCALBASE}/bin/wish${TK_VER}${_TCL_THREADS_SUFFIX}
+TK_LIBDIR=		${LOCALBASE}/lib/tk${TK_VER}
+WISH=			${LOCALBASE}/bin/wish${TK_VER}
 
 .  endif # defined(USE_TK)
 . endif # defined(USE_TCL)
