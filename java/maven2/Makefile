@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/java/maven2/Makefile,v 1.4 2012/02/28 02:19:22 laffer1 Exp $
+# $MidnightBSD: mports/java/maven2/Makefile,v 1.5 2013/02/21 02:45:47 laffer1 Exp $
 
 PORTNAME=	maven2
 DISTVERSION=	2.2.1
-CATEGORIES=	devel java
+CATEGORIES=	java devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
 MASTER_SITE_SUBDIR=	maven/binaries
 DISTNAME=	apache-maven-${DISTVERSION}-bin
