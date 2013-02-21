@@ -1,10 +1,4 @@
-# New ports collection makefile for:	X-Emacs Packages
-# Date created:		24 Apr 1999
-# Whom:			Michael Elbel (me@FreeBSD.org)
-#
-# $MidnightBSD: mports/editors/xemacs-packages/Makefile,v 1.3 2008/06/11 02:28:59 laffer1 Exp $
-# $FreeBSD: ports/editors/xemacs-packages/Makefile,v 1.58 2007/06/10 18:36:27 anray Exp $
-#
+# $MidnightBSD: mports/editors/xemacs-packages/Makefile,v 1.4 2008/08/19 17:50:58 laffer1 Exp $
 
 PORTNAME=	xemacs-packages
 PORTVERSION=	14.2
