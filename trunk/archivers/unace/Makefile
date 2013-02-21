@@ -1,11 +1,4 @@
-# New ports collection makefile for: unace
-# URL: http://members.aol.com/mlemke6413/ace.html
-# Date created:         23 February 1999
-# Whom:                 Joao Carlos Mendes Luis <jonny@jonny.eng.br>
-#
-# $MidnightBSD: mports/archivers/unace/Makefile,v 1.2 2008/03/12 01:57:39 laffer1 Exp $
-# $FreeBSD: ports/archivers/unace/Makefile,v 1.10 2006/08/12 13:06:26 erwin Exp $
-#
+# $MidnightBSD: mports/archivers/unace/Makefile,v 1.3 2009/12/25 17:52:13 laffer1 Exp $
 
 PORTNAME=	unace
 PORTVERSION=	1.2b
@@ -18,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Extract, view & test ACE archives
 LICENSE=	unknown
 
-MAKE_JOBS_UNSAFE=yes
+MAKE_JOBS_UNSAFE=	yes
 USE_GMAKE=	yes
 ALL_TARGET=	clean unace
 PLIST_FILES=	bin/unace
