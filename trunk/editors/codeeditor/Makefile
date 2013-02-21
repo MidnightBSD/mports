@@ -2,7 +2,7 @@
 # Date created:         3 Dec 2006
 # Whom:                 dirk.meyer@dinoex.sub.org
 #
-# $MidnightBSD: mports/editors/codeeditor/Makefile,v 1.3 2008/05/04 10:23:43 crash Exp $
+# $MidnightBSD: mports/editors/codeeditor/Makefile,v 1.4 2011/09/23 02:04:57 laffer1 Exp $
 # $FreeBSD: ports/editors/codeeditor/Makefile,v 1.2 2007/01/31 18:17:58 dinoex Exp $
 #
 
@@ -25,5 +25,15 @@ USE_GNUSTEP_INSTALL=	yes
 
 WRKSRC=		${WRKDIR}/CodeEditor
 MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
+
+post-patch:
+	${REINPLACE_CMD} -e 's| bool| mybool|' -e 's|(bool|(mybool|' \
+		${WRKSRC}/CodeEditorView/CodeEditorViewPreference.h \
+		${WRKSRC}/CodeEditorView/CodeEditorViewPreference.m \
+		${WRKSRC}/CodeEditorView/BlockHandler.h \
+		${WRKSRC}/CodeEditorView/CodeEditorView.h \
+		${WRKSRC}/CodeEditorView/CodeEditorView.m \
+		${WRKSRC}/CodeEditor/DocumentController.m \
+		${WRKSRC}/LanguageHandler/ObjCHandler/ObjCBlockHandler.m
 
 .include <bsd.port.mk>
