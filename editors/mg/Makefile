@@ -1,15 +1,9 @@
-# New ports collection makefile for:	mg
-# Date created:			14 May 2001
-# Whom:				Dima Dorfman <dima@unixfreak.org>
-#
-# $MidnightBSD: mports/editors/mg/Makefile,v 1.4 2009/05/18 21:39:12 crash Exp $
-# $FreeBSD: ports/editors/mg/Makefile,v 1.9 2006/11/19 12:28:48 miwi Exp $
-#
+# $MidnightBSD: mports/editors/mg/Makefile,v 1.5 2010/04/26 13:12:12 laffer1 Exp $
 
 PORTNAME=	mg
-PORTVERSION=	20090107
+PORTVERSION=	20110905
 CATEGORIES=	editors
-MASTER_SITES=	http://www.han.dds.nl/software/mg/
+MASTER_SITES=	http://homepage.boetes.org/software/mg/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A small, fast Emacs-like editor
@@ -17,16 +11,21 @@ LICENSE=	publicdom
 
 MAN1=	mg.1
 MANCOMPRESSED=	no
-
+PORTDOCS=	README tutorial
 HAS_CONFIGURE=	yes
+
+pre-configure:
+	@${REINPLACE_CMD} -e 's|-Wno-error=unused-but-set-variable||g' \
+		-e '/^CC=/d' -e 's|-g -Wall|-Wall|' -e 's|/usr/local|${PREFIX}|' \
+		${WRKSRC}/Makefile.in
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
 	${INSTALL_MAN}  ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
 .if !defined(NOPORTDOCS)
 	${MKDIR} ${DOCSDIR}
-.for FILE in README tutorial
-	${INSTALL_DATA} ${WRKSRC}/${FILE} ${DOCSDIR}
+.for f in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
 .endfor
 .endif
 
