@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/editors/nano/Makefile,v 1.12 2010/12/04 19:16:42 crash Exp $
+# $MidnightBSD: mports/editors/nano/Makefile,v 1.13 2011/03/06 18:56:12 laffer1 Exp $
 
 PORTNAME=	nano
 PORTVERSION=	2.2.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
-		http://www.ewtoo.org/~astyanax/nano/dist/v2.2/ \
 		${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
@@ -15,9 +15,8 @@ LICENSE=	gpl3
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--infodir=${PREFIX}/${INFO_PATH} --mandir=${PREFIX}/man \
 		--docdir=${DOCSDIR}
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_JOBS_SAFE=	yes
 
 .if !defined(WITHOUT_NLS)
