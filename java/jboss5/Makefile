@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/java/jboss5/Makefile,v 1.1 2011/12/24 03:39:30 laffer1 Exp $
-# $FreeBSD: ports/java/jboss5/Makefile,v 1.52 2011/03/21 15:02:21 fluffy Exp $
-#
+# $MidnightBSD: mports/java/jboss5/Makefile,v 1.2 2013/02/09 01:50:46 laffer1 Exp $
 
 PORTNAME=	jboss
 PORTVERSION=	5.1.0.GA
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	SF/${PORTNAME}/JBoss/JBoss-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -25,7 +24,7 @@ MANUAL_PACKAGE_BUILD=	fetches files in build phase
 
 MAKE_ARGS=	-buildfile build/build.xml
 
-USE_RC_SUBR=	jboss5.sh
+USE_RC_SUBR=	jboss5
 SUB_FILES=	pkg-install pkg-deinstall pkg-message
 
 PORTDATA=	*

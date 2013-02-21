@@ -3,7 +3,6 @@
 # %%APP_SHORTNAME%% startup script.
 #
 # $MidnightBSD$
-# $FreeBSD: ports/java/jboss5/files/jboss5.sh.in,v 1.3 2010/03/27 00:13:09 dougb Exp $
 #
 
 # PROVIDE: %%APP_SHORTNAME%%
@@ -22,7 +21,7 @@
 %%APP_SHORTNAME%%_logdir="%%LOG_DIR%%"
 
 name="%%APP_SHORTNAME%%"
-rcvar=`set_rcvar`
+rcvar=%%APP_SHORTNAME%%_enable
 
 load_rc_config $name
 
