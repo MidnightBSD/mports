@@ -3,7 +3,7 @@
 #
 # bsd.java.mk - Support for Java-based ports.
 #
-# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.9 2013/02/09 01:31:29 laffer1 Exp $ 
+# $MidnightBSD: mports/Mk/extensions/java.mk,v 1.10 2013/02/10 20:53:52 laffer1 Exp $ 
 # $FreeBSD: ports/Mk/bsd.java.mk,v 1.71 2006/04/24 18:27:45 glewis Exp $
 #
 
@@ -124,7 +124,6 @@ Java_Include_MAINTAINER=	ports@MidnightBSD.org
 #-------------------------------------------------------------------------------
 # Stage 1: Define constants
 #
-
 # System-global directories
 # NB: If the value of JAVALIBDIR is altered here it must also be altered
 #	  in java/javavmwrapper/Makefile.
@@ -167,7 +166,7 @@ _JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6_INFO=		PORT=java/jdk16					HOME=${LOCALBASE}/j
 _JAVA_PORT_LINUX_SUN_JDK_1_6_INFO=			PORT=java/linux-sun-jdk16		HOME=${LOCALBASE}/linux-sun-jdk1.6.0 \
 											VERSION=1.6.0	OS=linux	VENDOR=sun
 _JAVA_PORT_LINUX_SUN_JDK_1_7_INFO=			PORT=java/linux-sun-jdk17		HOME=${LOCALBASE}/linux-sun-jdk1.7.0 \
-											VERSION=1.7.0   OS=linux        VENDOR=sun
+											VERSION=1.7.0	OS=linux	VENDOR=sun
 # Verbose description for each VENDOR
 _JAVA_VENDOR_freebsd=		"FreeBSD Foundation"
 _JAVA_VENDOR_bsdjava=		"BSD Java Porting Team"
@@ -196,7 +195,7 @@ __JAVA_PORTS_ALL=	JAVA_PORT_NATIVE_FREEBSD_JDK_1_6 \
 					JAVA_PORT_NATIVE_OPENJDK_JDK_1_6 \
 					JAVA_PORT_NATIVE_BSDJAVA_JDK_1_6 \
 					JAVA_PORT_LINUX_SUN_JDK_1_7 \
-					JAVA_PORT_LINUX_SUN_JDK_1_6 \
+					JAVA_PORT_LINUX_SUN_JDK_1_6
 _JAVA_PORTS_ALL=	${JAVA_PREFERRED_PORTS} \
 					${_JAVA_PREFERRED_PORTS} \
 					${__JAVA_PORTS_ALL}
@@ -266,7 +265,7 @@ JAVA_RUN=	jre
 .		undef _JAVA_PORTS_INSTALLED
 .		undef _JAVA_PORTS_POSSIBLE
 .		if defined(JAVA_VERSION)
-_JAVA_VERSION=	${JAVA_VERSION:S/1.5 1.6+/:S/1.6+/1.6 1.7+/:S/1.7+/1.7/}
+_JAVA_VERSION=	${JAVA_VERSION:S/1.5/1.6/:S/1.5+/1.6+/:S/1.6+/1.6 1.7+/:S/1.7+/1.7/}
 .		else
 _JAVA_VERSION=	${__JAVA_VERSION_LIST}
 .		endif
