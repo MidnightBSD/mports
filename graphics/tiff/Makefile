@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.16 2012/03/11 03:39:43 laffer1 Exp $
+# $MidnightBSD: mports/graphics/tiff/Makefile,v 1.17 2012/09/09 01:40:10 laffer1 Exp $
 
 PORTNAME=	tiff
-PORTVERSION=	4.0.1
+PORTVERSION=	4.0.3
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://download.osgeo.org/libtiff/
@@ -10,15 +10,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
 LICENSE=	bsd2
 
-LIB_DEPENDS=	jpeg.11:${PORTSDIR}/graphics/jpeg \
-		jbig.1:${PORTSDIR}/graphics/jbigkit
+LIB_DEPENDS=	jpeg:${PORTSDIR}/graphics/jpeg \
+		jbig:${PORTSDIR}/graphics/jbigkit
 
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 			--with-jpeg-lib-dir=${LOCALBASE}/lib
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
-CONFIGURE_TARGET=
 
 .if defined(WITH_X11) && !defined(WITHOUT_X11)
 USE_XORG=	sm ice xmu xi x11
@@ -34,9 +32,11 @@ MAN1=	bmp2tiff.1 tiff2pdf.1 fax2ps.1 fax2tiff.1 gif2tiff.1 pal2rgb.1 \
 	thumbnail.1 tiff2bw.1 tiff2ps.1 tiff2rgba.1 tiffcmp.1 tiffcp.1 \
 	tiffcrop.1 tiffdither.1 tiffdump.1 tiffgt.1 tiffinfo.1 tiffmedian.1 \
 	tiffset.1 tiffsplit.1 tiffsv.1
-MAN3=	TIFFClose.3tiff TIFFDataWidth.3tiff TIFFError.3tiff TIFFFlush.3tiff \
-	TIFFGetField.3tiff TIFFOpen.3tiff TIFFPrintDirectory.3tiff \
-	TIFFRGBAImage.3tiff TIFFReadDirectory.3tiff \
+MAN3=	TIFFClose.3tiff TIFFDataWidth.3tiff TIFFError.3tiff \
+	TIFFFieldDataType.3tiff TIFFFieldName.3tiff TIFFFieldPassCount.3tiff \
+	TIFFFieldReadCount.3tiff TIFFFieldTag.3tiff TIFFFieldWriteCount.3tiff \
+	TIFFFlush.3tiff TIFFGetField.3tiff TIFFOpen.3tiff \
+	TIFFPrintDirectory.3tiff TIFFRGBAImage.3tiff TIFFReadDirectory.3tiff \
 	TIFFReadEncodedStrip.3tiff TIFFReadEncodedTile.3tiff \
 	TIFFReadRGBAImage.3tiff TIFFReadRGBAStrip.3tiff \
 	TIFFReadRGBATile.3tiff TIFFReadRawStrip.3tiff TIFFReadRawTile.3tiff \
@@ -121,5 +121,8 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/html/images/*.gif ${DOCSDIR}/images/
 	${INSTALL_DATA} ${WRKSRC}/html/man/*.html ${DOCSDIR}/man/
 .endif
+
+regression-test: build
+	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} check)
 
 .include <bsd.port.mk>
