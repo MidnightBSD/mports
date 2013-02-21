@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/maven2/Makefile,v 1.3 2011/12/24 04:32:25 laffer1 Exp $
+# $MidnightBSD: mports/java/maven2/Makefile,v 1.4 2012/02/28 02:19:22 laffer1 Exp $
 
 PORTNAME=	maven2
 DISTVERSION=	2.2.1
@@ -14,7 +14,7 @@ LICENSE=	apache2
 RUN_DEPENDS=	mvn:${PORTSDIR}/java/maven-wrapper
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 SUB_FILES=	m2.sh
