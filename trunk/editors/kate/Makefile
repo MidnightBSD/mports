@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/editors/kate/Makefile,v 1.2 2012/02/16 15:56:51 ashish Exp $
+# $MidnightBSD: mports/editors/kate/Makefile,v 1.1 2012/03/04 19:01:54 laffer1 Exp $
 
 PORTNAME=	kate
 PORTVERSION=	${KDE4_VERSION}
