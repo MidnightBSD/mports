@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/editors/joe/Makefile,v 1.10 2010/04/26 12:58:03 laffer1 Exp $
+# $MidnightBSD: mports/editors/joe/Makefile,v 1.11 2011/09/23 02:11:24 laffer1 Exp $
 
 PORTNAME=	joe
 PORTVERSION=	3.7
@@ -19,7 +19,6 @@ USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_NCURSES=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib -liconv"
 
