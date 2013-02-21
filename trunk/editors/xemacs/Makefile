@@ -1,26 +1,29 @@
-# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.14 2010/09/04 15:57:24 laffer1 Exp $
+# $MidnightBSD: mports/editors/xemacs/Makefile,v 1.15 2011/02/02 20:19:26 laffer1 Exp $
 
 PORTNAME=	xemacs
 PORTVERSION=	${XEMACS_VER}
-PORTREVISION=	4
-CATEGORIES+=	editors
+PORTREVISION=	5
+CATEGORIES=	editors
 MASTER_SITES=	${MASTER_SITE_XEMACS}
 MASTER_SITE_SUBDIR=	xemacs-${XEMACS_REL}
 DISTNAME=	xemacs-${XEMACS_VER}
 DIST_SUBDIR=	xemacs
 
 MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	This port tracks the stable version of the XEmacs text editor
+COMMENT=	This port tracks the stable version of the XEmacs text editor
 LICENSE=	gpl2
 
 CONFLICTS=	emacs-19.* emacs-21.* \
 		xemacs-devel-[0-9]* 
+
+MAKE_JOBS_SAFE=	yes
 
 XEMACS_REL=	21.4
 XEMACS_VER=	21.4.22
 XEMACS_ARCH=	${CONFIGURE_TARGET}
 
 USE_BZIP2=	yes
+USE_CSTD=	gnu89
 WANT_GNOME=	yes
 STRIP=
 USE_AUTOTOOLS=	autoconf213
@@ -42,8 +45,7 @@ FAKE_OPTS=	prefixhack
 
 SKIP_FAKE_CHECK=	bin/xemacs-${XEMACS_VER} 
 
-PLIST_SUB=	XEMACS_VER=${XEMACS_VER} XEMACS_ARCH=${XEMACS_ARCH} \
-		LOCALBASE=${LOCALBASE} X11BASE=${X11BASE}
+PLIST_SUB+=	XEMACS_VER=${XEMACS_VER} XEMACS_ARCH=${XEMACS_ARCH}
 
 .include <bsd.port.pre.mk>
 
@@ -66,19 +68,23 @@ CONFIGURE_ARGS+=	--with-ldap
 CONFIGURE_ARGS+=	--with-ldap=no
 .endif
 
+.if defined(WITH_POSTGRES)
+USE_PGSQL=	yes
+CONFIGURE_ARGS+=	--with-postgresql
+.else
+CONFIGURE_ARGS+=	--without-postgresql
+.endif
+
 .if !defined(WITHOUT_XEMACS_PACKAGES)
 RUN_DEPENDS+=	${LOCALBASE}/lib/xemacs/xemacs-packages/etc/enriched.doc:${PORTSDIR}/editors/xemacs-packages
 .endif
 .if !defined(WITHOUT_X11)
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
 		tiff.4:${PORTSDIR}/graphics/tiff
 CONFIGURE_ARGS+=	--with-png --with-jpeg --with-tiff
-USE_XORG=	xpm x11 xaw
-BUILD_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/xbitmaps.pc:${PORTSDIR}/x11/xbitmaps
-
-MAKE_JOBS_SAFE=  yes
-
+USE_XORG=	xpm x11 xbitmaps xaw
+CFLAGS+=	-I${LOCALBASE}/include/libpng15
 WITH_SCROLLBARS=	--with-scrollbars=athena
 WITH_DIALOGS=	--with-dialogs=athena
 WITH_WIDGETS=	--with-widgets=athena
@@ -122,13 +128,13 @@ WITH_OFFIX?=	--with-offix=no
 .endif
 
 # fix .so references in a few man pages
-pre-configure::
+pre-configure:
 .for f in etc/ctags.1 etc/gnuattach.1 etc/gnuclient.1 etc/gnudoit.1
 	@${SED} -e 's/\.1/&.gz/' ${WRKSRC}/${f} > ${WRKDIR}/tmp_zot
 	@${MV} ${WRKDIR}/tmp_zot ${WRKSRC}/${f}
 .endfor
 
-post-install::
+post-install:
 .for f in b2m ctags ellcc etags gnuclient xemacs-${XEMACS_VER}
 	${STRIP_CMD} ${PREFIX}/bin/${f}
 .endfor
