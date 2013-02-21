@@ -1,17 +1,10 @@
-# New ports collection makefile for:	manedit
-# Date created:				9 February 2001
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/editors/manedit/Makefile,v 1.2 2008/05/16 19:44:39 crash Exp $
-# $FreeBSD: ports/editors/manedit/Makefile,v 1.20 2006/09/02 15:57:58 garga Exp $
-#
+# $MidnightBSD: mports/editors/manedit/Makefile,v 1.3 2010/04/26 13:11:18 laffer1 Exp $
 
 PORTNAME=	manedit
 PORTVERSION=	0.8.1
 PORTREVISION=	2
 CATEGORIES=	editors
-MASTER_SITES=	http://wolfpack.twu.net/users/wolfpack/ \
-		http://distro.ibiblio.org/pub/linux/distributions/amigolinux/download/Applications/Editors/manedit-0.8.1/
+MASTER_SITES=	http://distro.ibiblio.org/pub/linux/distributions/amigolinux/download/Applications/Editors/manedit-0.8.1/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A UNIX manual page editor and viewer
