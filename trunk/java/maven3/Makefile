@@ -1,5 +1,4 @@
-# $FreeBSD: ports/devel/maven3/Makefile,v 1.4 2011/10/02 09:22:50 hq Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/java/maven3/Makefile,v 1.1 2012/02/28 02:17:44 laffer1 Exp $
 
 PORTNAME=	maven3
 DISTVERSION=	3.0.3
@@ -15,7 +14,7 @@ LICENSE=	apache2
 RUN_DEPENDS=	mvn:${PORTSDIR}/java/maven-wrapper
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 WRKSRC=		${WRKDIR}/apache-maven-${DISTVERSION}
