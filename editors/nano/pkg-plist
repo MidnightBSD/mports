@@ -31,9 +31,10 @@ bin/rnano
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/nano.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/nano.mo
 %%EXAMPLESDIR%%/nanorc.sample
-share/nano/awk.nanorc
 share/nano/asm.nanorc
+share/nano/awk.nanorc
 share/nano/c.nanorc
+share/nano/cmake.nanorc
 share/nano/css.nanorc
 share/nano/debian.nanorc
 share/nano/fortran.nanorc
@@ -62,6 +63,8 @@ share/nano/xml.nanorc
 @dirrm %%EXAMPLESDIR%%
 %%NLS%%@dirrmtry share/locale/rw/LC_MESSAGES
 %%NLS%%@dirrmtry share/locale/rw
+%%NLS%%%%PORTDOCS%%@dirrm %%DOCSDIR%%/fr
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%NLS%%@dirrmtry man/fr/man5
 %%NLS%%@dirrmtry man/fr/man1
 %%NLS%%@dirrmtry man/fr
