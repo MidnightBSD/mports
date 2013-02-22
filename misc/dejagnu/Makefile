@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/dejagnu/Makefile,v 1.1 2010/01/17 14:29:00 laffer1 Exp $
+# $MidnightBSD: mports/misc/dejagnu/Makefile,v 1.2 2011/05/14 17:18:52 laffer1 Exp $
 
 PORTNAME=	dejagnu
 PORTVERSION=	1.5
@@ -14,6 +14,8 @@ RUN_DEPENDS=	expect:${PORTSDIR}/lang/expect
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+
+USE_TCL=	83+
 
 MAN1=		runtest.1
 
