@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/Makefile,v 1.63 2012/02/16 19:46:12 laffer1 Exp $
+# $MidnightBSD: mports/misc/Makefile,v 1.64 2013/02/22 02:53:48 laffer1 Exp $
 
 COMMENT = Miscellaneous utilities
 
@@ -8,6 +8,7 @@ SUBDIR += compat4x
 SUBDIR += compat5x
 SUBDIR += compat6x
 SUBDIR += compat7x
+SUBDIR += compat8x
 SUBDIR += cpuid
 SUBDIR += dejagnu
 SUBDIR += dict-de
