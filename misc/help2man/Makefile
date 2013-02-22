@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.7 2012/02/28 00:56:50 laffer1 Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.8 2013/02/18 02:24:00 laffer1 Exp $
 
 PORTNAME=	help2man
-PORTVERSION=	1.40.13
+PORTVERSION=	1.41.1
 CATEGORIES=	misc
 MASTER_SITES=	GNU/${PORTNAME}
 
