@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.10 2012/03/11 18:41:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgdiplus/Makefile,v 1.11 2012/09/09 02:00:15 laffer1 Exp $
 
 PORTNAME=	libgdiplus
 PORTVERSION=	2.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://ftp.novell.com/pub/mono/sources/${PORTNAME}/
 
