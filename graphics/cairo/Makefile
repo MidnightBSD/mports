@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.20 2013/01/17 05:16:15 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.21 2013/01/17 05:27:58 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	5
+PORTREVISION=	6
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -30,6 +30,13 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	${PTHREAD_CFLAGS}
 LDFLAGS+=	${PTHREAD_LIBS}
 
+OPTIONS+=	OPENGL	"Enable OpenGL Support"	Off \
+		XCB	"Enable XCB (X C-language Binding) Support"	On \
+		GLIB	"Enable GObject Functions Feature"	On \
+		X11	"Enable X11 SUpport"	On
+
+.include <bsd.port.pre.mk>
+
 .if defined(WITHOUT_X11)
 CONFIGURE_ARGS+=--disable-xlib
 PLIST_SUB+=	X11="@comment "
@@ -38,14 +45,9 @@ USE_XORG+=	xrender
 PLIST_SUB+=	X11=""
 .endif
 
-OPTIONS+=	GL "Enable OpenGL Support" Off \
-		XCB "Enable XCB (X C-language Binding) Support" On \
-		GLIB "Enable GObject Functions Feature" On
-
-.include <bsd.port.pre.mk>
-
 .if defined(WITH_GL)
 USE_GL=		gl
+USE_XORG+=	glproto:both dri2proto:both
 CONFIGURE_ARGS+=	--enable-gl
 PLIST_SUB+=	GL=""
 .else
