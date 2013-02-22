@@ -2,17 +2,18 @@
 # Date created:		4 January 2000
 # Whom:			mwest@uct.ac.za
 #
-# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.2 2008/10/23 14:49:52 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libggi/Makefile,v 1.3 2011/06/01 01:38:02 laffer1 Exp $
 # $FreeBSD: ports/graphics/libggi/Makefile,v 1.28 2007/05/19 20:09:47 flz Exp $
 #
 
 PORTNAME=	libggi
 PORTVERSION=	2.2.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	graphics devel
 MASTER_SITES=	http://www.ggi-project.org/ftp/ggi/v2.2/ \
-		SF/ggi/ggi-core/${PORTNAME}-${PORTVERSION}
+		SF/ggi/ggi-core/${PORTNAME}-${PORTVERSION}		
+
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -27,7 +28,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS}" LDFLAGS="${PTHREAD_LIBS}"
+CPPFLAGS+=	${PTHREAD_CFLAGS}
+LDFLAGS+=	${PTHREAD_LIBS}
 
 MAN1=		cube3d.1 ggi-demo.1 ggiteleserver.1 monitest.1
 MAN3=		ggiCheckMode.3 ggiCopyBox.3 ggiCrossBlit.3 \
@@ -120,7 +122,9 @@ MLINKS=		ggi-demo.1 demo.1 \
 		- ggidev-gt0_3.3 \
 		- ggidev-le0_3.3 \
 		- ggidev-lt0_3.3
+
 CONFIGURE_ARGS=	--disable-directfb
+
 .if exists(/usr/include/dev/kgi/kgi.h)
 CONFIGURE_ARGS+=	--enable-kgi --with-extra-includes=/usr/include/dev
 .endif
