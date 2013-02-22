@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-servers/x2vnc/Makefile,v 1.5 2009/03/15 20:20:35 laffer1 Exp $
+# $MidnightBSD: mports/x11-servers/x2vnc/Makefile,v 1.6 2011/12/15 00:57:56 laffer1 Exp $
 
 PORTNAME=	x2vnc
 PORTVERSION=	1.72
@@ -11,12 +11,11 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A program to link multiple X and VNC servers together
 LICENSE=	gpl2
 
-USE_XORG=	x11 xext xrandr xxf86dga ice xinerama xrandr xrender xscrnsaver sm
-USE_GNOME=	
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
+USE_XORG=	x11 xext xrandr xxf86dga ice xinerama xrandr xrender xscrnsaver sm
 MAN1=		x2vnc.1
 PLIST_FILES=	bin/x2vnc
 
