@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.31 2013/01/17 05:01:25 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.32 2013/02/22 03:13:22 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.6
@@ -30,13 +30,14 @@ RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
+USE_PYTHON=	2.5-2.7
 MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack atk pango gdkpixbuf2 ltverhack gtk-update-icon-cache
 USE_GETTEXT=	yes
 USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
-		xcomposite
+		xcomposite xau xdmcp xproto
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes
 CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
 		-I${LOCALBASE}/include
