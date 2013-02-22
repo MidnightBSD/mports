@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.32 2013/02/22 03:13:22 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.33 2013/02/22 12:54:32 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.6
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
 		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
