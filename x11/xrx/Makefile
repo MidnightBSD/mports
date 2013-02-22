@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/xrx/Makefile,v 1.5 2011/05/07 20:36:44 laffer1 Exp $
+# $MidnightBSD: mports/x11/xrx/Makefile,v 1.6 2012/03/03 01:52:56 laffer1 Exp $
 
 PORTNAME=	xrx
 PORTVERSION=	1.0.4
@@ -6,7 +6,7 @@ CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	RX helper program
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
 USE_XORG=	x11 xt xext xtrans xproxymngproto xau xaw ice
