@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.46 2012/03/08 03:19:21 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.47 2013/02/18 13:50:08 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.3.10
-PORTREVISION?=	2
+PORTVERSION=	5.4.11
+PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
 MASTER_SITE_SUBDIR=	distributions/:release
@@ -42,7 +42,6 @@ OPTIONS=	CLI "Build CLI version" on \
 		APACHE "Build Apache module" off \
 		AP2FILTER " Use Apache 2.x filter interface (experimental)" off \
 		DEBUG "Enable debug" off \
-		SUHOSIN "Enable Suhosin protection system" on \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
 		MAILHEAD "Enable mail header patch" off \
@@ -57,17 +56,18 @@ MAN1=		php-config.1 phpize.1
 PATCH_SITES+= ${MASTER_SITE_FREEBSD_LOCAL}
 PATCH_SITE_SUBDIR=    ale
 
-.if !defined(WITHOUT_SUHOSIN)
-PATCHFILES+=	suhosin-patch-5.3.10-0.9.10.patch.gz
-PATCH_SITES+=	http://download.suhosin.org/:suhosin
-PATCH_DIST_STRIP=	-p1
-PLIST_SUB+=	SUHOSIN=""
-.else
+# broken
+#.if !defined(WITHOUT_SUHOSIN)
+#PATCHFILES+=	suhosin-patch-5.3.10-0.9.10.patch.gz
+#PATCH_SITES+=	http://download.suhosin.org/:suhosin
+#PATCH_DIST_STRIP=	-p1
+#PLIST_SUB+=	SUHOSIN=""
+#.else
 PLIST_SUB+=	SUHOSIN="@comment "
-.endif
+#.endif
 
 .if defined(WITH_MAILHEAD)
-PATCHFILES+=	php-5.3.9-mail-header.patch
+PATCHFILES+=	php-5.4.x-mail-header.patch:mail
 PATCH_SITES+=	http://choon.net/opensource/php/:mail
 .endif
 
@@ -110,6 +110,14 @@ SHORTMODNAME=	${PORTNAME}
 PLIST_SUB+=	APACHE=""
 .else
 PLIST_SUB+=	APACHE="@comment "
+.endif
+
+.if defined(WITH_EMBED)
+PHP_SAPI+=    embed
+CONFIGURE_ARGS+=--enable-embed
+PLIST_SUB+=   EMBED=""
+.else
+PLIST_SUB+=   EMBED="@comment "
 .endif
 
 .if !defined(WITH_REGEX_TYPE) || ${WITH_REGEX_TYPE} == "php"
@@ -158,6 +166,7 @@ post-patch:
 		${WRKSRC}/sapi/fpm/php-fpm.conf.in
 .endif
 
+# Work around issues with newer (>=2.64) autoconf
 pre-configure:
 	@${REINPLACE_CMD} -E 's:^((m4_)?divert)[(]([0-9]*)[)]:\1(600\3):' \
 		${WRKSRC}/configure.in `${FIND} ${WRKSRC} -name '*.m4'`

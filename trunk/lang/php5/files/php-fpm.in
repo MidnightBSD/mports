@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/lang/php5/files/php-fpm.in,v 1.1 2010/07/27 15:13:53 ale Exp $
+# $FreeBSD$
 #
 
 # PROVIDE: php-fpm
@@ -15,7 +15,7 @@
 . /etc/rc.subr
 
 name="php_fpm"
-rcvar=`set_rcvar`
+rcvar=php_fpm_enable
 
 load_rc_config "$name"
 
