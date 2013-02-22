@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/misc/findutils/Makefile,v 1.5 2011/05/14 03:41:03 laffer1 Exp $
+# $MidnightBSD: mports/misc/findutils/Makefile,v 1.6 2013/02/18 02:31:22 laffer1 Exp $
 
 PORTNAME=	findutils
-PORTVERSION=	4.5.10
+PORTVERSION=	4.5.11
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_GNU_ALPHA}
 MASTER_SITE_SUBDIR=	findutils
@@ -32,7 +32,7 @@ MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
 MAKE_JOBS_SAFE=	yes
 
 INFO=		find find-maint
-MAN1=		gfind.1 gxargs.1 glocate.1 gupdatedb.1
+MAN1=		gfind.1 gxargs.1 glocate.1 gupdatedb.1 goldfind.1
 MAN5=		glocatedb.5
 
 LOCALSTATEDIR?=	/var/db
