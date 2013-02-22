@@ -1,5 +1,5 @@
---- ./reduce.c.orig	Sun Oct 24 22:15:02 1999
-+++ ./reduce.c	Sun Apr 29 00:53:19 2007
+--- reduce.c.orig	Thu Oct 13 04:36:44 2005
++++ reduce.c	Thu Oct 13 04:37:02 2005
 @@ -178,7 +178,7 @@
  	/* get destination image */
  	depth = colorsToDepth(OutColors);

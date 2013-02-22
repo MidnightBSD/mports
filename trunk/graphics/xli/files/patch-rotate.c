@@ -1,5 +1,5 @@
---- ./rotate.c.orig	Sun Oct 24 22:15:04 1999
-+++ ./rotate.c	Sun Apr 29 00:53:19 2007
+--- rotate.c.orig	Thu Oct 13 04:39:08 2005
++++ rotate.c	Thu Oct 13 04:40:11 2005
 @@ -43,7 +43,7 @@
  	int dlinelen;		/* Length of destination line  */
  	int bit[8];		/* Array of hex values         */
