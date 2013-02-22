@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.10 2013/01/14 23:37:41 laffer1 Exp $
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.11 2013/01/15 00:10:46 laffer1 Exp $
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	304.64
+DISTVERSION?=	310.32
 PORTREVISION?=	0
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
@@ -181,8 +181,11 @@ post-install: .SILENT
 	${REINPLACE_CMD} -E 's/libGLcore/libnvidia-glcore/ ; \
 		/usr.*(glcore|tls).*so\.1$$/d' ${TMPPLIST}
 .endif
-# Some applications need this symlink (see PR ports/72877)
+.if ${NVVERSION} >= 3101900
+	${REINPLACE_CMD} -e '/libXvMCNVIDIA/d' ${TMPPLIST}
+.else # some applications need this symlink
 	${LN} -sf libXvMCNVIDIA.so.1 ${PREFIX}/lib/libXvMCNVIDIA_dynamic.so.1
+.endif
 .if ${NVVERSION} >= 1952200
 . if ${OSVERSION} > 4014
 	${REINPLACE_CMD} -e '/does not support PAE/,+1d' ${PKGMESSAGE}
