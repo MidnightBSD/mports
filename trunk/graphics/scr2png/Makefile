@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/scr2png/Makefile,v 1.1 2006/09/27 16:00:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/scr2png/Makefile,v 1.2 2009/03/21 16:10:20 laffer1 Exp $
 
 PORTNAME=	scr2png
 PORTVERSION=	1.2
@@ -22,7 +22,7 @@ post-extract:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|<gd/gd\.h>|<gd.h>|' ${WRKSRC}/scr2png.c
 
-do-install:	
+do-install:
 	@cd ${WRKSRC}; ${MAKE} BINDIR=${PREFIX}/bin SHAREDIR=${PREFIX} install
 
 .include <bsd.port.mk>
