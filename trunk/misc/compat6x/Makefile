@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/misc/compat6x/Makefile,v 1.1 2009/01/03 22:31:16 laffer1 Exp $
+# $MidnightBSD: mports/misc/compat6x/Makefile,v 1.2 2011/05/14 17:15:47 laffer1 Exp $
 
 PORTNAME=	compat6x
 PORTVERSION=	6.4.604000.200810
+PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
 		http://people.freebsd.org/~${MASTER_SITE_SUBDIR}/
@@ -35,10 +36,18 @@ USE_LDCONFIG32=	${TARGET32_DIR}
 .endif
 
 do-install:
-	@${MKDIR} ${TARGET_DIR}
+	@${MKDIR} -m 755 ${TARGET_DIR}
+.if ${OSVERSION} >= 4015
+	${RM} -f ${WRKSRC}/lib/libpthread.so.2
+	(cd ${TARGET_DIR} && ${LN} -sf libthr.so.2 libpthread.so.2)
+.endif
 	(cd ${WRKSRC}/lib && ${INSTALL_DATA} *.so.* ${TARGET_DIR})
 .if ${ARCH} == amd64
 	@${MKDIR} ${TARGET32_DIR}
+. if ${OSVERSION} >= 4015
+	${RM} -f ${WRKSRC}/lib32/libpthread.so.2
+	(cd ${TARGET32_DIR} && ${LN} -sf libthr.so.2 libpthread.so.2)
+. endif
 	(cd ${WRKSRC}/lib32 && ${INSTALL_DATA} *.so.* ${TARGET32_DIR})
 .endif
 
