@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.3 2007/10/25 04:23:48 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.4 2013/02/22 03:19:00 laffer1 Exp $
 
 PORTNAME=	ratpoison
 PORTVERSION=	1.4.2
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -12,7 +13,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
-USE_XORG=	x11
+USE_XORG=	x11 xext xinerama xtst
 GNU_CONFIGURE=	yes
 
 OPTIONS=	GDM_SUPPORT "Install session data files for GDM" off
