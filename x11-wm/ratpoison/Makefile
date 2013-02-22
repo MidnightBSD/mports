@@ -1,31 +1,27 @@
-# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.4 2013/02/22 03:19:00 laffer1 Exp $
+# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.5 2013/02/22 03:19:41 laffer1 Exp $
 
 PORTNAME=	ratpoison
-PORTVERSION=	1.4.2
-PORTREVISION=	1
+PORTVERSION=	1.4.5
 CATEGORIES=	x11-wm
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
+		http://mirror.4bit.ws/
+MASTER_SITE_SUBDIR=	ratpoison
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple window manager with no fat library dependencies
 LICENSE=	gpl2
 
-RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
-
-USE_XORG=	x11 xext xinerama xtst
+USE_XORG=	xext xinerama xtst
 GNU_CONFIGURE=	yes
 
 OPTIONS=	GDM_SUPPORT "Install session data files for GDM" off
 
 SUB_FILES=	ratpoison.desktop
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 post-patch:
-.for file in rpws allwindows.sh
-	${REINPLACE_CMD} '1s|!\(/bin/bash\)|!/usr/local\1|' ${WRKSRC}/contrib/${file}
-.endfor
+	${REINPLACE_CMD} -e 's|bash|sh|g' ${WRKSRC}/contrib/allwindows.sh
 
 .if defined (WITH_GDM_SUPPORT)
 PLIST_SUB+=	WITH_GDM=""
@@ -44,4 +40,4 @@ MAN1=		ratpoison.1
 INFO=		ratpoison
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
