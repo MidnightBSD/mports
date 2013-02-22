@@ -1,8 +1,4 @@
-# New ports collection makefile for:	patchutils
-# Date created:			Oct 11, 2008
-# Whom:				Lucas Holt
-#
-# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.1 2008/10/11 20:23:35 laffer1 Exp $
+# $MidnightBSD: mports/misc/patchutils/Makefile,v 1.2 2011/05/14 03:37:27 laffer1 Exp $
 
 PORTNAME=	patchutils
 PORTVERSION=	0.3.2
