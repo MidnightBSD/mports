@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ratpoison
-# Date created:		January 20, 2001
-# Whom:			Gergely Nagy <8@free.bsd.hu>
-#
-# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.2 2007/10/25 04:23:14 laffer1 Exp $
-# $FreeBSD: ports/x11-wm/ratpoison/Makefile,v 1.15 2007/02/04 06:43:24 rafan Exp $
-#
+# $MidnightBSD: mports/x11-wm/ratpoison/Makefile,v 1.3 2007/10/25 04:23:48 laffer1 Exp $
 
 PORTNAME=	ratpoison
 PORTVERSION=	1.4.2
@@ -18,7 +12,7 @@ LICENSE=	gpl2
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
-USE_XLIB=	yes
+USE_XORG=	x11
 GNU_CONFIGURE=	yes
 
 OPTIONS=	GDM_SUPPORT "Install session data files for GDM" off
