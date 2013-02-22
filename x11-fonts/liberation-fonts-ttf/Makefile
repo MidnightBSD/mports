@@ -1,15 +1,14 @@
-# $MidnightBSD: mports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.4 2011/05/10 13:42:42 laffer1 Exp $
-# $FreeBSD: ports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.4 2008/06/11 20:41:13 thierry Exp $
+# $MidnightBSD: mports/x11-fonts/liberation-fonts-ttf/Makefile,v 1.5 2012/03/03 23:08:37 laffer1 Exp $
 
 PORTNAME=	liberation-fonts-ttf
-PORTVERSION=	1.07.0
+PORTVERSION=	2.00.1
 PORTEPOCH=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://fedorahosted.org/releases/l/i/liberation-fonts/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Liberation fonts from Red Hat to replace MS TTF fonts
-LICENSE=	gpl2
+LICENSE=	other
 
 BUILD_DEPENDS=	mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale	\
 		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir
