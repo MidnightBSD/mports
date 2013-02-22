@@ -1,12 +1,7 @@
-# New ports collection makefile for:   libcaca
-# Date created:			11 January 2004
-# Whom:				Vincent Tantardini <vinc@FreeBSD-fr.org>
-#
-# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.7 2011/12/15 00:57:47 laffer1 Exp $
-#
+# $MidnightBSD: mports/graphics/libcaca/Makefile,v 1.8 2012/03/07 03:38:41 laffer1 Exp $
 
 PORTNAME=	libcaca
-DISTVERSION=	0.99.beta17
+DISTVERSION=	0.99.beta18
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	http://caca.zoy.org/raw-attachment/wiki/libcaca/
@@ -23,7 +18,8 @@ CONFIGURE_ARGS=	--disable-doc \
 		--enable-ncurses \
 		--disable-java \
 		--disable-csharp \
-		--disable-ruby
+		--disable-ruby \
+		--disable-python
 
 DOCS=		AUTHORS COPYING COPYING.GPL COPYING.LGPL ChangeLog NEWS \
 		NOTES README THANKS
