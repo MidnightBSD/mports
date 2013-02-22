@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/x11-fonts/liberation-fonts-ttf/pkg-plist,v 1.6 2010/12/22 18:27:05 thierry Exp $
+@comment $FreeBSD$
 %%FONTDIR%%/AUTHORS
 %%FONTDIR%%/LiberationMono-Bold.ttf
 %%FONTDIR%%/LiberationMono-BoldItalic.ttf
@@ -8,10 +8,6 @@
 %%FONTDIR%%/LiberationSans-BoldItalic.ttf
 %%FONTDIR%%/LiberationSans-Italic.ttf
 %%FONTDIR%%/LiberationSans-Regular.ttf
-%%FONTDIR%%/LiberationSansNarrow-Bold.ttf
-%%FONTDIR%%/LiberationSansNarrow-BoldItalic.ttf
-%%FONTDIR%%/LiberationSansNarrow-Italic.ttf
-%%FONTDIR%%/LiberationSansNarrow-Regular.ttf
 %%FONTDIR%%/LiberationSerif-Bold.ttf
 %%FONTDIR%%/LiberationSerif-BoldItalic.ttf
 %%FONTDIR%%/LiberationSerif-Italic.ttf
