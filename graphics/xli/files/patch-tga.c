@@ -1,5 +1,5 @@
---- ./tga.c.orig	Sun Oct 24 22:15:05 1999
-+++ ./tga.c	Sun Apr 29 00:53:19 2007
+--- tga.c.orig	Thu Oct 13 04:41:39 2005
++++ tga.c	Thu Oct 13 04:42:08 2005
 @@ -116,7 +116,7 @@
  	char colors[40];
  

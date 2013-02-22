@@ -1,5 +1,5 @@
---- ./zoom.c.orig	Mon Sep  5 01:01:30 2005
-+++ ./zoom.c	Sun Apr 29 00:53:19 2007
+--- zoom.c.orig	Thu Oct 13 04:42:36 2005
++++ zoom.c	Thu Oct 13 04:43:47 2005
 @@ -52,26 +52,26 @@
      if (verbose)
        printf("  Zooming image Y axis by %d%%...", yzoom);
