@@ -20,7 +20,7 @@
 #
 # Note: all entries should terminate with a slash.
 #
-# $MidnightBSD: mports/Mk/components/sites.mk,v 1.41 2012/02/16 19:40:32 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/sites.mk,v 1.42 2013/01/18 04:18:50 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.sites.mk,v 1.398 2006/09/12 14:23:12 kuriyama Exp $
 #
 
@@ -1034,7 +1034,6 @@ MASTER_SITE_PGSQL+= \
 
 .if !defined(IGNORE_MASTER_SITE_PHP)
 MASTER_SITE_PHP+= \
-	http://dk.php.net/%SUBDIR%/ \
 	http://de.php.net/%SUBDIR%/ \
 	http://es.php.net/%SUBDIR%/ \
 	http://fr.php.net/%SUBDIR%/ \
