@@ -1,30 +1,23 @@
-# New ports collection makefile for:    pilot-link
-# Date created:         November, 1997
-# Whom:                 Paul Traina <pst@FreeBSD.org>
-#
-# $FreeBSD: ports/palm/pilot-link/Makefile,v 1.79 2006/09/23 08:21:41 ijliao Exp $
-# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.3 2011/12/15 00:57:53 laffer1 Exp $
-#
+# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.4 2012/09/09 03:52:51 laffer1 Exp $
 
 PORTNAME=	pilot-link
-DISTVERSION=	0.12.1
+PORTVERSION=	0.12.5
 PORTEPOCH=	1
 CATEGORIES=	palm comms
-MASTER_SITES=	http://www.mirrorservice.org/sites/master.us.finkmirrors.net/distfiles/ \
-		http://katerina.frederic.k12.wi.us/mirror/pilot-link/
+MASTER_SITES=	http://downloads.pilot-link.org/ \
+		http://miwibox.org/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Suite of tools used to connect and sync your Palm handled
-LICENSE=        gpl2
+
+BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
+
 USE_BZIP2=	yes
 USE_ICONV=	yes
-USE_GETOPT_LONG=yes
-USE_GNOME=	 gnomehack
+USE_GNOME=	gnomehack pkgconfig
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${WRKSRC}/popt -I${LOCALBASE}/include
-CONFIGURE_ARGS+=--with-libiconv=${LOCALBASE}  --with-included-popt --enable-conduits \
-		 --mandir=${MANPREFIX}/man
-CONFIGURE_ENV+=	CFLAGS="${CFLAGS:S/-Werror//}" # clear -Werror from CFLAGS
+CONFIGURE_ARGS+=--with-libiconv=${LOCALBASE}  --with-included-popt --enable-conduits --enable-xsltproc
 USE_LDCONFIG=	yes
 
 OPTIONS=	PNG "build with png support" off \
@@ -35,13 +28,22 @@ OPTIONS=	PNG "build with png support" off \
 
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=	--enable-threads
-LDFLAGS+=	${PTHREAD_LIBS}
+CFLAGS+=		${PTHREAD_LIBS}
+CONFIGURE_ENV+=		PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"
 .endif
 
 .if defined(WITH_USB)
+. if ${OSVERSION} < 4015
 LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
+. endif
 CONFIGURE_ARGS+=--enable-libusb
-CONFIGURE_ENV+="LDFLAGS=${LDFLAGS} -L${PREFIX}/lib -lusb"
+LDFLAGS+=	-L${PREFIX}/lib -lusb
+
+.if defined(WITHOUT_THREADS)
+IGNORE=		cannot be built: USB support requires THREADS turned on.  Please reconfigure using 'make config'
+.else
+LDFLAGS+=	${PTHREAD_LIBS}
+.endif
 .endif
 
 .if defined(WITH_PNG)
@@ -52,5 +54,16 @@ CONFIGURE_ARGS+=	--disable-png
 .endif
 
 .include "${.CURDIR}/manpages.mk"
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|png_voidp_NULL|NULL|g' \
+		-e 's|png_error_ptr_NULL|NULL|g' \
+		${WRKSRC}/src/pilot-read-notepad.c \
+		${WRKSRC}/src/pilot-read-palmpix.c \
+		${WRKSRC}/src/pilot-read-screenshot.c \
+		${WRKSRC}/src/pilot-read-veo.c
+.if !defined(WITHOUT_THREADS)
+	@${REINPLACE_CMD} -e 's|Libs: |Libs: ${PTHREAD_LIBS} |' ${WRKSRC}/pilot-link.pc.in ${WRKSRC}/pilot-link-pp.pc.in
+.endif
 
 .include <bsd.port.post.mk>
