@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.9 2011/12/15 00:51:03 laffer1 Exp $
+# $MidnightBSD: mports/games/wesnoth/Makefile,v 1.10 2012/02/29 21:14:59 laffer1 Exp $
 
 PORTNAME=	wesnoth
 PORTVERSION=	1.8.6
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}/${PORTNAME}-${PORTVERSION} \
 		http://files.wesnoth.org/
@@ -10,8 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A fantasy turn-based strategy game
 LICENSE=	gpl3
 
-LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python \
-		freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-python-libs \
+		freetype:${PORTSDIR}/print/freetype2
 
 USE_SDL=	image mixer net ttf
 USE_GNOME=	pango
