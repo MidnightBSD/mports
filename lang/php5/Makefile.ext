@@ -32,7 +32,7 @@ CONFIGURE_ARGS+=--enable-ctype
 .endif
 
 .if ${PHP_MODNAME} == "curl"
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 
 CONFIGURE_ARGS+=--with-curl=${LOCALBASE}
 .endif
@@ -82,9 +82,9 @@ USE_OPENSSL=	yes
 .endif
 
 .if ${PHP_MODNAME} == "gd"
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
-		png.6:${PORTSDIR}/graphics/png \
-		jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
+		png15:${PORTSDIR}/graphics/png \
+		jpeg:${PORTSDIR}/graphics/jpeg
 .	if !defined(WITHOUT_X11)
 USE_XORG=	xpm
 .	endif
@@ -112,7 +112,7 @@ USE_GETTEXT=	yes
 .endif
 
 .if ${PHP_MODNAME} == "gmp"
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	gmp:${PORTSDIR}/math/gmp
 
 CONFIGURE_ARGS+=--with-gmp=${LOCALBASE}
 .endif
@@ -129,7 +129,7 @@ USE_ICONV=	yes
 .endif
 
 .if ${PHP_MODNAME} == "imap"
-LIB_DEPENDS+=	c-client4.9:${PORTSDIR}/mail/cclient
+LIB_DEPENDS+=	c-client4:${PORTSDIR}/mail/cclient
 
 CONFIGURE_ARGS+=--with-imap=${LOCALBASE} \
 		--with-pcre-dir=${LOCALBASE}
@@ -172,7 +172,7 @@ PHP_HEADER_DIRS=libmbfl libmbfl/filters libmbfl/mbfl libmbfl/nls
 .endif
 
 .if ${PHP_MODNAME} == "mcrypt"
-LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
+LIB_DEPENDS+=	mcrypt:${PORTSDIR}/security/libmcrypt
 
 CONFIGURE_ARGS+=--with-mcrypt=${LOCALBASE}
 
@@ -180,7 +180,7 @@ USE_AUTOTOOLS=	libltdl
 .endif
 
 .if ${PHP_MODNAME} == "mssql"
-LIB_DEPENDS+=	sybdb.5:${PORTSDIR}/databases/freetds-msdblib
+LIB_DEPENDS+=	sybdb:${PORTSDIR}/databases/freetds-msdblib
 
 CONFIGURE_ARGS+=--with-mssql=${LOCALBASE}
 .endif
@@ -194,9 +194,7 @@ OPTIONS=	MYSQLND "Use MySQL Native Driver" off
 .endif
 
 .if ${PHP_MODNAME} == "odbc"
-LIB_DEPENDS+=	odbc.2:${PORTSDIR}/databases/unixODBC
-
-CONFIGURE_ARGS+=--with-unixODBC=${LOCALBASE}
+CONFIGURE_ARGS+=--enable-odbc
 .endif
 
 .if ${PHP_MODNAME} == "openssl"
