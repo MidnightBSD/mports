@@ -2,21 +2,22 @@
 # Date created:		8 September 2003
 # Whom:			roam@FreeBSD.org
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/dns/ares/Makefile,v 1.1 2007/11/11 23:04:54 laffer1 Exp $
 # $FreeBSD: ports/dns/ares/Makefile,v 1.2 2006/07/14 07:41:48 roam Exp $
 #
 
 PORTNAME=	ares
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	dns
-MASTER_SITES=	http://curl.haxx.se/dev/ \
+MASTER_SITES=	http://mirrors.rit.edu/zi/ \
 		ftp://athena-dist.mit.edu/pub/ATHENA/ares/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An asynchronous DNS resolver library
 LICENSE=	unknown
 
-CONFLICTS=	c-ares-1.*
+CONFLICTS=	c-ares-1.* c-ares-config-1.*
 
 GNU_CONFIGURE=	yes
 
