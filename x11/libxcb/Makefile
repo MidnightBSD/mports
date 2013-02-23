@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.7 2011/05/07 00:25:06 laffer1 Exp $
+# $MidnightBSD: mports/x11/libxcb/Makefile,v 1.8 2011/07/16 14:34:25 laffer1 Exp $
 
 PORTNAME=	libxcb
 PORTVERSION=	1.7
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	x11 python
 MASTER_SITES=	http://xcb.freedesktop.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The X protocol C-language Binding (XCB) library
-LICENSE=	x11
+LICENSE=	mit
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libcheck.a:${PORTSDIR}/devel/libcheck \
 		xsltproc:${PORTSDIR}/textproc/libxslt \
@@ -27,7 +27,6 @@ USE_XORG=	xau xdmcp
 USE_PYTHON_BUILD=	2.5-2.7
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd7.0
 .for f in XPROTO_CFLAGS XPROTO_LIBS XDMCP_CFLAGS XDMCP_LIBS NEEDED_CFLAGS NEEDED_LIBS
 CONFIGURE_ARGS+=${f}="${${f}}"
 .endfor
