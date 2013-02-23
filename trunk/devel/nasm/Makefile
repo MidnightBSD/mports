@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/nasm/Makefile,v 1.15 2012/06/09 20:38:32 laffer1 Exp $
+# $MidnightBSD: mports/devel/nasm/Makefile,v 1.16 2013/02/18 03:09:35 laffer1 Exp $
 
 PORTNAME=	nasm
 PORTVERSION=	2.10.03
-PORTREVISION=	0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://www.nasm.us/pub/nasm/releasebuilds/${PORTVERSION}/
@@ -14,7 +14,6 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
 DESTDIRNAME=  INSTALLROOT
 INSTALL_TARGET=	install install_rdf
 # Fixes parallel builds
