@@ -1,9 +1,8 @@
-#
-# $MidnightBSD: mports/misc/kdeedu4/Makefile,v 1.1 2008/12/22 01:10:22 ctriv Exp $
-#
+# $MidnightBSD: mports/misc/kdeedu4/Makefile,v 1.2 2010/12/11 02:59:40 laffer1 Exp $
 
 PORTNAME=	kdeedu
 PORTVERSION=	${KDE4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	misc kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION}/src
@@ -17,7 +16,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/eigen/util.h:${PORTSDIR}/math/eigen \
 		${LOCALBASE}/lib/ocaml/facile/facile.a:${PORTSDIR}/math/facile \
 		gmm++>=3.0.4:${PORTSDIR}/math/gmm++
 LIB_DEPENDS=	usb-0.1:${PORTSDIR}/devel/libusb \
-		boost_python:${PORTSDIR}/devel/boost-python \
+		boost_python:${PORTSDIR}/devel/boost-python-libs \
 		nova:${PORTSDIR}/astro/libnova \
 		openbabel.3:${PORTSDIR}/science/openbabel \
 		cfitsio.0:${PORTSDIR}/science/cfitsio \
