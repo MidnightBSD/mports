@@ -1,11 +1,8 @@
-# ex:ts=8
-#
-# $MidnightBSD: mports/science/openbabel/Makefile,v 1.4 2011/02/02 21:19:20 laffer1 Exp $
-#
+# $MidnightBSD: mports/science/openbabel/Makefile,v 1.5 2011/12/15 00:57:53 laffer1 Exp $
 
 PORTNAME=	openbabel
 PORTVERSION=	2.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science
 MASTER_SITES=	SF
 
@@ -13,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Chemistry file translation program
 LICENSE=	gpl2
 
-LIB_DEPENDS=	boost_thread.4:${PORTSDIR}/devel/boost-python
+LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs
 
 USE_GNOME=	gnomehack  libxml2
 USE_AUTOTOOLS=	libtool
