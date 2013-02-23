@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.401 2013/02/18 03:25:30 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.402 2013/02/23 02:37:17 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -219,7 +219,7 @@ SUBDIR += p5-Class-C3-XS
 SUBDIR += p5-Class-Container
 SUBDIR += p5-Class-Data-Inheritable
 SUBDIR += p5-Class-Factory-Util
-SUBDIR += p5-Class-Gomer
+SUBDIR += p5-Class-Gomor
 SUBDIR += p5-Class-Inspector
 SUBDIR += p5-Class-Load
 SUBDIR += p5-Class-MakeMethods
