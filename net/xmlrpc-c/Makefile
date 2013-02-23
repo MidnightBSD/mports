@@ -1,12 +1,7 @@
-# New ports collection makefile for:	xmlrpc-c
-# Date created:			Feb 26, 2008
-# Whom:				Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.12 2012/10/12 02:00:43 laffer1 Exp $
-#
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.13 2013/02/18 03:48:00 laffer1 Exp $
 
 PORTNAME=	xmlrpc-c
-PORTVERSION=	1.16.43
+PORTVERSION=	1.16.44
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/Xmlrpc-c%20Super%20Stable/${PORTVERSION}
 EXTRACT_SUFX=	.tgz
@@ -52,13 +47,17 @@ CONFIGURE_ARGS+=	--disable-libwww-client
 .endif
 
 post-extract:
-	@${FIND} ${WRKSRC} -type l -name blddir | ${XARGS} ${RM}
-	@${FIND} ${WRKSRC} -type l -name srcdir | ${XARGS} ${RM}
+	@${FIND} ${WRKSRC} -type l -name blddir -delete
+	@${FIND} ${WRKSRC} -type l -name srcdir -delete
 
 post-patch:
-	@${GREP} -lR '\-lpthread' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
-		's|-lpthread|${PTHREAD_LIBS}|g'
+	@${GREP} -lR '\-lpthread' ${WRKSRC} 2>/dev/null | \
+		${XARGS} ${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g'
 	@${REINPLACE_CMD} -e '/#include.*features.h/d' \
 		${WRKSRC}/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+	@${REINPLACE_CMD} -e '/<curl\/types.h>/d' \
+		${WRKSRC}/lib/curl_transport/curltransaction.c \
+		${WRKSRC}/lib/curl_transport/xmlrpc_curl_transport.c \
+		${WRKSRC}/lib/curl_transport/curlmulti.c
 
 .include <bsd.port.post.mk>
