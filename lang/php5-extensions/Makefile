@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.8 2010/12/31 13:53:39 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5-extensions/Makefile,v 1.9 2010/12/31 13:55:30 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	1.4
+PORTVERSION=	1.4.1
 CATEGORIES=	lang
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-extensions
@@ -12,6 +12,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A "meta-port" to install PHP extensions
 LICENSE=	agg
 
+USE_PHP=	yes
 DEFAULT_PHP_VER=5
 USE_PHP_BUILD=	yes
 
