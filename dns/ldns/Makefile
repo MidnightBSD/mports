@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/ldns/Makefile,v 1.4 2011/05/15 22:12:48 laffer1 Exp $
+# $MidnightBSD: mports/dns/ldns/Makefile,v 1.5 2012/09/08 22:45:24 laffer1 Exp $
 
 PORTNAME=	ldns
-PORTVERSION=	1.6.13
+PORTVERSION=	1.6.16
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
 		CRITICAL
@@ -30,7 +30,7 @@ USE_PYTHON=	yes
 .include <bsd.port.pre.mk>
 
 ALL_TARGET=	all
-INSTALL_TARGET=	install-lib install-h
+INSTALL_TARGET=	install-lib install-h install-config
 
 .if defined(WITH_DOCS)
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
