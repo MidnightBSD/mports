@@ -1,2 +1,3 @@
-SHA256 (libidn-1.22.tar.gz) = 2f765e868795f5478900ec9f42cb0ecc6ca22e2a85a62763c0b13c7da2f588ed
-SIZE (libidn-1.22.tar.gz) = 3356444
+SHA256 (libidn-1.26.tar.gz) = 0a2f4c71c80f8f389a99d5a26539a9be4a4ac42cd7f375aa41046660f63cc53c
+RMD160 (libidn-1.26.tar.gz) = a047e5ae640498df810dd32675758d582672ee87
+SIZE (libidn-1.26.tar.gz) = 3400972
