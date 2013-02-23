@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.400 2013/02/18 02:57:40 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.401 2013/02/18 03:25:30 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -75,7 +75,6 @@ SUBDIR += gconf
 SUBDIR += gconf2
 SUBDIR += gconfmm
 SUBDIR += gdb
-SUBDIR += gdb6
 SUBDIR += geany
 SUBDIR += gettext
 SUBDIR += gio-fam-backend

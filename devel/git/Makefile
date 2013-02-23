@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.33 2011/12/10 21:30:53 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.34 2012/06/21 00:51:48 laffer1 Exp $
 
 PORTNAME=	git
 PORTVERSION=	1.7.7.4
@@ -190,7 +190,6 @@ GNU_CONFIGURE=	yes
 
 OPTIONS=	GUI "Enable building of GUI tools" on \
 		SVN "Enable required dependencies for SVN tools" off \
-		GITWEB "Install gitweb" off \
 		P4 "Enable Perforce support" off \
 		CVS "Enable CVS support" on \
 		HTMLDOCS "Install additional documentation" on \
@@ -314,9 +313,6 @@ post-patch:
 .ifndef (WITH_SVN)
 	@${REINPLACE_CMD} -e '/git-svn.perl/d' ${WRKSRC}/Makefile
 .endif
-.ifndef (WITH_GITWEB)
-	@${REINPLACE_CMD} -e '/$$(MAKE) -C gitweb install/d' ${WRKSRC}/Makefile
-.endif
 
 
 post-build:
@@ -370,7 +366,6 @@ post-install:
 		${PREFIX}/bin/
 .endif
 
-.ifdef (WITH_GITWEB)
 	@${ECHO_MSG} "===> Installing gitweb files"
 	${MKDIR} ${EXAMPLESDIR}/gitweb
 	${MKDIR} ${EXAMPLESDIR}/gitweb/static
@@ -381,6 +376,5 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.css ${EXAMPLESDIR}/gitweb/static/
 	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.js ${EXAMPLESDIR}/gitweb/static/
 	${INSTALL_SCRIPT} ${WRKSRC}/gitweb/gitweb.cgi ${EXAMPLESDIR}/gitweb/
-.endif
 
 .include <bsd.port.mk>
