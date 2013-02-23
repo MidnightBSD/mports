@@ -2,11 +2,12 @@
 # Date created:                                16 April 2001
 # Whom:                                        Harold Gutch <logix@foobar.franken.de>
 #
-# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.6 2011/09/05 20:18:18 laffer1 Exp $
+# $MidnightBSD: mports/multimedia/vcdimager/Makefile,v 1.7 2011/12/15 00:57:50 laffer1 Exp $
 # $FreeBSD: ports/multimedia/vcdimager/Makefile,v 1.32 2006/06/09 18:59:20 ahze Exp $
 
 PORTNAME=	vcdimager
 PORTVERSION=	0.7.24
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	vcdimager
@@ -17,15 +18,16 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
 		xml2:${PORTSDIR}/textproc/libxml2 \
-		cdio.12:${PORTSDIR}/sysutils/libcdio
+		cdio:${PORTSDIR}/sysutils/libcdio
 
-GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GMAKE=	yes
-USE_GNOME=	 gnomehack pkgconfig lthack
-CONFIGURE_ENV=	CPPFLAGS="${CXXFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+USE_PKGCONFIG=	build
+USE_GNOME=	gnomehack lthack
+CPPFLAGS+=	${CXXFLAGS} -I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		cdxa2mpeg.1 vcdimager.1 vcdxminfo.1 vcdxrip.1 vcdxgen.1 \
 		vcdxbuild.1 vcd-info.1
