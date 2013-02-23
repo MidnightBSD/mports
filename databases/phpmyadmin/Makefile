@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.36 2012/08/05 15:18:54 laffer1 Exp $
+# $MidnightBSD: mports/databases/phpmyadmin/Makefile,v 1.37 2012/09/26 19:34:39 laffer1 Exp $
 
 PORTNAME=	phpMyAdmin
-DISTVERSION=	3.5.2.2
+DISTVERSION=	3.5.7
 CATEGORIES=	databases www
 MASTER_SITES=	SF/${PORTNAME:L}/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-all-languages
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A set of PHP-scripts to manage MySQL over the web
 LICENSE=	gpl2
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
 USE_PHP=	ctype session filter mbstring json
