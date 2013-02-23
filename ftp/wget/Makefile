@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/ftp/wget/Makefile,v 1.9 2011/07/01 02:28:05 laffer1 Exp $
+# $MidnightBSD: mports/ftp/wget/Makefile,v 1.10 2012/11/27 03:34:47 laffer1 Exp $
 
 PORTNAME=	wget
-DISTVERSION=	1.13.4
-PORTREVISION=	0
+DISTVERSION=	1.14
 CATEGORIES=	ftp www ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	wget
@@ -15,23 +14,22 @@ USE_XZ=		yes
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}" \
-		LDFLAGS="${LDFLAGS}"
 MAKE_JOBS_SAFE=	yes
 
 OPTIONS=	GNUTLS "Support for SSL via GnuTLS" Off \
 		IPV6 "Support for IPv6" On \
 		NLS "Native Language Support with gettext" On \
-		OPENSSL "Support for SSL via OpenSSL" On
+		OPENSSL "Support for SSL via OpenSSL" On \
+		IDN "Support IDN (Internationalized Domain Names)" On
 
 .include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_OPENSSL)
 .if !defined(WITHOUT_GNUTLS)
-IGNORE=	GNUTLS and OPENSSL are mutually exclusive, enable at most one of them
+IGNORE=		GNUTLS and OPENSSL are mutually exclusive, enable at most one of them
 .endif
 EXTENSIONS+=	openssl
-CONFIGURE_ARGS+=--with-ssl
+CONFIGURE_ARGS+=--with-ssl=openssl
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 .elif !defined(WITHOUT_GNUTLS)
@@ -51,7 +49,7 @@ CONFIGURE_ARGS+=--disable-ipv6
 
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
-CONFIGURE_ARGS+=--enable-nls
+CONFIGURE_ARGS+=--enable-nls --localedir=${PREFIX}/share/locale
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_SUB+=	NLS=""
@@ -60,13 +58,20 @@ CONFIGURE_ARGS+=--disable-nls
 PLIST_SUB=	NLS="@comment "
 .endif
 
+.if !defined(WITHOUT_IDN)
+LIB_DEPENDS+=	idn:${PORTSDIR}/dns/libidn
+CONFIGURE_ARGS+=--enable-iri --with-libidn=${LOCALBASE}
+.else
+CONFIGURE_ARGS+=--disable-iri
+.endif
+
 MAN1=		wget.1
 INFO=		wget
 
 .include <bsd.port.pre.mk>
 
+# eliminate gmakism
 post-patch:
-	# eliminate gmakism
 	${REINPLACE_CMD} -e 's,$$<,$$(srcdir)/wget.texi,' \
 		${WRKSRC}/doc/Makefile.in
 	${REINPLACE_CMD} -e 's,/usr/local/etc/wgetrc,${PREFIX}/etc/wgetrc,' \
