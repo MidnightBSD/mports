@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/java/Makefile,v 1.36 2013/02/09 01:17:05 laffer1 Exp $
+# $MidnightBSD: mports/java/Makefile,v 1.37 2013/02/21 03:09:10 laffer1 Exp $
 
 COMMENT = Java 
 
 SUBDIR += berkeley-db
 SUBDIR += bluej
+SUBDIR += bootstrap-openjdk
 SUBDIR += bouncycastle
 SUBDIR += classpath
 SUBDIR += cos
