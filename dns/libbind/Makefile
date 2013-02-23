@@ -1,11 +1,10 @@
-# $MidnightBSD$
-# $FreeBSD: ports/dns/libbind/Makefile,v 1.3 2010/06/14 08:40:55 dougb Exp $
+# $MidnightBSD: mports/dns/libbind/Makefile,v 1.1 2011/02/23 21:31:05 laffer1 Exp $
 
 PORTNAME=	libbind
 PORTVERSION=	6.0
+PORTREVISION=	1
 CATEGORIES=	dns net ipv6
-MASTER_SITES=	${MASTER_SITE_ISC} \
-		http://dougbarton.us/Downloads/%SUBDIR%/
+MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	libbind/${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
@@ -43,5 +42,12 @@ MAN7=	hostname.7
 
 verify:	checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
+
+post-patch:
+.if ${OSVERSION} > 4015
+	${CP} ${WRKSRC}/irs/irpmarshall.c ${WRKSRC}/irs/irpmarshall.c.dist
+	${SED} -e 's/\#include \<utmp.h\>//' \
+		${WRKSRC}/irs/irpmarshall.c.dist > ${WRKSRC}/irs/irpmarshall.c
+.endif
 
 .include <bsd.port.post.mk>
