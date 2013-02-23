@@ -1,23 +1,13 @@
-# New ports collection makefile for:	avifile
-# Date created: 	16 September 2000
-# Whom: 		Holger Lamm
-#
-# $FreeBSD: ports/multimedia/win32-codecs/Makefile,v 1.40 2006/12/05 01:50:03 acm Exp $
-# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.3 2008/03/21 02:19:38 ctriv Exp $
-#
+# $MidnightBSD: mports/multimedia/win32-codecs/Makefile,v 1.4 2011/09/05 20:15:57 laffer1 Exp $
 
 PORTNAME=	win32-codecs
 DISTVERSION=	20110131
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
-MASTER_SITES=	http://www1.mplayerhq.hu/MPlayer/releases/codecs/ \
-		http://www2.mplayerhq.hu/MPlayer/releases/codecs/ \
-		http://www4.mplayerhq.hu/MPlayer/releases/codecs/ \
+MASTER_SITES=	${MASTER_SITE_MPLAYERHQ} \
 		http://ftp.lug.udel.edu/MPlayer/releases/codecs/ \
-		http://www.mplayerhq.hu/MPlayer/releases/codecs/ \
-		ftp://ftp1.mplayerhq.hu/MPlayer/releases/codecs/ \
-		ftp://ftp2.mplayerhq.hu/MPlayer/releases/codecs/ \
 		ftp://ftp.lug.udel.edu/MPlayer/releases/codecs/
+MASTER_SITE_SUBDIR=	releases/codecs
 DISTFILES=	all-${DISTVERSION}.tar.bz2 \
 		${ADDITIONAL_CODECS_DISTFILES}
 DIST_SUBDIR=	win32
@@ -27,7 +17,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Huge compilation of Win32 binary video codecs
 LICENSE=	restricted
 
-RESTRICTED=	Unsure of codec's license			# '
+RESTRICTED=	Unsure of codec's license
 
 ONLY_FOR_ARCHS=	i386
 USE_BZIP2=	yes
