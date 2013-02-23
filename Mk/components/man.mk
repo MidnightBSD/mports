@@ -91,7 +91,7 @@ __MANPAGES=	${_MANPAGES:S%^${PREFIX}/%%:S%$%.gz%}
 .endif
 
 .for m in ${_MANPAGES}
-_FAKEMAN += ${FAKE_DESTDIR}${m}         
+_FAKEMAN += ${FAKE_DESTDIR}${m}  
 .endfor
 
 .endif
