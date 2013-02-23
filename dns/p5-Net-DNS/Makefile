@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.11 2011/02/23 21:48:16 laffer1 Exp $
+# $MidnightBSD: mports/dns/p5-Net-DNS/Makefile,v 1.12 2012/09/08 21:31:14 laffer1 Exp $
 
 PORTNAME=	Net-DNS
-PORTVERSION=	0.68
+PORTVERSION=	0.72
 CATEGORIES=	dns net perl5 ipv6
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -37,14 +37,13 @@ MAN3=		Net::DNS.3 Net::DNS::Header.3 Net::DNS::Packet.3 \
 		Net::DNS::Nameserver.3 Net::DNS::RR::CERT.3 \
 		Net::DNS::FAQ.3 Net::DNS::RR::TKEY.3 \
 		Net::DNS::RR::OPT.3 Net::DNS::RR::TSIG.3 Net::DNS::RR::DNAME.3 \
-		Net::DNS::Resolver::Win32.3 Net::DNS::RR::SSHFP.3 \
+		Net::DNS::RR::SSHFP.3 \
 		Net::DNS::Resolver::Base.3 Net::DNS::Resolver::UNIX.3 \
-		Net::DNS::RR::Unknown.3 Net::DNS::Resolver::Recurse.3 \
-		Net::DNS::RR::APL.3 Net::DNS::RR::APL::ApItem.3 \
+		Net::DNS::Resolver::Recurse.3 \
 		Net::DNS::RR::DHCID.3 Net::DNS::Domain.3 \
 		Net::DNS::DomainName.3 Net::DNS::Text.3 Net::DNS::Mailbox.3 \
 		Net::DNS::RR::KX.3 Net::DNS::RR::HIP.3 \
-		Net::DNS::Resolver::Cygwin.3 Net::DNS::RR::SPF.3
+		Net::DNS::RR::SPF.3
 
 PORTDOCS=	Changes README TODO
 
