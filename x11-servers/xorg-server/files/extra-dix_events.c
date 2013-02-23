@@ -1,6 +1,6 @@
---- dix/events.c
-+++ dix/events.c
-@@ -3420,7 +3420,6 @@ CheckPassiveGrabsOnWindow(
+--- dix/events.c.orig	2010-05-04 02:47:57.000000000 +0200
++++ dix/events.c	2012-04-24 12:59:22.000000000 +0200
+@@ -3440,7 +3440,6 @@ CheckPassiveGrabsOnWindow(
      {
  	DeviceIntPtr	gdev;
  	XkbSrvInfoPtr	xkbi = NULL;
@@ -8,7 +8,7 @@
  
  	gdev= grab->modifierDevice;
          if (grab->grabtype == GRABTYPE_CORE)
-@@ -3535,9 +3534,6 @@ CheckPassiveGrabsOnWindow(
+@@ -3555,9 +3554,6 @@ CheckPassiveGrabsOnWindow(
                  }
                  xE = &core;
                  count = 1;
@@ -18,7 +18,7 @@
              } else if (match & XI2_MATCH)
              {
                  rc = EventToXI2((InternalEvent*)event, &xE);
-@@ -3549,34 +3545,6 @@ CheckPassiveGrabsOnWindow(
+@@ -3569,34 +3565,6 @@ CheckPassiveGrabsOnWindow(
                      continue;
                  }
                  count = 1;
@@ -53,7 +53,7 @@
              } else
              {
                  rc = EventToXI((InternalEvent*)event, &xE, &count);
-@@ -3587,23 +3555,6 @@ CheckPassiveGrabsOnWindow(
+@@ -3607,23 +3575,6 @@ CheckPassiveGrabsOnWindow(
                                  "(%d, %d).\n", device->name, event->type, rc);
                      continue;
                  }
@@ -77,7 +77,7 @@
              }
  
  	    (*grabinfo->ActivateGrab)(device, grab, currentTime, TRUE);
-@@ -3612,7 +3563,8 @@ CheckPassiveGrabsOnWindow(
+@@ -3632,7 +3583,8 @@ CheckPassiveGrabsOnWindow(
              {
                  FixUpEventFromWindow(device, xE, grab->window, None, TRUE);
  
