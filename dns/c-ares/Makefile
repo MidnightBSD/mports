@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.9 2011/02/23 21:45:12 laffer1 Exp $
+# $MidnightBSD: mports/dns/c-ares/Makefile,v 1.10 2012/09/08 22:54:13 laffer1 Exp $
 
 PORTNAME=	c-ares
-PORTVERSION=	1.8.0
+PORTVERSION=	1.9.1
 CATEGORIES=	dns
 MASTER_SITES=	http://c-ares.haxx.se/download/ \
 		http://obsd.isc.org/pub/OpenBSD/distfiles/ \
@@ -49,8 +49,7 @@ MAKE_ENV=	SHLIB_VER="${SHLIB_VER}"
 PLIST_SUB=	SHLIB_VER="${SHLIB_VER}"
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-shared --disable-werror
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
+CONFIGURE_ARGS+=--enable-shared --disable-werror
 
 MAN3=	ares_cancel.3 \
 	ares_destroy.3 ares_dup.3 \
@@ -64,7 +63,9 @@ MAN3=	ares_cancel.3 \
 	ares_init.3 ares_init_options.3 \
 	ares_library_cleanup.3 ares_library_init.3 \
 	ares_mkquery.3 \
-	ares_parse_a_reply.3 ares_parse_aaaa_reply.3 ares_parse_ptr_reply.3 \
+	ares_parse_a_reply.3 ares_parse_aaaa_reply.3 \
+	ares_parse_mx_reply.3 \
+	ares_parse_ptr_reply.3 ares_parse_soa_reply.3 \
 	ares_parse_srv_reply.3 ares_parse_txt_reply.3 \
 	ares_process.3 \
 	ares_query.3 \
@@ -74,6 +75,7 @@ MAN3=	ares_cancel.3 \
 	ares_strerror.3 \
 	ares_timeout.3 \
 	ares_version.3 \
+	ares_parse_naptr_reply.3 \
 	ares_parse_ns_reply.3 \
 	ares_destroy_options.3 \
 	ares_save_options.3
