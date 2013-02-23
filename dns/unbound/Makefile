@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/dns/unbound/Makefile,v 1.3 2011/05/12 13:29:28 laffer1 Exp $
+# $MidnightBSD: mports/dns/unbound/Makefile,v 1.4 2012/09/08 21:19:42 laffer1 Exp $
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.17
+PORTVERSION=	1.4.19
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
