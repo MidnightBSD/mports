@@ -1,13 +1,8 @@
-# New ports collection makefile for:	kdeedu3
-# Date created:				2 November 2001
-# Whom:					will@cvs.kde.org
-#
-# $FreeBSD: ports/misc/kdeedu3/Makefile,v 1.34 2006/09/12 23:26:32 lofi Exp $
-# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.5 2011/01/17 19:22:02 laffer1 Exp $
-#
+# $MidnightBSD: mports/misc/kdeedu3/Makefile,v 1.6 2011/02/02 21:10:19 laffer1 Exp $
 
 PORTNAME=	kdeedu
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES?=	misc kde
 MASTER_SITES=		${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -15,6 +10,7 @@ DIST_SUBDIR=	KDE
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Collection of entertaining, educational programs for KDE
+LICENSE=	agg
 
 LIB_DEPENDS=	usb-0.1:${PORTSDIR}/devel/libusb
 
@@ -28,7 +24,8 @@ USE_XORG=	xpm
 USE_GMAKE=	yes
 USE_AUTOTOOLS=  libtool
 
-CONFIGURE_ARGS+=--enable-libusb=${LOCALBASE}
+CONFIGURE_ARGS+=--enable-libusb=${LOCALBASE} \
+		--disable-ocamlsolver
 
 USE_LDCONFIG=	yes
 LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
@@ -36,7 +33,10 @@ LDCONFIG_DIRS+=	%%PREFIX%%/lib %%PREFIX%%/lib/kde3
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 .include <bsd.port.pre.mk>
 
-LIB_DEPENDS+=	boost_python:${PORTSDIR}/devel/boost-python
+.if ${OSVERSION} < 4015
+LIB_DEPENDS+=    usb-0.1:${PORTSDIR}/devel/libusb
+.endif
+LIB_DEPENDS+=	boost_python:${PORTSDIR}/devel/boost-python-libs
 PLIST_SUB+=	BOOST_PYTHON=""
 
 pre-configure:
