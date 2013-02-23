@@ -24,7 +24,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
 # THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.33 2009/03/18 18:23:11 ctriv Exp $
+# $MidnightBSD: mports/Tools/magus/slave/magus.pl,v 1.34 2009/04/14 23:49:25 laffer1 Exp $
 # 
 # MAINTAINER=   ctriv@MidnightBSD.org
 #
@@ -217,6 +217,7 @@ sub start_child {
     X();
     return;
   } elsif (defined($pid)) {
+    $0 = "Magus - worker $worker_id";
     Magus::App::Slave::Worker->run(
       lock 	=> $lock, 
       worker_id => $worker_id,
