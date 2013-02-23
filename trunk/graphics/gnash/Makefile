@@ -1,20 +1,16 @@
-# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.14 2011/02/02 21:04:18 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gnash/Makefile,v 1.15 2013/02/23 02:44:27 laffer1 Exp $
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.7
 PORTREVISION=	1
 CATEGORIES=	graphics
-# getgnash.org is slow
-MASTER_SITES=	${MASTER_SITE_GNU} \
-		http://mirror.amdmi3.ru/distfiles/ \
-		http://getgnash.org/packages/releases/
-MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	GNU/${PORTNAME}/${PORTVERSION}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Flash movie player
 LICENSE=	gpl3
 
-LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-python-libs \
+LIB_DEPENDS=	boost_thread:${PORTSDIR}/devel/boost-libs \
 		jpeg:${PORTSDIR}/graphics/jpeg \
 		curl:${PORTSDIR}/ftp/curl \
 		ungif:${PORTSDIR}/graphics/libungif
