@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.7 2011/08/13 16:44:04 laffer1 Exp $
-# $FreeBSD: ports/print/libgnomeprint/Makefile,v 1.105 2007/08/08 16:30:58 mezz Exp $
+# $MidnightBSD: mports/print/libgnomeprint/Makefile,v 1.8 2011/08/20 13:19:32 laffer1 Exp $
 
 PORTNAME=	libgnomeprint
 PORTVERSION=	2.18.8
+PORTREVISION=	1
 CATEGORIES=	print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
