@@ -1,12 +1,10 @@
-# $MidnightBSD: mports/math/gmp/Makefile,v 1.1 2010/05/08 02:00:15 laffer1 Exp $
+# $MidnightBSD: mports/math/gmp/Makefile,v 1.2 2012/01/11 00:05:02 laffer1 Exp $
 
 PORTNAME=	gmp
-PORTVERSION=	5.0.1
-PORTREVISION=	1
+PORTVERSION=	5.1.1
 CATEGORIES=	math devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	gmp
-DISTNAME=	gmp-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A free library for arbitrary precision arithmetic
@@ -18,6 +16,9 @@ OPTIONS=	CPU_OPTS "Enable assembly optimizations for your CPU" off
 
 USE_BZIP2=	yes
 HAS_CONFIGURE=	yes
+GNU_CONFIGURE=	no # needed, since the following line would add it
+USE_AUTOTOOLS=	libtool
+USE_GNOME=	ltverhack
 CONFIGURE_ENV=	MAKEINFO="makeinfo --no-split"
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--infodir=${PREFIX}/info \
@@ -44,7 +45,7 @@ post-extract:
 	@${RM} -f ${WRKSRC}/doc/gmp.info*
 
 post-patch:
-	${REINPLACE_CMD} "s/\(athlon64\-\*\-\*\)/amd64-*-* | \1/;s/\(x86_64)\)/amd64 | \1/" \
+	@${REINPLACE_CMD} "s/\(athlon64\-\*\-\*\)/amd64-*-* | \1/;s/\(x86_64)\)/amd64 | \1/" \
 		${WRKSRC}/configure
 
 regression-test check: build
