@@ -2,11 +2,11 @@
 # Date created:	8 March 2007
 # Whom:			Lucas Holt
 #
-# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.4 2007/11/07 21:21:32 laffer1 Exp $
+# $MidnightBSD: mports/x11/windowmaker-desktop/Makefile,v 1.5 2007/11/08 23:34:06 laffer1 Exp $
 #
 
 PORTNAME=	windowmaker-desktop
-PORTVERSION=	1.3
+PORTVERSION=	1.4
 CATEGORIES=	x11 windowmaker
 MASTER_SITES=	# none
 DISTFILES=	# none
@@ -20,7 +20,6 @@ RUN_DEPENDS=	wmaker:${PORTSDIR}/x11-wm/windowmaker \
 		wmlpq:${PORTSDIR}/print/wmlpq \
 		wmBinClock:${PORTSDIR}/x11-clocks/wmbinclock \
 		wmCalClock:${PORTSDIR}/x11-clocks/wmcalclock \
-		wterm:${PORTSDIR}/x11/wterm \
 		wmmp3:${PORTSDIR}/audio/wmmp3 \
 		wmsmixer:${PORTSDIR}/audio/wmsmixer \
 		${LOCALBASE}/share/WindowMaker/Themes/LeetWM.themed/style:${PORTSDIR}/graphics/wmicons \
