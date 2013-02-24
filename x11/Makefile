@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/Makefile,v 1.105 2012/03/07 14:07:30 laffer1 Exp $
+# $MidnightBSD: mports/x11/Makefile,v 1.106 2013/01/18 13:38:07 laffer1 Exp $
     
 COMMENT = Ports to support the X window system
 
@@ -137,7 +137,6 @@ SUBDIR += viewres
 SUBDIR += wdm
 SUBDIR += windowmaker-desktop
 SUBDIR += wrapper
-SUBDIR += wterm
 SUBDIR += x11perf
 SUBDIR += xauth
 SUBDIR += xbacklight
