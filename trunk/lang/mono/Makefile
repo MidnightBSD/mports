@@ -1,10 +1,4 @@
-# New ports collection makefile for:   mono
-# Date created:        22 August 2007
-# Whom:                Lucas Holt <luke@Midnightbsd.org>
-#
-# $MidnightBSD: mports/lang/mono/Makefile,v 1.11 2012/03/11 18:41:51 laffer1 Exp $
-# $FreeBSD: ports/lang/mono/Makefile,v 1.66 2007/03/24 22:19:49 tmclaugh Exp $
-#
+# $MidnightBSD: mports/lang/mono/Makefile,v 1.12 2013/02/24 15:13:27 laffer1 Exp $
 
 PORTNAME=	mono
 PORTVERSION=	3.0.3
@@ -14,6 +8,8 @@ MASTER_SITES=	http://download.mono-project.com/sources/${PORTNAME}/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An open source implementation of .NET Development Framework
+LICENSE=	agg
+# lgpl, mit, mpl, apache2, ... 
 
 BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser \
     		bash:${PORTSDIR}/shells/bash
