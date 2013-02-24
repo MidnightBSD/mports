@@ -3,9 +3,9 @@
 # $MidnightBSD$
 #
 # PROVIDE: slim
-# REQUIRE: LOGIN
+# REQUIRE: LOGIN dbus hald
 # KEYWORD: shutdown
-
+#
 # Add the following lines to /etc/rc.conf to enable slim:
 # slim_enable (bool):      Set to "NO" by default.
 #                          Set it to "YES" to enable slim
@@ -18,7 +18,7 @@
 . /etc/rc.subr
 
 name="slim"
-rcvar=`set_rcvar`
+rcvar=slim_enable
 
 start_precmd=${name}_rmfile
 stop_precmd=${name}_prestop
@@ -30,16 +30,28 @@ load_rc_config $name
 
 command=%%PREFIX%%/bin/slim
 command_args="-d"
-pidfile=/var/run/slim.pid
+
+find_pidfile()
+{
+	if type get_pidfile_from_conf >/dev/null 2>&1 &&
+	    get_pidfile_from_conf lockfile %%PREFIX%%/etc/${name}.conf; then
+		pidfile="$_pidfile_from_conf"
+	else
+		pidfile="/var/run/${name}.pid"
+	fi
+}
 
 slim_rmfile ()
 {
 	local file
 
+	[ -z "$pidfile" ] && find_pidfile
+
 	for file in $pidfile /var/run/slim.auth; do
 		[ -e "$file" ] && unlink $file
 	done
 	
+	# Needed if neither file exists
 	return 0
 }
 
@@ -47,9 +59,10 @@ slim_prestop ()
 {
 	local xpid
 
-	xpid=`ps -axww | grep '/bin/[X] .* -auth /var/run/slim.auth'`
-	xpid="${xpid## }"
-	[ -n "$xpid" ] && kill ${xpid%% *}
+	find_pidfile
+
+	xpid=`ps -axww | grep '/bin/[X] .* -auth /var/run/slim.auth' | grep -v grep | awk '{print $1};'`
+	[ -n "$xpid" ] && kill $xpid
 }
 
 run_rc_command "$1"
