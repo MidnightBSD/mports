@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.14 2011/09/27 17:17:09 laffer1 Exp $
-# $FreeBSD: ports/lang/gnustep-base/Makefile,v 1.80 2006/08/31 05:35:32 dinoex Exp $
+# $MidnightBSD: mports/lang/gnustep-base/Makefile,v 1.15 2012/02/13 16:25:10 laffer1 Exp $
 
 PORTNAME=	gnustep-base
 PORTVERSION=	1.19.3
@@ -16,8 +15,8 @@ LIB_DEPENDS+=	xml2.5:${PORTSDIR}/textproc/libxml2 \
 		xslt.2:${PORTSDIR}/textproc/libxslt \
 		gmp.10:${PORTSDIR}/math/gmp \
 		gnutls.42:${PORTSDIR}/security/gnutls
-BUILD_DEPENDS+=	pkg-config:${PORTSDIR}/devel/pkg-config
 
+USE_PKGCONFIG=	build
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 #CFLAGS+=      -rpath=/usr/local/lib:/usr/lib
