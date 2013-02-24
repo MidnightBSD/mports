@@ -1,31 +1,27 @@
-# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.6 2011/05/29 16:58:02 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc44/Makefile,v 1.7 2011/08/17 00:21:15 laffer1 Exp $
 
 PORTNAME=	gcc
-PORTVERSION=	4.4.7.20110628
+PORTVERSION=	4.4.7
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
-MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
-DISTNAME=	gcc-${VERSIONSTRING}
+MASTER_SITE_SUBDIR=	releases/gcc-${VERSIONSTRING}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 4.4
 LICENSE=	gpl3
 
-LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
-		mpfr.4:${PORTSDIR}/math/mpfr
-BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
+		mpfr:${PORTSDIR}/math/mpfr
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
 
-.if defined(MAINTAINER_MODE)
-DISTFILES+=	gcc-testsuite-${VERSIONSTRING}${EXTRACT_SUFX}
-BUILD_DEPENDS+=	runtest:${PORTSDIR}/misc/dejagnu
-.endif
-
-VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
+VERSIONSTRING=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
+ONLY_FOR_ARCHS=	amd64 i386 sparc64
+USE_BINUTILS=	yes
 USE_BISON=	build
 USE_BZIP2=	yes
+USE_GCC=	any
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_PERL5_BUILD=yes
@@ -37,9 +33,9 @@ CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.0
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.0
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
@@ -48,7 +44,10 @@ TARGLIB=	${PREFIX}/lib/gcc${SUFFIX}
 LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
-CONFIGURE_ARGS+=--disable-nls \
+CPPFLAGS+=	-I${LOCALBASE}/include
+CONFIGURE_ARGS+=--disable-bootstrap \
+		--disable-nls \
+		--enable-languages=c,c++,fortran \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
 		--program-suffix=${SUFFIX} \
@@ -57,13 +56,11 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--with-ld=${LOCALBASE}/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
-		--with-pkgversion="MidnightBSD" \
-		--with-system-zlib \
-		--enable-languages=c,c++,fortran,objc,obj-c++
+		--with-pkgversion="MidnightBSD Ports Collection" \
+		--with-system-zlib
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
-ALL_TARGET=	bootstrap-lean
 USE_LDCONFIG=	${TARGLIB}
-PLIST_SUB=	GCC_VER=${PORTVERSION:C/(.+)\.[0-9]+/\1/} \
+PLIST_SUB=	GCC_VER=${PORTVERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
 		SUFFIX=${SUFFIX}
 MAN1=		cpp${SUFFIX}.1 \
@@ -71,6 +68,13 @@ MAN1=		cpp${SUFFIX}.1 \
 		gcc${SUFFIX}.1 \
 		gcov${SUFFIX}.1 \
 		gfortran${SUFFIX}.1
+INFO=		gcc${SUFFIX}/cpp \
+		gcc${SUFFIX}/cppinternals \
+		gcc${SUFFIX}/gcc \
+		gcc${SUFFIX}/gccinstall \
+		gcc${SUFFIX}/gccint \
+		gcc${SUFFIX}/gfortran \
+		gcc${SUFFIX}/libgomp
 
 pre-everything::
 	@${ECHO_MSG} "Making GCC ${PORTVERSION} for ${OPSYS} ${OSREL}  target=${CONFIGURE_TARGET}"
