@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/math/cln/Makefile,v 1.5 2011/02/02 21:08:36 laffer1 Exp $
+# $MidnightBSD: mports/math/cln/Makefile,v 1.6 2011/12/15 00:57:49 laffer1 Exp $
 
 PORTNAME=	cln
-PORTVERSION=	1.3.1
+PORTVERSION=	1.3.2
 CATEGORIES=	math devel
 MASTER_SITES=	http://www.ginac.de/CLN/ \
 		http://www.mirrors.wiretapped.net/security/cryptography/libraries/math/cln/ \
@@ -15,10 +15,10 @@ LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=	libtool
 USE_BZIP2=	yes
-USE_GNOME=	gnomehack  pkgconfig
+USE_PKGCONFIG=	yes
+USE_GNOME=	gnomehack
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	--with-gmp
 MAKE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	yes
@@ -29,8 +29,8 @@ MAN1=		pi.1
 STRIP=		# none
 
 CFLAGS+=	-fPIC
-CPPFLAGS=	-I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.pre.mk>
 
