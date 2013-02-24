@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.7 2012/09/09 01:06:22 laffer1 Exp $
+# $MidnightBSD: mports/devel/gobject-introspection/Makefile,v 1.8 2013/01/17 05:04:01 laffer1 Exp $
 
 PORTNAME=	gobject-introspection
 PORTVERSION=	0.10.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -12,8 +12,7 @@ COMMENT=	Generate interface introspection data for GObject libraries
 LICENSE=	gpl2
 # well it could be agg, but gpl2 is worst case
 
-LIB_DEPENDS=	ffi.5:${PORTSDIR}/devel/libffi \
-		cairo.2:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS=	ffi:${PORTSDIR}/devel/libffi
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
