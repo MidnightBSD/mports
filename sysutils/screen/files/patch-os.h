@@ -9,3 +9,25 @@
  # define USE_SETEUID
  #endif
  
+@@ -262,7 +262,11 @@
+ #if defined(UTMPOK) || defined(BUGGYGETLOGIN)
+ # if defined(SVR4) && !defined(DGUX) && !defined(__hpux) && !defined(linux)
+ #  include <utmpx.h>
+-#  define UTMPFILE	UTMPX_FILE
++#  ifdef UTMPX_FILE
++#   define UTMPFILE	UTMPX_FILE
++#  else
++#   define UTMPFILE	"/nonexistent"
++#  endif
+ #  define utmp		utmpx
+ #  define getutent	getutxent
+ #  define getutid	getutxid
+@@ -270,7 +274,7 @@
+ #  define pututline	pututxline
+ #  define setutent	setutxent
+ #  define endutent	endutxent
+-#  define ut_time	ut_xtime
++#  define ut_time	ut_tv.tv_sec
+ # else /* SVR4 */
+ #  include <utmp.h>
+ # endif /* SVR4 */

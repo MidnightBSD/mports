@@ -16,7 +16,7 @@ bin/screen
 %%DATADIR%%/utf8encodings/cc
 %%DATADIR%%/utf8encodings/cd
 %%DATADIR%%/utf8encodings/d6
-@unexec if cmp -s %D/etc/screenrc %D/%%EXAMPLESDIR%%/screenrc; then rm -f %D/etc/screenrc; fi
+@unexec if cmp -s %D/etc/screenrc %D/%%EXAMPLESDIR%%/screenrc; then rm -f %D/etc/screenrc; else echo If permanently deleting this package, %%PREFIX%%/etc/screenrc must be removed manually; fi
 %%EXAMPLESDIR%%/screenrc
 @exec [ -f %D/etc/screenrc ] || cp %B/%f %D/etc/screenrc
 @dirrm %%EXAMPLESDIR%%
