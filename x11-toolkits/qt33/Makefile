@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.17 2012/01/28 04:29:29 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/qt33/Makefile,v 1.18 2012/09/09 01:44:04 laffer1 Exp $
 
 PORTNAME=	qt
 PORTVERSION=	3.3.8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES?=	x11-toolkits ipv6
 MASTER_SITES=	${MASTER_SITE_QT}
 DISTNAME=	qt-x11-free-${PORTVERSION}
@@ -34,6 +34,7 @@ CONFIGURE_ARGS+=	-system-libpng -system-libjpeg -system-libmng	\
 		-qt-imgfmt-png -qt-imgfmt-jpeg -qt-imgfmt-mng	\
 		-system-zlib -sm -qt-gif -thread \
 		-fast -xinerama -no-g++-exceptions -stl -no-nis \
+		-I${LOCALBASE}/include/libpng15 \
 		${CUPS} -shared -prefix ${PREFIX} -datadir ${DATADIR} \
 		-verbose -docdir ${DOCSDIR} -tablet -ipv6 \
 		-DPNG_DEPSTRUCT= \
