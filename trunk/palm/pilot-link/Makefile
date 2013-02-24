@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.4 2012/09/09 03:52:51 laffer1 Exp $
+# $MidnightBSD: mports/palm/pilot-link/Makefile,v 1.5 2013/02/23 02:58:03 laffer1 Exp $
 
 PORTNAME=	pilot-link
 PORTVERSION=	0.12.5
@@ -9,6 +9,7 @@ MASTER_SITES=	http://downloads.pilot-link.org/ \
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Suite of tools used to connect and sync your Palm handled
+LICENSE=	gpl2
 
 BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
 
