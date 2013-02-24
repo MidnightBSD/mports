@@ -68,7 +68,7 @@
  }
  _ACEOF
  rm -f conftest$ac_exeext
-@@ -5314,18 +5271,15 @@
+@@ -5314,19 +5271,16 @@
  fi
  rm -f conftest*
  
@@ -79,15 +79,43 @@
 +
  cat >>confdefs.h <<_ACEOF
 -#define PTYRANGE0 "$p0"
-+#define PTYRANGE0 "pqrsPQRS"
++#define PTYRANGE0 "pqrsPQRSlmnoLMNO"
  _ACEOF
  
  cat >>confdefs.h <<_ACEOF
 -#define PTYRANGE1 "$p1"
 +#define PTYRANGE1 "0123456789abcdefghijklmnopqrstuv"
  _ACEOF
--
--fi
  
+-fi
+-
  
  # Check whether --with-pty-mode or --without-pty-mode was given.
+ if test "${with_pty_mode+set}" = set; then
+@@ -5575,6 +5529,8 @@
+ #if defined(SVR4) && !defined(DGUX)
+ #include <utmpx.h>
+ #define utmp utmpx
++#define pututline pututxline
++#define getutent getutxent
+ #else
+ #include <utmp.h>
+ #endif
+@@ -5627,6 +5583,8 @@
+ #if defined(SVR4) && !defined(DGUX)
+ #include <utmpx.h>
+ #define utmp utmpx
++#define pututline pututxline
++#define getutent getutxent
+ #else
+ #include <utmp.h>
+ #endif
+@@ -5683,6 +5641,8 @@
+ #if defined(SVR4) && !defined(DGUX)
+ #include <utmpx.h>
+ #define utmp utmpx
++#define pututline pututxline
++#define getutent getutxent
+ #else
+ #include <utmp.h>
+ #endif
