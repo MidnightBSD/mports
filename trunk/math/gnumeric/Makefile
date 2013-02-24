@@ -1,62 +1,87 @@
-# $MidnightBSD: mports/math/gnumeric/Makefile,v 1.1 2008/06/05 21:52:13 crash Exp $
+# $MidnightBSD: mports/math/gnumeric/Makefile,v 1.2 2009/09/20 01:25:02 laffer1 Exp $
 
 PORTNAME=	gnumeric
-PORTVERSION=	1.8.4
+PORTVERSION=	1.10.17
+PORTREVISION=	1
 CATEGORIES=	math gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The GNOME 2 spreadsheet
 LICENSE=        gpl2
 
-LIB_DEPENDS=	goffice-0.6.6:${PORTSDIR}/devel/goffice \
-		psiconv.10:${PORTSDIR}/converters/psiconv
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_BZIP2=	yes
+BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+LIB_DEPENDS=	goffice-0.8.8:${PORTSDIR}/devel/goffice \
+		psiconv.10:${PORTSDIR}/converters/psiconv
+RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+
+USE_XZ=		yes
 USE_GETTEXT=	yes
-USE_PERL5=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier \
-		libgsf_gnome pygtk2 desktopfileutils libgnomeui
-USE_PYTHON=	2.6+
+USE_GNOME=	gnomeprefix intlhack gnomehack gnomehier pygtk2 \
+		desktopfileutils
+WANT_GNOME=	yes
+USE_PYTHON=	yes
 INSTALLS_OMF=	yes
 USE_LDCONFIG=	yes
+USE_CSTD=	gnu89
+WANT_PERL=	yes
+INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-guile --with-bonobo
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include ${PTHREAD_CFLAGS}" \
-		LIBS="-L${LOCALBASE}/lib -liconv ${PTHREAD_LIBS}" \
+CONFIGURE_ARGS=	--with-gnome --disable-silent-rules
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -liconv ${PTHREAD_LIBS}" \
 		python_prog=${PYTHON_VERSION}
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+MAKE_JOBS_SAFE=	yes
 
-GCONF_SCHEMAS=	gnumeric-dialogs.schemas gnumeric-general.schemas \
-		gnumeric-plugins.schemas
+GLIB_SCHEMAS=	org.gnome.gnumeric.dialogs.gschema.xml \
+		org.gnome.gnumeric.gschema.xml \
+		org.gnome.gnumeric.plugin.gschema.xml
 
-MAN1=		gnumeric.1 ssconvert.1 ssindex.1
+MAN1=		gnumeric.1 ssconvert.1 ssindex.1 ssgrep.1
 
-PLIST_SUB=	VERSION=${PORTVERSION}
+PLIST_SUB=	VERSION=${PORTVERSION} GOFFICE=0.8.17
 
-OPTIONS=	GNOMEDB "Enable libgnomedb support" off
+OPTIONS=	PERL "Enable Perl as extension language" on
+#GNOMEDB "Enable libgnomedb support" off
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_GNOMEDB)
-USE_GNOME+=		libgnomedb
-CONFIGURE_ARGS+=	--with-gda
-PLIST_SUB+=		GNOMEDB=""
+.if ${HAVE_GNOME:Mlibgnomeui}!=""
+CONFIGURE_ARGS+=--with-gnome=yes
+USE_GNOME+=	libgnomeui libgsf_gnome
 .else
-CONFIGURE_ARGS+=	--without-gda
-PLIST_SUB+=		GNOMEDB="@comment "
+CONFIGURE_ARGS+=--with-gnome=no
+USE_GNOME+=	libgsf
 .endif
 
-post-extract:
-	@${CP} ${FILESDIR}/gnumeric-C.omf ${WRKSRC}/doc/C
+.if defined(WITH_PERL)
+USE_PERL5=		yes
+PLIST_SUB+=		PERL=""
+.else
+CONFIGURE_ARGS+=	--without-perl
+PLIST_SUB+=		PERL="@comment "
+.endif
+
+#.if defined(WITH_GNOMEDB)
+#USE_GNOME+=		libgnomedb
+#CONFIGURE_ARGS+=	--with-gda
+#PLIST_SUB+=		GNOMEDB=""
+#.else
+CONFIGURE_ARGS+=	--without-gda
+PLIST_SUB+=		GNOMEDB="@comment "
+#.endif
 
 post-patch:
 	@${RM} -f ${WRKSRC}/GNOME_Gnumeric.server.in
 	@${REINPLACE_CMD} -e 's|gda-3.0 >= 3.1.1|gda-3.0 >= 3.0.1|g' \
 		-e 's|gnomedb-3.0 >= 3.0.1|gnomedb-3.0 >= 3.0.0|g' \
-		${WRKSRC}/configure
+		-e 's|gnumeric_with_gconf=true|gnumeric_with_gconf=false|g' \
+			${WRKSRC}/configure
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/gnumeric.desktop ${PREFIX}/share/applications
