@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.24 2012/10/04 18:53:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.25 2013/01/18 13:37:50 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	287
+PORTVERSION=	290
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
 		CRITICAL:src1 CRITICAL:src2
