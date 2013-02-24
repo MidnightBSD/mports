@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/devel/gmake/Makefile,v 1.8 2012/03/11 18:41:51 laffer1 Exp $
-# $FreeBSD: ports/devel/gmake/Makefile,v 1.62 2006/06/29 22:39:05 ade Exp $
+# $MidnightBSD: mports/devel/gmake/Makefile,v 1.9 2013/01/19 05:12:06 laffer1 Exp $
 
 PORTNAME=	gmake
 PORTVERSION=	3.82
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	make
@@ -15,7 +14,6 @@ LICENSE=	gpl3
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 CONFIGURE_ARGS+=--program-prefix=g
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
