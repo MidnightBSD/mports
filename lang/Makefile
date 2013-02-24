@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/lang/Makefile,v 1.87 2013/02/24 01:55:25 laffer1 Exp $
+# $MidnightBSD: mports/lang/Makefile,v 1.88 2013/02/24 02:06:24 laffer1 Exp $
 
 COMMENT = Programming languages
 
@@ -41,7 +41,6 @@ SUBDIR += ocaml
 SUBDIR += open-cobol
 SUBDIR += p5-Data-JavaScript
 SUBDIR += p5-Error
-SUBDIR += p5-F77
 SUBDIR += p5-List-MoreUtils
 SUBDIR += p5-Scalar-List-Utils
 SUBDIR += p5-Switch
