@@ -1,15 +1,10 @@
-# New ports collection makefile for:	math/p5-Math-BigInt
-# Date created:				12 October 2001
-# Whom:					tobez
-#
-# $MidnightBSD: mports/math/p5-Math-BigInt/Makefile,v 1.5 2008/07/19 18:14:48 laffer1 Exp $
-# $FreeBSD: ports/math/p5-Math-BigInt/Makefile,v 1.16 2007/02/07 14:52:57 tobez Exp $
-#
+# $MidnightBSD: mports/math/p5-Math-BigInt/Makefile,v 1.6 2010/01/30 15:27:55 laffer1 Exp $
 
 PORTNAME=	Math-BigInt
-PORTVERSION=	1.89
+PORTVERSION=	1.997
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:PJACKLAM
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
