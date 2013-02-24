@@ -1,9 +1,10 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/p5-Try-Tiny/Makefile,v 1.1 2010/11/11 00:25:46 laffer1 Exp $
 
 PORTNAME=	Try-Tiny
-PORTVERSION=	0.06
+PORTVERSION=	0.12
 CATEGORIES=	lang perl5
-MASTER_SITES=	CPAN/../../authors/id/N/NU/NUFFIN
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:DOY
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
