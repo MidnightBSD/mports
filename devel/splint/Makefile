@@ -1,10 +1,4 @@
-# New ports collection makefile for:	splint
-# Date created: 	9 September 1996
-# Whom:			moeding
-#
-# $MidnightBSD: mports/devel/splint/Makefile,v 1.2 2007/11/15 15:21:09 laffer1 Exp $
-# $FreeBSD: ports/devel/splint/Makefile,v 1.23 2006/05/04 21:41:07 edwin Exp $
-#
+# $MidnightBSD: mports/devel/splint/Makefile,v 1.3 2011/08/20 13:40:57 laffer1 Exp $
 
 PORTNAME=	splint
 PORTVERSION=	3.1.2
@@ -18,7 +12,7 @@ LICENSE=	gpl2
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd7.0
+MAKE_JOBS_UNSAFE=	yes
 
 MAN1=		splint.1
 
