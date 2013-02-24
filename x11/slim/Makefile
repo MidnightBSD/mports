@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/x11/slim/Makefile,v 1.18 2012/09/09 01:15:06 laffer1 Exp $
+# $MidnightBSD: mports/x11/slim/Makefile,v 1.19 2013/02/24 15:23:21 laffer1 Exp $
 
 PORTNAME=	slim
 PORTVERSION=	1.3.4
@@ -8,8 +8,6 @@ MASTER_SITES=	http://slim.berlios.de/releases/
 MAINTAINER=	ports@midnightbsd.org
 COMMENT=	Graphical login manager for X11, derived from Login.app
 LICENSE=	gpl2
-
-LICENSE=	GPLv2
 
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus \
 		pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
