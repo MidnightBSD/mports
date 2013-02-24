@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/pkgconf/Makefile,v 1.1 2012/09/08 16:32:31 laffer1 Exp $
 
 PORTNAME=	pkgconf
-PORTVERSION=	0.8.8
+PORTVERSION=	0.8.9
 CATEGORIES=	devel
 MASTER_SITES=	http://tortois.es/~nenolod/distfiles/ \
 		http://files.etoilebsd.net/pkgconf/
