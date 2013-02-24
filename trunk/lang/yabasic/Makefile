@@ -1,14 +1,8 @@
-# New ports collection makefile for:	yabasic
-# Date created:		11 Nov 1999
-# Whom:			Frank Gruender
-#
-# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.1 2007/05/03 07:57:39 laffer1 Exp $
-# $FreeBSD: ports/lang/yabasic/Makefile,v 1.31 2006/05/09 20:52:24 edwin Exp $
-#
+# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.2 2008/10/02 21:04:58 laffer1 Exp $
 
 PORTNAME=	yabasic
 PORTVERSION=	2.763
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	http://www.yabasic.de/download/
 
@@ -19,7 +13,6 @@ LICENSE=	artistic
 USE_XORG=	x11 ice sm xt
 USE_BISON=	build
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 MAN1=		yabasic.1
 PORTDOCS=	yabasic.htm
