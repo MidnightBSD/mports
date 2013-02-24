@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/libGLw/Makefile,v 1.2 2009/03/15 19:54:05 laffer1 Exp $
+# $MidnightBSD: mports/graphics/libGLw/Makefile,v 1.3 2013/02/22 00:30:03 laffer1 Exp $
 
 PORTNAME=	libGLw
 PORTVERSION=	${MESAVERSION}
@@ -6,6 +6,7 @@ PORTREVISION=	1
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL widgets library
+LICENSE=	mit
 
 USE_GL=		gl
 USE_MOTIF=	yes
