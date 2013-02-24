@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.7 2011/02/02 21:06:52 laffer1 Exp $
+# $MidnightBSD: mports/lang/open-cobol/Makefile,v 1.8 2011/12/15 00:57:48 laffer1 Exp $
 
 PORTNAME=	open-cobol
-PORTVERSION=	1.0
-PORTREVISION=	1
+PORTVERSION=	1.1
 CATEGORIES=	lang
 MASTER_SITES=	SF
 
@@ -12,20 +11,15 @@ LICENSE=	gpl2
 
 LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp
 
-USE_GNOME=	
 USE_BDB=	yes
 USE_GMAKE=	yes
 USE_AUTOTOOLS=	libtool
-GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 USE_LDCONFIG=	yes
-MAKE_JOBS_SAFE=  yes
 
 INFO=		open-cobol
 
-CPPFLAGS=	-I${BDB_INCLUDE_DIR} -I${LOCALBASE}/include
-LDFLAGS=	-L${LOCALBASE}/lib
+CPPFLAGS+=	-I${BDB_INCLUDE_DIR} -I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(WITHOUT_NLS)
 CONFIGURE_ARGS+=	--disable-nls
