@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/math/matharray/Makefile,v 1.1 2010/01/23 18:58:34 laffer1 Exp $
 
 PORTNAME=	matharray
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 CATEGORIES=	math gnustep
 MASTER_SITES=	${MASTER_SITE_GNUSTEP}
 MASTER_SITE_SUBDIR=	contrib
@@ -12,7 +12,6 @@ COMMENT=	Class library for mathematical manipulation of matrices
 LICENSE=	lgpl
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
