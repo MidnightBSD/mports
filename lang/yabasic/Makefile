@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.2 2008/10/02 21:04:58 laffer1 Exp $
+# $MidnightBSD: mports/lang/yabasic/Makefile,v 1.3 2013/02/24 02:31:43 laffer1 Exp $
 
 PORTNAME=	yabasic
 PORTVERSION=	2.763
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	http://www.yabasic.de/download/
 
