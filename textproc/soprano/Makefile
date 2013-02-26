@@ -1,9 +1,7 @@
-#
-# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.7 2010/12/24 20:37:58 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/soprano/Makefile,v 1.8 2012/03/01 13:16:52 laffer1 Exp $
 
 PORTNAME=	soprano
-PORTVERSION=	2.7.4
+PORTVERSION=	2.9.0
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/Soprano/${PORTVERSION}
 
@@ -11,34 +9,20 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	QT4 RDF framework
 LICENSE=	gpl2
 
-LIB_DEPENDS=	raptor2.0:${PORTSDIR}/textproc/raptor2 \
-		rdf.0:${PORTSDIR}/textproc/redland \
-		iodbc.3:${PORTSDIR}/databases/libiodbc
-
-OPTIONS=	SESAME2 "Use Sesame2 as storage backend (requires Java)" off
+LIB_DEPENDS=	raptor2:${PORTSDIR}/textproc/raptor2 \
+		rdf:${PORTSDIR}/textproc/redland \
+		iodbc:${PORTSDIR}/databases/libiodbc
 
 USE_BZIP2=	yes
 USE_QT_VER=	4
 QT_COMPONENTS=	corelib dbus qtestlib network \
 		qmake_build moc_build uic_build rcc_build
-USE_GNOME=	pkgconfig
-USE_LDCONFIG=	yes
+USE_PKGCONFIG=	both
 USE_CMAKE=	yes
-CMAKE_ARGS+=	-DSOPRANO_DISABLE_CLUCENE_INDEX=yes
-
-.include <bsd.mport.options.mk>
-
-.if defined(WITH_SESAME2)
-CATEGORIES+=	java
-CMAKE_ENV+=	JAVA_HOME=${JAVA_HOME}
-USE_JAVA=	yes
-JAVA_VERSION=	1.5+
-JAVA_OS=	native
-PLIST_SUB+=	SESAME2=""
-.else
-CMAKE_ARGS+=	-DSOPRANO_DISABLE_SESAME2_BACKEND=yes
-PLIST_SUB+=	SESAME2="@comment "
-.endif
+CMAKE_ARGS+=	-DSOPRANO_DISABLE_CLUCENE_INDEX=yes \
+		-DSOPRANO_DISABLE_SESAME2_BACKEND=yes
+MAKE_JOBS_SAFE=	yes
+USE_LDCONFIG=	yes
 
 .include <bsd.port.pre.mk>
 
