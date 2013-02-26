@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xmlto
-# Date created:		2003-06-05
-# Whom:			Sergei Kolobov <sergei@kolobov.com>
-#
-# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.3 2009/11/08 21:54:31 laffer1 Exp $
-# $FreeBSD: ports/textproc/xmlto/Makefile,v 1.18 2008/05/28 12:40:05 edwin Exp $
-#
+# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.4 2010/01/02 20:04:22 laffer1 Exp $
 
 PORTNAME=	xmlto
 PORTVERSION=	0.0.21
