@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.10 2011/12/15 00:39:56 laffer1 Exp $
-# $FreeBSD: ports/textproc/libxslt/Makefile,v 1.80 2006/06/07 19:27:27 marcus Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.11 2012/02/28 03:35:37 laffer1 Exp $
 
 PORTNAME=	libxslt
-PORTVERSION=	1.1.26
-PORTREVISION?=	3
+PORTVERSION=	1.1.28
+PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	ftp://fr.rpmfind.net/pub/libxml/ \
 		ftp://gd.tuwien.ac.at/pub/libxml/ \
@@ -22,8 +21,8 @@ USE_LDCONFIG=	yes
 USE_GNOME?=	gnomehack libxml2
 CONFIGURE_ARGS?= --with-html-dir=${PREFIX}/share/doc \
 		--without-python
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .if defined(MASTERDIR)
 _SLAVE_PORT=	yes
@@ -42,7 +41,7 @@ CONFIGURE_ARGS+=	--with-mem-debug
 .endif
 
 .if defined(WITH_CRYPTO)
-LIB_DEPENDS+=	gcrypt.18:${PORTSDIR}/security/libgcrypt
+LIB_DEPENDS+=	gcrypt:${PORTSDIR}/security/libgcrypt
 .else
 CONFIGURE_ARGS+=--without-crypto
 .endif
