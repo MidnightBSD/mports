@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/sysutils/mdf2iso/Makefile,v 1.2 2008/09/13 14:53:20 laffer1 Exp $
-# $FreeBSD: ports/sysutils/mdf2iso/Makefile,v 1.2 2005/10/03 12:55:22 az Exp $
+# $MidnightBSD: mports/sysutils/mdf2iso/Makefile,v 1.3 2012/03/10 06:04:21 laffer1 Exp $
 
 PORTNAME=	mdf2iso
 PORTVERSION=	0.3.0
@@ -12,7 +11,6 @@ COMMENT=	A Alcohol 120% to ISO converter
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
