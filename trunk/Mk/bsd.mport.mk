@@ -1,7 +1,7 @@
-#-*- mode: makefile; tab-width: 4; -*-
+#-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.200 2013/02/18 13:11:12 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.201 2013/02/18 23:39:41 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -478,6 +478,7 @@ PKGREQ?=		${PKGDIR}/pkg-req
 PKGMESSAGE?=	${PKGDIR}/pkg-message
 
 TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
+TMPGUCMD?=	${WRKDIR}/.PLIST.gucmd
 
 .for _CATEGORY in ${CATEGORIES}
 PKGCATEGORY?=	${_CATEGORY}
@@ -605,6 +606,22 @@ RUN_DEPENDS+=	pkgconf:${PORTSDIR}/devel/pkgconf
 .endif
 .endif
 
+.if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
+		READELF SIZE STRINGS
+BINUTILS_NO_MAKE_ENV?=
+. for b in ${BINUTILS}
+${b}= ${LOCALBASE}/bin/${b:C/PP/++/:L}
+.  if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
+CONFIGURE_ENV+=       ${b}="${${b}}"
+.  endif
+.  if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
+MAKE_ENV+=    ${b}="${${b}}"
+.  endif
+. endfor
+.endif
+
 .if defined(USE_OPENLDAP_VER)
 USE_OPENLDAP?=		yes
 WANT_OPENLDAP_VER=	${USE_OPENLDAP_VER}
@@ -658,7 +675,7 @@ BROKEN= OPENAL mismatch: unknown component ${component}
 
 # Check if the user wish matches the found OpenAL system.
 .if defined(WANT_OPENAL) && defined(_HAVE_OPENAL) && ${_HAVE_OPENAL} != ${WANT_OPENAL}
-BROKEN= OPENAL mismatch: ${_HAVE_OPENAL} is installed, but ${WANT_OPENAL} desired
+BROKEN=		OPENAL mismatch: ${_HAVE_OPENAL} is installed, but ${WANT_OPENAL} desired
 .endif # WANT_OPENAL
 
 .if defined(_HAVE_OPENAL)
@@ -685,7 +702,7 @@ BROKEN=	OPENAL mismatch: cannot use ${component} and al together.
 BROKEN=	OPENAL mismatch: wants to use ${component}, but ${_HAVE_OPENAL} is installed
 .endif
 
-_OPENAL_SYSTEM= ${component}
+_OPENAL_SYSTEM=	${component}
 
 .endif # ${_OPENAL_LIBS:M${component}} == ${component}
 
@@ -738,7 +755,7 @@ BROKEN=	FAM system mismatch: ${_HAVE_FAM_SYSTEM} is installed and desired FAM sy
 .if defined(FAM_SYSTEM_${FAM_SYSTEM:U})
 LIB_DEPENDS+=	${FAM_SYSTEM_${FAM_SYSTEM:U}}
 .else
-IGNORE=			unknown FAM system: ${FAM_SYSTEM}
+IGNORE=		cannot be built with unknown FAM system: ${FAM_SYSTEM}
 .endif
 .endif # USE_FAM
 
@@ -883,7 +900,7 @@ CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .endif
 
 .if defined(USE_DISPLAY) && !defined(DISPLAY)
-BUILD_DEPENDS+= Xvfb:${X_VFBSERVER_PORT} \
+BUILD_DEPENDS+=		Xvfb:${X_VFBSERVER_PORT} \
 	${LOCALBASE}/lib/X11/fonts/misc/8x13O.pcf.gz:${X_FONTS_MISC_PORT} \
 	${LOCALBASE}/lib/X11/fonts/misc/fonts.alias:${X_FONTS_ALIAS_PORT} \
 	${LOCALBASE}/share/X11/xkb/rules/base:${PORTSDIR}/x11/xkeyboard-config \
@@ -910,13 +927,13 @@ _GL_linux_RUN_DEPENDS=		${LINUXBASE}/usr/X11R6/lib/libGL.so.1:${PORTSDIR}/graphi
 USE_GL=		glu
 . endif
 . for _component in ${USE_GL}
-.   if !defined(_GL_${_component}_LIB_DEPENDS) && \
+.  if !defined(_GL_${_component}_LIB_DEPENDS) && \
 		!defined(_GL_${_component}_RUN_DEPENDS)
 IGNORE=		uses unknown GL component
 .   else
 LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
 RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
-.   endif
+.  endif
 . endfor
 .endif
 
@@ -1015,7 +1032,7 @@ NONEXISTENT?=	/nonexistent
 GMAKE?=			gmake
 XMKMF?=			xmkmf -a
 
-CHECKSUM_ALGORITHMS?= sha256 rmd160
+CHECKSUM_ALGORITHMS?= sha256
 
 HASH_FILE?=		${MASTERDIR}/distinfo
 
@@ -1071,7 +1088,7 @@ FETCH_BINARY?=	/usr/bin/ftp
 FETCH_ARGS?=	-R
 FETCH_REGET?=	0
 .endif
-FETCH_CMD?=	${FETCH_BINARY} ${FETCH_ARGS}
+FETCH_CMD?=		${FETCH_BINARY} ${FETCH_ARGS}
 
 .if defined(RANDOMIZE_MASTER_SITES) && exists(/usr/games/random)
 RANDOM_CMD?=	/usr/games/random
@@ -1556,10 +1573,10 @@ MASTER_SORT_AWK+=	/${srt:S|/|\\/|g}/ { good["${srt:S|\\|\\\\|g}"] = good["${srt:
 .endfor
 MASTER_SORT_AWK+=	{ rest = rest " " $$0; } END { n=split(gl, gla); for(i=1;i<=n;i++) { print good[gla[i]]; } print rest; }
 
-SORTED_MASTER_SITES_DEFAULT_CMD=	cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} master-sites-DEFAULT
-SORTED_PATCH_SITES_DEFAULT_CMD=		cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} patch-sites-DEFAULT
-SORTED_MASTER_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} master-sites-ALL
-SORTED_PATCH_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} ${__softMAKEFLAGS} patch-sites-ALL
+SORTED_MASTER_SITES_DEFAULT_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-DEFAULT
+SORTED_PATCH_SITES_DEFAULT_CMD=		cd ${.CURDIR} && ${MAKE} patch-sites-DEFAULT
+SORTED_MASTER_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-ALL
+SORTED_PATCH_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} patch-sites-ALL
 
 #
 # Sort the master site list according to the patterns in MASTER_SORT
@@ -1751,7 +1768,7 @@ CONFIGURE_FAIL_MESSAGE?=	"Please report the problem to ${MAINTAINER} [maintainer
 .if !defined(CONFIGURE_MAX_CMD_LEN)
 CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 .endif
-GNU_CONFIGURE_PREFIX?=  ${PREFIX}
+GNU_CONFIGURE_PREFIX?=	${PREFIX}
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 CONFIGURE_ENV+=		lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
@@ -1763,7 +1780,7 @@ INTUIT_LATE_CONFIGURE_ARGS= \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --mandir=${MANPREFIX}/man"; \
 	fi ;\
 	if ${ECHO_CMD} $$_configure_help | ${GREP} -- '--infodir' >/dev/null && !(${ECHO_CMD} ${CONFIGURE_ARGS} | ${GREP} -- '--infodir' >/dev/null); then \
-		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}"; \
+		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}"; \
 	fi ;\
 	if [ -z "`./${CONFIGURE_SCRIPT} --version 2>&1 | ${EGREP} -i '(autoconf.*2\.13|Unrecognized option)'`" ]; then \
 		_LATE_CONFIGURE_ARGS="$${_LATE_CONFIGURE_ARGS} --build=${CONFIGURE_TARGET}" ; \
@@ -1820,7 +1837,8 @@ _DESKTOPDIR_REL=
 #
 _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 		apache2 apache1.1 apache1 apsl2 apsl1 artistic artistic2 \
-		bdb bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile ilm infozip iscl \
+		bdb bzip2 cddl epl fdl1.1 fdl1.2 fdl1.3 guile \
+		ibm ilm infozip iscl \
 		liberation mit modula3 mpl npl nvidia openldap2.8 opera owl \
 		perl php python ruby sgi subversion x11 zlib \
 		publicdom unknown other agg restricted
@@ -1855,11 +1873,11 @@ _LICENSES= 	agpl gpl gpl2 gpl3 lgpl lgpl2.1 lgpl3 bsd4 bsd3 bsd2 \
 .if defined(ONLY_FOR_ARCHS)
 .for __ARCH in ${ONLY_FOR_ARCHS}
 .if ${ARCH:M${__ARCH}} != ""
-__ARCH_OK?=	1
+__ARCH_OK?=		1
 .endif
 .endfor
 .else
-__ARCH_OK?=	1
+__ARCH_OK?=		1
 .endif
 
 .if defined(NOT_FOR_ARCHS)
@@ -1874,20 +1892,20 @@ __ARCH_OK?=	1
 .if defined(ONLY_FOR_ARCHS)
 IGNORE=		is only for ${ONLY_FOR_ARCHS},
 .else # defined(NOT_FOR_ARCHS)
-IGNORE=		does not run on ${NOT_FOR_ARCHS}.
+IGNORE=		does not run on ${NOT_FOR_ARCHS},
 .endif
-IGNORE+=	and you are running ${ARCH}.
+IGNORE+=	while you are running ${ARCH}.
 
 .if defined(ONLY_FOR_ARCHS_REASON_${ARCH})
-IGNORE+=	Reason: ${ONLY_FOR_ARCHS_REASON_${ARCH}}
+IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON_${ARCH}})
 .elif defined(ONLY_FOR_ARCHS_REASON)
-IGNORE+=	Reason: ${ONLY_FOR_ARCHS_REASON}
+IGNORE+=	(reason: ${ONLY_FOR_ARCHS_REASON})
 .endif
 
 .if defined(NOT_FOR_ARCHS_REASON_${ARCH})
-IGNORE+=	Reason: ${NOT_FOR_ARCHS_REASON_${ARCH}}
+IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON_${ARCH}})
 .elif defined(NOT_FOR_ARCHS_REASON)
-IGNORE+=	Reason: ${NOT_FOR_ARCHS_REASON}
+IGNORE+=	(reason: ${NOT_FOR_ARCHS_REASON})
 .endif
 
 .endif
@@ -1895,19 +1913,19 @@ IGNORE+=	Reason: ${NOT_FOR_ARCHS_REASON}
 # Check the user interaction and legal issues
 .if !defined(NO_IGNORE)
 .if (defined(IS_INTERACTIVE) && defined(BATCH))
-IGNORE=	is an interactive port
+IGNORE=		is an interactive port
 .elif (!defined(IS_INTERACTIVE) && defined(INTERACTIVE))
-IGNORE=	is not an interactive port
+IGNORE=		is not an interactive port
 .elif (defined(NO_CDROM) && defined(FOR_CDROM))
-IGNORE=	may not be placed on a CDROM: ${NO_CDROM}
+IGNORE=		may not be placed on a CDROM: ${NO_CDROM}
 .elif (defined(RESTRICTED) && defined(NO_RESTRICTED))
-IGNORE=	is restricted: ${RESTRICTED}
+IGNORE=		is restricted: ${RESTRICTED}
 .elif defined(BROKEN)
 .if !defined(TRYBROKEN)
-IGNORE=	is marked as broken: ${BROKEN}
+IGNORE=		is marked as broken: ${BROKEN}
 .endif
 .elif defined(FORBIDDEN)
-IGNORE=	is forbidden: ${FORBIDDEN}
+IGNORE=		is forbidden: ${FORBIDDEN}
 .endif
 
 .if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
@@ -2322,12 +2340,14 @@ patch-dos2unix:
 	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
 .if ${USE_DOS2UNIX:M*/*}
 .for f in ${USE_DOS2UNIX}
-	@${REINPLACE_CMD} -i '' -e 's/^M$$//' ${WRKSRC}/${f}
+	@${REINPLACE_CMD} -i '' -e 's/
+$$//' ${WRKSRC}/${f}
 .endfor
 .else
 .for f in ${USE_DOS2UNIX}
 	@${FIND} ${WRKSRC} -type f -name '${f}' -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/^M$$//'
+			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/
+$$//'
 .endfor
 .endif
 .endif
@@ -2812,9 +2832,9 @@ _BUILD_SEQ=		build-message pre-build pre-build-script do-build \
 
 _FAKE_DEP=		build
 _FAKE_SEQ=		fake-message fake-dir apply-slist pre-fake fake-pre-install \
-				generate-plist fake-pre-su-install do-fake fake-post-install \
+				generate-plist fake-pre-su-install create-users-groups do-fake fake-post-install \
 				post-fake compress-man install-rc-script install-ldconfig-file install-desktop-entries \
-				fix-fake-symlinks finish-tmpplist
+				fix-fake-symlinks finish-tmpplist fix-plist-sequence
 
 .if defined(MPORT_MAINTAINER_MODE) && !defined(_MAKEPLIST)
 _FAKE_SEQ+=		check-fake
@@ -4046,7 +4066,114 @@ install-ldconfig-file:
 .	endif
 .endif
 
+.if !target(create-users-groups)
+create-users-groups:
+.if defined(GROUPS) || defined(USERS)
+.if defined(GROUPS)
+.for _file in ${GID_FILES}
+.if !exists(${_file})
+	@${ECHO_CMD} "** ${_file} doesn't exist. Exiting."; exit 1
+.endif
+.endfor
+	@${ECHO_MSG} "===> Creating users and/or groups."
+	@${ECHO_CMD} "@exec echo \"===> Creating users and/or groups.\"" >> ${TMPPLIST}
+.for _group in ${GROUPS}
+# _bgpd:*:130:
+	@if ! ${GREP} -h ^${_group}: ${GID_FILES} >/dev/null 2>&1; then \
+		${ECHO_CMD} "** Cannot find any information about group \`${_group}' in ${GID_FILES}."; \
+		exit 1; \
+	fi
+	@IFS=":"; ${GREP} -h ^${_group}: ${GID_FILES} | head -n 1 | while read group foo gid members; do \
+		gid=$$(($$gid+${GID_OFFSET})); \
+		if ! ${PW} groupshow $$group >/dev/null 2>&1; then \
+			${ECHO_MSG} "Creating group \`$$group' with gid \`$$gid'."; \
+			${PW} groupadd $$group -g $$gid; \
+		else \
+			${ECHO_MSG} "Using existing group \`$$group'."; \
+		fi; \
+		${ECHO_CMD} "@exec if ! ${PW} groupshow $$group >/dev/null 2>&1; then \
+			echo \"Creating group '$$group' with gid '$$gid'.\"; \
+			${PW} groupadd $$group -g $$gid; else echo \"Using existng group '$$group'.\"; fi" >> ${TMPPLIST}; \
+	done
+.endfor
+.endif
+.if defined(USERS)
+.for _file in ${UID_FILES}
+.if !exists(${_file})
+	@${ECHO_CMD} "** ${_file} doesn't exist. Exiting."; exit 1
+.endif
+.endfor
+.for _user in ${USERS}
+# _bgpd:*:130:130:BGP Daemon:/var/empty:/sbin/nologin
+	@if ! ${GREP} -h ^${_user}: ${UID_FILES} >/dev/null 2>&1; then \
+		${ECHO_CMD} "** Cannot find any information about user \`${_user}' in ${UID_FILES}."; \
+		exit 1; \
+	fi
+	@IFS=":"; ${GREP} -h ^${_user}: ${UID_FILES} | head -n 1 | while read login passwd uid gid class change expire gecos homedir shell; do \
+		uid=$$(($$uid+${UID_OFFSET})); \
+		gid=$$(($$gid+${GID_OFFSET})); \
+		class="$${class:+-L }$$class"; \
+		homedir=$$(echo $$homedir | sed "s|^/usr/local|${PREFIX}|"); \
+		if ! ${PW} usershow $$login >/dev/null 2>&1; then \
+			${ECHO_MSG}  "Creating user \`$$login' with uid \`$$uid'."; \
+			eval ${PW} useradd $$login -u $$uid -g $$gid $$class -c \"$$gecos\" -d $$homedir -s $$shell; \
+			case $$homedir in /nonexistent|/var/empty) ;; *) ${INSTALL} -d -g $$gid -o $$uid $$homedir;; esac; \
+		else \
+			${ECHO_MSG} "Using existing user \`$$login'."; \
+		fi; \
+		${ECHO_CMD} "@exec if ! ${PW} usershow $$login >/dev/null 2>&1; then \
+			echo \"Creating user '$$login' with uid '$$uid'.\"; \
+			${PW} useradd $$login -u $$uid -g $$gid $$class -c \"$$gecos\" -d $$homedir -s $$shell; \
+			else echo \"Using existing user '$$login'.\"; fi" >> ${TMPPLIST}; \
+		case $$homedir in /nonexistent|/var/empty) ;; *) ${ECHO_CMD} "@exec ${INSTALL} -d -g $$gid -o $$uid $$homedir" >> ${TMPPLIST};; esac; \
+	done
+.endfor
+.if defined(GROUPS)
+.for _group in ${GROUPS}
+# mail:*:6:postfix,clamav
+	@IFS=":"; ${GREP} -h ^${_group}: ${GID_FILES} | head -n 1 | while read group foo gid members; do \
+		gid=$$(($$gid+${GID_OFFSET})); \
+		IFS=","; for _login in $$members; do \
+			for _user in ${USERS}; do \
+				if [ "x$${_user}" = "x$${_login}" ]; then \
+					if ! ${PW} groupshow ${_group} | ${GREP} -qw $${_login}; then \
+						${ECHO_MSG} "Adding user \`$${_login}' to group \`${_group}'."; \
+						${PW} groupmod ${_group} -m $${_login}; \
+					fi; \
+					${ECHO_CMD} "@exec if ! ${PW} groupshow ${_group} | ${GREP} -qw $${_login}; then \
+						echo \"Adding user '$${_login}' to group '${_group}'.\"; \
+						${PW} groupmod ${_group} -m $${_login}; fi" >> ${TMPPLIST}; \
+				fi; \
+			done; \
+		done; \
+	done
+.endfor
+.endif
+.if defined(USERS)
+.for _user in ${USERS}
+	@if [ ! ${USERS_BLACKLIST:M${_user}} ]; then \
+		${ECHO_CMD} "@unexec if ${PW} usershow ${_user} >/dev/null 2>&1; then \
+		echo \"==> You should manually remove the \\\"${_user}\\\" user. \"; fi" >> ${TMPPLIST}; \
+	fi
+.endfor
+.endif
+.endif
+.else
+	@${DO_NADA}
+.endif
+.endif
 
+# XXX Make sure the commands to create group(s)
+# and user(s) are the first in pkg-plist
+.if !target(fix-plist-sequence)
+fix-plist-sequence: ${TMPPLIST}
+.if defined(GROUPS) || defined(USERS)
+	@${ECHO_CMD} "===> Correct pkg-plist sequence to create group(s) and user(s)"
+	@${EGREP} -e '^@exec echo.*Creating users and' -e '^@exec.*${PW}' -e '^@exec ${INSTALL} -d -g' ${TMPPLIST} > ${TMPGUCMD}
+	@${EGREP} -v -e '^@exec echo.*Creating users and' -e '^@exec.*${PW}' -e '^@exec ${INSTALL} -d -g' ${TMPPLIST} >> ${TMPGUCMD}
+	@${MV} -f ${TMPGUCMD} ${TMPPLIST}
+.endif
+.endif
 
 # Compress (or uncompress) and symlink manpages.
 .if !target(compress-man)
