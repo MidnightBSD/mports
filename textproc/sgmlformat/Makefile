@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.4 2008/03/22 02:57:44 ctriv Exp $
+# $MidnightBSD: mports/textproc/sgmlformat/Makefile,v 1.5 2009/10/19 01:34:01 laffer1 Exp $
 
 PORTNAME=	sgmlformat
 PORTVERSION=	1.7
@@ -6,7 +6,6 @@ PORTREVISION=	3
 CATEGORIES=	textproc print
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	kuriyama
-#MASTER_SITES=	http://fallout.campusview.indiana.edu/ports/distfiles/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Generates groff and HTML from linuxdoc and docbook SGML documents
