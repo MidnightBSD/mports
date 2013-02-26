@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/Makefile,v 1.141 2012/03/04 21:09:54 laffer1 Exp $
+# $MidnightBSD: mports/textproc/Makefile,v 1.142 2012/03/07 03:33:05 laffer1 Exp $
 
 COMMENT = Text processing utilities (does not include desktop publishing)
 
@@ -35,6 +35,7 @@ SUBDIR += dsssl-docbook-modular
 SUBDIR += duncan
 SUBDIR += easydiff
 SUBDIR += ebook-tools
+SUBDIR += elasticsearch
 SUBDIR += enchant
 SUBDIR += etoile-lucenekit
 SUBDIR += etoile-ogrekit
