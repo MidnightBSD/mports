@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.6 2011/06/08 12:29:03 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/coreutils/Makefile,v 1.7 2012/03/06 01:36:33 laffer1 Exp $
 
 PORTNAME=	coreutils
-PORTVERSION=	8.12
+PORTVERSION=	8.20
 CATEGORIES=	sysutils textproc
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -12,17 +12,19 @@ LICENSE=	gpl3
 
 CONFLICTS=	id-utils-[0-9]* linux-gid-[0-9]*
 
-SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
+MAKE_JOBS_UNSAFE=	yes
+
 GNU_CONFIGURE=	yes
 # A rather nasty hack to stop gnustat from conflicting with base gstat
 CONFIGURE_ARGS=	--program-prefix=g	\
 		--program-transform-name=s/stat/nustat/
-CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib" FORCE_UNSAFE_CONFIGURE=1
 CPPFLAGS+=	"-I${LOCALBASE}/include"
 
 USE_XZ=		yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
+USE_PERL5_BUILD=	yes # Required for tests and man page generation
 #USE_BISON=	yes
 
 INFO=		coreutils
@@ -34,7 +36,7 @@ MAN1=	gbasename.1 gcat.1 gchcon.1 gchgrp.1 gchmod.1 gchown.1 gchroot.1 \
 	gid.1 ginstall.1 gjoin.1 gkill.1 glink.1 gln.1 \
 	glogname.1 gls.1 gmd5sum.1 gmkdir.1 gmkfifo.1 gmknod.1 gmktemp.1 \
 	gmv.1 gnice.1 gnl.1 gnohup.1 god.1 gpaste.1 gpathchk.1 gpinky.1 \
-	gpr.1 gprintenv.1 gprintf.1 gptx.1 gpwd.1 greadlink.1 grm.1 \
+	gpr.1 gprintenv.1 gprintf.1 gptx.1 gpwd.1 greadlink.1 grealpath.1 grm.1 \
 	grmdir.1 gruncon.1 gseq.1 gsha1sum.1 gshred.1 gsleep.1 gsort.1 \
 	gsplit.1 gstdbuf.1 gnustat.1 gstty.1 gsum.1 gsync.1 gtac.1 \
 	gtail.1 gtee.1 gtest.1 gtimeout.1 gtouch.1 gtr.1 gtrue.1 gtruncate.1 \
@@ -62,9 +64,8 @@ CONFIGURE_ARGS+=--without-gmp
 
 .include <bsd.port.pre.mk>
 
-post-patch:
-.if !defined(WITH_SUID)
-	@${REINPLACE_CMD} -e "s/u+s/u+w/g" ${WRKSRC}/src/Makefile.in
+.if ${OSVERSION} >= 4015
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-stty.c
 .endif
 
 post-build:
