@@ -1,13 +1,8 @@
-# New ports collection makefile for:    upsd
-# Date created:         11 Jul 1996
-# Whom:                 alexis
-#
-# $MidnightBSD$
-# $FreeBSD: ports/sysutils/upsd/Makefile,v 1.18 2008/06/24 07:11:00 az Exp $
-#
+# $MidnightBSD: mports/sysutils/upsd/Makefile,v 1.1 2008/08/24 22:00:56 laffer1 Exp $
 
 PORTNAME=	upsd
 PORTVERSION=	2.0.1.6
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.mavetju.org/download/adopted/
 
