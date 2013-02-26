@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.5 2011/05/28 06:36:22 laffer1 Exp $
-# $FreeBSD: ports/textproc/libxml/Makefile,v 1.57 2007/01/28 09:07:45 kris Exp $
+# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.6 2013/01/24 04:40:22 laffer1 Exp $
 
 PORTNAME=	libxml
 PORTVERSION=	1.8.17
@@ -11,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML parser library for GNOME
 LICENSE=	gpl2
 
-DEPRECATED=   Last release in 2002, unsupported by developer
+DEPRECATED=   Last release in 2002, unsupported by developers
 
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
