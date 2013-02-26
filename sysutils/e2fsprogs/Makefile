@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.6 2010/10/23 18:00:28 laffer1 Exp $
-# $FreeBSD: ports/sysutils/e2fsprogs/Makefile,v 1.42 2008/04/29 11:09:27 miwi Exp $
+# $MidnightBSD: mports/sysutils/e2fsprogs/Makefile,v 1.7 2012/03/06 01:53:53 laffer1 Exp $
 
 PORTNAME=	e2fsprogs
-PORTVERSION=	1.42
+PORTVERSION=	1.42.7
 CATEGORIES?=	sysutils
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v${PORTVERSION}
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	Utilities & library to manipulate ext2/3/4 filesystems
