@@ -1,20 +1,18 @@
-# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.5 2009/04/16 04:03:57 laffer1 Exp $
+# $MidnightBSD: mports/mail/pantomime/Makefile,v 1.6 2012/02/03 03:43:17 laffer1 Exp $
 
 PORTNAME=	pantomime
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	mail gnustep
-MASTER_SITES=	http://www.collaboration-world.com/pantomime.data/releases/Stable/ \
-		http://download.gna.org/gnustep-nonfsf/
-DISTNAME=	Pantomime-${PORTVERSION}pre3
+MASTER_SITES=	http://download.gna.org/gnustep-nonfsf/
+DISTNAME=	Pantomime-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Mail/MIME handling library for GNUstep
 LICENSE=	lgpl2.1
 
-WRKSRC=		${WRKDIR}/Pantomime
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
