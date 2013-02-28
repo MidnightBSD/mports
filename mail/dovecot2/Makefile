@@ -1,7 +1,7 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/mail/dovecot2/Makefile,v 1.1 2012/02/03 02:35:08 laffer1 Exp $
 
 PORTNAME=	dovecot
-PORTVERSION=	2.0.16
+PORTVERSION=	2.1.15
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/
 PKGNAMESUFFIX=	2
@@ -14,7 +14,7 @@ LATEST_LINK=	dovecot2
 CONFLICTS=	dovecot-1.[0-9]*
 
 USE_ICONV=	yes
-USE_RC_SUBR=	dovecot.sh
+USE_RC_SUBR=	dovecot
 MAKE_JOBS_SAFE=	yes
 
 GNU_CONFIGURE=	yes
@@ -47,8 +47,10 @@ OPTIONS=	KQUEUE		"kqueue(2) support"	on  \
 		GSSAPI		"GSSAPI support"	off \
 		VPOPMAIL	"vpopmail support"	off \
 		LDAP		"OpenLDAP support"	off \
+		LUCENE		"Apache Lucene FTS"	off \
 		PGSQL		"PostgreSQL support"	off \
 		MYSQL		"MySQL support"		off \
+		SOLR		"SOLR FTS"		off \
 		SQLITE		"SQLite support"	off
 
 .include <bsd.port.pre.mk>
@@ -108,6 +110,16 @@ CONFIGURE_ARGS+=--without-ldap
 PLIST_SUB+=	LDAP="@comment "
 .endif
 
+## CLucene FTS support
+#
+.if defined(WITH_LUCENE)
+CONFIGURE_ARGS+=--with-lucene
+LIB_DEPENDS+=	clucene-core:${PORTSDIR}/textproc/clucene
+PLIST_SUB+=	LUCENE=""
+.else
+PLIST_SUB+=	LUCENE="@comment "
+.endif
+
 ## PostgreSQL Support
 #
 .if defined(WITH_PGSQL) && !defined(WITHOUT_PGSQL)
@@ -143,6 +155,28 @@ CONFIGURE_ARGS+=--without-sqlite
 PLIST_SUB+=	SQL="@comment "
 .endif
 
+## SOLR support
+#
+.if defined(WITH_SOLR)
+CONFIGURE_ARGS+=--with-solr
+BUILD_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	expat:${PORTSDIR}/textproc/expat2
+PLIST_SUB+=	SOLR=""
+.else
+CONFIGURE_ARGS+=--without-solr
+PLIST_SUB+=	SOLR="@comment "
+.endif
+
+## libwrap support
+#
+.if defined(WITH_LIBWRAP)
+CONFIGURE_ARGS+=--with-libwrap
+PLIST_SUB+=	LIBWRAP=""
+.else
+CONFIGURE_ARGS+=--without-libwrap
+PLIST_SUB+=	LIBWRAP="@comment "
+.endif
+
 SUB_LIST=	REQUIRE="${_REQUIRE}"
 SUB_FILES=	pkg-deinstall pkg-message
 
@@ -158,9 +192,11 @@ MAN1=		deliver.1 \
 		doveadm-help.1 \
 		doveadm-import.1 \
 		doveadm-index.1 \
+		doveadm-instance.1 \
 		doveadm-kick.1 \
 		doveadm-log.1 \
 		doveadm-mailbox.1 \
+		doveadm-mount.1 \
 		doveadm-move.1 \
 		doveadm-penalty.1 \
 		doveadm-purge.1 \
@@ -185,11 +221,6 @@ post-patch:
 		s!-example\.conf[[:>:]]!.conf!g;\
 		s!^(confdir[[:space:]]+=[[:space:]]+)\$$\(sysconfdir\)!\1${EXAMPLESDIR}!g;\
 		' ${WRKSRC}/*/Makefile.in ${WRKSRC}/Makefile.in
-.if defined(WITH_GSSAPI)
-	@${REINPLACE_CMD} -e '\
-		s!<gssapi/gssapi\.h>!<gssapi.h>!;\
-		' ${WRKSRC}/src/auth/mech-gssapi.c ${WRKSRC}/configure
-.endif
 
 post-install:
 .if !defined(NOPORTEXAMPLES)
