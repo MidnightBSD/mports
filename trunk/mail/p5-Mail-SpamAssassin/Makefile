@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.12 2011/04/26 00:25:09 laffer1 Exp $
-# $FreeBSD: ports/mail/p5-Mail-SpamAssassin/Makefile,v 1.137 2010/12/16 02:33:56 glarkin Exp $
+# $MidnightBSD: mports/mail/p5-Mail-SpamAssassin/Makefile,v 1.13 2012/04/19 19:03:55 laffer1 Exp $
 
 PORTNAME=	Mail-SpamAssassin
 PORTVERSION=	3.3.2
+PORTREVISION=	1
 CATEGORIES=	mail perl5
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:apache/} ${MASTER_SITE_PERL_CPAN:S/$/:cpan/}
 MASTER_SITE_SUBDIR=	spamassassin/source/:apache Mail/:cpan
@@ -198,7 +198,7 @@ DOCSSQL=	README README.awl README.bayes awl_mysql.sql awl_pg.sql bayes_mysql.sql
 DOCSLDAP=	README README.testing sa_test.ldif
 PORTDOCS=	${DOCS} sql ldap
 
-USE_RC_SUBR=	sa-spamd.sh
+USE_RC_SUBR=	sa-spamd
 
 .if defined(WITH_MYSQL) || defined(WITH_PGSQL)
 SUB_LIST+=	SQL_FLAG="-Q"
