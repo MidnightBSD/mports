@@ -1,19 +1,19 @@
-
-$MidnightBSD$
-
---- ltmain.sh	2001/08/27 09:51:26	1.1
-+++ ltmain.sh	2001/08/27 09:51:42
-@@ -2408,6 +2408,9 @@
- 	  *-*-netbsd*)
- 	    # Don't link with libc until the a.out ld.so is fixed.
+--- ltmain.sh.orig	2006-03-07 11:10:49.000000000 +0000
++++ ltmain.sh	2013-02-28 19:48:14.000000000 +0000
+@@ -2192,6 +2192,12 @@
+ 	    fi
+ 	    newlib_search_path="$newlib_search_path "`$echo "X$deplib" | $Xsed -e 's/^-L//'`
  	    ;;
 +	  *-*-freebsd*)
 +	    # FreeBSD doesn't need this...
 +	    ;;
++	  *-*-midnightbsd*)
++            # MidnightBSD doesn't need this.
++	    ;;
  	  *)
- 	    # Add libc to deplibs on all other systems if necessary.
- 	    if test "$build_libtool_need_lc" = "yes"; then
-@@ -4175,10 +4178,12 @@
+ 	    $echo "$modename: warning: \`-L' is ignored for archives/objects" 1>&2
+ 	    ;;
+@@ -5995,10 +6001,12 @@
  	fi
  
  	# Install the pseudo-library for information purposes.

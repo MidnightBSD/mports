@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/pth/Makefile,v 1.4 2013/02/18 13:37:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/pth/Makefile,v 1.5 2013/03/01 00:39:46 laffer1 Exp $
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7
@@ -29,7 +29,7 @@ CONFLICTS?=	pth-hard-2.*
 
 .include <bsd.port.pre.mk>
 
-.if ${PKGNAMESUFFIX} == "-hard"
+.if defined(PKGNAMESUFFIX) && ${PKGNAMESUFFIX} == "-hard"
 CONFIGURE_ARGS+=	--enable-syscall-hard --disable-syscall-soft
 PLIST_SUB=	PTHREAD="@comment "
 .else
