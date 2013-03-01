@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD$
 #
 
 # PROVIDE: spamd
@@ -16,11 +16,12 @@
 # See spamd(8) for flags
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name=spamd
-rcvar=`set_rcvar`
+rcvar=spamd_enable
 
+extra_commands="reload"
 load_rc_config $name
 
 # Set defaults
