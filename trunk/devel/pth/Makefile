@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/pth/Makefile,v 1.3 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/pth/Makefile,v 1.4 2013/02/18 13:37:34 laffer1 Exp $
 
 PORTNAME=	pth
 PORTVERSION=	2.0.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	pth
@@ -23,12 +23,13 @@ CONFIGURE_ARGS=	--enable-optimize \
 MAN1=		pth-config.1
 MAN3=		pth.3
 
-OPTIONS=	OPTIMIZED_CFLAGS "Build with optimized CFLAGS" on \
-		SYSCALL_HARD "Build with hard syscalls" off
+OPTIONS=	OPTIMIZED_CFLAGS "Build with optimized CFLAGS" on
+
+CONFLICTS?=	pth-hard-2.*
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_SYSCALL_HARD)
+.if ${PKGNAMESUFFIX} == "-hard"
 CONFIGURE_ARGS+=	--enable-syscall-hard --disable-syscall-soft
 PLIST_SUB=	PTHREAD="@comment "
 .else
