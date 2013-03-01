@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.17 2013/02/17 21:47:29 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.18 2013/02/17 22:40:12 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -103,7 +103,7 @@ USE_PERL5= ${PERL_BRANCH}
 #
 # Perl version stuff.
 #
-.if ${OSVERSION} > 4014
+.if ${OSVERSION} > 4015
 _DEFAULT_PERL_VERSION= 5.14.2
 .elif ${OSVERSION} > 4004
 _DEFAULT_PERL_VERSION= 5.14.0 
