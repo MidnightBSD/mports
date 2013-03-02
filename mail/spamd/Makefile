@@ -1,84 +1,72 @@
-# New ports collection makefile for:    spamd
-# Date created:         04 April 2007
-# Whom:			Max Laier <max@love2party.net>
-#
-# $MidnightBSD: mports/mail/spamd/Makefile,v 1.4 2007/12/05 22:53:18 laffer1 Exp $
-# $FreeBSD: ports/mail/spamd/Makefile,v 1.13 2007/06/06 16:38:52 miwi Exp $
-#
+# $MidnightBSD: mports/mail/spamd/Makefile,v 1.5 2011/11/10 23:03:00 laffer1 Exp $
 
 PORTNAME=	spamd
 PORTVERSION=	4.9.1
+PORTREVISION=	1
 CATEGORIES=	mail
-MASTER_SITES=	BERLIOS
-MASTER_SITE_SUBDIR=freebsdspamd
-DISTNAME=	${PORTNAME}-${PORTVERSION}
+MASTER_SITES=	SF
+MASTER_SITE_SUBDIR=freebsdspamd.berlios
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Traps spammers with a very slow smtp-login and return 4xx error
 LICENSE=	bsd2
 
-.include <bsd.port.pre.mk>
-
-LOCAL_PFCTL=	/sbin/pfctl
 USE_RC_SUBR?=	obspamd obspamlogd
 
-SPAMDUSER?=	_spamd
-SPAMDGROUP?=	_spamd
-SPAMDDIR?=	/var/empty
-
-SPAMDUID=	132
-SPAMDGID=	${SPAMDUID}
+USERS=		_spamd
+GROUPS=		_spamd
 
 MAN5=		spamd.conf.5
 MAN8=		spamd.8 spamd-setup.8 spamdb.8 spamlogd.8
-PORTDOCS=	ipfw-spamd.txt
 
-PLIST_DIRS=	etc/spamd
-PLIST_FILES=	libexec/spamd libexec/spamlogd \
-		sbin/spamd-setup sbin/spamdb \
-		etc/spamd/spamd.conf.sample
+PLIST_DIRSTRY=	%%ETCDIR%%
+PLIST_FILES=	%%ETCDIR%%/spamd.conf.sample \
+		libexec/spamlogd \
+		sbin/spamd-setup \
+		sbin/spamdb
 
-CONFIG_DIR=		${PREFIX}/etc/spamd
-SAMPLE_SPAMD_CONF=	${CONFIG_DIR}/spamd.conf.sample
+PLIST_SUB=	SPAMDUSER=${USERS} \
+		SPAMDGROUP=${GROUPS}
 
-PLIST_SUB=	SPAMDDIR=${SPAMDDIR} \
-		SPAMDUSER=${SPAMDUSER} \
-		SPAMDGROUP=${SPAMDGROUP} \
-		SPAMDUID=${SPAMDUID} \
-		SPAMDGID=${SPAMDGID}
+# If you are a CPANEL user the this option is for you!
+# CPANEL sends periodic a 'kill -TERM spamd' to the SpamAssassin spamd, and
+# this kills also the OpenBSD spamd daemon.
+# With this option spamd will be installed as obspamd, and the rc script will
+# be adjusted. Man page and pid file will not be renamed!
+.if !defined(CPANEL)
+PLIST_FILES+=	libexec/spamd
+PLIST_SUB+=	SPAMDBIN=spamd
+.else
+PLIST_FILES+=	libexec/obspamd
+PLIST_SUB+=	SPAMDBIN=obspamd
+.endif
 
 SUB_FILES=	pkg-install \
-		pkg-deinstall \
 		pkg-message
 
 SUB_LIST=	PREFIX=${PREFIX} \
 		${PLIST_SUB}
 
+.include <bsd.mport.options.mk>
+
 pre-install:
 	@${SH} ${PKGINSTALL} ${DISTNAME} PRE-INSTALL
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec
-	${INSTALL_PROGRAM} ${WRKSRC}/spamlogd/spamlogd ${PREFIX}/libexec
-	${INSTALL_PROGRAM} ${WRKSRC}/spamd-setup/spamd-setup ${PREFIX}/sbin
-	${INSTALL_PROGRAM} ${WRKSRC}/spamdb/spamdb ${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/etc/spamd.conf.5 ${PREFIX}/man/man5
-	${INSTALL_MAN} ${WRKSRC}/spamd/spamd.8 ${PREFIX}/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamd-setup/spamd-setup.8 ${PREFIX}/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamdb/spamdb.8 ${PREFIX}/man/man8
-	${INSTALL_MAN} ${WRKSRC}/spamlogd/spamlogd.8 ${PREFIX}/man/man8
-	@if [ ! -d ${CONFIG_DIR} ]; then                        \
-		${MKDIR} ${CONFIG_DIR}; \
-	fi
-	@if [ ! -f ${SAMPLE_SPAMD_CONF} ]; then                 \
-		${ECHO_MSG} "Installing ${SAMPLE_SPAMD_CONF} file."; \
-		${ECHO_MSG} "${INSTALL_DATA} -v -p ${WRKSRC}/etc/spamd.conf ${SAMPLE_SPAMD_CONF}";                              \
-		${INSTALL_DATA} -v -p ${WRKSRC}/etc/spamd.conf  \
-		${SAMPLE_SPAMD_CONF};                           \
-	fi
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/ipfw-spamd.txt ${DOCSDIR}/
+.if !defined(CPANEL)
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec
+.else
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamd/spamd ${PREFIX}/libexec/obspamd
 .endif
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamlogd/spamlogd ${PREFIX}/libexec
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamd-setup/spamd-setup ${PREFIX}/sbin
+	@${INSTALL_PROGRAM} ${WRKSRC}/spamdb/spamdb ${PREFIX}/sbin
+	@${INSTALL_MAN} ${WRKSRC}/etc/spamd.conf.5 ${PREFIX}/man/man5
+	@${INSTALL_MAN} ${WRKSRC}/spamd/spamd.8 ${PREFIX}/man/man8
+	@${INSTALL_MAN} ${WRKSRC}/spamd-setup/spamd-setup.8 ${PREFIX}/man/man8
+	@${INSTALL_MAN} ${WRKSRC}/spamdb/spamdb.8 ${PREFIX}/man/man8
+	@${INSTALL_MAN} ${WRKSRC}/spamlogd/spamlogd.8 ${PREFIX}/man/man8
+	@${INSTALL} -d ${ETCDIR}
+	@${INSTALL_DATA} -m 644 ${WRKSRC}/etc/spamd.conf ${ETCDIR}/spamd.conf.sample
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
