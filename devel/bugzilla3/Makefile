@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.11 2013/03/02 21:52:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.12 2013/03/02 21:53:23 laffer1 Exp $
 
 PORTNAME=	bugzilla
-PORTVERSION=	3.6.11
+PORTVERSION=	3.6.12
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
