@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/security/p5-Net-SSLeay/Makefile,v 1.2 2009/05/01 16:08:21 laffer1 Exp $
+# $MidnightBSD: mports/security/p5-Net-SSLeay/Makefile,v 1.3 2012/02/03 03:56:06 laffer1 Exp $
 
 PORTNAME=	Net-SSLeay
-PORTVERSION=	1.42
+PORTVERSION=	1.52
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
