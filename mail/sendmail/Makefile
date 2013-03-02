@@ -1,13 +1,11 @@
-# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.12 2011/05/17 22:13:41 laffer1 Exp $
+# $MidnightBSD: mports/mail/sendmail/Makefile,v 1.13 2013/02/28 00:30:17 laffer1 Exp $
 
 PORTNAME=	sendmail
 PORTVERSION=	8.14.6
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,} \
-		ftp://ftp.stikman.com/pub/sendmail/ \
-		ftp://ftp.uni-mainz.de/pub/internet/sendmail/ \
-		ftp://ftp.cs.berkeley.edu/ucb/sendmail/
+		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
 PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BERKELEYDB_SUFFIX}${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}.${PORTVERSION}
 
@@ -15,7 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Reliable, highly configurable mail transfer agent with utilities
 LICENSE=	agg
 
-CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.*
+CONFLICTS?=	courier-0.* postfix-1.* postfix-2.* smail-3.* zmailer-2.* opensmtpd-*
 
 FAKE_OPTS+=	trueprefix
 
@@ -87,14 +85,12 @@ CONFLICTS+=	sendmail-sasl-8.* sendmail-sasl2-8.* sendmail-tls-8.*
 USE_OPENLDAP=	yes
 .endif
 .if defined(SENDMAIL_WITH_SASL) && !defined(SENDMAIL_WITH_SASL2)
-SASL_SUFFIX?=	+sasl1
-CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl2-8.* sendmail-tls-8.*
-LIB_DEPENDS+=	sasl.8:${PORTSDIR}/security/cyrus-sasl
+SENDMAIL_WITH_SASL2=	yes
 .endif
 .if defined(SENDMAIL_WITH_SASL2)
 SASL_SUFFIX?=	+sasl2
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-tls-8.*
-LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
 .if !defined(SENDMAIL_WITHOUT_SASLAUTHD)
 RUN_DEPENDS+=	${LOCALBASE}/sbin/saslauthd:${PORTSDIR}/security/cyrus-sasl2-saslauthd
 .endif
@@ -124,9 +120,6 @@ SITE+=	${FILESDIR}/site.config.m4
 .endif
 .if !defined(SENDMAIL_WITHOUT_IPV6)
 SITE+=	${FILESDIR}/site.config.m4.ipv6
-.endif
-.if defined(SENDMAIL_WITH_SASL)
-SITE+=	${FILESDIR}/site.config.m4.sasl
 .endif
 .if defined(SENDMAIL_WITH_SASL2)
 SITE+=	${FILESDIR}/site.config.m4.sasl2
@@ -168,10 +161,6 @@ SED_SCRIPT+=	-e "s;-DNIS ;;"
 .endif
 
 post-extract:
-	@${SED} -e "s=%%PREFIX%%=${PREFIX}=" ${FILESDIR}/sm-client.sh \
-		> ${WRKSRC}/sm-client.sh
-	@${SED} -e "s=%%PREFIX%%=${PREFIX}=" ${FILESDIR}/sendmail.sh \
-		> ${WRKSRC}/sendmail.sh
 	@${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \
 		-e "s=%%LOCALBASE%%=${LOCALBASE}=g" \
 		-e "s=%%PORTSDIR%%=${PORTSDIR}=g" \
@@ -302,12 +291,6 @@ post-install:
 	 ${PREFIX}/lib/libmilter.so.${MILTER_SOVER}
 	${LN} -sf libmilter.so.${MILTER_SOVER} ${PREFIX}/lib/libmilter.so
 .endif
-.endif
-.if exists(${DESTDIR}/etc/mail/mailer.conf)
-	${INSTALL_SCRIPT} ${WRKSRC}/sm-client.sh \
-		${FAKE_DESTDIR}${LOCALBASE}/etc/rc.d/sm-client.sh.sample
-	${INSTALL_SCRIPT} ${WRKSRC}/sendmail.sh \
-		${FAKE_DESTDIR}${LOCALBASE}/etc/rc.d/sendmail.sh.sample
 .endif
 .for i in ${MAN8}
 	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz

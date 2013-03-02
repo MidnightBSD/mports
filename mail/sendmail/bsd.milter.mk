@@ -3,7 +3,7 @@
 # Whom:			dinoex
 #
 # $FreeBSD: ports/mail/sendmail/bsd.milter.mk,v 1.2 2007/02/02 20:17:17 dinoex Exp $
-# $MidnightBSD: mports/mail/sendmail/bsd.milter.mk,v 1.1 2007/02/20 05:41:01 archite Exp $
+# $MidnightBSD: mports/mail/sendmail/bsd.milter.mk,v 1.2 2007/11/06 04:26:20 laffer1 Exp $
 #
 # a port shall includes this file after bsd.ports.pre.mk
 # .include "${PORTSDIR}/${PKGCATEGORY}/sendmail/bsd.milter.mk"
@@ -46,7 +46,7 @@ Milter_Include_MAINTAINER=	ports@MidnightBSD.org
 	!defined(WITH_SENDMAIL_PORT)
 .if	exists(${LOCALBASE}/lib/libmilter.a) || \
 	!exists(/usr/lib/libmilter.a)
-WITH_SENDMAIL_PORTS=yes
+WITH_SENDMAIL_PORT=yes
 .else
 WITH_SENDMAIL_BASE=yes
 .endif
@@ -68,10 +68,12 @@ MILTERINC=	-I${MILTERBASE}/include
 MILTERRPATH=	${MILTERBASE}/lib
 MILTERLIB=	-L${MILTERBASE}/lib -rpath=${MILTERRPATH}
 
+.if !defined(WITHOUT_MILTER_CFLAGS)
 .if defined(CFLAGS)
 CFLAGS+=${MILTERINC}
 .else
 CFLAGS=${MILTERINC}
+.endif
 .endif
 
 
@@ -91,13 +93,8 @@ MILTERRPATH=	${DESTDIR}/usr/lib:${LOCALBASE}/lib
 MILTERLIB=	-rpath=${MILTERRPATH}
 .endif
 
-.if defined(LDFLAGS)
+.if !defined(WITHOUT_MILTER_LDFLAGS)
 LDFLAGS+=${MILTERLIB}
-.else
-LDFLAGS=${MILTERLIB}
 .endif
-
-CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
-MAKE_ENV+=	LDFLAGS="${LDFLAGS}"
 
 # eof
