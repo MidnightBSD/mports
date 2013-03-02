@@ -1,11 +1,12 @@
 # $FreeBSD: ports/devel/icu/Makefile,v 1.27 2008/02/18 17:06:32 mi Exp $
-# $MidnightBSD: mports/devel/icu/Makefile,v 1.5 2010/09/14 23:35:38 laffer1 Exp $
+# $MidnightBSD: mports/devel/icu/Makefile,v 1.6 2011/04/19 03:13:43 laffer1 Exp $
 #
 
 PORTNAME=	icu
-PORTVERSION=	4.6.1
+PORTVERSION=	50.1.2
 CATEGORIES=	devel
-MASTER_SITES=	http://download.icu-project.org/files/icu4c/${PORTVERSION}/
+MASTER_SITES=	http://download.icu-project.org/files/icu4c/${PORTVERSION}/ \
+		SF/${PORTNAME}/ICU4C/${PORTVERSION}/
 DISTNAME=	icu4c-${PORTVERSION:S/./_/g}
 EXTRACT_SUFX=	-src.tgz
 
@@ -19,20 +20,23 @@ USE_LDCONFIG=		yes
 
 WRKSRC=			${WRKDIR}/icu/source
 
-GNU_CONFIGURE=		yes
-CONFIGURE_SCRIPT=	runConfigureICU
-CONFIGURE_ARGS+=	${OPSYS}
-CONFIGURE_ARGS+=	--enable-shared
-CONFIGURE_ARGS+=	--enable-static
-CONFIGURE_ARGS+=	--enable-samples=no --mandir=${PREFIX}/man/
-MAKE_JOBS_SAFE=		yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--with-data-packaging=library \
+			--disable-samples \
+			--enable-release \
+			--enable-shared \
+			--enable-static
+
+MAKE_JOBS_SAFE=	yes
 
 USE_GMAKE=		yes
+INSTALL_TARGET=		install install-manx
 
 MAN1+=	derb.1
 MAN1+=	genbrk.1
 MAN1+=	gencnval.1
-MAN1+=	genctd.1
+MAN1+=	gencfu.1
+MAN1+=	gendict.1
 MAN1+=	genrb.1
 MAN1+=	icu-config.1
 MAN1+=	makeconv.1
@@ -43,35 +47,37 @@ MAN8+=	genccode.8
 MAN8+=	gencmn.8
 MAN8+=	gensprep.8
 
-ICUMAJOR=	${PORTVERSION:S/.//:R}
-ICUMINOR=	${PORTVERSION:S/.//:E}
-.if ${ICUMINOR} == ""
-ICUMINOR=	0
-.endif
-PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUMINOR=${ICUMINOR}
-PLIST_SUB+=	ICUVER=${PORTVERSION}
+ICUMAJOR=	${PORTVERSION:C/\..*//}
+PLIST_SUB+=	ICUMAJOR=${ICUMAJOR} ICUVER=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITHOUT_THREADS)
-CONFIGURE_ARGS+=	--enable-threads=no
-.else
+.if ${ARCH} == "arm"
+BROKEN=		Does not compile on arm
+.endif
+
+.if !defined(WITHOUT_THREADS)
 # This builds thread-safe, but not the thread-using version:
 CONFIGURE_ARGS+=	--enable-weak-threads
+.else
+CONFIGURE_ARGS+=	--enable-threads=no
 .endif
 
 post-patch:
-.if defined(WITHOUT_THREADS)
-	${REINPLACE_CMD} -e 's,\(THREADSC.*FLAGS\).*,\1=${PTHREAD_CFLAGS},g' ${WRKSRC}/config/mh-bsd-gcc
+	@${REINPLACE_CMD} -e '/CXXFLAGS=/s/-ansi//' \
+		${WRKSRC}/configure
+.if ! defined(WITH_THREADS)
+	@${REINPLACE_CMD} -e 's,\(THREADSC.*FLAGS\).*,\1=,g' ${WRKSRC}/config/mh-bsd-gcc
 .endif
 	@${REINPLACE_CMD} -e 's,$$(libdir)/pkgconfig,${PREFIX}/libdata/pkgconfig,g' ${WRKSRC}/Makefile.in
 
 iotest cintltst intltest:
+	# Performing the ${.TARGET} test
 	-${GMAKE} -C ${WRKSRC}/test
 	cd ${WRKSRC}/test/${.TARGET} && ${SETENV} \
 	    LD_LIBRARY_PATH=${WRKSRC}/lib:${WRKSRC}/tools/ctestfw \
 	    ./${.TARGET}
 
-post-build test regression-test: iotest cintltst intltest
+test regression-test: iotest cintltst intltest
 
 .include <bsd.port.post.mk>
