@@ -666,7 +666,6 @@
 %%BUGZILLADIR%%/template/en/default/list/list.csv.tmpl
 %%BUGZILLADIR%%/template/en/default/list/list.html.tmpl
 %%BUGZILLADIR%%/template/en/default/list/list.ics.tmpl
-%%BUGZILLADIR%%/template/en/default/list/list.js.tmpl
 %%BUGZILLADIR%%/template/en/default/list/list.rdf.tmpl
 %%BUGZILLADIR%%/template/en/default/list/quips.html.tmpl
 %%BUGZILLADIR%%/template/en/default/list/server-push.html.tmpl
@@ -846,4 +845,8 @@
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/en/html
 %%PORTDOCS%%@dirrm %%DOCSDIR%%/en
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrmtry www/data
+@exec mkdir -p %D/%%WWWDIR%%/t
+@exec mkdir -p %D/%%WWWDIR%%/lib
+@exec mkdir -p %D/%%WWWDIR%%/graphs
+@exec mkdir -p %D/%%WWWDIR%%/data
+@exec mkdir -p %D/%%WWWDIR%%/contrib
