@@ -1,11 +1,7 @@
-# New ports collection makefile for:	bugzilla3
-# Date created:				October 11, 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.8 2010/11/12 00:27:43 laffer1 Exp $
+# $MidnightBSD: mports/devel/bugzilla3/Makefile,v 1.9 2012/02/24 18:37:41 laffer1 Exp $
 
 PORTNAME=	bugzilla
-PORTVERSION=	3.6.8
+PORTVERSION=	3.6.9
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_MOZILLA}
 MASTER_SITE_SUBDIR=	webtools webtools/archived
