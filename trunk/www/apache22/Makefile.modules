@@ -1,5 +1,5 @@
 # $FreeBSD: ports/www/apache22/Makefile.modules,v 1.33 2009/08/02 19:35:56 mezz Exp $
-# $MidnightBSD: mports/www/apache22/Makefile.modules,v 1.5 2010/02/05 14:00:45 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile.modules,v 1.6 2011/05/27 02:42:04 laffer1 Exp $
 
 .if !defined(Module_inc)
 Module_inc=		done
@@ -90,7 +90,7 @@ PLIST_SUB+=	BDB="@comment "
 .   if ${WITH_DBM:L} == "sdbm"
 CONFIGURE_ARGS+=	--with-dbm=sdbm
 .   elif ${WITH_DBM:L} == "gdbm"
-LIB_DEPENDS+=		gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=		gdbm:${PORTSDIR}/databases/gdbm
 CONFIGURE_ARGS+=	--with-gdbm=${LOCALBASE}
 .   elif ${WITH_DBM:L} == "db" || ${WITH_DBM:L} == "bdb"
 .	if defined(WITH_BDB_BASE)

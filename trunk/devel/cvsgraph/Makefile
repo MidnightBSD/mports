@@ -1,8 +1,8 @@
-# $FreeBSD: ports/devel/cvsgraph/Makefile,v 1.25 2006/07/10 01:15:03 clsung Exp $
-# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.3 2008/08/21 17:56:59 laffer1 Exp $
+# $MidnightBSD: mports/devel/cvsgraph/Makefile,v 1.4 2011/07/17 20:04:47 laffer1 Exp $
 
 PORTNAME=	cvsgraph
 PORTVERSION=	1.7.0
+PORTREVISION=	1
 CATEGORIES=	devel graphics
 MASTER_SITES=	http://www.akhphd.au.dk/~bertho/cvsgraph/release/
 

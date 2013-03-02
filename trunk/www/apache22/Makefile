@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.28 2012/02/05 03:54:47 laffer1 Exp $
+# $MidnightBSD: mports/www/apache22/Makefile,v 1.29 2012/09/13 20:20:48 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.2.23
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
