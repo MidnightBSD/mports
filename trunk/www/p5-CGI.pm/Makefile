@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.10 2010/06/27 15:56:24 laffer1 Exp $
+# $MidnightBSD: mports/www/p5-CGI.pm/Makefile,v 1.11 2010/12/10 00:46:56 laffer1 Exp $
 
 PORTNAME=	CGI.pm
-PORTVERSION=	3.50
+PORTVERSION=	3.63
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=   CGI
+MASTER_SITE_SUBDIR=	CPAN:MARKSTOS
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -18,7 +18,7 @@ MAN3=		CGI.3 CGI::Apache.3 CGI::Carp.3 CGI::Cookie.3 \
 		CGI::Fast.3 CGI::Pretty.3 CGI::Push.3 CGI::Switch.3 \
 		CGI::Util.3
 
-.if !defined(NOPORTDOCS)
+.if !defined(NOPORTEXAMPLES)
 EXAMPLES=	examples/caution.xbm examples/clickable_image.cgi \
 		examples/cookie.cgi examples/crash.cgi examples/customize.cgi \
 		examples/diff_upload.cgi examples/dna.small.gif \
@@ -41,9 +41,8 @@ post-patch:
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 501000
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/File/Spec.pm:${PORTSDIR}/devel/p5-PathTools
-RUN_DEPENDS=	${BUILD_DEPENDS}
+.if ${PERL_LEVEL} < 501400
+TEST_DEPENDS+=	p5-Test-Simple>=0.96:${PORTSDIR}/devel/p5-Test-Simple
 .endif
 
 .include <bsd.port.post.mk>
