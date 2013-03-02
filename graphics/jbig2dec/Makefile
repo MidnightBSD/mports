@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/graphics/jbig2dec/Makefile,v 1.1 2012/09/08 21:04:03 laffer1 Exp $
 
 PORTNAME=	jbig2dec
 PORTVERSION=	0.11
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Decoder implementation of the JBIG2 image compression format
 LICENSE=	gpl3
 
-USE_XZ=		yes
+USE_XZ=		yes:src
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
