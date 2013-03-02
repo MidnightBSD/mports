@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.16 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/databases/mysql50-server/Makefile,v 1.17 2011/02/08 14:35:53 laffer1 Exp $
 
 PORTNAME?=	mysql
-PORTVERSION=	5.0.92
+PORTVERSION=	5.0.95
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_MYSQL}
@@ -13,10 +13,9 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	gpl2
 
 SLAVEDIRS=	databases/mysql50-client databases/mysql50-scripts
-USE_AUTOTOOLS=	libtool
+GNU_CONFIGURE=	yes
 MAKE_JOBS_SAFE=	yes
 
-CONFIGURE_TARGET=--build=${MACHINE_ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS=	--localstatedir=/var/db/mysql \
 		--without-debug \
 		--without-readline \
@@ -104,7 +103,9 @@ LATEST_LINK=	mysql50-server
 
 CONFLICTS=	mysql-server-3.* mysql-server-4.* mysql-server-5.1.* mysql-server-6.*
 
-USE_RC_SUBR=	mysql-server.sh
+USE_RC_SUBR=	mysql-server
+USERS=		mysql
+GROUPS=		mysql
 
 .if !defined(WITHOUT_INNODB)
 PLIST_SUB+=	INNODB=""
