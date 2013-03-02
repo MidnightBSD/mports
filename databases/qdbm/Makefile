@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.3 2009/10/14 00:14:39 laffer1 Exp $
-# $FreeBSD: ports/databases/qdbm/Makefile,v 1.76 2006/11/15 01:06:25 ahze Exp $
+# $MidnightBSD: mports/databases/qdbm/Makefile,v 1.4 2012/02/24 01:09:34 laffer1 Exp $
 
 PORTNAME=	qdbm
 PORTVERSION=	1.8.78
@@ -19,8 +18,8 @@ CONFIGURE_ARGS=	--enable-zlib \
 		--enable-iconv \
 		--enable-pthread
 CFLAGS+=	${PTHREAD_CFLAGS}
-CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -I${LOCALBASE}/include" \
-		LDFLAGS="${PTHREAD_LIBS} -L${LOCALBASE}/lib"
+CPPFLAGS+=	${PTHREAD_CFLAGS} -I${LOCALBASE}/include
+LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
 MAKE_ARGS=	RELCFLAGS="${CFLAGS}" \
 		MYDATADIR="${DOCSDIR}" MYDOCS="${PORTDOCS}"
 .if !defined(NOPORTDOCS)
