@@ -1,10 +1,10 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/mail/spamd/files/obspamd.in,v 1.1 2007/06/06 16:38:53 miwi Exp $
+# $FreeBSD$
 #
 
 # PROVIDE: obspamd
-# REQUIRE: NETWORKING SERVERS
+# REQUIRE: NETWORKING SERVERS syslogd named
 # BEFORE:  DAEMON
 # KEYWORD: shutdown
 
@@ -19,23 +19,23 @@
 # DO NOT CHANGE THESE DEFAULT VALUES HERE
 #
 obspamd_enable=${obspamd_enable:-"NO"}
-obspamd_flags=${obspamd_flags:-""}
 
-. %%RC_SUBR%%
+. /etc/rc.subr
 
 name="obspamd"
-rcvar=`set_rcvar`
+rcvar=obspamd_enable
 
-command="%%PREFIX%%/libexec/spamd"
+command="%%PREFIX%%/libexec/%%SPAMDBIN%%"
 start_precmd="obspamd_precmd"
 start_postcmd="obspamd_postcmd"
 restart_postcmd="obspamd_postcmd"
+stop_postcmd="obspamd_cleanup"
 pidfile="/var/run/spamd.pid"
 
 obspamd_precmd()
 {
 	_rc=0
-	echo "${obspamd_flags}" | grep "\-b" 2>&1 > /dev/null
+	echo "${obspamd_flags}" | egrep "(^\-b| \-b)" 2>&1 > /dev/null
 	if [ $? -eq 1 ]; then
 		/sbin/mount -p | grep 'fdescfs.*/dev/fd.*fdescfs.*rw' 2>&1 > /dev/null
 		_rc=${?}
@@ -55,9 +55,19 @@ obspamd_postcmd()
 {
 	if [ -x %%PREFIX%%/sbin/spamd-setup ]; then
 		if [ -r %%PREFIX%%/etc/spamd/spamd.conf ]; then
-			%%PREFIX%%/sbin/spamd-setup &
+			echo "${obspamd_flags}" | egrep "(^\-b| \-b)" 2>&1 > /dev/null
+			if [ $? -eq 0 ]; then
+				%%PREFIX%%/sbin/spamd-setup -bD
+			else
+				%%PREFIX%%/sbin/spamd-setup -D
+			fi
 		fi
 	fi
+}
+
+obspamd_cleanup()
+{
+	/bin/rm -f ${pidfile}
 }
 
 load_rc_config $name
