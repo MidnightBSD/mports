@@ -1,17 +1,17 @@
-# $MidnightBSD: mports/lang/php5/Makefile,v 1.47 2013/02/18 13:50:08 laffer1 Exp $
+# $MidnightBSD: mports/lang/php5/Makefile,v 1.48 2013/02/22 13:17:47 laffer1 Exp $
 
 PORTNAME=	php5
-PORTVERSION=	5.4.11
+PORTVERSION=	5.4.12
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=	${MASTER_SITE_PHP:S/$/:release/}
-MASTER_SITE_SUBDIR=	distributions/:release
+MASTER_SITES=	${MASTER_SITE_PHP}
+MASTER_SITE_SUBDIR=	distributions
 DISTNAME=	php-${PORTVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:release
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	PHP Scripting Language
-LICENSE?=	php
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	PHP Scripting Language
+LICENSE=	php
 
 LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 
@@ -29,6 +29,7 @@ CONFIGURE_ARGS=	\
 		--disable-all \
 		--enable-libxml \
 		--with-pcre-regex=${LOCALBASE} \
+		--enable-mysqlnd \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-zlib-dir=/usr \
 		--program-prefix=""
@@ -42,6 +43,7 @@ OPTIONS=	CLI "Build CLI version" on \
 		APACHE "Build Apache module" off \
 		AP2FILTER " Use Apache 2.x filter interface (experimental)" off \
 		DEBUG "Enable debug" off \
+		EMBED "Enable Embeded PHP" off \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
 		MAILHEAD "Enable mail header patch" off \
@@ -60,7 +62,6 @@ PATCH_SITE_SUBDIR=    ale
 #.if !defined(WITHOUT_SUHOSIN)
 #PATCHFILES+=	suhosin-patch-5.3.10-0.9.10.patch.gz
 #PATCH_SITES+=	http://download.suhosin.org/:suhosin
-#PATCH_DIST_STRIP=	-p1
 #PLIST_SUB+=	SUHOSIN=""
 #.else
 PLIST_SUB+=	SUHOSIN="@comment "
@@ -113,11 +114,11 @@ PLIST_SUB+=	APACHE="@comment "
 .endif
 
 .if defined(WITH_EMBED)
-PHP_SAPI+=    embed
+PHP_SAPI+=	embed
 CONFIGURE_ARGS+=--enable-embed
-PLIST_SUB+=   EMBED=""
+PLIST_SUB+=	EMBED=""
 .else
-PLIST_SUB+=   EMBED="@comment "
+PLIST_SUB+=	EMBED="@comment "
 .endif
 
 .if !defined(WITH_REGEX_TYPE) || ${WITH_REGEX_TYPE} == "php"
@@ -146,6 +147,13 @@ CONFIGURE_ENV+=	LIBS="${LIBS} ${PTHREAD_LIBS}"
 
 .if defined(WITH_DEBUG)
 CONFIGURE_ARGS+=--enable-debug
+.endif
+
+.if defined(WITH_DTRACE)
+.if ${OSVERSION} < 4016
+IGNORE=               cannot be built with DTrace support on MidnightBSD < 0.4
+.endif
+CONFIGURE_ARGS+=--enable-dtrace
 .endif
 
 .if defined(WITH_MULTIBYTE)
