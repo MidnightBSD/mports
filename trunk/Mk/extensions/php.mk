@@ -7,7 +7,7 @@
 # Please send all suggested changes to the maintainer instead of committing
 # them to CVS yourself.
 #
-# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.8 2011/03/03 22:06:13 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/php.mk,v 1.9 2013/02/22 13:18:01 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.php.mk,v 1.33 2006/09/11 21:10:07 ale Exp $
 #
 # Adding 'USE_PHP=yes' to a port includes this Makefile after bsd.ports.pre.mk.
@@ -16,7 +16,7 @@
 #
 # USE_PHP=	ext1 ext2 ext3
 #
-# The port can set these options in its Makefile before bsd.ports.pre.mk:
+# The port can set these options in its Makefile before bsd.port.pre.mk:
 #
 # DEFAULT_PHP_VER=N - Use PHP version N if PHP is not yet installed.
 # IGNORE_WITH_PHP=N - The port doesn't work with PHP version N.
@@ -27,6 +27,7 @@
 # WANT_PHP_CGI=yes  - Want the CGI version of PHP.
 # WANT_PHP_MOD=yes  - Want the Apache Module for PHP.
 # WANT_PHP_WEB=yes  - Want the Apache Module or the CGI version of PHP.
+# WANT_PHP_EMB=yes  - Want the embedded library version of PHP.
 #
 # You may combine multiple WANT_PHP_* knobs.
 # Don't specify any WANT_PHP_* knob if your port will work with every PHP SAPI.
@@ -37,9 +38,10 @@
 Php_Pre_Include=		php.mk
 Php_Include_MAINTAINER=	ports@MidnightBSD.org
 
-.if exists(${LOCALBASE}/etc/php.conf) && !defined(PACKAGE_BUILDING)
-.include "${LOCALBASE}/etc/php.conf"
-PHP_EXT_DIR!=	${LOCALBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${LOCALBASE}/lib/php/\(.*\),\1,p'
+PHPBASE?=	${LOCALBASE}
+.if exists(${PHPBASE}/etc/php.conf) && !defined(PACKAGE_BUILDING)
+.include "${PHPBASE}/etc/php.conf"
+PHP_EXT_DIR!=	${PHPBASE}/bin/php-config --extension-dir | ${SED} -ne 's,^${PHPBASE}/lib/php/\(.*\),\1,p'
 .else
 DEFAULT_PHP_VER?=	5
 
@@ -48,21 +50,21 @@ PHP_EXT_DIR=	20100525
 PHP_EXT_INC=	pcre spl
 
 HTTPD?=		${LOCALBASE}/sbin/httpd
-.	if exists(${HTTPD}) && !defined(PACKAGE_BUILDING)
+.if exists(${HTTPD}) && !defined(PACKAGE_BUILDING)
 APACHE_VERSION!=	${HTTPD} -V | ${SED} -ne 's/^Server version: Apache\/\([0-9]\)\.\([0-9]*\).*/\1\2/p'
-.		if ${APACHE_VERSION} > 13
+.	if ${APACHE_VERSION} > 13
 APXS?=		${LOCALBASE}/sbin/apxs
 APACHE_MPM!=	${APXS} -q MPM_NAME
-.			if ${APACHE_MPM} == "worker"
+.	if ${APACHE_MPM} == "worker" || ${APACHE_MPM} == "event"
 PHP_EXT_DIR:=	${PHP_EXT_DIR}-zts
-.			endif
-.		endif
-.	elif defined(APACHE_PORT)
-APACHE_VERSION!=	${ECHO_CMD} ${APACHE_PORT} | ${SED} -ne 's,.*/apache\([0-9]*\).*,\1,p'
-.		if ${APACHE_VERSION} > 13 && defined(WITH_MPM) && ${WITH_MPM} == "worker"
-PHP_EXT_DIR:=	${PHP_EXT_DIR}-zts
-.		endif
 .	endif
+.endif
+.elif defined(APACHE_PORT)
+APACHE_VERSION!=	${ECHO_CMD} ${APACHE_PORT} | ${SED} -ne 's,.*/apache\([0-9]*\).*,\1,p'
+.	if ${APACHE_VERSION} > 13 && defined(WITH_MPM) && ${WITH_MPM} == "worker"
+PHP_EXT_DIR:=	${PHP_EXT_DIR}-zts
+.	endif
+.endif
 
 .	if defined(WITH_DEBUG)
 PHP_EXT_DIR:=	${PHP_EXT_DIR}-debug
@@ -71,6 +73,8 @@ PHP_SAPI?=	""
 .endif
 
 PHP_EXT_INC?=	""
+
+PHP5_LAST_VER=	54
 
 # compatability shim
 .if defined(BROKEN_WITH_PHP)
@@ -136,18 +140,18 @@ check-makevars::
 PHP_PORT=	${PORTSDIR}/lang/php${PHP_VER}
 
 .if defined(USE_PHP_BUILD)
-BUILD_DEPENDS+=	${LOCALBASE}/include/php/main/php.h:${PHP_PORT}
+BUILD_DEPENDS+=	${PHPBASE}/include/php/main/php.h:${PHP_PORT}
 .endif
-RUN_DEPENDS+=	${LOCALBASE}/include/php/main/php.h:${PHP_PORT}
+RUN_DEPENDS+=	${PHPBASE}/include/php/main/php.h:${PHP_PORT}
 
 PLIST_SUB+=	PHP_EXT_DIR=${PHP_EXT_DIR}
 SUB_LIST+=	PHP_EXT_DIR=${PHP_EXT_DIR}
 
 .if defined(USE_PHPIZE) || defined(USE_PHPEXT)
-BUILD_DEPENDS+=	phpize:${PHP_PORT}
+BUILD_DEPENDS+=	${PHPBASE}/bin/phpize:${PHP_PORT}
 GNU_CONFIGURE=	YES
 USE_AUTOTOOLS+=	autoconf:env
-CONFIGURE_ARGS+=--with-php-config=${LOCALBASE}/bin/php-config
+CONFIGURE_ARGS+=--with-php-config=${PHPBASE}/bin/php-config
 
 # PECL uses INSTALL_ROOT
 DESTDIRNAME=	INSTALL_ROOT
@@ -158,7 +162,7 @@ phpize-message:
 	@${ECHO_MSG} "===>  PHPizing for ${PKGNAME}"
 
 do-phpize:
-	@(cd ${WRKSRC}; ${SETENV} ${SCRIPTS_ENV} ${LOCALBASE}/bin/phpize)
+	@(cd ${WRKSRC}; ${SETENV} ${SCRIPTS_ENV} ${PHPBASE}/bin/phpize)
 .endif
 
 .if defined(USE_PHPEXT)
