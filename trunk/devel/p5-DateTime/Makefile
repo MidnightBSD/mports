@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.5 2011/06/20 22:10:51 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.6 2012/02/11 00:04:04 laffer1 Exp $
 
 PORTNAME=	DateTime
-PORTVERSION=	0.72
+PORTVERSION=	0.78
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
