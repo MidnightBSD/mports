@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/tomcat7/Makefile,v 1.1 2013/01/17 03:53:47 laffer1 Exp $
+# $MidnightBSD: mports/www/tomcat7/Makefile,v 1.2 2013/02/20 13:47:18 laffer1 Exp $
 
 PORTNAME=	tomcat
-PORTVERSION=	7.0.34
+PORTVERSION=	7.0.37
 CATEGORIES=	www java
 MASTER_SITES=	APACHE
 MASTER_SITE_SUBDIR=	tomcat/tomcat-7/v${PORTVERSION}/bin
