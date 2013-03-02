@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/graphics/png/Makefile,v 1.24 2011/08/27 19:52:17 laffer1 Exp $
+# $MidnightBSD: mports/graphics/png/Makefile,v 1.25 2012/09/08 18:35:34 laffer1 Exp $
 
 PORTNAME=	png
-PORTVERSION=	1.5.10
+PORTVERSION=	1.5.14
 CATEGORIES=	graphics
 MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}15/${PORTVERSION}
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
@@ -20,8 +20,8 @@ GNU_CONFIGURE=	yes
 USE_CMAKE=	yes
 USE_LDCONFIG=	yes
 
-SHLIB_VER=	6
 CMAKE_ARGS+=	-DPNG_MAN_DIR:STRING=man
+SOSUFFIX=	.${PORTVERSION:E}
 
 MAN3=		libpng.3 libpngpf.3
 MAN5=		png.5
@@ -73,10 +73,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/pngdebug.h ${WRKSRC}/pnginfo.h \
 		${WRKSRC}/pngpriv.h ${WRKSRC}/pngstruct.h \
 		${PREFIX}/include/libpng15/
-	${RMDIR} ${PREFIX}/include/libpng
+	-${RMDIR} ${PREFIX}/include/libpng
 	${RM} ${PREFIX}/libdata/pkgconfig/libpng.pc
 	${LN} -sf libpng15.pc ${PREFIX}/libdata/pkgconfig/libpng.pc
 	${RM} ${PREFIX}/lib/libpng15.so.15
-	${MV} ${PREFIX}/lib/libpng15.so.15.10 ${PREFIX}/lib/libpng15.so.15
+	${MV} ${PREFIX}/lib/libpng15.so.15${SOSUFFIX} ${PREFIX}/lib/libpng15.so.15
 
 .include <bsd.port.post.mk>
