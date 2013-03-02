@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.9 2013/02/09 03:31:37 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.10 2013/02/22 01:14:23 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -34,7 +34,7 @@ XORG_COMPLETE=1
 # app - requires pkgconfig, don't install shared libraries (I guess)
 # data - nothing I could factorize
 # doc - no particular notes
-# driver - input depends on inputproto/randrproto at least
+# driver - input depends on inputproto/renderproto at least
 #          video depends on randrproto/renderproto at least
 # font - don't install .pc file
 # lib - various dependencies, install .pc file
