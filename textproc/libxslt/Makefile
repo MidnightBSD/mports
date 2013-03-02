@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.11 2012/02/28 03:35:37 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.12 2013/02/26 04:04:41 laffer1 Exp $
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.28
@@ -19,7 +19,7 @@ USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME?=	gnomehack libxml2
-CONFIGURE_ARGS?= --with-html-dir=${PREFIX}/share/doc \
+CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc \
 		--without-python
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
