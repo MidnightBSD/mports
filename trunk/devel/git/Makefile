@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.34 2012/06/21 00:51:48 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.35 2013/02/23 02:37:17 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.7.7.4
+PORTVERSION=	1.8.1.3
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
-PROJECTHOST=	git-core
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${PORTVERSION}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
@@ -14,6 +13,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Distributed source code management tool
 LICENSE=	gpl2
 
+PROJECTHOST=	git-core
 MAKE_JOBS_SAFE=	yes
 
 MAN1=		git.1 \
@@ -36,10 +36,15 @@ MAN1=		git.1 \
 		git-cherry.1 \
 		git-clean.1 \
 		git-clone.1 \
+		git-column.1 \
 		git-commit-tree.1 \
 		git-commit.1 \
 		git-config.1 \
 		git-count-objects.1 \
+		git-credential.1 \
+		git-credential-cache--daemon.1 \
+		git-credential-cache.1 \
+		git-credential-store.1 \
 		git-daemon.1 \
 		git-describe.1 \
 		git-diff-files.1 \
@@ -90,6 +95,7 @@ MAN1=		git.1 \
 		git-mv.1 \
 		git-name-rev.1 \
 		git-notes.1 \
+		git-p4.1 \
 		git-pack-objects.1 \
 		git-pack-redundant.1 \
 		git-pack-refs.1 \
@@ -152,13 +158,16 @@ MAN1=		git.1 \
 		git-verify-tag.1 \
 		git-web--browse.1 \
 		git-whatchanged.1 \
-		git-write-tree.1
+		git-write-tree.1 \
+		gitweb.1
 MAN5=		gitattributes.5 \
 		githooks.5 \
 		gitignore.5 \
 		gitmodules.5 \
-		gitrepository-layout.5
+		gitrepository-layout.5 \
+		gitweb.conf.5
 MAN7=		gitcli.7 \
+		gitcredentials.7 \
 		gitglossary.7 \
 		gittutorial.7 \
 		gitcore-tutorial.7 \
@@ -170,34 +179,60 @@ MAN7=		gitcli.7 \
 
 CONFLICTS?=	git-subversion-[0-9]*
 
+USERS=	git_daemon
+GROUPS=	git_daemon
+
 SUB_FILES=	pkg-message
-PLIST_SUB=     PYTHON_VER=${PYTHON_VER} PYTHON=
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-#USE_BZIP2=	yes
+GNU_CONFIGURE=	yes
 USE_GMAKE=	yes
-USE_PYTHON=     yes
 EXTENSIONS+=    python
-CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib  -DNO_NSE
-MAKE_ENV+=	LIBMD_SHA1=yes \
-		V=1 \
-		PYTHON_PATH=${LOCALBASE}/bin/python
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_ENV+=	V=1
 MAKE_ARGS+=	prefix="${PREFIX}"
 USE_OPENSSL=	yes
 USE_RC_SUBR=	git_daemon
 WANT_PERL=	yes
-GNU_CONFIGURE=	yes
+
+CONFIGURE_ARGS=	--enable-pthreads=-pthread
 
 OPTIONS=	GUI "Enable building of GUI tools" on \
 		SVN "Enable required dependencies for SVN tools" off \
+		GITWEB "Install Gitweb" off \
+		CONTRIB "Install contributed scripts" on \
 		P4 "Enable Perforce support" off \
 		CVS "Enable CVS support" on \
 		HTMLDOCS "Install additional documentation" on \
 		PERL "Build perl based git tools" on \
 		ICONV "Support for multiple character encodings" on \
-		CURL "Support HTTP push and pull" on
+		CURL "Support HTTP push and pull" on \
+		ETCSHELLS "Add entry to /etc/shells" on 
 
 .include <bsd.mport.options.mk>
+
+.if defined(WITH_NLS)
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
+PLIST_SUB+=	NLS="@comment "
+MAKE_ARGS+=	NO_GETTEXT=yes
+.endif
+
+# This is intentionally not exposed as an option.
+.ifndef (WITH_DEBUG)
+ALL_TARGET=	all strip
+.endif
+
+.if defined(WITH_P4) || defined(WITH_CONTRIB)
+USE_PYTHON=	yes
+PLIST_SUB+=	PYTHON_VER=${PYTHON_VER} PYTHON=""
+CONFIGURE_ARGS+=	--with-python=${LOCALBASE}/bin/python
+.else
+CONFIGURE_ARGS+=	--without-python
+PLIST_SUB+=	PYTHON="@comment "
+.endif
 
 .ifdef (WITH_PERL)
 USE_PERL5=	yes
@@ -206,12 +241,14 @@ BUILD_DEPENDS+=	${SITE_PERL}/Error.pm:${PORTSDIR}/lang/p5-Error
 RUN_DEPENDS+=	${SITE_PERL}/Error.pm:${PORTSDIR}/lang/p5-Error \
 		${SITE_PERL}/Net/SMTP/SSL.pm:${PORTSDIR}/mail/p5-Net-SMTP-SSL
 MAN3=		Git.3
+PLIST_SUB+=	PERLSUB=""
 .else
 MAKE_ENV+=	NO_PERL=1
-PLIST_SUB+=	SITE_PERL="@comment "
+PLIST_SUB+=	PERLSUB="@comment "
 .endif
 
 .ifdef (WITH_ICONV)
+CONFIGURE_ARGS+=	--with-iconv=${LOCALBASE}
 USE_ICONV=	yes
 MAKE_ENV+=	NEEDS_LIBICONV=yes \
 		ICONVDIR=${LOCALBASE}
@@ -231,7 +268,8 @@ MAKE_ENV+=	NO_CURL=1 \
 PLIST_SUB+=	CURL="@comment "
 .endif
 
-.ifdef (WITH_HTMLDOCS)
+.ifdef (WITH_HTMLDOCS) || make(makesum)
+DISTFILES+=	${PORTNAME}-htmldocs-${PORTVERSION}${EXTRACT_SUFX}
 BUILD_DEPENDS+=	${LOCALBASE}/bin/asciidoc:${PORTSDIR}/textproc/asciidoc \
 		${LOCALBASE}/bin/xsltproc:${PORTSDIR}/textproc/libxslt
 RUN_DEPENDS+=	${LOCALBASE}/bin/asciidoc:${PORTSDIR}/textproc/asciidoc \
@@ -248,20 +286,28 @@ MAN1+=		git-citool.1 \
 		git-gui.1 \
 		gitk.1
 PLIST_SUB+=	GUI=""
-MAKE_ENV+=	TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
+MAKE_ARGS+=	TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
 .else
+RMMAN1+=	git-citool.1 \
+		git-gui.1 \
+		gitk.1
 PLIST_SUB+=	GUI="@comment "
-MAKE_ENV+=	NO_TCLTK=yes
+MAKE_ARGS+=	NO_TCLTK=yes
 .endif
 
-.ifdef (WITH_SVN)
-RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/Term/ReadKey.pm:${PORTSDIR}/devel/p5-Term-ReadKey \
-		${SITE_PERL}/${PERL_ARCH}/SVN/Core.pm:${PORTSDIR}/devel/p5-subversion \
-		svn:${PORTSDIR}/devel/subversion
+# While this port does not explicity honor WITH_SUBVERSION_VER knob it does
+# depend upon devel/p5-subversion, which does honor that knob. If you want
+# to have git use devel/subversion16 it will be brought in through
+# devel/p5-subversion if you set WITH_SUBVERSION_VER=16. Otherwise
+# devel/subversion will be brought in.
+.if defined(WITH_SVN)
+RUN_DEPENDS+=	p5-Term-ReadKey>=0:${PORTSDIR}/devel/p5-Term-ReadKey \
+		p5-subversion>=0:${PORTSDIR}/devel/p5-subversion
 PLIST_SUB+=	SVN=""
 MAN1+=		git-svn.1
 .else
 PLIST_SUB+=	SVN="@comment "
+RMMAN1+=	git-svn.1
 .endif
 
 .ifdef (WITH_GITWEB)
@@ -293,13 +339,32 @@ PLIST_SUB+=	CVS=""
 RUN_DEPENDS+=	cvsps:${PORTSDIR}/devel/cvsps
 .else
 PLIST_SUB+=	CVS="@comment "
+RMMAN1+=	git-cvsimport.1 git-cvsexportcommit.1 git-cvsserver.1
+RMMAN7+=	gitcvs-migration.7
 .endif
 
-verify: checksum
-	@gpg --verify ${DISTDIR}/${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}.sign \
-		${DISTDIR}/${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+.if defined(WITH_ETCSHELLS)
+SHELLS=		/etc/shells
+PLIST_SUB+=	ETCSHELLS=""
+.else
+PLIST_SUB+=	ETCSHELLS="@comment "
+.endif
+
+post-extract:
+.if defined(WITH_HTMLDOCS)
+	@${MKDIR} ${WRKDIR}/htmldocs
+	@cd ${WRKDIR}/htmldocs && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+		${DISTDIR}/${PORTNAME}-htmldocs-${PORTVERSION}${EXTRACT_SUFX} \
+		${EXTRACT_AFTER_ARGS}
+.endif
 
 post-patch:
+.for FILE in ${RMMAN1}
+	@${RM} ${WRKDIR}/man1/${FILE}
+.endfor
+.for FILE in ${RMMAN7}
+	@${RM} ${WRKDIR}/man7/${FILE}
+.endfor
 	@${REINPLACE_CMD} -e 's|share/man/man3|man/man3|' ${WRKSRC}/perl/Makefile.PL
 .ifndef (WITH_CVS)
 	@${REINPLACE_CMD} -e '/git-cvsexportcommit.perl/d; \
@@ -313,7 +378,12 @@ post-patch:
 .ifndef (WITH_SVN)
 	@${REINPLACE_CMD} -e '/git-svn.perl/d' ${WRKSRC}/Makefile
 .endif
-
+.if defined(WITHOUT_GITWEB)
+	@${REINPLACE_CMD} -e '/$$(MAKE) -C gitweb install/d' ${WRKSRC}/Makefile
+.endif
+.if defined(WITHOUT_P4)
+	@${REINPLACE_CMD} -e '/^SCRIPT_PYTHON += git-p4.py$$/d' ${WRKSRC}/Makefile
+.endif
 
 post-build:
 .ifdef (WITH_P4) || defined (WITH_CONTRIB)
@@ -325,21 +395,19 @@ post-build:
 .endif
 
 post-install:
-.for i in ${MAN1}
-	${INSTALL_MAN} ${WRKDIR}/man1/${i} ${MANPREFIX}/man/man1/
-.endfor
-.for i in ${MAN5}
-	${INSTALL_MAN} ${WRKDIR}/man5/${i} ${MANPREFIX}/man/man5/
-.endfor
-.for i in ${MAN7}
-	${INSTALL_MAN} ${WRKDIR}/man7/${i} ${MANPREFIX}/man/man7/
-.endfor
-
-.ifdef (WITH_HTMLDOCS)
+	(cd ${WRKDIR}/man1/ && ${COPYTREE_SHARE} \* ${MANPREFIX}/man/man1)
+	(cd ${WRKDIR}/man5/ && ${COPYTREE_SHARE} \* ${MANPREFIX}/man/man5)
+	(cd ${WRKDIR}/man7/ && ${COPYTREE_SHARE} \* ${MANPREFIX}/man/man7)
+.if defined(WITH_HTMLDOCS)
+	# Manually remove the index.html symlink before installing, and then
+	# recreate it after. This is necessary because the distfile is
+	# extracted with --no-same-owner. If the distfile is extracted as a
+	# non-root user then the symlink will have the incorrect owner.
+	${RM} -f ${WRKDIR}/htmldocs/index.html
 	${MKDIR} ${DOCSDIR}
-	${GMAKE} -C ${WRKSRC} install-html ${MAKE_ENV} ${FAKE_MAKEARGS} prefix="${TRUE_PREFIX}"
+	(cd ${WRKDIR}/htmldocs/ && ${COPYTREE_SHARE} \* ${DOCSDIR})
+	${LN} -s ${DOCSDIR}/git.html ${DOCSDIR}/index.html
 .endif
-
 	-${RM} -f ${PREFIX}/lib/perl5/${PERL_VERSION}/mach/perllocal.pod
 	${MKDIR} ${PREFIX}/share/emacs/site-lisp/git
 	${MKDIR} ${PREFIX}/lib/xemacs/site-lisp/git
@@ -355,26 +423,18 @@ post-install:
 .ifdef (WITH_CONTRIB)
 	@${ECHO_MSG} "===> Installing contributed scripts"
 	${MKDIR} ${PREFIX}/share/git-core/contrib
-	(cd ${WRKSRC}/contrib/ && \
-		${COPYTREE_SHARE} \* ${PREFIX}/share/git-core/contrib)
+	${CP} -R ${WRKSRC}/contrib/* ${PREFIX}/share/git-core/contrib
 .endif
-
-.ifdef (WITH_P4)
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/p4import/git-p4import \
-		${PREFIX}/bin/
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/fast-import/git-p4 \
-		${PREFIX}/bin/
+.if defined(WITH_P4)
+	${INSTALL_SCRIPT} ${WRKSRC}/contrib/p4import/git-p4import ${PREFIX}/bin/
+	${INSTALL_SCRIPT} ${WRKSRC}/git-p4 ${PREFIX}/bin/
 .endif
-
-	@${ECHO_MSG} "===> Installing gitweb files"
-	${MKDIR} ${EXAMPLESDIR}/gitweb
-	${MKDIR} ${EXAMPLESDIR}/gitweb/static
-	${INSTALL_DATA} ${WRKSRC}/gitweb/INSTALL ${EXAMPLESDIR}/gitweb/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/README ${EXAMPLESDIR}/gitweb/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/static/git-favicon.png ${EXAMPLESDIR}/gitweb/static/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/static/git-logo.png ${EXAMPLESDIR}/gitweb/static/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.css ${EXAMPLESDIR}/gitweb/static/
-	${INSTALL_DATA} ${WRKSRC}/gitweb/static/gitweb.js ${EXAMPLESDIR}/gitweb/static/
-	${INSTALL_SCRIPT} ${WRKSRC}/gitweb/gitweb.cgi ${EXAMPLESDIR}/gitweb/
+.if defined(WITH_ETCSHELLS)
+	@${ECHO_MSG} "===> Updating ${SHELLS}"
+	@${CP} ${SHELLS} ${SHELLS}.bak
+	@(${GREP} -v ${PREFIX}/libexec/git-core/git-shell ${SHELLS}.bak; \
+	  ${ECHO_CMD} ${PREFIX}/libexec/git-core/git-shell) > ${SHELLS}
+	@${RM} ${SHELLS}.bak
+.endif
 
 .include <bsd.port.mk>
