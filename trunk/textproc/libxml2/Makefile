@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.12 2013/01/26 03:09:11 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml2/Makefile,v 1.13 2013/02/26 04:06:23 laffer1 Exp $
 #
-# WITHOUT_THREADS disables threading support
 # WITHOUT_SCHEMA disable XML schema support
+# WITHOUT_THREADS disable threads support
 # WITH_MEM_DEBUG enable memory debugging (DEVELOPERS ONLY!)
 # WITH_XMLLINT_HIST enable history for xmllint
 # WITH_THREAD_ALLOC enable per-thread memory (DEVELOPERS ONLY!)
+#
 
 PORTNAME=	libxml2
 PORTVERSION=	2.7.8
