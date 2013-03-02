@@ -1,13 +1,7 @@
-# New ports collection makefile for:	p5-GD
-# Date created:				March 11, 2003
-# Whom:					Philip M. Gollucci <pgollucci@p6m7g8.com>
-#
-# $MidnightBSD: mports/graphics/p5-GD/Makefile,v 1.2 2008/10/13 20:46:08 laffer1 Exp $
-# $FreeBSD: ports/graphics/p5-GD/Makefile,v 1.44 2006/11/23 11:59:02 miwi Exp $
-#
+# $MidnightBSD: mports/graphics/p5-GD/Makefile,v 1.3 2011/06/19 14:15:51 laffer1 Exp $
 
 PORTNAME=	GD
-PORTVERSION=	2.45
+PORTVERSION=	2.49
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
