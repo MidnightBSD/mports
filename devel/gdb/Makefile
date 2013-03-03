@@ -1,12 +1,9 @@
-# $FreeBSD: ports/devel/gdb/Makefile,v 1.6 2011/02/25 07:50:35 miwi Exp $
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/gdb/Makefile,v 1.1 2011/09/03 02:00:14 laffer1 Exp $
 
 PORTNAME=	gdb
-PORTVERSION=	7.2
+PORTVERSION=	7.5.1
 CATEGORIES=	devel
-MASTER_SITES=   ${MASTER_SITE_GNU:S,$,:gdb,}
-MASTER_SITE_SUBDIR=gdb/:gdb
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}:gdb
+MASTER_SITES=   GNU
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU GDB of newer version than comes with the system
@@ -16,7 +13,7 @@ USE_BZIP2=	yes
 USE_GMAKE=	yes
 USE_ICONV=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV+=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc LDFLAGS="${LDFLAGS}"
+CONFIGURE_ENV+=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
 		--with-libiconv-prefix=${LOCALBASE} \
 		--with-system-readline \
