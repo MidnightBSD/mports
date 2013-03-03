@@ -1,13 +1,13 @@
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.10 2013/02/18 02:05:33 laffer1 Exp $
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.11 2013/02/22 03:06:11 laffer1 Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20130201
+PORTVERSION=	20130220
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Database of all known ID's used in PCI devices
+COMMENT=	Database of all known IDs used in PCI devices
 LICENSE=	bsd3
 
 USE_XZ=		yes
