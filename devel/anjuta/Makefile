@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.11 2011/08/07 19:06:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/anjuta/Makefile,v 1.12 2012/02/05 03:42:16 laffer1 Exp $
 
 PORTNAME=	anjuta
 PORTVERSION=	2.32.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,9 +14,8 @@ LICENSE=	gpl2
 BUILD_DEPENDS=	autogen:${PORTSDIR}/devel/autogen \
 		bash:${PORTSDIR}/shells/bash \
 		p5-Locale-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext
-LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre \
+LIB_DEPENDS=	pcre.3:${PORTSDIR}/devel/pcre \
 		gladeui-1.10:${PORTSDIR}/devel/glade3 \
-		vala-0.10.0:${PORTSDIR}/lang/vala \
 		unique-1.0.2:${PORTSDIR}/x11-toolkits/unique \
 		gdl-1.3:${PORTSDIR}/x11-toolkits/gdl
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
@@ -25,7 +24,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		p5-Locale-gettext>=1.05:${PORTSDIR}/devel/p5-Locale-gettext \
 		${LOCALBASE}/libdata/pkgconfig/gnome-icon-theme.pc:${PORTSDIR}/misc/gnome-icon-theme \
 		exctags:${PORTSDIR}/devel/ctags \
-		gdb6:${PORTSDIR}/devel/gdb6 \
+		gdb66:${PORTSDIR}/devel/gdb66 \
 		yelp:${PORTSDIR}/x11/yelp
 
 USE_BZIP2=	yes
@@ -37,9 +36,10 @@ USE_PERL5=	yes
 USE_PYTHON=	yes
 USE_GNOME=	gnomeprefix gnomehack vte gtksourceview2 libgda4
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-symbol-db-shm=/tmp \
+		--disable-vala \
 		--enable-introspection=no
 USE_LDCONFIG=	yes
 GCONF_SCHEMAS=	anjuta-build-basic-autotools-plugin.schemas \
