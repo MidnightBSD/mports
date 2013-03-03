@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.403 2013/02/23 02:50:47 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.404 2013/03/03 16:51:54 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -269,6 +269,7 @@ SUBDIR += p5-Log-Any
 SUBDIR += p5-MRO-Compat
 SUBDIR += p5-Module-Build
 SUBDIR += p5-Module-Find
+SUBDIR += p5-Module-Implementation
 SUBDIR += p5-Module-Pluggable
 SUBDIR += p5-Net-DBus
 SUBDIR += p5-OLE-Storage_Lite
