@@ -1,10 +1,4 @@
-# New ports collection makefile for:	zebedee
-# Date created:		4 January 2000
-# Whom:			Greg Hewgill <greg@hewgill.com>
-#
-# $FreeBSD: ports/security/zebedee/Makefile,v 1.20 2006/09/05 04:40:06 linimon Exp $
-# $MidnightBSD: mports/security/zebedee/Makefile,v 1.1 2006/11/09 14:09:52 laffer1 Exp $
-#
+# $MidnightBSD: mports/security/zebedee/Makefile,v 1.2 2010/01/02 22:46:03 laffer1 Exp $
 
 PORTNAME=	zebedee
 PORTVERSION=	2.5.3
@@ -19,7 +13,7 @@ USE_OPENSSL=	YES
 USE_PERL5_BUILD=YES
 
 MAKE_ENV+=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS=${PTHREAD_LIBS} \
+		PTHREAD_LIBS=${PTHREAD_LIBS}
 
 MAN1=		zebedee.1 ftpgw.tcl.1
 
