@@ -5,15 +5,23 @@
  
  # This can be used to rebuild libtool when needed
 -LIBTOOL_DEPS="$ac_aux_dir/ltmain.sh"
-+LIBTOOL_DEPS=" /usr/local/share/libtool/ltmain.sh"
++LIBTOOL_DEPS=" %%LTMAIN%%"
  
  # Always use our own libtool.
 -LIBTOOL='$(SHELL) $(top_builddir)/libtool'
-+LIBTOOL='$(SHELL) /usr/local/bin/libtool'
++LIBTOOL='$(SHELL) %%LIBTOOL%%'
  
  # Prevent multiple expansion
  
-@@ -27631,6 +27631,8 @@ _ACEOF
+@@ -22335,6 +22335,7 @@
+ #define USE_ICONV 1
+ _ACEOF
+ 
++LIBS="${LIBS} -liconv"
+ 
+ for ac_func in iswblank
+ do
+@@ -27631,6 +27632,8 @@
  cat confdefs.h >>conftest.$ac_ext
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
@@ -22,7 +30,7 @@
  main(){char buf[20]; exit(sprintf(buf, "XXX") != 3);}
  _ACEOF
  rm -f conftest$ac_exeext
-@@ -28624,7 +28626,7 @@ cat confdefs.h >>conftest.$ac_ext
+@@ -28624,7 +28627,7 @@
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
  #include <stdio.h>
@@ -31,35 +39,10 @@
  
  int
  main ()
-@@ -28755,18 +28757,19 @@ fi
- SAVELDFLAGS="$LDFLAGS"
- if test "x$with_db_prefix" != "x"; then
- 	LDFLAGS="-L$with_db_prefix/lib $LDFLAGS"
--	CPPFLAGS="-I$with_db_prefix/include $CPPFLAGS"
-+	CPPFLAGS="-I$with_db_prefix/include/db3 $CPPFLAGS"
- fi
- if test "$with_db_type" != db1; then
- 	SAVELIBS="$LIBS"
- 
--	LIBS="$LIBS -ldb"
-+	LIBS="$LIBS -ldb3"
- 	cat >conftest.$ac_ext <<_ACEOF
- /* confdefs.h.  */
- _ACEOF
- cat confdefs.h >>conftest.$ac_ext
+@@ -28755,5 +28758,6 @@
  cat >>conftest.$ac_ext <<_ACEOF
  /* end confdefs.h.  */
 +#include <sys/stddef.h>
  #include <db.h>
  int
  main ()
-@@ -28958,7 +28961,7 @@ _ACEOF
- 	dl_src=../common/dldb.c
- 	LIBS="-ldl $LIBS"
- else
--	LIBS="-ldb $LIBS"
-+	LIBS="-ldb3 $LIBS"
- 	if test "X$with_db_prefix" != "X"; then
- 		LDFLAGS="`echo $with_db_prefix/lib | sed "$LRscript"` $LDFLAGS"
- 	fi
-
