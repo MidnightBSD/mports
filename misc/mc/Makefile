@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/mc/Makefile,v 1.5 2011/01/07 02:56:26 laffer1 Exp $
+# $MidnightBSD: mports/misc/mc/Makefile,v 1.6 2011/05/14 22:09:31 laffer1 Exp $
 # $FreeBSD: ports/misc/mc/Makefile,v 1.116 2008/06/06 13:45:34 edwin Exp $
 
 PORTNAME=	mc
@@ -16,8 +16,7 @@ LICENSE=	gpl2
 EXTRACT_SUFX=	.tar.lzma
 CONFLICTS=	mc-light-4*
 
-BUILD_DEPENDS=	pkg-config:${PORTSDIR}/devel/pkg-config
-
+USE_PKGCONFIG=	yes
 USE_GMAKE=	yes
 USE_GNOME=	glib20
 USE_PERL5=	yes
