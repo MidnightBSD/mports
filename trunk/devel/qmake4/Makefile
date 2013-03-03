@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.11 2011/07/23 15:09:12 laffer1 Exp $
+# $MidnightBSD: mports/devel/qmake4/Makefile,v 1.12 2012/02/29 22:26:03 laffer1 Exp $
 
 PORTNAME=	qmake
 DISTVERSION=	${QT4_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt4-
 
@@ -82,13 +83,7 @@ do-configure:
 	${LN} ${WRKSRC}/qconfig.h ${WRKSRC}/../src/corelib/global/qconfig.h
 	${MKDIR} ${FAKE_DESTDIR}${TRUE_PREFIX}/share/qt4
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 3000 && ${ARCH} == "amd64"
-CXXFLAGS+=	-fno-gcse
-.endif
-
 post-install:
 	${LN} -sf ${PREFIX}/share/qt4/mkspecs/freebsd-${QMAKE_BASE_COMPILER} ${PREFIX}/share/qt4/mkspecs/default
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
