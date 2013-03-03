@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/xscreensaver-gnome/Makefile,v 1.3 2010/12/04 02:46:27 laffer1 Exp $
+# $MidnightBSD: mports/x11/xscreensaver-gnome/Makefile,v 1.4 2011/02/02 21:35:02 laffer1 Exp $
 
 PORTNAME?=	xscreensaver-gnome
-PORTVERSION=	5.11
-PORTREVISION?=	0
+PORTVERSION=	5.12
+PORTREVISION?=	1
 CATEGORIES=	x11 gnome
 MASTER_SITES=	http://www.jwz.org/xscreensaver/
 DISTNAME=	xscreensaver-${PORTVERSION}
@@ -16,7 +16,7 @@ FAKE_OPTS+=	trueprefix
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
 		jpeg.11:${PORTSDIR}/graphics/jpeg
 
-CONFLICTS?=	xscreensaver-[0-9]* xscreensaver-gnome-hacks-[0-9]*
+#CONFLICTS?=	xscreensaver-[0-9]* xscreensaver-gnome-hacks-[0-9]*
 
 USE_XORG=	x11 xpm
 USE_GL=		gl
@@ -31,8 +31,9 @@ CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
 		--with-configdir=${PREFIX}/share/xscreensaver/config \
 		--with-dpms-ext --with-xinerama-ext --with-xf86vmode-ext \
 		--with-xf86gamma-ext --with-randr-ext --enable-locking
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CONFIGURE_ENV=	LIBS="-lintl"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS?=	PAM "Pluggable Authentication Module support" on \
 		KEYRING "Enable GnomeKeyring integration (needs PAM)" on \
