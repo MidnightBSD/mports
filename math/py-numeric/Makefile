@@ -1,10 +1,4 @@
-# New ports collection makefile for:	numpy
-# Date created:		20 April 1997
-# Whom:			Thomas Gellekum <tg@FreeBSD.org>
-#
 # $MidnightBSD: mports/math/py-numeric/Makefile,v 1.3 2009/05/23 16:37:09 laffer1 Exp $
-# $FreeBSD: ports/math/py-numeric/Makefile,v 1.48 2006/02/06 11:57:02 tg Exp $
-#
 
 PORTNAME=	numeric
 PORTVERSION=	24.2
@@ -19,6 +13,7 @@ EXTRACT_ONLY=	Numeric-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The Numeric Extension to Python
+LICENSE=	mit
 
 USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
