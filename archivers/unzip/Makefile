@@ -1,16 +1,11 @@
-# New ports collection makefile for:	unzip
-# Date created:		17 October 1994
-# Whom:			jmz
-#
-# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.8 2009/11/01 15:38:25 laffer1 Exp $
-# $FreeBSD: ports/archivers/unzip/Makefile,v 1.55 2006/08/23 06:34:05 ache Exp $
-#
+# $MidnightBSD: mports/archivers/unzip/Makefile,v 1.9 2011/01/20 14:09:36 laffer1 Exp $
 
 PORTNAME=	unzip
 PORTVERSION=	6.0
-CATEGORIES?=	archivers
+PORTREVISION=	1
+CATEGORIES=	archivers
 MASTER_SITES=	SF/infozip/UnZip%206.x%20%28latest%29/UnZip%20${PORTVERSION}/:main \
-	     	SF/infozip/UnZip%205.x%20and%20earlier/5.51/:unreduce
+		SF/infozip/UnZip%205.x%20and%20earlier/5.51/:unreduce
 DISTNAME=	${PORTNAME}60
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:main
 
@@ -19,6 +14,7 @@ COMMENT?=	List, test and extract compressed files in a ZIP archive
 LICENSE=	infozip
 
 MAKEFILE=	unix/Makefile
+MAKE_ARGS=	LF2="${STRIP}"
 .if defined(INSTALL_AS_INFOUNZIP)
 UNZIP_NAME=	info-unzip
 .else
@@ -34,8 +30,18 @@ LOCAL_UNZIP=	${CFLAGS} -DACORN_FTYPE_NFS -DWILD_STOP_AT_DIR \
 
 .if defined(WITH_UNZIP_UNREDUCE)
 DISTFILES+=	unreduce_full.zip:unreduce
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+EXTRACT_ONLY+=	${DISTNAME}${EXTRACT_SUFX}
 LOCAL_UNZIP+=	-DUSE_SMITH_CODE
+.endif
+
+.if defined(WITH_ICONV)
+PATCH_SITES+=		${MASTER_SITE_FREEBSD_LOCAL}
+PATCH_SITE_SUBDIR=	nork
+PATCHFILES+=		unzip60-alt-iconv-utf8.patch
+PATCH_DIST_STRIP+=	-p1
+USE_ICONV=		yes
+CFLAGS+=		-I${LOCALBASE}/include -DNATIVE
+MAKE_ARGS+=		LFLAGS1="-L${LOCALBASE}/lib -liconv"
 .endif
 
 MAKE_ENV=	LOCAL_UNZIP="${LOCAL_UNZIP}" \
@@ -62,7 +68,7 @@ pre-fetch:
 
 .if defined(WITH_UNZIP_UNREDUCE)
 pre-build:
-	@(cd ${BUILD_WRKSRC}; ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} unzip)
+	@(cd ${BUILD_WRKSRC}; ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} CFLAGS="${CFLAGS}" unzip)
 	@(cd ${WRKSRC}; \
 		./unzip -o ${_DISTDIR}unreduce_full.zip; \
 		${MV} unreduce_full.c unreduce.c)
