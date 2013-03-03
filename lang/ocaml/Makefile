@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.5 2010/10/19 20:49:13 laffer1 Exp $
+# $MidnightBSD: mports/lang/ocaml/Makefile,v 1.6 2011/05/15 03:44:02 laffer1 Exp $
 
 PORTNAME=	ocaml
-PORTVERSION=	3.12.0
+PORTVERSION=	3.12.1
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/distrib/${DISTNAME:R}/ \
 		ftp://ftp.inria.fr/INRIA/caml-light/${DISTNAME:R}/ \
@@ -70,14 +71,14 @@ SFX=		-notk
 CONFLICTS+=	ocaml-[0-9]* ocaml-nox11-[0-9]*
 CONFIGURE_ARGS+=-no-tk
 .else
+USE_TK=		84+
+INVALID_TK_VER =	86
+EXTENSIONS+=	tcl
 PLIST_SUB+=	TK=""
 CONFLICTS+=	ocaml-nox11-[0-9]* ocaml-notk-[0-9]*
 CONFIGURE_ARGS+=-tkdefs \
 	"-I${LOCALBASE}/include/tcl8.4 -I${LOCALBASE}/include/tk8.4 ${THR_CPP}"\
 	-tklibs "-L${LOCALBASE}/lib ${THR_LD}"
-BUILD_DEPENDS+=	${LOCALBASE}/include/tcl8.4:${PORTSDIR}/lang/tcl84-thread \
-		${LOCALBASE}/include/tk8.4:${PORTSDIR}/x11-toolkits/tk84-thread
-LIB_DEPENDS+=	tk84.1:${PORTSDIR}/x11-toolkits/tk84-thread
 .endif
 
 .include <bsd.port.pre.mk>
