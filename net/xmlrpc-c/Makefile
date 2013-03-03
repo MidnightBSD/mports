@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.14 2013/02/23 21:36:48 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.15 2013/03/03 13:39:19 laffer1 Exp $
 
 PORTNAME=	xmlrpc-c
 PORTVERSION=	1.16.44
@@ -45,6 +45,10 @@ CONFIGURE_ARGS+=	--enable-libwww-client
 .else
 CONFIGURE_ARGS+=	--disable-libwww-client
 .endif
+
+pre-patch:
+	@${ECHO} "Port will not build with older version installed."
+	@sleep 3
 
 post-extract:
 	@${FIND} ${WRKSRC} -type l -name blddir -delete
