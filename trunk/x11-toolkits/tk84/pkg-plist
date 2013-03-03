@@ -134,6 +134,7 @@ lib/tk%%TK_VER%%/msgs/en_gb.msg
 lib/tk%%TK_VER%%/msgs/eo.msg
 lib/tk%%TK_VER%%/msgs/es.msg
 lib/tk%%TK_VER%%/msgs/fr.msg
+lib/tk%%TK_VER%%/msgs/hu.msg
 lib/tk%%TK_VER%%/msgs/it.msg
 lib/tk%%TK_VER%%/msgs/nl.msg
 lib/tk%%TK_VER%%/msgs/pl.msg
@@ -158,8 +159,6 @@ lib/tk%%TK_VER%%/tkConfig.sh
 lib/tk%%TK_VER%%/tkfbox.tcl
 lib/tk%%TK_VER%%/unsupported.tcl
 lib/tk%%TK_VER%%/xmfbox.tcl
-%%DATADIR%%/man.macros
-@dirrm %%DATADIR%%
 @dirrm lib/tk%%TK_VER%%/demos/images
 @dirrm lib/tk%%TK_VER%%/demos
 @dirrm lib/tk%%TK_VER%%/images
