@@ -26,6 +26,7 @@ include/tk%%TK_VER%%/generic/tkUndo.h
 include/tk%%TK_VER%%/tk.h
 include/tk%%TK_VER%%/tkDecls.h
 include/tk%%TK_VER%%/tkInt.h
+include/tk%%TK_VER%%/tkIntDecls.h
 include/tk%%TK_VER%%/tkIntXlibDecls.h
 include/tk%%TK_VER%%/unix/tkUnixDefault.h
 include/tk%%TK_VER%%/unix/tkUnixInt.h
@@ -103,7 +104,6 @@ lib/tk%%TK_VER%%/console.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/sayings.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/search.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/spin.tcl
-%%DEMOS%%lib/tk%%TK_VER%%/demos/square
 %%DEMOS%%lib/tk%%TK_VER%%/demos/states.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/style.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/tclIndex
@@ -118,6 +118,7 @@ lib/tk%%TK_VER%%/console.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttknote.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttkpane.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/ttkprogress.tcl
+%%DEMOS%%lib/tk%%TK_VER%%/demos/ttkscale.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/twind.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/unicodeout.tcl
 %%DEMOS%%lib/tk%%TK_VER%%/demos/vscale.tcl
@@ -163,7 +164,6 @@ lib/tk%%TK_VER%%/optMenu.tcl
 lib/tk%%TK_VER%%/palette.tcl
 lib/tk%%TK_VER%%/panedwindow.tcl
 lib/tk%%TK_VER%%/pkgIndex.tcl
-lib/tk%%TK_VER%%/prolog.ps
 lib/tk%%TK_VER%%/safetk.tcl
 lib/tk%%TK_VER%%/scale.tcl
 lib/tk%%TK_VER%%/scrlbar.tcl
@@ -192,15 +192,15 @@ lib/tk%%TK_VER%%/ttk/progress.tcl
 lib/tk%%TK_VER%%/ttk/scale.tcl
 lib/tk%%TK_VER%%/ttk/scrollbar.tcl
 lib/tk%%TK_VER%%/ttk/sizegrip.tcl
+lib/tk%%TK_VER%%/ttk/spinbox.tcl
 lib/tk%%TK_VER%%/ttk/treeview.tcl
 lib/tk%%TK_VER%%/ttk/ttk.tcl
 lib/tk%%TK_VER%%/ttk/utils.tcl
+lib/tk%%TK_VER%%/ttk/vistaTheme.tcl
 lib/tk%%TK_VER%%/ttk/winTheme.tcl
 lib/tk%%TK_VER%%/ttk/xpTheme.tcl
 lib/tk%%TK_VER%%/unsupported.tcl
 lib/tk%%TK_VER%%/xmfbox.tcl
-%%INSTMAN%%%%DATADIR%%/man.macros
-%%INSTMAN%%@dirrm %%DATADIR%%
 @dirrm lib/tk%%TK_VER%%/ttk
 %%DEMOS%%@dirrm lib/tk%%TK_VER%%/demos/images
 %%DEMOS%%@dirrm lib/tk%%TK_VER%%/demos
