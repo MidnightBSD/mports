@@ -1,9 +1,8 @@
-# $FreeBSD: ports/x11/gnustep-app/Makefile,v 1.47 2009/03/20 09:30:45 dinoex Exp $
-# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.5 2010/09/04 15:34:36 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnustep-app/Makefile,v 1.6 2011/09/25 19:51:24 laffer1 Exp $
 
 PORTNAME=	gnustep-app
 PORTVERSION=	1.18.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnustep
 MASTER_SITES=	# empty
 DISTFILES=	# empty
@@ -39,7 +38,6 @@ USE_GNUSTEP_SYSTEM_LIBS+=	\
 USE_GNUSTEP_LOCAL_LIBS+=	\
 	Pantomime:mail/pantomime \
 	GToolKit:x11-toolkits/gtoolkit \
-	rigs:devel/ruby-gnustep \
 	Addresses:mail/addresses \
 	SlideShow:graphics/gnustep-slideshowkit \
 	netclasses:net/netclasses \
