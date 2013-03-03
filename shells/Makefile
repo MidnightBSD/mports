@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/shells/Makefile,v 1.8 2011/05/28 05:10:46 laffer1 Exp $
+# $MidnightBSD: mports/shells/Makefile,v 1.9 2012/03/08 02:55:03 laffer1 Exp $
 
 COMMENT = Shells
 
@@ -25,7 +25,6 @@ SUBDIR += sash
 SUBDIR += scponly
 SUBDIR += tcshrc
 SUBDIR += v7sh
-SUBDIR += wapsh
 SUBDIR += zsh
 
 .include <bsd.port.subdir.mk>
