@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.13 2013/02/18 03:48:00 laffer1 Exp $
+# $MidnightBSD: mports/net/xmlrpc-c/Makefile,v 1.14 2013/02/23 21:36:48 laffer1 Exp $
 
 PORTNAME=	xmlrpc-c
 PORTVERSION=	1.16.44
@@ -33,14 +33,14 @@ CFLAGS+=	-DNDEBUG
 .endif
 
 .if defined(WITH_CURL)
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=	--enable-curl-client
 .else
 CONFIGURE_ARGS+=	--disable-curl-client
 .endif
 
 .if defined(WITH_LIBWWW)
-LIB_DEPENDS+=	wwwcore.1:${PORTSDIR}/www/libwww
+LIB_DEPENDS+=	wwwcore:${PORTSDIR}/www/libwww
 CONFIGURE_ARGS+=	--enable-libwww-client
 .else
 CONFIGURE_ARGS+=	--disable-libwww-client
