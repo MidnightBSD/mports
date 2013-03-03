@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.120 2012/02/11 03:38:51 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.121 2012/03/04 19:34:18 laffer1 Exp $
 
 COMMENT = Networking tools
 
@@ -13,7 +13,6 @@ SUBDIR += avahi-qt3
 SUBDIR += avahi-qt4
 SUBDIR += boinc-client
 SUBDIR += cagibi
-SUBDIR += csup
 SUBDIR += cvsup
 SUBDIR += cvsup-without-gui
 SUBDIR += dhcp6
