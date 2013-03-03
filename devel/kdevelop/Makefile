@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.6 2010/10/06 02:30:03 laffer1 Exp $
+# $MidnightBSD: mports/devel/kdevelop/Makefile,v 1.7 2011/02/02 20:17:33 laffer1 Exp $
 
 PORTNAME=	kdevelop
 PORTVERSION=	3.5.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES?=	devel kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${KDE_VERSION}/src
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	cervisia:${PORTSDIR}/devel/kdesdk3 \
 		msgfmt:${PORTSDIR}/devel/gettext
 LIB_DEPENDS=	svn_client-1.0:${PORTSDIR}/devel/subversion
 RUN_DEPENDS=	extractrc:${PORTSDIR}/devel/kdesdk3 \
-		gdb66:${PORTSDIR}/devel/gdb6 \
+		gdb66:${PORTSDIR}/devel/gdb66 \
 		gmake:${PORTSDIR}/devel/gmake
 
 .if defined(WITH_OPTIONAL_DEPENDS)
@@ -38,7 +38,7 @@ USE_GMAKE=	yes
 USE_BDB=	yes
 USE_AUTOTOOLS=  libtool autotools:run
 _NO_KDE_FINAL=	yes
-CONFIGURE_ARGS+=--with-qtdoc-dir=${X11BASE}/share/doc/qt/html \
+CONFIGURE_ARGS+=--with-qtdoc-dir=${LOCALBASE}/share/doc/qt/html \
 		--with-db-includedir=${BDB_INCLUDE_DIR} \
 		--with-db-libdir=${BDB_LIB_DIR} --with-db-lib=${BDB_LIB_NAME} \
 		--with-apr-config=${LOCALBASE}/bin/apr-1-config \
