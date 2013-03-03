@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/databases/Makefile,v 1.98 2013/02/24 16:02:26 laffer1 Exp $
+# $MidnightBSD: mports/databases/Makefile,v 1.99 2013/03/02 22:56:01 laffer1 Exp $
 
 COMMENT = Databases
 
@@ -7,7 +7,6 @@ SUBDIR += akonadi
 SUBDIR += cassandra
 SUBDIR += courier-authlib-userdb
 SUBDIR += db
-SUBDIR += db3
 SUBDIR += db4
 SUBDIR += db41
 SUBDIR += db41-nocrypto
