@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.9 2013/02/21 02:42:13 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jdk16/Makefile,v 1.10 2013/03/05 00:42:29 laffer1 Exp $
 
 PORTNAME=	jdk
 PORTVERSION=	${DL_JDK_VERSION:S/_/./g}
@@ -32,7 +32,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JDK_VERSION=	1.6.0
-JDK_REVISION=	41
+JDK_REVISION=	43
 DL_JDK_VERSION=	${JDK_VERSION}_${JDK_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
@@ -46,11 +46,21 @@ UNPACK_CMD=	${WRKSRC}/bin/unpack200
 IGNORE?=You must manually fetch the J2SE SDK self-extracting file for the Linux platform (${DISTNAME}${EXTRACT_SUFX}) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
 .endif
 
+.include <bsd.mport.options.mk>
+
 .if defined(WITH_DEMO)
-.if !exists(${DISTDIR}/${DISTNAME}-demos.tar.gz) && !defined(PACKAGE_BUILDING)
-IGNORE?=You must manually fetch the J2SE demos and samples for the Linux platform (${DISTNAME}-demos.tar.gz) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
+DEMO_UPDATE_VERSION=  ${JDK_REVISION}
+.if ${DEMO_UPDATE_VERSION} != ${JDK_REVISION}
+DEMO_DISTNAME= jdk-6u${DEMO_UPDATE_VERSION}-linux-i586-demos
+DEMO_WRKSRC=   ${WRKDIR}/jdk${JDK_VERSION}_${DEMO_UPDATE_VERSION}
+.else
+DEMO_DISTNAME=        ${DISTNAME}-demos
+DEMO_WRKSRC=  ${WRKSRC}
 .endif
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}-demos.tar.gz
+.if !exists(${DISTDIR}/${DEMO_DISTNAME}.tar.gz) && !defined(PACKAGE_BUILDING)
+IGNORE?=You must manually fetch the J2SE demos and samples for the Linux platform (${DEMO_DISTNAME}.tar.gz) from ${DOWNLOAD_URL}, place it in ${DISTDIR} and then run make again
+.endif
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DEMO_DISTNAME}.tar.gz
 PLIST_SUB+=	DEMO=""
 .else
 PLIST_SUB+=	DEMO="@comment "
@@ -69,7 +79,13 @@ do-extract:
 	@${UNPACK_CMD} -r ${WRKSRC}/${i}.pack ${WRKSRC}/${i}.jar
 .endfor
 .if defined(WITH_DEMO)
-	@${TAR} -x -f ${DISTDIR}/${DISTNAME}-demos.tar.gz -C ${WRKDIR}
+	@${TAR} -x -f ${DISTDIR}/${DEMO_DISTNAME}.tar.gz -C ${WRKDIR}
+.endif
+
+.if defined(WITH_DEMO) && ${DEMO_WRKSRC} != ${WRKSRC}
+post-extract:
+	@${MV} ${DEMO_WRKSRC}/demo ${WRKSRC}/
+	@${MV} ${DEMO_WRKSRC}/sample ${WRKSRC}/
 .endif
 
 post-patch:
