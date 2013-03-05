@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.5 2013/02/09 01:10:41 laffer1 Exp $
+# $MidnightBSD: mports/java/linux-sun-jre16/Makefile,v 1.6 2013/02/21 02:42:54 laffer1 Exp $
 
 PORTNAME=	jre
 PORTVERSION=	${DL_JRE_VERSION:S/_/./g}
@@ -30,7 +30,7 @@ NO_BUILD=	yes
 USE_LINUX=	yes
 USE_LINUX_APPS=	xorglibs
 JRE_VERSION=	1.6.0
-JRE_REVISION=	39
+JRE_REVISION=	41
 DL_JRE_VERSION=	${JRE_VERSION}_${JRE_REVISION}
 ONLY_FOR_ARCHS=	i386 amd64
 DOWNLOAD_URL?=	http://www.oracle.com/technetwork/java/javase/downloads/index.html
