@@ -1,12 +1,7 @@
-# Ports collection makefile for:	mercurial
-# Date created:				May 20 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.13 2013/02/18 03:06:47 laffer1 Exp $
-#
+# $MidnightBSD: mports/devel/mercurial/Makefile,v 1.14 2013/02/18 03:07:27 laffer1 Exp $
 
 PORTNAME=	mercurial
-PORTVERSION=	2.4
+PORTVERSION=	2.5.2
 CATEGORIES=	devel python
 MASTER_SITES=	http://mercurial.selenic.com/release/
 
@@ -14,12 +9,6 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Fast lightweight source control management system
 LICENSE=	gpl2
 
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-.endif
 USE_PYTHON=	-2.7
 USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGNAME=	${PORTNAME}
@@ -69,9 +58,19 @@ MAN5=	hgignore.5 hgrc.5
 
 SUB_FILES=	pkg-message
 
+.include <bsd.mport.options.mk>
+
 post-patch:
-.if defined(WITHOUT_NLS)
-	@${REINPLACE_CMD} '/^build.sub_co.*$$/d' ${WRKSRC}/setup.py
+.if !defined(WITHOUT_NLS)
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-setup.py
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if !defined(WITHOUT_MCA_BUNDLE)
+RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 .endif
 
 post-install:
@@ -96,8 +95,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/*.cgi ${DATADIR}/www
 	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.fcgi ${DATADIR}/www
 	${INSTALL_DATA} ${WRKSRC}/contrib/hgweb.wsgi ${DATADIR}/www
-
-	@${CAT} ${PKGMESSAGE}
 .endif
 
 .include <bsd.port.mk>
