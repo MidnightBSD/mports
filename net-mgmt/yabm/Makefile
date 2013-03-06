@@ -1,8 +1,8 @@
-# $FreeBSD: ports/net-mgmt/yabm/Makefile,v 1.3 2005/07/03 01:45:54 dannyboy Exp $
-# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.3 2010/05/08 17:29:49 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/yabm/Makefile,v 1.4 2012/09/09 03:55:16 laffer1 Exp $
 
 PORTNAME=	yabm
 PORTVERSION=	0.2.1
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.shapeshifter.se/code/yabm/release/
 
@@ -13,7 +13,7 @@ LICENSE=	bsd2
 LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 
 USE_RC_SUBR=	yes
-RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=${RC_SUBR}
+RC_SCRIPTS_SUB=	PREFIX=${PREFIX} RC_SUBR=/etc/rc.subr
 
 SUB_FILES=	pkg-message
 
