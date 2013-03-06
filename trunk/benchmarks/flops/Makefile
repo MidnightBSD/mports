@@ -1,13 +1,8 @@
-# New ports collection makefile for:	flops
-# Date created:				06 Jul 2005
-# Whom:					Alexey Dokuchaev <danfe@FreeBSD.org>
-#
-# $MidnightBSD: mports/benchmarks/flops/Makefile,v 1.1 2007/05/19 23:41:17 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/flops/Makefile,v 1.2 2006/09/07 10:42:35 danfe Exp $
-#
+# $MidnightBSD: mports/benchmarks/flops/Makefile,v 1.2 2008/06/25 15:16:41 laffer1 Exp $
 
 PORTNAME=	flops
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://mbsd.msk.ru/dist/
 DISTFILES=	${PORTNAME}.c ${PORTNAME}.doc
@@ -25,6 +20,10 @@ PORTDOCS=	flops.doc
 do-extract: .SILENT
 	${MKDIR} ${WRKSRC}
 	${CP} ${DISTDIR}/flops.c ${DISTDIR}/flops.doc ${WRKSRC}
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's|^void main|int main|' ${WRKSRC}/flops.c
 
 do-build:
 	(cd ${WRKSRC} && ${CC} ${CFLAGS} -DUNIX -o flops flops.c)
