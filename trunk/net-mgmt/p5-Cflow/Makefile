@@ -1,13 +1,8 @@
-# New ports collection makefile for:	p5-Cflow
-# Date created:			Di  13 Mär 2001 19:37:25 CET
-# Whom:				Andreas Klemm <andreas@klemm.gtn.com>
-#
-# $FreeBSD: ports/net-mgmt/p5-Cflow/Makefile,v 1.13 2006/02/15 09:58:12 ehaupt Exp $
-# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.1 2006/12/26 00:54:50 laffer1 Exp $
-#
+# $MidnightBSD: mports/net-mgmt/p5-Cflow/Makefile,v 1.2 2007/06/06 18:43:16 ctriv Exp $
 
 PORTNAME=	Cflow
 PORTVERSION=	1.053
+PORTREVISION=	1
 CATEGORIES=	net-mgmt perl5
 MASTER_SITES=	http://net.doit.wisc.edu/~plonka/Cflow/ \
 		http://net.doit.wisc.edu/~plonka/Cflow/old/
@@ -17,7 +12,12 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Analyze raw flow files written by cflowd (Cisco NetFlow data)
 LICENSE=	gpl2
 
+OPTIONS=	FLOW_TOOLS	"Enable flow-tools support"	off
+
+.include <bsd.port.pre.mk>
+
 .if defined(WITH_FLOW_TOOLS)
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libft.a:${PORTSDIR}/net-mgmt/flow-tools
 RUN_DEPENDS+=	${LOCALBASE}/lib/libft.a:${PORTSDIR}/net-mgmt/flow-tools
 
 CFLAGS+=	-I${LOCALBASE}/include -DOSU
@@ -30,4 +30,4 @@ PERL_CONFIGURE=	YES
 MAN1=		flowdumper.1
 MAN3=		Cflow.3
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
