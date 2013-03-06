@@ -1,14 +1,8 @@
-# New ports collection makefile for:	fhourstones
-# Date created:		2006-11-23
-# Whom:			trasz <trasz@pin.if.uz.zgora.pl>
-#
-# $MidnightBSD: mports/benchmarks/fhourstones/Makefile,v 1.1 2007/07/15 07:44:56 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/fhourstones/Makefile,v 1.2 2007/04/13 13:03:44 trasz Exp $
-#
+# $MidnightBSD: mports/benchmarks/fhourstones/Makefile,v 1.2 2008/06/22 19:25:54 laffer1 Exp $
 
 PORTNAME=	fhourstones
 PORTVERSION=	3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://homepages.cwi.nl/~tromp/c4/
 DISTNAME=	Fhourstones
