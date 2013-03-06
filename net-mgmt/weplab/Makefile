@@ -1,15 +1,9 @@
-# New ports collection makefile for:	weplab
-# Date created:				24 Aug 2006
-# Whom:					Anton Karpov <toxa@toxahost.ru>
-#
-# $FreeBSD: ports/net-mgmt/weplab/Makefile,v 1.1 2006/08/24 13:13:41 garga Exp $
-# $MidnightBSD: mports/net-mgmt/weplab/Makefile,v 1.1 2006/12/26 01:30:23 laffer1 Exp $
-#
+# $MidnightBSD: mports/net-mgmt/weplab/Makefile,v 1.2 2007/06/06 21:13:19 ctriv Exp $
 
 PORTNAME=	weplab
 PORTVERSION=	0.1.5
 CATEGORIES=	net-mgmt
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	WepLab is a tool designed to teach how WEP works
