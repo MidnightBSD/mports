@@ -1,4 +1,4 @@
-# $FreeBSD: ports/devel/objcunit/Makefile,v 1.1 2006/11/05 12:21:16 dinoex Exp $
+# $MidnightBSD$
 
 PORTNAME=	objcunit
 PORTVERSION=	1.2
