@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/benchmarks/iperf/Makefile,v 1.2 2008/08/22 14:54:33 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/iperf/Makefile,v 1.3 2009/12/12 22:24:20 laffer1 Exp $
 
 PORTNAME=	iperf
-PORTVERSION=	2.0.4
+PORTVERSION=	2.0.5
 PORTREVISION=	0
 CATEGORIES=	benchmarks ipv6
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20source
+MASTER_SITES=	SF/${PORTNAME}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool to measure maximum TCP and UDP bandwidth
