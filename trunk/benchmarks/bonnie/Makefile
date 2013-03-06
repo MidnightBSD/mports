@@ -1,5 +1,4 @@
-# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.2 2008/06/25 15:14:23 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/bonnie/Makefile,v 1.15 2006/08/12 15:16:45 se Exp $
+# $MidnightBSD: mports/benchmarks/bonnie/Makefile,v 1.3 2011/04/10 20:18:50 laffer1 Exp $
 
 PORTNAME=	bonnie
 PORTVERSION=	2.0.6
