@@ -1,10 +1,4 @@
-# New ports collection makefile for:	trafd
-# Date created:		22 January 2000
-# Whom:			Michael Vasilenko <acid@stu.cn.ua>
-#
-# $FreeBSD: ports/net-mgmt/trafd/Makefile,v 1.14 2006/05/11 22:49:44 edwin Exp $
-# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.3 2007/08/01 20:38:28 laffer1 Exp $
-#
+# $MidnightBSD: mports/net-mgmt/trafd/Makefile,v 1.4 2010/10/23 11:58:25 laffer1 Exp $
 
 PORTNAME=	trafd
 PORTVERSION=	3.0.2.1
