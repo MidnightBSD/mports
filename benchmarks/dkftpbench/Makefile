@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.6 2011/08/20 15:33:43 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.7 2013/03/06 13:03:37 laffer1 Exp $
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	benchmarks ftp
 MASTER_SITES=	http://www.kegel.com/dkftpbench/
 
