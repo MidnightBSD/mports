@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tcpreplay
-# Date created:				2 November 2000
-# Whom:					cnh@ivmg.net
-#
-# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.5 2009/10/14 00:37:28 laffer1 Exp $
-# $FreeBSD: ports/net-mgmt/tcpreplay/Makefile,v 1.28 2008/06/25 22:07:29 ehaupt Exp $
-#
+# $MidnightBSD: mports/net-mgmt/tcpreplay/Makefile,v 1.6 2011/01/08 15:04:06 laffer1 Exp $
 
 PORTNAME=	tcpreplay
 PORTVERSION=	3.4.4
