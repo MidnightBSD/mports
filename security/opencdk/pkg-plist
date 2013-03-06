@@ -1,4 +1,4 @@
-@comment $FreeBSD: ports/security/opencdk/pkg-plist,v 1.10 2007/10/31 05:40:39 novel Exp $
+@comment $FreeBSD$
 bin/opencdk-config
 include/opencdk.h
 lib/libopencdk.a
@@ -13,6 +13,7 @@ libdata/pkgconfig/opencdk.pc
 %%PORTDOCS%%%%DOCSDIR%%/opencdk-api.html
 %%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%EXAMPLESDIR%%/basic.c
+%%EXAMPLESDIR%%/exp-key.gpg
 %%EXAMPLESDIR%%/newkey.gpg
 %%EXAMPLESDIR%%/photo-key.gpg
 %%EXAMPLESDIR%%/plain-test-pubenc-part.gpg
