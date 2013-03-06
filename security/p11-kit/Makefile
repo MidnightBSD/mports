@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/security/p11-kit/Makefile,v 1.1 2011/09/10 21:36:36 laffer1 Exp $
-# $FreeBSD: ports/security/p11-kit/Makefile,v 1.3 2011/09/07 04:07:06 novel Exp $
+# $MidnightBSD: mports/security/p11-kit/Makefile,v 1.2 2012/02/29 01:23:33 laffer1 Exp $
 
 PORTNAME=	p11-kit
-PORTVERSION=	0.11
+PORTVERSION=	0.14
 CATEGORIES=	security devel
 MASTER_SITES=	http://p11-glue.freedesktop.org/releases/
 
