@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/xdg-utils/Makefile,v 1.2 2011/12/16 01:52:42 laffer1 Exp $
+# $MidnightBSD: mports/devel/xdg-utils/Makefile,v 1.3 2012/09/15 22:59:57 laffer1 Exp $
 
 PORTNAME=	xdg-utils
 PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://portland.freedesktop.org/download/
 EXTRACT_SUFX=	.tgz
@@ -10,7 +10,10 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to allow all applications to integrate with the free desktop
 LICENSE=	mit
-RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
+
+RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
+		xprop:${PORTSDIR}/x11/xprop \
+		xset:${PORTSDIR}/x11/xset
 
 GNU_CONFIGURE=	yes
 XDG_FILES=	xdg-desktop-icon \
