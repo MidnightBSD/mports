@@ -1,10 +1,4 @@
-# New ports collection makefile for:    freeradius
-# Date created:         May 9 2002
-# Whom:                 Brian Somers <brian@FreeBSD.org>
-#
-# $MidnightBSD: mports/net/freeradius/Makefile,v 1.9 2010/11/12 14:11:10 laffer1 Exp $
-# $FreeBSD: ports/net/freeradius/Makefile,v 1.65 2008/01/31 13:29:09 jmelo Exp $
-#
+# $MidnightBSD: mports/net/freeradius/Makefile,v 1.10 2011/02/02 21:14:15 laffer1 Exp $
 
 PORTNAME=	freeradius
 PORTVERSION=	1.1.8
@@ -22,9 +16,6 @@ LICENSE=	gpl2
 
 USE_BZIP2=	yes
 WANT_PERL=	yes
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0 \
-			--host=${ARCH}-portbld-freebsd6.0 \
-			--target=${ARCH}-portbld-freebsd6.0
 
 LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
 
