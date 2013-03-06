@@ -1,28 +1,24 @@
-# New ports collection makefile for: dbs
-# Date created: 	1 August 1998
-# Whom:			jkoshy
-#
-# $MidnightBSD: mports/benchmarks/dbs/Makefile,v 1.2 2008/05/23 14:47:41 crash Exp $
-# $FreeBSD: ports/benchmarks/dbs/Makefile,v 1.12 2007/05/19 20:00:19 flz Exp $
-#
+# $MidnightBSD: mports/benchmarks/dbs/Makefile,v 1.3 2009/04/05 19:34:48 laffer1 Exp $
 
 PORTNAME=	dbs
 PORTVERSION=	1.1.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://www.kusa.ac.jp/~yukio-m/dbs/software1.1.5/ \
-		${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	jkoshy
+		FREEBSD_LOCAL/jkoshy
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A distributed network benchmarking system
 LICENSE=        other
+
 RUN_DEPENDS=	gnuplot:${PORTSDIR}/math/gnuplot
 
 DOCDIR=		${PREFIX}/share/doc/dbs/
 DOCS=		dbs.man dbs.man.jis dbs_paper.ps Copyright
 EXDIR=		${PREFIX}/share/examples/dbs/
 EXS=		TCP2.cmd TCPvsMPEG.cmd
+
+USE_PERL5_RUN=	yes
 
 do-build:
 	cd ${WRKSRC}/src; ${MAKE} dir
