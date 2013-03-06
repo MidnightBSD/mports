@@ -1,15 +1,7 @@
-# ex:ts=8
-# Ports collection makefile for:  raidtest
-# Date created:			  Sat Oct 16, 2004
-# Whom:				  David O'Brien (obrien@FreeBSD.org)
-#
-# $MidnightBSD$
-# $FreeBSD: ports/benchmarks/raidtest/Makefile,v 1.6 2007/05/02 07:17:21 edwin Exp $
-#
+# $MidnightBSD: mports/benchmarks/raidtest/Makefile,v 1.2 2007/10/25 00:43:57 laffer1 Exp $
 
 PORTNAME=	raidtest
-PORTVERSION=	1.1
-PORTREVISION=	1
+PORTVERSION=	1.2
 CATEGORIES=	benchmarks
 MASTER_SITES=	# none
 DISTFILES=	# none
