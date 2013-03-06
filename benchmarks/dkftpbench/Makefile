@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.5 2011/02/02 20:05:30 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/dkftpbench/Makefile,v 1.6 2011/08/20 15:33:43 laffer1 Exp $
 
 PORTNAME=	dkftpbench
 PORTVERSION=	0.45
@@ -10,9 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A FTP benchmark program
 LICENSE=	gpl2
 
-USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	${MACHINE_ARCH}-portbld-freebsd6.0
 
 USE_AUTOTOOLS=	automake14 autoconf
 
