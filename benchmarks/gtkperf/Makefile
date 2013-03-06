@@ -2,13 +2,13 @@
 # Date created:				2006-04-22
 # Whom:					Andreas Kohn <andreas@syndrom23.de>
 #
-# $MidnightBSD: mports/benchmarks/gtkperf/Makefile,v 1.2 2008/06/25 15:22:41 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/gtkperf/Makefile,v 1.3 2009/12/31 23:21:07 laffer1 Exp $
 # $FreeBSD: ports/benchmarks/gtkperf/Makefile,v 1.5 2007/03/12 10:01:38 miwi Exp $
 #
 
 PORTNAME=		gtkperf
 PORTVERSION=		0.40
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		benchmarks
 MASTER_SITES=		SF
 DISTNAME=		${PORTNAME}_${PORTVERSION}
@@ -26,8 +26,8 @@ USE_GNOME=		gtk20 gnomeprefix
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=		yes
 USE_ICONV=		yes
-CONFIGURE_ENV+=		CPPFLAGS="-I${LOCALBASE}/include" \
-			LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--enable-nls
 PLIST_SUB=		NLS=""
 .else
