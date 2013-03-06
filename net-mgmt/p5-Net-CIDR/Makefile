@@ -1,16 +1,9 @@
-# New ports collection makefile for:	p5-Net-CIDR
-# Date created:				Sep 02 2001
-# Whom:					Andy Sparrow
-#
-# $FreeBSD: ports/net-mgmt/p5-Net-CIDR/Makefile,v 1.9 2005/09/20 14:52:12 leeym Exp $
-# $MidnightBSD: mports/net-mgmt/p5-Net-CIDR/Makefile,v 1.1 2007/02/19 17:27:28 laffer1 Exp $
-#
+# $MidnightBSD: mports/net-mgmt/p5-Net-CIDR/Makefile,v 1.2 2007/06/06 19:19:25 ctriv Exp $
 
 PORTNAME=	Net-CIDR
-PORTVERSION=	0.11
+PORTVERSION=	0.17
 CATEGORIES=	net-mgmt perl5
-MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
-MASTER_SITE_SUBDIR=	Net
+MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightSD.org
