@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.2 2010/10/21 20:24:03 laffer1 Exp $
+# $MidnightBSD: mports/net/smbldap-tools/Makefile,v 1.3 2012/02/11 01:55:43 laffer1 Exp $
 
 PORTNAME=	smbldap-tools
-PORTVERSION=	0.9.7
+PORTVERSION=	0.9.9
 CATEGORIES=	net
 MASTER_SITES=	http://download.gna.org/smbldap-tools/sources/${PORTVERSION}/
 
