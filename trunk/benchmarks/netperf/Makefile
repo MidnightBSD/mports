@@ -1,8 +1,7 @@
-# $FreeBSD: ports/benchmarks/netperf/Makefile,v 1.24 2005/10/14 03:33:07 jkoshy Exp $
-# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.3 2008/10/10 19:41:15 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/netperf/Makefile,v 1.4 2010/11/13 16:30:32 laffer1 Exp $
 
 PORTNAME=	netperf
-PORTVERSION=	2.4.5
+PORTVERSION=	2.6.0
 CATEGORIES=	benchmarks ipv6
 MASTER_SITES=	ftp://ftp.netperf.org/netperf/
 
