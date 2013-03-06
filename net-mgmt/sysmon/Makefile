@@ -3,7 +3,7 @@
 # Whom:					Manuel Kreutz <mk@nomtec.net>
 #
 # $FreeBSD: ports/net-mgmt/sysmon/Makefile,v 1.5 2005/11/08 13:40:53 mnag Exp $
-# $MidnightBSD: mports/net-mgmt/sysmon/Makefile,v 1.1 2006/12/27 02:48:19 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/sysmon/Makefile,v 1.2 2007/06/06 19:32:55 ctriv Exp $
 #
 
 PORTNAME=	sysmon
@@ -22,7 +22,6 @@ DOCS=		Changes.html binaries.html config.html docs.html index.html \
 MAN8=		sysmon.man.8 sysmon.conf.man.8
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd${OSREL}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/sysmon ${PREFIX}/bin
