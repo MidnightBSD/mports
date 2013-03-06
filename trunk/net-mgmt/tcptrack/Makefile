@@ -1,10 +1,4 @@
-# New ports collection makefile for:	tcptrack
-# Date created:		2004-10-11
-# Whom:			Tor Halvard "Squat" Furulund <squat@squat.no>
-#
-# $FreeBSD: ports/net-mgmt/tcptrack/Makefile,v 1.4 2005/04/12 03:26:20 obrien Exp $
-# $MidnightBSD: mports/net-mgmt/tcptrack/Makefile,v 1.2 2007/06/06 21:02:11 ctriv Exp $
-#
+# $MidnightBSD: mports/net-mgmt/tcptrack/Makefile,v 1.3 2011/01/08 14:59:07 laffer1 Exp $
 
 PORTNAME=		tcptrack
 PORTVERSION=		1.3.0
@@ -17,7 +11,6 @@ COMMENT=	Packet sniffer which displays TCP information like top(1)
 LICENSE=	gpl2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 PLIST_FILES=	bin/tcptrack
 MAN1=		tcptrack.1
