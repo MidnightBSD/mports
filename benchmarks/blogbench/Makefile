@@ -1,10 +1,4 @@
-# New ports collection makefile for:	blogbench
-# Date created:			Feb 14, 2005
-# Whom:				janos.mohacsi@bsd.hu
-#
-# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.5 2010/02/28 21:30:21 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/blogbench/Makefile,v 1.1 2005/02/14 21:04:04 pav Exp $
-#
+# $MidnightBSD: mports/benchmarks/blogbench/Makefile,v 1.6 2010/11/14 18:44:39 laffer1 Exp $
 
 PORTNAME=	blogbench
 PORTVERSION=	1.1
