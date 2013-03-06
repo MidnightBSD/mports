@@ -1,15 +1,9 @@
-# New ports collection makefile for:	httperf
-# Date created:		28 Jul 1999
-# Whom:			Will Andrews <andrews@technologist.com>
-#
-# $FreeBSD: ports/benchmarks/httperf/Makefile,v 1.20 2006/04/05 21:04:28 jmelo Exp $
-# $MidnightBSD: mports/benchmarks/httperf/Makefile,v 1.1 2007/01/07 18:57:56 laffer1 Exp $
-#
+# $MidnightBSD: mports/benchmarks/httperf/Makefile,v 1.2 2008/07/18 21:15:52 crash Exp $
 
 PORTNAME=	httperf
 PORTVERSION=	0.9.0
 CATEGORIES=	benchmarks www
-MASTER_SITES=	ftp://ftp.hpl.hp.com/pub/httperf/
+MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A tool for measuring webserver performance
