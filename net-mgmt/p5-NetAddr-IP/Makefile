@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-mgmt/p5-NetAddr-IP/Makefile,v 1.2 2009/06/28 00:10:48 laffer1 Exp $
+# $MidnightBSD: mports/net-mgmt/p5-NetAddr-IP/Makefile,v 1.3 2012/02/03 03:18:22 laffer1 Exp $
 
 PORTNAME=	NetAddr-IP
-PORTVERSION=	4.058
+PORTVERSION=	4.066
 CATEGORIES=	net-mgmt perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
