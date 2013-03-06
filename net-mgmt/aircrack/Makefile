@@ -1,10 +1,4 @@
-# New ports collection makefile for:	aircrack
-# Date created:				25 Nov 2005
-# Whom:					Lars Engels <lars.engels@0x20.net>
-#
-# $MidnightBSD: mports/net-mgmt/aircrack/Makefile,v 1.1 2007/04/13 21:34:31 laffer1 Exp $
-# $FreeBSD: ports/net-mgmt/aircrack/Makefile,v 1.3 2006/03/18 22:06:35 pav Exp $
-#
+# $MidnightBSD: mports/net-mgmt/aircrack/Makefile,v 1.2 2007/05/30 00:08:02 ctriv Exp $
 
 PORTNAME=	aircrack
 PORTVERSION=	2.41
