@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/comms/tits/files/patch-tty.c,v 1.1 2001/04/18 15:32:59 sobomax Exp $
+$MidnightBSD$
 
 --- tty.c	2001/04/18 14:43:52	1.1
 +++ tty.c	2001/04/18 14:45:57
