@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.3 2007/10/25 00:51:52 laffer1 Exp $
+# $MidnightBSD: mports/benchmarks/siege/Makefile,v 1.4 2009/03/03 23:00:05 laffer1 Exp $
 
 PORTNAME=	siege
-PORTVERSION=	2.66
-PORTREVISION=	2
+PORTVERSION=	2.70
 CATEGORIES=	benchmarks
 MASTER_SITES=	ftp://sid.joedog.org/pub/siege/
 
