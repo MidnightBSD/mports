@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/comms/tits/files/patch-listener.c,v 1.1 2006/01/06 15:25:13 mich Exp $
+$MidnightBSD$
 
 --- listener.c.orig
 +++ listener.c
