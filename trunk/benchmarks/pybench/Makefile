@@ -1,10 +1,4 @@
-# New ports collection makefile for:    pybench
-# Date created:         		29 March 2001
-# Whom:                 		Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/benchmarks/pybench/Makefile,v 1.1 2007/07/15 06:48:02 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/pybench/Makefile,v 1.8 2006/08/01 02:52:17 clsung Exp $
-#
+# $MidnightBSD: mports/benchmarks/pybench/Makefile,v 1.2 2007/11/07 23:43:49 ctriv Exp $
 
 PORTNAME=	pybench
 PORTVERSION=	2.0
@@ -21,6 +15,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USE_ZIP=	yes
 USE_PYTHON=	yes
 
+PORTDOCS=	README
+
 do-build:
 	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py ${WRKSRC}
 	@${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py ${WRKSRC}
@@ -35,7 +31,9 @@ do-install:
 		| (cd ${DATADIR} && ${TAR} --unlink -x -f -)
 .if !defined(NOPORTDOCS)
 	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${DOCSDIR}
+.for docs in ${PORTDOCS}
+	@${INSTALL_DATA} ${WRKSRC}/${docs} ${DOCSDIR}
+.endfor
 .endif
 	@${INSTALL_SCRIPT} ${WRKDIR}/pybench.sh ${PREFIX}/bin/pybench
 
