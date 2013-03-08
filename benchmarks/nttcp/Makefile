@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/benchmarks/nttcp/Makefile,v 1.2 2008/10/10 19:48:17 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/nttcp/Makefile,v 1.16 2006/03/18 22:21:50 linimon Exp $
+# $MidnightBSD: mports/benchmarks/nttcp/Makefile,v 1.3 2011/01/22 16:54:56 laffer1 Exp $
 
 PORTNAME=	nttcp
 PORTVERSION=	1.47
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	benchmarks net
 MASTER_SITES=	http://freeware.sgi.com/source/nttcp/ \
 		http://reality.sgiweb.org/freeware/source/nttcp/
