@@ -1,10 +1,4 @@
-# New ports collection makefile for:	pathrate
-# Date created:			19 May 2005
-# Whom:				dikshie <dikshie@lapi.itb.ac.id>
-#
-# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.2 2008/10/10 19:48:55 laffer1 Exp $
-# $FreeBSD: ports/benchmarks/pathrate/Makefile,v 1.2 2006/08/22 08:08:58 miwi Exp $
-#
+# $MidnightBSD: mports/benchmarks/pathrate/Makefile,v 1.3 2011/06/01 01:24:10 laffer1 Exp $
 
 PORTNAME=	pathrate
 PORTVERSION=	2.4.1
