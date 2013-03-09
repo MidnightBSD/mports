@@ -14,7 +14,7 @@
 #               Set it to required username.
 # openfire_group (group):   Set to openfire by default.
 #               Set it to required group.
-# openfire_libdir (path):   Set to %%JAVAJARDIR%% by default.
+# openfire_libdir (path):   Set to %%DATADIR%%/lib by default.
 #               Set it to java classes directory.
 # openfire_home (path):     Set to %%DATADIR%% by default.
 #               Set it to java home directory.
@@ -24,14 +24,14 @@
 . /etc/rc.subr
 
 name="openfire"
-rcvar=${name}_enable
+rcvar=openfire_enable
 load_rc_config $name
 
 # Set defaults
 : ${openfire_enable:=NO}
 : ${openfire_user:=${name}}
 : ${openfire_group:=${name}}
-: ${openfire_libdir:=%%JAVAJARDIR%%}
+: ${openfire_libdir:=%%DATADIR%%/lib}
 : ${openfire_home:=%%DATADIR%%}
 : ${openfire_javargs:='-Xmx256M'}
 
@@ -43,7 +43,7 @@ java_options=" 	-server -jar ${openfire_javargs} \
 		-DopenfireHome=${openfire_home}"
 
 java_command="	%%LOCALBASE%%/bin/java ${java_options} \
-		%%JAVAJARDIR%%/startup.jar"
+		%%DATADIR%%/lib/startup.jar"
 
 # Subvert the check_pid_file procname check.
 if [ -f $pidfile ]; then
