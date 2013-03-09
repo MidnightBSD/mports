@@ -1,17 +1,10 @@
-# ex:ts=8
-# Ports collection makefile for:  lrzsz
-# Date created:			  29 Sept 1996
-# Whom:				  David O'Brien <obrien@cs.ucdavis.edu>
-#
-# $MidnightBSD: mports/comms/lrzsz/Makefile,v 1.1 2007/02/19 23:46:59 laffer1 Exp $
-# $FreeBSD: ports/comms/lrzsz/Makefile,v 1.26 2006/08/08 11:36:11 dinoex Exp $
+# $MidnightBSD: mports/comms/lrzsz/Makefile,v 1.2 2007/11/11 00:15:17 laffer1 Exp $
 
 PORTNAME=	lrzsz
 PORTVERSION=	0.12.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	comms
-MASTER_SITES=	http://www.netsw.org/net/modem/protocols/zmodem/lrzsz/ \
-		http://www.ohse.de/uwe/releases/
+MASTER_SITES=	http://www.ohse.de/uwe/releases/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Receive/Send files via X/Y/ZMODEM protocol.  (unrestrictive)
