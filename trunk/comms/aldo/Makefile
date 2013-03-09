@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/comms/aldo/Makefile,v 1.4 2011/02/02 20:09:16 laffer1 Exp $
+# $MidnightBSD: mports/comms/aldo/Makefile,v 1.5 2011/10/01 01:24:09 laffer1 Exp $
 
 PORTNAME=	aldo
 PORTVERSION=	0.7.5
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	comms hamradio
 MASTER_SITES=	${MASTER_SITE_SAVANNAH}
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -16,11 +16,9 @@ LIB_DEPENDS=	ao:${PORTSDIR}/audio/libao
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	autoconf automake libtool aclocal
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.1
 CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 		--libdir="${LOCALBASE}/lib"
 USE_GMAKE=	yes
-MAKE_ENV=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}"
 
 PLIST_FILES=	bin/aldo
 MAN1=	aldo.1
