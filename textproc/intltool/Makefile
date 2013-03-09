@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.7 2010/05/29 11:15:43 laffer1 Exp $
+# $MidnightBSD: mports/textproc/intltool/Makefile,v 1.8 2011/09/10 22:24:19 laffer1 Exp $
 
 PORTNAME=	intltool
 PORTVERSION=	0.41.1
+PORTREVISION=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	http://launchpadlibrarian.net/41841194/
 DIST_SUBDIR=	gnome
@@ -10,8 +11,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Tools to internationalize various kinds of data files
 LICENSE=	gpl2
 
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/XML/Parser.pm:${PORTSDIR}/textproc/p5-XML-Parser
+BUILD_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
+RUN_DEPENDS=	p5-XML-Parser>=0:${PORTSDIR}/textproc/p5-XML-Parser
 
 USE_GMAKE=	yes
 USE_ICONV=	yes
