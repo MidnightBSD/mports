@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.3 2010/05/29 09:17:44 laffer1 Exp $
+# $MidnightBSD: mports/net-im/msn-proxy/Makefile,v 1.4 2011/01/12 14:05:56 laffer1 Exp $
 # $FreeBSD: ports/net-im/msn-proxy/Makefile,v 1.1 2008/01/21 19:11:20 miwi Exp $
 
 PORTNAME=	msn-proxy
@@ -36,7 +36,7 @@ MAKE_ARGS=	SYSCONFDIR=$(FAKE_DESTDIR)${PREFIX}/etc/msn-proxy \
 .include <bsd.port.pre.mk>
 
 post-patch:
-	${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/config.h
+	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/config.h
 
 post-install:
 	@${MKDIR} ${WWWDIR}
