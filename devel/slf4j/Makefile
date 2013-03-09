@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/devel/slf4j/Makefile,v 1.1 2013/03/09 23:38:13 laffer1 Exp $
 
 PORTNAME=	slf4j
 PORTVERSION=	1.6.6
@@ -7,6 +7,7 @@ MASTER_SITES=	http://www.slf4j.org/dist/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Simple facade or abstraction for various logging frameworks
+LICENSE=	other
 
 USE_JAVA=	1.6+
 NO_BUILD=	YES
