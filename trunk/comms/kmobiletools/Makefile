@@ -1,13 +1,8 @@
-# New ports collection makefile for:	kmobiletools
-# Date created:		2006-12-19
-# Whom:			Stefan Ehmann <shoesoft@gmx.net>
-#
-# $MidnightBSD: mports/comms/kmobiletools/Makefile,v 1.2 2009/09/20 00:12:40 laffer1 Exp $
-# $FreeBSD: ports/comms/kmobiletools/Makefile,v 1.2 2007/05/19 20:00:55 flz Exp $
-#
+# $MidnightBSD: mports/comms/kmobiletools/Makefile,v 1.3 2011/02/02 20:09:16 laffer1 Exp $
 
 PORTNAME=	kmobiletools
 PORTVERSION=	0.4.3.3
+PORTREVISION=	1
 CATEGORIES=	comms kde
 MASTER_SITES=	${MASTER_SITE_BERLIOS}
 MASTER_SITE_SUBDIR=	kmobiletools
