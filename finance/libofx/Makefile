@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/finance/libofx/Makefile,v 1.7 2011/02/02 20:58:25 laffer1 Exp $
+# $MidnightBSD: mports/finance/libofx/Makefile,v 1.8 2011/12/15 00:49:53 laffer1 Exp $
 
 PORTNAME=	libofx
-PORTVERSION=	0.9.0
-PORTREVISION=	3
+PORTVERSION=	0.9.5
 CATEGORIES=	finance
 MASTER_SITES=	SF
 
@@ -11,15 +10,18 @@ COMMENT=	OpenSource implementation of the OFX (Open Financial eXchange)
 LICENSE=        gpl2
 
 LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl \
-		xml\\+\\+-1.0.1:${PORTSDIR}/textproc/libxml++ \
+		xml\\+\\+-2.6.2:${PORTSDIR}/textproc/libxml++26 \
 		osp.5:${PORTSDIR}/textproc/opensp
 
+USE_GCC=	any
 USE_ICONV=	yes
 USE_GMAKE=	yes
-USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtool
+ACLOCAL_ARGS=	-I m4
 CONFIGURE_ARGS=	--disable-doxygen --disable-dot --disable-gengetopt \
-		--with-opensp-includes=${LOCALBASE}/include/OpenSP
+		--with-opensp-includes=${LOCALBASE}/include/OpenSP \
+		--with-opensp-libs=${LOCALBASE}/lib
+MAKE_JOBS_SAFE=	yes
 USE_LDCONFIG=	yes
 
 CPPFLAGS=	-I${LOCALBASE}/include
