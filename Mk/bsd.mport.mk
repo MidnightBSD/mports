@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.201 2013/02/18 23:39:41 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.202 2013/02/26 03:46:49 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1488,6 +1488,7 @@ MASTER_SITE_BACKUP?=	\
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP:S^\${DIST_SUBDIR}/^^}
 # Include private dist files that we can't redistribute for Magus.
 .if defined(MAGUS)
+RANDOMIZE_MASTER_SITES=	"yes"
 MASTER_SITE_BACKUP:=	${MASTER_SITE_BACKUP} \
 			ftp://extradistfiles.midnightbsd.org/pub/
 .endif
