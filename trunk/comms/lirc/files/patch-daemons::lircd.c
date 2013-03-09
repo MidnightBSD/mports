@@ -1,18 +1,20 @@
---- daemons/lircd.c.orig	Sun Jul 10 18:04:12 2005
-+++ daemons/lircd.c	Fri Nov 24 14:21:10 2006
-@@ -755,9 +755,12 @@
- 	strcpy(serv_addr.sun_path,lircdfile);
- 	if(bind(sockfd,(struct sockaddr *)&serv_addr,sizeof(serv_addr))==-1)
- 	{
--		fprintf(stderr,"%s: could not assign address to socket\n",
--			progname);
--		perror(progname);
-+		fprintf(stderr,
-+                        "%s: could not assign address to socket %s: %s (%d)\n",
-+			progname,
-+                        lircdfile,
-+                        strerror (errno),
-+                        errno );
- 		goto start_server_failed1;
+--- daemons/lircd.c.orig
++++ daemons/lircd.c
+@@ -1318,7 +1318,7 @@ int send_remote(int fd, char *message, s
+ 
+ 	codes = remote->codes;
+ 	while (codes->name != NULL) {
+-		len = snprintf(buffer, PACKET_SIZE, "%016llx %s\n", codes->code, codes->name);
++		len = snprintf(buffer, PACKET_SIZE, "%016llx %s\n", (unsigned long long)codes->code, codes->name);
+ 		if (len >= PACKET_SIZE + 1) {
+ 			len = sprintf(buffer, "code_too_long\n");
+ 		}
+@@ -1338,7 +1338,7 @@ int send_name(int fd, char *message, str
+ 	    (write_socket_len(fd, protocol_string[P_BEGIN]) && write_socket_len(fd, message)
+ 	     && write_socket_len(fd, protocol_string[P_SUCCESS]) && write_socket_len(fd, protocol_string[P_DATA])))
+ 		return (0);
+-	len = snprintf(buffer, PACKET_SIZE, "1\n%016llx %s\n", code->code, code->name);
++	len = snprintf(buffer, PACKET_SIZE, "1\n%016llx %s\n", (unsigned long long)code->code, code->name);
+ 	if (len >= PACKET_SIZE + 1) {
+ 		len = sprintf(buffer, "1\ncode_too_long\n");
  	}
- 	
