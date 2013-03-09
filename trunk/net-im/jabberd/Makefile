@@ -1,11 +1,9 @@
-# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.11 2011/08/13 17:49:29 laffer1 Exp $
+# $MidnightBSD: mports/net-im/jabberd/Makefile,v 1.12 2011/09/04 20:49:52 laffer1 Exp $
 
 PORTNAME=	jabberd
-PORTVERSION=	2.2.13
-PORTREVISION=	1
+PORTVERSION=	2.2.17
 CATEGORIES=	net-im
-MASTER_SITES=	http://codex.xiaoka.com/pub/jabberd2/releases/
-DIST_SUBDIR=	jabber
+MASTER_SITES=	http://cloud.github.com/downloads/jabberd2/jabberd2/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Online presence and instant messaging server
@@ -34,23 +32,26 @@ USE_PERL5_RUN=	yes
 USE_OPENSSL=	yes
 USE_ICONV=	yes
 USE_RC_SUBR=	jabberd
-USE_BZIP2=	yes
+USE_XZ=		yes
 USE_LDCONFIG=	${PREFIX}/lib/jabberd
 CONFIGURE_ARGS+=	--localstatedir=/var \
 		--sysconfdir=${PREFIX}/etc/jabberd \
 		--enable-ssl --enable-mio=poll \
+		--disable-tests \
 		--with-extra-include-path="${LOCALBASE}/include ${EIP}" \
 		--with-extra-library-path="${LOCALBASE}/lib ${ELP}"
 
 JABBER_USER=	jabber
-JABBER_UID=	93
-JABBER_GROUP=	${JABBER_USER}
-JABBER_GID=	${JABBER_UID}
+JABBER_GROUP=	jabber
+
+USERS=		${JABBER_USER}
+GROUPS=		${JABBER_GROUP}
+
 JABBER_ETCDIR=	"${PREFIX}/etc/jabberd"
 JABBER_RUNDIR=	"/var/jabberd"
 
-SUB_LIST+=	JABBER_USER=${JABBER_USER} JABBER_UID=${JABBER_UID} \
-		JABBER_GROUP=${JABBER_GROUP} JABBER_GID=${JABBER_GID} \
+SUB_LIST+=	JABBER_USER=${JABBER_USER} \
+		JABBER_GROUP=${JABBER_GROUP} \
 		JABBER_ETCDIR="${JABBER_ETCDIR}" \
 		JABBER_RUNDIR="${JABBER_RUNDIR}" \
 		PERL="${PERL}"
@@ -85,7 +86,7 @@ PLIST_SUB+=	SUB_PGSQL="@comment "
 
 .if defined(WITH_SQLITE)
 CONFIGURE_ARGS+=--enable-sqlite
-LIB_DEPENDS+=	sqlite3.8:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS+=	sqlite3:${PORTSDIR}/databases/sqlite3
 CFLAGS+=	${PTHREAD_CFLAGS}
 PLIST_SUB+=	SUB_SQLITE=""
 .else
@@ -165,10 +166,10 @@ SUB_LIST+=	REQUIRE="LOGIN"
 
 .if defined(WITH_CYRUS)
 CONFIGURE_ARGS+=	--with-sasl=cyrus
-LIB_DEPENDS+=	sasl2.2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
 .else
 CONFIGURE_ARGS+=	--with-sasl=gsasl
-LIB_DEPENDS+=	gsasl.15:${PORTSDIR}/security/gsasl
+LIB_DEPENDS+=	gsasl:${PORTSDIR}/security/gsasl
 .endif
 
 MAN8=		c2s.8 jabberd.8 router.8 s2s.8 sm.8
@@ -186,7 +187,7 @@ post-patch:
 post-install:
 	# very bad
 	@PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
-	${CHOWN} -R jabber:jabber ${PREFIX}/etc/jabberd
+	@${CHOWN} -R ${JABBER_USER}:${JABBER_GROUP} ${PREFIX}/etc/jabberd
 	@${FIND} ${PREFIX}/etc/jabberd -type d | ${XARGS} ${CHMOD} 750
 	@${FIND} ${PREFIX}/etc/jabberd -type f | ${XARGS} ${CHMOD} 660
 .if !defined(NOPORTDOCS)

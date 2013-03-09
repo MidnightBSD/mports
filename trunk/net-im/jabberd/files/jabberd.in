@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# $FreeBSD: ports/net-im/jabberd/files/jabberd.in,v 1.6 2010/03/27 00:14:15 dougb Exp $
+# $MidnightBSD$
 
 # PROVIDE: jabberd
 # REQUIRE: %%REQUIRE%%
@@ -20,7 +20,7 @@ jabberd_user=${jabberd_user-"%%JABBER_USER%%"}
 . /etc/rc.subr
 
 name="jabberd"
-rcvar=`set_rcvar`
+rcvar=jabberd_enable
 command_interpreter="%%PERL%%"
 command="%%PREFIX%%/bin/jabberd"
 command_args="-b"
