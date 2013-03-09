@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/comms/minicom/Makefile,v 1.6 2010/11/11 01:25:47 laffer1 Exp $
-# $FreeBSD: ports/comms/minicom/Makefile,v 1.47 2006/05/03 23:38:36 edwin Exp $
+# $MidnightBSD: mports/comms/minicom/Makefile,v 1.7 2011/06/01 01:23:26 laffer1 Exp $
 
 PORTNAME=	minicom
-PORTVERSION=	2.5
+PORTVERSION=	2.6.2
 CATEGORIES=	comms
-MASTER_SITES=	http://alioth.debian.org/frs/download.php/3487/
+MASTER_SITES=	http://alioth.debian.org/frs/download.php/3869/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An MS-DOS Telix serial communication program "workalike"
@@ -35,7 +34,11 @@ MAN1=		minicom.1 runscript.1 ascii-xfr.1 xminicom.1
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} < 4016
 MINICOM_DEFAULT_PORT?=	/dev/cuad0
+.else
+MINICOM_DEFAULT_PORT?=	/dev/cuau0
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e "s@/usr/local/bin/@${LOCALBASE}/bin/@; \
