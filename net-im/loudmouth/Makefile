@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.10 2011/05/15 22:04:59 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.11 2013/03/09 23:30:00 laffer1 Exp $
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
@@ -29,7 +29,7 @@ OPTIONS=	GNUTLS "Enable SSL (via GnuTLS) support" off \
 
 WITHOUT_GNUTLS=yes
 .if !defined(WITHOUT_GNUTLS)
-LIB_DEPENDS+=		gnutls.40:${PORTSDIR}/security/gnutls
+LIB_DEPENDS+=		gnutls:${PORTSDIR}/security/gnutls
 RUN_DEPENDS+=		${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
 .elseif !defined(WITHOUT_OPENSSL)
 CONFIGURE_ARGS+=	--with-ssl=openssl
