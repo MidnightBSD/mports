@@ -1,17 +1,10 @@
-# New ports collection makefile for:	kexchange
-# Date created:				17 October 2003
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/finance/kexchange/Makefile,v 1.2 2009/09/20 01:09:12 laffer1 Exp $
-# $FreeBSD: ports/finance/kexchange/Makefile,v 1.13 2007/05/19 20:04:55 flz Exp $
-#
+# $MidnightBSD: mports/finance/kexchange/Makefile,v 1.3 2011/02/02 20:58:25 laffer1 Exp $
 
 PORTNAME=	kexchange
 PORTVERSION=	1.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	finance kde
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	KDE currency converter
