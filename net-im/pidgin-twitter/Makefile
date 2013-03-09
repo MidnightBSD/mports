@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.3 2010/05/29 13:52:36 laffer1 Exp $
+# $MidnightBSD: mports/net-im/pidgin-twitter/Makefile,v 1.4 2010/05/29 13:53:56 laffer1 Exp $
 
 PORTNAME=	pidgin-twitter
-PORTVERSION=	0.9.1
+PORTVERSION=	0.9.2
 CATEGORIES=	net-im
 MASTER_SITES=	http://www.honeyplanet.jp/
 
