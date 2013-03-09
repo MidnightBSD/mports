@@ -1,11 +1,4 @@
-# New ports collection makefile for:	gossip
-# Date created:				08 July 2003
-# Whom:					Adam Weinberger <adamw@FreeBSD.org>
-#
-# $MidnightBSD: mports/net-im/gossip/Makefile,v 1.2 2008/09/13 22:11:43 laffer1 Exp $
-# $FreeBSD: ports/net-im/gossip/Makefile,v 1.54 2008/06/06 13:51:45 edwin Exp $
-#   $MCom: ports/net-im/gossip/Makefile,v 1.10 2007/07/30 20:30:21 mezz Exp $
-#
+# $MidnightBSD: mports/net-im/gossip/Makefile,v 1.3 2011/02/02 21:16:29 laffer1 Exp $
 
 PORTNAME=	gossip
 PORTVERSION=	0.31
