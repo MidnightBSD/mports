@@ -1,11 +1,10 @@
-# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.9 2011/02/02 21:16:29 laffer1 Exp $
+# $MidnightBSD: mports/net-im/loudmouth/Makefile,v 1.10 2011/05/15 22:04:59 laffer1 Exp $
 
 PORTNAME=	loudmouth
 PORTVERSION=	1.4.3
 PORTREVISION=	4
 CATEGORIES=	net-im gnome
-MASTER_SITES=	http://ftp.imendio.com/pub/imendio/loudmouth/src/ \
-		GNOME
+MASTER_SITES=	GNOME
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Lightweight Jabber client library
