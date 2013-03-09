@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.4 2011/05/15 21:56:49 laffer1 Exp $
+# $MidnightBSD: mports/net-im/libnice/Makefile,v 1.5 2011/12/15 00:57:52 laffer1 Exp $
 
 PORTNAME=	libnice
 PORTVERSION=	0.0.13
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://nice.freedesktop.org/releases/
 
@@ -14,11 +14,11 @@ LICENSE=	lgpl
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
-USE_GNOME=	gnomehack pkgconfig glib20 ltverhack 
+USE_GNOME=	gnomehack pkgconfig glib20 ltverhack
 USE_GSTREAMER=	yes
 USE_AUTOTOOLS=	libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include -DHAVE_GETIFADDRS" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_GETIFADDRS
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|__BYTE_ORDER|_BYTE_ORDER|g ; \
