@@ -1,10 +1,4 @@
-# New ports collection makefile for:	libirman
-# Date created:				2003-03-29
-# Whom:	      				Douglas K. Rand <rand@meridian-enviro.com>
-#
-# $MidnightBSD: mports/comms/libirman/Makefile,v 1.1 2007/01/20 11:18:16 wintellect Exp $
-# $FreeBSD: ports/comms/libirman/Makefile,v 1.4 2006/08/13 10:10:50 rafan Exp $
-#
+# $MidnightBSD: mports/comms/libirman/Makefile,v 1.2 2007/11/10 23:51:02 laffer1 Exp $
 
 PORTNAME=	libirman
 PORTVERSION=	0.4.4
