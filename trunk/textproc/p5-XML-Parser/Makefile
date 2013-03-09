@@ -1,24 +1,16 @@
-# New ports collection makefile for:	XML::Parser
-# Date created:		15 Nov 1998
-# Whom:			Jun Kuriyama <kuriyama@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.4 2008/06/29 22:55:05 laffer1 Exp $
-# $FreeBSD: ports/textproc/p5-XML-Parser/Makefile,v 1.26 2006/01/30 23:19:59 kuriyama Exp $
-#
+# $MidnightBSD: mports/textproc/p5-XML-Parser/Makefile,v 1.5 2010/02/05 00:50:10 laffer1 Exp $
 
 PORTNAME=	XML-Parser
-PORTVERSION=	2.36
-PORTREVISION=	3
+PORTVERSION=	2.41
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	XML
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl extension interface to James Clark's XML parser, expat
 LICENSE=	perl
 
-LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
 
 PERL_CONFIGURE=	yes
 CONFIGURE_ARGS=	EXPATLIBPATH=${LOCALBASE}/lib EXPATINCPATH=${LOCALBASE}/include
@@ -60,6 +52,10 @@ post-patch:
 post-configure:
 	@${PERL} -i -pe 's|^(CC = ).*|$$1 ${CC}|;' \
 		-e 's|^(CCFLAGS = ).*|$$1 ${CFLAGS}|' ${WRKSRC}/Expat/Makefile
+
+pre-build:
+	@cd ${WRKDIR} && ${PERL} ${FILESDIR}/check_nfs.pl 2>/dev/null || \
+	(${ECHO_MSG} "===>  lockf in \$$TMPDIR required"; ${FALSE})
 
 XE=	${.CURDIR}/../p5-XML-Encoding
 extract-encodings:
