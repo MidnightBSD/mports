@@ -1,22 +1,11 @@
-
-$FreeBSD: ports/finance/libofx/files/patch-lib_ofx_preproc.cpp,v 1.3 2008/03/13 20:56:55 miwi Exp $
-
---- lib/ofx_preproc.cpp.orig	Mon Nov 12 15:07:48 2007
-+++ lib/ofx_preproc.cpp	Thu Jan 17 02:39:31 2008
-@@ -23,6 +23,7 @@
- #include <stdlib.h>
- #include <stdio.h>
- #include <string>
-+#include <unistd.h>
- #include "ParserEventGeneratorKit.h"
- #include "libofx.h"
- #include "messages.hh"
-@@ -185,7 +186,7 @@
- 	    memset(iconv_buffer,0,READ_BUFFER_SIZE);
- 	    size_t inbytesleft = strlen(s_buffer.c_str());
- 	    size_t outbytesleft = READ_BUFFER_SIZE;
+--- ./lib/ofx_preproc.cpp.orig	2011-06-08 08:07:52.000000000 -0400
++++ ./lib/ofx_preproc.cpp	2012-02-22 08:46:57.000000000 -0500
+@@ -231,7 +231,7 @@
+           memset(iconv_buffer, 0, READ_BUFFER_SIZE * 2);
+           size_t inbytesleft = strlen(s_buffer.c_str());
+           size_t outbytesleft = READ_BUFFER_SIZE * 2 - 1;
 -#ifdef OS_WIN32
-+#if defined(OS_WIN32) || defined(OS_FREEBSD)
- 	    const char * inchar = (const char *)s_buffer.c_str();
++#if defined(OS_WIN32) || defined(__FreeBSD__)
+           const char * inchar = (const char *)s_buffer.c_str();
  #else
- 	    char * inchar = (char *)s_buffer.c_str();
+           char * inchar = (char *)s_buffer.c_str();
