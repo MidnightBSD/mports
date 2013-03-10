@@ -9,7 +9,7 @@ or adding
 
 to your /boot/loader.conf.
 
-If you build this port with FreeBSD AGP GART driver, make sure you have
+If you build this port with BSD AGP GART driver, make sure you have
 agp.ko kernel module installed and loaded, since nvidia.ko will depend
 on it, or have your kernel compiled with "device agp".  Otherwise, the
 NVidia kernel module will not load.  Also, please set correct value for

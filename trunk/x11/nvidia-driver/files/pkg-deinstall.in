@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD$
+# $MidnightBSD$
 #
 
 PREFIX=${PKG_PREFIX-/usr/local}

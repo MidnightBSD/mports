@@ -37,5 +37,5 @@ nvidia.ko
 %%LINUX%%usr/lib/vdpau/libvdpau_trace.so.%%SHLIB_VERSION%%
 %%LINUX%%usr/lib/vdpau/libvdpau_trace.so.1
 %%LINUX%%@dirrm usr/lib/vdpau
-%%LINUX%%@exec %D/sbin/ldconfig -r %D
-%%LINUX%%@unexec %D/sbin/ldconfig -r %D
+%%LINUX%%@exec %%LINUXBASE%%/sbin/ldconfig -r %D
+%%LINUX%%@unexec %%LINUXBASE%%/sbin/ldconfig -r %D
