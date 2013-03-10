@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/misc/help2man/Makefile,v 1.8 2013/02/18 02:24:00 laffer1 Exp $
+# $MidnightBSD: mports/misc/help2man/Makefile,v 1.9 2013/02/22 03:00:53 laffer1 Exp $
 
 PORTNAME=	help2man
 PORTVERSION=	1.41.1
@@ -18,17 +18,19 @@ INFO=		${PORTNAME}
 MAN1=		${PORTNAME}.1
 PLIST_FILES=	bin/${PORTNAME}
 
-.if defined(WITHOUT_NLS)
-CONFIGURE_ARGS=	--disable-nls
-.else
-BUILD_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
-RUN_DEPENDS=	${SITE_PERL}/${PERL_ARCH}/Locale/gettext.pm:${PORTSDIR}/devel/p5-Locale-gettext
+OPTIONS=	NLS	"Enable NLS"	off
+
+.include <bsd.mport.options.mk>
+
+.if defined(WITH_NLS)
+BUILD_DEPENDS+=	p5-Locale-gettext>=0:${PORTSDIR}/devel/p5-Locale-gettext
+RUN_DEPENDS+=	p5-Locale-gettext>=0:${PORTSDIR}/devel/p5-Locale-gettext
 
 CFLAGS+=	-lintl
 MANLANG=	"" ${LANGS} ${LANGS_MTREE}
 USE_GETTEXT=	yes
 
-LANGS=		de el eo fi fr it pl pt_BR ru sr sv uk vi
+LANGS=		de el eo fi fr hr it pl pt_BR ru sr sv uk vi
 LANGS_MTREE=	ja	# languages that already exist in BSD.local.dist
 
 PLIST_FILES+=	lib/bindtextdomain.so
@@ -38,6 +40,8 @@ PLIST_FILES+=	share/locale/${lang}/LC_MESSAGES/${PORTNAME}.mo
 .for lang in ${LANGS}
 PLIST_DIRSTRY+=	man/${lang}/man1 man/${lang}
 .endfor
+.else
+CONFIGURE_ARGS=	--disable-nls
 .endif
 
 post-patch:
