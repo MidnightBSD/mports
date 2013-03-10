@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.202 2013/02/26 03:46:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.203 2013/03/09 23:01:49 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -1753,10 +1753,10 @@ PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${LATEST_LINK}${PKG_SUFX}
 
 
 CONFIGURE_SCRIPT?=	configure
-.if (${OSVERSION} < 4015)
+.if (${OSVERSION} < 4016)
 CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd7.0
 .else
-CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.0
+CONFIGURE_TARGET?=	${ARCH}-portbld-freebsd9.1
 .endif
 CONFIGURE_TARGET:=      ${CONFIGURE_TARGET:S/--build=//}
 CONFIGURE_LOG?=		config.log
