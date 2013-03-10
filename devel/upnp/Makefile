@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/devel/upnp/Makefile,v 1.8 2012/02/28 02:44:14 laffer1 Exp $
-# $FreeBSD: ports/devel/upnp/Makefile,v 1.24 2008/04/29 12:41:16 miwi Exp $
+# $MidnightBSD: mports/devel/upnp/Makefile,v 1.9 2012/09/15 19:26:54 laffer1 Exp $
 
 PORTNAME=	upnp
-PORTVERSION=	1.6.17
+PORTVERSION=	1.6.18
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/libUPnP%20${PORTVERSION}
