@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.15 2012/06/21 01:03:07 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.16 2013/02/09 01:56:25 laffer1 Exp $
 
 PORTNAME=	subversion
-PORTVERSION=	1.7.7
-PORTREVISION?=	1
+PORTVERSION=	1.7.8
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
 		${MASTER_SITE_LOCAL:S/$/:book/}
