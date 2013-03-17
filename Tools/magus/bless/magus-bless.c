@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.5 2011/03/10 22:13:53 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.6 2013/03/17 16:41:29 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -54,6 +54,7 @@ int
 main(int argc, char *argv[])
 {
     MYSQL mysql;
+    MYSQL mysql2; /* we need two connections */
     MYSQL_RES *result;
     MYSQL_ROW row;
     unsigned int num_fields;
@@ -84,14 +85,33 @@ main(int argc, char *argv[])
          exit(1);
     }
 
+    if (mysql_init(&mysql2) == NULL)
+    {
+         fprintf(stderr, "Failed to initate MySQL connection\n");
+         exit(1);
+    }
+
     if (!mysql_real_connect(&mysql, DB_HOST, argv[2], argv[3], NULL, 0, NULL, 0)) 
     {
         fprintf( stderr, "Failed to connect: Error: %s\n", mysql_error(&mysql));
         exit(1);
     }
 
-    if (mysql_select_db(&mysql, DB_DATABASE) != 0)
+    if (!mysql_real_connect(&mysql2, DB_HOST, argv[2], argv[3], NULL, 0, NULL, 0))
+    {
+        fprintf( stderr, "Failed to connect: Error: %s\n", mysql_error(&mysql2));
+        exit(1);
+    }
+
+    if (mysql_select_db(&mysql, DB_DATABASE) != 0) {
         fprintf(stderr, "Failed to connect to Database: Error: %s\n", mysql_error(&mysql));
+	exit(2);
+    }
+
+    if (mysql_select_db(&mysql2, DB_DATABASE) != 0) {
+        fprintf(stderr, "Failed to connect to Database: Error: %s\n", mysql_error(&mysql2));
+	exit(2);
+    }
     
     sprintf(query_def,
       "select pkgname, name, license, description, CONCAT(CONCAT_WS( '-', pkgname, version),'.mport'), version  from ports where run=%d AND status!='internal' AND status!='untested' AND status!='fail' ORDER BY pkgname;",
@@ -163,7 +183,7 @@ main(int argc, char *argv[])
                        puts(ln);
                        free(ln);
 
-			load_depends(db, &mysql, runid, row[0], row[1]);
+			load_depends(db, &mysql2, runid, row[0], row[5]);
                    }
                }
                printf("\n"); 
@@ -206,6 +226,7 @@ main(int argc, char *argv[])
         fprintf( stderr, "Failed to find any records and caused an error: %s\n", mysql_error(&mysql));
     
     mysql_close(&mysql);
+    mysql_close(&mysql2);
    
     return 0;
 }
@@ -213,7 +234,7 @@ main(int argc, char *argv[])
 int
 mysql_exec_sql(MYSQL *mysql, const char *create_definition)
 {
-   return mysql_real_query(mysql, create_definition, strlen(create_definition));
+	return mysql_real_query(mysql, create_definition, strlen(create_definition));
 }
 
 sqlite3*
@@ -293,12 +314,14 @@ load_depends(sqlite3 *db, MYSQL *mysql, int runid, const char *pkg_name, const c
 	sqlite3_stmt *stmt;
 	int num_fields;
 
+	printf("---->\tProcessing dependencies for %s - %s\n", pkg_name, version);
+
 	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s'",
 		runid, runid, pkg_name, version); 
 
 	if (mysql_exec_sql(mysql, query_def) == 0)
 	{
-		//printf("%ld Record Found\n",(long) mysql_affected_rows(&mysql));
+		//printf("     \t%ld Depends Found\n",(long) mysql_affected_rows(mysql));
 		result = mysql_store_result(mysql);
 
 	        if (result)
