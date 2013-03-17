@@ -1,5 +1,5 @@
 /*-
-Copyright (C) 2008, 2010, 2011  Lucas Holt All rights reserved.
+Copyright (C) 2008, 2010, 2011, 2013 Lucas Holt All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -22,7 +22,7 @@ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 SUCH DAMAGE.
 
-$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.4 2011/03/06 03:10:29 laffer1 Exp $
+$MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.5 2011/03/10 22:13:53 laffer1 Exp $
 */
 
 #include <stdio.h>
@@ -44,10 +44,11 @@ $MidnightBSD: mports/Tools/magus/bless/magus-bless.c,v 1.4 2011/03/06 03:10:29 l
 int mysql_exec_sql(MYSQL *, const char *);
 
 /* SQLITE3 */
-sqlite3* open_indexdb(int runid);
-void close_indexdb(sqlite3 *db);
-int exec_indexdb(sqlite3 *db, const char *fmt, ...);
-void create_indexdb(sqlite3 *db);
+sqlite3* open_indexdb(int);
+void close_indexdb(sqlite3 *);
+int exec_indexdb(sqlite3 *, const char *, ...);
+static void create_indexdb(sqlite3 *);
+static void load_depends(sqlite3 *, MYSQL *, int, const char *, const char *);
 
 int
 main(int argc, char *argv[])
@@ -121,6 +122,7 @@ main(int argc, char *argv[])
                        free(filePath);
                        continue;
                    }
+
                    if (ln) 
                    {
                       if (sqlite3_prepare_v2(db, 
@@ -160,6 +162,8 @@ main(int argc, char *argv[])
 
                        puts(ln);
                        free(ln);
+
+			load_depends(db, &mysql, runid, row[0], row[1]);
                    }
                }
                printf("\n"); 
@@ -269,12 +273,59 @@ exec_indexdb(sqlite3 *db, const char *fmt, ...)
   return 0;
 }
 
-void
+static void
 create_indexdb(sqlite3 *db)
 {
-    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
-    exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
-    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL)");
-    exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
-    exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS mirrors (country text NOT NULL, mirror text NOT NULL)");
+	exec_indexdb(db, "CREATE INDEX mirrors_country on mirrors(country)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS packages (pkg text NOT NULL, version text NOT NULL, license text NOT NULL, comment text NOT NULL, bundlefile text NOT NULL, hash text NOT NULL)");
+	exec_indexdb(db, "CREATE INDEX packages_pkg ON packages (pkg)"); /* should be unique */
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS aliases (alias text NOT NULL, pkg text NOT NULL)");
+	exec_indexdb(db, "CREATE TABLE IF NOT EXISTS depends (pkg text NOT NULL, version text NOT NULL, d_pkg text NOT NULL, d_version text NOT NULL)");
+}
+
+static void
+load_depends(sqlite3 *db, MYSQL *mysql, int runid, const char *pkg_name, const char *version)
+{
+	char query_def[1000];
+	MYSQL_RES *result;
+	MYSQL_ROW row;
+	sqlite3_stmt *stmt;
+	int num_fields;
+
+	sprintf(query_def, "SELECT distinct p2.pkgname, p2.version from ports as p1 left join depends d on p1.id = d.port left join ports p2 on d.dependency = p2.id where p2.run = %d and p1.run = %d and ((p1.status = 'pass' or p1.status = 'warn') and (p2.status = 'pass' or p2.status = 'warn')) and p1.pkgname = '%s' and p1.version = '%s'",
+		runid, runid, pkg_name, version); 
+
+	if (mysql_exec_sql(mysql, query_def) == 0)
+	{
+		//printf("%ld Record Found\n",(long) mysql_affected_rows(&mysql));
+		result = mysql_store_result(mysql);
+
+	        if (result)
+		{
+			num_fields = mysql_num_fields(result);
+			while ((row = mysql_fetch_row(result)))
+			{
+				if (num_fields == 2 && row[0] && row[1])
+				{
+					if (sqlite3_prepare_v2(db,
+						"INSERT INTO depends (pkg, version, d_pkg, d_version) VALUES(?,?,?,?)",
+						-1, &stmt, 0) != SQLITE_OK)
+					{
+						errx(1, "Could not prepare statement");
+					}
+					sqlite3_bind_text(stmt, 1, pkg_name, strlen(pkg_name), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 2, version, strlen(version), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 3, row[0], strlen(row[0]), SQLITE_TRANSIENT);
+					sqlite3_bind_text(stmt, 4, row[1], strlen(row[1]), SQLITE_TRANSIENT);
+
+					if (sqlite3_step(stmt) != SQLITE_DONE)
+						errx(1,"Could not execute query");
+					sqlite3_reset(stmt);
+					sqlite3_finalize(stmt);
+				}
+			}
+			mysql_free_result(result);
+		}
+	}
 }
