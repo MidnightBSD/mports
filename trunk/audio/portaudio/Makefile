@@ -1,14 +1,8 @@
-# New ports collection makefile for:	portaudio
-# Date created:		18 May 2003
-# Whom:			michaelnottebrock@gmx.net and lioux@FreeBSD.org
-#
-# $FreeBSD: ports/audio/portaudio/Makefile,v 1.10 2006/05/03 05:14:25 edwin Exp $
-# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.2 2007/10/25 22:45:54 laffer1 Exp $
-#
+# $MidnightBSD: mports/audio/portaudio/Makefile,v 1.3 2007/10/25 22:47:23 laffer1 Exp $
 
 PORTNAME=	portaudio
 PORTVERSION=	18.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
 DISTNAME=	${PORTNAME}_v${PORTVERSION:S/./_/}
@@ -21,6 +15,9 @@ USE_ZIP=	yes
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_CFLAGS}
 
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION}
 SHLIB_VERSION=	0
@@ -42,15 +39,12 @@ pre-patch:
 			${REINPLACE_CMD} -E \
 				-e 's|||'
 post-patch:
-# replace obsolete headers, and fix up thread library
-	@${FIND} ${WRKSRC} -type f \
-		| ${XARGS} -x -n 10 \
-			${REINPLACE_CMD} -E \
-				-e 's|malloc.h|stdlib.h|' \
-				-e 's|machine\/soundcard.h|sys\/soundcard.h|' \
-				-e 's|-lpthread|${PTHREAD_LIBS}|'
+	@${REINPLACE_CMD} -e 's|#include <malloc.h>|#include <stdlib.h>|' ${WRKSRC}/pa_unix_oss/pa_unix.h
+	@${REINPLACE_CMD} -e 's|machine/soundcard.h|sys/soundcard.h|' ${WRKSRC}/pa_unix_oss/pa_unix_oss.c
+	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure ${WRKSRC}/configure.in \
+		${WRKSRC}/pa_unix_oss/Makefile
+
 pre-configure:
-# Make configure executable
 	@${CHMOD} +x ${WRKSRC}/configure
 
 .if !defined(WITH_PATESTS)
