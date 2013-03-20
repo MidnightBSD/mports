@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/www/linux-f10-flashplugin11/Makefile,v 1.1 2012/09/02 19:44:09 laffer1 Exp $
-# $FreeBSD: ports/www/linux-f10-flashplugin11/Makefile,v 1.36 2012/06/09 06:42:36 eadler Exp $
+# $MidnightBSD: mports/www/linux-f10-flashplugin11/Makefile,v 1.2 2013/01/16 01:02:57 laffer1 Exp $
 
 PORTNAME=	flashplugin
-PORTVERSION=	11.2r202.258
+PORTVERSION=	11.2r202.275
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	http://fpdownload.macromedia.com/get/flashplayer/pdc/${PORTVERSION:C/r/\./}/:plugin \
 		FREEBSD_LOCAL/nox:suplib
