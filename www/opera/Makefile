@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/opera/Makefile,v 1.38 2013/01/17 02:41:56 laffer1 Exp $
+# $MidnightBSD: mports/www/opera/Makefile,v 1.39 2013/01/17 04:24:33 laffer1 Exp $
 # $FreeBSD: ports/www/opera/Makefile,v 1.103 2011/04/08 03:28:51 dinoex Exp $
 
 PORTNAME=	opera
@@ -18,13 +18,13 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Blazingly fast, full-featured, standards-compliant browser
 LICENSE=	opera
 
-LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
-		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig
+LIB_DEPENDS=	freetype:${PORTSDIR}/print/freetype2 \
+		fontconfig:${PORTSDIR}/x11-fonts/fontconfig
 BUILD_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 RUN_DEPENDS=	${LOCALBASE}/bin/update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
-OPERA_VER?=	12.12
-OPERA_BUILD?=	1707
+OPERA_VER?=	12.14
+OPERA_BUILD?=	1738
 MASTER_SITES_VER_PATH=	unix/${OPERA_VER:S/.//}
 
 USE_XZ=		yes
