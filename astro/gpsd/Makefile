@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/astro/gpsd/Makefile,v 1.1 2012/03/11 04:28:17 laffer1 Exp $
+# $MidnightBSD: mports/astro/gpsd/Makefile,v 1.2 2013/02/18 23:13:07 laffer1 Exp $
 
 PORTNAME=	gpsd
 PORTVERSION=	3.6
+PORTREVISION=	1
 CATEGORIES=	astro geography
 MASTER_SITES=	SAVANNAH
 
@@ -283,5 +284,8 @@ post-install:
 		${FIND} ${PYTHON_SITELIBDIR:C/^${LOCALBASE}/${PREFIX}/}/gps \
 		-name "*.py" -exec \
 		${PYTHON_CMD} ${PYTHON_LIBDIR}/py_compile.py {} \;
+	@${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig/libgps.pc \
+		${FAKE_DESTDIR}${TRUE_PREFIX}/libdata/pkgconfig/libgpsd.pc
 
 .include <bsd.port.mk>
