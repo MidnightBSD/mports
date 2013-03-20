@@ -1,5 +1,4 @@
-# $MidnightBSD$
-# $FreeBSD: ports/archivers/fastjar/Makefile,v 1.17 2008/03/20 09:19:32 pav Exp $
+# $MidnightBSD: mports/archivers/fastjar/Makefile,v 1.1 2011/12/21 04:26:45 laffer1 Exp $
 
 PORTNAME=	fastjar
 PORTVERSION=	0.93.20060808
@@ -8,7 +7,7 @@ MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	maho/fastjar
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A version of JDK's `jar' command written entirely in C
+COMMENT=	version of JDK's `jar' command written entirely in C
 LICENSE=	gpl2
 
 USE_BZIP2=	yes
