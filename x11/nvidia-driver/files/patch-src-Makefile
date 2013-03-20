@@ -1,0 +1,32 @@
+--- src/Makefile.bak	2013-01-14 17:40:45.000000000 -0500
++++ src/Makefile	2013-03-19 20:55:13.000000000 -0400
+@@ -11,9 +11,7 @@
+ BSDVER!=	/sbin/sysctl -n kern.osreldate
+ .endif
+ 
+-.if ${BSDVER} >= 500011
+ KMODDIR?=	/boot/modules
+-.endif
+ 
+ SRCS=		nvidia_ctl.c nvidia_dev.c nvidia_i2c.c nvidia_linux.c nvidia_os.c nvidia_os_pci.c nvidia_os_registry.c nvidia_pci.c nvidia_subr.c nvidia_sysctl.c
+ SRCS+=		device_if.h bus_if.h pci_if.h vnode_if.h
+@@ -21,18 +19,14 @@
+ CFLAGS+=	-D__KERNEL__ -DNVRM  -Wno-unused-function -Wuninitialized -O   -mno-red-zone -mcmodel=kernel -UDEBUG -U_DEBUG -DNDEBUG
+ 
+ OBJS+=		${RMOBJ}
+-.if ${BSDVER} >= 600000
+ NO_OBJ=		true
+-.else
+-NOOBJ=		true
+-.endif
+ 
+ stdarg.h:
+ 	@ln -s machine/stdarg.h stdarg.h
+ 
+ *.c: stdarg.h
+ 
+-beforeinstall:	${KMOD}.ko
++dontexecute:	${KMOD}.ko
+ 
+ ${OSOBJ}: ${KMOD}.ko
+ 	@ld -r -o $@ ${OBJS:S/${RMOBJ}//}

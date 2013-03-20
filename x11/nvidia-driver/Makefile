@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.11 2013/01/15 00:10:46 laffer1 Exp $
+# $MidnightBSD: mports/x11/nvidia-driver/Makefile,v 1.12 2013/02/22 02:44:17 laffer1 Exp $
 
 PORTNAME=	nvidia-driver
 DISTVERSION?=	310.32
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11 kld
 MASTER_SITES=	${MASTER_SITE_NVIDIA}
 ARCH_SUFX=	${ARCH:S/i386//:S/amd/_/}
@@ -97,7 +97,7 @@ post-patch: .SILENT
 # We should support -CURRENT: kill the check
 	${REINPLACE_CMD} -e '24,26d' ${WRKSRC}/src/nv-freebsd.h
 # Adjust legacy drivers for updated d_mmap() since early 9.X
-.if ${OSVERSION} > 900005 && ${NVVERSION} < 1952200
+.if ${OSVERSION} > 4015 && ${NVVERSION} < 1952200
 	${REINPLACE_CMD} -e 's/vm_offset_t offset/vm_ooffset_t offset/ ; \
 		s/vm_offset_t \*address/vm_paddr_t *address/ ; \
 		s/int nprot/&, vm_memattr_t *memattr/' \
