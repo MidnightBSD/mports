@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.8 2011/08/31 02:57:37 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.9 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4
+PORTREVISION=	1
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
 		FREEBSD_LOCAL/jkim \
@@ -61,6 +62,7 @@ post-install:
 	    ${WRKDIR}/usr/lib/nspluginwrapper/i386/linux/*.so \
 	    ${LIBDIR}/i386/linux/
 	${INSTALL_SCRIPT} ${WRKDIR}/npviewer ${LIBDIR}/i386/linux/
-	@${CAT} ${PKGMESSAGE}
+	${REINPLACE_CMD} -e 's|freebsd|midnightbsd|g' \
+		${LIBDIR}/noarch/npviewer.sh
 
 .include <bsd.port.post.mk>
