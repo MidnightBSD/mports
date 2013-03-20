@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/awstats/Makefile,v 1.4 2010/01/23 20:51:08 laffer1 Exp $
+# $MidnightBSD: mports/www/awstats/Makefile,v 1.5 2011/08/31 03:23:24 laffer1 Exp $
 
 PORTNAME=	awstats
-PORTVERSION=	7.0
+PORTVERSION=	7.1
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/AWStats/${PORTVERSION}
