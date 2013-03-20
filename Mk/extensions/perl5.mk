@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.19 2013/03/01 01:58:06 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/perl5.mk,v 1.20 2013/03/01 02:13:38 laffer1 Exp $
 #
 # perl.mk - perl specific make directives
 
@@ -68,7 +68,11 @@ CPAN_CMD?=		${PERL_PREFIX}/bin/cpan
 .endif
 
 .if (${ARCH} == "amd64")
+.if ${OSVERSION} > 4015
+PERL_ARCH?=		${ARCH}-midnightbsd-thread-multi
+.else
 PERL_ARCH?=		${ARCH}-midnightbsd
+.endif
 .else
 PERL_ARCH?=		${ARCH}-midnightbsd-64int
 .endif
