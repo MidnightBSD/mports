@@ -68,7 +68,7 @@ function sendAsycQuery(url, callback) {
         req = new XMLHttpRequest();
         req.open("GET", url, true);
         req.setRequestHeader('Content-type', 'application/x-json');
-        req.setRequestHeader('Connection', 'close');
+        //req.setRequestHeader('Connection', 'close');
         req.onreadystatechange = callback
         req.send(null);
     // branch for IE/Windows ActiveX version
@@ -78,7 +78,7 @@ function sendAsycQuery(url, callback) {
             req.open("GET", url + query, true);
             req.onreadystatechange = callback;
             req.setRequestHeader('Content-Type', 'application/x-json');
-            req.setRequestHeader('Connection', 'close');
+           // req.setRequestHeader('Connection', 'close');
             req.send(null);
         }
     } else {
