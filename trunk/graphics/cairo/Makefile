@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.21 2013/01/17 05:27:58 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.22 2013/02/22 13:00:29 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
-PORTREVISION=	6
+PORTREVISION=	7
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
@@ -37,7 +37,7 @@ OPTIONS+=	OPENGL	"Enable OpenGL Support"	Off \
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITHOUT_X11)
+.if !defined(WITH_X11)
 CONFIGURE_ARGS+=--disable-xlib
 PLIST_SUB+=	X11="@comment "
 .else
@@ -45,7 +45,7 @@ USE_XORG+=	xrender
 PLIST_SUB+=	X11=""
 .endif
 
-.if defined(WITH_GL)
+.if defined(WITH_OPENGL)
 USE_GL=		gl
 USE_XORG+=	glproto:both dri2proto:both
 CONFIGURE_ARGS+=	--enable-gl
@@ -82,7 +82,7 @@ post-patch:
 		${WRKSRC}/src/*.pc.in
 	@${REINPLACE_CMD} -e '/@CAIRO_HAS_PNG_FUNCTIONS_TRUE@.*=/d' \
 		${WRKSRC}/Makefile.in
-.if defined(WITH_GL)
+.if defined(WITH_OPENGL)
 	@${REINPLACE_CMD} 's|@CAIRO_CFLAGS@|-I$$(top_srcdir)/src/glew &|' \
 		${WRKSRC}/src/Makefile.in
 .endif
