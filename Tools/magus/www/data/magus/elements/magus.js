@@ -11,7 +11,7 @@ function showPorts(id, status) {
 	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
 	td.style.display = 'table-cell';
 
-	var url = 'http://www.midnightbsd.org/magus/async/run-ports-list?run=' + id + '&status=' + status;
+	var url = '//www.midnightbsd.org/magus/async/run-ports-list?run=' + id + '&status=' + status;
 	sendAsycQuery(url, process_showPorts);
 	return false;
 }
@@ -41,7 +41,7 @@ function showEvents(machine, run) {
 	td.innerHTML = '<p style="text-align: center"><img src="' + loader.src + '" /></p>';
 	td.style.display = 'table-cell';
 
-	var url = 'http://www.midnightbsd.org/magus/async/machine-events?machine=' + machine + '&run=' + run;
+	var url = '//www.midnightbsd.org/magus/async/machine-events?machine=' + machine + '&run=' + run;
 	sendAsycQuery(url, process_showEvents);
 	return false;
 }
