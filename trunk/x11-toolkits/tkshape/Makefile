@@ -1,12 +1,8 @@
-# New ports collection makefile for:	TkShape
-# Date created:				13 March 2004
-# Whom:					nivit@users.sourceforge.net
-#
-# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.1 2007/04/04 22:31:36 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/tkshape/Makefile,v 1.4 2006/12/10 01:21:51 nivit Exp $
+# $MidnightBSD: mports/x11-toolkits/tkshape/Makefile,v 1.2 2008/08/20 17:37:55 laffer1 Exp $
 
 PORTNAME=	tkshape
 PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://www.cs.man.ac.uk/~fellowsd/tcl/ \
 		http://nivi.interfree.it/distfiles/${PORTNAME}/${PORTVERSION}/
@@ -16,7 +12,8 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A Tk library to access to X Shaped Window Extension
 LICENSE=	other
 
-LIB_DEPENDS=	tk84.1:${PORTSDIR}/x11-toolkits/tk84
+USE_TK=		yes
+USE_XORG=	x11 xext
 
 PLIST_SUB=	PORTNAME="${PORTNAME}"
 
@@ -32,10 +29,6 @@ MANN=		shape.n
 .endif
 
 WRKSRC=		${WRKDIR}/${PORTNAME:C/^tk//1}${PORTVERSION}
-
-TCL_VER?=	8.4
-TK_VER?=	8.4
-WISH?=		wish${TK_VER}
 
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
