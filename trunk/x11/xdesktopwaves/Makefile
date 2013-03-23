@@ -2,12 +2,12 @@
 # Date Created:				13 April 2007
 # Whom:					wintellect <wintellect@bsdnexus.com>
 #
-# $MidnightBSD: mports/x11/xdesktopwaves/Makefile,v 1.2 2007/10/25 04:50:19 laffer1 Exp $
+# $MidnightBSD: mports/x11/xdesktopwaves/Makefile,v 1.3 2010/01/01 17:23:44 laffer1 Exp $
 #
 
 PORTNAME=	xdesktopwaves
 PORTVERSION=	1.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 MASTER_SITES=	SF
 
