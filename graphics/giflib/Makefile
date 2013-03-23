@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.1 2011/08/17 23:39:34 laffer1 Exp $
-# $FreeBSD: ports/graphics/giflib/Makefile,v 1.48 2010/12/04 07:31:57 ade Exp $
+# $MidnightBSD: mports/graphics/giflib/Makefile,v 1.2 2013/01/17 14:56:24 laffer1 Exp $
 
 PORTNAME=	giflib
-PORTVERSION=	4.2.0
+PORTVERSION=	4.2.1
 PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x
