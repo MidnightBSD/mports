@@ -9,4 +9,3 @@
  default:  buildlib xmlwf/xmlwf
  
  buildlib: $(LIBRARY)
-
