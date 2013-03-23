@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.22 2013/02/22 13:00:29 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.23 2013/03/22 23:08:14 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
@@ -6,7 +6,6 @@ PORTREVISION=	7
 PORTEPOCH?=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/
-#MASTER_SITES=	http://cairographics.org/snapshots/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Vector graphics library with cross-device output support
@@ -21,8 +20,7 @@ LIB_DEPENDS=	freetype.9:${PORTSDIR}/print/freetype2 \
 
 CONFIGURE_ARGS=	--with-html-dir=${DOCSDIR} \
 		--disable-directfb \
-		--enable-tee \
-		--enable-gobject
+		--enable-tee
 USE_GNOME=	gnomehack ltverhack referencehack
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
