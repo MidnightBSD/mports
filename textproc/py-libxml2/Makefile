@@ -1,6 +1,6 @@
-# $MidnightBSD: mports/textproc/py-libxml2/Makefile,v 1.2 2009/04/08 21:21:43 laffer1 Exp $
+# $MidnightBSD: mports/textproc/py-libxml2/Makefile,v 1.3 2011/12/15 00:39:57 laffer1 Exp $
 
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -15,16 +15,18 @@ PLIST=		${.CURDIR}/pkg-plist
 
 USE_GNOME=	gnomehack libxml2
 USE_PYTHON=	yes
+CPPFLAGS+=	`${PYTHON_VERSION}-config --cflags`
+LDFLAGS+=	`${PYTHON_VERSION}-config --libs`
 CONFIGURE_ARGS=	--with-iconv=${LOCALBASE} \
 		--with-html-dir=${PREFIX}/share/doc \
 		--with-html-subdir=${PORTNAME} \
-		--with-python=${LOCALBASE}
+		--with-python=${PYTHON_CMD}
 
 DOCSDIR=	${PREFIX}/share/doc/py-libxml2
 EXAMPLESDIR=	${PREFIX}/share/examples/py-libxml2
 
 post-install:
-	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -l -d ${LOCALBASE} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} 
-	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py -l -d ${LOCALBASE} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
+	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -l -d ${LOCALBASE} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR} 
+	@${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py -l -d ${LOCALBASE} ${FAKE_DESTDIR}${PYTHON_SITELIBDIR}
 
 .include "${MASTERDIR}/Makefile"
