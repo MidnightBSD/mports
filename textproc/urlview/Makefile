@@ -1,19 +1,15 @@
-# ex:ts=8
-# Ports collection makefile for:  urlview
-# Date created:			  21 April 1998
-# Whom:				  Josh Gilliam <josh@quick.net>
-#
-# $MidnightBSD: mports/textproc/urlview/Makefile,v 1.1 2007/02/25 17:20:47 laffer1 Exp $
-# $FreeBSD: ports/textproc/urlview/Makefile,v 1.21 2006/05/13 04:24:50 edwin Exp $
-#
+# $MidnightBSD: mports/textproc/urlview/Makefile,v 1.2 2007/10/31 01:26:54 laffer1 Exp $
 
 PORTNAME=	urlview
 PORTVERSION=	0.9
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	textproc www
 MASTER_SITES=	ftp://ftp.mutt.org/mutt/contrib/ \
-		ftp://ftp.sunsite.auc.dk/pub/mail/mutt/contrib/ \
-		ftp://ftp.cs.tu-berlin.de/pub/net/mail/mutt/contrib/
+		ftp://ftp.cs.tu-berlin.de/pub/net/mail/mutt/contrib/ \
+		ftp://ftp.fu-berlin.de/pub/unix/mail/mutt/contrib/ \
+		ftp://ftp.gbnet.net/pub/mutt-international/contrib/ \
+		ftp://ftp.gwdg.de/pub/unix/mail/mutt/international/contrib/ \
+		http://seis.bris.ac.uk/~mexas/
 
 #PATCH_SITES=	http://feeding.frenzy.com/~rainking/
 #PATCHFILES=	urlview.diff

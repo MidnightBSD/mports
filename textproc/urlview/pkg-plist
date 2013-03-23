@@ -1,3 +1,2 @@
-@comment $FreeBSD: ports/textproc/urlview/pkg-plist,v 1.4 2001/12/18 05:20:50 petef Exp $
 bin/url_handler.sh
 bin/urlview
