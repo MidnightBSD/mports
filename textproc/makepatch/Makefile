@@ -1,12 +1,7 @@
-# New ports collection makefile for:	makepatch
-# Date created:				May 20 2008
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/textproc/makepatch/Makefile,v 1.1 2008/05/21 05:19:55 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/makepatch/Makefile,v 1.2 2010/11/12 00:22:50 laffer1 Exp $
 
 PORTNAME=	makepatch
-PORTVERSION=	2.04
+PORTVERSION=	2.05
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	../../authors/id/JV
