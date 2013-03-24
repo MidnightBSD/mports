@@ -1,9 +1,8 @@
-# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.2 2012/03/06 02:08:44 laffer1 Exp $
-# $FreeBSD: ports/x11/kde4-workspace/Makefile,v 1.263 2012/02/16 15:57:30 ashish Exp $
+# $MidnightBSD: mports/x11/kde4-workspace/Makefile,v 1.3 2012/09/09 01:40:43 laffer1 Exp $
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 kde
 MASTER_SITES=	${MASTER_SITE_KDE_kde} \
 		${MASTER_SITE_FREEBSD_LOCAL} \
@@ -27,7 +26,7 @@ LIB_DEPENDS=	qimageblitz.4:${PORTSDIR}/x11/qimageblitz \
 		prison.0:${PORTSDIR}/graphics/prison \
 		searchclient.0:${PORTSDIR}/deskutils/strigi \
 		soprano.4:${PORTSDIR}/textproc/soprano \
-		boost_thread.4:${PORTSDIR}/devel/boost-python \
+		boost_thread.4:${PORTSDIR}/devel/boost-libs \
 		dbusmenu-qt.2:${PORTSDIR}/devel/libdbusmenu-qt \
 		fontconfig.1:${PORTSDIR}/x11-fonts/fontconfig \
 		freetype.9:${PORTSDIR}/print/freetype2 \
@@ -132,8 +131,10 @@ RUN_DEPENDS+=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}
 
 .include <bsd.port.pre.mk>
 
-LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
+.if ${OSVERSION} < 4016
+LIB_DEPENDS+= usb-0.1:${PORTSDIR}/devel/libusb
 LIB_DEPENDS+=	utempter:${PORTSDIR}/sysutils/libutempter
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
