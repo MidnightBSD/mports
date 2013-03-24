@@ -1,17 +1,10 @@
-# $MidnightBSD: mports/graphics/gtk-update-icon-cache/Makefile,v 1.1 2011/11/11 00:37:43 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gtk-update-icon-cache/Makefile,v 1.2 2013/02/19 12:20:45 laffer1 Exp $
 
 PORTNAME=	gtk-update-icon-cache
-PORTVERSION=	2.24.6
-PORTREVISION?=	1
+PORTVERSION=	2.24.17
 CATEGORIES=	graphics
-MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
-		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
-		ftp://ftp.gimp.org/pub/%SUBDIR%/ \
-		ftp://ftp.cs.umn.edu/pub/gimp/%SUBDIR%/ \
-		http://www.ameth.org/gimp/%SUBDIR%/ \
-		ftp://ftp.mirror.ac.uk/sites/ftp.gimp.org/pub/%SUBDIR%/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/gimp/%SUBDIR%,}
-MASTER_SITE_SUBDIR=	gtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
+MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -24,7 +17,7 @@ USE_XZ=		yes
 BUILD_DEPENDS+=	g-ir-scanner:${PORTSDIR}/devel/gobject-introspection \
 		${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc:${PORTSDIR}/graphics/cairo
 RUN_DEPENDS+=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info \
-		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme 
+		${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme
 
 USE_GMAKE=	yes
 USE_PERL5_BUILD=yes
@@ -37,8 +30,7 @@ USE_XORG=	xext xrender x11 xinerama xi xrandr xcursor xfixes xdamage \
 		xcomposite
 PATCHDIR=	${.CURDIR}/../../x11-toolkits/gtk20/files
 CONFIGURE_ARGS=	--enable-static --with-xinput=yes
-CPPFLAGS+=	-I${LOCALBASE}/include/freetype2 \
-		-I${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 PLIST_FILES=	bin/gtk-update-icon-cache
 
