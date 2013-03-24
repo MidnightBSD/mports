@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.19 2011/07/10 01:47:27 laffer1 Exp $
-# $FreeBSD: ports/x11/xscreensaver/Makefile,v 1.89 2006/09/20 05:52:16 dougb Exp $
+# $MidnightBSD: mports/x11/xscreensaver/Makefile,v 1.20 2013/01/18 13:38:07 laffer1 Exp $
 
 PORTNAME=	xscreensaver
-PORTVERSION=	5.12
+PORTVERSION=	5.21
 PORTREVISION=   0
 CATEGORIES?=	x11
 MASTER_SITES=	http://www.jwz.org/xscreensaver/ \
@@ -12,26 +11,29 @@ MAINTAINER?=	ports@MidnightBSD.org
 COMMENT=	Save your screen while you entertain your cat
 LICENSE=	x11
 
-# This doesn't build with imake, but the app-defaults is created with that utility normally.
-BUILD_DEPENDS=	imake:${PORTSDIR}/devel/imake
 LIB_DEPENDS=	gle.4:${PORTSDIR}/graphics/gle \
-		xml2.5:${PORTSDIR}/textproc/libxml2 \
 		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		freetype.9:${PORTSDIR}/print/freetype2
+		gtk-x11-2.0:${PORTSDIR}/x11-toolkits/gtk20 \
+		xml2.5:${PORTSDIR}/textproc/libxml2 \
+		glade-2.0.0:${PORTSDIR}/devel/libglade2
+
+RUN_DEPENDS=	p5-libwww>0:${PORTSDIR}/www/p5-libwww \
+		giftopnm:${PORTSDIR}/graphics/netpbm
+
+MAKE_JOBS_SAFE=	yes
 
 DESTDIRNAME=	install_prefix
 
-USE_GNOME=	glib20 gtk20 libglade2
-USE_XORG=	xpm xrandr xrender xt xmu xinerama xext xf86miscproto xi xaw xcomposite ice x11
+USE_PKGCONFIG=	build
+USE_XORG=	xpm
 USE_GL=		yes
 USE_GMAKE=	yes
+USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
 		--with-jpeg=${LOCALBASE} --with-xshm-ext --with-xdbe-ext \
 		--with-hackdir=${PREFIX}/bin/xscreensaver-hacks/ \
 		--with-configdir=${PREFIX}/share/xscreensaver/config/ \
-		--with-x-app-defaults=${PREFIX}/lib/X11/app-defaults \
 		--with-dpms-ext --with-xinerama-ext --with-xf86vmode-ext \
 		--with-xf86gamma-ext --with-randr-ext --enable-locking
 
@@ -40,7 +42,7 @@ OPTIONS=	ALL_FORTUNES "Run fortune with -sa argument" off \
 		PAM "Add support for pam authentication" off \
 		SETUID_HACKS "Install sonar hack suid so it can ping" off
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if defined(WITH_ALL_FORTUNES)
 CONFIGURE_ARGS+=	--with-fortune="/usr/games/fortune -sa"
@@ -103,19 +105,19 @@ MAN6=	anemone.6 anemotaxis.6 antinspect.6 antmaze.6 antspotlight.6 \
 	xanalogtv.6 xflame.6 xjack.6 xlyap.6 xmatrix.6 xrayswarm.6 \
 	xspirograph.6 zoom.6 cwaves.6 glcells.6 voronoi.6 \
 	abstractile.6 moebiusgears.6 lockward.6 cubicgrid.6 hypnowheel.6 \
-        lcdscrub.6 skytentacles.6 \
+	lcdscrub.6 skytentacles.6 photopile.6 rubikblocks.6 surfaces.6 \
+	companioncube.6 hilbert.6 tronbit.6 \
 	xscreensaver-gl-helper.6
 
-.if ${ARCH} == "amd64"
-CFLAGS+=	-O0
-.endif
+SUB_FILES=	xscreensaver-blank.desktop xscreensaver-lock.desktop \
+		xscreensaver-start.desktop xscreensaver-stop.desktop
 
-USE_DOS2UNIX=	hacks/glx/topblock.c
 post-patch:
 	@ ${CP} ${WRKSRC}/configure ${WRKSRC}/configure.Patched
 	@ ${SED} -e 's#-lpthread#${PTHREAD_LIBS}#g' \
 		-e 's#malloc.h#stdlib.h#g' \
 		-e 's#/usr/X11R6#${LOCALBASE}#g' \
+		-e 's#pkg_config --list-all#pkg_config --help#' \
 		${WRKSRC}/configure.Patched > ${WRKSRC}/configure
 .if defined(WITH_PAM)
 .for f in driver/passwd-pam.c driver/xscreensaver.man
@@ -123,7 +125,8 @@ post-patch:
 	@ ${SED} -e "s#/etc/pam.d#${PREFIX}/etc/pam.d#g" \
 	    ${WRKSRC}/${f}.presed > ${WRKSRC}/${f}
 .endfor
-	@ ${CP} ${FILESDIR}/xscreensaver.pam ${WRKSRC}/driver/xscreensaver.pam
+	@ ${CP} ${FILESDIR}/xscreensaver.pam \
+	    ${WRKSRC}/driver/xscreensaver.pam.in
 .else
 	@ ${CP} ${WRKSRC}/driver/Makefile.in ${WRKSRC}/driver/Makefile.in.post
 	@ ${SED} -e "s#install-xml install-pam#install-xml#" \
@@ -131,11 +134,11 @@ post-patch:
 .endif
 
 post-install:
-	@(if test -x ${PREFIX}/bin/xscreensaver-hacks/webcollage-helper; then \
+	${INSTALL_DATA} ${FILESDIR}/x*.xml ${DATADIR}/config/
+	@(if test -x ${LOCALBASE}/bin/xscreensaver-hacks/webcollage-helper; then \
 		${ECHO} "bin/xscreensaver-hacks/webcollage-helper" | \
 			${CAT} - ${TMPPLIST} > ${TMPPLIST}.cat && \
 			${MV} ${TMPPLIST}.cat ${TMPPLIST}; fi)
-	(if ! test -e ${PREFIX}/lib/X11/app-defaults/XScreenSaver; then \
-		${CP} ${FILESDIR}/XScreenSaver ${PREFIX}/lib/X11/app-defaults/; fi )
+	${INSTALL_DATA} ${WRKDIR}/*.desktop ${PREFIX}/share/applications/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
