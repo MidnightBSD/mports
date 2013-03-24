@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.16 2012/02/29 02:23:58 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/atk/Makefile,v 1.17 2012/09/09 00:58:29 laffer1 Exp $
 
 PORTNAME=	atk
-PORTVERSION=	2.0.1
-PORTREVISION?=	1
+PORTVERSION=	2.6.0
+PORTREVISION?=	0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A GNOME accessibility toolkit (ATK)
+COMMENT=	GNOME accessibility toolkit (ATK)
 LICENSE=	lgpl
 
 USE_XZ=		yes
@@ -21,16 +21,16 @@ USE_GETTEXT=	yes
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
-USE_GNOME=	gnomehack glib20 ltverhack referencehack
+USE_GNOME=	gnomehier gnomehack glib20 ltverhack referencehack
+USE_PKGCONFIG=	build
 CONFIGURE_ARGS=	--enable-static \
-		--disable-gtk-doc \
 		--with-html-dir=${PREFIX}/share/doc
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	AUTOCONF=${TRUE} AUTOMAKE=${TRUE}
 
 post-patch:
-	@${REINPLACE_CMD} -e "/^SUBDIRS =/s/tests//" \
+	@${REINPLACE_CMD} -e "/^SUBDIRS =/s/tests docs//" \
 		${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
