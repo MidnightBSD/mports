@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/glib20/Makefile,v 1.25 2012/02/29 21:54:05 laffer1 Exp $
+# $MidnightBSD: mports/devel/glib20/Makefile,v 1.26 2013/01/17 04:59:11 laffer1 Exp $
 
 PORTNAME=	glib
-PORTVERSION=	2.28.8
-PORTREVISION?=	5
+PORTVERSION=	2.34.3
+PORTREVISION?=	0
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/},} \
 		ftp://ftp.gtk.org/pub/glib/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/ \
