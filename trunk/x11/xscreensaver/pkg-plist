@@ -36,6 +36,7 @@ bin/xscreensaver-hacks/ccurve
 bin/xscreensaver-hacks/celtic
 bin/xscreensaver-hacks/circuit
 bin/xscreensaver-hacks/cloudlife
+bin/xscreensaver-hacks/companioncube
 bin/xscreensaver-hacks/compass
 bin/xscreensaver-hacks/coral
 bin/xscreensaver-hacks/crackberg
@@ -93,6 +94,7 @@ bin/xscreensaver-hacks/greynetic
 bin/xscreensaver-hacks/halftone
 bin/xscreensaver-hacks/halo
 bin/xscreensaver-hacks/helix
+bin/xscreensaver-hacks/hilbert
 bin/xscreensaver-hacks/hopalong
 bin/xscreensaver-hacks/hypertorus
 bin/xscreensaver-hacks/hypnowheel
@@ -185,6 +187,7 @@ bin/xscreensaver-hacks/thornbird
 bin/xscreensaver-hacks/timetunnel
 bin/xscreensaver-hacks/topblock
 bin/xscreensaver-hacks/triangle
+bin/xscreensaver-hacks/tronbit
 bin/xscreensaver-hacks/truchet
 bin/xscreensaver-hacks/twang
 bin/xscreensaver-hacks/vermiculate
@@ -205,6 +208,11 @@ bin/xscreensaver-hacks/zoom
 bin/xscreensaver-text
 %%PAM%%etc/pam.d/xscreensaver
 lib/X11/app-defaults/XScreenSaver
+share/applications/xscreensaver-blank.desktop
+share/applications/xscreensaver-lock.desktop
+share/applications/xscreensaver-properties.desktop
+share/applications/xscreensaver-start.desktop
+share/applications/xscreensaver-stop.desktop
 share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/README
 %%DATADIR%%/config/abstractile.xml
@@ -239,6 +247,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/circuit.xml
 %%DATADIR%%/config/cloudlife.xml
 %%DATADIR%%/config/compass.xml
+%%DATADIR%%/config/companioncube.xml
 %%DATADIR%%/config/coral.xml
 %%DATADIR%%/config/crackberg.xml
 %%DATADIR%%/config/crystal.xml
@@ -295,6 +304,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/halftone.xml
 %%DATADIR%%/config/halo.xml
 %%DATADIR%%/config/helix.xml
+%%DATADIR%%/config/hilbert.xml
 %%DATADIR%%/config/hopalong.xml
 %%DATADIR%%/config/hypertorus.xml
 %%DATADIR%%/config/hypnowheel.xml
@@ -386,6 +396,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/timetunnel.xml
 %%DATADIR%%/config/topblock.xml
 %%DATADIR%%/config/triangle.xml
+%%DATADIR%%/config/tronbit.xml
 %%DATADIR%%/config/truchet.xml
 %%DATADIR%%/config/twang.xml
 %%DATADIR%%/config/vermiculate.xml
@@ -403,6 +414,12 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/config/xrayswarm.xml
 %%DATADIR%%/config/xspirograph.xml
 %%DATADIR%%/config/zoom.xml
+%%DATADIR%%/config/xaos.xml
+%%DATADIR%%/config/xdaliclock.xml
+%%DATADIR%%/config/xearth.xml
+%%DATADIR%%/config/xmountains.xml
+%%DATADIR%%/config/xplanet.xml
+%%DATADIR%%/config/xsnow.xml
 %%DATADIR%%/glade/screensaver-cmndln.png
 %%DATADIR%%/glade/screensaver-colorselector.png
 %%DATADIR%%/glade/screensaver-diagnostic.png
@@ -411,6 +428,7 @@ share/pixmaps/xscreensaver.xpm
 %%DATADIR%%/glade/screensaver-snap.png
 %%DATADIR%%/glade/xscreensaver-demo.glade2
 @dirrmtry bin/xscreensaver-hacks
+@dirrmtry share/applications
 @dirrmtry %%DATADIR%%/config
 @dirrm %%DATADIR%%/glade
 @dirrmtry %%DATADIR%%
