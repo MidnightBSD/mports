@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.5 2009/10/31 23:43:58 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/at-poke/Makefile,v 1.6 2012/03/11 18:41:50 laffer1 Exp $
 
 PORTNAME=	at-poke
 PORTVERSION=	0.2.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,5 +17,8 @@ USE_GNOME=	gnomeprefix libglade2 libgailgnome
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' ${WRKSRC}/src/eventlog.h
 
 .include <bsd.port.mk>
