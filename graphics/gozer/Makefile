@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gozer/Makefile,v 1.2 2007/03/25 03:32:53 ctriv Exp $
+# $MidnightBSD: mports/graphics/gozer/Makefile,v 1.3 2009/03/04 00:24:29 laffer1 Exp $
 
 PORTNAME=	gozer
 PORTVERSION=	0.7
-PORTREVISION=   2
+PORTREVISION=   3
 CATEGORIES=	graphics
 MASTER_SITES=	http://linuxbrit.co.uk/downloads/
 
@@ -14,9 +14,8 @@ LIB_DEPENDS=	giblib.1:${PORTSDIR}/graphics/giblib
 
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-porbld-freebsd6.1
 CONFIGURE_ARGS=	--with-giblib-prefix=${LOCALBASE}
-CONFIGURE_ENV=	CFLAGS="-I${LOCALBASE}/include"
+CFLAGS+=	-I${LOCALBASE}/include
 MAN1=		gozer.1
 
 .if defined(NOPORTDOCS)
