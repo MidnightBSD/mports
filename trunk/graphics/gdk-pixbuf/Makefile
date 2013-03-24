@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.8 2011/09/04 01:06:13 laffer1 Exp $
+# $MidnightBSD: mports/graphics/gdk-pixbuf/Makefile,v 1.9 2013/01/17 14:56:58 laffer1 Exp $
 
 PORTNAME?=	gdk-pixbuf
 PORTVERSION=	0.22.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES?=	graphics
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gdk-pixbuf/0.22
@@ -26,10 +26,9 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc --enable-shared=yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib" \
+CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib" \
 		BUILD_CANVAS="${BUILD_CANVAS}"
-CONFIGURE_TARGET=	${MACHINE_ARCH}-unknown-freebsd7.0
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 BUILD_CANVAS?=	no
 
