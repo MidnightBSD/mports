@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.6 2009/09/19 23:53:43 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/linux-atk/Makefile,v 1.7 2011/06/18 02:24:26 laffer1 Exp $
 
 PORTNAME=	atk
 PORTVERSION=	1.9.1
 PORTREVISION=	2
 CATEGORIES=	accessibility linux
+MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-1
 
 MAINTAINER=	ports@MidnightBSD.org

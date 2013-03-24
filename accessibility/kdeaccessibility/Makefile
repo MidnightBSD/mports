@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.5 2009/09/19 23:52:26 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/kdeaccessibility/Makefile,v 1.6 2011/02/02 20:03:21 laffer1 Exp $
 
 PORTNAME=	kdeaccessibility
 PORTVERSION=	${KDE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	accessibility kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTVERSION:S/.0//}/src
@@ -16,9 +17,10 @@ PREFIX=		${KDE_PREFIX}
 
 USE_XORG=	xtst
 USE_BZIP2=	yes
-USE_AUTOTOOLS=  libtool
+USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-alsa=no
 
 .include "${.CURDIR}/../../x11/kde3/Makefile.kde"
 
