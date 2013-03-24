@@ -323,7 +323,7 @@ lib/gtk-3.0/%%GTK3_VERSION%%/immodules/im-viqr.so
 lib/gtk-3.0/%%GTK3_VERSION%%/immodules/im-xim.a
 lib/gtk-3.0/%%GTK3_VERSION%%/immodules/im-xim.la
 lib/gtk-3.0/%%GTK3_VERSION%%/immodules/im-xim.so
-lib/gtk-3.0/%%GTK3_VERSION%%/immodules.cache
+@comment lib/gtk-3.0/%%GTK3_VERSION%%/immodules.cache
 %%CUPS%%lib/gtk-3.0/%%GTK3_VERSION%%/printbackends/libprintbackend-cups.a
 %%CUPS%%lib/gtk-3.0/%%GTK3_VERSION%%/printbackends/libprintbackend-cups.la
 %%CUPS%%lib/gtk-3.0/%%GTK3_VERSION%%/printbackends/libprintbackend-cups.so
