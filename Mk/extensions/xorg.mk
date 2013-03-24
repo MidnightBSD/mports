@@ -14,7 +14,7 @@
 # !!! Here be dragons !!! (yeah, here as well...)
 #
 # $FreeBSD: ports/Mk/bsd.xorg.mk,v 1.4 2007/10/03 22:24:59 pav Exp $
-# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.10 2013/02/22 01:14:23 laffer1 Exp $
+# $MidnightBSD: mports/Mk/extensions/xorg.mk,v 1.11 2013/03/02 20:00:16 laffer1 Exp $
 #
 
 .if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
@@ -175,7 +175,87 @@ Xorg_Post_Include=		xorg.mk
 # Register all xorg .pc files here.
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
 
-XORG_MODULES=	bigreqsproto compositeproto damageproto dmx dmxproto dri2proto evieproto fixesproto fontcacheproto fontenc fontsproto fontutil glproto ice inputproto kbproto libfs oldx pciaccess pixman printproto randrproto recordproto renderproto resourceproto scrnsaverproto sm trapproto videoproto x11 xau xaw xaw6 xaw7 xbitmaps xcmiscproto xcomposite xcursor xdamage xdmcp xevie xext xextproto xf86bigfontproto xf86dgaproto xf86driproto xf86miscproto xf86rushproto xf86vidmodeproto xfixes xfont xfontcache xft xi xinerama xineramaproto xkbfile xkbui xmu xmuu xorg-server xp xpm xprintapputil xprintutil xproto xproxymngproto xrandr xrender xres xscrnsaver xt xtrans xtrap xtst xv xvmc xxf86dga xxf86misc xxf86vm
+XORG_MODULES=	bigreqsproto \
+				compositeproto \
+				damageproto \
+				dmx \
+				dmxproto \
+				dri2proto \
+				evieproto \
+				fixesproto \
+				fontcacheproto \
+				fontenc \
+				fontsproto \
+				fontutil \
+				glproto \
+				ice \
+				inputproto \
+				kbproto \
+				libfs \
+				oldx \
+				pciaccess \
+				pixman \
+				printproto \
+				randrproto \
+				recordproto \
+				renderproto \
+				resourceproto \
+				scrnsaverproto \
+				sm \
+				trapproto \
+				videoproto \
+				x11 \
+				xau \
+				xaw \
+				xaw6 \
+				xaw7 \
+				xbitmaps \
+				xcmiscproto \
+				xcomposite \
+				xcursor \
+				xdamage \
+				xdmcp \
+				xevie \
+				xext \
+				xextproto \
+				xf86bigfontproto \
+				xf86dgaproto \
+				xf86driproto \
+				xf86miscproto \
+				xf86rushproto \
+				xf86vidmodeproto \
+				xfixes \
+				xfont \
+				xfontcache \
+				xft \
+				xi \
+				xinerama \
+				xineramaproto \
+				xkbfile \
+				xkbui \
+				xmu \
+				xmuu \
+				xorg-macros \
+				xorg-server \
+				xp \
+				xpm \
+				xprintapputil \
+				xprintutil \
+				xproto \
+				xproxymngproto \
+				xrandr \
+				xrender \
+				xres \
+				xscrnsaver \
+				xt \
+				xtrans \
+				xtrap \
+				xtst \
+				xv \
+				xvmc \
+				xxf86dga \
+				xxf86misc \
+				xxf86vm
 
 bigreqsproto_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/bigreqsproto.pc:${PORTSDIR}/x11/bigreqsproto
 compositeproto_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/compositeproto.pc:${PORTSDIR}/x11/compositeproto
@@ -237,6 +317,7 @@ xkbfile_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xkbfile.pc:${PORTSDIR}/x
 xkbui_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xkbui.pc:${PORTSDIR}/x11/libxkbui
 xmu_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xmu.pc:${PORTSDIR}/x11-toolkits/libXmu
 xmuu_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xmuu.pc:${PORTSDIR}/x11-toolkits/libXmu
+xorg-macros_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
 xorg-server_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-server.pc:${PORTSDIR}/x11-servers/xorg-server
 xp_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xp.pc:${PORTSDIR}/x11/libXp
 xpm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xpm.pc:${PORTSDIR}/x11/libXpm
