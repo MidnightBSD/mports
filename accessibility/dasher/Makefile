@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/accessibility/dasher/Makefile,v 1.1 2010/07/30 05:35:25 laffer1 Exp $
 
 PORTNAME=	dasher
 PORTVERSION=	4.10.1
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	accessibility editors x11 gnome
 MASTER_SITES=	GNOME
@@ -12,6 +13,7 @@ COMMENT=	Information efficient text-entry interface
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
+LIB_DEPENDS=	ogg:${PORTSDIR}/audio/libogg
 RUN_DEPENDS=	rarian-sk-config:${PORTSDIR}/textproc/rarian
 
 USE_BZIP2=	yes
@@ -23,8 +25,8 @@ WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALLS_OMF=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	dasher.schemas
 MAN1=		dasher.1

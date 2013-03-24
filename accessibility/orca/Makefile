@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.7 2010/08/14 02:34:38 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/orca/Makefile,v 1.8 2011/05/29 01:14:36 laffer1 Exp $
 
 PORTNAME=	orca
 PORTVERSION=	2.32.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -29,8 +29,8 @@ USE_GNOME=	gnomeprefix gnomehack libgnomeui gnomespeech pygnome2 \
 		pygnomedesktop
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		orca.1
 

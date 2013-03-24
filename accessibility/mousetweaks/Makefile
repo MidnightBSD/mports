@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.1 2010/09/06 19:45:32 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/mousetweaks/Makefile,v 1.2 2011/05/29 01:13:11 laffer1 Exp $
 
 PORTNAME=	mousetweaks
 PORTVERSION=	2.32.1
+PORTREVISION=	1
 CATEGORIES=	accessibility
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,8 +18,8 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 INSTALLS_OMF=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	mousetweaks.schemas pointer-capture-applet.schemas
 MAN1=		dwell-click-applet.1 mousetweaks.1 pointer-capture-applet.1

@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.6 2009/12/25 16:43:06 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gok/Makefile,v 1.7 2011/05/29 00:57:56 laffer1 Exp $
 
 PORTNAME=	gok
 PORTVERSION=	2.30.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	accessibility sysutils gnome
 MASTER_SITES=	GNOME
@@ -22,8 +23,8 @@ USE_GNOME=	gnomehack gnomeprefix intlhack libgnomeui atspi libwnck \
 USE_GMAKE=	yes
 INSTALLS_ICONS=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 GCONF_SCHEMAS=	gok.schemas
 
