@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.8 2011/02/02 20:03:21 laffer1 Exp $
+# $MidnightBSD: mports/accessibility/gnome-mag/Makefile,v 1.9 2011/05/29 00:06:09 laffer1 Exp $
 
 PORTNAME=	gnome-mag
 PORTVERSION=	0.16.3
+PORTREVISION=	1
 CATEGORIES=	accessibility gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,8 +18,8 @@ USE_GMAKE=	yes
 USE_GETTEXT=	yes
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 DOCSDIR=	${PREFIX}/share/doc/gnome-mag-${PORTVERSION}
 

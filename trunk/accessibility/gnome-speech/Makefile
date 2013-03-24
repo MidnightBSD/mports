@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.6 2009/10/19 18:28:14 crash Exp $
+# $MidnightBSD: mports/accessibility/gnome-speech/Makefile,v 1.7 2009/12/25 16:41:37 laffer1 Exp $
 
 PORTNAME=	gnome-speech
 PORTVERSION=	0.4.25
@@ -12,12 +12,13 @@ LICENSE=	lgpl
 
 USE_BZIP2=	yes
 USE_GMAKE=	yes
-USE_GNOME=	gnomehack gnomeprefix libbonobo
-GNU_CONFIGURE=  yes
+USE_GNOME=	gnomeprefix libbonobo
+USES=		pathfix
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-static
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.pre.mk>
 
@@ -44,5 +45,13 @@ PLIST_SUB+=	ESPEAK:="@comment "
 post-patch:
 	@${REINPLACE_CMD} -e 's|== x|= x|g' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|glib/.*\.h>|glib.h>|g' \
+		${WRKSRC}/drivers/swift/*.[ch] \
+		${WRKSRC}/drivers/dectalk/*.[ch] \
+		${WRKSRC}/drivers/theta/*.[ch] \
+		${WRKSRC}/drivers/eloquence/*.[ch] \
+		${WRKSRC}/drivers/viavoice/*.[ch] \
+		${WRKSRC}/drivers/loquendo/*.[ch] \
+		${WRKSRC}/drivers/espeak/*.[ch]
 
 .include <bsd.port.post.mk>
