@@ -1,20 +1,16 @@
-# $MidnightBSD: mports/x11/sessreg/Makefile,v 1.3 2012/03/03 01:52:54 laffer1 Exp $
+# $MidnightBSD: mports/x11/sessreg/Makefile,v 1.4 2013/02/22 03:17:47 laffer1 Exp $
 
 PORTNAME=	sessreg
 PORTVERSION=	1.0.8
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Manage utmp/wtmp entries for non-init X clients
 LICENSE=	mit
 
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
-
 XORG_CAT=	app
-USE_XORG=	x11
-
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf
-ACLOCAL_ARGS=	-I${LOCALBASE}/share/aclocal
+USE_XORG=	x11 xorg-macros
 
 PLIST_FILES=	bin/sessreg
 
