@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.13 2012/03/11 04:31:36 laffer1 Exp $
+# $MidnightBSD: mports/astro/google-earth/Makefile,v 1.14 2013/02/18 23:10:57 laffer1 Exp $
 
 PORTNAME=	google-earth
 PORTVERSION=	5.2.1.1588
@@ -50,8 +50,8 @@ BROKEN=	seems to crash on >= 0.4/amd64
 
 do-extract:
 	@${MKDIR} ${WRKSRC}
-	@${MKDIR} ${PREFIX}/share/mime/packages/
-	@${MKDIR} ${PREFIX}/share/applications/
+	${MKDIR} ${PREFIX}/share/mime/packages/
+	${MKDIR} ${PREFIX}/share/applications/
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/${_DISTFILES} ${WRKSRC}
 	@cd ${WRKSRC} && ${UNMAKESELF} ${_DISTFILES} && ${RM} -f ${_DISTFILES}
 	@cd ${WRKSRC} && ${TAR} xf googleearth-data.tar && ${RM} -f googleearth-data.tar
