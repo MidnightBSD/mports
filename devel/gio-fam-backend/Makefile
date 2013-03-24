@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.8 2013/01/17 05:09:15 laffer1 Exp $
+# $MidnightBSD: mports/devel/gio-fam-backend/Makefile,v 1.9 2013/03/24 16:55:25 laffer1 Exp $
 
 PORTNAME=	gio-fam-backend
 PORTVERSION=	2.34.3
@@ -21,7 +21,7 @@ USE_XZ=		yes
 BUILD_WRKSRC=	${WRKSRC}/gio/fam
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 GNU_CONFIGURE=	yes
-USE_PKGCONFIG=	yes
+USE_PKGCONFIG=	build
 USE_GNOME=	gnomehack _glib20
 USE_FAM=	yes
 USE_GMAKE=	yes
