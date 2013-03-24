@@ -1,17 +1,11 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.33 2013/02/22 12:54:32 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.34 2013/02/22 12:54:45 laffer1 Exp $
 
 PORTNAME=	gtk
-PORTVERSION=	2.24.6
-PORTREVISION?=	3
+PORTVERSION=	2.24.17
+PORTREVISION?=	0
 CATEGORIES=	x11-toolkits
-MASTER_SITES=	${MASTER_SITE_GNOME:S,%SUBDIR%,sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}/,} \
-		ftp://ftp.gtk.org/pub/gtk/%SUBDIR%/ \
-		ftp://ftp.gimp.org/pub/%SUBDIR%/ \
-		ftp://ftp.cs.umn.edu/pub/gimp/%SUBDIR%/ \
-		http://www.ameth.org/gimp/%SUBDIR%/ \
-		ftp://ftp.mirror.ac.uk/sites/ftp.gimp.org/pub/%SUBDIR%/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/gimp/%SUBDIR%,}
-MASTER_SITE_SUBDIR=	gtk/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
+MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	gtk+-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
@@ -54,7 +48,7 @@ OPTIONS=	CUPS "Enable cups printing support" on
 .include <bsd.mport.options.mk>
 
 .if defined(WITH_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
+LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS:=""
 .else
@@ -73,7 +67,7 @@ post-patch:
 
 pre-configure:
 .if !exists(${LOCALBASE}/libdata/pkgconfig/cairo-xlib.pc)
-	@${ECHO_CMD} "${PKGNAME}: Needs cairo build with X11 support."
+	@${ECHO_CMD} "${PKGNAME}: Needs cairo with X11 support enabled."
 	@${FALSE}
 .endif
 
