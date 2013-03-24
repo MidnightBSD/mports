@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.22 2012/09/08 16:48:53 laffer1 Exp $
+# $MidnightBSD: mports/www/lighttpd/Makefile,v 1.23 2012/09/08 16:53:16 laffer1 Exp $
 
 PORTNAME=	lighttpd
-PORTVERSION=	1.4.31
-PORTREVISION=	0
+PORTVERSION=	1.4.32
 CATEGORIES=	www
 MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -10,7 +9,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A secure, fast, compliant, and very flexible Web Server
 LICENSE=	bsd3
 
-LIB_DEPENDS+=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
@@ -21,7 +20,6 @@ ACLOCAL_ARGS=	-I m4
 AUTOMAKE_ARGS=	--add-missing
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd7.0
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -29,7 +27,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
-USE_RC_SUBR=	lighttpd.sh
+USE_RC_SUBR=	lighttpd
 
 MAN8=		lighttpd.8
 
