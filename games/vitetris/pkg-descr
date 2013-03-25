@@ -1,3 +1,9 @@
-vitetris is a terminal-based Tetris clone by Victor Nilsson. It features configurable keys, a highscore table, and two-player mode. Gameplay is much like the early Tetris games by Nintendo.
+vitetris is a terminal-based Tetris clone by Victor Nilsson. Gameplay is
+much like the early Tetris games by Nintendo. Features include:
 
-WWW: http://victornils.net/tetris/
+ -Configurable keys
+ -Highscore table
+ -Two-player mode with garbage
+ -Network play
+
+WWW:	http://victornils.net/tetris/
