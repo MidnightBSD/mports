@@ -1,14 +1,8 @@
-# New ports collection makefile for:    de-ispell
-# Date created:                         10 February 2000
-# Whom:                                 Alexander Langer <alex@big.endian.de>
-#
-# $FreeBSD: ports/german/ispell/Makefile,v 1.14 2005/10/01 06:08:59 linimon Exp $
-# $MidnightBSD: mports/german/ispell/Makefile,v 1.2 2007/11/11 00:21:44 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/ispell-de/Makefile,v 1.1 2008/06/14 04:03:16 laffer1 Exp $
 
 PORTNAME=	ispell
 CATEGORIES=	textproc german
-PKGNAMESUFFIX=	-20001109
+PKGNAMESUFFIX=	-20071211
 PKGNAMEPREFIX=	de-
 
 MAINTAINER=	ports@MidnightBSD.org
