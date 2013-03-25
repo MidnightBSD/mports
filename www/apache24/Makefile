@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/www/apache22/Makefile,v 1.28 2012/02/05 03:54:47 laffer1 Exp $
+# $MidnightBSD: mports/www/apache24/Makefile,v 1.1 2012/09/14 03:02:31 laffer1 Exp $
 #
 # For more information, please read Makefile.doc
 #
 
 PORTNAME=	apache
 PORTVERSION=	2.4.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_APACHE_HTTPD}
 DISTNAME=	httpd-${PORTVERSION}
@@ -17,7 +17,8 @@ COMMENT?=	Version 2.4 of Apache web server with ${WITH_MPM:L} MPM.
 LICENSE=	apache2
 
 LIB_DEPENDS=	expat.6:${PORTSDIR}/textproc/expat2 \
-		apr-1:${PORTSDIR}/devel/apr
+		apr-1:${PORTSDIR}/devel/apr \
+		pcre:${PORTSDIR}/devel/pcre
 
 MAKE_JOBS_SAFE=	yes
 LATEST_LINK=	apache24
