@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/gnome-screensaver/Makefile,v 1.2 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11/gnome-screensaver/Makefile,v 1.3 2012/03/02 02:55:19 laffer1 Exp $
 
 PORTNAME=	gnome-screensaver
 PORTVERSION=	2.30.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNOME screen saver and locker
 LICENSE=	gpl2
 
-LIB_DEPENDS=	notify.4:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	notify:${PORTSDIR}/devel/libnotify
 RUN_DEPENDS=	xscreensaver-gl-helper:${PORTSDIR}/x11/xscreensaver-gnome-hacks
 
 CONFLICTS=	gnome-screensaver-3.[0-9]*
