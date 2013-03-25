@@ -1,14 +1,8 @@
-# New ports collection makefile for:	dummyflash
-# Date Created:				June 16 2004
-# Whom:					Daniel O'Connor <darius@dons.net.au>
-#
-# $MidnightBSD: mports/www/dummyflash/Makefile,v 1.3 2010/05/29 06:11:55 laffer1 Exp $
-# $FreeBSD: ports/www/dummyflash/Makefile,v 1.5 2006/10/19 18:00:56 pav Exp $
-#
+# $MidnightBSD: mports/www/dummyflash/Makefile,v 1.4 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	dummyflash
 PORTVERSION=	1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	ftp://ftp.netscape.com/pub/sdk/plugin/unix/
 DISTNAME=	unix-sdk-3.0b5
