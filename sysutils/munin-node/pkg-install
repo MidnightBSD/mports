@@ -29,32 +29,9 @@ yesno() {
     done
 }
 
-make_group() {
-    local g
-
-    g=$1
-
-    if pw group show "${g}" >/dev/null 2>&1; then
-	echo "You already have a group \"${g}\", so I will use it."
-    else
-	echo "You need a group \"${g}\"."
-	if which -s pw && yesno "Would you like me to create it" y; then
-	    pw groupadd ${g} || exit
-	    echo "Done."
-	else
-	    echo "Please create it, and try again."
-	    if ! /usr/sbin/pw user show ${u} >/dev/null 2>/dev/null; then
-		echo "While you're at it, please create a user \"${u}\" too,"
-		echo "with a default group of \"${g}\"."
-	    fi
-	    exit 1
-	fi
-    fi
-}
-
 init_plugins() {
-    if [ -f ${PKG_PREFIX}/etc/munin/VERSION.node ]; then
-	prevver=$(cat ${PKG_PREFIX}/etc/munin/VERSION.node)
+    if [ -f /tmp/.munin-node.version ]; then
+	prevver=$(cat /tmp/.munin-node.version)
     fi
 
     if [ -n "$prevver" ]; then
@@ -89,15 +66,12 @@ EOT
 
 newsyslog() {
     if yesno "Would you like me to set up log rotation" y; then
-	if grep -q /var/log/munin-node.log /etc/newsyslog.conf; then
+	if grep -q /var/log/munin/munin-node.log /etc/newsyslog.conf; then
 	    :
 	else
 	    cat >> /etc/newsyslog.conf <<EOT
-/var/log/munin-node.log			644  7	   *	@T00  Z	/var/run/munin/munin-node.pid
+/var/log/munin/munin-node.log			644  7	   *	@T00  Z	/var/run/munin/munin-node.pid
 EOT
-	fi
-	if [ -f ${PKG_PREFIX}/bin/munin-node-revive ]; then
-	    create_crontab_entries '4	*	*	*	*' ${PKG_PREFIX}/bin/munin-node-revive
 	fi
     else
 	echo "/var/log/munin-node.log will grow without bounds."
@@ -109,13 +83,11 @@ EOT
 
 case $2 in
     PRE-INSTALL)
-	make_group munin
 	;;      
     POST-INSTALL)
-	make_group munin
 	if [ -z "${PACKAGE_BUILDING}" ]; then
 		init_plugins
-		${PKG_PREFIX}/etc/rc.d/munin-node.sh start
+		${PKG_PREFIX}/etc/rc.d/munin-node start
 		newsyslog
 	fi
 	;;      
