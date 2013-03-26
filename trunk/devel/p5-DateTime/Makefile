@@ -1,9 +1,10 @@
-# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.6 2012/02/11 00:04:04 laffer1 Exp $
+# $MidnightBSD: mports/devel/p5-DateTime/Makefile,v 1.7 2013/03/02 21:37:21 laffer1 Exp $
 
 PORTNAME=	DateTime
 PORTVERSION=	0.78
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:DROLSKY
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -12,7 +13,6 @@ LICENSE=	perl
 
 RUN_DEPENDS=	p5-DateTime-Locale>=0.41:${PORTSDIR}/devel/p5-DateTime-Locale \
 		p5-DateTime-TimeZone>=1.09:${PORTSDIR}/devel/p5-DateTime-TimeZone \
-		p5-Math-Round>=0:${PORTSDIR}/math/p5-Math-Round \
 		p5-Params-Validate>=0.76:${PORTSDIR}/devel/p5-Params-Validate
 BUILD_DEPENDS=	${RUN_DEPENDS}
 
