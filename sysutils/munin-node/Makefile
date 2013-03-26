@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/munin-node/Makefile,v 1.7 2013/03/26 01:05:13 laffer1 Exp $
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
@@ -107,12 +107,12 @@ post-install:
 
 	${REINPLACE_CMD} -e 's|${FAKE_DESTDIR}||g' \
 	        ${PREFIX}/share/munin/plugins/exim_mailqueue \
-                ${PREFIX}/share/munin/plugins/ifx_concurrent_sessions_ \
-                ${PREFIX}/share/munin/plugins/ipmi_sensor_ \
-                ${PREFIX}/share/munin/plugins/mysql_innodb \
-                ${PREFIX}/share/munin/plugins/mysql_isam_space_ \
-                ${PREFIX}/share/munin/plugins/mysql_threads \
-                ${PREFIX}/share/munin/plugins/named \
+		${PREFIX}/share/munin/plugins/ifx_concurrent_sessions_ \
+		${PREFIX}/share/munin/plugins/ipmi_sensor_ \
+		${PREFIX}/share/munin/plugins/mysql_innodb \
+		${PREFIX}/share/munin/plugins/mysql_isam_space_ \
+		${PREFIX}/share/munin/plugins/mysql_threads \
+		${PREFIX}/share/munin/plugins/named \
 		${PREFIX}/share/munin/plugins/ntp_kernel_pll_freq \
 		${PREFIX}/share/munin/plugins/postfix_mailstats \
 		${PREFIX}/share/munin/plugins/psu_ \
