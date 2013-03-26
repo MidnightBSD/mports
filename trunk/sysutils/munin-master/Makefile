@@ -1,4 +1,4 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/sysutils/munin-master/Makefile,v 1.1 2013/03/26 00:40:04 laffer1 Exp $
 
 PORTNAME=	munin
 PORTVERSION=	${MUNIN_VERSION}
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
 		p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
 		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
 		p5-HTML-Template>=0:${PORTSDIR}/www/p5-HTML-Template \
-		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-Socket-INET6 \
+		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-INET6 \
 		p5-Log-Log4perl>=0:${PORTSDIR}/devel/p5-Log-Log4perl \
 		p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay \
 		p5-Params-Validate>=0:${PORTSDIR}/devel/p5-Params-Validate \
@@ -32,7 +32,7 @@ RUN_DEPENDS=	munin-common>=0:${PORTSDIR}/sysutils/munin-common \
 		p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
 		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
 		p5-HTML-Template>=0:${PORTSDIR}/www/p5-HTML-Template \
-		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-Socket-INET6 \
+		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-INET6 \
 		p5-Log-Log4perl>=0:${PORTSDIR}/devel/p5-Log-Log4perl \
 		p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay \
 		p5-Params-Validate>=0:${PORTSDIR}/devel/p5-Params-Validate \
