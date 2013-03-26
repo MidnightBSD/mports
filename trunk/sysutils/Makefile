@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/sysutils/Makefile,v 1.114 2013/03/26 00:26:53 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/Makefile,v 1.115 2013/03/26 00:27:28 laffer1 Exp $
 
 COMMENT = System utilities
 
@@ -65,6 +65,7 @@ SUBDIR += mdf2iso
 SUBDIR += memtest
 SUBDIR += memtest86
 SUBDIR += munin-common
+SUBDIR += munin-master
 SUBDIR += munin-node
 SUBDIR += nautilus-cd-burner
 SUBDIR += nvclock
