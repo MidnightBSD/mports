@@ -2,10 +2,11 @@
 # Date created:		November 24, 2008
 # Whom:			Lucas Holt <luke@MidnightBSD.org>
 #
-# $MidnightBSD: mports/sysutils/flashback/Makefile,v 1.1 2008/11/25 01:49:06 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/flashback/Makefile,v 1.2 2009/06/04 00:14:16 laffer1 Exp $
 
 PORTNAME=	flashback
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://people.midnightbsd.org/~laffer1/
 
