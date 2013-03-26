@@ -1,14 +1,8 @@
-# New ports collection makefile for:	libgii
-# Date created:		4 January 2000
-# Whom:			mwest@uct.ac.za
-#
-# $MidnightBSD: mports/devel/libgii/Makefile,v 1.2 2008/10/03 03:16:22 ctriv Exp $
-# $FreeBSD: ports/devel/libgii/Makefile,v 1.28 2007/05/19 20:03:05 flz Exp $
-#
+# $MidnightBSD: mports/devel/libgii/Makefile,v 1.3 2012/02/28 02:34:32 laffer1 Exp $
 
 PORTNAME=	libgii
 PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.ggi-project.org/ftp/ggi/v2.2/ \
 		SF/ggi/ggi-core/${PORTNAME}-${PORTVERSION}		
