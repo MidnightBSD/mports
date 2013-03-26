@@ -1,10 +1,4 @@
-# New ports collection makefile for:	fcgi-devkit
-# Date created:        13 May 1999
-# Whom:                kbyanc
-#
-# $MidnightBSD: mports/www/fcgi/Makefile,v 1.4 2010/05/29 06:17:00 laffer1 Exp $
-# $FreeBSD: ports/www/fcgi/Makefile,v 1.18 2007/02/01 02:42:00 kris Exp $
-#
+# $MidnightBSD: mports/www/fcgi/Makefile,v 1.5 2011/02/02 21:31:38 laffer1 Exp $
 
 PORTNAME=	fcgi
 PORTVERSION=	2.4.0
