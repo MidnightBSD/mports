@@ -1,16 +1,14 @@
-# $MidnightBSD: mports/security/libotr/Makefile,v 1.7 2011/02/02 21:20:53 laffer1 Exp $
+# $MidnightBSD: mports/security/libotr/Makefile,v 1.8 2012/02/29 01:17:14 laffer1 Exp $
 
 PORTNAME=	libotr
-PORTVERSION=	3.2.0
-PORTREVISION=	3
+PORTVERSION=	4.0.0
 CATEGORIES=	security
-MASTER_SITES=	http://www.cypherpunks.ca/otr/ \
-		http://dougbarton.us/Downloads/
+MASTER_SITES=	http://www.cypherpunks.ca/otr/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	The portable OTR Messaging Library and toolkit
+COMMENT=	Portable OTR Messaging Library and toolkit
 LICENSE=	gpl2
 
 LIB_DEPENDS=	gpg-error.0:${PORTSDIR}/security/libgpg-error \
@@ -32,8 +30,15 @@ MLINKS=		otr_toolkit.1 otr_parse.1 \
 verify: checksum
 	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 	@${REINPLACE_CMD} -e 's#^pkgconfigdir .*#pkgconfigdir = ${PREFIX}/libdata/pkgconfig#' \
 	    ${WRKSRC}/Makefile.in ${WRKSRC}/Makefile.am
 
-.include <bsd.port.mk>
+.if ${OSVERSION} >= 4016
+	@${REINPLACE_CMD} -e 's#OTR_CHECK_CFLAGS(.*stack-protector.*#dnl &#' \
+	    ${WRKSRC}/configure.ac
+.endif
+
+.include <bsd.port.post.mk>
