@@ -1,13 +1,8 @@
-# Ports collection makefile for:	oinkmaster
-# Date created:			September 24, 2008
-# Whom:				laffer1
-#
-# $MidnightBSD: mports/security/oinkmaster/Makefile,v 1.1 2008/09/24 14:03:59 laffer1 Exp $
-# $FreeBSD: ports/security/oinkmaster/Makefile,v 1.14 2008/06/06 14:00:58 edwin Exp $
-#
+# $MidnightBSD: mports/security/oinkmaster/Makefile,v 1.2 2011/03/04 15:12:57 laffer1 Exp $
 
 PORTNAME=	oinkmaster
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	SF
 
