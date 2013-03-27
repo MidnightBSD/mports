@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/security/libssh/Makefile,v 1.1 2012/03/04 04:17:07 laffer1 Exp $
-# $FreeBSD: ports/security/libssh/Makefile,v 1.18 2011/07/03 11:40:47 swills Exp $
+# $MidnightBSD: mports/security/libssh/Makefile,v 1.2 2012/03/04 04:33:08 laffer1 Exp $
 
 PORTNAME=	libssh
-PORTVERSION=	0.4.8
+PORTVERSION=	0.5.2
 CATEGORIES=	security devel
-MASTER_SITES=	http://www.libssh.org/files/0.4/ \
+MASTER_SITES=	http://www.libssh.org/files/0.5/ \
 		FREEBSD_LOCAL/avl
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -44,8 +43,9 @@ post-patch:
 	@${MKDIR} ${BUILD_WRKSRC}
 	@${RM} ${PATCH_WRKSRC}/cmake/Modules/UseDoxygen.cmake
 	@${REINPLACE_CMD} -e '/add_subdirectory.*s)/d' \
+		-e 's|LIB_INSTALL_DIR}|CMAKE_INSTALL_PREFIX}/libdata|' \
 		${PATCH_WRKSRC}/CMakeLists.txt
 	@${REINPLACE_CMD} -e 's|ssh_static|ssh|' \
-		${PATCH_WRKSRC}/libssh/CMakeLists.txt
+		${PATCH_WRKSRC}/src/CMakeLists.txt
 
 .include <bsd.port.mk>
