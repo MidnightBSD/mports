@@ -1,9 +1,8 @@
-# $MidnightBSD$
-# $FreeBSD: ports/devel/allegro/Makefile,v 1.41 2010/12/04 07:30:59 ade Exp $
+# $MidnightBSD: mports/devel/allegro/Makefile,v 1.1 2011/06/18 15:12:18 laffer1 Exp $
 
 PORTNAME=	allegro
 DISTVERSION=	4.2.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	SF/alleg/${PORTNAME}/${PORTVERSION}
 
@@ -43,7 +42,7 @@ DEMO=		demo.c demo.dat demo.h music.txt ../readme.txt
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_ARTS)
-LIB_DEPENDS+=	artsc.0:${PORTSDIR}/audio/arts
+LIB_DEPENDS+=	artsc:${PORTSDIR}/audio/arts
 CONFIGURE_ARGS+=--enable-artsdigi
 PLIST_SUB+=	ARTS=""
 .else
@@ -77,7 +76,7 @@ PLIST_SUB+=	ESOUND="@comment "
 .endif
 
 .if defined(WITH_JACK)
-LIB_DEPENDS+=	jack.0:${PORTSDIR}/audio/jack
+LIB_DEPENDS+=	jack:${PORTSDIR}/audio/jack
 CONFIGURE_ARGS+=--enable-jackdigi
 PLIST_SUB+=	JACK=""
 .else
@@ -95,8 +94,7 @@ PLIST_SUB+=	PROFILE="@comment "
 
 .if !defined(WITHOUT_THREADS)
 CONFIGURE_ARGS+=--enable-pthreads
-CONFIGURE_ENV=	CPPFLAGS="${PTHREAD_CFLAGS} -DHAVE_LIBPTHREAD" \
-		LDFLAGS="${PTHREAD_LIBS}"
+CPPFLAGS+=	-DHAVE_LIBPTHREAD
 .else
 CONFIGURE_ARGS+=--disable-pthreads
 .endif
