@@ -21,7 +21,7 @@
  	if (i) {
 -		*dev = make_dev(&fuse_cdevsw, unit2minor(unit),
 +		*dev = make_dev(&fuse_cdevsw,
-+#if __FreeBSD_version < 800062
++#if __MidnightBSD_version < 4016
 +				unit2minor(unit),
 +#else /* __FreeBSD_version >= 800062 */
 +				unit,

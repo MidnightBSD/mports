@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $MidnightBSD$
+# $FreeBSD$
 #
 # PROVIDE: fusefs
 # REQUIRE: sysctl
@@ -22,11 +22,12 @@
 #				while waiting for write operations.
 #
 
-. %%RC_SUBR%%
+. /etc/rc.subr
+
+name="fusefs"
+rcvar=fusefs_enable
 
 kmod="%%PREFIX%%/modules/fuse.ko"
-name="fusefs"
-rcvar=${name}_enable
 
 start_cmd="fusefs_start"
 stop_cmd="fusefs_stop"
