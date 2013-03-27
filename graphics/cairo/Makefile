@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.24 2013/03/23 22:05:57 laffer1 Exp $
+# $MidnightBSD: mports/graphics/cairo/Makefile,v 1.25 2013/03/24 16:18:17 laffer1 Exp $
 
 PORTNAME=	cairo
 PORTVERSION=	1.10.2
@@ -69,6 +69,7 @@ PLIST_SUB+=		XCB="@comment "
 .if defined(WITH_GLIB)
 USE_GNOME+=	glib20
 PLIST_SUB+=	GLIB=""
+CONFIGURE_ARGS+=	--enable-gobject
 .else
 CONFIGURE_ARGS+=	--enable-gobject=no
 PLIST_SUB+=	GLIB="@comment "
