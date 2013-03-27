@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.3 2011/09/22 23:04:19 laffer1 Exp $
+# $MidnightBSD: mports/devel/libzvbi/Makefile,v 1.4 2012/02/07 22:15:40 laffer1 Exp $
 
 PORTNAME=	libzvbi
 PORTVERSION=	0.2.33
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	SF/zapping/zvbi/${PORTVERSION}
 DISTNAME=	${PORTNAME:S/lib//}-${PORTVERSION}
@@ -11,7 +11,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Routines to access raw VBI capture devices
 LICENSE=	gpl2
 
-LIB_DEPENDS+=	png.6:${PORTSDIR}/graphics/png \
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png \
 		unicode.0:${PORTSDIR}/devel/libunicode
 
 USE_GETTEXT=	yes
@@ -21,10 +21,10 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAN1=		zvbi-ntsc-cc.1
 
-CONFIGURE_ENV= CFLAGS="${CFLAGS} -I${LOCALBASE}/include" LIBS="-L${LOCALBASE}/lib -L/usr/lib"
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -L/usr/lib"
+CFLAGS+=	-I${LOCALBASE}/include
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|#cpu (\([^)]*\))|defined(__\1__)|g' \
 		${WRKSRC}/src/misc.h \
 		${WRKSRC}/src/exp-gfx.c
