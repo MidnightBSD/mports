@@ -1,10 +1,12 @@
-# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.6 2009/08/26 22:14:15 laffer1 Exp $
+# $MidnightBSD: mports/sysutils/fusefs-kmod/Makefile,v 1.7 2010/09/04 19:47:14 laffer1 Exp $
 
 PORTNAME=	fusefs
 DISTVERSION=	0.3.9-pre1.20080208
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils kld
-MASTER_SITES=	http://mercurial.creo.hu/repos/fuse4bsd-hg/index.cgi/archive/
+MASTER_SITES=	http://mercurial.creo.hu/repos/fuse4bsd-hg/index.cgi/archive/ \
+		http://mirrors.rit.edu/zi/fuse4bsd/ \
+		FREEBSD_LOCAL/bdrewery/${PORTNAME}/
 PKGNAMESUFFIX=	-kmod
 DISTNAME=	${HG_SHORTREV}
 DIST_SUBDIR=	fuse4bsd
@@ -52,6 +54,10 @@ OPTIONS=	AUTOSETUP "Automatic global config file setup" off
 
 .include <bsd.port.pre.mk>
 
+.if ${OSVERSION} >= 4016
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-fuse_module__fuse_vnops.c
+.endif
+
 .if !exists(${SRC_BASE}/sys/Makefile)
 IGNORE=		requires the Kernel source to be installed. Set SRC_BASE if it is not in /usr/src
 .endif
@@ -72,6 +78,8 @@ SUB_FILES+=	pkg-message
 post-patch:
 	@${REINPLACE_CMD} -e 's/deplate.rb/deplate/g' \
 		${WRKSRC}/doc/Makefile
+	@${REINPLACE_CMD} -e 's|-I../inc|-I${SRC_BASE}/sys -I../inc|g' \
+		${WRKSRC}/mount_fusefs/Makefile
 
 post-configure:
 	@${CP} ${LOCALBASE}/include/fuse/fuse_kernel.h ${WRKSRC}/fuse_module
