@@ -1,10 +1,4 @@
-# New ports collection makefile for:	ruby-gdbm
-# Date created:		24 Aug 2000
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
-# $MidnightBSD$
-# $FreeBSD: ports/databases/ruby-gdbm/Makefile,v 1.22 2008/04/06 08:58:03 stas Exp $
-#
+# $MidnightBSD: mports/databases/ruby-gdbm/Makefile,v 1.1 2008/06/26 19:57:04 laffer1 Exp $
 
 PORTNAME=	gdbm
 PORTVERSION=	${RUBY_PORTVERSION}
@@ -20,7 +14,7 @@ COMMENT=	A Ruby extension to GDBM library
 LICENSE=	gpl2
 
 BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/${RUBY_PORT}:patch
-LIB_DEPENDS=	gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS=	gdbm:${PORTSDIR}/databases/gdbm
 
 PLIST_FILES=	%%RUBY_ARCHLIBDIR%%/gdbm.so
 USE_RUBY=	yes
