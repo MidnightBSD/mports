@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.16 2013/02/09 01:56:25 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile.common,v 1.17 2013/03/10 02:42:17 laffer1 Exp $
 
 PORTNAME=	subversion
 PORTVERSION=	1.7.8
+PORTREVISION=	1
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE:S/$/:main/} \
 		${MASTER_SITE_LOCAL:S/$/:book/}
@@ -84,35 +85,20 @@ SVNUSER?=	svn
 
 .if defined(WITH_APACHE2_APR)
 USE_APACHE=	2.2+
-.include "${PORTSDIR}/Mk/extensions/apache.mk"
-.if ${APACHE_VERSION} >= 21
-APR_APU_DIR=	${LOCALBASE}/bin
-APR_CONFIG=	apr-1-config
-APU_CONFIG=	apu-1-config
-.else
-APR_APU_DIR=	${LOCALBASE}/lib/apache2
-APR_CONFIG=	apr-config
-APU_CONFIG=	apu-config
-.endif
+EXTENSIONS+=	apache
+APR_CONFIG=	${LOCALBASE}/bin/apr-1-config
+APU_CONFIG=	${LOCALBASE}/bin/apu-1-config
 APR_PORT=	${APACHE_PORT}
-.if !defined(WITHOUT_BDB)
-DEPENDS_ARGS+=	WITH_BERKELEYDB=db4
-OPT_NAME=	WITH_BERKELEYDB=(db4|db41|db42)
-.endif
 .else
-APR_APU_DIR=	${LOCALBASE}/bin
-APR_CONFIG=	apr-1-config
-APU_CONFIG=	apu-1-config
+APR_CONFIG=	${LOCALBASE}/bin/apr-1-config
+APU_CONFIG=	${LOCALBASE}/bin/apu-1-config
 LIB_DEPENDS+=	apr-1:${PORTSDIR}/devel/apr
 APR_PORT=	devel/apr
 .endif
-CONFIGURE_ARGS+=--with-apr=${APR_APU_DIR}/${APR_CONFIG} \
-		--with-apr-util=${APR_APU_DIR}/${APU_CONFIG}
+CONFIGURE_ARGS+=--with-apr=${APR_CONFIG} --with-apr-util=${APU_CONFIG}
 
 .if defined(WITH_SVNAUTHZ_VALIDATE)
-.if exists(${APR_APU_DIR}/${APR_CONFIG})
-APR_INCLUDE_DIR!=	${APR_APU_DIR}/${APR_CONFIG} --includedir
-.endif
+APR_INCLUDE_DIR!=	${APR_CONFIG} --includedir
 PLIST_SUB+=     SVNAUTHZ_VALIDATE=""
 .else
 PLIST_SUB+=     SVNAUTHZ_VALIDATE="@comment "
