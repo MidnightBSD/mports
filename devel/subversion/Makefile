@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/subversion/Makefile,v 1.21 2010/03/12 14:07:16 laffer1 Exp $
+# $MidnightBSD: mports/devel/subversion/Makefile,v 1.22 2012/03/31 16:40:44 laffer1 Exp $
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Version control system
@@ -131,20 +131,14 @@ pre-everything::
 	@${ECHO_MSG} "asvn will be installed"
 	@${ECHO_MSG} ""
 .endif
-	@${ECHO_MSG} "Many useful scripts will be installed into ${DATADIR}"
+	@${ECHO_MSG} "Many useful scripts will be installed into 
 
 pre-configure:
-	@if [ ! -x ${APR_APU_DIR}/${APR_CONFIG} -o ! -x ${APR_APU_DIR}/${APU_CONFIG} ] ; then \
-		${ECHO_MSG} "" ; \
-		${ECHO_MSG} 'You selected to use`'"${APR_PORT}' for apr library." ; \
-		${ECHO_MSG} 'It seems that `'"${APR_PORT}' is not properly installed." ; \
-		${ECHO_MSG} "" ; \
-		${FALSE} ; \
-	fi
 .if !defined(WITHOUT_BDB)
-	@if [ `${APR_APU_DIR}/${APU_CONFIG} --db-version` != "4" ] ; then \
+	@BDB_VERSION=`${APR_APU_DIR}/${APU_CONFIG} --db-version`; \
+	if [ "$${BDB_VERSION}" != "4" -a "$${BDB_VERSION}" != "5" ] ; then \
 		${ECHO_MSG} "" ; \
-		${ECHO_MSG} 'You should build `'"${APR_PORT}' with db4 support to use subversion with it." ; \
+		${ECHO_MSG} 'You should build `'"${APR_PORT}' with Berkeley DB (4 or 5) support to use subversion with it." ; \
 		${ECHO_MSG} 'Please rebuild `'"${APR_PORT}' with option "'`'"${OPT_NAME}' and try again." ; \
 		${ECHO_MSG} "" ; \
 		${ECHO_MSG} "Or you can disable db4 support. Only 'fs' repository backend will be available." ; \
