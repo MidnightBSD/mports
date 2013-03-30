@@ -1,10 +1,9 @@
-# $MidnightBSD: mports/misc/pciids/Makefile,v 1.11 2013/02/22 03:06:11 laffer1 Exp $
+# $MidnightBSD: mports/misc/pciids/Makefile,v 1.12 2013/03/03 17:37:21 laffer1 Exp $
 
 PORTNAME=	pciids
-PORTVERSION=	20130220
+PORTVERSION=	20130327
 CATEGORIES=	misc
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
-MASTER_SITE_SUBDIR=	sunpoet
+MASTER_SITES=	FREEBSD_LOCAL/sunpoet
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Database of all known IDs used in PCI devices
@@ -16,8 +15,8 @@ PLIST_FILES=	%%DATADIR%%/pci.ids
 PLIST_DIRS=	%%DATADIR%%
 
 do-install:
-	${MKDIR} ${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/pci.ids ${DATADIR}
+	${MKDIR} ${DATADIR}/
+	${INSTALL_DATA} ${WRKSRC}/pci.ids ${DATADIR}/
 
 .include <bsd.port.pre.mk>
 
