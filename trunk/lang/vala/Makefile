@@ -2,13 +2,13 @@
 # Date created:		2007-07-09
 # Whom:			Michael Johnson <ahze@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/lang/vala/Makefile,v 1.2 2012/03/10 03:09:27 laffer1 Exp $
 # $FreeBSD: ports/lang/vala/Makefile,v 1.26 2011/07/30 09:20:19 kwm Exp $
 #   $MCom: ports/lang/vala/Makefile,v 1.55 2011/06/02 12:10:13 kwm Exp $
 #
 
 PORTNAME=	vala
-PORTVERSION=	0.12.1
+PORTVERSION=	0.18.1
 CATEGORIES=	lang gnome
 MASTER_SITES=	GNOME
 
@@ -17,21 +17,22 @@ COMMENT=	Programming language and compiler that converts Vala code into C code
 LICENSE=	lgpl
 
 USE_XZ=		yes
-USE_GNOME=	gnomehack glib20 gnomeprefix libxslt
+USE_GNOME=	glib20 gnomeprefix libxslt
+USE_GMAKE=	yes
+USE_PKGCONFIG=	build
 GNU_CONFIGURE=	yes
 USE_GETTEXT=	yes
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}" LDFLAGS="-L${LOCALBASE}/lib"
 USE_BISON=	build
 USE_LDCONFIG=	yes
 
-MAN1?=		valac.1 valac-0.12.1
+MAN1?=		valac.1 valac-${VALA_VER}.1
+VALA_VER=	0.18
 
-PLIST_SUB=	VERSION=0.12
-
-.include <bsd.port.pre.mk>
+PLIST_SUB=	VERSION=${VALA_VER}
 
 .if defined(VALA_SLAVE)
-LIB_DEPENDS+=	vala-0.12.0:${PORTSDIR}/lang/vala
+LIB_DEPENDS+=	vala-${VALA_VER}.0:${PORTSDIR}/lang/vala
 CONFIGURE_ARGS+=--enable-vapigen
 BUILD_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/XML/LibXML.pm:${PORTSDIR}/textproc/p5-XML-LibXML
 RUN_DEPENDS+=	${SITE_PERL}/${PERL_ARCH}/XML/LibXML.pm:${PORTSDIR}/textproc/p5-XML-LibXML
@@ -42,13 +43,13 @@ CONFIGURE_ARGS+=--disable-vapigen
 
 post-patch:
 # We cheat here, because vala records vapigen related stuff in its .pc file
-# This makes the vapigen work again, although it might get weird when
+# This makes vapigen work again, although it might get weird when
 # vala-vapigen isn't installed.
-	@${REINPLACE_CMD} -e 's|@vapigen_decl@|vapigen=$${bindir}/vapigen-0.12|g' \
-		-e 's|@gen_introspect_decl@|gen_introspect=$${libdir}/vala-0.12/gen-introspect-0.12|g' \
-		-e 's|@vala_gen_introspect_decl@|vala_gen_introspect=$${bindir}/vala-gen-introspect-0.12|g' \
+	@${REINPLACE_CMD} -e 's|@vapigen_decl@|vapigen=$${bindir}/vapigen-${VALA_VER}|g' \
+		-e 's|@gen_introspect_decl@|gen_introspect=$${libdir}/vala-${VALA_VER}/gen-introspect-${VALA_VER}|g' \
+		-e 's|@vala_gen_introspect_decl@|vala_gen_introspect=$${bindir}/vala-gen-introspect-${VALA_VER}|g' \
 		${WRKSRC}/libvala.pc.in
-	@${REINPLACE_CMD} -e 's|cp $$< $$@|cp libvala.pc libvala-0.12.pc|g' \
+	@${REINPLACE_CMD} -e 's|cp $$< $$@|cp libvala.pc libvala-${VALA_VER}.pc|g' \
 		${WRKSRC}/Makefile.in
 
 .if defined(VALA_SLAVE)
@@ -62,10 +63,9 @@ post-install:
 	@${INSTALL_MAN} ${WRKSRC}/doc/vapigen.1 ${WRKSRC}/doc/vala-gen-introspect.1 \
 		 ${PREFIX}/man/man1/
 .else
-# want to see what will fail.
 post-install:
-	${LN} -fs ${PREFIX}/libdata/pkgconfig/libvala-0.12.pc \
+	${LN} -fs ${PREFIX}/libdata/pkgconfig/libvala-${VALA_VER}.pc \
 		${PREFIX}/libdata/pkgconfig/vala-1.0.pc
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
