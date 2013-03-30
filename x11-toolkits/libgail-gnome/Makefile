@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.5 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libgail-gnome/Makefile,v 1.6 2012/03/11 18:41:52 laffer1 Exp $
 
 PORTNAME=	libgail-gnome
 PORTVERSION=	1.20.3
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
