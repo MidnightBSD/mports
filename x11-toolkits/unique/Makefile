@@ -1,14 +1,14 @@
-# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.5 2012/03/11 18:41:52 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/unique/Makefile,v 1.6 2013/02/22 03:14:43 laffer1 Exp $
 
 PORTNAME=	unique
 PORTVERSION=	1.1.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME/sources/lib${PORTNAME}/${PORTVERSION:R}/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Library for single instance applications.
+COMMENT=	Library for single instance applications
 LICENSE=	lgpl
 
 LIB_DEPENDS=	dbus-1:${PORTSDIR}/devel/dbus
