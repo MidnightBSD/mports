@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.8 2011/05/28 06:23:34 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/libbonoboui/Makefile,v 1.9 2012/03/11 18:41:52 laffer1 Exp $
 
 PORTNAME=	libbonoboui
 PORTVERSION=	2.24.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
