@@ -1,14 +1,7 @@
-# New ports collection makefile for:	samba4wins
-# Date created:				11th Apr 2006
-# Whom:					Timur I. Bakeyev <timur@gnu.org>
-#
-# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.2 2010/09/11 21:36:14 laffer1 Exp $
-# $FreeBSD: ports/net/samba4wins/Makefile,v 1.8 2007/12/28 12:11:18 erwin Exp $
-#
+# $MidnightBSD: mports/net/samba4wins/Makefile,v 1.3 2011/02/02 21:14:16 laffer1 Exp $
 
 PORTNAME=		samba4wins
-PORTVERSION=		1.0.7
-PORTREVISION=		1
+PORTVERSION=		1.0.8
 CATEGORIES=		net
 MASTER_SITES=		http://ftp.sernet.de/pub/samba4WINS/debian/pool/
 DISTNAME=		${PORTNAME}_${PORTVERSION}-2
@@ -36,8 +29,6 @@ S4W_PRIVATE=		${S4W_LOCKDIR}/private
 S4W_CONFDIR=		${PREFIX}/etc
 S4W_LIBDIR=		${PREFIX}/lib/${PORTNAME}
 S4W_CONFIG=		${S4W_CONFDIR}/samba4wins.conf
-
-CONFIGURE_TARGET=	--build=${MACHINE_ARCH}-portbld-freebsd6.0
 
 CONFIGURE_ARGS+=	--exec-prefix=${PREFIX} \
 			--datadir=${S4W_DATADIR} \
