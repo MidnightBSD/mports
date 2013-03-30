@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/lang/clang/files/patch-tools_clang_lib_Sema_SemaChecking.cpp,v 1.1 2010/10/08 14:00:31 brooks Exp $
+$FreeBSD$
 
 --- tools/clang/lib/Sema/SemaChecking.cpp.orig
 +++ tools/clang/lib/Sema/SemaChecking.cpp
@@ -16,8 +16,8 @@ $FreeBSD: ports/lang/clang/files/patch-tools_clang_lib_Sema_SemaChecking.cpp,v 1
 +    // format specifier.
 +    const Expr *Ex = getDataArg(argIndex);
 +    QualType type = (CS.getKind() == ConversionSpecifier::bArg) ? S.Context.IntTy : S.Context.getPointerType(S.Context.UnsignedCharTy);
-+    //const analyze_printf::ArgTypeResult &ATR = S.Context.IntTy;
-+    const analyze_printf::ArgTypeResult &ATR = type;
++    //const analyze_printf::ArgType &ATR = S.Context.IntTy;
++    const analyze_printf::ArgType &ATR = type;
 +    if (ATR.isValid() && !ATR.matchesType(S.Context, Ex->getType()))
 +      S.Diag(getLocationOfByte(CS.getStart()),
 +             diag::warn_printf_conversion_argument_type_mismatch)
@@ -28,7 +28,7 @@ $FreeBSD: ports/lang/clang/files/patch-tools_clang_lib_Sema_SemaChecking.cpp,v 1
 +    // Now type check the data expression that matches the
 +    // format specifier.
 +    Ex = getDataArg(argIndex + 1);
-+    const analyze_printf::ArgTypeResult &ATR2 = ArgTypeResult::CStrTy;
++    const analyze_printf::ArgType &ATR2 = ArgType::CStrTy;
 +    if (ATR2.isValid() && !ATR2.matchesType(S.Context, Ex->getType()))
 +      S.Diag(getLocationOfByte(CS.getStart()),
 +             diag::warn_printf_conversion_argument_type_mismatch)
