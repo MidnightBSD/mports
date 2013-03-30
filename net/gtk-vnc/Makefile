@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.3 2011/09/27 17:19:26 laffer1 Exp $
+# $MidnightBSD: mports/net/gtk-vnc/Makefile,v 1.4 2012/02/11 00:27:51 laffer1 Exp $
 
 PORTNAME=	gtk-vnc
 PORTVERSION=	0.3.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net gnome
 MASTER_SITES=	GNOME
 
@@ -11,9 +11,11 @@ COMMENT=	VNC viewer widget for GTK+
 LICENSE=	lgpl
 
 LIB_DEPENDS=	gnutls:${PORTSDIR}/security/gnutls \
-		gcrypt.18:${PORTSDIR}/security/libgcrypt \
-		sasl2.2:${PORTSDIR}/security/cyrus-sasl2 \
-		gtkglext-x11-1.0.0:${PORTSDIR}/x11-toolkits/gtkglext
+		gcrypt:${PORTSDIR}/security/libgcrypt \
+		sasl2:${PORTSDIR}/security/cyrus-sasl2 \
+		gtkglext-x11-1.0:${PORTSDIR}/x11-toolkits/gtkglext
+
+CONFLICTS=	gtk-vnc-0.4.[0-9]*
 
 USE_GNOME=	pygtk2 gnomehack
 USE_GMAKE=	yes
@@ -21,8 +23,8 @@ USE_GETTEXT=	yes
 USE_LDCONFIG=	yes
 USE_PYTHON=	yes
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-gtkglext=yes
 
 .include <bsd.port.mk>
