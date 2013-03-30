@@ -1,17 +1,16 @@
-# $MidnightBSD: mports/dns/bind98/Makefile,v 1.15 2013/02/06 01:33:31 laffer1 Exp $
+# $MidnightBSD: mports/dns/bind98/Makefile,v 1.16 2013/03/29 21:51:26 laffer1 Exp $
 
 PORTNAME=	bind98
 PORTVERSION=	9.8.4.2
+PORTREVISION=	1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	${MASTER_SITE_ISC}
 MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
 DISTNAME=	bind-${ISCVERSION}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.asc
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	The BIND DNS suite with updated DNSSEC and DNS64
-LICENSE=	mit
+LICENSE=	iscl
 
 # ISC releases things like 9.4.0b3, which our versioning doesn't like
 ISCVERSION=	9.8.4-P2
@@ -38,7 +37,10 @@ OPTIONS=	SSL "Building without OpenSSL removes DNSSEC" on \
 		DLZ_BDB "DLZ BDB driver" off \
 		DLZ_LDAP "DLZ LDAP driver" off \
 		DLZ_FILESYSTEM "DLZ filesystem driver" off \
-		DLZ_STUB "DLZ stub driver" off
+		DLZ_STUB "DLZ stub driver" off \
+		FIXED_RRSET "Enable fixed rrset ordering" off \
+		RPZ_NSIP "Enable RPZ NSIP trigger rules" off \
+		RPZ_NSDNAME "Enable RPZ NSDNAME policy records" off
 
 # Just in case
 USE_OPENSSL=	yes
@@ -58,16 +60,28 @@ CONFIGURE_ARGS+=	--without-openssl
 
 .if !defined(WITHOUT_XML)
 CONFIGURE_ARGS+=	--with-libxml2=${LOCALBASE}
-LIB_DEPENDS+=		xml2.5:${PORTSDIR}/textproc/libxml2
+LIB_DEPENDS+=		xml2:${PORTSDIR}/textproc/libxml2
 .else
 CONFIGURE_ARGS+=	--without-libxml2
 .endif
 
 .if defined(WITH_IDN)
 CONFIGURE_ARGS+=	--with-idn=${LOCALBASE} --with-libiconv=${LOCALBASE}
-LIB_DEPENDS+=		idnkit.1:${PORTSDIR}/dns/idnkit
+LIB_DEPENDS+=		idnkit:${PORTSDIR}/dns/idnkit
 .else
 CONFIGURE_ARGS+=	--without-idn
+.endif
+
+.if defined(WITH_FIXED_RRSET)
+CONFIGURE_ARGS+=	--enable-fixed-rrset
+.endif
+
+.if defined(WITH_RPZ_NSIP)
+CONFIGURE_ARGS+=	--enable-rpz-nsip
+.endif
+
+.if defined(WITH_RPZ_NSDNAME)
+CONFIGURE_ARGS+=	--enable-rpz-nsdname
 .endif
 
 .if defined(WITH_LARGE_FILE)
@@ -171,9 +185,6 @@ MAN8=	ddns-confgen.8 dnssec-dsfromkey.8 dnssec-keyfromlabel.8 \
 	named-checkzone.8 named-journalprint.8 named.8 nsec3hash.8 \
 	rndc-confgen.8 rndc.8
 MLINKS=	named-checkzone.8 named-compilezone.8
-
-verify:	checksum
-	gpg --verify ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}.asc
 
 post-patch:
 .for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.1 \
