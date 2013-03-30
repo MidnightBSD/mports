@@ -1,8 +1,6 @@
 #-*- tab-width: 4; -*-
-# ex:ts=4
 #
-# $MidnightBSD: mports/Mk/components/options.mk,v 1.2 2008/10/29 19:27:36 ctriv Exp $
-# $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
+# $MidnightBSD: mports/Mk/components/options.mk,v 1.3 2013/02/23 03:17:38 laffer1 Exp $
 #
 # options.mk -- The options component
 #
