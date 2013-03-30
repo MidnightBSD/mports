@@ -1,10 +1,11 @@
-# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.67 2012/03/11 18:41:51 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/Makefile,v 1.68 2013/03/03 14:14:28 laffer1 Exp $
 
 COMMENT = X11 toolkits
     
 SUBDIR += Xaw3d
 SUBDIR += attica
 SUBDIR += eel
+SUBDIR += fltk
 SUBDIR += gdl
 SUBDIR += gnustep-art
 SUBDIR += gnustep-back
@@ -58,7 +59,6 @@ SUBDIR += qt4-gui
 SUBDIR += renaissance
 SUBDIR += shared-desktop-ontologies
 SUBDIR += tk-wrapper
-SUBDIR += tk82
 SUBDIR += tk83
 SUBDIR += tk84
 SUBDIR += tk85
