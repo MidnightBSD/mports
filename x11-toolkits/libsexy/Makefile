@@ -1,10 +1,4 @@
-# Ports collection makefile for:	libsexy
-# Date created:				2005-11-06
-# Whom:					Andreas Kohn <andreas@syndrom23.de>
-#
-# $MidnightBSD: mports/x11-toolkits/libsexy/Makefile,v 1.6 2011/05/14 22:44:40 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/libsexy/Makefile,v 1.11 2007/10/09 13:08:28 miwi Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/libsexy/Makefile,v 1.7 2013/02/22 03:11:01 laffer1 Exp $
 
 PORTNAME=	libsexy
 PORTVERSION=	0.1.11
