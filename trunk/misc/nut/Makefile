@@ -1,38 +1,73 @@
-# $MidnightBSD: mports/misc/nut/Makefile,v 1.3 2011/05/14 03:34:40 laffer1 Exp $
-# $FreeBSD: ports/misc/nut/Makefile,v 1.78 2008/03/19 17:32:43 sat Exp $
+# $MidnightBSD$
 
 PORTNAME=	nut
-PORTVERSION=	15.7
+PORTVERSION=	18.4
 CATEGORIES=	misc
 MASTER_SITES=	SF
 PKGNAMEPREFIX=	health-
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Nutrition software to record what you eat
-LICENSE=        gpl
+LICENSE=	gpl2
+
+OPTIONS_DEFINE=	FLTK DOCS
+FLTK_DESC=	Install FLTK GUI
 
 USE_GMAKE=	yes
-PORTDOCS=	CREDITS LICENSE README nut.html README.DOS
+MAKE_JOBS_SAFE=	yes
+
 DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
-ALL_TARGET=	${PORTNAME}
+
+MAN1=		${PORTNAME}.1
+PORTDOCS=	CREDITS README nut.html
 PLIST_FILES=	bin/${PORTNAME} %%DATADIR%%/FOOD_DES.txt \
 		%%DATADIR%%/NUT_DATA.txt %%DATADIR%%/WEIGHT.lib \
-		%%DATADIR%%/WEIGHT.txt %%DATADIR%%/sr22.nut
+		%%DATADIR%%/WEIGHT.txt %%DATADIR%%/sr25.nut
 PLIST_DIRS=	%%DATADIR%%
-MAN1=		${PORTNAME}.1
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MFLTK}
+LIB_DEPENDS+=	pthread-stubs:${PORTSDIR}/devel/libpthread-stubs \
+		freetype:${PORTSDIR}/print/freetype2 \
+		expat:${PORTSDIR}/textproc/expat2 \
+		fontconfig:${PORTSDIR}/x11-fonts/fontconfig \
+		fltk_images:${PORTSDIR}/x11-toolkits/fltk \
+		xcb:${PORTSDIR}/x11/libxcb
+USE_XORG+=	x11 xau xdmcp xext xft xinerama xrender
+MAKE_ENV+=	HAVE_FLTK=1 FLTK_NUT="fltk/Nut"
+PLIST_FILES+=	bin/Nut
+DESKTOP_ENTRIES="Nut" "${COMMENT}" "" "Nut" \
+		"Science;Biology;MedicalSoftware;" "false"
+.else
+MAKE_ENV+=	HAVE_FLTK=0 FLTK_NUT=""
+.endif
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|/usr/local/lib/nut|${DATADIR}|" \
-		-e 's|^CFLAGS=|CFLAGS+=|g;s|-Os||;s|gcc|$${CC}|' ${WRKSRC}/Makefile
+	@${FIND} ${WRKSRC} -name "Makefile" | ${XARGS} ${REINPLACE_CMD} -e \
+		's|$$(prefix)/lib/nut|${DATADIR}| ; \
+		 s|^HAVE_FLTK|#HAVE_FLTK| ; \
+		 s|^FLTK_NUT|#FLTK_NUT| ; \
+		 s|^CC =|CC ?=| ; \
+		 s|^CXX =|CXX ?=| ; \
+		 s|^CFLAGS :=|CFLAGS +=| ; \
+		 s|-ansi -pedantic|| ; \
+		 s|$$(OPT)|| ; \
+		 s|ldstaticflags|ldflags| '
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin/
-	@${INSTALL} -d ${DATADIR}/
-	@cd ${WRKSRC}/raw.data/ && ${COPYTREE_SHARE} . ${DATADIR}/
-	@${INSTALL_MAN} ${WRKSRC}/${MAN1} ${MAN1PREFIX}/man/man1/
-.ifndef NOPORTDOCS
-	@${INSTALL} -d ${DOCSDIR}/
-	@${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${DOCSDIR}/
+	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${MANPREFIX}/man/man1
+.if ${PORT_OPTIONS:MFLTK}
+	${INSTALL_PROGRAM} ${WRKSRC}/fltk/Nut ${PREFIX}/bin
+.endif
+	@${MKDIR} ${DATADIR}
+	@(cd ${WRKSRC}/raw.data && ${COPYTREE_SHARE} . ${DATADIR})
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${DOCSDIR}
+.for file in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
+.endfor
 .endif
 
 .include <bsd.port.mk>
