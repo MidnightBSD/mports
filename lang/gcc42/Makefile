@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.12 2011/05/12 13:30:19 laffer1 Exp $
-# $FreeBSD: ports/lang/gcc42/Makefile,v 1.302 2007/02/09 10:54:58 gerald Exp $
+# $MidnightBSD: mports/lang/gcc42/Makefile,v 1.13 2011/09/18 03:21:59 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	4.2.5.20090325
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
@@ -10,18 +10,19 @@ DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-g++-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-objc-${VERSIONSTRING}${EXTRACT_SUFX}
 
-MAINTAINER?=	ports@MidnightBSD.org
-COMMENT?=	GNU Compiler Collection 4.2
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	GNU Compiler Collection 4.2
 LICENSE=	gpl2
 
-LIB_DEPENDS=	gmp.10:${PORTSDIR}/math/gmp \
-		mpfr.4:${PORTSDIR}/math/mpfr
+LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp \
+		mpfr:${PORTSDIR}/math/mpfr
 
 VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
 USE_BISON=	build
 USE_BZIP2=	yes
+USE_GCC=	any
 USE_GMAKE=	yes
 USE_ICONV=	yes
 USE_PERL5_BUILD=yes
@@ -33,9 +34,9 @@ CONFIGURE_SCRIPT=	../${SRCDIR:S/${WRKDIR}\///}/configure
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd9.0
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd9.0
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
@@ -43,7 +44,8 @@ WRKSRC=		${WRKDIR}/build
 TARGLIB=	${PREFIX}/lib/gcc${SUFFIX}
 LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--disable-nls \
+CONFIGURE_ARGS+=--disable-bootstrap \
+		--disable-nls \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
 		--program-suffix=${SUFFIX} \
@@ -52,10 +54,10 @@ CONFIGURE_ARGS+=--disable-nls \
 		--with-gxx-include-dir=${TARGLIB}/include/c++/ \
 		--with-ld=/usr/bin/ld \
 		--with-libiconv-prefix=${LOCALBASE} \
+		--with-pkgversion="MidnightBSD Ports Collection" \
 		--with-system-zlib \
 		--with-info-dir=${PREFIX}/${INFO_PATH}/gcc${SUFFIX}
 MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
-ALL_TARGET=	bootstrap-lean
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB=	GCC_VER=${PORTVERSION:C/(.+)\.[0-9]+/\1/} \
 		GNU_HOST=${CONFIGURE_TARGET} \
