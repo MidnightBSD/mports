@@ -1,12 +1,16 @@
-# $MidnightBSD: mports/net/pcnfsd/Makefile,v 1.1 2011/03/26 17:44:09 laffer1 Exp $
+# $MidnightBSD: mports/net/pcnfsd/Makefile,v 1.2 2011/03/26 17:45:10 laffer1 Exp $
 # $FreeBSD: ports/net/pcnfsd/Makefile,v 1.18 2005/07/10 19:15:48 kris Exp $
 
 PORTNAME=	pcnfsd
 PORTVERSION=	93.02.16
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.tux.org/pub/net/lprng/TOOLS/PCNFSD/ \
-		http://lprng.sourceforge.net/DISTRIB/TOOLS/PCNFSD/ \
-		http://public.planetmirror.com/pub/lprng/UNIXTOOLS/PCNFSD/
+		http://ftp.comp.hkbu.edu.hk/pub/packages/plp/LPRng/TOOLS/PCNFSD/ \
+		http://www.cise.ufl.edu/mirrors/LPRng/UNIXTOOLS/PCNFSD/ \
+		http://ftp.gwdg.de/linux/plp/LPRng/TOOLS/PCNFSD/ \
+		http://www.lprng.com/DISTRIB/UNIXTOOLS/PCNFSD/ \
+		http://ftp.st.ryukoku.ac.jp/pub/utils/print/LPRng/TOOLS/PCNFSD/
 DISTNAME=	pcnfsd.93.02.16
 EXTRACT_SUFX=	.tar.Z
 
