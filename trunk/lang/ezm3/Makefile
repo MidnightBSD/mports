@@ -1,14 +1,8 @@
-# New ports collection makefile for:	ezm3
-# Date created:		1 Jan 2002
-# Whom:			John Polstra <jdp@FreeBSD.org>
-#
-# $FreeBSD: ports/lang/ezm3/Makefile,v 1.16 2006/04/29 13:05:31 pav Exp $
-# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.7 2008/10/16 19:20:52 laffer1 Exp $
-#
+# $MidnightBSD: mports/lang/ezm3/Makefile,v 1.8 2010/03/07 22:25:24 laffer1 Exp $
 
 PORTNAME=	ezm3
 PORTVERSION=	1.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES=	ftp://ftp.FreeBSD.org/pub/FreeBSD/development/CVSup/ezm3/:src \
 		http://people.freebsd.org/~peter/ezm3-amd64/:amdb \
@@ -54,6 +48,7 @@ ONLY_FOR_ARCHS=	amd64 i386 sparc64
 PORTVERSION=	1.1
 AMD64_PATCHES=	p-amd64-common p-amd64-gcc p-amd64-gcc-321-322 p-amd64-gcchacks \
 		p-amd64-gccstatic p-amd64-m3 p-amd64-m3-except-sort p-amd64-newfiles
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-fcntl
 TARGET=		FBSD_AMD64
 WORDSIZE=	64
 ENDIANESS=	le
