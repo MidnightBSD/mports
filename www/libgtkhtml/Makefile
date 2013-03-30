@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.5 2009/12/13 22:16:24 laffer1 Exp $
+# $MidnightBSD: mports/www/libgtkhtml/Makefile,v 1.6 2011/02/02 21:31:38 laffer1 Exp $
 
 PORTNAME=	libgtkhtml
 PORTVERSION=	2.11.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -17,7 +17,7 @@ USE_GMAKE=	yes
 USE_GNOME=	gnomeprefix gnomehack libxslt gnomevfs2 ltverhack
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=  libtool
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.mk>
