@@ -1,11 +1,11 @@
-# $MidnightBSD: mports/net/samba34/Makefile,v 1.5 2012/06/24 21:53:37 laffer1 Exp $
+# $MidnightBSD: mports/net/samba34/Makefile,v 1.6 2012/09/09 00:40:20 laffer1 Exp $
 
 PORTNAME=		samba34
 PORTVERSION=		3.4.17
 PORTREVISION?=		1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	. old-versions rc pre
+MASTER_SITE_SUBDIR=	samba samba/old-versions samba/rc samba/pre	
 DISTNAME=		${PORTNAME:S|34$||}-${PORTVERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 MAINTAINER?=		ports@MidnightBSD.org
