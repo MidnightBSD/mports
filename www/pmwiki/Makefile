@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/www/pmwiki/Makefile,v 1.4 2010/11/14 18:35:45 laffer1 Exp $
+# $MidnightBSD: mports/www/pmwiki/Makefile,v 1.5 2013/02/19 16:10:51 laffer1 Exp $
 
 PORTNAME=	pmwiki
-PORTVERSION=	2.2.38
+PORTVERSION=	2.2.48
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	http://www.pmwiki.org/pub/pmwiki/
