@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/splint/Makefile,v 1.3 2011/08/20 13:40:57 laffer1 Exp $
+# $MidnightBSD: mports/devel/splint/Makefile,v 1.4 2013/02/24 15:32:47 laffer1 Exp $
 
 PORTNAME=	splint
 PORTVERSION=	3.1.2
@@ -19,8 +19,7 @@ MAN1=		splint.1
 post-patch:
 	@${REINPLACE_CMD} -e \
 		's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/src/Headers/constants.h
-
 	${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} \
-		${REINPLACE_CMD} -e '/^pkgdatadir =/s|=.*|=${DATADIR}|'
+		 ${REINPLACE_CMD} -e '/^pkgdatadir =/s|=.*|=${DATADIR}|'
 
 .include <bsd.port.mk>
