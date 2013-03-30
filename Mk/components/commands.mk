@@ -1,10 +1,9 @@
-#-*- mode: Fundamental; tab-width: 4; -*-
+#-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# bsd.commands.mk - Common commands used within the ports infrastructure
+# commands.mk - Common commands used within the ports infrastructure
 #
-# $FreeBSD: ports/Mk/bsd.commands.mk,v 1.1 2007/08/04 11:37:23 gabor Exp $
-# $MidnightBSD: mports/Mk/components/commands.mk,v 1.6 2012/02/29 20:54:14 laffer1 Exp $
+# $MidnightBSD: mports/Mk/components/commands.mk,v 1.7 2013/02/06 03:29:10 laffer1 Exp $
 #
 
 COMMANDS_Include_MAINTAINER=		ctriv@MidnightBSD.org
@@ -31,6 +30,7 @@ CPIO?=		/usr/bin/cpio
 CUT?=		/usr/bin/cut
 DC?=		/usr/bin/dc
 DIALOG?=	/usr/bin/dialog
+DIALOG4PORTS?=	${LOCALBASE}/bin/dialog4ports
 DIFF?=		/usr/bin/diff
 DIRNAME?=	/usr/bin/dirname
 EGREP?=		/usr/bin/egrep
