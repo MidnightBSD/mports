@@ -1,5 +1,5 @@
-#! /bin/sh
-# $MidnightBSD$
+#!/bin/sh
+# $MidnightBSD: mports/Tools/scripts/dialog4ports.sh,v 1.1 2013/03/30 12:05:44 laffer1 Exp $
 set -e
 
 if [ -z "${DIALOG4PORTS}" -o -z "${PORTSDIR}" -o -z "${MAKE}" ]; then
@@ -24,14 +24,14 @@ if ! [ -e $DIALOG4PORTS ]; then
 		DIALOG4PORTS=$(${MAKE} -C ${PORTSDIR}/${DIALOGPORT} -V DIALOG4PORTS)
 		if ! [ -e "${DIALOG4PORTS}" ]; then
 			echo "===> Building ${DIALOGNAME} as it is required for the config dialog"
-			${MAKE} -C ${PORTSDIR}/${DIALOGPORT} -D NO_DIALOG clean build
+			env - ${MAKE} -C ${PORTSDIR}/${DIALOGPORT} -D NO_DIALOG clean build
 		fi
 	else
 		# Build+install through su-install as normal
 		echo "===> Building/installing ${DIALOGNAME} as it is required for the config dialog"
-		${MAKE} -C ${PORTSDIR}/${DIALOGPORT} -D NO_DIALOG clean install
+		cd ${PORTSDIR}/${DIALOGPORT} && env - ${MAKE} -DNO_DIALOG clean install
 		# Need to clean again as it can't run twice in 1 call above
-		${MAKE} -C ${PORTSDIR}/${DIALOGPORT} -D NO_DIALOG clean
+		cd ${PORTSDIR}/${DIALOGPORT} && env - ${MAKE} clean
 	fi
 fi
 
