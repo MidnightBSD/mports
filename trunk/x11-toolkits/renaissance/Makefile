@@ -1,8 +1,4 @@
-# New ports collection makefile for:    renaissance
-#
-# $MidnightBSD: mports/x11-toolkits/renaissance/Makefile,v 1.8 2008/06/14 16:58:26 laffer1 Exp $
-# $FreeBSD: ports/x11-toolkits/renaissance/Makefile,v 1.1 2006/09/10 12:12:28 dinoex Exp $
-#
+# $MidnightBSD: mports/x11-toolkits/renaissance/Makefile,v 1.9 2011/09/15 03:01:56 laffer1 Exp $
 
 PORTNAME=	renaissance
 PORTVERSION=	0.9.0
