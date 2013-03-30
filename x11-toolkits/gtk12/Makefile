@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.12 2011/02/02 21:38:57 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk12/Makefile,v 1.13 2012/03/11 18:41:51 laffer1 Exp $
 
 PORTNAME=	gtk
 PKGNAMESUFFIX=	12
 PORTVERSION=	1.2.10
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/1.2
@@ -13,16 +13,16 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 LICENSE=	lgpl
 
-USE_PERL5=	yes
+USE_PERL5_BUILD=	yes
 USE_XORG=	x11 ice xext sm inputproto xi xpm
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	libtool
 CONFIGURE_ARGS=	--includedir=${PREFIX}/include/gtk12 --with-native-locale \
 		--with-xinput=xfree
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		X_CFLAGS="-I${LOCALBASE}/include" \
+CONFIGURE_ENV=	X_CFLAGS="-I${LOCALBASE}/include" \
 		LIBS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
 .if !defined(WITHOUT_NLS)
 USE_GETTEXT=	yes
 PLIST_SUB+=	NLS=""
