@@ -1,9 +1,9 @@
 # $FreeBSD: ports/x11-toolkits/gtoolkit/Makefile,v 1.28 2006/11/30 07:08:41 dinoex Exp $
-# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.7 2008/10/13 17:33:07 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtoolkit/Makefile,v 1.8 2011/05/15 16:10:58 laffer1 Exp $
 
 PORTNAME=	gtoolkit
 PORTVERSION=	0.9.5
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11-toolkits gnustep
 MASTER_SITES=	ftp://ftp.inf.uos.de/pub/elmar/gtk/objc-gtoolkit/
 
@@ -14,7 +14,6 @@ LICENSE=	lgpl
 USE_GMAKE=	yes
 USE_GNUSTEP=	yes
 USE_MAKEFILE=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BASE=	yes
 USE_GNUSTEP_CONFIGURE=	yes
 USE_GNUSTEP_BUILD=	yes
