@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/lang/f2c/Makefile,v 1.3 2010/01/17 14:32:20 laffer1 Exp $
+# $MidnightBSD: mports/lang/f2c/Makefile,v 1.4 2010/09/07 23:50:44 laffer1 Exp $
 
 PORTNAME=	f2c
 PORTVERSION=	20060810
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL}
 MASTER_SITE_SUBDIR=	maho/f2c
@@ -18,6 +19,9 @@ EXTRACT_DEPENDS=${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
 GUNZIP_CMD=	minigzip -d
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
+
+OPTIONS=	LEAD_0 "Print with leading zeros" Off
+
 
 # Set FCNAME to the name of the Fortran 77 / F2C wrapper.
 FCNAME?=	fc
@@ -45,6 +49,12 @@ pre-patch:
 
 pre-configure:
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/fc
+.if !defined(WITHOUT_LEAD_0)
+	${REINPLACE_CMD} -e 's|CFLAGS += -fPIC|CFLAGS += -fPIC -DWANT_LEAD_0|' ${WRKSRC}/libf2c/Makefile
+	${REINPLACE_CMD} -e 's|#CFLAGS = -O|CFLAGS = -O -DWANT_LEAD_0|' ${WRKSRC}/src/Makefile
+.endif
+
+
 
 do-build:
 	@${ECHO_MSG} "===> Building f2c..."
@@ -61,7 +71,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/fc ${PREFIX}/bin/${FCNAME}
 .endif
 	${INSTALL_DATA} ${WRKSRC}/src/f2c.h ${PREFIX}/include
-	${INSTALL_MAN} ${WRKSRC}/src/f2c.1 ${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/src/${MAN1}t ${MAN1PREFIX}/man/man1/${MAN1}
 	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.a ${PREFIX}/lib
 	${INSTALL_DATA} ${WRKSRC}/libf2c/libf2c.so.2 ${PREFIX}/lib
 	${LN} -sf libf2c.so.2 ${PREFIX}/lib/libf2c.so
