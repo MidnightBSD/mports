@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk30/Makefile,v 1.1 2012/02/29 21:35:14 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk30/Makefile,v 1.2 2013/03/24 19:19:34 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	3.6.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -45,21 +45,30 @@ GLIB_SCHEMAS=	org.gtk.Demo.gschema.xml \
 
 MAN1=		gtk-query-immodules-3.0.1
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug=yes
-.endif
-
-OPTIONS=	CUPS "Enable cups printing support" on
+OPTIONS_DEFINE=	CUPS COLORD DEBUG
+OPTIONS_DEFAULT=CUPS COLORD
+COLORD_DESC=	Color profile support
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_CUPS)
-LIB_DEPENDS+=	cups.2:${PORTSDIR}/print/cups-client
+.if ${PORT_OPTIONS:MCUPS}
+LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS=""
 .else
 CONFIGURE_ARGS+=--disable-cups
 PLIST_SUB+=	CUPS="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=	--enable-debug=yes
+.endif
+
+.if ${PORT_OPTIONS:MCOLORD}
+LIB_DEPENDS+=	colord:${PORTSDIR}/graphics/colord
+CONFIGURE_ARGS+=--enable-colord
+.else
+CONFIGURE_ARGS+=--disable-colord
 .endif
 
 post-patch:
