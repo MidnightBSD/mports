@@ -1,15 +1,15 @@
-# $MidnightBSD: mports/lang/gcc34/Makefile,v 1.1 2009/06/11 19:51:29 laffer1 Exp $
+# $MidnightBSD: mports/lang/gcc34/Makefile,v 1.2 2009/08/20 18:25:50 laffer1 Exp $
 
 PORTNAME=	gcc
 PORTVERSION=	3.4.6
+PORTREVISION=	1
 CATEGORIES=	lang
 VERSIONSTRING=	${PORTVERSION}
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	releases/gcc-${VERSIONSTRING}
 DISTFILES=	gcc-core-${VERSIONSTRING}${EXTRACT_SUFX} \
 		gcc-g++-${VERSIONSTRING}${EXTRACT_SUFX} \
-		gcc-g77-${VERSIONSTRING}${EXTRACT_SUFX} \
-		gcc-objc-${VERSIONSTRING}${EXTRACT_SUFX}
+		gcc-g77-${VERSIONSTRING}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	GNU Compiler Collection 3.4
@@ -30,9 +30,9 @@ CONFIGURE_SCRIPT=	../${SRCDIR:C/${WRKDIR}//}/configure
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd6.1
+CONFIGURE_TARGET=	x86_64-portbld-freebsd7.0
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd6.1
+CONFIGURE_TARGET=	${ARCH}-portbld-freebsd7.0
 .endif
 
 SRCDIR=		${WRKDIR}/gcc-${VERSIONSTRING}
