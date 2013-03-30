@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.9 2013/02/19 16:10:51 laffer1 Exp $
+# $MidnightBSD: mports/www/nspluginwrapper/Makefile,v 1.10 2013/03/20 13:08:14 laffer1 Exp $
 
 PORTNAME=	nspluginwrapper
 PORTVERSION=	1.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www linux emulators
 MASTER_SITES=	http://nspluginwrapper.org/download/ \
 		FREEBSD_LOCAL/jkim \
@@ -10,7 +10,7 @@ MASTER_SITES=	http://nspluginwrapper.org/download/ \
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${BINFILE}:binfile
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A compatibility plugin for Mozilla (NPAPI) plugins
+COMMENT=	A compatibility plugin for Mozilla NPAPI plugins
 LICENSE=	gpl2
 
 LIB_DEPENDS=	curl.6:${PORTSDIR}/ftp/curl
