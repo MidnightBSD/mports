@@ -1,7 +1,7 @@
 #-*- tab-width: 4; -*-
 # ex:ts=4
 #
-# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.203 2013/03/09 23:01:49 laffer1 Exp $
+# $MidnightBSD: mports/Mk/bsd.mport.mk,v 1.204 2013/03/10 01:43:44 laffer1 Exp $
 # $FreeBSD: ports/Mk/bsd.port.mk,v 1.540 2006/08/14 13:24:18 erwin Exp $
 #
 #   bsd.mport.mk - 2007/04/01 Chris Reinhardt
@@ -2324,12 +2324,10 @@ check-license:
 	@${DO_NADA}
 .endif
 .endif
-	
 
 
-#
 # Patch
-#
+
 .if !target(patch-dos2unix)
 patch-dos2unix:
 .if defined(USE_DOS2UNIX)
@@ -2341,14 +2339,12 @@ patch-dos2unix:
 	@${ECHO_MSG} "===>   Converting DOS text file to UNIX text file: ${f}"
 .if ${USE_DOS2UNIX:M*/*}
 .for f in ${USE_DOS2UNIX}
-	@${REINPLACE_CMD} -i '' -e 's/
-$$//' ${WRKSRC}/${f}
+	@${REINPLACE_CMD} -i '' -e 's/$$//' ${WRKSRC}/${f}
 .endfor
 .else
 .for f in ${USE_DOS2UNIX}
 	@${FIND} ${WRKSRC} -type f -name '${f}' -print0 | \
-			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/
-$$//'
+			${XARGS} -0 ${REINPLACE_CMD} -i '' -e 's/$$//'
 .endfor
 .endif
 .endif
