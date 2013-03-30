@@ -1,6 +1,4 @@
 
-$FreeBSD: ports/lang/expect/files/patch-exp_main_sub.c,v 1.1 2002/08/24 10:22:23 sobomax Exp $
-
 --- exp_main_sub.c	2002/08/24 08:04:43	1.1
 +++ exp_main_sub.c	2002/08/24 08:15:33
 @@ -593,6 +593,9 @@
