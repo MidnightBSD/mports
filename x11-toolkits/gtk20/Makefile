@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.34 2013/02/22 12:54:45 laffer1 Exp $
+# $MidnightBSD: mports/x11-toolkits/gtk20/Makefile,v 1.35 2013/03/24 16:33:33 laffer1 Exp $
 
 PORTNAME=	gtk
 PORTVERSION=	2.24.17
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 MASTER_SITE_SUBDIR=	sources/gtk+/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
@@ -39,21 +39,22 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAN1=		gtk-query-immodules-2.0.1
 
-.if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-debug=yes
-.endif
-
-OPTIONS=	CUPS "Enable cups printing support" on
+OPTIONS_DEFINE=	CUPS DEBUG
+OPTIONS_DEFAULT=CUPS
 
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_CUPS)
+.if ${PORT_OPTIONS:MCUPS}
 LIB_DEPENDS+=	cups:${PORTSDIR}/print/cups-client
 CONFIGURE_ARGS+=--enable-cups=auto
 PLIST_SUB+=	CUPS:=""
 .else
 CONFIGURE_ARGS+=--disable-cups
 PLIST_SUB+=	CUPS:="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=--enable-debug=yes
 .endif
 
 post-patch:
@@ -80,6 +81,7 @@ post-install:
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/modules
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/engines
 	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/loaders
+	@${MKDIR} ${PREFIX}/lib/gtk-2.0/${GTK2_VERSION}/modules
 	${INSTALL_MAN} ${MAN1:S|^|${WRKSRC}/docs/reference/gtk/|} \
 		${PREFIX}/man/man1
 
