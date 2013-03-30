@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.3 2009/05/26 00:12:55 laffer1 Exp $
+# $MidnightBSD: mports/www/google-sitemapgen/Makefile,v 1.4 2010/05/29 06:20:34 laffer1 Exp $
 
 PORTNAME=	google-sitemapgen
 PORTVERSION=	1.5
@@ -14,8 +14,8 @@ PROJECTHOST=	sitemap-generators
 
 NO_WRKSUBDIR=
 
-USE_PYTHON=	YES
-USE_PYDISTUTILS=YES
+USE_PYTHON=	yes
+USE_PYDISTUTILS=yes
 PYDISTUTILS_PKGNAME=	sitemap_gen
 
 .include <bsd.port.mk>
