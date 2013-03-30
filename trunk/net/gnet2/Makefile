@@ -2,11 +2,12 @@
 # Date created:        7 Nov 2007
 # Whom:                Lucas Holt <luke@midnightbsd.org>
 #
-# $MidnightBSD: mports/net/gnet2/Makefile,v 1.5 2009/09/20 01:41:04 laffer1 Exp $
+# $MidnightBSD: mports/net/gnet2/Makefile,v 1.6 2011/02/02 21:14:15 laffer1 Exp $
 #
 
 PORTNAME=	gnet
 PORTVERSION=	2.0.8
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -17,6 +18,7 @@ LICENSE=	lgpl
 
 USE_AUTOTOOLS=	libtool
 USE_GNOME=	gnomehack glib20
+USE_PKGCONFIG=	build
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 

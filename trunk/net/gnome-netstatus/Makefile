@@ -2,17 +2,16 @@
 # Date Created:			05 December 2003
 # Whom:				Joe Marcus Clarke <marcus@FreeBSD.org>
 #
-# $MidnightBSD$
+# $MidnightBSD: mports/net/gnome-netstatus/Makefile,v 1.1 2008/05/31 00:41:57 laffer1 Exp $
 # $FreeBSD: ports/net/gnome-netstatus/Makefile,v 1.30 2008/04/23 18:22:48 cokane Exp $
 #   $MCom: ports/net/gnome-netstatus/Makefile,v 1.48 2007/07/04 21:42:20 marcus Exp $
 #
 
 PORTNAME=	gnome-netstatus
-PORTVERSION=	2.12.1
-PORTREVISION=	0
+PORTVERSION=	2.28.2
+PORTREVISION=	1
 CATEGORIES=	net gnome
-MASTER_SITES=	${MASTER_SITE_GNOME}
-MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
+MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
 MAINTAINER=	ports@MidnightBSD.org
@@ -22,8 +21,7 @@ LICENSE=	gpl2
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_BZIP2=	yes
-GNOME_DESKTOP_VERSION=2
-USE_GNOME=	gnomehack intlhack gnomeprefix libgnome gnomepanel libglade2 \
+USE_GNOME=	gnomehack intlhack gnomeprefix libgnome gnomepanel \
 		gnomedocutils
 USE_GMAKE=	yes
 USE_GETTEXT=	yes
