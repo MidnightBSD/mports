@@ -2,13 +2,13 @@
 # Date created:				6 April 2001
 # Whom:					Rene Hexel <rh@netbsd.org>
 #
-# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.7 2011/02/02 21:23:47 laffer1 Exp $
+# $MidnightBSD: mports/textproc/scrollkeeper/Makefile,v 1.8 2011/12/15 00:40:01 laffer1 Exp $
 # $FreeBSD: ports/textproc/scrollkeeper/Makefile,v 1.54 2007/03/19 05:13:47 marcus Exp $
 #    $MCom: ports/textproc/scrollkeeper/Makefile,v 1.7 2007/02/20 20:26:47 marcus Exp $
 
 PORTNAME=	scrollkeeper
 PORTVERSION=	0.3.14
-PORTREVISION=	10
+PORTREVISION=	11
 PORTEPOCH=	1
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
@@ -41,9 +41,9 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --datadir=${PREFIX}/share \
 		--with-omfdirs=${PREFIX}/share/omf \
 		--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LIBS="-L${LOCALBASE}/lib -lintl" \
+CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib -lintl" \
 		LOCALBASE="${LOCALBASE}"
+CPPFLAGS+=	-I${LOCALBASE}/include
 PLIST_SUB=	LOCALBASE=${LOCALBASE}
 
 MAN1=	scrollkeeper-config.1 scrollkeeper-gen-seriesid.1
