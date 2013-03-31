@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/textproc/libxml++26/Makefile,v 1.3 2010/12/09 00:51:10 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml++26/Makefile,v 1.4 2011/02/02 21:23:47 laffer1 Exp $
 
 PORTNAME=	libxml++
-PORTVERSION=	2.30.0
+PORTVERSION=	2.34.2
 PORTREVISION?=	0
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	XML API for C++
 LICENSE=	lgpl
 
-USE_BZIP2=	yes
+USE_XZ=		yes
 
 PLIST_SUB=	VERSION="2.6" API_VERSION="2.6"
 
