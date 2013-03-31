@@ -3,12 +3,11 @@
 # Whom:                 reed@pugetsoundtechnology.com
 #
 # $FreeBSD: ports/textproc/libwpd/Makefile,v 1.18 2006/02/23 10:39:24 ade Exp $
-# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.5 2007/10/03 20:28:49 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libwpd/Makefile,v 1.6 2010/01/02 20:10:28 laffer1 Exp $
 #
 
 PORTNAME=	libwpd
-PORTVERSION=	0.8.14
-PORTREVISION=	2
+PORTVERSION=	0.9.6
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -20,8 +19,12 @@ USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomehack libgsf
 USE_LDCONFIG=	yes
-ALL_TARGET=	-j`${SYSCTL} -n hw.ncpu`
+MAKE_JOBS_SAFE=	yes
 
-CONFIGURE_ARGS+=--without-docs
+CONFIGURE_ARGS+=--disable-werror --without-docs
+PLIST_SUB=	MAJVER=${PORTVERSION:R}
+
+post-patch:
+	@${REINPLACE_CMD} -e '/^SUBDIRS = / s| docs||' ${WRKSRC}/Makefile.in
 
 .include <bsd.port.mk>
