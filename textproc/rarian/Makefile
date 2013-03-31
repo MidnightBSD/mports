@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.4 2010/08/01 05:38:35 laffer1 Exp $
+# $MidnightBSD: mports/textproc/rarian/Makefile,v 1.5 2011/12/15 00:39:59 laffer1 Exp $
 
 PORTNAME=	rarian
 PORTVERSION=	0.8.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -33,8 +33,8 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-convert-dir=${LOCALBASE}/share/omf \
 		--datadir=${PREFIX}/share \
 		--localstatedir=/var
-CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib"
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/rarian|/db/rarian|' \
