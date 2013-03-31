@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.5 2013/02/26 04:24:25 laffer1 Exp $
+# $MidnightBSD: mports/textproc/xmlto/Makefile,v 1.6 2013/03/23 17:02:17 laffer1 Exp $
 
 PORTNAME=	xmlto
 PORTVERSION=	0.0.25
@@ -17,13 +17,14 @@ BUILD_DEPENDS=	${BASH_CMD}:${PORTSDIR}/shells/bash \
 		paperconf:${PORTSDIR}/print/libpaper \
 		w3m:${PORTSDIR}/www/w3m \
 		${LOCALBASE}/share/xml/docbook/4.2/docbookx.dtd:${PORTSDIR}/textproc/docbook-xml
-
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-OPTIONS=	PASSIVETEX "Enable PassiveTeX support for DVI/PS/PDF" OFF \
-		FOP "Add dependency on FOP" OFF \
-		LIBPAPER "Add dependency on libpaper" OFF \
-		DBLATEX "Add dependency on Dblatex (EXPERIMENTAL)" OFF
+MAKE_JOBS_UNSAFE=	yes
+
+OPTIONS_DEFINE=		DBLATEX FOP PASSIVETEX
+DBLATEX_DESC=		Add dependency on Dblatex
+FOP_DESC=		Add dependency on FOP (needs Java)
+PASSIVETEX_DESC=	Add dependency on PassiveTeX
 
 USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
@@ -42,18 +43,18 @@ PORTDOCS=	AUTHORS COPYING ChangeLog NEWS THANKS
 
 .include <bsd.port.pre.mk>
 
-.if defined(WITH_PASSIVETEX)
+.if ${PORT_OPTIONS:MPASSIVETEX}
 BUILD_DEPENDS+=	${LOCALBASE}/share/texmf-local/tex/passivetex/fotex.sty:${PORTSDIR}/print/passivetex
 .endif
 
-.if defined(WITH_FOP)
+.if ${PORT_OPTIONS:MFOP}
 RUN_DEPENDS+=	fop>=0.90:${PORTSDIR}/textproc/fop
 CONFIGURE_ARGS+=	--with-backend=fop
 .endif
 
-.if defined(WITH_DBLATEX)
+.if ${PORT_OPTIONS:MDBLATEX}
 RUN_DEPENDS+=	${LOCALBASE}/bin/dblatex:${PORTSDIR}/textproc/dblatex
-.if !defined(WITH_FOP)
+.if ! ${PORT_OPTIONS:MFOP}
 CONFIGURE_ARGS+=	--with-backend=dblatex
 .endif
 .endif
@@ -64,7 +65,7 @@ post-patch:
 	@# get rid of GNU-make-ism (BSD make defines $< only in suffix rules)
 	${REINPLACE_CMD} -e '/^GEN_MANPAGE/{s/\$$</$$>/;}' ${WRKSRC}/Makefile.in
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 post-install:
 	@${MKDIR} ${DOCSDIR}
 	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
