@@ -1,17 +1,16 @@
-# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.12 2013/02/26 04:04:41 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxslt/Makefile,v 1.13 2013/03/02 20:02:30 laffer1 Exp $
 
 PORTNAME=	libxslt
 PORTVERSION=	1.1.28
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
-MASTER_SITES=	ftp://fr.rpmfind.net/pub/libxml/ \
-		ftp://gd.tuwien.ac.at/pub/libxml/ \
+MASTER_SITES=	ftp://gd.tuwien.ac.at/pub/libxml/ \
 		ftp://xmlsoft.org/libxml2/
 DIST_SUBDIR=	gnome2
 
 MAINTAINER?=	ports@MidnightBSD.org
 COMMENT?=	The XSLT C library for GNOME
-LICENSE=	bsd3
+LICENSE=	mit
 
 .if !defined(REFERENCE_PORT)
 
@@ -30,17 +29,19 @@ _SLAVE_PORT=	yes
 MAN3=		libexslt.3 libxslt.3
 MAN1=		xsltproc.1
 
-OPTIONS=	MEM_DEBUG "Enable memory debugging" off \
-		CRYPTO "Enable crypto support for exslt" on
+OPTIONS_DEFINE=	MEM_DEBUG CRYPTO
+OPTIONS_DEFAULT=CRYPTO
+MEM_DEBUG_DESC=	Enable memory debugging
+CRYPTO_DESC=	Enable crypto support for exslt
 .endif
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
-.if defined(WITH_MEM_DEBUG)
+.if ${PORT_OPTIONS:MMEM_DEBUG}
 CONFIGURE_ARGS+=	--with-mem-debug
 .endif
 
-.if defined(WITH_CRYPTO)
+.if ${PORT_OPTIONS:MCRYPTO}
 LIB_DEPENDS+=	gcrypt:${PORTSDIR}/security/libgcrypt
 .else
 CONFIGURE_ARGS+=--without-crypto
@@ -53,6 +54,6 @@ post-patch:
 		s|[$$](bindir)/xmllint|../xmllint/xmllint|g' \
 		${WRKSRC}/doc/Makefile.in
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
 
 .endif
