@@ -1,30 +1,26 @@
-# New ports collection makefile for:	clucene
-# Date created:		2006-08-09
-# Whom:			Cheng-Lung Sung <clsung@FreeBSD.org>
-#
-# $MidnightBSD: mports/textproc/clucene/Makefile,v 1.3 2010/01/09 18:00:13 laffer1 Exp $
-# $FreeBSD: ports/textproc/clucene/Makefile,v 1.8 2008/08/27 02:35:34 clsung Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	clucene
-PORTVERSION=	0.9.21
+PORTVERSION=	2.3.3.4
 CATEGORIES=	textproc
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-core-stable/${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-core-unstable/2.3
 DISTNAME=	${PORTNAME}-core-${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	CLucene is a C++ port of Lucene
 LICENSE=	apache2
 
-GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
+BUILD_DEPENDS=	${LOCALBASE}/lib/libboost_regex.a:${PORTSDIR}/devel/boost-libs
+
+USE_CMAKE=	yes
+USE_ICONV=	yes
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	libtool
 
-.include <bsd.port.pre.mk>
+CMAKE_ARGS=	-DBUILD_CONTRIBS_LIB=ON
+CXXFLAGS+=	-D__LONG_LONG_SUPPORTED
 
-.if defined(WITH_ASCII_SUPPORT)
-CONFIGURE_ARGS+=	--enable-ascii
-.endif
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR_REL}|' \
+	    ${WRKSRC}/src/core/CMakeLists.txt
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
