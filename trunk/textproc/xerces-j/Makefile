@@ -1,10 +1,4 @@
-# New ports collection makefile for:    Xerces
-# Date created:		2000/08/12
-# Whom:			Marcin Cieslak
-#
-# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.3 2009/12/28 23:14:56 laffer1 Exp $
-# $FreeBSD: ports/textproc/xerces-j/Makefile,v 1.24 2008/06/06 14:05:07 edwin Exp $
-#
+# $MidnightBSD: mports/textproc/xerces-j/Makefile,v 1.4 2011/12/22 14:05:57 laffer1 Exp $
 
 PORTNAME=	xerces-j
 PORTVERSION=	2.11.0
@@ -20,7 +14,7 @@ LICENSE=	apache2
 CONFLICTS=	xml4j-4.*
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/xerces-${PORTVERSION:S/./_/g}
