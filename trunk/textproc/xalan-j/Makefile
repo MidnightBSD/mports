@@ -1,10 +1,4 @@
-# New ports collection makefile for:	xalan-j
-# Date created:		21 February 2001
-# Whom:			znerd@FreeBSD.org
-#
-# $MidnightBSD: mports/textproc/xalan-j/Makefile,v 1.2 2008/10/13 17:44:36 laffer1 Exp $
-# $FreeBSD: ports/textproc/xalan-j/Makefile,v 1.23 2008/06/06 14:05:06 edwin Exp $
-#
+# $MidnightBSD: mports/textproc/xalan-j/Makefile,v 1.3 2011/12/23 00:49:49 laffer1 Exp $
 
 PORTNAME=	xalan-j
 PORTVERSION=	2.7.1
@@ -21,7 +15,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/xml-apis.jar:${PORTSDIR}/textproc/xerces-j
 
 USE_ZIP=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.5+
+JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION:S/./_/g}
