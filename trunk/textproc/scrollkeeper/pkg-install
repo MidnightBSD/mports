@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PATH=${PATH}:/bin:/usr/bin:/usr/local/bin:/usr/X11R6/bin
+PATH=${PATH}:/bin:/usr/bin:/usr/local/bin
 export PATH
 
 PREFIX=`xml2-config --prefix`
