@@ -1,14 +1,8 @@
-# New ports collection makefile for:    latex-service
-# Date created:         30 Dec 2006
-# Whom:                 dirk.meyer@dinoex.sub.org
-#
-# $MidnightBSD: mports/textproc/latex-service/Makefile,v 1.2 2007/11/07 20:20:16 ctriv Exp $
-# $FreeBSD: ports/textproc/latex-service/Makefile,v 1.2 2007/01/31 18:18:09 dinoex Exp $
-#
+# $MidnightBSD: mports/textproc/latex-service/Makefile,v 1.3 2010/05/30 21:28:51 laffer1 Exp $
 
 PORTNAME=	latex
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.roard.com/latexservice/download/
 PKGNAMESUFFIX=	-service${PKGNAMESUFFIX2}
@@ -20,7 +14,6 @@ COMMENT=	LaTeX service for GNUstep
 LICENSE=	gpl2
 
 USE_GNUSTEP=	yes
-USE_GNUSTEP_PREFIX=	yes
 USE_GNUSTEP_BACK=	yes
 USE_GNUSTEP_BUILD=	yes
 USE_GNUSTEP_INSTALL=	yes
