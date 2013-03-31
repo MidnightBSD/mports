@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/textproc/openjade/Makefile,v 1.1 2007/08/29 07:09:42 laffer1 Exp $
+# $MidnightBSD: mports/textproc/openjade/Makefile,v 1.2 2009/11/09 00:42:09 laffer1 Exp $
 
 PORTNAME=	openjade
 PORTVERSION=	1.3.3p1
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.3.3
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/p/-pre/}
@@ -13,9 +14,11 @@ LICENSE=	mit
 LIB_DEPENDS=	osp.5:${PORTSDIR}/textproc/opensp
 RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
 
+USE_GCC=	any
 USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 USE_PERL5=	yes
+USE_GETTEXT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-catalog=${PREFIX}/share/sgml/catalog \
 		--datadir=${DATADIR}
@@ -31,6 +34,7 @@ DATADIR=	${PREFIX}/share/sgml/openjade
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|<iostream.h>|<iostream>|' ${WRKSRC}/style/MultiLineInlineNote.cxx
 
 post-install:
 	@${CAT} ${PLIST} | \
@@ -48,5 +52,6 @@ post-install:
 # Therefore, we'd better remove all machine optimizations and any -O
 # other than -O{0,1,}. Idea taken from palm/prc-tools-gcc.
 CPPFLAGS:=	-O ${CFLAGS:N-O*:N-m*}
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.post.mk>
