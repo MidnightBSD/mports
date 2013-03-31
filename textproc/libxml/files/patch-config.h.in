@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/textproc/libxml/files/patch-config.h.in,v 1.1 2001/08/13 11:17:10 sobomax Exp $
+$FreeBSD$
 
 --- config.h.in	2001/08/13 11:13:32	1.1
 +++ config.h.in	2001/08/13 11:13:47

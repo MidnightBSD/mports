@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.6 2013/01/24 04:40:22 laffer1 Exp $
+# $MidnightBSD: mports/textproc/libxml/Makefile,v 1.7 2013/02/26 04:07:16 laffer1 Exp $
 
 PORTNAME=	libxml
 PORTVERSION=	1.8.17
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	textproc gnome
 MASTER_SITES=	GNOME
 
@@ -14,7 +14,7 @@ DEPRECATED=   Last release in 2002, unsupported by developers
 
 USE_AUTOTOOLS=	libtool
 USE_GMAKE=	yes
-USE_GNOME=	pkgconfig
+USE_PKGCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
