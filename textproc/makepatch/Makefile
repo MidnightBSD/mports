@@ -1,10 +1,10 @@
-# $MidnightBSD: mports/textproc/makepatch/Makefile,v 1.2 2010/11/12 00:22:50 laffer1 Exp $
+# $MidnightBSD: mports/textproc/makepatch/Makefile,v 1.3 2013/03/23 16:44:41 laffer1 Exp $
 
 PORTNAME=	makepatch
 PORTVERSION=	2.05
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	../../authors/id/JV
+MASTER_SITE_SUBDIR=	CPAN:JV
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Perl scripts to assist in the generation and application of patches
