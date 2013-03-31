@@ -1,5 +1,5 @@
 
-$FreeBSD: ports/textproc/agrep/files/patch-parse.c,v 1.1 2002/07/21 01:56:56 naddy Exp $
+$FreeBSD$
 
 --- parse.c.orig	Fri Jan 17 20:14:43 1992
 +++ parse.c	Sun Jul 21 03:50:47 2002
