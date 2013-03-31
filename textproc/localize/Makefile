@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/textproc/localize/Makefile,v 1.1 2010/01/21 01:32:09 laffer1 Exp $
+# $MidnightBSD: mports/textproc/localize/Makefile,v 1.2 2011/11/10 21:07:29 laffer1 Exp $
 
 PORTNAME=	localize
 PORTVERSION=	0.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Localize/files/
 DISTNAME=	Localize-20040424
