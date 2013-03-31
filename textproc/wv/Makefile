@@ -1,8 +1,7 @@
-# $MidnightBSD: mports/textproc/wv/Makefile,v 1.5 2011/02/02 21:23:47 laffer1 Exp $
+# $MidnightBSD: mports/textproc/wv/Makefile,v 1.6 2011/12/15 00:40:02 laffer1 Exp $
 
 PORTNAME=	wv
-PORTVERSION=	1.2.7
-PORTREVISION=	2
+PORTVERSION=	1.2.9
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.abisource.com/downloads/wv/${PORTVERSION}/
 
@@ -11,7 +10,6 @@ COMMENT=	A library and executables to access Microsoft Word files
 LICENSE=	gpl2
 
 LIB_DEPENDS=	wmf.2:${PORTSDIR}/graphics/libwmf
-RUN_DEPENDS=	lynx:${PORTSDIR}/www/lynx
 
 USE_GNOME=	libgsf
 USE_GMAKE=	yes
