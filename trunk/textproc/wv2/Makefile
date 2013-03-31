@@ -1,10 +1,8 @@
-# $FreeBSD: ports/textproc/wv2/Makefile,v 1.17 2006/05/27 10:26:18 lofi Exp $
-# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.6 2010/12/04 01:58:46 laffer1 Exp $
-#
+# $MidnightBSD: mports/textproc/wv2/Makefile,v 1.7 2011/12/15 00:40:03 laffer1 Exp $
 
 PORTNAME=	wv2
 PORTVERSION=	0.4.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	SF/wvware/
 
@@ -16,7 +14,6 @@ USE_GNOME=	libgsf
 USE_ICONV=	yes
 USE_BZIP2=	yes
 USE_CMAKE=	yes
-USE_GMAKE=	yes
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>
