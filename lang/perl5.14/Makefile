@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.4 2013/02/16 21:41:41 laffer1 Exp $
+# $MidnightBSD: mports/lang/perl5.14/Makefile,v 1.5 2013/02/17 15:25:12 laffer1 Exp $
 
 PORTNAME=	perl
-PORTVERSION=	5.14.2
-PORTREVISION=	2
+PORTVERSION=	5.14.3
+PORTREVISION=	0
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN}
 MASTER_SITE_SUBDIR=	../../src
@@ -72,7 +72,7 @@ PLIST_SUB+=		ENABLE_SUIDPERL="@comment "
 
 .if defined(WITH_GDBM)
 CONFIGURE_ARGS+=	-Di_gdbm
-LIB_DEPENDS+=		gdbm.3:${PORTSDIR}/databases/gdbm
+LIB_DEPENDS+=		gdbm.4:${PORTSDIR}/databases/gdbm
 PLIST_SUB+=		GDBM=""
 MAN3+=	GDBM_File.3
 .else
