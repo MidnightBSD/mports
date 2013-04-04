@@ -1,13 +1,8 @@
-# New ports collection makefile for:    objc compiler
-# Date created:         14 Nov 2007
-# Whom:                 Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/lang/objc/Makefile,v 1.3 2010/05/28 13:10:40 laffer1 Exp $
-# $FreeBSD: ports/lang/objc/Makefile,v 1.34 2007/11/14 19:39:34 stas Exp $
-#
+# $MidnightBSD: mports/lang/objc/Makefile,v 1.4 2013/02/09 03:07:28 laffer1 Exp $
 
 PORTNAME=	objc
 PORTVERSION=	3.2.11
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://users.telenet.be/stes/
 DISTFILES=	objc-bootstrap-${BOOTVERSION}.tar.gz objc-${PORTVERSION}.tar.gz
@@ -31,7 +26,7 @@ FAKE_MAKEARGS+=	INSTALLDIR=${FAKE_DESTDIR}${PREFIX}
 
 pre-configure:
 	cd ${WRKDIR}/${PORTNAME}-bootstrap-${BOOTVERSION};\
-	${CONFIGURE_ENV} ./configure --build=${ARCH}-portbld-freebsd9.0 --prefix=${WRKDIR};${MAKE};${MAKE} install
+	${CONFIGURE_ENV} ${MAKE_ENV} ./configure --build=${ARCH}-portbld-freebsd9.0 --prefix=${WRKDIR};${MAKE};${MAKE} install
 
 pre-install:
 	${MKDIR} ${PREFIX}/share/doc/objc
