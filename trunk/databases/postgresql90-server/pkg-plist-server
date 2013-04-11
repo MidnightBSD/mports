@@ -74,6 +74,7 @@ share/postgresql/system_views.sql
 %%GETTEXT%%share/locale/it/LC_MESSAGES/pg_ctl-9.0.mo
 %%GETTEXT%%share/locale/it/LC_MESSAGES/pg_resetxlog-9.0.mo
 %%GETTEXT%%share/locale/it/LC_MESSAGES/plpgsql-9.0.mo
+%%GETTEXT%%share/locale/it/LC_MESSAGES/postgres-9.0.mo
 %%GETTEXT%%share/locale/ja/LC_MESSAGES/initdb-9.0.mo
 %%GETTEXT%%share/locale/ja/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/ja/LC_MESSAGES/pg_ctl-9.0.mo
@@ -106,6 +107,8 @@ share/postgresql/system_views.sql
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_ctl-9.0.mo
 %%GETTEXT%%share/locale/ru/LC_MESSAGES/pg_resetxlog-9.0.mo
+%%GETTEXT%%share/locale/ru/LC_MESSAGES/plpgsql-9.0.mo
+%%GETTEXT%%share/locale/ru/LC_MESSAGES/postgres-9.0.mo
 %%GETTEXT%%share/locale/sv/LC_MESSAGES/initdb-9.0.mo
 %%GETTEXT%%share/locale/sv/LC_MESSAGES/pg_controldata-9.0.mo
 %%GETTEXT%%share/locale/sv/LC_MESSAGES/pg_ctl-9.0.mo
@@ -232,6 +235,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/America/Coral_Harbour
 %%TZDATA%%share/postgresql/timezone/America/Cordoba
 %%TZDATA%%share/postgresql/timezone/America/Costa_Rica
+%%TZDATA%%share/postgresql/timezone/America/Creston
 %%TZDATA%%share/postgresql/timezone/America/Cuiaba
 %%TZDATA%%share/postgresql/timezone/America/Curacao
 %%TZDATA%%share/postgresql/timezone/America/Danmarkshavn
@@ -391,6 +395,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/Asia/Dushanbe
 %%TZDATA%%share/postgresql/timezone/Asia/Gaza
 %%TZDATA%%share/postgresql/timezone/Asia/Harbin
+%%TZDATA%%share/postgresql/timezone/Asia/Hebron
 %%TZDATA%%share/postgresql/timezone/Asia/Ho_Chi_Minh
 %%TZDATA%%share/postgresql/timezone/Asia/Hong_Kong
 %%TZDATA%%share/postgresql/timezone/Asia/Hovd
@@ -405,6 +410,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/Asia/Kashgar
 %%TZDATA%%share/postgresql/timezone/Asia/Kathmandu
 %%TZDATA%%share/postgresql/timezone/Asia/Katmandu
+%%TZDATA%%share/postgresql/timezone/Asia/Khandyga
 %%TZDATA%%share/postgresql/timezone/Asia/Kolkata
 %%TZDATA%%share/postgresql/timezone/Asia/Krasnoyarsk
 %%TZDATA%%share/postgresql/timezone/Asia/Kuala_Lumpur
@@ -449,6 +455,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/Asia/Ulaanbaatar
 %%TZDATA%%share/postgresql/timezone/Asia/Ulan_Bator
 %%TZDATA%%share/postgresql/timezone/Asia/Urumqi
+%%TZDATA%%share/postgresql/timezone/Asia/Ust-Nera
 %%TZDATA%%share/postgresql/timezone/Asia/Vientiane
 %%TZDATA%%share/postgresql/timezone/Asia/Vladivostok
 %%TZDATA%%share/postgresql/timezone/Asia/Yakutsk
@@ -557,6 +564,7 @@ share/postgresql/snowball_create.sql
 %%TZDATA%%share/postgresql/timezone/Europe/Brussels
 %%TZDATA%%share/postgresql/timezone/Europe/Bucharest
 %%TZDATA%%share/postgresql/timezone/Europe/Budapest
+%%TZDATA%%share/postgresql/timezone/Europe/Busingen
 %%TZDATA%%share/postgresql/timezone/Europe/Chisinau
 %%TZDATA%%share/postgresql/timezone/Europe/Copenhagen
 %%TZDATA%%share/postgresql/timezone/Europe/Dublin
@@ -770,6 +778,8 @@ share/postgresql/tsearch_data/ispell_sample.affix
 share/postgresql/tsearch_data/ispell_sample.dict
 share/postgresql/tsearch_data/synonym_sample.syn
 share/postgresql/tsearch_data/thesaurus_sample.ths
+@exec /bin/mkdir -p %%PREFIX%%/%%PG_USER%% || /usr/bin/true
+@exec /usr/sbin/chown %%PG_USER%%:%%PG_GROUP%% %%PREFIX%%/%%PG_USER%% || /usr/bin/true
 @dirrmtry share/postgresql/tsearch_data
 @dirrmtry share/postgresql
 @dirrmtry etc/periodic/daily
