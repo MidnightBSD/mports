@@ -1,7 +1,8 @@
-# $MidnightBSD$
+# $MidnightBSD: mports/emulators/kqemu-kmod-devel/Makefile,v 1.1 2009/03/01 16:36:03 laffer1 Exp $
 
 PORTNAME=	kqemu
 PORTVERSION=	1.4.0.p1
+PORTREVISION=	1
 CATEGORIES=	emulators kld
 MASTER_SITES=	http://bellard.org/qemu/ \
 		http://qemu.org/ \
@@ -18,6 +19,7 @@ LICENSE=	gpl2
 ONLY_FOR_ARCHS=	i386 amd64
 HAS_CONFIGURE=	yes
 USE_GMAKE=	yes
+USE_GCC=	any
 CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC}
 CONFLICTS=	kqemu-kmod-[0-9]*
 
