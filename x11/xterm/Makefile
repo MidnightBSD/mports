@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xterm/Makefile,v 1.25 2013/01/18 13:37:50 laffer1 Exp $
+# $MidnightBSD: mports/x11/xterm/Makefile,v 1.26 2013/02/24 00:36:08 laffer1 Exp $
 
 PORTNAME=	xterm
-PORTVERSION=	290
+PORTVERSION=	291
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
 		CRITICAL:src1 CRITICAL:src2
@@ -13,33 +13,65 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Terminal emulator for the X Window System
 LICENSE=	x11
 
-BUILD_DEPENDS=	luit:${PORTSDIR}/x11/luit
+CONFLICTS=	x11iraf-[0-9]*
 
 USE_XORG=	xaw xft
+WANT_GNOME=	desktopfileutils
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	LIBS="-L${X11BASE}/lib"
-CONFIGURE_ARGS+=--enable-wide-chars --enable-luit --with-utempter \
-		--enable-narrowproto
-CPPFLAGS+=	-I${LOCALBASE}/include
-MAN1=		resize.1 koi8rxterm.1 uxterm.1 xterm.1
 
-OPTIONS=	256_COLOR "Enable 256 Color Support." Off \
-		GNOME	"Enable GNOME Integration" Off
+CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib"
+CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
+
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 ICONVERSION=	1
 
+OPTIONS_DEFINE=	WCHAR LUIT DECTERM PCRE GNOME DABBREV 256COLOR
+
+DABBREV_DESC=	Enable support for dabbrev-expand
+DECTERM_DESC=	Enable DECterm Locator support
+LUIT_DESC=	Use LUIT for locale convertion from/to UTF-8
+WCHAR_DESC=	Enable wide-character support
+256COLOR_DESC=	Enable 256-color support
+
+OPTIONS_DEFAULT=WCHAR LUIT 256COLOR
+
 .include <bsd.mport.options.mk>
 
-.if defined(WITH_GNOME)
+.if ${PORT_OPTIONS:M256COLOR}
+CONFIGURE_ARGS+=	--enable-256-color
+.endif
+
+.if ${PORT_OPTIONS:MLUIT}
+CONFIGURE_ARGS+=	--enable-luit
+BUILD_DEPENDS=	luit:${PORTSDIR}/x11/luit
+.endif
+
+.if ${PORT_OPTIONS:MWCHAR}
+CONFIGURE_ARGS+=	--enable-wide-chars
+.endif
+
+.if ${PORT_OPTIONS:MDECTERM}
+CONFIGURE_ARGS+=	--enable-dec-locator
+.endif
+
+.if ${PORT_OPTIONS:MPCRE}
+CONFIGURE_ARGS+=	--with-pcre
+LIB_DEPENDS=		pcre:${PORTSDIR}/devel/pcre
+.endif
+
+.if ${PORT_OPTIONS:MDABBREV}
+CONFIGURE_ARGS+=	--enable-dabbrev
+.endif
+
+.if ${PORT_OPTIONS:MGNOME}
 USE_GNOME=	desktopfileutils
 PLIST_SUB+=	GNOME=""
 .else
 PLIST_SUB+=	GNOME="@comment "
 .endif
 
-.if defined(WITH_256_COLOR)
-CONFIGURE_ARGS+=	--enable-256-color
-.endif
+MAN1=		resize.1 koi8rxterm.1 uxterm.1 xterm.1
 
 .include <bsd.port.pre.mk>
 
