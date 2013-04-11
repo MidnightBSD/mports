@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/php-xdebug/Makefile,v 1.2 2011/01/08 01:19:58 laffer1 Exp $
+# $MidnightBSD: mports/devel/php-xdebug/Makefile,v 1.3 2013/04/11 12:56:44 laffer1 Exp $
 
 PORTNAME=	xdebug
 PORTVERSION=	2.2.1
@@ -18,10 +18,5 @@ USE_PHPIZE=	yes
 SUB_FILES=	pkg-message
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
-
-#do-install:
-#	@${MKDIR} ${PREFIX}/lib/php/${PHP_EXT_DIR}
-#	@${INSTALL_DATA} ${WRKSRC}/modules/xdebug.so \
-#		${PREFIX}/lib/php/${PHP_EXT_DIR}
 
 .include <bsd.port.mk>
