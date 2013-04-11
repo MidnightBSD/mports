@@ -1,18 +1,16 @@
-# $FreeBSD: ports/x11/listres/Makefile,v 1.1 2007/05/19 20:27:04 flz Exp $
-# $MidnightBSD: mports/x11/listres/Makefile,v 1.2 2011/05/07 00:37:02 laffer1 Exp $
+# $MidnightBSD: mports/x11/listres/Makefile,v 1.3 2013/02/22 00:58:59 laffer1 Exp $
 
 PORTNAME=	listres
 PORTVERSION=	1.0.3
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	List resources in widgets
-LICENSE=	x11
+LICENSE=	mit
 
 XORG_CAT=	app
-USE_XORG=	xproto xt xmu xaw
-
-BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:${PORTSDIR}/devel/xorg-macros
+USE_XORG=	xproto xt xmu xaw xorg-macros
 
 PLIST_FILES=	bin/listres
 
