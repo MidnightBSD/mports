@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/x11/xwud/Makefile,v 1.3 2011/05/07 20:46:31 laffer1 Exp $
+# $MidnightBSD: mports/x11/xwud/Makefile,v 1.4 2012/03/03 01:52:57 laffer1 Exp $
 
 PORTNAME=	xwud
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	x11
 
 MAINTAINER=	ports@MidnightBSD.org
