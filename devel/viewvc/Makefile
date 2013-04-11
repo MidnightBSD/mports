@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.17 2012/06/21 00:44:34 laffer1 Exp $
+# $MidnightBSD: mports/devel/viewvc/Makefile,v 1.18 2013/02/19 15:05:00 laffer1 Exp $
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.17
+PORTVERSION=	1.1.18
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/
 
