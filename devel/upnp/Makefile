@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/upnp/Makefile,v 1.9 2012/09/15 19:26:54 laffer1 Exp $
+# $MidnightBSD: mports/devel/upnp/Makefile,v 1.10 2013/03/10 02:50:01 laffer1 Exp $
 
 PORTNAME=	upnp
 PORTVERSION=	1.6.18
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/p${PORTNAME}/p${PORTNAME}/libUPnP%20${PORTVERSION}
@@ -20,15 +21,20 @@ USE_LDCONFIG=	yes
 MAKE_JOBS_SAFE=	yes
 
 MAKE_ENV=	PTHREAD_LIBS=${PTHREAD_LIBS}
-CONFIGURE_ENV+=	LIBS="-llwres -lcompat" 
+CONFIGURE_ENV+=	LIBS="-llwres -lcompat"
 
-.if defined(NOPORTDOCS)
-CONFIGURE_ARGS+=	--without-documentation
-.else
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
 CONFIGURE_ARGS+=	--with-documentation=${DOCSDIR}
+PORTDOCS=	*
+.else
+CONFIGURE_ARGS+=	--without-documentation
 .endif
 
-PORTDOCS=	*
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=	--enable-debug
+.endif
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} '/^pkgconfigexecdir/s|$$(libdir)|$$(prefix)/libdata|' \
