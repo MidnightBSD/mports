@@ -1,28 +1,27 @@
-# New ports collection makefile for:	dgen-sdl
-# Date created:				20 September 2000
-# Whom:					Maxim Sobolev <sobomax@FreeBSD.org>
-#
-# $MidnightBSD: mports/emulators/dgen-sdl/Makefile,v 1.3 2008/05/29 21:07:25 laffer1 Exp $
-# $FreeBSD: ports/emulators/dgen-sdl/Makefile,v 1.15 2006/09/20 11:20:42 stas Exp $
-#
+# $MidnightBSD: mports/emulators/dgen-sdl/Makefile,v 1.4 2008/06/13 16:05:43 laffer1 Exp $
 
 PORTNAME=	dgen-sdl
-PORTVERSION=	1.23
-PORTREVISION=	4
+PORTVERSION=	1.32
 CATEGORIES=	emulators
-MASTER_SITES=	ftp://ftp.gentoo.org.ua/distfiles/
+MASTER_SITES=	SF/dgen/dgen/${PORTVERSION}
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A wonderful Sega Genesis/MegaDrive emulator
+COMMENT=	Wonderful Sega Genesis/MegaDrive emulator
 LICENSE=	unknown
-
-BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
 USE_SDL=	sdl
 USE_GL=		yes
 GNU_CONFIGURE=	yes
 
-MAN1=		dgen.1 tobin.1
+MAN1=		dgen.1 dgen_tobin.1
 MAN5=		dgenrc.5
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == i386
+BUILD_DEPENDS+=	nasm:${PORTSDIR}/devel/nasm
+.else
+CONFIGURE_ARGS+=	--disable-asm
+.endif
+
+.include <bsd.port.post.mk>
