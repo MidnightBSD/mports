@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.8 2010/05/05 23:35:01 laffer1 Exp $
+# $MidnightBSD: mports/emulators/dosbox/Makefile,v 1.9 2010/11/10 14:26:05 laffer1 Exp $
 
 PORTNAME=	dosbox
 PORTVERSION=	0.74
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF
 
@@ -10,7 +10,7 @@ MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An emulator of a PC with DOS
 LICENSE=	gpl2
 
-LIB_DEPENDS=	png.6:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl net sound
@@ -19,8 +19,6 @@ MAN1=		dosbox.1
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 CPPFLAGS+=		-I${LOCALBASE}/include
-CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}"
-CONFIGURE_TARGET=	--build=${ARCH}-portbld-freebsd6.0
 CONFIGURE_ARGS+=	--enable-core-inline
 
 post-patch:
