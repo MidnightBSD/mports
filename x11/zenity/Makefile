@@ -1,8 +1,8 @@
-# $MidnightBSD: mports/x11/zenity/Makefile,v 1.8 2012/03/03 01:52:57 laffer1 Exp $
+# $MidnightBSD: mports/x11/zenity/Makefile,v 1.9 2013/01/18 13:42:06 laffer1 Exp $
 
 PORTNAME=	zenity
 PORTVERSION=	2.32.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -22,20 +22,23 @@ GNU_CONFIGURE=	yes
 INSTALLS_OMF=	yes
 CONFIGURE_ENV=	LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+CONFIGURE_ENV=	LIBS="${PTHREAD_LIBS}"
 
 MAN1=		zenity.1
 
 CONFLICTS=	gtkada-1.2.*
 
-OPTIONS=	NOTIFY "Enable libnotify support" on
+OPTIONS_DEFINE=	NOTIFY
+OPTIONS_DEFAULT=NOTIFY
 
-.include <bsd.port.pre.mk>
+.include <bsd.mport.options.mk>
 
 .if !defined(WITHOUT_NOTIFY)
-LIB_DEPENDS+=		notify.4:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS+=		notify:${PORTSDIR}/devel/libnotify
 CONFIGURE_ARGS+=	--enable-libnotify
 .else
 CONFIGURE_ARGS+=	--disable-libnotify
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
