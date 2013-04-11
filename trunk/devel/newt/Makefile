@@ -1,74 +1,105 @@
-# New ports collection makefile for:	newt
-# Date created:		08 Jan 2000
-# Whom:			Will Andrews <andrews@technologist.com>
-#
-# $FreeBSD: ports/devel/newt/Makefile,v 1.30 2007/12/14 23:14:24 miwi Exp $
-# $MidnightBSD: mports/devel/newt/Makefile,v 1.1 2008/05/31 00:03:01 crash Exp $
+# $MidnightBSD$
 
 PORTNAME=	newt
-PORTVERSION=	0.51.0
-PORTREVISION=	4
+PORTVERSION=	0.52.14
 CATEGORIES=	devel
-MASTER_SITES=	${MASTER_SITE_FREEBSD_LOCAL} \
-		# ftp://ftp.redhat.com/pub/redhat/linux/rawhide/SRPMS/SRPMS/
-MASTER_SITE_SUBDIR=	perky
-PKGNAMESUFFIX=	${PYTHONSUFFIX}${TCLSUFFIX}
+MASTER_SITES=	https://fedorahosted.org/releases/n/e/newt/
 
-MAINTAINER=     Ports@MidnightBSD.org
-COMMENT=	Not Erik's Windowing Toolkit:  console I/O handling library#'
-LICENSE=        lgpl       
-LIB_DEPENDS=	slang.1:${PORTSDIR}/devel/libslang \
-		popt.0:${PORTSDIR}/devel/popt
+MAINTAINER=	ports@MidnightBSD.org
+COMMENT=	Not Erik's Windowing Toolkit: console I/O handling library
+LICENSE=	lgpl
 
+LIB_DEPENDS=	slang:${PORTSDIR}/devel/libslang2 \
+		popt:${PORTSDIR}/devel/popt
+
+OPTIONS_DEFINE=	PYTHON TCL NLS
+
+USE_GMAKE=	yes
 GNU_CONFIGURE=	yes
+MAKE_ENV=	PCFLAGS="${CFLAGS}" TCLVERSION="tcl${TCL_VER}"
 USE_LDCONFIG=	yes
-SOVERSION=	51
-TCL_VERSION?=	tcl8.3
-TCL_NODOT=	${TCL_VERSION:S/.//}
-MAKE_ENV+=	CC=${CC} PCFLAGS="${CFLAGS}" TCLVERSION="${TCL_VERSION}"
-PLIST_SUB+=	SOVERSION=${SOVERSION} \
-		EXAMPLESDIR="${EXAMPLESDIR:S,${PREFIX}/,,}"
+MAKE_JOBS_UNSAFE=	yes
 
-.if defined(WITH_PYTHON)
-PYTHONSUFFIX=	-${PYTHON_PKGNAMEPREFIX:S/-//}
-BUILD_DEPENDS+=	${PYDISTUTILS}
-USE_PYTHON=	yes
-MAKE_ENV+=	WITH_PYTHON=yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lcurses
+
+PLIST_SUB=	SOVERSION="${SOVERSION}" \
+		VERSION="${PORTVERSION}"
+
+SUB_LIST=	VERSION="${PORTVERSION}"
+
+MAN1=		whiptail.1
+
+SOVERSION=	${PORTVERSION:R:E}
+
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USE_GETTEXT=	yes
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MPYTHON}
+USE_PYTHON=	-2.7
+INSTALLS_EGGINFO=	yes
 PLIST_SUB+=	PYTHONOPT=""
+SUB_FILES+=	setup.py
 .else
 PLIST_SUB+=	PYTHONOPT="@comment "
 .endif
 
-.if defined(WITH_TCL)
-TCLSUFFIX=	-${TCL_NODOT}
-LIB_DEPENDS+=	${TCL_NODOT}:${PORTSDIR}/lang/${TCL_NODOT}
-MAKE_ENV+=	WITH_TCL=yes
-PLIST_SUB+=	TCLOPT=""
+.if ${PORT_OPTIONS:MTCL}
+USE_TCL=	84+
+MAKE_ENV+=	TCL_LIBDIR=${TCL_LIBDIR:Q}
+CPPFLAGS+=	-I${TCL_INCLUDEDIR:Q}
+SUB_FILES+=	pkgIndex.tcl
+PLIST_SUB+=	TCLOPT="" TCL_LIBDIR=${TCL_LIBDIR:S,${PREFIX}/,,}
 .else
+CONFIGURE_ARGS+=--without-tcl
 PLIST_SUB+=	TCLOPT="@comment "
 .endif
 
-.include <bsd.port.pre.mk>
-
 post-patch:
-	${REINPLACE_CMD} -e 's,^\(SONAME=\).*,\1${SOVERSION},g' \
-		${WRKSRC}/configure
-	${REINPLACE_CMD} -e 's,PyMem_DEL,PyObject_DEL,g' \
-		${WRKSRC}/snackmodule.c
+	@${REINPLACE_CMD} -e \
+		'/^SONAME/s|=.*|=${SOVERSION}|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e \
+		's|@CPP@|@CC@ -E| ; \
+		 s|-I/usr/include/slang|| ; \
+		 /^PYTHONVERS/s|=.*|=${PYTHON_VERSION}| ; \
+		 /^pkgconfigdir/s|=.*|=${PREFIX}/libdata/pkgconfig| ; \
+		 s| -g | |g ; \
+		 /make -C/s|^|#| ; \
+		 /whiptcl.so/s|install|${TRUE}|' ${WRKSRC}/Makefile.in
 
-.if defined(WITH_PYTHON)
-post-build:
-	@${LN} -sf ${WRKSRC}/libnewt.so.${SOVERSION} ${WRKSRC}/libnewt.so
-	@cd ${WRKSRC} && ${MAKE_ENV} ${PYTHON_CMD} ${FILESDIR}/setup.py build
+post-build:	apply-slist
+.if ${PORT_OPTIONS:MPYTHON}
+	@${LN} -sf libnewt.so.${SOVERSION} ${WRKSRC}/libnewt.so
+	@(cd ${WRKSRC} && ${MAKE_ENV} ${PYTHON_CMD} ${WRKDIR}/setup.py \
+		build)
+.endif
 
 post-install:
-	@cd ${WRKSRC} && ${MAKE_ENV} ${PYTHON_CMD} ${FILESDIR}/setup.py \
-		install --prefix=${PREFIX}
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${EXAMPLESDIR}
-	${INSTALL_SCRIPT} ${WRKSRC}/peanuts.py ${WRKSRC}/popcorn.py \
-		${EXAMPLESDIR}
+	@${STRIP_CMD} ${PREFIX}/bin/whiptail
+.if ${PORT_OPTIONS:MNLS}
+	@(cd ${WRKSRC}/po && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} \
+		${MAKEFILE} ${MAKE_ARGS} datadir=${PREFIX}/share \
+		${INSTALL_TARGET})
 .endif
+.if ${PORT_OPTIONS:MPYTHON}
+	@(cd ${WRKSRC} && ${MAKE_ENV} ${PYTHON_CMD} ${WRKDIR}/setup.py \
+		install --prefix=${PREFIX})
+.endif
+.if ${PORT_OPTIONS:MTCL}
+	@${MKDIR} ${TCL_LIBDIR}/whip
+	(cd ${WRKSRC} && ${INSTALL_DATA} whiptcl.so ${TCL_LIBDIR}/whip)
+	(cd ${WRKDIR} && ${INSTALL_DATA} pkgIndex.tcl ${TCL_LIBDIR}/whip)
+.endif
+.if ${PORT_OPTIONS:MEXAMPLES}
+	@${MKDIR} ${EXAMPLESDIR}
+	(cd ${WRKSRC} && ${INSTALL_SCRIPT} peanuts.py popcorn.py ${EXAMPLESDIR})
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
