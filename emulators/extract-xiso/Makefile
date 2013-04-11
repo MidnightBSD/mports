@@ -2,15 +2,14 @@
 # Date created:				Sun Apr 20 18:28:16 CEST 2003
 # Whom:					king@v2project.com
 #
-# $MidnightBSD: mports/emulators/extract-xiso/Makefile,v 1.1 2007/05/05 04:31:31 laffer1 Exp $
+# $MidnightBSD: mports/emulators/extract-xiso/Makefile,v 1.2 2008/10/16 22:07:27 laffer1 Exp $
 # $FreeBSD: ports/emulators/extract-xiso/Makefile,v 1.6 2006/03/15 06:16:49 vanilla Exp $
 #
 
 PORTNAME=	extract-xiso
 DISTVERSION=	2.5
 CATEGORIES=	emulators
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20source/${PORTNAME}%20v${PORTVERSION}%20source%20code
 DISTNAME=	${PORTNAME}_v${DISTVERSION}_src
 EXTRACT_SUFX=	.tgz
 
