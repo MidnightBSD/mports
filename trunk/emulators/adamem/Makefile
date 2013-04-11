@@ -1,14 +1,8 @@
-# New ports collection makefile for:   	adamem
-# Date created:				November 11, 2001
-# Whom:					Jeremy Karlson
-#
-# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.4 2008/10/21 14:30:52 laffer1 Exp $
-# $FreeBSD: ports/emulators/adamem/Makefile,v 1.6 2004/09/23 07:16:23 danfe Exp $
-#
+# $MidnightBSD: mports/emulators/adamem/Makefile,v 1.5 2009/03/01 17:32:04 laffer1 Exp $
 
 PORTNAME=	adamem
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.komkon.org/~dekogel/files/coleco/
 DISTNAME=	${PORTNAME}
