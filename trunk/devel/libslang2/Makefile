@@ -1,7 +1,8 @@
-# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.6 2012/02/05 03:43:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/libslang2/Makefile,v 1.7 2013/02/18 13:34:39 laffer1 Exp $
 
 PORTNAME=	libslang2
 PORTVERSION=	2.2.4
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
 		ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PORTVERSION:R}/ \
@@ -17,6 +18,7 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 PLIST_SUB+=	SHLIB_VERSION=${PORTVERSION}
+CONFIGURE_ARGS+=--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 
 CONFLICTS=	libslang-[0-9]* libslang-1.*.j[0-9]
 
@@ -27,19 +29,16 @@ MAN1=		slsh.1
 DOCSDIR=	${PREFIX}/share/doc/slang
 DATADIR=	${PREFIX}/share/slsh
 
-OPTIONS=	PCRE	"Include pcre support" on \
-		PNG	"Include png support"  on \
-		ICONV	"Include iconv support" on \
-		ONIG	"Include Oniguruma support" off
+OPTIONS_DEFINE=	PCRE PNG ICONV ONIG DOCS
+OPTIONS_DEFAULT=PCRE PNG ICONV DOCS
+
+ONIG_DESC=	Oniguruma support
 
 PORTDOCS=	*
 
-
 .include <bsd.port.pre.mk>
 
-PLIST_SUB+=	VERSION=${PORTVERSION}
-
-.if !defined(WITHOUT_PCRE)
+.if ${PORT_OPTIONS:MPCRE}
 LIB_DEPENDS+=	pcre:${PORTSDIR}/devel/pcre
 PLIST_SUB+=	PCRE=""
 .else
@@ -47,7 +46,7 @@ CONFIGURE_ARGS+=	--without-pcre
 PLIST_SUB+=	PCRE="@comment "
 .endif
 
-.if !defined(WITHOUT_PNG)
+.if ${PORT_OPTIONS:MPNG}
 LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 PLIST_SUB+=	PNG=""
 .else
@@ -55,7 +54,7 @@ CONFIGURE_ARGS+=	--without-png
 PLIST_SUB+=	PNG="@comment "
 .endif
 
-.if !defined(WITHOUT_ICONV)
+.if ${PORT_OPTIONS:MICONV}
 USE_ICONV=	yes
 PLIST_SUB+=	ICONV=""
 .else
@@ -63,7 +62,7 @@ CONFIGURE_ARGS+=	--without-iconv
 PLIST_SUB+=	ICONV="@comment "
 .endif
 
-.if defined(WITH_ONIG)
+.if ${PORT_OPTIONS:MONIG}
 LIB_DEPENDS+=	onig:${PORTSDIR}/devel/oniguruma4
 PLIST_SUB+=	ONIG=""
 .else
@@ -74,7 +73,7 @@ PLIST_SUB+=	ONIG="@comment "
 post-patch:
 	@${REINPLACE_CMD} -E 's,doc/slsh,doc/slang/v\@slang_major_version\@,' \
 		${WRKSRC}/slsh/Makefile.in
-.if defined(NOPORTDOCS)
+.if empty(PORT_OPTIONS:MDOCS)
 	@${REINPLACE_CMD} -e 's, install[_-]docs,,g; /MKINSDIR.*DEST_SLSH_DOC_DIR/d' \
 		${WRKSRC}/src/Makefile.in \
 		${WRKSRC}/slsh/Makefile.in
