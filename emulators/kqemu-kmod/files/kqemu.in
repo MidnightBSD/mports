@@ -1,5 +1,5 @@
 #!/bin/sh
-# $FreeBSD: ports/emulators/kqemu-kmod/files/kqemu.in,v 1.2 2006/12/21 22:13:24 miwi Exp $
+# $MidnightBSD$
 #
 # PROVIDE: kqemu
 # KEYWORD: nojail
@@ -12,7 +12,7 @@
 . /etc/rc.subr
 
 name="kqemu"
-rcvar=${name}_enable
+rcvar=kqemu_enable
 
 load_rc_config $name
 
