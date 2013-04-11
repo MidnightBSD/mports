@@ -1,14 +1,8 @@
-# New ports collection makefile for:	kqemu-kmod
-# Date created:				2005/10/25
-# Whom:					nork@FreeBSD.org
-#
-# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.4 2009/01/02 00:59:46 laffer1 Exp $
-# $FreeBSD: ports/emulators/kqemu-kmod/Makefile,v 1.15 2007/02/07 21:13:06 nox Exp $
-#
+# $MidnightBSD: mports/emulators/kqemu-kmod/Makefile,v 1.5 2009/03/01 16:24:35 laffer1 Exp $
 
 PORTNAME=	kqemu
 PORTVERSION=	1.3.0.p11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators kld
 MASTER_SITES=	http://bellard.org/qemu/ \
 		http://qemu.org/ \
@@ -19,7 +13,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:C/.p/pre/}
 DIST_SUBDIR=	kqemu
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	Kernel Acceralator for QEMU CPU Emulator
+COMMENT=	Kernel Accelerator for QEMU CPU Emulator
 LICENSE=	gpl2
 
 ONLY_FOR_ARCHS=	i386 amd64
