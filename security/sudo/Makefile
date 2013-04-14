@@ -1,42 +1,9 @@
-# New ports collection makefile for:    sudo
-# Date created:         Sun Aug 13 12:36:14 CDT 1995
-# Whom:                 erich@rrnet.com
-#
-# $MidnightBSD: mports/security/sudo/Makefile,v 1.14 2011/01/20 21:33:56 laffer1 Exp $
-# $FreeBSD: ports/security/sudo/Makefile,v 1.83 2007/07/23 03:54:04 tmclaugh Exp $
-#
+# $MidnightBSD$
 
 PORTNAME=	sudo
-PORTVERSION=	1.8.3
+DISTVERSION=	1.8.6p7
 CATEGORIES=	security
-MASTER_SITES=	http://www.sudo.ws/sudo/dist/ \
-		http://ftp.arcane-networks.fr/pub/mirrors/sudo/ \
-		http://sudo.p8ra.de/sudo/dist/ \
-		http://sudo.cybermirror.org/ \
-		http://sudo-ftp.basemirror.de/ \
-		http://core.ring.gr.jp/archives/misc/sudo/ \
-		http://www.ring.gr.jp/archives/misc/sudo/ \
-		http://ftp.twaren.net/Unix/Security/Sudo/ \
-		ftp://ftp.sudo.ws/pub/sudo/ \
-		ftp://plier.ucar.edu/pub/sudo/ \
-		ftp://obsd.isc.org/pub/sudo/ \
-		ftp://ftp.uwsg.indiana.edu/pub/security/sudo/ \
-		ftp://ftp.tuwien.ac.at/utils/admin-tools/sudo/ \
-		ftp://sunsite.ualberta.ca/pub/Mirror/sudo/ \
-		ftp://ftp.csc.cuhk.edu.hk/pub/packages/unix-tools/sudo/ \
-		ftp://zoot.tele.dk/pub/sudo/ \
-		ftp://ftp.in2p3.fr/pub/sudo/ \
-		ftp://ftp.arcane-networks.fr/pub/mirrors/sudo/ \
-		ftp://ftp.usbm.de/pub/sudo/ \
-		ftp://ftp.cs.tu-berlin.de/pub/misc/sudo/ \
-		ftp://ftp.informatik.uni-hamburg.de/pub/os/unix/utils/sudo/ \
-		ftp://ftp.st.ryukoku.ac.jp/pub/security/tool/sudo/ \
-		ftp://ftp.cin.nihon-u.ac.jp/pub/misc/sudo/ \
-		ftp://core.ring.gr.jp/pub/misc/sudo/ \
-		ftp://ftp.ring.gr.jp/pub/misc/sudo/ \
-		ftp://sunsite.icm.edu.pl/packages/sudo/ \
-		ftp://mirror.cdmon.com/pub/sudo/ \
-		ftp://ftp.twaren.net/Unix/Security/Sudo/
+MASTER_SITES=	${MASTER_SITE_SUDO}
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	Allow others to run commands as root
@@ -44,49 +11,55 @@ LICENSE=	other
 
 MAKE_JOBS_SAFE=	yes
 GNU_CONFIGURE=	yes
+LDFLAGS+=	-lgcc
+LDFLAGS+=	-lssp_nonshared
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-ignore-dot \
 		--with-tty-tickets \
 		--with-env-editor \
 		--with-logincap \
-		--with-long-otp-prompt \
-		--with-pam
+		--with-long-otp-prompt
 
-OPTIONS=	LDAP "With LDAP support" off \
-		INSULTS "With all insults" off \
-		DISABLE_ROOT_SUDO "Disable root sudo" off \
-		DISABLE_AUTH "Disable authentication" off \
-		NOARGS_SHELL "Enable no arguments shell" off \
-		AUDIT "Enable BSM audit support" on
+OPTIONS_DEFINE=	LDAP INSULTS DISABLE_ROOT_SUDO DISABLE_AUTH NOARGS_SHELL \
+		AUDIT OPIE NLS
+OPTIONS_DEFAULT=	AUDIT NLS
+
+INSULTS_DESC=	Enable insults on failures
+DISABLE_ROOT_SUDO_DESC=	Do not allow root to run sudo
+DISABLE_AUTH_DESC=	Do not require authentication by default
+NOARGS_SHELL_DESC=	Run a shell if no arguments are given
+AUDIT_DESC=	Enable BSM audit support
+OPIE_DESC=	Enable one-time passwords (no PAM support)
 
 LOGFAC?=	local2
 CONFIGURE_ARGS+=	--with-logfac=${LOGFAC}
 
-.include <bsd.mport.options.mk>
-
-.if !defined(WITHOUT_NLS)
-USE_GETTEXT=	yes
-CONFIGURE_ENV=	CFLAGS="-I${LOCALBASE}/include" \
-		LDFLAGS="-L${LOCALBASE}/lib -lintl"
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
-
+# This is intentionally not an option.
 # SUDO_SECURE_PATH is a PATH string that will override the user's PATH.
 # ex: make SUDO_SECURE_PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin"
 .if defined(SUDO_SECURE_PATH)
 CONFIGURE_ARGS+=	--with-secure-path="${SUDO_SECURE_PATH}"
 .endif
 
-.if defined(WITH_INSULTS)
+.include <bsd.mport.options.mk>
+
+.if ${PORT_OPTIONS:MNLS}
+USE_GETTEXT=	yes
+LDFLAGS+=	-L${LOCALBASE}/lib -lintl
+CFLAGS+=	-I${LOCALBASE}/include
+PLIST_SUB+=	NLS=""
+.else
+CONFIGURE_ARGS+=	--disable-nls
+PLIST_SUB+=	NLS="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MINSULTS}
 CONFIGURE_ARGS+=	--with-insults
 CONFIGURE_ARGS+=	--with-all-insults
 .endif
 
-.if defined(WITH_LDAP)
+.if ${PORT_OPTIONS:MLDAP}
 USE_OPENLDAP=	yes
 CONFIGURE_ARGS+=	--with-ldap=${PREFIX}
 SUDO_LDAP_CONF?=	ldap.conf
@@ -97,20 +70,26 @@ MAN5+=	sudoers.ldap.5
 PLIST_SUB+=	LDAP="@comment "
 .endif
 
-.if defined(WITH_DISABLE_ROOT_SUDO)
+.if ${PORT_OPTIONS:MDISABLE_ROOT_SUDO}
 CONFIGURE_ARGS+=--disable-root-sudo
 .endif
 
-.if defined(WITH_DISABLE_AUTH)
-CONFIGURE_ARGS+=--disable-authentication
+.if ${PORT_OPTIONS:MDISABLE_AUTH}
+CONFIGURE_ARGS+=	--disable-authentication
 .endif
 
-.if defined(WITH_NOARGS_SHELL)
-CONFIGURE_ARGS+=--enable-noargs-shell
+.if ${PORT_OPTIONS:MNOARGS_SHELL}
+CONFIGURE_ARGS+=	--enable-noargs-shell
 .endif
 
-.if defined(WITH_AUDIT)
-CONFIGURE_ARGS+=--with-bsm-audit
+.if ${PORT_OPTIONS:MAUDIT}
+CONFIGURE_ARGS+=	--with-bsm-audit
+.endif
+
+.if ${PORT_OPTIONS:MOPIE}
+CONFIGURE_ARGS+=	--with-opie
+.else
+CONFIGURE_ARGS+=	--with-pam
 .endif
 
 MAN5+=		sudoers.5
@@ -121,7 +100,8 @@ post-patch:
 	@${REINPLACE_CMD} -E '/install-(binaries|noexec):/,/^$$/ \
 		s/\$$\(INSTALL\)/& ${STRIP}/;s/-b\~/-b ~/' \
 		${WRKSRC}/src/Makefile.in
-.if defined(NOPORTDOCS)
+	@${REINPLACE_CMD} -e 's,$$(srcdir)/sudoers2ldif $$(DESTDIR)$$(docdir),$$(srcdir)/sudoers2ldif $$(DESTDIR)$$(bindir),' ${WRKSRC}/plugins/sudoers/Makefile.in
+.if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e 's/mkinstalldirs $$(DESTDIR)$$(docdir)/mkinstalldirs/' \
 		${WRKSRC}/doc/Makefile.in
 	@${REINPLACE_CMD} -e '/for f in $$(OTHER_DOCS); do/d;/@LDAP@for f in $$(OTHER_DOCS_LDAP); do/d' ${WRKSRC}/doc/Makefile.in
