@@ -1,14 +1,13 @@
-# $MidnightBSD: mports/security/aide/Makefile,v 1.7 2010/12/07 00:52:21 laffer1 Exp $
+# $MidnightBSD: mports/security/aide/Makefile,v 1.8 2011/02/02 21:20:52 laffer1 Exp $
 
 PORTNAME=	aide
-PORTVERSION=	0.13.1
-PORTREVISION=	1
+PORTVERSION=	0.15.1
 CATEGORIES=	security
 MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
 
 MAINTAINER=	ports@MidnightBSD.org
-COMMENT=	A replacement and extension for Tripwire
+COMMENT=	Replacement and extension for Tripwire
 LICENSE=	gpl2
 
 LIB_DEPENDS=	mhash.2:${PORTSDIR}/security/mhash
