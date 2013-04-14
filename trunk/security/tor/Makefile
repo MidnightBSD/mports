@@ -1,11 +1,7 @@
-# ports collection makefile for:	tor
-# Date created:				9 Nov 2007
-# Whom:					Lucas Holt <luke@midnightbsd.org>
-#
-# $MidnightBSD: mports/security/tor/Makefile,v 1.9 2011/06/05 18:18:47 laffer1 Exp $
+# $MidnightBSD: mports/security/tor/Makefile,v 1.10 2012/02/03 04:04:32 laffer1 Exp $
 
 PORTNAME=	tor
-DISTVERSION=	0.2.2.35
+DISTVERSION=	0.2.3.25
 CATEGORIES=	security net ipv6
 MASTER_SITES=	https://www.torproject.org/dist/ \
 		ftp://ftp.bit.nl/mirror/tor/ \
