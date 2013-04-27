@@ -1,7 +1,7 @@
-# $MidnightBSD: mports/devel/git/Makefile,v 1.35 2013/02/23 02:37:17 laffer1 Exp $
+# $MidnightBSD: mports/devel/git/Makefile,v 1.36 2013/03/02 16:00:39 laffer1 Exp $
 
 PORTNAME=	git
-PORTVERSION=	1.8.1.3
+PORTVERSION=	1.8.1.4
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
