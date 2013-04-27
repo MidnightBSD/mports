@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.122 2013/03/03 16:37:58 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.123 2013/03/30 19:19:49 laffer1 Exp $
 
 COMMENT = Networking tools
 
@@ -109,6 +109,7 @@ SUBDIR += tryst
 SUBDIR += tryst-examples
 SUBDIR += tsocks
 SUBDIR += ulxmlrpcpp
+SUBDIR += ushare
 SUBDIR += vinagre
 SUBDIR += vino
 SUBDIR += vncreflector
