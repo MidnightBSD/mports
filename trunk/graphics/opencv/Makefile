@@ -1,9 +1,9 @@
-# $MidnightBSD: mports/graphics/opencv/Makefile,v 1.1 2012/03/04 05:37:37 laffer1 Exp $
+# $MidnightBSD: mports/graphics/opencv/Makefile,v 1.2 2012/09/09 05:03:48 laffer1 Exp $
 # $FreeBSD: ports/graphics/opencv/Makefile,v 1.36 2012/01/16 09:46:55 martymac Exp $
 
 PORTNAME?=	opencv
 PORTVERSION=	2.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}library/${PORTNAME}-unix/${PORTVERSION}
 DISTNAME=	OpenCV-${DISTVERSION}a
@@ -14,7 +14,7 @@ LICENSE=	bsd3
 
 USE_GNOME=	pkgconfig
 WANT_GSTREAMER=	yes
-MAKE_JOBS_SAFE=	yes
+MAKE_JOBS_UNSAFE=	yes
 USE_BZIP2=	yes
 USE_CMAKE=	yes
 USE_LDCONFIG=	yes
@@ -112,8 +112,7 @@ CMAKE_ARGS+=	-DWITH_PNG:BOOL=Off
 .endif
 
 .if defined(WITH_QT4)
-USE_QT_VER= 	4
-QT_COMPONENTS+=	opengl moc_build qmake_build rcc_build uic_build
+USE_QT4+=	opengl moc_build qmake_build rcc_build uic_build qtestlib
 CMAKE_ARGS+=	-DWITH_QT:BOOL=On -DWITH_QT_OPENGL:BOOL=On
 .else
 CMAKE_ARGS+=	-DWITH_QT:BOOL=Off
@@ -147,7 +146,7 @@ CMAKE_ARGS+=	-DWITH_V4L:BOOL=Off
 .endif
 
 .if defined(WITH_XINE)
-LIB_DEPENDS+=	xine.1:${PORTSDIR}/multimedia/libxine
+LIB_DEPENDS+=	xine.2:${PORTSDIR}/multimedia/libxine
 CMAKE_ARGS+=	-DWITH_XINE:BOOL=On
 .else
 CMAKE_ARGS+=	-DWITH_XINE:BOOL=Off
