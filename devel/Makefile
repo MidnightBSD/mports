@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/devel/Makefile,v 1.415 2013/04/11 23:50:41 laffer1 Exp $
+# $MidnightBSD: mports/devel/Makefile,v 1.416 2013/04/27 19:53:21 laffer1 Exp $
 
 COMMENT = Development utilities
 
@@ -39,6 +39,9 @@ SUBDIR += c_c++_reference
 SUBDIR += compiler-rt
 SUBDIR += chrpath
 SUBDIR += cmake
+SUBDIR += cmake-fedora
+SUBDIR += cmake-gui
+SUBDIR += cmake-modules
 SUBDIR += cscope
 SUBDIR += ctags
 SUBDIR += cunit

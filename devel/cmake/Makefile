@@ -1,25 +1,28 @@
-# $MidnightBSD: mports/devel/cmake/Makefile,v 1.11 2012/02/24 18:31:29 laffer1 Exp $
+# $MidnightBSD: mports/devel/cmake/Makefile,v 1.12 2012/09/29 15:57:59 laffer1 Exp $
 
 PORTNAME=	cmake
-PORTVERSION=	2.8.8
+PORTVERSION=	2.8.10.2
 CATEGORIES=	devel
-MASTER_SITES=	http://www.cmake.org/files/v${PORTVERSION:C/\.[[:digit:]]+$//}/
+MASTER_SITES=	http://www.cmake.org/files/v2.8/
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	A cross-platform Makefile generator
 LICENSE=	other
 # bsd variant
 
-HAS_CONFIGURE=	yes
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
-		--datadir=${DATADIR:S|^${PREFIX}||} \
-		--docdir=${DOCSDIR:S|^${PREFIX}||}
+		--datadir="/${DATADIR_REL}" \
+		--docdir="/${DOCSDIR_REL}"
 MAKE_JOBS_SAFE=	yes
 
-.if !defined(WITH_DEBUG)
-INSTALL_TARGET=install/strip
+.if defined(STRIP) && ${STRIP} != ""
+INSTALL_TARGET=	install/strip
 .endif
+
+.if !defined(CMAKE_MODULES)
+HAS_CONFIGURE=	yes
+RUN_DEPENDS=	${DATADIR}/Modules/CMake.cmake:${PORTSDIR}/devel/cmake-modules
 
 MAN1=		ccmake.1 \
 		cmake.1 \
@@ -31,6 +34,7 @@ MAN1=		ccmake.1 \
 		cmakevars.1 \
 		cpack.1 \
 		ctest.1
+.endif
 
 post-patch:
 	@(${FIND} ${WRKSRC}/Modules -name "*.cmake" -print0; \
@@ -47,5 +51,10 @@ post-patch:
 	   	${WRKSRC}/Modules/FindDCMTK.cmake
 	@${FIND} ${WRKSRC} -name "*.bak" -delete -o -name "*.orig" -delete
 	@${CP} ${FILESDIR}/MidnightBSD.cmake ${WRKSRC}/Modules/Platform
+
+.if !defined(CMAKE_MODULES)
+post-install:
+	${INSTALL_DATA} ${WRKSRC}/Docs/cmake-mode.el ${PREFIX}/share/emacs/site-lisp
+.endif
 
 .include <bsd.port.mk>
