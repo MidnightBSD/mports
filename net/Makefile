@@ -1,4 +1,4 @@
-# $MidnightBSD: mports/net/Makefile,v 1.123 2013/03/30 19:19:49 laffer1 Exp $
+# $MidnightBSD: mports/net/Makefile,v 1.124 2013/04/27 19:49:01 laffer1 Exp $
 
 COMMENT = Networking tools
 
@@ -97,6 +97,7 @@ SUBDIR += samba-libsmbclient
 SUBDIR += samba-nmblookup
 SUBDIR += samba-pdbsql
 SUBDIR += samba34
+SUBDIR += samba36
 SUBDIR += samba4
 SUBDIR += samba4wins
 SUBDIR += sambasentinel
