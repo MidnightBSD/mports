@@ -1,12 +1,12 @@
-# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.19 2012/09/26 19:53:50 laffer1 Exp $
+# $MidnightBSD: mports/databases/sqlite3/Makefile,v 1.20 2013/02/10 20:41:22 laffer1 Exp $
 
-PORTNAME=	sqlite
-PORTVERSION=	3.7.14.1
+PORTNAME=	sqlite3
+PORTVERSION=	3.7.16.1
 CATEGORIES=	databases lang tcl
-MASTER_SITES=	http://www.sqlite.org/ \
-		http://www2.sqlite.org/ \
-		http://www3.sqlite.org/
-DISTNAME=	sqlite-autoconf-3071401
+MASTER_SITES=	http://www.sqlite.org/2013/ \
+		http://www2.sqlite.org/2013/ \
+		http://www3.sqlite.org/2013/
+DISTNAME=	sqlite-autoconf-3071601
 
 MAINTAINER=	ports@MidnightBSD.org
 COMMENT=	An SQL database engine in a C library w/ Tcl wrapper
