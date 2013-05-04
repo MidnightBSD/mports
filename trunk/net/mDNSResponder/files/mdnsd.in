@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: ports/net/mDNSResponder/files/mdnsd.in,v 1.1 2010/08/01 19:12:17 rene Exp $
+# $MidnightBSD$
 
 # PROVIDE: mdnsd
 # REQUIRE: DAEMON
@@ -9,7 +9,7 @@
 . /etc/rc.subr
 
 name=mdnsd
-rcvar=`set_rcvar`
+rcvar=mdnsd_enable
 
 load_rc_config $name
 
